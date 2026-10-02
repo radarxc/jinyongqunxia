@@ -59,84 +59,6 @@
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
   notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际目视比较两张选第2张：女主成年身份面容保持，烟蓝交领衣、灰褐裙与木簪，双手空着放松、头足完整，无官印令牌兵器或旗装头饰。第2张衣襟和腰带更清楚。目标窄袖袄被画成长摆衣、发髻较低髻目标偏高、鞋面有少量纹样、小痣不清及占高偏大如实登记为本轮宽松待审偏差；无明显多肢或重大结构问题，保留candidate，不宣称严格服饰通过。 提示词 assets/default/prompts/characters/protagonist/npc_zhujue__f_ch08.md；tier S。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_zhujue__ch08_f_base.requests.json。生成候选2张，入选第2张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png；/Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png；/Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用项目基线（真实审批状态照录）和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
-- id: por_npc_shuanger__ch08_youth_base
-  file: por_npc_shuanger__ch08_youth_base.png
-  category: character/female
-  style: default
-  subject: 双儿 npc_shuanger ch08_luding · 庄家旧事之后随韦小宝同行、承担主动护持职责的青年阶段
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.
-
-
-    Create a beautiful REALISTIC Chinese wuxia character illustration of SHUANG ER / 双儿. Use image 1 as the ONLY FACIAL IDENTITY source: Cherie Chan / 陈少霞 as Shuang Er in the 1998 TVB The Duke of Mount Deer starring Jordan Chan. Preserve this particular character’s recognizable facial relationships, naturally adapted to the specified story age. Image 2 is ONLY a same-gender project colour/rendering sample; image 3 is ONLY the pale ink-wash background sample. No other face may enter the design.
-
-
-    身份与阶段：双儿（npc_shuanger），《鹿鼎记》ch08_luding，清初康熙时代；严格是庄家旧事之后随韦小宝同行、承担主动护持职责的青年阶段。约18–20岁的年轻成年观感，确岁待考，asset的youth键不自动等于成年。
-
-
-    本人辨识锚点：第一参考陈少霞双儿的短圆椭圆脸、饱满柔和颊面和较短圆下巴；脸宽与面中长度的关系自然可辨。保留细长轻弧眉、较柔和的自然眼形与微扬外眼角、眉眼间距、纤细鼻梁与小圆鼻头，小巧唇形和略上扬嘴角，表情温厚而机敏。不要把自然眼睛放大成动漫圆眼。双儿的脸保持圆润短而不是阿珂的较长、下颌收窄轮廓，不能换成第二第三参考的王语嫣尖细脸。五官细腻写实，约18–20岁的年轻成年人，身量轻巧、肩臂有习武力量而不过度纤弱；不低幼、不做讨好或卑怯表情。原图分辨率只够确认轮廓与神态，细微毛孔不作精确复制要求。
-
-
-    服制与发式：清初江南汉族女子的朴素灰藕色长袄、青灰长裙、窄布腰带、素色软底布鞋。汉式交领右衽为穿着者左襟覆盖右襟，向本人右側合拢，领口严整、胸颈遮蔽，袖口略收便于护持。整片衣料连贯、衣摆完整可穿，朴素但剪裁清楚，不用脏污破布塑造义婢身份。黑发收成左右对称的两个收敛小髻，用素布带束牢，额前少量整齐细碎发不遮眼；不用图中大体积影视发髻、粉花、耀眼饰物或蓝白繁复绣纹。腰侧一只小而朴素的布包，用短系带实在固定在本人左腰，不悬空、不变为武器匣。
-
-
-    姿态与器物：主要正面站立，头与颈竖直端正，双眼水平直视，双肩自然放松。双脚均着地，一足可轻微前出半步，胸肩仍朝正面，不形成转身回眸。右手在本人右前方腰腹高度轻轻伸出作克制提醒，五指自然舒展；左手空着自然放在身侧、靠近布包但不握住它，双手各自完整可见。用细微专注目光与准备援手的动作表达护卫担当，不用歪头、跪姿、抱拳遮胸、双手交缠或对旁人献媚；画面没有需要保护的第二个人。
-
-
-    人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。
-
-
-    参考主次再次限定：第二参考仅女性项目低饱和淡藕灰与暖肤色、柔和明暗、连续布料和细腻写实手绘质感；已实际view。不可借王语嫣的脸型、眉眼鼻唇、侧脸视线、长发、宋代褙子裙装、手势、首饰或身材模板；manifest实际approved保持不变，不能把基线审批转移给本角色。 第三参考仅背景：极浅低对比水墨远山、暖浅灰纸底、薄雾与留白；已实际view。完全忽略其中王语嫣面孔、倾头转身、女性体态、白青薄纱裙装、发饰与飘带；墨痕纸纹不得侵入双儿的人体衣物或器物。
-
-
-    背景与交付：第三图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认两张独立候选由执行者比较；所有输出仍为candidate，待用户最终审核，不自动approved。
-
-
-    事实边界：具体18–20岁为美术选段，原著确岁、生卒未核实。 双髻、朴素服装具体剪裁、衣色及布包不是已经逐字验证的原著专属定装；仍保留待考/美术补足界限。 第一身份图仅409×330、脸部约90像素尺度，能支持轮廓神态，不能支持精密皮肤纹理复原。 灰藕袄、青灰裙、素小髻与腰侧小布包继承主树稿；姿态改为正面提醒与待援。 不加载后期火器或双剑，用双手与专注神态表现主动护持。 用户明确指定1998剧版面容覆盖旧稿禁演员脸要求，但照片年龄、衣装、姿势和场景不变成小说事实。
-
-
-    完整排除项：不要把双儿画成梁小冰阿珂、陈圆圆、王语嫣或通用美人脸；不要拉成长瓜子脸、过尖下巴、母辈成熟皱纹、婴幼儿脸或性感成年写真。不要参考的大髻粉花、满身青蓝金线大绣纹、交叉拢手胸前、草垛剧照背景与半身裁切。不要清宫公主朝服、满族大拉翅、凤冠、皇冠、婚服、孕态、侍女下跪或七位家人合照。不要双剑、金铃索、火铳、长刀、剑鞘、盾牌或凭空名器。不要把左腰布包画成悬浮方盒、巨大背囊或带文字标签的物件。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。
-
-
-    FINAL POSE CHECK: FRONT-FACING SHUANG ER / 双儿. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. Never inherit reference-photo head lean, sideways gaze, tilted shoulders, turned torso or cropped composition. Preserve only this role’s recognizable facial identity and the current-age full body.'
-  negative: 不要把双儿画成梁小冰阿珂、陈圆圆、王语嫣或通用美人脸；不要拉成长瓜子脸、过尖下巴、母辈成熟皱纹、婴幼儿脸或性感成年写真。不要参考的大髻粉花、满身青蓝金线大绣纹、交叉拢手胸前、草垛剧照背景与半身裁切。不要清宫公主朝服、满族大拉翅、凤冠、皇冠、婚服、孕态、侍女下跪或七位家人合照。不要双剑、金铃索、火铳、长刀、剑鞘、盾牌或凭空名器。不要把左腰布包画成悬浮方盒、巨大背囊或带文字标签的物件。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/shuanger_1998_chenshaoxia.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/luding/shuanger_1998_chenshaoxia.jpg
-    use: 第一且唯一面部身份：1998 TVB陈小春版《鹿鼎记》的陈少霞饰双儿，本任务已实际view并核对来源记录、SHA、尺寸。第一参考陈少霞双儿的短圆椭圆脸、饱满柔和颊面和较短圆下巴；脸宽与面中长度的关系自然可辨。保留细长轻弧眉、较柔和的自然眼形与微扬外眼角、眉眼间距、纤细鼻梁与小圆鼻头，小巧唇形和略上扬嘴角，表情温厚而机敏。不要把自然眼睛放大成动漫圆眼。双儿的脸保持圆润短而不是阿珂的较长、下颌收窄轮廓，不能换成第二第三参考的王语嫣尖细脸。五官细腻写实，约18–20岁的年轻成年人，身量轻巧、肩臂有习武力量而不过度纤弱；不低幼、不做讨好或卑怯表情。原图分辨率只够确认轮廓与神态，细微毛孔不作精确复制要求。 本人五官适配当前阶段，绝不继承照片头倾、身体倾角、其他人物、服装、拍摄背景或半身构图；新图必须正面头颈竖直、双眼水平。
-    sha256: 8ef389e8691ef3aca08fc0d11ca6b886566dd5ca4bad439e42793769a7ab4186
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/8ef389e8691ef3aca08fc0d11ca6b886566dd5ca4bad439e42793769a7ab4186.jpg
-    status_at_input: null
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 第二参考仅女性项目低饱和淡藕灰与暖肤色、柔和明暗、连续布料和细腻写实手绘质感；已实际view。不可借王语嫣的脸型、眉眼鼻唇、侧脸视线、长发、宋代褙子裙装、手势、首饰或身材模板；manifest实际approved保持不变，不能把基线审批转移给本角色。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三参考仅背景：极浅低对比水墨远山、暖浅灰纸底、薄雾与留白；已实际view。完全忽略其中王语嫣面孔、倾头转身、女性体态、白青薄纱裙装、发饰与飘带；墨痕纸纹不得侵入双儿的人体衣物或器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T18:39:27.212378+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-c19dad66-486b-48bc-a471-f555ef316533.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 011b62eadaa40895b0077a253481d8ea2c67001ba5b8320d6c8f249c12bf499e
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_shuanger__ch08_youth_base/prompt-d49fbae07ff579edc49494611db26e0c3f190954fd279dd5cc79d6be2bc04984.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_shuanger__ch08_youth_base/manifest-f14291978a22306a15a1dfcb91f86c7e016f0057152d08aac74577d7dadb4e7d.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_shuanger__ch08_youth_base.requests.json
-  notes: 已实际查看两个原始PNG并逐一对照1998陈少霞双儿参考，选candidate 2：保留较短圆润椭圆脸、柔和颊面、圆钝下巴与上扬闭唇，和王语嫣较窄长脸明显有别；18–20年轻成年观感，正面头颈端正、双眼近水平，双髻素布带和温厚机敏神态清楚。灰藕袄、青灰裙、腰侧单个素布包、两空手护持准备符合阶段；人物五官、双手和整片衣料清楚，无明显多肢或重大结构错接，水墨只在背景。candidate 1也可用但布包外形多节且衣摆不对称更散，2的单包与整齐长袄更贴合稿。两张一只前鞋完整可见，另一脚被长裙遮住，后鞋细节未验证；按用户放宽轻微鞋遮挡要求登记，不当成缺肢，也不伪称双鞋都完全可见。双髻仍略大于素小髻文字、织物细纹和额发偏精修，记录为美术偏差；原著确岁/衣色/双髻和布包仍属待考或美术补足。默认2候选选1，不为细微偏差机械加图。实测原生1024x1536 RGB不透明PNG，原字节保存，非2048x3072 RGBA母版，candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_ake__ch08_youth_base
   file: por_npc_ake__ch08_youth_base.png
   category: character/female
@@ -741,3 +663,50 @@
   sha256: a3c69e53beb4d7f19fe705304e2d4c02683489aee3795d92351626417619a6d1
   status: candidate
   notes: 立绘重审重出（AR-30）；独臂神尼九难（S）缺图；她就是碧血剑的阿九，以新出的阿九立绘为身份参考，画同一人老去二十余年、出家断臂的样子。
+- id: por_npc_shuanger__ch08_youth_base
+  file: por_npc_shuanger__ch08_youth_base.png
+  category: character/female
+  style: default
+  subject: 双儿（ch08_luding）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：双儿，《鹿鼎记》中庄家送给韦小宝的侍女，此后一路随他同行、贴身护持的时期。
+
+    经典形象：要一眼认出是双儿——淡藕荷袄、青灰裙、脑后圆髻、腰佩短剑，温柔体贴、笑起来很甜，一心护着人；秀美可人的成年女子。
+
+    年龄与体态：外观约二十岁的成年年轻女子，身材娇小玲珑但为成人比例，体态轻灵。
+
+    面容：温柔秀美的鹅蛋脸，面颊柔和；眉毛细长平缓；眼睛温柔明亮，带着体贴、羞涩和一心一意的忠诚；鼻子小巧；嘴唇薄而柔和，笑起来很甜；肤色白净透着健康的红润，有真实的皮肤纹理。温柔体贴、善良忠心，又有一身好武功。
+
+    发式：黑发在脑后挽成一个圆髻，系一条浅色丝带，额前少许整齐的碎发；不梳双丫髻。
+
+    服饰：清初江南汉族女子装束——淡藕荷色交领短袄（右衽）、青灰长裙、窄腰带、软底布鞋，朴素整洁。
+
+    道具与姿态：腰侧佩一柄连鞘短剑；双手轻轻交握在身前；安静站立，随时准备护着人。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要孩子气的脸、头大身小；不要双丫髻；不要厚粉底的戏装脸。清初汉族女子仍穿明式袄裙：汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:17:02-0700
+  source_path: .agents/coord/gemini_originals/por_npc_shuanger__ch08_youth_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 05b2c7b4f9a3451197bd09c0e8c5c2e0c571b3526083cc329ea1502d86311079
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图头大身小、双髻配厚粉底戏装脸，像九十年代剧照；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）。改为约二十岁、温柔忠心的成年侍女。
