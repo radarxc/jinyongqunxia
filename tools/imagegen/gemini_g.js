@@ -1,7 +1,8 @@
 /* global window, document, setTimeout, localStorage, sessionStorage, MouseEvent, Blob, URL, createImageBitmap */
 // 精简版驱动（批量循环用）。用法：一次性 localStorage.setItem('claudeG', <本文件内容>)、localStorage.setItem('claudeGemPrompts', <{id: 提示词} JSON>)；
-// 之后每张图：整页打开 https://gemini.google.com/images → eval(localStorage.getItem('claudeG')); await __g.submit(JSON.parse(localStorage.getItem('claudeGemPrompts'))[id])
-// → await __g.waitGen()（返回生成图在页面上的 CSS 坐标，下载必须用真实鼠标：先 hover 图片中心，再点右上角下载按钮，否则会被 Chrome 的多文件下载保护拦截）。
+// 之后每张图（2026-10-02 起，见 README「/images 页面提交是坏的」）：整页打开 https://gemini.google.com/app → eval(localStorage.getItem('claudeG'));
+// await __g.prepareNext()（开 Create image、套模板 / 传参考图、填提示词）→ await __g.send()（可见时 JS 点发送、等 user-query、出队）
+// → await __g.waitGen() → __g.saveFull(id)。
 // 2026-10-01 实测：Gemini Apps Activity 关闭时发送后不一定跳到 /app/<会话>，所以以页面出现 model-response 为准。
 // 2026-10-02：每条可带选项 localStorage.claudeGemOpts = {id: {template, refs}}——template 缺省 'Oil painting'，'' 表示不套模板
 // （立绘、秘籍改图）；refs 是发送前要上传的参考图（仓库相对路径），事先用 stage() 存进本页 IndexedDB，prepareNext 里由 uploadRef() 挂上。
@@ -91,8 +92,33 @@ window.__g = {
     return { ...r, id, left: q.length - (r.ok ? 1 : 0) };
   },
   // 2026-10-01：JS 点发送约两成不生效；改为 prepareNext 填好提示词并聚焦输入框，由 computer 工具按真实回车发送，再 markSent 确认并出队
-  // 2026-10-02：按 claudeGemOpts 决定套不套模板、要不要先上传参考图；template 参数显式给出时优先（'' = 不套）
+  // （10-02 查明点不动是标签页不可见所致，现在用 send()：可见时 JS 点发送）
+  // 2026-10-02：按 claudeGemOpts 决定套不套模板、要不要先上传参考图；template 参数显式给出时优先（'' = 不套）；先确认 Pro、打开 Create image
   opts(id) { const o = JSON.parse(localStorage.getItem('claudeGemOpts') || '{}')[id] || {}; return { template: o.template ?? 'Oil painting', refs: o.refs || [] }; },
+  // ── /app 普通对话（2026-10-02）──
+  // 作者：「操作的时候要加上Images，要不有可能不生成图片」。/app 新会话默认没开图片工具：点输入框左下「+」（Upload & tools），
+  // 在弹出菜单（.cdk-overlay-container）里点「Create image」。打开后输入框上方出现「Images」标记（close Images 按钮），
+  // 占位文字变成 Describe your image，模板卡（含 Oil painting）也是这之后才出现；套模板后 Images 标记还在。
+  // 菜单项没有 aria-checked（只在右侧打勾），所以以 close Images 按钮为准；已打开就别再点（再点会关掉）。
+  // 菜单没有遮罩，Escape 也关不掉，要再点一次「+」（aria-expanded 由 true 变 false）才收起。
+  toolsBtn: () => document.querySelector('button[aria-label="Upload & tools"]'),
+  closeMenu() { const b = this.toolsBtn(); if (b && b.getAttribute('aria-expanded') === 'true') b.click(); },
+  imagesOn() { return !!this.btn('close Images'); },
+  async ensureImages(ms = 8000) {
+    if (this.imagesOn()) return { ok: true, already: true };
+    const b = this.toolsBtn();
+    if (!b) return { ok: false, why: 'no tools button' };
+    if (b.getAttribute('aria-expanded') !== 'true') b.click();
+    const it = await this.waitFor(() => [...document.querySelectorAll('.cdk-overlay-container [role=menuitemcheckbox]')].find((e) => (e.innerText || '').trim() === 'Create image'), 5000);
+    if (!it) { this.closeMenu(); return { ok: false, why: 'no Create image item' }; }
+    it.click();
+    const ok = await this.waitFor(() => this.imagesOn(), ms);
+    await this.sleep(200); this.closeMenu();
+    return { ok: !!ok };
+  },
+  // 限流时模式会掉回 Flash-Lite：标签是「Open mode picker, currently Pro」或「… currently Gemini Pro」才算 Pro
+  mode: () => document.querySelector('button[aria-label^="Open mode picker"]')?.getAttribute('aria-label') || '',
+  isPro() { return /currently (Gemini )?Pro\b/.test(this.mode()); },
   async prepareNext(template) {
     this.patchFetch();
     const q = JSON.parse(localStorage.getItem(this.qk()) || '[]');
@@ -101,6 +127,9 @@ window.__g = {
     const id = q[0], P = prompts[id], o = this.opts(id), t = template ?? o.template;
     if (!P) return { ok: false, id, why: 'no prompt' };
     if (!(await this.waitFor(() => document.querySelector('rich-textarea .ql-editor'), 20000))) return { ok: false, id, why: 'no editor' };  // 刚 navigate 完输入框还没渲染
+    if (!(await this.waitFor(() => this.isPro(), 8000))) return { ok: false, id, why: 'mode not Pro', mode: this.mode() };
+    const im = await this.ensureImages();
+    if (!im.ok) return { ok: false, id, why: 'images tool not on', ...im };
     if (t) {
       const card = await this.waitFor(() => document.querySelector(`media-gen-template-card[aria-label="${t}"]`), 20000);
       if (!card) return { ok: false, id, why: 'no template' };
@@ -108,6 +137,7 @@ window.__g = {
       if (!(await this.waitFor(() => this.templateOn(t), 8000))) return { ok: false, id, why: 'template not applied' };
     } else if (this.templateOn()) return { ok: false, id, why: 'template unexpectedly on' };
     for (const r of o.refs) { const u = await this.uploadRef(r); if (!u.ok) return { ok: false, id, why: 'upload failed', ...u }; }
+    if (!this.imagesOn()) return { ok: false, id, why: 'images tool off' };
     const ed = document.querySelector('rich-textarea .ql-editor'); ed.focus(); document.execCommand('selectAll', false, null); document.execCommand('insertText', false, P); await this.sleep(200);
     if (ed.innerText.trim().length < P.length * 0.9) return { ok: false, id, why: 'prompt not set' };
     if (o.refs.length) {  // 参考图传完之前发送键是灰的
@@ -126,8 +156,24 @@ window.__g = {
     if (ed) { ed.focus(); const s = window.getSelection(); s.selectAllChildren(ed); s.collapseToEnd(); }
     return Math.max(0, w);
   },
-  async markSent(id, ms = 20000) {
-    const sent = await this.waitFor(() => document.querySelector('user-query, model-response') || (document.querySelector('rich-textarea .ql-editor')?.innerText || '').trim().length < 10, ms);
+  // 2026-10-02：发送一律在可见标签页里 JS 点「Send message」——后台标签页点了会建出空会话、什么也不出（之前"两成点不动"也是这个原因）。
+  // 点之前过 gate()（各道共用 8 秒间隔），点之后等页面出现 user-query 才算发出，再出队。一次调用最长约 38 秒，在 45 秒上限内。
+  async send(id = this.head(), ms = 20000) {
+    if (document.visibilityState !== 'visible') return { ok: false, id, why: 'tab hidden' };
+    if (id !== this.head()) return { ok: false, id, why: 'not queue head', head: this.head() };
+    if (!this.imagesOn()) return { ok: false, id, why: 'images tool off' };
+    await this.gate();
+    if (document.visibilityState !== 'visible') return { ok: false, id, why: 'tab hidden' };
+    const b = await this.waitFor(() => { const x = this.btn('Send message'); return x && !x.disabled && x.getAttribute('aria-disabled') !== 'true' ? x : null; }, 10000);
+    if (!b) return { ok: false, id, why: 'send disabled' };
+    const n0 = document.querySelectorAll('user-query').length;
+    localStorage.setItem('claudeLastSubmitTs', String(Date.now()));
+    b.click(); window.__gT = Date.now();
+    return this.markSent(id, ms, n0);
+  },
+  // 只认页面出现新的 user-query：编辑框变空不算（发送失败时编辑框也可能被清空）
+  async markSent(id, ms = 20000, n0 = 0) {
+    const sent = await this.waitFor(() => document.querySelectorAll('user-query').length > n0, ms);
     if (!sent) return { ok: false, id, why: 'not sent' };
     const q = JSON.parse(localStorage.getItem(this.qk()) || '[]');
     if (q[0] === id) { localStorage.setItem(this.qk(), JSON.stringify(q.slice(1))); }
@@ -184,11 +230,12 @@ window.__g = {
     const dt = new DataTransfer(); dt.items.add(file);
     const before = document.querySelectorAll('button[aria-label="close attachment"]').length;
     let via = 'input';
-    document.querySelector('button[aria-label="Upload & tools"]')?.click();
+    const tb = this.toolsBtn();
+    if (tb && tb.getAttribute('aria-expanded') !== 'true') tb.click();
     const inp = await this.waitFor(() => document.querySelector('images-files-uploader input[type=file]'), 5000);
     if (inp) { inp.files = dt.files; inp.dispatchEvent(new Event('change', { bubbles: true })); }
     let ok = await this.waitFor(() => document.querySelectorAll('button[aria-label="close attachment"]').length > before, inp ? 8000 : 10);
-    const closeMenu = () => { if (document.querySelector('[role=menu]')) { document.querySelector('.cdk-overlay-backdrop')?.click(); document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', bubbles: true })); } };
+    const closeMenu = () => { this.closeMenu(); if (document.querySelector('[role=menu]')) { document.querySelector('.cdk-overlay-backdrop')?.click(); document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', bubbles: true })); } };
     closeMenu();
     if (!ok) {
       via = 'paste';
