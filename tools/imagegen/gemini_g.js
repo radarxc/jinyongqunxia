@@ -16,13 +16,15 @@ window.__g = {
   vis: (e) => !!e && e.getClientRects().length > 0,
   btn(l) { return [...document.querySelectorAll('button[aria-label]')].find((b) => b.getAttribute('aria-label') === l && this.vis(b)); },
   ph: () => document.querySelector('rich-textarea .ql-editor')?.getAttribute('data-placeholder') || '',
+  // 2026-10-01 新版前端：模板生效时输入框上方出现「close <模板名>」按钮；旧版靠占位文字含 photo 判断，两者任一即可
+  templateOn(t = 'Oil painting') { return !!document.querySelector(`button[aria-label="close ${t}"]`) || /photo/i.test(this.ph()); },
   genImg: () => [...document.querySelectorAll('model-response img.image.loaded')].pop(),
   async submit(P, template = 'Oil painting') {
     if (!P) return { ok: false, why: 'no prompt' };
     const card = await this.waitFor(() => document.querySelector(`media-gen-template-card[aria-label="${template}"]`), 20000);
     if (!card) return { ok: false, why: 'no template' };
     card.click();
-    if (!(await this.waitFor(() => /photo/i.test(this.ph()), 6000))) return { ok: false, why: 'template not applied' };
+    if (!(await this.waitFor(() => this.templateOn(template), 8000))) return { ok: false, why: 'template not applied' };
     const ed = document.querySelector('rich-textarea .ql-editor'); ed.focus(); document.execCommand('selectAll', false, null); document.execCommand('insertText', false, P); await this.sleep(200);
     if (ed.innerText.trim().length < P.length * 0.9) return { ok: false, why: 'prompt not set' };
     const b = await this.waitFor(() => { const x = this.btn('Send message'); return x && !x.disabled && x.getAttribute('aria-disabled') !== 'true' ? x : null; }, 10000);
@@ -96,7 +98,7 @@ window.__g = {
     const card = await this.waitFor(() => document.querySelector(`media-gen-template-card[aria-label="${template}"]`), 20000);
     if (!card) return { ok: false, id, why: 'no template' };
     card.click();
-    if (!(await this.waitFor(() => /photo/i.test(this.ph()), 6000))) return { ok: false, id, why: 'template not applied' };
+    if (!(await this.waitFor(() => this.templateOn(template), 8000))) return { ok: false, id, why: 'template not applied' };
     const ed = document.querySelector('rich-textarea .ql-editor'); ed.focus(); document.execCommand('selectAll', false, null); document.execCommand('insertText', false, P); await this.sleep(200);
     if (ed.innerText.trim().length < P.length * 0.9) return { ok: false, id, why: 'prompt not set' };
     ed.focus(); const sel = window.getSelection(); sel.selectAllChildren(ed); sel.collapseToEnd();  // 光标移到末尾，回车才会发送

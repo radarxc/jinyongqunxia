@@ -109,6 +109,14 @@ def build_short(asset_id: str) -> str:
             desc = re.sub(r"[^。]*(?:非摄影|非3D|边界清楚)[^。]*。", "", desc).strip()
             if len(desc) > 20:
                 look = desc.rstrip("。")
+    if fm.get("category") == "accessories":
+        # 衣饰三槽共用的句子「护肩画成一对；披风画单件完整铺展；头饰画冠／巾及必要簪，不把三个槽混成套装」会诱导模型
+        # 把三个槽画在一起（10-01 实测 3 张失败）：主体段与类别专项里都删掉，只留本件槽位的说法
+        slot = str(fm.get("subcategory", "")).split("·")[0]
+        look = re.sub(r"护肩画成一对[^。]*?混成套装。?", "", look).strip()
+        clauses = [re.sub(r"，?不把三个槽混成套装", "", c) for c in re.split(r"[；;]", special) if slot and slot in c]
+        others = "、".join(x for x in ["帽子", "头饰", "护肩", "护臂", "披风"] if x != slot and not (slot == "头饰" and x == "帽子"))
+        special = (clauses[0] if clauses else "") + f"；画面里只画这一件{slot}，没有{others}或其他配件"
     name, sub, grade, src = fm.get("name", ""), fm.get("subcategory", ""), fm.get("grade", ""), str(fm.get("source", ""))
     src = re.sub(r"\*\*|（原创扩展[^）]*）", "", src).strip(" ；;")
     grade_line = grade_line.split("（禁")[0]
