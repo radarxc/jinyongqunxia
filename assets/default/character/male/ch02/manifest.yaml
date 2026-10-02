@@ -452,78 +452,6 @@
   scene_title: 漠北论英雄
   stage: 第40回华山之后，郭靖赴漠北，与病重的成吉思汗讨论何为英雄；不与第38回拒绝南征混为同一场。
   asset_variant: scene
-- id: por_npc_huangyaoshi__ch02_elder_base
-  file: por_npc_huangyaoshi__ch02_elder_base.png
-  category: character/male
-  style: default
-  subject: 黄药师 npc_huangyaoshi ch02 · 桃花岛三试时期中老年东邪
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. Forehead–nose–chin centreline VERTICAL, both eyes HORIZONTAL, shoulders relaxed and camera level. Gaze straight ahead; NO head tilt, NO Dutch angle, no chin lift and no leaning toward either shoulder. Override the pose and camera angle in every reference.
-
-
-    Create HUANG YAOSHI / 黄药师 as a beautiful REALISTIC full-body Chinese wuxia character illustration.
-
-
-    第一参考仅为本人身份：1983 TVB 曾江饰黄药师。保持其宽而较高的额面、清楚眉骨、灰色上挑眉梢、收长眼形与紧凑眉眼关系；鼻梁挺直有体量、鼻头自然不尖削，嘴部克制，灰髭与颏下整齐灰须区分。颧颊有真实宽度，不强行套旧稿狭长尖脸，不把下颌被须遮挡部分伪画成网红锥子脸。保留自然中老年纹理，不复制剧照拧眉侧视，不复制白发老仙样板。第二图令狐冲只供灰青炭灰色卡、柔光和细腻写实手绘质感，不取他的脸、年轻年龄、胡茬、衣型、剑或歪头。第三图王语嫣只供极淡背景水墨和留白，不取女性脸、身体、薄纱裙、头倾。
-
-
-    黄药师，东邪、桃花岛主，射雕桃花岛三试与五绝相会阶段。五十至六十余岁视觉大档，精确生年未定；清癯修长而筋骨有力的中老年文士，冷静、清傲、审慎，不画衰弱垂暮。正面站稳，头颈自然挺直，气势来自目光与骨架。黑灰头发收整束髻、小型素木簪、鬓边霜色；髭须可灰但不能让整头发全部雪白、长须拖腰。无道冠，无面具，额头与完整脸部可读。
-
-
-    宋式青灰交领右衽窄袖长袍，淡灰内衬、墨青窄布带、深裤与黑布鞋；穿着者左襟覆盖右襟并向本人右侧合拢。青衣是完整连续实体布料，有少量宽缓受力褶皱与自然下垂；不复制影视黑金锦袍、夸张肩饰和摄影背景，不机械复制男性基线衣款。
-
-
-    只持一支素青玉箫 eq_yuxiao。右手于本人右侧、观者左侧低位轻持，管身斜向下伸到身体轮廓外；箫是完整直管，指孔、上端吹口与下端管口有清楚的乐器结构，保持整个端点入画。不要将其画成横笛吹奏动作、剑刃、短剑或发光法杖。左手腰侧自然收放、手指完整露出，不藏在袖内。玉箫与手、衣摆不熔合，无第二件武器，不展示未经核实的箫中机关。
-
-
-    人物本体采用美观精细的写实国风插画，可信骨相、自然皮肤体积、清楚双手双脚、柔和左上光、连续完整衣料与器物、干净实体轮廓。只用少量自然笔触，不做照片截图、3D塑料或拼贴。背景为不透明暖浅灰纸底，极淡低对比远山薄雾水墨与大量留白，脚下少量接触阴影；墨痕和纸纹不能侵蚀皮肤、衣服和玉箫。无桃林实体剧情场景。
-
-
-    单人单视图，原生竖幅2:3，正面水平镜头。头顶、双手、两足、完整衣摆与玉箫两端均入画，四周自然净空；不以固定占高或头身数拉伸。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并如实记录；保留原始PNG字节，不裁切、插值或重新编码。默认两张独立候选比较，仍为candidate待用户审核。
-
-
-    完整排除项：不要 head tilt、Dutch angle、歪头向肩、双眼高低倾斜、侧脸回眸、俯首遮眼、抬下巴；不要用令狐冲、萧峰或通用老者脸代替曾江黄药师。不要动漫大眼、尖瘦锥脸、磨皮年轻脸、现代西服、全白老仙发须、仙人法冠、全真道袍、神雕后期垂暮形象、人皮面具、长剑、蛇杖、酒葫芦、打狗棒、第二人、笛箫光效。不要抄影视黑金服、电视半身构图、原图水印文字或原照头转角；不要破布、撕裂、碎墨、飞白缺块、纸纹透人、脏污斑驳脸、密集碎褶皱、手物粘连、多肢多指、错接手腕、无依据伤残、端点裁切、背景吞掉鞋足、汉式左衽、清辫、日本刀、现代物品、裸露透明衣、血腥恶搞、文字标签题款logo；工具原有溯源标识和元数据原样保留。
-
-
-    FINAL POSE CHECK: FRONT-FACING HUANG YAOSHI, head centreline VERTICAL, both eyes HORIZONTAL, head and neck UPRIGHT, camera level. NO head tilt, NO Dutch angle. Keep the recognizable 1983 Kenneth Tsang face; do not inherit the turned face or raised brow tension of the photograph.'
-  negative: 不要 head tilt、Dutch angle、歪头向肩、双眼高低倾斜、侧脸回眸、俯首遮眼、抬下巴；不要用令狐冲、萧峰或通用老者脸代替曾江黄药师。不要动漫大眼、尖瘦锥脸、磨皮年轻脸、现代西服、全白老仙发须、仙人法冠、全真道袍、神雕后期垂暮形象、人皮面具、长剑、蛇杖、酒葫芦、打狗棒、第二人、笛箫光效。不要抄影视黑金服、电视半身构图、原图水印文字或原照头转角；不要破布、撕裂、碎墨、飞白缺块、纸纹透人、脏污斑驳脸、密集碎褶皱、手物粘连、多肢多指、错接手腕、无依据伤残、端点裁切、背景吞掉鞋足、汉式左衽、清辫、日本刀、现代物品、裸露透明衣、血腥恶搞、文字标签题款logo；工具原有溯源标识和元数据原样保留。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/shediao/huangyaoshi_1983_zengjiang_sina_role.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/shediao/huangyaoshi_1983_zengjiang_sina_role.jpg
-    use: 第一参考仅为本人身份：1983 TVB 曾江饰黄药师。保持其宽而较高的额面、清楚眉骨、灰色上挑眉梢、收长眼形与紧凑眉眼关系；鼻梁挺直有体量、鼻头自然不尖削，嘴部克制，灰髭与颏下整齐灰须区分。颧颊有真实宽度，不强行套旧稿狭长尖脸，不把下颌被须遮挡部分伪画成网红锥子脸。保留自然中老年纹理，不复制剧照拧眉侧视，不复制白发老仙样板。
-    sha256: 644f38ffddb06d258252c0421fe14f797495c875e28c8e3dd00adf661a06a4e5
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/644f38ffddb06d258252c0421fe14f797495c875e28c8e3dd00adf661a06a4e5.jpg
-    status_at_input: null
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 仅男性色卡、柔和明暗与细腻写实完整人物画法；禁止借脸、年龄、体型、衣型、剑或倾头。基线candidate原状态保留。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 仅暖浅灰纸底、极淡山水薄雾和留白；不复制王语嫣的脸、发型、薄纱裙或姿势。水墨不得侵入人物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T19:49:42.472202+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-0a0a82ec-27df-45cf-861a-b475ed9eb374.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 5afe9e49d63d6e52ec536d945c2f74e912cf73f0b04e4f94e2aebb2a50c9fe59
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_huangyaoshi__ch02_elder_base/prompt-8a7042c733dc70511fc91e1e301fdf732cc8d09a318593689a7f6ee0dbbbe588.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_huangyaoshi__ch02_elder_base/manifest-604ca8f2ed08b47562257ce283f9c9475189a9721b57567d274b259dcd605c5b.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_huangyaoshi__ch02_elder_base.requests.json
-  notes: 实际查看两张原始PNG及曾江黄药师参考后选2。2保留较高额面、清楚眉骨及紧凑眉眼、挺直有体量的鼻、克制嘴部与灰须关系，更接近本人身份；1虽端正但偏通用老者脸，且玉箫孔数排列异常密集。2头颈基本竖直、直视，青灰右衽长袍整体完整，两手两足清楚，单支青玉直管箫及握持、全长端点可读，无明显重大手部或身体结构问题。宽松自查记录偏差：发须灰白比设计多但未全部雪白且非垂暮；发有较多垂发、袖较宽，左手垂落不在腰侧，箫增金属箍和小穗，端部吹口内部构造因角度不能精密验证；布面有较密斑驳纹理但衣片边界连续，无飞白缺块或撕裂。背景增极淡亭台。以上不冒称原著固定形制或精密演员肖像。选2真实1024×1536 RGB不透明PNG原字节保存，candidate待用户审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_zhoubotong__ch02_elder_base
   file: por_npc_zhoubotong__ch02_elder_base.png
   category: character/male
@@ -2109,3 +2037,52 @@
   sha256: a6eeb251b4aaff61aeab7b2ae1fb400d910c1b57a3b0ae9107e247ee581e01b4
   status: candidate
   notes: 立绘重审重出（AR-30）；面容源自 1983 版剧照（肖像风险）且体格偏瘦，按原著浓眉大眼、粗壮憨厚的大漠青年用文字原创重做，连同五幅场景，并作神雕郭靖的身份参考；codex 出图（1 号出图员，AR-31）；AR-31：按经典影视造型以文字改写（原创面孔，不写演员名、不传剧照）
+- id: por_npc_huangyaoshi__ch02_elder_base
+  file: por_npc_huangyaoshi__ch02_elder_base.png
+  category: character/male
+  style: default
+  subject: 黄药师（ch02_shediao）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】黄药师，《射雕英雄传》东邪，桃花岛主，黄蓉之父，天下五绝之一；琴棋书画医卜星相无所不通，孤傲不羁、蔑视礼法。
+
+    【年龄与体态】中老年（约五十岁，确龄待考），身材高瘦挺拔。
+
+    【经典造型】借鉴经典武侠影视里这个角色深入人心的造型，只取发型、装束、配色、标志道具、气质和脸型类型，用原创面孔画出来，不像任何真实演员：东邪——一袭青衫、手持玉箫，清癯飘逸、孤傲不羁的世外高人，眉宇间有睥睨天下的傲气。
+
+    【面容】原著写他形相清癯、丰姿隽爽、萧疏轩举、湛然若神。具体为：清瘦的长脸、颧骨略高、两颊微陷；剑眉斜飞、眉骨清楚；细长的眼睛目光清冷锐利、带傲气；鼻梁高挺细长；薄唇；唇上与颏下是修剪整齐的三缕长须，黑中夹白；鬓角斑白（原创扩展）。清癯俊雅、风度翩翩。
+
+    【发式】黑发夹着灰白，在头顶束髻，戴一顶简洁的青色方巾。
+
+    【服饰】青色长衫（交领右衽的宋式文士袍），白色内领，腰系素色丝绦，衫摆修长；黑色布靴。
+
+    【道具】右手握一支碧玉箫，箫身完整。
+
+    【姿态与神情】傲然独立，持箫的手自然垂在身侧、另一手负在身后；神情孤傲、清冷而洒脱。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要白发苍苍的老翁；不要偶像脸；不要华丽锦袍金冠；不要人皮面具（本图露出真容）。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:08:39-0700
+  source_path: .agents/coord/gemini_originals/por_npc_huangyaoshi__ch02_elder_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: e81431e8430b5898720fb5d0a910f348c18e7a68df415ce69d4b955a1beac21a
+  status: candidate
+  notes: 立绘重审重出（AR-30）；面容源自 1983 版剧照（肖像风险），按原著“青衫、玉箫、形相清癯、高瘦隽爽”用文字原创重做，并作神雕黄药师身份参考；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
