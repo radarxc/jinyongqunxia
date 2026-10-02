@@ -30735,6 +30735,53 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/battle/timeline/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-04b-ct-speed-clamp",
+   "title": "游戏工程 · 小修：CT 速度单点钳制与零速度栈溢出（代码审计 H5）",
+   "prompt": "ENG-ct-speed-clamp.md",
+   "deps": [],
+   "writes": [
+    "packages/core/src/battle/timeline/**",
+    "packages/core/src/battle/encounter/**"
+   ]
   }
  ]
 }
