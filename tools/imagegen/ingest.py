@@ -187,8 +187,13 @@ def main() -> int:
                           + (f"；{a.note}" if a.note else "") + (f"；裁掉画框 {frame}" if frame else ""))
         if a.prompt_json:  # 重做时改过提示词：按实际发出的记
             entry["prompt"] = json.loads(Path(a.prompt_json).read_text(encoding="utf-8"))
-    entries = [e for e in load_manifest(man) if e.get("id") != a.asset_id] + [entry]
-    man.write_text(yaml.dump(entries, Dumper=_NoAliasDumper, allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")
+    import fcntl  # 多路并行入库（10-02 人物线四路 codex）时，同一目录的 manifest 读改写要加锁，免得互相覆盖条目
+    lock = ROOT / ".agents/coord/ingest.lock"; lock.parent.mkdir(parents=True, exist_ok=True)
+    with open(lock, "w") as lk:
+        fcntl.flock(lk, fcntl.LOCK_EX)
+        entries = [e for e in load_manifest(man) if e.get("id") != a.asset_id] + [entry]
+        man.write_text(yaml.dump(entries, Dumper=_NoAliasDumper, allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")
+        fcntl.flock(lk, fcntl.LOCK_UN)
     print(f"✔ {a.asset_id} → {out.relative_to(ROOT)}（{src_size[0]}×{src_size[1]} → {im.size[0]}×{im.size[1]}，原件 {arch.relative_to(ROOT)}）")
     return 0
 
