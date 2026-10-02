@@ -29974,6 +29974,12 @@
       "pnpm",
       "--filter",
       "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
       "build"
      ],
      [
@@ -30571,6 +30577,74 @@
     "apps/game/src/battle/components/BattleField.vue",
     "apps/game/src/battle/battle.css",
     "packages/ui/src/i18n.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/battle/types.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test:performance"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-16b-battle-actions",
+   "title": "游戏工程 · 战斗补全 B（防御 / 战斗内道具 / 急性聚气 / 逐单位经脉 / 奖励结算）",
+   "prompt": "ENG-battle-actions.md",
+   "deps": [
+    "ENG-16a-battle-geometry"
+   ],
+   "writes": [
+    "packages/core/src/battle/**",
+    "packages/core/src/buff/**",
+    "packages/core/src/ai/**",
+    "packages/core/src/replay/**",
+    "packages/core/src/testing/**",
+    "packages/core/bench/**",
+    "packages/core/CLAUDE.md",
+    "apps/game/src/battle/*.ts",
+    "apps/game/CLAUDE.md"
    ]
   }
  ]
