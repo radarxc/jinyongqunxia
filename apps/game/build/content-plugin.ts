@@ -2,7 +2,8 @@ import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { parseContentFile } from '@tianshu/data/tooling';
-import type { ItemDef, MartialArtDef, NpcDef } from '@tianshu/data/schemas';
+import { mapFromRegistration, type ItemDef, type MartialArtDef,
+  type NpcDef } from '@tianshu/data/schemas';
 import { filesIn, readAssetManifest } from './asset-manifest';
 
 const root = resolve(import.meta.dirname, '../../..');
@@ -21,10 +22,11 @@ export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugi
     resolveId(id) { return id === virtualId ? '\0' + virtualId : null; },
     async load(id) {
       if (id !== '\0' + virtualId) return null;
-      const [common, catalog, npcs, skills, meridianText, sectText, assetMap] = await Promise.all([
+      const [common, catalog, npcs, skills, maps, meridianText, sectText, assetMap] = await Promise.all([
         readDefinitions<ItemDef>('content/common/items'), readDefinitions<ItemDef>('content/items'),
         readDefinitions<NpcDef>('content/chapters/ch01_tianlong/npcs'),
         readDefinitions<MartialArtDef>('content/common/skills'),
+        readDefinitions<unknown>('content/world/ch01'),
         readFile(join(root, 'docs/design/15-meridians-and-acupoints.md'), 'utf8'),
         readFile(join(root, 'docs/design/17-sects-compendium.md'), 'utf8'),
         assets(),
@@ -49,7 +51,13 @@ export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugi
       const factions: Record<string, string> = {};
       for (const match of sectText.matchAll(/^\| `(sect_[a-z0-9_]+)` \| ([一-鿿][^|]+) \|/gm))
         factions[match[1]!] ??= match[2]!.trim().replace(/\*|`/g, '');
-      return 'export default ' + JSON.stringify({ items: [...common, ...catalog], npcs, skills, topology, factions, assets: assetMap }) + ';';
+      const worldMaps = maps.map(mapFromRegistration).map((map) => ({ ...map, sources: [],
+        travel: { liPerHour: map.travel.liPerHour, stepLi: map.travel.stepLi, note: '' },
+        grid: { width: map.grid.width, height: map.grid.height },
+        nodes: map.nodes.map(({ coordinateNote: _coordinateNote, ...node }) => node),
+        roads: map.roads.map(({ note: _note, ...road }) => road),
+      }));
+      return 'export default ' + JSON.stringify({ items: [...common, ...catalog], npcs, skills, topology, factions, assets: assetMap, worldMaps }) + ';';
     },
     async buildStart() {
       await assets();

@@ -1,14 +1,20 @@
-import { advanceGameClock, equipItem, unequipItem, type DomainEvent } from '@tianshu/core';
+import { advanceGameClock, createWorldMapRuntime, equipItem, unequipItem, worldMapLocation,
+  type DomainEvent, type WorldMapCommand } from '@tianshu/core';
 import type { JsonValue } from '@tianshu/shared';
-import type { GameCommand } from './contracts';
 import type { BattleUiCommand } from '../battle/contracts';
 import type { BattleRuntime } from '../battle/runtime';
 import { createSelectors } from '../projection';
 import { createPreviewSession } from './bootstrap';
 import { equipmentRules, type GameContent } from './content';
-import { ALL_VIEWS, type DirtyView, type GameRemote, type GameUpdate, type SessionSnapshot } from './contracts';
+import { ALL_VIEWS, type DirtyView, type GameCommand, type GameRemote, type GameUpdate, type SessionSnapshot } from './contracts';
 import { applyItemUse } from './item-adapter';
 import { validateSession } from './validate';
+
+function isWorldMapCommand(command: GameCommand): command is WorldMapCommand {
+  return command.t === 'worldmap/travel' || command.t === 'worldmap/step' ||
+    command.t === 'worldmap/cancel' || command.t === 'worldmap/resume' ||
+    command.t === 'worldmap/enter' || command.t === 'worldmap/leave';
+}
 
 /** Worker composition of core functions. This adapter defines no stat or combat formulas. */
 export function createGameSession(content: GameContent, initial = createPreviewSession(content)): GameRemote {
@@ -42,6 +48,14 @@ export function createGameSession(content: GameContent, initial = createPreviewS
     return { accepted: true, changes: { battle: result.packet },
       events: result.events.map(event => ({ t: event.t, payload: { ...event } as JsonValue })) };
   }
+  let map = content.worldMaps?.find((entry) => entry.chapterId === session.state.chapter.chapterId);
+  let worldmap = map ? createWorldMapRuntime({ map, equipmentRules: rules,
+    identityTags: content.identityTags ?? [] }) : undefined;
+  function selectWorldMap(next: SessionSnapshot): void {
+    map = content.worldMaps?.find((entry) => entry.chapterId === next.state.chapter.chapterId);
+    worldmap = map ? createWorldMapRuntime({ map, equipmentRules: rules,
+      identityTags: content.identityTags ?? [] }) : undefined;
+  }
   function validated(candidate: SessionSnapshot): SessionSnapshot {
     const next = validateSession(candidate, content);
     if (next.preview !== initial.preview) throw new Error('SAVE_MODE_INVALID');
@@ -55,6 +69,7 @@ export function createGameSession(content: GameContent, initial = createPreviewS
     restore(candidate): GameUpdate {
       if (battle) throw new Error('BATTLE_SAVE_UNAVAILABLE');
       const next = validated(candidate);
+      selectWorldMap(next);
       const changes = selectors.update(next, ALL_VIEWS, '已读取存档');
       session = next;
       return { accepted: true, changes, events: [] };
@@ -72,6 +87,14 @@ export function createGameSession(content: GameContent, initial = createPreviewS
             meta: { ...session.state.meta, worldTick: result.clock.elapsedTicks },
             chapter: { ...session.state.chapter, clock: result.clock, worldYear: result.clock.epochYear + result.clock.yearOffset } } };
           facts = [{ t: 'world/ticked' }, ...result.events]; dirty = ['hud'];
+        } else if (isWorldMapCommand(command)) {
+          if (!worldmap || !map) throw new Error('MAP_UNAVAILABLE');
+          const result = worldmap.dispatch(session.state, command);
+          const worldMapState = result.state.chapter.worldMap;
+          if (!worldMapState) throw new Error('MAP_UNAVAILABLE');
+          next = { ...session, state: result.state,
+            location: worldMapLocation(worldMapState, map) };
+          dirty = ['hud', 'worldmap']; facts = result.events;
         } else if (command.t === 'inventory/equip' || command.t === 'inventory/unequip') {
           if (command.t === 'inventory/equip' && rules.find((rule) => rule.itemId === command.itemId)?.slot !== command.slot)
             throw new Error('EQUIPMENT_SLOT_MISMATCH');

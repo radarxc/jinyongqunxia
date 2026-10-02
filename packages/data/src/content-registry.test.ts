@@ -42,6 +42,14 @@ describe('content registry', () => {
     })).toThrow('CONTENT_SCHEMA_VERSION');
   });
 
+  it('routes world map registration events through the strict map schema', () => {
+    const registration = { schemaVersion: 'event.v1', id: 'ev_01_ditu',
+      chapterId: 'ch01_tianlong', event: 'world/mapRegistered', once: false,
+      actions: [{ op: 'mountWorldMap', map: { version: 'worldmap.v1' } }] };
+    expect(() => parseSerializedContent('event', JSON.stringify(registration)))
+      .toThrow();
+  });
+
   it('builds a detached frozen registry with O(1) identity lookup', () => {
     const file = { path: 'fixture.yaml', text: itemYaml };
     const registry = loadContent([file]);

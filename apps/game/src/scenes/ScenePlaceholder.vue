@@ -1,12 +1,20 @@
 <script setup lang="ts">
 import { t } from '@tianshu/ui/runtime';
-defineProps<{ scene: 'world' | 'town' | 'battle' }>();
+const props = defineProps<{ scene: 'world' | 'town' | 'ruin' | 'battle' }>();
+const emit = defineEmits<{ leave: [] }>();
+function sceneName(): string {
+  if (props.scene === 'ruin') return '野外遗迹';
+  return t(props.scene);
+}
 </script>
 
 <template>
-  <section class="scene-placeholder" :aria-label="t(scene)">
+  <section class="scene-placeholder" :aria-label="sceneName()">
     <div class="ink-mountains" aria-hidden="true"><i /><i /><i /></div>
-    <div class="scene-copy"><p>{{ t('eyebrow') }}</p><h1>{{ t(scene) }}</h1><p>{{ t('sceneNote') }}</p></div>
+    <div class="scene-copy">
+      <p>{{ t('eyebrow') }}</p><h1>{{ sceneName() }}</h1><p>{{ t('sceneNote') }}</p>
+      <button v-if="scene === 'town' || scene === 'ruin'" type="button" @click="emit('leave')">返回大地图</button>
+    </div>
   </section>
 </template>
 

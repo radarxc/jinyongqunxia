@@ -1,4 +1,5 @@
-import { CORE_VERSION, EQUIPMENT_SLOTS, InventoryRuntime, RNG_PROTOCOL, parseGameState, type CharacterState } from '@tianshu/core';
+import { CORE_VERSION, EQUIPMENT_SLOTS, InventoryRuntime, RNG_PROTOCOL, parseGameState,
+  validateWorldMapState, type CharacterState } from '@tianshu/core';
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import { equipmentRules, type GameContent } from './content';
 import type { SessionSnapshot } from './contracts';
@@ -85,5 +86,9 @@ export function validateSession(value: SessionSnapshot, content: GameContent): S
       (aid.meridians !== undefined && (!Array.isArray(aid.meridians) || aid.meridians.some((id: unknown) => !content.topology.some((row) => row.id === id)))))
       throw new Error('SAVE_TARGETS_INVALID');
   }
+  const map = content.worldMaps?.find((entry) => entry.chapterId === state.chapter.chapterId);
+  const worldMap = state.chapter.worldMap;
+  if ((worldMap === null) !== (map === undefined)) throw new Error('SAVE_WORLDMAP_INVALID');
+  if (worldMap && map) validateWorldMapState(worldMap, map);
   return { ...copy, state };
 }

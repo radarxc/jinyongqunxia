@@ -1,4 +1,5 @@
 import { markRaw, shallowRef } from 'vue';
+import type { WorldMapCommand, WorldMapProjection } from '@tianshu/core';
 import { createIndexedDbStorage, downloadBytes, type TianshuStorage } from '@tianshu/platform';
 import { t, uiBus, type useUiStore, type SaveSlotView } from '@tianshu/ui/runtime';
 import type { GameHost } from './runtime/contracts';
@@ -24,6 +25,7 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
   const saveStatus = shallowRef(t('loading'));
   const notice = shallowRef('');
   const settings = shallowRef({ largeText: false, reducedMotion: false });
+  const worldmap = shallowRef<WorldMapProjection | null>(null);
   let storage: TianshuStorage | undefined;
   let saves: ReturnType<typeof createSaveService> | undefined;
   let disposed = false;
@@ -54,6 +56,8 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
   }
   const offHost = host.subscribe((update) => {
     if (!update.accepted) return;
+    if (update.changes.worldmap !== undefined) worldmap.value = update.changes.worldmap
+      ? markRaw(update.changes.worldmap) : null;
     ui.applyProjection(update.changes);
     if (update.changes.battle !== undefined) {
       battleActive.value = update.changes.battle !== null;
@@ -82,8 +86,9 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     });
   }
   async function initialize(): Promise<void> {
-    const initial = await host.query(); ui.replaceProjection(initial);
-    if (initial.battle) { battleActive.value = true; (await ensureBattle()).apply(initial.battle); }
+    const projection = await host.query(); worldmap.value = projection.worldmap ? markRaw(projection.worldmap) : null;
+    ui.replaceProjection(projection);
+    if (projection.battle) { battleActive.value = true; (await ensureBattle()).apply(projection.battle); }
     try {
       const opened = await createIndexedDbStorage({ databaseName: ui.projection.hud.preview ? 'tianshu-ui-preview' : 'tianshu' });
       if (disposed) { await opened.close(); return; }
@@ -116,7 +121,11 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     settings.value = { ...settings.value, [key]: value };
     void storage?.settings.set('ui.accessibility', settings.value).catch((error: unknown) => { notice.value = describe(error); });
   }
-  return { busy, slots, storageAvailable, saveStatus, notice, settings, battle, battleActive, ensureBattle, initialize, saveAction, importFile, setSetting, autosave,
+  async function worldMapCommand(command: WorldMapCommand): Promise<void> {
+    await run(async () => { const result = await host.dispatch(command); if (!result.accepted) throw new Error(result.error); notice.value = ''; });
+  }
+  return { busy, slots, storageAvailable, saveStatus, notice, settings, worldmap,
+    battle, battleActive, ensureBattle, initialize, saveAction, importFile, setSetting, autosave, worldMapCommand,
     dispose() { disposed = true; battle.value?.dispose(); offHost(); offBus(); host.dispose(); void storage?.close(); },
   };
 }

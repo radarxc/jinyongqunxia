@@ -3,7 +3,6 @@ import { createApp } from 'vue';
 import { useUiStore } from '@tianshu/ui/runtime';
 import App from './App.vue';
 import { createGameCoreHost } from './core-host';
-import { createGameController } from './game-controller';
 import { schedulePwaRegistration } from './pwa';
 import './style.css';
 
@@ -21,7 +20,9 @@ async function start(container: HTMLElement): Promise<void> {
     return;
   }
   container.textContent = '正在翻开书卷…';
-  const host = await createGameCoreHost();
+  const [host, { createGameController }] = await Promise.all([
+    createGameCoreHost(), import('./game-controller'),
+  ]);
   const pinia = createPinia();
   const controller = createGameController(host, useUiStore(pinia));
   const app = createApp(App, { controller }).use(pinia);

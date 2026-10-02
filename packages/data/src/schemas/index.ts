@@ -7,3 +7,4 @@ export * from './primitives';
 export * from './story';
 export * from './story-graph';
 export * from './world';
+export * from './world-map';

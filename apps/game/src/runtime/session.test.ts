@@ -84,4 +84,18 @@ describe('Worker session command adapter', () => {
       events: [{ t: 'battle/returned', payload: { sceneRef: 'town' } }] });
     expect((await core.query()).battle).toBeNull();
   });
+  it('forwards map commands to core and stores no writable app sidecar', async () => {
+    const core = createGameSession(content);
+    const before = await core.snapshot();
+    expect(before.state.chapter.worldMap?.position).toEqual({ kind: 'node', nodeId: 'city_dali' });
+    expect(before).not.toHaveProperty('worldmap');
+    const result = await core.dispatch({ t: 'worldmap/enter' });
+    expect(result.accepted).toBe(true);
+    expect(result.events.some((event) => event.t === 'worldmap/sceneRequested')).toBe(true);
+    const after = await core.snapshot();
+    expect(after).not.toHaveProperty('worldmap');
+    expect(after.state.chapter.worldMap?.scene).toMatchObject({
+      kind: 'town', nodeId: 'city_dali', gateId: 'south_gate',
+    });
+  });
 });

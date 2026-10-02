@@ -11,6 +11,15 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - `project()` 给 Vue 标签提供屏幕坐标；应用层按单位位置缓存，只在单位移动或 resize 时重投影。renderer 不计算可达、敌我或命中。
 - 所有 GPU / atlas / rig 资源由 renderer 拥有并在 `dispose()` 释放；WebGL 创建失败时应用保留键盘 / 触屏格列表作为降级路径。
 
+## 大地图 API（ENG-08）
+
+- 从 `@tianshu/render/worldmap` 动态导入 `createWorldMapScene()`；几何来自 data 的 `worldmap.v1` 校验结果，角色位置与旅程来自 core 只读投影；render 不计算 A*、里程、年代或城门判定。
+- 2.5D 结构固定为高度地形 1 mesh、道路 1 个 InstancedMesh、河流 / 山脉各 1 个 LineSegments batch、节点 1 个 InstancedMesh；节点共用 2×2 DataTexture atlas。静态层 5 draw calls，玩家 rig 2，目的地标记可见时再加 1。
+- `WorldMapScene` 提供 render / resize / setActor / setDestination / setZoom / pickNode / dispose。正交镜头跟随角色；缩放限制 0.65–2.5；拾取只针对当代可见节点实例。
+- 玩家必须继续使用 ENG-12 的 RigSet / RigBatch / RigInstance：分层部件、代码步态、装备可见。禁止为地图另建帧序列角色。地图缺纹理时退化为程序化宣纸色高度地形，结构化道路和节点仍可用。
+- `stats` 暴露 drawCalls / triangles / frameMs / cpuMs / nodes / roads / instances；桌面目标 ≥60 fps，中端手机目标 ≥30 fps（待真机实测）。每帧只更新 rig typed arrays，静态几何不重建。
+- 所有权：场景 dispose 依次释放 rig、静态 geometry/material、节点 atlas、地图纹理、目的地 marker 和 WebGLRenderer；调用两次必须安全。
+
 ## 角色 rig API（ENG-12）
 
 - 从 `@tianshu/render/rig` 动态导入；不要从根入口静态导入，避免进入首屏 chunk。
@@ -29,7 +38,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 
 ## 下游交接
 
-- ENG-08 大地图、ENG-09 城镇：区域加载时共享一个 `RigSet`/`RigBatch`，只把可见角色加入批次；超过 100 人时先把远景 C 级路人降为合成人群卡。
+- ENG-08 大地图已按上述接口接入；ENG-09 城镇区域加载时共享一个 `RigSet`/`RigBatch`，只把可见角色加入批次；超过 100 人时先把远景 C 级路人降为合成人群卡。
 - ENG-10 战斗已落地上述转换和批渲染；ENG-11 攻击大动作可经应用的 `onMoveResolved` 申请深度偏移，但不得重算命中、移动或朝向规则。
 - 所有下游每渲染帧先更新可见 `RigInstance`，再调用一次 `RigBatch.sync()`；不要逐角色提交 draw call，也不要直接修改实例属性。
 - 开发验证入口为 `/rig-demo`，含八方向、动作/重量、七类装备、连续/12 fps 姿势与 20 人压力开关。
@@ -39,6 +48,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - [Three InstancedMesh](https://threejs.org/docs/pages/InstancedMesh.html)：同 geometry / material 的实例渲染用于减少 draw call。
 - [Three ShaderMaterial](https://threejs.org/docs/pages/ShaderMaterial.html)：高亮集合通过 `uniforms` 更新。
 - [Three Raycaster](https://threejs.org/docs/pages/Raycaster.html)：`InstancedMesh` 命中结果携带 `instanceId`。以上访问日期 2026-10-01。
+- [OrthographicCamera](https://threejs.org/docs/pages/OrthographicCamera.html)、[TextureLoader](https://threejs.org/docs/pages/TextureLoader.html)：大地图斜视正交镜头与可选水墨底图。
 - 锁文件实际版本为 Three 0.186.1；未新增依赖。战斗专项测试覆盖方向映射、共享边裁决，根 `pnpm check` 继续执行 rig P95 和 bundle size 门禁。
 
 ## 待决事项 / 依赖
