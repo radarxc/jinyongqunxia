@@ -474,6 +474,20 @@
       - 处置：协调者停了立绘，并给出图员下了清会话库的规则；03:30 回到 13 GB。
       - `/private/tmp` 里还有约 9.5 GB 旧任务残留，没删，等作者定。
     - **git**：主仓库 `.git/logs/refs/remotes/origin/` 下有 3 个属主为 root、0 字节的 `.lock`（02:32–02:37 生成），提交后 git 自动 gc 因此失败。不影响提交，交作者处理。
+  - **10-02 04:35–07:50 开发监督（收尾）**：
+    - **ENG-16a 合入（df855253，04:51）**：r1 PASS。合入后 `pnpm check` 全绿：86 个测试文件 471 个用例；rig 门禁 min P95 0.372 ms（loadavg 3.75）；`size` 275.90 / 350 KB。
+      - 报告 §7.5 给出 `apps/game` 测试脚本的修法：`vitest run src --configLoader runner`。这在 ENG-18 写集内的 `apps/game/package.json`。
+    - **DES-items-manuals-expand HOLD-RUNS（05:34）**：第 3 次运行联网查秘籍出处，日志 25 分钟没增长，被驱动终止，执行次数用尽。
+    - **07:50 状态**：
+      - 停住待作者：
+        - ENG-09：HOLD-RUNS，门禁跳过待撤；
+        - DES-changsheng-core、DES-attr-v2、DES-scenes-keyart：HOLD-REVIEWS；
+        - DES-items-manuals-expand：HOLD-RUNS；
+        - TOOL-rig-clips：未起。
+      - 在等依赖：ENG-15、18、21a 等 ENG-09，21b 等 21a。eng3 调度器（pid 21687）还在，ENG-09 合入后会自动起它们。
+      - 夜里 HEAD 停在 c327d2df（04:53），之后没有新提交。磁盘 12 GB，负载 3.5。
+    - **ENG-16b 提示词草稿**在会话草稿目录 `draft_ENG-battle-actions.md`：防御、战斗内道具、急性聚气、逐单位经脉、奖励；写集不含 economy。早上登记后放进 eng3。
+    - 作者要手动执行的命令清单见开发监督的最终报告；草稿目录里另有挪基点脚本 `rebase_task.py` 和 ENG-09 的挪基点说明 `ENG-09_rebase_note.md`。
   - **10-02 01:30–02:25 协调者（作者睡前定的三条线）**：
     - **作者分工**（原话：「你要做三件事，分别用不同的subagent：1. 物品图生成 2. 人物图完善 3. 开发监督（持续推进，解决卡点）」）：
       1. **物品线**：一个 subagent 用 Gemini 网页两个可见标签页（组 1443269144），补秘籍书名、出食品及其余待出物品。交接说明在会话草稿目录 `gem/items_agent_brief.md`。
