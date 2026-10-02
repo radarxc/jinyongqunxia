@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 341、已通过（作者） 150、已入库 136。**待出图队列 341 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 340、已通过（作者） 150、已入库 137。**待出图队列 340 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -28,7 +28,6 @@
 
 | 组 | asset_id | 名称 | 输出 | 状态 | 提示词 |
 |---|---|---|---|---|---|
-| items | `eq_mingdongpojin_nan` | 明纱制东坡巾·男 | `assets/default/item/accessories/eq_mingdongpojin_nan.png` | 待出图 | [eq_mingdongpojin_nan.md](items/accessories/eq_mingdongpojin_nan.md) |
 | items | `eq_mingqingduandachang_nan` | 明青缎大氅·男 | `assets/default/item/accessories/eq_mingqingduandachang_nan.png` | 待出图 | [eq_mingqingduandachang_nan.md](items/accessories/eq_mingqingduandachang_nan.md) |
 | items | `eq_mingwushafangjin_nan` | 明乌纱方巾·男 | `assets/default/item/accessories/eq_mingwushafangjin_nan.png` | 待出图 | [eq_mingwushafangjin_nan.md](items/accessories/eq_mingwushafangjin_nan.md) |
 | items | `eq_mingyudiebuyao_nv` | 明玉蝶步摇·女 | `assets/default/item/accessories/eq_mingyudiebuyao_nv.png` | 待出图 | [eq_mingyudiebuyao_nv.md](items/accessories/eq_mingyudiebuyao_nv.md) |
@@ -568,7 +567,7 @@
 
 （已全部入库。）
 
-### 护肩 / 披风 / 头饰（48）· 待出图 26、已通过（作者） 12、已入库 10
+### 护肩 / 披风 / 头饰（48）· 待出图 25、已通过（作者） 12、已入库 11
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -582,22 +581,21 @@
 | 8 | 元珠饰罟罟冠·女 | `eq_yuanguguquan_nv` | 地上 | 头饰·罟罟冠 | 待出图 | [eq_yuanguguquan_nv.md](items/accessories/eq_yuanguguquan_nv.md) | template |
 | 9 | 元七宝钹笠帽·男 | `eq_yuanqibaolimao_nan` | 地下 | 头饰·笠帽 | 待出图 | [eq_yuanqibaolimao_nan.md](items/accessories/eq_yuanqibaolimao_nan.md) | template |
 | 10 | 元织金战士斗篷·男 | `eq_yuanzhijinzhanshidoupeng_nan` | 地中 | 披风·斗篷 | 待出图 | [eq_yuanzhijinzhanshidoupeng_nan.md](items/accessories/eq_yuanzhijinzhanshidoupeng_nan.md) | template |
-| 11 | 明纱制东坡巾·男 | `eq_mingdongpojin_nan` | 玄上 | 头饰·巾 | 待出图 | [eq_mingdongpojin_nan.md](items/accessories/eq_mingdongpojin_nan.md) | template |
-| 12 | 明青缎大氅·男 | `eq_mingqingduandachang_nan` | 玄上 | 披风·大氅 | 待出图 | [eq_mingqingduandachang_nan.md](items/accessories/eq_mingqingduandachang_nan.md) | template |
-| 13 | 明玉蝶步摇·女 | `eq_mingyudiebuyao_nv` | 玄中 | 头饰·簪钗 | 待出图 | [eq_mingyudiebuyao_nv.md](items/accessories/eq_mingyudiebuyao_nv.md) | template |
-| 14 | 清红缨暖帽·男 | `eq_qinghongyingnuanmao_nan` | 玄下 | 头饰·暖帽 | 待出图 | [eq_qinghongyingnuanmao_nan.md](items/accessories/eq_qinghongyingnuanmao_nan.md) | template |
-| 15 | 清羽缎披风·女 | `eq_qingyuduanpifeng_nv` | 玄上 | 披风·披风 | 待出图 | [eq_qingyuduanpifeng_nv.md](items/accessories/eq_qingyuduanpifeng_nv.md) | template |
-| 16 | 宋罗纱鹤氅·女 | `eq_songluoshahechang_nv` | 玄中 | 披风·鹤氅 | 待出图 | [eq_songluoshahechang_nv.md](items/accessories/eq_songluoshahechang_nv.md) | template |
-| 17 | 宋紫罗盖头·女 | `eq_songziluogaitou_nv` | 玄下 | 头饰·盖头 | 待出图 | [eq_songziluogaitou_nv.md](items/accessories/eq_songziluogaitou_nv.md) | template |
-| 18 | 元蒙古毡披·男 | `eq_yuanmengguzhanpi_nan` | 玄下 | 披风·毡披 | 待出图 | [eq_yuanmengguzhanpi_nan.md](items/accessories/eq_yuanmengguzhanpi_nan.md) | template |
-| 19 | 明乌纱方巾·男 | `eq_mingwushafangjin_nan` | 黄上 | 头饰·方巾 | 待出图 | [eq_mingwushafangjin_nan.md](items/accessories/eq_mingwushafangjin_nan.md) | template |
-| 20 | 清绣边包髻·女 | `eq_qingbaobu_nv` | 黄上 | 头饰·包髻 | 待出图 | [eq_qingbaobu_nv.md](items/accessories/eq_qingbaobu_nv.md) | template |
-| 21 | 清青布风披·女 | `eq_qingqingbufengpi_nv` | 黄下 | 披风·布 | 待出图 | [eq_qingqingbufengpi_nv.md](items/accessories/eq_qingqingbufengpi_nv.md) | template |
-| 22 | 宋麻布幅巾·男 | `eq_songmabufujin_nan` | 黄下 | 头饰·巾 | 待出图 | [eq_songmabufujin_nan.md](items/accessories/eq_songmabufujin_nan.md) | template |
-| 23 | 宋油绢雨披·女 | `eq_songyoujuanyupi_nv` | 黄中 | 披风·雨披 | 待出图 | [eq_songyoujuanyupi_nv.md](items/accessories/eq_songyoujuanyupi_nv.md) | template |
-| 24 | 宋棕榈蓑衣·男 | `eq_songzonglvsuoyi_nan` | 黄下 | 披风·蓑衣 | 待出图 | [eq_songzonglvsuoyi_nan.md](items/accessories/eq_songzonglvsuoyi_nan.md) | template |
-| 25 | 西夏粗毡披·男 | `eq_xixiacuzhanpi_nan` | 黄中 | 披风·毡披 | 待出图 | [eq_xixiacuzhanpi_nan.md](items/accessories/eq_xixiacuzhanpi_nan.md) | template |
-| 26 | 西夏小团冠·女 | `eq_xixiaxiaotuanguan_nv` | 黄中 | 头饰·冠 | 待出图 | [eq_xixiaxiaotuanguan_nv.md](items/accessories/eq_xixiaxiaotuanguan_nv.md) | template |
+| 11 | 明青缎大氅·男 | `eq_mingqingduandachang_nan` | 玄上 | 披风·大氅 | 待出图 | [eq_mingqingduandachang_nan.md](items/accessories/eq_mingqingduandachang_nan.md) | template |
+| 12 | 明玉蝶步摇·女 | `eq_mingyudiebuyao_nv` | 玄中 | 头饰·簪钗 | 待出图 | [eq_mingyudiebuyao_nv.md](items/accessories/eq_mingyudiebuyao_nv.md) | template |
+| 13 | 清红缨暖帽·男 | `eq_qinghongyingnuanmao_nan` | 玄下 | 头饰·暖帽 | 待出图 | [eq_qinghongyingnuanmao_nan.md](items/accessories/eq_qinghongyingnuanmao_nan.md) | template |
+| 14 | 清羽缎披风·女 | `eq_qingyuduanpifeng_nv` | 玄上 | 披风·披风 | 待出图 | [eq_qingyuduanpifeng_nv.md](items/accessories/eq_qingyuduanpifeng_nv.md) | template |
+| 15 | 宋罗纱鹤氅·女 | `eq_songluoshahechang_nv` | 玄中 | 披风·鹤氅 | 待出图 | [eq_songluoshahechang_nv.md](items/accessories/eq_songluoshahechang_nv.md) | template |
+| 16 | 宋紫罗盖头·女 | `eq_songziluogaitou_nv` | 玄下 | 头饰·盖头 | 待出图 | [eq_songziluogaitou_nv.md](items/accessories/eq_songziluogaitou_nv.md) | template |
+| 17 | 元蒙古毡披·男 | `eq_yuanmengguzhanpi_nan` | 玄下 | 披风·毡披 | 待出图 | [eq_yuanmengguzhanpi_nan.md](items/accessories/eq_yuanmengguzhanpi_nan.md) | template |
+| 18 | 明乌纱方巾·男 | `eq_mingwushafangjin_nan` | 黄上 | 头饰·方巾 | 待出图 | [eq_mingwushafangjin_nan.md](items/accessories/eq_mingwushafangjin_nan.md) | template |
+| 19 | 清绣边包髻·女 | `eq_qingbaobu_nv` | 黄上 | 头饰·包髻 | 待出图 | [eq_qingbaobu_nv.md](items/accessories/eq_qingbaobu_nv.md) | template |
+| 20 | 清青布风披·女 | `eq_qingqingbufengpi_nv` | 黄下 | 披风·布 | 待出图 | [eq_qingqingbufengpi_nv.md](items/accessories/eq_qingqingbufengpi_nv.md) | template |
+| 21 | 宋麻布幅巾·男 | `eq_songmabufujin_nan` | 黄下 | 头饰·巾 | 待出图 | [eq_songmabufujin_nan.md](items/accessories/eq_songmabufujin_nan.md) | template |
+| 22 | 宋油绢雨披·女 | `eq_songyoujuanyupi_nv` | 黄中 | 披风·雨披 | 待出图 | [eq_songyoujuanyupi_nv.md](items/accessories/eq_songyoujuanyupi_nv.md) | template |
+| 23 | 宋棕榈蓑衣·男 | `eq_songzonglvsuoyi_nan` | 黄下 | 披风·蓑衣 | 待出图 | [eq_songzonglvsuoyi_nan.md](items/accessories/eq_songzonglvsuoyi_nan.md) | template |
+| 24 | 西夏粗毡披·男 | `eq_xixiacuzhanpi_nan` | 黄中 | 披风·毡披 | 待出图 | [eq_xixiacuzhanpi_nan.md](items/accessories/eq_xixiacuzhanpi_nan.md) | template |
+| 25 | 西夏小团冠·女 | `eq_xixiaxiaotuanguan_nv` | 黄中 | 头饰·冠 | 待出图 | [eq_xixiaxiaotuanguan_nv.md](items/accessories/eq_xixiaxiaotuanguan_nv.md) | template |
 
 ### 鞋（26）· 待出图 18、已通过（作者） 8
 
