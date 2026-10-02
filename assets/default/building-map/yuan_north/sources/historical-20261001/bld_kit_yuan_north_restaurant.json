@@ -1,0 +1,161 @@
+{
+  "id": "bld_kit_yuan_north_restaurant",
+  "repair_round": 6,
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selected_source": "/private/tmp/KIT-yuan_north-hist-repair6/generated/restaurant_c2.png",
+  "source_sha256": "75ba1c284a61510e4570cbf9122ccabc7c40c531ddcef2486483fc2840a0c42c",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_restaurant.png",
+  "final_sha256": "39f88b056e9f2eecf17eed6177882bd77159fb3096e00487dd95941ab4ceb411",
+  "generation": {
+    "tool": "Codex images/edits via built-in image generation backend",
+    "model": "gpt-image-2",
+    "generation_id": "020d752c-3da3-4a29-b587-df7d0f2c70d1",
+    "turn_id": "73c07c21-1c34-4d06-8400-a76d01202515",
+    "created_unix": 1790924504,
+    "settings": {
+      "background": "transparent",
+      "output_format": "png",
+      "quality": "medium",
+      "size": "1449x1086"
+    },
+    "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/restaurant_c2.txt"
+  },
+  "input_files": [
+    "/private/tmp/KIT-yuan_north-hist-repair6/generated/restaurant_c1.png",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/qingming_shop_2f.jpg",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/longchi_08.jpg"
+  ],
+  "input_sha256": [
+    "bf90c7aef5d47f811cce44f4b0d09ff119a02c640cab7e2c8b430d521cdd0b0b",
+    "acd1241d0b73f90cd08d550cc70d5b54e7b7875f528378b511bf73680d18b188",
+    "74d2d46db6b29476d14da59dbed9ef239f5cb09c92294ad27fd970a0686bbd4e"
+  ],
+  "generation_attempts": [
+    {
+      "candidate": 1,
+      "selected": false,
+      "output_file": "/private/tmp/KIT-yuan_north-hist-repair6/generated/restaurant_c1.png",
+      "output_sha256": "bf90c7aef5d47f811cce44f4b0d09ff119a02c640cab7e2c8b430d521cdd0b0b",
+      "generation_id": "72dbc61d-c2ae-4864-9cf5-aa8399d3185c",
+      "turn_id": "1b21fe0c-b2a8-4f7f-bdd9-89ce2a686786",
+      "created_unix": 1790924304,
+      "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/restaurant.txt",
+      "settings": {
+        "background": "transparent",
+        "output_format": "png",
+        "quality": "medium",
+        "size": "1313x1198"
+      },
+      "input_files": [
+        "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_restaurant.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/qingming_shop_2f.jpg",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/longchi_08.jpg"
+      ],
+      "input_sha256": [
+        "9092f5bd8aa3b7d075f6693aa1d3e262c6145f2a4c9fc4fa8742780f556036fc",
+        "acd1241d0b73f90cd08d550cc70d5b54e7b7875f528378b511bf73680d18b188",
+        "74d2d46db6b29476d14da59dbed9ef239f5cb09c92294ad27fd970a0686bbd4e"
+      ]
+    },
+    {
+      "candidate": 2,
+      "selected": true,
+      "output_file": "/private/tmp/KIT-yuan_north-hist-repair6/generated/restaurant_c2.png",
+      "output_sha256": "75ba1c284a61510e4570cbf9122ccabc7c40c531ddcef2486483fc2840a0c42c",
+      "generation_id": "020d752c-3da3-4a29-b587-df7d0f2c70d1",
+      "turn_id": "73c07c21-1c34-4d06-8400-a76d01202515",
+      "created_unix": 1790924504,
+      "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/restaurant_c2.txt",
+      "settings": {
+        "background": "transparent",
+        "output_format": "png",
+        "quality": "medium",
+        "size": "1449x1086"
+      },
+      "input_files": [
+        "/private/tmp/KIT-yuan_north-hist-repair6/generated/restaurant_c1.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/qingming_shop_2f.jpg",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/longchi_08.jpg"
+      ],
+      "input_sha256": [
+        "bf90c7aef5d47f811cce44f4b0d09ff119a02c640cab7e2c8b430d521cdd0b0b",
+        "acd1241d0b73f90cd08d550cc70d5b54e7b7875f528378b511bf73680d18b188",
+        "74d2d46db6b29476d14da59dbed9ef239f5cb09c92294ad27fd970a0686bbd4e"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "file": "qingming_shop_2f.jpg",
+      "url": "https://img.jiguzuo.com/guohua/changjuan/202511/afe2d555092873a14e7840d910a2f34a.jpg",
+      "sha256": "acd1241d0b73f90cd08d550cc70d5b54e7b7875f528378b511bf73680d18b188",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "《清明上河图》可辨楼店局部：连续密直棂楼窗、街向开间、朴素栏杆与挑廊层级；不复制人物、文字或构图。"
+    },
+    {
+      "file": "longchi_08.jpg",
+      "url": "https://www.shuge.org/wp-content/uploads/2026/06/long_chi_jing_du_tu_juan08-1500x1133.jpg",
+      "sha256": "74d2d46db6b29476d14da59dbed9ef239f5cb09c92294ad27fd970a0686bbd4e",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "王振鹏《龙池竞渡图》08可辨楼阁局部：柱网、屋面层级、格扇、栏杆、斗拱和台基；只作元代大木语汇参考。"
+    }
+  ],
+  "historical_detail": "酒楼茶肆（原创扩展）：两层木构开间、连续密直棂窗、朴素直栏杆、挑廊、分层灰瓦檐、椽头、低石脚；第二候选等比缩小补全透明边。",
+  "processing": {
+    "source_size": [
+      1449,
+      1086
+    ],
+    "crop_box": [
+      258,
+      117,
+      1224,
+      983
+    ],
+    "uniform_scale": 0.6542443064182195,
+    "resized_size": [
+      632,
+      567
+    ],
+    "canvas_size": [
+      736,
+      672
+    ],
+    "paste_offset": [
+      52,
+      52
+    ],
+    "alpha_cleanup": "source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      736,
+      672
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 274716,
+    "alpha_partial_pixels": 218898,
+    "alpha_opaque_pixels": 978,
+    "alpha_nonzero_bbox": [
+      52,
+      52,
+      684,
+      619
+    ],
+    "transparent_margins_px": [
+      52,
+      52,
+      52,
+      53
+    ],
+    "border_alpha_max": 0
+  },
+  "visual_review": "参考图、入选原图与规格化成品均经 view_image；构造、左上光、透明边通过目检；保留 candidate。"
+}

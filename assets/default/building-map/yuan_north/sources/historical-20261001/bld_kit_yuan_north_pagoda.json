@@ -1,0 +1,41 @@
+{
+  "id": "bld_kit_yuan_north_pagoda",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source": "/private/tmp/yuan_hist/pagoda_c1.png",
+  "source_sha256": "6664dfae2540c0489d27c0d712af198da4160023651c193da654d37192688503",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_pagoda.png",
+  "final_sha256": "8969b5664f822ae640c6b4ac43c6261139bed913b1c337a2d10493afbeba13e9",
+  "processing": {
+    "source_size": [
+      1072,
+      1467
+    ],
+    "crop_box": [
+      42,
+      20,
+      1030,
+      1433
+    ],
+    "uniform_scale": 0.5222672064777328,
+    "resized_size": [
+      516,
+      738
+    ],
+    "canvas_size": [
+      608,
+      832
+    ],
+    "paste_offset": [
+      46,
+      47
+    ],
+    "alpha_cleanup": "none"
+  },
+  "references": [
+    "miaoying_01.jpg",
+    "miaoying_02.jpg"
+  ],
+  "detail": "an original Yuan northern Tibetan-style white stupa closely informed by the Miaoying Temple White Stupa type without copying its setting: square stepped stone base, broad double lotus pedestal, swelling white masonry vase body, small harmika, tall tapering stack of thirteen discs, bronze-gold canopy and finial; limewashed texture, crisp molded bands, no Chinese pavilion roof",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}

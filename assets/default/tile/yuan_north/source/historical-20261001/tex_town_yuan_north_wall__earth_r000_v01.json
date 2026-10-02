@@ -1,0 +1,41 @@
+{
+  "id": "tex_town_yuan_north_wall__earth_r000_v01",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "source": "/private/tmp/yuan_hist/wall__earth_r000_v01_c2.png",
+  "source_sha256": "b633a5c3b0a48bb5842b40984e9067ae73a54579836833483366599f7d90cfbc",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/tile/yuan_north/tex_town_yuan_north_wall__earth_r000_v01.png",
+  "final_sha256": "694f6c1db942be37df87a7e2807f245933b527e49154177770861e78af7ac647",
+  "processing": {
+    "source_size": [
+      1024,
+      1536
+    ],
+    "crop_box": [
+      249,
+      252,
+      775,
+      1458
+    ],
+    "uniform_scale": 0.21227197346600332,
+    "resized_size": [
+      112,
+      256
+    ],
+    "canvas_size": [
+      256,
+      320
+    ],
+    "paste_offset": [
+      72,
+      32
+    ],
+    "alpha_cleanup": "border-connected exterior glow removed; subject pixels preserved"
+  },
+  "references": [
+    "dadu_wall_01.jpg",
+    "dadu_wall_02.jpg"
+  ],
+  "detail": "the exact straight city-wall module, entirely warm buff compacted sandy earth: repeated horizontal rammed lifts, subtle alternating density, small aggregate and rain-softened abrasion, sharp vertical cut ends and a flat slightly worn crown; no brick skin, crenellations, coping, grass or added base",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}

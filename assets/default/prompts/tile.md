@@ -451,6 +451,20 @@ Complete object on genuine transparent RGBA; no large soil platform or fake chec
 - 桥采用单孔石拱桥母题，完整桥体、透明拱洞、两端可接岸；不烘焙河流、大片堤岸、船只或道路。此处不绘万宁桥专属镇水兽与铭文，不称具名文物复制。
 - 国槐用完整阔叶冠形，侧柏用克制常绿冠形；单件树/树簇保持基线写实细节密度，不带盆、厚土岛、现代园林灯或旁侧景观。植物古代分布不由当代景区照片证明。
 
+#### 10.2.1 2026-10-01 历史图片重出：历史细节要点
+
+本轮7件均以旧PNG或第二候选几何引导锁定ID、类型和登记占地，再输入2张历史/遗产图；只借可辨形制与材料，不复制构图。统一保持斜45°、俯仰约30°、2:1正交、左上光、透明底真RGBA与清晰接口。
+
+| 类型 | 本轮历史细节要点 | 图像依据与边界 |
+|---|---|---|
+| `city_gate__k4/k6` | 夯土门墩的水平版筑层、石券/砖石护脚；上部单层灰瓦硬山门屋、外露椽头、小直棂窗和疏朗斗拱；门洞保持透明 | [居庸关云台北券门](https://commons.wikimedia.org/wiki/File:Yuntai_north_entrance.jpg)及[北侧面](https://commons.wikimedia.org/wiki/File:Yuntai_north_side.jpg)支持元代石券材料；元大都遗址公园照片只能支持土城语境，不能复原失去的门楼 |
+| `wall__earth`、`wall_corner__outer_ne` | 暖灰黄夯土、连续水平版筑层、细砂砾与雨蚀；裸土平顶、直切接口，不加包砖、女墙、草皮或地台 | 元大都城垣遗址照片多为现代公园远景，夯土层理不可辨；层理表现结合文字考据作原创概括 **（待考）** |
+| `bridge_deck__w4_l8` | 单孔券拱、灰石券脸、浅拱桥面、素面低栏板和压顶石；拱洞透明，不加水、岸、狮柱 | [万宁桥](https://commons.wikimedia.org/wiki/File:Wanning_Bridge_1.jpg)取单孔石拱与水岸材料，[卢沟桥](https://commons.wikimedia.org/wiki/File:Marco_Polo_bridge_Beijing.jpg)取北方石桥铺面/栏板尺度感；均不照搬具名桥构图 |
+| `tree_cluster__scholar_tree` | 灰褐纵裂低分枝树干、横展扭曲老枝、不对称疏朗阔冠和细小羽状叶 | [北京市园林绿化局古树页](https://yllhj.beijing.gov.cn/ztxx/lhysh/sh/202112/t20211214_2560949.shtml)的灵水村国槐、国子监古槐只支持树形；具体元代栽植地点 **（待考）** |
+| `tree_cluster__oriental_arborvitae` | 扭曲肉桂灰老干、直立分枝、鳞叶扁平枝片和不规则窄冠；不画松针、圣诞树层或修剪绿篱 | [北京市文物局“大觉寺柏树”照片](https://wwj.beijing.gov.cn/bjww/362760/362770/428610/index.html)与北京古树页只支持古侧柏形态；不证明套件地点栽植 |
+
+实际实发prompt、参考输入文件名和URL、取用限制、`generation_id`、源/成品SHA及候选数逐条见贴片manifest。直墙、墙角和两树各生成2候选取第2张，其余1候选；全部保持 `candidate`。
+
 增量提示词骨架如下；城门、墙、桥和植物须分别逐张调用，保存真实实发版本：
 
 ```text
@@ -483,11 +497,11 @@ Single r000 view only; no contact sheet and no rotated or mirrored view substitu
 
 ### 10.4 逐图登记与本批验收
 
-逐项最多2候选选1；源图及成品均 `view_image` 自查。入选PNG真RGBA，`file/size/sha256`取成品实测；`source_path`记工具原始位置，随包源图与哈希可追溯。完整实发prompt、negative、实际references、调用时间和工具回执如实登记；不编造未披露的图像模型版本、seed或推理档位。
+2026-10-01重出实际调用 `gpt-image-2`，透明背景、medium quality；逐项最多2候选选1，源图、成品及历史参考均经 `view_image` 自查。入选PNG真RGBA，`file/size/sha256`取成品实测；`source/historical-20261001/`保留入选源图和规格化记录。完整实发prompt、实际references、`generation_id`、调用时间与源/成品SHA如实登记；seed和推理档位未披露。
 
-manifest逐条含 `tile: {kind, footprint, variant, autotile_mask}`；本批独立精灵的 `autotile_mask:null` 不表示完整自动拼接族已交齐。城门、墙、桥以实际底面中心点登记 `anchor_px`，植物以根接触点为锚。源图测点经裁切/等比缩放/扩边同步变换；不能用透明包围框底边代替根或底面中心。PIL只做这些纯几何处理，不将地面阈值规则套在本批精灵上，不warp、重绘或拉伸修正投影。
+manifest逐条含 `tile: {kind, footprint, variant, autotile_mask}`；本批独立精灵的 `autotile_mask:null` 不表示完整自动拼接族已交齐。PIL只做alpha裁边、一次等比LANCZOS缩放与透明扩边，不warp、重绘或拉伸修正投影。因本轮没有重新量取底面中心/树根点，锚点只按旧画布归一位置映射并限制在新alpha包围框内，是装配代理 **（待实测）**，不再声称“实际底面中心”。
 
-全部保留 `candidate`；宋基线清单当前也仍为candidate，本轮授权产图不等于作者批准上线。只交r000及转角一向，墙件接缝、门洞净宽、桥面碰撞/遮挡和两树实际装配均 **（待实测）**。若源图轴线偏扁或底面比例不准，记录真实测点和偏差，最多2候选后择优交付；不宣称严格2:1几何或无缝拼接已通过。不得旋转单PNG假称四向覆盖。
+全部保留 `candidate`；宋基线清单当前也仍为candidate，本轮授权产图不等于作者批准上线。7/7成品已核查为RGBA、alpha范围0–255、四边alpha最大值0且未裁边。只交r000及转角一向；严格2:1轴线、墙件接缝、门洞净宽、桥面碰撞/遮挡和两树实际装配均 **（待实测）**，不得旋转单PNG假称四向覆盖。
 
 ```bash
 python3 tools/agents/check_assets.py assets/default/tile/yuan_north --min 5 --max 10 --min-side 32

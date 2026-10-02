@@ -1,0 +1,66 @@
+{
+  "id": "bld_kit_yuan_north_yamen",
+  "repair_round": 5,
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "generation_id": "c6d66223-c533-4871-abc8-086fc5f6be35",
+  "request_id": "c1addd22-60be-4796-8f54-787414bcd08b",
+  "source": "/private/tmp/yuan_hist/yamen_repair5_c2.png",
+  "source_sha256": "b32a4ef60c8d807c9399da9c6162286357fdd5c212901a8e3531a8f0d65ad8cf",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_yamen.png",
+  "final_sha256": "144741c1211872ca43fb8fb8ae3d3b9a0d290c6d760b75be5dcf5c2db79a46f1",
+  "processing": {
+    "source_size": [
+      1465,
+      1073
+    ],
+    "crop_box": [
+      35,
+      22,
+      1435,
+      1041
+    ],
+    "uniform_scale": 0.6035328753680078,
+    "resized_size": [
+      845,
+      615
+    ],
+    "canvas_size": [
+      960,
+      704
+    ],
+    "paste_offset": [
+      57,
+      44
+    ],
+    "alpha_cleanup": "retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp"
+  },
+  "references": [
+    {
+      "file": "huozhou_hall_ctrip.jpg",
+      "url": "https://dimg04.c-ctrip.com/images/0103i120008siudt1F3FB_W_1200_0_Q90.jpg?proc=autoorient",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "霍州州署大堂正立面：五间悬山主体、前置三间卷棚抱厦、前檐柱列、灰瓦和月台。",
+      "input_sha256": "2ad62ada2521fb5d703c64a4145d4f21859089bd4822f7ebfa0e5549d2ca81e0"
+    },
+    {
+      "file": "huozhou_hall_sina.jpg",
+      "url": "https://s9.sinaimg.cn/bmiddle/001m77tDgy6Fpb9H13258&690",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "同一元代大堂较早正立面：抱厦与主堂叠接、开敞前檐、柱础、台基及素朴木色。",
+      "input_sha256": "55f5154f84330ae5ce8ec0e3bca3e86adfeea58aff7b87d08fc01a634f9be7ee"
+    },
+    {
+      "file": "huozhou_frame_sina.jpg",
+      "url": "https://s3.sinaimg.cn/bmiddle/001m77tDgy6FpbarrFwa2&690",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "大堂室内梁架照片：粗壮梁栿、檩椽、减柱形成的大跨空间及克制彩绘残貌。",
+      "input_sha256": "760d6184c36da23d78888ed02b6a33557ed142c99eb2bc1141f81f72c658308c"
+    }
+  ],
+  "detail": "以霍州州署元代大堂为核心；五间悬山灰瓦主体、三间卷棚抱厦、开敞前檐、四铺作单下昂式疏朗斗拱、大额枋、粗梁檩椽和高台基；院落组合为原创扩展。",
+  "visual_review": "参考、入选原图和规格化成品均已view_image；通过历史细节、禁项、透明边与完整轮廓目检。"
+}

@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_yuan_north_shop_2f",
+  "repair_round": 5,
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "generation_id": "d9222676-ca86-489c-ab49-a5a6ab0c86ba",
+  "request_id": "2ec099c3-65f9-4c10-ab13-d1b9af24f76f",
+  "source": "/private/tmp/yuan_hist/shop_2f_repair5_c1.png",
+  "source_sha256": "b2194523a34328d8b33cfc6d19cb77840b25fbe5984c15bda9b497f111483e5b",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_shop_2f.png",
+  "final_sha256": "373de18527a24ff775b0fff14ca7fdb26ac848acbc59bba1bd5c6e0da82ba8f9",
+  "processing": {
+    "source_size": [
+      1295,
+      1214
+    ],
+    "crop_box": [
+      16,
+      34,
+      1270,
+      1168
+    ],
+    "uniform_scale": 0.345679012345679,
+    "resized_size": [
+      433,
+      392
+    ],
+    "canvas_size": [
+      512,
+      480
+    ],
+    "paste_offset": [
+      39,
+      44
+    ],
+    "alpha_cleanup": "retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp"
+  },
+  "references": [
+    {
+      "file": "shop_2f_qingming_detail.jpg",
+      "url": "https://img.jiguzuo.com/guohua/changjuan/202511/afe2d555092873a14e7840d910a2f34a.jpg",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "北宋《清明上河图》楼铺局部：二层连续格窗、浅栏杆、木柱网及下层铺面；仅作前代商业界面旁证。",
+      "input_sha256": "b4d45402ee7242f9cafc43c15c0eba233b2cdb83afeda0c491696ed298bdc137"
+    },
+    {
+      "file": "shop_2f_longchi_detail.jpg",
+      "url": "https://www.shuge.org/wp-content/uploads/2026/06/long_chi_jing_du_tu_juan08-1500x1133.jpg",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "元王振鹏《龙池竞渡图》界画局部：两层木构柱网、灰瓦屋面、斗拱与连续格扇；宫苑功能不移植。",
+      "input_sha256": "fb92587f4ecb3ef4c311f36bc9591b87f9f44a43ba9f75b8c5ea9097b554ef9d"
+    }
+  ],
+  "detail": "三开间两层铺面；下层开敞柜台、上层连续格窗与浅栏杆，木柱网、灰瓦硬山屋面、外露椽头、土墙与灰砖脚。",
+  "visual_review": "参考、入选原图和规格化成品均已view_image；通过历史细节、禁项、透明边与完整轮廓目检。"
+}

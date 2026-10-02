@@ -1,0 +1,66 @@
+{
+  "id": "bld_kit_yuan_north_temple_hall",
+  "repair_round": 5,
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "generation_id": "4acdf0c3-a36c-46ed-b6d3-49c514504be6",
+  "request_id": "a406d744-4751-412d-b78e-89e3f26a0fac",
+  "source": "/private/tmp/yuan_hist/temple_hall_repair5_c1.png",
+  "source_sha256": "691f1919ae847771a11a21b7bd74d9c80cdb2346babcd13df18bc99eab8e9bc4",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_temple_hall.png",
+  "final_sha256": "18cd7155db78de3e50008813f7decaf9c046fda3957f661c82b67f6f5c4ed5d7",
+  "processing": {
+    "source_size": [
+      1448,
+      1086
+    ],
+    "crop_box": [
+      54,
+      65,
+      1411,
+      1064
+    ],
+    "uniform_scale": 0.5865865865865866,
+    "resized_size": [
+      796,
+      586
+    ],
+    "canvas_size": [
+      896,
+      672
+    ],
+    "paste_offset": [
+      50,
+      43
+    ],
+    "alpha_cleanup": "retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp"
+  },
+  "references": [
+    {
+      "file": "yongle701_1.jpg",
+      "url": "https://www.sxrcylg.cn/uploads/allimg/210901/1-210Z1100033b4.jpg",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "永乐宫元代殿宇正立面：单檐庑殿屋面、宽出檐、柱网、格扇与高砖台基。",
+      "input_sha256": "6e605f46b260f70d14e9fd629e4f8098ddb8f9cfc107dc715d094c2512037133"
+    },
+    {
+      "file": "yongle701_4.jpg",
+      "url": "https://www.sxrcylg.cn/uploads/allimg/210901/1-210Z1100222V1.jpg",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "屋面近照可辨筒板瓦行列、琉璃正脊、鸱吻与克制的脊饰配置。",
+      "input_sha256": "dfe647cd81be17875f720b42808a2b8a206386dacdabbd395a4e95d38c626f6a"
+    },
+    {
+      "file": "yongle_detail_4.jpg",
+      "url": "https://www.sxrcylg.cn/uploads/allimg/20230927/1-23092G0013B04.jpg",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "馆藏三清殿前檐当心间阑额，只取元代木作尺度、透雕和彩绘残貌。",
+      "input_sha256": "b3c90f0e233307ab2735b76cb8c78106b2a13f20a3e30bb992f0a3f8677e0dd6"
+    }
+  ],
+  "detail": "五开间元代殿宇母题；单檐庑殿灰色筒板瓦，琉璃正脊与鸱吻，宽出檐、疏朗斗拱/阑额、柱网格扇及高砖台基。",
+  "visual_review": "参考、入选原图和规格化成品均已view_image；通过历史细节、禁项、透明边与完整轮廓目检。"
+}

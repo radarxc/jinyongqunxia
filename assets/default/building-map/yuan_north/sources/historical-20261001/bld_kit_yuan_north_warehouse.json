@@ -1,0 +1,161 @@
+{
+  "id": "bld_kit_yuan_north_warehouse",
+  "repair_round": 6,
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selected_source": "/private/tmp/KIT-yuan_north-hist-repair6/generated/warehouse_c2.png",
+  "source_sha256": "1982c66656439a7096b0e4f261f0fa3e3b5583d45b086a1cbbe340ef18a2cafb",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_warehouse.png",
+  "final_sha256": "0ec4ce993271a9d115a48a33e899c6c6d91209daddf221b5ae63625526513aa8",
+  "generation": {
+    "tool": "Codex images/edits via built-in image generation backend",
+    "model": "gpt-image-2",
+    "generation_id": "7fc5220b-4679-4aa0-ab6b-9d8734576086",
+    "turn_id": "254fe84a-1226-4ba0-a737-29935de976e1",
+    "created_unix": 1790924508,
+    "settings": {
+      "background": "transparent",
+      "output_format": "png",
+      "quality": "medium",
+      "size": "1402x1122"
+    },
+    "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/warehouse_c2.txt"
+  },
+  "input_files": [
+    "/private/tmp/KIT-yuan_north-hist-repair6/generated/warehouse_c1.png",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/jishi_1.png",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/jishi_3.png"
+  ],
+  "input_sha256": [
+    "81cd5b033ac9deb9d7ef2388ed6b35b177e42207eaf615c56e725f7ed3c740a5",
+    "02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662",
+    "00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3"
+  ],
+  "generation_attempts": [
+    {
+      "candidate": 1,
+      "selected": false,
+      "output_file": "/private/tmp/KIT-yuan_north-hist-repair6/generated/warehouse_c1.png",
+      "output_sha256": "81cd5b033ac9deb9d7ef2388ed6b35b177e42207eaf615c56e725f7ed3c740a5",
+      "generation_id": "f28a938d-a5ef-4578-84f7-e28d3528602d",
+      "turn_id": "104d184a-0563-4913-ac53-8a5144d123ff",
+      "created_unix": 1790924298,
+      "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/warehouse.txt",
+      "settings": {
+        "background": "transparent",
+        "output_format": "png",
+        "quality": "medium",
+        "size": "1402x1122"
+      },
+      "input_files": [
+        "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_warehouse.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/jishi_1.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/jishi_3.png"
+      ],
+      "input_sha256": [
+        "82309cb4e298908bdc54e94b5343867a6bb5e1ad3949afc4234579cd30789530",
+        "02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662",
+        "00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3"
+      ]
+    },
+    {
+      "candidate": 2,
+      "selected": true,
+      "output_file": "/private/tmp/KIT-yuan_north-hist-repair6/generated/warehouse_c2.png",
+      "output_sha256": "1982c66656439a7096b0e4f261f0fa3e3b5583d45b086a1cbbe340ef18a2cafb",
+      "generation_id": "7fc5220b-4679-4aa0-ab6b-9d8734576086",
+      "turn_id": "254fe84a-1226-4ba0-a737-29935de976e1",
+      "created_unix": 1790924508,
+      "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/warehouse_c2.txt",
+      "settings": {
+        "background": "transparent",
+        "output_format": "png",
+        "quality": "medium",
+        "size": "1402x1122"
+      },
+      "input_files": [
+        "/private/tmp/KIT-yuan_north-hist-repair6/generated/warehouse_c1.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/jishi_1.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/jishi_3.png"
+      ],
+      "input_sha256": [
+        "81cd5b033ac9deb9d7ef2388ed6b35b177e42207eaf615c56e725f7ed3c740a5",
+        "02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662",
+        "00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "file": "jishi_1.png",
+      "url": "http://sx.people.com.cn/NMediaFile/2021/1025/LOCAL202110251056000479181413354.png",
+      "sha256": "02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "高平姬氏民居院落照片：低举折硬山灰瓦、夯土/土坯墙与灰砖防潮裙；只作北方民居材料和尺度类比。"
+    },
+    {
+      "file": "jishi_3.png",
+      "url": "http://sx.people.com.cn/NMediaFile/2021/1025/LOCAL202110251103000545126112312.png",
+      "sha256": "00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "高平姬氏民居正立面照片：灰筒板瓦、圆椽头、木柱枋、厚板门、方格窗和灰砖墙脚；避开照片中的现代器物与文字。"
+    }
+  ],
+  "historical_detail": "仓屋（原创扩展）：长条低举折硬山、灰筒板瓦与圆椽头、夯土/土坯填墙、灰砖防潮裙、厚板双门和高位小格窗；第二候选去除铺地、草与杂物。",
+  "processing": {
+    "source_size": [
+      1402,
+      1122
+    ],
+    "crop_box": [
+      84,
+      91,
+      1342,
+      1009
+    ],
+    "uniform_scale": 0.43720190779014306,
+    "resized_size": [
+      550,
+      401
+    ],
+    "canvas_size": [
+      640,
+      512
+    ],
+    "paste_offset": [
+      45,
+      55
+    ],
+    "alpha_cleanup": "source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      640,
+      512
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 203396,
+    "alpha_partial_pixels": 123307,
+    "alpha_opaque_pixels": 977,
+    "alpha_nonzero_bbox": [
+      45,
+      55,
+      595,
+      456
+    ],
+    "transparent_margins_px": [
+      45,
+      55,
+      45,
+      56
+    ],
+    "border_alpha_max": 0
+  },
+  "visual_review": "参考图、入选原图与规格化成品均经 view_image；构造、左上光、透明边通过目检；保留 candidate。"
+}
