@@ -688,83 +688,6 @@
   notes: '实际查看候选1：韩宝驹成熟成年宽圆脸、短须厚肩敦实腰腹及短有力腿部，赭棕右衽短袍深裤短靴，深色束发带；右手鞭柄左手托松圈，单条连续柔鞭和尾梢完整，无硬节棍、活龙或战马。主要正面头颈正直眼平，双手双足清楚，无重大结构错误；矮壮特征基本可辨，按快速宽松自查可用。布巾缩为发带、鞭柄雕饰金属和尾穗偏繁，圈数多于一两圈，背景小亭花枝及衣纹偏多；记录待细修，不机械追加。原生1024×1536 RGB不透明PNG原始字节保存，文字原创本人脸，candidate待审核非approved。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
-- id: por_npc_yangkang__ch02_youth_wangfu_base
-  file: por_npc_yangkang__ch02_youth_wangfu_base.png
-  category: character/male
-  style: default
-  subject: 杨康 npc_yangkang ch02_shediao · 青年杨康，金国赵王府小王爷、杨氏后人；赵王府身世揭露前的贵公子基础阶段，尚未进入君山冒名、铁枪庙毒发或改命赎罪阶段。
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. These requirements override every input pose. Preserve natural facial asymmetry without tilting the head.
-
-
-    Create a refined REALISTIC full-body Chinese wuxia illustration of 杨康 (npc_yangkang, ch02_shediao). Image 1 is the ONLY facial identity: 苗侨伟 as 杨康 in the 1983 TVB cast selected by the user. Image 2 supplies ONLY pale ink-wash background, never another person. Do not blend faces or copy the source still.
-
-
-    身份与阶段：青年杨康，金国赵王府小王爷、杨氏后人；赵王府身世揭露前的贵公子基础阶段，尚未进入君山冒名、铁枪庙毒发或改命赎罪阶段。
-
-
-    年龄、体型与生命状态：青年成年男子，约十八至二十岁视觉观感，不反推确切生年。清瘦修长却有武人筋骨，肩背自然有力；面容俊秀、举止贵气，克制骄矜中带警惕，不用奸笑代表反派。当前健在、肢体完整，无毒伤、血迹或永久伤残；不长成中年留须王爷。
-
-
-    本人五官：以第一图苗侨伟版青年杨康为唯一辨识依据：宽阔额部、偏长而颧颊清楚的俊秀脸形，下颌渐收而下巴不尖削；保留浓眉走势及眉峰、较长的眼裂和眉眼间距，高直鼻梁与较饱满鼻尖，清楚克制的闭唇轮廓。无胡须，真实青年皮肤与自然骨肉转折；不把电视剧眼线当骨相，不借郭靖、萧峰、完颜洪烈或水墨女子的脸。
-
-
-    服饰与发式：金境汉式贵公子淡金米色右衽长袍，穿着者左襟压右襟，深青内领和窄腰带，低对比几何锦纹、整幅不透明面料，袍内深色长裤与黑软靴。黑发按汉式束成整洁小髻，以小型素雅发冠固定，天然发际；全真师承不等于道士，不加道冠法衣。服色、锦纹、发冠按当前角色稿原创款式，不照搬剧照紫灰衣装或将王府身份误作帝王龙袍。
-
-
-    正面姿态、器物与结构：身体与脸正面朝向观者、头颈直立、下巴中性、双眼水平，肩背放松，双足稳立。本人左腰只佩一把普通短匕，刀刃完全收入合长小鞘，柄、完整鞘体和连接窄腰带的皮挂点可见；左手轻扶鞘上部，右手空手自然垂落。短匕无字无刻名，是普通携行补足，不冒充具名赠物或新增装备ID；不拔刃，不挥爪，不持打狗棒。
-
-
-    人物画法：人物本体采用美观写实、精细克制的国风手绘插画：本人五官、皮肤、双手、身体、头发、布料及器物是完整坚实连续的体积，明暗连贯、轮廓清楚。眼睛大小自然，保留适龄肌肤与骨肉关系，不用滤镜磨成统一脸；细纹是完整皮肤起伏，不是墨裂或污斑。衣物完整不透明，剪裁缝边清楚，仅少量宽缓受力褶皱；旧衣仍是干净可穿的完整布料。低饱和设色，左上柔和漫射主光；手绘而非照片、截图、3D模型或换头拼贴。水墨只在背景，不切碎脸、手、衣料和器物。
-
-
-    背景与交付：单人单视图、水平平视、原生2:3竖幅完整全身，头顶与发饰、两手、两足、衣摆和所有实际器物端点均完整入画；四周自然留净空，不按固定占高或头身数字拉伸人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不放大、裁切、旋转、重编码或去工具溯源。暖浅灰不透明纸底，仅人物外有极浅水墨远山、薄雾和留白，脚下浅接触阴影；不画具体剧情场景、建筑、其他人或文字。按FAST先生成1张独立候选，基本清晰、正面端正、本人可辨且整体完整即保存；仅严重身份错误、重大结构问题或不可读才追加，细手指、轻微装备或微偏角度集中登记，不反复磨图。所有输出candidate待审核，不自动approved。
-
-
-    事实边界：身份与阶段依当前角色稿、名录、story与chapter。项目主线1217–1227、楔子1199不是角色确切生年；不据照片反推岁数。影视来源证明演员/角色/1983版与主要五官，不证明精确剧情时点、衣装或兵器。原稿待考照留，不声称已按指定修订版逐字终校。旧文字原创脸改用用户指定1983本人；旧禁演员脸、斜侧身/抬下巴、固定占高/头身和两候选要求由最新授权覆盖，其余身份、年龄、服制与器物边界保留。约十八至二十为本稿视觉选段；具体原著年貌、锦衣、发冠与佩物仍待指定修订版终校。淡金米/深青色款、小发冠、普通短匕及站立手势为美术补足，不声明原著固定装备。第一图仅700×473旧剧照，来源具体集数未核，不复制偏转头部、侧向目光、眼妆或摄影色调。
-
-
-    参考边界：第一且唯一面部身份：1983 TVB翁美玲/黄日华版《射雕英雄传》的苗侨伟饰杨康，已实际view且独立来源/像素审计PASS。以第一图苗侨伟版青年杨康为唯一辨识依据：宽阔额部、偏长而颧颊清楚的俊秀脸形，下颌渐收而下巴不尖削；保留浓眉走势及眉峰、较长的眼裂和眉眼间距，高直鼻梁与较饱满鼻尖，清楚克制的闭唇轮廓。无胡须，真实青年皮肤与自然骨肉转折；不把电视剧眼线当骨相，不借郭靖、萧峰、完颜洪烈或水墨女子的脸。 仅取本人面部辨识，不复制剧照衣装、妆容、姿势、裁切、背景、水印或压缩纹理；年龄、须发整理与阶段按本设计，正面头直眼平。 第二仅用户水墨图的暖浅灰纸底、极浅低对比水墨远山与留白，已实际view；不取其中女性的脸、年龄、身体、发型、白青衣裙、首饰、飘带、头倾或站姿，不画前景花枝与亭阁。墨迹纸纹止于人物轮廓外。
-
-
-    完整排除项：不要 head tilt、Dutch angle、头歪向肩、倾斜眼线、抬下巴、低头藏眼、侧脸回眸或倾斜镜头。不要借其他演员、其他角色或第二参考女性的脸、年龄、体型、发式、衣裙与姿态；不要混合平均脸、统一网红脸、动漫大眼、塑料磨皮、丰唇滤镜或浓重戏剧眼妆。不要照片写真、直接截图、换头拼贴、三维模型或画师姓名风格词。不要飞白缺块、碎墨人物、纸纹透肤透衣、破布条、撕裂衣角、污斑侵蚀、密集噪点或过密细皱。不要画面文字、汉字、伪字、题款、书法、标签、印章、签名、logo或装饰水印；保留工具溯源标识与元数据。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件或塑料配件。不要日本服制、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻铠甲、夸张前结宽腰带、赛博或蒸汽朋克。不要明代网巾、官服补子、清式剃发长辫、马蹄袖、旗装、大拉翅、唐代齐胸裙或明式马面裙；本图汉式交领不要左衽，不要水平镜像。不要额外人物、分身、拼贴、分格、多视图、前景花枝、清晰建筑、悬浮道具或失重衣带。不要无依据缺指断肢、多手多脚、多指、粘连手指、错接手腕、手物融合、兵器穿身、弯折断裂器物、短鞘或无挂点装备。不要血腥特写、裸露、透明衣料、色情化、恶搞丑化、畸形健美肌肉或大片破洞。不要发光兵器、龙形能量、光翼、法阵、粒子特效、强泛光或硬舞台轮廓光；不要裁头裁脚或裁实际道具端点。 不要道士法衣、道冠、成年浓须王爷、完颜洪烈中年脸、帝王龙袍、女真或清式误套发式；不要君山冒名的打狗棒、铁枪庙中毒黑脸、鬼爪特效、血迹、临终状态或赎罪弃权后的平民流亡装。不要将短匕写成有姓名的赠物，不添加金印、秘籍、长枪或其他人物。
-
-
-    FINAL POSE CHECK: frontal face and torso, upright head and neck, eyes level, chin neutral, complete full body; NO head tilt and NO Dutch angle. Keep this person’s own identity and specified living stage.'
-  negative: 不要 head tilt、Dutch angle、头歪向肩、倾斜眼线、抬下巴、低头藏眼、侧脸回眸或倾斜镜头。不要借其他演员、其他角色或第二参考女性的脸、年龄、体型、发式、衣裙与姿态；不要混合平均脸、统一网红脸、动漫大眼、塑料磨皮、丰唇滤镜或浓重戏剧眼妆。不要照片写真、直接截图、换头拼贴、三维模型或画师姓名风格词。不要飞白缺块、碎墨人物、纸纹透肤透衣、破布条、撕裂衣角、污斑侵蚀、密集噪点或过密细皱。不要画面文字、汉字、伪字、题款、书法、标签、印章、签名、logo或装饰水印；保留工具溯源标识与元数据。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件或塑料配件。不要日本服制、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻铠甲、夸张前结宽腰带、赛博或蒸汽朋克。不要明代网巾、官服补子、清式剃发长辫、马蹄袖、旗装、大拉翅、唐代齐胸裙或明式马面裙；本图汉式交领不要左衽，不要水平镜像。不要额外人物、分身、拼贴、分格、多视图、前景花枝、清晰建筑、悬浮道具或失重衣带。不要无依据缺指断肢、多手多脚、多指、粘连手指、错接手腕、手物融合、兵器穿身、弯折断裂器物、短鞘或无挂点装备。不要血腥特写、裸露、透明衣料、色情化、恶搞丑化、畸形健美肌肉或大片破洞。不要发光兵器、龙形能量、光翼、法阵、粒子特效、强泛光或硬舞台轮廓光；不要裁头裁脚或裁实际道具端点。 不要道士法衣、道冠、成年浓须王爷、完颜洪烈中年脸、帝王龙袍、女真或清式误套发式；不要君山冒名的打狗棒、铁枪庙中毒黑脸、鬼爪特效、血迹、临终状态或赎罪弃权后的平民流亡装。不要将短匕写成有姓名的赠物，不添加金印、秘籍、长枪或其他人物。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/shediao/yangkang_1983_miaoqiaowei_sina_gallery1_20261002.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/shediao/yangkang_1983_miaoqiaowei_sina_gallery1_20261002.jpg
-    use: 第一且唯一面部身份：1983 TVB翁美玲/黄日华版《射雕英雄传》的苗侨伟饰杨康，已实际view且独立来源/像素审计PASS。以第一图苗侨伟版青年杨康为唯一辨识依据：宽阔额部、偏长而颧颊清楚的俊秀脸形，下颌渐收而下巴不尖削；保留浓眉走势及眉峰、较长的眼裂和眉眼间距，高直鼻梁与较饱满鼻尖，清楚克制的闭唇轮廓。无胡须，真实青年皮肤与自然骨肉转折；不把电视剧眼线当骨相，不借郭靖、萧峰、完颜洪烈或水墨女子的脸。 仅取本人面部辨识，不复制剧照衣装、妆容、姿势、裁切、背景、水印或压缩纹理；年龄、须发整理与阶段按本设计，正面头直眼平。
-    sha256: fd035f8077d19ffe07d79a0c21f8d28309af14b09d06f59004c0d5351dca4d06
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/fd035f8077d19ffe07d79a0c21f8d28309af14b09d06f59004c0d5351dca4d06.jpg
-    status_at_input: null
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二仅用户水墨图的暖浅灰纸底、极浅低对比水墨远山与留白，已实际view；不取其中女性的脸、年龄、身体、发型、白青衣裙、首饰、飘带、头倾或站姿，不画前景花枝与亭阁。墨迹纸纹止于人物轮廓外。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T02:38:21.828815+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-8b0e6b4e-43bb-473e-9f6a-ed95ab0feda1.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 19dd5aa2d280400afb2f991ac836db0856d5dab3513ce7a68b294b4c2e7d2620
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_yangkang__ch02_youth_wangfu_base/prompt-10a063ddbee4ed33d9079802c3dafc8e49d578728521c6fafb00af53039effd9.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_yangkang__ch02_youth_wangfu_base/manifest-3c7b89ae465903383111ecfc43c88ad5f5e069a422a182efc6e1066c1342f0b6.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_yangkang__ch02_youth_wangfu_base.requests.json
-  notes: '实际对照1983苗侨伟杨康本人剧照与候选1：宽额浓眉、长眼裂高鼻梁与颧颌口线关系可辨，青年无须贵公子、淡金米色右衽长袍深青内领、小发冠和黑靴，左腰仅短器物完整入鞘，无打狗棒毒伤或道衣。人物主要正面、头颈基本端正、双手双足全，未见重大结构错误，按快速宽松自查可用。头身略向一侧但未明显歪头，衣冠纹饰比低对比几何目标繁、腰鞘尺寸偏长似短剑而非短匕、左手实际扶柄，背景小亭花枝偏多；记录微角装备和衣纹偏差，不机械追加。原生1024×1536 RGB不透明PNG原始字节保存，candidate待审核，非approved。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_luchengfeng__ch02_prime_disabled_base
   file: por_npc_luchengfeng__ch02_prime_disabled_base.png
   category: character/male
@@ -2032,3 +1955,52 @@
   sha256: cbdd89c8d50670eb54890a021c939e8d61552ddac1e1df218b5911f8f7dd04c2
   status: candidate
   notes: 立绘重审重出（AR-30）；面容几乎照搬 1983 版演员（肖像风险），按原著老顽童用文字原创重做，并作神雕周伯通身份参考；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
+- id: por_npc_yangkang__ch02_youth_wangfu_base
+  file: por_npc_yangkang__ch02_youth_wangfu_base.png
+  category: character/male
+  style: default
+  subject: 杨康（ch02_shediao）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】杨康（完颜康），《射雕英雄传》金国赵王府的小王爷，杨铁心的亲生儿子；身世揭露之前的贵公子阶段。聪明俊美，却骄矜轻浮、贪恋富贵。
+
+    【年龄与体态】约二十岁的青年，身材修长挺拔（约 7.5 头身）。
+
+    【经典造型】借鉴经典武侠影视里这个角色深入人心的造型，只取发型、装束、配色、标志道具、气质和脸型类型，用原创面孔画出来，不像任何真实演员：金国小王爷——锦衣华服、头戴玉冠，俊美骄矜、风流倜傥，笑容里带着一丝轻浮和算计。
+
+    【面容】长圆脸、眉目俊秀：剑眉修长、眉尾上挑，一双丹凤眼眼尾细长，眼神里带着骄矜和一丝狡黠；鼻梁高直；薄唇，嘴角习惯性地微微上扬；皮肤白皙。面容比郭靖清秀精致得多，但要是原创面孔（原创扩展）。俊美出众的贵公子。
+
+    【发式】黑发束成整洁小髻，戴一顶素雅的小金冠。
+
+    【服饰】金境汉式贵公子装：淡金米色锦缎长袍（暗纹，交领右衽），深青内领，窄腰带上系一块玉佩，深色长裤、黑色软靴。
+
+    【道具】腰悬一柄装饰讲究的长剑，完整入鞘。
+
+    【姿态与神情】昂首站立，一手按在剑柄上、一手负在身后；神情骄矜自信。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要道冠法衣；不要铁枪庙中毒的伤病状态；不要像任何具体演员。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:08:54-0700
+  source_path: .agents/coord/gemini_originals/por_npc_yangkang__ch02_youth_wangfu_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: f67edb9e1560b82b8ae23bcdb5ec0bdad91d4c9481f3ee316f0b7425905e87a3
+  status: candidate
+  notes: 立绘重审重出（AR-30）；面容源自 1983 版剧照（肖像风险），按原著金国小王爷的俊美骄矜用文字原创重做；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
