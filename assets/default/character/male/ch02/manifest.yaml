@@ -527,81 +527,6 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_zhoubotong__ch02_elder_base.requests.json
   notes: 实际查看两张原始PNG和1983秦煌周伯通身份参考后选1。1额颊较宽、自然圆眼、圆厚鼻头与灰长眉须，保持该角色开心而清醒的长者辨识；2较窄脸、眉眼较收，1更接近参考的宽颊开朗关系。1头颈基本竖直、双眼水平，身体正面稳立，右手五指自然张掌、左手松拳分别可读，完整双鞋且无额外器物，无明显多肢和重大结构问题。衣片完整，不以散发和长须误判破损。实际偏差：右手举得比胸腹低幅要求高、脸有少许自然转向且表情偏活泼，袖宽、髻高、布面纹理较密，背景有低对比花枝亭台；未声称每一服饰细节均精确符合旧严格标准。2保留原始候选不选。真实1024×1536 RGB不透明PNG原始字节保存，candidate待用户审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-- id: por_npc_ouyangfeng__ch02_elder_sane_base
-  file: por_npc_ouyangfeng__ch02_elder_sane_base.png
-  category: character/male
-  style: default
-  subject: 欧阳锋 npc_ouyangfeng ch02 · 海上争经前后尚未失智的中老年西毒
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTAL, chin neutral, level camera and forward gaze. NO head tilt, NO Dutch angle, no lean toward either shoulder. Reference poses must not be copied.
-
-
-    Create OUYANG FENG / 欧阳锋 as a beautiful REALISTIC full-body Chinese wuxia character illustration.
-
-
-    第一参考是唯一面容身份：1983 TVB 翁美玲版射雕英雄传，杨泽霖饰欧阳锋。保持较方而开阔的额面、眉骨厚重感、较直的眉线、收窄的眼形和紧凑眉眼关系，鼻梁的长度与突起、自然圆厚鼻头，闭唇口线与灰黑髭、颏下灰须的分布。整体脸轮廓深峻较长、威势沉静；不把眼睛夸大成怒目圆眼，不套黄药师的上挑长眉、年轻令狐冲的脸或通用白胡老仙。参考清晰度有限，保留可辨的真实五官关系，不抄糊像素、噪点或水印，不发明精确瞳色。第二参考令狐冲只提供男性低饱和设色、柔光和完整精細写实插画质感；第三参考王语嫣只供背景浅水墨，不允许这两张的任何脸、年龄、体型、衣型或倾头混入。
-
-
-    欧阳锋，西毒、白驼山主，射雕海上争经前后、尚未在华山失智的清醒基础阶段。中老年约五十至六十余岁观感，不锁生年；身材高大、宽厚肩背、筋骨强健，冷静警觉而善算计，不用狞笑或兽化表达反派身份。站姿稳定直立，头居中而眼神沉着有压迫感，双肩自然，不驼背、不倒立、不发疯。灰黑发收整束紧，以灰白软巾简单包髻，脸周须发整齐、不遮眼；灰黑髭与颏须自然，只到胸上部，不是全白衰弱老仙。
-
-
-    服装依据项目本阶段原创西域行旅方案：灰白色完整长袍、深沙色窄袖内衣、低调实用皮腰带、深色软靴与深裤。长袍为交领右衽，穿着者左襟压右襟、向本人右侧合拢；袍袖收束露出两只手。衣料有真实厚度、连续裁片与少量宽缓重力褶，腰带承重合理。不要直接复制参考的红黑大袍、花纹肩带和披散长发，不套现代阿拉伯服或欧式法师服。
-
-
-    白驼蛇杖 eq_baituoshezhang：只一根完整实体长杖，右手持于本人右侧、观者左侧的身体轮廓之外，杖底落地、杖顶略高于肩而不出画。两条小蛇盘附在杖的上部，身体各自连续、盘绕有实体接触，两只蛇头彼此分开且与实体杖顶区分；不把蛇画成木雕双龙、宝石或融合成多头蛇。双蛇只作为附着兵器的低调标志物，不扑咬、不喷毒，不另外铺群蛇场景。右手握在盘蛇位置下方的清楚杖身，手与蛇完全分开；左手半松自然下垂于身前外侧，五指自然可辨。无其它刀剑，未核实的机关暗器不展示。
-
-
-    人物本体是美观精细的写实国风插画，完整可信骨肉体积、清楚面容和双手双足、连续柔和左上光，皮肤、头发、衣料和长杖均为实体且轮廓干净。微妙笔触可见，但不做碎墨飞白、破布纸屑或纸纹透人。背景为不透明暖浅灰底，极淡远山与薄雾水墨，大量留白与少量脚下接触阴影；所有墨痕止于人物之外。不画船、海上争斗、白驼山建筑、林中摄影背景或群蛇。
-
-
-    单人单视图完整全身，原生2:3竖幅；头顶、两手、双足、袍摆、杖底杖顶以及两条小蛇全入画，自然边距，无严格占高数字。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并如实登记。保存原始PNG字节，不缩放、裁切或重编码；默认两张独立候选比较，始终candidate待用户审核。
-
-
-    事实边界：精确年龄、原著双蛇与杖头机关原文仍待版本校勘，采用角色稿已指定双蛇静态美术设计，不臆造机关构造。
-
-
-    完整排除项：不要 head tilt、Dutch angle、头歪向肩、抬下巴、俯首藏眼、明显侧脸、偏斜双眼、耸单肩；不要倒立、神雕或华山终幕失智疯癫、呆滞、神志不清、蛤蟆怪物、兽化皮肤、毒雾、光效、夸张恶笑。不要把本人换成黄药师、洪七公、令狐冲、萧峰或通用老人；不要动漫圆大眼、网红尖下巴、青年偶像脸、强行全白老仙须发。不要现代阿拉伯刻板装束、异域珠宝王冠、清朝辫子、官服、蒙古皇袍、摄影截图或照抄红黑影视服。不要骷髅杖、宝石魔杖、雕龙蛇头、多头蛇、第三条蛇、群蛇、蛇手融合、断开蛇身、悬浮盘蛇、额外武器、机关暗器展示。不要多肢多指、错接手腕、手物粘连、缺臂、杖身穿体或断裂、裁断头足和杖端；不要碎布、飞白缺块、纸屑侵蚀人物、密集碎褶皱、磨皮塑料脸、血腥裸露、恶搞、额外人物、拼贴分格、文字题款印章logo装饰水印。保留工具原有溯源标识和元数据。
-
-
-    FINAL POSE CHECK: FRONT-FACING OUYANG FENG, head and neck UPRIGHT, vertical forehead–nose–chin centreline, both eyes HORIZONTAL, level camera and neutral chin. NO head tilt, NO Dutch angle. Keep a clear, sane, calculating gaze and the recognizable 1983 Yeung Chak-lam facial identity.'
-  negative: 不要 head tilt、Dutch angle、头歪向肩、抬下巴、俯首藏眼、明显侧脸、偏斜双眼、耸单肩；不要倒立、神雕或华山终幕失智疯癫、呆滞、神志不清、蛤蟆怪物、兽化皮肤、毒雾、光效、夸张恶笑。不要把本人换成黄药师、洪七公、令狐冲、萧峰或通用老人；不要动漫圆大眼、网红尖下巴、青年偶像脸、强行全白老仙须发。不要现代阿拉伯刻板装束、异域珠宝王冠、清朝辫子、官服、蒙古皇袍、摄影截图或照抄红黑影视服。不要骷髅杖、宝石魔杖、雕龙蛇头、多头蛇、第三条蛇、群蛇、蛇手融合、断开蛇身、悬浮盘蛇、额外武器、机关暗器展示。不要多肢多指、错接手腕、手物粘连、缺臂、杖身穿体或断裂、裁断头足和杖端；不要碎布、飞白缺块、纸屑侵蚀人物、密集碎褶皱、磨皮塑料脸、血腥裸露、恶搞、额外人物、拼贴分格、文字题款印章logo装饰水印。保留工具原有溯源标识和元数据。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/shediao/ouyangfeng_1983_yangzelin_360_still.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/shediao/ouyangfeng_1983_yangzelin_360_still.jpg
-    use: 第一且唯一面部身份：1983射雕杨泽霖欧阳锋，实际view；保留方阔额面、厚重眉骨、较直眉线、收窄眼形、鼻梁体量与口周灰黑髭须。低清图不作精密测量。不抄红黑影视服、披发、林景、原姿势及水印；正面头直重构。
-    sha256: e5772c87aca3469a8dec6701892ae318d9c7cb6350c9af57294fce3a637329ac
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/e5772c87aca3469a8dec6701892ae318d9c7cb6350c9af57294fce3a637329ac.jpg
-    status_at_input: null
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 第二仅男性低饱和配色、柔和明暗与完整细腻写实手绘质感；不得借令狐冲脸、青年体型、胡茬、头巾、衣款、剑或倾头。基线candidate不变。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三仅暖浅灰纸底、极淡山水薄雾和留白；不取王语嫣的女性面容、纱裙、头倾和饰物；纸纹不侵入人物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T20:02:47.263510+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-d7e3c692-c59f-430f-a9ee-148807810a37.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 9b65ce67a95ebe312e1efab6947d543000c3451bdcc1236b842371df51244df0
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_ouyangfeng__ch02_elder_sane_base/prompt-33ffc292ea733be2ff83301f50363d0c8d4c366f9e0f6459c51e0e4507cf0528.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_ouyangfeng__ch02_elder_sane_base/manifest-ff4114be61122a0bfb4c1ae0ca1a8b757aed23fa311dcd93fb2059f85dc9163f.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_ouyangfeng__ch02_elder_sane_base.requests.json
-  notes: 实际查看在途返回的两张PNG及1983杨泽霖欧阳锋参考后选1。冷静清醒中老年、方额厚眉骨和收窄眼形辨识清楚，头颈端正、身体正面，完整双手双足、灰白右衽袍与深沙内衣，单根蛇杖和两只分别可读的蛇头，未见明显多肢或严重身体结构问题。2亦可用；1衣带与构图更简洁，故选1。细节集中留待后续：蛇身盘绕及杖头复杂处不能逐段精确核实，发须灰白偏多、软巾包髻不明显、皮带有额外装饰，布纹较密；不因这些细微装备与外观偏差追加。两请求在用户单候选提速指令前已提交，实际候选数仍登记2，不伪改历史。选1原生1024×1536 RGB不透明PNG原字节保存，candidate待审。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_hongqigong__ch02_elder_bangzhu_base
   file: por_npc_hongqigong__ch02_elder_bangzhu_base.png
   category: character/male
@@ -2086,3 +2011,50 @@
   sha256: e81431e8430b5898720fb5d0a910f348c18e7a68df415ce69d4b955a1beac21a
   status: candidate
   notes: 立绘重审重出（AR-30）；面容源自 1983 版剧照（肖像风险），按原著“青衫、玉箫、形相清癯、高瘦隽爽”用文字原创重做，并作神雕黄药师身份参考；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
+- id: por_npc_ouyangfeng__ch02_elder_sane_base
+  file: por_npc_ouyangfeng__ch02_elder_sane_base.png
+  category: character/male
+  style: default
+  subject: 欧阳锋（ch02_shediao）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】欧阳锋，《射雕英雄传》西毒，西域白驼山主人，天下五绝之一，神志清醒的盛年时期；阴狠毒辣、心高气傲。
+
+    【年龄与体态】五十岁上下（确龄待考），原著说他身材高大，肩宽、威势沉雄。
+
+    【经典造型】借鉴经典武侠影视里这个角色深入人心的造型，只取发型、装束、配色、标志道具、气质和脸型类型，用原创面孔画出来，不像任何真实演员：西毒——一身白袍、手持蛇杖（杖头盘着两条小蛇），高鼻深目、目光如刀，阴鸷狠毒、气势逼人。
+
+    【面容】原著写他高鼻深目、脸上须毛棕黄、似非中土人氏、英气勃勃、目光如电、眼神如刀似剑。具体为：西域色目人相貌——高而带鹰钩的鼻梁、深陷的眼窝、浓眉压眼，眼珠浅褐、目光锋利如刀；面部棱角分明、颧骨高、下颌宽；两颊与下巴是棕黄色的络腮短须；皮肤偏黄褐、带风沙晒痕；棕黑头发中夹灰，束在脑后。
+
+    【服饰】原著穿白衣：白色长袍（白驼山主人，可带少量西域纹样的滚边），外束皮腰带，深色裤、软皮靴。
+
+    【道具】右手握一根弯曲的黑色蛇杖：杖头雕成蛇首，杖身缠着两条活蛇（蛇身完整清楚），杖尾点地。
+
+    【姿态与神情】挺立，蛇杖拄地；目光阴鸷如刀，神态傲慢。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要汉人面孔；不要灰白长发披散的疯癫造型（那是神雕时期）；不要红黑大袍；不要蛤蟆功特效。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:08:43-0700
+  source_path: .agents/coord/gemini_originals/por_npc_ouyangfeng__ch02_elder_sane_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: c632460733f5a3cd77cd8b387e0ad0fd51a61c31912a65720c45e504b23cea63
+  status: candidate
+  notes: 立绘重审重出（AR-30）；面容源自 1983 版剧照且是汉人面孔，原著“高鼻深目、脸上须毛棕黄、似非中土人氏”的西域相貌没有体现；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
