@@ -50,7 +50,8 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 9. ENG-08 发 `worldmap/sceneRequested`，payload 是 SceneEntry（kind / nodeId / sceneId / townSpec / templateYear / gateId / spawn / returnNodeId）。ENG-09 消费此入口并以 worldmap/leave 返回；战斗与真实相遇由 ENG-10 接入。场景显示层不直接改投影。
 10. 主线程兼容宿主也克隆边界值；运行中 Worker 报错会使操作失败，不静默重启到初态。下游若添加自动恢复，须先冻结最后成功快照及命令序号。
 11. `GameProjection.battle` 是 ENG-10 增量包：进入 / query 含 `info` 与全单位，后续只含变化单位；controller 以单位 ID 合并。战斗中 snapshot / restore / 普通命令被 Worker 拒绝，结束后 `battle/leave` 返回冻结的 `returnContext`。
-12. UI 范围只调用 core `resolveAreaCells()`，提交前再次查询并稳定排序目标；CT 预计在一次性 timeline 副本上调用 core 调度函数，不推进真实状态或 RNG。
+12. UI 的范围、目标合法性、可达集和路径只调用 core 的 `queryMoveAt()` / `queryReachable()` /
+`queryPath()`；提交完整行动计划后由 core 再算一次。CT 预计在一次性 timeline 副本上调用 core 调度函数，不推进真实状态或 RNG。
 13. 自动战斗每个 `requestAnimationFrame` 至多发一个 `battle/step`，1× / 2× 只改回放间隔，“跳过”只省表现；关闭自动先停排帧，再经宿主 FIFO 切回手动。
 14. ENG-11 通过 `controller.battle.onMoveResolved((moveId, from, to, result) => ...)` 注册播放器；异常只记录，不改结算。日志与飘字消费 core 事件自带 `message`，不重选周天 / 外放文案。
 
@@ -67,7 +68,7 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 - 自动保存使用 ENG-01 的 30 秒节流与三槽轮换；变更后请求保存，30 秒轮询补落最后一次节流变更。hidden / pagehide 强制请求为尽力而为，移动端进程终止落盘仍为（待实测）。
 - 单槽文件为 TSUI v1（.tsui）：5 字节魔数 / 版本、4 字节小端头长度、JSON 头与规范快照，头上限 16 KiB、快照上限 32 MiB。SHA-256 与结构 / 引用 / 模式校验均通过后才写所选槽位。它不冒充 tech/08 的 TSAV，也不调用替换全库的 TSDB 导入。
 - 当前仅接通完整 healPct / mpPct / dispel 药效；含未接 Buff、体力、永久加值或经脉组合效果的道具会禁用，避免扣除物品却漏结算。ENG-06 战外 perBattle 计数暂由适配器隔离并保留战斗账本。
-- ENG-04 当前生产命令只有招式 / 待机；移动、战斗物品、防御、急性聚气按钮按 capability 显式禁用并显示原因，禁止 UI 自算规则。经脉面板仍展示 core 已提供的透劲、占穴、丹田损伤与 Buff。
+- 当前生产命令已支持移动 + 招式 / 待机；战斗物品、防御、急性聚气按钮仍按 capability 显式禁用并显示原因，禁止 UI 自算规则。经脉面板仍展示 core 已提供的透劲、占穴、丹田损伤与 Buff。
 - 已有装备 schema 缺数值 modifiers / 执法配置，当前换装只改变装备与背包；不得从说明文本解析出属性、通缉或剧情奖励。正式人物 / 装备汇总接齐后才扩展面板。
 
 ## 素材（图片资源从哪来、怎么进包）
@@ -117,7 +118,8 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 - 【建议值】演示主角初始七项先天均 50，一层黄上太祖长拳、无开穴；core 得 HP=300+(30+4×3)×1=342、MP=200。两名已遇 NPC 与零好感仅供界面演示；正式初态由 ENG-10 创角 / 剧情提供。
 - 【建议值】福缘目前随其他先天显示数值，design/03 的五档词未给出阈值；默认保持真实数值，待上游提供档位映射后改为词并提供设置切换。
 - 依赖 ENG-02 / 06 后续聚合：真实 NPC 招募 / 相遇账本、装备 modifiers / lawProfile、完整 Buff / 体力 / 经脉用药、任务中文名；默认没有配置便不创建效果或新规则。
-- 依赖 ENG-04 扩展生产命令：移动 / 可达路径、战斗物品、防御与 `BattleState.meridianByUnit` 急性聚气尚未进入统一 resolver；默认能力禁用，待上游提供后只接命令和投影。
+- 已解决：移动、可达集、路径预览及移动 + 招式 / 待机已进入 core resolver；战斗物品、防御与
+  `BattleState.meridianByUnit` 急性聚气仍待 ENG-16b，默认能力禁用，届时只接命令和投影。
 - 依赖正式 TSAV codec：默认演示继续用 TSUI，导入须保持 preview 模式一致；特殊检查点恢复、铁人模式与正式战斗存档条件交 ENG-09 / 10。
 - 依赖章节内容装载：默认天龙三名 NPC 加主角、367 件已编译物品，不表示这些物品在正式开局可得。
 - 依赖 ENG-06 修正战外 perBattle 校验：适配器当前传入空 battleUses 做战外结算，再保留旧战斗账本；修正上游后可移除兼容分支，保留回归测试。

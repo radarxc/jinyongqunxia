@@ -1,7 +1,9 @@
 import { compareCodePoints } from '@tianshu/shared';
+import { hexKey, jumpDistance, movementPoints, type HexCoord, type HexDir } from '../../hex';
 import { createOpeningOrder } from '../timeline';
 import type {
-  BattleCondition, BattleParticipant, BattleResult, BattleSetup, BattleState, BattleUnit, EntryKind, SideId,
+  BattleCondition, BattleGridCell, BattleParticipant, BattleResult, BattleSetup, BattleState, BattleUnit,
+  EntryKind, SideId,
 } from '../types';
 
 const SIDE_RANK: Readonly<Record<SideId, number>> =
@@ -29,12 +31,33 @@ export interface BattleSetupInput {
   readonly friendlyFire?: boolean; readonly roundLimit?: number; readonly boss?: boolean;
   readonly winCond?: readonly BattleCondition[]; readonly loseCond?: readonly BattleCondition[];
   readonly drawCond?: readonly BattleCondition[]; readonly meditationUnitRefs?: readonly string[];
+  readonly grid?: readonly {
+    readonly q: number; readonly r: number; readonly height: number; readonly moveCost: number;
+    readonly canopy?: number; readonly los?: 'none' | 'partial' | 'full';
+    readonly standable?: boolean; readonly narrow?: boolean; readonly dangerous?: boolean;
+  }[];
+  readonly initialUnits?: readonly { readonly unitRef: string; readonly pos: HexCoord; readonly facing: HexDir }[];
 }
 
 function orderedParticipants(input: readonly BattleParticipantInput[]): BattleParticipant[] {
   return [...input].sort((left, right) => SIDE_RANK[left.side] - SIDE_RANK[right.side]
     || Number(right.required) - Number(left.required) || compareCodePoints(left.unitRef, right.unitRef))
     .map((participant, unitIndex) => ({ ...participant, unitIndex }));
+}
+
+function validGridCell(cell: NonNullable<BattleSetupInput['grid']>[number]): boolean {
+  return Number.isSafeInteger(cell.q) && Number.isSafeInteger(cell.r)
+    && Number.isSafeInteger(cell.height) && cell.height >= 0 && cell.height <= 10
+    && Number.isSafeInteger(cell.moveCost) && cell.moveCost >= 1
+    && (cell.canopy === undefined || Number.isSafeInteger(cell.canopy) && cell.canopy >= 0)
+    && (cell.los === undefined || cell.los === 'none' || cell.los === 'partial' || cell.los === 'full')
+    && (cell.standable === undefined || typeof cell.standable === 'boolean')
+    && (cell.narrow === undefined || typeof cell.narrow === 'boolean')
+    && (cell.dangerous === undefined || typeof cell.dangerous === 'boolean');
+}
+
+function validFacing(value: number): value is HexDir {
+  return Number.isSafeInteger(value) && value >= 0 && value <= 5;
 }
 
 export function createBattleSetup(input: BattleSetupInput): BattleSetup {
@@ -46,6 +69,39 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
     throw new RangeError('BATTLE_SETUP_PARTICIPANTS');
   }
   const meditation = new Set(input.meditationUnitRefs ?? []);
+  const defaultPositions = participants.map((participant, index) => ({
+    unitRef: participant.unitRef, pos: { q: index, r: 0 }, facing: (index === 0 ? 0 : 3) as HexDir,
+  }));
+  const placements = input.initialUnits ?? defaultPositions;
+  const participantIds = new Set(participants.map((entry) => entry.unitRef));
+  if (placements.length !== participants.length
+    || new Set(placements.map((entry) => entry.unitRef)).size !== participants.length
+    || placements.some((entry) => !participantIds.has(entry.unitRef))
+    || placements.some((entry) => !Number.isSafeInteger(entry.pos.q)
+      || !Number.isSafeInteger(entry.pos.r) || !validFacing(entry.facing))
+    || new Set(placements.map((entry) => hexKey(entry.pos))).size !== placements.length) {
+    throw new RangeError('BATTLE_SETUP_PLACEMENTS');
+  }
+  const defaultGrid: BattleGridCell[] = Array.from({ length: Math.max(2, participants.length) }, (_, q) =>
+    ({ q, r: 0, height: 0, moveCost: 1, canopy: 0, los: 'none', standable: true,
+      narrow: false, dangerous: false }));
+  const inputGrid = input.grid ?? defaultGrid;
+  if (inputGrid.some((cell) => !validGridCell(cell))) throw new RangeError('BATTLE_SETUP_GRID');
+  const grid = [...inputGrid].sort((left, right) => left.r - right.r || left.q - right.q)
+    .map((cell) => ({ ...cell, canopy: cell.canopy ?? 0, los: cell.los ?? 'none' as const,
+      standable: cell.standable ?? true, narrow: cell.narrow ?? false,
+      dangerous: cell.dangerous ?? false }));
+  const qValues = grid.map((cell) => cell.q); const rValues = grid.map((cell) => cell.r);
+  if (grid.length === 0 || grid.length > 400 || grid.some((cell) => !validGridCell(cell))
+    || Math.max(...qValues) - Math.min(...qValues) > 20
+    || Math.max(...rValues) - Math.min(...rValues) > 20
+    || new Set(grid.map(hexKey)).size !== grid.length
+    || placements.some((entry) => {
+      const cell = grid.find((candidate) => hexKey(candidate) === hexKey(entry.pos));
+      return cell === undefined || !cell.standable;
+    })) {
+    throw new RangeError('BATTLE_SETUP_GRID');
+  }
   const initialEffects = input.entryKind === 'meditationAmbush'
     ? participants.filter((entry) => meditation.has(entry.unitRef)).map((entry) => ({
       unitRef: entry.unitRef, buffRef: 'bf_chaqi' as const, stacks: 1,
@@ -59,10 +115,14 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
       ally: { player: 'friendly', ally: 'friendly', enemy: 'hostile', neutral: 'neutral' },
       enemy: { player: 'hostile', ally: 'hostile', enemy: 'friendly', neutral: 'neutral' },
       neutral: { player: 'neutral', ally: 'neutral', enemy: 'neutral', neutral: 'friendly' } },
+    grid: { topology: 'hex-pointy', cells: grid },
     start: { deployment: input.entryKind === 'meditationAmbush' ? 'ambushed' : 'standard',
       initiativeSide: input.initiativeSide ?? (input.entryKind === 'meditationAmbush' ? 'enemy' : 'player'),
-      battleAnchor: input.anchorRef, profile: 'normal', initialByUnit: participants.map((entry) =>
-        ({ unitRef: entry.unitRef, ct: 0, rage: 0 })), initialEffects },
+      battleAnchor: input.anchorRef, profile: 'normal', initialByUnit: participants.map((entry) => {
+        const placement = placements.find((candidate) => candidate.unitRef === entry.unitRef)!;
+        return { unitRef: entry.unitRef, ct: 0, rage: 0,
+          pos: { ...placement.pos }, facing: placement.facing };
+      }), initialEffects },
     end: { winCond: cloneConditions(input.winCond ?? [{ kind: 'allHostileDown', side: 'player' }]),
       loseCond: cloneConditions(input.loseCond ?? [{ kind: 'unitDown', unitRef: participants.find(
         (entry) => entry.side === 'player' && entry.required)?.unitRef ?? participants[0]!.unitRef }]),
@@ -86,7 +146,8 @@ export const createMeditationAmbushBattleSetup = (input: Omit<BattleSetupInput, 
 
 type DefaultedBattleUnitField = 'meridianDefenseBp' | 'qiProductionPerTick' | 'reverseQi' | 'redirectedQi';
 export type BattleUnitSeed = Omit<BattleUnit, 'unitIndex' | 'side' | 'control' | 'state' | 'active' | 'ct'
-  | DefaultedBattleUnitField> & Partial<Pick<BattleUnit, DefaultedBattleUnitField>>;
+  | 'pos' | 'facing' | 'move' | 'jump' | 'waitStreak' | DefaultedBattleUnitField>
+  & Partial<Pick<BattleUnit, DefaultedBattleUnitField | 'move' | 'jump' | 'waitStreak'>>;
 function cloneUnitSeed(seed: BattleUnitSeed, participant: BattleParticipant, ct: number,
   initialBuffs: BattleUnit['buffs']): BattleUnit {
   return { ...seed, unitIndex: participant.unitIndex, side: participant.side, control: participant.control,
@@ -99,7 +160,9 @@ function cloneUnitSeed(seed: BattleUnitSeed, participant: BattleParticipant, ct:
       affectedRouteRefs: [...occupancy.affectedRouteRefs] })),
     meridianDefenseBp: seed.meridianDefenseBp ?? 10_000,
     qiProductionPerTick: seed.qiProductionPerTick ?? 1, reverseQi: seed.reverseQi ?? null,
-    redirectedQi: seed.redirectedQi ?? 0 };
+    redirectedQi: seed.redirectedQi ?? 0, pos: { q: 0, r: 0 }, facing: 0,
+    move: seed.move ?? movementPoints(seed.qinggong), jump: seed.jump ?? jumpDistance(seed.qinggong),
+    waitStreak: seed.waitStreak ?? 0 };
 }
 export function createBattleState(setup: BattleSetup, seeds: readonly BattleUnitSeed[]): BattleState {
   let nextBuffIid = 1;
@@ -111,9 +174,13 @@ export function createBattleState(setup: BattleSetup, seeds: readonly BattleUnit
     const initialBuffs = setup.start.initialEffects.filter((effect) => effect.unitRef === participant.unitRef)
       .map((effect) => ({ iid: nextBuffIid++, def: effect.buffRef, holder: participant.unitRef,
         source: effect.cause, grade: 1, stacks: effect.stacks, turnsLeft: effect.remainingOwnActions, fresh: false }));
-    return cloneUnitSeed(seed, participant, initial?.ct ?? 0, initialBuffs);
+    const unit = cloneUnitSeed(seed, participant, initial?.ct ?? 0, initialBuffs);
+    unit.pos = { ...(initial?.pos ?? { q: 0, r: 0 }) }; unit.facing = initial?.facing ?? 0;
+    return unit;
   });
-  return { setup, units, tick: 0, round: 0, actionNo: 0, phase: 'opening', result: null,
+  return { setup, grid: { topology: setup.grid.topology,
+    cells: setup.grid.cells.map((cell) => ({ ...cell })) }, units,
+    tick: 0, round: 0, actionNo: 0, phase: 'opening', result: null,
     openingOrder: createOpeningOrder(units, setup.start.initiativeSide), events: [], acceptedCommands: [] };
 }
 

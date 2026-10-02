@@ -1,14 +1,14 @@
 import {
   advanceBattleToReady, chooseAutoCommand, createBattleState, createRng, defaultMaxActions,
   evaluateBattleEnd, finishBattle, peekReadyUnitId, resolveBattleAction, seedStream,
-  type BattleCommand, type BattleEvent, type BattleState,
+  queryPath, type BattleCommand, type BattleEvent, type BattleState,
 } from '@tianshu/core';
 import type { BattleLaunch, BattlePacket, BattleUiCommand, BattleUnitView, MovePlayback } from './contracts';
 import { projectBattleUnit } from './presentation';
 import { queryArea, queryTimeline } from './queries';
 
 const unavailable = (reason: string) => ({ enabled: false, reason });
-const CAPABILITIES = { move: unavailable('当前战斗暂不可移动'), item: unavailable('当前战斗暂不可使用物品'),
+const CAPABILITIES = { move: { enabled: true, reason: '' }, item: unavailable('当前战斗暂不可使用物品'),
   defend: unavailable('当前战斗暂不可防御'), gather: unavailable('当前战斗尚未接通急性聚气') };
 const POLICY = { style: 'aggressive', reserveMpBp: 0, allowUltimate: true, allowItems: false } as const;
 
@@ -94,9 +94,10 @@ export class BattleRuntime {
   }
 
   private act(input: BattleUiCommand): MovePlayback | undefined {
-    if (input.t === 'battle/move' || input.t === 'battle/item' || input.t === 'battle/defend' || input.t === 'battle/gather')
+    if (input.t === 'battle/item' || input.t === 'battle/defend' || input.t === 'battle/gather')
       throw new Error('BATTLE_ACTION_UNAVAILABLE');
-    if (input.t !== 'battle/act-at' && input.t !== 'battle/step' && input.t !== 'battle/wait')
+    if (input.t !== 'battle/act-at' && input.t !== 'battle/step' && input.t !== 'battle/wait'
+      && input.t !== 'battle/move')
       throw new Error('BATTLE_COMMAND_UNKNOWN');
     this.assertRevision(input.t === 'battle/act-at' ? input.preview.revision : input.revision);
     const actorId = peekReadyUnitId(this.state);
@@ -110,12 +111,26 @@ export class BattleRuntime {
     } else {
       if (this.auto || actor.control !== 'player') throw new Error('BATTLE_NOT_MANUAL_TURN');
       if (input.t === 'battle/wait') command = { t: 'battle/wait', actor: input.actor };
+      else if (input.t === 'battle/move') {
+        if (input.actor !== actor.id || queryPath(this.state, actor.id, input.destination) === null) {
+          throw new Error('PATH_BLOCKED');
+        }
+        command = { t: 'battle/act', actor: actor.id, walkTo: input.destination, action: { t: 'wait' } };
+      }
       else {
         if (!this.preview || input.preview.requestId !== this.preview.requestId ||
           JSON.stringify(input.preview) !== JSON.stringify(this.preview)) throw new Error('BATTLE_STALE_PREVIEW');
         const area = queryArea(this.state, this.launch, input.preview);
         if (!area.valid) throw new Error('BATTLE_TARGET_INVALID');
-        command = { t: 'battle/act', actor: area.actor, moveId: area.moveId, targetIds: area.targetIds };
+        const selectedMove = actor.moves.find(move => move.id === area.moveId);
+        if (selectedMove === undefined) throw new Error('BATTLE_MOVE_UNKNOWN');
+        const anchorUnit = this.state.units.find(unit => unit.pos.q === area.anchor.q
+          && unit.pos.r === area.anchor.r);
+        const target = selectedMove.target === 'tile' ? area.anchor
+          : selectedMove.target === 'self' ? actor.id : anchorUnit?.id;
+        if (target === undefined) throw new Error('BATTLE_TARGET_INVALID');
+        command = { t: 'battle/act', actor: area.actor,
+          action: { t: 'skill', move: area.moveId, target, aim: area.aim } };
       }
     }
     // Core's compact resolver mutates. Stage both state and RNG so even a partial failure rolls back.
@@ -125,7 +140,8 @@ export class BattleRuntime {
     const result = resolveBattleAction(candidate, command, rng, { deferEndCheck: automatic });
     if (!result.accepted) throw new Error(result.error ?? 'BATTLE_ACTION_FAILED');
     if (automatic) {
-      const target = command.t === 'battle/act' ? command.targetIds[0] : undefined;
+      const target = command.t === 'battle/act' && command.action.t === 'skill'
+        && typeof command.action.target === 'string' ? command.action.target : undefined;
       candidate.events.push({ t: 'battle/autoExchangeResolved', actionNo: candidate.actionNo,
         actor: actor.id, amount: result.hpDamage, ...(target ? { target } : {}) });
       const end = evaluateBattleEnd(candidate);
@@ -133,9 +149,15 @@ export class BattleRuntime {
     }
     // The core owns the cap value and terminal event; scheduling is one action per host request.
     if (!candidate.result && candidate.actionNo >= defaultMaxActions(candidate.units.length)) finishBattle(candidate, 'draw');
-    const from = this.launch.markers.find(marker => marker.id === actor.id)!;
-    const resolved: MovePlayback | undefined = command.t === 'battle/act' ? { moveId: command.moveId,
-      from, to: command.targetIds.map(id => this.launch.markers.find(marker => marker.id === id)!),
+    const from = projectBattleUnit(actor, this.launch);
+    const skill = command.t === 'battle/act' && command.action.t === 'skill' ? command.action : null;
+    const resolvedTargets = skill === null ? [] : candidate.events.slice(before)
+      .filter(event => event.t === 'battle/damageResolved' && event.target !== undefined)
+      .map(event => candidate.units.find(unit => unit.id === event.target))
+      .filter((unit): unit is BattleState['units'][number] => unit !== undefined);
+    const resolved: MovePlayback | undefined = skill !== null
+      ? { moveId: skill.move,
+      from, to: resolvedTargets.map(unit => projectBattleUnit(unit, this.launch)),
       result: { actionNo: candidate.actionNo, hpDamage: result.hpDamage, events: candidate.events.slice(before) } } : undefined;
     this.state = candidate; this.rng = rng; this.revision += 1; this.preview = null;
     this.ready();

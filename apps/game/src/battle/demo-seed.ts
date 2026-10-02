@@ -8,7 +8,8 @@ export function demoSeed(id: string): BattleUnitSeed {
       aptitudeInner: 50, critDamagePct: 150, hit: 100, eva: -100, parry: -100, pierce: 100,
       crit: -100, tough: 40, strength: 50 },
     moves: [{ id: 'mv_basic_strike', powerBp: 10_000, referencePowerBp: 10_000, wInBp: 3500,
-      recovery: 900, mpCost: 0, hitZone: 'body', autoTargetCap: 1 }],
+      recovery: 900, mpCost: 0, hitZone: 'body', autoTargetCap: 1, range: { min: 1, max: 1 },
+      delivery: 'melee', shape: { tpl: 'aoe_single' }, hTol: 2, target: 'enemy' }],
     zoneGuards: {
       body: { qi: 0, carryCapacity: 100, strengthBp: 10_000, flowRatioBp: 10_000, breakGuardBp: 0 },
       hand: { qi: 0, carryCapacity: 100, strengthBp: 10_000, flowRatioBp: 10_000, breakGuardBp: 0 },

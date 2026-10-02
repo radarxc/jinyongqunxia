@@ -1,6 +1,7 @@
 import { canonicalJson, compareCodePoints, mulDivFloor, type JsonValue } from '@tianshu/shared';
 import { advanceBattleToReady, resolveBattleAction } from '../battle/action';
 import { evaluateBattleEnd, finishBattle } from '../battle/encounter';
+import { isBattleUnitVisible, queryLegalTargets, queryReachable } from '../battle/geometry';
 import type { BattleCommand, BattleResult, BattleState, BattleUnit, SideId } from '../battle/types';
 import { createRng, seedStream } from '../rng';
 
@@ -22,8 +23,9 @@ function viableMoves(actor: BattleUnit, policy: AutoPolicy): readonly BattleUnit
     right.powerBp - left.powerBp || left.mpCost - right.mpCost || compareCodePoints(left.id, right.id));
 }
 
-function targets(state: BattleState, actor: BattleUnit, preferred?: string): BattleUnit[] {
+function targets(state: BattleState, actor: BattleUnit, preferred?: string, geometry = true): BattleUnit[] {
   return state.units.filter((unit) => unit.active && unit.hp > 0
+    && (!geometry || isBattleUnitVisible(state, actor, unit))
     && state.setup.relations[actor.side][unit.side] === 'hostile').sort((left, right) => {
       if (preferred !== undefined) {
         if (left.id === preferred && right.id !== preferred) return -1;
@@ -39,9 +41,32 @@ export function chooseAutoCommand(
   const move = viableMoves(actor, policy)[0];
   const candidates = targets(state, actor, policy.preferredTarget);
   if (move === undefined || candidates.length === 0) return { t: 'battle/wait', actor: actor.id };
-  const cap = move.autoTargetCap ?? 1;
-  return { t: 'battle/act', actor: actor.id, moveId: move.id,
-    targetIds: candidates.slice(0, cap).map((target) => target.id) };
+  const legal = new Set(queryLegalTargets(state, actor.id, move.id).map((unit) => unit.id));
+  const direct = candidates.find((target) => legal.has(target.id));
+  if (direct !== undefined) return { t: 'battle/act', actor: actor.id,
+    action: { t: 'skill', move: move.id, target: direct.id } };
+  const target = candidates[0]!;
+  const approach = queryReachable(state, actor.id).filter((entry) => entry.cost > 0)
+    .sort((left, right) => {
+      const ld = Math.max(Math.abs(left.pos.q - target.pos.q), Math.abs(left.pos.r - target.pos.r),
+        Math.abs(left.pos.q + left.pos.r - target.pos.q - target.pos.r));
+      const rd = Math.max(Math.abs(right.pos.q - target.pos.q), Math.abs(right.pos.r - target.pos.r),
+        Math.abs(right.pos.q + right.pos.r - target.pos.q - target.pos.r));
+      return ld - rd || left.cost - right.cost || left.pos.r - right.pos.r || left.pos.q - right.pos.q;
+    })[0];
+  if (approach === undefined) return { t: 'battle/wait', actor: actor.id };
+  const fromLegal = queryLegalTargets(state, actor.id, move.id, approach.pos)
+    .some((unit) => unit.id === target.id);
+  return { t: 'battle/act', actor: actor.id, walkTo: approach.pos,
+    action: fromLegal ? { t: 'skill', move: move.id, target: target.id } : { t: 'wait' } };
+}
+
+function chooseAbstractCommand(state: BattleState, actor: BattleUnit, policy: AutoPolicy): BattleCommand {
+  const move = viableMoves(actor, policy)[0];
+  const candidates = targets(state, actor, policy.preferredTarget, false);
+  if (move === undefined || candidates.length === 0) return { t: 'battle/wait', actor: actor.id };
+  return { t: 'battle/act', actor: actor.id,
+    action: { t: 'skill', move: move.id, target: candidates[0]!.id } };
 }
 
 function fnv1a(text: string): string {
@@ -78,11 +103,12 @@ export function simulateAbstractBattle(
     if (actor === undefined || !actor.active) { state.openingOrder.shift(); continue; }
     const policy = policyBySide[actor.side] ?? { style: 'aggressive', reserveMpBp: 0,
       allowUltimate: true, allowItems: false };
-    const command = chooseAutoCommand(state, actor, policy);
+    const command = chooseAbstractCommand(state, actor, policy);
     const before = effectiveState(state);
-    const result = resolveBattleAction(state, command, rng, { deferEndCheck: true });
+    const result = resolveBattleAction(state, command, rng, { deferEndCheck: true, ignoreGeometry: true });
     if (!result.accepted) { finishBattle(state, 'draw'); break; }
-    const target = command.t === 'battle/act' ? command.targetIds[0] : undefined;
+    const target = command.t === 'battle/act' && command.action.t === 'skill'
+      && typeof command.action.target === 'string' ? command.action.target : undefined;
     state.events.push({ t: 'battle/autoExchangeResolved', actionNo: state.actionNo, actor: actor.id,
       ...(target === undefined ? {} : { target }), amount: result.hpDamage });
     const after = effectiveState(state);

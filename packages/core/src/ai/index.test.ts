@@ -8,8 +8,7 @@ describe('abstract automatic combat', () => {
   it('uses no geometry and chooses a stable move and target order', () => {
     const state = combatFixture({ enemies: 2 }); const actor = state.units[0]!;
     expect(chooseAutoCommand(state, actor, aggressive)).toEqual({ t: 'battle/act', actor: 'hero',
-      moveId: 'mv_basic_strike', targetIds: ['enemy_0'] });
-    expect(JSON.stringify(state)).not.toMatch(/position|facing|lineOfSight|zoc/i);
+      action: { t: 'skill', move: 'mv_basic_strike', target: 'enemy_0' } });
   });
 
   it('is deterministic for identical setup, seed and policy', () => {
@@ -42,6 +41,14 @@ describe('abstract automatic combat', () => {
     expect(defaultMaxActions(1)).toBe(60); expect(defaultMaxActions(100)).toBe(2000);
     expect(() => simulateAbstractBattle(combatFixture({ noAuto: true }), {}))
       .toThrow('BATTLE_AUTO_FORBIDDEN');
+  });
+
+  it('approaches an out-of-range target before attacking', () => {
+    const state = combatFixture({ gridRadius: 4 }); const actor = state.units[0]!;
+    state.units[1]!.pos = { q: 4, r: 0 };
+    const command = chooseAutoCommand(state, actor, aggressive);
+    expect(command).toMatchObject({ t: 'battle/act', actor: 'hero',
+      walkTo: expect.any(Object), action: { t: 'skill', move: 'mv_basic_strike', target: 'enemy_0' } });
   });
 
   it('terminates 200 deterministic random seeds with safe resources and no post-down action', () => {

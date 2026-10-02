@@ -9,11 +9,11 @@ import {
 } from './index';
 
 const accepted: readonly BattleCommand[] = [
-  { t: 'battle/act', actor: 'hero', moveId: 'mv_basic_strike', targetIds: ['enemy_0'] },
-  { t: 'battle/act', actor: 'enemy_0', moveId: 'mv_basic_strike', targetIds: ['hero'] },
+  { t: 'battle/act', actor: 'hero', action: { t: 'skill', move: 'mv_basic_strike', target: 'enemy_0' } },
+  { t: 'battle/act', actor: 'enemy_0', action: { t: 'skill', move: 'mv_basic_strike', target: 'hero' } },
 ];
 const rejected: BattleCommand =
-  { t: 'battle/act', actor: 'enemy_0', moveId: 'mv_basic_strike', targetIds: ['hero'] };
+  { t: 'battle/act', actor: 'enemy_0', action: { t: 'skill', move: 'mv_basic_strike', target: 'hero' } };
 const sha256 = (text: string): string => createHash('sha256').update(text, 'utf8').digest('hex');
 
 function replay(commands: readonly BattleCommand[]) {
@@ -28,7 +28,7 @@ describe('battle replay protocol', () => {
   it('replays the same seed and accepted commands to the golden SHA-256', () => {
     const first = replay(accepted); const second = replay(accepted);
     expect(second.input).toBe(first.input); expect(second.hash).toBe(first.hash);
-    expect(first.hash).toBe('3a71767d47d38d9a2efe83085561dd4625c2bc84b1b49ababfa90f2550cc4382');
+    expect(first.hash).toBe('13dd4a494b6662b49f7aea090376c3409326a1f472a520b88d1e42609d8df9a7');
     expect(first.run.session.battle.acceptedCommands).toEqual(accepted);
   });
 

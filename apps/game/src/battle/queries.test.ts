@@ -24,4 +24,18 @@ describe('battle UI queries', () => {
     expect(queryTimeline(state)).toHaveLength(8);
     expect(state).toEqual(before);
   });
+  it('keeps tile-target anchors as coordinates even when a unit occupies the anchor', () => {
+    const launch = createBattleDemo('world');
+    const tileMove = { ...launch.seeds[0]!.moves[0]!, target: 'tile' as const,
+      delivery: 'ranged' as const, range: { min: 1, max: 2 },
+      shape: { tpl: 'aoe_disk' as const, r: 1 } };
+    const cloned = structuredClone(launch);
+    const seeded = { ...cloned, seeds: [{ ...cloned.seeds[0]!, moves: [tileMove] }, ...cloned.seeds.slice(1)] };
+    const state = createBattleState(seeded.setup, seeded.seeds);
+    const actor = state.openingOrder[0]!; const marker = seeded.markers.find(unit => unit.id !== actor)!;
+    expect(queryArea(state, seeded, { actor, moveId: tileMove.id, anchor: { q: marker.q, r: marker.r },
+      aim: { dirCount: 6, dir: 0 }, revision: 0, requestId: 2 })).toMatchObject({
+      valid: true, anchor: { q: marker.q, r: marker.r }, targetIds: [marker.id],
+    });
+  });
 });

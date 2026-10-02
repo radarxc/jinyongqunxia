@@ -1,9 +1,11 @@
 import type { BattleMove, BattleUnitSeed, SideId } from '../battle';
 import { createBattleState, createEncounterBattleSetup } from '../battle';
+import { HEX_DIRECTIONS, hexDisk } from '../hex';
 
 export const BASIC_MOVE: BattleMove = { id: 'mv_basic_strike', powerBp: 10_000,
   referencePowerBp: 10_000, wInBp: 3_500, recovery: 900, mpCost: 0, hitZone: 'body',
-  autoTargetCap: 1 };
+  autoTargetCap: 1, range: { min: 1, max: 1 }, delivery: 'melee',
+  shape: { tpl: 'aoe_single' }, hTol: 2, target: 'enemy' };
 
 export function battleSeed(id: string, moves: readonly BattleMove[] = [BASIC_MOVE]): BattleUnitSeed {
   return { id, hp: 1_200, hpMax: 1_200, mp: 400, mpMax: 400, shield: 0, ctFrozen: false,
@@ -19,17 +21,23 @@ export function battleSeed(id: string, moves: readonly BattleMove[] = [BASIC_MOV
 
 export function combatFixture(input: { readonly seed?: number; readonly playerMoves?: readonly BattleMove[];
   readonly enemyMoves?: readonly BattleMove[]; readonly enemies?: number; readonly hp?: number;
-  readonly noAuto?: boolean } = {}) {
+  readonly noAuto?: boolean; readonly gridRadius?: number } = {}) {
   const enemies = input.enemies ?? 1;
   const participants = [{ unitRef: 'hero', side: 'player' as SideId, control: 'player' as const,
     spawn: 'spawn_player', state: 'active' as const, required: true },
   ...Array.from({ length: enemies }, (_, index) => ({ unitRef: `enemy_${index}`,
     side: 'enemy' as SideId, control: 'ai' as const, spawn: `spawn_enemy_${index}`,
     state: 'active' as const, required: true }))];
+  const radius = input.gridRadius ?? Math.max(2, enemies);
+  const grid = hexDisk({ q: 0, r: 0 }, radius).map(({ q, r }) => ({ q, r, height: 0,
+    moveCost: 1, canopy: 0, los: 'none' as const, standable: true, narrow: false, dangerous: false }));
+  const initialUnits = participants.map((entry, index) => ({ unitRef: entry.unitRef,
+    pos: index === 0 ? { q: 0, r: 0 } : { ...HEX_DIRECTIONS[(index - 1) % 6]! },
+    facing: (index === 0 ? 0 : 3) as 0 | 3 }));
   const setup = createEncounterBattleSetup({ encounterId: 'enc_combat_fixture', setupId: 'setup-fixture',
     seed: input.seed ?? 1, sourceSnapshotHash: '0'.repeat(64), sourceId: 'fixture', triggerId: 'fixture',
     worldTick: 0, participants, sceneRef: 'sc_fixture', anchorRef: 'anchor_fixture',
-    noAuto: input.noAuto ?? false });
+    noAuto: input.noAuto ?? false, grid, initialUnits });
   const seeds = [battleSeed('hero', input.playerMoves),
     ...Array.from({ length: enemies }, (_, index) => battleSeed(`enemy_${index}`, input.enemyMoves))];
   if (input.hp !== undefined) for (const seed of seeds) {
