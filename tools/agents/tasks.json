@@ -29856,6 +29856,162 @@
    "writes": [
     "packages/core/src/battle/meridian-flow/**"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 14,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/command/index.ts",
+     "apps/game/src/loop.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test:performance"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-15-core-bus",
+   "title": "游戏工程 · core 命令总线与状态归位（Command 联合 / 事务 journal / GameState 补 saveSchema·位置·账本·对话与战斗槽 / 10 Hz 探索驱动 / 去 ui-session 边车）",
+   "prompt": "ENG-core-bus.md",
+   "deps": [
+    "ENG-09-town-scene",
+    "ENG-13-save-formal"
+   ],
+   "writes": [
+    "packages/core/src/**",
+    "packages/core/bench/**",
+    "apps/game/src/*.ts",
+    "apps/game/src/App.vue",
+    "apps/game/src/runtime/**",
+    "apps/game/src/storage/**",
+    "apps/game/src/scenes/**",
+    "apps/game/src/selectors/**",
+    "apps/game/src/pages/**",
+    "packages/ui/src/ui-bus.ts",
+    "packages/core/CLAUDE.md",
+    "apps/game/CLAUDE.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 14,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "content/migrations/id-remaps.yaml",
+     "packages/data/src/content-loader.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-18-content-build",
+   "title": "游戏工程 · 内容编译管线（content:build：规则 / 文本分片、书界包清单与 contentHash、ID / 路径重映射、Ink 编译）",
+   "prompt": "ENG-content-build.md",
+   "deps": [
+    "ENG-09-town-scene",
+    "ENG-11-vfx",
+    "DES-prologue-ch00"
+   ],
+   "writes": [
+    "packages/data/**",
+    "apps/game/build/**",
+    "apps/game/vite.config.ts",
+    "apps/game/package.json",
+    "content/migrations/**",
+    "content/story/**",
+    "content/CLAUDE.md",
+    "content/README.md",
+    "package.json",
+    "pnpm-lock.yaml",
+    ".gitignore"
+   ]
   }
  ]
 }
