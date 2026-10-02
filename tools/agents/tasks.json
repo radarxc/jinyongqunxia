@@ -30646,6 +30646,95 @@
     "apps/game/src/battle/*.ts",
     "apps/game/CLAUDE.md"
    ]
+  },
+  {
+   "id": "DES-prologue-v2",
+   "title": "设计改版 · 序章按《长生诀》主线改版：阿青传功、长白山初眠与配点、接白马冷入口（AR-26/27/29）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-prologue-v2.md",
+   "deps": [
+    "DES-changsheng-core"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/chapters/00-yuenv.md",
+    "docs/design/story/00-yuenv.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/chapters/00-yuenv.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-sleep-events",
+   "title": "设计补充 · 各书休眠事件与天龙「一命换一命」（AR-26）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-sleep-events.md",
+   "deps": [
+    "DES-changsheng-core"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/story/sleep-events.md",
+    "docs/design/story/01-tianlong.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/story/sleep-events.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-changsheng-sidelines",
+   "title": "设计补充 · 七条《长生诀》支线与和氏璧线（AR-26）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-changsheng-sidelines.md",
+   "deps": [
+    "DES-changsheng-core"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/story/changsheng-sidelines.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/story/changsheng-sidelines.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
   }
  ]
 }
