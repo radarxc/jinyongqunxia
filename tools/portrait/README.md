@@ -18,7 +18,7 @@
 
 **剧情场景图**（ID 含 `_scene_`）带原画背景，只出不透明的 `mid` / `low` 两档，当插图用。
 
-编码按 tech/06 §5.3：有损 WebP，`quality 82`，透明图另设 `alpha_quality 90`。原图 PNG 平均 2.7 MB，一个基础形象的 7 个产物合计约 0.2 MB。
+编码按 tech/06 §5.3：有损 WebP，`quality 82`，透明图另设 `alpha_quality 90`。原图 PNG 平均 2.7 MB；一个基础形象的 7 个产物合计约 0.28 MB（mid 约 110 KB、low 约 80 KB、ava512 / bust512 各约 33 KB）。全量 425 个变体合计约 133 MB，构建只复制每人一张默认 mid 档（313 张、约 42 MB）。
 
 ## 代码怎么取
 
