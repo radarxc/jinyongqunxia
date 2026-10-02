@@ -92,7 +92,7 @@ M1 玩家路径是新游戏 → 序章 → 书眠。后续的战斗补全（ENG-
    - §5.8：W-01（1200 tick 恰好一时辰）、W-02（hidden 30 分钟，0 次补跑）、W-06（对话停时 tick 不变）、W-09（一帧补 5 次与 5 帧各 1 次，版本 / 事件 / RNG / 规范 hash 相同）。
    - 迁移：旧 `ui-session.v1` 夹具 → 新状态，四个边车字段逐一核对。
    - 同一命令序列在主线程回退宿主与 Worker 宿主得到同一规范 hash。
-   - 性能：Node 下单次 `world/tick` dispatch（不含 Worker 往返）记录 P50 / P95，写进 `packages/core/bench/`，由现有 `test:performance` 串行跑，不进普通单测；P95 > 0.5 ms 时在报告里给出原因。
+   - 性能：Node 下单次 `world/tick` dispatch（不含 Worker 往返）记录 P50 / P95，写成 `packages/core/bench/*.test.ts`。`test:performance` 按目录自动收入（不用改 `package.json`），根 `pnpm test` 也会跑到它，所以照 `combat.test.ts` 的写法：best-of-N，硬断言只设留足余量的上限；P95 > 0.5 ms 时在报告里给出原因，不作硬断言。机器高负载下不得放宽或跳过已有的性能门禁。
 
 约束：
 - 写集：`packages/core/src/**`、`packages/core/bench/**`、`apps/game/src/*.ts`、`apps/game/src/App.vue`、`apps/game/src/runtime/**`、`apps/game/src/storage/**`、`apps/game/src/scenes/**`、`apps/game/src/selectors/**`、`apps/game/src/pages/**`、`packages/platform/src/storage/**`（只为在 ENG-13 的迁移链登记迁移）、`packages/platform/README.md`、`packages/platform/CLAUDE.md`、`packages/ui/src/projections.ts`、`packages/ui/src/ui-bus.ts`（这两个只改类型）、`packages/core/CLAUDE.md`、`apps/game/CLAUDE.md`。写集外的改动在提交时会被丢弃，所以不要改写集外的文件。
