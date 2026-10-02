@@ -158,15 +158,22 @@ def pool_of(tid: str) -> str:
 
 # 2026-10-01：任务工作区曾是全量检出（素材图约 2 GB / 个），同时开 20 个就把磁盘写满。文档 / 代码 / 提示词池的任务
 # 不需要图片目录，改为稀疏检出（只排除下面这些图片目录）；素材池任务仍全量。任务可用 "full_checkout": true 强制全量。
-SPARSE_EXCLUDE_DIRS = ("assets/default/baseline", "assets/default/building-map", "assets/default/tile", "assets/default/vfx")
+# 2026-10-02（ENG 监督）：ENG-11 起构建期 publishVfxRuntime 逐个 access() vfx/ 与 baseline/vfx/ 的运行时文件，缺了就构建失败，
+# 所以这两处改为检出（vfx 178 MB、baseline 剩余约 40 MB）；物品 / 人物 / 立绘目录变大后（共约 2 GB），只排除图片本体、保留 manifest
+#（构建按 manifest 读取，缺图自动跳过）。写这些目录的任务仍全量检出。
+SPARSE_EXCLUDE_DIRS = ("assets/default/baseline/building-map", "assets/default/baseline/tile", "assets/default/baseline/town",
+                       "assets/default/building-map", "assets/default/tile")
+SPARSE_EXCLUDE_FILES = ("assets/default/item/**/*.png", "assets/default/item/**/*.jpg", "assets/default/item/**/*.pdf",
+                        "assets/default/character/**/*.png", "assets/default/portrait/**/*.webp")
+SPARSE_FULL_IF_WRITES = SPARSE_EXCLUDE_DIRS + ("assets/default/item", "assets/default/character", "assets/default/portrait")
 
 
 def sparse_checkout_for(t) -> list | None:
     if getattr(t, "full_checkout", False) or pool_of(t.id) == "assets":
         return None
-    if any(w.startswith(d) for w in t.writes for d in SPARSE_EXCLUDE_DIRS):
+    if any(w.startswith(d) for w in t.writes for d in SPARSE_FULL_IF_WRITES):
         return None
-    return ["/*"] + [f"!/{d}/" for d in SPARSE_EXCLUDE_DIRS]
+    return ["/*"] + [f"!/{d}/" for d in SPARSE_EXCLUDE_DIRS] + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES]
 
 
 def apply_sparse(wt: Path, patterns: list, ref: str) -> None:
