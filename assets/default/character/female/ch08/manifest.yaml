@@ -447,80 +447,6 @@
   notes: '实际查看候选1：索菲娅为成年青年东欧面容、金棕卷发蓝灰眸，软头巾、灰蓝高领内衣及暗酒红前开长袍、窄毛边，右手折叠外交书左手低位指挥；非东亚基线脸，非童年阶段。头颈正直眼线水平，单人整体衣装完整可读，无明显多肢重大结构问题，按用户快速宽松自查保留可用。体态与脸明显比设定高大丰满更纤细、造型更理想化；衣饰花纹金属件偏多，左脚被裙摆覆盖而右鞋清楚，背景花枝小亭偏具体。以上据实登记为待细修偏差，不宣称严格符合体量和两足展示，不为小比例或鞋遮挡重做。原生1024×1536 RGB不透明PNG原始字节保存，candidate待审核，不冒称历史肖像或approved。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
-- id: por_npc_zengrou__ch08_youth_base
-  file: por_npc_zengrou__ch08_youth_base.png
-  category: character/female
-  style: default
-  subject: 曾柔 npc_zengrou ch08_luding
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL. Camera level, chin neutral, head centered over the torso. NO head tilt and NO Dutch angle. Preserve natural facial asymmetry without tilting the head. These rules override every reference pose. Eye focus must follow the stated character condition and never override an explicit visual disability.
-
-
-    Create a REALISTIC Chinese wuxia full-body illustration of 曾柔. Image 1 is the ONLY facial identity source: 陈安琪 as this exact character in the 1998 TVB 鹿鼎记 starring 陈小春. Image 2 is ONLY background; it supplies ZERO face or anatomy. Distinct identity must remain recognizable, without sharing another character''s face.
-
-
-    身份与阶段：曾柔（npc_zengrou），《鹿鼎记》ch08_luding，清初康熙时期。王屋派冲突与赌局放还之后，尚保留本门行旅身份的青年女弟子。按现稿十八至二十余岁的年轻成年女性设计；这是项目美术范围，小说确岁待考。身量自然，体态轻盈稳定，温和但有山寨女弟子的警觉。
-
-
-    本人面容辨识：以陈安琪1998曾柔的单人剧照为唯一本人面容：较小而偏圆椭圆的脸，饱满柔和面颊、短圆下巴，细弧眉与自然杏眼，双眼清楚、眼距自然，较细鼻梁和圆小鼻尖，小而上唇略薄的嘴。保留本人眼眉鼻唇比例，不套王语嫣、阿珂、沐剑屏的脸，不夸大为幼童或动漫大眼。温柔自持的闭口神情，轻微自然不对称仍可见。
-
-
-    服饰发式：清初汉族山地女弟子：灰玫瑰色右衽窄袖长袄、深烟灰裙裤、棕色窄布带、两只布鞋。左襟压右襟，领胸完整遮蔽，完整连续衣摆，仅少量自然受力褶皱。黑发收拢编入低髻，用小木簪固定；额前碎发少量自然，不复制剧照双侧发髻、绿衣或围领。衣物完整干净，至多轻微行路尘色，不添加破洞、飞白或污损。
-
-
-    姿态与器物：身体与脸主要朝正前，头颈自然竖直、眼睛同高、视线温和清醒、下巴中性，双足稳定落地。左腰佩一柄普通完整入鞘直剑，朴素灰木鞘与真实挂带，剑鞘端点入画；不是名剑。右手在腰前低位轻拢两枚小骰子，只露没有点数和文字的侧面；小物件确实落在掌指中、不悬浮。两枚是现稿选择而非已核原著数量，骰子是放还故事信物，不作暗器。左手自然靠近鞘侧，不抓裸刃，不安排抛骰动作或赌场场景。
-
-
-    人物画法：美观、精细、完整的写实国风人物插画；自然年龄和骨相，可信肤质、连贯体积与柔和左上漫射光。皮肤、头发、手足、衣料轮廓清楚且实体完整；衣服剪裁连续、衣襟缝线清楚，仅少量宽缓受力褶皱，不以破洞、飞白、碎墨、密集褶皱或纸屑表现真实。低饱和设色配自然肤色，不做照片、电视剧截图、拼贴或三维塑料。原始剧照只保留这个人的可辨面容关系，年龄、视力、发式、服装及器物遵本项目阶段。
-
-
-    参考边界：第一且唯一面部身份：陈安琪饰1998 TVB陈小春版曾柔，已核实来源角色版次并实际view。只取本人可辨五官和骨相，不继承剧照姿态、眼神状态、衣装、发式、背景、他人或字幕水印；项目阶段优先。 第二参考只提供暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白。已实际view；完全忽略王语嫣本人面容、年龄、性别、身体、倾头、发髻、白青衣裙、飘带和饰物。水墨和纸纹仅在人物之外，不能侵蚀皮肤、衣料、头发或器物。
-
-
-    背景与交付：背景只取第二图的极淡水墨远山和留白，不出现明确宫殿、家具、具体剧情陈设、清晰建筑、符号或可读字画；脚下少量接触阴影。单人单视图、水平平视、原生竖幅2:3、完整全身；头顶、双手、双足、衣摆、发辫及实际器物端点均入画，四周自然留净空，不用固定占高或头身数字。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并准确登记，保存原始PNG字节，禁止插值、裁切或重编码。先生成1张候选，基本清晰、主要正面、人物可辨即保存；仅严重身份错误、重大结构错误或不可读才追加，细指、轻微衣装和微角偏差如实记录而不反复重做。全部仍candidate待用户审核，不自动approved。
-
-
-    事实边界：小说确切年龄、骰子数量和收取次序未逐字核对；现稿两枚骰子和无点侧面、灰玫瑰衣色、低髻木簪、普通灰木剑鞘均是明确项目美术选择。保留这些选择，不声称已从剧照或小说确认；不编造原著引文、回目或页码。 服色、姿态细化属于项目美术设计，不冒称原著逐字描写。用户本人影视面容授权覆盖旧稿禁演员脸规则；写实人物与单候选规则覆盖旧纸底禁山水、固定比例和两张默认。
-
-
-    完整排除项：不要幼童脸、道冠道袍、掌门冠、首领旗帜、飞舞骰子、骰子文字数字或朝向镜头的点数、赌桌赌场、浓妆艳服、名剑或法术；不要把曾柔画成王屋首领、道观住持或赌徒职业；不要复制剧照略转头、室内屏风、绿衣围领或其他人物。 不要 head tilt、Dutch angle、明显歪头、斜镜头、头向肩倾、偏转侧脸、转身回眸、低头藏眼、仰头或夸张抬下巴；不要共用基线脸、统一美人或硬汉模板、动漫大眼、浓妆、塑料磨皮、照片和截图构图。不要多个人、多人拼图、多视图、裁断头足、缺肢、多肢、严重畸形、手物融合；不要碎布、破洞、飞白缺块、纸纹透肤透衣、墨迹侵蚀脸部、碎片化衣料、密集噪点、无依据污损或风化。不要现代服饰、拉链、腕表、手机、运动鞋、晚清官帽大饰、民国服装、日式服制、欧式奇幻装备、水平镜像或错误衣襟；不要血腥、透明衣物、裸露、恶搞丑化、发光掌法、龙蛇能量、法阵和粒子。不要具体剧情场景、清晰建筑家具、可读文字、伪字、题款、签名、印章、logo、字幕或装饰水印。保留工具本身溯源标识和元数据。
-
-
-    FINAL POSE CHECK: 曾柔 must be FRONT-FACING, head and neck UPRIGHT, centreline VERTICAL, eyes HORIZONTALLY LEVEL, camera level. No head tilt or Dutch angle. Preserve the stated disability and stage; do not copy the reference pose, gaze, clothes or background.'
-  negative: 不要幼童脸、道冠道袍、掌门冠、首领旗帜、飞舞骰子、骰子文字数字或朝向镜头的点数、赌桌赌场、浓妆艳服、名剑或法术；不要把曾柔画成王屋首领、道观住持或赌徒职业；不要复制剧照略转头、室内屏风、绿衣围领或其他人物。 不要 head tilt、Dutch angle、明显歪头、斜镜头、头向肩倾、偏转侧脸、转身回眸、低头藏眼、仰头或夸张抬下巴；不要共用基线脸、统一美人或硬汉模板、动漫大眼、浓妆、塑料磨皮、照片和截图构图。不要多个人、多人拼图、多视图、裁断头足、缺肢、多肢、严重畸形、手物融合；不要碎布、破洞、飞白缺块、纸纹透肤透衣、墨迹侵蚀脸部、碎片化衣料、密集噪点、无依据污损或风化。不要现代服饰、拉链、腕表、手机、运动鞋、晚清官帽大饰、民国服装、日式服制、欧式奇幻装备、水平镜像或错误衣襟；不要血腥、透明衣物、裸露、恶搞丑化、发光掌法、龙蛇能量、法阵和粒子。不要具体剧情场景、清晰建筑家具、可读文字、伪字、题款、签名、印章、logo、字幕或装饰水印。保留工具本身溯源标识和元数据。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/zengrou_1998_chenanqi_sina2016_2.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/luding/zengrou_1998_chenanqi_sina2016_2.png
-    use: 第一且唯一面部身份：陈安琪饰1998 TVB陈小春版曾柔，已核实来源角色版次并实际view。只取本人可辨五官和骨相，不继承剧照姿态、眼神状态、衣装、发式、背景、他人或字幕水印；项目阶段优先。
-    sha256: 798538618c69530b7a7a11519614684846fe83a35afdde9a94ad9c8bc4d8467d
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/798538618c69530b7a7a11519614684846fe83a35afdde9a94ad9c8bc4d8467d.png
-    status_at_input: null
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二参考只提供暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白。已实际view；完全忽略王语嫣本人面容、年龄、性别、身体、倾头、发髻、白青衣裙、飘带和饰物。水墨和纸纹仅在人物之外，不能侵蚀皮肤、衣料、头发或器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T02:26:35.868858+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-8a9e1dbc-ddda-4353-bc1c-6a6c4afe82c9.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 6a50ede1dbbe961e1402e5c058066a9f2717d3676f6bd4966a717cdf1d67e231
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_zengrou__ch08_youth_base/prompt-840380a9eb2fa40688439bdd3976f03d4f90b323557688e0e23a74bc1ecf5e2d.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_zengrou__ch08_youth_base/manifest-8d8990e2731874c8590cc5bd1c569774dbeefc0977d9dc377cf33c482ff59d1e.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_zengrou__ch08_youth_base.requests.json
-  notes: '实际查看本人1998曾柔剧照及候选1：较小圆椭圆脸、杏眼细眉、圆鼻尖短圆下巴和小口关系可辨，成年青年女弟子，灰玫瑰右衽袄深灰裙裤布鞋，一柄左腰直身鞘剑与右手两枚小骰子齐全。身体主要正面、头颈直立，无重大解剖结构错误，按用户快速宽松自查可用。头和视线略向一侧，发髻偏高且添小耳饰，骰子露出少量点痕并非全无点侧面，鞘偏褐且装具偏多、背景花枝小亭偏具体；记录细节偏差，不为微角和道具细部重做。原生1024×1536 RGB不透明PNG原始字节保存，candidate待审核、未approved。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_chenyuanyuan__ch08_prime_recluse_base
   file: por_npc_chenyuanyuan__ch08_prime_recluse_base.png
   category: character/female
@@ -710,3 +636,50 @@
   sha256: 05b2c7b4f9a3451197bd09c0e8c5c2e0c571b3526083cc329ea1502d86311079
   status: candidate
   notes: 立绘重审重出（AR-30）；现图头大身小、双髻配厚粉底戏装脸，像九十年代剧照；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）。改为约二十岁、温柔忠心的成年侍女。
+- id: por_npc_zengrou__ch08_youth_base
+  file: por_npc_zengrou__ch08_youth_base.png
+  category: character/female
+  style: default
+  subject: 曾柔（ch08_luding）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：曾柔，《鹿鼎记》中王屋派的女弟子，韦小宝掷骰子“赢”下她、放王屋派众人离去之后的时期。
+
+    经典形象：要一眼认出是曾柔——灰玫瑰色短袄、掌心两颗骰子、低头含羞，温柔腼腆；清秀美丽的成年女子。
+
+    年龄与体态：外观约二十岁的成年年轻女子，身材匀称，成人比例。
+
+    面容：清秀温婉的长鹅蛋脸；眉毛细弯；眼睛清澈，神情羞涩腼腆，带一点怯生生的温柔；鼻梁细直；嘴唇小巧；皮肤白净，有淡淡的红晕和真实纹理。
+
+    发式：黑发挽成低髻，插一支小木簪，额前没有刘海。
+
+    服饰：清初汉族女子——灰玫瑰色交领窄袖短袄（右衽）、深灰长裙、棕色腰带、平底布鞋。
+
+    道具与姿态：左腰佩一柄连鞘长剑；右手掌心托着两颗小骰子，低头看着骰子；安静站立。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要刘海和孩子气的脸；不要呆板无神的表情；不要照片感。清初汉族女子仍穿明式袄裙：汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:17:10-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zengrou__ch08_youth_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 06799d2677a1a7ebe3ac5ba629c851787fd3324def328f435d106d8a28249984
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图是照片感的平淡脸配齐刘海，神情呆板、偏稚气；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）。改为约二十岁、温柔腼腆的成年女弟子。
