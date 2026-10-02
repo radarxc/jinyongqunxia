@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1009** 份：已入库 528、待出图 349、已通过（作者） 132。**待出图队列 349 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1009** 份：已入库 529、待出图 348、已通过（作者） 132。**待出图队列 348 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -34,7 +34,6 @@
 | items | `eq_menggumadannang` | 蒙古马弹囊 | `assets/default/item/hidden-weapons/eq_menggumadannang.png` | 待出图 | [eq_menggumadannang.md](items/hidden-weapons/eq_menggumadannang.md) |
 | items | `eq_shengsifubao` | 生死符冰片包 | `assets/default/item/hidden-weapons/eq_shengsifubao.png` | 待出图 | [eq_shengsifubao.md](items/hidden-weapons/eq_shengsifubao.md) |
 | items | `eq_tubofeishinang` | 吐蕃飞石囊 | `assets/default/item/hidden-weapons/eq_tubofeishinang.png` | 待出图 | [eq_tubofeishinang.md](items/hidden-weapons/eq_tubofeishinang.md) |
-| items | `eq_wulianfeibingxia` | 五联飞饼匣 | `assets/default/item/hidden-weapons/eq_wulianfeibingxia.png` | 待出图 | [eq_wulianfeibingxia.md](items/hidden-weapons/eq_wulianfeibingxia.md) |
 | items | `eq_wuyingyinzhen` | 无影银针 | `assets/default/item/hidden-weapons/eq_wuyingyinzhen.png` | 待出图 | [eq_wuyingyinzhen.md](items/hidden-weapons/eq_wuyingyinzhen.md) |
 | items | `eq_xiyufengyebiaonang` | 西域风叶镖囊 | `assets/default/item/hidden-weapons/eq_xiyufengyebiaonang.png` | 待出图 | [eq_xiyufengyebiaonang.md](items/hidden-weapons/eq_xiyufengyebiaonang.md) |
 | items | `eq_yanzibiaonang` | 燕子镖囊 | `assets/default/item/hidden-weapons/eq_yanzibiaonang.png` | 待出图 | [eq_yanzibiaonang.md](items/hidden-weapons/eq_yanzibiaonang.md) |
@@ -726,7 +725,7 @@
 
 （已全部入库。）
 
-### 暗器（51）· 已入库 40、待出图 11
+### 暗器（51）· 已入库 41、待出图 10
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -735,12 +734,11 @@
 | 3 | 金花镖 | `eq_jinhuabiao` | 地中 | 暗器·名镖 | 待出图 | [eq_jinhuabiao.md](items/hidden-weapons/eq_jinhuabiao.md) | template |
 | 4 | 生死符冰片包 | `eq_shengsifubao` | 地上 | 暗器·名符 | 待出图 | [eq_shengsifubao.md](items/hidden-weapons/eq_shengsifubao.md) | template |
 | 5 | 无影银针 | `eq_wuyingyinzhen` | 地中 | 暗器·机括针靴 | 待出图 | [eq_wuyingyinzhen.md](items/hidden-weapons/eq_wuyingyinzhen.md) | template |
-| 6 | 五联飞饼匣 | `eq_wulianfeibingxia` | 玄上 | 暗器·轮刃匣 | 待出图 | [eq_wulianfeibingxia.md](items/hidden-weapons/eq_wulianfeibingxia.md) | template |
-| 7 | 燕子镖囊 | `eq_yanzibiaonang` | 玄中 | 暗器·飞镖 | 待出图 | [eq_yanzibiaonang.md](items/hidden-weapons/eq_yanzibiaonang.md) | template |
-| 8 | 蒙古马弹囊 | `eq_menggumadannang` | 黄上 | 暗器·弹丸囊 | 待出图 | [eq_menggumadannang.md](items/hidden-weapons/eq_menggumadannang.md) | template |
-| 9 | 吐蕃飞石囊 | `eq_tubofeishinang` | 黄上 | 暗器·弹丸囊 | 待出图 | [eq_tubofeishinang.md](items/hidden-weapons/eq_tubofeishinang.md) | template |
-| 10 | 西域风叶镖囊 | `eq_xiyufengyebiaonang` | 黄上 | 暗器·飞镖 | 待出图 | [eq_xiyufengyebiaonang.md](items/hidden-weapons/eq_xiyufengyebiaonang.md) | template |
-| 11 | 元骑手飞刀囊 | `eq_yuanqishoufeidaonang` | 黄中 | 暗器·飞刀 | 待出图 | [eq_yuanqishoufeidaonang.md](items/hidden-weapons/eq_yuanqishoufeidaonang.md) | template |
+| 6 | 燕子镖囊 | `eq_yanzibiaonang` | 玄中 | 暗器·飞镖 | 待出图 | [eq_yanzibiaonang.md](items/hidden-weapons/eq_yanzibiaonang.md) | template |
+| 7 | 蒙古马弹囊 | `eq_menggumadannang` | 黄上 | 暗器·弹丸囊 | 待出图 | [eq_menggumadannang.md](items/hidden-weapons/eq_menggumadannang.md) | template |
+| 8 | 吐蕃飞石囊 | `eq_tubofeishinang` | 黄上 | 暗器·弹丸囊 | 待出图 | [eq_tubofeishinang.md](items/hidden-weapons/eq_tubofeishinang.md) | template |
+| 9 | 西域风叶镖囊 | `eq_xiyufengyebiaonang` | 黄上 | 暗器·飞镖 | 待出图 | [eq_xiyufengyebiaonang.md](items/hidden-weapons/eq_xiyufengyebiaonang.md) | template |
+| 10 | 元骑手飞刀囊 | `eq_yuanqishoufeidaonang` | 黄中 | 暗器·飞刀 | 待出图 | [eq_yuanqishoufeidaonang.md](items/hidden-weapons/eq_yuanqishoufeidaonang.md) | template |
 
 ## 地图（31）· 待出图 31
 
