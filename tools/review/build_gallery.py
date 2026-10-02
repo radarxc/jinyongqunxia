@@ -186,19 +186,24 @@ def main():
         files["map/jianghu-ch01.svg"] = "map/jianghu-ch01.svg"
 
     # ---- 角色立绘（tools/portrait/build_portraits.py 产物）
-    html_por, n_scene = [], 0
+    html_por, html_npc, n_scene = [], [], 0
     pidx_path = ROOT / "assets/default/portrait/index.json"
     if pidx_path.exists():
         pidx = json.loads(pidx_path.read_text(encoding="utf-8"))
         names = {}
-        for man in (ROOT / "assets/default/character").glob("*/*/manifest.yaml"):
+        for man in [*(ROOT / "assets/default/character").glob("*/*/manifest.yaml"), *(ROOT / "assets/default/character").glob("*/commoners/*/manifest.yaml")]:
             for e in load_manifest(man):
                 names[e.get("id")] = str(e.get("subject", "")).split(" ")[0]
         por_root = ROOT / "assets/default/portrait"
-        by_ch = {}
+        by_ch, by_era = {}, {}
         for key, rec in pidx.get("bust", {}).items():
-            ch = key.split("/")[2][:4]
-            by_ch.setdefault(ch, []).append((por_root / rec["512"]["f"], [names.get(rec["source"], key.split("/")[1]), key.split("/")[2][5:27]]))
+            subj, var = key.split("/")[1], key.split("/")[2]
+            if subj.startswith("role_"):  # 各朝路人（AR-30）：按时代分组，另起一节
+                era = var.rsplit("_", 1)[0]
+                by_era.setdefault(era, []).append((por_root / rec["512"]["f"], [names.get(rec["source"], subj), var]))
+                continue
+            ch = var[:4]
+            by_ch.setdefault(ch, []).append((por_root / rec["512"]["f"], [names.get(rec["source"], subj), var[5:27]]))
         for ch in sorted(by_ch):
             cells = sorted(by_ch[ch], key=lambda c: c[1][0])
             name = f"portrait_{ch}.jpg"
@@ -206,6 +211,13 @@ def main():
                   title=f"{ch} · 半身 {len(cells)} 个（透明底，衬深色看抠图边缘）")
             files[f"img/{name}"] = f"img/{name}"
             html_por.append((ch, len(cells), name))
+        for era in sorted(by_era):
+            cells = sorted(by_era[era], key=lambda c: c[1][1])
+            name = f"commoners_{era}.jpg"
+            sheet(cells, IMG / name, cell=176, cols=8, bg=PAPER, caption_h=40, tile_bg=(38, 56, 64),
+                  title=f"路人 · {era} · 半身 {len(cells)} 个")
+            files[f"img/{name}"] = f"img/{name}"
+            html_npc.append((era, len(cells), name))
         scenes = [(por_root / rec["low"]["f"], [names.get(rec["source"], ""), key.split("/")[2][5:27]])
                   for key, rec in sorted(pidx.get("portrait", {}).items()) if not rec.get("alpha")]
         n_scene = len(scenes)
@@ -259,7 +271,7 @@ details summary{cursor:pointer;color:var(--accent)}
 <div class="stat"><b>{len(maps) + (1 if svg.exists() else 0)}</b><span>地图 / 城镇图<br>水墨基线 2 · 城镇基线 1 · 江湖导航图 SVG</span></div>
 <div class="stat"><b>{n_bust}</b><span>角色立绘（基础形象）<br>透明全身 / 半身 / 头像 · 场景图 {n_scene}</span></div>
 </div>
-<nav><a href="#items">物品</a><a href="#kits">建筑套件与贴片</a><a href="#maps">地图</a><a href="#portraits">角色立绘</a></nav>
+<nav><a href="#items">物品</a><a href="#kits">建筑套件与贴片</a><a href="#maps">地图</a><a href="#portraits">角色立绘</a><a href="#commoners">各朝路人</a></nav>
 <h2 id="items">物品 · 11 类</h2>
 <p class="lede">排序：天 → 地 → 玄 → 黄。画风基线是倚天剑与九阴真经两张（作者已审）。</p>""")
     for cat, cname, n, nm, nc, name in html_items:
@@ -282,6 +294,10 @@ details summary{cursor:pointer;color:var(--accent)}
             h.append(f'<h3 id="portraits-{ch}">{ch} <span class="meta">半身 {n} 个</span></h3><div class="sheet"><img loading="lazy" src="img/{name}" alt="{ch} 角色半身"></div>')
         if n_scene:
             h.append(f'<h3 id="portraits-scenes">剧情场景立绘 <span class="meta">{n_scene} 张</span></h3><div class="sheet"><img loading="lazy" src="img/portrait_scenes.jpg" alt="剧情场景立绘"></div>')
+    if html_npc:
+        h.append(f'<h2 id="commoners">各朝路人 <span class="meta">{sum(n for _, n, _ in html_npc)} 个</span></h2><p class="lede">各朝各地的掌柜、伙计、士兵、军官、官员、衙役、书生、农渔樵、僧道、乞丐、妇人等（AR-30），codex 出图，按时代分组；下面是半身图。</p>')
+        for era, n, name in html_npc:
+            h.append(f'<h3 id="commoners-{era}">{era} <span class="meta">半身 {n} 个</span></h3><div class="sheet"><img loading="lazy" src="img/{name}" alt="{era} 路人半身"></div>')
     h.append('<p class="meta" style="margin-top:32px">由 tools/review/build_gallery.py 生成；素材源目录 assets/default/{item,building-map,tile,baseline,portrait}。</p>')
     (OUT / "index.html").write_text("\n".join(h), encoding="utf-8")
     (OUT / "files.json").write_text(json.dumps(files, ensure_ascii=False, indent=1), encoding="utf-8")
