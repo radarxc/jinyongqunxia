@@ -1450,74 +1450,6 @@
   scene_title: 杏子林·释权辞帮
   stage: 壮年，约三十岁。杏子林身世揭露、辞去帮主之后；仍是壮年乔峰，刚失去原有身份位置。
   asset_variant: scene
-- id: por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm
-  file: por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-  category: character/male
-  style: default
-  subject: 萧峰 npc_xiaofeng ch01_tianlong
-  prompt: 'Create a premium REALISTIC Chinese wuxia character illustration with a delicate INK-WASH BACKGROUND. This is a deliberate correction of earlier ragged, fragmented ink figures. The HUMAN FIGURE must be beautifully and coherently painted: solid continuous anatomy, fine natural skin, well-formed face, believable soft light and shadow, intact carefully tailored cloth, clean continuous silhouette. NO dry-brush gaps, white flecks, torn edges, collage fragments, paper texture erosion, scratches or watercolor mottling anywhere on the man''s face, skin, clothing or boots. Keep the painterly ink effects ONLY in the distant background. This is refined hand-painted realism, not a photograph, movie screenshot, 3D render or plastic game model.
-
-
-    REFERENCE ROLES: Image 1 is an authorized classic portrayal of Qiao Feng: use its charismatic, resolute facial structure, adult masculine presence and credible skin/cloth lighting as the PRIMARY guide; reinterpret him as a full-body illustration, without copying the foreshortened hand, background people, photo crop or fuzzy pixels. Image 2 is a project male palette guide ONLY; do not inherit its rough ink surface, ragged garments, old face, bamboo staff or pose. Image 3 supplies a faint ink landscape treatment ONLY; do not copy the woman, her face, white dress, hair or body. Text below overrides all reference costume and rendering traits. Make a clearly new complete realistic figure, not a clean-up that leaves the old torn silhouette.
-
-
-    萧峰，《天龙八部》少室山相护阶段，三十岁上下壮年，已经为辽南院大王但穿简洁北地旅装，非王冠礼服。高大宽厚、强健而真实的身材；方阔立体的骨相、浓眉深目、鼻梁与阔口自然，整齐短络腮胡，健康略古铜肤色。目光凛然正直、沉稳有担当，五官俊朗而不是瘦削书生或怒目反派。皮肤真实细腻，鼻翼颧骨与手部用连贯柔和明暗塑造，不磨成塑料，也不画粗糙斑驳面具。
-
-
-    衣装必须全新重画为完整、整洁、可穿的裁剪：深炭灰右衽长袍，内领少量温灰白，深灰细织腰束，肩上完整的暗灰短毡氅。短氅边缘和袖口平整连续，有明确收边；袍摆为完整大片织物，仅受动作扬起，不分裂成条带。袖口适当收束以露出自然手部，腰部层次精炼，不缠绕大量布条。深色长裤、完整朴素行旅布靴；不加金饰铠甲。头上深灰裹巾完整收好黑发，短鬓自然，没有乱飞碎发长带。衣料有真实织物厚度，但仅少量宽阔、有重量的主褶，表面清洁平顺，衣摆没有任何撕裂、补丁、破洞、纸屑、毛边或风化斑点。服装简朴体现身份，美观不靠奢华。
-
-
-    完整全身，平视三分之四略正面，足底真实承重的稳健弓步，右掌朝前护人，左掌在胸腹旁蓄势；一掌一掌各有五根自然手指。肩胯贯通、宽胸打开、双臂结构可信，身体具有克制的力量和领袖气度。手掌不靠近镜头夸大，头顶、双手、衣摆、两条腿与双靴全部完整入画并留边。双手空掌，没有竹棒刀剑。淡淡掌风只可在人物外缘之后，不能把手或衣服溶解。
-
-
-    背景仍为浅淡水墨：少室山远峰、少量松影和少林山门一角，在人物后方留出充分纸面。上方偏后以很淡的灰墨勾出不闭合的龙形意象，表达降龙十八掌，背景对比明显低于人物。龙是平面艺术象征，不是实体神龙，不发光、不咬人、不穿透身体，不覆盖人脸和衣料。整个人物从背景独立清晰地站出来；画面高级、安静而有英雄气。低饱和炭灰、暖灰与微少墨青，肤色自然温润，左上柔和光线，人物体积完整而背景轻盈。竖幅2:3，目标2048×3072PNG，按工具原生尺寸输出，不在图中画标尺或文字；不透明背景。
-
-
-    排除项：人物碎墨、飞白裂纹、纸屑拼贴、颗粒侵蚀、撕烂衣角、流苏般碎袍、污渍破洞、过度褶皱碎带、斑驳脸、漂白磨皮、动漫大眼、夸张健美、血污裸胸、现代服饰、清辫、金冠、铠甲、额外人、实体兵器、多肢多指、错接手腕、裁切头足或手、分格多视图、摄影截图、三维塑料感、题字题款、印章logo或新增装饰水印。保留工具自身溯源。'
-  negative: 人物碎墨、飞白裂纹、纸屑拼贴、颗粒侵蚀、撕烂衣角、流苏般碎袍、污渍破洞、过度褶皱碎带、斑驳脸、漂白磨皮、动漫大眼、夸张健美、血污裸胸、现代服饰、清辫、金冠、铠甲、额外人、实体兵器、多肢多指、错接手腕、裁切头足或手、分格多视图、摄影截图、三维塑料感、题字题款、印章logo或新增装饰水印。保留工具自身溯源。
-  references:
-  - path: .agents/coord/imagegen-reference/hero-20261001/classic_qiaofeng_still.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/hero-20261001/classic_qiaofeng_still.png
-    use: 已实际查看经典乔峰影视图，主要人物神态骨相及真实皮肤布料光影启发；重绘为完整写实国风插画，不复制摄影噪点、群像、前伸手透视或衣装细节。
-    sha256: 52defba300ec53b0d6b4c642eda6ee05029e36811b647149cce7c070134ac223
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/52defba300ec53b0d6b4c642eda6ee05029e36811b647149cce7c070134ac223.png
-    status_at_input: null
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    use: 已实际查看作者指定male项目基线；仅低饱和色卡和同类气质，不继承碎墨笔触、破布剪影、原脸、竹棒或姿态；candidate审批不变。
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已实际查看用户水墨参考，仅背景淡墨山水与留白，不复制女性人物、白青衣装或将纸纹侵入人物本体。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T08:47:57.801756+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-bba36995-1bf5-4af8-9627-fc4da74b5a73.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_character_realism_20261001
-  realism_revision: user_character_realism_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm/prompt-9a09e544bb1af9914f66f9bc6706c84344f5279a29c4acda1c0f1223dbd179af.md
-    manifest: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm/manifest-b438e3e2f7d10071a5cb9afe6cf53542074da2056ba5141fd868cfc8a52694ba.yaml
-    png: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm/original-b6f13ac9ff10befd89a2c6332236bb9f4735ecdc1bf91ed2bddebea42ab1e350.png
-  request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.requests.json
-  notes: 作者人物写实纠正首样，实际比较两张新候选与少室山碎墨初版，选2。新人物面容与双手为连续自然明暗，肤质细腻、体积坚实；深灰长袍、披衣、袖口、裤靴为完整可穿的织物，衣摆连续，无旧图的大片飞白侵蚀、碎片断裂或漂浮破布。五官英气、双掌护人和下扎重心清楚，完整头手双足，无明显多肢或重大结构错接。背景山门、山水与浅灰龙形保留墨韵，不切穿人物。2比1四周边距更舒适、全身剪影更收束。仍有自然粗织物纹理，披发比设计多，龙形与远景稍丰富；这些如实登记，不冒称所有服制细节严格达标。确认为本轮美观写实方向的自查candidate，非approved；此轮修正计1幅，旧四萧峰初版不自动计作新风格完成。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  scene_revision: user_scenes_20261001
-  scene_key: shaoshi_dragon_palm
-  scene_title: 少室山·降龙护人
-  stage: 壮年，约三十岁。已为辽南院大王，南返少室山、出掌相护的阶段；不是重新担任丐帮帮主。
-  asset_variant: scene
 - id: por_npc_duanyu__ch01_youth_scene_wuliang_fan
   file: por_npc_duanyu__ch01_youth_scene_wuliang_fan.png
   category: character/male
@@ -2561,5 +2493,51 @@
   source_size: 1024x1536
   size: 1024x1536
   sha256: 5820c7892455fedad386719d937b8075fa9e20f3a96e2c50c84919106b871276
+  status: candidate
+  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+- id: por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm
+  file: por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+  category: character/male
+  style: default
+  subject: 萧峰（ch01_tianlong）
+  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【场景背景】少室山淡墨远峰、几株松影与少林山门一角；人物后上方用很淡的灰墨勾出一条不闭合的龙形意象（象征降龙十八掌，是平面的水墨笔意、不发光、不接触人物）。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+
+    【人物与场景】萧峰，《天龙八部》，少室山·降龙护人。阶段：壮年，约三十岁。已为辽南院大王，南返少室山、出掌相护的阶段；不是重新担任丐帮帮主。
+
+    【身份参考】随提示词上传的第 1 张图是萧峰本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（身材高大魁伟（比常人高出半头）、肩宽背厚；四方国字脸、下颌方正，浓黑粗眉、眉骨突出，一双大眼目光如电，高鼻梁、鼻翼宽，阔口厚唇，两颊与下巴是短而硬的络腮胡茬，脸上有风霜晒痕、额头两道浅横纹；约三十岁）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
+
+    【衣装】已为辽国南院大王、穿简洁的北地旅装（非王冠礼服）：深炭灰右衽长袍、温灰白内领、深灰腰束，肩上一件完整的暗灰短毡氅，深色长裤、行旅布靴，深灰裹巾包髻。
+
+    【动作与神情】平视略正面的稳健弓步，双脚真实承重；右掌向前护人，左掌在胸腹旁蓄势，每只手五根手指清楚；宽胸打开，有克制的力量与领袖气度。
+
+    【器物】双手空掌，没有竹棒或刀剑。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: 37587f1190e654d1d746049097a88f0c8e44761db3c4973dfe4acc528b381d59
+    use: 身份参考：本轮新出的萧峰（por_npc_xiaofeng__ch01_prime_gaibang_base，上传 codex 原图）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T02:54:57-0700
+  source_path: .agents/coord/gemini_originals/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 2786f3e0ce155a3e36ec4aef176186c0a3a5bc822a9107a0f56b56f67513bddc
   status: candidate
   notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
