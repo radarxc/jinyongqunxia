@@ -1,77 +1,3 @@
-- id: por_npc_huazheng__ch02_youth_base
-  file: por_npc_huazheng__ch02_youth_base.png
-  category: character/female
-  style: default
-  subject: 华筝 npc_huazheng ch02_shediao
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL. Camera level, chin neutral, head centered over the torso. NO head tilt and NO Dutch angle. Preserve natural facial asymmetry without tilting the head. These rules override every reference pose. Eye focus must follow the stated character condition and never override an explicit visual disability.
-
-
-    Create a REALISTIC Chinese wuxia full-body illustration of 华筝. Image 1 is the ONLY facial identity source: 黄造时 as this exact role in 1983 TVB 射雕英雄传 starring 翁美玲 and 黄日华. Image 2 supplies ONLY the ink background and ZERO face or anatomy.
-
-
-    身份阶段：华筝（npc_huazheng），《射雕英雄传》ch02_shediao，南宋、金与蒙古并行。青年蒙古公主，参与军情与情感选择的大漠生活阶段，尚未离开既有草原生活；不以郭靖婚约归属定义人格。约十八至二十余岁观感的年轻成年女性，项目视觉范围而非确岁。草原成长、熟悉骑射，健康自然肤色，肩背健实而腰腿有行动力，明朗有主见。
-
-
-    本人脸部辨识：保留黄造时饰华筝的本人面容关系：椭圆略长脸、较平的两颊与清楚颧部，下颌向短圆下巴收拢；眉线平直略挑，双眼自然杏形且眼尾微扬，鼻梁顺直而鼻尖圆，上唇较薄、下唇自然饱满。眼神直接明朗、看向正前，肤色轻微日晒而非脏污或夸张族群化；与穆念慈、黄蓉、王语嫣保持不同五官和脸型。
-
-
-    服饰发式：十三世纪蒙古贵族女子简洁骑乘长袍，低饱和蓝绿色、窄赭红衣缘，领口完整合拢并向穿着者右侧系扣，内穿完整长裤及软皮靴，腰束实用革带。黑发收成紧实发辫，少量银饰；不套男子髡发，不套清代剃额独辫。衣装完整有实际剪裁，无飞白破洞；不复制参考深红珠饰帽和厚白毛领，不戴后世夸张高冠或改宋式褙子套装。
-
-
-    姿态器物：身体和脸主要朝正前，头颈自然竖直、双眼水平、平视且下巴中性，双脚自然站稳。左手低位松持一张小型反曲弓，弓身与完整弓弦连贯、上下弓梢全入画，不张弓、不搭箭、不瞄准任何人；右手空着轻搭腰带，手臂与身体分开。腰后箭囊固定在革带上，少量箭羽露出；弓箭是骑射身份器物。没有马、白雕或任何动物，不加帐篷和草原剧情场景；自信自主而不悲情等待。
-
-
-    人物画法：美观、精细、完整的写实国风人物插画；自然年龄和骨相，可信肤质、连贯体积与柔和左上漫射光。皮肤、头发、手足、衣料轮廓清楚且实体完整；衣服剪裁连续、衣襟缝线清楚，仅少量宽缓受力褶皱，不以破洞、飞白、碎墨、密集褶皱或纸屑表现真实。低饱和设色配自然肤色，不做照片、电视剧截图、拼贴或三维塑料。原始剧照只保留这个人的可辨面容关系，年龄、视力、发式、服装及器物遵本项目阶段。
-
-
-    参考边界：第一且唯一面容身份：黄造时饰1983 TVB翁美玲版华筝，来源角色版次、原图及独立审计已核。只取本人五官骨相，不沿用参考姿势、年龄阶段、衣发器物和背景；本项目阶段优先。 第二参考只提供暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白。已实际view；完全忽略王语嫣本人面容、年龄、性别、身体、倾头、发髻、白青衣裙、飘带和饰物。水墨和纸纹仅在人物之外，不能侵蚀皮肤、衣料、头发或器物。
-
-
-    背景与交付：背景只取第二图的极淡水墨远山和留白，不出现明确宫殿、家具、具体剧情陈设、清晰建筑、符号或可读字画；脚下少量接触阴影。单人单视图、水平平视、原生竖幅2:3、完整全身；头顶、双手、双足、衣摆及实际器物端点均入画，四周自然留净空，不用固定占高或头身数字。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并准确登记，保存原始PNG字节，禁止插值、裁切或重编码。先生成1张候选，基本清晰、主要正面、人物可辨即保存；仅严重身份错误、重大结构错误或不可读才追加，细指、轻微衣装和微角偏差如实记录而不反复重做。全部仍candidate待用户审核，不自动approved。
-
-
-    事实边界：小说华筝确切年龄、外貌、发辫、服饰及公主饰件未逐字终校；本图十八至二十余观感、蓝绿骑乘袍、少量银饰、小反曲弓与箭囊按现稿美术方案。白雕只属探索关系，不是本幅实体；参考本人身份不证明剧服历史准确，不编引文、回目或页码。 用户授权本人影视面容覆盖旧禁演员条款；最新单候选、正面头直和背景水墨覆盖旧两张、固定占高及笼统禁山水。
-
-
-    完整排除项：不要汉族宋式褙子套装、清宫旗装、晚期蒙古贵妇高冠、男子髡发、清式剃额独辫、低胸短裙、皮甲比基尼；不要悲情依偎郭靖、婚礼姿态、白雕、马或帐篷。不要复制剧照珠帽毛领、侧看抿嘴或现代蒙古节庆服。不要弓弦断裂、弓梢出画或手指握住锋利箭头。 不要 head tilt、Dutch angle、明显歪头、斜镜头、头向肩倾、偏转侧脸、转身回眸、低头藏眼、仰头或夸张抬下巴；不要共用基线脸、统一美人或硬汉模板、动漫大眼、浓妆、塑料磨皮、照片和截图构图。不要多个人、多人拼图、多视图、裁断头足、缺肢、多肢、严重畸形、手物融合；不要碎布、破洞、飞白缺块、纸纹透肤透衣、墨迹侵蚀脸部、碎片化衣料、密集噪点、无依据污损或风化。不要现代服饰、拉链、腕表、手机、运动鞋、晚清官帽大饰、民国服装、日式服制、欧式奇幻装备、水平镜像或错误衣襟；不要血腥、透明衣物、裸露、恶搞丑化、发光掌法、龙蛇能量、法阵和粒子。不要具体剧情场景、清晰建筑家具、可读文字、伪字、题款、签名、印章、logo、字幕或装饰水印。保留工具本身溯源标识和元数据。
-
-
-    FINAL POSE CHECK: 华筝 FRONT-FACING, head and neck naturally UPRIGHT, facial centreline VERTICAL, eyes HORIZONTALLY LEVEL, camera level, chin neutral. No head tilt, Dutch angle or copied reference pose.'
-  negative: 不要汉族宋式褙子套装、清宫旗装、晚期蒙古贵妇高冠、男子髡发、清式剃额独辫、低胸短裙、皮甲比基尼；不要悲情依偎郭靖、婚礼姿态、白雕、马或帐篷。不要复制剧照珠帽毛领、侧看抿嘴或现代蒙古节庆服。不要弓弦断裂、弓梢出画或手指握住锋利箭头。 不要 head tilt、Dutch angle、明显歪头、斜镜头、头向肩倾、偏转侧脸、转身回眸、低头藏眼、仰头或夸张抬下巴；不要共用基线脸、统一美人或硬汉模板、动漫大眼、浓妆、塑料磨皮、照片和截图构图。不要多个人、多人拼图、多视图、裁断头足、缺肢、多肢、严重畸形、手物融合；不要碎布、破洞、飞白缺块、纸纹透肤透衣、墨迹侵蚀脸部、碎片化衣料、密集噪点、无依据污损或风化。不要现代服饰、拉链、腕表、手机、运动鞋、晚清官帽大饰、民国服装、日式服制、欧式奇幻装备、水平镜像或错误衣襟；不要血腥、透明衣物、裸露、恶搞丑化、发光掌法、龙蛇能量、法阵和粒子。不要具体剧情场景、清晰建筑家具、可读文字、伪字、题款、签名、印章、logo、字幕或装饰水印。保留工具本身溯源标识和元数据。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/shediao/huazheng_1983_huangzaoshi_sina2022.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/shediao/huazheng_1983_huangzaoshi_sina2022.jpg
-    use: 第一且唯一面容身份：黄造时饰1983 TVB翁美玲版华筝，来源角色版次、原图及独立审计已核。只取本人五官骨相，不沿用参考姿势、年龄阶段、衣发器物和背景；本项目阶段优先。
-    sha256: 96951179be9c52c0fb6244f0b807873831b413bf82e14b3cd787dfff7c642820
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/96951179be9c52c0fb6244f0b807873831b413bf82e14b3cd787dfff7c642820.jpg
-    status_at_input: null
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二参考只提供暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白。已实际view；完全忽略王语嫣本人面容、年龄、性别、身体、倾头、发髻、白青衣裙、飘带和饰物。水墨和纸纹仅在人物之外，不能侵蚀皮肤、衣料、头发或器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T02:41:32.165809+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-6841e7cb-8c95-461d-9747-5e4106449489.png
-  size: 1024x1536
-  mode: RGB
-  sha256: b9b51262ef7b0325f73348c077c595c08794561f0ee35ceec8fcdac0d85720b9
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_huazheng__ch02_youth_base/prompt-3031d556516114959f2d72f38867d556d882c83b60bec5bb7f57e7035a628048.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_huazheng__ch02_youth_base/manifest-948879d3dabb7cebce1a25cb83c3a8de42ae6fd74d4458275787c993280e2cbf.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_huazheng__ch02_youth_base.requests.json
-  notes: '实际对照1983黄造时华筝本人剧照与候选1：椭圆脸清楚颧颊、杏眼眉鼻与薄上唇饱满下唇关系可辨，年轻成年草原公主；蓝绿骑乘袍赭红边、完整裤靴辫发，一手反曲弓另一手腰带及腰后箭囊，无马白雕或帐篷。主要正面头颈端正眼线水平，弓身弦及上下梢完整可读，无重大结构问题，按快速宽松自查可用。银饰珠串与衣缘花纹比少饰目标繁、发顶仍有小髻饰，弓略大且装饰化，肤色日晒不强、背景花枝小亭偏多；记录差异不机械追加。原生1024×1536 RGB不透明PNG原始字节保存，candidate待审核非approved。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_munianci__ch02_youth_base
   file: por_npc_munianci__ch02_youth_base.png
   category: character/female
@@ -730,5 +656,48 @@
   source_size: 1024x1536
   size: 1024x1536
   sha256: ed71795800a0306a11fd60bb3707b51e644b444abe5cf31adedff472f34cb535
+  status: candidate
+  notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做
+- id: por_npc_huazheng__ch02_youth_base
+  file: por_npc_huazheng__ch02_youth_base.png
+  category: character/female
+  style: default
+  subject: 华筝（ch02_shediao）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】华筝，《射雕英雄传》成吉思汗的女儿、蒙古公主，与郭靖青梅竹马；大漠草原生活的阶段。爽朗、骄傲、深情。
+
+    【年龄与体态】约二十岁的成年蒙古女子，身材健美匀称、常年骑马。成年女性的五官骨相与身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【面容】草原女子的面庞：鹅蛋脸、颧骨略高、两颊被风吹出自然的红晕；眉毛浓而英气；一双明亮的眼睛、眼神爽朗；鼻梁挺直；唇形饱满、笑容明朗；肤色健康的浅麦色。英气勃勃、明朗美丽（原创扩展）。
+
+    【发式】乌发编成多股发辫，缀着珊瑚和绿松石珠饰，戴一顶镶白毛边的小圆帽。
+
+    【服饰】蒙古贵族女子的长袍：深红与赭色织锦、窄袖、长及脚踝，左衽（蒙古服制，族群例外），宽腰带上挂小刀鞘与火镰，软皮长靴。
+
+    【道具】右手握一根皮制马鞭。
+
+    【姿态与神情】挺拔站立，神情爽朗中带着骄傲。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要像任何真实演员或明星；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要汉式交领女装；不要元代以后的清式服饰；不要暴露；不要老鹰或马匹入画。
+
+    【画风基线】随提示词上传的两张参考图是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）
+  tool: codex exec · image_gen（同性别两张基线立绘作画风参考，无身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:57:50-0700
+  source_path: .agents/coord/gemini_originals/por_npc_huazheng__ch02_youth_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 229cfa4802b6ddb1722a6590149cb479edfd11022a9f6695bc38ffd0b4526d84
   status: candidate
   notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做
