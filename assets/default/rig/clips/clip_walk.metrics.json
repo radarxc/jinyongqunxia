@@ -1,0 +1,97 @@
+{
+  "clipId": "clip_walk",
+  "directions": {
+    "E": {
+      "armTorsoPlaneCrossFramePct": 0.0,
+      "rawMinLimbProjection": 0.9148,
+      "renderMinLimbScale": 0.9148,
+      "torsoViewSwitches": 0,
+      "torsoViewSwitchesPerSec": 0.0,
+      "weaponAxisDeviationDeg": null
+    },
+    "N": {
+      "armTorsoPlaneCrossFramePct": 51.961,
+      "rawMinLimbProjection": 0.0793,
+      "renderMinLimbScale": 0.45,
+      "torsoViewSwitches": 2,
+      "torsoViewSwitchesPerSec": 1.2,
+      "weaponAxisDeviationDeg": null
+    },
+    "NE": {
+      "armTorsoPlaneCrossFramePct": 2.451,
+      "rawMinLimbProjection": 0.6647,
+      "renderMinLimbScale": 0.6647,
+      "torsoViewSwitches": 0,
+      "torsoViewSwitchesPerSec": 0.0,
+      "weaponAxisDeviationDeg": null
+    },
+    "NW": {
+      "armTorsoPlaneCrossFramePct": 1.961,
+      "rawMinLimbProjection": 0.6603,
+      "renderMinLimbScale": 0.6603,
+      "torsoViewSwitches": 0,
+      "torsoViewSwitchesPerSec": 0.0,
+      "weaponAxisDeviationDeg": null
+    },
+    "S": {
+      "armTorsoPlaneCrossFramePct": 51.961,
+      "rawMinLimbProjection": 0.0793,
+      "renderMinLimbScale": 0.45,
+      "torsoViewSwitches": 2,
+      "torsoViewSwitchesPerSec": 1.2,
+      "weaponAxisDeviationDeg": null
+    },
+    "SE": {
+      "armTorsoPlaneCrossFramePct": 1.961,
+      "rawMinLimbProjection": 0.6603,
+      "renderMinLimbScale": 0.6603,
+      "torsoViewSwitches": 0,
+      "torsoViewSwitchesPerSec": 0.0,
+      "weaponAxisDeviationDeg": null
+    },
+    "SW": {
+      "armTorsoPlaneCrossFramePct": 2.451,
+      "rawMinLimbProjection": 0.6647,
+      "renderMinLimbScale": 0.6647,
+      "torsoViewSwitches": 0,
+      "torsoViewSwitchesPerSec": 0.0,
+      "weaponAxisDeviationDeg": null
+    },
+    "W": {
+      "armTorsoPlaneCrossFramePct": 0.0,
+      "rawMinLimbProjection": 0.9148,
+      "renderMinLimbScale": 0.9148,
+      "torsoViewSwitches": 0,
+      "torsoViewSwitchesPerSec": 0.0,
+      "weaponAxisDeviationDeg": null
+    }
+  },
+  "fps": 30,
+  "frameCount": 51,
+  "schema": "tianshu-clip-metrics.v1",
+  "sourceSha256": "406eb0a8dc4ab366e623b79b6e3005a4951392e1bda78ae39c1099d31147733c",
+  "thresholds": {
+    "maxFootSlideCm": 2.0,
+    "maxViewSwitchesPerSec": 8.0,
+    "maxWeaponAxisDeviationDeg": 5.0,
+    "minForeshorten": 0.45
+  },
+  "walkFootSlide": {
+    "maxDriftCm": 0.366,
+    "supportPhases": [
+      {
+        "driftCm": 0.3,
+        "firstFrame": 0,
+        "foot": "L",
+        "lastFrame": 12
+      },
+      {
+        "driftCm": 0.366,
+        "firstFrame": 25,
+        "foot": "R",
+        "lastFrame": 30
+      }
+    ],
+    "thresholdCm": 0.5
+  }
+}

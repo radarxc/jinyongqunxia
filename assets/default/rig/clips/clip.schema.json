@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tianshu.local/schema/tianshu-clip.v1.json",
+  "title": "Tianshu baked humanoid clip",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "skeleton", "source", "importer", "fps",
+    "frameCount", "durationMs", "loop", "rootMotion", "nativeSpeedMmps",
+    "mainHand", "events", "viewHints", "restPose", "tracks", "weapon", "unmappedSourceJoints"],
+  "properties": {
+    "schema": {"const": "tianshu-clip.v1"},
+    "id": {"type": "string", "pattern": "^clip_[a-z0-9]+(?:_[a-z0-9]+)*$"},
+    "skeleton": {"const": "tianshu_humanoid.v1"},
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["pack", "animation", "license", "url", "sha256"],
+      "properties": {
+        "pack": {"type": "string", "minLength": 1},
+        "animation": {"type": "string", "minLength": 1},
+        "license": {"enum": ["CC0-1.0", "CMU-commercial", "CC-BY-4.0"]},
+        "url": {"type": "string", "pattern": "^https?://"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "importer": {
+      "type": "object", "additionalProperties": false,
+      "required": ["version", "mapping"],
+      "properties": {
+        "version": {"type": "string", "pattern": "^[0-9]+[.][0-9]+[.][0-9]+$"},
+        "mapping": {"enum": ["ue66", "rigify53"]}
+      }
+    },
+    "fps": {"enum": [12, 30]},
+    "frameCount": {"type": "integer", "minimum": 1},
+    "durationMs": {"type": "integer", "minimum": 0},
+    "loop": {"type": "boolean"},
+    "rootMotion": {"const": "inPlace"},
+    "nativeSpeedMmps": {"type": "integer", "minimum": 0, "maximum": 20000},
+    "mainHand": {"enum": ["L", "R"]},
+    "events": {
+      "type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["frame", "type"],
+        "properties": {
+          "frame": {"type": "integer", "minimum": 0},
+          "type": {"enum": ["hit", "end"]}
+        }
+      },
+      "contains": {"type": "object", "properties": {"type": {"const": "end"}}, "required": ["type"]},
+      "minContains": 1, "maxContains": 1
+    },
+    "viewHints": {
+      "type": "object", "additionalProperties": false,
+      "required": ["yawAssistMaxCdeg", "minForeshortenBp", "nearSide", "anatomicalSides"],
+      "properties": {
+        "yawAssistMaxCdeg": {"type": "integer", "minimum": 0, "maximum": 3000},
+        "minForeshortenBp": {"const": 4500},
+        "nearSide": {"const": "L"},
+        "anatomicalSides": {"const": true}
+      }
+    },
+    "restPose": {
+      "type": "object", "additionalProperties": false,
+      "required": ["jointOrder", "jointMm"],
+      "properties": {
+        "jointOrder": {"type": "array", "minItems": 20, "maxItems": 20, "uniqueItems": true, "items": {"type": "string"}},
+        "jointMm": {"type": "array", "minItems": 20, "maxItems": 20, "items": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "integer"}}}
+      }
+    },
+    "tracks": {"$ref": "#/$defs/tracks"},
+    "weapon": {"$ref": "#/$defs/weapon"},
+    "unmappedSourceJoints": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+  },
+  "$defs": {
+    "base64": {"type": "string", "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"},
+    "tracks": {
+      "type": "object", "additionalProperties": false,
+      "required": ["encoding", "bones", "directionI16", "lengthRatioU16", "rootMmI16", "facingYawCdegI16"],
+      "properties": {
+        "encoding": {"const": "base64-le"},
+        "bones": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "directionI16": {"$ref": "#/$defs/base64"},
+        "lengthRatioU16": {"$ref": "#/$defs/base64"},
+        "rootMmI16": {"$ref": "#/$defs/base64"},
+        "facingYawCdegI16": {
+          "type": "object", "additionalProperties": false,
+          "required": ["pelvis", "chest", "head"],
+          "properties": {"pelvis": {"$ref": "#/$defs/base64"}, "chest": {"$ref": "#/$defs/base64"}, "head": {"$ref": "#/$defs/base64"}}
+        }
+      }
+    },
+    "weapon": {
+      "type": "object", "additionalProperties": false,
+      "required": ["hand", "gripJoint", "tipDirectionI16"],
+      "properties": {
+        "hand": {"enum": ["L", "R"]},
+        "gripJoint": {"enum": ["grip_L", "grip_R"]},
+        "tipDirectionI16": {"$ref": "#/$defs/base64"}
+      }
+    }
+  }
+}
