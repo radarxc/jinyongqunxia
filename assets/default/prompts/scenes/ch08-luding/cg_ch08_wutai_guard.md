@@ -1,0 +1,44 @@
+---
+asset_id: cg_ch08_wutai_guard
+name: "五台护驾"
+book: ch08_luding
+characters:
+- npc_weixiaobao
+- npc_shuanger
+- npc_ajiu
+- npc_sangjie
+reference_upload:
+- assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
+- assets/default/character/female/ch08/por_npc_shuanger__ch08_youth_base.png
+- assets/default/character/female/ch08/por_npc_ajiu__ch08_prime_onearm_base.png
+output: assets/default/scene/ch08/cg_ch08_wutai_guard.png
+manifest: assets/default/scene/ch08/manifest.yaml
+size: 1536x1024
+status: ready
+---
+
+## Gemini 提示词
+
+```text
+生成一张 3:2 横幅情景插画，输出尺寸 1536×1024，题材为《鹿鼎记》多人剧情名场面。所有人类都必须一眼可辨为成年人。
+
+第 1 张参考图是韦小宝（npc_weixiaobao）的立绘，只用于保持其面容、成年年龄、发式与本场适用服饰；不要复制原图姿势、背景、机位或光线。
+第 2 张参考图是双儿（npc_shuanger）的立绘，只用于保持其面容、成年年龄、发式与本场适用服饰；不要复制原图姿势、背景、机位或光线。
+第 3 张参考图是九难（npc_ajiu）的立绘，只用于保持其面容、成年年龄、发式与本场适用服饰；不要复制原图姿势、背景、机位或光线。
+参考图之间身份严格隔离，只锁定各自人物，不互换脸、发式、身形或服装；没有列入上传的角色只能依据文字塑造。
+
+原著位置与改编边界：第十八、二十四至二十五回相关，五台护驾。
+地点与时刻：五台清凉寺石阶；冬日黄昏、大雪。
+画面瞬间：韦小宝与双儿并肩挡在闭合禅房门前，九难从侧坡止步观察，桑结率番僧沿雪阶逼近。
+构图与站位：仰角大全景；禅房门位于上方画心，韦双居中，九难与桑结分列两翼。
+情绪基调：护持、身份悬疑、旧朝余波。让每个人的视线、表情和身体重心共同传达这一基调。
+人物身份与外貌口径：上传韦小宝、por_npc_shuanger__ch08_youth_base、por_npc_ajiu__ch08_prime_onearm_base；桑结 A 级仅文字。
+未上传身份参考的人物文字要点：
+桑结：老年男性，自然骨相，穿符合本书时代与其身份的完整传统服饰；不得借用未上传图片的脸。
+制作边界：顺治 / 行痴为无 npc_* 的局部角色槽、只在门后不露脸；人物图重审前（生产门禁）。
+
+画风：写实手绘古风，与人物立绘一致；真实自然的皮肤、头发、手部与布料质感，衣料完整不透明，低饱和沉稳设色，自然光，电影感构图，可信空间纵深，不要 AI 塑料感。武打只表现动作方向、阵势与张力，不用发光武功或夸张能量特效。
+
+排除项：不要文字、题字、字幕、水印、签名、Logo、边框或分镜格；不要未指定的多余人物（明确要求的远景群像除外）；不要幼态、儿童体态、性化处理、裸露或恋物特写；不要血腥特写、断肢、尸体堆叠或伤口细节；不要真人、演员、影视剧照复刻；不要多余肢体、手指错误、脸部融合、身份串脸、时代错装、现代物件、动漫风、摄影棚感、3D 塑料感。
+```
+
