@@ -1285,105 +1285,6 @@
     - 223
     - 213
     seedRatio: 1.0
-- id: it_miji_dagou_can
-  file: it_miji_dagou_can.png
-  category: item
-  style: default
-  subject: 打狗棒法残谱；秘籍·残本；天阶；《倚天屠龙记》·丐帮棒法残传；实体（原创扩展）；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363
-  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete single book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow. This is the second and final candidate. Critical correction: use a plain dark ink-green soft-paper cover with only a few extremely subtle low-contrast BLIND-EMBOSSED SHORT SEGMENT JOINT MARKS. Do not depict a bamboo stalk, bamboo pole, bamboo branch, leaves, plant illustration, dog, weapon, or decorative scene. Fine hemp-thread repairs should be visible; no writing.
-
-    Use case: stylized-concept
-
-    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
-
-    题材：打狗棒法残谱（it_miji_dagou_can），秘籍·残本，天阶；出处语境：《倚天屠龙记》·丐帮棒法残传；实体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
-
-    效果字段：grade=11; skill=sk_dagou; variant=partial; maxLayer=6。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
-
-    年代：ch04_yitian 倚天书界；元末元顺帝，项目主体年代约1336–1363。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
-
-    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
-
-    主体：墨绿软纸残谱，细麻线补缀，竹节纹暗压，无字（原创扩展）。合拢残谱单册；竹节纹是低对比无字盲压纹，不画竹棒、狗、人物或招式。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
-
-    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
-
-    品阶表现：稀有墨绿柔纸、完整独特残谱轮廓与极细补缀，暗压工艺精密，珍贵而克制。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
-
-    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
-
-    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
-
-    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
-
-    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
-
-    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
-
-    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。'
-  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
-  references:
-  - id: ref_eq_yitianjian__ch04_base01
-    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
-    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
-    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
-  - id: ref_it_miji_jiuyin_shang__ch02_base01
-    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
-    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
-    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  effort: medium
-  created: '2026-10-01T11:46:41.999320+00:00'
-  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f748-e41b-7793-9ae4-f15f7e1f9644/exec-6b3867ca-3230-49e3-b710-b9f2f511bb06.png
-  size: 1254x1254
-  sha256: 346876fd41b7ca42a45f19cbea49b38f8dd17ac35bddfbc261d384ca241d02ac
-  status: approved
-  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
-  notes: '年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch04_yitian 倚天书界，元末元顺帝，项目主体年代约1336–1363。
-
-    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
-
-    候选数：2；首稿把竹节暗压扩成竹叶图；第 2 稿改为短节盲压与细麻线补缀后通过。逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
-
-    阈值辅助测量左/上/右/下留白约 19.06/16.43/18.66/16.27%，均不低于 12%；主体包围框宽高均不超过 76%。
-
-    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
-
-    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
-
-    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
-
-    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。'
-  icons:
-  - file: icons/it_miji_dagou_can_256.png
-    size:
-    - 256
-    - 256
-    sha256: 52c54be22471e64561b7e85a96d78a594565a6fc5acf87a6c580769accaad156
-  - file: icons/it_miji_dagou_can_128.png
-    size:
-    - 128
-    - 128
-    sha256: 7d43a332a6a273891d69278d6ef7d9ca8f84efe41fb9b6f6a6ed4542a74326d0
-  - file: icons/it_miji_dagou_can_64.png
-    size:
-    - 64
-    - 64
-    sha256: feb59c9c6733fcf156e38e88337911698fdb7b78c8eb518e23d4650f93b94521
-  - file: icons/it_miji_dagou_can_32.png
-    size:
-    - 32
-    - 32
-    sha256: c2e0093c93202e31a2071c9603de388bc562c9f004fc23bc29715054ecec4761
-  iconSourceSha256: 346876fd41b7ca42a45f19cbea49b38f8dd17ac35bddfbc261d384ca241d02ac
-  iconBuild:
-    version: 1
-    background:
-    - 228
-    - 222
-    - 213
-    seedRatio: 1.0
 - id: it_miji_douzhuan
   file: it_miji_douzhuan.png
   category: item
@@ -1534,3 +1435,24 @@
   sha256: 0f84e83d194e8f549eb7d55690506fa98f2eca3121b706d624853ac332d6c1a9
   status: candidate
   notes: 写实画风（作者 2026-10-01：要跟角色图对应上）；
+- id: it_miji_dagou_can
+  file: it_miji_dagou_can.png
+  category: item
+  style: default
+  subject: 打狗棒法残谱（武学秘籍，天阶）
+  prompt: 这是一本武功秘籍的物品图。请只在封面的题签（竖条书签位置）上用端正的楷书竖写书名「打狗棒法」，墨色，字迹清晰、笔画准确；不要添加任何其他文字、印章、注释或标记；书本造型、颜色、光影、构图和背景保持完全不变。
+  negative: ''
+  references:
+  - path: assets/default/item/manuals/it_miji_dagou_can.png
+    sha256: 346876fd41b7ca42a45f19cbea49b38f8dd17ac35bddfbc261d384ca241d02ac
+    source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f748-e41b-7793-9ae4-f15f7e1f9644/exec-6b3867ca-3230-49e3-b710-b9f2f511bb06.png
+    use: 原图（上传改图：只在封面题签补写书名，其余保持不变）
+  tool: gemini-web · Nano Banana（/app 对话，开 Create image，上传原图改图，不套模板）
+  model: gemini-app (Pro 订阅)
+  created: 2026-10-02T01:54:12-0700
+  source_path: .agents/coord/gemini_originals/it_miji_dagou_can.jpeg
+  source_size: 2048x2048
+  size: 1536x1536
+  sha256: c94225ff592774e9dcfdb5523a6f34a0a1f32e182f896703acc6ae05c0e72469
+  status: candidate
+  notes: 秘籍补书名（AR-30）：在原图题签上补写「打狗棒法」，逐字放大核对无误；原图见 references（sha256 为改前版本，git 历史可取）
