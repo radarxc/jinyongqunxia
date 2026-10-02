@@ -180,7 +180,7 @@ def render(rows):
            "1. 先读本节与「出图位置约定」，再读目标组的 `GUIDE.md`（`items/GUIDE.md`、`maps/GUIDE.md`、`rig/GUIDE.md`），最后读每张图自己的提示词文件（frontmatter = 输出路径 / 规格 / 参考图；正文 = 要点、完整提示词、排除项、质检要点）。",
            "2. 列出能做的行：`python3 tools/agents/build_image_index.py --queue --group maps`（`--json` 给脚本用）。队列 = 图片文件尚不存在的行 + `items/REDO.md` 里作者点名重出的 ID。",
            "3. 每行：加载 frontmatter `references` 里的参考图 → 按「提示词」生成 2 张候选选 1 张（有明确缺陷再补，单轮 ≤ 4 张）→ 按 `output` 存 PNG（文件名 = asset_id 或指定名）→ 在 `manifest` 追加一条（字段见 `assets/README.md`：id、file、category、style、subject、prompt、negative、references、tool、model、created、source_path、size、sha256、`status: candidate`）→ 跑该组 GUIDE 里的检查命令。",
-           "4. 不要改提示词文件和本索引；生成完一组，重新运行本脚本，状态会从「待出图」变成「已入库」。作者的审批在审批页做，`candidate` 不等于通过。",
+           "4. 不要改提示词文件和本索引；每出完一张就重新运行本脚本，已入库的行会从本索引删掉（作者 10-01：做完一个就删掉对应条目）。已出的图与审批状态看各目录 `manifest.yaml` 和素材总览页；作者的审批在审批页做，`candidate` 不等于通过。",
            "", "## 出图位置约定", "",
            "| 类别 | 输出 PNG | 登记清单 | 规格 |", "|---|---|---|---|",
            "| 物品 | `assets/default/item/<类>/<物品ID>.png` | `assets/default/item/<类>/manifest.yaml` | 1536×1536（≥1024），不透明浅暖灰底 RGB(230,225,216)，单一物品、四边留白 ≥10% |",
@@ -200,26 +200,35 @@ def render(rows):
         out.append("（空：所有提示词对应的图都已入库。）")
     # 物品
     items = [r for r in rows if r["kind"] == "item"]
-    out += ["", "## 物品（11 类，名录 170 项）", "",
-            "每张图的提示词在各文件「提示词」节。「已入库」= 图在 `assets/default/item/` 下（作者尚未审批，manifest `status: candidate`）；「工作区候选」= 图在任务工作区还没合入；作者要重出的，把 ID 写进 `items/REDO.md` 再重建索引即可进队列。", ""]
+    out += ["", f"## 物品（{len(ITEM_CATS)} 类，名录 {len(items)} 项）", "",
+            "每张图的提示词在各文件「提示词」节。下表只列还要出的行（待出图 / 待重出），已入库的不再列出，标题里的计数含已出部分。作者要重出的，把 ID 写进 `items/REDO.md` 再重建索引即可回到队列。", ""]
     for cat, cname in ITEM_CATS.items():
         rs = sorted([r for r in items if r["fm"].get("category") == cat], key=lambda r: (GRADE_ORDER.get(str(r["fm"].get("grade", ""))[:1], 9), r["fm"]["asset_id"]))
         if not rs:
             continue
         st = Counter(r["state"] for r in rs)
-        out += [f"### {cname}（{len(rs)}）· " + "、".join(f"{k} {v}" for k, v in st.most_common()), "",
-                "| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |", "|---:|---|---|---|---|---|---|---|"]
-        for i, r in enumerate(rs, 1):
+        todo = [r for r in rs if r["state"].startswith(("待出图", "待重出"))]
+        out += [f"### {cname}（{len(rs)}）· " + "、".join(f"{k} {v}" for k, v in st.most_common()), ""]
+        if not todo:
+            out += ["（已全部入库。）", ""]
+            continue
+        out += ["| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |", "|---:|---|---|---|---|---|---|---|"]
+        for i, r in enumerate(todo, 1):
             fm = r["fm"]
             out.append(f"| {i} | {fm.get('name', '')} | `{fm['asset_id']}` | {fm.get('grade', '')} | {fm.get('subcategory', '')} | {r['state']} | [{Path(r['rel']).name}]({r['rel']}) | {str(fm.get('prompt_source', '')).split('（')[0].split(':')[0]} |")
         out.append("")
     # 地图
     maps = [r for r in rows if r["kind"] == "map"]
     if maps:
-        out += ["## 地图", "",
-                "全国导航图是 `tools/map/render_map.py` 从 design/19 数据生成的 SVG（14 个时代图层），**不是出图任务**。要画的是 30 个区域的水墨局部图（类比作者已审的大理苍洱局部图）；全国水墨衬纸为可选项。", "",
-                "| # | 名称 | asset_id | 输出 | 图 | 提示词 |", "|---:|---|---|---|---|---|"]
-        for i, r in enumerate(sorted(maps, key=lambda r: (r["fm"].get("map_kind", ""), r["fm"]["asset_id"])), 1):
+        todo = [r for r in maps if r["state"].startswith(("待出图", "待重出"))]
+        st = Counter(r["state"] for r in maps)
+        out += [f"## 地图（{len(maps)}）· " + "、".join(f"{k} {v}" for k, v in st.most_common()), "",
+                "全国导航图是 `tools/map/render_map.py` 从 design/19 数据生成的 SVG（14 个时代图层），**不是出图任务**。要画的是 30 个区域的水墨局部图（类比作者已审的大理苍洱局部图）；全国水墨衬纸为可选项。下表只列还要出的。", ""]
+        if todo:
+            out += ["| # | 名称 | asset_id | 输出 | 图 | 提示词 |", "|---:|---|---|---|---|---|"]
+        else:
+            out.append("（已全部入库。）")
+        for i, r in enumerate(sorted(todo, key=lambda r: (r["fm"].get("map_kind", ""), r["fm"]["asset_id"])), 1):
             fm = r["fm"]
             out.append(f"| {i} | {fm.get('name', '')} | `{fm['asset_id']}` | `{fm.get('output', '')}` | {r['state'] if fm.get('status') != 'optional' else r['state'] + '（可选）'} | [{Path(r['rel']).name}]({r['rel']}) |")
         out.append("")
@@ -234,8 +243,9 @@ def render(rows):
                 ref = [r for r in rig if r["kind"] == "rig_ref" and r["fm"].get("set") == set_id and r["fm"].get("view") == view]
                 parts = [r for r in rig if r["kind"] == "rig_part" and r["fm"].get("set") == set_id and r["fm"].get("view") == view]
                 st = Counter(r["state"] for r in parts)
+                todo = [r for r in parts if r["state"].startswith(("待出图", "待重出"))]
                 reflink = f"[ref_{view}.md]({ref[0]['rel']})" if ref else "—"
-                out.append(f"| {set_id} | {view} | {reflink}（{ref[0]['state'] if ref else '—'}） | " + "、".join(f"[{r['fm']['part']}]({r['rel']})" for r in parts) + " | " + "、".join(f"{k} {v}" for k, v in st.most_common()) + " |")
+                out.append(f"| {set_id} | {view} | {reflink}（{ref[0]['state'] if ref else '—'}） | " + ("、".join(f"[{r['fm']['part']}]({r['rel']})" for r in todo) or "（已全部入库）") + " | " + "、".join(f"{k} {v}" for k, v in st.most_common()) + " |")
         out.append("")
     out += ["## 建筑套件与贴片（已出齐，只列完成度）", ""] + kits_table() + ["",
             "全部 11 套年代套件均已按历史图片重出并合入；城镇合成图由 `tools/town/` 代码用这些素材拼装，不是出图任务。基线两套宋套件是否也按历史图片重出，待作者定（要做就复制 `tools/agents/prompts/KIT.md` 的做法）。", ""]
