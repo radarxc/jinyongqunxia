@@ -272,5 +272,14 @@
       - ④ 带协调者裁定重启 supervise：`--note .agents/coord/ENG-08-worldmap/note_run6_coordinator.md --rework-extra .agents/coord/ENG-08-worldmap/coordinator_ruling.md --max-reviews 2`。
     - **ENG-09**：提示词 `ENG-town-scene.md` 补了「分层」一节，规定寻路、可走性、建筑进入、打坐被袭判定进 core，避免重演。
     - **ENG-11 特效**：19:13 起持续在跑（日志 58 MB 仍在增长，在调着色器 / 资源路径），未卡死。
+  - **22:30 集成分支 `pnpm check` 全绿**：lint、typecheck、65 个测试文件 340 个用例加 perf 2 项、内容校验、包体预算全过。此前不绿有四个原因，均已处理：
+    - ① eslint 在集成工作区根目录会扫进 `.agents/wt` 下嵌套的任务工作区 → `eslint.config.js` 忽略 `.agents/**`。
+    - ② 集成工作区的 `node_modules` 过期，apps/game 新增的 `@tianshu/shared`、`@tianshu/data`、`fake-indexeddb` 没链上 → 运行 `pnpm install --frozen-lockfile`。
+    - ③ 旧的 `dist-types` 与 tsbuildinfo 导致 `vue-tsc -b` 报假错 → 删掉各包 `dist-types`（git 忽略的构建产物）。
+    - ④ **真问题**：吐蕃、元·南两套建筑 manifest 里有 YAML 锚点 / 别名，是 KIT 任务执行器用 PyYAML 写的；content-registry 禁别名，导致 web 构建失败。
+      - 已把这两份清单展开为无别名写法，数据逐值不变（86936828）。
+      - `ingest.py`、`rig/make_parts.py`、`item/common.py`、`item/make_layers.py` 写清单都改用 `_NoAliasDumper`。
+      - ENG-08 的 asset-manifest 只读物品、人物、立绘、地图几类清单，合入后也不会再读建筑清单。
+    - 教训：任务工作区是稀疏检出的，跑不出全量素材下的问题；集成分支要定期在根目录跑一次完整的 `pnpm check`。
   - **图片任务必须 `web: true`**：Codex 在无网络沙箱里报 `Reconnecting… workspace routing discovery failed`，ART-rig-parts-male / female 因此又停两次；已改登记（`_prod` 79572be），`_imagegen.md` 第 6 条记入，female 带说明 `.agents/coord/ART-rig-parts/web_note.md` 重启，male 等它当前这次（无网络）跑完停住后同样重启。
   - ⑤ 上一会话 08:00 起被自动模式分类器锁死（会话级、与操作无关，Bash 全拒）；其交接文件 `.agents/wt/_prod/.agents/coord/HANDOFF-session-20261001.md` 的要点已并入本节。GPT-6-Astra 仍未改回。作者待答复：基线两套宋套件（song_dali、song_southern）是否也按历史图片重出；各书改命报告「需作者确认（附默认）」（`tools/agents/reports/DES-destiny-chNN.md` §4）。
