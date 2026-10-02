@@ -649,4 +649,5 @@
     - **batch_run 审核要点映射**新增 `ART-portrait-` / `ART-scenes-` / `ART-rig-sheet`（要点文件在 `.agents/coord/PROD/`），目前没有任务用到。
     - **坑**：`claude-in-chrome` 只能操作本会话标签组里的标签页，作者自己打开的标签页扩展看不到；要由协调者 `tabs_context_mcp(createIfEmpty)` 建组再 `navigate`。
   - **10-02 16:00–16:05 协调者（开发监督职责）**：ENG-18 合入（76f9381a）后 `pnpm check` 绿：97 文件 561 用例、size 287.83 / 350，loadavg 15.5；ENG-15 合入（5d719561）后再跑：103 文件 619 用例、size 291.03 / 350，loadavg 18.8（`_handoff/prod_check_post-eng1{8,5}_*.log`）。eng3 随即起 ENG-25、ENG-08b。Gemini 线 16:03:57 出第一张（`eq_songshounuxia`），前 25 分钟是 subagent 在核验队列与驱动。
+  - **10-02 16:12 协调者**：作者「代码编写的任务（ENG-*）也需要一个 subagent 来驱动」→ 起第三个 Opus subagent 做**开发监督**（交接说明 `_handoff/dev_supervisor_brief_v3.md`）：接管 eng3 / des33 的看护、停住任务处理、合入后 `prod_check.sh`、TOOL-rig-sheet 入队、下一波 ENG 登记与 HANDOFF 记录；执行器仍是 TraeX。协调者自己的 `devsup_keywait` 监视已停，避免两边同时动手。
 
