@@ -676,3 +676,134 @@ parts:
 | RIG-O03 | 战斗大动作是否全用分层轨迹 | 先做剑/掌/受击各 1 个代码姿势样片；失败才允许每招少量关键图，不恢复行走帧表 | ENG-12/ART 样片闸门 |
 | RIG-O04 | 100 角色 0.80 ms 是否三机可达 | 作为阻断初值；若失败先 SoA/查表/降低远景更新率，不减少逻辑角色 | `tech/03` 真机门禁 |
 | RIG-O05 | 物品原图底色漂移是否需要自动估色 | 默认从边界环估色并以 `(230,225,216)` 作先验；边界种子不足即人工 mask | TOOL-rig-pipeline 金样 |
+
+---
+
+## 8. 动作片段（AR-29 · P6–P7 增补）
+
+> 本节于 2026-10-02 仅追加，不改写前述 v1.1 规格。动作片段、映射、投影 QA 均为**（原创扩展）**；运行时播放器仍由 ENG-12c-clip 实现。
+
+### 8.1 边界与离线数据流
+
+AR-29 采用“2D 分层部件 + CC0 动作库驱动”。离线工具读取源 GLB，把关节正向运动学结果烘焙为 `tianshu_humanoid.v1` 的骨向量；运行时只能消费烘焙结果，不能读取或再分发原始 GLB。
+
+```text
+CC0 GLB（仓外） → clip_import.py → clip_*.json（30 fps，可选 12 fps）
+                                      ├→ clip_metrics.py → 八向 metrics.json
+                                      └→ 八向 stick strip PNG（人工目检）
+```
+
+边界如下：
+
+1. `rootMotion: inPlace`：片段的骨盆位移只供表现姿势、踩滑估算和投影；不得回写玩法坐标。
+2. `hit` / `end` 只供 `tech/02` 的 `CueApi.playAnim(...).on(...)` 回调；命中、伤害、倒地和死亡仍由 core 事件决定。
+3. 原始 GLB / ZIP 放仓外 `.agents/coord/motion_src/`；仓内只留骨向量 JSON、schema、来源记录、指标与 PNG。
+4. `_L/_R` 沿 §1.3 的解剖学左右；`nearSide:L`，镜像后才交换为 R。
+
+### 8.2 `tianshu-clip.v1` 格式
+
+schema 位于 `assets/default/rig/clips/clip.schema.json`。整数编码统一小端序再 Base64；浮点只存在离线采样中，写盘前按“恰好半值远离零”整数化，保证同输入同输出。
+
+| 字段 | 单位 / 编码 | 契约 |
+|---|---|---|
+| `fps` / `frameCount` / `durationMs` | 12 或 30 / 帧 / ms | 30 fps 是源档；12 fps 是显式降采样，二者都含末帧 |
+| `tracks.bones` | 16 个稳定骨名 | 躯干、头、肩宽、髋宽、左右上臂/前臂/手/大腿/胫/脚 |
+| `directionI16` | 每帧每骨 `xyz×32767` | 归一化三维方向，范围 `[-32767,32767]` |
+| `lengthRatioU16` | `当前骨长/静止骨长×32767` | 保存源动作的骨长比例；正常刚性骨应接近 32767 |
+| `rootMmI16` | 每帧骨盆 `xyz` 毫米 | 相对静止骨盆；播放器保持 in-place，不推动 core |
+| `facingYawCdegI16` | 0.01° | 骨盆、胸、头偏航；投影工具用胸偏航选视图 |
+| `restPose` | 20 个关节、毫米整数 | 解码骨链与离线 QA 的静止锚；不是角色体型权威长度 |
+| `weapon` | `gripJoint` + 每帧 `tipDirectionI16` | 主手握点；无兵器骨的源以“腕→中指第一节”标定剑尖方向 |
+| `events` | `{frame,type}` | 只允许 `hit`、`end`；每条 clip 至少一个 `end` |
+| `viewHints` | 百分点 / 0.01° | 缩短下限固定 4500 bp = 0.45；偏航辅助上限 3000 cdeg = 30° |
+| `source` | 文本 + SHA-256 | 原动作、许可、固定 URL 与源文件哈希必须齐全 |
+
+规模核算：16 骨的方向与长度每帧为 `16×(3×2+2)=128 B`；根位移、三组偏航、剑轴为 `(3+3+3)×2=18 B`，合计 **146 B/帧**，另加 JSON/Base64 约 `4/3` 膨胀。1.5 s、30 fps 含末帧为 `round(1.5×30)+1=46` 帧，二进制轨迹约 `46×146=6,716 B`。
+
+### 8.3 骨架映射与未映射项
+
+`clip_import.py` 自动在两张白名单映射中择优，也允许 `--mapping` 固定；任一必需目标关节缺失即拒绝导出，不猜测左右。
+
+| 目标 | UE 风格 66 关节（Mesh2Motion / UAL2） | Rigify 53 关节（UAL1 Godot） |
+|---|---|---|
+| 根 / 骨盆 / 胸 / 颈 / 头 | `root/pelvis/spine_03/neck_01/head` | `DEF-root/DEF-hips/DEF-chest/DEF-neck/DEF-head` |
+| 左臂 | `upperarm_l/lowerarm_l/hand_l/middle_01_l` | `DEF-upper_arm.L/DEF-forearm.L/DEF-hand.L/DEF-f_middle.01.L` |
+| 右臂 | `_r` 对应项 | `.R` 对应项 |
+| 左腿 | `thigh_l/calf_l/foot_l/ball_l` | `DEF-thigh.L/DEF-shin.L/DEF-foot.L/DEF-toe.L` |
+| 右腿 | `_r` 对应项 | `.R` 对应项 |
+
+本次 Mesh2Motion 两个源包的 20 个目标关节全部可映射。47 个未消费源节点会逐 clip 原样登记：`clavicle_*`、`spine_01/02`、其余指节、各 `*_leaf`，以及 `Mannequin` / `Armature` 容器；它们不是“缺失必需关节”，只是 v1 的 20 关节 / 16 骨投影不需要。Rigify 表由合成骨架测试覆盖，尚未用本次源包实物再烘焙，故标**（待实测）**。
+
+### 8.4 投影指标与原型判定
+
+`clip_metrics.py` 对相机偏航 `S/SW/W/NW/N/NE/E/SE = 0/45/90/135/180/225/270/315°` 分别计算；胸部视图采用三样本移动平均 + 10° 滞回，肢体按三维骨向量直接投影。
+
+| 指标 | 算法 | P6–P7 闸门 |
+|---|---|---|
+| 躯干视图切换 | 胸部左右肩给朝向，在六个三视图/镜像朝向中择近 | Q4：≤8 次/s |
+| 肢体最短缩放 | `raw=sqrt(x²+y²)/sqrt(x²+y²+z²)`；渲染 `max(0.45,raw)` | Q4：渲染值不得低于 0.45 |
+| 手臂越过躯干平面帧比 | 左右肘/腕相对骨盆—颈中心深度，与第 0 帧符号不同的采样数 / `4×帧数` | 诊断动态 z；无单独阻断线 |
+| 支撑脚踩滑 | 踝高在最低点 +0.5 cm 内、连续 ≥3 帧为支撑相；加 `nativeSpeed` 后量水平最大漂移 | Q5：≤2 cm |
+| 剑轴投影偏差 | 剑轴投影按 128 px/m 和 0.45 下限整数化，比较整数向量与连续投影方向；握点同样整数化 | Q6：轴 ≤5°、握点 ≤1 px |
+
+实测结果来自 `assets/default/rig/clips/*.metrics.json`，不是运行时帧率或真机性能结论：
+
+| 原型 | Q4 最短原始投影 / 渲染下限 | 躯干切换 | 手臂跨平面 | Q5 踩滑 | Q6 剑轴 / 握点 | 结论 |
+|---|---|---|---|---|---|---|
+| `clip_walk`，51 帧 / 1.667 s | 八向最差 `0.0793 / 0.45` | `0–1.20/s` | `0–51.961%` | 最大 `0.366 cm` | 不适用 | Q4/Q5 通过；正前/正后手臂深度关系频繁反转，运行时必须动态 z |
+| `clip_sword_attack`，58 帧 / 1.917 s | `0.0465 / 0.45` | `2.632–3.158/s` | `25.431–44.397%` | 不适用 | 最大 `0.485° / 0.695 px` | Q4/Q6 通过；作为原型主剑招 |
+| `clip_sword_regular_a`，15 帧 / 0.458 s | `0.0506 / 0.45` | `8.571–12.857/s` | `31.667–40.000%` | 不适用 | 最大 `0.625° / 0.628 px` | 缩短与 Q6 通过；Q4 视图切换失败，不得原样发布 |
+
+`Sword_Regular_A` 的默认处置是不阻塞素材导入，但标记为“原型失败样本”；主原型使用已过线的 `Sword_Attack`。若后续仍要启用 Regular_A，ENG-12c-clip 先尝试 12 fps 视图选择、关键姿势清理或更强滞回，复测八向全部 ≤8 次/s 后才可成为生产动作。不得为了过线删改 metrics 或把原始投影比冒充钳制后缩放。
+
+### 8.5 片段清单、事件与许可
+
+首批提交 10 个片段：原型主片段 `clip_walk`、`clip_sword_attack`，压力样本 `clip_sword_regular_a`，以及备用 `clip_idle`、`clip_run`、`clip_hit_chest`、`clip_fall`、`clip_meditate`、`clip_dodge_back`、`clip_punch_jab`。原动作名、帧数、事件帧、固定下载 URL、字节数和 SHA-256 见 `assets/default/rig/clips/SOURCES.md`，不在本文重定义。
+
+许可白名单固定为：
+
+| 许可键 | 可导入条件 | 交付要求 |
+|---|---|---|
+| `CC0-1.0` | 官方源明确把该动作/美术资产置于 CC0 | 可烘焙、修改、分发；仍保留来源哈希供追溯 |
+| `CMU-commercial` | 只取 CMU 官方条款覆盖的数据 | 可放产品，不得把数据本身直接转售；按官网请求致谢 |
+| `CC-BY-4.0` | 来源与作者明确、可给完整署名 | 发行物必须署名、给许可链接并标修改 |
+
+本批只用了 Mesh2Motion `human-base-animations.glb` / `human-addon-animations.glb` 的 CC0 动作。`human-mocap-animations.glb` 来源未明，明确不下载、不导入；Mixamo、万代南梦宫和 SFU 不在白名单。许可和官方文件于 2026-10-02 联网核实。
+
+### 8.6 构建校验与 ENG-12c-clip 交接
+
+| 编号 | 断言 | 失败等级 |
+|---|---|---|
+| RIG-V11 | schema 通过；Base64 解码字节数与 `frameCount×bones` 精确一致 | error |
+| RIG-V12 | 相同源字节 / 参数两次导出逐字节一致；半值远离零 | error |
+| RIG-V13 | 必需 20 关节全映射；许可在白名单；SHA-256 与来源记录一致 | error |
+| RIG-V14 | 所有 clip 有 `end`；攻击可有一个 `hit`；事件帧在范围内 | error |
+| RIG-V15 | 八向 `renderMinLimbScale≥0.45`；走路踩滑 ≤2 cm；兵器握点 ≤1 px、剑轴 ≤5° | release error |
+| RIG-V16 | 八向躯干切换均 ≤8 次/s；条带图人工通过 | manual/release gate |
+
+ENG-12c-clip 解码后以角色自身 rig 骨长替换源骨长，只消费方向与长度比；0.45 缩短是投影视觉下限，不得改变 3D 关节事实。播放器须按帧序只触发一次事件，循环片段的 `end` 是循环边界回调；停止或交叉淡化不能伪造 `hit`。
+
+### 8.7 本节参考资料（访问日期 2026-10-02）
+
+1. Mesh2Motion 仓库与许可段：<https://github.com/Mesh2Motion/mesh2motion-app#licenses>。
+2. Mesh2Motion 美术资产 CC0 声明：<https://github.com/Mesh2Motion/mesh2motion-app/blob/79f3f61a9852ef70234a5a4a7c13ed87f7a71833/LICENSE-CC0.MD>。
+3. CC0 1.0 法律文本：<https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt>。
+4. Quaternius UAL 官方页（CC0 备选源）：<https://quaternius.com/packs/universalanimationlibrary.html>、<https://quaternius.com/packs/universalanimationlibrary2.html>。
+5. glTF 2.0 规范：<https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html>。
+
+### 8.8 本节新增术语/约定
+
+| 术语 | 定义 |
+|---|---|
+| `tianshu-clip.v1` | 离线烘焙的 20 关节 / 16 骨人形动作片段 schema；不是玩法内容 ID |
+| 骨向量轨迹 | 每帧的单位方向 + 相对静止骨长，不携带源网格和皮肤 |
+| 剑轴标定 | 以主手握点和“腕→中指第一节”方向作为无兵器骨源的剑尖方向代理 |
+| 原型失败样本 | 数据和 QA 证据可保留，但未过 release gate，运行时不得作为生产动作默认启用 |
+
+### 8.9 本节待决事项 / 依赖
+
+- **已解决（AR-29）**：许可首批只用 CC0；本批使用 Mesh2Motion base/addon，mocap 组不纳入。
+- **已解决（P6–P7）**：Walk 已过 Q4/Q5；备选 Sword_Attack 已过 Q4/Q6，作为原型主剑招；Sword_Regular_A 的缩短与 Q6 通过但 Q4 失败，保留为压力样本，见 §8.4。
+- **本文依赖**：`CueApi.playAnim` 与核心/表现边界见 `tech/02`；运行时播放器和真机性能归 ENG-12c-clip。
+- **开放问题 RIG-O06**：Sword_Regular_A 如何降到 ≤8 次/s？默认不阻塞原型（已切换到通过的 `Sword_Attack`）；后续先在 12 fps 视图选择上复测，再做关键姿势清理，不放宽 Q4。
+- **开放问题 RIG-O07**：Rigify 53 实包映射尚未以 UAL1 GLB 复测；默认保留合成测试通过的映射表，首次引入 UAL1 时必须跑 RIG-V11–V16。
