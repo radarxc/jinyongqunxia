@@ -1,0 +1,78 @@
+---
+asset_id: por_npc_xiaolongnv__ch03_youth_jueqing_base
+subject_id: npc_xiaolongnv
+name: 小龙女
+book: ch03_shendiao
+gender: female
+age_variant: youth
+tier: S
+output: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+manifest: assets/default/character/female/ch03/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/xiaolongnv_1995_liruotong_caption_verified_nearfront.jpg
+  use: 第一且唯一面部身份参考：1995 TVB李若彤版小龙女的单人剧照，来源页1995李若彤分节与前后相邻文字已逐图核实，本轮已实际view。保留偏长椭圆脸、有体积的颧颊和自然收窄下颌、细长弧眉与清晰眼窝、自然杏眼及眉眼间距、挺直鼻梁和小而有体积的鼻尖、清楚唇峰与自然较饱满嘴唇。丢弃该图轻微低头、倾斜眼线、侧目、耳边抬手、绿色袖口、耳饰和摄影背景；新图头颈竖直、眼线水平、面向正前方。
+- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+  use: 第二参考只提供女性项目的精细手绘设色、柔和漫射光、温润有实体的皮肤与连贯衣料画法，已实际view；不是小龙女身份、姿态或服装参考。不得借王语嫣五官、窄尖下巴、大眼比例、少女妆感、高髻、玉簪、淡藕褙子、宽袖或侧转倾头。保留该基线现有审批状态，不向本次候选传递approved。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第三参考仅背景：暖浅灰纸底、淡水墨远山薄雾及留白，已实际view；不采纳人物脸、发型、倾头、裙装、透明衣料、花饰或首饰。背景墨韵不得侵入小龙女面部、白衣、手套、佩剑与金铃索；人物轮廓、衣料始终完整清楚。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 小龙女 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_xiaolongnv
+- book：ch03_shendiao
+- gender：female
+- age_variant：youth
+
+## 本轮人物写实规范
+
+1995李若彤小龙女单人剧照为唯一面部身份；头颈竖直、眼线水平、正面端正。成年青年古墓掌门，绝情谷得淑女剑后、十六年分离前；素白右衽衣、两只素白全指手套、左腰淑女剑完整入鞘、双手轻持双端各一枚圆金球铃的白绸。人物美观精细写实、衣料完整，水墨仅背景；两张原生2:3 candidate，不借王语嫣脸、不延续旧小龙女基线脸。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_xiaolongnv__ch03_youth_jueqing_base/prompt-0056ef7adc07e2eb291ec7b3b8651b57be1cea0076a8ba86b7667a975a28cb70.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. The head and neck are naturally UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line, camera level, chin neutral, gaze straight ahead. NO head tilt and NO Dutch angle. Keep the head centered over the torso and shoulders naturally relaxed. These rules override ALL reference poses, including image 1's slight downward head angle and sideways gaze. Natural facial asymmetry is welcome; a tilted head is not.
+
+Create a beautiful REALISTIC Chinese wuxia character illustration of XIAOLONGNV / 小龙女, an ADULT young woman and the Ancient Tomb school's leader in The Return of the Condor Heroes. Image 1 is the ONLY FACIAL IDENTITY reference: Carman Lee / 李若彤 as Xiaolongnv in the 1995 TVB series. Preserve her recognizable facial relationships and individuality. Image 2 is ONLY a female painting/rendering sample, never another face or costume. Image 3 is ONLY the pale ink-wash background sample. Do not blend identities.
+
+身份与阶段：南宋神雕书界 ch03_shendiao，青年成年古墓掌门，选择绝情谷取得淑女剑之后、十六年分离之前的基础造型。身形自然修长、健康而轻盈，气质沉静清冷、明净自持，眼神安静坚定。不是儿童、仙女或宗教神像，不推进到十六年后重逢阶段。静立展示经典装备，不演出婚礼、受伤或危机剧情；具体公历岁数不强定。
+
+本人面容辨识：依据第一张真实李若彤剧照，偏长的椭圆脸，额面平整自然，颧颊有体积，下颌逐渐收窄而下巴不做尖锥。细长微弧眉、眉眼之间清楚的眼窝层次、自然杏眼和明确内外眼角，保留本人眉眼间距。鼻梁挺直，鼻尖小而有体积，鼻翼自然；嘴唇闭合放松，唇峰清楚、上下唇有真实厚度，不削成一条线也不夸张丰唇。肤色明净微冷仍有暖润血色，成年清丽、自然皮肤体积。参考眉眼的轻微紧张不必照搬，气质由平静目光和端正姿态传达。不要套王语嫣参考的小脸、大眼或少女妆感，绝不沿用其他女性的同一张脸。
+
+衣装和发式：南宋汉式素白交领右衽长衫、齐腰长裙、简洁白布腰带，全部为完整不透明的真实织物；交领是穿着者左襟盖右襟、向本人右侧合拢。胸颈遮蔽得体，袖子适度宽松但袖口收敛，方便清楚看见双手。白衣以暖白亮面和浅青灰转折分层，整体素净无复杂刺绣，不采用照片的绿色袖口，也不采用参考2的淡藕褙子或参考3的透明碎纱。黑发上部用一条窄素白布带束成收敛的小髻，其余整齐顺垂背后、不及膝，额面与双眼清楚可见；无夸张冠饰、花簪或耳坠。素白平底布鞋，两足自然落地。
+
+白手套必须清楚：两手都戴素白贴手五指手套，从腕部到每个指尖完整包覆。五指结构自然，手套为有体积的柔软不透明织物，清楚区别于白色袖口和手中的白绸。不可画成裸手、无指手套、蕾丝、橡胶或黄金铠甲。双手放在腰腹前，彼此留出间隔，手指轻松扶持绸带，不交叉扭曲、不挡脸，不做法印或拉弓动作。
+
+淑女剑 eq_shunvjian：只佩一柄中式细直剑，剑身完全入鞘，放在本人左腰、正面画面观者右侧。细直暗色完整剑鞘，低调小铜色护格和装具；剑柄、护格、鞘口、剑鞘共一根可信轴线，鞘长足够容纳剑身。短而清楚的挂带从白布腰带接到剑鞘上段挂点，鞘自然略向身侧斜垂，鞘尾完整可见，不穿过手臂或衣裙。两手不拔剑，鞘口与手套、白绸分开阅读；不增加第二柄剑。
+
+金铃索 eq_jinlingsuo：一条连续的实物白绸带，由双手在腰前轻持两个分开的部位，中段松弛垂成浅弧。左右外侧各有一个自由端，每个绸端以清楚的小结系着一枚小圆金球铃，总共恰好两枚。两铃有真实球体金属明暗和低调色泽，分别在两手下方自然垂挂，连接连续可追踪，均避开佩剑和裙摆遮挡。金铃不是喇叭形小钟、珠宝项链或悬浮法器。白绸的边缘与衣袖分离，不从掌心穿过，绝不把剑悬在金铃索上。手、袖、绸、铃与剑各有独立清楚的结构。
+
+画法与光线：精细、美观、写实的国风人物插画，脸、手套、衣料和器物是连续坚实的实体，柔和左上漫射光构成可信体积。细腻而克制的手绘笔触，面部尤其清楚，白衣用少量宽缓、有承重关系的完整褶皱表达垂坠。肤质自然，不靠密集噪点、毛孔锐化或磨皮滤镜。白衣、白绸和白手套用浅青灰层次及明确边缘互相分开。人物本身不可飞白、破碎、透纸、毛边、撕裂或被背景墨痕侵蚀。
+
+背景与交付：不透明暖浅灰纸底，人物外侧只有极淡低对比水墨远山和薄雾，留白充足，少量柔和脚下接触阴影即可。水墨和纸纹只属于背景，不能切碎人物轮廓。单人、单视图、完整全身、原生竖幅2:3。发顶、双手、两足、完整衣摆、佩剑鞘尾、两枚金铃和全部白绸均入画，自然留空，不以固定占高或头身数字拉伸人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切、旋转或重新编码。默认生成两张独立候选再比较，每幅只含一个小龙女，均为candidate等待用户审核，不承接任何参考图的approved。
+
+事实边界：古墓掌门身份、淑女剑与金铃索的装备关系见当前项目文档；白手套、佩剑、铃铛组合为作者明确要求。手套确切材质工艺、双端两铃数量结法、三物同一原著时刻的并用仍待指定版本逐字校勘。当前画面沿用角色稿的美术组合，不编造原文、页码或固定影视服饰，不输出这些说明文字。
+
+完整排除项：不要 head tilt、Dutch angle、头歪向肩、额鼻颏中线倾斜、双眼高低不平、倾斜镜头、俯首藏眼、仰头、明显侧脸、侧身回眸、单肩高耸或一手摸耳的参考姿势；不要把李若彤小龙女换成王语嫣、黄蓉、其他演员版本或通用女侠脸，不融合三张参考的人脸，不继承旧小龙女基线面容。不要网红锥子脸、动漫大眼、小鼻模板、夸张丰唇、浓眼妆、磨皮塑料皮肤、低幼脸或未成年体貌，不把清冷画成凶恶、病态或面无生气。不要直接交付照片、剧照截图、拼贴或3D模型，不复制照片绿色袖口、耳饰、抬手、半身裁切和绿林虚焦背景。不要去掉白手套、入鞘淑女剑或白绸金铃索；不要露指、蕾丝手套、橡胶手套、黄金甲手套、手套与袖口融合；不要出鞘剑、双剑、短刀、玄铁重剑、拂尘、悬空佩剑、柄鞘错轴、断鞘、鞘尾缺失、腰带不连接挂带或以绸索充当佩剑挂带。不要喇叭形铃、大钟、项链铃、第三枚铃、漂浮金球、铃连到指尖、白绸穿掌、白绸与袖子融为一片、无重力飘带或金铃被裙摆遮没。不要夸张大袖、透明薄纱、露胸、破损白衣、婚服、伤害情节、谷底场景、死亡意象、神像或施法动作。不要现代物品、拉链、腕表、运动鞋、高跟鞋、日式服制刀具、圆盘刀镡、菱形缠柄、和服、欧式奇幻铠甲、仙侠冠冕、赛博朋克或蒸汽朋克；不要唐式齐胸裙、明式马面裙或网巾、官服补子、清式旗装、剃发留辫、马蹄袖、大拉翅及朝代混搭。不要汉式交领左衽或水平镜像，不要多肢、多手、多指、粘连手指、错接手腕、手物融合、缺失肢体、裁断发顶、脚尖或器物端点。人物不要碎墨、飞白缺块、纸纹透肤透衣、毛边碎布条、撕裂衣摆、大片污渍补丁、密集噪点纹理、模糊眼睛、背景墨点切碎人物或雾遮轮廓；不要发光武器、龙形能量、光翼、法阵、粒子特效、强泛光、色情化、血腥或恶搞丑化。不要第二个人、神雕、群鸟、蜂群、复杂建筑、具象情节场景、分格、多视图、脸部特写框、文字、汉字、伪字、题款、印章、签名、logo或装饰水印；工具原有溯源标识和元数据必须保留。
+
+FINAL POSE CHECK: FRONT-FACING XIAOLONGNV with her own 1995 Carman Lee facial identity. Forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY level, head and neck naturally UPRIGHT over the torso, camera level, chin neutral, gaze forward. NO head tilt and NO Dutch angle. Do not inherit any reference head angle, sideways gaze, turned body or hand-to-ear pose. Keep both white gloves, the fully sheathed sword and both attached golden ball bells clearly visible.
+```
+
+## 排除项
+
+不要 head tilt、Dutch angle、头歪向肩、额鼻颏中线倾斜、双眼高低不平、倾斜镜头、俯首藏眼、仰头、明显侧脸、侧身回眸、单肩高耸或一手摸耳的参考姿势；不要把李若彤小龙女换成王语嫣、黄蓉、其他演员版本或通用女侠脸，不融合三张参考的人脸，不继承旧小龙女基线面容。不要网红锥子脸、动漫大眼、小鼻模板、夸张丰唇、浓眼妆、磨皮塑料皮肤、低幼脸或未成年体貌，不把清冷画成凶恶、病态或面无生气。不要直接交付照片、剧照截图、拼贴或3D模型，不复制照片绿色袖口、耳饰、抬手、半身裁切和绿林虚焦背景。不要去掉白手套、入鞘淑女剑或白绸金铃索；不要露指、蕾丝手套、橡胶手套、黄金甲手套、手套与袖口融合；不要出鞘剑、双剑、短刀、玄铁重剑、拂尘、悬空佩剑、柄鞘错轴、断鞘、鞘尾缺失、腰带不连接挂带或以绸索充当佩剑挂带。不要喇叭形铃、大钟、项链铃、第三枚铃、漂浮金球、铃连到指尖、白绸穿掌、白绸与袖子融为一片、无重力飘带或金铃被裙摆遮没。不要夸张大袖、透明薄纱、露胸、破损白衣、婚服、伤害情节、谷底场景、死亡意象、神像或施法动作。不要现代物品、拉链、腕表、运动鞋、高跟鞋、日式服制刀具、圆盘刀镡、菱形缠柄、和服、欧式奇幻铠甲、仙侠冠冕、赛博朋克或蒸汽朋克；不要唐式齐胸裙、明式马面裙或网巾、官服补子、清式旗装、剃发留辫、马蹄袖、大拉翅及朝代混搭。不要汉式交领左衽或水平镜像，不要多肢、多手、多指、粘连手指、错接手腕、手物融合、缺失肢体、裁断发顶、脚尖或器物端点。人物不要碎墨、飞白缺块、纸纹透肤透衣、毛边碎布条、撕裂衣摆、大片污渍补丁、密集噪点纹理、模糊眼睛、背景墨点切碎人物或雾遮轮廓；不要发光武器、龙形能量、光翼、法阵、粒子特效、强泛光、色情化、血腥或恶搞丑化。不要第二个人、神雕、群鸟、蜂群、复杂建筑、具象情节场景、分格、多视图、脸部特写框、文字、汉字、伪字、题款、印章、签名、logo或装饰水印；工具原有溯源标识和元数据必须保留。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_xiaolongnv__ch03_youth_jueqing_base.prepared.json`。

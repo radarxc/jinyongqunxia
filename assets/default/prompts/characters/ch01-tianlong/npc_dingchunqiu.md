@@ -9,59 +9,69 @@ tier: S
 output: assets/default/character/male/ch01/por_npc_dingchunqiu__ch01_elder_free_base.png
 manifest: assets/default/character/male/ch01/manifest.yaml
 references:
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    use: 本工作区 manifest 为 candidate；只约束纸底、光线、笔触、设色，不沿用参考人物的脸、体型、服饰或道具
+- path: .agents/coord/portrait-generation/realism-20261001/base-reference-archives/5817495ad7ea805cc26d788f013c7a7d66a1359c15174cb2c8a84fdfd03e7494.png
+  use: 已实际view。仅本人身份、年龄体型与可辨面部特征；不借旧图碎墨、纸片、斑驳、破洞或撕裂衣料。
+- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+  use: 已实际view，SHA 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922，本轮写实candidate。仅自然面手、完整人体体积、连贯衣料的渲染质量；不借萧峰身份、性别体型、须发衣装、掌势或龙影。
+- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+  use: 已实际view。仅同性别项目低饱和色卡，文档服色优先；不借身份、年龄、发式、服装、道具、旧碎墨或织纹。基线审批原样保留。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 已实际view。仅背景的浅淡水墨远景、空气层次与留白；完全忽略女性人物脸、薄纱、衣纹、肤质和姿势，水墨不能侵入本体。
 status: ready
+realism_revision: user_character_realism_20261001
 ---
 
-# 丁春秋 · 《天龙八部》（ch01）
+# 丁春秋 · 人物写实修正
 
-## 人物要点
+## 人物与阶段
 
-| 项 | 内容 | 依据 |
-|---|---|---|
-| 身份与阶段 | 擂鼓山至少室山受制之前的星宿派掌门，尚未被生死符制伏 | `docs/design/catalog/npcs-ch01-tianlong.md` 本人行；`docs/design/chapters/01-tianlong.md` §8.3；`docs/design/story/01-tianlong.md` §8.2；story/01 §3.2 Z06、Z08；skills-xiaoyao §4.5 |
-| 年龄与体貌 | 老年男子，确龄待考；须发皓白、外表有仙风道骨之感，手持羽扇，神态自负从容 | 年龄段依名录 / 章节；外貌为原著概括（待考），详见下列核对范围 |
-| 骨相与体型细化 | 宽额长脸、细长眉、柔和面颊与清楚老年眼纹，银白长须梳顺，体型匀称稍丰，笑意温和而眼神审视；约7头身，保留自然衰老与体态 | （原创扩展）；比例引用 tech/07 §2.6，人物特征优先 |
-| 服饰与发式 | 浅灰青宽松长袍、白色右衽内衫、灰紫细腰带，白发整齐束髻、普通簪固定，深灰布履；服装完整而考究 | tech/07 §2.7；具体选款、颜色、发式细部为（原创扩展） |
-| 兵器与标志物 | 一柄朴素白羽扇握在胸腹侧，羽片与扇柄连接可读；它是人物道具，不新增兵器武学，不画毒烟或毒鼎 | skills-xiaoyao §4.5 明示羽扇只作人物道具；服色与扇装具（原创扩展） |
-| 气质与姿态 | 稳立轻侧，一手持扇、一手拢在身侧，微笑自若，有刻意经营的高人仪态 | 人物性格概括（待考）；静态姿势（原创扩展） |
-| 品质档 | S；星宿主 Boss | tech/07 §3.1；本任务按人物用途分档，不取招募D级或武学品阶 |
+- subject_id：npc_dingchunqiu
+- book：ch01_tianlong
+- gender：male
+- age_variant：elder
 
-### 三类依据分账
+## 本轮人物写实规范
 
-- 文档明示：身份、组织、生命阶段与能力只引用名录和上表指定章节；玩法武学的（原创扩展）不反推原著装备。
-- 原著概括（待考）：须发皓白、外表有仙风道骨之感，手持羽扇，神态自负从容；白须白发、羽扇、仙风道骨的外在形象。未逐字核对，不附原文引句、回目号或页码。
-- 美术补足（原创扩展）：上表骨相细化、具体服色版型、发饰装具、静态姿态与物件摆位；不是人物原著固定制服。
-- 考据范围：《天龙八部》三联 / 广州修订版；擂鼓山与少室山登场时须发、面容、羽扇与服色；高人外表不能解释成正派身份。
+丁春秋受制前星宿掌门，银白须发与从容自负保留；考究灰青整袍与白内衫完整，消除刮擦纸片布面。
 
-### 变体与交付边界
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
 
-- 本文件只画上述阶段；变体键 `elder_free`，不把不同时点的官爵、伤势、兵器与服饰拼成一张。
-- `age_variant: elder` 是本任务的美术粗分组；老年归 elder，须发白不代表衰弱；不覆写 design/18 §5.3 的 NPC AgeBand。
-- 本次仅交付提示词；frontmatter 的 output / manifest 是后续图片与登记清单的目标路径，本次不创建这些产物。
-- `ready` 仅表示文本可提交；参考图审批状态以上述本工作区 manifest 为准，正式生成前复查当前版本。候选参考不冒称已审定基线。
-- 目标规格引用 tech/07 §1.3；本任务要求的纸底源图保持不透明。正式透明 RGBA 母版由 §5.2 后续处理，未处理前不得标为运行时成品。
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/realism-20261001/backups/por_npc_dingchunqiu__ch01_elder_free_base/prompt-93360b097a4054bf263760f32d9b6bf16d254d83758b91c30956976c39b00a1c.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
 
 ## 提示词
 
-以下 text 块是一段完整提交词；图像输入仍须由生成者实际载入 references 文件。
-
 ```text
-Use case: stylized-concept。Asset type: default风格包，单人武侠全身人物立绘候选，用于角色设定与对话立绘。题材：丁春秋（npc_dingchunqiu），老年男子，确龄待考；擂鼓山至少室山受制之前的星宿派掌门，尚未被生死符制伏。书界：《天龙八部》ch01_tianlong，北宋哲宗时期，项目推定约1093–1094年，精确纪年仍待考；地域与身份按本人物设定。参考图：实际输入assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png，本工作区 manifest 为 candidate；只约束纸底、光线、笔触、设色，不沿用参考人物的脸、体型、服饰或道具；参考图片若与本次指定阶段或作者最新文字要求冲突，以本次文字设定为准。人物识别：须发皓白、外表有仙风道骨之感，手持羽扇，神态自负从容；本次脸型与体态细化：宽额长脸、细长眉、柔和面颊与清楚老年眼纹，银白长须梳顺，体型匀称稍丰，笑意温和而眼神审视；约7头身，保留自然衰老与体态，尊重人物年龄、伤残与特殊外形。服装与发式：浅灰青宽松长袍、白色右衽内衫、灰紫细腰带，白发整齐束髻、普通簪固定，深灰布履；服装完整而考究。所有汉式交领均为右衽，即穿着者左襟压右襟；不镜像，僧衣披搭与其他服制按本人的身份处理。动作与兵器道具：一柄朴素白羽扇握在胸腹侧，羽片与扇柄连接可读；它是人物道具，不新增兵器武学，不画毒烟或毒鼎；稳立轻侧，一手持扇、一手拢在身侧，微笑自若，有刻意经营的高人仪态；手物接点与受力清楚，器物端点完整，兵器与鞘的长度、轴线匹配。具体脸型细节、选款、配色、物件装具与静态姿势均为原创扩展，不冒称原文逐字复原。构图：竖幅2:3，单人单视图完整全身，平视、近正面轻侧、中性透视；人物可见全身包围盒占画高约88–92%，头顶、双手、双足、兵器尖端、鞘尾与衣带全部入画，四周留净空；坐姿或矮小体态不强行拉长成成人站姿。画法与光线：武侠人物插画，男性偏写实，真实骨相、自然不对称、皮肤与筋腱质感、布料纤维和受力褶皱，克制细腻的手绘笔触，低饱和设色，柔和左上主光，面部、手部、衣层和器物轮廓清楚，不以特效或暗部遮掩结构。背景：统一不透明暖浅灰纸底，仅淡纸纹及人物或随身支撑物下的轻微接触阴影，无场景、无建筑山水、无任何文字。画布目标2048×3072，PNG；保留不透明纸底，作为后续母版处理的源图，不能把小尺寸参考图当作正式母版。排除项：不要文字、汉字、伪字、题字、标签、题款、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件或塑料饰品；不要真人演员脸、明星相貌、剧照构图或影视与游戏独创造型，不复制具体画作，不使用画师风格名；不要动漫大眼、日韩动漫风、统一网红锥子脸、丰唇滤镜、偶像磨皮、浓妆、塑料皮肤、摄影写真或三维模型渲染感；不要和服、前结宽腰带、日式刀具、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要跨朝代与族群拼贴、汉式交领左衽、水平镜像、明式网巾、官服补子、清式辫发、马蹄袖或清代顶戴；不要裸露、透明衣料、色情化、血腥特写、恶搞丑化、畸形健美肌肉或无依据的大面积破衣；不要多肢、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、弯曲断裂兵器、柄鞘错轴或容不下剑刃的短鞘；不要无依据的兵器、发光兵器、龙形能量、法阵、光翼、粒子特效、强烈泛光、强逆光、复杂场景、额外人物、分格、多视图或裁断头脚与器物端点；不要骷髅脸、魔角、绿皮、毒雾、门徒仪仗、文字旗帜、发光羽扇、道教八卦法衣、被制服枷锁或惊恐倒地。
+Create a premium REALISTIC Chinese wuxia full-body character illustration, with a delicate pale INK-WASH BACKGROUND. The human figure is solid, continuous and beautifully rendered: finely resolved natural facial features, clear eyes, believable skin and age, anatomically readable hands, coherent soft light and shade, intact opaque cloth with clean sewn hems, precise tailoring and a few broad weight-bearing folds. Use refined hand-painted realism. The skin, hair, clothes and shoes are fully painted solid forms; paper texture and loose ink marks belong exclusively behind the figure. This is a clarity repair of an existing character identity, not a new identity or a costume borrowed from another reference.
+
+REFERENCE ROLES ARE SEPARATE. Image 1 supplies this subject's identity, face, age and recognizable body type ONLY. Reconstruct all garments from the written base-stage specification below, never copying fragmented brushwork, holes, ragged edges, damaged fabric or old folds from image 1. Image 2, the completed realistic Xiao Feng image, supplies ONLY the quality of coherent human rendering, clear hands, skin and intact cloth; do not borrow its male face, muscular physique, hairstyle, costume, palm gesture, action pose, dragon or scene. Image 3 supplies ONLY a muted project color range, not identity, body, brush texture or equipment. Image 4 supplies ONLY airy pale ink-wash background language, not its woman, face, outfit, thin translucent cloth or flowing ribbons.
+
+BASE-STAGE CHARACTER FACTS (these override clothing and pose seen in every reference):
+时代：《天龙八部》北宋背景；大理、契丹或中原身份及服制分别按本人设定，不作后世朝代混搭。
+角色：丁春秋；书界：ch01_tianlong；年龄阶段：elder；性别：male。
+身份与阶段：擂鼓山至少室山受制之前的星宿派掌门，尚未被生死符制伏
+年龄与体貌：老年男子，确龄待考；须发皓白、外表有仙风道骨之感，手持羽扇，神态自负从容
+骨相与体型细化：宽额长脸、细长眉、柔和面颊与清楚老年眼纹，银白长须梳顺，体型匀称稍丰，笑意温和而眼神审视；约7头身，保留自然衰老与体态
+服饰与发式：浅灰青宽松长袍、白色右衽内衫、灰紫细腰带，白发整齐束髻、普通簪固定，深灰布履；服装完整而考究
+兵器与标志物：一柄朴素白羽扇握在胸腹侧，羽片与扇柄连接可读；它是人物道具，不新增兵器武学，不画毒烟或毒鼎
+气质与姿态：稳立轻侧，一手持扇、一手拢在身侧，微笑自若，有刻意经营的高人仪态
+
+REPAIR-SPECIFIC DIRECTION:
+丁春秋受制前星宿掌门，银白须发与从容自负保留；考究灰青整袍与白内衫完整，消除刮擦纸片布面。
+Maintain this elderly man's long face, broad forehead, natural eye wrinkles and combed silver-white long beard. He looks outwardly cultivated and serene but quietly appraising, not a demon or a saint receiving magic. Hair is neatly gathered with an ordinary pin. Rebuild the pale grey-green outer robe and opaque white right-lapped inner garment as intact refined woven cloth with a slim grey-purple sash, sewn continuous edges and a few generous draping folds. One readable hand holds a plain white-feather fan beside chest and abdomen, every feather attaches to the handle; other hand rests calmly at his side. No ripped skirt tiers, white scraped cloth surfaces, poison vapor, cauldron, followers, writing or luminous fan.
+
+Single subject, one view, complete full body, vertical 2:3 PNG composition with comfortable margins around head, hands, feet and every assigned prop tip. Eye-level neutral perspective, calm readable base-portrait staging; retain a seated or disabled body's actual pose when specified. All garments are fully opaque and structurally complete. Soft diffuse light from upper left, clear natural eyes and fingers, no theatrical rim light. Opaque warm pale-grey background with an extremely faint distant ink wash, mostly open space; no identifiable classical episode, narrative location, extra person, supernatural symbol or writing. Ink scenery stays behind the clean figure. Traditional Han crossed collars are right-lapped: wearer's left panel lies over right. Do not apply that collar rule to an explicitly different regional garment. Image native PNG bytes and actual dimensions will be preserved by the production pipeline; there is no printed measurement or label.
+
+完整排除项 / Exclusions:
+No dry-brush holes, paper erosion, peeling paint, white flecks, collage, cut-paper facets, fragmented watercolor mottling, random scratch texture, shredded ribbons, frayed ragged hems, holes or unjustified dirt on the human figure. No blurry face, indistinct fingers, merged hand and object, broken wrists, extra digits or limbs, missing legs, cropped head or feet, transparent garments, sexualization, exaggerated bodybuilding, beauty-filter plastic skin, anime eyes, photography or 3D model appearance. No cross-character identity transfer, no unrequested weapons, magic beams, glowing props, dragons, deities or battle effects in this base portrait. No text, caption, stamp, signature, logo, new decorative watermark, panels or multiple views; retain tool-native provenance. No demonic features, blackened skin, glowing fan, poison smoke, ritual cauldron, disciple entourage, skeleton face or bound captive pose. No modern clothing or equipment, Ming headband, Qing queue, horse-hoof cuffs, later court hat, Japanese kimono, European fantasy armor or dynastic costume mixing.
 ```
 
 ## 排除项
 
-不要文字、汉字、伪字、题字、标签、题款、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件或塑料饰品；不要真人演员脸、明星相貌、剧照构图或影视与游戏独创造型，不复制具体画作，不使用画师风格名；不要动漫大眼、日韩动漫风、统一网红锥子脸、丰唇滤镜、偶像磨皮、浓妆、塑料皮肤、摄影写真或三维模型渲染感；不要和服、前结宽腰带、日式刀具、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要跨朝代与族群拼贴、汉式交领左衽、水平镜像、明式网巾、官服补子、清式辫发、马蹄袖或清代顶戴；不要裸露、透明衣料、色情化、血腥特写、恶搞丑化、畸形健美肌肉或无依据的大面积破衣；不要多肢、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、弯曲断裂兵器、柄鞘错轴或容不下剑刃的短鞘；不要无依据的兵器、发光兵器、龙形能量、法阵、光翼、粒子特效、强烈泛光、强逆光、复杂场景、额外人物、分格、多视图或裁断头脚与器物端点；不要骷髅脸、魔角、绿皮、毒雾、门徒仪仗、文字旗帜、发光羽扇、道教八卦法衣、被制服枷锁或惊恐倒地。
-
-上述“不要水印”只指不生成装饰性水印；工具已有溯源标识应保留。
+No dry-brush holes, paper erosion, peeling paint, white flecks, collage, cut-paper facets, fragmented watercolor mottling, random scratch texture, shredded ribbons, frayed ragged hems, holes or unjustified dirt on the human figure. No blurry face, indistinct fingers, merged hand and object, broken wrists, extra digits or limbs, missing legs, cropped head or feet, transparent garments, sexualization, exaggerated bodybuilding, beauty-filter plastic skin, anime eyes, photography or 3D model appearance. No cross-character identity transfer, no unrequested weapons, magic beams, glowing props, dragons, deities or battle effects in this base portrait. No text, caption, stamp, signature, logo, new decorative watermark, panels or multiple views; retain tool-native provenance. No demonic features, blackened skin, glowing fan, poison smoke, ritual cauldron, disciple entourage, skeleton face or bound captive pose. No modern clothing or equipment, Ming headband, Qing queue, horse-hoof cuffs, later court hat, Japanese kimono, European fantasy armor or dynastic costume mixing.
 
 ## 质检要点
 
-- 白须白发与白羽扇齐全，人物外貌不因反派身份妖魔化。
-- 羽扇有实际柄与羽根，不能化成发光掌力或兵刃。
-- 处于受制之前，姿态从容、没有枷锁或痛苦抽搐。
-- 与无崖子清俊瘦长脸区分，丁春秋面部稍丰、笑意自负。
-- 本阶段的年龄、完整衣装与人物差异是否保留；纸底、左上柔光、2:3、88–92%占高及完整头足与器物端点逐项检查。
-
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_dingchunqiu__ch01_elder_free_base.prepared.json`。

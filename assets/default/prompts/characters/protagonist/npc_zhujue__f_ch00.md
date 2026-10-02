@@ -9,8 +9,12 @@ tier: S
 output: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
 manifest: assets/default/character/female/ch00/manifest.yaml
 references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 仅参考纸底色感、柔和左上光、笔触和低饱和设色，不复制面容、体型、衣装或道具。
+- path: .agents/coord/imagegen-reference/hero-20261001/classic_zhaomin_1993_portrait.jpg
+  use: 已实际下载并view_image查看的公开张敏1993赵敏经典剧照。第一人物设计启发，只取有判断力的凝聚目光、英气骨相组织与成年女性主角气场；重新创作28岁原创女主，不继承赵敏或演员身份、蒙古/贵族装、白衣、金冠、折扇、披散发、背景、照片构图或反派神态。来源及原始SHA见参考目录sources.json。
+- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+  use: 已实际查看。第二参考仅提供项目墨线、柔光、暖浅灰纸底和淡雅设色；禁止复制Wang脸、年龄、体型、柔静侧望、发饰与开袍衣装，不更改其原approved状态。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 已实际查看。第三参考仅取用户指定的精细水墨人物、淡墨层染、纸面透色与衣料笔触；不复制其脸、体型、发式、青白衣装、披帛、姿态或山水背景。
 status: ready
 ---
 
@@ -27,42 +31,36 @@ status: ready
 | 兵器道具 | 空手、无随身兵器，不携青铜名剑或竹棒 | 本任务允许普通兵器或空手；`tech/07` §2.7；选配为**（原创扩展）**，不新增装备 ID |
 | 气质姿态 | 双手空着自然放松，尚在观察陌生环境；身体微侧、双足站稳，不模仿越女教学持竹姿势 | `design/01` §4.6；`docs/design/13-progression-and-endings.md` §3；姿态设计为**（原创扩展）** |
 | 跨界同一性 | 同性别十五版同脸、同体型、同发质、同成年年龄感；成长只作神态微调，压制不画成衰老或病弱 | 基准 §1；`design/01` §4.2；`design/13` §3 |
-| 风格与参考 | 仅列本工作区已 approved 的王语嫣女性基线；生成前实际查看、载入并复核其状态，只作纸底色感、光线、笔触与设色参考，不复制人物。 | `assets/default/STYLE.md`；基线 manifest；最新版同性别模板 |
+| 风格与参考 | 第一参考为本工作区已 approved 的王语嫣女性基线；第二参考为用户本轮指定的自生成水墨人物图。生成前实际查看并载入两图，复核项目基线状态；仅参考纸底色感、光线、笔触与设色，不复制人物、服装或山水背景。 | `assets/default/STYLE.md`；基线 manifest；用户2026-09-30本轮指令；最新版同性别模板 |
 | 画幅与交付 | 单人全身、2:3；本批生成目标 2048×3072 PNG；不透明暖浅灰纸底、极淡纸纹、无文字；本文件仅为待生成提示词 | `tech/07` §1.3、§5.2 的尺寸与管线；生成背景按本轮返修要求 |
 | 事实边界 | 主角脸、衣色、服装搭配与姿态均为原创美术默认，未声称原著或服饰史逐字复原 | 基准 §16；上游时代语汇；本任务报告 §4 |
 
+## 本轮英雄重绘规范
+
+第三/四候选重设计：以经典成年女侠的有判断力目光与英气骨相启发新成年女主；正面坚定、全收发髻、连续封闭竹青深衣、空手，仁厚可信且有主角气场，摆脱Wang风格图锁脸。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/hero-20261001/backups/por_npc_zhujue__ch00_f_base/prompt-d9d73a2da63a82f1a1d0aeed4db57645d73c3e382ef77df4da25d543b1ecb23d.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
 ## 提示词
 
-以下整个 text 块为一次生成的完整提示词；无需拼接其他文件。风格参考须按 frontmatter 实际加载，路径文字本身不等于图像输入。
-
 ```text
-生成一张 default 风格包的原创武侠主角全身基础立绘，主体 npc_zhujue，资产 por_npc_zhujue__ch00_f_base，只画一人、一个视图。时代为春秋末·越国，约前482年（原创扩展定年），取越地山路上的普通行旅者；原著年代不详者按项目原创定年绘制服装，不把玩法定年当成史实复原。女性主角面容锚点（原创扩展）：现代中国青年，外观约28岁；略长的鹅蛋脸，颧骨有轻微支撑、下颌利落而不尖削，眉形舒展且眉峰轻提，深棕色中等杏眼，鼻梁秀直、鼻头自然，唇线清晰、上下唇厚度适中，右眼外侧下方有一颗浅褐小痣；暖中性肤色，柔润而保留真实体积，无幼态或深皱纹；中等偏高、肩背舒展、腰腹与四肢有行动力量，约7头身；原生发质乌黑、顺直、发丝细密而有韧性；目光专注而有好奇心，嘴角平和，警觉但不怯弱。本图是同一主角在一个时代的基础服装变体，不是新人物；跨时代保持上述面容骨相、五官位置、痣的位置、体型与发质，不因朝代改变血统或借用当地具名人物的脸。现代身份只通过观察与判断的神态体现，身上没有现代物件。服装和道具是本次原创扩展的普通江湖造型，不赋予主角门派、官职、贵族或特定现代职业身份；不表现剧情奖励、数值强弱、伤残与结局选择。本时代服饰发式（原创扩展）：竹青与浅麻色相间的简朴深衣，交领右衽、腰束窄布带，裙摆离地便于行走、平底素履；黑发全部收成简约椎髻，以朴素布条固定，无珠翠。交领部位严格右衽，穿着者左襟压右襟、向其右侧合拢；对襟外衣不强画斜领，内层交领单独核对。衣料完全不透明、缝线与受力褶皱自然，衣边完整、只有克制的行旅磨痕；面部、双手、鞋履可读。兵器道具：空手、无随身兵器，不携青铜名剑或竹棒。不出现任何备用兵器、隐藏刀柄或悬浮装备，双手清楚可见，不以大袖遮掩结构。气质姿态：双手空着自然放松，尚在观察陌生环境；身体微侧、双足站稳，不模仿越女教学持竹姿势。图像输入使用随本文件列出的女性风格基线，且仅取纸底色感、柔和左上光、笔触和低饱和设色；不要复制参考人物的面容、体型、发髻、衣色、道具或姿态；本图背景统一为不透明暖浅灰纸底、极淡纸纹、无文字。画法采用武侠手绘人物插画，女性偏美丽、古典东方审美、精致自然骨相，细墨线与柔和层染，温润肤质而不作毛孔摄影锐化；肩背与四肢有可信力量，端正有主见，与男性版本气质和行动能力对等，不画依附或娇怯姿态；使用竹青、浅麻色与深褐的低饱和设色，细线与层染服务结构，墨气不遮脸、不掩盖手指和衣襟。柔和左上主光、适度体积、无硬轮廓逆光，金属只作少量哑光点缀。构图为竖幅2:3、目标2048×3072 PNG，平视近正面轻微三分之四侧身、中性透视；全身从发顶到双脚完整，人物目标占画高88–92%，脚底留约4%画高净空，四周容纳衣摆与全部器物端点，背景为不透明暖浅灰纸底、极淡纸纹、无文字，纸底完整填充画布。主体保留极轻的手绘层染，不画地面、接触阴影、框线或UI；前景边缘清楚，便于后续对话立绘与轻量网格处理，本张不做分层拼贴或动画。排除项：不要画面文字、汉字、伪字、题款、印章、签名、标注、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、数码物件；不要真人演员脸、明星肖像、剧照构图、外部画作复制或特定改编独创造型；不要动漫大眼、低幼脸、网红锥子脸、塑料磨皮、摄影写真或三维模型感；不要裸露、透明衣料、色情化姿态、血腥特写、恶搞丑化或畸形肌肉；不要和服、日式刀具、圆盘刀镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要时代混搭、错误衣襟、水平镜像、多余人物、多肢多指、手腕错接、手物融合、失重衣带、悬空兵器、断裂短鞘；不要具名神兵、门派徽记、发光武器、法阵、龙形能量、强泛光、复杂山水建筑、分格或裁断头足。不要汉以后幞头、宋代褙子、明代网巾、清式辫发、清宫首饰或夸张冠冕。
+REFERENCE HIERARCHY: IMAGE 1 IS THE PRIMARY CHARACTER-DESIGN INSPIRATION. Create a NEW ORIGINAL LEADING HEROINE, not Wang Yuyan, not Zhao Min, and not a costume change of either woman in images 2 or 3. Take from image 1 only the purposeful gaze, confident facial structure and commanding adult heroine presence, and redesign those qualities into this original protagonist. Images 2 and 3 are SECONDARY PAINTING-MEDIUM REFERENCES ONLY: ink lines, delicate color washes, warm paper and soft light. Never inherit their face, youthful doll proportions, demure side-glance, hairstyle, open robes, long hair or accessories. This is a new full-body painting, not a photo edit.
+Character: npc_zhujue, the female player protagonist in ch00, late Spring-and-Autumn Yue, project-original date around 482 BCE. A modern Chinese adult entering the historical story as an ordinary traveler, approximately 28 years old, without royal title, clan uniform, named weapon or modern object. Make her visibly the leading woman of her own adventure: thoughtful, brave, clear-headed, trustworthy, composed and kind, never sinister, arrogant or seductive.
+An independent adult face: a slightly elongated oval with gently supported cheekbones, a clean firm jaw that is not pointed, open strong brows with a subtly lifted brow peak, medium dark-brown almond eyes with decisive focus, a straight natural nose and defined moderately full lips. A small light-brown mole sits just below the outer corner of HER RIGHT EYE. Natural adult facial planes and warm-neutral skin; calm determination with attentive curiosity. Chin level, gaze forward toward the viewer, not drifting sideways. No baby face, doll eyes or inherited Wang Yuyan face. Moderately tall, capable and balanced, shoulders naturally open, torso and limbs carrying believable movement strength without bodybuilding muscles.
+COSTUME CONSTRUCTION: one plain CLOSED CONTINUOUS bamboo-green shenyi dress. Bodice and long skirt are joined into one coherent garment. The cross-collar closes rightward, the wearer's left lapel overlapping the right. The outer fabric continues into a CLOSED FRONT SKIRT from the waist to just above the shoes. Below the belt the front is continuous green cloth, not an open gap or pale inner-dress panel. Only a narrow pale-hemp inner collar is visible. One narrow plain cloth belt secures the waist. Fully opaque, complete, modest practical clothing, clear large folds, walking-length hem and plain flat cloth shoes. NO OPEN OUTER ROBE, NO COAT OVER A WHITE DRESS, NO BEIZI, NO SEPARATE WHITE CENTER PANEL, NO SHAWL, NO TRAILING SASH. Do not copy the white film costume.
+ALL black straight dense hair is gathered into one compact simple chuiji bun, neatly secured with a plain dark cloth strip. No hair or long ribbon hangs at the neck, chest or shoulders. No crown, flowers, jewelry, elaborate pins or film headpiece.
+Pose: almost frontal full-body standing with only a slight natural turn. Shoulders and hips face mostly forward; head upright, chest open, spine relaxed and steady. One foot slightly ahead, both feet firmly supporting the body. Both arms hang naturally at the sides with a little space from the torso; BOTH HANDS ARE EMPTY, relaxed and readable, not crossed at the waist and not holding sleeves. She stands to assess her next action, neither posing demurely nor attacking. No fan, sword, bamboo rod, horse or companion.
+Unified fine Chinese ink-and-color wuxia illustration: living ink lines on face and hands, soft muted bamboo-green and pale-hemp washes, slight paper showing through, simple large clothing shapes and selectively expressive folds. Reduce photographic pores, cloth noise and glossy highlights. Warm pale-gray opaque paper background, faint texture, no landscape, architecture, floor shadow or narrative scene; soft upper-left diffuse light. Vertical 2:3 PNG, target2048×3072, one figure in one view, full hair, hands, hem and shoes visible with comfortable margins. Natural proportions and complete structure matter more than exact percentages; no measuring marks or rigid height target. Preserve tool provenance.
+本次核心：新创作有英气与判断力的28岁原创女主，第一影视图只启发目光和骨相，不要王语嫣换衣脸。更正面平视、肩背舒展、双手空着垂放。竹青深衣是一件闭合的一体长衣，腰带以下也是连续竹青衣料，不能敞开露出白色内裙。头发全部收成朴素紧凑椎髻；右眼外下方小痣保留。春秋越地普通行旅者身份不变。
 ```
 
 ## 排除项
 
-以下限制已写入完整提示词，不需下游再次补齐。
-
-- 不复制演员面容、外部画作、特定改编作品设计；不写演员、画师或公司姓名作为风格词。
-- 不穿具名人物标志装束，不配具名神兵、门派徽记、官服或现代物件。
-- 不要汉以后幞头、宋代褙子、明代网巾、清式辫发、清宫首饰或夸张冠冕。
-- 不以低武压制改变体格、年龄或性别气质，不把女版画成柔弱陪衬。
-- 不出现错误交领叠压、水平镜像、失重布料或跨时代发式。
-- 不出现多指、多肢、手物融合、短鞘、悬空装备或头足裁切。
-- 不生成投影、复杂场景、文字、装饰水印、UI 框或能量特效；背景仅为不透明暖浅灰纸底、极淡纸纹、无文字；工具自带溯源信息保留。
+No Wang Yuyan face or pose, teenage doll face, demure side-glance, drooping shoulders, villain expression or seductive styling. No open-front outer robe, white central inner-dress panel, beizi, coat, shawl, trailing sash, loose long hair, crown, jewelry, film costume, Mongolian or royal identity, fan, sword, horse, kneeling, back-facing or over-the-shoulder pose. No photographic rendering, 3D gloss, heavy makeup, huge anime eyes, exaggerated muscles, transparent clothing, extra people, extra limbs or fingers, fused hands, cropped body, text, signature, seal or copied reference watermark; retain tool provenance.
 
 ## 质检要点
 
-- [ ] 与同一性别其他十四版并排核对脸型、眉眼鼻唇、痣的位置、肤色、体型和发质；锚点必须逐字相同。
-- [ ] 年龄感维持约 28 岁的成年默认，不因书界跨度变成少年或老者；不新增固定的伤残或结局状态。
-- [ ] 确认时代、地域与本文件服装搭配一致；服饰史精确版型另行复核，不将原创补足当原著事实。
-- [ ] 交领部位严格右衽，穿着者左襟压右襟、向其右侧合拢；对襟外衣不强画斜领，内层交领单独核对。检查图像没有水平翻转。
-- [ ] 男女版本的视线、承重、肩背与行动感对等；女性美感不依赖娇弱或性感化。
-- [ ] 双手与双足结构自然，衣料不透明，动作与普通行旅身份相符。
-- [ ] 空手要求成立，画面无刀柄、剑鞘、名器或门派信物。
-- [ ] 单人单视图，头发、鞋尖与器物端点全在画内；占高及脚底净空为生成目标，成图后实测。
-- [ ] 生成背景为不透明暖浅灰纸底、极淡纸纹、无文字，纸底完整填充画布；实际尺寸与主体边缘另验，禁止放大低分辨率图后冒称高分辨率母版。
-- [ ] references 仅作风格输入；载入前检查文件与审批状态，不复制基线人物的脸和服装。
-- [ ] 后续生成将原始 PNG 存到 frontmatter.output，在 frontmatter.manifest 登记完整 prompt、negative、实际参考与来源；未经实测不填写尺寸或哈希。
-- [ ] `ready` 仅表示提示词可提交；本次未出图、未创建图片 manifest，成图须另经人工一致性与审美审核。
-
+- 英雄人物方向、身份阶段、衣装与器物按本轮设计检查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/hero-20261001/por_npc_zhujue__ch00_f_base.prepared.json`。

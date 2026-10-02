@@ -9,59 +9,69 @@ tier: S
 output: assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
 manifest: assets/default/character/female/ch01/manifest.yaml
 references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 本工作区 manifest 为 approved；只约束纸底、光线、笔触、设色，不沿用参考人物的脸、体型、服饰或道具
+- path: .agents/coord/portrait-generation/realism-20261001/base-reference-archives/fc10de16588f30662ce13250cfd4921a1ac4ee367aac6d10bb90cc430a5ed820.png
+  use: 已实际view。仅本人身份、年龄体型与可辨面部特征；不借旧图碎墨、纸片、斑驳、破洞或撕裂衣料。
+- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+  use: 已实际view，SHA 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922，本轮写实candidate。仅自然面手、完整人体体积、连贯衣料的渲染质量；不借萧峰身份、性别体型、须发衣装、掌势或龙影。
+- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+  use: 已实际view。仅同性别项目低饱和色卡，文档服色优先；不借身份、年龄、发式、服装、道具、旧碎墨或织纹。基线审批原样保留。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 已实际view。仅背景的浅淡水墨远景、空气层次与留白；完全忽略女性人物脸、薄纱、衣纹、肤质和姿势，水墨不能侵入本体。
 status: ready
+realism_revision: user_character_realism_20261001
 ---
 
-# 阿朱 · 《天龙八部》（ch01）
+# 阿朱 · 人物写实修正
 
-## 人物要点
+## 人物与阶段
 
-| 项 | 内容 | 依据 |
-|---|---|---|
-| 身份与阶段 | 易容寻根、与萧峰同行且小镜湖悲剧发生前的本来面目，未受致命伤，不画他人易容形象 | `docs/design/catalog/npcs-ch01-tianlong.md` 本人行；`docs/design/chapters/01-tianlong.md` §8.3；`docs/design/story/01-tianlong.md` §8.2；story/01 §3.2 Z02–Z04、§5.7；chapters/01 §8.2 |
-| 年龄与体貌 | 年轻少女，确龄待考，保守采用未成年外观与完整衣着；娇俏灵动、善解人意，擅长易容，慕容家侍女出身 | 年龄段依名录 / 章节；外貌为原著概括（待考），详见下列核对范围 |
-| 骨相与体型细化 | 柔和短鹅蛋脸、略圆脸颊、灵动细长眼、自然浅笑，身量轻巧，与王语嫣端雅修长脸拉开；少女约6–6.5头身，四肢与肩胯保持未成年发育特征 | （原创扩展）；比例引用 tech/07 §2.6，人物特征优先 |
-| 服饰与发式 | 浅绛色窄袖衫、暖米长裙、短而便于行走的褙子，素色布带；双侧发束收成小髻，少量细簪，衣领严整、平底布鞋 | tech/07 §2.7；具体选款、颜色、发式细部为（原创扩展） |
-| 兵器与标志物 | 腰侧一只合拢的小易容布包，包口收好、不展示人皮面具；布包为原创道具，双手不持兵刃 | 名录 sk_yirongshu；便携布包（原创扩展），不新造装备ID |
-| 气质与姿态 | 身体略前倾作倾听，手指轻扶布包系带，眼神温暖机敏，双脚自然站稳 | 人物性格概括（待考）；静态姿势（原创扩展） |
-| 品质档 | S；主角团关系核心与小镜湖锚点 | tech/07 §3.1；本任务按人物用途分档，不取招募D级或武学品阶 |
+- subject_id：npc_azhu
+- book：ch01_tianlong
+- gender：female
+- age_variant：youth
 
-### 三类依据分账
+## 本轮人物写实规范
 
-- 文档明示：身份、组织、生命阶段与能力只引用名录和上表指定章节；玩法武学的（原创扩展）不反推原著装备。
-- 原著概括（待考）：娇俏灵动、善解人意，擅长易容，慕容家侍女出身；易容本领、灵动体态与温柔机敏；本张为本来面目。未逐字核对，不附原文引句、回目号或页码。
-- 美术补足（原创扩展）：上表骨相细化、具体服色版型、发饰装具、静态姿态与物件摆位；不是人物原著固定制服。
-- 考据范围：《天龙八部》三联 / 广州修订版；少林易容、寻根同行及小镜湖前的年龄和面容；核是否有明示衣色，不把浅绛配色当原文。
+阿朱本来面目、悲剧前、温暖机敏少女；完整浅绛窄袖衫与暖米裙、易容布包，不复制王语嫣脸。
 
-### 变体与交付边界
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
 
-- 本文件只画上述阶段；变体键 `youth_alive`，不把不同时点的官爵、伤势、兵器与服饰拼成一张。
-- `age_variant: youth` 是本任务的美术粗分组；采用 youth 少女组；具体年龄留待版本核对；不覆写 design/18 §5.3 的 NPC AgeBand。
-- 本次仅交付提示词；frontmatter 的 output / manifest 是后续图片与登记清单的目标路径，本次不创建这些产物。
-- `ready` 仅表示文本可提交；参考图审批状态以上述本工作区 manifest 为准，正式生成前复查当前版本。候选参考不冒称已审定基线。
-- 目标规格引用 tech/07 §1.3；本任务要求的纸底源图保持不透明。正式透明 RGBA 母版由 §5.2 后续处理，未处理前不得标为运行时成品。
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/realism-20261001/backups/por_npc_azhu__ch01_youth_alive_base/prompt-396a4b249fba396e71d986ee678fa23d61769108b4f233a7d83f233d1cda6533.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
 
 ## 提示词
 
-以下 text 块是一段完整提交词；图像输入仍须由生成者实际载入 references 文件。
-
 ```text
-Use case: stylized-concept。Asset type: default风格包，单人武侠全身人物立绘候选，用于角色设定与对话立绘。题材：阿朱（npc_azhu），年轻少女，确龄待考，保守采用未成年外观与完整衣着；易容寻根、与萧峰同行且小镜湖悲剧发生前的本来面目，未受致命伤，不画他人易容形象。书界：《天龙八部》ch01_tianlong，北宋哲宗时期，项目推定约1093–1094年，精确纪年仍待考；地域与身份按本人物设定。参考图：实际输入assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png，本工作区 manifest 为 approved；只约束纸底、光线、笔触、设色，不沿用参考人物的脸、体型、服饰或道具；参考图片若与本次指定阶段或作者最新文字要求冲突，以本次文字设定为准。人物识别：娇俏灵动、善解人意，擅长易容，慕容家侍女出身；本次脸型与体态细化：柔和短鹅蛋脸、略圆脸颊、灵动细长眼、自然浅笑，身量轻巧，与王语嫣端雅修长脸拉开；少女约6–6.5头身，四肢与肩胯保持未成年发育特征，尊重人物年龄、伤残与特殊外形。服装与发式：浅绛色窄袖衫、暖米长裙、短而便于行走的褙子，素色布带；双侧发束收成小髻，少量细簪，衣领严整、平底布鞋。所有汉式交领均为右衽，即穿着者左襟压右襟；不镜像，僧衣披搭与其他服制按本人的身份处理。动作与兵器道具：腰侧一只合拢的小易容布包，包口收好、不展示人皮面具；布包为原创道具，双手不持兵刃；身体略前倾作倾听，手指轻扶布包系带，眼神温暖机敏，双脚自然站稳；手物接点与受力清楚，器物端点完整，兵器与鞘的长度、轴线匹配。具体脸型细节、选款、配色、物件装具与静态姿势均为原创扩展，不冒称原文逐字复原。构图：竖幅2:3，单人单视图完整全身，平视、近正面轻侧、中性透视；人物可见全身包围盒占画高约88–92%，头顶、双手、双足、兵器尖端、鞘尾与衣带全部入画，四周留净空；坐姿或矮小体态不强行拉长成成人站姿。画法与光线：武侠人物插画，女性偏美丽，古典东方审美，保留真实年龄、身体特征和独立骨相，细墨线勾勒、柔和层染、自然温润肤质与可信衣料垂坠，低饱和设色，柔和左上主光，面部、手部、衣层和器物轮廓清楚，不以特效或暗部遮掩结构。背景：统一不透明暖浅灰纸底，仅淡纸纹及人物或随身支撑物下的轻微接触阴影，无场景、无建筑山水、无任何文字。画布目标2048×3072，PNG；保留不透明纸底，作为后续母版处理的源图，不能把小尺寸参考图当作正式母版。排除项：不要文字、汉字、伪字、题字、标签、题款、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件或塑料饰品；不要真人演员脸、明星相貌、剧照构图或影视与游戏独创造型，不复制具体画作，不使用画师风格名；不要动漫大眼、日韩动漫风、统一网红锥子脸、丰唇滤镜、偶像磨皮、浓妆、塑料皮肤、摄影写真或三维模型渲染感；不要和服、前结宽腰带、日式刀具、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要跨朝代与族群拼贴、汉式交领左衽、水平镜像、明式网巾、官服补子、清式辫发、马蹄袖或清代顶戴；不要裸露、透明衣料、色情化、血腥特写、恶搞丑化、畸形健美肌肉或无依据的大面积破衣；不要多肢、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、弯曲断裂兵器、柄鞘错轴或容不下剑刃的短鞘；不要无依据的兵器、发光兵器、龙形能量、法阵、光翼、粒子特效、强烈泛光、强逆光、复杂场景、额外人物、分格、多视图或裁断头脚与器物端点；不要唐代齐胸襦裙、明式马面裙、清式旗装、大拉翅、无依据的夸张头冠与繁复珠宝；不要段正淳易容脸、老年面具、伤口血迹、濒死姿态、成人性感身材、低胸露腰、艳妆或兵器；不要萧峰同框。
+Create a premium REALISTIC Chinese wuxia full-body character illustration, with a delicate pale INK-WASH BACKGROUND. The human figure is solid, continuous and beautifully rendered: finely resolved natural facial features, clear eyes, believable skin and age, anatomically readable hands, coherent soft light and shade, intact opaque cloth with clean sewn hems, precise tailoring and a few broad weight-bearing folds. Use refined hand-painted realism. The skin, hair, clothes and shoes are fully painted solid forms; paper texture and loose ink marks belong exclusively behind the figure. This is a clarity repair of an existing character identity, not a new identity or a costume borrowed from another reference.
+
+REFERENCE ROLES ARE SEPARATE. Image 1 supplies this subject's identity, face, age and recognizable body type ONLY. Reconstruct all garments from the written base-stage specification below, never copying fragmented brushwork, holes, ragged edges, damaged fabric or old folds from image 1. Image 2, the completed realistic Xiao Feng image, supplies ONLY the quality of coherent human rendering, clear hands, skin and intact cloth; do not borrow its male face, muscular physique, hairstyle, costume, palm gesture, action pose, dragon or scene. Image 3 supplies ONLY a muted project color range, not identity, body, brush texture or equipment. Image 4 supplies ONLY airy pale ink-wash background language, not its woman, face, outfit, thin translucent cloth or flowing ribbons.
+
+BASE-STAGE CHARACTER FACTS (these override clothing and pose seen in every reference):
+时代：《天龙八部》北宋背景；大理、契丹或中原身份及服制分别按本人设定，不作后世朝代混搭。
+角色：阿朱；书界：ch01_tianlong；年龄阶段：youth；性别：female。
+身份与阶段：易容寻根、与萧峰同行且小镜湖悲剧发生前的本来面目，未受致命伤，不画他人易容形象
+年龄与体貌：年轻少女，确龄待考，保守采用未成年外观与完整衣着；娇俏灵动、善解人意，擅长易容，慕容家侍女出身
+骨相与体型细化：柔和短鹅蛋脸、略圆脸颊、灵动细长眼、自然浅笑，身量轻巧，与王语嫣端雅修长脸拉开；少女约6–6.5头身，四肢与肩胯保持未成年发育特征
+服饰与发式：浅绛色窄袖衫、暖米长裙、短而便于行走的褙子，素色布带；双侧发束收成小髻，少量细簪，衣领严整、平底布鞋
+兵器与标志物：腰侧一只合拢的小易容布包，包口收好、不展示人皮面具；布包为原创道具，双手不持兵刃
+气质与姿态：身体略前倾作倾听，手指轻扶布包系带，眼神温暖机敏，双脚自然站稳
+
+REPAIR-SPECIFIC DIRECTION:
+阿朱本来面目、悲剧前、温暖机敏少女；完整浅绛窄袖衫与暖米裙、易容布包，不复制王语嫣脸。
+Keep the first reference's own short soft oval face and lively young gaze, distinct from Wang Yuyan. Conservatively preserve the youthful/minor appearance specified in the document, modest fully opaque attire, no adult glamour. Her tidy narrow-sleeved pale-crimson blouse and short walking jacket sit over a warm-ivory full skirt: all are continuous supple fabric, clean intact sleeve openings and hem, with only a few graceful gravity folds. Hair remains in two small gathered side arrangements with minimal small pins. Lean forward very slightly as though listening kindly; fingers lightly touch the closed disguise pouch's tie at the waist. Do not display a skin mask, disguise another person, fatal injury, weapons or the tragic scene.
+
+Single subject, one view, complete full body, vertical 2:3 PNG composition with comfortable margins around head, hands, feet and every assigned prop tip. Eye-level neutral perspective, calm readable base-portrait staging; retain a seated or disabled body's actual pose when specified. All garments are fully opaque and structurally complete. Soft diffuse light from upper left, clear natural eyes and fingers, no theatrical rim light. Opaque warm pale-grey background with an extremely faint distant ink wash, mostly open space; no identifiable classical episode, narrative location, extra person, supernatural symbol or writing. Ink scenery stays behind the clean figure. Traditional Han crossed collars are right-lapped: wearer's left panel lies over right. Do not apply that collar rule to an explicitly different regional garment. Image native PNG bytes and actual dimensions will be preserved by the production pipeline; there is no printed measurement or label.
+
+完整排除项 / Exclusions:
+No dry-brush holes, paper erosion, peeling paint, white flecks, collage, cut-paper facets, fragmented watercolor mottling, random scratch texture, shredded ribbons, frayed ragged hems, holes or unjustified dirt on the human figure. No blurry face, indistinct fingers, merged hand and object, broken wrists, extra digits or limbs, missing legs, cropped head or feet, transparent garments, sexualization, exaggerated bodybuilding, beauty-filter plastic skin, anime eyes, photography or 3D model appearance. No cross-character identity transfer, no unrequested weapons, magic beams, glowing props, dragons, deities or battle effects in this base portrait. No text, caption, stamp, signature, logo, new decorative watermark, panels or multiple views; retain tool-native provenance. No mature femme-fatale face, Wang Yuyan identity, exposed neckline, sheer cloth, human-skin mask, impersonated face, wounds or weapon. No modern clothing or equipment, Ming headband, Qing queue, horse-hoof cuffs, later court hat, Japanese kimono, European fantasy armor or dynastic costume mixing.
 ```
 
 ## 排除项
 
-不要文字、汉字、伪字、题字、标签、题款、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件或塑料饰品；不要真人演员脸、明星相貌、剧照构图或影视与游戏独创造型，不复制具体画作，不使用画师风格名；不要动漫大眼、日韩动漫风、统一网红锥子脸、丰唇滤镜、偶像磨皮、浓妆、塑料皮肤、摄影写真或三维模型渲染感；不要和服、前结宽腰带、日式刀具、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要跨朝代与族群拼贴、汉式交领左衽、水平镜像、明式网巾、官服补子、清式辫发、马蹄袖或清代顶戴；不要裸露、透明衣料、色情化、血腥特写、恶搞丑化、畸形健美肌肉或无依据的大面积破衣；不要多肢、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、弯曲断裂兵器、柄鞘错轴或容不下剑刃的短鞘；不要无依据的兵器、发光兵器、龙形能量、法阵、光翼、粒子特效、强烈泛光、强逆光、复杂场景、额外人物、分格、多视图或裁断头脚与器物端点；不要唐代齐胸襦裙、明式马面裙、清式旗装、大拉翅、无依据的夸张头冠与繁复珠宝；不要段正淳易容脸、老年面具、伤口血迹、濒死姿态、成人性感身材、低胸露腰、艳妆或兵器；不要萧峰同框。
-
-上述“不要水印”只指不生成装饰性水印；工具已有溯源标识应保留。
+No dry-brush holes, paper erosion, peeling paint, white flecks, collage, cut-paper facets, fragmented watercolor mottling, random scratch texture, shredded ribbons, frayed ragged hems, holes or unjustified dirt on the human figure. No blurry face, indistinct fingers, merged hand and object, broken wrists, extra digits or limbs, missing legs, cropped head or feet, transparent garments, sexualization, exaggerated bodybuilding, beauty-filter plastic skin, anime eyes, photography or 3D model appearance. No cross-character identity transfer, no unrequested weapons, magic beams, glowing props, dragons, deities or battle effects in this base portrait. No text, caption, stamp, signature, logo, new decorative watermark, panels or multiple views; retain tool-native provenance. No mature femme-fatale face, Wang Yuyan identity, exposed neckline, sheer cloth, human-skin mask, impersonated face, wounds or weapon. No modern clothing or equipment, Ming headband, Qing queue, horse-hoof cuffs, later court hat, Japanese kimono, European fantasy armor or dynastic costume mixing.
 
 ## 质检要点
 
-- 本来面目且健康存活，不能把易容对象的脸混入。
-- 少女体态、完整衣着，不以成年性感化表现机灵。
-- 圆润短脸、浅绛衣与亲切眼神区别于王语嫣。
-- 易容布包闭合无文字，不画人皮或面具恐怖效果。
-- 本阶段的年龄、完整衣装与人物差异是否保留；纸底、左上柔光、2:3、88–92%占高及完整头足与器物端点逐项检查。
-
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_azhu__ch01_youth_alive_base.prepared.json`。

@@ -1,0 +1,74 @@
+---
+asset_id: por_npc_zhangwuji__ch04_youth_jiaozhu_base
+subject_id: npc_zhangwuji
+name: 张无忌
+book: ch04_yitian
+gender: male
+age_variant: youth
+tier: S
+output: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+manifest: assets/default/character/male/ch04/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_10-1.png
+  use: 第一且唯一面部身份参考：经典原版《金庸群侠传》张无忌本人头像；已实际view原PNG及带姓名表，并核对source-audit-main30对应关系与SHA，原始字节与ZIP成员相同。只保持本人脸部比例、眉眼鼻唇和气质辨识关系，将低分辨率像素关系自然重建成精细写实人脸；不要像素放大、描边或照搬发式/服装。头像朝向不继承：新图正面，头部中线竖直、双眼水平，NO head tilt / NO Dutch angle。当前身份、年龄、伤残与器物必须服从本角色基础阶段。尤其忽略原头像的中分披散长发和红衣领；本图是束髻窄布巾、米白赭褐衣装、双手空手的青年教主，不能按书名添加屠龙刀。
+- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+  use: 第二参考仅项目男性低饱和色卡、柔和左上光与完整连贯的写实手绘品质；本会话已实际view并在写入前核对SHA未变。不得取这张旧基线的脸型、眉眼鼻唇、体型、站姿或倾头角度；发式、衣装和器物只由当前角色稿独立确定，不由本参考决定。即使文件名也是令狐冲，其旧写实脸也不能替代第一张游戏本人身份。基线candidate审批状态不改。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第三参考仅背景：极淡水墨远山、薄雾、暖浅灰纸底与留白；本会话已实际view并在写入前核对SHA未变。忽略女性面孔、发型、体态、倾头、白青裙装及饰物；墨痕和纸纹不得进入人物、衣料与器物。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 张无忌 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_zhangwuji
+- book：ch04_yitian
+- gender：male
+- age_variant：youth
+
+## 本轮人物写实规范
+
+原版游戏10-1张无忌本人五官为唯一身份；光明顶推举教主后、灵蛇岛前的仁厚青年，结实匀称、无须。正面端正，头颈竖直、双眼水平，NO head tilt / NO Dutch angle。米白内袍、赭褐外衣、深棕布带、束髻窄布巾，衣缘仅1处暗红小火焰绣。双手空手，本人右手温和劝止、左手垂放，无腰挂刀剑和圣火令。2张candidate，人物完整连续写实，水墨只在背景。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_zhangwuji__ch04_youth_jiaozhu_base/prompt-eabb9054aea872afde4d05c9331b5e3cca32f2242b0b8ff093f107fd134e893d.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference portrait pose. Preserve natural facial asymmetry without tilting the head.
+
+Create a beautiful REALISTIC Chinese wuxia character illustration of ZHANG WUJI / 张无忌. Image 1 is the ONLY FACIAL IDENTITY reference: this character's reliably mapped portrait from classic MS-DOS Heroes of Jin Yong, used as a facial design reference, not a rendering style. Preserve recognizable facial relationships rather than a generic handsome template. Reconstruct a natural front-facing realistic face from the low-resolution drawing. Image 2 provides only restrained male rendering/colour quality and image 3 only an ink-wash background. Do not borrow any other person's facial identity.
+
+身份、阶段与体态：光明顶已推举的年轻明教教主，时间在灵蛇岛之前。青年成年人的肩胸厚实、四肢结实匀称而不夸张健美，肩颈舒展，双足稳立；头颈自然垂直，身体面向正面。仁厚坦荡、以止戈救人为重，力量由健康体格和专注目光表达；不是童年寒毒病容、雪谷褴褛或退隐阶段，没有擅加伤残或中年沧桑胡须。九阳与乾坤大挪移是武学能力，不是画面上出现的火焰、光龙或悬浮器物。
+
+本人面部辨识：第一参考原版游戏张无忌本人：自然纵长的青年椭圆面形，额颊有适度宽度，下颌向圆而不尖的下巴收束；浓黑较直眉、清楚的上眼睑与自然偏修长杏形眼保留眉眼距离，目光清明认真。鼻梁自然直顺，鼻头适中、鼻翼收束，闭合的清楚唇线与平稳嘴角构成温和而笃定的神态。将这些低像素可辨的比例关系自然重建为细腻写实人脸，不凭空夸大像素未提供的纹理。脸年轻、无成熟胡须，肤色自然温暖，眉眼有仁厚与担当，不能做出另一人的通用俊男脸。原头像中分散长发和红色衣领不随脸复制，新图发式衣装严格服从本阶段。
+
+服装与发式：元末汉地行旅衣装，米白色交领内袍、赭褐色窄袖外衣、深棕窄布带、完整布靴。汉式交领右衽为穿着者左襟覆盖右襟、向本人右侧合拢，不镜像。领袖分层清楚，布料是完整连续实体，有明确裁剪及少量宽缓承重褶，不添污斑碎布。黑发整齐束髻，用窄布巾固定，额眉清楚，不能复制游戏中分披散长发或第二参考的明代网巾。只在衣缘一处保留小小的暗红火焰刺绣，这是缝在衣上的原创纹样，非法阵、火球或发光标识。无皇冠、帝王龙袍、教主官服、铠甲或清式剃额长辫；具体赭褐米白配色和纹样是角色稿美术补足。
+
+双手与空手要求：两手都完全空着，身上腰间也不挂任何刀、剑、剑鞘、圣火令或神秘令牌。本人右手即正面画面的观者左侧轻抬至下胸前，手掌温和朝前偏下，五指自然放松相分，表达劝止而非发功；本人左手即观者右侧自然下垂、掌指完整可读。两只手仍保持可信习武者掌形，右臂与衣袖的连接清楚，动作不遮脸、不歪头、不抬肩。不持倚天剑、屠龙刀、木剑或圣火令，不能因为全生涯能力表含圣火令武功就在本阶段添加它。
+
+人物画法：完整、美观、精细的写实国风人物。五官、实际存在的手部结构与双足清楚，皮肤具有自然年龄感与坚实柔和体积，头发与衣物边缘干净；布料是整片、完整裁剪的连续实体，只用少量宽缓承重褶和克制纤维细节，不用密集噪点或破碎证明真实。柔和左上漫射光、连续明暗，低饱和设色与温暖肤色，人物始终与背景分离。将第一参考的低分辨率脸部关系重新绘成自然写实人脸，不临摹像素方块、黑色硬描边、透明缺口或游戏截图。第二参考仅低饱和色卡与连贯的手绘写实品质，第三参考仅背景水墨；二三参考绝不能提供脸、头身、发型、衣装、手持物或倾头角度。
+
+背景与交付：不透明暖浅灰纸底，边缘可有极浅、低对比的远山淡墨与薄雾，留白充足，脚下仅少量接触阴影；背景墨痕、纸纹与山影全部停留在人物、衣料、手部和器物轮廓外。无具体剧情建筑、第二个人、动物或画面文字。单人单视图、完整全身，原生竖幅2:3；头顶、发式、双足、实际存在的手部和器物端点完整入画，四周自然留边，不为固定占高强拉头身。目标2048×3072不透明PNG，接受工具实际原生2:3尺寸并如实登记，保留原始PNG字节，不裁切、插值或重编码。默认两张独立候选由执行者比较，仍为candidate，等待用户审核；每张画面只含一个本人。
+
+事实与改编边界：本人游戏头像只提供作者指定的面部识别，不证明原著年龄、发式、服饰、伤残或阶段；这些仍按当前基础角色稿与catalog/story。同名头像来自第三方MS-DOS资源归档并与标注初代的姓名表交叉核验，未冒称已验证具体1996原盘位元。原稿的脸型文字属原著概括待考或美术补足，不能压过作者新授权的本人头像；旧“禁止游戏独创造型”和“只按文字新造通用脸”不进入本轮请求。
+
+完整排除项：不要童年病弱寒毒脸、雪谷乞儿破衣、成熟中年浓须、退隐老人、过分健美壮汉或阴狠教主。不要原头像中分披散长发、红衣领或旧基线网巾；不要教主皇冠、皇袍龙纹、元廷官帽、明代补子、铠甲、清辫旗装。不要任何手持或腰挂刀剑、倚天剑、屠龙刀、木制假剑、剑鞘、圣火令、悬浮令牌；本图双手必须空着。不要把1处暗红小火焰刺绣变为掌心火球、烈焰外衣、满身符咒或光环；不要九条龙、掌力冲击波、发功战斗姿势。 不要 head tilt、Dutch angle、头歪向肩、脸部中线倾斜、双眼高低倾斜、倾斜镜头、侧脸、背身回眸、耸单肩、俯首藏眼或仰头藏眼。不要第二参考旧写实基线的脸、萧峰、郭靖、王语嫣或其他角色的脸；不要旧通用俊男脸换衣、网红尖下巴、动漫大眼、偶像磨皮、浓妆、夸张健美肌肉、照片截图、3D模型、塑料皮肤、像素画放大、黑色硬边或游戏UI。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸片侵蚀、白斑、划痕、碎布条、撕裂下摆、过密褶皱、斑驳脸或模糊眼睛；墨雾不能吞没人体和衣料。不要额外人物、多视图、拼贴分格、脸部特写框、无依据新增肢体和伤残、手物融合、错接手腕、悬空器物、头足或器物端点裁切。不要日式刀服、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、近现代物品、汉式交领左衽或水平镜像。不要裸露、透明衣料、性感化、血腥特写、恶搞或丑化。不要光龙、法阵、发光武器、粒子特效、强泛光、强逆光、复杂背景、题款、印章、标签、logo或装饰水印；保留工具原有溯源标识与元数据。
+
+FINAL POSE CHECK: FRONT-FACING ZHANG WUJI. Keep the forehead–nose–chin centreline VERTICAL, both eyes HORIZONTAL, head and neck naturally UPRIGHT over the torso, chin neutral, camera level. NO head tilt and NO Dutch angle. Do not inherit ANY reference's tilted head, side view or shoulder angle. Keep the character's own recognizable face, current-stage anatomy and all required objects clearly visible.
+```
+
+## 排除项
+
+不要童年病弱寒毒脸、雪谷乞儿破衣、成熟中年浓须、退隐老人、过分健美壮汉或阴狠教主。不要原头像中分披散长发、红衣领或旧基线网巾；不要教主皇冠、皇袍龙纹、元廷官帽、明代补子、铠甲、清辫旗装。不要任何手持或腰挂刀剑、倚天剑、屠龙刀、木制假剑、剑鞘、圣火令、悬浮令牌；本图双手必须空着。不要把1处暗红小火焰刺绣变为掌心火球、烈焰外衣、满身符咒或光环；不要九条龙、掌力冲击波、发功战斗姿势。 不要 head tilt、Dutch angle、头歪向肩、脸部中线倾斜、双眼高低倾斜、倾斜镜头、侧脸、背身回眸、耸单肩、俯首藏眼或仰头藏眼。不要第二参考旧写实基线的脸、萧峰、郭靖、王语嫣或其他角色的脸；不要旧通用俊男脸换衣、网红尖下巴、动漫大眼、偶像磨皮、浓妆、夸张健美肌肉、照片截图、3D模型、塑料皮肤、像素画放大、黑色硬边或游戏UI。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸片侵蚀、白斑、划痕、碎布条、撕裂下摆、过密褶皱、斑驳脸或模糊眼睛；墨雾不能吞没人体和衣料。不要额外人物、多视图、拼贴分格、脸部特写框、无依据新增肢体和伤残、手物融合、错接手腕、悬空器物、头足或器物端点裁切。不要日式刀服、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、近现代物品、汉式交领左衽或水平镜像。不要裸露、透明衣料、性感化、血腥特写、恶搞或丑化。不要光龙、法阵、发光武器、粒子特效、强泛光、强逆光、复杂背景、题款、印章、标签、logo或装饰水印；保留工具原有溯源标识与元数据。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_zhangwuji__ch04_youth_jiaozhu_base.prepared.json`。

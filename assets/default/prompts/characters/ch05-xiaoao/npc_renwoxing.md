@@ -1,0 +1,70 @@
+---
+asset_id: por_npc_renwoxing__ch05_elder_released_base
+subject_id: npc_renwoxing
+name: 任我行
+book: ch05_xiaoao
+gender: male
+age_variant: elder
+tier: S
+output: assets/default/character/male/ch05/por_npc_renwoxing__ch05_elder_released_base.png
+manifest: assets/default/character/male/ch05/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_27-1.png
+  use: 原版任我行HDGRP_27-1本人身份，已实际view；取宽额、长方偏瘦脸、深眼窝、上额纹路与颧颊折面、尖锐而较窄眼神、挺直鼻梁及须髭的关系。按脱困整装中老年长灰黑须与两鬓霜重构；双眼都正常完整，黑发束髻，不复制头像披散发、灰领、头倾或刻纹般夸张深沟。
+- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+  use: 第二参考仅同性别项目画法和设色控制：柔光、低饱和色、精细连贯写实手绘，已在本会话实际view且SHA复核。candidate状态不改变；完全忽略令狐冲的面貌、青年年龄、体格、胡茬、网巾、服装、剑与倾头。人物实际服色以当前稿为准，不把所有人变青灰袍。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第三仅用户指定浅水墨背景、暖浅灰纸底、远景留白；已在本会话实际view且SHA复核。忽略女性脸、身形、衣装、发饰与头部倾角；墨色不能侵蚀人物皮肤衣料或道具。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 任我行 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_renwoxing
+- book：ch05_xiaoao
+- gender：male
+- age_variant：elder
+
+## 本轮人物写实规范
+
+任我行：第一原版本人头像身份，梅庄脱困整装后至黑木崖决战前，双眼完整的前教主；中老年；elder为合并素材键，不锁定已满65岁。保留本人差异和明确阶段器物，头正眼平，写实完整人物与衣料，浅水墨只作背景。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_renwoxing__ch05_elder_released_base/prompt-5c9aa95d5fc87d66dede66a2b941a52d713d479486b998abcf3122f5400f17b9.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+PRIMARY POSE REQUIREMENT: FRONT-FACING full-body standing portrait; head and neck naturally UPRIGHT. Keep the forehead–nose–chin centreline VERTICAL and both eyes HORIZONTAL, head centered over the torso, direct forward gaze and level camera. NO head tilt and NO Dutch angle. Reconstruct the reference face in this upright frontal view; never copy a turned face, raised chin, leaning head or sloping camera. Natural facial asymmetry does not mean a tilted skull.
+
+Create a NEW realistic full-body identity portrait of REN WOXING / 任我行, using ORIGINAL Heroes of Jin Yong portrait HDGRP_27-1 as the ONLY facial identity reference. Show the former Sun Moon Sect leader after escaping Meizhuang and changing into complete proper clothes, BEFORE the Black Wood Cliff battle. Both eyes are intact; no later eye injury or final sudden death is included. Preserve his imposing, controlling personality without turning him into a monstrous or generic muscular villain.
+
+中老年本人骨相：高大骨架、厚实肩背、有力前臂，体格雄强而自然。第一头像宽额、长方偏瘦脸、明显的颧颊折面与深眼窝、较窄锐利的眼神、挺直鼻梁、鼻唇须髭关系作身份锚。面部可有自然额纹和岁月痕迹，肤色偏苍白但不是病危；黑须夹灰、两鬓见霜，须发保留适当长度和真实生长方向。两眼都清楚视物，不因像素阴影画出损伤。神情凌厉、自信且带控制欲，嘴角克制，胸廓打开，无狂笑怒吼；不套萧峰的另一套方脸或令狐冲青年脸。elder只是本素材年龄键，不据此强行画成65岁以上白须老头。
+
+脱困后整装：明代墨黑偏紫长袍，灰白护领，简洁深色布带，袖宽适中，长裤与厚底布靴。交领右衽，即本人左襟压右襟；衣服完整、层次清楚、袖口和下摆整齐，墨紫暗部仍有可读织物体积，不是吞没双手的黑块。长发整理束髻，灰黑须与霜鬓保留，不照搬原像素图披散长发、破败囚徒感或灰衣领。此时已换衣离囚，绝无锁链、镣铐、铁环、囚服，也不穿复位后的朝服、皇帝龙袍或金冠。
+
+姿态与唯一佩剑：正面双足稳立、胸肩舒展、头颈竖直、双眼水平直视。右手可在腰胸之间轻微向前伸掌，保持手掌正常人体尺度和自然五指，不冲向镜头；左手低置、自然张开，两手都空着。腰侧仅一柄普通中式直剑完整收入长鞘，简洁克制鞘装，柄、护手、鞘口、鞘尾和挂带完整可信；挂在本人左腰，避开手部并与袍摆分开。没有专属发光神剑，剑不出鞘，不增加兵器。威势由眼神、肩背与重心表达，吸星大法不画成光球、漩涡、气流触手或抽吸他人的场景。此图不在梅庄牢狱内，也不演黑木崖受伤或复位仪式。
+
+参考主次与画法：第一张只提供原版《金庸群侠传》本人的脸部辨识关系，将低分辨率像素信息重新绘成清楚写实面容，不能直接放大像素、照搬边框、原头像倾角或混书年龄。第二张男性基线仅提供低饱和设色控制、柔和光照与连贯细腻的写实手绘质量，不能传递令狐冲的脸、年龄、体型、胡茬、发型、服饰、剑或站姿。第三张用户图仅提供背景淡水墨，不借其女性脸、身体、侧倾、白青薄纱衣或发饰。人物本体精细、完整、真实：脸、眼、双手和双足清楚，皮肤、发丝、布料和器物材料各自连续，柔和左上漫射光形成连贯体积。衣物整片可穿、裁剪清楚、下摆和袖口完整，仅少量宽缓承重褶皱及细微真实纹理，不用破衣、碎片或密集噪点表现武侠感。
+背景为不透明暖浅灰纸底，极淡远山水墨、薄雾与留白，只有少量脚下接触阴影；没有具体经典场景、建筑或第二个人。水墨和纸纹全部停留在背景，不能透进脸、皮肤、衣物、靴子和道具。
+单人单视图，原生竖幅2:3完整全身，头顶、双手、双足、全部衣摆与道具端点舒适入画。自然体态与年龄优先，不使用固定占高/头身数字硬限。目标2048×3072不透明PNG；工具实际返回其他原生2:3尺寸须实测如实记录，保存原始PNG字节，不插值、裁切或重编码。默认一张独立单人候选经执行者实际自查，全部candidate待用户审核，不自动approved。
+
+完整排除项：不要 head tilt、Dutch angle、头歪向肩、头部中线倾斜、斜眼线、转头侧脸、回眸、低头藏眼、抬下巴仰视、耸单肩或倾斜镜头；不要把四人画成同一个通用男脸，不借令狐冲、萧峰、王语嫣等其他参考人物面孔。不要像素格、原头像边框、直接放大游戏截图、动漫大眼、网红尖下巴、丰唇滤镜、过度磨皮、塑料皮肤、摄影截图或三维模型。不要时代混搭、现代服饰、拉链、腕表、数码物件、清式剃额辫子、满清官服、日式服制刀具、欧式奇幻甲胄或无依据的官阶徽记。不要错误衣襟、水平镜像、悬浮装备、失重衣料、多武器、手物融合、道具穿身、弯折断裂器物、容不下刀剑的短鞘。不要多人物、分格、多视图、脸部特写框、多肢、多指、粘连指、错接手腕、无依据缺手缺足、裁断头足或道具端点。人物不要碎墨飞白、纸纹透肤透衣、白斑缺块、纸屑侵蚀、碎布、撕裂衣摆、破边、过密杂乱衣纹、噪点斑驳脸、模糊眼睛或浓雾遮手；水墨仅限背景。不要裸露、透衣、性感化、血腥、恶搞、丑化或怪物体态；不要无依据神佛法相、发光兵器、光球、法阵、龙形能量、粒子光效、强泛光和舞台硬轮廓光。不要文字、印章、题款、签名、logo、装饰水印、武功名称或药方；工具自带溯源原样保留。 不要镣铐、锁链、囚服、破衣、原头像披散乱发或后期复位朝服、龙袍金冠。不要失明、单眼伤残、眼罩、流血眼和终局骤逝；两眼必须完整。不要强行65岁以上白须老翁、年轻巨汉或萧峰脸；不要刻纹裂缝一样的额沟、尸体般苍白、病危或鬼怪丑化。不要巨大近镜头手掌、掌心光球、吸力漩涡、气流触手、发光兵器或第二剑；只有一柄普通直剑完整入鞘，双手空。
+
+FINAL POSE CHECK: one FRONT-FACING figure, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTAL, neck naturally upright and camera level. NO head tilt and NO Dutch angle. Preserve this person’s own face from reference 1, their documented age/stage and all required body/prop endpoints; references 2 and 3 must not supply another face.
+```
+
+## 排除项
+
+不要 head tilt、Dutch angle、头歪向肩、头部中线倾斜、斜眼线、转头侧脸、回眸、低头藏眼、抬下巴仰视、耸单肩或倾斜镜头；不要把四人画成同一个通用男脸，不借令狐冲、萧峰、王语嫣等其他参考人物面孔。不要像素格、原头像边框、直接放大游戏截图、动漫大眼、网红尖下巴、丰唇滤镜、过度磨皮、塑料皮肤、摄影截图或三维模型。不要时代混搭、现代服饰、拉链、腕表、数码物件、清式剃额辫子、满清官服、日式服制刀具、欧式奇幻甲胄或无依据的官阶徽记。不要错误衣襟、水平镜像、悬浮装备、失重衣料、多武器、手物融合、道具穿身、弯折断裂器物、容不下刀剑的短鞘。不要多人物、分格、多视图、脸部特写框、多肢、多指、粘连指、错接手腕、无依据缺手缺足、裁断头足或道具端点。人物不要碎墨飞白、纸纹透肤透衣、白斑缺块、纸屑侵蚀、碎布、撕裂衣摆、破边、过密杂乱衣纹、噪点斑驳脸、模糊眼睛或浓雾遮手；水墨仅限背景。不要裸露、透衣、性感化、血腥、恶搞、丑化或怪物体态；不要无依据神佛法相、发光兵器、光球、法阵、龙形能量、粒子光效、强泛光和舞台硬轮廓光。不要文字、印章、题款、签名、logo、装饰水印、武功名称或药方；工具自带溯源原样保留。 不要镣铐、锁链、囚服、破衣、原头像披散乱发或后期复位朝服、龙袍金冠。不要失明、单眼伤残、眼罩、流血眼和终局骤逝；两眼必须完整。不要强行65岁以上白须老翁、年轻巨汉或萧峰脸；不要刻纹裂缝一样的额沟、尸体般苍白、病危或鬼怪丑化。不要巨大近镜头手掌、掌心光球、吸力漩涡、气流触手、发光兵器或第二剑；只有一柄普通直剑完整入鞘，双手空。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_renwoxing__ch05_elder_released_base.prepared.json`。

@@ -1,0 +1,76 @@
+---
+asset_id: por_npc_fangyi__ch08_youth_base
+subject_id: npc_fangyi
+name: 方怡
+book: ch08_luding
+gender: female
+age_variant: youth
+tier: S
+output: assets/default/character/female/ch08/por_npc_fangyi__ch08_youth_base.png
+manifest: assets/default/character/female/ch08/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/luding/fangyi_1998_xuhaoying_comparison.jpg
+  use: 第一且唯一面部身份：1998 TVB陈小春版《鹿鼎记》徐濠萦饰方怡，已实际view、核实来源DOM和SHA。第一图是左右今昔对照：只取左半幅1998古装方怡的面貌；右半幅现代短发近照从面容年龄、身体、衣服到草坪背景全部排除。原文件未裁剪，视觉理解必须明确忽略右侧。 适龄转译到二十岁上下成年女性，原著确岁待考。只取左侧徐濠萦方怡较长的椭圆轮廓：颊面较平、面中有长度，下颌两侧清楚向小而不锐的下巴收拢，不画成沐剑屏圆颊短下巴。细长眉的走向和眉眼间距沿用本人，眉弧较低而平顺，眼裂细长、上眼睑清楚，直视警觉而不媚笑，不统一成挑高大杏眼。鼻梁较直且轮廓明确，鼻尖自然前突、有实在鼻翼，不削成针，也不套苏荃较圆厚鼻唇。嘴部较小、唇峰清楚，上下唇有自然厚度，闭唇平稳。保留脸长、下颌、眼形、鼻梁与唇形的整体关系，适配二十岁上下有历练的成年人。中性暖肤色去掉旧照偏橙光和浓口红，不因漂亮抹成白皙尖脸大眼模板。 任何照片头倾、视线、他人、服装、场景和台标都不继承；必须正面头直、双眼水平。
+- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+  use: 第二参考严格仅作女性项目色卡：低饱和色彩、暖肤色与浅灰白底的协调关系。已实际view。不得提取王语嫣的脸型、眉眼鼻唇、发际、年龄、体型、身体比例、头倾、站姿、手势、宋代衣装或其他身份特征；人物写实完整要求来自文字，不能靠借用基线脸和人体来实现画风一致。原manifest实际approved状态不变，不转移给本角色。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第三参考仅背景：暖浅灰纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略王语嫣面容、年龄、体型、发髻、倾头转身、白青衣装和饰物；墨迹纸纹不得侵入方怡的皮肤、衣料和器物。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 方怡 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_fangyi
+- book：ch08_luding
+- gender：female
+- age_variant：youth
+
+## 本轮人物写实规范
+
+1998徐濠萦饰方怡唯一本人身份；二十岁上下成年女性，原著确岁待考，沐王府青年女弟子，宫中行刺后已恢复行动、尚未进入神龙受制状态。正面端正、头直眼水平，逐人保留下颌眉眼鼻唇，不共享美人模板；女基线仅色卡、用户图仅背景。人物完整写实，两张原生2:3 candidate待用户审核。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_fangyi__ch08_youth_base/prompt-993ef22379b2278afc9f454e68f8aba0493af3cc4e2636637a16406fe8597d33.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.
+
+Create a REALISTIC Chinese wuxia illustration of FANG YI / 方怡. Image 1 is the ONLY FACIAL IDENTITY source: 徐濠萦 as 方怡 in the 1998 TVB The Duke of Mount Deer starring Jordan Chan. Image 2 is ONLY a colour palette and supplies ZERO facial or anatomical information. Image 3 is ONLY the pale ink-wash background. Preserve this person’s distinct jaw, brows, eye spacing, nose and lips instead of a shared beauty template. 第一图是左右今昔对照：只取左半幅1998古装方怡的面貌；右半幅现代短发近照从面容年龄、身体、衣服到草坪背景全部排除。原文件未裁剪，视觉理解必须明确忽略右侧。
+
+身份与阶段：方怡（npc_fangyi），《鹿鼎记》ch08_luding，清初康熙时代。沐王府青年女弟子，宫中行刺后已恢复行动、尚未进入神龙受制状态；二十岁上下成年女性，原著确岁待考。二十岁上下健康青年成年人，身形轻捷而肩臂有习武力量，成年肩宽和四肢比例清楚。神情克制警觉、有行动经验，与初入江湖的沐剑屏少女区分。已经可站立行动，没有带血绷带、卧床伤态或控制枷锁。
+
+本人面容辨识锚点：只取左侧徐濠萦方怡较长的椭圆轮廓：颊面较平、面中有长度，下颌两侧清楚向小而不锐的下巴收拢，不画成沐剑屏圆颊短下巴。细长眉的走向和眉眼间距沿用本人，眉弧较低而平顺，眼裂细长、上眼睑清楚，直视警觉而不媚笑，不统一成挑高大杏眼。鼻梁较直且轮廓明确，鼻尖自然前突、有实在鼻翼，不削成针，也不套苏荃较圆厚鼻唇。嘴部较小、唇峰清楚，上下唇有自然厚度，闭唇平稳。保留脸长、下颌、眼形、鼻梁与唇形的整体关系，适配二十岁上下有历练的成年人。中性暖肤色去掉旧照偏橙光和浓口红，不因漂亮抹成白皙尖脸大眼模板。
+
+服制与发式：清初汉族女侠灰蓝右衽长袄、暗褐比甲、深蓝裙裤层，穿着者左襟盖右襟、向本人右侧合拢。衣领完整、袖口收束，剪裁实用、衣片连贯；平底窄口布鞋两只入画。黑发紧束盘成实用小髻，用深布带固定，不复制剧照紫绣高领衣、花饰或现代乱短发。衣物朴素完整，不用撕裂、泥污或伤口表现经历。
+
+姿态与器物：正面站立，两肩自然平衡、头颈竖直、双眼水平向前，双脚着地，一足略前但不转体回眸。本人左腰即观者右侧仅一柄普通中国直剑完全入鞘：木鞘局部深蓝布缠、小铜剑格，完整柄鞘结构，鞘长足容剑刃。短带固定腰带，鞘向本人左后方斜垂，尾端在衣摆轮廓外可见。左手轻扶剑鞘上方挂点，不握裸刃，手和带鞘结构分开；右手在腰胸之间低处半抬作克制提醒，手指自然舒展，不指镜头。右腰一只小素布药囊用短带固定，作为行旅实用品，不发光、不标毒字、不画药丸或束缚链。
+
+人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。
+
+参考边界：第二参考严格仅作女性项目色卡：低饱和色彩、暖肤色与浅灰白底的协调关系。已实际view。不得提取王语嫣的脸型、眉眼鼻唇、发际、年龄、体型、身体比例、头倾、站姿、手势、宋代衣装或其他身份特征；人物写实完整要求来自文字，不能靠借用基线脸和人体来实现画风一致。原manifest实际approved状态不变，不转移给本角色。 第三参考仅背景：暖浅灰纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略王语嫣面容、年龄、体型、发髻、倾头转身、白青衣装和饰物；墨迹纸纹不得侵入方怡的皮肤、衣料和器物。
+
+背景与交付：第三图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认两张独立候选由执行者比较；所有输出仍为candidate，待用户最终审核，不自动approved。
+
+事实边界：二十岁上下是美术选段；原著确岁、疗伤结束后的逐字外貌衣饰未核实。 灰蓝暗褐配色、剑的装具、药囊和提醒手势为美术补足，不新增装备ID。 继承灰蓝暗褐服装层、深布带小髻、入鞘剑和素药囊。 改侧身护退路为正面警戒，左手扶挂点、右手低位提醒。 用户指定本人剧版身份覆盖旧稿禁演员脸，但照片年龄、衣装和场景不是小说事实。
+
+完整排除项：不要现代对照右半幅短发、现代脸龄、外套与草坪；不要复制左侧紫花绣服、发饰、文字水印或双脸版式。不要沐剑屏的圆嫩少女模板、双儿王语嫣同脸、幼童、小郡主、公主旗装或孕态。不要床榻、血迹、绷带、铁链、毒丸、蛇纹教冠、毒气或后期解制装束。不要剑出鞘、双剑、巨剑格、短鞘、飞剑、兵器穿身、挂带悬空，不能画需要提醒的第二个人。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
+
+FINAL POSE CHECK: FRONT-FACING FANG YI / 方怡. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. Never inherit photo head lean, sideways gaze, tilted shoulders, turned torso, another person or cropped composition. Preserve only this role’s distinct facial relationships, naturally translated to the stated age; keep the entire age-appropriate body visible.
+```
+
+## 排除项
+
+不要现代对照右半幅短发、现代脸龄、外套与草坪；不要复制左侧紫花绣服、发饰、文字水印或双脸版式。不要沐剑屏的圆嫩少女模板、双儿王语嫣同脸、幼童、小郡主、公主旗装或孕态。不要床榻、血迹、绷带、铁链、毒丸、蛇纹教冠、毒气或后期解制装束。不要剑出鞘、双剑、巨剑格、短鞘、飞剑、兵器穿身、挂带悬空，不能画需要提醒的第二个人。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_fangyi__ch08_youth_base.prepared.json`。
