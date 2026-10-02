@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 291、已入库 186、已通过（作者） 150。**待出图队列 291 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 290、已入库 187、已通过（作者） 150。**待出图队列 290 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -33,7 +33,6 @@
 | items | `eq_mingjinmamianqun_nv` | 明锦马面裙·女 | `assets/default/item/clothing/eq_mingjinmamianqun_nv.png` | 待出图 | [eq_mingjinmamianqun_nv.md](items/clothing/eq_mingjinmamianqun_nv.md) |
 | items | `eq_mingzhijinbijia_nv` | 明织金比甲·女 | `assets/default/item/clothing/eq_mingzhijinbijia_nv.png` | 待出图 | [eq_mingzhijinbijia_nv.md](items/clothing/eq_mingzhijinbijia_nv.md) |
 | items | `eq_qinglanmagua_nan` | 清蓝缎马褂·男 | `assets/default/item/clothing/eq_qinglanmagua_nan.png` | 待出图 | [eq_qinglanmagua_nan.md](items/clothing/eq_qinglanmagua_nan.md) |
-| items | `eq_qingqizhuangjifu_nv` | 清绣旗装吉服·女 | `assets/default/item/clothing/eq_qingqizhuangjifu_nv.png` | 待出图 | [eq_qingqizhuangjifu_nv.md](items/clothing/eq_qingqizhuangjifu_nv.md) |
 | items | `eq_songluobeizi_nv` | 宋罗褙子·女 | `assets/default/item/clothing/eq_songluobeizi_nv.png` | 待出图 | [eq_songluobeizi_nv.md](items/clothing/eq_songluobeizi_nv.md) |
 | items | `eq_songmabuduanru_nv` | 宋麻布短襦·女 | `assets/default/item/clothing/eq_songmabuduanru_nv.png` | 待出图 | [eq_songmabuduanru_nv.md](items/clothing/eq_songmabuduanru_nv.md) |
 | items | `eq_songqingyuanlingpao_nan` | 宋青圆领袍·男 | `assets/default/item/clothing/eq_songqingyuanlingpao_nan.png` | 待出图 | [eq_songqingyuanlingpao_nan.md](items/clothing/eq_songqingyuanlingpao_nan.md) |
@@ -487,20 +486,19 @@
 
 （已全部入库。）
 
-### 衣物（30）· 已通过（作者） 12、待出图 10、已入库 8
+### 衣物（30）· 已通过（作者） 12、已入库 9、待出图 9
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
 | 1 | 明锦马面裙·女 | `eq_mingjinmamianqun_nv` | 地上 | 衣物·礼服 | 待出图 | [eq_mingjinmamianqun_nv.md](items/clothing/eq_mingjinmamianqun_nv.md) | template |
 | 2 | 明织金比甲·女 | `eq_mingzhijinbijia_nv` | 地下 | 衣物·礼服 | 待出图 | [eq_mingzhijinbijia_nv.md](items/clothing/eq_mingzhijinbijia_nv.md) | template |
-| 3 | 清绣旗装吉服·女 | `eq_qingqizhuangjifu_nv` | 地中 | 衣物·礼服 | 待出图 | [eq_qingqizhuangjifu_nv.md](items/clothing/eq_qingqizhuangjifu_nv.md) | template |
-| 4 | 宋紫罗公袍·男 | `eq_songziluogongpao_nan` | 地中 | 衣物·官服 | 待出图 | [eq_songziluogongpao_nan.md](items/clothing/eq_songziluogongpao_nan.md) | template |
-| 5 | 清蓝缎马褂·男 | `eq_qinglanmagua_nan` | 玄下 | 衣物·便服 | 待出图 | [eq_qinglanmagua_nan.md](items/clothing/eq_qinglanmagua_nan.md) | template |
-| 6 | 宋罗褙子·女 | `eq_songluobeizi_nv` | 玄中 | 衣物·袍服 | 待出图 | [eq_songluobeizi_nv.md](items/clothing/eq_songluobeizi_nv.md) | template |
-| 7 | 西夏窄褙衫·女 | `eq_xixiazhaiheshan_nv` | 玄下 | 衣物·胡服 | 待出图 | [eq_xixiazhaiheshan_nv.md](items/clothing/eq_xixiazhaiheshan_nv.md) | template |
-| 8 | 宋麻布短襦·女 | `eq_songmabuduanru_nv` | 黄下 | 衣物·便服 | 待出图 | [eq_songmabuduanru_nv.md](items/clothing/eq_songmabuduanru_nv.md) | template |
-| 9 | 宋青圆领袍·男 | `eq_songqingyuanlingpao_nan` | 黄上 | 衣物·袍服 | 待出图 | [eq_songqingyuanlingpao_nan.md](items/clothing/eq_songqingyuanlingpao_nan.md) | template |
-| 10 | 藏地粗氆氇袍·男 | `eq_zangdicuobu_nan` | 黄下 | 衣物·胡服 | 待出图 | [eq_zangdicuobu_nan.md](items/clothing/eq_zangdicuobu_nan.md) | template |
+| 3 | 宋紫罗公袍·男 | `eq_songziluogongpao_nan` | 地中 | 衣物·官服 | 待出图 | [eq_songziluogongpao_nan.md](items/clothing/eq_songziluogongpao_nan.md) | template |
+| 4 | 清蓝缎马褂·男 | `eq_qinglanmagua_nan` | 玄下 | 衣物·便服 | 待出图 | [eq_qinglanmagua_nan.md](items/clothing/eq_qinglanmagua_nan.md) | template |
+| 5 | 宋罗褙子·女 | `eq_songluobeizi_nv` | 玄中 | 衣物·袍服 | 待出图 | [eq_songluobeizi_nv.md](items/clothing/eq_songluobeizi_nv.md) | template |
+| 6 | 西夏窄褙衫·女 | `eq_xixiazhaiheshan_nv` | 玄下 | 衣物·胡服 | 待出图 | [eq_xixiazhaiheshan_nv.md](items/clothing/eq_xixiazhaiheshan_nv.md) | template |
+| 7 | 宋麻布短襦·女 | `eq_songmabuduanru_nv` | 黄下 | 衣物·便服 | 待出图 | [eq_songmabuduanru_nv.md](items/clothing/eq_songmabuduanru_nv.md) | template |
+| 8 | 宋青圆领袍·男 | `eq_songqingyuanlingpao_nan` | 黄上 | 衣物·袍服 | 待出图 | [eq_songqingyuanlingpao_nan.md](items/clothing/eq_songqingyuanlingpao_nan.md) | template |
+| 9 | 藏地粗氆氇袍·男 | `eq_zangdicuobu_nan` | 黄下 | 衣物·胡服 | 待出图 | [eq_zangdicuobu_nan.md](items/clothing/eq_zangdicuobu_nan.md) | template |
 
 ### 制式盔甲（8）· 已入库 8
 
