@@ -10,6 +10,14 @@
 
 `docs/design/22-town-layout-and-generation.md`（CitySpec、布局、贴片 / 建筑套件、45° 出图）、`docs/design/town/<city_id>__<chNN>.yaml`（布局：格子坐标、建筑 ID、旋转、湖体多边形）、`tools/town/{gen_layout,render_town,plan_view}.py`（栅格与投影参数，运行时须与之一致）、贴片 `assets/default/tile/<kit>/manifest.yaml`、建筑 `assets/default/building-map/<kit>/manifest.yaml`、`tools/agents/prod_plan.py` 的 `kit_for(region, band)`；ENG-05 事件锚点与对话、ENG-06 店铺、ENG-03 打坐 / 岔气、ENG-04 战斗入口（`BattleSetup` 城镇打坐被袭）；**主角与 NPC 一律用 `packages/render` 的 rig 模块（ENG-12：分层部件 + 代码步态，装备可见，AR-22）渲染**。
 
+## 分层（协调者 10-01 补充：ENG-08 大地图把规则写在 `apps/game`，被合入前审核卡了 4 轮）
+
+- 规则放 `packages/core/src/world/`（需要时连同 `state/`）：城镇可走性、整数 A* 寻路、碰撞、建筑进入状态机、锚点触发判定、打坐被袭的概率判定与岔气。用 core 的 rng 与整数运算（core 禁止浮点，ESLint 会拦），补确定性测试（同种子同输入同输出）。
+- 运行时数据的 schema 放 `packages/data/src/schemas/`，内容加载走现有 content-registry。
+- `packages/render` 只做三维呈现与输入拾取：把点击换算成格子坐标后发 core 命令，不自己算可走性和路径。`apps/game` 只做装配、命令转发与投影消费。
+- 写集已含 `packages/core/src/**`、`packages/data/src/**`。不改 `packages/core/src/index.ts` 的导出布局（`world` 已从根导出）。
+- 大地图（ENG-08）进城的接口见 `tools/agents/reports/ENG-08-worldmap.md` 第 3、6 节。
+
 ## 要做的事
 
 1. 运行时数据：`tools/content/town_runtime.py`：把 CitySpec + 布局 YAML 转成运行时 JSON（格子网、每格贴片 / 高度 / 可走性、建筑占地与入口、湖体格、锚点位；贴片 / 建筑图集引用）；生成 `content/town/<chNN>/<city_id>.json`（至少基线两城：杭州南宋、大理北宋，其余按已合入的 CITY-* 规格批量生成并 `--check`）。
