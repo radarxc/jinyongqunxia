@@ -87,6 +87,7 @@ def main() -> int:
     ap.add_argument("--tool", help="覆盖 manifest 的 tool（如 'codex exec · image_gen'）")
     ap.add_argument("--model", help="覆盖 manifest 的 model（如 gpt-6-astra）")
     ap.add_argument("--prompt-file", help="本张实际用的提示词文本文件（codex 出图时提示词不在提示词库里）")
+    ap.add_argument("--refs", nargs="*", help="本张实际上传的参考图（按上传顺序）；缺省取提示词 frontmatter 的 reference_upload")
     ap.add_argument("--manual-title", default="", help="秘籍补书名（AR-30）：上传原图改图、只在题签补写这个书名；manifest 如实记改图提示词、原图与工具")
     a = ap.parse_args()
     fm, pf = frontmatter(a.asset_id)
@@ -151,7 +152,7 @@ def main() -> int:
     prompt = (Path(a.prompt_file).read_text(encoding="utf-8").strip() if a.prompt_file else
               json.loads(Path(a.prompt_json).read_text(encoding="utf-8")) if a.prompt_json else build_short(a.asset_id))  # 批量默认用精简版
     neg = re.search(r"排除项?[：:](.*)$", prompt)
-    refs = [str(r) for r in (fm.get("reference_upload") or [])]
+    refs = [str(r) for r in (a.refs if a.refs is not None else (fm.get("reference_upload") or []))]
     if figure:
         category = "/".join(Path(str(fm["output"])).parts[2:4]) if str(fm["output"]).startswith("assets/default/character/") else "scene"
         subject = f"{fm.get('name', '')}（{fm.get('book') or fm.get('era', '')}）".replace("（）", "")
@@ -164,7 +165,8 @@ def main() -> int:
         "id": a.asset_id, "file": out.name, "category": category, "style": "default",
         "subject": subject,
         "prompt": prompt, "negative": neg.group(1).strip() if neg else "",
-        "references": [{"path": r, "use": "身份参考（作者 AR-29：只上传主角与 S 级）"} for r in refs],
+        "references": [{"path": r, "use": "画风基线（只取画风、光线、质感与背景，AR-31）" if "/baseline" in r or "baseline_small" in r
+                        else "身份参考（作者 AR-29：只上传主角与 S 级）"} for r in refs],
         "tool": a.tool or tool,
         "model": a.model or "gemini-app (Pro 订阅)",
         "created": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
