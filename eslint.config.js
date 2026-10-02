@@ -5,6 +5,7 @@ import vue from 'eslint-plugin-vue';
 
 const ignored = [
   '**/node_modules/**',
+  '.agents/**', // 协调与任务工作区（集成工作区下嵌套的 git worktree），不属于源码
   '**/dist/**',
   '**/dist-types/**',
   '**/coverage/**',
