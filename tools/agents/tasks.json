@@ -30929,6 +30929,91 @@
     "packages/core/src/battle/meridian-flow/**",
     "packages/core/CLAUDE.md"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/progression/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-17-booksleep-m1",
+   "title": "游戏工程 · 书眠与章节切换 M1（序章结束 → 长白山初眠配点 → 白马（唐）冷入口）",
+   "prompt": "ENG-booksleep-m1.md",
+   "deps": [
+    "ENG-15-core-bus",
+    "ENG-18-content-build",
+    "DES-prologue-v2",
+    "DES-attr-v2"
+   ],
+   "writes": [
+    "packages/core/src/progression/**",
+    "packages/core/src/state/**",
+    "packages/core/src/command/**",
+    "packages/core/src/api/**",
+    "packages/core/src/world/**",
+    "packages/core/src/quest/runtime.ts",
+    "packages/core/CLAUDE.md",
+    "packages/data/src/schemas/**",
+    "packages/data/src/content-index.ts",
+    "packages/data/src/content-registry.ts",
+    "content/chapters/ch00_yuenv/**",
+    "content/chapters/ch10_baima/**",
+    "apps/game/src/runtime/**",
+    "apps/game/src/storage/**",
+    "apps/game/src/core-host.ts",
+    "apps/game/src/core-worker.ts",
+    "apps/game/src/game-controller.ts",
+    "apps/game/CLAUDE.md",
+    "packages/platform/src/storage/records.ts"
+   ]
   }
  ]
 }
