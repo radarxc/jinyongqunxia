@@ -701,80 +701,6 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_gongsunlve__ch03_youth_base.requests.json
   notes: 实际查看两张原始PNG并对照1995苏玉华公孙绿萼角色参考后选2。候选2的颧颊宽度、自然鼻翼、较厚下唇与平稳眉眼更保留本人辨识，成年青年面容区别于候选1较通用的窄鼻温柔美人模板；2略有自然转面但头颈基本竖直、眼线水平，没有明显靠肩歪头。浅叶绿对襟外衣与米白右衽内衫连续完整，两手分开扶托一只带塞陶瓶，瓶口、手指及袖口可分辨，无明显多肢或重大握持问题。记录实际偏差：一鞋被衣摆遮蔽，头发仍为偏高髻并有垂发、额发和额外小花耳饰，刺绣及背景亭台比原设计多；左下托手部分指节被瓶底自然遮挡，未声称逐指完全可见。1同样可读但身份辨识弱，保留原图不选。原生1024×1536 RGB不透明PNG逐字节入库，属于宽松自查candidate，不自动approved、不声称旧严格母版与所有细节通过。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-- id: por_npc_huangrong__ch03_prime_base
-  file: por_npc_huangrong__ch03_prime_base.png
-  category: character/female
-  style: default
-  subject: 黄蓉 npc_huangrong ch03_shendiao
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE mainly FRONT-FACING full-body standing figure. Head and neck UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, chin neutral. NO head tilt, NO shoulder-leaning head, NO Dutch angle. Keep natural facial asymmetry without tilting the face. These rules override the source photograph pose.
-
-
-    Create a REALISTIC Chinese wuxia full-body illustration of middle-aged 黄蓉. Image 1 is the ONLY facial identity source: 魏秋桦 as 黄蓉 in the 1995 TVB 神雕侠侣 starring 古天乐 and 李若彤. Image 2 supplies ONLY background and ZERO face, costume or anatomy. Reconstruct an upright, mainly front-facing pose.
-
-
-    身份与阶段：黄蓉（npc_huangrong），《神雕侠侣》ch03_shendiao，南宋书界。黄蓉，郭靖之妻、郭家母亲、丐帮帮主与守城者；采用大胜关英雄大会交棒给鲁有脚以前的中年基础形象。只取交棒前持有信物的阶段，不混入十六年后的继任关系。本张不表现孕产事件、婴儿或守城战斗场面。prime／壮年键对应本书成熟中年女性，秀丽、聪慧机敏而镇定，面容有适量成熟眼周与口周细纹，身形匀称、体态稳当；既非射雕少女，也非老妪。不指定未经考据的确岁，不将演员拍摄年龄视为小说确岁。
-
-
-    本人五官：以1995 TVB古天乐、李若彤版《神雕侠侣》中魏秋桦饰黄蓉的已核单人剧照为唯一面部身份。成年椭圆脸，额部较宽，颊部饱满自然，下颌柔和渐收、下巴圆钝而不尖；眉较细长、尾部轻挑，眼形细长，眉眼间距和鼻唇关系按本人可见特征保留。鼻梁较直，鼻尖和鼻翼有自然体积；唇峰清楚、下唇有体积，口周保留成熟笑纹。重建正面自然肤色、清醒聪慧的目光与克制微笑，不照抄蓝紫色偏、浓重眼线、歪头、侧目或夸张笑容；不给她模板化锥子脸。
-
-
-    服饰发式：浅藕灰宋式对襟褙子，内着暖白交领右衽衫与素净暖灰齐腰长裙，深青窄腰带；内衫按穿着者左襟压右襟、向穿着者右侧合拢，胸领完整遮蔽。双足着朴素浅灰布鞋。黑发整齐盘髻，以一支简洁玉簪固定，发际自然，不复制剧照高耸发冠、长耳坠和蓝紫服装。衣料完整不透明，连续衣边与合理缝线，褶皱少量宽缓且顺重力，不碎带、不破损、不露刺甲。
-
-
-    姿态与器物：右手在身侧轻持一根细直碧绿竹质打狗棒 eq_dagoubang，棒端轻触地面，竹节清楚、材质自然，素净无龙雕、无金属杖头。完整棒杆和两端可见，手指握住棒杆且连接可信，不穿掌、不弯断。左手自然收于腰前，掌指放松，衣袖与双手互不混融。软猬甲不作外露刺甲，不将其存在变成可见盔甲。不持额外刀剑或羽扇，不加帮主徽章、绣字或神异效果。
-
-
-    人物为美观、精细、完整的写实国风插画；真实成年骨相、自然肤质、连贯实体体积与干净轮廓。柔和左上漫射光、低饱和衣色和自然肤色，浅衣与纸底适度分离。人物基本朝正面、双脚稳定站立，双肩自然，头颈端正，目光向前如在判断局面，以镇定神态表现帮主与母亲的成熟。头发、手足、衣料和竹棒都应连续清楚；不做摄影截图、三维塑料或碎墨拼贴。
-
-
-    输入参考职责：第一且唯一面部身份：魏秋桦饰1995 TVB《神雕侠侣》黄蓉。演员表、明确95版黄蓉图注、原图URL、SHA与尺寸均已核对并实际查看。只取本人可辨五官，不照抄倾头、侧目、妆线、蓝紫偏色、影视服饰或背景。源图具体剧情窗口未核实；目标交棒前中年阶段以项目主稿为准。本轮分书剧版授权覆盖旧稿跨书骨相延续要求：不混入1983翁美玲面容，第二图也不供脸型。 第二图是用户王语嫣水墨图，仅取暖浅灰不透明纸底、极淡低对比水墨远山、薄雾和留白。已实际查看；完全忽略图中人物脸、年龄、体型、歪头、发髻、服饰、花饰和飘带。不复制亭台、花枝等清晰场景，不让水墨和纸纹侵入人物实体。
-
-
-    单人单视图、水平平视、原生竖幅2:3、完整全身；头顶、玉簪、双手、衣摆、双足及竹棒两端全部入画，四周自然留净空，不裁身体或器物。不使用固定人物占高、头身数字或夸张透视。背景仅为第二图提供的极淡远山薄雾与留白，脚下和棒端只有轻微接触阴影。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并准确登记；保存原始PNG字节，禁止插值、裁切或重编码。只生成1张候选；基本清晰、角色可辨、主要正面且无严重结构错误即保存。仅重大身份或结构错误、不可读才追加。细指、轻微衣装或微偏角度如实记录，不反复打磨；全部仍candidate待用户审核，不自动approved。
-
-
-    事实与规则边界：确岁、小说形貌原文、具体衣饰、打狗棒交接的逐字原文及软猬甲本阶段持有细节未完成纸本终校，不编造引文、回目或页码。中年帮主／母亲和交棒前窗口来自现行角色稿与项目阶段定位；衣色选款、玉簪、左右手持法与端正静态姿态为项目艺术选择。源剧照只验证本人面部，不能证明本图具体剧情阶段、体态或道具。衣服覆盖下的孕期状态不由参考推断，本张只排除孕产事件画面。最新用户按书指定演员版本优先：神雕黄蓉仅魏秋桦，不执行旧稿与射雕少女版骨相延续而混入翁美玲。同一npc_huangrong仅维持角色身份，不要求跨剧版同脸。用户影视五官参考授权覆盖旧禁演员脸条款；写实完整人物、背景水墨、端正正面与单候选分别覆盖旧纸面人物、纯纸底禁山水、轻侧倾头与双候选默认。
-
-
-    完整排除项：不要射雕少女脸、1983翁美玲脸、王语嫣脸、老妪脸、统一网红锥子脸、动漫大眼、浓妆磨皮或摄影截图。不要head tilt、Dutch angle、头歪向肩、斜镜头、侧脸回眸、侧目卖萌、仰头、低头藏眼或失衡双眼。不要照抄蓝紫偏色、影视高冠、长耳坠；不要乞丐破衫、豪华凤冠、外露软猬刺甲、金属龙头权杖、额外刀剑。不要十六年后交棒时序混用、孕产事件、婴儿、其他人物、分格、多视图或面部特写框。不要破布、碎片衣料、过密凌乱褶皱、纸纹透肤透衣、飞白断裂、墨斑侵蚀人物、污损或风化。不要现代服饰、拉链、腕表、运动鞋、日式服制、欧式奇幻铠甲、明代网巾、官服补子、唐式齐胸襦裙、明式马面裙、清式剃发长辫、旗装、马蹄袖、大拉翅、错误左衽或水平镜像。不要失重衣料、悬空竹棒、手物融合、严重错接手腕、多余肢体、裁断头足衣摆或棒端。不要裸露、透明衣物、血腥、恶搞丑化、发光武器、龙形能量、法阵或粒子。不要清晰建筑、室内陈设、复杂场景、可读文字、伪字、题款、印章、签名、logo、字幕或装饰水印；保留工具自带的溯源标识与元数据。
-
-
-    FINAL POSE CHECK: mainly FRONT-FACING, head and neck UPRIGHT, centreline VERTICAL, eyes HORIZONTALLY LEVEL, camera level. Use ONLY 魏秋桦 as the facial identity. Keep complete feet, clothing and the entire plain green bamboo staff visible. Do not copy either reference figure pose.'
-  negative: 不要射雕少女脸、1983翁美玲脸、王语嫣脸、老妪脸、统一网红锥子脸、动漫大眼、浓妆磨皮或摄影截图。不要head tilt、Dutch angle、头歪向肩、斜镜头、侧脸回眸、侧目卖萌、仰头、低头藏眼或失衡双眼。不要照抄蓝紫偏色、影视高冠、长耳坠；不要乞丐破衫、豪华凤冠、外露软猬刺甲、金属龙头权杖、额外刀剑。不要十六年后交棒时序混用、孕产事件、婴儿、其他人物、分格、多视图或面部特写框。不要破布、碎片衣料、过密凌乱褶皱、纸纹透肤透衣、飞白断裂、墨斑侵蚀人物、污损或风化。不要现代服饰、拉链、腕表、运动鞋、日式服制、欧式奇幻铠甲、明代网巾、官服补子、唐式齐胸襦裙、明式马面裙、清式剃发长辫、旗装、马蹄袖、大拉翅、错误左衽或水平镜像。不要失重衣料、悬空竹棒、手物融合、严重错接手腕、多余肢体、裁断头足衣摆或棒端。不要裸露、透明衣物、血腥、恶搞丑化、发光武器、龙形能量、法阵或粒子。不要清晰建筑、室内陈设、复杂场景、可读文字、伪字、题款、印章、签名、logo、字幕或装饰水印；保留工具自带的溯源标识与元数据。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/shendiao/huangrong_1995_weiqiuhua_sina2013.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/shendiao/huangrong_1995_weiqiuhua_sina2013.jpg
-    use: 第一且唯一面部身份：魏秋桦饰1995 TVB《神雕侠侣》黄蓉。演员表、明确95版黄蓉图注、原图URL、SHA与尺寸均已核对并实际查看。只取本人可辨五官，不照抄倾头、侧目、妆线、蓝紫偏色、影视服饰或背景。源图具体剧情窗口未核实；目标交棒前中年阶段以项目主稿为准。本轮分书剧版授权覆盖旧稿跨书骨相延续要求：不混入1983翁美玲面容，第二图也不供脸型。
-    sha256: cc44b2ec6540b814a1cc5047f37b644100a8c74cca1e897d6b1df290a54d7a99
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/cc44b2ec6540b814a1cc5047f37b644100a8c74cca1e897d6b1df290a54d7a99.jpg
-    status_at_input: null
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二图是用户王语嫣水墨图，仅取暖浅灰不透明纸底、极淡低对比水墨远山、薄雾和留白。已实际查看；完全忽略图中人物脸、年龄、体型、歪头、发髻、服饰、花饰和飘带。不复制亭台、花枝等清晰场景，不让水墨和纸纹侵入人物实体。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T03:26:49.414072+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-4f644b84-3c1c-4f2f-92c3-bc53f65c3fdf.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 8d571b310a87975e0dd5f185c5b2ed43e9923a51152a8e062687847666addf60
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_huangrong__ch03_prime_base/prompt-4eb5838dcbf451c6994adb9ef78577b8e8559d82eb73a2f7afbb180657ffd020.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_huangrong__ch03_prime_base/manifest-5e064fb5be494a4682761638ac683a70a5502018b017123acc6f5ba4045c8865.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_huangrong__ch03_prime_base.requests.json
-  notes: '实际查看魏秋桦本人参考与候选1：黄蓉保留本人宽额、眉眼、鼻唇、圆颊下颌及成熟笑容宏观辨识，浅藕灰外衫暖白内衫深青腰带，右手整根碧绿有节竹棒落地、左手腰前，交棒前成熟帮主/母亲形象可辨，人体与器物清晰连续，无明显多肢或重大结构问题。按用户宽松自查可用。偏差：头有轻微倾斜且笑意偏强，盘髻偏高且装饰/耳坠多，服饰花纹与袖摆层次较多；本人左鞋被裙摆遮住，右鞋可见，主体未被画框裁断。上述角度/鞋遮挡/微装备问题如实登记、不据此追加；不宣称双鞋全显或旧严格正面标准通过。实际1候选，原生1024×1536不透明PNG原始字节保存，仍candidate待审核。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_chengying__ch03_youth_unmasked_base
   file: por_npc_chengying__ch03_youth_unmasked_base.png
   category: character/female
@@ -1198,3 +1124,55 @@
   sha256: 9cccd5b818cc1b2d9534dfe5777c1423591c3fea8969739fe0951f33e50a51e8
   status: candidate
   notes: 立绘重审重出（AR-30）；面容近乎复刻 1995 版演员（肖像风险），按原著“除黑发外全身雪白、肌肤苍白少血色、清丽绝俗、冷若冰雪”用文字原创重做，连同五幅场景；codex 出图（1 号出图员，AR-31）；AR-31：按经典影视造型以文字改写（原创面孔，不写演员名、不传剧照）
+- id: por_npc_huangrong__ch03_prime_base
+  file: por_npc_huangrong__ch03_prime_base.png
+  category: character/female
+  style: default
+  subject: 黄蓉（ch03_shendiao）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】黄蓉（郭夫人），《神雕侠侣》南宋，郭靖之妻、丐帮帮主、襄阳守城的智囊；大胜关英雄大会交棒之前的中年阶段。聪慧干练、机变百出，仍保有少女时的俏皮。
+
+    【身份参考】随提示词上传的第 1 张图是射雕时期的黄蓉本人：这是同一个人约十七八年后的样子——保留同一张脸的五官特征（圆润的鹅蛋脸、灵动的大眼睛、弯弯的眉、小巧的鼻梁、上翘的嘴角），但要明显长成近四十岁的中年妇人，不要换成另一个人，也不要照搬参考图的少女年龄。不要照搬图中的少女衣饰和姿势。
+
+    【年龄与体态】将近四十岁的中年妇人（郭夫人，两个女儿的母亲；大女儿都快二十了），身形匀称，比少女时丰润一些，举止沉稳从容。成年女性的五官骨相与身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【经典造型】借鉴经典武侠影视里这个角色深入人心的造型，只取发型、装束、配色、标志道具、气质和脸型类型，用原创面孔画出来，不像任何真实演员：中年郭夫人——端庄的妇人高髻、雍容大方的帮主夫人装束，眉眼间依旧灵动，透着运筹帷幄的干练与从容。
+
+    【面容】同一张脸长大了十七八年，一看就是将近四十岁的中年妇人、不是少女也不是二十多岁的少妇：面颊更丰满、下颌线略松，眼角有清楚的鱼尾纹，额头有一两道浅纹，法令纹清楚可见，眼皮略沉，眉眼间是成熟、沉稳与干练，眼神依旧灵动；嘴角保留俏皮狡黠的笑意；肌肤白皙而有成熟的质感，妆容清淡。风韵犹存、明艳干练的美丽妇人。
+
+    【发式】乌发全部梳起、挽成端庄饱满的妇人高髻（不留披在肩后的长发），插一支金簪，髻前仍箍着那枚玫瑰花枝纹的金环。
+
+    【服饰】深青绿色直领对襟长褙子（比少女时的嫩绿更沉稳，与当年的绿衫呼应），月白交领右衽内衫，深青长裙，素色布带，平底鞋；整体是庄重的主妇装扮。
+
+    【道具】右手握一根碧绿通透的竹棒（丐帮打狗棒，此时尚未交棒），棒梢点地。
+
+    【姿态与神情】从容站立，一手持棒、一手轻提衣袖；神情干练，眼神里有算计全局的笃定和一丝笑意。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要像任何真实演员或明星；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要换成另一张脸；不要少女的脸、少女的神态和身段（必须明显比参考图年长）；不要老态或发福；不要少女发式和衣饰；不要孕态。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
+    sha256: 42c8353b7048efca84a83b789980e5f81bed2d0b1a2c7eb706fa1326de14e06c
+    use: 身份参考：本轮新出的黄蓉（por_npc_huangrong__ch02_youth_bangzhu_base，上传 codex 原图）
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T02:54:39-0700
+  source_path: .agents/coord/gemini_originals/por_npc_huangrong__ch03_prime_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 7d8cf9b0d19b8a253d043ba56532cba7f4fa37998d8d1c6fbe6dcb7a3ec947c4
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者要求两书黄蓉同一张脸：现图源自 1995 版另一位演员，与射雕黄蓉不像；改为上传新出的射雕黄蓉作身份参考，自然长到三十七八岁；codex 出图（1 号出图员，AR-31）；AR-31：与射雕黄蓉同一张脸（上传本轮新出的射雕黄蓉作身份参考），第 3 张才长到中年
