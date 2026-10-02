@@ -1,78 +1,3 @@
-- id: por_npc_gongsunlve__ch03_youth_base
-  file: por_npc_gongsunlve__ch03_youth_base.png
-  category: character/female
-  style: default
-  subject: 公孙绿萼 npc_gongsunlve ch03_shendiao · 成年青年绝情谷主之女；丹房与地穴救援阶段，牺牲事件以前，不提前采用改命后身份
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Keep the head and neck naturally UPRIGHT, forehead–nose–chin centreline VERTICAL and both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward; head centered over the torso and shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override ALL reference poses; do not copy a reference side glance, raised chin or turned torso. Preserve natural facial asymmetry without tilting the head.
-
-
-    Create a beautiful REALISTIC Chinese wuxia portrait of GONGSUN LÜE / 公孙绿萼, an adult young woman and the daughter of the Passionless Valley''s master in The Return of the Condor Heroes. Image 1 is the ONLY FACIAL IDENTITY reference: Louisa So / 苏玉华 as Gongsun Lüe in the 1995 TVB series starring Louis Koo and Carman Lee. Image 2 is only the project colour/light sample and image 3 only the ink background. Preserve her own cheek volume, jaw, eye shape and facial spacing instead of replacing them with a standard heroine face.
-
-
-    身份与阶段：南宋神雕书界，成年青年公孙绿萼，绝情谷丹房与地穴救援阶段，牺牲事件以前。健康完整的青年身姿，肩背纤细但稳当，没有怯弱缩肩；温柔善意与能自行作决定的勇气并存。平静直视、嘴唇自然闭合，不用哭泣、惊恐或轻佻姿态概括她。不是公主、未成年幼女或改命后的未知年龄，也不照搬演员现代中年活动照。
-
-
-    本人脸锚：按第一张苏玉华角色图，柔和偏圆的短椭圆脸，颧颊有丰润真实体积，面部宽度保留，下颌转折柔和，小下巴圆润不尖。眉是自然弧线、眉尾平稳；眼形适中而稍修长，上眼睑与眉眼间距清楚，眼尾自然，不强行扩大眼球或画夸张双眼皮。鼻梁直顺而不刻意高削，鼻尖圆润、鼻翼有宽度，不能缩成玩偶小鼻；唇线明确、下唇有自然厚度。保留这些比例关系与成年青年气色，不削窄脸颊、尖化下巴或套小龙女/王语嫣同脸。原照轻微侧转与紧张表情不继承，恢复正面温柔而坚定的眼神。
-
-
-    服饰与发式：南宋隐居谷中汉族女子的浅叶绿色直领对襟褙子，内穿米白交领右衽衫和齐腰长裙，以墨绿窄布腰带收束。外褙子是对襟，内衫交领明确穿着者左襟盖右襟、向本人右侧合拢，领口遮蔽得体。衣料完全不透明、朴素完整，袖口收敛便于看清持物手，少量浅绿灰阴影使整片衣料有可信厚度与重力。素色平底布鞋。黑发收成低髻，用素木簪和短绿发带固定，额面清楚；不直接复制原剧照的高髻、花饰、珠耳坠、长鬓带或鲜青高领衣。
-
-
-    静立与唯一道具：身体正面、头颈垂直、双足稳稳落地，双手在胸腹之间偏下的自然位置轻拢一只小型朴素陶药瓶，与胸口留出空间。药瓶形状为一个圆润小瓶身、一个瓶颈和清楚闭合的朴素瓶塞；表面哑光，无文字标签，无珠宝镶饰，不发光。本人左手从下方轻托瓶底，右手用自然分开的指腹轻稳瓶身侧面，不去拔塞，五指关节及瓶口轮廓可读。瓶子不会粘在掌心或衣襟上，双手不重叠成团，袖口与手腕清楚分开。瓶子是解药剧情的视觉概括，不能写成特定丹药专名。没有情花枝、刀剑、暗器、鲜血或任何死亡意象。
-
-
-    人物画法：美观而可信的写实国风人物插画。面部、双手、衣料与器物都有完整坚实体积和确定轮廓，皮肤细腻自然、有柔和明暗，不是动漫大眼、小鼻尖V下巴的统一模板。中性水平透视和柔和左上漫射光，肤色有生命感，五官清楚、手指可读。服装是完整不透明、可以真实穿着的连续织物，承重褶皱少而清晰，领口、袖口、下摆与缝合关系明确；不用密集黑线、噪点、飞白或破洞冒充质感。人物保持精妙手绘感，背景墨痕不能进入脸、手、服装或器物。
-
-
-    背景与交付：不透明暖浅灰纸底，人物之外仅极淡、低对比水墨远山薄雾和充足留白，少量脚下接触阴影；没有具象剧情场景。单人单视图完整全身，原生竖幅2:3，发顶、两手、两足、衣摆和全部道具端点完整入画，留自然边距；不用固定占高/头身数字拉伸或挤压人物。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实记录，保存原始PNG字节，不裁切、旋转、重采样或重新编码。默认两张独立候选比较，每幅只有一个角色，均为candidate，等待用户审核，不自动approved。
-
-
-    事实边界：身份阶段和装备组合以当前主角色稿、名录与剧情文档为准；具体衣料款式、头饰、静态握持布局与容器形制是角色稿及本次美术补足。未逐字校勘的原著细节保留待考，不编造引文、页码或小说固定肖像，不将这些说明印在画面。
-
-
-    完整排除项：不要 head tilt、Dutch angle、头歪向肩、额鼻颏中线倾斜、双眼高低不平、倾斜镜头、俯首藏眼、仰头、抬下巴、明显侧脸、侧身回眸、耸单肩或参考的侧目；不要王语嫣、小龙女、郭芙、郭襄等其他人的脸，不融合三参考人脸，不让所有女性共用大眼、小鼻、尖V下巴模板。不要动漫大眼、夸张双眼皮、网红锥子脸、针尖下颌、鼻子过小、丰唇滤镜、浓妆、磨皮塑料肤质、摄影截图、剧照拼贴或3D模型。不要现代物品、拉链、腕表、运动鞋、高跟鞋、日式服制刀具、和服、圆盘刀镡、菱形缠柄、欧式奇幻盔甲、仙侠重冠、赛博或蒸汽朋克；不要唐式齐胸裙、明式马面裙或网巾、官服补子、清式旗装、剃发留辫、马蹄袖、大拉翅或朝代混搭。不要汉式交领左衽、水平镜像、多肢、多手、多指、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、身体缺失、裁断头足或器物端点。不要人物碎墨、飞白缺块、纸纹透肤透衣、碎布条、撕裂衣摆、毛边、大片补丁污渍、密集噪点、模糊眼睛、背景墨点切碎人物、强雾遮轮廓、塑料反光或强泛光。不要裸露、透明衣料、色情化、血腥、恶搞或丑化；不要法阵、粒子、发光武器、光翼、龙形能量、额外人物、动物、复杂建筑、多格、多视图或脸部特写框。不要文字、汉字、伪字、题款、印章、签名、logo或装饰水印；保留工具原有溯源标识与元数据。 不要把公孙绿萼画成郭襄式幼态少女、儿童、成熟中年贵妇、病弱缩肩或性感公主；不要小龙女长鹅蛋脸或王语嫣尖小脸，不削掉本人圆润颧颊。不要高大宫廷冠、豪华珠宝、影视高髻花饰、长鬓带或鲜青立领替代指定浅叶绿对襟褙子。不要情花、利刃、穿胸意象、血痕、尸体、死亡仪式、悲惨哭相；不要兵器或悬浮法术。不要第二只瓶、发光仙丹、药瓶文字标签、打开的瓶盖、倒药动作、瓶身与手指融合、瓶口被整只手遮没、瓶子紧贴胸口或袖子吞手。
-
-
-    FINAL POSE CHECK: FRONT-FACING GONGSUN LÜE. Her own 1995 TVB facial identity remains distinct. Head and neck UPRIGHT, forehead–nose–chin centreline VERTICAL, eyes HORIZONTALLY level, camera level, chin neutral, gaze straight ahead. NO head tilt and NO Dutch angle. Do not inherit ANY reference camera roll, raised chin, side glance or turned body. Keep her correct age, intact opaque costume, hands, feet and complete props clearly visible.'
-  negative: 不要 head tilt、Dutch angle、头歪向肩、额鼻颏中线倾斜、双眼高低不平、倾斜镜头、俯首藏眼、仰头、抬下巴、明显侧脸、侧身回眸、耸单肩或参考的侧目；不要王语嫣、小龙女、郭芙、郭襄等其他人的脸，不融合三参考人脸，不让所有女性共用大眼、小鼻、尖V下巴模板。不要动漫大眼、夸张双眼皮、网红锥子脸、针尖下颌、鼻子过小、丰唇滤镜、浓妆、磨皮塑料肤质、摄影截图、剧照拼贴或3D模型。不要现代物品、拉链、腕表、运动鞋、高跟鞋、日式服制刀具、和服、圆盘刀镡、菱形缠柄、欧式奇幻盔甲、仙侠重冠、赛博或蒸汽朋克；不要唐式齐胸裙、明式马面裙或网巾、官服补子、清式旗装、剃发留辫、马蹄袖、大拉翅或朝代混搭。不要汉式交领左衽、水平镜像、多肢、多手、多指、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、身体缺失、裁断头足或器物端点。不要人物碎墨、飞白缺块、纸纹透肤透衣、碎布条、撕裂衣摆、毛边、大片补丁污渍、密集噪点、模糊眼睛、背景墨点切碎人物、强雾遮轮廓、塑料反光或强泛光。不要裸露、透明衣料、色情化、血腥、恶搞或丑化；不要法阵、粒子、发光武器、光翼、龙形能量、额外人物、动物、复杂建筑、多格、多视图或脸部特写框。不要文字、汉字、伪字、题款、印章、签名、logo或装饰水印；保留工具原有溯源标识与元数据。 不要把公孙绿萼画成郭襄式幼态少女、儿童、成熟中年贵妇、病弱缩肩或性感公主；不要小龙女长鹅蛋脸或王语嫣尖小脸，不削掉本人圆润颧颊。不要高大宫廷冠、豪华珠宝、影视高髻花饰、长鬓带或鲜青立领替代指定浅叶绿对襟褙子。不要情花、利刃、穿胸意象、血痕、尸体、死亡仪式、悲惨哭相；不要兵器或悬浮法术。不要第二只瓶、发光仙丹、药瓶文字标签、打开的瓶盖、倒药动作、瓶身与手指融合、瓶口被整只手遮没、瓶子紧贴胸口或袖子吞手。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/shendiao/gongsunlve_1995_suyuhua.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/shendiao/gongsunlve_1995_suyuhua.jpg
-    use: 第一且唯一面部身份参考：1995 TVB苏玉华饰公孙绿萼的单人绿衣剧照。保留偏圆短椭圆脸、丰润颧颊与柔和下颌、小而圆润的下巴、自然弧眉和适中偏长眼形、直顺鼻梁与圆鼻尖、明确唇线及有厚度的下唇。不要磨成李若彤长脸或王语嫣尖下巴大眼。原照轻微侧转和紧张眼神改成正面直视、头颈竖直、眼线水平；青绿影视衣装高髻首饰、背景与署名不继承。
-    sha256: 16b5e0856f34be04d55532cdaa2992f444dcbea49166437044b2f3c0d10c88d0
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/16b5e0856f34be04d55532cdaa2992f444dcbea49166437044b2f3c0d10c88d0.jpg
-    status_at_input: null
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 第二参考仅项目低饱和设色、暖润肤色与柔和光影的画风色卡，不提供面容。不得借王语嫣的脸、骨相、眼睛大小、鼻子、下巴、年龄、体型、高髻、玉簪、衣装或侧身倾头；原图细节若让人物变碎变薄也不沿用。人物必须独立清楚写实、完整实材衣料。参考现有approved不传递给新candidate。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三参考只取暖浅灰纸底、极淡水墨山水与留白。忽略原图女性脸、头倾、身体、白青薄纱衣、饰物和站姿；水墨/纸纹不得侵蚀人物皮肤、衣料、手部和器物边缘。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T19:47:13.275092+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-8151636b-cc9b-4c32-867e-57a5226f0635.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 0d899809f88b0d05c07c623a874343733cbcf5850ed6e493745e7e27ea6cceeb
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_gongsunlve__ch03_youth_base/prompt-7ab5cdca00f24f159071276bdfe483d70892d4efbe691149d89787ee67cdb45a.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_gongsunlve__ch03_youth_base/manifest-97851db6f3dce8712516ead33590a6c09ea5d783859f3f0f410c0d58b002d3b9.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_gongsunlve__ch03_youth_base.requests.json
-  notes: 实际查看两张原始PNG并对照1995苏玉华公孙绿萼角色参考后选2。候选2的颧颊宽度、自然鼻翼、较厚下唇与平稳眉眼更保留本人辨识，成年青年面容区别于候选1较通用的窄鼻温柔美人模板；2略有自然转面但头颈基本竖直、眼线水平，没有明显靠肩歪头。浅叶绿对襟外衣与米白右衽内衫连续完整，两手分开扶托一只带塞陶瓶，瓶口、手指及袖口可分辨，无明显多肢或重大握持问题。记录实际偏差：一鞋被衣摆遮蔽，头发仍为偏高髻并有垂发、额发和额外小花耳饰，刺绣及背景亭台比原设计多；左下托手部分指节被瓶底自然遮挡，未声称逐指完全可见。1同样可读但身份辨识弱，保留原图不选。原生1024×1536 RGB不透明PNG逐字节入库，属于宽松自查candidate，不自动approved、不声称旧严格母版与所有细节通过。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_wanyanping__ch03_youth_base
   file: por_npc_wanyanping__ch03_youth_base.png
   category: character/female
@@ -882,5 +807,50 @@
   source_size: 1024x1536
   size: 1024x1536
   sha256: 6d7ba41de35817c0d45df12d38cfd23d31c3e2fa6da722516ebb971f3dc97a53
+  status: candidate
+  notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做
+- id: por_npc_gongsunlve__ch03_youth_base
+  file: por_npc_gongsunlve__ch03_youth_base.png
+  category: character/female
+  style: default
+  subject: 公孙绿萼（ch03_shendiao）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】公孙绿萼，《神雕侠侣》绝情谷主公孙止的女儿；在丹房与地穴救援杨过的阶段。温柔善良、心思细腻。
+
+    【年龄与体态】约二十岁的成年年轻女子，身形纤秀。成年女性的五官骨相与身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【面容】清秀温婉的鹅蛋脸；眉毛细长；一双温柔明亮的眼睛，眼神带一点羞怯和善意；鼻梁秀直；唇色淡红；肌肤白皙。清秀温柔的美人（原创扩展）。
+
+    【发式】乌发挽成简单的发髻，插一支碧玉簪，其余长发垂在背后。
+
+    【服饰】淡绿色交领右衽窄袖衫、浅绿长裙、绿色丝绦，平底绣鞋；衣色像花萼一样清淡（呼应「绿萼」之名）。
+
+    【道具】空手，双手在身前轻轻相握。
+
+    【姿态与神情】安静站立，神情温柔、带一点忧伤。
+
+    【本次重点修正】上一版和程英几乎是同一张脸、同一发型。这次公孙绿萼要一眼看出是另一个人：小圆脸、脸颊微丰、下巴短而圆，圆圆的杏眼，眉毛短而柔，鼻头小而圆，嘴唇小巧；头发全部挽起成两个低低的发髻（双鬟），用碧玉簪和绿色发带固定，不披长发、不留垂背长发；神情温柔羞怯、带一点忧伤。仍是约二十岁的成年女子。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要像任何真实演员或明星；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要情花或花枝；不要血迹；不要浓妆；不要娃娃脸。
+
+    【画风基线】随提示词上传的两张参考图是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）
+  tool: codex exec · image_gen（同性别两张基线立绘作画风参考，无身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T04:01:19-0700
+  source_path: .agents/coord/gemini_originals/por_npc_gongsunlve__ch03_youth_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 9cfbb3f16e0b734c080716ddaa862bd8650a4b7f5721582961d6d92e738c93b8
   status: candidate
   notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做
