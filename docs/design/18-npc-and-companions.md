@@ -4,7 +4,7 @@
 > 上游：`docs/decisions/author-requirements.md` AR-09（高于基准）、`docs/00-canon.md`、`design/01-vision-and-core-loop.md`、`design/02-timeline-and-world-tiers.md`、`design/03-attributes.md`、`design/13-progression-and-endings.md`、`design/17-sects-compendium.md`、`design/20-legacy-inheritance.md`。
 > 引用而不重定义：任务与门派流程 → `design/12-quests-npc-factions.md`；战斗编组、合击与 AI → `design/09-combat-system.md`；城市 ID / 坐标 / 时代名 → `design/19-world-map.md` 与 `design/map/cities.yaml`，区域玩法 → `design/11-open-world.md`；营生场所、家业合同与排班 → `design/16-resources-and-estates.md`；传承来源、残本与载体调度 → `design/20-legacy-inheritance.md`；武学 → `design/05` 与 `design/catalog/skills-*.md`；存档 Schema / 运行时 → `tech/04-data-pipeline.md` / `tech/05-gameplay-engine.md`。本文只定义人物实体、生命轴、招募判断和人物侧互斥。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（推算）** = 由本文所列原著线索和游戏定年估算；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需真机或完整存档验证；**【建议值】** = 依赖其他文档、先给可运行值并在文末登记。
-> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）：人物补录、跨书索引、双童目标与永久经脉快照核对。
+> 版本：v1.3（白马年代与序章人物登记，2026-10-02）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）：人物补录、跨书索引、双童目标与永久经脉快照核对。
 
 ---
 
@@ -15,7 +15,7 @@
 3. “书眠”是叙事与存档阶段名；主角借《长生诀》沉睡至下一书界。切换时清空活动编组，但保留招募史、羁绊与离队快照。
 4. 旧基准“队友不跨书界”由 AR-09 覆盖：故人若在苏醒年仍健在，可经重逢任务再次加入。能力以旧快照为逐项下限，再按新书形象补入武学、层数和功力，只增不减。
 5. 具名、可招募 NPC 走 `design/03` 的 `full` 数值管线；普通设施 NPC 与路人走 `template` 管线。年龄段只修正输入画像，不另造第二套战斗公式。
-6. 分层名录拆在 `catalog/npcs-*.md`：按 2026-09-30 本任务读取的 17 册实数，14 部主线各有 20–40 名带 `npc_*` 的静态 NPC，合计 436 条出场索引、411 个唯一人物；另有 17 个不建静态 ID 的角色 / 支持槽，以及 1 行待迁移的具名风际中槽，不计入人物下限。§13.3 另有 12 个具名授艺 / 组织来源，§13.4 正式补录 7 人；分册同步前不冒计进上述 436 行。跨书补索引与重算规则见 §11.3；99 个组织、设施与路人模板另计。名录字段是生产数据候选，不替代原著考据。
+6. 分层名录拆在 `catalog/npcs-*.md`：按 2026-09-30 本任务读取的 17 册实数，14 部主线各有 20–40 名带 `npc_*` 的静态 NPC，合计 436 条出场索引、411 个唯一人物；另有 17 个不建静态 ID 的角色 / 支持槽，以及 1 行待迁移的具名风际中槽，不计入人物下限。§13.3 另有 12 个具名授艺 / 组织来源，§13.4 正式补录 7 人，§13.5 登记 3 名序章人物；分册同步前不冒计进上述 436 行。跨书补索引与重算规则见 §11.3；99 个组织、设施与路人模板另计。名录字段是生产数据候选，不替代原著考据。
 
 ### 0.1 章节导航
 
@@ -91,6 +91,8 @@ NPC 的长期身份由五部分组成：
 5. `companionState`：是否曾加入、羁绊、活动编组、留守点、离队快照、生死与背叛。
 
 “同名不同人”必须分 ID；“同一人改名 / 改号”不得分 ID。例如张君宝与张三丰共用 `npc_zhangsanfeng`，在神雕出现段将 `displayName` 写为“张君宝”。周伯通统一使用 `npc_zhoubotong`；仓库遗留 `npc_zhouboting` 是待迁移别名，不得新建第二人物。
+
+非人角色仍使用稳定 `npc_*`，但须显式写 `identity.species`。动物不套人类年龄段、服饰立绘、送礼好感或职业招募默认值；年龄、关系建立方式、战斗资格与资产类型均逐物种手配，可参考 `npc_shendiao` 的兽伴边界。
 
 ### 1.3 内容层与招募难度相互独立
 
@@ -687,6 +689,7 @@ finalStats = design03.full(innateAged, displayLevel, skills, equipment, template
 
 | 书界 | 入场—出场年 | 年代性质 | NPC 年龄计算基准 |
 |---|---|---|---|
+| 白马 | 702–703 | 武周长安年间·原创扩展定年 | 702 入场；转场锚点取 702，见 `design/02` §1.5 |
 | 天龙 | 1093–1094 | 史年锚定 | 1093 入场、1094 离界 |
 | 射雕 | 1217–1227（楔子 1199） | 史年锚定 | 具体 appearance 可取楔子或主体年 |
 | 神雕 | 1237–1259 | 史年锚定 | 少年段与十六年后分 appearance |
@@ -696,7 +699,6 @@ finalStats = design03.full(innateAged, displayLevel, skills, equipment, template
 | 碧血 | 1630–1645 | 史年锚定 | 序幕 / 主体分 appearance |
 | 鹿鼎 | 1669–1690 | 史年锚定 | 按历史事件窗口分段 |
 | 连城 | 约 1705–1712 | 原创扩展定年 | 年份一律带 `approx` |
-| 白马 | 约 1725–1726 | 原创扩展定年 | 年份一律带 `approx` |
 | 鸳鸯 | 约 1740 | 原创扩展定年 | 年份一律带 `approx` |
 | 书剑 | 1753–1759 | 史年锚定 | 1753 开局、1759 终段 |
 | 飞狐 | 约 1766–1771 | 推定游戏年 | 年份带 `approx` |
@@ -708,11 +710,12 @@ finalStats = design03.full(innateAged, displayLevel, skills, equipment, template
 
 ### 6.1 术语与 14 段沉睡
 
-“书眠”是系统阶段名；“《长生诀》沉睡”是 AR-09 指定的叙事机制，均为**（原创扩展）**。主角沉睡期间不老。`sleepYears` 由 `design/02` 以 `下一书界入场年 − 当前书界出场年` 派生：
+“书眠”是系统阶段名；“《长生诀》沉睡”是 AR-09 指定的叙事机制，均为**（原创扩展）**。主角沉睡期间不老。`sleepYears` 直接消费 `design/02` §1.5；白马使用本次协调确定的 702 年转场锚点，其余段仍按下一界入场年减当前界出场年：
 
 | 转场 | 算式 | 沉睡年数 |
 |---|---:|---:|
-| 越女 → 天龙 | `1093 − (−482)` | 1575 |
+| 越女 → 白马 | `702 − (−482)` | 1184 |
+| 白马 → 天龙 | `1093 − 702` | 391 |
 | 天龙 → 射雕 | `1217 − 1094` | 123 |
 | 射雕 → 神雕 | `1237 − 1227` | 10 |
 | 神雕 → 倚天 | `1336 − 1259` | 77 |
@@ -721,13 +724,12 @@ finalStats = design03.full(innateAged, displayLevel, skills, equipment, template
 | 侠客 → 碧血 | `1630 − 1583` | 47 |
 | 碧血 → 鹿鼎 | `1669 − 1645` | 24 |
 | 鹿鼎 → 连城 | `1705 − 1690` | 15 |
-| 连城 → 白马 | `1725 − 1712` | 13 |
-| 白马 → 鸳鸯 | `1740 − 1726` | 14 |
+| 连城 → 鸳鸯 | `1740 − 1712` | 28 |
 | 鸳鸯 → 书剑 | `1753 − 1740` | 13 |
 | 书剑 → 飞狐 | `1766 − 1759` | 7 |
 | 飞狐 → 雪山 | `1780 − 1771` | 9 |
 
-数组校验值固定为 `[1575,123,10,77,160,57,47,24,15,13,14,13,7,9]`，本文不复制 `ChapterDef` 的权威配置。
+数组校验值固定为 `[1184,391,123,10,77,160,57,47,24,15,28,13,7,9]`，本文不复制 `ChapterDef` 的权威配置。
 
 ### 6.2 书眠提交时的同伴处理
 
@@ -1001,7 +1003,9 @@ type SkillId = `sk_${string}`;
 type InnateId = 'con'|'str'|'agi'|'wis'|'wil'|'luk'|'cha';
 type Grade = 1|2|3|4|5|6|7|8|9|10|11|12;
 type SideQuestKind = 'side'|'faction'|'bond'|'qiyu';
-type QuestId = `q_${BookChapterNumber}_main_${'c'|'z'|'x'}_${TwoDigits}`
+type PrologueMainQuestId = `q_00_main_c_${TwoDigits}`;
+type QuestId = PrologueMainQuestId
+  | `q_${BookChapterNumber}_main_${'c'|'z'|'x'}_${TwoDigits}`
   | `q_${'00'|BookChapterNumber}_${SideQuestKind}_${TwoDigits}`
   | `q_15_main_${TwoDigits}`;
 type CityId = `city_${string}`;
@@ -1009,6 +1013,7 @@ type TaskNodeRef = `${QuestId}#${string}`;
 type RecruitmentDifficulty = 'D1' | 'D2' | 'D3' | 'D4' | 'D5';
 type ContentLayer = 'mainline' | 'sect' | 'facility' | 'commoner';
 type AgeBand = 'child' | 'youth' | 'young_adult' | 'prime' | 'mature' | 'elder' | 'venerable';
+type Species = 'human' | 'animal' | 'spirit' | 'projection';
 type AiTier = 'ai_basic' | 'ai_adept' | 'ai_expert' | 'ai_master';
 type AiPersonality =
   | 'pers_mangfu' | 'pers_jinshen' | 'pers_jiaozha' | 'pers_huzhu'
@@ -1031,6 +1036,7 @@ interface NpcDef {
   identity: {
     name: string; aliases: string[];
     origin: 'fictional' | 'historical_fictionalized' | 'expanded' | 'generated';
+    species?: Species; // 省略即 human；非人不得套人类年龄与好感默认值
     sourceWorks: string[];
   };
   lifespan: {
@@ -1059,7 +1065,7 @@ interface NpcAppearance {
   displayName: string;
   presenceMode: 'living' | 'reference';
   combatEligible: boolean; // reference / child 强制 false；双童按 §9.4 的少年 / 青年画像，不豁免 child 禁战
-  ageBand: AgeBand;
+  ageBand: AgeBand|null; // species != human 时为 null，改读逐物种手配画像
   sects: Array<{ sectId: SectId; rank: 'L1'|'L2'|'L3'|'L4'|'L5'|null; relation: string }>;
   location: { cityId: CityId|null; placeKey: string|null };
   contentLayer: ContentLayer;
@@ -1559,11 +1565,12 @@ D2定金 = 3 × D2日佣
 这 12 项只闭合具名人物身份，不为武学图鉴中的通用教头、院堂、士兵、猎人、庄丁、门人或群体建立伪静态 NPC；此类引用应改用 `roleKey` / `facilityKey` 或明确的运行时槽。
 
 - 436 条主线静态人物索引行的 `npc_*` 在各 `catalog/npcs-ch*.md` 对应行登记；其中 411 个唯一人物 ID，另 25 行是同一人物的跨书 appearance 索引，故跨文件出现不等于重复定义。§13.3 另登记 12 个具名来源，§13.4 另补录 7 个正式人物；分册同步后的增量见 §11.3。慈恩沿用裘千仞的 `npc_qiuqianren`，只新增神雕 appearance，不另建人物。
+- §13.5 的阿青、白猿、范蠡属于序章 `ch00_yuenv`，不计入十四书 436 条主线索引或每书 20–40 名配额；三者仍进入全局 `NpcDef` 唯一性校验。
 - 周圻 / 周绮分别为 `npc_zhouqi09` / `npc_zhouqi12`；侠客张三 / 李四分别为 `npc_zhangsan06` / `npc_lisi06`，以书界号消解同名。
 - 白马旧导入键 `npc_ningqiangdao` 已迁为 `npc_songqiangdao`（显示“姓宋的强人”）；旧键只保留作 alias，禁止新内容继续引用。
 - 99 个 `sect_*` 全部引用 `design/17`，本文未新建组织 ID。
 - 所有 `sk_*` 均引用现有图鉴；“待图鉴”项没有预建 ID。
-- 本文任务引用遵循基准 §12 与 `design/12` §1.1 的三个合法集合：十四书界（01–14）主线 `q_<NN>_main_<c|z|x>_<nn>`；序章与十四书界（00–14）非主线 `q_<NN>_<side|faction|bond|qiyu>_<nn>`；终局容器例外 `q_15_main_<nn>`。必须含路线码仅适用于十四书界主线。示例 `q_02_bond_01` / `q_03_bond_01` **不登记为已存在内容 ID**，须由 12 / story / chapters 的任务清单正式定义后才能通过引用校验。appearance、窗口、场所、角色、羁绊标签均为父记录内局部键。
+- 本文任务引用遵循基准 §12 与 `design/12` §1.1 的四个合法集合：序章共有主线窄例外 `q_00_main_c_<nn>`；十四书界（01–14）主线 `q_<NN>_main_<c|z|x>_<nn>`；序章与十四书界（00–14）非主线 `q_<NN>_<side|faction|bond|qiyu>_<nn>`；终局容器例外 `q_15_main_<nn>`。序章没有正邪线，故只准 `c`；示例 `q_02_bond_01` / `q_03_bond_01` **不登记为已存在内容 ID**，须由 12 / story / chapters 的任务清单正式定义后才能通过引用校验。appearance、窗口、场所、角色、羁绊标签均为父记录内局部键。
 - `npcg_<base32hash>` 只是一项生成 NPC 可读持久 ID 的基准提案，在 §15.3 获采纳前不属于正式内容 ID；当前实现使用运行时 UUID。
 
 ### 13.4 终审补录的正式人物主记录
@@ -1584,6 +1591,16 @@ D2定金 = 3 × D2日佣
 
 迁移时把“假太后角色槽”绑定 `npc_maodongzhu`、把“风际中角色槽”绑定 `npc_fengjizhong`；两者分别只能生成一个 `NpcDef`，旧存档以父遭遇槽映射到既有人物状态，禁止重置生命轴、关系或已结算任务。倚天五人与七人补录整体的分册索引方案见 N18-O06；人物补录不新增武学、任务、门派或经脉 ID。
 
+### 13.5 越女序章正式人物主记录
+
+三人均以约前 482 年的 `ch00_yuenv` living appearance 出场，生卒采用 `{kind: unknown}`，不得从外貌反推精确年份，也不得跨至 702 年白马仍判存活。制作等级仅表示美术投入，不表示战力或招募难度。
+
+| ID | 身份 / 来源 | 序章职责与招募边界 | 生命轴、非人规则与制作等级 |
+|---|---|---|---|
+| `npc_aqing` | 阿青，《越女剑》牧羊女、越女剑源；`origin=fictional` | D5；剧情友军与教学演示操控，越营传《长生诀》第一层**（原创扩展）**；序章不写永久入队，后续若开放同行须另有本人许可与任务窗口 | `species=human`；`lifespan=unknown`，`explicitAliveAt=ch00_yuenv`；制作等级 **S**，不是战力评级 |
+| `npc_baiyuan` | 白猿，阿青在山中交手的动物角色；称谓与细节**（待考）**；`origin=fictional` | D4 非人同伴边界；仅山径非致死试手 / 投果 / 绕路，序章不写永久入队、不掉落；未来若同行使用兽伴逻辑 | `species=animal`、`ageBand=null`、`lifespan=unknown`；手配动物画像，不套人类年龄修正、送礼好感、服饰或普通人形立绘要求 |
+| `npc_fanli` | 范蠡，《越女剑》中越王勾践的上大夫；`origin=historical_fictionalized` | D5；越营提出试阵、见证阿青演示；序章非战斗且不写永久入队，官职责任与本人许可构成未来窗口门槛 | 小说生命轴 `unknown`，史实档案另行考据；`explicitAliveAt=ch00_yuenv`；制作等级 **A**，不是战力评级 |
+
 ---
 
 ## 14. 数据校验规则与测试用例
@@ -1592,7 +1609,7 @@ D2定金 = 3 × D2日佣
 
 | ID | 检查 | 通过条件 / 失败级别 |
 |---|---|---|
-| NPC-V01 | 静态 ID 格式与唯一性 | 每条正式人物 ID 匹配 `^npc_[a-z0-9]+(?:_[a-z0-9]+)*$`；同一人物跨书允许多 appearance / 索引行，但全局只有一个 `NpcDef`；不同人物不得同 ID。分册当前 `436=411+25`；§13.3 的 12 个具名来源与 §13.4 的 7 人补录另计。构建去重还须纳入 4 个固定系统实体，合计 `411+12+7+4=434` 个身份；分册迁移只改索引归属，不再次增加既有人物。失败 = 构建失败 |
+| NPC-V01 | 静态 ID 格式与唯一性 | 每条正式人物 ID 匹配 `^npc_[a-z0-9]+(?:_[a-z0-9]+)*$`；同一人物跨书允许多 appearance / 索引行，但全局只有一个 `NpcDef`；不同人物不得同 ID。分册当前 `436=411+25`；§13.3 的 12 个具名来源、§13.4 的 7 人补录与 §13.5 的 3 名序章人物另计。构建去重还须纳入 4 个固定系统实体，合计 `411+12+7+3+4=437` 个身份；分册迁移只改索引归属，不再次增加既有人物。失败 = 构建失败 |
 | NPC-V02 | 同名消歧 | 不同人物经规范化姓名相同或拼音冲突时追加两位书界号；已知周圻 / 周绮、侠客张三 / 李四通过。失败 = 构建失败 |
 | NPC-V03 | 生卒顺序 | exact / range 值满足 `born ≤ died`；appearance 与 lifespan 无交集时，只能是 `presenceMode=reference`。失败 = 构建失败 |
 | NPC-V04 | 出现书界一致性 | 每个活体 appearance 与 `design/02` 年区间有交集；`approx` 书界不得把推定年伪装为精确史实。失败 = 构建失败 |
@@ -1611,18 +1628,19 @@ D2定金 = 3 × D2日佣
 | NPC-V17 | 顶尖人物地位下限 | 射雕五绝 `10/9`；神雕严格满足金轮 `11/8 <` 五绝 `11/9 <` 杨过 `12/9`；陈家洛、胡斐、苗人凤为 `9/9`，瓦耳拉齐、马家骏为 `9/8`。敌方 / 试招画像低于本表或静默回退 `1/1/harmony` = 构建失败 |
 | NPC-V18 | 雪山左右书僮身份 | 同一目录槽展开两个独立精英，不建静态 ID；须 `combatEligible=true`、`contentLayer=mainline` 并解析到 `enc_14_shuangtongweidou`。整场 `deescalationBp=3×2000+2×2000=10000`，三次制止围攻 + 双童各自安全离场；不得改成保住绳路 / 击倒胜利，不取消断索锚点。双童与所有围攻者均拒绝玩家伤害；仍标非战斗、D2 设施模板或复制 Boss 血量 = 构建失败 |
 | NPC-V19 | 补录身份与岗位迁移 | 毛东珠 / 假太后只解析 `npc_maodongzhu`，风际中只解析 `npc_fengjizhong`；王屋 / 神龙舰队 / 雅克萨无名领队保留局部岗位。五名倚天人物分别有生命态，母女 / 夫妻不得合并，杨不悔幼年段不得进入战斗位。失败 = 构建失败 |
-| NPC-V20 | 经脉快照与任务类型 | 同伴永久快照包含 15 的完整 `MeridianProgress`，不混入 21 战斗临时态；`QuestId` 按 `design/12` §1.1 校验三个合法集合，仅十四书界主线必须含 `c/z/x` 路线码，保留 `q_15_main_<nn>` 终局例外；七参与 AR-18 性质只能解析实际主运与正式路线。失败 = 构建失败 |
+| NPC-V20 | 经脉快照与任务类型 | 同伴永久快照包含 15 的完整 `MeridianProgress`，不混入 21 战斗临时态；`QuestId` 按 `design/12` §1.1 校验四个合法集合，序章主线只准 `q_00_main_c_<nn>`，十四书界主线必须含 `c/z/x`，保留 `q_15_main_<nn>` 终局例外；七参与 AR-18 性质只能解析实际主运与正式路线。失败 = 构建失败 |
+| NPC-V21 | 越女序章三人 | `npc_aqing/npc_baiyuan/npc_fanli` 各有唯一主记录与 `ch00_yuenv` living appearance；白猿须为 `species=animal` 且不得进入人类年龄、送礼或普通人形立绘管线；阿青 / 范蠡制作等级恰为 S / A。失败 = 构建失败 |
 
 ### 14.2 当前目录金标准
 
 | ID | 输入 / 算式 | 精确期望 |
 |---|---|---|
 | NPC-T01 | 14 部静态人物行（本次 17 册实数） | `40+37+35+38+26+26+40+34+27+21+20+36+33+23 = 436`；每项均在 20–40。陈家洛单独补入飞狐后为 437；若常氏两人一起补入则为 439，须按 §11.3 的实际落盘项重算 |
-| NPC-T02 | 唯一人物与支持槽 | 当前 `436=411+25`；另 17 个无名角色 / 支持槽 + 1 个待迁移风际中具名槽，目录 `436+17+1=454`。陈家洛补行只增加复用数、不增加唯一人物；连同常氏为 `439=411+28`。§13.3 / §13.4 的 12+7 个补录来源独立登记，分册迁入后按 ID 去重 |
+| NPC-T02 | 唯一人物与支持槽 | 当前 `436=411+25`；另 17 个无名角色 / 支持槽 + 1 个待迁移风际中具名槽，目录 `436+17+1=454`。陈家洛补行只增加复用数、不增加唯一人物；连同常氏为 `439=411+28`。§13.3 / §13.4 / §13.5 的 `12+7+3` 个补录来源独立登记，分册迁入后按 ID 去重 |
 | NPC-T03 | 组织分组 | `29+22+33+15 = 99`，集合与 17 完全相等 |
 | NPC-T04 | 设施范例 | `8 城×3 场所×4 槽 = 96`；场所数 `8×3=24` |
 | NPC-T05 | 路人年龄权重 | `5+12+24+34+16+7+2 = 100%` |
-| NPC-T06 | 书眠间隔 | `[1575,123,10,77,160,57,47,24,15,13,14,13,7,9]`，逐项等于下一书入场年减本书离场年 |
+| NPC-T06 | 书眠 / 周游间隔 | `[1184,391,123,10,77,160,57,47,24,15,28,13,7,9]`；首项 `702−(−482)=1184`，白马项按转场锚点 `1093−702=391`，其余逐项见 §6.1 |
 | NPC-T07 | 战斗编组 | 主角 1 + 同伴至多 5 = 总上场 ≤6；第 6 名同伴只能转留守 |
 | NPC-T08 | 命定死亡费用 | 余韵 1、同一事件救 2 名曾入队同伴：需 2、先扣 1、`fateDebt=1`，只计一次事件 |
 | NPC-T09 | 日佣 | 天龙 `I_hour=19`、熟手 D2：`19×0.50×1=9.5` 两 / 日，三日定金 `3×9.5=28.5` 两 |
