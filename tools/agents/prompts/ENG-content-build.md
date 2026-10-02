@@ -18,6 +18,8 @@
 
 本任务做管线本体。Tiled 转换另开任务（ENG-18b），本任务不做。
 
+M1 终点已改为「书眠进入白马（唐）冷入口」（作者 AR-29，见 `docs/tech/09-roadmap.md` §3）。白马书界的冷入口内容等设计任务 DES-baima-tang 合入后由后续任务落地；本任务先用仓库现有内容（ch01 等）和测试夹具验证管线。管线对书界 ID 一视同仁，不为某一书界写特例。
+
 现状（集成分支实测；开工先自己核对一遍，以实际代码为准）：
 - 构建是 Vite 虚拟模块整包注入：`apps/game/build/content-plugin.ts` 把物品、NPC、武学、地图等 YAML 解析后整体 `export default JSON.stringify(...)`。没有分片、hash 和清单。
 - `packages/data/src/content-loader.ts` 有 `loadChapterPack()` 读取器（`manifest.schemaVersion: 1` + `payload`），全仓没有产出端。
