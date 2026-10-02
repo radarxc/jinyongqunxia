@@ -1,3 +1,7 @@
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import { InkJsDialogueBridge } from '@tianshu/core';
+import { compileInk } from '@tianshu/data/build';
 import { describe, expect, it } from 'vitest';
 import { gameContentPlugin } from './content-plugin';
 
@@ -20,5 +24,25 @@ describe('game content plugin town integration', () => {
       undefined, {} as never);
     const town = await plugin.load?.call({} as never, townId as string);
     expect(town).toEqual(expect.stringContaining('town-runtime.v1'));
+  });
+});
+
+describe('content compiler bridge', () => {
+  it('compiles an Ink fixture and makes one core bridge choice', async () => {
+    const directory = join(import.meta.dirname, 'fixtures');
+    const source = await readFile(join(directory, 'story_choice.ink'), 'utf8');
+    const metadata = await readFile(join(directory, 'story_choice.inkmeta.yaml'), 'utf8');
+    const compiled = await compileInk(source, metadata, join(directory, 'story_choice.ink'));
+    expect(compiled.diagnostics).toEqual([]);
+    const bridge = new InkJsDialogueBridge(() => compiled.storyJson);
+    const started = bridge.start('story_choice', 'wake', 17);
+    expect(compiled.text).toEqual({
+      'ink.story_choice.text.0000': '你从梦中醒来。',
+      'ink.story_choice.text.0001': '向前',
+      'ink.story_choice.text.0002': '你踏上山路。',
+    });
+    expect(started.choices).toEqual([{ key: '0', textKey: 'ink.story_choice.text.0001' }]);
+    expect(bridge.choose(started, '0').lines.map((line) => line.textKey))
+      .toEqual(['ink.story_choice.text.0002\n']);
   });
 });

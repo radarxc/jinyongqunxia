@@ -1,0 +1,146 @@
+import { describe, expect, it } from 'vitest';
+import { canonicalBytes, hashValue } from './hash';
+import { compileInk, decodeInkTag } from './ink';
+import { emitLeaves, packSizeDiagnostics, splitLeaf } from './leaves';
+import { createManifest, manifestBytes } from './manifest';
+import type { BuildLeaf } from './types';
+import type { JsonValue } from '@tianshu/shared';
+
+const meta = `schemaVersion: inkmeta.v1
+storyId: story_fixture
+chapter: ch01_tianlong
+entryKnots: [wake]
+readFlags: []
+commands: []
+npcs: []
+`;
+const ink = (branch: string) => `=== wake ===
+Welcome.
++ [Go]
+  -> ${branch}
+=== ${branch} ===
+Done.
+-> END`;
+const leaf = (name: string, kind: 'rules' | 'text', value: BuildLeaf['value']): BuildLeaf =>
+  ({ logicalName: name, kind, load: 'chapter', value, ...(kind === 'text' ? { locale: 'zh-Hans' } : {}) });
+
+describe('content build hashing and Ink', () => {
+  it('isolates rule, text, and Ink structure hashes', async () => {
+    const first = await compileInk(ink('done'), meta, 'story_fixture.ink');
+    const changed = await compileInk(ink('other'), meta, 'story_fixture.ink');
+    const structureA = first.structure as unknown as JsonValue;
+    const structureB = changed.structure as unknown as JsonValue;
+    const ruleA = await emitLeaves([leaf('ch01.rules.base.json', 'rules', [{ damage: 1 }, structureA])]);
+    const ruleB = await emitLeaves([leaf('ch01.rules.base.json', 'rules', [{ damage: 2 }, structureA])]);
+    const ruleC = await emitLeaves([leaf('ch01.rules.base.json', 'rules', [{ damage: 1 }, structureB])]);
+    const textA = await emitLeaves([leaf('ch01.text.zh-Hans.base.json', 'text', { name: '甲' })]);
+    const textB = await emitLeaves([leaf('ch01.text.zh-Hans.base.json', 'text', { name: '乙' })]);
+    const make = (rules: Awaited<ReturnType<typeof emitLeaves>>, text: Awaited<ReturnType<typeof emitLeaves>>) =>
+      createManifest('ch01_tianlong', 'a'.repeat(64), [...rules, ...text], []);
+    const [a, b, c, d] = await Promise.all([make(ruleA, textA), make(ruleB, textA), make(ruleA, textB), make(ruleC, textA)]);
+    expect(b.contentHash).not.toBe(a.contentHash); expect(b.textHashes).toEqual(a.textHashes);
+    expect(c.contentHash).toBe(a.contentHash); expect(c.textHashes).not.toEqual(a.textHashes);
+    expect(changed.structure.storyHash).not.toBe(first.structure.storyHash); expect(d.contentHash).not.toBe(a.contentHash);
+  });
+
+  it('keeps Ink structure stable when only visible text changes', async () => {
+    const first = await compileInk(ink('done'), meta, 'story_fixture.ink');
+    const changed = await compileInk(ink('done').replace('Welcome.', 'Bienvenue.')
+      .replace('[Go]', '[Proceed]'), meta, 'story_fixture.ink');
+    expect(changed.structure.storyHash).toBe(first.structure.storyHash);
+    expect(changed.storyJson).toBe(first.storyJson);
+    expect(changed.text).not.toEqual(first.text);
+  });
+
+  it('changes Ink structure when a choice target changes', async () => {
+    const source = `=== wake ===\n+ [Go]\n  -> first\n=== first ===\nDone.\n-> END\n=== second ===\nDone.\n-> END`;
+    const first = await compileInk(source, meta, 'story_fixture.ink');
+    const changed = await compileInk(source.replace('-> first', '-> second'), meta,
+      'story_fixture.ink');
+    expect(changed.structure.storyHash).not.toBe(first.structure.storyHash);
+    expect(changed.structure.choices).not.toEqual(first.structure.choices);
+  });
+
+  it('retains string constants inside compiled Ink', async () => {
+    const source = `VAR greeting = "hello"\n=== wake ===\n{greeting}\n-> END`;
+    const compiled = await compileInk(source, meta, 'story_fixture.ink');
+    expect(compiled.storyJson).toContain('^hello');
+    expect(Object.values(compiled.text)).not.toContain('hello');
+    expect(compiled.structure.variables).toContain('greeting="hello"');
+  });
+
+  it('changes Ink structure when expression flow changes', async () => {
+    const first = await compileInk(`VAR score = 1\n=== wake ===\n{score}\n-> END`,
+      meta, 'story_fixture.ink');
+    const changed = await compileInk(`VAR score = 2\n=== wake ===\n{score + 1}\n-> END`,
+      meta, 'story_fixture.ink');
+    expect(changed.structure.storyHash).not.toBe(first.structure.storyHash);
+  });
+
+  it('rejects missing entries and non-whitelisted externals', async () => {
+    await expect(compileInk(ink('done'), meta.replace('[wake]', '[missing]'), 'story_fixture.ink'))
+      .rejects.toThrow('INK_ENTRY_UNKNOWN');
+    await expect(compileInk(`EXTERNAL mutate_state()\n${ink('done')}`, meta, 'story_fixture.ink'))
+      .rejects.toThrow('INK_EXTERNAL_UNKNOWN');
+  });
+
+  it('is byte deterministic and splits oversized leaves', async () => {
+    const source = leaf('ch01.text.zh-Hans.base.json', 'text',
+      Object.fromEntries(Array.from({ length: 8 }, (_, index) => [`k${index}`, '文'.repeat(20)])));
+    const parts = splitLeaf(source, 100);
+    expect(parts.length).toBeGreaterThan(1);
+    expect(parts.every((part) => canonicalBytes(part.value).byteLength <= 100)).toBe(true);
+    const emitted = await emitLeaves([source], 100);
+    expect(emitted.every((part) => part.bytes.byteLength <= 100)).toBe(true);
+    const a = await createManifest('ch01_tianlong', 'a'.repeat(64), emitted, []);
+    const b = await createManifest('ch01_tianlong', 'a'.repeat(64), await emitLeaves([source], 100), []);
+    expect(manifestBytes(a)).toEqual(manifestBytes(b));
+    expect(emitted.map((part) => part.logicalName)).toEqual(
+      emitted.map((_, index) => `ch01.text.zh-Hans.base.p${String(index).padStart(3, '0')}.json`));
+  });
+
+  it('rejects a single object entry beyond the leaf limit', () => {
+    expect(() => splitLeaf(leaf('ch01.text.zh-Hans.base.json', 'text',
+      { oversized: '文'.repeat(100) }), 100)).toThrow('CONTENT_LEAF_ENTRY_TOO_LARGE');
+  });
+
+  it('binds id remaps into contentHash and emits them in stable order', async () => {
+    const rules = await emitLeaves([leaf('ch01.rules.base.json', 'rules', [])]);
+    const first = await createManifest('ch01_tianlong', 'a'.repeat(64), rules, [
+      { from: 'it_z', to: 'it_new', since: 'b'.repeat(64), reason: 'test' },
+      { from: 'it_a', to: 'it_new', since: 'b'.repeat(64), reason: 'test' },
+    ]);
+    const changed = await createManifest('ch01_tianlong', 'a'.repeat(64), rules, [
+      { from: 'it_z', to: 'it_other', since: 'b'.repeat(64), reason: 'test' },
+      { from: 'it_a', to: 'it_new', since: 'b'.repeat(64), reason: 'test' },
+    ]);
+    expect(first.idRemaps.map((row) => row.from)).toEqual(['it_a', 'it_z']);
+    expect(changed.contentHash).not.toBe(first.contentHash);
+    const unsigned = { ...first } as Partial<typeof first>;
+    delete unsigned.releaseHash;
+    expect(first.releaseHash).toBe(await hashValue(unsigned as unknown as JsonValue));
+  });
+
+  it('enforces both pack size gates', () => {
+    const fake = (gzipBytes: number) => [{ ...leaf('ch01.rules.base.json', 'rules', []),
+      bytes: new Uint8Array(), sha256: 'a'.repeat(64), gzipBytes }];
+    expect(packSizeDiagnostics('ch01_tianlong', fake(1280 * 1024))[0]).toMatchObject(
+      { code: 'CONTENT_PACK_LARGE', severity: 'warning' });
+    expect(packSizeDiagnostics('ch01_tianlong', fake(1536 * 1024 + 1))[0]).toMatchObject(
+      { code: 'CONTENT_PACK_TOO_LARGE', severity: 'error' });
+  });
+
+  it('rejects unknown, duplicate, free-JSON, and missing Ink tag arguments', () => {
+    expect(() => decodeInkTag('ts:nope x=1')).toThrow('INK_TAG_OPCODE');
+    expect(() => decodeInkTag('ts:battle/start encounter=a encounter=b')).toThrow('INK_TAG_DUPLICATE');
+    expect(() => decodeInkTag('ts:battle/start encounter={a}')).toThrow('INK_TAG_FORMAT');
+    expect(() => decodeInkTag('ts:battle/start')).toThrow('INK_TAG_MISSING');
+    expect(decodeInkTag('ts:flag/set flagId=fl_example')).toEqual(
+      { opcode: 'flag/set', args: { flagId: 'fl_example' } });
+    expect(() => decodeInkTag('ts:battle/start encounter=(dynamic)')).toThrow('INK_TAG_PARAM');
+  });
+
+  it('hashes canonical structured preimages without delimiters', async () => {
+    await expect(hashValue(['a', ['b', 'c']])).resolves.toMatch(/^[a-f0-9]{64}$/u);
+  });
+});

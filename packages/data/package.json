@@ -6,7 +6,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./schemas": "./src/schemas/index.ts",
-    "./tooling": "./src/tooling.ts"
+    "./tooling": "./src/tooling.ts",
+    "./build": "./src/build/index.ts"
   },
   "scripts": {
     "test": "vitest run src",
@@ -14,6 +15,7 @@
   },
   "dependencies": {
     "@tianshu/shared": "workspace:*",
+    "inkjs": "2.4.0",
     "yaml": "2.8.1"
   },
   "devDependencies": {
