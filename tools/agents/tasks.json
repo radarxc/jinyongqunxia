@@ -32990,6 +32990,323 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/progression/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-27a-attr-v2-data",
+   "title": "游戏工程 · 属性 v2（一）：内息 bre 全链、修炼永久属性 trainingAttrs、类别熟练度 masteryXp 与真元 trueEssence、内息容量 / 回复 breMpBp（AR-27 数据与成长层）",
+   "prompt": "ENG-attr-v2-data.md",
+   "deps": [
+    "ENG-17-booksleep-m1",
+    "ENG-16c-battle-session",
+    "ENG-20a-region-core",
+    "ENG-26-encounter-builder",
+    "ENG-18c-content-from-docs",
+    "DES-sync-design-b"
+   ],
+   "writes": [
+    "packages/data/src/schemas/**",
+    "packages/data/src/content-index.ts",
+    "packages/data/src/content-registry.ts",
+    "packages/data/src/*.test.ts",
+    "packages/data/CLAUDE.md",
+    "packages/core/src/progression/**",
+    "packages/core/src/state/**",
+    "packages/core/src/command/**",
+    "packages/core/src/api/**",
+    "packages/core/CLAUDE.md",
+    "apps/game/src/storage/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/battle/damage/formula.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test:performance"
+     ],
+     [
+      "{python}",
+      "tools/balance/damage_sim.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/balance/meridian_flow_sim.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-27b-attr-v2-combat",
+   "title": "游戏工程 · 属性 v2（二）：rules protocol 4 战斗链（硬功 / 外放两支攻击、硬防与静态内劲抵抗、唯一速度 spd、Z4M 一次、Z5M 恒等；AR-27）",
+   "prompt": "ENG-attr-v2-combat.md",
+   "deps": [
+    "ENG-27a-attr-v2-data",
+    "ENG-16c-battle-session",
+    "ENG-16d-damage-geometry",
+    "ENG-14b-meridian-golden-v3",
+    "ENG-26-encounter-builder",
+    "ENG-16e-battle-ui-actions",
+    "DES-sync-design-a",
+    "DES-sync-design-b"
+   ],
+   "writes": [
+    "packages/core/src/battle/**",
+    "packages/core/src/economy/equipment.ts",
+    "packages/core/src/economy/types.ts",
+    "packages/core/src/progression/**",
+    "packages/core/src/state/initial.ts",
+    "packages/core/src/replay/**",
+    "packages/core/src/testing/**",
+    "packages/core/bench/**",
+    "packages/core/CLAUDE.md",
+    "packages/data/src/schemas/**",
+    "apps/game/src/battle/*.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 18,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/progression/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-28a-booksleep-general",
+   "title": "游戏工程 · 《长生诀》运行时（一）：一般书眠（休眠事件入眠、苏醒取舍 3+3、遗忘 / 散功按层率转顿悟 / 真元、层数二至九、第九层后周游世界；AR-26）",
+   "prompt": "ENG-booksleep-general.md",
+   "deps": [
+    "ENG-17-booksleep-m1",
+    "ENG-27a-attr-v2-data",
+    "ENG-27b-attr-v2-combat",
+    "DES-sync-ids-slp"
+   ],
+   "writes": [
+    "packages/core/src/progression/**",
+    "packages/core/src/state/**",
+    "packages/core/src/command/**",
+    "packages/core/src/api/**",
+    "packages/core/src/world/**",
+    "packages/core/CLAUDE.md",
+    "packages/data/src/schemas/**",
+    "packages/data/src/content-index.ts",
+    "packages/data/src/content-registry.ts",
+    "apps/game/src/runtime/**",
+    "apps/game/src/storage/**",
+    "apps/game/src/core-host.ts",
+    "apps/game/src/core-worker.ts",
+    "apps/game/CLAUDE.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 18,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/battle/damage/formula.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test:performance"
+     ],
+     [
+      "{python}",
+      "tools/balance/damage_sim.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-28b-spiral-qi",
+   "title": "游戏工程 · 《长生诀》运行时（二）：第九层螺旋内力 Z0-CS（1 点化解 20 点承诺内力、多段共用一次、经脉伤害只计螺旋新增的 100%；AR-26）",
+   "prompt": "ENG-spiral-qi.md",
+   "deps": [
+    "ENG-27b-attr-v2-combat",
+    "ENG-28a-booksleep-general"
+   ],
+   "writes": [
+    "packages/core/src/battle/**",
+    "packages/core/src/replay/**",
+    "packages/core/src/testing/**",
+    "packages/core/bench/**",
+    "packages/core/CLAUDE.md",
+    "apps/game/src/battle/*.ts"
+   ]
   }
  ]
 }
