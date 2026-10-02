@@ -65,4 +65,23 @@ describe('Worker session command adapter', () => {
     expect(result.events[0]).toEqual({ t: 'world/ticked', seq: before.state.meta.nextEventSeq,
       stateVersion: before.state.meta.stateVersion + 1, worldTick: before.state.meta.worldTick + 1 });
   });
+  it('owns one battle, blocks journey writes and returns to the frozen source scene', async () => {
+    const core = createGameSession(content);
+    const entered = await core.dispatch({ t: 'battle/demo', source: 'town' });
+    expect(entered.accepted).toBe(true); expect(entered.changes.battle?.info?.setup.returnContext.sceneRef).toBe('town');
+    expect(entered.events[0]).toMatchObject({ t: 'battle/setupResolved',
+      payload: { setupId: 'setup-fixture', participants: ['hero', 'enemy_0'] } });
+    expect((await core.dispatch({ t: 'world/tick' })).error).toBe('BATTLE_BUSY');
+    expect(() => core.snapshot()).toThrow('BATTLE_SAVE_UNAVAILABLE');
+    let battle = (await core.query()).battle!; await core.dispatch({ t: 'battle/auto', enabled: true });
+    while (!battle.result) {
+      const update = await core.dispatch({ t: 'battle/step', revision: battle.revision });
+      battle = { ...battle, ...update.changes.battle!, units: update.changes.battle?.units.length
+        ? battle.units.map(unit => update.changes.battle!.units.find(next => next.id === unit.id) ?? unit) : battle.units };
+    }
+    const returned = await core.dispatch({ t: 'battle/leave' });
+    expect(returned).toMatchObject({ accepted: true, changes: { battle: null },
+      events: [{ t: 'battle/returned', payload: { sceneRef: 'town' } }] });
+    expect((await core.query()).battle).toBeNull();
+  });
 });

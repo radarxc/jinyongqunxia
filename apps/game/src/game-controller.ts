@@ -2,11 +2,22 @@ import { markRaw, shallowRef } from 'vue';
 import { createIndexedDbStorage, downloadBytes, type TianshuStorage } from '@tianshu/platform';
 import { t, uiBus, type useUiStore, type SaveSlotView } from '@tianshu/ui/runtime';
 import type { GameHost } from './runtime/contracts';
+import type { BattleController } from './battle/controller';
 import { createSaveService } from './storage/save-service';
 import { slotViews } from './storage/slot-views';
 
 export type GameController = ReturnType<typeof createGameController>;
 export function createGameController(host: GameHost, ui: ReturnType<typeof useUiStore>) {
+  const battle = shallowRef<BattleController | null>(null);
+  const battleActive = shallowRef(false);
+  let battleLoading: Promise<BattleController> | undefined;
+  async function ensureBattle(): Promise<BattleController> {
+    if (battle.value) return battle.value;
+    battleLoading ??= import('./battle/controller').then(({ createBattleController }) => {
+      const controller = createBattleController(host); battle.value = markRaw(controller); return controller;
+    });
+    return battleLoading;
+  }
   const busy = shallowRef(false);
   const slots = shallowRef<readonly SaveSlotView[]>(slotViews([]));
   const storageAvailable = shallowRef(false);
@@ -44,6 +55,13 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
   const offHost = host.subscribe((update) => {
     if (!update.accepted) return;
     ui.applyProjection(update.changes);
+    if (update.changes.battle !== undefined) {
+      battleActive.value = update.changes.battle !== null;
+      if (!battle.value) {
+        const packet = update.changes.battle ?? null;
+        void ensureBattle().then(controller => controller.apply(packet));
+      }
+    }
     if (update.events.length) { dirtyRevision += 1; void autosave('state-change'); }
   });
   const offBus = uiBus.subscribe((intent) => {
@@ -54,6 +72,7 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     });
   });
   async function autosave(trigger: string, force = false): Promise<void> {
+    if (battleActive.value) return;
     if (!saves || (dirtyRevision === savedRevision && !force) || disposed) return;
     if (busy.value) { pendingAutosave = { trigger, force }; return; }
     await run(async () => {
@@ -63,7 +82,8 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     });
   }
   async function initialize(): Promise<void> {
-    ui.replaceProjection(await host.query());
+    const initial = await host.query(); ui.replaceProjection(initial);
+    if (initial.battle) { battleActive.value = true; (await ensureBattle()).apply(initial.battle); }
     try {
       const opened = await createIndexedDbStorage({ databaseName: ui.projection.hud.preview ? 'tianshu-ui-preview' : 'tianshu' });
       if (disposed) { await opened.close(); return; }
@@ -74,6 +94,7 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     } catch (error) { saveStatus.value = describe(error); }
   }
   async function saveAction(action: 'save' | 'load' | 'remove' | 'export', slot: string): Promise<void> {
+    if (battleActive.value && (action === 'save' || action === 'load')) { notice.value = '战斗结束后可保存或读取旅程。'; return; }
     await run(async () => {
       if (!saves) throw new Error('STORAGE_UNAVAILABLE');
       if (action === 'export') downloadBytes(await saves.exportSlot(slot), `${slot}.tsui`);
@@ -95,7 +116,7 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     settings.value = { ...settings.value, [key]: value };
     void storage?.settings.set('ui.accessibility', settings.value).catch((error: unknown) => { notice.value = describe(error); });
   }
-  return { busy, slots, storageAvailable, saveStatus, notice, settings, initialize, saveAction, importFile, setSetting, autosave,
-    dispose() { disposed = true; offHost(); offBus(); host.dispose(); void storage?.close(); },
+  return { busy, slots, storageAvailable, saveStatus, notice, settings, battle, battleActive, ensureBattle, initialize, saveAction, importFile, setSetting, autosave,
+    dispose() { disposed = true; battle.value?.dispose(); offHost(); offBus(); host.dispose(); void storage?.close(); },
   };
 }
