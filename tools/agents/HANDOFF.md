@@ -248,5 +248,10 @@
     - **新坑：等图不能早于 84 秒就 reload**。28 秒就刷新会丢掉还在思考的会话（段延庆钢杖丢过一次），现在分三次 waitGen，第三次仍没出图才刷新。
     - **新增 `tools/imagegen/make_queue.py`**：生成页面队列 JSON。README 已改写成当前批量循环。
     - **进度 18:30**：兵器写实版入库 18 / 94（总览页 v4 已更新）。Gemini 标签页被遮挡，暂停中，等作者把 Chrome 露出来后继续；剩余队列：兵器 76 → 衣物类 90 → 食品 146 → 地图 31。
+  - **18:40–20:20 兵器批续跑，触到时段上限**：
+    - **进度**：兵器写实版入库 51 / 94，总览页 v5 已更新。
+    - **霍都折扇返工**：出成了带标题和标注的设定稿式图，已放回队尾重出。`gemini_prompt.SHORT_NEG` 加了「画面里不要出现任何文字……不是设定稿」，页面里剩余队列的提示词也同步补上。
+    - **额度**：20:20 触到 Gemini 时段上限。表现是模型降为 Flash-Lite，`/images` 直接跳回 `/app`，模板卡加载不出来。`https://gemini.google.com/usage` 显示：Current usage 100%，20:52 重置；Weekly 7%，10-05 19:52 重置。一个时段大约能出 50–60 张，周额度很宽。已按作者要求告知，并在后台计时到 20:53 自动续跑。
+    - **新坑**：`prepareNext` 失败（如 no template）时必须 throw。否则编辑框是空的，`markSent` 会把它误判为已发送并出队（牛尾刀出过一次，已放回队首）。
   - **图片任务必须 `web: true`**：Codex 在无网络沙箱里报 `Reconnecting… workspace routing discovery failed`，ART-rig-parts-male / female 因此又停两次；已改登记（`_prod` 79572be），`_imagegen.md` 第 6 条记入，female 带说明 `.agents/coord/ART-rig-parts/web_note.md` 重启，male 等它当前这次（无网络）跑完停住后同样重启。
   - ⑤ 上一会话 08:00 起被自动模式分类器锁死（会话级、与操作无关，Bash 全拒）；其交接文件 `.agents/wt/_prod/.agents/coord/HANDOFF-session-20261001.md` 的要点已并入本节。GPT-6-Astra 仍未改回。作者待答复：基线两套宋套件（song_dali、song_southern）是否也按历史图片重出；各书改命报告「需作者确认（附默认）」（`tools/agents/reports/DES-destiny-chNN.md` §4）。
