@@ -59,84 +59,6 @@
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
   notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际目视比较两张选第2张：女主成年身份面容保持，烟蓝交领衣、灰褐裙与木簪，双手空着放松、头足完整，无官印令牌兵器或旗装头饰。第2张衣襟和腰带更清楚。目标窄袖袄被画成长摆衣、发髻较低髻目标偏高、鞋面有少量纹样、小痣不清及占高偏大如实登记为本轮宽松待审偏差；无明显多肢或重大结构问题，保留candidate，不宣称严格服饰通过。 提示词 assets/default/prompts/characters/protagonist/npc_zhujue__f_ch08.md；tier S。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_zhujue__ch08_f_base.requests.json。生成候选2张，入选第2张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png；/Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png；/Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用项目基线（真实审批状态照录）和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
-- id: por_npc_ake__ch08_youth_base
-  file: por_npc_ake__ch08_youth_base.png
-  category: character/female
-  style: default
-  subject: 阿珂 npc_ake ch08_luding · 九难门下青年世俗弟子，云南身世揭露前后的自我抉择阶段
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.
-
-
-    Create a beautiful REALISTIC Chinese wuxia character illustration of A KE / 阿珂. Use image 1 as the ONLY FACIAL IDENTITY source: Noel Leung / 梁小冰 specifically as A Ke, NOT Chen Yuanyuan, in the 1998 TVB The Duke of Mount Deer starring Jordan Chan. Preserve this particular character’s recognizable facial relationships, naturally adapted to the specified story age. Image 2 is ONLY a same-gender project colour/rendering sample; image 3 is ONLY the pale ink-wash background sample. No other face may enter the design.
-
-
-    身份与阶段：阿珂（npc_ake），《鹿鼎记》ch08_luding，清初康熙时代；严格是九难门下青年世俗弟子，云南身世揭露前后的自我抉择阶段。18岁至二十余岁的年轻成年观感，确岁待考，asset的youth键不自动等于成年。
-
-
-    本人辨识锚点：第一参考中画面左侧清晰女主角才是梁小冰饰阿珂。保留她较长的椭圆至瓜子脸、上颊的自然宽度、向下渐收的下颌与小而不针尖的下巴；细弧眉及略抬的眉尾、清楚杏眼与自然眉眼间距，直鼻梁、圆润鼻尖、收敛鼻翼，以及有清晰唇弧的嘴形。与双儿相比脸廓较长、下颌收束更明显，眉眼较灵动，不能混成陈少霞的圆短脸，也不能套入王语嫣基线的网红五官。将照片里的侧向目光、轻微倾头和微笑改为正面平视、唇形自然闭合的自尊戒备；表情坚定而不僵硬或讨好。保留18岁至二十余的年轻成年体态与清楚面部体积，无母辈皱纹、无幼童比例。演员同剧另饰陈圆圆，但本次第一图图注明确是阿珂，只取阿珂身份。
-
-
-    服制与发式：清初汉族世俗女侠衣装：浅杏色交领右衽长袄、灰蓝长裙，适度收袖，平底素布履。交领是穿着者左襟压右襟、向本人右侧合拢，衣襟严整，胸颈遮蔽，面料完全不透明，整件布料与袖口下摆连续完整。黑发整齐收为一个收敛小髻，其余收拢垂在背中，一支素银簪固定，额前零星整齐发丝不遮眉眼。不照搬参考肩前粗辫和繁复影视发饰，也不复制照片浅色高领、近景和黑边。身量纤秀而有正常肩背支撑，衣装实用端整；不因师父出家而画成尼姑，不装成宫廷公主。
-
-
-    姿态与器物：正面站定，额鼻下巴中线竖直、双眼水平、下巴中立，胸肩朝前，两只布履稳稳着地。右手在本人右侧身外（正面观者左侧）握住一柄普通中式直剑的鞘口下方，剑身完全在完整匹配的素木鞘中；小剑格、剑柄、鞘口、完整鞘身与鞘端在一条可信连续轴线上，略向本人右外侧斜垂，与身体和裙摆分离，鞘端仍在画内且不触穿脚背。只是持鞘携剑，手不握不存在的裸剑刃，不拔剑，不再添腰间第二把剑。左手空着自然轻收在身前偏左的腰腹处，手掌和指尖完整可见，不遮胸脸、不摸下巴、不指向旁人。用清醒坚定目光表达自主选择，不沿用旧稿的侧身、微抬头或原照倾角。
-
-
-    人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。
-
-
-    参考主次再次限定：第二参考仅女性项目低饱和淡藕灰与暖肤色、柔和明暗、连续布料和细腻写实手绘质感；已实际view。不可借王语嫣的脸型、眉眼鼻唇、侧脸视线、长发、宋代褙子裙装、手势、首饰或身材模板；manifest实际approved保持不变，不能把基线审批转移给本角色。 第三参考仅背景：极浅低对比水墨远山、暖浅灰纸底、薄雾与留白；已实际view。完全忽略其中王语嫣面孔、倾头转身、女性体态、白青薄纱裙装、发饰与飘带；墨痕纸纹不得侵入阿珂的人体衣物或器物。
-
-
-    背景与交付：第三图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认两张独立候选由执行者比较；所有输出仍为candidate，待用户最终审核，不自动approved。
-
-
-    事实边界：具体18岁至二十余为角色稿美术选段，确岁与生卒待考。 云南衣色、银簪、剑鞘形制及精确持鞘侧别是美术补足，原著对应段尚未逐字校勘。 第一图为550×366软化电视近景，右缘旁人不是本人；只取图注明确的左侧阿珂，不因演员同饰陈圆圆而混用身份。 浅杏灰蓝、素銀簪、世俗小髻、右手身外携带完整入鞘普通直剑继承主树稿。 将原图侧向目光及旧稿微抬头改为头颈竖直、双眼水平、自尊平视。 用户明确指定1998剧版面容覆盖旧稿禁演员脸要求，但照片年龄、衣装、姿势和场景不变成小说事实。
-
-
-    完整排除项：不要把阿珂画成双儿陈少霞、母亲陈圆圆、王语嫣或同一通用美女脸；不要短圆幼态脸、母辈皱纹、孕态、婚礼凤冠、暴露服装或顺从讨好姿态。不要复制照片右侧人物的后脑肩膀、手指触下巴动作、侧向眼神、歪头、半身近景、黑边或摄影背景。不要尼姑剃发、僧袍、公主冠、帝王装、满族大拉翅、金蛇剑、倚天剑、白手套、铃索或火铳。只一柄完全入鞘普通中式直剑，不要出鞘双刃、第二把剑、弯曲剑鞘、短鞘长刃、剑鞘断裂、剑柄与鞘身不连、手握裸刃、鞘穿裙身或鞘端裁断。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。
-
-
-    FINAL POSE CHECK: FRONT-FACING A KE / 阿珂. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. Never inherit reference-photo head lean, sideways gaze, tilted shoulders, turned torso or cropped composition. Preserve only this role’s recognizable facial identity and the current-age full body.'
-  negative: 不要把阿珂画成双儿陈少霞、母亲陈圆圆、王语嫣或同一通用美女脸；不要短圆幼态脸、母辈皱纹、孕态、婚礼凤冠、暴露服装或顺从讨好姿态。不要复制照片右侧人物的后脑肩膀、手指触下巴动作、侧向眼神、歪头、半身近景、黑边或摄影背景。不要尼姑剃发、僧袍、公主冠、帝王装、满族大拉翅、金蛇剑、倚天剑、白手套、铃索或火铳。只一柄完全入鞘普通中式直剑，不要出鞘双刃、第二把剑、弯曲剑鞘、短鞘长刃、剑鞘断裂、剑柄与鞘身不连、手握裸刃、鞘穿裙身或鞘端裁断。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/ake_1998_liangxiaobing.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/luding/ake_1998_liangxiaobing.jpg
-    use: 第一且唯一面部身份：1998 TVB陈小春版《鹿鼎记》的梁小冰饰阿珂，本任务已实际view并核对来源记录、SHA、尺寸。第一参考中画面左侧清晰女主角才是梁小冰饰阿珂。保留她较长的椭圆至瓜子脸、上颊的自然宽度、向下渐收的下颌与小而不针尖的下巴；细弧眉及略抬的眉尾、清楚杏眼与自然眉眼间距，直鼻梁、圆润鼻尖、收敛鼻翼，以及有清晰唇弧的嘴形。与双儿相比脸廓较长、下颌收束更明显，眉眼较灵动，不能混成陈少霞的圆短脸，也不能套入王语嫣基线的网红五官。将照片里的侧向目光、轻微倾头和微笑改为正面平视、唇形自然闭合的自尊戒备；表情坚定而不僵硬或讨好。保留18岁至二十余的年轻成年体态与清楚面部体积，无母辈皱纹、无幼童比例。演员同剧另饰陈圆圆，但本次第一图图注明确是阿珂，只取阿珂身份。 本人五官适配当前阶段，绝不继承照片头倾、身体倾角、其他人物、服装、拍摄背景或半身构图；新图必须正面头颈竖直、双眼水平。
-    sha256: fc77ae6b80442a0442025409918d4d21159f047cb198e772b484f07769b9b1e8
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/fc77ae6b80442a0442025409918d4d21159f047cb198e772b484f07769b9b1e8.jpg
-    status_at_input: null
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 第二参考仅女性项目低饱和淡藕灰与暖肤色、柔和明暗、连续布料和细腻写实手绘质感；已实际view。不可借王语嫣的脸型、眉眼鼻唇、侧脸视线、长发、宋代褙子裙装、手势、首饰或身材模板；manifest实际approved保持不变，不能把基线审批转移给本角色。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三参考仅背景：极浅低对比水墨远山、暖浅灰纸底、薄雾与留白；已实际view。完全忽略其中王语嫣面孔、倾头转身、女性体态、白青薄纱裙装、发饰与飘带；墨痕纸纹不得侵入阿珂的人体衣物或器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T18:49:28.357416+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-c74adedc-4f33-4087-b6e0-d67834e90735.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 85d2ed6846cfb3c7f21b77e91b8237907a3be1c23fac069e2e5219d4ba1022aa
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_ake__ch08_youth_base/prompt-8c3bf2320486a7d1221cf5291d5adc253d4d05149cee35331f3446a9a020864c.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_ake__ch08_youth_base/manifest-4cec9669e54ceb68fd0f20686ab7ac4db26eb2f2cadfb785dc0a612446334c71.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_ake__ch08_youth_base.requests.json
-  notes: 实际查看两张原生PNG，按已核实1998梁小冰饰阿珂左侧近景比较本人身份，选candidate 1：较长而渐收的椭圆脸、自然眉尾、清楚杏眼及有唇弧的闭合嘴形，对比双儿的圆短脸与上扬微笑可辨；年轻成年、自尊平视，头颈比2明显更端正。candidate 2有可见头倾与眼线倾角，本轮不选；不因可用1存在再机械补足4张。浅杏/灰蓝完整衣裙、小髻银簪、一柄普通完整入鞘中式直剑、右侧身外持剑、左手空着于腰前符合主体与阶段；无第二人物，无缺肢或明显多指，鞘身、鞘端全在画内。实际右手握在剑柄近护手处而非稿写鞘口下方，剑仍完整入鞘且同轴，记录携剑动作偏差；新增小耳饰、簪花与绣边略多，非原著验证细节。仅前鞋完整可见，另一脚在长裙后细节未验证，按轻微鞋遮挡放宽记录，不宣称双鞋全露。人物脸手与衣料连续清楚，背景淡墨不侵蚀人物。真实1024x1536 RGB不透明PNG原字节保存，非2048x3072 RGBA正式母版；2候选选1，仅本轮宽松自查candidate待用户审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_suquan__ch08_youth_base
   file: por_npc_suquan__ch08_youth_base.png
   category: character/female
@@ -683,3 +605,50 @@
   sha256: 06799d2677a1a7ebe3ac5ba629c851787fd3324def328f435d106d8a28249984
   status: candidate
   notes: 立绘重审重出（AR-30）；现图是照片感的平淡脸配齐刘海，神情呆板、偏稚气；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）。改为约二十岁、温柔腼腆的成年女弟子。
+- id: por_npc_ake__ch08_youth_base
+  file: por_npc_ake__ch08_youth_base.png
+  category: character/female
+  style: default
+  subject: 阿珂（ch08_luding）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：阿珂，《鹿鼎记》中陈圆圆与李自成的女儿、独臂神尼九难的弟子，身世揭开前后的时期。
+
+    经典形象：要一眼认出是阿珂——绝色容貌、素银簪、杏色袄灰蓝裙、手握长剑，冷艳骄傲、下巴微扬，美得让人不敢逼视。
+
+    年龄与体态：外观约二十岁的成年年轻女子，身材高挑纤秀，成人比例。
+
+    面容：与母亲陈圆圆极为相像的绝美容貌——绝色的鹅蛋脸，下颌线柔美；肌肤白皙细腻（有真实质感，不磨皮）；眉如远山、细长舒展；一双眼尾微垂的美目；鼻梁秀挺、鼻头小巧；樱唇丰润、唇色淡红；但眼神清冷高傲，带着倔强和不耐烦，嘴唇常常紧抿着。冷艳、骄傲、对人爱理不理。
+
+    发式：乌发挽成简洁的发髻，一支素银簪，其余长发垂在背后；不留刘海。
+
+    服饰：清初汉族女侠装——浅杏色交领长袄（右衽）、灰蓝长裙、窄袖、平底布鞋。
+
+    道具与姿态：右手握一柄连鞘长剑，剑斜垂在身侧；左手收在腰前；正面站立，下巴微扬。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要刘海；不要尼姑装或宫廷公主装；不要网红脸；不要少女幼态。清初汉族女子仍穿明式袄裙：汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:17:14-0700
+  source_path: .agents/coord/gemini_originals/por_npc_ake__ch08_youth_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: a9861ba471b59900e187ceee28abb4ca7b359a853ff8e6a1c7a954d63ed8cf84
+  status: candidate
+  notes: 立绘重审重出（AR-30）；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）；齐刘海是剧集造型，容貌也撑不起“陈圆圆之女、天下绝色”，且与陈圆圆不像母女。按与陈圆圆相同的五官文字重画。
