@@ -1599,77 +1599,6 @@
   scene_title: 无量初游·青衫折扇
   stage: 青年，保留秀雅书生骨相，不作成熟帝王脸。初入无量山冲突，尚未取得北冥神功、凌波微步或六脉神剑。 对应《天龙八部》第1回。
   asset_variant: scene
-- id: por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt
-  file: por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.png
-  category: character/male
-  style: default
-  subject: 萧峰 npc_xiaofeng ch01_tianlong
-  prompt: 'Create a premium REALISTIC Chinese wuxia character illustration with a delicate INK-WASH BACKGROUND. The human figure is beautifully and coherently painted: solid continuous anatomy, fine natural skin, credible facial structure, soft connected light and shade, intact carefully tailored cloth, clean continuous silhouette. Render the figure with refined hand-painted realism, not a photo, movie screenshot, 3D render or plastic model. No dry-brush gaps, white flecks, torn edges, collage fragments, paper erosion, scratches or watercolor mottling anywhere on face, skin, clothes or boots. Keep ink washes and loose expressive marks only in the background, separated from the clean figure. Clothes have few broad weight-bearing folds and clean sewn hems, never shredded ribbons or noisy patchwork. Heroism comes from eyes, bearing, physique and fitting clothes, not raggedness. Traditional understated clothing remains handsome without excess ornament.
-
-
-    第一张是本轮萧峰写实首样：只保持他的面部身份、成年强健体格、自然皮肤与完整衣料画法。不要复制掌势、北地短氅、龙影或山门。第二male基线只低饱和配色，完全忽略它的破布碎墨，第三用户图只淡景水墨，不能借女性脸衣装。
-
-
-    萧峰，《天龙八部》，北地行猎·林间寻踪。壮年约三十岁。在女真部落居留数月后的初夏，随完颜阿骨打及猎人出猎；取在泥泞森林发现、追踪熊迹的阶段，尚未在草原遇到契丹骑队与耶律洪基。 尚未受封南院大王。
-
-    保留本轮萧峰的宽额方颌、浓眉深目、短络腮胡与高大结实体格，面貌英俊有真实年龄感；目光敏锐、沉着而开阔，不呆立也不作凶恶兽性表情。肌肉自然藏在完整衣料下，不夸大健美。 实用束发，发丝与胡须真实自然；不用金冠、辽王礼冠或华丽发饰。
-
-    服饰：完整灰褐布袍，以腰带稳束，袍摆便于行走且不拖泥；深色长裤、完整软靴。织物厚薄、缝线、袖口与自然垂坠做写实表现，表面仅少量林路尘泥，无撕裂、露胸或大面积破洞。具体袍型属于美术补足，不借阿骨打的兽皮裂衫冒作萧峰原著服装。
-
-    姿态：人物完整站于林缘泥径，身体三分之二侧向，一足向前踏稳、后足承重，躯干轻俯察看脚前足印；头略抬，眉眼仍清楚可见，像判断行进方向后将继续前行。一手自然低放，一手轻收腰侧衣摆，双手均不高举。
-
-    双手空着，一手在腰侧轻收完整袍摆、一手自然下垂；无兵器。脚前两三枚浅泥大足印沿林径而去，完整双足清楚承重。
-
-    背景：初夏冰雪消融后的北地疏林，几棵淡墨树干、枯叶湿软土径和远处浅草坡。足迹和静静判断方向的眼神表现场景，同行者在画外，仅画萧峰一人，不画动物和狩猎战斗。背景低饱和淡墨、自然留白，人物完整坚实，水墨不侵入皮肤衣物。
-
-    竖幅2:3，完整全身与双手双鞋，自然边距、柔和左上光。目标2048×3072PNG，按工具原生尺寸输出，不透明。
-
-
-    排除项：撕裂衣角、破布、人物飞白碎墨、纸屑拼贴、风化斑驳、密集碎褶碎带、塑料磨皮、照片截图、3D质感；不要王冠王袍金甲、动物、兵器、打斗、额外人物、龙神符号、多肢多指、错接手腕、裁切头脚、可读文字题款、印章logo或新增水印。保留工具自身溯源。'
-  negative: 撕裂衣角、破布、人物飞白碎墨、纸屑拼贴、风化斑驳、密集碎褶碎带、塑料磨皮、照片截图、3D质感；不要王冠王袍金甲、动物、兵器、打斗、额外人物、龙神符号、多肢多指、错接手腕、裁切头脚、可读文字题款、印章logo或新增水印。保留工具自身溯源。
-  references:
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-    use: 已实际查看并验证新写实首样；同一萧峰面容、真实皮肤体积、完整布料画法。只保持身份与人物绘法，本场年龄服装动作器物背景另绘，不复制少室掌势或龙。
-    sha256: 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922.png
-    status_at_input: candidate
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    use: 作者指定male基线已看，仅低饱和色卡；绝不沿用其碎墨、破衣、旧脸、竹棒或站姿。原candidate不变。
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已查看，仅背景水墨山水和留白，不借用女子或把纸纹侵入人物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T09:08:03.770501+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-00c2c732-cf98-4d24-8677-0dd8abadf674.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 74e817634207fd4b72f363ea1b34f74db9667036bbea4c3a8cc3ecf7e813421f
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_character_realism_20261001
-  realism_revision: user_character_realism_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt/prompt-5f1475f1a996544a9ce35fb6d82b9ed7610f980b365e48c512f3cbdf167c9cb0.md
-    manifest: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt/manifest-dc0d88b4a706adefaa65af9250b495eea9a98eef9c70397a0509defc12a50e25.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.requests.json
-  notes: 实际查看并比较两张北地林间寻踪候选，选1。沿用本轮壮年萧峰面部和强健体格，人物皮肤、双手、灰褐整袍和双靴连续完整；一手提袍一手自然低放，微俯辨路，足下承重清楚。脚前两枚泥足迹和淡远林山可辨，没有动物、兵器、打斗或其他人物。1的两枚足迹均入画并与人物保持空间关系，2前景单枚大足迹过近且触边。足印为场景线索而非科普结构；衣料有粗织细纹、近景泥叶较详细，面貌略严肃，但没有碎片化人物或重大肢体问题。本场图为原著追踪阶段的独立美术表现，非雁门场景重试。宽松自查candidate，仍待作者最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  scene_revision: user_scenes_20261001
-  scene_key: northern_forest_hunt
-  scene_title: 北地行猎·林间寻踪
-  stage: 壮年约三十岁。在女真部落居留数月后的初夏，随完颜阿骨打及猎人出猎；取在泥泞森林发现、追踪熊迹的阶段，尚未在草原遇到契丹骑队与耶律洪基。 尚未受封南院大王。
-  asset_variant: scene
 - id: por_npc_duanyu__ch01_youth_scene_langhuan_scroll
   file: por_npc_duanyu__ch01_youth_scene_langhuan_scroll.png
   category: character/male
@@ -2586,5 +2515,51 @@
   source_size: 1024x1536
   size: 1024x1536
   sha256: 799d51e824de4c066a0d7072ec00b6229e4153ef64d85fb5cb93e35f5325c4d2
+  status: candidate
+  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+- id: por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt
+  file: por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.png
+  category: character/male
+  style: default
+  subject: 萧峰（ch01_tianlong）
+  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【场景背景】初夏冰雪消融后的北地疏林：几棵淡墨树干、湿软的落叶土径、地上一串兽足印和远处浅草坡；同行猎人在画外。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+
+    【人物与场景】萧峰，《天龙八部》，北地行猎·林间寻踪。阶段：壮年约三十岁。在女真部落居留数月后的初夏，随完颜阿骨打及猎人出猎；取在泥泞森林发现、追踪熊迹的阶段，尚未在草原遇到契丹骑队与耶律洪基。 尚未受封南院大王。
+
+    【身份参考】随提示词上传的第 1 张图是萧峰本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（身材高大魁伟（比常人高出半头）、肩宽背厚；四方国字脸、下颌方正，浓黑粗眉、眉骨突出，一双大眼目光如电，高鼻梁、鼻翼宽，阔口厚唇，两颊与下巴是短而硬的络腮胡茬，脸上有风霜晒痕、额头两道浅横纹；约三十岁）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
+
+    【衣装】灰褐色布袍、腰带稳束，深色长裤与软靴，衣上只沾一点林路尘泥；裹巾包髻。
+
+    【动作与神情】站在林缘泥径上，身体三分之二侧向，一足前踏、后足承重，微微俯身察看脚前的兽迹，头略抬、眉眼清楚，像判断好方向正要继续前行；一手自然低放，一手收着腰侧衣摆。
+
+    【器物】空手；不画猎物与动物。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: 37587f1190e654d1d746049097a88f0c8e44761db3c4973dfe4acc528b381d59
+    use: 身份参考：本轮新出的萧峰（por_npc_xiaofeng__ch01_prime_gaibang_base，上传 codex 原图）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T02:54:52-0700
+  source_path: .agents/coord/gemini_originals/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 5820c7892455fedad386719d937b8075fa9e20f3a96e2c50c84919106b871276
   status: candidate
   notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
