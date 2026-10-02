@@ -32341,6 +32341,656 @@
     "content/story/ch10/**",
     "content/locales/zh-Hans/ch10*"
    ]
+  },
+  {
+   "id": "DES-sync-ids-slp",
+   "title": "文档同步 · 休眠事件 ID 转正式注册（check_ids OWNERSHIP 接纳 slp_、sleep-events.md 28 个 ID 正式登记）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-sync-ids-slp.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "writes": [
+    "tools/lint/check_ids.py",
+    "tools/lint/test_check_ids.py",
+    "docs/design/story/sleep-events.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/story/sleep-events.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/lint",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-rig-v1.1",
+   "title": "技术规格修订 · tech/09 v1.1（三视图 sheet 契约、身份 rig 字段、§4.6 片段驱动、C5/C9/R9）与 tech/07 §4.5/§5.4、rig GUIDE（AR-29、AR-34）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-rig-v1.1.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/tech/09-character-rig.md",
+    "docs/tech/07-asset-generation.md",
+    "assets/default/prompts/rig/GUIDE.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/tech/09-character-rig.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-sync-tech-a",
+   "title": "技术文档同步 · tech/04、tech/05、tech/09-roadmap 接长生诀 / 休眠事件 / 金钱采集 / 支线的数据与运行时契约（各设计报告 §6）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-sync-tech-a.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/tech/04-data-pipeline.md",
+    "docs/tech/05-gameplay-engine.md",
+    "docs/tech/09-roadmap.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/tech/05-gameplay-engine.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-story-hooks-g1",
+   "title": "故事线挂接口 · 第一组：天龙、射雕（休眠事件 + 长生诀支线接入 story/NN 与 chapters/NN，AR-26）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-story-hooks.md",
+   "deps": [
+    "DES-sync-ids-slp"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/story/01-tianlong.md",
+    "docs/design/story/02-shediao.md",
+    "docs/design/chapters/01-tianlong.md",
+    "docs/design/chapters/02-shediao.md"
+   ],
+   "vars": {
+    "group_title": "第一组：天龙、射雕",
+    "books": "- ch01 《天龙八部》：`docs/design/story/01-tianlong.md`、`docs/design/chapters/01-tianlong.md`\n- ch02 《射雕英雄传》：`docs/design/story/02-shediao.md`、`docs/design/chapters/02-shediao.md`",
+    "special": "- ch01 天龙：`story/01` 已由 DES-sleep-events 接入「一命换一命」分支，只核对，并补保底 `slp_01_yanmenxiexin` 的书眠节点与两条事件的选用条件；`chapters/01` 索引 `dc_01_09.D` 与两条天龙事件；支线第三层「三问众生」（sidelines §3）登记 `q_01_changsheng_01` 与 `dc_*`。\n- ch02 射雕：`chapters/02` 苏醒入口接收「一命换一命」洞中醒转镜头（主角被大风刮入洞中入眠，射雕最前期醒来），不改主线起点；支线第四层「真经非寿」（sidelines §4）；书眠 `slp_02_*`（sleep-events §4.1）。",
+    "writes_list": "`docs/design/story/01-tianlong.md`、`docs/design/story/02-shediao.md`、`docs/design/chapters/01-tianlong.md`、`docs/design/chapters/02-shediao.md`"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/story/01-tianlong.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-story-hooks-g2",
+   "title": "故事线挂接口 · 第二组：神雕、倚天、笑傲（休眠事件 + 长生诀支线接入 story/NN 与 chapters/NN，AR-26）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-story-hooks.md",
+   "deps": [
+    "DES-sync-ids-slp"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/story/03-shendiao.md",
+    "docs/design/story/04-yitian.md",
+    "docs/design/story/05-xiaoao.md",
+    "docs/design/chapters/03-shendiao.md",
+    "docs/design/chapters/04-yitian.md",
+    "docs/design/chapters/05-xiaoao.md"
+   ],
+   "vars": {
+    "group_title": "第二组：神雕、倚天、笑傲",
+    "books": "- ch03 《神雕侠侣》：`docs/design/story/03-shendiao.md`、`docs/design/chapters/03-shendiao.md`\n- ch04 《倚天屠龙记》：`docs/design/story/04-yitian.md`、`docs/design/chapters/04-yitian.md`\n- ch05 《笑傲江湖》：`docs/design/story/05-xiaoao.md`、`docs/design/chapters/05-xiaoao.md`",
+    "special": "- ch03 神雕：支线第五层「十六年灯」（sidelines §5）；书眠 `slp_03_*`（sleep-events §4.2）。\n- ch04 倚天：支线第六层「玉玺不令天下」（sidelines §6）；书眠 `slp_04_*`（§4.3）。\n- ch05 笑傲：支线第七层「不以长生役人」（sidelines §7）；书眠 `slp_05_*`（§5.1）。",
+    "writes_list": "`docs/design/story/03-shendiao.md`、`docs/design/story/04-yitian.md`、`docs/design/story/05-xiaoao.md`、`docs/design/chapters/03-shendiao.md`、`docs/design/chapters/04-yitian.md`、`docs/design/chapters/05-xiaoao.md`"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/story/03-shendiao.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-story-hooks-g3",
+   "title": "故事线挂接口 · 第三组：侠客、碧血、鹿鼎（休眠事件 + 长生诀支线接入 story/NN 与 chapters/NN，AR-26）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-story-hooks.md",
+   "deps": [
+    "DES-sync-ids-slp"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/story/06-xiake.md",
+    "docs/design/story/07-bixue.md",
+    "docs/design/story/08-luding.md",
+    "docs/design/chapters/06-xiake.md",
+    "docs/design/chapters/07-bixue.md",
+    "docs/design/chapters/08-luding.md"
+   ],
+   "vars": {
+    "group_title": "第三组：侠客、碧血、鹿鼎",
+    "books": "- ch06 《侠客行》：`docs/design/story/06-xiake.md`、`docs/design/chapters/06-xiake.md`\n- ch07 《碧血剑》：`docs/design/story/07-bixue.md`、`docs/design/chapters/07-bixue.md`\n- ch08 《鹿鼎记》：`docs/design/story/08-luding.md`、`docs/design/chapters/08-luding.md`",
+    "special": "- ch06 侠客：支线第八层「忘形得意」（sidelines §8）；书眠 `slp_06_*`（sleep-events §5.2）。\n- ch07 碧血：无支线；书眠 `slp_07_*`（§5.3）。\n- ch08 鹿鼎：第九层节点与和氏璧跨书线（sidelines §9：唯一信物 `it_heshibi` 的跨书保存引用、鹿鼎任务卡与 DAG、观星台建议场景 ID——北京城外、非权力中心、无轻功硬门，若 `design/11` 尚未登记就用 `placeKey` 引用并写进报告第 6 节）；书眠只对未练成第九层的玩家：`slp_08_*`（§6.1）；第九层已成走 design/25 周游世界。",
+    "writes_list": "`docs/design/story/06-xiake.md`、`docs/design/story/07-bixue.md`、`docs/design/story/08-luding.md`、`docs/design/chapters/06-xiake.md`、`docs/design/chapters/07-bixue.md`、`docs/design/chapters/08-luding.md`"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/story/06-xiake.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-story-hooks-g4",
+   "title": "故事线挂接口 · 第四组：连城、白马、鸳鸯（休眠事件 + 长生诀支线接入 story/NN 与 chapters/NN，AR-26）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-story-hooks.md",
+   "deps": [
+    "DES-sync-ids-slp"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/story/09-liancheng.md",
+    "docs/design/story/10-baima.md",
+    "docs/design/story/11-yuanyang.md",
+    "docs/design/chapters/09-liancheng.md",
+    "docs/design/chapters/10-baima.md",
+    "docs/design/chapters/11-yuanyang.md"
+   ],
+   "vars": {
+    "group_title": "第四组：连城、白马、鸳鸯",
+    "books": "- ch09 《连城诀》：`docs/design/story/09-liancheng.md`、`docs/design/chapters/09-liancheng.md`\n- ch10 《白马啸西风》：`docs/design/story/10-baima.md`、`docs/design/chapters/10-baima.md`\n- ch11 《鸳鸯刀》：`docs/design/story/11-yuanyang.md`、`docs/design/chapters/11-yuanyang.md`",
+    "special": "- ch09 连城：后书接口清除「连城 → 白马」旧序，按现行序改为「连城 → 鸳鸯」，年差写算式；书眠 `slp_09_*`（sleep-events §6.2，九层失败保护）。\n- ch10 白马：**第一本正式书**，唐 702–703 年（协调者裁定，已由 DES-sync-baima-year 同步 canon），由序章长白山初眠苏醒进入（冷入口）；支线第二层「空龛听息」（sidelines §2）；书眠 `slp_10_*`（§3.1），苏醒衔接天龙 1093 年（391 年）。\n- ch11 鸳鸯：前书接口改为从连城而来；书眠 `slp_11_*`（§6.3，九层失败保护）。",
+    "writes_list": "`docs/design/story/09-liancheng.md`、`docs/design/story/10-baima.md`、`docs/design/story/11-yuanyang.md`、`docs/design/chapters/09-liancheng.md`、`docs/design/chapters/10-baima.md`、`docs/design/chapters/11-yuanyang.md`"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/story/09-liancheng.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-story-hooks-g5",
+   "title": "故事线挂接口 · 第五组：书剑、飞狐、雪山（休眠事件 + 长生诀支线接入 story/NN 与 chapters/NN，AR-26）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-story-hooks.md",
+   "deps": [
+    "DES-sync-ids-slp"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/story/12-shujian.md",
+    "docs/design/story/13-feihu.md",
+    "docs/design/story/14-xueshan.md",
+    "docs/design/chapters/12-shujian.md",
+    "docs/design/chapters/13-feihu.md",
+    "docs/design/chapters/14-xueshan.md"
+   ],
+   "vars": {
+    "group_title": "第五组：书剑、飞狐、雪山",
+    "books": "- ch12 《书剑恩仇录》：`docs/design/story/12-shujian.md`、`docs/design/chapters/12-shujian.md`\n- ch13 《飞狐外传》：`docs/design/story/13-feihu.md`、`docs/design/chapters/13-feihu.md`\n- ch14 《雪山飞狐》：`docs/design/story/14-xueshan.md`、`docs/design/chapters/14-xueshan.md`",
+    "special": "- ch12 书剑、ch13 飞狐、ch14 雪山：都在第九层之后，书眠只对未练成第九层的玩家（sleep-events §6.4–§6.6 九层失败保护），第九层已成走周游世界；雪山的下一容器为 `ch15_guimeng`（sleep-events §2.1），苏醒衔接按该文写。",
+    "writes_list": "`docs/design/story/12-shujian.md`、`docs/design/story/13-feihu.md`、`docs/design/story/14-xueshan.md`、`docs/design/chapters/12-shujian.md`、`docs/design/chapters/13-feihu.md`、`docs/design/chapters/14-xueshan.md`"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/story/12-shujian.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-sync-design-a",
+   "title": "设计文档同步 A · design/10、11、12、14、15、18、19、20 接长生诀 / 休眠事件 / 金钱采集 / 支线 / 白马唐代化（各设计报告 §6）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-sync-design-a.md",
+   "deps": [
+    "DES-sync-baima-year"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/10-items-and-equipment.md",
+    "docs/design/11-open-world.md",
+    "docs/design/12-quests-npc-factions.md",
+    "docs/design/14-ui-ux-mobile.md",
+    "docs/design/15-meridians-and-acupoints.md",
+    "docs/design/18-npc-and-companions.md",
+    "docs/design/19-world-map.md",
+    "docs/design/20-legacy-inheritance.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/14-ui-ux-mobile.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-sync-design-b",
+   "title": "设计文档同步 B · design/03、04、05、21 接长生诀核心（Z0-CS、1:20 化解、螺旋经脉伤害、特殊功法、sxp、类别名额）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-sync-design-b.md",
+   "deps": [
+    "DES-attr-v2"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/03-attributes.md",
+    "docs/design/04-damage-formula.md",
+    "docs/design/05-martial-arts-system.md",
+    "docs/design/21-meridian-flow-and-moves.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/05-martial-arts-system.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ],
+     [
+      "{python}",
+      "tools/balance/damage_sim.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/balance/meridian_flow_sim.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/balance/projection_sim.py",
+      "--check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-skills-reqs-v2-a",
+   "title": "名录门槛重配 A（部录 01–07） · 按属性 v2 规则重写 reqs（加内息与修炼加成，AR-27）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-skills-reqs-v2.md",
+   "deps": [
+    "DES-attr-v2"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/skills-bulu-01-tianlong.md",
+    "docs/design/catalog/skills-bulu-02-shediao.md",
+    "docs/design/catalog/skills-bulu-03-shendiao.md",
+    "docs/design/catalog/skills-bulu-04-yitian.md",
+    "docs/design/catalog/skills-bulu-05-xiaoao.md",
+    "docs/design/catalog/skills-bulu-06-xiake.md",
+    "docs/design/catalog/skills-bulu-07-bixue.md"
+   ],
+   "vars": {
+    "part": "A（部录 01–07）",
+    "files": "- `docs/design/catalog/skills-bulu-01-tianlong.md`\n- `docs/design/catalog/skills-bulu-02-shediao.md`\n- `docs/design/catalog/skills-bulu-03-shendiao.md`\n- `docs/design/catalog/skills-bulu-04-yitian.md`\n- `docs/design/catalog/skills-bulu-05-xiaoao.md`\n- `docs/design/catalog/skills-bulu-06-xiake.md`\n- `docs/design/catalog/skills-bulu-07-bixue.md`"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/skills-bulu-01-tianlong.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_skill_catalogs.py",
+      "--strict",
+      "docs/design/catalog/skills-bulu-01-tianlong.md",
+      "docs/design/catalog/skills-bulu-02-shediao.md",
+      "docs/design/catalog/skills-bulu-03-shendiao.md",
+      "docs/design/catalog/skills-bulu-04-yitian.md",
+      "docs/design/catalog/skills-bulu-05-xiaoao.md",
+      "docs/design/catalog/skills-bulu-06-xiake.md",
+      "docs/design/catalog/skills-bulu-07-bixue.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-skills-reqs-v2-b",
+   "title": "名录门槛重配 B（部录 08–14） · 按属性 v2 规则重写 reqs（加内息与修炼加成，AR-27）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-skills-reqs-v2.md",
+   "deps": [
+    "DES-attr-v2"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/skills-bulu-08-luding.md",
+    "docs/design/catalog/skills-bulu-09-liancheng.md",
+    "docs/design/catalog/skills-bulu-10-baima.md",
+    "docs/design/catalog/skills-bulu-11-yuanyang.md",
+    "docs/design/catalog/skills-bulu-12-shujian.md",
+    "docs/design/catalog/skills-bulu-13-feihu.md",
+    "docs/design/catalog/skills-bulu-14-xueshan.md"
+   ],
+   "vars": {
+    "part": "B（部录 08–14）",
+    "files": "- `docs/design/catalog/skills-bulu-08-luding.md`\n- `docs/design/catalog/skills-bulu-09-liancheng.md`\n- `docs/design/catalog/skills-bulu-10-baima.md`\n- `docs/design/catalog/skills-bulu-11-yuanyang.md`\n- `docs/design/catalog/skills-bulu-12-shujian.md`\n- `docs/design/catalog/skills-bulu-13-feihu.md`\n- `docs/design/catalog/skills-bulu-14-xueshan.md`"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/skills-bulu-08-luding.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_skill_catalogs.py",
+      "--strict",
+      "docs/design/catalog/skills-bulu-08-luding.md",
+      "docs/design/catalog/skills-bulu-09-liancheng.md",
+      "docs/design/catalog/skills-bulu-10-baima.md",
+      "docs/design/catalog/skills-bulu-11-yuanyang.md",
+      "docs/design/catalog/skills-bulu-12-shujian.md",
+      "docs/design/catalog/skills-bulu-13-feihu.md",
+      "docs/design/catalog/skills-bulu-14-xueshan.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-skills-reqs-v2-c",
+   "title": "名录门槛重配 C（门派与通用名录） · 按属性 v2 规则重写 reqs（加内息与修炼加成，AR-27）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-skills-reqs-v2.md",
+   "deps": [
+    "DES-attr-v2"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/skills-daojia.md",
+    "docs/design/catalog/skills-general.md",
+    "docs/design/catalog/skills-gulong.md",
+    "docs/design/catalog/skills-kangxi.md",
+    "docs/design/catalog/skills-qianlong.md",
+    "docs/design/catalog/skills-shaolin.md",
+    "docs/design/catalog/skills-wujue.md",
+    "docs/design/catalog/skills-wuyue.md",
+    "docs/design/catalog/skills-xiake-bixue.md",
+    "docs/design/catalog/skills-xiaoyao.md",
+    "docs/design/catalog/skills-yitian.md"
+   ],
+   "vars": {
+    "part": "C（门派与通用名录）",
+    "files": "- `docs/design/catalog/skills-daojia.md`\n- `docs/design/catalog/skills-general.md`\n- `docs/design/catalog/skills-gulong.md`\n- `docs/design/catalog/skills-kangxi.md`\n- `docs/design/catalog/skills-qianlong.md`\n- `docs/design/catalog/skills-shaolin.md`\n- `docs/design/catalog/skills-wujue.md`\n- `docs/design/catalog/skills-wuyue.md`\n- `docs/design/catalog/skills-xiake-bixue.md`\n- `docs/design/catalog/skills-xiaoyao.md`\n- `docs/design/catalog/skills-yitian.md`"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/skills-daojia.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_skill_catalogs.py",
+      "--strict",
+      "docs/design/catalog/skills-daojia.md",
+      "docs/design/catalog/skills-general.md",
+      "docs/design/catalog/skills-gulong.md",
+      "docs/design/catalog/skills-kangxi.md",
+      "docs/design/catalog/skills-qianlong.md",
+      "docs/design/catalog/skills-shaolin.md",
+      "docs/design/catalog/skills-wujue.md",
+      "docs/design/catalog/skills-wuyue.md",
+      "docs/design/catalog/skills-xiake-bixue.md",
+      "docs/design/catalog/skills-xiaoyao.md",
+      "docs/design/catalog/skills-yitian.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-12c-clip",
+   "title": "游戏工程 · 动作原型 P8–P9 · 片段驱动的 rig 运行时（clip 加载 / 投影 / 播放器、playClip、/rig-demo 开关、金样与性能测试，AR-29）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "ENG-12c-clip.md",
+   "deps": [
+    "ENG-21b-recovery-quality",
+    "DES-rig-v1.1"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "packages/render/src/rig/**",
+    "packages/render/src/index.ts",
+    "packages/render/CLAUDE.md",
+    "packages/render/package.json",
+    "apps/game/src/rig-demo.ts",
+    "apps/game/src/style.css",
+    "content/anim/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "packages/render/src/rig/clip.ts",
+     "packages/render/src/rig/project.ts",
+     "packages/render/src/rig/clip-player.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ]
+  },
+  {
+   "id": "TOOL-rig-sheet",
+   "title": "动作原型 P2–P5、P7 · 三视图切件工具链（sheet_split / keypoints / segment_parts / make_parts 身份字段 / preview --clip）与主角·男身份 rig、走路 + 剑招动图（AR-29）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "TOOL-rig-sheet.md",
+   "deps": [
+    "DES-rig-v1.1"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/rig/*.py",
+    "tools/rig/*.swift",
+    "tools/rig/*.html",
+    "assets/default/rig/npc_zhujue__ch00_m/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "assets/default/rig/npc_zhujue__ch00_m/manifest.yaml",
+     "tools/rig/sheet_split.py",
+     "tools/rig/segment_parts.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "{python}",
+      "tools/rig/make_parts.py",
+      "assets/default/rig/npc_zhujue__ch00_m",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/agents/check_assets.py",
+      "assets/default/rig/npc_zhujue__ch00_m",
+      "--min",
+      "39",
+      "--max",
+      "60",
+      "--min-side",
+      "16"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "full_checkout": true
   }
  ]
 }
