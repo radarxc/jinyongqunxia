@@ -29,9 +29,9 @@
 > 11. 任务 DSL、Ink、经营、门派、永久经脉与传承都只能产生意图，再由 core 校验；运行态逐项消费 `design/12`、`15`、`16`、`20`、`21` 的正式 schema 与事务规则，不在 core 重定义玩法。传承调度只用 `qiyu` RNG，阶段、材料、收据与 RNG 同事务。
 > 12. 当前周目跨书界永久状态包括冲穴/周天/九转与同伴履历；新周目仍按 `design/13` 重置其运行态，只保留账号级里程碑。资源点归属、普通库存、家丁、营生职位和当前门派身份默认随书眠清除；跨书同伴按 `design/18` 做健在判定，以离队快照为下限合并后世新增能力。
 > 13. AI 采用09的 Utility AI，Boss 用阶段状态机约束。固定工作预算和5/15/40/80ms调度预算并用，2倍超时取当前最优；AI选择可随设备变化，录像记录最终命令，core重放结果不变。
-> 14. 存档复用 `tech/08` 的 TSAV v1；`rulesProtocol=2` 的录像/检查点把按 `unitIndex` 排序的 `meridian-flow-state.v1` 与唯一四字 `battleRng` 一起纳入规范 hash，并与 Python golden 逐字段对拍。
+> 14. 存档复用 `tech/08` 的 TSAV v1；`rulesProtocol=3` 的录像/检查点把按 `unitIndex` 排序的 `meridian-flow-state.v2` 与唯一四字 `battleRng` 一起纳入规范 hash；协议 2 golden 只作为旧录像基线逐字段对拍。
 > 15. MVP 先交付单线程 core、六角战斗、伤害/Buff、任务基本式、存读档与录像；AI Worker、复杂世界周期以及经脉 / 经营 / 传承量产按 `tech/09` 阶段门和基线实测递进。
-> 16. 绝招轮换只存在于当前战斗：每单位、每门已装配武学记录 `ultimateCooldown: 0|1` 与 `lastUltimateMoveId`，战后丢弃且不写持久 `SkillState`；录像 / 内存检查点把它们纳入协议 2 状态哈希，降龙 `cdMinus` 只减招式自身 CD。
+> 16. 绝招轮换只存在于当前战斗：每单位、每门已装配武学记录 `ultimateCooldown: 0|1` 与 `lastUltimateMoveId`，战后丢弃且不写持久 `SkillState`；录像 / 内存检查点把它们纳入协议 3 状态哈希，降龙 `cdMinus` 只减招式自身 CD。
 > 17. AR-16 外放在 F0 由同一可用性查询冻结 `projectionStep`、射程、范围、额外耗内与 Profile 版本；预估零写入 / 零 RNG，F2 才与原招成本原子支付。命令、AI 候选、录像与 hash 都携带所选档；Z5M 只在既有位置二选一执行一次。
 > 18. AR-17 只给“深厚内力驱动且可主动控制伤敌音波”的招式静态外放资格；音功 0 档仍是基础音波（基础范围、零外放增耗、普通 Z5M），1 / 2 档才激活外放。静态 `DamageKind='projected'` 与护体内劲 40% 适用率暂不动态切换。
 > 19. `mv_dashouyin_dashouyin` 先执行非伤害跃迁，再于落点生成唯一掌风伤害段；只有掌风段走 `projected`、同一次外放 Z5M 与原 attack 路线，跃迁不产生第二伤害段、第二 Z5M 或第二路线提交。
@@ -89,7 +89,7 @@
 | E-17 | 存档 | GameState 负载交给 TSAV v1；纯迁移 + 内容 fixup | `tech/08` §3 |
 | E-18 | 录像 | 开局快照、命令、RNG、每 10 命令中间哈希 **【建议值】**、终局哈希 | `tech/08` §10；本文 §14 |
 | E-19 | 跨年代传承 | `legacy.v1` 只读 registry + 当前周目状态；`qiyu` RNG、稳定排序、双类配额收据和原子书眠 | `design/20` §2–§14；本文 §11.7 |
-| E-20 | 战斗经脉 | `rulesProtocol=2`；一独立行动单位一实例；Z4M / Z5M 与护体内劲按固定边界接入；模块只消费 Core 注入的全局 `battle` 流 | AR-14；`design/21` §4、§11–§12；本文 §7–§8、§11.2 |
+| E-20 | 战斗经脉 | `rulesProtocol=3`；一独立行动单位一实例；Z4M / Z5M 与护体内劲按固定边界接入；模块只消费 Core 注入的全局 `battle` 流 | AR-14；`design/21` §4、§11–§12；本文 §7–§8、§11.2 |
 | E-21 | 外放加持 | `projectionStep` 入命令 / AI / replay；`projectProjection` 纯查询，F2 原子付费；六角枚举复用 §6，Z5M 只选一条曲线；音功仅 1 档起令 `projectionBoostActive=true` | AR-16 / AR-17；`design/09` §5、`design/21` §4.4.1；本文 §6–§8、§11.2、§14 |
 
 ## 1. 目标、边界与依赖
@@ -481,7 +481,7 @@ interface BattleUnitActionState {
 interface MeridianBattleUnitState {
   unitId: UnitId;
   unitIndex: number;
-  flow: MeridianFlowSnapshotV1;
+  flow: MeridianFlowSnapshotV2;
   activeDefense: { routeId: MeridianRouteId; qualityBp: number; expiresAtOwnAction: number; causeId: string|null } | null;
   movementProjection: { routeId: MeridianRouteId; qualityBp: number; speedBp: number; sealed: boolean; ruptured: boolean } | null;
   innerGuard: { enabled: boolean; routeId: MeridianRouteId; breakGuardBp: number; reflectBp: number } | null;
@@ -492,7 +492,7 @@ interface MeridianBattleUnitState {
 
 `BattleUnitState` 继承 `design/09` §13.1 的身份、unitIndex、阵营/控制、格位/朝向、CT/冻结/待移位、五资源、Buff、反击招、被擒/倒地、AI/仇恨与 flags，全部必须进入战斗快照。本文统一 optional 规则状态为显式 null/空数组，adapter 映射 `id→battleId`、`env→environment` 等字段，不维护两份值。道具以 `ItemUid` 选择实例、以 `ItemId` 累计次数和冷却。运劲实际效果进入资源/Buff，最近模式供后续查询。`revision` 在预测输入改变时递增；寻路 open set、可达格与动画不保存。
 
-`ultimateBySkill` 由入场时已装配武学生成，只存在于 `BattleState`、录像与同进程悔招 checkpoint；它不写回 profile 的持久 `SkillState`，`battle/finalize` 和离开战斗都直接丢弃。这样跨战斗不继承共享冷却或上次绝招，而协议 2 重放仍能逐命令复原轮换状态。
+`ultimateBySkill` 由入场时已装配武学生成，只存在于 `BattleState`、录像与同进程悔招 checkpoint；它不写回 profile 的持久 `SkillState`，`battle/finalize` 和离开战斗都直接丢弃。这样跨战斗不继承共享冷却或上次绝招，而协议 3 重放仍能逐命令复原轮换状态。
 
 ### 3.4 命令、事件与结果
 
@@ -787,6 +787,8 @@ interface GoldenReplayFixture {
 ```
 
 CI 在 Node/V8 与 Playwright WebKit/JSC 各执行同一 fixture，输出首个不同的命令、事件、RNG 五流及 JSON Pointer。fixture 与录像 runner 一样用 `appBuild+coreVersion+rulesProtocol+rngProtocol+contentHash` 锁定可执行工件和规则包；`coreBuild` 只保留为 `GameState.meta` 内部诊断组合值，不作为运输或夹具的第三套版本字段。官方 WebKit 带 Playwright 补丁，不等同真机 Safari；CI 锁 runner 版本/浏览器二进制，升级重跑旧 golden，只有经审阅的规则变更才重建预期值。iOS Safari 另做发布抽验（待实测）。
+
+旧经脉 golden 固定 `fixtureVersion=2`、`rulesProtocol=2`、`rngProtocol=1`；其概率抽样只使用 `nextU32() % 10000`，不依赖 `intInclusive`，因此无需因 RNG 主协议升级而重录。
 
 ### 4.7 确定性验收用例
 
@@ -1887,8 +1889,8 @@ interface MeridianFlowRuntimePort {
   applyGrapple(input: GrappleInput): GrappleChange;
   regulateBreath(profile: BreathProfile, mode: 'battle'|'rest', battleRng?: Rng): BreathResult;
   tick(input: MeridianTick): void;
-  snapshot(): MeridianFlowSnapshotV1;
-  restore(snapshot: MeridianFlowSnapshotV1): void;
+  snapshot(): MeridianFlowSnapshotV2;
+  restore(snapshot: MeridianFlowSnapshotV2): void;
 }
 ```
 
@@ -1898,7 +1900,7 @@ interface MeridianFlowRuntimePort {
 2. 主角 / 同伴逐穴读取永久投影，敌人应用 `routeOnly / schoolCore / fullTemplate`；
 3. 读取 `design/13` 外来压制、难度与规则开关结算后的 `effGrade/effLayer`，不得在实例内用真实品阶重算；
 4. 投影当前 `mpMax`、同级 STD、内功性质、周天 / 九转、装备与 Buff，所有派生量先钳制；
-5. 创建 `schema:'meridian-flow-state.v1'`、`rulesProtocol:2` 的零动态态；节点按 `ap_*` ASCII 序写入；
+5. 创建 `schema:'meridian-flow-state.v2'`、`rulesProtocol:3` 的零动态态；节点按 `ap_*` ASCII 序写入；
 6. 不传 seed、不复制 RNG；完成后才参与 §7.1 的经脉速度与首轮排序。
 
 模块调用必须处于一条 Core 命令事务内。外放招在 F0 先调纯 `projectProjection`：从静态 `projection/sonic` 与所选档唯一派生 `projectionBoostActive`，同时原样投影 `voice`，校验档位 / 总资源并冻结 Profile `stateVersion`、范围与模板；`design/09` 再从该冻结结果枚举目标格。此后不重判激活位。预检硬封路发生在资源支付前；通过后固定走 `design/21` §11.4 的 F1–F10：F1 冻结双方 Profile 与节点引用，F2 原子支付招式成本和外放增量，F3～F5 逐段提交，F6 二选一执行唯一 Z5M，F7 按静态 `DamageKind` 结算护体内劲，F8～F10 处理效果、`flowCt`、事件并提交状态与 RNG。途中卡住保留已付资源、实际尝试段 CT 与伤势；只有命令非法、P1 前被反应作废或引擎异常才整笔回滚。
@@ -2157,7 +2159,7 @@ interface BattleSession {
 }
 ```
 
-`rulesProtocol=2` 时，`battle.meridianByUnit[].flow` 必须逐单位保存 `schema:'meridian-flow-state.v1'`、`rulesProtocol/unitId/unitIndex/kind/tick/stateVersion`、`grappleLevel/grappleSource/grappleRemaining` 与完整动态 `nodes`；外层同时保存会跨命令生效的 `activeDefense/movementProjection/innerGuard`。`BattleUnitActionState.ultimateBySkill` 也必须随 battle 保存 `ultimateCooldown / lastUltimateMoveId / freshTurnToken`，否则中间 hash 无法证明绝招轮换确定性。数组按 `unitIndex` 或 `skillId`，节点按 `ap_*` ASCII 升序。单位 snapshot 绝不复制 RNG；唯一 `battleRng` 仍只在 `BattleSession` 保存四个 uint32。
+`rulesProtocol=3` 时，`battle.meridianByUnit[].flow` 必须逐单位保存 `schema:'meridian-flow-state.v2'`、`rulesProtocol/unitId/unitIndex/kind/tick/stateVersion`、`grappleLevel/grappleSource/grappleRemaining` 与完整动态 `nodes`；外层同时保存会跨命令生效的 `activeDefense/movementProjection/innerGuard`。`BattleUnitActionState.ultimateBySkill` 也必须随 battle 保存 `ultimateCooldown / lastUltimateMoveId / freshTurnToken`，否则中间 hash 无法证明绝招轮换确定性。数组按 `unitIndex` 或 `skillId`，节点按 `ap_*` ASCII 升序。单位 snapshot 绝不复制 RNG；唯一 `battleRng` 仍只在 `BattleSession` 保存四个 uint32。
 
 外放选择属于命令事实：`skill` 与 `dual.a/b` 原样把 `projectionStep` 写入 `commands[].command`，即使为 0 也按调用方提交值规范化后记录；非外放招不得出现该字段。录像和 checkpoint 不保存“预览格集合”作为第二事实源，重放必须以锁定内容、规则版本、经脉 snapshot 与命令档位重新求 `maxProjectionStep / effectiveRange / spread / extraMpCost`。规范 command JSON（因此 replay hash）必须覆盖 `projectionStep`；只记录推导后的命中格、或重放时自动改成当前最高档，均应在首个命令处报差异。
 
@@ -2169,7 +2171,7 @@ battle 本地事件序与 acceptedOrdinal 也进入域；外层 GameState 的 ev
 
 重试/悔招保留命令历史：checkpoint 只含战斗规则片段与两流，不包含 checkpointStore 自身，避免递归快照。undo 恢复目标片段后扣当前 undoLeft，保留当前重试数/消耗账本，不从旧片段恢复次数；禁止无限悔招。restart 恢复入场快照并保留累计retry/assist，finalize前未写世界资源。完整录像按原序执行undo/retry，而不是删掉历史后拼接。
 
-经脉 checkpoint 恢复时先校验 schema / `rulesProtocol`、单位身份唯一性、节点排序与范围，再逐单位调用 `restore`；任一单位失败则候选战斗整体拒绝，不允许丢弃经脉态续跑。v1 的 `bonusCapBp/routeZ3Bp` 只能交旧 runner；v2 使用 `routeQualityBp`。没有明确迁移器的进行中 v1 战斗回到已登记战前检查点，战外永久经脉则从 `design/15` 事实重新投影。
+经脉 checkpoint 恢复时先校验 schema / `rulesProtocol`、单位身份唯一性、节点排序与范围，再逐单位调用 `restore`；任一单位失败则候选战斗整体拒绝，不允许丢弃经脉态续跑。`meridian-flow-state.v1` 仅供旧录像的旧 runner 读取，其中 `bonusCapBp/routeZ3Bp` 不得交给当前 runner；v2 使用 `routeQualityBp`。没有明确迁移器的进行中 v1 战斗回到已登记战前检查点，战外永久经脉则从 `design/15` 事实重新投影。
 
 运输仍是 `tech/08` 的 NDJSON.gz：压缩 ≤2 MiB、声明未压缩 ≤16 MiB；超限降级摘要而非截断录像。信封 schema 与 `BattleReplayV1.schema` 分开演进。
 
@@ -2297,7 +2299,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | 正式 schema 适配层 | `packages/data` 生成类型到 core handler / 状态组合的薄映射；不复制玩法定义 |
 | 传承调度收据 | 区分 `quota_full_before_batch` 与 `lottery_deferred` 的当前周目幂等事实；二者 RNG 消费语义不同 |
 | `MeridianFlowModule` | 每个可独立武学行动单位一份的战斗经脉动态实例；不拥有 RNG，消费 Core 事务端口 |
-| `meridian-flow-state.v1` | 单位级规范经脉快照；节点按 `ap_*` 排序，不含全局 RNG |
+| `meridian-flow-state.v2` | 当前 `rulesProtocol=3` 的单位级规范经脉快照；节点按 `ap_*` 排序，不含全局 RNG；v1 仅供旧录像的旧 runner 读取 |
 | `damageBeforeMpGuard` | 护体真气与护体内劲后、既有 `mpGuard` 前的剩余伤害；不是实际气血伤害 |
 | 经脉 golden | Python 慢模型生成、TypeScript 全字段消费的 `fixtureVersion=2/rulesProtocol=2` 跨语言契约 |
 | 绝招轮换态 | `BattleUnitActionState.ultimateBySkill` 中每单位、每门已装配武学的 `ultimateCooldown:0|1`、`lastUltimateMoveId` 与 `freshTurnToken`；仅属本战 |
@@ -2348,7 +2350,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `design/15` | 已定稿；使用 `MeridianProgress`、session 快照、keyed RNG 与 S0–S8 | 上游升 schema / 公式时按迁移版本重算派生奖励并重跑 V15-01～V15-15 |
 | `design/16` | 已定稿；使用资源、点、家丁、合同、家业、公账与 Estate DSL | 上游升 schema / 数值时迁移当界运行态并重跑 RES/BIZ/SLEEP 门禁 |
 | `design/20` | 已定稿；使用 `legacy.v1`、`LegacySourceState`、配额 / 机会 / 校合收据、书眠矩阵与 LEG-V/T | 上游升 schema / RNG 消费或生命周期时升规则与存档版本，并重跑 10,000 seeds 和跨引擎录像 |
-| `design/21` | v2.6 提供逐单位模块、路线 / 控制 / 调息档案、Z4M / Z5M、护体内劲、速度、外放档、`ProjectionInput.voice`、音功激活分支、大手印掌风边界、`meridian-flow-state.v1`、绝招路线约束与 golden | 路线数组、外放档 / 曲线、音功分支、大手印伤害段、取整点或 RNG 消费改变须升 `rulesProtocol`，保留旧 runner 并逐字段评审 golden |
+| `design/21` | v2.6 提供逐单位模块、路线 / 控制 / 调息档案、Z4M / Z5M、护体内劲、速度、外放档、`ProjectionInput.voice`、音功激活分支、大手印掌风边界、`meridian-flow-state.v2`、绝招路线约束与 golden | 路线数组、外放档 / 曲线、音功分支、大手印伤害段、取整点或 RNG 消费改变须升 `rulesProtocol`，保留旧 runner 并逐字段评审 golden |
 | `design/18` | 同伴快照、健在与重逢合并正式契约 | 内容考据修订需 legacy timeline 迁移 |
 | `tech/03/08` | 性能预算、TSAV、录像运输 | 真机实测和限额变化不得反写玩法结果 |
 
@@ -2377,8 +2379,8 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `docs/design/15-*` | 经脉 | **已解决**：本文已接进度单位、冲穴公式、事件与 keyed RNG，保持当前周目跨书永久、新周目重置运行态 |
 | `docs/design/16-*` | 资源营生历史依赖文字 | **已解决（文档接口）**：该文 §17.2 已回写正式任务接口；运行时、旧档迁移与事务夹具仍待实施 |
 | `docs/design/18-npc-and-companions.md` | §7.3 | **已解决**：`level/innates` 已无重复声明；本轮补齐 `meridianProgress` 并由本文 §12.2 / §12.3 消费，事件命名沿正式契约 |
-| `docs/tech/08-backend-and-online.md` | TSAV / replay 版本表 | **已解决**：§3.5.1 / §10.2 已登记 `rulesProtocol=2` 与 `meridian-flow-state.v1` 的检查点兼容边界；旧 v1 战中档不得静默升级 |
-| `docs/tech/01-architecture.md` | Core 状态与确定性摘要 | **已解决**：已把 `BattleState.meridianByUnit`、唯一 battle RNG 注入、preview 零副作用与协议 2 hash 域纳入 §3.2.1、§3.6、§8.3 |
+| `docs/tech/08-backend-and-online.md` | TSAV / replay 版本表 | **已解决**：§3.5.1 / §10.2 已登记当前 `rulesProtocol=3` 与 `meridian-flow-state.v2`，并保留旧协议 2 / v1 录像的匹配 runner 兼容边界；旧 v1 战中档不得静默升级 |
+| `docs/tech/01-architecture.md` | Core 状态与确定性摘要 | **已解决**：已把 `BattleState.meridianByUnit`、唯一 battle RNG 注入、preview 零副作用与协议 3 hash 域纳入 §3.2.1、§3.6、§8.3 |
 | `TODO.md` / 协调任务 | Phase F 同步 | 登记 E2-S02–S05、E2-P01–P03；E2-S01 与 E2-S04 已解决，其余按实现实测 / 基准修订跟踪 |
 
 ### 开放问题（附默认值）

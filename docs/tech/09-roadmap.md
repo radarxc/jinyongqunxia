@@ -315,7 +315,7 @@ M1 是内部能力闸门，不改变基准“序章可跳过”的产品定位�
 | 系统 | M1 最小能力 | M2 天龙真实验证 | 延后 |
 |---|---|---|---|
 | core | 单线程状态树、命令 / 事件、五流 RNG、10 Hz、六角 A* / LOS、CT、Z0–Z10、Buff 必需子集、任务 / Ink、存读档、录像 | D4 敌人模板、毒区 / 制服 / 撤离、关系与三选一原子提交 | 全 59 hook 的非切片用例可在 P2 补齐 |
-| 经脉 | 协议 2 TypeScript runner、逐单位实例、Core 注入单一 `battle` RNG、零副作用 preview、`meridian-flow-state.v1` snapshot | 以真实武学 / 敌人跑路线提交、绝招轮换与经脉投影；Node / WebKit 同一黄金文件逐字段对拍 | 非切片路线内容量产可在 P2 扩充，但 runner / golden / 三机门禁不可延后 |
+| 经脉 | 协议 2 TypeScript runner、逐单位实例、Core 注入单一 `battle` RNG、零副作用 preview、`meridian-flow-state.v2` snapshot | 以真实武学 / 敌人跑路线提交、绝招轮换与经脉投影；Node / WebKit 同一黄金文件逐字段对拍 | 非切片路线内容量产可在 P2 扩充，但 runner / golden / 三机门禁不可延后 |
 | 渲染 | 地形、两段式精灵、四偏航、战斗格、基础 VFX、DOM 浮字、昼夜、恢复、自适应 | 真实 `battle8` 六视图驻留 + 旋转两视图预取、宋式地标、崖谷遮挡 | 极致档、高级水体 / 天候组合 |
 | 数据 | ch00 schema、Tiled、Ink bridge、规则 / 文本分片、remap | ch01 base + `rg_dali_cangshan`，引用图、预算、零孤儿引用 | 浏览器内编辑器 |
 | 素材 | 登记库、导入、分层部件三视图（AR-22，`tianshu_rig`）、三档精灵、KTX2 / WebP / AAC / H.264、许可台账 | §3.4 清单全部审定，关键路径零占位 | 其他天龙区域资产 |
