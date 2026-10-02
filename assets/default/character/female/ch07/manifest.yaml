@@ -442,83 +442,6 @@
   notes: '实际查看：红娘子单人成年正面，暗红短袄墨灰裤布面甲、束发红带、入鞘腰刀和一条手持红布可辨，头颈基本直立、双手双足完整，无重大身体结构错误。面容比30岁默认偏年轻，衣带及红布有较多毛边、刀鞘偏直而刀形不突出，腰挂饰稍多，按宽松出齐尺度记录不追加。原始PNG保留，candidate待审核，不宣称严格旧标准通过。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
-- id: por_npc_sunzhongjun__ch07_youth_prepunishment_base
-  file: por_npc_sunzhongjun__ch07_youth_prepunishment_base.png
-  category: character/female
-  style: default
-  subject: 孙仲君 npc_sunzhongjun ch07_bixue · 华山门人、飞天魔女，南京同门冲突中受门规惩处之前
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
-
-
-    Create a REALISTIC Chinese wuxia portrait of 孙仲君. THIS IS AN ORIGINAL WRITTEN FACE DESIGN: no verified picture of this person is supplied, and no existing own cross-book identity image was found in the checked project asset/identity locations. Image 1 supplies ONLY the female project palette and soft light; image 2 supplies ONLY the pale ink-wash background. Neither reference supplies the target face, age, body, hair, clothing, props or pose. Never copy or average these reference faces or use a different game/TV character. Create the distinct written identity below.
-
-
-    身份与阶段：孙仲君（npc_sunzhongjun），《碧血剑》ch07_bixue。华山门人、飞天魔女，南京同门冲突中受门规惩处之前。
-
-
-    年龄与体型：二十多岁成年青年女性视觉默认，确龄待考；稍长尖圆脸，眉尾陡起、唇线绷紧，身材高挑紧实，青年自然肤质。明确受门规处罚前，双手手指完整，不引入结局伤残。 不以固定头身或画面占高数字强行拉伸人体。
-
-
-    本人面容辨识：独立原创青年女性稍长尖圆脸：额部中等、眉尾陡起但不画戏曲挑眉，眼裂偏长且真实尺寸、眼距正常，直接锐利地看向前方。鼻梁清直、鼻尖小圆，鼻翼自然；嘴形中等偏窄、上唇较薄，唇线绷紧、唇角平而不狰狞，颧面较紧、下颌收束但下巴仍圆钝有骨量。面部清爽肤质完整，傲气由眉眼与口线表达；与安小慧短圆椭圆脸、平软眉和温和口角明显分开，不与青青共脸，也不复制王语嫣柔弱面容。
-
-
-    服制与发式：明末江湖女子装，暗枣红右衽窄袖衫配墨灰长裙和内裤、窄腰带、轻布靴；乌发束紧高髻，小银簪固定，衣边完整。布料完整不透明、剪裁缝线清楚，旧衣只保留柔和材质而不主动添破洞补丁；身体与衣料体积连续，汉式交领为穿着者左襟覆右襟的右衽，不水平镜像。
-
-
-    正面姿态与器物：严格正面站稳，头颈竖直、双眼水平、下巴中性，不沿旧稿抬下颌或侧身。本人右手在身体右侧低握一柄普通中式直身双刃剑，简洁小横格、握柄与刃轴线连续，剑尖斜向外下方并全入画，避开腿与衣摆；左手自然松放腰前，双手五指完整、无绷带或断指伤口。腰左侧只有与此剑配套的空长鞘，以挂带接腰带，长度足容整刃。无额外武器、翅膀、飞行或魔法。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。依作者最新提速指示默认一张候选、每张仅一人。只有严重身份错误、重大结构问题或图片不可读才补图，不因细手指、微小装备或轻微角度偏差追加。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实边界：本书项目时间窗1630–1645、主体1640–1645、成年江湖段约1643年起，各图时点以具体阶段为准；不把整个时间窗当人物确岁。当前本地role/catalog/story/chapter支持身份与阶段，原著概括保留指定三联/广州修订版待考，本次未新增联网考据或编造引句页码。具体五官、衣饰选款、器型与静态持法为美术补足。锁定南京同门冲突受门规惩处之前；catalog/chapter的结局伤残待考属于后续，不能据此凭空猜伤侧和断指数量。本图双手完整。飞天魔女为称号，不是妖怪或性感装扮；旧抬颌姿态由当前正面端正覆盖。
-
-
-    参考边界：第1参考：对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。 第2参考：已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
-
-
-    完整排除项：不要翅膀、恶魔角、飞行、断指血口或惩罚后状态；不要性感紧身衣、清式旗装、与青青相同面容。 不要 head tilt、Dutch angle、歪头、额鼻颏中线倾斜、双眼高低倾斜、低头藏眼、侧向目光、侧脸、回眸、抬下巴或倾斜镜头。不要复制或混合两张参考人物的脸、年龄、体型、性别、发式、衣服、道具与姿势，不借其他人物game/TV脸冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、Q版、浓妆丰唇、照片剧照、3D塑料或换头拼贴。不要把中年老年减龄、把矮成年人画成儿童，不以身体羞辱和丑化表现责任或年龄。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、破洞、撕裂衣摆、碎布条、毛边、大片补丁污渍、密集噪点或过密细皱，不用浓雾遮结构。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰品、清式剃额留辫、旗装、马蹄袖、大拉翅、民国旗袍、中山装或无身份官服补子；明末汉地发式服制按各自角色，不混后世清宫衣装。不要汉式交领左衽、反向衣襟或水平镜像；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、仙侠冕冠、赛博或蒸汽朋克。不要新增兵器、发光武器、光翼、法阵、光龙、粒子、强逆光或过度泛光。不要多人、分格、多视角、特写框、多肢多指、无依据缺手缺脚缺指、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、失重衣带、缺失挂点、断裂器物、过短刀剑鞘、裁断头足和器物端点。不要裸露、透衣、性感化、血腥特写、恶搞、身体羞辱或无依据伤残。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书页字符和新增装饰水印；保留工具原有溯源标识和元数据。
-
-
-    FINAL POSE CHECK: 孙仲君 is FRONT-FACING. Forehead–nose–chin VERTICAL; both eyes HORIZONTALLY LEVEL; head and neck upright, chin neutral, gaze forward and camera level. NO head tilt. NO Dutch angle. Keep the unique written face, correct age, body and stage; never inherit reference faces or poses.'
-  negative: 不要翅膀、恶魔角、飞行、断指血口或惩罚后状态；不要性感紧身衣、清式旗装、与青青相同面容。 不要 head tilt、Dutch angle、歪头、额鼻颏中线倾斜、双眼高低倾斜、低头藏眼、侧向目光、侧脸、回眸、抬下巴或倾斜镜头。不要复制或混合两张参考人物的脸、年龄、体型、性别、发式、衣服、道具与姿势，不借其他人物game/TV脸冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、Q版、浓妆丰唇、照片剧照、3D塑料或换头拼贴。不要把中年老年减龄、把矮成年人画成儿童，不以身体羞辱和丑化表现责任或年龄。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、破洞、撕裂衣摆、碎布条、毛边、大片补丁污渍、密集噪点或过密细皱，不用浓雾遮结构。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰品、清式剃额留辫、旗装、马蹄袖、大拉翅、民国旗袍、中山装或无身份官服补子；明末汉地发式服制按各自角色，不混后世清宫衣装。不要汉式交领左衽、反向衣襟或水平镜像；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、仙侠冕冠、赛博或蒸汽朋克。不要新增兵器、发光武器、光翼、法阵、光龙、粒子、强逆光或过度泛光。不要多人、分格、多视角、特写框、多肢多指、无依据缺手缺脚缺指、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、失重衣带、缺失挂点、断裂器物、过短刀剑鞘、裁断头足和器物端点。不要裸露、透衣、性感化、血腥特写、恶搞、身体羞辱或无依据伤残。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书页字符和新增装饰水印；保留工具原有溯源标识和元数据。
-  references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T23:42:50.293223+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-a481ae02-5094-474d-a396-82dee9e7fb66.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 5aaaa14fd7a5b190f78c0d7d6da6b40f83b4df21f8d0bce77c0b342623e6cfb1
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_sunzhongjun__ch07_youth_prepunishment_base/prompt-b8a568e57027f60b9cc8ab23fd0dc35c819b1e5c17df78ebb90f00da6394336d.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_sunzhongjun__ch07_youth_prepunishment_base/manifest-4a0f57cab1622d20e636689b6f7fe1e541ca00f14d69db98e16ba65ef58875ab.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_sunzhongjun__ch07_youth_prepunishment_base.requests.json
-  notes: '实际查看：孙仲君成年青年、暗枣红衣墨灰裙、高髻银簪，主要正面头端正，右手低持直剑，人物头足与剑尖完整，无明显多肢或重大人体结构错误，未生成受罚伤残。装备偏差明显记录：腰鞘偏短且鞘口多出柄状部件，不是合格空鞘，剑身过长；衣袖偏宽、飘垂层次及腰饰较多、左鞋部分遮住，五官精致而锐眉较弱。依最新快速补齐指示先保存可用人物候选，装备列后修，不宣称旧严格质检通过；原始PNG，candidate待审核。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_wenyi__ch07_base
   file: por_npc_wenyi__ch07_base.png
   category: character/female
@@ -686,3 +609,48 @@
   sha256: 0d328bf204ffb44c6723ccf6e06407c4c2b0f41214bcb3a069ca9987453de486
   status: candidate
   notes: 立绘重审重出（AR-30）；现图与安小慧、孙仲君、陈圆圆是同一张磨皮网红脸（旧稿文字本有区分，出图时被抹平）；按英气刚毅的帮主之女重画。
+- id: por_npc_sunzhongjun__ch07_youth_prepunishment_base
+  file: por_npc_sunzhongjun__ch07_youth_prepunishment_base.png
+  category: character/female
+  style: default
+  subject: 孙仲君（ch07_bixue）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：孙仲君，人称“飞天魔女”，《碧血剑》中华山派归辛树的女弟子，出手狠辣、尚未受门规惩处的时期。
+
+    年龄与体态：约二十八岁的成年女子，身材高挑紧实，成人比例。
+
+    面容：稍长的脸，颧面较紧；眉尾陡起、眉峰凌厉；眼睛细长、眼神冷厉傲慢，带着压不住的暴躁；鼻梁清直；嘴唇偏薄、唇线绷紧，嘴角向下；肤色白而略显苍冷，有真实纹理。一眼看去就不好惹。
+
+    发式：黑发高高挽起成髻，用一支小银簪固定。
+
+    服饰：暗枣红色交领窄袖长衫（右衽）、墨灰长裙（内穿长裤）、窄腰带、轻布靴。
+
+    道具与姿态：右手提一柄长剑，剑尖斜指地面；双手手指完整；站姿咄咄逼人。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要和焦宛儿、安小慧、陈圆圆同一张脸；不要温柔甜美的神情；不要血迹。汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T02:32:41-0700
+  source_path: .agents/coord/gemini_originals/por_npc_sunzhongjun__ch07_youth_prepunishment_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 1847a8a633f5151f98c79e89fb1675d8d14ce9bf87a866aea8428ab0b94b564f
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图与焦宛儿、安小慧、陈圆圆是同一张温柔网红脸，完全没有“飞天魔女”的凌厉；按冷傲暴躁的气质重画。
