@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：已入库 416、已通过（作者） 132、待出图 79。**待出图队列 79 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：已入库 417、已通过（作者） 132、待出图 78。**待出图队列 78 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -55,7 +55,6 @@
 | items | `it_xianrou` | 咸肉 | `assets/default/item/food/it_xianrou.png` | 待出图 | [it_xianrou.md](items/food/it_xianrou.md) |
 | items | `it_xiaofu_shoujiuxi` | 萧府寿酒席 | `assets/default/item/food/it_xiaofu_shoujiuxi.png` | 待出图 | [it_xiaofu_shoujiuxi.md](items/food/it_xiaofu_shoujiuxi.md) |
 | items | `it_xieniangcheng` | 蟹酿橙 | `assets/default/item/food/it_xieniangcheng.png` | 待出图 | [it_xieniangcheng.md](items/food/it_xieniangcheng.md) |
-| items | `it_xueha` | 雪蛤 | `assets/default/item/food/it_xueha.png` | 待出图 | [it_xueha.md](items/food/it_xueha.md) |
 | items | `it_yan` | 盐 | `assets/default/item/food/it_yan.png` | 待出图 | [it_yan.md](items/food/it_yan.md) |
 | items | `it_yangrulao` | 羊乳酪 | `assets/default/item/food/it_yangrulao.png` | 待出图 | [it_yangrulao.md](items/food/it_yangrulao.md) |
 | items | `it_yangweizhi` | 羊尾脂 | `assets/default/item/food/it_yangweizhi.png` | 待出图 | [it_yangweizhi.md](items/food/it_yangweizhi.md) |
@@ -116,7 +115,7 @@
 
 （已全部入库。）
 
-### 食材 / 食品（174）· 已入库 104、待出图 42、已通过（作者） 28
+### 食材 / 食品（174）· 已入库 105、待出图 41、已通过（作者） 28
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -129,39 +128,38 @@
 | 7 | 江瑶柱 | `it_jiangyaozhu` | 地 | 食材·水产 | 待出图 | [it_jiangyaozhu.md](items/food/it_jiangyaozhu.md) | template |
 | 8 | 青菜豆腐小鱼饭 | `it_qingcai_doufu_xiaoyufan` | 地 | 食品·名菜 | 待出图 | [it_qingcai_doufu_xiaoyufan.md](items/food/it_qingcai_doufu_xiaoyufan.md) | template |
 | 9 | 蟹酿橙 | `it_xieniangcheng` | 地 | 食品·名菜 | 待出图 | [it_xieniangcheng.md](items/food/it_xieniangcheng.md) | template |
-| 10 | 雪蛤 | `it_xueha` | 地 | 食材·珍材 | 待出图 | [it_xueha.md](items/food/it_xueha.md) | template |
-| 11 | 鱼翅 | `it_yuchi` | 地 | 食材·珍材 | 待出图 | [it_yuchi.md](items/food/it_yuchi.md) | template |
-| 12 | 花椒香料 | `it_huajiao_xiangliao` | 玄 | 食材·调料 | 待出图 | [it_huajiao_xiangliao.md](items/food/it_huajiao_xiangliao.md) | template |
-| 13 | 花园糕饼 | `it_huayuan_gaobing` | 玄 | 食品·点心 | 待出图 | [it_huayuan_gaobing.md](items/food/it_huayuan_gaobing.md) | template |
-| 14 | 胡苗馒头鸡羊腿 | `it_humiao_mantou_jiyangtui` | 玄 | 食品·名菜 | 待出图 | [it_humiao_mantou_jiyangtui.md](items/food/it_humiao_mantou_jiyangtui.md) | template |
-| 15 | 湖蟹 | `it_huxie` | 玄 | 食材·水产 | 待出图 | [it_huxie.md](items/food/it_huxie.md) | template |
-| 16 | 辣椒 | `it_lajiao` | 玄 | 食材·菜蔬 | 待出图 | [it_lajiao.md](items/food/it_lajiao.md) | template |
-| 17 | 太湖银鱼 | `it_taihu_yinyu` | 玄 | 食材·水产 | 待出图 | [it_taihu_yinyu.md](items/food/it_taihu_yinyu.md) | template |
-| 18 | 糖霜桃条 | `it_tangshuangtaotiao` | 玄 | 食品·腌藏 | 待出图 | [it_tangshuangtaotiao.md](items/food/it_tangshuangtaotiao.md) | template |
-| 19 | 侠客岛四样点心 | `it_xiakedao_siyang_dianxin` | 玄 | 食品·名菜 | 待出图 | [it_xiakedao_siyang_dianxin.md](items/food/it_xiakedao_siyang_dianxin.md) | template |
-| 20 | 萧府寿酒席 | `it_xiaofu_shoujiuxi` | 玄 | 食品·名菜 | 待出图 | [it_xiaofu_shoujiuxi.md](items/food/it_xiaofu_shoujiuxi.md) | template |
-| 21 | 羊乳酪 | `it_yangrulao` | 玄 | 食品·腌藏 | 待出图 | [it_yangrulao.md](items/food/it_yangrulao.md) | template |
-| 22 | 羊尾脂 | `it_yangweizhi` | 玄 | 食材·肉 | 待出图 | [it_yangweizhi.md](items/food/it_yangweizhi.md) | template |
-| 23 | 月饼 | `it_yuebing` | 玄 | 食品·点心 | 待出图 | [it_yuebing.md](items/food/it_yuebing.md) | template |
-| 24 | 渔舟番薯糙米饭 | `it_yuzhou_fanshu_caomifan` | 玄 | 食品·干粮 | 待出图 | [it_yuzhou_fanshu_caomifan.md](items/food/it_yuzhou_fanshu_caomifan.md) | template |
-| 25 | 糟鱼 | `it_zaoyu` | 玄 | 食品·腌藏 | 待出图 | [it_zaoyu.md](items/food/it_zaoyu.md) | template |
-| 26 | 蔗糖 | `it_zhetang` | 玄 | 食材·调料 | 待出图 | [it_zhetang.md](items/food/it_zhetang.md) | template |
-| 27 | 番薯 | `it_fanshu` | 黄 | 食材·菜蔬 | 待出图 | [it_fanshu.md](items/food/it_fanshu.md) | template |
-| 28 | 海蛎 | `it_haili` | 黄 | 食材·水产 | 待出图 | [it_haili.md](items/food/it_haili.md) | template |
-| 29 | 华山青菜豆腐饭 | `it_huashan_qingcai_doufufan` | 黄 | 食品·菜肴 | 待出图 | [it_huashan_qingcai_doufufan.md](items/food/it_huashan_qingcai_doufufan.md) | template |
-| 30 | 回雁楼荤菜 | `it_huiyanlou_huncai` | 黄 | 食品·名菜 | 待出图 | [it_huiyanlou_huncai.md](items/food/it_huiyanlou_huncai.md) | template |
-| 31 | 火堆烤獐麂 | `it_huodui_kaozhangji` | 黄 | 食品·菜肴 | 待出图 | [it_huodui_kaozhangji.md](items/food/it_huodui_kaozhangji.md) | template |
-| 32 | 酱汁 | `it_jiangzhi` | 黄 | 食材·调料 | 待出图 | [it_jiangzhi.md](items/food/it_jiangzhi.md) | template |
-| 33 | 鸡肉 | `it_jirou` | 黄 | 食材·肉 | 待出图 | [it_jirou.md](items/food/it_jirou.md) | template |
-| 34 | 韭菜 | `it_jiucai` | 黄 | 食材·菜蔬 | 待出图 | [it_jiucai.md](items/food/it_jiucai.md) | template |
-| 35 | 蕨菜 | `it_juecai` | 黄 | 食材·菜蔬 | 待出图 | [it_juecai.md](items/food/it_juecai.md) | template |
-| 36 | 破庙鼠汤 | `it_pomiao_shutang` | 黄 | 食品·汤羹 | 待出图 | [it_pomiao_shutang.md](items/food/it_pomiao_shutang.md) | template |
-| 37 | 咸肉 | `it_xianrou` | 黄 | 食品·腌藏 | 待出图 | [it_xianrou.md](items/food/it_xianrou.md) | template |
-| 38 | 盐 | `it_yan` | 黄 | 食材·调料 | 待出图 | [it_yan.md](items/food/it_yan.md) | template |
-| 39 | 鸭肉 | `it_yarou` | 黄 | 食材·肉 | 待出图 | [it_yarou.md](items/food/it_yarou.md) | template |
-| 40 | 蒸饼 | `it_zhengbing` | 黄 | 食品·干粮 | 待出图 | [it_zhengbing.md](items/food/it_zhengbing.md) | template |
-| 41 | 猪肚 | `it_zhudu` | 黄 | 食材·肉 | 待出图 | [it_zhudu.md](items/food/it_zhudu.md) | template |
-| 42 | 猪肉 | `it_zhurou` | 黄 | 食材·肉 | 待出图 | [it_zhurou.md](items/food/it_zhurou.md) | template |
+| 10 | 鱼翅 | `it_yuchi` | 地 | 食材·珍材 | 待出图 | [it_yuchi.md](items/food/it_yuchi.md) | template |
+| 11 | 花椒香料 | `it_huajiao_xiangliao` | 玄 | 食材·调料 | 待出图 | [it_huajiao_xiangliao.md](items/food/it_huajiao_xiangliao.md) | template |
+| 12 | 花园糕饼 | `it_huayuan_gaobing` | 玄 | 食品·点心 | 待出图 | [it_huayuan_gaobing.md](items/food/it_huayuan_gaobing.md) | template |
+| 13 | 胡苗馒头鸡羊腿 | `it_humiao_mantou_jiyangtui` | 玄 | 食品·名菜 | 待出图 | [it_humiao_mantou_jiyangtui.md](items/food/it_humiao_mantou_jiyangtui.md) | template |
+| 14 | 湖蟹 | `it_huxie` | 玄 | 食材·水产 | 待出图 | [it_huxie.md](items/food/it_huxie.md) | template |
+| 15 | 辣椒 | `it_lajiao` | 玄 | 食材·菜蔬 | 待出图 | [it_lajiao.md](items/food/it_lajiao.md) | template |
+| 16 | 太湖银鱼 | `it_taihu_yinyu` | 玄 | 食材·水产 | 待出图 | [it_taihu_yinyu.md](items/food/it_taihu_yinyu.md) | template |
+| 17 | 糖霜桃条 | `it_tangshuangtaotiao` | 玄 | 食品·腌藏 | 待出图 | [it_tangshuangtaotiao.md](items/food/it_tangshuangtaotiao.md) | template |
+| 18 | 侠客岛四样点心 | `it_xiakedao_siyang_dianxin` | 玄 | 食品·名菜 | 待出图 | [it_xiakedao_siyang_dianxin.md](items/food/it_xiakedao_siyang_dianxin.md) | template |
+| 19 | 萧府寿酒席 | `it_xiaofu_shoujiuxi` | 玄 | 食品·名菜 | 待出图 | [it_xiaofu_shoujiuxi.md](items/food/it_xiaofu_shoujiuxi.md) | template |
+| 20 | 羊乳酪 | `it_yangrulao` | 玄 | 食品·腌藏 | 待出图 | [it_yangrulao.md](items/food/it_yangrulao.md) | template |
+| 21 | 羊尾脂 | `it_yangweizhi` | 玄 | 食材·肉 | 待出图 | [it_yangweizhi.md](items/food/it_yangweizhi.md) | template |
+| 22 | 月饼 | `it_yuebing` | 玄 | 食品·点心 | 待出图 | [it_yuebing.md](items/food/it_yuebing.md) | template |
+| 23 | 渔舟番薯糙米饭 | `it_yuzhou_fanshu_caomifan` | 玄 | 食品·干粮 | 待出图 | [it_yuzhou_fanshu_caomifan.md](items/food/it_yuzhou_fanshu_caomifan.md) | template |
+| 24 | 糟鱼 | `it_zaoyu` | 玄 | 食品·腌藏 | 待出图 | [it_zaoyu.md](items/food/it_zaoyu.md) | template |
+| 25 | 蔗糖 | `it_zhetang` | 玄 | 食材·调料 | 待出图 | [it_zhetang.md](items/food/it_zhetang.md) | template |
+| 26 | 番薯 | `it_fanshu` | 黄 | 食材·菜蔬 | 待出图 | [it_fanshu.md](items/food/it_fanshu.md) | template |
+| 27 | 海蛎 | `it_haili` | 黄 | 食材·水产 | 待出图 | [it_haili.md](items/food/it_haili.md) | template |
+| 28 | 华山青菜豆腐饭 | `it_huashan_qingcai_doufufan` | 黄 | 食品·菜肴 | 待出图 | [it_huashan_qingcai_doufufan.md](items/food/it_huashan_qingcai_doufufan.md) | template |
+| 29 | 回雁楼荤菜 | `it_huiyanlou_huncai` | 黄 | 食品·名菜 | 待出图 | [it_huiyanlou_huncai.md](items/food/it_huiyanlou_huncai.md) | template |
+| 30 | 火堆烤獐麂 | `it_huodui_kaozhangji` | 黄 | 食品·菜肴 | 待出图 | [it_huodui_kaozhangji.md](items/food/it_huodui_kaozhangji.md) | template |
+| 31 | 酱汁 | `it_jiangzhi` | 黄 | 食材·调料 | 待出图 | [it_jiangzhi.md](items/food/it_jiangzhi.md) | template |
+| 32 | 鸡肉 | `it_jirou` | 黄 | 食材·肉 | 待出图 | [it_jirou.md](items/food/it_jirou.md) | template |
+| 33 | 韭菜 | `it_jiucai` | 黄 | 食材·菜蔬 | 待出图 | [it_jiucai.md](items/food/it_jiucai.md) | template |
+| 34 | 蕨菜 | `it_juecai` | 黄 | 食材·菜蔬 | 待出图 | [it_juecai.md](items/food/it_juecai.md) | template |
+| 35 | 破庙鼠汤 | `it_pomiao_shutang` | 黄 | 食品·汤羹 | 待出图 | [it_pomiao_shutang.md](items/food/it_pomiao_shutang.md) | template |
+| 36 | 咸肉 | `it_xianrou` | 黄 | 食品·腌藏 | 待出图 | [it_xianrou.md](items/food/it_xianrou.md) | template |
+| 37 | 盐 | `it_yan` | 黄 | 食材·调料 | 待出图 | [it_yan.md](items/food/it_yan.md) | template |
+| 38 | 鸭肉 | `it_yarou` | 黄 | 食材·肉 | 待出图 | [it_yarou.md](items/food/it_yarou.md) | template |
+| 39 | 蒸饼 | `it_zhengbing` | 黄 | 食品·干粮 | 待出图 | [it_zhengbing.md](items/food/it_zhengbing.md) | template |
+| 40 | 猪肚 | `it_zhudu` | 黄 | 食材·肉 | 待出图 | [it_zhudu.md](items/food/it_zhudu.md) | template |
+| 41 | 猪肉 | `it_zhurou` | 黄 | 食材·肉 | 待出图 | [it_zhurou.md](items/food/it_zhurou.md) | template |
 
 ### 武学秘籍（18）· 已入库 18
 
