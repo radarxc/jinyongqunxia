@@ -31221,6 +31221,237 @@
     "packages/render/CLAUDE.md",
     "packages/ui/src/i18n.ts"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/region-map.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-18b-tiled-regionmap",
+   "title": "游戏工程 · Tiled 地图转换为 RegionMap（场景格网、对象与校验，接入内容编译管线）",
+   "prompt": "ENG-tiled-regionmap.md",
+   "deps": [
+    "ENG-18-content-build"
+   ],
+   "writes": [
+    "packages/data/src/schemas/region-map.ts",
+    "packages/data/src/schemas/index.ts",
+    "packages/data/src/build/**",
+    "packages/data/scripts/**",
+    "packages/data/CLAUDE.md",
+    "content/tiled/**",
+    "content/world/README.md",
+    "content/world/regions/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/sw/sw.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/platform",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "node",
+      "apps/game/scripts/check-offline.mjs"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-23a-pwa-offline",
+   "title": "游戏工程 · PWA 与离线（与内容无关：SW、离线闭包清单、下载器、更新提示；审计 M8 / L2）",
+   "prompt": "ENG-pwa-offline.md",
+   "deps": [
+    "ENG-18-content-build",
+    "ENG-15-core-bus"
+   ],
+   "writes": [
+    "apps/game/vite.config.ts",
+    "apps/game/build/**",
+    "apps/game/src/sw/**",
+    "apps/game/src/pwa/**",
+    "apps/game/src/pwa.ts",
+    "apps/game/src/main.ts",
+    "apps/game/src/App.vue",
+    "apps/game/scripts/**",
+    "apps/game/index.html",
+    "apps/game/package.json",
+    "apps/game/tsconfig*.json",
+    "pnpm-workspace.yaml",
+    "pnpm-lock.yaml",
+    "packages/platform/src/offline/**",
+    "packages/platform/src/pwa/**",
+    "packages/platform/package.json",
+    "packages/ui/src/components/TxUpdatePrompt*",
+    "packages/ui/src/components/TxOfflineBadge*",
+    "packages/ui/src/components/TxDownloadPanel*",
+    "packages/ui/src/i18n.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/content/compile_story.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:compile-story"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-18c-content-from-docs",
+   "title": "游戏工程 · 内容不再从设计文档正则抽取、剧情 DSL 构建期编译检查（审计 M6）",
+   "prompt": "ENG-content-from-docs.md",
+   "deps": [
+    "ENG-18-content-build",
+    "ENG-18b-tiled-regionmap"
+   ],
+   "writes": [
+    "content/common/meridians/**",
+    "content/common/sects/**",
+    "packages/data/src/schemas/**",
+    "packages/data/src/content-index.ts",
+    "packages/data/src/content-registry.ts",
+    "packages/data/scripts/**",
+    "apps/game/build/content-plugin.ts",
+    "tools/content/compile_story.*",
+    "tools/content/test_compile_story.*",
+    "package.json",
+    "packages/data/CLAUDE.md",
+    "content/CLAUDE.md"
+   ]
   }
  ]
 }
