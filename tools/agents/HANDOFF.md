@@ -281,5 +281,25 @@
       - `ingest.py`、`rig/make_parts.py`、`item/common.py`、`item/make_layers.py` 写清单都改用 `_NoAliasDumper`。
       - ENG-08 的 asset-manifest 只读物品、人物、立绘、地图几类清单，合入后也不会再读建筑清单。
     - 教训：任务工作区是稀疏检出的，跑不出全量素材下的问题；集成分支要定期在根目录跑一次完整的 `pnpm check`。
+  - **22:30–23:40 作者决定、立绘管线与 Project Genie 结论**：
+    - **作者决定（原话要点）**：
+      - ①「是」：M1 序章先行；
+      - ③ 序章素材「用 gemini 出图」；
+      - ④「先本地跑通，不应该依赖后端」：私有托管后端不进 M1 必做项；
+      - ⑤「直接在沙箱外面跑」：Playwright 冒烟由协调者在沙箱外跑；
+      - ⑥ 立绘 agent 已在主检出 `assets/` 出好角色图，要求拣进工作树并处理成代码可用（压缩、1:1 半身、去背景 PNG）。
+    - **Blender 中转**：作者问成本与步骤后，让调研 Project Genie。
+      - 结论：Genie 只出 60 秒可交互世界和录屏视频，不导出帧、网格或资产；动作只有移动和跳跃；镜头不能固定 45°；角色转身会变脸；需 AI Ultra（$200 档）。不建议用。
+      - 替代：人物继续 AR-22 分层部件；动物 / 建筑 / 少数大招可评估「图生 3D + 自动绑骨」（Meshy）或 Veo 首尾帧抽帧。
+      - 路线图 M1 素材行的「Blender 中转」建议删除，待作者回一句再改。
+    - **立绘拣入**：主检出的角色图 425 张、30 份清单、548 个角色提示词已拣入 `_prod`（9f00e6dd、80b0b4d3）；`STYLE.md` 三方合并无冲突（8595e3d5）。立绘 agent 可能还在补图，处理脚本支持增量。
+    - **立绘处理 `tools/portrait/build_portraits.py`**：
+      - BiRefNet（rembg `birefnet-general-lite`，本地 CPU 约 7 秒一张）抠图，pymatting 多级前景色估计去白边。
+      - 基础形象出透明全身 WebP（mid 1024×1536 / low 768×1152）、1:1 半身 bust 512 / 256、头肩 avatar 512 / 256 / 128；剧情场景图出不透明 mid / low。
+      - `assets/default/portrait/manifest.yaml` 每人一行，id = NPC ID，现行构建插件直接可读；`index.json` 按 tech/06 素材键给出全部变体。说明见 `tools/portrait/README.md`。
+      - 试过的其他方案：Vision 主体 / 人像分割会残留发丝间白块，人像分割会抠掉发饰；按底色抠图因背景是山水不可行；人像蒙版 + 颜色种子 + 闭式解会误抠白花、白鞋。
+    - **磁盘**：曾满到只剩 1.6 GB，pip 装包失败。已把 6 个废弃任务工作区的未跟踪产出归档到 `_prod/.agents/coord/archive/` 后移除，腾出约 20 GB。
+    - **KIT-yuan_north-hist 未合入**：审核连续 3 次没跑成而 ERROR，30 个有效改动从未合入。上文「11 套全部合入」有误，已交工程监督 agent 重跑审核。
+    - **分工**：工程线交给后台「工程监督 agent」（交接说明在会话草稿目录 `eng_driver_brief.md`，已登记 M1 第一波：DES-prologue-ch00 / ENG-13 / ENG-14）；出图交给后台 Gemini 出图 agent（两道并行）；协调者做立绘与总调度。
   - **图片任务必须 `web: true`**：Codex 在无网络沙箱里报 `Reconnecting… workspace routing discovery failed`，ART-rig-parts-male / female 因此又停两次；已改登记（`_prod` 79572be），`_imagegen.md` 第 6 条记入，female 带说明 `.agents/coord/ART-rig-parts/web_note.md` 重启，male 等它当前这次（无网络）跑完停住后同样重启。
   - ⑤ 上一会话 08:00 起被自动模式分类器锁死（会话级、与操作无关，Bash 全拒）；其交接文件 `.agents/wt/_prod/.agents/coord/HANDOFF-session-20261001.md` 的要点已并入本节。GPT-6-Astra 仍未改回。作者待答复：基线两套宋套件（song_dali、song_southern）是否也按历史图片重出；各书改命报告「需作者确认（附默认）」（`tools/agents/reports/DES-destiny-chNN.md` §4）。
