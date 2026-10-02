@@ -20,13 +20,28 @@ BASE = ROOT / "assets/default/prompts"
 
 
 def find_prompt(asset_id: str) -> Path:
+    # 立绘 / 情景图 / 路人（AR-30）也走 Gemini：先找物品、地图等，再找 characters/ 与 scenes/
+    later = []
     for f in BASE.rglob("*.md"):
-        if f.name in ("INDEX.md", "GUIDE.md", "REDO.md") or "characters" in f.parts:
+        if f.name in ("INDEX.md", "GUIDE.md", "REDO.md"):
+            continue
+        if "characters" in f.parts:
+            later.append(f)
             continue
         t = f.read_text(encoding="utf-8")
         if t.startswith("---\n") and f"asset_id: {asset_id}\n" in t[: t.find("\n---\n", 4) + 1]:
             return f
+    for f in later:
+        t = f.read_text(encoding="utf-8")
+        if t.startswith("---\n") and f"asset_id: {asset_id}\n" in t[: t.find("\n---\n", 4) + 1]:
+            return f
     raise SystemExit(f"找不到 asset_id={asset_id} 的提示词文件")
+
+
+def gemini_block(text: str) -> str | None:
+    """提示词文件里现成的「## Gemini 提示词」段（立绘重审、情景图、路人任务写的自成一体的中文提示词），有就原样用。"""
+    m = re.search(r"^## Gemini 提示词[^\n]*\n(?:.*?\n)??```text\n(.*?)\n```", text, re.S | re.M)
+    return m.group(1).strip() if m else None
 
 
 def build(asset_id: str) -> str:
@@ -98,6 +113,9 @@ def build_short(asset_id: str) -> str:
     """精简版（2026-10-01 实测效果最好）：画风 + 题材 + 名录外观要点 + 类别专项 + 品阶 + 年代要求 + 短排除项，约 400–600 字。"""
     f = find_prompt(asset_id)
     text = f.read_text(encoding="utf-8")
+    ready = gemini_block(text)
+    if ready:
+        return ready
     end = text.find("\n---\n", 4)
     fm = yaml.safe_load(text[4:end])
     body = text[end + 5:]
