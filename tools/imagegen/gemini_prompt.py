@@ -83,6 +83,10 @@ REALISTIC = ("画风：写实古风绘画，与写实武侠人物立绘一致—
              "不是线稿、不是平涂、不是卡通、不是照片。背景：均匀平涂的浅暖灰底色（约 RGB 230,225,216），无纸纹、无暗角、无边框、无渐变、无地面、无投影、无场景（后续要程序抠图）。")
 SHORT_NEG = ("排除：人物、脸、手、人体、模特、衣架、支架、文字、伪字、印章、logo、边框、品阶框；奇幻造型、日式或欧美风格、跨朝混搭、现代材料；霓虹、魔法、粒子、发光。"
              "画面里不要出现任何文字：没有标题、标注、说明栏、引线标签（这是单独的物品图，不是设定稿）。")  # 2026-10-01 霍都折扇出过带标题与标注的设定稿式图
+# 品阶行里的包装说法（玄「布套／木匣较完整」、地「专属匣」……）会让模型在兵器底下垫木匣（天龙寺戒刀、段延庆钢杖、崆峒双钩）。
+# 兵器、甲、衣饰只画物品本身；食品、药物的包装可能就是物品的一部分，保留。
+PACKAGING = re.compile(r"[；;，,、]?\s*(?:布套／木匣较完整|旧而妥善保存的专属匣|包装珍贵但克制|素包装)")
+NO_PACK_CATS = {"weapons", "hidden-weapons", "armor", "innerarmor", "clothing", "accessories", "shoes", "belts"}
 
 
 def build_short(asset_id: str) -> str:
@@ -107,10 +111,13 @@ def build_short(asset_id: str) -> str:
                 look = desc.rstrip("。")
     name, sub, grade, src = fm.get("name", ""), fm.get("subcategory", ""), fm.get("grade", ""), str(fm.get("source", ""))
     src = re.sub(r"\*\*|（原创扩展[^）]*）", "", src).strip(" ；;")
+    grade_line = grade_line.split("（禁")[0]
+    if fm.get("category") in NO_PACK_CATS:
+        grade_line = PACKAGING.sub("", grade_line) + "；只画物品本身，不画木匣、布套、托架或包装"
     out = [f"生成一张 1:1 图片。{REALISTIC}",
            f"题材：武侠游戏物品图鉴里的「{name}」（{sub}，{grade}阶{('；出处：' + src) if src and '原创' not in src else ''}），单一完整物品、无人持用，正面略三分之四视角居中，四边留白至少 12%。",
            f"形制与外观：{look}。{special}。" if look else "",
-           f"品阶表现：{grade_line.split('（禁')[0]}；只用材质、工艺与旧化表达，不画光效。" if grade_line else "",
+           f"品阶表现：{grade_line}；只用材质、工艺与旧化表达，不画光效。" if grade_line else "",
            f"要一眼看出这是「{name}」这一朝代、这一兵种的制式甲：甲片形制、编缀方式、披膊 / 护心 / 甲裙等部件和主色配色都符合该朝史料，颜色克制。" if fm.get("category") == "armor" else "年代与形制符合出处书界的时代，不混搭。",
            SHORT_NEG]
     return re.sub(r"[；;，,]\s*。", "。", " ".join(x for x in out if x))
