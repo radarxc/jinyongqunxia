@@ -3,11 +3,12 @@
 # 每张入库后重建 INDEX（作者 10-01：做完一个就从 INDEX 删掉对应条目），与图一起提交。
 # 只按路径提交本张图、它所在目录的 manifest 和 INDEX（git commit -- <路径>）：多道并跑或工程线同时暂存了别的文件时，
 # 不会把别人的改动带进来（10-02 曾把一处 roadmap 改动混进素材提交）；撞 index.lock 时等 2 秒重试，最多 15 次。
+# 额外参数经环境变量 INGEST_ARGS 传给 ingest.py（按空白拆分），如秘籍补书名：INGEST_ARGS="--manual-title 打狗棒法" zsh tools/imagegen/ingest_commit.sh it_miji_dagou_can
 set -e
 setopt null_glob
 cd /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod
 for id in "$@"; do
-  python3 tools/imagegen/ingest.py "$id" | cut -c1-90
+  python3 tools/imagegen/ingest.py "$id" ${=INGEST_ARGS} | cut -c1-90
   f=$(grep -rl --include='*.md' "^asset_id: $id\$" assets/default/prompts | head -1)
   name=$(sed -n 's/^name: *//p' "$f" | head -1)
   python3 tools/agents/build_image_index.py >/dev/null || true

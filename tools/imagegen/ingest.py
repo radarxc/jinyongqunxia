@@ -84,6 +84,7 @@ def main() -> int:
     ap.add_argument("--prompt-json")
     ap.add_argument("--key", action="store_true", help="抠透明底（角色部件等）")
     ap.add_argument("--note", default="")
+    ap.add_argument("--manual-title", default="", help="秘籍补书名（AR-30）：上传原图改图、只在题签补写这个书名；manifest 如实记改图提示词、原图与工具")
     a = ap.parse_args()
     fm, pf = frontmatter(a.asset_id)
     named = Path.home() / "Downloads" / f"gemini__{a.asset_id}.jpeg"
@@ -137,6 +138,7 @@ def main() -> int:
     if a.key or fm.get("kind") in ("rig_ref", "rig_part"):
         from tools.item.common import remove_background
         im, keyed = remove_background(im)
+    old = next((e for e in load_manifest(man) if e.get("id") == a.asset_id), {})  # 改图时记下被改的原图（覆盖前的条目）
     out.parent.mkdir(parents=True, exist_ok=True)
     im.save(out, "PNG", optimize=True)
     ARCHIVE.mkdir(parents=True, exist_ok=True)
@@ -169,6 +171,15 @@ def main() -> int:
         "status": "candidate",
         "notes": (("立绘重审重出（AR-30）；" + str(fm.get("redo_reason") or "")) if figure else ("写实画风（作者 2026-10-01：要跟角色图对应上）；" + (a.note or ""))) + (f"；裁掉画框 {frame}" if frame else "") + (f"；抠底 {keyed}" if keyed else ""),
     }
+    if a.manual_title:
+        # 秘籍补书名（AR-30）：名录原写「空题签」，10-01 那批没有书名；在 /app 普通对话里上传原图、不套模板，只让模型在题签上补写书名
+        entry["prompt"] = (f"这是一本武功秘籍的物品图。请只在封面的题签（竖条书签位置）上用端正的楷书竖写书名「{a.manual_title}」，墨色，字迹清晰、笔画准确；"
+                           "不要添加任何其他文字、印章、注释或标记；书本造型、颜色、光影、构图和背景保持完全不变。")
+        entry["negative"] = ""
+        entry["references"] = [{"path": str(fm["output"]), "sha256": old.get("sha256", ""), "source_path": old.get("source_path", ""),
+                                "use": "原图（上传改图：只在封面题签补写书名，其余保持不变）"}]
+        entry["tool"] = "gemini-web · Nano Banana（/app 对话，开 Create image，上传原图改图，不套模板）"
+        entry["notes"] = f"秘籍补书名（AR-30）：在原图题签上补写「{a.manual_title}」，逐字放大核对无误；原图见 references（sha256 为改前版本，git 历史可取）" + (f"；裁掉画框 {frame}" if frame else "")
     entries = [e for e in load_manifest(man) if e.get("id") != a.asset_id] + [entry]
     man.write_text(yaml.dump(entries, Dumper=_NoAliasDumper, allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")
     print(f"✔ {a.asset_id} → {out.relative_to(ROOT)}（{src_size[0]}×{src_size[1]} → {im.size[0]}×{im.size[1]}，原件 {arch.relative_to(ROOT)}）")
