@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **847** 份：已入库 458、待出图 257、已通过（作者） 132。**待出图队列 257 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **847** 份：已入库 459、待出图 256、已通过（作者） 132。**待出图队列 256 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -55,7 +55,6 @@
 | items | `eq_xiyufengyebiaonang` | 西域风叶镖囊 | `assets/default/item/hidden-weapons/eq_xiyufengyebiaonang.png` | 待出图 | [eq_xiyufengyebiaonang.md](items/hidden-weapons/eq_xiyufengyebiaonang.md) |
 | items | `eq_yanzibiaonang` | 燕子镖囊 | `assets/default/item/hidden-weapons/eq_yanzibiaonang.png` | 待出图 | [eq_yanzibiaonang.md](items/hidden-weapons/eq_yanzibiaonang.md) |
 | items | `eq_yuanqishoufeidaonang` | 元骑手飞刀囊 | `assets/default/item/hidden-weapons/eq_yuanqishoufeidaonang.png` | 待出图 | [eq_yuanqishoufeidaonang.md](items/hidden-weapons/eq_yuanqishoufeidaonang.md) |
-| items | `it_aiye` | 艾叶 | `assets/default/item/medicine/it_aiye.png` | 待出图 | [it_aiye.md](items/medicine/it_aiye.md) |
 | items | `it_baizhu` | 白术 | `assets/default/item/medicine/it_baizhu.png` | 待出图 | [it_baizhu.md](items/medicine/it_baizhu.md) |
 | items | `it_banxia` | 半夏 | `assets/default/item/medicine/it_banxia.png` | 待出图 | [it_banxia.md](items/medicine/it_banxia.md) |
 | items | `it_bingcan` | 冰蚕 | `assets/default/item/medicine/it_bingcan.png` | 待出图 | [it_bingcan.md](items/medicine/it_bingcan.md) |
@@ -290,7 +289,7 @@
 
 每张图的提示词在各文件「提示词」节。下表只列还要出的行（待出图 / 待重出），已入库的不再列出，标题里的计数含已出部分。作者要重出的，把 ID 写进 `items/REDO.md` 再重建索引即可回到队列。
 
-### 药物 / 补品 / 药材（96）· 待出图 64、已通过（作者） 32
+### 药物 / 补品 / 药材（96）· 待出图 63、已通过（作者） 32、已入库 1
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -332,32 +331,31 @@
 | 36 | 五味子 | `it_wuweizi` | 玄 | 药材·花果 | 待出图 | [it_wuweizi.md](items/medicine/it_wuweizi.md) | template |
 | 37 | 雄黄 | `it_xionghuang` | 玄 | 药材·矿物 | 待出图 | [it_xionghuang.md](items/medicine/it_xionghuang.md) | template |
 | 38 | 朱砂 | `it_zhusha` | 玄 | 药材·矿物 | 待出图 | [it_zhusha.md](items/medicine/it_zhusha.md) | template |
-| 39 | 艾叶 | `it_aiye` | 黄 | 药材·草本 | 待出图 | [it_aiye.md](items/medicine/it_aiye.md) | template |
-| 40 | 薄荷 | `it_bohe` | 黄 | 药材·草本 | 待出图 | [it_bohe.md](items/medicine/it_bohe.md) | template |
-| 41 | 车前子 | `it_cheqianzi` | 黄 | 药材·花果 | 待出图 | [it_cheqianzi.md](items/medicine/it_cheqianzi.md) | template |
-| 42 | 当归 | `it_danggui` | 黄 | 药材·根茎 | 待出图 | [it_danggui.md](items/medicine/it_danggui.md) | template |
-| 43 | 大枣 | `it_dazao` | 黄 | 药材·花果 | 待出图 | [it_dazao.md](items/medicine/it_dazao.md) | template |
-| 44 | 地龙 | `it_dilong` | 黄 | 药材·动物 | 待出图 | [it_dilong.md](items/medicine/it_dilong.md) | template |
-| 45 | 茯苓 | `it_fuling` | 黄 | 药材·菌藻 | 待出图 | [it_fuling.md](items/medicine/it_fuling.md) | template |
-| 46 | 甘草 | `it_gancao` | 黄 | 药材·根茎 | 待出图 | [it_gancao.md](items/medicine/it_gancao.md) | template |
-| 47 | 干姜 | `it_ganjiang` | 黄 | 药材·根茎 | 待出图 | [it_ganjiang.md](items/medicine/it_ganjiang.md) | template |
-| 48 | 葛根 | `it_gegen` | 黄 | 药材·根茎 | 待出图 | [it_gegen.md](items/medicine/it_gegen.md) | template |
-| 49 | 枸杞子 | `it_gouqizi` | 黄 | 药材·花果 | 待出图 | [it_gouqizi.md](items/medicine/it_gouqizi.md) | template |
-| 50 | 海藻 | `it_haizao` | 黄 | 药材·菌藻 | 待出图 | [it_haizao.md](items/medicine/it_haizao.md) | template |
-| 51 | 黄芪 | `it_huangqi` | 黄 | 药材·根茎 | 待出图 | [it_huangqi.md](items/medicine/it_huangqi.md) | template |
-| 52 | 藿香 | `it_huoxiang` | 黄 | 药材·草本 | 待出图 | [it_huoxiang.md](items/medicine/it_huoxiang.md) | template |
-| 53 | 桔梗 | `it_jiegeng` | 黄 | 药材·根茎 | 待出图 | [it_jiegeng.md](items/medicine/it_jiegeng.md) | template |
-| 54 | 荆芥 | `it_jingjie` | 黄 | 药材·草本 | 待出图 | [it_jingjie.md](items/medicine/it_jingjie.md) | template |
-| 55 | 金银花 | `it_jinyinhua` | 黄 | 药材·花果 | 待出图 | [it_jinyinhua.md](items/medicine/it_jinyinhua.md) | template |
-| 56 | 菊花 | `it_juhua` | 黄 | 药材·花果 | 待出图 | [it_juhua.md](items/medicine/it_juhua.md) | template |
-| 57 | 连翘 | `it_lianqiao` | 黄 | 药材·花果 | 待出图 | [it_lianqiao.md](items/medicine/it_lianqiao.md) | template |
-| 58 | 蒲公英 | `it_pugongying` | 黄 | 药材·草本 | 待出图 | [it_pugongying.md](items/medicine/it_pugongying.md) | template |
-| 59 | 石膏 | `it_shigao` | 黄 | 药材·矿物 | 待出图 | [it_shigao.md](items/medicine/it_shigao.md) | template |
-| 60 | 仙鹤草 | `it_xianhecao` | 黄 | 药材·草本 | 待出图 | [it_xianhecao.md](items/medicine/it_xianhecao.md) | template |
-| 61 | 益母草 | `it_yimucao` | 黄 | 药材·草本 | 待出图 | [it_yimucao.md](items/medicine/it_yimucao.md) | template |
-| 62 | 鱼腥草 | `it_yuxingcao` | 黄 | 药材·草本 | 待出图 | [it_yuxingcao.md](items/medicine/it_yuxingcao.md) | template |
-| 63 | 猪苓 | `it_zhuling` | 黄 | 药材·菌藻 | 待出图 | [it_zhuling.md](items/medicine/it_zhuling.md) | template |
-| 64 | 紫苏叶 | `it_zisunye` | 黄 | 药材·草本 | 待出图 | [it_zisunye.md](items/medicine/it_zisunye.md) | template |
+| 39 | 薄荷 | `it_bohe` | 黄 | 药材·草本 | 待出图 | [it_bohe.md](items/medicine/it_bohe.md) | template |
+| 40 | 车前子 | `it_cheqianzi` | 黄 | 药材·花果 | 待出图 | [it_cheqianzi.md](items/medicine/it_cheqianzi.md) | template |
+| 41 | 当归 | `it_danggui` | 黄 | 药材·根茎 | 待出图 | [it_danggui.md](items/medicine/it_danggui.md) | template |
+| 42 | 大枣 | `it_dazao` | 黄 | 药材·花果 | 待出图 | [it_dazao.md](items/medicine/it_dazao.md) | template |
+| 43 | 地龙 | `it_dilong` | 黄 | 药材·动物 | 待出图 | [it_dilong.md](items/medicine/it_dilong.md) | template |
+| 44 | 茯苓 | `it_fuling` | 黄 | 药材·菌藻 | 待出图 | [it_fuling.md](items/medicine/it_fuling.md) | template |
+| 45 | 甘草 | `it_gancao` | 黄 | 药材·根茎 | 待出图 | [it_gancao.md](items/medicine/it_gancao.md) | template |
+| 46 | 干姜 | `it_ganjiang` | 黄 | 药材·根茎 | 待出图 | [it_ganjiang.md](items/medicine/it_ganjiang.md) | template |
+| 47 | 葛根 | `it_gegen` | 黄 | 药材·根茎 | 待出图 | [it_gegen.md](items/medicine/it_gegen.md) | template |
+| 48 | 枸杞子 | `it_gouqizi` | 黄 | 药材·花果 | 待出图 | [it_gouqizi.md](items/medicine/it_gouqizi.md) | template |
+| 49 | 海藻 | `it_haizao` | 黄 | 药材·菌藻 | 待出图 | [it_haizao.md](items/medicine/it_haizao.md) | template |
+| 50 | 黄芪 | `it_huangqi` | 黄 | 药材·根茎 | 待出图 | [it_huangqi.md](items/medicine/it_huangqi.md) | template |
+| 51 | 藿香 | `it_huoxiang` | 黄 | 药材·草本 | 待出图 | [it_huoxiang.md](items/medicine/it_huoxiang.md) | template |
+| 52 | 桔梗 | `it_jiegeng` | 黄 | 药材·根茎 | 待出图 | [it_jiegeng.md](items/medicine/it_jiegeng.md) | template |
+| 53 | 荆芥 | `it_jingjie` | 黄 | 药材·草本 | 待出图 | [it_jingjie.md](items/medicine/it_jingjie.md) | template |
+| 54 | 金银花 | `it_jinyinhua` | 黄 | 药材·花果 | 待出图 | [it_jinyinhua.md](items/medicine/it_jinyinhua.md) | template |
+| 55 | 菊花 | `it_juhua` | 黄 | 药材·花果 | 待出图 | [it_juhua.md](items/medicine/it_juhua.md) | template |
+| 56 | 连翘 | `it_lianqiao` | 黄 | 药材·花果 | 待出图 | [it_lianqiao.md](items/medicine/it_lianqiao.md) | template |
+| 57 | 蒲公英 | `it_pugongying` | 黄 | 药材·草本 | 待出图 | [it_pugongying.md](items/medicine/it_pugongying.md) | template |
+| 58 | 石膏 | `it_shigao` | 黄 | 药材·矿物 | 待出图 | [it_shigao.md](items/medicine/it_shigao.md) | template |
+| 59 | 仙鹤草 | `it_xianhecao` | 黄 | 药材·草本 | 待出图 | [it_xianhecao.md](items/medicine/it_xianhecao.md) | template |
+| 60 | 益母草 | `it_yimucao` | 黄 | 药材·草本 | 待出图 | [it_yimucao.md](items/medicine/it_yimucao.md) | template |
+| 61 | 鱼腥草 | `it_yuxingcao` | 黄 | 药材·草本 | 待出图 | [it_yuxingcao.md](items/medicine/it_yuxingcao.md) | template |
+| 62 | 猪苓 | `it_zhuling` | 黄 | 药材·菌藻 | 待出图 | [it_zhuling.md](items/medicine/it_zhuling.md) | template |
+| 63 | 紫苏叶 | `it_zisunye` | 黄 | 药材·草本 | 待出图 | [it_zisunye.md](items/medicine/it_zisunye.md) | template |
 
 ### 食材 / 食品（174）· 已入库 146、已通过（作者） 28
 
