@@ -59,8 +59,8 @@ window.__g = {
       blob = await this.waitFor(() => window.__fullBlob, ms - (Date.now() - t0), 300);
       if (!blob) break;
       try { const bm = await createImageBitmap(blob); w = bm.width; h = bm.height; bm.close(); } catch { w = 0; }
-      if (w >= 1800) break;
-      window.__fullBlob = null; blob = null;  // 不到原图尺寸（预览图），接着等
+      if (w >= 1000) break;  // 只截 =s0-d，到这里就是原图；Gemini 偶尔本身只出 1024，照收（入库时 manifest 记 source_size）
+      window.__fullBlob = null; blob = null;  // 解码失败或尺寸异常，接着等
     }
     if (!blob) return { ok: false, id, why: 'full-size not captured', w };
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([blob], { type: 'image/jpeg' })); a.download = `gemini__${id}.jpeg`;
