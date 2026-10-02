@@ -904,80 +904,6 @@
   notes: '实际查看候选1：茅十八壮年方阔脸短硬胡茬，粗壮肩臂、剃额后辫，土褐短衫灰黑夹衣与束脚裤靴；单柄略弯刀完整收鞘，左手空垂，腰布囊。头颈正直、双眼基本水平、人物手足和器物端点完整，无明显多肢或重大结构问题，按用户快速宽松自查可用。体型比矮壮设定略高长，夹衣边缘磨损偏多，右手实际握刀柄而非鞘上段，圆护手与刀鞘偏装饰化，背景花枝小亭超出极简远山；据实登记待细修，不再为这些偏差机械追加。原生1024×1536 RGB不透明PNG原始字节保存，文字原创本人脸，不冒称1998演员面貌；candidate待用户审核，非approved。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
-- id: por_npc_chenjinnan__ch08_prime_base
-  file: por_npc_chenjinnan__ch08_prime_base.png
-  category: character/male
-  style: default
-  subject: 陈近南 npc_chenjinnan ch08_luding
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL. Camera level, chin neutral, head centered over the torso. NO head tilt and NO Dutch angle. Preserve natural facial asymmetry without tilting the head. These rules override every reference pose. Eye focus must follow the stated character condition and never override an explicit visual disability.
-
-
-    Create a REALISTIC Chinese wuxia full-body illustration of 陈近南. Image 1 is the ONLY facial identity source: 夏韶声 as this exact character in the 1998 TVB 鹿鼎记 starring 陈小春. Image 2 is ONLY background; it supplies ZERO face or anatomy. Distinct identity must remain recognizable, without sharing another character''s face.
-
-
-    身份与阶段：陈近南（npc_chenjinnan），《鹿鼎记》ch08_luding，清初康熙时期。天地会总舵主，中期收徒与协调会众阶段，通吃岛遇害之前的完整在世态。中年、壮年成熟面貌，生卒和确岁待考；身材高而结实，肩胸宽展但不堆健美肌肉，儒雅沉稳。
-
-
-    本人面容辨识：以夏韶声1998陈近南的单人剧照为唯一本人面容：高额头，长眉沿明显眉骨展开，眼形狭长而有神，眼窝自然；较直而突出的鼻梁，薄而闭合的嘴唇，清瘦颧颊、较长有棱角的下颌收向较窄下巴。保留本人鼻眉唇和颧颊关系，不以萧峰或其他男性基线替代。参考可见面部无明显胡须；本项目的短整深色髭须是明示美术补足，可稀疏整洁地保留，不遮掉鼻唇辨识，不画浓密大胡子或白须。
-
-
-    服饰发式：清初秘密活动便装：灰白内衣、靛青外袍、墨色短褂、窄布带、完整清楚衣边与黑布鞋。向穿着者右侧合襟，领胸完整遮蔽。沿本项目采用剃额细辫、低调素布小帽，辫尾自然落于身后；参考照片的满额后梳发式不覆盖当前设定。不穿郑氏官爵礼服，不制作公开天地会制服、会徽或反清标语。
-
-
-    姿态与器物：正面平视站稳，头颈端正竖直、双眼同高、下巴中性，清醒眼神温厚坚定。脊柱挺拔、肩胸自然打开，双足落地，衣物完整。腰佩一柄普通中式直身双刃剑，整柄剑完全入鞘，窄小剑格、旧铜装具、鞘尾与挂带受力清楚；非具名神兵。右手空掌半收、低位略向前作安抚止争手势，左手低位自然靠近腰侧，双手正常、不抓刃。凝血神爪只保留人手姿态，绝无血气、兽爪或外放特效。
-
-
-    人物画法：美观、精细、完整的写实国风人物插画；自然年龄和骨相，可信肤质、连贯体积与柔和左上漫射光。皮肤、头发、手足、衣料轮廓清楚且实体完整；衣服剪裁连续、衣襟缝线清楚，仅少量宽缓受力褶皱，不以破洞、飞白、碎墨、密集褶皱或纸屑表现真实。低饱和设色配自然肤色，不做照片、电视剧截图、拼贴或三维塑料。原始剧照只保留这个人的可辨面容关系，年龄、视力、发式、服装及器物遵本项目阶段。
-
-
-    参考边界：第一且唯一面部身份：夏韶声饰1998 TVB陈小春版陈近南，已核实来源角色版次并实际view。只取本人可辨五官和骨相，不继承剧照姿态、眼神状态、衣装、发式、背景、他人或字幕水印；项目阶段优先。 第二参考只提供暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白。已实际view；完全忽略王语嫣本人面容、年龄、性别、身体、倾头、发髻、白青衣裙、飘带和饰物。水墨和纸纹仅在人物之外，不能侵蚀皮肤、衣料、头发或器物。
-
-
-    背景与交付：背景只取第二图的极淡水墨远山和留白，不出现明确宫殿、家具、具体剧情陈设、清晰建筑、符号或可读字画；脚下少量接触阴影。单人单视图、水平平视、原生竖幅2:3、完整全身；头顶、双手、双足、衣摆、发辫及实际器物端点均入画，四周自然留净空，不用固定占高或头身数字。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并准确登记，保存原始PNG字节，禁止插值、裁切或重编码。先生成1张候选，基本清晰、主要正面、人物可辨即保存；仅严重身份错误、重大结构错误或不可读才追加，细指、轻微衣装和微角偏差如实记录而不反复重做。全部仍candidate待用户审核，不自动approved。
-
-
-    事实边界：确岁、生卒、小说中本阶段是否有胡须、发式及是否随身佩剑均未逐字核对；短整髭须、剃额细辫小帽、普通鞘剑及衣色均按现稿美术方案保留，不冒称来自剧照或原著。参考可见无明显胡须，脸部锚点由本人剧照取用；小说原文回目页码不编造。 服色、姿态细化属于项目美术设计，不冒称原著逐字描写。用户本人影视面容授权覆盖旧稿禁演员脸规则；写实人物与单候选规则覆盖旧纸底禁山水、固定比例和两张默认。
-
-
-    完整排除项：不要濒死、中毒、通吃岛致命伤、血爪、额外手臂、白发白须老态、龙袍官服、反清标语或夸张会徽；不要凌乱披发、浓密长胡子、任何发光掌法；不要直接复制参考侧向凝视、满额发型或室内背景。 不要 head tilt、Dutch angle、明显歪头、斜镜头、头向肩倾、偏转侧脸、转身回眸、低头藏眼、仰头或夸张抬下巴；不要共用基线脸、统一美人或硬汉模板、动漫大眼、浓妆、塑料磨皮、照片和截图构图。不要多个人、多人拼图、多视图、裁断头足、缺肢、多肢、严重畸形、手物融合；不要碎布、破洞、飞白缺块、纸纹透肤透衣、墨迹侵蚀脸部、碎片化衣料、密集噪点、无依据污损或风化。不要现代服饰、拉链、腕表、手机、运动鞋、晚清官帽大饰、民国服装、日式服制、欧式奇幻装备、水平镜像或错误衣襟；不要血腥、透明衣物、裸露、恶搞丑化、发光掌法、龙蛇能量、法阵和粒子。不要具体剧情场景、清晰建筑家具、可读文字、伪字、题款、签名、印章、logo、字幕或装饰水印。保留工具本身溯源标识和元数据。
-
-
-    FINAL POSE CHECK: 陈近南 must be FRONT-FACING, head and neck UPRIGHT, centreline VERTICAL, eyes HORIZONTALLY LEVEL, camera level. No head tilt or Dutch angle. Preserve the stated disability and stage; do not copy the reference pose, gaze, clothes or background.'
-  negative: 不要濒死、中毒、通吃岛致命伤、血爪、额外手臂、白发白须老态、龙袍官服、反清标语或夸张会徽；不要凌乱披发、浓密长胡子、任何发光掌法；不要直接复制参考侧向凝视、满额发型或室内背景。 不要 head tilt、Dutch angle、明显歪头、斜镜头、头向肩倾、偏转侧脸、转身回眸、低头藏眼、仰头或夸张抬下巴；不要共用基线脸、统一美人或硬汉模板、动漫大眼、浓妆、塑料磨皮、照片和截图构图。不要多个人、多人拼图、多视图、裁断头足、缺肢、多肢、严重畸形、手物融合；不要碎布、破洞、飞白缺块、纸纹透肤透衣、墨迹侵蚀脸部、碎片化衣料、密集噪点、无依据污损或风化。不要现代服饰、拉链、腕表、手机、运动鞋、晚清官帽大饰、民国服装、日式服制、欧式奇幻装备、水平镜像或错误衣襟；不要血腥、透明衣物、裸露、恶搞丑化、发光掌法、龙蛇能量、法阵和粒子。不要具体剧情场景、清晰建筑家具、可读文字、伪字、题款、签名、印章、logo、字幕或装饰水印。保留工具本身溯源标识和元数据。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/chenjinnan_1998_xiashaosheng_sina2019.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/luding/chenjinnan_1998_xiashaosheng_sina2019.jpg
-    use: 第一且唯一面部身份：夏韶声饰1998 TVB陈小春版陈近南，已核实来源角色版次并实际view。只取本人可辨五官和骨相，不继承剧照姿态、眼神状态、衣装、发式、背景、他人或字幕水印；项目阶段优先。
-    sha256: cc5810ff20dd26d43eab019ac3d9a808ed535c38f4124a876eb6cc7f776ab8cf
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/cc5810ff20dd26d43eab019ac3d9a808ed535c38f4124a876eb6cc7f776ab8cf.jpg
-    status_at_input: null
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二参考只提供暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白。已实际view；完全忽略王语嫣本人面容、年龄、性别、身体、倾头、发髻、白青衣裙、飘带和饰物。水墨和纸纹仅在人物之外，不能侵蚀皮肤、衣料、头发或器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T02:13:52.196007+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-47e32a30-eb1a-42a1-a0ec-23937d199fb0.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 023cff0219f78bb53e4f5be979bbf79ac82ffcb41356c1fb747667890db6050d
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_chenjinnan__ch08_prime_base/prompt-c12fd6a7785bfc9ddcd2d8a47db15cebeabd76b0ddd96cfebb05578e165da2e9.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_chenjinnan__ch08_prime_base/manifest-1e8ab03106459e1516d1aaf932c2928eacac60ad5f5ed05ab4edc349feefa6a5.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_chenjinnan__ch08_prime_base.requests.json
-  notes: '实际对照已查看的1998陈近南本人剧照及候选1：高额、清瘦颧颊、长眉突出鼻梁和薄唇关系可辨，成熟中年、主要正面头颈端正、水平眼线，灰白内衣靛青袍墨短褂、素小帽后辫，一柄完整直身鞘剑，右手低位止争左手自然。单人全身和手足器物端点可读，无重大结构问题，按用户快速宽松自查可用。项目短整胡须未明显生成，帽遮剃额，衣襟局部对襟与设定右衽不完全一致，剑装具和背景花枝小亭偏多，衣褶细密，均记录待后续细修；未因此追加候选。原生1024×1536 RGB不透明PNG原始字节保存，candidate待审核，未自动approved。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_mujiansheng__ch08_youth_base
   file: por_npc_mujiansheng__ch08_youth_base.png
   category: character/male
@@ -1701,3 +1627,50 @@
   sha256: fd22478c70cfb4d21044c886065b6e5f804effe74e1ed3652cf881fdb72bf2f2
   status: candidate
   notes: 立绘重审重出（AR-30）；神龙教主洪安通（S，主要反派）缺图（上一轮出图记录丢失）；旧稿以剧照作脸，改为纯文字面容补出。
+- id: por_npc_chenjinnan__ch08_prime_base
+  file: por_npc_chenjinnan__ch08_prime_base.png
+  category: character/male
+  style: default
+  subject: 陈近南（ch08_luding）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：陈近南，《鹿鼎记》中天地会总舵主、韦小宝的师父，奔走联络各地会众的时期。
+
+    经典形象：要一眼认出是天地会总舵主陈近南——靛青长袍、墨色马褂、腰悬长剑、修整短须，儒雅英挺、目光温和坚定，有「平生不见陈近南，便称英雄也枉然」的英雄气度；相貌英俊、有魅力。
+
+    年龄与体态：约四十五岁的中年男子，身材高而挺拔，肩背宽展，沉稳有力，不是健美身材。
+
+    面容：儒雅英挺的长方脸，五官端正；额头高阔；眉毛浓黑修长，眉宇间有英气；眼睛明亮深邃，目光温和而坚定，有让人一见折服的领袖气度；鼻梁挺直；唇上与颏下蓄着修剪整齐的短须；肤色微深，有真实的风霜细纹。文武双全的英雄，既有书卷气又有担当。
+
+    发式：清初男子发式——前额剃光，脑后一条乌黑辫子，头戴一顶素黑布小帽。
+
+    服饰：清初文士便装——靛青色圆领大襟长袍（右衽），外罩一件墨色短马褂，灰白内衣领，腰系窄布带，黑布鞋；不要立领盘扣的近代唐装。
+
+    道具与姿态：腰间左侧佩一柄连鞘长剑（旧铜剑格）；右手掌心向下、低位略向前，像在安抚止争；左手自然靠近腰侧；端正站立。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要冷硬板脸；不要立领盘扣；不要照片感；不要官服或会徽标语。清初男子一律穿圆领大襟（衣襟从领口斜向右腋下扣合），不要汉式交领长衫，不要明代发髻或网巾。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:24:38-0700
+  source_path: .agents/coord/gemini_originals/por_npc_chenjinnan__ch08_prime_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: e395274be98b9021cd98b0b9b2b248b48d60b659ec443fcd0c5f1f958bdd048b
+  status: candidate
+  notes: 立绘重审重出（AR-30）；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）；现图神情冷硬、立领盘扣像近代唐装，撑不起“平生不见陈近南，便称英雄也枉然”的儒雅英雄气。
