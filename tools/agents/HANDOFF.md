@@ -407,3 +407,22 @@
       - 新规则：这两处只排除子目录（sources、review、meta、qa 等，约 300 MB），顶层文件检出。只影响新建的工作区。
       - 以后挪基点到含 ENG-09 的基点时，旧稀疏工作区要先重设 sparse-checkout。
     - **ENG-09 合入预判**：基点 4077428f 落后集成分支 128 个提交。和集成分支重叠 3 个文件：`apps/game/build/asset-manifest.ts`、`content-plugin.ts`、`packages/render/package.json`，都被 ENG-11 改过。cherry-pick 大概率冲突，届时照「挪基点」流程处理。
+  - **10-02 01:30–01:55 开发监督：第三波登记与 eng3 重启**：
+    - **`test:performance` 改为跑整个 `packages/core/bench` 目录（a000e8a3）**：原来逐个列文件，ENG-15 与 ENG-16a 都要加 bench，会改同一行；改后两次跑的文件集合相同（2 个）。根 `pnpm test` 本来就会跑到 `packages/core/bench/*.test.ts`，所以 ENG-15 提示词的性能一条改为照 `combat.test.ts` 用 best-of-N、硬断言留足余量。
+    - **第三波登记（c4edf1c9，提示词前先用三个只读调研 agent 核对规格章节号与代码现状）**。相对交接说明的调整与理由：
+      - **ENG-16 拆成三步**。整块约 2.4k 行，一次跑不完。
+        - **ENG-16a**：六角 A* / 可达集 / LOS / 移动与朝向 / 射程与目标合法性进 core。**依赖只有 ENG-14，01:49 已启动。**它的写集是 core 的 hex、battle、ai、replay、testing 和 `apps/game/src/battle/*.ts`，和 ENG-09、ENG-15 的实际改动不重叠：ENG-15 的提示词明写不碰 `battle/**`。Vue 组件不改。
+        - **ENG-16b**：防御、道具、急性聚气、逐单位经脉、奖励。等 ENG-16a 的报告出来再登记。
+        - **ENG-16c**：战斗命令进总线，加界面按钮和可达高亮。依赖 ENG-15、16b、21b。
+      - **ENG-21 拆成两步**：
+        - **21a**：战斗四偏航和昼夜，依赖 ENG-09。不依赖 TOOL-rig-nearside：rig 公告板的朝向取自视图矩阵，21a 不碰 `rig/**`。
+        - **21b**：上下文丢失恢复和自适应质量，依赖 21a。
+        - 两步都不碰 `apps/game/src/battle/*.ts`、`pages/**`、`App.vue`，这些分属 ENG-16a 和 ENG-15。大地图页面的昼夜接线、设置页的档位控件都写进报告，交给后续 UI 任务。
+      - **ENG-18b（Tiled）和 ENG-23a（PWA 与内容无关的部分）暂不登记**：两者都要写进 ENG-18 的产出层（`packages/data/src/build/**`、`apps/game/build/**`、`vite.config.ts`）。等 ENG-18 报告给出实际接口再写提示词。调研要点：
+        - 23a 发现一个**真缺陷**：vite-plugin-pwa 默认 `dontCacheBustURLsMatching=/^assets\//`，`assets/default/**` 下预缓存的图同路径换图后永远不刷新。
+        - 18b 定为每个 `sc_*` 一个 `.tmj`，城镇不改走 Tiled。
+    - **eng3 重启**（pid 21687）：队列为 DES-sync-meridian-v2、ENG-16a、ENG-15、ENG-18、ENG-21a、ENG-21b，并发 3。ENG-15、18、21a 由 batch_run 等 ENG-09 合入后自动起。ENG-09 合入后仍照例在根目录跑一次完整 `pnpm check`。
+    - **在途裁定**：
+      - TOOL-rig-nearside r1 FAIL，是真问题：镜像时关节链 L/R 错配；比例回退没按视图区分，`back34` 的 L 仍在画面右；正式素材缺 `jointSource` 时会静默回退。已自动返修。
+      - 它合入时预计在 `packages/render/src/rig/index.ts` 冲突：它改的导出行正挨着 ENG-11 插入的 `RigSnapshot` 导出。届时照挪基点处理。
+      - DES-sync-meridian-v2 r4、r5 FAIL，都是真问题：tech/05 §3.3 还留着 `MeridianFlowSnapshotV1`；有超出范围的改写；golden 说明放错了节。在返修，docs 池满时排队。
