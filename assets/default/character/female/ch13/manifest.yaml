@@ -1,0 +1,474 @@
+- id: por_npc_zhujue__ch13_f_base
+  file: por_npc_zhujue__ch13_f_base.png
+  category: character/female
+  style: default
+  subject: 主角（女）· 清乾隆 npc_zhujue ch13_feihu
+  prompt: |-
+    CURRENT COSTUME MUST CHANGE: preserve only the FACE and BODY identity of reference 1. For ch13 she wears a muted INDIGO-BLUE fitted narrow-sleeved short jacket ending around her hips, a separate warm grey-ochre full skirt over trousers, black wrist wraps and belt, and a simple LOW BUN at the nape fixed by a plain wood pin. Do NOT repeat the reference green floor-length outer robe, wide bell sleeves or top-of-head bun. Show one ordinary slightly curved Chinese waist saber fully sheathed at her left hip. Both shoes should be readable.
+
+    Create a premium REALISTIC Chinese wuxia full-body character illustration, with an airy, extremely pale INK-WASH BACKGROUND. Render one beautiful, believable, individually recognizable human with continuous anatomy, finely resolved eyes and natural skin, anatomically legible hands and feet, connected soft light and shade, fully opaque intact clean cloth, precise tailoring and clean sewn hems. Use refined hand-painted realism, never a photograph or a 3D model. Skin, hair, clothes and shoes must remain solid, connected and readable. Paper texture, dry ink and loose atmospheric marks belong exclusively BEHIND the human figure. Prefer a few broad weight-bearing folds to tiny shards or ribbons; faded economical clothes remain complete, washed and cared for. Preserve any specifically required small neatly sewn repair without making a patchwork costume. Character age, disability, social role and equipment are established by the written facts, not by the quality-reference man.
+
+    REFERENCE ROLES ARE SEPARATE. Image 1 is the EXISTING clear ch00 female protagonist identity, not a different woman. Preserve the same person’s face, bone structure, warm-neutral skin, capable body, mature age about 28 and mole just below the outer corner of HER RIGHT EYE. The existing candidate image is authorized as identity; it does not need a new realism revision. Do not create a Wang Yuyan, Zhao Min or Xiao Feng likeness, a teenage doll or a timid companion. Image 2, the new realistic Xiao Feng sample, supplies ONLY continuous realistic figure rendering, skin, hands, clean intact fabric and soft light. Image 3 supplies ONLY the corresponding gender’s muted project palette. Image 4 supplies ONLY pale ink-wash background language. Reconstruct garments from the written stage rather than copying clothing or fragmented marks from any image.
+
+    BASE ASSET: por_npc_zhujue__ch13_f_base
+    CURRENT BOOK-STAGE FACTS:
+    身份与阶段：现代人入书后的普通江湖行旅者；本图是时代基础装，不代表特定门派、现代职业或结局
+    时代与地域：ch13_feihu；清乾隆；约1766–1771年（项目推定；待考）；清乾隆年间汉地南北行旅中的普通江湖人
+    面容锚点：女性主角面容锚点（原创扩展）：现代中国青年，外观约28岁；略长的鹅蛋脸，颧骨有轻微支撑、下颌利落而不尖削，眉形舒展且眉峰轻提，深棕色中等杏眼，鼻梁秀直、鼻头自然，唇线清晰、上下唇厚度适中，右眼外侧下方有一颗浅褐小痣；暖中性肤色，柔润而保留真实体积，无幼态或深皱纹；中等偏高、肩背舒展、腰腹与四肢有行动力量，约7头身；原生发质乌黑、顺直、发丝细密而有韧性；目光专注而有好奇心，嘴角平和，警觉但不怯弱。
+    本时代服饰发式：花青汉族交领右衽窄袖袄、灰赭素裙，炭黑窄布带、护腕与平底布鞋；黑发盘成紧实低髻，以素木簪固定
+    兵器道具：一柄普通中国腰刀完整入鞘，微弯窄鞘、朴素小护手与木柄，无名器装具
+    气质姿态：重心稳而不沉重，视线专注、肩颈自然，一手放松、一手轻扶腰带，保留对承诺的郑重
+    跨界同一性：同性别十五版同脸、同体型、同发质、同成年年龄感；成长只作神态微调，压制不画成衰老或病弱
+    事实边界：主角脸、衣色、服装搭配与姿态均为原创美术默认，未声称原著或服饰史逐字复原
+
+    SAME-PERSON AND HEROIC DIRECTION:
+    美丽而有主见的成年女侠气度，沉静有担当，眉眼清醒有力量，肩背舒展、腰腹四肢可行动，既不幼态也不性感化；保留同人脸、体型、肤色与右眼外侧下方小痣，黑发紧实低髻按本书木簪或素布带固定。不是给基线王语嫣换衣，不能从萧峰质量图带入男性脸或胡须。 飞狐外传 女主：重诺而果决的侠者：视线专注有锋芒而不凶恶，重心稳而轻捷，一手自然放松、一手轻扶腰带，神态体现认真守护承诺。肩背与护腕形成利落行动感，衣装便于行旅；力量内敛，不做逞凶、狞笑或急躁拔刀。
+
+    EXACT COSTUME AND EQUIPMENT:
+    清乾隆汉地南北行旅基础阶段，约1766–1771年仅为项目待考定年；花青与灰赭成大块完整衣料，炭黑窄带与护腕利落，重心稳而不沉，一手自然放松、一手轻扶腰带，郑重守诺。普通中国腰刀全入微弯窄鞘，朴素小护手和木柄，不是胡斐的具名宝刀。 仅有一柄原文普通入鞘兵器，两个短系带将其牢靠挂在穿着者左腰，略向身侧倾斜；柄、朴素小护手、鞘口、足够长的鞘身和封闭鞘尾清楚连续。刀剑全在鞘内，不握刃不拔出；鞘尾高于脚底并全部入画，尽量与衣摆轮廓分开。禁止偷偷删去原文明确兵器，也禁止加第二把、第二鞘、具名神兵或战斗特效。
+
+    COMPOSITION AND DELIVERY: Single subject, one view, calm complete full-body base portrait, vertical 2:3 PNG with target 2048×3072; native generated PNG bytes and actual dimensions must be preserved by the production workflow. Eye-level neutral perspective, near frontal with a slight natural turn; comfortable margins around hair, both hands, clothing, both shoes and every prop tip. Use natural proportions and overall completeness instead of a rigid height percentage. Soft diffuse upper-left light, no theatrical rim light. Opaque warm pale-grey paper fills the canvas, with at most an almost imperceptible distant ink wash and generous empty space, no identifiable episode, landscape landmark, architecture, floor scene or added contact shadow. Keep the clean human silhouette separate from that background. No writing, decorative seal or new watermark; retain tool provenance. Traditional Han crossed collars close to the wearer’s right with the wearer’s left panel over the right; an explicitly Qing round right-fastening robe is not changed into a Song/Ming crossed collar.
+
+    EXCLUSIONS: No fragmented, broken, translucent or erased human figure; no dry-brush gaps, white flecks, paper erosion, dirty blotches or crackle on skin or clothing. No shredded fabric, frayed noisy hems, torn ribbons, holes, randomly layered scraps, armor made of fragments or excessive patchwork. No photorealistic photographic pores, plastic smoothing, oily 3D shine, anime eyes, doll face, generic copied face, celebrity portrait, beauty-filter skin or exaggerated muscles. No copying Xiao Feng’s face, beard, physique, headwrap, costume, dragon or palm pose; no copying palette/background reference identities. No extra people, duplicate limbs or props, fused fingers, broken wrists, dislocated joints, floating equipment, cropped head or feet, mirrored identity marks, unclear prop connections, transparent clothes, sexualized pose, gratuitous blood, modern items, foreign fantasy armor, katana, Japanese collar or unknown sect symbols. No text, calligraphy, labels, measurements, UI, split panels, signatures, seals, logos or new decorative watermarks. Preserve tool provenance. 不要宋明男性全发高髻、清代男性披发、现代物件、官服、贵族珠翠、门派徽记、具名神兵、浓髯换脸、武学光效或时代混搭。女版不要幼态、娇弱陪衬或性感化。不要冷月宝刀、药王标识、僧尼服饰、飞鱼服或宫装。
+  negative: No fragmented, broken, translucent or erased human figure; no dry-brush gaps, white flecks, paper erosion, dirty
+    blotches or crackle on skin or clothing. No shredded fabric, frayed noisy hems, torn ribbons, holes, randomly layered
+    scraps, armor made of fragments or excessive patchwork. No photorealistic photographic pores, plastic smoothing, oily
+    3D shine, anime eyes, doll face, generic copied face, celebrity portrait, beauty-filter skin or exaggerated muscles. No
+    copying Xiao Feng’s face, beard, physique, headwrap, costume, dragon or palm pose; no copying palette/background reference
+    identities. No extra people, duplicate limbs or props, fused fingers, broken wrists, dislocated joints, floating equipment,
+    cropped head or feet, mirrored identity marks, unclear prop connections, transparent clothes, sexualized pose, gratuitous
+    blood, modern items, foreign fantasy armor, katana, Japanese collar or unknown sect symbols. No text, calligraphy, labels,
+    measurements, UI, split panels, signatures, seals, logos or new decorative watermarks. Preserve tool provenance. 不要宋明男性全发高髻、清代男性披发、现代物件、官服、贵族珠翠、门派徽记、具名神兵、浓髯换脸、武学光效或时代混搭。女版不要幼态、娇弱陪衬或性感化。不要冷月宝刀、药王标识、僧尼服饰、飞鱼服或宫装。
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    use: 第一参考为当前已实际查看且清晰的 ch00 女主本人身份图，仅继承同人面容骨相、约28岁成年感、肤色、行动体型及右眼外下方浅褐痣；按本书重建清代衣装和发式。保留现图candidate状态，不强制新的realism_revision或重绘，不复制其春秋竹青深衣。
+    sha256: f51f38042654f709a3f1709c96c8d599d5375d71a9723aacb224ef11c1fe0a87
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/f51f38042654f709a3f1709c96c8d599d5375d71a9723aacb224ef11c1fe0a87.png
+    status_at_input: candidate
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+    use: 仅参考新版萧峰连贯精细的写实人物绘法、自然皮肤与双手、完整衣料和柔光体积；绝不复制其脸、男性性别、年龄、胡须、魁梧体型、发型、衣装、掌势、金龙或场景。该参考不提供本角色身份。
+    sha256: 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922.png
+    status_at_input: candidate
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 仅取对应性别项目基线的低饱和国风色卡；不借用面容、年龄、身体、发式、服装、兵器、姿态、碎墨笔触或皮肤质地；用户授权使用现有基线，原审批状态保持。
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
+    status_at_input: approved
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 只取用户图背景的淡水墨、暖浅灰纸底、空气感和留白；背景墨气留在人物背后。绝不复制人物、面容、青白衣装、披帛或把纸纹碎墨覆盖到皮肤和衣服。基础立绘不照搬具体山水场景。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-01T11:31:02.059282+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-f56d56c7-094b-4d18-838e-31c2369212f8.png
+  size: 1024x1536
+  mode: RGB
+  sha256: d18dd07c0c80dfe29ad030fb3fbb6a4fd026ce66e9da7ef007f05e453f3801d6
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_character_realism_20261001
+  realism_revision: user_character_realism_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_zhujue__ch13_f_base/prompt-05673ef4e07c2110c05db7105e90c5c10abecd274414871fdf34408ef7deec38.md
+    manifest: null
+    png: null
+  request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_zhujue__ch13_f_base.requests.json
+  notes: 已实际比较两张并对照女主身份参考，选2。同人面容、成年感及本人右眼外下方痣保持，清醒有主见；本次正确换成花青窄袖短袄、灰赭独立裙裤、黑护腕和紧实低髻木簪，未沿用ch00绿色长袍。两手、两靴完整，左腰唯一微弯窄鞘腰刀全入鞘，无具名武器或拔刀。2腰带与刀鞘悬挂更清楚、双肩自然，一手扶腰另一手下垂符合动作。轻微偏差为裙摆高于踝、布鞋加了长绑腿和背景山水偏明显；人物连续完整，宽松candidate待审核。
+    本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+- id: por_npc_chenglinsu__ch13_youth_alive_base
+  file: por_npc_chenglinsu__ch13_youth_alive_base.png
+  category: character/female
+  style: default
+  subject: 程灵素 npc_chenglinsu ch13_feihu · 药王庄相识后、救治苗人凤的生前少女医者
+  prompt: |-
+    NEW FULL-BODY CHARACTER REBUILD, starting from the face in INPUT ONE. INPUT TWO is BACKGROUND ONLY: ignore its entire woman. Invent no beauty-template face. FRONT-FACING, head and neck UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTAL, level camera and neutral chin. No head tilt. No Dutch angle.
+
+    程灵素（npc_chenglinsu），清乾隆《飞狐外传》药王庄相识后、随胡斐救治苗人凤的生前阶段。十六七至十八岁观感的纤瘦少女，窄肩小身量，安静敏锐、有主见。她的脸朴实自然，轻淡菜色，眼神机敏；保留稀疏略黄褐头发。不成人化，不预设死亡或后续改命。
+
+    先按第一输入重建本人脸，再完成全身：紧凑的小椭圆脸，颊侧柔和但有真实体积；下颌缓缓收束，接短、钝圆且有宽度的下巴，不收成一个V尖。细而柔弯的眉，眼裂以横向延伸为主、纵向开度克制，上眼睑自然遮住部分虹膜，目光清醒而不瞪圆。鼻梁较短且低调，但必须画出完整鼻侧、鼻翼和圆鼻尖的实在体积，绝不把鼻子简化成小按钮；闭合嘴唇纤小而有厚度，唇线自然，不刻意嘟唇。面部关系来自这一张小头像的可见轮廓；正面化采用合理真人解剖，不增添长下半脸或细长高鼻。让骨相、眼睑开度、鼻部体积和下巴同时建立独立身份，不能仅靠肤色或衣服区分。
+
+    头发朴素收拢，一根细银簪固定。干净暖白素布窄袖衫、素蓝长裤、平底布鞋；两条裤腿分明，衣物宽松、完整不透明。若见交领，为本人左襟盖右襟。无裙袍、薄纱、珠宝和飘带。腰侧一个小灰褐布药包，短系带真实连到腰带。
+
+    正面稳立、肩颈放松，两手在腰腹前：一手轻持一支小型未点燃的七心海棠药烛，另一手隔小布垫托烛底。五指、烛身、可见未燃烛芯和布垫彼此分开。药烛仅作虚构故事道具，无火烟毒雾、无配方药签；不画病人或施救动作，无兵器。
+
+    人物精细写实、温润有体积，面部和双手清楚，衣料和道具连续坚实、轮廓完整。柔和漫射光、少量自然承重褶皱；不靠碎墨、风化或纸屑画人物。第二输入只取背景：暖浅灰纸底、极淡远山墨色和留白，墨迹停在人物之外。单人单视图完整全身，头、双手、双鞋和道具端点入画，自然边距，原生2:3不透明PNG，目标2048×3072；接受真实原生2:3尺寸，保留原字节不缩放重编码。此新轮默认两张独立candidate，待自查和用户审核。
+
+    完整排除项：不要 head tilt、Dutch angle、歪头、斜眼线、俯首、仰头、侧脸回眸或倾斜镜头；不要背景图女性的脸、身体、发型或服装，不复用任何旧全身候选模板。不要大圆杏眼、巨虹膜、纵向瞪大的眼裂、按钮小鼻、鼻翼消失、尖V下巴、统一樱桃唇、网红女主脸、精灵尖颌、浓妆、美颜磨皮或性感成熟身材；不要把朴素少女丑化为病危、饥饿、毒斑或死亡形象。不要霍青桐式拉长下半脸与长鼻线，不把改变仅做成换肤色、换发饰。不要复制像素块、游戏边框、侧转角度、浓密乌发、绿发带和黄绿领。不要裙袍、透明薄纱、低领贴身衣、珠花耳坠、白手套、武器、针筒、现代服饰物件、异域奇幻甲；不要火焰、烟雾、发光药液、可读药方、伤害或施救动作。不要多人物、多视图、额外肢体、粘连多指、手烛融合、悬空药包、错襟或镜像，勿裁断头足与物件。不要人物碎墨、飞白缺块、纸纹透衣、破布、毛边、模糊脸、雾吞轮廓、3D塑料感、强泛光；不要文字、题款、印章、logo或装饰水印，保留工具原有溯源标识和元数据。
+
+    FINAL CHECK: INPUT ONE alone defines Cheng Lingsu's face. Compact soft oval, restrained horizontal eye openings, a fully formed natural nose, soft jaw and short rounded chin. Reconstruct the full figure independently. Frontal upright head, level eyes; no head tilt or Dutch angle.
+  negative: 不要 head tilt、Dutch angle、歪头、斜眼线、俯首、仰头、侧脸回眸或倾斜镜头；不要背景图女性的脸、身体、发型或服装，不复用任何旧全身候选模板。不要大圆杏眼、巨虹膜、纵向瞪大的眼裂、按钮小鼻、鼻翼消失、尖V下巴、统一樱桃唇、网红女主脸、精灵尖颌、浓妆、美颜磨皮或性感成熟身材；不要把朴素少女丑化为病危、饥饿、毒斑或死亡形象。不要霍青桐式拉长下半脸与长鼻线，不把改变仅做成换肤色、换发饰。不要复制像素块、游戏边框、侧转角度、浓密乌发、绿发带和黄绿领。不要裙袍、透明薄纱、低领贴身衣、珠花耳坠、白手套、武器、针筒、现代服饰物件、异域奇幻甲；不要火焰、烟雾、发光药液、可读药方、伤害或施救动作。不要多人物、多视图、额外肢体、粘连多指、手烛融合、悬空药包、错襟或镜像，勿裁断头足与物件。不要人物碎墨、飞白缺块、纸纹透衣、破布、毛边、模糊脸、雾吞轮廓、3D塑料感、强泛光；不要文字、题款、印章、logo或装饰水印，保留工具原有溯源标识和元数据。
+  references:
+  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_3-1.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_3-1.png
+    use: 第一且唯一人物身份输入：1996原版游戏程灵素HDGRP_3-1，56×58原PNG已实际view、姓名配对沿既有审计。读取紧凑柔和小椭圆脸、细弯眉、横向而纵向开度有限的眼形、较短自然鼻口组合、软下颌与短圆下巴；正面化为朴实机敏少女，鼻翼和鼻尖保留实在体积。像素不支持精确正面测量。原侧转、乌发绿带黄绿领不复制，服饰发质遵循文字。
+    sha256: b1e157dbe18542e34e05aff2792257d0b59c55dce911d731e68086e0c656aeec
+    archived_path: .agents/coord/portrait-generation/identity-face-rebuild-20261001/reference-archives/b1e157dbe18542e34e05aff2792257d0b59c55dce911d731e68086e0c656aeec.png
+    status_at_input: null
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 第二输入只提供背景的暖浅灰纸、远山淡墨与留白；完全忽略画中女性，包括脸、身形、衣服、发型、饰物、姿势和人物绘制比例。不得把背景样图的面容或白色纱裙移植给程灵素。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/identity-face-rebuild-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-01T18:42:36.513201+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-1439474b-c5bc-46a2-abfa-2db909b70e98.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 676dca40c271cd39732f3112e501b382cbd1050bea12b45590666139dae97772
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_face_rebuild_20261001
+  realism_revision: user_identity_face_rebuild_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/identity-face-rebuild-20261001/backups/por_npc_chenglinsu__ch13_youth_alive_base/prompt-1a8dcf3a251870efc455a186ed0fe4dd68a2a1679cd727d2493a8b4fa03f83a9.md
+    manifest: .agents/coord/portrait-generation/identity-face-rebuild-20261001/backups/por_npc_chenglinsu__ch13_youth_alive_base/manifest-4161e4b5702d262c7aefe1c1f793fcd3738cc3bacdea3df18b1d9a45427db934.yaml
+    png: .agents/coord/portrait-generation/identity-face-rebuild-20261001/backups/por_npc_chenglinsu__ch13_youth_alive_base/original-8e5302d0f167219c76c923afe9b358a87f3284fbb4c6a7652414028879f9b3f7.png
+  request_log: .agents/coord/portrait-generation/identity-face-rebuild-20261001/por_npc_chenglinsu__ch13_youth_alive_base.requests.json
+  notes: 本轮从本人1996原版游戏头像独立重建全身，去掉上轮有问题的全身编辑目标及女性风格基线。根与独立reviewer均实际查看本轮两张PNG、game3、旧程和旧霍，根另比较新霍两候选；选择本轮candidate 2：下半脸比旧程/霍更短宽、下巴圆钝，鼻梁至鼻尖与鼻翼体积更明确，柔和眉弧与横向眼形形成紧凑温和的少女身份。它与霍较长下颌、细长眉眼和连续长鼻线的组合可区分，不仅靠白蓝衣/药烛区别。game只有56x58侧向头像，正面细部为合理美术补足，不宣称精确复刻。candidate
+    1虽更正面，但仍较多大眼小鼻收尖下颌模板，不选。candidate 2有轻微转头、眼线非机械水平，但头颈基本端正、无明显歪向肩，按微几何放宽记录；眼形仍有美化、头发仍较浓黑且淡菜色不足，未宣称这些旧细节完全满足。暖白衫素蓝双裤腿、银簪、腰侧单药包、未燃烛和布垫保留；双手双鞋和烛端完整，未见明显多肢手物融合，人物衣物连续不碎墨。两新PNG均实测1024x1536
+    RGB不透明，原字节归档；当前PNG/manifest/提示词已先备份。历史原identity两张保留，上轮failed3和无原图返回4仍是历史未验证事件，未重投或伪造成已保存；本次独立新策略2张计数单列。仅自查通过candidate，非approved和非2048x3072
+    RGBA正式母版。独立审计identity-face-rebuild-20261001/audits/independent-chenglinsu-rebuild-review-reuse_ch10_ch11.json。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536
+    RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+- id: por_npc_shanglaotai__ch13_elder_base
+  file: por_npc_shanglaotai__ch13_elder_base.png
+  category: character/female
+  style: default
+  subject: 商老太 npc_shanglaotai ch13_feihu · 商剑鸣遗孀、商家堡复仇布局者，铁厅火起前的首领形态
+  prompt: |-
+    POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+
+    Create a REALISTIC Chinese wuxia full-body portrait of 商老太. THIS IS A TEXT-DEFINED ORIGINAL IDENTITY, not a verified actor or original-game face. NO identity photograph or prior own-character PNG is supplied. Image 1 ONLY provides the corresponding gender palette and soft light; image 2 ONLY provides the pale ink-wash background. Never borrow either reference face, body, age, hair, clothes or pose. Establish the independent written face below.
+
+    身份与阶段：商老太（npc_shanglaotai），《飞狐外传》ch13_feihu。商剑鸣遗孀、商家堡复仇布局者，铁厅火起前的首领形态。
+
+    年龄与体型：名录老年外观，白发与衰老感明确；原著具体年龄待考；瘦削长脸、清楚颧骨与自然皱纹，嘴唇紧抿、眼神冷峻，肩背微弯但双手仍有力；白发整齐，老人形象严厉而不巫婆化。年龄及身体状态优先于造型，不使用固定头身和占高强行拉伸。
+
+    本人面容辨识：独立原创的瘦削年长女性长脸：额头较高、两侧颧骨清楚，眉毛灰淡而略平直，眼裂偏窄、上睑自然松弛，双眼锐利审视而不怒瞪。鼻梁细长但不过尖，鼻尖圆钝、鼻翼清楚；嘴形偏窄、唇薄而紧抿，下颌较长、下巴有真实钝角。白发、额纹、眼角纹、鼻唇与颈部衰老纹理明确，皮肤完整连续，不做骷髅阴影和女巫长尖鼻。保留手掌力量，严厉不等于怪物化；不像年轻寡妇，也不凭elder硬定七八十岁极衰弱外观。
+
+    服制与发式：清代汉族年长寡居妇人，深墨蓝长袄、灰黑长裙、素布鞋，白发低髻以黑布束紧，素木簪，不戴宫廷诰命头饰。衣料完整不透明、衣边整洁连续，少量宽缓受力褶，不添破洞和碎布；汉式交领穿着者左襟覆右襟，斜襟向穿着者右侧闭合，不水平镜像。
+
+    正面姿态与器物：正面稳立，脸朝前、头部中线竖直、双眼水平；肩背保留主稿自然轻微弯曲，不矫成挺拔青年，也不加剧成病理性佝偻。双足完整着地，双手有力，一手轻按腰侧刀鞘口下方、另一手低垂自然收拢。只有一柄商家八卦刀的朴素中式单刃佩刀，全部入略弯素木鞘，小护手、刀柄和鞘口连续，窄挂带接腰带、鞘足够容刀；不拔刀、不持火炬、不另添拐杖或法杖。
+
+    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
+
+    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。依作者最新提速指示默认一张候选、每张仅一人。只有严重身份错误、重大结构问题或图片不可读才补图，不因细手指、微小装备或轻微角度偏差追加。所有输出仍为candidate待用户最终审核，不自动approved。
+
+    事实边界：本书清乾隆时代；前史回忆与开局、后期分开，当前图只取已注明阶段，不把全书所有年份混成同一年龄。身份阶段以本地role/catalog/story/chapter为依据，原著概括及具体发饰器型仍待指定版本核，不冒称新查原文。本次原创新脸的具体五官和静态手势为美术补足。商剑鸣遗孀、商宝震之母，铁厅起火之前健在的复仇布局者。白发和年长外观依当前role/catalog，在线约五十与elder标签差异待考，不硬定极高龄。旧catalog改命后可措辞不用于本图：最新story火劫死亡仍在，当前只取火前。商家刀配装来自章节，不虚构原著火场固定持法。
+
+    参考边界：对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
+
+    完整排除项：不要青年美人脸、无皱纹皮肤、妖婆尖鼻尖牙、骷髅饰物、官家凤冠、法杖、火焰光环、烧伤尸体或红色婚服。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制或混合palette和背景图的人物脸、年龄、身体、发型、衣装、道具和姿势，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清乾隆时代服制和男子剃额留辫、女子低髻、汉僧剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
+
+    FINAL POSE CHECK: FRONT-FACING full-body, head oriented UPRIGHT, forehead–nose–chin VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, NO head tilt, NO Dutch angle. Preserve this person’s own age, facial identity, existing physical condition and narrative stage.
+  negative: 不要青年美人脸、无皱纹皮肤、妖婆尖鼻尖牙、骷髅饰物、官家凤冠、法杖、火焰光环、烧伤尸体或红色婚服。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制或混合palette和背景图的人物脸、年龄、身体、发型、衣装、道具和姿势，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清乾隆时代服制和男子剃额留辫、女子低髻、汉僧剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
+    status_at_input: approved
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-02T05:19:49.395395+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-079c7e57-c171-445e-8007-6b2065b12123.png
+  size: 1024x1536
+  mode: RGB
+  sha256: ce9b20d86ec1eec6ebb72b110ad888a7bad22a2849aa977c4c7ceb489fbdee3f
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_pose_20261001
+  realism_revision: user_identity_pose_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_shanglaotai__ch13_elder_base/prompt-fe9bd9fc6020d7773be3614da0b5288e4ff1df1f4be8c133091a7a05e0780d6d.md
+    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_shanglaotai__ch13_elder_base/manifest-b53fc706a106ac55700df4db5887030e0a4ba514e7d55f3705a65c59f1c02fd7.yaml
+    png: null
+  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_shanglaotai__ch13_elder_base.requests.json
+  notes: |-
+    已实际查看候选1：商老太白灰发、长脸眼颊颈部衰老层次清楚，冷峻但非丑化，墨蓝长袄灰黑裙、一柄完整入鞘略弯刀、双手双鞋完整，当前铁厅火前健在状态正确，无明显多肢或重大结构问题。原始1024×1536不透明PNG按宽松自查保存candidate，未返老还童、未自动approved。偏差：发髻偏高而非低髻，肩背微弯很轻，衣裙纹样及边饰多于素衣、手偏按柄，背景花枝亭阁保留；记录不为细节追加，不声称旧严格几何或目标大尺寸通过。
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+- id: por_npc_hufuren__ch13_youth_memory_base
+  file: por_npc_hufuren__ch13_youth_memory_base.png
+  category: character/female
+  style: default
+  subject: 胡夫人 npc_hufuren ch13_feihu · 胡斐之母，胡苗决斗前后前史回忆中的生前形态
+  prompt: |-
+    POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+
+    Create a REALISTIC Chinese wuxia full-body portrait of 胡夫人. THIS IS A TEXT-DEFINED ORIGINAL IDENTITY, not a verified actor or original-game face. NO identity photograph or prior own-character PNG is supplied. Image 1 ONLY provides the corresponding gender palette and soft light; image 2 ONLY provides the pale ink-wash background. Never borrow either reference face, body, age, hair, clothes or pose. Establish the independent written face below.
+
+    身份与阶段：胡夫人（npc_hufuren），《飞狐外传》ch13_feihu。胡斐之母，胡苗决斗前后前史回忆中的生前形态。
+
+    年龄与体型：年轻成年女性，产后阶段仅用略显疲倦的神态体现，准确岁数待考；秀雅长圆脸、清晰眉骨与明净目光，体态匀称略纤，神情温和果决，眼周有轻微倦意；保留年轻母亲的坚韧，不画成柔弱病人。年龄及身体状态优先于造型，不使用固定头身和占高强行拉伸。
+
+    本人面容辨识：独立原创的青年成年秀雅长圆脸：额头中等偏宽、眉骨清楚有柔和体积，眉形细长而不挑高，自然长眼裂、眼距适中，正视明净坚定；眼下只有轻微产后倦意，非病危或泪痕浓妆。鼻梁细直而有真实厚度，鼻尖圆润、鼻翼适中；嘴形中等、上唇弓清晰但不过尖，下唇温和饱满，唇角克制平和。颧颊平顺、下颌较长但圆钝有支撑，肤色自然、皮肤完整。与马春花较圆润红颊、南兰宽些鹅蛋脸和犹疑眉眼明确不同；年轻母亲的果决不靠复制王语嫣或演员脸。
+
+    服制与发式：清代汉族女子素雅袄裙，浅米白厚布袄与灰蓝长裙、朴素低髻和木簪、布鞋，窄领和袖口齐整，外搭短而实用的深灰披肩。衣料完整不透明、衣边整洁连续，少量宽缓受力褶，不添破洞和碎布；汉式交领穿着者左襟覆右襟，斜襟向穿着者右侧闭合，不水平镜像。
+
+    正面姿态与器物：正面稳立，头颈自然竖直、双眼水平、下巴中性，肩背端正，双足完整着地。双手空着，一手在胸腹前轻拢自己的短披肩，另一手自然垂落，手与衣料不粘连。腰侧只有一柄普通中式直身双刃剑完全入鞘，细窄素木长鞘能容完整剑刃，剑柄、小横格和鞘口连续，窄挂带真实连接腰带；不拔剑、不画殉夫姿势。无孩子、丈夫、成年胡斐或第二人物。
+
+    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
+
+    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。依作者最新提速指示默认一张候选、每张仅一人。只有严重身份错误、重大结构问题或图片不可读才补图，不因细手指、微小装备或轻微角度偏差追加。所有输出仍为candidate待用户最终审核，不自动approved。
+
+    事实边界：本书清乾隆时代；前史回忆与开局、后期分开，当前图只取已注明阶段，不把全书所有年份混成同一年龄。身份阶段以本地role/catalog/story/chapter为依据，原著概括及具体发饰器型仍待指定版本核，不冒称新查原文。本次原创新脸的具体五官和静态手势为美术补足。只取胡斐出生前后、胡苗决斗前后已注明的生前回忆实体，不用全书乾隆主线年份反推确岁，不把前史回忆当成复活。catalog旧改命救援措辞与最新story不复活规定有差异，本图采用role及story明确回忆窗口；普通入鞘剑来自名录刀剑基础的美术补足，不宣称原著固定神兵。
+
+    参考边界：对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
+
+    完整排除项：不要怀孕夸张腹部、婴儿同框、殉夫伤口、死亡妆、鬼魂透明体、白手套、金铃索、清宫头面、低胸装或成年胡斐同框。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制或混合palette和背景图的人物脸、年龄、身体、发型、衣装、道具和姿势，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清乾隆时代服制和男子剃额留辫、女子低髻、汉僧剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
+
+    FINAL POSE CHECK: FRONT-FACING full-body, head oriented UPRIGHT, forehead–nose–chin VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, NO head tilt, NO Dutch angle. Preserve this person’s own age, facial identity, existing physical condition and narrative stage.
+  negative: 不要怀孕夸张腹部、婴儿同框、殉夫伤口、死亡妆、鬼魂透明体、白手套、金铃索、清宫头面、低胸装或成年胡斐同框。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制或混合palette和背景图的人物脸、年龄、身体、发型、衣装、道具和姿势，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清乾隆时代服制和男子剃额留辫、女子低髻、汉僧剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
+    status_at_input: approved
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-02T05:27:04.774718+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-b79f29d5-afe6-4880-ae5f-effdfb4a7e7c.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 59de25ea90ef44103535bde453d41870f7dfc6f50256636e052dcb4f3b4c556d
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_pose_20261001
+  realism_revision: user_identity_pose_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_hufuren__ch13_youth_memory_base/prompt-a6cd8635095e055553d1f4e134f85d500f867b49b66a3d58aa89ff81f642929a.md
+    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_hufuren__ch13_youth_memory_base/manifest-d17c6573413025eec8b891c7f2cd8866af891212ed22654c218c7ea84dc2564a.yaml
+    png: null
+  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_hufuren__ch13_youth_memory_base.requests.json
+  notes: |-
+    已实际查看候选1：胡夫人年轻成年、温和沉静且略有倦意，米白灰蓝完整衣裙、深灰披肩、一柄入鞘普通直剑、双手空着一手拢前缘，双鞋全身完整；没有婴儿、殉夫场景或鬼魂，无明显多肢重大结构问题。按宽松自查保留原始1024×1536不透明PNG为candidate，作为生前回忆不意味着主线复活或approved。偏差：髻偏高、披肩下垂较长且流苏明显，袖口和衣缘纹饰多于素雅实用稿，面孔精致及眉眼与近期女性风格接近，背景花枝亭阁；如实登记，不为上述细节追加，不声称旧严格几何与目标大尺寸通过。
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+- id: por_npc_machunhua__ch13_youth_escort_base
+  file: por_npc_machunhua__ch13_youth_escort_base.png
+  category: character/female
+  style: default
+  subject: 马春花 npc_machunhua ch13_feihu · 飞马镖局青年女弟子，随父亲进入商家堡、尚未遭遇京师毒害的行镖形态
+  prompt: |-
+    POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+
+    Create a REALISTIC Chinese wuxia full-body portrait of 马春花. THIS IS A TEXT-DEFINED ORIGINAL IDENTITY, not a verified actor or original-game face. NO identity photograph or prior own-character PNG is supplied. Image 1 ONLY provides the corresponding gender palette and soft light; image 2 ONLY provides the pale ink-wash background. Never borrow either reference face, body, age, hair, clothes or pose. Establish the independent written face below.
+
+    身份与阶段：马春花（npc_machunhua），《飞狐外传》ch13_feihu。飞马镖局青年女弟子，随父亲进入商家堡、尚未遭遇京师毒害的行镖形态。
+
+    年龄与体型：青年少女至初成年，十八岁上下观感（待考），精神饱满；略圆的鹅蛋脸、自然红润双颊、明亮黑眼，身形匀称矫健，活泼爽朗，眼神有好奇与自信，保持习武者扎实腰腿。年龄及身体状态优先于造型，不使用固定头身和占高强行拉伸。
+
+    本人面容辨识：独立原创的初成年、约十八岁观感女子：略圆鹅蛋脸，额部柔和宽展、自然圆润有血色的双颊，眉毛中等浓度而眉尾舒展，黑眼明亮但是真人正常眼球与眼裂大小，眼距均衡。鼻梁中等偏短、鼻尖小而圆实，鼻翼自然；嘴形略宽、唇厚适中，嘴角轻轻舒缓而不露齿夸笑。短圆下巴有成年骨量、下颌曲线自然，肤质健康清晰。眼神好奇自信，腰腿匀健；不复制南兰已婚少妇的迟疑神态，不用王语嫣细弱体型，也不画成幼童或成熟艳妇。
+
+    服制与发式：清代汉族镖局女子，豆青窄袖袄、深靛便行长裙与裙下长裤、布护腕和平底鞋；乌发收为紧实小髻，以素色短带固定，腰系窄布带。衣料完整不透明、衣边整洁连续，少量宽缓受力褶，不添破洞和碎布；汉式交领穿着者左襟覆右襟，斜襟向穿着者右侧闭合，不水平镜像。
+
+    正面姿态与器物：全身严格正面，头颈竖直、双眼水平、下巴中性；一脚可以稍前，双足均落地，双肩放松，身躯不侧转、不歪头。两手空手自然分开，一手松垂、另一手轻触窄腰带；手腕和指形清楚。腰边只有一个小型闭口行镖布囊，不写镖局字样，不额外添刀剑；不持后来夺用的商家八卦刀。没有孩童、病榻、丈夫、福府仆从或第二人物。
+
+    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
+
+    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。依作者最新提速指示默认一张候选、每张仅一人。只有严重身份错误、重大结构问题或图片不可读才补图，不因细手指、微小装备或轻微角度偏差追加。所有输出仍为candidate待用户最终审核，不自动approved。
+
+    事实边界：本书清乾隆时代；前史回忆与开局、后期分开，当前图只取已注明阶段，不把全书所有年份混成同一年龄。身份阶段以本地role/catalog/story/chapter为依据，原著概括及具体发饰器型仍待指定版本核，不冒称新查原文。本次原创新脸的具体五官和静态手势为美术补足。飞马镖局随父入商家堡的早期行镖，不合并婚后母亲、双生子及京师福府中毒和临终阶段。十八上下仅主稿待考观感，保持青年至初成年而不强作中年成熟体态；本图空手，布囊为原创配装。采用最新端正正面要求。
+
+    参考边界：对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
+
+    完整排除项：不要福府宫装、双生子同框、婚嫁红妆、中毒灰败脸、病榻、商家八卦刀、华贵珠宝、清宫旗装、大拉翅或柔弱站不稳的姿态。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制或混合palette和背景图的人物脸、年龄、身体、发型、衣装、道具和姿势，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清乾隆时代服制和男子剃额留辫、女子低髻、汉僧剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
+
+    FINAL POSE CHECK: FRONT-FACING full-body, head oriented UPRIGHT, forehead–nose–chin VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, NO head tilt, NO Dutch angle. Preserve this person’s own age, facial identity, existing physical condition and narrative stage.
+  negative: 不要福府宫装、双生子同框、婚嫁红妆、中毒灰败脸、病榻、商家八卦刀、华贵珠宝、清宫旗装、大拉翅或柔弱站不稳的姿态。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制或混合palette和背景图的人物脸、年龄、身体、发型、衣装、道具和姿势，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清乾隆时代服制和男子剃额留辫、女子低髻、汉僧剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
+    status_at_input: approved
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-02T05:29:09.337659+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-3d610dd4-02f4-49d8-a62d-aa0b5d90854f.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 55788e46a2f9fb62ca81e13c98fcf87c2d9e6f94498599edfa4299bae9f5c7bf
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_pose_20261001
+  realism_revision: user_identity_pose_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_machunhua__ch13_youth_escort_base/prompt-7c04975da399e3ca4b8444ac96b870ce249706d68e1fd107dce4cce9720c597b.md
+    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_machunhua__ch13_youth_escort_base/manifest-e639ee8ca821657a560accd26f73793134e47f4909c419841ba0061d6012200b.yaml
+    png: null
+  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_machunhua__ch13_youth_escort_base.requests.json
+  notes: |-
+    已实际查看候选1：马春花初成年明快面貌、自然红润颊部，豆青便袄深靛行动裙裤、布护腕和短发带，腰旁小行镖囊、双手空置，一手轻触腰带，双鞋与完整全身，无八卦刀、京师毒害或婚后母亲道具，基本阶段正确且无明显多肢重大结构问题。按宽松自查保存原始1024×1536不透明PNG为candidate，不自动approved。偏差：体态较纤细、练武腰腿厚实感适中，头颈轻微偏向、袖子卷起而非全窄袖，鞋上小花纹、背景花枝亭阁；记录不为细节追加，不声称旧严格几何及目标大尺寸通过。
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+- id: por_npc_nanlan__ch13_youth_base
+  file: por_npc_nanlan__ch13_youth_base.png
+  category: character/female
+  style: default
+  subject: 南兰 npc_nanlan ch13_feihu · 苗若兰之母，与田归农同行至商家堡的年轻少妇形态
+  prompt: |-
+    POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+
+    Create a REALISTIC Chinese wuxia full-body portrait of 南兰. THIS IS A TEXT-DEFINED ORIGINAL IDENTITY, not a verified actor or original-game face. NO identity photograph or prior own-character PNG is supplied. Image 1 ONLY provides the corresponding gender palette and soft light; image 2 ONLY provides the pale ink-wash background. Never borrow either reference face, body, age, hair, clothes or pose. Establish the independent written face below.
+
+    身份与阶段：南兰（npc_nanlan），《飞狐外传》ch13_feihu。苗若兰之母，与田归农同行至商家堡的年轻少妇形态。
+
+    年龄与体型：名录青年 / 中年，本张取青年少妇，二十余岁观感（待考）；圆润鹅蛋脸、眉目秀雅，肤色明净，姿态纤秀而有成年少妇的稳重，眼神疲惫带犹疑；不靠暴露身体表达美貌或人物选择。年龄及身体状态优先于造型，不使用固定头身和占高强行拉伸。
+
+    本人面容辨识：独立原创的青年少妇圆润鹅蛋脸：额弧宽缓、颊面柔和较丰润，眉形细而舒展、眉尾平缓，眼裂偏长且眼角水平，眼距适中，上眼睑略显疲惫但双眼清楚可见。鼻梁中等较低缓、圆小鼻尖与自然鼻翼，口鼻区域较紧凑，嘴形中等偏窄、上唇薄于下唇、唇角微收呈克制犹疑。下颌柔和而有成年骨架，圆钝下巴不尖削，肤色明净。青年成年少妇的稳重通过眼神与姿势表达，不色情化；与胡夫人长圆脸清晰眉骨的坚定、马春花较圆红颊的爽朗各自不同，不复制苗若兰或基线脸。
+
+    服制与发式：清乾隆汉族少妇袄裙：淡藕右衽长袄、灰青长裙、窄领缘和软底绣鞋，衣料不透明；乌发盘整为端庄低髻，一枝小巧镶珠金凤头钗清楚可见，不加成套宫廷头饰。衣料完整不透明、衣边整洁连续，少量宽缓受力褶，不添破洞和碎布；汉式交领穿着者左襟覆右襟，斜襟向穿着者右侧闭合，不水平镜像。
+
+    正面姿态与器物：完整全身正面静立，头颈竖直、双眼水平、下巴中性，肩部略收但不耸肩歪头，双足相近却留自然站立间距，身体不侧转。两手在腰腹前轻握同一方素净无字手帕，一手轻托帕角与自己的袖边，手指、帕布、袖口分清。低髻上只有一枝小巧镶珠金凤头钗，能识别小鸟头装饰但不放大为凤冠或宫廷头面。没有兵器，尤其不佩冷月宝刀，不画田归农或女儿同框。
+
+    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
+
+    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。依作者最新提速指示默认一张候选、每张仅一人。只有严重身份错误、重大结构问题或图片不可读才补图，不因细手指、微小装备或轻微角度偏差追加。所有输出仍为candidate待用户最终审核，不自动approved。
+
+    事实边界：本书清乾隆时代；前史回忆与开局、后期分开，当前图只取已注明阶段，不把全书所有年份混成同一年龄。身份阶段以本地role/catalog/story/chapter为依据，原著概括及具体发饰器型仍待指定版本核，不冒称新查原文。本次原创新脸的具体五官和静态手势为美术补足。取随田归农到商家堡的年轻少妇，二十余岁仅主稿待考观感；后期求援、病危或墓前冷月刀线索不合入本像。镶珠金凤钗来自主稿对原著衣饰的待考概括，款式及手帕为美术落实，不冒称重新核实原文。采用端正正面姿态。
+
+    参考边界：对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
+
+    完整排除项：不要冷月宝刀、战斗架势、成年苗若兰的造型、清宫旗装、大拉翅、凤冠霞帔、整套金珠头面、性感化少妇装或病危血色。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制或混合palette和背景图的人物脸、年龄、身体、发型、衣装、道具和姿势，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清乾隆时代服制和男子剃额留辫、女子低髻、汉僧剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
+
+    FINAL POSE CHECK: FRONT-FACING full-body, head oriented UPRIGHT, forehead–nose–chin VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, NO head tilt, NO Dutch angle. Preserve this person’s own age, facial identity, existing physical condition and narrative stage.
+  negative: 不要冷月宝刀、战斗架势、成年苗若兰的造型、清宫旗装、大拉翅、凤冠霞帔、整套金珠头面、性感化少妇装或病危血色。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制或混合palette和背景图的人物脸、年龄、身体、发型、衣装、道具和姿势，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清乾隆时代服制和男子剃额留辫、女子低髻、汉僧剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
+    status_at_input: approved
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-02T05:34:57.176687+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-e7d215cb-a2f9-4e09-a09f-b84719897b0a.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 9e33df1cca6377934f2205d517b2580415b52ba9b2002f2ea1d1c91c9733eded
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_pose_20261001
+  realism_revision: user_identity_pose_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_nanlan__ch13_youth_base/prompt-06821d912d3595a3dea1caf2ebf8a2656fc329154f41a38d50844c6203c3aebf.md
+    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_nanlan__ch13_youth_base/manifest-a83540f39bba1e0fb5b994d1d20f7c8304eca88e2d65703244321f9076c1c531.yaml
+    png: null
+  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_nanlan__ch13_youth_base.requests.json
+  notes: |-
+    已实际查看候选1：南兰为年轻成年少妇，鹅蛋偏圆脸、犹疑收敛神态，淡藕长袄灰青裙、双手轻握同一手帕、无兵器，金色鸟形头钗可辨，双鞋与整个人物入画；没有病危、冷月刀或女儿同框，无明显多肢重大结构问题。按宽松自查保存原始1024×1536不透明PNG为candidate，不自动approved。偏差：发髻偏高、头钗和耳饰略繁，衣裙与帕上绣花多于素净稿，脸偏精致年轻、成年少妇稳重感主要依神态，背景有花枝亭阁；记录不为细节增抽，不声称旧严格几何/大尺寸通过。
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+- id: por_npc_xueque__ch13_youth_base
+  file: por_npc_xueque__ch13_youth_base.png
+  category: character/female
+  style: default
+  subject: 薛鹊 npc_xueque ch13_feihu · 药王门同门争斗时的薛鹊，药王庄提灯赴约、终段毒害之前
+  prompt: |-
+    POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Face forward, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, chin neutral. NO head tilt and NO Dutch angle. This governs facial orientation ONLY: preserve her HUNCHED BACK and asymmetric stance with her OWN RIGHT FOOT LIMP, LEFT leg carrying most weight, right knee slightly bent and right foot still contacting the ground. NEVER straighten her curved trunk or require symmetric shoulders, legs or weight. Keep all body parts and existing disability, no additional missing limb. These requirements override reference poses.
+
+    Create a REALISTIC Chinese wuxia full-body portrait of 薛鹊. THIS IS A TEXT-DEFINED ORIGINAL IDENTITY, not a verified actor or original-game face. NO identity photograph or prior own-character PNG is supplied. Image 1 ONLY provides the corresponding gender palette and soft light; image 2 ONLY provides the pale ink-wash background. Never borrow either reference face, body, age, hair, clothes or pose. Establish the independent written face below.
+
+    身份与阶段：薛鹊（npc_xueque），《飞狐外传》ch13_feihu。药王门同门争斗时的薛鹊，药王庄提灯赴约、终段毒害之前。
+
+    年龄与体型：暂按名录青年成年女性处理；在线文本的中年说法与名录冲突（待考），不固定具体岁数；容貌文秀、清晰眼眉与收敛嘴角，驼背轮廓真实保留、右足跛行；重心偏左腿，右膝略屈而右足仍有着地支撑，神情沉静警惕，不用妖怪五官表现残疾。年龄及身体状态优先于造型，不使用固定头身和占高强行拉伸。
+
+    本人面容辨识：独立原创的文秀成年女性面孔：脸型略窄椭圆、颧颊平顺，额头中等宽，细直眉根清楚而眉尾自然舒缓；偏长真实眼裂和均衡眼距，双眼沉静警惕而不鬼祟斜视。鼻梁中等细直、鼻尖小而圆、鼻翼正常；嘴形较小、上唇较薄下唇适中，嘴角内收，圆钝下巴有成年骨量。暂以名录青年成年自然肤质表现，不幼化，也不把未核年龄强画成固定中年。脸部正常完整，不以妖怪五官、尖牙、伤疤或身体羞辱代替驼背和跛足；不是其他女性换装。
+
+    服制与发式：清乾隆汉族女子，灰紫窄袖袄、深灰长裙内有完整长裤、平底布鞋；发髻低而朴素、木簪固定，衣服顺着背部体态垂落，不用披风遮驼背。衣料完整不透明、衣边整洁连续，少量宽缓受力褶，不添破洞和碎布；汉式交领穿着者左襟覆右襟，斜襟向穿着者右侧闭合，不水平镜像。
+
+    正面姿态与器物：全身正面可辨，脸朝前、双眼水平、额鼻颏中线竖直，不作侧脸或歪头；这只约束头脸，不矫直躯干。保留真实驼背的背肩起伏和顺势前曲躯干，肩颈自然适配，衣服依背部弧度垂落，不拉成长腿挺直模特。本人右足跛（正面观者左侧）：左腿承担较多重量，右膝略屈，右足仍有着地支撑；两足完整可见，不反成左足跛、不强求左右均分承重。本人右手低提一只小型灯笼，暗木骨架、素纸罩、提梁与手握真实连接，内部只极弱暖光，灯笼放在右腿外侧而不遮脚；左手轻扶腰侧闭口小药囊。无拐杖、轮椅、剑、眼罩或第二灯笼。
+
+    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
+
+    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。依作者最新提速指示默认一张候选、每张仅一人。只有严重身份错误、重大结构问题或图片不可读才补图，不因细手指、微小装备或轻微角度偏差追加。所有输出仍为candidate待用户最终审核，不自动approved。
+
+    事实边界：本书清乾隆时代；前史回忆与开局、后期分开，当前图只取已注明阶段，不把全书所有年份混成同一年龄。身份阶段以本地role/catalog/story/chapter为依据，原著概括及具体发饰器型仍待指定版本核，不冒称新查原文。本次原创新脸的具体五官和静态手势为美术补足。药王庄提灯赴约、终段毒害之前，保留既有驼背与本人右足跛，不写成全身无伤。年龄按当前catalog青年成年暂取；role明确在线中年分歧待考，未新核指定原著版次，不将分歧伪称已解决。现本地story没有进一步证明致残时序与侧别，采用role已有右足，不额外诊断、不补独眼。头脸正面水平绝不覆盖体态残疾。
+
+    参考边界：对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
+
+    完整排除项：不要健全挺直模特身姿、左足误跛、独眼眼罩、幼女化、性感曲线、残疾恶搞、女巫尖牙、绿色脸光、毒雾、现代拐杖、宫装大拉翅或字灯笼。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制或混合palette和背景图的人物脸、年龄、身体、发型、衣装、道具和姿势，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清乾隆时代服制和男子剃额留辫、女子低髻、汉僧剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
+
+    FINAL POSE CHECK: FRONT-FACING full-body, head oriented UPRIGHT, forehead–nose–chin VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, NO head tilt, NO Dutch angle. Preserve this person’s own age, facial identity, existing physical condition and narrative stage. Preserve HUNCHED BACK and OWN RIGHT FOOT LIMP; facial alignment does NOT mean a straight spine or symmetrical weight.
+  negative: 不要健全挺直模特身姿、左足误跛、独眼眼罩、幼女化、性感曲线、残疾恶搞、女巫尖牙、绿色脸光、毒雾、现代拐杖、宫装大拉翅或字灯笼。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制或混合palette和背景图的人物脸、年龄、身体、发型、衣装、道具和姿势，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清乾隆时代服制和男子剃额留辫、女子低髻、汉僧剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
+    status_at_input: approved
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-02T05:39:03.191101+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-bffba5f2-bf38-4fda-8352-6d228e38f344.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 17d906691d929c9fdd641c6c5477a08a2798abad3c5976b8efb95c209a6511c8
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_pose_20261001
+  realism_revision: user_identity_pose_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_xueque__ch13_youth_base/prompt-670dac1e96b761e671764a0800ab3d8fa8fed3114b6b1469235cfafc2341c52f.md
+    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_xueque__ch13_youth_base/manifest-2cc4e332e3284b166e0992e787dcb27e180aacdae958ff3705a9248c86e960d5.yaml
+    png: null
+  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_xueque__ch13_youth_base.requests.json
+  notes: |-
+    已实际查看候选1：薛鹊按当前名录成年青年画法，灰紫袄深灰裙裤，背肩明显前曲、身体不对称，本人左腿在前较直承重而右足后收着地，未被强制矫成挺直模特；右手低提灯笼、左手药囊，双鞋全身完整，没有额外伤残或武器，无明显多肢重大结构问题。保留原始1024×1536不透明PNG为candidate，年龄与原文中年分歧仍待考，不伪称已解决。偏差：静态衣裙遮膝，右跛只能以承重姿态表达而无法证明诊断；髻较高、衣饰纹理多、灯笼暖光偏明显、背景亭阁保留。按宽松自查记录不追加，不声称旧严格几何或目标大尺寸通过。
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
