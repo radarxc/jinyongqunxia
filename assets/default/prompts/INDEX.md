@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 316、已入库 161、已通过（作者） 150。**待出图队列 316 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 315、已入库 162、已通过（作者） 150。**待出图队列 315 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -30,7 +30,6 @@
 |---|---|---|---|---|---|
 | items | `eq_mingyudiebuyao_nv` | 明玉蝶步摇·女 | `assets/default/item/accessories/eq_mingyudiebuyao_nv.png` | 待出图 | [eq_mingyudiebuyao_nv.md](items/accessories/eq_mingyudiebuyao_nv.md) |
 | items | `eq_qingxuanhuyuduandoupeng_nan` | 清玄狐羽缎斗篷·男 | `assets/default/item/accessories/eq_qingxuanhuyuduandoupeng_nan.png` | 待出图 | [eq_qingxuanhuyuduandoupeng_nan.md](items/accessories/eq_qingxuanhuyuduandoupeng_nan.md) |
-| items | `eq_yuanqibaolimao_nan` | 元七宝钹笠帽·男 | `assets/default/item/accessories/eq_yuanqibaolimao_nan.png` | 待出图 | [eq_yuanqibaolimao_nan.md](items/accessories/eq_yuanqibaolimao_nan.md) |
 | items | `eq_daliyinkoujindai_nv` | 大理银扣锦带·女 | `assets/default/item/belts/eq_daliyinkoujindai_nv.png` | 待出图 | [eq_daliyinkoujindai_nv.md](items/belts/eq_daliyinkoujindai_nv.md) |
 | items | `eq_jinchunshuiyutuhu_nan` | 金春水玉吐鹘·男 | `assets/default/item/belts/eq_jinchunshuiyutuhu_nan.png` | 待出图 | [eq_jinchunshuiyutuhu_nan.md](items/belts/eq_jinchunshuiyutuhu_nan.md) |
 | items | `eq_liaoyudiexiedai_nan` | 辽玉蹀躞带·男 | `assets/default/item/belts/eq_liaoyudiexiedai_nan.png` | 待出图 | [eq_liaoyudiexiedai_nan.md](items/belts/eq_liaoyudiexiedai_nan.md) |
@@ -543,13 +542,12 @@
 
 （已全部入库。）
 
-### 护肩 / 披风 / 头饰（48）· 已入库 33、已通过（作者） 12、待出图 3
+### 护肩 / 披风 / 头饰（48）· 已入库 34、已通过（作者） 12、待出图 2
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
 | 1 | 清玄狐羽缎斗篷·男 | `eq_qingxuanhuyuduandoupeng_nan` | 地上 | 披风·斗篷 | 待出图 | [eq_qingxuanhuyuduandoupeng_nan.md](items/accessories/eq_qingxuanhuyuduandoupeng_nan.md) | template |
-| 2 | 元七宝钹笠帽·男 | `eq_yuanqibaolimao_nan` | 地下 | 头饰·笠帽 | 待出图 | [eq_yuanqibaolimao_nan.md](items/accessories/eq_yuanqibaolimao_nan.md) | template |
-| 3 | 明玉蝶步摇·女 | `eq_mingyudiebuyao_nv` | 玄中 | 头饰·簪钗 | 待出图 | [eq_mingyudiebuyao_nv.md](items/accessories/eq_mingyudiebuyao_nv.md) | template |
+| 2 | 明玉蝶步摇·女 | `eq_mingyudiebuyao_nv` | 玄中 | 头饰·簪钗 | 待出图 | [eq_mingyudiebuyao_nv.md](items/accessories/eq_mingyudiebuyao_nv.md) | template |
 
 ### 鞋（26）· 待出图 18、已通过（作者） 8
 
