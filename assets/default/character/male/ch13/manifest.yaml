@@ -95,86 +95,6 @@
     png: null
   request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_zhujue__ch13_m_base.requests.json
   notes: 实际比较两张，选1。同一男主成年青年面容与均衡体型保持，清代前额剃发后辫、花青圆领右掩襟长袍、灰赭短褂、黑护腕、布鞋均清楚，一手扶带一手垂下，未拔刀。1圆领形制更明确、手与腰带分离自然，唯一左腰腰刀全入鞘且两端可见；鞘的弯曲度较弱、端部有少量装饰，非完全素面。左眉尾下识别痣仍无法清楚确认，另有长绑腿和浓于目标的背景布纹偏差；人物整体完整可用，candidate待终审。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-- id: por_npc_huyidao__ch13_prime_memory_base
-  file: por_npc_huyidao__ch13_prime_memory_base.png
-  category: character/male
-  style: default
-  subject: 胡一刀 npc_huyidao ch13_feihu · 辽东大侠、胡斐之父；胡苗决斗前、尚在人世的壮年前史回忆形象。早于约 1766–1771 主线，胡斐出生前后精确年份仍待考，不在主线现时复活。
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. Preserve natural facial asymmetry without tilting the head.
-
-
-    Create a refined REALISTIC full-body Chinese wuxia illustration of 胡一刀 (npc_huyidao, ch13_feihu). Establish an ORIGINAL TEXT-DEFINED face. Neither image input is this character: image 1 is palette, soft lighting and rendering quality only; image 2 is pale ink-wash background only. Do not transfer either input person''s identity.
-
-
-    身份与阶段：辽东大侠、胡斐之父；胡苗决斗前、尚在人世的壮年前史回忆形象。早于约 1766–1771 主线，胡斐出生前后精确年份仍待考，不在主线现时复活。
-
-
-    年龄、体型与生命状态：壮年武人，宽肩厚胸厚背、四肢强健，真实魁伟体重与稳固承重感；适度风霜但不衰老佝偻，不画清瘦少年或健美夸张肌肉。浓髯和宽厚骨架共同表达粗豪宽和，不凶神化；当前肢体完整，无中毒病容、刀伤、腐朽或缺指断肢。
-
-
-    原创同人五官：原创文字身份锚：阔而较平的额骨、宽方颧颊与结实方下颌，粗浓眉较平而眉尾自然略扬，眉眼间距舒展、大小自然的深色眼睛坦荡向前；鼻梁宽直、鼻尖厚而圆钝，宽口自然闭合带一点豪爽笑意。浓密黑色虬髯连续包住口侧、下巴与两颊下缘，真实卷曲而非尖长山羊胡；深日晒棕褐肤色、适量细纹与自然皮肤起伏。骨相、鼻唇及须形组合是本次原创，不能声称为游戏原图、任何演员或已存在胡一刀 PNG 的脸，也不直接借胡斐或萧峰的面容。
-
-
-    服饰与发式：按 root 已裁定的两书统一发式：浓密黑发自然松蓬堆在头上，不结辫；不剃前额、完整自然发际线与清楚发根是本轮美术落实，不冒称原句逐字内容。头发真实有体积，不画悬浮发丝或整齐书生小髻。清乾隆关外汉地行旅衣装保留。厚实灰褐棉布长袍、深棕实用短褂、灰褐长裤、绑腿与朴素布靴，普通窄布腰带，领缘干净。汉式内层交领穿着者左襟压右襟，按自身方向判断，不水平镜像。衣料完整保暖，不用整身毛皮铠甲，不复制基线宋代裹巾灰袍。
-
-
-    正面姿态与器物：正面开胸稳立，头颈直立、眼线水平、下巴中性；双足自然落地而不跨步作战。本人一手在体侧扶住一柄朴素厚背中国单刃腰刀的完整长鞘，另一手自然空垂。刀刃全部藏在暗棕鞘内，刀柄、护手、鞘口、长鞘和封尾连续清楚，普通系带真实连到腰带，鞘长足以容纳整刃，端点全入画；道具不遮脸、不穿身、不靠悬空。仅一柄不具名腰刀，不据胡家刀法推定此时已持冷月宝刀。
-
-
-    人物画法：人物本体采用美观写实、精细克制的国风手绘插画：面部、皮肤、手部、身体、头发、布料与器物都有完整坚实体积，明暗连贯、轮廓清楚。眼睛大小自然，保留适龄骨肉与细纹，不磨成统一偶像脸。衣料完整不透明、缝边清楚，只有少量宽缓受力褶皱；旧衣仍完整保暖。低饱和设色与左上柔和漫射主光；手绘而非摄影、截图、三维模型或换头拼贴。水墨仅在人物外的背景，不能切碎脸、须发、手、衣料和兵器。
-
-
-    背景与交付：单人单视图、水平平视、原生 2:3 竖幅完整全身，头顶与全部发式、双手双足、衣摆和刀鞘端点均完整入画；四周自然留净空，不按固定占高或头身数字拉伸人体。目标 2048×3072 不透明 PNG，接受工具真实原生 2:3 尺寸并如实登记；保存原始 PNG 字节及元数据，不放大、裁切、旋转、重编码或去工具溯源。暖浅灰不透明纸底，人物外仅极浅水墨远山、薄雾和留白，脚下有浅接触阴影；不画具体剧情、建筑、其他人或文字。FAST 先一张 candidate，基本清楚、正面端正且身份阶段正确就保存；仅严重身份、重大结构或不可读问题才追加，轻微手指器物细节集中登记，不反复磨图。candidate 待审核，不自动 approved。
-
-
-    事实与参考边界：本人原图检索限于现有已下载 game79 具名映射和本地同人文件，本批语料无可靠胡一刀对应图，不声称世界上不存在。胡一刀不在 main30，root 本轮明确授权首次文字原创脸；不冒充 game、TV 或他人脸。胡斐为另一主体，家族相似仅用宽厚骨相与英雄气质的抽象关系表达，不加载或复制其脸。不结辫与浓发松蓬堆头依据父任务实际核验的同站网络小说正文，root 已裁定两书统一；本作者只引用父审计，不声称自己浏览。两列表不构成独立出版社认证，指定纸本尚未终校。不剃前额与完整自然发际线是美术落实，非短原句逐字内容。粗豪浓髯等其他外貌、服装原文仍待指定修订版终校；脸部细节、配色、衣装裁制、鞘装与站姿仍为原创美术落实。不编造前史换发，人物特定发式优先于清代泛用默认；先生成 ch13 的一张真实候选，ch14 必须在实际核图后另行 CAS 绑定本人 PNG 并独审。生前回忆是完整实体立绘，不进入现时队伍，不预结算复活或改命。
-
-
-    跨书一致性：本幅首先建立原创文字脸，ch14 采用相同五官文本；本阶段尚无可输入的胡一刀 PNG。
-
-
-    参考输入顺序与用途：第一输入仅男性 candidate 基线的低饱和色卡、柔光与精细手绘质量；不是胡一刀身份参考。不可复制萧峰的脸、年龄、体型、裹巾、灰袍、短胡茬、姿态或磨损衣边。胡一刀面貌独立按本稿文字建立。 第二输入仅用户图的暖浅灰纸底、极浅水墨远山薄雾和留白；不取其中女性的脸、年龄、体型、白青衣裙、首饰、发型或姿势，不取花枝亭阁。水墨止于人物轮廓外。
-
-
-    完整排除项：不要 head tilt、Dutch angle、歪头向肩、倾斜眼线、抬下巴、低头藏眼、侧脸回眸、倾斜镜头。不要复制输入萧峰或女性的脸、体型、发式、衣物和姿态；不要借胡斐脸，不要假装游戏或影视本人复刻，不要统一网红脸、动漫大眼、塑料磨皮、浓妆或丰唇滤镜。不要照片写真、截图拼贴、三维模型或画师姓名风格词。不要飞白碎墨人体、纸纹透肤透衣、破布条、撕裂衣角、密集细皱、污斑侵蚀或噪点。不要文字、伪字、书法、标签、题款、印章、签名、logo或装饰水印；保留工具溯源标识与元数据。不要现代服装、拉链、腕表、运动鞋、数码物件，不要日式服制、日本刀、圆盘刀镡、菱形缠柄、欧式板甲、奇幻金甲、赛博或蒸汽朋克。不要明代网巾、宋式官帽、晚清大拉翅、民国中山装；汉式交领不要左衽，不镜像。不要多人物、分身、分格、多视图、婴儿或妻子同框、打斗对手、悬浮装备、刀鞘穿身、短鞘、多件刀剑、弯折断裂兵器或无挂点器物。不要额外肢体、多指、手物融合、无依据缺指断肢、血腥、裸露、透明衣料、色情化、恶搞丑化或健美夸张肌肉。不要中毒脸色、胸口毒伤、尸体、灵牌、透明鬼魂、复活光效、发光兵器、龙形能量、法阵、粒子光翼、硬舞台轮廓光。不要把腰刀写成已确证的冷月宝刀、藏宝钥匙或闯王军刀，不加苗家剑；不要裁头裁足或裁掉道具端点。 不要清式剃额长辫、编辫或整齐书生小髻，不要把浓发松蓬堆头画成悬浮墨线；不要雪山胡斐造型、少年瘦脸或毛皮甲胄。
-
-
-    FINAL POSE CHECK: frontal face and torso, upright head and neck, eyes level, chin neutral, complete full body; NO head tilt and NO Dutch angle. Preserve this original character identity and the specified living-in-memory stage.'
-  negative: 不要 head tilt、Dutch angle、歪头向肩、倾斜眼线、抬下巴、低头藏眼、侧脸回眸、倾斜镜头。不要复制输入萧峰或女性的脸、体型、发式、衣物和姿态；不要借胡斐脸，不要假装游戏或影视本人复刻，不要统一网红脸、动漫大眼、塑料磨皮、浓妆或丰唇滤镜。不要照片写真、截图拼贴、三维模型或画师姓名风格词。不要飞白碎墨人体、纸纹透肤透衣、破布条、撕裂衣角、密集细皱、污斑侵蚀或噪点。不要文字、伪字、书法、标签、题款、印章、签名、logo或装饰水印；保留工具溯源标识与元数据。不要现代服装、拉链、腕表、运动鞋、数码物件，不要日式服制、日本刀、圆盘刀镡、菱形缠柄、欧式板甲、奇幻金甲、赛博或蒸汽朋克。不要明代网巾、宋式官帽、晚清大拉翅、民国中山装；汉式交领不要左衽，不镜像。不要多人物、分身、分格、多视图、婴儿或妻子同框、打斗对手、悬浮装备、刀鞘穿身、短鞘、多件刀剑、弯折断裂兵器或无挂点器物。不要额外肢体、多指、手物融合、无依据缺指断肢、血腥、裸露、透明衣料、色情化、恶搞丑化或健美夸张肌肉。不要中毒脸色、胸口毒伤、尸体、灵牌、透明鬼魂、复活光效、发光兵器、龙形能量、法阵、粒子光翼、硬舞台轮廓光。不要把腰刀写成已确证的冷月宝刀、藏宝钥匙或闯王军刀，不加苗家剑；不要裁头裁足或裁掉道具端点。 不要清式剃额长辫、编辫或整齐书生小髻，不要把浓发松蓬堆头画成悬浮墨线；不要雪山胡斐造型、少年瘦脸或毛皮甲胄。
-  references:
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    use: 第一输入仅男性 candidate 基线的低饱和色卡、柔光与精细手绘质量；不是胡一刀身份参考。不可复制萧峰的脸、年龄、体型、裹巾、灰袍、短胡茬、姿态或磨损衣边。胡一刀面貌独立按本稿文字建立。
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二输入仅用户图的暖浅灰纸底、极浅水墨远山薄雾和留白；不取其中女性的脸、年龄、体型、白青衣裙、首饰、发型或姿势，不取花枝亭阁。水墨止于人物轮廓外。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T05:08:40.664061+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-5c69db88-586d-4738-83bd-e11506630652.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 8e12e70f2c239b5923b39d22dccdefd9ec9937de4561f0c0cda173af5de4f78a
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_huyidao__ch13_prime_memory_base/prompt-767d2e7aadd959d127ea137e1a80277a5eb940b8e58747fc702bba90d6a29c11.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_huyidao__ch13_prime_memory_base/manifest-01acc756165fc2fa719421d47f3a387bcc47edc9b0c370a7de05bf4dcb55e97f.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_huyidao__ch13_prime_memory_base.requests.json
-  notes: '已实际查看候选1：胡一刀为壮年魁梧宽肩男子，浓眉阔口、深日晒肤色与口颊下巴连续黑须，浓发松蓬且没有清式编辫，灰褐棉袍深棕短褂、一柄完整入鞘腰刀、另一手空垂，双鞋与整个人物完整，生前健在无中毒伤残，基本身份阶段可用。按宽松自查保留原始1024×1536不透明PNG为candidate，未声称达到旧严格大尺寸或几何要求。偏差：虬髯浓卷程度不足而偏修短，方脸偏收束、衣缘磨损细碎较多且布纹密，袖卷露出完整前臂，刀鞘装具比朴素设计繁复；不为细节追加，后续同人参考只沿用面部骨架、不强制复制这些偏差。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_fengtianan__ch13_prime_base
   file: por_npc_fengtianan__ch13_prime_base.png
   category: character/male
@@ -1559,3 +1479,54 @@
   sha256: d5e44177535e93b75f635f094bc52d92cce7ee60b97c1ec9c7271d9703d81cc7
   status: candidate
   notes: 立绘重审重出（AR-30）；现图是通用偶像少年、手捧茶杯，原著福康安「丰神俊雅、蓝衫、手持玉箫、手白如玉」，且与陈家洛相貌极像（陈家洛据此冒充他安慰马春花）；按陈家洛骨相重画为倨傲的满洲贵公子。
+- id: por_npc_huyidao__ch13_prime_memory_base
+  file: por_npc_huyidao__ch13_prime_memory_base.png
+  category: character/male
+  style: default
+  subject: 胡一刀（ch13_feihu）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+    参考图：上传的第 1 张参考图是同一个人（胡一刀）的立绘，请保持完全相同的脸：黝黑如漆的脸色、浓眉大眼、满脸粗硬的浓髯和蓬乱的头发；只把衣服换成下面文字描述的样子，姿势按文字画。
+
+    人物：胡一刀，金庸《飞狐外传》回忆中的辽东大侠，胡斐的父亲，与苗人凤决斗之前。
+
+    经典形象：要一眼认出是辽东大侠胡一刀——黑漆般的脸、满脸钢针似的浓髯、蓬乱不结辫的浓发、腰挎单刀，乍看凶恶如门神，眼神却豪迈坦荡、透着亲切；粗豪而有英雄气。
+
+    年龄与体态：三十多岁的男人，身材魁伟厚实，胸背宽阔，手掌粗大，约七个半头身。
+
+    脸与五官：一张黝黑如漆的脸；满脸浓密粗硬的络腮胡，从鬓角一直连到下巴和喉头；粗黑的浓眉，一双大眼睛圆睁、目光如电；大鼻头、宽鼻翼，阔口厚唇；乍看相貌凶恶粗豪，像庙门上的门神，细看眼神里却有坦荡和豪迈。
+
+    发式：不结辫子，浓密蓬松的黑发乱糟糟地堆在头上，几绺垂到额前。
+
+    服饰：灰褐色厚棉长袍，外罩深褐色对襟短褂，交领右衽（穿着者左襟压右襟），宽布带束腰，深色长裤，粗实的皮靴。
+
+    兵器与道具：左腰挂一柄朴素的中式单刀，微弧刀身完全收在暗棕色长鞘里；左手扶着鞘口。
+
+    姿态与神情：开胸站立，双足牢靠，豪迈大度。
+
+    画风：写实手绘古风人物插画，画风与上传的最后两张画风基线图一致：精细写实的数字手绘插画，笔触细腻柔和、边缘干净；不是油画，没有厚涂笔触和画布纹理；不是照片，不是三维渲染，不是动漫或游戏 CG。人物要像真实存在的人：皮肤看得见毛孔、细纹、晒痕和轻微色斑，五官与脸型有自然的左右不对称，不磨皮；衣料看得出织物的经纬、自然的褶皱和穿用后的轻微旧化，但衣服完整，没有破洞碎布。整体低饱和、沉稳的设色；柔和自然的漫射光从左上方照来，不用舞台光和强轮廓光。
+
+    背景：暖浅灰色纸底，远处只有极淡的水墨远山和薄雾，大面积留白；人物轮廓清楚、与背景明显分开（便于后期抠图），墨色不压到人物身上，脚下只有很淡的接触阴影。
+
+    构图：2:3 竖幅，单人全身，自然站姿，平视镜头，头部端正不歪；从头顶到鞋底完整入画，四周留出余白；双手完整，兵器和道具的两端都在画面内。
+
+    不要：任何文字、字母、签名、印章、水印、边框；第二个人物、活的动物、分格、多视角、头像特写；幼态、童颜、娃娃脸、大头小身、儿童身材；网红脸、锥子脸、大眼滤镜、过度对称、塑料皮肤、蜡像感、过度精修、偶像化打光；任何真实演员或明星的长相；现代服饰和物品；日式服饰、日本刀；汉服交领左衽、整幅画面左右镜像；多余或缺失的手指、手与器物粘连；发光特效、血迹；英俊型男、修剪整齐的短须；白净皮肤；剃额长辫；长剑、出鞘的刀。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch14/por_npc_huyidao__ch14_prime_memory_base.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张＋身份参考 1 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:00:18-0700
+  source_path: .agents/coord/gemini_originals/por_npc_huyidao__ch13_prime_memory_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: dd488bb7f95476b25a98d51e3836919c1bf8bc006fcf7884243be6dac8852e48
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图是英俊的型男、胡须修剪整齐，原著胡一刀「一张黑漆脸皮，满脸浓髯，头发不结辫子蓬蓬松松堆在头上，当真凶恶」；按雪山版重画后的同一张脸统一。
