@@ -1,6 +1,6 @@
 # TODO · 《金庸群侠传·天书录》现状与待办
 
-> 更新：2026-10-02 14:00 PDT（协调者）。本文整份替换了 09-29 的旧版，旧版见 git 历史。14:00 按作者对 §8 的答复（AR-34）做了更新。
+> 更新：2026-10-02 16:10 PDT（协调者）。本文整份替换了 09-29 的旧版，旧版见 git 历史。14:00 按作者对 §8 的答复（AR-34）更新；16:10 按作者 15:50 的新分工（出图起 Opus subagent，代码与故事线走 TraeX）与本轮登记更新。
 
 参考与入口：
 
@@ -14,18 +14,18 @@
 
 ## 0. 现状一句话
 
-- **设计**：已合入的有《长生诀》主线、白马唐代化、序章改版、七条长生诀支线、各书休眠事件、金钱采集、秘籍扩充、兵器扩充、情景图清单、各朝路人。还在跑的：属性 v2（协调者破例再审一轮）、白马年份同步（第 1 次复审）。
+- **设计**：已合入的有《长生诀》主线、白马唐代化、序章改版、七条长生诀支线、各书休眠事件、金钱采集、秘籍扩充、兵器扩充、情景图清单、各朝路人，以及 **属性 v2（4e9daeb2）、白马年份同步（7a89bf9b）**（都是 10-02 15:36–15:37 复审通过合入）。在跑：设计第三批 des33，13 项（§4）。
 - **素材**：
-  - 人物立绘全部用 codex 重出过一轮，主要角色又按经典影视版重出；作者中午定的最后几处修改还没做。
+  - 人物立绘全部用 codex 重出过一轮，主要角色又按经典影视版重出；成昆、黛绮丝已恢复旧版（bba3c50b）；作者中午定的其余修改由 Opus subagent「9 号出图员」在做（§3.1）。
   - 各朝路人已出。
-  - 物品图还剩 366 张，多人情景图还没开始。
+  - 物品图还剩 366 张、多人情景图 102 张，由 Opus subagent 驱动 Gemini 在做（§3.2）。
+  - 主角·男 A 字三视图由人物线 subagent 先出（§3.4）。
 - **开发**：
-  - ENG-00 至 ENG-14、ENG-16a、ENG-21a 已合入。
+  - ENG-00 至 ENG-14、ENG-16a、ENG-21a 已合入；ENG-15 / 16b / 18 / 21b 在跑（ENG-18 已进 GPT 审核）。
   - 最近一次记录的集成分支 `pnpm check` 全绿（92 个测试文件、515 个用例）；ENG-21a 合入之后还没在集成分支上重跑。
   - M1 路径（新游戏 → 序章 → 初眠配点 → 白马冷入口）还没打通，相关任务都在 eng3 队列里等前置。
-- **限额**：10-02 上午起，Claude subagent 的周额度用完了，**10-06 07:00 PDT 重置**。
-  - 停了的：Gemini 物品线、codex 人物线、开发监督。
-  - 还在跑的：GPT 执行器跑的设计和工程批次。没有开发监督，合入冲突和停住的任务要协调者手动处理；13:58 处理过一轮，见 §1。
+  - 动作原型：ENG-12c-clip 已入 eng3 队列，TOOL-rig-sheet 已登记（等三视图），DES-rig-v1.1 在 des33 跑（§3.4）。
+- **分工（作者 10-02 15:50）**：出图起 Opus 5.5 subagent——人物图调 codex exec，其他图用 Chrome 驱动 Gemini；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max）。10-02 14:15 全部驱动是作者自己停的，15:31 已重启。
 
 ---
 
@@ -46,14 +46,14 @@
 
 | 工作区 | 基点 | 状态 | 驱动 pid |
 |---|---|---|---|
-| DES-attr-v2 | 8c4dc7f2 | 3 次复审已用完，协调者破例再审一轮：r5 唯一不过的一项（预算漏算突破的 30 点）已在第 6 轮改好；这轮通过就自动合入 | supervise 97176 |
-| DES-sync-baima-year | d6b7d812 | 审核没过，第 1 次复审 | supervise 94958 |
-| ENG-15-core-bus | 7e2b9a76 | 执行器在跑 | supervise 61978 |
-| ENG-16b-battle-actions | 00712361 | 执行器在跑 | supervise 11580 |
-| ENG-18-content-build | 7e2b9a76 | 执行器在跑 | supervise 61992 |
-| ENG-21b-recovery-quality | 3dd16a19 | 执行器在跑；ENG-21a 12:46 合入后，由 eng3 接着起 | eng3 起的 supervise |
+| ENG-15-core-bus | 7e2b9a76 | 第 2 次运行续作中 | eng3 → supervise 29835 |
+| ENG-16b-battle-actions | 00712361 | 第 2 次运行续作中 | eng3 → supervise 29839 |
+| ENG-18-content-build | 7e2b9a76 | 15:47 校验通过，GPT 审核中 | eng3 → supervise 29836 |
+| ENG-21b-recovery-quality | 3dd16a19 | 第 1 次运行续作中 | eng3 → supervise 29840 |
+| DES-sync-ids-slp、DES-rig-v1.1、DES-sync-tech-a、DES-sync-design-a、DES-sync-design-b | cdb81d44 之后 | 15:52 启动，执行器在跑 | des33 39323 |
 
-- 四个 ENG 任务都归 eng3 批次（pid 58514）。13:50 时在跑 4 个、已合入 1 个、待启动 21 个。
+- eng3 调度器 pid 39391（15:52 重启，队列加了 ENG-12c-clip）：在跑 4、待启动 22。des33 调度器 pid 39323（并发 5，队列 `.agents/coord/_des33_queue.txt`）：在跑 5、待启动 8。都是 `detach_launch.py` 脱离启动（新会话，ppid=1）。
+- DES-attr-v2（r7 PASS，4e9daeb2）、DES-sync-baima-year（r3 PASS，7a89bf9b）已合入，工作区已移除；复审计数在 `_handoff/devsup_revalidated.json`。
 - DES-sleep-events 由协调者在 13:58 手动合入（5b79f03c）。
   - 它 12:00–12:06 的自动合入，是被协调者在 `_prod` 里还没提交的改动挡住的；
   - 以后在 `_prod` 改文件，改完要立即提交。
@@ -132,12 +132,12 @@
   - 笑傲、碧血、侠客、鸳鸯、白马、越女。
 - 阿紫、慕容复已在 11:11 按下载的剧照重出。
 
-**待办**（作者 10-02 11:36 定，原话见 AR-32 补记；subagent 因额度中断，都还没做）：
+**执行中**（作者 10-02 11:36 定，原话见 AR-32 补记）：16:03 起由 Opus subagent「9 号出图员」按 `tools/agents/prompts/_codex_portrait.md`、`ART-portrait-ar32-fix-a.md`、`ART-portrait-ar32-fix-b.md` 在做（先出主角三视图，再 A、后 B），每张入库即按路径提交；完成后协调者验收。中断了就按同样的说明重新起一个 Opus subagent（作者 15:50 分工）。
 - [ ] **洪七公**（射雕、神雕各一张）：现在是按 1983 版画的长须，10:59 入库。改成原著的颏下微须，九指不变。
 - [ ] **神雕的中年郭靖、郭夫人**：都要由射雕的经典形象长到中年。
   - 郭靖现在用的是 1983 剧照加射雕锚点，方向是对的，只需核对年龄感；
   - 黄蓉要核对是不是由朱茵版长成的。
-- [ ] **成昆、黛绮丝**：恢复到 11:15 重出（db2cc43e、bf791338）之前的版本，用 git 取回前一版的 png、manifest 和提示词。
+- [x] **成昆、黛绮丝**：已由协调者恢复到重出前版本（png、manifest 条目、提示词取自 db2cc43e^ / bf791338^），bba3c50b。
 - [ ] **杨逍**：用 1994 台视版（马景涛主演，杨逍由孙兴饰演，作者 10-02 已确认）的剧照加基线重出。作者已同意下载剧照。
 - [ ] **范蠡**：参考历史画像重出。现在是 11:00 的文字版。
 - [ ] **侠客 4 人、鸳鸯 3 人、白马 4 人**：不换剧照，逐张检查幼态和 AI 感，有问题的才重出。
@@ -149,9 +149,7 @@
   1. 跑 `python3 tools/portrait/build_portraits.py`；
   2. 跑 `python3 tools/review/build_gallery.py`；
   3. 重新发布素材总览页（https://claude.ai/artifact/1TACNarveseVhMusJxJnJ3），请作者验收。
-- [ ] **多人情景图**：`DES-scenes-keyart` 已合入，`assets/default/prompts/scenes/**` 下有 100 多份提示词，**还没出图**。
-  - 出图时上传相关人物立绘作参考，限主角和 S 级（AR-29）；
-  - 张无忌的 5 幅按新脸重出。
+- [ ] **多人情景图**：`DES-scenes-keyart` 已合入，`assets/default/prompts/scenes/**` 下 102 份提示词。作者 15:50 定「其他图」走 Gemini：由物品线 subagent 在 366 张物品之后出（§3.2），上传立绘只限主角和 S 级（AR-29）；张无忌的 5 幅场景立绘已在 11:00 前后按新脸重出过（48508f22 等）。
 
 **做法**：
 - 说明文件在 `_handoff/gem/`：
@@ -170,7 +168,9 @@
 - 衣物、旧兵器、旧暗器、旧药物都已出齐；
 - 第二批出了 16 张：兵器 1、药材 9、暗器 6。
 
-**待办 366 张**：秘籍 162、兵器 128、药材 55、暗器 21。
+**执行中**：16:03 起由 Opus subagent 用 Chrome 驱动 Gemini 在做（作者 15:50 分工；标签页由协调者在本会话标签组建：A 道 1957635062、B 道 1957635064；只有前台可见的标签页能提交，窗口要作者摆到前台）。进度记在 `_prod/.agents/coord/gemini_qa/progress.md`。
+
+**待办 366 张**：秘籍 162、兵器 128、药材 55、暗器 21；之后接情景图 102 张。
 
 队列现状：
 - 第二批剩下的 204 张还在标签页 localStorage 里：A 道 104 张，队首 `eq_songshounuxia`；B 道 100 张，队首 `it_haizao`。
@@ -212,12 +212,13 @@
 调研报告是 `tools/agents/reports/RESEARCH-anim-motion-library.md`，原型脚本在同目录 `RESEARCH-anim-proto/`。
 
 **待办**：
-- [ ] **出三视图**：主角·男的 A 字三视图。
+- [ ] **出三视图**：主角·男的 A 字三视图，人物线 subagent 先做（`tools/agents/prompts/ART-rig-sheet.md`）。
   - 作者 10-02 定用 **codex**（AR-34，改了 AR-29 原定的 Gemini）：用 `codex exec` 在本机出，上传主角立绘作参考。
-- [ ] **登记后续任务**：三视图出来后登记，这几项现在都还没登记。
-  - TOOL-rig-sheet：P2–P5、P7，三视图切件；
-  - ENG-12c-clip：P8–P9，动作片段接入 rig 播放。之后 ENG-10、ENG-11 接 `playAnim`；
-  - DES-rig-v1.1：修订 tech/09、tech/07，对应调研报告的 C3、C9。
+  - 文件契约（协调者定）：`assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png`（三视图都面向画面左）、`sheet_R.png`（面向右的修正版，C5）、`sheet/manifest.yaml`。
+- [x] **登记后续任务**（cdb81d44）：
+  - TOOL-rig-sheet：P2–P5、P7，三视图切件 + 走路 / 剑招 GIF；依赖 DES-rig-v1.1，`full_checkout`；**等三视图入库后再加进 eng3 队列**（改队列文件后重启 eng3）；
+  - ENG-12c-clip：P8–P9，片段运行时；已在 eng3 队列，依赖 ENG-21b、DES-rig-v1.1。之后 ENG-10、ENG-11 接 `playAnim`；
+  - DES-rig-v1.1：tech/09 v1.1、tech/07 §4.5 / §5.4、rig GUIDE（C3、C5、C9、R9，codex 口径）；des33 在跑。
 - [ ] **原型交付**：主角·男走路加一套剑招的动图，请作者判定（AR-29）。
 - 旧任务 ART-rig-parts-male / female（逐个部件出图）作废，改用三视图切件。
 
@@ -234,18 +235,19 @@
 - 金钱、采集、药材：`design/16`、`design/11`、`catalog/gather-herbs.md`；
 - 秘籍扩充、兵器扩充、情景图清单（`catalog/key-scenes.md`）、各朝路人（`catalog/npcs-commoners-era.md`）、经脉快照名同步。
 
-**在跑**：
-- DES-attr-v2：属性 v2。3 次复审已用完，协调者破例再审一轮（§1）；
-- DES-sync-baima-year：第 1 次复审。
-  - 白马年份改为 702–703，并重算 sleepYears；
-  - 登记阿青、白猿、范蠡；
-  - 序章任务 ID 例外；
-  - 传功地点。
+**已合入（本轮）**：DES-attr-v2（4e9daeb2）、DES-sync-baima-year（7a89bf9b，白马 702–703 与 sleepYears、阿青 / 白猿 / 范蠡登记、序章任务 ID 例外、传功地点）。
+
+**在跑（des33，cdb81d44 登记，队列顺序即优先级）**：
+- DES-sync-ids-slp：`slp_` 进 check_ids OWNERSHIP、28 个休眠事件 ID 转正式；
+- DES-story-hooks-g1～g5：各书休眠事件与长生诀支线挂进 `story/NN`、`chapters/NN`（g1 天龙射雕、g2 神雕倚天笑傲、g3 侠客碧血鹿鼎、g4 连城白马鸳鸯、g5 书剑飞狐雪山），依赖 DES-sync-ids-slp；
+- DES-rig-v1.1；DES-sync-tech-a（tech/04、05、09-roadmap）；
+- DES-sync-design-a（design/10、11、12、14、15、18、19、20）、DES-sync-design-b（design/03、04、05、21）；
+- DES-skills-reqs-v2-a / b / c：名录门槛重配（部录 01–07、08–14、门派与通用）。
 
 **待办**：
-- [ ] **名录门槛重配**：DES-attr-v2 合入后，按它定的规则分批重配 `catalog/skills-*.md` 的 `reqs`，加入内息和修炼加成。
-- [ ] **各书 `story/NN` 挂接口**：挂上休眠事件和长生诀支线，以 DES-sleep-events 和 sidelines 报告的第 6 节为准。
-- [ ] **跨文档同步**：各设计报告第 6 节列出的同步项，合入后由协调者逐条排任务。
+- [x] **名录门槛重配**：已登记 DES-skills-reqs-v2-a / b / c（des33 排队）。
+- [x] **各书 `story/NN` 挂接口**：已登记 DES-story-hooks-g1～g5（des33 排队，等 DES-sync-ids-slp）。
+- [x] **跨文档同步**：已登记 DES-sync-tech-a、DES-sync-design-a / b（des33）。合入后仍剩的项以各任务报告 §6 为准，再排。
 - [ ] **设计定稿后另开 ENG 任务**（AR-26 / 27 / 28 都写明「随后再开」，现在一个都没登记）：
   - 属性 v2：内息、速度和攻击公式、data schema、golden；
   - 《长生诀》运行时：苏醒取舍 3+3、60% 转化、层数、螺旋内力、九层后周游世界；
@@ -263,10 +265,11 @@
 - TOOL-rig-pipeline、TOOL-item-sprites-run、TOOL-rig-nearside、TOOL-rig-clips。
 
 **在跑**：
-- ENG-15：命令总线；
-- ENG-18：内容编译管线；
+- ENG-15：命令总线（第 2 次运行续作）；
+- ENG-18：内容编译管线（15:47 校验通过，审核中）；
 - ENG-16b：战斗补全 B；
-- ENG-21b：WebGL 上下文恢复与自适应质量（ENG-21a 合入后接着跑）。
+- ENG-21b：WebGL 上下文恢复与自适应质量。
+- eng3 队列 15:52 加了 **ENG-12c-clip**（动作原型 P8–P9，排在 ENG-25 之后，依赖 ENG-21b、DES-rig-v1.1）。
 
 **eng3 排队的 21 项**（依赖满足就自动开跑）：
 - 审计修复：
@@ -304,18 +307,19 @@
 
 - **权限**：作者已在项目 `.claude/settings.local.json` 里允许启动 `supervise.py` 和 `batch_run.py`。
 - **磁盘**：可用 22 GiB（移除旧工作区之后）。root 残留锁和 /private/tmp 的旧任务残留都已清掉。
-- **后台进程**：都用 nohup 起、不依附工具进程，执行器是 traex GPT-5.6-Sol。
-  - eng3 batch_run：pid 58514（des32 批次已在 12:06 结束）；
-  - §1 表里的 supervise 驱动。
+- **后台进程**：都用 `_handoff/detach_launch.py` 脱离启动（新会话，ppid=1）；执行器 traex，启动时探测 GPT-6-Astra、不应答回退 GPT-5.6-Sol。
+  - eng3 batch_run：pid 39391（15:52 重启）；des33 batch_run：pid 39323（15:51）；
+  - §1 表里的 supervise 驱动；
+  - 两个 Opus subagent（人物线、物品线）由协调者会话管理，会话结束就停，中断了按 §3.1 / §3.2 重新起。
 - **注意**：会话草稿目录在 /private/tmp 下，会被系统清掉。续作材料已复制到 `_prod/.agents/coord/_handoff/`，以那里为准。
 
 ## 7. 10-06 额度重置后的接手顺序
 
 1. **看状态**：读本文件和 HANDOFF §9.8 的最新条目，再看 `_prod/.agents/coord/_batch/*.log` 和各任务的 `supervise.status.json`。§8 里「要作者决定的」，先请作者答。
-2. **重启开发监督**：交接说明是 `_handoff/dev_supervisor_brief_v2.md`。先处理停住的任务，再跑 check。
-3. **重启人物线**：按 §3.1 的待办，分给 2–3 个 codex 出图员。做法见 `_handoff/gem/` 里的三份说明。
-4. **重启物品线**：先请作者把 Gemini 窗口摆到前台，再按 skill `gemini-imagegen` 出 §3.2 的 366 张。
-5. **出情景图**：§3.1 最后一项。
+2. **开发监督**：eng3 / des33 在跑就只处理停住的（§5 表）；都停了就按 §6 的方式重启两个 batch_run。交接说明 `_handoff/dev_supervisor_brief_v2.md`。
+3. **人物线**：没做完就重新起一个 Opus subagent（作者 15:50 分工），说明文件见 §3.1。
+4. **物品线与情景图**：先 `tabs_context_mcp(createIfEmpty)` 建 Chrome 标签组并 `navigate` 两个 `gemini.google.com/app`，请作者把窗口摆到前台，再起一个 Opus subagent 按 skill `gemini-imagegen` 出 §3.2 的物品和情景图。
+5. **三视图入库后**：把 `TOOL-rig-sheet` 加进 `_eng3_queue.txt`（ENG-12c-clip 后面），重启 eng3。
 6. **验收**：跑 `build_portraits.py` 和 `build_gallery.py`，发布总览页，请作者验收。
 7. **清理**：已按作者 10-02 的决定处理（AR-34）。旧工作区归档后移除；主检出只记录、不清理；`generated_images/` 留着。
 
@@ -350,6 +354,7 @@
   - CS-O03：书灵保留引导、旁白和见证，不传功；
   - CS-O04：第六层的压制 −1 与天书加算，共同下限 `ceil(S/2)`。
 - **属性**（AR-27）：福缘、魅力不参与沉睡配点，由奇遇、事件和装束改变。
+- **情景图上传立绘**（AR-29 C1）：按「作者已在 Gemini 关闭活动记录」对待，subagent 直接上传主角 / S 级立绘；没关的话请作者先关。
 - **序章**（DES-prologue 报告 §4）：
   - O02：灰盒阶段用 `mockRef`，发布前由 design/18 建档；
   - O04：竹棒是章内道具 `prop_bamboo_staff`；
