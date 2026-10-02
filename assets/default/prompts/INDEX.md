@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 355、已通过（作者） 150、已入库 122。**待出图队列 355 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 354、已通过（作者） 150、已入库 123。**待出图队列 354 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -264,7 +264,6 @@
 | items | `eq_yuanchijinpiqixue_nan` | 元赤金皮骑靴·男 | `assets/default/item/shoes/eq_yuanchijinpiqixue_nan.png` | 待出图 | [eq_yuanchijinpiqixue_nan.md](items/shoes/eq_yuanchijinpiqixue_nan.md) |
 | items | `eq_yuanhongzhanxue_nv` | 元红毡靴·女 | `assets/default/item/shoes/eq_yuanhongzhanxue_nv.png` | 待出图 | [eq_yuanhongzhanxue_nv.md](items/shoes/eq_yuanhongzhanxue_nv.md) |
 | items | `eq_zangdihougechangxue_nan` | 藏地厚革长靴·男 | `assets/default/item/shoes/eq_zangdihougechangxue_nan.png` | 待出图 | [eq_zangdihougechangxue_nan.md](items/shoes/eq_zangdihougechangxue_nan.md) |
-| items | `eq_yuyincha` | 渔隐叉 | `assets/default/item/weapons/eq_yuyincha.png` | 待出图 | [eq_yuyincha.md](items/weapons/eq_yuyincha.md) |
 | items | `eq_zhenwujian` | 真武剑 | `assets/default/item/weapons/eq_zhenwujian.png` | 待出图 | [eq_zhenwujian.md](items/weapons/eq_zhenwujian.md) |
 | items | `eq_zhugutieshan` | 竹骨铁扇 | `assets/default/item/weapons/eq_zhugutieshan.png` | 待出图 | [eq_zhugutieshan.md](items/weapons/eq_zhugutieshan.md) |
 | items | `eq_ziweiruanjian` | 紫薇软剑 | `assets/default/item/weapons/eq_ziweiruanjian.png` | 待出图 | [eq_ziweiruanjian.md](items/weapons/eq_ziweiruanjian.md) |
@@ -547,14 +546,13 @@
 
 （已全部入库。）
 
-### 兵器（118）· 已入库 90、已通过（作者） 24、待出图 4
+### 兵器（118）· 已入库 91、已通过（作者） 24、待出图 3
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
 | 1 | 真武剑 | `eq_zhenwujian` | 天下 | 兵器·剑 | 待出图 | [eq_zhenwujian.md](items/weapons/eq_zhenwujian.md) | template |
-| 2 | 渔隐叉 | `eq_yuyincha` | 地下 | 兵器·奇门叉 | 待出图 | [eq_yuyincha.md](items/weapons/eq_yuyincha.md) | template |
-| 3 | 紫薇软剑 | `eq_ziweiruanjian` | 地上 | 兵器·剑 | 待出图 | [eq_ziweiruanjian.md](items/weapons/eq_ziweiruanjian.md) | template |
-| 4 | 竹骨铁扇 | `eq_zhugutieshan` | 玄下 | 兵器·奇门扇 | 待出图 | [eq_zhugutieshan.md](items/weapons/eq_zhugutieshan.md) | template |
+| 2 | 紫薇软剑 | `eq_ziweiruanjian` | 地上 | 兵器·剑 | 待出图 | [eq_ziweiruanjian.md](items/weapons/eq_ziweiruanjian.md) | template |
+| 3 | 竹骨铁扇 | `eq_zhugutieshan` | 玄下 | 兵器·奇门扇 | 待出图 | [eq_zhugutieshan.md](items/weapons/eq_zhugutieshan.md) | template |
 
 ### 衣物（30）· 待出图 18、已通过（作者） 12
 
