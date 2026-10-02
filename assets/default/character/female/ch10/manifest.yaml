@@ -82,55 +82,6 @@
     png: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_aman__ch10_base/original-90628b588d1fab06b72eb81e5c72b89c9c1642f57376252a67c0369a6db825d6.png
   request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_aman__ch10_base.requests.json
   notes: 实际比较原图和两张候选，选2。阿曼原有成年青年面容、双辫低花帽、砖红对襟外衣米白长裙、折叠无字花巾均保留，手脚和靴子完整，没有武器或受困姿势。2的面手清楚、裙身整体连续，衣袖和裙褶仍有一定浅色绘画纹理，但不表现为实际破洞或分离碎片；两张都沿用了旧图宽袖与较长裙装，背景山水比要求的极淡留白明显。2背景层次稍轻，按本轮宽松标准保留可用candidate，纹理与背景浓度偏差登记待用户审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-- id: por_npc_liwenxiu__ch10_youth_astuo_base
-  file: por_npc_liwenxiu__ch10_youth_astuo_base.png
-  category: character/female
-  style: default
-  subject: 李文秀 npc_liwenxiu ch10_baima
-  prompt: '重新设计李文秀（npc_liwenxiu）的武侠英雄全身立绘，保留《白马啸西风》ch10、清初回疆约1725–1726年（游戏原创定年）、已从华辉受教的成年青年、风雪夜化名阿斯托而尚未公开女儿身的男装阶段。两张参考仅统一水墨画法，不照抄王语嫣，不保留旧图近似仕女换男衣的气质。
-
-    她的英雄气概来自安静的判断与愿意挺身护人：清秀偏长椭圆脸，下颌有柔而清楚的骨线，舒展直眉，深棕清澈杏眼专注望向前方，眼神温和却有明确决心；自然微日晒肤色，不用浓妆。嘴角克制平静，失落藏在眼神深处，不低头哀怨。约7头身，纤细结实而有灵活肩背，颈部自然、肩胸舒展、腰腹有行动力量，绝非肌肉化男性脸。
-
-    灰蓝窄袖行路长衣、沙白汉式交领右衽内衫（穿着者左襟压右襟）、深灰完整长裤、软皮短靴，窄布带收腰，衣身短侧衩露出裤装动作空间。用干净的斜襟线、稳重灰蓝大色块和自然大褶形成精炼剪影，去除无意义密集纹饰。黑发完整收进低矮素毡帽，不露披发、不剃头不加胡须，无首饰。
-
-    身体微侧，一脚稳稳向前半步，目光面对来人，重心随时能护人但不摆攻击架势。左手轻按腰侧双短鞘口旁，让出挂点，右手自然下垂、手指放松而有力量。只带一金一银两柄短匕首尺度直身小剑，均完全入各自独立短鞘；柄、小护格、鞘口同轴，两个短带分别从腰带连到鞘口侧挂环，不能吊在柄尾上；两鞘轮廓各自完整，小面积金银装具点出传承，不出现裸刃或第三长剑。
-
-    统一为现有default风格包的国风武侠水墨设色人物插画：自然骨相、精细面部手部、克制细墨线、淡墨柔和层染、真实衣料垂坠，适度简化密集摄影纤维，低饱和色彩。柔和左上漫射主光，暖浅灰不透明纸底、极淡纸纹与脚下微弱接触阴影，无山水建筑。平视近正面微三分之四、竖幅2:3、单人完整全身；目标2048×3072 PNG，保留头顶、双手、双足、衣摆与所有器物端点且留边，占画高约88–92%仅为美术目标，不出现标尺或数字。脸型、具体衣色与姿势是原创美术扩展，不冒称原著逐字依据。禁止文字题款印章logo、新增水印、额外人物动物、拼图、多肢多指、手物融合、断裂悬空装备、裁头裁脚；保留工具已有溯源。不要摄影剧照、三维渲染、动漫大眼、统一网红脸、塑料磨皮、夸张肌肉、戏剧逆光或发光特效；服饰完整不透明，不性感化。
-
-    不要延续旧图柔弱模特感、漫不经心侧目、过长脖子或单薄肩背；不要王语嫣脸、裙装披帛、散发、假须、剃发辫、现代束胸；不要长剑、第三兵器、刀柄挂腰带、玉镯狼皮地图手帕、白马或天铃鸟。'
-  negative: 不要延续旧图柔弱模特感、漫不经心侧目、过长脖子或单薄肩背；不要王语嫣脸、裙装披帛、散发、假须、剃发辫、现代束胸；不要长剑、第三兵器、刀柄挂腰带、玉镯狼皮地图手帕、白马或天铃鸟。
-  references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 已实际查看的项目女性画风基线，仅取细墨线、柔和层染、温润肤质与柔光，不锁王语嫣面容、体型、气质、发式或宋代衣装。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/hero-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已实际查看的用户自生成水墨风格参考，仅取精细笔墨、衣料层染与淡雅设色；不继承人物身份、年龄脸型、白衣淡青配色、披发首饰或山水背景。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/hero-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T07:49:34.468140+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-fd991def-e15a-4338-acb7-290145d48805.png
-  size: 1024x1536
-  mode: RGB
-  sha256: dac6525d832b38492e7f8d108e3fe826e9a7212af83b8b28a469567df364c4d7
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_heroic_20261001
-  hero_revision: user_heroic_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_liwenxiu__ch10_youth_astuo_base/prompt-5f7703252acc83e9a303188ff692cc2a262b6487a850a533f380b8f5bdb24aa2.md
-    manifest: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_liwenxiu__ch10_youth_astuo_base/manifest-282c58bd741f63991b76aacb49a7b8aede3b65190574b31305fe2a90f7c2f2cf.yaml
-    png: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_liwenxiu__ch10_youth_astuo_base/original-a2dd493a36f392c6e53a965216367e129e89dc4ed3f83e9c65913804bb492ac6.png
-  request_log: .agents/coord/portrait-generation/hero-20261001/por_npc_liwenxiu__ch10_youth_astuo_base.requests.json
-  notes: 实际比较两张候选后选1：成年青年女性清秀长脸、平直眉与集中直视清楚，男装灰蓝行衣、完整长裤短靴，肩背舒展、重心稳定，较旧仕女感更主动。选择1因两柄金银短器更短小，鞘轮廓和收纳关系较2合理，帽沿无2的明显毛边；无第三武器或露刃，人体无明显重大结构错误。实际偏差：双鞘分置腰两侧而非同在左侧，左手只按银鞘；挂件较复杂、连接局部被衣带遮挡，不能宣称两鞘短带全程符合严格规范。帽体偏高，仍露少量耳侧发，外衣成较长开襟，袖端有额外缠布，衣摆风动偏大、日晒肤色不足，背景有淡墨斑。依宽松自查登记实际偏差，原始candidate待用户最终审核。 本轮英雄重绘宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_zhujue__ch10_f_base
   file: por_npc_zhujue__ch10_f_base.png
   category: character/female
@@ -237,5 +188,54 @@
   source_size: 1024x1536
   size: 1024x1536
   sha256: 825f1bc3445fc53175cc18ba771440b29255de081634755806060dd97bf4a668
+  status: candidate
+  notes: 立绘重审重出（AR-30）；白马改唐代（DES-baima-tang 合入）：旧图是清初剃发留辫 / 瓜皮帽 / 清式袍褂，且男女各自同脸；按唐代名录 §2 的发式、服色与标志物重出，脸部按 C 组报告 §1 区分。
+- id: por_npc_liwenxiu__ch10_youth_astuo_base
+  file: por_npc_liwenxiu__ch10_youth_astuo_base.png
+  category: character/female
+  style: default
+  subject: 李文秀（ch10_baima）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：李文秀，《白马啸西风》的女主角，白马李三与上官虹的女儿，自幼流落庭州草原、寄居铁延部的汉人女剑手；已从华辉学成武功、化名「阿斯托」穿男式胡服行走的时期。
+
+    经典形象：要一眼认出是李文秀——高束发、软幞头、月白窄袖胡服配绛红半臂、手挽白马的缰绳；清秀、坚韧、带着失落的温柔，是草原风霜里长大的美丽女子。
+
+    时代：唐代武周长安年间（约 702 年），西州—庭州一带的西域（游戏设定）。服饰按唐代：汉人男子束发、戴软幞头或裹巾，穿圆领窄袖袍（缺胯袍）、半臂，骑行可穿翻领胡服；汉人女子高髻或高束发，穿短襦、半臂、高腰长裙或窄袖胡服；草原牧部（铁延部，突厥—铁勒背景的虚构混合牧部）穿翻领窄袖袍、长裤、软靴，编辫、戴毡帽。
+
+    年龄与体态：约二十岁的成年年轻女子，身形修长纤细、成人比例（约七头身），肩背灵活结实，有常年骑马的挺拔。
+
+    面容：清秀偏长的椭圆脸，下颌柔和而骨线清楚；眉毛舒展平直、眉尾干净（这道眉形是她和母亲唯一相像的地方）；一双深棕色的杏眼清澈温和，眼神里藏着失落，也有安静的决断；鼻梁秀直；嘴唇偏薄、被风吹得微干；两颊有草原日晒的淡红，皮肤有真实的毛孔与细纹；素面不施脂粉。和母亲上官虹不是同一张脸。
+
+    发式：乌黑长发高高束在头顶，外罩一顶黑色软幞头（唐代女子穿男装的样子），两鬓干净，没有珠翠。
+
+    服饰：唐代女子男装骑行打扮——月白色圆领窄袖胡服袍（袍长及小腿，两侧开衩），外罩一件绛红色短半臂，腰束深褐革带，深灰长裤，黑色软皮靴；颈间系一条素黄色线织小巾（巾上没有字）。
+
+    道具与姿态：右手挽着一盘白马的缰绳（缰绳末端垂下，马不在画面里）；左手自然垂在身侧；身体微侧、双脚稳立，目光望向远方。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山（西域雪山与草坡的远影）和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要清代剃发留辫、瓜皮帽、马褂、清式补服或顶戴；不要明代网巾、宋代直脚幞头；不要现代民族礼服、伊斯兰式缠头或面纱、清真寺等后世宗教符号；不要用夸张的五官或肤色来表现族属。不要披帛长裙的仕女装；不要画出白马；不要长剑；不要和上官虹、阿曼同一张脸。汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:40:33-0700
+  source_path: .agents/coord/gemini_originals/por_npc_liwenxiu__ch10_youth_astuo_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 4bf5863c58eb20fd3b61d6f04db79b31f22964bb75fb9bed79ba2783271ec91e
   status: candidate
   notes: 立绘重审重出（AR-30）；白马改唐代（DES-baima-tang 合入）：旧图是清初剃发留辫 / 瓜皮帽 / 清式袍褂，且男女各自同脸；按唐代名录 §2 的发式、服色与标志物重出，脸部按 C 组报告 §1 区分。
