@@ -29931,6 +29931,10 @@
     "apps/game/src/scenes/**",
     "apps/game/src/selectors/**",
     "apps/game/src/pages/**",
+    "packages/platform/src/storage/**",
+    "packages/platform/README.md",
+    "packages/platform/CLAUDE.md",
+    "packages/ui/src/projections.ts",
     "packages/ui/src/ui-bus.ts",
     "packages/core/CLAUDE.md",
     "apps/game/CLAUDE.md"

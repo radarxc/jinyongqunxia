@@ -95,7 +95,9 @@ M1 玩家路径是新游戏 → 序章 → 书眠。后续的战斗补全（ENG-
    - 性能：Node 下单次 `world/tick` dispatch（不含 Worker 往返）记录 P50 / P95，写进 `packages/core/bench/`，由现有 `test:performance` 串行跑，不进普通单测；P95 > 0.5 ms 时在报告里给出原因。
 
 约束：
-- 写集：`packages/core/src/**`、`packages/core/bench/**`、`apps/game/src/*.ts`、`apps/game/src/App.vue`、`apps/game/src/runtime/**`、`apps/game/src/storage/**`、`apps/game/src/scenes/**`、`apps/game/src/selectors/**`、`apps/game/src/pages/**`、`packages/ui/src/ui-bus.ts`、`packages/core/CLAUDE.md`、`apps/game/CLAUDE.md`。
+- 写集：`packages/core/src/**`、`packages/core/bench/**`、`apps/game/src/*.ts`、`apps/game/src/App.vue`、`apps/game/src/runtime/**`、`apps/game/src/storage/**`、`apps/game/src/scenes/**`、`apps/game/src/selectors/**`、`apps/game/src/pages/**`、`packages/platform/src/storage/**`（只为在 ENG-13 的迁移链登记迁移）、`packages/platform/README.md`、`packages/platform/CLAUDE.md`、`packages/ui/src/projections.ts`、`packages/ui/src/ui-bus.ts`（这两个只改类型）、`packages/core/CLAUDE.md`、`apps/game/CLAUDE.md`。写集外的改动在提交时会被丢弃，所以不要改写集外的文件。
+- 迁移函数本身是纯 JSON → JSON（tech/05 §14.2 的 `StateMigration`），按 GameState 结构写在 core；platform 那边只做登记与调用。
+- `loop.ts` 只驱动世界 tick，不接管渲染循环；`render-host.ts` 不改。
 - **不改**：`packages/core/src/battle/**`（ENG-14 / ENG-16 的范围）、`apps/game/src/battle/**`、`apps/game/build/**`、`packages/data/**`（ENG-18 在改）、`packages/render/**`。确实需要改这些才能完成的，在报告里写明需要什么，不要改。
 - `App.vue` 改动 ≤ 30 行。
 - 分层：规则只进 core；app 只装配、计时、转发；core 禁浮点、禁 DOM、禁墙钟。
