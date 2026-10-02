@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 267、已入库 210、已通过（作者） 150。**待出图队列 267 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 266、已入库 211、已通过（作者） 150。**待出图队列 266 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -179,7 +179,6 @@
 | items | `eq_songmabuxie_nan` | 宋麻布鞋·男 | `assets/default/item/shoes/eq_songmabuxie_nan.png` | 待出图 | [eq_songmabuxie_nan.md](items/shoes/eq_songmabuxie_nan.md) |
 | items | `eq_xixiayuanlvgongxie_nv` | 西夏缘履弓鞋·女 | `assets/default/item/shoes/eq_xixiayuanlvgongxie_nv.png` | 待出图 | [eq_xixiayuanlvgongxie_nv.md](items/shoes/eq_xixiayuanlvgongxie_nv.md) |
 | items | `eq_yuanhongzhanxue_nv` | 元红毡靴·女 | `assets/default/item/shoes/eq_yuanhongzhanxue_nv.png` | 待出图 | [eq_yuanhongzhanxue_nv.md](items/shoes/eq_yuanhongzhanxue_nv.md) |
-| items | `eq_zangdihougechangxue_nan` | 藏地厚革长靴·男 | `assets/default/item/shoes/eq_zangdihougechangxue_nan.png` | 待出图 | [eq_zangdihougechangxue_nan.md](items/shoes/eq_zangdihougechangxue_nan.md) |
 | maps | `map_jianghu_world__ink_base` | 江湖万里图 · 水墨衬纸（全国底图） | `assets/default/map/jianghu_world/ink_base.png` | 待出图 | [jianghu_world_ink_base.md](maps/jianghu_world_ink_base.md) |
 | maps | `map_region_bashu__base` | 巴蜀区域局部图 | `assets/default/map/regions/rg_bashu.png` | 待出图 | [rg_bashu.md](maps/region/rg_bashu.md) |
 | maps | `map_region_dali_cangshan__base` | 大理苍山区域局部图 | `assets/default/map/regions/rg_dali_cangshan.png` | 待出图 | [rg_dali_cangshan.md](maps/region/rg_dali_cangshan.md) |
@@ -482,14 +481,13 @@
 | 1 | 清玄狐羽缎斗篷·男 | `eq_qingxuanhuyuduandoupeng_nan` | 地上 | 披风·斗篷 | 待出图 | [eq_qingxuanhuyuduandoupeng_nan.md](items/accessories/eq_qingxuanhuyuduandoupeng_nan.md) | template |
 | 2 | 明玉蝶步摇·女 | `eq_mingyudiebuyao_nv` | 玄中 | 头饰·簪钗 | 待出图 | [eq_mingyudiebuyao_nv.md](items/accessories/eq_mingyudiebuyao_nv.md) | template |
 
-### 鞋（26）· 已入库 14、已通过（作者） 8、待出图 4
+### 鞋（26）· 已入库 15、已通过（作者） 8、待出图 3
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
 | 1 | 元红毡靴·女 | `eq_yuanhongzhanxue_nv` | 玄中 | 鞋·毡靴 | 待出图 | [eq_yuanhongzhanxue_nv.md](items/shoes/eq_yuanhongzhanxue_nv.md) | template |
-| 2 | 藏地厚革长靴·男 | `eq_zangdihougechangxue_nan` | 玄中 | 鞋·藏靴 | 待出图 | [eq_zangdihougechangxue_nan.md](items/shoes/eq_zangdihougechangxue_nan.md) | template |
-| 3 | 宋麻布鞋·男 | `eq_songmabuxie_nan` | 黄下 | 鞋·麻鞋 | 待出图 | [eq_songmabuxie_nan.md](items/shoes/eq_songmabuxie_nan.md) | template |
-| 4 | 西夏缘履弓鞋·女 | `eq_xixiayuanlvgongxie_nv` | 黄上 | 鞋·弓鞋 | 待出图 | [eq_xixiayuanlvgongxie_nv.md](items/shoes/eq_xixiayuanlvgongxie_nv.md) | template |
+| 2 | 宋麻布鞋·男 | `eq_songmabuxie_nan` | 黄下 | 鞋·麻鞋 | 待出图 | [eq_songmabuxie_nan.md](items/shoes/eq_songmabuxie_nan.md) | template |
+| 3 | 西夏缘履弓鞋·女 | `eq_xixiayuanlvgongxie_nv` | 黄上 | 鞋·弓鞋 | 待出图 | [eq_xixiayuanlvgongxie_nv.md](items/shoes/eq_xixiayuanlvgongxie_nv.md) | template |
 
 ### 腰带（26）· 已入库 18、已通过（作者） 8
 
