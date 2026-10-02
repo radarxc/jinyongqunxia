@@ -1,77 +1,3 @@
-- id: por_npc_munianci__ch02_youth_base
-  file: por_npc_munianci__ch02_youth_base.png
-  category: character/female
-  style: default
-  subject: 穆念慈 npc_munianci ch02_shediao
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL. Camera level, chin neutral, head centered over the torso. NO head tilt and NO Dutch angle. Preserve natural facial asymmetry without tilting the head. These rules override every reference pose. Eye focus must follow the stated character condition and never override an explicit visual disability.
-
-
-    Create a REALISTIC Chinese wuxia full-body illustration of 穆念慈. Image 1 is the ONLY facial identity source: 杨盼盼 as this exact role in 1983 TVB 射雕英雄传 starring 翁美玲 and 黄日华. Image 2 supplies ONLY the ink background and ZERO face or anatomy.
-
-
-    身份阶段：穆念慈（npc_munianci），《射雕英雄传》ch02_shediao，南宋、金与蒙古并行。杨铁心义女，中都比武招亲时具有独立意志的青年女侠；不是后来抱婴母亲阶段。约十八至二十岁观感的年轻成年女性，这是项目视觉选段，生卒确岁待考；肩臂灵巧结实，双足稳，清秀而有勇气与自尊。
-
-
-    本人脸部辨识：保留杨盼盼饰穆念慈的本人面容关系：柔和椭圆脸、面颊饱满但下颌自然收窄，圆中略尖而不削锐的下巴；眉尾略挑，双眼自然杏形、眼间距适中，顺直鼻梁、圆小鼻尖，唇峰清楚、自然丰度的下唇。双眼看向正前，不复制剧照歪头、浓眼妆和玫红口红，不改成王语嫣脸或统一锥子脸；温润自然肤质和闭口自持神情。
-
-
-    服饰发式：哑光暗朱红右衽窄袖衫、绛红齐腰长裙，裙内完整长裤、红褐平底布鞋，窄布带收腰。内衬遮蔽胸颈，穿着者左襟压右襟。长发收为利落小髻、深红布带固定，仅少量自然额发；不复制参考的蓝白衣、高花髻、珠饰和浓妆。整衣轮廓连续干净，窄袖适合拳脚，不是舞衣或婚礼嫁衣。
-
-
-    姿态器物：正面平视全身站立，头颈自然竖直、双眼水平、下巴中性，背脊挺拔，重心稳而不僵硬。双手空着，左手低位轻收于身前，右手自然垂落，两只手掌从袖口清楚露出，表现拳脚根基而不作攻击或法印。双足落地，没有剑、绣球、红盖头、婴孩或伴侣，坚韧来自独立目光。
-
-
-    人物画法：美观、精细、完整的写实国风人物插画；自然年龄和骨相，可信肤质、连贯体积与柔和左上漫射光。皮肤、头发、手足、衣料轮廓清楚且实体完整；衣服剪裁连续、衣襟缝线清楚，仅少量宽缓受力褶皱，不以破洞、飞白、碎墨、密集褶皱或纸屑表现真实。低饱和设色配自然肤色，不做照片、电视剧截图、拼贴或三维塑料。原始剧照只保留这个人的可辨面容关系，年龄、视力、发式、服装及器物遵本项目阶段。
-
-
-    参考边界：第一且唯一面容身份：杨盼盼饰1983 TVB翁美玲版穆念慈，来源角色版次、原图及独立审计已核。只取本人五官骨相，不沿用参考姿势、年龄阶段、衣发器物和背景；本项目阶段优先。 第二参考只提供暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白。已实际view；完全忽略王语嫣本人面容、年龄、性别、身体、倾头、发髻、白青衣裙、飘带和饰物。水墨和纸纹仅在人物之外，不能侵蚀皮肤、衣料、头发或器物。
-
-
-    背景与交付：背景只取第二图的极淡水墨远山和留白，不出现明确宫殿、家具、具体剧情陈设、清晰建筑、符号或可读字画；脚下少量接触阴影。单人单视图、水平平视、原生竖幅2:3、完整全身；头顶、双手、双足、衣摆及实际器物端点均入画，四周自然留净空，不用固定占高或头身数字。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并准确登记，保存原始PNG字节，禁止插值、裁切或重编码。先生成1张候选，基本清晰、主要正面、人物可辨即保存；仅严重身份错误、重大结构错误或不可读才追加，细指、轻微衣装和微角偏差如实记录而不反复重做。全部仍candidate待用户审核，不自动approved。
-
-
-    事实边界：原著指定版本的红衣色度、面貌、发式鞋履及确切年龄未逐字终校；十八至二十观感、暗朱红衫裙、小髻布带和空手静态是现稿项目选择。本人五官依据1983杨盼盼角色剧照覆盖旧原创脸型，不把照片妆发、衣色或身份视为原著证据，不编小说引文和页码。 用户授权本人影视面容覆盖旧禁演员条款；最新单候选、正面头直和背景水墨覆盖旧两张、固定占高及笼统禁山水。
-
-
-    完整排除项：不要抱婴母亲阶段、幼童、依偎杨康、婚礼场景、凤冠霞帔、绣球、红盖头、舞女衣裙、露肩露腰、高开衩、透明衣料；不要长剑或其他无依据专属神兵。不要照抄蓝白剧服、花冠、倾头浓妆；不要明代网巾、清式剃发独辫、马蹄袖、旗装、唐代齐胸裙。 不要 head tilt、Dutch angle、明显歪头、斜镜头、头向肩倾、偏转侧脸、转身回眸、低头藏眼、仰头或夸张抬下巴；不要共用基线脸、统一美人或硬汉模板、动漫大眼、浓妆、塑料磨皮、照片和截图构图。不要多个人、多人拼图、多视图、裁断头足、缺肢、多肢、严重畸形、手物融合；不要碎布、破洞、飞白缺块、纸纹透肤透衣、墨迹侵蚀脸部、碎片化衣料、密集噪点、无依据污损或风化。不要现代服饰、拉链、腕表、手机、运动鞋、晚清官帽大饰、民国服装、日式服制、欧式奇幻装备、水平镜像或错误衣襟；不要血腥、透明衣物、裸露、恶搞丑化、发光掌法、龙蛇能量、法阵和粒子。不要具体剧情场景、清晰建筑家具、可读文字、伪字、题款、签名、印章、logo、字幕或装饰水印。保留工具本身溯源标识和元数据。
-
-
-    FINAL POSE CHECK: 穆念慈 FRONT-FACING, head and neck naturally UPRIGHT, facial centreline VERTICAL, eyes HORIZONTALLY LEVEL, camera level, chin neutral. No head tilt, Dutch angle or copied reference pose.'
-  negative: 不要抱婴母亲阶段、幼童、依偎杨康、婚礼场景、凤冠霞帔、绣球、红盖头、舞女衣裙、露肩露腰、高开衩、透明衣料；不要长剑或其他无依据专属神兵。不要照抄蓝白剧服、花冠、倾头浓妆；不要明代网巾、清式剃发独辫、马蹄袖、旗装、唐代齐胸裙。 不要 head tilt、Dutch angle、明显歪头、斜镜头、头向肩倾、偏转侧脸、转身回眸、低头藏眼、仰头或夸张抬下巴；不要共用基线脸、统一美人或硬汉模板、动漫大眼、浓妆、塑料磨皮、照片和截图构图。不要多个人、多人拼图、多视图、裁断头足、缺肢、多肢、严重畸形、手物融合；不要碎布、破洞、飞白缺块、纸纹透肤透衣、墨迹侵蚀脸部、碎片化衣料、密集噪点、无依据污损或风化。不要现代服饰、拉链、腕表、手机、运动鞋、晚清官帽大饰、民国服装、日式服制、欧式奇幻装备、水平镜像或错误衣襟；不要血腥、透明衣物、裸露、恶搞丑化、发光掌法、龙蛇能量、法阵和粒子。不要具体剧情场景、清晰建筑家具、可读文字、伪字、题款、签名、印章、logo、字幕或装饰水印。保留工具本身溯源标识和元数据。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/shediao/munianci_1983_yangpanpan_hk01_20240720.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/shediao/munianci_1983_yangpanpan_hk01_20240720.jpg
-    use: 第一且唯一面容身份：杨盼盼饰1983 TVB翁美玲版穆念慈，来源角色版次、原图及独立审计已核。只取本人五官骨相，不沿用参考姿势、年龄阶段、衣发器物和背景；本项目阶段优先。
-    sha256: 03953590387da8f6a79b1e5dcca11be0579ea06d2abb3520c35908a8c7b16f8f
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/03953590387da8f6a79b1e5dcca11be0579ea06d2abb3520c35908a8c7b16f8f.jpg
-    status_at_input: null
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二参考只提供暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白。已实际view；完全忽略王语嫣本人面容、年龄、性别、身体、倾头、发髻、白青衣裙、飘带和饰物。水墨和纸纹仅在人物之外，不能侵蚀皮肤、衣料、头发或器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T02:44:34.123545+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-1a73bfe0-f05e-4f7b-838b-e8995240f549.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 8bd586bcdea1fdf60d7d17c54eb3c4b8a339d6f2ea2d695faae1a7f4a1989a89
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_munianci__ch02_youth_base/prompt-75e4bcfacdc8eda3244adfe954c8aeecbf77279e3136e87f43e577c1bb140b20.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_munianci__ch02_youth_base/manifest-e98c347b6dfbd20ce237f0fe053f7d60d7dd6d89498f638135d38cbb52b201e0.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_munianci__ch02_youth_base.requests.json
-  notes: '实际对照1983杨盼盼穆念慈本人图与候选1：柔椭圆脸、杏眼眉鼻唇比例基本可辨，年轻成年、暗朱红右衽衣裙完整长裤红褐平底鞋，红带束髻，左手低收右手垂落均空手，无剑绣球婴孩或婚礼装。主要正面头颈基本端正、全身双手双足完整，无重大结构问题，按快速宽松自查可用。面部仍保留浓眼线与红唇、体型与肤质较理想化，发髻偏高袖口略宽，裙边轻薄感及背景小亭花枝偏多；据实记录妆发材质差异，不机械追加。原生1024×1536 RGB不透明PNG原始字节保存，candidate待审核非approved。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_hanxiaoying__ch02_prime_base
   file: por_npc_hanxiaoying__ch02_prime_base.png
   category: character/female
@@ -699,5 +625,48 @@
   source_size: 1024x1536
   size: 1024x1536
   sha256: 229cfa4802b6ddb1722a6590149cb479edfd11022a9f6695bc38ffd0b4526d84
+  status: candidate
+  notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做
+- id: por_npc_munianci__ch02_youth_base
+  file: por_npc_munianci__ch02_youth_base.png
+  category: character/female
+  style: default
+  subject: 穆念慈（ch02_shediao）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】穆念慈，《射雕英雄传》杨铁心的义女，随义父在中都街头比武招亲的阶段；坚毅、正直，有自己的主见。
+
+    【年龄与体态】原著十七八岁，按本作规定画成约二十岁的成年年轻女子，身材修长匀称，有习武的轻捷。成年女性的五官骨相与身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【面容】原著概括（待考）：玉立亭亭，虽脸有风尘之色，但明眸皓齿、容颜娟好。具体为：清秀的鹅蛋脸、下颌线利落；眉毛清秀而平；一双明亮清澈的眼睛，眼神坚毅；鼻梁秀直；唇形端正；肌肤白净，带一点旅途风尘。娟秀美丽、英气内敛。
+
+    【发式】乌发挽成简洁的发髻，用暗红布带束住，额前少量碎发。
+
+    【服饰】暗红色交领右衽窄袖短袄（配色为原创扩展），灰青长裙（裙内有长裤），布腰带，布鞋；朴素而整洁，是江湖卖艺人家的打扮。
+
+    【道具】空手，双手自然垂下。
+
+    【姿态与神情】挺拔站立，神情坚毅、略带忧思。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要像任何真实演员或明星；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要娃娃脸、少女或儿童身材；不要浓妆、珠翠；不要抱婴儿（那是后来的阶段）。
+
+    【画风基线】随提示词上传的两张参考图是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）
+  tool: codex exec · image_gen（同性别两张基线立绘作画风参考，无身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:59:21-0700
+  source_path: .agents/coord/gemini_originals/por_npc_munianci__ch02_youth_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: dba6149b7e9d0f42fe74547d4cfda2cf0a99c6f9d490f0c62664e7a55d05a28b
   status: candidate
   notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做
