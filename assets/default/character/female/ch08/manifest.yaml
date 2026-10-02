@@ -293,84 +293,6 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_suquan__ch08_youth_base.requests.json
   notes: 根实际view两张原生PNG和冯晓文1998苏荃参考，选candidate 2：本人较舒展长椭圆脸、颧颊体积、眉弧与鼻翼、自然饱满下唇和克制微笑可辨，明显不同于双儿和阿珂的少女/青年脸，符合神龙岛尚未倒戈的成年苏荃。两张均近正面、头颈基本端正、眼线近水平；2的衣襟更规整、绿色小香囊和双手轻搭腕关系更清楚，1的裙摆和刺绣更繁密，因此未选1。深紫长袄配墨绿长裙，空手无武器毒蛇，身体与衣料连续完整，无碎墨侵蚀或重大手部结构错误。2有自然微小头部不对称而非明显歪肩，按放宽微几何记录；耳坠与绣边比极简稿多、香囊有小绣纹，非原著确认装饰。前鞋完整可见、后鞋部分被裙遮挡，后鞋完整细节未验证，不伪称全部无遮挡。实际1024x1536 RGB不透明PNG，原始字节保存；默认2候选选1，无机械追加，仍candidate待用户审核，非2048x3072 RGBA母版或approved。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-- id: por_npc_jianning__ch08_child_palace_base
-  file: por_npc_jianning__ch08_child_palace_base.png
-  category: character/female
-  style: default
-  subject: 建宁公主 npc_jianning ch08_luding · 1669年宫廷日常的童年公主静态身份展示，仅用于早段儿童方案
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.
-
-
-    Create a REALISTIC Chinese wuxia illustration of PRINCESS JIANNING / 建宁公主. Image 1 is the ONLY FACIAL IDENTITY source: 刘玉翠 as 建宁公主 in the 1998 TVB The Duke of Mount Deer starring Jordan Chan. Image 2 is ONLY a colour palette and supplies ZERO facial or anatomical information. Image 3 is ONLY the pale ink-wash background. Preserve this person’s distinct jaw, brows, eye spacing, nose and lips instead of a shared beauty template. 第一图只取前景偏左戴黑帽的女性刘玉翠饰建宁的五官关系；后方男性陈小春完全排除。参考是成人表演者，新人物严格画成约7岁儿童；这不是复原演员真实童年。
-
-
-    身份与阶段：建宁公主（npc_jianning），《鹿鼎记》ch08_luding，清初康熙时代。1669年宫廷日常的童年公主静态身份展示，仅用于早段儿童方案；约7岁、尚未发育的儿童，不是成年演员身体的缩小版。必须一眼可读为约7岁儿童：尚未发育的小身架、窄肩、小手小脚，颈长腿长自然适龄，胸腰完全按儿童结构，宽松童装不束腰塑形。不是成人面孔贴到小身体，不是少女、婚龄公主或成人等比例缩小。
-
-
-    本人面容辨识锚点：从刘玉翠建宁保留可辨的短圆椭圆轮廓、较短下颌、小巧鼻唇及细长眉眼的相对关系，再作自然儿童年龄适配。约7岁有较高额头、饱满儿童面颊、柔短下巴和小鼻梁，眉毛自然细软，眼睛是正常儿童大小、不是大圆卡通眼；嘴小，上唇线清楚、下唇自然圆润。好胜神态来自眉部轻微有力的上扬和专注直视，不靠成人眼线、红唇或抬下巴。保留此角色小嘴、短下颌与细长眉眼关系，不做通用洋娃娃脸，不与沐剑屏的青春期少女面容共模。图中脸部尺寸有限，不臆造痣、纹身或毛孔；不复制成人颧骨棱角、浓妆和皱纹。
-
-
-    服制与发式：清初满洲宫廷女童的完整宽松旗装长袍，暗珊瑚红主体、米白窄滚边，衣襟向穿着者右侧掩合，领口严整遮蔽胸颈，袖口适度收束，两手清楚。衣袍适合儿童走动、不拖婚服尾摆；平底软鞋两只入画。黑发分梳小而贴服的双髻，用窄绸带系住，额头眼睛清楚。不要成年两把头、大拉翅、凤冠珠翠；不要照搬参考的黑帽、成年太监或男装袍。
-
-
-    姿态与器物：端正正面站立，两脚自然靠近且着地，头颈垂直、双眼水平，镜头平视孩子面部，下巴中性不抬。双手完全空着：右手在身侧自然轻握，左手放松垂于另一侧，小手指结构清楚，袖口不吞手。表情略倔强而克制，像宫中不服输的受宠女童；不挥拳、不施暴，不摆亲密或婚嫁动作。只有她一个孩子，没有成人陪衬。
-
-
-    人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。
-
-
-    参考边界：第二参考严格仅作女性项目色卡：低饱和色彩、暖肤色与浅灰白底的协调关系。已实际view。不得提取王语嫣的脸型、眉眼鼻唇、发际、年龄、体型、身体比例、头倾、站姿、手势、宋代衣装或其他身份特征；人物写实完整要求来自文字，不能靠借用基线脸和人体来实现画风一致。原manifest实际approved状态不变，不转移给本角色。 第三参考仅背景：暖浅灰纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略王语嫣面容、年龄、体型、发髻、倾头转身、白青衣装和饰物；墨迹纸纹不得侵入建宁公主的皮肤、衣料和器物。
-
-
-    背景与交付：第三图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认两张独立候选由执行者比较；所有输出仍为candidate，待用户最终审核，不自动approved。
-
-
-    事实边界：1662出生推算与小说初见年龄、云南送婚时序存在未解冲突；遵从mainrole child，不声称原著初见确为7岁，不修改上游生年。 成人剧照只能支持个人五官关系，不提供真实童年证据；儿童外观是适龄艺术转译。 原图436×307且脸部较小，无法精密复原细微皮肤结构。 保留暗珊瑚米白边宽松女童旗装、双小髻、平底鞋、空手日常。 取消原稿小下巴轻抬，改中性下巴、头直眼水平。 用户指定本人剧版身份覆盖旧稿禁演员脸，但照片年龄、衣装和场景不是小说事实。
-
-
-    完整排除项：不要成人脸、成人身体、青春期身材、成熟胸腰臀、细腰长腿模特、成人眼线浓妆红唇、艳丽首饰、婚服、成年旗头或大拉翅。不要鞭、枪、火铳、婚书、酒杯、婚车、吴应熊、韦小宝及任何亲密施暴场面。不要缩小成人刘玉翠身体，不臆造演员真实童年照片；不要借后方男人五官、黑帽或太监服。不要把约7岁儿童投放云南送婚阶段。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
-
-
-    FINAL POSE CHECK: FRONT-FACING PRINCESS JIANNING / 建宁公主. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. Never inherit photo head lean, sideways gaze, tilted shoulders, turned torso, another person or cropped composition. Preserve only this role’s distinct facial relationships, naturally translated to the stated age; keep the entire age-appropriate body visible.'
-  negative: 不要成人脸、成人身体、青春期身材、成熟胸腰臀、细腰长腿模特、成人眼线浓妆红唇、艳丽首饰、婚服、成年旗头或大拉翅。不要鞭、枪、火铳、婚书、酒杯、婚车、吴应熊、韦小宝及任何亲密施暴场面。不要缩小成人刘玉翠身体，不臆造演员真实童年照片；不要借后方男人五官、黑帽或太监服。不要把约7岁儿童投放云南送婚阶段。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/jianning_1998_liuyucui.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/luding/jianning_1998_liuyucui.png
-    use: 第一且唯一面部身份：1998 TVB陈小春版《鹿鼎记》刘玉翠饰建宁公主，已实际view、核实来源DOM和SHA。第一图只取前景偏左戴黑帽的女性刘玉翠饰建宁的五官关系；后方男性陈小春完全排除。参考是成人表演者，新人物严格画成约7岁儿童；这不是复原演员真实童年。 适龄转译到约7岁、尚未发育的儿童，不是成年演员身体的缩小版。从刘玉翠建宁保留可辨的短圆椭圆轮廓、较短下颌、小巧鼻唇及细长眉眼的相对关系，再作自然儿童年龄适配。约7岁有较高额头、饱满儿童面颊、柔短下巴和小鼻梁，眉毛自然细软，眼睛是正常儿童大小、不是大圆卡通眼；嘴小，上唇线清楚、下唇自然圆润。好胜神态来自眉部轻微有力的上扬和专注直视，不靠成人眼线、红唇或抬下巴。保留此角色小嘴、短下颌与细长眉眼关系，不做通用洋娃娃脸，不与沐剑屏的青春期少女面容共模。图中脸部尺寸有限，不臆造痣、纹身或毛孔；不复制成人颧骨棱角、浓妆和皱纹。 任何照片头倾、视线、他人、服装、场景和台标都不继承；必须正面头直、双眼水平。
-    sha256: 526387eb5b88d6c63e882eeef26b3021560ec59f36ce2cdfb2b180b94517126f
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/526387eb5b88d6c63e882eeef26b3021560ec59f36ce2cdfb2b180b94517126f.png
-    status_at_input: null
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 第二参考严格仅作女性项目色卡：低饱和色彩、暖肤色与浅灰白底的协调关系。已实际view。不得提取王语嫣的脸型、眉眼鼻唇、发际、年龄、体型、身体比例、头倾、站姿、手势、宋代衣装或其他身份特征；人物写实完整要求来自文字，不能靠借用基线脸和人体来实现画风一致。原manifest实际approved状态不变，不转移给本角色。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三参考仅背景：暖浅灰纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略王语嫣面容、年龄、体型、发髻、倾头转身、白青衣装和饰物；墨迹纸纹不得侵入建宁公主的皮肤、衣料和器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T19:34:01.344670+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-e2121367-20a0-45f8-96ac-7602cbb8bfd6.png
-  size: 1024x1536
-  mode: RGB
-  sha256: adfafac8657776204d93c1565c8302c3c322a7a197b9bc5e14f50219c959b13d
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_jianning__ch08_child_palace_base/prompt-1165eed865feefe972e085af66e5ab9a1b9f32cc4fb3bf2aee852dac68b3ee33.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_jianning__ch08_child_palace_base/manifest-839abe88a64dc6fc0075714a24bea1e59df30205df77db001304d1c8c9789cda.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_jianning__ch08_child_palace_base.requests.json
-  notes: 实际查看两张原始PNG及第一身份参考后选2。两张均为明确儿童而非成年体态；候选2额头、短下颌、细长眉眼与小嘴关系清楚，双髻、宽松暗珊瑚旗装、空手和平底双鞋完整，头颈基本端正、眼线水平，人物实体连续，无明显多肢或重大手部结构问题。候选1亦可读但面部表情更用力、袍身纹饰更密；2整体更自然规整，故选2。按项目child阶段作约7岁适龄艺术转译，不声称成人演员真实童年或原著初见确为7岁；上游年代冲突继续保留。偏差如实登记：两张均添加额外花形发饰、衣面花纹与低对比亭台花枝，米白滚边较宽、双手均自然轻屈而非严格一握一松；不以这些轻微造型偏差阻塞本轮宽松自查。真实原生1024×1536 RGB不透明PNG按原始字节保存，不等于旧2048×3072 RGBA母版或全部旧严格项通过，状态candidate待用户审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_fangyi__ch08_youth_base
   file: por_npc_fangyi__ch08_youth_base.png
   category: character/female
@@ -722,3 +644,48 @@
   sha256: 1987f2956f8d91b1654f49535ef35a0b0d0eb62c541d4fa3250ac8300bd16bc6
   status: candidate
   notes: 立绘重审重出（AR-30）；现图是平淡的中年妇人，看不出“天下第一美人”的余韵，也与碧血剑陈圆圆、女儿阿珂都不像；按与阿珂相同的五官文字画中年版。
+- id: por_npc_jianning__ch08_child_palace_base
+  file: por_npc_jianning__ch08_child_palace_base.png
+  category: character/female
+  style: default
+  subject: 建宁公主（ch08_luding）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】建宁公主，《鹿鼎记》中康熙皇帝的妹妹，在宫中与韦小宝相识的时期；被宠坏的金枝玉叶，泼辣、任性、天不怕地不怕。
+
+    【年龄与体态】外观约二十岁的成年满族贵族女子（绝不是孩子或少女），身材高挑匀称、动作张扬。成年女性的五官骨相与身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【经典造型】借鉴经典武侠影视里这个角色深入人心的造型，只取发型、装束、配色、标志道具、气质和脸型类型，用原创面孔画出来，不像任何真实演员：娇俏泼辣的满族公主——梳着缀满绒花的旗头，一身鲜艳的旗装，手里甩着一根小马鞭，下巴一扬就是一副刁蛮任性、跃跃欲试的神气。
+
+    【面容】明艳的鹅蛋脸，颧部饱满；眉毛浓而上挑、眉尾飞扬；眼睛明亮有神，眼神骄纵任性，带着刁蛮和跃跃欲试的野性；鼻梁挺直；嘴唇丰润，嘴角翘起一抹骄横的笑；肌肤白皙，颊上有自然的红晕。明艳动人的成年美人。
+
+    【发式】清初满族贵族女子的发式——头发在脑后梳成扁平的横髻（小两把头），横插一支长扁方，点缀几朵绒花和少量珠翠，两鬓光洁；不是晚清高大的「大拉翅」。
+
+    【服饰】清初满族公主的常服——玫红色圆领大襟长袍（右衽，袍身宽直及踝，马蹄袖口和衣襟有宽滚边与绣花），外罩一件石青色绣花坎肩；平底绣花鞋。
+
+    【道具与姿态】右手握一根小巧的皮制马鞭，左手叉腰，下巴微扬，神态骄纵。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要像任何真实演员或明星；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。绝对不要孩子或少女的脸和身材，不要双丫髻；不要民国式高领开衩旗袍；不要大拉翅；不要性感化。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考）
+  model: gpt-6-astra
+  created: 2026-10-02T02:40:31-0700
+  source_path: .agents/coord/gemini_originals/por_npc_jianning__ch08_child_palace_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 11277693b85e9e640b708dbbc561bcc794c4234993824a3cd08c6a4c39dac200
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图是约七岁的女童，还穿民国式高领旗袍，作者点名“太小了”；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）。改为约二十岁、骄纵泼辣的满族公主（ID 中 child 键暂不改名）。；codex 出图（1 号出图员，AR-31）；AR-31：按经典影视造型以文字改写（原创面孔，不写演员名、不传剧照）
