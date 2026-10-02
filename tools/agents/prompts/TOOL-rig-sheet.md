@@ -4,7 +4,7 @@
 
 先读：`tools/agents/reports/RESEARCH-anim-motion-library.md` §3.2（局限与对策）、§5.1–§5.5、§5.6 最小原型（P2–P5、P7 与判定 Q1–Q6、Q9）、§8.1、§8.3（Apple Vision 关键点探测，`-sdk MacOSX15.5.sdk`）；`docs/tech/09-character-rig.md` §1（部件、枢轴、三视图、z 序、`restAngle` 前臂 −90°）、§6（目录、manifest、sheet 契约，DES-rig-v1.1）、§7.2；`assets/default/prompts/rig/GUIDE.md`；`tools/rig/make_parts.py`、`preview.py`、`templates.py`、`gait.py`、`make_placeholder_parts.py`、`tools/rig/clips/clip_metrics.py`（投影参考实现）；原型脚本 `tools/agents/reports/RESEARCH-anim-proto/`。
 
-输入：`assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png`、`sheet_R.png`（ART-rig-sheet-zhujue-m 已入库；主角·男 `npc_zhujue`，立绘 `assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png`，短褐、绑腿、发髻、宽裤）；片段 `assets/default/rig/clips/clip_walk.json`、`clip_sword_attack.json`（CC0）。
+输入：`assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png`、`sheet_R.png`（已入库 a78e14f3；主角·男 `npc_zhujue`，短褐、绑腿、发髻、宽裤）。立绘 PNG 在本工作区的稀疏检出里被排除，Q1 识别锚比对时用集成分支里的只读绝对路径 `/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png`（不要复制进工作区）；片段 `assets/default/rig/clips/clip_walk.json`、`clip_sword_attack.json`（CC0）。
 
 ## 要做的事
 1. **`tools/rig/sheet_split.py`**：拆三视图（三栏连通域）、去平涂底（色键 `#E6E1D8` 容差 + 边缘羽化；可选用 `tools/portrait` 的 BiRefNet，本机已装则用）、按头顶到脚底归一到 256 px/m（男 1.70 m）、脚底对齐、按肩宽 / 身高之比判断视图；输出 `work/<view>.png` 与 `sheet.json`（含腋下空隙检查，不合格报出）。`sheet_R.png` 同样处理，产出镜像修正视图。
