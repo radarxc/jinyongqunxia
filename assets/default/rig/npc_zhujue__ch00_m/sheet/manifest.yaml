@@ -1,0 +1,88 @@
+- id: npc_zhujue__ch00_m__sheet_L
+  file: sheet_L.png
+  category: rig/sheet
+  style: default
+  subject: 主角·男（npc_zhujue，ch00 越女剑）A 字三视图设定图 · 面向画面左（front34 | side | back34）
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. Image 1 is the approved base portrait of this character (the male protagonist, a Chinese man of about 28); use it ONLY for identity (face, age, body type), hairstyle and the exact costume (colors, layers, trims, belt knot position, leg wraps, shoes).
+
+    IDENTITY ANCHORS, copied exactly from image 1 and identical in every view: (a) black hair gathered in a high top-knot bound with a dark brown cloth strip, a short faded vermilion-red cord tied at the base of the knot, a few loose strands at the temples; (b) knee-length short tunic of muted sage / bamboo-green coarse hemp with side slits, Han crossed collar right-lapped, a cream-white inner collar showing at the neck, elbow-length outer sleeves with the cream inner sleeves rolled up just below them; (c) a wide dark umber-brown cloth sash wrapped around the waist and tied in a knot at the front, slightly toward the character''s own LEFT side, its two long ends hanging down over the character''s left thigh to about knee level; (d) loose, wide pale oatmeal-beige linen trousers bloused over the shins; (e) dark olive-grey cloth leg wraps from below the knee to the ankle, a little cream sock at the ankles, plain dark charcoal cloth shoes with pale soles. Lean, athletic adult build, about 7.5
+    heads tall, light stubble.
+
+    TASK: a clean CHARACTER TURNAROUND MODEL SHEET of this same person for a 2D cut-out puppet rig. Exactly THREE full-body figures side by side, left to right:
+
+    (1) FRONT THREE-QUARTER: body turned 45° toward the viewer''s LEFT, face and chest visible; the character''s LEFT shoulder, arm and leg are nearer to the viewer (they appear on the right side of this figure).
+
+    (2) LEFT-FACING SIDE PROFILE: the character faces the left edge of the image in a true 90° profile; the character''s LEFT side is toward the viewer.
+
+    (3) BACK THREE-QUARTER: facing away toward the upper-left; back of head and back visible; the character''s LEFT side is nearer to the viewer (it appears on the left side of this figure).
+
+    All three figures face the LEFT side of the image.
+
+    POSE identical in all three: neutral A-pose, arms straight and held about 20–30° away from the body so the armpits show background; palms toward the thighs, fingers relaxed and slightly apart; legs straight, feet shoulder-width apart, both soles on one common ground line; head level. Hands EMPTY (no weapon or prop).
+
+    CONSISTENCY: same height (crown and soles aligned), same scale, same costume details in every view; Han crossed collar right-lapped (wearer''s left panel over right) in every view; never mirror a view.
+
+    STYLE: same refined realistic hand-painted rendering as image 1; soft diffuse light from the upper left; muted colors; crisp dark silhouette outline. Hand-painted illustration texture, not a CG render: no overly smooth skin, no perfectly symmetrical features, no plastic highlights, no over-sharpened hair strands; keep natural brushwork and slight imperfections. Adult proportions, no childlike or chibi proportions, no big head on a small body.
+
+    LAYOUT: plain flat uniform warm light-grey background (#E6E1D8); no texture, ink wash, ground, shadow, vignette or frame; at least 6% empty margin around and between figures; orthographic eye-level view, no perspective distortion. Wide landscape 3:2 canvas, 1536×1024 pixels.
+
+    EXCLUDE: text, labels, arrows, grids, color swatches, extra views, close-ups, duplicate figures, transparent/checkerboard background.'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png
+    sha256: f9091f2aa7dab1fb3cb46c033cadef590291c259425b306359bb1c0e61f12382
+    use: 身份参考（AR-34：主角三视图用 codex，上传已审定立绘）：只取脸、年龄、体型、发型与整套衣着配色、腰带结位、绑腿和鞋；画风也以它为准
+    uploaded: 缩到长边 1024 的 JPEG（/private/tmp/ART-rig-sheet/zhujue_portrait_1024.jpg，683×1024），作为唯一一张 -i 上传
+  tool: codex exec · image_gen（AR-34：上传主角立绘 1 张作身份参考，一次调用出整张三视图）
+  model: gpt-6-astra
+  created: 2026-10-02T16:01:39-0700
+  source_path: .agents/coord/gemini_originals/npc_zhujue__ch00_m__sheet_L.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 2f356901dfab4c10e9353c2231089214a51ebaa5a9a5f20d1c4fc097b57f23e1
+  status: candidate
+  notes: '视图顺序 front34 | side | back34，三个视图都面向画面左（未镜像；近侧为角色解剖学左 L：front34 在画面右、back34 在画面左）。重出 0 次（r1 一次合格）。质检：恰好三人、顺序与朝向正确；量像素：三栏头顶 y=21–22、脚底 y=983–988，身高 962–966 px（差 0.4%）；front34、back34 腋下与两腿间可见背景；双手空；识别锚 Q1 5/5（高髻系朱红细绳、竹青短褐、深褐宽腰带前左打结垂两端、浅麻宽裤、深橄榄绑腿与深灰布鞋）；右衽、未镜像；无文字 / 网格 / 色板；背景平涂约 #E0DAD1、无地面阴影。上下留白 2–4%，低于提示词要的 6%，人物完整未裁切，不影响拆栏。'
+- id: npc_zhujue__ch00_m__sheet_R
+  file: sheet_R.png
+  category: rig/sheet
+  style: default
+  subject: 主角·男（npc_zhujue，ch00 越女剑）A 字三视图设定图 · 面向画面右（front34 | side | back34）
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. Image 1 is the approved base portrait of this character (the male protagonist, a Chinese man of about 28); use it ONLY for identity (face, age, body type), hairstyle and the exact costume (colors, layers, trims, belt knot position, leg wraps, shoes).
+
+    IDENTITY ANCHORS, copied exactly from image 1 and identical in every view: (a) black hair gathered in a high top-knot bound with a dark brown cloth strip, a short faded vermilion-red cord tied at the base of the knot, a few loose strands at the temples; (b) knee-length short tunic of muted sage / bamboo-green coarse hemp with side slits, Han crossed collar right-lapped, a cream-white inner collar showing at the neck, elbow-length outer sleeves with the cream inner sleeves rolled up just below them; (c) a wide dark umber-brown cloth sash wrapped around the waist and tied in a knot at the front, slightly toward the character''s own LEFT side, its two long ends hanging down over the character''s left thigh to about knee level; (d) loose, wide pale oatmeal-beige linen trousers bloused over the shins; (e) dark olive-grey cloth leg wraps from below the knee to the ankle, a little cream sock at the ankles, plain dark charcoal cloth shoes with pale soles. Lean, athletic adult build, about 7.5
+    heads tall, light stubble.
+
+    TASK: a clean CHARACTER TURNAROUND MODEL SHEET of this same person for a 2D cut-out puppet rig. Exactly THREE full-body figures side by side, left to right:
+
+    (1) FRONT THREE-QUARTER: body turned 45° toward the viewer''s RIGHT, face and chest visible; the character''s RIGHT shoulder, arm and leg are nearer to the viewer (they appear on the left side of this figure).
+
+    (2) RIGHT-FACING SIDE PROFILE: the character faces the right edge of the image in a true 90° profile; the character''s RIGHT side is toward the viewer.
+
+    (3) BACK THREE-QUARTER: facing away toward the upper-right; back of head and back visible; the character''s RIGHT side is nearer to the viewer (it appears on the right side of this figure).
+
+    All three figures face the RIGHT side of the image. This is NOT a mirrored copy of a left-facing sheet: the asymmetric costume details stay on the same body side as in image 1 — the collar is still right-lapped (wearer''s left panel over right), and the sash knot with its two hanging ends is still at the front on the character''s own LEFT side, which is now the far side, so it is partly hidden in the side and back views.
+
+    POSE identical in all three: neutral A-pose, arms straight and held about 20–30° away from the body so the armpits show background; palms toward the thighs, fingers relaxed and slightly apart; legs straight, feet shoulder-width apart, both soles on one common ground line; head level. Hands EMPTY (no weapon or prop).
+
+    CONSISTENCY: same height (crown and soles aligned), same scale, same costume details in every view; Han crossed collar right-lapped (wearer''s left panel over right) in every view; never mirror a view.
+
+    STYLE: same refined realistic hand-painted rendering as image 1; soft diffuse light from the upper left; muted colors; crisp dark silhouette outline. Hand-painted illustration texture, not a CG render: no overly smooth skin, no perfectly symmetrical features, no plastic highlights, no over-sharpened hair strands; keep natural brushwork and slight imperfections. Adult proportions, no childlike or chibi proportions, no big head on a small body.
+
+    LAYOUT: plain flat uniform warm light-grey background (#E6E1D8); no texture, ink wash, ground, shadow, vignette or frame; at least 6% empty margin around and between figures; orthographic eye-level view, no perspective distortion. Wide landscape 3:2 canvas, 1536×1024 pixels.
+
+    EXCLUDE: text, labels, arrows, grids, color swatches, extra views, close-ups, duplicate figures, transparent/checkerboard background.'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png
+    sha256: f9091f2aa7dab1fb3cb46c033cadef590291c259425b306359bb1c0e61f12382
+    use: 身份参考（AR-34：主角三视图用 codex，上传已审定立绘）：只取脸、年龄、体型、发型与整套衣着配色、腰带结位、绑腿和鞋；画风也以它为准
+    uploaded: 缩到长边 1024 的 JPEG（/private/tmp/ART-rig-sheet/zhujue_portrait_1024.jpg，683×1024），作为唯一一张 -i 上传
+  tool: codex exec · image_gen（AR-34：上传主角立绘 1 张作身份参考，一次调用出整张三视图）
+  model: gpt-6-astra
+  created: 2026-10-02T16:04:18-0700
+  source_path: .agents/coord/gemini_originals/npc_zhujue__ch00_m__sheet_R.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 03d71a05eced67e487b320d63e17cfa0a19e0d342de792217ff1a63531555265
+  status: candidate
+  notes: '主角镜像修正版（调研报告 C5：主角与 S 级加出面向右）：视图顺序 front34 | side | back34，三个视图都面向画面右（近侧为角色解剖学右 R）；衣着不镜像——右衽不变，腰带结仍在角色自身左前方，side、back34 中位于远侧、只露出垂下的带端或被遮住。重出 0 次（r1 一次合格）。质检：恰好三人、顺序与朝向正确；量像素：三栏头顶 y=22–25、脚底 y=971–978，身高 949–956 px（差 0.7%）；front34、back34 腋下与两腿间可见背景；双手空；识别锚 Q1 5/5；右衽；无文字 / 网格 / 色板；背景平涂约 #E2DBD1、无地面阴影。上下留白 2–5%，人物完整未裁切。'
