@@ -394,105 +394,6 @@
     - 224
     - 214
     seedRatio: 1.0
-- id: it_miji_baituodujing
-  file: it_miji_baituodujing.png
-  category: item
-  style: default
-  subject: 白驼毒经残本；秘籍·残本；玄阶；西毒用毒背景；经名与载体（原创扩展）；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227；西域白驼山语境
-  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. The two attached images are style references only. Keep the complete book centered with at least 16% empty canvas on every edge (bounding box at most 68% of canvas width and height). Use an absolutely uniform flat RGB(230,225,216) background: no vignette, gradient, texture, floor, or shadow.
-
-    Use case: stylized-concept
-
-    用途：游戏《天书录》default 风格包的二维武侠物品图鉴插画，可供后续图标派生。立即生成一张独立新图；两张输入图只作画风参考，不编辑、不拼贴、不复制其中的剑或书册造型。
-
-    题材：白驼毒经残本（it_miji_baituodujing），秘籍·残本，玄阶；出处语境：西毒用毒背景；经名与载体（原创扩展）。ID、名称和效果只作元数据，画面完全无字。
-
-    效果字段：grade=5; skill=sk_baituodujing; variant=partial; maxLayer=8。只用于理解全本、抄本、残本或原本状态；禁止画数值、图标、经文、招式图和魔法特效。
-
-    年代：ch02_shediao 射雕书界；南宋宁宗至理宗，项目主体年代约1217–1227；西域白驼山语境。年代依据为 docs/design/02-timeline-and-world-tiers.md §1.5 与名录出处；名录标原创扩展者只作原创武侠器物，不冒充原著或文物复原。
-
-    参考图：输入图1为倚天剑基线，输入图2为九阴真经基线；二者是唯一图片输入。只取清楚纤细深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底与清晰材质层次；不要复制其物件、轮廓、配色布局、题签位置或磨损。
-
-    主体：西域皮纸但非硬皮封壳，墨绿细绳，夹一片干草标本，无字（原创扩展）。柔软皮纸残册而非硬皮书；只露一片压平干草，它是夹页的一部分，不另摆道具。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。
-
-    秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。
-
-    品阶表现：选材较匀净的柔韧皮纸、整齐墨绿细线，残本仍妥善收束，不用紫色魔光。品阶只用材质、工艺、包装和旧化表达；禁止彩色光效、品阶框、文字、数字或星级。
-
-    风格：清楚纤细的深灰墨线外轮廓，薄层透明罩染，克制而可辨的手绘笔触，低饱和冷暖关系；纸、布、绢、竹、细线材质边界清楚。二维精绘武侠器物，不是照片，不是3D。
-
-    构图：1:1 方形，目标 1536×1536；单一完整物品居中，三分之四轻俯视，封面、页口、装订边均可读。物件包围框宽和高都不超过画布 76%，四边留白都至少 12%；任何书角、夹板、护套、缝线与夹页不得截断。
-
-    背景：均匀浅暖灰近象牙色，目标 RGB 约 (230,225,216)；无人物、手、场景、桌面、地面、接触投影、落地影、明显底纹或渐变。左上约45度柔光只作用于物体自身，不产生投影，不自发光。
-
-    文字：封面、题签、书脊、布套和夹板全部无字、无伪字、无印章、无数字；名称只保留在元数据。
-
-    排除项：文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识。
-
-    专项排除：经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型。'
-  negative: 文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；招式图、人物、手、人体、演员或画师姓名、具体影视或游戏造型、受保护作品复制；摄影、商品摄影、照片级写实、3D渲染、厚油画、硬皮魔法书、现代书脊、塑料、拉链、订书钉、粗绳、大面积龟裂、过度破损、散页堆；场景、桌面、地面、接触投影、落地影、渐变、底纹；第二件物品、道具堆叠、拼贴、多视图、透视畸变、裁切；UI、品阶框、数字数值、霓虹、bloom、光柱、光环、魔法阵、浮空粒子、巨大宝石、血腥。不要去除或伪造工具自身溯源标识；经文、招式图、硬皮魔法书、粗绳、大面积破损；不用任何具体影视、游戏、演员、画师或作品造型
-  references:
-  - id: ref_eq_yitianjian__ch04_base01
-    path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
-    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
-    sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
-  - id: ref_it_miji_jiuyin_shang__ch02_base01
-    path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
-    role: 作者已通过的唯一画风基线之一；仅参考细墨线、薄罩染、低饱和冷暖与底色，不复制物件
-    sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  effort: medium
-  created: '2026-10-01T11:15:04.705615+00:00'
-  source_path: /private/tmp/art-item-manuals/codex-home/generated_images/01a0f72b-e18a-7672-9e06-79f199922f06/exec-9fee22c0-51ce-4735-be1e-bc18ced36a8d.png
-  size: 1254x1254
-  sha256: bb58d479b09349b8fbad040291779aaf168f2730d65ce0fbbc969135b452e4ed
-  status: approved
-  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
-  notes: '年代依据：docs/design/02-timeline-and-world-tiers.md §1.5；ch02_shediao 射雕书界，南宋宁宗至理宗，项目主体年代约1217–1227；西域白驼山语境；射雕书界精确年表待考。
-
-    名录依据：docs/design/catalog/items-manuals.md；本图载体、装帧与具体外观均为（原创扩展）。
-
-    候选数：1；逐图 view_image 自检通过：单一完整秘籍、无人物/手/场景/文字/伪字、主体与名录外观要点一致。
-
-    阈值辅助测量左/上/右/下留白约 17.62/14.27/16.83/17.15%，均不低于 12%；主体包围框宽高均不超过 76%。
-
-    背景外圈中位色接近 RGB(230,225,216)，有极轻微生成式明暗起伏，非逐像素纯色；未见地面或明显投影。
-
-    RGB PNG，无透明通道；原图直接复制，未缩放、抠图、改底或重编码。提示目标 1536×1536，工具实出 1254×1254。
-
-    本任务未开联网，故无历史图片参考；references 仅含作者指定的两张画风基线。
-
-    model/effort 按 Codex 调用配置登记；image_gen 未回传底层图片模型、seed 或独立 effort。'
-  icons:
-  - file: icons/it_miji_baituodujing_256.png
-    size:
-    - 256
-    - 256
-    sha256: 686ca48a371b5b4ae20a7ec1919c7c5ac6f02212b5d9966ad44d0361941608c1
-  - file: icons/it_miji_baituodujing_128.png
-    size:
-    - 128
-    - 128
-    sha256: cd439ec36d23fc46013c36afe0cf2fbdb69c9b924b66d04d7d7955b63c81afa7
-  - file: icons/it_miji_baituodujing_64.png
-    size:
-    - 64
-    - 64
-    sha256: 83953a68df027e4114a684e930e5b8234fb3287e96cb09f03f0ef049041cda73
-  - file: icons/it_miji_baituodujing_32.png
-    size:
-    - 32
-    - 32
-    sha256: 023b0f261bbee30271565df170d153a1bb4758042f171b7f5a700f6194eb31ad
-  iconSourceSha256: bb58d479b09349b8fbad040291779aaf168f2730d65ce0fbbc969135b452e4ed
-  iconBuild:
-    version: 1
-    background:
-    - 230
-    - 224
-    - 214
-    seedRatio: 1.0
 - id: it_miji_yangjiaqiangfa
   file: it_miji_yangjiaqiangfa.png
   category: item
@@ -1696,5 +1597,22 @@
   source_size: 2048x2048
   size: 1536x1536
   sha256: 66dbb066042e6fae85abab6bdfd278b30fea858d771974c671415f46dbe39ea4
+  status: candidate
+  notes: 写实画风（作者 2026-10-01：要跟角色图对应上）；
+- id: it_miji_baituodujing
+  file: it_miji_baituodujing.png
+  category: item
+  style: default
+  subject: 白驼毒经残本（武学秘籍，玄阶）
+  prompt: 生成一张 1:1 图片。画风：写实古风绘画，与写实武侠人物立绘一致——真实材质质感（布料的经纬纹理、毛边与洗旧褪色，金属的冷光、锻打痕与细微锈蚀，皮革的皱纹、磨损与油亮，木、玉、瓷、纸的真实肌理），柔和的体积光影与自然明暗，低饱和沉稳设色，手绘写实概念画质感；不是线稿、不是平涂、不是卡通、不是照片。背景：均匀平涂的浅暖灰底色（约 RGB 230,225,216），无纸纹、无暗角、无边框、无渐变、无地面、无投影、无场景（后续要程序抠图）。 题材：武侠游戏物品图鉴里的「白驼毒经残本」（秘籍·残本，玄阶；出处：“西毒”用毒背景；经名与载体），单一完整物品、无人持用，正面略三分之四视角居中，四边留白至少 12%。 形制与外观：西域皮纸但非硬皮封壳，墨绿细绳，夹一片干草标本，无字。柔软皮纸残册而非硬皮书；只露一片压平干草，它是夹页的一部分，不另摆道具。一行一图，只画这一册秘籍及与其装帧不可分的护套、包角、夹板或夹页；保持单一完整物品。 秘籍专项：书衣必须是柔软纸或条目指定的绢纸、皮纸，显示封面、薄页口和细订线或经折结构；轻度旧化，边缘少量毛损。不得画厚硬皮革封壳、金属魔法书、粗绳或错误缝线。单册或名录明确的上下卷；柔软纸书衣、页口、细订线和轻旧化，封面题签上用端正楷书竖写书名「白驼毒经」，墨色，字迹清楚、笔画准确。 品阶表现：玄 —— 选材匀净、接缝细、釉面或金属有克制光泽；布套／木匣较完整；只用材质、工艺与旧化表达，不画光效。 年代与形制符合出处书界的时代，不混搭。 排除：人物、脸、手、人体、模特、衣架、支架、印章、logo、边框、品阶框；奇幻造型、日式或欧美风格、跨朝混搭、现代材料；霓虹、魔法、粒子、发光。除封面题签上的书名「白驼毒经」外，不要任何其他文字、伪字、印章、标注或说明栏（这是单独的物品图，不是设定稿）。
+  negative: 人物、脸、手、人体、模特、衣架、支架、印章、logo、边框、品阶框；奇幻造型、日式或欧美风格、跨朝混搭、现代材料；霓虹、魔法、粒子、发光。除封面题签上的书名「白驼毒经」外，不要任何其他文字、伪字、印章、标注或说明栏（这是单独的物品图，不是设定稿）。
+  references: []
+  tool: gemini-web · Nano Banana（Oil painting 模板，无参考图上传）
+  model: gemini-app (Pro 订阅)
+  created: 2026-10-02T01:35:54-0700
+  source_path: .agents/coord/gemini_originals/it_miji_baituodujing.jpeg
+  source_size: 2048x2048
+  size: 1536x1536
+  sha256: 267c46fe9abaa77b91c097b1b2a58113451edb9b8abca59f54629adfc9f380a5
   status: candidate
   notes: 写实画风（作者 2026-10-01：要跟角色图对应上）；
