@@ -42,6 +42,10 @@ function activeUnit(unit: TimelineUnit): boolean {
   return unit.active || unit.hidden === true;
 }
 
+export function ctGain(unit: Pick<TimelineUnit, 'spd'>): number {
+  return clampInt(unit.spd, 30, 300);
+}
+
 function readyOrder(left: TimelineUnit, right: TimelineUnit): number {
   return right.ct - left.ct || right.spd - left.spd || right.qinggong - left.qinggong
     || SIDE_RANK[left.side] - SIDE_RANK[right.side] || left.unitIndex - right.unitIndex;
@@ -73,33 +77,37 @@ function nextDueEvent(state: TimelineState): TimelineEvent | undefined {
 }
 
 export function nextTimelineEntry(state: TimelineState, observer?: TimelineAdvanceObserver): TimelineEntry {
-  const current = currentReadyUnitId(state);
-  if (state.openingOrder.length > 0 && current !== null) return { kind: 'unit', unitId: current };
-  const due = nextDueEvent(state);
-  if (due !== undefined) return { kind: 'event', eventId: due.id };
-  if (state.env !== null && state.env.ct >= 1000) return { kind: 'environment' };
-  const active = state.units.filter((unit) => activeUnit(unit) && !unit.ctFrozen);
-  if (current !== null) return { kind: 'unit', unitId: current };
-  let delta: number | null = null;
-  for (const unit of active) {
-    const wait = ceilDivInt(1000 - unit.ct, clampInt(unit.spd, 30, 300));
-    if (wait > 0 && (delta === null || wait < delta)) delta = wait;
+  for (;;) {
+    const current = currentReadyUnitId(state);
+    if (state.openingOrder.length > 0 && current !== null) return { kind: 'unit', unitId: current };
+    const due = nextDueEvent(state);
+    if (due !== undefined) return { kind: 'event', eventId: due.id };
+    if (state.env !== null && state.env.ct >= 1000) return { kind: 'environment' };
+    const active = state.units.filter((unit) => activeUnit(unit) && !unit.ctFrozen);
+    if (current !== null) return { kind: 'unit', unitId: current };
+    let delta: number | null = null;
+    for (const unit of active) {
+      const wait = ceilDivInt(1000 - unit.ct, ctGain(unit));
+      if (wait > 0 && (delta === null || wait < delta)) delta = wait;
+    }
+    if (state.env !== null) {
+      const wait = ceilDivInt(1000 - state.env.ct, 100);
+      if (wait > 0 && (delta === null || wait < delta)) delta = wait;
+    }
+    for (const event of state.timedEvents) {
+      const wait = event.atTick - state.tick;
+      if (wait > 0 && (delta === null || wait < delta)) delta = wait;
+    }
+    if (delta === null) return { kind: 'stalled' };
+    const fromTick = state.tick;
+    const toTick = fromTick + delta;
+    if (!Number.isSafeInteger(delta) || delta < 1 || !Number.isSafeInteger(toTick)
+      || toTick <= fromTick) throw new RangeError('INVALID_TIMELINE_DELTA');
+    for (const unit of active) unit.ct = clampInt(unit.ct + ctGain(unit) * delta, -1000, 1299);
+    if (state.env !== null) state.env.ct = clampInt(state.env.ct + 100 * delta, -1000, 1299);
+    state.tick = toTick;
+    observer?.advance(fromTick, toTick);
   }
-  if (state.env !== null) {
-    const wait = ceilDivInt(1000 - state.env.ct, 100);
-    if (wait > 0 && (delta === null || wait < delta)) delta = wait;
-  }
-  for (const event of state.timedEvents) {
-    const wait = event.atTick - state.tick;
-    if (wait > 0 && (delta === null || wait < delta)) delta = wait;
-  }
-  if (delta === null) return { kind: 'stalled' };
-  for (const unit of active) unit.ct = clampInt(unit.ct + unit.spd * delta, -1000, 1299);
-  if (state.env !== null) state.env.ct = clampInt(state.env.ct + 100 * delta, -1000, 1299);
-  const fromTick = state.tick;
-  state.tick += delta;
-  observer?.advance(fromTick, state.tick);
-  return nextTimelineEntry(state, observer);
 }
 
 export function settleTimelineAction(

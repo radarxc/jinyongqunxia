@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { ceilDivInt } from '@tianshu/shared';
 import { createRng } from '../../rng';
 import { createGatherState, type MeridianFlowCommandContext } from '../meridian-flow';
 import {
@@ -9,6 +10,10 @@ import {
 function unit(overrides: Partial<TimelineUnit> & Pick<TimelineUnit, 'id' | 'unitIndex'>): TimelineUnit {
   return { side: 'enemy', agi: 50, qinggong: 50, openingQinggong: 50, openingPriority: 0,
     spd: 100, ct: 0, ctFrozen: false, pendingShift: 0, active: true, ...overrides };
+}
+function singleUnitState(spd: number): TimelineState {
+  return { tick: 0, units: [unit({ id: 'actor', unitIndex: 0, spd })], openingOrder: [],
+    timedEvents: [], env: null };
 }
 
 describe('battle timeline', () => {
@@ -37,6 +42,50 @@ describe('battle timeline', () => {
     expect(nextTimelineEntry(state)).toEqual({ kind: 'unit', unitId: 'b' });
     expect(state.tick).toBe(1);
     expect(state.units.map(({ ct }) => ct)).toEqual([1010, 1010]);
+  });
+
+  it('clamps speed below 30 for both waiting and CT gain', () => {
+    const state = singleUnitState(10);
+    expect(nextTimelineEntry(state)).toEqual({ kind: 'unit', unitId: 'actor' });
+    expect(state).toMatchObject({ tick: 34, units: [{ spd: 10, ct: 1020 }] });
+  });
+
+  it('clamps speed above 300 for both waiting and CT gain', () => {
+    const state = singleUnitState(400);
+    expect(nextTimelineEntry(state)).toEqual({ kind: 'unit', unitId: 'actor' });
+    expect(state).toMatchObject({ tick: 4, units: [{ spd: 400, ct: 1200 }] });
+  });
+
+  it.each([
+    { label: 'zero', spd: 0, tick: 34, ct: 1020 },
+    { label: 'negative', spd: -120, tick: 34, ct: 1020 },
+    { label: 'maximum safe integer', spd: Number.MAX_SAFE_INTEGER, tick: 4, ct: 1200 },
+  ])('handles $label raw speed without losing the source value', ({ spd, tick, ct }) => {
+    const state = singleUnitState(spd);
+    expect(nextTimelineEntry(state)).toEqual({ kind: 'unit', unitId: 'actor' });
+    expect(state).toMatchObject({ tick, units: [{ spd, ct }] });
+  });
+
+  it('keeps serialized results byte-identical for every speed from 30 through 300', () => {
+    const actual = []; const expected = [];
+    for (let spd = 30; spd <= 300; spd += 1) {
+      const state = singleUnitState(spd);
+      const entry = nextTimelineEntry(state);
+      actual.push({ entry, state });
+      const expectedState = singleUnitState(spd);
+      const delta = ceilDivInt(1000, spd);
+      expectedState.tick = delta;
+      expectedState.units[0]!.ct = Math.min(1299, spd * delta);
+      expected.push({ entry: { kind: 'unit', unitId: 'actor' }, state: expectedState });
+    }
+    expect(JSON.stringify(actual)).toBe(JSON.stringify(expected));
+  });
+
+  it('rejects a timeline step that cannot advance tick safely', () => {
+    const state = singleUnitState(100);
+    state.tick = Number.MAX_SAFE_INTEGER - 5;
+    expect(() => nextTimelineEntry(state)).toThrowError('INVALID_TIMELINE_DELTA');
+    expect(state).toMatchObject({ tick: Number.MAX_SAFE_INTEGER - 5, units: [{ ct: 0 }] });
   });
 
   it('orders due timed events before environment and units', () => {
