@@ -57,87 +57,6 @@
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
   notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际比较两张原图选第2张：男主身份脸型、成年年龄感与体型延续，浅灰褐交领布衣白护领、海青布带、长裤素鞋，软巾收髻，双手放松空着，没有兵器令牌，全身完整。第2张衣层较简洁、头巾更明确。细黑网巾被外巾遮挡、直身版型偏普通袍、小痣不清及轻阴影/占高偏大按本轮宽松标准记录接受，无明显多肢或重大结构问题；candidate待最终审核。 提示词 assets/default/prompts/characters/protagonist/npc_zhujue__m_ch06.md；tier S。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_zhujue__ch06_m_base.requests.json。生成候选2张，入选第2张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png；/Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用项目基线（真实审批状态照录）和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
-- id: por_npc_shipotian__ch06_child_scene_xuantie
-  file: por_npc_shipotian__ch06_child_scene_xuantie.png
-  category: character/male
-  style: default
-  subject: 石破天 npc_shipotian ch06_xiake
-  prompt: 'Create a premium REALISTIC Chinese wuxia character illustration with a delicate INK-WASH BACKGROUND. The human figure is beautifully and coherently painted: solid continuous anatomy, fine natural skin, credible facial structure, soft connected light and shade, intact carefully tailored cloth, clean continuous silhouette. Render the figure with refined hand-painted realism, not a photo, movie screenshot, 3D render or plastic model. No dry-brush gaps, white flecks, torn edges, collage fragments, paper erosion, scratches or watercolor mottling anywhere on face, skin, clothes or boots. Keep ink washes and loose expressive marks only in the background, separated from the clean figure. Clothes have few broad weight-bearing folds and clean sewn hems, never shredded ribbons or noisy patchwork. Heroism comes from eyes, bearing, physique and fitting clothes, not raggedness. Traditional understated clothing remains handsome without excess ornament.
-
-
-    本场没有已保存的本人身份 PNG，按下列文字独立创作人物骨相、年龄、性别、体型与气质，建立其首幅写实身份锚点；不得拿参考中的萧峰或王语嫣换衣充当此人。
-
-    第一参考为新版萧峰少室山首样，只提供人物绘画质量：细腻真实肤质、完整体积、连贯柔和光影、连贯完整布料及干净轮廓；绝不复用其脸、胡须、头巾、体型、年龄、男性特征、服装、姿态或龙影。本角色仍是石破天。
-
-    第二参考为对应性别项目基线，仅低饱和色卡，不取人物笔触与衣料细节。
-
-    第三参考仅用于背景水墨与留白；不取其中人物、白青衣装、肤质或纸纹透衣。
-
-
-    人物身份设计：石破天的独立设计：方圆偏长的脸，浓眉、眼裂自然的明亮眼睛，鼻梁自然、嘴角温厚，日晒肤色；开篇保留幼少年的头身与软面颊，长大后肩背宽实、体格健壮匀称。朴实、好奇、坦诚，绝非油滑纨绔；不以呆滞或弱智表情表现不识字，不擅自定其生父母。
-
-    石破天，《侠客行》，烧饼里的玄铁令。
-
-    阶段：初离山野、尚被称狗杂种的少年；没有长乐帮主或侠客岛装备。 本场取开篇幼少年，child 是童年/幼少年资产变体；未来成长场不能复制此图头身。
-
-    人物与完整衣装动作：幼少年单人全身，完整旧灰褐布衣裤、简单发束和草鞋；端着吃剩烧饼与小铁片，惊讶而质朴，儿童身体比例自然，不画成年油滑公子。衣料只显旧色，结构与收边完整，无破洞、无纸屑和碎布。 人物面部、皮肤、头发、衣服与鞋均采用美观写实的高级国风插画塑造；解剖与实体体积清楚、细腻自然肤质、连贯柔和光影、干净完整轮廓。人物上没有碎墨、纸纹侵蚀或飞白。衣料完整连贯、剪裁明确，袖口与下摆干净连续收边，只有少量自然宽缓承重褶，英雄气来自眼神、体格、姿势与合身份的衣饰。
-
-    器物与阶段限制：焦黑烧饼一块；玄铁令为小型铁片，不是玄铁大剑
-
-    仅背景使用水墨：浅淡水墨背景，人物为画面主体。小镇街口与烧饼摊残影，石板路向纸白延伸；不填满混战人群。
-
-    本场具体构图：低头看一小片玄铁令与焦黑烧饼，少年身体自然比例，手中小物有清楚接触，不摆英雄宗师大动作。
-
-    单人单视图完整全身，站姿从头顶到足；坐跪姿完整呈现躯干、双手、膝腿与足，主要器物端点入画，留自然边距。仅保留本场明确授权的代表动物，动物肢体不与人粘连。竖幅2:3，目标2048×3072 PNG，接受工具原生输出，不透明。真实承重、关节清楚，不机械限定占高、不因衣摆轻微遮鞋返工；人物清楚居前，水墨只在背景且不侵入人体和衣服。
-
-    情节与美术边界：玄铁令藏在烧饼中的原著事件；选择拾得后低头查看一瞬。铁令不变成巨大魔法令牌，不擅定其生父母。 本场为独立经典场景变体，保留基础立绘；production record 不表示 PNG 已生成或已查看，不代表审批通过，未来实际成图仍为 candidate。服色、站坐姿及具体衣纹是美术补足，阶段装备与明确伤残优先。 本次执行 REALISTIC-CHARACTERS-20261001.md：人物美观写实、皮肤与衣料完整连续，水墨仅用于背景。旧候选仅为历史记录，不计本轮写实完成；本记录本身不是生成、保存或审批，新图实际查看通过后仍为 candidate。 当前无已保存本人身份 PNG；首场按文字独立建立本人脸、年龄与体型，萧峰首样不能冒充身份参考。
-
-
-    完整排除项：不要成年健美肩胸、王侯锦衣、玄铁大剑、太玄发光卷轴、长乐帮掌门信物或白胡须。 人物本体不要飞白、碎墨、撕裂边、拼贴纸屑、纸面透肤透衣、白色斑点、颗粒侵蚀、粗糙斑驳脸、破布、过度密集褶皱或碎带。不要把背景墨迹、龙纹、山水或符号延伸到人的皮肤、衣服、手脚；不要复制萧峰首样的脸、年龄、胡须、裹巾、魁梧体型、性别特征、深灰服装、披氅、掌势或龙影。不要额外人物、错误多肢多指、手物融合、裁切头足器物、多视图拼贴、照片截图、3D塑料质感、现代物件、文字题款、印章logo或新增水印；保留工具自身溯源。不要添加剧情未要求的破损污渍、无依据伤残、武器或跨阶段装备；年少人物衣着完整得体，不成人化或性感化。'
-  negative: 不要成年健美肩胸、王侯锦衣、玄铁大剑、太玄发光卷轴、长乐帮掌门信物或白胡须。 人物本体不要飞白、碎墨、撕裂边、拼贴纸屑、纸面透肤透衣、白色斑点、颗粒侵蚀、粗糙斑驳脸、破布、过度密集褶皱或碎带。不要把背景墨迹、龙纹、山水或符号延伸到人的皮肤、衣服、手脚；不要复制萧峰首样的脸、年龄、胡须、裹巾、魁梧体型、性别特征、深灰服装、披氅、掌势或龙影。不要额外人物、错误多肢多指、手物融合、裁切头足器物、多视图拼贴、照片截图、3D塑料质感、现代物件、文字题款、印章logo或新增水印；保留工具自身溯源。不要添加剧情未要求的破损污渍、无依据伤残、武器或跨阶段装备；年少人物衣着完整得体，不成人化或性感化。
-  references:
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-    use: 已实际查看并核验新写实首样 SHA-256 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922；仅借自然面容与肤质的描绘质量、完整坚实体积、连贯光影、连贯布料和干净轮廓，不复制萧峰的脸、性别、年龄、胡须、头巾、体型、服饰、姿态或龙影。
-    sha256: 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922.png
-    status_at_input: candidate
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 已实际查看的对应性别项目基线，仅低饱和配色色卡；此位置不作本人身份或人物画法参考，不继承碎墨、飞白、纸纹透衣、破布、脸、年龄、衣饰、武器与姿势。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已实际查看的用户王语嫣水墨图，只用于背景的浅淡山水、留白与环境层次；完全忽略其中人物、脸、体型、肤质、服饰、发饰和人物笔触，不让背景纸纹与飞白侵入本场人物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T14:14:59.807252+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-8210e65e-a735-4e95-85e8-492df9a482b5.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 30004ca2e8d9847a194d3e3ca4abdf8876362452360cf4da9b9553f149096a5d
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_character_realism_20261001
-  realism_revision: user_character_realism_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_shipotian__ch06_child_scene_xuantie/prompt-1ee6b68d31a3c649deb9d4a9536559992f5c3d4a286b97cd629d32c1bdf595b4.md
-    manifest: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_shipotian__ch06_child_scene_xuantie/manifest-9ebd92b05c9d68e4d64e2af5a6cf1032c37f9202512a7e3101d62156cb8db26c.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_shipotian__ch06_child_scene_xuantie.requests.json
-  notes: 宽松自查选择候选1，建立石破天本人早期身份：自然幼少年面容、方圆脸和好奇朴实眼神，灰褐旧布衣裤、发束、草鞋，右手一块带咬口焦斑烧饼、左手一小铁片，双手和双脚清楚、器物数量正确。候选1上衣较连贯完整、持物关系清楚，候选2下摆更零碎且多背袋。未出现成年强壮胸肩、锦衣、玄铁大剑或后期帮主信物。实际偏差：小铁片为多角形并有细纹，属于美术补足；布料纹理偏粗、仍有旧色，背景街市较实且远处有模糊小人影，不是严格无人背景。人体和衣料成片完整，无纸屑侵蚀、重大结构问题、多肢或手物融合。后续成长场只延续面容识别，不沿用此幼少年头身；按宽松自查保留candidate待审。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  scene_revision: user_scenes_20261001
-  scene_key: xuantie
-  scene_title: 烧饼里的玄铁令
-  stage: 初离山野、尚被称狗杂种的少年；没有长乐帮主或侠客岛装备。 本场取开篇幼少年，child 是童年/幼少年资产变体；未来成长场不能复制此图头身。
-  asset_variant: scene
 - id: por_npc_shipotian__ch06_youth_jinwu_base
   file: por_npc_shipotian__ch06_youth_jinwu_base.png
   category: character/male
@@ -1738,3 +1657,45 @@
   sha256: 4f7dce2a0ac17b06175b30b9475ca3e68e1e95ad7d5f10a0af8a41303a5838fa
   status: candidate
   notes: 立绘重审重出（AR-30）；基础立绘通过；本场景图的脸是少年模样（石壁会意一张又是另一张偶像脸），与基础立绘不一致、违反禁止幼态；以基础立绘为身份参考重画。
+- id: por_npc_shipotian__ch06_child_scene_xuantie
+  file: por_npc_shipotian__ch06_child_scene_xuantie.png
+  category: character/male
+  style: default
+  subject: 石破天（ch06_xiake）
+  prompt: '生成一张 2:3 竖幅单人全身剧情场景图。
+
+
+    上传的第 1 张图是石破天本人的基础立绘，作为身份参考：保持同一张脸（脸型、眉眼、鼻子、嘴、肤色、发际线）和同样的成年年龄、体型，让人一眼认出是同一个人；不要照搬参考图的站姿、构图和背景，服饰、动作和场景按下文。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：石破天，《侠客行》男主角，约二十岁的成年青年男子，身材结实匀称、肩背宽厚，日晒肤色，浓眉、眼睛明亮，神情忠厚、坦诚、好奇。
+
+    场景「烧饼里的玄铁令」：初离山野、还被人叫作“狗杂种”的小乞丐时期——按本轮要求画成约二十岁的青年乞儿，不画孩子。人物独自站在小镇街口，低头看着手里一块咬开的焦黑烧饼和露出来的一小片黑铁令牌（玄铁令是巴掌大的小铁片，不是大剑），神情懵懂好奇，不摆英雄架势。衣装：破旧但完整的粗布短衣、旧布裤、草鞋，头发乱而简单束起，日晒肤色。背景：小镇街口与烧饼摊的淡影，石板路向纸白处延伸；不要人群混战。
+
+
+    构图：竖幅 2:3，单人全身剧情场景图，人物是画面主体，从头顶到双脚完整入画（坐姿也要看得见头、身体、双手、双腿和双脚）；场景用浅淡的写实水墨笔法画出，留白充足，背景不能压过人物、不能侵入人物轮廓。画面里只有这一个人物。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要少年或孩子的脸和身材；不要偶像化的俊美脸；不要换成另一张脸。汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_jinwu_base.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张＋身份参考 1 张）
+  model: gpt-6-astra
+  created: 2026-10-02T02:37:51-0700
+  source_path: .agents/coord/gemini_originals/por_npc_shipotian__ch06_child_scene_xuantie.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: d620eee8f3339add1732eed6c9e610d217dd67a79493aa7b8673ea99c92ae8b1
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图是约十二三岁的小乞丐（原著童年剧情），按“全体禁止幼态 / 场景人物一律成年样貌”改画为约二十岁的青年乞儿，并与基础立绘同脸（ID 中 child 键暂不改名）。
