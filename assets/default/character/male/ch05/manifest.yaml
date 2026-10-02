@@ -57,78 +57,6 @@
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
   notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际比较两张，选第2张：保留男主青年身份面容，浅赭明式交领长衣、白护领、墨青腰带、细黑网巾、深裤布鞋，单一深木鞘直剑挂左腰，无酒器与门派标记，人物和器物完整。第2张衣袖收束自然。直身版型略偏普通行旅袍、剑鞘五金纹饰偏多、小痣不清和轻阴影/占高偏大登记为宽松接受偏差，无明显多肢或重大结构问题；candidate待最终审核。 提示词 assets/default/prompts/characters/protagonist/npc_zhujue__m_ch05.md；tier S。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_zhujue__ch05_m_base.requests.json。生成候选2张，入选第2张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png；/Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用项目基线（真实审批状态照录）和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
-- id: por_npc_linpingzhi__ch05_youth_fuwei_base
-  file: por_npc_linpingzhi__ch05_youth_fuwei_base.png
-  category: character/male
-  style: default
-  subject: 林平之 npc_linpingzhi ch05_xiaoao · 福州开局福威少主，灭门前行猎归来的完整青年形象
-  prompt: 'PRIMARY POSE REQUIREMENT: FRONT-FACING full-body standing portrait; head and neck naturally UPRIGHT. Keep the forehead–nose–chin centreline VERTICAL and both eyes HORIZONTAL, head centered over the torso, direct forward gaze and level camera. NO head tilt and NO Dutch angle. Reconstruct the reference face in this upright frontal view; never copy a turned face, raised chin, leaning head or sloping camera. Natural facial asymmetry does not mean a tilted skull.
-
-
-    Create a NEW realistic full-body identity portrait of LIN PINGZHI / 林平之, using ORIGINAL Heroes of Jin Yong portrait HDGRP_37-1 as the ONLY facial identity reference. This is the EARLY Fuwei Escort Agency heir in Fuzhou, returning from hunting BEFORE the family massacre. Both eyes see normally, the face and all four limbs are intact. No later revenge-stage injury, blindness or bodily change belongs to this basic portrait.
-
-
-    青年本人面貌：十八九岁上下的年少青年观感，尚未完全厚实的肩背，四肢修长轻健，不成年健美化，也不改画女性。第一头像年轻无须、清楚椭圆脸，较细长的眉眼关系、端正鼻梁、鼻唇自然衔接和柔和下颌保留；真实重绘成秀挺椭圆长脸而不刻成尖锥下巴。清俊肤色干净自然，眼睛清楚正常、神情自信中带未经世事的青涩，嘴自然放松，不加成熟冷厉杀气、夸张挑逗或浓妆。头直、双眼水平看向观者，不复制头像侧看。必须和第二基线令狐冲的长方脸、浅胡茬及松弛笑意有明显区别。
-
-
-    福威少主服饰：明代淡米黄色窄袖锦缎长衣，仅细微暗纹，青灰布带与深色长裤、整洁短靴。交领右衽，穿着者左襟盖右襟，领口严整。头发整齐束髻配细网巾，不戴原游戏灰小帽，不照搬绿色衣领。腰间一枚小素玉饰，不刻字；家世由完整精细衣料和端正仪态表达，不用宫廷贵胄冠饰、金冠、官服补子或华丽大披风。衣物整片有真实垂坠，完整下摆，不画破衣流亡外观。
-
-
-    站姿与普通佩剑：正面双足自然承重，肩背稍挺而不僵硬，头颈与身体中线自然竖直。本人左腰只有一柄普通中式直身双刃佩剑，刀剑刃完全入长度足够的长鞘，朴素铜装，护手、柄、鞘口和末端完整可信，短挂带接腰带。左手自然轻扶剑鞘上段，右手空着垂下，双手清楚、没有拔剑动作。剑是普通随身佩剑，不名为辟邪剑、不发光、不刻武学文字。尽管选段为行猎归来，画面不加猎物、马匹、弓箭、镖旗、山林追逐或随从。本图是完整少主基础形象，不是血案现场。
-
-
-    参考主次与画法：第一张只提供原版《金庸群侠传》本人的脸部辨识关系，将低分辨率像素信息重新绘成清楚写实面容，不能直接放大像素、照搬边框、原头像倾角或混书年龄。第二张男性基线仅提供低饱和设色控制、柔和光照与连贯细腻的写实手绘质量，不能传递令狐冲的脸、年龄、体型、胡茬、发型、服饰、剑或站姿。第三张用户图仅提供背景淡水墨，不借其女性脸、身体、侧倾、白青薄纱衣或发饰。人物本体精细、完整、真实：脸、眼、双手和双足清楚，皮肤、发丝、布料和器物材料各自连续，柔和左上漫射光形成连贯体积。衣物整片可穿、裁剪清楚、下摆和袖口完整，仅少量宽缓承重褶皱及细微真实纹理，不用破衣、碎片或密集噪点表现武侠感。
-
-    背景为不透明暖浅灰纸底，极淡远山水墨、薄雾与留白，只有少量脚下接触阴影；没有具体经典场景、建筑或第二个人。水墨和纸纹全部停留在背景，不能透进脸、皮肤、衣物、靴子和道具。
-
-    单人单视图，原生竖幅2:3完整全身，头顶、双手、双足、全部衣摆与道具端点舒适入画。自然体态与年龄优先，不使用固定占高/头身数字硬限。目标2048×3072不透明PNG；工具实际返回其他原生2:3尺寸须实测如实记录，保存原始PNG字节，不插值、裁切或重编码。默认一张独立单人候选经执行者实际自查，全部candidate待用户审核，不自动approved。
-
-
-    完整排除项：不要 head tilt、Dutch angle、头歪向肩、头部中线倾斜、斜眼线、转头侧脸、回眸、低头藏眼、抬下巴仰视、耸单肩或倾斜镜头；不要把四人画成同一个通用男脸，不借令狐冲、萧峰、王语嫣等其他参考人物面孔。不要像素格、原头像边框、直接放大游戏截图、动漫大眼、网红尖下巴、丰唇滤镜、过度磨皮、塑料皮肤、摄影截图或三维模型。不要时代混搭、现代服饰、拉链、腕表、数码物件、清式剃额辫子、满清官服、日式服制刀具、欧式奇幻甲胄或无依据的官阶徽记。不要错误衣襟、水平镜像、悬浮装备、失重衣料、多武器、手物融合、道具穿身、弯折断裂器物、容不下刀剑的短鞘。不要多人物、分格、多视图、脸部特写框、多肢、多指、粘连指、错接手腕、无依据缺手缺足、裁断头足或道具端点。人物不要碎墨飞白、纸纹透肤透衣、白斑缺块、纸屑侵蚀、碎布、撕裂衣摆、破边、过密杂乱衣纹、噪点斑驳脸、模糊眼睛或浓雾遮手；水墨仅限背景。不要裸露、透衣、性感化、血腥、恶搞、丑化或怪物体态；不要无依据神佛法相、发光兵器、光球、法阵、龙形能量、粒子光效、强泛光和舞台硬轮廓光。不要文字、印章、题款、签名、logo、装饰水印、武功名称或药方；工具自带溯源原样保留。 不要失明眼罩、闭目白眼、面伤、瘸腿、缺肢或后期终局残疾；不要提前练辟邪后的身体变化、冷酷复仇杀气、流亡破衣、华山弟子制服或囚服。不要浓胡须、厚成年体格、女性身体或浓妆偶像。不要原头像灰帽绿领、侧面看人，不借令狐冲胡茬与长方脸。不要猎物、马匹、弓箭、镖旗文字或随从；只一柄普通入鞘直剑，不要实体“辟邪剑”、发光剑、第二剑、出鞘战斗或皇族冠服。
-
-
-    FINAL POSE CHECK: one FRONT-FACING figure, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTAL, neck naturally upright and camera level. NO head tilt and NO Dutch angle. Preserve this person’s own face from reference 1, their documented age/stage and all required body/prop endpoints; references 2 and 3 must not supply another face.'
-  negative: 不要 head tilt、Dutch angle、头歪向肩、头部中线倾斜、斜眼线、转头侧脸、回眸、低头藏眼、抬下巴仰视、耸单肩或倾斜镜头；不要把四人画成同一个通用男脸，不借令狐冲、萧峰、王语嫣等其他参考人物面孔。不要像素格、原头像边框、直接放大游戏截图、动漫大眼、网红尖下巴、丰唇滤镜、过度磨皮、塑料皮肤、摄影截图或三维模型。不要时代混搭、现代服饰、拉链、腕表、数码物件、清式剃额辫子、满清官服、日式服制刀具、欧式奇幻甲胄或无依据的官阶徽记。不要错误衣襟、水平镜像、悬浮装备、失重衣料、多武器、手物融合、道具穿身、弯折断裂器物、容不下刀剑的短鞘。不要多人物、分格、多视图、脸部特写框、多肢、多指、粘连指、错接手腕、无依据缺手缺足、裁断头足或道具端点。人物不要碎墨飞白、纸纹透肤透衣、白斑缺块、纸屑侵蚀、碎布、撕裂衣摆、破边、过密杂乱衣纹、噪点斑驳脸、模糊眼睛或浓雾遮手；水墨仅限背景。不要裸露、透衣、性感化、血腥、恶搞、丑化或怪物体态；不要无依据神佛法相、发光兵器、光球、法阵、龙形能量、粒子光效、强泛光和舞台硬轮廓光。不要文字、印章、题款、签名、logo、装饰水印、武功名称或药方；工具自带溯源原样保留。 不要失明眼罩、闭目白眼、面伤、瘸腿、缺肢或后期终局残疾；不要提前练辟邪后的身体变化、冷酷复仇杀气、流亡破衣、华山弟子制服或囚服。不要浓胡须、厚成年体格、女性身体或浓妆偶像。不要原头像灰帽绿领、侧面看人，不借令狐冲胡茬与长方脸。不要猎物、马匹、弓箭、镖旗文字或随从；只一柄普通入鞘直剑，不要实体“辟邪剑”、发光剑、第二剑、出鞘战斗或皇族冠服。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_37-1.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_37-1.png
-    use: 原版林平之HDGRP_37-1本人身份，已实际view；取年轻无须的清楚椭圆脸、细长眉眼、端正鼻梁和柔和鼻唇下颌关系，按十八九岁青涩少主重构正面。原图灰小帽、绿领和侧看不照搬；细网巾束髻、米黄锦衣、普通入鞘剑按本阶段，不能提前后期失明或辟邪变化。
-    sha256: 0bb40992ba0c022eaae2440e9739a9149788e8796d4993f4503a3c6582ec5ba1
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/0bb40992ba0c022eaae2440e9739a9149788e8796d4993f4503a3c6582ec5ba1.png
-    status_at_input: null
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 第二参考仅同性别项目画法和设色控制：柔光、低饱和色、精细连贯写实手绘，已在本会话实际view且SHA复核。candidate状态不改变；完全忽略令狐冲的面貌、青年年龄、体格、胡茬、网巾、服装、剑与倾头。人物实际服色以当前稿为准，不把所有人变青灰袍。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三仅用户指定浅水墨背景、暖浅灰纸底、远景留白；已在本会话实际view且SHA复核。忽略女性脸、身形、衣装、发饰与头部倾角；墨色不能侵蚀人物皮肤衣料或道具。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T21:11:08.933569+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-9ec12bfc-2f0a-4b5a-85bc-847205252aa5.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 43cf592f3db2967079bafb74fb5546fe893c29f304f3416370dc3c67d70c630f
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_linpingzhi__ch05_youth_fuwei_base/prompt-6603eda5210627d2a94682151e8696c8cab987ee4d059975c373a5bf83879ab1.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_linpingzhi__ch05_youth_fuwei_base/manifest-9f74f9886f06e3deba9c43e891fab7f790c19345e7a805ec609a99b8efdab35e.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_linpingzhi__ch05_youth_fuwei_base.requests.json
-  notes: '实际查看：林平之为无须青年少主，双目正常、四肢完整，淡米黄锦衣青灰带、网巾小玉佩与一柄入鞘普通剑，正面头颈端正、完整双足，无明显多肢重大结构问题。第一game37面部关系作写实重建，实际脸偏成熟、较理想化，未声称精确还原。偏差：锦纹较明显、铜装较华丽、袖略宽，左手握剑鞘近口，挂带部分被遮、背景山水建筑比方案具体。按单张宽松自查candidate保存；原生1024×1536 RGB不透明原PNG字节保留，非approved或旧严格通过。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_moda__ch05_elder_base
   file: por_npc_moda__ch05_elder_base.png
   category: character/male
@@ -1739,3 +1667,50 @@
   sha256: 2d51c791391a47626f4dc08f8c7b881a8ac0e2bab333ff7a1502c1c7f94505dc
   status: candidate
   notes: 立绘重审重出（AR-30）；现图是穿粉衣的年轻俊男，没有原著“剃须、施脂粉、男不男女不女”的阴柔妖异感，也不像中年教主。
+- id: por_npc_linpingzhi__ch05_youth_fuwei_base
+  file: por_npc_linpingzhi__ch05_youth_fuwei_base.png
+  category: character/male
+  style: default
+  subject: 林平之（ch05_xiaoao）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：林平之，《笑傲江湖》中福威镖局的少镖头，家门遭难之前锦衣骏马的富家公子时期。
+
+    经典形象：要一眼认出是福威镖局少镖头林平之——白玉冠、浅色锦衫、讲究的佩剑，眉清目秀、俊美得近乎女子，带富家少爷的自信与骄气；英俊好看。
+
+    年龄与体态：约二十岁的成年青年男子，身材修长匀称，肩背尚未厚实，举止带富家子弟的讲究。
+
+    面容：容貌极为俊秀，甚至秀美得像女子（他因此常被人取笑）：光洁的鹅蛋脸、下颌线柔和，皮肤白净（但有真实的毛孔与纹理），眉毛细长清秀，眼睛明亮有神、眼尾微挑，鼻梁挺秀，嘴唇薄而红润；神情是涉世未深的少爷的自信和一点骄气。
+
+    发式：黑发整齐束成发髻，戴一个小巧的白玉束发冠；不戴网巾，不戴头箍。
+
+    服饰：淡米黄色的锦缎长衫（交领右衽，布面有细暗纹），腰系青色丝绦、挂一枚素面小玉佩，深色长裤，黑色短靴。
+
+    道具与姿态：腰间左侧佩一柄做工讲究的长剑（剑鞘有铜饰，剑不出鞘），左手轻扶剑鞘，右手自然垂下；挺拔站立。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要和令狐冲同一张脸；不要网巾头箍；不要阴鸷狠厉的神情（那是后期）；不要女性身体。汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:24:10-0700
+  source_path: .agents/coord/gemini_originals/por_npc_linpingzhi__ch05_youth_fuwei_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 1a843b2373182abadaf13f86c3b11f85e8959f9a09b3f9c81e69a536d37fee96
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图是普通相貌、同戴网巾头箍，与令狐冲撞脸；原著林平之俊美得像姑娘，是锦衣骏马的富家少镖头。
