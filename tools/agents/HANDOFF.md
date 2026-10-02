@@ -648,3 +648,5 @@
     - **三视图文件契约（协调者定，DES-rig-v1.1 写进规格）**：`assets/default/rig/<set>/sheet/sheet_L.png`（front34|side|back34 都面向画面左）、`sheet_R.png`（主角 / S 级的面向右修正版）、`sheet/manifest.yaml`；身份 set 命名 `<npcId>__<variant>`。
     - **batch_run 审核要点映射**新增 `ART-portrait-` / `ART-scenes-` / `ART-rig-sheet`（要点文件在 `.agents/coord/PROD/`），目前没有任务用到。
     - **坑**：`claude-in-chrome` 只能操作本会话标签组里的标签页，作者自己打开的标签页扩展看不到；要由协调者 `tabs_context_mcp(createIfEmpty)` 建组再 `navigate`。
+  - **10-02 16:00–16:05 协调者（开发监督职责）**：ENG-18 合入（76f9381a）后 `pnpm check` 绿：97 文件 561 用例、size 287.83 / 350，loadavg 15.5；ENG-15 合入（5d719561）后再跑：103 文件 619 用例、size 291.03 / 350，loadavg 18.8（`_handoff/prod_check_post-eng1{8,5}_*.log`）。eng3 随即起 ENG-25、ENG-08b。Gemini 线 16:03:57 出第一张（`eq_songshounuxia`），前 25 分钟是 subagent 在核验队列与驱动。
+
