@@ -255,89 +255,6 @@
   notes: '已实际查看候选1：胡一刀为壮年魁梧宽肩男子，浓眉阔口、深日晒肤色与口颊下巴连续黑须，浓发松蓬且没有清式编辫，灰褐棉袍深棕短褂、一柄完整入鞘腰刀、另一手空垂，双鞋与整个人物完整，生前健在无中毒伤残，基本身份阶段可用。按宽松自查保留原始1024×1536不透明PNG为candidate，未声称达到旧严格大尺寸或几何要求。偏差：虬髯浓卷程度不足而偏修短，方脸偏收束、衣缘磨损细碎较多且布纹密，袖卷露出完整前臂，刀鞘装具比朴素设计繁复；不为细节追加，后续同人参考只沿用面部骨架、不强制复制这些偏差。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
-- id: por_npc_miaorenfeng__ch13_prime_recovered_base
-  file: por_npc_miaorenfeng__ch13_prime_recovered_base.png
-  category: character/male
-  style: default
-  subject: 苗人凤 npc_miaorenfeng ch13_feihu
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
-
-
-    Create a REALISTIC full-body portrait of 苗人凤 for a Chinese wuxia game. IMAGE 1 is the verified classic 1996 game portrait of THIS CHARACTER: retain his recognizable facial identity, recast into complete realistic anatomy and the stated stage. Images 2 and 3 are STYLE ONLY and must not contribute a face. Keep the same bone structure in both book stages; no face averaging. Restore natural realistic eyes and skin, no pixel graphics.
-
-
-    身份与阶段：苗人凤（npc_miaorenfeng），《飞狐外传》 ch13_feihu。苗家家主，苗宅获医复明后、与胡斐对质及限定切磋阶段。
-
-
-    年龄与体型：中年高瘦男性，具体生年确岁待考；本界复明后，格外修长清瘦的身架和窄肩胸，筋骨有力但不是壮汉或衰弱老翁。
-
-
-    本人游戏面容与阶段适配：本人经典原版头像的长方至长椭圆骨相：宽而偏高的额头，中庭偏长、颧骨清楚而颊部内收，下颌由宽颊向窄而不尖的下巴收束；浓密平直眉在鼻根处略压低，深眼窝与窄而自然的双眼，眼距正常，鼻梁长直、鼻尖偏宽而沉实，薄中等厚度的嘴唇紧闭，宽朴直的嘴形和清楚法令纹。保留自然黄褐肤色和严正神情。原像素图的黑发边缘与像素块不是本书发制或肌理依据，不沿用图中发式；不把他画成男基线的青年宽胸偶像。此阶段须发主要黑色，仅少量成熟纹理，干净面颊和稀薄短髭感，不早早增加长白须。
-
-
-    服制与发式：清代汉地武人剃额留单辫，鬓发整齐；洗旧黄褐布长袍、深灰窄袖里衣、布腰带和厚底布鞋，袍摆适量开衩，完整不破烂。衣料完整不透明，衣缘缝线连续；只少量宽缓有重力的褶皱，不画裂纹、碎布和飞白。汉式交领采用本人左襟压右襟，不水平镜像；清式剃额单辫与素帽按本角色原稿。
-
-
-    正面姿态与器物：严格正面全身静立，头颈竖直、两眼水平，双眼清楚睁开且视线聚焦；无眼罩、眼伤或遮目布。右手自然垂放，左手扶左腰一柄完全入鞘的普通中国直身长剑鞘上端，素木长鞘足容整刃、小横格；整柄剑连同鞘尾完整入画，不露刃，不新增胡家刀。双足稳落，重心自然，不把瘦长身体拓成萧峰式。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。按最新提速要求先1张候选，基本清晰、正面端正、身份可辨即可保存；仅严重身份/结构/不可读才补，不为细手指、微装备、微角重复。每张仅一人。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实边界：项目约1766–1771，具体人物只用本稿阶段，不宣称原著明示公历。 身份、年龄、生命态、器物依最新本地角色/名录/剧情；原稿标记待考仍保留，未新浏览外网或声称指定版本终校。清代武人和满族贵胄依各自服制，不用通用禁辫子。具体衣色、器型细节、面部写实转译及静立姿态属于本次美术落实。本界限定复明后，不能复用中毒失明态。本人1996经典game像有明确姓名配对，第一输入只取骨相五官和肃然气质；当前书清式剃额单辫覆盖原图中分黑发。雪山资产另按1780中老年与出鞘剑阶段。
-
-
-    图像输入使用边界：第一输入是已可靠配名并实际查看的经典1996原版苗人凤本人头像，仅建立长脸骨相、眉眼鼻唇与肃然气质；不是审批通过的项目图。像素块、原图发式、灰领和姿势不照搬，清代剃额单辫与当前年龄器物服装以本稿为准。 第二输入同性别项目基线只供低饱和色卡、柔和光线、细腻手绘品质；不是本人，不抄其五官、年龄、身体、发式、服饰、道具或姿势。保留原审批状态，不传递给新图。 第三输入用户王语嫣图只供暖浅灰留白、极浅水墨远山背景；不继承其中女性、脸、衣裙、体型、飘带或倾头，墨迹不侵入人物。
-
-
-    完整排除项：不要文字、伪字、题款、签名、印章、logo、装饰水印、书页文字或旗面字样；不去除或伪造工具自带溯源标识。 不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件、医疗塑料器具；不照搬剧照姿态与其他角色衣装；不用画师姓名作风格词，不复制具体画作。 不要动漫大眼、统一偶像脸、网红锥子脸、丰唇滤镜、浓妆磨皮、塑料皮肤、摄影写真或三维模型渲染感；不要日式服制、日本刀、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克。 不要时代族群混搭、错误衣襟、水平镜像、前结夸张宽腰带、悬空装备、失重衣料、大面积撕裂破衣；不要多人物、多视图、分格、额外肢体、多指、粘连手指、错接手腕、手物融合、弯折断裂兵刃或容不下刀剑的短鞘。 不要血腥特写、裸露、透明衣料、性感化、恶搞丑化、畸形健美肌肉、仙法光翼、发光兵器、龙形能量、强烈泛光、强逆光、烟雾遮脸或具体剧情场景或清晰建筑；未成年人物不成人化，老弱伤残不磨平、不妖魔化。 不要眼罩、绷带、闭目盲态、萧峰式宽厚魁梧体型、金属脸、金面具、佛像光环、苗族银饰、异族左衽、清前束髻或冷月刀。 不要 head tilt、Dutch angle、歪头、抬下巴、低头藏眼、侧脸或侧身；眼线必须水平。不要人物碎墨、飞白缺块、纸纹透肤透衣、裂衣碎布、密集噪点或过密细皱；人物完整连续。不要从风格基线或背景参考复制面孔、身体、年龄、发式、衣装与姿态。
-
-
-    FINAL POSE CHECK: FRONT-FACING, head upright, eyes HORIZONTALLY LEVEL, camera level, chin neutral. NO head tilt. Respect identity and age, intact skin and clothing, correct stage and props.'
-  negative: 不要文字、伪字、题款、签名、印章、logo、装饰水印、书页文字或旗面字样；不去除或伪造工具自带溯源标识。 不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件、医疗塑料器具；不照搬剧照姿态与其他角色衣装；不用画师姓名作风格词，不复制具体画作。 不要动漫大眼、统一偶像脸、网红锥子脸、丰唇滤镜、浓妆磨皮、塑料皮肤、摄影写真或三维模型渲染感；不要日式服制、日本刀、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克。 不要时代族群混搭、错误衣襟、水平镜像、前结夸张宽腰带、悬空装备、失重衣料、大面积撕裂破衣；不要多人物、多视图、分格、额外肢体、多指、粘连手指、错接手腕、手物融合、弯折断裂兵刃或容不下刀剑的短鞘。 不要血腥特写、裸露、透明衣料、性感化、恶搞丑化、畸形健美肌肉、仙法光翼、发光兵器、龙形能量、强烈泛光、强逆光、烟雾遮脸或具体剧情场景或清晰建筑；未成年人物不成人化，老弱伤残不磨平、不妖魔化。 不要眼罩、绷带、闭目盲态、萧峰式宽厚魁梧体型、金属脸、金面具、佛像光环、苗族银饰、异族左衽、清前束髻或冷月刀。 不要 head tilt、Dutch angle、歪头、抬下巴、低头藏眼、侧脸或侧身；眼线必须水平。不要人物碎墨、飞白缺块、纸纹透肤透衣、裂衣碎布、密集噪点或过密细皱；人物完整连续。不要从风格基线或背景参考复制面孔、身体、年龄、发式、衣装与姿态。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_4-1.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_4-1.png
-    use: 第一输入是已可靠配名并实际查看的经典1996原版苗人凤本人头像，仅建立长脸骨相、眉眼鼻唇与肃然气质；不是审批通过的项目图。像素块、原图发式、灰领和姿势不照搬，清代剃额单辫与当前年龄器物服装以本稿为准。
-    sha256: 4a6cac84c1b242f06414b07dc86dabc43483930ca768f06b37406382ef3d163a
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/4a6cac84c1b242f06414b07dc86dabc43483930ca768f06b37406382ef3d163a.png
-    status_at_input: null
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 第二输入同性别项目基线只供低饱和色卡、柔和光线、细腻手绘品质；不是本人，不抄其五官、年龄、身体、发式、服饰、道具或姿势。保留原审批状态，不传递给新图。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三输入用户王语嫣图只供暖浅灰留白、极浅水墨远山背景；不继承其中女性、脸、衣裙、体型、飘带或倾头，墨迹不侵入人物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T05:11:57.944082+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-4bb407f8-23f6-4557-b616-de96e82c1a6d.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 2994e4f4929b12001cba22b83c3e5edfb23a6ea16605434f4b844df08337b6e0
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_miaorenfeng__ch13_prime_recovered_base/prompt-7e3722872c51f6a8f8f80eaa04d6ceb2b71820eb42e52dd1c8a75fee97fa9d28.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_miaorenfeng__ch13_prime_recovered_base/manifest-9fb9f5988d76c1dda4cbc82fc983d7fe451f7ffd2abcf28a384c3e413020219b.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_miaorenfeng__ch13_prime_recovered_base.requests.json
-  notes: '已实际查看候选1并对照本人1996游戏头像：苗人凤长脸、宽额、浓眉压眉间、窄眼与长直鼻骨相可辨，成熟中年高瘦身架、黄褐袍与清式发辫，双目睁开正常聚焦，不是失明态；一柄完整入鞘直剑，双手双足全身完整，无明显重大结构错误。按用户宽松自查保留原始1024×1536不透明PNG为candidate，非approved，不声称旧严格大尺寸和几何通过。偏差：前额剃区近高发际表现、左手偏握柄而非扶鞘，鞘铜饰多于素木设计，护腕鞋口绑扎与布料细纹较多；基本阶段正确，登记不追加。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_fengtianan__ch13_prime_base
   file: por_npc_fengtianan__ch13_prime_base.png
   category: character/male
@@ -1676,3 +1593,54 @@
   sha256: ba5eb4786147e34a6d51cdd7513b12bfefcef4941d93d8726f650aff8e3a059f
   status: candidate
   notes: 立绘重审重出（AR-30）；现图是清秀单薄的偶像少年、剃额长辫，没有胡家人「浓眉大眼、粗豪、浓发不结辫」的辨识度，也不像其父胡一刀；重画为二十岁的粗犷青年刀客，作为雪山胡斐的身份锚。
+- id: por_npc_miaorenfeng__ch13_prime_recovered_base
+  file: por_npc_miaorenfeng__ch13_prime_recovered_base.png
+  category: character/male
+  style: default
+  subject: 苗人凤（ch13_feihu）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+    参考图：上传的第 1 张参考图是苗人凤现有的立绘，只用来保持他的脸：蜡黄的长脸、深陷的眼睛、高颧骨、严肃的神情；他的身材、衣服和姿势都按下面的文字重新画（要更高、更瘦、手更大），不要照搬参考图的衣服和站姿。
+
+    人物：苗人凤，金庸《飞狐外传》中人称「金面佛」的苗家剑高手，号称打遍天下无敌手，此时眼伤已经治好、视力正常。
+
+    经典形象：要一眼认出是「金面佛」苗人凤——黑色立领短褂、蜡黄长脸、极高极瘦如竹篙、剑不出鞘，沉郁孤傲、不苟言笑的一代剑客。
+
+    年龄与体态：四十五岁上下的男人；极高极瘦，像一根竹篙，比常人高出一头，肩宽而薄，手臂很长，约八头身；一双手掌大如蒲扇，指节根根分明、青筋显露。
+
+    脸与五官：长脸，两颊瘦削凹陷，颧骨高；面皮蜡黄，略带病容；眉毛浓黑平直，眼窝深陷，眼神沉郁锐利；鼻梁高而直；薄唇紧闭，嘴角下沉；唇上和下巴有稀疏的短须；不笑。
+
+    发式：清代男子发式：前额剃净，后脑长辫垂背。
+
+    服饰：深灰色长袍，外罩一件黑色对襟短褂（立领，领口和门襟镶银灰色窄滚边），黑色长裤，布靴；朴素干净。
+
+    兵器与道具：右手垂握一柄完全入鞘的普通中式长剑，乌黑的剑鞘贴着腿侧；不出鞘。
+
+    姿态与神情：笔直地站着，冷峻孤傲，像一棵瘦松。
+
+    画风：写实手绘古风人物插画，画风与上传的最后两张画风基线图一致：精细写实的数字手绘插画，笔触细腻柔和、边缘干净；不是油画，没有厚涂笔触和画布纹理；不是照片，不是三维渲染，不是动漫或游戏 CG。人物要像真实存在的人：皮肤看得见毛孔、细纹、晒痕和轻微色斑，五官与脸型有自然的左右不对称，不磨皮；衣料看得出织物的经纬、自然的褶皱和穿用后的轻微旧化，但衣服完整，没有破洞碎布。整体低饱和、沉稳的设色；柔和自然的漫射光从左上方照来，不用舞台光和强轮廓光。
+
+    背景：暖浅灰色纸底，远处只有极淡的水墨远山和薄雾，大面积留白；人物轮廓清楚、与背景明显分开（便于后期抠图），墨色不压到人物身上，脚下只有很淡的接触阴影。
+
+    构图：2:3 竖幅，单人全身，自然站姿，平视镜头，头部端正不歪；从头顶到鞋底完整入画，四周留出余白；双手完整，兵器和道具的两端都在画面内。
+
+    不要：任何文字、字母、签名、印章、水印、边框；第二个人物、活的动物、分格、多视角、头像特写；幼态、童颜、娃娃脸、大头小身、儿童身材；网红脸、锥子脸、大眼滤镜、过度对称、塑料皮肤、蜡像感、过度精修、偶像化打光；任何真实演员或明星的长相；现代服饰和物品；日式服饰、日本刀；汉服交领左衽、整幅画面左右镜像；多余或缺失的手指、手与器物粘连；发光特效、血迹；蒙眼布或失明；胖或魁梧；笑容；金色面具或佛像；出鞘的剑。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch13/por_npc_miaorenfeng__ch13_prime_recovered_base.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张＋身份参考 1 张）
+  model: gpt-6-astra
+  created: 2026-10-02T02:42:03-0700
+  source_path: .agents/coord/gemini_originals/por_npc_miaorenfeng__ch13_prime_recovered_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 1ea792841816c2fd5b3fb2c58e541788c3b3e03a2800d3a783fe4491c158825c
+  status: candidate
+  notes: 立绘重审重出（AR-30）；脸（蜡黄长脸、深目、肃然）基本对，但身材只是普通瘦长，缺原著「极高极瘦像竹篙、手掌大如蒲扇根根见骨」；保留脸，改身材，并用《金庸群侠传》头像的黑色立领短褂加强辨识。
