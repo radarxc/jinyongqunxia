@@ -1,4 +1,21 @@
-import { sha256Hex, type SaveMetadata, type TianshuStorage } from '@tianshu/platform';
+import {
+  decodeJsonSave,
+  decodeZip,
+  encodeJsonSave,
+  encodeZip,
+  identityContentFixup,
+  migrateSaveJson,
+  packSaveJson,
+  sha256Hex,
+  unpackTsav,
+  type SaveHeader,
+  type SaveHeaderInput,
+  type SaveJson,
+  type SaveMetadata,
+  type StoredSave,
+  type TianshuStorage,
+  type ZipEntry,
+} from '@tianshu/platform';
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import type { SessionSnapshot } from '../runtime/contracts';
 
@@ -7,74 +24,424 @@ export interface SaveHost {
   validate(snapshot: SessionSnapshot): Promise<void>;
   restore(snapshot: SessionSnapshot): Promise<unknown>;
 }
-const HEADER_LIMIT = 16 * 1024;
-const SNAPSHOT_LIMIT = 32 * 1024 * 1024;
-const MAGIC = new Uint8Array([84, 83, 85, 73, 1]);
+export type SaveExportFormat = 'json' | 'tsav';
+const CURRENT_SAVE_SCHEMA = 1;
+const CONTENT_HASH = '0'.repeat(64);
+const APP_BUILD = '20261001-0000-local';
+const DEVICE_ID_KEY = 'save.deviceId';
+const LINEAGE_ID_KEY = 'save.lineageId';
+const LEGACY_MAGIC = Uint8Array.of(84, 83, 85, 73, 1);
+const LEGACY_HEADER_LIMIT = 16 * 1024;
+const FILE_LIMIT = 256 * 1024 * 1024;
+
+function hasMagic(bytes: Uint8Array, magic: ArrayLike<number>): boolean {
+  if (bytes.length < magic.length) return false;
+  for (let index = 0; index < magic.length; index += 1) {
+    if (bytes[index] !== magic[index]) return false;
+  }
+  return true;
+}
+function asSaveJson(snapshot: SessionSnapshot): SaveJson {
+  return snapshot as unknown as SaveJson;
+}
+function asSession(state: SaveJson): SessionSnapshot {
+  return state as unknown as SessionSnapshot;
+}
+function summary(session: SessionSnapshot): SaveHeader['summary'] {
+  return {
+    chapterId: session.state.chapter.chapterId,
+    act: 1,
+    regionId: '',
+    locationName: session.location,
+    lr: 1,
+    ld: 1,
+    yuyun: 0,
+    tianshuCount: 0,
+    fateCount: 0,
+    difficulty: 'diff_jianghu',
+    rules: [],
+    playTimeSec: 0,
+    rollbackCount: 0,
+    debugTainted: false,
+    partyNames: [
+      session.state.profile.protagonist?.characterId,
+      ...session.state.profile.companions.map(({ characterId }) => characterId),
+    ]
+      .filter((name): name is string => !!name)
+      .slice(0, 6),
+  };
+}
+function randomId(prefix: 'dev_' | 'ln_'): string {
+  const alphabet = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+  const bytes = crypto.getRandomValues(new Uint8Array(26));
+  return prefix + Array.from(bytes, (byte) => alphabet[byte & 31]).join('');
+}
+function headerInput(
+  slot: string,
+  session: SessionSnapshot,
+  origin: NonNullable<SaveHeaderInput['origin']>,
+  deviceId: string,
+  lineageId: string,
+  source?: SaveHeader,
+): SaveHeaderInput {
+  return {
+    format: 'tianshu-save',
+    slotId: slot,
+    saveSchema: CURRENT_SAVE_SCHEMA,
+    contentHash: CONTENT_HASH,
+    appBuild: APP_BUILD,
+    savedAt: new Date().toISOString(),
+    deviceId,
+    baseRev: 0,
+    lineageId: source?.lineageId ?? lineageId,
+    zhoumu: source?.zhoumu ?? 1,
+    summary: source?.summary ?? summary(session),
+    origin,
+  };
+}
+async function metadata(bytes: Uint8Array, header: SaveHeader): Promise<SaveMetadata> {
+  return {
+    worldId: header.summary.chapterId,
+    gameTime: header.summary.playTimeSec,
+    version: 'tsav.v1',
+    schemaVersion: header.saveSchema,
+    hash: await sha256Hex(bytes),
+    summary: {
+      name: header.summary.partyNames[0] ?? '无名侠客',
+      location: header.summary.locationName,
+      date: header.savedAt,
+    },
+  };
+}
+
+interface PreparedSave {
+  readonly header: SaveHeader;
+  readonly session: SessionSnapshot;
+  readonly bytes: Uint8Array;
+}
+
+async function prepare(
+  slot: string,
+  session: SessionSnapshot,
+  origin: NonNullable<SaveHeaderInput['origin']>,
+  deviceId: string,
+  lineageId: string,
+  source?: SaveHeader,
+): Promise<PreparedSave> {
+  const packed = await packSaveJson(
+    asSaveJson(session),
+    headerInput(slot, session, origin, deviceId, lineageId, source),
+  );
+  return { header: packed.header, session, bytes: packed.bytes };
+}
+
+async function decodeStored(
+  save: StoredSave,
+  host: SaveHost,
+  deviceId: string,
+  lineageId: string,
+): Promise<PreparedSave> {
+  let state: SaveJson;
+  let source: SaveHeader | undefined;
+  if (hasMagic(save.snapshot, [84, 83, 65, 86])) {
+    const decoded = await unpackTsav(save.snapshot);
+    state = decoded.state;
+    source = decoded.header;
+  } else {
+    try {
+      state = JSON.parse(
+        new TextDecoder('utf-8', { fatal: true }).decode(save.snapshot),
+      ) as SaveJson;
+    } catch (error) {
+      throw new Error(`SAVE_FILE_INVALID:${String(error)}`);
+    }
+  }
+  const migrated = migrateSaveJson(state, {
+    fromSchema: source?.saveSchema ?? save.meta.schemaVersion,
+    targetSchema: CURRENT_SAVE_SCHEMA,
+    fromContentHash: source?.contentHash ?? CONTENT_HASH,
+    targetContentHash: CONTENT_HASH,
+    fixup: identityContentFixup,
+  });
+  const session = asSession(migrated.state);
+  await host.validate(session);
+  if (
+    source &&
+    migrated.applied.length === 0 &&
+    !migrated.fixedContent &&
+    source.slotId === save.slot
+  ) {
+    return { header: source, session, bytes: Uint8Array.from(save.snapshot) };
+  }
+  return prepare(
+    save.slot,
+    session,
+    migrated.applied.length || migrated.fixedContent ? 'migration' : (source?.origin ?? 'play'),
+    deviceId,
+    lineageId,
+    source,
+  );
+}
+
+async function decodeLegacyTsui(bytes: Uint8Array): Promise<SaveJson> {
+  if (bytes.length < 9 || !hasMagic(bytes, LEGACY_MAGIC)) throw new Error('SAVE_FILE_INVALID');
+  const size = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getUint32(5, true);
+  if (size === 0 || size > LEGACY_HEADER_LIMIT || 9 + size >= bytes.length)
+    throw new Error('SAVE_FILE_INVALID');
+  let header: Record<string, unknown>;
+  try {
+    header = JSON.parse(
+      new TextDecoder('utf-8', { fatal: true }).decode(bytes.subarray(9, 9 + size)),
+    ) as Record<string, unknown>;
+  } catch {
+    throw new Error('SAVE_FILE_INVALID');
+  }
+  if (
+    header['format'] !== 'tianshu-ui-slot' ||
+    header['version'] !== 1 ||
+    typeof header['hash'] !== 'string'
+  )
+    throw new Error('SAVE_VERSION_UNSUPPORTED');
+  const payload = bytes.slice(9 + size);
+  if ((await sha256Hex(payload)) !== header['hash']) throw new Error('SAVE_HASH_MISMATCH');
+  try {
+    return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(payload)) as SaveJson;
+  } catch {
+    throw new Error('SAVE_FILE_INVALID');
+  }
+}
+
+async function decodeImport(bytes: Uint8Array): Promise<{ state: SaveJson; header?: SaveHeader }> {
+  if (hasMagic(bytes, [84, 83, 65, 86])) {
+    const result = await unpackTsav(bytes);
+    return { state: result.state, header: result.header };
+  }
+  if (hasMagic(bytes, [...LEGACY_MAGIC])) return { state: await decodeLegacyTsui(bytes) };
+  if (hasMagic(bytes, [80, 75, 3, 4])) throw new Error('SAVE_ZIP_IMPORT_UNSUPPORTED');
+  const result = await decodeJsonSave(bytes);
+  return { state: result.state, header: result.header };
+}
+
+async function prepareImport(
+  slot: string,
+  decoded: { state: SaveJson; header?: SaveHeader },
+  host: SaveHost,
+  deviceId: string,
+  lineageId: string,
+): Promise<PreparedSave> {
+  const migrated = migrateSaveJson(decoded.state, {
+    fromSchema: decoded.header?.saveSchema ?? CURRENT_SAVE_SCHEMA,
+    targetSchema: CURRENT_SAVE_SCHEMA,
+    fromContentHash: decoded.header?.contentHash ?? CONTENT_HASH,
+    targetContentHash: CONTENT_HASH,
+    fixup: identityContentFixup,
+  });
+  const session = asSession(migrated.state);
+  await host.validate(session);
+  return prepare(slot, session, 'import', deviceId, lineageId, decoded.header);
+}
 
 export function createSaveService(storage: TianshuStorage, host: SaveHost) {
-  async function metadata(snapshot: Uint8Array, session: SessionSnapshot): Promise<SaveMetadata> {
-    const clock = session.state.chapter.clock;
-    return { worldId: session.state.chapter.chapterId, gameTime: session.state.meta.worldTick,
-      version: 'ui-session.v1', schemaVersion: 1, hash: await sha256Hex(snapshot),
-      summary: { name: '无名侠客', location: session.location, preview: session.preview,
-        date: `${session.state.chapter.worldYear}年 ${clock.monthIndex % 12 + 1}月 ${clock.dayIndex % 30 + 1}日` } };
-  }
-  async function capture() {
-    const session = await host.snapshot();
-    const snapshot = new TextEncoder().encode(canonicalJson(session as unknown as JsonValue));
-    if (snapshot.byteLength > SNAPSHOT_LIMIT) throw new Error('SAVE_TOO_LARGE');
-    return { snapshot, meta: await metadata(snapshot, session) };
-  }
-  function decode(snapshot: Uint8Array): SessionSnapshot {
-    if (snapshot.byteLength > SNAPSHOT_LIMIT) throw new Error('SAVE_TOO_LARGE');
-    return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(snapshot)) as SessionSnapshot;
+  let idsPromise: Promise<{ deviceId: string; lineageId: string }> | undefined;
+  function ids() {
+    return (idsPromise ??= (async () => {
+      const storedDevice = await storage.settings.get<string>(DEVICE_ID_KEY);
+      const storedLineage = await storage.settings.get<string>(LINEAGE_ID_KEY);
+      const deviceId = storedDevice ?? randomId('dev_');
+      const lineageId = storedLineage ?? randomId('ln_');
+      if (!storedDevice) await storage.settings.set(DEVICE_ID_KEY, deviceId);
+      if (!storedLineage) await storage.settings.set(LINEAGE_ID_KEY, lineageId);
+      return { deviceId, lineageId };
+    })());
   }
   function writable(slot: string): void {
-    if (!/^save_manual_(0[1-9]|1[0-2])$/.test(slot) && slot !== 'save_quick') throw new Error('SAVE_SLOT_READONLY');
+    if (!/^save_manual_(0[1-9]|1[0-2])$/.test(slot) && slot !== 'save_quick')
+      throw new Error('SAVE_SLOT_READONLY');
+  }
+  async function capture(
+    slot: string,
+    origin: NonNullable<SaveHeaderInput['origin']> = 'play',
+    source?: SaveHeader,
+  ) {
+    const session = await host.snapshot();
+    const identity = await ids();
+    const value = await prepare(
+      slot,
+      session,
+      origin,
+      identity.deviceId,
+      identity.lineageId,
+      source,
+    );
+    return { ...value, meta: await metadata(value.bytes, value.header) };
+  }
+  async function checked(slot: string, generation?: number) {
+    const identity = await ids();
+    const decoded = new Map<number, PreparedSave>();
+    const save = await storage.saves.load(slot, {
+      ...(generation === undefined ? {} : { generation }),
+      validate: async (candidate) => {
+        decoded.set(
+          candidate.generation,
+          await decodeStored(candidate, host, identity.deviceId, identity.lineageId),
+        );
+      },
+    });
+    if (!save) throw new Error('SAVE_NOT_FOUND');
+    return { save, decoded: decoded.get(save.generation)! };
   }
   return {
     list: () => storage.saves.listSlots(),
+    history: (slot: string) => storage.saves.listHistory(slot),
+    persistenceStatus: () => storage.persistence.status(),
     async save(slot: string) {
-      writable(slot); const payload = await capture();
-      return storage.saves.save(slot, payload.snapshot, payload.meta);
+      writable(slot);
+      const value = await capture(slot);
+      return storage.saves.save(slot, value.bytes, value.meta);
     },
-    async load(slot: string) {
-      if (!/^save_(manual_(0[1-9]|1[0-2])|quick|auto_[1-3])$/.test(slot)) throw new Error('SAVE_SLOT_READONLY');
-      const stored = await storage.saves.load(slot);
-      if (!stored) throw new Error('SAVE_NOT_FOUND');
-      if (stored.meta.version !== 'ui-session.v1') throw new Error('SAVE_VERSION_UNSUPPORTED');
-      return host.restore(decode(stored.snapshot));
+    async load(slot: string, generation?: number) {
+      const result = await checked(slot, generation);
+      await host.restore(result.decoded.session);
+      return result.save.recovery;
     },
     async remove(slot: string) {
-      if (!/^save_(manual_(0[1-9]|1[0-2])|quick|auto_[1-3])$/.test(slot)) throw new Error('SAVE_SLOT_READONLY');
       await storage.saves.delete(slot);
     },
     async autosave(trigger: string, force = false) {
-      const payload = await capture();
-      return storage.saves.autosave(payload.snapshot, payload.meta, { trigger, force });
+      // Resolve and persist local IDs before autosavePrepared enters the storage write queue.
+      // Its lazy prepare callback must not enqueue settings writes on that same queue.
+      await ids();
+      return storage.saves.autosavePrepared(
+        async (slot) => {
+          const value = await capture(slot);
+          return { snapshot: value.bytes, meta: value.meta };
+        },
+        { trigger, force },
+      );
     },
-    async exportSlot(slot: string): Promise<Uint8Array> {
-      const saved = await storage.saves.load(slot);
-      if (!saved) throw new Error('SAVE_NOT_FOUND');
-      const header = new TextEncoder().encode(JSON.stringify({ format: 'tianshu-ui-slot', version: 1, hash: saved.meta.hash }));
-      if (header.byteLength > HEADER_LIMIT) throw new Error('SAVE_HEADER_TOO_LARGE');
-      const output = new Uint8Array(9 + header.byteLength + saved.snapshot.byteLength);
-      output.set(MAGIC); new DataView(output.buffer).setUint32(5, header.byteLength, true);
-      output.set(header, 9); output.set(saved.snapshot, 9 + header.byteLength);
-      return output;
+    async exportSlot(slot: string, format: SaveExportFormat = 'tsav'): Promise<Uint8Array> {
+      const value = await checked(slot);
+      return format === 'tsav'
+        ? value.decoded.bytes
+        : await encodeJsonSave(value.decoded.header, asSaveJson(value.decoded.session));
+    },
+    async exportAll(): Promise<Uint8Array> {
+      const slots = await storage.saves.listSlots();
+      const entries: ZipEntry[] = [];
+      const manifest: {
+        format: string;
+        version: number;
+        exportedAt: string;
+        saves: { slot: string; generation: number; path: string; sha256: string }[];
+      } = {
+        format: 'tianshu-save-archive',
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        saves: [],
+      };
+      for (const slot of slots) {
+        for (const generation of await storage.saves.listHistory(slot.slot)) {
+          const value = await checked(slot.slot, generation.generation);
+          const path = `saves/${slot.slot}/${generation.generation}.tsav`;
+          entries.push({ name: path, bytes: value.decoded.bytes });
+          manifest.saves.push({
+            slot: slot.slot,
+            generation: generation.generation,
+            path,
+            sha256: await sha256Hex(value.decoded.bytes),
+          });
+        }
+      }
+      entries.unshift({
+        name: 'manifest.json',
+        bytes: new TextEncoder().encode(canonicalJson(manifest as unknown as JsonValue)),
+      });
+      entries.splice(1, 0, {
+        name: 'README.txt',
+        bytes: new TextEncoder().encode(
+          '天书录本地存档导出；TSAV 已使用 gzip，ZIP 采用 store 模式。\n',
+        ),
+      });
+      return encodeZip(entries);
     },
     async importSlot(slot: string, bytes: Uint8Array) {
       writable(slot);
-      if (bytes.length < 9 || bytes.length > SNAPSHOT_LIMIT + HEADER_LIMIT + 9 || MAGIC.some((byte, index) => bytes[index] !== byte))
-        throw new Error('SAVE_FILE_INVALID');
-      const size = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getUint32(5, true);
-      if (size > HEADER_LIMIT || size + 9 >= bytes.length) throw new Error('SAVE_FILE_INVALID');
-      const header = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes.slice(9, 9 + size))) as Record<string, unknown>;
-      if (header['format'] !== 'tianshu-ui-slot' || header['version'] !== 1) throw new Error('SAVE_VERSION_UNSUPPORTED');
-      const snapshot = bytes.slice(9 + size);
-      if (await sha256Hex(snapshot) !== header['hash']) throw new Error('SAVE_HASH_MISMATCH');
-      const session = decode(snapshot); await host.validate(session);
-      return storage.saves.save(slot, snapshot, await metadata(snapshot, session));
+      if (bytes.length === 0 || bytes.length > FILE_LIMIT) throw new Error('SAVE_FILE_INVALID');
+      const localIds = await ids();
+      const value = await prepareImport(
+        slot,
+        await decodeImport(bytes),
+        host,
+        localIds.deviceId,
+        localIds.lineageId,
+      );
+      return storage.saves.save(slot, value.bytes, await metadata(value.bytes, value.header));
+    },
+    /** ZIP import is an explicit append-only recovery action; it never clears existing generations. */
+    async importAll(bytes: Uint8Array): Promise<number> {
+      const entries = decodeZip(bytes);
+      const manifestEntry = entries.find((entry) => entry.name === 'manifest.json');
+      if (!manifestEntry) throw new Error('SAVE_ZIP_MANIFEST_MISSING');
+      let manifest: { format?: unknown; version?: unknown; saves?: unknown };
+      try {
+        manifest = JSON.parse(
+          new TextDecoder('utf-8', { fatal: true }).decode(manifestEntry.bytes),
+        );
+      } catch {
+        throw new Error('SAVE_ZIP_MANIFEST_INVALID');
+      }
+      if (
+        manifest.format !== 'tianshu-save-archive' ||
+        manifest.version !== 1 ||
+        !Array.isArray(manifest.saves)
+      )
+        throw new Error('SAVE_ZIP_MANIFEST_INVALID');
+      const byName = new Map(entries.map((entry) => [entry.name, entry.bytes]));
+      const localIds = await ids();
+      const prepared: { slot: string; sourceGeneration: number; value: PreparedSave }[] = [];
+      const identities = new Set<string>();
+      const paths = new Set<string>();
+      for (const item of manifest.saves) {
+        if (!item || typeof item !== 'object') throw new Error('SAVE_ZIP_MANIFEST_INVALID');
+        const { slot, generation, path, sha256 } = item as Record<string, unknown>;
+        if (
+          typeof slot !== 'string' ||
+          !Number.isSafeInteger(generation) ||
+          (generation as number) < 1 ||
+          typeof path !== 'string' ||
+          typeof sha256 !== 'string' ||
+          !/^[0-9a-f]{64}$/.test(sha256) ||
+          path !== `saves/${slot}/${generation as number}.tsav`
+        )
+          throw new Error('SAVE_ZIP_MANIFEST_INVALID');
+        try { await storage.saves.listHistory(slot); }
+        catch { throw new Error('SAVE_ZIP_MANIFEST_INVALID'); }
+        const archiveKey = `${slot}\0${generation as number}`;
+        if (identities.has(archiveKey) || paths.has(path))
+          throw new Error('SAVE_ZIP_MANIFEST_INVALID');
+        identities.add(archiveKey);
+        paths.add(path);
+        const payload = byName.get(path);
+        if (!payload || (await sha256Hex(payload)) !== sha256)
+          throw new Error('SAVE_HASH_MISMATCH');
+        const decoded = await unpackTsav(payload);
+        const value = await prepareImport(
+          slot,
+          decoded,
+          host,
+          localIds.deviceId,
+          localIds.lineageId,
+        );
+        prepared.push({ slot, sourceGeneration: generation as number, value });
+      }
+      prepared.sort(
+        (left, right) =>
+          left.slot.localeCompare(right.slot) || left.sourceGeneration - right.sourceGeneration,
+      );
+      for (const { slot, value } of prepared) {
+        await storage.saves.save(slot, value.bytes, await metadata(value.bytes, value.header));
+      }
+      return prepared.length;
     },
   };
 }

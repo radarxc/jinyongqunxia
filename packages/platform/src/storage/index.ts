@@ -7,9 +7,13 @@ import { IndexedDbSettingsStore } from './settings-store';
 import { IndexedDbStorageTransfer } from './transfer';
 import type { CreateStorageOptions, StorageClock, TianshuStorage } from './types';
 import { IndexedDbWorldStateStore } from './world-state-store';
+import { StoragePersistenceController } from './persistence';
 
 export * from './errors';
 export * from './hash';
+export * from './save-codec';
+export * from './save-migrations';
+export * from './zip-codec';
 export type * from './types';
 
 export const DEFAULT_DATABASE_NAME = 'tianshu';
@@ -57,15 +61,28 @@ export async function createIndexedDbStorage(
   const clock = options.clock ?? systemClock;
   const queue = new WriteQueue();
   const transfer = new IndexedDbStorageTransfer(db, queue, clock);
+  const storageManager =
+    options.storageManager === undefined
+      ? (globalThis.navigator?.storage ?? null)
+      : options.storageManager;
+  const persistence = new StoragePersistenceController(storageManager);
 
   return {
     schemaVersion: STORAGE_SCHEMA_VERSION,
-    saves: new IndexedDbSaveStore(db, queue, clock, throttleMs),
+    saves: new IndexedDbSaveStore(
+      db,
+      queue,
+      clock,
+      throttleMs,
+      persistence,
+      options.saveCommitHook,
+    ),
     worldState: new IndexedDbWorldStateStore(db, queue, clock),
     content: new IndexedDbContentCache(db, queue, clock),
     settings: new IndexedDbSettingsStore(db, queue),
     migrations: MIGRATIONS,
     transfer,
+    persistence,
     export: () => transfer.export(),
     import: (archive) => transfer.import(archive),
     close: async () => db.close(),

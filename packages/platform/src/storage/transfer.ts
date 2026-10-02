@@ -83,14 +83,14 @@ export class IndexedDbStorageTransfer implements StorageTransfer {
     try {
       const entries = await this.db.transaction(
         'r',
-        this.db.saves,
+        this.db.saveGenerations,
         this.db.worldSnapshots,
         this.db.worldDeltas,
         this.db.packs,
         this.db.settings,
         async () => {
           const [saves, snapshots, deltas, content, settings] = await Promise.all([
-            this.db.saves.toArray(),
+            this.db.saveGenerations.toArray(),
             this.db.worldSnapshots.toArray(),
             this.db.worldDeltas.toArray(),
             this.db.packs.toArray(),
@@ -207,8 +207,8 @@ export class IndexedDbStorageTransfer implements StorageTransfer {
       }
     };
     unique(
-      decoded.saves.map(({ slot }) => slot),
-      'save slots',
+      decoded.saves.map(({ slot, generation }) => `${slot}\0${generation}`),
+      'save generations',
     );
     unique(
       decoded.snapshots.map(({ key }) => key),
@@ -322,7 +322,7 @@ export class IndexedDbStorageTransfer implements StorageTransfer {
       return await this.db.transaction(
         'rw',
         [
-          this.db.saves,
+          this.db.saveGenerations,
           this.db.worldSnapshots,
           this.db.worldDeltas,
           this.db.packs,
@@ -331,19 +331,42 @@ export class IndexedDbStorageTransfer implements StorageTransfer {
         ],
         async () => {
           await Promise.all([
-            this.db.saves.clear(),
+            this.db.saveGenerations.clear(),
             this.db.worldSnapshots.clear(),
             this.db.worldDeltas.clear(),
             this.db.packs.clear(),
             this.db.settings.clear(),
             this.db.storageMeta.clear(),
           ]);
-          await this.db.saves.bulkPut(decoded.saves);
+          await this.db.saveGenerations.bulkPut(decoded.saves);
           await this.db.worldSnapshots.bulkPut(decoded.snapshots);
           await this.db.worldDeltas.bulkPut(decoded.deltas);
           await this.db.packs.bulkPut(decoded.content);
           await this.db.settings.bulkPut(decoded.settings);
-          await this.db.storageMeta.put({ key: 'schemaVersion', value: STORAGE_SCHEMA_VERSION });
+          const latest = new Map<string, number>();
+          for (const row of decoded.saves) {
+            latest.set(row.slot, Math.max(latest.get(row.slot) ?? 0, row.generation));
+          }
+          const grouped = new Map<string, SaveRow[]>();
+          for (const row of decoded.saves) {
+            const rows = grouped.get(row.slot) ?? [];
+            rows.push(row);
+            grouped.set(row.slot, rows);
+          }
+          const obsolete = [...grouped.values()].flatMap((rows) =>
+            rows.sort((a, b) => b.generation - a.generation).slice(3),
+          );
+          if (obsolete.length > 0)
+            await this.db.saveGenerations.bulkDelete(
+              obsolete.map((row): [string, number] => [row.slot, row.generation]),
+            );
+          await this.db.storageMeta.bulkPut([
+            { key: 'schemaVersion', value: STORAGE_SCHEMA_VERSION },
+            ...[...latest].map(([slot, generation]) => ({
+              key: `save:current:${slot}`,
+              value: generation,
+            })),
+          ]);
           return {
             saves: decoded.saves.length,
             worldSnapshots: decoded.snapshots.length,
