@@ -1,11 +1,11 @@
 # 书界补录武学图鉴 · 10《白马啸西风》
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的按书补录册；本文只定义书界 10 首领画像缺少、且既有十一册门派图鉴无法复用的武学、招式、路线与调息档案。
-> **覆盖声明**：不改写 `skills-kangxi.md`；四门补录分别归华辉传承与哈萨克部族体系。主角及其他合格人物均可按传授、职级、秘籍或奇遇习得；瓦耳拉齐、马家骏和部族演武首领只是装配者，不拥有排他版本。
+> **覆盖声明**：不改写 `skills-kangxi.md`；四门补录分别归华辉传承与铁延部草原体系。主角及其他合格人物均可按传授、职级、秘籍或奇遇习得；瓦耳拉齐、马家骏和部族演武首领只是装配者，不拥有排他版本。稳定 ID 中的 `hasake` 仅为兼容键，不是唐代族属显示名。
 > **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14–AR-16、`docs/00-canon.md` §3–§5/§9/§12–§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/06`、`design/15`、`design/17`、`design/21`。
-> **引用而不重定义**：品阶、字段、招式 / 内功预算和习得规则见 `design/05`；Buff 本体见 `design/06`；哈萨克职级见 `design/17`；穴位见 `design/15`；经脉路线、外放、调息和护体内劲见 `design/21`；既有华辉与哈萨克武学只引用 `skills-kangxi.md`。
+> **引用而不重定义**：品阶、字段、招式 / 内功预算和习得规则见 `design/05`；Buff 本体见 `design/06`；铁延部的章节职级见 `chapters/10-baima` §7.4（`design/17` 尚待同步）；穴位见 `design/15`；经脉路线、外放、调息和护体内劲见 `design/21`；既有华辉与草原武学只引用 `skills-kangxi.md`。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为原著有人物、师承或动作依据但名称未见明载；**（待考）**须按三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
-> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
+> **版本**：首领所缺武学补录（2026-09-28）；经脉与 AR-18 终审（2026-09-29）；AR-26 唐代来源改写（2026-10-02）。
 
 ---
 
@@ -52,7 +52,7 @@
 | 华辉 | `sk_huahuixinfa` | 瓦耳拉齐、马家骏 9 品真实主运 | 与 `skills-kangxi` §8.7–§8.8 的华辉体系同源 |
 | 华辉指法 | `sk_walalizhi` | 瓦耳拉齐“一指镇江南”指法画像 | 同属华辉传承；不是人物排他技能 |
 | 华辉飞针 | `sk_majiajunfeizhen` | 马家骏实体暗器与内伤画像 | 同属华辉传承；不是人物排他技能 |
-| 哈萨克部族 | `sk_hasakeyunqi` | 部族演武首领 5 品本门主运 | 接 `skills-kangxi` §8.4–§8.5 的部族体系 |
+| 铁延部草原体系 | `sk_hasakeyunqi` | 部族演武首领 5 品本门主运 | 接 `skills-kangxi` §8.4–§8.5；ID 不改、显示来源唐代化 |
 
 ## 1. 华辉传承
 
@@ -159,13 +159,13 @@
 | 透隙 | `ps_majiajunfeizhen_touxi` | 5 | 对已有 `bf_neishang` 的目标效果命中 +5pp |
 | 针路圆成 | `ps_majiajunfeizhen_yuancheng` | 10 | 每战首次针类绝招结算后返还该招实扣内力 20%，不返还气势 |
 
-## 2. 哈萨克部族
+## 2. 铁延部草原体系
 
-### `sk_hasakeyunqi` 草原运气法（5 玄中 · 内功 · 哈萨克部族）**（原创扩展）**
+### `sk_hasakeyunqi` 草原运气法（5 玄中 · 内功 · 铁延部）**（原创扩展）**
 
 | 字段 | 值 |
 |---|---|
-| origin / sect / lineage | `expanded` / `sect_hasake` / 哈萨克部族；接 `skills-kangxi.md` §8.4–§8.5 的摔角、心法体系 |
+| origin / sect / lineage | `expanded` / `sect_hasake` / 铁延部草原体系；`sect_hasake` 为旧稳定键，唐代显示名不得回显“哈萨克部族”；接 `skills-kangxi.md` §8.4–§8.5 的摔角、心法体系 |
 | sourceChapters | `[ch10_baima]` |
 | category / subType / grade | `inner / inner / 5` |
 | nature · wOut/wIn · aptitude · moveSlots | `yang` · `0.20/0.80` · `apInner` · 3 |
@@ -177,7 +177,7 @@
 | setTags / conflicts | `[]` / `[]` |
 | special / observable | `{fusible:true}` / `true`；观摩只开放至 6 重，完整传承仍需职级与认可 |
 | learnSources | `[{type:master,chapter:ch10_baima,ref:biz_yining_manor_01,maxLayer:10},{type:observe,chapter:ch10_baima,ref:biz_yining_manor_01,maxLayer:6}]`；两项均由庄园 `job_jiaotou` 职能槽承载；`master` 还须达到 L3 亲随并完成救援、守诺与演武认可，`observe` 为被共同体接纳后的余韵演武。主角和其他合资格人物均可学，演武首领只是示范者，胜负不转移传承权。 |
-| description / 图鉴文本 | 由草原心法进阶的耐战运气法，服务长途、稳身与护持；这是玩法共同体的公传训练，不把现实族群概括成单一武林门派。 |
+| description / 图鉴文本 | 由草原心法进阶的耐战运气法，服务长途、稳身与护持；是虚构铁延共同体的公传训练，不冒充突厥、铁勒或其他真实族群的统一武学。 |
 
 #### `sk_hasakeyunqi` 招式正文（定义以 §2 为准）
 
@@ -273,7 +273,7 @@
 | BM10-BL-V09 | 习得途径 | 均允许主角与其他合资格人物学习；击败首领不直接掉完整武学 |
 | BM10-BL-T01 | 瓦耳拉齐 / 马家骏主运 `sk_huahuixinfa` 8 重 | 七参取真实 `9/8/.../yin/fullTemplate`，不再用地位下限伪装主运 |
 | BM10-BL-T02 | 部族演武首领主运 `sk_hasakeyunqi` 8 重 | 七参取真实 `5/8/.../yang/fullTemplate` |
-| BM10-BL-T03 | 三类首领保持 §12.8 的 `1.00/1.00` 血防倍率运行节奏脚本 | 瓦耳拉齐、马家骏各 18.44 轮，部族演武首领 16.32 轮，均在 12–25 窗 |
+| BM10-BL-T03 | 三类首领在首书 D2 / Lv20 新包络重跑节奏脚本 | 旧 D3 / Lv46 的 18.44、16.32 仅为迁移前快照，不得作为唐代生产金标准；见章节 §12 |
 
 ## 9. 待决事项 / 依赖
 
@@ -290,7 +290,7 @@
 
 ### 9.3 对基准的修改提案
 
-- 无。四门均落在现行低武上限、ID、武学预算、外放边界与首领配装规则内。
+- `skills-kangxi.md`、`design/17` 应把 `sect_hasake` 在 `ch10_baima` 的显示来源改为“铁延部 / 草原共同体”，保留全部既有 `sk_hasake*` 与 `sect_hasake` 稳定 ID。
 
 ### 9.4 原著考据待办
 
