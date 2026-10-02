@@ -13,6 +13,8 @@ import { createFrameStatsTracker, type FrameStats } from './frame-stats';
 
 export type RenderStats = FrameStats;
 export * from './frame-stats';
+export * from './camera';
+export * from './lighting';
 export interface RenderWorld {
   render(timeMs: number): void;
   resize(width: number, height: number, pixelRatio?: number): void;
