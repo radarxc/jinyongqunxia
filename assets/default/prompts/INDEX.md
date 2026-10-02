@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 324、已入库 153、已通过（作者） 150。**待出图队列 324 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 323、已入库 154、已通过（作者） 150。**待出图队列 323 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -30,7 +30,6 @@
 |---|---|---|---|---|---|
 | items | `eq_mingyudiebuyao_nv` | 明玉蝶步摇·女 | `assets/default/item/accessories/eq_mingyudiebuyao_nv.png` | 待出图 | [eq_mingyudiebuyao_nv.md](items/accessories/eq_mingyudiebuyao_nv.md) |
 | items | `eq_qingxuanhuyuduandoupeng_nan` | 清玄狐羽缎斗篷·男 | `assets/default/item/accessories/eq_qingxuanhuyuduandoupeng_nan.png` | 待出图 | [eq_qingxuanhuyuduandoupeng_nan.md](items/accessories/eq_qingxuanhuyuduandoupeng_nan.md) |
-| items | `eq_songyoujuanyupi_nv` | 宋油绢雨披·女 | `assets/default/item/accessories/eq_songyoujuanyupi_nv.png` | 待出图 | [eq_songyoujuanyupi_nv.md](items/accessories/eq_songyoujuanyupi_nv.md) |
 | items | `eq_songziluogaitou_nv` | 宋紫罗盖头·女 | `assets/default/item/accessories/eq_songziluogaitou_nv.png` | 待出图 | [eq_songziluogaitou_nv.md](items/accessories/eq_songziluogaitou_nv.md) |
 | items | `eq_xixiacuzhanpi_nan` | 西夏粗毡披·男 | `assets/default/item/accessories/eq_xixiacuzhanpi_nan.png` | 待出图 | [eq_xixiacuzhanpi_nan.md](items/accessories/eq_xixiacuzhanpi_nan.md) |
 | items | `eq_yuanguguquan_nv` | 元珠饰罟罟冠·女 | `assets/default/item/accessories/eq_yuanguguquan_nv.png` | 待出图 | [eq_yuanguguquan_nv.md](items/accessories/eq_yuanguguquan_nv.md) |
@@ -551,7 +550,7 @@
 
 （已全部入库。）
 
-### 护肩 / 披风 / 头饰（48）· 已入库 27、已通过（作者） 12、待出图 9
+### 护肩 / 披风 / 头饰（48）· 已入库 28、已通过（作者） 12、待出图 8
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -562,8 +561,7 @@
 | 5 | 明玉蝶步摇·女 | `eq_mingyudiebuyao_nv` | 玄中 | 头饰·簪钗 | 待出图 | [eq_mingyudiebuyao_nv.md](items/accessories/eq_mingyudiebuyao_nv.md) | template |
 | 6 | 宋紫罗盖头·女 | `eq_songziluogaitou_nv` | 玄下 | 头饰·盖头 | 待出图 | [eq_songziluogaitou_nv.md](items/accessories/eq_songziluogaitou_nv.md) | template |
 | 7 | 元蒙古毡披·男 | `eq_yuanmengguzhanpi_nan` | 玄下 | 披风·毡披 | 待出图 | [eq_yuanmengguzhanpi_nan.md](items/accessories/eq_yuanmengguzhanpi_nan.md) | template |
-| 8 | 宋油绢雨披·女 | `eq_songyoujuanyupi_nv` | 黄中 | 披风·雨披 | 待出图 | [eq_songyoujuanyupi_nv.md](items/accessories/eq_songyoujuanyupi_nv.md) | template |
-| 9 | 西夏粗毡披·男 | `eq_xixiacuzhanpi_nan` | 黄中 | 披风·毡披 | 待出图 | [eq_xixiacuzhanpi_nan.md](items/accessories/eq_xixiacuzhanpi_nan.md) | template |
+| 8 | 西夏粗毡披·男 | `eq_xixiacuzhanpi_nan` | 黄中 | 披风·毡披 | 待出图 | [eq_xixiacuzhanpi_nan.md](items/accessories/eq_xixiacuzhanpi_nan.md) | template |
 
 ### 鞋（26）· 待出图 18、已通过（作者） 8
 
