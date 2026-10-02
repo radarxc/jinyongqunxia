@@ -157,8 +157,8 @@ window.__g = {
     return Math.max(0, w);
   },
   // 2026-10-02：发送一律在可见标签页里 JS 点「Send message」——后台标签页点了会建出空会话、什么也不出（之前"两成点不动"也是这个原因）。
-  // 点之前过 gate()（各道共用 8 秒间隔），点之后等页面出现 user-query 才算发出，再出队。一次调用最长约 38 秒，在 45 秒上限内。
-  async send(id = this.head(), ms = 20000) {
+  // 点之前过 gate()（各道共用 8 秒间隔），点之后等页面出现 user-query、再等会话建立（见 markSent）才算发出，再出队。一次调用最长约 40 秒，在 45 秒上限内。
+  async send(id = this.head(), ms = 12000) {
     if (document.visibilityState !== 'visible') return { ok: false, id, why: 'tab hidden' };
     if (id !== this.head()) return { ok: false, id, why: 'not queue head', head: this.head() };
     if (!this.imagesOn()) return { ok: false, id, why: 'images tool off' };
@@ -171,10 +171,15 @@ window.__g = {
     b.click(); window.__gT = Date.now();
     return this.markSent(id, ms, n0);
   },
-  // 只认页面出现新的 user-query：编辑框变空不算（发送失败时编辑框也可能被清空）
-  async markSent(id, ms = 20000, n0 = 0) {
+  // 只认页面出现新的 user-query：编辑框变空不算（发送失败时编辑框也可能被清空）。
+  // 10-02 偶发「回滚」：user-query 出现一两秒后又消失，提示词退回编辑框（模板标记也没了），地址停在 /app——请求被服务端拒了。
+  // 所以还要等到地址变成 /app/<会话 id> 或出现 model-response 才算发出（正常约 1.5 秒）；回滚返回 rolled back、不出队，整页重开 /app 重发即可。
+  async markSent(id, ms = 12000, n0 = 0) {
     const sent = await this.waitFor(() => document.querySelectorAll('user-query').length > n0, ms);
     if (!sent) return { ok: false, id, why: 'not sent' };
+    const conf = await this.waitFor(() => (/^\/app\/[0-9a-z]+/i.test(location.pathname) || document.querySelector('model-response')) ? 'ok'
+      : (document.querySelectorAll('user-query').length <= n0 ? 'rolled back' : null), 10000);
+    if (conf !== 'ok') return { ok: false, id, why: conf || 'unconfirmed (no conversation after 10 s)' };
     const q = JSON.parse(localStorage.getItem(this.qk()) || '[]');
     if (q[0] === id) { localStorage.setItem(this.qk(), JSON.stringify(q.slice(1))); }
     localStorage.setItem(this.ck(), id); window.__gT = Date.now();
