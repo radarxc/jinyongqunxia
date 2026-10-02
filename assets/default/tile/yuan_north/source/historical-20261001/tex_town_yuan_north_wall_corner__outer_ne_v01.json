@@ -1,0 +1,41 @@
+{
+  "id": "tex_town_yuan_north_wall_corner__outer_ne_v01",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "source": "/private/tmp/yuan_hist/wall_corner__outer_ne_v01_c2.png",
+  "source_sha256": "23d10e66a62a9f8d5d387365aa2e7a02f4ed4b840752a6f48e59897aa6a2018a",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/tile/yuan_north/tex_town_yuan_north_wall_corner__outer_ne_v01.png",
+  "final_sha256": "40b39608c06f41e698164f856b1342d78b8b05777d9419fbe11e458526d3d4c4",
+  "processing": {
+    "source_size": [
+      1024,
+      1536
+    ],
+    "crop_box": [
+      123,
+      187,
+      901,
+      1385
+    ],
+    "uniform_scale": 0.21368948247078465,
+    "resized_size": [
+      166,
+      256
+    ],
+    "canvas_size": [
+      256,
+      320
+    ],
+    "paste_offset": [
+      45,
+      32
+    ],
+    "alpha_cleanup": "border-connected exterior glow removed; subject pixels preserved"
+  },
+  "references": [
+    "dadu_wall_02.jpg",
+    "dadu_wall_03.jpg"
+  ],
+  "detail": "the exact tall concave L-shaped outer corner in warm buff rammed earth: continuous horizontal tamped lifts wrapping both faces, compact granular surface, rain-cut but crisp top, darker sheltered inner angle, sharply cut seamless ends; no bricks, coping, battlements, vegetation or ground slab",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}

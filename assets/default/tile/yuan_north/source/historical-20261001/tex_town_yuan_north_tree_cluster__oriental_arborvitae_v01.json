@@ -1,0 +1,41 @@
+{
+  "id": "tex_town_yuan_north_tree_cluster__oriental_arborvitae_v01",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "source": "/private/tmp/yuan_hist/tree_cluster__oriental_arborvitae_v01_c2.png",
+  "source_sha256": "8ef884a501f950b274f490612cd72a3886706837de9c6bf3f8d26e57ec9d7ea6",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/tile/yuan_north/tex_town_yuan_north_tree_cluster__oriental_arborvitae_v01.png",
+  "final_sha256": "a70aacc5a5221e3c0d414e455c92ae60514f8511f65cab4d8ad5ab5127baa672",
+  "processing": {
+    "source_size": [
+      1482,
+      1062
+    ],
+    "crop_box": [
+      420,
+      8,
+      1094,
+      1055
+    ],
+    "uniform_scale": 0.24450811843361986,
+    "resized_size": [
+      165,
+      256
+    ],
+    "canvas_size": [
+      256,
+      320
+    ],
+    "paste_offset": [
+      45,
+      32
+    ],
+    "alpha_cleanup": "border-connected exterior glow removed; subject pixels preserved"
+  },
+  "references": [
+    "arborvitae_01.jpg",
+    "arborvitae_02.jpg"
+  ],
+  "detail": "one mature oriental arborvitae (Platycladus orientalis): irregular narrow upright crown, dense vertical flattened sprays of scale-like deep olive foliage, visible twisting cinnamon-grey trunk and aged branching, non-symmetrical ancient-tree silhouette; not pine, fir or clipped topiary, no soil patch or second tree",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}

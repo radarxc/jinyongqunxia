@@ -1,0 +1,41 @@
+{
+  "id": "bld_kit_yuan_north_stable",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source": "/private/tmp/yuan_hist/stable_c1.png",
+  "source_sha256": "4e37aa52eb1f5609615f267509e715bcf79fbd8ad0eeada2802e79403aa8443a",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_stable.png",
+  "final_sha256": "2e3c20df663cdc7f0c9983295f06c0ff71ce61b68562c593b7890c3cef23ce27",
+  "processing": {
+    "source_size": [
+      1254,
+      1254
+    ],
+    "crop_box": [
+      48,
+      224,
+      1234,
+      1110
+    ],
+    "uniform_scale": 0.3758465011286682,
+    "resized_size": [
+      446,
+      333
+    ],
+    "canvas_size": [
+      512,
+      416
+    ],
+    "paste_offset": [
+      33,
+      41
+    ],
+    "alpha_cleanup": "none"
+  },
+  "references": [
+    "jishi_01.png",
+    "jishi_02.png"
+  ],
+  "detail": "a long utilitarian stable: three-or-five open timber bays beneath a hard-gabled grey pan-and-cover tile roof, low earth-and-brick rear wall, rough squared posts, exposed purlins and rafters, low plank stall partitions, hay rack, feed trough and tied bundles; no horses or people, no modern tack",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}

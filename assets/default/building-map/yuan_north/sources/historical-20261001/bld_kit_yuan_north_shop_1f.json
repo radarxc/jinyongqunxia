@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_yuan_north_shop_1f",
+  "repair_round": 5,
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "generation_id": "ae72a71a-c0bc-44c2-9653-fa9062c24346",
+  "request_id": "1d4dae18-326b-4bc4-ab98-b0d0d5fb9b82",
+  "source": "/private/tmp/yuan_hist/shop_1f_repair5_c1.png",
+  "source_sha256": "7a7ae8ea28f8d4ca3738d68270d29d827ce447108546e788eb76b4a529691b27",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_shop_1f.png",
+  "final_sha256": "4c2921fa91690577561e25a31f654d7da87b04469960eba901cc41c3a6de3c97",
+  "processing": {
+    "source_size": [
+      1305,
+      1205
+    ],
+    "crop_box": [
+      65,
+      94,
+      1257,
+      1138
+    ],
+    "uniform_scale": 0.276006711409396,
+    "resized_size": [
+      329,
+      288
+    ],
+    "canvas_size": [
+      416,
+      384
+    ],
+    "paste_offset": [
+      43,
+      48
+    ],
+    "alpha_cleanup": "retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp"
+  },
+  "references": [
+    {
+      "file": "shop_1f_qingming_detail.jpg",
+      "url": "https://img.jiguzuo.com/guohua/changjuan/202511/9cadde09ad1fbfdb0a0a44f4e0679383.jpg",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "北宋《清明上河图》街市局部：一层铺面开间、板门/板式柜台、立柱和檐下木构；仅作前代城市商业形制旁证。",
+      "input_sha256": "9aabe6e3d0b1284c38b403ccb17dfbc2f39a5e14a7925833635e41ae9e63cb5e"
+    },
+    {
+      "file": "shop_1f_longchi_detail.jpg",
+      "url": "https://www.shuge.org/wp-content/uploads/2026/06/long_chi_jing_du_tu_juan06-1500x1133.jpg",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "元王振鹏《龙池竞渡图》界画局部：柱距、瓦檐、斗拱和格扇构造；宫苑功能不移植。",
+      "input_sha256": "cb1a7279eac36da978dc90a04140313a584786a91ab716125b399958596d4b02"
+    }
+  ],
+  "detail": "三开间单层铺面；灰瓦深檐、外露椽头和疏朗承托，木柱额枋、板门/板式柜台、格窗、土墙与灰砖脚。",
+  "visual_review": "参考、入选原图和规格化成品均已view_image；通过历史细节、禁项、透明边与完整轮廓目检。"
+}

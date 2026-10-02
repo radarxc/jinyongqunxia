@@ -1,0 +1,41 @@
+{
+  "id": "bld_kit_yuan_north_manor",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source": "/private/tmp/yuan_hist/manor_c1.png",
+  "source_sha256": "a2c404c580f23acc1d8747fe22fac74c0991d156bf9d7e16191c7f8aee6274bc",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_manor.png",
+  "final_sha256": "2fc74013cfed3a938bc3d92893d1842d1fca2d0af91c31522335465f49f15797",
+  "processing": {
+    "source_size": [
+      1491,
+      1055
+    ],
+    "crop_box": [
+      51,
+      31,
+      1470,
+      1031
+    ],
+    "uniform_scale": 0.701,
+    "resized_size": [
+      995,
+      701
+    ],
+    "canvas_size": [
+      1088,
+      768
+    ],
+    "paste_offset": [
+      46,
+      33
+    ],
+    "alpha_cleanup": "none"
+  },
+  "references": [
+    "wangzhenpeng_01.jpg",
+    "wangzhenpeng_05.jpg"
+  ],
+  "detail": "a large but non-imperial northern manor compound: axial gate, deep five-bay main hall, lower hard-gabled side halls and service sheds enclosing two readable courts, low stone platforms, grey pan-and-cover tiled roofs, restrained hip roof only on the main hall, robust sparse bracket arms, red-brown timber, buff earth walls and grey-brick skirts",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}

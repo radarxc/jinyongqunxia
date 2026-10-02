@@ -1,0 +1,41 @@
+{
+  "id": "bld_kit_yuan_north_courtyard",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source": "/private/tmp/yuan_hist/courtyard_c1.png",
+  "source_sha256": "01fe407cf7e1a493c3125af85b5261380fe60be3b6964c84bdbcd0406ba3861f",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_courtyard.png",
+  "final_sha256": "871d49357701aa3bc4a3af29c67e030775320dc93146ba0e728c19f351198dd5",
+  "processing": {
+    "source_size": [
+      1504,
+      1046
+    ],
+    "crop_box": [
+      93,
+      36,
+      1460,
+      1035
+    ],
+    "uniform_scale": 0.4084084084084084,
+    "resized_size": [
+      558,
+      408
+    ],
+    "canvas_size": [
+      640,
+      480
+    ],
+    "paste_offset": [
+      41,
+      36
+    ],
+    "alpha_cleanup": "none"
+  },
+  "references": [
+    "wangzhenpeng_05.jpg",
+    "wangzhenpeng_06.jpg"
+  ],
+  "detail": "a compact northern residential courtyard: three-bay north main hall and lower east-west wings around an open stone-packed court, axial timber gate and small screen wall, hard-gabled grey pan-and-cover tile roofs, plastered earth walls with brick skirts, exposed rafters, dark timber posts, plank-and-geometric-lattice doors",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}

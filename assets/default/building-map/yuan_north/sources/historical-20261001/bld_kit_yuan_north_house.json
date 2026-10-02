@@ -1,0 +1,66 @@
+{
+  "id": "bld_kit_yuan_north_house",
+  "repair_round": 5,
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "generation_id": "9666c9ad-e651-4a13-a862-c88f4259d2c2",
+  "request_id": "cb72e0fc-d413-4463-9152-aa2f1251b826",
+  "source": "/private/tmp/yuan_hist/house_repair5_c1.png",
+  "source_sha256": "d68570bdb3df3b3db954da1aa06d8e4286942930677db2c2f4b06fec9fc3e123",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_house.png",
+  "final_sha256": "e105988e57f732612507c041cdbef8a351b8cbbcc5655645072c6ee3478d6a0c",
+  "processing": {
+    "source_size": [
+      1448,
+      1086
+    ],
+    "crop_box": [
+      58,
+      59,
+      1406,
+      1055
+    ],
+    "uniform_scale": 0.3086053412462908,
+    "resized_size": [
+      416,
+      307
+    ],
+    "canvas_size": [
+      512,
+      384
+    ],
+    "paste_offset": [
+      48,
+      38
+    ],
+    "alpha_cleanup": "retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp"
+  },
+  "references": [
+    {
+      "file": "jishi_people_1.png",
+      "url": "http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "元至元三十一年姬氏民居院落：硬山灰瓦、近直檐线、砖墙与院落尺度。",
+      "input_sha256": "02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662"
+    },
+    {
+      "file": "jishi_people_3.png",
+      "url": "http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "正立面可辨筒板瓦、圆椽头、粗木柱梁、板门、方格窗与灰砖墙脚。",
+      "input_sha256": "00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3"
+    },
+    {
+      "file": "jishi_people_4.png",
+      "url": "http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html",
+      "accessed": "2026-10-01",
+      "role": "实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。",
+      "used": "近照可辨木门框、简素方格窗棂、木材接合与风化肌理。",
+      "input_sha256": "71359e30658a32cdf47d667cea3490915052cd18d778f3c0a38d12042fcf726b"
+    }
+  ],
+  "detail": "三间硬山主屋及短侧翼；低缓灰色筒板瓦、近直檐、圆椽头、粗木梁柱、板门、方格窗、土/砖墙与灰砖墙脚。",
+  "visual_review": "参考、入选原图和规格化成品均已view_image；通过历史细节、禁项、透明边与完整轮廓目检。"
+}

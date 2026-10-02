@@ -1,0 +1,41 @@
+{
+  "id": "bld_kit_yuan_north_wharf",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source": "/private/tmp/yuan_hist/wharf_c1.png",
+  "source_sha256": "140f9a029187aa422375b6ee2e943b4ed21e6981bc823038eca0bc756a0a704d",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_wharf.png",
+  "final_sha256": "5c6b66f9d70f06d568d947114c900439a78a4d9a9e16d9bdfb1bc0a22027be72",
+  "processing": {
+    "source_size": [
+      1402,
+      1122
+    ],
+    "crop_box": [
+      156,
+      111,
+      1302,
+      1034
+    ],
+    "uniform_scale": 0.38353196099674974,
+    "resized_size": [
+      440,
+      354
+    ],
+    "canvas_size": [
+      512,
+      448
+    ],
+    "paste_offset": [
+      36,
+      47
+    ],
+    "alpha_cleanup": "none"
+  },
+  "references": [
+    "wangzhenpeng_12.jpg",
+    "waning_01.jpg"
+  ],
+  "detail": "a compact canal freight wharf module: coursed grey stone quay edge and broad worn landing steps descending within the footprint, simple timber loading frame/winch, small hard-gabled grey-tile tally shed with buff earth infill, bollards, rope coils and a few crates; no water plane, boats, people or modern metal crane",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}
