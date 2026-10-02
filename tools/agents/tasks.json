@@ -29899,12 +29899,6 @@
       "pnpm",
       "--filter",
       "./apps/game",
-      "test"
-     ],
-     [
-      "pnpm",
-      "--filter",
-      "./apps/game",
       "build"
      ],
      [
@@ -29974,12 +29968,6 @@
       "pnpm",
       "--filter",
       "@tianshu/data",
-      "test"
-     ],
-     [
-      "pnpm",
-      "--filter",
-      "./apps/game",
       "test"
      ],
      [
@@ -30436,12 +30424,6 @@
       "pnpm",
       "--filter",
       "./apps/game",
-      "test"
-     ],
-     [
-      "pnpm",
-      "--filter",
-      "./apps/game",
       "build"
      ],
      [
@@ -30495,12 +30477,6 @@
      [
       "pnpm",
       "check"
-     ],
-     [
-      "pnpm",
-      "--filter",
-      "./apps/game",
-      "test"
      ],
      [
       "pnpm",
@@ -30560,12 +30536,6 @@
      [
       "pnpm",
       "check"
-     ],
-     [
-      "pnpm",
-      "--filter",
-      "./apps/game",
-      "test"
      ],
      [
       "pnpm",

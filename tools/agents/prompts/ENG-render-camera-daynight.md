@@ -79,7 +79,7 @@
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
 - `pnpm check`
-- `pnpm --filter ./apps/game test`
+- （apps/game 的测试由根 `pnpm check` 覆盖。包内 `pnpm --filter ./apps/game test` 加载 `vite.config.ts` 会失败：`packages/data/src/tooling.ts` 的无后缀 ESM 导入。这是集成分支的已知问题，另有任务修，不在本任务范围，不要改。）
 - `pnpm --filter ./apps/game build`
 - `python3 tools/lint/check_ids.py --strict`
 
