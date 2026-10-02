@@ -31080,6 +31080,7 @@
     "apps/game/src/projection.ts",
     "apps/game/src/runtime/**",
     "packages/core/src/world/worldmap-*.ts",
+    "packages/core/src/world/worldmap.test.ts",
     "packages/ui/src/projections.ts"
    ]
   },
