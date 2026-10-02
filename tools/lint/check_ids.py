@@ -99,6 +99,7 @@ OWNERSHIP: Mapping[str, Tuple[str, ...]] = {
              "docs/design/18-npc-and-companions.md"),
     "q_": ("docs/design/story/*.md", "docs/design/chapters/*.md",
            "docs/design/11-open-world.md", "docs/design/12-quests-npc-factions.md"),
+    "slp_": ("docs/design/story/sleep-events.md",),
     # AR-04 assigns the finalized global RegionDef table to design/11.  The
     # map YAML is its structured source; design/19's 19-region table is an
     # explicitly labelled draft, and chapters only consume era-layer state.
