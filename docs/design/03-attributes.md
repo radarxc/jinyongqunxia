@@ -1,11 +1,11 @@
 # 03 · 属性体系（Attributes）
 
 > 归属（基准 §18）：属性的定义、取值范围、成长曲线、派生公式与叠加顺序。
-> 上游：`00-canon.md` v1.8；`decisions/author-decisions.md`；`decisions/author-requirements.md`（AR-19 高于基准旧等级口径）；跨文档裁定见 `decisions/rulings-v1.md`。
+> 上游：`00-canon.md` v1.8；`decisions/author-decisions.md`；`decisions/author-requirements.md`（AR-19、AR-26、AR-27 高于基准旧等级与七属性口径）；跨文档裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：伤害、治疗与 Z0–Z10 → `design/04-damage-formula.md`；武功层数、内功相性与左右互搏 → `design/05-martial-arts-system.md`；Buff 目录、持续类型与跨战清理 → `design/06-buff-system.md`；套装 → `design/07-set-system.md`；六角地形、轻功门禁与水性行为 → `design/08-terrain-and-qinggong.md`；集气、首轮排序、移动点与战后流程 → `design/09-combat-system.md`；装备数值与合法名录 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务与门派层级 → `design/12-quests-npc-factions.md`；旧角色经验 / 等级的迁移与终局 → `design/13-progression-and-endings.md`（AR-19 后不得作为新人物成长真值）；冲穴、经脉、周天与九转 → `design/15-meridians-and-acupoints.md`；资源、家丁与营生 → `design/16-resources-and-estates.md`；门派历史、称谓与时代矩阵 → `design/17-sects-compendium.md`；NPC 与跨书界同伴 → `design/18-npc-and-companions.md`；地图坐标、区域、城市与路线数据 → `design/19-world-map.md`；后人、宝藏、残本与合成 → `design/20`；战斗经脉动态、攻 / 防 / 轻功路线、护体内劲与经脉模拟模块 → `design/21`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他归属文档、先给出可用数值并在文末登记。
 
-> 版本：v1.3（AR-19 无人物等级、武功 / 经脉资源公式，2026-10-01）；v1.2（跨文档同步、全局审计，2026-09-26）；经脉系统落地（2026-09-27）；经脉落地终审（2026-09-29）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
+> 版本：v2.0（AR-27 八项先天、沉睡配点、攻速公式与门槛平衡，2026-10-02）；v1.3（AR-19 无人物等级、武功 / 经脉资源公式，2026-10-01）；v1.2（跨文档同步、全局审计，2026-09-26）。
 > 变更记录：经脉落地终审（2026-09-30）：区分洪安通静态人物预算与遭遇有效耐久，清除旧高阶辅运示例的生产歧义，回填经脉提案已采纳状态；性质接口沿用 NR4S 已核现值。
 > 变更记录（2026-10-01，AR-19）：人物不再拥有独立成长等级；`hpMax/mpMax` 唯一改由 1–9 层武功熟练与逐脉 / 逐穴强度生成。旧 `Lr/Ld` 降为读档 / 节奏表校准输入，新增无状态的派生修为档迁移口径。
 
@@ -22,7 +22,7 @@
 | `g` | 品阶 1–12（基准 §4）；`g_eff` = 经天道压制后的有效品阶 |
 | `G(g)` | 基准 §4 的品阶系数（1.00 … 3.50） |
 | `layer` | 武功既有层数 1–10；AR-19 资源熟练 `practiceLayer=min(trueLayer,9)`，第 10 重仍保留既有圆满解锁 |
-| `con` `str` `agi` `wis` `wil` `luk` `cha` | 先天属性的**最终值**（含临时加值，见 §2.1），公式中直接用 ID |
+| `con` `str` `agi` `wis` `wil` `luk` `cha` `bre` | 八项先天属性的**最终值**（含临时加值，见 §2.1）；`bre` 为内息 |
 | `x⁺` | `max(0, x)` |
 | `clamp(x, a, b)` | 截断到 [a, b] |
 | `⌊x⌋` | 向下取整 |
@@ -63,12 +63,12 @@
 
 ```
                          ┌────────────────────────────────────────────────┐
-  创角 / 修为突破 / 奇遇 │ ① 先天属性 INN   con str agi wis wil luk cha    │  永久值(≤100/120) + 临时加值，最终 ≤120
+  初眠 / 书眠 / 奇遇     │ ① 先天属性 INN con str agi wis wil luk cha bre │  永久值(≤100/120) + 临时加值，最终 ≤120
   丹药 / 装备 / Buff ───►└──────────────┬─────────────────────────────────┘
   武功层数 + 经脉/穴位强度 ─────────────►│  hpMax / mpMax 唯一资源根值；Cb 只给旧战斗表选行
                                         ▼
   内功(主运/辅运) ─────► ② 资源 RES   hpMax mpMax staMax shieldMax │ hp mp sta rage shield │ mpNature
-                                        │  mpMax → atkIn / defIn
+                                        │  bre + 攻防基准 → atkIn / defIn（静态投影）
                                         ▼
   装备 / 套装 / Buff ──► ③ 战斗属性    MAG: atkOut atkIn defOut defIn spd
   轻功武学 / 天书之力    (22 项)        RAT: hit eva parry pierce crit tough effHit effRes
@@ -91,17 +91,18 @@
 | 步 | 求值对象 | 依赖 |
 |---|---|---|
 | S0 | `Cb`、境界参数（layerCap、suppress） | 武功 / 经脉永久快照、当前书界；`Cb` 不存档 |
-| S1 | 先天最终值（7 项） | 永久值、兼容修为分配、临时加值 |
+| S1 | 先天最终值（8 项） | 初眠底值、沉睡分配、修炼永久加成、奇遇、临时加值 |
 | S2 | 武功资源项、经脉 / 穴位资源项；内功 `attrs/mpRegen/stats` 与主运派生项 | 全部已学武功的 `absGrade/resourceLayer`；15 的同版本永久进度；装配内功 |
 | S3 | `hpMax` `mpMax` `staMax` | S2、装备、Buff；`hpMax/mpMax` 不读人物等级，`staMax` 暂读 `Ce` 兼容档 |
-| S4 | `atkIn` `defIn`（依赖 `mpMax`）、`atkOut` `defOut` | S1、S3 |
+| S4 | `atkIn` `defIn` `atkOut` `defOut` | S1、`Aref/Dref` 与静态内功 / 装备修饰 |
 | S5 | `qinggong` | S1、`apLight`、轻功武学、主运内功、装备 |
 | S6 | `hit` `eva`（依赖 `qinggong`） `parry` `pierce`（依赖 `lore`） `crit` `tough` `effHit` `effRes` | S1、S5 |
-| S7 | `spd` `mov` `jump` | S5；移动点最终换算另由 09 消费完整 `qinggong` |
+| S7 | `spd` `mov` `jump` | `spd` 直接依赖 S1 的 `agi`、所修轻功有效品阶 / 层数 `g/n`、`design/21` 输出的 `correspondingStrengthAmpBp`；`mov` 由 09 消费最终 `spd`，`jump` 由 S5 的探索 `qinggong/qgTier` 给出 |
 | S8 | 百分点类：`critDmg` `counter` `combo` `seal` `healPower` `healRecv`、8 项抗性、次级属性 | S1、技艺、资质 |
 | S9 | `shieldMax` | S3 |
 
 > 任何修饰器不得引用"同步或更晚"步骤的属性作为自身的输入（例如 Buff "按闪避的 10% 提升攻击"不被允许，因 `eva` 在 S6、`atkOut` 在 S4）。若确需此类效果，由 design/06 以"战斗中快照值"实现，不进入面板计算链。
+> protocol 4 的战斗 `spd` 与探索 `qinggong` 是两条独立链：前者不得读取 S5 输出，后者也不得反推或覆盖 `spd`；两者只共享 S1 的 `agi` 与同一门轻功的武学事实。
 
 ### 1.3 全属性总表（基准 §6 全部 ID，逐项定义）
 
@@ -111,13 +112,26 @@
 
 | ID | 名称 | 含义 | 范围 | 来源 | 影响的系统 | UI |
 |---|---|---|---|---|---|---|
-| `con` | 根骨 | 体魄与经脉底子 | 永久 1–100（突破至 120）；最终 1–120 | 创角、修为突破、奇遇、丹药、天书之力；临时：装备/内功/Buff | `hpMax`、`mpMax`、`staMax`、`defOut`、`tough`、`effRes`、`healRecv`、抗毒/内伤/控制/寒热；内功习得门槛（05） | 主面板：数值 + 绿色临时加值 |
-| `str` | 臂力 | 筋力与发力 | 同上 | 同上 | `atkOut`、`critDmg`、`parry`、`pierce`、`defOut`、`resCC`；重兵器门槛（10） | 主面板 |
-| `agi` | 身法 | 灵敏、步法、出手快慢 | 同上 | 同上 | `eva`、`hit`、`qinggong`（进而主导 `spd`/移动点）、`combo`、`counter`、`crit` | 主面板 |
-| `wis` | 悟性 | 领悟与看破 | 同上 | 同上 | 修炼速度、资质成长与上限、`pierce`、`hit`、`effHit`、`crit`、`seal`、`healPower`、`counter`；顿悟奇遇（11） | 主面板 |
-| `wil` | 定力 | 心志与内息稳定 | 同上 | 同上 | `mpMax`、`effRes`、`tough`、`resMind`、`resSeal`、`resGu`、`rageGain`、开场气势；走火入魔风险（05） | 主面板 |
-| `luk` | 福缘 | 机缘与气运 | 同上 | 同上 | 奇遇触发、掉落品阶（02 §2.12）、`crit`、`eva`、"化险为夷" | 主面板显示**档位词**（福薄/平常/有福/洪福/天眷），设置中可切换数值 |
-| `cha` | 魅力 | 气度、容貌、感召 | 同上 | 同上 | NPC 好感、价格、招募与羁绊（12）、队伍开场气势、魅惑类效果命中 | 主面板 |
+| `con` | 根骨 | 体魄与经脉底子 | 永久 1–100（突破至 120）；最终 1–120 | 初眠/书眠六项配点、修为突破、修炼加成、奇遇；临时：装备/内功/Buff | `hpMax`、`staMax`、`defOut`、`tough`、`effRes`、`healRecv`、抗毒/内伤/控制/寒热；内功习得门槛（05） | 主面板：数值 + 绿色临时加值 |
+| `str` | 臂力 | 肌力、发力与器械驾驭 | 同上 | 初眠/书眠六项配点、修炼加成、奇遇；临时：装备/Buff | 新 Z1 硬功项、`critDmg`、招架与重兵器门槛 | 主面板 |
+| `agi` | 身法 | 反应、柔韧、平衡、步法与协调的合并值 | 同上 | 同上 | `spd`、轻功、命中/闪避、连击/反击；轻功门槛 | 主面板；详情列“含反应/柔韧/平衡” |
+| `wis` | 悟性 | 领悟、迁移与看破 | 同上 | 同上 | 修炼速度、顿悟、资质上限、破招与技艺判定；长生诀九层门槛 | 主面板 |
+| `wil` | 定力 | 心志、自控与行功稳定；不再代表内力容量 | 同上 | 同上 | 心神/控制/点穴抵抗、效果抵抗、气势、走火入魔 | 主面板 |
+| `luk` | 福缘 | 机缘与气运 | 同上 | 初值、奇遇、事件；临时可由装束改变，默认不参加沉睡配点 | 奇遇、掉落、暴击、化险为夷 | 主面板显示档位词，可切数值 |
+| `cha` | 魅力 | 气度、容貌与感召 | 同上 | 初值、事件；临时可由装束改变，默认不参加沉睡配点 | 好感、价格、招募、羁绊、魅惑 | 主面板 |
+| `bre` | 内息 | 丹田蓄气、吐纳效率与可外放内劲的底子 | 同上 | 初眠/书眠六项配点、内功修炼加成、经脉奇遇；临时：内功/Buff | `mpMax` 后修饰、`mpRegen`、内劲攻防、产气/运气、外放门槛 | 主面板；战斗详情显示内息贡献 |
+
+**内息与定力分工**：
+
+| 二级量 / 判定 | 主驱动 | 辅驱动 | 禁止重复 |
+|---|---|---|---|
+| 内力上限 `mpMax` | 武功层与经脉根值（§5.1） | `bre` 只作根值后系数 | `wil` 不再加容量 |
+| 内力回复 `mpRegen` | 内功贡献 | `bre` 提供基础与上限内增量 | 定力不加回复 |
+| 内劲攻击 / 静态防御 | `bre`；攻击另读招式外放与 `operationBp` | 防御另读内功 / 装备静态 `defIn` 修饰 | 防守路线不进面板，只在 04 Z4M 结算 |
+| 丹田产气 / 运气速度 | 内功品阶层数 | `bre` 投影 | 根骨、定力不再二次加速 |
+| 心神、控制、点穴抵抗 | `wil` | `con`、相应内功 | `bre` 不提供心志免疫 |
+| 走火入魔 | `wil` 降风险 | 软门槛缺项、相冲提高风险 | `bre` 高不替代定力 |
+| 硬功防御 | `con` | 护甲、横练修炼加成 | `bre/wil` 不加硬防 |
 
 #### 1.3.2 资源（`RES`，§5）
 
@@ -125,7 +139,7 @@
 |---|---|---|---|---|---|---|
 | `hpMax` | 气血上限 | 可承受伤害总量 | ≥1 | 武功 1–9 熟练层、经脉 / 穴位强度；装备与 Buff 后修饰 | 伤害结算、治疗上限 | 主面板/战斗：红条 |
 | `hp` | 气血 | 当前值；归零即倒地（09） | 0–`hpMax` | 伤害、治疗、再生 | 战斗、探索 | 同上，条上数字 |
-| `mpMax` | 内力上限 | 内力总量，**同时决定 `atkIn`/`defIn`** | ≥1 | 内功 1–9 熟练层、经脉 / 穴位强度；强化接口见 15 | 招式消耗（05）、内劲攻防、护体转换 | 蓝条 |
+| `mpMax` | 内力上限 | 可用于施招、护体与调息的内力总量 | ≥1 | 内功 1–9 熟练层、经脉 / 穴位强度；强化接口见 15 | 招式消耗（05）、护体转换与当前内力结算 | 蓝条 |
 | `mp` | 内力 | 当前值 | 0–`mpMax` | 消耗、调息、`mpRegen`、吸内 | 招式可用性 | 蓝条 |
 | `mpNature` | 内力性质 | `yang` 阳 / `yin` 阴 / `harmony` 调和 | 枚举 | 主运内功的性质（05）+ 规则（§5.2） | Z5 相性（04）、寒热抗性、辅运冲突 | 蓝条左侧图标（赤/青/金） |
 | `staMax` | 体力上限 | 探索与轻功耐力 | 100–220 | 根骨、`Ce` 兼容档、装备 | 探索门禁续航（08/11） | 探索 HUD：黄色细条 |
@@ -138,9 +152,9 @@
 | ID | 名称 | 形态 | 含义 | Lv35 STD 参考 | 主要来源 | 影响的系统 | UI |
 |---|---|---|---|---|---|---|---|
 | `atkOut` | 外功攻击 | MAG | 招式外劲部分的攻击量 | ≈1,090 | `ATK_LV`×臂力、兵器 | Z1 攻击合成（04） | 主面板 |
-| `atkIn` | 内劲攻击 | MAG | 招式内劲部分的攻击量 | ≈940 | 0.20×`mpMax` | Z1 | 主面板 |
+| `atkIn` | 内劲攻击 | MAG | 招式外放部分的中性经脉投影 | ≈940 | `Aref`×内息、静态内功 / 装备修饰 | Z1 兼容展示；正式外放见 §4.1 | 主面板 |
 | `defOut` | 外功防御 | MAG | 抵御外劲 | ≈790 | `DEF_LV`×根骨、护甲 | Z2 | 主面板 |
-| `defIn` | 内劲防御 | MAG | 抵御内劲 | ≈780 | 0.15×`mpMax`、衣 | Z2 | 主面板 |
+| `defIn` | 内劲防御 | MAG | 不含战斗经脉路线的静态内劲抵抗 | ≈780 | `Dref`×内息、内功与装备静态修饰 | Z2；防守经脉另在 Z4M | 主面板 |
 | `hit` | 命中 | RAT | 对抗 `eva` | ≈124 | 身法、悟性、`Ce` 兼容档 | Z0 命中判定 | 详情；Tooltip 显示"对同档约 X%" |
 | `eva` | 闪避 | RAT | 对抗 `hit` | ≈103 | 身法、福缘、`Ce` 兼容档、轻功值 | Z0 | 详情 |
 | `parry` | 招架 | RAT | 对抗 `pierce` | ≈67 | 臂力、悟性、兵器类别、武学被动 | Z0/Z9 | 详情 |
@@ -252,35 +266,38 @@ X       = clamp(perm_X + temp_X, 1, 120)     ← 公式中使用的"最终值"�
 
 > 行 = 派生量，列 = 先天属性。`×0.8%` 表示"每点 (X−50) 使该项的**基础值**乘以 (1 + 0.008×(X−50))"；纯数字表示"每点 X 直接加到评级/百分点"；`⁺50` 表示只计 `(X−50)⁺`。
 
-| 派生量 | `con` | `str` | `agi` | `wis` | `wil` | `luk` | `cha` |
-|---|---|---|---|---|---|---|---|
-| `hpMax` 基础 | ×0.8% | | | | | | |
-| `mpMax` 基础 | ×0.4% | | | | ×0.6% | | |
-| `staMax` | +0.5 | | | | | | |
-| `atkOut` 基础 | | ×1.0% | | | | | |
-| `defOut` 基础 | ×0.6% | ×0.2% | | | | | |
-| `hit` | | | 0.5 | 0.3 | | | |
-| `eva` | | | 0.5 | | | 0.2 | |
-| `parry` | | 0.3 | | 0.2 | | | |
-| `pierce` | | 0.1 | | 0.3 | | | |
-| `crit` | | | 0.1 | 0.15 | | 0.3 | |
-| `tough` | 0.25 | | | | 0.2 | | |
-| `critDmg` (pp) | | 0.5 ⁺50 | | | | | |
-| `effHit` | | | | 0.3 | 0.2 | | 魅惑类 +0.2 ⁺50 |
-| `effRes` | 0.2 | | | | 0.3 | | |
-| `spd` | | | 经 `qinggong` 间接作用（§4.3） | | | | |
-| `mov` | | | 经完整 `qinggong` 间接作用；最终换算归 09 | | | | |
-| `qinggong` | | | 0.25（自 30 起） | | | | |
-| `counter` (pp) | | | 0.1 ⁺50 | 0.1 ⁺50 | | | |
-| `combo` (pp) | | | 0.15 ⁺50 | | | | |
-| `seal` (pp) | | | | 0.1 ⁺50 | | | |
-| `healPower` (pp) | | | | 0.2 ⁺50 | | | |
-| `healRecv` (pp) | 0.3（±） | | | | | | |
-| `rageGain` (pp) | | | | | 0.2（±） | | 队伍开场气势 |
-| 抗性 (pp) | 毒0.2 穴0.1 内伤0.2 寒热0.1 控制0.15 | 控制0.15 | | 心神0.1 | 蛊0.2 穴0.2 内伤0.1 心神0.3 | | |
-| 成长类 | | | | 修炼×、资质成长×、资质上限 | 走火入魔/内息相冲（05） | 奇遇×、掉落品阶 | 价格×、好感× |
+| 派生量 | `con` | `str` | `agi` | `wis` | `wil` | `luk` | `cha` | `bre` |
+|---|---|---|---|---|---|---|---|---|
+| `hpMax` 基础 | ×0.8% | | | | | | | |
+| `mpMax` 根值后修饰 | | | | | | | | ×0.6% |
+| `mpRegen` (pp) | | | | | | | | 0.02（±） |
+| `staMax` | +0.5 | | | | | | | |
+| `atkOut` 基础 | | ×1.0% | | | | | | |
+| `defOut` 基础 | ×0.6% | ×0.2% | | | | | | |
+| `hit` | | | 0.5 | 0.3 | | | | |
+| `eva` | | | 0.5 | | | 0.2 | | |
+| `parry` | | 0.3 | | 0.2 | | | | |
+| `pierce` | | 0.1 | | 0.3 | | | | |
+| `crit` | | | 0.1 | 0.15 | | 0.3 | | |
+| `tough` | 0.25 | | | | 0.2 | | | |
+| `critDmg` (pp) | | 0.5 ⁺50 | | | | | | |
+| `effHit` | | | | 0.3 | 0.2 | | 魅惑类 +0.2 ⁺50 | |
+| `effRes` | 0.2 | | | | 0.3 | | | |
+| `spd` | | | 直接相乘（§4.3） | | | | | |
+| `mov` | | | 仅经最终 `spd` 进入 09；地形资格另读探索 `qinggong` | | | | | |
+| `qinggong` | | | 0.25（自 30 起） | | | | | |
+| `counter` (pp) | | | 0.1 ⁺50 | 0.1 ⁺50 | | | | |
+| `combo` (pp) | | | 0.15 ⁺50 | | | | | |
+| `seal` (pp) | | | | 0.1 ⁺50 | | | | |
+| `healPower` (pp) | | | | 0.2 ⁺50 | | | | |
+| `healRecv` (pp) | 0.3（±） | | | | | | | |
+| `rageGain` (pp) | | | | | 0.2（±） | | 队伍开场气势 | |
+| 抗性 (pp) | 毒0.2 穴0.1 内伤0.2 寒热0.1 控制0.15 | 控制0.15 | | 心神0.1 | 蛊0.2 穴0.2 内伤0.1 心神0.3 | | | |
 
-"（±）"表示以 50 为中点可正可负（根骨 20 → `healRecv` −9pp）。
+`spd` 行只展示八属性中的直接驱动；完整依赖还包括所修轻功有效 `g/n` 形成的 `qgBaseBp`，以及 21 输出的 `correspondingStrengthAmpBp`。它不读取探索 `qinggong`；探索链仍由 `agi`、轻功武学、资质、装备等合成 `qinggong/qgTier`，仅服务跳跃与门禁。
+| 成长类 | | | | 修炼×、资质成长×、资质上限 | 走火入魔/内息相冲（05） | 奇遇×、掉落品阶 | 价格×、好感× | 容量、回复、产气、外放 |
+
+"（±）"表示以 50 为中点可正可负（根骨 20 → `healRecv` −9pp；内息 20 → `mpRegen` −0.6pp）。
 
 ### 2.3 各先天属性的非战斗效果（精确值）
 
@@ -300,6 +317,8 @@ X       = clamp(perm_X + temp_X, 1, 120)     ← 公式中使用的"最终值"�
 
 ### 2.4 创角：点数分配（"自定"模式）
 
+> **AR-27 覆盖**：下列七项旧创角表仅供 v1 存档迁移；新周目创角只选择现代身份、天赋、外观与初始 `luk/cha` 档，不再自由分配战斗属性。六项战斗底子在序章后的长白山初眠配置，见 §2.4.1。
+
 | 项 | 值 |
 |---|---|
 | 七项基础值 | 各 35 |
@@ -316,7 +335,47 @@ X       = clamp(perm_X + temp_X, 1, 120)     ← 公式中使用的"最终值"�
 | 猛士（根骨臂力） | 70 | 75 | 45 | 35 | 50 | 35 | 35 |
 | 内家（定力根骨） | 60 | 35 | 40 | 55 | 75 | 40 | 40 |
 
+#### 2.4.1 沉睡六项配点（AR-26 / AR-27）
+
+可配集合固定为 `A={str,con,bre,wis,agi,wil}`；`luk/cha` 新档各 50，由身份/天赋、奇遇、事件和装束改变，默认不参与配点**（待作者确认）**。点数是永久、可留存的 `sleepPoints`，书眠事务不得清零。
+
+**初眠（长白山雪崩）**：
+
+```text
+六项初值 = 35
+初眠预算 = 90
+初眠后六项总和 = 6×35+90 = 300（均值 50）
+初眠单项范围 = 20..80
+```
+
+允许降到 20，每降 1 返 1 点；确认前可撤销。均衡分配为六项各 50；专精示例为 `wis=80`、其余五项各 44，总和仍为 300。创角的身份/天赋在初眠确认后叠加，不消耗点数。
+
+**后续书眠**：令下一本正式书的顺序为 `s∈[2,14]`（AR-26 新序：白马为 1），沉睡时派生修为档为 `Cb`：
+
+```text
+gain(s,Cb) = 4 + floor((s-1)/4) + floor(Cb/20)
+sleepPoints' = sleepPoints + gain
+```
+
+书序项在 `s=2..4/5..8/9..12/13..14` 分别为 `0/1/2/3`；修为项通常为 0–3。它把点数来源绑定“走过多少书界 + 已有武功/经脉事实”，不恢复人物等级。未分配点可跨书眠留存；九层后不再书眠时，每完成一书仍在周游结算页按同式发放。
+
+| 路线锚点 | `s` / `Cb` | 单次获得 | 累计后续点 |
+|---|---:|---:|---:|
+| 天龙前 | 2 / 10 | `4+0+0=4` | 4 |
+| 神雕前 | 4 / 35 | `4+0+1=5` | 14 |
+| 笑傲前 | 6 / 55 | `4+1+2=7` | 28 |
+| 鹿鼎前 | 9 / 65 | `4+2+3=9` | 52 |
+| 雪山前 | 14 / 69 | `4+3+3=10` | 99（标准 `Cb` 路线核算） |
+
+上表累计逐次代入标准 `Cb=[10,25,35,45,55,58,62,65,65,66,67,68,69]`，得 `4+5+5+7+7+7+8+9+9+9+9+10+10=99`；逐次累计为 `[4,9,14,21,28,35,43,52,61,70,79,89,99]`。实际 `Cb` 不同会在每次边界产生 ±1；CI 以函数本身为准，不把 99 写成固定奖励。
+
+**上限**：永久值仍先钳 1–100；只有明确标 `breakCap:true` 的奇遇/天书/九转可把对应永久值抬至 120。普通沉睡点和修炼加成都不能把永久值从 100 推到 101；超过部分拒绝分配而非吞点。临时装备/Buff 在永久值后结算，最终仍 ≤120。
+
+**悟性满值可达性**：初眠 `wis=80`；白马、天龙、射雕、神雕结束后的获得依次为 `4/5/5/7`。把前三次全投悟性得 94，再从第四次投 6 点，即在倚天入场前达到 100，四次共 21 点仅余 1 点补短板；这是重投入路线。若延后，至鹿鼎入场累计已有 52 点，最晚规划检查点仍为**鹿鼎入场前**；届时只需其中任意 20 点投入悟性，余 32 点可补其他五项。初眠其余五项总和仍为 `220`（均值 44），均衡路线不会自然满悟性。
+
 ### 2.5 创角："天命骰"模式（可选）
+
+> **AR-27 覆盖**：本模式只用于 v1 存档导入时展示旧生成依据，新周目不再开放。新周目所有战斗底子统一在 §2.4.1 长白山初眠配置，避免随机七项绕过六项预算；`luk/cha` 由身份、天赋与事件形成。
 
 | 项 | 规则 |
 |---|---|
@@ -351,7 +410,7 @@ X       = clamp(perm_X + temp_X, 1, 120)     ← 公式中使用的"最终值"�
 
 ```ts
 interface OriginBonus {            // design/01 为每个身份填写一份
-  innate?:  Partial<Record<'con'|'str'|'agi'|'wis'|'wil'|'luk'|'cha', number>>;
+  innate?:  Partial<Record<'con'|'str'|'agi'|'wis'|'wil'|'luk'|'cha'|'bre', number>>;
   ap?:      Partial<Record<ApId, number>>;       // 武学资质
   arts?:    Partial<Record<ArtId, number>>;      // 技艺
   lore?:    number;
@@ -387,6 +446,8 @@ interface OriginBonus {            // design/01 为每个身份填写一份
 
 ### 2.9 先天属性的全程预算
 
+> **AR-27 覆盖**：旧“创角 345 + 修为突破 30”只用于 v1 迁移。新周目以初眠八项总和 `300+50+50=400` 为基线；后续成长账见下表。
+
 | 来源 | 总量（全程） | 分布 |
 |---|---|---|
 | 创角 | 345（天命骰期望 360） | — |
@@ -395,6 +456,41 @@ interface OriginBonus {            // design/01 为每个身份填写一份
 | 奇遇 / 丹药永久加点 | 约 +50【建议值：10 已落实丹药份额，奇遇投放待 11】 | 高武书界各 5–7；中武各 3–4；低武各 1–2 |
 | 天书之力 | 由 design/13 定（建议每本 ≤ +3 等价） | — |
 | **终局合计** | ≈ 440（七项均值 ≈ 63） | 兼容 STD 模型采用 `50 + 0.15×(Ce−1)` 的"高武线"近似 |
+
+#### 2.9.1 v2 全程预算与书界期望
+
+| 来源 | 八项总量 | 可投范围 | 上限约束 |
+|---|---:|---|---|
+| 初眠 + `luk/cha` | `6×50+2×50=400` | 六项可重排；福缘魅力各 50 | 初眠单项 20–80 |
+| 后续沉睡 | 标准路线 99 | 六项 | 单项永久 100 |
+| 修为突破 | `6×5=30` | 六项，按 `Cb` 解锁 `realmAlloc` | 计入永久值 100 上限 |
+| 武学修炼永久加成 | 最多 48 | 六项，逐门 `trainingAttrs` | 单门 12、全角色 48 |
+| 奇遇/事件 | 约 24【建议值】 | 八项 | 普通不破 100 |
+| 突破 100 的稀有来源 | 最多 20【建议值】 | 明确目标项 | 每项至多 120 |
+| 终局常规预算 | `400+99+30+48+24=601` | 八项 | 均值 `601/8=75.125`（显示 75.1），不足以八项全满 |
+
+全满 100 需要总量 800，常规路线缺 `800−601=199`；即使把稀有破限 20 算入也缺 179，因此“练遍武功导致全属性满”在预算上不成立。
+
+按新书序，表中“六项均值”以均衡初眠、标准 `Cb`、已投入全部沉睡点与已解锁突破点计算；若入场沉睡累计为 `S`、修为突破累计为 `R`、修炼/奇遇期望累计为 `E`，则主修峰值按 `min(100,80+floor(3×(S+R+E)/5))` 核算，即最多把新增预算的 60% 投向初眠已到 80 的一项。修炼/奇遇列是内容投放期望，不是无条件赠送。
+
+| 正式书序 | 书界 | 入场沉睡累计 | 突破累计 | 修炼+奇遇期望累计 | 六项均值 | 主修峰值 |
+|---:|---|---:|---:|---:|---:|---:|
+| 1 | 白马 | 0 | 0 | 0 | `300/6=50.0` | 80 |
+| 2 | 天龙 | 4 | 0 | 2 | `306/6=51.0` | `80+floor(3×6/5)=83` |
+| 3 | 射雕 | 9 | 10 | 5 | `324/6=54.0` | `80+floor(3×24/5)=94` |
+| 4 | 神雕 | 14 | 15 | 9 | `338/6=56.3` | 100 |
+| 5 | 倚天 | 21 | 20 | 14 | `355/6=59.2` | 100 |
+| 6 | 笑傲 | 28 | 25 | 20 | `373/6=62.2` | 100 |
+| 7 | 侠客 | 35 | 25 | 26 | `386/6=64.3` | 100 |
+| 8 | 碧血 | 43 | 30 | 32 | `405/6=67.5` | 100 |
+| 9 | 鹿鼎 | 52 | 30 | 38 | `420/6=70.0` | 100 |
+| 10 | 连城 | 61 | 30 | 44 | `435/6=72.5` | 100 |
+| 11 | 鸳鸯 | 70 | 30 | 50 | `450/6=75.0` | 100 |
+| 12 | 书剑 | 79 | 30 | 56 | `465/6=77.5` | 100 |
+| 13 | 飞狐 | 89 | 30 | 64 | `483/6=80.5` | 100 |
+| 14 | 雪山 | 99 | 30 | 72 | `501/6=83.5` | 100 |
+
+`突破累计` 按 §2.8 的 `Cb=11/21/31/41/51/61` 门槛取 `5×已解锁档数`。`修炼+奇遇期望累计` 终局 72 = 修炼永久加成期望 48 + 奇遇事件 24；按前期每书约 3–6 点渐进。门槛可达性校验必须使用“六项均衡值 / 主修峰值”两列：主线门槛不得高于均衡值 +10；支线名功可达主修峰值，但同一武学不得同时要求三个主属性都在峰值。
 
 ---
 
@@ -441,7 +537,7 @@ DEF_LV(L) = 0.15 × MP_LV(L)                                // = 0.75 × ATK_LV
 | 35 | 5,040 | ≈5,000 | +0.8% | 3,032 | ≈3,000 | +1.1% |
 | 70 | 19,820 | ≈20,000 | −0.9% | 11,864 | ≈12,000 | −1.1% |
 
-> "裸装"在本文定义为：先天七项 = 50、未装配任何内功、无装备、无 Buff。实际玩家的典型值见 §3.5 STD 模型（合法普通配装下 Lv70 气血约为锚点的 `40,409/19,820≈2.04`，即约 2.0 倍；内力约为 `28,887/11,864≈2.44`，即约 2.4 倍，主要来自内功贡献）。
+> "裸装"在本文定义为：先天八项 = 50、未装配任何内功、无装备、无 Buff。实际玩家的典型值见 §3.5 STD 模型（合法普通配装下 Lv70 气血约为锚点的 `40,409/19,820≈2.04`，即约 2.0 倍；内力约为 `28,887/11,864≈2.44`，即约 2.4 倍，主要来自内功贡献）。
 
 ### 3.3 旧校准曲线数值表
 
@@ -511,7 +607,7 @@ ratio_i = 1（主运）或 auxRatio（辅运：同源 0.50 / 含调和 0.40 / �
 
 | 参数 | `STD(Ce)` 取值 |
 |---|---|
-| 先天（回归输入） | 七项均为 `50 + 0.15 × (Ce − 1)`（Ce70 ≈ 60.4）；内功 `attrs` 另平均加到 con/str/agi/wis/wil |
+| 先天（回归输入） | 八项均为 `50 + 0.15 × (Ce − 1)`（Ce70 ≈ 60.4）；内功 `attrs` 另按武学配置加到六项可配属性 |
 | 主力品阶 `gMain(Ce)` | `clamp(⌊1.5 + (Ce − 1) × 11/49⌋, 1, 12)`（即四舍五入，下同）：主运内功与主力攻击武学使用。Ce35 地上、Ce40 天下、Ce50 起天上 |
 | 参考品阶 `gref(Ce)` | `clamp(⌊1.5 + (Ce − 1) × 10/69⌋, 1, 12)`：两门辅运内功的参考品阶 |
 | 普通装备品阶 | `gWeapon(Ce)=min(gMain(Ce),9)`；`gGear(Ce)=min(gref(Ce),9)`。这是基准 §14 / design/10 §3.1 的名录外装备上限 |
@@ -570,14 +666,39 @@ ratio_i = 1（主运）或 auxRatio（辅运：同源 0.50 / 含调和 0.40 / �
 
 ### 4.1 攻防四项（MAG）
 
+> **AR-27 现行口径**：下表旧 `ATK_LV/mpMax` 派生只供 v1 回放和敌模板迁移。生产攻击按招式动态求“硬功 + 外放”，攻击面板仅作中性投影；防御面板则是 Z2 使用的静态终值，不能再由 04 按 `wOut/wIn` 加权第二次。
+
+定义 `Aref=ATK_LV(Ce)`、`Dref=DEF_LV(Ce)`；`wOutBp+wInBp=10000`。每个招式的经脉运转系数 `operationBp∈[6500,22000]` 由 `design/21` §4.4.1 / 本任务新增 §4.4.4 给出，中性为 10000：
+
+```text
+hardAttack    = floor(Aref × str × wOutBp / (50×10000))
+outwardAttack = floor(Aref × bre × wInBp × operationBp / (50×10000²))
+ATK_mix       = max(1, hardAttack + outwardAttack)
+
+hardDefenseBase  = floor(Dref × con / 50)
+innerDefenseBase = floor(Dref × bre / 50)
+hardDefense  = roundHalfUp((hardDefenseBase + Σflat_defOut)
+                 × max(0.2, 1 + Σpct_defOut) × Πmult_defOut)
+innerDefense = roundHalfUp((innerDefenseBase + Σflat_defIn)
+                 × max(0.2, 1 + Σpct_defIn) × Πmult_defIn)
+```
+
+- `wOut` 是“武功硬功”，表示筋骨/兵刃直接发力所占比例；`wIn` 是“武功外放”，表示以内息经经脉推出的比例。沿用字段、无数据迁移；只把旧“外/内权重”语义收窄为这两支。`projection:true` 仍决定 21 选普通或外放曲线，不另造第三比例。
+- `operationBp` 已兑现经脉强度与路线完成度；Z5M 在 rules protocol 4 起固定 10000，避免既在本式又在 Z5M 双算。旧录像仍按原 Z5M 回放。
+- protocol 4 面板：`atkOut=floor(Aref×str/50)`、`atkIn=floor(Aref×bre/50)`，分别显示“硬功基准/外放基准（中性经脉）”；04 生产输入直接传 `hardAttack/outwardAttack/ATK_mix`。`defOut=hardDefense`、`defIn=innerDefense`。
+- `Σflat/Σpct/Πmult` 严格使用 §11.2 的静态属性管线；内功的 `inner.contribution.stats.defIn`、内功特有被动与装备内衬均在这里展开为 `defIn` 修饰。硬功防御由根骨、护甲及金钟罩/横练的根骨或 `defOut` 修饰驱动。
+- `innerDefense` **不读取**当前内力、`mpMax` 或任何战斗路线结果。21 的 `meridianDefenseBp` 不是面板修饰，只允许 04 在 Z4M 消费一次；命中区在途气只进入 04 的 Z4 / settle，不得回写 `innerDefense`。定力只管心志、稳定与走火，不替代两类防御。
+
+**中性核算**：`Aref=1000,str=60,bre=55,wOut/wIn=6500/3500,operation=10000`，则硬功 `floor(1000×60×6500/500000)=780`，外放 `floor(1000×55×3500×10000/5e9)=385`，`ATK_mix=1165`。若强路线 `operation=12000`，外放变 462，总攻击 1242；只增加外放支。
+
 | 属性 | `Base` | 专属 flat 来源 | 范围 |
 |---|---|---|---|
-| `atkOut` | `ATK_LV(Ce) × max(0.5, 1 + 0.010 × (str − 50))` | 主手兵器主属性、副手副兵器 | ≥ 1 |
-| `atkIn` | `0.20 × mpMax` | 少数饰品/Buff | ≥ 1 |
-| `defOut` | `DEF_LV(Ce) × max(0.5, 1 + 0.006 × (con − 50) + 0.002 × (str − 50))` | 衣、头、护手、腰带、鞋、盾 | ≥ 0 |
-| `defIn` | `0.15 × mpMax` | 衣（内衬）、特定饰品 | ≥ 0 |
+| `atkOut` | protocol≤3：`ATK_LV(Ce) × max(0.5, 1 + 0.010 × (str − 50))` | 主手兵器主属性、副手副兵器 | ≥ 1 |
+| `atkIn` | protocol≤3：`0.20 × mpMax` | 少数饰品/Buff | ≥ 1 |
+| `defOut` | protocol≤3：`DEF_LV(Ce) × max(0.5, 1 + 0.006 × (con − 50) + 0.002 × (str − 50))`；protocol 4 见上式 | 衣、头、护手、腰带、鞋、盾 | ≥ 0 |
+| `defIn` | protocol≤3：`0.15 × mpMax`；protocol 4 见上式 | 内功、衣（内衬）、特定饰品 | ≥ 0 |
 
-- `atkIn`/`defIn` 取**最终** `mpMax`（S3 已含内功与 Buff），所以"内力上限 −20%"类减益（如化功类武学）会同时削弱内劲攻防——这是有意的"化人内力"手感。
+- 上表的 `mpMax` 映射只供 protocol≤3 回放；protocol 4 的攻击 / 防御均按本节分支式，不得把 `mpMax` 再映射为第二份攻防。
 - 当前内力 `mp` 不影响 `atkIn`；"内力不足时招式威力下降"如需实现，归 design/04（Z1）或 05。
 
 **装备主属性接口（已由 design/10 §3–§4 定稿）**。`flatLv` 是按当前 `Ce` 的兼容曲线缩放的固定值，`G` 取装备的使用品阶 `gUse`；强化、断兵、兵器类别 `kA`、重兵标签 `tagK` 与衣甲 `kD/kI` 均先由 10 解析后再注入本文管线：
@@ -601,6 +722,8 @@ ratio_i = 1（主运）或 auxRatio（辅运：同源 0.50 / 含调和 0.40 / �
 ATK_mix = (1 − r_in) × atkOut + r_in × atkIn
 DEF_mix = (1 − r_in) × defOut + r_in × defIn        // 守方按攻方招式的 r_in 取防御
 ```
+
+上框仅用于 `rulesProtocol≤3`。新协议防御仍按攻击两支分别求减免后相加，精确式见 `design/04` §4.2。
 
 ### 4.2 判定类评级（RAT）
 
@@ -632,6 +755,32 @@ STD 同级下的结果：`P_hit` 96%（Lv1）→ 93%（Lv35）→ 91%（Lv70）�
 
 ### 4.3 速度 `spd` 与集气接口
 
+> **AR-27 覆盖公式（rules protocol 4）**：速度只由“身法 × 轻功基本系数 × 对应经脉强度增幅”形成；旧常数式仅供旧录像。
+
+轻功基本系数使用整数 bp，来自当前装配轻功的有效品阶与有效层数；没有装配轻功时按黄下 0 重底值 7000 bp：
+
+```text
+qgBaseBp(g,n) = clamp(7000 + 180×g + 120×n, 7000, 10360)
+meridianQinggongBp = design/21 correspondingStrengthAmpBp，范围 6500..13500，中性 10000
+spdRaw = floor(agi × qgBaseBp × meridianQinggongBp / 10000²)
+spd = clamp(floor((spdRaw+Σflat_spd)×max(2000,10000+Σpct_spdBp)/10000
+                  ×ΠmultBp/10000^k),30,300)
+```
+
+轻功武学 3/6/9 重分别通过 `trainingAttrs` 永久给 `agi +1/+1/+1`（轻灵名功可 `+1/+2/+2`，单门仍受 §11.7 上限），因此“升级本身提升身法”在属性快照前兑现；`qgBaseBp` 同时随层数增长，但两项来源在 trace 中分列。
+
+| 时期 | 输入 | 基本系数 | 经脉增幅 | `spd` 核算 |
+|---|---|---:|---:|---:|
+| 早期白马 | `agi=50,g=2,n=3` | `7000+360+360=7720` | 9500 | `floor(50×7720×9500/1e8)=36` |
+| 中期神雕 | `agi=65,g=7,n=7` | `7000+1260+840=9100` | 11000 | `floor(65×9100×11000/1e8)=65` |
+| 后期雪山 | `agi=85,g=10,n=9` | `7000+1800+1080=9880` | 12500 | `floor(85×9880×12500/1e8)=104` |
+
+早期 36 仍高于 CT 硬下限 30；标准中期约 65、后期专精约 104。若顶配 `agi=120,g=12,n=10,meridian=13500`，结果 `floor(120×10360×13500/1e8)=167`，远低于 300 硬顶，给 Buff 留空间。`meridianQinggongBp` 来自 21 对应轻功经脉的静态/运行强度，不再把旧 `meridianSpeedBp` 乘第二遍；擒拿由 06 / 09 独立结算。
+
+探索 `qinggong` 与境界阈值继续由 §4.5 计算，供 08 门禁；战斗 `spd` 使用本节新式。二者都读取同一轻功武学与身法，但经脉增幅只影响战斗速度/移动预算，不能抬探索境界。
+
+**旧协议公式**：
+
 ```
 Base_spd = 72 + 0.30 × agi + 0.10 × Ce + 0.14 × qinggong
 spd      = clamp(⌊(Base_spd + Σflat_spd) × max(0.2, 1 + Σpct_spd) × Πmult_spd⌋, 30, 300)
@@ -639,23 +788,9 @@ spd      = clamp(⌊(Base_spd + Σflat_spd) × max(0.2, 1 + Σpct_spd) × Πmult
 
 `qinggong` 已包含身法、`Ce` 兼容档、轻功武学、轻功资质、鞋、主运内功与负重；上式仍给 `agi` / `Ce` 较小的独立权重，以免脱卸轻功后速度完全坍缩，但**不得**再把 `Q_skill` 或 `Q_agi/Q_ce` 分项重复加入。速度修饰通过 `flat` / `pct` / `mult` 管线进入；完整乘算后只在末尾向下取整。“停止集气”不把速度改成 0，而由 09 冻结时间轴。
 
-本文只输出属性快照中的最终整数 `spd`，交给 21 时语义名为 `baseSpd`；它不是把战斗经脉状态写回属性表后的值。开战前先按本节完成属性取整，随后 `design/21` §4.9 才可读取 `baseSpd` 并投影战斗速度。参考：合法 STD `baseSpd` 为 91（Lv1）/ 106（Lv35）/ 126（Lv70）。Lv35 用未取整 `agi=58.576`、未取整 `qinggong=97.794`，得 `floor(72+0.30×58.576+0.10×35+0.14×97.794)=106`；Lv70 的普通鞋受 `gGear=min(gref,9)` 限制，`qinggong=193.7975`，故 `floor(72+0.30×69.35+0.10×70+0.14×193.7975)=floor(126.93665)=126`。不能用未封顶的 11 品普通鞋把轻功写成 198.7975 后反推出 127。
+protocol 4 中，本文输出的 `spd` 已消费 `correspondingStrengthAmpBp`，是战斗速度唯一真值。09 在开战快照冻结它作为首轮与 CT 输入，并据此映射移动预算；21 不得再读取 `baseSpd` 后乘任何经脉倍率。点穴、胀损或调息改变对应强度时，先重算本式，再由 09 在下一次 CT 推进 / 行动开始读取；不回溯首轮或已积累 CT。
 
-AR-14 的战斗速度接线固定为：
-
-```text
-属性快照：effectiveQinggong = roundHalfUp(qinggong)，baseSpd = spd，baseMove = 09 的合法移动点
-21 输出：combinedSpeedBp = floor(meridianSpeedBp × grappleMoveBp / 10000)
-         openingQinggong = floor(effectiveQinggong × combinedSpeedBp / 10000)
-         spd' = clamp(floor(baseSpd × combinedSpeedBp / 10000), 30, 300)
-         move' / evadeRatingDelta 见 design/21 §4.9
-```
-
-首轮接口的 `effectiveQinggong` 是 §0.3 最终显示边界的 half-up 整数；`baseSpd` 仍须先用未取整轻功完成本节公式，禁止把该整数倒灌重算速度。上框只是 `design/21` §4.9 的接线镜像：其 TypeScript 结果字段实际名为 `openingQinggong/spd/move/evadeRatingDelta`，其中正文记号 `spd'`、`move'` 分别对应字段 `spd`、`move`，不得把撇号写进 schema。
-
-`meridianSpeedBp` 是 21 以已含同路线 STD 归一完成质量的 `MeridianProfile` 直接查曲线所得，标准 10000 bp、硬界 6500–13500 bp；不得把原始 `routeQualityBp` 再混合一次。擒拿在经脉之后进入 `combinedSpeedBp`；其独立 `evadeBp` 由 04 / 06 另结算一次，故 `evadeRatingDelta` 只反映经脉速度，不能同时包含擒拿。
-
-开战首轮由 09 按冻结的 `openingQinggong → MeridianSpeedResult.spd → agi → openingPriority → initiativeSideRank → unitIndex` 排序，不抽随机 `CT0`；战中点穴、胀损、调息或擒拿只使后续 CT / 移动投影变脏，不回溯首轮。其后每 tick 集气、行动阈值、收招、移动力和同 tick 裁决仍由 `design/09` §3 定义。
+protocol≤3 的旧录像仍按旧常数式产生 `baseSpd=91/106/126`，再由 21 的历史 `projectSpeed` 生成 `openingQinggong/spd/move/evadeRatingDelta`。这些字段与 `meridianSpeedBp/moveDelta` 只存在于旧回放分支，不得进入 protocol 4 存档、属性快照或新 golden。
 
 ### 4.4 移动力 `mov` 与跳跃 `jump`
 
@@ -664,13 +799,15 @@ jump = clamp(qgTier(qinggong) + Σflat_jump, 0, 6)
 qgTier(q) = 0 (q<20) | 1 (≥20) | 2 (≥50) | 3 (≥90) | 4 (≥140) | 5 (≥200)      // 基准 §11
 ```
 
-`mov` 是 09 在行动开始时计算并回写的**六角基础移动点结果**，供 21 称作 `baseMove`；本文不再给方格时代的基础公式或 1–8 上限。03 向 09 提供：最终 `qinggong` / `qgTier`、`sta` / `staMax`、`Q_load`、装备与 Buff 汇总出的 `flat_mov` / `pct_mov` / `set_mov`，以及疲惫等状态标签；21 再输出 `MeridianSpeedResult.move`（正文记作 `move'`），其 `moveDelta∈[-2,+2]` 且结果钳于 1–10，精确式只见 `design/21` §4.9。六邻距离、地形消耗、移动点钳制和覆写优先级见 `design/09`。这也意味着 `agi` 只能先进入 `qinggong`，不能再独立增加移动点。
+`mov` 是 09 在行动开始时由最终 `spd`、`qinggong/qgTier`、`sta/staMax`、`Q_load`、装备与 Buff 移动修饰映射并钳于 1–10 的六角移动点结果。本文不再给方格时代的基础公式或 1–8 上限；六邻距离、地形消耗、移动点钳制和覆写优先级见 `design/09`。这也意味着 `agi` 只能经 `spd` / `qinggong` 进入移动预算，不能再独立增加移动点。
 
 - `jump` 只决定**六角战斗地图中单步可跃上的高度差**与**可跨越的沟宽**；平面距离一律用六角距离。台阶、坡道类地形不受 `jump` 限制；下跳免伤高度、跨越消耗等由 `design/08` 定义。
 - 探索中的地形门禁判 `qgTier(qinggong)`（**含** `qinggong` 的临时加值——丹药/Buff 是合法钥匙，见 §11.5）；`jump` 自身的 flat 加值只在战斗网格中生效。
-- 21 的 `openingQinggong` / `meridianSpeedBp` 只服务战斗首轮、CT、移动与闪避投影；08 的 20 / 50 / 90 / 140 / 200 门禁、`qgTier`、`jump` 与逐格地形成本始终读取本节未乘经脉速度的 `qinggong`，不能靠临时行气越级。
+- 08 的 20 / 50 / 90 / 140 / 200 门禁、`qgTier`、`jump` 与逐格地形成本始终读取本节探索 `qinggong`，不能靠临时行气越级；protocol≤3 的 `openingQinggong` 也不得反推探索资格。
 
 ### 4.5 轻功值 `qinggong`（完整公式）
+
+`qinggong` 现行职责收窄为探索境界、跳跃、地形资格与轻功 UI；它不再代入新 `spd`。公式保留以维持 20/50/90/140/200 门禁可达，`Q_skill` 的层数收益与 `trainingAttrs.agi` 永久加成分别计一次。
 
 ```
 qinggong = clamp((Q_agi + Q_ce + Q_skill + Q_ap + Q_eq + Q_inner + Σflat_qinggong − Q_load)
@@ -748,7 +885,7 @@ Q_load  = 装备负重惩罚（10 §3.2、§3.4：重甲 10、heavy 重兵 15，
 | 属性 | 公式 | 说明 |
 |---|---|---|
 | `hpRegen` | `Σpp`（默认 0） | 来自内功特有被动（如九阳类）、Buff；每次自身行动开始时 `hp += hpMax × hpRegen%` |
-| `mpRegen` | `clamp(1 + Σ 内功贡献 mpRegen × innerScale × ratio + Σpp, 0, 6)` | 无内功 1%；STD Lv35 4.4%；Lv48 起按一位小数显示为 6.0%，Lv53 起实际触及 6% 上限。每次自身行动开始回复 `floor(真实 mpMax × mpRegen / 100)`；是否足以覆盖低耗招式须按整战资源曲线验收，不能直接用百分数相减判定 |
+| `mpRegen` | `clamp(1 + 0.02×(bre−50) + Σ 内功贡献 mpRegen × innerScale × ratio + Σpp, 0, 6)` | `bre=20/50/100` 的先天基线为 `0.4%/1.0%/2.0%`；其余沿用内功贡献与 6% 总上限。每次自身行动开始回复 `floor(真实 mpMax × mpRegen / 100)`；是否足以覆盖低耗招式须按整战资源曲线验收，不能直接用百分数相减判定 |
 | `rageGain` | `clamp(100 + 0.2 × (wil − 50) + Σpp, 50, 200)` | 乘在所有气势获取上（§5.4） |
 | `shieldMax` | `hpMax × (0.25 + Σpct_shieldMax)`，总系数 ≤ 0.50 | §5.5 |
 | `staRegen` | `4 + Σpp` | §5.3 |
@@ -795,17 +932,19 @@ hpRoot = 300 + skillHp + innerHp + 8×openedCount + 6×meridianScore
          + 2×acupointScore + legacyHpCredit
 mpRoot = 200 + innerMp + 6×openedCount + 8×meridianScore
          + 3×acupointScore + legacyMpCredit
+breMpBp = clamp(10000 + 60×(bre−50), 7000, 14200)
 hpMax = max(1, floor((hpRoot+Σflat_hpMax)×max(2000,10000+Σpct_hpMaxBp)/10000
                      ×ΠmultBp/10000^k))
-mpMax = max(1, floor((mpRoot+Σflat_mpMax)×max(2000,10000+Σpct_mpMaxBp)/10000
+mpMax = max(1, floor((mpRoot+Σflat_mpMax)×breMpBp/10000
+                     ×max(2000,10000+Σpct_mpMaxBp)/10000
                      ×ΠmultBp/10000^k))
 ```
 
 其中 `resourceLayer=min(trueLayer,9)`；武功使用不受临时书界压制回退的绝对品阶 `absGrade`，脉 / 穴品阶和强度层均来自 15 的同一版永久快照。未开的穴不计 `acupointScore`；一条脉首次开穴时由 15 建立其强度项，此前不计 `meridianScore`。`fluxCap` 是宽度，**不**重复进入资源根值。`legacyHpCredit/legacyMpCredit` 仅由 v2→v3 迁移器一次性写入，新档固定为 0。
 
-这是唯一资源根公式；先天 `con/wil` 不再暗中乘资源，以免在“武功 + 经脉决定生命 / 内力”之外再造第三成长源。装备、Buff、天书等显式 `flat/pct/mult` 仍在根值之后按 §11.2 结算；第 10 重不再增加本公式，但保留 05 已有圆满能力。
+这是唯一资源根公式；`bre` 是唯一先天容量修饰，50 为中性点，20/100/120 分别为 `8200/13000/14200 bp`；`con/wil` 不再暗中乘资源。装备、Buff、天书等显式 `flat/pct/mult` 仍在其后按 §11.2 结算；第 10 重不再增加本公式，但保留 05 已有圆满能力。
 
-复算例：已学一门 6 品外功 5 层、一门 6 品内功 5 层；一脉为 6 品 / 强度 4，并开 9 穴，每穴均 6 品 / 强度 3；其余 19 脉先不计示例项。则 `skillHp=(30+24)×5=270`、`innerHp=190`、`innerMp=290`、`openedCount=9`、`meridianScore=6×4=24`、`acupointScore=9×6×3=162`。无修饰时 `hpMax=300+270+190+72+144+324=1300`，`mpMax=200+290+54+192+486=1222`。
+复算例：已学一门 6 品外功 5 层、一门 6 品内功 5 层；一脉为 6 品 / 强度 4，并开 9 穴，每穴均 6 品 / 强度 3；其余 19 脉先不计示例项。则 `skillHp=(30+24)×5=270`、`innerHp=190`、`innerMp=290`、`openedCount=9`、`meridianScore=6×4=24`、`acupointScore=9×6×3=162`。无其他修饰且 `bre=50` 时 `hpMax=300+270+190+72+144+324=1300`，`mpRoot=200+290+54+192+486=1222`、`breMpBp=10000`，故 `mpMax=1222`；若 `bre=80`，则 `breMpBp=11800`、`mpMax=floor(1222×11800/10000)=1441`。
 
 - `Σpct_hpMaxBp` 可含内功特有被动、装备、套装、Buff、永久创伤与天书之力；旧 `innerHpPct/innerMpPct` 基础贡献已由上式的武功层逐门替代，禁止再算一次。
 - AR-19 药材 / 丹药永久强化改走 15 `MeridianTemperEffect`：提高脉 / 穴 `fluxCap` 或强度经验，再由本公式自然提高资源。旧直接永久 `hpMax/mpMax pct` 一次性迁成 `legacyResourceCredit`；物品名称、品阶与投放仍归 10 §8。
@@ -1003,6 +1142,24 @@ res_eff = res_X × (1 − ρ(Δr))           否则
 ---
 
 ## 7. 武学资质
+
+### 7.0 熟练度与真元（AR-26 承接资源）
+
+现有 `ap*` **保留并改名为“资质”**：它描述学习效率、类型天赋和 Z5 技法适配，仍为 0–100；不与可消费经验合并。新增两类跨书界资源**（原创扩展）**：
+
+| 资源 | 存档字段 | 计量 | 获得与用途 |
+|---|---|---|---|
+| 类别熟练度（武功经验） | `masteryXp[MasteryCategory]` | 非负整数 XP | 正常使用/修炼积累；书眠忘记外功所得 60% 转化由 `design/13` 定义；可跨类别投入新外功 `sxp` |
+| 真元（内功经验） | `trueEssence` | 非负整数 XP | 正常内功修炼小比例沉淀；书眠散功所得 60% 转化由 `design/13` 定义；可投入内功 `sxp`、调息档案与经脉温养 |
+
+`MasteryCategory` 固定为 `fist/finger/leg/grapple/sword/blade/staff/spear/whip/exotic/hidden/movement`；杂学继续走技艺，内功只用真元。跨类别投入按 1:1 XP，不再二次打折；单门每层由资源补入不得超过该层 `ExpToNext` 的 50%，其余必须来自正常修炼，防止一次忘技能直接圆满。
+
+迁移：
+
+1. 旧 `apXP_k` 原值保留，继续只用于资质升点；不得转换为可消费熟练度。
+2. 旧档每门累计合法使用次数按 `masteryXp[cat] += 2×uses + 20×max(0,trueLayer-1)` 给予一次性补偿；缺使用次数时只计层数项。
+3. 旧内功按 `trueEssence += 25×max(0,trueLayer-1)` 补偿；迁移补偿不是散功，不触发 60%。
+4. 忘记/散功的原始经验、向 60% 转化和 3+3 保留事务归 `design/13`；本文只定义接收资源与消费边界。
 
 ### 7.1 初始值（创角后，身份/天赋加成前）
 
@@ -1276,7 +1433,7 @@ UI：被压制的武功/装备在图标上显示"天道"角标，品阶色按 `g
 
 | 参数 | 取值 |
 |---|---|
-| 先天 | 七项 50（具名 NPC 手配） |
+| 先天 | 八项 50（具名 NPC 手配） |
 | 武学品阶 `g_e` | `clamp(⌊μ + 0.5⌋,1,gmax)`，`μ=μ_normal(Ce,W)`（普通）或 `μ_normal+1.5`（精英 / 头目 / Boss）；把 design/02 §2.11 旧式的 `L` 参数传 `Ce`。实际遭遇仍按该节的种子品阶骰逐个展开 |
 | 层数 `l_e` | 普通 `clamp(⌊2.5+5×Ce/chapterBandCap⌋,1,layerCap−2)`，精英及以上 +1；这是旧 §2.11 公式的无等级参数迁移 |
 | 内功 | 主运 + 两门同源辅运，均 `g_e` 品 `l_e` 重，贡献按 05 标准预算 |
@@ -1442,7 +1599,7 @@ bossUnit = roundHalfUp(30,221.8001068032 × 7 × 1.35)
 | ⑧ | 覆写 | 机制类 `override`（如"`resCC` 视为 75"、"`hpMax` 锁定为施加时的值"）最后生效，多个覆写取最新施加者；"停止集气"不用覆写实现（§11.5 #3） |
 
 - `floor_S`：MAG/RAT 为 0.2（即任何减益叠加最多把属性压到 20%）；资源上限 `hpMax`/`mpMax` 同为 0.2。
-- 与伤害乘区的关系：本管线产出的是**面板属性**。"伤害 +X%"进 Z3、"受到伤害 −X%"进 Z4、"对某类兵器伤害"进 Z5，均**不是属性修饰**，由 design/04 汇总；AR-14 的 `Z4M / meridianDefense` 与 `Z5M / meridianAttack` 也不是 `StatModifier.mult`，只可由 `design/21` 的双方战斗 Profile 输出。数据中以 `target: 'dmgUp' | 'dmgDown' | ...` 区分于 `target: StatId`。
+- 与伤害乘区的关系：本管线产出的是**面板属性**。"伤害 +X%"进 Z3、"受到伤害 −X%"进 Z4、"对某类兵器伤害"进 Z5，均**不是属性修饰**。protocol 4 的 `operationBp` 只由 21 输出并在 §4.1 外放支消费，`meridianDefenseBp` 只进 04 的 Z4M，Z5M 固定 10000；旧 `meridianAttackBp` 仅供 protocol≤3。
 - **实例唯一**：以 `(sourceType, sourceId, modifierId)` 为修饰器唯一键；同键重复输入只生效一次，不同 `modifierId` 可让同一装备、武学或 Buff 合法修改多个属性。Buff 的刷新/叠层/独立/取高由 design/06 在展开修饰器前处理。
 
 示例（`atkOut`，`Ce=50`，`str=70`）：
@@ -1457,7 +1614,9 @@ bossUnit = roundHalfUp(30,221.8001068032 × 7 × 1.35)
 ### 11.3 数据结构（玩法核心，TypeScript）
 
 ```ts
-type InnateId = 'con'|'str'|'agi'|'wis'|'wil'|'luk'|'cha';
+type InnateId = 'con'|'str'|'agi'|'wis'|'wil'|'luk'|'cha'|'bre';
+type AllocatableInnateId = 'str'|'con'|'bre'|'wis'|'agi'|'wil';
+type MasteryCategory = 'fist'|'finger'|'leg'|'grapple'|'sword'|'blade'|'staff'|'spear'|'whip'|'exotic'|'hidden'|'movement';
 type ResourceMaxId = 'hpMax'|'mpMax'|'staMax'|'shieldMax';
 type CombatId = 'atkOut'|'atkIn'|'defOut'|'defIn'|'hit'|'eva'|'parry'|'pierce'|'crit'|'critDmg'|'tough'
   |'spd'|'mov'|'jump'|'qinggong'|'counter'|'combo'|'seal'|'effHit'|'effRes'|'healPower'|'healRecv';
@@ -1514,6 +1673,10 @@ interface CharacterStatsInput {
     skillSuppress: number; equipmentSuppress: number; layerCap: 8|9|10;
   };
   innatePerm: Record<InnateId, number>; innateCap: Record<InnateId, number>;
+  sleepPoints: number;
+  sleepAlloc: Partial<Record<AllocatableInnateId, number>>;
+  masteryXp: Record<MasteryCategory, number>;
+  trueEssence: number;
   realmAlloc: Partial<Record<2|3|4|5|6|7, Partial<Record<InnateId, number>>>>;
   ap: Record<ApId, number>; arts: Record<ArtId, number>; lore: number;
   morality: number; fame: number; talents: string[]; flags: string[];   // 存档标记，如 'scar_qishang'（05）
@@ -1533,7 +1696,7 @@ interface MeridianAttributeInput {
   baseMove: number;            // 09 已算出的基础移动点
   apInner: number;
   apGrapple: number;
-  str: number; agi: number; wil: number;
+  str: number; agi: number; wil: number; bre: number;
 }
 
 declare function toMeridianAttributeInput(
@@ -1542,7 +1705,7 @@ declare function toMeridianAttributeInput(
 ```
 
 `cultivation` 必须与 15 的进度版本同快照；构建器复算其三个计数 / 分数后才调用 `computeStats`。`legacyProgression` 若出现在协议 v3 正常对局输入即失败。
-`toMeridianAttributeInput` 只是稳定传值适配器：`innerNature` 是 `StatSheet.mpNature` 的跨模块语义名；`effectiveQinggong` 取属性管线最终 half-up 整数；`baseSpd` 取本文整数 `spd`；`baseMove` 取 09 同快照的移动点。其余字段也必须来自该不可变快照。它不运行路线、不读取点穴 / 擒拿、不生成 `meridianAttackBp/meridianDefenseBp/meridianSpeedBp`，也不把 21 的 `MeridianSpeedResult.spd` 回灌 `StatSheet.spd`。
+`toMeridianAttributeInput` 只是稳定传值适配器：`innerNature` 是 `StatSheet.mpNature` 的跨模块语义名；`effectiveQinggong` 取属性管线最终 half-up 整数；`baseSpd/baseMove` 仅为 protocol≤3 回放兼容输入。其余字段必须来自同一不可变快照。protocol 4 不运行旧速度投影，也不生成 `meridianSpeedBp/MeridianSpeedResult`；21 的 `CorrespondingStrengthResult` 必须先回到本节唯一 `spd` 求值。
 
 ### 11.4 重算时机
 
@@ -1550,7 +1713,7 @@ declare function toMeridianAttributeInput(
 |---|---|
 | 武功习得 / 层数变化、开穴 / 强度变化、书眠进入新书界、装配 / 装备或修为分配变化 | 先从同一永久快照重算 `Cb/Ce` 与 §5.1 资源根值，再全量重算 |
 | 战斗中 Buff 施加/移除/叠层变化 | 标脏受影响属性及其下游（按 §1.2 DAG），在**下一次读取前**增量重算 |
-| 属性重算导致 `mpMax/mpNature/qinggong/spd` 改变 | 先完成属性快照，再标脏 21 的护体支付或速度投影；节点宽度仍只读 15 `fluxCap`，并保留在途气、迟滞、堆积、胀损和点穴 |
+| 属性重算导致 `mpMax/mpNature/qinggong/spd` 改变 | 先完成属性快照，再标脏 21 的护体支付；经脉运行态变化则先重算对应强度与本文 `spd`。节点宽度仍只读 15 `fluxCap`，并保留在途气、迟滞、堆积、胀损和点穴 |
 | 条件修饰（`cond`，如"气血低于 30% 时 +20% 攻击"） | 在每次自身行动开始、每次受击结算后重新求值条件 |
 | 伤害结算 | 读取**招式开始结算那一刻**的属性快照；同一招式多段伤害共用该快照 |
 
@@ -1580,15 +1743,39 @@ declare function toMeridianAttributeInput(
 | AR-01 武学数量比例 | 属性公式只消费武学的 `g_eff`、`layer_eff`、类别和贡献，不把目录数量写入属性预算 | 武学总量与品阶分布见 `design/05` 与各 catalog |
 | AR-02 阴 / 阳 / 调和 | `mpNature` 取值 `yang` / `yin` / `harmony`；未装主运时按调和枚举显示但相性加成为 0（§5.2、§11.5） | 每门内功的 `nature`、相性、走火风险归 `design/05`；Z5 归 `design/04` |
 | AR-03 冲穴 | 接受 `sourceType:'meridian'` 的普通 `StatModifier`；全部结果仍受本文属性范围与叠加顺序约束 | 穴道、经脉、通脉、小/大周天、十二经周流、九转和冲穴速率归 `design/15` |
-| AR-14 / AR-19 经脉攻防与运气 | 向 21 提供同一快照的 `currentMp/mpMax`、`innerNature`、`apInner/apGrapple`、`str/agi/wil`；宽度、产气、速度不由属性层推算。21 返回独立攻防 / 速度投影给 04 / 09，不进入属性 `mult` | 气量、通量、长度、周天与取整见 `design/21` §2–§4；永久脉 / 穴真值见 `design/15` |
+| AR-14 / AR-19 / AR-27 经脉攻防与运气 | 向 21 提供同一快照的 `currentMp/mpMax`、`innerNature`、`apInner/apGrapple`、`str/agi/wil/bre`；21 返回 protocol 4 攻击运转值、防守 Z4M 倍率与轻功对应强度；都不进入属性 `mult` | 气量、通量、长度、周天、`operationBp` 与对应强度取整见 `design/21` §2–§4；永久脉 / 穴真值见 `design/15` |
 | AR-14 护体内劲 | 本文只提供当前 `mp` 与 `mpMax`；21 的 `InnerGuardResult` 实扣 `mpSpent`，输出 `damageBeforeMpGuard`，不得改名为 `hpDamage` | 类别适用率、容量、击穿迟滞与 1 内力抵 2 伤害见 `design/21` §4.8；最终 settle 归 `design/04` |
-| AR-14 经脉速度 | 本文提供未修正且 half-up 的 `effectiveQinggong` 与整数 `baseSpd`，09 提供 `baseMove`；21 输出 `openingQinggong/spd/move/evadeRatingDelta`。面板与 08 门禁仍读未乘经脉速度的 `qinggong` | 路线 Profile、6500–13500 bp 曲线及先经脉后擒拿见 `design/21` §4.9；首轮 / CT / 移动见 `design/09` |
+| AR-27 经脉速度 | 21 输出 `correspondingStrengthAmpBp`，本文在 §4.3 唯一合成 `spd`；09 只消费最终 `spd` 映射首轮、CT 与移动。探索门禁仍只读 `qinggong` | 对应经脉、6500–13500 bp 增幅见 `design/21` §4.9；首轮 / CT / 移动见 `design/09`；旧投影仅 protocol≤3 |
 | AR-04 / AR-11 大地图与时代图层 | 对检定只输出 `Ce`、先天、技艺、`qinggong`、`sta/staMax` 等稳定属性；不建立地图坐标或时代表 | 世界结构归 `design/11`，地图数据与绘制归 `design/19` / `design/map/*` |
 | AR-05 / AR-06 资源与营生 | 16 可读取无状态 `Ce`、武学品阶、技艺、声望与品德作产出 / 任职检定；不得存人物等级，资源品阶也不得冒充武学 `g` 或属性 `grade` | 资源点、家丁、库存、赌场 / 镖局 / 山庄、职位与收益归 `design/16`，任务接口归 `design/12` |
 | AR-07 / AR-08 门派层级与资料 | `sourceType:'sect'` 只承接归属文档明确输出的属性项；书眠后的身份存续由门派系统决定 | 五级结构归 `design/12`，门派称谓、历史和开放矩阵归 `design/17` |
 | AR-09 NPC 与同伴 | `unitClass` 为 `companion` 或 `namedNpc` 时使用 `full` 管线；能力快照、来源与时空可用性作为输入，不在属性层猜测 | 招募、生卒年、重逢及“只增不减”归 `design/18` |
 | AR-10 正邪剧情 | 剧情条件可读取属性快照；剧情奖励若改属性，须转成有稳定 `sourceId` 的合法修饰器 | 双主线、选择节点、人物生死与奖励来源归 `design/story/*` |
 | AR-12 六角战棋 | 输出 `qinggong`、`qgTier`、`spd`、`jump` 及移动修饰；`agi` 不再重复直加速度或移动点 | 六角移动点、首轮顺序、范围模板、运劲和战斗道具归 `design/09`；地形成本归 `design/08` |
+
+### 11.7 武功修炼永久属性加成（AR-27）
+
+`SkillDef.trainingAttrs` 是已学武功达到真实熟练层时写入人物永久账本的奖励，不要求当前装配，不随外来压制回退。字段与预算由 `design/05` §2.1、§3.7 定义；本文规定聚合：
+
+```text
+grant(skill,attr) = Σ milestone.points, milestone.layer<=min(trueLayer,9)
+skillGrantTotal <= 12
+characterTrainingAttrTotal = Σ全部武功全部属性 grant <= 48
+permAttr = clamp(base + sleepAlloc + acceptedTrainingGrant + events, 1, cap)
+```
+
+里程碑只能在 3/6/9 重，每个里程碑 1–4 点；第 10 重不给永久属性。达到总上限 48 后，新奖励转为等量该门类别熟练度（内功转真元），不吞奖励。单项来自修炼的累计上限 24，防止只学同源武学把一项灌满。
+
+| 源流 / 小说表现 | 默认里程碑 | 单门总量 | 配表边界 |
+|---|---|---:|---|
+| 一般拳剑刀枪 | 主属性 `+1/+1/+1` | 3 | 无明确炼体/身法描写不加副属性 |
+| 轻功 | `agi +1/+1/+1` | 3 | 顶尖轻灵可 `+1/+2/+2=5` |
+| 硬功横练 | `con +1/+2/+2` | 5 | 金钟罩、铁布衫类；可另 `wil +1`，总量仍≤6 |
+| 内功吐纳 | `bre +1/+2/+2` | 5 | 稳心型可把至多 2 点改为 `wil` |
+| 刚猛外功 | `str +1/+2/+1` | 4 | 若兼横练，最多再 `con +2` |
+| 巧思/悟理名功 | `wis +1/+1/+1` | 3 | 只用于明确以悟理为核心者 |
+
+原著只证明“偏向”，不证明数值。名录依据应写人物/源流/情节梗概；无把握标（待考），原创归类标（原创扩展）。同一武功不得仅因“强”而同时加三项；总量 7–12 只给有明确多维锻炼且需手配的名功。
 
 ---
 
@@ -1603,7 +1790,8 @@ declare function toMeridianAttributeInput(
 | `gMain(Ce)`、`gref(Ce)`、`lref(Ce)` | 主力品阶、参考品阶、参考层数 | §3.5 | 1–12、1–12、1–10 |
 | `P_ref(Ce, tier)`、`τ(tier)` | 修为档期望威力指数（Z1 归一用）、境界系数 | §3.5 | 0.60–5.25；1.00/0.80/0.75 |
 | `G(g)`、`L(n)` | 品阶系数（基准 §4）、层数系数（05 §3.1：`0.5 + 0.1n`） | — | 1.00–3.50、0.6–1.5 |
-| `atkOut` `atkIn` `defOut` `defIn` | 攻防四项 | §4.1 | Lv35 STD ≈ 1,095 / 939 / 795 / 782 |
+| `atkOut` `atkIn` `defOut` `defIn` | 攻防四项；protocol 4 的内劲防御为静态 `Dref×bre` 经属性管线所得，不含经脉路线 | §4.1 | Lv35 旧 STD ≈ 1,095 / 939 / 795 / 782 |
+| `hardAttack` `outwardAttack` `hardDefense` `innerDefense` | protocol 4 的逐招攻击两支 / 静态防御两支；`innerDefense` 不含 `meridianDefenseBp` | §4.1；04 §4.1–§4.4.1 | 攻击 ≥1；防御 ≥0；经脉防守只在 Z4M |
 | `r_in`、`ATK_mix`、`DEF_mix` | 内劲比例（05）、攻击/防御合成 | §4.1 | `r_in` 0–1 |
 | `hit` `eva` `parry` `pierce` `crit` `tough` `effHit` `effRes` | 判定评级 | §4.2 | STD 见 §4.9 |
 | `P_hit` `P_parry` `P_crit` `P_eff` | 04 已采纳的概率换算 | §4.2；04 §3.1 | 见公式 |
@@ -1611,10 +1799,10 @@ declare function toMeridianAttributeInput(
 | `seal` | 拿穴 pp | §4.6 | 0–100 |
 | `counter` `combo` | 反击 / 连击 pp | §4.6 | 0–60 / 0–50 |
 | `healPower` `healRecv` | 治疗 / 受疗 pp | §4.7 | 0–300 / 0–200 |
-| `spd` | 属性层输出的基础速度（21 语义名 `baseSpd`）；经脉战斗投影后由 09 消费结果字段 `spd` | §4.3 | 30–300 |
-| `MeridianAttributeInput` | 供 21 初始化 / 投影读取的同快照属性子集；宽度 / 产气 / 速度另读 15 / 05 | §5.2、§11.3 | `currentMp/mpMax/innerNature/effectiveQinggong/baseSpd/baseMove/apInner/apGrapple/str/agi/wil` |
-| `openingQinggong`、`spd'`、`move'` | 21 在基础属性之上的战斗投影；撇号是正文记号，schema 字段为 `openingQinggong/spd/move`，均不写回 `StatSheet` | §4.3–§4.4；21 §4.9、§12.3 | 轻功 / 速度由 6500–13500 bp 修正；`spd'` 仍钳 30–300，`move'` 1–10 |
-| `meridianAttackBp`、`meridianDefenseBp` | 21 输出给 04 的独立攻 / 防乘区；不是 `mult` 修饰 | 21 §3.5、§4.4 | 攻 6500–22000；防 5000–13000；标准均 10000 |
+| `spd` | protocol 4 战斗速度唯一真值，已含 `agi×qgBaseBp×correspondingStrengthAmpBp` | §4.3 | 30–300 |
+| `correspondingStrengthAmpBp` | 21 按轻功对应经脉永久态与运行态输出的速度增幅 | 21 §4.9 | 6500–13500，中性 10000 |
+| `baseOperationBp/circulationDamageBp/operationBp` | 21 输出的路线基础、周天与最终攻击运转值；不是 `mult` 修饰 | 21 §4.4 | 最终 6500–22000；只进 protocol 4 的 Z1 外放支 |
+| `meridianAttackBp`、`meridianDefenseBp` | 旧攻击 Z5M / 现行防守 Z4M 字段；不是 `mult` 修饰 | 21 §3.5、§4.4 | protocol 4 攻击恒 10000；防守 5000–13000 |
 | `damageBeforeMpGuard` | 护体内劲后、既有 `mpGuard` 前的剩余伤害；不是实际气血伤害 | 21 §4.8 | 0 至护体真气后的伤害 |
 | `mov`、`jump` | 六角移动点结果（09 主定义）/ 跃高 | §4.4 | `mov` 由 09 按场景钳制；`jump` 0–6 |
 | `qinggong`、`qgTier` | 轻功值、轻功境界 | §4.5 | 0–300（实际多在 0–220）、0–5 |
@@ -1678,10 +1866,10 @@ declare function toMeridianAttributeInput(
 | `template` / `full` | 敌人生成方式 | | §10.1 |
 | `ResourceCultivationInput` / `legacyResourceCredit` | 资源输入 / 迁移项 | 武功、已通穴、脉穴强度与一次性旧档差额 | §5.1、§11.3 |
 | `StatModifier` `CharacterStatsInput` `computeStats` | 代码接口 | | §11.3 |
-| `MeridianAttributeInput` | 代码接口 | 从一个已完成的属性快照向 21 传基础内力、轻功、速度及检定属性；不承载 21 的动态节点态 | §5.2、§11.3 |
-| `baseSpd` / `baseMove` | 跨模块语义别名 | 分别是本文 `spd` 与 09 移动力在 21 修正前的值；不是新 `StatId` | §4.3–§4.4 |
-| `openingQinggong` / `spd'` / `move'` | 引用字段 | 21 输出的战斗投影；实际 schema 键为 `openingQinggong/spd/move`，只供 09 首轮、CT 和移动，不写回面板 | §4.3–§4.4；21 §4.9、§12.3 |
-| `meridianAttackBp` / `meridianDefenseBp` / `meridianSpeedBp` | 引用字段 | 21 唯一定义的攻、防、速度经脉修正；不是属性 `mult` | §11.6；21 §3.5、§4.9 |
+| `MeridianAttributeInput` | 代码接口 | 从一个已完成的属性快照向 21 传内力与检定属性；不承载 21 的动态节点态 | §5.2、§11.3 |
+| `baseOperationBp` / `circulationDamageBp` / `operationBp` | 引用字段 | 21 唯一定义的 protocol 4 攻击运转三段值；最终值只在 §4.1 消费 | §4.1、§11.6；21 §4.4 |
+| `meridianAttackBp` / `meridianDefenseBp` | 引用字段 | protocol≤3 旧攻击 Z5M / 现行防守 Z4M；不是属性 `mult` | §11.6；21 §3.5、§4.4 |
+| `meridianSpeedBp` / `openingQinggong` / `moveDelta` | 旧协议字段 | 只供 protocol≤3 回放；protocol 4 禁止生成或消费 | §4.3；21 §4.9、§12.5 |
 | `damageBeforeMpGuard` | 引用字段 | 21 护体内劲结算后的剩余伤害，继续交既有 `mpGuard`；不是 `hpDamage` | §11.6；21 §4.8 |
 
 ### 13.1 本文引用、但不定义的现有 ID
@@ -1695,7 +1883,7 @@ declare function toMeridianAttributeInput(
 | `bf_tsp_xianying_fin` | 终局 Z3/Z4 效果，不进入属性 `mult` | `design/06`、`design/13`；本文 §9.1 |
 | `bf_tsp_weiguang` | 武学/装备各抵消 1 小品，仍受半额压制下限 | `design/06`、`design/13`；本文 §9.1 |
 
-`openingQinggong`、`meridianAttackBp`、`meridianDefenseBp`、`meridianSpeedBp` 与 `damageBeforeMpGuard` 是 21 的 schema 字段而非全局内容 ID，因此不使用 `tal_*`、`bf_*` 或 `mer_*` 前缀，也不进入本文 `StatId` 联合类型；`spd'`、`move'` 只用于公式排版，序列化必须写 21 的 `spd`、`move`。
+`baseOperationBp/circulationDamageBp/operationBp`、`meridianAttackBp`、`meridianDefenseBp`、`correspondingStrengthAmpBp` 与 `damageBeforeMpGuard` 是 21 的 schema 字段而非全局内容 ID，因此不进入本文 `StatId` 联合类型。非中性 `meridianAttackBp` 与旧速度键只允许出现在 protocol≤3 迁移数据。
 
 ---
 
@@ -1720,12 +1908,13 @@ declare function toMeridianAttributeInput(
 | V03-13 | `CharacterStatsInput.cultivation` 的武功、穴数、脉 / 穴强度必须可由同版 05 / 15 永久快照复算；协议 v3 正常对局不得带 `legacyProgression` | 信任客户端汇总、混用版本，或继续以 `realLevel/expFp` 驱动属性 |
 | V03-14 | 旧 runner 的 `bossUnit` 必须由 §10.2 与 §10.3 的 Ce70 / W100 / D10 夹具生成并 half-up 一次；protocol 3 禁止把它写成生产资源 | 手填近似值、把终局分卷系数提前乘入，或跳过 §5.1 直接生成新角色资源 |
 | V03-15 | `MeridianAttributeInput` 不含 `mpRatioBp/capacity`，且 `currentMp/innerNature/effectiveQinggong/baseSpd/baseMove` 与其余字段来自同一已完成属性 / 移动快照 | 从 `mpMax` 反推宽度 / 起始气，混用不同 tick 快照，或把 `mpNature/qinggong/spd/mov` 原键无声明直传 |
-| V03-16 | `StatSheet.qinggong/spd` 保持未乘经脉速度；21 的战斗投影只序列化 `openingQinggong/spd/move`，公式别名 `spd'/move'` 不作键名 | 把 `meridianSpeedBp` 写进 `Q_skill`、`Σpct_spd`，用修正后轻功通过 08 门禁，或把撇号别名写进 schema |
-| V03-17 | `meridianAttackBp/meridianDefenseBp` 不进入 `StatModifier.mult`；`evadeRatingDelta` 不含擒拿；护体输出名为 `damageBeforeMpGuard` | 经脉攻防重复乘、擒拿重复罚闪避，或把护体剩余量当实际 `hpDamage` |
+| V03-16 | protocol 4 的 `StatSheet.spd` 必须且只消费一次 `correspondingStrengthAmpBp`；09 只映射该结果，探索 `qinggong` 不消费它 | 21 / 09 再乘 `meridianSpeedBp`、再加 `moveDelta`，或用 `spd` 反推 08 门禁 |
+| V03-17 | 经脉字段不进入 `StatModifier.mult`；protocol 4 的 `operationBp` 只进 §4.1 且 `meridianAttackBp=10000`；`evadeRatingDelta` 不含擒拿 | 经脉攻击在 Z1/Z5M 重复乘、擒拿重复罚闪避，或把护体剩余量当 `hpDamage` |
 | V03-18 | 每个武学型 Boss 逐单位满足 §10.2.1：1 主运 + 2 玄 / 黄基础辅运、3–5 外功且至少 1 门 `≥G`；跨两类主要身份时至少 2 门 `≥G` | 配装数量 / 品阶不足、七参或路线不可解析、静默回退 `1/1/harmony`，或仍带“地位下限兜底 / 缺专属主运”标记 |
 | V03-19 | 多人 Boss 的耐久预算按整场共享总耐久 / 总目标进度计算；纯机关豁免须与武学型机关区分 | 按行动单位复制完整 Boss 耐久，或武学型机关无理由豁免 |
 | V03-20 | `hpMax/mpMax` 根值只按 §5.1，武功层钳 1–9，三类经脉项各算一次；新档 `legacy*Credit=0` | 复乘 `innerHpPct/innerMpPct`、计入 `fluxCap`、第 10 重加资源或用等级曲线生成资源 |
 | V03-21 | 永久资源药效只能写 15 `MeridianTemperEffect`；旧永久资源百分比只允许迁移为可审计 credit | 新物品直接写永久 `hpMax/mpMax pct`，或同一药效既强脉又直接加资源 |
+| V03-22 | protocol 4 的 `innerDefense` 只读 `Dref`、`bre` 与静态 `defIn` 修饰；`meridianDefenseBp` 只交 04 Z4M | 面板防御读取防守路线 / 在途气，或 Z2 与 Z4M 对同一经脉防守重复乘算 |
 
 ### 14.2 金标准数值用例
 
@@ -1749,18 +1938,22 @@ declare function toMeridianAttributeInput(
 | T03-14 | 天龙 Lv35 普通模板、D4：`6,301×0.60×1.05`、`902×1.00×1.05` | 显示 `hpMax=3,970`、`atkOut=947`；防御不乘 `enemyStatMul` |
 | T03-15 | 洪安通兼容夹具：由武功 / 经脉模板派生 `Cb=50`，`Ce=min(50,70,44+6)`；`2,453×1.25`；`95,123×0.75` | `Ce=50`、`atkOut≈3,066`、目标 `hpMax≈71,300` |
 | T03-16 | 同一装备给 `atkOut` 与 `crit` 两条修饰，`modifierId` 分别为 `main.atkOut` 与 `affix.1.crit` | 两条都生效；重复提交任一同三元组只保留一条 |
-| T03-17 | 合法 STD 速度：Lv1 / 35 / 70 分别代入未取整 `agi` 与 `qinggong`；Lv70 普通鞋取 `gGear=9` | 原值 `91.55288 / 106.76396 / 126.93665`，末尾 `floor` 为 `91 / 106 / 126` |
+| T03-17 | protocol≤3 合法 STD 旧速度：Lv1 / 35 / 70 分别代入旧常数式 | 旧回放原值 `91.55288 / 106.76396 / 126.93665`，末尾 `floor` 为 `91 / 106 / 126`；不得作为新平衡锚 |
 | T03-18 | 旧 Ce70、W100、D10 模板 Boss：`30,221.8001068032×7×1.35` | 旧 runner `bossUnit=285,596`；protocol 3 只用于迁移偏差，不作生产资源 |
 | T03-19 | 一门 6 品外功 5 层、一门 6 品内功 5 层；9 穴均 6 品 / 强度 3，一脉 6 品 / 强度 4 | `skillHp/innerHp/innerMp=270/190/290`；`openedCount/meridianScore/acupointScore=9/24/162`；`hpMax/mpMax=1300/1222` |
-| T03-20 | 基础快照 `effectiveQinggong=98,baseSpd=106,baseMove=6`，21 标准 Profile 且无擒拿 | 无 `mpRatioBp` 输入；`meridianSpeedBp=combinedSpeedBp=10000`；结果 `98/106/6/0`，面板轻功与 08 门禁不变 |
-| T03-21 | 同一基础快照，21 强者 `meridianSpeedBp=12239`、5 级擒拿 `grappleMoveBp=6000`、`baseMove=6` | `combinedSpeedBp=floor(12239×6000/10000)=7343`；`openingQinggong=71`、`spd'=77`、`move'=5`；纯经脉 `evadeRatingDelta=+22`，擒拿闪避只由 04 / 06 另算一次 |
+| T03-19A | 同 T03-19，`bre=80`，无其他资源修饰 | `breMpBp=10000+60×30=11800`；`mpMax=floor(1222×11800/10000)=1441` |
+| T03-20 | protocol 4：`agi=65,g=7,n=7,correspondingStrengthAmpBp=11000` | `qgBaseBp=9100`；`spd=floor(65×9100×11000/1e8)=65`；09 不再乘经脉倍率 |
+| T03-21 | 同输入故意把 21 旧 `meridianSpeedBp=11000` 再乘一次或再加 `moveDelta` | 构建 / golden 失败；旧字段只允许 rulesProtocol≤3 |
 | T03-22 | 护体真气后剩 1000 拳脚伤害，21 抵消 1000、耗内 500 | `damageBeforeMpGuard=0` 且 `1000=1000+0`；属性层只把 `mp` 扣 500，不改变 `mpMax/atkIn/defIn` |
 | T03-23 | 双首领各自通过配装闸门；遭遇共享总耐久 180,000，第二阶段再召唤一名可行动单位 | 节奏分母仍为整场 180,000 加阶段有效量，不扩成 2 或 3 份 180,000；超窗只调耐久 / 阶段 / 目标 |
 | T03-24 | 同一条“地位下限兜底 / 缺专属主运”行分别送入正式生产构建与 `boss_pacing.py` | 生产构建报 `TS-CONTENT-BOSS-021` 并阻断；离线估算可读，但输出必须有 `estimateOnly=true` 且不得进入发布 IR |
+| T03-25 | 标准 `Cb=[10,25,35,45,55,58,62,65,65,66,67,68,69]` 逐项代入 §2.4.1、§2.8 | `gain=[4,5,5,7,7,7,8,9,9,9,9,10,10]`、累计 `[4,9,14,21,28,35,43,52,61,70,79,89,99]`；突破累计 `[0,10,15,20,25,25,30,30,30,30,30,30,30]`；终局常规预算 `400+99+30+48+24=601` |
+| T03-26 | §2.9.1 均衡路线；另取 `wis=80` 并把前三次全投、第四次投 6 | 六项均值依次为 `50.0/51.0/54.0/56.3/59.2/62.2/64.3/67.5/70.0/72.5/75.0/77.5/80.5/83.5`；终局八项均值 75.125、距全 100 缺 199；悟性于倚天入场前 `80+4+5+5+6=100` |
+| T03-27 | `Dref=600,bre=75,Σflat_defIn=100,Σpct_defIn=+10%,Πmult=1`，另给 `meridianDefenseBp=8000` | `innerDefenseBase=floor(600×75/50)=900`，面板 `innerDefense=roundHalfUp((900+100)×1.10)=1100`；改变 `meridianDefenseBp` 不改变面板值，只有 04 Z4M 把 `D4` 乘 8000 bp |
 
 ### 14.3 验收闸门
 
-1. 修改 §2–§10 任一公式后，重算 T03-01～T03-24，并同步 §3.5、§4.9、§10.2、§10.7、§10.10 中受影响的显示表。
+1. 修改 §2–§10 任一公式后，重算 T03-01～T03-27，并同步 §3.5、§4.9、§10.2、§10.7、§10.10 中受影响的显示表。
 2. 修改 `STD`、`MPREF`、`P_ref` 或敌模板后，运行 `python3 tools/balance/damage_sim.py --check`；脚本必须先采用本文的合法普通装备上限，不能用旧脚本结果反向覆盖正文。
 3. 修改类型或 ID 后，对 `docs` 与 `tools` 执行精确搜索，确认旧重命名 ID 为 0 个运行态命中，并检查 06 的 Buff 目录与 10 的装备名录。
 4. 合并前检查 Markdown 表列数、代码围栏成对、标题顺序、引用路径和 TypeScript 语法；无 YAML 代码块时记录“无适用项”，不得伪称解析通过。
@@ -1840,9 +2033,9 @@ declare function toMeridianAttributeInput(
 
 | 编号 | 已采纳提案 / 落点 | 理由 |
 |---|---|---|
-| M3-P01（沿用 21 提案） | **已解决（Canon V13-02、§9）**：Z4 后 / Z5 后分别插入 `Z4M / meridianDefense`、`Z5M / meridianAttack` 并逐区向下取整；公式见 21 §3.5 / §4.4 | 经脉攻防是作者决定的独立乘区，不得塞入属性 `mult` 或旧 Z3 加算池 |
+| M3-P01（AR-27 局部覆盖） | **待基准同步**：防守 `Z4M / meridianDefense` 保留；protocol 4 的攻击运转改由 §4.1 外放支唯一消费、Z5M=10000，旧 `meridianAttackBp` 仅 protocol≤3 | 落实作者攻击式并避免同一经脉收益在 Z1 / Z5M 双算 |
 | M3-P02（沿用 21 提案） | **已解决（Canon V13-03、§8 / §9）**：护体真气后、`mpGuard` 前登记护体内劲、类别适用率、1 内力抵 2 伤害及 `damageBeforeMpGuard`；公式见 21 §4.8 | 明确真实 `mp` 扣费和守恒边界，避免把中间量误作气血伤害 |
-| M3-P03（沿用 21 提案） | **已解决（Canon V13-04、§8 / §11）**：6500–13500 bp 经脉速度、`openingQinggong`、先经脉后擒拿与基础轻功 / 门禁不回写；公式见 21 §4.9 | 保持标准中性，避免重复加入 `Q_skill`、绕过地形门禁或二次惩罚闪避 |
+| M3-P03（AR-27 覆盖） | **待基准同步**：21 输出 6500–13500 bp `correspondingStrengthAmpBp`，03 在唯一 `spd` 公式消费；09 不再叠 `openingQinggong/moveDelta`；公式见 21 §4.9 | 保持标准中性，避免重复加入 `Q_skill`、绕过地形门禁或二次计算速度 |
 | AR19-P01 | Canon §3–§5 以人物无独立等级为生产真值；`hpMax/mpMax` 改用本文 §5.1，旧 `Lr/Ld/ExpState` 仅迁移诊断，旧表由 `Cb/Ce` 选行 | AR-19 明定人物无等级，资源由武功 1–9 层及经脉 / 穴位强弱决定 |
 | AR19-P02 | Canon / 02 / 13 的等级门槛、角色经验、补级与封顶条目改接具体武功 / 经脉成长或 `Cb` 门槛 | 防止下游继续写入人物等级并与本轮唯一资源公式产生双成长 |
 | AR19-P03 | 05 / 10 旧永久 `hpMax/mpMax pct` 药效与传功实例迁为 15 `MeridianTemperEffect` | 药材强化经脉 / 穴位是 AR-19 的明确接口，且可同时影响资源与运气而不双算 |
