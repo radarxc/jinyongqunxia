@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 283、已入库 194、已通过（作者） 150。**待出图队列 283 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 282、已入库 195、已通过（作者） 150。**待出图队列 282 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -179,7 +179,6 @@
 | items | `it_zhudu` | 猪肚 | `assets/default/item/food/it_zhudu.png` | 待出图 | [it_zhudu.md](items/food/it_zhudu.md) |
 | items | `it_zhurou` | 猪肉 | `assets/default/item/food/it_zhurou.png` | 待出图 | [it_zhurou.md](items/food/it_zhurou.md) |
 | items | `eq_dalijingxiulv_nv` | 大理锦绣履·女 | `assets/default/item/shoes/eq_dalijingxiulv_nv.png` | 待出图 | [eq_dalijingxiulv_nv.md](items/shoes/eq_dalijingxiulv_nv.md) |
-| items | `eq_huijiangxiubianpixue_nv` | 回疆绣边皮靴·女 | `assets/default/item/shoes/eq_huijiangxiubianpixue_nv.png` | 待出图 | [eq_huijiangxiubianpixue_nv.md](items/shoes/eq_huijiangxiubianpixue_nv.md) |
 | items | `eq_jinwupixue_nan` | 金乌皮靴·男 | `assets/default/item/shoes/eq_jinwupixue_nan.png` | 待出图 | [eq_jinwupixue_nan.md](items/shoes/eq_jinwupixue_nan.md) |
 | items | `eq_liaowupiqixue_nan` | 辽乌皮骑靴·男 | `assets/default/item/shoes/eq_liaowupiqixue_nan.png` | 待出图 | [eq_liaowupiqixue_nan.md](items/shoes/eq_liaowupiqixue_nan.md) |
 | items | `eq_mengguyangmaozhanxue_nan` | 蒙古羊毛毡靴·男 | `assets/default/item/shoes/eq_mengguyangmaozhanxue_nan.png` | 待出图 | [eq_mengguyangmaozhanxue_nan.md](items/shoes/eq_mengguyangmaozhanxue_nan.md) |
@@ -501,7 +500,7 @@
 | 1 | 清玄狐羽缎斗篷·男 | `eq_qingxuanhuyuduandoupeng_nan` | 地上 | 披风·斗篷 | 待出图 | [eq_qingxuanhuyuduandoupeng_nan.md](items/accessories/eq_qingxuanhuyuduandoupeng_nan.md) | template |
 | 2 | 明玉蝶步摇·女 | `eq_mingyudiebuyao_nv` | 玄中 | 头饰·簪钗 | 待出图 | [eq_mingyudiebuyao_nv.md](items/accessories/eq_mingyudiebuyao_nv.md) | template |
 
-### 鞋（26）· 待出图 18、已通过（作者） 8
+### 鞋（26）· 待出图 17、已通过（作者） 8、已入库 1
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -512,17 +511,16 @@
 | 5 | 宋金绣云头履·女 | `eq_songjinxiuyuntoulv_nv` | 地下 | 鞋·云头履 | 待出图 | [eq_songjinxiuyuntoulv_nv.md](items/shoes/eq_songjinxiuyuntoulv_nv.md) | template |
 | 6 | 元赤金皮骑靴·男 | `eq_yuanchijinpiqixue_nan` | 地中 | 鞋·骑靴 | 待出图 | [eq_yuanchijinpiqixue_nan.md](items/shoes/eq_yuanchijinpiqixue_nan.md) | template |
 | 7 | 大理锦绣履·女 | `eq_dalijingxiulv_nv` | 玄上 | 鞋·绣履 | 待出图 | [eq_dalijingxiulv_nv.md](items/shoes/eq_dalijingxiulv_nv.md) | template |
-| 8 | 回疆绣边皮靴·女 | `eq_huijiangxiubianpixue_nv` | 玄下 | 鞋·皮靴 | 待出图 | [eq_huijiangxiubianpixue_nv.md](items/shoes/eq_huijiangxiubianpixue_nv.md) | template |
-| 9 | 明皂皮靴·男 | `eq_mingzaopixue_nan` | 玄上 | 鞋·皂靴 | 待出图 | [eq_mingzaopixue_nan.md](items/shoes/eq_mingzaopixue_nan.md) | template |
-| 10 | 清青缎行靴·男 | `eq_qingqingduanxingxue_nan` | 玄下 | 鞋·行靴 | 待出图 | [eq_qingqingduanxingxue_nan.md](items/shoes/eq_qingqingduanxingxue_nan.md) | template |
-| 11 | 元红毡靴·女 | `eq_yuanhongzhanxue_nv` | 玄中 | 鞋·毡靴 | 待出图 | [eq_yuanhongzhanxue_nv.md](items/shoes/eq_yuanhongzhanxue_nv.md) | template |
-| 12 | 藏地厚革长靴·男 | `eq_zangdihougechangxue_nan` | 玄中 | 鞋·藏靴 | 待出图 | [eq_zangdihougechangxue_nan.md](items/shoes/eq_zangdihougechangxue_nan.md) | template |
-| 13 | 金乌皮靴·男 | `eq_jinwupixue_nan` | 黄上 | 鞋·皮靴 | 待出图 | [eq_jinwupixue_nan.md](items/shoes/eq_jinwupixue_nan.md) | template |
-| 14 | 蒙古羊毛毡靴·男 | `eq_mengguyangmaozhanxue_nan` | 黄中 | 鞋·毡靴 | 待出图 | [eq_mengguyangmaozhanxue_nan.md](items/shoes/eq_mengguyangmaozhanxue_nan.md) | template |
-| 15 | 明棉布花履·女 | `eq_mingmianbuhualv_nv` | 黄下 | 鞋·布履 | 待出图 | [eq_mingmianbuhualv_nv.md](items/shoes/eq_mingmianbuhualv_nv.md) | template |
-| 16 | 宋麻布鞋·男 | `eq_songmabuxie_nan` | 黄下 | 鞋·麻鞋 | 待出图 | [eq_songmabuxie_nan.md](items/shoes/eq_songmabuxie_nan.md) | template |
-| 17 | 宋青布圆头履·女 | `eq_songqingbuyuantoulv_nv` | 黄中 | 鞋·布履 | 待出图 | [eq_songqingbuyuantoulv_nv.md](items/shoes/eq_songqingbuyuantoulv_nv.md) | template |
-| 18 | 西夏缘履弓鞋·女 | `eq_xixiayuanlvgongxie_nv` | 黄上 | 鞋·弓鞋 | 待出图 | [eq_xixiayuanlvgongxie_nv.md](items/shoes/eq_xixiayuanlvgongxie_nv.md) | template |
+| 8 | 明皂皮靴·男 | `eq_mingzaopixue_nan` | 玄上 | 鞋·皂靴 | 待出图 | [eq_mingzaopixue_nan.md](items/shoes/eq_mingzaopixue_nan.md) | template |
+| 9 | 清青缎行靴·男 | `eq_qingqingduanxingxue_nan` | 玄下 | 鞋·行靴 | 待出图 | [eq_qingqingduanxingxue_nan.md](items/shoes/eq_qingqingduanxingxue_nan.md) | template |
+| 10 | 元红毡靴·女 | `eq_yuanhongzhanxue_nv` | 玄中 | 鞋·毡靴 | 待出图 | [eq_yuanhongzhanxue_nv.md](items/shoes/eq_yuanhongzhanxue_nv.md) | template |
+| 11 | 藏地厚革长靴·男 | `eq_zangdihougechangxue_nan` | 玄中 | 鞋·藏靴 | 待出图 | [eq_zangdihougechangxue_nan.md](items/shoes/eq_zangdihougechangxue_nan.md) | template |
+| 12 | 金乌皮靴·男 | `eq_jinwupixue_nan` | 黄上 | 鞋·皮靴 | 待出图 | [eq_jinwupixue_nan.md](items/shoes/eq_jinwupixue_nan.md) | template |
+| 13 | 蒙古羊毛毡靴·男 | `eq_mengguyangmaozhanxue_nan` | 黄中 | 鞋·毡靴 | 待出图 | [eq_mengguyangmaozhanxue_nan.md](items/shoes/eq_mengguyangmaozhanxue_nan.md) | template |
+| 14 | 明棉布花履·女 | `eq_mingmianbuhualv_nv` | 黄下 | 鞋·布履 | 待出图 | [eq_mingmianbuhualv_nv.md](items/shoes/eq_mingmianbuhualv_nv.md) | template |
+| 15 | 宋麻布鞋·男 | `eq_songmabuxie_nan` | 黄下 | 鞋·麻鞋 | 待出图 | [eq_songmabuxie_nan.md](items/shoes/eq_songmabuxie_nan.md) | template |
+| 16 | 宋青布圆头履·女 | `eq_songqingbuyuantoulv_nv` | 黄中 | 鞋·布履 | 待出图 | [eq_songqingbuyuantoulv_nv.md](items/shoes/eq_songqingbuyuantoulv_nv.md) | template |
+| 17 | 西夏缘履弓鞋·女 | `eq_xixiayuanlvgongxie_nv` | 黄上 | 鞋·弓鞋 | 待出图 | [eq_xixiayuanlvgongxie_nv.md](items/shoes/eq_xixiayuanlvgongxie_nv.md) | template |
 
 ### 腰带（26）· 已入库 18、已通过（作者） 8
 
