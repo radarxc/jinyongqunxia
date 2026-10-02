@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 373、已通过（作者） 150、已入库 104。**待出图队列 373 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 372、已通过（作者） 150、已入库 105。**待出图队列 372 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -264,7 +264,6 @@
 | items | `eq_yuanchijinpiqixue_nan` | 元赤金皮骑靴·男 | `assets/default/item/shoes/eq_yuanchijinpiqixue_nan.png` | 待出图 | [eq_yuanchijinpiqixue_nan.md](items/shoes/eq_yuanchijinpiqixue_nan.md) |
 | items | `eq_yuanhongzhanxue_nv` | 元红毡靴·女 | `assets/default/item/shoes/eq_yuanhongzhanxue_nv.png` | 待出图 | [eq_yuanhongzhanxue_nv.md](items/shoes/eq_yuanhongzhanxue_nv.md) |
 | items | `eq_zangdihougechangxue_nan` | 藏地厚革长靴·男 | `assets/default/item/shoes/eq_zangdihougechangxue_nan.png` | 待出图 | [eq_zangdihougechangxue_nan.md](items/shoes/eq_zangdihougechangxue_nan.md) |
-| items | `eq_songzhijian` | 宋制直剑 | `assets/default/item/weapons/eq_songzhijian.png` | 待出图 | [eq_songzhijian.md](items/weapons/eq_songzhijian.md) |
 | items | `eq_sutieduanbi` | 素铁短匕 | `assets/default/item/weapons/eq_sutieduanbi.png` | 待出图 | [eq_sutieduanbi.md](items/weapons/eq_sutieduanbi.md) |
 | items | `eq_tiandihuiduandao` | 天地会短刀 | `assets/default/item/weapons/eq_tiandihuiduandao.png` | 待出图 | [eq_tiandihuiduandao.md](items/weapons/eq_tiandihuiduandao.md) |
 | items | `eq_tianlongsijiedao` | 天龙寺戒刀 | `assets/default/item/weapons/eq_tianlongsijiedao.png` | 待出图 | [eq_tianlongsijiedao.md](items/weapons/eq_tianlongsijiedao.md) |
@@ -565,7 +564,7 @@
 
 （已全部入库。）
 
-### 兵器（118）· 已入库 72、已通过（作者） 24、待出图 22
+### 兵器（118）· 已入库 73、已通过（作者） 24、待出图 21
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -589,8 +588,7 @@
 | 18 | 元蒙马棒 | `eq_yuanmengmabang` | 玄下 | 兵器·棍 | 待出图 | [eq_yuanmengmabang.md](items/weapons/eq_yuanmengmabang.md) | template |
 | 19 | 元蒙骑枪 | `eq_yuanmengqiqiang` | 玄下 | 兵器·枪 | 待出图 | [eq_yuanmengqiqiang.md](items/weapons/eq_yuanmengqiqiang.md) | template |
 | 20 | 竹骨铁扇 | `eq_zhugutieshan` | 玄下 | 兵器·奇门扇 | 待出图 | [eq_zhugutieshan.md](items/weapons/eq_zhugutieshan.md) | template |
-| 21 | 宋制直剑 | `eq_songzhijian` | 黄下 | 兵器·剑 | 待出图 | [eq_songzhijian.md](items/weapons/eq_songzhijian.md) | template |
-| 22 | 素铁短匕 | `eq_sutieduanbi` | 黄下 | 兵器·奇门匕 | 待出图 | [eq_sutieduanbi.md](items/weapons/eq_sutieduanbi.md) | template |
+| 21 | 素铁短匕 | `eq_sutieduanbi` | 黄下 | 兵器·奇门匕 | 待出图 | [eq_sutieduanbi.md](items/weapons/eq_sutieduanbi.md) | template |
 
 ### 衣物（30）· 待出图 18、已通过（作者） 12
 
