@@ -519,83 +519,6 @@
   notes: '实际查看候选1：晦聪为老年宽稳略丰方丈，光头、灰白眉与整齐短白须，宽长圆脸与真实老年纹理，深灰僧袍赭红袈裟、右手低持一串自然下垂木珠、左手腹前轻扶衣襟；和澄观的长须清瘦研武形象可区分。主要正面头颈端正，眼线基本水平，完整单人全身双足清楚，无明显多肢或重大结构错误，按快速宽松自查可用。袖幅、袈裟细纹和背景花枝小亭超出严格简洁要求，后续统一记录细修，不机械追加。保存原生1024×1536 RGB不透明PNG的原始字节及元数据，candidate待用户最终审核，不自行approved。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
-- id: por_npc_aobai__ch08_elder_base
-  file: por_npc_aobai__ch08_elder_base.png
-  category: character/male
-  style: default
-  subject: 鳌拜 npc_aobai ch08_luding · 1669被擒前入宫议事
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
-
-
-    Create a REALISTIC Chinese wuxia full-body portrait of 鳌拜 / npc_aobai for ch08_luding. IMAGE 1 IS THE VERIFIED 1998 TVB CHARACTER IDENTITY REFERENCE: 王俊棠 portraying 鳌拜 in the 陈小春 version. Use his visible facial identity, not a generic original face or another actor. IMAGE 2 IS BACKGROUND ONLY. Reconstruct a continuous realistic illustrated person, never paste a photographic face onto a body.
-
-
-    身份与阶段：1669年被擒以前、入宫议事的辅政大臣与布库擒拿Boss。
-
-
-    年龄与体型：出生年不明，卒年1669见名录；默认老将观感（原创扩展），不编确岁；宽脸粗眉、密而带花白的络腮胡，深额纹、结实下颌；非常魁梧厚重的肩背、胸廓与四肢，老将的力量感真实而非膨胀肌肉。全身必须非常魁梧厚重而仍是可信老将，宽厚肩背胸廓与四肢优先于统一模特比例；不编确岁。
-
-
-    本人面容辨识：以第1图中1998陈小春版、王俊棠饰鳌拜的真实可见面貌建立本人身份：宽阔的额部与脸面，双颊有实在体积、颧区平顺；灰白粗眉有清楚眉峰，眉眼间距与自然偏窄眼裂依图，不改成少年大眼或细眉。保留宽直鼻梁、圆厚鼻头和清楚鼻翼，嘴形较宽，闭唇；上唇有灰白胡须遮挡，不能凭遮挡编成另一套丰唇。灰白长须从两鬓、上唇和颏部真实根部生长，与主稿花白密须老将观感相容，胡须为完整细束而非墨块。原图须遮住大部分下颌与下巴，帽遮发际：不声称看清被遮部位的精确骨相，仅以主稿强健老将体格作自然衔接。皮肤保留老将额纹、眼角和颊口纹理，整张脸仍可辨为本人，不平均化成萧峰或其他演员。目光必须从图中的侧视改为正视，不能通过歪头或俯头表达威压。
-
-
-    服制与发式：清初满洲权臣入宫便服，深枣红窄袖右侧掩襟袍、墨黑外褂、束腰皮带与黑靴；前额剃发、灰黑细辫收于后背，素官式便帽；衣料厚实，肩胸受力褶皱清楚，不穿战场全甲。衣料完整不透明，领胸腹与四肢遮蔽，少量宽缓受力褶随厚实体积自然垂落；斜襟向本人右侧闭合，不镜像，不加未核冠服品级补子。
-
-
-    正面姿态与器物：完整全身正面稳立，头颈竖直，额鼻颏中线垂直、双眼水平直视、下巴中性，镜头水平；双足宽稳着地、胸肩自然展开，厚重重心可信，手臂与躯干留开净空。两只粗厚手掌自然半张、低垂在身侧，腕指结构清楚，不紧攥遮手、不作施法印；双臂、两手、双目和双足完整，无伤势。全身空手且腰带无兵器：没有狼牙棒、大锤、刀剑、弓箭、盾、镣铐、法器或文件。肃厉和威压用眉眼与重心表达，不低头藏眼、不抬下巴、不前倾扑人。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。默认一张独立候选经执行者实际自查；每张仅一人。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实与参考边界：本图只在1669被擒前的入宫议事窗口，出生年未明、老将观感是当前主稿美术选择，不根据演员实际年龄编角色确岁。后续被囚、死亡、随机后期复活不合入。当前授权以对应1998角色剧照建立真实身份，覆盖旧主稿禁止演员脸和仅palette的新脸方案；原书外貌、服饰选款与空手造型仍保留原稿待考/原创边界，未声称新核指定纸本。照片确切集数与拍摄日未核，不从照片官帽、朝珠推断本图品级。
-
-
-    实际参考顺序：第一输入是已核对并实际查看的1998 TVB陈小春版王俊棠饰鳌拜本人剧照，只提供该角色可见五官、宽阔脸面、眉眼鼻唇和须眉辨识。保留本人身份而非原照片构图、侧视姿态、字幕、摄影纹理、朝珠与绣纹官服；帽须遮挡部位不臆造精确观测。年龄体型服饰器物严格依本阶段。 第二输入仅提供暖浅灰纸底、極淡低对比水墨远山薄雾与留白，已实际查看；绝不复制图中女性人物的脸、身体、发型、衣裙、飘带、装饰或歪头姿势，墨迹不得进入人物皮肤衣料。
-
-
-    完整排除项：不要换成徐锦江、林更新或其他版本鳌拜的脸，不借其他人物面孔；不要统一偶像脸、网红锥子脸、动漫大眼、丰唇浓妆、磨皮塑料皮肤或畸形健美肌肉。不要 head tilt、Dutch angle、俯头藏眼、抬下巴、侧向目光、侧脸、侧身回眸或倾斜镜头；不得复制第1图的侧目与胸像构图。不要复制第2图女性脸、身体、发式、裙装、飘带、道具或姿势；不把第1图的照片纹理、字幕、室内布景、绣纹官帽等级、朝珠直接拼贴到人物上。不要摄影截图、换头拼贴、3D模型、人物飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱。不要青年偶像脸、纤细肩背、瘦弱身躯、膨胀巨肌、夸张獠牙或兽人化。不要兵器、狼牙棒、大锤、刀剑、弓箭、满身鳞甲、战场全甲、欧式板甲、囚服、镣铐、刑具、血迹、临终伤势或后来年份官爵。不要明代束髻网巾、宋代萧峰衣装、晚清大拉翅、民国服装或近现代军装；不要现代拉链腕表运动鞋、塑料数码物件、日本刀圆盘镡菱形缠柄、赛博或蒸汽朋克。不要左衽、水平镜像、无依据的冠服补子和兵器。不要多人物、分格、多视角、特写框、多余肢体、多指、粘连手指、错接手腕、手物融合、无据伤残、失重衣料或悬空装备。不要裸露、透明衣料、色情化、血腥特写、恶搞丑化。不要发光兵器、法阵、光翼、光龙、粒子气功、强逆光、浓雾遮脸、具体剧情场景、清晰建筑或拥挤背景；保留极淡水墨远山与留白。不要文字、伪字、题款、签名、印章、logo或新增装饰水印；保留工具自带溯源信息。
-
-
-    FINAL CHECK: one FRONT-FACING full-body figure, head UPRIGHT, both eyes HORIZONTALLY LEVEL and looking forward, camera level. Retain the matched 1998 character identity, aged heavy build, whole intact clothing and EMPTY HANDS. Only one initial native PNG candidate; no automatic approval.'
-  negative: 不要换成徐锦江、林更新或其他版本鳌拜的脸，不借其他人物面孔；不要统一偶像脸、网红锥子脸、动漫大眼、丰唇浓妆、磨皮塑料皮肤或畸形健美肌肉。不要 head tilt、Dutch angle、俯头藏眼、抬下巴、侧向目光、侧脸、侧身回眸或倾斜镜头；不得复制第1图的侧目与胸像构图。不要复制第2图女性脸、身体、发式、裙装、飘带、道具或姿势；不把第1图的照片纹理、字幕、室内布景、绣纹官帽等级、朝珠直接拼贴到人物上。不要摄影截图、换头拼贴、3D模型、人物飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱。不要青年偶像脸、纤细肩背、瘦弱身躯、膨胀巨肌、夸张獠牙或兽人化。不要兵器、狼牙棒、大锤、刀剑、弓箭、满身鳞甲、战场全甲、欧式板甲、囚服、镣铐、刑具、血迹、临终伤势或后来年份官爵。不要明代束髻网巾、宋代萧峰衣装、晚清大拉翅、民国服装或近现代军装；不要现代拉链腕表运动鞋、塑料数码物件、日本刀圆盘镡菱形缠柄、赛博或蒸汽朋克。不要左衽、水平镜像、无依据的冠服补子和兵器。不要多人物、分格、多视角、特写框、多余肢体、多指、粘连手指、错接手腕、手物融合、无据伤残、失重衣料或悬空装备。不要裸露、透明衣料、色情化、血腥特写、恶搞丑化。不要发光兵器、法阵、光翼、光龙、粒子气功、强逆光、浓雾遮脸、具体剧情场景、清晰建筑或拥挤背景；保留极淡水墨远山与留白。不要文字、伪字、题款、签名、印章、logo或新增装饰水印；保留工具自带溯源信息。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/aobai_1998_wangjuntang_audit_20261001.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/luding/aobai_1998_wangjuntang_audit_20261001.jpg
-    use: 第一输入是已核对并实际查看的1998 TVB陈小春版王俊棠饰鳌拜本人剧照，只提供该角色可见五官、宽阔脸面、眉眼鼻唇和须眉辨识。保留本人身份而非原照片构图、侧视姿态、字幕、摄影纹理、朝珠与绣纹官服；帽须遮挡部位不臆造精确观测。年龄体型服饰器物严格依本阶段。
-    sha256: fbdaf24bf85221e5cf3225081317e63381d581a3335d1621159564c992052aa6
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/fbdaf24bf85221e5cf3225081317e63381d581a3335d1621159564c992052aa6.jpg
-    status_at_input: null
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二输入仅提供暖浅灰纸底、極淡低对比水墨远山薄雾与留白，已实际查看；绝不复制图中女性人物的脸、身体、发型、衣裙、飘带、装饰或歪头姿势，墨迹不得进入人物皮肤衣料。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T00:33:23.873996+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-10577205-6f40-4034-8437-7f3c134baed8.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 4d3f9c93370dbbc12ca38804916eec8d6528a4d5a899fb5c52f2b8fe16f530af
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_aobai__ch08_elder_base/prompt-80fba169d77e08eb3947e086e78f7176f85a3a08196c9496a0b0d8d1985694d2.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_aobai__ch08_elder_base/manifest-96242453786ba16e45b6a7500b139ff6823c54731e56947330902fe562156475.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_aobai__ch08_elder_base.requests.json
-  notes: '实际查看并与1998王俊棠饰鳌拜本人剧照比较：保留宽阔脸面、粗眉窄眼、宽鼻圆厚鼻头、浓厚灰黑花白须辨识，改为主要正面头颈端正、水平眼线；魁梧厚重老将身架、枣红袍黑褂、空手两掌、无兵器镣铐战甲，1669被擒前阶段可读。全身双足完整，无明显多肢或重大结构错误，按用户快速宽松自查可用。细节：眉须比剧照偏灰黑而非更白，帽顶珠、带扣纹样及衣料纹饰偏繁，背景仍有花枝小亭；未声称服制品级或历史复原严格通过，不因细节追加。原生1024×1536 RGB不透明PNG原始字节与元数据保存，candidate待用户最终审核。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_guixinshu__ch08_elder_base
   file: por_npc_guixinshu__ch08_elder_base.png
   category: character/male
@@ -1674,3 +1597,50 @@
   sha256: e395274be98b9021cd98b0b9b2b248b48d60b659ec443fcd0c5f1f958bdd048b
   status: candidate
   notes: 立绘重审重出（AR-30）；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）；现图神情冷硬、立领盘扣像近代唐装，撑不起“平生不见陈近南，便称英雄也枉然”的儒雅英雄气。
+- id: por_npc_aobai__ch08_elder_base
+  file: por_npc_aobai__ch08_elder_base.png
+  category: character/male
+  style: default
+  subject: 鳌拜（ch08_luding）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：鳌拜，《鹿鼎记》中的满洲辅政大臣，号称“满洲第一勇士”，专横跋扈、尚未被擒的时期。
+
+    经典形象：要一眼认出是「满洲第一勇士」鳌拜——魁梧虬髯、红缨暖帽、枣红箭袖袍外罩黑褂、腰挎满洲腰刀，叉腿而立、横眉怒目，专横跋扈。
+
+    年龄与体态：约六十岁的满洲老将，身材极为魁梧厚重，膀大腰圆，肩背胸廓宽厚，老将的力量感真实可信。
+
+    面容：宽阔的方脸，额头宽、双颊厚实；灰白粗眉倒竖；眼睛偏窄而凶悍，目光跋扈；鼻梁宽直、鼻头圆厚；嘴宽唇厚；一部花白浓密的络腮胡；皮肤粗糙黝黑，有风霜与深刻的额纹。
+
+    发式：前额剃光，脑后灰黑辫子；头戴清朝官员的黑色暖帽，帽顶红缨。
+
+    服饰：清初满洲权臣入宫便服——深枣红色窄袖圆领大襟长袍（右衽、马蹄袖），外罩墨黑色长褂，腰束皮带，黑色官靴；不加补子。
+
+    道具与姿态：腰间佩一柄满洲腰刀（连鞘）；双手握拳垂在身侧；叉开双脚站立，气势逼人。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要照片感；不要战场全身盔甲；不要补服品级纹样。清初男子一律穿圆领大襟（衣襟从领口斜向右腋下扣合），不要汉式交领长衫，不要明代发髻或网巾。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:24:50-0700
+  source_path: .agents/coord/gemini_originals/por_npc_aobai__ch08_elder_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: c3e59835e2462b436f58f21229b99ce406cf4dd68153fd4587f0b2b365bc2ec7
+  status: candidate
+  notes: 立绘重审重出（AR-30）；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）；造型（虬髯、魁梧、满洲权臣便服）本身合格，保留造型，只把脸换成文字设计的面容。
