@@ -30016,6 +30016,106 @@
     "pnpm-lock.yaml",
     ".gitignore"
    ]
+  },
+  {
+   "id": "DES-changsheng-core",
+   "title": "设计补充 · 《长生诀》主线与书眠重定（AR-26：阿青传功、长白山初眠、白马唐代第一本、休眠事件、苏醒取舍 3+3 与 60% 转化、九层与周游世界）",
+   "phase": "PROD",
+   "wave": 14,
+   "kind": "draft",
+   "prompt": "DES-changsheng.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/00-canon.md",
+    "docs/design/01-vision-and-core-loop.md",
+    "docs/design/02-timeline-and-world-tiers.md",
+    "docs/design/13-progression-and-endings.md",
+    "docs/design/25-changshengjue.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/25-changshengjue.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-attr-v2",
+   "title": "设计补充 · 属性与数值体系 v2（AR-27：八项先天属性含内息、沉睡六项配点、速度 / 攻击公式、门槛带与平衡）",
+   "phase": "PROD",
+   "wave": 14,
+   "kind": "draft",
+   "prompt": "DES-attr-v2.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/03-attributes.md",
+    "docs/design/04-damage-formula.md",
+    "docs/design/05-martial-arts-system.md",
+    "docs/design/08-terrain-and-qinggong.md",
+    "docs/design/21-meridian-flow-and-moves.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/03-attributes.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-economy-gather",
+   "title": "设计补充 · 金钱与物品获得、采集与药材（AR-28：武馆教练 / 镖局坐镇、遗迹探索、采集点、≥60 味药材与分布表）",
+   "phase": "PROD",
+   "wave": 14,
+   "kind": "draft",
+   "prompt": "DES-economy-gather.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "docs/design/16-resources-and-estates.md",
+    "docs/design/11-open-world.md",
+    "docs/design/10-items-and-equipment.md",
+    "docs/design/catalog/items-medicine.md",
+    "docs/design/catalog/gather-herbs.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/catalog/gather-herbs.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-medicine.md",
+      "--min",
+      "92"
+     ]
+    ]
+   }
   }
  ]
 }
