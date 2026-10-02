@@ -59,93 +59,6 @@
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
   notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。已实际比较两张，选第2张：延续女主成年面容与黑发身份，青灰交领袄、暗褐素裙、麻白内领、木簪、平底鞋，一手垂放一手扶腰带，左腰一把朴素木鞘剑完整。第2张剑鞘挂系与袖口收束更清楚，整体无明显多肢或重大结构问题。袄摆略长、袖口仍稍宽、鞋面少量花纹、小痣不清与占高偏大登记为宽松接受偏差，保持candidate待最终审核。 提示词 assets/default/prompts/characters/protagonist/npc_zhujue__f_ch04.md；tier S。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_zhujue__ch04_f_base.requests.json。生成候选2张，入选第2张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png；/Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png；/Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用项目基线（真实审批状态照录）和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
-- id: por_npc_zhaomin__ch04_youth_scene_wudang
-  file: por_npc_zhaomin__ch04_youth_scene_wudang.png
-  category: character/female
-  style: default
-  subject: 赵敏 npc_zhaomin ch04_yitian
-  prompt: 'Create a premium REALISTIC Chinese wuxia character illustration with a delicate INK-WASH BACKGROUND. The human figure is beautifully and coherently painted: solid continuous anatomy, fine natural skin, credible facial structure, soft connected light and shade, intact carefully tailored cloth, clean continuous silhouette. Render the figure with refined hand-painted realism, not a photo, movie screenshot, 3D render or plastic model. No dry-brush gaps, white flecks, torn edges, collage fragments, paper erosion, scratches or watercolor mottling anywhere on face, skin, clothes or boots. Keep ink washes and loose expressive marks only in the background, separated from the clean figure. Clothes have few broad weight-bearing folds and clean sewn hems, never shredded ribbons or noisy patchwork. Heroism comes from eyes, bearing, physique and fitting clothes, not raggedness. Traditional understated clothing remains handsome without excess ornament.
-
-
-    第一参考必须是已完成并经父任务验证 realism_revision=user_character_realism_20261001 的本人首幅写实场景；保持同一个人的面容特征与身份，本场重新绘制服饰、发式、动作、道具和背景。旧初版仅文件存在不满足依赖，未经新版 revision 核验和实际查看不得提交生成。
-
-    第二参考为新版萧峰少室山首样，只提供人物绘画质量：细腻真实肤质、完整体积、连贯柔和光影、连贯完整布料及干净轮廓；绝不复用其脸、胡须、头巾、体型、年龄、男性特征、服装、姿态或龙影。本角色仍是赵敏。
-
-    第三参考为对应性别项目基线，仅低饱和色卡，不取人物笔触与衣料细节。
-
-    第四参考仅用于背景水墨与留白；不取其中人物、白青衣装、肤质或纸纹透衣。
-
-
-    人物身份设计：赵敏的独立设计：略短的鹅蛋脸，眉尾轻扬、灵动而锐利的杏眼，鼻梁清楚，唇形自然；女性身材修长利落，肩颈舒展，审视时带自信机敏、笑时有明亮灵气。男装仍是一位有主见的蒙古贵族女子，无胡须，不把她变成清宫格格。经典图仅帮助神态设计，不复制演员摄影脸、服装细节和相同坐姿。
-
-    赵敏，《倚天屠龙记》，武当殿前对阵。
-
-    阶段：率部上武当、与张无忌交锋的朝廷阵营阶段。
-
-    人物与完整衣装动作：单人全身，利落贵公子装，微侧身审视画外对手；有统筹气度，身体与衣袍结构清楚。 衣装设计：元末利落男装锦袍，淡灰蓝袍面、暖白领口、窄腰束、轻靴；发束整洁，无夸张金冠。 衣料保持完整可穿、连贯成片、剪裁清楚和整洁收边；旧衣仅显使用后的柔软色泽，不撕烂、不掉碎片、不加成排补丁、密集皱纹或碎带。 人物面部、皮肤、头发、衣服与鞋均采用美观写实的高级国风插画塑造；解剖与实体体积清楚、细腻自然肤质、连贯柔和光影、干净完整轮廓。人物上没有碎墨、纸纹侵蚀或飞白。衣料完整连贯、剪裁明确，袖口与下摆干净连续收边，只有少量自然宽缓承重褶，英雄气来自眼神、体格、姿势与合身份的衣饰。
-
-    器物与阶段限制：折扇收于一手；不将当时由部属使用的真倚天剑再复制一柄到她手中
-
-    仅背景使用水墨：浅淡水墨背景，人物为画面主体。武当殿前石阶与高处殿檐，远山淡到纸底；近景少量松针，避免与绿柳庄同构。
-
-    本场具体构图：立在石阶侧边，目光审视画外对手；收扇一手，另一手轻拢袍袖，有部署中的从容。
-
-    单人单视图完整全身，站姿从头顶到足；坐跪姿完整呈现躯干、双手、膝腿与足，主要器物端点入画，留自然边距。仅保留本场明确授权的代表动物，动物肢体不与人粘连。竖幅2:3，目标2048×3072 PNG，接受工具原生输出，不透明。真实承重、关节清楚，不机械限定占高、不因衣摆轻微遮鞋返工；人物清楚居前，水墨只在背景且不侵入人体和衣服。
-
-    情节与美术边界：这是武当对阵中的人物视角；护卫、阿大等在画外。不得混成拜师武当或使太极的赵敏。 本场为独立经典场景变体，保留基础立绘；production record 不表示 PNG 已生成或已查看，不代表审批通过，未来实际成图仍为 candidate。服色、站坐姿及具体衣纹是美术补足，阶段装备与明确伤残优先。 本次执行 REALISTIC-CHARACTERS-20261001.md：人物美观写实、皮肤与衣料完整连续，水墨仅用于背景。旧候选仅为历史记录，不计本轮写实完成；本记录本身不是生成、保存或审批，新图实际查看通过后仍为 candidate。 第一身份引用等待本人首场的新写实版本；即使同路径已有旧 PNG 也不满足，必须核对 manifest realism_revision=user_character_realism_20261001，并保存验证、实际查看后才可注册/prepare/生成本场。
-
-
-    完整排除项：不要清宫服、拜师手势、太极光效、她与部属各拿一柄真倚天的重复道具。 人物本体不要飞白、碎墨、撕裂边、拼贴纸屑、纸面透肤透衣、白色斑点、颗粒侵蚀、粗糙斑驳脸、破布、过度密集褶皱或碎带。不要把背景墨迹、龙纹、山水或符号延伸到人的皮肤、衣服、手脚；不要复制萧峰首样的脸、年龄、胡须、裹巾、魁梧体型、性别特征、深灰服装、披氅、掌势或龙影。不要额外人物、错误多肢多指、手物融合、裁切头足器物、多视图拼贴、照片截图、3D塑料质感、现代物件、文字题款、印章logo或新增水印；保留工具自身溯源。不要添加剧情未要求的破损污渍、无依据伤残、武器或跨阶段装备；年少人物衣着完整得体，不成人化或性感化。'
-  negative: 不要清宫服、拜师手势、太极光效、她与部属各拿一柄真倚天的重复道具。 人物本体不要飞白、碎墨、撕裂边、拼贴纸屑、纸面透肤透衣、白色斑点、颗粒侵蚀、粗糙斑驳脸、破布、过度密集褶皱或碎带。不要把背景墨迹、龙纹、山水或符号延伸到人的皮肤、衣服、手脚；不要复制萧峰首样的脸、年龄、胡须、裹巾、魁梧体型、性别特征、深灰服装、披氅、掌势或龙影。不要额外人物、错误多肢多指、手物融合、裁切头足器物、多视图拼贴、照片截图、3D塑料质感、现代物件、文字题款、印章logo或新增水印；保留工具自身溯源。不要添加剧情未要求的破损污渍、无依据伤残、武器或跨阶段装备；年少人物衣着完整得体，不成人化或性感化。
-  references:
-  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png
-    use: 等待本人首场新写实 PNG 生成、保存并核验 realism_revision=user_character_realism_20261001 后才可使用；当前不声称已查看该新版本。路径存在旧初版不满足依赖。只保持本人面容身份及新版写实人物质量；本场年龄、发式、伤残、衣饰、姿势、器物和背景另绘。
-    sha256: 8b4cb4cc04e9a5bdecc383628bc5ea809c2a0d483e5dd4866fc40f495de38af7
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/8b4cb4cc04e9a5bdecc383628bc5ea809c2a0d483e5dd4866fc40f495de38af7.png
-    status_at_input: candidate
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-    use: 已实际查看并核验新写实首样 SHA-256 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922；仅借自然面容与肤质的描绘质量、完整坚实体积、连贯光影、连贯布料和干净轮廓，不复制萧峰的脸、性别、年龄、胡须、头巾、体型、服饰、姿态或龙影。
-    sha256: 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922.png
-    status_at_input: candidate
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 已实际查看的对应性别项目基线，仅低饱和配色色卡；此位置不作本人身份或人物画法参考，不继承碎墨、飞白、纸纹透衣、破布、脸、年龄、衣饰、武器与姿势。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已实际查看的用户王语嫣水墨图，只用于背景的浅淡山水、留白与环境层次；完全忽略其中人物、脸、体型、肤质、服饰、发饰和人物笔触，不让背景纸纹与飞白侵入本场人物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T12:57:12.748813+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-1ec5befb-ded3-42ba-9984-f8533e50ec05.png
-  size: 1024x1536
-  mode: RGB
-  sha256: b5366838720e624cb78bfc1000e08c198ff3cbf32dcaccab15a94309efabdaf9
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_character_realism_20261001
-  realism_revision: user_character_realism_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_zhaomin__ch04_youth_scene_wudang/prompt-18a7a31f2a11d757ca9fd4d4053030b3894f06912bfcc0e86e48c3bfbf710e20.md
-    manifest: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_zhaomin__ch04_youth_scene_wudang/manifest-fe7e1bbafe3a2b408075d2aba3168a15a8e316631b029a349ec3ba0e3d42dd76.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_zhaomin__ch04_youth_scene_wudang.requests.json
-  notes: 宽松自查选择候选1：赵敏与绿柳首场保持同人眉眼和面容，灰蓝完整锦袍、白领、整洁束发小冠，右手收扇低垂、左手轻拢袍边，立在武当殿前石阶审视画外，双手和双鞋可辨；无真倚天剑、太极出招光效、护卫或拜师手势。候选1双手更清楚且没有候选2新增的多面太极旗。实际偏差：外袖仍宽，衣缘、腰佩和腕护纹样较繁，腰束偏宽，后脚上部被裙袍遮住，殿阶与山峰背景较浓；整体公子长袍略显华丽。无明显多肢或重大结构错误，人物皮肤及衣料连续。保持candidate，仅宽松自查通过，不称旧严格规范全部满足。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  scene_revision: user_scenes_20261001
-  scene_key: wudang
-  scene_title: 武当殿前对阵
-  stage: 率部上武当、与张无忌交锋的朝廷阵营阶段。
-  asset_variant: scene
 - id: por_npc_zhouzhiruo__ch04_child_scene_hanshui
   file: por_npc_zhouzhiruo__ch04_child_scene_hanshui.png
   category: character/female
@@ -1264,5 +1177,53 @@
   source_size: 1024x1536
   size: 1024x1536
   sha256: 438d53cfc30ba735c3f05d0e378098afa3073fb492cca1033380e0ba68f68a72
+  status: candidate
+  notes: 立绘重审重出（AR-30）；赵敏基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+- id: por_npc_zhaomin__ch04_youth_scene_wudang
+  file: por_npc_zhaomin__ch04_youth_scene_wudang.png
+  category: character/female
+  style: default
+  subject: 赵敏（ch04_yitian）
+  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【场景背景】武当山殿前石阶与高处殿檐，远山淡到纸底，近景几笔松针。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+
+    【人物与场景】赵敏，《倚天屠龙记》，武当殿前对阵。阶段：率部上武当、与张无忌交锋的朝廷阵营阶段。
+
+    【身份参考】随提示词上传的第 1 张图是赵敏本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（偏短的鹅蛋脸、下颌线清楚，浓而上扬的英气长眉，一双黑白分明、炯炯有神的大眼睛（眼神自信、狡黠、带挑战意味），鼻梁挺直，唇形饱满、嘴角含笑，肌肤白皙；明艳中带英气与贵气，比黄蓉更锐利、更有王府郡主的气派）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
+
+    【衣装】利落的元末男装锦袍：淡灰蓝袍面、暖白领口、窄腰束、轻靴，发束整洁（无夸张金冠）。
+
+    【动作与神情】立在武当殿前石阶侧边，审视画外的对手；一手收扇、另一手轻拢袍袖，有调兵部署的从容。
+
+    【器物】一柄收拢的折扇；不持倚天剑。
+
+    【体态】成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 7c6864296ab51581f326bf41c3ae340269116e21e57baceed68c557be9797a1e
+    use: 身份参考：本轮新出的赵敏（por_npc_zhaomin__ch04_youth_lvliu_base，上传 codex 原图）（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:45:11-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zhaomin__ch04_youth_scene_wudang.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 69b8727e98c32cacd82965802352b689489805913184a5d9d5bf48de59153967
   status: candidate
   notes: 立绘重审重出（AR-30）；赵敏基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
