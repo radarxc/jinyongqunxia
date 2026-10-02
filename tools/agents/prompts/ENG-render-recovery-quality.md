@@ -53,8 +53,16 @@
 4. **应用接线**：
    - `apps/game/src/render-host.ts` 改为 `createRenderQuality()`：只探测一次；用 localStorage 缓存档位与一周丢失计数，读写都包 try/catch；支持 `?tier=` 覆盖；
    - 战斗与大地图共用它。设置页的手动档位控件归 ENG-15 之后的 UI 任务，本任务只给接口。
-5. **不做**（报告逐条列出）：标题画面基准、温控 T0–T3、FramePacer、`?perf=1`、Playwright 场景、合并特效上下文、IsoLit、城镇的守卫与 DPR 接线（`town/**` 不改）。
-6. **测试**：
+5. **并入代码审计的移动端项**（`tools/agents/reports/AUDIT-code-20261002.md`）：
+   - **H2**：`render/src/battle/hex-layer.ts` 用 `uniform float reachable[400]` 和 `area[400]` 两组共 800 个 float uniform。WebGL2 只保证 224 个 vec4 片元 uniform，中端安卓上着色器可能链接失败，three.js 只在控制台报错，降级分支也不会触发。
+     - 改法：高亮标记改成 400×1 的 RGBA8 `DataTexture`，或逐格 `InstancedBufferAttribute`，uniform 降到个位数。
+     - 补测试：mock three 下断言着色器源码不再声明大数组 uniform。
+   - **M10（部分）**：
+     - 所有场景的 `dispose()` 都调用 `renderer.forceContextLoss()`；
+     - `vfx/stage.ts` 热路径不再逐帧分配：`uvFor` 返回新对象、`effectLocalBounds` 新建数组、`placeEffect` 新建闭包、`sampleTimeline` 返回新对象，都改成预分配 scratch。
+   - **L7**：大地图场景 `dispose` 时补上 `batch.coreMesh.dispose()`，战斗场景已有这一句。
+6. **不做**（报告逐条列出）：标题画面基准、温控 T0–T3、FramePacer、`?perf=1`、Playwright 场景、合并特效上下文、IsoLit、城镇的守卫与 DPR 接线（`town/**` 不改）。
+7. **测试**：
    - `context-guard`：happy-dom 画布事件加假定时器，覆盖丢失 → 遮罩、5 s 内恢复、超时失败、计数回调、dispose 后无监听；
    - 质量：Mali-G71 → low、Mali-G710 → high、Apple GPU → 基准、内存级封顶、取整、调节器单调、30 fps 封顶不降档；
    - 不用墙钟阈值。
