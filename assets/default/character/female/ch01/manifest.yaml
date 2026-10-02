@@ -200,70 +200,6 @@
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
   notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际查看：成熟警惕脸与颊部旧痕、低髻窄袖、右手长方薄刀，手足完整；占高约84.4%留白较多，按新尺度可用。 复用上轮原始候选，未新增生成；先前严格QC保留在 .agents/coord/portrait-generation/por_npc_yeerniang__ch01_prime_prereunion_base.qc.json。其他候选逐张淘汰原因及实际参考见历史请求和QC。 提示词 assets/default/prompts/characters/ch01-tianlong/npc_yeerniang.md；tier A。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_yeerniang__ch01_prime_prereunion_base.requests.json。生成候选4张，入选第3张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/generated_images/exec-d6f6f788-7c59-4463-b340-9f33763ff078.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用批准基线和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
-- id: por_npc_zhongling__ch01_youth_diaoalive_base
-  file: por_npc_zhongling__ch01_youth_diaoalive_base.png
-  category: character/female
-  style: default
-  subject: 钟灵 npc_zhongling ch01_tianlong
-  prompt: 'REFERENCE PRIORITY: Image 1 is the primary character-design inspiration: use its distinctive facial structure, focused expression and individual presence to create a new illustrated interpretation of this character. Images 2 and 3 are style references only: never inherit their face, age, body or costume. Follow the character specifications below, not the photograph costume, pose or background.
-
-    创作一张重新设计的精细国风武侠全身人物立绘。第一张为已实际查看的本角色经典影视图，主要启发骨相组织、眼神和独有精神；不机械复刻演员五官或照片。第二张项目女性基线仅提供纸底、柔光、笔触与设色，不沿用其模板脸。第三张用户水墨参考仅补充淡墨层染、精细衣料笔触和纸面透色，不继承其面容、衣装、发饰或山水背景。年龄、阶段、身体特征、衣装和道具以下文为准，照片里的签名、裁切、摄影布光与场景均不进入成图。
-
-    主体是钟灵，北宋《天龙八部》无量山初遇阶段、万劫谷后续危机之前的未成年少女，确龄待考；闪电貂仍存活并随行。活泼机灵、明亮率真、对同伴有照顾之心，人物存在感来自聪敏与轻快勇气，严格保留自然少女年龄感和完整端庄衣着。
-
-    圆润小脸、短柔眉、自然明亮而有焦点的眼睛、清楚鼻唇和轻松浅笑，纤小肩膀与少女自然四肢，约6–6.5头身；与阿朱较短鹅蛋脸、细长机敏眼的差异明确，不能画成缩小的成年女主或统一大眼娃娃。
-
-    浅青短衫、草绿右衽内层、米灰齐腰长裙，袖口收束，绿色平底绣鞋；黑发分束小髻，简约绿布发带，不堆珠宝。青绿块面清新，短上衣和轻便裙摆形成活泼而有秩序的轮廓，不飘扬过多长带。
-
-    双足自然稳立，稍歪头轻笑、目光机灵清楚；左前臂水平托住一只且只有一只小型灰白闪电貂，动物安稳伏在前臂与腰间布袋旁，右手轻扶布袋。貂应为细长身体、短腿、圆耳、毛尾的小型鼬科动物，全部身体完整入画，有真实重量与前臂支撑；可见四肢结构自然，动物爪与人的手指严格分开，遮挡处自然衔接，不额外长爪。只有一位少女与这一只随身动物，没有其他人物或场景。不要把貂画成狐狸、猫、龙或会发电的神兽。
-
-    画法统一为精细国风水墨设色人物插画，墨线随骨相和衣褶有轻重转折，淡墨与低饱和色层染体积，保留纸面透色；面部、双手和关键器物精细可读，衣摆与大衣褶适度写意，以清楚的大形组织结构，避免密集摄影毛孔、布料噪点、油亮高光或三维塑料感。柔和左上漫射光，不用舞台逆光。统一不透明暖浅灰纸底，极淡纸纹，无建筑山水或叙事场景。竖幅2:3，目标2048×3072 PNG，单人单视图完整全身，平视近正面轻微三分之四，中性透视，头顶、双手、双足、衣摆与设定器物端点完整且四周留边；约88–92%占高仅为美术目标，绝不绘制标尺或百分比。衣料完全不透明。汉式交领为穿着者左襟压右襟的右衽。人物有独立的面容、轮廓与内在气度，不能给参考人物换衣便当作新角色。 其中单人允许携带上述一只闪电貂，动物头尾也完整留边；仅允许脚下极轻接触影。
-
-    不要文字、题款、印章、logo、新增装饰水印、分格、多视图、额外人物；保留工具原有溯源。不要多肢多指、错接手腕、手物融合、裁断头足或器物、无依据的刀剑装备、法阵能量、现代物件、跨时代衣饰、水平镜像、夸张健美肌肉或性感化；不要照片质感、模板脸、塑料磨皮、动漫大眼。
-
-
-    完整排除项 / Exclusions:
-
-    不要照搬第一参考的蓝色场景光、复杂红花发饰、高长发束或头部裁切。不要成年身材、性感化、夸张动漫大眼或复制阿朱面容；不要第二只动物、狐狸尖耳、猫的短身、发光闪电貂、人与兽爪融合、动物悬空、兵器或珠宝堆饰。不要文字、题款、印章、logo、新增装饰水印、分格、多视图、额外人物；保留工具原有溯源。不要多肢多指、错接手腕、手物融合、裁断头足或器物、无依据的刀剑装备、法阵能量、现代物件、跨时代衣饰、水平镜像、夸张健美肌肉或性感化；不要照片质感、模板脸、塑料磨皮、动漫大眼。'
-  negative: 不要照搬第一参考的蓝色场景光、复杂红花发饰、高长发束或头部裁切。不要成年身材、性感化、夸张动漫大眼或复制阿朱面容；不要第二只动物、狐狸尖耳、猫的短身、发光闪电貂、人与兽爪融合、动物悬空、兵器或珠宝堆饰。不要文字、题款、印章、logo、新增装饰水印、分格、多视图、额外人物；保留工具原有溯源。不要多肢多指、错接手腕、手物融合、裁断头足或器物、无依据的刀剑装备、法阵能量、现代物件、跨时代衣饰、水平镜像、夸张健美肌肉或性感化；不要照片质感、模板脸、塑料磨皮、动漫大眼。
-  references:
-  - path: .agents/coord/imagegen-reference/hero-20261001/classic_zhongling_2003.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/hero-20261001/classic_zhongling_2003.png
-    use: 已实际下载并view_image查看。第一主人物设计参考：圆润小脸、明亮有焦点的眼睛、自然率真的少女感与灵动反应；保留项目未成年自然比例，不夸大眼睛。不继承影视蓝光、复杂红花发饰、长高发束或裁切构图；项目青绿衣装及真实托抱的一只闪电貂不变。 SHA-256 3be01fac46aa09e93785cdd482919a7f18a548d603eddc6812d8ad21bcc182a9；来源见参考图目录sources.json。
-    sha256: 3be01fac46aa09e93785cdd482919a7f18a548d603eddc6812d8ad21bcc182a9
-    archived_path: .agents/coord/portrait-generation/hero-20261001/reference-archives/3be01fac46aa09e93785cdd482919a7f18a548d603eddc6812d8ad21bcc182a9.png
-    status_at_input: null
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 已实际查看。仅参考项目细墨线、柔光、暖浅灰纸底和淡雅设色，不锁定脸、年龄体型、发饰、服装与姿态；基线原approved状态不作任何修改。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/hero-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已实际查看的用户水墨风参考，仅取精细国风人物、淡墨层染、纸面透色和衣料笔触；不复制其脸、青白衣装、发饰、披帛或山水背景。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/hero-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T07:36:32.957927+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-6d7d0624-dabc-4e7c-a0ee-7fea87a93183.png
-  size: 1024x1536
-  mode: RGB
-  sha256: d427c62670c5a1ca890c84ccf9f8e9bde3c62988d586048e0ee859877a5e3b31
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_heroic_20261001
-  hero_revision: user_heroic_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_zhongling__ch01_youth_diaoalive_base/prompt-f7e9448c7c5458a37d5e7cd97eb9857b992208ecd9070754a2f016cbc0bf8014.md
-    manifest: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_zhongling__ch01_youth_diaoalive_base/manifest-be49c775a41a97dc4627ae4d34147cb2f4ecd6c887ae90f382e43203c52d90fe.yaml
-    png: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_zhongling__ch01_youth_diaoalive_base/original-6e7634b4a75f412e86134b3f3ab53df8f24173b35043f57de4f106a35a5d5d82.png
-  request_log: .agents/coord/portrait-generation/hero-20261001/por_npc_zhongling__ch01_youth_diaoalive_base.requests.json
-  notes: 实际比较两张候选，选择2：少女的圆脸、短眉与明亮机敏的目光自然，浅青草绿衣色和双小髻保留，表情更从容，袖口较1收束；一只灰白貂伏在左前臂上，右手扶腰袋，手与动物爪未见明显融合。完整原图无明显多肢或重大人体结构问题。实际偏差：眼睛仍偏大、身材比例偏修长；貂体量略大且半坐起而非完全横伏，后腿受前臂与躯体遮挡无法逐肢完全看清，尾较蓬；有较多披发及衣纹、长带，一只鞋大部被裙遮挡。按用户宽松尺度登记，非旧严格几何与道具逐项全通过，保留candidate待最终审核。 本轮英雄重绘宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_xinshuangqing__ch01_prime_wuliang_base
   file: por_npc_xinshuangqing__ch01_prime_wuliang_base.png
   category: character/female
@@ -901,3 +837,52 @@
   sha256: 1657a48b7a8aff3a36115a5ad94afec9b87b1cdd59007cd81bba91fc05605973
   status: candidate
   notes: 立绘重审重出（AR-30）；明显幼态（孩童双髻与童颜），按禁止幼态画成成年年轻女子，保留原著紫衫、乌溜大眼与精乖狠辣；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔）
+- id: por_npc_zhongling__ch01_youth_diaoalive_base
+  file: por_npc_zhongling__ch01_youth_diaoalive_base.png
+  category: character/female
+  style: default
+  subject: 钟灵（ch01_tianlong）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】钟灵，《天龙八部》万劫谷谷主之女，段誉在无量山结识的活泼姑娘，养着一只闪电貂；无量山初遇、闪电貂仍随身的阶段。
+
+    【年龄与体态】原著十六七岁，按本作规定画成约二十岁的成年年轻女子，身材轻盈但为成人比例。成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【经典造型】借鉴经典武侠影视里这个角色深入人心的造型，只取发型、装束、配色、标志道具、气质和脸型类型，用原创面孔画出来，不像任何真实演员：活泼娇憨的钟灵——一身青绿衣裙，乌发挽髻、系绿色丝带，笑靥如花、天真烂漫（已是成年人）。
+
+    【面容】原著写她圆脸大眼、笑靥如花、十分活泼。具体为：成年骨相的圆脸（颧骨与下颌线清楚，不是婴儿肥）；一双明亮的大眼睛带着笑；眉毛浓而弯；鼻头圆；嘴巴略大、笑容灿烂；鼻梁两侧有几点淡淡的雀斑（原创扩展，用来区别阿朱与阿紫）。甜美可爱的成年美人。
+
+    【发式】乌发挽成成年女子的发髻，用一条草绿色发带束住，鬓边留两缕短发；不扎孩童双丫髻。
+
+    【服饰】原著一身青衫：浅青绿色交领右衽短衫，草绿内衫，米灰齐腰长裙，袖口收束；脚穿葱绿色布鞋，鞋边绣几朵小黄花。
+
+    【道具】左前臂上伏着一只灰白色的闪电貂（细长身体、短腿、圆耳、蓬松尾巴，四肢与她的手臂分开、有真实重量），右手轻抚貂背。
+
+    【姿态与神情】双脚稳稳站立，头部端正，笑容明朗灵动，但不卖萌、不歪头。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要孩童脸、婴儿肥、儿童身材、双丫髻；不要歪头卖萌；不要第二只动物或其他人物。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考）
+  model: gpt-6-astra
+  created: 2026-10-02T02:49:12-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zhongling__ch01_youth_diaoalive_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: f332b50d4e98098794ec58270cb1566c58af3333094262c6950b88be260d0744
+  status: candidate
+  notes: 立绘重审重出（AR-30）；明显幼态（孩童脸、双丫髻）且面容源自剧集剧照，按禁止幼态画成成年年轻女子，保留青衫、圆脸大眼与闪电貂；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔）
