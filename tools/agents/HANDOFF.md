@@ -390,3 +390,9 @@
       - 原型后续两步 TOOL-rig-sheet（P2–P5）、ENG-12c-clip（P8–P9），等 Gemini 三视图出来再登记。
     - **出图线**：00:42 查看时，「Claude」标签组里只剩作者的 Antigravity 下载页，A / B 也被移出了组。已请作者把四个 Gemini 标签页拖回组内并保持同时可见；出图 agent 每 2 分钟检查一次，有标签页就按 tabId 分道开跑。
     - **工程线**：ENG-13、ENG-14 已合入（eng2 批次结束）；ENG-11 READY 待合入，由工程监督处理；已告知工程监督 M1 改接白马。
+    - **00:56 ENG-11-vfx 合入（c5d7d727）**：挪基点后 7 分钟解完 4 处冲突，r2 PASS，自动合入。
+    - **00:56 KIT-yuan_north-hist 合入（db681dbc）**：
+      - r2 只有「历史参考落实」一项 FAIL；第 6 次运行用真实参考图（姬氏民居等）重出了 6 张：biaoju、casino、market_stall、restaurant、wangfu、warehouse。走的是 Codex 出图端点，manifest 里 `tool: Codex images/edits via built-in image generation backend`。
+      - r3 全项 PASS 后自动合入。
+      - 26 张（19 建筑 + 7 贴片）全部 `status: candidate`，不带 `approved_by`。**作者 10-01 通过的是旧图，元北套件要在总览页重审。**
+    - **01:05 集成分支 `pnpm check`（db681dbc）全绿**：83 个测试文件 418 个用例，`content:validate` 392 个文件，`size` 274.97 / 350 KB。第一遍 rig 100 角色门禁 min P95 1.026 ms（loadavg 14）失败，原样重跑得 0.361 ms 通过。ENG-11 没碰 `rig/`，属于调度抖动。磁盘 21 GB。
