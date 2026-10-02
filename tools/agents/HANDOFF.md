@@ -303,3 +303,15 @@
     - **分工**：工程线交给后台「工程监督 agent」（交接说明在会话草稿目录 `eng_driver_brief.md`，已登记 M1 第一波：DES-prologue-ch00 / ENG-13 / ENG-14）；出图交给后台 Gemini 出图 agent（两道并行）；协调者做立绘与总调度。
   - **图片任务必须 `web: true`**：Codex 在无网络沙箱里报 `Reconnecting… workspace routing discovery failed`，ART-rig-parts-male / female 因此又停两次；已改登记（`_prod` 79572be），`_imagegen.md` 第 6 条记入，female 带说明 `.agents/coord/ART-rig-parts/web_note.md` 重启，male 等它当前这次（无网络）跑完停住后同样重启。
   - ⑤ 上一会话 08:00 起被自动模式分类器锁死（会话级、与操作无关，Bash 全拒）；其交接文件 `.agents/wt/_prod/.agents/coord/HANDOFF-session-20261001.md` 的要点已并入本节。GPT-6-Astra 仍未改回。作者待答复：基线两套宋套件（song_dali、song_southern）是否也按历史图片重出；各书改命报告「需作者确认（附默认）」（`tools/agents/reports/DES-destiny-chNN.md` §4）。
+  - **23:05–23:20 工程监督接手（ENG 监督 agent）**：
+    - **在途巡检（23:01）**：ENG-09 / ENG-11 / DES-prologue-ch00 / ENG-13 / ENG-14 驱动都在跑，无停住；eng 线已合入 37 个，eng2 线 3 个在跑。
+    - **KIT-yuan_north-hist 挪基点并重审**：
+      - 旧基点 b10d6cbc 落后集成分支 316 个提交。用 merge-tree 预演，只有两份 yuan_north manifest 冲突：集成分支 e586d346 把 26 条**旧图**置为 `approved`，而本任务换掉了全部 26 张图。
+      - 裁定：两份 manifest 取任务一侧，与工作区原文件逐字节相同，新图保持 `candidate`，不把作者对旧图的通过沿用到新图。其余文件自动合并；任务路径与挪基点前的快照逐字节一致，所以不另起执行器。
+      - 基点改为 2dc92ad4。挪前快照留在 `refs/agents-backup/KIT-yuan_north-hist-pre-rebase`（56d43735）。
+      - 重审参数 `--from review --max-reviews 2 --review-timeout-min 90`；要点用 `review_checks_kit_hist.md` 加一段挪基点说明（`.agents/coord/KIT-yuan_north-hist/review_checks.md`）。
+      - **合入后，元北 26 张新图要请作者在总览页重看。**
+    - **M1 第二波登记（`_prod` 774d967f）**：ENG-15-core-bus（提示词 `ENG-core-bus.md`，deps ENG-09 + ENG-13）、ENG-18-content-build（`ENG-content-build.md`，deps ENG-09 + ENG-11 + DES-prologue-ch00）。队列 `.agents/coord/_eng3_queue.txt`，ENG-09 合入后起 `batch_run.py --name eng3 --parallel 3`。相对交接说明的调整与理由：
+      - ENG-15 加依赖 ENG-13：迁移链与 saveSchema 接口由 ENG-13 报告给出；`apps/game/src/storage`、`App.vue`、`game-controller.ts` 写集也重叠。
+      - 战斗命令进总线从 ENG-15 移到 ENG-16：`apps/game/src/battle/**` 正由 ENG-11 在改。ENG-15 只定根 `battle` / `dialogue` 槽位。
+      - ENG-18 加依赖 ENG-11（`apps/game/build/*`、`vite.config.ts` 重叠）与 DES-prologue-ch00（字段分类要覆盖序章用到的类型）。Tiled 转换拆成 ENG-18b，下一波登记（ENG-20 依赖它）。运行时改用书界包、存档侧 remap 接线留给 ENG-17。
