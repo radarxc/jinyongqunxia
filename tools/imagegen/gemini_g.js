@@ -68,7 +68,7 @@ window.__g = {
       blob = await this.waitFor(() => window.__fullBlob, ms - (Date.now() - t0), 300);
       if (!blob) break;
       try { const bm = await createImageBitmap(blob); w = bm.width; h = bm.height; bm.close(); } catch { w = 0; }
-      if (w >= 1000) break;  // 只截 =s0-d，到这里就是原图；Gemini 偶尔本身只出 1024，照收（入库时 manifest 记 source_size）
+      if (Math.max(w, h) >= 1000) break;  // 只截 =s0-d，到这里就是原图；Gemini 偶尔本身只出 1024，照收（入库时 manifest 记 source_size）；竖幅立绘按长边判断（AR-30）
       window.__fullBlob = null; blob = null;  // 解码失败或尺寸异常，接着等
     }
     if (!blob) return { ok: false, id, why: 'full-size not captured', w };
