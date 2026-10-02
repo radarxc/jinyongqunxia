@@ -12,6 +12,13 @@ import numpy as np
 import yaml
 from PIL import Image, ImageOps
 
+
+class _NoAliasDumper(yaml.SafeDumper):
+    """content-registry 禁 YAML 锚点 / 别名（构建会失败）：同一对象被多处引用时也逐处展开写。"""
+
+    def ignore_aliases(self, data):
+        return True
+
 REFERENCE_BG = np.array([230.0, 225.0, 216.0], dtype=np.float32)
 ICON_SIZES = (256, 128, 64, 32)
 ID_PREFIXES = ("eq_", "it_")
@@ -87,7 +94,7 @@ def source_entries(directory: Path) -> tuple[Any, list[tuple[dict[str, Any], Pat
 
 
 def dump_manifest(path: Path, root: Any) -> None:
-    text = yaml.safe_dump(root, allow_unicode=True, sort_keys=False, width=1000)
+    text = yaml.dump(root, Dumper=_NoAliasDumper, allow_unicode=True, sort_keys=False, width=1000)
     path.write_text(text, encoding="utf-8")
 
 

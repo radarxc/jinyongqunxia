@@ -24,6 +24,13 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from tools.imagegen.gemini_prompt import build, build_short, find_prompt  # noqa: E402
 
+
+class _NoAliasDumper(yaml.SafeDumper):
+    """content-registry 禁 YAML 锚点 / 别名（构建会失败）：同一对象被多处引用时也逐处展开写。"""
+
+    def ignore_aliases(self, data):
+        return True
+
 ARCHIVE = ROOT / ".agents/coord/gemini_originals"
 
 
@@ -143,7 +150,7 @@ def main() -> int:
         "notes": ("写实画风（作者 2026-10-01：要跟角色图对应上）；" + (a.note or "")) + (f"；裁掉画框 {frame}" if frame else "") + (f"；抠底 {keyed}" if keyed else ""),
     }
     entries = [e for e in load_manifest(man) if e.get("id") != a.asset_id] + [entry]
-    man.write_text(yaml.safe_dump(entries, allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")
+    man.write_text(yaml.dump(entries, Dumper=_NoAliasDumper, allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")
     print(f"✔ {a.asset_id} → {out.relative_to(ROOT)}（{src_size[0]}×{src_size[1]} → {im.size[0]}×{im.size[1]}，原件 {arch.relative_to(ROOT)}）")
     return 0
 
