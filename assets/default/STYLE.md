@@ -1,5 +1,7 @@
 # 默认风格包（default）
 
+> 2026-10-01 作者最新纠正：[全人物范围、正面端正、逐人游戏/指定剧版面容参考](../../.agents/coord/portrait-generation/FULL-COVERAGE-IDENTITY-20261001.md)。人物写实完整、背景水墨同时有效；参考必须逐人匹配，不沿用统一基线脸。
+
 ## 作者原文（2026-09-29，照录）
 
 > 现在减少并行的traeX到8个（重新分配一下任务）。然后新开一组Assets的创作任务，调用本地的gpt（gpt-6 astra ultra）生成所有素材（8个子agent）
