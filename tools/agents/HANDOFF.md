@@ -353,3 +353,21 @@
       - 推荐「2D 分层部件 + CC0 动作库（Mesh2Motion / Quaternius UAL）驱动 + Gemini 三视图切件」。
       - 发现 tech/09 的近侧 / 左右约定有缺陷，切件前要先修。
       - 原型约 54 小时执行器工时；11 项待作者确认。
+    - **10-02 00:20 ENG-14-meridian-golden 合入（761d4980）**：
+      - 23:51 返修后的校验只挂在 rig 100 角色门禁上（loadavg 24.75，min P95 1.003 ms），驱动已起第 3 次运行去「修」它，而 ENG-14 写集里根本没有 render。
+      - 处置（交接说明第 3 节第 1 条的做法）：先把状态置 HOLD-RUNS，再停驱动和第 3 次运行（它没改动任何文件）。负载降到 9 后 `--from validate` 重验，通过；r2 PASS 后自动合入。
+      - 以后任务校验**只因 rig 负载门禁失败**时都照此处理，不让执行器去「修」。我挂了一个只看 `last_failure.md` 的监视，专门分辨这种情况。
+    - **00:22 集成分支 `pnpm check` 转绿（70076640）**：ENG-14 合入后 lint 报 2 个错，来源是协调者调研原型 `tools/agents/reports/RESEARCH-anim-proto/clip_bench.mjs` 用了 `performance` 全局。`eslint.config.js` 已忽略 `tools/agents/reports/**`（报告与原型脚本不属于源码）。复跑全绿：363 个用例；rig 门禁在 loadavg 30 时 min P95 0.328 ms 也过了，同等负载下忽过忽挂，主要是性能核 / 能效核调度造成的；`size` 274.18 / 350 KB。
+    - **00:24 稀疏检出模式修订（`_prod` abb6febd，改 `step.py`）**：
+      - 起因一：ENG-11 合入后，构建期 `publishVfxRuntime` 会对 `assets/default/vfx/` 与 `baseline/vfx/` 下 133 个运行时文件逐个 `access()`，缺一个就报错；旧模式两处都排除，之后所有稀疏代码任务的 `vite build` 都会挂。
+      - 起因二：物品、人物、立绘目录扩到约 2 GB，稀疏工作区随之变成 2 GB 一个。des26 三个 DES 工作区共 6 GB，磁盘一度降到 9.0 GB。
+      - 新模式：检出 `vfx/`；`baseline/` 只排除 building-map、tile、town 三个子目录；item、character、portrait 只排除图片本体（png / jpg / pdf / webp），保留 manifest。构建按 manifest 读取，缺图自动跳过。实测稀疏工作区 275 MB。写这些目录的任务仍全量检出。
+      - 已建的旧工作区不受影响；以后挪基点到含 ENG-11 的基点时，要先对旧稀疏工作区重设 sparse-checkout。
+    - **00:24 登记并启动 DES-sync-meridian-v2（d5398820，eng3 线）**：
+      - 按 design/21 统一 tech/01、05、08、09 的经脉快照名与协议号。ENG-14 报告只列了 tech/08、tech/09，协调者 grep 又补出 tech/01 一处、tech/05 四处。
+      - design/21 把 v2 绑在 `rulesProtocol=3` 上，v1 只留给旧录像，所以交执行器按归属文档逐处判断，不做机械替换；顺带补 golden `rngProtocol=1` 的兼容说明。
+      - eng3 线目前只排了这一项；ENG-15 / ENG-18 在队列里先注释掉，等 ENG-09 合入、核对稀疏工作区构建后再启用。
+    - **AR-26 / 27 / 28 对工程线的影响（读协调者 00:19 记录后）**：
+      - ENG-15（命令总线）、ENG-18（内容管线）、ENG-16（战斗补全）、ENG-21（渲染补齐）是基础设施，照常推进。
+      - ENG-17（书眠与章节切换）、CONTENT-ch00（序章内容）、ENG-19（UI 主流程）要等 DES-prologue-v2 / DES-sleep-events / DES-changsheng-core，以及作者对 M1 终点（天龙或白马）的决定，先不登记。
+      - AR-27 八项先天属性（加内息）落地时要另开 core 任务改 `innate`。
