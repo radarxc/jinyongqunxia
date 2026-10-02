@@ -161,11 +161,14 @@ def pool_of(tid: str) -> str:
 # 2026-10-02（ENG 监督）：ENG-11 起构建期 publishVfxRuntime 逐个 access() vfx/ 与 baseline/vfx/ 的运行时文件，缺了就构建失败，
 # 所以这两处改为检出（vfx 178 MB、baseline 剩余约 40 MB）；物品 / 人物 / 立绘目录变大后（共约 2 GB），只排除图片本体、保留 manifest
 #（构建按 manifest 读取，缺图自动跳过）。写这些目录的任务仍全量检出。
-SPARSE_EXCLUDE_DIRS = ("assets/default/baseline/building-map", "assets/default/baseline/tile", "assets/default/baseline/town",
-                       "assets/default/building-map", "assets/default/tile")
+# 2026-10-02（开发监督）：ENG-09 起构建期 copyTownAssets 逐个 access() content/town/*/*.json 引用的城镇图集，
+# 都是 baseline/tile、baseline/building-map 的顶层文件（共约 19 MB）；这两处改为只排除子目录（sources / review / meta / qa 等约 300 MB）。
+SPARSE_EXCLUDE_DIRS = ("assets/default/baseline/town", "assets/default/building-map", "assets/default/tile")
+SPARSE_EXCLUDE_SUBDIRS = ("assets/default/baseline/building-map", "assets/default/baseline/tile")
 SPARSE_EXCLUDE_FILES = ("assets/default/item/**/*.png", "assets/default/item/**/*.jpg", "assets/default/item/**/*.pdf",
                         "assets/default/character/**/*.png", "assets/default/portrait/**/*.webp")
-SPARSE_FULL_IF_WRITES = SPARSE_EXCLUDE_DIRS + ("assets/default/item", "assets/default/character", "assets/default/portrait")
+SPARSE_FULL_IF_WRITES = SPARSE_EXCLUDE_DIRS + SPARSE_EXCLUDE_SUBDIRS + ("assets/default/item", "assets/default/character",
+                                                                        "assets/default/portrait")
 
 
 def sparse_checkout_for(t) -> list | None:
@@ -173,7 +176,8 @@ def sparse_checkout_for(t) -> list | None:
         return None
     if any(w.startswith(d) for w in t.writes for d in SPARSE_FULL_IF_WRITES):
         return None
-    return ["/*"] + [f"!/{d}/" for d in SPARSE_EXCLUDE_DIRS] + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES]
+    return (["/*"] + [f"!/{d}/" for d in SPARSE_EXCLUDE_DIRS] + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS]
+            + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES])
 
 
 def apply_sparse(wt: Path, patterns: list, ref: str) -> None:
