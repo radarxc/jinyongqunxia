@@ -175,7 +175,7 @@ def main() -> int:
         "size": f"{im.size[0]}x{im.size[1]}",
         "sha256": hashlib.sha256(out.read_bytes()).hexdigest(),
         "status": "candidate",
-        "notes": (("立绘重审重出（AR-30）；" + str(fm.get("redo_reason") or "")) if figure else ("写实画风（作者 2026-10-01：要跟角色图对应上）；" + (a.note or ""))) + (f"；裁掉画框 {frame}" if frame else "") + (f"；抠底 {keyed}" if keyed else ""),
+        "notes": ((("各朝路人形象（AR-30）；" if a.asset_id.startswith("por_role_") else "立绘重审重出（AR-30）；") + str(fm.get("redo_reason") or "")) if figure else ("写实画风（作者 2026-10-01：要跟角色图对应上）；" + (a.note or ""))) + (f"；裁掉画框 {frame}" if frame else "") + (f"；抠底 {keyed}" if keyed else ""),
     }
     if a.manual_title:
         # 秘籍补书名（AR-30）：名录原写「空题签」，10-01 那批没有书名；在 /app 普通对话里上传原图、不套模板，只让模型在题签上补写书名
