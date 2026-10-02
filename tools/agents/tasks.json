@@ -33307,6 +33307,87 @@
     "packages/core/CLAUDE.md",
     "apps/game/src/battle/*.ts"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 18,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/balance/protocol4_golden.json",
+     "tools/balance/protocol4_sim.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/balance/protocol4_sim.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/balance/damage_sim.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/balance/meridian_flow_sim.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-27c-attr-v2-golden",
+   "title": "游戏工程 · 属性 v2（三）：protocol 4 的 Python 参考 runner 与十四书 42 格节奏锁（design/04 §9.3.1、T45；ENG-GOLD-01）",
+   "prompt": "ENG-attr-v2-golden.md",
+   "deps": [
+    "ENG-27b-attr-v2-combat",
+    "ENG-28b-spiral-qi"
+   ],
+   "writes": [
+    "tools/balance/protocol4_sim.py",
+    "tools/balance/protocol4_golden.json",
+    "tools/balance/test_protocol4_sim.py",
+    "tools/balance/README.md",
+    "packages/core/src/testing/**",
+    "packages/core/src/battle/damage/*.test.ts",
+    "packages/core/CLAUDE.md"
+   ]
   }
  ]
 }
