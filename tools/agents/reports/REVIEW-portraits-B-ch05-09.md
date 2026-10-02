@@ -9,16 +9,16 @@
 | 书界 | 审核人数 | 通过 | 微调重出 | 整体重出 | 补出 | 场景图 重出 / 补出 |
 |---|---|---|---|---|---|---|
 | ch05 笑傲江湖 | 17 | 9 | 4 | 3 | 1 | 9 / 1 |
-| ch06 侠客行 | 17 | 14 | 2 | 0 | 1 | 10 / 0 |
+| ch06 侠客行 | 18 | 14 | 3 | 0 | 1 | 10 / 0 |
 | ch07 碧血剑 | 21 | 12 | 4 | 0 | 5 | 6 / 1 |
 | ch08 鹿鼎记 | 19 | 4 | 6 | 6 | 3 | — |
-| ch09 连城诀 | 14 | 7 | 3 | 1 | 3 | — |
-| **合计** | **88** | **46** | **19** | **10** | **13** | **25 / 2** |
+| ch09 连城诀 | 16 | 7 | 5 | 1 | 3（另补狄云常装 1 张） | — |
+| **合计** | **91** | **46** | **22** | **10** | **13（+1 张常装）** | **25 / 2** |
 
-- 审核人数 = 五书 `tier: S` 全部 66 人 + 主角师父 / 亲密同伴 / 跨书相关的 A 级 22 人（风清扬、史小翠、穆人清、侍剑、陈圆圆等）。陈圆圆在 ch07、ch08 各计一次。
-- 生成队列 `.agents/coord/portrait_redo/B-ch05-09.txt` 共 **69 条**：基础立绘 42（重出 29、补出 13）+ 场景图 27（重出 25、补出 2）。优先级 P1 42 条、P2 17 条、P3 10 条；队列先列被引用的基础立绘，再列依赖它们的场景图和九难。
-- 对应 69 份提示词已改：frontmatter 的 `status` 改为 `redo` / `new`，新增 `redo_reason`、`reference_upload`；正文顶部新增「## Gemini 提示词」（可直接粘贴的中文 text 代码块），原有段落全部保留在下面作历史。
-- `reference_upload` 只用于 S 级条目、只上传 S 级本人图：场景图上传本人新基础立绘（石破天场景上传现有基础图），九难上传新阿九。脸本身有问题的现图一律不上传。
+- 审核人数 = 五书 `tier: S` 全部 66 人 + 主角师父 / 亲密同伴 / 跨书相关的 A 级 25 人（风清扬、史小翠、穆人清、侍剑、陈圆圆等；花铁干、水岱、封万里为协调者 10-02 追加）。陈圆圆在 ch07、ch08 各计一次；狄云本人计在“通过”，新增的湘西常装另计 1 张补出。
+- 生成队列 `.agents/coord/portrait_redo/B-ch05-09.txt` 共 **73 条**：基础立绘 46（重出 32、补出 14）+ 场景图 27（重出 25、补出 2）。优先级 P1 42 条、P2 21 条、P3 10 条；队列先列被引用的基础立绘，再列依赖它们的场景图和九难；协调者追加的 4 条（狄云常装、花铁干、水岱、封万里，P2）接在末尾。
+- 对应 72 份提示词已改、1 份新建（`ch09-liancheng/npc_diyun__rural.md`）：frontmatter 的 `status` 改为 `redo` / `new`，新增 `redo_reason`、`reference_upload`；正文顶部新增「## Gemini 提示词」（可直接粘贴的中文 text 代码块），原有段落全部保留在下面作历史。
+- `reference_upload` 只用于 S 级条目、只上传 S 级本人图：场景图上传本人新基础立绘（石破天场景上传现有基础图），九难上传新阿九，狄云常装上传现有僧装图只取脸。脸本身有问题的现图一律不上传。
 
 ## 最严重的十个问题
 
@@ -70,6 +70,7 @@
 | 阿绣 | npc_axiu | 无基础图；只有场景图 ×5 | 补出（P1） | 侠客行女主角缺基础立绘（只有五张场景图）；场景图是磨皮网红脸、偏低龄，不作身份参考，按原著温柔坚贞的气质从文字新建。 | 约二十岁、娇小但成人比例；短鹅蛋脸、柔顺细眉、温柔而坚定，病后微苍白；素青袄暖白裙、白绢花。作 5 张场景的身份参考。 |
 | 丁珰 | npc_dingdang | ch06_youth_changle_base | 微调重出（P2） | 现图是磨皮大眼的网红甜笑脸，偏低龄，看不出“叮叮当当”的泼辣机变与醋意。 | 约二十岁俏丽瓜子脸、挑眉、狡黠得意的笑；淡绿衫袄、浅绿长发带；与阿绣气质拉开。 |
 | 侍剑（A） | npc_shijian | ch06_youth_alive_base | 微调重出（P2） | 现图双鬟小髻配娃娃脸，像孩子，违反禁止幼态；改为约二十岁、做惯活计的成年侍女。 | 约二十岁、做惯活计的成年侍女；单髻代替双鬟；鹅黄袄、端药碗托盘。 |
+| 封万里（A） | npc_fengwanli | ch06_prime_onearm_base（主检出，未拣入 _prod） | 微调重出（P2） | 主检出 10-02 新出的候选以剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）；造型（灰白长衣、右袖空垂收在腰间、左手持剑）可用，保留造型，只把脸换成文字设计的面容。A 级，不上传参考图。 | 保留灰白长衣、右袖空垂收在腰间、左手持剑；只换为文字设计的面容（窄方脸、蹙眉隐忍）。 |
 | 阿绣 · 场景 | npc_axiu | scene_ziyan、pangqiao、lingxiao、songhai、guihang | 整体重出（随基础立绘）（P1） | 现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。 | 基础立绘出图后上传作身份参考，按原场景稿重画 5 张。 |
 | 石破天 · 场景 | npc_shipotian | scene_jinwu、labazhou、motianya、taixuan、xuantie | 微调重出（场景）（P3） | 基础立绘通过；本场景图的脸是少年模样（石壁会意一张又是另一张偶像脸），与基础立绘不一致、违反禁止幼态；以基础立绘为身份参考重画。 | 上传现有石破天基础立绘（通过）作身份参考，重画 4 张青年场景；童年场景“烧饼里的玄铁令”按禁止幼态改画约二十岁青年乞儿（age_variant 改 youth，ID 不改名；作者可在拍板项 2 保留原图）。 |
 | 石破天 | npc_shipotian | ch06_youth_jinwu_base | 通过 | 浓眉日晒、结实质朴，配刀合金乌刀法阶段，真实不偶像化。 | 作 5 张场景重出的身份参考（见本表“石破天 · 场景”行）。 |
@@ -146,14 +147,15 @@
 | 凌霜华 | npc_lingshuanghua | ch09_youth_scarred_base（主检出，未拣入 _prod） | 微调重出（P2） | 主检出 10-02 新出的候选是磨皮网红脸（疤痕只是贴上去的两道），手捧的是黄菊；改为真实皮肤、书卷气，并换成她标志性的绿菊。 | 约二十二岁、书卷气、真实皮肤；额角斜过左颊的数道愈合淡红刀疤（不遮不血腥）；烟紫袄；捧一盆绿菊。 |
 | 万震山 | npc_wanzhenshan | ch09_prime_host_base（主检出，未拣入 _prod） | 微调重出（P2） | 主检出 10-02 新出的候选以 2004 年剧集剧照为面部身份参考，有复刻真人面容的风险（本轮口径禁止）；造型（富户员外、待客手势、佩剑）可用，只把脸换成文字设计的面容。 | 保留富户员外造型（墨酱绸袍、烟灰马褂、玉帽正、佩剑、迎客手势）；只换为文字设计的面容。 |
 | 血刀老祖 | npc_xuedaolaozu | ch09_elder_snow_base（主检出，未拣入 _prod） | 微调重出（P2） | 主检出 10-02 新出的候选以 2004 年剧集剧照为面部身份参考，有复刻真人面容的风险（本轮口径禁止）；造型（藏边老僧、暗红僧袍、薄血刀）合格，保留造型，只把脸换成文字设计的面容。 | 保留藏边老僧造型（暗赭红厚僧袍、薄而微弯的暗红血刀、低重心）；只换为文字设计的面容。 |
-| 狄云 | npc_diyun | ch09_youth_disguise_base | 通过 | 宝象僧衣伪装阶段：光头、右手残指、衣襟一刀三滴绣纹、乌蚕衣，细节扎实；但这是他唯一的基础图（见拍板项）。 | — |
+| 花铁干（A） | npc_huantiegan | ch09_prime_pursuit_base（主检出，未拣入 _prod） | 微调重出（P2） | 主检出 10-02 新出的候选以剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）；造型（八字胡、灰褐长袍栗色坎肩、红缨短钢枪）可用，保留造型，只把脸换成文字设计的面容。A 级，不上传参考图。 | 保留八字胡、灰褐长袍栗色长坎肩、红缨短钢枪；只换为文字设计的面容（长方脸、细长精明的眼）。 |
+| 水岱（A） | npc_shuidao | ch09_prime_pursuit_base（主检出，未拣入 _prod） | 微调重出（P2） | 主检出 10-02 新出的候选以剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）；造型（深青长袍、素黑便帽、长剑、双腿完好）可用，保留造型，只把脸换成文字设计的面容，并补雪地行旅短褂。A 级，不上传参考图。 | 保留深青长袍、素黑便帽、长剑、双腿完好；只换为文字设计的面容（宽额方脸、救女心切），补雪地保暖短褂。 |
+| 狄云 · 湘西常装（新 ID） | npc_diyun | 无（新增变体；现有只有僧装伪装图） | 补出（新增常装变体）（P2） | 狄云唯一的基础图是“宝象僧衣伪装”（光头）；按协调者追加补一张湘西乡下农家青年的常态立绘（入狱前、十指完好），上传现图只取脸作身份参考。 | 约二十岁湘西农家青年：同一张脸（上传僧装图只取脸）但有头发、面颊饱满、日晒黝黑、十指完好；靛蓝大襟短褂、卷腿布裤、草鞋、剃额留辫；连鞘旧剑、背竹斗笠。 |
+| 狄云 | npc_diyun | ch09_youth_disguise_base | 通过 | 宝象僧衣伪装阶段：光头、右手残指、衣襟一刀三滴绣纹、乌蚕衣，细节扎实；常态立绘另见本表“狄云 · 湘西常装”行（协调者追加）。 | — |
 | 丁典 | npc_dingdian | ch09_prime_prison_base（主检出） | 通过 | 豪迈坚毅、镣铐，文字设计。 | — |
 | 戚长发（师父） | npc_qichangfa | ch09_prime_rural_base（主检出） | 通过 | 乡下拳师，狡黠。 | — |
 | 凌退思 | npc_lingtusi | ch09_prime_magistrate_base（主检出） | 通过 | 清官暖帽补服，阴沉。 | — |
 | 宝象 | npc_baoxiang | ch09_prime_pursuit_base（主检出） | 通过 | 光头红袍、衣襟血刀纹。 | — |
 | 刘乘风 / 陆天抒 | npc_liurenfeng / npc_lutianshu | ch09_prime_pursuit_base（主检出） | 通过 | 落花流水两人外形区分清楚。 | — |
-
-花铁干、水岱（A）造型可用，但都是主检出 10-02 以 2004 年剧集剧照作脸的新图，未计入人数，见拍板项 1。
 
 ## 跨书与跨图一致性
 
@@ -166,7 +168,7 @@
 
 ## 队列与出图注意
 
-1. 队列文件 `.agents/coord/portrait_redo/B-ch05-09.txt`（`.agents/` 不入 git），每行 `asset_id  # 参考: <asset_id 或 无>`。顺序：P1 基础立绘 21 → P1 场景 21 → P2 基础 16 → P2 场景 1 → P3 基础 5 → P3 场景 5。被引用的基础立绘（令狐冲、任盈盈、阿绣、袁承志、温青青、阿九）都排在引用者前面。
+1. 队列文件 `.agents/coord/portrait_redo/B-ch05-09.txt`（`.agents/` 不入 git），每行 `asset_id  # 参考: <asset_id 或 无>`。顺序：P1 基础立绘 21 → P1 场景 21 → P2 基础 16 → P2 场景 1 → P3 基础 5 → P3 场景 5 → 协调者追加 P2 4 条（行尾注“P2”）。被引用的基础立绘（令狐冲、任盈盈、阿绣、袁承志、温青青、阿九）都排在引用者前面。
 2. 每条的出图文字在对应提示词的「## Gemini 提示词」代码块里；有 `reference_upload` 的先上传那张图再粘贴文字。
 3. 场景图依赖的基础立绘如果出图后不合格，先返修基础立绘，再出场景，不要拿不合格的新图当参考。
 4. 戚芳、凌霜华、万震山、血刀老祖的现图只在主检出（10-02 新出、未拣入 `_prod`）。本队列会在 `_prod` 的同一 `output` 路径出新图；之后若再从主检出把 ch09 新图拣进 `_prod`，要跳过这四个 ID，否则会被旧剧照版覆盖。
@@ -175,10 +177,10 @@
 
 ## 需要作者拍板（附默认）
 
-1. **剧照派生的立绘是否全部改为纯文字面容重出？** 默认：是。B 组已把 S 级 13 张与 A 级海大富入队；A 级花铁干、水岱（ch09）与封万里（ch06）未入队，默认同口径由协调者另排。
+1. **剧照派生的立绘是否全部改为纯文字面容重出？** 默认：是。B 组已把 S 级 13 张与 A 级海大富入队；A 级花铁干、水岱（ch09）、封万里（ch06）已按协调者 10-02 追加改写入队（P2）。
 2. **原著明确的童年剧情场景要不要破例保留儿童形象？**（石破天「烧饼里的玄铁令」原著是年幼的小乞丐；连城诀空心菜是戚芳的幼女，名录写明“幼童、非战斗”。）默认：不破例——按“全体禁止幼态 / 场景人物一律成年样貌”，石破天这张改画约二十岁的青年乞儿（已入队 P3，ID 的 `child` 键不改名）；袁承志「华山学艺」改画学艺后期的成年青年（已入队）；空心菜不出单人立绘，剧情里只以画外或襁褓布包表现。作者若要保留童年原图，只需把石破天这一行从队列删掉。
 3. **建宁公主、袁承志华山场景的 asset_id 含 `child` 键，要不要改名为 `youth`？** 默认：不改名（运行时变体键与输出路径保持不变），只把 frontmatter 的 `age_variant` 改为 `youth`。
-4. **狄云唯一的基础图是“宝象僧衣伪装”（光头），要不要补一张常态立绘？** 默认：补一张湘西乡下青年常态（需先在名录与提示词新建 ID，B 组未入队）。
+4. **狄云唯一的基础图是“宝象僧衣伪装”（光头）**：已按协调者 10-02 追加新建 `por_npc_diyun__ch09_youth_rural_base`（湘西农家青年、入狱前），提示词 `ch09-liancheng/npc_diyun__rural.md`，入队 P2；名录与 `design/18` 的变体登记交协调者。
 5. **原著细节待考项按本稿默认**：任盈盈佩一柄短剑（旧稿“一长一短双剑”待考）、何铁手铁钩在左手、九难缺左臂、水笙白衣左肩红绸花、凌霜华捧绿菊、陈圆圆怀抱琵琶。
 6. **东方不败**：默认按原著画约四十岁、剃须施粉的男子，不采用电影里的女性化形象。
 7. **主角女版 ch05–ch09 比 ch00 年轻柔化**：默认交 A 组（AR-30 分工：主角与 ch00–04）按 ch00 统一重出，B 组不入队。
@@ -192,4 +194,26 @@
 5. 写进 GUIDE：**清初服制**——男子圆领大襟、马蹄袖、剃额留辫，不穿汉式交领；汉族女子仍穿明式袄裙；满族女子旗装，不用民国式高领旗袍，不用晚清大拉翅；不画立领盘扣唐装。
 6. 工具：`02ae54de` 已让 `check_portrait_prompts.py` 放行 `redo` / `new`、`gemini_prompt.py` 直接取「## Gemini 提示词」段、`ingest.py` 读 `reference_upload`（本组 69 份已实测能取到）。`build_portrait_index.py --queue` 仍只收 `ready`，重出请以 `portrait_redo/B-ch05-09.txt` 为准。另：本书界 identity 版提示词普遍缺「## 人物要点」小节，校验脚本会报，属旧问题，非本次引入。
 7. `GUIDE.md` 第 164 行有一行与上下文无关的乱码（“1，2，3，4太简单了，所以哦度斜对了”），A 组改 GUIDE 时顺手删。
-8. 主检出 `assets/default/character/` 的立绘与 `.agents/coord/portrait-generation/` 均未入 git；ch09 12 张新图与 ch06 封万里只在主检出，拣入 `_prod` 前请先按本报告复审。
+8. 主检出 `assets/default/character/` 的立绘与 `.agents/coord/portrait-generation/` 均未入 git；ch09 12 张新图与 ch06 封万里只在主检出，逐张结论见文末「主检出新图拣入清单」。
+
+
+## 主检出新图拣入清单（协调者 10-02 追加）
+
+主检出根目录 `/Users/bytedance/Projects/jinyongqunxia`，下表路径都相对它；每张图在同目录 `manifest.yaml` 里有对应条目，拣入时连条目一起带。判据：质量过关、且不是以剧照作面部参考生成的才拣；剧照生成或已在重出队列的不拣。
+
+| # | asset_id | 主检出路径 | 结论 | 理由 |
+|---|---|---|---|---|
+| 1 | `por_npc_baoxiang__ch09_prime_pursuit_base` | `assets/default/character/male/ch09/por_npc_baoxiang__ch09_prime_pursuit_base.png` | **可拣入** | 文字设计（参考只有男性基线色卡与用户水墨背景）；光头红袍、衣襟“一刀三滴”绣纹清楚，手与刀鞘完整。 |
+| 2 | `por_npc_dingdian__ch09_prime_prison_base` | `assets/default/character/male/ch09/por_npc_dingdian__ch09_prime_prison_base.png` | **可拣入** | 文字设计；豪迈坚毅，腕踝铁链完整，无结构问题。 |
+| 3 | `por_npc_lingtusi__ch09_prime_magistrate_base` | `assets/default/character/male/ch09/por_npc_lingtusi__ch09_prime_magistrate_base.png` | **可拣入** | 文字设计；清官暖帽补服、手捧木匣完整。小问题：补子禽鸟像鹤，知府应是四品云雁（待考），不影响拣入。 |
+| 4 | `por_npc_liurenfeng__ch09_prime_pursuit_base` | `assets/default/character/male/ch09/por_npc_liurenfeng__ch09_prime_pursuit_base.png` | **可拣入** | 文字设计；道人束发小冠（清初僧道不剃发，合理）、连鞘剑完整。 |
+| 5 | `por_npc_lutianshu__ch09_prime_pursuit_base` | `assets/default/character/male/ch09/por_npc_lutianshu__ch09_prime_pursuit_base.png` | **可拣入** | 文字设计；大刀、刀鞘、护腕完整，与刘乘风外形区分清楚。 |
+| 6 | `por_npc_qichangfa__ch09_prime_rural_base` | `assets/default/character/male/ch09/por_npc_qichangfa__ch09_prime_rural_base.png` | **可拣入** | 文字设计；乡下拳师、连鞘剑完整。小问题：前额未剃、与本书界剃额留辫口径略不一致，可接受。 |
+| 7 | `por_npc_huantiegan__ch09_prime_pursuit_base` | `assets/default/character/male/ch09/por_npc_huantiegan__ch09_prime_pursuit_base.png` | 不拣 | 以 2004 版剧照作脸生成；已入重出队列（P2）。 |
+| 8 | `por_npc_shuidao__ch09_prime_pursuit_base` | `assets/default/character/male/ch09/por_npc_shuidao__ch09_prime_pursuit_base.png` | 不拣 | 以 2004 版剧照作脸生成；已入重出队列（P2）。 |
+| 9 | `por_npc_wanzhenshan__ch09_prime_host_base` | `assets/default/character/male/ch09/por_npc_wanzhenshan__ch09_prime_host_base.png` | 不拣 | 以 2004 版剧照作脸生成；已入重出队列（P2）。 |
+| 10 | `por_npc_xuedaolaozu__ch09_elder_snow_base` | `assets/default/character/male/ch09/por_npc_xuedaolaozu__ch09_elder_snow_base.png` | 不拣 | 以 2004 版剧照作脸生成；已入重出队列（P2）。 |
+| 11 | `por_npc_qifang__ch09_youth_mother_base` | `assets/default/character/female/ch09/por_npc_qifang__ch09_youth_mother_base.png` | 不拣 | 以 2004 版剧照作脸生成，神情惊惧；已入重出队列（P1）。 |
+| 12 | `por_npc_lingshuanghua__ch09_youth_scarred_base` | `assets/default/character/female/ch09/por_npc_lingshuanghua__ch09_youth_scarred_base.png` | 不拣 | 非剧照，但磨皮网红脸、捧黄菊；已入重出队列（P2）。 |
+
+另：ch06 `por_npc_fengwanli__ch06_prime_onearm_base`（`assets/default/character/male/ch06/por_npc_fengwanli__ch06_prime_onearm_base.png`）以 2002 版剧照作脸生成，已入重出队列（P2），不拣。拣入 1–6 后，`_prod` 的 ch09 `manifest.yaml` 要同步追加这 6 条（只追加，不动现有条目）。
