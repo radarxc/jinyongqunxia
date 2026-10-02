@@ -29721,6 +29721,141 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 13,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/chapters/00-yuenv.md",
+     "docs/design/story/00-yuenv.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "DES-prologue-ch00",
+   "title": "设计补充 · 序章 ch00_yuenv《越女剑》章节与剧情（M1 序章能力检查点）",
+   "prompt": "DES-prologue.md",
+   "deps": [],
+   "writes": [
+    "docs/design/chapters/00-yuenv.md",
+    "docs/design/story/00-yuenv.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 13,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/platform/src/storage/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./packages/platform",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-13-save-formal",
+   "title": "游戏工程 · 存档正式化（TSAV v1 / 每槽三代与损坏回退 / JSON·TSAV·ZIP 导入导出）",
+   "prompt": "ENG-save-formal.md",
+   "deps": [
+    "ENG-01-storage",
+    "ENG-07-ui-panels"
+   ],
+   "writes": [
+    "packages/platform/**",
+    "packages/ui/src/**",
+    "apps/game/src/storage/**",
+    "apps/game/src/App.vue",
+    "apps/game/src/game-controller.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 13,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-14-meridian-golden",
+   "title": "游戏工程 · 经脉 runner 黄金对拍与零副作用 preview",
+   "prompt": "ENG-meridian-golden.md",
+   "deps": [
+    "ENG-03-qi-runtime",
+    "ENG-00b-rng-int"
+   ],
+   "writes": [
+    "packages/core/src/battle/meridian-flow/**"
+   ]
   }
  ]
 }
