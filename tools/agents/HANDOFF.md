@@ -636,3 +636,15 @@
       - **DES-sleep-events**：12:00–12:06 自动合入，被协调者在 `_prod` 里没提交的改动挡住了；13:58 手动 `step.py merge` 合入（5b79f03c），状态文件已改成 MERGED。教训：在 `_prod` 改文件要改完立即提交。
       - **DES-sync-baima-year**：停在 HOLD-REVIEWS，起第 1 次复审（`--from validate`，pid 94958）。
       - **DES-attr-v2**：3 次复审已用完。r5 唯一不通过的一项（终局预算漏算 realmAlloc 30，应为 601）已在第 6 轮改好，校验也通过了。协调者破例再审一轮（`--from review`，pid 97176），通过就自动合入；计数记在 `_handoff/devsup_revalidated.json`。
+  - **10-02 15:18–16:05 协调者（作者「看一下 TODO 然后继续」；新一轮会话）**：
+    - **现场**：15:18 查到 eng3 调度器、6 个 supervise 驱动和全部 traex 执行器都在 14:15 左右停了（作者 16:00 说明是他自己停的，不用找原因）。15:31 用 `detach_launch.py` 重启：eng3（并发 4，4 个 ENG 任务在保留的工作区续作）、DES-attr-v2 与 DES-sync-baima-year 的 `--from review` 驱动。
+    - **合入**：DES-sync-baima-year r3 PASS，15:36 合入 7a89bf9b；DES-attr-v2 r7 PASS（协调者第 5 次复审），15:37 合入 4e9daeb2。计数记在 `_handoff/devsup_revalidated.json`。
+    - **成昆、黛绮丝**：按作者 AR-32 补记第 4 条恢复到重出前版本（png、manifest 条目、提示词取自 db2cc43e^ / bf791338^），bba3c50b。
+    - **作者 15:50 新分工**（逐字要点）：「1. 素材生成：人物——建一个 opus 5.5 max 的 subagent，调用 codex 生成然后保存、入库；其他图——建一个 opus 5.5 max 调用 chrome browser use 唤起两个 gemini.google.com，按 TODO 里的 js 驱动 gemini 生成、保存、入库。2. 代码生成（动作渲染等）：调用 TraeX cli 的 gpt 6 max 或 gpt-5.6 sol max。3. 故事线生成：同上」；「Chrome 需要你唤起两个 Tab」；「图生成搞起来」。
+      - 落实：Chrome「Claude」标签组由协调者新建，两个 Gemini 标签页 tabId 1957635062（A 道）、1957635064（B 道）；16:03 起两个 Opus subagent：人物线（先出主角·男三视图 `assets/default/rig/npc_zhujue__ch00_m/sheet/`，再做 AR-32 修改 A / B，入库按路径提交）、物品线（Gemini：第二批剩余 204 + 返工 4 + 秘籍 162，然后情景图 102）。
+      - 人物 / 情景图 / 三视图原本写成 traex 任务说明（`ART-portrait-ar32-fix-a/b`、`ART-scenes-cg`、`ART-rig-sheet`、`_codex_portrait`），改作 subagent 的工作说明，**没有登记进 tasks.json**。
+    - **登记并启动设计第三批 des33**（cdb81d44；并发 5，pid 39323）：DES-sync-ids-slp（`slp_` 转正式注册）→ DES-story-hooks-g1～g5（各书休眠事件与长生诀支线挂进 story/NN、chapters/NN，分 5 组）；DES-rig-v1.1（tech/09 v1.1、tech/07 §4.5/§5.4、rig GUIDE，含三视图 sheet 契约与 codex 口径）；DES-sync-tech-a（tech/04、05、09-roadmap）；DES-sync-design-a（design/10、11、12、14、15、18、19、20，依赖 baima）、DES-sync-design-b（design/03、04、05、21，依赖 attr-v2）；DES-skills-reqs-v2-a/b/c（名录门槛重配，依赖 attr-v2）。
+    - **动作原型任务**：ENG-12c-clip（P8–P9，依赖 ENG-21b 与 DES-rig-v1.1）已加进 eng3 队列（eng3 重启为 pid 39391）；TOOL-rig-sheet（P2–P5、P7，依赖 DES-rig-v1.1，`full_checkout`）已登记，等主角三视图入库后再加入队列。
+    - **三视图文件契约（协调者定，DES-rig-v1.1 写进规格）**：`assets/default/rig/<set>/sheet/sheet_L.png`（front34|side|back34 都面向画面左）、`sheet_R.png`（主角 / S 级的面向右修正版）、`sheet/manifest.yaml`；身份 set 命名 `<npcId>__<variant>`。
+    - **batch_run 审核要点映射**新增 `ART-portrait-` / `ART-scenes-` / `ART-rig-sheet`（要点文件在 `.agents/coord/PROD/`），目前没有任务用到。
+    - **坑**：`claude-in-chrome` 只能操作本会话标签组里的标签页，作者自己打开的标签页扩展看不到；要由协调者 `tabs_context_mcp(createIfEmpty)` 建组再 `navigate`。
