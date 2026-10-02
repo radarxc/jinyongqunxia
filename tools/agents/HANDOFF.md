@@ -512,3 +512,24 @@
       - 驱动：ENG-09、ENG-16a、TOOL-rig-nearside、DES-changsheng-core、DES-attr-v2、DES-items-manuals-expand；
       - 批次：eng3、eng。
     - **待作者决定**：是否给监督 agent 启动 supervise / batch_run 加权限规则，或者由作者在终端里手动起（命令清单由开发监督早上给出）。
+  - **10-02 通宵结果（截至 05:05）**：
+    - **人物线**（codex exec，4 个出图员，全部完成，status 都是 candidate）：
+      - 1 号：133 张，含作者点名 19 人、A 组 125 条、白马主角 2 张；
+      - 2 号：171 张，含 B 组 69、C 组 39、白马 21、金辽元男子重出 42；
+      - 3 号：132 张，含路人前半 114、剧照派生 A 级配角 18；
+      - 4 号：路人后半 114 张。
+      - 限流 0 次。`build_portraits` 加工产物：724 个变体、642 套头像、380 个人物，共 218 MB（6481c6df）。
+      - 总览页第 8 版，新增「各朝路人」一节。
+      - 各出图员的联系表在会话草稿目录 `gem/codex_w*/sheets/`，作者点名那批在 `gem/codex_batch1_sheet.jpg`。
+    - **物品线**（Gemini 网页）：
+      - 秘籍 18 本全部补上书名；食品 129 张全部入库；INDEX 物品组已无待出图项。
+      - 驱动与 README 已补全：上传参考图、可见标签页、/images 坏掉、Create image、服务端拒收回滚。
+      - 提交间隔按默认回到 30 秒：8 秒时第二道频繁被拒。
+    - **开发线**：
+      - TOOL-rig-nearside 已合入（53cd292f）；
+      - ENG-09 停在 HOLD-RUNS：执行器给 rig 性能门禁加了「高负载跳过断言」，协调者叫停；
+      - 5 个 ENG 任务删掉了冗余而且本来就失败的 `pnpm --filter ./apps/game test`（618ab406），apps 测试由根 `pnpm check` 覆盖。
+      - 被权限系统拒绝的有：重拉 batch_run，以及起单个 supervise 驱动。
+    - **磁盘**：
+      - 03:20 前后最低到 3.2 GB。原因是 codex 会话记录，每张图 40–50 MB，加上 swap。
+      - 定下 `gem/DISK_RULE.md`：缩小版基线、每张清一次槽位；定时立绘加工也停了。现在可用 11 GB。
