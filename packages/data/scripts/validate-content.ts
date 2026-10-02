@@ -4,6 +4,7 @@ import { loadContent, type ContentFile } from '../src/tooling';
 
 const root = resolve(process.cwd(), 'content');
 const supported = new Set(['.json', '.yaml', '.yml']);
+const nonDefinitionDirectories = new Set(['migrations', 'locales']);
 const files: ContentFile[] = [];
 
 async function discover(directory: string): Promise<void> {
@@ -12,7 +13,8 @@ async function discover(directory: string): Promise<void> {
     left.name < right.name ? -1 : left.name > right.name ? 1 : 0,
   );
   for (const entry of entries) {
-    if (entry.name === '_drafts' || entry.name === '.schema') continue;
+    if (entry.name === '_drafts' || entry.name === '.schema' ||
+        (directory === root && nonDefinitionDirectories.has(entry.name))) continue;
     const path = join(directory, entry.name);
     if (entry.isDirectory()) await discover(path);
     else if (supported.has(extname(entry.name).toLowerCase())) {

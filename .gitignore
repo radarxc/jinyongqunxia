@@ -8,6 +8,8 @@ node_modules/
 dist/
 dist-types/
 coverage/
+.cache/content-build/
+apps/game/public/content/
 *.tsbuildinfo
 .eslintcache
 

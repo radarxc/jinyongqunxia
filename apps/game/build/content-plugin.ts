@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
+import { buildContent } from '@tianshu/data/build';
 import { parseContentFile } from '@tianshu/data/tooling';
 import { mapFromRegistration, type ItemDef, type MartialArtDef,
   type NpcDef, type TownRuntimeDefinition } from '@tianshu/data/schemas';
@@ -10,6 +11,7 @@ const root = resolve(import.meta.dirname, '../../..');
 const virtualId = 'virtual:tianshu-content';
 const townIndexId = 'virtual:tianshu-towns';
 const townPrefix = 'virtual:tianshu-town/';
+let siteContentPromise: ReturnType<typeof buildContent> | undefined;
 async function readDefinitions<T>(directory: string): Promise<T[]> {
   const paths = (await filesIn(join(root, directory))).filter((path) => path.endsWith('.yaml'));
   return Promise.all(paths.map(async (path) => parseContentFile({ path, text: await readFile(path, 'utf8') }).value as T));
@@ -29,6 +31,8 @@ export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugi
   const assets = async () => assetManifest ??= readAssetManifest(root,
     options.copyAssets !== false, await towns());
   const vfx = () => vfxRuntime ??= publishVfxRuntime(root, options.copyAssets !== false);
+  const content = () => siteContentPromise ??= buildContent({ rootDir: root,
+    outputDir: 'apps/game/public/content', cacheDir: '.cache/content-build/vite' });
   return {
     name: 'tianshu-ui-content',
     resolveId(id) {
@@ -91,6 +95,9 @@ export async function loadTown(id){switch(id){${definitions.map((town) =>
         townNpcPlacements: [] }) + ';';
     },
     async buildStart() {
+      const built = await content();
+      const failed = built.diagnostics.find((entry) => entry.severity === 'error');
+      if (failed) throw new Error(`${failed.code}:${failed.message}`);
       await Promise.all([assets(), vfx()]);
     },
   };

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --configLoader runner",
     "build": "vue-tsc -b --pretty false && vite build --configLoader runner",
-    "test": "vitest run src",
+    "test": "vitest run src build --configLoader runner",
     "typecheck": "vue-tsc -b --pretty false"
   },
   "dependencies": {
