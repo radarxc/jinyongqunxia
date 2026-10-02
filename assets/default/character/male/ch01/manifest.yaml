@@ -551,64 +551,6 @@
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
   notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。两张已实际目视比较，选2：成熟文雅中年男子、独立宽整脸型和短须，沉青玉白衣装、低软巾、黑履及腰间小素玉佩，双手空着、全身完整，没有帝冠龙袍或发光指法。2的素玉佩较简洁、目光温和且正面可读。宽松保留偏差：外袍交领而非目标圆领，几何边饰和金属点缀较多，玉佩系带偏长，一手扶腰而未抚袖，体型略瘦；没有重大结构问题，保留candidate待最终审核。 提示词 assets/default/prompts/characters/ch01-tianlong/npc_duanzhengchun.md；tier A。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_duanzhengchun__ch01_prime_wangye_base.requests.json。生成候选2张，入选第2张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用项目基线（真实审批状态照录）和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
-- id: por_npc_suxinghe__ch01_elder_zhenlong_base
-  file: por_npc_suxinghe__ch01_elder_zhenlong_base.png
-  category: character/male
-  style: default
-  subject: 苏星河 npc_suxinghe ch01_tianlong
-  prompt: '创作一张重新设计的精细国风武侠全身人物立绘，与项目 default 水墨设色风格统一。严格区分图像输入次序：第一张是本角色自己的公开影视剧照，是本次人物骨相、神态与辨识轮廓的主要设计启发；第二张令狐冲基线仅供国风水墨设色、暖浅灰纸底、柔和左上光与笔触参考，不继承第二张的年轻面孔、年龄体型、束额带、衣装、剑或站姿。不要把基线人物简单换衣，也无需复制演员面容。影视照片不是原著或服饰史证据；年龄阶段、服装、道具和伤残始终服从下文的项目文字。
-
-    第一张苏星河剧照提供聪辩先生自己的清瘦文人面貌与审慎目光，不复制其中高巾或字幕。本图仍梳灰黑低髻、用木簪，双腿正常完整站立；左手小木棋罐和右手单枚深色棋子必须保留，眼耳正常。
-
-    主体是苏星河，北宋《天龙八部》擂鼓山珍珑棋会、遭丁春秋暗算之前的聪辩先生，守护师父无崖子及函谷门人的中老年男子，确龄待考。人物力量来自专注学识、沉静担当与对传承的守护，带书卷气而非普通市井老者。
-
-    独立的狭长脸、细颧骨、疏灰须、额角浅纹与微垂眼尾，面容清瘦而有精神。目光清楚专注，眼睛与耳部正常，不把装聋作哑画成生理残疾；自然年老、体形薄而肩背仍有力，约7头身。眉形舒长，鼻唇自然，沉静中有思考的敏锐，不画疲惫无神、威吓怒容或年轻俊脸。
-
-    烟褐右衽布袍、灰蓝内层、素布带和灰布鞋；灰黑发束成低髻，以朴素木簪固定，袖口适度收起露出清楚双手。长袍干净完整，烟褐与灰蓝大块面和克制衣褶形成清简的文人轮廓，不堆饰件。
-
-    稍侧身安静站立，双腿完整、双足自然承重，头部微低但肩背不塌，目光思索手中棋子。左手真实托住一只小木棋罐，右手以自然指节轻捻一枚深色棋子，棋子保持在胸腹之间；左右手与器物接触清楚、不漂浮。不另外画棋盘、棋谱、桌案或文字，只有便携物及专注神态说明棋艺。没有师父的残腿、绳具或支架，也无兵器。
-
-    画法统一为精细国风水墨设色人物插画，墨线随骨相和衣褶有轻重转折，淡墨与低饱和色层染体积，保留纸面透色；面部、双手和关键器物精细可读，衣摆与大衣褶适度写意，以清楚的大形组织结构，避免密集摄影毛孔、布料噪点、油亮高光或三维塑料感。柔和左上漫射光，不用舞台逆光。统一不透明暖浅灰纸底，极淡纸纹，无建筑山水或叙事场景。竖幅2:3，目标2048×3072 PNG，单人单视图完整全身，平视近正面轻微三分之四，中性透视，头顶、双手、双足、衣摆与设定器物端点完整且四周留边；约88–92%占高仅为美术目标，绝不绘制标尺或百分比。衣料完全不透明。汉式交领为穿着者左襟压右襟的右衽。人物有独立的面容、轮廓与内在气度，不能给参考人物换衣便当作新角色。 仅允许脚下极轻接触影。
-
-    不要文字、题款、印章、logo、新增装饰水印、分格、多视图、额外人物；保留工具原有溯源。不要多肢多指、错接手腕、手物融合、裁断头足或器物、无依据的刀剑装备、法阵能量、现代物件、跨时代衣饰、水平镜像、夸张健美肌肉或性感化；不要照片质感、模板脸、塑料磨皮、动漫大眼。
-
-
-    完整排除项 / Exclusions:
-
-    不要复制影视参考的高巾、字幕或剧照裁切；不要继承第二张基线的年轻脸、束额带和剑。不要失明、耳部残疾、残腿、坐轮椅、悬绳支架、丁春秋式白发长髯或无崖子式乌黑长须；不要大棋盘、桌案、棋谱文字、多枚悬浮棋子、棋罐融合手指、兵器或特效。不要文字、题款、印章、logo、新增装饰水印、分格、多视图、额外人物；保留工具原有溯源。不要多肢多指、错接手腕、手物融合、裁断头足或器物、无依据的刀剑装备、法阵能量、现代物件、跨时代衣饰、水平镜像、夸张健美肌肉或性感化；不要照片质感、模板脸、塑料磨皮、动漫大眼。'
-  negative: 不要复制影视参考的高巾、字幕或剧照裁切；不要继承第二张基线的年轻脸、束额带和剑。不要失明、耳部残疾、残腿、坐轮椅、悬绳支架、丁春秋式白发长髯或无崖子式乌黑长须；不要大棋盘、桌案、棋谱文字、多枚悬浮棋子、棋罐融合手指、兵器或特效。不要文字、题款、印章、logo、新增装饰水印、分格、多视图、额外人物；保留工具原有溯源。不要多肢多指、错接手腕、手物融合、裁断头足或器物、无依据的刀剑装备、法阵能量、现代物件、跨时代衣饰、水平镜像、夸张健美肌肉或性感化；不要照片质感、模板脸、塑料磨皮、动漫大眼。
-  references:
-  - path: .agents/coord/imagegen-reference/hero-20261001/classic_suxinghe_public.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/hero-20261001/classic_suxinghe_public.png
-    use: 已实际查看。第一张，苏星河本人影视形象的主要设计启发。取狭长脸、眼尾与眉间思索张力、清瘦文士的专注气质；不取照片高巾、对白字幕、室内背景或摄影质感，不要求复制演员脸。保持灰黑发低髻木簪、烟褐灰蓝布衣；双腿完整正常承重，左托小木棋罐、右捻单枚深色棋子；眼耳正常，不把装聋作哑表现成残疾。
-    sha256: b4bb4e5aab432da61ee5d05f9ce56130180fb6df5ff863d374d7b52f8cd55b7e
-    archived_path: .agents/coord/portrait-generation/hero-20261001/reference-archives/b4bb4e5aab432da61ee5d05f9ce56130180fb6df5ff863d374d7b52f8cd55b7e.png
-    status_at_input: null
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 已实际查看。仅参考项目国风设色、暖浅灰纸底、柔和左上光与笔触；基线candidate，作者本轮授权使用，审批状态不变。不锁定其脸、年龄体型、发式、服装、剑或密集摄影布纹。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/hero-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T07:45:47.690100+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-60084b2e-3c01-401a-8ba5-8e1daa9ef3a6.png
-  size: 1024x1536
-  mode: RGB
-  sha256: abbafcdf546d0013e204747c2df6e92864586f05f97b0e1fd6ee845afdcba05a
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_heroic_20261001
-  hero_revision: user_heroic_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_suxinghe__ch01_elder_zhenlong_base/prompt-aba5992da94d41eb5263e25da5a8113cb6336a5c151452a6583f0b7088872da6.md
-    manifest: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_suxinghe__ch01_elder_zhenlong_base/manifest-f75b26a3549b04ea3477597ebfdc27e133587b901e1d4c32ecb50b2f33657fbe.yaml
-    png: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_suxinghe__ch01_elder_zhenlong_base/original-e46ca7ab52a4149ee41b920184e2f502559cf8ec370ddc72ede97d9edbd6a94f.png
-  request_log: .agents/coord/portrait-generation/hero-20261001/por_npc_suxinghe__ch01_elder_zhenlong_base.requests.json
-  notes: 已实际对比两张，选2：狭长老年面孔、微垂眼尾与思索目光明确，烟褐灰蓝文人衣色，左手托小木棋罐、右手捻一枚黑棋子，双腿正常站立、双足完整。2的执子指节、棋子尺寸与手罐边界较1清楚，衣身收束更有精神，保留守护传承的沉静感。无明显多肢或重大结构错误。实际偏差：低髻变成较高髻，灰须较长而非稀疏短须；棋子举至近肩而非胸腹之间，袍袖偏宽、腰带偏宽、衣料磨损略多，比例略修长。按宽松自查登记，非旧严格逐项全通过，candidate待最终审核。 本轮英雄重绘宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_wuyazi__ch01_elder_pretransfer_base
   file: por_npc_wuyazi__ch01_elder_pretransfer_base.png
   category: character/male
@@ -2025,5 +1967,48 @@
   source_size: 1024x1536
   size: 1024x1536
   sha256: c9bf873c9b1797a0d27529d16a7f0c5053f9fcfa6ff702f43d9a56357bae65d4
+  status: candidate
+  notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做
+- id: por_npc_suxinghe__ch01_elder_zhenlong_base
+  file: por_npc_suxinghe__ch01_elder_zhenlong_base.png
+  category: character/male
+  style: default
+  subject: 苏星河（ch01_tianlong）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】苏星河，人称「聪辩先生」，《天龙八部》逍遥派掌门无崖子的大弟子；在擂鼓山主持珍珑棋会、守护师父、遭丁春秋暗算之前。
+
+    【年龄与体态】六十岁上下的老者，体形清瘦单薄，但肩背仍有力，约 7 头身。
+
+    【面容】狭长脸、细颧骨，稀疏的灰白胡须，额角有浅纹，眼尾微垂；眼神专注沉静，透着棋手的深思（原创扩展）。
+
+    【发式】灰黑发束成低髻，插一支朴素木簪。
+
+    【服饰】烟褐色交领右衽布袍、灰蓝内层、素布带、灰布鞋；袖口适度收起。
+
+    【道具】左手托一只小木棋罐，右手指间轻捻一枚深色棋子。
+
+    【姿态与神情】端正站立，像在凝神思考下一步棋。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要像任何真实演员或明星；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要棋盘、棋谱或文字；不要华丽衣饰；不要兵器。
+
+    【画风基线】随提示词上传的两张参考图是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）
+  tool: codex exec · image_gen（同性别两张基线立绘作画风参考，无身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:57:37-0700
+  source_path: .agents/coord/gemini_originals/por_npc_suxinghe__ch01_elder_zhenlong_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 99a3c46789fb7a72d4df1570a804bc6ea0f5dde90a92aea88306a8d523489a03
   status: candidate
   notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做
