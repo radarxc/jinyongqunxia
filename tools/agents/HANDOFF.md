@@ -323,3 +323,33 @@
       - 协调者口径：合入报「主检出有未提交的改动」时，先 `git status --porcelain --untracked-files=no` 看是谁的改动；`INDEX.md` 这类出图线的临时改动等几秒重试即可，其他的告诉协调者。
       - 序章素材需求（`docs/design/chapters/00-yuenv.md` §9）由协调者交给出图线，工程线不管。
       - DES-prologue 报告 §4 待作者确认六项（附默认）：O01 保留 `q_00_main_c_<nn>` 并补正则例外；O02 灰盒用 `mockRef`、发布前由 design/18 建档；O03 复用 `rg_jiangnan_taihu`、显示「越地」；O04 竹棒为章内 `prop_bamboo_staff`；O05 投果消耗 `it_tao`；O06 可取消导出、M1 必须导回、冷入口可无代价复核身份。
+  - **10-02 00:00–00:35 协调者**：
+    - **立绘入库（`_prod` 4fcb0e3d）**：
+      - `build_portraits.py` 全量 425 个变体跑完（2,621 秒）：头像 / 半身各 345、默认清单 313 人，运行时产物共 133 MB。
+      - 每张平均：mid 110 KB、low 80 KB、ava512 33 KB。
+      - `pnpm content:validate` 与 `pnpm size` 通过：构建复制 313 张默认 mid（42 MB），webgl 合计 274 / 350 KB。
+      - 总览页 https://claude.ai/artifact/1TACNarveseVhMusJxJnJ3 更新到第 7 版，新增「角色立绘」一节（各书半身图 + 剧情场景图）。
+      - 已知小瑕疵：手持高道具（禅杖等）的人物，头像中心会被道具拉偏，待改成按脸定位。
+    - **作者新机制（`_prod` 8c4dc7f2）**：AR-26《长生诀》主线与书眠、AR-27 八项先天属性与数值体系、AR-28 金钱与采集药材。作者原话与四个追问的答复都已逐字照录。要点：
+      - 阿青传《长生诀》第一层，长白山雪崩初眠；
+      - **白马啸西风改到唐朝，作为第一本正式书**（书界 ID 不改）；
+      - 每本书以休眠事件入眠；苏醒前保留 3 武功 + 3 内功，降品阶照旧，其余遗忘 / 散功按 60% 转为顿悟点数 / 真元；
+      - 七本书的支线给第二至八层，**鹿鼎记悟第九层**（悟性满 + 和氏璧），螺旋内力按 1:20 化解对方内力；
+      - 九层后周游世界；
+      - 先天属性 = 现有七项 + 内息，沉睡配点六项；
+      - 武馆教练 / 镖局坐镇、遗迹、采集、药材按产地与季节。
+    - **第一批设计任务**：DES-changsheng-core / DES-attr-v2 / DES-economy-gather，写集互不重叠，canon 只给 changsheng-core 改。批次 `des26`，日志 `.agents/coord/_batch/des26.log`。
+      - 合入后协调者先自审，再登记第二批：DES-prologue-v2、DES-baima-tang（含白马 23 张清初立绘按唐代重出）、DES-sleep-events、DES-changsheng-sidelines、名录门槛重配；最后才是 ENG。
+      - M1 终点「书眠进入天龙冷入口」要不要改成白马，待作者定。
+    - **出图线**：
+      - 衣物 68 个全部入库，食品 17 / 146。00:07 的 usage 是本时段 20%（已出 88 张），重置时间 1:52 AM。「每时段 35 张」的估计不成立。
+      - 作者又开了两个 Gemini 标签页，但它们不在「Claude」标签组里，扩展看不到；出图 agent 停下等作者把它们拖进组，之后四道（A / B / C / D）并跑。
+      - `ingest_commit.sh` 改为按路径提交，撞 index.lock 时重试（7b0df83b）。起因：出图提交 ea2815cd 混进了协调者暂存的 roadmap 改动，那处改动本身完整、是本意。
+      - 食品提示词去掉地阶「专属匣」和重复句。
+      - 待作者看的质量问题：
+        - 女装袄 + 裙成套画法 4 件；
+        - 西式靴 4 双：明皂皮靴、金乌皮靴、元赤金皮骑靴、辽乌皮骑靴。
+    - **动作方案调研**：报告入库 `tools/agents/reports/RESEARCH-anim-motion-library.md`（03b08f70）。
+      - 推荐「2D 分层部件 + CC0 动作库（Mesh2Motion / Quaternius UAL）驱动 + Gemini 三视图切件」。
+      - 发现 tech/09 的近侧 / 左右约定有缺陷，切件前要先修。
+      - 原型约 54 小时执行器工时；11 项待作者确认。
