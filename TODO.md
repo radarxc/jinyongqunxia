@@ -248,7 +248,7 @@
 - [x] **名录门槛重配**：已登记 DES-skills-reqs-v2-a / b / c（des33 排队）。
 - [x] **各书 `story/NN` 挂接口**：已登记 DES-story-hooks-g1～g5（des33 排队，等 DES-sync-ids-slp）。
 - [x] **跨文档同步**：已登记 DES-sync-tech-a、DES-sync-design-a / b（des33）。合入后仍剩的项以各任务报告 §6 为准，再排。
-- [ ] **设计定稿后另开 ENG 任务**（AR-26 / 27 / 28 都写明「随后再开」，现在一个都没登记）：
+- [x] **设计定稿后另开 ENG 任务**（开发监督 16:30 登记，95804a78，排在 eng3 队尾、M1 路径之后、四个串行）：ENG-27a 属性 v2 数据链（内息 `bre`、`trainingAttrs`、`masteryXp` / `trueEssence`）→ ENG-27b 属性 v2 战斗链（protocol 4）→ ENG-28a 一般书眠（休眠事件、3+3、按层率转顿悟 / 真元、周游）→ ENG-28b 螺旋内力 Z0-CS。金钱与采集等 ENG-20a / 26 合入后再登记；ENG-27c 节奏锁与 Python protocol 4 参考放 28b 之后。原清单：
   - 属性 v2：内息、速度和攻击公式、data schema、golden；
   - 《长生诀》运行时：苏醒取舍 3+3、60% 转化、层数、螺旋内力、九层后周游世界；
   - 金钱与采集：武馆、镖局营生，采集点，药材的产地和季节。
@@ -269,7 +269,8 @@
 - ENG-18：内容编译管线（15:47 校验通过，审核中）；
 - ENG-16b：战斗补全 B；
 - ENG-21b：WebGL 上下文恢复与自适应质量。
-- eng3 队列 15:52 加了 **ENG-12c-clip**（动作原型 P8–P9，排在 ENG-25 之后，依赖 ENG-21b、DES-rig-v1.1）。
+- eng3 队列 15:52 加了 **ENG-12c-clip**（动作原型 P8–P9，排在 ENG-25 之后，依赖 ENG-21b、DES-rig-v1.1 已合入 7ea9a85f）；16:20 后开发监督又加了 TOOL-rig-sheet（三视图已入库 a78e14f3）和 ENG-27a/27b/28a/28b（队尾），**这几项要等 eng3 重启后才生效**（重启被权限分类器拒，等作者在终端跑，命令见 HANDOFF 16:12 条之后）。
+- 16:01 起 GPT-6-Astra 执行器全部无输出；16:27 停滞检测自动续作并回退 GPT-5.6-Sol；同一任务 Astra 停滞两次就改用 Sol。
 
 **eng3 排队的 21 项**（依赖满足就自动开跑）：
 - 审计修复：
