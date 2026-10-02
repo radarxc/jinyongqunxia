@@ -144,93 +144,6 @@
   scene_title: 思过崖领剑意
   stage: 华山弟子面壁、风清扬授独孤九剑阶段；青年。
   asset_variant: scene
-- id: por_npc_linghuchong__ch05_youth_scene_luoyang
-  file: por_npc_linghuchong__ch05_youth_scene_luoyang.png
-  category: character/male
-  style: default
-  subject: 令狐冲 npc_linghuchong ch05_xiaoao
-  prompt: 'Create a premium REALISTIC Chinese wuxia character illustration with a delicate INK-WASH BACKGROUND. The human figure is beautifully and coherently painted: solid continuous anatomy, fine natural skin, credible facial structure, soft connected light and shade, intact carefully tailored cloth, clean continuous silhouette. Render the figure with refined hand-painted realism, not a photo, movie screenshot, 3D render or plastic model. No dry-brush gaps, white flecks, torn edges, collage fragments, paper erosion, scratches or watercolor mottling anywhere on face, skin, clothes or boots. Keep ink washes and loose expressive marks only in the background, separated from the clean figure. Clothes have few broad weight-bearing folds and clean sewn hems, never shredded ribbons or noisy patchwork. Heroism comes from eyes, bearing, physique and fitting clothes, not raggedness. Traditional understated clothing remains handsome without excess ornament.
-
-
-    第一参考必须是已完成并经父任务验证 realism_revision=user_character_realism_20261001 的本人首幅写实场景；保持同一个人的面容特征与身份，本场重新绘制服饰、发式、动作、道具和背景。旧初版仅文件存在不满足依赖，未经新版 revision 核验和实际查看不得提交生成。
-
-    第二参考为新版萧峰少室山首样，只提供人物绘画质量：细腻真实肤质、完整体积、连贯柔和光影、连贯完整布料及干净轮廓；绝不复用其脸、胡须、头巾、体型、年龄、男性特征、服装、姿态或龙影。本角色仍是令狐冲。
-
-    第三参考为对应性别项目基线，仅低饱和色卡，不取人物笔触与衣料细节。
-
-    第四参考仅用于背景水墨与留白；不取其中人物、白青衣装、肤质或纸纹透衣。
-
-
-    人物身份设计：令狐冲的独立设计：略长的方圆脸，颧颌转折自然、眉目灵动、眼神清亮，鼻唇利落而不偶像化；高而清瘦，有常年练剑的筋骨和舒展肩背，嘴角可带一点洒脱笑意。承担责任时收起笑，仍不僵硬。此轮创作自己的角色骨相，不把摄影感男性基线直接换装重绘，不固定网状头巾和原站姿。
-
-    令狐冲，《笑傲江湖》，绿竹巷初学琴。
-
-    阶段：洛阳初识隐去身份的任盈盈、身有内伤；青年。
-
-    人物与完整衣装动作：单人全身坐于低凳，布袍略旧，面色有伤后疲惫；双脚可见，双手自然放在横置古琴上。 衣装设计：旧浅灰长袍、松而得体的深色腰束、普通布鞋；面容略疲倦但肤质完整，不添加旅尘污斑。 衣料保持完整可穿、连贯成片、剪裁清楚和整洁收边；旧衣仅显使用后的柔软色泽，不撕烂、不掉碎片、不加成排补丁、密集皱纹或碎带。 人物面部、皮肤、头发、衣服与鞋均采用美观写实的高级国风插画塑造；解剖与实体体积清楚、细腻自然肤质、连贯柔和光影、干净完整轮廓。人物上没有碎墨、纸纹侵蚀或飞白。衣料完整连贯、剪裁明确，袖口与下摆干净连续收边，只有少量自然宽缓承重褶，英雄气来自眼神、体格、姿势与合身份的衣饰。
-
-    器物与阶段限制：七弦古琴一张、矮琴案；剑收鞘置侧；不要同时握剑弹琴
-
-    仅背景使用水墨：浅淡水墨背景，人物为画面主体。竹影、低墙与半卷竹帘，纸白光透进室内；琴案不横切遮掉全身。
-
-    本场具体构图：全身坐低凳，七弦古琴放矮案，双腕不折断、双手分别落弦；露出膝腿与鞋，脸不被琴案挡住。
-
-    单人单视图完整全身，站姿从头顶到足；坐跪姿完整呈现躯干、双手、膝腿与足，主要器物端点入画，留自然边距。仅保留本场明确授权的代表动物，动物肢体不与人粘连。竖幅2:3，目标2048×3072 PNG，接受工具原生输出，不透明。真实承重、关节清楚，不机械限定占高、不因衣摆轻微遮鞋返工；人物清楚居前，水墨只在背景且不侵入人体和衣服。
-
-    情节与美术边界：此阶段主调为疗伤与学琴；不能画成熟健康的大侠开音乐演出。任盈盈在帘后画外，不另画剪影人。 本场为独立经典场景变体，保留基础立绘；production record 不表示 PNG 已生成或已查看，不代表审批通过，未来实际成图仍为 candidate。服色、站坐姿及具体衣纹是美术补足，阶段装备与明确伤残优先。 本次执行 REALISTIC-CHARACTERS-20261001.md：人物美观写实、皮肤与衣料完整连续，水墨仅用于背景。旧候选仅为历史记录，不计本轮写实完成；本记录本身不是生成、保存或审批，新图实际查看通过后仍为 candidate。 第一身份引用等待本人首场的新写实版本；即使同路径已有旧 PNG 也不满足，必须核对 manifest realism_revision=user_character_realism_20261001，并保存验证、实际查看后才可注册/prepare/生成本场。
-
-
-    完整排除项：不要箫代替琴、健康健美姿态、同时持剑弹琴、带电琴、琴键或第二演奏者。 人物本体不要飞白、碎墨、撕裂边、拼贴纸屑、纸面透肤透衣、白色斑点、颗粒侵蚀、粗糙斑驳脸、破布、过度密集褶皱或碎带。不要把背景墨迹、龙纹、山水或符号延伸到人的皮肤、衣服、手脚；不要复制萧峰首样的脸、年龄、胡须、裹巾、魁梧体型、性别特征、深灰服装、披氅、掌势或龙影。不要额外人物、错误多肢多指、手物融合、裁切头足器物、多视图拼贴、照片截图、3D塑料质感、现代物件、文字题款、印章logo或新增水印；保留工具自身溯源。不要添加剧情未要求的破损污渍、无依据伤残、武器或跨阶段装备；年少人物衣着完整得体，不成人化或性感化。'
-  negative: 不要箫代替琴、健康健美姿态、同时持剑弹琴、带电琴、琴键或第二演奏者。 人物本体不要飞白、碎墨、撕裂边、拼贴纸屑、纸面透肤透衣、白色斑点、颗粒侵蚀、粗糙斑驳脸、破布、过度密集褶皱或碎带。不要把背景墨迹、龙纹、山水或符号延伸到人的皮肤、衣服、手脚；不要复制萧峰首样的脸、年龄、胡须、裹巾、魁梧体型、性别特征、深灰服装、披氅、掌势或龙影。不要额外人物、错误多肢多指、手物融合、裁切头足器物、多视图拼贴、照片截图、3D塑料质感、现代物件、文字题款、印章logo或新增水印；保留工具自身溯源。不要添加剧情未要求的破损污渍、无依据伤残、武器或跨阶段装备；年少人物衣着完整得体，不成人化或性感化。
-  references:
-  - path: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_scene_siguoya.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_scene_siguoya.png
-    use: 等待本人首场新写实 PNG 生成、保存并核验 realism_revision=user_character_realism_20261001 后才可使用；当前不声称已查看该新版本。路径存在旧初版不满足依赖。只保持本人面容身份及新版写实人物质量；本场年龄、发式、伤残、衣饰、姿势、器物和背景另绘。
-    sha256: 42bbff126a076d8aeea057bbc27acdc3862467846fed27582805688d73f91176
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/42bbff126a076d8aeea057bbc27acdc3862467846fed27582805688d73f91176.png
-    status_at_input: candidate
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-    use: 已实际查看并核验新写实首样 SHA-256 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922；仅借自然面容与肤质的描绘质量、完整坚实体积、连贯光影、连贯布料和干净轮廓，不复制萧峰的脸、性别、年龄、胡须、头巾、体型、服饰、姿态或龙影。
-    sha256: 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922.png
-    status_at_input: candidate
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 已实际查看的对应性别项目基线，仅低饱和配色色卡；此位置不作本人身份或人物画法参考，不继承碎墨、飞白、纸纹透衣、破布、脸、年龄、衣饰、武器与姿势。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已实际查看的用户王语嫣水墨图，只用于背景的浅淡山水、留白与环境层次；完全忽略其中人物、脸、体型、肤质、服饰、发饰和人物笔触，不让背景纸纹与飞白侵入本场人物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T13:29:03.576816+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-b265a7e1-5f8d-4074-b1b7-8431baf51c8f.png
-  size: 1024x1536
-  mode: RGB
-  sha256: f172731e3697d13c35290e6dcfe634013dad102066b7fb9a6205afbae85c4638
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_character_realism_20261001
-  realism_revision: user_character_realism_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_linghuchong__ch05_youth_scene_luoyang/prompt-f46ae08d10236ba5199617158ada6670488b5733b261bae3371064e827f336d1.md
-    manifest: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_linghuchong__ch05_youth_scene_luoyang/manifest-51b662216118b6293056109aa366bae825de0d00482add1c33c9d29340a4e40d.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_linghuchong__ch05_youth_scene_luoyang.requests.json
-  notes: 宽松自查选择候选1：令狐冲与思过崖本人首图面容一致，浅灰完整旧袍与深腰束，坐低凳、双手分别落在横置古琴弦面，双膝及双靴可见；没有持剑弹琴，剑收鞘靠侧，竹影竹帘和低墙体现洛阳学琴环境，无第二演奏者。候选1琴身两端都在画内，双手腕部自然，琴案未遮掉头部和腿足。实际偏差：伤后疲惫与苍白表现很弱，神情仍略带笑，不能称已充分表现病容；琴弦可见但受视角影响未逐根确认严格七弦，演奏指法仅美术表现不冒称可演奏复原；剑鞘远端在右边界局部出画，桌案与庭园背景偏浓，衣纹稍多。人物皮肤和衣料完整，无明显多肢/重大结构错误。按出齐优先宽松自查可用，candidate待终审。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  scene_revision: user_scenes_20261001
-  scene_key: luoyang
-  scene_title: 绿竹巷初学琴
-  stage: 洛阳初识隐去身份的任盈盈、身有内伤；青年。
-  asset_variant: scene
 - id: por_npc_linghuchong__ch05_youth_scene_meizhuang_prison
   file: por_npc_linghuchong__ch05_youth_scene_meizhuang_prison.png
   category: character/male
@@ -1967,3 +1880,45 @@
   sha256: 95a88623e779cc17484f0f220f5956eab5b439c55fb2d58570835ce32f7ca232
   status: candidate
   notes: 立绘重审重出（AR-30）；场景尚未出图；以新出的令狐冲基础立绘为身份参考重画本场景。
+- id: por_npc_linghuchong__ch05_youth_scene_luoyang
+  file: por_npc_linghuchong__ch05_youth_scene_luoyang.png
+  category: character/male
+  style: default
+  subject: 令狐冲（ch05_xiaoao）
+  prompt: '生成一张 2:3 竖幅单人全身剧情场景图。
+
+
+    上传的第 1 张图是令狐冲本人的基础立绘，作为身份参考：保持同一张脸（脸型、眉眼、鼻子、嘴、肤色、发际线、胡茬）和同样的成年年龄、体型，让人一眼认出是同一个人；不要照搬参考图的站姿、构图和背景，服饰、动作和场景按下文。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：令狐冲，《笑傲江湖》男主角，约二十五岁的成年男子，修长结实，眼神洒脱带笑，唇上下巴有淡淡胡茬。
+
+    场景「绿竹巷初学琴」：洛阳绿竹巷，向一位隐身竹帘后的“婆婆”学琴的时期，他身受内伤、面带疲倦。人物独自坐在低凳上，双手放在面前横置的古琴上学弹；双脚可见。衣装：旧浅灰长袍、松而得体的深色腰带、普通布鞋。背景：竹影、低墙、半卷的竹帘与小院窗棂，纸白色的柔光透进来；琴案不能挡住人物全身。
+
+
+    构图：竖幅 2:3，单人全身剧情场景图，人物是画面主体，从头顶到双脚完整入画（坐姿也要看得见头、身体、双手、双腿和双脚）；场景用浅淡的写实水墨笔法画出，留白充足，背景不能压过人物、不能侵入人物轮廓。画面里只有这一个人物。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要网巾头箍；不要偶像小生脸；不要换成另一张脸。汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张＋身份参考 1 张）
+  model: gpt-6-astra
+  created: 2026-10-02T02:53:47-0700
+  source_path: .agents/coord/gemini_originals/por_npc_linghuchong__ch05_youth_scene_luoyang.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 869290cd06b018c971c1b6013f1fa0d876a0baac1936d4eea2e4445ccae9a54a
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图是偶像化长发脸、与基础立绘不是同一人；以新出的令狐冲基础立绘为身份参考重画本场景。
