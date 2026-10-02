@@ -22,7 +22,7 @@
   building:
     type: bld_kit_tubo_biaoju
     footprint: [14, 11]
-    anchor: &id001 [462.9669, 368.0406]
+    anchor: [462.9669, 368.0406]
     era: tubo
   footprint_m: [14, 11]
   entrance: {edge: S, offset_cells: 7.0}
@@ -33,7 +33,7 @@
     light: screen_upper_left
     shadow: screen_lower_right_contact_only
   meta: meta/bld_kit_tubo_biaoju.yaml
-  anchor_px: *id001
+  anchor_px: [462.9669, 368.0406]
   source_copy: sources/historical-rebuild/bld_kit_tubo_biaoju__raw.png
   source_sha256: c54f8023ca9d46568e32e92a8ac3e465e59229374d061506e99f1880f24cb26c
   candidate_count: 1
@@ -77,7 +77,7 @@
   building:
     type: bld_kit_tubo_casino
     footprint: [9, 7]
-    anchor: &id002 [346.8415, 268.3106]
+    anchor: [346.8415, 268.3106]
     era: tubo
   footprint_m: [9, 7]
   entrance: {edge: S, offset_cells: 4.5}
@@ -88,7 +88,7 @@
     light: screen_upper_left
     shadow: screen_lower_right_contact_only
   meta: meta/bld_kit_tubo_casino.yaml
-  anchor_px: *id002
+  anchor_px: [346.8415, 268.3106]
   source_copy: sources/historical-rebuild/bld_kit_tubo_casino__raw.png
   source_sha256: fe46da3530d5c28907cbb6b46247b61d3e1de59d12a3eba175c4a9147e4200a4
   candidate_count: 1
@@ -544,7 +544,7 @@
   building:
     type: bld_kit_tubo_manor
     footprint: [15, 12]
-    anchor: &id003 [533.747, 395.4126]
+    anchor: [533.747, 395.4126]
     era: tubo
   footprint_m: [15, 12]
   entrance: {edge: S, offset_cells: 7.5}
@@ -555,7 +555,7 @@
     light: screen_upper_left
     shadow: screen_lower_right_contact_only
   meta: meta/bld_kit_tubo_manor.yaml
-  anchor_px: *id003
+  anchor_px: [533.747, 395.4126]
   source_copy: sources/historical-rebuild/bld_kit_tubo_manor__raw.png
   source_sha256: 80ebd5813cf89f1aff26870d45980e6af75bc26eb74c99d6c10c72f5e9ead07d
   candidate_count: 1
@@ -679,7 +679,7 @@
   building:
     type: bld_kit_tubo_palace_hall
     footprint: [20, 16]
-    anchor: &id004 [611.2864, 524.2912]
+    anchor: [611.2864, 524.2912]
     era: tubo
   footprint_m: [20, 16]
   entrance: {edge: S, offset_cells: 10.0}
@@ -690,7 +690,7 @@
     light: screen_upper_left
     shadow: screen_lower_right_contact_only
   meta: meta/bld_kit_tubo_palace_hall.yaml
-  anchor_px: *id004
+  anchor_px: [611.2864, 524.2912]
   source_copy: sources/historical-rebuild/bld_kit_tubo_palace_hall__raw.png
   source_sha256: 4d19ad855883889f7e4d82dd8fc8eb8e4d250221f789742057d1fb5f35661160
   candidate_count: 1
@@ -1149,7 +1149,7 @@
   building:
     type: bld_kit_tubo_temple_hall
     footprint: [14, 11]
-    anchor: &id005 [499.2493, 355.3634]
+    anchor: [499.2493, 355.3634]
     era: tubo
   footprint_m: [14, 11]
   entrance: {edge: S, offset_cells: 7.0}
@@ -1160,7 +1160,7 @@
     light: screen_upper_left
     shadow: screen_lower_right_contact_only
   meta: meta/bld_kit_tubo_temple_hall.yaml
-  anchor_px: *id005
+  anchor_px: [499.2493, 355.3634]
   source_copy: sources/historical-rebuild/bld_kit_tubo_temple_hall__raw.png
   source_sha256: 28ff4e36ef509efb83e061c36b3e5434d12984f032136ac8cb17c81108aafa8f
   candidate_count: 1
@@ -1378,7 +1378,7 @@
   building:
     type: bld_kit_tubo_yamen
     footprint: [16, 12]
-    anchor: &id006 [483.0, 360.6652]
+    anchor: [483.0, 360.6652]
     era: tubo
   footprint_m: [16, 12]
   entrance: {edge: S, offset_cells: 8.0}
@@ -1389,7 +1389,7 @@
     light: screen_upper_left
     shadow: screen_lower_right_contact_only
   meta: meta/bld_kit_tubo_yamen.yaml
-  anchor_px: *id006
+  anchor_px: [483.0, 360.6652]
   source_copy: sources/historical-rebuild/bld_kit_tubo_yamen__raw.png
   source_sha256: 9e4839a32f6265682af787e885ed82bd42184ffab58dd3a8d434ca7360e2c246
   candidate_count: 1
