@@ -49,10 +49,10 @@ M1 只需要这一段：序章结束（阿青传《长生诀》第一层）→ �
   - 测试 W-07、W-11、N-06；§14.1–§14.2 读档与迁移顺序；§15 必须有书眠 golden。
 - `docs/tech/08-backend-and-online.md` §3.2 存档头 `contentHash` = `meta.contentHash`；§3.5 迁移链；§3.6 `fixupContentRefs`。
 
-## 两处待裁定，先按默认做，报告里标明
+## 两处裁定（协调者 10-02，作者可推翻）
 
-1. **白马年份**：canon §2 与 design/02 §1.5 写 640–641，chapters/10 与序章改版写 702–703。本任务**一律从 `ChapterDef.gameYear` 读，不写死任何年份**；测试用夹具值。
-2. **初眠前存档**：存档槽白名单没有 `save_booksleep_ch00`。默认初眠前只做一次自动存档，不新增槽位；`save_wake_ch10` 照 design/13 §9.1 写。
+1. **白马年份**：以 chapters/10 的 702–703 为准（canon 等处的 640–641 由文档同步任务改）。本任务**一律从 `ChapterDef.gameYear` 读，不写死任何年份**；ch10 章节定义写 702–703，测试用夹具值。
+2. **初眠前存档**：只做一次自动存档，不新增 `save_booksleep_ch00` 槽位；`save_wake_ch10` 照 design/13 §9.1 写。
 
 ## 要做的事
 
@@ -104,7 +104,7 @@ M1 只需要这一段：序章结束（阿青传《长生诀》第一层）→ �
   - `docs/**`、`content/story/**`、`content/world/**`。
   - 命令注册表只加一行。
 - core 禁浮点、禁 DOM、禁墙钟、禁 `Math.random`；每次写入 ≤ 150 行；不加依赖。
-- 不得放宽、跳过或改写任何门禁测试。若只因机器负载挂在 rig 门禁，在报告写明负载与数值即可。
+- 不得放宽、跳过或改写任何门禁测试。rig 100 角色性能门禁已移出 `pnpm check`（作者 AR-33），改由 `pnpm check:perf` 在负载低时单独跑；不得在测试里加任何「高负载跳过」逻辑，不得改阈值。
 
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
@@ -120,7 +120,7 @@ M1 只需要这一段：序章结束（阿青传《长生诀》第一层）→ �
 第 7 节写：
 - 状态字段新旧对照、`saveSchema` 与迁移；
 - `chapter/bookSleep` 的校验与拒绝码表、事件表；
-- 两处待裁定按默认怎么做的；
+- 两处裁定的落实；
 - 测试与 golden；
 - 文档漂移清单（tech/05 §3.4 的命令形状、design/14 仍写天龙与 3/3/3、canon §6 内息 ID、`content/world/ch10/map.yaml` 过时、白马难度 3 与 D2 不一致）；
 - 交给 ENG-19（配点界面要用的查询与命令）、CONTENT-ch00 / ch10（章节定义字段）的接口。

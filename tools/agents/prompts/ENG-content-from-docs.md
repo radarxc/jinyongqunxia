@@ -32,7 +32,7 @@
 - 写集：`content/common/meridians/**`、`content/common/sects/**`、`packages/data/src/schemas/**`、`packages/data/src/content-index.ts`、`packages/data/src/content-registry.ts`、`packages/data/scripts/**`、`apps/game/build/content-plugin.ts`、`tools/content/compile_story.*`、`tools/content/test_compile_story.*`、`package.json`（只加脚本、改 `check`）、`packages/data/CLAUDE.md`、`content/CLAUDE.md`。写集外的改动在提交时会被丢弃。
 - 不改 `docs/**`、`packages/core/**`。data 不得依赖 core：编译检查放 `tools/`。
 - 每次写入 ≤ 150 行；不加依赖。
-- 不得放宽、跳过或改写任何门禁测试。若只因机器负载挂在 rig 门禁，在报告写明负载与数值即可。
+- 不得放宽、跳过或改写任何门禁测试。rig 100 角色性能门禁已移出 `pnpm check`（作者 AR-33），改由 `pnpm check:perf` 在负载低时单独跑；不得在测试里加任何「高负载跳过」逻辑，不得改阈值。
 
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`

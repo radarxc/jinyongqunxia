@@ -103,7 +103,7 @@
 - **不改**：`packages/core/**`、`packages/data/**`（只用类型）、`packages/platform/src/storage/**`、`packages/ui/src/projections.ts`、`ui-bus.ts`。
 - 新依赖只允许 workbox 直接依赖（版本与现有传递依赖相同），在报告说明体积；入口不增重。
 - 每次写入 ≤ 150 行。
-- 不得放宽、跳过或改写任何门禁测试。若只因机器负载挂在 rig 门禁，在报告写明负载与数值即可。
+- 不得放宽、跳过或改写任何门禁测试。rig 100 角色性能门禁已移出 `pnpm check`（作者 AR-33），改由 `pnpm check:perf` 在负载低时单独跑；不得在测试里加任何「高负载跳过」逻辑，不得改阈值。
 
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`（锁文件有变化时先 `pnpm install`）

@@ -48,7 +48,7 @@ Python 参考实现 `tools/balance/meridian_flow_sim.py` 现在也还是 `RULES_
 - 写集：`tools/balance/meridian_flow_sim.py`、`tools/balance/meridian_flow_golden_v3.json`（新）、`tools/balance/README.md`、`tools/balance/test_*.py`（如需）、`packages/core/src/battle/meridian-flow/**`、`packages/core/CLAUDE.md`。写集外的改动在提交时会被丢弃。
 - **不改**：`packages/core/src/battle/{action,damage,timeline}/**`（ENG-16b / 16d / 04b）、`docs/**`。
 - core 禁浮点、禁 DOM、禁墙钟、禁 `Math.random`；Python 只用标准库；每次写入 ≤ 150 行；不加依赖。
-- 不得放宽、跳过或改写任何门禁测试。若只因机器负载挂在 rig 门禁，在报告写明负载与数值即可。
+- 不得放宽、跳过或改写任何门禁测试。rig 100 角色性能门禁已移出 `pnpm check`（作者 AR-33），改由 `pnpm check:perf` 在负载低时单独跑；不得在测试里加任何「高负载跳过」逻辑，不得改阈值。
 
 检查：以下命令必须全部通过。
 - `python3 tools/balance/meridian_flow_sim.py --check`
