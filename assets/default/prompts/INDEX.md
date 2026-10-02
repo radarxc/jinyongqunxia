@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 319、已入库 158、已通过（作者） 150。**待出图队列 319 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 318、已入库 159、已通过（作者） 150。**待出图队列 318 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -33,7 +33,6 @@
 | items | `eq_yuanguguquan_nv` | 元珠饰罟罟冠·女 | `assets/default/item/accessories/eq_yuanguguquan_nv.png` | 待出图 | [eq_yuanguguquan_nv.md](items/accessories/eq_yuanguguquan_nv.md) |
 | items | `eq_yuanqibaolimao_nan` | 元七宝钹笠帽·男 | `assets/default/item/accessories/eq_yuanqibaolimao_nan.png` | 待出图 | [eq_yuanqibaolimao_nan.md](items/accessories/eq_yuanqibaolimao_nan.md) |
 | items | `eq_daliyinkoujindai_nv` | 大理银扣锦带·女 | `assets/default/item/belts/eq_daliyinkoujindai_nv.png` | 待出图 | [eq_daliyinkoujindai_nv.md](items/belts/eq_daliyinkoujindai_nv.md) |
-| items | `eq_huijianghongbudai_nan` | 回疆红布腰带·男 | `assets/default/item/belts/eq_huijianghongbudai_nan.png` | 待出图 | [eq_huijianghongbudai_nan.md](items/belts/eq_huijianghongbudai_nan.md) |
 | items | `eq_jinchunshuiyutuhu_nan` | 金春水玉吐鹘·男 | `assets/default/item/belts/eq_jinchunshuiyutuhu_nan.png` | 待出图 | [eq_jinchunshuiyutuhu_nan.md](items/belts/eq_jinchunshuiyutuhu_nan.md) |
 | items | `eq_jintongkuatuhu_nan` | 金铜銙吐鹘·男 | `assets/default/item/belts/eq_jintongkuatuhu_nan.png` | 待出图 | [eq_jintongkuatuhu_nan.md](items/belts/eq_jintongkuatuhu_nan.md) |
 | items | `eq_liaoyudiexiedai_nan` | 辽玉蹀躞带·男 | `assets/default/item/belts/eq_liaoyudiexiedai_nan.png` | 待出图 | [eq_liaoyudiexiedai_nan.md](items/belts/eq_liaoyudiexiedai_nan.md) |
@@ -578,7 +577,7 @@
 | 17 | 宋青布圆头履·女 | `eq_songqingbuyuantoulv_nv` | 黄中 | 鞋·布履 | 待出图 | [eq_songqingbuyuantoulv_nv.md](items/shoes/eq_songqingbuyuantoulv_nv.md) | template |
 | 18 | 西夏缘履弓鞋·女 | `eq_xixiayuanlvgongxie_nv` | 黄上 | 鞋·弓鞋 | 待出图 | [eq_xixiayuanlvgongxie_nv.md](items/shoes/eq_xixiayuanlvgongxie_nv.md) | template |
 
-### 腰带（26）· 待出图 18、已通过（作者） 8
+### 腰带（26）· 待出图 17、已通过（作者） 8、已入库 1
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -594,12 +593,11 @@
 | 10 | 宋镀金凹面带·男 | `eq_songdujinaomiandai_nan` | 玄上 | 腰带·鞓带 | 待出图 | [eq_songdujinaomiandai_nan.md](items/belts/eq_songdujinaomiandai_nan.md) | template |
 | 11 | 宋玉环绶·女 | `eq_songyuhuanxiu_nv` | 玄上 | 腰带·丝绦 | 待出图 | [eq_songyuhuanxiu_nv.md](items/belts/eq_songyuhuanxiu_nv.md) | template |
 | 12 | 元鎏银铜銙带·男 | `eq_yuanshutongkuaodai_nan` | 玄中 | 腰带·金属 | 待出图 | [eq_yuanshutongkuaodai_nan.md](items/belts/eq_yuanshutongkuaodai_nan.md) | template |
-| 13 | 回疆红布腰带·男 | `eq_huijianghongbudai_nan` | 黄中 | 腰带·布带 | 待出图 | [eq_huijianghongbudai_nan.md](items/belts/eq_huijianghongbudai_nan.md) | template |
-| 14 | 金铜銙吐鹘·男 | `eq_jintongkuatuhu_nan` | 黄上 | 腰带·金属 | 待出图 | [eq_jintongkuatuhu_nan.md](items/belts/eq_jintongkuatuhu_nan.md) | template |
-| 15 | 清汉女丝绸束带·女 | `eq_qinghannvsichou_nv` | 黄上 | 腰带·丝带 | 待出图 | [eq_qinghannvsichou_nv.md](items/belts/eq_qinghannvsichou_nv.md) | template |
-| 16 | 宋麻布绦绳·男 | `eq_songmabutaosheng_nan` | 黄下 | 腰带·布绳 | 待出图 | [eq_songmabutaosheng_nan.md](items/belts/eq_songmabutaosheng_nan.md) | template |
-| 17 | 宋素帛裙带·女 | `eq_songsubodai_nv` | 黄下 | 腰带·帛带 | 待出图 | [eq_songsubodai_nv.md](items/belts/eq_songsubodai_nv.md) | template |
-| 18 | 西夏绣边帛带·女 | `eq_xixiaxiubianbodai_nv` | 黄中 | 腰带·帛带 | 待出图 | [eq_xixiaxiubianbodai_nv.md](items/belts/eq_xixiaxiubianbodai_nv.md) | template |
+| 13 | 金铜銙吐鹘·男 | `eq_jintongkuatuhu_nan` | 黄上 | 腰带·金属 | 待出图 | [eq_jintongkuatuhu_nan.md](items/belts/eq_jintongkuatuhu_nan.md) | template |
+| 14 | 清汉女丝绸束带·女 | `eq_qinghannvsichou_nv` | 黄上 | 腰带·丝带 | 待出图 | [eq_qinghannvsichou_nv.md](items/belts/eq_qinghannvsichou_nv.md) | template |
+| 15 | 宋麻布绦绳·男 | `eq_songmabutaosheng_nan` | 黄下 | 腰带·布绳 | 待出图 | [eq_songmabutaosheng_nan.md](items/belts/eq_songmabutaosheng_nan.md) | template |
+| 16 | 宋素帛裙带·女 | `eq_songsubodai_nv` | 黄下 | 腰带·帛带 | 待出图 | [eq_songsubodai_nv.md](items/belts/eq_songsubodai_nv.md) | template |
+| 17 | 西夏绣边帛带·女 | `eq_xixiaxiubianbodai_nv` | 黄中 | 腰带·帛带 | 待出图 | [eq_xixiaxiubianbodai_nv.md](items/belts/eq_xixiaxiubianbodai_nv.md) | template |
 
 ### 暗器（24）· 已入库 24
 
