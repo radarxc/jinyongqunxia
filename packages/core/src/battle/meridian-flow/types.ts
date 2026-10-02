@@ -26,6 +26,38 @@ export interface MeridianRouteInput {
   readonly routeId: string;
   readonly purpose?: 'attack' | 'defense' | 'movement';
   readonly steps: readonly MeridianRouteStepInput[];
+  readonly previewReference?: RawMeridianProfile;
+}
+
+export interface PreviewOptions {
+  readonly previewRollBp?: number;
+  readonly opponent?: MeridianProfile;
+}
+
+export interface MeridianFlowPreview {
+  readonly unitId: string;
+  readonly routeId: string;
+  attempted: number;
+  completed: number;
+  flowCt: number;
+  routeQualityBp: number;
+  releasedQi: number;
+  routeCarryCap: number;
+  circulationBp: number;
+  blockedAt: number | null;
+  blockedNode: string | null;
+  disabledReason: null | 'unopened_node' | 'ruptured_node' | 'point_seal_9';
+  readonly qualitiesBp: number[];
+  readonly jamChancesBp: number[];
+  readonly arrivalBp: number[];
+  stateVersion: number;
+  readonly profile: MeridianProfile;
+  attackerStrengthBp: number;
+  defenderStrengthBp: number;
+  meridianAttackBp: number;
+  meridianDefenseBp: number;
+  meridianSpeedBp: number;
+  readonly trace: QiFlowTraceStep[];
 }
 
 export interface MeridianFlowInput {
