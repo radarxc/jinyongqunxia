@@ -30991,7 +30991,8 @@
     "ENG-15-core-bus",
     "ENG-18-content-build",
     "DES-prologue-v2",
-    "DES-attr-v2"
+    "DES-attr-v2",
+    "ENG-08b-worldmap-page"
    ],
    "writes": [
     "packages/core/src/progression/**",
@@ -31013,6 +31014,212 @@
     "apps/game/src/game-controller.ts",
     "apps/game/CLAUDE.md",
     "packages/platform/src/storage/records.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/WorldMapPage.vue"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-08b-worldmap-page",
+   "title": "游戏工程 · 小修：大地图页挂载竞态与投影瘦身（审计 H3、M1）",
+   "prompt": "ENG-worldmap-page.md",
+   "deps": [
+    "ENG-15-core-bus",
+    "ENG-18-content-build"
+   ],
+   "writes": [
+    "apps/game/src/pages/WorldMapPage.vue",
+    "apps/game/src/projection.ts",
+    "apps/game/src/runtime/**",
+    "packages/core/src/world/worldmap-*.ts",
+    "packages/ui/src/projections.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/battle/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test:performance"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-16c-battle-session",
+   "title": "游戏工程 · 战斗补全 C：战斗规则收回 core（BattleSession / 命令总线 / 世界流种子 / 实战=回放；审计 S3、M3、L4）",
+   "prompt": "ENG-battle-session.md",
+   "deps": [
+    "ENG-15-core-bus",
+    "ENG-18-content-build",
+    "ENG-16d-damage-geometry",
+    "ENG-14b-meridian-golden-v3",
+    "ENG-08b-worldmap-page"
+   ],
+   "writes": [
+    "packages/core/src/battle/**",
+    "packages/core/src/ai/**",
+    "packages/core/src/replay/**",
+    "packages/core/src/testing/**",
+    "packages/core/src/command/**",
+    "packages/core/src/api/**",
+    "packages/core/src/state/**",
+    "packages/core/bench/**",
+    "packages/core/CLAUDE.md",
+    "apps/game/src/battle/*.ts",
+    "apps/game/src/runtime/**",
+    "apps/game/CLAUDE.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/battle/components/BattleActions.vue"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-16e-battle-ui-actions",
+   "title": "游戏工程 · 战斗补全 E：战斗界面接通移动 / 防御 / 物品 / 聚气与可达高亮",
+   "prompt": "ENG-battle-ui-actions.md",
+   "deps": [
+    "ENG-16c-battle-session",
+    "ENG-21b-recovery-quality"
+   ],
+   "writes": [
+    "apps/game/src/battle/components/**",
+    "apps/game/src/battle/*.ts",
+    "apps/game/src/battle/battle.css",
+    "packages/render/src/battle/**",
+    "packages/render/CLAUDE.md",
+    "packages/ui/src/i18n.ts"
    ]
   }
  ]
