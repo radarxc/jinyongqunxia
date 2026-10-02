@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：待出图 457、已通过（作者） 150、待重出（候选是代码画的假图） 12、待重出 8。**待出图队列 477 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：待出图 445、已通过（作者） 150、已入库 24、待重出 8。**待出图队列 453 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -254,30 +254,6 @@
 | items | `it_zhimashaobing` | 芝麻烧饼 | `assets/default/item/food/it_zhimashaobing.png` | 待出图 | [it_zhimashaobing.md](items/food/it_zhimashaobing.md) |
 | items | `it_zhudu` | 猪肚 | `assets/default/item/food/it_zhudu.png` | 待出图 | [it_zhudu.md](items/food/it_zhudu.md) |
 | items | `it_zhurou` | 猪肉 | `assets/default/item/food/it_zhurou.png` | 待出图 | [it_zhurou.md](items/food/it_zhurou.md) |
-| items | `eq_baoyulihuading` | 暴雨梨花钉 | `assets/default/item/hidden-weapons/eq_baoyulihuading.png` | 待重出（候选是代码画的假图） | [eq_baoyulihuading.md](items/hidden-weapons/eq_baoyulihuading.md) |
-| items | `eq_bingpoyinzhen` | 冰魄银针 | `assets/default/item/hidden-weapons/eq_bingpoyinzhen.png` | 待重出（候选是代码画的假图） | [eq_bingpoyinzhen.md](items/hidden-weapons/eq_bingpoyinzhen.md) |
-| items | `eq_duling` | 毒菱 | `assets/default/item/hidden-weapons/eq_duling.png` | 待出图 | [eq_duling.md](items/hidden-weapons/eq_duling.md) |
-| items | `eq_feibiaonang` | 飞镖囊 | `assets/default/item/hidden-weapons/eq_feibiaonang.png` | 待出图 | [eq_feibiaonang.md](items/hidden-weapons/eq_feibiaonang.md) |
-| items | `eq_feidaoxia` | 飞刀匣 | `assets/default/item/hidden-weapons/eq_feidaoxia.png` | 待出图 | [eq_feidaoxia.md](items/hidden-weapons/eq_feidaoxia.md) |
-| items | `eq_feishinang` | 飞石囊 | `assets/default/item/hidden-weapons/eq_feishinang.png` | 待出图 | [eq_feishinang.md](items/hidden-weapons/eq_feishinang.md) |
-| items | `eq_furongjinzhen` | 芙蓉金针 | `assets/default/item/hidden-weapons/eq_furongjinzhen.png` | 待出图 | [eq_furongjinzhen.md](items/hidden-weapons/eq_furongjinzhen.md) |
-| items | `eq_hanshasheying` | 含沙射影 | `assets/default/item/hidden-weapons/eq_hanshasheying.png` | 待重出（候选是代码画的假图） | [eq_hanshasheying.md](items/hidden-weapons/eq_hanshasheying.md) |
-| items | `eq_heixueshenzhen` | 黑血神针 | `assets/default/item/hidden-weapons/eq_heixueshenzhen.png` | 待重出（候选是代码画的假图） | [eq_heixueshenzhen.md](items/hidden-weapons/eq_heixueshenzhen.md) |
-| items | `eq_jinshezhui` | 金蛇锥 | `assets/default/item/hidden-weapons/eq_jinshezhui.png` | 待出图 | [eq_jinshezhui.md](items/hidden-weapons/eq_jinshezhui.md) |
-| items | `eq_kongqueling` | 孔雀翎 | `assets/default/item/hidden-weapons/eq_kongqueling.png` | 待重出（候选是代码画的假图） | [eq_kongqueling.md](items/hidden-weapons/eq_kongqueling.md) |
-| items | `eq_lianfaxiunu` | 连发匣弩 | `assets/default/item/hidden-weapons/eq_lianfaxiunu.png` | 待出图 | [eq_lianfaxiunu.md](items/hidden-weapons/eq_lianfaxiunu.md) |
-| items | `eq_lianzhudangong` | 连珠弹弓 | `assets/default/item/hidden-weapons/eq_lianzhudangong.png` | 待出图 | [eq_lianzhudangong.md](items/hidden-weapons/eq_lianzhudangong.md) |
-| items | `eq_luochaduanchong` | 罗刹短铳 | `assets/default/item/hidden-weapons/eq_luochaduanchong.png` | 待重出（候选是代码画的假图） | [eq_luochaduanchong.md](items/hidden-weapons/eq_luochaduanchong.md) |
-| items | `eq_sanxiaosanxia` | 三笑逍遥散匣 | `assets/default/item/hidden-weapons/eq_sanxiaosanxia.png` | 待出图 | [eq_sanxiaosanxia.md](items/hidden-weapons/eq_sanxiaosanxia.md) |
-| items | `eq_tonghuangxiujian` | 铜簧袖箭 | `assets/default/item/hidden-weapons/eq_tonghuangxiujian.png` | 待出图 | [eq_tonghuangxiujian.md](items/hidden-weapons/eq_tonghuangxiujian.md) |
-| items | `eq_wenxuzhen` | 蚊须针 | `assets/default/item/hidden-weapons/eq_wenxuzhen.png` | 待重出（候选是代码画的假图） | [eq_wenxuzhen.md](items/hidden-weapons/eq_wenxuzhen.md) |
-| items | `eq_xiaolifeidao` | 小李飞刀 | `assets/default/item/hidden-weapons/eq_xiaolifeidao.png` | 待重出（候选是代码画的假图） | [eq_xiaolifeidao.md](items/hidden-weapons/eq_xiaolifeidao.md) |
-| items | `eq_yufengzhen` | 玉蜂针 | `assets/default/item/hidden-weapons/eq_yufengzhen.png` | 待出图 | [eq_yufengzhen.md](items/hidden-weapons/eq_yufengzhen.md) |
-| items | `eq_zaohedingxia` | 枣核钉匣 | `assets/default/item/hidden-weapons/eq_zaohedingxia.png` | 待出图 | [eq_zaohedingxia.md](items/hidden-weapons/eq_zaohedingxia.md) |
-| items | `it_feihuangshi` | 飞蝗石 | `assets/default/item/hidden-weapons/it_feihuangshi.png` | 待重出（候选是代码画的假图） | [it_feihuangshi.md](items/hidden-weapons/it_feihuangshi.md) |
-| items | `it_jinqianbiao` | 金钱镖 | `assets/default/item/hidden-weapons/it_jinqianbiao.png` | 待重出（候选是代码画的假图） | [it_jinqianbiao.md](items/hidden-weapons/it_jinqianbiao.md) |
-| items | `it_meihuazhen` | 梅花针 | `assets/default/item/hidden-weapons/it_meihuazhen.png` | 待重出（候选是代码画的假图） | [it_meihuazhen.md](items/hidden-weapons/it_meihuazhen.md) |
-| items | `it_xiujian` | 袖箭 | `assets/default/item/hidden-weapons/it_xiujian.png` | 待重出（候选是代码画的假图） | [it_xiujian.md](items/hidden-weapons/it_xiujian.md) |
 | items | `eq_dalijingxiulv_nv` | 大理锦绣履·女 | `assets/default/item/shoes/eq_dalijingxiulv_nv.png` | 待出图 | [eq_dalijingxiulv_nv.md](items/shoes/eq_dalijingxiulv_nv.md) |
 | items | `eq_huijiangxiubianpixue_nv` | 回疆绣边皮靴·女 | `assets/default/item/shoes/eq_huijiangxiubianpixue_nv.png` | 待出图 | [eq_huijiangxiubianpixue_nv.md](items/shoes/eq_huijiangxiubianpixue_nv.md) |
 | items | `eq_jinwupixue_nan` | 金乌皮靴·男 | `assets/default/item/shoes/eq_jinwupixue_nan.png` | 待出图 | [eq_jinwupixue_nan.md](items/shoes/eq_jinwupixue_nan.md) |
@@ -1048,34 +1024,34 @@
 | 25 | 宋素帛裙带·女 | `eq_songsubodai_nv` | 黄下 | 腰带·帛带 | 待出图 | [eq_songsubodai_nv.md](items/belts/eq_songsubodai_nv.md) | template |
 | 26 | 西夏绣边帛带·女 | `eq_xixiaxiubianbodai_nv` | 黄中 | 腰带·帛带 | 待出图 | [eq_xixiaxiubianbodai_nv.md](items/belts/eq_xixiaxiubianbodai_nv.md) | template |
 
-### 暗器（24）· 待重出（候选是代码画的假图） 12、待出图 12
+### 暗器（24）· 已入库 24
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
-| 1 | 暴雨梨花钉 | `eq_baoyulihuading` | 天 | 暗器·机括钉匣 | 待重出（候选是代码画的假图） | [eq_baoyulihuading.md](items/hidden-weapons/eq_baoyulihuading.md) | manifest |
-| 2 | 小李飞刀 | `eq_xiaolifeidao` | 天 | 暗器·飞刀 | 待重出（候选是代码画的假图） | [eq_xiaolifeidao.md](items/hidden-weapons/eq_xiaolifeidao.md) | manifest |
-| 3 | 冰魄银针 | `eq_bingpoyinzhen` | 地 | 暗器·名针 | 待重出（候选是代码画的假图） | [eq_bingpoyinzhen.md](items/hidden-weapons/eq_bingpoyinzhen.md) | manifest |
-| 4 | 芙蓉金针 | `eq_furongjinzhen` | 地下 | 暗器·金针 | 待出图 | [eq_furongjinzhen.md](items/hidden-weapons/eq_furongjinzhen.md) | template |
-| 5 | 黑血神针 | `eq_heixueshenzhen` | 地 | 暗器·毒针 | 待重出（候选是代码画的假图） | [eq_heixueshenzhen.md](items/hidden-weapons/eq_heixueshenzhen.md) | manifest |
-| 6 | 金蛇锥 | `eq_jinshezhui` | 地中 | 暗器·名锥 | 待出图 | [eq_jinshezhui.md](items/hidden-weapons/eq_jinshezhui.md) | template |
-| 7 | 孔雀翎 | `eq_kongqueling` | 地 | 暗器·机括 | 待重出（候选是代码画的假图） | [eq_kongqueling.md](items/hidden-weapons/eq_kongqueling.md) | manifest |
-| 8 | 罗刹短铳 | `eq_luochaduanchong` | 地 | 暗器·火器 | 待重出（候选是代码画的假图） | [eq_luochaduanchong.md](items/hidden-weapons/eq_luochaduanchong.md) | manifest |
-| 9 | 三笑逍遥散匣 | `eq_sanxiaosanxia` | 地中 | 暗器·毒粉匣 | 待出图 | [eq_sanxiaosanxia.md](items/hidden-weapons/eq_sanxiaosanxia.md) | template |
-| 10 | 蚊须针 | `eq_wenxuzhen` | 地 | 暗器·名针 | 待重出（候选是代码画的假图） | [eq_wenxuzhen.md](items/hidden-weapons/eq_wenxuzhen.md) | manifest |
-| 11 | 玉蜂针 | `eq_yufengzhen` | 地下 | 暗器·名针 | 待出图 | [eq_yufengzhen.md](items/hidden-weapons/eq_yufengzhen.md) | template |
-| 12 | 枣核钉匣 | `eq_zaohedingxia` | 地中 | 暗器·名钉 | 待出图 | [eq_zaohedingxia.md](items/hidden-weapons/eq_zaohedingxia.md) | template |
-| 13 | 毒菱 | `eq_duling` | 玄上 | 暗器·毒镖 | 待出图 | [eq_duling.md](items/hidden-weapons/eq_duling.md) | template |
-| 14 | 飞刀匣 | `eq_feidaoxia` | 玄中 | 暗器·飞刀 | 待出图 | [eq_feidaoxia.md](items/hidden-weapons/eq_feidaoxia.md) | template |
-| 15 | 含沙射影 | `eq_hanshasheying` | 玄 | 暗器·机括 | 待重出（候选是代码画的假图） | [eq_hanshasheying.md](items/hidden-weapons/eq_hanshasheying.md) | manifest |
-| 16 | 连发匣弩 | `eq_lianfaxiunu` | 玄上 | 暗器·机括弩 | 待出图 | [eq_lianfaxiunu.md](items/hidden-weapons/eq_lianfaxiunu.md) | template |
-| 17 | 连珠弹弓 | `eq_lianzhudangong` | 玄下 | 暗器·弹丸 | 待出图 | [eq_lianzhudangong.md](items/hidden-weapons/eq_lianzhudangong.md) | template |
-| 18 | 梅花针 | `it_meihuazhen` | 玄 | 暗器·针 | 待重出（候选是代码画的假图） | [it_meihuazhen.md](items/hidden-weapons/it_meihuazhen.md) | manifest |
-| 19 | 飞镖囊 | `eq_feibiaonang` | 黄中 | 暗器·飞镖囊 | 待出图 | [eq_feibiaonang.md](items/hidden-weapons/eq_feibiaonang.md) | template |
-| 20 | 飞石囊 | `eq_feishinang` | 黄下 | 暗器·弹丸囊 | 待出图 | [eq_feishinang.md](items/hidden-weapons/eq_feishinang.md) | template |
-| 21 | 铜簧袖箭 | `eq_tonghuangxiujian` | 黄上 | 暗器·弩箭 | 待出图 | [eq_tonghuangxiujian.md](items/hidden-weapons/eq_tonghuangxiujian.md) | template |
-| 22 | 飞蝗石 | `it_feihuangshi` | 黄 | 暗器·弹丸 | 待重出（候选是代码画的假图） | [it_feihuangshi.md](items/hidden-weapons/it_feihuangshi.md) | manifest |
-| 23 | 金钱镖 | `it_jinqianbiao` | 黄 | 暗器·飞镖 | 待重出（候选是代码画的假图） | [it_jinqianbiao.md](items/hidden-weapons/it_jinqianbiao.md) | manifest |
-| 24 | 袖箭 | `it_xiujian` | 黄 | 暗器·弩箭 | 待重出（候选是代码画的假图） | [it_xiujian.md](items/hidden-weapons/it_xiujian.md) | manifest |
+| 1 | 暴雨梨花钉 | `eq_baoyulihuading` | 天 | 暗器·机括钉匣 | 已入库 | [eq_baoyulihuading.md](items/hidden-weapons/eq_baoyulihuading.md) | manifest |
+| 2 | 小李飞刀 | `eq_xiaolifeidao` | 天 | 暗器·飞刀 | 已入库 | [eq_xiaolifeidao.md](items/hidden-weapons/eq_xiaolifeidao.md) | manifest |
+| 3 | 冰魄银针 | `eq_bingpoyinzhen` | 地 | 暗器·名针 | 已入库 | [eq_bingpoyinzhen.md](items/hidden-weapons/eq_bingpoyinzhen.md) | manifest |
+| 4 | 芙蓉金针 | `eq_furongjinzhen` | 地下 | 暗器·金针 | 已入库 | [eq_furongjinzhen.md](items/hidden-weapons/eq_furongjinzhen.md) | manifest |
+| 5 | 黑血神针 | `eq_heixueshenzhen` | 地 | 暗器·毒针 | 已入库 | [eq_heixueshenzhen.md](items/hidden-weapons/eq_heixueshenzhen.md) | manifest |
+| 6 | 金蛇锥 | `eq_jinshezhui` | 地中 | 暗器·名锥 | 已入库 | [eq_jinshezhui.md](items/hidden-weapons/eq_jinshezhui.md) | manifest |
+| 7 | 孔雀翎 | `eq_kongqueling` | 地 | 暗器·机括 | 已入库 | [eq_kongqueling.md](items/hidden-weapons/eq_kongqueling.md) | manifest |
+| 8 | 罗刹短铳 | `eq_luochaduanchong` | 地 | 暗器·火器 | 已入库 | [eq_luochaduanchong.md](items/hidden-weapons/eq_luochaduanchong.md) | manifest |
+| 9 | 三笑逍遥散匣 | `eq_sanxiaosanxia` | 地中 | 暗器·毒粉匣 | 已入库 | [eq_sanxiaosanxia.md](items/hidden-weapons/eq_sanxiaosanxia.md) | manifest |
+| 10 | 蚊须针 | `eq_wenxuzhen` | 地 | 暗器·名针 | 已入库 | [eq_wenxuzhen.md](items/hidden-weapons/eq_wenxuzhen.md) | manifest |
+| 11 | 玉蜂针 | `eq_yufengzhen` | 地下 | 暗器·名针 | 已入库 | [eq_yufengzhen.md](items/hidden-weapons/eq_yufengzhen.md) | manifest |
+| 12 | 枣核钉匣 | `eq_zaohedingxia` | 地中 | 暗器·名钉 | 已入库 | [eq_zaohedingxia.md](items/hidden-weapons/eq_zaohedingxia.md) | manifest |
+| 13 | 毒菱 | `eq_duling` | 玄上 | 暗器·毒镖 | 已入库 | [eq_duling.md](items/hidden-weapons/eq_duling.md) | manifest |
+| 14 | 飞刀匣 | `eq_feidaoxia` | 玄中 | 暗器·飞刀 | 已入库 | [eq_feidaoxia.md](items/hidden-weapons/eq_feidaoxia.md) | manifest |
+| 15 | 含沙射影 | `eq_hanshasheying` | 玄 | 暗器·机括 | 已入库 | [eq_hanshasheying.md](items/hidden-weapons/eq_hanshasheying.md) | manifest |
+| 16 | 连发匣弩 | `eq_lianfaxiunu` | 玄上 | 暗器·机括弩 | 已入库 | [eq_lianfaxiunu.md](items/hidden-weapons/eq_lianfaxiunu.md) | manifest |
+| 17 | 连珠弹弓 | `eq_lianzhudangong` | 玄下 | 暗器·弹丸 | 已入库 | [eq_lianzhudangong.md](items/hidden-weapons/eq_lianzhudangong.md) | manifest |
+| 18 | 梅花针 | `it_meihuazhen` | 玄 | 暗器·针 | 已入库 | [it_meihuazhen.md](items/hidden-weapons/it_meihuazhen.md) | manifest |
+| 19 | 飞镖囊 | `eq_feibiaonang` | 黄中 | 暗器·飞镖囊 | 已入库 | [eq_feibiaonang.md](items/hidden-weapons/eq_feibiaonang.md) | manifest |
+| 20 | 飞石囊 | `eq_feishinang` | 黄下 | 暗器·弹丸囊 | 已入库 | [eq_feishinang.md](items/hidden-weapons/eq_feishinang.md) | manifest |
+| 21 | 铜簧袖箭 | `eq_tonghuangxiujian` | 黄上 | 暗器·弩箭 | 已入库 | [eq_tonghuangxiujian.md](items/hidden-weapons/eq_tonghuangxiujian.md) | manifest |
+| 22 | 飞蝗石 | `it_feihuangshi` | 黄 | 暗器·弹丸 | 已入库 | [it_feihuangshi.md](items/hidden-weapons/it_feihuangshi.md) | manifest |
+| 23 | 金钱镖 | `it_jinqianbiao` | 黄 | 暗器·飞镖 | 已入库 | [it_jinqianbiao.md](items/hidden-weapons/it_jinqianbiao.md) | manifest |
+| 24 | 袖箭 | `it_xiujian` | 黄 | 暗器·弩箭 | 已入库 | [it_xiujian.md](items/hidden-weapons/it_xiujian.md) | manifest |
 
 ## 地图
 
