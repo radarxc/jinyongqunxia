@@ -57,8 +57,8 @@ def catalog_rows(cat: str):
     return rows
 
 
-def sheet(cells, out: Path, cell=224, cols=None, bg=PAPER, pad=10, caption_h=58, title=None):
-    """cells: list of (image_path, [caption lines]). 拼成网格，返回 (cols, rows)。"""
+def sheet(cells, out: Path, cell=224, cols=None, bg=PAPER, pad=10, caption_h=58, title=None, tile_bg=None):
+    """cells: list of (image_path, [caption lines]). 拼成网格，返回 (cols, rows)。tile_bg：透明图块单独衬的底色（如深色看抠图边缘），说明文字仍在 bg 上。"""
     if not cells:
         return None
     cols = cols or (8 if len(cells) > 24 else 6 if len(cells) > 12 else min(len(cells), 6))
@@ -80,7 +80,7 @@ def sheet(cells, out: Path, cell=224, cols=None, bg=PAPER, pad=10, caption_h=58,
             pic.load()
             if pic.mode in ("RGBA", "LA", "P"):
                 pic = pic.convert("RGBA")
-                tile = Image.new("RGBA", pic.size, bg + (255,))
+                tile = Image.new("RGBA", pic.size, (tile_bg or bg) + (255,))
                 tile.alpha_composite(pic)
                 pic = tile.convert("RGB")
             else:
@@ -185,6 +185,35 @@ def main():
     if svg.exists():
         files["map/jianghu-ch01.svg"] = "map/jianghu-ch01.svg"
 
+    # ---- 角色立绘（tools/portrait/build_portraits.py 产物）
+    html_por, n_scene = [], 0
+    pidx_path = ROOT / "assets/default/portrait/index.json"
+    if pidx_path.exists():
+        pidx = json.loads(pidx_path.read_text(encoding="utf-8"))
+        names = {}
+        for man in (ROOT / "assets/default/character").glob("*/*/manifest.yaml"):
+            for e in load_manifest(man):
+                names[e.get("id")] = str(e.get("subject", "")).split(" ")[0]
+        por_root = ROOT / "assets/default/portrait"
+        by_ch = {}
+        for key, rec in pidx.get("bust", {}).items():
+            ch = key.split("/")[2][:4]
+            by_ch.setdefault(ch, []).append((por_root / rec["512"]["f"], [names.get(rec["source"], key.split("/")[1]), key.split("/")[2][5:27]]))
+        for ch in sorted(by_ch):
+            cells = sorted(by_ch[ch], key=lambda c: c[1][0])
+            name = f"portrait_{ch}.jpg"
+            sheet(cells, IMG / name, cell=176, cols=8, bg=PAPER, caption_h=40, tile_bg=(38, 56, 64),
+                  title=f"{ch} · 半身 {len(cells)} 个（透明底，衬深色看抠图边缘）")
+            files[f"img/{name}"] = f"img/{name}"
+            html_por.append((ch, len(cells), name))
+        scenes = [(por_root / rec["low"]["f"], [names.get(rec["source"], ""), key.split("/")[2][5:27]])
+                  for key, rec in sorted(pidx.get("portrait", {}).items()) if not rec.get("alpha")]
+        n_scene = len(scenes)
+        if scenes:
+            sheet(scenes, IMG / "portrait_scenes.jpg", cell=200, cols=8, bg=PAPER, caption_h=40, title=f"剧情场景立绘 · {len(scenes)} 张（保留原画背景）")
+            files["img/portrait_scenes.jpg"] = "img/portrait_scenes.jpg"
+    n_bust = sum(n for _, n, _ in html_por)
+
     # ---- HTML
     def esc(s):
         return str(s).replace("&", "&amp;").replace("<", "&lt;")
@@ -228,8 +257,9 @@ details summary{cursor:pointer;color:var(--accent)}
 <div class="stat"><b>{nk} 套</b><span>年代建筑套件<br>{nb} 栋建筑 · {nt} 张贴片 · 全部历史重出</span></div>
 <div class="stat"><b>2 套</b><span>基线宋套件（作者已审）<br>未按历史图片重出</span></div>
 <div class="stat"><b>{len(maps) + (1 if svg.exists() else 0)}</b><span>地图 / 城镇图<br>水墨基线 2 · 城镇基线 1 · 江湖导航图 SVG</span></div>
+<div class="stat"><b>{n_bust}</b><span>角色立绘（基础形象）<br>透明全身 / 半身 / 头像 · 场景图 {n_scene}</span></div>
 </div>
-<nav><a href="#items">物品</a><a href="#kits">建筑套件与贴片</a><a href="#maps">地图</a></nav>
+<nav><a href="#items">物品</a><a href="#kits">建筑套件与贴片</a><a href="#maps">地图</a><a href="#portraits">角色立绘</a></nav>
 <h2 id="items">物品 · 11 类</h2>
 <p class="lede">排序：天 → 地 → 玄 → 黄。画风基线是倚天剑与九阴真经两张（作者已审）。</p>""")
     for cat, cname, n, nm, nc, name in html_items:
@@ -246,7 +276,13 @@ details summary{cursor:pointer;color:var(--accent)}
         h.append(f'<h3>{esc(label)} <span class="meta">{size}</span></h3><div class="sheet"><img loading="lazy" src="img/{name}" alt="{esc(label)}"></div>')
     if svg.exists():
         h.append('<h3>江湖万里图 · ch01（代码生成 SVG，4096×3072）</h3><div class="sheet"><img loading="lazy" src="map/jianghu-ch01.svg" alt="江湖万里图 ch01"></div>')
-    h.append('<p class="meta" style="margin-top:32px">由 tools/review/build_gallery.py 生成；素材源目录 assets/default/{item,building-map,tile,baseline}。</p>')
+    if html_por:
+        h.append('<h2 id="portraits">角色立绘</h2><p class="lede">立绘 agent 出的写实全身立绘，经 tools/portrait 处理：BiRefNet 抠图去背景、去白边，裁 1:1 半身与头肩头像，压成 WebP。下面是半身图，衬在深色底上便于看边缘；全身透明立绘与头像同目录。剧情场景图保留原画背景。</p>')
+        for ch, n, name in html_por:
+            h.append(f'<h3 id="portraits-{ch}">{ch} <span class="meta">半身 {n} 个</span></h3><div class="sheet"><img loading="lazy" src="img/{name}" alt="{ch} 角色半身"></div>')
+        if n_scene:
+            h.append(f'<h3 id="portraits-scenes">剧情场景立绘 <span class="meta">{n_scene} 张</span></h3><div class="sheet"><img loading="lazy" src="img/portrait_scenes.jpg" alt="剧情场景立绘"></div>')
+    h.append('<p class="meta" style="margin-top:32px">由 tools/review/build_gallery.py 生成；素材源目录 assets/default/{item,building-map,tile,baseline,portrait}。</p>')
     (OUT / "index.html").write_text("\n".join(h), encoding="utf-8")
     (OUT / "files.json").write_text(json.dumps(files, ensure_ascii=False, indent=1), encoding="utf-8")
     total = sum((OUT / v).stat().st_size for v in files.values()) + (OUT / "index.html").stat().st_size
