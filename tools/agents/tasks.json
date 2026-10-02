@@ -30148,6 +30148,252 @@
     "docs/tech/08-backend-and-online.md",
     "docs/tech/09-roadmap.md"
    ]
+  },
+  {
+   "id": "DES-baima-tang",
+   "title": "设计补充 · 《白马啸西风》唐代化：第一本正式书与 M1 冷入口（AR-26 / AR-29）",
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "prompt": "DES-baima-tang.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "docs/design/chapters/10-baima.md",
+    "docs/design/story/10-baima.md",
+    "docs/design/catalog/npcs-ch10-baima.md",
+    "docs/design/catalog/skills-bulu-10-baima.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/chapters/10-baima.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-manuals-expand",
+   "title": "设计补充 · 武学秘籍名录扩充到 ≥120（AR-30：秘籍太少、封面写书名）",
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "prompt": "DES-items-manuals-expand.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "docs/design/catalog/items-manuals.md",
+    "docs/design/10-items-and-equipment.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-manuals.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-manuals.md",
+      "--min",
+      "120"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-weapons-expand2",
+   "title": "设计补充 · 兵器 ≥220 / 暗器 ≥48 第二次扩充（AR-30：武器也不足）",
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "prompt": "DES-items-weapons-expand2.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "docs/design/catalog/items-weapons.md",
+    "docs/design/catalog/items-hidden-weapons.md",
+    "docs/design/10-items-and-equipment.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-weapons.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-weapons.md",
+      "--min",
+      "220"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-hidden-weapons.md",
+      "--min",
+      "48"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-scenes-keyart",
+   "title": "设计补充 · 各书重要场景情景图清单 ≥100 与 Gemini 提示词（AR-30 第 3 条）",
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "prompt": "DES-scenes-keyart.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "docs/design/catalog/key-scenes.md",
+    "assets/default/prompts/scenes/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/catalog/key-scenes.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-npc-commoners-era",
+   "title": "设计补充 · 各朝各代路人形象 ≥160 与 Gemini 提示词（AR-30 第 4 条）",
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "prompt": "DES-npc-commoners-era.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "docs/design/catalog/npcs-commoners-era.md",
+    "assets/default/prompts/characters/commoners/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/catalog/npcs-commoners-era.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "TOOL-rig-nearside",
+   "title": "动作原型 P0 · 修正 rig 近侧与左右约定（tech/09 z 表、make_parts、placeholder，AR-29）",
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "prompt": "TOOL-rig-nearside.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/tech/09-character-rig.md",
+    "docs/tech/07-asset-generation.md",
+    "tools/rig/**",
+    "packages/render/src/rig/**",
+    "assets/default/rig/**",
+    "assets/default/prompts/rig/GUIDE.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/tech/09-character-rig.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "TOOL-rig-clips",
+   "title": "动作原型 P6–P7 · CC0 动作片段导入、烘焙与投影指标（AR-29）",
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "prompt": "TOOL-rig-clips.md",
+   "deps": [
+    "TOOL-rig-nearside"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/rig/clips/**",
+    "assets/default/rig/clips/**",
+    "docs/tech/09-character-rig.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "assets/default/rig/clips/SOURCES.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ]
+    ]
+   }
   }
  ]
 }
