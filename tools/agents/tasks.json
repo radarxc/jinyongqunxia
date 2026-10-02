@@ -30782,6 +30782,153 @@
     "packages/core/src/battle/timeline/**",
     "packages/core/src/battle/encounter/**"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/battle/action/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test:performance"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-16d-damage-geometry",
+   "title": "游戏工程 · 战斗补全 D：伤害链接入几何（方位 / 高差 / 地形 / 遮蔽 / LOS 命中修正；审计 H1）",
+   "prompt": "ENG-damage-geometry.md",
+   "deps": [
+    "ENG-16b-battle-actions"
+   ],
+   "writes": [
+    "packages/core/src/battle/action/**",
+    "packages/core/src/battle/damage/**",
+    "packages/core/src/battle/encounter/**",
+    "packages/core/src/battle/geometry/**",
+    "packages/core/src/battle/types.ts",
+    "packages/core/src/battle/index.ts",
+    "packages/core/src/battle/reaction/**",
+    "packages/core/src/battle/formation/**",
+    "packages/core/src/hex/**",
+    "packages/core/src/testing/**",
+    "packages/core/src/replay/**",
+    "packages/core/bench/**",
+    "packages/core/CLAUDE.md",
+    "apps/game/src/battle/*.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/balance/meridian_flow_golden_v3.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/balance/meridian_flow_sim.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test:performance"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-14b-meridian-golden-v3",
+   "title": "游戏工程 · 经脉协议 3 黄金：Python 参考升协议 3、重录 v3、对拍生产 runtime（审计 S1）",
+   "prompt": "ENG-meridian-golden-v3.md",
+   "deps": [
+    "ENG-16b-battle-actions"
+   ],
+   "writes": [
+    "tools/balance/meridian_flow_sim.py",
+    "tools/balance/meridian_flow_golden_v3.json",
+    "tools/balance/README.md",
+    "tools/balance/test_*.py",
+    "packages/core/src/battle/meridian-flow/**",
+    "packages/core/CLAUDE.md"
+   ]
   }
  ]
 }
