@@ -373,88 +373,6 @@
   scene_title: 漠北论英雄
   stage: 第40回华山之后，郭靖赴漠北，与病重的成吉思汗讨论何为英雄；不与第38回拒绝南征混为同一场。
   asset_variant: scene
-- id: por_npc_hongqigong__ch02_elder_bangzhu_base
-  file: por_npc_hongqigong__ch02_elder_bangzhu_base.png
-  category: character/male
-  style: default
-  subject: 洪七公 npc_hongqigong ch02_shediao · 江南授掌尚未传棒的老年北丐帮主基础身份
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure. Head and neck UPRIGHT, forehead–nose–chin centerline VERTICAL, eyes on a HORIZONTAL line, chin neutral, gaze forward, camera level. NO head tilt, NO Dutch angle, no leaning the head toward either shoulder. Do not copy any source-photo pose.
-
-
-    Create a refined REALISTIC full-body wuxia illustration of HONG QIGONG / 洪七公. Image 1 is the ONLY facial identity: Lau Dan / 刘丹 as Hong Qigong in the 1983 TVB Legend of the Condor Heroes, the Barbara Yung-era cast selected by the user. Image 2 supplies male rendering/colours only. Image 3 supplies an extremely faint ink-wash background only. Do not blend another reference face. This is an original illustration, not a photograph or copied TV still.
-
-
-    身份与阶段：npc_hongqigong，《射雕英雄传》ch02_shediao，江南授郭靖掌法、尚未传棒给黄蓉的老年洪七公，北丐、现任丐帮帮主与九指神丐。精神充沛、筋骨健壮而自然老去，肩背厚实略有松弛，身手有力而非衰弱佝偻，也不是年轻壮汉。神情豁达宽厚，微带笑意与明亮小眼；宗师威仪来自端正的站姿和安定眼神，不画醉态或夸张大笑。
-
-
-    本人面部关系：以第一图刘丹版洪七公的宽额和厚实偏长方脸为依据，保留白色浓眉弧度、眉眼间距、自然修长的眼形、清楚鼻梁与圆厚鼻头、鼻唇部白八字须和两颊饱满程度。保留可信额纹与眼角细纹但不丑化；面部肤色温暖自然。灰白头发向后拢束，以旧素布带收成低调发束，允许少量短碎发；白眉白须是本版本人辨识的一部分，须长自然垂至上胸，整理成连续须束不糊成白团。原照唇线部分被须遮挡，不编造微小嘴唇参数。不要把其他四绝、男性基线或水墨女性图的脸混进来，也不照抄来源的粉墙或半身裁切。
-
-
-    衣装：宋式灰褐交领右衽旧布袍、深灰布裤与软布鞋，衣服旧而洗净，只有少量整齐异色补丁，补片边缘完整缝合、不裸露皮肤。汉式交领为穿着者左襟压右襟，向本人右侧合拢，不镜像。整件衣料、袖口、下摆连续完整，有少量宽缓承重褶，不加碎边、破洞、密集风化、粗颗粒噪点或夸张袈裟围裙。衣色款式按项目，不照搬影视造型。
-
-
-    伤残侧别为硬约束：洪七公本人右手食指缺失，旧伤早已愈合，无血无开放创口。本人右手位于正面观者左侧，伸到右胯外侧并略转掌向观者，手指自然舒展、与衣摆分开，清楚保留拇指、中指、无名指、小指共四指；食指所在位置自然已愈缺损，不补假指，不用袖子或握拳掩盖。本人左手完整五指，只负责持棒。不能为凑十指修复角色，也不能错删其他手指或整手。
-
-
-    兵器与标志物：本人左手在左腿外侧垂握一根细长青绿竹打狗棒eq_dagoubang，画面位于观者右侧。竹棒单根连续、粗细适合单手，竹节自然可读，不画成铁杆、巨棍或发光法杖。上端、下端都入画，下端接近地面，握点与手掌接触清晰，左手五指围握结构可信。大红酒葫芦eq_jiuhulu以实在绳索固定于背侧，挂在本人右后腰侧并在身体轮廓外露出葫芦口和双腹形；绳扣与背肩或腰带真实连接，顺重力贴近背侧，不漂浮不穿透衣服，不挡右手缺指。只此一棒一葫芦，不另增食物、杯碗或武器。
-
-
-    构图与画法：身体和脸主要朝正面，头颈中线垂直、双眼水平、肩自然舒展，两足稳稳着地而姿态不僵。单人、单视图、完整全身，原生2:3竖幅，头发顶端、双手、双足、衣摆、竹棒两端与葫芦全部入画，四周留自然净空，不按固定88–92%或头身数字拉伸。人物本体美观写实，骨肉、皮肤、布料、竹棒和绳索有完整可信体积，连续柔和明暗和清楚轮廓；左上柔和漫射光、低饱和灰褐配温暖肤色，红葫芦克制点色。男性基线只取绘制与设色，不传递青年脸或装备。
-
-
-    背景：不透明暖浅灰纸底，边缘极浅低对比远山水墨，留白充足，脚下浅接触阴影。水墨、薄雾和纸纹止于人物及物件轮廓外，不能穿透脸、手、衣服或竹节；无具象酒馆、厨房、武斗或多人剧情。目标2048×3072不透明PNG，接受工具实际原生2:3尺寸并如实登记；保存原始PNG字节，不放大、裁切、重编码或抹除溯源。默认两张独立候选比较，全部candidate待用户最终审核。
-
-
-    事实边界：老年北丐帮主、江南授掌尚未传棒、右手缺食指、竹棒与红葫芦按项目当前角色稿落实；具体公历岁数和原著逐字形制仍待指定修订本核对。长白须作为作者所选1983本人视觉识别，覆盖旧稿原创灰白短须，不宣称原著固定长须；衣色、补丁排布、持棒与葫芦挂位是美术补足。来源照片指头不能替代上述项目缺指设定。用户指定影视面容覆盖旧禁演员脸，基线candidate状态不变。
-
-
-    完整排除项：不要 head tilt、Dutch angle、头歪向肩、斜置脸部中线、双眼高低倾斜、仰头藏眼、低头、回眸侧脸、倾斜镜头、耸肩卖萌；不要青年通用俊男脸、令狐冲脸、萧峰脸、其他四绝脸、女性脸、动漫大眼、尖锥下巴、返老还童、肌肉壮汉。不要现代灰西装采访造型、影视拼接围裙、照抄原照片服装；不要丐帮华丽礼袍、龙纹金冠、盔甲、清式剃额辫发、日本服饰、欧美奇幻器物。不要十指完整、不要把缺指换到左手、不要删除右手拇指或中指、无名指、小指；不要缺整手、两根以上缺指、血污新伤、开放伤口、恐怖化或伤残丑化。不要让右手持棒或藏在袖里，不能用握拳遮住指缺；不要光龙、发光绿竹、铁杆巨杖、第二根棒、刀剑、秘籍、法器、鸡腿食盘或酒杯。不要葫芦漂浮、葫芦缺口与挂绳、手物融合、道具截断；不要醉倒滑稽、病危衰弱、全身污秽、露体破衣。不要破布碎墨、纸纹透皮、碎片拼贴、斑驳脸、撕裂衣角、过密细皱、塑料磨皮、直接照片或三维模型；不要额外人物、多视图分格、脸部特写框、多肢多指、错腕、悬浮脚、裁头裁脚。不要可读文字、题款、签名、印章logo或装饰水印；保留工具自带溯源。
-
-
-    FINAL POSE CHECK: frontal face and torso, upright head and neck, eyes level, neutral chin, complete full body. His OWN RIGHT index finger is absent; his own LEFT hand is intact and holds the green bamboo staff. NO head tilt and NO Dutch angle.'
-  negative: 不要 head tilt、Dutch angle、头歪向肩、斜置脸部中线、双眼高低倾斜、仰头藏眼、低头、回眸侧脸、倾斜镜头、耸肩卖萌；不要青年通用俊男脸、令狐冲脸、萧峰脸、其他四绝脸、女性脸、动漫大眼、尖锥下巴、返老还童、肌肉壮汉。不要现代灰西装采访造型、影视拼接围裙、照抄原照片服装；不要丐帮华丽礼袍、龙纹金冠、盔甲、清式剃额辫发、日本服饰、欧美奇幻器物。不要十指完整、不要把缺指换到左手、不要删除右手拇指或中指、无名指、小指；不要缺整手、两根以上缺指、血污新伤、开放伤口、恐怖化或伤残丑化。不要让右手持棒或藏在袖里，不能用握拳遮住指缺；不要光龙、发光绿竹、铁杆巨杖、第二根棒、刀剑、秘籍、法器、鸡腿食盘或酒杯。不要葫芦漂浮、葫芦缺口与挂绳、手物融合、道具截断；不要醉倒滑稽、病危衰弱、全身污秽、露体破衣。不要破布碎墨、纸纹透皮、碎片拼贴、斑驳脸、撕裂衣角、过密细皱、塑料磨皮、直接照片或三维模型；不要额外人物、多视图分格、脸部特写框、多肢多指、错腕、悬浮脚、裁头裁脚。不要可读文字、题款、签名、印章logo或装饰水印；保留工具自带溯源。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/shediao/hongqigong_1983_liudan_sina2001.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/shediao/hongqigong_1983_liudan_sina2001.jpg
-    use: 第一且唯一面部身份：1983翁美玲版《射雕》刘丹洪七公。已实际view新浪精确1983角色标题资料图，并与早报同版四绝图注交叉核对。保留宽额、厚实偏长方脸、白眉弧度和眉眼间距、自然修长眼、较直鼻梁及圆厚鼻头、白八字须与上胸长须的辨识。不得复制影视衣饰版式、半身裁切、粉墙、原图指头数量或姿势；正式人物头直眼平，九指按项目右手缺食指。
-    sha256: 69660d5b062c06b357da23befaeafedf5531477666c660178214033815065093
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/69660d5b062c06b357da23befaeafedf5531477666c660178214033815065093.jpg
-    status_at_input: null
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 第二仅男性项目低饱和设色、柔和光线和连续细腻写实手绘质感，已实际view；candidate审批不变。不借令狐冲脸、青年体型、胡茬、头巾、衣装、剑、头倾和站姿。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三仅极浅水墨远山、暖浅灰底和留白背景，已实际view。忽略女性脸、发型、体型、倾头、白青纱裙和饰物；人物皮肤、衣物和器物保持连续实体，不被背景侵蚀。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T19:52:28.686211+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-febc44c0-60ab-4733-8d77-ea8d45b6172c.png
-  size: 1024x1536
-  mode: RGB
-  sha256: b012e937c83cce5ba2ce79a1d8d8482130363d891f163052c129d3cf44ba7fd1
-  status: candidate
-  qc_status: needs_rework
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: false
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_hongqigong__ch02_elder_bangzhu_base/prompt-7d5ac08a7d554f79101d880e8c40a0550be04a4f34e8686ab8229d5d548b35ca.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_hongqigong__ch02_elder_bangzhu_base/manifest-bfc374e619fccdfcfc7d77488be21618a230d51232371ec4b6371e7f1eacb598.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_hongqigong__ch02_elder_bangzhu_base.requests.json
-  notes: 按2026-10-01最新FAST-PRODUCTION授权停止小手指细节反复打磨，复用已实际看过的候选2，不再生成。四张原始候选与原先needs_rework记录全部保留：候选1/2右手自然侧垂叠指，不能可靠确认食指缺失；候选3/4虽翻掌却仍明确完整五指，均不宣称九指严格设定通过。此项手部问题列集中待修，最新宽松标准允许先存可用人物。选2因刘丹本人宽额厚颊白眉白须、正面端正的老年帮主、完整衣料体积、清楚左手持绿竹棒及绳系红葫芦的主体辨识可用；未见多余肢体或严重身体结构问题，2葫芦比1完整。灰褐旧袍及整齐补丁、双鞋均清楚，布纹较密、须发偏长、袍袖偏宽留作细节。此轮实际已产生4张，不能把历史改为单候选。选2真实1024×1536 RGB不透明PNG原字节保存，candidate待用户审核；手指问题仍待后续修复，不等于旧严格标准通过。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  latest_identity_requirement: 用户2026-10-01明确九指必须正确：本人右手食指齐掌缺失；现选图无法明确验证，优先局部修复，非完成。
-  production_disposition: user_deferred
-  deferred_user_instruction: 跳过洪七公， 以后修。
-  deferred_at: 20261001T214147Z
 - id: por_npc_diancangyuyin__ch02_elder_base
   file: por_npc_diancangyuyin__ch02_elder_base.png
   category: character/male
@@ -2212,3 +2130,50 @@
   sha256: 22dc9b4c4c274c023bfca3956fe9c652a9b7035e092729d70c8ac385197093e2
   status: candidate
   notes: 立绘重审重出（AR-30）；郭靖基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+- id: por_npc_hongqigong__ch02_elder_bangzhu_base
+  file: por_npc_hongqigong__ch02_elder_bangzhu_base.png
+  category: character/male
+  style: default
+  subject: 洪七公（ch02_shediao）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】洪七公，《射雕英雄传》北丐、丐帮帮主，天下五绝之一，郭靖的师父；豪爽诙谐、嘴馋好吃，人称九指神丐。
+
+    【年龄与体态】五六十岁上下（确龄待考）的老当益壮的乞丐，身材高大、骨架粗壮，原著说他粗手大脚。
+
+    【经典造型】借鉴经典武侠影视里这个角色深入人心的造型，只取发型、装束、配色、标志道具、气质和脸型类型，用原创面孔画出来，不像任何真实演员：九指神丐——花白头发随手扎着，背一只朱红大酒葫芦，手持碧绿竹棒，一身打满补丁却洗得干净的百衲衣；笑起来豪爽诙谐、一副嘴馋好酒的老叫化模样，却自有一派宗师气度。
+
+    【面容】原著写他一张长方脸、颏下微须。具体为：长方脸、额头宽、颧骨高，浓眉花白、眉尾上扬，眼睛细长带笑、透着精明和馋相，鼻头大而红润（好酒），嘴大，颏下只有一撮稀疏的花白短须（不是长须）；脸色红润、皮肤粗糙有风霜；花白头发随意束在脑后。
+
+    【服饰】原著写他衣服东一块西一块打满补丁，却洗得干干净净：灰褐色旧布衣裤上缝着深浅不一的补丁，整洁不脏，腰系旧布带，打着绑腿、穿旧布鞋。
+
+    【道具】左手握一根碧绿如玉的竹杖（丐帮打狗棒），背上斜背一只朱红漆的大葫芦（系绳清楚）。右手抬到胸前、掌心朝外，这只手只有四根手指：拇指、中指、无名指、小指；食指齐根缺失（旧伤早已愈合、无血无伤口），拇指和中指之间有一个明显的空缺——这是「九指神丐」的标志，必须一眼看得出（缺指的左右手原著待考，本作取右手）。
+
+    【姿态与神情】站姿随意洒脱，右手抬在胸前像要比划什么（露出缺食指的手），一副笑眯眯、乐呵呵的豪爽样子。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要白发白须的老寿星造型、不要及胸长须、不要夸张的大红脸；不要脏污破烂；不要十指俱全；不要龙形掌风。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:16:35-0700
+  source_path: .agents/coord/gemini_originals/por_npc_hongqigong__ch02_elder_bangzhu_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 5bd4f0c50d22039a120c2ef82362bd02b3d4a3063512cd58a944c7f30d8d882f
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图是剧集式白发长髯老寿星，与原著“长方脸、颏下微须、粗手大脚、补丁衣洗得干净、绿竹杖、朱红葫芦、九指”不符且有肖像风险；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
