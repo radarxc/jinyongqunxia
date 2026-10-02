@@ -80,6 +80,12 @@ M1 终点已改为「书眠进入白马（唐）冷入口」（作者 AR-29，�
    - remap 七条校验各一个反例。
    - `loadChapterPack()` 遇到篡改的叶片报错。
    - Ink 标签白名单反例。
+8. **修 apps/game 包内测试脚本**（作者 10-02 并入本任务）：
+   - 现象：`pnpm --filter ./apps/game test`（`vitest run src`）加载 `vite.config.ts` 时，Node 原生 ESM 找不到 `packages/data/src/tooling.ts` 里不带后缀的 `export * from './content-index'`。自 ENG-02 起就坏。
+   - 两种修法，任选或兼做，报告说明取舍：
+     - ENG-16a 报告 §7.5 的做法：`apps/game/package.json` 的 `test` 改成 `vitest run src --configLoader runner`（dev / build 已经用 runner）；
+     - 在 data 侧把这条导入改成能被原生 ESM 解析。
+   - 修好后包内测试要能跑通。
 
 约束：
 - 写集：`packages/data/**`、`apps/game/build/**`、`apps/game/vite.config.ts`、`apps/game/package.json`、`content/migrations/**`、`content/story/**`、`content/CLAUDE.md`、`content/README.md`、`package.json`、`pnpm-lock.yaml`、`.gitignore`。
@@ -95,7 +101,7 @@ M1 终点已改为「书眠进入白马（唐）冷入口」（作者 AR-29，�
 - `pnpm check`
 - `pnpm content:build`
 - `pnpm --filter @tianshu/data test`
-- （apps/game 的测试由根 `pnpm check` 覆盖。包内 `pnpm --filter ./apps/game test` 加载 `vite.config.ts` 会失败：`packages/data/src/tooling.ts` 的无后缀 ESM 导入。这是集成分支的已知问题，另有任务修，不在本任务范围，不要改。）
+- `pnpm --filter ./apps/game test`（第 8 条修好后应通过）
 - `pnpm --filter ./apps/game build`
 - `python3 tools/lint/check_ids.py --strict`
 
