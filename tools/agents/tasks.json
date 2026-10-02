@@ -31735,6 +31735,40 @@
     "pnpm-lock.yaml",
     "tools/ci/**"
    ]
+  },
+  {
+   "id": "DES-sync-baima-year",
+   "title": "文档同步 · 白马年份 702–703 与 sleepYears、阿青 / 白猿 / 范蠡登记、q_00 例外、传功地点（协调者裁定）",
+   "phase": "PROD",
+   "wave": 16,
+   "kind": "draft",
+   "prompt": "DES-sync-baima-year.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/00-canon.md",
+    "docs/design/02-timeline-and-world-tiers.md",
+    "docs/design/13-progression-and-endings.md",
+    "docs/design/25-changshengjue.md",
+    "docs/design/18-npc-and-companions.md",
+    "docs/design/12-quests-npc-factions.md",
+    "docs/design/catalog/key-scenes.md",
+    "assets/default/prompts/scenes/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/00-canon.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
   }
  ]
 }
