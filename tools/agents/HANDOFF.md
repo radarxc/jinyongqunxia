@@ -376,3 +376,17 @@
     - **00:30 磁盘 8.1 GB → 13.7 GB**：
       - 移除主检出 6 个已挑入 `_prod` 的 NAuF 工作区（rules、lint、book-04 / 05 / 12 / 13），都没有未跟踪或未提交文件。
       - des26 的三个 DES 工作区（attr-v2、changsheng-core、economy-gather）建于新稀疏规则之前，每个约 2 GB。按新模式重设 sparse-checkout 后每个 275 MB；任务改动（git status）不变，可随时 `sparse-checkout disable` 恢复。
+  - **10-02 00:35–00:45 协调者（作者第二批要求）**：
+    - **作者决定**：
+      - AR-29（b8abac24）：做动作原型；只上传主角和 S 级立绘作参考，上传前作者自己关 Gemini 活动记录；具名 NPC 每人一套部件；**M1 改接白马（唐）冷入口**，roadmap M1 行已改，§3 加说明，其余旧书序待修订任务重排。
+      - AR-30：秘籍补书名并扩充、兵器再扩、重要人物重审、多人名场面情景图、各朝路人、四个标签页并跑（全局每分钟最多 2 次，限流时等 2 分钟后回 /app）。
+      - 辨识度参考《金庸群侠传》头像与经典剧集造型，只用文字描写服饰、发型、道具与气质，不上传剧照、不写演员名、不复刻真人面容。
+    - **秘籍没书名的原因**：名录外观要点写的是「空题签」。`gemini_prompt.py` 已改为题签写书名（d266847e），去掉版本后缀；现有 18 本交出图线用 Gemini 照原图补写，对照表在会话草稿目录 `gem/manual_titles.txt`。
+    - **立绘重审**：三个 Claude 审核 agent 按 A（主角与 ch00–04）、B（ch05–09）、C（ch10–14）分组并行。
+      - 说明在会话草稿目录 `review/brief.md`；报告写到 `tools/agents/reports/REVIEW-portraits-*.md`，重出队列写到 `.agents/coord/portrait_redo/*.txt`。
+      - 白马的服饰等唐代设定定稿后再重出。
+    - **第二批任务（批次 des30，0af903e2）**：DES-baima-tang（M1 关键路径）、DES-items-manuals-expand（≥120）、DES-items-weapons-expand2（兵器 ≥220 / 暗器 ≥48）、DES-scenes-keyart（≥100 多人名场面 + 提示词）、DES-npc-commoners-era（≥160 路人形象 + 提示词）、TOOL-rig-nearside（原型 P0）、TOOL-rig-clips（P6，依赖 P0）。
+      - 秘籍、兵器扩充不改 design/10 文末 ID 总表，以免和 DES-economy-gather 冲突，由协调者按报告第 6 节合并。
+      - 原型后续两步 TOOL-rig-sheet（P2–P5）、ENG-12c-clip（P8–P9），等 Gemini 三视图出来再登记。
+    - **出图线**：00:42 查看时，「Claude」标签组里只剩作者的 Antigravity 下载页，A / B 也被移出了组。已请作者把四个 Gemini 标签页拖回组内并保持同时可见；出图 agent 每 2 分钟检查一次，有标签页就按 tabId 分道开跑。
+    - **工程线**：ENG-13、ENG-14 已合入（eng2 批次结束）；ENG-11 READY 待合入，由工程监督处理；已告知工程监督 M1 改接白马。
