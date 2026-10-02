@@ -452,81 +452,6 @@
   scene_title: 漠北论英雄
   stage: 第40回华山之后，郭靖赴漠北，与病重的成吉思汗讨论何为英雄；不与第38回拒绝南征混为同一场。
   asset_variant: scene
-- id: por_npc_zhoubotong__ch02_elder_base
-  file: por_npc_zhoubotong__ch02_elder_base.png
-  category: character/male
-  style: default
-  subject: 周伯通 npc_zhoubotong ch02_shediao · 桃花岛困居末期至脱困授互搏的中老年基础身份
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing person. Keep head and neck naturally UPRIGHT, forehead–nose–chin centerline VERTICAL, both eyes HORIZONTAL, chin neutral, gaze forward and camera level. No head tilt, no Dutch angle, no head leaning toward either shoulder. The reference pose must not be copied.
-
-
-    Create a refined REALISTIC full-body wuxia illustration of ZHOU BOTONG / 周伯通 in The Legend of the Condor Heroes. Image 1 alone supplies the facial identity of Chun Wong / 秦煌 as Zhou Botong in the 1983 TVB Barbara Yung-era cast. Image 2 supplies only male rendering and colours; image 3 only a faint ink-wash background. Make one original illustration, not a screen capture.
-
-
-    身份与阶段：npc_zhoubotong，《射雕英雄传》ch02_shediao，桃花岛困居末期至脱困、传授左右互搏阶段的老顽童，全真同门长辈。中老年外观，不锁具体岁数；不是《神雕》百花谷更晚阶段。兴致勃勃、天真好胜而头脑清醒，顽皮来自明亮眼神和轻微促狭笑意，不靠歪头、吐舌或婴儿化。
-
-
-    面容以第一张真实剧中本人为唯一依据：额颊较宽、颊部饱满但不臃肿，灰白蓬松长眉，圆而有神的自然眼形、眉眼间距与走向，较直鼻梁和圆厚鼻头鼻翼。保留中老年额纹和眼角笑纹，灰白长须自然覆盖下颌，须发有连续体积但不僵硬。来源图唇颌被须遮挡，不发明精确唇厚和下颌角；在自然闭口微笑中保留本人辨识，不照抄惊讶张嘴或仰头。灰白长发简单拢束，头后低调小束髻，少量未精修散发体现困居，但不横遮眼睛。身躯按项目的清瘦、筋骨灵活长者设计，不能借演员现代照片的体胖或男性基线的青年体格。
-
-
-    服饰：宋式洗旧灰褐右衽布长衫、普通灰褐布腰带、深灰布裤、深色软布鞋。汉式交领为穿着者左襟压右襟，向本人右侧闭合，不镜像。衣料旧而干净完整可穿，有限自然磨旧，整片连续布料、确定剪裁，少量宽缓承重褶；袖口适度收束以露出手腕。没有掌教礼冠，不复制剧照的白色影视衣装和碎边。
-
-
-    正面完整站姿：头颈中线竖直、双眼平齐、肩自然平展，双脚真实落地，一足可轻微前移而身体保持稳。只有两条胳膊两只手，两手均空手、在胸腹前低幅度展示不同动作：本人左手松拳，拳头位置略低；本人右手自然张掌，五指放松分开。双手彼此分离，不挡面、不相交，不作飞跃或夸张打斗，用这一简单差异表示左右互搏的游戏邀约；不画分身、残影或法术。不带任何兵刃、书卷、玩具或道家法器。
-
-
-    人物与背景：人物本体美观写实，可信中老年皮肤、自然骨肉和连续柔和明暗，脸、双手、衣料、鞋有清晰完整轮廓；温暖肤色与低饱和灰褐配色，柔和左上漫射光。男性基线只取细腻绘制和设色，完全忽略基线人物身份。背景为不透明暖浅灰底、极浅低对比远山水墨与充分留白、脚下浅接触阴影；纸纹、水墨和薄雾停在人物轮廓之外，不能穿透皮肤和衣服，无桃花岛洞穴或竹帘实景。
-
-
-    单人单视图完整全身，原生2:3竖幅，头顶、头发、双手、双足和衣摆全入画，留自然边距，不靠裁切与拉长身材凑占高。目标2048×3072不透明PNG，接受工具真实原生尺寸如实登记；原始PNG字节保存，不缩放、裁切或重编码。默认两张独立候选供实际比较，全部candidate待用户审核。
-
-
-    事实边界：年龄、桃花岛阶段、空手与左右互搏来自项目角色稿/catalog/story；衣色、低幅手势和站姿是已有美术补足。第一参考为公开页面标明83版人物上下文的古装剧照，具体集数不明；不把镜头、影视服装或演员现实年龄当原著事实。用户指定此版本人五官覆盖旧稿禁演员脸；原基线candidate不变。
-
-
-    完整排除项：不要 head tilt、Dutch angle、头歪向肩、仰头张口、俯首藏眼、偏斜脸部中线、双眼高低倾斜、歪镜头、回眸侧脸、耸单肩；不要复制第一参考吃惊张嘴、前倾动作、竹叶竹帘、树枝遮脸、水印文字或摄影裁切。不要青年通用俊男脸、令狐冲或萧峰脸、女性脸、网红尖下巴、动漫大眼、婴儿身体、痴呆表情、滑稽小丑、夸张肥胖或肌肉；不要现代采访服、清式辫子、剃头僧装、掌教礼冠、金冠、盔甲、仙人光环。不要神雕百花谷晚年返老还童形象、整齐年轻剑客发式；不要增剑、拂尘、葫芦、玩具、秘籍或法器，不要分身四臂、残影、两个人、镜像完全相同手势。不要多肢多指、错手错腕、手臂融合、悬浮脚、裁断头足；不要破布碎墨、透纸皮肤、白斑、撕裂衣角、污渍、细碎乱褶、面部斑驳、塑料皮肤、直接照片或三维模型。不要额外人物、分格、多视图、近景头像框、文字、题款、签名、印章logo或装饰水印；不删除工具自带溯源。
-
-
-    FINAL POSE CHECK: frontal face and torso, upright head and neck, vertical facial centerline, eyes level, neutral chin, complete whole body. NO head tilt and NO Dutch angle.'
-  negative: 不要 head tilt、Dutch angle、头歪向肩、仰头张口、俯首藏眼、偏斜脸部中线、双眼高低倾斜、歪镜头、回眸侧脸、耸单肩；不要复制第一参考吃惊张嘴、前倾动作、竹叶竹帘、树枝遮脸、水印文字或摄影裁切。不要青年通用俊男脸、令狐冲或萧峰脸、女性脸、网红尖下巴、动漫大眼、婴儿身体、痴呆表情、滑稽小丑、夸张肥胖或肌肉；不要现代采访服、清式辫子、剃头僧装、掌教礼冠、金冠、盔甲、仙人光环。不要神雕百花谷晚年返老还童形象、整齐年轻剑客发式；不要增剑、拂尘、葫芦、玩具、秘籍或法器，不要分身四臂、残影、两个人、镜像完全相同手势。不要多肢多指、错手错腕、手臂融合、悬浮脚、裁断头足；不要破布碎墨、透纸皮肤、白斑、撕裂衣角、污渍、细碎乱褶、面部斑驳、塑料皮肤、直接照片或三维模型。不要额外人物、分格、多视图、近景头像框、文字、题款、签名、印章logo或装饰水印；不删除工具自带溯源。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/shediao/zhoubotong_1983_qinhuang_ifeng2019_front.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/shediao/zhoubotong_1983_qinhuang_ifeng2019_front.jpg
-    use: 第一且唯一面部身份：1983翁美玲版《射雕》秦煌周伯通，已实际view并核验source。保留宽上脸、饱满颊部、圆而有神的眼、鼻梁与圆厚鼻头、灰白蓬松长眉和长须的辨识关系；唇颌部分被胡须遮挡不作精确推断。不继承仰头张口、前倾、白衣剧装、竹帘布景、水印或摄影裁切。重构正面直立、头正眼平。
-    sha256: 88cf4295e981b56fd73f0affd5afbb0c94fef1b48ca6f30db2cc1071bbda746e
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/88cf4295e981b56fd73f0affd5afbb0c94fef1b48ca6f30db2cc1071bbda746e.jpg
-    status_at_input: null
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 第二仅男性项目设色、柔和光线与连贯细腻写实手绘质感，已实际view；candidate审批状态不变。不借令狐冲脸、成年青年体格、胡茬、头巾、衣装、剑、站姿或头倾。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三仅背景极浅水墨远山、暖浅灰底和留白，已实际view。不取女性脸、发式、体型、倾头、纱裙或饰物，纸纹墨痕不得侵入人物实体。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T19:59:16.451694+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-070a42df-c7d1-42b6-a099-dea34330e153.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 9dcf6659ab60bf838dcafd2da2ee9206e7036c69d3c014567beb6fcc797172e3
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_zhoubotong__ch02_elder_base/prompt-39f90b2b0db6b08307226f2cec16df05321932c09ca4feb2a9a31339957d2167.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_zhoubotong__ch02_elder_base/manifest-bfc374e619fccdfcfc7d77488be21618a230d51232371ec4b6371e7f1eacb598.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_zhoubotong__ch02_elder_base.requests.json
-  notes: 实际查看两张原始PNG和1983秦煌周伯通身份参考后选1。1额颊较宽、自然圆眼、圆厚鼻头与灰长眉须，保持该角色开心而清醒的长者辨识；2较窄脸、眉眼较收，1更接近参考的宽颊开朗关系。1头颈基本竖直、双眼水平，身体正面稳立，右手五指自然张掌、左手松拳分别可读，完整双鞋且无额外器物，无明显多肢和重大结构问题。衣片完整，不以散发和长须误判破损。实际偏差：右手举得比胸腹低幅要求高、脸有少许自然转向且表情偏活泼，袖宽、髻高、布面纹理较密，背景有低对比花枝亭台；未声称每一服饰细节均精确符合旧严格标准。2保留原始候选不选。真实1024×1536 RGB不透明PNG原始字节保存，candidate待用户审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_hongqigong__ch02_elder_bangzhu_base
   file: por_npc_hongqigong__ch02_elder_bangzhu_base.png
   category: character/male
@@ -2058,3 +1983,52 @@
   sha256: c632460733f5a3cd77cd8b387e0ad0fd51a61c31912a65720c45e504b23cea63
   status: candidate
   notes: 立绘重审重出（AR-30）；面容源自 1983 版剧照且是汉人面孔，原著“高鼻深目、脸上须毛棕黄、似非中土人氏”的西域相貌没有体现；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
+- id: por_npc_zhoubotong__ch02_elder_base
+  file: por_npc_zhoubotong__ch02_elder_base.png
+  category: character/male
+  style: default
+  subject: 周伯通（ch02_shediao）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】周伯通，《射雕英雄传》老顽童，全真教王重阳的师弟，被困桃花岛十五年后脱困、教郭靖左右互搏的阶段；天真好胜、爱玩爱闹，头脑其实清楚。
+
+    【年龄与体态】六十岁上下（确龄待考），中等身材、精瘦灵活。
+
+    【经典造型】借鉴经典武侠影视里这个角色深入人心的造型，只取发型、装束、配色、标志道具、气质和脸型类型，用原创面孔画出来，不像任何真实演员：老顽童——须发蓬乱花白、满脸顽童般的笑，衣衫随意，手舞足蹈、天真好玩。
+
+    【面容】圆脸、颧骨饱满、脸色红润；花白浓眉、眉尾下垂；一双圆而亮的眼睛透着顽皮和促狭；鼻头圆；嘴巴咧着笑；眼角额头满是笑纹（原创扩展）。
+
+    【发式】满头花白长发乱蓬蓬地挽了一半，另一半散着；花白长须乱翘（原著困洞多年、须发皆长）。
+
+    【服饰】灰褐色旧布长衫（右衽），袖子随手挽起，腰带随便一系，灰裤、布鞋；旧而完整。
+
+    【道具】空手。
+
+    【姿态与神情】一手比划着、一手叉腰，身体微微前倾像要跟人打赌，头部端正；神情顽皮天真。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要仙风道骨或严肃的老道；不要歪头吐舌卖萌；不要道冠法衣；不要像任何具体演员。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:08:46-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zhoubotong__ch02_elder_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: cbdd89c8d50670eb54890a021c939e8d61552ddac1e1df218b5911f8f7dd04c2
+  status: candidate
+  notes: 立绘重审重出（AR-30）；面容几乎照搬 1983 版演员（肖像风险），按原著老顽童用文字原创重做，并作神雕周伯通身份参考；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
