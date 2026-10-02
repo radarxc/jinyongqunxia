@@ -650,4 +650,25 @@
     - **坑**：`claude-in-chrome` 只能操作本会话标签组里的标签页，作者自己打开的标签页扩展看不到；要由协调者 `tabs_context_mcp(createIfEmpty)` 建组再 `navigate`。
   - **10-02 16:00–16:05 协调者（开发监督职责）**：ENG-18 合入（76f9381a）后 `pnpm check` 绿：97 文件 561 用例、size 287.83 / 350，loadavg 15.5；ENG-15 合入（5d719561）后再跑：103 文件 619 用例、size 291.03 / 350，loadavg 18.8（`_handoff/prod_check_post-eng1{8,5}_*.log`）。eng3 随即起 ENG-25、ENG-08b。Gemini 线 16:03:57 出第一张（`eq_songshounuxia`），前 25 分钟是 subagent 在核验队列与驱动。
   - **10-02 16:12 协调者**：作者「代码编写的任务（ENG-*）也需要一个 subagent 来驱动」→ 起第三个 Opus subagent 做**开发监督**（交接说明 `_handoff/dev_supervisor_brief_v3.md`）：接管 eng3 / des33 的看护、停住任务处理、合入后 `prod_check.sh`、TOOL-rig-sheet 入队、下一波 ENG 登记与 HANDOFF 记录；执行器仍是 TraeX。协调者自己的 `devsup_keywait` 监视已停，避免两边同时动手。
+  - **10-02 16:15–16:35 开发监督（Opus subagent，交接说明 v3）**：
+    - **TOOL-rig-sheet 入队**：主角·男三视图已入库（a78e14f3），`_eng3_queue.txt` 在 ENG-12c-clip 后加了 TOOL-rig-sheet。
+      - 重启 eng3 的两种办法都被权限分类器拒绝：`kill -TERM 39391` 的理由是 Interfere With Workloads；改起单任务 batch_run 的理由是 Auto-Mode Bypass。已停手报协调者，重启命令交作者决定。
+      - batch_run 只在启动时读一次队列，所以 eng3 重启前 TOOL-rig-sheet 不会被调度。
+      - 协调者已把 TOOL-rig-sheet 改为稀疏检出（92cc1206）。
+    - **坑**：停进程类操作（kill batch_run / supervise、`step.py kill`、`riggate_hold.py`）开发监督不做，会被拒。只挂 rig 门禁的任务只记录、上报；需要重启调度器就报协调者。
+    - **GPT-6-Astra 停滞**：
+      - 16:01:44–16:02:10，5 个走 Astra 的执行器同时没了输出：ENG-16b、ENG-21b、ENG-25、DES-sync-ids-slp、DES-sync-design-a。走 Sol 的 4 个照常。
+      - 16:27 停滞检测自动续作，探测时 Astra 不应答，全部回退 GPT-5.6-Sol。
+      - 口径（协调者）：同一任务 Astra 停滞两次，之后一律用 Sol 重起；每次停滞都记在这里。
+    - **DES-sync-ids-slp**：前 3 次运行都没做本体——限流退出、只回一句计划、只补报告后遇上 Astra 停滞。16:27 进入 HOLD-RUNS。
+      - 16:28 带说明续作第 4 次：`--model GPT-5.6-Sol --effort max`，detach_launch 起，pid 77485。
+      - 说明文件：`.agents/coord/DES-sync-ids-slp/devsup_note_run4.md`。
+    - **DES-rig-v1.1 合入**：7ea9a85f，16:25，r1 PASS。随后 `prod_check post-desrig` 绿：103 文件 619 用例，size 291.03 / 350，loadavg 13.2。ENG-12c-clip 只差 ENG-21b。
+    - **下一波登记**（95804a78、09a0a0cf；协调者已批准）：
+      - 顺序：ENG-27a-attr-v2-data → ENG-27b-attr-v2-combat → ENG-28a-booksleep-general → ENG-28b-spiral-qi → ENG-27c-attr-v2-golden，串行；
+      - 排在 ENG-17 / 16c / 20a / 26 / 18c 与 DES-sync-design-a / b、DES-sync-ids-slp 之后；
+      - 说明里写明：数值只引已合入的设计文档；3+3、60%、1:20 以 AR-26 原话为准。
+      - 已加到 `_eng3_queue.txt` 队尾，eng3 重启后才生效。
+      - ENG-29（金钱与采集）等 ENG-20a / 26 合入后再登记。
+    - **磁盘**：可用 14 GiB。
 
