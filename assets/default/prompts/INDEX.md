@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **627** 份：已入库 268、待出图 227、已通过（作者） 132。**待出图队列 227 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **627** 份：已入库 269、待出图 226、已通过（作者） 132。**待出图队列 226 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -63,7 +63,6 @@
 | items | `it_jiucai` | 韭菜 | `assets/default/item/food/it_jiucai.png` | 待出图 | [it_jiucai.md](items/food/it_jiucai.md) |
 | items | `it_juecai` | 蕨菜 | `assets/default/item/food/it_juecai.png` | 待出图 | [it_juecai.md](items/food/it_juecai.md) |
 | items | `it_lajiao` | 辣椒 | `assets/default/item/food/it_lajiao.png` | 待出图 | [it_lajiao.md](items/food/it_lajiao.md) |
-| items | `it_lianou` | 莲藕 | `assets/default/item/food/it_lianou.png` | 待出图 | [it_lianou.md](items/food/it_lianou.md) |
 | items | `it_lizhi` | 荔枝 | `assets/default/item/food/it_lizhi.png` | 待出图 | [it_lizhi.md](items/food/it_lizhi.md) |
 | items | `it_lubeiji` | 炉焙鸡 | `assets/default/item/food/it_lubeiji.png` | 待出图 | [it_lubeiji.md](items/food/it_lubeiji.md) |
 | items | `it_lvdou` | 绿豆 | `assets/default/item/food/it_lvdou.png` | 待出图 | [it_lvdou.md](items/food/it_lvdou.md) |
@@ -264,7 +263,7 @@
 
 （已全部入库。）
 
-### 食材 / 食品（174）· 待出图 112、已入库 34、已通过（作者） 28
+### 食材 / 食品（174）· 待出图 111、已入库 35、已通过（作者） 28
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -356,30 +355,29 @@
 | 86 | 鸡肉 | `it_jirou` | 黄 | 食材·肉 | 待出图 | [it_jirou.md](items/food/it_jirou.md) | template |
 | 87 | 韭菜 | `it_jiucai` | 黄 | 食材·菜蔬 | 待出图 | [it_jiucai.md](items/food/it_jiucai.md) | template |
 | 88 | 蕨菜 | `it_juecai` | 黄 | 食材·菜蔬 | 待出图 | [it_juecai.md](items/food/it_juecai.md) | template |
-| 89 | 莲藕 | `it_lianou` | 黄 | 食材·菜蔬 | 待出图 | [it_lianou.md](items/food/it_lianou.md) | template |
-| 90 | 绿豆 | `it_lvdou` | 黄 | 食材·谷物 | 待出图 | [it_lvdou.md](items/food/it_lvdou.md) | template |
-| 91 | 苗家镬饭三菜 | `it_miaojia_huofan_sancai` | 黄 | 食品·名菜 | 待出图 | [it_miaojia_huofan_sancai.md](items/food/it_miaojia_huofan_sancai.md) | template |
-| 92 | 米醋 | `it_micu` | 黄 | 食材·调料 | 待出图 | [it_micu.md](items/food/it_micu.md) | template |
-| 93 | 馕饼 | `it_nangbing` | 黄 | 食品·干粮 | 待出图 | [it_nangbing.md](items/food/it_nangbing.md) | template |
-| 94 | 破庙鼠汤 | `it_pomiao_shutang` | 黄 | 食品·汤羹 | 待出图 | [it_pomiao_shutang.md](items/food/it_pomiao_shutang.md) | template |
-| 95 | 荞麦 | `it_qiaomai` | 黄 | 食材·谷物 | 待出图 | [it_qiaomai.md](items/food/it_qiaomai.md) | template |
-| 96 | 茄子 | `it_qiezi` | 黄 | 食材·菜蔬 | 待出图 | [it_qiezi.md](items/food/it_qiezi.md) | template |
-| 97 | 芹菜 | `it_qincai` | 黄 | 食材·菜蔬 | 待出图 | [it_qincai.md](items/food/it_qincai.md) | template |
-| 98 | 青菜 | `it_qingcai` | 黄 | 食材·菜蔬 | 待出图 | [it_qingcai.md](items/food/it_qingcai.md) | template |
-| 99 | 生姜 | `it_shengjiang` | 黄 | 食材·菜蔬 | 待出图 | [it_shengjiang.md](items/food/it_shengjiang.md) | template |
-| 100 | 桃 | `it_tao` | 黄 | 食材·果 | 待出图 | [it_tao.md](items/food/it_tao.md) | template |
-| 101 | 兔肉 | `it_turou` | 黄 | 食材·肉 | 待出图 | [it_turou.md](items/food/it_turou.md) | template |
-| 102 | 咸肉 | `it_xianrou` | 黄 | 食品·腌藏 | 待出图 | [it_xianrou.md](items/food/it_xianrou.md) | template |
-| 103 | 小米 | `it_xiaomi` | 黄 | 食材·谷物 | 待出图 | [it_xiaomi.md](items/food/it_xiaomi.md) | template |
-| 104 | 杏 | `it_xing` | 黄 | 食材·果 | 待出图 | [it_xing.md](items/food/it_xing.md) | template |
-| 105 | 盐 | `it_yan` | 黄 | 食材·调料 | 待出图 | [it_yan.md](items/food/it_yan.md) | template |
-| 106 | 羊肉 | `it_yangrou` | 黄 | 食材·肉 | 待出图 | [it_yangrou.md](items/food/it_yangrou.md) | template |
-| 107 | 鸭肉 | `it_yarou` | 黄 | 食材·肉 | 待出图 | [it_yarou.md](items/food/it_yarou.md) | template |
-| 108 | 玉米 | `it_yumi` | 黄 | 食材·谷物 | 待出图 | [it_yumi.md](items/food/it_yumi.md) | template |
-| 109 | 蒸饼 | `it_zhengbing` | 黄 | 食品·干粮 | 待出图 | [it_zhengbing.md](items/food/it_zhengbing.md) | template |
-| 110 | 芝麻烧饼 | `it_zhimashaobing` | 黄 | 食品·干粮 | 待出图 | [it_zhimashaobing.md](items/food/it_zhimashaobing.md) | template |
-| 111 | 猪肚 | `it_zhudu` | 黄 | 食材·肉 | 待出图 | [it_zhudu.md](items/food/it_zhudu.md) | template |
-| 112 | 猪肉 | `it_zhurou` | 黄 | 食材·肉 | 待出图 | [it_zhurou.md](items/food/it_zhurou.md) | template |
+| 89 | 绿豆 | `it_lvdou` | 黄 | 食材·谷物 | 待出图 | [it_lvdou.md](items/food/it_lvdou.md) | template |
+| 90 | 苗家镬饭三菜 | `it_miaojia_huofan_sancai` | 黄 | 食品·名菜 | 待出图 | [it_miaojia_huofan_sancai.md](items/food/it_miaojia_huofan_sancai.md) | template |
+| 91 | 米醋 | `it_micu` | 黄 | 食材·调料 | 待出图 | [it_micu.md](items/food/it_micu.md) | template |
+| 92 | 馕饼 | `it_nangbing` | 黄 | 食品·干粮 | 待出图 | [it_nangbing.md](items/food/it_nangbing.md) | template |
+| 93 | 破庙鼠汤 | `it_pomiao_shutang` | 黄 | 食品·汤羹 | 待出图 | [it_pomiao_shutang.md](items/food/it_pomiao_shutang.md) | template |
+| 94 | 荞麦 | `it_qiaomai` | 黄 | 食材·谷物 | 待出图 | [it_qiaomai.md](items/food/it_qiaomai.md) | template |
+| 95 | 茄子 | `it_qiezi` | 黄 | 食材·菜蔬 | 待出图 | [it_qiezi.md](items/food/it_qiezi.md) | template |
+| 96 | 芹菜 | `it_qincai` | 黄 | 食材·菜蔬 | 待出图 | [it_qincai.md](items/food/it_qincai.md) | template |
+| 97 | 青菜 | `it_qingcai` | 黄 | 食材·菜蔬 | 待出图 | [it_qingcai.md](items/food/it_qingcai.md) | template |
+| 98 | 生姜 | `it_shengjiang` | 黄 | 食材·菜蔬 | 待出图 | [it_shengjiang.md](items/food/it_shengjiang.md) | template |
+| 99 | 桃 | `it_tao` | 黄 | 食材·果 | 待出图 | [it_tao.md](items/food/it_tao.md) | template |
+| 100 | 兔肉 | `it_turou` | 黄 | 食材·肉 | 待出图 | [it_turou.md](items/food/it_turou.md) | template |
+| 101 | 咸肉 | `it_xianrou` | 黄 | 食品·腌藏 | 待出图 | [it_xianrou.md](items/food/it_xianrou.md) | template |
+| 102 | 小米 | `it_xiaomi` | 黄 | 食材·谷物 | 待出图 | [it_xiaomi.md](items/food/it_xiaomi.md) | template |
+| 103 | 杏 | `it_xing` | 黄 | 食材·果 | 待出图 | [it_xing.md](items/food/it_xing.md) | template |
+| 104 | 盐 | `it_yan` | 黄 | 食材·调料 | 待出图 | [it_yan.md](items/food/it_yan.md) | template |
+| 105 | 羊肉 | `it_yangrou` | 黄 | 食材·肉 | 待出图 | [it_yangrou.md](items/food/it_yangrou.md) | template |
+| 106 | 鸭肉 | `it_yarou` | 黄 | 食材·肉 | 待出图 | [it_yarou.md](items/food/it_yarou.md) | template |
+| 107 | 玉米 | `it_yumi` | 黄 | 食材·谷物 | 待出图 | [it_yumi.md](items/food/it_yumi.md) | template |
+| 108 | 蒸饼 | `it_zhengbing` | 黄 | 食品·干粮 | 待出图 | [it_zhengbing.md](items/food/it_zhengbing.md) | template |
+| 109 | 芝麻烧饼 | `it_zhimashaobing` | 黄 | 食品·干粮 | 待出图 | [it_zhimashaobing.md](items/food/it_zhimashaobing.md) | template |
+| 110 | 猪肚 | `it_zhudu` | 黄 | 食材·肉 | 待出图 | [it_zhudu.md](items/food/it_zhudu.md) | template |
+| 111 | 猪肉 | `it_zhurou` | 黄 | 食材·肉 | 待出图 | [it_zhurou.md](items/food/it_zhurou.md) | template |
 
 ### 武学秘籍（18）· 已入库 18
 
