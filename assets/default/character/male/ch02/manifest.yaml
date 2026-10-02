@@ -57,85 +57,6 @@
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
   notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际比较两张，选第2张：保持ch00男主青年成年面容与匀称体型，灰赭内衣、烟青外衣、深褐裤布鞋、束髻深褐软巾，双手自然空着，左腰单柄直剑完整入鞘，头足与剑尾全在画内；第2张软巾与挂带更清楚。左眉尾小痣不够鲜明、衣层稍多、剑鞘金属饰纹略多、轻微地面阴影和占高偏大作为宽松接受偏差记录，未见明显多肢或重大结构异常；candidate待审核，不冒称严格母版。 提示词 assets/default/prompts/characters/protagonist/npc_zhujue__m_ch02.md；tier S。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_zhujue__ch02_m_base.requests.json。生成候选2张，入选第2张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png；/Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用项目基线（真实审批状态照录）和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
-- id: por_npc_guojing__ch02_youth_scene_grassland_double_eagle
-  file: por_npc_guojing__ch02_youth_scene_grassland_double_eagle.png
-  category: character/male
-  style: default
-  subject: 郭靖 npc_guojing ch02_shediao
-  prompt: 'Create a premium REALISTIC Chinese wuxia character illustration with a delicate INK-WASH BACKGROUND. The human figure is beautifully and coherently painted: solid continuous anatomy, fine natural skin, credible facial structure, soft connected light and shade, intact carefully tailored cloth, clean continuous silhouette. Render the figure with refined hand-painted realism, not a photo, movie screenshot, 3D render or plastic model. No dry-brush gaps, white flecks, torn edges, collage fragments, paper erosion, scratches or watercolor mottling anywhere on face, skin, clothes or boots. Keep ink washes and loose expressive marks only in the background, separated from the clean figure. Clothes have few broad weight-bearing folds and clean sewn hems, never shredded ribbons or noisy patchwork. Heroism comes from eyes, bearing, physique and fitting clothes, not raggedness. Traditional understated clothing remains handsome without excess ornament.
-
-
-    参考第一张郭靖经典形象只作为青年诚厚人物身份与神态启发，去掉其中长剑、照片质感和海报文字。第二张已验证的萧峰写实样图严格只供自然皮肤、完整人体体积、连续光影与连贯衣料的渲染品质，绝不复制萧峰的脸、胡须、体型与披氅。第三张男性基线仅低饱和色卡；第四张女子参考仅背景水墨与留白，不用其人像绘法。
-
-
-    郭靖，《射雕英雄传》，大漠弯弓·一箭双雕。
-
-    阶段：蒙古成长末期、南归以前；已经受哲别射术训练及早年武学教育，尚未得到洪七公传授降龙掌。
-
-    人物、完整衣装与动作：青年郭靖双臂健全，侧身稳立，左手握弓、右手拉弦至面侧，肩背与腰胯形成清楚的承力关系。目光沿箭杆斜上方集中，诚厚专注而有行动力。青年郭靖有自己的端正诚厚面容：眉眼坦荡而有神，面骨敦实年轻、鼻口自然，肩背有训练的力量但不夸张肌肉。自然细腻肤质、干净面容与连贯明暗，不是萧峰方阔浓须壮汉，也不是令狐冲的脸。气概来自认真、担当和稳健动作。 完整、考究而朴素的浅褐北地短外袍，深灰交领内衣，简洁皮革束腰，收窄袖口，深色长裤与合脚行旅靴。衣片、袖缘和下摆连续缝合，有少量宽阔承重褶皱；长黑发整齐收束。适合早期草原骑射，不加铠甲、披肩碎带、无依据脏污或破洞。
-
-    器物：一张完整反曲弓、一支搭弦箭、系挂清楚的箭囊。取箭未离弦的瞬间，箭尾扣弦正确；不佩此次建功后才赐的金刀。
-
-    背景：淡墨漠北草原、远山与开阔天空，远处两只高飞的雕为射猎目标；不画成近身豢养的白雕，不出现襄阳城墙。
-
-    场景重心：弓弦与一支搭弦箭连接准确，青年郭靖与远处两只射猎雕分层；没有金刀或任何降龙意象。
-
-    仅一个完整人物，头顶、实际存在的手、完整衣摆、两腿双鞋和主要器物入画，自然留边、真实承重；神雕重剑场明确保留一只完整神雕，射雕场保留远处目标双雕。柔和左上光形成连续明暗，人物细腻自然、布料完整，不允许背景墨韵切碎人像。竖幅2:3，目标2048×3072 PNG，工具原生输出，不透明背景。汉式交领按人物自身左襟压右襟，不镜像。
-
-    考据边界：未学降龙掌不等于从未习武。不得出现龙掌、左右互搏或九阴宗师状态。 旧郭靖草稿覆盖南行后得七公传艺时期，不能直接套用到蒙古射雕时。其金刀时序待考项不作为本场佩刀依据。 拉弓站姿是为独立全身立绘所作构图补足，不冒充原著逐字动作记录。 本轮为人物美观写实修正，人物材质与完整服装依2026-10-01新规范，水墨只用于背景；服色、剪裁和全身构图是美术补足。旧版candidate与新revision完成状态分开，本record不代表新图已生成或已审批。
-
-
-    排除项：不要影视照片的剑、鞘、字幕、海报布局、摄影质感；不要金刀、掌法、降龙意象、左右互搏、双弓多箭或箭尾离弦，不画中年浓须将领。 人物本体禁止飞白、碎墨、纸透色、纸屑拼贴、干刷缺口、颗粒侵蚀、划痕、脸部斑驳、水彩污点、破布、撕裂衣角、毛边、碎带和密集细碎褶皱；水墨只用于背景，绝不能侵入脸、皮肤、衣服或鞋。不要复制萧峰的成熟脸、浓须、头巾、披氅、体型、掌势或少室山背景，除郭靖华山明确授权外不继承墨龙。不要照片截图、塑料3D、过度磨皮、动漫大眼、现代物品、王冠金甲、错时代服饰、错误多肢多指、手物融合、头足或器物端点裁断、额外人物、拼贴多格、题款文字、印章logo或新增装饰水印。保留工具自身溯源。'
-  negative: 不要影视照片的剑、鞘、字幕、海报布局、摄影质感；不要金刀、掌法、降龙意象、左右互搏、双弓多箭或箭尾离弦，不画中年浓须将领。 人物本体禁止飞白、碎墨、纸透色、纸屑拼贴、干刷缺口、颗粒侵蚀、划痕、脸部斑驳、水彩污点、破布、撕裂衣角、毛边、碎带和密集细碎褶皱；水墨只用于背景，绝不能侵入脸、皮肤、衣服或鞋。不要复制萧峰的成熟脸、浓须、头巾、披氅、体型、掌势或少室山背景，除郭靖华山明确授权外不继承墨龙。不要照片截图、塑料3D、过度磨皮、动漫大眼、现代物品、王冠金甲、错时代服饰、错误多肢多指、手物融合、头足或器物端点裁断、额外人物、拼贴多格、题款文字、印章logo或新增装饰水印。保留工具自身溯源。
-  references:
-  - path: .agents/coord/imagegen-reference/hero-20261001/classic_guojing_still.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/hero-20261001/classic_guojing_still.jpg
-    use: 已实际查看的郭靖经典影视人物；作为第一身份设计启发，取青年诚厚英气与五官辨识，不复制长剑、摄影质感、字幕、海报布局或服装。不作为原著事实证据。
-    sha256: 7e099cfbbfe76c8a8f0c74315ff9d429bc6a4025484d81347bc91f43f3fbd2e4
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/7e099cfbbfe76c8a8f0c74315ff9d429bc6a4025484d81347bc91f43f3fbd2e4.jpg
-    status_at_input: null
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-    use: 已实际查看并核SHA256=4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922，manifest realism_revision=user_character_realism_20261001且candidate；只参考自然肤质、连续人体体积/光影与完整衣料的渲染质量。严禁复制萧峰脸、胡须、宽大体型、头巾、披氅、掌势或背景龙，人物身份由本场另定。
-    sha256: 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922.png
-    status_at_input: candidate
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 已查看的项目男性基线，仅低饱和色卡，不作为人物身份或人物笔触样板；不继承令狐冲的脸、抹额、剑、站姿，也不继承纸感侵入皮肤、碎墨或粗糙布料处理。原审批状态不变。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已实际查看，仅参考背景水墨山水、轻淡晕染与留白；人物、脸、女性衣装、发饰与人像画法均不借用，纸纹水墨不能侵入人物本体。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T09:46:15.973415+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-7144be94-4738-49a1-8d46-32db5b085850.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 26a762f855906aba4e7fb2f708df8c6baaef771fb1982f93717f26f468f58230
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_character_realism_20261001
-  realism_revision: user_character_realism_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_guojing__ch02_youth_scene_grassland_double_eagle/prompt-ed9b195cd885bc00e90b4c969059eccd0bf652af36e9916b416fc8371b2f638f.md
-    manifest: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_guojing__ch02_youth_scene_grassland_double_eagle/manifest-0b1943e8a83f5ddeaa904104d0114449afcca74a4ac15687d3270f2d0c35dfda.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_guojing__ch02_youth_scene_grassland_double_eagle.requests.json
-  notes: 实际比较两张郭靖草原射雕候选，选2。青年郭靖有经典形象启发的诚厚英气，与段誉/萧峰区别清楚；面手和完整浅褐袍、皮腰带、双靴写实连续，左手持弓右手拉弦、单箭搭弦，箭囊系带清楚；远空两只雕，无金刀或降龙意象。2弦与弓下端连接及箭囊肩带更明确，1背景营帐额外人物过密。实际偏差：弓最上端贴画面上边，未满足器物端点充分留边；双雕视角略近，背景草原与天空比预期水墨更实。人体和主要射姿完整无明显多肢或重大结构问题，按作者宽松尺度保存candidate，并如实保留构图偏差，未宣称approved或严规全过。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  scene_revision: user_scenes_20261001
-  scene_key: grassland_double_eagle
-  scene_title: 大漠弯弓·一箭双雕
-  stage: 蒙古成长末期、南归以前；已经受哲别射术训练及早年武学教育，尚未得到洪七公传授降龙掌。
-  asset_variant: scene
 - id: por_npc_guojing__ch02_youth_scene_peach_island_square_circle
   file: por_npc_guojing__ch02_youth_scene_peach_island_square_circle.png
   category: character/male
@@ -2177,3 +2098,49 @@
   sha256: 5bd4f0c50d22039a120c2ef82362bd02b3d4a3063512cd58a944c7f30d8d882f
   status: candidate
   notes: 立绘重审重出（AR-30）；现图是剧集式白发长髯老寿星，与原著“长方脸、颏下微须、粗手大脚、补丁衣洗得干净、绿竹杖、朱红葫芦、九指”不符且有肖像风险；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
+- id: por_npc_guojing__ch02_youth_scene_grassland_double_eagle
+  file: por_npc_guojing__ch02_youth_scene_grassland_double_eagle.png
+  category: character/male
+  style: default
+  subject: 郭靖（ch02_shediao）
+  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【场景背景】漠北草原：淡墨远山与开阔天空，远处高空两只飞雕是射猎目标（很小、在远处）。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+
+    【人物与场景】郭靖，《射雕英雄传》，大漠弯弓·一箭双雕。阶段：蒙古成长末期、南归以前；已经受哲别射术训练及早年武学教育，尚未得到洪七公传授降龙掌。
+
+    【身份参考】随提示词上传的第 1 张图是郭靖本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（方圆脸、宽额，浓黑粗眉，眼睛大而圆、眼神朴实专注，鼻梁宽厚、鼻头圆，嘴唇厚、嘴角平直，面颊是大漠风日晒出的小麦色、两颊微红，没有胡须；憨厚坚毅，不是俊俏偶像）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
+
+    【衣装】朴素的浅褐北地短外袍、深灰交领内衣、皮革束腰、收窄袖口、深色长裤与行旅靴，长黑发整齐束起（蒙古成长期，尚未南归）。
+
+    【动作与神情】侧身稳立，左手握弓、右手拉弦到面侧，肩背与腰胯形成清楚的发力；目光沿箭杆斜向上方，诚厚专注（双臂健全）。
+
+    【器物】一张完整反曲弓、一支搭在弦上的箭（箭尾正确扣弦、尚未离弦）、挂在腰后的箭囊；不佩金刀。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
+    sha256: f0b803e8e6cd34baa8cbda222e5ca369a6e4aa31f8e9831e41971beefe66193a
+    use: 身份参考：本轮新出的郭靖（por_npc_guojing__ch02_youth_base，上传 codex 原图）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:16:39-0700
+  source_path: .agents/coord/gemini_originals/por_npc_guojing__ch02_youth_scene_grassland_double_eagle.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 2996fcd37a903dea88c9bf57aa552102a3b5f5c14a6d1a8960f671db2a11078a
+  status: candidate
+  notes: 立绘重审重出（AR-30）；郭靖基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
