@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from PIL import Image, ImageDraw
 
 VIEWS = ("front34", "back34", "side")
+NEAR_SIDE = "L"
 
 
 @dataclass(frozen=True)
@@ -50,6 +51,27 @@ SOURCE_PARTS = (
     "upper_arm_L", "upper_arm_R", "forearm_L", "forearm_R",
     "hand_L", "hand_R", "thigh_shared", "shin_shared", "foot_shared",
 )
+
+PART_JOINTS = {
+    "head": ("neck", "crown"),
+    "hair_or_headgear": ("neck", "crown"),
+    "torso": ("pelvis", "neck"),
+    "pelvis_skirt": ("pelvis", "hem"),
+    "upper_arm_L": ("shoulder_L", "elbow_L"),
+    "upper_arm_R": ("shoulder_R", "elbow_R"),
+    "forearm_L": ("elbow_L", "wrist_L"),
+    "forearm_R": ("elbow_R", "wrist_R"),
+    "hand_L": ("wrist_L", "grip_L"),
+    "hand_R": ("wrist_R", "grip_R"),
+    "thigh_shared": ("hip_L", "knee_L"),
+    "shin_shared": ("knee_L", "ankle_L"),
+    "foot_shared": ("ankle_L", "toe_L"),
+}
+SHARED_CHILD_JOINTS = {
+    "thigh_shared": "knee",
+    "shin_shared": "ankle",
+    "foot_shared": "toe",
+}
 
 
 def _shape(slot: str, width: int, height: int) -> list[tuple[int, int]]:

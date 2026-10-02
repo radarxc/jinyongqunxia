@@ -1,0 +1,731 @@
+schema: tianshu-rig.v1
+set: female_std
+ppm: 256
+nearSide: L
+views:
+- front34
+- back34
+- side
+mirrorPolicy:
+  dir8:
+    0: front34
+    1: front34
+    2: side
+    3: back34
+    4: back34
+    5: back34
+    6: side
+    7: front34
+  mirrored:
+  - 5
+  - 6
+  - 7
+heightM: 1.62
+palette:
+  clothPrimary: '#6B5141'
+  clothSecondary: '#394C53'
+  skin: '#E9CFB4'
+  footwear: '#332B27'
+  hair: '#211C1A'
+placeholder: true
+notes: 程序占位，不是正式美术；三视图切件入库后由 make_parts.py 覆盖。
+parts:
+- id: head
+  file: front34/head.png
+  view: front34
+  pivot:
+  - 38
+  - 73
+  childJoint:
+    crown:
+    - 38
+    - 4
+  size:
+  - 78
+  - 78
+  restAngle: 0.0
+  zOrder: 8
+  tintable: false
+  sha256: 4980b4959a4161bd450afb46eb9c80c207028e1b3013dac5ca7e570aa16cf8c2
+- id: hair_or_headgear
+  file: front34/hair_or_headgear.png
+  view: front34
+  pivot:
+  - 38
+  - 73
+  childJoint:
+    crown:
+    - 38
+    - 4
+  size:
+  - 78
+  - 78
+  restAngle: 0.0
+  zOrder: 9
+  tintable: hair
+  sha256: a2b6bf0d4737e25b67e47f2a0b5f14996e3ba8f007330a2b06a4566f0684ed54
+- id: torso
+  file: front34/torso.png
+  view: front34
+  pivot:
+  - 68
+  - 151
+  childJoint:
+    neck:
+    - 68
+    - 6
+    shoulder_R:
+    - 19
+    - 32
+    shoulder_L:
+    - 117
+    - 32
+  size:
+  - 136
+  - 158
+  restAngle: 0.0
+  zOrder: 6
+  tintable: clothPrimary
+  sha256: 24fcba542579d80cdbe2daa6bfbd07d9005f21cc8f059da670086fae99705e41
+- id: pelvis_skirt
+  file: front34/pelvis_skirt.png
+  view: front34
+  pivot:
+  - 74
+  - 6
+  childJoint:
+    hip_R:
+    - 48
+    - 6
+    hip_L:
+    - 102
+    - 6
+    hem:
+    - 74
+    - 91
+  size:
+  - 150
+  - 98
+  restAngle: 0.0
+  zOrder: 7
+  tintable: clothSecondary
+  sha256: 62a677bd35dbe7c1ddb5c3bf08c31584b2fd8e6f8d2b8184f52c11230567580c
+- id: upper_arm_L
+  file: front34/upper_arm_L.png
+  view: front34
+  pivot:
+  - 24
+  - 4
+  childJoint:
+    elbow_L:
+    - 24
+    - 89
+  size:
+  - 48
+  - 94
+  restAngle: 0.0
+  zOrder: 13
+  tintable: clothPrimary
+  sha256: b22569ae9332829e00b00024251c7d711e7bcee4a38c687d7ea553443d0cd5e1
+- id: upper_arm_R
+  file: front34/upper_arm_R.png
+  view: front34
+  pivot:
+  - 24
+  - 4
+  childJoint:
+    elbow_R:
+    - 24
+    - 89
+  size:
+  - 48
+  - 94
+  restAngle: 0.0
+  zOrder: 0
+  tintable: clothPrimary
+  sha256: b22569ae9332829e00b00024251c7d711e7bcee4a38c687d7ea553443d0cd5e1
+- id: forearm_L
+  file: front34/forearm_L.png
+  view: front34
+  pivot:
+  - 20
+  - 4
+  childJoint:
+    wrist_L:
+    - 20
+    - 79
+  size:
+  - 42
+  - 84
+  restAngle: -90.0
+  zOrder: 14
+  tintable: clothSecondary
+  sha256: 8b76437e155701b9821b43f91a863a449d27103bdf42760a45c15b8f14f9daa2
+- id: forearm_R
+  file: front34/forearm_R.png
+  view: front34
+  pivot:
+  - 20
+  - 4
+  childJoint:
+    wrist_R:
+    - 20
+    - 79
+  size:
+  - 42
+  - 84
+  restAngle: -90.0
+  zOrder: 1
+  tintable: clothSecondary
+  sha256: 8b76437e155701b9821b43f91a863a449d27103bdf42760a45c15b8f14f9daa2
+- id: hand_L
+  file: front34/hand_L.png
+  view: front34
+  pivot:
+  - 18
+  - 4
+  childJoint:
+    grip_L:
+    - 18
+    - 36
+  size:
+  - 36
+  - 66
+  restAngle: 0.0
+  zOrder: 15
+  tintable: false
+  sha256: fd84a970917a7587fc690d5d18c41e44a06308728c6a25cda30b00896991d325
+- id: hand_R
+  file: front34/hand_R.png
+  view: front34
+  pivot:
+  - 18
+  - 4
+  childJoint:
+    grip_R:
+    - 18
+    - 36
+  size:
+  - 36
+  - 66
+  restAngle: 0.0
+  zOrder: 2
+  tintable: false
+  sha256: 192424e4e1bf7cb5734179bc64a2b7fe297213b4201548ebcaff36da44d8821a
+- id: thigh_shared
+  file: front34/thigh_shared.png
+  view: front34
+  pivot:
+  - 26
+  - 5
+  childJoint:
+    knee:
+    - 26
+    - 124
+  size:
+  - 54
+  - 130
+  restAngle: 0.0
+  zOrder: 3
+  tintable: clothSecondary
+  sha256: 571bf7c315fd0c00cb2ce3c6dbc3887974c9f1d1431ca4c6ab72b688d819309c
+- id: shin_shared
+  file: front34/shin_shared.png
+  view: front34
+  pivot:
+  - 24
+  - 5
+  childJoint:
+    ankle:
+    - 24
+    - 114
+  size:
+  - 50
+  - 120
+  restAngle: 0.0
+  zOrder: 4
+  tintable: clothSecondary
+  sha256: ae9a873290a6f5501589ef83e5bdc193a775d62efb942be0834d9afc94c8e51d
+- id: foot_shared
+  file: front34/foot_shared.png
+  view: front34
+  pivot:
+  - 34
+  - 4
+  childJoint:
+    toe:
+    - 65
+    - 67
+  size:
+  - 70
+  - 72
+  restAngle: 0.0
+  zOrder: 5
+  tintable: footwear
+  sha256: e1a36790ee0006ed0509a5613ac6616c37b1adc9600ef8ada54ab7fed021ef6a
+- id: head
+  file: back34/head.png
+  view: back34
+  pivot:
+  - 38
+  - 73
+  childJoint:
+    crown:
+    - 38
+    - 4
+  size:
+  - 78
+  - 78
+  restAngle: 0.0
+  zOrder: 8
+  tintable: false
+  sha256: 4980b4959a4161bd450afb46eb9c80c207028e1b3013dac5ca7e570aa16cf8c2
+- id: hair_or_headgear
+  file: back34/hair_or_headgear.png
+  view: back34
+  pivot:
+  - 38
+  - 73
+  childJoint:
+    crown:
+    - 38
+    - 4
+  size:
+  - 78
+  - 78
+  restAngle: 0.0
+  zOrder: 12
+  tintable: hair
+  sha256: a2b6bf0d4737e25b67e47f2a0b5f14996e3ba8f007330a2b06a4566f0684ed54
+- id: torso
+  file: back34/torso.png
+  view: back34
+  pivot:
+  - 68
+  - 151
+  childJoint:
+    neck:
+    - 68
+    - 6
+    shoulder_R:
+    - 117
+    - 32
+    shoulder_L:
+    - 19
+    - 32
+  size:
+  - 136
+  - 158
+  restAngle: 0.0
+  zOrder: 7
+  tintable: clothPrimary
+  sha256: 24fcba542579d80cdbe2daa6bfbd07d9005f21cc8f059da670086fae99705e41
+- id: pelvis_skirt
+  file: back34/pelvis_skirt.png
+  view: back34
+  pivot:
+  - 74
+  - 6
+  childJoint:
+    hip_R:
+    - 102
+    - 6
+    hip_L:
+    - 48
+    - 6
+    hem:
+    - 74
+    - 91
+  size:
+  - 150
+  - 98
+  restAngle: 0.0
+  zOrder: 6
+  tintable: clothSecondary
+  sha256: 62a677bd35dbe7c1ddb5c3bf08c31584b2fd8e6f8d2b8184f52c11230567580c
+- id: upper_arm_L
+  file: back34/upper_arm_L.png
+  view: back34
+  pivot:
+  - 24
+  - 4
+  childJoint:
+    elbow_L:
+    - 24
+    - 89
+  size:
+  - 48
+  - 94
+  restAngle: 0.0
+  zOrder: 13
+  tintable: clothPrimary
+  sha256: b22569ae9332829e00b00024251c7d711e7bcee4a38c687d7ea553443d0cd5e1
+- id: upper_arm_R
+  file: back34/upper_arm_R.png
+  view: back34
+  pivot:
+  - 24
+  - 4
+  childJoint:
+    elbow_R:
+    - 24
+    - 89
+  size:
+  - 48
+  - 94
+  restAngle: 0.0
+  zOrder: 1
+  tintable: clothPrimary
+  sha256: b22569ae9332829e00b00024251c7d711e7bcee4a38c687d7ea553443d0cd5e1
+- id: forearm_L
+  file: back34/forearm_L.png
+  view: back34
+  pivot:
+  - 20
+  - 4
+  childJoint:
+    wrist_L:
+    - 20
+    - 79
+  size:
+  - 42
+  - 84
+  restAngle: -90.0
+  zOrder: 14
+  tintable: clothSecondary
+  sha256: 8b76437e155701b9821b43f91a863a449d27103bdf42760a45c15b8f14f9daa2
+- id: forearm_R
+  file: back34/forearm_R.png
+  view: back34
+  pivot:
+  - 20
+  - 4
+  childJoint:
+    wrist_R:
+    - 20
+    - 79
+  size:
+  - 42
+  - 84
+  restAngle: -90.0
+  zOrder: 0
+  tintable: clothSecondary
+  sha256: 8b76437e155701b9821b43f91a863a449d27103bdf42760a45c15b8f14f9daa2
+- id: hand_L
+  file: back34/hand_L.png
+  view: back34
+  pivot:
+  - 18
+  - 4
+  childJoint:
+    grip_L:
+    - 18
+    - 36
+  size:
+  - 36
+  - 66
+  restAngle: 0.0
+  zOrder: 15
+  tintable: false
+  sha256: fd84a970917a7587fc690d5d18c41e44a06308728c6a25cda30b00896991d325
+- id: hand_R
+  file: back34/hand_R.png
+  view: back34
+  pivot:
+  - 18
+  - 4
+  childJoint:
+    grip_R:
+    - 18
+    - 36
+  size:
+  - 36
+  - 66
+  restAngle: 0.0
+  zOrder: 2
+  tintable: false
+  sha256: 192424e4e1bf7cb5734179bc64a2b7fe297213b4201548ebcaff36da44d8821a
+- id: thigh_shared
+  file: back34/thigh_shared.png
+  view: back34
+  pivot:
+  - 26
+  - 5
+  childJoint:
+    knee:
+    - 26
+    - 124
+  size:
+  - 54
+  - 130
+  restAngle: 0.0
+  zOrder: 3
+  tintable: clothSecondary
+  sha256: 571bf7c315fd0c00cb2ce3c6dbc3887974c9f1d1431ca4c6ab72b688d819309c
+- id: shin_shared
+  file: back34/shin_shared.png
+  view: back34
+  pivot:
+  - 24
+  - 5
+  childJoint:
+    ankle:
+    - 24
+    - 114
+  size:
+  - 50
+  - 120
+  restAngle: 0.0
+  zOrder: 4
+  tintable: clothSecondary
+  sha256: ae9a873290a6f5501589ef83e5bdc193a775d62efb942be0834d9afc94c8e51d
+- id: foot_shared
+  file: back34/foot_shared.png
+  view: back34
+  pivot:
+  - 34
+  - 4
+  childJoint:
+    toe:
+    - 65
+    - 67
+  size:
+  - 70
+  - 72
+  restAngle: 0.0
+  zOrder: 5
+  tintable: footwear
+  sha256: e1a36790ee0006ed0509a5613ac6616c37b1adc9600ef8ada54ab7fed021ef6a
+- id: head
+  file: side/head.png
+  view: side
+  pivot:
+  - 28
+  - 73
+  childJoint:
+    crown:
+    - 28
+    - 4
+  size:
+  - 58
+  - 78
+  restAngle: 0.0
+  zOrder: 8
+  tintable: false
+  sha256: ddfa6238dcc145380bc39c0949c41b9cd404d2777a1cd16225ab328fd8e0ae58
+- id: hair_or_headgear
+  file: side/hair_or_headgear.png
+  view: side
+  pivot:
+  - 28
+  - 73
+  childJoint:
+    crown:
+    - 28
+    - 4
+  size:
+  - 58
+  - 78
+  restAngle: 0.0
+  zOrder: 9
+  tintable: hair
+  sha256: 557f3e75fa4520cb0683e05a4e2a8aef5919523a4c14ac6ab4f4c6b34fdb1626
+- id: torso
+  file: side/torso.png
+  view: side
+  pivot:
+  - 52
+  - 151
+  childJoint:
+    neck:
+    - 52
+    - 6
+    shoulder_R:
+    - 52
+    - 32
+    shoulder_L:
+    - 52
+    - 32
+  size:
+  - 104
+  - 158
+  restAngle: 0.0
+  zOrder: 7
+  tintable: clothPrimary
+  sha256: f45deaf06ba744c6ad04684319f5080dbc1d0c3e4709a21e69489a233c202a57
+- id: pelvis_skirt
+  file: side/pelvis_skirt.png
+  view: side
+  pivot:
+  - 54
+  - 4
+  childJoint:
+    hip_R:
+    - 54
+    - 4
+    hip_L:
+    - 54
+    - 4
+    hem:
+    - 54
+    - 89
+  size:
+  - 108
+  - 94
+  restAngle: 0.0
+  zOrder: 6
+  tintable: clothSecondary
+  sha256: a3a563ca51d8917ae7229fea823b659988a972e0895dc0f0f7cd9c3a2f99d6a4
+- id: upper_arm_L
+  file: side/upper_arm_L.png
+  view: side
+  pivot:
+  - 18
+  - 4
+  childJoint:
+    elbow_L:
+    - 18
+    - 89
+  size:
+  - 38
+  - 94
+  restAngle: 0.0
+  zOrder: 13
+  tintable: clothPrimary
+  sha256: 14770933807bb883a0dc2936c3a921651f97d139ad7c2a8522ea70149a8d7c10
+- id: upper_arm_R
+  file: side/upper_arm_R.png
+  view: side
+  pivot:
+  - 18
+  - 4
+  childJoint:
+    elbow_R:
+    - 18
+    - 89
+  size:
+  - 38
+  - 94
+  restAngle: 0.0
+  zOrder: 0
+  tintable: clothPrimary
+  sha256: 14770933807bb883a0dc2936c3a921651f97d139ad7c2a8522ea70149a8d7c10
+- id: forearm_L
+  file: side/forearm_L.png
+  view: side
+  pivot:
+  - 18
+  - 4
+  childJoint:
+    wrist_L:
+    - 18
+    - 79
+  size:
+  - 36
+  - 84
+  restAngle: -90.0
+  zOrder: 14
+  tintable: clothSecondary
+  sha256: f6b9577f3e8167bacd88e727ca2230650dcac6a9cdcf5dab960416282710692a
+- id: forearm_R
+  file: side/forearm_R.png
+  view: side
+  pivot:
+  - 18
+  - 4
+  childJoint:
+    wrist_R:
+    - 18
+    - 79
+  size:
+  - 36
+  - 84
+  restAngle: -90.0
+  zOrder: 1
+  tintable: clothSecondary
+  sha256: 808edc4a8369dac8131cd0b8656f8dd286223b6f1a2e5c1aafa6a0c7542c8947
+- id: hand_L
+  file: side/hand_L.png
+  view: side
+  pivot:
+  - 14
+  - 4
+  childJoint:
+    grip_L:
+    - 14
+    - 36
+  size:
+  - 30
+  - 66
+  restAngle: 0.0
+  zOrder: 15
+  tintable: false
+  sha256: 7eaf94ba02454e64710504c3596a37775c5d6b2a3981055b903802a10640cb25
+- id: hand_R
+  file: side/hand_R.png
+  view: side
+  pivot:
+  - 14
+  - 4
+  childJoint:
+    grip_R:
+    - 14
+    - 36
+  size:
+  - 30
+  - 66
+  restAngle: 0.0
+  zOrder: 2
+  tintable: false
+  sha256: 8ba0054be44e0e69e6ee5646bc5eaec3b4479c0ea74fa47203c2672b1f386e02
+- id: thigh_shared
+  file: side/thigh_shared.png
+  view: side
+  pivot:
+  - 20
+  - 5
+  childJoint:
+    knee:
+    - 20
+    - 124
+  size:
+  - 42
+  - 130
+  restAngle: 0.0
+  zOrder: 3
+  tintable: clothSecondary
+  sha256: 76a6f4a865a13c92e88f090e581364d7c3f88c6390cdee1d06d3c258cdb0cfb8
+- id: shin_shared
+  file: side/shin_shared.png
+  view: side
+  pivot:
+  - 20
+  - 5
+  childJoint:
+    ankle:
+    - 20
+    - 114
+  size:
+  - 40
+  - 120
+  restAngle: 0.0
+  zOrder: 4
+  tintable: clothSecondary
+  sha256: da011916ee53f2bb691c187935188a5b66b3cf737e98a8dd4a84f3222417c130
+- id: foot_shared
+  file: side/foot_shared.png
+  view: side
+  pivot:
+  - 26
+  - 4
+  childJoint:
+    toe:
+    - 49
+    - 65
+  size:
+  - 54
+  - 70
+  restAngle: 0.0
+  zOrder: 5
+  tintable: footwear
+  sha256: 43dc91a9fe01d68351597a603bc7c786162329226fd39c636d2217696cd3fc35

@@ -23,6 +23,20 @@ GAP = 16
 BACKGROUND = (230, 225, 216, 255)
 ITEM_ROOT = Path(__file__).resolve().parents[2] / "assets/default/item"
 WORK_CELL = (512, 640)
+SHARED_LIMB_Z = {
+    "front34": {
+        "thigh": {"R": 3, "L": 10}, "shin": {"R": 4, "L": 11},
+        "foot": {"R": 5, "L": 12},
+    },
+    "back34": {
+        "thigh": {"R": 3, "L": 9}, "shin": {"R": 4, "L": 10},
+        "foot": {"R": 5, "L": 11},
+    },
+    "side": {
+        "thigh": {"R": 3, "L": 10}, "shin": {"R": 4, "L": 11},
+        "foot": {"R": 5, "L": 12},
+    },
+}
 
 
 @dataclass
@@ -122,15 +136,15 @@ def compose_pose(set_dir: Path, manifest: dict[str, Any], view: str,
         hip_anchor = _child(pelvis, f"hip_{side}")
         thigh = _part(source, f"thigh_{side}", hip_anchor,
                       pelvis.angle + values[f"hip_{side}"],
-                      shared="thigh_shared", z=3 if side == "L" else 10)
+                      shared="thigh_shared", z=SHARED_LIMB_Z[view]["thigh"][side])
         pieces.append(thigh)
         knee = _child(thigh, "knee")
         shin = _part(source, f"shin_{side}", knee, thigh.angle + values[f"knee_{side}"],
-                     shared="shin_shared", z=4 if side == "L" else 11)
+                     shared="shin_shared", z=SHARED_LIMB_Z[view]["shin"][side])
         pieces.append(shin)
         ankle = _child(shin, "ankle")
         pieces.append(_part(source, f"foot_{side}", ankle, shin.angle + values[f"ankle_{side}"],
-                            shared="foot_shared", z=5 if side == "L" else 12))
+                            shared="foot_shared", z=SHARED_LIMB_Z[view]["foot"][side]))
     placements = {item.part: item for item in pieces}
     for record, layer_image in equipment or []:
         slot = str(record["slot"])

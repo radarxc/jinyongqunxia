@@ -10,8 +10,9 @@ import yaml
 from PIL import Image, ImageDraw
 
 from tools.item.common import BuildError, sha256_file
-from tools.rig.make_parts import build_manifest
-from tools.rig.preview import make_strip
+from tools.rig.make_parts import Z_ORDER, build_manifest
+from tools.rig.make_placeholder_parts import generate
+from tools.rig.preview import SHARED_LIMB_Z, make_strip
 from tools.rig import preview
 from tools.rig.templates import SOURCE_PARTS, TEMPLATES, VIEWS, PART_TO_TEMPLATE
 
@@ -37,6 +38,9 @@ class RigPartPipelineTests(unittest.TestCase):
             directory.mkdir(parents=True)
             for part in SOURCE_PARTS:
                 synthetic_part(directory / f"{part}.png", part)
+        (self.set_dir / "manifest.yaml").write_text(
+            yaml.safe_dump({"placeholder": True}, sort_keys=False), encoding="utf-8"
+        )
 
     def tearDown(self) -> None:
         self.temporary.cleanup()
@@ -45,6 +49,7 @@ class RigPartPipelineTests(unittest.TestCase):
         manifest = build_manifest(self.set_dir)
         self.assertEqual(39, len(manifest["parts"]))
         self.assertEqual(256, manifest["ppm"])
+        self.assertEqual("L", manifest["nearSide"])
         forearms = [item for item in manifest["parts"] if item["id"].startswith("forearm_")]
         self.assertEqual({-90.0}, {item["restAngle"] for item in forearms})
         torso = next(item for item in manifest["parts"]
@@ -53,12 +58,121 @@ class RigPartPipelineTests(unittest.TestCase):
         self.assertTrue(0 <= torso["pivot"][0] < width)
         self.assertTrue(0 <= torso["pivot"][1] < height)
         self.assertEqual({"neck", "shoulder_L", "shoulder_R"}, set(torso["childJoint"]))
+        self.assertGreater(torso["childJoint"]["shoulder_L"][0],
+                           torso["childJoint"]["shoulder_R"][0])
 
         before = sha256_file(self.set_dir / "manifest.yaml")
         build_manifest(self.set_dir)
         self.assertEqual(before, sha256_file(self.set_dir / "manifest.yaml"))
         checked = build_manifest(self.set_dir, check=True)
         self.assertEqual(manifest, checked)
+
+    def test_prefers_view_keypoint_sidecar_and_records_provenance(self) -> None:
+        sidecar = self.set_dir / "front34/torso.keypoints.yaml"
+        sidecar.write_text(yaml.safe_dump({"coordinates": "normalized", "keypoints": {
+            "pelvis": [60, 130], "neck": [60, 20],
+            "shoulder_L": [102, 34], "shoulder_R": [28, 34],
+        }}, sort_keys=False), encoding="utf-8")
+        manifest = build_manifest(self.set_dir)
+        torso = next(item for item in manifest["parts"]
+                     if item["id"] == "torso" and item["view"] == "front34")
+        self.assertEqual([60, 130], torso["pivot"])
+        self.assertEqual([102, 34], torso["childJoint"]["shoulder_L"])
+        self.assertEqual("front34/torso.keypoints.yaml", torso["jointSource"])
+        build_manifest(self.set_dir, check=True)
+
+    def test_all_views_put_anatomical_left_arm_in_front(self) -> None:
+        manifest = build_manifest(self.set_dir)
+        for view in VIEWS:
+            records = {item["id"]: item for item in manifest["parts"] if item["view"] == view}
+            for segment in ("upper_arm", "forearm", "hand"):
+                self.assertGreater(records[f"{segment}_L"]["zOrder"],
+                                   records[f"{segment}_R"]["zOrder"])
+                self.assertGreater(Z_ORDER[view][f"{segment}_L"],
+                                   Z_ORDER[view][f"{segment}_R"])
+        for view in VIEWS:
+            for segment in ("thigh", "shin", "foot"):
+                self.assertGreater(SHARED_LIMB_Z[view][segment]["L"],
+                                   SHARED_LIMB_Z[view][segment]["R"])
+
+    def test_fallback_joints_follow_each_view_projection(self) -> None:
+        records = build_manifest(self.set_dir)["parts"]
+        by_view = {view: {item["id"]: item for item in records
+                          if item["view"] == view} for view in VIEWS}
+        expected_sign = {"front34": 1, "back34": -1, "side": 0}
+        for view, sign in expected_sign.items():
+            torso = by_view[view]["torso"]["childJoint"]
+            pelvis = by_view[view]["pelvis_skirt"]["childJoint"]
+            shoulder_delta = torso["shoulder_L"][0] - torso["shoulder_R"][0]
+            hip_delta = pelvis["hip_L"][0] - pelvis["hip_R"][0]
+            self.assertEqual(sign, (shoulder_delta > 0) - (shoulder_delta < 0))
+            self.assertEqual(sign, (hip_delta > 0) - (hip_delta < 0))
+
+    def test_formal_set_without_sidecars_uses_view_fallbacks(self) -> None:
+        manifest = build_manifest(self.set_dir, placeholder=False)
+        self.assertNotIn("placeholder", manifest)
+        self.assertEqual(39, len(manifest["parts"]))
+        records = {view: {item["id"]: item for item in manifest["parts"]
+                          if item["view"] == view} for view in VIEWS}
+        expected_sign = {"front34": 1, "back34": -1, "side": 0}
+        for view, sign in expected_sign.items():
+            torso = records[view]["torso"]["childJoint"]
+            pelvis = records[view]["pelvis_skirt"]["childJoint"]
+            shoulder_delta = torso["shoulder_L"][0] - torso["shoulder_R"][0]
+            hip_delta = pelvis["hip_L"][0] - pelvis["hip_R"][0]
+            self.assertEqual(sign, (shoulder_delta > 0) - (shoulder_delta < 0))
+            self.assertEqual(sign, (hip_delta > 0) - (hip_delta < 0))
+        self.assertTrue(all("jointSource" not in item for item in manifest["parts"]))
+        build_manifest(self.set_dir, check=True, placeholder=False)
+
+    def test_part_pivot_sidecar_accepts_source_coordinates(self) -> None:
+        source = self.set_dir / "side/upper_arm_L.png"
+        sidecar = self.set_dir / "side/upper_arm_L.pivots.yaml"
+        sidecar.write_text(yaml.safe_dump({"keypoints": {
+            "shoulder_L": [40, 20], "elbow_L": [40, 90],
+        }}, sort_keys=False), encoding="utf-8")
+        manifest = build_manifest(self.set_dir)
+        record = next(item for item in manifest["parts"]
+                      if item["view"] == "side" and item["id"] == "upper_arm_L")
+        # synthetic_part 的 alpha 左上为 (12, 10)，规范化补边 4，因此新原点为 (8, 6)。
+        self.assertEqual([32, 14], record["pivot"])
+        self.assertEqual([32, 84], record["childJoint"]["elbow_L"])
+        self.assertEqual("side/upper_arm_L.pivots.yaml", record["jointSource"])
+        self.assertTrue(source.is_file())
+
+    def test_view_keypoints_drive_every_part_from_source_coordinates(self) -> None:
+        sidecar = self.set_dir / "back34/keypoints.yaml"
+        sidecar.write_text(yaml.safe_dump({"coordinates": "source", "keypoints": {
+            "neck": [40, 20], "crown": [40, 12], "pelvis": [40, 80],
+            "shoulder_L": [55, 30], "shoulder_R": [25, 30],
+            "elbow_L": [40, 70], "elbow_R": [40, 70],
+            "wrist_L": [40, 65], "wrist_R": [40, 65],
+            "grip_L": [40, 45], "grip_R": [40, 45], "hem": [40, 80],
+            "hip_L": [50, 20], "hip_R": [30, 20], "knee_L": [40, 90],
+            "ankle_L": [40, 80], "toe_L": [60, 50],
+        }}, sort_keys=False), encoding="utf-8")
+        manifest = build_manifest(self.set_dir)
+        records = [item for item in manifest["parts"] if item["view"] == "back34"]
+        self.assertEqual(13, len(records))
+        self.assertEqual({"back34/keypoints.yaml"},
+                         {item["jointSource"] for item in records})
+        by_id = {item["id"]: item for item in records}
+        self.assertEqual({"knee"}, set(by_id["thigh_shared"]["childJoint"]))
+        self.assertEqual({"ankle"}, set(by_id["shin_shared"]["childJoint"]))
+        self.assertEqual({"toe"}, set(by_id["foot_shared"]["childJoint"]))
+        build_manifest(self.set_dir, check=True)
+        self.assertIsNotNone(make_strip(self.set_dir).getbbox())
+
+    def test_placeholder_generator_marks_non_production_output(self) -> None:
+        generated = Path(self.temporary.name) / "female_std"
+        generate(generated)
+        manifest = yaml.safe_load((generated / "manifest.yaml").read_text(encoding="utf-8"))
+        self.assertEqual(39, len(manifest["parts"]))
+        self.assertEqual(39, len(list(generated.glob("*/*.png"))))
+        self.assertEqual(1.62, manifest["heightM"])
+        self.assertEqual("L", manifest["nearSide"])
+        self.assertTrue(manifest["placeholder"])
+        build_manifest(generated, check=True)
 
     def test_preview_has_idle_plus_four_phases_in_three_rows(self) -> None:
         build_manifest(self.set_dir)

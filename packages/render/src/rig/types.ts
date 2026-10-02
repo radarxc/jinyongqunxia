@@ -2,6 +2,8 @@ import type { Texture } from 'three';
 
 export const RIG_VIEWS = ['front34', 'back34', 'side'] as const;
 export type RigView = (typeof RIG_VIEWS)[number];
+export const RIG_NEAR_SIDE = 'L' as const;
+export type RigSide = 'L' | 'R';
 
 export const RIG_SOURCE_PARTS = [
   'head',
@@ -63,6 +65,8 @@ export interface RigManifestPart {
   readonly zOrder: number;
   readonly tintable: TintSlot;
   readonly placeholder?: boolean;
+  readonly jointSource?: string;
+  readonly sourceOrigin?: readonly [number, number];
 }
 
 export interface RigManifest {
@@ -70,9 +74,12 @@ export interface RigManifest {
   readonly set: string;
   readonly ppm: number;
   readonly heightM: number;
+  readonly nearSide: typeof RIG_NEAR_SIDE;
   readonly views: readonly RigView[];
   readonly palette: Readonly<Record<string, string>>;
   readonly parts: readonly RigManifestPart[];
+  readonly placeholder?: boolean;
+  readonly notes?: string;
   readonly baseUrl?: string;
 }
 

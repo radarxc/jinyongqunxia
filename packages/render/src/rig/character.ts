@@ -9,10 +9,17 @@ const PART_INDEX = Object.fromEntries(RIG_PARTS.map((part, index) => [part, inde
 const BASE_TINT = 0xffff;
 const PLACEHOLDER_KEYS = { weapon_R: 'placeholder/weapon_R', weapon_L: 'placeholder/weapon_L', pauldron_R: 'placeholder/pauldron_R', pauldron_L: 'placeholder/pauldron_L', cape: 'placeholder/cape' } as const;
 const VIEW_ORDER: Readonly<Record<RigView, readonly number[]>> = {
-  front34: [8, 9, 6, 7, 0, 13, 1, 14, 2, 15, 3, 10, 4, 11, 5, 12],
-  back34: [8, 12, 7, 6, 1, 13, 0, 14, 2, 15, 3, 9, 4, 10, 5, 11],
-  side: [8, 9, 7, 6, 0, 13, 1, 14, 2, 15, 3, 10, 4, 11, 5, 12],
+  front34: [8, 9, 6, 7, 13, 0, 14, 1, 15, 2, 10, 3, 11, 4, 12, 5],
+  back34: [8, 12, 7, 6, 13, 1, 14, 0, 15, 2, 9, 3, 10, 4, 11, 5],
+  side: [8, 9, 7, 6, 13, 0, 14, 1, 15, 2, 10, 3, 11, 4, 12, 5],
 };
+
+export function zOrderForPart(view: RigView, part: RigPart, mirrored = false): number {
+  let index = PART_INDEX[part];
+  if (mirrored && part.endsWith('_L')) index = PART_INDEX[`${part.slice(0, -2)}_R` as RigPart];
+  else if (mirrored && part.endsWith('_R')) index = PART_INDEX[`${part.slice(0, -2)}_L` as RigPart];
+  return VIEW_ORDER[view][index] ?? 0;
+}
 const HIDDEN = { uvRect: [0, 0, 0, 0], affine2d: [0, 0, 0, 0, 0, 0], anchorDepth: [0, 0, 0, 0], sortTint: [0, 0, 0, 0] } as const;
 
 interface ResolvedPart { readonly manifest: RigManifestPart; readonly cell: AtlasCell }
@@ -245,7 +252,9 @@ class RigCharacter implements RigInstance {
         const angle = this.capePhi * DEG; const cos = Math.cos(angle); const sin = Math.sin(angle);
         target.affine2d[0] = cos * 0.55; target.affine2d[1] = -sin * 0.55; target.affine2d[3] = sin * 0.52; target.affine2d[4] = cos * 0.52;
       } else if (attachment.kind.startsWith('weapon')) {
-        const angle = (-18 + (attachment.kind === 'weapon_R' ? this.pose.shoulderR : this.pose.shoulderL) * .35) * DEG;
+        const right = attachment.kind === 'weapon_R';
+        const shoulder = right === this.mirrored ? this.pose.shoulderL : this.pose.shoulderR;
+        const angle = (-18 + shoulder * .35) * DEG * (this.mirrored ? -1 : 1);
         target.affine2d[0] = Math.cos(angle) * .14; target.affine2d[1] = Math.sin(angle);
         target.affine2d[3] = -Math.sin(angle) * .14; target.affine2d[4] = Math.cos(angle);
       } else {
@@ -262,7 +271,7 @@ class RigCharacter implements RigInstance {
     data.uvRect[0] = cell.u0; data.uvRect[1] = cell.v0; data.uvRect[2] = cell.du; data.uvRect[3] = cell.dv;
     const width = part.size[0] * scale; const height = part.size[1] * scale;
     const cos = Math.cos(angle); const sin = Math.sin(angle);
-    const pivotX = (mirrored ? part.size[0] - 1 - part.pivot[0] : part.pivot[0]) * scale;
+    const pivotX = (mirrored ? part.size[0] - part.pivot[0] : part.pivot[0]) * scale;
     const offsetX = width * .5 - pivotX; const offsetY = part.pivot[1] * scale - height * .5;
     data.affine2d[0] = cos * width; data.affine2d[1] = sin * height; data.affine2d[2] = jointX + cos * offsetX + sin * offsetY;
     data.affine2d[3] = -sin * width; data.affine2d[4] = cos * height; data.affine2d[5] = jointY - sin * offsetX + cos * offsetY;
@@ -283,15 +292,22 @@ class RigCharacter implements RigInstance {
 
   private runtimeZ(part: RigPart): number {
     const view: RigView = this.viewIndex < 2 ? 'front34' : this.viewIndex < 4 ? 'back34' : 'side';
-    let index = PART_INDEX[part];
-    if (this.mirrored && part.endsWith('_L')) index = PART_INDEX[`${part.slice(0, -2)}_R` as RigPart];
-    else if (this.mirrored && part.endsWith('_R')) index = PART_INDEX[`${part.slice(0, -2)}_L` as RigPart];
-    return VIEW_ORDER[view][index] ?? 0;
+    return zOrderForPart(view, part, this.mirrored);
   }
 
   private solveSkeleton(view: ResolvedView): void {
     const bodyScale = this.rigSet.manifest.heightM / 1.7;
     const rootY = .94 * bodyScale + this.pose.bodyY;
+    const shoulderL = this.mirrored ? this.pose.shoulderR : this.pose.shoulderL;
+    const shoulderR = this.mirrored ? this.pose.shoulderL : this.pose.shoulderR;
+    const elbowL = this.mirrored ? this.pose.elbowR : this.pose.elbowL;
+    const elbowR = this.mirrored ? this.pose.elbowL : this.pose.elbowR;
+    const hipL = this.mirrored ? this.pose.hipR : this.pose.hipL;
+    const hipR = this.mirrored ? this.pose.hipL : this.pose.hipR;
+    const kneeL = this.mirrored ? this.pose.kneeR : this.pose.kneeL;
+    const kneeR = this.mirrored ? this.pose.kneeL : this.pose.kneeR;
+    const ankleL = this.mirrored ? this.pose.ankleR : this.pose.ankleL;
+    const ankleR = this.mirrored ? this.pose.ankleL : this.pose.ankleR;
     this.setJoint(3, 0, rootY, 0);
     this.setJoint(2, 0, rootY, this.pose.torsoRoll + this.pose.torsoLean);
     this.childOffsetInto(view[2]!.manifest, 'neck', this.globalAngle[2]!, bodyScale, 0);
@@ -301,15 +317,18 @@ class RigCharacter implements RigInstance {
     const torso = view[2]!.manifest;
     this.childOffsetInto(torso, 'shoulder_L', this.globalAngle[2]!, bodyScale, 0);
     this.childOffsetInto(torso, 'shoulder_R', this.globalAngle[2]!, bodyScale, 2);
-    this.setJoint(4, this.jointScratch[0]!, rootY + this.jointScratch[1]!, this.globalAngle[2]! + this.pose.shoulderL);
-    this.setJoint(5, this.jointScratch[2]!, rootY + this.jointScratch[3]!, this.globalAngle[2]! + this.pose.shoulderR);
-    this.chain(view, 4, 6, 'elbow_L', this.pose.elbowL); this.chain(view, 5, 7, 'elbow_R', this.pose.elbowR);
+    this.setJoint(4, this.jointScratch[0]!, rootY + this.jointScratch[1]!, this.globalAngle[2]! + shoulderL);
+    this.setJoint(5, this.jointScratch[2]!, rootY + this.jointScratch[3]!, this.globalAngle[2]! + shoulderR);
+    this.chain(view, 4, 6, 'elbow_L', elbowL); this.chain(view, 5, 7, 'elbow_R', elbowR);
     this.chain(view, 6, 8, 'wrist_L', 0); this.chain(view, 7, 9, 'wrist_R', 0);
 
-    const pelvisX = .105 * bodyScale * (this.mirrored ? -1 : 1);
-    this.setJoint(10, -pelvisX, rootY, this.pose.hipL); this.setJoint(11, pelvisX, rootY, this.pose.hipR);
-    this.chain(view, 10, 12, 'knee', this.pose.kneeL); this.chain(view, 11, 13, 'knee', this.pose.kneeR);
-    this.chain(view, 12, 14, 'ankle', this.pose.ankleL); this.chain(view, 13, 15, 'ankle', this.pose.ankleR);
+    const pelvis = view[3]!.manifest;
+    this.childOffsetInto(pelvis, 'hip_L', this.globalAngle[3]!, bodyScale, 0);
+    this.childOffsetInto(pelvis, 'hip_R', this.globalAngle[3]!, bodyScale, 2);
+    this.setJoint(10, this.jointScratch[0]!, rootY + this.jointScratch[1]!, hipL);
+    this.setJoint(11, this.jointScratch[2]!, rootY + this.jointScratch[3]!, hipR);
+    this.chain(view, 10, 12, 'knee', kneeL); this.chain(view, 11, 13, 'knee', kneeR);
+    this.chain(view, 12, 14, 'ankle', ankleL); this.chain(view, 13, 15, 'ankle', ankleR);
   }
 
   private setJoint(index: number, x: number, y: number, angle: number): void {
@@ -323,7 +342,8 @@ class RigCharacter implements RigInstance {
 
   private childOffsetInto(part: RigManifestPart, joint: string, angleDegrees: number, scaleMultiplier: number, offset: number): void {
     const swapped = joint.endsWith('_L') ? `${joint.slice(0, -2)}_R` : joint.endsWith('_R') ? `${joint.slice(0, -2)}_L` : joint;
-    const point = part.childJoint[joint] ?? part.childJoint[swapped] ?? part.pivot; const unit = scaleMultiplier / this.rigSet.manifest.ppm;
+    const primary = this.mirrored ? swapped : joint; const fallback = this.mirrored ? joint : swapped;
+    const point = part.childJoint[primary] ?? part.childJoint[fallback] ?? part.pivot; const unit = scaleMultiplier / this.rigSet.manifest.ppm;
     let dx = (point[0] - part.pivot[0]) * unit; const dy = -(point[1] - part.pivot[1]) * unit;
     if (this.mirrored) dx = -dx;
     const angle = angleDegrees * DEG * (this.mirrored ? -1 : 1); const cos = Math.cos(angle); const sin = Math.sin(angle);
