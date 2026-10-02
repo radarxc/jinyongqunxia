@@ -396,3 +396,14 @@
       - r3 全项 PASS 后自动合入。
       - 26 张（19 建筑 + 7 贴片）全部 `status: candidate`，不带 `approved_by`。**作者 10-01 通过的是旧图，元北套件要在总览页重审。**
     - **01:05 集成分支 `pnpm check`（db681dbc）全绿**：83 个测试文件 418 个用例，`content:validate` 392 个文件，`size` 274.97 / 350 KB。第一遍 rig 100 角色门禁 min P95 1.026 ms（loadavg 14）失败，原样重跑得 0.361 ms 通过。ENG-11 没碰 `rig/`，属于调度抖动。磁盘 21 GB。
+  - **10-02 01:25 开发监督接手（后台 subagent，接替 ENG 监督；交接说明在会话草稿目录 `dev_supervisor_brief.md`）**：
+    - **分工**：开发监督只管 ENG-* / TOOL-* 和开发需要的文档同步任务；DES-*、出图、立绘归协调者。des30 批次里的 TOOL-rig-nearside / TOOL-rig-clips 由开发监督盯防和合入处理，不另起批次。
+    - **补记旧监督的裁定**：
+      - ENG-15 写集扩到 `packages/platform/src/storage/**`、platform 的 README / CLAUDE.md、`packages/ui/src/projections.ts`（8132b74f）。原因：它的存档迁移要登记进 ENG-13 的迁移链，不加这些路径，改动会被 finish 静默丢弃。提示词另写明：迁移函数放 core，`loop.ts` 不接管渲染。
+      - ENG-18 提示词写明 M1 终点为白马（唐）冷入口（AR-29，93e38482）：管线对书界一视同仁，先用现有内容和夹具验证。
+      - DES-sync-meridian-v2 审核发现 `docs/00-canon.md` §19「确定性」仍写当前协议为 2，和技术文档的 `rulesProtocol=3` 冲突。canon 只给 DES-changsheng-core 改，由协调者安排。
+    - **稀疏检出再修订（bac7c671，改 `step.py`）**：
+      - 起因：ENG-09 构建期的 `copyTownAssets` 会对 `content/town/*/*.json` 引用的城镇图集逐个 `access()`（大理 39 条、杭州 41 条）。这些全是 `baseline/tile`、`baseline/building-map` 的顶层文件，共约 19 MB。旧规则把这两个目录整个排除，ENG-09 合入后所有稀疏代码任务的 `vite build` 都会挂。
+      - 新规则：这两处只排除子目录（sources、review、meta、qa 等，约 300 MB），顶层文件检出。只影响新建的工作区。
+      - 以后挪基点到含 ENG-09 的基点时，旧稀疏工作区要先重设 sparse-checkout。
+    - **ENG-09 合入预判**：基点 4077428f 落后集成分支 128 个提交。和集成分支重叠 3 个文件：`apps/game/build/asset-manifest.ts`、`content-plugin.ts`、`packages/render/package.json`，都被 ENG-11 改过。cherry-pick 大概率冲突，届时照「挪基点」流程处理。
