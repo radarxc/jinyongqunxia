@@ -371,3 +371,8 @@
       - ENG-15（命令总线）、ENG-18（内容管线）、ENG-16（战斗补全）、ENG-21（渲染补齐）是基础设施，照常推进。
       - ENG-17（书眠与章节切换）、CONTENT-ch00（序章内容）、ENG-19（UI 主流程）要等 DES-prologue-v2 / DES-sleep-events / DES-changsheng-core，以及作者对 M1 终点（天龙或白马）的决定，先不登记。
       - AR-27 八项先天属性（加内息）落地时要另开 core 任务改 `innate`。
+    - **00:26 ENG-13-save-formal 合入（ba421d52）**：合入后 `pnpm check` 全绿，73 个测试文件 392 个用例，`size` 274.33 / 350 KB。ENG-15 的两个依赖只剩 ENG-09。ENG-13 报告给 core 的接口：`serialize()` 纯 JSON、确定性、不含瞬时的 battle / dialogue；`meta.saveSchema >= 1`，随形状变化单调递增并提供逐版纯迁移；还要提供真实 `contentHash` 与 host `validate/restore`。
+    - **00:27 ENG-11-vfx 挪基点解冲突**：r1 已 PASS、工作区已提交 86e8085b，但挑入时与集成分支的 4 个文件冲突（`apps/game/build/asset-manifest.ts`、`content-plugin.ts`、`apps/game/vite.config.ts`、`packages/render/package.json`）。照 ①：工作区挪到 ba421d52 并保留冲突标记，基点写进 state.json；带 `.agents/coord/ENG-11-vfx/rebase_note.md`（两边都保留）`--from start --max-reviews 1 --max-runs 2` 重启。原提交留在 `refs/agents-backup/ENG-11-vfx-r1-pass`。
+    - **00:30 磁盘 8.1 GB → 13.7 GB**：
+      - 移除主检出 6 个已挑入 `_prod` 的 NAuF 工作区（rules、lint、book-04 / 05 / 12 / 13），都没有未跟踪或未提交文件。
+      - des26 的三个 DES 工作区（attr-v2、changsheng-core、economy-gather）建于新稀疏规则之前，每个约 2 GB。按新模式重设 sparse-checkout 后每个 275 MB；任务改动（git status）不变，可随时 `sparse-checkout disable` 恢复。
