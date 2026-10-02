@@ -4,7 +4,7 @@ import { createIndexedDbStorage, downloadBytes, type TianshuStorage } from '@tia
 import { t, uiBus, type useUiStore, type SaveSlotView } from '@tianshu/ui/runtime';
 import type { GameHost } from './runtime/contracts';
 import type { BattleController } from './battle/controller';
-import { createSaveService } from './storage/save-service';
+import type { createSaveService } from './storage/save-service';
 import { slotViews } from './storage/slot-views';
 
 export type GameController = ReturnType<typeof createGameController>;
@@ -33,7 +33,11 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
   let dirtyRevision = 0;
   let savedRevision = 0;
   async function refresh(): Promise<void> {
-    if (saves) slots.value = markRaw(slotViews(await saves.list()));
+    if (!saves) return;
+    const listed = await saves.list();
+    slots.value = markRaw(slotViews(listed, Object.fromEntries(await Promise.all(listed.map(async (row) => [row.slot, await saves!.history(row.slot)])))));
+    const persisted = { granted: '已获授权', denied: '未获授权，请定期导出', unsupported: '浏览器不支持', 'not-requested': '首次保存时请求' }[await saves.persistenceStatus()];
+    if (storageAvailable.value) saveStatus.value = `${saveStatus.value === t('loading') ? t('saveReady') : saveStatus.value.split(' · 持久存储：')[0]!} · 持久存储：${persisted}`;
   }
   function describe(error: unknown): string {
     const code = error instanceof Error ? error.message : String(error);
@@ -92,29 +96,34 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     try {
       const opened = await createIndexedDbStorage({ databaseName: ui.projection.hud.preview ? 'tianshu-ui-preview' : 'tianshu' });
       if (disposed) { await opened.close(); return; }
-      storage = opened; saves = createSaveService(storage, host);
+      storage = opened; saves = (await import('./storage/save-service')).createSaveService(storage, host);
       const stored = await storage.settings.get<{ largeText: boolean; reducedMotion: boolean }>('ui.accessibility');
       if (stored) settings.value = { largeText: stored.largeText === true, reducedMotion: stored.reducedMotion === true };
       await refresh(); storageAvailable.value = true; saveStatus.value = t('saveReady');
     } catch (error) { saveStatus.value = describe(error); }
   }
-  async function saveAction(action: 'save' | 'load' | 'remove' | 'export', slot: string): Promise<void> {
+  async function saveAction(action: 'save' | 'load' | 'remove' | 'export', request: string): Promise<void> {
+    const [slot, option] = request.split('|');
     if (battleActive.value && (action === 'save' || action === 'load')) { notice.value = '战斗结束后可保存或读取旅程。'; return; }
     await run(async () => {
       if (!saves) throw new Error('STORAGE_UNAVAILABLE');
-      if (action === 'export') downloadBytes(await saves.exportSlot(slot), `${slot}.tsui`);
-      else await saves[action](slot);
+      if (action === 'export' && slot === '*') downloadBytes(await saves.exportAll(), 'tianshu-saves.zip');
+      else if (action === 'export') downloadBytes(await saves.exportSlot(slot!, option === 'json' ? 'json' : 'tsav'), `${slot}.${option === 'json' ? 'json' : 'tsav'}`);
+      else if (action === 'load') { const recovery = await saves.load(slot!, option ? Number(option) : undefined); if (recovery) saveStatus.value = `已从第 ${recovery.recoveredGeneration} 代恢复`; }
+      else await saves[action](slot!);
       if (action === 'load') savedRevision = dirtyRevision;
-      saveStatus.value = { save: '已保存旅程', load: '已读取存档', remove: '已删除存档', export: '存档已导出' }[action];
+      if (action !== 'load' || !saveStatus.value.startsWith('已从第')) saveStatus.value = { save: '已保存旅程', load: '已读取存档', remove: '已删除存档', export: '存档已导出' }[action];
       notice.value = ''; await refresh();
     });
   }
   async function importFile(slot: string, file: File): Promise<void> {
     await run(async () => {
       if (!saves) throw new Error('STORAGE_UNAVAILABLE');
-      if (file.size > 32 * 1024 * 1024 + 16 * 1024 + 9) throw new Error('SAVE_FILE_INVALID');
-      await saves.importSlot(slot, new Uint8Array(await file.arrayBuffer()));
-      saveStatus.value = '已导入所选槽位，可选择读取'; await refresh();
+      if (file.size > 256 * 1024 * 1024) throw new Error('SAVE_FILE_INVALID');
+      const bytes = new Uint8Array(await file.arrayBuffer());
+      const zip = bytes[0] === 0x50 && bytes[1] === 0x4b && bytes[2] === 0x03 && bytes[3] === 0x04;
+      const count = zip ? await saves.importAll(bytes) : (await saves.importSlot(slot, bytes), 1);
+      saveStatus.value = zip ? `已从 ZIP 导入 ${count} 份存档` : '已导入所选槽位的新一代，可选择读取'; await refresh();
     });
   }
   function setSetting(key: 'largeText' | 'reducedMotion', value: boolean): void {

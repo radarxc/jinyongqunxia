@@ -1,7 +1,7 @@
 import Dexie, { type Table } from 'dexie';
 import type { Migration } from './types';
 
-export const STORAGE_SCHEMA_VERSION = 2;
+export const STORAGE_SCHEMA_VERSION = 3;
 
 export interface SaveRow {
   slot: string;
@@ -54,10 +54,11 @@ export interface StorageMetaRow {
 
 export const MIGRATIONS: readonly Migration[] = [
   { from: 1, to: 2, description: 'add world state snapshots and ordered deltas' },
+  { from: 2, to: 3, description: 'move saves to three-generation compound keys' },
 ];
 
 export class TianshuDatabase extends Dexie {
-  saves!: Table<SaveRow, string>;
+  saveGenerations!: Table<SaveRow, [string, number]>;
   worldSnapshots!: Table<WorldSnapshotRow, string>;
   worldDeltas!: Table<WorldDeltaRow, number>;
   packs!: Table<ContentRow, string>;
@@ -86,6 +87,33 @@ export class TianshuDatabase extends Dexie {
         await transaction.table<StorageMetaRow>('storageMeta').put({
           key: 'schemaVersion',
           value: 2,
+        });
+      });
+
+    this.version(3)
+      .stores({
+        saves: null,
+        saveGenerations: '&[slot+generation], slot, [slot+savedAt], savedAt, [worldId+gameTime]',
+        worldSnapshots: '&key, [scope+worldId]',
+        worldDeltas: '++id, &[scope+worldId+sequence], [scope+worldId]',
+        packs: '&key, [worldId+kind+version], lastAccessedAt',
+        settings: '&key',
+        storageMeta: '&key',
+      })
+      .upgrade(async (transaction) => {
+        const legacy = await transaction.table<SaveRow>('saves').toArray();
+        if (legacy.length > 0) {
+          await transaction.table<SaveRow>('saveGenerations').bulkPut(legacy);
+          await transaction.table<StorageMetaRow>('storageMeta').bulkPut(
+            legacy.map((row) => ({
+              key: `save:current:${row.slot}`,
+              value: row.generation,
+            })),
+          );
+        }
+        await transaction.table<StorageMetaRow>('storageMeta').put({
+          key: 'schemaVersion',
+          value: 3,
         });
       });
   }

@@ -21,8 +21,19 @@ export interface SaveSlotSummary {
   readonly meta: SaveMetadata;
 }
 
+export interface SaveRecovery {
+  readonly recoveredGeneration: number;
+  readonly failedGenerations: readonly number[];
+}
+
 export interface StoredSave extends SaveSlotSummary {
   readonly snapshot: Uint8Array;
+  readonly recovery?: SaveRecovery;
+}
+
+export interface LoadSaveOptions {
+  readonly generation?: number;
+  readonly validate?: (save: StoredSave) => void | Promise<void>;
 }
 
 export interface AutosaveOptions {
@@ -36,16 +47,32 @@ export interface AutosaveResult {
   readonly saved?: SaveSlotSummary;
 }
 
+export interface SavePayload {
+  readonly snapshot: Uint8Array;
+  readonly meta: SaveMetadata;
+}
+
 export interface SaveStore {
   listSlots(): Promise<readonly SaveSlotSummary[]>;
+  listHistory(slot: SaveSlotId): Promise<readonly SaveSlotSummary[]>;
   save(slot: SaveSlotId, snapshot: Uint8Array, meta: SaveMetadata): Promise<SaveSlotSummary>;
-  load(slot: SaveSlotId): Promise<StoredSave | null>;
+  load(slot: SaveSlotId, options?: LoadSaveOptions): Promise<StoredSave | null>;
   delete(slot: SaveSlotId): Promise<void>;
   autosave(
     snapshot: Uint8Array,
     meta: SaveMetadata,
     options?: AutosaveOptions,
   ): Promise<AutosaveResult>;
+  autosavePrepared(
+    prepare: (slot: SaveSlotId) => Promise<SavePayload>,
+    options?: AutosaveOptions,
+  ): Promise<AutosaveResult>;
+}
+
+export type PersistenceStatus = 'not-requested' | 'granted' | 'denied' | 'unsupported';
+
+export interface StoragePersistence {
+  status(): Promise<PersistenceStatus>;
 }
 
 export type PersistedStateScope = 'long-term' | 'chapter';
@@ -156,6 +183,7 @@ export interface TianshuStorage {
   readonly settings: SettingsStore;
   readonly migrations: readonly Migration[];
   readonly transfer: StorageTransfer;
+  readonly persistence: StoragePersistence;
   export(): Promise<StorageExport>;
   import(archive: StorageExport): Promise<StorageImportResult>;
   close(): Promise<void>;
@@ -172,4 +200,6 @@ export interface CreateStorageOptions {
   readonly IDBKeyRange?: typeof IDBKeyRange;
   readonly clock?: StorageClock;
   readonly autosaveThrottleMs?: number;
+  readonly storageManager?: Pick<StorageManager, 'persist' | 'persisted'> | null;
+  readonly saveCommitHook?: (slot: SaveSlotId, generation: number) => void | Promise<void>;
 }
