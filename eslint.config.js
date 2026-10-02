@@ -13,6 +13,7 @@ const ignored = [
   'assets/**',
   'tools/**/*.py',
   'tools/vfx/**',
+  'tools/agents/reports/**', // 任务报告与调研原型脚本（如 RESEARCH-anim-proto），不属于源码
 ];
 
 const restrictedMath = [
