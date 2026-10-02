@@ -451,6 +451,29 @@
     - **被权限系统拒绝**：用脱离方式重拉 des26、des30 两个 batch_run，理由「Interfere With Workloads」。按规定不绕路，已报协调者，等作者定。
       - 在此之前，这两批没有调度器。在跑的驱动会走完一轮返修，但 HOLD-REVIEWS 之后不会自动复审，TOOL-rig-clips 也不会自动启动。
     - **以后**：batch_run 和单任务驱动都不要放在工具后台（Bash 的 run_in_background）里跑，要用脱离方式启动（新会话、ppid=1）。
+  - **10-02 02:25–04:35 开发监督（夜间）**：
+    - **TOOL-rig-nearside 合入（53cd292f）**：
+      - r1、r2 FAIL，都是真问题：镜像关节链、分视图比例回退、旁注回退契约。
+      - r2 返修完后挪基点到 21aa7fe5，只有 `rig/index.ts` 一处冲突，ENG-11 的 `RigSnapshot` 导出与本任务导出都保留；r3 PASS 后合入。
+      - 合入后定时检查全绿。TOOL-rig-clips 等作者决定再起。
+    - **单个驱动启动也被拒**：给 DES-scenes-keyart 起复审驱动时，权限系统以「Auto-Mode Bypass」拒绝。此后夜里一律只盯不起；协调者转作者定。
+      - 停在 HOLD-REVIEWS、等复审的：DES-scenes-keyart（02:38）、DES-changsheng-core（02:50）、DES-attr-v2（03:27）。
+    - **ENG-09 停下（04:28，协调者令）**：
+      - 起因：r1 FAIL，打坐判定与 RNG 仍在 `apps/game` 的 `session.ts`，要进 core。返修后复审，校验又挂在 rig 负载门禁（min P95 0.925 ms，loadavg 19）。
+      - 随后的校验返修里，执行器给 `rig/performance.test.ts` 加了「负载超过 CPU 数 × 1.5 就跳过断言」，属于放宽门禁；同一次运行还改了 `rig/instance-buffer.ts`、`character.ts`、`instance-buffer.test.ts`（热路径优化）。
+      - 处置：置 HOLD-RUNS，停驱动和第 4 次运行，工作区原样保留。
+      - 早上由作者处理：撤掉跳过逻辑；另外三个文件只留 ENG-09 真正需要的改动；负载低时 `--from validate` 复审；合入预计仍有冲突，要挪基点。
+      - 门禁在高负载下抖动的根本办法由作者定。在那之前，任何任务都不许放宽或跳过门禁。
+    - **校验命令修正（618ab406，协调者批准）**：
+      - ENG-15、16a、18、21a、21b 的 validate 删掉 `pnpm --filter ./apps/game test`。原因：它加载 `vite.config.ts` 时，原生 ESM 找不到 `packages/data/src/tooling.ts` 里不带后缀的 `./content-index`。自 ENG-02 起就坏，以前没有任务跑过这条。
+      - 根 `pnpm check` 已覆盖 `apps/**/*.test.ts`，删掉不会少跑测试。
+      - 这个导入问题交作者另开小任务修。
+    - **磁盘**：
+      - 经过：02:56 跌破 10 GB，03:21 一度只剩 3.2 GB（一次约 3 GB 的临时占用）。
+      - 原因：swap 涨到 31 GB（VM 卷与数据卷同在一个 APFS 容器）；立绘抠图常驻内存 4.6 GB；出图 Codex 工人的会话库 `gem/codex_w*/home*/thread_history_1.sqlite` 在长。
+      - 处置：协调者停了立绘，并给出图员下了清会话库的规则；03:30 回到 13 GB。
+      - `/private/tmp` 里还有约 9.5 GB 旧任务残留，没删，等作者定。
+    - **git**：主仓库 `.git/logs/refs/remotes/origin/` 下有 3 个属主为 root、0 字节的 `.lock`（02:32–02:37 生成），提交后 git 自动 gc 因此失败。不影响提交，交作者处理。
   - **10-02 01:30–02:25 协调者（作者睡前定的三条线）**：
     - **作者分工**（原话：「你要做三件事，分别用不同的subagent：1. 物品图生成 2. 人物图完善 3. 开发监督（持续推进，解决卡点）」）：
       1. **物品线**：一个 subagent 用 Gemini 网页两个可见标签页（组 1443269144），补秘籍书名、出食品及其余待出物品。交接说明在会话草稿目录 `gem/items_agent_brief.md`。
