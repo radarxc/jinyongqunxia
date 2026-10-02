@@ -1,30 +1,31 @@
 # TODO · 《金庸群侠传·天书录》现状与待办
 
-> 更新：2026-10-02 12:10 PDT（协调者）。本文整份替换了 09-29 的旧版，旧版见 git 历史。
+> 更新：2026-10-02 14:00 PDT（协调者）。本文整份替换了 09-29 的旧版，旧版见 git 历史。14:00 按作者对 §8 的答复（AR-34）做了更新。
 
 参考与入口：
 
 | 项 | 位置 |
 |---|---|
-| 事实优先级 | 作者决定（`docs/decisions/author-requirements.md` 的 AR-01 至 AR-33）> `docs/00-canon.md` > `docs/decisions/rulings-v1.md` > 各归属文档 |
+| 事实优先级 | 作者决定（`docs/decisions/author-requirements.md` 的 AR-01 至 AR-34）> `docs/00-canon.md` > `docs/decisions/rulings-v1.md` > 各归属文档 |
 | 流水账 | `tools/agents/HANDOFF.md` §9.8 |
-| Gemini 出物品图的操作 | skill `gemini-imagegen`：正本在主检出 `.claude/skills/gemini-imagegen/`，`_prod` 里有指向它的软链。`.claude/` 写在 `.git/info/exclude` 里，所以不进 git |
+| Gemini 出物品图的操作 | skill `gemini-imagegen`（`.claude/skills/gemini-imagegen/`），已入库（AR-34）。`.claude/` 里的其余本机设置仍由 `.git/info/exclude` 排除，所以以后往 skill 里加新文件要用 `git add -f` |
 | 续作材料（简报、监督脚本、出图台账、小基线图） | `.agents/wt/_prod/.agents/coord/_handoff/`（不入库） |
 | 要作者决定 / 确认的事 | 本文 §8 |
 
 ## 0. 现状一句话
 
-- **设计**：已合入的有《长生诀》主线、白马唐代化、序章改版、七条长生诀支线、金钱采集、秘籍扩充、兵器扩充、情景图清单、各朝路人。属性 v2、休眠事件、白马年份同步还在跑。
+- **设计**：已合入的有《长生诀》主线、白马唐代化、序章改版、七条长生诀支线、各书休眠事件、金钱采集、秘籍扩充、兵器扩充、情景图清单、各朝路人。还在跑的：属性 v2（协调者破例再审一轮）、白马年份同步（第 1 次复审）。
 - **素材**：
   - 人物立绘全部用 codex 重出过一轮，主要角色又按经典影视版重出；作者中午定的最后几处修改还没做。
   - 各朝路人已出。
   - 物品图还剩 366 张，多人情景图还没开始。
 - **开发**：
-  - ENG-00 至 ENG-14、ENG-16a 已合入，集成分支 `pnpm check` 全绿（92 个测试文件、515 个用例）。
+  - ENG-00 至 ENG-14、ENG-16a、ENG-21a 已合入。
+  - 最近一次记录的集成分支 `pnpm check` 全绿（92 个测试文件、515 个用例）；ENG-21a 合入之后还没在集成分支上重跑。
   - M1 路径（新游戏 → 序章 → 初眠配点 → 白马冷入口）还没打通，相关任务都在 eng3 队列里等前置。
 - **限额**：10-02 上午起，Claude subagent 的周额度用完了，**10-06 07:00 PDT 重置**。
   - 停了的：Gemini 物品线、codex 人物线、开发监督。
-  - 还在跑的：GPT 执行器跑的设计和工程批次。但没人处理合入冲突和停住的任务。
+  - 还在跑的：GPT 执行器跑的设计和工程批次。没有开发监督，合入冲突和停住的任务要协调者手动处理；13:58 处理过一轮，见 §1。
 
 ---
 
@@ -41,34 +42,41 @@
 **在跑的任务工作区**：
 - 都在 `_prod/.agents/wt/<ID>`，分离 HEAD，没有分支；
 - supervise 驱动在复审通过后，把它们 cherry-pick 进集成分支；
-- 状态是 11:47 的。
+- 状态是 14:00 的。
 
 | 工作区 | 基点 | 状态 | 驱动 pid |
 |---|---|---|---|
-| DES-attr-v2 | 8c4dc7f2 | 第 3 次复审，也是最后一次；执行器在跑 | supervise 66007 |
-| DES-sleep-events | 1cf6dfb0 | 第 1 次复审 | supervise 91847，属 des32 批次（pid 32688） |
-| DES-sync-baima-year | d6b7d812 | 执行器在跑 | supervise 3236 |
+| DES-attr-v2 | 8c4dc7f2 | 3 次复审已用完，协调者破例再审一轮：r5 唯一不过的一项（预算漏算突破的 30 点）已在第 6 轮改好；这轮通过就自动合入 | supervise 97176 |
+| DES-sync-baima-year | d6b7d812 | 审核没过，第 1 次复审 | supervise 94958 |
 | ENG-15-core-bus | 7e2b9a76 | 执行器在跑 | supervise 61978 |
-| ENG-16b-battle-actions | 00712361 | 执行器在跑，已超过 1 小时 | supervise 11580 |
+| ENG-16b-battle-actions | 00712361 | 执行器在跑 | supervise 11580 |
 | ENG-18-content-build | 7e2b9a76 | 执行器在跑 | supervise 61992 |
-| ENG-21a-camera-daynight | 2d18b68c | 执行器在跑 | supervise 57048 |
+| ENG-21b-recovery-quality | 3dd16a19 | 执行器在跑；ENG-21a 12:46 合入后，由 eng3 接着起 | eng3 起的 supervise |
 
-四个 ENG 任务都在 eng3 批次（pid 58514）的队列里。
+- 四个 ENG 任务都归 eng3 批次（pid 58514）。13:50 时在跑 4 个、已合入 1 个、待启动 21 个。
+- DES-sleep-events 由协调者在 13:58 手动合入（5b79f03c）。
+  - 它 12:00–12:06 的自动合入，是被协调者在 `_prod` 里还没提交的改动挡住的；
+  - 以后在 `_prod` 改文件，改完要立即提交。
 
-**主检出的脏状态**（清理前先征得作者同意，不要直接提交）：
-- **115 个已修改文件**：
-  - 112 个是集成分支里已有的副本：42 个与现版相同，70 个是旧版，可以丢弃；
-  - 3 个在集成分支历史里找不到同版，丢弃前先和集成分支比对：`assets/default/STYLE.md`、`assets/default/prompts/characters/INDEX.md`、`docs/design/catalog/npcs-ch01-tianlong.md`。
-- **40 个未跟踪项**：
-  - `assets/default/character/`：1.2 GB，旧立绘和旧 manifest；
-  - ch02–ch14 的人物提示词目录、天龙的场景提示词：旧版；
-  - `generated_images/`：见 §3.3；
-  - 若干 `.DS_Store`。
+**主检出的未提交内容**（作者 10-02 定：只记录、不清理，AR-34）：
+- **记录在哪**：
+  - 入库的记录是 `tools/agents/reports/RECORD-main-dirty-20261002.md`；
+  - 逐条清单，以及 99 个独有文件的副本和差异，在主检出 `.agents/archive/main-dirty-20261002/`。
+- **共 1904 条**：
+  - 已修改 115 个：42 个与集成分支现版相同，70 个是集成分支历史里的旧版，3 个独有：`STYLE.md`、人物 `INDEX.md`、`catalog/npcs-ch01-tianlong.md`。
+  - 未跟踪的人物提示词 436 个：156 个与现版相同，184 个是历史旧版，96 个独有。独有的多是 10-01 夜里改写的，以 ch09 / ch12 / ch14 为主。
+  - `assets/default/character/`：477 张 PNG 全是副本（199 张与集成分支现图相同，278 张与 `generated_images/` 原图相同），另有 30 个旧 manifest。
+  - `generated_images/` 共 838 项（836 张图，加 README 和 MAP），见 §3.3。
+  - `.DS_Store` 8 个。
+- **规矩**：不要在主检出 `git add` 这些文件。主检出只提交 HANDOFF、TODO 和 skill。
 
-**09-30 旧管线留下的工作区**：
-- 主检出 `.agents/wt/` 下有 34 个：ART-P-ch01–09 与 ch12–14、ART-R1 / R2 / R3、NAuF-book-02 / 08、NR4S-09，以及 12 个 NR5-*。
-- 都是分离 HEAD，没有进程在跑；它们在 `.agents/coord` 里的状态还停在 09-30 的 READY / RUNNING。
-- 内容多半已被后来的任务取代。逐个核对后先归档，再删工作区；归档之前不删。
+**09-30 旧管线留下的工作区**：已处理（作者 10-02 定「处理」，AR-34）。
+- 共 32 个，之前写的 34 个是数错了。都已先归档、再移除。
+- 归档在主检出 `.agents/archive/wt-20261002/`，里面有 README 说明怎么恢复。
+  - 13 个有不在任何分支上的提交（ART-P-ch01–09 与 ch12–14、ART-R1-male），已导出成 patch；
+  - 5 个有未提交改动（ART-R1-female、ART-R2-male、ART-R2-vfx、ART-R3-vfx、NR4S-09），已存成 patch 和 tar 包；
+  - 每个工作区的 HEAD 都留了引用 `refs/archive/wt-20261002/<ID>`。
+- 现在 `git worktree list` 里只剩主检出、`_prod` 和上表的任务工作区。
 
 **集成分支 coord 里 10-01 的遗留状态**（没有进程在跑）：
 - ENG-01-storage（HOLD-REVIEWS）、DES-prologue-ch00（READY）：其实都已手动合入（3da8cbb9；HANDOFF cb354c64），只是状态文件没更新。
@@ -97,6 +105,8 @@
 | | 胡斐用豪侠版，不剃发；清代其他男主剃额留辫；男主不补断疤；不申请 Gemini API key。 |
 | | **补记**（10-02 上午）：各书版本与个别人物取舍，见 §3.1。 |
 | AR-33 | **rig 性能门禁**移出 `pnpm check`，改成 `pnpm check:perf`，负载低时单独跑；阈值不动，禁止在测试里加「高负载跳过」。 |
+| AR-34 | **交接问答**：主检出脏文件只记录；旧工作区归档后移除；131 张原图留下并写引用；不下载 Playwright；杨逍确认；skill 入库；女角撞脸已无。 |
+| | 待定的两项（§8）：三视图用哪个；UAL Pro 买不买。 |
 
 协调者裁定，作者可以推翻：
 - 白马年份定为 702–703；
@@ -128,13 +138,13 @@
   - 郭靖现在用的是 1983 剧照加射雕锚点，方向是对的，只需核对年龄感；
   - 黄蓉要核对是不是由朱茵版长成的。
 - [ ] **成昆、黛绮丝**：恢复到 11:15 重出（db2cc43e、bf791338）之前的版本，用 git 取回前一版的 png、manifest 和提示词。
-- [ ] **杨逍**：用 1994 台视版（马景涛主演，杨逍由孙兴饰演）的剧照加基线重出。作者已同意下载剧照。
+- [ ] **杨逍**：用 1994 台视版（马景涛主演，杨逍由孙兴饰演，作者 10-02 已确认）的剧照加基线重出。作者已同意下载剧照。
 - [ ] **范蠡**：参考历史画像重出。现在是 11:00 的文字版。
 - [ ] **侠客 4 人、鸳鸯 3 人、白马 4 人**：不换剧照，逐张检查幼态和 AI 感，有问题的才重出。
 - [ ] **下载剧照后再出一版**：狄云、丁典、凌霜华（疤在左颊）、霍青桐、乾隆、程灵素（ID 是 `npc_chenglinsu`）、苗人凤、胡一刀。
   - 这些人 11:04–11:21 已按「本机无剧照」的文字版重出过。
   - 版本：连城 2004，书剑 1976，飞狐、雪山取最经典的一版。
-- [ ] **同书女角撞脸**：作者问过「谁？」，对照表在 `_handoff/gem/sameface_women.jpg`。AR-32 重出后，请作者再看一遍。
+- [x] **同书女角撞脸**：作者 10-02 确认，AR-32 重出后已经没有了。
 - [ ] 以上全部完成后，依次：
   1. 跑 `python3 tools/portrait/build_portraits.py`；
   2. 跑 `python3 tools/review/build_gallery.py`；
@@ -189,7 +199,9 @@
   | 候选·审核未过 | 4 |
 
 - **131 张只有这一份**：124 张未选用的候选，7 张作者 agent 工作区的版本。其余 705 张在 `.agents/coord/` 下有同字节的归档副本。
-- 要清理这个目录，先把这 131 张挪走，或者请作者确认不要。
+- 作者 10-02 定：这 131 张**留下**，并写引用（AR-34）。
+  - 引用清单已入库：`tools/agents/reports/REFERENCE-codex-originals-20261002.md`，列出每张的 asset_id 和当时的出图记录；
+  - 全部 836 张的对应表是同名 `.tsv`。
 
 ### 3.4 人物动作原型（AR-29）
 
@@ -201,7 +213,7 @@
 
 **待办**：
 - [ ] **出三视图**：主角·男的 A 字三视图。
-  - AR-29 原定用 Gemini、上传立绘；但 AR-31 之后人物类图都改走 codex。开工前先请作者定用哪个，见 §8。
+  - AR-29 原定用 Gemini、上传立绘；但 AR-31 之后人物类图都改走 codex。作者 10-02 答了「是」，判断不出指哪个，待澄清（§8）。
   - 如果用 Gemini：只上传主角和 S 级立绘，上传前作者自己在 Gemini 里关掉活动记录。
 - [ ] **登记后续任务**：三视图出来后登记，这几项现在都还没登记。
   - TOOL-rig-sheet：P2–P5、P7，三视图切件；
@@ -219,13 +231,13 @@
 - 白马唐代化：`chapters/10`；
 - 序章改版：`chapters/00`、`story/00`；
 - 七条长生诀支线：`story/changsheng-sidelines.md`；
+- 各书休眠事件，含天龙「一命换一命」：DES-sleep-events（5b79f03c）；
 - 金钱、采集、药材：`design/16`、`design/11`、`catalog/gather-herbs.md`；
 - 秘籍扩充、兵器扩充、情景图清单（`catalog/key-scenes.md`）、各朝路人（`catalog/npcs-commoners-era.md`）、经脉快照名同步。
 
 **在跑**：
-- DES-attr-v2：属性 v2；
-- DES-sleep-events：各书休眠事件，含天龙「一命换一命」；
-- DES-sync-baima-year：
+- DES-attr-v2：属性 v2。3 次复审已用完，协调者破例再审一轮（§1）；
+- DES-sync-baima-year：第 1 次复审。
   - 白马年份改为 702–703，并重算 sleepYears；
   - 登记阿青、白猿、范蠡；
   - 序章任务 ID 例外；
@@ -248,22 +260,21 @@
 
 **已合入**：
 - ENG-00 至 ENG-14（含 00b、12b；ENG-01 是手动合入的）；
-- ENG-04b（CT 速度钳制）、ENG-16a（战斗几何）；
+- ENG-04b（CT 速度钳制）、ENG-16a（战斗几何）、ENG-21a（四偏航与昼夜，3dd16a19）；
 - TOOL-rig-pipeline、TOOL-item-sprites-run、TOOL-rig-nearside、TOOL-rig-clips。
 
 **在跑**：
 - ENG-15：命令总线；
 - ENG-18：内容编译管线；
 - ENG-16b：战斗补全 B；
-- ENG-21a：四偏航与昼夜。
+- ENG-21b：WebGL 上下文恢复与自适应质量（ENG-21a 合入后接着跑）。
 
-**eng3 排队的 22 项**（依赖满足就自动开跑）：
+**eng3 排队的 21 项**（依赖满足就自动开跑）：
 - 审计修复：
   - ENG-16d：伤害接几何；
   - ENG-14b：经脉协议 3 黄金；
   - ENG-16c：战斗规则收回 core；
-  - ENG-08b：大地图挂载竞态；
-  - ENG-21b：上下文恢复与自适应。
+  - ENG-08b：大地图挂载竞态。
 - **M1 路径**，依次：
   1. ENG-25：内容 schema
   2. ENG-17a：新游戏与对话
@@ -272,7 +283,7 @@
   5. ENG-19b：M1 界面
   6. CONTENT-ch00a / b / c、CONTENT-ch10
 - 其他：ENG-20a / 20b（区域探索）、ENG-26（遭遇转战斗）、ENG-18b / 18c、ENG-23a（PWA）、ENG-16e（战斗界面）、TOOL-items-catalog。
-- **ENG-24 浏览器冒烟**：已登记，还没入队。**下载 Playwright 浏览器包要作者先同意。**
+- **ENG-24 浏览器冒烟**：作者 10-02 定不下载 Playwright 浏览器包（AR-34），不入队。以后要做浏览器冒烟，另定一种不用下载浏览器包的做法。
 
 **没人盯时的处理办法**（脚本在 `_handoff/`）：
 
@@ -283,7 +294,7 @@
 | 只挂在 rig 门禁上 | `riggate_hold.py <ID>` 停下，等负载降了再 `--from validate` |
 | 设计任务停在 HOLD-REVIEWS | 手动起 `supervise.py <ID> … --from validate`；每个任务最多 3 次，计数记在 `devsup_revalidated.json` |
 
-- 只挂在 rig 门禁上的情况，主要是 ENG-15 / 18 / 16b / 21a：它们的工作区建于 AR-33 之前，check 里还带着 rig 门禁。
+- 只挂在 rig 门禁上的情况，主要是 ENG-15 / 18 / 16b：它们的工作区建于 AR-33 之前，check 里还带着 rig 门禁。
 - 每批合入后跑 `pnpm check`；负载低时跑 `pnpm check:perf`，记下 loadavg。
 
 审计报告是 `tools/agents/reports/AUDIT-code-20261002.md`，总评 B-，最严重的问题都已登记成上面的 ENG 任务。
@@ -293,10 +304,9 @@
 ## 6. 环境与运维
 
 - **权限**：作者已在项目 `.claude/settings.local.json` 里允许启动 `supervise.py` 和 `batch_run.py`。
-- **磁盘**：可用 20 GiB。root 残留锁和 /private/tmp 的旧任务残留都已清掉。
+- **磁盘**：可用 22 GiB（移除旧工作区之后）。root 残留锁和 /private/tmp 的旧任务残留都已清掉。
 - **后台进程**：都用 nohup 起、不依附工具进程，执行器是 traex GPT-5.6-Sol。
-  - eng3 batch_run：pid 58514；
-  - des32 batch_run：pid 32688；
+  - eng3 batch_run：pid 58514（des32 批次已在 12:06 结束）；
   - §1 表里的 supervise 驱动。
 - **注意**：会话草稿目录在 /private/tmp 下，会被系统清掉。续作材料已复制到 `_prod/.agents/coord/_handoff/`，以那里为准。
 
@@ -308,23 +318,34 @@
 4. **重启物品线**：先请作者把 Gemini 窗口摆到前台，再按 skill `gemini-imagegen` 出 §3.2 的 366 张。
 5. **出情景图**：§3.1 最后一项。
 6. **验收**：跑 `build_portraits.py` 和 `build_gallery.py`，发布总览页，请作者验收。
-7. **清理**：作者同意后，清理主检出的脏文件、09-30 的旧工作区和 `generated_images/`（先处理 131 张只此一份的）。
+7. **清理**：已按作者 10-02 的决定处理（AR-34）。旧工作区归档后移除；主检出只记录、不清理；`generated_images/` 留着。
 
 ---
 
 ## 8. 待作者确认 / 决定（汇总）
 
+### 8.0 作者 10-02 已定（AR-34）
+
+| 问题 | 作者答复 | 落实 |
+|---|---|---|
+| 主检出脏文件 | 记录 | 只记录、不清理，见 §1 |
+| 09-30 旧工作区 | 处理 | 32 个已归档后移除，见 §1 |
+| 只此一份的 131 张原图 | 留下，写 reference | 引用清单已入库，见 §3.3 |
+| 下载 Playwright | 不用 | ENG-24 不入队，见 §5 |
+| 杨逍取 1994 台视版孙兴那一版 | 是 | 已记入 AR-32 补记，见 §3.1 |
+| skill 纳入 git | 是 | 已入库 |
+| 同书女角撞脸 | 没有了 | §3.1 已勾掉 |
+
 ### 8.1 要作者决定（不定就卡着）
 
-1. **主检出的脏文件**：112 个副本可以丢弃；另有 3 个要先比对，见 §1。
-2. **09-30 的旧工作区**：34 个，要不要归档后清理（§1）。
-3. **`generated_images/` 里只此一份的 131 张**：留还是不要（§3.3）。
-4. **ENG-24 浏览器冒烟**：要下载 Playwright 浏览器包，需要作者同意（§5）。
-5. **杨逍的「马景涛版本」**：协调者理解为 1994 台视版里孙兴演的杨逍（AR-32 补记），请作者确认。
-6. **skill `gemini-imagegen` 要不要纳入 git**：现在被 `.git/info/exclude` 排除了。
-7. **动作原型的三视图**：用 Gemini（AR-29 原定），还是 codex（AR-31 后人物类图的做法）（§3.4）。
-8. **动作库要不要买 UAL Pro**：$9.99 起，CC0。默认先不买，用免费档加 Mesh2Motion（调研报告 C10）。
-9. **同书女角撞脸**：AR-32 重出后，请作者再看还有没有（§3.1）。
+1. **动作原型的三视图用 Gemini 还是 codex**（§3.4）：作者 10-02 答了「是」，判断不出指哪个，待澄清。
+   - Gemini（AR-29 原定）：只上传主角和 S 级立绘，上传前作者自己关掉活动记录。
+   - codex（AR-31 之后人物类图都这样出）：在本机出图，可以上传参考图。
+2. **动作库要不要买 UAL Pro**（调研报告 C10）：作者 10-02 问这是什么，已解释，待定，默认先不买。
+   - **是什么**：独立美术作者 Quaternius 做的 3D 人形动作库（Universal Animation Library），CC0，可商用，不用署名。
+   - **免费档**：两卷约 88 个动作，包括走跑、跳、剑击、出拳、受击、倒地、坐等；没有踢腿、转身、枪、棍。
+   - **Pro 档**：$9.99 起，含 UAL1 全部 120 多个动作。多出的具体是哪些，报告没核实。
+   - **为什么默认不买**：我们用的 Mesh2Motion 免费、CC0，178 个人形动作，已基本包含 UAL 的免费内容，还多了一个踢腿和几个转身；枪、棍两边都没有。原型做完，缺哪个动作再说。
 
 ### 8.2 已按默认在做，待作者确认
 

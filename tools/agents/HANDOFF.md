@@ -613,3 +613,25 @@
     - **`generated_images/` 对应表**：
       - 主检出根目录的 836 张 codex 立绘原图，已逐张对上 asset_id，写在 `generated_images/MAP.tsv` 和 `README.md`；
       - 其中 131 张只有这一份，清理前先处理。
+  - **10-02 13:35–14:05 协调者（作者答 §8 九问，AR-34）**：
+    - **旧工作区**：主检出 `.agents/wt/` 下 09-30 的 32 个旧工作区（此前写成 34 是数错了），已先归档、再移除。
+      - 归档在 `.agents/archive/wt-20261002/`；
+      - 不在分支上的提交和未提交的改动，都已存成 patch 或 tar 包；
+      - 每个工作区的 HEAD 都留了引用 `refs/archive/wt-20261002/<ID>`；
+      - 磁盘可用空间从 20 GiB 升到 22 GiB。
+    - **主检出脏文件**：只记录，不清理。
+      - 记录（2a5b0130）：`tools/agents/reports/RECORD-main-dirty-20261002.md`；
+      - 99 个独有文件的副本和差异：`.agents/archive/main-dirty-20261002/`。
+    - **131 张只此一份的原图**：留下。引用清单（2a5b0130）是 `tools/agents/reports/REFERENCE-codex-originals-20261002.md`，全量对应表是同名 `.tsv`。
+    - **其他答复**：
+      - 不下载 Playwright，ENG-24 不入队；
+      - 杨逍确认（AR-32 补记已注明）；
+      - 女角撞脸已无；
+      - skill `gemini-imagegen` 已入库：主检出 462e8c75，集成分支 89387a78，`git add -f`，只加 skill 目录。
+    - **待澄清**：
+      - 三视图用 Gemini 还是 codex（作者答「是」）；
+      - UAL Pro 买不买：已解释，默认不买。
+    - **顺手处理的停住任务**（开发监督因额度停着）：
+      - **DES-sleep-events**：12:00–12:06 自动合入，被协调者在 `_prod` 里没提交的改动挡住了；13:58 手动 `step.py merge` 合入（5b79f03c），状态文件已改成 MERGED。教训：在 `_prod` 改文件要改完立即提交。
+      - **DES-sync-baima-year**：停在 HOLD-REVIEWS，起第 1 次复审（`--from validate`，pid 94958）。
+      - **DES-attr-v2**：3 次复审已用完。r5 唯一不通过的一项（终局预算漏算 realmAlloc 30，应为 601）已在第 6 轮改好，校验也通过了。协调者破例再审一轮（`--from review`，pid 97176），通过就自动合入；计数记在 `_handoff/devsup_revalidated.json`。
