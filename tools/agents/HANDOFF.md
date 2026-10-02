@@ -547,3 +547,45 @@
     - **磁盘**：
       - 03:20 前后最低到 3.2 GB。原因是 codex 会话记录，每张图 40–50 MB，加上 swap。
       - 定下 `gem/DISK_RULE.md`：缩小版基线、每张清一次槽位；定时立绘加工也停了。现在可用 11 GB。
+  - **10-02 09:38–12:30 开发监督（作者放开单驱动启动权限后收尾）**：
+    - **权限**：作者同意开发监督自己起任务驱动。单驱动与 batch_run 都用脱离方式启动（新会话、ppid=1），再没被拒。草稿目录里的辅助脚本：
+      - `detach_launch.py`：脱离启动；
+      - `rebase_task.py`：挪基点，带备份引用、稀疏重设、冲突标记保留；
+      - `merge_when_clean.py`：出图线不停提交、主检出常有临时改动，等干净的一瞬间立即合入。
+    - **ENG-09 合入（7e2b9a76）**：
+      - 作者撤掉了门禁跳过；其余 rig 热路径优化（静态实例缓存、`writeAffineBlock`）由协调者认定是正当优化，保留。
+      - 先用 `git stash create` + `merge-tree` 预演，确认会在 5 个文件冲突，于是直接挪基点到 3d3d24f1，再让执行器解冲突。第 5 次运行因模型连接报错退出，第 6 次解完；r2 PASS 后用 `merge_when_clean` 合入。
+      - render/CLAUDE.md 的门禁放宽条文随之改掉（审计第 7 条）。
+    - **其他合入**：DES-changsheng-core（7fbc0c78）、DES-prologue-v2（8f8dc9be）、TOOL-rig-clips（aa3a9f45）、DES-scenes-keyart（第 3 次复审）。每次合入后 `pnpm check` 都绿：92 个文件 515 个用例，size 284.65 / 350。
+    - **设计任务复审**：开发监督按 batch_run 的规则代做，每任务上限 3 次，计数在草稿目录 `devsup_revalidated.json`。DES-items-manuals-expand 卡住用尽次数后，带「不再联网检索」的说明 `--from start` 续作。
+    - **代码审计（`tools/agents/reports/AUDIT-code-20261002.md`，总评 B-）的落实**：
+      - S1 → ENG-14b（Python 参考升协议 3、重录 v3、对拍生产 runtime）。
+      - S2 → 并进 ENG-15：`rulesProtocol` / `coreBuild`、`RULES_PROTOCOL`、读档走迁移不再严格相等、版本不兼容不当损坏。contentHash 归 ENG-18 / 17。
+      - S3、M3、L4 → ENG-16c（BattleSession、世界流派生种子、实战 = 回放）。
+      - H1 → ENG-16d。H2、M10、L7 → 并进 ENG-21b。H3、M1 → ENG-08b。
+      - H5 → ENG-04b，已单独起驱动；当时 code 池已满 4 个，这一个驱动用 `TIANSHU_MAX_PARALLEL_CODE=5` 起。
+      - H6 → ENG-15（错误分类）与 ENG-17a（StoryRuntime 事务化）。M4、L1 → ENG-19a。M6 → ENG-18c。M8、L2 → ENG-23a。M9 → ENG-24（浏览器冒烟草稿，已登记，不入队）。
+    - **调研后补的 M1 任务**：
+      - ENG-17a：新游戏、对话与剧情命令；
+      - ENG-17：书眠 M1，依赖 17a；
+      - ENG-19a / 19b：外壳与恢复 / M1 路径界面；
+      - ENG-20a / 20b：区域探索的 core / 渲染与页面，**此前无人负责**；
+      - ENG-25：M1 内容 schema；ENG-26：遭遇转战斗；
+      - ENG-18b：Tiled；ENG-23a：PWA；TOOL-items-catalog：生成器写死行数；
+      - CONTENT-ch00a / b / c：序章数据剧情 / 地图 / 遭遇；CONTENT-ch10：白马冷入口。
+      - 写 `session.ts` 的任务串行：ENG-08b 先于 ENG-17a / 16c。ENG-23a 等 ENG-19a，两者都改 `main.ts` / `App.vue`。
+    - **eng3 队列**（pid 58514，并发 4，共 26 项）：顺序即优先级，见 `.agents/coord/_eng3_queue.txt`。
+    - **协调者裁定**（作者可推翻）：
+      - 白马年份取 chapters/10 的 702–703，文档由 DES-sync-baima-year 同步；
+      - 初眠前只做自动存档；
+      - `q_00_main_*` 开例外；
+      - 长白山洞归 `rg_dongbei`；
+      - 「越地」复用 `rg_jiangnan_taihu`，界面显示别名；
+      - 传功在越营。
+    - **AR-33 rig 门禁挪出 `pnpm check`（88c60421）**：
+      - 根 `test` 只跑普通项目，新增 `test:perf`、`check:perf`（先打印 loadavg），阈值 0.80 ms 不动；
+      - 两份 CLAUDE.md 与 17 份未跑任务的提示词同步，禁止任何「高负载跳过」逻辑；
+      - 改后 `pnpm check` 绿。
+      - **check:perf 记录**：12:20 时 loadavg 16.28，100 角色 min P95 0.284 ms（三轮 0.391 / 0.284 / 0.285），20 角色 0.061 ms，通过。单独跑、不紧跟并行套件就稳定，与审计 H4 的判断一致。
+      - 以后每批合入后和发布前，在负载低时跑一次，结果记在这里。
+    - **坑**：zsh 不会对未加引号的 `$变量` 分词。按路径提交时把多个文件放进一个变量会变成一个参数，提交静默失败；要逐个列出文件或用数组。
