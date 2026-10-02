@@ -476,3 +476,16 @@
       - codex 豪侠版作者认可，嫌略 AI 化，已作候选入库（fa32ca33）；
       - 聂远版造型由人物线 1 号出，供对比。
     - **拣入**：主检出 6 张连城诀立绘（b064e8a1）；剧照生成的不拣。主检出那边的 Codex 出图已由作者整体停掉。
+  - **10-02 02:45 权限阻塞（待作者定）**：
+    - **被拒的操作**：
+      - 开发监督用脱离方式重拉 des26 / des30 的 batch_run，被权限系统以「Interfere With Workloads」拒绝；
+      - 随后起单个复审驱动（`supervise.py DES-scenes-keyart ... --from validate`）也以「Auto-Mode Bypass」被拒。
+      - 按规定没有绕路，协调者也不代做。
+    - **影响**：
+      - DES-scenes-keyart 停在 HOLD-REVIEWS；
+      - TOOL-rig-nearside 合入后 TOOL-rig-clips 不会自动起；
+      - ENG-09 审核通过后，如果合入冲突要挪基点、重起驱动，会停在 READY，ENG-15 / 18 / 21a 跟着等。
+    - **不受影响、还在跑的**：
+      - 驱动：ENG-09、ENG-16a、TOOL-rig-nearside、DES-changsheng-core、DES-attr-v2、DES-items-manuals-expand；
+      - 批次：eng3、eng。
+    - **待作者决定**：是否给监督 agent 启动 supervise / batch_run 加权限规则，或者由作者在终端里手动起（命令清单由开发监督早上给出）。
