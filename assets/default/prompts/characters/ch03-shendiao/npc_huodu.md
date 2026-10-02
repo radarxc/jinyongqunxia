@@ -1,0 +1,74 @@
+---
+asset_id: por_npc_huodu__ch03_prime_prince_base
+subject_id: npc_huodu
+name: 霍都
+book: ch03_shendiao
+gender: male
+age_variant: prime
+tier: A
+output: assets/default/character/male/ch03/por_npc_huodu__ch03_prime_prince_base.png
+manifest: assets/default/character/male/ch03/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/shendiao/huodu_1995_luzhenshun_sina2020.jpg
+  use: 第一且唯一面部身份：鲁振顺饰1995 TVB《神雕侠侣》霍都。实际查看已核本人单人剧照，原HTML神雕figcaption与鲁振顺图片组/霍都介绍、1995演员表及版次正文均已核，父级独审PASS。只取可见本人五官，不取东方不败等别角色，不沿用侧转张口、影视发式服装、背景和水印。源图具体集数与大会时点未知，目标阶段和扇具以当前项目role为准。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第二参考为用户王语嫣水墨图，仅取暖浅灰不透明纸底、极淡低对比远山、薄雾和留白。已实际查看；完全忽略女性面容、性别、年龄、身体、倾头、发式、服装与飘带，不将第二图人物变成霍都。不复制清晰亭台和花枝，不让墨色或纸纹切碎人物。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 霍都 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_huodu
+- book：ch03_shendiao
+- gender：male
+- age_variant：prime
+
+## 本轮人物写实规范
+
+1995鲁振顺霍都本人第一，用户水墨背景第二；英雄大会王子、浅黄锦袍小软巾、右手半展铁骨扇单暗红牡丹；正面头直中性下巴，1candidate。仅准备不生成注册。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_huodu__ch03_prime_prince_base/prompt-8f50d27da7b91892d708f69a6d7d02a8477bcc96ce084e594952ca46964bb0d3.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE IS A PRIMARY REQUIREMENT: ONE mainly FRONT-FACING full-body standing figure. Head and neck UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, chin neutral. NO head tilt, NO raised chin, NO Dutch angle. Natural facial asymmetry must not tilt the head. These rules override the source pose and the old raised-chin direction.
+
+Create a REALISTIC Chinese wuxia full-body illustration of 霍都. Image 1 is the ONLY facial identity source: 鲁振顺 as 霍都 in the 1995 TVB 神雕侠侣 starring 古天乐 and 李若彤. Image 2 supplies ONLY background, ZERO face, anatomy or costume. Keep a mainly front-facing upright pose and neutral chin.
+
+身份阶段：霍都 npc_huodu，神雕侠侣 ch03_shendiao，南宋与蒙古并行的本书阶段。霍都，蒙古王子、金轮法王弟子；大胜关英雄大会时的壮年贵公子，仍公开以王子身份出场，尚未化名何师我潜入丐帮。只作在世基础立绘，不混入十六年后丐帮卧底、被揭露或临死阶段。prime壮年成年男子，身材修长而匀称、肩颈稳直，仪表俊雅但神情轻慢。保留清楚成年骨相与自然肤质，不画少年或老人；确岁待考，不将演员拍摄年龄当成角色确岁。
+
+本人五官：唯一面部身份是鲁振顺饰1995 TVB古天乐、李若彤版《神雕侠侣》中的霍都。脸形偏长、额部较宽，颊部有自然体积，下颌逐渐收向圆钝下巴；浓眉基本平直、眉峰轻起，眼形中等偏细长，双眼、鼻梁、鼻尖和鼻翼轮廓依本人可见关系保留。上唇较薄、下唇有体积，不强行削颊或收尖下巴。把源图侧转、侧目和微张口重构为正面头直、视线向前、闭口克制的冷淡微笑。轻慢来自眼神与神态，不靠族群刻板五官、夸张反派妆或妖魔化。
+
+服饰发式：浅黄汉式交领右衽锦袍，深褐窄腰带与深棕软皮靴，内领素净；料子精细、少量暗纹，衣摆、袖口和缝线连续完整。穿着者左襟压右襟、向穿着者右侧合拢，胸颈遮蔽完整。黑发束齐收于一顶简洁小软巾，采用正式role的项目艺术选型，不复制剧照侧披发和偏棕发色。全身衣料不透明、剪裁明确，少量宽缓受力褶皱，无破洞、风化、碎墨缺块。汉式行旅常服是本图选款，不把它宣称为所有蒙古王子的统一服制；不加帝冠朝服。
+
+手势与扇具：穿着者右手在胸腹之间半展开一把 eq_huoduzheshan 铁骨折扇，扇面低于脸部，不挡眉眼鼻唇。扇骨为有厚度的深灰金属，均汇入同一轴钉，纸绢扇面连续平整、只绘一朵简约暗红牡丹，绝无文字和伪字。右手握扇根，腕掌、轴钉、扇骨连接可信，完整扇缘全部入画；柄部机括隐蔽，不展开剖面、不射毒钉。左臂放松靠身侧，左手在腰侧自然可见而不藏到背后。双脚稳立，身体主要正面，下巴中性；不加刀剑、酒器、丐帮袋数或额外信物。
+
+人物画法为美观、精细、完整的写实国风插画；自然骨相、真实肤质、连贯体积和清楚干净轮廓。左上柔和漫射光，低饱和浅黄、深褐和小面积暗红，肤色自然。皮肤、黑发、衣料、手足和扇具都应连续实体，衣褶顺重力与握持受力；不以过密碎褶、飞白或污损表现真实。傲气通过端正的注视与克制微笑表现，不做歪头、仰头、滑稽动作、摄影截图或三维塑料。
+
+参考职责：第一且唯一面部身份：鲁振顺饰1995 TVB《神雕侠侣》霍都。实际查看已核本人单人剧照，原HTML神雕figcaption与鲁振顺图片组/霍都介绍、1995演员表及版次正文均已核，父级独审PASS。只取可见本人五官，不取东方不败等别角色，不沿用侧转张口、影视发式服装、背景和水印。源图具体集数与大会时点未知，目标阶段和扇具以当前项目role为准。 第二参考为用户王语嫣水墨图，仅取暖浅灰不透明纸底、极淡低对比远山、薄雾和留白。已实际查看；完全忽略女性面容、性别、年龄、身体、倾头、发式、服装与飘带，不将第二图人物变成霍都。不复制清晰亭台和花枝，不让墨色或纸纹切碎人物。
+
+单人单视图、水平平视、原生竖幅2:3、完整全身；头顶软巾、双手、全部扇缘、衣摆和两只靴子完整入画，四周自然留净空，不使用固定人物占高或头身数字，不裁切。仅背景保留极淡水墨远山薄雾，脚下少量接触阴影，没有室内窗格或英雄大会会场。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并准确登记；保存原始PNG字节，禁止放大插值、裁切和重编码。只生成1张候选；基本清晰、角色可辨、主要正面无重大结构错误即可保存。仅严重身份错误、重大结构错误或不可读才追加；细指、轻微服饰及微偏角度如实记录，不反复重做。全部保持candidate待审核，不自动approved。
+
+事实与规则边界：年龄确数、族谱、衣色帽式原文、牡丹扇面与铁骨机括具体形制仍待指定纸本逐字考据，不编造小说引文或页码。现行role明示的王子大会阶段优先；浅黄汉式锦袍、小软巾、半展扇、暗红单牡丹、持手和静态动作属于项目艺术选型。design10记扇柄机括及从扇骨射钉，本张按此区分但只画外部折扇，不把游戏射程/次数画成实体数量或效果。头肩剧照不证明目标全身身材、衣装、兵器或具体剧情阶段。用户按角色采用影视本人五官的授权覆盖旧禁演员脸条款；正面头直和中性下巴覆盖旧角色稿轻侧站姿与下巴微扬。完整写实人物、背景水墨和单候选覆盖旧整人纸面画法、仅纸底禁山水、精确比例与两候选默认。
+
+完整排除项：不要何师我伪装、乞丐面具、丐帮袋数、破衣、临死伤势、帝王冠冕、夸张族群刻板五官。不要东方不败或其他角色的脸和妆造、共用基线脸、王语嫣脸、动漫大眼、网红尖脸、浓妆磨皮或照片截图。不要head tilt、Dutch angle、歪头、仰头、扬下巴、低头藏眼、侧脸回眸、斜镜头或侧目卖萌。不要全开遮脸大扇、断裂扇骨、多个轴心、白骨骷髅扇、扇面诗句伪字、飞针毒钉特效、额外刀剑或酒器。不要现代服饰、拉链、腕表、手机、运动鞋、日式服制、欧式奇幻盔甲、明代网巾、官服补子、清式剃额发辫、旗装、马蹄袖、大拉翅、错误左衽或水平镜像。不要碎片化布料、破布感、飞白缺块、风化污损、纸纹透肤透衣或过密乱褶。不要手物融合、严重错腕、多肢缺肢、裁断头足衣摆或扇缘，不要额外人物、分格、多视图或面部特写框。不要透明衣物、裸露、血腥、恶搞丑化、发光武器、法阵、龙形能量或粒子；不要复杂场景、清晰建筑、室内窗格。不要文字、伪字、字幕、题款、印章、签名、logo或装饰水印；保留工具自带溯源标识与元数据。
+
+FINAL POSE CHECK: FRONT-FACING, head and neck UPRIGHT, centreline VERTICAL, eyes HORIZONTALLY LEVEL, chin neutral and camera level. Only 鲁振顺 as 霍都 supplies the face. Show one half-open iron-rib fan with one small dark-red peony, no writing, complete hands and feet.
+```
+
+## 排除项
+
+不要何师我伪装、乞丐面具、丐帮袋数、破衣、临死伤势、帝王冠冕、夸张族群刻板五官。不要东方不败或其他角色的脸和妆造、共用基线脸、王语嫣脸、动漫大眼、网红尖脸、浓妆磨皮或照片截图。不要head tilt、Dutch angle、歪头、仰头、扬下巴、低头藏眼、侧脸回眸、斜镜头或侧目卖萌。不要全开遮脸大扇、断裂扇骨、多个轴心、白骨骷髅扇、扇面诗句伪字、飞针毒钉特效、额外刀剑或酒器。不要现代服饰、拉链、腕表、手机、运动鞋、日式服制、欧式奇幻盔甲、明代网巾、官服补子、清式剃额发辫、旗装、马蹄袖、大拉翅、错误左衽或水平镜像。不要碎片化布料、破布感、飞白缺块、风化污损、纸纹透肤透衣或过密乱褶。不要手物融合、严重错腕、多肢缺肢、裁断头足衣摆或扇缘，不要额外人物、分格、多视图或面部特写框。不要透明衣物、裸露、血腥、恶搞丑化、发光武器、法阵、龙形能量或粒子；不要复杂场景、清晰建筑、室内窗格。不要文字、伪字、字幕、题款、印章、签名、logo或装饰水印；保留工具自带溯源标识与元数据。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_huodu__ch03_prime_prince_base.prepared.json`。

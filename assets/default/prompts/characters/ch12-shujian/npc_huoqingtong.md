@@ -1,0 +1,68 @@
+---
+asset_id: por_npc_huoqingtong__ch12_youth_early_base
+subject_id: npc_huoqingtong
+name: 霍青桐
+book: ch12_shujian
+gender: female
+age_variant: youth
+tier: S
+output: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
+manifest: assets/default/character/female/ch12/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_113-1.png
+  use: 唯一人物身份来源：已实际view原始HDGRP_113-1.png及姓名表第4行第7列霍青桐，原字节与ZIP成员相同。只取可见长椭圆轮廓、连续鼻线、细长眼裂与克制唇线；不继承侧脸低头、像素或裁切。正面未见细节为美术补全。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 仅背景参考，已实际view：暖浅灰纸底、淡墨远山薄雾、留白；不采用人物脸、身体、发饰、服装或倾头姿势。
+status: ready
+realism_revision: user_identity_face_rebuild_20261001
+---
+
+# 霍青桐 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_huoqingtong
+- book：ch12_shujian
+- gender：female
+- age_variant：youth
+
+## 本轮人物写实规范
+
+独立从本人原版game头像重建完整人物；无旧全身候选和女性基线输入。细长眼裂、较直长眉、连续较长鼻线、克制自然宽度唇线与非尖V下颌；正面头颈竖直眼水平。保留成年青年追经赠剑前、翠羽黄衫和左右一长一短双鞘；水墨仅背景，两张candidate。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-face-rebuild-20261001/backups/por_npc_huoqingtong__ch12_youth_early_base/prompt-a54138fad0b5c82dd35fbc8269b49856ca6bcfbad3634ff963ce2357f240c2cb.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+NEW INDEPENDENT PORTRAIT REBUILD. Image 1 is Huo Qingtong’s ONLY facial identity reference; image 2 is background ONLY. FRONT-FACING full body, head and neck UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes HORIZONTAL, camera level. NO head tilt, NO Dutch angle.
+
+从1996原版《金庸群侠传》霍青桐本人头像重新画完整人物，不以任何旧全身候选作编辑底图。身份为《书剑恩仇录》甘凉追索经卷、赠出父赐短剑之前的成年青年回部女侠，翠羽黄衫，训练有素、专注沉着。具体岁数不锁死，不画黑水营后或失联后的状态。
+
+面容是本轮首要设计：以第一张游戏侧脸可见的较长额鼻至下脸轮廓和细长眼裂为起点，正面重建较长而清瘦的椭圆脸。颧颊要有自然骨肉转折，下颊较平、下颌线延续较长，末端以有自然宽度的下巴收住，不能把两颊直接收成尖V。眼裂横向细长、纵向开度克制，正常虹膜部分被上眼睑遮住；眉身较长、偏直、尾部轻扬，眉眼区清晰，不做圆大眼和短柔眉弧。鼻梁从眉间至鼻尖连续且长度可辨，鼻尖有真实体积、鼻翼自然，不缩成小按钮，也不添夸张高鼻或鹰钩。嘴唇闭合，唇线克制而有自然宽度，上下唇厚度和嘴角可读，不挤成小樱桃口。暖润健康肤色、自然皮肤与清楚眼神；美感来自本人结构和气质，不自动套精致女主模板。仅把整颗头拉长不算完成。头像低分辨率且偏侧，未展示的正面细节是自然美术补全，不声称精确测量。
+
+服装保持本阶段设定：乾隆时期天山南路回部行旅女装的项目原创选款，低饱和赭黄窄袖长衣、墨绿窄边与少量细纹，闭合衣襟，内穿宽松长裤、深褐软皮靴。头部黄巾贴合小帽，固定一根完整翠绿色羽饰，辫发收于背后，面部全露。织物完整不透明、能骑行，肩袖腰摆剪裁清楚、宽缓承重褶皱适量，不堆珠宝、不宣称历史实物复原。
+
+全身正面稳立、肩颈自然、下巴中性、直视前方。本人左腰佩直身长剑，右腰佩父赐短剑eq_huoqingtongduanjian；两剑都完全在深色直鞘内，一长一短、分处画面两侧。柄、鞘口和鞘身同轴、鞘尾完整，独立短挂带真实连接腰带与鞘环，长度足够容刃，不穿身体。短剑双层鞘闭合，内藏地图不展开。右手轻按腰带，左手轻扶长鞘上段而非剑柄，手、护手和挂带边界分开。翠羽、黄衫、长剑、父赐短剑都清楚。
+
+绘制完整写实的国风人物：面部、手、衣料有连贯实体体积与柔和左上漫射光，轮廓干净，眼鼻唇与指节清楚，不用碎墨或噪点替代材质。第二张仅取暖浅灰纸底、淡水墨远山薄雾和留白；绝不借它的人脸、体型、衣服或姿态。背景墨韵止于人物外，脚下轻接触影。
+
+单人单视图竖幅2:3全身，发顶翠羽、双手、双足、衣摆与两鞘端点完整，自然净空。目标2048×3072不透明PNG，接受真实原生2:3尺寸并据实登记；保存原始字节、不裁切缩放或重编码。独立生成两张candidate比较，任何旧轮候选均不作为新轮通过依据。脸的眼裂、眉形、鼻线、唇线和下颌须实际可辨，不只换肤色或变漂亮。
+
+完整排除项：不要 head tilt、Dutch angle、歪头、斜镜头、低头藏眼、侧脸回眸、双眼高低不平；不要统一大杏眼、巨虹膜、小按钮鼻、小樱桃嘴、刀削尖V下巴、芭比脸、浓妆丰唇或磨皮滤镜，不用肤色、发饰变化代替五官结构重建。不要复制其他女性脸、背景参考的人物、白青纱裙或倾头姿势；不要整头拉长、夸张鹰钩鼻、凭族群刻板印象加特征、低幼化、男性化或恶搞丑化。不要像素块、黑边、游戏半身裁切、照片截图或3D塑料皮肤。不要缺翠羽、白衣替代黄衫、赠剑后仍佩短剑、第三把武器、地图展开、出鞘剑、漂浮双剑、错轴短鞘、双剑共一鞘或无连接挂带。不要清宫旗装、大拉翅、男性剃额长辫、现代舞台民族服、混搭民族符号、透明面纱、露腰、高跟鞋、拉链或现代物品。不要多肢、多指、手物融合、伤残、裁断头足翠羽或鞘端；不要碎墨人物、纸纹透皮透衣、破布、飞白缺块、密集噪纹、模糊眼睛、法阵发光、浓雾遮人、第二人物、复杂建筑、文字、签名、logo或装饰水印；保留工具自带溯源。不要裸露、性感化、血腥。
+
+FINAL CHECK: her own game-derived face with long narrow eyes, a continuous longer nasal bridge and a natural-width chin. FRONT-FACING, head and neck VERTICAL, eyes HORIZONTAL, camera level. NO head tilt. NO Dutch angle. Keep the green feather, yellow robe and TWO fully sheathed swords.
+```
+
+## 排除项
+
+不要 head tilt、Dutch angle、歪头、斜镜头、低头藏眼、侧脸回眸、双眼高低不平；不要统一大杏眼、巨虹膜、小按钮鼻、小樱桃嘴、刀削尖V下巴、芭比脸、浓妆丰唇或磨皮滤镜，不用肤色、发饰变化代替五官结构重建。不要复制其他女性脸、背景参考的人物、白青纱裙或倾头姿势；不要整头拉长、夸张鹰钩鼻、凭族群刻板印象加特征、低幼化、男性化或恶搞丑化。不要像素块、黑边、游戏半身裁切、照片截图或3D塑料皮肤。不要缺翠羽、白衣替代黄衫、赠剑后仍佩短剑、第三把武器、地图展开、出鞘剑、漂浮双剑、错轴短鞘、双剑共一鞘或无连接挂带。不要清宫旗装、大拉翅、男性剃额长辫、现代舞台民族服、混搭民族符号、透明面纱、露腰、高跟鞋、拉链或现代物品。不要多肢、多指、手物融合、伤残、裁断头足翠羽或鞘端；不要碎墨人物、纸纹透皮透衣、破布、飞白缺块、密集噪纹、模糊眼睛、法阵发光、浓雾遮人、第二人物、复杂建筑、文字、签名、logo或装饰水印；保留工具自带溯源。不要裸露、性感化、血腥。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-face-rebuild-20261001/por_npc_huoqingtong__ch12_youth_early_base.prepared.json`。

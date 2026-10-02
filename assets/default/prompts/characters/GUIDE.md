@@ -1,5 +1,7 @@
 # 人物立绘提示词 · 生成与存放规程
 
+> 最新作者规范：[全人物覆盖、正面端正与逐人面容参考](../../../../.agents/coord/portrait-generation/FULL-COVERAGE-IDENTITY-20261001.md)。指定游戏/影视人物面容参考获授权，覆盖下文旧禁止演员脸条款；性别基线只作画风。未提交请求须先同步，既有真实请求不回写。
+
 在仓库根目录执行以下命令；所有 `assets/`、`docs/`、`tools/` 路径均相对仓库根目录。把本规程与目标人物提示词一起交给有 `view_image`、`image_gen` 的 GPT CLI 会话。
 本规程供后续出图使用；总索引为 `assets/default/prompts/characters/INDEX.md`，由协调者生成。不要手改索引，不把提示词齐备当作图片已生成或已获批。
 

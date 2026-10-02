@@ -1,0 +1,82 @@
+---
+asset_id: por_npc_linghuchong__ch05_youth_huashan_base
+subject_id: npc_linghuchong
+name: 令狐冲
+book: ch05_xiaoao
+gender: male
+age_variant: youth
+tier: S
+output: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
+manifest: assets/default/character/male/ch05/manifest.yaml
+references:
+- path: generated_images/exec-2f136cb9-cef9-44da-9280-1183a44871ff.png
+  use: 修正目标为本角色候选2原图，已实际查看。只修其轻歪头和眼线；保持既定人物体貌、衣装、剑葫芦和原画构图。不是approved。
+- path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_36-1.png
+  use: 第一且唯一面部身份参考：经典原版《金庸群侠传》令狐冲本人头像；已实际view原PNG及带姓名表，并核对source-audit-main30对应关系与SHA，原始字节与ZIP成员相同。只保持本人脸部比例、眉眼鼻唇和气质辨识关系，将低分辨率像素关系自然重建成精细写实人脸；不要像素放大、描边或照搬发式/服装。头像朝向不继承：新图正面，头部中线竖直、双眼水平，NO head tilt / NO Dutch angle。当前身份、年龄、伤残与器物必须服从本角色基础阶段。本头像有明显歪头与轻侧朝向，严禁继承其角度；保持五官辨识而自然转正。厚灰白宽额带与蓝色领口不直接复制，仍按华山青年角色稿穿灰蓝青常服、低调网巾发带。第二张虽也命名令狐冲，只作画风，不能覆盖第一张游戏本人脸。
+- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+  use: 第二参考仅项目男性低饱和色卡、柔和左上光与完整连贯的写实手绘品质；本会话已实际view并在写入前核对SHA未变。不得取这张旧基线的脸型、眉眼鼻唇、体型、站姿或倾头角度；发式、衣装和器物只由当前角色稿独立确定，不由本参考决定。即使文件名也是令狐冲，其旧写实脸也不能替代第一张游戏本人身份。基线candidate审批状态不改。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第三参考仅背景：极淡水墨远山、薄雾、暖浅灰纸底与留白；本会话已实际view并在写入前核对SHA未变。忽略女性面孔、发型、体态、倾头、白青裙装及饰物；墨痕和纸纹不得进入人物、衣料与器物。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 令狐冲 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_linghuchong
+- book：ch05_xiaoao
+- gender：male
+- age_variant：youth
+
+## 本轮人物写实规范
+
+针对候选2真实头部倾斜，仅修头颈竖直正面及眼线水平；保持本人游戏脸关系、整身衣物与武器和葫芦。两张修正为本项第3/4，历史原图全部保留。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_linghuchong__ch05_youth_huashan_base/prompt-8c4534466de03f48efe62e942733eb6239315edf4ca6e7aabaec24db15c5fd23.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+EDIT the full-body illustration in input image ONE. Correct a specific failed requirement: the head still leans to a shoulder and the eyes are not horizontally level. Rotate/reconstruct ONLY the head and neck into a naturally UPRIGHT, level, primarily FRONTAL portrait. Forehead, bridge of nose and centre of chin form a vertical line; pupils and inner eye corners form horizontal lines. Head centred above the neck, ears balanced in height, camera level. Do not achieve this by tilting the canvas or the whole body. Preserve all other image ONE content: the same young Linghu Chong, face proportions, full blue-gray clothing, hair/net band, same gourd and complete sheathed straight sword, hands, feet and background. Image TWO is the original game identity authority for face relationships; image THREE is only the historic male rendering sample and image FOUR background only. Do not replace his face with the male sample, add another weapon or gourd, cut any feet, or alter this historical stage. This is a targeted head-pose correction, not a new character.
+
+The complete current character requirements follow; where their numbering is unclear, use the explicit four-input order above.
+
+POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference portrait pose. Preserve natural facial asymmetry without tilting the head.
+
+Create a beautiful REALISTIC Chinese wuxia character illustration of LINGHU CHONG / 令狐冲. Reference TWO is the ONLY FACIAL IDENTITY reference: this character's reliably mapped portrait from classic MS-DOS Heroes of Jin Yong, used as a facial design reference, not a rendering style. Preserve recognizable facial relationships rather than a generic handsome template. Reconstruct a natural front-facing realistic face from the low-resolution drawing. Reference THREE provides only restrained male rendering/colour quality and reference FOUR only an ink-wash background. Do not borrow any other person's facial identity.
+
+身份与青年体态：华山大弟子、思过崖授剑时期，尚未被逐或接任恒山掌门，成年约二十五岁观感。身形清瘦修长，但肩背、前臂和腿部有习武者筋骨，不病弱干瘪、不借厚胸壮汉体型。身体主要面向正面，肩颈放松、自然重心微偏而双足稳实，头颈必须直立；可以一足稍前形成从容感，不能斜肩歪头。神态坦率有浪子气，似笑非笑而不醉态踉跄。本图不提前继承后期重伤、退隐婚礼或恒山掌门状态；不把后续场景文件当作身份依赖。
+
+本人面部辨识：第二参考原版游戏令狐冲本人：脸形较长而颧颊略带棱角，下颌逐渐收束但下巴不做尖锥；眉毛自然略挑、有明显转折，眼裂修长且有灵气，保留眉眼距离与看人的爽朗神态。鼻梁直而清楚，鼻头自然，唇线克制、嘴角有轻微不完全对称的似笑非笑；真实的不对称来自嘴角而不能来自头部倾斜。保留这套本人骨相与眉眼鼻唇的关系，自然重建为约二十五岁面容，少量浅胡茬是本阶段文本选择而非借第二参考的脸。目光坦率放松而非官员板脸，不磨成偶像娃娃脸，不画浓络腮胡。原头像明显歪头、略侧转和灰白宽额带不得继承；把同一五官关系自然转正，额鼻颏中线严格竖直、双眼水平。
+
+服装与发式：角色稿的明中叶游戏服装方向，不冒称小说明示年代；灰蓝青素布直身式常服，窄白护领，侧开衩、深色长裤、黑布鞋，窄布绦侧结。汉式交领左襟盖右襟、向本人右侧合拢。衣边、袖口和下摆完整，布料有明确裁剪及连续体积，不撕裂成飞散丝带；仅极轻行旅使用感，面容与衣料保持清楚洁净。黑发从实际发根束成顶髻，低调网巾配窄发带，不复制游戏头像的整条厚灰白额带；少量自然散发、发带尾、衣袂和腰带尾可同向轻动，但不遮双眼、耳颈轮廓。不能把所有发丝死贴头皮，也不做满头乱发或华山弟子破衣。衣装按本人当前角色稿确定，绝不把第三图旧写实基线面孔一起沿用。
+
+唯一长剑与小酒葫芦：只有一柄普通中式直身双刃长剑，剑刃全部在尺寸匹配的深木色长鞘内，没有露刃。本人左手位于观者右侧，握住鞘口下方一段，长鞘立于左腿外侧稍离身体，鞘端在地面上方、不穿地；剑柄、简洁横格、鞘口与封尾全长在同一直线上，剑鞘始终笔直，端点均完整可见。本人右腰位于观者左侧，仅挂一只小酒葫芦，短绳确实固定到腰带，右手自然轻搭葫芦上半部，手指和葫芦结构分开可读。不举酒灌饮，不脱手悬浮，不加第二把剑、第二个葫芦或背后兵器。普通剑和葫芦的具体外形、左右布局是本角色稿及此设计的美术补足；独孤九剑是一门剑术，不是一把名叫独孤九剑的神兵，也不画成九把剑。
+
+人物画法：完整、美观、精细的写实国风人物。五官、实际存在的手部结构与双足清楚，皮肤具有自然年龄感与坚实柔和体积，头发与衣物边缘干净；布料是整片、完整裁剪的连续实体，只用少量宽缓承重褶和克制纤维细节，不用密集噪点或破碎证明真实。柔和左上漫射光、连续明暗，低饱和设色与温暖肤色，人物始终与背景分离。将第二参考的低分辨率脸部关系重新绘成自然写实人脸，不临摹像素方块、黑色硬描边、透明缺口或游戏截图。第二参考仅低饱和色卡与连贯的手绘写实品质，第三参考仅背景水墨；二三参考绝不能提供脸、头身、发型、衣装、手持物或倾头角度。
+
+背景与交付：不透明暖浅灰纸底，边缘可有极浅、低对比的远山淡墨与薄雾，留白充足，脚下仅少量接触阴影；背景墨痕、纸纹与山影全部停留在人物、衣料、手部和器物轮廓外。无具体剧情建筑、第二个人、动物或画面文字。单人单视图、完整全身，原生竖幅2:3；头顶、发式、双足、实际存在的手部和器物端点完整入画，四周自然留边，不为固定占高强拉头身。目标2048×3072不透明PNG，接受工具实际原生2:3尺寸并如实登记，保留原始PNG字节，不裁切、插值或重编码。默认两张独立候选由执行者比较，仍为candidate，等待用户审核；每张画面只含一个本人。
+
+事实与改编边界：本人游戏头像只提供作者指定的面部识别，不证明原著年龄、发式、服饰、伤残或阶段；这些仍按当前基础角色稿与catalog/story。同名头像来自第三方MS-DOS资源归档并与标注初代的姓名表交叉核验，未冒称已验证具体1996原盘位元。原稿的脸型文字属原著概括待考或美术补足，不能压过作者新授权的本人头像；旧“禁止游戏独创造型”和“只按文字新造通用脸”不进入本轮请求。
+
+完整排除项：不要第二参考旧候选令狐冲基线的面孔；新面部只来自第一张36-1本人游戏头像。不要继承游戏头像的歪头、斜眼水平线、侧脸和厚灰白宽额带。不要孩童、中年浓须、厚胸健美壮汉、病态枯瘦、呆板官员脸、恶笑或烂醉踉跄。不要僵硬的敬礼立正、单肩耸起、斜颈靠肩；放松靠自然手势与重心表达。不要恒山掌门徽记礼服、婚礼衣装、后期重伤血迹、清式剃额辫发或官服补子。不要全头乱发遮脸、全部头发贴死、碎布破袖或密集污斑。不要拔剑、露出剑刃、弯刀、日本刀、宽巨剑、第二柄剑、九把飞剑、他书具名神兵或发光独孤九剑。不要剑鞘弯折或短于剑刃、手握剑刃、柄格鞘口错轴、鞘端穿地或穿腿。不要第二个葫芦、具名名酒器、大酒坛、漂浮葫芦、琴或箫；本图只有普通入鞘直剑1柄与小酒葫芦1只。 不要 head tilt、Dutch angle、头歪向肩、脸部中线倾斜、双眼高低倾斜、倾斜镜头、侧脸、背身回眸、耸单肩、俯首藏眼或仰头藏眼。不要第二参考旧写实基线的脸、萧峰、郭靖、王语嫣或其他角色的脸；不要旧通用俊男脸换衣、网红尖下巴、动漫大眼、偶像磨皮、浓妆、夸张健美肌肉、照片截图、3D模型、塑料皮肤、像素画放大、黑色硬边或游戏UI。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸片侵蚀、白斑、划痕、碎布条、撕裂下摆、过密褶皱、斑驳脸或模糊眼睛；墨雾不能吞没人体和衣料。不要额外人物、多视图、拼贴分格、脸部特写框、无依据新增肢体和伤残、手物融合、错接手腕、悬空器物、头足或器物端点裁切。不要日式刀服、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、近现代物品、汉式交领左衽或水平镜像。不要裸露、透明衣料、性感化、血腥特写、恶搞或丑化。不要光龙、法阵、发光武器、粒子特效、强泛光、强逆光、复杂背景、题款、印章、标签、logo或装饰水印；保留工具原有溯源标识与元数据。
+
+FINAL POSE CHECK: FRONT-FACING LINGHU CHONG. Keep the forehead–nose–chin centreline VERTICAL, both eyes HORIZONTAL, head and neck naturally UPRIGHT over the torso, chin neutral, camera level. NO head tilt and NO Dutch angle. Do not inherit ANY reference's tilted head, side view or shoulder angle. Keep the character's own recognizable face, current-stage anatomy and all required objects clearly visible.
+
+FINAL EDIT CHECK: his head has to be visibly more UPRIGHT than input ONE, both eyes level, forehead-nose-chin vertical. Preserve identity and the rest of the illustration. No head tilt; no Dutch angle.
+```
+
+## 排除项
+
+不要第二参考旧候选令狐冲基线的面孔；新面部只来自第一张36-1本人游戏头像。不要继承游戏头像的歪头、斜眼水平线、侧脸和厚灰白宽额带。不要孩童、中年浓须、厚胸健美壮汉、病态枯瘦、呆板官员脸、恶笑或烂醉踉跄。不要僵硬的敬礼立正、单肩耸起、斜颈靠肩；放松靠自然手势与重心表达。不要恒山掌门徽记礼服、婚礼衣装、后期重伤血迹、清式剃额辫发或官服补子。不要全头乱发遮脸、全部头发贴死、碎布破袖或密集污斑。不要拔剑、露出剑刃、弯刀、日本刀、宽巨剑、第二柄剑、九把飞剑、他书具名神兵或发光独孤九剑。不要剑鞘弯折或短于剑刃、手握剑刃、柄格鞘口错轴、鞘端穿地或穿腿。不要第二个葫芦、具名名酒器、大酒坛、漂浮葫芦、琴或箫；本图只有普通入鞘直剑1柄与小酒葫芦1只。 不要 head tilt、Dutch angle、头歪向肩、脸部中线倾斜、双眼高低倾斜、倾斜镜头、侧脸、背身回眸、耸单肩、俯首藏眼或仰头藏眼。不要第二参考旧写实基线的脸、萧峰、郭靖、王语嫣或其他角色的脸；不要旧通用俊男脸换衣、网红尖下巴、动漫大眼、偶像磨皮、浓妆、夸张健美肌肉、照片截图、3D模型、塑料皮肤、像素画放大、黑色硬边或游戏UI。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸片侵蚀、白斑、划痕、碎布条、撕裂下摆、过密褶皱、斑驳脸或模糊眼睛；墨雾不能吞没人体和衣料。不要额外人物、多视图、拼贴分格、脸部特写框、无依据新增肢体和伤残、手物融合、错接手腕、悬空器物、头足或器物端点裁切。不要日式刀服、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、近现代物品、汉式交领左衽或水平镜像。不要裸露、透明衣料、性感化、血腥特写、恶搞或丑化。不要光龙、法阵、发光武器、粒子特效、强泛光、强逆光、复杂背景、题款、印章、标签、logo或装饰水印；保留工具原有溯源标识与元数据。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_linghuchong__ch05_youth_huashan_base.prepared.json`。

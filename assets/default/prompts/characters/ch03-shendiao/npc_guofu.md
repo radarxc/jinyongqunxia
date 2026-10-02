@@ -1,0 +1,74 @@
+---
+asset_id: por_npc_guofu__ch03_youth_preinjury_base
+subject_id: npc_guofu
+name: 郭芙
+book: ch03_shendiao
+gender: female
+age_variant: youth
+tier: A
+output: assets/default/character/female/ch03/por_npc_guofu__ch03_youth_preinjury_base.png
+manifest: assets/default/character/female/ch03/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/shendiao/guofu_1995_fumingxian.jpg
+  use: 第一且唯一面容身份参考：实际核实1995 TVB傅明宪郭芙的单人剧照；此前已view，本次复核原字节SHA。保留椭圆鹅蛋脸、饱满颊线、圆润收颌、清楚眉峰、杏眼和本人眉眼间距、直鼻与自然唇厚。按角色稿自然调整为约15–17岁少女，不照搬成人妆感、红唇、露齿微笑、侧转肩部、照片服饰发冠或蓝色影棚背景。
+- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+  use: 第二参考仅提供项目女性人物的精细手绘设色、柔和漫射光、温润皮肤与完整连贯衣料的绘制质感；已实际view。不得借王语嫣脸型、眉眼、大眼小鼻比例、体型、高髻、玉簪、淡藕褙子、宽袖或侧转姿势；不传递该参考的approved。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第三参考仅背景：暖浅灰纸底、低对比水墨远山薄雾与留白；已实际view。不取图中人物脸、年龄、体型、发式、首饰、透明衣裙、倾头或侧身；墨韵不能侵入新人物，面部、手和衣料始终完整清楚。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 郭芙 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_guofu
+- book：ch03_shendiao
+- gender：female
+- age_variant：youth
+
+## 本轮人物写实规范
+
+1995傅明宪郭芙本人身份；正面、头颈垂直、双眼水平。英雄大会断臂事件前约15–17岁少女，珊瑚红短褙子、暖白右衽衫与完整长裙，普通剑完全入浅棕鞘挂左腰；自信娇矜但不恶女化、不成熟化。人物完整写实，水墨仅背景，两张candidate。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_guofu__ch03_youth_preinjury_base/prompt-e6c32a89baf874e2c796164b392d6fad8814590eafb0b93dd7049f14c1f63690.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. The head and neck are naturally UPRIGHT, forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line, camera level, chin neutral, gaze straight ahead. NO head tilt and NO Dutch angle. Keep the head centered over the torso, shoulders naturally level and relaxed. These rules override ALL reference poses and old draft instructions. Natural facial asymmetry is welcome; a tilted head is not.
+
+Create a beautiful REALISTIC Chinese wuxia character illustration of GUO FU / 郭芙 as an adolescent girl around 15–17, during the early Heroes Assembly period in The Return of the Condor Heroes. Image 1 is the ONLY FACIAL IDENTITY reference: Fu Mingxian / 傅明宪 as Guo Fu in the 1995 TVB series. Preserve her distinctive facial relationships while portraying the current role age naturally; do not copy the adult performer’s maturity. Image 2 is painting/rendering only, never another face or costume. Image 3 is background only. Do not blend identities.
+
+身份与阶段：南宋神雕书界ch03_shendiao，郭靖黄蓉长女、桃花岛世家少女，英雄大会前后早期窗口，仍在断臂事件之前。年少、自信、娇矜但未经世事，神情明快，目光直接，嘴角一丝克制笑意；不把骄傲画成恶毒或愤怒。约十五至十七岁真实发育与自然站姿，肩胸腰身保持少女体态，不照搬参考演员的成年妆感或婚后气质。下巴中性水平，不采用旧稿稍扬下巴的姿态。
+
+本人面容辨识：第一参考傅明宪郭芙的椭圆鹅蛋脸，颊面饱满自然，下颌渐收而下巴圆润，不削尖V；细长眉有清楚而柔和的外侧眉峰，眼睛清亮的杏形、上眼睑结构明确，保留本人眉眼间距与走向。眼睛维持自然大小，不放大成动漫眼；鼻梁直、鼻尖圆润有体积，鼻翼与唇部保持真实比例。上唇线清楚、下唇自然较饱满，微笑收敛，清淡自然唇色，不照搬参考浓红唇和露齿表情。温暖自然肤色，少女的圆润颊线与本人辨识并存；面容不能变成王语嫣、黄蓉、郭襄或通用女侠。
+
+衣装与头发：南宋汉式浅珊瑚红对襟短褙子，内穿暖白交领右衽窄袖衫，完整齐腰长裙、平底布鞋，窄布腰带。右衽是穿着者左襟盖住右襟、向本人右侧合拢；对襟外褙子无须伪造交领。领口遮蔽得体，衣料全不透明、连续、完好；裙摆不拖地到遮掉两足。黑发双侧编束并收于脑后，细红布带束好，发丝整洁，有少女日常发式感；不画婚嫁髻，不复制剧照夸张红金冠饰、花纹里领和饰物。
+
+普通佩剑与站姿：只一柄普通中式直剑，完全收入浅棕色长剑鞘，不是君子剑。选本人左腰、观者右侧佩挂，短挂带从腰带真实连到剑鞘挂环，剑柄—鞘口—鞘身同轴，鞘长足够容纳剑刃，鞘尾完整可见，自然垂落于身体外侧、不穿裙、不碰地。双足稳稳落地，躯干正面，头颈竖直；本人右手轻扶前腰带，手指自然分开、不过度摆手，左手自然放松垂在身侧并避开佩剑，不握柄、不拔剑。佩剑、挂带、手和衣料边界分别清楚。
+
+绘制与背景：美观写实的精细国风人物插画，真实连贯的面部骨相、自然眼睛、温润肤质与明确的衣料体积，人物轮廓干净。取第二参考柔和层染、低饱和设色与左上漫射光，不取它的脸、体型、衣装或姿势；不复制摄影扫描颗粒和旧剧照偏色。取第三参考暖浅灰纸底、低对比水墨远山、薄雾与留白，背景墨迹只留在人物外，不能透进面部、手或服饰。衣料完整不透明、真实剪裁，宽缓自然褶皱，缝合与收边连贯；不使用飞白缺块、碎布、撕裂衣角、噪点纹理。背景不指定情节地点，不出现其他人物、文字或具体事件。
+
+构图与交付：单人、单视图、完整全身、原生竖幅2:3，平视中性透视。发顶、双手、两足鞋尖、完整衣摆及全部既定器物端点入画，四周自然留空；以真实少女体态为准，不用固定头身比或88–92%占高拉伸身体。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并如实登记，保留原始PNG字节、工具原有溯源标识与元数据，不插值、裁切、旋转或重编码。默认生成两张独立候选，每幅只含一人，均为candidate等用户审核，任何参考的approved均不传递到新图。
+
+事实边界：郭家长女、少女至青年的成长、英雄大会与后来的断臂责任线见本地catalog/story/chapters。当前角色稿把本张限定为断臂前、约十五至十七岁；确切岁数、珊瑚红衣色、发式和这一时段普通佩剑的原著措辞尚待考。具体衣款色彩、普通佩剑、挂载侧别、脸型年龄化和静态姿势是本次美术选择，不生成这些说明文字，不编造原著引文、回目或页码。
+
+完整排除项：不要 head tilt、Dutch angle、歪头靠肩、额鼻颏中线倾斜、双眼高低不平、斜镜头、俯首藏眼、仰头抬下巴、明显侧脸、侧身回眸、耸单肩或扭腰摆拍。不要通用女侠模板、网红尖V脸、动漫大眼、小鼻锥下巴组合、夸张丰唇、浓妆磨皮、塑料皮肤、油亮镜面皮肤、婴幼儿比例；不要把少女成人化、成熟婚后体态、性感曲线、露胸、低领、开衩短裙、透明衣料、高跟鞋或新娘凤冠。不要直接交付照片、剧照截图、拼贴、3D模型或复制其他画作；不要混合三张参考的人脸，不取王语嫣脸、体型、高髻、玉簪、淡藕衣裙或侧转姿势，不复制用户背景样图的人脸、透明衣料、首饰和歪头。不要现代服饰、拉链、腕表、运动鞋、数码物件、日式服制、和服、日式刀具、圆盘刀镡、菱形缠柄、夸张前结宽腰带、欧式奇幻铠甲、仙侠冠冕、赛博或蒸汽朋克；不要唐式齐胸裙、明式马面裙、明代网巾、官服补子、清式剃发留辫、旗装、马蹄袖、大拉翅或朝代族群混搭。不要汉式交领左衽、水平镜像、悬空装备、失重衣料、手物融合、多余肢体、多手多指、粘连手指、错接手腕、缺失既定肢体、裁断头足或器物端点；不要弯折断裂剑刃、短鞘容不下剑刃、柄鞘错轴、穿透身体的器物或无连接挂载。人物不要碎墨、飞白缺块、纸纹透肤透衣、毛边碎布条、撕裂裙摆、污渍风化、密集噪点、模糊眼睛、雾遮轮廓或背景墨点侵入人物。不要无依据的武器、发光武器、龙形能量、光翼、法阵、粒子特效、强烈泛光、硬舞台轮廓光、色情化、血腥特写或恶搞丑化；不要复杂场景、第二个人、动物群、分格、多视图、面部特写框、文字、汉字、伪字、题款、印章、签名、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要把郭芙替换成其他版本演员、郭襄、黄蓉或王语嫣；不要十六年后少妇、婚服、成熟艳丽妆容、恶女脸谱化。不要君子剑、淑女剑、双剑、出鞘剑、血刃、行凶动作、断臂残肢或伤害情节；不要无挂带佩剑、漂浮剑鞘、剑柄与鞘错轴、鞘尾裁掉、巨型兵器或裙摆吞掉剑。不要剧照蓝色影棚背景、过度红唇、露齿大笑和夸张红金发冠。
+
+FINAL POSE CHECK: FRONT-FACING GUO FU with her own 1995 Fu Mingxian facial identity, portrayed naturally at approximately 15–17. Forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY level, head and neck UPRIGHT, shoulders relaxed, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. Keep the ordinary sword fully sheathed at her left waist with a visible connecting strap and complete scabbard; preserve the coral-red and warm-white early adolescent costume.
+```
+
+## 排除项
+
+不要 head tilt、Dutch angle、歪头靠肩、额鼻颏中线倾斜、双眼高低不平、斜镜头、俯首藏眼、仰头抬下巴、明显侧脸、侧身回眸、耸单肩或扭腰摆拍。不要通用女侠模板、网红尖V脸、动漫大眼、小鼻锥下巴组合、夸张丰唇、浓妆磨皮、塑料皮肤、油亮镜面皮肤、婴幼儿比例；不要把少女成人化、成熟婚后体态、性感曲线、露胸、低领、开衩短裙、透明衣料、高跟鞋或新娘凤冠。不要直接交付照片、剧照截图、拼贴、3D模型或复制其他画作；不要混合三张参考的人脸，不取王语嫣脸、体型、高髻、玉簪、淡藕衣裙或侧转姿势，不复制用户背景样图的人脸、透明衣料、首饰和歪头。不要现代服饰、拉链、腕表、运动鞋、数码物件、日式服制、和服、日式刀具、圆盘刀镡、菱形缠柄、夸张前结宽腰带、欧式奇幻铠甲、仙侠冠冕、赛博或蒸汽朋克；不要唐式齐胸裙、明式马面裙、明代网巾、官服补子、清式剃发留辫、旗装、马蹄袖、大拉翅或朝代族群混搭。不要汉式交领左衽、水平镜像、悬空装备、失重衣料、手物融合、多余肢体、多手多指、粘连手指、错接手腕、缺失既定肢体、裁断头足或器物端点；不要弯折断裂剑刃、短鞘容不下剑刃、柄鞘错轴、穿透身体的器物或无连接挂载。人物不要碎墨、飞白缺块、纸纹透肤透衣、毛边碎布条、撕裂裙摆、污渍风化、密集噪点、模糊眼睛、雾遮轮廓或背景墨点侵入人物。不要无依据的武器、发光武器、龙形能量、光翼、法阵、粒子特效、强烈泛光、硬舞台轮廓光、色情化、血腥特写或恶搞丑化；不要复杂场景、第二个人、动物群、分格、多视图、面部特写框、文字、汉字、伪字、题款、印章、签名、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要把郭芙替换成其他版本演员、郭襄、黄蓉或王语嫣；不要十六年后少妇、婚服、成熟艳丽妆容、恶女脸谱化。不要君子剑、淑女剑、双剑、出鞘剑、血刃、行凶动作、断臂残肢或伤害情节；不要无挂带佩剑、漂浮剑鞘、剑柄与鞘错轴、鞘尾裁掉、巨型兵器或裙摆吞掉剑。不要剧照蓝色影棚背景、过度红唇、露齿大笑和夸张红金发冠。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_guofu__ch03_youth_preinjury_base.prepared.json`。

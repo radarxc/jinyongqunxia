@@ -1,0 +1,76 @@
+---
+asset_id: por_npc_guojing__ch02_youth_base
+subject_id: npc_guojing
+name: 郭靖
+book: ch02_shediao
+gender: male
+age_variant: youth
+tier: S
+output: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
+manifest: assets/default/character/male/ch02/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/guojing_1983_huangrihua_caption_verified_front.jpg
+  use: 第一且唯一面部身份参考：1983 TVB黄日华版郭靖，已实际view。保留宽额、方圆颧颊与有厚度的下颌、浓而较直的眉、自然修长的眼形与眉眼间距、挺直鼻梁和圆厚鼻头、清楚上唇线及平稳嘴角。自然适配约二十岁青年；不复制该图略俯的头、身体侧转、练掌抬臂、电视拼接背心、原发饰、半身裁切或林中摄影背景。新图头部中线必须竖直、双眼水平、正面站直。
+- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+  use: 第二参考仅低饱和灰青、炭灰和暖肤色的男性项目色卡、柔和明暗与连贯细腻的写实手绘质感；已实际view。不得借令狐冲面孔、胡茬、窄长体型、网巾、衣装版式、剑、站姿或倾头角度；基线candidate状态不改变。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第三参考仅背景：极浅水墨远山、薄雾、暖浅灰纸底与留白；已实际view。忽略女性脸、发型、倾头、身体、白青薄纱裙装及饰物。背景笔触与纸纹不得侵蚀郭靖的皮肤、衣料和器物。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 郭靖 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_guojing
+- book：ch02_shediao
+- gender：male
+- age_variant：youth
+
+## 本轮人物写实规范
+
+1983黄日华版郭靖作唯一面容身份；正面端正、头部中线竖直、双眼水平，英雄气来自宽厚骨相与坦荡专注的眼神。约二十岁南行青年，宋式灰青右衽布袍、赭褐腰带、深布巾束髻；左手完整反曲弓、左后箭囊、右腰金刀完整入鞘，右手空放。人物清楚写实、衣料连续，水墨仅背景；两张原生2:3 candidate，不借萧峰质量脸或令狐冲面貌。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_guojing__ch02_youth_base/prompt-e0e3fbe2e744bab018d15bb08d97a87938144c35a8b70b3f308492c4e44878dc.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.
+
+Create a beautiful REALISTIC Chinese wuxia character illustration of GUO JING / 郭靖 in his early young-adult period of The Legend of the Condor Heroes. Use image 1 as the ONLY FACIAL IDENTITY source: Felix Wong / 黄日华 as Guo Jing in the 1983 TVB series, matching the user's selected Barbara Yung-era cast. Retain this character's recognizable facial relationships instead of using a generic hero face. Image 2 is only the project male colour/rendering sample; image 3 is only a pale ink-wash background sample. No other person's face may enter the design.
+
+青年身份与气质：江南七怪弟子、丐帮盟友，已经南行并得洪七公传艺，采用桃花岛历练期的青年阶段，约二十岁观感。大漠成长带来真实的日晒肤色与骑射体格；宽肩厚胸、四肢结实但不过分健美。诚厚坦荡、认真专注、站得稳而不僵硬，已有初长成英雄的担当。没有中年浓须，不是神雕时期守城将领，也不装扮成蒙古王公。
+
+本人辨识锚点：第一参考黄日华郭靖的额面较宽，脸形方圆；颧颊和下颌有坚实厚度，下巴宽而不尖。浓黑较直眉与自然修长眼形保持其眉眼间距和走向；眉骨与上眼睑清楚，直视而不怒目瞪眼。挺直鼻梁、圆厚鼻头和适度鼻翼，闭合嘴唇，上唇线清楚、下唇自然饱满、嘴角平稳。保留这些关系及朴实英气，自然描成青年，清晰细腻的暖肤色，不套用细长剑客脸或络腮胡壮汉脸。不要把参考中的略俯视和额头紧绷当作身份特征照搬。神态以沉着眼神和端正站姿传达。
+
+宋式行旅服饰：灰青色交领右衽窄袖布袍、赭褐窄腰带、深色布裤与实用深色布靴。汉式交领为穿着者左襟盖住右襟、向本人右侧合拢。衣襟闭合，整片衣料真实连贯，袖口与下摆完整，少量宽缓承重褶皱，朴素仍要剪裁清楚、完整可穿；不主动画破损或补丁。长发整齐束髻收进深色布巾，额头与眼睛清楚可见，不留披肩乱发；不要照搬参考的影视发饰、拼接皮背心或白袖造型。
+
+静态站姿与左右器物：身体主要朝正面，胸肩自然舒展，颈部直立，双脚稳稳着地、一足可自然略前。左手在本人左外侧低垂握一张朴实反曲弓的弓把；正面画面中位于观者右侧。弓基本竖直、稍离左腿，弓身为完整连续的普通弓，单根弓弦清楚连到上下弓梢；两梢和弦全部入画，无搭箭、不拉弦、不摆射杀动作。左后腰背固定一个实用箭囊，仅少量箭羽露出，皮/布系带切实连至腰背，不能像漂浮的一束箭。右手空着自然垂放，手指放松，不摸刀柄。
+
+成吉思汗金刀 eq_jindao 仅佩在本人右腰，正面画面中位于观者左侧：一柄刀身完全入鞘的短中等尺寸随身刀，低调金色装具，刀柄、鞘口、完整刀鞘和鞘端清楚可读。短挂带切实连接腰带，刀鞘向本人右后方适度斜垂，仍要让鞘端落在可见轮廓外，不藏入衣内。金刀与弓分别在身体两侧，和箭囊及衣摆分离，器物形状、挂点、重力可信。无其他刀剑或战利品，不将金刀画成发光宝刀。弓、箭囊与金刀携行布局是角色稿的美术设计，不是要求表演小说某个战斗场面。
+
+人物画法：完整、美观、精细的写实国风人物。五官、双手和脚部清楚，皮肤具有可信柔和体积，衣服与布靴是连续实体材料，武器和背带有确定边缘、质量与承重。少量自然纤维纹理与适当宽褶即可，不用密集噪点证明真实。柔和左上漫射光、连贯明暗，灰青与赭褐配温暖肤色，保持人与背景分离。人物可以有精妙手绘笔触，但脸、手、衣料和轮廓不能飞白、碎裂或透纸。画面是新绘制的高级人物插画，不是摄影截图、三维模型或拼贴。
+
+背景与交付：不透明暖浅灰纸底，边缘有极浅、低对比的远山水墨和薄雾，留白充足，只用少量脚下接触阴影；背景水墨与纸纹全部停在人物、衣料、弓弦和刀鞘之外。无战马、白雕或第二个人，无桃花岛具象剧情陈设。单人、单视图、完整全身，原生竖幅2:3。头顶、两手、两足、全衣摆、弓梢、刀鞘端和箭羽均完整入画，四周留自然净空，不用固定占高或头身数字拉伸人物。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保留原始PNG字节，不插值、裁切或重新编码。每次画面只含一个郭靖；默认两张独立候选由执行者比较，仍全部为candidate，等待用户审核。
+
+事实边界：约二十岁是当前角色稿的视觉选段，具体公历岁数不锁死；金刀授予关系见项目装备表，授刀先后及器物精确形制仍保留原稿的待考边界。采用本项目已经要求的带弓、佩金刀青年条件组合，不擅自推进到后期守城或另造史实制服。
+
+完整排除项：不要 head tilt、Dutch angle、头歪向肩、头部中线倾斜、双眼高低倾斜、倾斜镜头、单肩高耸、俯首藏眼、仰头、明显侧脸、侧身回眸、下巴刻意抬高或参考图的练掌动作；不要把郭靖换成令狐冲、萧峰、王语嫣或通用俊男脸；不要尖窄下颌、网红锥子脸、动漫大眼、浓妆丰唇、幼童体貌、成年健美夸张胸肌、成熟中年浓须、神雕时期守城将领脸。不要直接复制电视背心、白色抬臂袖、头顶影视发饰、摄影半身构图或林中照片背景，不直接交付照片、剧照截图、3D塑料模型。不要襄阳甲胄、官帽、官服补子、蒙古贵族重裘、帝王冠饰、清式剃额长辫、辫子替代汉人束髻、日式服制刀具、欧式奇幻装备或现代物品。不要拔出金刀、第二把刀、长剑、玄铁重剑、打狗棒、盾牌或额外战利品；不要弯弓搭箭、射杀动作、弓身断裂、弓弦断开或多重弦、缺失弓梢、悬空箭囊、刀鞘没有挂带、鞘比刀短、弓刀融合、刀穿过身体、金刀画成通体耀眼纯金巨刃。不要战马、白雕、其他人物、光龙、发光武器、粒子特效、法阵或强泛光。不要缺臂缺手、多肢、多指、粘连手指、错接手腕、手物融合、衣袖吞手、器物端点或头足裁切；不要水平镜像或汉式左衽。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸片侵蚀、碎布条、撕裂衣摆、毛边、大片补丁污渍、密集噪点纹理、斑驳模糊脸、眼睛不清或磨皮塑料感；不要用雾和墨痕掩盖人物轮廓。不要裸露、透明衣料、性感化、血腥、恶搞或丑化。不要复杂建筑场景、分格、多视角、脸部特写框、题字、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。
+
+FINAL POSE CHECK: FRONT-FACING GUO JING. Keep the head centreline from forehead through nose to chin vertical; both eyes horizontally level; head, neck and torso naturally upright; camera level and gaze forward. NO head tilt and NO Dutch angle. Do not inherit the tilted head, lowered chin, turned torso or raised-arm pose from ANY reference. Keep his recognizable face and all equipment clearly visible.
+```
+
+## 排除项
+
+不要 head tilt、Dutch angle、头歪向肩、头部中线倾斜、双眼高低倾斜、倾斜镜头、单肩高耸、俯首藏眼、仰头、明显侧脸、侧身回眸、下巴刻意抬高或参考图的练掌动作；不要把郭靖换成令狐冲、萧峰、王语嫣或通用俊男脸；不要尖窄下颌、网红锥子脸、动漫大眼、浓妆丰唇、幼童体貌、成年健美夸张胸肌、成熟中年浓须、神雕时期守城将领脸。不要直接复制电视背心、白色抬臂袖、头顶影视发饰、摄影半身构图或林中照片背景，不直接交付照片、剧照截图、3D塑料模型。不要襄阳甲胄、官帽、官服补子、蒙古贵族重裘、帝王冠饰、清式剃额长辫、辫子替代汉人束髻、日式服制刀具、欧式奇幻装备或现代物品。不要拔出金刀、第二把刀、长剑、玄铁重剑、打狗棒、盾牌或额外战利品；不要弯弓搭箭、射杀动作、弓身断裂、弓弦断开或多重弦、缺失弓梢、悬空箭囊、刀鞘没有挂带、鞘比刀短、弓刀融合、刀穿过身体、金刀画成通体耀眼纯金巨刃。不要战马、白雕、其他人物、光龙、发光武器、粒子特效、法阵或强泛光。不要缺臂缺手、多肢、多指、粘连手指、错接手腕、手物融合、衣袖吞手、器物端点或头足裁切；不要水平镜像或汉式左衽。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸片侵蚀、碎布条、撕裂衣摆、毛边、大片补丁污渍、密集噪点纹理、斑驳模糊脸、眼睛不清或磨皮塑料感；不要用雾和墨痕掩盖人物轮廓。不要裸露、透明衣料、性感化、血腥、恶搞或丑化。不要复杂建筑场景、分格、多视角、脸部特写框、题字、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_guojing__ch02_youth_base.prepared.json`。

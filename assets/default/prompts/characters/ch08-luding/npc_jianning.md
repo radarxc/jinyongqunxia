@@ -1,0 +1,76 @@
+---
+asset_id: por_npc_jianning__ch08_child_palace_base
+subject_id: npc_jianning
+name: 建宁公主
+book: ch08_luding
+gender: female
+age_variant: child
+tier: S
+output: assets/default/character/female/ch08/por_npc_jianning__ch08_child_palace_base.png
+manifest: assets/default/character/female/ch08/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/luding/jianning_1998_liuyucui.png
+  use: 第一且唯一面部身份：1998 TVB陈小春版《鹿鼎记》刘玉翠饰建宁公主，已实际view、核实来源DOM和SHA。第一图只取前景偏左戴黑帽的女性刘玉翠饰建宁的五官关系；后方男性陈小春完全排除。参考是成人表演者，新人物严格画成约7岁儿童；这不是复原演员真实童年。 适龄转译到约7岁、尚未发育的儿童，不是成年演员身体的缩小版。从刘玉翠建宁保留可辨的短圆椭圆轮廓、较短下颌、小巧鼻唇及细长眉眼的相对关系，再作自然儿童年龄适配。约7岁有较高额头、饱满儿童面颊、柔短下巴和小鼻梁，眉毛自然细软，眼睛是正常儿童大小、不是大圆卡通眼；嘴小，上唇线清楚、下唇自然圆润。好胜神态来自眉部轻微有力的上扬和专注直视，不靠成人眼线、红唇或抬下巴。保留此角色小嘴、短下颌与细长眉眼关系，不做通用洋娃娃脸，不与沐剑屏的青春期少女面容共模。图中脸部尺寸有限，不臆造痣、纹身或毛孔；不复制成人颧骨棱角、浓妆和皱纹。 任何照片头倾、视线、他人、服装、场景和台标都不继承；必须正面头直、双眼水平。
+- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+  use: 第二参考严格仅作女性项目色卡：低饱和色彩、暖肤色与浅灰白底的协调关系。已实际view。不得提取王语嫣的脸型、眉眼鼻唇、发际、年龄、体型、身体比例、头倾、站姿、手势、宋代衣装或其他身份特征；人物写实完整要求来自文字，不能靠借用基线脸和人体来实现画风一致。原manifest实际approved状态不变，不转移给本角色。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第三参考仅背景：暖浅灰纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略王语嫣面容、年龄、体型、发髻、倾头转身、白青衣装和饰物；墨迹纸纹不得侵入建宁公主的皮肤、衣料和器物。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 建宁公主 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_jianning
+- book：ch08_luding
+- gender：female
+- age_variant：child
+
+## 本轮人物写实规范
+
+1998刘玉翠饰建宁公主唯一本人身份；约7岁、尚未发育的儿童，不是成年演员身体的缩小版，1669年宫廷日常的童年公主静态身份展示，仅用于早段儿童方案。正面端正、头直眼水平，逐人保留下颌眉眼鼻唇，不共享美人模板；女基线仅色卡、用户图仅背景。人物完整写实，两张原生2:3 candidate待用户审核。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_jianning__ch08_child_palace_base/prompt-1165eed865feefe972e085af66e5ab9a1b9f32cc4fb3bf2aee852dac68b3ee33.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.
+
+Create a REALISTIC Chinese wuxia illustration of PRINCESS JIANNING / 建宁公主. Image 1 is the ONLY FACIAL IDENTITY source: 刘玉翠 as 建宁公主 in the 1998 TVB The Duke of Mount Deer starring Jordan Chan. Image 2 is ONLY a colour palette and supplies ZERO facial or anatomical information. Image 3 is ONLY the pale ink-wash background. Preserve this person’s distinct jaw, brows, eye spacing, nose and lips instead of a shared beauty template. 第一图只取前景偏左戴黑帽的女性刘玉翠饰建宁的五官关系；后方男性陈小春完全排除。参考是成人表演者，新人物严格画成约7岁儿童；这不是复原演员真实童年。
+
+身份与阶段：建宁公主（npc_jianning），《鹿鼎记》ch08_luding，清初康熙时代。1669年宫廷日常的童年公主静态身份展示，仅用于早段儿童方案；约7岁、尚未发育的儿童，不是成年演员身体的缩小版。必须一眼可读为约7岁儿童：尚未发育的小身架、窄肩、小手小脚，颈长腿长自然适龄，胸腰完全按儿童结构，宽松童装不束腰塑形。不是成人面孔贴到小身体，不是少女、婚龄公主或成人等比例缩小。
+
+本人面容辨识锚点：从刘玉翠建宁保留可辨的短圆椭圆轮廓、较短下颌、小巧鼻唇及细长眉眼的相对关系，再作自然儿童年龄适配。约7岁有较高额头、饱满儿童面颊、柔短下巴和小鼻梁，眉毛自然细软，眼睛是正常儿童大小、不是大圆卡通眼；嘴小，上唇线清楚、下唇自然圆润。好胜神态来自眉部轻微有力的上扬和专注直视，不靠成人眼线、红唇或抬下巴。保留此角色小嘴、短下颌与细长眉眼关系，不做通用洋娃娃脸，不与沐剑屏的青春期少女面容共模。图中脸部尺寸有限，不臆造痣、纹身或毛孔；不复制成人颧骨棱角、浓妆和皱纹。
+
+服制与发式：清初满洲宫廷女童的完整宽松旗装长袍，暗珊瑚红主体、米白窄滚边，衣襟向穿着者右侧掩合，领口严整遮蔽胸颈，袖口适度收束，两手清楚。衣袍适合儿童走动、不拖婚服尾摆；平底软鞋两只入画。黑发分梳小而贴服的双髻，用窄绸带系住，额头眼睛清楚。不要成年两把头、大拉翅、凤冠珠翠；不要照搬参考的黑帽、成年太监或男装袍。
+
+姿态与器物：端正正面站立，两脚自然靠近且着地，头颈垂直、双眼水平，镜头平视孩子面部，下巴中性不抬。双手完全空着：右手在身侧自然轻握，左手放松垂于另一侧，小手指结构清楚，袖口不吞手。表情略倔强而克制，像宫中不服输的受宠女童；不挥拳、不施暴，不摆亲密或婚嫁动作。只有她一个孩子，没有成人陪衬。
+
+人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。
+
+参考边界：第二参考严格仅作女性项目色卡：低饱和色彩、暖肤色与浅灰白底的协调关系。已实际view。不得提取王语嫣的脸型、眉眼鼻唇、发际、年龄、体型、身体比例、头倾、站姿、手势、宋代衣装或其他身份特征；人物写实完整要求来自文字，不能靠借用基线脸和人体来实现画风一致。原manifest实际approved状态不变，不转移给本角色。 第三参考仅背景：暖浅灰纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略王语嫣面容、年龄、体型、发髻、倾头转身、白青衣装和饰物；墨迹纸纹不得侵入建宁公主的皮肤、衣料和器物。
+
+背景与交付：第三图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认两张独立候选由执行者比较；所有输出仍为candidate，待用户最终审核，不自动approved。
+
+事实边界：1662出生推算与小说初见年龄、云南送婚时序存在未解冲突；遵从mainrole child，不声称原著初见确为7岁，不修改上游生年。 成人剧照只能支持个人五官关系，不提供真实童年证据；儿童外观是适龄艺术转译。 原图436×307且脸部较小，无法精密复原细微皮肤结构。 保留暗珊瑚米白边宽松女童旗装、双小髻、平底鞋、空手日常。 取消原稿小下巴轻抬，改中性下巴、头直眼水平。 用户指定本人剧版身份覆盖旧稿禁演员脸，但照片年龄、衣装和场景不是小说事实。
+
+完整排除项：不要成人脸、成人身体、青春期身材、成熟胸腰臀、细腰长腿模特、成人眼线浓妆红唇、艳丽首饰、婚服、成年旗头或大拉翅。不要鞭、枪、火铳、婚书、酒杯、婚车、吴应熊、韦小宝及任何亲密施暴场面。不要缩小成人刘玉翠身体，不臆造演员真实童年照片；不要借后方男人五官、黑帽或太监服。不要把约7岁儿童投放云南送婚阶段。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
+
+FINAL POSE CHECK: FRONT-FACING PRINCESS JIANNING / 建宁公主. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. Never inherit photo head lean, sideways gaze, tilted shoulders, turned torso, another person or cropped composition. Preserve only this role’s distinct facial relationships, naturally translated to the stated age; keep the entire age-appropriate body visible.
+```
+
+## 排除项
+
+不要成人脸、成人身体、青春期身材、成熟胸腰臀、细腰长腿模特、成人眼线浓妆红唇、艳丽首饰、婚服、成年旗头或大拉翅。不要鞭、枪、火铳、婚书、酒杯、婚车、吴应熊、韦小宝及任何亲密施暴场面。不要缩小成人刘玉翠身体，不臆造演员真实童年照片；不要借后方男人五官、黑帽或太监服。不要把约7岁儿童投放云南送婚阶段。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_jianning__ch08_child_palace_base.prepared.json`。

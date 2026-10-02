@@ -1,0 +1,74 @@
+---
+asset_id: por_npc_jinlunfawang__ch03_elder_base
+subject_id: npc_jinlunfawang
+name: 金轮法王
+book: ch03_shendiao
+gender: male
+age_variant: elder
+tier: S
+output: assets/default/character/male/ch03/por_npc_jinlunfawang__ch03_elder_base.png
+manifest: assets/default/character/male/ch03/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/shendiao/jinlunfawang_1995_liujiahui_sina2017.jpg
+  use: 第一且唯一面部身份：1995 TVB古天乐/李若彤版刘家辉饰金轮法王单人旧剧照，已实际view并独立核对HTML图文版次配对。只取额眉眼鼻及颧颊可辨结构，须髯遮挡的唇颌不作精确臆测。本图重建正面后期中老年，不继承短黑乱发、黑浓长髯、早期体态、影视衣装、侧向视线、摄影近景、绿偏色或背景。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第二仅用户背景参考，已实际view：只取暖浅灰不透明纸底、极浅淡青灰远山水墨与留白。完全不取女性面容、青年体态、发式发饰、纱裙、手势与倾头；背景纸纹墨痕不侵入人物、袍料、皮带与五轮。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 金轮法王 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_jinlunfawang
+- book：ch03_shendiao
+- gender：male
+- age_variant：elder
+
+## 本轮人物写实规范
+
+1995刘家辉本人五官第一，后期中老年高瘦阶段优先；正面头直、剃短发微凹顶门淡灰须影、暗红僧袍与浅褐内衣遮右肩，金银双持、铜铁铅三轮腰挂，完整写实人物、水墨仅背景；先1candidate。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_jinlunfawang__ch03_elder_base/prompt-b1967cfa7c265c7fb9b9f587e88448527e854e7115d6b51eecae2c4e82ff1b5b.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing older man. Head and neck naturally UPRIGHT; forehead–nose–chin centerline VERTICAL; both eyes HORIZONTALLY LEVEL. Chin neutral, gaze forward, shoulders balanced, camera level. NO head tilt and NO Dutch angle. Reference poses do not carry over.
+
+Create one refined REALISTIC wuxia illustration of 金轮法王 / JINLUN FAWANG, npc_jinlunfawang, ch03_shendiao. Image 1 alone supplies the facial identity of 刘家辉 as 金轮法王 in the 1995 TVB 古天乐/李若彤 version of 神雕侠侣. Image 2 supplies ONLY a faint ink-wash BACKGROUND. Maintain the verified actor-character facial identity while applying the later life stage, body, hair, robe and five-wheel equipment described below. This is an original illustration, not a television screenshot.
+
+身份与阶段：中老年密宗高手、蒙古国师，十六年后襄阳高台决战之前的生前常态基础像。elder是本张中老年偏老阶段素材键，不表示确岁或已满某个年龄。身体极高而瘦、长身清劲，有习武者筋骨和自然老年纹理，不画壮硕巨汉、肥胖僧人或极端骷髅。威严、冷静、专注，不以宗教或族群外貌刻板化表现反派，也不重演高台、火场、被缚郭襄或临终伤势。
+
+面容：第一图刘家辉版可见额部较宽、额纹和眉骨明确、浓长眉有较强走向、眼位较深而眼裂偏长、鼻梁鼻翼体积清楚、颧颊较瘦。将这些关系重建为平视正面，视线向前，不复制侧转侧目、戏剧化妆线、过曝高光或低清绿色偏色。保留本人眉眼鼻关系与自然不对称，同时加入本项目后期中老年自然细纹。原图大部分下颌和嘴角被浓髯遮住，不能把精确颌角或唇厚当已知身份锚；由已见鼻唇局部平顺补全正常闭口面容。须发严格按本阶段：剃得很短的头发，头顶轮廓只有自然轻微的下凹，不画畸形坑洞或尖头；胡须仅淡灰短须影，不沿用剧照大块浓黑长胡髯。微凹顶门与须发是沿角色稿的当前视觉方案，原著措辞仍待考。
+
+衣装：当前角色稿默认的暗赭红藏地僧袍，里面完整浅褐内衣，右肩与胸腹均有内衣遮护，衣物厚实不透明。僧袍是明确的披搭结构，具有整片连续袍料、清楚厚度与少量宽缓承重褶；不硬套汉服交领制服。若内衣局部露出汉式交领，则穿着者左襟压右襟向本人右侧闭合。深褐腰部皮带为三轮挂载提供真实受力点，内着不显眼的深色裤装与朴素布靴，双足完整可见。裤靴为使全身结构完整的美术落实。无道冠、宫廷帽或华丽法冠；不照搬第一图银钉肩部、绿色披巾和影视衣饰。暗红袍是项目在红黄袍版本线索未终校时的默认艺术选择，不宣称小说统一穿红。
+
+五轮的总数和材质不可变：恰好金、银、铜、铁、铅各一轮，共五个实体圆盘兵器。本人右手持一枚金轮（eq_jinlun），本人左手持一枚银轮；两手均在腰腹高度偏身体外侧，轮盘稍离体，握持孔与手指连接清楚，不挡面、不与腰挂轮重合。铜、铁、铅三轮用分层皮带牢靠挂在左右腰侧，每个轮盘独立可辨其边缘和中心握持孔，挂点、连接与重力清楚。三轮可以有少量合理叠搭，但不能融成一块、藏成无法计数或穿过腿。金轮温和金色、银轮浅银灰、铜轮暖铜色、铁轮深铁灰、铅轮哑灰，光泽克制；轮面无经文、咒语、文字或花哨法阵。五轮材质来自装备表；具体尺寸、握持孔形状、左右手与腰挂安排为当前美术实现。仅两手持两轮、腰挂三轮，不飞轮、不法术、不额外兵器。
+
+姿态与构图：身体与面部正面朝向观者，挺直长身、头颈端正、肩自然平展、双眼水平、双脚稳稳落地。双臂略离体让持轮与腰轮轮廓清楚，静止自持、不跃起扭身。原生2:3竖幅，单人单视图完整全身，头顶、两手、两足、衣摆和全部五轮边缘均入画，留自然边距；尊重高瘦中老年体型，不以固定七头身或精确88–92%占高拉伸人物。
+
+人物与背景画法：人物美观写实，皮肤、须影、袍料、手指、皮带和金属均是完整连续的坚实体积，面部五官精细、自然肌理清楚；完整布料不破裂、不飞白、不碎墨，不把纸底纹理透到皮肤或衣服。柔和左上漫射光、连续自然明暗、暗赭红和褐灰为主，小面积五种金属色。第二图只取暖浅灰不透明底、极浅淡青灰远山水墨与留白，少量脚下接触阴影。纸纹薄雾停在人物和器物轮廓外；不取背景女脸、年轻体态、纱裙、发饰、手势、倾头、亭阁或花枝。
+
+输出与候选：目标2048×3072不透明PNG，接受工具实际原生尺寸并如实登记；原始PNG字节及元数据保留，不裁切、不放大、不旋转、不修复或重编码。此轮先1张候选，candidate待独立实际查看与用户最终审核，不自动approved，不假造双候选对比。
+
+事实边界：国师身份与中老年、密宗/龙象来源据catalog；十六年后襄阳高台决战前由当前role与story/chapters限定，图中不演绎战斗结局。装备表明确金银铜铁铅五轮，双持腰挂、握持孔、配色与尺寸属于role及本次艺术落实。红黄袍、须发、顶门、高瘦的指定修订本原文和精确岁数均未逐字终校，不编引文和页码，不按演员现实年龄定角色年龄。第一参考只证1995版刘家辉本人主要五官，具体集数和拍摄时段未核；黑浓髯、影视服饰、体型与旧截图角度不覆盖本项目后期形象。来源2019多人支持图不作为生成输入。
+
+完整排除项：不要head tilt、Dutch angle、头歪向肩、面部中线倾斜、双眼高低不齐、仰头扬下巴、低头藏眼、回眸侧脸、侧向目光、耸单肩或斜镜头；不要复制剧照近景、摄影裁幅与影视姿势。不要把刘家辉本人五官换为1996游戏头像、张雷、黑子或其他版本，不借萧峰脸或水墨背景女性的脸、年龄、体型、发际、服饰、饰物与姿态。不要照搬原照浓黑长胡髯、蓬起黑短发、银钉戏服、绿灰披巾和较早年龄；不要统一网红脸、动漫大眼、青年偶像、婴儿比例、巨汉、魁梧健美肌肉、胖和尚或骷髅般瘦骨。不要夸张凹坑头骨、尖顶妖魔头、额外角、宗教或族群面貌 caricature、龇牙狞笑、恐怖皮肤、浓妆磨皮、直接摄影截图、换脸拼贴或三维塑料。不要现代服装、拉链、腕表、运动鞋、数码物件、现代塑料饰件；不要华丽法冠、道冠、宫廷帽、清代僧装、清式剃额留长辫、官服补子、日式和服和刀具、欧式奇幻甲、无据民族服装混搭。不要右肩裸露、裸胸、透明衣料、血腥伤势、火烧残衣或临终死亡态。不要僧袍变汉服交领整套制服；若局部内衣出现汉式交领，不要左衽或水平镜像。不要六轮或四轮、把五轮都变金色、只画一轮、把轮画成项圈念珠、无握持孔圆盾、刀镡或身后光环；不要飞轮悬浮、飞轮残影、手持三轮、第三只手、额外长兵器或龙象召唤。不要皮带断接、腰轮漂浮、轮面穿手穿袍、轮盘融合、手物融合、错腕、多指多肢、缺手缺足、双脚悬空或裁断头足与任何轮缘。不要龙象能量、发光武器、法阵、粒子、强烈泛光、火焰、绳索被缚者、郭襄或高台剧情复现。不要破布、碎墨、飞白缺块、白斑、纸纹透肤透衣、撕裂衣角、无据污渍、细碎乱褶、斑驳模糊五官。不要多人、分身、分格、多视图、头像框、建筑花枝、复杂场景、文字、经文咒语、伪字、题款、印章、签名、logo或新增装饰水印；保留工具原有溯源标识和元数据。
+
+FINAL CHECK: one FRONT-FACING tall and slender older man, UPRIGHT head and neck, VERTICAL facial centerline, LEVEL eyes, neutral chin and grounded feet. Preserve the 1995 刘家辉 facial identity, the later-stage cropped hair and faint grey beard shadow, covered right shoulder and dark red monk robe. EXACTLY FIVE PHYSICAL WHEELS: gold and silver held, copper/iron/lead securely at the waist. NO head tilt, NO Dutch angle. ONE initial candidate.
+```
+
+## 排除项
+
+不要head tilt、Dutch angle、头歪向肩、面部中线倾斜、双眼高低不齐、仰头扬下巴、低头藏眼、回眸侧脸、侧向目光、耸单肩或斜镜头；不要复制剧照近景、摄影裁幅与影视姿势。不要把刘家辉本人五官换为1996游戏头像、张雷、黑子或其他版本，不借萧峰脸或水墨背景女性的脸、年龄、体型、发际、服饰、饰物与姿态。不要照搬原照浓黑长胡髯、蓬起黑短发、银钉戏服、绿灰披巾和较早年龄；不要统一网红脸、动漫大眼、青年偶像、婴儿比例、巨汉、魁梧健美肌肉、胖和尚或骷髅般瘦骨。不要夸张凹坑头骨、尖顶妖魔头、额外角、宗教或族群面貌 caricature、龇牙狞笑、恐怖皮肤、浓妆磨皮、直接摄影截图、换脸拼贴或三维塑料。不要现代服装、拉链、腕表、运动鞋、数码物件、现代塑料饰件；不要华丽法冠、道冠、宫廷帽、清代僧装、清式剃额留长辫、官服补子、日式和服和刀具、欧式奇幻甲、无据民族服装混搭。不要右肩裸露、裸胸、透明衣料、血腥伤势、火烧残衣或临终死亡态。不要僧袍变汉服交领整套制服；若局部内衣出现汉式交领，不要左衽或水平镜像。不要六轮或四轮、把五轮都变金色、只画一轮、把轮画成项圈念珠、无握持孔圆盾、刀镡或身后光环；不要飞轮悬浮、飞轮残影、手持三轮、第三只手、额外长兵器或龙象召唤。不要皮带断接、腰轮漂浮、轮面穿手穿袍、轮盘融合、手物融合、错腕、多指多肢、缺手缺足、双脚悬空或裁断头足与任何轮缘。不要龙象能量、发光武器、法阵、粒子、强烈泛光、火焰、绳索被缚者、郭襄或高台剧情复现。不要破布、碎墨、飞白缺块、白斑、纸纹透肤透衣、撕裂衣角、无据污渍、细碎乱褶、斑驳模糊五官。不要多人、分身、分格、多视图、头像框、建筑花枝、复杂场景、文字、经文咒语、伪字、题款、印章、签名、logo或新增装饰水印；保留工具原有溯源标识和元数据。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_jinlunfawang__ch03_elder_base.prepared.json`。

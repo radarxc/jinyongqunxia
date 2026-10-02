@@ -1,0 +1,76 @@
+---
+asset_id: por_npc_yangxiao__ch04_prime_base
+subject_id: npc_yangxiao
+name: 杨逍
+book: ch04_yitian
+gender: male
+age_variant: prime
+tier: A
+output: assets/default/character/male/ch04/por_npc_yangxiao__ch04_prime_base.png
+manifest: assets/default/character/male/ch04/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_12-1.png
+  use: 第一且唯一面部身份：经典原版《金庸群侠传》杨逍本人头像，已实际view未改动PNG并对照带姓名表，source-audit-expanded映射已核验，字节与原ZIP成员相同。保留本人脸型与眉眼鼻口关系，低像素自然重建为细腻写实面孔，不放大像素、不描硬黑轮廓。最新正面、头颈垂直、双眼水平的要求覆盖所有参考角度，NO head tilt / NO Dutch angle。只保本人眉眼鼻唇和骨相关系；新图正面，中年灰鬓浅短须按当前稿重塑，不照搬原像侧脸或绿金衣领。
+- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+  use: 第二参考只取项目同性别低饱和色卡、柔和左上光和连续设色品质；已实际view并复核SHA。不得取其面孔、年龄、性格、体型、头发、衣装、器物或倾头角度，不把该基线人画进本人物。当前基线manifest状态为candidate，仅如实记录，不修改审批；当前新人物输出仍是candidate。人物必须采用真实自然肤质、完整衣料和连续光影，不复制细墨碎纸侵入人物的旧画法。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第三参考仅用户要求的背景：暖浅灰纸底、极淡水墨远山和薄雾、充足留白。已实际view并复核SHA，不取王语嫣脸、年轻年龄、发型、服装、动作或头部倾斜；墨痕与纸纹只能在背景，不进入人物与兵器。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 杨逍 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_yangxiao
+- book：ch04_yitian
+- gender：male
+- age_variant：prime
+
+## 本轮人物写实规范
+
+12-1本人长脸、直眉细长眼及鼻唇骨相转正；中年光明左使，灰鬓浅短须、清俊审慎微傲，非青年浪子。正面头颈垂直双眼水平，NO head tilt / NO Dutch angle；月白袍墨青薄外衣、低髻素簪，衣缘1处极小暗红火焰纹。双手空手，右手轻拢左袖口、左手垂；无权杖酒葫芦圣火令。1张candidate。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_yangxiao__ch04_prime_base/prompt-733c393a67936e3b968b3b82f3de212a5ed62851fd53936469d91bdb2403c413.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference portrait pose. Preserve natural facial asymmetry without tilting the head.
+
+Create a beautiful REALISTIC Chinese wuxia full-body illustration of YANG XIAO / 杨逍. Image 1 is the ONLY FACIAL IDENTITY source: this character's reliably mapped classic MS-DOS Heroes of Jin Yong portrait. Keep the recognizable facial relationships; reconstruct a natural realistic face from the low-resolution drawing. Image 2 provides only the appropriate-gender project colour and rendering palette; image 3 only the ink-wash background. Never borrow another character's face.
+
+阶段：中年明教光明左使，光明顶解围后参与教务议事，非年轻情缘前史或书末代掌教。
+
+本人面容辨识：第一参考12-1杨逍本人头像：额面偏长、颧骨与下颌转折干净，黑眉较平直而眉尾微挑，眼裂细长、有审视与判断力；鼻梁高直、鼻口间距和偏薄闭合唇线保留，嘴角克制带微傲而非嘲弄。将略侧向的骨相自然转为端正正面，额鼻颏中线垂直，眉眼与鼻唇比例仍可认出本人；不继承游戏像侧脸。按中年阶段增加克制眼周纹理、少量灰鬓和整洁浅短须，不画成青年张无忌、基线浪子或满脸白须老人；这些年龄痕迹来自当前稿，不伪称低像素图已提供。肤质清楚真实、神态沉思从容，保留成熟清俊。
+
+光明顶解围后参与明教教务议事的成熟光明左使，身材修长但肩背有真实力量，不纤弱病态，也不改成厚胸壮汉。身体朝正面、头颈竖直，双足稳定，一足可略前、重心自然轻偏，肩颈放松；傲气来自目光和克制嘴角，不靠歪头俯视或轻佻醉态。无本阶段明确需要外露的伤残，不凭空增加刀疤、断臂或伤病道具。
+
+元末汉地文士式月白长袍、墨青薄外衣、深色窄布带与朴素布鞋，层次完整端正。汉式交领左襟压右襟，向本人右侧合拢；衣缘有少量宽缓褶，袖口下摆连续缝合，不画碎布薄纸。黑发带少量灰鬓，整齐收成低髻，以一支素簪固定，脸与颈线清楚。衣缘仅一处极小暗红火焰纹，低调缝线而非权力徽章或法阵；月白墨青配色、灰鬓强度和纹样为当前稿美术补足。不复制头像绿金衣领，不戴教主冠冕或官帽。
+
+双手空手、无手持或腰挂兵器，不因光明使身份增加权杖或圣火令。本人左臂自然垂下，左手五指可见；本人右手在腹前轻拢左袖口的一小段布缘，手指与布边分开、不过度拉拽，右手不藏入袖筒，动作不遮脸。两手均未握任何器物；左右分配是本设计的美术补足。乾坤大挪移是武学，不画法轮、金属圆盘或光球；没有酒葫芦、折扇、书卷、长剑或第二个人。
+
+人物画法：完整、美观、精细的写实国风人物。五官、实际存在的手部结构与双足清楚，皮肤具有自然年龄感与坚实柔和体积，头发与衣物边缘干净；布料是整片、完整裁剪的连续实体，只用少量宽缓承重褶和克制纤维细节，不用密集噪点或破碎证明真实。柔和左上漫射光、连续明暗，低饱和设色与温暖肤色，人物始终与背景分离。将第一参考的低分辨率脸部关系重新绘成自然写实人脸，不临摹像素方块、黑色硬描边、透明缺口或游戏截图。第二参考仅同性别低饱和色卡、柔和光线与连续设色品质，第三参考仅背景水墨；二三参考绝不能提供脸、头身、发型、衣装、手持物或倾头角度。
+
+背景与交付：不透明暖浅灰纸底，边缘可有极浅、低对比的远山淡墨与薄雾，留白充足，脚下仅少量接触阴影；背景墨痕、纸纹与山影全部停留在人物、衣料、手部和器物轮廓外。无具体剧情建筑、第二个人、动物或画面文字。单人单视图、完整全身，原生竖幅2:3；头顶、发式、双足、实际存在的手部和器物端点完整入画，四周自然留边，不为固定占高强拉头身。目标2048×3072不透明PNG，接受工具实际原生2:3尺寸并如实登记，保留原始PNG字节，不裁切、插值或重编码。默认一张独立候选经执行者实际自查，仍为candidate，等待用户审核；每张画面只含一个本人。
+
+事实边界：第一头像提供用户指定的本人游戏面部身份，不证明原著服装、年龄、伤残或阶段；当前基础角色稿、名录与剧情阶段优先。第三方MS-DOS资源与标注初代的人名表已交叉核验，但未声称已取得官方1996原盘位元证明。旧稿禁止本人游戏脸、固定占高或只纸底门槛由本次授权覆盖；具体服装裁制、配色、左右动作与未见原文的道具细节保持美术补足与待考边界，不画考据文字。
+
+完整排除项：不要青年偶像脸、张无忌脸、令狐冲脸、浪子醉态、浓白长须或过度老化；不要基线体型和酒葫芦。不要头像侧脸与绿金衣领照搬、歪头、单肩耸起或仰下巴傲视。不要年轻情缘前史、书末代掌教冠冕、权杖、圣火令、刀剑腰挂、酒壶葫芦、折扇、书卷或法轮；双手必须空手。不要火焰纹变成大片金色装甲、法阵或全身符咒，不要同伴合影、妻女配角。 不要 head tilt、Dutch angle、头歪向肩、脸部中线倾斜、双眼高低倾斜、倾斜镜头、侧脸、背身回眸、耸单肩、俯首藏眼或仰头藏眼。不要第二参考人物的脸、其他角色的脸或同质化通用脸；不要旧通用俊男脸换衣、网红尖下巴、动漫大眼、偶像磨皮、浓妆、夸张健美肌肉、照片截图、3D模型、塑料皮肤、像素画放大、黑色硬边或游戏UI。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸片侵蚀、白斑、划痕、碎布条、撕裂下摆、过密褶皱、斑驳脸或模糊眼睛；墨雾不能吞没人体和衣料。不要额外人物、多视图、拼贴分格、脸部特写框、无依据新增肢体和伤残、手物融合、错接手腕、悬空器物、头足或器物端点裁切。不要日式刀服、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、近现代物品、汉式交领左衽或水平镜像。不要裸露、透明衣料、性感化、血腥特写、恶搞或丑化。不要光龙、法阵、发光武器、粒子特效、强泛光、强逆光、复杂背景、题款、印章、标签、logo或装饰水印；保留工具原有溯源标识与元数据。
+
+FINAL POSE CHECK: FRONT-FACING YANG XIAO. Forehead–nose–chin centreline VERTICAL, both eyes HORIZONTAL, head and neck naturally UPRIGHT over the torso, chin neutral, camera level. NO head tilt and NO Dutch angle. Do not inherit any reference's tilted head or side view. Keep the character's own recognizable face, age, anatomy and required objects clear.
+```
+
+## 排除项
+
+不要青年偶像脸、张无忌脸、令狐冲脸、浪子醉态、浓白长须或过度老化；不要基线体型和酒葫芦。不要头像侧脸与绿金衣领照搬、歪头、单肩耸起或仰下巴傲视。不要年轻情缘前史、书末代掌教冠冕、权杖、圣火令、刀剑腰挂、酒壶葫芦、折扇、书卷或法轮；双手必须空手。不要火焰纹变成大片金色装甲、法阵或全身符咒，不要同伴合影、妻女配角。 不要 head tilt、Dutch angle、头歪向肩、脸部中线倾斜、双眼高低倾斜、倾斜镜头、侧脸、背身回眸、耸单肩、俯首藏眼或仰头藏眼。不要第二参考人物的脸、其他角色的脸或同质化通用脸；不要旧通用俊男脸换衣、网红尖下巴、动漫大眼、偶像磨皮、浓妆、夸张健美肌肉、照片截图、3D模型、塑料皮肤、像素画放大、黑色硬边或游戏UI。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸片侵蚀、白斑、划痕、碎布条、撕裂下摆、过密褶皱、斑驳脸或模糊眼睛；墨雾不能吞没人体和衣料。不要额外人物、多视图、拼贴分格、脸部特写框、无依据新增肢体和伤残、手物融合、错接手腕、悬空器物、头足或器物端点裁切。不要日式刀服、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、近现代物品、汉式交领左衽或水平镜像。不要裸露、透明衣料、性感化、血腥特写、恶搞或丑化。不要光龙、法阵、发光武器、粒子特效、强泛光、强逆光、复杂背景、题款、印章、标签、logo或装饰水印；保留工具原有溯源标识与元数据。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_yangxiao__ch04_prime_base.prepared.json`。
