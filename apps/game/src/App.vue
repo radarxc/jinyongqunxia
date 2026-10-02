@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /* global window, KeyboardEvent, Element */
-import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { gradeLabel, menuLabels, t, uiBus, useUiStore, type MenuPage } from '@tianshu/ui/runtime';
 import TxHud from '@tianshu/ui/components/TxHud.vue';
@@ -8,19 +8,27 @@ import type { GameController } from './game-controller';
 import ScenePlaceholder from './scenes/ScenePlaceholder.vue';
 const { controller } = defineProps<{ controller: GameController }>();
 const { busy, notice, settings, saveStatus, storageAvailable } = controller;
+const { battle, battleActive } = controller;
 const { projection } = storeToRefs(useUiStore());
 const CharacterPage = defineAsyncComponent(() => import('./pages/CharacterPage.vue'));
 const InventoryPage = defineAsyncComponent(() => import('./pages/InventoryPage.vue'));
 const SavePage = defineAsyncComponent(() => import('./pages/SavePage.vue'));
+const BattlePage = defineAsyncComponent(() => import('./battle/BattlePage.vue'));
 const page = ref<MenuPage>('journey');
 const scene = ref<'world' | 'town' | 'battle'>('world');
+const sourceScene = ref<'world' | 'town'>('world');
+watch(scene, (next, previous) => {
+  if (next === 'battle' && previous !== 'battle') { sourceScene.value = previous; void controller.ensureBattle(); }
+});
+watch(battleActive, (next, previous) => { if (next && !previous) { scene.value = 'battle'; page.value = 'journey'; } });
+function returned(source: string): void { scene.value = source === 'town' ? 'town' : 'world'; }
 const menu: readonly MenuPage[] = ['journey', 'characters', 'inventory', 'martial', 'quests', 'saves', 'settings'];
 const shortcuts = computed(() => projection.value.inventory.filter((item) => item.canUse).slice(0, 3));
 const skills = computed(() => projection.value.characters.find((entry) => entry.relation === 'self')?.detail?.skills ?? []);
 function useQuick(index: number): void {
   const item = shortcuts.value[index];
   const target = projection.value.characters.find((entry) => entry.relation === 'self');
-  if (item && target && !busy.value) uiBus.emit({ type: 'core-command', command: { t: 'inventory/use', itemId: item.id, targetId: target.key } });
+  if (item && target && !busy.value && !battleActive.value) uiBus.emit({ type: 'core-command', command: { t: 'inventory/use', itemId: item.id, targetId: target.key } });
 }
 function keyboard(event: KeyboardEvent): void {
   if (event.defaultPrevented || event.repeat || event.ctrlKey || event.metaKey || event.altKey ||
@@ -47,7 +55,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', keyboard));
         <header class="page-heading"><div><small>{{ t('tagline') }}</small><h2>{{ menuLabels[page] }}</h2></div><span v-if="projection.hud.preview" class="preview-badge">{{ t('preview') }}</span></header>
         <div v-if="page === 'journey'" class="journey-page">
           <nav class="action-row" :aria-label="t('sceneTabs')"><button v-for="key in (['world', 'town', 'battle'] as const)" :key="key" type="button" :aria-pressed="scene === key" @click="scene = key">{{ t(key) }}</button></nav>
-          <ScenePlaceholder :scene="scene" /><p v-if="projection.hud.preview" class="muted">{{ t('previewNote') }}</p>
+          <BattlePage v-if="scene === 'battle' && battle" :controller="battle" :source="sourceScene" :reduced-motion="settings.reducedMotion" @returned="returned" />
+          <p v-else-if="scene === 'battle'" class="paper-panel">正在展开战旗……</p>
+          <ScenePlaceholder v-else :scene="scene" /><p v-if="projection.hud.preview && scene !== 'battle'" class="muted">{{ t('previewNote') }}</p>
         </div>
         <CharacterPage v-else-if="page === 'characters'" />
         <InventoryPage v-else-if="page === 'inventory'" :busy="busy" />
@@ -60,7 +70,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', keyboard));
     <footer class="bottom-bar paper-panel">
       <nav class="quickbar" :aria-label="t('quickbar')"><button v-for="(item, index) in shortcuts" :key="item.id" type="button" :disabled="busy" @click="useQuick(index)"><kbd>{{ index + 1 }}</kbd> {{ item.name }} <small>×{{ item.count }}</small></button></nav>
       <output role="status" aria-live="polite">{{ notice || saveStatus }}</output>
-      <button type="button" :disabled="busy || !storageAvailable" @click="controller.saveAction('save', 'save_quick')">{{ t('quickSave') }}</button>
+      <button type="button" :disabled="busy || !storageAvailable || battleActive" @click="controller.saveAction('save', 'save_quick')">{{ t('quickSave') }}</button>
     </footer>
   </main>
 </template>

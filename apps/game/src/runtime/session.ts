@@ -1,5 +1,8 @@
 import { advanceGameClock, equipItem, unequipItem, type DomainEvent } from '@tianshu/core';
-import type { UiCommand } from '@tianshu/ui';
+import type { JsonValue } from '@tianshu/shared';
+import type { GameCommand } from './contracts';
+import type { BattleUiCommand } from '../battle/contracts';
+import type { BattleRuntime } from '../battle/runtime';
 import { createSelectors } from '../projection';
 import { createPreviewSession } from './bootstrap';
 import { equipmentRules, type GameContent } from './content';
@@ -12,6 +15,33 @@ export function createGameSession(content: GameContent, initial = createPreviewS
   let session = validateSession(initial, content);
   const selectors = createSelectors(content);
   const rules = equipmentRules(content);
+  let battle: BattleRuntime | null = null;
+  async function battleCommand(command: BattleUiCommand): Promise<GameUpdate> {
+    if (command.t === 'battle/enter' || command.t === 'battle/demo') {
+      if (battle) throw new Error('BATTLE_ALREADY_ACTIVE');
+      if (command.t === 'battle/demo' && !session.preview) throw new Error('BATTLE_DEMO_FORBIDDEN');
+      const { BattleRuntime } = await import('../battle/runtime');
+      const launch = command.t === 'battle/demo'
+        ? (await import('../battle/demo')).createBattleDemo(command.source) : command.launch;
+      const candidate = new BattleRuntime(launch);
+      const packet = candidate.packet(true); battle = candidate;
+      const setup = candidate.launch.setup;
+      return { accepted: true, changes: { battle: packet }, events: [{ t: 'battle/setupResolved', payload: {
+        setupId: setup.setupId, encounterId: setup.encounterId, participants: setup.participants.map(row => row.unitRef),
+        winCond: setup.end.winCond, loseCond: setup.end.loseCond, drawCond: setup.end.drawCond,
+      } as JsonValue }] };
+    }
+    if (!battle) throw new Error('BATTLE_NOT_ACTIVE');
+    if (command.t === 'battle/leave') {
+      const packet = battle.packet();
+      if (!packet.result) throw new Error('BATTLE_NOT_ENDED');
+      const context = battle.launch.setup.returnContext; battle = null;
+      return { accepted: true, changes: { battle: null }, events: [{ t: 'battle/returned', payload: { ...context } }] };
+    }
+    const result = battle.execute(command);
+    return { accepted: true, changes: { battle: result.packet },
+      events: result.events.map(event => ({ t: event.t, payload: { ...event } as JsonValue })) };
+  }
   function validated(candidate: SessionSnapshot): SessionSnapshot {
     const next = validateSession(candidate, content);
     if (next.preview !== initial.preview) throw new Error('SAVE_MODE_INVALID');
@@ -19,17 +49,20 @@ export function createGameSession(content: GameContent, initial = createPreviewS
   }
   selectors.update(session, ALL_VIEWS);
   return {
-    query: () => selectors.query(),
-    snapshot: () => structuredClone(session),
+    query: () => ({ ...selectors.query(), battle: battle?.packet(true) ?? null }),
+    snapshot: () => { if (battle) throw new Error('BATTLE_SAVE_UNAVAILABLE'); return structuredClone(session); },
     validate: (candidate) => { validated(candidate); },
     restore(candidate): GameUpdate {
+      if (battle) throw new Error('BATTLE_SAVE_UNAVAILABLE');
       const next = validated(candidate);
       const changes = selectors.update(next, ALL_VIEWS, '已读取存档');
       session = next;
       return { accepted: true, changes, events: [] };
     },
-    dispatch(command: UiCommand): GameUpdate {
+    async dispatch(command: GameCommand): Promise<GameUpdate> {
       try {
+        if (command.t.startsWith('battle/')) return await battleCommand(command as BattleUiCommand);
+        if (battle) throw new Error('BATTLE_BUSY');
         let next: SessionSnapshot = session;
         let dirty: readonly DirtyView[] = [];
         let facts: readonly { readonly t: string }[] = [];

@@ -1,14 +1,13 @@
 import { createProjectionMainThreadHost, createProjectionWorkerHost } from '@tianshu/platform/host';
 import type { DomainEvent } from '@tianshu/core';
-import type { UiCommand, UiProjection } from '@tianshu/ui';
-import type { GameHost, SessionSnapshot } from './runtime/contracts';
+import type { GameCommand, GameHost, GameProjection, SessionSnapshot } from './runtime/contracts';
 
 export async function createGameCoreHost(): Promise<GameHost> {
   let host: GameHost | undefined;
   let timeout: ReturnType<typeof setTimeout> | undefined;
   if (typeof Worker === 'function') {
     try {
-      host = createProjectionWorkerHost<UiCommand, UiProjection, SessionSnapshot, DomainEvent>(
+      host = createProjectionWorkerHost<GameCommand, GameProjection, SessionSnapshot, DomainEvent>(
         new Worker(new URL('./core-worker.ts', import.meta.url), { type: 'module', name: 'tianshu-core' }),
       );
       await Promise.race([host.query(), new Promise<never>((_resolve, reject) => {
