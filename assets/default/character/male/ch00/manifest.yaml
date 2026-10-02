@@ -1,0 +1,78 @@
+- id: por_npc_zhujue__ch00_m_base
+  file: por_npc_zhujue__ch00_m_base.png
+  category: character/male
+  style: default
+  subject: 主角（男）· 春秋末·越国 npc_zhujue ch00_yuenv
+  prompt: |-
+    Create a premium REALISTIC Chinese wuxia full-body character illustration, with a delicate pale INK-WASH BACKGROUND. The human figure is solid, continuous and beautifully rendered: finely resolved natural facial features, clear eyes, believable skin and age, anatomically readable hands, coherent soft light and shade, intact opaque cloth with clean sewn hems, precise tailoring and a few broad weight-bearing folds. Use refined hand-painted realism. The skin, hair, clothes and shoes are fully painted solid forms; paper texture and loose ink marks belong exclusively behind the figure. This is a clarity repair of an existing character identity, not a new identity or a costume borrowed from another reference.
+
+    REFERENCE ROLES ARE SEPARATE. Image 1 supplies this subject's identity, face, age and recognizable body type ONLY. Reconstruct all garments from the written base-stage specification below, never copying fragmented brushwork, holes, ragged edges, damaged fabric or old folds from image 1. Image 2, the completed realistic Xiao Feng image, supplies ONLY the quality of coherent human rendering, clear hands, skin and intact cloth; do not borrow its male face, muscular physique, hairstyle, costume, palm gesture, action pose, dragon or scene. Image 3 supplies ONLY a muted project color range, not identity, body, brush texture or equipment. Image 4 supplies ONLY airy pale ink-wash background language, not its woman, face, outfit, thin translucent cloth or flowing ribbons.
+
+    BASE-STAGE CHARACTER FACTS (these override clothing and pose seen in every reference):
+    身份与阶段：现代人入书后的普通江湖行旅者；本图是时代基础装，不代表特定门派、现代职业或结局
+    面容锚点：男性主角面容锚点（原创扩展）：现代中国青年，外观约28岁；偏长的方圆脸，颧骨适度、下颌转折清楚而不宽阔，平直浓眉且左眉尾略高，深棕色中等杏眼，鼻梁直、鼻头圆钝，薄上唇与略厚下唇，左眉尾下有一颗浅褐小痣；暖中性肤色，保留自然纹理与极淡胡茬，无深皱纹；中等偏高、肩背匀称、四肢结实而不魁梧，约7.5头身；原生发质乌黑、直而略硬，保留的发丝密实；目光专注而有好奇心，嘴角平和，警觉但不怯弱。
+    本时代服饰发式：深浅竹青的简朴右衽短褐上衣、浅麻色长裤，窄布带束腰，裤脚收束、素面布履；黑发梳拢成简约椎髻，以深褐布条束紧，不戴后世冠帽
+    兵器道具：空手、无随身兵器，不携青铜名剑或竹棒
+    气质姿态：双手空着自然放松，尚在观察陌生环境；身体微侧、双足站稳，不模仿越女教学持竹姿势
+
+    REPAIR-SPECIFIC DIRECTION:
+    ch00男主清晰度返修，作为后续跨书本人写实身份新锚点；约28岁俊朗正气、均衡结实而不魁梧，左眉尾下浅褐小痣。竹青短褐和麻色裤恢复完整布料，不将旧碎墨衣料升级为碎甲或华贵装备。
+    Build a clean, modest bamboo-green right-lapped short travel tunic with an unbroken sewn hem, plain flax-colored trousers gathered at the ankles, a narrow fabric belt and simple cloth shoes. No long split streaming robe tails, bulky wrist wraps or new layered panels. Preserve the protagonist's moderately long squared-oval face, slightly raised left eyebrow tail and small pale-brown mole immediately below that tail. Warm neutral skin, extremely faint stubble, quiet resolute open gaze. Black hair is completely gathered into a simple early Yue topknot with a dark-brown cloth tie; no later crowns or swords. Keep both hands relaxed and empty with clear separation from the torso, both feet grounded. No Xiao Feng beard or huge shoulders. This completed revision will be the same person's anchor for subsequent era costumes.
+
+    Single subject, one view, complete full body, vertical 2:3 PNG composition with comfortable margins around head, hands, feet and every assigned prop tip. Eye-level neutral perspective, calm readable base-portrait staging; retain a seated or disabled body's actual pose when specified. All garments are fully opaque and structurally complete. Soft diffuse light from upper left, clear natural eyes and fingers, no theatrical rim light. Opaque warm pale-grey background with an extremely faint distant ink wash, mostly open space; no identifiable classical episode, narrative location, extra person, supernatural symbol or writing. Ink scenery stays behind the clean figure. Traditional Han crossed collars are right-lapped: wearer's left panel lies over right. Do not apply that collar rule to an explicitly different regional garment. Image native PNG bytes and actual dimensions will be preserved by the production pipeline; there is no printed measurement or label.
+
+    完整排除项 / Exclusions:
+    No dry-brush holes, paper erosion, peeling paint, white flecks, collage, cut-paper facets, fragmented watercolor mottling, random scratch texture, shredded ribbons, frayed ragged hems, holes or unjustified dirt on the human figure. No blurry face, indistinct fingers, merged hand and object, broken wrists, extra digits or limbs, missing legs, cropped head or feet, transparent garments, sexualization, exaggerated bodybuilding, beauty-filter plastic skin, anime eyes, photography or 3D model appearance. No cross-character identity transfer, no unrequested weapons, magic beams, glowing props, dragons, deities or battle effects in this base portrait. No text, caption, stamp, signature, logo, new decorative watermark, panels or multiple views; retain tool-native provenance. No Han-or-later cap, Song jacket, Ming headband, Qing queue, cloak, bronze sword, bamboo staff or modern object.
+  negative: No dry-brush holes, paper erosion, peeling paint, white flecks, collage, cut-paper facets, fragmented watercolor
+    mottling, random scratch texture, shredded ribbons, frayed ragged hems, holes or unjustified dirt on the human figure.
+    No blurry face, indistinct fingers, merged hand and object, broken wrists, extra digits or limbs, missing legs, cropped
+    head or feet, transparent garments, sexualization, exaggerated bodybuilding, beauty-filter plastic skin, anime eyes, photography
+    or 3D model appearance. No cross-character identity transfer, no unrequested weapons, magic beams, glowing props, dragons,
+    deities or battle effects in this base portrait. No text, caption, stamp, signature, logo, new decorative watermark, panels
+    or multiple views; retain tool-native provenance. No Han-or-later cap, Song jacket, Ming headband, Qing queue, cloak,
+    bronze sword, bamboo staff or modern object.
+  references:
+  - path: .agents/coord/portrait-generation/realism-20261001/base-reference-archives/1b0942d56337c5c208c5e3252ee69d1789312b15b35f14a6650c77fcebf125ca.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/portrait-generation/realism-20261001/base-reference-archives/1b0942d56337c5c208c5e3252ee69d1789312b15b35f14a6650c77fcebf125ca.png
+    use: 已实际view。仅保留原创男主本人脸、约28岁成年感、匀称体型；不沿用衣料剥落、碎面和破边。
+    sha256: 1b0942d56337c5c208c5e3252ee69d1789312b15b35f14a6650c77fcebf125ca
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/1b0942d56337c5c208c5e3252ee69d1789312b15b35f14a6650c77fcebf125ca.png
+    status_at_input: null
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+    use: 已实际view。只取完整写实人物的面手与连贯布料渲染质量；不借萧峰脸、络腮胡、魁梧体型、装束、掌势、龙或少室山背景。
+    sha256: 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922.png
+    status_at_input: candidate
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 已实际view。仅作男角低饱和色卡；不借脸、长袍、剑、明代发式或密集织纹。基线实际审批不变。
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
+    status_at_input: candidate
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 已实际view。仅取浅淡水墨远景和留白背景，不借女性脸、身体、发式、薄纱衣或碎片人物画法。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-01T10:24:01.865456+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-5983dcf8-d5bf-4998-ae75-a6e9c1682404.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 4f50660a793906eac9be21206e0cdcb487ac4219ba47218e5ec7a3cf50015b6a
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_character_realism_20261001
+  realism_revision: user_character_realism_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_zhujue__ch00_m_base/prompt-7ce96ca3974dddf164649e566ef320fd99ff3e1639be32ac888fda113c18eef0.md
+    manifest: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_zhujue__ch00_m_base/manifest-8200554720bb2cc4bce9fe498b2ba59ff2b8b818a0c1338e10335dcb787ab964.yaml
+    png: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_zhujue__ch00_m_base/original-1b0942d56337c5c208c5e3252ee69d1789312b15b35f14a6650c77fcebf125ca.png
+  request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_zhujue__ch00_m_base.requests.json
+  notes: 实际查看旧图与两张新候选，选2。保持原创约28岁男主面貌、黑发椎髻、均衡体型、竹青上衣麻色裤与空手姿态。旧版袖口与下摆剥落般碎边已改成连续完整缝边，去掉繁重腕缠；2前衣片和下摆较1简洁，双手、脸、双鞋清晰且无多肢。衣料仍保留较明显画笔色块纹理，但不再形成缺口、纸屑或断裂，不妨碍人物可读。上衣实际长及膝上，仍比简短褐目标偏长；眉尾识别小痣未能清楚确认，记为身份细节偏差，不虚称完成该精细点。背景山水较计划丰富但浅淡，按宽松自查保存candidate，作为后续同人身份参考，不自动approved。
+    本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。

@@ -1,0 +1,60 @@
+- id: por_npc_zhujue__ch00_f_base
+  file: por_npc_zhujue__ch00_f_base.png
+  category: character/female
+  style: default
+  subject: 主角（女）· 春秋末·越国 npc_zhujue ch00_yuenv
+  prompt: |-
+    REFERENCE HIERARCHY: IMAGE 1 IS THE PRIMARY CHARACTER-DESIGN INSPIRATION. Create a NEW ORIGINAL LEADING HEROINE, not Wang Yuyan, not Zhao Min, and not a costume change of either woman in images 2 or 3. Take from image 1 only the purposeful gaze, confident facial structure and commanding adult heroine presence, and redesign those qualities into this original protagonist. Images 2 and 3 are SECONDARY PAINTING-MEDIUM REFERENCES ONLY: ink lines, delicate color washes, warm paper and soft light. Never inherit their face, youthful doll proportions, demure side-glance, hairstyle, open robes, long hair or accessories. This is a new full-body painting, not a photo edit.
+    Character: npc_zhujue, the female player protagonist in ch00, late Spring-and-Autumn Yue, project-original date around 482 BCE. A modern Chinese adult entering the historical story as an ordinary traveler, approximately 28 years old, without royal title, clan uniform, named weapon or modern object. Make her visibly the leading woman of her own adventure: thoughtful, brave, clear-headed, trustworthy, composed and kind, never sinister, arrogant or seductive.
+    An independent adult face: a slightly elongated oval with gently supported cheekbones, a clean firm jaw that is not pointed, open strong brows with a subtly lifted brow peak, medium dark-brown almond eyes with decisive focus, a straight natural nose and defined moderately full lips. A small light-brown mole sits just below the outer corner of HER RIGHT EYE. Natural adult facial planes and warm-neutral skin; calm determination with attentive curiosity. Chin level, gaze forward toward the viewer, not drifting sideways. No baby face, doll eyes or inherited Wang Yuyan face. Moderately tall, capable and balanced, shoulders naturally open, torso and limbs carrying believable movement strength without bodybuilding muscles.
+    COSTUME CONSTRUCTION: one plain CLOSED CONTINUOUS bamboo-green shenyi dress. Bodice and long skirt are joined into one coherent garment. The cross-collar closes rightward, the wearer's left lapel overlapping the right. The outer fabric continues into a CLOSED FRONT SKIRT from the waist to just above the shoes. Below the belt the front is continuous green cloth, not an open gap or pale inner-dress panel. Only a narrow pale-hemp inner collar is visible. One narrow plain cloth belt secures the waist. Fully opaque, complete, modest practical clothing, clear large folds, walking-length hem and plain flat cloth shoes. NO OPEN OUTER ROBE, NO COAT OVER A WHITE DRESS, NO BEIZI, NO SEPARATE WHITE CENTER PANEL, NO SHAWL, NO TRAILING SASH. Do not copy the white film costume.
+    ALL black straight dense hair is gathered into one compact simple chuiji bun, neatly secured with a plain dark cloth strip. No hair or long ribbon hangs at the neck, chest or shoulders. No crown, flowers, jewelry, elaborate pins or film headpiece.
+    Pose: almost frontal full-body standing with only a slight natural turn. Shoulders and hips face mostly forward; head upright, chest open, spine relaxed and steady. One foot slightly ahead, both feet firmly supporting the body. Both arms hang naturally at the sides with a little space from the torso; BOTH HANDS ARE EMPTY, relaxed and readable, not crossed at the waist and not holding sleeves. She stands to assess her next action, neither posing demurely nor attacking. No fan, sword, bamboo rod, horse or companion.
+    Unified fine Chinese ink-and-color wuxia illustration: living ink lines on face and hands, soft muted bamboo-green and pale-hemp washes, slight paper showing through, simple large clothing shapes and selectively expressive folds. Reduce photographic pores, cloth noise and glossy highlights. Warm pale-gray opaque paper background, faint texture, no landscape, architecture, floor shadow or narrative scene; soft upper-left diffuse light. Vertical 2:3 PNG, target2048×3072, one figure in one view, full hair, hands, hem and shoes visible with comfortable margins. Natural proportions and complete structure matter more than exact percentages; no measuring marks or rigid height target. Preserve tool provenance.
+    本次核心：新创作有英气与判断力的28岁原创女主，第一影视图只启发目光和骨相，不要王语嫣换衣脸。更正面平视、肩背舒展、双手空着垂放。竹青深衣是一件闭合的一体长衣，腰带以下也是连续竹青衣料，不能敞开露出白色内裙。头发全部收成朴素紧凑椎髻；右眼外下方小痣保留。春秋越地普通行旅者身份不变。
+  negative: No Wang Yuyan face or pose, teenage doll face, demure side-glance, drooping shoulders, villain expression or seductive
+    styling. No open-front outer robe, white central inner-dress panel, beizi, coat, shawl, trailing sash, loose long hair,
+    crown, jewelry, film costume, Mongolian or royal identity, fan, sword, horse, kneeling, back-facing or over-the-shoulder
+    pose. No photographic rendering, 3D gloss, heavy makeup, huge anime eyes, exaggerated muscles, transparent clothing, extra
+    people, extra limbs or fingers, fused hands, cropped body, text, signature, seal or copied reference watermark; retain
+    tool provenance.
+  references:
+  - path: .agents/coord/imagegen-reference/hero-20261001/classic_zhaomin_1993_portrait.jpg
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/hero-20261001/classic_zhaomin_1993_portrait.jpg
+    use: 已实际下载并view_image查看的公开张敏1993赵敏经典剧照。第一人物设计启发，只取有判断力的凝聚目光、英气骨相组织与成年女性主角气场；重新创作28岁原创女主，不继承赵敏或演员身份、蒙古/贵族装、白衣、金冠、折扇、披散发、背景、照片构图或反派神态。来源及原始SHA见参考目录sources.json。
+    sha256: 7df45255b0ba8ed1dc04bb04e72112929c0359bf47524386deb9b28b2b56f0b2
+    archived_path: .agents/coord/portrait-generation/hero-20261001/reference-archives/7df45255b0ba8ed1dc04bb04e72112929c0359bf47524386deb9b28b2b56f0b2.jpg
+    status_at_input: null
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 已实际查看。第二参考仅提供项目墨线、柔光、暖浅灰纸底和淡雅设色；禁止复制Wang脸、年龄、体型、柔静侧望、发饰与开袍衣装，不更改其原approved状态。
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    archived_path: .agents/coord/portrait-generation/hero-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
+    status_at_input: approved
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 已实际查看。第三参考仅取用户指定的精细水墨人物、淡墨层染、纸面透色与衣料笔触；不复制其脸、体型、发式、青白衣装、披帛、姿态或山水背景。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/hero-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-01T07:17:23.917091+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-bcfa477e-fda5-4e1b-9864-7e6e2037ca0a.png
+  size: 1024x1536
+  mode: RGB
+  sha256: f51f38042654f709a3f1709c96c8d599d5375d71a9723aacb224ef11c1fe0a87
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_heroic_20261001
+  hero_revision: user_heroic_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_zhujue__ch00_f_base/prompt-d9d73a2da63a82f1a1d0aeed4db57645d73c3e382ef77df4da25d543b1ecb23d.md
+    manifest: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_zhujue__ch00_f_base/manifest-7d86af24771f577c39ef4a26fd7cbdc2b2a37567fab6f92619060fbfe66b7fda.yaml
+    png: .agents/coord/portrait-generation/hero-20261001/backups/por_npc_zhujue__ch00_f_base/original-74706abb62703def0af9555319e014102436ae04b07ea5b2c9e0fafbcb0bb815.png
+  request_log: .agents/coord/portrait-generation/hero-20261001/por_npc_zhujue__ch00_f_base.requests.json
+  notes: 比较本轮4张候选：1/2仍为柔静侧望及开袍白裙轮廓，未选用。以已实际查看的经典成年女侠图为主要设计启发后，第3/4张恢复更正面的坚定目光、成熟眉眼和利落下颌，以及连续闭合的一体竹青深衣。选4，肩背端正、表情从容有判断力，右眼外下方小痣可辨，双手自然空垂、无兵器、头发主要收为朴素发髻，身份与春秋越地基础阶段成立；没有把影视白衣金冠折扇带入。实际偏差：衣袖较宽、耳后有少量碎发，后脚被裙摆遮住，仅前鞋清楚可见，脚下存在淡接触阴影且占高偏大。按作者已明确放宽的鞋遮挡和比例尺度登记，不再机械追加；人物整体完整，无明显多肢或重大结构问题。新图作为后续女主同人身份参考，旧版及旧输入证据均保留，宽松hero
+    candidate待作者最终审美审核，不称旧严格规格或approved。 本轮英雄重绘宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072
+    RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
