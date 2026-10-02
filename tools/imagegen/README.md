@@ -45,4 +45,5 @@ python3 tools/imagegen/ingest.py <asset_id>
 - **发送后停在空白 `/app`**：看 Recents 最新会话。标题不是上一张的才点进去，否则说明没发出去，把 ID 放回队首重发。
 - **Trusted Types**：页面禁止直接 `eval`，要先 `trustedTypes.createPolicy` 再 `eval(policy.createScript(code))`。
 - **改了 `gemini_g.js` 之后**：要重新传进 `localStorage.claudeG`。已打过补丁的页面要整页刷新，`patchFetch` 才会用新代码。
-- **每日上限**：订阅有每日生图上限，触顶时回复里会有 limit / quota 之类字样，次日继续。作者要求触顶时告诉他。
+- **额度**：额度按时段计，不是按天。触顶时模型降为 Flash-Lite，`/images` 直接跳回 `/app`，模板卡加载不出来，`prepareNext` 返回 `no template`。去 `https://gemini.google.com/usage` 看「Current usage」的重置时间（2026-10-01 实测一个时段约 50–60 张，周额度很宽）。作者要求触顶时告诉他。
+- **`prepareNext` 返回 `ok:false` 必须 throw**：否则编辑框是空的，`markSent` 会把它误判为已发送并出队。
