@@ -3,7 +3,7 @@ import type { ZodType } from 'zod';
 import {
   AcupointDefSchema, BookWorldDefSchema, CharacterTemplateSchema, EventDefSchema,
   ItemDefSchema, MartialArtDefSchema, MeridianDefSchema, NpcDefSchema, ShopDefSchema,
-  StoryLineSchema, type AcupointDef, type BookWorldDef, type CharacterTemplate,
+  StoryLineSchema, WorldMapRegistrationSchema, type AcupointDef, type BookWorldDef, type CharacterTemplate,
   type EventDef, type ItemDef, type MartialArtDef, type MeridianDef, type NpcDef,
   type ShopDef, type StoryLine,
 } from './schemas';
@@ -21,6 +21,12 @@ const KIND_ORDER: readonly ContentKind[] = [
   'npc', 'characterTemplate', 'martialArt', 'meridian', 'acupoint', 'item',
   'shop', 'story', 'event', 'bookWorld',
 ];
+function schemaFor(kind: ContentKind, value: unknown): ZodType {
+  if (kind === 'event' && typeof value === 'object' && value !== null &&
+      (value as Record<string, unknown>)['event'] === 'world/mapRegistered')
+    return WorldMapRegistrationSchema;
+  return SCHEMAS[kind];
+}
 
 export function parseYamlFile(file: ContentFile): unknown {
   const documents = parseAllDocuments(file.text, { schema: 'core', strict: true, uniqueKeys: true });
@@ -63,16 +69,17 @@ export function identifyContentKind(value: unknown, path: string): ContentKind {
 export function parseContentFile(file: ContentFile): ContentEntry {
   const value = parseYamlFile(file);
   const kind = identifyContentKind(value, file.path);
-  return { path: file.path, kind, value: SCHEMAS[kind].parse(value) };
+  return { path: file.path, kind, value: schemaFor(kind, value).parse(value) };
 }
 
 export function serializeContentEntry(entry: ContentEntry): string {
-  const reparsed = SCHEMAS[entry.kind].parse(entry.value);
+  const reparsed = schemaFor(entry.kind, entry.value).parse(entry.value);
   return JSON.stringify(reparsed);
 }
 
 export function parseSerializedContent(kind: ContentKind, text: string, path = '<serialized>'): ContentEntry {
-  return { path, kind, value: SCHEMAS[kind].parse(JSON.parse(text) as unknown) };
+  const value: unknown = JSON.parse(text);
+  return { path, kind, value: schemaFor(kind, value).parse(value) };
 }
 
 export function contentKindOrder(kind: ContentKind): number {

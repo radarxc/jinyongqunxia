@@ -1,4 +1,4 @@
-import type { ItemDef, MartialArtDef, NpcDef } from '@tianshu/data/schemas';
+import type { ItemDef, MartialArtDef, NpcDef, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { EquipmentRule } from '@tianshu/core';
 
 export interface MeridianTopology {
@@ -9,8 +9,10 @@ export interface GameContent {
   readonly items: readonly ItemDef[]; readonly npcs: readonly NpcDef[];
   readonly skills: readonly MartialArtDef[]; readonly topology: readonly MeridianTopology[];
   readonly factions: Readonly<Record<string, string>>;
-  readonly assets?: Readonly<Record<string, { readonly icon?: string; readonly portrait?: string }>>;
+  readonly identityTags?: readonly string[];
+  readonly assets?: Readonly<Record<string, { readonly icon?: string; readonly portrait?: string; readonly map?: string }>>;
   readonly equipmentRules?: readonly EquipmentRule[];
+  readonly worldMaps?: readonly WorldMapRuntimeDefinition[];
 }
 export function equipmentRules(content: GameContent): readonly EquipmentRule[] {
   if (content.equipmentRules) return content.equipmentRules;

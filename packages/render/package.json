@@ -6,7 +6,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./rig": "./src/rig/index.ts",
-    "./battle": "./src/battle/index.ts"
+    "./battle": "./src/battle/index.ts",
+    "./worldmap": "./src/worldmap/index.ts"
   },
   "scripts": {
     "test": "vitest run src",

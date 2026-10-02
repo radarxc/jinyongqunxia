@@ -4,6 +4,11 @@ import {
   TICKS_PER_HOUR, TICKS_PER_SHICHEN,
 } from '../state';
 
+export * from './worldmap-pathfinder';
+export * from './worldmap-runtime';
+export * from './worldmap-state';
+export * from './worldmap-types';
+
 export type TimeAdvanceReason = 'inn-rest' | 'meditation' | 'travel' | 'battle' | 'story';
 export interface TimeAdvance {
   readonly reason: TimeAdvanceReason; readonly result: AdvanceClockResult;

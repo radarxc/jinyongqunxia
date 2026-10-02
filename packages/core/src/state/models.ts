@@ -1,5 +1,6 @@
 import type { MeridianProgress, SkillInstance } from '@tianshu/data/schemas';
 import type { RngState, RngStreamName } from '../rng';
+import type { WorldMapState } from '../world/worldmap-types';
 
 export type EquipmentSlot = 'mainHand' | 'offHand' | 'head' | 'body' | 'innerBody' | 'hands' | 'shoulder' | 'cape' | 'waist' | 'feet' | 'accessory';
 export type SkillState = SkillInstance;
@@ -26,7 +27,7 @@ export interface StoryState { readonly chapterId: string; readonly lines: readon
 export interface GameClock { readonly epochId: string; readonly calendarSpecId: string; readonly epochYear: number; readonly elapsedTicks: number; readonly shichenIndex: number; readonly dayIndex: number; readonly monthIndex: number; readonly yearOffset: number; readonly slotInDay: number; }
 export interface MetaState { readonly coreVersion: string; readonly rngProtocol: number; readonly stateVersion: number; readonly worldTick: number; readonly nextEventSeq: number; readonly rng: Readonly<Record<RngStreamName, RngState>>; }
 export interface ProfileState { readonly protagonist: CharacterState | null; readonly companions: readonly CharacterState[]; }
-export interface ChapterState { readonly chapterId: string; readonly worldYear: number; readonly clock: GameClock; readonly story: StoryState; readonly worldItems: WorldItems; readonly shops: readonly ShopState[]; }
+export interface ChapterState { readonly chapterId: string; readonly worldYear: number; readonly clock: GameClock; readonly story: StoryState; readonly worldItems: WorldItems; readonly shops: readonly ShopState[]; readonly worldMap: WorldMapState | null; }
 export interface PartyState { readonly inventory: Inventory; readonly equipment: Equipment; readonly money: number; }
 export interface TransientState { readonly pendingTimeAdvance: { readonly remainingTicks: number; readonly reason: 'rest' | 'story' } | null; readonly dialogue: null; readonly battle: null; }
 export interface GameState { readonly meta: MetaState; readonly profile: ProfileState; readonly chapter: ChapterState; readonly party: PartyState; readonly transient: TransientState; readonly battle: null; }

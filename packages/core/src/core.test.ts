@@ -113,6 +113,6 @@ describe('createCore', () => {
     const first = run();
     const repeated = run();
     expect(repeated).toEqual(first);
-    expect(first.hash).toBe('6c662aaaffac2f217c156daea07a9f7c8998c1ac483595cf81e6291e8845e366');
+    expect(first.hash).toBe('6c8e7d3e4e735fafdb57160d409ef361ebbd689e0ef59d0e72dd4cde1c8d89ba');
   });
 });

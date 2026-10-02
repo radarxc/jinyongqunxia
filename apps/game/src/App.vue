@@ -14,14 +14,23 @@ const CharacterPage = defineAsyncComponent(() => import('./pages/CharacterPage.v
 const InventoryPage = defineAsyncComponent(() => import('./pages/InventoryPage.vue'));
 const SavePage = defineAsyncComponent(() => import('./pages/SavePage.vue'));
 const BattlePage = defineAsyncComponent(() => import('./battle/BattlePage.vue'));
+const WorldMapPage = defineAsyncComponent(() => import('./pages/WorldMapPage.vue'));
 const page = ref<MenuPage>('journey');
-const scene = ref<'world' | 'town' | 'battle'>('world');
+const scene = ref<'world' | 'town' | 'ruin' | 'battle'>('world');
 const sourceScene = ref<'world' | 'town'>('world');
 watch(scene, (next, previous) => {
-  if (next === 'battle' && previous !== 'battle') { sourceScene.value = previous; void controller.ensureBattle(); }
+  if (next === 'battle' && previous !== 'battle') {
+    sourceScene.value = previous === 'town' ? 'town' : 'world'; void controller.ensureBattle();
+  }
 });
 watch(battleActive, (next, previous) => { if (next && !previous) { scene.value = 'battle'; page.value = 'journey'; } });
 function returned(source: string): void { scene.value = source === 'town' ? 'town' : 'world'; }
+function openScene(kind: 'town' | 'ruin'): void { scene.value = kind; }
+function leaveScene(): void { void controller.worldMapCommand({ t: 'worldmap/leave' }).then(() => { scene.value = 'world'; }); }
+function showWorld(): void {
+  if (controller.worldmap.value?.scene) leaveScene();
+  else scene.value = 'world';
+}
 const menu: readonly MenuPage[] = ['journey', 'characters', 'inventory', 'martial', 'quests', 'saves', 'settings'];
 const shortcuts = computed(() => projection.value.inventory.filter((item) => item.canUse).slice(0, 3));
 const skills = computed(() => projection.value.characters.find((entry) => entry.relation === 'self')?.detail?.skills ?? []);
@@ -54,10 +63,15 @@ onBeforeUnmount(() => window.removeEventListener('keydown', keyboard));
       <section class="page-surface" :aria-label="menuLabels[page]">
         <header class="page-heading"><div><small>{{ t('tagline') }}</small><h2>{{ menuLabels[page] }}</h2></div><span v-if="projection.hud.preview" class="preview-badge">{{ t('preview') }}</span></header>
         <div v-if="page === 'journey'" class="journey-page">
-          <nav class="action-row" :aria-label="t('sceneTabs')"><button v-for="key in (['world', 'town', 'battle'] as const)" :key="key" type="button" :aria-pressed="scene === key" @click="scene = key">{{ t(key) }}</button></nav>
+          <nav class="action-row" :aria-label="t('sceneTabs')">
+            <button type="button" :aria-pressed="scene === 'world'" @click="showWorld">{{ t('world') }}</button>
+            <button type="button" :aria-pressed="scene === 'battle'" @click="scene = 'battle'">{{ t('battle') }}</button>
+          </nav>
           <BattlePage v-if="scene === 'battle' && battle" :controller="battle" :source="sourceScene" :reduced-motion="settings.reducedMotion" @returned="returned" />
           <p v-else-if="scene === 'battle'" class="paper-panel">正在展开战旗……</p>
-          <ScenePlaceholder v-else :scene="scene" /><p v-if="projection.hud.preview && scene !== 'battle'" class="muted">{{ t('previewNote') }}</p>
+          <WorldMapPage v-else-if="scene === 'world'" :controller="controller" @scene="openScene" />
+          <ScenePlaceholder v-else :scene="scene" @leave="leaveScene" />
+          <p v-if="projection.hud.preview" class="muted">{{ t('previewNote') }}</p>
         </div>
         <CharacterPage v-else-if="page === 'characters'" />
         <InventoryPage v-else-if="page === 'inventory'" :busy="busy" />

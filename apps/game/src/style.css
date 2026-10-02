@@ -94,6 +94,34 @@ body {
 .journey-page .scene-placeholder {
   flex: 1;
 }
+.worldmap-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  gap: 14px;
+  min-height: 360px;
+}
+.worldmap-stage {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #d9ccb0;
+}
+.worldmap-stage canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+.map-legend, .map-zoom, .map-error {
+  position: absolute;
+  padding: 6px 9px;
+  background: #efe6d2dc;
+}
+.map-legend { left: 10px; bottom: 10px; }
+.map-legend i { display: inline-block; width: 10px; height: 10px; margin: 0 5px; background: #7e3228; }
+.map-legend i.ruin { background: #3d4b43; transform: rotate(45deg); }
+.map-zoom { right: 10px; bottom: 10px; display: flex; gap: 8px; align-items: center; }
+.map-error { inset: 45% auto auto 50%; transform: translate(-50%, -50%); }
+.worldmap-panel { padding: 16px; overflow: auto; }
+.worldmap-panel h3, .worldmap-panel h4 { margin: 7px 0; }
+.worldmap-panel progress { width: 100%; accent-color: var(--vermilion); }
+.map-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
 .bottom-bar {
   display: flex;
   align-items: center;
@@ -287,4 +315,7 @@ kbd {
   .bottom-bar output {
     text-align: left;
   }
+  .worldmap-page { grid-template-columns: 1fr; }
+  .worldmap-stage { min-height: 58vw; }
+  .worldmap-panel { max-height: 260px; }
 }

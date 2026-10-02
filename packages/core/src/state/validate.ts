@@ -155,6 +155,54 @@ function validateStory(value: unknown): void {
     integer(line['revision']);
   }
 }
+function validateRoadLeg(value: unknown): void {
+  const leg = object(value); keys(leg, ['roadKey', 'from', 'to']);
+  string(leg['roadKey']); string(leg['from']); string(leg['to']);
+}
+function validateMapPosition(value: unknown): void {
+  const position = object(value);
+  if (position['kind'] === 'node') {
+    keys(position, ['kind', 'nodeId']); string(position['nodeId']); return;
+  }
+  keys(position, ['kind', 'leg', 'offsetLi']);
+  if (position['kind'] !== 'road') throw new TypeError('STATE_SHAPE');
+  validateRoadLeg(position['leg']); integer(position['offsetLi']);
+}
+function validateSceneEntry(value: unknown): void {
+  const scene = object(value);
+  keys(scene, ['sceneId', 'townSpec', 'templateYear', 'gateId', 'spawn', 'accessNote',
+    'kind', 'nodeId', 'name', 'chapterId', 'era', 'returnNodeId']);
+  for (const field of ['sceneId', 'accessNote', 'kind', 'nodeId', 'name', 'chapterId', 'era', 'returnNodeId'])
+    string(scene[field]);
+  for (const field of ['townSpec', 'gateId']) if (scene[field] !== null) string(scene[field]);
+  if (scene['templateYear'] !== null) integer(scene['templateYear'], 1);
+  if (scene['spawn'] !== null) {
+    const point = array(scene['spawn']);
+    if (point.length !== 2) throw new TypeError('STATE_SHAPE');
+    integer(point[0]); integer(point[1]);
+  }
+}
+function validateWorldMapStateShape(value: unknown): void {
+  const map = object(value);
+  keys(map, ['version', 'mapRevision', 'position', 'journey', 'nextJourneyId',
+    'scene', 'law', 'lastMessage']);
+  if (map['version'] !== 1) throw new TypeError('STATE_SHAPE');
+  string(map['mapRevision']); validateMapPosition(map['position']); integer(map['nextJourneyId'], 1);
+  if (typeof map['lastMessage'] !== 'string') throw new TypeError('STATE_SHAPE');
+  const law = object(map['law']); keys(law, ['wantedLevel', 'normalCityGateBlocked']);
+  integer(law['wantedLevel']);
+  if (typeof law['normalCityGateBlocked'] !== 'boolean') throw new TypeError('STATE_SHAPE');
+  if (map['scene'] !== null) validateSceneEntry(map['scene']);
+  if (map['journey'] === null) return;
+  const journey = object(map['journey']);
+  keys(journey, ['id', 'destination', 'legs', 'legIndex', 'offsetLi', 'travelledLi',
+    'totalLi', 'status']);
+  integer(journey['id'], 1); string(journey['destination']);
+  for (const leg of array(journey['legs'])) validateRoadLeg(leg);
+  for (const field of ['legIndex', 'offsetLi', 'travelledLi', 'totalLi']) integer(journey[field]);
+  if (!['walking', 'paused', 'encounter'].includes(String(journey['status'])))
+    throw new TypeError('STATE_SHAPE');
+}
 function validateGameStateShape(value: StateRecord): void {
   keys(value, ['meta', 'profile', 'chapter', 'party', 'transient', 'battle']);
   const meta = object(value['meta']);
@@ -171,7 +219,7 @@ function validateGameStateShape(value: StateRecord): void {
   if (profile['protagonist'] !== null) validateCharacter(profile['protagonist']);
   for (const companion of array(profile['companions'])) validateCharacter(companion);
   const chapter = object(value['chapter']);
-  keys(chapter, ['chapterId', 'worldYear', 'clock', 'story', 'worldItems', 'shops']);
+  keys(chapter, ['chapterId', 'worldYear', 'clock', 'story', 'worldItems', 'shops', 'worldMap']);
   string(chapter['chapterId']); integer(chapter['worldYear'], Number.MIN_SAFE_INTEGER); validateClock(chapter['clock']);
   validateStory(chapter['story']);
   const worldItems = object(chapter['worldItems']); keys(worldItems, ['entries']);
@@ -187,6 +235,7 @@ function validateGameStateShape(value: StateRecord): void {
       string(stock['itemId']); integer(stock['count']); integer(stock['lastRestockDay']);
     }
   }
+  if (chapter['worldMap'] !== null) validateWorldMapStateShape(chapter['worldMap']);
   const party = object(value['party']); keys(party, ['inventory', 'equipment', 'money']); integer(party['money']);
   const inventory = object(party['inventory']); keys(inventory, ['stacks']);
   for (const entry of array(inventory['stacks'])) { const stack = object(entry); keys(stack, ['itemId', 'count']); string(stack['itemId']); integer(stack['count'], 1); }
