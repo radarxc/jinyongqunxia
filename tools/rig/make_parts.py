@@ -18,6 +18,13 @@ if __package__ in (None, ""):
 from tools.item.common import BuildError, alpha_bbox, png_bytes, sha256_bytes, sha256_file
 from tools.rig.templates import SOURCE_PARTS, VIEWS
 
+
+class _NoAliasDumper(yaml.SafeDumper):
+    """content-registry 禁 YAML 锚点 / 别名（构建会失败）：同一对象被多处引用时也逐处展开写。"""
+
+    def ignore_aliases(self, data):
+        return True
+
 Z_ORDER = {
     "front34": {"upper_arm_L": 0, "forearm_L": 1, "hand_L": 2,
         "thigh_shared": 3, "shin_shared": 4, "foot_shared": 5,
@@ -151,7 +158,7 @@ def build_manifest(set_dir: Path, *, check: bool = False) -> dict[str, Any]:
         if existing != manifest:
             raise BuildError(f"{path}: manifest differs from normalized source parts")
     else:
-        path.write_text(yaml.safe_dump(manifest, allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")
+        path.write_text(yaml.dump(manifest, Dumper=_NoAliasDumper, allow_unicode=True, sort_keys=False, width=1000), encoding="utf-8")
     return manifest
 
 

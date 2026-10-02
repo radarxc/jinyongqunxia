@@ -21,6 +21,13 @@ from tools.item.layer_build import (
 )
 from tools.rig.templates import PART_TO_TEMPLATE, TEMPLATES, VIEWS
 
+
+class _NoAliasDumper(yaml.SafeDumper):
+    """content-registry 禁 YAML 锚点 / 别名（构建会失败）：同一对象被多处引用时也逐处展开写。"""
+
+    def ignore_aliases(self, data):
+        return True
+
 ROOT = Path(__file__).resolve().parents[2]
 ITEM_ROOT = ROOT / "assets/default/item"
 TOOL_VERSION = 1
@@ -90,7 +97,7 @@ def build_item(category: str, entry: dict[str, Any], source: Path) -> tuple[dict
 
 
 def _canonical_yaml(data: dict[str, Any]) -> str:
-    return yaml.safe_dump(data, allow_unicode=True, sort_keys=False, width=1000)
+    return yaml.dump(data, Dumper=_NoAliasDumper, allow_unicode=True, sort_keys=False, width=1000)
 
 
 def process_directory(directory: Path, *, check: bool = False) -> int:
