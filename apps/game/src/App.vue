@@ -25,6 +25,10 @@ watch(scene, (next, previous) => {
   }
 });
 watch(battleActive, (next, previous) => { if (next && !previous) { scene.value = 'battle'; page.value = 'journey'; } });
+watch([page, scene], ([nextPage, nextScene]) => {
+  controller.setSceneRunsWorldTicks(nextPage === 'journey' &&
+    (nextScene === 'world' || nextScene === 'town' || nextScene === 'ruin'));
+}, { immediate: true });
 function returned(source: string): void { scene.value = source === 'town' ? 'town' : 'world'; }
 function openScene(kind: 'town' | 'ruin'): void { scene.value = kind; }
 function leaveScene(): void { void controller.worldMapCommand({ t: 'worldmap/leave' }).then(() => { scene.value = 'world'; }); }
@@ -50,7 +54,8 @@ function keyboard(event: KeyboardEvent): void {
   else if (['1', '2', '3'].includes(event.key)) useQuick(Number(event.key) - 1);
 }
 onMounted(() => window.addEventListener('keydown', keyboard));
-onBeforeUnmount(() => window.removeEventListener('keydown', keyboard));
+onBeforeUnmount(() => { controller.setSceneRunsWorldTicks(false);
+  window.removeEventListener('keydown', keyboard); });
 </script>
 
 <template>

@@ -133,7 +133,8 @@ export interface TownRuntimeContext {
 export interface TownRuntime {
   dispatch(state: TownSessionState, command: TownCommand): TownCommandResult;
   meditate(game: GameState, command: Extract<TownCommand, { readonly t: 'town/meditate' }>,
-    itemTargets?: Readonly<Record<string, ConsumableTargetState>>): TownMeditationTransaction;
+    itemTargets?: Readonly<Record<string, ConsumableTargetState>>,
+    worldRng?: Rng): TownMeditationTransaction;
 }
 export function createTownRuntime(context: TownRuntimeContext): TownRuntime {
   const paths = new TownPathfinder(context.town);
@@ -183,8 +184,9 @@ export function createTownRuntime(context: TownRuntimeContext): TownRuntime {
   const anchor = requireMeditationAnchor(context.town, state, command);
   return { state, action: 'meditate', ref: anchor.id };
   };
-  return { dispatch, meditate: (game, command, itemTargets) => resolveTownMeditation({
+  return { dispatch, meditate: (game, command, itemTargets, worldRng) => resolveTownMeditation({
     game, town: context.town, command, ...(itemTargets ? { itemTargets } : {}),
+    ...(worldRng ? { worldRng } : {}),
     ...(context.npcWorld ? { npcWorld: context.npcWorld } : {}),
     ...(context.eraLayer ? { eraLayer: context.eraLayer } : {}),
     ...(context.meditationPractices ? { practices: context.meditationPractices } : {}),
@@ -269,6 +271,7 @@ export interface TownMeditationTransactionInput {
   readonly game: GameState; readonly town: TownRuntimeDefinition;
   readonly command: Extract<TownCommand, { readonly t: 'town/meditate' }>;
   readonly itemTargets?: Readonly<Record<string, ConsumableTargetState>>; readonly npcWorld?: NpcWorldState;
+  readonly worldRng?: Rng;
   readonly eraLayer?: string; readonly practices?: readonly TownMeditationPractice[];
   readonly encounters?: readonly TownMeditationEncounter[];
 }
@@ -342,7 +345,7 @@ export function resolveTownMeditation(input: TownMeditationTransactionInput): To
     input.command.plannedTicks);
   if (!encounter) return completeMeditationTransaction(input, meditation, input.game.meta.rng.world);
   if (anchor.riskBaseBp === null) throw new Error('TOWN_MEDITATION_UNAVAILABLE');
-  const rng = createRng(input.game.meta.rng.world);
+  const rng = input.worldRng ?? createRng(input.game.meta.rng.world);
   const risk = deriveMeditationRisk({ baseBp: anchor.riskBaseBp,
     slotInDay: input.game.chapter.clock.slotInDay,
     wantedLevel: input.game.chapter.worldMap?.law.wantedLevel ?? 0,

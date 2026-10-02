@@ -1,17 +1,19 @@
 import { compareCodePoints, type JsonValue } from '@tianshu/shared';
 
-export interface WorldTickedEvent {
-  readonly t: 'world/ticked'; readonly seq: number; readonly stateVersion: number;
-  readonly worldTick: number;
+/** Committed core facts share one causal envelope; localized text never enters it. */
+export interface CommittedDomainEvent<T extends string = string, P extends JsonValue = JsonValue> {
+  readonly t: T; readonly seq: number; readonly stateVersion: number;
+  readonly causeId: string; readonly parentSeq: number | null; readonly payload: P;
 }
-export interface StoryRuntimeEvent {
-  readonly t: `story/${string}`; readonly chapterId: string; readonly lineId: string;
-  readonly nodeId?: string; readonly causeId: string; readonly payload?: JsonValue;
+/** Battle remains outside the command bus until ENG-16c and uses this transport-only shape. */
+export interface LegacyDomainEvent<T extends string = string, P extends JsonValue = JsonValue> {
+  readonly t: T; readonly payload: P;
 }
-export interface RuntimeDomainEvent {
-  readonly t: string; readonly payload: JsonValue;
+export type DomainEvent<T extends string = string, P extends JsonValue = JsonValue> =
+  CommittedDomainEvent<T, P> | LegacyDomainEvent<T, P>;
+export interface PendingDomainEvent<T extends string = string, P extends JsonValue = JsonValue> {
+  readonly t: T; readonly payload: P; readonly parent?: 'root' | null;
 }
-export type DomainEvent = WorldTickedEvent | StoryRuntimeEvent | RuntimeDomainEvent;
 
 export type AnchorKind = 'npc' | 'location';
 export type AnchorTrigger =

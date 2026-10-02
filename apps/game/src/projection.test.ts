@@ -29,16 +29,16 @@ describe('incremental UI projections', () => {
     expect(selectors.query().inventory).toBe(original.inventory);
     expect(selectors.query().characters).toBe(original.characters);
     expect(selectors.query().hud).not.toBe(original.hud);
-    expect(original.characters[0]?.detail?.stats).not.toBe(session.state.profile.protagonist?.stats);
+    expect(original.characters[0]?.detail?.stats).not.toBe(session.profile.protagonist?.stats);
   });
   it('projects open nodes and their actual strength without granting closed nodes', () => {
     const session = createPreviewSession(content);
-    const protagonist = session.state.profile.protagonist!;
+    const protagonist = session.profile.protagonist!;
     const character = { ...protagonist, meridians: { ...protagonist.meridians,
       opened: ['ap_shoutaiyin_zhongfu'],
       acupointStats: { ap_shoutaiyin_zhongfu: { grade: 3, strengthLayer: 4, strengthXp: 0, fluxCap: 8 } } } };
     const selectors = createSelectors(content);
-    selectors.update({ ...session, state: { ...session.state, profile: { protagonist: character, companions: [] } } }, ALL_VIEWS);
+    selectors.update({ ...session, profile: { protagonist: character, companions: [] } }, ALL_VIEWS);
     const points = selectors.query().characters[0]?.detail?.meridians[0]?.points;
     expect(points?.[0]).toMatchObject({ opened: true, grade: 3, strength: 4, flux: 8 });
     expect(points?.[1]).toMatchObject({ opened: false, grade: null, strength: null });

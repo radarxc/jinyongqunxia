@@ -1,4 +1,6 @@
 import { floorDivInt } from '@tianshu/shared';
+import { RNG_PROTOCOL } from '../rng';
+import { RULES_PROTOCOL, SAVE_SCHEMA } from './initial';
 import type { GameState } from './models';
 
 function walk(value: unknown, seen: Set<object>): void {
@@ -98,10 +100,42 @@ function validateMeridianProgress(value: unknown): void {
   if (('turnTarget' in row) !== ('turnState' in row)) throw new TypeError('STATE_SHAPE');
   if ('turnTarget' in row) { string(row['turnTarget']); validateAttempt(row['turnState']); }
 }
+function validateCounters(value: unknown): void {
+  for (const [id, count] of Object.entries(object(value))) { string(id); integer(count); }
+}
+function validateConsumableState(value: unknown): void {
+  const row = object(value);
+  keys(row, ['stamina', 'staminaMax', 'ailments', 'temporaryEffects',
+    'permanentBonuses', 'meridianAids']);
+  integer(row['stamina']); integer(row['staminaMax']);
+  if ((row['stamina'] as number) > (row['staminaMax'] as number)) throw new TypeError('STATE_SHAPE');
+  for (const entry of array(row['ailments'])) {
+    const ailment = object(entry); keys(ailment, ['tag', 'grade']);
+    string(ailment['tag']); integer(ailment['grade']);
+  }
+  for (const entry of array(row['temporaryEffects'])) {
+    const effect = object(entry); keys(effect, ['op', 'grade', 'params']);
+    string(effect['op']); integer(effect['grade']); object(effect['params']);
+  }
+  const bonuses = object(row['permanentBonuses']);
+  keys(bonuses, ['stats', 'hpMaxBp', 'mpMaxBp']);
+  validateCounters(bonuses['stats']); integer(bonuses['hpMaxBp']); integer(bonuses['mpMaxBp']);
+  for (const entry of array(row['meridianAids'])) {
+    const aid = object(entry);
+    const required = ['sourceItemId', 'expiresAtTick', 'rateBp', 'successBp', 'costReduceBp'];
+    const actual = Object.keys(aid);
+    if (required.some((key) => !(key in aid)) ||
+        actual.some((key) => !required.includes(key) && key !== 'meridians'))
+      throw new TypeError('STATE_SHAPE');
+    string(aid['sourceItemId']);
+    for (const field of required.slice(1)) integer(aid[field]);
+    if ('meridians' in aid) uniqueStrings(aid['meridians']);
+  }
+}
 function validateCharacter(value: unknown): void {
   const row = object(value);
   keys(row, ['characterId', 'status', 'innate', 'skills', 'meridians',
-    'legacyHpCredit', 'legacyMpCredit', 'stats', 'resources']);
+    'legacyHpCredit', 'legacyMpCredit', 'stats', 'resources', 'consumable']);
   string(row['characterId']);
   if (!['active', 'departed', 'dead'].includes(String(row['status']))) throw new TypeError('STATE_SHAPE');
   const innate = object(row['innate']);
@@ -126,6 +160,7 @@ function validateCharacter(value: unknown): void {
   const resources = object(row['resources']); keys(resources, ['hp', 'mp']);
   const stats = row['stats'] as StateRecord;
   integer(resources['hp'], 0, stats['hpMax'] as number); integer(resources['mp'], 0, stats['mpMax'] as number);
+  validateConsumableState(row['consumable']);
 }
 function validateClock(value: unknown): void {
   const row = object(value);
@@ -217,12 +252,38 @@ function validateTownStateShape(value: unknown): void {
   if (town['buildingId'] !== null) string(town['buildingId']);
   if ((phase === 'outside') !== (town['buildingId'] === null)) throw new TypeError('STATE_SHAPE');
 }
+function validateKnownCharacter(value: unknown): void {
+  const known = object(value); keys(known, ['npcId', 'relationship', 'affinity', 'character']);
+  string(known['npcId']);
+  if (known['relationship'] !== 'met' && known['relationship'] !== 'befriended')
+    throw new TypeError('STATE_SHAPE');
+  integer(known['affinity'], -100, 100);
+  if (known['character'] !== null) {
+    validateCharacter(known['character']);
+    if ((known['character'] as StateRecord)['characterId'] !== known['npcId'])
+      throw new TypeError('STATE_SHAPE');
+  }
+}
+function validateDialogue(value: unknown): void {
+  const dialogue = object(value);
+  keys(dialogue, ['storyId', 'storyHash', 'entryKey', 'storyJsonState', 'randomSeed',
+    'pendingIntents', 'consumedTagKeys']);
+  for (const field of ['storyId', 'storyHash', 'entryKey', 'storyJsonState']) string(dialogue[field]);
+  integer(dialogue['randomSeed'], Number.MIN_SAFE_INTEGER);
+  array(dialogue['pendingIntents']); uniqueStrings(dialogue['consumedTagKeys']);
+}
 function validateGameStateShape(value: StateRecord): void {
-  keys(value, ['meta', 'profile', 'chapter', 'party', 'transient', 'battle']);
+  keys(value, ['meta', 'profile', 'chapter', 'party', 'world', 'battle', 'dialogue']);
   const meta = object(value['meta']);
-  keys(meta, ['coreVersion', 'rngProtocol', 'stateVersion', 'worldTick', 'nextEventSeq', 'rng']);
-  string(meta['coreVersion']); integer(meta['rngProtocol'], 1); integer(meta['stateVersion']);
+  keys(meta, ['saveSchema', 'masterSeed', 'runId', 'nextRuntimeOrdinal', 'contentHash',
+    'rulesProtocol', 'rngProtocol', 'coreVersion', 'coreBuild', 'stateVersion', 'worldTick',
+    'nextEventSeq', 'rng', 'debugTainted']);
+  integer(meta['saveSchema'], 1); integer(meta['masterSeed'], Number.MIN_SAFE_INTEGER);
+  string(meta['runId']); integer(meta['nextRuntimeOrdinal'], 1); string(meta['contentHash']);
+  integer(meta['rulesProtocol'], 1); string(meta['coreVersion']); string(meta['coreBuild']);
+  integer(meta['rngProtocol'], 1); integer(meta['stateVersion']);
   integer(meta['worldTick']); integer(meta['nextEventSeq'], 1);
+  if (typeof meta['debugTainted'] !== 'boolean') throw new TypeError('STATE_SHAPE');
   const rng = object(meta['rng']); keys(rng, ['battle', 'loot', 'world', 'ai', 'qiyu']);
   for (const state of Object.values(rng)) {
     const words = array(state);
@@ -233,7 +294,8 @@ function validateGameStateShape(value: StateRecord): void {
   if (profile['protagonist'] !== null) validateCharacter(profile['protagonist']);
   for (const companion of array(profile['companions'])) validateCharacter(companion);
   const chapter = object(value['chapter']);
-  keys(chapter, ['chapterId', 'worldYear', 'clock', 'story', 'worldItems', 'shops', 'worldMap', 'town']);
+  keys(chapter, ['chapterId', 'worldYear', 'clock', 'story', 'worldItems', 'shops',
+    'worldMap', 'town', 'npcs', 'itemChapterUses']);
   string(chapter['chapterId']); integer(chapter['worldYear'], Number.MIN_SAFE_INTEGER); validateClock(chapter['clock']);
   validateStory(chapter['story']);
   const worldItems = object(chapter['worldItems']); keys(worldItems, ['entries']);
@@ -251,6 +313,12 @@ function validateGameStateShape(value: StateRecord): void {
   }
   if (chapter['worldMap'] !== null) validateWorldMapStateShape(chapter['worldMap']);
   if (chapter['town'] !== null) validateTownStateShape(chapter['town']);
+  const npcIds = new Set<string>();
+  for (const entry of array(chapter['npcs'])) {
+    validateKnownCharacter(entry); const npcId = (entry as StateRecord)['npcId'] as string;
+    if (npcIds.has(npcId)) throw new TypeError('STATE_SHAPE'); npcIds.add(npcId);
+  }
+  validateCounters(chapter['itemChapterUses']);
   const party = object(value['party']); keys(party, ['inventory', 'equipment', 'money']); integer(party['money']);
   const inventory = object(party['inventory']); keys(inventory, ['stacks']);
   for (const entry of array(inventory['stacks'])) { const stack = object(entry); keys(stack, ['itemId', 'count']); string(stack['itemId']); integer(stack['count'], 1); }
@@ -259,16 +327,23 @@ function validateGameStateShape(value: StateRecord): void {
     const slot = object(entry); keys(slot, ['slot', 'itemId']); string(slot['slot']);
     if (slot['itemId'] !== null) string(slot['itemId']);
   }
-  const transient = object(value['transient']); keys(transient, ['pendingTimeAdvance', 'dialogue', 'battle']);
-  if (transient['pendingTimeAdvance'] !== null) {
-    const pending = object(transient['pendingTimeAdvance']); keys(pending, ['remainingTicks', 'reason']); integer(pending['remainingTicks']);
+  const world = object(value['world']); keys(world, ['navigation', 'pendingTimeAdvance']);
+  const navigation = object(world['navigation']);
+  keys(navigation, ['locationId', 'selectedDestinationId']); string(navigation['locationId']);
+  if (navigation['selectedDestinationId'] !== null) string(navigation['selectedDestinationId']);
+  if (world['pendingTimeAdvance'] !== null) {
+    const pending = object(world['pendingTimeAdvance']); keys(pending, ['remainingTicks', 'reason']); integer(pending['remainingTicks']);
     if (pending['reason'] !== 'rest' && pending['reason'] !== 'story') throw new TypeError('STATE_SHAPE');
   }
-  if (transient['dialogue'] !== null || transient['battle'] !== null || value['battle'] !== null) throw new TypeError('STATE_SHAPE');
+  if (value['dialogue'] !== null) validateDialogue(value['dialogue']);
+  if (value['battle'] !== null) object(value['battle']);
 }
 
 export function assertCanonicalGameState(state: GameState): void {
   walk(state, new Set<object>());
+  validateGameStateShape(state as unknown as StateRecord);
+  if (state.meta.saveSchema !== SAVE_SCHEMA || state.meta.rulesProtocol !== RULES_PROTOCOL ||
+      state.meta.rngProtocol !== RNG_PROTOCOL) throw new TypeError('STATE_PROTOCOL_MISMATCH');
   if (state.meta.worldTick !== state.chapter.clock.elapsedTicks) throw new TypeError('STATE_CLOCK_MISMATCH');
   if (state.chapter.worldYear !== state.chapter.clock.epochYear + state.chapter.clock.yearOffset) throw new TypeError('STATE_YEAR_MISMATCH');
   const ticks = state.chapter.clock.elapsedTicks;

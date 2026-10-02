@@ -1,6 +1,8 @@
 import { ceilDivInt, floorDivInt } from '@tianshu/shared';
 import type { GameClock } from './models';
 
+export const TICK_HZ = 10;
+export const TICK_MS = 100;
 export const TICKS_PER_MINUTE = 10;
 export const TICKS_PER_HOUR = 600;
 export const TICKS_PER_SHICHEN = 1200;

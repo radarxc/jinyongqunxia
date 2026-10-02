@@ -147,7 +147,9 @@ function meditationGame(seed = 7) {
       targets: {}, turnCompleted: 0, lastAppliedMigration: 0 },
     legacyHpCredit: 0, legacyMpCredit: 0,
     stats: { hpMax: 301, mpMax: 201, strength: 1, speed: 1, tenacity: 1, coordination: 1 },
-    resources: { hp: 1, mp: 2 } };
+    resources: { hp: 1, mp: 2 }, consumable: { stamina: 3, staminaMax: 11, ailments: [],
+      temporaryEffects: [], permanentBonuses: { stats: {}, hpMaxBp: 0, mpMaxBp: 0 },
+      meridianAids: [] } };
   return { ...base, meta: { ...base.meta, worldTick: clock.elapsedTicks },
     profile: { protagonist: character, companions: [] },
     chapter: { ...base.chapter, clock, worldYear: 1093, town: outside([0, 1]) } };
@@ -240,7 +242,9 @@ describe('town meditation ambush', () => {
         acupointStats: {}, targets: {}, turnCompleted: 0, lastAppliedMigration: 0 },
       legacyHpCredit: 0, legacyMpCredit: 0,
       stats: { hpMax: 301, mpMax: 201, strength: 1, speed: 1, tenacity: 1, coordination: 1 },
-      resources: { hp: 1, mp: 2 } };
+      resources: { hp: 1, mp: 2 }, consumable: { stamina: 3, staminaMax: 11, ailments: [],
+        temporaryEffects: [], permanentBonuses: { stats: {}, hpMaxBp: 0, mpMaxBp: 0 },
+        meridianAids: [] } };
     const result = completeTownMeditation({ clock: createGameClock('epoch_test', 1093),
       character, plannedTicks: 600, stamina: { current: 3, maximum: 11 } });
     expect(result.clock.elapsedTicks).toBe(600);

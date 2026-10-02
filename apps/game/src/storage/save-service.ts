@@ -7,15 +7,19 @@ import {
   migrateSaveJson,
   packSaveJson,
   sha256Hex,
+  StorageError,
+  StorageErrorCode,
   unpackTsav,
   type SaveHeader,
   type SaveHeaderInput,
   type SaveJson,
   type SaveMetadata,
+  type SaveMigration,
   type StoredSave,
   type TianshuStorage,
   type ZipEntry,
 } from '@tianshu/platform';
+import { SAVE_SCHEMA, migrateUiSessionV1, projectGameStateSummary } from '@tianshu/core';
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import type { SessionSnapshot } from '../runtime/contracts';
 
@@ -25,14 +29,15 @@ export interface SaveHost {
   restore(snapshot: SessionSnapshot): Promise<unknown>;
 }
 export type SaveExportFormat = 'json' | 'tsav';
-const CURRENT_SAVE_SCHEMA = 1;
-const CONTENT_HASH = '0'.repeat(64);
-const APP_BUILD = '20261001-0000-local';
+const APP_BUILD = '20261002-0000-local';
 const DEVICE_ID_KEY = 'save.deviceId';
 const LINEAGE_ID_KEY = 'save.lineageId';
 const LEGACY_MAGIC = Uint8Array.of(84, 83, 85, 73, 1);
 const LEGACY_HEADER_LIMIT = 16 * 1024;
 const FILE_LIMIT = 256 * 1024 * 1024;
+const STATE_MIGRATIONS = new Map([[1, ((value, context) => migrateUiSessionV1(
+  value as JsonValue, { fromContentHash: context.fromContentHash,
+    targetSchema: context.toSchema, remapVersion: 'none' })) as SaveMigration]]);
 
 function hasMagic(bytes: Uint8Array, magic: ArrayLike<number>): boolean {
   if (bytes.length < magic.length) return false;
@@ -48,28 +53,13 @@ function asSession(state: SaveJson): SessionSnapshot {
   return state as unknown as SessionSnapshot;
 }
 function summary(session: SessionSnapshot): SaveHeader['summary'] {
-  return {
-    chapterId: session.state.chapter.chapterId,
-    act: 1,
-    regionId: '',
-    locationName: session.location,
-    lr: 1,
-    ld: 1,
-    yuyun: 0,
-    tianshuCount: 0,
-    fateCount: 0,
-    difficulty: 'diff_jianghu',
-    rules: [],
-    playTimeSec: 0,
-    rollbackCount: 0,
-    debugTainted: false,
-    partyNames: [
-      session.state.profile.protagonist?.characterId,
-      ...session.state.profile.companions.map(({ characterId }) => characterId),
-    ]
-      .filter((name): name is string => !!name)
-      .slice(0, 6),
-  };
+  const value = projectGameStateSummary(session);
+  return { chapterId: value.chapterId, act: value.act, regionId: value.regionId,
+    locationName: value.locationId, lr: value.realLevel, ld: value.displayLevel,
+    yuyun: value.yuyun, tianshuCount: value.tianshuCount, fateCount: value.fateCount,
+    difficulty: value.difficulty, rules: value.rules, playTimeSec: value.playTimeSec,
+    rollbackCount: value.rollbackCount, debugTainted: value.debugTainted,
+    partyNames: value.partyIds };
 }
 function randomId(prefix: 'dev_' | 'ln_'): string {
   const alphabet = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
@@ -87,15 +77,15 @@ function headerInput(
   return {
     format: 'tianshu-save',
     slotId: slot,
-    saveSchema: CURRENT_SAVE_SCHEMA,
-    contentHash: CONTENT_HASH,
+    saveSchema: session.meta.saveSchema,
+    contentHash: session.meta.contentHash,
     appBuild: APP_BUILD,
     savedAt: new Date().toISOString(),
     deviceId,
     baseRev: 0,
     lineageId: source?.lineageId ?? lineageId,
     zhoumu: source?.zhoumu ?? 1,
-    summary: source?.summary ?? summary(session),
+    summary: summary(session),
     origin,
   };
 }
@@ -118,6 +108,25 @@ interface PreparedSave {
   readonly header: SaveHeader;
   readonly session: SessionSnapshot;
   readonly bytes: Uint8Array;
+}
+
+function compatibilityError(error: unknown): never {
+  const code = error instanceof Error ? error.message : '';
+  if (code === 'SAVE_TOO_NEW') {
+    throw new StorageError(StorageErrorCode.SaveTooNew, code, error);
+  }
+  if (code === 'SAVE_PROTOCOL_UNSUPPORTED' || code === 'SAVE_VERSION_UNSUPPORTED') {
+    throw new StorageError(StorageErrorCode.SaveProtocolUnsupported, code, error);
+  }
+  throw error;
+}
+
+async function validateSession(host: SaveHost, session: SessionSnapshot): Promise<void> {
+  try {
+    await host.validate(session);
+  } catch (error) {
+    compatibilityError(error);
+  }
 }
 
 async function prepare(
@@ -158,13 +167,14 @@ async function decodeStored(
   }
   const migrated = migrateSaveJson(state, {
     fromSchema: source?.saveSchema ?? save.meta.schemaVersion,
-    targetSchema: CURRENT_SAVE_SCHEMA,
-    fromContentHash: source?.contentHash ?? CONTENT_HASH,
-    targetContentHash: CONTENT_HASH,
+    targetSchema: SAVE_SCHEMA,
+    fromContentHash: source?.contentHash ?? '0'.repeat(64),
+    targetContentHash: source?.contentHash ?? '0'.repeat(64),
+    migrations: STATE_MIGRATIONS,
     fixup: identityContentFixup,
   });
   const session = asSession(migrated.state);
-  await host.validate(session);
+  await validateSession(host, session);
   if (
     source &&
     migrated.applied.length === 0 &&
@@ -201,7 +211,10 @@ async function decodeLegacyTsui(bytes: Uint8Array): Promise<SaveJson> {
     header['version'] !== 1 ||
     typeof header['hash'] !== 'string'
   )
-    throw new Error('SAVE_VERSION_UNSUPPORTED');
+    throw new StorageError(
+      StorageErrorCode.UnsupportedVersion,
+      'SAVE_VERSION_UNSUPPORTED',
+    );
   const payload = bytes.slice(9 + size);
   if ((await sha256Hex(payload)) !== header['hash']) throw new Error('SAVE_HASH_MISMATCH');
   try {
@@ -230,14 +243,15 @@ async function prepareImport(
   lineageId: string,
 ): Promise<PreparedSave> {
   const migrated = migrateSaveJson(decoded.state, {
-    fromSchema: decoded.header?.saveSchema ?? CURRENT_SAVE_SCHEMA,
-    targetSchema: CURRENT_SAVE_SCHEMA,
-    fromContentHash: decoded.header?.contentHash ?? CONTENT_HASH,
-    targetContentHash: CONTENT_HASH,
+    fromSchema: decoded.header?.saveSchema ?? 1,
+    targetSchema: SAVE_SCHEMA,
+    fromContentHash: decoded.header?.contentHash ?? '0'.repeat(64),
+    targetContentHash: decoded.header?.contentHash ?? '0'.repeat(64),
+    migrations: STATE_MIGRATIONS,
     fixup: identityContentFixup,
   });
   const session = asSession(migrated.state);
-  await host.validate(session);
+  await validateSession(host, session);
   return prepare(slot, session, 'import', deviceId, lineageId, decoded.header);
 }
 

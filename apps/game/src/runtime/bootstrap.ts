@@ -1,5 +1,5 @@
 import { createCharacterState, createCore, createInitialWorldMapState, InventoryRuntime,
-  worldMapLocation, type CharacterState, type SkillState } from '@tianshu/core';
+  type CharacterState, type SkillState } from '@tianshu/core';
 import type { GameContent } from './content';
 import type { SessionSnapshot } from './contracts';
 
@@ -31,14 +31,14 @@ export function createPreviewSession(content: GameContent): SessionSnapshot {
   })) }, content.items).snapshot();
   const map = content.worldMaps?.find((entry) => entry.chapterId === state.chapter.chapterId) ?? null;
   const worldMap = map ? createInitialWorldMapState(map) : null;
-  return { schema: 'ui-session.v1', preview: true,
-    location: map && worldMap ? `${worldMapLocation(worldMap, map)} · 大地图` : '大理 · 歇脚处',
-    state: { ...state, profile: { protagonist, companions: [] },
-      party: { ...state.party, inventory }, chapter: { ...state.chapter, worldMap, town: null } },
-    known: [
+  return { ...state, meta: { ...state.meta, debugTainted: true },
+    profile: { protagonist, companions: [] }, party: { ...state.party, inventory },
+    world: { ...state.world, navigation: { ...state.world.navigation,
+      locationId: worldMap?.position.kind === 'node' ? worldMap.position.nodeId : 'city_dali' } },
+    chapter: { ...state.chapter, worldMap, town: null, npcs: [
       { npcId: 'npc_duanyu', relationship: 'befriended', affinity: 0,
         character: build?.pipeline === 'full' ? character('npc_duanyu', content, build.skills) : null },
       { npcId: 'npc_zhongling', relationship: 'met', affinity: 0, character: null },
-    ], usage: { battleUses: {}, chapterUses: {} }, itemTargets: {},
+    ], itemChapterUses: {} },
   };
 }

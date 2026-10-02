@@ -26,18 +26,18 @@ export function projectCharacter(character: CharacterState, content: GameContent
     }), meridians, opened: opened.size, completed: meridians.filter((row) => row.completed).length };
 }
 export function projectCharacters(session: SessionSnapshot, content: GameContent): readonly CharacterView[] {
-  const protagonist = session.state.profile.protagonist;
+  const protagonist = session.profile.protagonist;
   const self: CharacterView[] = protagonist ? [{ key: protagonist.characterId, name: '无名侠客', faction: '江湖散人',
     relation: 'self', affinity: null, biography: '此身入江湖，万卷待亲历。', portrait: null,
     detail: projectCharacter(protagonist, content) }] : [];
-  const known = new Map(session.known.map((entry) => [entry.npcId, entry]));
+  const known = new Map(session.chapter.npcs.map((entry) => [entry.npcId, entry]));
   return [...self, ...content.npcs.map((npc, index): CharacterView => {
     const encounter = known.get(npc.id);
     if (!encounter) return { key: `unknown-${index}`, name: '未遇之人', faction: '身份未明',
       relation: 'unseen', affinity: null, biography: '行走江湖后，可记录此人的见闻。', portrait: null, detail: null };
-    const appearance = npc.appearances.find((entry) => entry.chapterId === session.state.chapter.chapterId) ?? npc.appearances[0];
+    const appearance = npc.appearances.find((entry) => entry.chapterId === session.chapter.chapterId) ?? npc.appearances[0];
     const faction = appearance?.sects.map((entry) => content.factions[entry.sectId] ?? '门派待录').join(' · ') || '江湖人士';
-    const companion = session.state.profile.companions.find((entry) => entry.characterId === npc.id);
+    const companion = session.profile.companions.find((entry) => entry.characterId === npc.id);
     const character = companion ?? encounter.character;
     return { key: npc.id, name: npc.identity.name, faction, relation: encounter.relationship, affinity: encounter.affinity,
       biography: `见于《${npc.identity.sourceWorks.join('》《')}》。${npc.sources.map((entry) => entry.locator).join('；')}`,

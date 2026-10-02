@@ -14,6 +14,7 @@ export enum StorageErrorCode {
   TsavPayloadChecksum = 'TSAV_PAYLOAD_CHECKSUM',
   TsavInvalidJson = 'TSAV_INVALID_JSON',
   SaveTooNew = 'SAVE_TOO_NEW',
+  SaveProtocolUnsupported = 'SAVE_PROTOCOL_UNSUPPORTED',
   MissingMigration = 'MISSING_MIGRATION',
   QuotaExceeded = 'QUOTA_EXCEEDED',
   MigrationFailed = 'MIGRATION_FAILED',

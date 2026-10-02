@@ -23,7 +23,8 @@
 | `SettingsStore`   | `get` / `set` / `delete` / `entries`                                          | JSON-like 设置键值；读写都结构化克隆                                |
 | `StorageTransfer` | `export` / `import`                                                           | TSDB v1 二进制全库快照；导入先验 SHA-256，再单事务替换              |
 
-所有方法均返回 `Promise`。失败统一抛 `StorageError`；除通用错误外，TSAV 细分为截断、魔数、版本/flags、头/尺寸、body hash、解压、payload hash、JSON，迁移细分为过新与缺链。`QuotaExceededError` 映射为 `QUOTA_EXCEEDED`，不得自动删存档。
+所有方法均返回 `Promise`。失败统一抛 `StorageError`；除通用错误外，TSAV 细分为截断、魔数、版本/flags、头/尺寸、body hash、解压、payload hash、JSON，迁移细分为过新、规则协议不兼容与缺链。`QuotaExceededError` 映射为 `QUOTA_EXCEEDED`，不得自动删存档。
+`SAVE_TOO_NEW`、`SAVE_PROTOCOL_UNSUPPORTED`、`MISSING_MIGRATION`、`UNSUPPORTED_VERSION` 与存储不可用都不是“该代损坏”，读取时立即上抛，不尝试三代回退；只有校验或内容损坏才继续检查旧代。
 
 `autosave()` 默认 30 秒窗口，与 `tech/01` §6.9 的“同类触发 30 s 内去抖”一致；按 `save_auto_1` → `2` → `3` 轮换。`force: true` 用于书眠、页面隐藏等必须尝试落盘的安全点。节流发生时返回 `{ status: 'throttled' }`，不是错误。
 
@@ -49,6 +50,7 @@
 - v3：新建 `saveGenerations` 复合主键表；升级事务把旧 `saves` 每槽当前行原代号复制过去、写入 `save:current:<slot>`，再删除旧表。Dexie/IndexedDB 不支持原地更换主键，故采用新表迁移。
 - 后续版本必须新增一个 `version(n)` 和一个 `Migration { from:n-1, to:n }` 说明；旧迁移发布后不可修改。迁移函数不得读墙钟、随机数或网络。
 - IndexedDB 在打开数据库时以升级事务执行 schema 迁移；任何错误映射为 `MIGRATION_FAILED`，不继续半初始化运行。
+- 当前玩法快照为 `GameState.meta.saveSchema=2`。platform 提供 `migrateSaveJson()` 注册链，app 注入 core 的纯 1→2 迁移，避免 platform 反向依赖规则包；旧 `ui-session.v1` 的边车在该步归位。
 
 ## 导入导出边界
 
@@ -84,7 +86,7 @@
 ## 待决事项 / 依赖
 
 - 已解决：本地存储实现采用 Dexie 4.4.6；依据 tech/01 §5.1 与本任务技术基线。
-- 本文依赖：后续 core 命令总线 / saveSchema 任务提供正式 `GameState.meta.saveSchema`、`contentHash`、`serialize(): JsonValue` 和迁移/fixup 注册；应用当前以 schema 1、全零 content hash 与本地构建/设备/周目占位头接线。
+- 已解决：core 已提供 `GameState.meta.saveSchema=2`、`RULES_PROTOCOL=3`、规范序列化和 schema 1→2 迁移；`contentHash` 在 ENG-18 接入前仍为 64 个零的明确占位。
 - 本文依赖：ENG-ui 依据 `StorageError.code` 展示可恢复提示；`QUOTA_EXCEEDED` 优先引导清素材缓存 / 导出，不得静默删档。
 - 已解决：TSDB 是开发期整库恢复格式；普通玩家 UI 暴露 JSON / TSAV / store-only ZIP。
 - 开放问题（默认值）：真实设备 1 MiB 读档仍**（待实测）**；默认继续执行 `< 50 ms` 预算，不因桌面测试通过而宣称真机达标。
