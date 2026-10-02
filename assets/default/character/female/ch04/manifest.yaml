@@ -1159,80 +1159,6 @@
   notes: '实际查看：辉月使为黑发浅灰眼的成年女性，正面头颈端正，米白淡紫完整衣袍与头巾、双足完整，双手分别持两枚短金属令牌，无明显多肢或重大结构问题。原生1024×1536 RGB不透明PNG保留原始字节。按作者先1张宽松自查存candidate，不声称严格原文复原或approved。偏差明确记录：面貌理想化偏年轻、妆感较明显，额饰耳饰和袍缘花纹比素净方案华丽，头巾局部轻透但躯干衣物完整覆盖；令牌露装饰刻纹且外形偏小牌而非纯无字厚令，火焰纹较大；背景亭花较丰富。双令与女使核心身份清楚，这些装备装饰细节留待用户集中审核。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
-- id: por_npc_yinli__ch04_youth_disfigured_base
-  file: por_npc_yinli__ch04_youth_disfigured_base.png
-  category: character/female
-  style: default
-  subject: 殷离 npc_yinli ch04_yitian
-  prompt: 'POSE IS PRIMARY: one FRONT-FACING person, camera level, head and neck naturally UPRIGHT, forehead–nose–chin centreline VERTICAL, eyes HORIZONTALLY LEVEL, chin neutral. No head tilt, no Dutch angle. The figure may stand or sit ONLY as specified below; never change a disabled seated character into a standing figure.
-
-
-    Create a REALISTIC full-body Chinese wuxia character portrait of 殷离. This is an ORIGINAL TEXT-DEFINED IDENTITY. Neither reference image supplies the character''s face: image 1 is palette/painting quality only, image 2 is pale ink background only. Build the distinct facial anchors below. No claim of original-game, television-actor or historical likeness.
-
-
-    身份阶段：殷离（npc_yinli），《倚天屠龙记》ch04_yitian。尚未成年的少女蛛儿，雪岭相认后、灵蛇岛刀伤之前，保留千蛛万毒手相关面部变化。
-
-
-    原创独立面容与体态：独立原创的圆中带棱少女脸，颊部尚有少女的圆润但下颌角轻显；眉较直、眉尾微折，眼形偏细长、目光警觉，鼻梁较低且鼻尖略宽圆，小而清楚的嘴形、下唇稍厚，闭口神情倔强敏感。双颊与额侧保留不均匀的非血腥浮肿、暗沉斑块及自然肤色起伏，五官仍清楚；不能换成无损伤的光洁偶像脸。偏瘦而未长成的少女体态，不成年化；损伤不暗示邪恶、智力或能力低下。
-
-
-    服装与发式：元末汉地行旅少女的深灰右衽短袄、褐色宽裤、灰绿及膝外裙与布鞋；裤装完整遮住双腿，衣料完整不透明、宽松可穿。黑发以旧素布带收束，少量自然碎发，旧衣保持完好，无破洞与露肤。 所有汉式交领均本人左襟压右襟、向本人右侧合拢，不水平镜像。
-
-
-    姿态、身体状态与器物：单人正面平稳站姿，一足稍前但双腿完整入画；肩颈自然有戒备而头部端正、眼线水平。右手低放身前略作防备，左手垂在身侧，两手清楚可见且均空手。手指正常，不变成长爪；不画兵刃、蜘蛛、蛛网、毒雾或喷射特效。
-
-
-    人物画法：完整而美观的写实国风人物插画，面孔、双手、头发、衣料与器物均为连续坚实体积，骨相和年龄自然，柔和左上漫射光、清楚轮廓、克制低饱和设色。皮肤具有自然细节；仅保留本角色上文明确设定的年龄与身体状态，不添加别的角色的浮肿、暗斑或伤肢；对于上文明示的面损或功能限制，写实与美观不等于恢复健康，也不能把未成年角色画成成年人。衣装完整、不透明、剪裁清楚，褶皱少量宽缓且有受力，不加破损、碎布或密集噪点。水墨远山、薄雾与纸纹只在背景，不侵入脸、手、衣料或辅助器物。不是照片、影视截图、三维塑料模型或换头拼贴。
-
-
-    构图背景与交付：单人、单视图、原生竖幅2:3、完整全身，所有既定头发、手足、衣摆与器物端点入画，自然留白，不按固定占高或头身数字拉伸。目标2048×3072不透明PNG，接受工具真实原生2:3尺寸并如实登记；保留原始PNG字节及元数据，不裁切、放大、旋转或重新编码。背景为暖浅灰纸底，允许极淡低对比水墨山水和薄雾，脚下或座具下少量接触阴影，无叙事场景和额外人物。只准备1张candidate；实际生成后再核验，不自动approved，不虚构两候选比较。
-
-
-    事实边界：主稿明确此图只有毒功造成的面容变化，灵蛇岛之后刀伤和结尾恢复均不适用。浮肿暗斑具体分布、面部骨相与右手防备姿态是艺术补足，未声称指定纸本逐字描述或新增伤疤来源。 元末时代与当前阶段优先；项目前史及主体1336–1363不作为本图精确原著年份。未补造确岁、引文、回目或页码。
-
-
-    参考输入边界：第一输入仅为同性别项目色彩、柔和光线和绘制品质基线，不是本人身份图。不传递其脸型、五官、年龄、性别特征、体型、发式、衣服、道具或姿态；不复制男基线的破损毛边和密集粗糙衣纹。 第二输入为用户王语嫣水墨图，只取暖浅灰不透明纸底、极淡水墨远山、薄雾与留白。完全忽略其中人物面容、性别、年龄、衣裙、体型、飘带和倾头；不复制清晰亭台与前景花枝。
-
-
-    完整排除项：NO head tilt, NO Dutch angle. 不要画面文字、伪字、题款、签名、印章、logo或装饰水印；工具溯源和元数据保留。不要现代服饰、拉链、腕表、运动鞋、蕾丝、高跟鞋、数码物件。不要从基线或背景复制人物脸，不冒充未经核验的原版游戏或电视剧演员复原。不要统一网红脸、动漫大眼、偶像磨皮、浓妆、丰唇滤镜、塑料皮肤、照片写真或三维渲染。不要时代族群混搭、汉式交领左衽、清代发服、明代网巾补子、日式服制和刀具、欧式奇幻甲胄。不要多人物、分格、多视图、脸部特写框、歪头、斜镜头、仰下巴或侧脸。不要多余或缺失肢体、多指、粘指、手物融合、错接手腕、无支撑器物、失重衣带、裁断头足或器物端点。不要裸露、透明衣料、色情化、血腥特写、伤残丑化或嘲弄表情；不要加无依据伤口或抹除已设定身体状态。不要人物碎墨、飞白缺块、裂衣碎布、密集噪点、纸纹透肤透衣。不要发光武器、法阵、能量光翼、粒子或强泛光；不要喧宾夺主的清晰建筑和繁密前景。 不要成人化、婴幼儿化、无损伤的光洁脸、恢复容貌、后期刀疤或血口、蜘蛛肢体、蛛网衣饰、妖鬼尖牙、毒液喷射；不要因美观删除面部浮肿暗斑。
-
-
-    FINAL CHECK: FRONT-FACING, head upright, eyes level, chin neutral; preserve the exact age, injury state, seated or standing support, and stage props specified above.'
-  negative: NO head tilt, NO Dutch angle. 不要画面文字、伪字、题款、签名、印章、logo或装饰水印；工具溯源和元数据保留。不要现代服饰、拉链、腕表、运动鞋、蕾丝、高跟鞋、数码物件。不要从基线或背景复制人物脸，不冒充未经核验的原版游戏或电视剧演员复原。不要统一网红脸、动漫大眼、偶像磨皮、浓妆、丰唇滤镜、塑料皮肤、照片写真或三维渲染。不要时代族群混搭、汉式交领左衽、清代发服、明代网巾补子、日式服制和刀具、欧式奇幻甲胄。不要多人物、分格、多视图、脸部特写框、歪头、斜镜头、仰下巴或侧脸。不要多余或缺失肢体、多指、粘指、手物融合、错接手腕、无支撑器物、失重衣带、裁断头足或器物端点。不要裸露、透明衣料、色情化、血腥特写、伤残丑化或嘲弄表情；不要加无依据伤口或抹除已设定身体状态。不要人物碎墨、飞白缺块、裂衣碎布、密集噪点、纸纹透肤透衣。不要发光武器、法阵、能量光翼、粒子或强泛光；不要喧宾夺主的清晰建筑和繁密前景。 不要成人化、婴幼儿化、无损伤的光洁脸、恢复容貌、后期刀疤或血口、蜘蛛肢体、蛛网衣饰、妖鬼尖牙、毒液喷射；不要因美观删除面部浮肿暗斑。
-  references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 第一输入仅为同性别项目色彩、柔和光线和绘制品质基线，不是本人身份图。不传递其脸型、五官、年龄、性别特征、体型、发式、衣服、道具或姿态；不复制男基线的破损毛边和密集粗糙衣纹。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二输入为用户王语嫣水墨图，只取暖浅灰不透明纸底、极淡水墨远山、薄雾与留白。完全忽略其中人物面容、性别、年龄、衣裙、体型、飘带和倾头；不复制清晰亭台与前景花枝。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T04:26:51.574274+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-bdb10755-fb90-4dbb-846f-6dd81b45d9e3.png
-  size: 1024x1536
-  mode: RGB
-  sha256: 077f0afd1e8ae177ea1cbc4f915a2fc4c95648a34ff070dbbfce58c588c890d2
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_yinli__ch04_youth_disfigured_base/prompt-e9c1564cdf3f9704a9c36afed56483f37bacff42f4cf779335749a7931b3ecdc.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_yinli__ch04_youth_disfigured_base/manifest-f14ee8ba390c4dfc10e256ff53f81d8acb830059905bab5ce68106c7d8111035.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_yinli__ch04_youth_disfigured_base.requests.json
-  notes: '实际查看唯一候选1：殷离保留少女稚气、面颊和额侧不均暗紫斑、深灰短衣灰绿外裙褐宽裤，右手低放身前左手松垂，双手正常无兵刃，正面头基本直全身双足可见，无明显多肢或重大结构问题，宽松自查可用。偏差：浮肿很弱、脸仍较光洁美化，暗斑呈淤斑状但未血腥、无后期刀疤；眼睛偏大、发髻偏高，外裙长于及膝，重心与身体略侧转。未完全抹除毒功面损且阶段可辨，不因轻微角度衣长补图；浮肿不足明确留审核，不伪称严格面损通过。原生1024×1536不透明PNG原始字节保存，candidate待审核。
-
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
 - id: por_npc_yinsusu__ch04_prime_ziwei_base
   file: por_npc_yinsusu__ch04_prime_ziwei_base.png
   category: character/female
@@ -1500,3 +1426,50 @@
   sha256: 4a234dbf5fd64f6b5b61ca6e0772cafd562cfa4898a5d87fbc7526ae0b452f79
   status: candidate
   notes: 立绘重审重出（AR-30）；作者点名：现图是娃娃脸白裙少女、毫无波斯血统特征；按原著“高鼻雪肤、眼中隐有海水之蓝、修眉端鼻、颊边梨涡、瓜子脸”画成成年混血女子，上传黛绮丝真容作母女相似参考；codex 出图（1 号出图员，AR-31）；AR-31：按经典影视造型以文字改写；上传本轮新出的黛绮丝真容作母女相似参考
+- id: por_npc_yinli__ch04_youth_disfigured_base
+  file: por_npc_yinli__ch04_youth_disfigured_base.png
+  category: character/female
+  style: default
+  subject: 殷离（ch04_yitian）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】殷离（蛛儿），《倚天屠龙记》殷野王之女、张无忌的表妹；练千蛛万毒手毁了容貌，雪岭与“曾阿牛”相识之后的阶段。倔强偏激、痴情执着。
+
+    【年龄与体态】原著十七八岁，按本作规定画成约二十岁的成年年轻女子；原著说她身材苗条纤秀。成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【面容】原著写她面容黝黑、脸上肌肤浮肿、凹凹凸凸、生得极是丑陋，只是一对眸子颇有神采。具体为：整张脸肤色黝黑而浮肿，脸颊和额头布满高低不平的暗紫褐色肿块与斑痕（毒素所致，如实画出但不血腥、不恐怖、不恶搞）；在这张脸上，一双眼睛却格外明亮、倔强有神；眉毛浓；嘴唇偏薄、紧抿。
+
+    【发式】头发用一根荆枝做的钗挽成简单发髻，鬓边碎发。
+
+    【服饰】原著荆钗布裙、像个乡村贫女：粗布青灰短袄（交领右衽），旧蓝布裙，布鞋。
+
+    【道具】空手；手指正常，不长出利爪，不画蜘蛛、蛛网或毒雾。
+
+    【姿态与神情】倔强地站着，下巴微扬；眼神亮而带野气。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要光洁漂亮的脸、只点几块淡斑；不要娃娃脸或少女身材；不要血腥、溃烂、恐怖化或恶搞；不要华美衣饰。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:37:25-0700
+  source_path: .agents/coord/gemini_originals/por_npc_yinli__ch04_youth_disfigured_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 80f4eab76e3d09558df2c611d5093e358269809e130265ceb4650e61f0573f6f
+  status: candidate
+  notes: 立绘重审重出（AR-30）；现图是幼态的漂亮脸只点了几块淡紫斑，不合原著“面容黝黑、肌肤浮肿、凹凹凸凸、极是丑陋，只一对眸子颇有神采、身材苗条”；codex 出图（1 号出图员，AR-31）；沿用审核组提示词，补去 AI 味一句
