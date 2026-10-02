@@ -31438,7 +31438,8 @@
    "prompt": "ENG-content-from-docs.md",
    "deps": [
     "ENG-18-content-build",
-    "ENG-18b-tiled-regionmap"
+    "ENG-18b-tiled-regionmap",
+    "ENG-25-content-schemas-m1"
    ],
    "writes": [
     "content/common/meridians/**",
@@ -31512,7 +31513,8 @@
     "ENG-15-core-bus",
     "ENG-18-content-build",
     "ENG-08b-worldmap-page",
-    "DES-prologue-v2"
+    "DES-prologue-v2",
+    "ENG-25-content-schemas-m1"
    ],
    "writes": [
     "packages/core/src/quest/**",
@@ -31769,6 +31771,576 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-25-content-schemas-m1",
+   "title": "游戏工程 · M1 内容所需 schema（quest.v1、MoveDef、story_art 与章内道具、Ink 动作白名单）",
+   "prompt": "ENG-content-schemas-m1.md",
+   "deps": [
+    "ENG-18-content-build"
+   ],
+   "writes": [
+    "packages/data/src/**",
+    "packages/data/CLAUDE.md",
+    "content/CLAUDE.md",
+    "content/README.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-20a-region-core",
+   "title": "游戏工程 · 区域探索 A（core）：挂载 RegionMap、场景行走、交互锚点、门禁、出口与自动存档点",
+   "prompt": "ENG-region-core.md",
+   "deps": [
+    "ENG-15-core-bus",
+    "ENG-18b-tiled-regionmap",
+    "ENG-17a-newrun-dialogue"
+   ],
+   "writes": [
+    "packages/core/src/world/region-*.ts",
+    "packages/core/src/world/index.ts",
+    "packages/core/src/command/**",
+    "packages/core/src/state/**",
+    "packages/core/CLAUDE.md",
+    "apps/game/src/runtime/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/RegionPage.vue"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-20b-region-scene",
+   "title": "游戏工程 · 区域探索 B（渲染与页面）：RegionMap 分块渲染、行走、锚点交互与场景页",
+   "prompt": "ENG-region-scene.md",
+   "deps": [
+    "ENG-20a-region-core",
+    "ENG-21b-recovery-quality",
+    "ENG-19a-ui-shell"
+   ],
+   "writes": [
+    "packages/render/src/region/**",
+    "packages/render/src/index.ts",
+    "packages/render/package.json",
+    "packages/render/CLAUDE.md",
+    "apps/game/src/pages/RegionPage.vue",
+    "apps/game/src/region/**",
+    "apps/game/src/App.vue",
+    "packages/ui/src/i18n-flow.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/encounter.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-26-encounter-builder",
+   "title": "游戏工程 · 遭遇定义转战斗（encounter.v1 → BattleSetup：战场、参战者、切磋 / 留手 / 重试、特殊胜利条件、脚本节拍、模板）",
+   "prompt": "ENG-encounter-builder.md",
+   "deps": [
+    "ENG-25-content-schemas-m1",
+    "ENG-18b-tiled-regionmap",
+    "ENG-16c-battle-session",
+    "ENG-20a-region-core"
+   ],
+   "writes": [
+    "packages/data/src/schemas/encounter.ts",
+    "packages/data/src/schemas/index.ts",
+    "packages/data/src/content-index.ts",
+    "packages/data/src/content-registry.ts",
+    "packages/core/src/battle/encounter/**",
+    "packages/core/src/battle/script/**",
+    "packages/core/src/battle/types.ts",
+    "packages/core/src/battle/index.ts",
+    "packages/core/src/testing/**",
+    "packages/core/CLAUDE.md",
+    "apps/game/src/battle/demo.ts",
+    "apps/game/src/battle/demo-seed.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/content/items_from_catalog.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-items-catalog",
+   "title": "工具 · 物品生成器跟上名录扩充（去掉写死行数，重新生成 content/items）",
+   "prompt": "TOOL-items-catalog.md",
+   "deps": [
+    "ENG-18-content-build"
+   ],
+   "writes": [
+    "tools/content/items_from_catalog.py",
+    "tools/content/test_items_from_catalog.py",
+    "content/items/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "content/story/ch00/00-yuenv-main.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_story_dag.py",
+      "content/story/ch00/00-yuenv-main.yaml"
+     ],
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-ch00a-data",
+   "title": "内容 · 序章 ch00 数据与剧情（人物、角色槽、道具、武学与招式、任务、DAG、Ink、文本）",
+   "prompt": "CONTENT-ch00-data.md",
+   "deps": [
+    "ENG-25-content-schemas-m1",
+    "ENG-17a-newrun-dialogue",
+    "ENG-17-booksleep-m1",
+    "ENG-18-content-build",
+    "TOOL-items-catalog"
+   ],
+   "writes": [
+    "content/chapters/ch00_yuenv/npcs/**",
+    "content/chapters/ch00_yuenv/roles/**",
+    "content/chapters/ch00_yuenv/props/**",
+    "content/chapters/ch00_yuenv/quests/**",
+    "content/story/ch00/**",
+    "content/locales/zh-Hans/ch00*",
+    "content/locales/zh-Hans/common*",
+    "content/common/skills/**",
+    "content/common/moves/**",
+    "content/items/**",
+    "tools/lint/check_ids.py"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "content/world/regions/rg_dongbei/sc_00_changbai_cave.tmj"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-ch00b-maps",
+   "title": "内容 · 序章 ch00 地图（竹林、山径、越营、长白山洞；Tiled）",
+   "prompt": "CONTENT-ch00-maps.md",
+   "deps": [
+    "ENG-18b-tiled-regionmap"
+   ],
+   "writes": [
+    "content/world/regions/rg_jiangnan_taihu/**",
+    "content/world/regions/rg_dongbei/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "content/chapters/ch00_yuenv/encounters"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-ch00c-encounters",
+   "title": "内容 · 序章 ch00 三场遭遇（竹林、白猿切磋、边道）",
+   "prompt": "CONTENT-ch00-encounters.md",
+   "deps": [
+    "ENG-26-encounter-builder",
+    "CONTENT-ch00a-data",
+    "CONTENT-ch00b-maps"
+   ],
+   "writes": [
+    "content/chapters/ch00_yuenv/encounters/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "content/world/regions/rg_xiyu_beijiang/sc_10_fengshi_feiyi.tmj"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-ch10-cold-entry",
+   "title": "内容 · 白马（唐）ch10 冷入口到 M1 停点（烽燧废驿、人物、第一段对话、题卡）",
+   "prompt": "CONTENT-ch10-cold-entry.md",
+   "deps": [
+    "ENG-18b-tiled-regionmap",
+    "ENG-25-content-schemas-m1",
+    "ENG-17a-newrun-dialogue",
+    "ENG-17-booksleep-m1"
+   ],
+   "writes": [
+    "content/world/regions/rg_xiyu_beijiang/**",
+    "content/chapters/ch10_baima/npcs/**",
+    "content/chapters/ch10_baima/events/**",
+    "content/story/ch10/**",
+    "content/locales/zh-Hans/ch10*"
+   ]
   }
  ]
 }
