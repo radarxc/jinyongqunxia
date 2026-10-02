@@ -2,7 +2,8 @@ import { compareCodePoints } from '@tianshu/shared';
 import type { ContentEntry, ContentFile, ContentKind, ContentValues } from './content-registry';
 import { contentKindOrder, parseContentFile } from './content-registry';
 
-type Identified = { readonly id?: string; readonly key?: string; readonly chapterId?: string; readonly lineId?: string };
+type Identified = { readonly id?: string; readonly key?: string; readonly chapterId?: string;
+  readonly lineId?: string; readonly cityId?: string };
 export interface ContentRegistry extends ContentValues {
   readonly entries: readonly ContentEntry[];
   get<T = unknown>(kind: ContentKind, id: string): T | undefined;
@@ -10,6 +11,8 @@ export interface ContentRegistry extends ContentValues {
 }
 
 function identity(kind: ContentKind, value: Identified): string {
+  if (kind === 'town' && typeof value.cityId === 'string' && typeof value.chapterId === 'string')
+    return value.chapterId + '/' + value.cityId;
   if (kind === 'shop') return `${value.chapterId}/${value.key}`;
   if (kind === 'story') return `${value.chapterId}/${value.lineId}`;
   if (typeof value.id !== 'string') throw new TypeError(`CONTENT_ID:${kind}`);
@@ -79,7 +82,7 @@ export function loadContent(files: readonly ContentFile[]): ContentRegistry {
     const id = identity(entry.kind, entry.value as Identified);
     const key = `${entry.kind}:${id}`;
     if (lookup.has(key)) throw new TypeError(`CONTENT_DUPLICATE:${key}`);
-    if (entry.kind !== 'shop' && entry.kind !== 'story') {
+    if (entry.kind !== 'shop' && entry.kind !== 'story' && entry.kind !== 'town') {
       const previous = globalIds.get(id);
       if (previous !== undefined) throw new TypeError(`CONTENT_GLOBAL_DUPLICATE:${id}:${previous}:${entry.kind}`);
       globalIds.set(id, entry.kind);
@@ -95,6 +98,7 @@ export function loadContent(files: readonly ContentFile[]): ContentRegistry {
     acupoints: values('acupoint') as ContentValues['acupoints'], items: values('item') as ContentValues['items'],
     shops: values('shop') as ContentValues['shops'], stories: values('story') as ContentValues['stories'],
     events: values('event') as ContentValues['events'], bookWorlds: values('bookWorld') as ContentValues['bookWorlds'],
+    towns: values('town') as ContentValues['towns'],
     get: <T>(kind: ContentKind, id: string) => lookup.get(`${kind}:${id}`) as T | undefined,
     require: <T>(kind: ContentKind, id: string) => {
       const value = lookup.get(`${kind}:${id}`);

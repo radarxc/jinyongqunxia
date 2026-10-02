@@ -4,19 +4,21 @@
 |---|---|
 | 归属 | Vite + Vue 装配与发布层；游戏规则归 core，通用组件归 ui，浏览器能力归 platform |
 | 上游 | 作者 AR-19 / AR-21；tech/01、tech/05；design/02、03、09、10、11、13、14、15、18、21、22；ENG-01～08 / 10 / 12 |
-| 当前入口 | ENG-07 壳 + ENG-08 大地图 + ENG-10 六角战斗；根路径可切换，角色部件演示仍为 /rig-demo |
+| 当前入口 | ENG-07 壳 + ENG-08 大地图 + ENG-09 城镇 + ENG-10 六角战斗；根路径可切换，角色部件演示仍为 /rig-demo |
 | 栈 | Vue 3.5 + Pinia + 模块 Worker / Comlink + ENG-01 IndexedDB；不引入新 UI 框架 |
 
 ## 结论先行（TL;DR）
 
 core 默认运行在模块 Worker；仅启动失败或不支持 Worker 时回退主线程。命令通过 CoreHost 串行进入会话适配器，core 纯函数返回新状态，selector 只重建脏分支，再将裁剪投影写入 Pinia shallowRef。组件不持有 GameState，不重算玩法公式，不先行扣物品。
 
-当前默认会话是明确标识的交互演示，使用独立数据库 tianshu-ui-preview。ch01 大地图、旅行时钟和场景请求已装配；正式创角、相遇、战斗与城镇内部仍由后续任务装配。演示进度不自动迁入正式数据库 tianshu。所有示例状态为（原创扩展），不是原著开局或剧情奖励。
+当前默认会话是明确标识的交互演示，使用独立数据库 tianshu-ui-preview。ch01 大地图、旅行时钟、城镇内部和场景请求已装配；正式创角、相遇与内容遭遇仍由后续任务装配。演示进度不自动迁入正式数据库 tianshu。所有示例状态为（原创扩展），不是原著开局或剧情奖励。
 
 大地图定义由 data 校验，权威 `WorldMapState`、整数 A*、旅行事务、城门判定与场景事件均由
 core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`；`worldmap/sceneRequested`
 保留给 ENG-09 的场景挂载协调器，不得在 app 新增规则副本。
 战斗页同时以 ENG-04 固定种子夹具演示六角范围、CT、逐行动自动回放与结算；演示进度不发旅程奖励。
+城镇定义由 data 校验；可走性、整数 A*、碰撞、建筑阶段、锚点判定和打坐遇袭全在 core。
+`TownPage` 只消费投影并把拾取结果转成命令；Three 场景按需载入，主角与 NPC 统一使用 ENG-12 rig。
 
 ## 目录与组件
 
@@ -26,8 +28,8 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 | src/core-host.ts、core-worker.ts | Worker 握手、10 秒启动超时、Comlink 端口及启动期兼容回退 |
 | src/runtime/ | 会话聚合、命令转发、预览装配与应用快照验证；不持有大地图规则或可写边车 |
 | src/projection.ts、selectors/ | 脏标记 selector、物品分类、人物遮蔽、真实资源与经脉强度投影 |
-| src/pages/ | 懒加载 WorldMapPage、CharacterPage、InventoryPage、SavePage；武功 / 任务 / 设置由 App 装配 |
-| src/scenes/ScenePlaceholder.vue | 城镇 / 遗迹 / 战斗的下游入口占位，没有城镇内部或战斗规则 |
+| src/pages/ | 懒加载 TownPage、WorldMapPage、CharacterPage、InventoryPage、SavePage；武功 / 任务 / 设置由 App 装配 |
+| src/scenes/ScenePlaceholder.vue | 遗迹等尚未实现的下游入口占位；城镇和战斗已有专页 |
 | src/battle/ | 战斗 Worker 适配、浅投影、六角场、CT、行动菜单、日志、自动回放与结算 |
 | src/storage/ | 槽位摘要与 ENG-01 保存 / 读取 / 删除 / 单槽导入导出 |
 | build/ | 构建期解析已验证内容、经脉目录与素材清单；不把 YAML 解析器放进浏览器 |
@@ -54,10 +56,15 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 `queryPath()`；提交完整行动计划后由 core 再算一次。CT 预计在一次性 timeline 副本上调用 core 调度函数，不推进真实状态或 RNG。
 13. 自动战斗每个 `requestAnimationFrame` 至多发一个 `battle/step`，1× / 2× 只改回放间隔，“跳过”只省表现；关闭自动先停排帧，再经宿主 FIFO 切回手动。
 14. ENG-11 通过 `controller.battle.onMoveResolved((moveId, from, to, result) => ...)` 注册播放器；异常只记录，不改结算。日志与飘字消费 core 事件自带 `message`，不重选周天 / 外放文案。
+15. 城镇命令为 move / settle-building / exit-building / interact / meditate。点击只发整数格；core 返回整条路径并决定是否进入，页面以 90 ms / 格逐格驱动 rig（减少动效为 0）。到达后建筑淡变 260 ms（减少动效为 0）再发 settle-building，组件不得直接改阶段。
+16. `town-runtime.v1`、townRevision 与存档必须一致；构建期按章读 `content/town/chNN/*.json` 并复制其 atlas 素材。大理 / 杭州是当前基线，不把全部章节城镇塞进首屏；Three 模块只在进入城镇后动态加载。
+17. NPC 出现同时要求 eraLayer、sceneId 与 presence 匹配；精确格位来自 `townNpcPlacements`。事件只读 `townEventAnchors`，不得由人物简介或城市归属猜坐标。当前生产注册表显式为空，直到内容任务提供权威锚点。
+18. 室内打坐锚点只有对应建筑处于 inside 才投影和受理。`TownRuntime.meditate()` 在 core 内原子完成敌意 NPC 筛选、是否掷骰、RNG、风险、岔气或恢复 / 练功、时钟与 `BattleSetup`；应用只提交内容事实、落盘返回状态并装配 `BattleLaunch`。战斗准备失败不提交状态或 RNG；无正式 encounter 时安全完成 600 tick 且不消费 RNG。
 
 ## 页面与持久化约定
 
 - 大地图只显示当代 open 节点；点击后沿已登记陆路 A* 寻路。每 10 等效里推进 60 分钟（600 tick），可停步、继续或路中改道；无道路节点明确禁用，不凭空补路线。
+- 城镇支持点击寻路、WASD/QE 六向步进、锚点点击、0.65–2.5 缩放和返回大地图。进入建筑不切场景：目标外墙渐隐、室内简化地面/柜台显现；店铺和 NPC 只发 ENG-06 / ENG-05 请求事件。
 - 当前仅编译 ch01 地图进应用；14 章 `content/world/chNN/map.yaml` 由 `tools/content/worldmap_from_towns.py` 生成。时代切换应按章动态装载，不得把 14 章静态塞入首屏。
 - HUD 显示 HP / MP、行动槽、年月日时辰、地点和文钱；非战斗行动槽显示静息。无独立人物等级条。主菜单覆盖人物、物品、武功、任务、存档、设置。
 - C / B / K / J / M 切页，1–3 使用快捷药品，Escape 返回江湖；输入控件和确认框内不拦截快捷键。列表支持方向键 / Home / End；触屏点选等价于拖装。精确指针最小 44 px、触屏 60 px。
@@ -100,6 +107,7 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 - 精确版本来自锁文件并核对 npm registry：[Vue 3.5.43](https://registry.npmjs.org/vue/3.5.43)、[Pinia 4.0.3](https://registry.npmjs.org/pinia/4.0.3)、[Comlink 4.4.2](https://registry.npmjs.org/comlink/4.4.2)、[Vite 8.3.1](https://registry.npmjs.org/vite/8.3.1)。
 - 测试版本同样核对：[Vitest 5.0.3](https://registry.npmjs.org/vitest/5.0.3)、[Vue Test Utils 2.5.1](https://registry.npmjs.org/@vue/test-utils/2.5.1)、[happy-dom 20.14.5](https://registry.npmjs.org/happy-dom/20.14.5)、[fake-indexeddb 6.2.5](https://registry.npmjs.org/fake-indexeddb/6.2.5)。
 - [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)、[ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)：战斗回放分帧与画布尺寸监听；访问日期 2026-10-01，均为广泛支持的基线 API。
+- [Three InstancedMesh](https://threejs.org/docs/pages/InstancedMesh.html)、[Raycaster](https://threejs.org/docs/pages/Raycaster.html)、[OrthographicCamera](https://threejs.org/docs/pages/OrthographicCamera.html)、[WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)：城镇合批、实例拾取、固定斜视镜头与 draw/triangle 统计；2026-10-02 联网均返回 HTTP 200。锁文件版本 Three 0.186.1，无新增依赖、价格或远程限额。
 
 ## 本文新增术语/约定
 
@@ -111,6 +119,7 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 - 无新增玩法、人物、物品、穴道或槽位 ID；命名复用 canon §12 与现有内容。
 - BattlePacket / BattleView：Worker 到主线程的全量首包与增量战况包；不是第二份规则状态。
 - onMoveResolved：交 ENG-11 的只读播放钩子，签名为 `(moveId, from, to, result)`。
+- town-runtime.v1 / TownProjection：构建期城镇格网与浏览器只读投影；前者含 RLE 地面、导航、建筑、锚点和 atlas 引用，后者只含角色、可见 NPC/锚点与建筑阶段。
 
 ## 待决事项 / 依赖
 
@@ -125,5 +134,8 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 - 依赖 ENG-06 修正战外 perBattle 校验：适配器当前传入空 battleUses 做战外结算，再保留旧战斗账本；修正上游后可移除兼容分支，保留回归测试。
 - 依赖 ENG-06 / 内容 schema：正式官服装备 lawProfile 与玩家 identityTags 尚未入当前内容；没有配置时城门仅遵循已有通缉状态，不从文案猜执法规则。
 - 依赖事件装配：EventAnchor 与随机遭遇端口已定义并发 probe / request 事件，正式会话当前未注入锚点或选择器。
+- 依赖内容装配：`townNpcPlacements` / `townEventAnchors` 当前为空，默认不显示或触发未登记 NPC/位置事件；须由 ENG-05 内容提供 scene + era + 整数格坐标后接入。
+- 依赖正式打坐遭遇：core 与 ENG-10 入口已测试，但现有内容没有可复用的通用 `enc_*` 和正式 CharacterState→BattleUnitSeed 转换；默认无遭遇时完成周天，不用演武夹具冒充剧情。
+- （待实测）城镇桌面 ≥60 fps、中端手机 ≥30 fps、触屏拾取、横竖屏和上下文丢失；页面展示实时 renderer 统计，Node 合批测试不作帧率结论。
 - 对基准的修改提案：无；以上为实现边界和上游待归位事项，不重定义 canon 规则。
 - 原著考据：人物简介仅引用内容已有 sourceWorks / locator 并保留“回目待考”；不新增回目、引文或人物身世断言。

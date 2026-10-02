@@ -4,7 +4,7 @@ import type { RigSet } from './types';
 
 export interface RigBatchCharacter {
   readonly rigSet: RigSet; readonly activeInstanceCount: number;
-  writeInstances(buffer: RigInstanceBuffer, baseIndex: number): void;
+  writeInstances(buffer: RigInstanceBuffer, baseIndex: number, forceStatic?: boolean): void;
 }
 export interface RigBatchStats { readonly characters: number; readonly activeInstances: number; readonly submittedInstances: number; readonly drawCalls: 2; readonly uploadedRanges: number }
 
@@ -72,7 +72,7 @@ export class RigBatch {
     const slot = this.members.indexOf(undefined);
     if (slot < 0) throw new Error('RIG_BATCH_CAPACITY');
     this.members[slot] = character; this.slots.set(character as object, slot); this.characters += 1;
-    this.highestSlot = Math.max(this.highestSlot, slot); character.writeInstances(this.buffer, slot * 20); this.updateMeshCount();
+    this.highestSlot = Math.max(this.highestSlot, slot); character.writeInstances(this.buffer, slot * 20, true); this.updateMeshCount();
   }
 
   remove(character: RigBatchCharacter): void {

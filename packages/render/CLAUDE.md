@@ -20,6 +20,16 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - `stats` 暴露 drawCalls / triangles / frameMs / cpuMs / nodes / roads / instances；桌面目标 ≥60 fps，中端手机目标 ≥30 fps（待真机实测）。每帧只更新 rig typed arrays，静态几何不重建。
 - 所有权：场景 dispose 依次释放 rig、静态 geometry/material、节点 atlas、地图纹理、目的地 marker 和 WebGLRenderer；调用两次必须安全。
 
+## 城镇场景 API（ENG-09）
+
+- 从 `@tianshu/render/town` 动态导入 `createTownScene(canvas,town,{ projection, zoom })`；输入是 data 已校验的 `town-runtime.v1` 与应用只读投影。render 只把指针射线换成整数格或锚点，不判断可走性、路径、建筑状态、剧情或打坐概率。
+- 离线与运行时共用 64×32 px、yaw 45°、pitch 30°；`planningToTownPixels()` 的高度位移为 `16×sqrt(6)×elevationM` px。投影测试覆盖非零高差、格心往返、六边格边界与镜头角；拾取按运行时登记高度平面求最近合法格。
+- 地面按 32×32 格 chunk 各一个 `InstancedMesh`，贴片、overlay 与 8 向边件共用运行时 atlas；内角沿用离线 4 px tip 裁切。建筑、简化室内、锚点各自合批。每帧仅做 chunk 视锥裁剪、rig typed-array 同步和焦点建筑 alpha 更新，不重建静态几何。
+- `TownScene` 提供 render / resize / update / setZoom / pickPoint / pickAnchor / project / dispose；缩放限制 0.65–2.5。建筑进入时只有目标外墙渐变至 0.28，室内地面与柜台显现，退出反向恢复。
+- 主角与 NPC 必须用 ENG-12 `RigSet` / `RigBatch` / `RigInstance`；场景容量 100 名角色，NPC 出现与消失仅按应用投影增删。不得为城镇另建精灵角色或从 render 推断时代。
+- `stats` 暴露 drawCalls / triangles / frameMs / cpuMs / groundInstances / buildingInstances / rigInstances / visibleChunks / atlasTextures。目标为桌面 ≥60 fps、中端手机 ≥30 fps，当前仍待浏览器与真机实测。
+- 所有权：场景释放 rig、锚点、地面 chunk、建筑/室内 batch、两张 atlas 及 WebGLRenderer；`dispose()` 可重复调用。纹理缺失时 atlas 写入分类色块，结构与拾取仍可工作。
+
 ## 角色 rig API（ENG-12）
 
 - 从 `@tianshu/render/rig` 动态导入；不要从根入口静态导入，避免进入首屏 chunk。
@@ -34,7 +44,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - 硬预算不变：20 名满装角色 CPU 帧 P95 < 16.67 ms；100 角色 / 1,600 个基础实例总 rig CPU P95 < 0.80 ms。不得减少角色、600 个采样帧或改分位数来过门禁。
 - 每项先预热 120 帧，再测 3 轮；每轮独立采 600 帧并计算 P95，以三轮最小 P95（best-of-3）断言。每轮日志必须带该轮 P95、最终最小值、`os.loadavg()` 与 `os.cpus().length`。
 - `performance.test.ts` 只由 Vitest 的 `perf` project 收集；普通 `node` project 显式排除它。`perf` 使用 `fileParallelism:false`、单 worker、`sequence.concurrent:false`，并以 `groupOrder:1` 等普通项目结束后再运行。
-- 负载护栏是备用最后手段，当前未启用：只有上述隔离和 best-of-3 仍连续失败时，才可在 `os.loadavg()[0] > os.cpus().length × 1.5` 时对 100 角色门禁仅 `console.warn` 记录并跳过断言；低负载及 20 人门禁仍必须断言。
+- 负载只作诊断记录：每轮输出 `os.loadavg()` 与 CPU 数，但不得据此跳过、放宽或改写断言；20 人与 100 人门禁在任何负载下都必须通过。
 
 ## 招式 VFX API（ENG-11）
 
@@ -59,6 +69,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - [Three ShaderMaterial](https://threejs.org/docs/pages/ShaderMaterial.html)：高亮集合通过 `uniforms` 更新。
 - [Three Raycaster](https://threejs.org/docs/pages/Raycaster.html)：`InstancedMesh` 命中结果携带 `instanceId`。以上访问日期 2026-10-01。
 - [OrthographicCamera](https://threejs.org/docs/pages/OrthographicCamera.html)、[TextureLoader](https://threejs.org/docs/pages/TextureLoader.html)：大地图斜视正交镜头与可选水墨底图。
+- [WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)：`renderer.info.render` 提供 draw call 与 triangle 统计；城镇性能面板直接读取，不自行估算。以上城镇相关官方页面于 2026-10-02 联网返回 HTTP 200。
 - 锁文件实际版本为 Three 0.186.1；未新增依赖。战斗专项测试覆盖方向映射、共享边裁决，根 `pnpm check` 继续执行 rig P95 和 bundle size 门禁。
 - [Three WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)、[Texture](https://threejs.org/docs/pages/Texture.html)、[TextureLoader](https://threejs.org/docs/pages/TextureLoader.html)：核实 `powerPreference`、像素比、异步贴图加载及 renderer / texture 的显式 `dispose()`；访问日期 2026-10-01。
 
@@ -67,3 +78,4 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - （待实测）WebGL2 真机的共享边触控、低端 Android GPU shader uniform 上限、横竖屏切换与上下文丢失恢复；当前提供 DOM 格列表降级，不宣称真机完成。
 - ENG-11 若增加 VFX mesh / 粒子池，必须保留战场 terrain 1 draw、rig 2 draw 的基线统计，并为新增 GPU 资源补 dispose。
 - （待实测）VFX 的 WebGL draw / GPU 帧耗时、上下文丢失恢复与低端 Android 多特效表现；当前 Node 门禁只验证 48 个并发时间轴 / 实例属性计算 P95 < 16.67 ms，不冒充 GPU 真机数据。
+- （待实测）城镇大理 / 杭州在桌面与中端手机的实际 P50/P95 帧时间、显存峰值、触控拾取和 WebGL 上下文恢复；当前只交付结构统计与合批/裁剪测试，不把 Node 测试冒充帧率数据。

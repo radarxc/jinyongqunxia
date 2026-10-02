@@ -36,6 +36,15 @@ describe('GameState JSON boundary', () => {
     expect(() => parseGameState({ ...state, meta: metaWithoutProtocol })).toThrow('STATE_SHAPE');
   });
 
+  it('accepts a canonical town session and rejects incoherent building phases', () => {
+    const state = initialState();
+    const town = { version: 1 as const, townRevision: 'a'.repeat(64), sceneId: 'city_dali',
+      point: [5, 88] as const, buildingId: null, buildingPhase: 'outside' as const };
+    expect(parseGameState({ ...state, chapter: { ...state.chapter, town } }).chapter.town).toEqual(town);
+    expect(() => parseGameState({ ...state, chapter: { ...state.chapter,
+      town: { ...town, buildingPhase: 'inside' } } })).toThrow('STATE_SHAPE');
+  });
+
   it('rejects stale derived clock caches', () => {
     const state = initialState();
     expect(() => parseGameState({

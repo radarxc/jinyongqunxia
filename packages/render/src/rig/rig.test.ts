@@ -116,4 +116,24 @@ describe('rig headless smoke', () => {
     expect(mirrored.sort[5 * 4 + 1]).toBeGreaterThan(mirrored.sort[4 * 4 + 1] ?? Infinity);
     rigSet.dispose();
   });
+
+  it('initializes static instance data independently in every batch', async () => {
+    const rigSet = await loadRigSet(createPlaceholderRigManifest());
+    const character = createRigCharacter(rigSet, {}, 3);
+    const first = new RigBatch(rigSet, 1); const second = new RigBatch(rigSet, 1);
+    first.add(character); first.sync(); second.add(character); second.sync();
+    expect(second.buffer.uvRect.array.some((value) => value !== 0)).toBe(true);
+    expect(second.buffer.sortTint.array.some((value) => value !== 0)).toBe(true);
+    first.dispose(); second.dispose(); character.dispose(); rigSet.dispose();
+  });
+
+  it('restores all instance attributes when a character is re-added', async () => {
+    const rigSet = await loadRigSet(createPlaceholderRigManifest());
+    const character = createRigCharacter(rigSet, {}, 4); const batch = new RigBatch(rigSet, 1);
+    batch.add(character); batch.sync(); batch.remove(character); batch.buffer.flushDirtyRanges();
+    batch.add(character); batch.sync();
+    expect(batch.buffer.uvRect.array.some((value) => value !== 0)).toBe(true);
+    expect(batch.buffer.sortTint.array.some((value) => value !== 0)).toBe(true);
+    batch.dispose(); character.dispose(); rigSet.dispose();
+  });
 });

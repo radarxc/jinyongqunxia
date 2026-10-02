@@ -1,8 +1,9 @@
 import { markRaw, shallowRef } from 'vue';
-import type { WorldMapCommand, WorldMapProjection } from '@tianshu/core';
+import type { TownCommand, WorldMapCommand, WorldMapProjection } from '@tianshu/core';
 import { createIndexedDbStorage, downloadBytes, type TianshuStorage } from '@tianshu/platform';
 import { t, uiBus, type useUiStore, type SaveSlotView } from '@tianshu/ui/runtime';
-import type { GameHost } from './runtime/contracts';
+import type { GameHost, GameUpdate, TownProjection } from './runtime/contracts';
+import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
 import type { BattleController } from './battle/controller';
 import type { createSaveService } from './storage/save-service';
 import { slotViews } from './storage/slot-views';
@@ -26,6 +27,8 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
   const notice = shallowRef('');
   const settings = shallowRef({ largeText: false, reducedMotion: false });
   const worldmap = shallowRef<WorldMapProjection | null>(null);
+  const townRuntime = shallowRef<TownRuntimeDefinition | null>(null);
+  const town = shallowRef<TownProjection | null>(null);
   let storage: TianshuStorage | undefined;
   let saves: ReturnType<typeof createSaveService> | undefined;
   let disposed = false;
@@ -62,6 +65,10 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     if (!update.accepted) return;
     if (update.changes.worldmap !== undefined) worldmap.value = update.changes.worldmap
       ? markRaw(update.changes.worldmap) : null;
+    if (update.changes.townRuntime !== undefined) townRuntime.value = update.changes.townRuntime
+      ? markRaw(update.changes.townRuntime) : null;
+    if (update.changes.town !== undefined) town.value = update.changes.town
+      ? markRaw(update.changes.town) : null;
     ui.applyProjection(update.changes);
     if (update.changes.battle !== undefined) {
       battleActive.value = update.changes.battle !== null;
@@ -91,6 +98,8 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
   }
   async function initialize(): Promise<void> {
     const projection = await host.query(); worldmap.value = projection.worldmap ? markRaw(projection.worldmap) : null;
+    townRuntime.value = projection.townRuntime ? markRaw(projection.townRuntime) : null;
+    town.value = projection.town ? markRaw(projection.town) : null;
     ui.replaceProjection(projection);
     if (projection.battle) { battleActive.value = true; (await ensureBattle()).apply(projection.battle); }
     try {
@@ -133,8 +142,15 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
   async function worldMapCommand(command: WorldMapCommand): Promise<void> {
     await run(async () => { const result = await host.dispatch(command); if (!result.accepted) throw new Error(result.error); notice.value = ''; });
   }
-  return { busy, slots, storageAvailable, saveStatus, notice, settings, worldmap,
-    battle, battleActive, ensureBattle, initialize, saveAction, importFile, setSetting, autosave, worldMapCommand,
+  async function townCommand(command: TownCommand): Promise<GameUpdate | undefined> {
+    let update: GameUpdate | undefined;
+    await run(async () => { const result = await host.dispatch(command);
+      if (!result.accepted) throw new Error(result.error); notice.value = ''; update = result; });
+    return update;
+  }
+  return { busy, slots, storageAvailable, saveStatus, notice, settings, worldmap, townRuntime, town,
+    battle, battleActive, ensureBattle, initialize, saveAction, importFile, setSetting, autosave,
+    worldMapCommand, townCommand,
     dispose() { disposed = true; battle.value?.dispose(); offHost(); offBus(); host.dispose(); void storage?.close(); },
   };
 }

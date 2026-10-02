@@ -1,10 +1,25 @@
 import { describe, expect, it } from 'vitest';
+import { createBattleDemo } from '../battle/demo';
 import { createGameSession } from './session';
 import { createPreviewSession } from './bootstrap';
 import { fixtureContent } from './test-fixture';
 
 describe('Worker session command adapter', () => {
   const content = fixtureContent();
+  function withAmbush(invalid = false, riskBaseBp = 10_000): typeof content {
+    const demo = createBattleDemo('town'); const hero = 'npc_zhujue'; const enemy = 'npc_attacker';
+    const definition = content.towns![0]!;
+    return { ...content, towns: [{ ...definition, anchors: definition.anchors.map((anchor) =>
+      anchor.id === 'anchor_meditation_bi_0021' ? { ...anchor, riskBaseBp } : anchor) }],
+      meditationEncounters: [{ sceneId: 'city_dali', anchorId: 'anchor_meditation_bi_0021',
+        attackerId: enemy, setup: { encounterId: 'enc_town_meditation_test',
+          setupId: 'town-ambush-test', seed: 7, sourceSnapshotHash: '0'.repeat(64),
+          participants: demo.setup.participants.map((row, index) => ({ ...row,
+            unitRef: index === 0 ? hero : enemy })), meditationUnitRefs: [hero] },
+        launch: { seeds: demo.seeds.map((row, index) => ({ ...row, id: index === 0 ? hero : enemy })),
+          cells: invalid ? [] : demo.cells, markers: demo.markers.map((row, index) => ({ ...row,
+            id: index === 0 ? hero : enemy })), moves: demo.moves, title: '打坐遇袭', preview: true } }] };
+  }
   it('delegates equip and unequip atomically, preserves counts and rejects the wrong slot', async () => {
     const core = createGameSession(content);
     const original = await core.snapshot();
@@ -36,7 +51,7 @@ describe('Worker session command adapter', () => {
     expect((await core.dispatch({ t: 'inventory/use', itemId: 'it_dahuandan', targetId: 'npc_zhujue' })).accepted).toBe(false);
     expect(await core.snapshot()).toEqual(before);
     const corrupted = { ...before, state: { ...before.state, meta: { ...before.state.meta, rngProtocol: 999 } } };
-    expect(() => core.restore(corrupted)).toThrow('SAVE_VERSION_UNSUPPORTED');
+    await expect(core.restore(corrupted)).rejects.toThrow('SAVE_VERSION_UNSUPPORTED');
     expect(await core.snapshot()).toEqual(before);
     await core.dispatch({ t: 'world/tick' }); await core.restore(before);
     expect(await core.snapshot()).toEqual(before);
@@ -50,13 +65,13 @@ describe('Worker session command adapter', () => {
   });
   it('rejects foreign preview mode, wrong-slot equipment and malformed use state atomically', async () => {
     const core = createGameSession(content); const original = await core.snapshot();
-    expect(() => core.restore({ ...original, preview: false })).toThrow('SAVE_MODE_INVALID');
+    await expect(core.restore({ ...original, preview: false })).rejects.toThrow('SAVE_MODE_INVALID');
     const badEquipment = { ...original, state: { ...original.state, party: { ...original.state.party,
       equipment: { entries: original.state.party.equipment.entries.map((entry) => entry.slot === 'feet'
         ? { ...entry, itemId: 'eq_qinggangjian' } : entry) } } } };
-    expect(() => core.restore(badEquipment)).toThrow('SAVE_EQUIPMENT_INVALID');
+    await expect(core.restore(badEquipment)).rejects.toThrow('SAVE_EQUIPMENT_INVALID');
     const badCounters = { ...original, usage: { ...original.usage, battleUses: [] } } as unknown as typeof original;
-    expect(() => core.restore(badCounters)).toThrow('SAVE_USAGE_INVALID');
+    await expect(core.restore(badCounters)).rejects.toThrow('SAVE_USAGE_INVALID');
     expect(await core.snapshot()).toEqual(original);
   });
   it('keeps the published world event compatible with ENG-02 subscribers', async () => {
@@ -97,5 +112,83 @@ describe('Worker session command adapter', () => {
     expect(after.state.chapter.worldMap?.scene).toMatchObject({
       kind: 'town', nodeId: 'city_dali', gateId: 'south_gate',
     });
+    expect(after.state.chapter.town).toMatchObject({ sceneId: 'city_dali', point: [5, 88],
+      buildingId: null, buildingPhase: 'outside' });
+    expect(result.changes.townRuntime?.cityId).toBe('city_dali');
+  });
+
+  it('loads a town definition on demand before committing world-map entry', async () => {
+    const definition = content.towns![0]!; const withoutTowns = Object.fromEntries(
+      Object.entries(content).filter(([key]) => key !== 'towns')) as typeof content;
+    const loads: string[] = [];
+    const core = createGameSession(withoutTowns, createPreviewSession(withoutTowns), async (sceneId) => {
+      loads.push(sceneId); return sceneId === definition.sceneId ? definition : null;
+    });
+    const entered = await core.dispatch({ t: 'worldmap/enter' });
+    expect(entered.accepted).toBe(true); expect(loads).toEqual(['city_dali']);
+    expect(entered.changes.townRuntime?.sceneId).toBe('city_dali');
+  });
+
+  it('moves through core, resolves location anchors, and enters a selected shared door', async () => {
+    const local = { ...content, townEventAnchors: [{ id: 'anchor_test_enter', kind: 'location' as const,
+      sceneId: 'city_dali', trigger: 'enter' as const, lineId: 'sl_test', nodeId: 'arrive',
+      point: { q: 6, r: 88 } }] };
+    const core = createGameSession(local); await core.dispatch({ t: 'worldmap/enter' });
+    const moved = await core.dispatch({ t: 'town/move', destination: [6, 88] });
+    expect(moved.accepted).toBe(true);
+    expect(moved.changes.town?.scene.actor.point).toEqual([6, 88]);
+    expect(moved.changes.town?.movementPath).toEqual([[5, 88], [6, 88]]);
+    expect(moved.events.some((event) => event.t === 'town/anchorRequested')).toBe(true);
+    const entering = await core.dispatch({ t: 'town/move', destination: [-10, 78],
+      buildingId: 'bi_0020' });
+    expect(entering.changes.town?.scene).toMatchObject({
+      activeBuildingId: 'bi_0020', buildingPhase: 'fading-in' });
+    await core.dispatch({ t: 'town/settle-building' });
+    const shop = await core.dispatch({ t: 'town/interact' });
+    expect(shop.events.some((event) => event.t === 'town/shopRequested')).toBe(true);
+    await core.dispatch({ t: 'town/exit-building' });
+    await core.dispatch({ t: 'town/settle-building' });
+    expect((await core.snapshot()).state.chapter.town?.buildingPhase).toBe('outside');
+  });
+
+  it('forwards safe meditation and projects the core transaction', async () => {
+    const initial = createPreviewSession(content); const protagonist = initial.state.profile.protagonist!;
+    const injured = { ...initial, state: { ...initial.state, profile: { ...initial.state.profile,
+      protagonist: { ...protagonist, resources: { hp: 1, mp: 1 } } } } };
+    const core = createGameSession(content, injured); await core.dispatch({ t: 'worldmap/enter' });
+    await core.dispatch({ t: 'town/move', destination: [-2, 78], buildingId: 'bi_0021' });
+    await core.dispatch({ t: 'town/settle-building' });
+    const before = await core.snapshot();
+    const result = await core.dispatch({ t: 'town/meditate',
+      anchorId: 'anchor_meditation_bi_0021', plannedTicks: 600 });
+    const after = await core.snapshot();
+    expect(result.accepted).toBe(true); expect(result.changes.battle).toBeUndefined();
+    expect(result.events.some((event) => event.t === 'town/meditationCompleted')).toBe(true);
+    expect(result.changes.hud?.hp.current).toBe(after.state.profile.protagonist?.resources.hp);
+    expect(after.state.meta.stateVersion).toBe(before.state.meta.stateVersion + 1);
+  });
+
+  it('assembles the battle page from a core meditation-ambush result', async () => {
+    const core = createGameSession(withAmbush());
+    await core.dispatch({ t: 'worldmap/enter' });
+    await core.dispatch({ t: 'town/move', destination: [-2, 78], buildingId: 'bi_0021' });
+    await core.dispatch({ t: 'town/settle-building' });
+    const command = { t: 'town/meditate' as const, anchorId: 'anchor_meditation_bi_0021', plannedTicks: 600 };
+    const result = await core.dispatch(command);
+    expect(result.accepted).toBe(true);
+    expect(result.changes.battle?.info?.setup).toMatchObject({ entry: { kind: 'meditationAmbush',
+      meditationInterrupted: true }, start: { initiativeSide: 'enemy', initialEffects: [{
+        unitRef: 'npc_zhujue', buffRef: 'bf_chaqi', remainingOwnActions: 3 }] } });
+    expect(() => core.snapshot()).toThrow('BATTLE_SAVE_UNAVAILABLE');
+  });
+
+  it('rolls back the town state and RNG when an ambush launch is invalid', async () => {
+    const core = createGameSession(withAmbush(true)); await core.dispatch({ t: 'worldmap/enter' });
+    await core.dispatch({ t: 'town/move', destination: [-2, 78], buildingId: 'bi_0021' });
+    await core.dispatch({ t: 'town/settle-building' }); const before = await core.snapshot();
+    const result = await core.dispatch({ t: 'town/meditate',
+      anchorId: 'anchor_meditation_bi_0021', plannedTicks: 600 });
+    expect(result).toMatchObject({ accepted: false, error: 'BATTLE_LAUNCH_INVALID' });
+    expect(await core.snapshot()).toEqual(before); expect((await core.query()).battle).toBeNull();
   });
 });
