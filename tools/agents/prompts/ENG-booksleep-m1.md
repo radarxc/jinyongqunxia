@@ -4,7 +4,7 @@
 
 先读：
 - 根 `CLAUDE.md`、`packages/core/CLAUDE.md`、`apps/game/CLAUDE.md`；
-- 报告 `tools/agents/reports/ENG-15-core-bus.md`、`ENG-18-content-build.md`：第 7 节交给本任务的接口必须照做——命令总线、`CoreTransaction`、MetaState 版本字段、迁移链、书界包、`contentHash`、`fixupContentRefs`；
+- 报告 `tools/agents/reports/ENG-17a-newrun-dialogue.md`（新游戏入口、对话与剧情命令、序章模式回执）、`ENG-15-core-bus.md`、`ENG-18-content-build.md`：第 7 节交给本任务的接口必须照做——命令总线、`CoreTransaction`、MetaState 版本字段、迁移链、书界包、`contentHash`、`fixupContentRefs`；
 - 设计报告 `DES-changsheng-core.md`、`DES-prologue-v2.md`、`DES-attr-v2.md`、`DES-baima-tang.md`（均在 `tools/agents/reports/`）。
 
 ## 为什么做
@@ -57,7 +57,7 @@ M1 只需要这一段：序章结束（阿青传《长生诀》第一层）→ �
 ## 要做的事
 
 1. **章节定义**：`ChapterDef` 最小 schema，可扩展现有未用的 `book-world.v1`。字段：时代图层、`gameYear`、`worldTier`、levelCap、layerCap、外来压制、起始 tick、苏醒点 `{regionId, sceneId, spawnId}`。在 `content/chapters/ch00_yuenv/`、`ch10_baima/` 各放一份章节定义。
-2. **新游戏从 `ch00_yuenv` 开始**，去掉 ch01 / 1093 写死。
+2. **新游戏入口已由 ENG-17a 提供**：本任务在它之上补章节定义，并让新档的章节取 `ch00_yuenv` 的定义；不另做新游戏流程。
 3. **状态**：
    - `profile.progression` 加 `changshengLayer`（0–9）、`sleepPoints`、`bookSleepLog[]`；
    - 加序章模式回执；
@@ -73,7 +73,7 @@ M1 只需要这一段：序章结束（阿青传《长生诀》第一层）→ �
    - `world.navigation` 指向苏醒点（待挂载）；`meta.contentHash` 设为 ch10 包的值；
    - 发事件 `chapter/bookSleepCommitted`、`world/eraChanged`、`chapter/woke`；
    - **不消耗 RNG**。其他过渡一律拒绝 `BOOK_SLEEP_UNSUPPORTED`，一般书眠只声明类型。
-6. **配点查询**（只读）：可配的键、底值、预算、范围。
+6. **配点查询**（只读）：规则版本、可配的键、底值、上下限、预算、当前草稿、预设（一键均衡）、锁定的键（福缘 / 魅力）。不写死 300 / 50 / 6。提交带配点来源 manual / balanced / default（chapters/00 §7.4），写进回执。
 7. **宿主薄接线**：
    - dispatch 前预载并校验 ch10 书界包；
    - 挂载成功后写 `save_wake_ch10`；
