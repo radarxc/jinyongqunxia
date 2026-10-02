@@ -59,84 +59,6 @@
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
   notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际目视比较两张选第2张：女主成年身份面容保持，烟蓝交领衣、灰褐裙与木簪，双手空着放松、头足完整，无官印令牌兵器或旗装头饰。第2张衣襟和腰带更清楚。目标窄袖袄被画成长摆衣、发髻较低髻目标偏高、鞋面有少量纹样、小痣不清及占高偏大如实登记为本轮宽松待审偏差；无明显多肢或重大结构问题，保留candidate，不宣称严格服饰通过。 提示词 assets/default/prompts/characters/protagonist/npc_zhujue__f_ch08.md；tier S。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_zhujue__ch08_f_base.requests.json。生成候选2张，入选第2张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png；/Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png；/Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用项目基线（真实审批状态照录）和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
-- id: por_npc_suquan__ch08_youth_base
-  file: por_npc_suquan__ch08_youth_base.png
-  category: character/female
-  style: default
-  subject: 苏荃 npc_suquan ch08_luding · 神龙岛教主夫人，已有反制动机但尚未脱离神龙教的成年阶段
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.
-
-
-    Create a REALISTIC Chinese wuxia illustration of SU QUAN / 苏荃. Image 1 is the ONLY FACIAL IDENTITY source: 冯晓文 as 苏荃 in the 1998 TVB The Duke of Mount Deer starring Jordan Chan. Image 2 is ONLY a colour palette and supplies ZERO facial or anatomical information. Image 3 is ONLY the pale ink-wash background. Preserve this person’s distinct jaw, brows, eye spacing, nose and lips instead of a shared beauty template. 第一图唯一女性就是冯晓文饰苏荃，只取她本人的面貌结构。
-
-
-    身份与阶段：苏荃（npc_suquan），《鹿鼎记》ch08_luding，清初康熙时代。神龙岛教主夫人，已有反制动机但尚未脱离神龙教的成年阶段；二十余岁的成年女性，原著确岁待考。二十余岁健康成年体态，肩背舒展、手臂有自然力量、腰胯比例可信，不削成纸片腰。沉着自主，判断力通过专注眼神与克制神情表现；没有孕态、母亲阶段或退隐状态。
-
-
-    本人面容辨识锚点：保留第一图冯晓文苏荃较舒展的椭圆轮廓：面中较长，颧部有真实宽度与体积，下颌圆顺收拢但不是尖锥，下巴长度适中。长眉有清楚而舒展的弧度，自然修长杏眼的外角微上扬，眉眼距离与眼间距沿用本人关系，不换成少女大圆眼。鼻梁直、鼻头有圆润厚度、鼻翼自然；上唇唇峰清楚，下唇比上唇饱满，嘴角只有很轻的从容笑意。她是有掌控力的成年人，颧颊和下颌不能缩为沐剑屏的小圆少女脸，鼻唇不能套用王语嫣尖小模板。中性光下自然暖肤色，不照搬电视浓唇色、头倾和侧向目光。
-
-
-    服制与发式：清初汉族成年女子深紫交领长袄、墨绿长裙、低调同色绣边，右衽为穿着者左襟覆盖右襟、向本人右侧合拢。领胸遮蔽、衣料不透明，袖口整齐，整片衣裙连贯；平底绣鞋两只可读。黑发梳成熟而收敛的完整发髻，只一支小金属簪，不复制剧照珠串、蝴蝶饰物、红花、项链和金黄袍。
-
-
-    姿态与器物：正面站稳，胸肩朝前，头颈端正，中线竖直，双眼水平直视。双足自然分开、都承重着地。左前臂在腰腹前轻弯，左手放松且轮廓清楚；右手以自然几指轻搭左腕外侧，两手不交缠、不融合、不藏进袖口。本人左腰用短带系一只小素面香囊，贴身有重力，不大于掌心；香囊只是衣饰，不代表毒物。双手空着，没有宝剑、毒蛇或发光药物。
-
-
-    人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。
-
-
-    参考边界：第二参考严格仅作女性项目色卡：低饱和色彩、暖肤色与浅灰白底的协调关系。已实际view。不得提取王语嫣的脸型、眉眼鼻唇、发际、年龄、体型、身体比例、头倾、站姿、手势、宋代衣装或其他身份特征；人物写实完整要求来自文字，不能靠借用基线脸和人体来实现画风一致。原manifest实际approved状态不变，不转移给本角色。 第三参考仅背景：暖浅灰纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略王语嫣面容、年龄、体型、发髻、倾头转身、白青衣装和饰物；墨迹纸纹不得侵入苏荃的皮肤、衣料和器物。
-
-
-    背景与交付：第三图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认两张独立候选由执行者比较；所有输出仍为candidate，待用户最终审核，不自动approved。
-
-
-    事实边界：原著确岁和衣饰未逐字核实；二十余岁与具体配色是主稿美术设计。 共谋窗口不等于已脱离神龙教，不把终战后招募身份提前。 继承深紫长袄、墨绿长裙、小簪、素香囊和轻搭腕手势。 把原稿略侧身及抬眼改为端正正面。 用户指定本人剧版身份覆盖旧稿禁演员脸，但照片年龄、衣装和场景不是小说事实。
-
-
-    完整排除项：不要少女小圆脸、儿童比例、网红尖下巴或其他鹿鼎女性同脸。不要教主皇后冠冕、蝴蝶大头饰、红花、胸前珠串、低胸金袍、艳舞动作、孕态、抱婴儿或退隐妻母身份。不要宝剑、毒蛇、蛇杖、法器、毒雾，素香囊不能变成毒字容器。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
-
-
-    FINAL POSE CHECK: FRONT-FACING SU QUAN / 苏荃. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. Never inherit photo head lean, sideways gaze, tilted shoulders, turned torso, another person or cropped composition. Preserve only this role’s distinct facial relationships, naturally translated to the stated age; keep the entire age-appropriate body visible.'
-  negative: 不要少女小圆脸、儿童比例、网红尖下巴或其他鹿鼎女性同脸。不要教主皇后冠冕、蝴蝶大头饰、红花、胸前珠串、低胸金袍、艳舞动作、孕态、抱婴儿或退隐妻母身份。不要宝剑、毒蛇、蛇杖、法器、毒雾，素香囊不能变成毒字容器。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
-  references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/suquan_1998_fengxiaowen.jpg
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/luding/suquan_1998_fengxiaowen.jpg
-    use: 第一且唯一面部身份：1998 TVB陈小春版《鹿鼎记》冯晓文饰苏荃，已实际view、核实来源DOM和SHA。第一图唯一女性就是冯晓文饰苏荃，只取她本人的面貌结构。 适龄转译到二十余岁的成年女性，原著确岁待考。保留第一图冯晓文苏荃较舒展的椭圆轮廓：面中较长，颧部有真实宽度与体积，下颌圆顺收拢但不是尖锥，下巴长度适中。长眉有清楚而舒展的弧度，自然修长杏眼的外角微上扬，眉眼距离与眼间距沿用本人关系，不换成少女大圆眼。鼻梁直、鼻头有圆润厚度、鼻翼自然；上唇唇峰清楚，下唇比上唇饱满，嘴角只有很轻的从容笑意。她是有掌控力的成年人，颧颊和下颌不能缩为沐剑屏的小圆少女脸，鼻唇不能套用王语嫣尖小模板。中性光下自然暖肤色，不照搬电视浓唇色、头倾和侧向目光。 任何照片头倾、视线、他人、服装、场景和台标都不继承；必须正面头直、双眼水平。
-    sha256: 66929628ed00b07e822c0051dfb99af895472fe2c1de864d124caa71ffb97891
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/66929628ed00b07e822c0051dfb99af895472fe2c1de864d124caa71ffb97891.jpg
-    status_at_input: null
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 第二参考严格仅作女性项目色卡：低饱和色彩、暖肤色与浅灰白底的协调关系。已实际view。不得提取王语嫣的脸型、眉眼鼻唇、发际、年龄、体型、身体比例、头倾、站姿、手势、宋代衣装或其他身份特征；人物写实完整要求来自文字，不能靠借用基线脸和人体来实现画风一致。原manifest实际approved状态不变，不转移给本角色。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三参考仅背景：暖浅灰纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略王语嫣面容、年龄、体型、发髻、倾头转身、白青衣装和饰物；墨迹纸纹不得侵入苏荃的皮肤、衣料和器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T18:54:38.175158+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-4bc28c92-3c3c-490a-812f-422724760d2e.png
-  size: 1024x1536
-  mode: RGB
-  sha256: bae09e927253f64f31e400b131c89151642b2e5c19d6354806ae69c14e801772
-  status: candidate
-  qc_status: relaxed_self_check_passed
-  quality_standard: user_identity_pose_20261001
-  realism_revision: user_identity_pose_20261001
-  counts_as_complete: true
-  previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_suquan__ch08_youth_base/prompt-ccdb518a426120dbc082214960f590b483c8ef4aa4cf8d2f03866d318d359d7c.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_suquan__ch08_youth_base/manifest-e440ff657a0379ee10bf41840ca9213838df93271ec6efebbaea86e360856306.yaml
-    png: null
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_suquan__ch08_youth_base.requests.json
-  notes: 根实际view两张原生PNG和冯晓文1998苏荃参考，选candidate 2：本人较舒展长椭圆脸、颧颊体积、眉弧与鼻翼、自然饱满下唇和克制微笑可辨，明显不同于双儿和阿珂的少女/青年脸，符合神龙岛尚未倒戈的成年苏荃。两张均近正面、头颈基本端正、眼线近水平；2的衣襟更规整、绿色小香囊和双手轻搭腕关系更清楚，1的裙摆和刺绣更繁密，因此未选1。深紫长袄配墨绿长裙，空手无武器毒蛇，身体与衣料连续完整，无碎墨侵蚀或重大手部结构错误。2有自然微小头部不对称而非明显歪肩，按放宽微几何记录；耳坠与绣边比极简稿多、香囊有小绣纹，非原著确认装饰。前鞋完整可见、后鞋部分被裙遮挡，后鞋完整细节未验证，不伪称全部无遮挡。实际1024x1536 RGB不透明PNG，原始字节保存；默认2候选选1，无机械追加，仍candidate待用户审核，非2048x3072 RGBA母版或approved。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 - id: por_npc_guierniang__ch08_elder_base
   file: por_npc_guierniang__ch08_elder_base.png
   category: character/female
@@ -668,3 +590,50 @@
   sha256: b2f1d4169c8ffe889271253cd397eab5368d0c7c1e515eec88c5eac60032374c
   status: candidate
   notes: 立绘重审重出（AR-30）；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）（照片感明显）；造型与年龄本身可用，保留灰蓝袄、褐比甲、佩剑与药囊，只把脸换成文字设计的独立面容。
+- id: por_npc_suquan__ch08_youth_base
+  file: por_npc_suquan__ch08_youth_base.png
+  category: character/female
+  style: default
+  subject: 苏荃（ch08_luding）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：苏荃，《鹿鼎记》中神龙教教主洪安通的夫人，已有反制之心但尚未脱离神龙教的时期。
+
+    经典形象：要一眼认出是教主夫人苏荃——高髻金簪、深紫袄墨绿裙，成熟艳丽、精明从容，有掌控全局的气场；是最有风韵的美人。
+
+    年龄与体态：约二十七八岁的成熟女子，身材高挑匀称，肩背舒展，衣着端庄。
+
+    面容：偏长的鹅蛋脸，颧部饱满有体积，下颌圆顺收拢；眉毛长而弯、眉尾舒展；眼睛修长、外眼角微微上扬，眼神妩媚而精明，带着从容的掌控感；鼻梁挺直、鼻头圆润；上唇唇峰清楚、下唇丰润，嘴角一抹若有若无的笑；肌肤白皙，有真实纹理。成熟、艳丽、聪明，不是少女。
+
+    发式：黑发梳成高而端庄的发髻，插一支金簪和少量珠饰。
+
+    服饰：深紫色交领长袄（右衽，领口与袖缘有暗金色细纹刺绣）、墨绿长裙、平底绣鞋。
+
+    道具与姿态：左腰用短带系一只小素面香囊；双手轻叠在腹前；正面站稳，目光从容。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要九十年代港剧浓妆；不要照片感；不要少女脸。清初汉族女子仍穿明式袄裙：汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:24:35-0700
+  source_path: .agents/coord/gemini_originals/por_npc_suquan__ch08_youth_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: b293f4c04808ff47a0eee59c398f3e31dc5b6f3c131189ebf55fbd4e7558051e
+  status: candidate
+  notes: 立绘重审重出（AR-30）；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）（九十年代港剧妆面）；造型与年龄本身可用，保留深紫袄、墨绿裙与香囊，只把脸换成文字设计的独立面容。
