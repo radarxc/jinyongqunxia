@@ -1,4 +1,4 @@
-/* global window, document, setTimeout, localStorage, MouseEvent, Blob, URL */
+/* global window, document, setTimeout, localStorage, MouseEvent, Blob, URL, createImageBitmap */
 // 精简版驱动（批量循环用）。用法：一次性 localStorage.setItem('claudeG', <本文件内容>)、localStorage.setItem('claudeGemPrompts', <{id: 提示词} JSON>)；
 // 之后每张图：整页打开 https://gemini.google.com/images → eval(localStorage.getItem('claudeG')); await __g.submit(JSON.parse(localStorage.getItem('claudeGemPrompts'))[id])
 // → await __g.waitGen()（返回生成图在页面上的 CSS 坐标，下载必须用真实鼠标：先 hover 图片中心，再点右上角下载按钮，否则会被 Chrome 的多文件下载保护拦截）。
@@ -36,13 +36,14 @@ window.__g = {
              center: [Math.round(r.left + r.width / 2), Math.round(r.top + r.height / 2)], topRight: [Math.round(r.right), Math.round(r.top)] };
   },
   // 2026-10-01 新版前端点「Download full size image」后只取回原图、不再交给 Chrome 下载：
-  // 截获它取原图的请求（=s0-d / rd-gg），由脚本用 <a download="gemini__<id>.jpeg"> 自己存盘（文件名即物品 ID，入库不会错配）。
+  // 截获它取原图的请求（=s0-d），由脚本用 <a download="gemini__<id>.jpeg"> 自己存盘（文件名即物品 ID，入库不会错配）。
+  // 只认 =s0-d：预览图（rd-gg-dl …=s1024-rj）加载失败重试时也会走 fetch，曾被误存成 1024 的"原图"；存盘前再核一次宽度。
   patchFetch() {
     if (window.__fetchPatched) return;
     const of = window.fetch;
     window.fetch = async function (...args) {
       const res = await of.apply(this, args);
-      try { const u = (args[0] && args[0].url) || String(args[0]); if (/=s0-d|rd-gg/.test(u)) { res.clone().blob().then((b) => { if (b.size > 100000) { window.__fullBlob = b; } }); } } catch { /* ignore */ }
+      try { const u = (args[0] && args[0].url) || String(args[0]); if (/=s0-d/.test(u)) { res.clone().blob().then((b) => { if (b.size > 100000) { window.__fullBlob = b; } }); } } catch { /* ignore */ }
       return res;
     };
     window.__fetchPatched = true;
@@ -53,12 +54,19 @@ window.__g = {
       || [...document.querySelectorAll('button[aria-label="Download full size image"]')].pop();
     if (!b) return { ok: false, id, why: 'no download button' };
     b.click();
-    const blob = await this.waitFor(() => window.__fullBlob, ms, 300);
-    if (!blob) return { ok: false, id, why: 'full-size not captured' };
+    const t0 = Date.now(); let blob = null, w = 0, h = 0;
+    while (Date.now() - t0 < ms) {
+      blob = await this.waitFor(() => window.__fullBlob, ms - (Date.now() - t0), 300);
+      if (!blob) break;
+      try { const bm = await createImageBitmap(blob); w = bm.width; h = bm.height; bm.close(); } catch { w = 0; }
+      if (w >= 1800) break;
+      window.__fullBlob = null; blob = null;  // 不到原图尺寸（预览图），接着等
+    }
+    if (!blob) return { ok: false, id, why: 'full-size not captured', w };
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([blob], { type: 'image/jpeg' })); a.download = `gemini__${id}.jpeg`;
     document.body.appendChild(a); a.click(); a.remove();
     await this.sleep(1500);
-    return { ok: true, id, size: blob.size };
+    return { ok: true, id, size: blob.size, w, h };
   },
   // 队列：localStorage.claudeGemQueue = [id…]、claudeGemPrompts = {id: 提示词}；submitNext 取队首提交，finish 等图并下载，返回当前 id
   async submitNext() {
