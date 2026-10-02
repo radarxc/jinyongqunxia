@@ -1,9 +1,16 @@
-/* global window, document, setTimeout, localStorage, MouseEvent, Blob, URL, createImageBitmap */
+/* global window, document, setTimeout, localStorage, sessionStorage, MouseEvent, Blob, URL, createImageBitmap */
 // 精简版驱动（批量循环用）。用法：一次性 localStorage.setItem('claudeG', <本文件内容>)、localStorage.setItem('claudeGemPrompts', <{id: 提示词} JSON>)；
 // 之后每张图：整页打开 https://gemini.google.com/images → eval(localStorage.getItem('claudeG')); await __g.submit(JSON.parse(localStorage.getItem('claudeGemPrompts'))[id])
 // → await __g.waitGen()（返回生成图在页面上的 CSS 坐标，下载必须用真实鼠标：先 hover 图片中心，再点右上角下载按钮，否则会被 Chrome 的多文件下载保护拦截）。
 // 2026-10-01 实测：Gemini Apps Activity 关闭时发送后不一定跳到 /app/<会话>，所以以页面出现 model-response 为准。
 window.__g = {
+  // 分道：同时开两个标签页（各在一个可见窗口里）时，每个标签页在 sessionStorage.claudeLane 写自己的道名（A / B），
+  // 队列与当前 ID 用带道名后缀的键（claudeGemQueueA、claudeGemCurrentA…），提示词表共用。不设道名时沿用旧键。
+  lane() { try { return sessionStorage.getItem('claudeLane') || ''; } catch { return ''; } },
+  qk() { return 'claudeGemQueue' + this.lane(); },
+  ck() { return 'claudeGemCurrent' + this.lane(); },
+  head() { return JSON.parse(localStorage.getItem(this.qk()) || '[]')[0]; },
+  cur() { return localStorage.getItem(this.ck()); },
   sleep: (ms) => new Promise((r) => setTimeout(r, ms)),
   async waitFor(fn, ms = 15000, step = 200) { const t = Date.now(); while (Date.now() - t < ms) { const v = fn(); if (v) return v; await this.sleep(step); } return null; },
   vis: (e) => !!e && e.getClientRects().length > 0,
@@ -70,19 +77,19 @@ window.__g = {
   },
   // 队列：localStorage.claudeGemQueue = [id…]、claudeGemPrompts = {id: 提示词}；submitNext 取队首提交，finish 等图并下载，返回当前 id
   async submitNext() {
-    const q = JSON.parse(localStorage.getItem('claudeGemQueue') || '[]');
+    const q = JSON.parse(localStorage.getItem(this.qk()) || '[]');
     const prompts = JSON.parse(localStorage.getItem('claudeGemPrompts') || '{}');
     if (!q.length) return { ok: false, done: true };
     const id = q[0];
     this.patchFetch();
     const r = await this.submit(prompts[id]);
-    if (r.ok) { localStorage.setItem('claudeGemCurrent', id); localStorage.setItem('claudeGemQueue', JSON.stringify(q.slice(1))); }
+    if (r.ok) { localStorage.setItem(this.ck(), id); localStorage.setItem(this.qk(), JSON.stringify(q.slice(1))); }
     return { ...r, id, left: q.length - (r.ok ? 1 : 0) };
   },
   // 2026-10-01：JS 点发送约两成不生效；改为 prepareNext 填好提示词并聚焦输入框，由 computer 工具按真实回车发送，再 markSent 确认并出队
   async prepareNext(template = 'Oil painting') {
     this.patchFetch();
-    const q = JSON.parse(localStorage.getItem('claudeGemQueue') || '[]');
+    const q = JSON.parse(localStorage.getItem(this.qk()) || '[]');
     const prompts = JSON.parse(localStorage.getItem('claudeGemPrompts') || '{}');
     if (!q.length) return { ok: false, done: true };
     const id = q[0], P = prompts[id];
@@ -98,13 +105,13 @@ window.__g = {
   async markSent(id, ms = 20000) {
     const sent = await this.waitFor(() => document.querySelector('user-query, model-response') || (document.querySelector('rich-textarea .ql-editor')?.innerText || '').trim().length < 10, ms);
     if (!sent) return { ok: false, id, why: 'not sent' };
-    const q = JSON.parse(localStorage.getItem('claudeGemQueue') || '[]');
-    if (q[0] === id) { localStorage.setItem('claudeGemQueue', JSON.stringify(q.slice(1))); }
-    localStorage.setItem('claudeGemCurrent', id); window.__gT = Date.now();
+    const q = JSON.parse(localStorage.getItem(this.qk()) || '[]');
+    if (q[0] === id) { localStorage.setItem(this.qk(), JSON.stringify(q.slice(1))); }
+    localStorage.setItem(this.ck(), id); window.__gT = Date.now();
     return { ok: true, id, left: q.length - 1 };
   },
   async finish(ms = 36000) {
-    const id = localStorage.getItem('claudeGemCurrent');
+    const id = localStorage.getItem(this.ck());
     const w = await this.waitGen(ms);
     if (!w.ok) {
       const limit = /limit|quota|try again later|上限|稍后再试|can't create|can.t generate/i.test(w.txt || '');
