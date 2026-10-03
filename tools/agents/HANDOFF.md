@@ -974,3 +974,8 @@
     - 已报协调者。ENG-19b 合入后立即量 entry；若逼近 170，就登记拆分任务，预算不放宽。
     - 协调者 05:16 已停掉我误起的 TOOL-catalog-9col 重复驱动 34306 / 34321，它自己的驱动 27447 和执行器 29055 不受影响。
 
+  - **10-03 05:13–05:22 协调者 / 开发监督**：
+    - 集成分支 ENG-17 合入后 prod_check 全绿（开发监督 05:15，先在 57855aa0 重建 dist）：127 文件 915 用例；entry 160.17 / 170（余量 9.8 KiB）、render 160.53 / 180、webgl 320.70 / 350；日志 `_handoff/prod_check_post-eng17_0513.log`。ENG-18b 合入后那次也全绿（126 / 895，entry 157.74）。
+    - **DES-sync-keyscenes-ar36 合入**（9b43b497，05:19，r1 PASS，des37 队列结束）：key-scenes.md 改为候选清单 + 入库数以 manifest 为准 + candidate 参考；各书条目按两份 hero 报告修正；story/07 §2.2、story/09 制衣方向、npcs-ch09 铃剑双侠改好；顺治 / 行痴补登记为 `npc_shunzhi`。报告 §6 余项：`story/08-luding.md`（约 402、794 行）与 `chapters/08-luding.md`（约 186 行）要把「顺治 / 行痴 ID 待登记」改成引用 `npc_shunzhi`——留给下一个小同步任务。§4 默认：插图保持 candidate、（待考）保留、3:2 原图另产 16:9 裁切、双儿待作者。
+    - 已告诉追踪者：polish-ch09 的名录前提满足，排在 ruins 之后，条件满足直接起。
+    - ENG-19c 第 1 次运行 31 分钟结束，校验通过（5 个文件），审核中。负载回落到 7.5，磁盘 6 GiB。
