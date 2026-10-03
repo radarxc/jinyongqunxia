@@ -1224,3 +1224,15 @@
     - **DES-ruins-ids 合入**（6d3121d7，07:25，r1 PASS）：新增 6 个 `sc_*`（达摩洞、若耶溪墓藏、九老洞 ch04 `rg_bashu`、华山后洞 ch07、敦煌地宫唐 `sc_10_` / 清 `sc_12_` 两相位共用 `poi_hexilongyou_dunhuang_digong`）与 5 个 `poi_*`（WGS84 锚点）；§6 余项：design/20 的若耶溪 / 华山后洞引用、tech/04 `PoiDef` 按章节 / 时代选相位的结构、map yaml 写锚点——留给后续同步任务。登记 **ART-ruins-maps-2**（f052b904：这 6 张，写集 / 校验同第 1 批），追踪者按条件起。
     - **ENG-19b 合入**（8741f917，07:27，r1 PASS；M1 界面流程）。M1 路径 ENG 项已齐（25 / 17a / 19a / 17 / 19b），剩 CONTENT-ch00a / b / c 与 CONTENT-ch10；开发监督合入后量 entry（20a 后 166.34 / 170），ENG-entry-split 由其登记。
     - lore-1 第 7 次运行（亲和全量改 100）校验通过，开发监督第 3 次手动复审中。
+  - **10-03 07:32–07:36 开发监督**：ENG-19b（M1）合入，集成分支仍绿但 entry 只剩 0.93 KiB；ENG-entry-split 起跑。
+    - **ENG-19b** 合入，提交 8741f917，工作区已清。
+      - 合入后 `prod_check`（`_handoff/prod_check_post-eng19b_0728.log`，HEAD 8ba60121）全绿：133 个测试文件 / 948 条测试，`[dev-chunks] PASS assets=1495 manifest=59`。
+      - **entry 169.07 / 170：绿，但只剩 0.93 KiB。拆分前不合入任何首屏任务**（协调者 07:36）。render 160.53，webgl 329.60。
+      - M1 路径已合入：25 / 17a / 19a / 17 / 20a / 19b。剩 CONTENT-ch00a/b/c、ch10 和 ENG-20b，都暂停，等 entry-split。
+    - **ENG-entry-split**：07:29 起跑，驱动 75729，Sol max。代码池 4/4，它在排队等位。
+      - TOOL-ingest-cropframe 临时置 HOLD-RUNS 让位，已记入 `entry_holds.txt`；拆分起跑后解除。
+
+  - **10-03 07:28–07:36 协调者 / 开发监督 / 追踪者**：
+    - ENG-19b 合入后 prod_check 全绿（HEAD 8ba60121）：133 文件 948 用例；**entry 169.07 / 170（绿，只剩 0.93 KiB）**，render 160.53 / 180，webgl 329.60 / 350。拆分前不合任何首屏任务。
+    - **ENG-entry-split** 登记（开发监督 7f82fe44：core Worker 子系统按需 import()、主线程非首屏懒加载，目标 entry ≤ 155 KiB，不改预算与 check_size 口径；写集 core-worker / core-host / main / runtime/** / packages/core exports 与 entries/**）；07:29 起驱动 75729（Sol max），排队等代码池位。会往首屏加东西的 15 个任务置 HOLD-RUNS（16c、20b、26、23a、16e、18c、CONTENT-ch00a/b/c、ch10、27a/b/c、28a/b；清单 `scratchpad/entry_holds.txt`），拆分合入转绿后开发监督解除；TOOL-ingest-cropframe 临时 HOLD 免抢位。协调者裁定不为腾位暂停 ENG-12e。
+    - **ART-ruins-maps-2 07:28 起跑**（追踪者，驱动 69438，codex xhigh，基点 28c5cd22）。gifts-catalog 第 1 次仍在跑。
