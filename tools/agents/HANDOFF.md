@@ -1704,4 +1704,11 @@
       - 已请协调者停 59669 / 59678；停后我挪基点到 HEAD，按原参数重起。
       - 若停之前执行器已经起跑，改为登记小任务 CONTENT-ch10-bindings，等 gates-data 合入后马上起。
       - 协调者若不同意由 gates-data 照抄，就退回 5b18e19e。
+  - **10-03 14:42 开发监督**：协调者 14:43 同意由 gates-data 照抄 ch10 的三项 binding，已停旧驱动 59669 / 59678，状态置 HOLD-RUNS。
+    - rebase_task 拒绝处理：基点之上 0 个提交，工作区也没有改动。
+      - 改为 `git worktree remove` 删掉这个干净工作区（不带 --force）。
+      - 再用 launch_std.sh 按原参数重起，驱动 70876。
+      - step start 从 HEAD 新建工作区，基点 7038f0a6；首次运行用干净提示词，不带续作 / 重试说明。
+    - 新 1.prompt.md 含「集成分支现状」一节，写集含 `content/chapters/ch10_baima/bindings/**`。
+    - 现在在等代码池空位。
 
