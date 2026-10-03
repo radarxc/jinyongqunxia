@@ -1,9 +1,10 @@
 <script setup lang="ts">
-/* global window, KeyboardEvent, Element */
+/* global window, KeyboardEvent, Element, MediaQueryList, MediaQueryListEvent, matchMedia */
 import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { gradeLabel, menuLabels, t, uiBus, useUiStore, type MenuPage } from '@tianshu/ui/runtime';
 import TxHud from '@tianshu/ui/components/TxHud.vue';
+import TxRotateHint from '@tianshu/ui/components/TxRotateHint.vue';
 import type { GameController } from './game-controller';
 import ScenePlaceholder from './scenes/ScenePlaceholder.vue';
 const { controller } = defineProps<{ controller: GameController }>();
@@ -16,9 +17,12 @@ const SavePage = defineAsyncComponent(() => import('./pages/SavePage.vue'));
 const BattlePage = defineAsyncComponent(() => import('./battle/BattlePage.vue'));
 const WorldMapPage = defineAsyncComponent(() => import('./pages/WorldMapPage.vue'));
 const TownPage = defineAsyncComponent(() => import('./pages/TownPage.vue'));
+const SettingsPage = defineAsyncComponent(() => import('./pages/SettingsPage.vue'));
 const page = ref<MenuPage>('journey');
 const scene = ref<'world' | 'town' | 'ruin' | 'battle'>('world');
 const sourceScene = ref<'world' | 'town'>('world');
+const portrait = ref(false); const rotateDismissed = ref(false);
+let orientationQuery: MediaQueryList | undefined;
 watch(scene, (next, previous) => {
   if (next === 'battle' && previous !== 'battle') {
     sourceScene.value = previous === 'town' ? 'town' : 'world'; void controller.ensureBattle();
@@ -53,13 +57,24 @@ function keyboard(event: KeyboardEvent): void {
   else if (event.key === 'Escape') { page.value = 'journey'; }
   else if (['1', '2', '3'].includes(event.key)) useQuick(Number(event.key) - 1);
 }
-onMounted(() => window.addEventListener('keydown', keyboard));
+onMounted(() => {
+  window.addEventListener('keydown', keyboard);
+  if (typeof matchMedia === 'function') {
+    orientationQuery = matchMedia('(orientation: portrait)'); portrait.value = orientationQuery.matches;
+    orientationQuery.addEventListener('change', orientationChanged);
+  }
+});
+function orientationChanged(event: MediaQueryListEvent): void {
+  portrait.value = event.matches; if (!event.matches) rotateDismissed.value = false;
+}
 onBeforeUnmount(() => { controller.setSceneRunsWorldTicks(false);
-  window.removeEventListener('keydown', keyboard); });
+  window.removeEventListener('keydown', keyboard);
+  orientationQuery?.removeEventListener('change', orientationChanged); });
 </script>
 
 <template>
-  <main class="game-shell" :class="{ 'large-text': settings.largeText, 'reduced-motion': settings.reducedMotion }">
+  <main class="game-shell" :class="[`text-scale-${settings.textScale}`, { 'reduced-motion': settings.reducedMotion }]">
+    <TxRotateHint :visible="portrait && !rotateDismissed" @dismiss="rotateDismissed = true" />
     <TxHud :hud="projection.hud" />
     <div class="shell-body">
       <nav class="main-menu" :aria-label="t('mainMenu')">
@@ -85,13 +100,13 @@ onBeforeUnmount(() => { controller.setSceneRunsWorldTicks(false);
         <SavePage v-else-if="page === 'saves'" :controller="controller" />
         <section v-else-if="page === 'martial'" class="paper-panel reading-panel"><h3>{{ t('skills') }}</h3><article v-for="skill in skills" :key="skill.id"><h3>{{ skill.name }} · {{ gradeLabel(skill.grade) }} · {{ skill.layer }} {{ t('layer') }}</h3><p>{{ skill.description }}</p></article><p v-if="!skills.length">{{ t('noSkills') }}</p></section>
         <section v-else-if="page === 'quests'" class="paper-panel reading-panel"><h3>{{ t('quests') }}</h3><p v-for="quest in projection.quests" :key="quest.id">{{ quest.name }} · {{ quest.status }}</p><p v-if="!projection.quests.length">{{ t('noQuests') }}</p></section>
-        <section v-else class="paper-panel reading-panel"><p>{{ t('settingsHint') }}</p><label class="setting-row"><input type="checkbox" :checked="settings.largeText" @change="controller.setSetting('largeText', ($event.target as HTMLInputElement).checked)">{{ t('largeText') }}</label><label class="setting-row"><input type="checkbox" :checked="settings.reducedMotion" @change="controller.setSetting('reducedMotion', ($event.target as HTMLInputElement).checked)">{{ t('reducedMotion') }}</label></section>
+        <SettingsPage v-else :settings="settings" @change="controller.setSetting" @back="page = 'journey'" />
       </section>
     </div>
     <footer class="bottom-bar paper-panel">
       <nav class="quickbar" :aria-label="t('quickbar')"><button v-for="(item, index) in shortcuts" :key="item.id" type="button" :disabled="busy" @click="useQuick(index)"><kbd>{{ index + 1 }}</kbd> {{ item.name }} <small>×{{ item.count }}</small></button></nav>
       <output role="status" aria-live="polite">{{ notice || saveStatus }}</output>
-      <button type="button" :disabled="busy || !storageAvailable || battleActive" @click="controller.saveAction('save', 'save_quick')">{{ t('quickSave') }}</button>
+      <button type="button" :disabled="busy || !storageAvailable || !controller.canSave()" @click="controller.saveAction('save', 'save_quick')">{{ t('quickSave') }}</button>
     </footer>
   </main>
 </template>

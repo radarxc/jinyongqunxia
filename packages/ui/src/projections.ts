@@ -108,6 +108,41 @@ export interface DialogueView {
   readonly choices: readonly DialogueChoiceView[];
   readonly history: readonly { readonly speakerId: string; readonly textKey: string }[];
 }
+export interface DialoguePanelChoiceView {
+  readonly id: string;
+  readonly label: string;
+  readonly disabledReason?: string;
+}
+export interface DialoguePanelView {
+  readonly speaker: string;
+  readonly text: string;
+  readonly choices: readonly DialoguePanelChoiceView[];
+  readonly history: readonly { readonly speaker: string; readonly text: string }[];
+  readonly canContinue: boolean;
+}
+export interface QuestLogEntryView {
+  readonly id: string;
+  readonly name: string;
+  readonly category: string;
+  readonly status: string;
+  readonly summary: string;
+  readonly tracked: boolean;
+}
+export interface QuestTrackerView {
+  readonly questId: string;
+  readonly name: string;
+  readonly objective: string;
+  readonly current?: number;
+  readonly target?: number;
+}
+export interface FlowSettingsView {
+  readonly textScale: 100 | 125 | 150;
+  readonly reducedMotion: boolean;
+  readonly subtitles: boolean;
+  readonly volume: Readonly<Record<'master' | 'music' | 'effects' | 'voice', number>>;
+  readonly quality: 'auto' | 'low' | 'mid' | 'high' | 'ultra';
+  readonly difficulty: 'diff_jianghu' | 'diff_xiake' | 'diff_zongshi';
+}
 export interface UiProjection {
   readonly title: string;
   readonly coreVersion: string;

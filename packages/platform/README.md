@@ -26,6 +26,8 @@
 所有方法均返回 `Promise`。失败统一抛 `StorageError`；除通用错误外，TSAV 细分为截断、魔数、版本/flags、头/尺寸、body hash、解压、payload hash、JSON，迁移细分为过新、规则协议不兼容与缺链。`QuotaExceededError` 映射为 `QUOTA_EXCEEDED`，不得自动删存档。
 `SAVE_TOO_NEW`、`SAVE_PROTOCOL_UNSUPPORTED`、`MISSING_MIGRATION`、`UNSUPPORTED_VERSION` 与存储不可用都不是“该代损坏”，读取时立即上抛，不尝试三代回退；只有校验或内容损坏才继续检查旧代。
 
+`createWorkerProjectionHost()` 为每次队首调用设置默认 10 秒看门狗。超时、Worker `error` 或 `messageerror` 都先广播 `CORE_WORKER_FAILED`，再终止 Worker 并以同一故障拒绝队首和后续 FIFO；调用方必须重建宿主，不得继续使用已故障实例。
+
 `autosave()` 默认 30 秒窗口，与 `tech/01` §6.9 的“同类触发 30 s 内去抖”一致；按 `save_auto_1` → `2` → `3` 轮换。`force: true` 用于书眠、页面隐藏等必须尝试落盘的安全点。节流发生时返回 `{ status: 'throttled' }`，不是错误。
 
 ## 数据库、对象仓库与索引
@@ -65,7 +67,7 @@
 - IndexedDB 没有跨浏览器固定容量数字：浏览器按来源、磁盘与持久化状态管理配额和驱逐。实现只承诺把配额异常归一为 `QUOTA_EXCEEDED`；实际容量与 `navigator.storage.persist()` 结果仍**（待实测）**。
 - 1 MiB 读档预算测试包含 IndexedDB 读取、ArrayBuffer → Uint8Array 克隆及 SHA-256，fake-indexeddb 环境门禁 `< 50 ms`；真实 iOS / Android 仍按 tech/03 做真机测试。
 - 调用方应在保存前取得 core 的规范序列化字节与 hash。平台层只验证并持久化，不重新定义 core 的 JSON 规范、玩法槽可读资格或迁移后的 GameState 校验。
-- 示例页在 `apps/game/src/storage-demo.ts`，可在浏览器中写入和读回 `save_quick` 假快照。
+- 存档读写由 `apps/game/src/storage/save-service.ts` 集成；旧独立示例 `apps/game/src/storage-demo.ts` 已删除，流程由应用测试与存档测试覆盖。
 
 ## 参考资料
 
@@ -74,6 +76,7 @@
 - [PKWARE ZIP APPNOTE](https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT)、[RFC 1952 GZIP](https://www.ietf.org/rfc/rfc1952.html)（访问日期：2026-10-01）。
 - [MDN IndexedDB API](https://developer.mozilla.org/docs/Web/API/IndexedDB_API)、[Storage quotas and eviction criteria](https://developer.mozilla.org/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria)（访问日期：2026-10-01）。
 - [fake-indexeddb 6.2.5](https://github.com/dumbmatter/fakeIndexedDB)（访问日期：2026-10-01）。
+- [MDN Worker](https://developer.mozilla.org/en-US/docs/Web/API/Worker)、[Worker messageerror 事件](https://developer.mozilla.org/en-US/docs/Web/API/Worker/messageerror_event)：Worker 可被显式终止，反序列化失败以 `messageerror` 通知；访问日期：2026-10-03。
 - Dexie 与 fake-indexeddb 均为 Apache-2.0、无运行时 API 价格或调用额度；浏览器存储容量由上述 Storage API 配额策略决定。
 
 ## 本文新增术语/约定
