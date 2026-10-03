@@ -84,6 +84,7 @@
 | AR-38 | 人物动作只做 2D 切件，不做 3D（高斯泼溅 / 图生 3D 不走）；切件瑕疵要修到位；Tripo 模型只作 ENG-12e 试点对比。 |
 | AR-39 | 素材优化与生成后都要落库：图 + manifest 按路径提交，运行时派生物（portrait / INDEX / 总览页）每批重建提交；草稿目录里的不算完成。 |
 | AR-40 | 各朝代奢侈品 / 礼品（瓷玉炉琴帖笔等）用于送礼：DES 规格 → codex 考据写名录与提示词 → Gemini 出图；书法拜帖有求字支线。 |
+| AR-41 | **Tripo API 生成主要角色 3D 模型与骨架，并优化男女主角**（codex gpt-6-astra xhigh；key 在主检出 `.env`，不落任何文件；先 ART-3d-tripo-avatars 再 ART-3d-tripo-cast，产物进 `assets/default/model3d/`；点数上限 600 / 2500） |
 | AR-36 | **素材线第二波**：两个 codex（ultra）做主角复合基线精修 + 分时期立绘 + 关键剧情插图配古风题字；两个 codex（xhigh）逐书补齐主要人物；一个 codex 做全部城市 × 年代布局与总装城图；一个 codex 做遗迹 / 地宫地图；一个 Opus subagent 追踪。**物品说明与属性投影**：先定字段规格再分 8 批逐件写短文填值。 |
 | | 追问后定：三视图用 codex；UAL Pro 先不买。 |
 
@@ -185,6 +186,15 @@
 
 做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接 `_handoff/art_wave2_tracker_brief.md`；审核要点 `.agents/coord/PROD/review_checks_hero.md`（第 1 条已容许白马 / 侠客 / 鸳鸯不用剧照）/ `review_checks_ruins.md` / `review_checks_city.md`。审核模型写 `--review-model gpt-5.6-sol`（Codex 不认大写）。
 
+### 3.6 3D 角色（AR-41，10-03 09:06 登记）
+
+| 任务 | 内容 | 执行器 | 状态 |
+|---|---|---|---|
+| ART-3d-tripo-avatars | 男女主角 `npc_zhujue__ch00_m / _f`：多视图 / 立绘 → Tripo 高质量模型 + 骨架 + 3 个预设动作（修上一版左侧头发肉色）；写 `tools/model3d/tripo_cli.py` | codex gpt-6-astra xhigh | 追踪者起跑中（点数上限 600） |
+| ART-3d-tripo-cast | 十四书主角群约 31 位（主角精修新基线立绘）image_to_model + 骨架 | codex xhigh | 等 avatars 合入（点数上限 2500 或余额剩 25% 即停） |
+
+密钥：只在主检出 `.env`（`tripo_key=…`），执行器运行时读成环境变量，不得进日志 / 报告 / manifest / 提交（`.env` 已进 `.gitignore`）。产物：`assets/default/model3d/<npc_id>/`（`model_rig.glb`、`anim_*.glb`、`preview.png`、manifest）；审核要点 `review_checks_model3d.md`。女主角没有三视图（可登记 ART-rig-sheet-f）。
+
 ---
 
 ## 4. 设计
@@ -285,6 +295,7 @@
   ```
 - **hero-a 验收**：四张联系表已发（03:15）；不满意的指出人物 / 时期 / 插图名，登记返工。
 - **城市布局图的范围（AR-36 第 5 项）**：CITY-layouts-all 第 4 次运行后统计全量是 189 城、合并年代带后 1172 个「城 × 年代」，逐城联网查史料再出规格 / 平面图 / layout / 总装图，43 分钟只做了 4 座，全量要几百小时。已完成的 14 个完整候选全是白马（ch10）的城，这次合入先落库。**默认缩减方案**（作者不答就按这个登记 CITY-layouts-2）：① ch10 全部 + 每章 importance 最高的 3–5 座逐城考据；② 其余城按年代套件出通用格局，不逐城查史料；③ 每个年代带只渲染一份，其他章节只复制 layout。要全量就说一声，但得接受周期。
+- **Tripo 点数预算**（AR-41）：默认主角优化 ≤ 600 点、主角群 ≤ 2500 点或余额剩 25% 即停并报告；要全做 / 加做更多角色就说一声。
 - **双儿要不要精修**（hero-b 报告）：默认不动，作者说要再登记。
 - **110 个新登记人物要不要都出立绘**（ART-cast-fill-c / d，约 110 次 codex 出图）：默认等 hero-b 与 polish 之后再排，作者说不出就不出。
 

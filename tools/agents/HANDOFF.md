@@ -1343,3 +1343,4 @@
     - **tests-discover**：同样用 `append_on_prompt.py` 盯第 4 次运行，追加 `devsup_note_r1.md`。若它直接转 HOLD-REVIEWS，则在复审时用 `--rework-extra` 带上。
     - **town-gaps-1**：说明修订后返修通过校验，09:05 手动第 2 次 `--from validate`，驱动 76627，`--rework-extra devsup_note_contract.md`。
 
+  - **10-03 09:05–09:08 作者 AR-41 → 登记 3D 角色线**：作者原话见 `author-requirements.md` AR-41（调用 codex exec gpt-6 xhigh 看 Tripo quick-start，key 在本地 `.env`，生成主要角色 3D 模型与骨架并优化男女主角）。协调者登记 **ART-3d-tripo-avatars**（男女主角：多视图 / 立绘 → 高质量模型 + 骨架 + 3 个预设动作，修头发肉色；写 `tools/model3d/tripo_cli.py`；上限 600 点）与 **ART-3d-tripo-cast**（31 位主角群 image_to_model + 骨架；上限 2500 点或余额剩 25%），审核清单 `review_checks_model3d.md`（第 1 条密钥不泄露），batch_run CHECKS 加 `ART-3d-`；`.env` 进 `.gitignore`（主检出 `.env` 一行 `tripo_key=`，不进 `_prod`）。追踪者按 codex 常规起 avatars（无需出图 runner）。
