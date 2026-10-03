@@ -706,3 +706,107 @@
   generation_job: por_npc_yuanziyi__ch13_youth_scene_assembly_yuanxing_reveal.retry3.r1
   quality_retries: 0
   history: []
+- id: por_npc_yuanyingu__ch13_youth_memory_base
+  file: por_npc_yuanyingu__ch13_youth_memory_base.png
+  category: character/female
+  style: default
+  subject: 袁银姑（ch13_feihu）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物与阶段】袁银姑，《飞狐外传》。身份：袁银姑，袁紫衣之母、凤天南罪行相关前史人物。画其生前正常站立的成年形象，不画死亡或受害场面。
+
+    【造型】约二十五岁成年女子，朴素修长；鹅蛋脸、细长平缓眉、眼尾略下垂，唇线柔和、鼻尖稍圆，平静含忧而不哭泣。乌发收于旧灰头巾下，素青右衽布衣、灰褐长裙、布鞋，腰系一个小素布包，双手自然放松。
+
+    【考据边界】脸部细节、制作年龄与衣饰配色是本项目原创扩展，不冒称原著逐字描述。衣襟右衽；小型饰物和卷册均无文字。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。画生前日常独立人物，不画受害、凌辱、死亡或悲剧现场，不画袁紫衣本人。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: '画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。画生前日常独立人物，不画受害、凌辱、死亡或悲剧现场，不画袁紫衣本人。
+
+    '
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+  tool: codex exec · image_gen（AR-47；ref=text；两张同性别基线）
+  model: gpt-6-astra
+  created: '2026-10-03T15:37:38.516491-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w23/out/por_npc_yuanyingu__ch13_youth_memory_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 216961396b2df3029f9e8cc3098b4ed261c9f22410332abac1ee7acc6bcc81ff
+  status: candidate
+  notes: 'ART-cast-fill-d：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；本轮1张候选，选por_npc_yuanyingu__ch13_youth_memory_base.r1；未获作者批准。 QA: batch_04.jpg 联系表可辨结构通过；未发现必须重出的缺陷；细微指节不冒称像素级穷检。原始 PNG 保存在 source_path；本次未裁切。'
+  tier: A
+  effort: xhigh
+  mode: RGB
+  source_sha256: 216961396b2df3029f9e8cc3098b4ed261c9f22410332abac1ee7acc6bcc81ff
+- id: por_npc_luobing__ch13_prime_honghua_base
+  file: por_npc_luobing__ch13_prime_honghua_base.png
+  category: character/female
+  style: default
+  subject: 骆冰（ch13_feihu）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】第 1 张是本项目已入库的同一人物前一书界立绘，作为跨书身份锚点：保持脸型、眉眼、鼻口的主要骨相，让人认出是同一人；年龄、神态、肤色、发式、衣装和道具按下面本书阶段的文字来画，不要照搬第 1 张的衣服、器物、站姿和表情，也不要照搬它的构图。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物与阶段】骆冰，《飞狐外传》。身份：骆冰，红花会十一当家、文泰来之妻。画其生前正常站立的成年形象，不画死亡或受害场面。
+
+    【造型】与第一张书剑骆冰是同一人，年长约十二岁（取本作 1767 与 1755 形象时点之差，原创制作默认值），约四十岁成年女子；保持本人脸型、英挺长眉、明亮双目和鼻唇距离，增加淡眼角纹，颊部略成熟，不能重设计成另一张脸。乌发高束而整齐，暗红右衽劲装、深灰裙裤、软靴，成对短刀各自完整入鞘挂在两侧腰间，另有小飞刀囊，双手自然下垂。
+
+    【考据边界】脸部细节、制作年龄与衣饰配色是本项目原创扩展，不冒称原著逐字描述。衣襟右衽；小型饰物和卷册均无文字。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。只出现一个人；两柄刀都在鞘内，不能凭空多出刀刃；具体飞狐出场待考，不画成二十岁少女。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: '画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。只出现一个人；两柄刀都在鞘内，不能凭空多出刀刃；具体飞狐出场待考，不画成二十岁少女。
+
+    '
+  references:
+  - original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/character/female/ch12/por_npc_luobing__ch12_youth_recovered_base.png
+    path: assets/default/character/female/ch12/por_npc_luobing__ch12_youth_recovered_base.png
+    sha256: 2c208562f3a25511d3d1a3b56d9cd8c09ed18367a63c043e68846bea60703012
+    use: 第一输入：同一人物身份锚点；仅延续骨相，年龄与衣装按目标阶段；候选状态不冒称批准
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w23/staging/por_npc_luobing__ch12_youth_recovered_base.jpg
+    uploaded_sha256: f7c18dd7dcdc6a205a772027de7be46877636cb7030927fb66353cb41f7e8084
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+  tool: codex exec · image_gen（AR-47；同人锚点 + 两张同性别基线）
+  model: gpt-6-astra
+  created: '2026-10-03T15:42:57.834634-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w23/out/por_npc_luobing__ch13_prime_honghua_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: dc2e37d27d8db7e8ba9f4161b509bdfb83ff6af0c1fe3228178d85621b0c3dfb
+  status: candidate
+  notes: 'ART-cast-fill-d：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；本轮1张候选，选por_npc_luobing__ch13_prime_honghua_base.r1；未获作者批准。 QA: batch_05.jpg 联系表可辨结构通过；未发现必须重出的缺陷；细微指节不冒称像素级穷检。原始 PNG 保存在 source_path；本次未裁切。'
+  tier: A
+  effort: xhigh
+  mode: RGB
+  source_sha256: dc2e37d27d8db7e8ba9f4161b509bdfb83ff6af0c1fe3228178d85621b0c3dfb
