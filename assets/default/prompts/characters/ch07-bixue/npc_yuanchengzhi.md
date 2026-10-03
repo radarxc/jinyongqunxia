@@ -9,16 +9,20 @@ tier: S
 output: assets/default/character/male/ch07/por_npc_yuanchengzhi__ch07_youth_jinshe_base.png
 manifest: assets/default/character/male/ch07/manifest.yaml
 references:
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    use: 本工作区 manifest 为 candidate，尚未获批；仅参考纸底、光线、笔触与设色，不沿用脸、体型、服饰和道具
-status: new
-redo_reason: "碧血剑男主角缺基础立绘（只有五张场景图）；场景图是飘逸长发的偶像小生脸，不合“忠厚稳重”的原著气质，按文字新建。"
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yuanchengzhi_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "08b4f27cdbe6fe84dedea5b341b1324baf4836d1a42f2128cd5d9bb9e0480f64"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yuanchengzhi_still2.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "ade1f3c00a959e373da36e59243cc143dae3068a791747acf108fe4fbc226c20"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yuanchengzhi_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "10844ec70a080a83900547d3bb342a0cb6e287672f6b310a8099808cb8574fc1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+status: candidate
+redo_reason: "作者 10-02 晚：复合基线风格精修"
 codex_prompt_rev: 2026-10-02
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261002/bixue/yuanchengzhi_1985_huangrihua_sina3.jpg
-- .agents/coord/imagegen-reference/identity-20261002/bixue/yuanchengzhi_1985_huangrihua_sina1.jpg
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yuanchengzhi_still1.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yuanchengzhi_still2.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yuanchengzhi_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
 classic_ref:
   version: 1985 TVB《碧血剑》
   stills:
@@ -35,6 +39,7 @@ classic_ref:
     - 0
     - 700
     - 456
+composite_job: por_npc_yuanchengzhi__ch07_youth_jinshe_base.resume3
 ---
 
 <!-- full-coverage-import:current-policy:v1 -->
@@ -47,6 +52,21 @@ classic_ref:
 # 袁承志 · 《碧血剑》（ch07）
 
 ## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_yuanchengzhi__ch07_youth_jinshe_base.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【复合参考】第1至2张是该角色经典影视造型剧照：只借发型、服饰、配色、标志道具、气质和大致脸型，五官不要照搬演员本人，要往经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像这个演员。第3张是经典武侠游戏绘画参考：借其古典武侠插画的气质、线条与造型感，不保留像素块，不复刻头像角度。最后两张是项目画风基线，只取画风，不取人物五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+成年青年侠士，朴实诚恳、眼神坚定，有家国责任和克制的侠气；面部明朗厚实、筋骨匀称，理想化武侠游戏脸。青灰右衽侠士长衫、宽布带、束发与便靴；右手持金蛇剑，剑身曲折如蛇、剑尖分叉的标志轮廓清楚，金属光泽克制，不能画成普通直剑。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 > 2026-10-02 AR-32 重出（8 号出图员，codex exec · image_gen）：主要角色参考经典造型加项目基线生成。上传顺序：第 1–2 张为 1985 TVB《碧血剑》袁承志剧照（yuanchengzhi_1985_huangrihua_sina3.jpg 裁去水印；sina1.jpg 裁去旁人），最后两张为同性别画风基线（缩小版 JPEG）。参考图只借造型、气质与面部特征，画面按项目画风重绘、不复制照片或像素图。上一版保留在下一节作历史。
 

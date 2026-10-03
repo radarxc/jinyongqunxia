@@ -9,23 +9,21 @@ tier: S
 output: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
 manifest: assets/default/character/male/ch05/manifest.yaml
 references:
-- path: generated_images/exec-2f136cb9-cef9-44da-9280-1183a44871ff.png
-  use: 修正目标为本角色候选2原图，已实际查看。只修其轻歪头和眼线；保持既定人物体貌、衣装、剑葫芦和原画构图。不是approved。
-- path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_36-1.png
-  use: 第一且唯一面部身份参考：经典原版《金庸群侠传》令狐冲本人头像；已实际view原PNG及带姓名表，并核对source-audit-main30对应关系与SHA，原始字节与ZIP成员相同。只保持本人脸部比例、眉眼鼻唇和气质辨识关系，将低分辨率像素关系自然重建成精细写实人脸；不要像素放大、描边或照搬发式/服装。头像朝向不继承：新图正面，头部中线竖直、双眼水平，NO head tilt / NO Dutch angle。当前身份、年龄、伤残与器物必须服从本角色基础阶段。本头像有明显歪头与轻侧朝向，严禁继承其角度；保持五官辨识而自然转正。厚灰白宽额带与蓝色领口不直接复制，仍按华山青年角色稿穿灰蓝青常服、低调网巾发带。第二张虽也命名令狐冲，只作画风，不能覆盖第一张游戏本人脸。
-- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-  use: 第二参考仅项目男性低饱和色卡、柔和左上光与完整连贯的写实手绘品质；本会话已实际view并在写入前核对SHA未变。不得取这张旧基线的脸型、眉眼鼻唇、体型、站姿或倾头角度；发式、衣装和器物只由当前角色稿独立确定，不由本参考决定。即使文件名也是令狐冲，其旧写实脸也不能替代第一张游戏本人身份。基线candidate审批状态不改。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 第三参考仅背景：极淡水墨远山、薄雾、暖浅灰纸底与留白；本会话已实际view并在写入前核对SHA未变。忽略女性面孔、发型、体态、倾头、白青裙装及饰物；墨痕和纸纹不得进入人物、衣料与器物。
-status: redo
-redo_reason: "现图像“路人甲”，网巾头箍与林平之、田伯光同型，且与四张场景图不是同一张脸；按原著浪子剑客气质整体重画，作为全部场景的身份基准。"
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/linghuchong_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "aa15448343e3dc797c060e52cc5218b7feded2e177e8a179621b38dcc969ee8c"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/linghuchong_still2.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "70441273882c07c4b1b03af6e0fcbade4000f5ae46a070f366127bc74ebbe4e8"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/linghuchong_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "daa70caa7125430bccdc2efad45b77ccddc97bc11660158a4f36d0bf2ce279e8"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+status: candidate
+redo_reason: "作者 10-02 晚：复合基线风格精修"
 realism_revision: user_identity_pose_20261001
 codex_prompt_rev: 2026-10-02
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261002/xiaoao/linghuchong_1996_lvsongxian_sina1.jpg
-- .agents/coord/imagegen-reference/identity-20261002/xiaoao/linghuchong_1996_lvsongxian_sina3.jpg
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/linghuchong_still1.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/linghuchong_still2.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/linghuchong_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
 classic_ref:
   version: 1996 TVB《笑傲江湖》
   stills:
@@ -37,11 +35,27 @@ classic_ref:
     - 40
     - 560
     - 318
+composite_job: por_npc_linghuchong__ch05_youth_huashan_base.resume3
 ---
 
 # 令狐冲 · 人物写实修正
 
 ## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_linghuchong__ch05_youth_huashan_base.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【复合参考】第1至2张是该角色经典影视造型剧照：只借发型、服饰、配色、标志道具、气质和大致脸型，五官不要照搬演员本人，要往经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像这个演员。第3张是经典武侠游戏绘画参考：借其古典武侠插画的气质、线条与造型感，不保留像素块，不复刻头像角度。最后两张是项目画风基线，只取画风，不取人物五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+成年青年剑客，修长结实的体态，洒脱目光中有重情与不受拘束的侠气；略有胡茬、鼻梁挺而不尖，五官重新理想化为经典武侠游戏人物。素灰蓝华山弟子长袍、暖白右衽内领、旧布腰带；右手自然持一柄普通长剑，左腰必须佩酒葫芦，长剑与酒葫芦同时清晰。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 > 2026-10-02 AR-32 重出（8 号出图员，codex exec · image_gen）：主要角色参考经典造型加项目基线生成。上传顺序：第 1–2 张为 1996 TVB《笑傲江湖》令狐冲剧照（linghuchong_1996_lvsongxian_sina1.jpg；sina3.jpg 裁去台标字幕），最后两张为同性别画风基线（缩小版 JPEG）。参考图只借造型、气质与面部特征，画面按项目画风重绘、不复制照片或像素图。上一版保留在下一节作历史。
 

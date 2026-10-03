@@ -9,26 +9,43 @@ tier: S
 output: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png
 manifest: assets/default/character/male/ch01/manifest.yaml
 references:
-- path: .agents/coord/imagegen-reference/hero-20261001/classic_xuzhu_1997.jpeg
-  use: 已实际下载并view_image查看。经典影视第一人物设计参考：剃发青年清醒温厚的眉眼、真实五官体积与质朴亲和感。重组为项目指定宽短脸、宽鼻厚唇，不能因照片变成细长俊脸。保留灰褐僧衣、右拇指素环与扶腕姿态，不继承白僧衣、合掌、行囊、山石蓝天。 SHA-256 c105cc893e9201543272bf4d6c73df2353feac06afa6737522ea3e17ab6ed0a1；来源见同目录sources.json。
-- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-  use: 已实际查看。仅参考项目国风设色、暖浅灰纸底、柔和左上光与笔触；基线candidate，作者本轮授权使用，审批状态不变。不锁定其脸、年龄体型、发式、服装、剑或密集摄影布纹。
-status: redo
-redo_reason: "面容几乎照搬剧集演员（光头笑脸），按原著“浓眉大眼、鼻孔朝天、招风耳、厚唇、相貌颇丑”重做，连同五幅场景"
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/xuzhu_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "9e1149aaaca8d1e34778c98fe90e36e8c06b6b224bdb6e8727500c0efc0179a4"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/xuzhu_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "955a4e6445eb5cd8fc83beab4e80b7261f6f91a03a1bf9e364195ac3e82a831f"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+status: candidate
+redo_reason: "作者 10-02 晚：复合基线风格精修"
 reference_upload:
-- .agents/coord/imagegen-reference/hero-20261001/classic_xuzhu_1997.jpeg
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/xuzhu_still1.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/xuzhu_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
 codex_prompt_rev: 2026-10-02
 classic_ref:
   version: 1997 TVB《天龙八部》
   stills:
   - .agents/coord/imagegen-reference/hero-20261001/classic_xuzhu_1997.jpeg
+composite_job: por_npc_xuzhu__ch01_youth_lingjiu_base.resume3
 ---
 
 # 虚竹 · 《天龙八部》（ch01）
 
 ## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_xuzhu__ch01_youth_lingjiu_base.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【复合参考】第1张是该角色经典影视造型剧照：只借发型、服饰、配色、标志道具、气质和大致脸型，五官不要照搬演员本人，要往经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像这个演员。第2张是经典武侠游戏绘画参考：借其古典武侠插画的气质、线条与造型感，不保留像素块，不复刻头像角度。最后两张是项目画风基线，只取画风，不取人物五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物】虚竹：二十四岁左右成年男子，身形结实，光头、宽短方脸、浓眉大眼、大鼻微朝天、招风耳、厚唇；朴拙相貌，不变俊美偶像。憨厚拘谨、慈悲诚恳、得武功仍不自矜。朴素灰褐右衽僧衣、米白内层、布带、绑腿布鞋，右拇指旧素环（具体装饰为原创设计），双手端一只普通陶水盏，表现照护他人。背景留白淡山；不华丽袈裟、不王冠、不兵器。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 > 2026-10-02 AR-32 重出（5 号出图员，codex exec · image_gen）：主要角色改为参考经典影视版剧照加项目基线生成。上传顺序：1997 TVB《天龙八部》 剧照 1 张（classic_xuzhu_1997.jpeg），最后两张为同性别画风基线（缩小版 JPEG）。剧照只借造型、气质与面部特征，画面按项目画风重绘、不复制照片。上一版（AR-31 文字版）保留在下一节作历史。
 

@@ -9,15 +9,19 @@ tier: S
 output: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
 manifest: assets/default/character/female/ch04/manifest.yaml
 references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 当前工作区 manifest 为 approved，已批准；仅参考纸底、左上柔光、笔触与低饱和设色，不沿用脸、体型、服饰或道具
-status: new
-redo_reason: "AR-32：主要角色参考经典影视版剧照（2003 年版）加基线重出（10-02，7 号出图员）"
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhaomin_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "28152f5850674cd84249426d5718f3bd77cbed2febc2e8610e6b02dac21e2faa"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhaomin_still2.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "792a0922da5538f9afbf84bd55869a373c5530a18a8e548e42a4149283c4b770"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhaomin_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "daa70caa7125430bccdc2efad45b77ccddc97bc11660158a4f36d0bf2ce279e8"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae"}
+status: candidate
+redo_reason: "作者 10-02 晚：复合基线风格精修"
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261002/yitian/zhaomin_2003_jiajingwen_sohu2024a.jpg
-- .agents/coord/imagegen-reference/identity-20261002/yitian/zhaomin_2003_jiajingwen_tvsou.jpg
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhaomin_still1.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhaomin_still2.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhaomin_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg"
 codex_prompt_rev: 2026-10-02
 classic_ref:
   version: 2003 年苏有朋、贾静雯版《倚天屠龙记》（作者 AR-32 指定）
@@ -25,6 +29,7 @@ classic_ref:
   stills:
   - .agents/coord/imagegen-reference/identity-20261002/yitian/zhaomin_2003_jiajingwen_sohu2024a.jpg
   - .agents/coord/imagegen-reference/identity-20261002/yitian/zhaomin_2003_jiajingwen_tvsou.jpg
+composite_job: por_npc_zhaomin__ch04_youth_lvliu_base.resume3r2
 ---
 
 <!-- full-coverage-import:current-policy:v1 -->
@@ -37,6 +42,36 @@ classic_ref:
 # 赵敏 · 《倚天屠龙记》（ch04）
 
 ## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_zhaomin__ch04_youth_lvliu_base.resume3r2`；实际上传顺序见frontmatter，末两张为female项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【复合参考】第1至2张是该角色经典影视造型剧照：只借发型、服饰、配色、标志道具、气质和大致脸型，五官不要照搬演员本人，要往经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像这个演员。第3张是经典武侠游戏绘画参考：借其古典武侠插画的气质、线条与造型感，不保留像素块，不复刻头像角度。最后两张是项目画风基线，只取画风，不取人物五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+成年青年赵敏，俊秀中带英气的自然骨相，目光机敏自信、淡笑中有审视，明确成年女性而非男孩。严格为女扮男装的成年书生造型：淡象牙白直身男式交领右衽长袍，适中宽袖而非拖地披帛，深蓝革腰带，长袍只到脚踝、完整露出双脚黑色男式布靴，无百褶裙、无拖地裙裾、无轻纱外裙；全头乌发收束成高髻，戴简洁乌色书生冠，只许一根朴素簪固定，没有花饰、珠钗、半披长发或女子绸带。脸保持英气的成年女性五官，不变成男人；服装发式必须一眼读出书生男装。右手持半开的素面折扇，左手轻按腰侧，扇骨与手指分明。人物辨识点：机敏、自信、敢断敢为；标志道具：折扇。浅灰纸底、远处淡柳与庄园轮廓，不画电视剧演员五官。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
+
+> 作者10-02晚复合精修；任务 `por_npc_zhaomin__ch04_youth_lvliu_base.resume3`；实际上传顺序见frontmatter，末两张为female项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【复合参考】第1至2张是该角色经典影视造型剧照：只借发型、服饰、配色、标志道具、气质和大致脸型，五官不要照搬演员本人，要往经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像这个演员。第3张是经典武侠游戏绘画参考：借其古典武侠插画的气质、线条与造型感，不保留像素块，不复刻头像角度。最后两张是项目画风基线，只取画风，不取人物五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+成年青年赵敏，俊秀中带英气的自然骨相，目光机敏自信、淡笑中有审视，明确成年女性而非男孩。淡象牙白交领右衽男装长袍、深蓝腰带、乌发束冠，衣装优雅利落且保持宽松完整。右手持半开的素面折扇，左手轻按腰侧，扇骨与手指分明。人物辨识点：机敏、自信、敢断敢为；标志道具：折扇。浅灰纸底、远处淡柳与庄园轮廓，不画电视剧演员五官。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 > 2026-10-02 AR-32 改写（7 号出图员，codex exec · image_gen 出图）：主要角色参考经典影视版剧照重出——2003 年苏有朋、贾静雯版《倚天屠龙记》（作者 AR-32 指定）。按顺序上传剧照 2 张（zhaomin_2003_jiajingwen_sohu2024a.jpg、zhaomin_2003_jiajingwen_tvsou.jpg，在主检出 .agents/coord/imagegen-reference/identity-20261002/，不入库）取发型、服饰、配色、气质与面部特征，再上传两张同性别缩小版基线（放在最后）取画风；要求重新绘制成项目画风，不复制照片。提示词里不写演员名。上一版保留在后文作历史。
 

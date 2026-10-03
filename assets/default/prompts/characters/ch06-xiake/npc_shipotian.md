@@ -9,28 +9,42 @@ tier: S
 output: assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_jinwu_base.png
 manifest: assets/default/character/male/ch06/manifest.yaml
 references:
-- path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_39-1.png
-  use: 第一且唯一面部身份参考：经典原版《金庸群侠传》石破天本人头像；已实际view原PNG及带姓名表，并核对source-audit-main30对应关系与SHA，原始字节与ZIP成员相同。只保持本人脸部比例、眉眼鼻唇和气质辨识关系，将低分辨率像素关系自然重建成精细写实人脸；不要像素放大、描边或照搬发式/服装。头像朝向不继承：新图正面，头部中线竖直、双眼水平，NO head tilt / NO Dutch angle。当前身份、年龄、伤残与器物必须服从本角色基础阶段。尤其忽略原头像短乱发和深灰领口；新图仍为素布小髻、灰米便装和唯一普通入鞘腰刀。
-- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-  use: 第二参考仅项目男性低饱和色卡、柔和左上光与完整连贯的写实手绘品质；本会话已实际view并在写入前核对SHA未变。不得取令狐冲的脸型、眉眼鼻唇、体型、胡茬、明代网巾、衣装版式、长剑、站姿或倾头角度。本人脸只来自第一参考，基线candidate审批状态不改。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 第三参考仅背景：极淡水墨远山、薄雾、暖浅灰纸底与留白；本会话已实际view并在写入前核对SHA未变。忽略女性面孔、发型、体态、倾头、白青裙装及饰物；墨痕和纸纹不得进入人物、衣料与器物。
-status: ready
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/shipotian_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "9d7f84fddf16d88ade50e9188e4778d51ab89276f516095de5007c2d0334e6db"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+status: candidate
 realism_revision: user_identity_pose_20261001
 codex_prompt_rev: 2026-10-02
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_39-1.png
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/shipotian_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
 classic_ref:
   version: 《金庸群侠传》（1996）游戏头像（作者 10-02 指定侠客行用游戏头像）
   stills:
   - .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_39-1.png
+redo_reason: "作者 10-02 晚：复合基线风格精修"
+composite_job: por_npc_shipotian__ch06_youth_jinwu_base.resume3
 ---
 
 # 石破天 · 人物写实修正
 
 ## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_shipotian__ch06_youth_jinwu_base.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【参考】第1张是该人物经典游戏头像，只借古典武侠绘画气质、脸型发型与造型感，重新绘制细腻写实手绘人物，不画像素块；没有影视剧照，不复刻演员。最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+成年青年男子，朴实结实、晒过的健康肤色，憨厚赤诚、目光坦然、不谙机心但不愚蠢；脸型与造型借已核验经典游戏头像重新绘成项目风格。朴素灰褐右衽短袍、布腰带、合脚布鞋；金乌刀阶段以一柄朴实单刀入鞘佩腰，不画奇幻巨刃。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 > 2026-10-02 AR-32 重出（8 号出图员，codex exec · image_gen）：主要角色参考经典造型加项目基线生成。上传顺序：第 1 张《金庸群侠传》石破天头像（HDGRP_39，放大到 448×464 的 JPEG），最后两张为同性别画风基线（缩小版 JPEG）。参考图只借造型、气质与面部特征，画面按项目画风重绘、不复制照片或像素图。上一版保留在下一节作历史。
 

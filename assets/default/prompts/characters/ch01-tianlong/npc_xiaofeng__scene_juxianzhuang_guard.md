@@ -13,24 +13,43 @@ scene_key: juxianzhuang_guard
 scene_title: 聚贤庄·孤身护人
 stage: 壮年，约三十岁。为救治阿朱而赴聚贤庄，交锋已起但尚未到重伤、黑衣人救走的结尾。
 references:
-- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-  use: 已实际查看并验证新写实首样；同一萧峰面容、真实皮肤体积、完整布料画法。只保持身份与人物绘法，本场年龄服装动作器物背景另绘，不复制少室掌势或龙。
-- path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-  use: 作者指定male基线已看，仅低饱和色卡；绝不沿用其碎墨、破衣、旧脸、竹棒或站姿。原candidate不变。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已查看，仅背景水墨山水和留白，不借用女子或把纸纹侵入人物。
-status: redo
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xiaofeng__ch01_prime_gaibang_base.r4.png", "use": "本轮萧峰复合基础原图；锁同脸，改阶段服装、道具、背景", "sha256": "455257ac00444c82128b147252ec2304022f25374dc38f76af86aba91d7e0b3d"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/staging/xiaofeng_still.jpg", "use": "1997 TVB 萧峰造型；只借造型，不照搬演员五官；裁框112,0,520,397", "sha256": "ae72e460ded41bf55aff51ff063769c446e07b9bd78ec3474f3ed4cd031ec3c3"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/staging/xiaofeng_game.jpg", "use": "萧峰游戏头像；448×448风格参考", "sha256": "106ab167eaa09076b0773b4b07c6d69821bba756c440bb923a71cd0dae6b91e5"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目男基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目男基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+status: candidate
 scene_revision: user_scenes_20261001
 realism_revision: user_character_realism_20261001
-redo_reason: "萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定"
+redo_reason: "作者 10-02 晚：复合基线风格精修"
 reference_upload:
-- assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xiaofeng__ch01_prime_gaibang_base.r4.png"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/staging/xiaofeng_still.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/staging/xiaofeng_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
+composite_job: por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.repair1
 ---
 
 # 萧峰 · 人物写实修正
 
 ## Gemini 提示词
+
+> 作者 2026-10-02 晚复合精修；实际成功任务 `por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.repair1`。上传顺序与 frontmatter 一致，末两张为男基线；剧照只借造型，游戏图提供古典武侠绘画气质，五官不照搬演员。阶段以本轮新基础图锁定同一身份。本图为 candidate，旧提示词仅作历史留存。
+
+```text
+生成一张 2:3 竖幅全身人物剧情立绘，1024×1536，画面只有萧峰一人，约三十岁成年人；头顶、双手、双脚完整入画，头部端正，平视。
+【身份与参考】第一张是本轮复合基线精修的萧峰基础立绘，必须保持同一张理想化武侠游戏脸、骨相、发际、络腮短须、年龄与魁伟体格；只改本阶段服装、动作、道具和背景。第二张为经典影视造型，只辅助发式、服饰配色与豪烈气质，不照搬演员五官；第三张为经典武侠游戏头像，只取古典武侠绘画气质；最后两张为男性项目基线，只取画风、不取人物身份。
+【阶段】《天龙八部》聚贤庄·孤身护人，身世揭露后独闯聚贤庄救治阿朱；本幅是交锋初起的单人动作概括（原创扩展构图），阿朱与群雄留在画外。
+【人物】高大魁伟、方阔国字脸、浓眉大眼、阔口短须、肤色有风霜；豪烈重义，眼神坚定沉着，有独自承压保护他人的力量。脸应像武侠角色而非演员照片。
+【衣服】深褐布巾简单收髻，素灰右衽旧布长袍、短炭灰外衣、素白内领、窄布腰带、深灰长裤布鞋；完整衣料和自然厚重褶皱，轻微磨旧，没有破布。
+【动作与道具】两脚前后错开，重心稳定，一掌向前护住画外的人，另一手收在肋旁；不持兵器，不拿打狗棒。右侧低矮酒桌上放一个粗陶空酒碗，作为本场标志道具；手与碗不接触。
+【场景背景】保留可辨识的聚贤庄庄门、灰砖短墙、石板庭院、酒桌一角；淡彩水墨与浅暖灰纸底融合，人物轮廓完整，水墨不侵入脸、衣料或手脚。不抠图，不复刻基础图空白背景；没有其他人物、龙影或兵器。
+【画风】经典武侠游戏的写实手绘古风插画，低饱和灰褐与暖肤色、细腻而可见的笔触、自然光线。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。不是照片、剧照修图、油画、动漫。
+排除项：不要文字、题字、水印、署名、印章、多视图、第二人、分身、儿童、童颜、大头小身、裸露、夸张肌肉；不要手指错误、多肢、裁头裁脚、手物粘连、现代物件、武功光效。汉服右衽：穿着者左襟压右襟，不水平镜像。不要恢复丐帮帮主的竹棒；本场不用剑酒浪子造型。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 > 2026-10-02 重要人物立绘重审（A 组，`tools/agents/reports/REVIEW-portraits-A-ch00-04.md`）：**整体重出（随基础图）**。萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定。
 > 上传参考只按 frontmatter `reference_upload`（共 1 张，按顺序上传）；frontmatter 的 `references` 与本节以下内容是旧出图管线的历史记录，不再用于出图。

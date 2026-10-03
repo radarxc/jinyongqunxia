@@ -13,14 +13,21 @@ scene_key: yanmen_raise_broken_arrow
 scene_title: 雁门关·举箭止战
 stage: 壮年，约三十岁。辽帝已折箭承诺退兵、萧峰举起地上断箭宣示之际；在自尽之前，不采用改命获救结局。
 references:
-- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-  use: 同人首要身份参考，已实际查看本轮英雄立绘；保留核心骨相与体格，姿态、服装、器物服从本场，原candidate不变。
-- path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-  use: 作者指定male基线，已查看；仅画风色调和材质，不替换身份，不继承竹棒或原姿态，candidate保持。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 用户已确认并实际查看的水墨风参考，仅精细笔触淡景留白；不借用女性人物或白青衣装。
-status: ready
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png", "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型", "sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/xiaofeng_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "905afefbc2bf407d7427dea44248f75a6fa71f32d7e50c27787f7a0c262fc436"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/xiaofeng_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "9e68b6895d7358f1cb2da7895544d84970552d4b3797fd908b878267c191ef23"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+status: candidate
 scene_revision: user_scenes_20261001
+reference_upload:
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/xiaofeng_still1.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/xiaofeng_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
+redo_reason: "作者 10-02 晚：复合基线风格精修"
+composite_job: por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.resume3
 ---
 
 # 萧峰 · 雁门关·举箭止战
@@ -53,7 +60,22 @@ scene_revision: user_scenes_20261001
 
 本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/scenes-20261001/backups/por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow/prompt-816244e4b2681eb1f25c605ad413e01717a7652b65ebfb2215a84f4297ff3f20.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
 
-## 提示词
+## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
+【阶段】萧峰雁门关止战的壮年末期：魁伟宽肩、短髭与豪烈眉眼保持第一张新脸；神色悲壮克制、风霜沉郁。头缠暗灰巾、深棕短袍、灰黑厚披氅、皮护腕、旧靴，右手持两截已折断的箭，左手空着下垂；箭只是止战象征，不刺身体。雁门关外黄昏绝壁、关墙和风卷枯草为完整背景；远处无可辨人物。不拿竹棒、酒碗或长枪。断箭、服装细节为原创构图，不宣称是原著逐帧动作。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 ```text
 创作一幅独立的经典场景人物立绘，以第一张同人物基础立绘保持人物核心身份、宽额方颌、浓眉深目、短络腮胡及高大强健体格。不要复制基础图站姿或竹棒；本场的动作、阶段、服装及器物以下文为准。第二张男性项目基线只约束水墨设色、纸底和光色，不换成它的脸。第三张白衣女子图只参考精细水墨人物与淡淡山水晕染的画法，不借用女性脸型、服装、体态或其中人物。

@@ -9,22 +9,20 @@ tier: S
 output: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
 manifest: assets/default/character/female/ch02/manifest.yaml
 references:
-- path: generated_images/exec-b039a5d5-093e-4883-9546-2e9da034a7f5.png
-  use: 已实际查看本角色候选1，原始PNG与请求SHA可核实；脸部身份及衣装保留，只纠正仍侧倾的头颈为完全端正正面，不旋转整幅。尚未合格，不自行approved。
-- path: .agents/coord/imagegen-reference/identity-20261001/huangrong_1983_wengmeiling.jpg
-  use: 第一身份参考：已实际查看来源页1983翁美玲黄蓉角色图；取本人可辨认五官关系，年轻化为项目少女阶段。必须正面头竖直，忽略照片歪头、蓝衣、摄影噪声和背景。来源证据见同名.source.json。
-- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-  use: 已实际查看并核验项目女性基线，只取低饱和色卡和柔光；不取脸、骨相、年龄、头饰、衣服、姿态。原approved不改。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际查看的用户水墨参考，只取背景淡墨山水和留白，忽略人物脸、皮肤、衣服与体态。
-status: redo
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "666c32c038ad578287862a4843af5bd60c7bb45fda4e56743c6a52f4499f8ae6"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still2.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "41ea8f6af53f62a9abfcd292bdc21fc1bf25baeead7bb22c873e5d9aa8ab98ac"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "16b4e092106f3f26946dd3c18bebda4d76c088e70e01a97f31b8265d42bca958"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae"}
+status: candidate
 realism_revision: user_identity_pose_20261001
-redo_reason: "AR-32：主要角色参考经典影视版剧照（1994 年版）加基线重出（10-02，7 号出图员）"
+redo_reason: "作者 10-02 晚：复合基线风格精修"
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261002/shediao/huangrong_1994_zhuyin_sohu2025a.jpg
-- .agents/coord/imagegen-reference/identity-20261002/shediao/huangrong_1994_zhuyin_sohu2025b.jpg
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still1.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still2.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg"
 codex_prompt_rev: 2026-10-02
 classic_ref:
   version: 1994 年 TVB 张智霖、朱茵版《射雕英雄传》（黄蓉取朱茵版气质，AR-30 / AR-32）
@@ -32,11 +30,27 @@ classic_ref:
   stills:
   - .agents/coord/imagegen-reference/identity-20261002/shediao/huangrong_1994_zhuyin_sohu2025a.jpg
   - .agents/coord/imagegen-reference/identity-20261002/shediao/huangrong_1994_zhuyin_sohu2025b.jpg
+composite_job: por_npc_huangrong__ch02_youth_bangzhu_base.resume3
 ---
 
 # 黄蓉 · 人物写实修正
 
 ## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_huangrong__ch02_youth_bangzhu_base.resume3`；实际上传顺序见frontmatter，末两张为female项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【复合参考】第1至2张是该角色经典影视造型剧照：只借发型、服饰、配色、标志道具、气质和大致脸型，五官不要照搬演员本人，要往经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像这个演员。第3张是经典武侠游戏绘画参考：借其古典武侠插画的气质、线条与造型感，不保留像素块，不复刻头像角度。最后两张是项目画风基线，只取画风，不取人物五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+成年青年黄蓉，清灵秀丽、细长眼睛顾盼有神，嘴角一丝聪敏笑意，面部有自然骨相而非童颜。浅鹅黄上衣配柔淡青绿长裙，右衽，腰束利落，发髻小巧而无宫廷冠饰。右手持一根细韧翠绿竹制打狗棒，左手轻拢衣襟，站姿轻盈稳健。人物辨识点：灵动、机敏、临事果决；标志道具：打狗棒。淡墨桃枝与湖山。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 > 2026-10-02 AR-32 改写（7 号出图员，codex exec · image_gen 出图）：主要角色参考经典影视版剧照重出——1994 年 TVB 张智霖、朱茵版《射雕英雄传》（黄蓉取朱茵版气质，AR-30 / AR-32）。按顺序上传剧照 2 张（huangrong_1994_zhuyin_sohu2025a.jpg、huangrong_1994_zhuyin_sohu2025b.jpg，在主检出 .agents/coord/imagegen-reference/identity-20261002/，不入库）取发型、服饰、配色、气质与面部特征，再上传两张同性别缩小版基线（放在最后）取画风；要求重新绘制成项目画风，不复制照片。提示词里不写演员名。上一版保留在后文作历史。
 

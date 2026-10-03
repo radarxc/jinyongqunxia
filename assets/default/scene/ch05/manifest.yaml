@@ -1,0 +1,426 @@
+- id: cg_ch05_meizhuang_prison
+  file: cg_ch05_meizhuang_prison.png
+  category: scene
+  style: default
+  subject: 梅庄地牢换囚与任我行脱困（回目待考）（ch05_xiaoao）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    西湖梅庄湿冷的地下囚室，难辨日夜。令狐冲独自在铁床上苏醒，双腕和双踝均扣有铁圈并连着铁链，粗布旧衫凌乱但完整，微微抬头环顾，神情困惑而虚弱。低机位中全景，以铁床边沿、链条和有送饭小孔的厚铁门切割幽闭空间。室内没有长明灯，仅用极微弱的绘画轮廓光表现人物；只画令狐冲一人，不把任我行、向问天同时画成他清醒目送的离牢队伍。
+
+    选择换囚后的独自苏醒；原著初醒暗不见物、四肢受缚，故移除自由扶额和室内孤灯。轮廓可见度及苏醒姿态为原创美术设计，不指定未经核实的深夜时刻。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_linghuchong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「梅庄换囚」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_huashan_base.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:17:06-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_meizhuang_prison.1791015425977640000/archive/cg_ch05_meizhuang_prison.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: c1ddc422fa1d7a7390f31f5101b09f06904cfc6e6693ae1e9680ea4563fc2619
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「梅庄换囚」，实际字形「梅庄换囚」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_meizhuang_prison.1791015425977640000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_meizhuang_prison.resume3.png
+  repair_runner_source_sha256: aa587cfd51040d6f969b021e7beebf13fc4a20f525b0ca18ef81ce4cb6aebe85
+  runner_job_records:
+  - - cg_ch05_meizhuang_prison.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_meizhuang_prison.resume3.png
+    - '109'
+    - exec-14b259a7-a6a7-4043-a724-ff08c4eb7635.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch05_meizhuang_prison.resume3
+- id: cg_ch05_hengyang_score
+  file: cg_ch05_hengyang_score.png
+  category: scene
+  style: default
+  subject: 衡阳金盆洗手前后，曲刘托谱（回目待考）（ch05_xiaoao）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    衡阳城外荒山月夜，冷月映着山石。苍老琴者曲洋与儒雅中年箫客刘正风完成最后合奏；刘正风略矮胖、面颊饱满、腹部微隆，绝非瘦长文士，成年令狐冲坐在近旁凝神承接托付；古琴、竖持洞箫与一册无可读字迹的曲谱组成视觉中心。令狐冲穿旧灰蓝长衫，佩长剑与酒葫芦。刘曲只按文字塑造，不借主角面孔。三人中全景，苍凉知音气氛，伤势仅由疲惫姿态表现。
+
+    原著为月夜而非日落；合奏与稍后的托谱压缩为三人编辑性构图（原创扩展），省略其他在场者；不画血腥。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_linghuchong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「琴箫托谱」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_huashan_base.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:19:51-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_hengyang_score.1791015590813309000/archive/cg_ch05_hengyang_score.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: b39f44cd8a4be2eb4d54c4d7d1fdb199e0f51b608c6c9b1f749ea486e1b69e63
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「琴箫托谱」，实际字形「琴箫托谱」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_hengyang_score.1791015590813309000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_hengyang_score.resume3.png
+  repair_runner_source_sha256: 04628b7af3dd27d4bfc3e11807a6a0ae78edb0862c451a138e937e6c9e2540cc
+  runner_job_records:
+  - - cg_ch05_hengyang_score.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_hengyang_score.resume3.png
+    - '182'
+    - exec-0ec7ec49-1c0b-4ec2-91c1-d744675684d9.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch05_hengyang_score.resume3
+- id: cg_ch05_shaolin_three_bouts
+  file: cg_ch05_shaolin_three_bouts.png
+  category: scene
+  style: default
+  subject: 少林三战赌约（回目待考）（ch05_xiaoao）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    少林寺内偏殿的江湖公议群像。殿后只放没有刻文的木雕佛像，墙面素净、门柱无字，绝对不要佛字、牌匾、楹联、旗字或经文；除右上“少林三战”四字题名之外，整幅图不能有第二处可读文字。令狐冲持长剑立于中央偏右，任盈盈在其侧后沉静相守，任我行在另一侧冷眼审度。左侧年老慈眉僧人方证合十、清瘦白须道人冲虚收剑，二人只文字。冷日斜光由高窗和殿门照入，木柱与殿内石地围合，画的是三战结束前后的编辑性静态对峙，不画山门前石坪，不画一人同时攻击三位对手。
+
+    原创扩展构图；原著三战在寺内偏殿，前两战由任我行对方证、左冷禅，冲虚认输，岳令挑战另在后；不把令狐冲画成连续打三人。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_linghuchong的本轮立绘；第2张为npc_renyingying的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「少林三战」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_linghuchong__ch05_youth_huashan_base.1791015011194128000/archive/por_npc_linghuchong__ch05_youth_huashan_base.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_renyingying__ch05_youth_shenggu_base.1791015013396846000/archive/por_npc_renyingying__ch05_youth_shenggu_base.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 16995424f549c6353993aefa4744a095af1ca8a77a2e47c5aaba136675c807ae
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch05/por_npc_renwoxing__ch05_elder_released_base.png
+    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
+    sha256: 559bb6cf2e8b0c15b12793c73ccdfd646de7982e57e058a04cf52e6ff9701230
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:31:34-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_shaolin_three_bouts.1791016294328485000/archive/cg_ch05_shaolin_three_bouts.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: a30f0f60adbca7f36f298859c2a536db013c3b85e1c0bff535f38644f26fc905
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「少林三战」，实际字形「少林三战」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_shaolin_three_bouts.1791016294328485000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_shaolin_three_bouts.resume3r2.png
+  repair_runner_source_sha256: 13235bed64780e0adc4127f112f45938e29b262e83573da2aee20aa60e996bba
+  runner_job_records:
+  - - cg_ch05_shaolin_three_bouts.resume3r2
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_shaolin_three_bouts.resume3r2.png
+    - '155'
+    - exec-567c4a92-889c-4989-be4f-67c76cf72380.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch05_shaolin_three_bouts.resume3r2
+- id: cg_ch05_blackwood_showdown
+  file: cg_ch05_blackwood_showdown.png
+  category: scene
+  style: default
+  subject: 黑木崖决战（回目待考）（ch05_xiaoao）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    黑木崖绣房中的紧张交锋：东方不败手拈细针立于绣架旁，令狐冲提剑抵御，任我行与向问天分居前侧和门侧。任盈盈位于后景侧门，警惕观察敌方牵挂所在，表情果断；不把她画成始终与令狐冲同正面围攻的人。针线、绣架、窄窗与剑构成尖锐空间，所有人完整着装，不画血腥。
+
+    原创扩展群像构图；为避免擅造杨莲亭具体被制动作，仅示盈盈侧向观察；角色身份各自隔离。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_linghuchong的本轮立绘；第2张为npc_renyingying的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。 第3张是身份联系图，从左到右依次为renwoxing、xiangwentian、dongfangbubai；每一格只锁定该人的身份，不把格数画进成品。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「黑木决战」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_linghuchong__ch05_youth_huashan_base.1791015011194128000/archive/por_npc_linghuchong__ch05_youth_huashan_base.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_renyingying__ch05_youth_shenggu_base.1791015013396846000/archive/por_npc_renyingying__ch05_youth_shenggu_base.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 16995424f549c6353993aefa4744a095af1ca8a77a2e47c5aaba136675c807ae
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch05_blackwood_showdown_identity_board.jpg
+    use: 本轮主角身份联系图；源立绘与左右顺序见同名JSON
+    sha256: 8cc30c37c828dc20443b1bcfc5213c046530dfbaf256e9ebd828441e627283ca
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:32:17-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_blackwood_showdown.1791016336755082000/archive/cg_ch05_blackwood_showdown.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 5e8860f705d8856b522a4d811e91c43af0ae315441e4ed5562494f3d53fdbb34
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「黑木决战」，实际字形「黑木决战」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_blackwood_showdown.1791016336755082000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_blackwood_showdown.resume3.png
+  repair_runner_source_sha256: df20c9aac11f5a2782768e07446c951d9afba6fc61f25c7a1e1e1722ab4ac6e3
+  runner_job_records:
+  - - cg_ch05_blackwood_showdown.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_blackwood_showdown.resume3.png
+    - '200'
+    - exec-3d45ea15-0ce9-4e5b-a73a-cafb2032ef9a.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch05_blackwood_showdown.resume3
+- id: cg_ch05_hengshan_succession
+  file: cg_ch05_hengshan_succession.png
+  category: scene
+  style: default
+  subject: 恒山承责（ch05_xiaoao）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    北岳恒山无色庵前石阶，令狐冲身穿墨绿俗家右衽长袍、长剑归鞘、酒葫芦系腰，向成年女弟子与几位年长师太郑重拱手。弟子衣着端肃、站位简净，后方为小庵瓦屋与山松，建筑朴素而非宏伟宫殿。侧上方春寒浅光，突出从浪子到承担责任的神情。
+
+    新增ID；第二十九章掌门可查，具体拱手仪式为原创美术设计；不剃度，不刻意画未核实死者出席。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_linghuchong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「恒山承责」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_linghuchong__ch05_youth_scene_hengshan.1791015241033077000/archive/por_npc_linghuchong__ch05_youth_scene_hengshan.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 58067bc107786f7ef283104e67d4d1d003e2b63302f308105836a2a4a5f03d41
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:32:20-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_hengshan_succession.1791016340499414000/archive/cg_ch05_hengshan_succession.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: c8c21ba60dc78d76ba8ccd68c7c6af9a70270eafcfc5b71f1887290216e6fe4a
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「恒山承责」，实际字形「恒山承責」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_hengshan_succession.1791016340499414000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_hengshan_succession.resume3.png
+  repair_runner_source_sha256: 97252bc062d41a76f8728058ea3003ec831a34b1d703b742795b2b03e2a15812
+  runner_job_records:
+  - - cg_ch05_hengshan_succession.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_hengshan_succession.resume3.png
+    - '119'
+    - exec-6a3282f7-a8d9-49e9-83d2-568f5a7a8d1f.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch05_hengshan_succession.resume3
+- id: cg_ch05_luoyang_qinxiao
+  file: cg_ch05_luoyang_qinxiao.png
+  category: scene
+  style: default
+  subject: 洛阳绿竹巷琴音相识（回目待考）（ch05_xiaoao）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    春雨午后洛阳绿竹巷，任盈盈坐在竹帘内抚琴，面容可辨且为成年年轻女子；令狐冲一身落拓灰褐行旅衣站在帘外柱边听琴，酒葫芦轻放在身侧，长剑佩腰。琴案与湿竹影贯穿内外，双人中远景，衣料完全不透明，表情含蓄而治愈。
+
+    婆婆只是误称，不画成老年；令狐冲引用新base，按文字换为行旅服。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_linghuchong的本轮立绘；第2张为npc_renyingying的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「绿竹知音」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_huashan_base.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_renyingying__ch05_youth_scene_zhuxiang.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 122773724ffb4ad47173a4038be900eb34fd49a2d76d65dd85a59271aa7f2e59
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:32:26-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_luoyang_qinxiao.1791016346142651000/archive/cg_ch05_luoyang_qinxiao.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: edaef32c21b2f92eb052ae0606e7b052717662255c488e36642d29fac5b7f199
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「绿竹知音」，实际字形「绿竹知音」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_luoyang_qinxiao.1791016346142651000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_luoyang_qinxiao.resume3.png
+  repair_runner_source_sha256: 449630275b7149548404cc0a93ef637838c10935b78414d88e4bec4bab5c2cec
+  runner_job_records:
+  - - cg_ch05_luoyang_qinxiao.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_luoyang_qinxiao.resume3.png
+    - '121'
+    - exec-476e2bd9-093e-4c32-be31-93ffe4f204e8.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch05_luoyang_qinxiao.resume3
+- id: cg_ch05_meizhuang_duet
+  file: cg_ch05_meizhuang_duet.png
+  category: scene
+  style: default
+  subject: 结局令狐冲、任盈盈琴箫合奏（地点 / 回目待考）（ch05_xiaoao）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    结局梅庄湖畔暖色黄昏：令狐冲身穿简素米灰右衽便服坐于琴案前抚七弦古琴，任盈盈着淡藕灰长裙在旁吹竹箫。两人神情自在温柔，剑与酒葫芦安放在令狐冲近旁。湖水、梅枝、远舟与充足留白呈现归隐余韵；琴弦与吹箫手势准确。
+
+    严格令狐冲抚琴、任盈盈吹箫；湖畔取景为原创扩展，旧名录乐器反写需协调者另改。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_linghuchong的本轮立绘；第2张为npc_renyingying的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「琴箫曲谐」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_huashan_base.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_renyingying__ch05_youth_scene_quxie.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: ee1e1d6e83c6bd0d1df892057acf516cc1b168397763cfdff69b101216d3910c
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:32:30-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_meizhuang_duet.1791016350037651000/archive/cg_ch05_meizhuang_duet.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 69c4be5362d0e3834faddb26e2119347d1100a2e346c5942b24ecf1073a2ae4f
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「琴箫曲谐」，实际字形「琴箫曲谐」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_meizhuang_duet.1791016350037651000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_meizhuang_duet.resume3.png
+  repair_runner_source_sha256: 4774b85e36b23fc57e48680202fa7ca66ca1f8f1630709d64bfdc830c270125a
+  runner_job_records:
+  - - cg_ch05_meizhuang_duet.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_meizhuang_duet.resume3.png
+    - '148'
+    - exec-d6d04a85-0fb1-466d-8792-14e826048d40.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch05_meizhuang_duet.resume3
+- id: cg_ch05_siguoya_sword
+  file: cg_ch05_siguoya_sword.png
+  category: scene
+  style: default
+  subject: 思过崖风清扬授剑（回目待考）（ch05_xiaoao）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    秋日清晨思过崖洞口，令狐冲以普通长剑收势，目光忽然明朗；后侧清瘦白须青袍老者风清扬手持枯枝作点拨。风清扬为A层只文字。剑和枯枝不相碰，洞壁只有模糊旧剑痕，华山薄雾与孤峰作远景。令狐冲腰间酒葫芦清楚。
+
+    风清扬具体持枝动作是原创美术补足；不画发光剑气。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_linghuchong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「思过悟剑」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_scene_siguoya.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: a7fef46c5c2d9b893a14b0b034cfc398097b00f7ea1a2a7e9d9ab9fed584a294
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:32:34-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_siguoya_sword.1791016353640742000/archive/cg_ch05_siguoya_sword.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 32813908b9f501ebdef12b7f30c69a0dfc32cf06201a449b92919e0f7a358150
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「思过悟剑」，实际字形「思过悟剑」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_siguoya_sword.1791016353640742000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_siguoya_sword.resume3.png
+  repair_runner_source_sha256: 11b04debfc5fd2c0a0cb45cce0422422e29cb5e2a6ebbff4ed6322cbefc43af6
+  runner_job_records:
+  - - cg_ch05_siguoya_sword.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_siguoya_sword.resume3.png
+    - '123'
+    - exec-3b9fccaf-954f-408b-ac68-68b4b9d0a28d.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch05_siguoya_sword.resume3

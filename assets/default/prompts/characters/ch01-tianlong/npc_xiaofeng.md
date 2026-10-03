@@ -9,19 +9,18 @@ tier: S
 output: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
 manifest: assets/default/character/male/ch01/manifest.yaml
 references:
-- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-  use: 已实际view并核验manifest为本轮写实candidate。仅本人身份面容、年龄体型及完整人物渲染质量；不借该场景姿态、阶段服装、背景或衣料笔触，严格按本基础文档重绘。
-- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-  use: 已实际view。仅同性别项目低饱和色卡，文档服色优先；不借身份、年龄、发式、服装、道具、旧碎墨或织纹。基线审批原样保留。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际view。仅背景的浅淡水墨远景、空气层次与留白；完全忽略女性人物脸、薄纱、衣纹、肤质和姿势，水墨不能侵入本体。
-status: redo
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/staging/xiaofeng_still.jpg", "use": "1997 TVB 萧峰造型；只借造型，不照搬演员五官；裁框112,0,520,397", "sha256": "ae72e460ded41bf55aff51ff063769c446e07b9bd78ec3474f3ed4cd031ec3c3"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/staging/xiaofeng_game.jpg", "use": "萧峰游戏头像；448×448风格参考", "sha256": "106ab167eaa09076b0773b4b07c6d69821bba756c440bb923a71cd0dae6b91e5"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目男基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目男基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+status: candidate
 realism_revision: user_character_realism_20261001
-redo_reason: "面容源自剧集剧照（肖像风险）且体格不够魁伟、缠头像南亚头巾，按原著国字脸魁伟大汉重做，连同五幅场景"
+redo_reason: "作者 10-02 晚：复合基线风格精修"
 reference_upload:
-- .agents/coord/imagegen-reference/hero-20261001/classic_qiaofeng_still.png
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/staging/xiaofeng_still.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/staging/xiaofeng_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
 codex_prompt_rev: 2026-10-02
 classic_ref:
   version: 1997 TVB《天龙八部》
@@ -33,11 +32,32 @@ classic_ref:
     - 0
     - 520
     - 397
+composite_job: por_npc_xiaofeng__ch01_prime_gaibang_base.r4
 ---
 
 # 萧峰 · 人物写实修正
 
 ## Gemini 提示词
+
+> 作者 2026-10-02 晚复合精修；实际成功任务 `por_npc_xiaofeng__ch01_prime_gaibang_base.r4`。上传顺序与 frontmatter 一致，末两张为男基线；剧照只借造型，游戏图提供古典武侠绘画气质，五官不照搬演员。阶段以本轮新基础图锁定同一身份。本图为 candidate，旧提示词仅作历史留存。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+【复合参考】第1张是该角色经典影视造型剧照：只借发型、服饰、配色、标志道具、气质和大致脸型，五官不要照搬演员本人，要往经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像这个演员。第2张是经典武侠游戏绘画参考：借其古典武侠插画的气质、线条与造型感，不保留像素块，不复刻头像角度。最后两张是项目画风基线，只取画风，不取人物五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物】萧峰（此时仍叫乔峰），《天龙八部》北宋（约 1093 年）丐帮帮主，杏子林身世揭露之前；豪迈坦荡、重义气的盖世英雄。
+【年龄与体态】约三十岁的壮年男子，身材高大魁伟（明显比常人高出半头），肩宽背厚、胸膛宽阔，前臂粗壮、手掌宽大，筋骨扎实而不是健美肌肉（约 7.5 头身）。
+【面容】原著写他浓眉大眼、高鼻阔口、四方的国字脸、颇有风霜之色、顾盼之际极有威势。具体为：四方国字脸、下颌方正宽厚，颧骨高；浓黑粗眉、眉骨突出，一双大眼目光如电；鼻梁高、鼻翼宽；阔口厚唇；两颊与下巴是短而硬的络腮胡茬（不是长须）；常年行走江湖的日晒肤色，额头两道浅横纹，眼角有风霜细纹。粗犷英武、相貌堂堂，是让人心折的盖世英雄——不凶、不丑。
+【发式】黑发全部束成发髻，用一条深褐色旧布巾简单包住发髻（宋代男子常见的裹巾，贴合头形，不是大缠头），鬓边几缕散发。
+【服饰】原著是灰色旧布袍、已微有破烂：灰色右衽旧布长袍，袖口和下摆有几处细密的补缀但整洁，外罩深炭灰短褂，腰间粗布带侧结，深色布裤、旧布鞋。
+【道具】左手竖握一根青绿竹棒（丐帮帮主信物打狗棒，竹节清楚、无金属刃），棒梢高过肩、下端点地；右手自然垂下。
+【姿态与神情】双脚分开稳稳站立，胸膛挺起、肩背舒展；目光坦荡威严、不怒自威，嘴角带一点豪迈的笑意，不摆攻击架势。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要瘦削或中等身材、不要窄长脸；不要南亚式的大缠头；不要长须、白发；不要契丹皮袍与左衽（此阶段尚是汉人装束）；不要龙形特效。
+【本轮精修】豪烈重义、魁伟方脸、浓眉阔口是辨识点；英武沉毅的理想化武侠游戏脸，不画成剧照中真人；简素裹巾、灰旧袍，青竹打狗棒为当前丐帮帮主身份道具。头面比例自然成年，完整全身。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 > 2026-10-02 AR-32 重出（5 号出图员，codex exec · image_gen）：主要角色改为参考经典影视版剧照加项目基线生成。上传顺序：1997 TVB《天龙八部》 剧照 1 张（classic_qiaofeng_still.png），最后两张为同性别画风基线（缩小版 JPEG）。剧照只借造型、气质与面部特征，画面按项目画风重绘、不复制照片。上一版（AR-31 文字版）保留在下一节作历史。
 

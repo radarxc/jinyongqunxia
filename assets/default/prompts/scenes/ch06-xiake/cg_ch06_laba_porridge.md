@@ -9,18 +9,40 @@ characters:
 - npc_zhangsan06
 - npc_lisi06
 reference_upload:
-- assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_jinwu_base.png
-- assets/default/character/male/ch06/por_npc_longdaozhu__ch06_elder_alive_base.png
-- assets/default/character/male/ch06/por_npc_mudaozhu__ch06_elder_alive_base.png
-- assets/default/character/male/ch06/por_npc_zhangsan06__ch06_prime_yaojiu_base.png
-- assets/default/character/male/ch06/por_npc_lisi06__ch06_prime_yaojiu_base.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_jinwu_base.resume3.png"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch06/por_npc_longdaozhu__ch06_elder_alive_base.png"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch06_laba_porridge_identity_board.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
 output: assets/default/scene/ch06/cg_ch06_laba_porridge.png
 manifest: assets/default/scene/ch06/manifest.yaml
 size: 1536x1024
-status: ready
+status: candidate
+references:
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_jinwu_base.resume3.png", "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型", "sha256": "dab161c89134e3366a31b9d05a127ce3be6b0e095ee79d7245e73aca89e336eb"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch06/por_npc_longdaozhu__ch06_elder_alive_base.png", "use": "既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离", "sha256": "ac081453df5fa05b555625b503f7687dd0d26be30e9cbfaed4caf1a6b68c353c"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch06_laba_porridge_identity_board.jpg", "use": "本轮主角身份联系图；源立绘与左右顺序见同名JSON", "sha256": "a1facfd3a5bd9b84f6ceeaced874dd2a3d6338da5ba7239d9fd77ac3f1c50ab1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+redo_reason: "作者 10-02 晚：复合基线风格精修"
+composite_job: cg_ch06_laba_porridge.resume3
 ---
 
 ## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `cg_ch06_laba_porridge.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
+
+```text
+生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+侠客岛石灯宴厅，石破天着整洁浅褐右衽长衫坐于前景，坦然端碗饮粥，身旁武林来客迟疑观望。龙木二岛主分坐侧后，张三李四在门边静观；灰石、暖灯与粥碗蒸气形成克制悬疑感，表现朴实赤诚。
+不指定未核实粥材，不画喝后中毒或粥碗发光。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+第1张为npc_shipotian的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。 第3张是身份联系图，从左到右依次为mudaozhu、zhangsan06、lisi06；每一格只锁定该人的身份，不把格数画进成品。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「腊八赴约」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 ```text
 生成一张 3:2 横幅情景插画，输出尺寸 1536×1024，题材为《侠客行》多人剧情名场面。所有人类都必须一眼可辨为成年人。
