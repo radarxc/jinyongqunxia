@@ -1692,3 +1692,16 @@
     - 内容任务：新口径 `review_checks_content.md`（eng3 已重启读取，pid 21451，日志 `_batch/eng3.detach.r4.out`）。CONTENT-ch10 r2 FAIL（门禁 ID、阻塞 ID 过期、缺第 7 节）→ 合并说明重起（门禁 ID 用拼音 `gate_10_fengshi_dongmen`，驱动 66718），14:25 校验通过在审。CONTENT-ch00a 旧口径审核中途停 → 内容口径 r1 FAIL（NPC 永久招募、gateRef、白猿物种、角色槽）→ 登记 ENG 后带准确 ID 与默认方案重起（驱动 92084）。CONTENT-ch00b 仍 HOLD（等 ch00a）。
     - 磁盘：13:54 一度 2.7 GiB（交换区 31.8 → 38.7 GB）。清了旧临时目录与 161 个已合入任务日志、w13–w16 homeN；runner 降 1 槽。全盘清理清单在做：~/Projects 约 230 GB（node_modules 统计中）、飞书 24.6 + 6.3 GB、~/.codeverse/.ckg 13.5 GB、~/.trae/cli 12.4 GB、Claude vm_bundles 9.9 GB、两份 pnpm 仓库 18.4 GB、「下载」里 ChatGPT 安装包 1.26 GB 与 Gemini 重复图 1.3 GB——删除一律待作者确认。
     - 作者问「这个session能remote吗」→ 已开 Remote Control（remoteControlState=on）；提醒 Mac 需不休眠、Gemini / Tripo 窗口需可见。
+  - **10-03 14:38–14:42 开发监督**：CONTENT-ch10 合入；gates-data 说明补 ch10 binding 照抄。
+    - **CONTENT-ch10-cold-entry**：r3 复审（review_checks_content）PASS，14:38 自动合入（38a746bf）。
+      - prod_check 全绿（HEAD a8a58e14，日志 `_handoff/prod_check_post-ch10_1439.log`）：1014 个测试；entry 38.44 / 170；render 161.87 / 180；webgl 200.32 / 350；会话闭包 93.40 / 110。
+      - ch10 的东门 `lockedBy: gate_10_fengshi_dongmen` 已在集成分支，但还没有 binding 文件。
+      - 交接写在 ch10 报告 §4 O3 / §6：东门 gate（flag `fl_10_cold_entry_talked`，键 `ch10.coldEntry.interact.eastGateLocked`）、`first_talk` 的 dialogue binding、李文秀和驿卒两个锚点无对话。
+    - **ENG-region-gates-data**（5b18e19e）：说明补「集成分支现状」一节，写集加 `content/chapters/ch10_baima/bindings/**`。
+      - 原因：它新增的「lockedBy 必须已登记」是硬规则，不照抄 ch10 的 binding，合入后集成分支 `content:validate` 就红。
+      - 做法：照抄上述三项，不做内容取舍，「无对话」标注放进 binding 文件、不改地图。
+      - 它的说明在 13:54 就渲染好了（1.prompt.md，基点 4e193b0f）。驱动一直在等代码池空位，没有起过执行器。
+      - 已请协调者停 59669 / 59678；停后我挪基点到 HEAD，按原参数重起。
+      - 若停之前执行器已经起跑，改为登记小任务 CONTENT-ch10-bindings，等 gates-data 合入后马上起。
+      - 协调者若不同意由 gates-data 照抄，就退回 5b18e19e。
+
