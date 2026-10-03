@@ -120,94 +120,83 @@
   category: scene
   style: default
   subject: 少室山群雄会（ch01_tianlong）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是萧峰的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是段誉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 4 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中萧峰、段誉、虚竹的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    少室山三兄弟并肩抗敌的概括构图（原创扩展，非逐帧复刻）。萧峰粗犷豪烈、段誉清雅坚定、虚竹朴拙慈厚，三种不同脸型。三人站成前景稳固三角，各自衣物和骨相依参考；后方寺门、秋松、远处少量模糊江湖群雄。只有三兄弟为清晰主角，不画龙形能量。
+    【画里谁是谁】这张插图画的是：少室山三兄弟并肩抗敌的概括构图（原创扩展，非逐帧复刻）。萧峰粗犷豪烈、段誉清雅坚定、虚竹朴拙慈厚，三种不同脸型。三人站成前景稳固三角，各自衣物和骨相依参考；后方寺门、秋松、远处少量模糊江湖群雄。只有三兄弟为清晰主角，不画龙形能量。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【要对齐的部分】萧峰、段誉、虚竹各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    上传人物图仅保持各自身份和骨相，衣物背景按剧情重绘，严禁串脸；同一人的基础与阶段图只代表一个人。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「少室同心」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「少室同心」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_duanyu__ch01_youth_scene_shaoshi_invisible_sword.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 9977076663a37e938fb13296b1da330753535b9184908ca4821c62f626b98081
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: a5d862b77d0674e03229ba3ce7f2a71badc2c09b59635d9e8b9a57313d8fc8a7
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
+    sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
+    use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard（萧峰），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
+    sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
+    use: 对脸基线：作者审核通过的 por_npc_duanyu__ch01_youth_shizi_base（段誉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png
+    sha256: 6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c
+    use: 对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（虚竹），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch01/cg_ch01_shaoshi_three_brothers.png
+    sha256: b60c7342586425149af8c01385ed29767a663144c78942bde7cd6920b26bd037
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.b60c7342.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T23:41:32-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch01_shaoshi_three_brothers.1791009691660020000/archive/cg_ch01_shaoshi_three_brothers.png
+  created: 2026-10-03T15:47:39-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_shaoshi_three_brothers.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: b60c7342586425149af8c01385ed29767a663144c78942bde7cd6920b26bd037
+  sha256: e32aa93d98958389de78553280e2a23b37ae4ac138dc49b145415fabcc2d6c5c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「少室同心」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「少室同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch01_shaoshi_three_brothers.1791009691660020000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch01_shaoshi_three_brothers.resume3.png
-  repair_runner_source_sha256: 3bf697d4ade5455f072b644519b74f9ab8050c02192db381311b8833ac640c98
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch01_shaoshi_three_brothers.resume3
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.b60c7342.png
+    sha256: b60c7342586425149af8c01385ed29767a663144c78942bde7cd6920b26bd037
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.b60c7342.entry.yaml
+  effort: ultra
 - id: cg_ch01_wuliang_lingbo
   file: cg_ch01_wuliang_lingbo.png
   category: scene
   style: default
   subject: 无量山奇遇（ch01_tianlong）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是段誉的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中段誉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    段誉无量山习得步法后的山道脱险概括（原创扩展构图，具体追逐人物与回次待考）。段誉居中青衫轻踏山石，面带惊奇，温雅成年书生；成年钟灵在右后岩边回望，绿青短衫长裙、肩头小貂；左前一名中年江湖帮众扑空收势。山岚掩映曲折路径，衣服自然，不画能量光，不画仙女玉像。
+    【画里谁是谁】这张插图画的是：段誉无量山习得步法后的山道脱险概括（原创扩展构图，具体追逐人物与回次待考）。段誉居中青衫轻踏山石，面带惊奇，温雅成年书生；成年钟灵在右后岩边回望，绿青短衫长裙、肩头小貂；左前一名中年江湖帮众扑空收势。山岚掩映曲折路径，衣服自然，不画能量光，不画仙女玉像。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【要对齐的部分】段誉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    上传人物图仅保持各自身份和骨相，衣物背景按剧情重绘，严禁串脸；同一人的基础与阶段图只代表一个人。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「无量微步」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「无量微步」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_duanyu__ch01_youth_scene_langhuan_scroll.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 3d2eae0bec82be9c4a8a862784d15da76a3255a50a725dd91af52633fd3f8c3e
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_duanyu__ch01_youth_shizi_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: f2f26705b81f9f769f0cae736d10c037a66da4cbafed57d55c8e602748a9112e
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
+    sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
+    use: 对脸基线：作者审核通过的 por_npc_duanyu__ch01_youth_shizi_base（段誉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch01/cg_ch01_wuliang_lingbo.png
+    sha256: a910035399409708549a07daf0b777a3e76f5e18fde52d3537bcf446b1f7d772
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_wuliang_lingbo.a9100353.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T23:41:33-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch01_wuliang_lingbo.1791009693163959000/archive/cg_ch01_wuliang_lingbo.png
+  created: 2026-10-03T15:47:40-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_wuliang_lingbo.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: a910035399409708549a07daf0b777a3e76f5e18fde52d3537bcf446b1f7d772
+  sha256: 7bf63441be82cfb3bc75e9210d86215b2837f6c6b5281db4d7457064a021369b
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「无量微步」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「无量微步」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch01_wuliang_lingbo.1791009693163959000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch01_wuliang_lingbo.resume3.png
-  repair_runner_source_sha256: e311cb5b1fd3cc6ecefb72c00a3aff806632ac35cd6de7d9cf6669cad9914809
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch01_wuliang_lingbo.resume3
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_wuliang_lingbo.a9100353.png
+    sha256: a910035399409708549a07daf0b777a3e76f5e18fde52d3537bcf446b1f7d772
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_wuliang_lingbo.a9100353.entry.yaml
+  effort: ultra
 - id: cg_ch01_zhenlong_break
   file: cg_ch01_zhenlong_break.png
   category: scene
@@ -261,46 +250,42 @@
   category: scene
   style: default
   subject: 松鹤豪饮（ch01_tianlong）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是萧峰的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是段誉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中萧峰、段誉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    无锡松鹤楼，萧峰与段誉饮酒初识。萧峰灰褐粗袍、魁伟豪爽；段誉青色长衫、温雅书卷气，二人隔朴素木桌各举陶酒碗，桌上酒坛和小菜。窗外水乡屋瓦、木栏、暖日斜照。只画饮酒相识，不把正式结拜移进酒楼；概括构图为原创扩展。
+    【画里谁是谁】这张插图画的是：无锡松鹤楼，萧峰与段誉饮酒初识。萧峰灰褐粗袍、魁伟豪爽；段誉青色长衫、温雅书卷气，二人隔朴素木桌各举陶酒碗，桌上酒坛和小菜。窗外水乡屋瓦、木栏、暖日斜照。只画饮酒相识，不把正式结拜移进酒楼；概括构图为原创扩展。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【要对齐的部分】萧峰、段誉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    上传人物图仅保持各自身份和骨相，衣物背景按剧情重绘，严禁串脸；同一人的基础与阶段图只代表一个人。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「松鹤豪饮」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「松鹤豪饮」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_duanyu__ch01_youth_shizi_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: f2f26705b81f9f769f0cae736d10c037a66da4cbafed57d55c8e602748a9112e
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
+    sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
+    use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard（萧峰），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
+    sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
+    use: 对脸基线：作者审核通过的 por_npc_duanyu__ch01_youth_shizi_base（段誉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch01/cg_ch01_songhe_wine_oath.png
+    sha256: edd7ef2e6576b33a142c567a5b8e7af59f2807fd24376c78878e85023cf5e98d
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_songhe_wine_oath.edd7ef2e.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T23:44:45-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch01_songhe_wine_oath.1791009885534232000/archive/cg_ch01_songhe_wine_oath.png
+  created: 2026-10-03T15:47:40-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_songhe_wine_oath.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: edd7ef2e6576b33a142c567a5b8e7af59f2807fd24376c78878e85023cf5e98d
+  sha256: d20de21958d21fa8966d918f397297a3c7e8c1427cdfc9386da36fa6b5d9ddef
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「松鹤豪饮」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「松鹤豪饮」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch01_songhe_wine_oath.1791009885534232000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch01_songhe_wine_oath.resume3.png
-  repair_runner_source_sha256: 1b1749e427bf6f82e6b08303d2fc731c51b926af92ccfc7a7ef2ccbc6106a1a3
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch01_songhe_wine_oath.resume3
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_songhe_wine_oath.edd7ef2e.png
+    sha256: edd7ef2e6576b33a142c567a5b8e7af59f2807fd24376c78878e85023cf5e98d
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_songhe_wine_oath.edd7ef2e.entry.yaml
+  effort: ultra
 - id: cg_ch01_yanmen_life_for_life
   file: cg_ch01_yanmen_life_for_life.png
   category: scene
