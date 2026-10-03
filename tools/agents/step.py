@@ -163,7 +163,9 @@ def pool_of(tid: str) -> str:
 #（构建按 manifest 读取，缺图自动跳过）。写这些目录的任务仍全量检出。
 # 2026-10-02（开发监督）：ENG-09 起构建期 copyTownAssets 逐个 access() content/town/*/*.json 引用的城镇图集，
 # 都是 baseline/tile、baseline/building-map 的顶层文件（共约 19 MB）；这两处改为只排除子目录（sources / review / meta / qa 等约 300 MB）。
-SPARSE_EXCLUDE_DIRS = ("assets/default/baseline/town", "assets/default/building-map", "assets/default/tile")
+# 2026-10-03（素材线第三波追踪，main 批）：town（城图，AR-47 全量后以 GB 计）与 scene（情景图）构建 / 测试都不读，稀疏检出默认排除
+SPARSE_EXCLUDE_DIRS = ("assets/default/baseline/town", "assets/default/building-map", "assets/default/tile",
+                       "assets/default/town", "assets/default/scene")
 SPARSE_EXCLUDE_SUBDIRS = ("assets/default/baseline/building-map", "assets/default/baseline/tile")
 SPARSE_EXCLUDE_FILES = ("assets/default/item/**/*.png", "assets/default/item/**/*.jpg", "assets/default/item/**/*.pdf",
                         "assets/default/character/**/*.png", "assets/default/portrait/**/*.webp")
@@ -173,10 +175,17 @@ SPARSE_FULL_IF_WRITES = SPARSE_EXCLUDE_DIRS + SPARSE_EXCLUDE_SUBDIRS + ("assets/
 
 def sparse_checkout_for(t) -> list | None:
     inc = [x.strip("/") for x in getattr(t, "sparse_include", []) if x.strip("/")]
-    if inc:  # 2026-10-02 协调者：带 sparse_include 的任务（含素材池）稀疏检出 + 只包含自己要读写的图片目录；被排除的父目录不能再包含，故与 include 重叠的目录排除项直接不写
-        def clash(d: str) -> bool:
-            return any(i == d or i.startswith(d + "/") for i in inc)
-        pats = ["/*"] + [f"!/{d}/" for d in SPARSE_EXCLUDE_DIRS if not clash(d)] + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS if not clash(d)] \
+    if inc:  # 2026-10-02 协调者：带 sparse_include 的任务（含素材池）稀疏检出 + 只包含自己要读写的图片目录
+        # 2026-10-03（素材线第三波追踪）：include 落在被排除目录之下时，不再整目录放开，改为只排除其子目录（!/d/*/）
+        # 再逐项包含——git 2.44 实测：/d/sub/ 与 /d/sub/*.png 都能在 !/d/*/ 之后再包含，尚不存在的新目录也能 git add；
+        # include 恰是被排除目录本身（或其上级）时仍整目录放开（!/d/*/ 之后再写 /d/ 包含不回子目录）。
+        def covers(d: str) -> bool:
+            return any(i == d or d.startswith(i + "/") for i in inc)
+
+        def under(d: str) -> bool:
+            return any(i.startswith(d + "/") for i in inc)
+        pats = ["/*"] + [(f"!/{d}/*/" if under(d) else f"!/{d}/") for d in SPARSE_EXCLUDE_DIRS if not covers(d)] \
+            + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS if not covers(d)] \
             + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES] + [f"/{i}" for i in inc]
         return pats
     if getattr(t, "full_checkout", False) or pool_of(t.id) == "assets":
