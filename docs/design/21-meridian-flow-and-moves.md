@@ -1,10 +1,11 @@
 # 21 · 经脉运行、招式路线、绝招与擒拿点穴（Meridian Flow & Moves）
 
 > 归属（基准 §18）：战斗中的经脉运行状态，攻击 / 防守 / 轻功路线及其经脉修正，护体内劲，绝招语义补充，擒拿 / 点穴 1–9 级，调息参数与逐单位经脉模拟模块。
-> 上游：`00-canon.md` v1.8；作者新增需求及 AR-14～AR-19 决定见 `decisions/author-requirements.md`（AR-19 高于基准旧等级 / 单招注水口径）；冲突裁定见 `decisions/rulings-v1.md`。
+> 上游：`00-canon.md` v1.9；作者新增需求及 AR-14～AR-19、AR-26～AR-27 决定见 `decisions/author-requirements.md`；《长生诀》九层与螺旋内力见 `design/25` §3；冲突裁定见 `decisions/rulings-v1.md`。
 > 引用而不重定义：属性、内力、轻功值与 `spd` → `design/03`；Z0–Z10、护体、取整与 TTK → `design/04`；武学、招式、层数、熟练、内功性质与 `ultimate` → `design/05`；Buff、反震、破气与 Boss 递减 → `design/06`；轻功门禁与地形成本 → `design/08`；CT、移动力、首轮、反应、防御 / 待机与 AI → `design/09`；成长与外来压制 → `design/13`；手机 UI → `design/14`；20 脉 / 180 穴、开通、冲穴、周天与九转 → `design/15`；Core、RNG、存档与 golden → `tech/05`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v3.0（AR-27 protocol 4 攻击运转唯一落点，2026-10-02）；v2.9（AR-19 攻击位置外放抵消、透劲入体、消化、斗转反引与打穴，2026-10-01）；v2.8.1（AR-19 换路并行气包队列与全局气量硬顶收口，2026-10-01）；v2.8（AR-19 宽度 / 长度 / 速度 / 在途气、丹田产气、聚气与完整周天，2026-10-01）；其余版本记录沿用下文变更记录。
+> 版本：v3.1（《长生诀》`Z0-CS`、护体剩余预算与螺旋经脉伤害，2026-10-02）；v3.0（AR-27 protocol 4 攻击运转唯一落点，2026-10-02）；v2.9（AR-19 攻击位置外放抵消、透劲入体、消化、斗转反引与打穴，2026-10-01）。
+> 变更记录（2026-10-02，AR-26）：接入 `Z0-CS` 的 1:20 整数化解结果；护体只消费 `remainMp`，并按 CS-O02 默认仅把螺旋新增实际伤害全额分配为经脉胀损。
 > 变更记录（2026-10-02，AR-27 protocol 4）：普通 / 外放路线曲线先产出 `baseOperationBp`，完整 / 不完整周天再合入最终 `operationBp`，仅由 Z1 外放支消费；Z5M 固定 10000。旧 `meridianAttackBp` 只供 protocol≤3 回放。
 > 变更记录（2026-10-01，AR-19 战斗补全）：以命中区在途气的 50% 承载率作为外放阈值，AR-19 外放抵消取代 AR-14f 的类别适用率与“1 内力抵 2 伤害”；新增异种气包逆行、逐 tick 消化、丹田损伤、斗转反引及打穴占穴。
 > 变更记录（2026-10-01，AR-19 收口）：换路运行态改为“一条当前注入路线 + 多条逐路线气包队列”；旧、新路线可同时推进，但共享单位气量硬顶与节点承载，快照按稳定顺序保存。
@@ -620,10 +621,12 @@ SkillDef sk_* ──包含──► MoveDef mv_* ──引用──► MeridianR
 ```text
 F0 校验招式、路线、目标与资源；冻结双方经脉 / 外放档快照
   → MeridianFlow.preview（UI / AI，可选，零写入 / 零 RNG）
-  → F2 原子支付招式成本、外放增耗与绝招气势；设置适用冷却
+  → F2 原子支付招式成本、外放增耗与绝招气势；锁定本事件攻防承诺资源
+  → 04 的 Z0：完成命中合法性与判定
+  → Z0-CS：若启用九层螺旋，按事件锁定投入化解一次对方承诺内力
   → 攻方 commit（读取在途气、卡住、状态写入）
   → 守方若有合法防守窗口则 commit 防守路线
-  → 04 的 Z0–Z4
+  → 04 的 Z1–Z4
   → Z4M：D4M=floor(D4×meridianDefenseBp/10000)
   → 04 的 Z5
   → Z5M：protocol 4 固定 D5M=D5；protocol≤3 才取 floor(D5×meridianAttackBp/10000)
@@ -632,6 +635,8 @@ F0 校验招式、路线、目标与资源；冻结双方经脉 / 外放档快�
   → 06 附加效果与结算后事件
   → 09 以 MoveDef.recovery + flowCt 扣 CT
 ```
+
+`Z0-CS` 的资源与取整唯一见 `design/04` §3.5、`design/25` §3；本文只消费其结果。整数接口为 `cancelCapacity=floor(spiralSpent×200000/10000)`、`cancelMp=min(opponentMpCommitted,cancelCapacity)`、`remainMp=opponentMpCommitted-cancelMp`。例：投入 19、对方承诺 377，容量 380、化解 377、`remainMp=0`。同一 `causeId` 的多段只可读取同一结果，不得逐段再算。
 
 Z4M 仍在自身边界向下取整；protocol 4 的 Z5M 是恒等边界（固定 10000，不再产生取整变化），protocol≤3 才保留 Canon v1.3 的攻击乘区回放。不建立 Z11，也不改变 Z3 / Z4 / Z5 的现有加算池。攻击路线卡住不会使整招自动未命中，只会降低 `operationBp`；只有预检硬封路才禁止使用。
 
@@ -908,6 +913,8 @@ counterQi = floor(guidedQi×5000/10000)       // 1:2，引 2 得 1
 
 本节是 settle 中唯一的“护体内劲 / 外放抵消”算法；它不是 `bf_hutizhenqi` 护盾，也不是 `mpGuard`。AR-19 **取代** AR-14f 的拳脚 / 兵器 / 暗器 / 外放 `100%/25%/0%/40%` 适用率及“1 内力抵 2 伤害”：不得先跑旧护体内劲再跑本节，也不再直接花当前 `mp`。`bf_hutineijin` 仅表示已有护体路线可参与；命中区与区内节点集合由 `design/09` §5.11 冻结。
 
+若本次护体在 Z0 锁定了内力预算，`settleOutwardQi` 必须收到同一事件的 `guardSpiralCancel`；只有本次护体无承诺内力、因而未对其执行 `Z0-CS` 时才传 `null`。护体真气只由 `remainMp` 生成 `shield`；本节再以剩余量占原承诺量的整数比例缩放护体内劲，不得读取已被 `cancelMp` 化解的预算。AR-19 仍不二次扣当前 `mp`，也不恢复旧“1 内力抵 2 伤害”；公式与事件一次性见 `design/04` §3.5、`design/25` §3.2。
+
 外放门槛使用该命中区自身已有气量，不新增资源：
 
 ```text
@@ -924,7 +931,10 @@ zoneFillBp = projectionReady
 04 以同一次已决 Z0–Z10 结果重放影子 trace，不重掷骰：protocol 4 仅把 `operationBp` 置 10000，protocol≤3 仅把 `meridianAttackBp` 置 10000，其余输入与取整不变，得到 `neutralQiD10`。于是 `attackQiBonus=max(0,D10-neutralQiD10)` 是到 settle 口径的真气加成。守方外放内劲换成同口径的伤害等价量：
 
 ```text
-rawOutwardQi = floor(defenderStrengthBp × defenderFlowRatioBp / 100000)
+guardBudgetBp = guardSpiralCancel==null ? 10000
+  : floor(guardSpiralCancel.remainMp×10000/guardSpiralCancel.opponentMpCommitted)
+fullRawOutwardQi = floor(defenderStrengthBp × defenderFlowRatioBp / 100000)
+rawOutwardQi = floor(fullRawOutwardQi × guardBudgetBp / 10000)
 outwardQi = floor(rawOutwardQi × zoneFillBp / 10000)
 outwardQi = floor(outwardQi × (10000-clamp(breakGuardBp,0,8000)) / 10000)
 netQi = attackQiBonus-outwardQi
@@ -938,7 +948,7 @@ damageBeforeMpGuard = postShield-cancelled
 zoneQiSpent = cancelled==0 ? 0 : min(zoneQi,ceil(cancelled×zoneQi/max(1,outwardQi)))
 ```
 
-`defenderStrengthBp` / `defenderFlowRatioBp` 均取本次合法护体路线 Profile；无路线时取命中区健康节点生成的自然护体短路。区内己方气按 `(route.startedAtTick,routeId,packetSeq,stepIndex)` 全序扣 `zoneQiSpent`，同一气不能再用于出招或第二段防护。`outwardQi=0` 时不得扣气。外放先消去真气加成；守方更强的负差只按 50% 压基础，最终又受“内劲全额、外劲半额”的 `eligible` 上限，故不会抹除全部纯外劲。
+`guardSpiralCancel!=null` 时必须满足 `opponentMpCommitted>0`、`0≤remainMp≤opponentMpCommitted`、`cancelMp+remainMp=opponentMpCommitted` 且 `causeId` 相同；未被化解时虽有 `guardBudgetBp=10000`，仍应传该非空快照以证明本次护体承诺已过 `Z0-CS`。全额化解必得 `guardBudgetBp=0`、`rawOutwardQi=0`。只有本次护体没有承诺内力、因而未对其执行 `Z0-CS` 时才传 `null`，不得伪造“承诺 0”的快照触发除零。`defenderStrengthBp` / `defenderFlowRatioBp` 均取本次合法护体路线 Profile；无路线时取命中区健康节点生成的自然护体短路。区内己方气按 `(route.startedAtTick,routeId,packetSeq,stepIndex)` 全序扣 `zoneQiSpent`，同一气不能再用于出招或第二段防护。`outwardQi=0` 时不得扣气。外放先消去真气加成；守方更强的负差只按 50% 压基础，最终又受“内劲全额、外劲半额”的 `eligible` 上限。
 
 `postShield=cancelled+damageBeforeMpGuard` 必须守恒；随后才轮到 `mpGuard`。抵消成功发 `battle/outwardQiCancelled`，UI 按 `hash(causeId,targetId,segmentIndex) mod 4` 轮换，不耗 RNG：
 
@@ -948,6 +958,14 @@ zoneQiSpent = cancelled==0 ? 0 : min(zoneQi,ceil(cancelled×zoneQi/max(1,outward
 4. 内息奔涌而出，卸开来招
 
 旧 `innerGuard.mpSpent/delayCt/stagnationBp` 在新结算恒为 0；反震仍只由明确效果基于 `cancelled` 计算并带 `reflected` 防递归。迁移器读旧字段但不写回；回放按其原协议继续跑 AR-14f，新协议只跑本节。
+
+### 4.8.1 螺旋新增伤害的经脉分配【建议值】
+
+04 在气血与既有防护结算后只交入 `spiralMeridianDamage=floor(spiralDamageDealt×10000/10000)`；`spiralDamageDealt` 必须是螺旋内力自身已实际造成的新增伤害。本文不重算整招，也不读取 `D10/hpDamage/finalMoveDamage` 代替该字段。CS-O02 默认因此是“新增多少、经脉总账增加多少”，而非整招复制；见 `design/25` §3.3、§13.5。
+
+目标最后一段扣血及 P7 吸血 / 吸内 / 反震后、任何 P7 透劲 / 打穴 / Buff 写入前，按本段已冻结的 `design/09` §5.11 `hitZoneNodes`（`body` 为全部已开穴，`hand/leg` 为对应手足经）过滤 `opened && sealLevel<9 && ruptureDamage==0`，再按 `acupointRef` ASCII 升序冻结 `eligibleNodes`。随后依次创建透劲 / 打穴实例、施加每招 Buff，最后只对该冻结列表写入螺旋伤害；这些 P7 写入不得反向改变本次资格。为空时不跨部位改投，返回未分配量供 trace 报错。设 `N=eligibleNodes.length`、`q=floor(spiralMeridianDamage/N)`、`r=spiralMeridianDamage-q×N`，前 `r` 个节点各加 `q+1`，其余各加 `q` 到 `ruptureDamage`。于是 `ΣnodeDelta+unallocated=spiralMeridianDamage`，无 RNG、无第二次防御，新增 `ruptureDamage>0` 从下一次路线预检起封路。
+
+样例：`spiralDamageDealt=135`、整招最终伤害 900、三个合格节点时，`spiralMeridianDamage=135`，按稳定顺序分为 `45/45/45`；不会分配 900。该解释待作者确认。
 
 ### 4.9 经脉速度：轻功按经脉运行
 
@@ -1536,15 +1554,18 @@ F0 validate move / attack and defense hard blocks
    → validate chosen step and total resource sufficiency
    → design/09 enumerates tiles from the frozen range / spread, then validates target
 F1 snapshot both meridian profiles, milestones, chosen spread and route nodes
-F2 pay move costs plus 0/2%/4% MPREF expansion inside command transaction
-F3 read qi already advanced by battle ticks; for each route step in listed order:
+F2 pay move costs plus 0/2%/4% MPREF expansion and lock committed resources
+F2-Z0 resolve 04 Z0 legality and judgement
+F2-CS resolve the event's sole Z0-CS; freeze cancelMp/remainMp
+F3 read qi already advanced by battle ticks; consume only the remaining committed budget; for each route step in listed order:
      release available qi → derive effective flow → draw one jam roll
      → pass / backlog → stagnation → rupture → stop if blocked
 F4 aggregate completed qualities → routeQualityBp → attackerStrengthBp
 F5 if a defense window is used, commit / read its route → defenderStrengthBp
-F6 choose normal/projected `baseOperationBp`, apply circulation once; protocol 4 feeds Z1 outward branch and fixes Z5M=10000; protocol≤3 feeds legacy Z5M; resolve Z0–Z10
+F6 choose normal/projected `baseOperationBp`, apply circulation once; protocol 4 feeds Z1 outward branch and fixes Z5M=10000; protocol≤3 feeds legacy Z5M; resolve Z1–Z10
 F7 settle shield → AR-19 outwardQi cancellation → mpGuard → hp
-F8 apply 06 effects, penetrating-qi packet, acupoint strike / grapple and reactions
+F8 resolve P7 drains / reflect → freeze spiral eligibleNodes → create penetrating-qi / acupoint instances
+   → apply move Buffs → write spiral damage to frozen nodes → grapple, reactions and displacement
 F9 persist qi / node states; recovery += all committed flowCt; emit trace / full-circulation event
 F10 commit RNG and state together, or roll everything back
 ```
@@ -1560,8 +1581,9 @@ F10 commit RNG and state together, or roll everything back
 | `commit` | 是 / 是 | 路线、Core 的 `battle` RNG | 唯一 `FlowResult`；随命令事务提交 |
 | `estimateMeridianMultipliers` | 否 / 否 | 协议号、双方 Profile、攻防路线长度与周天完成度 | Z4M；protocol 4 的 `baseOperationBp/circulationDamageBp/operationBp` 与固定 Z5M=10000，或 protocol≤3 的旧 Z5M；逐项整数 trace |
 | `projectProjection` | 否 / 否 | 协议号、招式、双方 Profile、15 里程碑、所选档、`MPREF`、封路态 | 当前 / 最大档、射程 / 范围、额外耗内、曲线选择；protocol 4 输出三段运转值，旧协议输出 Z5M；不枚举格 |
-| `estimateOutwardQi` | 否 / 否 | settle trace、命中区、双方 Profile、攻招内外劲 | 抵消量、区内耗气与提示键；不写状态 |
-| `settleOutwardQi` | 是 / 否 | 同上、命令事务 | 守恒结果并按稳定顺序扣区内气；不抽 RNG |
+| `estimateOutwardQi` | 否 / 否 | settle trace、命中区、双方 Profile、攻招内外劲、`guardSpiralCancel` | 含 `guardBudgetBp` 的抵消量、区内耗气与提示键；不写状态 |
+| `settleOutwardQi` | 是 / 否 | 同上、命令事务 | 先按 `remainMp` 缩放护体内劲，再守恒结算并稳定扣区内气；不抽 RNG |
+| `applySpiralMeridianDamage` | 是 / 否 | 04 已决新增伤害、命中区、`causeId` | 按穴位稳定均分为 `ruptureDamage`；总量守恒，不重跑防御 |
 | `injectForeignQi` | 是 / 否 | 来源内功、放气量 / 速度、命中穴与区 | 建异种气包或返回门槛失败；不另扣攻方资源 |
 | `applyAcupointStrike` | 是 / 由 04 已消费 | 穴位、放气量、严重度、来源 | 占穴并投影既有 1–9 级；不另抽 RNG |
 | `computeCorrespondingStrengthAmp` | 否 / 否 | 15 永久态、movement 路线运行态、封路 / 胀损 | `correspondingStrengthAmpBp`；交 03 唯一速度式 |
@@ -1580,9 +1602,11 @@ F10 commit RNG and state together, or roll everything back
 |---|---|---|
 | `createBattle` | 为稳定排序后的每个单位 `initialize` | `BattleState.meridianByUnit` |
 | 09 F0 / F1 校验与整招快照 | `preview` / `projectProjection` 供合法性与 UI；命令提交后依序 commit 攻 / 防路线 | 当前外放档、目标格、成本、`routeQualityBp` 与双方 Profile |
+| 04 Z0-CS | 读取事件唯一 `SpiralCancelSnapshot` | 攻击、护盾及护体仅消费 `remainMp`；多段共享 |
 | 04 Z1 前 / Z4 后 / Z5 后 | protocol 4 在 Z1 外放支读最终 `operationBp`；Z4M 读 `meridianDefenseBp`；Z5M 固定 10000。protocol≤3 只在旧 Z5M 读 `meridianAttackBp` | 新协议攻击运转只消费一次；旧协议按原边界回放 |
 | 04 settle | `settleOutwardQi` | 护体真气后、`mpGuard` 前按命中区抵消并守恒 |
-| 06 效果结算 | 成功后调用透劲 / 打穴 / 擒拿 | 更新目标自己的实例；阻塞 / 丹田伤只作 Buff 投影 |
+| 04 气血及 P7 吸血 / 吸内 / 反震后 | 冻结螺旋 `eligibleNodes`；待其余 P7 写入后调用 `applySpiralMeridianDamage` | 只向冻结节点分配 `spiralDamageDealt` 的 100%，不复制整招 |
+| 06 效果结算 | 冻结之后调用透劲 / 打穴、施加每招 Buff；再写螺旋伤害 | 更新目标实例；本次 P7 写入不改变已冻结资格 |
 | 03 属性快照 → 09 首轮 / CT / 移动 | `computeCorrespondingStrengthAmp`；03 合成最终 `spd`；09 加 `flowCt` 并同步 Buff | 冻结首轮；后续强度变化先重算 `spd`，09 只映射 CT / `mov` |
 | battle tick | 对所有活动实例按 `unitIndex` 调 `tick` | 可回放状态 |
 | 存档 / replay checkpoint | `snapshot` | `GameState` / hash 域 |
@@ -1982,9 +2006,21 @@ interface FullCirculationCritResolved {
 }
 interface OutwardQiResult {
   projectionReady: boolean; zoneQi: number; zoneProjectionThreshold: number;
+  guardBudgetBp: Bp; fullRawOutwardQi: number;
   attackQiBonus: number; outwardQi: number; eligibleIncoming: number;
   qiBonusCancelled: number; baseCancelled: number; cancelled: number;
   zoneQiSpent: number; damageBeforeMpGuard: number; messageKey: string|null;
+}
+interface SpiralCancelSnapshot {
+  causeId: string; spiralSpent: number; opponentMpCommitted: number;
+  cancelCapacity: number; cancelMp: number; remainMp: number;
+}
+interface SpiralMeridianDamageInput {
+  causeId: string; spiralDamageDealt: number; spiralMeridianDamage: number;
+  eligibleNodes: readonly AcupointId[]; // P7 透劲 / 打穴 / Buff 写入前冻结
+}
+interface SpiralMeridianDamageResult {
+  applied: number; unallocated: number; nodeDeltas: readonly { acupointRef:AcupointId; delta:number }[];
 }
 interface CorrespondingStrengthResult {
   legBp: Bp; trunkBp: Bp; breathBp: Bp;
@@ -2012,6 +2048,7 @@ interface MeridianPairInput { attacker: MeridianProfile; defender: MeridianProfi
 interface OutwardQiInput {
   postShield: number; d10: number; neutralQiD10: number; wInBp: Bp; hitZone: HitZone;
   defender: MeridianProfile; breakGuardBp: Bp; causeId: string; segmentIndex: number;
+  guardSpiralCancel: SpiralCancelSnapshot|null; // 非 null 时只能消费其 remainMp
 }
 interface ForeignQiInput {
   sourceUnitId: UnitId; sourceInnerId: string; sourceGrade: number; digestRatioBp: Bp;
@@ -2049,6 +2086,7 @@ interface MeridianFlowModule {
   projectProjection(input: ProjectionInput): ProjectionResult;
   estimateOutwardQi(input: OutwardQiInput): OutwardQiResult;
   settleOutwardQi(input: OutwardQiInput): OutwardQiResult;
+  applySpiralMeridianDamage(input: SpiralMeridianDamageInput): SpiralMeridianDamageResult;
   injectForeignQi(input: ForeignQiInput): ForeignQiRuntime|null;
   applyAcupointStrike(input: AcupointSealInput & { occupyingQi:number; digestRatioBp:Bp }): SealChange;
   computeCorrespondingStrengthAmp(input: CorrespondingStrengthInput): CorrespondingStrengthResult;
@@ -2314,6 +2352,8 @@ zoneQiSpent=min(50,ceil(700×50/1200))=30
 
 同样输入若为纯外劲 `wInBp=0` 且无攻击真气加成，则 `eligible=500`，即使守方外放更强也只抵 500、仍有 500 进入 `mpGuard` / 气血。两例验证“攻击内劲 100%、外劲 50%”的上限、负差折半、气量守恒以及新协议不直接花 `mp`。
 
+若上述护体另有 `opponentMpCommitted=300,remainMp=75`，则 `guardBudgetBp=floor(75×10000/300)=2500`，`fullRawOutwardQi=1200`，故 `rawOutwardQi=floor(1200×2500/10000)=300`。恰过外放阈值且无破气时 `outwardQi=300`，于是 `netQi=200-300=-100`、`qiBonusCancelled=200`、`baseCancelled=50`、`cancelled=min(1000,800,250)=250`、`damageBeforeMpGuard=750`；被化解的 225 点预算不能参与护体。
+
 ### 14.11 经脉速度与封路
 
 取 `agi=65`、7 品 7 重轻功，`qgBaseBp=7000+180×7+120×7=9100`：
@@ -2474,6 +2514,8 @@ operationBp=floor(13581×13500/10000)=18334
 | 经脉强度 | §3.4 | `MeridianProfile/meridianStrengthBp` | 一次相对结算快照 |
 | 攻击运转 / 防守独立乘区 | §3.5、§4.4 | protocol 4：`baseOperationBp/circulationDamageBp/operationBp`；防守：`meridianDefenseBp` | 攻击在 Z1 外放支消费，防守在 Z4M 消费；旧 `meridianAttackBp` 仅 protocol≤3 |
 | 外放抵消 | §4.8 | `OutwardQiResult` | 一次 settle；消耗命中区己方在途气，不直接耗 `mp` |
+| 螺旋资源快照 | §4.4、§12.3 | `SpiralCancelSnapshot` | 一次伤害事件；多段只读同一 `cancelMp/remainMp` |
+| 螺旋经脉伤害 | §4.8.1 | `SpiralMeridianDamageResult` | P7 透劲 / 打穴 / Buff 写入后，一次性写入此前冻结的命中区节点 |
 | 异种气实例 | §4.4.3 | `ForeignQiRuntime` | 注入至消化 / 反引 / 抵达丹田；阻塞真值 |
 | 占穴气实例 | §9 | `AcupointOccupancyRuntime` | 占穴至气量消化完；与 1–9 级同一逻辑实例 |
 | 丹田受损 | §4.4.3.3 | `DantianInjuryProjection` | 伤害即时；产气惩罚由 06 Buff 生命周期承载 |
@@ -2502,7 +2544,7 @@ operationBp=floor(13581×13500/10000)=18334
 
 ### 16.3 兼容键与非 ID
 
-`stateVersion`、`routeQualityBp`、`baseOperationBp`、`circulationDamageBp`、`operationBp`、`meridianAttackBp`、`meridianDefenseBp`、`correspondingStrengthBp`、`correspondingStrengthAmpBp`、`productionPerTick`、`qiSpeedBp`、`circulationBp`、`projection`、`projectionSpreadSteps`、`maxProjectionStep`、`projectionStep`、`sonic`、`projectionBoostActive`、`flowCt`、`sealLevel`、`grappleLevel`、`local_enemy_elite_example` 均是 schema 字段、事件名、标签投影或父对象内局部键，不进入全局 ID 注册表。非中性 `meridianAttackBp` 及旧速度键仅是 protocol≤3 兼容值。
+`stateVersion`、`routeQualityBp`、`baseOperationBp`、`circulationDamageBp`、`operationBp`、`meridianAttackBp`、`meridianDefenseBp`、`correspondingStrengthBp`、`correspondingStrengthAmpBp`、`productionPerTick`、`qiSpeedBp`、`circulationBp`、`spiralDamageDealt`、`spiralMeridianDamage`、`projection`、`projectionSpreadSteps`、`maxProjectionStep`、`projectionStep`、`sonic`、`projectionBoostActive`、`flowCt`、`sealLevel`、`grappleLevel`、`local_enemy_elite_example` 均是 schema 字段、事件名、标签投影或父对象内局部键，不进入全局 ID 注册表。非中性 `meridianAttackBp` 及旧速度键仅是 protocol≤3 兼容值。
 
 ---
 
@@ -2543,6 +2585,8 @@ operationBp=floor(13581×13500/10000)=18334
 | MF-V26 | `ForeignQiRuntime` 的量、速度逐字等于来源外放提交值；`reversePath` 可达丹田且按最短长度 / ID 唯一确定 | 命令拒绝 / 回放失败 |
 | MF-V27 | `AcupointOccupancyRuntime` 绑定已登记穴位，气量不越该穴承载；同次多穴分气守恒；占穴消化成本恰为普通透劲两倍 | 构建 / 回放失败 |
 | MF-V28 | 外放抵消只在 `projectionReady` 成立时运行；`postShield=cancelled+damageBeforeMpGuard`，区内扣气不越现存己方在途气 | 回放失败 |
+| MF-V29 | 同一 `causeId` 至多一份 `Z0-CS`；`cancelCapacity=floor(spiralSpent×200000/10000)`；护体以 `floor(remainMp×10000/opponentMpCommitted)` 缩放 `fullRawOutwardQi`，不得读取已化解预算 | 回放失败 |
+| MF-V30 | `spiralMeridianDamage=floor(spiralDamageDealt×10000/10000)`；节点增量与未分配量之和精确相等，不得读取或复制整招伤害 | 回放失败 |
 
 ### 17.2 参考实现自动用例
 
@@ -2582,6 +2626,9 @@ operationBp=floor(13581×13500/10000)=18334
 | MF-T32 | 完整 / 9999 bp 运气分别暴击 | 仅完整发一次 `battle/fullCirculationCritResolved`；复用原暴击掷值、UI 不抽 RNG，文案键稳定 |
 | MF-T33 | A 路有气时切 B、共享一穴，再切回 A；中途保存 / 载入 | A / B 都按稳定顺序推进且共享穴位承载；A 的 `windowTicks` 不因切换清零，重载前后逐 tick hash 相同，总气不越硬顶 |
 | MF-T34 | §14.13 四脉永久态、组流畅度及 `STD=8000`，再取 `agi=65,g=7,n=7` | 四脉 `9483/7574/9083/8162` → 腿/躯干/呼吸 `8101/8174/8162` → 对应强度 `8135` → 相对 `10168` → 增幅 `10084` → `spd=59`；逐中间值精确断言 |
+| MF-T35 | 螺旋投入 19、对方承诺 377；再以三段招重读 | 容量 380、化解 377、剩 0；全部伤害段共享一份结果 |
+| MF-T36 | `spiralDamageDealt=135`、整招 900、三个合格穴 | 只写入 135，经稳定排序为 `45/45/45`；不写 900 |
+| MF-T37 | §14.10 护体原承诺 300、`remainMp=75`，其余输入不变 | `guardBudgetBp=2500`、`rawOutwardQi=300`、抵消 250、`damageBeforeMpGuard=750`；全额化解时抵消 0 |
 
 ### 17.3 集成、属性与性能测试
 
@@ -2611,6 +2658,8 @@ operationBp=floor(13581×13500/10000)=18334
 | MF-I22 | 普通 / 10:1 异种包逐 tick 消化并抵达丹田；同 tick 多包到达 | 内力成本分别为气量的 1 / 10 倍；包未清前阻塞；到丹田合并定级且只结算一次伤害 |
 | MF-I23 | `sk_douzhuan` 反引量低于 / 超过 `guideCapacity` 与路线承载 | 可引部分按 1:2 形成当行动反击气；超量继续逆流并可能造成同档丹田伤害 |
 | MF-I24 | 打穴普通 1:1 来源占穴 20、交会穴连接三条路线 | 消化恰耗 40 内力；三条路线同时禁用；气清零解除占据但严重度按剩余行动存续 |
+| MF-I25 | 三段伤害事件启用九层螺旋，并覆盖攻击、护盾、自然护体 / 护体路线 | `Z0-CS` 只结算一次；四处只读同一 `remainMp`，资源与回放 hash 守恒 |
+| MF-I26 | 螺旋新增伤害命中有三穴 / 无合格穴的区域 | 前者稳定均分且总量守恒；后者全部进入 `unallocated` 并报 trace，不跨区、不重防 |
 
 属性测试还应随机生成合法路线与节点态，断言：原始质量在 `[0,10000]`、归一完成质量在 `[0,18000]`；同 raw / 同 STD 恒为 10000；优势方完成质量增加不会减少优势兑现；弱方故意降低完成质量不能减轻劣势；卡住位置前移不能提高质量；任一方相对强度增大时其攻击不降、防守承伤不升、速度不降；护体资源守恒；擒拿只在移动 / CT 与独立 `evadeBp` 各生效一次；调息 / tick 不增加伤势；对另一实例操作不改变本实例 hash。
 
@@ -2664,6 +2713,7 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 | NXT-D02 | NXfix / 武学图鉴 | **已解决（逐招静态数据）**：§18.6 所列 28 记音功伤害招及 `mv_dashouyin_dashouyin` 均已标外放并配置三档范围；纯支援 / 控制 / 实体笛招保持非外放。逐招字段仍以各图鉴为唯一真值，生产回放不因静态闭合而免验 |
 | NR0-D01 | 武学图鉴全册 | **已解决**：NR1 / NR2 已按 §4.3.1 重配；530 条门派册路线完全相同序列为 0，剩余高重合只保留审阅警告 |
 | NR0-D02 | `tech/04` / CI | **已解决（工具）**：`--strict` 与 `--diversity` / `--diversity-strict` 已分离；是否把严格多样性加入常态 CI 仍由发布流程决定 |
+| CS-D01 | `tech/05` | `Z0-CS` 以 `200000 bp` 每事件一次；序列化 `SpiralCancelSnapshot`，护体只读 `remainMp`；实现稳定经脉分配与幂等 `causeId` | **本文接口已解决**：见 §4.4、§4.8.1、§12；生产实现与新协议 golden 待 ENG |
 
 上表保留原编号用于追溯；标“已解决”的接口已由对应归属文档接纳，标“交其他任务”或“待实测”的内容仍不得冒充完成。AR-16a / b 数值虽已按 Canon v1.5 执行默认生效，仍保留作者确认入口。
 
@@ -2671,9 +2721,10 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 
 | 上游 | 依赖 | 当前状态 |
 |---|---|---|
-| Canon §3 / §6 / §8–§11 | 书界压制、属性、CT、Z0–Z10、护体、轻功与 Buff | v1.8 是旧 Z4M / Z5M 基线；AR-27 待把攻击改为 Z1 `operationBp`、Z5M=10000，并覆盖旧速度投影 |
+| Canon §3 / §6 / §8–§11 | 书界压制、属性、CT、Z0–Z10、护体、轻功与 Buff | v1.9 已登记螺旋内力与 `design/25` 唯一归属；本轮只接运行接口 |
 | `design/03` | `mpMax`、轻功值、基础 `spd`、臂力 / 身法 / 定力、`apInner/apGrapple` | 已引用；不新增属性 |
-| `design/04` | Z0–Z10、护体 settle、效果检定、TTK 锚点 | **本轮同步 AR-27**：Z1 消费 `operationBp`、Z5M=10000；音功 0 档选普通曲线，旧 Z5M 显式限 protocol≤3 |
+| `design/04` | Z0–Z10、护体 settle、效果检定、TTK 锚点 | **本轮同步长生诀**：04 §3.5 产 `cancelMp/remainMp`，§6.2 产 `spiralMeridianDamage`；本文只消费 |
+| `design/25` | 九层、1:20 化解与 CS-O02 默认 | §3 是效果事实唯一来源；本文只定护体预算消费和节点稳定分配 |
 | `design/05` | 品阶、层数、招式、内功性质、绝招 | 已接十二品绝招数、7 / 9 / 10 重、`meridianRouteRef`、调息引用与外放字段；AR-18 后内功性质按主修经脉逐脉计票，平票或无票取调和，显式空数组可审计为调和而缺字段不可审计；路线算法仍由本文定义 |
 | `design/06` | Buff 注册、控制互斥、Boss 递减 | 已登记 `bf_shouqin`、`bf_xueweishoufeng`、迟滞 / 胀损派生视图及旧 ID 迁移 |
 | `design/08` | 轻功门禁 20 / 50 / 90 / 140 / 200、地形成本 | 已引用；经脉速度不改资格 / 成本 |
@@ -2748,6 +2799,7 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 22. **命中区外放阈值是否固定 50% 承载？** 默认是；节点受封仍进容量分母但不计己方可用气，body 仅在无有效节点时回退护体路线。**【建议值】**
 23. **丹田损伤四档参数是否采用 §4.4.3.3？** 默认按 5% / 15% / 30% `mpMax` 分界，伤害 2% / 5% / 9% / 15% `hpMax`，产气下降 15% / 30% / 50% / 75%，持续 2 / 3 / 4 / 6 次自身行动。**【建议值】**
 24. **透劲消化示例如何落图鉴？** 默认普通来源、九阳、化功、北冥均 1:1，幻阴指 10:1；全部仅为本文原创扩展示例，图鉴任务确认前不修改逐门静态数据。**【建议值】**
+25. **CS-O02“经脉伤害 100%”是否复制整招？** 默认否：只把 04 已决的 `spiralDamageDealt` 按 10000 bp 全额、稳定均分到命中区合格节点；整招 900 而螺旋新增 135 时只写 135。见 §4.8.1、`design/25` §13.5。**【建议值】【待作者确认】**
 
 ### 18.6 下游同步清单
 
@@ -2755,6 +2807,7 @@ python3 tools/lint/check_skill_catalogs.py --diversity-strict
 |---|---|---|
 | `design/03` | 轻功值 / `spd` 输出接口 | **已同步 AR-27**：21 输出 `correspondingStrengthAmpBp`，03 在唯一 `spd` 公式消费；探索 `qinggong` 独立 |
 | `design/04`、伤害 golden | Z0–Z10、settle、算例与 TTK | **本轮同步 AR-27**：protocol 4 在 Z1 外放支读 `operationBp`、Z5M=10000；Z4M 与 `damageBeforeMpGuard` 保持。旧 `damage_sim.py` 仅覆盖 protocol≤3，工程须新增新协议向量 |
+| `tech/04/05`、伤害 / 经脉 golden | 《长生诀》战斗接口 | **待同步**：`changshengLayer/spiralSpent/opponentMpCommitted/cancelCapacity/cancelMp/remainMp/spiralDamageDealt/spiralMeridianDamage`；每事件幂等一次，护体预算与节点分配守恒 |
 | `design/05` | `MoveDef` / 内功 / 招式预算 | **已同步**：`meridianRouteRef`、三用途、`ultimate` 唯一真值与调息档案引用已接入 |
 | `design/05`、武学图鉴全册（NYY → NR4） | 内功性质与 `inner.meridians` | **已解决**：NR4 已完成各册主修经脉与性质同步；05 §5.3.1 保留 NYY 历史基线并登记 NR4 落地结果。本文 §10.4 按图鉴现值引用，逐卡定义仍归图鉴 |
 | `design/06` | Buff、护体、反震、破气、控制递减 | **本任务同步**：旧 Buff 保持；新增异种气 / 占穴只读投影、丹田受损生命周期及负面效果总表 |

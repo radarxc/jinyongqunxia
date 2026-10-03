@@ -5,7 +5,7 @@
 > 引用而不重定义：伤害、治疗与 Z0–Z10 → `design/04-damage-formula.md`；武功层数、内功相性与左右互搏 → `design/05-martial-arts-system.md`；Buff 目录、持续类型与跨战清理 → `design/06-buff-system.md`；套装 → `design/07-set-system.md`；六角地形、轻功门禁与水性行为 → `design/08-terrain-and-qinggong.md`；集气、首轮排序、移动点与战后流程 → `design/09-combat-system.md`；装备数值与合法名录 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务与门派层级 → `design/12-quests-npc-factions.md`；旧角色经验 / 等级的迁移与终局 → `design/13-progression-and-endings.md`（AR-19 后不得作为新人物成长真值）；冲穴、经脉、周天与九转 → `design/15-meridians-and-acupoints.md`；资源、家丁与营生 → `design/16-resources-and-estates.md`；门派历史、称谓与时代矩阵 → `design/17-sects-compendium.md`；NPC 与跨书界同伴 → `design/18-npc-and-companions.md`；地图坐标、区域、城市与路线数据 → `design/19-world-map.md`；后人、宝藏、残本与合成 → `design/20`；战斗经脉动态、攻 / 防 / 轻功路线、护体内劲与经脉模拟模块 → `design/21`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他归属文档、先给出可用数值并在文末登记。
 
-> 版本：v2.0（AR-27 八项先天、沉睡配点、攻速公式与门槛平衡，2026-10-02）；v1.3（AR-19 无人物等级、武功 / 经脉资源公式，2026-10-01）；v1.2（跨文档同步、全局审计，2026-09-26）。
+> 版本：v2.1（长生诀顿悟 / 真元钱包与白马曲线同步，2026-10-02）；v2.0（AR-27 八项先天、沉睡配点、攻速公式与门槛平衡，2026-10-02）；v1.3（AR-19 无人物等级、武功 / 经脉资源公式，2026-10-01）。
 > 变更记录：经脉落地终审（2026-09-30）：区分洪安通静态人物预算与遭遇有效耐久，清除旧高阶辅运示例的生产歧义，回填经脉提案已采纳状态；性质接口沿用 NR4S 已核现值。
 > 变更记录（2026-10-01，AR-19）：人物不再拥有独立成长等级；`hpMax/mpMax` 唯一改由 1–9 层武功熟练与逐脉 / 逐穴强度生成。旧 `Lr/Ld` 降为读档 / 节奏表校准输入，新增无状态的派生修为档迁移口径。
 
@@ -562,6 +562,8 @@ DEF_LV(L) = 0.15 × MP_LV(L)                                // = 0.75 × ATK_LV
 | 70 | 化境 | 0 | 19,820 | 0 | 11,864 | 2,373 | 1,780 | +562 |
 
 实现：启动时按公式生成 `LV_TABLE[1..70]`（浮点），运行时查表；数据校验脚本断言三个锚点偏差 ≤ 2%。
+
+**白马 1–20 覆盖核对**：白马作为第一本正式书的顺序见 `design/25` §2；其 `Ce=1..20` 直接复用 §3.1 同一条兼容曲线，不建立书界专属曲线。由上式可复算首尾锚点：Lv1 为 `HP/MP/ATK/DEF=300/200/40/30`，Lv20 为 `1948/1185/237/178`；中间各级由 `LV_TABLE[1..20]` 唯一生成。
 
 ### 3.4 内功贡献的 AR-19 落点（与 design/05 §5.5 对接）
 
@@ -1143,22 +1145,29 @@ res_eff = res_X × (1 − ρ(Δr))           否则
 
 ## 7. 武学资质
 
-### 7.0 熟练度与真元（AR-26 承接资源）
+### 7.0 类别熟练度、顿悟点数与真元（AR-26 承接资源）
 
 现有 `ap*` **保留并改名为“资质”**：它描述学习效率、类型天赋和 Z5 技法适配，仍为 0–100；不与可消费经验合并。新增两类跨书界资源**（原创扩展）**：
 
 | 资源 | 存档字段 | 计量 | 获得与用途 |
 |---|---|---|---|
-| 类别熟练度（武功经验） | `masteryXp[MasteryCategory]` | 非负整数 XP | 正常使用/修炼积累；书眠忘记外功所得 60% 转化由 `design/13` 定义；可跨类别投入新外功 `sxp` |
-| 真元（内功经验） | `trueEssence` | 非负整数 XP | 正常内功修炼小比例沉淀；书眠散功所得 60% 转化由 `design/13` 定义；可投入内功 `sxp`、调息档案与经脉温养 |
+| 类别熟练度（武功经验） | `masteryXp[MasteryCategory]` | 非负整数 XP | 正常使用/修炼积累；可投入同类新武功 `sxp` |
+| 顿悟点数 | `epiphany` | 非负整数 XP | 遗忘武功所得的未分配钱包；可 1:1 分配给任一 `masteryXp` |
+| 真元（内功经验） | `trueEssenceByNature[InnerNature]` | 非负整数 XP | 按来源内功性质分账；正常内功修炼沉淀或散功所得，可投入可修炼内功 `sxp` |
 
-`MasteryCategory` 固定为 `fist/finger/leg/grapple/sword/blade/staff/spear/whip/exotic/hidden/movement`；杂学继续走技艺，内功只用真元。跨类别投入按 1:1 XP，不再二次打折；单门每层由资源补入不得超过该层 `ExpToNext` 的 50%，其余必须来自正常修炼，防止一次忘技能直接圆满。
+`MasteryCategory` 固定为 `fist/finger/leg/grapple/sword/blade/staff/spear/whip/exotic/hidden/movement`；武艺型杂学转化口径见 `design/25` §8，落入最贴近的上述类别，非武艺杂学继续走技艺。`InnerNature` 的 `yang/yin/harmony` 值集及目标内功性质只引用 `design/05` §5.3。每笔真元入账必须按来源内功的静态 `nature` 写入对应分账；显示总量 `trueEssence=sum(trueEssenceByNature[n])` 只读，不得单独持久化或写入。
+
+`epiphany/masteryXp[*]/trueEssenceByNature[*]` 均无玩法配置上限、可跨书暂存；实现须用非负 int64，且三份真元分账之和也不得超过 `INT64_MAX=9,223,372,036,854,775,807`。顿悟点分配到类别、真元投入内功均按 1:1 XP，不得互换或二次打折；真元不得投入《长生诀》（见 `design/25` §1、§8）。单门每层由这些资源补入不得超过该层 `ExpToNext` 的 50%，其余必须来自正常修炼。
+
+真元投放以《长生诀》层数作门控（层效果只引用 `design/25` §2）：`changshengLayer<7` 时，`spendByNature` 只能扣目标内功同性质分账；`changshengLayer>=7` 时可组合扣除任意性质分账，`sum(spendByNature)` 按 1:1 加入目标 `sxp`，无额外损耗。客户端必须提交逐性质扣款明细；服务端以目标卡 `nature` 重验，不接受只报总额的请求。
+
+书眠转化的基数、60%–72% 层率、高水位与原子提交只引用 `design/13` §4.10；`design/25` §8 允许当场分配或暂存。事务顺序固定为“逐门求转化 → 增加钱包 → 扣钱包并增加目标经验”，任一步失败则全回滚。
 
 迁移：
 
 1. 旧 `apXP_k` 原值保留，继续只用于资质升点；不得转换为可消费熟练度。
 2. 旧档每门累计合法使用次数按 `masteryXp[cat] += 2×uses + 20×max(0,trueLayer-1)` 给予一次性补偿；缺使用次数时只计层数项。
-3. 旧内功按 `trueEssence += 25×max(0,trueLayer-1)` 补偿；迁移补偿不是散功，不触发 60%。
+3. 旧内功按 `trueEssenceByNature[skill.nature] += 25×max(0,trueLayer-1)` 逐门补偿；`skill.nature` 取同版 `design/05` §5.3 静态字段。迁移补偿不是散功，不触发 60%。
 4. 忘记/散功的原始经验、向 60% 转化和 3+3 保留事务归 `design/13`；本文只定义接收资源与消费边界。
 
 ### 7.1 初始值（创角后，身份/天赋加成前）
@@ -1617,6 +1626,8 @@ bossUnit = roundHalfUp(30,221.8001068032 × 7 × 1.35)
 type InnateId = 'con'|'str'|'agi'|'wis'|'wil'|'luk'|'cha'|'bre';
 type AllocatableInnateId = 'str'|'con'|'bre'|'wis'|'agi'|'wil';
 type MasteryCategory = 'fist'|'finger'|'leg'|'grapple'|'sword'|'blade'|'staff'|'spear'|'whip'|'exotic'|'hidden'|'movement';
+type InnerNature = 'yang'|'yin'|'harmony';
+type Xp64 = bigint;            // 仅允许 0n..9223372036854775807n；传输/存档用十进制字符串或原生 int64，禁止 JSON number
 type ResourceMaxId = 'hpMax'|'mpMax'|'staMax'|'shieldMax';
 type CombatId = 'atkOut'|'atkIn'|'defOut'|'defIn'|'hit'|'eva'|'parry'|'pierce'|'crit'|'critDmg'|'tough'
   |'spd'|'mov'|'jump'|'qinggong'|'counter'|'combo'|'seal'|'effHit'|'effRes'|'healPower'|'healRecv';
@@ -1675,8 +1686,10 @@ interface CharacterStatsInput {
   innatePerm: Record<InnateId, number>; innateCap: Record<InnateId, number>;
   sleepPoints: number;
   sleepAlloc: Partial<Record<AllocatableInnateId, number>>;
-  masteryXp: Record<MasteryCategory, number>;
-  trueEssence: number;
+  changshengLayer: 0|1|2|3|4|5|6|7|8|9; // 未习得 / 非主角为 0；第七层门控见 §7.0
+  masteryXp: Readonly<Record<MasteryCategory, Xp64>>;
+  epiphany: Xp64;              // 未分配顿悟点数；跨书暂存
+  trueEssenceByNature: Readonly<Record<InnerNature, Xp64>>; // 总量仅由三账求和
   realmAlloc: Partial<Record<2|3|4|5|6|7, Partial<Record<InnateId, number>>>>;
   ap: Record<ApId, number>; arts: Record<ArtId, number>; lore: number;
   morality: number; fame: number; talents: string[]; flags: string[];   // 存档标记，如 'scar_qishang'（05）
@@ -1853,6 +1866,8 @@ permAttr = clamp(base + sleepAlloc + acceptedTrainingGrant + events, 1, cap)
 | 运功护体 | 行动分支 | 内力转护体 | §5.5 |
 | `resGrade(tag)` `res_eff` | 抵抗品阶体系（与 06 §3.5.2 兼容，增加 5pp 门槛） | | §6.3 |
 | `apXP` `need(ap)` `apCap` | 资质成长 | | §7.2–7.3 |
+| 顿悟点数 / 真元 | `epiphany` / `trueEssenceByNature` | 分别为武功遗忘所得钱包与按来源性质分账的内功散功所得；`trueEssence` 仅为三账只读总和；转化见 13 §4.10 | §7.0；`design/25` §2、§8 |
+| 类别熟练度 | `masteryXp[MasteryCategory]` | 十二类武功经验；顿悟点可 1:1 分配到任一类别 | §7.0 |
 | `apFactor` `A_ap` `artFactor` `trainMul` | 资质系数 | | §7.4–7.5 |
 | `T(g)` `gMax(art)` | 技艺门槛 | | §8.1 |
 | `moralityReq` | 武功字段（05 已采用） | 属性层只输出 `morality`，学习校验由 05 消费该门槛 | §8.3 |
@@ -1915,6 +1930,7 @@ permAttr = clamp(base + sleepAlloc + acceptedTrainingGrant + events, 1, cap)
 | V03-20 | `hpMax/mpMax` 根值只按 §5.1，武功层钳 1–9，三类经脉项各算一次；新档 `legacy*Credit=0` | 复乘 `innerHpPct/innerMpPct`、计入 `fluxCap`、第 10 重加资源或用等级曲线生成资源 |
 | V03-21 | 永久资源药效只能写 15 `MeridianTemperEffect`；旧永久资源百分比只允许迁移为可审计 credit | 新物品直接写永久 `hpMax/mpMax pct`，或同一药效既强脉又直接加资源 |
 | V03-22 | protocol 4 的 `innerDefense` 只读 `Dref`、`bre` 与静态 `defIn` 修饰；`meridianDefenseBp` 只交 04 Z4M | 面板防御读取防守路线 / 在途气，或 Z2 与 Z4M 对同一经脉防守重复乘算 |
+| V03-23 | `epiphany/masteryXp[*]/trueEssenceByNature[*]` 均以精确非负 int64 表达，真元三账之和也不溢出；`changshengLayer<7` 只准同性质扣款，`>=7` 才准跨性质 1:1；投放原子提交 | JSON `number`、负数、任一项或总和溢出、标量真元、七层前跨性质、顿悟与真元互换、向《长生诀》投放，或失败后只扣款未加经验 |
 
 ### 14.2 金标准数值用例
 
@@ -1950,10 +1966,12 @@ permAttr = clamp(base + sleepAlloc + acceptedTrainingGrant + events, 1, cap)
 | T03-25 | 标准 `Cb=[10,25,35,45,55,58,62,65,65,66,67,68,69]` 逐项代入 §2.4.1、§2.8 | `gain=[4,5,5,7,7,7,8,9,9,9,9,10,10]`、累计 `[4,9,14,21,28,35,43,52,61,70,79,89,99]`；突破累计 `[0,10,15,20,25,25,30,30,30,30,30,30,30]`；终局常规预算 `400+99+30+48+24=601` |
 | T03-26 | §2.9.1 均衡路线；另取 `wis=80` 并把前三次全投、第四次投 6 | 六项均值依次为 `50.0/51.0/54.0/56.3/59.2/62.2/64.3/67.5/70.0/72.5/75.0/77.5/80.5/83.5`；终局八项均值 75.125、距全 100 缺 199；悟性于倚天入场前 `80+4+5+5+6=100` |
 | T03-27 | `Dref=600,bre=75,Σflat_defIn=100,Σpct_defIn=+10%,Πmult=1`，另给 `meridianDefenseBp=8000` | `innerDefenseBase=floor(600×75/50)=900`，面板 `innerDefense=roundHalfUp((900+100)×1.10)=1100`；改变 `meridianDefenseBp` 不改变面板值，只有 04 Z4M 把 `D4` 乘 8000 bp |
+| T03-28 | 暂存 `epiphany=6000n`，给刀法类 `2500n`；真元账 `{yang:10000n,yin:7829n,harmony:0n}`，第六层给阳性内功 `5000n` | `epiphany=3500n`、`masteryXp.blade +=2500n`；阳账 `5000n`、另两账不变，该内功 `sxp +=5000`；跨书读档逐账不变 |
+| T03-29 | 同一真元账，第六层给阴性内功提交 `{yang:5000n}`；再改为第七层提交 `{yang:3000n,yin:2000n}` | 第六层拒绝且账与 `sxp` 均不变；第七层总投 `3000+2000=5000`，新账 `{yang:7000n,yin:5829n,harmony:0n}`，目标 `sxp +=5000`，无损耗（见 `design/25` §2） |
 
 ### 14.3 验收闸门
 
-1. 修改 §2–§10 任一公式后，重算 T03-01～T03-27，并同步 §3.5、§4.9、§10.2、§10.7、§10.10 中受影响的显示表。
+1. 修改 §2–§10 任一公式后，重算 T03-01～T03-29，并同步 §3.5、§4.9、§10.2、§10.7、§10.10 中受影响的显示表。
 2. 修改 `STD`、`MPREF`、`P_ref` 或敌模板后，运行 `python3 tools/balance/damage_sim.py --check`；脚本必须先采用本文的合法普通装备上限，不能用旧脚本结果反向覆盖正文。
 3. 修改类型或 ID 后，对 `docs` 与 `tools` 执行精确搜索，确认旧重命名 ID 为 0 个运行态命中，并检查 06 的 Buff 目录与 10 的装备名录。
 4. 合并前检查 Markdown 表列数、代码围栏成对、标题顺序、引用路径和 TypeScript 语法；无 YAML 代码块时记录“无适用项”，不得伪称解析通过。
@@ -2062,3 +2080,4 @@ permAttr = clamp(base + sleepAlloc + acceptedTrainingGrant + events, 1, cap)
 | O08 | `StatModifier.modifierId` 的跨文档迁移 | 新数据必须填写稳定子项 ID；旧数据加载时可暂按“目标属性 + 操作 + 源内序号”生成，完成迁移后移除兜底 | `design/06`、07、10、13、tech/04 |
 | O09 | `MeridianAttributeInput` 是否物化为独立缓存 | 默认不持久化：由同一属性快照与 09 的 `baseMove` 临时组装；若缓存，必须携带属性版本和移动投影版本并在恢复时校验 | `tech/05` |
 | O10 | 洪安通具名 `full` 面板与整场回放 | 保留 §10.9 静态预算锚，正式配装按章节 08 §12.8；遭遇只取 §12.8.1 的 `60,605` 总耐久，不复制 `71,300`。生产需重建装备 / 主辅运贡献并跑固定 RNG 回放，**（待实测）** | `chapters/08`、`design/09`、Core / fixture |
+| O11 | 第七层前真元能否跨内功性质投放 | 默认按来源性质分账且只能同性质投放；第七层起才依 `design/25` §2 解锁跨性质 1:1 无损投放 | 作者 / `design/25` |
