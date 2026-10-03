@@ -1498,4 +1498,10 @@
       - 注入前先确认上一轮的失败类型（停滞还是校验失败）；
       - 不越出协调者给的范围。
     - 同期：ENG-size-session-gate 校验通过、进审核；它自报首次会话闭包 86.16 / 110 KiB，子系统块为对话 / Ink 35.35、区域 44.19、战斗 33.77、城镇 25.64，都只报告。ENG-content-validate-inkmeta、DES-ui-immersive（codex）、collectibles 在执行；ch00b r2 FAIL 在返修。
+  - **10-03 12:20 开发监督**：协调者已停 ch00a 第 3 轮，置 HOLD-RUNS；我的注入器也一并停了。工作区保留，第 1 轮内容未提交。
+    - ENG-content-validate-inkmeta 合入后：
+      - ch00a：挪基点，`--from start`，`--note .agents/coord/CONTENT-ch00a-data/devsup_note_resume.md`（已按协调者口径写好）；
+      - ch10：挪基点，`--from validate`。
+    - 协调者新规：**以后不用提示词注入**，遇到类似情况直接报协调者，由其停进程。
+    - 我的 keywait 改为从文件读任务 ID（`kw.py … @scratchpad/kw_ids.txt`）：命令行里带任务名时，协调者按任务名 pkill 会把它误杀。
 
