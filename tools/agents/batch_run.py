@@ -46,6 +46,7 @@ CHECKS = [  # (ID 前缀, 审核要点文件)
     ("ART-rig-sheet", ".agents/coord/PROD/review_checks_rig_sheet.md"),  # 2026-10-02：三视图设定图（先于 ART-rig- 前缀匹配）
     ("ART-rig-", ".agents/coord/PROD/review_checks_rig_parts.md"),
     ("TOOL-", ".agents/coord/PROD/review_checks_tool.md"),
+    ("CONTENT-", ".agents/coord/PROD/review_checks_content.md"),  # 2026-10-03 协调者 13:22：内容任务的引擎缺口按交接处理，不判 FAIL
     ("DES-", ".agents/coord/PROD/review_checks_des.md"),
     ("ENG-", ".agents/coord/PROD/review_checks_eng.md"),
 ]
