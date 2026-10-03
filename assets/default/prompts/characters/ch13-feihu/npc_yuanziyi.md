@@ -9,22 +9,29 @@ tier: S
 output: assets/default/character/female/ch13/por_npc_yuanziyi__ch13_youth_ziyi_base.png
 manifest: assets/default/character/female/ch13/manifest.yaml
 references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 当前仓库 manifest 状态为 approved，已通过审批；仅参考纸底、光线、笔触与设色，不沿用参考人物的脸、体型、服饰或道具
-status: new
-redo_reason: "飞狐女主尚无立绘；按原著「瓜子脸、双眉修长、眼大嘴小、紫衣、银丝软鞭」补出成年女子形象。"
-codex_prompt_rev: 2026-10-02
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanziyi__ch13_youth_ziyi_base_still0.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanziyi__ch13_youth_ziyi_base_still1.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanziyi__ch13_youth_ziyi_base_game.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  use: 项目画风基线
+status: candidate
+redo_reason: 作者 10-02 晚：复合基线风格精修
+codex_prompt_rev: 2026-10-02 AR-36 retry3
 classic_ref:
-  version: "1991 年台视《雪山飞狐》（含飞狐外传情节）"
-  stills:
-  - ".agents/coord/imagegen-reference/identity-20261001/feihu/yuanziyi-1991-wuyujuan/yuanziyi_1991_wuyujuan_sina2022_3.jpg"
-  - ".agents/coord/imagegen-reference/identity-20261001/feihu/yuanziyi-1991-wuyujuan/yuanziyi_1991_wuyujuan_sina2022_2.jpg"
-  note: "剧照缩到长边 1024 的 JPEG 上传，放在两张同性别基线之前（AR-32）；yuanziyi_1991_wuyujuan_sina2022_2.jpg 裁切框 (0.2, 0.0, 1.0, 1.0)"
+  note: 影视造型＋经典游戏绘画气质＋同性别双基线，五官重新设计
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261001/feihu/yuanziyi-1991-wuyujuan/yuanziyi_1991_wuyujuan_sina2022_3.jpg
-- .agents/coord/imagegen-reference/identity-20261001/feihu/yuanziyi-1991-wuyujuan/yuanziyi_1991_wuyujuan_sina2022_2.jpg
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanziyi__ch13_youth_ziyi_base_still0.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanziyi__ch13_youth_ziyi_base_still1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanziyi__ch13_youth_ziyi_base_game.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+generation_job: por_npc_yuanziyi__ch13_youth_ziyi_base.retry3.r1
+generation_attempts: 1
 ---
 
 <!-- full-coverage-import:current-policy:v1 -->
@@ -38,22 +45,20 @@ reference_upload:
 
 ## Gemini 提示词
 
-> 2026-10-02 AR-32 经典剧照重出（6 号出图员，codex exec · image_gen 出图）：上传该角色经典影视版剧照 2 张（1991 年台视《雪山飞狐》（含飞狐外传情节）：yuanziyi_1991_wuyujuan_sina2022_3.jpg、yuanziyi_1991_wuyujuan_sina2022_2.jpg）在前、两张同性别基线在后。剧照只借鉴发型、服饰、配色、标志道具、气质与面部特征，重新绘制成项目画风，不照搬照片的构图、光影和姿势；人物一律成年。提示词里不写演员名。上一版提示词保留在下一节作历史。
-
 ```text
 生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
-【参考图】随提示词上传 4 张参考图。第 1–2 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。剧照与下文文字不一致的地方（年龄、所处阶段、帽饰与衣装细节、手中器物），以下文文字为准；画中人一律是成年人。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
-【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第2张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第3张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-【人物】袁紫衣，金庸《飞狐外传》的女主角，一身紫衣、骑白马的神秘女郎，武功杂学多门，真实身份是佛门弟子圆性，此时尚未表明。
-【年龄与体态】约二十岁的成年女子，身材苗条修长，腰背有练武的劲，约七头身。
-【经典造型】要一眼认出是袁紫衣——紫色宽檐珠帘帽、一身镶白毛领的紫衣、腰缠银丝软鞭，瓜子脸、双眉修长、眼神带着傲气和捉弄人的笑；明艳灵动、容光照人的女主角。
-【面容】脸以剧照为底子——保留剧照里这个角色的脸型、眉眼、鼻唇的比例关系和神气，画成成年人；瓜子脸（下巴秀气但有骨感，不是 V 字锥子下巴）；双眉修长，眉尾微挑；眼睛大而灵动，眼神里带着傲气和捉弄人的笑意；鼻梁挺秀；嘴小，唇形端正；肤色是健康的浅蜜色，容光照人。
-【发式】乌黑的头发挽成简洁的发髻，额前细碎的薄刘海，耳边一缕碎发；头戴一顶紫色宽檐平顶帽，帽檐一圈垂着短短的珠串流苏，不遮住脸。汉族女子发式。
-【服饰】紫色窄袖短衫（领口镶一圈白色毛边），深紫色便行长裙，裙下是长裤，素色软靴；交领右衽（穿着者左襟压右襟）；颜色是沉稳的紫，不是荧光紫。
-【道具与姿态】腰间缠着一条银丝软鞭，银色鞭柄露在右腰侧；右手轻按鞭柄。不佩剑。重心偏在一条腿上，一手按鞭柄，一手自然垂下，嘴角挂着一点挑衅的笑。
-【不要】画面里不要任何文字、题款、印章、签名、水印、台标、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、日式服饰或日本刀、发光特效、法阵或能量光。不要照片或照片修图的质感，不要照搬剧照的构图、光影、背景和姿势，不要剧照里的字幕、台标和水印。不要浓妆、性感化或暴露的衣着；不要网红脸；不要童颜；不要尼姑装或光头（这一阶段不是）；不要长剑；不要白马或其他动物。不要照搬剧照里的红色斗篷。
-【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+【人物辨识与原创面孔】袁紫衣；紫衣灵动自持、多门武艺精熟、俗家外表下守佛门誓约；标志物银丝软鞭。原创成年新脸：自然偏长鹅蛋脸、舒展长眉、明亮但不过大的杏眼、利落鼻梁与小巧自然嘴唇、浅蜜肤色，含试探笑意；古典游戏女侠骨相，不复制演员。
+【造型道具】成年紫衣行旅女子，紫色宽檐珠帘帽、淡紫右衽窄袖衫和深紫便行长裙、裙下长裤及素靴，衣领少量白毛边，整齐盘髻为俗装假发；腰侧盘收银丝软鞭，小金球鞭梢完整可辨，不佩直剑。帽饰服装借经典剧照，非原著逐字复原。
+【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
 ```
 
 ## 上一版 Gemini 提示词（2026-10-02 文字版；AR-32 经典剧照重出前，历史，不再用于出图）
@@ -153,3 +158,7 @@ Use case: stylized-concept。Asset type: default 风格包，武侠人物基础�
 - 微深肤色与自然瓜子脸保留，轻盈有主见，区别于程灵素瘦小的体态。
 - 清代民间汉族女装，发式和服色细部按原创设计登记。
 - 全身与全部物件端点入画，约 88–92% 占高；暖浅灰不透明纸底、左上柔光、无文字，参考人物的脸与服装未被照搬。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。

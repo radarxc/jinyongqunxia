@@ -9,48 +9,43 @@ tier: S
 output: assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
 manifest: assets/default/character/male/ch08/manifest.yaml
 references:
-- path: generated_images/exec-d31eea37-32ef-4105-b0e2-15ee92877f5d.png
-  use: 已实际查看的本人候选1，面容少年化及道具可用但仍侧倾，保留整体仅纠正头部竖直和水平双眼；尚未通过，不计完成。
-- path: .agents/coord/imagegen-reference/identity-20261001/luding/weixiaobao_1998_chenxiaochun.jpg
-  use: 第一参考，1998 TVB陈小春版韦小宝的本人面部身份输入；已实际view_image查看并核对本地source.json及SHA。优先保留浓黑眉、较窄眼裂与眼间距、平直略扬的外眼角、直鼻梁与较圆宽鼻头、上薄下稍厚的唇形、短圆下巴及略外展耳廓的辨识关系。将这些关系自然回溯为13–17岁少年：较短的未成年面部比例、饱满少年面颊、小而灵活的骨架、无胡须，不照搬成年演员的成熟骨架和纹理。只取本人五官，不复制这张照片的大帽、华贵花纹衣、蓝亮领、胸像裁切或粉紫摄影背景；不据剧照改本书阶段。
-- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-  use: 第二参考，项目男性基线，已实际view_image查看并核对可读性与SHA；仅取低饱和设色、柔和明暗和细腻连贯的写实手绘质感。当前manifest状态candidate，未批准，不改变审批。绝不借令狐冲的脸型、眉眼鼻唇、成年身材、胡茬、长发发髻、网巾、明代衣装、长剑、站姿或歪头角度；本人面部一律来自第一参考。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 第三参考，用户水墨风背景图，已实际view_image查看并核对SHA；只取背景淡墨层次、远景若有若无的山水韵味、暖浅灰纸底与留白。完全忽略其中女性脸孔、头颈倾角、身形、肤质、白青裙装、飘带和发饰；背景墨痕不得侵入韦小宝的人体或衣服。
-status: redo
-redo_reason: "现图按 13–17 岁少年设计、脸平淡没有韦小宝的油滑机灵，长袍还是汉式交领；旧图以 1998 年剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）。改为约二十岁成年、市井坏笑、清初圆领大襟。"
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/weixiaobao_ref1.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/weixiaobao_ref2.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+  use: 项目画风基线
+status: candidate
+redo_reason: 作者 10-02 晚：复合基线风格精修
 realism_revision: user_identity_pose_20261001
-codex_prompt_rev: 2026-10-02
+codex_prompt_rev: 2026-10-02 AR-36 retry3
 classic_ref:
-  version: "1998 年 TVB《鹿鼎记》"
-  stills:
-  - ".agents/coord/imagegen-reference/identity-20261001/luding/weixiaobao_1998_chenxiaochun.jpg"
-  note: "剧照缩到长边 1024 的 JPEG 上传，放在两张同性别基线之前（AR-32）"
+  note: 剧照仅借造型；游戏借古典绘画气质；不得照搬演员五官
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261001/luding/weixiaobao_1998_chenxiaochun.jpg
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/weixiaobao_ref1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/weixiaobao_ref2.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+generation_job: por_npc_weixiaobao__ch08_youth_bishou_base.retry3.r1
+generation_attempts: 1
 ---
 
 # 韦小宝 · 人物写实修正
 
 ## Gemini 提示词
 
-> 2026-10-02 AR-32 经典剧照重出（6 号出图员，codex exec · image_gen 出图）：上传该角色经典影视版剧照 1 张（1998 年 TVB《鹿鼎记》：weixiaobao_1998_chenxiaochun.jpg）在前、两张同性别基线在后。剧照只借鉴发型、服饰、配色、标志道具、气质与面部特征，重新绘制成项目画风，不照搬照片的构图、光影和姿势；人物一律成年；清代男子按清制剃额留辫。提示词里不写演员名。上一版提示词保留在下一节作历史。
-
 ```text
 生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
-【参考图】随提示词上传 3 张参考图。第 1 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。剧照与下文文字不一致的地方（年龄、所处阶段、帽饰与衣装细节、手中器物），以下文文字为准；画中人一律是成年人。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
+【复合参考】第1张是该角色经典影视造型的剧照：只借发型、服饰、配色、标志道具、气质和大致脸型，五官不要照搬演员本人，要往经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像这个演员。第2张是经典武侠游戏的绘画风格参考：借其古典武侠插画的气质、线条与造型感。最后两张是项目画风基线，只参考画风、不取长相。
 【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-【人物】韦小宝，《鹿鼎记》男主角，扬州妓院长大的市井小子，假扮小太监「小桂子」混在清宫，已从鳌拜家抄得一柄削铁如泥的匕首和一件刀枪不入的宝衣的时期。
-【年龄与体态】外观约二十岁的成年青年男子（不是少年），中等偏矮的个子，身形精瘦灵活。
-【经典造型】照剧照里经典影视版的造型来画：九十年代经典港剧里那个嬉皮笑脸的韦小宝——头戴黑缎瓜皮小帽（帽顶一颗红绒结），前额剃光、脑后一条长辫；宝蓝长袍外罩暗红坎肩；一双滴溜溜转的小眼睛，咧嘴一笑满是机灵和坏水，让人又好气又好笑。
-【面容】脸以剧照为底子——保留剧照里这个角色的脸型、眉眼、鼻唇的比例关系和神气，画成成年人；圆中带方的脸，下巴短圆；眉毛浓黑、眉梢上扬；一双小而亮的眼睛滴溜溜地转，透着机灵、狡黠和市井气；鼻子圆钝；嘴巴略大，嘴角挂着一副嬉皮笑脸的坏笑，好像正要编一句瞎话；肤色健康偏暖。油滑、机灵、讨人喜欢，五官端正，不是丑角。
-【发式】清初男子发式——前额和头顶前半剃光，脑后留一条细长辫子垂在背后；头戴一顶黑缎瓜皮小帽，帽顶缀一颗小红绒结。
-【服饰】清初样式的宝蓝色圆领大襟长袍（右衽，衣襟从领口斜向右腋下用布纽扣扣合），外罩一件暗赭红色坎肩，腰系布带，黑布靴；袍子里贴身穿着一件乌黑柔韧的宝衣，只在领口露出一线。
-【道具与姿态】腰间斜插一柄连鞘短匕首（乌黑短鞘、小巧刀柄）；右手在胸前把玩两颗骰子；左手叉腰；吊儿郎当地站着，一脚稍前。
-【不要】画面里不要任何文字、题款、印章、签名、水印、台标、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、日式服饰或日本刀、发光特效、法阵或能量光。不要照片或照片修图的质感，不要照搬剧照的构图、光影、背景和姿势，不要剧照里的字幕、台标和水印。不要少年或孩子的脸和身材；不要长剑和剑侠架势；不要丑化成小丑；清初男子一律穿圆领大襟，不要汉式交领长衫，不要明代发髻或网巾。
+【人物】韦小宝，约二十岁的成年青年，身材精瘦灵活、略矮，头正平视。出身市井，机灵善变、嘴快胆活；眼神像随时盘算下一句话，但不奸邪丑化。
+【原创面孔】圆中带方的脸，清晰的成年下颌骨，眉短而扬、眼睛细长有神、鼻头略圆、嘴角略不对称地含笑。重新设计眉眼鼻唇比例，与剧照演员拉开差异；不要使用精修明星脸、卡通滑稽脸。
+【衣饰】清初剃额留辫，黑缎瓜皮小帽顶缀小红绒结。宝蓝色圆领右开襟长袍配暗赭红坎肩、黑布靴，衣料有柔和旧痕，腰间乌黑短鞘匕首。右衽。宝衣只在领内微露乌黑细边。
+【标志道具与动作】右手掌心自然托着两颗素骨骰子，左手轻搭腰带；匕首保持入鞘，刀柄清楚。身子站稳，一脚略前，有市井聪明劲，不摆持剑大侠架势。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或剧照修图质感，不要照搬演员五官；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
 【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
 ```
 
@@ -101,22 +96,22 @@ reference_upload:
 【画风基线】上传的参考图里，最后一张是本项目的立绘画风基线（只上传了一张时就是它）：只参考它的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；不要照搬基线图里那个人的长相、年龄、发型、服饰和姿势。
 ```
 
-## 人物与阶段
+## 旧轮人物与阶段（历史，不再用于出图）
 
 - subject_id：npc_weixiaobao
 - book：ch08_luding
 - gender：male
 - age_variant：youth
 
-## 本轮人物写实规范
+## 旧轮人物写实规范（历史，不再用于出图）
 
 候选1/2仍有头颈侧倾，不计完成；3/4修正为真正端正正面，保留少年小桂子身份及本人独立五官。
 
 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
 
-本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_weixiaobao__ch08_youth_bishou_base/prompt-cdfc746c79ab2d2a2568dcdf8a6d0eedad622abfd0b5f2e4b1b973d54dcbbad9.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+以下为精修前的旧轮请求原文，仅作历史，不再用于出图；其中演员身份、少年外观与排除项已由本文 §「Gemini 提示词」的成年复合新脸方案替代。旧备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_weixiaobao__ch08_youth_bishou_base/prompt-cdfc746c79ab2d2a2568dcdf8a6d0eedad622abfd0b5f2e4b1b973d54dcbbad9.md` 保留追溯；本轮实际请求与 manifest 均对应文首 Gemini 段。
 
-## 提示词
+## 旧轮完整提示词（历史，不再用于出图）
 
 ```text
 EDIT THE FIRST INPUT ILLUSTRATION. Keep this specific Wei Xiaobao identity and adolescent age, the plain cap, queue, clothing, one die, sheathed short dagger and full-body composition. REQUIRED correction: make the head and neck truly upright and directly frontal. The line joining the two pupils must be exactly horizontal and parallel to the top edge of the canvas. The middle of the forehead, nasal bridge, philtrum, chin midpoint and throat must form a vertical centerline. The head must not lean toward a shoulder. No roll, no Dutch angle, no cheek-forward diagonal pose, no sideways neck bend. Do not rotate the canvas or rest of the body. Redraw only the face/head/neck alignment naturally, preserving the real recognizable face from the second reference, age-adapted to a boy. Keep relaxed horizontal shoulders and upright body axis. Use eyes and a slight smile for character, NEVER a head tilt.
@@ -146,13 +141,17 @@ Create a refined REALISTIC full-body Chinese wuxia character illustration. Chara
 完整排除项：不要把13–17岁少年画成二三十岁的演员本人、成年壮汉、宽胸健美身材、长腿模特、成熟情场姿态、胡须或胡茬；不要婴幼儿比例、Q版、动漫大眼、统一俊男模板、网红尖下巴、厚妆丰唇。不要混入令狐冲、萧峰、王语嫣或其他人物的五官；不要用“同一通用男脸换清装”代替陈小春版韦小宝的辨识关系。不要歪头、头倒向一侧肩膀、斜置脸部中线、侧脸、回眸、低头藏眼、仰头藏眼、耸单肩卖萌、倾斜镜头或Dutch angle。不要复制第一参考的成年年龄、宽大宫帽、华贵花袍、亮蓝领、半身构图或粉紫影棚背景；不要直接交付照片、剧照截图、3D模型、塑料磨皮。不要宋明长发发髻、束发网巾、满头长发遮前额、剃成完全无辫的光头；不要晚清大拉翅、近代帽服、僧装或披肩长发。不要蟒袍补服、鹿鼎公爵服、官爵顶戴、黄马褂、官印令牌、皇冠或帝王气派。不要长剑、第二柄匕首、拔出的刀刃、火铳、外露金属宝甲、盔甲、盾牌、法阵、龙形能量、发光道具。右手只能拿一枚正常小尺寸无刻字骰子，左手空着；不要第二枚骰子、数字文字、漂浮骰子、骰子变成珠宝法器、手物粘连或匕鞘悬空。不要水平镜像、错误衣襟、日式刀服、前结宽腰带、欧式奇幻装备或现代物品。人物本体不要飞白断裂、碎墨拼贴、纸纹透肤透衣、白斑、划痕、衣料变碎布、撕裂衣角、过密褶皱、毛边侵蚀或皮肤斑驳；水墨仅限背景。不要额外人物、多视图、分格、脸部特写框、多肢多指、缺手缺脚、裁断头足或器物端点。不要裸露、透衣、性感化、血腥、恶搞或丑化。不要可读文字、题款、签名、印章logo、装饰水印、强逆光、浓雾或复杂宫殿背景；保留工具自身溯源，不删除或伪造。 不要 head tilt 或 Dutch angle；正面头颈竖直、双眼水平，不得借参考的头部侧倾或斜镜头。
 ```
 
-## 排除项
+## 旧轮排除项（历史，不再用于出图）
 
 不要把13–17岁少年画成二三十岁的演员本人、成年壮汉、宽胸健美身材、长腿模特、成熟情场姿态、胡须或胡茬；不要婴幼儿比例、Q版、动漫大眼、统一俊男模板、网红尖下巴、厚妆丰唇。不要混入令狐冲、萧峰、王语嫣或其他人物的五官；不要用“同一通用男脸换清装”代替陈小春版韦小宝的辨识关系。不要歪头、头倒向一侧肩膀、斜置脸部中线、侧脸、回眸、低头藏眼、仰头藏眼、耸单肩卖萌、倾斜镜头或Dutch angle。不要复制第一参考的成年年龄、宽大宫帽、华贵花袍、亮蓝领、半身构图或粉紫影棚背景；不要直接交付照片、剧照截图、3D模型、塑料磨皮。不要宋明长发发髻、束发网巾、满头长发遮前额、剃成完全无辫的光头；不要晚清大拉翅、近代帽服、僧装或披肩长发。不要蟒袍补服、鹿鼎公爵服、官爵顶戴、黄马褂、官印令牌、皇冠或帝王气派。不要长剑、第二柄匕首、拔出的刀刃、火铳、外露金属宝甲、盔甲、盾牌、法阵、龙形能量、发光道具。右手只能拿一枚正常小尺寸无刻字骰子，左手空着；不要第二枚骰子、数字文字、漂浮骰子、骰子变成珠宝法器、手物粘连或匕鞘悬空。不要水平镜像、错误衣襟、日式刀服、前结宽腰带、欧式奇幻装备或现代物品。人物本体不要飞白断裂、碎墨拼贴、纸纹透肤透衣、白斑、划痕、衣料变碎布、撕裂衣角、过密褶皱、毛边侵蚀或皮肤斑驳；水墨仅限背景。不要额外人物、多视图、分格、脸部特写框、多肢多指、缺手缺脚、裁断头足或器物端点。不要裸露、透衣、性感化、血腥、恶搞或丑化。不要可读文字、题款、签名、印章logo、装饰水印、强逆光、浓雾或复杂宫殿背景；保留工具自身溯源，不删除或伪造。 不要 head tilt 或 Dutch angle；正面头颈竖直、双眼水平，不得借参考的头部侧倾或斜镜头。
 
-## 质检要点
+## 旧轮质检要点（历史，不再用于出图）
 
 - 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_weixiaobao__ch08_youth_bishou_base.prepared.json`。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。

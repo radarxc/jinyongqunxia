@@ -1,0 +1,319 @@
+- id: cg_ch12_iron_gall_storm
+  file: cg_ch12_iron_gall_storm.png
+  category: scene
+  style: default
+  subject: 铁胆释嫌（ch12_shujian）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：陈家洛本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第2张参考：陈家洛·安西承任阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    第3张参考：骆冰本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】横幅全景：铁胆庄被火焚后的庭院，烟火只在远处。陈家洛面向苍髯老者周仲英拱手释嫌，周仲英回礼；成年骆冰素色劲装立侧后，神情痛惜而缓和。仅用新陈家洛阶段锁脸，周仲英A仅按文字，骆冰可用既有S身份；不要钥匙石桌，不让被捕的文泰来在场，不画儿童和遗体。周仲英厚肩、斑白浓眉长须、深棕长袍灰青短褂、暗小帽。
+
+    【剧情边界】第4回误会冰释、陈家洛等谢罪后救火与分路营救文泰来；具体庭院站位为原创扩展构图。https://www.99csw.com/book/2185/64963.htm 目标三联/广州修订版逐字校勘仍待考。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「铁」「胆」「释」「嫌」，合成「铁胆释嫌」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_late_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_late_base.png
+    sha256: 0a15d7a6cf8ae11a8d59e49040434c7fccfada6b6df8435cf8bbbc4dc363ebbd
+    uploaded_sha256: 0a15d7a6cf8ae11a8d59e49040434c7fccfada6b6df8435cf8bbbc4dc363ebbd
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_scene_anxi_new_helmsman.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_scene_anxi_new_helmsman.png
+    sha256: 232a4531c2dfa5ceafd60ea67c6077adf66cfa0bb23d6fa0e997d14e3d8efa8e
+    uploaded_sha256: 232a4531c2dfa5ceafd60ea67c6077adf66cfa0bb23d6fa0e997d14e3d8efa8e
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/female/ch12/por_npc_luobing__ch12_youth_recovered_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_luobing__ch12_youth_recovered_base.png
+    sha256: 2c208562f3a25511d3d1a3b56d9cd8c09ed18367a63c043e68846bea60703012
+    uploaded_sha256: 2c208562f3a25511d3d1a3b56d9cd8c09ed18367a63c043e68846bea60703012
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:29:18-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch12_iron_gall_storm.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: a6f66a3943786d3ae22dc9fcd4b2dc2971570adad51746b332662224355c48c7
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「铁胆释嫌」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch12_iron_gall_storm.retry3.r1
+  quality_retries: 0
+  history: []
+- id: cg_ch12_liuhetower_oath
+  file: cg_ch12_liuhetower_oath.png
+  category: scene
+  style: default
+  subject: 六和盟誓（ch12_shujian）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：陈家洛本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第2张参考：陈家洛·安西承任阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    第3张参考：乾隆本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】六和塔内中全景，晨光从窗照入、钱塘江在外。陈家洛与乾隆隔朴素木案相对谈判，案上茶盏与无字卷纸，克制手势，神色各怀心事；陈家洛使用新脸，服装可为月白长衫黑坎肩，乾隆仅用现有S图锁身份。不另加文泰来赵半山同场，不出现可读文书。
+
+    【剧情边界】第11回第三天早晨面谈与塔上盟誓；站位和茶案陈设为原创扩展构图。https://www.kanunu8.com/book/4600/50442.html 目标三联/广州修订版逐字校勘仍待考。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「六」「和」「盟」「誓」，合成「六和盟誓」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_late_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_late_base.png
+    sha256: 0a15d7a6cf8ae11a8d59e49040434c7fccfada6b6df8435cf8bbbc4dc363ebbd
+    uploaded_sha256: 0a15d7a6cf8ae11a8d59e49040434c7fccfada6b6df8435cf8bbbc4dc363ebbd
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_scene_anxi_new_helmsman.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_scene_anxi_new_helmsman.png
+    sha256: 232a4531c2dfa5ceafd60ea67c6077adf66cfa0bb23d6fa0e997d14e3d8efa8e
+    uploaded_sha256: 232a4531c2dfa5ceafd60ea67c6077adf66cfa0bb23d6fa0e997d14e3d8efa8e
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch12/por_npc_qianlong__ch12_prime_palace_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch12/por_npc_qianlong__ch12_prime_palace_base.png
+    sha256: 461c5a83aee77065ba68c5f6abde9e0e414c93a7cb291cc4aa25b6c54e623348
+    uploaded_sha256: 461c5a83aee77065ba68c5f6abde9e0e414c93a7cb291cc4aa25b6c54e623348
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:29:19-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch12_liuhetower_oath.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: dfd86f2da81e892fbf09c6a39087be317da6131330379544f677ddf848a96ed7
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「六和盟誓」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch12_liuhetower_oath.retry3.r1
+  quality_retries: 0
+  history: []
+- id: cg_ch12_qingtong_breaks_formation
+  file: cg_ch12_qingtong_breaks_formation.png
+  category: scene
+  style: default
+  subject: 黑水奇谋（ch12_shujian）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：霍青桐本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第2张参考：霍青桐·黑水军略阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】广阔雪沙战场，霍青桐站在高坡为唯一近景人物，翠羽黄衫外罩墨绿披肩，一手压合拢军图、一手指向远方，远处低饱和旗队与回部队列迂回形成纵深。阵势真实，不画能量光、不画尸体，不把她画成被男主指挥。
+
+    【剧情边界】第14–15回霍青桐筹划战术、黑水营围困；军图和高坡手势为原创扩展构图，确切战场地望待考。https://www.99csw.com/book/2185/64974.htm 目标三联/广州修订版逐字校勘仍待考。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「黑」「水」「奇」「谋」，合成「黑水奇谋」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
+    sha256: aa96488680a5386b25eeafa4c1bde83d9bdd53de47dd83f02fc9c7692cc42336
+    uploaded_sha256: aa96488680a5386b25eeafa4c1bde83d9bdd53de47dd83f02fc9c7692cc42336
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.png
+    sha256: cef3fc06a944ae84acc4713af73be0c775cf2f16d95ba636ba422fce8e63a174
+    uploaded_sha256: cef3fc06a944ae84acc4713af73be0c775cf2f16d95ba636ba422fce8e63a174
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:29:19-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch12_qingtong_breaks_formation.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: b4af397cb6e2196aa3a5d6a9f055b150e0660020fd0c3b13d32e1dd319bc6ead
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「黑水奇谋」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch12_qingtong_breaks_formation.retry3.r1
+  quality_retries: 0
+  history: []
+- id: cg_ch12_kasili_enters_palace
+  file: cg_ch12_kasili_enters_palace.png
+  category: scene
+  style: default
+  subject: 孤影入宫（ch12_shujian）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：喀丝丽本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第2张参考：喀丝丽·宫中急信阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】高大宫门与深廊投下冷影，成年喀丝丽白衣小头巾独自停在明暗分界，双手收在身前、无信件无兵器；表情悲伤却清醒，远处侍卫为模糊成年文字人物。强调被俘后的孤立与自主意志，不加入陈家洛或霍青桐送行，不画舞女艳情。
+
+    【剧情边界】第19–20回被俘送京入宫；画面时间压缩与建筑空间为原创扩展构图，入门的精确瞬间待考。story/12第220–223行；https://www.hetubook.com/book2/33/695.html 目标三联/广州修订版逐字校勘仍待考。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「孤」「影」「入」「宫」，合成「孤影入宫」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
+    uploaded_sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
+    sha256: bc0cf71da5e53ad149ae342b5262d824ae170669e15127a06f230fa1ce37ae2d
+    uploaded_sha256: bc0cf71da5e53ad149ae342b5262d824ae170669e15127a06f230fa1ce37ae2d
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:29:20-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch12_kasili_enters_palace.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 4bcafd961f86501923c95f704bb918f7e9108f2c57b32648d5d9385c0631c903
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「孤影入宫」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch12_kasili_enters_palace.retry3.r1
+  quality_retries: 0
+  history: []
+- id: cg_ch12_palace_warning
+  file: cg_ch12_palace_warning.png
+  category: scene
+  style: default
+  subject: 宫墙急信（ch12_shujian）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：喀丝丽本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第2张参考：喀丝丽·宫中急信阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】宫廊冷窗前，成年喀丝丽护一封折叠无字信在胸前，侧身警觉地看向廊尽头；桌上普通灯盏，门外成年侍卫影子形成压力。衣装完整端庄，信件不出现可读字；不画白巾示警、不画自伤，不宣告她已获救。
+
+    【剧情边界】第20回试图传信却被夺、随后牺牲示警；只取失败前窗口，传信姿态原创扩展构图。story/12第221行；https://www.hetubook.com/book2/33/695.html 目标三联/广州修订版逐字校勘仍待考。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「宫」「墙」「急」「信」，合成「宫墙急信」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
+    uploaded_sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
+    sha256: bc0cf71da5e53ad149ae342b5262d824ae170669e15127a06f230fa1ce37ae2d
+    uploaded_sha256: bc0cf71da5e53ad149ae342b5262d824ae170669e15127a06f230fa1ce37ae2d
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:29:21-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch12_palace_warning.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 5fed0f9666fd14c925c3a7e14050ddd8d2d887b1d09caef93bf44bb0bc54f478
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「宫墙急信」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch12_palace_warning.retry3.r1
+  quality_retries: 0
+  history: []

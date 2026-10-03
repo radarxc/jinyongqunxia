@@ -9,42 +9,45 @@ tier: S
 output: assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_departure_base.png
 manifest: assets/default/character/female/ch11/manifest.yaml
 references:
-- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-  use: 已实际查看的项目女性画风基线，仅取细墨线、柔和层染、温润肤质与柔光，不锁王语嫣面容、体型、气质、发式或宋代衣装。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际查看的用户自生成水墨风格参考，仅取精细笔墨、衣料层染与淡雅设色；不继承人物身份、年龄脸型、白衣淡青配色、披发首饰或山水背景。
-status: redo
-codex_prompt_rev: 2026-10-02
-redo_reason: 作者 10-02：侠客 / 鸳鸯 / 白马只靠文字的人复查幼态与 AI 感——上一版是磨皮瓷肌的甜笑模板脸、略显稚气；沿用文字做法重出，只改年龄骨相与去 AI 化
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_xiaozhonghui__ch11_youth_departure_base_still0.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_xiaozhonghui__ch11_youth_departure_base_game.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  use: 项目画风基线
+status: candidate
+codex_prompt_rev: 2026-10-02 AR-36 retry3
+redo_reason: 作者 10-02 晚：复合基线风格精修
 reference_upload:
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-classic_ref: "无（作者 10-02 指定鸳鸯刀用《金庸群侠传》头像；游戏里没有可靠的萧中慧头像，只用文字与基线）"
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_xiaozhonghui__ch11_youth_departure_base_still0.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_xiaozhonghui__ch11_youth_departure_base_game.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+classic_ref:
+  note: 影视造型＋经典游戏绘画气质＋同性别双基线，五官重新设计
+generation_job: por_npc_xiaozhonghui__ch11_youth_departure_base.retry3.r1
+generation_attempts: 1
 ---
 
 # 萧中慧 · 《鸳鸯刀》（ch11）
 
 ## Gemini 提示词
 
-> 2026-10-02 AR-32 补记修改 A（9 号出图员，codex exec · image_gen）：作者 10-02（AR-32 补记第 6 条）：复查判定上一版有明显 AI 感（磨皮瓷肌、甜笑模板脸、略显稚气）；沿用文字做法，只加强成年骨相、英气与去 AI 化描写。上传顺序：只上传两张同性别画风基线（缩小版 JPEG）。上一版保留在下一节作历史。
-
 ```text
 生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
-【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
-【本张重点】上一版被判定为 AI 感过重：瓷娃娃般的磨皮肌肤、完美对称的模板五官、水汪汪的大眼睛，还显得稚气。这一张要画成一个真实的、二十四五岁的成年女子：练武的人的脸：颧骨略高、下颌利落有棱角；浓而英挺的眉；眼睛细长、单眼皮或很窄的内双；鼻梁挺、鼻头略圆；嘴角含笑不露齿；日晒过的健康肤色；看得见毛孔、几颗淡雀斑或一颗小痣、眼下淡淡的青色和细纹，左右脸不完全对称；表情安静自然，不摆拍、不营业。耐看、有个人特点，但绝不是网红美女、精修照或少女。
+【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第2张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
 【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-【人物】萧中慧，金庸《鸳鸯刀》的女主角，晋阳萧府的千金，胆大好义、爽朗任性；独自离家去夺鸳鸯刀的那一段（清代，乾隆初年）。
-【年龄与体态】二十四五岁的成年女子，匀称结实、轻捷有劲，肩背舒展，是练过武的成年人身体（约七头身）。
-【经典造型】英气爽朗的侠女千金：蓝衣白领、双手各持一柄柳叶刀、发间一支金钗；眉眼带笑又有一股不服输的倔劲。
-【面容】成年女子的骨相：脸型偏长、颧骨和下颌线清楚、下巴有一定长度、两颊不鼓；不是圆润的娃娃脸，也不是少女。偏长的鹅蛋脸，颧骨略高、下颌利落；眉毛浓而英挺、眉尾上扬；眼睛细长明亮、单眼皮或内双、自然大小，眼神爽朗、带着笑意和不服输的倔强；鼻梁挺直；嘴唇饱满、嘴角含笑（不露齿）；健康的暖象牙色皮肤，有日晒的淡雀斑、细小毛孔和左右脸的细微不对称，双颊一点自然的红晕。明丽大方、有英气的成年女子，不是娇弱闺秀，也不是甜美模板脸。
-【发式】乌黑的头发在脑后利落地挽成发髻，插一支缀小珍珠的金钗；鬓边几缕碎发。清代汉族女子发式，不是旗头。
-【服饰】清代汉族女子的出行装束：蓝色窄袖短袄（圆领、大襟右衽、布纽扣），月白色领缘和袖口；深蓝色长裙，裙内穿长裤，便于行走打斗；腰束月白腰带；脚穿平底软靴。衣料厚实不透，以蓝白两色的干净层次为主。
-【道具】双手各握一柄出鞘的柳叶刀（刀身窄而微弯、刀尖上挑，单刃），刀尖斜指地面、刀身完整入画；两把刀都是普通钢刀。
-【姿态与神情】身体正面朝前，双刀垂在身体两侧，站姿英挺，笑盈盈地看着前方。
-【去 AI 味·本张重点】这张最要紧的是不要 AI 感：皮肤要有真实的肤理和细小瑕疵（毛孔、淡雀斑或晒斑、轻微的黑眼圈、唇纹），五官有个人特点和轻微的左右不对称，表情自然、不摆拍；不要瓷娃娃般的磨皮肌肤、完美对称的模板五官、水汪汪的大眼睛和偶像式柔光。好看，但像真实的人。
-【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要旗头、花盆底鞋和旗装；不要满身绣花、长飘带和过多首饰；不要娇弱闺秀的神情；不要露齿甜笑、大双眼皮大眼睛和尖下巴的模板脸；不要少女幼态；不要和杨夫人、任飞燕同一张脸。
-【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+【人物辨识与原创面孔】萧中慧；爽朗好义、有主见而不服输、练武女子的轻捷英气。原创新脸设计：成年二十四五岁视觉，偏长鹅蛋脸有清楚下颌和颧骨、略粗英眉、窄内双笑眼、鼻梁直而鼻翼自然、饱满唇，暖象牙肤和少量细雀斑；不用圆眼娃娃脸。；影视参考图只取右后女性，忽略左下男性局部。
+【造型道具】清代汉女出行装束：脑后利落发髻、小珍珠金钗；蓝色圆领大襟右衽窄袖短袄、月白领袖缘，深蓝裙内穿长裤、月白腰带、平底软靴。双手各持一柄普通柳叶钢刀斜指地面；非一长一短鸳鸯宝刀。
+【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
 ```
 
 ## AR-32 补记修改前的 Gemini 提示词（8 号出图员版；2026-10-02 上午，历史，不再用于出图）
@@ -160,3 +163,7 @@ classic_ref: "无（作者 10-02 指定鸳鸯刀用《金庸群侠传》头像�
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/hero-20261001/por_npc_xiaozhonghui__ch11_youth_departure_base.prepared.json`。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。

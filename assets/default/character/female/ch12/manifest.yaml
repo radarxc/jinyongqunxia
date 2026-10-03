@@ -244,52 +244,69 @@
   subject: 喀丝丽（ch12_shujian）
   prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
 
-    【参考图】随提示词上传 3 张参考图。第 1 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。剧照与下文文字不一致的地方（年龄、所处阶段、帽饰与衣装细节、手中器物），以下文文字为准；画中人一律是成年人。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
+    【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    第2张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+
+    最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+
+    五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 
     【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
 
-    【人物】喀丝丽（香香公主），金庸《书剑恩仇录》的女主角，回部首领木卓伦的小女儿、霍青桐的妹妹，天真纯洁，美得令人不敢逼视，在被俘入宫之前。
+    【人物辨识与原创面孔】喀丝丽；素白衣裙、清澈善良且有自主判断、头巾与细辫；原创成年新脸：比姐姐更柔和的鹅蛋面、适度圆润两颊、舒展弯眉与自然眼裂、秀挺鼻和柔软唇线，成年骨相，不幼态、不与姐姐同脸，不复制演员。
 
-    【年龄与体态】约二十岁的成年女子，体态纤细修长、自然柔和，约七头身，成年女性的身体比例。
+    【造型道具】许多乌黑细辫、白绣花小帽饰少量红绿小宝石和细珠串、帽后白头巾不遮脸；雪白回部厚实不透长衣长裙、领襟红细边、白软靴；一手拢头巾边，无兵器，不把香气画成光效。
 
-    【经典造型】要一眼认出是香香公主喀丝丽——一身雪白回疆长衣、许多细辫、镶宝石垂珠串的白绣花小帽和素白头巾，天真纯洁、美得令人不敢逼视；绝美、空灵。
+    【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
 
-    【面容】脸以剧照为底子——保留剧照里这个角色的脸型、眉眼、鼻唇的比例关系和神气，画成成年人；照剧照里的脸：维吾尔族年轻女子，两颊饱满、下巴圆润的鹅蛋脸，浓而弯的眉毛，笑起来嘴角上扬、两颊鼓起；眉毛细长微弯；一双大而清澈的眼睛，黑亮得像夜空里的星星，眼神纯真好奇；眼窝略深，睫毛长；鼻梁秀挺；嘴唇柔软自然；肌肤白得像雪，带极淡的红晕。和姐姐霍青桐有几分相像，但更柔和、更不设防，少了英气。
-
-    【发式】漆黑的长发编成许多细辫，披在肩前和背后；头戴一顶白色绣花小帽，帽沿镶一圈红绿小宝石，两侧垂下几串细珍珠串，帽后垂下一幅素白头巾，不遮脸。
-
-    【服饰】一身雪白的回疆长衣长裙，立领和前襟镶红色细边，长袖，裙长及踝，只有极淡的银白色刺绣；白色软靴；衣料厚实不透明。
-
-    【道具与姿态】不拿兵器；双手空着，一手轻轻捏着头巾的边。安静地站着，头正，目光清澈地望向前方，带一点好奇的微笑。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、台标、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、日式服饰或日本刀、发光特效、法阵或能量光。不要照片或照片修图的质感，不要照搬剧照的构图、光影、背景和姿势，不要剧照里的字幕、台标和水印。不要浓妆、性感化或暴露的衣着；不要把香气画成烟雾、花瓣或蝴蝶；不要透明纱衣、露腰；不要清宫服饰、婚服；不要艳丽浓妆；不要和霍青桐一模一样的脸。不要尖下巴、大眼睛的网红模板脸或洋娃娃脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
   negative: ''
   references:
   - path: .agents/coord/imagegen-reference/identity-20261001/shujian/classic1976-20261002-prep_audit/kasili-1976-yuanan-thepaper.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_kasili__ch12_youth_prepalace_base_still0.jpg
     sha256: 5c5c49e45d520e6ed6b84f5f44a71e2c2650a226d95862c55397f563d32c07f7
-    use: 经典影视版剧照（1976 年 TVB《书剑恩仇录》，AR-32）：借鉴发型、服饰、配色、标志道具、气质与面部特征，重绘为项目画风，不照搬照片；上传前裁切 (0.0, 0.0, 1.0, 0.93)
-    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w6/staging/still_kasili_1.jpg（长边 1024 JPEG）
+    uploaded_sha256: 331d2cc70fed3f49457fe47d2038c42a5a9df1ca22838d6ca255260f5bb19d8b
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/author-20261002/linghuchong_game_cover_wuyuejianpai.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_kasili__ch12_youth_prepalace_base_game.jpg
+    sha256: c81b4af6e1db5d5be88098a15842a4874f8bdebc87477a7bdf4c41da84b4415f
+    uploaded_sha256: 1dbcee0ba1079c3a943da69b67439cb10c627585bb67f755514f52a2a073bb23
+    use: 经典游戏绘画风格
   - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
     sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风基线（只取画风、光线、质感与背景，不取长相；AR-31 / AR-32）
-    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg（缩小版 JPEG，DISK_RULE）
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
   - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
     sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风基线（只取画风、光线、质感与背景，不取长相；AR-31 / AR-32）
-    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg（缩小版 JPEG，DISK_RULE）
-  tool: codex exec · image_gen（AR-32：经典影视剧照 1 张 + 同性别基线 2 张）
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
   model: gpt-6-astra
-  created: 2026-10-02T11:21:34-0700
-  source_path: .agents/coord/gemini_originals/por_npc_kasili__ch12_youth_prepalace_base.png
+  created: 2026-10-03T01:14:09-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_kasili__ch12_youth_prepalace_base.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 2934aecf9b53126a54857f03bbb888dcfc6fd2c9a65c8d5a67101168beaca787
+  sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
   status: candidate
-  notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：1976 年 TVB《书剑恩仇录》；第 2 次出图：第 1 次脸偏通用美女模板、不像剧照，改写脸型描写后重出；job por_npc_kasili__ch12_youth_prepalace_base__t2
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_kasili__ch12_youth_prepalace_base.retry3.r1
+  quality_retries: 0
+  history:
+  - id: por_npc_kasili__ch12_youth_prepalace_base
+    sha256: 2934aecf9b53126a54857f03bbb888dcfc6fd2c9a65c8d5a67101168beaca787
+    source_path: .agents/coord/gemini_originals/por_npc_kasili__ch12_youth_prepalace_base.png
+    tool: codex exec · image_gen
+    model: gpt-6-astra
+    created: 2026-10-02T11:21:34-0700
+    archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/por_npc_kasili__ch12_youth_prepalace_base/2934aecf9b53126a54857f03bbb888dcfc6fd2c9a65c8d5a67101168beaca787.png
+    archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/por_npc_kasili__ch12_youth_prepalace_base/2934aecf9b53126a54857f03bbb888dcfc6fd2c9a65c8d5a67101168beaca787.yaml
 - id: por_npc_huoqingtong__ch12_youth_early_base
   file: por_npc_huoqingtong__ch12_youth_early_base.png
   category: character/female
@@ -297,55 +314,313 @@
   subject: 霍青桐（ch12_shujian）
   prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
 
-    【参考图】第 1–2 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
+    【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
 
-    【剧照借鉴要点】取剧照里的「翠羽黄衫」造型：黑底绣青白卷草纹的小圆帽、帽边一簇白绒和一根翠绿长羽、鹅黄衫子、多条长辫、圆耳环；脸型和英气沉着的神情也照剧照。
+    第2张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+
+    第3张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+
+    最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+
+    五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
 
     【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 
     【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
 
-    【人物】霍青桐，金庸《书剑恩仇录》的女主角，回部首领木卓伦之女，人称「翠羽黄衫」，能统兵打仗的回疆女侠，在追回经书、赠剑之前。
+    【人物辨识与原创面孔】霍青桐；翠羽黄衫、沉着英气、善统兵而情感克制；原创成年新脸：偏长椭圆面、微显颧弓、平直修长眉与稳健眼神、鼻口有真实体积、略宽坚实下巴，避免演员复制或统一美女模板。
 
-    【年龄与体态】约二十二岁的成年女子，身材高挑苗条，肩背挺拔，骑马练剑的结实身体，约七个半头身。
+    【造型道具】细辫与黑底青白卷草纹小圆帽，帽缘白绒和一根翠绿羽；鹅黄窄袖长衫墨绿黑窄边、深褐皮带、宽松裤与软皮长靴；赠剑前右侧古铜鞘短剑、左侧鞘中长剑，均不出鞘。
 
-    【经典造型】要一眼认出是「翠羽黄衫」霍青桐——绣花小圆帽插翠绿长羽、鹅黄长衫、多条长辫、腰佩一长一短两剑；英姿飒爽、明艳照人的回部女将。
+    【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
 
-    【面容】照剧照的脸型和五官，带一点西域风情：鹅蛋偏长的脸，颧骨略高；眉毛浓黑修长、眉尾微扬；眼睛明亮有神、眼神冷静自信；鼻梁挺直秀气；嘴唇饱满，嘴角坚定；肤色白里透红，两颊天然红晕，看得见真实的肤理。美而有英气，有统兵的沉着；是成年女子，不是少女。
-
-    【发式】乌黑浓密的长发编成好几条长辫，垂在肩前和背后；头顶戴一顶黑底绣青白卷草纹的回部小圆帽（贴着头顶，不是大头巾），帽边插一簇白绒和一根长长的翠绿色羽毛，羽毛向后上方翘起；耳垂挂一对金色圆耳环。
-
-    【服饰】一身鹅黄色长衫，窄袖，长及小腿，前襟和袖口有墨绿与黑色的窄边和细小刺绣，立领处一枚深色盘扣；腰系一条深褐皮带；里面是宽松长裤，脚穿深褐色软皮长靴。回疆样式，衣料完整不透，可以骑马。
-
-    【道具与姿态】腰带右侧斜插一柄带鞘短剑（父亲所赐，匕首长短，古铜色剑鞘），左侧佩一柄完全入鞘的长剑；两柄剑都不出鞘。挺拔站立，右手按在腰带上，左手轻扶长剑剑鞘，目光直视前方，英姿飒爽。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要浓妆、性感化或暴露的衣着；不要缠成大包的头巾；不要汉族发髻或清宫旗头；不要舞台化的民族服装、面纱、露腰；不要网红脸；不要出鞘的剑；不要日式服饰。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
   negative: ''
   references:
   - path: .agents/coord/imagegen-reference/identity-20261002/shujian/huoqingtong_1976_wangmingquan_sohu2024.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_still0.jpg
     sha256: 2f554a54fd4d08cf5f93200e6645ce2cbf9f01c6c2aea958c92bfa4a915d6950
-    use: 经典影视剧照（AR-32 补记修改 B）：借鉴发型、服饰、配色、标志道具、气质和面部特征；不取构图、光影、背景、姿势与照片质感（1976 TVB《书剑恩仇录》霍青桐，汪明荃饰）
-    uploaded: 缩到长边 ≤1024 的 JPEG（codex_w9/staging/huoqingtong_1976_wangmingquan_sohu2024.jpg，原图 1080×1131）
+    uploaded_sha256: 5070bdd60ed692216a146e9667b26e05827a1ff0983fd884c0f4f21ab59874de
+    use: 影视造型、衣饰与气质；不复制演员五官
   - path: .agents/coord/imagegen-reference/identity-20261002/shujian/huoqingtong_1976_wangmingquan_sinablog.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_still1.jpg
     sha256: 977487a97faec1f70f933a1d3bc06ddf4c9cb8fc6bc176623ff5820cbe927291
-    use: 经典影视剧照（AR-32 补记修改 B）：借鉴发型、服饰、配色、标志道具、气质和面部特征；不取构图、光影、背景、姿势与照片质感（1976 TVB《书剑恩仇录》霍青桐，汪明荃饰）
-    uploaded: 裁切 [0, 0, 320, 398] 后缩到长边 ≤1024 的 JPEG（codex_w9/staging/huoqingtong_1976_wangmingquan_sinablog_crop.jpg，原图 320×420）
+    uploaded_sha256: bf76eee5c64bf4953e4099088b709c9aeded13e31ef7530a488bcf6dfef114fa
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_113-1.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_game.jpg
+    sha256: a7e8bb571063a658acb9f96695435959a72145f135991b52e16e8e71f1c8dadc
+    uploaded_sha256: 2a06429e09ef096da437488e2c70828db63704d0eb418028c266f9cce99f82d9
+    use: 经典游戏绘画风格
   - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
     sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相
-    uploaded: 缩小版 JPEG（gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg）
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
   - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
     sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相
-    uploaded: 缩小版 JPEG（gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg）
-  tool: codex exec · image_gen（AR-32 补记：前置 1976 年 TVB《书剑恩仇录》（霍青桐由汪明荃饰演） 剧照 2 张，后接两张同性别基线立绘作画风参考）
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
   model: gpt-6-astra
-  created: 2026-10-02T16:47:19-0700
-  source_path: .agents/coord/gemini_originals/por_npc_huoqingtong__ch12_youth_early_base.png
+  created: 2026-10-03T01:14:08-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_huoqingtong__ch12_youth_early_base.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 2488b4c4ea0ba3345583c22385ad55d2d68c642145c4310b859e43bac00e8b8b
+  sha256: aa96488680a5386b25eeafa4c1bde83d9bdd53de47dd83f02fc9c7692cc42336
   status: candidate
-  notes: AR-32 补记修改 B（9 号出图员）：作者 10-02（AR-32 补记）：书剑取 1976 TVB 版，下载剧照后重出；上一版本机无剧照，只用文字。1976 年 TVB《书剑恩仇录》（霍青桐由汪明荃饰演） 剧照 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘；r1
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_huoqingtong__ch12_youth_early_base.retry3.r1
+  quality_retries: 0
+  history:
+  - id: por_npc_huoqingtong__ch12_youth_early_base
+    sha256: 2488b4c4ea0ba3345583c22385ad55d2d68c642145c4310b859e43bac00e8b8b
+    source_path: .agents/coord/gemini_originals/por_npc_huoqingtong__ch12_youth_early_base.png
+    tool: codex exec · image_gen
+    model: gpt-6-astra
+    created: 2026-10-02T16:47:19-0700
+    archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/por_npc_huoqingtong__ch12_youth_early_base/2488b4c4ea0ba3345583c22385ad55d2d68c642145c4310b859e43bac00e8b8b.png
+    archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/por_npc_huoqingtong__ch12_youth_early_base/2488b4c4ea0ba3345583c22385ad55d2d68c642145c4310b859e43bac00e8b8b.yaml
+- id: por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit
+  file: por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.png
+  category: character/female
+  style: default
+  subject: 霍青桐·翠羽追经（ch12_shujian）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【主角】霍青桐；翠羽黄衫、沉着英气、善统兵而情感克制；原创成年新脸：偏长椭圆面、微显颧弓、平直修长眉与稳健眼神、鼻口有真实体积、略宽坚实下巴，避免演员复制或统一美女模板。
+
+    【本期】翠羽追经；成年追经阶段，鹅黄骑行长衫、翠羽小圆帽、细辫、深褐靴；赠剑前长短两剑均在鞘，警觉英气。
+
+    【阶段背景】西北古道、驿站与远山。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
+
+    【考据边界】第一至四回追还经书；具体衣纹、站位原创扩展构图。 联网来源及目标版待考边界见 research_12_14_retry3.md。；配色、镜头、成人化、具体站姿是（原创扩展）；所引章回仅作情节定位，三联／广州修订版对应回目与字句待纸本终校（待考）。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
+    sha256: aa96488680a5386b25eeafa4c1bde83d9bdd53de47dd83f02fc9c7692cc42336
+    uploaded_sha256: aa96488680a5386b25eeafa4c1bde83d9bdd53de47dd83f02fc9c7692cc42336
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: .agents/coord/imagegen-reference/identity-20261002/shujian/huoqingtong_1976_wangmingquan_sohu2024.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_still0.jpg
+    sha256: 2f554a54fd4d08cf5f93200e6645ce2cbf9f01c6c2aea958c92bfa4a915d6950
+    uploaded_sha256: 5070bdd60ed692216a146e9667b26e05827a1ff0983fd884c0f4f21ab59874de
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_113-1.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_game.jpg
+    sha256: a7e8bb571063a658acb9f96695435959a72145f135991b52e16e8e71f1c8dadc
+    uploaded_sha256: 2a06429e09ef096da437488e2c70828db63704d0eb418028c266f9cce99f82d9
+    use: 经典游戏绘画风格
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:19:15-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: e91e0534258c90092c09029f8522299dd25a57fb2d7ab9324b40435f80eba0d0
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.retry3.r1
+  quality_retries: 0
+  history: []
+- id: por_npc_huoqingtong__ch12_youth_scene_blackwater_command
+  file: por_npc_huoqingtong__ch12_youth_scene_blackwater_command.png
+  category: character/female
+  style: default
+  subject: 霍青桐·黑水军略（ch12_shujian）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【主角】霍青桐；翠羽黄衫、沉着英气、善统兵而情感克制；原创成年新脸：偏长椭圆面、微显颧弓、平直修长眉与稳健眼神、鼻口有真实体积、略宽坚实下巴，避免演员复制或统一美女模板。
+
+    【本期】黑水军略；成年统军阶段，黄衫外罩墨绿御寒披肩，腰仅长剑在鞘，一手持卷合军图，沉着指挥。墨绿厚披肩覆盖双肩与大半上身，形成清楚的大块深绿色轮廓，衣装在缩略全身图也明显区别追经黄衫；不要只画一条窄绿领。
+
+    【阶段背景】雪沙交界高地，远处回部军阵；不画真实战死者。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
+
+    【考据边界】第十四至十五回军略，军图和站位原创扩展构图；准确地望待考。 联网来源及目标版待考边界见 research_12_14_retry3.md。；配色、镜头、成人化、具体站姿是（原创扩展）；所引章回仅作情节定位，三联／广州修订版对应回目与字句待纸本终校（待考）。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
+    sha256: aa96488680a5386b25eeafa4c1bde83d9bdd53de47dd83f02fc9c7692cc42336
+    uploaded_sha256: aa96488680a5386b25eeafa4c1bde83d9bdd53de47dd83f02fc9c7692cc42336
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: .agents/coord/imagegen-reference/identity-20261002/shujian/huoqingtong_1976_wangmingquan_sohu2024.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_still0.jpg
+    sha256: 2f554a54fd4d08cf5f93200e6645ce2cbf9f01c6c2aea958c92bfa4a915d6950
+    uploaded_sha256: 5070bdd60ed692216a146e9667b26e05827a1ff0983fd884c0f4f21ab59874de
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_113-1.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_game.jpg
+    sha256: a7e8bb571063a658acb9f96695435959a72145f135991b52e16e8e71f1c8dadc
+    uploaded_sha256: 2a06429e09ef096da437488e2c70828db63704d0eb418028c266f9cce99f82d9
+    use: 经典游戏绘画风格
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:19:16-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: cef3fc06a944ae84acc4713af73be0c775cf2f16d95ba636ba422fce8e63a174
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_huoqingtong__ch12_youth_scene_blackwater_command.retry3.r1
+  quality_retries: 0
+  history: []
+- id: por_npc_kasili__ch12_youth_scene_oasis_first_meeting
+  file: por_npc_kasili__ch12_youth_scene_oasis_first_meeting.png
+  category: character/female
+  style: default
+  subject: 喀丝丽·绿洲初见（ch12_shujian）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【主角】喀丝丽；素白衣裙、清澈善良且有自主判断、头巾与细辫；原创成年新脸：比姐姐更柔和的鹅蛋面、适度圆润两颊、舒展弯眉与自然眼裂、秀挺鼻和柔软唇线，成年骨相，不幼态、不与姐姐同脸，不复制演员。
+
+    【本期】绿洲初见；成年相识阶段，暖白回部布裙浅青细边、朴素白小帽头巾，双手扶巾边，无兵器，明净好奇。
+
+    【阶段背景】绿洲水畔、芦苇与远沙丘。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
+
+    【考据边界】第十四回回疆初识；服色及单人水畔视点原创扩展构图。 联网来源及目标版待考边界见 research_12_14_retry3.md。；配色、镜头、成人化、具体站姿是（原创扩展）；所引章回仅作情节定位，三联／广州修订版对应回目与字句待纸本终校（待考）。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
+    uploaded_sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: .agents/coord/imagegen-reference/identity-20261001/shujian/classic1976-20261002-prep_audit/kasili-1976-yuanan-thepaper.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_kasili__ch12_youth_prepalace_base_still0.jpg
+    sha256: 5c5c49e45d520e6ed6b84f5f44a71e2c2650a226d95862c55397f563d32c07f7
+    uploaded_sha256: 331d2cc70fed3f49457fe47d2038c42a5a9df1ca22838d6ca255260f5bb19d8b
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/author-20261002/linghuchong_game_cover_wuyuejianpai.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_kasili__ch12_youth_prepalace_base_game.jpg
+    sha256: c81b4af6e1db5d5be88098a15842a4874f8bdebc87477a7bdf4c41da84b4415f
+    uploaded_sha256: 1dbcee0ba1079c3a943da69b67439cb10c627585bb67f755514f52a2a073bb23
+    use: 经典游戏绘画风格
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:19:18-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 0e400f35e9265c3f262bb0c41b833a27aebbd7bed7390d312eff585c7fc1942b
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_kasili__ch12_youth_scene_oasis_first_meeting.retry3.r1
+  quality_retries: 0
+  history: []
+- id: por_npc_kasili__ch12_youth_scene_palace_warning_letter
+  file: por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
+  category: character/female
+  style: default
+  subject: 喀丝丽·宫中急信（ch12_shujian）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【主角】喀丝丽；素白衣裙、清澈善良且有自主判断、头巾与细辫；原创成年新脸：比姐姐更柔和的鹅蛋面、适度圆润两颊、舒展弯眉与自然眼裂、秀挺鼻和柔软唇线，成年骨相，不幼态、不与姐姐同脸，不复制演员。
+
+    【本期】宫中急信；成年宫中示警前，象牙白厚外衣、灰青披肩、收整细辫，右手护折好的无字信，警觉望门外。灰青厚披层覆盖双肩和大半身躯，与早期绿洲暖白轻装明确不同，折信道具清楚。
+
+    【阶段背景】高宫墙、冷色窗格与深廊。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
+
+    【考据边界】第二十回信件被夺前的窗口；不得白巾冒充原著，不画自伤或宣称成功逃宫。 联网来源及目标版待考边界见 research_12_14_retry3.md。；配色、镜头、成人化、具体站姿是（原创扩展）；所引章回仅作情节定位，三联／广州修订版对应回目与字句待纸本终校（待考）。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
+    uploaded_sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: .agents/coord/imagegen-reference/identity-20261001/shujian/classic1976-20261002-prep_audit/kasili-1976-yuanan-thepaper.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_kasili__ch12_youth_prepalace_base_still0.jpg
+    sha256: 5c5c49e45d520e6ed6b84f5f44a71e2c2650a226d95862c55397f563d32c07f7
+    uploaded_sha256: 331d2cc70fed3f49457fe47d2038c42a5a9df1ca22838d6ca255260f5bb19d8b
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/author-20261002/linghuchong_game_cover_wuyuejianpai.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_kasili__ch12_youth_prepalace_base_game.jpg
+    sha256: c81b4af6e1db5d5be88098a15842a4874f8bdebc87477a7bdf4c41da84b4415f
+    uploaded_sha256: 1dbcee0ba1079c3a943da69b67439cb10c627585bb67f755514f52a2a073bb23
+    use: 经典游戏绘画风格
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:19:19-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: bc0cf71da5e53ad149ae342b5262d824ae170669e15127a06f230fa1ce37ae2d
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_kasili__ch12_youth_scene_palace_warning_letter.retry3.r1
+  quality_retries: 0
+  history: []

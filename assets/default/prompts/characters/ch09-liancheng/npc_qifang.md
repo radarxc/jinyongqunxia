@@ -9,22 +9,29 @@ tier: S
 output: assets/default/character/female/ch09/por_npc_qifang__ch09_youth_mother_base.png
 manifest: assets/default/character/female/ch09/manifest.yaml
 references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 当前仓库 manifest 为 approved（已通过）；只参考纸底、光线、笔触和设色，不沿用脸、体型、服饰或道具
-status: redo
-redo_reason: "主检出 10-02 新出的候选以 2004 年剧集剧照为面部身份参考，有复刻真人面容的风险（本轮口径禁止）；神情惊惧瞪眼，看不出湘西乡下长大、爽朗俏丽的戚芳。按文字面容重画年轻母亲阶段。"
-codex_prompt_rev: 2026-10-02
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_qifang__ch09_youth_mother_base_still0.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_qifang__ch09_youth_mother_base_still1.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_qifang__ch09_youth_mother_base_game.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  use: 项目画风基线
+status: candidate
+redo_reason: 作者 10-02 晚：复合基线风格精修
+codex_prompt_rev: 2026-10-02 AR-36 retry3
 classic_ref:
-  version: "2004 年《连城诀》电视剧"
-  stills:
-  - ".agents/coord/imagegen-reference/identity-20261001/liancheng/qifang_2004_hemeitian_baike_b812_20261002.jpg"
-  - ".agents/coord/imagegen-reference/identity-20261001/liancheng/qifang_2004_hemeitian_sina20260608_01.jpg"
-  note: "剧照缩到长边 1024 的 JPEG 上传，放在两张同性别基线之前（AR-32）；qifang_2004_hemeitian_sina20260608_01.jpg 裁切框 (0.0, 0.335, 1.0, 0.665)"
+  note: 影视造型＋经典游戏绘画气质＋同性别双基线，五官重新设计
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261001/liancheng/qifang_2004_hemeitian_baike_b812_20261002.jpg
-- .agents/coord/imagegen-reference/identity-20261001/liancheng/qifang_2004_hemeitian_sina20260608_01.jpg
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_qifang__ch09_youth_mother_base_still0.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_qifang__ch09_youth_mother_base_still1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_qifang__ch09_youth_mother_base_game.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+generation_job: por_npc_qifang__ch09_youth_mother_base.retry3.r1
+generation_attempts: 1
 ---
 
 <!-- full-coverage-import:current-policy:v1 -->
@@ -38,22 +45,20 @@ reference_upload:
 
 ## Gemini 提示词
 
-> 2026-10-02 AR-32 经典剧照重出（6 号出图员，codex exec · image_gen 出图）：上传该角色经典影视版剧照 2 张（2004 年《连城诀》电视剧：qifang_2004_hemeitian_baike_b812_20261002.jpg、qifang_2004_hemeitian_sina20260608_01.jpg）在前、两张同性别基线在后。剧照只借鉴发型、服饰、配色、标志道具、气质与面部特征，重新绘制成项目画风，不照搬照片的构图、光影和姿势；人物一律成年。提示词里不写演员名。上一版提示词保留在下一节作历史。
-
 ```text
 生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
-【参考图】随提示词上传 4 张参考图。第 1–2 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。剧照与下文文字不一致的地方（年龄、所处阶段、帽饰与衣装细节、手中器物），以下文文字为准；画中人一律是成年人。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
-【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第2张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第3张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-【人物】戚芳，《连城诀》女主角，戚长发之女、狄云的师妹和青梅竹马；已嫁入荆州万家、做了母亲，牵挂女儿的时期。
-【年龄与体态】约二十四五岁的年轻母亲，身材匀称健康、成人比例，有乡间长大的结实与利落。
-【经典造型】要一眼认出是戚芳——湘西乡下长大的俏丽姑娘，如今是年轻母亲：豆绿袄、低髻木簪、怀抱给女儿的小布衣，温柔而有心事；美丽质朴，不是愁苦相。
-【面容】脸以剧照为底子——保留剧照里这个角色的脸型、眉眼、鼻唇的比例关系和神气，画成成年人；照两张剧照里的脸：圆润的脸庞、面颊饱满，一双大而圆的明亮眼睛，下巴小而圆；肤色是湘西乡下长大的健康微黑，颊上有自然红晕；眉毛平而浓；眼睛明亮有神，眼神温柔里透着牵挂与隐忧；鼻子圆润；嘴唇丰厚，嘴角带一点乡下姑娘的倔强；皮肤有真实质感与细纹。本是爽朗俏丽的乡下姑娘，如今多了心事。
-【发式】已婚妇人的低髻，一支素木簪。
-【服饰】豆绿色交领袄（右衽）、暖米色长裙、窄腰带、平底布鞋；衣料比乡下时细致些，但朴素不华贵。
-【道具与姿态】双手抱着一件折好的小女孩布衣（给女儿空心菜的）；正面站立，神情温柔而有心事。
-【不要】画面里不要任何文字、题款、印章、签名、水印、台标、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、日式服饰或日本刀、发光特效、法阵或能量光。不要照片或照片修图的质感，不要照搬剧照的构图、光影、背景和姿势，不要剧照里的字幕、台标和水印。不要惊恐瞪眼的表情；不要照片感；不要贵妇凤冠；不要抱着婴儿或第二个人。清初汉族女子仍穿明式袄裙：汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。不要照搬剧照里的紫色发带和惊慌神情；不要白皙瓷肌，不要瓜子脸、尖下巴的标准美女模板脸。
-【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+【人物辨识与原创面孔】戚芳；湘西乡间的爽朗善良、对旧情与亲人的牵挂、已为人母而有独立选择；折叠小童衣象征母亲身份。原创成年新脸：较圆润鹅蛋脸、柔和但成熟的下颌、微弧眉、眼尾平缓的杏眼、鼻头圆润与自然小嘴、暖麦肤色，温柔中有忧思；不复制演员、不画惊恐瞪眼，明显区别水笙利落长脸。
+【造型道具】清代已婚汉女素净低髻与小木簪；豆绿右衽大襟窄袖袄、米色布长裙、深色鞋，淡灰布腰带；两手捧一件叠好的小童衣，布料平整不裹婴孩，不出现儿童或兵器。
+【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
 ```
 
 ## 上一版 Gemini 提示词（2026-10-02 文字版；AR-32 经典剧照重出前，历史，不再用于出图）
@@ -165,3 +170,7 @@ Use case: stylized-concept。Asset type: default风格包人物立绘，单张�
 - 保留温柔与焦虑的并存，不用低头垂泪、过度妩媚或夸张弱化体态。
 
 - 核对戚芳独立面容与青年成年母亲；约7头身；2:3 全身、88–92% 占高、头足及器物端点完整，纸底不透明且无字。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已目检并入库为 candidate；实际作业与参考哈希见 manifest。

@@ -1,0 +1,370 @@
+- id: cg_ch09_maxipu_sword
+  file: cg_ch09_maxipu_sword.png
+  category: scene
+  style: default
+  subject: 麻溪剑影（ch09_liancheng）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：狄云·麻溪铺乡间阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    第2张参考：戚芳·麻溪学剑本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第3张参考：戚长发本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】乡间谷场，狄云与戚芳持普通木制练习剑拆招，戚长发在土屋旁旁观，远处水田炊烟；狄云有辫发且十指完好，不上传僧装继承全身。
+
+    【剧情边界】《连城诀》第一章乡间狄云与戚芳持木剑练习；2026-10-03核验网络正文 https://www.99csw.com/book/2174/63760.htm 。戚长发旁观、谷场机位与具体服色属于原创扩展构图；三联/广州修订版逐字待纸本终校（待考）。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「麻」「溪」「剑」「影」，合成「麻溪剑影」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_maxipu_rural.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_maxipu_rural.png
+    sha256: 2da155541bad7ce5c1b84c0501fb127ac6345055d90ce36774d98ddbd4f0d300
+    uploaded_sha256: 2da155541bad7ce5c1b84c0501fb127ac6345055d90ce36774d98ddbd4f0d300
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/female/ch09/por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch09/por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword.png
+    sha256: 3ed49e243afec06c4ed08e1006c061d52e761d730c8043151f46657e23cab2c4
+    uploaded_sha256: 3ed49e243afec06c4ed08e1006c061d52e761d730c8043151f46657e23cab2c4
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch09/por_npc_qichangfa__ch09_prime_rural_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_qichangfa__ch09_prime_rural_base.png
+    sha256: 7dc4180ed6fe51f86cc5c597b62ae920c42ac763bc89e48be9513db23effea06
+    uploaded_sha256: 7dc4180ed6fe51f86cc5c597b62ae920c42ac763bc89e48be9513db23effea06
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T02:37:53-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_maxipu_sword.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: ec374e54a70312eaea7abfbd9461ad460e40e8ef64e7c1125181ef221ef268c3
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；第5次续作：题字「麻溪剑影」逐字放大正确，原生题字，未字体叠加；采用本轮新女主对应阶段身份。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch09_maxipu_sword.retry3.r2
+  quality_retries: 1
+  history:
+  - id: cg_ch09_maxipu_sword
+    sha256: 57811ae224f89a931b6a01d3e09976e7eaedbb952ede86872840c26cddb458e9
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_maxipu_sword.png
+    tool: codex exec · image_gen
+    model: gpt-6-astra
+    created: 2026-10-03T00:13:45-0700
+    generation_job: cg_ch09_maxipu_sword.retry3.r1
+    archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_maxipu_sword/57811ae224f89a931b6a01d3e09976e7eaedbb952ede86872840c26cddb458e9.png
+    archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_maxipu_sword/57811ae224f89a931b6a01d3e09976e7eaedbb952ede86872840c26cddb458e9.yaml
+    archived_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_maxipu_sword/374f4a0cef7a0f11fbdeb866b83e7e376140467ec8a8b560c0ddf4165f038070.source.png
+- id: cg_ch09_prison_bond
+  file: cg_ch09_prison_bond.png
+  category: scene
+  style: default
+  subject: 铁狱同心（ch09_liancheng）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：狄云本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第2张参考：狄云·荆州铁狱阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    第3张参考：丁典本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】荆州牢中两人平坐相对，丁典将水碗推向狄云，冷狱窗透入一束天光；狄云右手旧布包残，温和坚韧；不展示刑具穿骨或自伤过程。
+
+    【剧情边界】lc2；推碗动作是原创扩展构图，关系转折原著。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「铁」「狱」「同」「心」，合成「铁狱同心」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+    sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
+    uploaded_sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_jingzhou_prison.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_jingzhou_prison.png
+    sha256: be3e92d94fd73d5934cf75ef8bdfa4f86bd347da609c3bb619a42527706ef437
+    uploaded_sha256: be3e92d94fd73d5934cf75ef8bdfa4f86bd347da609c3bb619a42527706ef437
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch09/por_npc_dingdian__ch09_prime_prison_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_dingdian__ch09_prime_prison_base.png
+    sha256: 06ababa67dadfb708d26fa051a9354643299a78aa1c26e9c181bca57b66df54a
+    uploaded_sha256: 06ababa67dadfb708d26fa051a9354643299a78aa1c26e9c181bca57b66df54a
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T00:13:46-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_prison_bond.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: a1f63e31379cd064f66f7a9547f585c8f68fc8f32563155bfcdb8a3fde5ef0fb
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「铁狱同心」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch09_prison_bond.retry3.r1
+  quality_retries: 0
+  history: []
+- id: cg_ch09_snow_valley
+  file: cg_ch09_snow_valley.png
+  category: scene
+  style: default
+  subject: 雪谷相守（ch09_liancheng）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：狄云本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第2张参考：狄云·雪谷羽衣阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    第3张参考：水笙·雪谷缀羽本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】雪谷山洞口的寒夜求生中景。成年水笙穿淡黄右衽旧缎衫、灰白长裙，去掉红绸花，站在洞口内侧石台旁，左臂托住未全部缀好的黑褐鹰羽与白色雁翎缀成的御寒羽衣，右手轻持细小金钗靠近羽衣边缘，表示正以衣衫抽出的淡黄丝线穿缀；不需要细画穿针步骤。衣料始终完整不裸露。羽衣由水笙制作，捧在手里、尚未给人穿上。成年狄云位于洞外数步远的小火塘旁，穿完整灰褐旧僧衣和深色长裤，光头，正在警戒山谷；他左手扶木杖，整个右前臂自然垂在身侧，右掌完全藏入宽大完整袖中，绝不露出右指、拳头或残端。狄云此刻不得穿参考图中的鸟羽衣，不缝羽衣、不递衣给水笙，也不画成接受赠衣。二人各占一侧、保持清楚距离，火光微弱，雪山和洞壁保留，表达患难中的生存互助而非相拥爱情。身份以本轮新狄云雪谷阶段和新水笙yuyi阶段为准；服饰动作以本段优先。
+
+    【剧情边界】《连城诀》第八章羽衣：水笙缀羽衣，黑色鹰羽与白色雁翎相间；狄云根据羽衣细孔和丝线推测她以金钗穿孔并从淡黄衫抽线；狄云并未接受她的赠衣。2026-10-03检索核验 https://www.99csw.com/book/2174/63767.htm 及 https://read.99csw.com/book/2174/63767.html 。画面把制衣与洞外守火并置，为（原创扩展构图），不宣称这是原著逐字同一时刻，不替代狄云拒衣情节；三联/广州修订版紙本逐字校勘（待考）。题字仍为雪谷相守，狄云右手五指缺失且非血腥呈现，stage引用只锁身份、不沿用已穿羽衣装束。 原文中抽线和金钗穿孔是狄云观察后的推测；本图将该推测视觉化，属于原创扩展演出。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「雪」「谷」「相」「守」，合成「雪谷相守」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+    sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
+    uploaded_sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
+    sha256: 4a667d262d398a825d116a37f6b1e0d7f72c0cb186f5b4179807aa66df96ed67
+    uploaded_sha256: 4a667d262d398a825d116a37f6b1e0d7f72c0cb186f5b4179807aa66df96ed67
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_scene_yuyi.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_scene_yuyi.png
+    sha256: 76b3c446f3035bd0fc2395b18ad7089fb720a86e93b184877ca081720cf1401b
+    uploaded_sha256: 76b3c446f3035bd0fc2395b18ad7089fb720a86e93b184877ca081720cf1401b
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T02:34:38-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_snow_valley.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: cc168b8257dea5e095f8696bf1bac418eaf3eefe5d7bb43df31e22e9cc4c3b84
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；第5次续作：题字「雪谷相守」逐字放大正确，原生题字，未字体叠加；采用本轮新女主对应阶段身份。水笙抽线缀羽衣，已纠正狄云向她递衣的旧候选。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch09_snow_valley.retry3.r3
+  quality_retries: 2
+  history:
+  - id: cg_ch09_snow_valley
+    sha256: 41c62aa8e40e9240e43387441e0456f96da75cd5d0026108d07e7a999cf9874d
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_snow_valley.png
+    tool: codex exec · image_gen
+    model: gpt-6-astra
+    created: 2026-10-03T00:13:47-0700
+    generation_job: cg_ch09_snow_valley.retry3.r2
+    archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_snow_valley/41c62aa8e40e9240e43387441e0456f96da75cd5d0026108d07e7a999cf9874d.png
+    archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_snow_valley/41c62aa8e40e9240e43387441e0456f96da75cd5d0026108d07e7a999cf9874d.yaml
+    archived_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_snow_valley/66ebb703c2cf670628f9aa49403e74ba67fdcd953c9a38e9e0cf578a3d0088c8.source.png
+- id: cg_ch09_wall_rescue
+  file: cg_ch09_wall_rescue.png
+  category: scene
+  style: default
+  subject: 夹墙生机（ch09_liancheng）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：狄云·雪谷羽衣阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    第2张参考：戚芳·诗页双蝶本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第3张参考：万圭本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】荆州万府夹墙边，狄云及时截住万圭持刀的手臂，戚芳在他身后退向灯光出口；墙缝与倒地砖形成紧张空间，不画儿童或尸体。 【姿态重出修正】狄云只用解剖学左手扣住万圭持刀的手腕，刀锋指向地面；其右前臂向下自然垂在身侧，整只右掌完全藏进宽大的完整右袖，从袖口绝不露出任何手指或拳头。右手五指早已缺失，不可恢复；画面不描绘残端。狄云绝不能用双手抓对手。
+
+    【剧情边界】story/09 §3.9、§6戚芳改命节点；明确原创扩展改命，非原著既成事实。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「夹」「墙」「生」「机」，合成「夹墙生机」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
+    sha256: 4a667d262d398a825d116a37f6b1e0d7f72c0cb186f5b4179807aa66df96ed67
+    uploaded_sha256: 4a667d262d398a825d116a37f6b1e0d7f72c0cb186f5b4179807aa66df96ed67
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/female/ch09/por_npc_qifang__ch09_youth_scene_wanfu_poetry_butterfly.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch09/por_npc_qifang__ch09_youth_scene_wanfu_poetry_butterfly.png
+    sha256: 62be6ecd6304a0e70f9e9cbffa56d9b7299e6413b83a87c5321a873ecda6fef7
+    uploaded_sha256: 62be6ecd6304a0e70f9e9cbffa56d9b7299e6413b83a87c5321a873ecda6fef7
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch09/por_npc_wangui__ch09_youth_wanfu_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_wangui__ch09_youth_wanfu_base.png
+    sha256: e9125e16dddebfdfca73bb410c098ad4aabffe1d16e48e5c6803311aa3355329
+    uploaded_sha256: e9125e16dddebfdfca73bb410c098ad4aabffe1d16e48e5c6803311aa3355329
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T02:37:55-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_wall_rescue.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 2023c9f79012de5a78287c7c9fbd654f8e7e422751174ea8874874d051620b4f
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；第5次续作：题字「夹墙生机」逐字放大正确，原生题字，未字体叠加；采用本轮新女主对应阶段身份。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch09_wall_rescue.retry3.r3
+  quality_retries: 2
+  history:
+  - id: cg_ch09_wall_rescue
+    sha256: f92536b1acdc70f5539ccad0d4bfe16e72ade413737967bbebfab1ff8c26bd78
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_wall_rescue.png
+    tool: codex exec · image_gen
+    model: gpt-6-astra
+    created: 2026-10-03T00:13:47-0700
+    generation_job: cg_ch09_wall_rescue.retry3.r2
+    archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_wall_rescue/f92536b1acdc70f5539ccad0d4bfe16e72ade413737967bbebfab1ff8c26bd78.png
+    archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_wall_rescue/f92536b1acdc70f5539ccad0d4bfe16e72ade413737967bbebfab1ff8c26bd78.yaml
+    archived_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_wall_rescue/1ca0ce5eee597d8cbd3cf634cf23e2399beefc38b245ce554c391f7e41843702.source.png
+- id: cg_ch09_tianning_treasure
+  file: cg_ch09_tianning_treasure.png
+  category: scene
+  style: default
+  subject: 佛腹照心（ch09_liancheng）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：狄云·雪谷羽衣阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    第2张参考：戚长发本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第3张参考：凌退思本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】天宁寺大殿佛腹开裂，群豪争抢金珠；狄云独立殿侧转身欲离，戚长发抢宝、凌退思带官兵入殿；人群模糊文字化，珠宝无魔法光，无已死万震山或言达平。 【姿态重出修正】狄云仅用解剖学左手提住衣摆；右前臂自然下垂，整只右掌藏在宽大的完整右袖内，从右袖口绝不露出手指、指甲或握拳。右手五指早已缺失，不可恢复；画面不描绘残端。不可右手提衣。
+
+    【剧情边界】lc12 与 story/09事件52-53；构图浓缩，毒物效果不以绿光暗示。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「佛」「腹」「照」「心」，合成「佛腹照心」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
+    sha256: 4a667d262d398a825d116a37f6b1e0d7f72c0cb186f5b4179807aa66df96ed67
+    uploaded_sha256: 4a667d262d398a825d116a37f6b1e0d7f72c0cb186f5b4179807aa66df96ed67
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch09/por_npc_qichangfa__ch09_prime_rural_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_qichangfa__ch09_prime_rural_base.png
+    sha256: 7dc4180ed6fe51f86cc5c597b62ae920c42ac763bc89e48be9513db23effea06
+    uploaded_sha256: 7dc4180ed6fe51f86cc5c597b62ae920c42ac763bc89e48be9513db23effea06
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch09/por_npc_lingtusi__ch09_prime_magistrate_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_lingtusi__ch09_prime_magistrate_base.png
+    sha256: 5619833cd2f27874e05798b4006cae457e2dd8894fb5b8fbf9b84b0daf41b388
+    uploaded_sha256: 5619833cd2f27874e05798b4006cae457e2dd8894fb5b8fbf9b84b0daf41b388
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T00:13:48-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_tianning_treasure.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 349d6efb2ce48a12875749820bf12a06c695eb09401c821b1652a8998154a7ac
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「佛腹照心」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch09_tianning_treasure.retry3.r2
+  quality_retries: 1
+  history: []

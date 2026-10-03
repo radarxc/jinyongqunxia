@@ -9,38 +9,47 @@ tier: S
 output: assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scholar_base.png
 manifest: assets/default/character/male/ch11/manifest.yaml
 references:
-- path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-  use: 已实际查看的项目男性画风参考，仅取水墨笔触、低饱和设色、暖浅灰纸底与左上柔光；基线当前candidate，按作者本轮授权使用且不更改审批，不继承萧峰的旧脸、年龄体型、裹巾衣装或密集摄影布纹。
-status: redo
-redo_reason: "脸是与程墨、鲁忱等同款的偶像化俊男模板，缺「长脸俊目、剑眉斜飞」的书生机智辨识度；服饰与笔墨道具设计保留，改脸去 AI 味。"
-codex_prompt_rev: 2026-10-02
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanguannan__ch11_youth_scholar_base_still0.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanguannan__ch11_youth_scholar_base_game.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+  use: 项目画风基线
+status: candidate
+redo_reason: 作者 10-02 晚：复合基线风格精修
+codex_prompt_rev: 2026-10-02 AR-36 retry3
 reference_upload:
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-classic_ref: "无（作者 10-02 指定鸳鸯刀用《金庸群侠传》头像；游戏里没有可靠的袁冠南头像，只用文字与基线）"
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanguannan__ch11_youth_scholar_base_still0.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanguannan__ch11_youth_scholar_base_game.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+classic_ref:
+  note: 影视造型＋经典游戏绘画气质＋同性别双基线，五官重新设计
+generation_job: por_npc_yuanguannan__ch11_youth_scholar_base.retry3.r2
+generation_attempts: 2
 ---
 
 # 袁冠南 · 《鸳鸯刀》（ch11）
 
 ## Gemini 提示词
 
-> 2026-10-02 AR-32 重出（8 号出图员，codex exec · image_gen）：本人没有可用的经典剧照或可靠游戏头像，只用文字与两张同性别画风基线（缩小版 JPEG，放在最后上传）；按原著与设定重写人物描写，去 AI 味、禁止幼态。上一版保留在下一节作历史。
-
 ```text
 生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
-【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第2张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
 【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-【人物】袁冠南，金庸《鸳鸯刀》的男主角，袁氏遗孤，会武功的青年书生；正处在用笔墨和口才戏弄强敌的那一段，还没学夫妻刀法（清代，乾隆初年）。
-【年龄与体态】二十二三岁的成年男子，身形修长清瘦但肩背挺直，有练过武的筋骨。
-【经典造型】风趣机智的青年书生侠客：清式长衫、一手毛笔一手小铜墨盒，剑眉斜飞、眼带狡黠笑意；英俊潇洒，书卷气里透着侠气。
-【面容】长脸俊目：二十二三岁的年轻面孔，脸型偏长、轮廓清爽、下颌线利落，皮肤紧致干净（没有中年人的皱纹）；两道浓黑的剑眉斜飞入鬓；眼睛细长明亮、眼神机灵，带着狡黠的笑意；鼻梁高挺；嘴角上扬、似笑非笑，透着书生的风趣和自信；肤色是干净的浅麦色。英俊潇洒、让人一看就有好感的青年书生，不是偶像小生的模板脸，也不显老。
-【发式】清代男子发式：前额和头顶前半部剃净、露出淡淡青色的头皮（干净哑光，不要油亮反光），后脑头发编成一条乌黑粗长的辫子垂在背后；不戴帽子。
-【服饰】浅米灰色细布长衫（清式：圆领、大襟右衽，衣襟从领口斜到右腋下，用布纽扣系住），袖口窄而略长；腰系靛青布带；墨色长裤，黑色平底布鞋；颈前细绳挂一只小小的翡翠狮子坠。衣边完整，只有少许旅途风尘。
-【道具】右手握一支蘸了墨的毛笔，左手托着一只打开盖子的小铜墨盒；腰间不佩刀剑。
-【姿态与神情】身体正面朝前，站姿潇洒随意，笑吟吟地看着前方，像刚说完一句俏皮话。
-【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要汉式交领宽袖袍和明代网巾（这是清代）；不要偶像化的模板俊脸；不要佩刀或持双刀；不要把辫子盘在头顶。
-【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+【人物辨识与原创面孔】袁冠南；机智风趣、书卷气中有侠义、临敌从容。原创新脸设计：成年二十四岁视觉，偏长方脸、略高颧骨、斜眉但眉峰不对称、细长俊目、鼻梁挺而鼻头有肉、偏薄上唇带含蓄笑意，浅麦色晒痕；不做偶像模板。；影视参考图只取左前男性，忽略右上女性局部。
+【造型道具】清代剃额留一条长辫、不戴帽；浅米灰細布长衫，圆领大襟右衽、窄长袖、布纽扣，靛青布腰带、墨色长裤、黑布鞋；细绳系小翡翠狮子坠。右手毛笔、左手打开小铜墨盒；未学夫妻刀法，base 不佩刀剑。
+【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+
+【毛笔质量修正】右手只握一支普通单头毛笔：仅上端有一簇黑色笔毫，下端是短粗圆钝的完整木杆尾，没有笔毫、没有尖刺、没有刀刃；绝不能画双头毛笔。
 ```
 
 ## AR-31 文字版 Gemini 提示词（2026-10-02 凌晨；AR-32 重出之前，历史，不再用于出图）
@@ -135,3 +144,7 @@ classic_ref: "无（作者 10-02 指定鸳鸯刀用《金庸群侠传》头像�
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/hero-20261001/por_npc_yuanguannan__ch11_youth_scholar_base.prepared.json`。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。

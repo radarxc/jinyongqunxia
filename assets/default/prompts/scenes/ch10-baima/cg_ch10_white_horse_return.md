@@ -1,43 +1,53 @@
 ---
 asset_id: cg_ch10_white_horse_return
-name: "结尾“江南有甚么好”后的白马东归（离别动作待考）"
+name: 白马向东
 book: ch10_baima
 characters:
 - npc_liwenxiu
-- npc_supu
-- npc_aman
-- npc_majiajun
-reference_upload: []
+reference_upload:
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
 output: assets/default/scene/ch10/cg_ch10_white_horse_return.png
 manifest: assets/default/scene/ch10/manifest.yaml
 size: 1536x1024
-status: ready
+status: candidate
+redo_reason: 作者 10-02 晚：复合基线风格精修
+references:
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.png
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  use: 项目画风基线
+generation_job: cg_ch10_white_horse_return.retry3.r1
+generation_attempts: 1
+title_text: 白马向东
+title_method: generated
+identity_revision: 使用本轮新复合base及对应新阶段立绘
+title_verified: 逐字放大核验：白 / 马 / 向 / 东；原生正确
 ---
 
 ## Gemini 提示词
 
 ```text
-生成一张 3:2 横幅情景插画，输出尺寸 1536×1024，题材为《白马啸西风》多人剧情名场面。所有人类都必须一眼可辨为成年人。
-
-本场不上传身份参考图。所有人物只按下述文字设定塑造，不得猜测或复刻任何真人、演员或剧照面容。
-参考图之间身份严格隔离，只锁定各自人物，不互换脸、发式、身形或服装；没有列入上传的角色只能依据文字塑造。
-
-时代硬约束：这是唐代西域改编，人物、建筑、马具、兵器和织物均使用唐代视觉语汇；禁止清代辫发、马蹄袖及清初器物。当前清初立绘一律不得上传。
-原著位置与改编边界：结尾“江南有甚么好”后的白马东归（离别动作待考）。
-地点与时刻：唐代西域绿洲外；深秋破晓。
-画面瞬间：李文秀跨上白马向东方启程，苏普与阿曼并肩目送，马家骏在更远处以老人身份抬手告别。
-构图与站位：超广角；李与白马走向右上远景，三位送行者留在左下，晨光不做神圣光环。
-情绪基调：放下、孤独、辽阔余韵。让每个人的视线、表情和身体重心共同传达这一基调。
-人物身份与外貌口径：无上传图；李文秀为成年唐代旅装，送行者均为唐代西域服饰。
-未上传身份参考的人物文字要点：
-李文秀：成年青年女性，自然骨相，穿符合本书时代与其身份的完整传统服饰；不得借用未上传图片的脸。
-苏普：成年青年男性，自然骨相，穿符合本书时代与其身份的完整传统服饰；不得借用未上传图片的脸。
-阿曼：成年女性，自然骨相，穿符合本书时代与其身份的完整传统服饰；不得借用未上传图片的脸。
-马家骏：老年男性，自然骨相，穿符合本书时代与其身份的完整传统服饰；不得借用未上传图片的脸。
-制作边界：同框送别为（原创扩展构图）；（待白马唐代设定）；全场待重出。
-
-画风：写实手绘古风，与人物立绘一致；真实自然的皮肤、头发、手部与布料质感，衣料完整不透明，低饱和沉稳设色，自然光，电影感构图，可信空间纵深，不要 AI 塑料感。武打只表现动作方向、阵势与张力，不用发光武功或夸张能量特效。
-
-排除项：不要文字、题字、字幕、水印、签名、Logo、边框或分镜格；不要未指定的多余人物（明确要求的远景群像除外）；不要幼态、儿童体态、性化处理、裸露或恋物特写；不要血腥特写、断肢、尸体堆叠或伤口细节；不要真人、演员、影视剧照复刻；不要多余肢体、手指错误、脸部融合、身份串脸、时代错装、现代物件、动漫风、摄影棚感、3D 塑料感。
+生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+第1张参考：李文秀本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+第2张参考：李文秀·白马向东阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+【场面】李文秀独乘老白马向东方沙路离开，回望与远行共存；前景枯草、辽阔平野、疏淡晨光。只画她和白马，禁止马家骏活着送行、禁止苏普改爱她。与立绘区别：横幅广阔环境、骑乘、孤独远行动态。
+【剧情边界】第八回末东归；story10事件58、60；精确人物站位（原创扩展构图），不宣称网页分段为指定版回目。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「白」「马」「向」「东」，合成「白马向东」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+【时代】唐代西域背景为作者702–703年改编（原创扩展），汉式右衽，西域服制按角色；禁止清代剃额长辫旗装。
+排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
 ```
 
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。

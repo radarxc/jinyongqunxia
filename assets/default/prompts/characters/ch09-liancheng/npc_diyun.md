@@ -9,49 +9,50 @@ tier: S
 output: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
 manifest: assets/default/character/male/ch09/manifest.yaml
 references:
-- path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_38-1.png
-  use: 第一且唯一面部身份参考：经典原版《金庸群侠传》狄云本人头像；已实际view原PNG及带姓名表，并核对source-audit-main30对应关系与SHA，原始字节与ZIP成员相同。只保持本人脸部比例、眉眼鼻唇和气质辨识关系，将低分辨率像素关系自然重建成精细写实人脸；不要像素放大、描边或照搬发式/服装。头像朝向不继承：新图正面，头部中线竖直、双眼水平，NO head tilt / NO Dutch angle。当前身份、年龄、伤残与器物必须服从本角色基础阶段。尤其忽略原头像长黑发和绿领；新图必须为光头、无须、暗砖红僧衣，右手旧伤、双腿未伤。
-- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-  use: 第二参考仅项目男性低饱和色卡、柔和左上光与完整连贯的写实手绘品质；本会话已实际view并在写入前核对SHA未变。不得取令狐冲的脸型、眉眼鼻唇、体型、胡茬、明代网巾、衣装版式、长剑、站姿或倾头角度。本人脸只来自第一参考，基线candidate审批状态不改。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 第三参考仅背景：极淡水墨远山、薄雾、暖浅灰纸底与留白；本会话已实际view并在写入前核对SHA未变。忽略女性面孔、发型、体态、倾头、白青裙装及饰物；墨痕和纸纹不得进入人物、衣料与器物。
-status: ready
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still0.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still1.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_game.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+  use: 项目画风基线
+status: candidate
 realism_revision: user_identity_pose_20261001
-codex_prompt_rev: 2026-10-02
-redo_reason: 作者 10-02：连城诀取 2004 版，下载剧照重出（上一版本机无剧照，只用文字）
+codex_prompt_rev: 2026-10-02 AR-36 retry3
+redo_reason: 作者 10-02 晚：复合基线风格精修
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03a.jpg
-- .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03b.jpg
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still0.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_game.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
 classic_ref:
-  version: 2004 年内地电视剧《连城诀》（王新民导演，2003 年拍摄、2004 年 7 月首播）；狄云由吴樾饰演
-  stills:
-  - .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03a.jpg
-  - .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03b.jpg
+  note: 影视造型＋经典游戏绘画气质＋同性别双基线，五官重新设计
+generation_job: por_npc_diyun__ch09_youth_disguise_base.retry3.r2
+generation_attempts: 2
 ---
 
 # 狄云 · 人物写实修正
 
 ## Gemini 提示词
 
-> 2026-10-02 AR-32 补记修改 B（9 号出图员，codex exec · image_gen）：作者 10-02（AR-32 补记）：连城取 2004 版，下载剧照后重出；上一版本机无剧照，只用文字和同书乡下装锚点。上传顺序：第 1–2 张为 2004 年《连城诀》狄云剧照（diyun_2004_wuyue_baike03a.jpg 剃光头僧袍、diyun_2004_wuyue_baike03b.jpg 正面近景），最后两张为同性别画风基线（缩小版 JPEG）。参考图只借造型、气质与面部特征，画面按项目画风重绘、不复制照片。上一版保留在下一节作历史。
-
 ```text
 生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
-【参考图】第 1–2 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
-【剧照借鉴要点】第 1 张正是他剃光头、穿僧袍避祸时的样子：取光头、土黄僧袍、憨厚又倔强的神情；第 2 张取他正面的脸型和五官。第 2 张的长发造型不要（本张是光头）；右手的残缺按下文文字画。
+【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第2张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第3张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
 【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-【人物】狄云，《连城诀》男主角；蒙冤入狱多年、在狱中得丁典传授神照经并得到乌蚕衣，出狱后在破庙里换上血刀门宝象的僧衣以躲避追杀的时期（此时双腿完好，尚未受伤）。
-【年龄与体态】约二十四岁的成年青年男子，长期牢狱后清瘦，但骨架结实、肩背宽厚；疲惫但站得笔直。
-【经典造型】要一眼认出是落难的狄云——剃光了头、穿着不合身的旧僧袍，憨厚木讷的乡下青年被逼成了「小和尚」，眼神里是冤屈、疲惫和不服；朴实端正，不丑化。
-【面容】照剧照的脸型和五官：方圆的脸，颧颊和下颌厚实；较浓的眉毛；眼睛不大、眼神憨直又倔强；鼻梁直、鼻头宽实；嘴唇较宽；牢狱让面颊略消瘦、眼下有倦色，但不衰老；肤色温暖略深，有真实的毛孔和细纹。
-【发式】刚剃光的光头（头皮上一层极短的青色发茬），没有胡须；没有戒疤，没有辫子。
-【服饰】土黄色的旧僧袍（宝象的僧衣，略不合身），领口和衣缘是暗红褐色，交领右衽（穿着者左襟压右襟），里面穿不透明的内衫和长裤，衣料旧而完整；胸前衣襟上用红线绣着一柄小刀、刀尖下三滴血珠形状的小针脚纹（小而低调的刺绣，不是真的血）；贴身穿着乌黑柔韧的乌蚕衣，只在领口露出一线；灰布绑腿，旧布鞋。
-【道具与姿态】右手是本张的重点：他的右手五根手指（连拇指）在狱中被削断，但手掌还在——手掌和手背完整、宽度正常，只是五指都从指根处齐齐没了，指根处是一排愈合的圆钝疤痕（旧伤已愈合、没有血）；右手掌心朝内、自然垂在身侧，一眼看得出是一只没有手指的手掌，不是从手腕截断的断臂；左手五指正常，在腹前托着一个封好的油布小包；不拿兵器，腰间没有刀剑；双脚平稳着地，身体正对前方。
-【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要把右手画成完整的五指，也不要把右手画成从手腕截断的圆头断肢、更不要删掉整只右手或前臂；不要把残缺画到左手；不要鲜血、伤口特写、断腿、拐杖；不要血刀、长剑或任何兵器；不要戒疤、辫子、长发或帽子；不要老和尚相或凶恶相；不要把衣襟的刀与血滴刺绣画成真的血迹；不要日式服饰。
-【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+【人物辨识与原创面孔】狄云；憨厚朴实、历尽冤屈仍善良、疲惫而倔强；约二十四岁成年骨架。原创新脸设计：偏长宽颊、厚实下颌、低而平的浓眉、窄内双深眼、宽实鼻头和不完全对称的宽唇，日晒深肤色；只借剧照大致脸型，五官重新理想化为经典武侠游戏插画，不照搬演员。
+【造型道具】刚剃光头有极短青茬，无须无戒疤无辫；土黄色旧僧袍、暗红褐领缘，交领右衽，内衫长裤完整不透明；衣襟小刀与三滴图案仅暗红线刺绣，乌蚕衣领口一线；灰绑腿旧布鞋。右手五指旧残但掌腕前臂完整，无血腥，左手托油布小包；腿完好，不持血刀或长剑。【本轮重出首要修正】画面左侧垂下的是人物解剖学右手，五根手指包括拇指全部早已缺失，绝不能画正常手或任何指节、指甲。右手仍有完整宽手掌、手腕与前臂，右手掌下缘平钝愈合；一小圈旧布只护住无指掌端，没有任何手指从布外伸出，不能画成握拳，也不能从腕部截断。画面右侧拿包的是左手，左手五指正常。
+【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
 ```
 
 ## AR-32 补记修改前的 Gemini 提示词（6 号出图员版；2026-10-02 上午，历史，不再用于出图）
@@ -126,3 +127,7 @@ FINAL POSE CHECK: FRONT-FACING DI YUN. Keep the forehead–nose–chin centrelin
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_diyun__ch09_youth_disguise_base.prepared.json`。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。
