@@ -47130,6 +47130,10 @@
       "-c",
       "import os,sys; s=sum(os.path.getsize(os.path.join(d,f)) for d,_,fs in os.walk('docs/design/ui-mock') for f in fs); print('ui-mock bytes',s); sys.exit(0 if 0<s<=4_500_000 else 1)"
      ]
+    ],
+    "shrink_exempt": [
+     "docs/design/ui-mock/index.html",
+     "docs/design/ui-mock/img/legend-sword.webp"
     ]
    },
    "id": "DES-ui-immersive-2",
