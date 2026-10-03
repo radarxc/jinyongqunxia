@@ -1674,4 +1674,11 @@
   - **10-03 14:29–14:33 开发监督**：DES-ui-immersive-2 在协调者 14:29 补充之前已开跑。
     - `ui_status_stagnation` 深底加描边 / 底光这一条已补进登记的说明（f6b69d03），返修或重跑时会读到；当前这轮不重起（协调者 14:32 选 b）。
     - **待办**：登记 ENG-ui-* 实现任务时，把这条写进说明，并带上 codex 执行与 `--review-model gpt-6-astra`。草稿在 `scratchpad/pending/ENG-ui-notes.md`。
+  - **10-03 14:31–14:39 开发监督**：ch00a 内容口径 r1 FAIL 后补两个 ENG 任务并重起 ch00a。
+    - **ENG-npc-species-roleslot**（e3e88508）：NPC 加 species（非人 ageBand 为 null、不进年龄管线）；新增 role-slot.v1 RoleSlotDef。依赖 ENG-25、ENG-region-gates-data。
+    - **ENG-ink-intents**（e3e88508）：core 的 pendingIntents / consumedTagKeys 是空字段，Ink `#ts:` 标签没人执行，故另登记，依赖 ENG-event-executor。
+      - 没去扩 event-executor 的说明：它正在跑第一轮，扩范围必致审核 FAIL。
+    - **CONTENT-ch00a**：挪基点到 e3e88508，`--from start --max-runs 1 --max-reviews 1 --auto-merge --checks review_checks_content.md`，`--note devsup_note_r1.md`，驱动 92084。
+      - note 写了 r1 六条、协调者默认方案和准确的阻塞 ENG ID。
+    - 代码池顺序：M1（gates-data、event-executor）→ city-generic → rig-parts-f → items-regen-2 → rig-std-parts。19e、species-roleslot、ink-intents 依赖满足后与 19e 同级，优先于 city-generic 之后的各项。
 
