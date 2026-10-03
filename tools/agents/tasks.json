@@ -32567,11 +32567,14 @@
    "title": "内容 · 序章 ch00 地图（竹林、山径、越营、长白山洞；Tiled）",
    "prompt": "CONTENT-ch00-maps.md",
    "deps": [
-    "ENG-18b-tiled-regionmap"
+    "ENG-18b-tiled-regionmap",
+    "CONTENT-ch00a-data",
+    "ENG-region-gates-data"
    ],
    "writes": [
     "content/world/regions/rg_jiangnan_taihu/**",
-    "content/world/regions/rg_dongbei/**"
+    "content/world/regions/rg_dongbei/**",
+    "content/chapters/ch00_yuenv/bindings/**"
    ]
   },
   {
