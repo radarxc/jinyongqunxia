@@ -14,6 +14,7 @@ assets:
   icon: item/wandao
 text:
   desc: 外观：狭长弧刃便于马上挥斩，刃约七十五厘米。
+  lore: 为元蒙骑兵场景复原的浅弧长刀，斜柄与双挂环鞘便于马上抽取，挥斩后也易顺势收刀。它偏重骑战机动而非厚刃硬磕，具体军伍配发与装具为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 53
+      qiAffinity: 100

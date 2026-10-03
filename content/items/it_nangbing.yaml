@@ -25,6 +25,10 @@ assets:
   icon: item/nangbing
 text:
   desc: 外观：宽圆薄馕一张折放粗布上，中央针纹无文字。
+  lore: 西域与回疆行旅四季所携的宽圆烤饼，厚边耐放，可掰开配肉汤食用。清代名目与各书界形制尚待核对。（待考：核名称沿革与年代） （原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 12

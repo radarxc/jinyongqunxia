@@ -16,6 +16,7 @@ assets:
   icon: item/tiandihuiduandao
 text:
   desc: 外观：清初民间短腰刀，刃约五十五厘米。 待运行时投影：sect=sect_tiandihui。
+  lore: 天地会成员便于衣下携行的短腰刀，狭处拔刀迅速，黑布缠柄也容易在民间更换。刀鞘不留会党文字，避免暴露身份；器名、制度、来历与形制均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 72
+      qiAffinity: 100

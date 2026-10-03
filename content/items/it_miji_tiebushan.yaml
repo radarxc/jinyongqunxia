@@ -13,6 +13,7 @@ assets:
   icon: item/miji_tiebushan
 text:
   desc: 外观：清代土黄厚纸线装册，四眼褐线、布包角。
+  lore: 民间横练名目在本作整理成这册厚纸秘本，内容与传承均属 （原创扩展）。书中先讲呼吸、拍打与循序受力，须按日程渐练；卖艺人口中的“刀枪不入”，往往省略了漫长苦功。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tiebushan
+      readBre: 45
+      maxLayer: 10
+      cultivation: 2500

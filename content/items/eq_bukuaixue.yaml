@@ -14,6 +14,7 @@ assets:
   icon: item/bukuaixue
 text:
   desc: 外观：一双黑布短靴，软底、灰布滚边。 待运行时投影：mov=0; qinggong=7.5。
+  lore: 捕快快靴以黑布、软底和灰边缝成，适合街巷追赶与悄声落步，却不带衙门字号。旧捕役传授的讲究是靴带宁紧勿松，身份仍须另验。（原创扩展）
 extension:
   type: equipment
   value:
@@ -23,3 +24,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6
+      agi: 1

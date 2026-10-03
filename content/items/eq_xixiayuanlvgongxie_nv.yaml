@@ -16,6 +16,7 @@ assets:
   icon: item/xixiayuanlvgongxie_nv
 text:
   desc: 外观：女款赭红细布弓履一双并置，小幅翘头、薄底、青黑缘边与简素折枝绣。 待运行时投影：qinggong=7.5; wearer=female。
+  lore: 据榆林窟女供养人像的鞋履语汇演成，赭红细布、薄底和小幅翘头适合城镇日常。鞋楦保持成年足长，青黑缘边与折枝绣均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6
+      agi: 1

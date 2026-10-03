@@ -17,6 +17,7 @@ assets:
   icon: item/jinzaoluojin_nan
 text:
   desc: 外观：男款皂罗方顶巾独立陈列，不画人头。 待运行时投影：effRes=3; wearer=male。
+  lore: （原创扩展）据《金史》方顶巾记载意象重构，皂罗以十字缝收成方顶，后折垂下，两角缀短带。贵显外出时整齐束发，黑纱不宜淋雨，湿后容易塌形。
 extension:
   type: equipment
   value:
@@ -26,3 +27,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 8

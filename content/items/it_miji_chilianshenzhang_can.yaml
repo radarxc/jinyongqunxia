@@ -13,6 +13,7 @@ assets:
   icon: item/miji_chilianshenzhang_can
 text:
   desc: 外观：南宋灰白纸残册，红丝线缝补。
+  lore: 取古墓李莫愁一系掌法扩写为残本，册页、流传和药渍均属 （原创扩展）。读者须把掌路与药性警记并看，切忌只摹狠辣外形；缺页使招理止于七层，也留下误练风险。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_chilianshenzhang
+      readWis: 45
+      maxLayer: 7
+      cultivation: 1750

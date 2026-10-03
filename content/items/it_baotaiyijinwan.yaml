@@ -23,6 +23,10 @@ assets:
   icon: item/baotaiyijinwan
 text:
   desc: 外观：暗红大丸置蛇纹金属小盒，油亮表面。 待运行时投影：storyForced=true。
+  lore: 《鹿鼎记》中神龙教用来钳制教众的丹药，暗红大丸由蛇纹小盒严密收存。它不是疗伤补品，服用与解药期限皆受教中控制；本作只保留剧情强制服用。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healInner: 0

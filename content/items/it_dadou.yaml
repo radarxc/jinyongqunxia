@@ -14,6 +14,7 @@ assets:
   icon: item/dadou
 text:
   desc: 外观：淡黄大豆盛粗陶碗，圆粒饱满。
+  lore: 中国栽培已久的豆类，秋收后晒干入仓，可制豆酱、豆豉与豆腐。本件一升圆粒不能直接当成品食用；作坊主最看重干燥无虫。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: grain
+    attributes:
+      version: 2

@@ -25,6 +25,10 @@ assets:
   icon: item/sunzha
 text:
   desc: 外观：淡黄笋片装小陶罐，姜丝与盐卤可辨。
+  lore: 取宋《山家清供》的山蔬腌藏语境，以春笋片、姜丝和盐卤封成一罐。具体条目尚待逐字核。（待考：核书中名目） 本作作清口小菜。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

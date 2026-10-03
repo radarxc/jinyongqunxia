@@ -24,6 +24,11 @@ assets:
   icon: item/baihuagao
 text:
   desc: 外观：淡紫圆糕点缀可食花瓣，银边食盒。
+  lore: 花庄在春末拣可食花瓣和细米粉蒸成淡紫圆糕，装入银边食盒保香。宜分食而不可久置；花农称伤后温食可缓解轻微皮肉伤势，江湖女侠也常以一盒回赠引路人。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healOuter: 7
+      stamina: 24

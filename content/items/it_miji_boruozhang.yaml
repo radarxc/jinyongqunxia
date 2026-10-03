@@ -14,6 +14,7 @@ assets:
   icon: item/miji_boruozhang
 text:
   desc: 外观：北宋黄黑麻纸蝴蝶装册，褐布书衣、细线缝缀。
+  lore: 《天龙八部》少林藏经楼黄黑旧经籍中有《般若掌法》。全本按掌形、步位与用劲次序排读，重在沉稳贯通；麻纸装帧为 （原创扩展），书页斑驳并不意味着可以越过门派前置。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_boruozhang
+      readWis: 50
+      maxLayer: 10
+      cultivation: 3000

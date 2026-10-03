@@ -16,6 +16,7 @@ assets:
   icon: item/zhenwujian
 text:
   desc: 外观：古朴直剑约八十厘米，深灰钢刃、如意形铁镡、黑丝缠柄与鲨鱼皮纹鞘。 待运行时投影：sect=sect_wudang。
+  lore: 《笑傲江湖》称真武剑为张三丰佩剑、武当镇山之宝，传承意义重于寻常利器。持剑者讲究端正守一，不以华饰耀人；具体外形仍 （待考：核原著描述）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: true
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 90
+      qiAffinity: 100

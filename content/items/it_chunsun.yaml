@@ -14,6 +14,7 @@ assets:
   icon: item/chunsun
 text:
   desc: 外观：黄褐鲜笋三支带笋衣置竹筛，掌至前臂长 （原创扩展）。
+  lore: 《山家清供》多用笋蔬，本件专取春雨后初生嫩笋，过季即失鲜脆。剥衣后宜清炒、煨汤或作山海兜；山民清晨采来才进当日酒楼。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 4
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

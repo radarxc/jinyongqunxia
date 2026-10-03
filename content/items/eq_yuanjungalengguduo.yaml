@@ -15,6 +15,7 @@ assets:
   icon: item/yuanjungalengguduo
 text:
   desc: 外观：通长约六十五厘米，八棱铁首、短木柄包铁箍与皮腕绳。 待运行时投影：exoticKind=hammer。
+  lore: 元军节点配置的瓜棱骨朵，八棱铁首配短木柄，骑乘时可单手从侧上方砸落，腕绳防止脱失。辽宋骨朵到元代的沿用形制仍 （待考：核相关实物）；比例、皮缠与投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 58
+      qiAffinity: 100

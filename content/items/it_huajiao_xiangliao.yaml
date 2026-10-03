@@ -14,6 +14,7 @@ assets:
   icon: item/huajiao_xiangliao
 text:
   desc: 外观：红褐花椒一小撮盛铜碟，开裂果壳与黑籽可辨 （原创扩展）。
+  lore: 中国本土辛香料，在辣椒传入前尤是重要辛味来源，秋季果壳开裂时采收。本件只需少量碾碎入菜；药用与战斗效果不由食材名推定。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 4
     rare: false
     ingredientKind: spice
+    attributes:
+      version: 2

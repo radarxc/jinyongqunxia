@@ -14,6 +14,7 @@ assets:
   icon: item/songyaxiangqiang
 text:
   desc: 外观：全长约二点二米，窄柳叶铁锋带中脊。
+  lore: 名目取自《武经总要》卷十三所列鸦项枪，本作以窄柳叶锋和覆锡枪裤表现其识别点。军士双手持杆，以直刺、拦拿为主；长度、麻缠握段和尾鐏为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 45
+      qiAffinity: 100

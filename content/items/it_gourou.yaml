@@ -14,6 +14,7 @@ assets:
   icon: item/gourou
 text:
   desc: 外观：一块浅红带皮生肉置粗陶碟，约半斤。
+  lore: 历代仅部分地域有食用习俗，本件是否出现须服从当地文化与剧情，不作全域肉货。取得后只按普通生肉烹煮；无相应习俗的市镇不会售卖。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: meat
+    attributes:
+      version: 2

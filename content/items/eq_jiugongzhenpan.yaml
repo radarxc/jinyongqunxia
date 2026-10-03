@@ -14,6 +14,7 @@ assets:
   icon: item/jiugongzhenpan
 text:
   desc: 外观：方形黑木盘开启，十八枚细钢针按九格双层嵌槽排列。 待运行时投影：ammoMul=1.090; hiddenHit=5.1。
+  lore: （原创扩展）方形黑木盘分九格双层收十八枚细钢针，针尖统一朝内，铜轴只管开合不负责发射。使用者按格取针，便于记数；遗落细针时不得徒手摸索。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 50
+      qiAffinity: 100

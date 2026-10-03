@@ -13,6 +13,7 @@ assets:
   icon: item/jingjie
 text:
   desc: 外观：药用花穗与茎叶干燥成黄绿色细束，窄竹篓直立盛放。
+  lore: 燕京直隶、中原、关中、齐鲁与江淮夏秋七至九月花穗成熟，采药人以细束收入窄篓。本作将它配入基础护创散，药力温和而常见。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: jingJie
     ageYears: 0
+    attributes:
+      version: 2
+      healOuter: 6

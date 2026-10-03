@@ -13,6 +13,7 @@ assets:
   icon: item/miji_changquanrumen
 text:
   desc: 外观：南宋赭黄蝴蝶装册，青布包角。
+  lore: 市镇武馆把舒展长拳的基本架势绘成宽开谱本，招法和载体皆属 （原创扩展）。研读须从肩胯、步幅和收拳逐项校正，再求连贯；反复翻阅的旧痕表明它是常年启蒙用书。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_changquanrumen
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

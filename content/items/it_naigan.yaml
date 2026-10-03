@@ -25,6 +25,10 @@ assets:
   icon: item/naigan
 text:
   desc: 外观：象牙色硬奶块六片装小皮袋，干燥裂纹。
+  lore: 蒙古与西北游牧人家四季备有乳食制成的象牙色硬块，干燥后便于长途保存。可直接嚼食，也可泡入热茶；小皮袋常由牧民赠给过路熟客。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

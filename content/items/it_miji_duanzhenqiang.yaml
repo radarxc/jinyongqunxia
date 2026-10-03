@@ -13,6 +13,7 @@ assets:
   icon: item/miji_duanzhenqiang
 text:
   desc: 外观：南宋赭黄蝴蝶装长册，蓝布包角。
+  lore: 军中教头把破阵长枪的进退线路绘成宽页长册，谱本与招路属 （原创扩展）。研读须结合队列间距，依次练拦、刺与回枪；纸上看似直取中军，实际最忌孤身脱离同袍。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_duanzhenqiang
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

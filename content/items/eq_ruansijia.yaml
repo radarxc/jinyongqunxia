@@ -14,6 +14,7 @@ assets:
   icon: item/ruansijia
 text:
   desc: 外观：灰银丝线密织短衣，可折叠、微金属光但柔软 （原创扩展）。 待运行时投影：weaponZ4=2%。
+  lore: 软丝甲以灰银复合丝线密织，能折叠收纳，贴身穿着时借细密经纬卸去兵刃余势。江湖传它最怕粗暴拧绞，破一股丝便要整片回织。（原创扩展）
 extension:
   type: equipment
   value:
@@ -23,3 +24,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

@@ -14,6 +14,7 @@ assets:
   icon: item/yangrou
 text:
   desc: 外观：淡红羊腿肉一块连短骨，白脂薄层置木盘。
+  lore: 北宋市食尚羊，辽、蒙古及清代北方宴饮也多用羊肉。本件带短骨与薄脂，秋冬最肥，适合汤煮或火烤；北地客店常按斤称售。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: meat
+    attributes:
+      version: 2

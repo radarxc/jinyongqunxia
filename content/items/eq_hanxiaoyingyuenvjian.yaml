@@ -16,6 +16,7 @@ assets:
   icon: item/hanxiaoyingyuenvjian
 text:
   desc: 外观：轻薄直剑约七十厘米，短弧铁镡、深红布缠柄与素皮鞘。 待运行时投影：sect=sect_jiangnanqiguai。
+  lore: 《射雕英雄传》中江南七怪韩小莹使越女剑法，本表据此配置轻薄直剑，便于迅捷点刺和连续换步。原著是否给佩剑专名与形制仍 （待考：核韩小莹交战情节）；装具和定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 55
+      qiAffinity: 100

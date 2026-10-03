@@ -15,6 +15,7 @@ assets:
   icon: item/tonghuangxiujian
 text:
   desc: 外观：前臂长竹木箭匣配黄铜簧片与皮腕带，机括完全闭合。 待运行时投影：ammoMul=0.985; hiddenHit=3.6。
+  lore: （待考：核袖弩具体定型年代）。本文依宋明通用机括意象，以竹木箭匣、黄铜簧片和皮腕带合制，可连装六支短箭；箭矢射出多不回收，机括则须卸力养护。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 40
+      qiAffinity: 100

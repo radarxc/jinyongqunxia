@@ -16,6 +16,7 @@ assets:
   icon: item/nanxirentiebian
 text:
   desc: 外观：乌铁扁担约一百五十厘米，中段微弓、两端上翘并留绳槽。 待运行时投影：sect=sect_jiangnanqiguai。
+  lore: 《射雕英雄传》中南希仁以扁担为兵，长条器身适合双手横扫、下压和挑架，朴拙招势与樵夫身份相合。扁担是否通体为铁仍 （待考：核南希仁交战情节）；尺寸、布握带与定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 60
+      qiAffinity: 100

@@ -16,6 +16,7 @@ assets:
   icon: item/yunzhonghegangzhua
 text:
   desc: 外观：一对长柄钢抓并置，单件全长约九十厘米。 待运行时投影：exoticKind=misc。
+  lore: 《天龙八部》中云中鹤以钢抓为兵，长柄弯爪可从远处攫拿、锁兵，成对换线更显诡急。“三尺”措辞及具体器形仍 （待考：核云中鹤交战情节）；皮缠握位与定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 75
+      qiAffinity: 100

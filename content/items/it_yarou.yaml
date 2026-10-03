@@ -14,6 +14,7 @@ assets:
   icon: item/yarou
 text:
   desc: 外观：处理净的生鸭一只置浅木盘，灰白皮与扁喙可辨 （原创扩展）。
+  lore: 江南水乡常养鸭，《东京梦华录》所录市食亦见鸭馔。本件取处理净的生鸭，秋季膘足，适合煨煮或腌藏；水镇肉铺最易购得。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: meat
+    attributes:
+      version: 2

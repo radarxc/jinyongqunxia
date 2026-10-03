@@ -14,6 +14,7 @@ assets:
   icon: item/miji_xiaoaojianghuqu
 text:
   desc: 外观：明代月白纸经折谱，青绫护面、棉带束合。
+  lore: 《笑傲江湖》中曲洋取出册子，明言是琴谱箫谱并托付令狐冲。研读须把琴箫两部对奏互证，独看一部难得全曲意趣；月白经折装为 （原创扩展），江湖知音更重合奏而非争胜。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_xiaoaojianghuqu
+      readWis: 40
+      maxLayer: 8
+      cultivation: 1600

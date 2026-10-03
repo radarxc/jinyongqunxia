@@ -17,6 +17,7 @@ assets:
   icon: item/huijianghuatoujin_nv
 text:
   desc: 外观：女款靛红花布头巾独立折叠陈列，不画人头假发。 待运行时投影：wearer=female。
+  lore: （原创扩展）据清代职贡图中的回疆缠头意象重构，靛红长方棉布带几何小花，边角留流苏。包覆后垂下双端，可挡日晒与风沙；花色也便于家人在人群中相认。
 extension:
   type: equipment
   value:
@@ -26,3 +27,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 5

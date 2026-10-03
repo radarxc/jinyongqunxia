@@ -26,6 +26,10 @@ assets:
   icon: item/xiakedao_siyang_dianxin
 text:
   desc: 外观：烧卖、春卷、蒸糕与一碟素点分置四只小瓷盘，四人份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《侠客行》中侠客岛以烧卖、春卷、蒸糕等四碟点心待客，本件随岛上固定节点投放，不另按四季刷新。四碟须同席趁热品尝；供餐与效果为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

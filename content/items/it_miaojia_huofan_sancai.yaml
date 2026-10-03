@@ -26,6 +26,10 @@ assets:
   icon: item/miaojia_huofan_sancai
 text:
   desc: 外观：大铁镬白饭配三盘家常炒菜，粗瓷碗筷。 待运行时投影：party=4。
+  lore: 《飞狐外传》中胡斐、程灵素煮一大镬饭并炒三盘菜请苗人凤；本件随苗家剧情投放，不另按四季刷新。铁镬与粗瓷碗呈现四人席，效果属原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 12

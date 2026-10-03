@@ -14,6 +14,7 @@ assets:
   icon: item/xiongdan
 text:
   desc: 外观：历史旧藏药材为深褐干燥块置蜡封瓷盒，不画动物或取得过程。
+  lore: 秦巴、巴蜀、辽东与东北仅作历史来源锚点，本作不设野采或循环产出。深褐旧藏封在蜡盒，只能作为一次性剧情材料，不提供取得或服用过程。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,6 @@ extension:
     rare: false
     herbFamily: xiongDan
     ageYears: 0
+    attributes:
+      version: 2
+      healInner: 4

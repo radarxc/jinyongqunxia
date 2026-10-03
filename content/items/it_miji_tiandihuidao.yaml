@@ -13,6 +13,7 @@ assets:
   icon: item/miji_tiandihuidao
 text:
   desc: 外观：清代暗红线装图册，四眼黑线。
+  lore: 天地会刀手把会中实战刀路编作暗红图册，刀谱、篇次与传阅方式皆属 （原创扩展）。研读须依图校准劈削、护身和狭处换步，封边油污正是秘密会所反复演练留下的痕迹。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tiandihuidao
+      readWis: 35
+      maxLayer: 10
+      cultivation: 1600

@@ -14,6 +14,7 @@ assets:
   icon: item/juecai
 text:
   desc: 外观：青绿卷头蕨菜一束置竹篮，嫩梗齐整 （原创扩展）。
+  lore: 《山家清供》山海兜所用山野菜意象，本件取春季卷头嫩梗。须由识菜山民拣选并熟制，可清炒或作馅；陌生蕨类不可凭外形混采。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

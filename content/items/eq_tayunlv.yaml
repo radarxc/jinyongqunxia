@@ -15,6 +15,7 @@ assets:
   icon: item/tayunlv
 text:
   desc: 外观：月白软履配灰蓝云纹织边，薄底、完整一双。 待运行时投影：climbSta=-20%; qinggong=22.5。
+  lore: 踏云履由名匠以月白软面和灰蓝织边制成，薄底贴足，攀行时可减少反复调整落脚的耗力。其名来自云纹，并无踏空之能。（原创扩展）
 extension:
   type: equipment
   value:
@@ -24,3 +25,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 12
+      agi: 3

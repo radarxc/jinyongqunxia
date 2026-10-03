@@ -27,6 +27,10 @@ assets:
   icon: item/xueshenyuchanwan
 text:
   desc: 外观：雪白药丸嵌淡青玉蟾小盒，霜晶与参纹。
+  lore: 雪白药丸嵌在淡青玉蟾盒中，静服后以十二时辰温养经脉。它按本作规则永久增长内力上限并辅助冲穴，不等于直接增加修为；书名、人物与原文药效尚待核准。（待考） （原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      qiCultivation: 0

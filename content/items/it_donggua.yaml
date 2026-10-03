@@ -14,6 +14,7 @@ assets:
   icon: item/donggua
 text:
   desc: 外观：青绿冬瓜一截露白色瓜肉与籽，置木案。
+  lore: 古代已有且宋代食用记录明确的夏秋瓜蔬，成熟后可久藏至冬。本件为露出白肉与籽的一截，宜煨汤或清蒸；大件通常由厨户分切售卖。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

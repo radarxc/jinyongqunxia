@@ -16,6 +16,7 @@ assets:
   icon: item/tianlongsijiedao
 text:
   desc: 外观：短直背戒刀约六十厘米，圆头近尖、黄铜莲瓣镡、深木柄麻缠、旧皮鞘。 待运行时投影：sect=sect_tianlongsi。
+  lore: 天龙寺护法僧持用的短戒刀，圆头近尖以示节制，仍可在危急时劈格护寺。持用者重在止争而非逞凶；器名、来历、莲瓣装具和战斗用途均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 78
+      qiAffinity: 100

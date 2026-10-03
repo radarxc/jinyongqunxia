@@ -18,6 +18,7 @@ assets:
   icon: item/songqingbuyuantoulv_nv
 text:
   desc: 外观：女款青灰麻布圆头履一双并置，圆头、低鞋墙、白麻纳底与素色包边。 待运行时投影：qinggong=5; wearer=female。
+  lore: 据宋墓服饰与女俑鞋履语汇演成，青灰麻布、低鞋墙和白麻纳底适合平民日常。无绣纹便于反复洗补，鞋底磨偏还可拆线重纳。（原创扩展）
 extension:
   type: equipment
   value:
@@ -27,3 +28,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6
+      agi: 1

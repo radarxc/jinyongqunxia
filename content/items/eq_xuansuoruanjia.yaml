@@ -14,6 +14,7 @@ assets:
   icon: item/xuansuoruanjia
 text:
   desc: 外观：乌黑极细锁环短衫，环径如米粒。 待运行时投影：mov=0; weaponZ4=5%。
+  lore: 玄锁软甲以米粒般细小的乌黑锁环连成短衫，布边收口后可卷入行囊，穿戴不妨碍转身。铸匠传言每次受创都须逐环验裂，不能只补表面。（原创扩展）
 extension:
   type: equipment
   value:
@@ -23,3 +24,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 43

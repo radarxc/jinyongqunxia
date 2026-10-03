@@ -13,6 +13,7 @@ assets:
   icon: item/miji_jianghutuna
 text:
   desc: 外观：元代灰白包背册，蓝布护脊。
+  lore: 江湖散人把数家基础调息法校成一部灰白全本，心法与谱本属 （原创扩展）。研读须按篇辨清不同呼吸节奏，择一循序练成后再互证；潮斑处应校字，不可凭习惯强接经路。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jianghutuna
+      readBre: 35
+      maxLayer: 10
+      cultivation: 1600

@@ -14,6 +14,7 @@ assets:
   icon: item/songjunzhimao
 text:
   desc: 外观：窄柳叶铁锋配素木长杆，通长约二点二米。
+  lore: 参照《武经总要》枪类名目的宋军直矛，窄锋配素木长杆，列阵时以攒刺和拒进为主。枪裤、麻缨可保护接合与遮挡血水；具体尺度、装具和配发为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 40
+      qiAffinity: 100

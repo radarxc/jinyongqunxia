@@ -25,6 +25,10 @@ assets:
   icon: item/jiaohuaji
 text:
   desc: 外观：整鸡裹开裂黄泥与荷叶，金褐表皮。
+  lore: 《射雕英雄传》中黄蓉制叫化鸡款待洪七公，并由美食引出传功情节。鸡裹荷叶与泥烘熟，破泥后趁热分食；黄蓉亲制时另有更高品阶。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 20

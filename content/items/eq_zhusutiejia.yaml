@@ -14,6 +14,7 @@ assets:
   icon: item/zhusutiejia
 text:
   desc: 外观：细竹篾与麻线编成短背心，浅褐色、柔韧薄片。 待运行时投影：defInK=0.08; defOutK=0.10。
+  lore: 竹丝贴甲由细竹篾和麻线编成短背心，贴在外衣之内，以层层交错分散轻击。山村猎户会定期烘干竹片，传闻雨季不养护便会失去韧性。（原创扩展）
 extension:
   type: equipment
   value:
@@ -23,3 +24,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 22

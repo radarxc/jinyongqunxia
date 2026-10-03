@@ -13,6 +13,7 @@ assets:
   icon: item/jiangxia
 text:
   desc: 外观：青灰鲜虾十余尾盛小竹篓，带水珠。
+  lore: 江河码头四季可见的小鲜货，春夏水暖时供应最盛。本件一篓正够一餐，宜清炒或入汤；渔贩用活力与壳色判断是否还能上灶。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: fish
+    attributes:
+      version: 2

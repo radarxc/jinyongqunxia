@@ -15,6 +15,7 @@ assets:
   icon: item/jinshejian
 text:
   desc: 外观：金色蛇形意象异剑，曲线集中于装具。
+  lore: 《碧血剑》中金蛇剑为金蛇郎君夏雪宜遗物，后与金蛇锥、藏宝图一同由袁承志承接。其异形宜走诡变剑路；具体曲线、金色装具与内力亲和 （待考形制；玩法为 （原创扩展））。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: true
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 90
+      qiAffinity: 100

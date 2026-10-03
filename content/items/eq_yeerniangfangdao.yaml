@@ -15,6 +15,7 @@ assets:
   icon: item/yeerniangfangdao
 text:
   desc: 外观：一对前窄后宽的薄钢短刀并置，单件约五十五厘米。
+  lore: 《天龙八部》中叶二娘所用兵器在本表记作方头薄刀，轻薄短刃适合近身快斩与突然换手。是否确为成对、方头以及具体形制仍 （待考：核叶二娘交战情节）；尺度、鞘具与定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 55
+      qiAffinity: 100

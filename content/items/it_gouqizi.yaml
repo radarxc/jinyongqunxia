@@ -13,6 +13,7 @@ assets:
   icon: item/gouqizi
 text:
   desc: 外观：药用成熟果干燥成暗红纺锤小粒，表皮微皱。
+  lore: 河西陇右、西夏贺兰、西域北疆与漠南夏秋六至十月果熟，商队常携暗红干果越塞。药师辨识后作养气辅材，本作只提供少量回气。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: gouQiZi
     ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 5

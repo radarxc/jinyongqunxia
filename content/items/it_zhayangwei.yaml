@@ -25,6 +25,10 @@ assets:
   icon: item/zhayangwei
 text:
   desc: 外观：金黄酥炸羊尾块六枚置白瓷盘，椒盐小碟从属。
+  lore: 《鹿鼎记》中韦小宝在京师点过炸羊尾，本作按京师四季酒楼菜投放。本件为六枚金黄酥块，椒盐只作从属小碟，宜出锅即食；数值为原创投影。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 17

@@ -13,6 +13,7 @@ assets:
   icon: item/yanlingdao
 text:
   desc: 外观：明清雁翎形刀身，浅弧、铜吞口、黑皮鞘。
+  lore: 取明清雁翎形腰刀轮廓，窄背浅弧兼顾马上挥斩与步战回刀。铜吞口护住鞘端，黑皮鞘便于久行；具体锻造者、年代与江湖流传未设，均属 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -24,3 +25,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 60
+      qiAffinity: 100

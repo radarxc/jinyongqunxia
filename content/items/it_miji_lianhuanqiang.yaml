@@ -13,6 +13,7 @@ assets:
   icon: item/miji_lianhuanqiang
 text:
   desc: 外观：清代赭红线装长册，四眼麻线。
+  lore: 走镖枪手将车旁连刺与回护步法抄成长册，武学和载体属 （原创扩展）。研读须把枪路与车马队形合练，不可贪连击而失守；卷角灰尘见其常随车队携带，抄本止于八层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_lianhuanqiang
+      readWis: 35
+      maxLayer: 8
+      cultivation: 1280

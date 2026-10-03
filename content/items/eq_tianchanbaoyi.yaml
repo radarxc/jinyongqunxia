@@ -15,6 +15,7 @@ assets:
   icon: item/tianchanbaoyi
 text:
   desc: 外观：珠白丝织长衣，极细金丝经纬、柔软可折叠。 待运行时投影：defOutPct=8%。
+  lore: 天蚕宝衣以极细丝线和金丝经纬织成，柔软可叠却不易被尖物挑开，通常贴近外袍穿用。传闻它曾在西陲商队中易手三次，每位主人都守口如瓶。（原创扩展）
 extension:
   type: equipment
   value:
@@ -25,3 +26,7 @@ extension:
     divine: false
     catalogTian: true
     uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 78
+      antiHidden: 1000

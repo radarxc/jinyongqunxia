@@ -15,6 +15,7 @@ assets:
   icon: item/riyueqiankunquan
 text:
   desc: 外观：一大一小两枚厚钢环并置，直径约三十五与三十厘米。 待运行时投影：exoticKind=wheel。
+  lore: 一大一小两枚钢环成套，内圈换握可令月牙刃连续变向，也能套住短兵后扭腕夺取。此名称与形制在历史上的定型年代仍 （待考：核兵器源流）；尺寸、配对规则和投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 45
+      qiAffinity: 100

@@ -15,6 +15,7 @@ assets:
   icon: item/shunvjian
 text:
   desc: 外观：银白纤细直剑，浅青柄缠。
+  lore: 《神雕侠侣》中淑女剑与君子剑同藏绝情谷，杨过、小龙女取出后可合使玉女素心剑法。剑身宜走轻灵精细一路；银白装具及内力亲和为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 78
+      qiAffinity: 100

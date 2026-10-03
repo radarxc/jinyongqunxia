@@ -16,6 +16,7 @@ assets:
   icon: item/dalijingxiulv_nv
 text:
   desc: 外观：女款青绿锦面软履一双并置，圆翘鞋头、薄皮底、银线莲瓣与绛红窄边。 待运行时投影：qinggong=15; wearer=female。
+  lore: 据《张胜温画卷》的大理服饰语汇演成，青绿锦面、薄底和莲瓣银线适合礼见及城中行走。绛红窄边由本地绣坊配色，具体流传为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9
+      agi: 2

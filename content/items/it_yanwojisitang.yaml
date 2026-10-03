@@ -27,6 +27,11 @@ assets:
   icon: item/yanwojisitang
 text:
   desc: 外观：象牙白燕窝鸡丝清汤盛黄釉盖盅，纤丝分明。 待运行时投影：party=4; uniqueBatch=true。
+  lore: 清《扬州画舫录》满汉席菜单载燕窝鸡丝汤，本作仅在乾隆书界固定宴席出现。纤丝清汤须温饮，供四人分盅；内伤舒缓与回春效果为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healInner: 6
+      stamina: 28

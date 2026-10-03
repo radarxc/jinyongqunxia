@@ -13,6 +13,7 @@ assets:
   icon: item/miji_zhenqijian_can
 text:
   desc: 外观：南宋灰蓝蝴蝶装残册，红麻线补缀。
+  lore: 军阵中随旗换位的剑路被记成灰蓝残册，剑谱与流传属 （原创扩展）。研读须把旗图、号令和剑势合看，缺失末叶使收阵变化不全；只凭淡褪墨线演练，容易误入友军位置。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_zhenqijian
+      readWis: 40
+      maxLayer: 7
+      cultivation: 1400

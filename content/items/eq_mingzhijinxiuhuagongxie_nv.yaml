@@ -18,6 +18,7 @@ assets:
   icon: item/mingzhijinxiuhuagongxie_nv
 text:
   desc: 外观：女款绛红织金弓鞋一双并置，窄小翘头、低跟、云花暗纹与丝缎包边。 待运行时投影：qinggong=22.5; wearer=female。
+  lore: 据明代女鞋实物语汇演成，绛红织金鞋面配低跟和含蓄翘头，礼见时与袄裙成套。鞋楦保持成年足长，不以缠足或猎奇形制取巧。（原创扩展）
 extension:
   type: equipment
   value:
@@ -27,3 +28,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12
+      agi: 3

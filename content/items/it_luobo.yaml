@@ -14,6 +14,7 @@ assets:
   icon: item/luobo
 text:
   desc: 外观：白萝卜两根带青叶置竹篮，表皮有浅泥痕 （原创扩展）。
+  lore: 宋代市食与羹汤常见的白根菜，秋冬霜后尤甜，也耐窖藏。本件带青叶与浅泥，削洗后可煮、腌或切丝；乡店常拿它配肉汤。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

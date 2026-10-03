@@ -16,6 +16,7 @@ assets:
   icon: item/changlegangdao
 text:
   desc: 外观：明代帮会宽背腰刀，刃约七十厘米。 待运行时投影：sect=sect_changlebang。
+  lore: 长乐帮护院常用的宽背腰刀，刀背厚而刃腹宽，宜正面劈压和架开轻兵。装具不刻帮徽，以免失落后惹来追查；器名、来历、制度和形制均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 80
+      qiAffinity: 100

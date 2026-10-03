@@ -13,6 +13,7 @@ assets:
   icon: item/miji_jundituna
 text:
   desc: 外观：明代土黄线装小册，四眼黑线。
+  lore: 军医与教头把行军间调息复力的方法合抄成小册，心法与纸本属 （原创扩展）。研读讲在疲惫、寒热与短歇中稳住呼吸，不能在急行时强催；抄本只载八层实用法门。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jundituna
+      readBre: 35
+      maxLayer: 8
+      cultivation: 1280

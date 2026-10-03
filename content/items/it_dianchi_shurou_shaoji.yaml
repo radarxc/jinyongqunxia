@@ -26,6 +26,10 @@ assets:
   icon: item/dianchi_shurou_shaoji
 text:
   desc: 外观：深褐熟肉、整只烧鸡与馒头分盛粗瓷盘，舟宴四人份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《雪山飞狐》中四人在酒店买熟肉、烧鸡、馒头后登船饮食，本作按滇池四季酒店熟食投放。本件合成舟宴四人份，可冷食；效果与摆盘属原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

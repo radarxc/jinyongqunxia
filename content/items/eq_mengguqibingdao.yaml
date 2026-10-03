@@ -14,6 +14,7 @@ assets:
   icon: item/mengguqibingdao
 text:
   desc: 外观：全长约九十厘米，狭长弧刃、短横镡、皮缠斜柄与帽形首。
+  lore: 蒙古骑兵场景复原的狭长弧刀，斜柄顺应马上挥斩，双挂带使皮鞘紧贴鞍侧。持刀者讲究借马势切入、顺势脱离；具体比例、军中配发与装具均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 53
+      qiAffinity: 100

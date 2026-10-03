@@ -13,6 +13,7 @@ assets:
   icon: item/miji_tantuirumen
 text:
   desc: 外观：元代灰蓝包背图册，黑布护脊。
+  lore: 武馆将弹腿的支撑、起腿与回收抄成长幅折页，腿法和载体属 （原创扩展）。研读须扶桩慢练，先守平衡再增速度；折口磨白处多为换腿要点，抄本只支持八层修习。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tantuirumen
+      readWis: 30
+      maxLayer: 8
+      cultivation: 800

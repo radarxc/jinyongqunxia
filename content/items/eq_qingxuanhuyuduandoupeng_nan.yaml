@@ -22,6 +22,7 @@ assets:
   icon: item/qingxuanhuyuduandoupeng_nan
 text:
   desc: 外观：男款玄青羽缎斗篷单件完整铺展，立领、前开襟、玄狐窄缘与银扣。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=6; wearer=male。
+  lore: （原创扩展）清前中期贵族羽缎与玄狐缘意象合制，立领银扣便于骑行时收紧。斗篷及踝而防风，入暖室须及时解下；边地商队把完好的旧件视作体面护身衣。
 extension:
   type: equipment
   value:
@@ -31,3 +32,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

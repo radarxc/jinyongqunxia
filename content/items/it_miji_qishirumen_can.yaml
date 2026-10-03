@@ -13,6 +13,7 @@ assets:
   icon: item/miji_qishirumen_can
 text:
   desc: 外观：宋代蝴蝶装小册，灰白纸衣。
+  lore: 棋摊隐士把常见布局、应手与观势方法记成灰白残册，棋学和载体属 （原创扩展）。研读须摆子复盘而非死背格线，褪色处要与前势互证；末叶缺失使来源上限七层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_qishirumen
+      readWis: 25
+      maxLayer: 7
+      cultivation: 525

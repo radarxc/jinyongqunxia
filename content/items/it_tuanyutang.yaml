@@ -25,6 +25,10 @@ assets:
   icon: item/tuanyutang
 text:
   desc: 外观：浓白团鱼汤盛鎏锡碗，肉块与细面丝可辨。
+  lore: 元《饮膳正要》载羊肉汤底煮团鱼并配面丝，本件盛为一人浓汤。须彻底煮熟并趁热食用，寒季最受欢迎；御寒、坚固效果为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 20

@@ -16,6 +16,7 @@ assets:
   icon: item/tubiwengbi
 text:
   desc: 外观：粗长铁判官笔约五十厘米，尖端如硬毫聚锋、铜护指、旧木色握套。 待运行时投影：exoticKind=brush。
+  lore: 《笑傲江湖》中梅庄秃笔翁用判官笔施展由书法化出的武功，笔锋点、挑、顿挫皆随字势转折。铁笔能承短兵碰撞，铜护指和握套形制为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 75
+      qiAffinity: 100

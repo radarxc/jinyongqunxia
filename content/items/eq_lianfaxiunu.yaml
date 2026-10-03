@@ -15,6 +15,7 @@ assets:
   icon: item/lianfaxiunu
 text:
   desc: 外观：短木臂匣弩约六十厘米，上置闭合箭仓、钢弓片与黄铜扳机。 待运行时投影：ammoMul=1.090; hiddenHit=5.1; reloadOwnActions=1。
+  lore: （原创扩展）依明代弩具意象设计短木臂与闭合箭仓，钢弓片配黄铜扳机，可连续供给六支短矢。每轮用尽后须整段装填，匣弩本体可修，短矢按耗材处理。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 50
+      qiAffinity: 100

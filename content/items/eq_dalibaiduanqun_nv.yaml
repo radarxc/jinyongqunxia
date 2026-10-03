@@ -16,6 +16,7 @@ assets:
   icon: item/dalibaiduanqun_nv
 text:
   desc: 外观：女款月白交领右衽窄袖衫与绛红百褶长裙成套平展，青绿团花窄边、银扣。 待运行时投影：resMindPp=3; wearer=female。
+  lore: 据《张胜温画卷》的大理服饰语汇演成，月白窄袖衫配百褶裙，礼见时以青绿窄边收束层次。当地绣坊传它曾为赴法会的贵女赶制。（原创扩展）
 extension:
   type: equipment
   value:
@@ -26,3 +27,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 48

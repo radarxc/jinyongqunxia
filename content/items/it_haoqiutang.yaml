@@ -23,6 +23,10 @@ assets:
   icon: item/haoqiutang
 text:
   desc: 外观：清汤、嫩笋、荷叶与嵌肉樱桃，白瓷汤盅。 待运行时投影：party=4。
+  lore: 《射雕英雄传》中黄蓉为洪七公制好逑汤，以荷叶清汤、嫩笋及嵌肉樱桃寄寓菜名。须趁清鲜同席分饮；羁绊与膳食效果均属本作投影。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 20

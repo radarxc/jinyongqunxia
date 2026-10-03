@@ -14,6 +14,7 @@ assets:
   icon: item/tubotiebang
 text:
   desc: 外观：深木长杖约一百五十厘米，顶端八棱圆钝铁首、下端铁鐏。
+  lore: 吐蕃与藏边行旅护卫使用的铁头长杖，圆钝八棱首既能压砸，也可借长杆支撑山路行走。下端铁鐏保护木杆，皮绳受潮可重缠；器名、装具、流传和尺寸均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 52
+      qiAffinity: 100

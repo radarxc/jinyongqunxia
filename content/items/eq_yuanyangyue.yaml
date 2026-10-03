@@ -15,6 +15,7 @@ assets:
   icon: item/yuanyangyue
 text:
   desc: 外观：一对月牙形短钺并置，单件约四十厘米。 待运行时投影：exoticKind=axe。
+  lore: 两柄月牙短钺相互配合，一手钩拿来刃，另一手从侧面切入，近身灵活却不宜同长兵争距。此类成对兵器的确切定型年代仍 （待考：核兵器源流）；尺寸、护指与投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 40
+      qiAffinity: 100

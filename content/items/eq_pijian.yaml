@@ -14,6 +14,7 @@ assets:
   icon: item/pijian
 text:
   desc: 外观：一对深褐硬皮护肩，麻线包边、铜扣。 待运行时投影：defOutK=0.025; hpMaxK=0.005。
+  lore: （原创扩展）江湖皮匠把熟牛皮叠压成对缝制，以麻绳和铜扣固定肩头。行脚人常用它挡树枝与擦碰，也会抬肩迎开轻兵；旧货铺里多见磨亮的边角。
 extension:
   type: equipment
   value:
@@ -23,3 +24,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 3
+      block: 3

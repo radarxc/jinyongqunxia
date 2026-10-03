@@ -31,6 +31,10 @@ assets:
   icon: item/tianxiangduanxujiao
 text:
   desc: 外观：乳白半透明胶膏置青白瓷盒，浅金油纸。
+  lore: 《笑傲江湖》中恒山派所用疗伤药，以乳白胶膏外敷骨伤，不当寻常内服丸散。恒山门下救治伤者时珍重取用；止血、活络、回复数值及胶盒形制均属本作设定。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healOuter: 6

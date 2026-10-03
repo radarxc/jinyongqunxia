@@ -15,6 +15,7 @@ assets:
   icon: item/ningbijian
 text:
   desc: 外观：碧青冷光直剑，刃约七十五厘米。
+  lore: 《书剑恩仇录》中张召重佩凝碧剑，剑锋异常锐利，宜以迅疾直刺和削切破开寻常兵刃。此剑来历、流转与碧色表现仍 （待考：核修订版原文），装具为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 80
+      qiAffinity: 100

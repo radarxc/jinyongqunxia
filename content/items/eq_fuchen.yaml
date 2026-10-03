@@ -15,6 +15,7 @@ assets:
   icon: item/fuchen
 text:
   desc: 外观：黑木短柄配银箍，白色长拂丝约一米自然下垂。
+  lore: 《神雕侠侣》中“赤练仙子”李莫愁惯以拂尘为兵，柔丝可卷缠牵带，短柄则用于点打。施展重在蓄劲后突然变向；柄箍、丝长与磨损均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 83
+      hardness: 50
+      qiAffinity: 100

@@ -13,6 +13,7 @@ assets:
   icon: item/miji_jiuxuefa_can
 text:
   desc: 外观：明代窄幅线装残册，红线双订。
+  lore: 行脚医者的辨穴、推拿与应急解法只余窄幅残册，医术、载体与散佚均属 （原创扩展）。研读须先识穴位并以轻手演练，不可对伤者贸然试法；图页缺角使来源上限七层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jiuxuefa
+      readWis: 20
+      maxLayer: 7
+      cultivation: 350

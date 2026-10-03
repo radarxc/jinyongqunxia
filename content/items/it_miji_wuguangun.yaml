@@ -13,6 +13,7 @@ assets:
   icon: item/miji_wuguangun
 text:
   desc: 外观：明代土黄线装长册，四眼黑线。
+  lore: 市镇武馆把齐身棍的握法、横扫和点戳绘成长册，棍法与谱本属 （原创扩展）。研读须按自身身量调整握距，并留出周身空地；磨圆书角说明它常被初学者带到练武场。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_wuguangun
+      readWis: 25
+      maxLayer: 10
+      cultivation: 750

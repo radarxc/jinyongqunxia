@@ -21,6 +21,10 @@ assets:
   icon: item/jiangniurou
 text:
   desc: 外观：深红褐薄片整齐码盘，青花粗瓷盘。
+  lore: 江湖酒馆把酱煮牛肉晾定后切成薄片，青花粗瓷一盘即可下饭。它不指向某段原著，四季皆可点；店小二常以“切一盘熟肉”招呼赶路客。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 11

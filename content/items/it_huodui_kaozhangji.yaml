@@ -25,6 +25,10 @@ assets:
   icon: item/huodui_kaozhangji
 text:
   desc: 外观：焦褐獐肉与麂肉厚片置宽木盘，火烤痕清楚。
+  lore: 《鸳鸯刀》洞前群豪围火烤獐子、麂子的细节仍待终校。（待考：核动物与场景） 本件以熟肉厚片表现，须趁热分食；膳食增益为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 12

@@ -14,6 +14,7 @@ assets:
   icon: item/chunqiujunbang
 text:
   desc: 外观：硬木直棒通长约一百五十厘米，一端略粗并套窄青铜箍。
+  lore: 序章军伍使用的长木棒，一端稍粗并以青铜箍加固，既可横扫也可拦架，受潮开裂后须及时更换。春秋军中是否有此固定用途仍 （待考：核先秦军器资料）；形制和投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 32
+      qiAffinity: 100

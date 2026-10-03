@@ -14,6 +14,7 @@ assets:
   icon: item/sengyi
 text:
   desc: 外观：灰黄交领僧衣整齐叠置，棉麻哑光。 待运行时投影：resMindPp=2。
+  lore: 素色僧衣依佛门日常袍服演成，宽松耐洗，适合坐禅、行脚与寺中杂务。江湖人认它不认僧籍，穿上并不会自动获得寺门礼遇。（原创扩展）
 extension:
   type: equipment
   value:
@@ -24,3 +25,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 34

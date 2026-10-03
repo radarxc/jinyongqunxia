@@ -14,6 +14,7 @@ assets:
   icon: item/turou
 text:
   desc: 外观：处理净的生兔腿两只置竹叶，淡粉肉色。
+  lore: 宋代市食已有兔馔，农家饲养与合规猎获都可提供。本件是两只处理净的兔腿，秋冬肉实，适合炖煮或火烤；山店常随猎获限量供应。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: meat
+    attributes:
+      version: 2

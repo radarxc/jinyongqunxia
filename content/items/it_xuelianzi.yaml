@@ -13,6 +13,7 @@ assets:
   icon: item/xuelianzi
 text:
   desc: 外观：象牙白莲子十余颗盛浅瓷盏，淡霜粉感。
+  lore: 高寒商路传来的象牙白籽实，晒干后带一层淡霜般粉衣。厨子须先温水浸发，再配谷米慢煨；山客传说它能使长途跋涉者精神稍振。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 6
     rare: false
     ingredientKind: rare
+    attributes:
+      version: 2

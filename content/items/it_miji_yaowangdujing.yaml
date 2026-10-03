@@ -14,6 +14,7 @@ assets:
   icon: item/miji_yaowangdujing
 text:
   desc: 外观：清代六寸乘四寸黄纸线装小书，外裹布包与油纸。
+  lore: 《飞狐外传》写此书六寸长、四寸宽，封皮题《无嗔医药录》，门人称《药王神篇》。研读须把药理与毒理并看，逐案核验；油纸外包等细节为 （原创扩展），药王门人最重用药分寸。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 10
     variant: original
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_yaowangdujing
+      readWis: 50
+      maxLayer: 10
+      cultivation: 3000

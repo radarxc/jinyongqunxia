@@ -30,6 +30,11 @@ assets:
   icon: item/jiuhuayulu
 text:
   desc: 外观：九枚淡青丸置桃花瓣形白瓷盘，露珠光泽。
+  lore: 《射雕英雄传》中黄药师所制丸药，以珍异药材与花露入药。本作令淡青丸兼顾外伤救急与疏解内伤，并以桃花瓣形瓷盘收存；具体数值和形制均为扩展。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healInner: 7
+      healOuter: 12

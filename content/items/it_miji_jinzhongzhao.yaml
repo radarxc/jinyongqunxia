@@ -13,6 +13,7 @@ assets:
   icon: item/miji_jinzhongzhao
 text:
   desc: 外观：明代赭黄线装厚册，四眼褐线。
+  lore: 少林横练传承在本作整理为厚册，载体与编次均属 （原创扩展）。研读须把吐纳、受力和护体次第合看，先练稳再承击；寺中传言真正的“罩”在周身一气，不在硬挨刀棍。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jinzhongzhao
+      readBre: 50
+      maxLayer: 10
+      cultivation: 3000

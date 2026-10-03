@@ -22,6 +22,7 @@ assets:
   icon: item/qinghanvjiaao_nv
 text:
   desc: 外观：女款灰蓝交领右衽夹袄与黑色长裙成套折叠，宽袖收口、素棉布、布结系带。 待运行时投影：wearer=female。
+  lore: 据清代汉女袄裙形制演成，交领夹袄配长裙，不采用旗装镶滚，适合寒凉季节日常穿用。旧主人反复翻新袖口，留下两代人不同针脚。（原创扩展）
 extension:
   type: equipment
   value:
@@ -32,3 +33,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

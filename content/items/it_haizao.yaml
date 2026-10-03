@@ -13,6 +13,7 @@ assets:
   icon: item/haizao
 text:
   desc: 外观：药用藻体洗净晒成黑褐卷曲细束，盐霜克制。
+  lore: 辽西辽东、浙闽与东海南海岛屿潮间带，春夏三至七月退潮时可采，月份仍待核实。黑褐卷束经辨识后作疏内伤辅材，不作岸边即食物。（待核实） （原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: haiZao
     ageYears: 0
+    attributes:
+      version: 2
+      healInner: 1

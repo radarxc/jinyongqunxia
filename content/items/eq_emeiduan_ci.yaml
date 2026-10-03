@@ -15,6 +15,7 @@ assets:
   icon: item/emeiduan_ci
 text:
   desc: 外观：两支细钢刺平行并置，各约三十五厘米。 待运行时投影：exoticKind=dagger。
+  lore: 成对短刺以中环套指，正反两端皆可点刺，贴身时还能借腕转连续换向。此兵器与峨眉名称相联的确切定型年代仍 （待考：核兵器源流）；尺寸、结构和本作投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 40
+      qiAffinity: 100

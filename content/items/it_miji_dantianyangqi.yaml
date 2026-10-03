@@ -13,6 +13,7 @@ assets:
   icon: item/miji_dantianyangqi
 text:
   desc: 外观：明代素黄线装册，四眼白线。
+  lore: 乡里拳师把守息、沉气和收功步骤整理成素黄全本，心法与谱本属 （原创扩展）。研读宜配合站桩逐日温养，不能以憋气替代内息；书衣朴素，常作拳场打根基的入门读物。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_dantianyangqi
+      readBre: 25
+      maxLayer: 10
+      cultivation: 750

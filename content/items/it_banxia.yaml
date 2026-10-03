@@ -14,6 +14,7 @@ assets:
   icon: item/banxia
 text:
   desc: 外观：药用块茎炮制后呈类球形白片，表面粉性。
+  lore: 中原、齐鲁、江淮、江南、荆湖与巴蜀阴湿处夏秋七至九月可见。原材有毒，本作只让封罐白片作为受控毒材，不提供炮制、配伍或服用办法。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     rare: false
     herbFamily: banXia
     ageYears: 0
+    attributes:
+      version: 2

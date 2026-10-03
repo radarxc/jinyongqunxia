@@ -13,6 +13,7 @@ assets:
   icon: item/xueshen
 text:
   desc: 外观：灰白小参附短须与霜土，粗布包。
+  lore: 青藏、河西陇右及西域北疆高山所产，夏末秋初七至九月进入采期，真实原型仍待核实。灰白根材经药师辨识后可作回气用，不能仅凭俗名采食。（待核实） （原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: xueShen
     ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 7

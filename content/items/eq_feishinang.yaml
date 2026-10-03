@@ -14,6 +14,7 @@ assets:
   icon: item/feishinang
 text:
   desc: 外观：巴掌大粗麻束口囊闭合平置，旁列三枚圆润飞蝗石以示用途。 待运行时投影：ammoMul=0.915; ammoSlots=2; hiddenHit=3.0。
+  lore: （原创扩展）粗麻束口囊是行脚人最常见的暗器载具，补丁处加一枚黄铜扣，可分放两类石丸。使用者临战前挑圆润飞石装入，投出后通常不再搜捡。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 80
+      hardness: 0
+      qiAffinity: 100

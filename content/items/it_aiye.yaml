@@ -13,6 +13,7 @@ assets:
   icon: item/aiye
 text:
   desc: 外观：药用叶揉成灰绿绒团，夹少量叶梗。
+  lore: 中原、齐鲁、江淮与江南太湖一带春夏四至六月可见叶盛的艾草，本作收作灰绿药绒。药师辨识后用来配制护创药，不单独讲现实炮制；乡间药铺常以粗纸分包。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: aiYe
     ageYears: 0
+    attributes:
+      version: 2
+      healOuter: 5

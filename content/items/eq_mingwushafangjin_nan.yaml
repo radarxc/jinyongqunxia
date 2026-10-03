@@ -18,6 +18,7 @@ assets:
   icon: item/mingwushafangjin_nan
 text:
   desc: 外观：男款乌纱四方平定巾独立陈列，不画人头。 待运行时投影：wearer=male。
+  lore: （原创扩展）据明代四方平定巾意象重构，乌纱硬胎方正，四角平整，以素黑巾环固定。士人日常会客可戴，细纱透气却怕挤压，旅途中多用木匣盛放。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

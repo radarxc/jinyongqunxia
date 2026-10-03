@@ -14,6 +14,7 @@ assets:
   icon: item/qingshundao
 text:
   desc: 外观：全长约八十五厘米，窄背微弧单刃、短铁盘镡、素木柄麻缠。
+  lore: 名目参照故宫所藏顺刀，本作下调为清代营伍常备的窄背腰刀。微弧刃可劈可削，素木柄损坏后容易重缠修补；具体尺度、铁盘镡和军中流通均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 45
+      qiAffinity: 100

@@ -16,6 +16,7 @@ assets:
   icon: item/lengyuedao
 text:
   desc: 外观：冷银微弧刀刃如弦月，刃约八十厘米。 待运行时投影：sect=sect_hujia。
+  lore: 冷月宝刀与胡一刀、胡斐一脉相联，挥动时寒光如月，宜配胡家刀法展开沉稳连势。贯注内力可引寒气；具体流转及“刀中秘密”仍 （待考：核两书原文）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,9 @@ extension:
     divine: true
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 94
+      qiAffinity: 115
+      qiEffect: bf_hanqi

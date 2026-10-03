@@ -14,6 +14,7 @@ assets:
   icon: item/mengguweishijian
 text:
   desc: 外观：全长约九十厘米，厚脊窄直双刃、短铁镡、皮缠柄与帽形首。
+  lore: 蒙古营地卫士佩用的厚脊直剑，双吊带让剑鞘在马上不易摆荡，窄刃宜突刺也能承受仓促格挡。此类直剑比例仍 （待考：核蒙古军器资料）；帽形剑首与投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 60
+      qiAffinity: 100

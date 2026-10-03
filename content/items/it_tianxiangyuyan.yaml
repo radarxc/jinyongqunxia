@@ -22,6 +22,10 @@ assets:
   icon: item/tianxiangyuyan
 text:
   desc: 外观：三只嵌套朱漆食盒展开成小宴，金边克制、无文字 （原创扩展）。 待运行时投影：fixedNode=true; party=4。
+  lore: 宫中尚食依时令把三味珍馔分装朱漆套盒，开席时由同席者各择所需。它只在固定宫宴节点出现，不入普通酒楼；三项增益由本作规则选择。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 28

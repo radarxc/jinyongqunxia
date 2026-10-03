@@ -13,6 +13,7 @@ assets:
   icon: item/shihu
 text:
   desc: 外观：药用茎干燥成金黄短段或螺旋枫斗，竹篓内铺棉纸。
+  lore: 秦巴、浙闽、江西、岭南、广西与云滇黔湿润岩壁所产，秋至次春九至三月采期仍待核实。金黄茎段留作养气修炼辅材，采点稀少。（待核实） （原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: shiHu
     ageYears: 0
+    attributes:
+      version: 2
+      qiCultivation: 1500

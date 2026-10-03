@@ -15,6 +15,7 @@ assets:
   icon: item/tianshanlingmi
 text:
   desc: 外观：淡金蜂蜜盛白玉小罐，木蜡封口。 待运行时投影：uniqueBatch=true。
+  lore: 天山短促花期中收得的淡金稠蜜，只在固定蜂农与奇遇批次出现。以木蜡封入白玉小罐，可调羹点茶；江湖传闻开封香气经久不散。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     materialGrade: 10
     rare: true
     ingredientKind: rare
+    attributes:
+      version: 2

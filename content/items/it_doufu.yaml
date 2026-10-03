@@ -14,6 +14,7 @@ assets:
   icon: item/doufu
 text:
   desc: 外观：雪白豆腐一方置青瓷浅盘，细嫩切面。
+  lore: 宋代已广泛进入市食与素斋的豆制品，一方雪白嫩豆腐须当日售食。可煎、煨、入汤或制名菜；寺院与市坊豆腐铺都是稳定来源。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

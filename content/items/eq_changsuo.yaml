@@ -14,6 +14,7 @@ assets:
   icon: item/changsuo
 text:
   desc: 外观：深褐多股牛皮索约三米，短木握柄、末端铜坠。
+  lore: 多股牛皮索由民间捆扎索具改制，末端铜坠可扫击，长索本身宜缠腕、绊足和牵拉。它怕火怕久湿，收纳时须松盘阴干；握柄、铜坠及兵器化用途为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 25
+      qiAffinity: 100

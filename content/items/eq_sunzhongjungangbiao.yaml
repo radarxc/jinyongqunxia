@@ -16,6 +16,7 @@ assets:
   icon: item/sunzhongjungangbiao
 text:
   desc: 外观：八枚燕尾钢镖平行列于深青皮囊旁，单件半掌长、菱形尖与短尾翼完整。 待运行时投影：ammoMul=1.090; hiddenHit=5.1; sect=sect_huashan。
+  lore: 《碧血剑》中孙仲君曾投掷钢镖；（待考：核数量、装具与情节）。本文按八枚燕尾钢镖配深青皮囊复原，菱形尖和短尾翼形制、玄上定级均为玩法扩展。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 50
+      qiAffinity: 100

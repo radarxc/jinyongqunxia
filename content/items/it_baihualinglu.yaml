@@ -15,6 +15,7 @@ assets:
   icon: item/baihualinglu
 text:
   desc: 外观：清透花露盛素银细颈壶，壶口凝一滴露珠。 待运行时投影：uniqueBatch=true。
+  lore: 春夏百花盛放时逐晨收集的清露，经花农合藏于素银细颈壶，一批仅得数盏。宜作羹饮引子而非药水；花庄只赠真正守信的客人。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     materialGrade: 10
     rare: true
     ingredientKind: rare
+    attributes:
+      version: 2

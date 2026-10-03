@@ -14,6 +14,7 @@ assets:
   icon: item/hutougou
 text:
   desc: 外观：一对钢钩交错并置，单件约八十五厘米。 待运行时投影：exoticKind=hook。
+  lore: 成对护手钩以末端钩刃锁拿、月牙护手封架，尖柄尾还能在贴身时反击。所谓虎头只取护手折线，不作兽像；本件名称、装具、成对练法、具体尺度与江湖流传均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 58
+      qiAffinity: 100

@@ -13,6 +13,7 @@ assets:
   icon: item/xueshanlufu
 text:
   desc: 外观：深红鹿肉脯两条，盐霜细薄、青麻绳束。
+  lore: 雪山猎户在秋冬合法委托所得鹿肉中拣瘦条盐藏风干，表面只留细薄盐霜。食前切薄温烘，适合寒路补给；不进入反复狩猎货池。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 9
     rare: false
     ingredientKind: meat
+    attributes:
+      version: 2

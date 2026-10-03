@@ -22,6 +22,7 @@ assets:
   icon: item/qingxuanduanchaoxue_nan
 text:
   desc: 外观：男款玄青缎朝靴一双并置，方圆厚底、高靿、黑缎面与细白中底。 待运行时投影：qinggong=22.5; wearer=male。
+  lore: 据《大清会典·冠服》与清宫实物演成，玄青缎面、厚底高靿用于礼仪场合，穿前须整平靴筒。流入民间后只算贵重旧物，不授予朝班身份。（原创扩展）
 extension:
   type: equipment
   value:
@@ -31,3 +32,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12
+      agi: 3

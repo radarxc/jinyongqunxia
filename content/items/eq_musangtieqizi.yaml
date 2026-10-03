@@ -16,6 +16,7 @@ assets:
   icon: item/musangtieqizi
 text:
   desc: 外观：黑铁与银灰圆棋子各八枚分色列在小木棋盒内，单枚指节大、扁圆无字。 待运行时投影：ammoMul=1.125; hiddenHit=6.0; sect=sect_tiejian。
+  lore: 《碧血剑》中木桑道人以铁、银棋子作暗器；（待考：核数量与出手情节）。本文用小木棋盒分收黑铁、银灰棋子各八枚，弹量、尺寸和地下定级为玩法扩展。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 60
+      qiAffinity: 100

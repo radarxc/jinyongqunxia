@@ -16,6 +16,7 @@ assets:
   icon: item/jinchu
 text:
   desc: 外观：粗长金色金属杵约一百三十厘米，中段皮缠双手握位、两端棱瓣钝首。 待运行时投影：exoticKind=pestle; sect=sect_mizong。
+  lore: 《神雕侠侣》中达尔巴使用粗长沉重、金光闪闪的金刚降魔杵。双手持杵须以肩背带动，重压和横扫皆能逼退对手；握位、棱瓣形制与金属配比为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -28,3 +29,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 135
+      hardness: 78
+      qiAffinity: 100

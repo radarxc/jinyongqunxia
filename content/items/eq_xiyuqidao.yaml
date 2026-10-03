@@ -14,6 +14,7 @@ assets:
   icon: item/xiyuqidao
 text:
   desc: 外观：全长约八十五厘米，窄身浅弧单刃、短直镡、角片夹柄。
+  lore: 西域军镇与商队护卫携带的浅弧骑刀，窄刃减少马上回刀阻滞，角片夹柄在干燥风沙中便于维护。双吊环可稳住皮鞘；器名、具体年代、装具与节点投放均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 42
+      qiAffinity: 100

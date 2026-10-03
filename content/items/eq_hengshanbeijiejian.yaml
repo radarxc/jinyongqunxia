@@ -16,6 +16,7 @@ assets:
   icon: item/hengshanbeijiejian
 text:
   desc: 外观：窄身直剑约六十八厘米，素铁小镡、灰布缠柄、黑漆鞘配旧铜箍。 待运行时投影：sect=sect_hengshan_bei。
+  lore: 恒山行脚弟子携带的朴素戒剑，窄身利于防身点刺，灰布缠柄即使风雪湿冷也便于重缠。它不对应原著具名兵器，名称、制度和流传均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 70
+      qiAffinity: 100

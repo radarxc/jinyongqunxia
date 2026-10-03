@@ -15,6 +15,7 @@ assets:
   icon: item/songjunpangpai
 text:
   desc: 外观：及胸高长方木牌略向外弧，藤革包边、背面横木握把与皮带闭合。 待运行时投影：exoticKind=misc。
+  lore: 参照《武经总要》牌类配置的宋军旁牌，以外弧木面承受箭矢和短兵，藤革包边便于战后修补。持牌者可推撞开路，但不以锋刃杀伤；尺寸、握把、素黑涂层与投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 38
+      qiAffinity: 100

@@ -25,6 +25,10 @@ assets:
   icon: item/zaoyu
 text:
   desc: 外观：米白酒糟覆着鱼段盛灰陶罐，鱼皮银灰可辨 （原创扩展）。
+  lore: 江南以新酒糟腌藏鱼段，宋明清食籍都有糟藏传统，秋冬制作更便存。开坛后取鱼熟食，米白糟香佐饭；小陶罐适合水路携带。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

@@ -26,6 +26,10 @@ assets:
   icon: item/honghuahui_zongduo_yanxi
 text:
   desc: 外观：熟鸡、河鱼、酱肉与时蔬分盛四只清代粗瓷盘，总舵四人席份。 待运行时投影：party=4。
+  lore: 《书剑恩仇录》有红花会总舵群雄宴饮场景，具体菜点与配料未定。（待考：核席面） 本件以熟鸡、河鱼、酱肉、时蔬投影，效果为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 17

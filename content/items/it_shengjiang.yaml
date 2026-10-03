@@ -14,6 +14,7 @@ assets:
   icon: item/shengjiang
 text:
   desc: 外观：土黄色老姜三块置粗陶碟，节瘤与薄皮清楚 （原创扩展）。
+  lore: 历代常用的土黄根茎，秋后采收较耐存，既能去腥也可添辛香。切片用于咸酸与汤羹；药食用途须由具体配方决定，生料本身无即时治疗。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

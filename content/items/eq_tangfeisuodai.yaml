@@ -15,6 +15,7 @@ assets:
   icon: item/tangfeisuodai
 text:
   desc: 外观：六枚两端尖的梭形铁件平行列在窄皮袋旁，单枚约半掌长。 待运行时投影：ammoMul=0.915; hiddenHit=3.0。
+  lore: （待考：核唐代是否有对应器名与使用史）。本文按行旅投掷器意象，把六枚两端尖的铁梭收入窄皮袋，中段缠麻便于取握；铁梭受撞后多不回收。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 80
+      hardness: 0
+      qiAffinity: 100

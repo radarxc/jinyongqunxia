@@ -26,6 +26,10 @@ assets:
   icon: item/xuedi_kaohuangyang
 text:
   desc: 外观：焦褐黄羊肉块置盐岩浅盘，雪地火烤痕。 待运行时投影：party=4。
+  lore: 《书剑恩仇录》中喀丝丽烤熟随身干黄羊，与陈家洛在雪地分食。本件保留火烤痕与盐岩浅盘，宜热食；锐意、聚气与供餐数值属原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 22

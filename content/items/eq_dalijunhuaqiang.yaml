@@ -14,6 +14,7 @@ assets:
   icon: item/dalijunhuaqiang
 text:
   desc: 外观：柳叶钢枪头配白蜡杆，通长约二点三米。
+  lore: 大理军伍节点配置的花枪，柳叶钢锋配白蜡杆，枪缨可扰目并阻血顺杆。操练讲究拦、拿、扎连贯，银色枪箍只作地方装具；器名、配发、纹样和具体尺寸均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 42
+      qiAffinity: 100

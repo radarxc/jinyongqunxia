@@ -13,6 +13,7 @@ assets:
   icon: item/miji_tongrenhenglian
 text:
   desc: 外观：明代赭黄线装厚册，四眼黑线。
+  lore: 少林横练法被转抄成厚重册页，铜人图、载体与通传方式属 （原创扩展）。研读须依次练呼吸、拍打和承力，不能直接模仿高层硬抗；布角汗渍见其常伴实练，抄本只达八层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tongrenhenglian
+      readBre: 40
+      maxLayer: 8
+      cultivation: 1600

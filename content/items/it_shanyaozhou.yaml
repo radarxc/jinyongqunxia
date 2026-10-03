@@ -25,6 +25,10 @@ assets:
   icon: item/shanyaozhou
 text:
   desc: 外观：乳白稠粥盛青瓷碗，山药丁与米粒可辨。
+  lore: 元《饮膳正要》载山药粥，本件以米粒和山药丁慢煨成乳白稠粥。宜温食作一人早膳，冬季尤受旅客欢迎；养生持续与数值为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 16

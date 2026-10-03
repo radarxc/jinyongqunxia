@@ -22,6 +22,7 @@ assets:
   icon: item/qingqingduanxingxue_nan
 text:
   desc: 外观：男款深蓝细缎行靴一双并置，圆头、中靿、黑皮包头与软厚底。 待运行时投影：qinggong=10; wearer=male。
+  lore: 据清代行服图像演成，深蓝缎面、中靿和软厚底兼顾骑射与陆行，黑皮包头可承受磕碰。旧主据说是走口外的商人，并非官员。（原创扩展）
 extension:
   type: equipment
   value:
@@ -31,3 +32,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 7
+      agi: 2

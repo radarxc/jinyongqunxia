@@ -24,6 +24,10 @@ assets:
   icon: item/suyoubing
 text:
   desc: 外观：淡金层酥小饼三枚置木盘，酥层与乳油光泽清楚 （原创扩展）。
+  lore: 藏地、蒙古与西北乳油面点语境下的层酥小饼，寒季营地尤常制作。趁温热配奶茶食用，酥层不宜久压；商旅也会包作短程口粮。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

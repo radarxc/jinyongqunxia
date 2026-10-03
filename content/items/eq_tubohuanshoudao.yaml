@@ -14,6 +14,7 @@ assets:
   icon: item/tubohuanshoudao
 text:
   desc: 外观：全长约八十厘米，厚背微弧铁刃、无格皮缠木柄与小环首。
+  lore: 吐蕃与藏边场景所用的厚背短刀，环首可穿绳防止山路失手，皮缠木柄受潮后也易更换。此类器物的确切形制仍 （待考：核吐蕃出土刀器）；铜包鞘口、纹样与投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 44
+      qiAffinity: 100

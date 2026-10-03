@@ -14,6 +14,7 @@ assets:
   icon: item/shuangliuxingchui
 text:
   desc: 外观：两枚拳大八棱圆钝铁锤以约两米细链接中置短握柄，链条松弧展开、锤面无尖刺。
+  lore: 两枚圆钝铁锤由长链接在中置握柄两端，可一前一后牵制，也能借回旋从侧面撞击。练习者须先掌握收势，最忌链长失控；此形制源流仍 （待考：核传统兵器资料），尺寸为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 55
+      qiAffinity: 100

@@ -25,6 +25,10 @@ assets:
   icon: item/hubing
 text:
   desc: 外观：扁圆烤饼两张叠在油纸上，芝麻点与焦边清楚。
+  lore: 唐宋市食延续下来的扁圆烤饼，西北与中原驿路四季皆可取得。冷食耐放，临火略烘更香；芝麻与焦边是行脚客辨认新旧的线索。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 11

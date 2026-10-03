@@ -16,6 +16,7 @@ assets:
   icon: item/baituoshezhang
 text:
   desc: 外观：乌木长杖约一人高，杖首双蛇盘绕造型与闭合暗孔、银箍和铁尾鐏。 待运行时投影：sect=sect_baituoshan。
+  lore: 《射雕英雄传》中欧阳锋持蛇杖行走江湖，杖与白驼山毒术相联。长杖可点、挑、格架，杖头毒蛇和机括究竟如何仍 （待考：核欧阳锋用杖情节），外观为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 68
+      qiAffinity: 100

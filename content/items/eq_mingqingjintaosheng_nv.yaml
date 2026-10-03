@@ -18,6 +18,7 @@ assets:
   icon: item/mingqingjintaosheng_nv
 text:
   desc: 外观：女款天青丝绦作松弧陈列，双股编绳、鎏金桃形绦环、两端细密穗子。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: 据明代人物画中的丝绦束腰语汇演成，天青双股绳穿过鎏金桃形绦环，两端穗子用来压住裙带。桃形只作装饰，不赋予吉运。（原创扩展）
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 7

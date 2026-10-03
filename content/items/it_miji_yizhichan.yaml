@@ -13,6 +13,7 @@ assets:
   icon: item/miji_yizhichan
 text:
   desc: 外观：明代黄麻纸残册，蓝布包背。
+  lore: 少林一指禅传承被辑成这部残册，实体与缺页缘由皆为 （原创扩展）。图文强调凝神、指路和劲力落点，须从木石轻触渐进；末叶失落使其最高只到八层，不能靠猜测补诀。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_yizhichan
+      readWis: 50
+      maxLayer: 8
+      cultivation: 2400

@@ -13,6 +13,7 @@ assets:
   icon: item/miji_shaobanggun_can
 text:
   desc: 外观：元代土黄包背残册，粗麻护脊。
+  lore: 乡勇旅人把哨棒护路的横拦与点打记成土黄残册，棍法和散佚均属 （原创扩展）。研读须持等长木棒慢练，先辨近身空间；破损封角与缺页使后续变化不全，来源上限七层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_shaobanggun
+      readWis: 25
+      maxLayer: 7
+      cultivation: 525

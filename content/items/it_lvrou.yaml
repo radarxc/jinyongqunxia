@@ -13,6 +13,7 @@ assets:
   icon: item/lvrou
 text:
   desc: 外观：深红驴腱肉一块置灰陶盘，筋膜清楚。
+  lore: 北方驿路偶见的深红腱肉，筋膜清楚，供应须服从当地牲畜用途与书界限制。宜久煮或酱制，不能视作全域通货；旅店掌柜多凭熟客预留。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 4
     rare: false
     ingredientKind: meat
+    attributes:
+      version: 2

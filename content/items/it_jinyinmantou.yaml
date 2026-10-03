@@ -25,6 +25,10 @@ assets:
   icon: item/jinyinmantou
 text:
   desc: 外观：白色与金黄小馒头各三枚间列银盘，圆润一口大小 （原创扩展）。
+  lore: 清代宴席面点语境中的白、金两色小馒头，六枚间列成盘，须温食。是否为《调鼎集》确切名目仍待核。（待考：核原书条目） 造型与增益为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 20

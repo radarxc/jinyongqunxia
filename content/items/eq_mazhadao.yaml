@@ -14,6 +14,7 @@ assets:
   icon: item/mazhadao
 text:
   desc: 外观：厚背长刃配双手木柄，刀刃约七十厘米。
+  lore: 麻札刀之名见南宋相关史料，本文将其处理为厚背长刃、双手木柄的军用长刀。用者靠进步重斩破开阵列；确切器形仍 （待考：核岳飞相关史料），装具与数值为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 45
+      qiAffinity: 100

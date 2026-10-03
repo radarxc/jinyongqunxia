@@ -15,6 +15,7 @@ assets:
   icon: item/chunqiutongge
 text:
   desc: 外观：青铜横刃戈头含援、内与下胡，直装硬木柲通长约二米。 待运行时投影：exoticKind=misc。
+  lore: 依春秋戈的援、内、胡结构复原为序章长兵，横刃可啄击、勾带，长柲则用于列阵控距。青铜刃忌与坚铁正撞，麻绳固缚须常检查；杆长、投放与定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 35
+      qiAffinity: 100

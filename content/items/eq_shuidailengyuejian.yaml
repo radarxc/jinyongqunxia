@@ -15,6 +15,7 @@ assets:
   icon: item/shuidailengyuejian
 text:
   desc: 外观：冷银直剑约七十五厘米，半月形小护手、深蓝丝缠柄与黑鞘。
+  lore: 《连城诀》中水岱号“冷月剑”，本表据称号配置冷银直剑，适合清峻点刺和稳健封架。“冷月剑”是否也是佩剑专名仍 （待考：核水岱相关情节）；半月护手、配色、装具与定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 58
+      qiAffinity: 100

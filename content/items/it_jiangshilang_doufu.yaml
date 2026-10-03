@@ -26,6 +26,10 @@ assets:
   icon: item/jiangshilang_doufu
 text:
   desc: 外观：金黄煨豆腐厚片盛青瓷深盘，汤汁清亮。 待运行时投影：party=4。
+  lore: 清《随园食单》“豆腐”门载蒋侍郎豆腐，复原配料尚待逐字核。（待考：核原书用料） 本件以金黄煨豆腐投影，四人份与双增益为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 20

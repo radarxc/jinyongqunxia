@@ -13,6 +13,7 @@ assets:
   icon: item/miji_yuezu_duanjian
 text:
   desc: 外观：春秋青竹简十八枚，麻绳双编。
+  lore: 越军教习把短剑的拔刺、护身与列中换步刻在十八枚竹简上，武学与简谱属 （原创扩展）。研读须按编绳次序逐势演练，以木剑先校距离；错换一简便会打乱整套进退。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_yuezu_duanjian
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

@@ -16,6 +16,7 @@ assets:
   icon: item/yuanshutongkuaodai_nan
 text:
   desc: 外观：男款赤褐革束带盘成一圈，鎏银铜銙、小型金属钩与双铊尾式垂端结构清楚。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: 据《元史·舆服志》的束带语汇演成，赤褐革带配鎏银铜銙和双铊尾，供中阶武官束紧骑装。金属钩只用于扣合，不附悬刀或暗藏机关。（原创扩展）
 extension:
   type: equipment
   value:
@@ -25,3 +26,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 8

@@ -14,6 +14,7 @@ assets:
   icon: item/miji_wulundazhuan
 text:
   desc: 外观：南宋藏式经夹装，赭色厚纸、木夹板与棉带。
+  lore: 《神雕侠侣》有金轮法王运使多轮的武学；将其整理成藏式经夹图谱属 （原创扩展）。研读须同时标记五轮方位、先后与回收路线，单轮拆练不能代表全法；油旧页缘见长期演示。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_wulundazhuan
+      readWis: 55
+      maxLayer: 10
+      cultivation: 3500

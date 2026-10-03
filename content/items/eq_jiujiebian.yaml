@@ -14,6 +14,7 @@ assets:
   icon: item/jiujiebian
 text:
   desc: 外观：九段短钢节以小环连接，总长约一百三十厘米。
+  lore: 九段钢节以活环相连，展开可绕过格挡抽击，收势时则须循圆回带，稍有急躁便会反伤自身。其确切定型年代仍 （待考：核兵器源流）；节数比例、箭形鞭梢和投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 40
+      qiAffinity: 100

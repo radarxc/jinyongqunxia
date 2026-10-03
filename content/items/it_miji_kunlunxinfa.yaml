@@ -13,6 +13,7 @@ assets:
   icon: item/miji_kunlunxinfa
 text:
   desc: 外观：元代灰白皮纸包背册，蓝布护脊。
+  lore: 昆仑派心法被抄录在耐风沙的皮纸册中，载体与流传属 （原创扩展）。研读须在寒燥环境中守住均匀吐纳，不可因纸页干脆而匆忙翻检；山门旧抄只支持八层传习。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_kunlunxinfa
+      readBre: 35
+      maxLayer: 8
+      cultivation: 1280

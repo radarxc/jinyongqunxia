@@ -15,6 +15,7 @@ assets:
   icon: item/dalijunhuan
 text:
   desc: 外观：一对前臂大的厚铜圆环并置，外缘四段钝棱、内圈缠深红皮条。 待运行时投影：exoticKind=wheel。
+  lore: 大理护军中少数善用奇门者所持成对铜环，内圈皮条便于转握，外缘钝棱可撞击、套拿并封住短兵。花叶细纹只作地方装具；器名、传授、军中配置与形制均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 60
+      qiAffinity: 100

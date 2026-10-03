@@ -14,6 +14,7 @@ assets:
   icon: item/miji_zixiashengong
 text:
   desc: 外观：明代紫灰纸衣线装册，四眼蓝线。
+  lore: 《笑傲江湖》中劳德诺怀中掉出题有“紫霞秘笈”的册子。抄本须从吐纳根基渐次运气，不能因薄册便急求深层；紫灰纸衣与布套为 （原创扩展装帧），华山门内视其为不可轻授之物。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_zixiashengong
+      readBre: 55
+      maxLayer: 8
+      cultivation: 2800

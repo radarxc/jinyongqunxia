@@ -25,6 +25,10 @@ assets:
   icon: item/songhelou_xiaren
 text:
   desc: 外观：粉白虾仁与茭白丁清炒盛青瓷盘，江南酒楼二人份 （原创扩展）。
+  lore: 取《天龙八部》姑苏松鹤楼酒肉场景投影的清炒虾仁，本作按姑苏四季酒席投放。具体菜名是否见原文尚待核。（待考：核菜名与食客） 配料与效果均为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 16

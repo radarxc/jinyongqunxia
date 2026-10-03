@@ -16,6 +16,7 @@ assets:
   icon: item/duling
 text:
   desc: 外观：十二枚四面带尖乌铁菱整齐列于旧皮匣，单枚核桃大。 待运行时投影：ammoMul=1.090; hiddenHit=5.1; onHit=bf_zhongdu。
+  lore: 《射雕英雄传》中柯镇恶使用铁菱与喂毒毒菱，四面皆尖，掷出后落地也能伤足。本文以旧皮匣收十二枚；弹量和中毒强度均为 （原创扩展），取用时须辨尖端。
 extension:
   type: equipment
   value:
@@ -27,3 +28,9 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 50
+      qiAffinity: 100
+      poison: 6

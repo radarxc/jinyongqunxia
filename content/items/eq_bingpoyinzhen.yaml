@@ -15,6 +15,7 @@ assets:
   icon: item/bingpoyinzhen
 text:
   desc: 外观：银蓝细针十枚装入白瓷针管，冷色金属光、无冰魔法 （原创扩展形制）。 待运行时投影：gloveCheck=50%; onHit=bf_judu。
+  lore: 《神雕侠侣》中冰魄银针为李莫愁所用毒暗器，银针细长，须隔物收取。白瓷针管便于分放十枚；每战弹量和徒手收针门槛属 （原创扩展），不把“冰魄”画成寒冰法术。
 extension:
   type: equipment
   value:
@@ -26,3 +27,9 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 60
+      qiAffinity: 100
+      poison: 8

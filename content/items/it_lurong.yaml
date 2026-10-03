@@ -13,6 +13,7 @@ assets:
   icon: item/lurong
 text:
   desc: 外观：药用幼角切成圆形薄片，外缘覆短绒、中央蜂窝状。
+  lore: 辽东、东北与漠南漠北苑囿旧藏的历史药材，春夏不设玩家采收。本作只从合法旧库或任务交付取得，用来固养根骨，不描绘猎取。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: luRong
     ageYears: 0
+    attributes:
+      version: 2
+      con: 1

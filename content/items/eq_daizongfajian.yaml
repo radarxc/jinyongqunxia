@@ -16,6 +16,7 @@ assets:
   icon: item/daizongfajian
 text:
   desc: 外观：厚脊直剑约七十五厘米，护手取层岩折线、深褐柄缠与旧青鞘。 待运行时投影：sect=sect_taishan。
+  lore: 泰山门人为镇守山门而制的厚脊法剑，剑势讲究沉稳取位，再沿破绽直入。层岩式护手只作门派视觉提示；器名、来历、装具和传闻均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 78
+      qiAffinity: 100

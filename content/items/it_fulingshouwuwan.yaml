@@ -25,6 +25,11 @@ assets:
   icon: item/fulingshouwuwan
 text:
   desc: 外观：乌木小匣盛棕黑蜜丸，可见茯苓粉霜。
+  lore: 茯苓粉霜覆在棕黑蜜丸表面，以乌木小匣隔潮保存。静服兼顾回气与轻伤调养，不作急救解毒；具体出自何书、何人曾用尚待逐字核对。（待考：核书名、人物与药效） （原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      restoreQi: 10
+      healOuter: 4

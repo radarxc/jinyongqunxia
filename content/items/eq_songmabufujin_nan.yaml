@@ -18,6 +18,7 @@ assets:
   icon: item/songmabufujin_nan
 text:
   desc: 外观：男款灰黑麻布幅巾独立打结陈列，不画人头。 待运行时投影：wearer=male。
+  lore: （原创扩展）据《宋史》所载幅巾意象重构，灰黑麻布包折成软顶，后留两短脚自然垂落。庶民束发、劳作与赶路皆可用，脏后拆洗再打结，最是省事。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 5

@@ -14,6 +14,7 @@ assets:
   icon: item/hujiao
 text:
   desc: 外观：黑胡椒粒盛小银盒，盒盖半掩。
+  lore: 宋代多由海贸输入而价贵，元明以后供应渐增。本件黑粒只装一只小银盒，研碎少许即可辛香满席；海商、宫宴与大酒楼最常持有。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 7
     rare: false
     ingredientKind: spice
+    attributes:
+      version: 2

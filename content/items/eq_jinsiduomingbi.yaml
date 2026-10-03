@@ -14,6 +14,7 @@ assets:
   icon: item/jinsiduomingbi
 text:
   desc: 外观：一对精钢判官笔并置，各约四十五厘米。 待运行时投影：exoticKind=brush。
+  lore: 一对精钢判官笔在握段缠金色细丝，尖端用于认穴点刺，圆盘护指可挡住短刃，钝尾也能反击。所谓“夺命”只是江湖夸称，不附毒术；器名、装具、来历和传闻均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 60
+      qiAffinity: 100

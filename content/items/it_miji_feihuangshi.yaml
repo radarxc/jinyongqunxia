@@ -13,6 +13,7 @@ assets:
   icon: item/miji_feihuangshi
 text:
   desc: 外观：明代窄幅经折图谱，土黄硬纸护面。
+  lore: 镖师将碎石选形、藏取和连投路线绘成窄幅图谱，器法与载体皆属 （原创扩展）。研读须用钝石在空地校准腕力和落点，不可朝人试手；页边石粉灰痕来自反复比样。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_feihuangshi
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1200

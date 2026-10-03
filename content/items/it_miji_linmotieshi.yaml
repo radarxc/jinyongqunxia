@@ -13,6 +13,7 @@ assets:
   icon: item/miji_linmotieshi
 text:
   desc: 外观：唐代经折字帖，月白硬纸护面。
+  lore: 书生画师把执笔、运腕与临帖次序编成经折原稿，技艺和载体属 （原创扩展）。研读须先辨墨色浓淡与笔锋转折，再以废纸反复临写；自然折痕记录展开顺序，不是缺损。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: original
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_linmotieshi
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

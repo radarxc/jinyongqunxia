@@ -14,6 +14,7 @@ assets:
   icon: item/qiannianrenshen
 text:
   desc: 外观：巨大老参盘须如人形，古木匣与旧绢。
+  lore: 辽东或关外古林遗迹所藏天材，不设循环采期，“千年”仅作武侠夸饰。战时可救治外伤并回复半份标准内力，静服则按预算增长气血与内力上限。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,7 @@ extension:
     rare: true
     herbFamily: renShen
     ageYears: 1000
+    attributes:
+      version: 2
+      restoreQi: 8
+      healOuter: 14

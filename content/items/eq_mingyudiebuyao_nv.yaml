@@ -18,6 +18,7 @@ assets:
   icon: item/mingyudiebuyao_nv
 text:
   desc: 外观：女款银鎏金玉蝶步摇一对与长簪并置，不画人头。 待运行时投影：cha=1; wearer=female。
+  lore: （原创扩展）据明墓簪钗实物意象合制，银鎏金蝶翼镂空，细链垂三颗小珠，并配长簪固定。步行时轻摇而不碰鬓，玉蝶寓意佳偶与新生，常作贺礼。
 extension:
   type: equipment
   value:
@@ -27,3 +28,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 8
+      luck: 2

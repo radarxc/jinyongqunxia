@@ -13,6 +13,7 @@ assets:
   icon: item/yimucao
 text:
   desc: 外观：药用地上部分切段晒干，方茎与裂叶混合。
+  lore: 中原、齐鲁、江淮、荆襄与湖湘荒地春夏四至七月初花，本作按方茎裂叶辨识后扎束。只作外伤药材的游戏化投影，不呈现现实适应症或配伍。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: yiMuCao
     ageYears: 0
+    attributes:
+      version: 2
+      healOuter: 5

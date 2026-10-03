@@ -16,6 +16,7 @@ assets:
   icon: item/ezuijian
 text:
   desc: 外观：鳄口般上下咬合的重铁剪约七十厘米，齿缘克制、双环握柄与铆轴清楚。 待运行时投影：exoticKind=misc。
+  lore: 《天龙八部》中南海鳄神岳老三以鳄嘴剪为兵，重剪开合如鳄口咬合，宜近身夹拿软兵或猛力剪击。铆轴、齿缘与尺度没有定本，均按 （原创扩展） 表现。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 60
+      qiAffinity: 100

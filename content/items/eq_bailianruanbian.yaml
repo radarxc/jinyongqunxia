@@ -13,6 +13,7 @@ assets:
   icon: item/bailianruanbian
 text:
   desc: 外观：细密钢环编成约一百八十厘米软鞭，乌木短柄、末端小圆坠。
+  lore: 匠人以细密钢环编成柔软长鞭，鞭梢圆坠帮助送势，可缠腕、扫踝或绕开兵刃。钢环虽比皮鞭耐磨，却须逐环查裂，并忌仓促回收；器名、工艺、来历与流传均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -24,3 +25,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 55
+      qiAffinity: 100

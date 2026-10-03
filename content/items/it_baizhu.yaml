@@ -13,6 +13,7 @@ assets:
   icon: item/baizhu
 text:
   desc: 外观：药用根茎切作黄白不规则厚片，棕色油点可辨。
+  lore: 江淮、江南太湖、浙东、江西与荆襄药圃秋冬十至十二月收根茎。本作按黄白厚片与棕色油点辨货，用来温养内息、少量增加修炼积蕴。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: baiZhu
     ageYears: 0
+    attributes:
+      version: 2
+      qiCultivation: 1200

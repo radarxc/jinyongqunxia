@@ -14,6 +14,7 @@ assets:
   icon: item/lihuaqiang
 text:
   desc: 外观：轻薄柳叶锋、白蜡韧杆约二点八米，细密红白枪缨、铜箍与铁鐏。
+  lore: 本件取传统枪术中的“梨花”名意，轻薄枪锋配韧杆，适合连环抖刺与迅速换线。名称和具体器形沿革仍 （待考：核明代枪术资料）；红白枪缨、尺度与定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 60
+      qiAffinity: 100

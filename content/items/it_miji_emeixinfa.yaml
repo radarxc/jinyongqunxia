@@ -13,6 +13,7 @@ assets:
   icon: item/miji_emeixinfa
 text:
   desc: 外观：元代灰蓝包背册，白麻护脊。
+  lore: 峨眉派内功被门人抄成灰蓝册页，载体、篇次与传阅方式属 （原创扩展）。研读强调呼吸绵长和收功安稳，须配合山门基础逐段练习；页口整洁显示保管谨慎，而非没有人翻阅。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_emeixinfa
+      readBre: 40
+      maxLayer: 8
+      cultivation: 1600

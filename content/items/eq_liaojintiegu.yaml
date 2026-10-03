@@ -15,6 +15,7 @@ assets:
   icon: item/liaojintiegu
 text:
   desc: 外观：通长约五十厘米，细铁柄与多棱圆钝铁首一体。 待运行时投影：exoticKind=hammer。
+  lore: 参照辽代铁骨朵藏品轮廓复原的全铁短兵，多棱圆钝首把力量集中在小处，适合马上单手砸击。铁柄耐撞却传震明显，须握稳腕绳；游戏品阶、使用故事和投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 60
+      qiAffinity: 100

@@ -14,6 +14,7 @@ assets:
   icon: item/miji_shenghuoling
 text:
   desc: 外观：元代六枚掌长深黝令牌置黑木匣，弯曲似火焰、表面刻波斯文字与招式线纹。
+  lore: 《倚天屠龙记》六枚圣火令刻载霍山武功精要。必须把六令的波斯文字与线纹互相对照，错排一枚便会误解招路；整组与装备实例同源，黑木匣及汉字题签为 （原创扩展）。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 10
     variant: original
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_shenghuoling
+      readWis: 60
+      maxLayer: 10
+      cultivation: 4000

@@ -15,6 +15,7 @@ assets:
   icon: item/tubotiejingangchu
 text:
   desc: 外观：通长约六十厘米，铸铁中握段配对称棱瓣圆钝首。 待运行时投影：exoticKind=pestle。
+  lore: 藏边法器意象改作护身短兵，铸铁棱瓣两端皆圆钝，可用中段单手握持进行点打与压腕。礼佛磨痕不等于原著器物，作为战斗装备的用途、尺寸、装具与流传均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 60
+      qiAffinity: 100

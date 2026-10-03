@@ -24,6 +24,10 @@ assets:
   icon: item/larou
 text:
   desc: 外观：烟褐腊肉一条置竹板，脂肉分层、麻绳结。
+  lore: 湖广、巴蜀与山地人家入冬后熏藏的脂肉条，烟褐外皮让它耐过寒月。食前切片蒸炒，可配杂粮饭；山客常把一条悬在灶边。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

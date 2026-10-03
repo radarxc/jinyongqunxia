@@ -15,6 +15,7 @@ assets:
   icon: item/lianzhudangong
 text:
   desc: 外观：牛角叉形弹弓约前臂长，双股皮筋松弛、木柄皮缠。 待运行时投影：ammoMul=1.020; hiddenHit=4.2。
+  lore: （原创扩展）牛角叉配木柄和双股皮筋，旁置陶丸小盒，按明清江湖弹弓意象合制。所谓连珠，是熟手连续取丸发射，并非自动机关；陶丸落地即弃。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 40
+      qiAffinity: 100

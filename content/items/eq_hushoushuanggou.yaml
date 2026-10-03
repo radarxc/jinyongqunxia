@@ -15,6 +15,7 @@ assets:
   icon: item/hushoushuanggou
 text:
   desc: 外观：一对钢钩并置，月牙护手、直刃钩尖与短尖柄尾。 待运行时投影：exoticKind=hook。
+  lore: 一对钢钩兼有直刃、钩尖、月牙护手和尖柄尾，可锁拿长兵，也能轮换劈刺。此类武术钩的确切定型年代仍 （待考：核清代器械）；成对规则、尺寸和定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 55
+      qiAffinity: 100

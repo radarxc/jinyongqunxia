@@ -13,6 +13,7 @@ assets:
   icon: item/miji_biaojuqiangfa_can
 text:
   desc: 外观：清代赭黄线装长册，麻线补缀。
+  lore: 走镖枪手留下的护车枪路只存赭黄残册，招法、载体与散佚均属 （原创扩展）。研读须依长页核对枪尖与车辕距离，不能强接缺失末招；书脊松动，现本最多可习七层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_biaojuqiangfa
+      readWis: 25
+      maxLayer: 7
+      cultivation: 525

@@ -14,6 +14,7 @@ assets:
   icon: item/miji_wuxiangjiezhi
 text:
   desc: 外观：北宋旧黄纸蝴蝶装册，褐绢包角、细麻缝缀。
+  lore: 《天龙八部》中萧远山在少林藏经阁找到一本无相劫指谱。钞本须结合指路与运劲图研读，先求无滞再求劲发；包角、题签等形制为 （原创扩展），藏经阁旧本的磨损不代表内容残缺。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_wuxiangjiezhi
+      readWis: 55
+      maxLayer: 8
+      cultivation: 2800

@@ -16,6 +16,7 @@ assets:
   icon: item/xixiacuzhanpi_nan
 text:
   desc: 外观：男款土黄粗毡短披单件完整铺展，圆领、左前襟绳结、无袖及臀。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=1; wearer=male。
+  lore: （原创扩展）据西夏供养人图所见衣着意象重构，土黄粗毡短披以左襟绳结固定，无袖及臀。牧旅迎风时贴身系紧，磨毛边缘反而不易被砂石刮破。
 extension:
   type: equipment
   value:
@@ -25,3 +26,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 3

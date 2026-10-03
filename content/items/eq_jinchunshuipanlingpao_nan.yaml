@@ -17,6 +17,7 @@ assets:
   icon: item/jinchunshuipanlingpao_nan
 text:
   desc: 外观：男款女真墨绿盘领窄袖袍单件平展，左衽暗合、膝下开衩。 待运行时投影：effRes=3; wearer=male。
+  lore: 据《金史·舆服志》的盘领常服演成，窄袖、左衽和开衩便于女真武人骑行。衣上春水暗纹仅作身份审美，不带神异；本件流传为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 43

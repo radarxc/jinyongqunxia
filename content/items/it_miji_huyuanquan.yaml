@@ -13,6 +13,7 @@ assets:
   icon: item/miji_huyuanquan
 text:
   desc: 外观：明代灰褐线装小册，四眼蓝线。
+  lore: 护院把守门、拦人与近身短拳整理成八寸全谱，拳法和册本皆属 （原创扩展）。研读先练稳守门户，再学制住来人，不以追击为先；掌印油旧显示此册常在门房传看。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_huyuanquan
+      readWis: 25
+      maxLayer: 10
+      cultivation: 750

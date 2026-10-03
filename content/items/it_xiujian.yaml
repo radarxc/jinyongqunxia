@@ -19,6 +19,12 @@ assets:
   icon: item/xiujian
 text:
   desc: 外观：小型铜木袖弩与一支短箭并置，无手臂人物。 待运行时投影：ammoMul=0.985; hiddenHit=3.6。
+  lore: （原创扩展）铜木小机括藏于袖内，配一支掌长短箭，须在交手前卸力检查簧片。它贵在突发而非穿甲，射后箭矢多折损；市井传闻常把普通袖弩说成名家秘器。
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 0
+      qiAffinity: 100

@@ -13,6 +13,7 @@ assets:
   icon: item/miji_kanzhenfa
 text:
   desc: 外观：元代赭灰包背图册，黑布护脊。
+  lore: 乡勇行商把辨旗位、找阵眼和识退路的方法抄成赭灰图册，阵法与载体属 （原创扩展）。研读须展开附图从全局比对方位，不能执着单个符号；页边重旧见其常用于路上研判，抄本止于八层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_kanzhenfa
+      readWis: 30
+      maxLayer: 8
+      cultivation: 800

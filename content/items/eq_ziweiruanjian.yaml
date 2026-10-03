@@ -15,6 +15,7 @@ assets:
   icon: item/ziweiruanjian
 text:
   desc: 外观：紫灰窄薄软刃自然微垂，刃约八十厘米。
+  lore: 《神雕侠侣》剑冢石刻记紫薇软剑为独孤求败三十岁前所用，因误伤义士而弃于深谷。软刃宜借腕势绕架，寻回与误伤玩法为 （原创扩展），不可轻率挥使。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 92
+      hardness: 50
+      qiAffinity: 100

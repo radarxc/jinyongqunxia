@@ -14,6 +14,7 @@ assets:
   icon: item/xionghuang
 text:
   desc: 外观：药用矿块呈橙黄至橙红蜡状碎片，粗粉少量。
+  lore: 秦巴、湖湘、广西、巴蜀与云滇黔矿洞四季可得，橙黄蜡状矿片须带盖密封。矿物有毒，本作只作受控毒材与解毒剧情物，不提供现实用法。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     rare: false
     herbFamily: xiongHuang
     ageYears: 0
+    attributes:
+      version: 2

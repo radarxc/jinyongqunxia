@@ -18,6 +18,7 @@ assets:
   icon: item/mingshuitianpi_nv
 text:
   desc: 外观：女款低饱和水田拼布披单件完整铺展，直领对襟、宽袖、长方布块错落缝合。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resMindPp=1; wearer=female。
+  lore: （原创扩展）据晚明水田衣式拼布意象重构，青灰与茶褐长方布块错落缝合，直领对襟。旧料拼得密实，适合清寒时节；坊间认为惜物之人穿来心静。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 3

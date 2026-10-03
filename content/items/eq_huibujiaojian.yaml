@@ -14,6 +14,7 @@ assets:
   icon: item/huibujiaojian
 text:
   desc: 外观：全长约八十八厘米，精钢直身双刃、短铜护手、深色角片夹柄与圆首。
+  lore: 回疆工匠以角片夹柄、银片固鞘制成的精钢直剑，握持稳固，适合商队护卫在狭路中点刺和截架。几何嵌片只作地方装具，不代表特定部族；器名、流通与故事为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 60
+      qiAffinity: 100

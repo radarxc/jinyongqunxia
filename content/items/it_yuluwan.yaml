@@ -24,6 +24,10 @@ assets:
   icon: item/yuluwan
 text:
   desc: 外观：乳白糯丸六枚置荷叶，透明露珠薄层。
+  lore: 细糯米裹花露蒸成六枚乳白丸子，以荷叶承托，外形虽似丹丸却只是点心。应趁软糯时分食；隐居庄客常用它招待远来故人。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 24

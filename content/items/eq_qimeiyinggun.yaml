@@ -14,6 +14,7 @@ assets:
   icon: item/qimeiyinggun
 text:
   desc: 外观：深褐硬木齐眉棍约一百七十厘米，粗细均匀。
+  lore: 以深褐硬木制成的齐眉棍，两端火烤硬化并加窄铁箍，专为反复格挡与磕击。使用者多练中宫守势，靠棍长封住门户；器名、制作细节及流传皆为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 42
+      qiAffinity: 100

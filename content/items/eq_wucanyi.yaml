@@ -14,6 +14,7 @@ assets:
   icon: item/wucanyi
 text:
   desc: 外观：乌黑偏褐的柔韧短衣，蚕丝般细密哑光纹理。
+  lore: 《连城诀》中狄云所得护身宝衣，以柔韧暗色衣料抵御刀枪；具体材质、取得经过和衣制仍 （待考）。穿用讲究贴身收束，本表数值及短衣外观均 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -24,3 +25,6 @@ extension:
     divine: true
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 84

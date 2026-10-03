@@ -17,6 +17,7 @@ assets:
   icon: item/huijiangjiapan_nan
 text:
   desc: 外观：男款土褐长领齐袖棉布袷袢单件平展，对襟、膝下直摆、红布窄腰带收拢。 待运行时投影：wearer=male。
+  lore: 据《皇清职贡图》的回疆长衣语汇演成，长领齐袖的棉布袷袢以红带收腰，适应干燥风沙。商旅多把内襟缝成暗袋，本件暗袋传说为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

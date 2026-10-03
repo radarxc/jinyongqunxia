@@ -16,6 +16,7 @@ assets:
   icon: item/lvboxiangludao
 text:
   desc: 外观：通体微绿的狭长弯刀，刃约七十厘米。 待运行时投影：sect=sect_lingjiu。
+  lore: 《天龙八部》中乌老大使用一柄绿色宝刀，本文沿用绿波香露刀之名。狭长弯刃宜连续换线追斩；材质与来历仍 （待考：核原著叙述），绿色表现和装具为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 74
+      qiAffinity: 100

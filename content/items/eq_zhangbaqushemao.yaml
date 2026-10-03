@@ -13,6 +13,7 @@ assets:
   icon: item/zhangbaqushemao
 text:
   desc: 外观：双刃矛锋呈连续浅波而非夸张蛇身，深木杆通长约三米、短红缨与铁鐏。
+  lore: 江湖铁匠以浅波双刃表现曲蛇意象，长杆推进时锋线难以凭直觉拨开，但异形刃也更费修磨。用者须双手稳住杆尾，避免回转伤人；器名、尺度、锻造来历与传闻均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 60
+      qiAffinity: 100

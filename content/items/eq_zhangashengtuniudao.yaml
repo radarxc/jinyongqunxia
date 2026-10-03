@@ -16,6 +16,7 @@ assets:
   icon: item/zhangashengtuniudao
 text:
   desc: 外观：宽厚短直背单刃约五十五厘米，圆钝近方刀尖、无格深木柄与铜尾环。 待运行时投影：sect=sect_jiangnanqiguai。
+  lore: 《射雕英雄传》中张阿生以屠牛刀为兵，宽厚短刃适合近身猛劈，朴素无格柄也便于迅速换握。原著对刀形的具体描述仍 （待考：核张阿生交战情节）；方头轮廓、鞘具和定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 58
+      qiAffinity: 100

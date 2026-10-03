@@ -14,6 +14,7 @@ assets:
   icon: item/taohuajinpao
 text:
   desc: 外观：月白锦袍带淡粉桃枝暗纹，丝绸薄光、宽袖。 待运行时投影：cha=3; talk=2xG。
+  lore: 月白锦袍由江南织户为桃花宴裁制，桃枝只作浅淡暗纹，宽袖须在过招前束起。相传初主以落英辨风向，后人遂把它当作雅士行走江湖的衣冠。（原创扩展）
 extension:
   type: equipment
   value:
@@ -24,3 +25,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 67

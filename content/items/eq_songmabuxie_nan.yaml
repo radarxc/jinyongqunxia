@@ -18,6 +18,7 @@ assets:
   icon: item/songmabuxie_nan
 text:
   desc: 外观：男款灰褐麻布鞋一双并置，宽圆头、千层麻底、粗线纳缝与轻磨损。 待运行时投影：qinggong=2.5; wearer=male。
+  lore: 据宋代士庶服与风俗图像演成，灰褐麻布鞋以千层麻底和粗线纳缝，供庶民远近行走。鞋面磨破可覆补片，故驿路边常能买到。（原创扩展）
 extension:
   type: equipment
   value:
@@ -27,3 +28,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 5
+      agi: 1

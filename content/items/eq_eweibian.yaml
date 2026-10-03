@@ -15,6 +15,7 @@ assets:
   icon: item/eweibian
 text:
   desc: 外观：深褐粗皮长鞭约二米半，节纹似鳄尾但不写实。
+  lore: 《天龙八部》中鳄尾鞭与鳄嘴剪同属岳老三兵器，长鞭可扫、抽、缠，尤宜与重剪一远一近配合。鳄尾节纹、铜坠和具体长度均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 40
+      qiAffinity: 100

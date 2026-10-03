@@ -18,6 +18,7 @@ assets:
   icon: item/songluobeizi_nv
 text:
   desc: 外观：女款浅杏直领对襟长褙子单件平展，窄袖、腋下开衩、素罗薄透配褐色缘边。 待运行时投影：eva=2; wearer=female。
+  lore: 据宋墓壁画与服饰图像中的褙子演成，直领对襟、窄袖开衩，适合士庶女子日常罩穿。旧衣边缘反复换过缘布，被认为是勤俭人家的传物。（原创扩展）
 extension:
   type: equipment
   value:
@@ -28,3 +29,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 43

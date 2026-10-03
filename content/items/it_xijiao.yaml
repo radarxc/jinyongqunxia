@@ -14,6 +14,7 @@ assets:
   icon: item/xijiao
 text:
   desc: 外观：历史旧藏角质薄片呈灰褐细丝纹，封存于题签留白木匣。
+  lore: 岭南与南海岛屿只作历史贸易锚，本作不设采期、不可采集或交易，只能作为封存证据物。灰褐角质薄片不开放使用，因此不赋予治疗投影。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     rare: false
     herbFamily: xiJiao
     ageYears: 0
+    attributes:
+      version: 2

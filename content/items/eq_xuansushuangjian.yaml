@@ -16,6 +16,7 @@ assets:
   icon: item/xuansushuangjian
 text:
   desc: 外观：乌黑与象牙白两柄直剑成对并置，刃约七十厘米。 待运行时投影：sect=sect_xuansuzhuang。
+  lore: 《侠客行》中石清、闵柔夫妇合称“黑白双剑”，本作据此将二人佩剑合为成对装备 （原创扩展）。双剑形制相同、色分玄素，讲究同进同退与彼此照应。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 78
+      qiAffinity: 100

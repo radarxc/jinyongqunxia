@@ -13,6 +13,7 @@ assets:
   icon: item/yuxueguo
 text:
   desc: 外观：青白梨形小果三枚，薄蜡皮、冰裂斑。
+  lore: 雪线下背风谷地夏末结出的青白小果，薄蜡皮上常见冰裂斑。可鲜食或切片入羹，采下后不耐久藏；西行商队把无碰伤者称作玉雪。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 6
     rare: false
     ingredientKind: fruit
+    attributes:
+      version: 2

@@ -13,6 +13,7 @@ assets:
   icon: item/miji_muyangzhang
 text:
   desc: 外观：春秋窄竹简十二枚，草绳双编。
+  lore: 牧人将赶羊木杖的拦拨与护身动作刻成窄竹简，杖法和载体皆属 （原创扩展）。研读须执等身木杖在空地缓练，先顾脚边再求横扫；简上泥点正合山野随身使用的来历。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_muyangzhang
+      readWis: 25
+      maxLayer: 10
+      cultivation: 750

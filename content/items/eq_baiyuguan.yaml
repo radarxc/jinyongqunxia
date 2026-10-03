@@ -14,6 +14,7 @@ assets:
   icon: item/baiyuguan
 text:
   desc: 外观：小型白玉束发冠、银簪横置，宋式简洁轮廓 （原创扩展）。 待运行时投影：cha=1; resMindPp=3。
+  lore: （原创扩展）玉工取温润白玉琢成低矮束发冠，以细银簪穿过簪孔，形制取宋式简净意趣。士人赴宴或访友时佩用，江湖传言素玉能定心，实为佩者自持。
 extension:
   type: equipment
   value:
@@ -23,3 +24,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9

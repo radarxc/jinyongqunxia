@@ -14,6 +14,7 @@ assets:
   icon: item/miji_mohezhi
 text:
   desc: 外观：北宋黄黑麻纸蝴蝶装薄册，灰布书衣、细线缝缀。
+  lore: 《天龙八部》少林藏经楼黄黑旧经籍中有《摩诃指秘要》。薄册文字精简，研读须把指法、穴位与劲路逐条互证，不可望文生义；灰布书衣为 （原创扩展），抄本仍受八层来源上限。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_mohezhi
+      readWis: 45
+      maxLayer: 8
+      cultivation: 2000

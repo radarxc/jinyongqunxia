@@ -14,6 +14,7 @@ assets:
   icon: item/wutou
 text:
   desc: 外观：药用块根干燥成暗棕锥形或纵切片，木纹细密。
+  lore: 秦巴、江南、江西、荆湖与巴蜀山地夏末秋初七至九月可见，采期仍待核实。暗棕锥根须封罐，本作只作受控剧毒材料，不提供炮制或服用方法。（待核实） （原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     rare: false
     herbFamily: wuTou
     ageYears: 0
+    attributes:
+      version: 2

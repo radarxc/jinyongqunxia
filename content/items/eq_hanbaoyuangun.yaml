@@ -13,6 +13,7 @@ assets:
   icon: item/hanbaoyuangun
 text:
   desc: 外观：深木齐眉棍约一百七十厘米，中空结构仅由旋合铜箍示意且完全闭合。
+  lore: 江湖巧匠把齐眉棍中段挖空，以旋合铜箍藏放小件信物，机关闭合时仍可双手扫、压、点。中空处降低抗撞，持有者忌以此硬磕重兵；器名、机关、来历与传闻均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -24,3 +25,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 45
+      qiAffinity: 100

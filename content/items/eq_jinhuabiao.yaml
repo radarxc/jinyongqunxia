@@ -16,6 +16,7 @@ assets:
   icon: item/jinhuabiao
 text:
   desc: 外观：六枚梅花状金色薄镖整齐列于紫绒匣，真梅花大小、五瓣边缘克制开刃、银色细蕊。 待运行时投影：ammoMul=1.160; hiddenHit=6.6; sect=sect_mingjiao。
+  lore: 《倚天屠龙记》中金花婆婆使用金花状暗器；（待考：核材质、尺寸与具体情节）。本文以六枚五瓣金色薄镖收入紫绒匣，地中定级、银色细蕊和弹量为玩法扩展。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 60
+      qiAffinity: 100

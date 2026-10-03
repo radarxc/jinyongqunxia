@@ -16,6 +16,7 @@ assets:
   icon: item/wuyingyinzhen
 text:
   desc: 外观：一只黑色长靴侧卧展示鞋底闭合机括，足尖多孔银片与八枚细针另列。 待运行时投影：ammoMul=1.160; hiddenHit=6.6。
+  lore: 《飞狐外传》中汤沛以靴底机括从足尖发出银针。针靴贵在出其不意，使用前须检查闭合簧片；本文所列八枚弹量与地中定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 60
+      qiAffinity: 100

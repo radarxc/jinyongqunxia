@@ -16,6 +16,7 @@ assets:
   icon: item/kongtongshuangou
 text:
   desc: 外观：一对乌钢护手钩并置，单件约八十五厘米。 待运行时投影：exoticKind=hook; sect=sect_kongtong。
+  lore: 崆峒守山弟子成对持用的乌钢护手钩，月牙护手可架刃，钩尖能锁拿敌兵，尖柄尾补近身空隙。此件不对应原著具名器物，名称、制度与形制均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 76
+      qiAffinity: 100

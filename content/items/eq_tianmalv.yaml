@@ -15,6 +15,7 @@ assets:
   icon: item/tianmalv
 text:
   desc: 外观：珠白轻皮靴，浅金马鬃纹压花。 待运行时投影：jump=1; qinggong=25。
+  lore: 天马履用珠白轻皮和浅金马鬃纹压花制成，修长鞋楦利于跃步与跨越，使用后须撑平晾干。传闻它能凌空，实为善跳者借轻靴发挥。（原创扩展）
 extension:
   type: equipment
   value:
@@ -24,3 +25,7 @@ extension:
     divine: false
     catalogTian: true
     uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 14
+      agi: 4

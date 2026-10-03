@@ -15,6 +15,7 @@ assets:
   icon: item/zhugutieshan
 text:
   desc: 外观：闭合折扇长约三十五厘米，外侧铁骨、内层深青素绢、黄铜扇钉。 待运行时投影：exoticKind=fan。
+  lore: 竹骨外覆铁片的折扇，闭合时可点穴、敲腕，展开则借扇面遮挡视线。扇钉与外骨须勤查，受重击后不可强行开合；战斗器形和使用传闻为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 45
+      qiAffinity: 100

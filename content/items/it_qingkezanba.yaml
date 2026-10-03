@@ -25,6 +25,10 @@ assets:
   icon: item/qingkezanba
 text:
   desc: 外观：淡褐糌粑团两个置木碗，粗粒与酥油润泽。
+  lore: 藏地高原以炒熟青稞粉和酥油揉成的主食，本作按明清商路四季投放。食用时捏成小团，耐寒路且便携；山口向导常备一木碗份量。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

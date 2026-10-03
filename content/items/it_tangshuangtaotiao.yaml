@@ -25,6 +25,10 @@ assets:
   icon: item/tangshuangtaotiao
 text:
   desc: 外观：粉金桃脯细条覆白糖霜，盛青瓷小碟。
+  lore: 《射雕英雄传》中黄蓉所点的宋代果品，借宋人食单将桃脯切条覆糖霜。宜以青瓷小碟佐茶；具体形制与聚气膳食效果属于原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 16

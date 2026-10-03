@@ -13,6 +13,7 @@ assets:
   icon: item/miji_shaolinxinfa
 text:
   desc: 外观：明代素黄线装小册，四眼白线。
+  lore: 少林入门吐纳被寺中弟子清抄成掌心小册，纸本与编次属 （原创扩展）。研读先正坐姿，再按晨昏节次调匀呼吸；抄本只载八层根基，须由师长核正运息，不能越页求快。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_shaolinxinfa
+      readBre: 25
+      maxLayer: 8
+      cultivation: 600

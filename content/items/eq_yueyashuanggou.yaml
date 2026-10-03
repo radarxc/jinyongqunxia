@@ -15,6 +15,7 @@ assets:
   icon: item/yueyashuanggou
 text:
   desc: 外观：一对钢钩平行并置，单件约八十厘米。 待运行时投影：exoticKind=hook。
+  lore: 成对钢钩以末端内钩牵带来刃，月牙护手还能切入近身，左右互换时招路最难预判。此类钩兵的确切定型年代仍 （待考：核兵器史料）；长度、柄尾尖和江湖流传为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 45
+      qiAffinity: 100

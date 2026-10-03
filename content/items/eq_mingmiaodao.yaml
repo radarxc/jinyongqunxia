@@ -14,6 +14,7 @@ assets:
   icon: item/mingmiaodao
 text:
   desc: 外观：全长约一百四十厘米，窄长微弧刃、椭圆铁镡、加长双手柄棉绳缠绕。
+  lore: 明代军伍场景中的双手长刀，窄长微弧刃宜连续劈削，长柄让持刀者以腰胯带动刀势。“苗刀”作为此器名称的年代仍 （待考：核明代长刀名目）；尺度与装具为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 57
+      qiAffinity: 100

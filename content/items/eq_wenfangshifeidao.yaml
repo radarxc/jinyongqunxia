@@ -16,6 +16,7 @@ assets:
   icon: item/wenfangshifeidao
 text:
   desc: 外观：深褐环腰皮套展开，二十四柄尺许薄飞刀分槽排列。 待运行时投影：ammoMul=1.125; hiddenHit=6.0。
+  lore: 《碧血剑》中温方施皮套藏二十四柄飞刀，刀刃尺许、短柄中空。环腰皮套分槽便于连取，刀身可回收；本文地下定级与数值为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 60
+      qiAffinity: 100

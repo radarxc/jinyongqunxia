@@ -13,6 +13,7 @@ assets:
   icon: item/gerou
 text:
   desc: 外观：处理净的乳鸽一只置青瓷盘，淡粉皮肉。
+  lore: 城镇鸽舍与合规猎获提供的宴饮小禽，一只乳鸽正够一份汤菜。须当日处理并熟制；酒楼厨子偏爱胸肉饱满、皮色匀净者。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 4
     rare: false
     ingredientKind: meat
+    attributes:
+      version: 2

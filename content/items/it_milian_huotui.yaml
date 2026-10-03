@@ -26,6 +26,10 @@ assets:
   icon: item/milian_huotui
 text:
   desc: 外观：鲜红火腿薄片围蜜莲子码青花盘，清代宫膳四人份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《鹿鼎记》中韦小宝以宣威火腿、蜜饯莲子款待沐剑屏；腌藏火腿使此菜四季可制。本件将鲜红薄片围蜜莲成盘，回春、聚气与摆盘均为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 22

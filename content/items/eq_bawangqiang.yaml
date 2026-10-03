@@ -15,6 +15,7 @@ assets:
   icon: item/bawangqiang
 text:
   desc: 外观：粗长黑木枪杆、沉厚菱形钢枪头、旧铜箍，约两人高 （原创扩展）。
+  lore: 此枪取自古龙《七种武器·霸王枪》的非商业致敬，以粗长硬杆和沉厚枪锋表现“霸王”之势。用者须双手沉肩、借全身送枪，非强力者难回转；形制与本作定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: true
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 138
+      hardness: 90
+      qiAffinity: 100

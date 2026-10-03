@@ -14,6 +14,7 @@ assets:
   icon: item/qincai
 text:
   desc: 外观：青绿芹菜一束带细根置陶盘，茎叶分明 （原创扩展）。
+  lore: 古代食谱所见水芹、旱芹在此合为通用食材，春季嫩茎最宜食。本件带细根，洗净后可凉拌、清炒或入羹；不同地域只替换品种。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

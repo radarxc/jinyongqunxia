@@ -15,6 +15,7 @@ assets:
   icon: item/mangguzhuha
 text:
   desc: 外观：朱红小蛤蟆伏于透气竹笼内，皮肤湿润有疣点。
+  lore: 《天龙八部》中段誉在无量山误吞号称万毒之王的莽牯朱蛤，因而百毒不侵。本作只在大理苍山剧情奇遇出现一次，不设采期，以透气竹笼暂存。（投放与形制为原创扩展）
 extension:
   type: material
   value:
@@ -24,3 +25,5 @@ extension:
     rare: true
     herbFamily: mangGuZhuHa
     ageYears: 0
+    attributes:
+      version: 2

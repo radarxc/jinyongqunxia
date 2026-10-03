@@ -15,6 +15,7 @@ assets:
   icon: item/xiaoxiangzikusangbang
 text:
   desc: 外观：苍白硬木长棒约一百六十厘米，两端包乌铁、杆身缠数道旧白布但无文字纸幡。
+  lore: 《神雕侠侣》中潇湘子使用哭丧棒，长棒可扫压并借怪异外观扰敌。其是否藏有机关或毒物仍 （待考：核潇湘子交战情节），故本投影不附毒效；白布、铁包头、尺度与定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 65
+      qiAffinity: 100
