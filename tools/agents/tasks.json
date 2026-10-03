@@ -35522,6 +35522,56 @@
     "packages/data/src/schemas/*.test.ts",
     "packages/data/CLAUDE.md"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/item.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-items-attr-schema",
+   "title": "游戏工程 · 小修：物品 schema 接受属性投影 v2（extension.value.attributes，design/10 §4.10.5–4.10.6），解除 TOOL-items-regen 的校验阻断",
+   "prompt": "ENG-items-attr-schema.md",
+   "deps": [
+    "TOOL-catalog-9col",
+    "TOOL-catalog-food-qi-exception"
+   ],
+   "writes": [
+    "packages/data/src/schemas/item.ts",
+    "packages/data/src/schemas/item.test.ts"
+   ]
   }
  ]
 }
