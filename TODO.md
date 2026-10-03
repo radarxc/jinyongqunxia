@@ -26,6 +26,7 @@
   - 最近一次记录的集成分支 `pnpm check` 全绿（92 个测试文件、515 个用例）；ENG-21a 合入之后还没在集成分支上重跑。
   - M1 路径（新游戏 → 序章 → 初眠配点 → 白马冷入口）还没打通，相关任务都在 eng3 队列里等前置。
   - 动作原型：ENG-12c-clip 已入 eng3 队列，TOOL-rig-sheet 已登记（等三视图），DES-rig-v1.1 在 des33 跑（§3.4）。
+- **素材线第二波（AR-36，22:40 起）**：ART-hero-refine-a/b、ART-cast-fill-a/b、CITY-layouts-all、ART-ruins-maps 由追踪 subagent 用 Codex 执行器启动（§3.5）；物品说明批次 des34（DES-items-attrs-spec → DES-items-lore-1～8）已启动（§4）。
 - **分工（作者 10-02 15:50）**：出图起 Opus 5.5 subagent——人物图调 codex exec，其他图用 Chrome 驱动 Gemini；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max）。10-02 14:15 全部驱动是作者自己停的，15:31 已重启。
 
 ---
@@ -107,6 +108,8 @@
 | | **补记**（10-02 上午）：各书版本与个别人物取舍，见 §3.1。 |
 | AR-33 | **rig 性能门禁**移出 `pnpm check`，改成 `pnpm check:perf`，负载低时单独跑；阈值不动，禁止在测试里加「高负载跳过」。 |
 | AR-34 | **交接问答**：主检出脏文件只记录；旧工作区归档后移除；131 张原图留下并写引用；不下载 Playwright；杨逍确认；skill 入库；女角撞脸已无。 |
+| AR-35 | 人物线四问：胡一刀改回不结辫、凌霜华文字重出疤在左颊、狄云乡下装补出、程灵素 / 苗人凤保留；eng3 重启由协调者执行。 |
+| AR-36 | **素材线第二波**：两个 codex（ultra）做主角复合基线精修 + 分时期立绘 + 关键剧情插图配古风题字；两个 codex（xhigh）逐书补齐主要人物；一个 codex 做全部城市 × 年代布局与总装城图；一个 codex 做遗迹 / 地宫地图；一个 Opus subagent 追踪。**物品说明与属性投影**：先定字段规格再分 8 批逐件写短文填值。 |
 | | 追问后定：三视图用 codex；UAL Pro 先不买。 |
 
 协调者裁定，作者可以推翻：
@@ -198,6 +201,17 @@
   - 引用清单已入库：`tools/agents/reports/REFERENCE-codex-originals-20261002.md`，列出每张的 asset_id 和当时的出图记录；
   - 全部 836 张的对应表是同名 `.tsv`。
 
+### 3.5 素材线第二波（AR-36，22:40 登记）
+
+| 任务 | 内容 | 执行器 | 状态 |
+|---|---|---|---|
+| ART-hero-refine-a / -b | 主角复合基线精修（剧照 + 游戏画风参考 + 基线，像角色不像演员）、分时期 `_scene_<stage>` 立绘、关键剧情插图配古风题字（巨作 8–10 张） | codex gpt-6-astra ultra，槽位 3 | 追踪 subagent 启动中 |
+| ART-cast-fill-a / -b | 逐书搜主要人物列表，补缺的提示词与立绘（如扫地僧）；名录没有的人物只报不造 ID | codex xhigh | 同上 |
+| CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；先 ch10 唐城，再按书序 | codex xhigh | 磁盘 ≥ 9 GiB 再起 |
+| ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览（九老洞、敦煌地宫、长白山洞…） | codex xhigh | 等 ENG-18b 合入 |
+
+做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接：`_handoff/art_wave2_tracker_brief.md`；审核要点 `review_checks_hero.md` / `review_checks_ruins.md`。Gemini 物品线只做物品，不再出情景图。
+
 ### 3.4 人物动作原型（AR-29）
 
 **已合入**：
@@ -238,6 +252,8 @@
 - DES-rig-v1.1；DES-sync-tech-a（tech/04、05、09-roadmap）；
 - DES-sync-design-a（design/10、11、12、14、15、18、19、20）、DES-sync-design-b（design/03、04、05、21）；
 - DES-skills-reqs-v2-a / b / c：名录门槛重配（部录 01–07、08–14、门派与通用）。
+
+**物品说明与属性投影（AR-36，des34 批次 22:39 启动，并发 6）**：DES-items-attrs-spec（design/10 字段规格）→ DES-items-lore-1～8（武器 A/B、秘籍 A/B、食品、药品、衣甲鞋带、饰品暗器）；之后再登记 TOOL 任务把「说明」映射到 `text.lore`、属性投影映射到 `extension`，并重跑 TOOL-items-catalog 的生成器。
 
 **待办**：
 - [x] **名录门槛重配**：已登记 DES-skills-reqs-v2-a / b / c（des33 排队）。
