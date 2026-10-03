@@ -1,0 +1,83 @@
+{
+  "type": "map",
+  "version": "1.12",
+  "tiledversion": "1.12.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "width": 10,
+  "height": 8,
+  "tilewidth": 48,
+  "tileheight": 48,
+  "nextlayerid": 5,
+  "nextobjectid": 5,
+  "backgroundcolor": "#171e28",
+  "properties": [{"name": "schemaVersion", "type": "string", "value": "region-map.v1"}, {"name": "regionId", "type": "string", "value": "rg_dongbei"}, {"name": "sceneId", "type": "string", "value": "sc_00_changbai_cave"}, {"name": "chapterScope", "type": "string", "value": "ch00_yuenv"}, {"name": "eraLayer", "type": "string", "value": "ch00"}],
+  "tilesets": [{"firstgid": 1, "source": "../../../tiled/tilesets/terrain.tsj"}, {"firstgid": 49, "source": "../../../tiled/tilesets/height.tsj"}],
+  "layers": [
+    {
+      "id": 1,
+      "type": "tilelayer",
+      "name": "terrain",
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "opacity": 1.0,
+      "visible": true,
+      "data": [
+        0,0,43,43,43,43,43,43,43,0,
+        0,43,38,38,38,19,19,38,43,43,
+        43,38,38,38,38,38,38,38,38,43,
+        43,21,21,38,38,38,38,38,38,43,
+        43,21,21,38,38,38,38,38,38,43,
+        43,43,38,38,38,38,38,38,43,0,
+        0,43,38,38,38,38,38,38,43,0,
+        0,43,43,43,43,43,43,43,0,0
+      ]
+    },
+    {
+      "id": 2,
+      "type": "tilelayer",
+      "name": "height",
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "opacity": 0.0,
+      "visible": false,
+      "data": [
+        0,0,52,52,52,52,52,52,52,0,
+        0,52,49,49,49,49,49,49,52,52,
+        52,49,49,49,49,49,49,49,49,52,
+        52,49,49,49,49,49,49,49,49,52,
+        52,49,49,49,49,49,49,49,49,52,
+        52,52,49,49,49,49,49,49,52,0,
+        0,52,49,49,49,49,49,49,52,0,
+        0,52,52,52,52,52,52,52,0,0
+      ]
+    },
+    {
+      "id": 3,
+      "type": "tilelayer",
+      "name": "deco",
+      "x": 0,
+      "y": 0,
+      "width": 10,
+      "height": 8,
+      "opacity": 1.0,
+      "visible": true,
+      "data": [
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0
+      ]
+    },
+    {"id": 4, "type": "objectgroup", "name": "objects", "x": 0, "y": 0, "opacity": 1, "visible": true, "draworder": "topdown", "objects": [{"id": 1, "name": "entry", "type": "PlayerSpawn", "x": 144, "y": 192, "width": 0, "height": 0, "rotation": 0, "visible": true, "properties": [{"name": "safe", "type": "bool", "value": true}, {"name": "entry", "type": "bool", "value": true}, {"name": "facing", "type": "int", "value": 0}], "point": true}, {"id": 2, "name": "first_sleep_allocation", "type": "Trigger", "x": 288, "y": 192, "width": 0, "height": 0, "rotation": 0, "visible": true, "properties": [{"name": "once", "type": "bool", "value": true}, {"name": "safe", "type": "bool", "value": true}], "point": true}, {"id": 3, "name": "wake_to_baima", "type": "Trigger", "x": 288, "y": 240, "width": 0, "height": 0, "rotation": 0, "visible": true, "properties": [{"name": "once", "type": "bool", "value": true}, {"name": "safe", "type": "bool", "value": true}], "point": true}, {"id": 4, "name": "lamp_3", "type": "Light", "x": 192, "y": 144, "width": 0, "height": 0, "rotation": 0, "visible": true, "properties": [{"name": "color", "type": "string", "value": "#aacede"}, {"name": "radius", "type": "int", "value": 6}, {"name": "intensity", "type": "float", "value": 0.75}, {"name": "mountHeight", "type": "int", "value": 2}, {"name": "schedule", "type": "string", "value": "always"}, {"name": "flicker", "type": "bool", "value": false}], "point": true}]}
+  ]
+}
