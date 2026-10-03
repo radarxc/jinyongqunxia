@@ -1015,3 +1015,16 @@
     - ART-ruins-maps 执行器报：九老洞、敦煌地宫只在作者需求里出现，章节文档没有 `sc_*` / `poi_*` ID，按约束「不自造 ID」做不了。协调者采追踪者方案 1：登记并起跑 **DES-ruins-ids**（936a7227；驱动 74820）——九老洞（默认倚天 ch04 峨眉）、敦煌地宫（河西 `rg_hexilongyou`，唐 / 清两套年代）与章节文档其他具名无 ID 的遗迹登记 `sc_*` / `poi_*`；两者合入后登记 ART-ruins-maps-2 接力补图。
     - **TOOL-catalog-9col 合入**（4aa8c6db，05:37，r3 PASS：双写检查要求可复算键必须出现并相等）。已请开发监督按 `lore_plan.md` 复验 8 个 DES-items-lore（并发 ≤ 4），全部合入后 TOOL-items-catalog 重新生成。
     - TOOL-rig-sheet 第 7 次运行 05:37 停滞（25 分钟无输出），开发监督的驱动自动续作。
+  - **10-03 05:36–05:42 开发监督**：TOOL-catalog-9col 合入（4aa8c6db，r3 PASS），按 `_handoff/lore_plan.md` 与协调者 05:44 的口径重起 lore 任务。
+    - 合入后 `prod_check`（`_handoff/prod_check_post-9col_0539.log`，HEAD 300312f6）全绿：128 个测试文件 / 922 条测试，entry 160.17 / 170。
+    - lore-1 / 3 / 5 / 6：
+      - 都先 `rebase_task.py` 挪基点（cherry-pick 无冲突），再用 Sol max `--from validate` 起驱动，`--rework-extra` 附「保持九列」说明（`.agents/coord/<ID>/devsup_note_9col.md`）；
+      - 驱动 pid：76509 / 76897 / 78015 / 80144。
+    - 新校验器下的复验结果，均属实，已自动返修：
+      - lore-1（兵器）、lore-3（秘籍）：名录里还有一批行是七列（「应为九列，实际 7 列」）。这两份名录在集成分支上最后一次修改是 10-02，不是基点新增的行，是首次运行没转完；
+      - lore-5（食品）：只有 1 条双写不一致，缺少 `qiCultivation=3500`；
+      - lore-6 复验中。
+    - lore-7 / 8：等 lore 并发降到 4 以下且负载 < 10 时，再按 `--from start` 起（协调者：lore 并发不超过 4）。
+    - lore-2 / 4 没有工作区，des34 起跑时从当前 HEAD 新建，不用挪基点。
+    - 全部合入后：TOOL-items-catalog `--from start` 重新生成，并提交 `content/items`（AR-39）。
+
