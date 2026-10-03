@@ -1,6 +1,6 @@
 import type {
   BattleCommand, BattleEvent, BattleSetup, BattleUnitSeed, HexAim, HexCoord,
-  HexPrimitiveShape, RngState, BattleResult, SideId,
+  HexPrimitiveShape, RngState, BattleResult, SideId, BattleRewards as CoreBattleRewards,
 } from '@tianshu/core';
 import type { BattleCell, BattleMarker } from '@tianshu/render/battle';
 
@@ -46,9 +46,13 @@ export interface AreaPreview {
   readonly targetIds: readonly string[]; readonly valid: boolean; readonly reason: string;
 }
 export interface BattleRewards {
-  readonly drops: readonly { readonly name: string; readonly count: number }[] | null;
+  readonly drops: CoreBattleRewards['drops'];
+  /** Compatibility surface: growth conversion belongs to battle/finalize, so the battle host leaves it null. */
   readonly martial: readonly { readonly name: string; readonly experience: number; readonly proficiency: number }[] | null;
-  readonly cycles: number | null;
+  readonly cycles: number;
+  readonly martialUses: CoreBattleRewards['martialUses'];
+  readonly movementTrained: CoreBattleRewards['movementTrained'];
+  readonly fullCirculations: CoreBattleRewards['fullCirculations'];
 }
 export interface MovePlayback {
   readonly moveId: string; readonly from: BattleMarker; readonly to: readonly BattleMarker[];

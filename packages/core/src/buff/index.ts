@@ -1,4 +1,4 @@
-import { compareCodePoints, mulBpFloor } from '@tianshu/shared';
+import { mulBpFloor } from '@tianshu/shared';
 import type { QigongDeviationEffect } from '../progression';
 
 export type BuffId = `bf_${string}`;
@@ -36,6 +36,8 @@ export const NEGATIVE_BUFF_PROGRAMS: readonly BuffProgram[] = [
     minStacks: 9, ops: [{ op: 'skipAction' }] }] },
   { id: 'bf_chaqi', triggers: [] },
   { id: 'bf_dantianshousun', triggers: [] },
+  { id: 'bf_jiangu', triggers: [] },
+  { id: 'bf_xieli', triggers: [] },
 ];
 
 function programById(id: BuffId, programs: readonly BuffProgram[]): BuffProgram | undefined {
@@ -122,8 +124,11 @@ export function createQigongDeviationBuff(effect: QigongDeviationEffect, holder:
 
 export function qiProductionBp(instances: readonly BuffInstance[]): number {
   let result = 10_000;
-  for (const instance of [...instances].sort((left, right) => compareCodePoints(left.def, right.def))) {
+  // Fixed program order matches the previous stable ID sort without allocating on every tick.
+  for (const instance of instances) {
     if (instance.def === 'bf_chaqi') result = mulBpFloor(result, 5_000);
+  }
+  for (const instance of instances) {
     if (instance.def === 'bf_dantianshousun') result = mulBpFloor(result,
       10_000 - ([1_500, 3_000, 5_000, 7_500][Math.min(4, Math.max(1, instance.stacks)) - 1] ?? 0));
   }
@@ -133,3 +138,16 @@ export function qiProductionBp(instances: readonly BuffInstance[]): number {
 export const forbidsAcuteGather = (instances: readonly BuffInstance[]): boolean =>
   instances.some((instance) => instance.def === 'bf_chaqi'
     || (instance.def === 'bf_dantianshousun' && instance.stacks >= 4));
+
+function defensiveBonusBp(instances: readonly BuffInstance[], id: BuffId): number {
+  let grade = 0;
+  for (const instance of instances) if (instance.def === id) grade = Math.max(grade, instance.grade);
+  return grade === 0 ? 0 : mulBpFloor(500, GRADE_FACTOR_BP[Math.min(12, grade)] ?? 10_000);
+}
+
+export const guardDefenseBonusBp = (instances: readonly BuffInstance[]): number =>
+  defensiveBonusBp(instances, 'bf_jiangu');
+export const guardDamageDownBp = (instances: readonly BuffInstance[]): number =>
+  defensiveBonusBp(instances, 'bf_xieli');
+export const hasGuardStance = (instances: readonly BuffInstance[]): boolean =>
+  instances.some((instance) => instance.def === 'bf_jiangu' || instance.def === 'bf_xieli');

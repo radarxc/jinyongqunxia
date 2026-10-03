@@ -1,8 +1,13 @@
 import { canonicalJson, compareCodePoints, mulDivFloor, type JsonValue } from '@tianshu/shared';
-import { advanceBattleToReady, resolveBattleAction } from '../battle/action';
+import { advanceBattleToReady, previewBattleRoute, queryBattleQi, resolveBattleAction } from '../battle/action';
 import { evaluateBattleEnd, finishBattle } from '../battle/encounter';
+import { calculateDamage, calculateJudgeChances, calculateZoneResistanceBp } from '../battle/damage';
 import { isBattleUnitVisible, queryLegalTargets, queryReachable } from '../battle/geometry';
-import type { BattleCommand, BattleResult, BattleState, BattleUnit, SideId } from '../battle/types';
+import { attackMeridianBp, finalMeridianAttackBp } from '../battle/meridian-flow';
+import type { BattleCommand, BattleMove, BattleResult, BattleState, BattleUnit, SideId } from '../battle/types';
+import {
+  forbidsAcuteGather, guardDamageDownBp, guardDefenseBonusBp, hasGuardStance,
+} from '../buff';
 import { createRng, seedStream } from '../rng';
 
 export interface AutoPolicy { readonly style: 'aggressive' | 'steady' | 'support' | 'custom';
@@ -35,9 +40,101 @@ function targets(state: BattleState, actor: BattleUnit, preferred?: string, geom
     });
 }
 
+const STANDARD_MERIDIAN_PROFILE = { qiBp: 10_000, widthBp: 10_000, flowBp: 10_000, completionBp: 10_000 };
+const GATHER_GAIN_THRESHOLD_BP = 1_500;
+const GATHER_SURVIVAL_THRESHOLD_BP = 5_000;
+
+interface AttackOutcome { readonly damage: number; readonly chanceBp: number }
+
+function attackOutcomes(state: BattleState, enemy: BattleUnit, actor: BattleUnit,
+  move: BattleMove): AttackOutcome[] {
+  const guarded = hasGuardStance(actor.buffs);
+  const direction = guarded && move.delivery === 'melee' ? 'front' : move.direction ?? 'front';
+  const chances = calculateJudgeChances({ hitEff: enemy.stats.hit + (move.hitMod ?? 0),
+    eva: actor.stats.eva, parry: actor.stats.parry + (guarded ? 20 : 0),
+    pierce: enemy.stats.pierce, crit: enemy.stats.crit, tough: actor.stats.tough, direction });
+  const guard = actor.zoneGuards[move.hitZone];
+  const defenseBp = 10_000 + guardDefenseBonusBp(actor.buffs);
+  let meridianAttackBp = move.meridianAttackBp ?? 10_000;
+  if (move.meridianRouteRef !== undefined) {
+    try {
+      const preview = previewBattleRoute(state, enemy.id, move.meridianRouteRef);
+      if (preview.disabledReason !== null) return [];
+      meridianAttackBp = preview.meridianAttackBp;
+    } catch { return []; }
+  }
+  const outcomes: AttackOutcome[] = [{ damage: 0, chanceBp: 10_000 - chances.hitBp }];
+  for (const parried of [false, true]) for (const critical of [false, true]) {
+    const chanceBp = mulDivFloor(chances.hitBp,
+      (parried ? chances.parryBp : 10_000 - chances.parryBp)
+      * (critical ? chances.critBp : 10_000 - chances.critBp), 100_000_000);
+    const trace = calculateDamage({ attacker: enemy.stats, defender: { ...actor.stats,
+      defOut: mulDivFloor(actor.stats.defOut, defenseBp, 10_000),
+      defIn: mulDivFloor(actor.stats.defIn, defenseBp, 10_000) }, wInBp: move.wInBp,
+    actualPower: { n: move.powerBp, d: 10_000 },
+    referencePower: { n: move.referencePowerBp, d: 10_000 },
+    pierceOutBp: move.pierceOutBp ?? 0, pierceInBp: move.pierceInBp ?? 0,
+    dmgUpBp: move.dmgUpBp ?? 0, dmgDownBp: guardDamageDownBp(actor.buffs),
+    zoneResistanceBp: calculateZoneResistanceBp(move.hitZone, actor.stats.strength,
+      actor.stats.tough, guard.carryCapacity === 0 ? 0
+        : Math.min(10_000, mulDivFloor(guard.qi, 10_000, guard.carryCapacity))),
+    meridianAttackBp, meridianDefenseBp: actor.meridianDefenseBp,
+    ultimate: move.ultimate ?? false, direction }, { parried, critical });
+    outcomes.push({ damage: trace.z10, chanceBp });
+  }
+  return outcomes;
+}
+
+/** Mean variance, two attacks from the strongest visible threat; no RNG or state writes.
+ * Rounding loss and unmodelled outward-qi cancellation conservatively lower survival. */
+function survivalEstimateBp(state: BattleState, actor: BattleUnit): number {
+  if (!actor.active || actor.hp <= 0) return 0;
+  let threat: readonly AttackOutcome[] = [{ damage: 0, chanceBp: 10_000 }];
+  let maximumExpected = 0;
+  for (const enemy of targets(state, actor)) for (const move of enemy.moves) {
+    if (enemy.mp < move.mpCost) continue;
+    const outcomes = attackOutcomes(state, enemy, actor, move);
+    const expected = outcomes.reduce((sum, outcome) => sum + outcome.damage * outcome.chanceBp, 0);
+    if (expected > maximumExpected) { maximumExpected = expected; threat = outcomes; }
+  }
+  let survival = 0;
+  for (const first of threat) for (const second of threat) {
+    if (first.damage + second.damage < actor.hp + actor.shield) {
+      survival += first.chanceBp * second.chanceBp;
+    }
+  }
+  return mulDivFloor(survival, 1, 10_000);
+}
+
+export function chooseAcuteGatherAction(
+  state: BattleState, actor: BattleUnit,
+): Extract<BattleCommand, { readonly t: 'battle/act' }> | null {
+  if (forbidsAcuteGather(actor.buffs)
+    || survivalEstimateBp(state, actor) < GATHER_SURVIVAL_THRESHOLD_BP) return null;
+  const input = state.setup.meridianInputs.find((candidate) => candidate.unitId === actor.id);
+  const saved = state.meridianByUnit[actor.unitIndex];
+  if (input === undefined || saved?.unitId !== actor.id) return null;
+  const routes = [...input.routes].filter((route) => (route.purpose ?? 'attack') === 'attack')
+    .sort((left, right) => compareCodePoints(left.routeId, right.routeId));
+  for (const route of routes) {
+    try {
+      const status = queryBattleQi(state, actor.id, route.routeId);
+      const preview = previewBattleRoute(state, actor.id, route.routeId);
+      const baseBp = attackMeridianBp(preview.profile, STANDARD_MERIDIAN_PROFILE, route.steps.length);
+      const gainBp = finalMeridianAttackBp(baseBp, 10_000) - preview.meridianAttackBp;
+      if (!status.full && status.circulationBp < 10_000 && gainBp >= GATHER_GAIN_THRESHOLD_BP) {
+        return { t: 'battle/act', actor: actor.id, action: { t: 'acuteQiGather', routeRef: route.routeId } };
+      }
+    } catch { /* A blocked route is not an AI candidate. */ }
+  }
+  return null;
+}
+
 export function chooseAutoCommand(
   state: BattleState, actor: BattleUnit, policy: AutoPolicy,
 ): BattleCommand {
+  const gather = chooseAcuteGatherAction(state, actor);
+  if (gather !== null) return gather;
   const move = viableMoves(actor, policy)[0];
   const candidates = targets(state, actor, policy.preferredTarget);
   if (move === undefined || candidates.length === 0) return { t: 'battle/wait', actor: actor.id };

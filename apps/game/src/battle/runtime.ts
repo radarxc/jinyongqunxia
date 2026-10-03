@@ -1,7 +1,8 @@
 import {
-  advanceBattleToReady, chooseAutoCommand, createBattleState, createRng, defaultMaxActions,
-  evaluateBattleEnd, finishBattle, peekReadyUnitId, resolveBattleAction, seedStream,
-  queryPath, type BattleCommand, type BattleEvent, type BattleState,
+  advanceBattleToReady, chooseAutoCommand, computeBattleRewards, createBattleState, createRng,
+  defaultMaxActions, emitBattleRewards, evaluateBattleEnd, finishBattle, peekReadyUnitId,
+  resolveBattleAction, seedStream, queryPath, type BattleCommand, type BattleEvent,
+  type BattleRewards as CoreBattleRewards, type BattleState,
 } from '@tianshu/core';
 import type { BattleLaunch, BattlePacket, BattleUiCommand, BattleUnitView, MovePlayback } from './contracts';
 import { projectBattleUnit } from './presentation';
@@ -15,6 +16,8 @@ const POLICY = { style: 'aggressive', reserveMpBp: 0, allowUltimate: true, allow
 export class BattleRuntime {
   private state: BattleState;
   private rng;
+  private readonly lootRng;
+  private rewards: CoreBattleRewards | null = null;
   private revision = 0;
   private auto = false;
   private preview: BattlePacket['preview'] = null;
@@ -36,17 +39,29 @@ export class BattleRuntime {
       throw new Error('BATTLE_LAUNCH_INVALID');
     this.state = createBattleState(setup, seeds);
     this.rng = createRng(seedStream(setup.seed, 'battle'));
+    this.lootRng = createRng(seedStream(setup.seed, 'loot'));
     this.ready();
   }
 
+  private settleRewards(): CoreBattleRewards | null {
+    if (this.state.result === null) return null;
+    if (this.rewards === null) {
+      this.rewards = computeBattleRewards(this.state, this.lootRng);
+      emitBattleRewards(this.state, this.rewards);
+    }
+    return this.rewards;
+  }
+
   private ready(): void {
-    if (this.state.result) return;
+    if (this.state.result) { this.settleRewards(); return; }
     const end = evaluateBattleEnd(this.state);
-    if (end) { finishBattle(this.state, end); return; }
+    if (end) { finishBattle(this.state, end); this.settleRewards(); return; }
     if (advanceBattleToReady(this.state).kind === 'stalled') finishBattle(this.state, 'draw');
+    if (this.state.result) this.settleRewards();
   }
 
   packet(full = false, resolved?: MovePlayback): BattlePacket {
+    const rewards = this.rewards;
     const changed: BattleUnitView[] = [];
     for (const unit of this.state.units) {
       const signature = JSON.stringify(unit);
@@ -62,7 +77,10 @@ export class BattleRuntime {
       units: full ? [...this.views.values()] : changed, actorId: this.state.result ? null : peekReadyUnitId(this.state),
       tick: this.state.tick, round: this.state.round, actionNo: this.state.actionNo,
       timeline: queryTimeline(this.state), auto: this.auto, preview: this.preview, result: this.state.result,
-      rewards: this.state.result ? { drops: null, martial: null, cycles: null } : null,
+      rewards: rewards === null ? null : { drops: rewards.drops, martial: null,
+        cycles: rewards.fullCirculations.reduce((sum, entry) => sum + entry.count, 0),
+        martialUses: rewards.martialUses, movementTrained: rewards.movementTrained,
+        fullCirculations: rewards.fullCirculations },
       ...(resolved ? { resolved } : {}),
     };
   }

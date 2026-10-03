@@ -35,14 +35,16 @@
 
 ## 经脉运气与养成入口
 
-- 战斗入口：`battle/meridian-flow` 导出 `createMeridianFlowRuntime()`、`createGatherState()` 与
-  `dispatchMeridianFlowCommand()`；业务层通过 `qi.tick/selectRoute/acuteGather/resolveMove` 命令推进，
-  不直接复制产气、旅行 tick、节点通量或周天倍率公式。
-- 战斗事件：`qi.flowAdvanced`、`qi.gatherAdvanced`、`qi.routeSelected`、`qi.acuteGathered`、
-  `qi.moveResolved`、`qi.fullCycleCrit`。后者是 Core 内部事实名；ENG-04 在战斗聚合边界包装成
+- 战斗入口：`battle/meridian-flow` 导出 `createMeridianFlowRuntime()`；`tick()`、`preview()`、
+  `queryGatherStatus()`、`commitMove()`、`resolveMove()` 与 v2 `snapshot()/restore()` 共用同一份经脉状态。
+  旧 `GatherState` / `acuteQiGather()` CT 适配器已删除，聚气只通过战斗行动推进，避免双重记账。
+- 战斗事件：`qi.flowAdvanced`、`qi.moveResolved`、`qi.fullCycleCrit`。后者是 Core 内部事实名；
+  ENG-04 在战斗聚合边界包装成
   `battle/fullCirculationCritResolved`，不得重掷暴击或改写 `releasedQi/circulationBp`。
-- ENG-04：以唯一 `battle` SFC32 流调用 `qi.resolveMove`；消费 `meridianAttackBp`、`flowCt`、
-  `releasedQi` 和 trace 接续命中 / 伤害 / Buff，不在本模块计算攻防伤害。失败命令不产生事件。
+- 战斗态以 `unitIndex` 升序保存 `meridianByUnit[]`；同模板单位只共享只读输入，每单位独立恢复
+  runtime。预览零 RNG 且只读，提交路线 F3 先于命中 F6，并以唯一 `battle` SFC32 流消费随机。
+- `snapshot(transient)` 同步保存异种气、点穴占用、借力气和到期行动；外层单位槽另存
+  `activeDefense/movementProjection/innerGuard`。runtime cache 只能重建，不进入状态。
 - 养成入口：`progression` 导出 `advanceInnerPractice()`、`advanceMartialArtProgress()`、
   `applyMeridianBoost()`、`interruptMeditation()` 与 `dispatchProgressionCommand()`；药材效果直接复用
   `ItemDef.use.meridianTemper`，不维护第二份数据结构。
@@ -107,9 +109,13 @@
   `createStoryBattleSetup()`、`createMeditationAmbushBattleSetup()`，再以单位快照调用
   `createBattleState()`。`BattleSetup` 冻结参战者、阵营、胜负条件与特殊规则；战中不得扫描世界补人。
 - 推进：`advanceBattleToReady()` 推进事件驱动 CT 与逐 tick 异种气；提交
-  `BattleCommand` 给 `resolveBattleAction()`。`battle/act` 原子提交 `walkTo? + skill|wait + facing?`，
-  `battle/wait` 是原地待机别名；提交时重算路径、射程、LOS 与目标，不接受预览结果。
-  `acuteQiGather()` 是 ENG-03 经脉上下文适配器，完整聚合命令待 `meridianByUnit` 进入战斗态。
+  `BattleCommand` 给 `resolveBattleAction()`。`battle/act` 原子提交
+  `walkTo? + skill|item|guard|acuteQiGather|wait + facing?`；`battle/wait` 是原地待机别名。
+  提交时重算路径、射程、LOS、目标、道具次数 / 冷却与经脉状态，不接受预览结果。
+- 行动：防御写入 `bf_jiangu/bf_xieli`；聚气只能选已打通攻击路线且不带移动；战斗物品只改
+  setup 背包副本。带防御路线暂以 `MERIDIAN_ROUTE_BLOCKED` 拒绝，直到防御路线提交接口落地。
+- 奖励：`computeBattleRewards()` 纯计算武学使用、移动训练、周天和 setup 掉落；仅随机掉落池
+  消费独立 `loot` 流。`emitBattleRewards()` 幂等发 `battle/rewards`，core 不写世界状态。
 - 查询：`queryReachable()` / `queryPath()` / `queryMoveAt()` / `queryLegalTargets()` 是只读棋盘规则入口，
   `isBattleUnitVisible()` 统一 LOS、遮蔽与隐匿可见性；
   `resolveAreaCells()` 返回六角范围格，`matchFormation()` 校验六向阵形。可达集、路径与 open set 不入状态。

@@ -1,8 +1,18 @@
 import { describe, expect, it } from 'vitest';
-import { combatFixture } from '../testing/combat-fixture';
-import { chooseAutoCommand, defaultMaxActions, simulateAbstractBattle } from './index';
+import type { MeridianFlowInput } from '../battle';
+import { BASIC_MOVE, combatFixture } from '../testing/combat-fixture';
+import { chooseAcuteGatherAction, chooseAutoCommand, defaultMaxActions, simulateAbstractBattle } from './index';
 
 const aggressive = { style: 'aggressive', reserveMpBp: 0, allowUltimate: true, allowItems: false } as const;
+
+function meridians(): MeridianFlowInput[] {
+  return ['hero', 'enemy_0'].map((unitId) => ({ unitId, productionPerTick: 8,
+    qiSpeedBp: 10_000, practiceBp: 9_000, unitQiHardCap: 16,
+    nodes: [{ acupointRef: 'ap_test', opened: true, fluxCap: 16, lengthUnit: 1, flowBp: 10_000 }],
+    routes: [{ routeId: 'mfr_test', purpose: 'attack' as const, steps: [
+      { acupointRef: 'ap_test', lengthUnit: 1, segmentCt: 60, riskBp: 0 },
+    ] }], activeRouteId: 'mfr_test' }));
+}
 
 describe('abstract automatic combat', () => {
   it('uses no geometry and chooses a stable move and target order', () => {
@@ -49,6 +59,53 @@ describe('abstract automatic combat', () => {
     const command = chooseAutoCommand(state, actor, aggressive);
     expect(command).toMatchObject({ t: 'battle/act', actor: 'hero',
       walkTo: expect.any(Object), action: { t: 'skill', move: 'mv_basic_strike', target: 'enemy_0' } });
+  });
+
+  it('gathers only above the survival threshold and never adds movement', () => {
+    const healthy = combatFixture({ meridianInputs: meridians() });
+    expect(chooseAcuteGatherAction(healthy, healthy.units[0]!)).toEqual({
+      t: 'battle/act', actor: 'hero', action: { t: 'acuteQiGather', routeRef: 'mfr_test' },
+    });
+    healthy.units[0]!.hp = 100;
+    expect(chooseAcuteGatherAction(healthy, healthy.units[0]!)).toBeNull();
+
+    const simulated = simulateAbstractBattle(combatFixture({ meridianInputs: meridians(), hp: 300 }), {});
+    expect(simulated.commandLog.some((command) => command.t === 'battle/act'
+      && command.action.t === 'acuteQiGather')).toBe(false);
+    expect(simulated.commandLog.every((command) => command.t !== 'battle/act'
+      || command.walkTo === undefined)).toBe(true);
+  });
+
+  it('does not gather when the next two hostile attacks leave less than half survival', () => {
+    const lethal = { ...BASIC_MOVE, id: 'mv_lethal_probe' as const,
+      powerBp: 100_000, referencePowerBp: 10_000 };
+    const state = combatFixture({ meridianInputs: meridians(), enemyMoves: [lethal] });
+
+    expect(state.units[0]!.hp).toBe(state.units[0]!.hpMax);
+    expect(chooseAcuteGatherAction(state, state.units[0]!)).toBeNull();
+  });
+
+  it('estimates survival without changing battle state and does not equate low HP with death', () => {
+    const state = combatFixture({ meridianInputs: meridians(), enemyMoves: [] });
+    state.units[0]!.hp = 1;
+    const before = structuredClone(state);
+    expect(chooseAutoCommand(state, state.units[0]!, aggressive)).toMatchObject({
+      action: { t: 'acuteQiGather', routeRef: 'mfr_test' },
+    });
+    expect(state).toEqual(before);
+  });
+
+  it('does not choose gathering while acute gathering is disabled by a status', () => {
+    for (const buff of [
+      { def: 'bf_chaqi', stacks: 1 },
+      { def: 'bf_dantianshousun', stacks: 4 },
+    ] as const) {
+      const state = combatFixture({ meridianInputs: meridians() });
+      const actor = state.units[0]!;
+      actor.buffs.push({ iid: 1, def: buff.def, holder: actor.id, source: null, grade: 1,
+        stacks: buff.stacks, turnsLeft: 3, fresh: false });
+      expect(chooseAcuteGatherAction(state, actor), buff.def).toBeNull();
+    }
   });
 
   it('terminates 200 deterministic random seeds with safe resources and no post-down action', () => {

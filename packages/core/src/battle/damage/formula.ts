@@ -1,5 +1,5 @@
 import { clampInt, mulBpFloor, mulDivFloor } from '@tianshu/shared';
-import { chanceBp, intInclusive, type Rng } from '../../rng';
+import { intInclusive, type Rng } from '../../rng';
 
 export type HitZone = 'body' | 'hand' | 'leg';
 export type AttackDirection = 'front' | 'side' | 'back';
@@ -14,6 +14,7 @@ export interface JudgeInput {
 export interface JudgeChances { readonly hitBp: number; readonly parryBp: number; readonly critBp: number }
 export interface JudgeResult extends JudgeChances {
   readonly hit: boolean; readonly parried: boolean; readonly critical: boolean;
+  readonly hitRollBp: number; readonly parryRollBp: number | null; readonly critRollBp: number | null;
 }
 
 const DIRECTION_PARRY: Readonly<Record<AttackDirection, number>> =
@@ -35,11 +36,15 @@ export function calculateJudgeChances(input: JudgeInput): JudgeChances {
 
 export function rollJudge(input: JudgeInput, rng: Rng): JudgeResult {
   const chances = calculateJudgeChances(input);
-  const hit = chanceBp(rng, chances.hitBp);
-  if (!hit) return { ...chances, hit, parried: false, critical: false };
-  const parried = chanceBp(rng, chances.parryBp);
-  const critical = chanceBp(rng, chances.critBp);
-  return { ...chances, hit, parried, critical };
+  const hitRollBp = rng.nextU32() % 10_000;
+  const hit = hitRollBp < chances.hitBp;
+  if (!hit) return { ...chances, hit, parried: false, critical: false,
+    hitRollBp, parryRollBp: null, critRollBp: null };
+  const parryRollBp = rng.nextU32() % 10_000;
+  const critRollBp = rng.nextU32() % 10_000;
+  const parried = parryRollBp < chances.parryBp;
+  const critical = critRollBp < chances.critBp;
+  return { ...chances, hit, parried, critical, hitRollBp, parryRollBp, critRollBp };
 }
 
 export interface DamageFormulaInput {

@@ -1,9 +1,11 @@
-import type { BattleMove, BattleUnitSeed, SideId } from '../battle';
+import type { ItemDef } from '@tianshu/data/schemas';
+import type { BattleMove, BattleRewardSetup, BattleUnitSeed, MeridianFlowInput, SideId } from '../battle';
 import { createBattleState, createEncounterBattleSetup } from '../battle';
 import { HEX_DIRECTIONS, hexDisk } from '../hex';
 
 export const BASIC_MOVE: BattleMove = { id: 'mv_basic_strike', powerBp: 10_000,
-  referencePowerBp: 10_000, wInBp: 3_500, recovery: 900, mpCost: 0, hitZone: 'body',
+  referencePowerBp: 10_000, skillId: 'sk_basic', wInBp: 3_500, recovery: 900,
+  mpCost: 0, hitZone: 'body',
   autoTargetCap: 1, range: { min: 1, max: 1 }, delivery: 'melee',
   shape: { tpl: 'aoe_single' }, hTol: 2, target: 'enemy' };
 
@@ -21,7 +23,11 @@ export function battleSeed(id: string, moves: readonly BattleMove[] = [BASIC_MOV
 
 export function combatFixture(input: { readonly seed?: number; readonly playerMoves?: readonly BattleMove[];
   readonly enemyMoves?: readonly BattleMove[]; readonly enemies?: number; readonly hp?: number;
-  readonly noAuto?: boolean; readonly gridRadius?: number } = {}) {
+  readonly noAuto?: boolean; readonly noItems?: boolean; readonly gridRadius?: number;
+  readonly meridianInputs?: readonly MeridianFlowInput[];
+  readonly inventory?: { readonly stacks: readonly { readonly itemId: string; readonly count: number }[] };
+  readonly itemDefs?: readonly ItemDef[]; readonly rewards?: Partial<BattleRewardSetup>;
+  readonly playerMedical?: number } = {}) {
   const enemies = input.enemies ?? 1;
   const participants = [{ unitRef: 'hero', side: 'player' as SideId, control: 'player' as const,
     spawn: 'spawn_player', state: 'active' as const, required: true },
@@ -37,9 +43,14 @@ export function combatFixture(input: { readonly seed?: number; readonly playerMo
   const setup = createEncounterBattleSetup({ encounterId: 'enc_combat_fixture', setupId: 'setup-fixture',
     seed: input.seed ?? 1, sourceSnapshotHash: '0'.repeat(64), sourceId: 'fixture', triggerId: 'fixture',
     worldTick: 0, participants, sceneRef: 'sc_fixture', anchorRef: 'anchor_fixture',
-    noAuto: input.noAuto ?? false, grid, initialUnits });
+    noAuto: input.noAuto ?? false, noItems: input.noItems ?? false, grid, initialUnits,
+    ...(input.meridianInputs === undefined ? {} : { meridianInputs: input.meridianInputs }),
+    ...(input.inventory === undefined ? {} : { inventory: input.inventory }),
+    ...(input.itemDefs === undefined ? {} : { itemDefs: input.itemDefs }),
+    ...(input.rewards === undefined ? {} : { rewards: input.rewards }) });
   const seeds = [battleSeed('hero', input.playerMoves),
     ...Array.from({ length: enemies }, (_, index) => battleSeed(`enemy_${index}`, input.enemyMoves))];
+  if (input.playerMedical !== undefined) Object.assign(seeds[0]!, { medical: input.playerMedical });
   if (input.hp !== undefined) for (const seed of seeds) {
     Object.assign(seed, { hp: input.hp, hpMax: input.hp });
   }
