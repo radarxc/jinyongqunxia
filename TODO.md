@@ -44,12 +44,12 @@
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
 | ENG-17-booksleep-m1 | traex | 返修（改报告）后校验通过，04:30 开发监督另起驱动复验 + 复审 | 96341（开发监督另起） |
-| ENG-18b-tiled-regionmap | traex | 第 1 次运行（01:14 起） | eng3 → supervise 12005 |
-| TOOL-rig-sheet | traex Sol max | 第 3 次运行（审核 r2 FAIL 后返修，03:18 起） | 53693（开发监督另起） |
+| ENG-18b-tiled-regionmap | traex | 第 1 次运行 04:38 结束（189 分钟），校验中（基点早于 ENG-18e，可能撞 build.test 超时） | eng3 → supervise 12005 |
+| TOOL-rig-sheet | traex Sol max | 审核 r4 又 FAIL（切件错分：pelvis_skirt 混入手臂、torso 含前臂残片、侧腿蓝灰楔块），第 7 次运行返修中 | 开发监督另起 |
 | TOOL-catalog-9col | traex Sol max | 复审 r2 FAIL（03:27：双写检查省略键可绕过），等代码池空位自动返修 | 51856（协调者另起） |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | — | HOLD-RUNS：等 TOOL-catalog-9col 合入后挪基点复验（`_handoff/lore_plan.md`） | des34 batch 9492 看护 |
 | DES-items-gifts-spec | — | HOLD-RUNS：内存压力暂停（02:00） | — |
-| CITY-layouts-all | codex gpt-6-astra xhigh | 第 4 次运行（03:36 续作，按 done.txt 跳过已完成的城） | 49805（追踪者另起） |
+| CITY-layouts-all | codex gpt-6-astra xhigh | r1 FAIL 后协调者停掉全量返修，04:39 另起只修洛阳水门 / 太原三城 / 页眉的收尾运行（`coord_note_0440.md`），PASS 即合入已产出的 16 城 | 36743（协调者另起，`supervise.r2.out`） |
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
 - codex 出图 runner：w12（pid 20933，2 槽）服务 hero-b；w11 已排空停掉。
