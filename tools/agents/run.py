@@ -423,14 +423,26 @@ BINARY_EXT = (".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico", ".pdf", ".ttf", 
               ".mp3", ".ogg", ".wav", ".mp4", ".webm", ".zip")
 
 
+def skip_worktree_paths(wt: Path) -> set:
+    """稀疏检出时没拉到磁盘上的文件（`git ls-files -t` 标 S，skip-worktree）。
+    它们不在磁盘上不是任务删的，git add -A 也不会把它们提交为删除。"""
+    p = git(["ls-files", "-t", "-z"], wt, check=False)
+    if p.returncode != 0:
+        return set()
+    return {e[2:] for e in p.stdout.split("\0") if e.startswith("S ")}
+
+
 def baseline_lines(wt: Path, t: Task, base: str) -> dict:
-    """任务开始时，写入范围内已有文件的行数（用于防截断检查）。"""
+    """任务开始时，写入范围内已有文件的行数（用于防截断检查）。
+    2026-10-03（素材线第三波，main 批）：稀疏检出没拉下来的文件（skip-worktree）不进基线，
+    否则删除检查会把它们误报为「文件被删除」（ART-cast-fill-c 只拉名单里新人的 PNG，同目录既有立绘全被误报）。"""
     out = {}
     if not t.writes:
         return out
+    skipped = skip_worktree_paths(wt)
     p = git(["ls-tree", "-r", "--name-only", "-z", base], wt, check=False)
     for rel in p.stdout.split("\0"):
-        if rel and matches_any(rel, t.writes):
+        if rel and rel not in skipped and matches_any(rel, t.writes):
             if rel.lower().endswith(BINARY_EXT):
                 out[rel] = -1  # 二进制素材只查是否被删除，不按行数比较（图片由 check_assets 校验）
                 continue
