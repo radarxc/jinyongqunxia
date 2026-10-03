@@ -1383,3 +1383,18 @@
     - build_portraits 09:43 在窗口内开跑（磁盘 12.2 GiB、负载 5.7、在跑 ENG 1）：BiRefNet 加载后交换区 31.7 → 38.9 GB、磁盘降到 5–6 GiB 后稳住；按章提交（ch01 36142d3f、ch05 / 06 f6917fd1 / 0126999e、ch07 7b40d2ec…），09:50 约 39 / 128。
     - ENG-19d 第 1 次运行 17 分钟，校验通过，r1 PASS（09:48），合入中。
     - **ENG-entry-split 第 1 次运行 119 分钟结束，校验中**。执行器自报 gzip：entry 闭包 169.08 → 38.87 KiB（业务块 52.25 → 13.21，Worker 闭包 91.16 → 0，Vue + runtime 25.66 不变），webgl total 329.61 → 199.40；做法是 Worker 不再静态挂在入口，首次建会话才加载「首次会话静态闭包」65.13 + 虚拟基础内容 18.50，对话 / Ink（≈35）、区域（7–37）、战斗（33.8）、城镇（按城，大理 22.6）首次触发才 import()；100 次序章 → 初眠 → 白马冷入口主线程 / Worker 一致，core golden 终值不变。协调者认可，并请开发监督登记 **ENG-size-session-gate**（check_size / budgets 加「首次会话闭包」门禁 110 KiB，entry 170 只约束标题页，子系统块逐块列出不设门；默认值记 TODO §8.2 待作者确认）。
+  - **10-03 09:40–09:57 开发监督**：entry-split 进审核；登记 ENG-size-session-gate；ENG-19d r1 PASS。
+    - **ENG-entry-split**：执行约 119 分钟，校验通过，09:49 起审。自报 gzip KiB：
+      - entry 闭包 169.08 → 38.87（业务块 52.25 → 13.21；Worker 闭包 91.16 → 0）；webgl total 329.61 → 199.40；
+      - 首次会话时加载：Worker 壳 2.33、首次会话静态闭包 65.13、虚拟基础内容 18.50；
+      - 子系统首次触发时才 import()：对话 / Ink 约 35、区域 7–37、战斗 33.8、城镇按城；
+      - 会话 hash 100 次一致，golden 终值未改。
+      - 协调者 09:52 认可做法：PASS 就合入、解除 15 个暂停、起 ENG-attr-v2-schema。
+    - **ENG-size-session-gate**（72509c70，协调者 09:52 默认值，待作者确认）：
+      - 新增「首次会话闭包」门禁（Worker 壳 + 首次会话静态闭包 + 虚拟基础内容），110 KiB gzip；
+      - entry 170 只管标题页；子系统块只列大小，不设门；`pnpm size` 表头写明三层；
+      - 写集为 tools/perf/** 和 vite 元数据插件，产物不变；找不到组时报错退出，不空过。
+      - 排在 attr-v2-schema 之后；**ENG-20b 在它合入前保持 HOLD**，其余 14 个随 entry-split 合入解除。
+    - 有一段交换区从 32 GB 涨到约 38 GB，磁盘从 12 掉到 5 GiB 左右；当时 entry-split 在构建、ENG-19d 在压测。
+    - **ENG-19d** r1 PASS，合入中。
+
