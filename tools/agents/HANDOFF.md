@@ -1139,3 +1139,23 @@
   - **10-03 06:38–06:48 协调者**：
     - TOOL-rig-sheet 审核 r5 FAIL（06:38）：前臂含手掌、侧视 `thigh_shared` 仍是调色的标准体梯形、`pelvis_skirt` 隐藏髋锚暴露。裁定：第 9 次返修为最后一轮，修手臂 / 手部与髋锚；侧腿若源图（侧视双腿并拢）分不出就按源图裤腿补绘并写明限制，r6 若只因侧腿 FAIL 置 HOLD 由协调者裁定按原型收口。登记 **ART-rig-sheet-side**（fa57fc23，依赖 TOOL-rig-sheet）：主角·男侧视双腿错开的补充三视图 `sheet_side_L / R`，给后续切件版本分出大腿 / 小腿；追踪者在 TOOL-rig-sheet 合入后按 codex 常规起。
     - **TOOL-catalog-food-qi-exception 合入**（608aa8aa，06:40，r1 PASS）：食品行旧字段含 sxpGrant / perm.mpMaxPct 时允许双写 qiCultivation；design/10 §4.10.4 / §4.10.6 加注。已请开发监督复验 lore-5。
+  - **10-03 06:38–06:59 开发监督**：rig-sheet 收口安排、食品特例合入、lore-5 重起；发现 tools 测试的校验漏洞。
+    - **TOOL-rig-sheet**（协调者 06:44 的两条指示）：
+      - eng3 自动复审驱动 75954 没带 `--rework-extra`。r5 FAIL 后第 9 次的 `9.prompt.md` 已写好、执行器尚未启动，我把协调者两句直接追加进提示词：侧视大腿按源图补绘并写「源图限制」，交 ART-rig-sheet-side；本轮是最后一轮返修，修好手臂 / 手部与髋锚即收口。06:40:19 启动，日志里已确认收到。
+      - 后台 `scratchpad/hold_then_review.py` 盯着：转 HOLD-REVIEWS 后改 HOLD-RUNS，抢在 eng3 自动复审之前；再起 `--from validate --max-runs 0` 的只复审驱动（日志 `supervise.r6.out`）。r6 PASS 自动合入，FAIL 停在 HOLD-RUNS 报协调者，不起第 10 次。
+    - **TOOL-catalog-food-qi-exception** 合入（608aa8aa），工作区已清，11 份名录检查全过。
+    - **lore-5**：挪基点到 c6d06966，带 `devsup_note_foodqi.md` 用 Sol max `--from start`，驱动 93359。
+      - 腊八粥行 `qiCultivation=3500; stamina=24` 在新校验器下已通过、无警告；本轮只改报告里的这一项。
+    - **校验漏洞**（已报协调者，门禁由其定）：`python3 -m unittest discover -s tools -p "test_*.py"` 只进入带 `__init__.py` 的目录（item、rig、rig/clips，共 33 条），content / lint / town / vfx / balance 的测试在任务校验里都没跑。
+      - 按目录单独跑：lint 289、town 107、vfx 50 全过。
+      - content 有 1 条 FAIL：`test_seven_column_repository_render_is_byte_identical` 依赖仓库内容，lore 转九列后 content/items stale，要等 TOOL-items-catalog 重新生成。
+      - content 有 2 条 ERROR：`test_town_runtime` 报 city_beijing__ch10 没有布局。town_runtime 找 `town_<suffix>.layout.yaml`，CITY 把布局放在 `assets/default/town/<city>/layout.yaml`。
+      - balance 按模块路径导入失败。
+      - pnpm check 不受影响。
+
+  - **10-03 06:44–07:02 协调者 / 追踪者 / 开发监督**：
+    - 追踪者清理 `_handoff/gem/codex_w9 / w11 / w12`：删重复件（与 `gemini_originals` / archive 同 sha，52 MB）、git 对象库已有的（484 MB）、未入库试稿与中间图（227 MB）；manifest `source_path` / `references` 指向的 229 个文件（566 MB）与联系表保留，273 处引用复核可打开；68 个悬空符号链接改指 `_prod` 已入库文件；协调者点头后再删 10 个 codex 单槽位缓存 homeN（638 MB）。清单 `_handoff/gem/cleanup_20261003.log`。磁盘 4.1 → 5.3 GiB。
+    - **ART-items-gifts-catalog 06:44 起跑**（追踪者；驱动 2757，codex gpt-6-astra xhigh，基点 c6d06966，审核 gpt-5.6-sol，review_checks_des）；稀疏检出 973 MB，磁盘回到 4.4 GiB。ART-rig-sheet-side 已进追踪者等待器（TOOL-rig-sheet 合入 + 资源条件）。
+    - lore：lore-7（6cb074da）、lore-8（1d86e1a9）已合入；lore-5 挪基点到 c6d06966 后带「腊八粥按特例 qiCultivation=3500」`--from start`（驱动 93359），新校验器下该行已通过；在跑 lore-1 / 3（整份）/ 5。
+    - 开发监督发现**校验漏洞**：`unittest discover -s tools` 只进入带 `__init__.py` 的子目录（item / rig / rig/clips 共 33 条），content / lint / town / vfx / balance 的测试从未在校验里跑过；按目录单独跑 lint 289、town 107、vfx 50 全过，content 两条红（物品七列字节对比依赖仓库状态——名录转九列后 `content/items` stale；town_runtime 按 baseline 路径找布局，找不到 CITY 的 `assets/default/town/<city>/layout.yaml`）。登记 **TOOL-tests-discover**（fb3261ea）：新增 `tools/test_suite.py` 按目录发现、物品对比改夹具、town_runtime 认新布局位置；磁盘 ≥ 5 GiB 时开发监督起。
+    - TOOL-rig-sheet 第 9 次运行 06:40 起（协调者 06:44 的两句已进提示词）；开发监督用 `hold_then_review.py` 在转 HOLD-REVIEWS 时抢先置 HOLD-RUNS，再起只复审不返修的驱动；r6 PASS 合入，FAIL 停住报协调者。
