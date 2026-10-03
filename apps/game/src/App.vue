@@ -18,6 +18,7 @@ const SavePage = defineAsyncComponent(() => import('./pages/SavePage.vue'));
 const BattlePage = defineAsyncComponent(() => import('./battle/BattlePage.vue'));
 const WorldMapPage = defineAsyncComponent(() => import('./pages/WorldMapPage.vue'));
 const TownPage = defineAsyncComponent(() => import('./pages/TownPage.vue'));
+const RegionPage = defineAsyncComponent(() => import('./pages/RegionPage.vue'));
 const SettingsPage = defineAsyncComponent(() => import('./pages/SettingsPage.vue'));
 const CharacterCreationPage = defineAsyncComponent(() => import('./pages/CharacterCreationPage.vue'));
 const OpeningPage = defineAsyncComponent(() => import('./pages/OpeningPage.vue'));
@@ -48,6 +49,9 @@ watch(scene, (next, previous) => {
   }
 });
 watch(battleActive, (next, previous) => { if (next && !previous) { scene.value = 'battle'; page.value = 'journey'; } });
+watch(() => (projection.value as { region?: unknown }).region, next => {
+  if (next) scene.value = 'ruin'; else if (scene.value === 'ruin') scene.value = 'world';
+}, { immediate: true });
 watch([page, scene], ([nextPage, nextScene]) => {
   controller.setSceneRunsWorldTicks(nextPage === 'journey' &&
     (nextScene === 'world' || nextScene === 'town' || nextScene === 'ruin'));
@@ -114,6 +118,7 @@ onBeforeUnmount(() => { controller.setSceneRunsWorldTicks(false);
             <p v-else-if="scene === 'battle'" class="paper-panel">正在展开战旗……</p>
             <WorldMapPage v-else-if="scene === 'world'" :controller="controller" @scene="openScene" />
             <TownPage v-else-if="scene === 'town'" :controller="controller" @leave="leaveScene" />
+            <RegionPage v-else-if="scene === 'ruin'" :controller="controller" @leave="leaveScene" />
             <ScenePlaceholder v-else :scene="scene" @leave="leaveScene" />
             <p v-if="projection.hud.preview" class="muted">{{ t('previewNote') }}</p>
           </div>

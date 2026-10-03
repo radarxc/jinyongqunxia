@@ -9,7 +9,8 @@
     "./battle": "./src/battle/index.ts",
     "./worldmap": "./src/worldmap/index.ts",
     "./vfx": "./src/vfx/index.ts",
-    "./town": "./src/town/index.ts"
+    "./town": "./src/town/index.ts",
+    "./region": "./src/region/index.ts"
   },
   "scripts": {
     "test": "vitest run src",
