@@ -44,7 +44,7 @@
 - 每次写入 ≤ 150 行；报告 ≤ 100 行。
 
 检查：以下命令必须全部通过。
-- `python3 tools/agents/check_asset_dirs.py "assets/default/character/*/{{ch_glob}}" --min 1 --max 999`
+{{char_checks}}
 - `python3 tools/agents/check_asset_dirs.py "assets/default/scene/{{ch_glob}}" --min 1 --max 999`
 - `python3 tools/lint/check_ids.py --strict`
 

@@ -33450,6 +33450,7 @@
     "heroes": "ch01 乔峰（萧峰）、段誉、虚竹；ch02 郭靖、黄蓉；ch03 杨过、小龙女；ch04 张无忌、赵敏、周芷若；ch05 令狐冲、任盈盈；ch06 石破天；ch07 袁承志、温青青",
     "scene_counts": "ch01 8–10 张；ch02 8–10 张；ch03 8–10 张；ch04 8–10 张；ch05 8–10 张；ch06 5–6 张；ch07 5–6 张",
     "ch_glob": "ch0[1-7]",
+    "char_checks": "- `python3 tools/agents/check_asset_dirs.py \"assets/default/character/*/ch0[1-7]\" --min 1 --max 999`",
     "worker_no": "11",
     "slots": "3",
     "writes_list": "`assets/default/character/male/ch01/**`、`assets/default/character/male/ch02/**`、`assets/default/character/male/ch03/**`、`assets/default/character/male/ch04/**`、`assets/default/character/male/ch05/**`、`assets/default/character/male/ch06/**`、`assets/default/character/male/ch07/**`、`assets/default/character/female/ch01/**`、`assets/default/character/female/ch02/**`、`assets/default/character/female/ch03/**`、`assets/default/character/female/ch04/**`、`assets/default/character/female/ch05/**`、`assets/default/character/female/ch06/**`、`assets/default/character/female/ch07/**`、`assets/default/prompts/characters/ch01-tianlong/**`、`assets/default/prompts/characters/ch02-shediao/**`、`assets/default/prompts/characters/ch03-shendiao/**`、`assets/default/prompts/characters/ch04-yitian/**`、`assets/default/prompts/characters/ch05-xiaoao/**`、`assets/default/prompts/characters/ch06-xiake/**`、`assets/default/prompts/characters/ch07-bixue/**`、`assets/default/scene/ch01/**`、`assets/default/scene/ch02/**`、`assets/default/scene/ch03/**`、`assets/default/scene/ch04/**`、`assets/default/scene/ch05/**`、`assets/default/scene/ch06/**`、`assets/default/scene/ch07/**`、`assets/default/prompts/scenes/ch01-tianlong/**`、`assets/default/prompts/scenes/ch02-shediao/**`、`assets/default/prompts/scenes/ch03-shendiao/**`、`assets/default/prompts/scenes/ch04-yitian/**`、`assets/default/prompts/scenes/ch05-xiaoao/**`、`assets/default/prompts/scenes/ch06-xiake/**`、`assets/default/prompts/scenes/ch07-bixue/**`、`docs/design/catalog/key-scenes.md`"
@@ -33559,6 +33560,7 @@
     "heroes": "ch08 韦小宝；ch09 狄云；ch10 李文秀；ch11 袁冠南、萧中慧；ch12 陈家洛、霍青桐、喀丝丽（香香公主）；ch13 胡斐、程灵素；ch14 胡斐、苗若兰",
     "scene_counts": "ch08 8–10 张；ch09 5–6 张；ch10 3–4 张；ch11 3–4 张；ch12 5–6 张；ch13 5–6 张；ch14 3–4 张",
     "ch_glob": "ch[01][0-9]",
+    "char_checks": "- `python3 tools/agents/check_asset_dirs.py \"assets/default/character/*/ch0[89]\" --min 1 --max 999`\n- `python3 tools/agents/check_asset_dirs.py \"assets/default/character/*/ch1[0-4]\" --min 1 --max 999`",
     "worker_no": "12",
     "slots": "3",
     "writes_list": "`assets/default/character/male/ch08/**`、`assets/default/character/male/ch09/**`、`assets/default/character/male/ch10/**`、`assets/default/character/male/ch11/**`、`assets/default/character/male/ch12/**`、`assets/default/character/male/ch13/**`、`assets/default/character/male/ch14/**`、`assets/default/character/female/ch08/**`、`assets/default/character/female/ch09/**`、`assets/default/character/female/ch10/**`、`assets/default/character/female/ch11/**`、`assets/default/character/female/ch12/**`、`assets/default/character/female/ch13/**`、`assets/default/character/female/ch14/**`、`assets/default/prompts/characters/ch08-luding/**`、`assets/default/prompts/characters/ch09-liancheng/**`、`assets/default/prompts/characters/ch10-baima/**`、`assets/default/prompts/characters/ch11-yuanyang/**`、`assets/default/prompts/characters/ch12-shujian/**`、`assets/default/prompts/characters/ch13-feihu/**`、`assets/default/prompts/characters/ch14-xueshan/**`、`assets/default/scene/ch08/**`、`assets/default/scene/ch09/**`、`assets/default/scene/ch10/**`、`assets/default/scene/ch11/**`、`assets/default/scene/ch12/**`、`assets/default/scene/ch13/**`、`assets/default/scene/ch14/**`、`assets/default/prompts/scenes/ch08-luding/**`、`assets/default/prompts/scenes/ch09-liancheng/**`、`assets/default/prompts/scenes/ch10-baima/**`、`assets/default/prompts/scenes/ch11-yuanyang/**`、`assets/default/prompts/scenes/ch12-shujian/**`、`assets/default/prompts/scenes/ch13-feihu/**`、`assets/default/prompts/scenes/ch14-xueshan/**`、`docs/design/catalog/key-scenes.md`"
@@ -33571,7 +33573,16 @@
      [
       "{python}",
       "tools/agents/check_asset_dirs.py",
-      "assets/default/character/*/ch[01][0-9]",
+      "assets/default/character/*/ch0[89]",
+      "--min",
+      "1",
+      "--max",
+      "999"
+     ],
+     [
+      "{python}",
+      "tools/agents/check_asset_dirs.py",
+      "assets/default/character/*/ch1[0-4]",
       "--min",
       "1",
       "--max",
@@ -33651,6 +33662,7 @@
     "books_title": "天龙八部～碧血剑（ch01–ch07）",
     "books": "- ch01 《天龙八部》：提示词 `assets/default/prompts/characters/ch01-tianlong/`，图 `assets/default/character/{male,female}/ch01/`，插图 `assets/default/scene/ch01/`\n- ch02 《射雕英雄传》：提示词 `assets/default/prompts/characters/ch02-shediao/`，图 `assets/default/character/{male,female}/ch02/`，插图 `assets/default/scene/ch02/`\n- ch03 《神雕侠侣》：提示词 `assets/default/prompts/characters/ch03-shendiao/`，图 `assets/default/character/{male,female}/ch03/`，插图 `assets/default/scene/ch03/`\n- ch04 《倚天屠龙记》：提示词 `assets/default/prompts/characters/ch04-yitian/`，图 `assets/default/character/{male,female}/ch04/`，插图 `assets/default/scene/ch04/`\n- ch05 《笑傲江湖》：提示词 `assets/default/prompts/characters/ch05-xiaoao/`，图 `assets/default/character/{male,female}/ch05/`，插图 `assets/default/scene/ch05/`\n- ch06 《侠客行》：提示词 `assets/default/prompts/characters/ch06-xiake/`，图 `assets/default/character/{male,female}/ch06/`，插图 `assets/default/scene/ch06/`\n- ch07 《碧血剑》：提示词 `assets/default/prompts/characters/ch07-bixue/`，图 `assets/default/character/{male,female}/ch07/`，插图 `assets/default/scene/ch07/`",
     "ch_glob": "ch0[1-7]",
+    "char_checks": "- `python3 tools/agents/check_asset_dirs.py \"assets/default/character/*/ch0[1-7]\" --min 1 --max 999`",
     "worker_no": "13",
     "slots": "3",
     "writes_list": "`assets/default/character/male/ch01/**`、`assets/default/character/male/ch02/**`、`assets/default/character/male/ch03/**`、`assets/default/character/male/ch04/**`、`assets/default/character/male/ch05/**`、`assets/default/character/male/ch06/**`、`assets/default/character/male/ch07/**`、`assets/default/character/female/ch01/**`、`assets/default/character/female/ch02/**`、`assets/default/character/female/ch03/**`、`assets/default/character/female/ch04/**`、`assets/default/character/female/ch05/**`、`assets/default/character/female/ch06/**`、`assets/default/character/female/ch07/**`、`assets/default/prompts/characters/ch01-tianlong/**`、`assets/default/prompts/characters/ch02-shediao/**`、`assets/default/prompts/characters/ch03-shendiao/**`、`assets/default/prompts/characters/ch04-yitian/**`、`assets/default/prompts/characters/ch05-xiaoao/**`、`assets/default/prompts/characters/ch06-xiake/**`、`assets/default/prompts/characters/ch07-bixue/**`"
@@ -33734,6 +33746,7 @@
     "books_title": "鹿鼎记～雪山飞狐（ch08–ch14）",
     "books": "- ch08 《鹿鼎记》：提示词 `assets/default/prompts/characters/ch08-luding/`，图 `assets/default/character/{male,female}/ch08/`，插图 `assets/default/scene/ch08/`\n- ch09 《连城诀》：提示词 `assets/default/prompts/characters/ch09-liancheng/`，图 `assets/default/character/{male,female}/ch09/`，插图 `assets/default/scene/ch09/`\n- ch10 《白马啸西风》：提示词 `assets/default/prompts/characters/ch10-baima/`，图 `assets/default/character/{male,female}/ch10/`，插图 `assets/default/scene/ch10/`\n- ch11 《鸳鸯刀》：提示词 `assets/default/prompts/characters/ch11-yuanyang/`，图 `assets/default/character/{male,female}/ch11/`，插图 `assets/default/scene/ch11/`\n- ch12 《书剑恩仇录》：提示词 `assets/default/prompts/characters/ch12-shujian/`，图 `assets/default/character/{male,female}/ch12/`，插图 `assets/default/scene/ch12/`\n- ch13 《飞狐外传》：提示词 `assets/default/prompts/characters/ch13-feihu/`，图 `assets/default/character/{male,female}/ch13/`，插图 `assets/default/scene/ch13/`\n- ch14 《雪山飞狐》：提示词 `assets/default/prompts/characters/ch14-xueshan/`，图 `assets/default/character/{male,female}/ch14/`，插图 `assets/default/scene/ch14/`",
     "ch_glob": "ch[01][0-9]",
+    "char_checks": "- `python3 tools/agents/check_asset_dirs.py \"assets/default/character/*/ch0[89]\" --min 1 --max 999`\n- `python3 tools/agents/check_asset_dirs.py \"assets/default/character/*/ch1[0-4]\" --min 1 --max 999`",
     "worker_no": "14",
     "slots": "3",
     "writes_list": "`assets/default/character/male/ch08/**`、`assets/default/character/male/ch09/**`、`assets/default/character/male/ch10/**`、`assets/default/character/male/ch11/**`、`assets/default/character/male/ch12/**`、`assets/default/character/male/ch13/**`、`assets/default/character/male/ch14/**`、`assets/default/character/female/ch08/**`、`assets/default/character/female/ch09/**`、`assets/default/character/female/ch10/**`、`assets/default/character/female/ch11/**`、`assets/default/character/female/ch12/**`、`assets/default/character/female/ch13/**`、`assets/default/character/female/ch14/**`、`assets/default/prompts/characters/ch08-luding/**`、`assets/default/prompts/characters/ch09-liancheng/**`、`assets/default/prompts/characters/ch10-baima/**`、`assets/default/prompts/characters/ch11-yuanyang/**`、`assets/default/prompts/characters/ch12-shujian/**`、`assets/default/prompts/characters/ch13-feihu/**`、`assets/default/prompts/characters/ch14-xueshan/**`"
@@ -33746,7 +33759,16 @@
      [
       "{python}",
       "tools/agents/check_asset_dirs.py",
-      "assets/default/character/*/ch[01][0-9]",
+      "assets/default/character/*/ch0[89]",
+      "--min",
+      "1",
+      "--max",
+      "999"
+     ],
+     [
+      "{python}",
+      "tools/agents/check_asset_dirs.py",
+      "assets/default/character/*/ch1[0-4]",
       "--min",
       "1",
       "--max",
