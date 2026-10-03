@@ -1306,3 +1306,23 @@
   - **10-03 08:26–08:38 协调者 / 开发监督**：
     - TOOL-rig-sheet 第 9 次（最后一轮）返修 106 分钟结束，校验通过（侧视裤腿已有纹理，无占位块；手部 / 髋部干净），停 HOLD-REVIEWS；开发监督 `hold_then_review` 起只复审驱动，r6 PASS 合入、只因侧腿 FAIL 则协调者按原型收口。
     - **TOOL-items-regen 被数据 schema 挡住**：重新生成 30 分钟跑完，`pnpm check` / `content:validate` 报 `ZodError unrecognized_keys: attributes`——生成器按 §4.10.5 写 `extension.value.attributes`，而 `packages/data/src/schemas/item.ts` 各 extension value 是 strictObject、没有 `attributes`（9col 当时不在 packages 写集，没重新生成所以没暴露）。协调者置 HOLD 停掉 regen 的返修（生成物留在工作区），登记 **ENG-attr-v2-schema**（b7e1101f：各 extension 加可选 `attributes: AttributeProjectionV2`，`version: 2` + §4.10.6 白名单整数键 + `qiEffect` / `skillRef` / `maxLayer`，只校验不消费；依赖 ENG-entry-split，因为 schema 在 entry 闭包、余量只剩 1.4 KiB）。开发监督同一结论、不重复登记。次序：entry-split → ENG-attr-v2-schema → items-regen 挪基点 `--from validate` → catalog-collectibles → gifts-catalog 复验 → regen-2。
+  - **10-03 08:33–08:41 开发监督**：撤回重复登记；物品线次序更新。
+    - 协调者 08:33 把 items-regen 置 HOLD-RUNS，停了驱动与执行器，工作区与生成物保留；随后登记 ENG-attr-v2-schema（b7e1101f，依赖 ENG-entry-split）。
+    - 我在协调者 08:38「不要再登记」的消息到达前，已提交同内容的 ENG-items-attr-schema（6a45bf86），已用 ae753258 撤回：删 tasks.json 条目，`git rm` 提示词，没有起驱动。
+    - 物品线次序：
+      1. entry-split 合入；
+      2. ENG-attr-v2-schema（Sol max，review_checks_eng）；
+      3. items-regen 挪基点 `--from validate`（不用 `--from start`）；
+      4. catalog-collectibles；
+      5. gifts-catalog 复验；
+      6. regen-2。
+  - **10-03 08:34–08:45 开发监督**：TOOL-rig-sheet 合入；town-gaps-1 手动复审；tests-discover 停滞重起时丢了返修说明。
+    - **TOOL-rig-sheet** r6 PASS 合入，提交 17f08829，工作区已清；已报协调者。
+      - `assets/default/rig/npc_zhujue__ch00_m/` 下 100 个文件入库：39 部件、manifest，以及 `preview/` 下的 walk_dir8.gif、sword_attack_dir8.gif、gait_vs_clip_walk.gif、npc_zhujue__ch00_m__pose-strip.png。
+      - 报告：Q1 15/15（ΔE ≤ 5.3）；Q2 39/39；Q3 关节缝隙 0；Q5 踩滑 0.366 cm；Vision 降级为 manual-prior；侧腿按源图补绘并标「源图限制」。
+    - **TOOL-town-gaps-1**：第 3 次运行按默认验收口径修好，08:32 转 HOLD-REVIEWS。08:35 手动 `--from validate`，驱动 71941，`--max-runs 1`。
+      - eng3 内存队列里没有它（eng3 启动后才加进队列文件），所以不会自动复审。`kw.py` 已改为只把调度器 launched 过的任务视为会自动复审。
+    - **TOOL-tests-discover**：第 2 次返修 25 分钟无输出，被 stall 检测重起成第 3 次。重起用的是通用续作说明，r1 返修内容和协调者 08:02 的三句都没带上（supervise 的已知弱点）。
+      - 已把它们存成 `.agents/coord/TOOL-tests-discover/devsup_note_r1.md`。它转 HOLD-REVIEWS 后我手动复审时，用 `--rework-extra` 带上。
+
+  - **10-03 08:44–08:46 协调者 / 开发监督**：**TOOL-rig-sheet 合入**（17f08829，r6 PASS，只复审驱动一次过）：`assets/default/rig/npc_zhujue__ch00_m/` 100 个文件——39 张部件（3 视图 × 13）、manifest、`preview/walk_dir8.gif`、`sword_attack_dir8.gif`、`gait_vs_clip_walk.gif`（程序步态 vs 动作库 A/B，C8）、姿势条带。最终返修：前臂截到腕点、手掌归手件、侧腿按源图裤纹补绘（标「源图限制」）、髋锚不再暴露。Q1 识别锚 15/15（ΔE ≤ 5.3）、Q2 39/39、Q3 关节缝隙 0、Q5 踩滑 0.366 cm；Apple Vision 本机跑不起来，关键点为 manual-prior；Q9 人工耗时未测。协调者 08:45 把三张 GIF + 姿势条带发作者判定（AR-29）。解锁：ENG-12d-clip-perf（eng3 会起，只动 render）、ART-rig-sheet-side（追踪者按条件起）。
