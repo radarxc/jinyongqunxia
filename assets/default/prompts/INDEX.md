@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1009** 份：已入库 813、已通过（作者） 132、待出图 64。**待出图队列 64 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1009** 份：已入库 814、已通过（作者） 132、待出图 63。**待出图队列 63 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -52,7 +52,6 @@
 | items | `it_miji_yitiantulonggong` | 倚天屠龙功王盘山石刻 | `assets/default/item/manuals/it_miji_yitiantulonggong.png` | 待出图 | [it_miji_yitiantulonggong.md](items/manuals/it_miji_yitiantulonggong.md) |
 | items | `it_miji_yueyingshenfa` | 越影身法帛卷 | `assets/default/item/manuals/it_miji_yueyingshenfa.png` | 待出图 | [it_miji_yueyingshenfa.md](items/manuals/it_miji_yueyingshenfa.md) |
 | items | `it_miji_zixiashengong` | 紫霞秘笈传本 | `assets/default/item/manuals/it_miji_zixiashengong.png` | 待出图 | [it_miji_zixiashengong.md](items/manuals/it_miji_zixiashengong.md) |
-| items | `it_xionghuang` | 雄黄 | `assets/default/item/medicine/it_xionghuang.png` | 待出图 | [it_xionghuang.md](items/medicine/it_xionghuang.md) |
 | items | `eq_chunqiutongge` | 春秋青铜戈 | `assets/default/item/weapons/eq_chunqiutongge.png` | 待出图 | [eq_chunqiutongge.md](items/weapons/eq_chunqiutongge.md) |
 | items | `eq_mengguqibingdao` | 蒙古骑兵刀 | `assets/default/item/weapons/eq_mengguqibingdao.png` | 待出图 | [eq_mengguqibingdao.md](items/weapons/eq_mengguqibingdao.md) |
 | maps | `map_jianghu_world__ink_base` | 江湖万里图 · 水墨衬纸（全国底图） | `assets/default/map/jianghu_world/ink_base.png` | 待出图 | [jianghu_world_ink_base.md](maps/jianghu_world_ink_base.md) |
@@ -97,11 +96,9 @@
 
 每张图的提示词在各文件「提示词」节。下表只列还要出的行（待出图 / 待重出），已入库的不再列出，标题里的计数含已出部分。作者要重出的，把 ID 写进 `items/REDO.md` 再重建索引即可回到队列。
 
-### 药物 / 补品 / 药材（96）· 已入库 63、已通过（作者） 32、待出图 1
+### 药物 / 补品 / 药材（96）· 已入库 64、已通过（作者） 32
 
-| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
-|---:|---|---|---|---|---|---|---|
-| 1 | 雄黄 | `it_xionghuang` | 玄 | 药材·矿物 | 待出图 | [it_xionghuang.md](items/medicine/it_xionghuang.md) | template |
+（已全部入库。）
 
 ### 食材 / 食品（174）· 已入库 146、已通过（作者） 28
 
