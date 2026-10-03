@@ -1,0 +1,36 @@
+- id: por_npc_zhangwuji__ch04_youth_jiaozhu_apose
+  file: por_npc_zhangwuji__ch04_youth_jiaozhu_apose.png
+  category: character/male/tripo_ref
+  style: default
+  subject: 张无忌 A 字姿势全身参考（与 por_npc_zhangwuji__ch04_youth_jiaozhu_base 同脸同服饰，去掉手持道具）
+  prompt: '【任务】这是一张供 3D 建模与自动绑骨使用的 A 字姿势全身参考图。第 1 张参考图是本项目已定稿的张无忌立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同一身服饰（款式、颜色、层次、衣缘、腰带、鞋都与第 1 张一致）、同样的发式，只改姿势和背景，并去掉左手的布药囊。
+
+    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前，两只鞋完整可见。
+
+    【服饰处理】袖子、衣摆、腰带垂坠自然，不飘动；袖口不遮住手；不要任何向外飘的布条或飘带。左手的布药囊不要出现在画面里（它是单独的道具）。
+
+    【头发】长发收在身后或按原发式束好，不搭在肩前，不盖住手臂和手。
+
+    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+
+    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
+
+    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
+  negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+  references:
+  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+    sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
+    use: 底图：已定稿的 张无忌 base（上传 1536 长边 JPEG）
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_zhangwuji__ch04_youth_jiaozhu_base.jpg
+    sha256: dd1a0fb141d8357a0d5ed613cf59775d2e21319b3966a6888def43828740ebfd
+    use: 同一 base 的脸部特写（看清五官）
+  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T14:08:07-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhangwuji__ch04_youth_jiaozhu_apose.a1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: c8f1a66966b16a6f53461ae8da5cbb3143a08cbd81ca09a2cba4f97a09aec27b
+  status: candidate
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_zhangwuji__ch04_youth_jiaozhu_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44
