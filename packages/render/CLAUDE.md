@@ -62,6 +62,15 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - 负载只作诊断记录：每轮输出 `os.loadavg()` 与 CPU 数。**禁止**在任何测试里加「高负载跳过 / 放宽」逻辑，不得改阈值、采样帧数或分位数；`check:perf` 失败一律按真实性能退化处理。
 - 片段模式另跑 100 人 / 1,600 实例、120 帧预热、3×600 帧 best-of-3，P95 须 `<1.0 ms`（作者 2026-10-02 AR-37 放宽；程序步态仍 `<0.80 ms`）；只放在 `pnpm test:perf` / `pnpm check:perf`，不得并入 `pnpm check`。
 
+## 3D 试点（ENG-12e）
+
+- `loadPilotModel(url)` 只供 `/rig-demo` 的开发入口动态加载，返回 `{ scene, skinned, clips, stats }`；模型统一缩放到 1.70 m、脚底置于 `y=0`，可识别的 Mixamo/UE 骨架按肩轴×躯干轴校正到 `+z`，无骨架输入约定源文件已面向 `+z`。根入口仅保留带 `@vite-ignore` 的开发加载包装，生产首屏、战斗和 render chunk 不静态包含 `GLTFLoader`。
+- `createPilotDemoScene(canvas,{ modelUrl, rigManifest?, onClipEvent? })` 在同一个正交相机和比例尺中并排绘制 2D `RigBatch` 与 3D GLB；控制器提供八方向偏航、自动转台、toon / 原材质、描边、1 / 20 个实例、GLB clip 与 `tianshu-clip.v1` 播放。
+- toon 使用自制三阶 `DataTexture` 与 `MeshToonMaterial`，保留 baseColorTexture；描边为可关闭的反面扩张副 mesh。开启描边时 3D draw call 与 triangle 都约翻倍。所有新增 geometry、material 与 gradient texture 必须在 `dispose()` 释放。
+- 片段重定向按 Mixamo `mixamorig:*` 或 UE `pelvis/spine_01/...` 映射到 20 关节，以父骨空间 aim 约束施加方向；12 fps、`rate`、`hit/end` 事件沿用 2D `clip-player.ts`。无 skin 的 GLB 仍可加载、转台和切换材质，但禁用骨骼动画与重定向。
+- SkinnedMesh 克隆必须使用 `SkeletonUtils.clone()`。3D SkinnedMesh 不属于 2D `RigBatch` 的双材质合批，不能承诺 2 draw call：当前作者 GLB 静态解析为 10,022 triangles，关闭描边时每实例约 1 draw；20 个克隆约 200,440 triangles / 20 draws，另加并排 2D rig 的 2 draws。
+- 当前生产构建 render 为 161.24 / 180 KiB gzip，余量 18.76 KiB；仅保留两个开发模块路径字符串，GLTFLoader/试点实现未进入生产产物。CPU 帧时间必须以页面 HUD 的 120 帧平均值在目标浏览器分别记录 1 / 20 实例，Node 测试与三角面推算不能替代浏览器实测。
+
 ## 招式 VFX API（ENG-11）
 
 - 从 `@tianshu/render/vfx` 动态导入 `createBattleVfxStage(canvas)`；VFX 单独产出 `vfx` chunk，战斗首次结算才加载。应用把 `onMoveResolved` 的只读施招者、目标与事件传给 `play()`，不得在表现层重算命中、伤害、范围或朝向。
@@ -101,6 +110,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - [Three Color](https://threejs.org/docs/pages/Color.html)、[WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)、[ShaderMaterial](https://threejs.org/docs/pages/ShaderMaterial.html)、[Material](https://threejs.org/docs/pages/Material.html)：核实 `setRGB(..., SRGBColorSpace)`、`info.autoReset/reset()`、手动 clear、uniform、混合/深度状态与显式释放；2026-10-02 联网返回 HTTP 200。
 - [MDN webglcontextlost](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/webglcontextlost_event)、[webglcontextrestored](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/webglcontextrestored_event)、[isContextLost](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isContextLost)、[WEBGL_lose_context](https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_lose_context)：核实丢失阻止默认行为、恢复事件、前台检查和开发测试扩展；访问日期 2026-10-02。
 - [Three WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)、[DataTexture](https://threejs.org/docs/pages/DataTexture.html)、[MDN deviceMemory](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/deviceMemory)、[localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)：核实上下文/资源 API、RGBA8 数据纹理、设备内存提示与缓存异常边界；访问日期 2026-10-02。
+- [GLTFLoader](https://threejs.org/docs/pages/GLTFLoader.html)、[MeshToonMaterial](https://threejs.org/docs/pages/MeshToonMaterial.html)、[SkeletonUtils](https://threejs.org/docs/pages/module-SkeletonUtils.html)、[AnimationMixer](https://threejs.org/docs/pages/AnimationMixer.html)、[WebGLRenderer.info](https://threejs.org/docs/pages/Info.html)：核实 glTF 加载、toon gradient map、带骨克隆、动画混合和渲染统计 API；2026-10-03 联网返回 HTTP 200。
 
 ## 待决事项 / 依赖
 
@@ -110,3 +120,5 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - （待实测）战斗 / 大地图 / VFX 的丢失遮罩、5 秒失败分支、资源恢复、各档实际 FPS 与显存；开发环境可用 `renderer.getContext().getExtension('WEBGL_lose_context')` 的 `loseContext()` / `restoreContext()` 驱动验证。
 - （待实测）城镇大理 / 杭州在桌面与中端手机的实际 P50/P95 帧时间、显存峰值、触控拾取和 WebGL 上下文恢复；当前只交付结构统计与合批/裁剪测试，不把 Node 测试冒充帧率数据。
 - 【建议值】战斗 multiply tint 的夜间通道下限暂取 0.42、混合强度 0.58；待真机逐关键帧校色后固化或按书界覆写。大地图页面尚须由 ENG-15 后续 UI 接线在世界时钟变化时调用 `setTimeOfDay(hours)`。
+- （待实测）在桌面浏览器分别记录 1 / 20 个 Tripo 克隆的 CPU 帧时间、draw call、triangle，并截取 0°–315° 八方向与 2D 切件并排对照图；自动化 Chrome 当前受 macOS 沙箱权限阻断。
+- （待实测）中端手机上的 1 / 20 实例帧率、显存、描边开销与上下文恢复；当前 GLB 左侧头发呈肉色属于源贴图瑕疵，本试点不修改资产。

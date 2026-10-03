@@ -220,9 +220,18 @@ kbd {
   background: #1c1612ed;
   border: 1px solid #aa8b5f;
 }
+#rig-demo.has-pilot {
+  width: min(23rem, calc(100vw - 2rem));
+}
 #rig-demo h1 {
   margin: 0;
   font-size: 1rem;
+}
+#rig-demo h2 {
+  margin: 0.35rem 0 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid #aa8b5f;
+  font-size: 0.9rem;
 }
 #rig-demo label {
   display: grid;
@@ -256,8 +265,35 @@ kbd {
   margin: 0;
   border: 1px solid #705b45;
 }
+#rig-demo .pilot-yaws {
+  grid-template-columns: repeat(4, 1fr);
+}
+#rig-demo .pilot-yaws button {
+  min-height: 2rem;
+  padding: 0.25rem;
+}
 #rig-demo fieldset label {
   display: block;
+}
+#rig-demo .pilot-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+#rig-demo .pilot-check input {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+#rig-demo .pilot-note {
+  margin: 0;
+  color: #dec8a7;
+  font-size: 0.75rem;
+}
+#rig-demo .pilot-status {
+  padding: 0.45rem;
+  color: #f6ead4;
+  background: #100c09;
+  border: 1px solid #705b45;
 }
 #rig-demo output {
   white-space: pre-line;
