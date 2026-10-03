@@ -1397,4 +1397,13 @@
       - 排在 attr-v2-schema 之后；**ENG-20b 在它合入前保持 HOLD**，其余 14 个随 entry-split 合入解除。
     - 有一段交换区从 32 GB 涨到约 38 GB，磁盘从 12 掉到 5 GiB 左右；当时 entry-split 在构建、ENG-19d 在压测。
     - **ENG-19d** r1 PASS，合入中。
+  - **10-03 09:57–10:01 开发监督**：ENG-entry-split 合入（e8357e76）、ENG-19d 合入（3a3d58ca）；解除 14 个暂停；ENG-attr-v2-schema 起跑。
+    - 合入后 `prod_check`（`_handoff/prod_check_post-entrysplit_*.log`，HEAD d0529625）全绿：975 条测试，`[dev-chunks] PASS`。
+      - **entry 38.44 / 170**（原 168.57），render 161.87，**webgl total 200.32**（原 330.44）。
+    - 合入受阻与恢复：ENG-19d 的 merge 在 09:50、09:52 两次被 `_prod` 里的立绘增量重建（逐章写、逐章提交）挡住，09:54 第 3 次重试成功。
+      - 立绘重建 09:55 跑完（128/128，ch01–ch14），已退出。
+      - 协调者新约定：再遇素材进程直接写 `_prod` 挡合入，直接报协调者，不等 20 分钟。
+    - **解除暂停**：14 个任务的状态清回 PENDING，交 eng3：ENG-16c / 26 / 23a / 16e / 18c、CONTENT-ch00a / b / c / ch10、ENG-27a / 27b / 28a / 28b / 27c。
+      - ENG-20b 继续 HOLD，等 ENG-size-session-gate 合入，清单见 `scratchpad/entry_holds.txt`。
+    - **ENG-attr-v2-schema**：Sol max，驱动 97000，review_checks_eng。
 
