@@ -30628,6 +30628,11 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
+    ],
+    "shrink_exempt": [
+     "packages/core/src/battle/meridian-flow/gather.ts",
+     "packages/core/src/battle/meridian-flow/gather.test.ts",
+     "packages/core/src/battle/meridian-flow/index.ts"
     ]
    },
    "id": "ENG-16b-battle-actions",
