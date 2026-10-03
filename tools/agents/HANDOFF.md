@@ -941,3 +941,4 @@
     - 依赖 ENG-19a；`_eng3_queue.txt` 已插在 ENG-19b 之前，eng3 重启后生效。
     - 代码池当时 2/4，已用 Sol max 单独起，驱动 pid 58545。
 
+  - **10-03 04:50 协调者**：素材总览页重建（`tools/review/build_gallery.py`，72 个文件 16.9 MB）并用 Artifact 工具同地址重发（https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A 第 3 版）：含第二波人物 175 张、全部物品、城镇 / 贴片 / 路人。`build_portraits` 的运行时裁切仍等指定时段。
