@@ -1579,4 +1579,13 @@
     - **DES-ui-immersive-2**：依赖的 ART-ui-icons 尚未登记。run.py 遇到未知依赖会 Fatal，波及所有工具，所以暂不登记；说明草稿在 `scratchpad/pending/DES-ui-immersive-2.md`。
       - 执行器 codex gpt-6-astra xhigh，`--review-model gpt-6-astra`。
       - ART-ui-icons 登记后补登记；它合入后起跑。
+  - **10-03 13:16–13:21 开发监督**：登记 ENG-region-gates-data（64978c77），依赖 ENG-tiled-trigger-strict、ENG-entry-split。
+    - 内容：
+      - region-gate.v1 schema，gateId 按 canon §12 为 `gate_<NN>_<拼音>`，expression 复用 core 的 RegionGateExpr；
+      - 内容放 `content/chapters/<ch>/gates/*.yaml`；编进章节包；区域按需装载；
+      - content:validate / content:build 校验 Door.lockedBy 必须已登记；
+      - 本任务不新增正式门禁内容。
+    - tiled-strict 合入后，代码池有位我就单独起（traex Sol max，review_checks_eng）。
+    - 冲突面：runtime/** 与 ENG-16c、session-base-diet 重叠（说明要求最小改动）；content-registry / content-index 与 ENG-26、ENG-18c 重叠。
+    - 门禁合入后：ch00a 若已合入，就另起小 CONTENT 任务补 C01 / C03 门禁；否则在 ch00b 返修时登记，lockedBy 填真实 gateId。
 
