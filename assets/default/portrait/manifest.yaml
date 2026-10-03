@@ -3094,6 +3094,8 @@
   size: 1024x1536
   variants:
   - portrait/npc_xiaozhonghui/ch11_youth_departure_base
+  - portrait/npc_xiaozhonghui/ch11_youth_scene_pine_cut_rope
+  - portrait/npc_xiaozhonghui/ch11_youth_scene_zizhu_short_blade_guard
   avatar: npc_xiaozhonghui/ch11_youth_departure_base.ava256.webp
   bust: npc_xiaozhonghui/ch11_youth_departure_base.bust512.webp
 - id: npc_xiaxueyi
@@ -3479,6 +3481,8 @@
   status: candidate
   size: 1024x1536
   variants:
+  - portrait/npc_yuanguannan/ch11_youth_scene_ink_bluff_zhuo
+  - portrait/npc_yuanguannan/ch11_youth_scene_zizhu_first_twelve
   - portrait/npc_yuanguannan/ch11_youth_scholar_base
   avatar: npc_yuanguannan/ch11_youth_scholar_base.ava256.webp
   bust: npc_yuanguannan/ch11_youth_scholar_base.bust512.webp
