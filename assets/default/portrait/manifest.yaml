@@ -2103,6 +2103,16 @@
   - portrait/npc_qinnaizhi/ch13_prime_base
   avatar: npc_qinnaizhi/ch13_prime_base.ava256.webp
   bust: npc_qinnaizhi/ch13_prime_base.bust512.webp
+- id: npc_qiuchuji
+  file: npc_qiuchuji/ch02_elder_base.mid.webp
+  category: portrait
+  source: por_npc_qiuchuji__ch02_elder_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_qiuchuji/ch02_elder_base
+  avatar: npc_qiuchuji/ch02_elder_base.ava256.webp
+  bust: npc_qiuchuji/ch02_elder_base.bust512.webp
 - id: npc_qiuqianchi
   file: npc_qiuqianchi/ch03_elder_disabled_base.mid.webp
   category: portrait
@@ -2535,6 +2545,16 @@
   - portrait/npc_tianguinong/ch14_prime_memory_base
   avatar: npc_tianguinong/ch13_prime_base.ava256.webp
   bust: npc_tianguinong/ch13_prime_base.bust512.webp
+- id: npc_tiemuzhen
+  file: npc_tiemuzhen/ch02_elder_khan_base.mid.webp
+  category: portrait
+  source: por_npc_tiemuzhen__ch02_elder_khan_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_tiemuzhen/ch02_elder_khan_base
+  avatar: npc_tiemuzhen/ch02_elder_khan_base.ava256.webp
+  bust: npc_tiemuzhen/ch02_elder_khan_base.bust512.webp
 - id: npc_tonglao
   file: npc_tonglao/ch01_elder_rejuvenating_base.mid.webp
   category: portrait
@@ -2545,6 +2565,16 @@
   - portrait/npc_tonglao/ch01_elder_rejuvenating_base
   avatar: npc_tonglao/ch01_elder_rejuvenating_base.ava256.webp
   bust: npc_tonglao/ch01_elder_rejuvenating_base.bust512.webp
+- id: npc_tuolei
+  file: npc_tuolei/ch02_prime_xizheng_base.mid.webp
+  category: portrait
+  source: por_npc_tuolei__ch02_prime_xizheng_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_tuolei/ch02_prime_xizheng_base
+  avatar: npc_tuolei/ch02_prime_xizheng_base.ava256.webp
+  bust: npc_tuolei/ch02_prime_xizheng_base.bust512.webp
 - id: npc_walazi
   file: npc_walazi/ch10_elder_unmasked_base.mid.webp
   category: portrait
