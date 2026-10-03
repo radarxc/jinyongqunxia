@@ -82,6 +82,26 @@ AR-16 接入后的当前预期为 `All 47 checks passed; known deviations: 0.`�
 
 `damage_sim.py` 直接复用同目录 `meridian_flow_sim.py` 的标准化 Profile 和纯函数，避免复制 21 的曲线。调用 `damage_pipeline` 时可传双方 Profile、攻击路线长度与可选防守路线长度；不传则双方为标准档、攻击 2 段、无防守路线，因此旧报表严格零漂移。`settle_direct` 只有在 `inner_guard_enabled=True` 时才于护盾后启用护体内劲，并将内劲耗内后的余额交给 `mpGuard`。
 
+`meridian_flow_sim.py` 同时维护两条明确分离的验证路径：
+
+- `meridian_flow_golden.json` 是 `fixtureVersion=2 / rulesProtocol=2 / rngProtocol=1` 的迁移前录像，只由 Core 的 `legacy-protocol2-replay.ts` 回放；它不证明生产 runtime 正确。
+- `meridian_flow_golden_v3.json` 是 `fixtureVersion=3 / rulesProtocol=3 / rngProtocol=2` 的生产门禁。Python 以独立的 fluxCap 1–64、逐 tick 管线实现生成，Core 测试直接构造 `MeridianFlowRuntime`，并对路线 trace、质量、CT、四单位隔离和 battle RNG 状态逐字段比较。曲线、护体、速度、控制投影、归一化和五档 TTK 也由生产函数对拍。
+- v3 工件中的 `breath.supportedByProductionRuntime=false` 是显式缺口记录：Python 保留设计参考向量，当前 Core 尚无 `regulateBreath`，测试不得把该字段假装成已覆盖。防守和移动路线可推进、预览，但生产提交入口仍只接受攻击路线。
+
+常态验证只读两份工件：
+
+```bash
+python3 tools/balance/meridian_flow_sim.py --check
+pnpm --filter @tianshu/core test
+```
+
+只有规则变更经过评审后，人工执行一次下列命令重录 **v3**；它不会覆盖旧 v2 文件。提交前必须把新 `vectorSha256` 同步到生产 golden 测试的硬锁常量。CI 禁止调用写入模式。
+
+```bash
+python3 tools/balance/meridian_flow_sim.py --write-golden
+python3 tools/balance/meridian_flow_sim.py --check
+```
+
 经脉规则或 golden 变更后应连续运行：
 
 ```bash

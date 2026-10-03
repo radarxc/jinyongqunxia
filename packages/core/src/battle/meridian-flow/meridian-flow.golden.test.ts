@@ -6,15 +6,15 @@ import { createHash } from 'node:crypto';
 import { canonicalJson, compareCodePoints } from '@tianshu/shared';
 import { describe, expect, it } from 'vitest';
 import {
-  runMeridianGoldenFixture, type MeridianGoldenInputs,
-} from './golden-runner';
+  runLegacyProtocol2Replay, type LegacyProtocol2Inputs,
+} from './legacy-protocol2-replay';
 
 interface GoldenFixture {
   readonly fixtureVersion: number;
   readonly rulesProtocol: number;
   readonly rngProtocol: number;
   readonly masterSeed: number;
-  readonly inputs: MeridianGoldenInputs;
+  readonly inputs: LegacyProtocol2Inputs;
   readonly outputs: unknown;
   readonly vectorSha256: string;
 }
@@ -53,7 +53,7 @@ function firstDifference(
   return { path, expected, actual };
 }
 
-describe('meridian fixtureVersion=2 TypeScript golden runner', () => {
+describe('legacy meridian fixtureVersion=2 replay compatibility', () => {
   it('verifies fixture identity before executing vectors', () => {
     expect(fixture.fixtureVersion).toBe(2);
     expect(fixture.rulesProtocol).toBe(2);
@@ -68,7 +68,7 @@ describe('meridian fixtureVersion=2 TypeScript golden runner', () => {
   });
 
   it('matches every output field and reports the first divergent path', () => {
-    const actual = runMeridianGoldenFixture(fixture.inputs, fixture.masterSeed);
+    const actual = runLegacyProtocol2Replay(fixture.inputs, fixture.masterSeed);
     const difference = firstDifference(fixture.outputs, actual);
     expect(difference, difference === null ? undefined
       : `first golden difference at ${difference.path}: expected ${JSON.stringify(difference.expected)}, `
