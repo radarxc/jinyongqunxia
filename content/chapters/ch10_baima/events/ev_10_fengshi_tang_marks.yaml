@@ -1,0 +1,9 @@
+schemaVersion: event.v1
+id: ev_10_fengshi_tang_marks
+chapterId: ch10_baima
+event: world/examineColdEntryProp
+once: true
+condition: {sceneId: sc_10_fengshi_feiyi, anchorId: tang_marks}
+actions:
+  - {op: showText, textKey: ch10.coldEntry.interact.tangMarks}
+  - {op: observeOnly, givesItem: false}
