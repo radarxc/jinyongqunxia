@@ -2,10 +2,10 @@
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的书界 08 专项补录；只定义《鹿鼎记》首领与手配精英缺失的武学卡。
 > **覆盖声明**：覆盖清宫 / 布库、桑结一系、王屋、平西军、神龙舰队、台湾郑氏 / 冯锡范、雅克萨守军与海大富；既有门派图鉴不在本文改写。归辛树 / 归二娘归主书界 07，不在本文造新武学。
-> **上游**：`docs/00-canon.md` v1.3、作者决定与需求、`design/05`、`design/15`、`design/17`、`design/21` §4.3–§4.4/§11.9、`skills-kangxi`、`skills-xiaoyao`。
+> **上游**：`docs/00-canon.md` v1.3、作者决定与需求、`design/03` v2、`design/05`、`design/15`、`design/17`、`design/21` §4.3–§4.4/§11.9、`skills-kangxi`、`skills-xiaoyao`。
 > **引用而不重定义**：武学字段与预算见 `design/05`；经脉路线、调息及外放见 `design/21`；穴位见 `design/15`；门派与职级见 `design/17`；既有武学只引用其原图鉴。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**为三联 / 广州修订版尚待逐字核对；**【建议值】**为待上游确认的数值。
-> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
+> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；属性门槛与修炼永久加成 v2（AR-27，2026-10-02）。
 
 ---
 
@@ -59,7 +59,8 @@
 |---|---|
 | 出处 / 归属 | 鳌拜勇力与擒拿情节有原著依据，成套心法名与机制为**（原创扩展）**；`expanded / sect_qinggong / 清宫军伍横练` |
 | source / nature | `[ch08_luding]`；`yang`；`wOut/wIn:0/1`；`meridians:[mer_dumai,mer_shouyangming]` |
-| reqs / 习得 | `con:50,str:55,apInner:50`；清宫 L4 传授，或鳌拜案后取得校场抄本 `maxLayer:8` **（原创扩展）**；非个人独占 |
+| reqs / 习得 | `attrs:{con:50,bre:40}; aptitude:{apInner:35}`；清宫 L4 传授，或鳌拜案后取得校场抄本 `maxLayer:8` **（原创扩展）**；非个人独占 |
+| trainingAttrs | `[{layer:3,attrs:{con:1}},{layer:6,attrs:{con:2}},{layer:9,attrs:{con:2}}]` |
 | inner.contribution | `{mpMaxPct:30,hpMaxPct:17,attrs:{con:8,str:4},mpRegen:2.4}`；`30+17+2×12+5×2.4=83` |
 | 层数 / 特性 | 1 横练、4 扛势、7 绝招铁身；`setTags:[]`；`observable:true`；主运受擒拿位移 −1（最低 0） |
 
@@ -73,8 +74,9 @@
 | 字段 | 值 |
 |---|---|
 | 归属 / 来源 | `expanded / sect_qinggong / 布库房`；由布库摔跤进阶；清宫 L4 教头传授或校场夺魁奇遇，玩家与侍卫均可学 |
-| 性质 / 门槛 | `yang`；`wOut/wIn:0.80/0.20`；`str:50,con:45,apGrapple:50` |
+| 性质 / 门槛 | `yang`；`wOut/wIn:0.80/0.20`；`attrs:{str:50,con:40}; aptitude:{apGrapple:35}` |
 | 层数 / 数值 | `layerStats:{hit:[3,8],tough:[3,7]}` 合计 15；1 抱腰、4 横拦、7 锁门；`setTags:[]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
 
 | 招式（ID） | 重 | 范围 / 倍率 | 资源与效果 |
 |---|---:|---|---|
@@ -85,7 +87,7 @@
 
 ### 1.3 `sk_bukuhutiaogong` 布库护腰功（7 地下 · 内功）**（原创扩展）**
 
-`expanded / sect_qinggong / 布库房`；调和；`wOut/wIn:0/1`；`meridians:[mer_renmai,mer_shouyangming]`。任脉一阴、手阳明一阳，按 AR-18 平票取调和。`con:42,str:40,apInner:40`，清宫 L3 或布库教头传授，前置 `sk_bukushuaijiao` 4 重。贡献 `{mpMaxPct:24,hpMaxPct:12,attrs:{con:7,str:3},mpRegen:3.2}`，`24+12+2×10+5×3.2=72`。
+`expanded / sect_qinggong / 布库房`；调和；`wOut/wIn:0/1`；`meridians:[mer_renmai,mer_shouyangming]`。任脉一阴、手阳明一阳，按 AR-18 平票取调和。`reqs: attrs {con:45,bre:35}, aptitude {apInner:30}`，清宫 L3 或布库教头传授，前置 `sk_bukushuaijiao` 4 重；`trainingAttrs:[{layer:3,attrs:{con:1}},{layer:6,attrs:{con:2}},{layer:9,attrs:{con:2}}]`。贡献 `{mpMaxPct:24,hpMaxPct:12,attrs:{con:7,str:3},mpRegen:3.2}`，`24+12+2×10+5×3.2=72`。
 
 - 护腰运息 `mv_bukuhutiaogong_yunxi`（L1，自身，7% / cd2 / 1000，`bf_wenzhong`1）。
 - 护身沉腰 `mv_bukuhutiaogong_hushen`（L7 绝招，**原创扩展**）：自身护体 16%，`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_bukuhutiaogong_hushen}`。
@@ -98,7 +100,8 @@
 |---|---|
 | 依据 / 归属 | 桑结为西藏密宗高手、大手印功夫精深见 `skills-xiaoyao`；此心法名与机制为**（原创扩展）**；`sect_mizong / 桑结一系` |
 | nature / meridians | `yang`；`wOut/wIn:0/1`；`[mer_dumai,mer_yangwei]` |
-| reqs / 习得 | `con:50,wil:50,apInner:50`；前置“密宗护法身”6 重（ID 见 `skills-xiaoyao` §6.4）；密宗 L4、桑结传授或五台护经奇遇 `maxLayer:8`；主角与其他门人均可学 |
+| reqs / 习得 | `attrs:{bre:50,wil:40}; aptitude:{apInner:35}`；前置“密宗护法身”6 重（ID 见 `skills-xiaoyao` §6.4）；密宗 L4、桑结传授或五台护经奇遇 `maxLayer:8`；主角与其他门人均可学 |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | contribution | `{mpMaxPct:29,hpMaxPct:18,attrs:{con:7,wil:5},mpRegen:2.4}`；`29+18+24+12=83` |
 | 层数 / 特性 | 1 持息、4 护法、7 伏魔；抗击退 + 护持；`setTags:[]`；`observable:true` |
 
@@ -109,14 +112,14 @@
 
 ### 2.2 `sk_fansenghutigong` 番僧护体功（7 地下 · 内功）**（原创扩展）**
 
-`expanded / sect_mizong / 后世番僧通传`；调和；`meridians:[mer_renmai,mer_dumai]`；任、督各一票，按 AR-18 平票取调和。`con:42,wil:38,apInner:40`，密宗 L3 或桑结门下传授，前置 `sk_mizonghufashen` 5 重。贡献 `{mpMaxPct:25,hpMaxPct:13,attrs:{con:6,wil:4},mpRegen:2.8}`，`25+13+20+14=72`。
+`expanded / sect_mizong / 后世番僧通传`；调和；`meridians:[mer_renmai,mer_dumai]`；任、督各一票，按 AR-18 平票取调和。`reqs: attrs {bre:45,wil:35}, aptitude {apInner:30}`，密宗 L3 或桑结门下传授，前置 `sk_mizonghufashen` 5 重；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]`。贡献 `{mpMaxPct:25,hpMaxPct:13,attrs:{con:6,wil:4},mpRegen:2.8}`，`25+13+20+14=72`。
 
 - 护法铁衣 `mv_fansenghutigong_jingang`（L7 绝招，**原创扩展**）：自身护体16%；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_fansenghutigong_jingang}`。仅改显示名以区别 `sk_jinganghufagong` 的“金刚护体”，稳定 ID 不变。
 - 基础外功复用 `sk_dashouyin`：它已在 `skills-xiaoyao` 以鹿鼎桑结来源登记，并作为下节高阶护法手的习得前置。
 
 ### 2.3 `sk_xueyuhufashou` 雪域护法手（8 地中 · 拳脚 / 掌）**（原创扩展）**
 
-`expanded / sect_mizong / 桑结一系`；阳；`wOut/wIn:0.65/0.35`。门槛 `str:48,wil:48,apFist:50`，密宗 L4、桑结传授或护经奇遇，前置 `sk_dashouyin` 6 重；主角与其他门人可学。`layerStats:{hit:[4,8],parry:[3,7]}` 合计15。
+`expanded / sect_mizong / 桑结一系`；阳；`wOut/wIn:0.65/0.35`。门槛 `attrs:{str:50,con:40}; aptitude:{apFist:35}`，密宗 L4、桑结传授或护经奇遇，前置 `sk_dashouyin` 6 重；主角与其他门人可学。`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`；`layerStats:{hit:[4,8],parry:[3,7]}` 合计15。
 
 - 护法推掌 `mv_xueyuhufashou_tuizhang`（L1，单体近身，1.05，7% / cd1 / 1000，击退1）。
 - 镇门手 `mv_xueyuhufashou_zhenmen`（L7 绝招，**原创扩展**）：锥2、2.40、`bf_polu`50%；接触掌击非外放，`projection:false; projectionSpreadSteps:[cone2,cone2,cone2]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_xueyuhufashou_zhenmen}`。
@@ -125,7 +128,7 @@
 
 ### 3.1 `sk_wangwuzhenshanxinfa` 王屋镇山心法（8 地中 · 内功）**（原创扩展）**
 
-`expanded / sect_wangwu / 王屋派`；阴；`meridians:[mer_renmai,mer_chongmai]`。任脉投阴一票、冲脉不投票，故性质为阴。门槛 `con:48,wil:48,apInner:48`，王屋 L5 传授或护寨结局获掌门手录 `maxLayer:8`，前置王屋心法 6 重；非个人独占。贡献 `{mpMaxPct:31,hpMaxPct:16,attrs:{con:7,wil:5},mpRegen:2.4}`，`31+16+24+12=83`。
+`expanded / sect_wangwu / 王屋派`；阴；`meridians:[mer_renmai,mer_chongmai]`。任脉投阴一票、冲脉不投票，故性质为阴。门槛 `attrs:{bre:50,wil:40}; aptitude:{apInner:35}`，王屋 L5 传授或护寨结局获掌门手录 `maxLayer:8`，前置王屋心法 6 重；非个人独占。`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`；贡献 `{mpMaxPct:31,hpMaxPct:16,attrs:{con:7,wil:5},mpRegen:2.4}`，`31+16+24+12=83`。
 
 - 镇山运息 `mv_wangwuzhenshanxinfa_yunxi`（L1，自身，7% / cd2 / 1000，受击不退1格）。
 - 据险固守 `mv_wangwuzhenshanxinfa_jushou`（L7 绝招，**原创扩展**）：自身 `bf_shoushi`3；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_wangwuzhenshanxinfa_jushou}`。
@@ -133,13 +136,13 @@
 
 ### 3.2 `sk_wangwuhushangong` 王屋护山功（7 地下 · 内功）**（原创扩展）**
 
-`expanded / sect_wangwu / 王屋派`；阳；`meridians:[mer_dumai,mer_yangqiao]`。门槛 `con:40,wil:38,apInner:40`，王屋 L4 传授，前置王屋心法 5 重。贡献 `{mpMaxPct:24,hpMaxPct:14,attrs:{con:6,wil:4},mpRegen:2.8}`，`24+14+20+14=72`。
+`expanded / sect_wangwu / 王屋派`；阳；`meridians:[mer_dumai,mer_yangqiao]`。门槛 `attrs:{bre:45,wil:35}; aptitude:{apInner:30}`，王屋 L4 传授，前置王屋心法 5 重；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。贡献 `{mpMaxPct:24,hpMaxPct:14,attrs:{con:6,wil:4},mpRegen:2.8}`，`24+14+20+14=72`。
 
 - 立道护山 `mv_wangwuhushangong_lidao`（L7 绝招，**原创扩展**）：自身护体16%；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_wangwuhushangong_lidao}`。
 
 ### 3.3 `sk_wangwudangguanjian` 王屋当关剑（8 地中 · 兵器 / 剑）**（原创扩展）**
 
-`expanded / sect_wangwu / 王屋派`；调和；`wOut/wIn:0.75/0.25`；`weaponReq:{category:sword}`；门槛 `agi:48,wil:45,apSword:50`，王屋 L5 或司徒伯雷遗谱奇遇，前置 `sk_wangwuposhijian` 6 重；玩家与王屋门人可学。`layerStats:{hit:[4,8],parry:[3,7]}` 合计15。
+`expanded / sect_wangwu / 王屋派`；调和；`wOut/wIn:0.75/0.25`；`weaponReq:{category:sword}`；门槛 `attrs:{agi:50,wis:40}; aptitude:{apSword:35}`，王屋 L5 或司徒伯雷遗谱奇遇，前置 `sk_wangwuposhijian` 6 重；玩家与王屋门人可学。`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`；`layerStats:{hit:[4,8],parry:[3,7]}` 合计15。
 
 - 横剑当关 `mv_wangwudangguanjian_hengjian`（L1，近身单体，1.10，7% / cd1 / 1000，招架）。
 - 一剑当关 `mv_wangwudangguanjian_dangguan`（L7 绝招，**原创扩展**）：线3、2.45、`bf_polu`50%；普通兵刃非外放，`projection:false; projectionSpreadSteps:[line3,line3,line3]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_wangwudangguanjian_dangguan}`。
@@ -148,14 +151,14 @@
 
 ### 4.1 `sk_pingxizhentaixinfa` 平西镇台心法（8 地中 · 内功）**（原创扩展）**
 
-`expanded / sect:null / 平西王府武备`；阳；`meridians:[mer_dumai,mer_yangwei]`。门槛 `con:50,wil:46,apInner:48`，校尉军职传授或云南粮台缴获军册 `maxLayer:8`；不要求效忠吴三桂本人。贡献 `{mpMaxPct:29,hpMaxPct:18,attrs:{con:8,wil:4},mpRegen:2.4}`，`29+18+24+12=83`。
+`expanded / sect:null / 平西王府武备`；阳；`meridians:[mer_dumai,mer_yangwei]`。门槛 `attrs:{bre:50,wil:40}; aptitude:{apInner:35}`，校尉军职传授或云南粮台缴获军册 `maxLayer:8`；不要求效忠吴三桂本人。`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`；贡献 `{mpMaxPct:29,hpMaxPct:18,attrs:{con:8,wil:4},mpRegen:2.4}`，`29+18+24+12=83`。
 
 - 镇台持息 `mv_pingxizhentaixinfa_chixi`（L1，自身，7% / cd2 / 1000，`bf_wenzhong`2）。
 - 守备不移 `mv_pingxizhentaixinfa_shoubei`（L7 绝招，**原创扩展**）：自身与相邻军伍 `bf_shoushi`2；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_pingxizhentaixinfa_shoubei}`。
 
 ### 4.2 `sk_pingxixingqijue` 平西行气诀（7 地下 · 内功）**（原创扩展）**
 
-`expanded / sect:null / 平西王府武备`；阴；`meridians:[mer_renmai,mer_yinwei]`。任脉、阴维各投阴一票，故性质为阴。门槛 `con:40,wil:36,apInner:38`；军阵护卫岗位或反三藩支线缴获；前置 `sk_pingxituna` 5 重。贡献 `{mpMaxPct:25,hpMaxPct:13,attrs:{con:7,wil:3},mpRegen:2.8}`，`25+13+20+14=72`。
+`expanded / sect:null / 平西王府武备`；阴；`meridians:[mer_renmai,mer_yinwei]`。任脉、阴维各投阴一票，故性质为阴。门槛 `attrs:{bre:45,wil:35}; aptitude:{apInner:30}`；军阵护卫岗位或反三藩支线缴获；前置 `sk_pingxituna` 5 重；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。贡献 `{mpMaxPct:25,hpMaxPct:13,attrs:{con:7,wil:3},mpRegen:2.8}`，`25+13+20+14=72`。
 
 - 连阵行气 `mv_pingxixingqijue_lianzhen`（L7 绝招，**原创扩展**）：自身 `bf_wenzhong`3，相邻友方1；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_pingxixingqijue_lianzhen}`。
 
@@ -163,14 +166,14 @@
 
 ### 5.1 `sk_shenlonghaichaojing` 神龙海潮经（8 地中 · 内功）**（原创扩展）**
 
-`expanded / sect_shenlongjiao / 舰队旗主`；阳；`meridians:[mer_dumai,mer_yangwei]`。门槛 `con:48,agi:45,apInner:48`，神龙教 L4 或救俘 / 夺旗奇遇获舰队抄本 `maxLayer:8`，前置神龙蛇步 5 重；不属教主独占。贡献 `{mpMaxPct:30,hpMaxPct:15,attrs:{con:7,agi:5},mpRegen:2.8}`，`30+15+24+14=83`。
+`expanded / sect_shenlongjiao / 舰队旗主`；阳；`meridians:[mer_dumai,mer_yangwei]`。门槛 `attrs:{bre:50,wil:40}; aptitude:{apInner:35}`，神龙教 L4 或救俘 / 夺旗奇遇获舰队抄本 `maxLayer:8`，前置神龙蛇步 5 重；不属教主独占。`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`；贡献 `{mpMaxPct:30,hpMaxPct:15,attrs:{con:7,agi:5},mpRegen:2.8}`，`30+15+24+14=83`。
 
 - 随浪吐息 `mv_shenlonghaichaojing_suilang`（L1，自身，7% / cd2 / 1000，甲板位移抗性）。
 - 镇舟 `mv_shenlonghaichaojing_zhenzhou`（L7 绝招，**原创扩展**）：自身与相邻友方 `bf_wenzhong`2；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_shenlonghaichaojing_zhenzhou}`。
 
 ### 5.2 `sk_shenlongfanzhougong` 神龙泛舟功（7 地下 · 内功）**（原创扩展）**
 
-`expanded / sect_shenlongjiao / 舰队教众`；调和；`meridians:[mer_chongmai,mer_daimai]`。门槛 `con:38,agi:40,apInner:38`；神龙教 L3 舰队岗位传授，前置神龙蛇步 4 重。贡献 `{mpMaxPct:26,hpMaxPct:12,attrs:{con:5,agi:5},mpRegen:2.8}`，`26+12+20+14=72`。
+`expanded / sect_shenlongjiao / 舰队教众`；调和；`meridians:[mer_chongmai,mer_daimai]`。门槛 `attrs:{bre:45,wil:35}; aptitude:{apInner:30}`；神龙教 L3 舰队岗位传授，前置神龙蛇步 4 重；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。贡献 `{mpMaxPct:26,hpMaxPct:12,attrs:{con:5,agi:5},mpRegen:2.8}`，`26+12+20+14=72`。
 
 - 定浪 `mv_shenlongfanzhougong_dinglang`（L7 绝招，**原创扩展**）：自身护体16%并忽略一次甲板滑移；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_shenlongfanzhougong_dinglang}`。
 
@@ -180,7 +183,7 @@
 
 ### 6.1 `sk_yanpinghaifangxinfa` 延平海防心法（8 地中 · 内功）**（原创扩展）**
 
-`expanded / sect:null / 台湾郑氏海防武备`；调和；`meridians:[mer_chongmai,mer_daimai]`。门槛 `con:48,wil:46,apInner:48`；郑氏将领 / 水师教头传授或通吃岛双印支线军册 `maxLayer:8`；玩家与郑氏武职人物均可学。贡献 `{mpMaxPct:30,hpMaxPct:16,attrs:{con:7,wil:5},mpRegen:2.6}`，`30+16+24+13=83`。
+`expanded / sect:null / 台湾郑氏海防武备`；调和；`meridians:[mer_chongmai,mer_daimai]`。门槛 `attrs:{bre:50,wil:40}; aptitude:{apInner:35}`；郑氏将领 / 水师教头传授或通吃岛双印支线军册 `maxLayer:8`；玩家与郑氏武职人物均可学。`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`；贡献 `{mpMaxPct:30,hpMaxPct:16,attrs:{con:7,wil:5},mpRegen:2.6}`，`30+16+24+13=83`。
 
 - 舱阵吐息 `mv_yanpinghaifangxinfa_tuxi`（L1，自身，7% / cd2 / 1000，`bf_wenzhong`2）。
 - 镇舱 `mv_yanpinghaifangxinfa_zhencang`（L7 绝招，**原创扩展**）：自身与相邻友方 `bf_shoushi`2；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yanpinghaifangxinfa_zhencang}`。
@@ -193,26 +196,26 @@
 
 ### 6.2 `sk_yanpingfanchaojue` 延平泛潮诀（7 地下 · 内功）**（原创扩展）**
 
-`expanded / sect:null / 台湾郑氏海防武备`；阴；`meridians:[mer_chongmai,mer_yinwei]`。冲脉不投票、阴维投阴一票，故性质为阴。门槛 `con:38,wil:38,apInner:38`；郑氏护卫岗位或护送支线军册；前置任一郑氏剑术 4 重。贡献 `{mpMaxPct:25,hpMaxPct:13,attrs:{con:5,wil:5},mpRegen:2.8}`，`25+13+20+14=72`。
+`expanded / sect:null / 台湾郑氏海防武备`；阴；`meridians:[mer_chongmai,mer_yinwei]`。冲脉不投票、阴维投阴一票，故性质为阴。门槛 `attrs:{bre:45,wil:35}; aptitude:{apInner:30}`；郑氏护卫岗位或护送支线军册；前置任一郑氏剑术 4 重；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。贡献 `{mpMaxPct:25,hpMaxPct:13,attrs:{con:5,wil:5},mpRegen:2.8}`，`25+13+20+14=72`。
 
 - 护驾泛潮 `mv_yanpingfanchaojue_hujia`（L7 绝招，**原创扩展**）：自身 `bf_shoushi`3；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yanpingfanchaojue_hujia}`。
 
 ### 6.3 `sk_yanpingzhenhaijian` 延平镇海剑（8 地中 · 兵器 / 剑）**（原创扩展）**
 
-`expanded / sect:null / 台湾郑氏海防武备`；调和；`wOut/wIn:0.75/0.25`；`weaponReq:{category:sword}`。门槛 `agi:50,wil:45,apSword:50`；郑氏将领 / 水师教头或护送支线剑谱；玩家与护卫可学。`layerStats:{hit:[4,8],parry:[3,7]}` 合计15。
+`expanded / sect:null / 台湾郑氏海防武备`；调和；`wOut/wIn:0.75/0.25`；`weaponReq:{category:sword}`。门槛 `attrs:{agi:50,wis:40}; aptitude:{apSword:35}`；郑氏将领 / 水师教头或护送支线剑谱；玩家与护卫可学。`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`；`layerStats:{hit:[4,8],parry:[3,7]}` 合计15。
 
 - 甲板截锋 `mv_yanpingzhenhaijian_jiafeng`（L1，单体近身，1.10，7% / cd1 / 1000）。
 - 镇海截锋 `mv_yanpingzhenhaijian_jiefeng`（L7 绝招，**原创扩展**）：线3、2.45、击退1；普通兵刃非外放，`projection:false; projectionSpreadSteps:[line3,line3,line3]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yanpingzhenhaijian_jiefeng}`。
 
 ### 6.4 `sk_yijianxinfa` 一剑心法（8 地中 · 内功）**（原创扩展命名）**
 
-`expanded / sect:null / 冯锡范个人传承`；阴；`meridians:[mer_renmai,mer_yinwei]`。门槛 `agi:52,wil:50,apInner:48`；默认由冯锡范遗谱奇遇 `maxLayer:8` 或击败后获其本人认可传授，是否允许师承线完整传授需作者确认。贡献 `{mpMaxPct:31,hpMaxPct:14,attrs:{agi:7,wil:5},mpRegen:2.8}`，`31+14+24+14=83`。
+`expanded / sect:null / 冯锡范个人传承`；阴；`meridians:[mer_renmai,mer_yinwei]`。门槛 `attrs:{bre:50,wil:40}; aptitude:{apInner:35}`；默认由冯锡范遗谱奇遇 `maxLayer:8` 或击败后获其本人认可传授，是否允许师承线完整传授需作者确认。`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]`；贡献 `{mpMaxPct:31,hpMaxPct:14,attrs:{agi:7,wil:5},mpRegen:2.8}`，`31+14+24+14=83`。
 
 - 收藏 `mv_yijianxinfa_shoucang`（L7 绝招，**原创扩展**）：自身 `bf_shoushi`2，下一剑命中 +10；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yijianxinfa_shoucang}`。
 
 ### 6.5 `sk_yijianwuxue` 一剑无血（8 地中 · 兵器 / 剑）**（待考）**
 
-原著人物绰号 / 剑术用名及师承细节须核《鹿鼎记》冯锡范相关段落**（待考）**；本文暂按个人剑术登记，不反推昆仑全派共有。`canonExpanded / sect:null / 冯锡范`；阴；`wOut/wIn:0.80/0.20`；剑；`agi:55,apSword:52`；遗谱奇遇或本人传授；`layerStats:{hit:[5,9],crit:[3,6]}` 合计15。
+原著人物绰号 / 剑术用名及师承细节须核《鹿鼎记》冯锡范相关段落**（待考）**；本文暂按个人剑术登记，不反推昆仑全派共有。`canonExpanded / sect:null / 冯锡范`；阴；`wOut/wIn:0.80/0.20`；剑；`reqs: attrs {agi:55,wis:40}, aptitude {apSword:35}`；遗谱奇遇或本人传授；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`；`layerStats:{hit:[5,9],crit:[3,6]}` 合计15。
 
 - 无血快剑 `mv_yijianwuxue_kuaijian`（L1，单体近身，1.15，7% / cd1 / 1000）。
 - 一剑夺命 `mv_yijianwuxue_duoming`（L7 绝招，**原创扩展命名**）：单体2.85、`bf_polu`50%；普通兵刃非外放，`projection:false; projectionSpreadSteps:[single,single,single]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_yijianwuxue_duoming}`。
@@ -221,20 +224,20 @@
 
 ### 7.1 `sk_luochazhenliecao` 罗刹阵列操（8 地中 · 内功）**（原创扩展）**
 
-`expanded / sect:null / 雅克萨守军`；阳；`meridians:[mer_dumai,mer_yangwei]`。名称是对军队呼吸、站姿与队列训练的玩法归纳，不声称原著或史料存在同名内功。门槛 `con:50,wil:45,apInner:48`；停战交换后的训练札记奇遇或守军教官传授 `maxLayer:8`，不要求屠城。贡献 `{mpMaxPct:28,hpMaxPct:19,attrs:{con:8,wil:4},mpRegen:2.4}`，`28+19+24+12=83`。
+`expanded / sect:null / 雅克萨守军`；阳；`meridians:[mer_dumai,mer_yangwei]`。名称是对军队呼吸、站姿与队列训练的玩法归纳，不声称原著或史料存在同名内功。门槛 `attrs:{bre:50,wil:40}; aptitude:{apInner:35}`；停战交换后的训练札记奇遇或守军教官传授 `maxLayer:8`，不要求屠城。`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`；贡献 `{mpMaxPct:28,hpMaxPct:19,attrs:{con:8,wil:4},mpRegen:2.4}`，`28+19+24+12=83`。
 
 - 阵列呼吸 `mv_luochazhenliecao_huxi`（L1，自身，7% / cd2 / 1000，`bf_wenzhong`2）。
 - 横队固守 `mv_luochazhenliecao_hengdui`（L7 绝招，**原创扩展**）：自身与相邻同阵营 `bf_shoushi`2；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_luochazhenliecao_hengdui}`。
 
 ### 7.2 `sk_luochabujunhuxi` 罗刹步军呼吸（7 地下 · 内功）**（原创扩展）**
 
-`expanded / sect:null / 雅克萨守军`；阴；`meridians:[mer_renmai,mer_yinqiao]`。任脉、阴跷各投阴一票，故性质为阴。门槛 `con:40,wil:36,apInner:38`；守军教官或止战支线训练札记。贡献 `{mpMaxPct:24,hpMaxPct:14,attrs:{con:6,wil:4},mpRegen:2.8}`，`24+14+20+14=72`。
+`expanded / sect:null / 雅克萨守军`；阴；`meridians:[mer_renmai,mer_yinqiao]`。任脉、阴跷各投阴一票，故性质为阴。门槛 `attrs:{bre:45,wil:35}; aptitude:{apInner:30}`；守军教官或止战支线训练札记；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。贡献 `{mpMaxPct:24,hpMaxPct:14,attrs:{con:6,wil:4},mpRegen:2.8}`，`24+14+20+14=72`。
 
 - 据守呼吸 `mv_luochabujunhuxi_jushou`（L7 绝招，**原创扩展**）：自身护体16%；`projection:false; projectionSpreadSteps:[self,self,self]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_luochabujunhuxi_jushou}`。
 
 ### 7.3 `sk_luochaciqiangshu` 罗刹刺枪术（8 地中 · 兵器 / 枪）**（原创扩展）**
 
-`expanded / sect:null / 雅克萨守军`；阳；`wOut/wIn:0.90/0.10`；`weaponReq:{category:spear}`。门槛 `str:50,con:46,apSpear:50`；止战支线训练札记或守军教官；`layerStats:{hit:[4,8],pierce:[3,7]}` 合计15。它是本土步军兵刃武艺，不把火铳或弹药当内劲外放。
+`expanded / sect:null / 雅克萨守军`；阳；`wOut/wIn:0.90/0.10`；`weaponReq:{category:spear}`。门槛 `attrs:{str:50,con:40}; aptitude:{apSpear:35}`；止战支线训练札记或守军教官；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`；`layerStats:{hit:[4,8],pierce:[3,7]}` 合计15。它是本土步军兵刃武艺，不把火铳或弹药当内劲外放。
 
 - 列队刺击 `mv_luochaciqiangshu_ciji`（L1，线2，1.05，7% / cd1 / 1000）。
 - 刺枪突进 `mv_luochaciqiangshu_tujin`（L7 绝招，**原创扩展**）：线3、2.45、突进1；`projection:false; projectionSpreadSteps:[line3,line3,line3]`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; meridianRouteRef:mfr_luochaciqiangshu_tujin}`。
@@ -247,7 +250,8 @@
 |---|---|
 | 依据 / 边界 | 海大富与化骨绵掌、大慈大悲千叶手的关系见既有图鉴；原著是否存在对应具名内功无把握，故名称、运功层次与机制均为**（原创扩展）**，不再以易筋经冒充其主运 |
 | 归属 / 性质 | `expanded / sect:null / 海大富个人传承`；阴；`wOut/wIn:0/1`；`meridians:[mer_renmai,mer_yinwei]` |
-| reqs / 习得 | `wil:58,con:52,apInner:55`；仅限海大富秘密传授或宫中遗谱奇遇，默认不由普通清宫职级开放，需作者确认 |
+| reqs / 习得 | `attrs:{bre:55,wil:45}; aptitude:{apInner:40}`；仅限海大富秘密传授或宫中遗谱奇遇，默认不由普通清宫职级开放，需作者确认 |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | contribution | `{mpMaxPct:35,hpMaxPct:18,attrs:{wil:8,con:6},mpRegen:2.7}`；`35+18+2×14+5×2.7=94.5` |
 | 层数 / 特性 | 1 伏脉、4 藏劲、7 绝招伏脉护身、9 绝招藏劲归息；`setTags:[]`；`observable:false` |
 
@@ -330,6 +334,7 @@
 3. 23 条绝招路线均为不同穴位有序元组；同门双路线仅海大富一门，共享穴位 `0/8=0%≤50%`。
 4. 路线 `1200+8×90=1920≤2000`；穴位、CT、风险与用途须通过图鉴严格检查。
 5. 16 门内功各有唯一 `txp_*`，且显式含 `outOfBattleScaleBp=15000`；22 门均逐招审计外放。
+6. 22 门 `reqs.attrs` 均符合 `design/05` §7.3.1：常规内功以 `bre` 为主，鳌拜横练功与布库护腰功按硬功横练例外取 `con` 主、`bre` 次，外功按类别取主 / 次带；`aptitude=5×grade−5`，且各有 3/6/9 重 `trainingAttrs`，逐节点 ≤4、单门 ≤12。
 
 ## 14. 待决事项 / 依赖
 

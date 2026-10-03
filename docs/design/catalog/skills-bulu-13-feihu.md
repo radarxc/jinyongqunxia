@@ -2,10 +2,10 @@
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的《飞狐外传》按书补录册；只定义本轮首领 / 精英缺口所需武学与学习来源，不改写既有 11 册图鉴。
 > **覆盖声明**：本册覆盖苗家、胡家、商家堡、天龙门、药王门、南海五虎来源、掌门大会会武融汇与八极拳支系；均与 `skills-qianlong` 的对应门派体系共用前置，主角及其他人物可循门派传授、秘籍或奇遇习得。
-> **上游**：`docs/decisions/author-requirements.md` AR-14～AR-16、`docs/00-canon.md`、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/15`、`design/17`、`design/21` 与 `design/chapters/13-feihu.md`。
+> **上游**：`docs/decisions/author-requirements.md` AR-14～AR-16、AR-27、`docs/00-canon.md`、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/03` v2、`design/05`、`design/15`、`design/17`、`design/21` 与 `design/chapters/13-feihu.md`。
 > **引用而不重定义**：字段、预算与习得规则见 `design/05`；穴位事实见 `design/15`；路线、调息、护体内劲、外放与首领主运见 `design/21`；门派组织见 `design/17`；既有同门基础武学见 `skills-qianlong`。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**须按三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
-> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
+> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；属性门槛与修炼永久加成 v2（AR-27，2026-10-02）。
 
 ---
 
@@ -77,7 +77,8 @@
 
 - **来源归属**：苗家 `sect_miaojia`；与 `skills-qianlong` 的 `sk_miaojiajian`、`sk_miaojiaxinfa` 同属苗家体系。名称、运功招与数值为原创扩展，不冒充原著固定武学名。
 - **字段**：`sourceChapters:[ch13_feihu,ch14_xueshan]`；`nature:harmony`；`inner.meridians:[mer_renmai,mer_shoujueyin,mer_dumai,mer_shouyangming]`；`breathProfileRef:txp_miaojiaxuangong`；`moveSlots:4`；`setTags:[]`；`conflicts:[]`。主修承接苗家心法的任脉、手厥阴守中，并加入督脉、手阳明衔接拳剑攻防；阴二票、阳二票，故取调和。
-- **reqs**：`attrs {con:50,wis:50,wil:45}`；`aptitude {apInner:50}`；`prereq [{skill:sk_miaojiaxinfa,layer:8},{skill:sk_miaojiajian,layer:7}]`；常规途径为苗家 L4 后由家主传授，或完成胡苗旧怨互证后获家谱内篇；`hard:[sect,prereq]`。主角与其他人物均可循此途径习得。
+- **reqs**：`attrs {bre:55,wis:45}`；`aptitude {apInner:40}`；`prereq [{skill:sk_miaojiaxinfa,layer:8},{skill:sk_miaojiajian,layer:7}]`；常规途径为苗家 L4 后由家主传授，或完成胡苗旧怨互证后获家谱内篇；`hard:[sect,prereq]`。主角与其他人物均可循此途径习得。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wis:1}},{layer:9,attrs:{bre:1,wis:1}}]`。
 - **内功贡献**：`mpMaxPct:34; hpMaxPct:20; attrs:{con:5,agi:4,wis:3,wil:2}; mpRegen:2.5`，故 `34+20+2×14+5×2.5=94.5`，精确命中地上预算；`stats:{parry:8,resMind:7}`（15）。
 - **层数**：1 守正｜3 守正调息｜5 拳剑相参｜7 绝招·金面守心｜9 绝招·空明照隙｜10 大成。
 
@@ -94,7 +95,8 @@
 
 - **来源归属**：辽东胡家 `sect_hujia`；与 `skills-qianlong` 的 `sk_hujiadao`、`sk_hujiaquan`、`sk_hujiadaoxinfa` 同属胡家体系。名称、运功招与数值均为原创扩展。
 - **字段**：`sourceChapters:[ch13_feihu,ch14_xueshan]`；`nature:yang`；`inner.meridians:[mer_dumai,mer_shouyangming]`；`breathProfileRef:txp_hujiaxuangong`；`moveSlots:4`；`setTags:[]`；`conflicts:[]`。主修沿用胡家心法的督脉蓄劲、手阳明出刀与拳刀互济，两脉均投阳票，故取阳。
-- **reqs**：`attrs {str:50,con:50,wil:45}`；`aptitude {apInner:50}`；`prereq [{skill:sk_hujiadaoxinfa,layer:8},{skill:sk_hujiadao,layer:7}]`；由胡家刀谱内篇、胡斐指点或胡一刀遗泽奇遇传承；`hard:[prereq]`。不是胡斐个人专属，满足家传认可者均可学。
+- **reqs**：`attrs {bre:55,wil:45}`；`aptitude {apInner:40}`；`prereq [{skill:sk_hujiadaoxinfa,layer:8},{skill:sk_hujiadao,layer:7}]`；由胡家刀谱内篇、胡斐指点或胡一刀遗泽奇遇传承；`hard:[prereq]`。不是胡斐个人专属，满足家传认可者均可学。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - **内功贡献**：`mpMaxPct:34; hpMaxPct:20; attrs:{str:5,con:4,wil:3,agi:2}; mpRegen:2.5`，故 `34+20+2×14+5×2.5=94.5`；`stats:{crit:8,resInjury:7}`（15）。
 - **层数**：1 藏锋｜3 藏锋调息｜5 刀拳互济｜7 绝招·雪夜护刀｜9 绝招·关山回气｜10 大成。
 
@@ -117,7 +119,8 @@
 
 - **来源归属**：商家堡 `sect_shangjiabao`，并承认其与八卦门的既有渊源；与 `skills-qianlong` 的 `sk_shangjiadao`、`sk_shangjiaquan` 同一体系，不把它改写成八卦门通用高阶内功。
 - **字段**：`sourceChapters:[ch13_feihu]`；`nature:yang`；`inner.meridians:[mer_zuyangming,mer_dumai,mer_shouyangming]`；`breathProfileRef:txp_shangjiabaoqi`；`moveSlots:4`；`setTags:[]`。主修取足阳明立桩、督脉提气与手阳明护门，服务刀拳并用和铁厅拒敌，三脉均投阳票，故取阳。
-- **reqs**：`attrs {str:40,con:40,wil:35}`；`aptitude {apInner:40}`；`prereq [{skill:sk_shangjiadao,layer:6},{skill:sk_shangjiaquan,layer:5}]`；商家堡 L4 或堡毁后由幸存者多数认可授谱；`hard:[sect,prereq]`。主角与非商氏人物均可经认可学习。
+- **reqs**：`attrs {bre:45,wil:35}`；`aptitude {apInner:30}`；`prereq [{skill:sk_shangjiadao,layer:6},{skill:sk_shangjiaquan,layer:5}]`；商家堡 L4 或堡毁后由幸存者多数认可授谱；`hard:[sect,prereq]`。主角与非商氏人物均可经认可学习。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - **内功贡献**：`mpMaxPct:26; hpMaxPct:16; attrs:{str:4,con:3,wil:3}; mpRegen:2.0`，`26+16+2×10+5×2=72`；`stats:{defOut:8,resInjury:7}`（15）。
 - **招式与绝招**：守堡运气 `mv_shangjiabaoqi_shoubao`（3 重，自身 `bf_wenzhong` 2）；铁厅拒敌 `mv_shangjiabaoqi_tieting`（7 重，防守绝招，自身 `bf_shoushi` 2，首次被近身命中后反推 1 格）。二式均 `projection:false`，路线见 §0。
 - **绝招机器字段**：`mv_shangjiabaoqi_tieting` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_shangjiabaoqi_tieting}`。
@@ -127,7 +130,8 @@
 
 - **来源归属**：掌门人大会“多门会武融汇”的散传，不归八仙剑或袁紫衣个人所有；与 `skills-qianlong` 的 `sk_zhangmenboyi` 同属大会学习线。袁紫衣具体师承与所会门数仍 **（待考）**。
 - **字段**：`sect:null`；`sourceChapters:[ch13_feihu]`；`nature:yin`；`inner.meridians:[mer_chongmai,mer_renmai,mer_shoujueyin]`；`breathProfileRef:txp_huiwuguixin`；`moveSlots:4`；`setTags:[]`。主修取两条既有路线共同呈现的冲脉汇劲，并以任脉守中、手厥阴定心收束；冲脉不投票，任脉与手厥阴各投阴一票，故取阴。经脉组合是本作依据“多门会武融汇、守中定心”机制所作的**（原创扩展）**，不宣称原著记载袁紫衣修习这些经脉。
-- **reqs**：`attrs {wis:45,wil:40,agi:35}`；`aptitude {apInner:40}`；`lore {min:45}`；`prereq [{skill:sk_zhangmenboyi,layer:7},{anyOf:[{skill:sk_baxianjian,layer:5},{skill:sk_bajiquan,layer:5},{skill:sk_tianlongjian,layer:5}]}]`；完成掌门大会会武笔记奇遇；`hard:[prereq]`。任何满足条件者可学，不设袁紫衣专属门槛。
+- **reqs**：`attrs {bre:45,wis:35}`；`aptitude {apInner:30}`；`lore {min:45}`；`prereq [{skill:sk_zhangmenboyi,layer:7},{anyOf:[{skill:sk_baxianjian,layer:5},{skill:sk_bajiquan,layer:5},{skill:sk_tianlongjian,layer:5}]}]`；完成掌门大会会武笔记奇遇；`hard:[prereq]`。任何满足条件者可学，不设袁紫衣专属门槛。
+- **trainingAttrs**：`[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1,bre:1}},{layer:9,attrs:{wis:1,bre:1}}]`。
 - **内功贡献**：`mpMaxPct:26; hpMaxPct:16; attrs:{wis:4,wil:3,agi:3}; mpRegen:2.0`，`26+16+2×10+5×2=72`；`stats:{parry:8,effRes:7}`（15）。
 - **招式与绝招**：会武定心 `mv_huiwuguixin_dingxin`（3 重，驱散自身 1 个 `mind`，`bf_dongxi` 1）；百门归一 `mv_huiwuguixin_baimen`（7 重，防守绝招，切换姿态时保留当前气势且获 `bf_youshi` 2）。均 `projection:false`，路线见 §0。
 - **绝招机器字段**：`mv_huiwuguixin_baimen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_huiwuguixin_baimen}`。
@@ -142,7 +146,8 @@
 ### 3.1 `sk_nanhaiwuhuxinfa` 南海五虎心法（7 地下 · 内功 · 阳）**（原创扩展）**
 
 - **来源归属**：`sect:null` / `lineage:南海五虎`；与本节五虎刀、凤家拳同体系。`sourceChapters:[ch13_feihu]`；`nature:yang`；`inner.meridians:[mer_zushaoyang,mer_dumai,mer_shoushaoyang]`；`breathProfileRef:txp_nanhaiwuhuxinfa`；`moveSlots:4`。主修以足少阳起落、督脉提势、手少阳承接刀拳，三脉均投阳票，故取阳。
-- **reqs**：`attrs {str:40,con:38,wil:35}`；`aptitude {apInner:40}`；`prereq [{skill:sk_wuhudaofa,layer:6}]`；可由南海五虎传人授艺，或佛山案后从合法移交的武馆谱册学习；`hard:[prereq]`。
+- **reqs**：`attrs {bre:45,wil:35}`；`aptitude {apInner:30}`；`prereq [{skill:sk_wuhudaofa,layer:6}]`；可由南海五虎传人授艺，或佛山案后从合法移交的武馆谱册学习；`hard:[prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - **内功贡献**：`mpMaxPct:26; hpMaxPct:16; attrs:{str:4,con:4,wil:2}; mpRegen:2.0`，`26+16+2×10+5×2=72`；`stats:{defOut:8,resMind:7}`。
 - **招式与绝招**：纳潮运气 `mv_nanhaiwuhuxinfa_nachao`（3 重，自身 `bf_wenzhong` 2）；五虎归潮 `mv_nanhaiwuhuxinfa_guichao`（7 重，防守绝招，获得 `bf_shoushi` 2，并令下一记本源刀 / 拳命中 +10%）。均 `projection:false`，路线见 §0。
 - **绝招机器字段**：`mv_nanhaiwuhuxinfa_guichao` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_nanhaiwuhuxinfa_guichao}`。
@@ -152,7 +157,8 @@
 ### 3.2 `sk_wuhudaofa` 南海五虎刀法（6 玄上 · 兵器 / 刀 · 阳）**（原创扩展命名）**
 
 - **来源归属**：`sect:null` / `lineage:南海五虎`；“凤天南—五虎刀”的准确原著措辞 **（待考）**，故名称只作来源清晰的图鉴统称。`sourceChapters:[ch13_feihu]`；`weaponReq:{category:blade}`；`layerStats:{hit:6,parry:4}`。
-- **reqs / 获取**：`attrs {str:35,agi:30}`；`aptitude {apBlade:35}`；`prereq [{skill:sk_nanhaiwuhuxinfa,layer:4}]`；南海五虎传人 / 武馆谱册，或制伏凤家护院后以不毁谱为条件获抄本；均非敌人专用。
+- **reqs / 获取**：`attrs {str:40,agi:35}`；`aptitude {apBlade:25}`；`prereq [{skill:sk_nanhaiwuhuxinfa,layer:4}]`；南海五虎传人 / 武馆谱册，或制伏凤家护院后以不毁谱为条件获抄本；均非敌人专用。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 
 | 招式 | ID | 层 | 范围与倍率 | 核算 / 字段 |
 |---|---|---:|---|---|
@@ -166,7 +172,8 @@
 ### 3.3 `sk_fengjiawuhuquan` 凤家五虎拳（6 玄上 · 拳脚 / 拳掌 · 阳）**（原创扩展）**
 
 - **来源归属**：`sect:null` / `lineage:南海五虎·凤家支`；与本节心法、刀法同体系，不宣称原著存在此固定拳名。`sourceChapters:[ch13_feihu]`；`layerStats:{hit:5,defOut:5}`。
-- **reqs / 获取**：`attrs {str:35,con:30}`；`aptitude {apFist:35}`；`prereq [{skill:sk_nanhaiwuhuxinfa,layer:4}]`；由愿意脱离凤天南的护院教习传授，或从凤家武馆谱册学习。
+- **reqs / 获取**：`attrs {str:40,con:35}`；`aptitude {apFist:25}`；`prereq [{skill:sk_nanhaiwuhuxinfa,layer:4}]`；由愿意脱离凤天南的护院教习传授，或从凤家武馆谱册学习。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - **招式**：虎步冲拳 `mv_fengjiawuhuquan_hubu`（1 重，单体 1.00）；擒腕拦身 `mv_fengjiawuhuquan_qinwan`（3 重，单体 0.90，`bf_shouqin(level:4,holdRange:1)` 40%·1）；连环逼门 `mv_fengjiawuhuquan_bimen`（5 重，横扫 1.00，7% 内 / cd1）；五虎合势 `mv_fengjiawuhuquan_heshi`（7 重，绝招单体 2.90，`bf_shiheng` 100%·1，`3.00−0.10=2.90`）。
 - **绝招机器字段**：`mv_fengjiawuhuquan_heshi` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_fengjiawuhuquan_heshi}`。四式均为近身拳拿，`projection:false`。
 - **被动**：`ps_fengjiawuhuquan_hubu` 虎步（突进后命中 +5%）；`ps_fengjiawuhuquan_huyuan` 护院（相邻友方受击时每轮一次援护）；`ps_fengjiawuhuquan_dacheng` 大成（成功擒拿后外防 +8% 至下次行动）。
@@ -179,7 +186,8 @@
 
 - **来源归属**：关外天龙门 `sect_tianlongmen`，与大理天龙寺无关；与 `skills-qianlong` 的 `sk_tianlongjian`、`sk_tianlongbeidao`、`sk_guanwaixinfa` 同体系。
 - **字段**：`sourceChapters:[ch13_feihu,ch14_xueshan]`；`nature:harmony`；`inner.meridians:[mer_chongmai,mer_dumai,mer_renmai]`；`breathProfileRef:txp_tianlongmenxinfa`；`moveSlots:4`；`setTags:[]`。主修以冲脉承南北两宗、任督分别收放剑刀之气；冲脉不投票，任督一阴一阳平票，故取调和。
-- **reqs / 获取**：`attrs {con:40,wil:40,wis:35}`；`aptitude {apInner:40}`；`prereq [{skill:sk_guanwaixinfa,layer:7},{anyOf:[{skill:sk_tianlongjian,layer:6},{skill:sk_tianlongbeidao,layer:6}]}]`；天龙门 L4 传授，或完成南北宗清理 / 和解后由门中长老授谱；`hard:[sect,prereq]`。
+- **reqs / 获取**：`attrs {bre:45,wil:35}`；`aptitude {apInner:30}`；`prereq [{skill:sk_guanwaixinfa,layer:7},{anyOf:[{skill:sk_tianlongjian,layer:6},{skill:sk_tianlongbeidao,layer:6}]}]`；天龙门 L4 传授，或完成南北宗清理 / 和解后由门中长老授谱；`hard:[sect,prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - **内功贡献**：`mpMaxPct:26; hpMaxPct:16; attrs:{con:4,wil:3,wis:3}; mpRegen:2.0`，`26+16+2×10+5×2=72`；`stats:{parry:8,resMind:7}`。
 - **招式与绝招**：南北调息 `mv_tianlongmenxinfa_nanbei`（3 重，自身 `bf_huinei` 2）；南北合宗 `mv_tianlongmenxinfa_hezong`（7 重，防守绝招，获得 `bf_shoushi` 2，剑刀切换不清当前姿态）。均 `projection:false`，路线见 §0。
 - **绝招机器字段**：`mv_tianlongmenxinfa_hezong` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tianlongmenxinfa_hezong}`。
@@ -188,7 +196,8 @@
 ### 4.2 `sk_tianlongzhengdao` 天龙正刀（7 地下 · 兵器 / 刀 · 阳）**（原创扩展）**
 
 - **来源归属**：关外天龙门 `sect_tianlongmen`；与 `skills-qianlong` 的天龙北刀属于同门不同刀路，用于取代田归农的跨门军中刀代理。`sourceChapters:[ch13_feihu,ch14_xueshan]`；`weaponReq:{category:blade}`；`layerStats:{hit:8,crit:7}`，合计 15。
-- **reqs / 获取**：`attrs {str:40,agi:35}`；`aptitude {apBlade:40}`；`prereq [{skill:sk_tianlongbeidao,layer:6},{skill:sk_tianlongmenxinfa,layer:4}]`；天龙门 L4 由清理支系授艺，田归农控制支可持有但不垄断。
+- **reqs / 获取**：`attrs {str:45,agi:35}`；`aptitude {apBlade:30}`；`prereq [{skill:sk_tianlongbeidao,layer:6},{skill:sk_tianlongmenxinfa,layer:4}]`；天龙门 L4 由清理支系授艺，田归农控制支可持有但不垄断。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - **招式**：正门劈刀 `mv_tianlongzhengdao_zhengmen`（1 重，单体 1.00）；守关截刀 `mv_tianlongzhengdao_jiedao`（3 重，单体 1.05，击退 1，cd1，`1+.12−.05=1.07≈1.05`）；南北回锋 `mv_tianlongzhengdao_nanbei`（5 重，横扫 1.00，7% 内 / cd1）；天龙归锋 `mv_tianlongzhengdao_guifeng`（7 重，绝招单体 2.90，`bf_pozhao` 100%·1，`3−.10=2.90`）。
 - **绝招机器字段**：`mv_tianlongzhengdao_guifeng` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tianlongzhengdao_guifeng}`。四式均为普通持刀伤害，`projection:false`。
 - **被动**：`ps_tianlongzhengdao_zhengmen` 正门（正面命中 +5%）；`ps_tianlongzhengdao_huzheng` 剑刀互证（同装天龙剑时 Z3 +6%）；`ps_tianlongzhengdao_dacheng` 大成（成功破招后获 `bf_gongshi`）。
@@ -196,7 +205,8 @@
 ### 4.3 `sk_tianlonghezongjian` 天龙合宗剑（7 地下 · 兵器 / 剑 · 调和）**（原创扩展）**
 
 - **来源归属**：关外天龙门 `sect_tianlongmen`；与 `skills-qianlong` 的 `sk_tianlongjian`、`sk_tianlongrumenjian` 同体系，与大理天龙寺无关。`sourceChapters:[ch13_feihu,ch14_xueshan]`；`weaponReq:{category:sword}`；`layerStats:{hit:8,parry:7}`。
-- **reqs / 获取**：`attrs {agi:40,wis:35}`；`aptitude {apSword:40}`；`prereq [{skill:sk_tianlongjian,layer:6},{skill:sk_tianlongmenxinfa,layer:5}]`；天龙门 L4 由南北宗清理 / 和解后的教习合授，或完成两宗剑谱互证奇遇后获谱；非掌门独占。
+- **reqs / 获取**：`attrs {agi:45,wis:35}`；`aptitude {apSword:30}`；`prereq [{skill:sk_tianlongjian,layer:6},{skill:sk_tianlongmenxinfa,layer:5}]`；天龙门 L4 由南北宗清理 / 和解后的教习合授，或完成两宗剑谱互证奇遇后获谱；非掌门独占。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - **招式**：关外点剑 `mv_tianlonghezongjian_dianjian`（1 重，单体 1.00）；南北接锋 `mv_tianlonghezongjian_jiefeng`（3 重，单体 1.10，7% 内 / cd1，`1×1.12≈1.10`）；回关横剑 `mv_tianlonghezongjian_hengjian`（5 重，线 2，1.10，8% 内 / cd2，`0.90×1.29≈1.15` 下调至 1.10）；合宗守关 `mv_tianlonghezongjian_shouguan`（7 重，绝招单体 2.90，`bf_pozhao` 100%·1，`3−.10=2.90`）。
 - **绝招机器字段**：`mv_tianlonghezongjian_shouguan` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_tianlonghezongjian_shouguan}`。四式均为普通持剑伤害，`projection:false`。
 - **被动**：`ps_tianlonghezongjian_jiefeng` 接锋（正面招架 +5%）；`ps_tianlonghezongjian_huzheng` 剑刀互证（同装天龙刀时 Z3 +6%）；`ps_tianlonghezongjian_dacheng` 合宗（每轮首次切换剑刀后 `ct +50`）。
@@ -204,7 +214,8 @@
 ### 4.4 `sk_miaojiazhang` 苗家守正掌（7 地下 · 拳脚 / 拳掌 · 调和）**（原创扩展）**
 
 - **来源归属**：苗家 `sect_miaojia`；与 `skills-qianlong` 的 `sk_miaojiaquan`、`sk_miaojiaxinfa` 同属苗家体系。原著未见此固定掌名，故名称、招式与机制均标原创。`sourceChapters:[ch13_feihu,ch14_xueshan]`；`layerStats:{hit:7,parry:8}`。
-- **reqs / 获取**：`attrs {str:38,agi:38,wil:35}`；`aptitude {apFist:40}`；`prereq [{skill:sk_miaojiaquan,layer:6},{skill:sk_miaojiaxinfa,layer:6}]`；苗家 L4 由家主或教习传授，或完成胡苗旧怨互证后获家谱拳理旁篇；主角与其他获认可者均可学。
+- **reqs / 获取**：`attrs {str:45,agi:35}`；`aptitude {apFist:30}`；`prereq [{skill:sk_miaojiaquan,layer:6},{skill:sk_miaojiaxinfa,layer:6}]`；苗家 L4 由家主或教习传授，或完成胡苗旧怨互证后获家谱拳理旁篇；主角与其他获认可者均可学。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1,agi:1}},{layer:9,attrs:{str:1,agi:1}}]`。
 - **招式**：正门推掌 `mv_miaojiazhang_tuizhang`（1 重，单体 1.00）；听风截腕 `mv_miaojiazhang_jiewan`（3 重，单体 0.95，`bf_pozhao` 50%·1，`1−.10×.5=.95`）；守正回身 `mv_miaojiazhang_huishen`（5 重，横扫 1.00，7% 内 / cd1）；回面守隙 `mv_miaojiazhang_huimian`（7 重，绝招单体 2.90，`bf_shoushi` 2 回合，`3−.10=2.90`）。
 - **绝招机器字段**：`mv_miaojiazhang_huimian` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_miaojiazhang_huimian}`。四式均为近身掌法，`projection:false`。
 - **被动**：`ps_miaojiazhang_shouzheng` 守正（正面招架 +5%）；`ps_miaojiazhang_quanjian` 拳剑相参（同装苗家剑时两门 Z3 各 +4%）；`ps_miaojiazhang_dacheng` 大成（每战首次成功破招后获 `bf_dongxi` 1 回合）。
@@ -217,7 +228,8 @@
 
 - **来源归属**：药王门 `sect_yaowangmen`；与 `skills-qianlong` 的 `sk_yaowangdujing`、`sk_qixinhaitang`、`sk_yaowangzhenfa`、`sk_yaowangtuna` 同体系。药王门传承与医毒根基有原著依据，固定内功名与本卡招式 **（待考）**，因此不冒充原著定名。
 - **字段**：`sourceChapters:[ch13_feihu,ch14_xueshan]`；`nature:yin`；`inner.meridians:[mer_shoujueyin,mer_renmai]`；`breathProfileRef:txp_yaowangneigong`；`moveSlots:4`；`setTags:[]`。主修承接药王吐纳的手厥阴辨息，并以任脉护中配合医毒调理，两脉均投阴票，故取阴。
-- **reqs / 获取**：`attrs {con:38,wis:42,wil:35}`；`aptitude {apInner:40}`；`skills {med:35,poi:35}`；`prereq [{skill:sk_yaowangtuna,layer:7},{anyOf:[{skill:sk_yaowangzhenfa,layer:6},{skill:sk_yaowangdujing,layer:5}]}]`；药王门 L3 且医 / 毒 / 解毒三线至少两线合格，或程灵素认可后获正本；叛徒持有不影响玩家正途可学。
+- **reqs / 获取**：`attrs {bre:45,wis:35}`；`aptitude {apInner:30}`；`skills {med:35,poi:35}`；`prereq [{skill:sk_yaowangtuna,layer:7},{anyOf:[{skill:sk_yaowangzhenfa,layer:6},{skill:sk_yaowangdujing,layer:5}]}]`；药王门 L3 且医 / 毒 / 解毒三线至少两线合格，或程灵素认可后获正本；叛徒持有不影响玩家正途可学。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wis:1}},{layer:9,attrs:{bre:1,wis:1}}]`。
 - **内功贡献**：`mpMaxPct:26; hpMaxPct:16; attrs:{con:4,wis:4,wil:2}; mpRegen:2.0`，`26+16+2×10+5×2=72`；`stats:{resPoison:10,healPower:5}`。
 - **招式与绝招**：辨息调息 `mv_yaowangneigong_bianxi`（3 重，清自身 1 层毒并获 `bf_huinei` 1）；百草护脉 `mv_yaowangneigong_baicao`（7 重，防守绝招，友方半径 1 各清 1 个 `poison`，自身获 `bf_shoushi` 2）。均 `projection:false`，路线见 §0。
 - **绝招机器字段**：`mv_yaowangneigong_baicao` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:9%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_yaowangneigong_baicao}`。
@@ -226,7 +238,8 @@
 ### 5.2 `sk_yaowanghushoufa` 药王护手法（6 玄上 · 拳脚 / 擒拿 · 阴）**（原创扩展）**
 
 - **来源归属**：药王门 `sect_yaowangmen`；是与既有针法、护手基础配套的近身制敌法，不宣称原著有此固定名称。`sourceChapters:[ch13_feihu,ch14_xueshan]`；`layerStats:{hit:5,effRes:5}`。
-- **reqs / 获取**：`attrs {agi:32,wis:35}`；`aptitude {apFist:35}`；`skills {med:25}`；`prereq [{skill:sk_yaowanghushou,layer:6},{skill:sk_yaowangzhenfa,layer:5}]`；药王门 L2 传授或程灵素羁绊支线授谱。
+- **reqs / 获取**：`attrs {str:40,agi:35}`；`aptitude {apFist:25}`；`skills {med:25}`；`prereq [{skill:sk_yaowanghushou,layer:6},{skill:sk_yaowangzhenfa,layer:5}]`；药王门 L2 传授或程灵素羁绊支线授谱。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - **招式**：探脉手 `mv_yaowanghushoufa_tanmai`（1 重，单体 1.00）；卸腕 `mv_yaowanghushoufa_xiewan`（3 重，0.90，`bf_shouqin(level:4,holdRange:1)` 40%·1）；引手错身 `mv_yaowanghushoufa_cuoshen`（5 重，绕背 0.95，cd2，`0.90×1.24−.15=.966≈.95`）；封门护脉 `mv_yaowanghushoufa_fengmen`（7 重，绝招 2.90，`bf_xueweishoufeng(level:6,acupointRef:targetPrimaryRouteKey)` 50%·1，按封穴成本 `3−.20×.5=2.90`）。
 - **绝招机器字段**：`mv_yaowanghushoufa_fengmen` `MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200; projection:false; meridianRouteRef:mfr_yaowanghushoufa_fengmen}`。四式均为接触式手法，非暗器、非离体劲气，`projection:false`。
 - **被动**：`ps_yaowanghushoufa_renxue` 认穴（点穴效果命中 +5%）；`ps_yaowanghushoufa_hushou` 护手（成功驱散穴封后招架 +8% 至下次行动）；`ps_yaowanghushoufa_dacheng` 大成（每轮首次擒拿失败返还 20% 本招内力）。
@@ -239,7 +252,8 @@
 
 - **来源归属**：八极拳 `sect_bajiquan`；与 `skills-qianlong` 的 `sk_bajiquan`、`sk_tieshankao`、`sk_bajizhuang` 同体系。小说中具体内功名、传承人与动作均 **（待考）**。
 - **字段**：`sourceChapters:[ch13_feihu]`；`nature:yang`；`inner.meridians:[mer_dumai,mer_zuyangming]`；`breathProfileRef:txp_bajixingqi`；`moveSlots:3`；`setTags:[]`。主修承接八极桩的督脉整劲，并以足阳明稳桩发力，两脉均投阳票，故取阳。
-- **reqs / 获取**：`attrs {str:28,con:28}`；`aptitude {apInner:30}`；`prereq [{skill:sk_bajizhuang,layer:6},{skill:sk_bajiquan,layer:5}]`；八极拳支系 L2 传授，或掌门大会守约会武后交流获得。
+- **reqs / 获取**：`attrs {bre:35,wil:30}`；`aptitude {apInner:20}`；`prereq [{skill:sk_bajizhuang,layer:6},{skill:sk_bajiquan,layer:5}]`；八极拳支系 L2 传授，或掌门大会守约会武后交流获得。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - **内功贡献**：`mpMaxPct:17; hpMaxPct:10; attrs:{str:3,con:3,wil:1}; mpRegen:1.5`，`17+10+2×7+5×1.5=48.5`；`stats:{defOut:5,resInjury:5}`。
 - **招式 / 被动**：沉桩行气 `mv_bajixingqi_chenzhuang`（3 重，自身 `bf_wenzhong` 2，6% 内 / cd2 / 收招 900，`projection:false`）；`ps_bajixingqi_zhengjin` 整劲（未移动时拳招 Z3 +5%）；`ps_bajixingqi_kaimen` 开门（突进后效果抵抗 +5%）；`ps_bajixingqi_dacheng` 大成（每战首次击退碰撞后回复 3% MPREF）。玄中无绝招，符合配额 0。
 
@@ -361,6 +375,7 @@
 | FB13-V07 | 外放 | 41 招外放数为 0；无招式保留 `projectionSpreadSteps` |
 | FB13-V08 | 习得 | 每门有门派 / 谱册 / 会武 / 奇遇路径；无个人独占与敌人专用 |
 | FB13-V09 | 来源 | 飞狐所用皆包含 `ch13_feihu`；苗 / 胡 / 天龙 / 药王跨书项含 `ch14_xueshan` |
+| FB13-V10 | 属性 v2 门槛与永久加成 | 14 门按类别 × 品阶带取值，资质均为 `5×grade−5`；每门有 3/6/9 重 `trainingAttrs`，单次 ≤4、单门 ≤12 |
 
 最小测试：分别构建苗人凤、胡斐、田归农、药王门首领与五类精英；验证主运品阶取自实际武学，绝招只按 `MoveDef.ultimate` 识别，调息不推进永久经脉；对所有绝招做固定 RNG 路线回放，并运行 `check_route_unique_for.py`。
 

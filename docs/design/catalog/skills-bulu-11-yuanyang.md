@@ -2,10 +2,10 @@
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的按书补录页；只定义《鸳鸯刀》首领缺口新增武学，并登记本书的复用、来源扩展与桥接结论，不改写既有门派图鉴。
 > **覆盖声明**：本文新增 `sk_zhentiansanshizhang`；`sk_taiyueshibeishou` 仍唯一归 `skills-kangxi.md`，这里只登记复用。冲突时服从作者决定、`docs/00-canon.md`、`docs/decisions/rulings-v1.md` 与各概念唯一归属文档。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/16、`docs/00-canon.md` §3–§7/§9/§12/§16/§18、`design/05`、`design/21`、`catalog/npcs-ch11-yuanyang.md`。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/16/27、`docs/00-canon.md` §3–§7/§9/§12/§16/§18、`design/03` v2、`design/05`、`design/21`、`catalog/npcs-ch11-yuanyang.md`。
 > **引用而不重定义**：字段、招式预算与习得规则见 `design/05`；经脉路线、外放、护体内劲与调息见 `design/21`；穴位见 `design/15`；人物身份见 `design/18` 与 `catalog/npcs-ch11-yuanyang.md`；装备兼容见 `design/10`。
 > **标注约定**：**（原创扩展）**为原著没有的内容；**（待考）**为须以三联 / 广州修订版逐字核对的原著事实；**（待核实）**为尚未联网确认的技术事实；**（待实测）**为需实机回放；**【建议值】**为依赖其他文档的暂定数值。
-> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
+> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；属性门槛与修炼永久加成 v2（AR-27，2026-10-02）。
 
 ---
 
@@ -36,7 +36,8 @@
 | `category / subType / grade` | `unarmed / palm / 7`（地下） |
 | 品阶依据 | 本界首领锚 `G=5`，卓天雄无 `design/21` §11.9.1 的更高具名地位下限；作为 D5 大内高手的代表外功取地下 7，满足 `7≥5`，且不越本界既有地中 8 上限 |
 | `nature · wOut/wIn` | `yang` · `0.75/0.25` |
-| `reqs` | `sk_zhentiansanshizhang`：`attrs {str:40,con:35}`；`aptitude {apFist:40}`；`prereq [{skill:sk_wuyingshou,layer:6}]`；`hard:[aptitude,prereq]` |
+| `reqs` | `sk_zhentiansanshizhang`：`attrs {str:45,con:35}`；`aptitude {apFist:30}`；`prereq [{skill:sk_wuyingshou,layer:6}]`；`hard:[aptitude,prereq]` |
+| `trainingAttrs` | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
 | `layerStats / moveSlots` | `{hit:[3,9],counter:[2,6]}`，10 重合计 `9+6=15`，不越地阶上限 15；`moveSlots:4` |
 | `layers` | 1 试势探门、2 震臂抢中、3 听息辨隙、4 叠势连掌、5 回掌锁门、6 掌势递进、**7 绝招三十掌震阵**、10 圆满 |
 | `setTags / conflicts` | `[] / []` |
@@ -132,6 +133,7 @@
 | YYB-V06 | 外放审计 | 5 招射程均为 1 且无离体劲力表现，全部 `projection:false`，不得填写 `projectionSpreadSteps` |
 | YYB-V07 | 可学习性 | 武学不设 `enemyOnly`；观摩至 6 重，满足硬门槛且卓天雄存活、具结与 R3 后可亲授至 10 重 |
 | YYB-V08 | 复用与桥接 | `sk_taiyueshibeishou` 不在本文重复定义、无需来源扩展；装备桥未同步前不得宣称 `eq_changchangfengshibei` 已满足其 `weaponReq` |
+| YYB-V09 | 属性 v2 门槛与永久加成 | 地下刚猛掌按主 / 次带为 `str 45 / con 35`，资质为 `5×7−5=30`；3/6/9 重 `trainingAttrs` 合计 4，节点均 ≤4 |
 
 测试样例：7 重角色气势 99 时绝招不可用，气势 100 且内力足额时可用并扣 9% 参考内力；路线完成后总收招为 1920 CT。观摩者即使满足属性 / 资质 / 前置，也只能升至 6 重，不能解锁 7 重绝招；完成个人传承条件后才可突破至 10 重。
 
