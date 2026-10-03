@@ -1010,3 +1010,8 @@
     - **DES-items-gifts-spec 05:30 续作**（协调者，磁盘 9 GiB、负载 8 满足条件；驱动 38844，`supervise.r2.out`，说明 `coord_note_0532.md`）。
     - **TOOL-town-gaps-1 05:32 起跑**（开发监督，驱动 38690；Astra 探测不通回退 Sol max）。按开发监督提醒，validate 补 `pnpm install --frozen-lockfile`、`pnpm typecheck`、`pnpm --filter @tianshu/data test` 与 pnpm 可写目录 agent_args（99d4e573）。
 
+  - **10-03 05:36–05:44 协调者**：
+    - ART-cast-polish-ch09 05:36 由追踪者起跑（驱动 63725，codex gpt-6-astra xhigh，基点 9d698f9e，沙箱外 runner w15 两槽）。
+    - ART-ruins-maps 执行器报：九老洞、敦煌地宫只在作者需求里出现，章节文档没有 `sc_*` / `poi_*` ID，按约束「不自造 ID」做不了。协调者采追踪者方案 1：登记并起跑 **DES-ruins-ids**（936a7227；驱动 74820）——九老洞（默认倚天 ch04 峨眉）、敦煌地宫（河西 `rg_hexilongyou`，唐 / 清两套年代）与章节文档其他具名无 ID 的遗迹登记 `sc_*` / `poi_*`；两者合入后登记 ART-ruins-maps-2 接力补图。
+    - **TOOL-catalog-9col 合入**（4aa8c6db，05:37，r3 PASS：双写检查要求可复算键必须出现并相等）。已请开发监督按 `lore_plan.md` 复验 8 个 DES-items-lore（并发 ≤ 4），全部合入后 TOOL-items-catalog 重新生成。
+    - TOOL-rig-sheet 第 7 次运行 05:37 停滞（25 分钟无输出），开发监督的驱动自动续作。
