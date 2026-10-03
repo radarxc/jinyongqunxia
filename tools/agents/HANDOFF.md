@@ -1220,3 +1220,7 @@
       - 解除：entry-split 合入、集成转绿后，把状态清回「未启动」，交 eng3。
     - **lore-1**：07:27 手动第 2 次 `--from validate`，驱动 60953。r3 返修内容：qiAffinity 全表复核为 100，特殊兵器须有正式 qiEffect。
 
+  - **10-03 07:25–07:30 协调者**：
+    - **DES-ruins-ids 合入**（6d3121d7，07:25，r1 PASS）：新增 6 个 `sc_*`（达摩洞、若耶溪墓藏、九老洞 ch04 `rg_bashu`、华山后洞 ch07、敦煌地宫唐 `sc_10_` / 清 `sc_12_` 两相位共用 `poi_hexilongyou_dunhuang_digong`）与 5 个 `poi_*`（WGS84 锚点）；§6 余项：design/20 的若耶溪 / 华山后洞引用、tech/04 `PoiDef` 按章节 / 时代选相位的结构、map yaml 写锚点——留给后续同步任务。登记 **ART-ruins-maps-2**（f052b904：这 6 张，写集 / 校验同第 1 批），追踪者按条件起。
+    - **ENG-19b 合入**（8741f917，07:27，r1 PASS；M1 界面流程）。M1 路径 ENG 项已齐（25 / 17a / 19a / 17 / 19b），剩 CONTENT-ch00a / b / c 与 CONTENT-ch10；开发监督合入后量 entry（20a 后 166.34 / 170），ENG-entry-split 由其登记。
+    - lore-1 第 7 次运行（亲和全量改 100）校验通过，开发监督第 3 次手动复审中。
