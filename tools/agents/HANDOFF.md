@@ -915,3 +915,7 @@
     - ENG-17 第 2 次运行校验失败：`pnpm check` 撞上 build.test 的旧随机超时（7976 ms）——工作区基点 51ba8003 早于 ENG-18e 的夹具化修复，写集又改不到 `packages/data/src/build/**`；supervise 正要起第 3 次（最后一次）运行，必然白跑。
     - 处置（作者 AR-35 授权协调者管驱动）：03:50 停掉 eng3 的两个驱动（12006、12007）、ENG-19a 的第 2 次执行器（14005 / traex 14006 及其 node 子进程）和 ENG-17 正在起的第 3 次（step.py start 9598）。ENG-19a 由协调者 `rebase_task.py` 挪基点 51ba8003 → a7aad304（35 个文件，无冲突；备份引用 `refs/agents-backup/ENG-19a-ui-shell-pre-rebase-10030350`），03:50 另起 `--from validate --max-reviews 1 --max-runs 3 --auto-merge --worker --checks review_checks_eng.md`（pid 26214，日志 `.agents/coord/ENG-19a-ui-shell/supervise.r2.out`）。ENG-17 由开发监督挪基点后 Sol max `--from validate` 复验。
     - eng3 并发 3 的两个位子腾出后会自动起 ENG-12e / ENG-16c；ENG-18b 还在跑（基点同样早于 18e，结束后若撞同一超时，协调者 kill、开发监督挪基点复验）。
+  - **10-03 03:53–04:10 协调者（ENG-19a / ENG-17 复验与首轮审核）**：
+    - ENG-19a 挪基点后第一次复验 03:53 lint 失败：被停掉的第 2 次执行器在最后一分钟已把 `GameUi.vue`、`storage-demo.ts` 恢复成「inert stub」（空 `<template>`，eslint `vue/valid-template-root`）。协调者不走返修说明，直接在工作区 `git rm -f` 两个文件（任务原意、与豁免一致、无引用），停驱动前先置 HOLD-RUNS（开发监督提醒：状态 RUNNING 而 pid 已死时 eng3 会在一分钟内不带说明重拉），03:54 另起第 4 个驱动 `--from validate`（pid 46454，`supervise.r4.out`）。校验通过；审核 r1 FAIL（04:06）：报告仍写「只有 `VITEST_MAX_WORKERS=1` 才过」与「保留兼容空壳」等挪基点前的旧事实、§7 交接不全——都是报告层面的问题，04:07 自动进返修运行；返修后会停在 HOLD-REVIEWS（`--max-reviews 1`），由协调者 `--from review` 复审。
+    - ENG-17 挪基点（开发监督，a7aad304）后 03:56 校验通过；审核 r1 FAIL（04:09）：同样是报告沿用挪基点前「原样 `pnpm check` 超时」的旧说法；交开发监督的驱动自动返修（只需原样复跑并改报告）。
+    - 教训（已记 TODO §5 表）：工作区基点早于 ENG-18e 的 M1 任务，校验失败后先挪基点再复验，不要让执行器带着误导说明返修；停驱动前先置 HOLD-RUNS。

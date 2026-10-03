@@ -43,9 +43,9 @@
 
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
-| ENG-17-booksleep-m1 | traex | 第 2 次运行后 pnpm check 撞上旧基点的 build.test 超时（工作区无 ENG-18e）；03:52 协调者停掉 eng3 驱动与第 3 次执行器，开发监督挪基点后 Sol `--from validate` 复验 | 开发监督另起 |
+| ENG-17-booksleep-m1 | traex | 挪基点 a7aad304 后校验通过，审核 r1 FAIL（报告沿用旧超时说法），返修中 | 33190（开发监督另起，`supervise.r2.out`） |
 | ENG-18b-tiled-regionmap | traex | 第 1 次运行（01:14 起） | eng3 → supervise 12005 |
-| ENG-19a-ui-shell | traex | 第 1 次运行完成；防截断检查把任务内删除 GameUi.vue / storage-demo.ts 判失败，已加豁免（2ca42cd5）；03:52 协调者停掉误导的第 2 次运行，挪基点到 a7aad304 后 `--from validate` 复验中 | 26214（协调者另起，`supervise.r2.out`） |
+| ENG-19a-ui-shell | traex | 挪基点 a7aad304 后校验通过，审核 r1 FAIL（报告旧事实 / 交接不全），04:07 返修中；返修后停 HOLD-REVIEWS 由协调者 `--from review` 复审 | 46454（协调者另起，`supervise.r4.out`） |
 | TOOL-rig-sheet | traex Sol max | 第 3 次运行（审核 r2 FAIL 后返修，03:18 起） | 53693（开发监督另起） |
 | TOOL-catalog-9col | traex Sol max | 复审 r2 FAIL（03:27：双写检查省略键可绕过），等代码池空位自动返修 | 51856（协调者另起） |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | — | HOLD-RUNS：等 TOOL-catalog-9col 合入后挪基点复验（`_handoff/lore_plan.md`） | des34 batch 9492 看护 |
@@ -228,6 +228,7 @@
 | 单独驱动的任务停在 HOLD-REVIEWS（`--max-reviews 1` 返修后不再审） | 另起 `supervise.py <ID> --from review --max-reviews 1 --max-runs 2 --auto-merge --checks <对应 review_checks>`（03:16 TOOL-catalog-9col 就是这样处理的） |
 | 设计任务停在 HOLD-REVIEWS | 手动起 `--from validate`；每个任务最多 3 次，计数记在 `devsup_revalidated.json` |
 | 执行器回退到 GPT-5.5 | 立刻停、改 Sol 重跑（19:10 后 step.py 回退表只剩 Sol，不会再发生） |
+| 校验失败是防截断误判或旧基点的 build.test 超时（工作区早于 ENG-18e） | 别让执行器带着误导说明返修：先把状态置 HOLD-RUNS、停驱动与刚起的执行器，加 shrink_exempt / `rebase_task.py` 挪基点，再另起 `--from validate`（03:50 ENG-17 / 19a 的处置） |
 
 - 每批合入后跑 `pnpm check`；负载低时跑 `pnpm check:perf`，记下 loadavg。
 - 审计报告 `tools/agents/reports/AUDIT-code-20261002.md`（总评 B-）里最严重的问题都已登记成 ENG 任务并陆续合入（16c、08b、16d、14b 等）。
