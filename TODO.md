@@ -23,7 +23,7 @@
   - 情景图：改由 codex 主角精修任务出（hero-a 已入库 50 张插图，hero-b 待合入），Gemini 不再出；`key-scenes.md` 的统计口径待同步（§4）。
   - 城市布局：CITY-layouts-all 03:36 续作（第 4 次运行）；遗迹地图等 ENG-18b；三视图切件 TOOL-rig-sheet 审核两次不过，第 3 次返修中（§3.4、§3.5）。
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
-- **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e 与 TOOL-items-catalog；集成分支 `pnpm check` 02:42 全绿（120 文件 825 用例，entry 129.51 / 170 KiB，webgl 292.75 / 350）。ENG-19a 04:32 合入；在跑 ENG-17（复审）、ENG-18b 与 TOOL-rig-sheet（复审）；eng3 队列还有 19 项（§5）。
+- **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e 与 TOOL-items-catalog；集成分支 `pnpm check` 02:42 全绿（120 文件 825 用例，entry 129.51 / 170 KiB，webgl 292.75 / 350）。ENG-19a（04:32）、ENG-18b（05:09，3ef22aaf）、ENG-17（05:12，7febb5fc）合入——M1 的 25 / 17a / 19a / 17 齐了；在跑 ENG-12e、ENG-19c、TOOL-rig-sheet 返修、TOOL-catalog-9col 续作，ENG-19b 待 eng3 起；eng3 队列还有 18 项（§5）。
 - **分工**（作者 10-02 15:50 / 22:00）：三个 Opus subagent——素材线第二波追踪（codex 执行器）、Gemini 出图员、开发监督；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max；GPT-5.5 禁用）。协调者只规划、登记、裁定、合入。
 - **环境**：磁盘 7 GiB（交换区 33.8 GB 几乎用满），1 分钟负载 8～12；出图 runner 2 槽；eng3 并发 3（§6）。
 
@@ -43,7 +43,6 @@
 
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
-| ENG-17-booksleep-m1 | traex | 冲突手工解、重建 dist 后校验通过，复审 r3 PASS（05:07），合入中 | 18342（协调者另起，`supervise.r4.out`） |
 | TOOL-rig-sheet | traex Sol max | 审核 r4 又 FAIL（切件错分：pelvis_skirt 混入手臂、torso 含前臂残片、侧腿蓝灰楔块），第 7 次运行返修中 | 开发监督另起 |
 | TOOL-catalog-9col | traex Sol max | r2 返修两次停滞（模型无输出）后 05:10 带说明续作（只做双写完整性 + 测试 + 报告） | 27447（协调者另起，`supervise.r3.out`） |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | — | HOLD-RUNS：等 TOOL-catalog-9col 合入后挪基点复验（`_handoff/lore_plan.md`） | des34 batch 9492 看护 |
@@ -215,7 +214,7 @@
 **在跑**（eng3 并发 3 + 单独驱动）：ENG-17（书眠、初眠配点，M1）、ENG-18b（Tiled 区域地图）、ENG-19a（外壳，M1）01:14 起第 1 次运行；TOOL-rig-sheet 第 3 次返修；TOOL-catalog-9col 复审。
 
 **eng3 排队 19 项**（队列顺序即优先级；依赖满足就自动开跑）：ENG-12e-gltf-pilot（ready）、ENG-16c（ready）、ENG-20a（等 18b）、ENG-19b（等 19a + 17）、ENG-20b、ENG-26、ENG-23a、ENG-16e、ENG-18c、CONTENT-ch00b / ch10 / ch00a / ch00c、ENG-27a / 27b / 28a / 28b / 27c、ENG-12d（可选）；TOOL-ingest-cropframe 在队列文件末尾，下次重启生效。
-- **M1 路径**：ENG-25 ✓ → ENG-17a ✓ → ENG-19a ✓（ed8898d6）→ ENG-17（复审中）→ ENG-19b → CONTENT-ch00a / b / c、CONTENT-ch10 → 新游戏 → 序章 → 初眠配点 → 白马冷入口打通。
+- **M1 路径**：ENG-25 ✓ → ENG-17a ✓ → ENG-19a ✓（ed8898d6）→ ENG-17 ✓（7febb5fc，05:12）→ ENG-19b（eng3 自动起）→ CONTENT-ch00a / b / c、CONTENT-ch10 → 新游戏 → 序章 → 初眠配点 → 白马冷入口打通。
 - ENG-24 浏览器冒烟：不下载 Playwright 浏览器包（AR-34），不入队。
 - 开发监督提醒：ENG-17 / 18b / 19a 的工作区建于 ENG-18e 之前，若撞上 build.test 旧超时就挪基点复验。
 
