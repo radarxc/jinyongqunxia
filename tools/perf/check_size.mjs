@@ -4,14 +4,22 @@ import { gzipSync } from 'node:zlib';
 
 const root = process.cwd();
 const distDir = resolve(root, 'apps/game/dist');
-const budgetPath = resolve(root, 'tools/perf/budgets.json');
-const budgets = JSON.parse(await readFile(budgetPath, 'utf8'));
+const budgets = JSON.parse(await readFile(resolve(root, 'tools/perf/budgets.json'), 'utf8'));
 const manifest = JSON.parse(await readFile(resolve(distDir, '.vite/manifest.json'), 'utf8'));
-const records = [];
+let sizeGroups;
+try {
+  sizeGroups = JSON.parse(await readFile(resolve(distDir, '.vite/size-groups.json'), 'utf8'));
+} catch (error) {
+  throw new Error('SIZE_SESSION_GROUP_MISSING:size-groups.json', { cause: error });
+}
 
+const gzipCache = new Map();
 async function gzipKiB(file) {
-  const bytes = await readFile(resolve(distDir, file));
-  return gzipSync(bytes, { level: 9 }).byteLength / 1024;
+  if (!gzipCache.has(file)) {
+    const bytes = await readFile(resolve(distDir, file));
+    gzipCache.set(file, gzipSync(bytes, { level: 9 }).byteLength / 1024);
+  }
+  return gzipCache.get(file);
 }
 
 function findEntry() {
@@ -29,9 +37,8 @@ async function gzipClosure(entryKey, excludedPrefixes = []) {
       !file.endsWith('.js') ||
       seenFiles.has(file) ||
       excludedPrefixes.some((prefix) => fileName.startsWith(prefix))
-    ) {
+    )
       return 0;
-    }
     seenFiles.add(file);
     return gzipKiB(file);
   };
@@ -50,80 +57,152 @@ async function gzipClosure(entryKey, excludedPrefixes = []) {
   return visit(entryKey);
 }
 
+function readGroup(name) {
+  if (sizeGroups.schemaVersion !== 'size-groups.v1')
+    throw new Error('SIZE_SESSION_GROUP_INVALID:schemaVersion');
+  const files = sizeGroups.groups?.[name];
+  if (
+    !Array.isArray(files) ||
+    files.length === 0 ||
+    files.some((file) => typeof file !== 'string' || !file.endsWith('.js'))
+  )
+    throw new Error(`SIZE_SESSION_GROUP_MISSING:${name}`);
+  return files;
+}
+
+function readSubsystems() {
+  const groups = sizeGroups.groups?.subsystems;
+  if (!groups || typeof groups !== 'object' || Array.isArray(groups))
+    throw new Error('SIZE_SUBSYSTEM_GROUP_MISSING:subsystems');
+  const required = ['dialogue', 'region', 'battle', 'town'];
+  for (const name of required) {
+    const files = groups[name];
+    if (
+      !Array.isArray(files) ||
+      files.length === 0 ||
+      files.some((file) => typeof file !== 'string' || !file.endsWith('.js'))
+    )
+      throw new Error(`SIZE_SUBSYSTEM_GROUP_MISSING:${name}`);
+  }
+  const labels = { dialogue: '对话 / Ink', region: '区域', battle: '战斗', town: '城镇' };
+  return required.map((name) => ({ name: labels[name], files: groups[name] }));
+}
+
+async function gzipFiles(files) {
+  let total = 0;
+  for (const file of new Set(files)) total += await gzipKiB(file);
+  return total;
+}
+
 const emittedJs = (await readdir(resolve(distDir, 'assets'))).filter((file) =>
   file.endsWith('.js'),
 );
 const entry = findEntry();
 const entryKey = Object.entries(manifest).find(([, item]) => item === entry)?.[0];
 if (!entryKey) throw new Error('SIZE_ENTRY_KEY_MISSING');
-records.push({
+const shellRecord = {
   name: 'entry',
   file: entry.file,
   size: await gzipClosure(entryKey, ['render-', 'render.', 'book-']),
   budget: budgets.chunks.entry,
-});
+};
 
+const sessionParts = [
+  { name: 'worker shell', files: readGroup('workerShell') },
+  { name: 'session static', files: readGroup('sessionStatic') },
+  { name: 'base content', files: readGroup('baseContent') },
+];
+const sessionFiles = new Set(sessionParts.flatMap((part) => part.files));
+const measuredSessionParts = await Promise.all(
+  sessionParts.map(async (part) => ({ ...part, size: await gzipFiles(part.files) })),
+);
+const sessionRecord = {
+  name: 'session total',
+  file: [...sessionFiles].join(', '),
+  size: await gzipFiles(sessionFiles),
+  budget: budgets.chunks.session,
+};
+const subsystemRecords = await Promise.all(
+  readSubsystems().map(async ({ name, files }) => {
+    const incremental = files.filter((file) => !sessionFiles.has(file));
+    return { name, file: incremental.join(', '), size: await gzipFiles(incremental), budget: null };
+  }),
+);
+
+const existingRecords = [];
 for (const name of ['render', 'render-webgpu', 'basis', 'devtools']) {
   const file = emittedJs.find(
     (candidate) => candidate === `${name}.js` || candidate.startsWith(`${name}-`),
   );
-  records.push({
+  existingRecords.push({
     name,
     file: file ?? 'not emitted',
     size: file ? await gzipKiB(`assets/${file}`) : null,
     budget: budgets.chunks[name],
   });
 }
-
 const bookFiles = emittedJs.filter((file) => file.startsWith('book-'));
-if (bookFiles.length === 0) {
-  records.push({
+if (bookFiles.length === 0)
+  existingRecords.push({
     name: 'book-*',
     file: 'not emitted',
     size: null,
     budget: budgets.content.chapterRulesAndLocale,
   });
-} else {
-  for (const file of bookFiles) {
-    records.push({
+else
+  for (const file of bookFiles)
+    existingRecords.push({
       name: file.replace(/-[A-Za-z0-9_-]+\.js$/, ''),
       file,
       size: await gzipKiB(`assets/${file}`),
       budget: budgets.content.chapterRulesAndLocale,
     });
-  }
-}
 
 const format = (value) => (value === null ? '—' : value.toFixed(2));
-console.log('chunk            gzip KiB   budget KiB   status');
-console.log('---------------  ---------  -----------  ------');
 let failed = false;
-for (const record of records) {
+function printHeader(title) {
+  console.log(`\n${title}`);
+  console.log('chunk            gzip KiB   budget KiB   status');
+  console.log('---------------  ---------  -----------  ------');
+}
+function printRecord(record) {
   const status =
-    record.size === null ? 'not emitted' : record.size <= record.budget ? 'PASS' : 'FAIL';
+    record.status ??
+    (record.size === null
+      ? 'not emitted'
+      : record.budget === null
+        ? '未设门'
+        : record.size <= record.budget
+          ? 'PASS'
+          : 'FAIL');
   if (status === 'FAIL') failed = true;
   console.log(
-    `${record.name.padEnd(15)}  ${format(record.size).padStart(9)}  ${String(record.budget).padStart(11)}  ${status}`,
+    `${record.name.padEnd(15)}  ${format(record.size).padStart(9)}  ${String(record.budget ?? '—').padStart(11)}  ${status}`,
   );
 }
 
-const entrySize = records.find((record) => record.name === 'entry')?.size ?? 0;
-const renderSize = records.find((record) => record.name === 'render')?.size ?? 0;
-const routeTotal = entrySize + renderSize;
-const routeBudget = budgets.routes.webglEntryAndRender;
-const routeStatus = routeTotal <= routeBudget ? 'PASS' : 'FAIL';
-if (routeStatus === 'FAIL') failed = true;
-console.log(
-  `${'webgl total'.padEnd(15)}  ${routeTotal.toFixed(2).padStart(9)}  ${String(routeBudget).padStart(11)}  ${routeStatus}`,
-);
-const webgpuSize = records.find((record) => record.name === 'render-webgpu')?.size;
-if (webgpuSize !== null && webgpuSize !== undefined) {
-  const webgpuTotal = entrySize + webgpuSize;
-  const webgpuBudget = budgets.routes.webgpuEntryAndRender;
-  const webgpuStatus = webgpuTotal <= webgpuBudget ? 'PASS' : 'FAIL';
-  if (webgpuStatus === 'FAIL') failed = true;
-  console.log(
-    `${'webgpu total'.padEnd(15)}  ${webgpuTotal.toFixed(2).padStart(9)}  ${String(webgpuBudget).padStart(11)}  ${webgpuStatus}`,
-  );
-}
+printHeader(`标题页 entry 闭包（预算 ${budgets.chunks.entry} KiB gzip）`);
+printRecord(shellRecord);
+for (const record of existingRecords) printRecord(record);
+const renderSize = existingRecords.find((record) => record.name === 'render')?.size ?? 0;
+const routeRecord = {
+  name: 'webgl total',
+  size: shellRecord.size + renderSize,
+  budget: budgets.routes.webglEntryAndRender,
+};
+printRecord(routeRecord);
+const webgpuSize = existingRecords.find((record) => record.name === 'render-webgpu')?.size;
+if (webgpuSize !== null && webgpuSize !== undefined)
+  printRecord({
+    name: 'webgpu total',
+    size: shellRecord.size + webgpuSize,
+    budget: budgets.routes.webgpuEntryAndRender,
+  });
+
+printHeader(`首次会话闭包（预算 ${budgets.chunks.session} KiB gzip）`);
+for (const part of measuredSessionParts) printRecord({ ...part, budget: null, status: '计入合计' });
+printRecord(sessionRecord);
+
+printHeader('子系统块（只报告，未设门；为首次会话后的增量静态闭包）');
+for (const record of subsystemRecords) printRecord(record);
 if (failed) process.exitCode = 1;

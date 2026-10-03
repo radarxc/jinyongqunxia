@@ -2,6 +2,7 @@
   "unit": "KiB gzip",
   "chunks": {
     "entry": 170,
+    "session": 110,
     "render": 180,
     "render-webgpu": 300,
     "basis": 255,

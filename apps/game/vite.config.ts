@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { gameContentPlugin } from './build/content-plugin';
+import { sizeGroupsPlugin } from './build/size-groups-plugin';
 
 // Core exports pure rule functions; unused barrels must not eagerly run Ink's runtime.
 const treeshake = { moduleSideEffects: [{ test: /\/packages\/core\/src\/.*\.ts$/, sideEffects: false }] };
@@ -35,7 +36,11 @@ export default defineConfig({
         ] },
     }),
   ],
-  worker: { format: 'es', plugins: () => [gameContentPlugin({ copyAssets: false })], rollupOptions: { treeshake } },
+  worker: {
+    format: 'es',
+    plugins: () => [gameContentPlugin({ copyAssets: false }), sizeGroupsPlugin()],
+    rollupOptions: { treeshake },
+  },
   build: {
     target: 'es2022',
     sourcemap: true,
