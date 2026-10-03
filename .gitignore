@@ -18,3 +18,4 @@ apps/game/public/content/
 *.local
 .env.local
 .env.*.local
+.env
