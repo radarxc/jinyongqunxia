@@ -156,6 +156,16 @@
   - portrait/npc_baizizai/ch06_elder_lingxiao_base
   avatar: npc_baizizai/ch06_elder_lingxiao_base.ava256.webp
   bust: npc_baizizai/ch06_elder_lingxiao_base.bust512.webp
+- id: npc_banshuxian
+  file: npc_banshuxian/ch04_elder_guangming_base.mid.webp
+  category: portrait
+  source: por_npc_banshuxian__ch04_elder_guangming_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_banshuxian/ch04_elder_guangming_base
+  avatar: npc_banshuxian/ch04_elder_guangming_base.ava256.webp
+  bust: npc_banshuxian/ch04_elder_guangming_base.bust512.webp
 - id: npc_baobutong
   file: npc_baobutong/ch01_prime_baseform_base.mid.webp
   category: portrait
@@ -992,6 +1002,16 @@
   - portrait/npc_heqian11/ch11_base
   avatar: npc_heqian11/ch11_base.ava256.webp
   bust: npc_heqian11/ch11_base.bust512.webp
+- id: npc_hetaichong
+  file: npc_hetaichong/ch04_elder_guangming_base.mid.webp
+  category: portrait
+  source: por_npc_hetaichong__ch04_elder_guangming_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_hetaichong/ch04_elder_guangming_base
+  avatar: npc_hetaichong/ch04_elder_guangming_base.ava256.webp
+  bust: npc_hetaichong/ch04_elder_guangming_base.bust512.webp
 - id: npc_hetieshou
   file: npc_hetieshou/ch07_youth_leader_base.mid.webp
   category: portrait
