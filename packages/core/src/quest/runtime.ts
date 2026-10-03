@@ -7,12 +7,13 @@ import { compileStoryLines, type CompiledStoryLine, type CompiledStoryNode } fro
 import { DeadlineQueue } from './deadlines';
 import { executeNode } from './executors';
 import type { ConditionFacts } from './condition';
-import type { StoryEvent, StoryRuntimePorts, StoryRuntimeSnapshot, StoryStepResult } from './runtime-models';
+import type { QuestPortEffect, StoryEvent, StoryRuntimePorts, StoryRuntimeSnapshot,
+  StoryStepResult } from './runtime-models';
 import { addUnique, deriveStoryFacts, findLine, nodeReceipt, replaceLine, updateLine } from './runtime-state';
 import { resolveWindow } from './windows';
 
 function noopQuestPorts(): StoryRuntimePorts['quest'] {
-  return { activate: () => undefined, executeEvent: () => undefined };
+  return { commit: () => undefined };
 }
 function event(t: `story/${string}`, lineId: string, nodeId: string, receiptId: string,
   chapterId: string, payload?: JsonValue): StoryEvent {
@@ -22,8 +23,9 @@ function event(t: `story/${string}`, lineId: string, nodeId: string, receiptId: 
 export class StoryRuntime {
   readonly #lines: ReadonlyMap<string, CompiledStoryLine>;
   readonly #ports: StoryRuntimePorts; readonly #clock: GameClock;
-  readonly #deadlines = new DeadlineQueue();
+  #deadlines = new DeadlineQueue();
   #snapshot: StoryRuntimeSnapshot;
+  #portEffects: QuestPortEffect[] | null = null;
 
   public constructor(lines: readonly StoryLine[], options: { readonly nowTick?: number;
     readonly epochId?: string; readonly epochYear?: number; readonly ports?: StoryRuntimePorts;
@@ -47,6 +49,37 @@ export class StoryRuntime {
     this.#rebuildDeadlines();
   }
   public snapshot(): StoryRuntimeSnapshot { return cloneJsonValue(this.#snapshot); }
+  #atomic<T>(operation: () => T): T {
+    const committedSnapshot = this.#snapshot;
+    const committedDeadlines = this.#deadlines;
+    this.#snapshot = cloneJsonValue(committedSnapshot);
+    this.#deadlines = committedDeadlines.clone();
+    const parentEffects = this.#portEffects;
+    if (parentEffects === null) this.#portEffects = [];
+    try {
+      const result = operation();
+      if (parentEffects === null) {
+        const nextSnapshot = this.#snapshot; const nextDeadlines = this.#deadlines;
+        const effects = this.#portEffects;
+        this.#snapshot = committedSnapshot; this.#deadlines = committedDeadlines;
+        this.#portEffects = null;
+        if (effects !== null && effects.length > 0) this.#ports.quest.commit(effects);
+        this.#snapshot = nextSnapshot; this.#deadlines = nextDeadlines;
+      }
+      return result;
+    }
+    catch (error) {
+      this.#snapshot = committedSnapshot;
+      this.#deadlines = committedDeadlines;
+      if (parentEffects === null) this.#portEffects = null;
+      throw error;
+    }
+  }
+  #transactionPorts(): StoryRuntimePorts {
+    return { ...this.#ports, quest: {
+      commit: (effects) => { this.#portEffects?.push(...effects); },
+    } };
+  }
 
   #compiled(lineId: string): CompiledStoryLine {
     const line = this.#lines.get(lineId);
@@ -213,7 +246,8 @@ export class StoryRuntime {
       if (window !== undefined && this.#snapshot.nowTick >= window.closesAtTick) {
         this.#expire(active.lineId, nodeId, events); continue;
       }
-      const execution = executeNode(this.#snapshot, active.lineId, compiled, this.#ports, facts);
+      const execution = executeNode(this.#snapshot, active.lineId, compiled,
+        this.#transactionPorts(), facts);
       this.#snapshot = { ...execution.snapshot, wait: execution.wait };
       if (!execution.completes) return;
       this.#complete(active.lineId, nodeId, events);
@@ -280,6 +314,9 @@ export class StoryRuntime {
     if (alternateTarget !== undefined) this.#enter(lineId, alternateTarget, events);
   }
   public start(): StoryStepResult {
+    return this.#atomic(() => this.#start());
+  }
+  #start(): StoryStepResult {
     const events: StoryEvent[] = []; const main = this.#compiled('main');
     const state = findLine(this.#snapshot, 'main');
     if (state.activeNodeIds.length === 0 && state.completedNodeIds.length === 0)
@@ -290,6 +327,9 @@ export class StoryRuntime {
     this.#stabilize(events); return { snapshot: this.snapshot(), events };
   }
   public activateLine(lineId: string): StoryStepResult {
+    return this.#atomic(() => this.#activateLine(lineId));
+  }
+  #activateLine(lineId: string): StoryStepResult {
     const events: StoryEvent[] = []; const state = findLine(this.#snapshot, lineId);
     if (state.status !== 'available') return { snapshot: this.snapshot(), events };
     const compiled = this.#compiled(lineId);
@@ -315,6 +355,9 @@ export class StoryRuntime {
     this.#stabilize(events); return { snapshot: this.snapshot(), events };
   }
   public chooseDialogue(choiceKey: string): StoryStepResult {
+    return this.#atomic(() => this.#chooseDialogue(choiceKey));
+  }
+  #chooseDialogue(choiceKey: string): StoryStepResult {
     const wait = this.#snapshot.wait; const bridge = this.#ports.dialogue;
     if (wait?.kind !== 'dialogue' || bridge === undefined)
       throw new TypeError('STORY_WAIT_DIALOGUE');
@@ -323,15 +366,17 @@ export class StoryRuntime {
     return { snapshot: this.snapshot(), events: [] };
   }
   public completeDialogue(): StoryStepResult {
-    if (this.#snapshot.wait?.kind === 'dialogue' && this.#snapshot.wait.session.choices.length > 0)
-      throw new TypeError('STORY_DIALOGUE_CHOICE_PENDING');
-    return this.#resume('dialogue');
+    return this.#atomic(() => {
+      if (this.#snapshot.wait?.kind === 'dialogue' && this.#snapshot.wait.session.choices.length > 0)
+        throw new TypeError('STORY_DIALOGUE_CHOICE_PENDING');
+      return this.#resume('dialogue');
+    });
   }
   public completeQuest(questId: string): StoryStepResult {
-    return this.#resolveQuest(questId, 'completed');
+    return this.#atomic(() => this.#resolveQuest(questId, 'completed'));
   }
   public failQuest(questId: string): StoryStepResult {
-    return this.#resolveQuest(questId, 'failed');
+    return this.#atomic(() => this.#resolveQuest(questId, 'failed'));
   }
   #resolveQuest(questId: string, status: 'completed' | 'failed'): StoryStepResult {
     const wait = this.#snapshot.wait;
@@ -340,6 +385,9 @@ export class StoryRuntime {
     return this.#resume('quest', status);
   }
   public choose(choiceKey: string): StoryStepResult {
+    return this.#atomic(() => this.#choose(choiceKey));
+  }
+  #choose(choiceKey: string): StoryStepResult {
     const wait = this.#snapshot.wait;
     if (wait?.kind !== 'choice' || !wait.options.includes(choiceKey))
       throw new TypeError('STORY_CHOICE');
@@ -367,6 +415,9 @@ export class StoryRuntime {
     this.#stabilize(events); return { snapshot: this.snapshot(), events };
   }
   public advanceTo(nowTick: number): StoryStepResult {
+    return this.#atomic(() => this.#advanceTo(nowTick));
+  }
+  #advanceTo(nowTick: number): StoryStepResult {
     if (!Number.isSafeInteger(nowTick) || nowTick < this.#snapshot.nowTick)
       throw new TypeError('STORY_TIME');
     const events: StoryEvent[] = [];

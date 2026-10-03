@@ -37,7 +37,7 @@ function stateFixture(map = mapFixture(), rules: readonly EquipmentRule[] = []) 
     { entries: state.party.equipment.entries.map((slot) => slot.slot === 'mainHand'
       ? { ...slot, itemId: rules[0]!.itemId } : slot) };
   return { ...state, party: { ...state.party, equipment }, chapter: { ...state.chapter,
-    worldMap: createInitialWorldMapState(map) } };
+    chapterId: map.chapterId, worldMap: createInitialWorldMapState(map) } };
 }
 
 describe('RoadPathfinder', () => {

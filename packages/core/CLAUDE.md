@@ -7,8 +7,8 @@
 | 根 | 生命周期 / 内容 |
 |---|---|
 | `meta` | `saveSchema/rulesProtocol/rngProtocol/coreBuild/contentHash`、周目 seed、状态版本、世界 tick、事件序号与五路 RNG |
-| `profile` | 跨书界长期人物：主角与同伴 |
-| `chapter` | 当前书界：定年 / 日历、剧情线、世界物品、店铺、NPC 运行态与章节道具用量 |
+| `profile` | 跨书界长期人物：主角、创角身份、难度 / 规则日志与同伴 |
+| `chapter` | 当前书界：定年 / 日历、剧情线、序章模式 / 回执、世界物品、店铺、NPC 运行态与章节道具用量 |
 | `party` | 当前队伍：背包、十一装备槽、金钱 |
 | `world` | `navigation` 位置事实与 `pendingTimeAdvance` |
 | `dialogue` | Ink 对话临时态；非对话时为 `null` |
@@ -32,6 +32,10 @@
 - 提交前验证事件 JSON、安全整数及整棵 `GameState`；成功后才推进版本、命令序和事件序。异常或 abort 逆序回滚状态并丢弃 RNG / 事件。`TypeError`、溢出和不变量错误必须上抛，不得伪装成玩法拒绝。
 - 规范事件为 `{ t,seq,stateVersion,causeId,parentSeq,payload }`；同命令 `causeId=stateVersion:commandOrdinal`，首事件无父项，其余默认指向首事件。战斗旧事件形状只保留至 ENG-16c。
 - `migrateUiSessionV1()` 是 schema 1→2 的纯 JSON 迁移：旧 known / chapterUses / itemTargets / location 归入正式状态；非空 battleUses 明确报错，绝不静默丢弃。
+- `createNewGameState()` / `createNewGameCore()` 是 ch00 唯一新档工厂；宿主注入 uint32
+  `masterSeed`。创角只落身份与 `luk/cha=50`，六项战斗底子留给初眠。
+- `rules/setDifficulty` 仅接江湖 / 侠客 / 宗师，战斗中返回 `RULES_BATTLE_ACTIVE`；
+  成功追加 `difficultyLog` 并发 `rules/changed`。
 
 ## 经脉运气与养成入口
 
@@ -63,6 +67,14 @@
 - 对话：内联节点由 `startDialogue()` 直接投影；生产 Ink 使用
   `new InkJsDialogueBridge(loadCompiledStory)`，loader 返回构建期产出的 story JSON。
   `StubInkDialogueBridge` 会以 `INK_ADAPTER_REQUIRED` 快速失败。
+- Core 总线接收 `dialogue/start/continue/choose`；根 `dialogue` 非空即暂停世界。说话人标签
+  为 `#ts:dialogue/speaker speaker=<npcId|player|narrator|book_spirit>`，缺省 `narrator`。
+  对话推进先核对 `storyHash`；结构变化是内部错误，不降格为玩家拒绝。
+- `quest/choose` 对 `dc_00_01` 分两阶段：缺省 `phase:select` 只锁定模式与入口节点；内容到达
+  对应 `n_*_complete` 后提交 `phase:settle + completionNodeId`，原子写路径回执和共同
+  `first_sleep_to_baima` 出口回执；重放不重复产生效果。
+- `StoryRuntime` 所有公开推进在快照与 deadline heap 副本上执行；成功后才发布 quest
+  port 的单次原子 `commit(effects[])`；任意异常回滚 snapshot、deadline 与整个副作用批次。
 - 事件：消费 `StoryEvent` 的 `chapterId/lineId/nodeId/causeId/receiptId/payload`；
   稳定类型含 `story/lineAvailable`、`nodeEntered`、`nodeCompleted`、
   `choiceCommitted`、`nodeExpired`、`lineCompleted`。事件按 `receiptId` 幂等。
@@ -147,6 +159,8 @@
 
 ## 变更记录
 
+- 2026-10-02：ENG-17a 接入 ch00 新档、三档难度切换、core-owned Ink 对话与
+  `dc_00_01`；StoryRuntime 改为快照 / deadline / quest port 原子提交。
 - 2026-10-02：ENG-15 统一非战斗命令总线与 mutation journal；GameState 升至 schema 2 / rules protocol 3，移除 `ui-session.v1` 边车与 `transient` 根。
 - 2026-10-01：`rngProtocol` 升至 2；`intInclusive()` 改为 16 位半字乘加的 32×32→64 位乘积高 32 位映射，保持每次公开抽样恰消费一个 `nextU32()`。协议 1 的浮点缩放结果不得作为协议 2 golden；package-local ESLint 同时禁用 `/` 与 `/=`。
 - 2026-10-01：时钟与状态校验改用 shared 的 BigInt 整数除法；根 `pnpm check` 显式执行 package-local ESLint。

@@ -1,6 +1,6 @@
 import type { ItemDef, MartialArtDef, NpcDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { EquipmentRule, EventAnchor, NpcWorldState, TownMeditationEncounter,
-  TownMeditationPractice } from '@tianshu/core';
+  TownMeditationPractice, InkStoryContent } from '@tianshu/core';
 import type { BattleLaunch } from '../battle/contracts';
 
 export interface MeridianTopology {
@@ -21,6 +21,8 @@ export interface GameContent {
   readonly townNpcPlacements?: readonly TownNpcPlacement[];
   readonly meditationPractice?: readonly TownMeditationPractice[];
   readonly meditationEncounters?: readonly GameTownMeditationEncounter[];
+  /** Compiled Ink registry; the build plugin supplies this once CONTENT-ch00 is present. */
+  readonly inkStories?: readonly InkStoryContent[];
 }
 export type TownLoader = (sceneId: string) => Promise<TownRuntimeDefinition | null>;
 export interface TownNpcPlacement {

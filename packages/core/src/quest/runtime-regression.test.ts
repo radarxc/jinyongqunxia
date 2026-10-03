@@ -155,4 +155,101 @@ describe('StoryRuntime routing invariants', () => {
     expect(result.snapshot.wait).toBeNull();
     expect(result.snapshot.endingTags).toEqual([]);
   });
+
+  it('rolls back a failed choice together with its scheduled timeout', () => {
+    const choice = { id: 'n_choice', type: 'choice', titleKey: 'test.choice',
+      completeOn: 'story/choiceCommitted', timeWindow: { mode: 'absolute', epochId: 'epoch_ch01',
+        opensAt: { year: 1093, month: 1, day: 1, hour: 0, minute: 0 },
+        closesAt: { year: 1093, month: 1, day: 1, hour: 1, minute: 0 },
+        onMiss: { policy: 'alternate', targetNodeId: 'n_timeout' } },
+      payload: { decisionId: 'dc_test', options: [
+        { key: 'missing', textKey: 'test.missing' },
+      ] }, sourceRef: 'test' };
+    const line = mainLine([choice, end('n_timeout', 'timeout')], [
+      { id: 'e_timeout', from: 'n_choice', to: 'n_timeout', trigger: 'timeout', priority: 0 },
+    ]);
+    const runtime = new StoryRuntime([line]); runtime.start();
+    const before = runtime.snapshot();
+
+    expect(() => runtime.choose('missing')).toThrow('STORY_CHOICE_EDGE');
+    expect(runtime.snapshot()).toEqual(before);
+    expect(runtime.advanceTo(600).snapshot.endingTags).toEqual(['timeout']);
+  });
+
+  it('rolls back every node when stabilization exceeds its guard', () => {
+    const nodes = Array.from({ length: 1_001 }, (_, index) => ({
+      id: `n_${index}`, type: 'condition', titleKey: `test.${index}`,
+      completeOn: 'immediate', payload: { expression: { flag: { id: 'fl_open', is: true } } },
+      sourceRef: 'test',
+    }));
+    const edges = Array.from({ length: 1_000 }, (_, index) => ({
+      id: `e_${index}`, from: `n_${index}`, to: `n_${index + 1}`, trigger: 'auto', priority: 0,
+    }));
+    const runtime = new StoryRuntime([mainLine(nodes, edges)], { facts: { flags: { fl_open: true } } });
+    const before = runtime.snapshot();
+
+    expect(() => runtime.start()).toThrow('STORY_STABILIZE_LIMIT');
+    expect(runtime.snapshot()).toEqual(before);
+  });
+
+  it('does not publish quest-port effects before a failed stabilization commits', () => {
+    const nodes = [{ id: 'n_activate', type: 'quest', titleKey: 'test.quest',
+      completeOn: 'immediate', payload: { inlineEvent: { eventKey: 'test/activate', actions: [] } },
+      sourceRef: 'test' }, ...Array.from({ length: 1_001 }, (_, index) => ({
+      id: `n_gate_${index}`, type: 'condition', titleKey: `test.${index}`,
+      completeOn: 'immediate', payload: { expression: { flag: { id: 'fl_open', is: true } } },
+      sourceRef: 'test',
+    }))];
+    const edges = Array.from({ length: 1_001 }, (_, index) => ({ id: `e_${index}`,
+      from: index === 0 ? 'n_activate' : `n_gate_${index - 1}`, to: `n_gate_${index}`,
+      trigger: 'auto', priority: 0 }));
+    const effects: string[] = [];
+    const runtime = new StoryRuntime([mainLine(nodes, edges)], {
+      facts: { flags: { fl_open: true } }, ports: { quest: { commit: (batch) => {
+        effects.push(...batch.filter((entry) => entry.type === 'executeEvent')
+          .map((entry) => entry.eventKey));
+      } } },
+    });
+    expect(() => runtime.start()).toThrow('STORY_STABILIZE_LIMIT');
+    expect(effects).toEqual([]);
+  });
+
+  it('rolls back state, deadlines and all effects when an atomic port batch fails', () => {
+    const inline = (id: string, eventKey: string) => ({ id, type: 'quest',
+      titleKey: `test.${id}`, completeOn: 'immediate', payload: { inlineEvent: { eventKey,
+        actions: [{ id: `${id}_action`, op: 'test/op' }] } }, sourceRef: 'test' });
+    const choice = { id: 'n_wait', type: 'choice', titleKey: 'test.wait',
+      completeOn: 'story/choiceCommitted', timeWindow: { mode: 'absolute', epochId: 'epoch_ch01',
+        opensAt: { year: 1093, month: 1, day: 1, hour: 0, minute: 0 },
+        closesAt: { year: 1093, month: 1, day: 1, hour: 1, minute: 0 },
+        onMiss: { policy: 'alternate', targetNodeId: 'n_timeout' } },
+      payload: { decisionId: 'dc_test', options: [{ key: 'wait', textKey: 'test.wait' }] },
+      sourceRef: 'test' };
+    const line = mainLine([choice, inline('n_first', 'test/first'),
+      inline('n_second', 'test/second'), end('n_done', 'done')], [
+      { id: 'e_timeout', from: 'n_wait', to: 'n_first', trigger: 'timeout', priority: 0 },
+      { id: 'e_first', from: 'n_first', to: 'n_second', trigger: 'auto', priority: 0 },
+      { id: 'e_second', from: 'n_second', to: 'n_done', trigger: 'auto', priority: 0 },
+    ]);
+    const external: string[] = []; let failSecond = true; let observedAtCommit: unknown;
+    const holder: { runtime?: StoryRuntime } = {};
+    const runtime = new StoryRuntime([line], { ports: { quest: { commit: (batch) => {
+      observedAtCommit = holder.runtime?.snapshot();
+      const staged = [...external];
+      for (const [index, effect] of batch.entries()) {
+        if (effect.type !== 'executeEvent') continue;
+        if (failSecond && index === 1) throw new Error(`PORT_SECOND_FAILED:${effect.eventKey}`);
+        staged.push(effect.eventKey);
+      }
+      external.splice(0, external.length, ...staged);
+    } } } });
+    holder.runtime = runtime;
+    runtime.start(); const before = runtime.snapshot();
+    expect(() => runtime.advanceTo(600)).toThrow('PORT_SECOND_FAILED:test/second');
+    expect(observedAtCommit).toEqual(before); expect(runtime.snapshot()).toEqual(before);
+    expect(external).toEqual([]);
+    failSecond = false;
+    expect(runtime.advanceTo(600).snapshot.endingTags).toEqual(['done']);
+    expect(external).toEqual(['test/first', 'test/second']);
+  });
 });

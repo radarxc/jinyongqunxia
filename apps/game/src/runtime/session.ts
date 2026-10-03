@@ -1,4 +1,4 @@
-import { cloneGameState, createCoreFromState, type Command, type CoreContent,
+import { cloneGameState, createCore, createCoreFromState, projectDialogue, type Command, type CoreContent,
   type GameState } from '@tianshu/core';
 import type { JsonValue } from '@tianshu/shared';
 import type { BattleLaunch, BattleUiCommand } from '../battle/contracts';
@@ -6,7 +6,9 @@ import type { BattleRuntime } from '../battle/runtime';
 import { createSelectors } from '../projection';
 import { createPreviewSession } from './bootstrap';
 import { equipmentRules, type GameContent, type TownLoader } from './content';
-import { ALL_VIEWS, type DirtyView, type GameCommand, type GameRemote, type GameUpdate, type SessionSnapshot } from './contracts';
+import { ALL_VIEWS, type DirtyView, type GameCommand, type GameRemote, type GameUpdate,
+  type NewGameRequest, type SessionSnapshot } from './contracts';
+import { createNewGameSessionState, type MasterSeedSource } from './new-game';
 import { validateSession } from './validate';
 
 const BATTLE_REJECTIONS = new Set([
@@ -39,10 +41,14 @@ function coreContent(content: GameContent, towns: GameContent['towns'], chapterI
     ...(content.meditationEncounters
       ? { meditationEncounters: content.meditationEncounters }
       : {}),
+    ...(content.inkStories ? { inkStories: content.inkStories } : {}),
   };
 }
 function dirtyViews(command: Command): readonly DirtyView[] {
   if (command.t === 'world/tick') return ['hud'];
+  if (command.t.startsWith('dialogue/')) return ['dialogue'];
+  if (command.t === 'quest/choose') return ['quests'];
+  if (command.t === 'rules/setDifficulty') return ['hud'];
   if (command.t.startsWith('worldmap/')) return ['hud', 'worldmap', 'townRuntime', 'town'];
   if (command.t === 'inventory/equip' || command.t === 'inventory/unequip')
     return ['inventory', 'equipment'];
@@ -51,12 +57,20 @@ function dirtyViews(command: Command): readonly DirtyView[] {
 }
 
 /** Worker composition of core functions. This adapter defines no stat or combat formulas. */
-export function createGameSession(content: GameContent, initial = createPreviewSession(content),
-  loadTown?: TownLoader): GameRemote {
+function defaultSession(content: GameContent, demo: boolean): SessionSnapshot {
+  return demo ? createPreviewSession(content) : createCore().snapshot();
+}
+export interface GameSessionOptions { readonly demo?: boolean; readonly seedSource?: MasterSeedSource;
+}
+export function createGameSession(content: GameContent, initial?: SessionSnapshot,
+  loadTown?: TownLoader, options: GameSessionOptions = {}): GameRemote & {
+    createNewGame(input: NewGameRequest): Promise<GameUpdate> } {
+  // Bare calls retain the legacy test fixture; product hosts always pass an explicit mode.
+  const opening = initial ?? defaultSession(content, options.demo !== false);
   const loadedTowns = [...(content.towns ?? [])];
-  let townDefinition = initial.chapter.town
-    ? loadedTowns.find((entry) => entry.sceneId === initial.chapter.town?.sceneId) : undefined;
-  let state = validateSession(initial, content, townDefinition);
+  let townDefinition = opening.chapter.town
+    ? loadedTowns.find((entry) => entry.sceneId === opening.chapter.town?.sceneId) : undefined;
+  let state = validateSession(opening, content, townDefinition);
   let core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
   const selectors = createSelectors(content, () => townDefinition);
   let battle: BattleRuntime | null = null;
@@ -131,13 +145,18 @@ export function createGameSession(content: GameContent, initial = createPreviewS
   }
   function validated(candidate: SessionSnapshot, definition = townDefinition): SessionSnapshot {
     const next = validateSession(candidate, content, definition);
-    if (next.meta.debugTainted !== initial.meta.debugTainted) throw new Error('SAVE_MODE_INVALID');
+    if (next.meta.debugTainted !== opening.meta.debugTainted) throw new Error('SAVE_MODE_INVALID');
     return next;
   }
   selectors.update(state, ALL_VIEWS);
   return {
-    query: () => ({ ...selectors.query(), battle: battle?.packet(true) ?? null }),
-    snapshot: () => { if (battle) throw new Error('BATTLE_SAVE_UNAVAILABLE'); return cloneGameState(state); },
+    query: () => ({ ...selectors.query(), dialogue: projectDialogue(state),
+      battle: battle?.packet(true) ?? null }),
+    snapshot: () => {
+      if (battle) throw new Error('BATTLE_SAVE_UNAVAILABLE');
+      if (state.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
+      return cloneGameState(state);
+    },
     async validate(candidate) {
       const loaded = await townFor(candidate); validated(candidate, loaded);
     },
@@ -150,7 +169,20 @@ export function createGameSession(content: GameContent, initial = createPreviewS
       core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
       return { accepted: true, changes, events: [] };
     },
+    async createNewGame(input): Promise<GameUpdate> {
+      if (battle) throw new Error('BATTLE_BUSY');
+      const next = createNewGameSessionState(content, input, options.seedSource);
+      state = next; townDefinition = undefined;
+      core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
+      const changes = { ...selectors.update(state, ALL_VIEWS, '新篇已启'),
+        dialogue: projectDialogue(state), battle: null };
+      return { accepted: true, changes, events: [{ t: 'run/created', payload: {
+        runId: state.meta.runId, chapterId: state.chapter.chapterId,
+        difficulty: state.profile.replayRules?.difficulty ?? 'diff_jianghu',
+      } }] };
+    },
     async dispatch(command: GameCommand): Promise<GameUpdate> {
+      if (command.t === 'run/create') return this.createNewGame(command);
       if (isBattleCommand(command)) {
         try { return await battleCommand(command); } catch (error) {
           const result = rejected(error); if (result) return result; throw error;
@@ -185,6 +217,8 @@ export function createGameSession(content: GameContent, initial = createPreviewS
         event.t === 'worldmap/gateBlocked');
       let changes = selectors.update(state, dirtyViews(command), '',
         command.t === 'worldmap/step' && !stepTransition);
+      if (command.t.startsWith('dialogue/')) changes = { ...changes,
+        dialogue: projectDialogue(state) };
       const moved = result.events.find((event) => event.t === 'town/moved');
       const path = moved?.payload && typeof moved.payload === 'object' && !Array.isArray(moved.payload)
         ? (moved.payload as { path?: readonly (readonly [number, number])[] }).path : undefined;

@@ -31,7 +31,7 @@ export function executeNode(
   if (node.type === 'quest') {
     const receipt = `${lineId}/${node.id}/activate`;
     if ('questId' in node.payload) {
-      ports.quest.activate(node.payload.questId, receipt);
+      ports.quest.commit([{ type: 'activate', questId: node.payload.questId, receiptId: receipt }]);
       const facts = { ...snapshot.facts, quests: { ...snapshot.facts.quests,
         [node.payload.questId]: 'active' as const } };
       const eventTicks = { ...snapshot.eventTicks,
@@ -40,8 +40,9 @@ export function executeNode(
         wait: { kind: 'quest', lineId, nodeId: node.id,
         questId: node.payload.questId }, completes: false };
     }
-    ports.quest.executeEvent(node.payload.inlineEvent.eventKey,
-      node.payload.inlineEvent.actions as readonly Readonly<Record<string, JsonValue>>[], receipt);
+    ports.quest.commit([{ type: 'executeEvent', eventKey: node.payload.inlineEvent.eventKey,
+      actions: node.payload.inlineEvent.actions as readonly Readonly<Record<string, JsonValue>>[],
+      receiptId: receipt }]);
     return { snapshot, wait: null, completes: true };
   }
   if (node.type === 'choice') {

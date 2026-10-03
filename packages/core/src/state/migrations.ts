@@ -1,6 +1,8 @@
 import type { JsonValue } from '@tianshu/shared';
 import { CONTENT_HASH_PLACEHOLDER, RULES_PROTOCOL, SAVE_SCHEMA } from './initial';
 import { cloneJsonValue } from './json';
+import { dialogueStateWithLegacyDefaults } from '../dialogue/state';
+import type { DialogueState } from './models';
 
 export interface StateMigrationContext {
   readonly fromContentHash: string; readonly targetSchema: number; readonly remapVersion: string;
@@ -74,6 +76,7 @@ export const migrateUiSessionV1: StateMigration = (old, context) => {
     || (worldMap?.['position'] && row(worldMap['position'], 'MIGRATION_WORLDMAP_INVALID')['nodeId'])
     || 'city_dali';
   const masterSeed = number(meta['masterSeed'], 1);
+  const dialogueValue = game['dialogue'] ?? oldTransient['dialogue'] ?? null;
   return { meta: { ...meta, saveSchema: SAVE_SCHEMA, masterSeed,
     runId: string(meta['runId'], `run_${masterSeed >>> 0}`),
     nextRuntimeOrdinal: number(meta['nextRuntimeOrdinal'], number(meta['stateVersion'], 0) + 1),
@@ -81,14 +84,20 @@ export const migrateUiSessionV1: StateMigration = (old, context) => {
       string(context.fromContentHash, CONTENT_HASH_PLACEHOLDER)), rulesProtocol: RULES_PROTOCOL,
     coreBuild: string(meta['coreBuild'], string(meta['coreVersion'], '0.0.0')),
     debugTainted: meta['debugTainted'] === true || (legacy && source['preview'] === true) },
-    profile: { ...profile, protagonist, companions },
+    profile: { ...profile, protagonist, companions, identity: profile['identity'] ?? null,
+      replayRules: profile['replayRules'] ?? { difficulty: 'diff_jianghu',
+        heavenlyTrialLevel: null, switches: {},
+        difficultyLog: [{ difficulty: 'diff_jianghu', worldTick: number(meta['worldTick'], 0),
+          revision: 1 }], ruleRevision: 1 } },
     chapter: { ...chapter, npcs: known, itemChapterUses: row(usage['chapterUses'] ?? {},
-      'MIGRATION_USAGE_INVALID') },
+      'MIGRATION_USAGE_INVALID'), prologue: chapter['prologue'] ?? { mode: null,
+        routeNodeId: null, completionNodeId: null, exitKey: null, receipts: [] } },
     world: { navigation: { locationId, selectedDestinationId: null },
       pendingTimeAdvance: oldTransient['pendingTimeAdvance'] ?? null },
     party: game['party']!,
     battle: game['battle'] ?? oldTransient['battle'] ?? null,
-    dialogue: game['dialogue'] ?? oldTransient['dialogue'] ?? null };
+    dialogue: (dialogueValue === null ? null : dialogueStateWithLegacyDefaults(
+      dialogueValue as unknown as DialogueState)) as unknown as JsonValue };
 };
 
 export const CORE_STATE_MIGRATIONS: ReadonlyMap<number, StateMigration> = new Map([

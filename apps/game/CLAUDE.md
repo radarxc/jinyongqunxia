@@ -11,7 +11,7 @@
 
 core 默认运行在模块 Worker；仅启动失败或不支持 Worker 时回退主线程。命令通过 CoreHost 串行进入会话适配器，core 纯函数返回新状态，selector 只重建脏分支，再将裁剪投影写入 Pinia shallowRef。组件不持有 GameState，不重算玩法公式，不先行扣物品。
 
-当前默认会话是明确标识的交互演示，使用独立数据库 tianshu-ui-preview。ch01 大地图、旅行时钟、城镇内部和场景请求已装配；正式创角、相遇与内容遭遇仍由后续任务装配。演示进度不自动迁入正式数据库 tianshu。所有示例状态为（原创扩展），不是原著开局或剧情奖励。
+正式入口默认建立 ch00 空白新档；身份与难度由 `createNewGame()` 提交，`masterSeed` 只在浏览器宿主用 `crypto.getRandomValues` 生成。ch01 交互会话只在显式开发 `demo` 模式使用独立数据库 tianshu-ui-preview，绝不自动迁入正式数据库 tianshu。所有演示状态为（原创扩展），不是原著开局或剧情奖励。
 
 大地图定义由 data 校验，权威 `WorldMapState`、整数 A*、旅行事务、城门判定与场景事件均由
 core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`；`worldmap/sceneRequested`
@@ -41,11 +41,11 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 
 ## 桥接与下游接入约定
 
-1. GameRemote 为 dispatch / query / snapshot / validate / restore；GameHost 另有 subscribe / dispose / mode。参数与结果必须可结构化克隆；快照仅交给存档服务。
+1. GameRemote 为 dispatch / query / snapshot / validate / restore；GameHost 另有 subscribe / dispose / mode。参数与结果必须可结构化克隆；快照仅交给存档服务。新档以传输命令 `run/create` 进入，公开便捷入口为 `NewGameHost.createNewGame()`。
 2. dispatch、query、snapshot、restore 共用 FIFO 队列；保存快照排在先前命令之后。订阅返回退订函数；dispose 清理 Worker、监听器并拒绝尚未完成的请求。
 3. GameUpdate 包含 accepted、changes、events 和可选 error。主线程按 changes 合并浅投影；拒绝命令不改 UI 与存档。stateVersion / nextEventSeq 只由 core 事务推进；session 不再拼状态或事件信封。
-4. GameCommand 的非战斗分支直接复用 core `Command` 联合（world tick、大地图、城镇 / 打坐、装备 / 使用物品）；step 必须携带 journeyId 与 expectedTravelledLi。战斗分支暂交既有 BattleRuntime，ENG-16c 再并入同一总线。
-5. dirty 分支含 hud / characters / inventory / equipment / quests / worldmap；旅行步进同时更新 hud 与 worldmap，restore 全量投影。增加玩法写入时同时登记 dirty 分支。
+4. GameCommand 的非战斗分支直接复用 core `Command` 联合（含对话、剧情选择和难度）；step 必须携带 journeyId 与 expectedTravelledLi。战斗分支暂交既有 BattleRuntime，ENG-16c 再并入同一总线。
+5. dirty 分支含 hud / characters / inventory / equipment / quests / dialogue / worldmap；旅行步进同时更新 hud 与 worldmap，restore 全量投影。增加玩法写入时同时登记 dirty 分支。
 6. 未遇见人物在 Worker selector 内变成无姓名、无 NPC ID、无门派、无图片路径和无详情的剪影；相遇数据变化后才开放资料。affinity 沿用 design/18 的 −100..100，不从好感数值推断结交。
 7. 所有非战斗事件都使用 core 的 `seq/stateVersion/causeId/parentSeq/payload` 信封。ENG-08 / 09 / 10 应复用 host.subscribe，禁止另开一份可写 core。
 8. `SessionSnapshot` 就是唯一 `GameState`：known 在 `chapter.npcs`，chapterUses 在 `chapter.itemChapterUses`，itemTargets 已吸收进 CharacterState，location 从 `world.navigation` 投影。`ui-session.v1` 只允许出现在 schema 1 迁移和测试夹具中。
@@ -77,6 +77,8 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 - 保存复用十二手动槽、一个快速槽、三个自动轮换槽。普通保存仅写手动 / 快速槽；特殊旅程检查点保留只读展示与导出，不擅自提供恢复和删除。
 - 覆盖、读档、删除、导入先在模态框确认；快速保存按钮是显式覆盖快速槽的快捷操作。操作期间阻止重复按钮提交。
 - 自动保存使用 ENG-01 的 30 秒节流与三槽轮换；变更后请求保存，30 秒轮询补落最后一次节流变更。hidden / pagehide 强制请求为尽力而为，移动端进程终止落盘仍为（待实测）。
+- 对话期间 `snapshot()` 明确抛 `DIALOGUE_SAVE_UNAVAILABLE`；controller 的事件自动存档请求可到达，
+  但不得生成半段 Ink 存档。书眠同类门禁由 ENG-17 接入。
 - 单槽文件为 TSAV v1（.tsav），正文只含 schema 2 `GameState`；旧 TSUI / `ui-session.v1` 仅可导入并经 1→2 迁移，不再导出。高版本或协议不兼容不会被当作损坏而回退到更老一代。
 - 战外命令总线接通 healPct / mpPct / staPct / dispel / permStat / permMaxPct，`fieldTime` 按时辰换算；战斗专用、复活、临时 Buff 与战斗次数 / 冷却由 ENG-16c 接入活动 `BattleState`。
 - core 命令已支持移动 + 招式 / 待机，以及战斗物品、防御、急性聚气；现有按钮仍按 capability
@@ -103,13 +105,16 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 
 ## 参考资料
 
-以下为技术核实来源，访问日期均为 2026-10-01；不涉及付费服务、价格或远程配额。
+以下为技术核实来源，除单项注明外访问日期均为 2026-10-01；不涉及付费服务、价格或远程配额。
 
 - [Vue shallowRef / markRaw](https://vuejs.org/api/reactivity-advanced.html)、[Vue 大列表与浅响应性能建议](https://vuejs.org/guide/best-practices/performance.html)：深层对象不代理、长列表需虚拟化。
 - [Vite Worker 构建](https://vite.dev/guide/features.html#web-workers)、[Vite 配置加载](https://vite.dev/config/)、[Rolldown 按模块裁剪](https://rolldown.rs/options/treeshake)：模块 Worker URL、构建期 TS 配置与纯导出裁剪；runner 同时查验本地 vite/dist/node/cli.js。
 - [Worker](https://developer.mozilla.org/en-US/docs/Web/API/Worker/Worker)、[ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)、[Object URL](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static)：主流浏览器提供这些接口；Worker 启动仍须处理失败，Object URL 必须回收。
 - [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)：大地图随浏览器刷新节奏绘制，后台标签会暂停；玩法时间只由 Worker 旅行命令推进。
 - [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)、[SHA-256 digest](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest)：客户端存储与校验；digest 要求安全上下文，正式站点须 HTTPS。本机 localhost 可用于开发。
+- [Crypto.getRandomValues](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues)：
+  新档 `masterSeed` 的浏览器熵源；广泛支持且输出适合密码学用途的随机值（访问 2026-10-02）。
+- [inkjs 2.4.0](https://registry.npmjs.org/inkjs/2.4.0)：锁文件采用的 Ink JSON 运行时版本（访问 2026-10-02）。
 - 精确版本来自锁文件并核对 npm registry：[Vue 3.5.43](https://registry.npmjs.org/vue/3.5.43)、[Pinia 4.0.3](https://registry.npmjs.org/pinia/4.0.3)、[Comlink 4.4.2](https://registry.npmjs.org/comlink/4.4.2)、[Vite 8.3.1](https://registry.npmjs.org/vite/8.3.1)。
 - 测试版本同样核对：[Vitest 5.0.3](https://registry.npmjs.org/vitest/5.0.3)、[Vue Test Utils 2.5.1](https://registry.npmjs.org/@vue/test-utils/2.5.1)、[happy-dom 20.14.5](https://registry.npmjs.org/happy-dom/20.14.5)、[fake-indexeddb 6.2.5](https://registry.npmjs.org/fake-indexeddb/6.2.5)。
 - [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)、[ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)：战斗回放分帧与画布尺寸监听；访问日期 2026-10-01，均为广泛支持的基线 API。
@@ -122,6 +127,8 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 - TSAV v1：当前单槽文件信封；头登记 `saveSchema/rulesProtocol/rngProtocol/coreBuild/contentHash`。
 - dirtyRevision / savedRevision：仅属 controller 的落盘追踪序号；I/O 期间若收到后续 core 事件，不会误把新变更当作已保存。它不是玩法时钟或存档 schema 字段。
 - worldmap.v1 / SceneEntry：构建期验证的大地图定义，以及交给 ENG-09 的只读场景入口；都不在渲染层推导。
+- NewGameRequest / DialogueView：前者含身份与江湖 / 侠客 / 宗师难度，seed 由宿主补；
+  后者只投影 story 标识、说话人、文本 key、选择锁定理由与历史。
 - 无新增玩法、人物、物品、穴道或槽位 ID；命名复用 canon §12 与现有内容。
 - BattlePacket / BattleView：Worker 到主线程的全量首包与增量战况包；不是第二份规则状态。
 - onMoveResolved：交 ENG-11 的只读播放钩子，签名为 `(moveId, from, to, result)`。

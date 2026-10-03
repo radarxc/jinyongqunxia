@@ -266,11 +266,45 @@ function validateKnownCharacter(value: unknown): void {
 }
 function validateDialogue(value: unknown): void {
   const dialogue = object(value);
-  keys(dialogue, ['storyId', 'storyHash', 'entryKey', 'storyJsonState', 'randomSeed',
-    'pendingIntents', 'consumedTagKeys']);
+  const required = ['storyId', 'storyHash', 'entryKey', 'storyJsonState', 'randomSeed',
+    'pendingIntents', 'consumedTagKeys'];
+  const optional = ['speakerId', 'textKey', 'choices', 'history'];
+  if (required.some((key) => !(key in dialogue)) ||
+      Object.keys(dialogue).some((key) => !required.includes(key) && !optional.includes(key)))
+    throw new TypeError('STATE_SHAPE');
   for (const field of ['storyId', 'storyHash', 'entryKey', 'storyJsonState']) string(dialogue[field]);
   integer(dialogue['randomSeed'], Number.MIN_SAFE_INTEGER);
   array(dialogue['pendingIntents']); uniqueStrings(dialogue['consumedTagKeys']);
+  if ('speakerId' in dialogue) string(dialogue['speakerId']);
+  if ('textKey' in dialogue && dialogue['textKey'] !== null) string(dialogue['textKey']);
+  for (const value of array(dialogue['choices'] ?? [])) {
+    const choice = object(value); keys(choice, ['choiceIndex', 'textKey', 'unavailableReason']);
+    integer(choice['choiceIndex']); string(choice['textKey']);
+    if (choice['unavailableReason'] !== null) string(choice['unavailableReason']);
+  }
+  for (const value of array(dialogue['history'] ?? [])) {
+    const line = object(value); keys(line, ['speakerId', 'textKey']);
+    string(line['speakerId']); string(line['textKey']);
+  }
+}
+function validateReplayRules(value: unknown): void {
+  const rules = object(value);
+  keys(rules, ['difficulty', 'heavenlyTrialLevel', 'switches', 'difficultyLog', 'ruleRevision']);
+  const difficulties = ['diff_jianghu', 'diff_xiake', 'diff_zongshi'];
+  if (!difficulties.includes(String(rules['difficulty'])) || rules['heavenlyTrialLevel'] !== null)
+    throw new TypeError('STATE_SHAPE');
+  for (const enabled of Object.values(object(rules['switches'])))
+    if (typeof enabled !== 'boolean') throw new TypeError('STATE_SHAPE');
+  let previousRevision = 0;
+  for (const value of array(rules['difficultyLog'])) {
+    const entry = object(value); keys(entry, ['difficulty', 'worldTick', 'revision']);
+    if (!difficulties.includes(String(entry['difficulty']))) throw new TypeError('STATE_SHAPE');
+    integer(entry['worldTick']); const revision = integer(entry['revision'], 1);
+    if (revision <= previousRevision) throw new TypeError('STATE_SHAPE');
+    previousRevision = revision;
+  }
+  integer(rules['ruleRevision'], 1);
+  if (previousRevision > (rules['ruleRevision'] as number)) throw new TypeError('STATE_SHAPE');
 }
 function validateGameStateShape(value: StateRecord): void {
   keys(value, ['meta', 'profile', 'chapter', 'party', 'world', 'battle', 'dialogue']);
@@ -290,12 +324,24 @@ function validateGameStateShape(value: StateRecord): void {
     if (words.length !== 4) throw new TypeError('STATE_SHAPE');
     for (const word of words) integer(word, 0, 0xffff_ffff);
   }
-  const profile = object(value['profile']); keys(profile, ['protagonist', 'companions']);
+  const profile = object(value['profile']);
+  const profileRequired = ['protagonist', 'companions'];
+  const profileOptional = ['identity', 'replayRules'];
+  if (profileRequired.some((key) => !(key in profile)) || Object.keys(profile).some((key) =>
+    !profileRequired.includes(key) && !profileOptional.includes(key))) throw new TypeError('STATE_SHAPE');
   if (profile['protagonist'] !== null) validateCharacter(profile['protagonist']);
   for (const companion of array(profile['companions'])) validateCharacter(companion);
+  if (profile['identity'] !== undefined && profile['identity'] !== null) {
+    const identity = object(profile['identity']);
+    keys(identity, ['name', 'gender', 'appearance', 'pronoun', 'originId']);
+    for (const field of ['name', 'gender', 'appearance', 'pronoun', 'originId']) string(identity[field]);
+  }
+  if (profile['replayRules'] !== undefined) validateReplayRules(profile['replayRules']);
   const chapter = object(value['chapter']);
-  keys(chapter, ['chapterId', 'worldYear', 'clock', 'story', 'worldItems', 'shops',
-    'worldMap', 'town', 'npcs', 'itemChapterUses']);
+  const chapterRequired = ['chapterId', 'worldYear', 'clock', 'story', 'worldItems', 'shops',
+    'worldMap', 'town', 'npcs', 'itemChapterUses'];
+  if (chapterRequired.some((key) => !(key in chapter)) || Object.keys(chapter).some((key) =>
+    !chapterRequired.includes(key) && key !== 'prologue')) throw new TypeError('STATE_SHAPE');
   string(chapter['chapterId']); integer(chapter['worldYear'], Number.MIN_SAFE_INTEGER); validateClock(chapter['clock']);
   validateStory(chapter['story']);
   const worldItems = object(chapter['worldItems']); keys(worldItems, ['entries']);
@@ -319,6 +365,44 @@ function validateGameStateShape(value: StateRecord): void {
     if (npcIds.has(npcId)) throw new TypeError('STATE_SHAPE'); npcIds.add(npcId);
   }
   validateCounters(chapter['itemChapterUses']);
+  if (chapter['prologue'] !== undefined) {
+    const prologue = object(chapter['prologue']);
+    const required = ['mode', 'receipts'];
+    const optional = ['routeNodeId', 'completionNodeId', 'exitKey'];
+    if (required.some((key) => !(key in prologue)) || Object.keys(prologue).some((key) =>
+      !required.includes(key) && !optional.includes(key))) throw new TypeError('STATE_SHAPE');
+    if (prologue['mode'] !== null && !['full', 'summary', 'skip'].includes(String(prologue['mode'])))
+      throw new TypeError('STATE_SHAPE');
+    if (prologue['routeNodeId'] !== undefined && prologue['routeNodeId'] !== null &&
+        !['n_c01', 'n_summary', 'n_skip_direct'].includes(String(prologue['routeNodeId'])))
+      throw new TypeError('STATE_SHAPE');
+    if (prologue['completionNodeId'] !== undefined && prologue['completionNodeId'] !== null &&
+        !['n_full_complete', 'n_summary_complete', 'n_skip_complete']
+          .includes(String(prologue['completionNodeId']))) throw new TypeError('STATE_SHAPE');
+    if (prologue['exitKey'] !== undefined && prologue['exitKey'] !== null &&
+        prologue['exitKey'] !== 'first_sleep_to_baima')
+      throw new TypeError('STATE_SHAPE');
+    if ('routeNodeId' in prologue &&
+        (prologue['mode'] === null) !== (prologue['routeNodeId'] === null))
+      throw new TypeError('STATE_SHAPE');
+    const exitKey = prologue['exitKey'] ?? null;
+    const completionNodeId = prologue['completionNodeId'] ?? null;
+    if ((exitKey === null) !== (completionNodeId === null))
+      throw new TypeError('STATE_SHAPE');
+    const routeByMode = { full: 'n_c01', summary: 'n_summary', skip: 'n_skip_direct' };
+    const completionByMode = { full: 'n_full_complete', summary: 'n_summary_complete',
+      skip: 'n_skip_complete' };
+    const mode = prologue['mode'] as keyof typeof routeByMode | null;
+    if (mode !== null && prologue['routeNodeId'] !== undefined &&
+        prologue['routeNodeId'] !== routeByMode[mode]) throw new TypeError('STATE_SHAPE');
+    if (mode !== null && completionNodeId !== null &&
+        completionNodeId !== completionByMode[mode]) throw new TypeError('STATE_SHAPE');
+    uniqueStrings(prologue['receipts']);
+    const receipts = prologue['receipts'] as readonly string[];
+    if (exitKey !== null && (mode === null ||
+        !receipts.includes(`dc_00_01/${mode}/settled`) ||
+        !receipts.includes('dc_00_01/first_sleep_to_baima'))) throw new TypeError('STATE_SHAPE');
+  }
   const party = object(value['party']); keys(party, ['inventory', 'equipment', 'money']); integer(party['money']);
   const inventory = object(party['inventory']); keys(inventory, ['stacks']);
   for (const entry of array(inventory['stacks'])) { const stack = object(entry); keys(stack, ['itemId', 'count']); string(stack['itemId']); integer(stack['count'], 1); }
