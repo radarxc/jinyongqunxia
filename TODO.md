@@ -47,8 +47,8 @@
 | TOOL-items-regen | traex | 第 1 次运行 30 分钟生成完，校验被 data schema 挡住（`extension.value.attributes` 未定义）→ HOLD，等 ENG-attr-v2-schema 合入后挪基点 `--from validate` | 开发监督 |
 | ENG-attr-v2-schema | traex Sol | 已登记（b7e1101f）：item.v1 各 extension 加可选 attributes 投影（只校验不消费）；依赖 ENG-entry-split（entry 余量） | 开发监督起 |
 | TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；要等 regen 与 tests-discover 合入（否则它的 --check 与 content 测试必红） | 开发监督起 |
-| ENG-19d-m1-flow-test-race | traex Sol | M1 流程测试的 DOM 竞态（只改测试、自证 10 次），09:2x 起 | 81589（开发监督） |
-| ENG-entry-split | traex Sol | 已登记（7f82fe44），07:29 起驱动排队等代码池位；合入前 15 个首屏相关任务 HOLD | 75729（开发监督） |
+| ENG-19d-m1-flow-test-race | traex Sol | r1 PASS（09:48），合入中 | 开发监督 |
+| ENG-entry-split | traex Sol | 第 1 次运行 119 分钟结束，校验中；自报 entry 闭包 169 → 38.9 KiB（Worker 与子系统改为首次会话 / 首次触发加载），合入后解除 15 个暂停任务并起 ENG-attr-v2-schema | 75729（开发监督） |
 
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
