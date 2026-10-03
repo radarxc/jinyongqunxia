@@ -34894,6 +34894,57 @@
     "docs/design/catalog/npcs-ch03-*.md",
     "docs/design/18-npc-and-companions.md"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/build-shell.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-19c-build-shell-test",
+   "title": "游戏工程 · 小修：build-shell.test.ts 不得依赖上一次构建的 dist（生产包无 rig-demo 改到构建后检查，dist 缺失不得空过）",
+   "prompt": "ENG-19c-build-shell-test.md",
+   "deps": [
+    "ENG-19a-ui-shell"
+   ],
+   "writes": [
+    "apps/game/src/build-shell.test.ts",
+    "apps/game/scripts/check-dev-chunks.mjs",
+    "apps/game/scripts/check-dev-chunks.test.*",
+    "package.json"
+   ]
   }
  ]
 }
