@@ -1,7 +1,6 @@
 import type { Rng } from '../../rng';
 
 export type QiNature = 'yin' | 'yang' | 'harmony';
-export type GatherStatus = 'charging' | 'ready';
 
 export interface MeridianNodeInput {
   readonly acupointRef: string;
@@ -46,7 +45,7 @@ export interface MeridianFlowPreview {
   circulationBp: number;
   blockedAt: number | null;
   blockedNode: string | null;
-  disabledReason: null | 'unopened_node' | 'ruptured_node' | 'point_seal_9';
+  disabledReason: null | 'unopened_node' | 'ruptured_node' | 'point_seal_9' | 'occupied_node';
   readonly qualitiesBp: number[];
   readonly jamChancesBp: number[];
   readonly arrivalBp: number[];
@@ -69,13 +68,6 @@ export interface MeridianFlowInput {
   readonly routes: readonly MeridianRouteInput[];
   readonly activeRouteId?: string;
   readonly unitQiHardCap?: number;
-}
-
-export interface GatherState {
-  ct: number;
-  readonly spd: number;
-  status: GatherStatus;
-  skippedActions: number;
 }
 
 export interface RawMeridianProfile {
@@ -114,6 +106,16 @@ export interface ResolveQiMoveInput {
   readonly noCrit?: boolean;
   readonly critRollBp: number;
   readonly critChanceBp: number;
+}
+
+export type CommitQiMoveInput = Omit<ResolveQiMoveInput,
+  'critical' | 'noCrit' | 'critRollBp' | 'critChanceBp'>;
+
+export interface QiGatherStatus {
+  readonly unitId: string; readonly routeId: string; readonly purpose: 'attack' | 'defense' | 'movement';
+  readonly dantianQi: number; readonly routeInFlightQi: number; readonly totalInFlightQi: number;
+  readonly routeCarryCap: number; readonly unitQiHardCap: number; readonly circulationBp: number;
+  readonly canInject: boolean; readonly canAdvance: boolean; readonly full: boolean;
 }
 
 export interface QiMoveResolution {

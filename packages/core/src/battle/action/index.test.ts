@@ -1,9 +1,13 @@
 import { describe, expect, it } from 'vitest';
+import type { ItemDef } from '@tianshu/data/schemas';
+import { floorDivInt } from '@tianshu/shared';
 import { createRng } from '../../rng';
 import { BASIC_MOVE, battleSeed, combatFixture } from '../../testing/combat-fixture';
 import { createBattleState, createMeditationAmbushBattleSetup } from '../encounter';
-import type { BattleMove } from '../types';
-import { advanceBattleToReady, resolveBattleAction } from './index';
+import { createMeridianFlowRuntime, type MeridianFlowInput } from '../meridian-flow';
+import type { BattleCommand, BattleMove, BattleState } from '../types';
+import { advanceBattleTick, advanceBattleToReady, previewBattleRoute, queryBattleAction,
+  queryBattleQi, resolveBattleAction } from './index';
 
 const special: BattleMove = { id: 'mv_test_toujin', powerBp: 10_000, referencePowerBp: 10_000,
   wInBp: 10_000, recovery: 1_000, mpCost: 10, hitZone: 'hand', projection: true,
@@ -12,6 +16,35 @@ const special: BattleMove = { id: 'mv_test_toujin', powerBp: 10_000, referencePo
   targetAcupoint: 'ap_test_joint', affectedRouteRefs: ['mfr_b', 'mfr_a'], autoTargetCap: 2,
   meridianAttackBp: 12_000, range: { min: 1, max: 2 }, delivery: 'ranged',
   shape: { tpl: 'aoe_single' }, hTol: 2, target: 'enemy' };
+
+function battleItem(id = 'it_test_heal', action: NonNullable<ItemDef['use']>['action'] = 'consume'): ItemDef {
+  return { schemaVersion: 'item.v1', id, name: id, kind: 'pill', sub: 'medicine', grade: 1, stack: 9,
+    chapters: 'any', origin: 'expanded', price: 1, flags: [], use: { context: 'battle', action,
+      target: 'self', effects: [{ op: 'healPct', params: { valueBp: 1_000 } }] },
+    assets: { icon: `item/${id}` }, text: { desc: id }, extension: { type: 'generic', value: {} } };
+}
+
+function meridianFixture(unitIds: readonly string[], options: { readonly purpose?: 'attack' | 'defense';
+  readonly steps?: number; readonly hardCap?: number; readonly riskBp?: number } = {}): MeridianFlowInput[] {
+  const stepCount = options.steps ?? 1;
+  return unitIds.map((unitId) => {
+    const nodes = Array.from({ length: stepCount }, (_, index) => ({
+      acupointRef: `ap_test_${index}`, opened: true, fluxCap: 64, lengthUnit: 12, flowBp: 10_000,
+    }));
+    return { unitId, productionPerTick: 64, qiSpeedBp: 10_000, practiceBp: 3_500,
+      unitQiHardCap: options.hardCap ?? 64, nodes, routes: [{ routeId: 'mfr_test',
+        purpose: options.purpose ?? 'attack', steps: nodes.map((node) => ({
+          acupointRef: node.acupointRef, lengthUnit: node.lengthUnit, segmentCt: 60,
+          riskBp: options.riskBp ?? 0 })) }], activeRouteId: 'mfr_test' };
+  });
+}
+
+function assertRejectedUnchanged(state: BattleState, command: BattleCommand, error: string): void {
+  const rng = createRng([9, 8, 7, 6]);
+  const before = JSON.stringify(state); const rngBefore = rng.snapshot();
+  expect(resolveBattleAction(state, command, rng)).toMatchObject({ accepted: false, error });
+  expect(JSON.stringify(state)).toBe(before); expect(rng.snapshot()).toEqual(rngBefore);
+}
 
 describe('shared battle action resolver', () => {
   it('rejects an out-of-turn action without changing state or RNG', () => {
@@ -47,6 +80,82 @@ describe('shared battle action resolver', () => {
       def: 'bf_xueweishoufeng', stacks: 7, fresh: false })]);
   });
 
+  it('uses the committed route release for penetrating Qi instead of the static move hint', () => {
+    const routed = { ...special, id: 'mv_test_routed_effect' as const, releasedQi: 1,
+      meridianRouteRef: 'mfr_test' };
+    const meridians = meridianFixture(['hero', 'enemy_0']);
+    const state = combatFixture({ playerMoves: [routed], meridianInputs: meridians });
+    const runtime = createMeridianFlowRuntime(meridians[0]!); runtime.tick(1);
+    state.meridianByUnit[0]!.flow = runtime.snapshot();
+    state.units[0]!.mp = 400; state.units[1]!.mp = 100;
+
+    expect(resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: routed.id, target: 'enemy_0' } },
+    createRng([0, 0, 0, 9_999])).accepted).toBe(true);
+    const released = state.events.find((event) => event.t === 'qi.moveResolved')?.amount;
+    expect(released).toBeGreaterThan(1);
+    expect(state.units[1]!.foreignQi[0]?.injectedQi).toBe(released);
+  });
+
+  it('keeps two units of one meridian template independent through commits and previews', () => {
+    const routed = { ...BASIC_MOVE, meridianRouteRef: 'mfr_test' };
+    const inputs = meridianFixture(['hero', 'enemy_0']);
+    const state = combatFixture({ meridianInputs: inputs, playerMoves: [routed] });
+    for (let tick = 0; tick < 5; tick += 1) advanceBattleTick(state);
+    const opponentBefore = structuredClone(state.meridianByUnit[1]);
+    const preview = previewBattleRoute(state, 'hero', 'mfr_test');
+    const heldPreview = structuredClone(preview);
+    expect(resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: routed.id, target: 'enemy_0' } },
+    createRng([0, 0, 0, 9_999])).accepted).toBe(true);
+    expect(state.meridianByUnit[1]).toEqual(opponentBefore);
+    expect(queryBattleQi(state, 'hero', 'mfr_test').routeInFlightQi)
+      .toBeLessThan(heldPreview.releasedQi);
+    expect(queryBattleQi(state, 'enemy_0', 'mfr_test').routeInFlightQi).toBe(64);
+    expect(previewBattleRoute(state, 'hero', 'mfr_test').releasedQi).toBe(0);
+    expect(heldPreview.releasedQi).toBe(64);
+  });
+
+  it('advances meridians through a CT jump exactly like individual ticks', () => {
+    const batch = combatFixture({ meridianInputs: meridianFixture(['hero', 'enemy_0']) });
+    batch.openingOrder.splice(0); batch.phase = 'running';
+    batch.units[0]!.ct = 0; batch.units[1]!.ct = -200;
+    batch.units[0]!.buffs.push({ iid: 1, def: 'bf_chaqi', holder: 'hero', source: null,
+      grade: 1, stacks: 1, turnsLeft: 2, fresh: false });
+    const stepped = structuredClone(batch);
+    expect(advanceBattleToReady(batch)).toEqual({ kind: 'unit', unitId: 'hero' });
+    for (let tick = 0; tick < 10; tick += 1) {
+      advanceBattleTick(stepped); stepped.tick += 1;
+      for (const unit of stepped.units) unit.ct += unit.spd;
+    }
+    expect(batch).toEqual(stepped);
+  });
+
+  it('blocks an occupied route and clears the seal projection when its Buff expires', () => {
+    const move = { ...BASIC_MOVE, meridianRouteRef: 'mfr_test' };
+    const state = combatFixture({ playerMoves: [move],
+      meridianInputs: meridianFixture(['hero', 'enemy_0']) });
+    const hero = state.units[0]!;
+    hero.acupointOccupancies.push({ acupointRef: 'ap_test_0', sourceUnitId: 'enemy_0',
+      sourceInnerId: 'sk_test', occupyingQi: 1, digestRatioBp: 20_000, level: 1,
+      remainingOwnActions: 2, affectedRouteRefs: ['mfr_test'] });
+    const command = { t: 'battle/act' as const, actor: hero.id,
+      action: { t: 'skill' as const, move: move.id, target: 'enemy_0' } };
+    assertRejectedUnchanged(state, command, 'MERIDIAN_ROUTE_BLOCKED');
+    advanceBattleTick(state);
+    expect(hero.acupointOccupancies).toEqual([]);
+    expect(queryBattleAction(state, command).enabled).toBe(true);
+    hero.buffs.push({ iid: 1, def: 'bf_xueweishoufeng', holder: hero.id, source: 'enemy_0',
+      grade: 1, key: 'ap_test_0', stacks: 9, turnsLeft: 1, fresh: false });
+    assertRejectedUnchanged(state, command, 'MERIDIAN_ROUTE_BLOCKED');
+    expect(resolveBattleAction(state, { t: 'battle/wait', actor: hero.id },
+      createRng([1, 2, 3, 4])).accepted).toBe(true);
+    expect(hero.buffs).toEqual([]);
+    expect(state.meridianByUnit[0]!.flow.nodes[0]!.sealLevel).toBe(0);
+    state.openingOrder.splice(0, state.openingOrder.length, hero.id); hero.ct = 1_000;
+    expect(queryBattleAction(state, command).enabled).toBe(true);
+  });
+
   it('ticks hostile Qi during CT advance and creates dantian damage', () => {
     const state = combatFixture();
     state.openingOrder.splice(0); state.units[0]!.ct = 900; state.units[1]!.ct = 0;
@@ -59,6 +168,25 @@ describe('shared battle action resolver', () => {
     expect(state.units[0]!.hp).toBe(1_140);
     expect(state.units[0]!.buffs).toEqual([expect.objectContaining({
       def: 'bf_dantianshousun', stacks: 2, turnsLeft: 3, fresh: false })]);
+  });
+
+  it('uses the unit meridian instance production as the hostile-Qi digestion budget', () => {
+    const state = combatFixture({ meridianInputs: meridianFixture(['hero', 'enemy_0']) });
+    const hero = state.units[0]!;
+    expect(hero.qiProductionPerTick).toBe(1);
+    hero.foreignQi.push({ id: 1, sourceUnitId: 'enemy_0', sourceInnerId: 'sk_test',
+      injectedQi: 100, remainingQi: 100, injectedSpeedBp: 10_000,
+      injectionAcupoint: 'ap_test', hitZone: 'body', digestRatioBp: 10_000,
+      reversePath: [{ acupointRef: 'ap_test', lengthUnit: 5 }], stepIndex: 0,
+      remainingTravelTick: 5, arrivedAtTick: 0 });
+
+    advanceBattleTick(state);
+
+    expect(hero.foreignQi[0]?.remainingQi).toBe(36);
+    expect(hero.mp).toBe(336);
+    expect(state.events).toContainEqual(expect.objectContaining({
+      t: 'battle/foreignQiDigested', target: 'hero', amount: 64,
+    }));
   });
 
   it('applies the meditation ambush Buff before the first action and does not charge a stunned move', () => {
@@ -80,6 +208,19 @@ describe('shared battle action resolver', () => {
       action: { t: 'skill', move: 'mv_basic_strike', target: 'enemy' } }, createRng([0, 0, 0, 0])).accepted).toBe(true);
     expect(state.units[0]!.mp).toBe(400); expect(state.units[0]!.ownActions).toBe(1);
     expect(state.units[0]!.ct).toBe(0);
+  });
+
+  it('records a hard-control skip without pretending the submitted action gathered Qi', () => {
+    const state = combatFixture({ meridianInputs: meridianFixture(['hero', 'enemy_0']) });
+    const hero = state.units[0]!; hero.buffs.push({ iid: 1, def: 'bf_xuanyun', holder: hero.id,
+      source: null, grade: 1, stacks: 1, turnsLeft: 1, fresh: false });
+    const beforeFlow = structuredClone(state.meridianByUnit[0]!.flow);
+    const result = resolveBattleAction(state, { t: 'battle/act', actor: hero.id,
+      action: { t: 'acuteQiGather', routeRef: 'mfr_test' } }, createRng([1, 2, 3, 4]));
+    expect(result.accepted).toBe(true);
+    expect(state.events.map((event) => event.t)).toContain('buff/actionSkipped');
+    expect(state.events.map((event) => event.t)).not.toContain('battle/acuteQiGathered');
+    expect(state.meridianByUnit[0]!.flow.activeRouteId).toBe(beforeFlow.activeRouteId);
   });
 
   it('refreshes one dantian-damage instance at the highest level and longest duration', () => {
@@ -201,6 +342,251 @@ describe('shared battle action resolver', () => {
       createRng([1, 2, 3, 4])).accepted).toBe(true);
     expect(repeated.units[0]!.ct).toBe(0);
   });
+
+  it('applies guard stance for one own action with grade-scaled defense and 700 recovery', () => {
+    const guarded = combatFixture(); const plain = combatFixture();
+    Object.assign(guarded.units[0]!, { innerGrade: 4 });
+    expect(resolveBattleAction(guarded, { t: 'battle/act', actor: 'hero',
+      action: { t: 'guard' } }, createRng([1, 2, 3, 4])).accepted).toBe(true);
+    expect(guarded.units[0]!.ct).toBe(300);
+    expect(guarded.units[0]!.buffs).toEqual([
+      expect.objectContaining({ def: 'bf_jiangu', grade: 4, turnsLeft: 1, fresh: false }),
+      expect.objectContaining({ def: 'bf_xieli', grade: 4, turnsLeft: 1, fresh: false }),
+    ]);
+    guarded.units[0]!.facing = 3;
+    const incoming = { t: 'battle/act' as const, actor: 'enemy_0',
+      action: { t: 'skill' as const, move: BASIC_MOVE.id, target: 'hero' } };
+    expect(resolveBattleAction(guarded, incoming, createRng([0, 0, 9999, 0])).accepted).toBe(true);
+    expect(resolveBattleAction(plain, { t: 'battle/wait', actor: 'hero' },
+      createRng([1, 2, 3, 4])).accepted).toBe(true);
+    expect(resolveBattleAction(plain, incoming, createRng([0, 0, 9999, 0])).accepted).toBe(true);
+    expect(guarded.units[0]!.facing).toBe(0);
+    expect(guarded.units[0]!.hp).toBeGreaterThan(plain.units[0]!.hp);
+    expect(guarded.units[0]!.buffs).toHaveLength(2);
+  });
+
+  it('rejects defense route submission until the defense-route commit API exists', () => {
+    const state = combatFixture({ meridianInputs: meridianFixture(['hero', 'enemy_0'],
+      { purpose: 'defense' }) });
+    assertRejectedUnchanged(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'guard', routeRef: 'mfr_test' } }, 'MERIDIAN_ROUTE_BLOCKED');
+  });
+
+  it('performs acute gathering as a zero-RNG 1000-recovery own action', () => {
+    const state = combatFixture({ meridianInputs: meridianFixture(['hero', 'enemy_0']) });
+    const rng = createRng([9, 8, 7, 6]); const before = rng.snapshot();
+    const result = resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'acuteQiGather', routeRef: 'mfr_test' } }, rng);
+    expect(result.accepted).toBe(true); expect(rng.snapshot()).toEqual(before);
+    expect(state.units[0]).toMatchObject({ ct: 0, ownActions: 1, mp: 400 });
+    expect(state.events).toContainEqual(expect.objectContaining({
+      t: 'battle/acuteQiGathered', actor: 'hero', routeId: 'mfr_test' }));
+  });
+
+  it('consumes the F3 route roll before the F6 hit roll for a routed move', () => {
+    const routed: BattleMove = { ...BASIC_MOVE, id: 'mv_test_routed',
+      meridianRouteRef: 'mfr_test' };
+    const vector = [0, 0, 0, 9_999] as const;
+    const proof = createRng(vector);
+    expect([proof.nextU32() % 10_000, proof.nextU32() % 10_000]).toEqual([9_999, 0]);
+    const state = combatFixture({ playerMoves: [routed],
+      meridianInputs: meridianFixture(['hero', 'enemy_0'], { riskBp: 1_200 }) });
+
+    const result = resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: routed.id, target: 'enemy_0' } }, createRng(vector));
+
+    expect(result).toMatchObject({ accepted: true });
+    expect(result.hpDamage).toBeGreaterThan(0);
+    const qiIndex = state.events.findIndex((event) => event.t === 'qi.moveResolved');
+    const damageIndex = state.events.findIndex((event) => event.t === 'battle/damageResolved');
+    expect(qiIndex).toBeGreaterThanOrEqual(0); expect(damageIndex).toBeGreaterThan(qiIndex);
+    expect((state.events[qiIndex]!.payload as { trace: readonly { jammed: boolean }[] })
+      .trace[0]?.jammed).toBe(false);
+  });
+
+  it.each([
+    ['QI_ROUTE_UNAVAILABLE', { t: 'battle/act', actor: 'hero', walkTo: { q: 0, r: 1 },
+      action: { t: 'acuteQiGather', routeRef: 'mfr_test' } }],
+    ['QI_ROUTE_UNAVAILABLE', { t: 'battle/act', actor: 'hero',
+      action: { t: 'acuteQiGather', routeRef: 'mfr_missing' } }],
+    ['DISABLED_BY_STATUS', { t: 'battle/act', actor: 'hero',
+      action: { t: 'acuteQiGather', routeRef: 'mfr_test' } }],
+  ] as const)('rejects acute gather with %s without state or RNG changes', (error, command) => {
+    const state = combatFixture({ meridianInputs: meridianFixture(['hero', 'enemy_0']) });
+    if (error === 'DISABLED_BY_STATUS') state.units[0]!.buffs.push({ iid: 1, def: 'bf_chaqi',
+      holder: 'hero', source: null, grade: 1, stacks: 1, turnsLeft: 1, fresh: false });
+    assertRejectedUnchanged(state, command, error);
+  });
+
+  it('allows full-capacity gathering until circulation completes, then returns QI_CARRY_FULL', () => {
+    const meridians = meridianFixture(['hero', 'enemy_0'], { hardCap: 64 });
+    const state = combatFixture({ meridianInputs: meridians });
+    const runtime = createMeridianFlowRuntime(meridians[0]!); runtime.tick(1);
+    state.meridianByUnit[0]!.flow = runtime.snapshot();
+    expect(runtime.queryGatherStatus('mfr_test')).toMatchObject({
+      totalInFlightQi: 64, canInject: false, canAdvance: true, full: false });
+    expect(resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'acuteQiGather', routeRef: 'mfr_test' } }, createRng([1, 2, 3, 4])).accepted).toBe(true);
+
+    state.openingOrder.splice(0, state.openingOrder.length, 'hero'); state.units[0]!.ct = 1_000;
+    const completed = createMeridianFlowRuntime(meridians[0]!); completed.restore(state.meridianByUnit[0]!.flow);
+    completed.tick(20); state.meridianByUnit[0]!.flow = completed.snapshot();
+    assertRejectedUnchanged(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'acuteQiGather', routeRef: 'mfr_test' } }, 'QI_CARRY_FULL');
+  });
+
+  it('enforces the medical item cap and same-ID two-own-action cooldown (T28/T40)', () => {
+    const herb = battleItem();
+    const state = combatFixture({ playerMedical: 45, itemDefs: [herb],
+      inventory: { stacks: [{ itemId: herb.id, count: 9 }] } });
+    expect(state.units[0]!.itemState.maxUses).toBe(4);
+    const use = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'item' as const, item: herb.id, target: 'hero' } };
+    expect(resolveBattleAction(state, use, createRng([1, 2, 3, 4])).accepted).toBe(true);
+    state.openingOrder.splice(0, state.openingOrder.length, 'hero'); state.units[0]!.ct = 1_000;
+    assertRejectedUnchanged(state, use, 'ON_COOLDOWN');
+    for (let turn = 0; turn < 2; turn += 1) {
+      expect(resolveBattleAction(state, { t: 'battle/wait', actor: 'hero' },
+        createRng([1, 2, 3, 4])).accepted).toBe(true);
+      state.openingOrder.splice(0, state.openingOrder.length, 'hero'); state.units[0]!.ct = 1_000;
+    }
+    expect(resolveBattleAction(state, use, createRng([1, 2, 3, 4])).accepted).toBe(true);
+    state.units[0]!.itemState.uses = 4;
+    state.openingOrder.splice(0, state.openingOrder.length, 'hero'); state.units[0]!.ct = 1_000;
+    assertRejectedUnchanged(state, { ...use, action: { ...use.action, item: 'it_other' } }, 'ILLEGAL_TARGET');
+    assertRejectedUnchanged(state, use, 'LIMIT_REACHED');
+  });
+
+  it('preserves cooldowns for earlier item IDs after using a different item', () => {
+    const itemA = battleItem('it_test_a'); const itemB = battleItem('it_test_b');
+    const state = combatFixture({ itemDefs: [itemA, itemB], inventory: { stacks: [
+      { itemId: itemA.id, count: 2 }, { itemId: itemB.id, count: 1 },
+    ] } });
+    const use = (item: string) => ({ t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'item' as const, item, target: 'hero' } });
+
+    expect(resolveBattleAction(state, use(itemA.id), createRng([1, 2, 3, 4])).accepted).toBe(true);
+    state.openingOrder.splice(0, state.openingOrder.length, 'hero'); state.units[0]!.ct = 1_000;
+    expect(resolveBattleAction(state, use(itemB.id), createRng([1, 2, 3, 4])).accepted).toBe(true);
+    expect(state.units[0]!.itemState.lastBattleUseTurns).toEqual({ it_test_a: 0, it_test_b: 1 });
+    state.openingOrder.splice(0, state.openingOrder.length, 'hero'); state.units[0]!.ct = 1_000;
+    assertRejectedUnchanged(state, use(itemA.id), 'ON_COOLDOWN');
+  });
+
+  it.each([0, 45, 80])('derives itemUsesMax from medical=%i', (medical) => {
+    expect(combatFixture({ playerMedical: medical }).units[0]!.itemState.maxUses)
+      .toBe(3 + floorDivInt(medical, 40));
+  });
+
+  it('shares item button eligibility with commit validation without writing state', () => {
+    const item = battleItem();
+    const state = combatFixture({ itemDefs: [item],
+      inventory: { stacks: [{ itemId: item.id, count: 2 }] } });
+    const use = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'item' as const, item: item.id, target: 'hero' } };
+    const before = JSON.stringify(state);
+    expect(queryBattleAction(state, use)).toEqual({ enabled: true, reason: null });
+    expect(JSON.stringify(state)).toBe(before);
+    expect(resolveBattleAction(state, use, createRng([1, 2, 3, 4])).accepted).toBe(true);
+    state.openingOrder.splice(0, state.openingOrder.length, 'hero'); state.units[0]!.ct = 1_000;
+    const after = JSON.stringify(state);
+    expect(queryBattleAction(state, use)).toEqual({ enabled: false, reason: 'ON_COOLDOWN' });
+    expect(JSON.stringify(state)).toBe(after);
+    assertRejectedUnchanged(state, use, 'ON_COOLDOWN');
+  });
+
+  it('counts ordinary and ultimate skill use once per action even on a miss', () => {
+    for (const ultimate of [false, true]) {
+      const move = { ...BASIC_MOVE, ultimate };
+      const state = combatFixture({ playerMoves: [move] });
+      expect(resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+        action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+      createRng([0, 0, 0, 9_999]))).toMatchObject({ accepted: true, hpDamage: 0 });
+      expect(state.rewardStats.martialUses).toEqual([
+        { unitId: 'hero', skillId: 'sk_basic', uses: ultimate ? 3 : 1 },
+      ]);
+    }
+  });
+
+  it('rejects disabled, absent and illegal-target items transactionally', () => {
+    const herb = battleItem();
+    const disabled = combatFixture({ noItems: true, itemDefs: [herb],
+      inventory: { stacks: [{ itemId: herb.id, count: 1 }] } });
+    const command = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'item' as const, item: herb.id, target: 'hero' } };
+    assertRejectedUnchanged(disabled, command, 'DISABLED_BY_STATUS');
+    const empty = combatFixture({ itemDefs: [herb] });
+    assertRejectedUnchanged(empty, command, 'LIMIT_REACHED');
+    const wrongTarget = combatFixture({ itemDefs: [herb],
+      inventory: { stacks: [{ itemId: herb.id, count: 1 }] } });
+    assertRejectedUnchanged(wrongTarget, { ...command, action: { ...command.action,
+      target: 'enemy_0' } }, 'ILLEGAL_TARGET');
+  });
+
+  it.each(['wall', 'unit'])('blocks a thrown item behind a %s without spending it', (blocker) => {
+    const base = battleItem('it_test_heal', 'throw');
+    const item = { ...base, use: { ...base.use!, target: 'enemy' as const, range: 3 } };
+    const state = combatFixture({ enemies: 2, gridRadius: 3, itemDefs: [item],
+      inventory: { stacks: [{ itemId: item.id, count: 1 }] } });
+    state.units[1]!.pos = { q: 3, r: 0 };
+    if (blocker === 'wall') {
+      Object.assign(state.grid.cells.find((cell) => cell.q === 1 && cell.r === 0)!, { height: 3 });
+    } else state.units[2]!.pos = { q: 1, r: 0 };
+    assertRejectedUnchanged(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'item', item: item.id, target: 'enemy_0' } }, 'NO_LOS');
+  });
+
+  it('rejects healing an inactive target even when it is in range', () => {
+    const base = battleItem();
+    const item = { ...base, use: { ...base.use!, target: 'enemy' as const } };
+    const state = combatFixture({ itemDefs: [item],
+      inventory: { stacks: [{ itemId: item.id, count: 1 }] } });
+    state.units[1]!.active = false; state.units[1]!.state = 'downed'; state.units[1]!.hp = 0;
+    assertRejectedUnchanged(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'item', item: item.id, target: 'enemy_0' } }, 'ILLEGAL_TARGET');
+  });
+
+  it('limits a heavenly pill to one use even without a perBattle declaration', () => {
+    const item = { ...battleItem(), grade: 10 };
+    const state = combatFixture({ itemDefs: [item],
+      inventory: { stacks: [{ itemId: item.id, count: 2 }] } });
+    const command = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'item' as const, item: item.id, target: 'hero' } };
+    expect(resolveBattleAction(state, command, createRng([1, 2, 3, 4])).accepted).toBe(true);
+    state.openingOrder.splice(0, state.openingOrder.length, 'hero'); state.units[0]!.ct = 1_000;
+    state.units[0]!.ownActions = 3;
+    assertRejectedUnchanged(state, command, 'LIMIT_REACHED');
+  });
+
+  it('shares the heavenly-pill limit across all units in one battle', () => {
+    const item = { ...battleItem(), grade: 10 };
+    const state = combatFixture({ itemDefs: [item],
+      inventory: { stacks: [{ itemId: item.id, count: 2 }] } });
+    expect(resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'item', item: item.id, target: 'hero' } },
+    createRng([1, 2, 3, 4])).accepted).toBe(true);
+    assertRejectedUnchanged(state, { t: 'battle/act', actor: 'enemy_0',
+      action: { t: 'item', item: item.id, target: 'enemy_0' } }, 'LIMIT_REACHED');
+  });
+
+  it.each(['consume', 'apply', 'throw', 'dose', 'load'] as const)(
+    'records every %s use and its specified recovery without changing the setup inventory', (action) => {
+      const item = battleItem('it_test_heal', action);
+      const state = combatFixture({ itemDefs: [item],
+        inventory: { stacks: [{ itemId: item.id, count: 2 }] } });
+      state.units[0]!.hp = 600;
+      const rng = createRng([1, 2, 3, 4]); const before = rng.snapshot();
+      expect(resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+        action: { t: 'item', item: item.id, target: 'hero' } }, rng).accepted).toBe(true);
+      expect(state.units[0]!.hp).toBe(720);
+      expect(state.units[0]!.itemState.battleUses[item.id]).toBe(1);
+      expect(state.units[0]!.ct).toBe(action === 'load' ? 0
+        : action === 'throw' || action === 'dose' ? 100 : 200);
+      expect(state.inventory.stacks[0]!.count).toBe(1);
+      expect(state.setup.inventory.stacks[0]!.count).toBe(2);
+      expect(rng.snapshot()).toEqual(before);
+    },
+  );
 
   it('rejects NO_LOS transactionally when a wall appears before submit', () => {
     const ranged = { ...BASIC_MOVE, range: { min: 1, max: 4 }, delivery: 'ranged' as const };

@@ -5,5 +5,6 @@ export * from './formation';
 export * from './geometry';
 export * from './meridian-flow';
 export * from './reaction';
+export * from './rewards';
 export * from './timeline';
 export * from './types';

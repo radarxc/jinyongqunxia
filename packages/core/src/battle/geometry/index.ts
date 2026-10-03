@@ -1,6 +1,6 @@
 import {
   HEX_DIRECTIONS, findHexPath, findReachableHexes, hexDistance, hexKey,
-  lineOfSight, qinggongTier, type HexAim, type HexCoord, type HexDir, type HexPathQuery,
+  lineOfSight, qinggongTier, type HexAim, type HexCoord, type HexDelivery, type HexDir, type HexPathQuery,
 } from '../../hex';
 import { resolveAreaCells } from '../formation';
 import type { BattleMove, BattleState, BattleUnit } from '../types';
@@ -66,6 +66,15 @@ function losCells(state: BattleState, moved?: { readonly id: string; readonly po
 
 function cellAt(state: BattleState, pos: HexCoord) {
   return state.grid.cells.find((cell) => cell.q === pos.q && cell.r === pos.r);
+}
+
+export function hasBattleLineOfSight(state: BattleState, actor: BattleUnit,
+  target: HexCoord, delivery: HexDelivery): boolean {
+  const from = cellAt(state, actor.pos); const to = cellAt(state, target);
+  if (from === undefined || to === undefined) return false;
+  const los = lineOfSight({ from: { ...from, occupied: true }, to: { ...to, occupied: true },
+    delivery, cells: losCells(state) });
+  return los.ok && los.partial <= 1;
 }
 
 function unitPosAt(unit: BattleUnit, actor: BattleUnit, from: HexCoord): HexCoord {

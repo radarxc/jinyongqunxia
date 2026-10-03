@@ -1,5 +1,6 @@
-import { compareCodePoints } from '@tianshu/shared';
+import { compareCodePoints, floorDivInt } from '@tianshu/shared';
 import { hexKey, jumpDistance, movementPoints, type HexCoord, type HexDir } from '../../hex';
+import { createMeridianFlowRuntime } from '../meridian-flow';
 import { createOpeningOrder } from '../timeline';
 import type {
   BattleCondition, BattleGridCell, BattleParticipant, BattleResult, BattleSetup, BattleState, BattleUnit,
@@ -13,6 +14,18 @@ function deepFreeze<T>(value: T): T {
   if (value !== null && typeof value === 'object' && !Object.isFrozen(value)) {
     for (const nested of Object.values(value)) deepFreeze(nested);
     Object.freeze(value);
+  }
+  return value;
+}
+
+function cloneSetupValue<T>(value: T): T {
+  if (Array.isArray(value)) {
+    return value.map((entry) => cloneSetupValue(entry)) as T;
+  }
+  if (value !== null && typeof value === 'object') {
+    const clone: Record<string, unknown> = {};
+    for (const [key, entry] of Object.entries(value)) clone[key] = cloneSetupValue(entry);
+    return clone as T;
   }
   return value;
 }
@@ -31,6 +44,9 @@ export interface BattleSetupInput {
   readonly friendlyFire?: boolean; readonly roundLimit?: number; readonly boss?: boolean;
   readonly winCond?: readonly BattleCondition[]; readonly loseCond?: readonly BattleCondition[];
   readonly drawCond?: readonly BattleCondition[]; readonly meditationUnitRefs?: readonly string[];
+  readonly meridianInputs?: BattleSetup['meridianInputs'];
+  readonly inventory?: BattleSetup['inventory']; readonly itemDefs?: BattleSetup['itemDefs'];
+  readonly rewards?: Partial<BattleSetup['rewards']>;
   readonly grid?: readonly {
     readonly q: number; readonly r: number; readonly height: number; readonly moveCost: number;
     readonly canopy?: number; readonly los?: 'none' | 'partial' | 'full';
@@ -67,6 +83,31 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
   const participants = orderedParticipants(input.participants);
   if (participants.length < 2 || new Set(participants.map((entry) => entry.unitRef)).size !== participants.length) {
     throw new RangeError('BATTLE_SETUP_PARTICIPANTS');
+  }
+  const providedMeridians = input.meridianInputs;
+  if (providedMeridians !== undefined && (providedMeridians.length !== participants.length
+    || new Set(providedMeridians.map((entry) => entry.unitId)).size !== participants.length
+    || providedMeridians.some((entry) => !participants.some((unit) => unit.unitRef === entry.unitId)))) {
+    throw new RangeError('BATTLE_SETUP_MERIDIANS');
+  }
+  const meridianInputs = participants.map((participant) => {
+    const found = providedMeridians?.find((entry) => entry.unitId === participant.unitRef);
+    return found === undefined
+      ? { unitId: participant.unitRef, productionPerTick: 1, qiSpeedBp: 10_000,
+        practiceBp: 8_000, nodes: [], routes: [] }
+      : cloneSetupValue(found);
+  });
+  const rewards = { drops: (input.rewards?.drops ?? []).map((entry) => ({ ...entry })),
+    lootPool: (input.rewards?.lootPool ?? []).map((entry) => ({ ...entry })),
+    lootDraws: input.rewards?.lootDraws ?? 0 };
+  const lootWeight = rewards.lootPool.reduce((total, entry) => total + entry.weight, 0);
+  if (!Number.isSafeInteger(rewards.lootDraws) || rewards.lootDraws < 0
+    || rewards.lootDraws > 0 && rewards.lootPool.length === 0
+    || !Number.isSafeInteger(lootWeight) || lootWeight > 0x1_0000_0000
+    || rewards.drops.some((entry) => !Number.isSafeInteger(entry.count) || entry.count < 1)
+    || rewards.lootPool.some((entry) => !Number.isSafeInteger(entry.count) || entry.count < 1
+      || !Number.isSafeInteger(entry.weight) || entry.weight < 1)) {
+    throw new RangeError('BATTLE_SETUP_REWARDS');
   }
   const meditation = new Set(input.meditationUnitRefs ?? []);
   const defaultPositions = participants.map((participant, index) => ({
@@ -133,7 +174,9 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
       roundLimit: input.roundLimit ?? (input.boss === true ? 60 : 30),
       friendlyFire: input.friendlyFire ?? false, boss: input.boss ?? false }, waves: [],
     returnContext: { sceneRef: input.sceneRef, anchorRef: input.anchorRef, recovery: input.mode === 'spar'
-      ? 'sparRestore' : 'preserve' } };
+      ? 'sparRestore' : 'preserve' }, meridianInputs,
+    inventory: { stacks: (input.inventory?.stacks ?? []).map((stack) => ({ ...stack })) },
+    itemDefs: (input.itemDefs ?? []).map((item) => cloneSetupValue(item)), rewards };
   return deepFreeze(setup);
 }
 
@@ -144,12 +187,16 @@ export const createStoryBattleSetup = (input: Omit<BattleSetupInput, 'entryKind'
 export const createMeditationAmbushBattleSetup = (input: Omit<BattleSetupInput, 'entryKind'>): BattleSetup =>
   createBattleSetup({ ...input, entryKind: 'meditationAmbush' });
 
-type DefaultedBattleUnitField = 'meridianDefenseBp' | 'qiProductionPerTick' | 'reverseQi' | 'redirectedQi';
+type DefaultedBattleUnitField = 'meridianDefenseBp' | 'qiProductionPerTick' | 'reverseQi' | 'redirectedQi'
+  | 'redirectedQiExpiresAtOwnAction'
+  | 'medical' | 'innerGrade' | 'stamina' | 'staminaMax' | 'healingReceivedBp'
+  | 'itemEffects' | 'itemState';
 export type BattleUnitSeed = Omit<BattleUnit, 'unitIndex' | 'side' | 'control' | 'state' | 'active' | 'ct'
   | 'pos' | 'facing' | 'move' | 'jump' | 'waitStreak' | DefaultedBattleUnitField>
   & Partial<Pick<BattleUnit, DefaultedBattleUnitField | 'move' | 'jump' | 'waitStreak'>>;
 function cloneUnitSeed(seed: BattleUnitSeed, participant: BattleParticipant, ct: number,
   initialBuffs: BattleUnit['buffs']): BattleUnit {
+  const medical = seed.medical ?? 0;
   return { ...seed, unitIndex: participant.unitIndex, side: participant.side, control: participant.control,
     state: participant.state, active: participant.state === 'active' || participant.state === 'hidden', ct,
     zoneGuards: { body: { ...seed.zoneGuards.body }, hand: { ...seed.zoneGuards.hand },
@@ -160,9 +207,19 @@ function cloneUnitSeed(seed: BattleUnitSeed, participant: BattleParticipant, ct:
       affectedRouteRefs: [...occupancy.affectedRouteRefs] })),
     meridianDefenseBp: seed.meridianDefenseBp ?? 10_000,
     qiProductionPerTick: seed.qiProductionPerTick ?? 1, reverseQi: seed.reverseQi ?? null,
-    redirectedQi: seed.redirectedQi ?? 0, pos: { q: 0, r: 0 }, facing: 0,
+    redirectedQi: seed.redirectedQi ?? 0,
+    redirectedQiExpiresAtOwnAction: seed.redirectedQiExpiresAtOwnAction ?? null,
+    pos: { q: 0, r: 0 }, facing: 0,
     move: seed.move ?? movementPoints(seed.qinggong), jump: seed.jump ?? jumpDistance(seed.qinggong),
-    waitStreak: seed.waitStreak ?? 0 };
+    waitStreak: seed.waitStreak ?? 0, medical, innerGrade: seed.innerGrade ?? 1,
+    stamina: seed.stamina ?? 100, staminaMax: seed.staminaMax ?? 100,
+    healingReceivedBp: seed.healingReceivedBp ?? 10_000,
+    itemEffects: (seed.itemEffects ?? []).map((effect) => ({ ...effect, params: { ...effect.params } })),
+    itemState: seed.itemState === undefined
+      ? { uses: 0, maxUses: 3 + floorDivInt(medical, 40), battleUses: {}, lastBattleUseTurns: {} }
+      : { uses: seed.itemState.uses, maxUses: 3 + floorDivInt(medical, 40),
+        battleUses: { ...seed.itemState.battleUses },
+        lastBattleUseTurns: { ...seed.itemState.lastBattleUseTurns } } };
 }
 export function createBattleState(setup: BattleSetup, seeds: readonly BattleUnitSeed[]): BattleState {
   let nextBuffIid = 1;
@@ -178,10 +235,25 @@ export function createBattleState(setup: BattleSetup, seeds: readonly BattleUnit
     unit.pos = { ...(initial?.pos ?? { q: 0, r: 0 }) }; unit.facing = initial?.facing ?? 0;
     return unit;
   });
+  const meridianByUnit = setup.participants.map((participant) => {
+    const input = setup.meridianInputs.find((candidate) => candidate.unitId === participant.unitRef);
+    if (input === undefined) throw new RangeError('BATTLE_UNIT_MERIDIAN_MISSING');
+    const runtime = createMeridianFlowRuntime(input);
+    runtime.setIdentity(participant.unitIndex, participant.side === 'player' ? 'hero' : 'normal');
+    const unit = units[participant.unitIndex]!;
+    return { unitId: participant.unitRef, unitIndex: participant.unitIndex,
+      flow: runtime.snapshot({ foreignQi: unit.foreignQi,
+        acupointOccupancies: unit.acupointOccupancies, redirectedQi: unit.redirectedQi,
+        redirectedQiExpiresAtOwnAction: unit.redirectedQiExpiresAtOwnAction }), activeDefense: null,
+      movementProjection: null, innerGuard: null };
+  });
   return { setup, grid: { topology: setup.grid.topology,
     cells: setup.grid.cells.map((cell) => ({ ...cell })) }, units,
     tick: 0, round: 0, actionNo: 0, phase: 'opening', result: null,
-    openingOrder: createOpeningOrder(units, setup.start.initiativeSide), events: [], acceptedCommands: [] };
+    openingOrder: createOpeningOrder(units, setup.start.initiativeSide), meridianByUnit,
+    inventory: { stacks: setup.inventory.stacks.map((stack) => ({ ...stack })) },
+    rewardStats: { martialUses: [], movementActions: [], fullCirculations: [] },
+    events: [], acceptedCommands: [] };
 }
 
 function conditionMet(condition: BattleCondition, state: BattleState): boolean {

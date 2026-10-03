@@ -1,6 +1,4 @@
 import { ceilDivInt, clampInt, floorDivInt } from '@tianshu/shared';
-import type { MeridianFlowCommandContext } from '../meridian-flow';
-import { dispatchMeridianFlowCommand } from '../meridian-flow';
 
 export type TimelineSide = 'player' | 'ally' | 'enemy' | 'neutral';
 export interface TimelineUnit {
@@ -27,7 +25,6 @@ const SIDE_RANK: Readonly<Record<TimelineSide, number>> =
 function initiativeRank(side: TimelineSide, initiative: TimelineSide): number {
   return side === initiative ? -1 : SIDE_RANK[side];
 }
-
 export function createOpeningOrder(
   units: readonly TimelineUnit[], initiative: TimelineSide = 'player',
 ): string[] {
@@ -118,14 +115,4 @@ export function settleTimelineAction(
   unit.ct = clampInt(unit.ct - recovery + unit.pendingShift, -1000, 999);
   unit.pendingShift = 0;
   return recovery;
-}
-
-export function acuteQiGather(
-  unit: TimelineUnit, context: MeridianFlowCommandContext, routeId: string,
-): { readonly accepted: boolean; readonly events: readonly unknown[]; readonly recovery: number } {
-  const result = dispatchMeridianFlowCommand(context, { t: 'qi.acuteGather', routeId });
-  if (!result.accepted) return { accepted: false, events: [], recovery: 0 };
-  const recovery = settleTimelineAction(unit, 1000);
-  return { accepted: true, events: result.events.map((event) => event.t === 'qi.acuteGathered'
-    ? { ...event, t: 'battle/acuteQiGathered' as const } : event), recovery };
 }

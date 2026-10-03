@@ -61,6 +61,9 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 17. NPC 出现同时要求 eraLayer、sceneId 与 presence 匹配；精确格位来自 `townNpcPlacements`。事件只读 `townEventAnchors`，不得由人物简介或城市归属猜坐标。当前生产注册表显式为空，直到内容任务提供权威锚点。
 18. 室内打坐锚点只有对应建筑处于 inside 才投影和受理。`TownRuntime.meditate()` 在 core 内原子完成敌意 NPC 筛选、是否掷骰、RNG、风险、岔气或恢复 / 练功、时钟与 `BattleSetup`；应用只提交内容事实、落盘返回状态并装配 `BattleLaunch`。战斗准备失败不提交状态或 RNG；无正式 encounter 时安全完成 600 tick 且不消费 RNG。
 19. `loop.ts` 仅用墙钟驱动 `world/tick`：固定 100 ms、帧差上限 250 ms、每帧最多 5 次；hidden、菜单、对话、战斗、加载或存档时清积压。Worker 请求未返回时不叠发，旧积压直接丢弃。场景必须显式声明是否运行探索时钟。
+20. ENG-16b 演示 setup 已携带逐单位经脉、战斗背包与奖励声明；runtime 在结束时调用 core
+`computeBattleRewards()`，用独立 `loot` RNG 生成一次并缓存，再以 `battle/rewards` 事件和
+`BattleResultPacket.rewards` 原样交给宿主。应用层不重算使用次数、周天或掉落。
 
 ## 页面与持久化约定
 
@@ -76,7 +79,9 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 - 自动保存使用 ENG-01 的 30 秒节流与三槽轮换；变更后请求保存，30 秒轮询补落最后一次节流变更。hidden / pagehide 强制请求为尽力而为，移动端进程终止落盘仍为（待实测）。
 - 单槽文件为 TSAV v1（.tsav），正文只含 schema 2 `GameState`；旧 TSUI / `ui-session.v1` 仅可导入并经 1→2 迁移，不再导出。高版本或协议不兼容不会被当作损坏而回退到更老一代。
 - 战外命令总线接通 healPct / mpPct / staPct / dispel / permStat / permMaxPct，`fieldTime` 按时辰换算；战斗专用、复活、临时 Buff 与战斗次数 / 冷却由 ENG-16c 接入活动 `BattleState`。
-- 当前生产命令已支持移动 + 招式 / 待机；战斗物品、防御、急性聚气按钮仍按 capability 显式禁用并显示原因，禁止 UI 自算规则。经脉面板仍展示 core 已提供的透劲、占穴、丹田损伤与 Buff。
+- core 命令已支持移动 + 招式 / 待机，以及战斗物品、防御、急性聚气；现有按钮仍按 capability
+  显式禁用并显示原因，待 ENG-16c 接命令总线与只读可用性查询。禁止 UI 自算次数、冷却、
+  路线满载或防御规则。经脉面板仍展示 core 已提供的透劲、占穴、丹田损伤与 Buff。
 - 已有装备 schema 缺数值 modifiers / 执法配置，当前换装只改变装备与背包；不得从说明文本解析出属性、通缉或剧情奖励。正式人物 / 装备汇总接齐后才扩展面板。
 
 ## 素材（图片资源从哪来、怎么进包）
@@ -128,9 +133,12 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 - 【建议值】演示主角初始七项先天均 50，一层黄上太祖长拳、无开穴；core 得 HP=300+(30+4×3)×1=342、MP=200。两名已遇 NPC 与零好感仅供界面演示；正式初态由 ENG-10 创角 / 剧情提供。
 - 【建议值】福缘目前随其他先天显示数值，design/03 的五档词未给出阈值；默认保持真实数值，待上游提供档位映射后改为词并提供设置切换。
 - 依赖后续聚合：真实 NPC 招募、装备 modifiers / lawProfile、战外临时 Buff 的持久解释、任务中文名；默认没有配置便不创建效果或新规则。
-- 已解决：移动、可达集、路径预览及移动 + 招式 / 待机已进入 core resolver；战斗物品、防御与
-  `BattleState.meridianByUnit` 急性聚气仍待 ENG-16b，默认能力禁用，届时只接命令和投影。
 - 已解决：正式 TSAV v1 与 schema 2 已接线，默认演示只导出 TSAV / JSON；旧 TSUI 保留单向迁移。特殊检查点恢复、铁人模式与正式战斗存档条件仍交后续任务。
+- 已解决：移动、可达集、路径预览、逐单位经脉及五类战斗行动已进入 core resolver；ENG-16c
+  仍需接入战斗物品、防御、急性聚气的命令与按钮可用性，并在 `battle/finalize` 把
+  `BattleResultPacket.rewards` 和战斗背包差量写回世界。当前默认能力继续禁用。
+- 依赖 ENG-15：明确战斗副本中的 `itemState.battleUses` 与世界 `usage.battleUses` 的归并 / 清空
+  关系；应用层在该契约落地前不得自行合并。
 - 依赖章节内容装载：默认天龙三名 NPC 加主角、367 件已编译物品，不表示这些物品在正式开局可得。
 - 依赖 ENG-16c：`battleUses` 只存活动 `BattleState`；战外使用传空战斗账本且只提交 `chapterUses`，不得再建应用侧账本。
 - 依赖 ENG-06 / 内容 schema：正式官服装备 lawProfile 与玩家 identityTags 尚未入当前内容；没有配置时城门仅遵循已有通缉状态，不从文案猜执法规则。

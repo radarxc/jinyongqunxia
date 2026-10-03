@@ -1,9 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { ceilDivInt } from '@tianshu/shared';
-import { createRng } from '../../rng';
-import { createGatherState, type MeridianFlowCommandContext } from '../meridian-flow';
 import {
-  acuteQiGather, createOpeningOrder, nextTimelineEntry, settleTimelineAction, type TimelineState,
+  createOpeningOrder, nextTimelineEntry, settleTimelineAction, type TimelineState,
   type TimelineUnit,
 } from './index';
 
@@ -110,14 +108,5 @@ describe('battle timeline', () => {
     expect(settleTimelineAction(actor, 901, 500, 30, 5)).toBe(981);
     expect(actor.ct).toBe(59);
     expect(actor.pendingShift).toBe(0);
-  });
-
-  it('does not consume RNG in rejected acute gathering', () => {
-    const battleRng = createRng([1, 2, 3, 4]);
-    const before = battleRng.snapshot();
-    const rawContext: unknown = { battleRng, gather: createGatherState(100), flow: {} };
-    const context = rawContext as MeridianFlowCommandContext;
-    expect(acuteQiGather(unit({ id: 'u', unitIndex: 0 }), context, 'route').accepted).toBe(false);
-    expect(battleRng.snapshot()).toEqual(before);
   });
 });

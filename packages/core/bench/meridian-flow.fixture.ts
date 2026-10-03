@@ -18,3 +18,17 @@ function stressFixture(): MeridianFlowInput {
 export function runMeridianTickWorkload(): void {
   createMeridianFlowRuntime(stressFixture()).tick(1000);
 }
+
+export function runMeridianFastForwardWorkload(): void {
+  createMeridianFlowRuntime(stressFixture()).tick(1_000_000);
+}
+
+export function createMeridianPreviewWorkload(): () => void {
+  const runtime = createMeridianFlowRuntime(stressFixture());
+  runtime.tick(12);
+  const routeIds = Array.from({ length: 12 }, (_, index) =>
+    `mfr_perf_${String(index).padStart(2, '0')}`);
+  return () => {
+    for (const routeId of routeIds) runtime.preview(routeId);
+  };
+}

@@ -72,6 +72,28 @@ describe('MeridianFlowRuntime frozen DES-qi table', () => {
 });
 
 describe('MeridianFlowRuntime state and replay', () => {
+  it('advances a batch exactly like one tick at a time', () => {
+    const input = fixture(16, 10_000, 16, 2);
+    const batch = createMeridianFlowRuntime(input);
+    const stepped = createMeridianFlowRuntime(input);
+    batch.tick(12, 5_000);
+    for (let tick = 0; tick < 12; tick += 1) stepped.tick(1, 5_000);
+    expect(batch.snapshot()).toEqual(stepped.snapshot());
+  });
+
+  it('keeps old-route packets when switching injection routes during a batch', () => {
+    const input = fixture(16, 10_000, 16, 2);
+    const batch = createMeridianFlowRuntime(input);
+    const stepped = createMeridianFlowRuntime(input);
+    batch.tick(3); stepped.tick(3);
+    batch.selectRoute('mfr_fixture_01'); stepped.selectRoute('mfr_fixture_01');
+    batch.tick(12);
+    for (let tick = 0; tick < 12; tick += 1) stepped.tick();
+    expect(batch.snapshot()).toEqual(stepped.snapshot());
+    expect(batch.snapshot().routes[0]!.totalQi).toBeGreaterThan(0);
+    expect(batch.snapshot().routes[1]!.totalQi).toBeGreaterThan(0);
+  });
+
   it('caps all stored qi at the unit and route capacities', () => {
     const runtime = createMeridianFlowRuntime(fixture(28, 12_500, 32));
     runtime.tick(1000);
@@ -145,6 +167,60 @@ describe('MeridianFlowRuntime state and replay', () => {
       .toEqual(Array.from({ length: 4 }, () => first.finalHash));
   });
 
+  it('canonicalizes, deep-copies, and restores every dynamic v2 transient field', () => {
+    const runtime = createMeridianFlowRuntime(fixture(16, 10_000, 16));
+    runtime.tick(3);
+    const reversePath = [{ acupointRef: 'ap_fixture_004', lengthUnit: 2 }];
+    const affectedRouteRefs = ['mfr_fixture_09', 'mfr_fixture_00'];
+    const transient = {
+      foreignQi: [
+        { id: 7, sourceUnitId: 'enemy_b', sourceInnerId: 'in_b', injectedQi: 8,
+          remainingQi: 6, injectedSpeedBp: 10_000, injectionAcupoint: 'ap_fixture_004',
+          hitZone: 'body' as const, digestRatioBp: 10_000, reversePath, stepIndex: 0,
+          remainingTravelTick: 2, arrivedAtTick: 5 },
+        { id: 3, sourceUnitId: 'enemy_a', sourceInnerId: 'in_a', injectedQi: 5,
+          remainingQi: 5, injectedSpeedBp: 9_000, injectionAcupoint: 'ap_fixture_002',
+          hitZone: 'hand' as const, digestRatioBp: 20_000, reversePath: [], stepIndex: 0,
+          remainingTravelTick: 0, arrivedAtTick: 2 },
+        { id: 2, sourceUnitId: 'enemy_c', sourceInnerId: 'in_c', injectedQi: 4,
+          remainingQi: 1, injectedSpeedBp: 8_000, injectionAcupoint: 'ap_fixture_006',
+          hitZone: 'leg' as const, digestRatioBp: 30_000, reversePath: [], stepIndex: 0,
+          remainingTravelTick: 0, arrivedAtTick: 5 },
+      ],
+      acupointOccupancies: [
+        { acupointRef: 'ap_fixture_010', sourceUnitId: 'enemy_z', sourceInnerId: 'in_z',
+          occupyingQi: 3, digestRatioBp: 20_000, level: 2, remainingOwnActions: 2,
+          affectedRouteRefs },
+        { acupointRef: 'ap_fixture_002', sourceUnitId: 'enemy_b', sourceInnerId: 'in_b',
+          occupyingQi: 2, digestRatioBp: 20_000, level: 1, remainingOwnActions: 1,
+          affectedRouteRefs: [] },
+        { acupointRef: 'ap_fixture_002', sourceUnitId: 'enemy_a', sourceInnerId: 'in_a',
+          occupyingQi: 1, digestRatioBp: 10_000, level: 3, remainingOwnActions: 3,
+          affectedRouteRefs: [] },
+      ],
+      redirectedQi: 11, redirectedQiExpiresAtOwnAction: 4,
+    };
+
+    const canonical = runtime.snapshot(transient);
+    expect(canonical.foreignQi.map((entry) => entry.id)).toEqual([3, 2, 7]);
+    expect(canonical.acupointOccupancies.map((entry) =>
+      `${entry.acupointRef}:${entry.sourceUnitId}`)).toEqual([
+      'ap_fixture_002:enemy_a', 'ap_fixture_002:enemy_b', 'ap_fixture_010:enemy_z',
+    ]);
+    expect(canonical.acupointOccupancies[2]!.affectedRouteRefs)
+      .toEqual(['mfr_fixture_00', 'mfr_fixture_09']);
+    reversePath[0]!.lengthUnit = 99;
+    affectedRouteRefs.push('mfr_fixture_mutated');
+    expect(canonical.foreignQi[2]!.reversePath[0]!.lengthUnit).toBe(2);
+    expect(canonical.acupointOccupancies[2]!.affectedRouteRefs).toHaveLength(2);
+
+    const complete = { ...canonical, grappleLevel: 3, grappleSource: 'enemy_grappler',
+      grappleRemaining: 2 };
+    const restored = createMeridianFlowRuntime(fixture(16, 10_000, 16));
+    restored.restore(complete);
+    expect(restored.snapshot()).toEqual(complete);
+  });
+
   it('rejects an invalid snapshot without partially changing live state', () => {
     const runtime = createMeridianFlowRuntime(fixture(16, 10_000, 16));
     runtime.tick(5);
@@ -154,6 +230,17 @@ describe('MeridianFlowRuntime state and replay', () => {
 
     expect(() => runtime.restore(invalid)).toThrowError('QI_SNAPSHOT_NODE');
     expect(runtime.snapshot()).toEqual(before);
+  });
+
+  it('clears an expired redirected-Qi action marker with an explicit null', () => {
+    const runtime = createMeridianFlowRuntime(fixture(16, 10_000, 16));
+    runtime.restore({ ...runtime.snapshot(), redirectedQi: 10, redirectedQiExpiresAtOwnAction: 4 });
+    const expired = runtime.snapshot({ foreignQi: [], acupointOccupancies: [],
+      redirectedQi: 0, redirectedQiExpiresAtOwnAction: null });
+    expect(expired.redirectedQiExpiresAtOwnAction).toBeNull();
+    const restored = createMeridianFlowRuntime(fixture(16, 10_000, 16));
+    restored.restore(expired);
+    expect(restored.snapshot()).toEqual(expired);
   });
 
   it('releases only qi already downstream when a route jams midway', () => {

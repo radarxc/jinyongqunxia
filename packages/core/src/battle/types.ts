@@ -1,5 +1,10 @@
 import type { BuffInstance } from '../buff';
+import type { ItemDef } from '@tianshu/data/schemas';
+import type { AppliedItemEffect } from '../economy';
+import type { Inventory } from '../state';
 import type { ForeignQiInstance, AcupointOccupancy, HitZone } from './damage';
+import type { MeridianFlowInput } from './meridian-flow/types';
+import type { MeridianFlowSnapshot } from './meridian-flow/runtime';
 import type { AttackDirection } from './damage';
 import type { HexAim, HexCoord, HexDelivery, HexDir, HexLosKind } from '../hex';
 import type { HexPrimitiveShape } from './formation';
@@ -27,6 +32,13 @@ export interface BattleInitialUnit {
   readonly unitRef: string; readonly ct: number; readonly rage: number;
   readonly pos: HexCoord; readonly facing: HexDir;
 }
+export interface BattleDrop { readonly itemId: string; readonly name: string; readonly count: number }
+export interface BattleLootEntry extends BattleDrop { readonly weight: number }
+export interface BattleRewardSetup {
+  readonly drops: readonly BattleDrop[];
+  readonly lootPool: readonly BattleLootEntry[];
+  readonly lootDraws: number;
+}
 export type BattleCondition =
   | { readonly kind: 'allHostileDown'; readonly side: SideId }
   | { readonly kind: 'unitDown'; readonly unitRef: string }
@@ -53,6 +65,9 @@ export interface BattleSetup {
   readonly waves: readonly string[]; readonly returnContext: { readonly sceneRef: string;
     readonly anchorRef: string; readonly recovery: 'preserve' | 'sparRestore' | 'checkpoint';
     readonly storyBranchRef?: string };
+  readonly meridianInputs: readonly MeridianFlowInput[];
+  readonly inventory: Inventory; readonly itemDefs: readonly ItemDef[];
+  readonly rewards: BattleRewardSetup;
 }
 
 export interface BattleStats { readonly level: number; readonly atkOut: number; readonly atkIn: number;
@@ -61,6 +76,7 @@ export interface BattleStats { readonly level: number; readonly atkOut: number; 
   readonly pierce: number; readonly crit: number; readonly tough: number; readonly strength: number }
 export interface BattleMove {
   readonly id: `mv_${string}`; readonly powerBp: number; readonly referencePowerBp: number;
+  readonly skillId?: `sk_${string}`; readonly meridianRouteRef?: string;
   readonly wInBp: number; readonly recovery: number; readonly mpCost: number; readonly hitZone: HitZone;
   readonly hitMod?: number; readonly dmgUpBp?: number; readonly pierceOutBp?: number;
   readonly pierceInBp?: number; readonly ultimate?: boolean; readonly projection?: boolean;
@@ -87,15 +103,25 @@ export interface BattleUnit {
   buffs: BuffInstance[]; foreignQi: ForeignQiInstance[]; acupointOccupancies: AcupointOccupancy[];
   readonly meridianDefenseBp: number; readonly qiProductionPerTick: number;
   readonly reverseQi: { readonly minFluxCap: number; readonly routeCarryCap: number } | null;
-  redirectedQi: number; ownActions: number; pos: HexCoord; facing: HexDir;
+  redirectedQi: number; redirectedQiExpiresAtOwnAction: number | null;
+  ownActions: number; pos: HexCoord; facing: HexDir;
   readonly move: number; readonly jump: number; waitStreak: number;
+  readonly medical: number; readonly innerGrade: number;
+  stamina: number; readonly staminaMax: number; readonly healingReceivedBp: number;
+  itemEffects: AppliedItemEffect[];
+  itemState: { uses: number; readonly maxUses: number; battleUses: Record<string, number>;
+    lastBattleUseTurns: Record<string, number> };
 }
 export interface BattleEvent { readonly t: string; readonly actionNo: number; readonly actor?: string;
   readonly target?: string; readonly amount?: number; readonly shieldSpent?: number;
-  readonly level?: number; readonly message?: string }
+  readonly level?: number; readonly message?: string; readonly routeId?: string;
+  readonly itemId?: string; readonly payload?: unknown }
 export type BattleAction =
   | { readonly t: 'skill'; readonly move: string; readonly target: string | HexCoord;
       readonly aim?: HexAim }
+  | { readonly t: 'item'; readonly item: string; readonly target: string | HexCoord }
+  | { readonly t: 'guard'; readonly routeRef?: string }
+  | { readonly t: 'acuteQiGather'; readonly routeRef: string }
   | { readonly t: 'wait' };
 export interface BattleActCommand {
   readonly t: 'battle/act'; readonly actor: string; readonly walkTo?: HexCoord;
@@ -103,10 +129,33 @@ export interface BattleActCommand {
 }
 export interface BattleWaitCommand { readonly t: 'battle/wait'; readonly actor: string }
 export type BattleCommand = BattleActCommand | BattleWaitCommand;
+export interface BattleMeridianUnitState {
+  readonly unitId: string; readonly unitIndex: number; flow: MeridianFlowSnapshot;
+  activeDefense: { readonly routeId: string; readonly qualityBp: number;
+    readonly expiresAtOwnAction: number; readonly causeId: string | null } | null;
+  movementProjection: { readonly routeId: string; readonly qualityBp: number;
+    readonly speedBp: number; readonly sealed: boolean; readonly ruptured: boolean } | null;
+  innerGuard: { readonly enabled: boolean; readonly routeId: string;
+    readonly breakGuardBp: number; readonly reflectBp: number } | null;
+}
+export interface BattleRewardStats {
+  readonly martialUses: Array<{ unitId: string; skillId: string; uses: number }>;
+  readonly movementActions: Array<{ unitId: string; count: number }>;
+  readonly fullCirculations: Array<{ unitId: string; count: number }>;
+}
+export interface BattleRewards {
+  readonly drops: readonly BattleDrop[];
+  readonly martialUses: readonly { readonly unitId: string; readonly skillId: string; readonly uses: number }[];
+  readonly movementTrained: readonly string[]; readonly fullCirculations: readonly {
+    readonly unitId: string; readonly count: number;
+  }[];
+}
 export interface BattleState {
   readonly setup: BattleSetup; readonly grid: { readonly topology: 'hex-pointy';
     readonly cells: readonly BattleGridCell[] }; readonly units: BattleUnit[];
   tick: number; round: number; actionNo: number;
   phase: 'opening' | 'running' | 'ended'; result: BattleResult | null; openingOrder: string[];
+  readonly meridianByUnit: BattleMeridianUnitState[]; inventory: Inventory;
+  readonly rewardStats: BattleRewardStats;
   readonly events: BattleEvent[]; readonly acceptedCommands: BattleCommand[];
 }
