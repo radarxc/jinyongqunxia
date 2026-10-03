@@ -1379,3 +1379,7 @@
   - **10-03 09:40–09:47 协调者 / 开发监督**：
     - **ENG-12d-clip-perf 合入**（a6f96ed5，09:33）：片段模式 100 人 min P95 0.764 → 0.285 ms（目标 ≤ 0.5，AR-37 门 1.0），程序步态 0.332 ms，20 人 0.073 ms；播放器投影降 83%。prod_check 972 用例全过，entry 168.57 不变，render 161.87 / 180。
     - Tripo：追踪者按约定不经手 key，协调者在 avatars 工作区给 `tools/model3d/tripo_cli.py` 加 `--env-file <path>`（CLI 自己从 dotenv 读 `tripo_key` 进本进程，输出 / 报错脱敏；18 项测试仍过，README 补注），追踪者每 10 分钟用它查余额，> 200 点即 `--from start` 续起 avatars。协调者实查余额 0.0 / 冻结 0.0。磁盘 11 GiB。ENG-entry-split 已跑 100+ 分钟（写 core entries/*），ENG-19d 在跑。
+  - **10-03 09:43–09:52 协调者 / 开发监督 / 追踪者**：
+    - build_portraits 09:43 在窗口内开跑（磁盘 12.2 GiB、负载 5.7、在跑 ENG 1）：BiRefNet 加载后交换区 31.7 → 38.9 GB、磁盘降到 5–6 GiB 后稳住；按章提交（ch01 36142d3f、ch05 / 06 f6917fd1 / 0126999e、ch07 7b40d2ec…），09:50 约 39 / 128。
+    - ENG-19d 第 1 次运行 17 分钟，校验通过，r1 PASS（09:48），合入中。
+    - **ENG-entry-split 第 1 次运行 119 分钟结束，校验中**。执行器自报 gzip：entry 闭包 169.08 → 38.87 KiB（业务块 52.25 → 13.21，Worker 闭包 91.16 → 0，Vue + runtime 25.66 不变），webgl total 329.61 → 199.40；做法是 Worker 不再静态挂在入口，首次建会话才加载「首次会话静态闭包」65.13 + 虚拟基础内容 18.50，对话 / Ink（≈35）、区域（7–37）、战斗（33.8）、城镇（按城，大理 22.6）首次触发才 import()；100 次序章 → 初眠 → 白马冷入口主线程 / Worker 一致，core golden 终值不变。协调者认可，并请开发监督登记 **ENG-size-session-gate**（check_size / budgets 加「首次会话闭包」门禁 110 KiB，entry 170 只约束标题页，子系统块逐块列出不设门；默认值记 TODO §8.2 待作者确认）。
