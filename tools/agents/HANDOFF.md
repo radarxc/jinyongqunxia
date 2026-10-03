@@ -1637,3 +1637,11 @@
     - 登记 018a16ad：ART-ui-icons（22 件，最先起）、ART-rig-std-refs、ART-rig-sheet-f → TOOL-rig-parts-f、ART-ruins-tiles、ART-cast-fill-c / -d（名单 `tools/agents/rosters/`，校验 `check_roster_portraits.py`）、TOOL-city-generic（推定格局生成器 + 年代套件接入 + JPEG 预览）、CITY-layouts-<章>-<a–d|g> 34 批（清单 `docs/design/town/progress/<任务>.expect.csv`，写集互不相交，依赖 TOOL-city-generic）。ART-region-maps 转 Gemini 出图员，未登记。wave 10 的 CITY-<城>__<带>（15 个）与 CITY-generic 已被取代，不要再起。
     - 集成分支既有问题（不在本线写集）：`male_std` / `female_std` 的 `make_parts.py --check` 不通过；大理 / 临安基线 `check_town --strict-assets` 报墙水相交 error。
     - 起跑：codex 执行任务一律 `--review-model gpt-6-astra`；runner 在 `_handoff/gem/codex_w18–w23/`（`_handoff/artw3/runner3.py`，第 3 列 `none` 不附人物基线）。进度 `_handoff/artw3/progress.md`。
+  - **10-03 13:58 开发监督**：代码池排位（协调者，第三波也要用代码池）：
+    1. ENG-region-gates-data、ENG-event-executor（M1，tiled-strict 合入后由我起）；
+    2. 第三波 TOOL-city-generic：等上面两件都 RUNNING 后由协调者或追踪者起；
+    3. TOOL-items-regen-2：city-generic 拿到池位后，由我 `--from start` 重起；
+    4. ENG-19e-m1-order：依赖满足时优先于 2、3。
+    - 16e、26、18c 照 eng3 队列。池位按这个顺序让，不抢。
+    - 起任务用 `scratchpad/launch_std.sh <ID> <checks|none> [参数]`：先查有无活进程、提示词能否渲染。
+
