@@ -1295,3 +1295,14 @@
     - **ENG-12e 合入**（81ca591b，08:17，r1 PASS；续作 44 分钟）：/rig-demo 原 2D 演示全部恢复，`?model=` 时右侧并排 3D（GLTFLoader + toon + 描边开关 + 8 偏航 + 转台 + GLB 动画 / `tianshu-clip.v1` 重定向 + 1 / 20 实例 HUD）；GLTFLoader 与试点代码不进生产块。prod_check 全绿：137 文件 962 用例；entry 168.57 / 170，render 161.24 / 180，webgl 329.80 / 350；开发监督后台挂 check:perf（负载 < 8 自动跑）。协调者用本机已在跑的 vite dev server（5173，`_prod/apps/game`，已运行 1 天 18 小时）在 Claude 内置浏览器截 0 / 90 / 180 / 270 四张（`_handoff/rigdemo/`）发作者：3D 1 实例 10,022 三角面、1 draw、CPU 0.2–0.3 ms；2D 侧暂为占位块（TOOL-rig-sheet 未合入）。
     - TOOL-town-gaps-1 r1 FAIL 只因验收命令口径（`check_asset_dirs --min 5 --max 5` 数的是 manifest 图片条目，每城只登记 1 张 preview）：按开发监督第一种处理（`--min 1 --max 1 --min-side 1024`，每城 5 个核心文件用 ls 佐证，不改检查器），第 3 次（最后一次）运行等池位。协调者同意。
     - TOOL-tests-discover r1 FAIL（balance 独立 discover 导入、town_runtime 测试删了大理 / 杭州真实布局覆盖、CLI 测试双 mock）：写集加 `tools/balance/test_*.py`，返修说明补三句，第 2 次运行等池位。
+  - **10-03 08:26–08:32 开发监督**：rig-sheet 进入只复审；items-regen 被 item schema 挡住。
+    - **TOOL-rig-sheet**：第 9 次运行（106 分钟）校验通过，08:27:52 转 HOLD-REVIEWS。`hold_then_review.py` 3 秒内改成 HOLD-RUNS，并起只复审驱动 44262（`--from validate --max-runs 0`），eng3 没有插手。r6 PASS 就自动合入，FAIL 就停住报协调者。
+    - **TOOL-items-regen**：重新生成 30 分钟跑完，pnpm check / content:validate 报 ZodError `extension.value: Unrecognized key "attributes"`。
+      - 原因：9col 生成器按 §4.10.5 写 `extension.value.attributes`，而 `packages/data/src/schemas/item.ts` 的各类 extension value 都是 `z.strictObject`，没有这个键。
+      - 第 2 次返修已启动（修不了），预计连续两次同一失败后停在 HOLD-VALIDATE。
+      - 已向协调者建议登记 ENG-items-attr-schema：给 item.ts 加可选的 attributes v2 白名单与测试，排在 entry-split 之后。等裁定。
+    - TOOL-tests-discover 第 2 次返修的日志 13 分钟没增长，交给 stall 检测。
+
+  - **10-03 08:26–08:38 协调者 / 开发监督**：
+    - TOOL-rig-sheet 第 9 次（最后一轮）返修 106 分钟结束，校验通过（侧视裤腿已有纹理，无占位块；手部 / 髋部干净），停 HOLD-REVIEWS；开发监督 `hold_then_review` 起只复审驱动，r6 PASS 合入、只因侧腿 FAIL 则协调者按原型收口。
+    - **TOOL-items-regen 被数据 schema 挡住**：重新生成 30 分钟跑完，`pnpm check` / `content:validate` 报 `ZodError unrecognized_keys: attributes`——生成器按 §4.10.5 写 `extension.value.attributes`，而 `packages/data/src/schemas/item.ts` 各 extension value 是 strictObject、没有 `attributes`（9col 当时不在 packages 写集，没重新生成所以没暴露）。协调者置 HOLD 停掉 regen 的返修（生成物留在工作区），登记 **ENG-attr-v2-schema**（b7e1101f：各 extension 加可选 `attributes: AttributeProjectionV2`，`version: 2` + §4.10.6 白名单整数键 + `qiEffect` / `skillRef` / `maxLayer`，只校验不消费；依赖 ENG-entry-split，因为 schema 在 entry 闭包、余量只剩 1.4 KiB）。开发监督同一结论、不重复登记。次序：entry-split → ENG-attr-v2-schema → items-regen 挪基点 `--from validate` → catalog-collectibles → gifts-catalog 复验 → regen-2。
