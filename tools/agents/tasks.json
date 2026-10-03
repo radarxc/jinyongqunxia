@@ -36806,13 +36806,17 @@
    "review": false,
    "vars": {},
    "id": "TOOL-city-generic",
-   "title": "城图工具 · 小城 / 遗址推定格局生成器（make_generic_city.py）+ 年代套件接入总装 + JPEG 预览（AR-47 全量城图前置；traex GPT-5.6-Sol max）",
+   "title": "城图工具 · 小城 / 遗址推定格局生成器（make_generic_city.py）+ 年代套件接入总装 + JPEG 预览 + 大理 / 临安基线墙水相交修复（AR-47 全量城图前置；traex GPT-5.6-Sol max）",
    "prompt": "TOOL-city-generic.md",
    "deps": [],
    "web": false,
    "writes": [
     "tools/town/**",
-    "docs/design/town/schema.yaml"
+    "docs/design/town/schema.yaml",
+    "docs/design/town/city_dali__ch01.yaml",
+    "docs/design/town/city_hangzhou__ch02.yaml",
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/baseline/town/town_hangzhou__ch02.layout.yaml"
    ],
    "validate": {
     "exists": [
@@ -36820,7 +36824,8 @@
     ],
     "shrink_exempt": [
      "tools/town/**",
-     "docs/design/town/schema.yaml"
+     "docs/design/town/schema.yaml",
+     "assets/default/baseline/town/*.layout.yaml"
     ],
     "cmd": [
      [
