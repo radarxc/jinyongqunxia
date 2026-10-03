@@ -1417,3 +1417,9 @@
     - 协调者重建人物 INDEX 并提交 d0529625（590 份，16 组）；总览页第 4 版 09:58 同地址重发（https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A，74 个文件 17.5 MB，`root` + `files` + `overwrite_unread`）。
     - eng3 09:34 自行退出（队列只剩 HOLD 项：「队列结束：合入 21，停住 15」），所以 09:57 解除的 14 个暂停没人接。协调者把 M1 的 CONTENT-ch00b / ch10 / ch00a 提到 ENG-16c 之前（队列文件已注明），按磁盘规则先用并发 2 重启（见下一条）。
     - **10:03 eng3 重启**（协调者，`detach_launch.py` → `.agents/coord/_batch/eng3.detach.r2.out`，pid 17924，`--parallel 2`）：磁盘 8 GiB、代码工作区约 1.3 GB / 个，按「< 5 GiB 不新开工作区」先开 2 路；attr-v2-schema 合入清掉工作区、磁盘回到 ≥ 10 GiB 后可再按 3 路重启。起跑即起 CONTENT-ch00b-maps（17928）与 CONTENT-ch10-cold-entry（17929）；待启动 14：CONTENT-ch00a-data、ENG-16c、ENG-size-session-gate（队列里排在 attr-v2-schema 后，但 tasks.json 无依赖，显示 ready）…；ENG-20b 仍 HOLD。batch_run 对 RUNNING 且 pid 存活的任务（ENG-attr-v2-schema 97000）会跳过，不会重复起。
+  - **10-03 10:04–10:07 开发监督**：协调者已重启 eng3（pid 17924，2 路，日志 `_batch/eng3.detach.r2.out`），M1 内容先行。
+    - CONTENT-ch00b-maps（17928）、CONTENT-ch10-cold-entry（17929）已起；CONTENT-ch00a-data 排下一个。
+    - 只开 2 路：磁盘 8 GiB，每个代码工作区约 1.3 GB。等 attr-v2-schema 合入、工作区清掉、磁盘 ≥ 10 GiB 时，我报协调者，由他改回 3 路。
+    - size-session-gate 与 attr-v2-schema 写集不重叠（tools/perf + vite 元数据插件 vs packages/data schema），已告知协调者，不加依赖。
+    - 每个 CONTENT / schema 任务合入后，照常 prod_check 并报体积；ENG-20b 仍 HOLD。
+
