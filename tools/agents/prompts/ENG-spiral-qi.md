@@ -27,8 +27,16 @@
   - §3.2 `Z0-CS`：在 Z0 合法性 / 资源锁定之后、护体真气与护体内劲之前执行。按对象处理：内劲攻击 / 外放、护体真气、护体内劲、纯外功、持续伤害；同一伤害事件只执行一次，多段招共用；
   - §3.3：经脉伤害只加 `spiralDamageDealt × 100%`；
   - §12：CS-V10、CS-V11；金标准 CS-T04～T06。
-- `docs/design/04-damage-formula.md`：§2 区序；§6.1～§6.2 结算总序、护体与影子 trace 做法。
-- `docs/design/21-meridian-flow-and-moves.md`：§4.8 外放抵消；经脉伤害的部位分配、封穴、胀损与上限。
+- `docs/design/04-damage-formula.md`（DES-sync-design-b b6fc912d 已同步）：
+  - §2 区序；
+  - §3.5 `Z0-CS`：`SPIRAL_CANCEL_BP=200000`，`cancelCapacity=floor(spiralSpent×200000/10000)`；
+  - §6.1～§6.2：结算总序、护体与影子 trace 做法、`spiralMeridianDamage`；
+  - 校验 V30–V31，测试 T47–T49。
+- `docs/design/21-meridian-flow-and-moves.md`（同上已同步）：
+  - §4.4：时序为「资源锁定 → Z0 → Z0-CS → Z1…Z10」；
+  - §4.8 护体预算：`guardBudgetBp=floor(remainMp×10000/opponentMpCommitted)`；
+  - §4.8.1：经脉伤害节点分配；P7 前冻结 `eligibleNodes`，无合格穴记 `unallocated`；
+  - §12 接口：`SpiralCancelSnapshot` 序列化，按 `causeId` 幂等。
 
 ## 要做的事
 
@@ -48,7 +56,9 @@
    - CS-T04：投入 18 / 19，分别化解 360 剩 17、化解 377 剩 0；
    - CS-T05：三段招共用承诺内力 600、投入 10，整个事件只化解 200；
    - CS-T06：螺旋新增 135、整招最终 900，经脉伤害加 135；
-   - CS-V10、CS-V11；
+   - CS-V10、CS-V11；04 的 V30–V31、T47–T49；
+   - 21 §4.8 算例：承诺 300、剩余 75 得 2500 bp，`rawOutwardQi` 1200→300，抵消 250、剩余 750；
+   - 135 对三穴稳定分为 45 / 45 / 45；
    - 非九层拒绝；预览零 RNG、零写；
    - protocol ≤ 3 回放零漂移；规范 hash 确定性。
 

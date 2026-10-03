@@ -46,7 +46,14 @@ ENG-17 只做了 M1 的 ch00→ch10 特殊过渡，一般书眠只声明了类�
 - `docs/design/02-timeline-and-world-tiers.md`：
   - §4.1～§4.6：余韵期、流程状态机、`BS_COMMIT` 是唯一原子写、`plan.id` 幂等、`BS_ALLOC`、数据结构与提交；
   - §4.7 特殊书眠（ch00→ch10 已由 ENG-17 实现，保持不变）。
-- `docs/design/03-attributes.md` §2.4.1：后续书眠 `gain(s,Cb)`；层 3 当次配点 +1、层 5 累计 +2；永久值上限。
+- `docs/design/03-attributes.md`：
+  - §2.4.1：后续书眠 `gain(s,Cb)`；层 3 当次配点 +1、层 5 累计 +2；永久值上限；
+  - §7.0 / §11.3：`epiphany`、`masteryXp`、`trueEssenceByNature` 三性质账与第七层门控。DES-sync-design-b（b6fc912d）已同步。
+- `docs/design/05-martial-arts-system.md`（DES-sync-design-b 已同步）：
+  - §2.2.1 `sk_changshengjue` 是栏外 `story_art`；
+  - §2.6 / §3.2：`cumulativeSxp`、`convertedSxp`；
+  - §6.1 苏醒 3+3：武功跨类别合计 3、内功 3，九层后全保留。
+- 设计报告 `DES-sync-design-b.md` §6 已登记：design/02、13 里的标量 `trueEssenceGained/trueEssence` 还没改成三性质账。实现**以 design/03 §7.0 为准**：散功所得按被散内功的性质入对应账；报告里列出文档漂移。
 - `docs/design/story/sleep-events.md`：`slp_*` 正式 ID 与每书保底事件。
 - `docs/00-canon.md`：§2 书序（白马 1 … 雪山 14，稳定 ID 不变）；§3 规则 6 书眠清空项；§3 外来压制与天书抵消的 `ceil(S/2)` 下限。
 - `docs/tech/05-gameplay-engine.md`：
@@ -73,7 +80,7 @@ ENG-17 只做了 M1 的 ch00→ch10 特殊过渡，一般书眠只声明了类�
 3. **转化**：
    - 按 13 §4.10.1 逐门向下取整，禁止先合并再取整；
    - `convertedSxp` 按技能 ID 存高水位（残篇记录）；
-   - 武功产顿悟、内功产真元，二者不得互换；
+   - 武功产顿悟 `epiphany`；内功产真元，按该内功的性质记入 `trueEssenceByNature`；二者不得互换；
    - 投放（确认前可重分，也可暂存）走 ENG-27a 的投入接口；
    - 层 7 起真元可跨内功性质投放。
 4. **沉睡配点**：`gain(s,Cb)` 加层 3 / 层 5 的额外预算；六项分配，范围与上限照 03 §2.4.1；未分配点留存。

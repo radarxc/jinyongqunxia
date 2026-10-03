@@ -32,7 +32,11 @@
   - §2.4.1 沉睡六项配点：可配集合 `str/con/bre/wis/agi/wil`，`luk/cha` 不配点；永久值先钳 1–100，只有 `breakCap:true` 的来源可到 120，超出部分**拒绝**而不是吞点；
   - §2.9 / §2.9.1 全程预算（`trainingAttrs` 角色合计 ≤ 48、单项累计 ≤ 24）；
   - §5.2 内力：`breMpBp=clamp(10000+60×(bre−50),7000,14200)`，只在 `mpRoot` 之后乘一次，`wil` 不加容量；`mpRegen` 基线 `1+0.02×(bre−50)` 个百分点；示例 `mpRoot=1222,bre=80 → 1441`；
-  - §7.0 类别熟练度 `masteryXp[MasteryCategory]`（12 个类别：`fist/finger/leg/grapple/sword/blade/staff/spear/whip/exotic/hidden/movement`）与真元 `trueEssence`：跨类别投入 1:1；单门每层由资源补入的经验不超过该层 `ExpToNext` 的 50%；内功只收真元；旧档迁移补偿式（第 1–4 条）。
+  - §7.0 与 §11.3（DES-sync-design-b b6fc912d 已同步，以它为准）：
+    - 资源有三类：顿悟点 `epiphany`；类别熟练度 `masteryXp[MasteryCategory]`，12 个类别为 `fist/finger/leg/grapple/sword/blade/staff/spear/whip/exotic/hidden/movement`；按性质分账的真元 `trueEssenceByNature.{yang,yin,harmony}`。
+    - 都是精确非负 int64，存档线格式照 §11.3。`trueEssence` 只是三账之和，只读。
+    - 投放：顿悟跨类别 1:1；真元在第七层前只投同性质内功，第七层起可跨性质 1:1；单门每层由资源补入的经验不超过该层 `ExpToNext` 的 50%；《长生诀》不收。
+    - 旧档迁移补偿式见 §7.0 第 1–4 条。
 - `docs/design/05-martial-arts-system.md`：§2.1 `SkillDef` 字段表（`trainingAttrs`）、§2.4 学习门槛 `Reqs`（接纳 `bre`）、§2.9 TS 类型、§3.7 `trainingAttrs` 发放规则（真实层数首次到 3 / 6 / 9 重各结算一次；卸下、书界压制、散功都不倒扣；默认模板）、§16 校验 V10A。
 - `docs/design/01-vision-and-core-loop.md`：身份加成 schema 的 `innate` 联合类型加 `bre`（以 DES-sync 任务合入后的文本为准）。
 - DES-attr-v2 报告 §4 默认值：`trainingAttrs` 达到角色 48 上限后，溢出部分等量转为对应类别的熟练度，内功转真元。
@@ -46,20 +50,25 @@
    - `reqs.attrs`、身份 / 天赋加成、物品 `permStat` 等接纳 `bre`；沉睡配点集合不含 `luk/cha`。
 2. **`trainingAttrs`（data）**：`SkillDef.trainingAttrs?: { layer: 3|6|9; attrs: Partial<Record<可配六项, 1..4>> }[]`，按 V10A 校验：各层唯一、只含六项、每个里程碑 Σ ≤ 4、单门合计 ≤ 12、不与 `layerStats` 混算。非法内容让 `pnpm content:build` 失败，并报出武学 ID 与字段。
 3. **状态与存档（core/state）**：
-   - 按 design/03 §7.0 指定的位置加 `masteryXp`（12 类别，非负整数）、`trueEssence`（非负整数）；
+   - 按 design/03 §7.0 / §11.3 指定的位置加 `epiphany`、`masteryXp`（12 类别）、`trueEssenceByNature`（三性质），都是精确非负 int64；`trueEssence` 只读求和，不另存；
    - 加 `trainingAttrs` 发放账：每门已发放的里程碑、角色累计、单项累计，用于封顶与防重复；
    - `saveSchema` 升一版，挂纯函数迁移，按 §7.0 迁移式给旧档一次性补偿（缺使用次数时只计层数项）；迁移幂等。
 4. **成长规则（core/progression）**：
-   - 真实层数首次到 3 / 6 / 9 重时按 `trainingAttrs` 发放永久先天属性，受单门 12、角色 48、单项 24 与永久值上限封顶；超出部分按 DES-attr-v2 默认转熟练度 / 真元；同一里程碑只发一次；卸下、压制、散功不倒扣；
-   - 熟练度 / 真元的投入：做成一条命令或事务步骤（以 ENG-15 命令总线的写法为准，命令注册表只加一行），跨类别 1:1、单门每层 50% 上限、内功只收真元、《长生诀》`sk_changshengjue` 不收；
+   - 真实层数首次到 3 / 6 / 9 重时按 `trainingAttrs` 发放永久先天属性，受单门 12、角色 48、单项 24 与永久值上限封顶；超出部分按 DES-attr-v2 默认转熟练度 / 真元（真元记入该武学的性质账）；同一里程碑只发一次；卸下、压制、散功不倒扣；
+   - 顿悟 / 真元的投入：做成一条命令或事务步骤（以 ENG-15 命令总线的写法为准，命令注册表只加一行）。规则：
+     - 顿悟跨类别 1:1；
+     - 真元按 §7.0 的第七层门控，层数读 ENG-17 已加的 `changshengLayer`；
+     - 单门每层不超过 50%；
+     - 《长生诀》`sk_changshengjue` 不收；
+     - 任一不合法就原子拒绝。
    - `mpMax` / `mpRegen` 接入 `breMpBp` 与回复基线，只消费一次。
 5. **夹具**：测试夹具放在包内（`packages/data` / `packages/core` 的测试目录），不改 `content/**` 下的名录或正式内容。名录的 `reqs.attrs` 重配归 DES-skills-reqs-v2-* 任务。
 6. **测试**：
    - schema：V10A 每条规则各一条合法 / 非法向量；
    - 发放：3 / 6 / 9 首次发放、重复到达不重发、单门 / 角色 / 单项封顶与溢出转化；
-   - `breMpBp`：`bre=0/50/80/120` 分别得 `7000/10000/11800/14200`（钳位），§5.2 示例 `1222 → 1441`；
+   - `breMpBp`：`bre=1/50/80/100/120` 分别得 `7060/10000/11800/13000/14200`；另用一个越界输入测下限 7000；§5.2 示例 `1222 → 1441`；`mpRegen` 换成整数 bp（1 pp = 100 bp），core 不用浮点；
    - 迁移：§7.0 补偿式两例；n→n+1 迁移两次逐字节相同；
-   - 投入：跨类别 1:1、50% 上限、内功只收真元、《长生诀》拒收；
+   - 投入：design/03 §7.0 / §11.3 的 V03-23、T03-28～29（含第七层 `{yang:3000,yin:2000}` 投入 5000 后账变 `{7000,5829,0}` 的算例、第六层跨性质原子拒绝）、50% 上限、《长生诀》拒收；
    - 拒绝路径状态无差异、版本不变；规范 hash 确定性；主线程宿主与 Worker 宿主结果一致。
 
 ## 约束
