@@ -1,5 +1,6 @@
-import { createCharacterState, createCore, createInitialWorldMapState, InventoryRuntime,
-  type CharacterState, type SkillState } from '@tianshu/core';
+import { CORE_BUILD, CORE_VERSION, RNG_PROTOCOL, RNG_STREAMS, createCharacterState,
+  createCore, createInitialGameState, createInitialWorldMapState, InventoryRuntime, seedStream,
+  type CharacterState, type RngStreamName, type SkillState } from '@tianshu/core';
 import type { GameContent } from './content';
 import type { SessionSnapshot } from './contracts';
 
@@ -22,7 +23,11 @@ function character(id: string, content: GameContent, learning: readonly { skillI
 
 /** Interaction fixture only; never claims to be a story reward or canonical opening. */
 export function createPreviewSession(content: GameContent): SessionSnapshot {
-  const state = createCore(1).snapshot();
+  const rng = Object.fromEntries(RNG_STREAMS.map((stream) =>
+    [stream, seedStream(1, stream)])) as Record<RngStreamName, ReturnType<typeof seedStream>>;
+  const state = createCore(1, { state: createInitialGameState({ coreVersion: CORE_VERSION,
+    coreBuild: CORE_BUILD, chapterId: 'ch01_tianlong', epochId: 'epoch_ch01',
+    epochYear: 1093, rngProtocol: RNG_PROTOCOL, masterSeed: 1, rng }) }).snapshot();
   const protagonist = character('npc_zhujue', content, [{ skillId: 'sk_taizuchangquan', trueLayer: 1 }]);
   const duanyu = content.npcs.find((npc) => npc.id === 'npc_duanyu');
   const build = duanyu?.appearances[0]?.build;

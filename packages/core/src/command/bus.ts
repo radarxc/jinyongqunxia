@@ -3,6 +3,7 @@ import type { CommittedDomainEvent } from '../event';
 import { assertCanonicalGameState, type GameState } from '../state';
 import type { Command, CommandHandler, CoreContent, RejectReason } from '.';
 import { inventoryHandler, rejectionFrom, townHandler, worldMapHandler, worldTickHandler } from './handlers';
+import { dialogueHandler, difficultyHandler, questChoiceHandler } from './story-handlers';
 import { CommandAbort, MutableCoreTransaction } from './transaction';
 
 export type DispatchResult =
@@ -25,6 +26,11 @@ const HANDLERS: Readonly<Record<string, CommandHandler>> = {
   'inventory/equip': inventoryHandler as CommandHandler,
   'inventory/unequip': inventoryHandler as CommandHandler,
   'inventory/use': inventoryHandler as CommandHandler,
+  'dialogue/start': dialogueHandler as CommandHandler,
+  'dialogue/continue': dialogueHandler as CommandHandler,
+  'dialogue/choose': dialogueHandler as CommandHandler,
+  'quest/choose': questChoiceHandler as CommandHandler,
+  'rules/setDifficulty': difficultyHandler as CommandHandler,
 };
 function rejection(reason: RejectReason, at?: string): DispatchResult {
   return at === undefined ? { ok: false, reason } : { ok: false, reason, at };

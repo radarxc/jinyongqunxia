@@ -13,6 +13,11 @@ function compare(left: DeadlineEntry, right: DeadlineEntry): number {
 /** Binary min-heap: timeout checks inspect only the next due entry. */
 export class DeadlineQueue {
   readonly #values: DeadlineEntry[] = [];
+  public clone(): DeadlineQueue {
+    const copy = new DeadlineQueue();
+    for (const entry of this.#values) copy.#values.push({ ...entry });
+    return copy;
+  }
   public push(entry: DeadlineEntry): void {
     this.#values.push(entry);
     let index = this.#values.length - 1;

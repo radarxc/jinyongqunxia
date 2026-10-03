@@ -8,13 +8,23 @@ import type { TownCommand, TownMeditationEncounter, TownMeditationPractice } fro
 import type { WorldMapCommand } from '../world/worldmap-types';
 import type { EventAnchor } from '../event';
 import type { NpcWorldState } from '../npc';
+import type { DifficultyId } from '../state';
 
 export interface WorldTickCommand { readonly t: 'world/tick' }
 export type InventoryCommand =
   | { readonly t: 'inventory/equip'; readonly itemId: string; readonly slot: GameState['party']['equipment']['entries'][number]['slot'] }
   | { readonly t: 'inventory/unequip'; readonly slot: GameState['party']['equipment']['entries'][number]['slot'] }
   | { readonly t: 'inventory/use'; readonly itemId: string; readonly targetId: string };
-export type Command = WorldTickCommand | WorldMapCommand | TownCommand | InventoryCommand;
+export type DialogueCommand =
+  | { readonly t: 'dialogue/start'; readonly storyId: string; readonly entryKey: string }
+  | { readonly t: 'dialogue/continue' }
+  | { readonly t: 'dialogue/choose'; readonly choiceIndex: number };
+export type QuestChoiceCommand = { readonly t: 'quest/choose'; readonly questId: string;
+  readonly optionId: string; readonly phase?: 'select' | 'settle';
+  readonly completionNodeId?: string };
+export type RulesCommand = { readonly t: 'rules/setDifficulty'; readonly difficulty: DifficultyId };
+export type Command = WorldTickCommand | WorldMapCommand | TownCommand | InventoryCommand
+  | DialogueCommand | QuestChoiceCommand | RulesCommand;
 
 export type RejectReason =
   | 'COMMAND_UNKNOWN' | 'WORLD_PAUSED' | 'MAP_UNAVAILABLE' | 'MAP_STILL_TRAVELLING'
@@ -29,7 +39,14 @@ export type RejectReason =
   | 'EQUIPMENT_SLOT_EMPTY' | 'INVENTORY_INSUFFICIENT' | 'ITEM_EFFECT_UNAVAILABLE'
   | 'ITEM_TARGET_UNAVAILABLE' | 'CONSUMABLE_CONTEXT' | 'CONSUMABLE_BATTLE_LIMIT'
   | 'CONSUMABLE_CHAPTER_LIMIT' | 'CONSUMABLE_COOLDOWN' | 'CONSUMABLE_REVIVE_CONTEXT'
-  | 'CONSUMABLE_PERMANENT_CONTEXT' | 'CONSUMABLE_MERIDIAN_CONTEXT';
+  | 'CONSUMABLE_PERMANENT_CONTEXT' | 'CONSUMABLE_MERIDIAN_CONTEXT'
+  | 'RULES_BATTLE_ACTIVE' | 'RULES_DIFFICULTY_INVALID' | 'DIALOGUE_ACTIVE'
+  | 'DIALOGUE_INACTIVE' | 'DIALOGUE_STORY_UNKNOWN' | 'DIALOGUE_CHOICE_UNAVAILABLE'
+  | 'DIALOGUE_CONTINUE_UNAVAILABLE' | 'QUEST_CHOICE_UNKNOWN' | 'QUEST_CHOICE_COMMITTED'
+  | 'QUEST_ROUTE_NOT_SELECTED' | 'QUEST_ROUTE_MISMATCH';
+
+export interface InkStoryContent { readonly storyId: string; readonly storyHash: string;
+  readonly storyJson: string | Readonly<Record<string, unknown>> }
 
 export interface CoreContent {
   readonly items?: readonly ItemDef[]; readonly equipmentRules?: readonly EquipmentRule[];
@@ -40,6 +57,7 @@ export interface CoreContent {
     readonly eraLayer: string; readonly point: readonly [number, number] }[];
   readonly meditationPractices?: readonly TownMeditationPractice[];
   readonly meditationEncounters?: readonly TownMeditationEncounter[];
+  readonly inkStories?: readonly InkStoryContent[];
 }
 export type StatePath = readonly (string | number)[];
 export interface CoreTransaction {

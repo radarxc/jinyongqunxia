@@ -21,8 +21,9 @@ const side = loadStory('side_babuzhong.yaml');
 
 function questPort(): QuestPort & { readonly activations: string[] } {
   const activations: string[] = [];
-  return { activations, activate: (questId) => { activations.push(questId); },
-    executeEvent: () => undefined };
+  return { activations, commit: (effects) => {
+    for (const effect of effects) if (effect.type === 'activate') activations.push(effect.questId);
+  } };
 }
 const dialogue: InkDialogueBridge = {
   start: (storyId, knot): DialogueSession => ({

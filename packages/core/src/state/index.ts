@@ -5,6 +5,7 @@ export * from './initial';
 export * from './inventory';
 export * from './json';
 export * from './models';
+export * from './new-game';
 export * from './migrations';
 export * from './story';
 export * from './summary';

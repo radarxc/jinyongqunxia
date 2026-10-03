@@ -1,7 +1,7 @@
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import { dispatchCommand, type Command, type CoreContent, type DispatchResult } from '../command';
-import { RNG_PROTOCOL, RNG_STREAMS, seedStream, type RngState, type RngStreamName } from '../rng';
-import { assertCanonicalGameState, cloneGameState, createInitialGameState, type GameState } from '../state';
+import { assertCanonicalGameState, cloneGameState, createNewGameState, type GameState,
+  type NewGameInput } from '../state';
 
 export const CORE_VERSION = '0.0.0';
 export const CORE_BUILD = '20261002-core-bus';
@@ -13,10 +13,6 @@ export interface Core {
   serialize(): JsonValue;
   canonicalStateJson(): string;
 }
-function initialRng(masterSeed: number): Readonly<Record<RngStreamName, RngState>> {
-  return Object.fromEntries(RNG_STREAMS.map((stream) => [stream, seedStream(masterSeed, stream)])) as
-    unknown as Readonly<Record<RngStreamName, RngState>>;
-}
 function legacyTickResult(result: DispatchResult): DispatchResult {
   // Pre-command-bus CoreHost callers inspected tick().accepted. Keep a non-wire alias while
   // dispatch() and serialized Worker results expose only the canonical `ok` discriminant.
@@ -25,10 +21,10 @@ function legacyTickResult(result: DispatchResult): DispatchResult {
 }
 
 export function createCore(masterSeed = 1, options: CreateCoreOptions = {}): Core {
-  const state = options.state ? cloneGameState(options.state) : createInitialGameState({
-    coreVersion: CORE_VERSION, coreBuild: CORE_BUILD, chapterId: 'ch01_tianlong',
-    epochId: 'epoch_ch01', epochYear: 1093, rngProtocol: RNG_PROTOCOL, masterSeed,
-    rng: initialRng(masterSeed),
+  const state = options.state ? cloneGameState(options.state) : createNewGameState({
+    masterSeed, coreVersion: CORE_VERSION, coreBuild: CORE_BUILD, difficulty: 'diff_xiake',
+    identity: { name: '无名侠客', gender: 'unspecified', appearance: 'appearance_default',
+      pronoun: '你', originId: 'origin_wenshiguan' },
   });
   assertCanonicalGameState(state);
   const dispatch = (command: Command): DispatchResult =>
@@ -45,6 +41,12 @@ export function createCore(masterSeed = 1, options: CreateCoreOptions = {}): Cor
 
 export function createCoreFromState(state: GameState, content: CoreContent = {}): Core {
   return createCore(state.meta.masterSeed, { state, content });
+}
+
+export function createNewGameCore(input: NewGameInput, content: CoreContent = {}): Core {
+  const state = createNewGameState({ ...input, coreVersion: input.coreVersion ?? CORE_VERSION,
+    coreBuild: input.coreBuild ?? CORE_BUILD });
+  return createCore(input.masterSeed, { state, content });
 }
 
 export type { DispatchResult } from '../command';

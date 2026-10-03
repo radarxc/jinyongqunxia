@@ -4,9 +4,13 @@ import type { DialogueSession, InkDialogueBridge } from '../dialogue';
 import type { NpcWorldState } from '../npc';
 import type { ConditionFacts } from './condition';
 
+export type QuestPortEffect =
+  | { readonly type: 'activate'; readonly questId: string; readonly receiptId: string }
+  | { readonly type: 'executeEvent'; readonly eventKey: string;
+    readonly actions: readonly Readonly<Record<string, JsonValue>>[]; readonly receiptId: string };
 export interface QuestPort {
-  activate(questId: string, receiptId: string): void;
-  executeEvent(eventKey: string, actions: readonly Readonly<Record<string, JsonValue>>[], receiptId: string): void;
+  /** Atomically commits every effect or throws without publishing any of them. */
+  commit(effects: readonly QuestPortEffect[]): void;
 }
 export interface StoryRuntimePorts {
   readonly quest: QuestPort; readonly dialogue?: InkDialogueBridge;

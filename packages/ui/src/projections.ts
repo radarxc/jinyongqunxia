@@ -99,6 +99,15 @@ export interface QuestView {
   readonly name: string;
   readonly status: string;
 }
+export interface DialogueChoiceView {
+  readonly choiceIndex: number; readonly textKey: string; readonly unavailableReason: string | null;
+}
+export interface DialogueView {
+  readonly storyId: string; readonly storyHash: string; readonly entryKey: string;
+  readonly speakerId: string; readonly textKey: string | null;
+  readonly choices: readonly DialogueChoiceView[];
+  readonly history: readonly { readonly speakerId: string; readonly textKey: string }[];
+}
 export interface UiProjection {
   readonly title: string;
   readonly coreVersion: string;
@@ -109,6 +118,7 @@ export interface UiProjection {
   readonly inventory: readonly ItemView[];
   readonly equipment: readonly EquipmentView[];
   readonly quests: readonly QuestView[];
+  readonly dialogue?: DialogueView | null;
   readonly worldmapStatic?: WorldMapStaticProjection | null;
 }
 export interface SaveSlotView {

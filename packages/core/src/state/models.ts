@@ -37,7 +37,24 @@ export interface MetaState {
   readonly stateVersion: number; readonly worldTick: number; readonly nextEventSeq: number;
   readonly rng: Readonly<Record<RngStreamName, RngState>>; readonly debugTainted: boolean;
 }
-export interface ProfileState { readonly protagonist: CharacterState | null; readonly companions: readonly CharacterState[]; }
+export type DifficultyId = 'diff_jianghu' | 'diff_xiake' | 'diff_zongshi';
+export interface ProtagonistIdentity {
+  readonly name: string; readonly gender: string; readonly appearance: string;
+  readonly pronoun: string; readonly originId: string;
+}
+export interface DifficultyLogEntry {
+  readonly difficulty: DifficultyId; readonly worldTick: number; readonly revision: number;
+}
+export interface RuleSwitchState {
+  readonly difficulty: DifficultyId; readonly heavenlyTrialLevel: null;
+  readonly switches: Readonly<Record<string, boolean>>;
+  readonly difficultyLog: readonly DifficultyLogEntry[]; readonly ruleRevision: number;
+}
+export interface ProfileState {
+  readonly protagonist: CharacterState | null; readonly companions: readonly CharacterState[];
+  /** Optional only for schema-2 saves created before ENG-17a; factories always populate both. */
+  readonly identity?: ProtagonistIdentity | null; readonly replayRules?: RuleSwitchState;
+}
 export interface KnownCharacterState {
   readonly npcId: string; readonly relationship: 'met' | 'befriended'; readonly affinity: number;
   readonly character: CharacterState | null;
@@ -47,6 +64,8 @@ export interface ChapterState {
   readonly story: StoryState; readonly worldItems: WorldItems; readonly shops: readonly ShopState[];
   readonly worldMap: WorldMapState | null; readonly town: TownSessionState | null;
   readonly npcs: readonly KnownCharacterState[]; readonly itemChapterUses: Readonly<Record<string, number>>;
+  /** Optional only for schema-2 saves created before ENG-17a. */
+  readonly prologue?: PrologueState;
 }
 export interface PartyState { readonly inventory: Inventory; readonly equipment: Equipment; readonly money: number; }
 export interface WorldNavigationState {
@@ -60,6 +79,21 @@ export interface DialogueState {
   readonly storyId: string; readonly storyHash: string; readonly entryKey: string;
   readonly storyJsonState: string; readonly randomSeed: number;
   readonly pendingIntents: readonly JsonValue[]; readonly consumedTagKeys: readonly string[];
+  readonly speakerId?: string; readonly textKey?: string | null;
+  readonly choices?: readonly { readonly choiceIndex: number; readonly textKey: string;
+    readonly unavailableReason: string | null }[];
+  readonly history?: readonly { readonly speakerId: string; readonly textKey: string }[];
+}
+export type PrologueMode = 'full' | 'summary' | 'skip';
+export type PrologueRouteNodeId = 'n_c01' | 'n_summary' | 'n_skip_direct';
+export type PrologueCompletionNodeId = 'n_full_complete' | 'n_summary_complete' | 'n_skip_complete';
+export interface PrologueState {
+  readonly mode: PrologueMode | null;
+  /** Optional only for schema-2 saves written before route settlement was added. */
+  readonly routeNodeId?: PrologueRouteNodeId | null;
+  readonly completionNodeId?: PrologueCompletionNodeId | null;
+  readonly exitKey?: 'first_sleep_to_baima' | null;
+  readonly receipts: readonly string[];
 }
 export interface GameState {
   readonly meta: MetaState; readonly profile: ProfileState; readonly chapter: ChapterState;
