@@ -34809,6 +34809,46 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/imagegen/test_ingest_crop.py",
+     "tools/agents/reports/TOOL-ingest-cropframe.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-ingest-cropframe",
+   "title": "工具 · 物品图入库裁框：crop_frame() 遇左右白框会切掉主体（扫描线只取另一轴框以内的像素），补合成图回归测试",
+   "prompt": "TOOL-ingest-cropframe.md",
+   "deps": [],
+   "writes": [
+    "tools/imagegen/ingest.py",
+    "tools/imagegen/test_ingest_crop.py",
+    "tools/imagegen/README.md"
+   ]
   }
  ]
 }
