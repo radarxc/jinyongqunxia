@@ -846,4 +846,11 @@
     - **磁盘**：00:52 跌到 4.0 GiB，已报协调者；01:00 回到 6–9 GiB。
     - **日志**：ART-hero-refine-a 的执行器日志到了 157 MB，由追踪 subagent 处理（gzip 后截断）。开发监督只管 traex 任务日志超 150 MB 的情况，目前都没超。
   - **10-03 01:10–01:35 协调者**：作者在 Tripo 免费档生成并导出主角·男 3D 模型（第二版带 65 关节 Mixamo 骨骼，无动画），存 `apps/game/public/pilot/zhujue_tripo_v1.glb`，登记 ENG-12e-gltf-pilot（GLTFLoader + toon + 转台 + 片段重定向，排 ENG-18d 后）。磁盘：作者批准删 `~/.codex/thread_history_1.sqlite`（4.7 GB）；因 hero-a / hero-b / CITY 三个 codex 执行器仍持有该文件，01:27 用 step.py kill 重启三者释放空间（3.1 → 8.6 GiB）；step.py 改为给 Codex 执行器各自的 CODEX_HOME（60b81607），batch_run 合入时随日志清掉；eng3 并发降回 3。ENG-18d 01:13 合入体积转绿（entry 129.5 / 170），ENG-18e 修 build.test 超时在跑。INDEX.md 重建（作者指示移入 `_AUTHOR-NOTES.md`，4e78cf25）。
+  - **10-03 01:20–01:56 开发监督**：
+    - **磁盘**：01:27 跌到 3.1 GiB（新起的 CITY-layouts-all 是 3.0 GB 稀疏检出），已报协调者。作者批准删掉 `~/.codex` 4.7 GB 线程历史库，协调者重启了三个 codex 执行器并让各用自己的 CODEX_HOME；01:28 后回到 6–9 GiB。报告线改为 < 3 GiB。
+    - **AR-39（作者）**：素材优化和生成后都要落库。
+      - TOOL-rig-sheet 的 39 张部件、manifest、三张 GIF 随合入进 `assets/default/rig/npc_zhujue__ch00_m/`；
+      - lore / 名录复验合入后，TOOL-items-catalog 的重新生成也要提交 content/items。
+    - **TOOL-catalog-9col**：r1 FAIL，只剩一项：`sxpGrant` 的对象形式要求 `mode=pctNext`，并补正反测试。返修要等代码池空位，池上限 4，现在被 ENG-17 / 18b / 19a 与 TOOL-rig-sheet 占满。ENG-18e、ENG-12e（协调者新登记的 glTF 原型）也在排队等位。
+    - **在跑**：ENG-17（M1）、ENG-18b、ENG-19a（M1）、TOOL-rig-sheet 第 4 次运行（返修）。
 
