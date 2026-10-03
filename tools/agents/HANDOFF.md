@@ -1417,3 +1417,52 @@
     - 协调者重建人物 INDEX 并提交 d0529625（590 份，16 组）；总览页第 4 版 09:58 同地址重发（https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A，74 个文件 17.5 MB，`root` + `files` + `overwrite_unread`）。
     - eng3 09:34 自行退出（队列只剩 HOLD 项：「队列结束：合入 21，停住 15」），所以 09:57 解除的 14 个暂停没人接。协调者把 M1 的 CONTENT-ch00b / ch10 / ch00a 提到 ENG-16c 之前（队列文件已注明），按磁盘规则先用并发 2 重启（见下一条）。
     - **10:03 eng3 重启**（协调者，`detach_launch.py` → `.agents/coord/_batch/eng3.detach.r2.out`，pid 17924，`--parallel 2`）：磁盘 8 GiB、代码工作区约 1.3 GB / 个，按「< 5 GiB 不新开工作区」先开 2 路；attr-v2-schema 合入清掉工作区、磁盘回到 ≥ 10 GiB 后可再按 3 路重启。起跑即起 CONTENT-ch00b-maps（17928）与 CONTENT-ch10-cold-entry（17929）；待启动 14：CONTENT-ch00a-data、ENG-16c、ENG-size-session-gate（队列里排在 attr-v2-schema 后，但 tasks.json 无依赖，显示 ready）…；ENG-20b 仍 HOLD。batch_run 对 RUNNING 且 pid 存活的任务（ENG-attr-v2-schema 97000）会跳过，不会重复起。
+  - **10-03 10:04–10:07 开发监督**：协调者已重启 eng3（pid 17924，2 路，日志 `_batch/eng3.detach.r2.out`），M1 内容先行。
+    - CONTENT-ch00b-maps（17928）、CONTENT-ch10-cold-entry（17929）已起；CONTENT-ch00a-data 排下一个。
+    - 只开 2 路：磁盘 8 GiB，每个代码工作区约 1.3 GB。等 attr-v2-schema 合入、工作区清掉、磁盘 ≥ 10 GiB 时，我报协调者，由他改回 3 路。
+    - size-session-gate 与 attr-v2-schema 写集不重叠（tools/perf + vite 元数据插件 vs packages/data schema），已告知协调者，不加依赖。
+    - 每个 CONTENT / schema 任务合入后，照常 prod_check 并报体积；ENG-20b 仍 HOLD。
+  - **10-03 10:07–10:36 开发监督**：ENG-attr-v2-schema 合入；TOOL-items-regen 挪基点后复验；keywait 加了兜底读法。
+    - **ENG-attr-v2-schema** 10:31 合入。`prod_check`（HEAD 540059ff）全绿：983 条测试；entry 38.44，render 161.87，webgl 200.31。
+    - **TOOL-items-regen**：`rebase_task.py` 挪到 540059ff（cherry-pick 890 个文件，无冲突），Sol max `--from validate`，驱动 34196，`--rework-extra devsup_note_rebase.md`。
+    - **keywait**：
+      - 10:27 我误用 `&` 起了一个 kw.py，输出进了 /dev/null，吞掉一次 KEY 后自己退出了。
+      - 现改用 `scratchpad/w50b.py` 读 `_handoff/devsup_events.log` 的新增行。不管是哪个 keywait 实例记的状态变化都能看到，不会再漏事件。
+    - 磁盘 8.5 GiB（< 10），eng3 仍 2 路：CONTENT-ch00b-maps、CONTENT-ch10-cold-entry 在执行。
+  - **10-03 10:36–11:11 开发监督**：items-regen 返修后转只复审；当中有一次 API 网络中断（ENOTFOUND）。
+    - **TOOL-items-regen**：r1 FAIL，只因报告过时（生成物全过）。第 3 次运行 23 分钟，中途执行器网络重连过一次，11:07 校验通过、转 HOLD-REVIEWS。
+      - 11:10 手动第 1 次只复审，`--from validate --max-runs 0`，驱动 36953。r2 PASS 就自动合入；FAIL 就停 HOLD-RUNS 报协调者（协调者 10:50 口径）。
+    - 协调者 10:50 新约定：协调者在 `_prod` 起 vite dev 给作者看素材。prod_check 里的 `pnpm build` 会经 `build/asset-manifest.ts` 往 `apps/game/public` 复制、覆盖素材（不清空）。在协调者回复前，每次跑 prod_check 前先问一声。
+    - 磁盘 11.1 GiB，已报协调者可改回 3 路。
+    - `append_on_prompt.py` 两个注入器均超时退出，无需再注入：entry-split 与 tests-discover 都没再跑新一次运行就合入了。
+  - **10-03 11:12 开发监督**：协调者口径更新。
+    - prod_check 照常跑。build 往 `apps/game/public` 复制、覆盖素材不影响 dev 服务；只有清空 `apps/game/public` 或删 node_modules 这类操作要先告诉协调者。
+    - eng3 已按 3 路重启，日志 `_batch/eng3.detach.r3.out`；在跑的 CONTENT-ch00b / ch10 不受影响，接着起 CONTENT-ch00a-data。
+    - Tripo 改网页版，由协调者另起 subagent 做，产物进 `assets/default/model3d/`。ART-3d-tripo-avatars / cast 继续 HOLD，不归开发监督。
+  - **10-03 11:12–11:23 开发监督**：TOOL-items-regen 合入；TOOL-catalog-collectibles 起跑。
+    - **TOOL-items-regen**：只复审 r2 PASS，合入提交 3d6db806，工作区已清。
+      - 集成分支 `items_from_catalog --check` 通过（894 行最新）；889 个物品都带 `text.lore` 与 `extension.value.attributes`（AR-39 生成物已提交）。
+      - `prod_check`：983 条测试全过；entry 38.44，render 161.87，webgl 200.31。
+    - **TOOL-catalog-collectibles**：单独起，Sol max，驱动 85865，起跑时代码池 0/4。
+    - 物品线剩下：collectibles → gifts-catalog 复验合入（追踪者负责）→ 登记 TOOL-items-regen-2。
+    - eng3 三路：CONTENT-ch00b / ch10 / ch00a 在执行。
+  - **10-03 11:25–11:27 开发监督**：ENG-size-session-gate 单独起跑（协调者 11:25 同意），驱动 94025，Sol max，review_checks_eng。起跑时代码池 1/4、磁盘 9.2 GiB。
+    - 合入后 prod_check：报首次会话闭包实测值与 110 KiB 门的余量，再把 ENG-20b 的 HOLD 解除交 eng3。
+    - 协调者 11:25：
+      - 作者不需要本地 dev 了，5180 的服务已停；旧的 5173 vite 不是我们起的，别动。
+      - DEV 演示入口坏了：「进入演示」走 ch01_tianlong，内容包里没有 bookWorld 章节定义，报 `ITEM_RULES_UNAVAILABLE:CONTENT_CHAPTER_DEF_MISSING`。只影响 DEV，等 CONTENT 线补 ch01 或顺手修，不单独登记。
+  - **10-03 11:28–11:38 开发监督**：DES-ui-immersive（AR-43 沉浸式 UI 设计与样稿）起跑，后按作者指示改用 Codex。
+    - 先用 traex 单独起（驱动 31302）。稀疏检出已验证：sparse_include 是文件通配，写在 `!/…/**/*.png` 之后，按「最后匹配者生效」重新包含。小仓库实测，加实际工作区 weapons 247 / food 174 / manuals 180 张都在。
+      - 物品四类整类拉入约 1.6 GB，磁盘 8.0 → 5.4 GiB。协调者同意：以后样稿类任务的 sparse_include 只列具体文件。
+    - 作者指示（协调者 11:52 转达）：UI 部分由 Codex 执行（无额度时改 traex GPT-6）。协调者停掉 traex 链（31302 / 41628 / 41629 / 41630）并置 HOLD-RUNS。
+      - 我用 `scratchpad/ui_codex_relaunch.sh` 重起：codex gpt-6-astra xhigh，`--from start`，驱动 51691，独立 CODEX_HOME。
+      - 首次运行正常，无额度或限流；联网由 tasks.json 的 `web: true` 经 build_argv 自动加。
+    - 以后 ENG-ui-* 都用 codex。合入后要告诉协调者 `docs/design/ui-mock/index.html`，由协调者发给作者定方向。
+    - CONTENT 收掉之前不新开工作区（磁盘 5.3 GiB）。
+
+  - **10-03 10:45–11:45 协调者**：作者四条新指示（AR-42 / AR-43，原话见 `docs/decisions/author-requirements.md`）与执行。
+    - **合入**：ENG-attr-v2-schema 540059ff（10:31）、TOOL-items-regen 3d6db806（11:18，r1 FAIL 只因报告过时，返修后复审 PASS）。之后 TOOL-catalog-collectibles 起跑（驱动 85865），ENG-size-session-gate 单独起（驱动 94025）。eng3 11:09 按 3 路重启（pid 36786，日志 `_batch/eng3.detach.r3.out`），在跑 CONTENT-ch00b / ch10 / ch00a。
+    - **Tripo（AR-42）**：API 余额 0、作者不充，改用作者 Chrome 里的 Tripo Studio 网页版；协调者在 Chrome 建「Claude」标签组（tabGroupId 1013410121、tabId 1957635120），起 Opus 5.5 子代理（Tripo 网页建模员）驱动。侦察：Premium、余额 25125；生成 65（H3.1 + Ultra Mesh + 8K + PBR）、绑骨 20、动作 20 / 个、导出 5；Private 可选；面数定 10 万。**待作者**：同意下载（GLB + 预览图都算下载）；扩展对 tripo3d.ai 截图 / read_page 注入超时（JS 与真实点击正常），需作者查扩展网站访问权限。ART-3d-tripo-avatars / -cast 保持 HOLD 不续。进度 `.agents/coord/ART-3d-tripo-web/progress.md`。
+    - **本地 dev**：曾在 5180 起 vite（主检出 `.claude/launch.json` 的 game-dev-latest）给作者看，作者随即改要审核页，已停。验证中发现 DEV「进入演示」走 ch01_tianlong、内容包无 bookWorld 章节定义 → `ITEM_RULES_UNAVAILABLE:CONTENT_CHAPTER_DEF_MISSING`（只影响 DEV，已记开发监督备忘）。旧的 5173 vite（pid 86094）不是本线起的，未动。
+    - **素材审核页**：https://claude.ai/artifact/7H7nYXyBSRJJSNFBwsDGjM（2322 件，44 张图集 21.7 MB，`db` + `user` 能力；结论在 `verdicts` 集合，doc id = 素材 id，字段 v（ok / redo / drop）、note、c、t）。生成：`.agents/coord/review_page/collect.py`（收 manifest 与遗迹目录、缩图打图集）→ `build_html.py`（模板 `template.html`）。功能检查：探针写入、读回、删除正常。回收：读 `verdicts` → ok 写 manifest `status: approved`、drop 写 `rejected`、redo 按备注登记返工。
+    - **界面改版（AR-43）**：登记 DES-ui-immersive（e2700476；design/26、catalog/ui-art-kit、docs/design/ui-mock 样稿）。作者随后定「UI的部分，让codex来修，如果codex没有额度，让traex cli调用gpt 6来修」→ 协调者停掉已起的 traex 链（31302 等），开发监督用 codex gpt-6-astra xhigh `--from start` 重起（驱动 51691，日志 `supervise.codex.out`），后续 ENG-ui-* 一律 codex。教训：样稿任务的 sparse_include 整类拉物品图约 1.6 GB，磁盘一度 5.3 GiB；以后只列具体文件。
