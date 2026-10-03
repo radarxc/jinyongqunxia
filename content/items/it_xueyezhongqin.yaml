@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_xueyezhongqin
+name: 雪夜钟琴
+kind: collectible
+sub: qin
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H37](#src-h37)；准入：神雕终段；宋器旧藏架空授权流转，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/xueyezhongqin
+text:
+  desc: 外观：深黑褐漆七弦长琴，内敛肩腰。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,musician,collector]}; giftValue=4; provenance=history。
+  lore: 宋代雪夜钟琴有公开馆藏资料，可作为传世名琴方向。游戏将其放在南宋旧藏的固定赠予支线，宜赠乐人；具体拥有者与授权路线为（原创扩展），不改写真实馆藏履历。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

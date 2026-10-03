@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_songyulianbei
+name: 宋式玉莲瓣杯
+kind: collectible
+sub: jade
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songyulianbei
+text:
+  desc: 外观：青白玉小杯，莲瓣式浅腹。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[collector]}; giftValue=2; provenance=expanded。
+  lore: 依据宋元玉杯类型设计宋式莲瓣杯，取温润用材与节制纹样作礼物。宜赠权贵或藏家；把这一细型落实到天龙年代仍（待考），具体器名、原主与可得路径为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

@@ -1,0 +1,22 @@
+schemaVersion: move.v1
+id: mv_yuenvjian_wuhen
+name: 剑意无痕
+skillId: sk_yuenvjian
+unlock: 7
+kind: attack
+ultimate: true
+rageCost: 100
+target: enemy
+range: {min: 1, max: 1}
+shape: {tpl: aoe_single}
+delivery: melee
+hTol: 2
+powerBp: 25000
+referencePowerBp: 10000
+wInBp: 6500
+mpCost: 49
+recovery: 1200
+hitZone: body
+meridianRouteRef: mfr_yuenvjian_wuhen
+autoTargetCap: 1
+friendlyFire: none

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_zhaominjinhe
+name: 赵敏修补金盒
+kind: collectible
+sub: bronze
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B03](#src-b03)；准入：倚天；药物取出、修补及物权条件齐备
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/zhaominjinhe
+text:
+  desc: 外观：一只合拢黄金小盒，扁圆角盒身。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[merchant,collector]}; giftValue=3; provenance=book。
+  lore: 《倚天屠龙记》赵敏相关金盒有切开与修补的情节，完整流转待核修订版。药物移出且主线用途解除后可赠藏家；合盒形制和玩家取得为（原创扩展），不保留解药功能。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

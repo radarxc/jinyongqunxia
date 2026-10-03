@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_shuaiyitie
+name: 张旭《率意帖》
+kind: collectible
+sub: calligraphy
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B14](#src-b14)；准入：仅笑傲；梅庄物权结算后
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/shuaiyitie
+text:
+  desc: 外观：旧纸本卷帖，素绫护首。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,collector],npcOverrides:{npc_tubiweng:favored}}; giftValue=3; provenance=book。
+  lore: 《笑傲江湖》向问天携《率意帖》至梅庄投秃笔翁所好，沿用既有鉴赏收益。题名与流转待核修订版，不认作现存博物馆真迹；任务物权结清后方可馈赠，装卷为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    study:
+      art: art
+      value: 8
+    appraise:
+      art: art
+      dc: 60

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_qianlongmudanhuashibi
+name: 乾隆牡丹花诗笔
+kind: collectible
+sub: stationery
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H48](#src-h48)；准入：仅乾隆阶段五书；确切制年未核前不实装
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qianlongmudanhuashibi
+text:
+  desc: 外观：竹管紫毫笔一支，管上浅刻牡丹花叶。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=history。
+  lore: 故宫数字文物库收录乾隆竹管牡丹花诗紫毫笔，可供精工文房取形。宜赠文士藏家；具体制作年（待考），核准后按书界年份开放，授权流转为（原创扩展），图标不露诗文。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

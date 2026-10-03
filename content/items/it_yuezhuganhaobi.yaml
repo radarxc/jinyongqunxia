@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuezhuganhaobi
+name: 越地竹管毫笔
+kind: collectible
+sub: stationery
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuezhuganhaobi
+text:
+  desc: 外观：短竹管笔一支，细素管。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 春秋使用此种竹管毛笔的完整形制证据尚不足，本件作为书写工具方向的（原创扩展）。可赠地方书吏，待核管径和缚毫方式后再投放；不以战国出土毛笔反证越国定式。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 12

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansongduanwenqin
+name: 南宋断纹琴
+kind: collectible
+sub: qin
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongduanwenqin
+text:
+  desc: 外观：黑栗漆七弦琴，低平肩腰。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,musician,collector]}; giftValue=3; provenance=expanded。
+  lore: 以宋琴漆工讨论为依据设计保存良好的旧琴，断纹仅表示漆层状态。适合赠乐人或文士，修琴后由主人酬赠；具体造型与流转为（原创扩展），不以断纹断言唐代出处。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 52

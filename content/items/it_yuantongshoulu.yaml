@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuantongshoulu
+name: 元式素铜香炉
+kind: collectible
+sub: bronze
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuantongshoulu
+text:
+  desc: 外观：暗褐圆腹铜炉，敞口。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,monastic,collector]}; giftValue=1; provenance=expanded。
+  lore: 给元代书斋陈设设计的素面小炉，作为常见馈赠而非明宣德炉前身的断言。宜赠文士或僧道；名称、炉式和取得为（原创扩展），具体时期特征尚（待考），不刻后世年款。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

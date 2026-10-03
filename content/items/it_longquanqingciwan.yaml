@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_longquanqingciwan
+name: 龙泉青瓷碗
+kind: collectible
+sub: porcelain
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/longquanqingciwan
+text:
+  desc: 外观：淡青釉敞口碗，圆腹浅圈足。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 依龙泉青瓷发展资料设计南宋日常礼碗，以匀整釉色区别粗用器。宜赠文士或经营茶事的商贾，窑户与交易为（原创扩展）；具体釉色只在工艺年代核准后投入对应书界。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

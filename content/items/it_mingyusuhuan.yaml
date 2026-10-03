@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_mingyusuhuan
+name: 明素玉环
+kind: collectible
+sub: jade
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingyusuhuan
+text:
+  desc: 外观：青白玉宽边圆环，细磨素面。 待运行时投影：eraRange=[ming]; giftTo={preferred:[collector]}; giftValue=1; provenance=expanded。
+  lore: 为明代玉工酬答设计素玉环，以细磨程度体现普通礼物的体面。宜赠藏家，独立收藏而不增装备属性；器名、材质品相与获得为（原创扩展），不借宫廷旧玉名称抬高来源。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

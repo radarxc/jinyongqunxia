@@ -1,0 +1,36 @@
+schemaVersion: inkmeta.v1
+storyId: story_ch00_main
+chapter: ch00_yuenv
+region: rg_jiangnan_taihu
+entryKnots:
+  - modern_opening
+  - prologue_mode
+  - aqing_first_meeting
+  - after_initial_battle
+  - baiyuan_choice
+  - baiyuan_after
+  - fanli_request
+  - biandao_after
+  - sword_source
+  - nine_layer_preview
+  - aqing_first_layer
+  - northbound_departure
+  - first_sleep_allocation
+  - wake_to_baima
+  - skip_summary
+  - skip_direct
+readFlags:
+  - fl_00_zhulin_loss_streak3
+commands:
+  - quest/advance
+  - party/giveItem
+  - party/takeItem
+  - battle/start
+  - flag/set
+  - tutorial/mark
+  - story/requestTransmission
+  - ui/openAllocation
+  - ui/showTitleCard
+  - save/autosave
+  - dialogue/speaker
+npcs: [npc_aqing, npc_fanli]

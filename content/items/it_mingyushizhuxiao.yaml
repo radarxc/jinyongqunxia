@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_mingyushizhuxiao
+name: 明玉饰竹箫
+kind: collectible
+sub: qin
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingyushizhuxiao
+text:
+  desc: 外观：一支棕竹箫，吹端细白玉箍与竹体相连。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,musician,collector]}; giftValue=2; provenance=expanded。
+  lore: 为明代乐人设计带细玉箍的竹箫，以材料结合表现馈赠分量。宜送乐人文士，器型与取得均为（原创扩展）；不冒称刘正风随身原物，不带点穴、暗器或音波伤害属性。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

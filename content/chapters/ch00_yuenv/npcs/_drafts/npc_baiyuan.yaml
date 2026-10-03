@@ -1,0 +1,37 @@
+schemaVersion: npc-draft.v1
+mockRef: ENG-npc-species-roleslot
+id: npc_baiyuan
+identity:
+  name: 白猿
+  aliases: []
+  origin: fictional
+  species: animal
+  sourceWorks: [越女剑]
+lifespan:
+  born: {kind: unknown, note: 非人角色；年龄与称谓待考}
+  died: null
+  explicitAliveAt: [{chapterId: ch00_yuenv, from: -482, to: -482, source: 序章原创扩展定年}]
+appearances:
+  - key: yuenv_prologue
+    chapterId: ch00_yuenv
+    years: {from: -482, to: -482, approx: true}
+    displayName: 白猿
+    presenceMode: living
+    combatEligible: true
+    ageBand: null
+    sects: []
+    location: {cityId: null, placeKey: yuedi_shanjing}
+    contentLayer: mainline
+    recruitment: null
+    build: {pipeline: full, templateRole: tmpl_elite, cultivationBand: 2, portrayal: animal_white_ape_nonhuman, skills: [], unregisteredSkills: []}
+    ai: {tier: ai_adept, personality: pers_mangfu}
+recruitment: {everRecruitable: false, allianceOnly: false, hardConflictWith: [], softConflictWith: []}
+bonds: {tags: [yuenv, animal, nonlethal_only], comboCandidateRefs: []}
+crossBook: {enabled: false, reunionQuestByChapter: {}, legacy: {skillRefs: [], itemRefs: [], heirNpcRefs: []}}
+runtimePolicy:
+  useHumanAgePipeline: false
+  useHumanGiftAffinityDefaults: false
+  useHumanoidPortraitDefaults: false
+sources:
+  - {kind: novel, work: 越女剑, locator: 白猿与阿青在山中交手；称谓与动作细节待考}
+  - {kind: expanded, locator: 投果、切磋与绕路均为原创扩展；序章不可招募}

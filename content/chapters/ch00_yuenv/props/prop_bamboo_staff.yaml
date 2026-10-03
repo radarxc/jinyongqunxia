@@ -1,0 +1,19 @@
+schemaVersion: item.v1
+id: prop_bamboo_staff
+name: 拾取的竹棒
+kind: tool
+sub: teachingSwordProxy
+grade: 1
+stack: 1
+chapters: [ch00_yuenv]
+origin: expanded
+price: null
+flags: [teachingProxy, swordAnimationCompatible, destroyOnChapterExit]
+chapterBound: true
+assets: {icon: item/bamboo-staff}
+text:
+  desc: 竹林中拾得的章内教学竹棒；仅代理剑类动作与武器匹配，离开序章即销毁。（原创扩展）
+  short: 教学竹棒
+extension:
+  type: generic
+  value: {}

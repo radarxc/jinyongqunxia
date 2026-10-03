@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuewuseqin
+name: 越地乌漆礼琴
+kind: collectible
+sub: qin
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuewuseqin
+text:
+  desc: 外观：臂长黑褐漆木质弦器，朴素箱腔。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,musician,collector]}; giftValue=3; provenance=expanded。
+  lore: 为越地贵族礼乐支线设计的精制弦器，以保存和工艺区分品阶，不赋予音波攻击。适合赠乐人或贵族，器形及名称为（原创扩展）；春秋越地的实际琴制尚待专题核对。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

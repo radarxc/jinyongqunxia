@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_songxiaoyuyu
+name: 宋式小玉鱼
+kind: collectible
+sub: jade
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songxiaoyuyu
+text:
+  desc: 外观：青白玉小鱼，圆雕略扁。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[collector]}; giftValue=1; provenance=expanded。
+  lore: 以宋代小型圆雕玉鱼为形制背景，设计案头赏玩的普通玉件。可由玉工支线获赠，适合初识藏家；具体鱼形与取得是（原创扩展），不作为鱼符凭证，也不占装备槽。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

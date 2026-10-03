@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansongwenxuejian
+name: 南宋问学笺
+kind: collectible
+sub: calligraphy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongwenxuejian
+text:
+  desc: 外观：浅米色纸笺一张，折叠正文。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 为南宋书院交游设计求教短笺，玩家帮忙校书后请当地先生题赠。宜赠文士，不能借纸笺取得门派身份；题辞、题签和任务情节属于（原创扩展），署者不冒托历史名家。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_kangxifuzijiuzang
+name: 康熙福字旧藏
+kind: collectible
+sub: calligraphy
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H43](#src-h43)；准入：仅乾隆阶段五书；具体字幅核准后架空授权，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/kangxifuzijiuzang
+text:
+  desc: 外观：纸本立轴卷起大半，仅露单字「福」。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,collector]}; giftValue=4; provenance=history。
+  lore: 宫廷福字展览资料列有康熙御笔，可作后世旧藏的名家题字方向。具体字幅纪年未核，故只候选于乾隆阶段；旧藏归属和授权馈赠为（原创扩展），宜赠文士藏家而非免罪凭证。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

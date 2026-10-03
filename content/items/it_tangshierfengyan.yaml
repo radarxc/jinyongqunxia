@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_tangshierfengyan
+name: 唐十二峰陶砚
+kind: collectible
+sub: stationery
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H29](#src-h29)；准入：白马702—703；断代未核前保留候选
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangshierfengyan
+text:
+  desc: 外观：深褐陶砚，周缘连续小峰形围起。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=history。
+  lore: 据唐十二峰陶砚这一馆藏器类设计高阶文房礼物，宜赠喜造型砚的藏家。馆方唐代断代不足以直接证明武周可得，故早期年代（待考）；合格后才进入固定获赠节点。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

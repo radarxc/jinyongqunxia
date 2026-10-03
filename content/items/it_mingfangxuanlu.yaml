@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_mingfangxuanlu
+name: 明末仿宣铜炉
+kind: collectible
+sub: bronze
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingfangxuanlu
+text:
+  desc: 外观：暗栗黄铜圆腹炉，桥形双耳。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,monastic,collector]}; giftValue=3; provenance=expanded。
+  lore: 宣德款铜炉的款识不足以证明宣德原铸，本件明确设为明末仿宣作品。宜赠文士与藏家，具体炉型和取得为（原创扩展）；只投碧血阶段，不用真假争议换取更高礼值。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

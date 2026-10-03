@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_lantingtangmoben
+name: 兰亭唐摹卷
+kind: collectible
+sub: calligraphy
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/lantingtangmoben
+text:
+  desc: 外观：细绢装裱纸卷一轴，素木轴端。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=expanded。
+  lore: 以前代兰亭书写传统为题材设计唐人临摹卷，不指定现存神龙本等具体后出藏品。适合赠珍视笔法的文士，求摹与归属为（原创扩展）；武周摹写活动及装裱样式（待考）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

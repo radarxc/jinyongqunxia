@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yueyanmoshi
+name: 越地研墨石
+kind: collectible
+sub: stationery
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yueyanmoshi
+text:
+  desc: 外观：椭圆灰黑细砂石，浅凹研磨面。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=expanded。
+  lore: 借早期研磨书写材料的方向设计便携研墨石，不能照搬宋砚雕饰。宜赠爱古的文士藏家，取得为地方书吏酬谢；春秋越地研墨载体的证据（待考），具体器物为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

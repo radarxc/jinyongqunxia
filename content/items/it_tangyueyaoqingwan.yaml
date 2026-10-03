@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_tangyueyaoqingwan
+name: 越窑青瓷茶碗
+kind: collectible
+sub: porcelain
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangyueyaoqingwan
+text:
+  desc: 外观：淡青灰釉敞口小碗，矮足。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 依唐代南青北白的瓷业背景设计早期青瓷碗，专供武周窗口的普通器用。适合赠行旅文士，碗的细部和获赠情节为（原创扩展）；不使用晚唐秘色称谓，也不附点茶茶筅。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

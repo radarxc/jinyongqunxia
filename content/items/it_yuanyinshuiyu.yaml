@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuanyinshuiyu
+name: 元式银水盂
+kind: collectible
+sub: bronze
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanyinshuiyu
+text:
+  desc: 外观：银质扁腹水盂，圆口短颈。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[merchant,collector]}; giftValue=2; provenance=expanded。
+  lore: 借金银器锤揲工艺设计元代文房小水盂，适宜作为文士互赠的用具。器型、时期定位与取得为（原创扩展），具体元代同类资料（待考）；只作陈设，不成为炼药或投毒容器。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_qinggongyanyumo
+name: 清宫样精烟墨
+kind: collectible
+sub: stationery
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qinggongyanyumo
+text:
+  desc: 外观：漆黑细腻长方墨锭，浅浮雕盘云纹。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=expanded。
+  lore: 以清代精制文房墨为方向设计宫样礼墨，宫样只指装饰方向而非御赐身份。适合赠文士藏家，工艺、造型与获得均为（原创扩展）；具体纹饰先核同期样式，不拓出伪年款。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

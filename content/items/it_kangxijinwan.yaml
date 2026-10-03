@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_kangxijinwan
+name: 康熙赐黄金饭碗
+kind: collectible
+sub: bronze
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B06](#src-b06)；准入：仅鹿鼎后段；赠受物权与刻文核准后
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/kangxijinwan
+text:
+  desc: 外观：金质圆口深腹饭碗，厚口圈足。 待运行时投影：eraRange=[qing]; giftTo={preferred:[noble,collector]}; giftValue=3; provenance=book。
+  lore: 《鹿鼎记》有以御赐名义赠韦小宝黄金饭碗的情节，施琅经办及刻文待核修订版。宜赠金器藏家，只有原主授权后候选；外观与取得为（原创扩展），不将御赐名义当免罪权。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

@@ -1,0 +1,23 @@
+schemaVersion: martial-art.v1
+id: sk_yuezu_geshou
+name: 越卒戈手
+aliases: []
+category: weapon
+subType: spear
+grade: 2
+origin: expanded
+sect: null
+lineage: 越军戈兵操练
+sourceChapters: [ch00_yuenv]
+nature: yang
+wOutBp: 8500
+wInBp: 1500
+requirements: {attrs: {str: 25}, aptitude: {apSpear: 5}}
+maxLayer: 10
+layers:
+  - {n: 1, unlock: []}
+moveIds: []
+learnSources:
+  - {type: master, chapter: ch00_yuenv, ref: 越军教习角色槽, maxLayer: 10}
+tags: [weapon, spear, common, prologue_role]
+description: 越军兵卒的列阵戈术，以短线突进和推退为要。（原创扩展）

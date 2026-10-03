@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuanqinghualianpan
+name: 元青花莲纹盘
+kind: collectible
+sub: porcelain
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanqinghualianpan
+text:
+  desc: 外观：白地青花大浅盘，宽折沿。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=expanded。
+  lore: 以元青花花卉装饰与烧造工艺为背景设计礼盘，避开人物故事画。宜赠商贾藏家，窑口批次及取得为（原创扩展）；具体型式（待考），默认只在倚天元末阶段出现。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 52

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_suiqingyougaiguan
+name: 青釉双层齿沿盖罐
+kind: collectible
+sub: porcelain
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H10](#src-h10)；准入：白马702—703；前朝旧藏，授权转让
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/suiqingyougaiguan
+text:
+  desc: 外观：青黄釉短颈圆腹罐，两层齿状盖缘。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=history。
+  lore: 参照隋代青釉双层锯齿盖罐的公开藏品资料，作为武周可传世的前朝器。宜赠珍藏异形瓷的商贾；本件只取同类形制，旧藏转手为（原创扩展），绝不设为盗取墓葬原物。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

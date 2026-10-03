@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_longquanzongshiping
+name: 龙泉青釉琮式瓶
+kind: collectible
+sub: porcelain
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H19](#src-h19)；准入：神雕终段；器型断代复核后固定授予，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/longquanzongshiping
+text:
+  desc: 外观：厚润粉青釉方身圆口瓶，四面分节凸棱。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=4; provenance=history。
+  lore: 龙泉器形中有仿礼玉琮式的陈设瓶，本件以完整高品相列为稀有礼品。宜赠重古意的文士藏家；流转为（原创扩展），器物细型须核南宋成熟阶段，不赋予祭器神力。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

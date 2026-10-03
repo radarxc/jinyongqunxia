@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansongtaoheyan
+name: 宋式洮河石砚
+kind: collectible
+sub: stationery
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongtaoheyan
+text:
+  desc: 外观：青绿细石浅长方砚，水池与研面分明。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=expanded。
+  lore: 据宋代洮河石砚馆藏方向设计素雅礼砚，取石质与研面而不复制复杂人物雕饰。宜赠文士藏家，具体纹样和取得为（原创扩展）；砚石品种需鉴定，不以青绿颜色直接定名。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 52

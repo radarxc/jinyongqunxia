@@ -1,0 +1,34 @@
+schemaVersion: npc-draft.v1
+mockRef: ENG-npc-species-roleslot
+id: npc_aqing
+identity:
+  name: 阿青
+  aliases: []
+  origin: fictional
+  species: human
+  sourceWorks: [越女剑]
+lifespan:
+  born: {kind: unknown, ageBand: youth, note: 小说未给出可安全落库的生年（待考）}
+  died: null
+  explicitAliveAt: [{chapterId: ch00_yuenv, from: -482, to: -482, source: 序章原创扩展定年}]
+appearances:
+  - key: yuenv_prologue
+    chapterId: ch00_yuenv
+    years: {from: -482, to: -482, approx: true}
+    displayName: 阿青
+    presenceMode: living
+    combatEligible: true
+    ageBand: youth
+    sects: []
+    location: {cityId: null, placeKey: yuedi_zhulin_yueying}
+    contentLayer: mainline
+    recruitment: null
+    build: {pipeline: full, templateRole: tmpl_boss, cultivationBand: 10, portrayal: yuenv_sword_source_projection, skills: [{skillId: sk_yuenvjian, trueLayer: 9}], unregisteredSkills: []}
+    ai: {tier: ai_master, personality: pers_jinshen}
+productionTier: S
+recruitment: {everRecruitable: false, allianceOnly: false, hardConflictWith: [], softConflictWith: []}
+bonds: {tags: [yuenv, sword_source, shepherd], comboCandidateRefs: []}
+crossBook: {enabled: false, reunionQuestByChapter: {}, legacy: {skillRefs: [sk_yuenvjian], itemRefs: [], heirNpcRefs: []}}
+sources:
+  - {kind: novel, work: 越女剑, locator: 阿青牧羊、以竹棒显剑术及助越军习剑；具体顺序与措辞待考}
+  - {kind: expanded, locator: 救援、教学操控与传授长生诀第一层均为原创扩展；序章不可招募}

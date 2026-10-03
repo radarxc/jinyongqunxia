@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_zhenlongqiju
+name: 珍珑棋局图
+kind: collectible
+sub: antique
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/zhenlongqiju
+text:
+  desc: 外观：一张半展开的素纸棋图，十九路线与少量黑白圆点。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,collector],npcOverrides:{npc_suxinghe:favored}}; giftValue=3; provenance=expanded; tags=[chessbook]。
+  lore: 《天龙八部》无崖子创局、苏星河摆局是来历，便携棋局图沿用上游（原创扩展）。宜赠爱棋文士，保留既有棋艺收益；图纸并非解局钥匙，不替代原著相遇与剧情选择。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    study:
+      art: chess
+      value: 6
+    appraise:
+      art: art
+      dc: 60
