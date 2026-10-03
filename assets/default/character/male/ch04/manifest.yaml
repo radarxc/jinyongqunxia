@@ -1895,7 +1895,7 @@
   subject: 张无忌（ch04_yitian）
   prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
 
-    【参考图】第 1 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部神韵（眉眼、脸型的印象），让人一眼认出是这个角色；但五官不要照搬演员本人，要往经典武侠游戏插画里理想化的英俊脸型靠——成品像这个角色，而不像这位演员的写真；必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
+    【参考图】第 1 张是该角色经典影视造型的剧照，第 2 张是同一张剧照的脸部特写。人物的脸要明显向剧照靠拢——脸型、眉形与眉眼间距、眼型与眼神、鼻梁、嘴型和神情都要像剧照里的这个角色，让看过这一版的观众一眼认出；发型、服饰、配色和气质也借鉴剧照。但必须重新绘制成项目的手绘插画画风：不要照片质感，不要照搬剧照的构图、光影、背景和姿势，不要做成照片修图或照片贴脸。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
 
     【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 
@@ -1905,9 +1905,11 @@
 
     【年龄与体态】约二十二三岁的成年男子，身材高大、肩宽背厚、胸膛厚实、手臂结实——九阳神功大成的健壮体魄，体格明显比书生魁梧，宽肩窄腰、站得稳；肩宽约为头宽的三倍，脖颈结实，前臂粗壮；白袍合身，能看出宽肩厚背的轮廓。但不是夸张的健美肌肉，衣服穿得整齐，不袒胸。绝不清瘦单薄。
 
-    【经典造型】以剧照里这位张无忌的造型为蓝本：黑发在头顶束成发髻，其余长发垂到背后，额前两侧垂下长鬓发；一侧鬓边垂着几缕编成细辫、末端缀小木珠的发绳；一身白色交领右衽长袍，衣襟边缘和两肩到前身有深色编织纹的窄镶边，腰束深色腰带，深色长裤、布靴；整体干净利落。
+    【面容（要像剧照里的张无忌）】清秀俊朗：端正的鹅蛋脸，下巴圆润不尖，脸颊线条柔和干净，不要长脸、不要高颧骨、不要粗犷；浓黑整齐的眉毛，平直略带弧度；一双明亮的大眼睛、双眼皮清楚，眼神温和清澈、带一点笑意；鼻梁挺直、鼻头圆润；唇形端正、嘴角平和；肤色白净健康。温润如玉的书卷气，眉宇间又有英气。
 
-    【面容】比剧照更英俊：端正的脸型、轮廓清楚，额头饱满，下颌有力；浓而平直的剑眉，一双明亮清澈的眼睛，目光温和而坚定；鼻梁挺直，唇形端正、嘴角含着一点温厚的笑意；肤色健康。温润又有担当的青年英雄，帅气阳刚，不是奶油小生。
+    【发式】额前头发向后梳、露出饱满的额头，头顶束一个小发髻，其余长发披在肩后，一侧鬓边垂着几缕编成细辫、末端缀小木珠的发绳。
+
+    【服饰】一身白色交领右衽长袍，衣襟边缘和两肩到前身有深色编织纹的窄镶边，腰束深色腰带，深色长裤、布靴；整体干净利落。
 
     【手与道具】左手提一只朴素的布药囊，右手自然放松垂在身侧；不拿屠龙刀、倚天剑或圣火令。
 
@@ -1921,6 +1923,9 @@
   - path: .agents/coord/imagegen-reference/identity-20261002/yitian/zhangwuji_2003_suyoupeng_tvsou.jpg
     sha256: 826ee499517df053dd5edc5b5b2519f8c74f67930ccf9e01b987df631c106636
     use: 身份参考：2003《倚天屠龙记》 剧照（作者 10-03 指定版本）；只借造型、气质与五官神韵，按项目画风重画，不照搬照片
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/stillface__zhangwuji.jpg
+    sha256: e2719d7d920077c8c537fe246feda90e9df77104dc6d32d3d3b16c03f0e14b97
+    use: 剧照脸部特写：由上面这张剧照裁出放大（512×512），只为看清五官；同样只借神韵，按项目画风重画
   - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
     sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
     use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
@@ -1929,13 +1934,13 @@
     use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
   tool: codex exec · image_gen（AR-44 新 base：前置 2003《倚天屠龙记》 剧照 1 张，后接两张同性别基线立绘作画风参考）
   model: gpt-6-astra
-  created: 2026-10-03T13:04:34-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhangwuji__ch04_youth_jiaozhu_base.b3.png
+  created: 2026-10-03T13:34:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhangwuji__ch04_youth_jiaozhu_base.b5.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: ae9bc6aed59fa834707d76afa15b29fd8d5a19db226ae33b6169d9629e1ab3b9
+  sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 新 base：作者 10-03 要求参考2003《倚天屠龙记》造型、按项目画风重画、不要和照片一样
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 新 base：作者 10-03 要求参考2003《倚天屠龙记》造型、按项目画风重画、不要和照片一样（AR-44 / AR-49 第 2 轮，作者选 A）
   runner_job_records:
   - - por_npc_zhangwuji__ch04_youth_jiaozhu_base.resume3
     - ok
@@ -1945,9 +1950,9 @@
   runner_success_count: 1
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_jiaozhu_base.586da98f.png
-    sha256: 586da98f2896b5a28fcb25ee4335b989529dbf0fa78c029cba9308bcebdb806b
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_jiaozhu_base.586da98f.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_jiaozhu_base.ae9bc6ae.png
+    sha256: ae9bc6aed59fa834707d76afa15b29fd8d5a19db226ae33b6169d9629e1ab3b9
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_jiaozhu_base.ae9bc6ae.entry.yaml
 - id: por_npc_zhangsanfeng__ch04_elder_taiji_base
   file: por_npc_zhangsanfeng__ch04_elder_taiji_base.png
   category: character/male
