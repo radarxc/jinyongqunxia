@@ -1383,3 +1383,37 @@
     - build_portraits 09:43 在窗口内开跑（磁盘 12.2 GiB、负载 5.7、在跑 ENG 1）：BiRefNet 加载后交换区 31.7 → 38.9 GB、磁盘降到 5–6 GiB 后稳住；按章提交（ch01 36142d3f、ch05 / 06 f6917fd1 / 0126999e、ch07 7b40d2ec…），09:50 约 39 / 128。
     - ENG-19d 第 1 次运行 17 分钟，校验通过，r1 PASS（09:48），合入中。
     - **ENG-entry-split 第 1 次运行 119 分钟结束，校验中**。执行器自报 gzip：entry 闭包 169.08 → 38.87 KiB（业务块 52.25 → 13.21，Worker 闭包 91.16 → 0，Vue + runtime 25.66 不变），webgl total 329.61 → 199.40；做法是 Worker 不再静态挂在入口，首次建会话才加载「首次会话静态闭包」65.13 + 虚拟基础内容 18.50，对话 / Ink（≈35）、区域（7–37）、战斗（33.8）、城镇（按城，大理 22.6）首次触发才 import()；100 次序章 → 初眠 → 白马冷入口主线程 / Worker 一致，core golden 终值不变。协调者认可，并请开发监督登记 **ENG-size-session-gate**（check_size / budgets 加「首次会话闭包」门禁 110 KiB，entry 170 只约束标题页，子系统块逐块列出不设门；默认值记 TODO §8.2 待作者确认）。
+  - **10-03 09:40–09:57 开发监督**：entry-split 进审核；登记 ENG-size-session-gate；ENG-19d r1 PASS。
+    - **ENG-entry-split**：执行约 119 分钟，校验通过，09:49 起审。自报 gzip KiB：
+      - entry 闭包 169.08 → 38.87（业务块 52.25 → 13.21；Worker 闭包 91.16 → 0）；webgl total 329.61 → 199.40；
+      - 首次会话时加载：Worker 壳 2.33、首次会话静态闭包 65.13、虚拟基础内容 18.50；
+      - 子系统首次触发时才 import()：对话 / Ink 约 35、区域 7–37、战斗 33.8、城镇按城；
+      - 会话 hash 100 次一致，golden 终值未改。
+      - 协调者 09:52 认可做法：PASS 就合入、解除 15 个暂停、起 ENG-attr-v2-schema。
+    - **ENG-size-session-gate**（72509c70，协调者 09:52 默认值，待作者确认）：
+      - 新增「首次会话闭包」门禁（Worker 壳 + 首次会话静态闭包 + 虚拟基础内容），110 KiB gzip；
+      - entry 170 只管标题页；子系统块只列大小，不设门；`pnpm size` 表头写明三层；
+      - 写集为 tools/perf/** 和 vite 元数据插件，产物不变；找不到组时报错退出，不空过。
+      - 排在 attr-v2-schema 之后；**ENG-20b 在它合入前保持 HOLD**，其余 14 个随 entry-split 合入解除。
+    - 有一段交换区从 32 GB 涨到约 38 GB，磁盘从 12 掉到 5 GiB 左右；当时 entry-split 在构建、ENG-19d 在压测。
+    - **ENG-19d** r1 PASS，合入中。
+  - **10-03 09:57–10:01 开发监督**：ENG-entry-split 合入（e8357e76）、ENG-19d 合入（3a3d58ca）；解除 14 个暂停；ENG-attr-v2-schema 起跑。
+    - 合入后 `prod_check`（`_handoff/prod_check_post-entrysplit_*.log`，HEAD d0529625）全绿：975 条测试，`[dev-chunks] PASS`。
+      - **entry 38.44 / 170**（原 168.57），render 161.87，**webgl total 200.32**（原 330.44）。
+    - 合入受阻与恢复：ENG-19d 的 merge 在 09:50、09:52 两次被 `_prod` 里的立绘增量重建（逐章写、逐章提交）挡住，09:54 第 3 次重试成功。
+      - 立绘重建 09:55 跑完（128/128，ch01–ch14），已退出。
+      - 协调者新约定：再遇素材进程直接写 `_prod` 挡合入，直接报协调者，不等 20 分钟。
+    - **解除暂停**：14 个任务的状态清回 PENDING，交 eng3：ENG-16c / 26 / 23a / 16e / 18c、CONTENT-ch00a / b / c / ch10、ENG-27a / 27b / 28a / 28b / 27c。
+      - ENG-20b 继续 HOLD，等 ENG-size-session-gate 合入，清单见 `scratchpad/entry_holds.txt`。
+    - **ENG-attr-v2-schema**：Sol max，驱动 97000，review_checks_eng。
+  - **10-03 10:03 开发监督**：eng3 已于 09:34:15 退出，日志「队列结束：合入 21，停住 15」。
+    - 原因：当时剩余任务全是 HOLD、没有在跑的，batch_run 认为队列跑完了。09:57 解除的 14 个暂停因此没人接手。
+    - 已请协调者重启 eng3（parallel 3）。我不自己起调度器：之前单独起 batch_run 被权限系统拒绝过。
+    - 教训：以后成批 HOLD 前先确认调度器里还有在跑的任务，或者事先告知协调者，调度器可能因此提前退出。
+
+  - **10-03 09:50–10:02 协调者**：立绘重建收尾、总览页第 4 版、eng3 退出。
+    - 立绘重建 128/128 09:55 跑完（追踪者；36142d3f..0cc39bf9 按章 14 次提交；index.json 814 变体 / 699 头像 / 433 人物；模型加载交换区 +7 GB，磁盘最低 5.1 GiB，现 8 GiB）。它直接写 `_prod`，把 ENG-19d 的 merge 挡了两次（09:50 / 09:52），09:54 第 3 次成功；entry-split 09:56 合入时 `_prod` 已干净。
+    - **新规**（追踪者脚本已实现）：连续改 `_prod` 超过 1 分钟的素材任务（build_portraits、批量入库、大清理），开跑前和每章前扫 `.agents/coord/*/supervise.status.json`，有 RUNNING 且 detail 含 reviewing / validating / merging 的驱动就每 60 秒等一次，等满 30 分钟先停并把已做的落盘提交；能换到单独工作区的换过去按路径提交。开发监督再遇此事直接报协调者，不等 20 分钟放弃。
+    - 协调者重建人物 INDEX 并提交 d0529625（590 份，16 组）；总览页第 4 版 09:58 同地址重发（https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A，74 个文件 17.5 MB，`root` + `files` + `overwrite_unread`）。
+    - eng3 09:34 自行退出（队列只剩 HOLD 项：「队列结束：合入 21，停住 15」），所以 09:57 解除的 14 个暂停没人接。协调者把 M1 的 CONTENT-ch00b / ch10 / ch00a 提到 ENG-16c 之前（队列文件已注明），按磁盘规则先用并发 2 重启（见下一条）。
+    - **10:03 eng3 重启**（协调者，`detach_launch.py` → `.agents/coord/_batch/eng3.detach.r2.out`，pid 17924，`--parallel 2`）：磁盘 8 GiB、代码工作区约 1.3 GB / 个，按「< 5 GiB 不新开工作区」先开 2 路；attr-v2-schema 合入清掉工作区、磁盘回到 ≥ 10 GiB 后可再按 3 路重启。起跑即起 CONTENT-ch00b-maps（17928）与 CONTENT-ch10-cold-entry（17929）；待启动 14：CONTENT-ch00a-data、ENG-16c、ENG-size-session-gate（队列里排在 attr-v2-schema 后，但 tasks.json 无依赖，显示 ready）…；ENG-20b 仍 HOLD。batch_run 对 RUNNING 且 pid 存活的任务（ENG-attr-v2-schema 97000）会跳过，不会重复起。
