@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 887、待出图 141、已通过（作者） 132。**待出图队列 141 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 888、待出图 140、已通过（作者） 132。**待出图队列 140 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -35,7 +35,6 @@
 | items | `it_nansongduanwenqin` | 南宋断纹琴 | `assets/default/item/collectibles/it_nansongduanwenqin.png` | 待出图 | [it_nansongduanwenqin.md](items/collectibles/it_nansongduanwenqin.md) |
 | items | `it_nansonghuzhoubi` | 南宋湖州书笔 | `assets/default/item/collectibles/it_nansonghuzhoubi.png` | 待出图 | [it_nansonghuzhoubi.md](items/collectibles/it_nansonghuzhoubi.md) |
 | items | `it_nansongtaoheyan` | 宋式洮河石砚 | `assets/default/item/collectibles/it_nansongtaoheyan.png` | 待出图 | [it_nansongtaoheyan.md](items/collectibles/it_nansongtaoheyan.md) |
-| items | `it_nansongwenxuejian` | 南宋问学笺 | `assets/default/item/collectibles/it_nansongwenxuejian.png` | 待出图 | [it_nansongwenxuejian.md](items/collectibles/it_nansongwenxuejian.md) |
 | items | `it_nansongyulianpei` | 南宋玉莲小雕 | `assets/default/item/collectibles/it_nansongyulianpei.png` | 待出图 | [it_nansongyulianpei.md](items/collectibles/it_nansongyulianpei.md) |
 | items | `it_nansongyulongbei` | 南宋龙柄玉杯 | `assets/default/item/collectibles/it_nansongyulongbei.png` | 待出图 | [it_nansongyulongbei.md](items/collectibles/it_nansongyulongbei.md) |
 | items | `it_nansongzhubingshan` | 南宋竹柄绢扇 | `assets/default/item/collectibles/it_nansongzhubingshan.png` | 待出图 | [it_nansongzhubingshan.md](items/collectibles/it_nansongzhubingshan.md) |
