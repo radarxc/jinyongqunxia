@@ -35468,6 +35468,60 @@
     "tools/content/test_items_from_catalog.py",
     "tools/content/README.md"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/agents/reports/ENG-attr-v2-schema.md"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-attr-v2-schema",
+   "title": "游戏工程 · 小修：item.v1 各 extension 接受可选 attributes: AttributeProjectionV2（design/10 §4.10.5 投影目标），只校验结构不消费——解锁 TOOL-items-regen 的 content:validate",
+   "prompt": "ENG-attr-v2-schema.md",
+   "deps": [
+    "ENG-entry-split"
+   ],
+   "writes": [
+    "packages/data/src/schemas/item.ts",
+    "packages/data/src/schemas/*.test.ts",
+    "packages/data/CLAUDE.md"
+   ]
   }
  ]
 }
