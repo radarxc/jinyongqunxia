@@ -246,6 +246,16 @@
   - portrait/npc_caohuachun/ch07_base
   avatar: npc_caohuachun/ch07_base.ava256.webp
   bust: npc_caohuachun/ch07_base.bust512.webp
+- id: npc_caoyunqi
+  file: npc_caoyunqi/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_caoyunqi__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_caoyunqi/ch14_base
+  avatar: npc_caoyunqi/ch14_base.ava256.webp
+  bust: npc_caoyunqi/ch14_base.bust512.webp
 - id: npc_changbozhi
   file: npc_changbozhi/ch12_prime_base.mid.webp
   category: portrait
@@ -734,6 +744,26 @@
   - portrait/npc_duoergun/ch07_base
   avatar: npc_duoergun/ch07_base.ava256.webp
   bust: npc_duoergun/ch07_base.bust512.webp
+- id: npc_duximeng
+  file: npc_duximeng/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_duximeng__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_duximeng/ch14_base
+  avatar: npc_duximeng/ch14_base.ava256.webp
+  bust: npc_duximeng/ch14_base.bust512.webp
+- id: npc_fanbangzhu
+  file: npc_fanbangzhu/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_fanbangzhu__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_fanbangzhu/ch14_base
+  avatar: npc_fanbangzhu/ch14_base.ava256.webp
+  bust: npc_fanbangzhu/ch14_base.bust512.webp
 - id: npc_fangsheng
   file: npc_fangsheng/ch05_elder_base.mid.webp
   category: portrait
@@ -1241,6 +1271,8 @@
   - portrait/npc_hufei/ch13_youth_scene_foshan_blood_mark_justice
   - portrait/npc_hufei/ch13_youth_scene_grave_return_blade
   - portrait/npc_hufei/ch14_prime_base
+  - portrait/npc_hufei/ch14_prime_scene_snow_cliff_suspended_blade
+  - portrait/npc_hufei/ch14_prime_scene_yubi_rescue
   avatar: npc_hufei/ch13_youth_base.ava256.webp
   bust: npc_hufei/ch13_youth_base.bust512.webp
 - id: npc_hufuren
@@ -1367,6 +1399,16 @@
   - portrait/npc_jiaowaner/ch07_base
   avatar: npc_jiaowaner/ch07_base.ava256.webp
   bust: npc_jiaowaner/ch07_base.bust512.webp
+- id: npc_jingzhidashi
+  file: npc_jingzhidashi/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_jingzhidashi__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_jingzhidashi/ch14_base
+  avatar: npc_jingzhidashi/ch14_base.ava256.webp
+  bust: npc_jingzhidashi/ch14_base.bust512.webp
 - id: npc_jinlunfawang
   file: npc_jinlunfawang/ch03_elder_base.mid.webp
   category: portrait
@@ -1604,6 +1646,16 @@
   - portrait/npc_liurenfeng/ch09_prime_pursuit_base
   avatar: npc_liurenfeng/ch09_prime_pursuit_base.ava256.webp
   bust: npc_liurenfeng/ch09_prime_pursuit_base.bust512.webp
+- id: npc_liuyuanhe
+  file: npc_liuyuanhe/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_liuyuanhe__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_liuyuanhe/ch14_base
+  avatar: npc_liuyuanhe/ch14_base.ava256.webp
+  bust: npc_liuyuanhe/ch14_base.bust512.webp
 - id: npc_liuyunshi
   file: npc_liuyunshi/ch04_prime_base.mid.webp
   category: portrait
@@ -1936,6 +1988,8 @@
   size: 1024x1536
   variants:
   - portrait/npc_miaoruolan/ch14_youth_base
+  - portrait/npc_miaoruolan/ch14_youth_scene_cave_plea_mercy
+  - portrait/npc_miaoruolan/ch14_youth_scene_manor_stop_fight
   avatar: npc_miaoruolan/ch14_youth_base.ava256.webp
   bust: npc_miaoruolan/ch14_youth_base.bust512.webp
 - id: npc_miejueshitai
@@ -2379,6 +2433,16 @@
   - portrait/npc_renyingying/ch05_youth_shenggu_base
   avatar: npc_renyingying/ch05_youth_shenggu_base.ava256.webp
   bust: npc_renyingying/ch05_youth_shenggu_base.bust512.webp
+- id: npc_ruanshizhong
+  file: npc_ruanshizhong/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_ruanshizhong__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_ruanshizhong/ch14_base
+  avatar: npc_ruanshizhong/ch14_base.ava256.webp
+  bust: npc_ruanshizhong/ch14_base.bust512.webp
 - id: npc_saizongguan
   file: npc_saizongguan/ch14_base.mid.webp
   category: portrait
@@ -2746,6 +2810,16 @@
   - portrait/npc_suxinghe/ch01_elder_zhenlong_base
   avatar: npc_suxinghe/ch01_elder_zhenlong_base.ava256.webp
   bust: npc_suxinghe/ch01_elder_zhenlong_base.bust512.webp
+- id: npc_taobaisui
+  file: npc_taobaisui/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_taobaisui__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_taobaisui/ch14_base
+  avatar: npc_taobaisui/ch14_base.ava256.webp
+  bust: npc_taobaisui/ch14_base.bust512.webp
 - id: npc_taohong
   file: npc_taohong/ch09_youth_wanfu_base.mid.webp
   category: portrait
@@ -2756,6 +2830,16 @@
   - portrait/npc_taohong/ch09_youth_wanfu_base
   avatar: npc_taohong/ch09_youth_wanfu_base.ava256.webp
   bust: npc_taohong/ch09_youth_wanfu_base.bust512.webp
+- id: npc_taozian
+  file: npc_taozian/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_taozian__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_taozian/ch14_base
+  avatar: npc_taozian/ch14_base.ava256.webp
+  bust: npc_taozian/ch14_base.bust512.webp
 - id: npc_tianboguang
   file: npc_tianboguang/ch05_prime_before_ordination_base.mid.webp
   category: portrait
@@ -3261,6 +3345,16 @@
   - portrait/npc_xinyan/ch12_youth_base
   avatar: npc_xinyan/ch12_youth_base.ava256.webp
   bust: npc_xinyan/ch12_youth_base.bust512.webp
+- id: npc_xiongyuanxian
+  file: npc_xiongyuanxian/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_xiongyuanxian__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_xiongyuanxian/ch14_base
+  avatar: npc_xiongyuanxian/ch14_base.ava256.webp
+  bust: npc_xiongyuanxian/ch14_base.bust512.webp
 - id: npc_xuanci
   file: npc_xuanci/ch01_elder_fangzhang_base.mid.webp
   category: portrait
@@ -3512,6 +3606,16 @@
   - portrait/npc_yilin/ch05_youth_base
   avatar: npc_yilin/ch05_youth_base.ava256.webp
   bust: npc_yilin/ch05_youth_base.bust512.webp
+- id: npc_yinji
+  file: npc_yinji/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_yinji__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_yinji/ch14_base
+  avatar: npc_yinji/ch14_base.ava256.webp
+  bust: npc_yinji/ch14_base.bust512.webp
 - id: npc_yinli
   file: npc_yinli/ch04_youth_disfigured_base.mid.webp
   category: portrait
@@ -4054,6 +4158,16 @@
   - portrait/npc_zhouyingjie/ch12_youth_alive_base
   avatar: npc_zhouyingjie/ch12_youth_alive_base.ava256.webp
   bust: npc_zhouyingjie/ch12_youth_alive_base.bust512.webp
+- id: npc_zhouyunyang
+  file: npc_zhouyunyang/ch14_base.mid.webp
+  category: portrait
+  source: por_npc_zhouyunyang__ch14_base
+  status: candidate
+  size: 1024x1536
+  variants:
+  - portrait/npc_zhouyunyang/ch14_base
+  avatar: npc_zhouyunyang/ch14_base.ava256.webp
+  bust: npc_zhouyunyang/ch14_base.bust512.webp
 - id: npc_zhouzhiruo
   file: npc_zhouzhiruo/ch04_youth_zhangmen_base.mid.webp
   category: portrait
