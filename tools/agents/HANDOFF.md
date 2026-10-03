@@ -1553,3 +1553,13 @@
       - 样稿已由协调者发给作者：https://claude.ai/artifact/Gs1y41HRhgPg29YGiXjAo2
     - gifts-catalog 由追踪者复验；它合入后，我登记 TOOL-items-regen-2。
 
+  - **10-03 12:50–13:12 协调者**：子代理停滞恢复、审核模型、样稿与 AR-48、Gemini / 第三波安排。
+    - 开发监督、Tripo 建模员、10 号出图员都被看门狗判停滞（单次工具调用 > 10 分钟），SendMessage 唤醒并要求单次调用 ≤ 5 分钟。
+    - codex 执行的任务审核报 `'GPT-5.6-Sol' model is not supported when using Codex with a ChatGPT account` → 作者「Codex 可以用gpt 6 astra的」→ DES-ui-immersive 用 `--review-model gpt-6-astra --from review` 重审，PASS，合入中（一次 merge 撞上 _prod 瞬时脏、自动重试）。以后 codex 任务一律 `--review-model gpt-6-astra`。
+    - ENG-content-validate-inkmeta：防截断误报（validate-content.ts 抽函数 46→26 行）→ 停第 2 轮、豁免（9b223c53），`--from validate` 重起（驱动 30795）→ PASS → 合入 2f16faed。之后开发监督起 ch10（--from validate）、ch00a（--from start）。
+    - CONTENT-ch00b r3 FAIL（Trigger 动作大小写、与 ch00a 重复发奖、offer_tao 缺参数、门 lockedBy 填 quest ID 无 binding）→ 裁定 ch00a 合入后再返修；开发监督另登记 Trigger action 大小写敏感校验的小修复。
+    - gifts-catalog：check_ids 要 it_* 在 design/10 文末登记 → 写集加 design/10（928952dc），停旧返修，追踪者 --from start 重起（gpt-6-astra，驱动 88485）。
+    - 界面样稿首版发作者：https://claude.ai/artifact/Gs1y41HRhgPg29YGiXjAo2（源 `.agents/coord/ui_mock_page/`，同路径重发保持地址）。作者 AR-48 改意见 → 第三波登记 ART-ui-icons（codex，排第一），开发监督登记 DES-ui-immersive-2（codex，依赖图标）。
+    - 第三波：批 step.py 稀疏检出瘦身（方案 A）与城图磁盘规则 v2（方案 B）；批 TOOL-city-generic；ART-region-maps 改由新起的 Gemini 出图员做（作者「gemini和tripo都在前台了」）。
+    - Tripo：男女主角导出入库（427fa2a1 / 3d3dc810；model_rig.glb 约 6 MB、65 关节；动作 GLB 各带整份网格约 6 MB，后续可合并成一个多段动画 GLB）。
+    - 10 号出图员 A2：杨过（784245da，参考 1995）、张无忌（08603fc9，参考 2003，更帅更健壮）新 base 已入库，联系表 `codex_w17/sheets/A2_new_bases.jpg` 已发作者待批；段誉剧照等作者定（本地只有 1997 TVB 版）。
