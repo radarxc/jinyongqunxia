@@ -887,3 +887,8 @@
     - **TOOL-rig-sheet**：第 5 次运行校验通过，审核 r2 FAIL，03:18 自动进第 3 次运行。
     - 磁盘 7 GiB、交换区 33.8 GB 用 32.8 GB、1 分钟负载 8.5～12；CITY / gifts-spec 仍暂停，eng3 并发 3。
     - **TODO 整份更新**（03:25 版）：§0 现状、§1 工作区表、§3.1 / 3.2 / 3.4 / 3.5、§4～§8 全部按本轮改写；§2、§3.3、§8.2 原样保留。
+  - **10-03 03:26–03:40 协调者（hero-b 合入）**：
+    - r4 PASS（03:26，李文秀一项按 review_checks_hero 第 1 条放行）。她的 1 基 / 2 期 / 3 景其实在第 3 次运行就已用游戏封面 + 基线出好并入工作区，执行器只是不肯标「完成」；联系表 `codex_w12/sheets/retry3-stages-ch10-npc_liwenxiu.jpg` 看过合格，不登记补图任务。
+    - **合入冲突**：cast-b（fe4765ef）与 hero-b 都在 female/ch09、female/ch14、male/ch09、male/ch12、male/ch13、male/ch14 六个 manifest 末尾追加条目。追踪者用 `rebase_task.py` 把基点挪到 d1a5a173（备份引用 `refs/agents-backup/ART-hero-refine-b-pre-rebase-10030328`），冲突标记留在六个文件里，拟另起 `--from start` 让执行器解。协调者裁定不花执行器：手工解——female/ch14、male/ch09 的冲突块从共用条目（苗若兰 / 狄云基线）的 `notes` 行开始，取 hero-b 一侧的 notes / redo_reason / generation_job / quality_retries / history，再接 cast-b 追加的条目、hero-b 追加的条目；其余四个纯追加、两边都保留。解后 YAML 可解析、ID 不重复、文件齐全；`step.py finish` 校验通过并提交 204df715；旧驱动 17953 的下一次重试（03:33:50）合入 **2533a8fd**（181 个文件），状态 MERGED。
+    - 两组主角精修合计 175 张（a 95 + b 80）。hero-b 五张联系表 03:40 发作者。
+    - 已告诉追踪者做合入后收尾（联系表归档、`.agents/logs/ART-hero-refine-b` 123 MB、w12 runner 排空停掉），cast-polish-ch09 等磁盘 ≥ 7 GiB，CITY 续作条件不变。
