@@ -44,7 +44,8 @@
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
 | TOOL-rig-sheet | traex Sol max | 审核 r5 又 FAIL（前臂含手掌、侧腿占位、髋锚暴露）；第 9 次返修为最后一轮，侧腿问题转 ART-rig-sheet-side（新源图），之后按原型收口合入 | 开发监督另起 |
-| TOOL-items-catalog（重新生成） | traex | 11 份名录已全部九列（lore-1 bbce8465 收官），等 ENG-entry-split 拿到池位后由开发监督起 `--force` 重新生成并提交 content/items（AR-39） | 开发监督 |
+| TOOL-items-regen | traex | 已登记（dcb77156）：按九列名录重新生成并提交 content/items；排在 entry-split、catalog-collectibles、gifts-catalog 复验之后 | 开发监督 |
+| TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；排 entry-split 后 | 开发监督起 |
 | TOOL-tests-discover | traex Sol | 07:01 起跑（unittest discover 跑全 tools 测试 + 两条红测试） | 3408（开发监督） |
 | ENG-12e-gltf-pilot | traex | 07:13 续作（恢复 2D 演示 + 3D 并排），07:16 开跑 | 69969（协调者，`supervise.r3.out`） |
 | TOOL-town-gaps-1 | traex Sol | 07:1x 续作（排队等池位） | 66572（开发监督） |
@@ -180,7 +181,7 @@
 | ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | **合入 41b24202**（06:07，六弟子各重出 1 张，联系表 `_handoff/gem/codex_w15/sheets/`） |
 | CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | **合入 04f1133a**（05:28）：16 城目录——14 个完整候选 + 洛阳 / 太原（manifest 标 `rejected`：水门与内隔墙是工具缺口，构建不进包）；收尾运行修了页眉之外的两项未成。全量**不接力**，范围缩减见 §8.1；进度 `docs/design/town/progress.csv`（2367 行）/ `done.txt`，副本在 `_handoff/city/`。工具缺口已登记 **TOOL-town-gaps-1**（052aac53：水门 / 多重城垣 / 未声明墙水相交检查 / 页眉按城 / cities.yaml 庭州键与 ch10 年代带 / 唐 · 西域 · 吐蕃套件进 schema，用洛阳太原验证并改回 candidate），代码池有位时开发监督起 |
 | ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览 | codex xhigh | **合入 df54e2ef**（06:12，56 张）。DES-ruins-ids 已合入（6d3121d7）：九老洞、敦煌地宫唐 / 清、达摩洞、若耶溪墓藏、华山后洞 6 个 `sc_*` → **ART-ruins-maps-2**（f052b904）**07:28 起跑**（驱动 69438）；第 1 批报告 §6 缺的遗迹贴片待登记贴片任务 |
-| ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录与 Gemini 提示词 | codex xhigh | **06:44 起跑**（驱动 2757，基点 c6d06966） |
+| ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录与 Gemini 提示词 | codex xhigh | 第 1 次运行写出 151 件九列名录 + 151 份提示词，校验被校验器挡住（不认新文件）→ HOLD；等 TOOL-catalog-collectibles 合入后 `--from validate` 复验合入，再起 Gemini 出图员出 collectibles |
 
 做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接 `_handoff/art_wave2_tracker_brief.md`；审核要点 `.agents/coord/PROD/review_checks_hero.md`（第 1 条已容许白马 / 侠客 / 鸳鸯不用剧照）/ `review_checks_ruins.md` / `review_checks_city.md`。审核模型写 `--review-model gpt-5.6-sol`（Codex 不认大写）。
 
