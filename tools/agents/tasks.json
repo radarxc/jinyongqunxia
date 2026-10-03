@@ -36019,6 +36019,66 @@
     "content/CLAUDE.md",
     "content/chapters/README.md"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/content/items_from_catalog.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools.content.test_items_from_catalog",
+      "tools.lint.test_check_item_catalog"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-items-regen-2",
+   "title": "工具 · 收藏品入库：按名录重新生成 content/items（含 items-collectibles.md 151 件收藏品；提交生成物 AR-39；不改生成器）",
+   "prompt": "TOOL-items-regen-2.md",
+   "deps": [
+    "TOOL-items-regen",
+    "TOOL-catalog-collectibles",
+    "ART-items-gifts-catalog"
+   ],
+   "writes": [
+    "content/items/**"
+   ]
   }
  ]
 }
