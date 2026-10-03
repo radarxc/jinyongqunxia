@@ -1631,3 +1631,9 @@
     - 隐患：items-regen-2 的驱动已在 step.py 里等位，tiled-strict 执行器一结束就会占位。已请协调者决定是否先停它（HOLD-RUNS），之后由我 `--from start` 重起。
     - **计划补记**：ch10 带 review_checks_content.md 复审，能过就先合入内容。引擎三件（gates-data、event-executor、19e）合入后，再起一次 ch10 / ch00 的验收复测。
 
+  - **10-03 12:45–13:40 素材线第三波追踪（AR-47 / AR-48，子代理）**：登记与第一项起跑。
+    - step.py 稀疏检出（fba964f5，main 13:12 批）：默认排除 `assets/default/town`、`assets/default/scene`；include 落在被排除目录之下时只排子目录（`!/d/*/`）再逐项包含（git 2.44 实测，新目录可 add）。只影响新建工作区；插图 / 城图任务须在 sparse_include 显式列文件。素材任务工作区约 1 GB → 约 0.2 GB。
+    - **城图磁盘规则 v2**（main 13:12 批，替代 44daac2f）：manifest 图 = `render_town.py --scale 0.25 -o preview.jpg`（JPEG q85，短边 ≥ 512）；`overlay.svg` 与全尺寸 `town.png` 只给各章首城（清单 `fullsize=yes`；ch10 已完成的 16 城保持原样，ch10 其余不再出全尺寸，待 main 确认）；同年代带其他章节只复制规格 + `layout.yaml`，不渲染、不写 manifest。校验 `tools/agents/check_city_batch.py`。
+    - 登记 018a16ad：ART-ui-icons（22 件，最先起）、ART-rig-std-refs、ART-rig-sheet-f → TOOL-rig-parts-f、ART-ruins-tiles、ART-cast-fill-c / -d（名单 `tools/agents/rosters/`，校验 `check_roster_portraits.py`）、TOOL-city-generic（推定格局生成器 + 年代套件接入 + JPEG 预览）、CITY-layouts-<章>-<a–d|g> 34 批（清单 `docs/design/town/progress/<任务>.expect.csv`，写集互不相交，依赖 TOOL-city-generic）。ART-region-maps 转 Gemini 出图员，未登记。wave 10 的 CITY-<城>__<带>（15 个）与 CITY-generic 已被取代，不要再起。
+    - 集成分支既有问题（不在本线写集）：`male_std` / `female_std` 的 `make_parts.py --check` 不通过；大理 / 临安基线 `check_town --strict-assets` 报墙水相交 error。
+    - 起跑：codex 执行任务一律 `--review-model gpt-6-astra`；runner 在 `_handoff/gem/codex_w18–w23/`（`_handoff/artw3/runner3.py`，第 3 列 `none` 不附人物基线）。进度 `_handoff/artw3/progress.md`。
