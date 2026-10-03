@@ -25,7 +25,7 @@
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
 - **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e / TOOL-items-catalog，10-03 凌晨再合入 ENG-19a（04:32）、ENG-18b（05:09）、ENG-17（05:12）、ENG-19c（05:24）、TOOL-catalog-9col（05:37）——M1 的 25 / 17a / 19a / 17 齐了；集成分支 `pnpm check` 05:26 全绿（128 文件 922 用例，entry 160.17 / 170 KiB 余 9.8 KiB，webgl 320.70 / 350）。在跑 ENG-20a、ENG-19b、ENG-12e（返修：恢复 2D 演示 + 3D 并排）、TOOL-rig-sheet 返修、TOOL-town-gaps-1、TOOL-catalog-food-qi-exception、lore 复验（lore-6 已合入）；eng3 队列还有 17 项（§5）。
 - **分工**（作者 10-02 15:50 / 22:00）：三个 Opus subagent——素材线第二波追踪（codex 执行器）、Gemini 出图员、开发监督；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max；GPT-5.5 禁用）。协调者只规划、登记、裁定、合入。
-- **环境**：07:00 磁盘 4.4 GiB（追踪者清 _handoff 试稿与 codex 缓存共 1.4 GB 后一度 5.3）、交换区 35 GB；暂停中的 ENG-12e、TOOL-town-gaps-1 等磁盘 ≥ 6 GiB 且负载 < 8；规则：磁盘 < 5 GiB 不新开工作区、< 2.5 GiB 停线（§6）。校验漏洞：`unittest discover -s tools` 只跑 33 条（TOOL-tests-discover 修）。
+- **环境**：09:30 磁盘约 9 GiB（08:55 曾因 ENG-entry-split 执行器在 /private/tmp 做 6 GB 整仓检出跌到 0.8 GiB，已删并在 `_common.md` 加规则 12 禁止）、交换区 32 GB；规则：磁盘 < 5 GiB 不新开工作区、< 2.5 GiB 停线（§6）。校验漏洞已修（TOOL-tests-discover 2effff74：tools 测试 549 条全跑）。
 
 ---
 
@@ -47,7 +47,7 @@
 | TOOL-items-regen | traex | 第 1 次运行 30 分钟生成完，校验被 data schema 挡住（`extension.value.attributes` 未定义）→ HOLD，等 ENG-attr-v2-schema 合入后挪基点 `--from validate` | 开发监督 |
 | ENG-attr-v2-schema | traex Sol | 已登记（b7e1101f）：item.v1 各 extension 加可选 attributes 投影（只校验不消费）；依赖 ENG-entry-split（entry 余量） | 开发监督起 |
 | TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；要等 regen 与 tests-discover 合入（否则它的 --check 与 content 测试必红） | 开发监督起 |
-| TOOL-tests-discover | traex Sol | 第 3 次运行修好，复审 r2 PASS（09:19），合入中 | 开发监督 |
+| ENG-19d-m1-flow-test-race | traex Sol | M1 流程测试的 DOM 竞态（只改测试、自证 10 次），09:2x 起 | 81589（开发监督） |
 | ENG-entry-split | traex Sol | 已登记（7f82fe44），07:29 起驱动排队等代码池位；合入前 15 个首屏相关任务 HOLD | 75729（开发监督） |
 
 
@@ -165,7 +165,7 @@
 
 **在跑**：
 - TOOL-rig-sheet（P2–P5、P7）：**已合入 17f08829**（9 次运行、6 轮审核）。
-- [x] **原型交付**：TOOL-rig-sheet 合入（17f08829，08:44；39 张部件 + 走路 / 剑招 / 步态 A/B 三张 GIF + 姿势条带），08:45 发作者判定（AR-29，含 C8 的程序步态 vs 动作库选择）。侧视大腿按源图裤纹补绘（源图侧视双腿并拢），ART-rig-sheet-side（fa57fc23）出「侧视双腿错开」补充三视图后下一版重切。
+- [x] **原型交付**：TOOL-rig-sheet 合入（17f08829，08:44；39 张部件 + 走路 / 剑招 / 步态 A/B 三张 GIF + 姿势条带），08:45 发作者判定（AR-29，含 C8 的程序步态 vs 动作库选择）。侧视大腿按源图裤纹补绘（源图侧视双腿并拢），ART-rig-sheet-side **已合入**（85f2b464，09:31：`sheet_side_L / R`，前两栏错步站 / 抬腿为侧视分腿图，第 3 栏 T 字略偏四分之三按用途放行），下一版切件 TOOL-rig-sheet-2（待登记，等作者判定原型后）用它分大腿 / 小腿。
 
 **3D（AR-38）**：作者定「做 2D，不做 3D」；之后在 Tripo 免费档用立绘单图生成了主角·男模型，第二次导出带 Mixamo 骨骼（65 关节、无动画、1 万三角），已入 `apps/game/public/pilot/zhujue_tripo_v1.glb`（bd64598a；作者指出左侧头发有肉色，试点里记录不修）。**ENG-12e 已合入**（81ca591b，08:17）：`/rig-demo?model=/pilot/zhujue_tripo_v1.glb` 右侧并排 3D（GLTFLoader + toon + 8 偏航转台 + 骨骼动画 / 片段重定向 + 1 / 20 实例 HUD），生产块不含试点；1 实例 10,022 三角面 1 draw、CPU 0.2–0.3 ms；0 / 90 / 180 / 270 截图 08:27 已发作者（`_handoff/rigdemo/`），2D 侧等 TOOL-rig-sheet 合入后才是真切件；中端手机实测待做。参考图与来源在主检出 `imagegen-reference/tripo/`。
 
