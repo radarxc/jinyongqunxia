@@ -825,4 +825,5 @@
       - 当时 3 次执行已用完，停在 HOLD-RUNS。00:30 用 r1 返修说明另起驱动（Sol max，pid 53693，说明在 `.agents/coord/TOOL-rig-sheet/devsup_note_rework_r1.md`）。
       - 当前未合入的 GIF 在任务工作区 `assets/default/rig/npc_zhujue__ch00_m/preview/`，已告诉协调者。
     - **ENG-18d**：第 1 次运行中，23:29 起。
+  - **10-03 00:40–01:00 协调者**：lore 六任务因七列校验器会被返修改回七列，驱动已停、置 HOLD-RUNS，等 TOOL-catalog-9col 合入后挪基点复验；作者看了切件原型第 1 版 GIF，问能否改 3D（高斯泼溅 + 骨架 + 三视图 → glTF），协调者评估后作者定「那就做 2D，不做 3D」（AR-38）；磁盘再降到 3.9 GiB，删了 /private/tmp 里旧运行的 Swift / Vision 缓存与名录镜像临时目录。
 
