@@ -1131,3 +1131,8 @@
       - 驱动 pid：lore-1 44637、lore-3 46127。新提示词已核实含裁定。
     - des34 已停，lore 转 HOLD-REVIEWS 后由开发监督手动复验，最多 3 次，计数在 `_handoff/devsup_revalidated.json`。`kw.py` 已改为只在调度器活着时才视为会自动复验。
 
+  - **10-03 06:36–06:41 协调者 / 开发监督**：
+    - **DES-items-gifts-spec 合入**（0496cb32，06:37；返修后协调者 `--from review` 复审 r2 PASS）：design/10 §11.5 礼品品类 / 年代可得性 / 每书原著物件、design/12 §3.8 书法拜帖求字支线、Gemini 交接。ART-items-gifts-catalog 依赖齐，追踪者按条件（磁盘 ≥ 5 GiB、负载 < 10）起；已请追踪者清 `_handoff/gem/codex_w9 / w11 / w12` 的未选用试稿腾磁盘。
+    - lore-1 / lore-3 按整份名录重起（开发监督 7b180abf 改说明与 vars；协调者停掉半批返修的驱动与执行器；挪基点到 7b180abf，Sol max `--from start`，驱动 44637 / 46127，日志 `supervise.whole.out`，note / rework-extra 用 `devsup_note_whole.md`）。des34 调度器已停，lore 的 HOLD 由开发监督手动复验（≤ 3 次）。
+    - TOOL-catalog-food-qi-exception 第 1 次运行 11 分钟结束，校验通过（4 个文件），审核中；合入后 lore-5 复验。
+    - 磁盘 3.0 GiB、负载 8；ENG-12e、TOOL-town-gaps-1 仍暂停。

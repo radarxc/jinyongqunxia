@@ -45,11 +45,10 @@
 |---|---|---|---|
 | TOOL-rig-sheet | traex Sol max | 审核 r4 又 FAIL（切件错分：pelvis_skirt 混入手臂、torso 含前臂残片、侧腿蓝灰楔块），第 7 次运行返修中 | 开发监督另起 |
 | DES-items-lore-1 / 3 / 5 / 7 / 8 | traex | lore-6 已合入（20c1307a）；lore-1 / 3 因「整文件九列一致」与半批切分的矛盾改为各写整份名录（06:36 裁定，lore-2 / 4 取消，des34 调度器已停），开发监督改说明后挪基点重起；lore-5 等食品特例合入；lore-7 在跑；lore-8 等资源 | 开发监督另起 |
-| DES-items-gifts-spec | traex | 续作 35 分钟结束，校验通过，审核 r1 FAIL（06:12）自动返修中 | 38844（协调者另起，`supervise.r2.out`） |
+| TOOL-catalog-food-qi-exception | traex Sol | 第 1 次运行结束、校验通过，审核中（合入后 lore-5 复验） | 59758（协调者） |
 | ENG-12e-gltf-pilot | traex | 返修（恢复 2D 演示 + 3D 并排）跑了 25 分钟后 06:25 因内存压力暂停（HOLD-RUNS，工作区保留）；磁盘 ≥ 6 GiB 且负载 < 8 再 `--from start` 续作 | 协调者 |
 | TOOL-town-gaps-1 | traex Sol | 第 1 次运行 50 分钟后 06:25 因内存压力暂停（HOLD-RUNS）；条件同上，开发监督续作 | 开发监督 |
 | ENG-19b-ui-m1-flow / ENG-20a-region-core | traex | eng3 在跑（M1 界面；区域探索 core） | eng3 |
-| TOOL-catalog-food-qi-exception | traex Sol | 等代码池位（腊八粥食品特例） | 59758（协调者） |
 | DES-ruins-ids | traex | 第 1 次运行中（九老洞 / 敦煌地宫等补 ID） | 74820（协调者） |
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
@@ -181,7 +180,7 @@
 | ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | **合入 41b24202**（06:07，六弟子各重出 1 张，联系表 `_handoff/gem/codex_w15/sheets/`） |
 | CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | **合入 04f1133a**（05:28）：16 城目录——14 个完整候选 + 洛阳 / 太原（manifest 标 `rejected`：水门与内隔墙是工具缺口，构建不进包）；收尾运行修了页眉之外的两项未成。全量**不接力**，范围缩减见 §8.1；进度 `docs/design/town/progress.csv`（2367 行）/ `done.txt`，副本在 `_handoff/city/`。工具缺口已登记 **TOOL-town-gaps-1**（052aac53：水门 / 多重城垣 / 未声明墙水相交检查 / 页眉按城 / cities.yaml 庭州键与 ch10 年代带 / 唐 · 西域 · 吐蕃套件进 schema，用洛阳太原验证并改回 candidate），代码池有位时开发监督起 |
 | ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览 | codex xhigh | **合入 df54e2ef**（06:12，56 张地图覆盖序章与十四书）。九老洞、敦煌地宫没有 `sc_*` / `poi_*` ID 这轮没做 → DES-ruins-ids（在跑）补 ID 后登记 ART-ruins-maps-2 接力；报告 §6 缺的遗迹贴片（洞壁 / 墓道 / 石刻 / 宝箱…）待登记贴片任务 |
-| ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录（瓷器 / 茶具、玉器、香炉铜器、琴、书法拜帖、笔…，书中宝物 + 史载物件）与 Gemini 提示词 | codex xhigh | 等 DES-items-gifts-spec（暂停）+ TOOL-catalog-9col |
+| ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录（瓷器 / 茶具、玉器、香炉铜器、琴、书法拜帖、笔…，书中宝物 + 史载物件）与 Gemini 提示词 | codex xhigh | 依赖已齐（DES-items-gifts-spec 0496cb32、TOOL-catalog-9col 4aa8c6db）；追踪者在磁盘 ≥ 5 GiB、负载 < 10 时起 |
 
 做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接 `_handoff/art_wave2_tracker_brief.md`；审核要点 `.agents/coord/PROD/review_checks_hero.md`（第 1 条已容许白马 / 侠客 / 鸳鸯不用剧照）/ `review_checks_ruins.md` / `review_checks_city.md`。审核模型写 `--review-model gpt-5.6-sol`（Codex 不认大写）。
 
@@ -197,7 +196,7 @@
 
 **停住 / 在等**：
 - **des34 的 DES-items-lore**（武器、秘籍、食品、药品、衣甲鞋带、饰品暗器）：TOOL-catalog-9col 合入后逐个挪基点复验；lore-6 已合入（20c1307a）。**切分改法（06:36 裁定）**：校验器要求整文件九列一致，lore-1 / lore-3 改为各写整份兵器 / 秘籍名录，lore-2 / lore-4 取消（des34 调度器已停）；lore-5 的腊八粥等食品特例等 TOOL-catalog-food-qi-exception 合入；全部合入后 TOOL-items-catalog `--from start` 重新生成并提交 `content/items`（AR-39）。
-- **des36 的 DES-items-gifts-spec**（礼品规格：吉运 / 送礼好感 / 年代字段）：05:30 已续作（单独驱动，auto-merge）；合入后 ART-items-gifts-catalog 还要等 TOOL-catalog-9col。
+- **des36 的 DES-items-gifts-spec**（礼品规格）：**合入 0496cb32**（06:37）——design/10 §11.5 礼品品类、年代可得性、每书可送礼的原著物件；design/12 §3.8 书法拜帖与各朝代求字支线。下一步 ART-items-gifts-catalog（codex 考据写名录与提示词）→ Gemini 出 collectibles。
 
 **待办**：
 - [x] **DES-sync-keyscenes-ar36**（9b43b497，05:19 合入，r1 PASS）：`key-scenes.md` §0、§16–17 的旧统计（每书恰 7 / 合计 102 / 只准 approved 参考）改成 AR-36 候选生产口径；ch01～07 各条按 hero-a 报告 §6 修正（聚贤庄新图与题字、雁门等待标记改已解决、张家口乞儿装、桃岛背诵经文、重阳杨过断右臂、梅庄 / 少林偏殿三战、长乐李四掷凳、金蛇洞铁盒等）；`story/07` §2.2 「十四岁发现铁盒、约十年后下山」措辞；design/18 孙婆婆 / 蒙哥 ID 核查。hero-b 的 ch08～14 条目、`story/09` 制衣方向、`npcs-ch09` 铃剑双侠（水笙与汪啸风）、`npcs-ch08` 顺治 / 风际中主记录核查也在任务说明里。
