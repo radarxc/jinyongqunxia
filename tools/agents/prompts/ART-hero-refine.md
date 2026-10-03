@@ -1,6 +1,6 @@
 # 本任务：主角精修 · {{books_title}}（复合基线风格的主角立绘、分时期立绘、关键剧情插图配古风题字；作者 2026-10-02 晚）
 
-本任务出图并登记。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读 `tools/agents/prompts/_codex_worker.md`（执行环境与出图方式，`worker_no={{worker_no}}`，槽位 {{slots}}）与 `_codex_portrait.md`。
+本任务出图并登记。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读 `tools/agents/prompts/_codex_worker.md`（执行环境与出图方式：**runner 由追踪者在沙箱外跑，你只入队取结果**；`worker_no={{worker_no}}`，槽位 {{slots}}）与 `_codex_portrait.md`。
 
 ## 作者原话（2026-10-02 晚，逐字）
 > 开两个codex exec（gpt-6 astra ultra），每个负责七本书，对所有书中的主角（如张无忌、虚竹、乔峰等）进行一轮精修。要求
