@@ -1834,3 +1834,4 @@
     - 它原来的池位在 16:54 被 ENG-16c 第 2 轮拿走（放行链第一位）。
     - 协调者 17:00：ink-external-args 置 HOLD-RUNS，让 gates-data 第 2 轮先拿池位，wait_attempt 在 gates-data 拿到池位后再起 ink-external-args。
 
+- **10-03 16:54–17:02 协调者**：ENG-region-gates-data 第 1 轮在 traex 上下文压缩后挂住 25 分钟，supervise 自动起第 2 轮；按开发监督建议让它先拿池位：ink-external-args 置 HOLD-RUNS，新守候 73598 等 gates-data attempt≥2 再起它（23a 守候 59788 不变）。CONTENT-ch00a r5 PASS。高魅力男女主角 B 版入库 1364006e，三视图与女主角窄轮廓 A 字 69828239，已转 Tripo；黄蓉 9 张插图全部对完（2af3a634）。AR-55：主角基线以 AR-32 剧照结合版为准（19 人新旧对照 `hero_bases_page/ar32_vs_now_*.jpg` 待作者确认），王语嫣按刘亦菲版重出，阿青定第 2 轮 B。
