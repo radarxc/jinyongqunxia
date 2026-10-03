@@ -1,13 +1,13 @@
-- id: por_npc_xiaofeng__ch01_prime_gaibang_apose
-  file: por_npc_xiaofeng__ch01_prime_gaibang_apose.png
-  category: character/male/tripo_ref
+- id: por_npc_zhaomin__ch04_youth_lvliu_apose
+  file: por_npc_zhaomin__ch04_youth_lvliu_apose.png
+  category: character/female/tripo_ref
   style: default
-  subject: 萧峰 A 字姿势全身参考（与 por_npc_xiaofeng__ch01_prime_gaibang_base 同脸同服饰，去掉手持道具）
-  prompt: '【任务】这是一张供 3D 建模与自动绑骨使用的 A 字姿势全身参考图。第 1 张参考图是本项目已定稿的萧峰立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同一身服饰（款式、颜色、层次、衣缘、腰带、鞋都与第 1 张一致）、同样的发式，只改姿势和背景，并去掉竹棒。
+  subject: 赵敏 A 字姿势全身参考（与 por_npc_zhaomin__ch04_youth_lvliu_base 同脸同服饰，去掉手持道具）
+  prompt: '【任务】这是一张供 3D 建模与自动绑骨使用的 A 字姿势全身参考图。第 1 张参考图是本项目已定稿的赵敏立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同一身服饰（款式、颜色、层次、衣缘、腰带、鞋都与第 1 张一致）、同样的发式，只改姿势和背景，并去掉折扇。
 
     【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前，两只鞋完整可见。
 
-    【服饰处理】袖子、衣摆、腰带垂坠自然，不飘动；袖口不遮住手；不要任何向外飘的布条或飘带。竹棒不要出现在画面里（它是单独的道具）。
+    【服饰处理】袖子、衣摆、腰带垂坠自然，不飘动；袖口不遮住手；不要任何向外飘的布条或飘带。折扇不要出现在画面里（它是单独的道具）。
 
     【头发】长发收在身后或按原发式束好，不搭在肩前，不盖住手臂和手。
 
@@ -18,32 +18,32 @@
     【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
   negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
   references:
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    sha256: e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f
-    use: 底图：已定稿的 萧峰 base（上传 1536 长边 JPEG）
-  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_xiaofeng__ch01_prime_gaibang_base.jpg
-    sha256: 2550f0582db53e4e9c8b57d381c7d823c1ea9c83ec3104d08cb50c6c4d4f347b
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c
+    use: 底图：已定稿的 赵敏 base（上传 1536 长边 JPEG）
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_zhaomin__ch04_youth_lvliu_base.jpg
+    sha256: 79573884eeb4f4467107a777212f89ee97cc344bbb1462cc194b9c8f942c01d6
     use: 同一 base 的脸部特写（看清五官）
   tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
   model: gpt-6-astra
   effort: ultra
-  created: 2026-10-03T14:10:18-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaofeng__ch01_prime_gaibang_apose.a1.png
+  created: 2026-10-03T14:14:24-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhaomin__ch04_youth_lvliu_apose.a1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 0f6cc6258e886b00f241b7cf396e3304085d6c987c66877d4daf1dea280831cc
+  sha256: 6b37e9198821fe4aed7a0b561eb679275dc563f5fa130bb45445374c8ceadc76
   status: candidate
-  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_xiaofeng__ch01_prime_gaibang_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44
-- id: por_npc_xuzhu__ch01_youth_lingjiu_apose
-  file: por_npc_xuzhu__ch01_youth_lingjiu_apose.png
-  category: character/male/tripo_ref
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_zhaomin__ch04_youth_lvliu_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44
+- id: por_npc_zhouzhiruo__ch04_youth_zhangmen_apose
+  file: por_npc_zhouzhiruo__ch04_youth_zhangmen_apose.png
+  category: character/female/tripo_ref
   style: default
-  subject: 虚竹 A 字姿势全身参考（与 por_npc_xuzhu__ch01_youth_lingjiu_base 同脸同服饰，去掉手持道具）
-  prompt: '【任务】这是一张供 3D 建模与自动绑骨使用的 A 字姿势全身参考图。第 1 张参考图是本项目已定稿的虚竹立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同一身服饰（款式、颜色、层次、衣缘、腰带、鞋都与第 1 张一致）、同样的发式，只改姿势和背景，并去掉手中捧着的东西。
+  subject: 周芷若 A 字姿势全身参考（与 por_npc_zhouzhiruo__ch04_youth_zhangmen_base 同脸同服饰，去掉手持道具）
+  prompt: '【任务】这是一张供 3D 建模与自动绑骨使用的 A 字姿势全身参考图。第 1 张参考图是本项目已定稿的周芷若立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同一身服饰（款式、颜色、层次、衣缘、腰带、鞋都与第 1 张一致）、同样的发式，只改姿势和背景，并去掉手中的长鞭。
 
     【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前，两只鞋完整可见。
 
-    【服饰处理】袖子、衣摆、腰带垂坠自然，不飘动；袖口不遮住手；不要任何向外飘的布条或飘带。手中捧着的东西不要出现在画面里（它是单独的道具）。
+    【服饰处理】袖子、衣摆、腰带垂坠自然，不飘动；袖口不遮住手；不要任何向外飘的布条或飘带。手中的长鞭不要出现在画面里（它是单独的道具）。
 
     【头发】长发收在身后或按原发式束好，不搭在肩前，不盖住手臂和手。
 
@@ -54,19 +54,19 @@
     【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
   negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
   references:
-  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png
-    sha256: 6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9
-    use: 底图：已定稿的 虚竹 base（上传 1536 长边 JPEG）
-  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_xuzhu__ch01_youth_lingjiu_base.jpg
-    sha256: aa020c45d2a8a23bd4add9ce2b7c72d03777d0a74547b475ae4c0eed40f41639
+  - path: assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png
+    sha256: 68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179
+    use: 底图：已定稿的 周芷若 base（上传 1536 长边 JPEG）
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_zhouzhiruo__ch04_youth_zhangmen_base.jpg
+    sha256: ce8aec32cde35d798d5b4febca46f0c4ea838c71ef94820c185cb2fca40516cd
     use: 同一 base 的脸部特写（看清五官）
   tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
   model: gpt-6-astra
   effort: ultra
-  created: 2026-10-03T14:14:23-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xuzhu__ch01_youth_lingjiu_apose.a1.png
+  created: 2026-10-03T14:14:26-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhouzhiruo__ch04_youth_zhangmen_apose.a1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 268f29f40d9f54f13812fff785b05dba262a398b9a7beb93a40a82df5e25986b
+  sha256: c243a8c5e24c0402c4ae7d17e85d1b7d4126cf7e647913612b66333cf0be638c
   status: candidate
-  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_xuzhu__ch01_youth_lingjiu_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_zhouzhiruo__ch04_youth_zhangmen_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44
