@@ -1205,3 +1205,22 @@
     - lore-1（兵器整份）r2 FAIL（玉管拂尘 qiAffinity、报告措辞、§7 清单）→ 返修 4 分钟 → 复审 r3 FAIL（07:18）：82 件无 qiEffect 的兵器填了 105–120 亲和，与作者「一般武器亲和为 1」不符，返修说明要求无注入设定的全部改 100、有设定的必须有正式 `qiEffect`；开发监督再起一轮。
     - **ENG-20a 合入**（d105c0b0，07:23，r1 PASS；区域探索 core）。prod_check 全绿：130 文件 939 用例；**entry 166.34 / 170（余 3.66 KiB）**，render 160.53 / 180，webgl 326.87 / 350。ENG-19b（在审）工作区实测 162.90，叠加后可能贴线或超线。协调者同意登记 **ENG-entry-split**（目标 entry ≤ 155 KiB：core-worker 内子系统按需 import()、主线程非首屏懒加载，预算与 check_size 口径不改），排 19b 后、20b 前；19b 照常合入，若集成转红不返修 19b、等 entry-split 转绿，期间不起往首屏加东西的任务。
     - ENG-19b 第 1 次运行 78 分钟结束，校验通过（38 个文件），审核中。DES-ruins-ids 第 2 次运行 18 分钟结束，校验通过，审核 r1 PASS（07:24），合入中。
+  - **10-03 07:27–07:32 开发监督**：按协调者 07:27 登记 ENG-entry-split（7f82fe44），并暂停会往 entry 加东西的任务。
+    - **ENG-entry-split**：
+      - 目标 entry ≤ 155 KiB，预算不放宽；
+      - core Worker 子系统（区域、战斗、Ink 对话、城镇）按需 `import()`，Worker 首包只留协议、会话骨架、存档；主线程非首屏懒加载；
+      - 不改 `tools/perf/**` 与 check_size 口径；
+      - 写集：core-worker.ts、core-host.ts、main.ts、runtime/**、`packages/core/package.json`（只改 exports）、`packages/core/src/entries/**`（只放再导出）；
+      - 依赖 ENG-20a、19b。`_eng3_queue.txt` 插在 ENG-20b 前；19b 合入后由我单独起。
+    - **暂停（HOLD-RUNS，detail 注明 entry 告急、由开发监督解除）**，共 15 个，清单在 `scratchpad/entry_holds.txt`：
+      - ENG-16c、20b、26、23a、16e、18c；
+      - CONTENT-ch00a / ch00b / ch00c / ch10；
+      - ENG-27a、27b、28a、28b、27c。
+      - 放行（不碰首屏）：ENG-12d、TOOL-ingest-cropframe。
+      - 解除：entry-split 合入、集成转绿后，把状态清回「未启动」，交 eng3。
+    - **lore-1**：07:27 手动第 2 次 `--from validate`，驱动 60953。r3 返修内容：qiAffinity 全表复核为 100，特殊兵器须有正式 qiEffect。
+
+  - **10-03 07:25–07:30 协调者**：
+    - **DES-ruins-ids 合入**（6d3121d7，07:25，r1 PASS）：新增 6 个 `sc_*`（达摩洞、若耶溪墓藏、九老洞 ch04 `rg_bashu`、华山后洞 ch07、敦煌地宫唐 `sc_10_` / 清 `sc_12_` 两相位共用 `poi_hexilongyou_dunhuang_digong`）与 5 个 `poi_*`（WGS84 锚点）；§6 余项：design/20 的若耶溪 / 华山后洞引用、tech/04 `PoiDef` 按章节 / 时代选相位的结构、map yaml 写锚点——留给后续同步任务。登记 **ART-ruins-maps-2**（f052b904：这 6 张，写集 / 校验同第 1 批），追踪者按条件起。
+    - **ENG-19b 合入**（8741f917，07:27，r1 PASS；M1 界面流程）。M1 路径 ENG 项已齐（25 / 17a / 19a / 17 / 19b），剩 CONTENT-ch00a / b / c 与 CONTENT-ch10；开发监督合入后量 entry（20a 后 166.34 / 170），ENG-entry-split 由其登记。
+    - lore-1 第 7 次运行（亲和全量改 100）校验通过，开发监督第 3 次手动复审中。
