@@ -920,3 +920,13 @@
     - ENG-17 挪基点（开发监督，a7aad304）后 03:56 校验通过；审核 r1 FAIL（04:09）：同样是报告沿用挪基点前「原样 `pnpm check` 超时」的旧说法；交开发监督的驱动自动返修（只需原样复跑并改报告）。
     - 教训（已记 TODO §5 表）：工作区基点早于 ENG-18e 的 M1 任务，校验失败后先挪基点再复验，不要让执行器带着误导说明返修；停驱动前先置 HOLD-RUNS。
   - **10-03 04:28 Gemini 物品线收工（出图员 subagent 最终报告）**：剩余 366 张全部入库（秘籍 162、兵器 128、药材 55、暗器 21；最后提交 76d6a377），限流 0，返工清单 0；72 张返工过、15 张第 3 次才过。收下但与名录有出入的 5 张（地趣入门多竹笛、红花会合集无黑绳、五行奇阵铜角饰、笑傲江湖曲半展开带缝线、山野吐纳留白 8%）记在 manifest notes，待作者定。书名后缀裁定已全部执行（大金刚拳神功按 6 字重出，8 字版在 `gemini_qa/superseded/`；写了「古册」的伏魔杖法在 `gemini_qa/rejected/`）。总联系表 `gemini_qa/final_*.jpg` 04:30 发作者。续作材料在 `gemini_qa/kit/`；标签页 A / B 空闲，collectibles 等 ART-items-gifts-catalog 后另起出图员。
+  - **10-03 03:50–04:40 开发监督**：
+    - **ENG-17**：
+      - 03:51 协调者停掉驱动后，开发监督先把状态置 HOLD-RUNS：驱动停后状态文件仍写 RUNNING、pid 已死，eng3 会当成驱动消失、不带说明重拉。
+      - 再 `rebase_task.py` 挪到 a7aad304（含 18e），无冲突；然后 Sol max `--from validate` 另起驱动（pid 33190，日志 supervise.r2.out），03:56 校验通过。
+      - r1 FAIL：报告里还写着旧的随机超时、靠 `VITEST_MAX_WORKERS=1` 才过，已自动返修。
+    - **ENG-19a 合入**（ed8898d6，04:32，协调者经手）。
+      - 第一次 prod_check 红在它新加的 `build-shell.test.ts`：测试在构建之前读 `apps/game/dist/assets`，拿到的是旧 dist（含 rig-demo）。`pnpm --filter ./apps/game build` 刷新 dist 后复跑全绿：125 文件 843 用例，entry 157.74 / 170，webgl 318.27 / 350。
+      - 这个测试本身有缺陷（没有 dist 时空过、dist 旧时误报），已报协调者。
+    - **entry 余量只剩约 12 KiB**：19a 加了约 28 KiB。已在 ENG-19b / 16e 的说明里补「新页面和组件懒加载，报告写 size 实测」（d433bed2）。
+
