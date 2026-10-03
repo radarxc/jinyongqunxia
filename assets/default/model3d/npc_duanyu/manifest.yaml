@@ -1,0 +1,79 @@
+- id: npc_duanyu__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 段誉（天龙八部 ch01 · 大理世子青年，B 版基线）· A 字参考版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 0a99ae9d-c2ee-4cfc-bff6-92c965bdcd29
+    url: https://studio.tripo3d.ai/workspace/generate/0a99ae9d-c2ee-4cfc-bff6-92c965bdcd29
+    generate_op: 8be5ca1b-d685-44b0-9643-632d06d22c26（image_to_model）
+    rig_op: c961b960-1204-4a76-b416-40febcb93e90
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch01/threeview/por_npc_duanyu__ch01_youth_shizi_apose.png
+    sha256: 0c8b98bd80711336f950b490c769f1df33a6e8430a09f1f2c30782ddd0cb5b4c
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
+    sha256: ''
+    use: 作者选定的 B 版 base 立绘（A 字参考据此出图；本模型未直接输入）
+  sha256: 17f4e83dce390ae532b3404041fd56def5364ab9be37f24ac0c0a309d8813477
+  size_bytes: 5599940
+  joints: 65
+  triangles: 97426
+  vertices: 58134
+  animations: []
+  textures:
+  - image/jpeg 313464 B
+  - image/jpeg 1093403 B
+  - image/jpeg 561871 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T15:57:37-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，白袍灰蓝缘 + 灰蓝腰带可辨识，后发黑色、无肉色块；宽袖 + 偏宽下摆但自动绑骨一次成功（Hips y0.53、头顶骨端 1.0、双手外展 y0.50、脚 0.071）。A 字参考去掉了折扇（fb3ddd38），基线为作者选定 B 版（ee442606）。
+- id: npc_duanyu__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 段誉（天龙八部 ch01 · 大理世子青年，B 版基线）· A 字参考版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 0a99ae9d-c2ee-4cfc-bff6-92c965bdcd29
+    url: https://studio.tripo3d.ai/workspace/generate/0a99ae9d-c2ee-4cfc-bff6-92c965bdcd29
+    generate_op: 8be5ca1b-d685-44b0-9643-632d06d22c26（image_to_model）
+    rig_op: c961b960-1204-4a76-b416-40febcb93e90
+  size: 369x594
+  sha256: dfba0be77eb008ef65142c6038e741506354b10fb1329ae27355ea2656400f9b
+  size_bytes: 132723
+  created: '2026-10-03T15:57:37-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
