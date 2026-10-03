@@ -1,4 +1,5 @@
-import { createNewGameCore, type CoreContent } from '@tianshu/core';
+import { createNewGameState } from '@tianshu/core/state';
+import { CORE_BUILD, CORE_VERSION } from './core-version';
 import type { GameContent } from './content';
 import type { NewGameRequest, SessionSnapshot } from './contracts';
 
@@ -10,20 +11,15 @@ export function browserMasterSeed(): number {
   return words[0]!;
 }
 
-function newGameContent(content: GameContent): CoreContent {
-  return { ...(content.inkStories ? { inkStories: content.inkStories } : {}),
-    ...(content.chapters ? { chapters: content.chapters } : {}) };
-}
-
 /** Host boundary: entropy is sampled here and never inside deterministic core code. */
 export function createNewGameSessionState(content: GameContent, input: NewGameRequest,
   seedSource: MasterSeedSource = browserMasterSeed): SessionSnapshot {
   const masterSeed = seedSource();
   if (!Number.isSafeInteger(masterSeed) || masterSeed < 0 || masterSeed > 0xffff_ffff)
     throw new TypeError('NEW_GAME_SEED');
-  return createNewGameCore({ ...input, masterSeed,
+  return createNewGameState({ ...input, masterSeed, coreVersion: CORE_VERSION,
+    coreBuild: CORE_BUILD,
     ...(content.contentHash ? { contentHash: content.contentHash } : {}),
     ...(content.chapters?.find((entry) => entry.id === 'ch00_yuenv')
-      ? { chapter: content.chapters.find((entry) => entry.id === 'ch00_yuenv')! } : {}) },
-  newGameContent(content)).snapshot();
+      ? { chapter: content.chapters.find((entry) => entry.id === 'ch00_yuenv')! } : {}) });
 }

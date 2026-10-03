@@ -1,6 +1,9 @@
-import { CORE_BUILD, CORE_VERSION, RNG_PROTOCOL, RNG_STREAMS, createCharacterState,
-  createCore, createInitialGameState, createInitialWorldMapState, InventoryRuntime, seedStream,
-  type CharacterState, type RngStreamName, type SkillState } from '@tianshu/core';
+import { RNG_PROTOCOL, RNG_STREAMS, createCharacterState,
+  createInitialGameState, seedStream, type CharacterState, type RngStreamName,
+  type SkillState } from '@tianshu/core/state';
+import { createInitialWorldMapState } from '@tianshu/core/projection';
+import { InventoryRuntime } from '@tianshu/core/inventory-runtime';
+import { CORE_BUILD, CORE_VERSION } from './core-version';
 import type { GameContent } from './content';
 import type { SessionSnapshot } from './contracts';
 
@@ -25,9 +28,9 @@ function character(id: string, content: GameContent, learning: readonly { skillI
 export function createPreviewSession(content: GameContent): SessionSnapshot {
   const rng = Object.fromEntries(RNG_STREAMS.map((stream) =>
     [stream, seedStream(1, stream)])) as Record<RngStreamName, ReturnType<typeof seedStream>>;
-  const state = createCore(1, { state: createInitialGameState({ coreVersion: CORE_VERSION,
+  const state = createInitialGameState({ coreVersion: CORE_VERSION,
     coreBuild: CORE_BUILD, chapterId: 'ch01_tianlong', epochId: 'epoch_ch01',
-    epochYear: 1093, rngProtocol: RNG_PROTOCOL, masterSeed: 1, rng }) }).snapshot();
+    epochYear: 1093, rngProtocol: RNG_PROTOCOL, masterSeed: 1, rng });
   const versioned = content.contentHash ? { ...state, meta: { ...state.meta,
     contentHash: content.contentHash } } : state;
   const protagonist = character('npc_zhujue', content, [{ skillId: 'sk_taizuchangquan', trueLayer: 1 }]);
