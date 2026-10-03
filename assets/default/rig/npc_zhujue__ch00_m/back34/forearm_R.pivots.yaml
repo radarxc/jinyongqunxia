@@ -1,0 +1,17 @@
+coordinates: source
+keypoints:
+  elbow_R:
+  - 57
+  - 29
+  wrist_R:
+  - 16
+  - 29
+source:
+  keypoints:
+  - elbow_R
+  - wrist_R
+  inpaintedPct: 4.071
+  rejectedInpaintedPct: 0.0
+  jointCaps: true
+  standardFallback: false
+  lowConfidence: []
