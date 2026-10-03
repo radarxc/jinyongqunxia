@@ -8,30 +8,52 @@ age_variant: youth
 tier: S
 output: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
 manifest: assets/default/character/male/ch03/manifest.yaml
-references:
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yangguo_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "0215359e2593e5c4b60e2d8893d6688e84af24f9f8feda752c7a5688a41e6696"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yangguo_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "2d142ff242d716ec4947e179892cb4756395070bbbf850bd115959abf87c441e"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
 status: candidate
 realism_revision: user_identity_pose_20261001
-redo_reason: "作者 10-02 晚：复合基线风格精修"
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/yangguo_1995_caption_verified.jpg
+  use: 身份参考：1995 TVB《神雕侠侣》 剧照（作者 10-03 指定版本）；只借造型、气质与五官神韵，按项目画风重画，不照搬照片
+  sha256: 0445ec2ad9210b8eef26797e9d3855551f26407008ee6819c41885ca17d5f53e
+- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+  sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+- path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+  sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+redo_reason: "作者 10-03 AR-44：参考1995 TVB《神雕侠侣》造型重画 base，不要和照片一样"
 reference_upload:
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yangguo_still1.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yangguo_game.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
-codex_prompt_rev: 2026-10-02
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/still__por_npc_yangguo__ch03_youth_onearm_base__1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+codex_prompt_rev: 2026-10-03
 classic_ref:
   version: 1995 TVB《神雕侠侣》
   stills:
   - .agents/coord/imagegen-reference/identity-20261001/yangguo_1995_caption_verified.jpg
-composite_job: por_npc_yangguo__ch03_youth_onearm_base.resume3
 ---
 
 # 杨过 · 人物写实修正
 
 ## Gemini 提示词
+
+> 2026-10-03 AR-44 新 base（10 号出图员，codex exec · image_gen）：作者要求参考1995 TVB《神雕侠侣》造型、按项目画风重画、不要和照片一样；上传顺序：剧照 1 张，最后两张为同性别画风基线（缩小版 JPEG）。上一版保留在下一节作历史。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+【参考图】第 1 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部神韵（眉眼、脸型的印象），让人一眼认出是这个角色；但五官不要照搬演员本人，要往经典武侠游戏插画里理想化的英俊脸型靠——成品像这个角色，而不像这位演员的写真；必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物】杨过，《神雕侠侣》南宋的主角，杨康之子、小龙女之徒；被郭芙斩断右臂、得独孤求败玄铁重剑之后，十六年分离之前。孤傲不羁、深情重义。
+【年龄与体态】约二十四五岁的成年男子，身材高挑、肩背挺拔，精悍结实的练剑身形，不是少年。
+【经典造型】以剧照里这位杨过的造型为蓝本：黑发在头顶高高束成马尾髻、用一条米白布带扎住，长发从髻上垂到背后，额前两侧垂下几缕长鬓发框住脸庞；外穿灰褐色粗麻布交领外袍（织纹带细密的暗格纹，旧而整洁），内衬米白交领内衫，腰间一条褐色宽布腰带，深色长裤、布靴；整体带一点浪迹江湖的风尘与不羁。
+【面容】俊朗而有棱角的长脸，下颌线清楚有力，颧骨略高；浓黑的剑眉平直而尾端上扬、斜飞入鬓；眼窝略深，一双细长的眼睛眼尾微挑，眼神锐利、桀骜，又带着落寞与深情；鼻梁高挺，薄唇紧抿，嘴角带一丝倔强；肤色健康，下巴有极淡的胡茬。英俊、孤傲、有男人味的青年侠客，不是奶油小生。
+【独臂与兵器】原著断的是右臂：右臂从上臂中段以下没有了——右边衣袖从肩下就是空的，扁平、软塌塌地在上臂处打一个结垂下，袖子里明显没有手臂、没有手（独臂必须一眼看清）；只用左手握住一柄乌黑厚重、宽钝无锋、毫无装饰的玄铁重剑，剑尖朝下拄在身体左侧的地上，剑身完整入画。不能画成左臂缺失。
+【姿态】站姿挺拔，身体基本朝向正面、略微侧身，头部端正，目光平视前方。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要画成双臂齐全，不要出现右手或右前臂，不要两只手握剑；不要神雕或其他动物；不要剧照里举剑过头的姿势。
+【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+```
+
+## 上一版 Gemini 提示词（AR-44 新 base 之前，历史，不再用于出图）
 
 > 作者10-02晚复合精修；任务 `por_npc_yangguo__ch03_youth_onearm_base.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
 
