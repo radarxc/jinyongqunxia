@@ -1181,3 +1181,10 @@
     - **lore-5 合入**（711a48a5，食品；腊八粥按特例投影 qiCultivation=3500，新校验器通过）。r2 提出作者确认项：叫化鸡 `it_jiaohuaji` 的 `sta=full` 是否在投影 v2 加无损表示——默认旧 `sta=full` 为唯一运行真值，`stamina=20` 只作展示摘要（记 TODO §8.2）。
     - **lore-3 合入**（67ab5df4，秘籍整份 180 件；r3 FAIL 四条小项返修后开发监督手动复验 r4 PASS）。九列名录已 10 份，只剩兵器（lore-1 整份在跑）。
     - **TOOL-tests-discover 07:01 起跑**（开发监督，驱动 3408，Sol max；起跑时磁盘 5.1 GiB、代码池 3/4）。
+  - **10-03 07:02–07:14 开发监督**：lore-5、lore-3 合入；TOOL-tests-discover 起跑；town-gaps-1 续作。
+    - **lore-5**（食品）合入，提交 711a48a5；**lore-3**（秘籍整份，180 行）r4 PASS，合入提交 67ab5df4。两个工作区都已清。
+      - 九列名录已有 10 / 11 份，只剩兵器，lore-1（整份）在审。
+    - **TOOL-tests-discover**：07:01 起跑，驱动 3408，Sol max。当时条件：lore-5 合入后磁盘 5.1 GiB、负载 8.7、代码池 3/4。
+    - **TOOL-town-gaps-1**：07:11 满足「磁盘 ≥ 6 GiB 且负载 < 8」，07:12 按 `--from start` 续作，驱动 66572，说明见 `devsup_note_resume.md`。代码池 4/4，它在排队等位。
+    - ENG-12e 的续作由协调者起，已提醒条件满足。
+
