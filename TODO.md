@@ -44,12 +44,13 @@
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
 | TOOL-rig-sheet | traex Sol max | 审核 r5 又 FAIL（前臂含手掌、侧腿占位、髋锚暴露）；第 9 次返修为最后一轮，侧腿问题转 ART-rig-sheet-side（新源图），之后按原型收口合入 | 开发监督另起 |
-| DES-items-lore-1 / 3 / 5 | traex Sol | lore-6（20c1307a）、lore-7（6cb074da）、lore-8（1d86e1a9）已合入；lore-1 / 3 按整份名录重起（06:37），lore-5 带腊八粥特例续作（06:5x）；转 HOLD 由开发监督手动复验 | 开发监督另起 |
-
+| DES-items-lore-1 | traex Sol | lore-5（711a48a5）、lore-3（67ab5df4，秘籍整份）已合入；只剩 lore-1 兵器整份在跑（转 HOLD 由开发监督手动复验） | 开发监督另起 |
+| TOOL-tests-discover | traex Sol | 07:01 起跑（unittest discover 跑全 tools 测试 + 两条红测试） | 3408（开发监督） |
+| DES-ruins-ids | traex Sol | 第 1 次运行停滞后 06:59 自动续作第 2 次 | 74820（协调者） |
 | ENG-12e-gltf-pilot | traex | 返修（恢复 2D 演示 + 3D 并排）跑了 25 分钟后 06:25 因内存压力暂停（HOLD-RUNS，工作区保留）；磁盘 ≥ 6 GiB 且负载 < 8 再 `--from start` 续作 | 协调者 |
 | TOOL-town-gaps-1 | traex Sol | 第 1 次运行 50 分钟后 06:25 因内存压力暂停（HOLD-RUNS）；条件同上，开发监督续作 | 开发监督 |
 | ENG-19b-ui-m1-flow / ENG-20a-region-core | traex | eng3 在跑（M1 界面；区域探索 core） | eng3 |
-| DES-ruins-ids | traex | 第 1 次运行中（九老洞 / 敦煌地宫等补 ID） | 74820（协调者） |
+
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
 - codex 出图 runner：w12（pid 20933，2 槽）服务 hero-b；w11 已排空停掉。
@@ -195,7 +196,7 @@
 - des35：DES-npcs-register-a（03c44028）/ b（3226fe15）——人物补齐发现的 110 个原著主要人物登记进各书名录与 design/18。
 
 **停住 / 在等**：
-- **des34 的 DES-items-lore**（武器、秘籍、食品、药品、衣甲鞋带、饰品暗器）：TOOL-catalog-9col 合入后逐个挪基点复验；lore-6 已合入（20c1307a）。**切分改法（06:36 裁定）**：校验器要求整文件九列一致，lore-1 / lore-3 改为各写整份兵器 / 秘籍名录，lore-2 / lore-4 取消（des34 调度器已停）；lore-5 的腊八粥等食品特例等 TOOL-catalog-food-qi-exception 合入；全部合入后 TOOL-items-catalog `--from start` 重新生成并提交 `content/items`（AR-39）。
+- **des34 的 DES-items-lore**：lore-5 / 6 / 7 / 8（711a48a5 / 20c1307a / 6cb074da / 1d86e1a9）与 lore-3 整份（67ab5df4）已合入，九列名录 10 / 11；lore-1 兵器整份在跑（lore-2 / 4 已取消）。全部合入后 TOOL-items-catalog `--from start` 重新生成并提交 `content/items`（AR-39）。
 - **des36 的 DES-items-gifts-spec**（礼品规格）：**合入 0496cb32**（06:37）——design/10 §11.5 礼品品类、年代可得性、每书可送礼的原著物件；design/12 §3.8 书法拜帖与各朝代求字支线。下一步 ART-items-gifts-catalog（codex 考据写名录与提示词）→ Gemini 出 collectibles。
 
 **待办**：

@@ -1159,3 +1159,25 @@
     - lore：lore-7（6cb074da）、lore-8（1d86e1a9）已合入；lore-5 挪基点到 c6d06966 后带「腊八粥按特例 qiCultivation=3500」`--from start`（驱动 93359），新校验器下该行已通过；在跑 lore-1 / 3（整份）/ 5。
     - 开发监督发现**校验漏洞**：`unittest discover -s tools` 只进入带 `__init__.py` 的子目录（item / rig / rig/clips 共 33 条），content / lint / town / vfx / balance 的测试从未在校验里跑过；按目录单独跑 lint 289、town 107、vfx 50 全过，content 两条红（物品七列字节对比依赖仓库状态——名录转九列后 `content/items` stale；town_runtime 按 baseline 路径找布局，找不到 CITY 的 `assets/default/town/<city>/layout.yaml`）。登记 **TOOL-tests-discover**（fb3261ea）：新增 `tools/test_suite.py` 按目录发现、物品对比改夹具、town_runtime 认新布局位置；磁盘 ≥ 5 GiB 时开发监督起。
     - TOOL-rig-sheet 第 9 次运行 06:40 起（协调者 06:44 的两句已进提示词）；开发监督用 `hold_then_review.py` 在转 HOLD-REVIEWS 时抢先置 HOLD-RUNS，再起只复审不返修的驱动；r6 PASS 合入，FAIL 停住报协调者。
+  - **10-03 06:59–07:02 开发监督**：des34 已停，lore 的 HOLD-REVIEWS 改由我手动复验。
+    - **lore-5**：r2 FAIL，四条小项：
+      - 白花糕 healOuter 的说明；
+      - 名录「开放问题」里的腊八粥条改为「已解决」；
+      - 报告补作者确认项；
+      - 统计数字。
+      - 第 5 次运行 4 分钟修完，校验通过后转 HOLD-REVIEWS。06:56 手动第 1 次 `--from validate`，驱动 75087。
+      - 新的作者确认项：`it_jiaohuaji` 的 `sta=full` 是否要在投影 v2 加无损表示。默认：旧 `sta=full` 是唯一运行真值，`stamina=20` 只作展示摘要。
+    - **lore-3**（整份）：r3 FAIL，四条小项：
+      - 北冥神功 cultivation=5000；
+      - 第 248 行折算规则措辞；
+      - 报告自检；
+      - 下游字段。
+      - 第 7 次运行 5 分钟修完，转 HOLD-REVIEWS。07:00 手动第 1 次 `--from validate`，驱动 1838。
+    - 计数在 `_handoff/devsup_revalidated.json`（上限 3）。
+    - **TOOL-tests-discover**（协调者 07:02 登记）：等磁盘 ≥ 5 GiB 且代码池有位再单独起（后台 `waitcond.py 5 10` 在等）。TOOL-town-gaps-1 仍等磁盘 ≥ 6 GiB 且负载 < 8。当前磁盘 4.1 GiB。
+
+  - **10-03 06:58–07:06 协调者 / 开发监督**：
+    - DES-ruins-ids 第 1 次运行 78 分钟后停滞（25 分钟无输出），驱动 06:59 自动续作第 2 次（Sol）。
+    - **lore-5 合入**（711a48a5，食品；腊八粥按特例投影 qiCultivation=3500，新校验器通过）。r2 提出作者确认项：叫化鸡 `it_jiaohuaji` 的 `sta=full` 是否在投影 v2 加无损表示——默认旧 `sta=full` 为唯一运行真值，`stamina=20` 只作展示摘要（记 TODO §8.2）。
+    - **lore-3 合入**（67ab5df4，秘籍整份 180 件；r3 FAIL 四条小项返修后开发监督手动复验 r4 PASS）。九列名录已 10 份，只剩兵器（lore-1 整份在跑）。
+    - **TOOL-tests-discover 07:01 起跑**（开发监督，驱动 3408，Sol max；起跑时磁盘 5.1 GiB、代码池 3/4）。
