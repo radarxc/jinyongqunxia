@@ -1,186 +1,186 @@
 # 物品图鉴 · 食材与食品（`items-food`）
 
 > **归属（基准 §18）**：本表是 `design/10` §9 的批量出图投影；食材资源与生产仍归 `design/16`。
-> **上游**：AR-20、`design/10` §8.2、§9.0–§9.4。
+> **上游**：AR-20、AR-36、`design/10` §4.10（属性投影 v2）、§8.2、§9.0–§9.4。
 > **引用而不重定义**：烹饪熟练与 `gCook` 见 `design/12` §10.4；Buff 见 `design/06`。
-> **标注约定**：无原著定本的菜式、数值与造型均 **（原创扩展）**；机器读取只接受下表七列。
+> **标注约定**：无原著定本的菜式、数值与造型均 **（原创扩展）**；机器读取只接受下表九列。
 
-| ID | 名称 | 子类 | 品阶 | 出处（书名 / 原创扩展） | 效果字段 | 外观要点（供出图） |
-|---|---|---|---|---|---|---|
-| `it_jingmi` | 精米 | 食材·谷物 | 黄 | **（原创扩展）** | `grade=3; ingredientKind=grain; materialGrade=3` | 乳白米粒盛小竹斗，少量谷壳，朴素市集尺度 **（原创扩展）** |
-| `it_huotuijian` | 火腿尖 | 食材·肉 | 黄 | 《射雕英雄传》·火腿入馔；部位定级 **（原创扩展）** | `grade=3; ingredientKind=meat; materialGrade=3` | 小段风干火腿，棕红切面与麻绳，约前臂长 **（原创扩展）** |
-| `it_xianyu` | 鲜鱼 | 食材·水产 | 黄 | 通用食材；定级 **（原创扩展）** | `grade=3; ingredientKind=fish; materialGrade=3` **（原创扩展）** | 银灰河鱼一尾置青竹叶，鳞光克制，尺许长 **（原创扩展）** |
-| `it_cumian` | 粗面 | 食材·谷物 | 黄 | **（原创扩展）** | `grade=3; ingredientKind=grain; materialGrade=3` | 淡黄粗面粉盛矮陶钵，旁置小木勺与少量麦麸，约一餐份量 **（原创扩展）** |
-| `it_xuelianzi` | 雪莲子 | 食材·珍材 | 玄 | **（原创扩展）** | `grade=6; ingredientKind=rare; materialGrade=6` | 象牙白莲子十余颗盛浅瓷盏，淡霜粉感，指节大小 **（原创扩展）** |
-| `it_yuxueguo` | 玉雪果 | 食材·果 | 玄 | **（原创扩展）** | `grade=6; ingredientKind=fruit; materialGrade=6` | 青白梨形小果三枚，薄蜡皮、冰裂斑，不发光 **（原创扩展）** |
-| `it_xianggu` | 山林香菇 | 食材·菜蔬 | 玄 | 山林食材通名；定级 **（原创扩展）** | `grade=6; ingredientKind=vegetable; materialGrade=6` | 褐伞香菇五朵置竹筛，菌褶清楚、根部带少量松针，掌心尺度 |
-| `it_longganfengsui` | 龙肝凤髓料 | 食材·珍材 | 地 | 武侠宴席意象 **（原创扩展）** | `grade=9; ingredientKind=rare; materialGrade=9` | 两只封釉食盒分装深红肉脯与乳白髓脂，宫宴精致感 **（原创扩展）** |
-| `it_binghuxueou` | 冰湖雪藕 | 食材·菜蔬 | 地 | **（原创扩展）** | `grade=9; ingredientKind=vegetable; materialGrade=9` | 白净莲藕两节带淡青切面，水珠与薄霜，前臂尺度 **（原创扩展）** |
-| `it_xueshanlufu` | 雪山鹿脯 | 食材·肉 | 地 | **（原创扩展）** | `grade=9; ingredientKind=meat; materialGrade=9` | 深红鹿肉脯两条，盐霜细薄、青麻绳束，约半臂长 **（原创扩展）** |
-| `it_tianshanlingmi` | 天山灵蜜 | 食材·珍材 | 天 | **（原创扩展）** | `grade=10; ingredientKind=rare; materialGrade=10; uniqueBatch=true` | 淡金蜂蜜盛白玉小罐，木蜡封口，细稠光泽无荧光 **（原创扩展）** |
-| `it_baihualinglu` | 百花灵露 | 食材·珍材 | 天 | **（原创扩展）** | `grade=10; ingredientKind=rare; materialGrade=10; uniqueBatch=true` | 清透花露盛素银细颈壶，壶口凝一滴露珠，配低饱和百花小碟 **（原创扩展）** |
-| `it_ganliang` | 行旅干粮 | 食品·干粮 | 黄 | **（原创扩展）** | `grade=3; staPct=12%; context=field` | 两块烤饼与油纸包，焦黄边、麻绳系，行囊尺度 **（原创扩展）** |
-| `it_guisugao` | 桂酥糕 | 食品·点心 | 黄 | **（原创扩展）** | `grade=3; staPct=12%; buff=bf_yangsheng:2h` | 四块浅金方糕，桂花碎点，白瓷小盘，掌心大小 **（原创扩展）** |
-| `it_niurougan` | 酱香牛肉干 | 食品·腌藏 | 玄 | **（原创扩展）** | `grade=6; staPct=17%; buff=bf_waigong_sheng:1battle` | 深褐肉条装牛皮纸包，麻绳束口，干润纤维清楚 **（原创扩展）** |
-| `it_furonggao` | 芙蓉糕 | 食品·点心 | 玄 | 《书剑恩仇录》江南饮食意象；物品 **（原创扩展）** | `grade=6; staPct=17%; buff=bf_ningshen:1battle` | 粉白双层花形糕，浅青瓷盘，细腻蒸糕质感 **（原创扩展）** |
-| `it_baihuagao` | 百花糕 | 食品·点心 | 地 | **（原创扩展）** | `grade=9; staPct=24%; meal=bf_huichun:2battle` | 淡紫圆糕点缀可食花瓣，银边食盒，精巧小份 **（原创扩展）** |
-| `it_yuluwan` | 玉露丸子 | 食品·点心 | 地 | **（原创扩展）** | `grade=9; staPct=24%; meal=bf_huinei:2battle` | 乳白糯丸六枚置荷叶，透明露珠薄层，不像药丸 **（原创扩展）** |
-| `it_xueyulengchan` | 雪域冷膳 | 食品·腌藏 | 天 | **（原创扩展）** | `grade=10; staPct=28%; meal=bf_yuhan,bf_jiangu:3battle; uniqueBatch=true` | 银白薄切冻肉配青玉冰盘，藏地香料细点，冷冽无魔法光 **（原创扩展）** |
-| `it_tianxiangyulu` | 天香玉露羹 | 食品·汤羹 | 天 | **（原创扩展）** | `grade=10; staPct=28%; meal=bf_huichun,bf_huinei:3battle; uniqueBatch=true` | 羊脂玉碗盛半透明淡金羹，莲子与花瓣可辨，碗径一掌 **（原创扩展）** |
-| `it_jiaohuaji` | 叫化鸡 | 食品·菜肴 | 玄 | 《射雕英雄传》·黄蓉款待洪七公 | `grade=5; meal=bf_jiangu:4battle; sta=full` **（原创扩展）** | 整鸡裹开裂黄泥与荷叶，金褐表皮，盘宽约双掌 |
-| `it_jiangniurou` | 酱牛肉 | 食品·菜肴 | 黄 | 江湖酒馆意象 **（原创扩展定级）** | `grade=2; meal=bf_waigong_sheng:2battle` **（原创扩展）** | 深红褐薄片整齐码盘，青花粗瓷盘，油润克制 |
-| `it_haoqiutang` | 好逑汤 | 食品·汤羹 | 地 | 《射雕英雄传》·黄蓉为洪七公所制 | `grade=7; meal=bf_ruiyi:3battle; party=4` **（原创扩展）** | 清汤、嫩笋、荷叶与嵌肉樱桃，白瓷汤盅，雅致小宴 |
-| `it_yudishuijiatingluomei` | 玉笛谁家听落梅 | 食品·名菜 | 地 | 《射雕英雄传》·黄蓉五味肉条名菜 | `grade=8; meal=5buff:3battle; party=4` **（原创扩展）** | 五色肉条拼成梅花状，素白大盘，色泽低饱和、份量精致 |
-| `it_labazhou` | 腊八粥 | 食品·汤羹 | 地 | 《侠客行》·侠客岛 | `grade=9; perm.mpMaxPct=2%; sxpGrant=0.35` **（原创扩展）** | 深褐药粥盛厚青石碗，谷粒草叶可辨，热气极淡 |
-| `it_tianxiangyuyan` | 天香御宴 | 食品·名菜 | 天 | **（原创扩展）** | `grade=10; meal=select3buff:3battle; party=4; fixedNode=true` | 三只嵌套朱漆食盒展开成小宴，金边克制、无文字 **（原创扩展）** |
-| `it_yushan` | 御膳 | 食品·名菜 | 地 | 《鹿鼎记》·御膳房语境；菜品 **（原创扩展）** | `grade=8; meal=select3buff:3battle; party=4` | 龙纹不用文字的黄釉盖碗与三小碟，清代宫膳时代感 **（原创扩展）** |
-| `it_ershisiqiaomingyueye` | 二十四桥明月夜 | 食品·名菜 | 地 | 《射雕英雄传》·黄蓉为洪七公所制 | `grade=8; meal=bf_dingxin,bf_shouyi,bf_huinei:3battle` **（原创扩展）** | 二十四枚雪白豆腐球盛火腿槽中，青瓷长盘，精细而不夸张 |
-| `it_zhurou` | 猪肉 | 食材·肉 | 黄 | 宋代民间常见且地位低于羊馔；清《调鼎集》满席重全猪、烧小猪 | `grade=2; ingredientKind=meat; materialGrade=2` | 一块粉红带白脂鲜猪肉置粗陶盘，约一斤，不带血污 **（原创扩展）** |
-| `it_niurou` | 牛肉 | 食材·肉 | 玄 | 历代耕牛受保护，合法牛肉供应较少；具体法禁随书界核对 | `grade=4; ingredientKind=meat; materialGrade=4` | 一块暗红瘦牛肉带细脂纹置木案，约一斤，无熟食配菜 **（原创扩展）** |
-| `it_yangrou` | 羊肉 | 食材·肉 | 黄 | 北宋尚羊，《东京梦华录》多见羊馔；辽、蒙古重羊，清代满洲烧煮亦重牛羊 | `grade=3; ingredientKind=meat; materialGrade=3` | 淡红羊腿肉一块连短骨，白脂薄层置木盘，约二斤 **（原创扩展）** |
-| `it_jirou` | 鸡肉 | 食材·肉 | 黄 | 家禽通用；宋元明清均可得 | `grade=2; ingredientKind=meat; materialGrade=2` | 处理净的生鸡一只置竹叶，淡黄皮、双翼收拢，家常尺度 **（原创扩展）** |
-| `it_yarou` | 鸭肉 | 食材·肉 | 黄 | 江南水乡家禽通用；《东京梦华录》列鸭馔 | `grade=2; ingredientKind=meat; materialGrade=2` | 处理净的生鸭一只置浅木盘，灰白皮与扁喙可辨 **（原创扩展）** |
-| `it_erou` | 鹅肉 | 食材·肉 | 黄 | 家禽通用；宋代市食已有鹅馔记录 | `grade=3; ingredientKind=meat; materialGrade=3` | 处理净的生鹅半只置竹筛，乳白皮、厚胸肉，约三斤 **（原创扩展）** |
-| `it_lvrou` | 驴肉 | 食材·肉 | 玄 | 北方驿路与民间肉食；具体书界供应 **（原创扩展）** | `grade=4; ingredientKind=meat; materialGrade=4` | 深红驴腱肉一块置灰陶盘，筋膜清楚，约一斤 **（原创扩展）** |
-| `it_marou` | 马肉 | 食材·肉 | 玄 | 辽、蒙古及西北游牧语境可得，农耕城镇不作常规货 | `grade=5; ingredientKind=meat; materialGrade=5` | 深红马肉厚片三片叠放木盘，瘦而紧实，约一斤 **（原创扩展）** |
-| `it_gourou` | 狗肉 | 食材·肉 | 黄 | 历代部分地域食用；投放依地方习俗，不作全域通货 | `grade=2; ingredientKind=meat; materialGrade=2` | 一块浅红带皮生肉置粗陶碟，约半斤，无动物头足 **（原创扩展）** |
-| `it_turou` | 兔肉 | 食材·肉 | 黄 | 宋代市食有兔馔；农猎皆可得 | `grade=3; ingredientKind=meat; materialGrade=3` | 处理净的生兔腿两只置竹叶，淡粉肉色，尺内尺度 **（原创扩展）** |
-| `it_gerou` | 鸽肉 | 食材·肉 | 玄 | 城镇饲养与猎获；宴饮用材 **（原创扩展）** | `grade=4; ingredientKind=meat; materialGrade=4` | 处理净的乳鸽一只置青瓷盘，淡粉皮肉，掌心稍大 **（原创扩展）** |
-| `it_anchunrou` | 鹌鹑肉 | 食材·肉 | 玄 | 《东京梦华录》及宋代食单可见鹌鹑馔 | `grade=5; ingredientKind=meat; materialGrade=5` | 处理净的鹌鹑两只并置小陶盘，体形小巧、淡褐皮 **（原创扩展）** |
-| `it_zhudu` | 猪肚 | 食材·肉 | 黄 | 市井杂碎食材；宋以后通用 **（原创扩展）** | `grade=3; ingredientKind=meat; materialGrade=3` | 洗净乳白猪肚一只盘成椭圆置陶盆，表面湿润，无熟食 **（原创扩展）** |
-| `it_yangweizhi` | 羊尾脂 | 食材·肉 | 玄 | 北方与清代京师羊馔常用；《鹿鼎记》有炸羊尾场景 | `grade=5; ingredientKind=meat; materialGrade=5` | 乳白羊尾脂一块带淡粉边置锡盘，拳头尺度 **（原创扩展）** |
-| `it_xianlurou` | 鲜鹿肉 | 食材·珍材 | 地 | 历代苑猎与山猎珍材；清代满洲烧煮兼用鹿肉 | `grade=7; ingredientKind=rare; materialGrade=7` | 深绛鹿里脊一段置木盘，细瘦无脂，约一斤 **（原创扩展）** |
-| `it_xiongzhang` | 熊掌 | 食材·珍材 | 地 | 古代八珍意象；仅固定狩猎或贡膳节点，不进常规商店 | `grade=9; ingredientKind=rare; materialGrade=9` | 经初步处理的熊掌一只置铜盘，深褐厚皮与掌垫可辨，无血腥 **（原创扩展）** |
-| `it_tuofeng` | 驼峰 | 食材·珍材 | 地 | 元《饮膳正要》所见蒙元珍馔语境；西北固定货源 | `grade=8; ingredientKind=rare; materialGrade=8` | 淡红驼峰肉一块带厚白脂置银盘，约双掌宽 **（原创扩展）** |
-| `it_xingchun` | 猩唇 | 食材·珍材 | 地 | 古代八珍名目；实际物种与加工 **（待考）**，只作传闻贡品 | `grade=9; ingredientKind=rare; materialGrade=9` | 深褐风干肉脯一小片封在竹叶包中，指掌尺度 **（原创扩展）** |
-| `it_baotai` | 豹胎 | 食材·珍材 | 地 | 古代珍馐名目；仅剧情禁猎货，具体食用史 **（待考）** | `grade=9; ingredientKind=rare; materialGrade=9` | 封蜡小陶罐盛一份暗红珍肉，罐口半开，不呈血腥 **（原创扩展）** |
-| `it_shiyu` | 鲥鱼 | 食材·珍材 | 地 | 明清江鲜贡物，以初夏时令和易腐著称 | `grade=8; ingredientKind=rare; materialGrade=8` | 银白鲥鱼一尾完整置碎冰竹盘，细鳞清楚，尺半长 **（原创扩展）** |
-| `it_hetun` | 河豚 | 食材·珍材 | 地 | 江海时鲜，食用风险高；仅名厨剧情配方，不提供现实处理方法 | `grade=8; ingredientKind=rare; materialGrade=8` | 灰青河豚一尾完整置湿竹叶，圆腹未鼓起，尺内尺度 **（原创扩展）** |
-| `it_huajiao` | 花胶 | 食材·珍材 | 地 | 鱼鳔干制品；明清海味贸易语境，北宋书界不投放 **（原创扩展边界）** | `grade=7; ingredientKind=rare; materialGrade=7` | 琥珀色干鱼鳔三片置竹匣，半透明皱褶，掌长 **（原创扩展）** |
-| `it_haishen` | 海参 | 食材·珍材 | 地 | 明清宴席海味渐盛；早期书界仅沿海稀有节点 | `grade=7; ingredientKind=rare; materialGrade=7` | 深褐干海参三只置白瓷盘，棘刺清楚，指掌尺度 **（原创扩展）** |
-| `it_baoyu` | 鲍鱼 | 食材·珍材 | 地 | 历代海味，明清宴席尤重；内陆依商路稀缺 | `grade=8; ingredientKind=rare; materialGrade=8` | 带壳鲜鲍三只置海藻竹盘，灰绿壳与乳白肉可辨 **（原创扩展）** |
-| `it_yanwo` | 燕窝 | 食材·珍材 | 天 | 明代成为珍贵贡膳，乾隆膳单大量使用；北宋至元末书界禁投 | `grade=10; ingredientKind=rare; materialGrade=10; uniqueBatch=true` | 象牙白盏形燕窝一盏置黑漆小匣，纤维细密，掌心尺度 **（原创扩展）** |
-| `it_yuchi` | 鱼翅 | 食材·珍材 | 地 | 明清宴席海味盛行；北宋至元末书界禁投 | `grade=9; ingredientKind=rare; materialGrade=9` | 淡金干鱼翅一片置竹匣，扇形纤维可辨，约前臂长 **（原创扩展）** |
-| `it_xueha` | 雪蛤 | 食材·珍材 | 地 | 清代东北山珍语境；仅鹿鼎以后辽东节点 **（待考）** | `grade=8; ingredientKind=rare; materialGrade=8` | 淡黄干雪蛤油小团盛白瓷盏，半透明颗粒，少量一份 **（原创扩展）** |
-| `it_xiongbai` | 熊白 | 食材·珍材 | 地 | 古代所称熊脂珍品；名称与食法须核三联本及史料 **（待考）** | `grade=9; ingredientKind=rare; materialGrade=9` | 乳白熊脂一小块置青铜浅碟，蜡润质感，拳头尺度 **（原创扩展）** |
-| `it_jiangxia` | 江虾 | 食材·水产 | 黄 | 江河捕捞通用 **（原创扩展定级）** | `grade=3; ingredientKind=fish; materialGrade=3` | 青灰鲜虾十余尾盛小竹篓，带水珠，一餐份量 **（原创扩展）** |
-| `it_heli` | 河鲤 | 食材·水产 | 黄 | 黄河、汉水等内河常见鱼获 **（原创扩展定级）** | `grade=2; ingredientKind=fish; materialGrade=2` | 青金鲤鱼一尾置芦叶，鳞片完整，尺许长 **（原创扩展）** |
-| `it_hanshui_qingyu` | 汉水青鱼 | 食材·水产 | 玄 | 《倚天屠龙记》汉水渔家场景；鱼种细节 **（待考）** | `grade=4; ingredientKind=fish; materialGrade=4` | 青黑河鱼一尾置旧渔网，长约尺半，鳍鳞完整 **（原创扩展）** |
-| `it_taihu_yinyu` | 太湖银鱼 | 食材·水产 | 玄 | 太湖地域水产；古代食用记录与书界投放 **（待考）** | `grade=5; ingredientKind=fish; materialGrade=5` | 半透明细银鱼十余尾盛青瓷浅盘，指长尺度 **（原创扩展）** |
-| `it_huxie` | 湖蟹 | 食材·水产 | 玄 | 江南湖泊时鲜；宋《山家清供》有蟹馔 | `grade=4; ingredientKind=fish; materialGrade=4` | 青壳湖蟹两只置蒲草小篓，完整生鲜，掌宽 **（原创扩展）** |
-| `it_haiyu` | 海鱼 | 食材·水产 | 黄 | 东南沿海与海岛常见鱼获 **（原创扩展定级）** | `grade=3; ingredientKind=fish; materialGrade=3` | 银蓝海鱼一尾置海藻竹盘，梭形完整，尺许长 **（原创扩展）** |
-| `it_haili` | 海蛎 | 食材·水产 | 黄 | 闽粤沿海贝类食材 **（原创扩展定级）** | `grade=3; ingredientKind=fish; materialGrade=3` | 粗灰海蛎六枚带壳置竹篓，湿润海味尺度 **（原创扩展）** |
-| `it_huangyu` | 黄鱼 | 食材·水产 | 玄 | 东海时鲜；明清沿海贸易可得 **（原创扩展定级）** | `grade=5; ingredientKind=fish; materialGrade=5` | 金黄大黄鱼一尾置青竹叶，体形修长，尺半长 **（原创扩展）** |
-| `it_jiangyaozhu` | 江瑶柱 | 食材·水产 | 地 | 宋代豪宴菜名有“鹿肚酿江瑶”；贝柱干货珍贵 | `grade=7; ingredientKind=fish; materialGrade=7` | 淡金干贝柱八枚盛小瓷盏，圆柱纤维清楚 **（原创扩展）** |
-| `it_lianou` | 莲藕 | 食材·菜蔬 | 黄 | 江南水田时蔬；宋代食谱常见 | `grade=2; ingredientKind=vegetable; materialGrade=2` | 带泥莲藕两节置荷叶，切口乳白多孔，前臂长 **（原创扩展）** |
-| `it_qingcai` | 青菜 | 食材·菜蔬 | 黄 | 泛指当季叶菜；各书界依地域替换具体品种 **（原创扩展）** | `grade=1; ingredientKind=vegetable; materialGrade=1` | 鲜绿叶菜一小把麻绳束根，带少量泥土，一餐份量 **（原创扩展）** |
-| `it_baicai` | 白菜 | 食材·菜蔬 | 黄 | 北方耐藏菜蔬；《鹿鼎记》囚饭猪肉白菜场景 | `grade=2; ingredientKind=vegetable; materialGrade=2` | 青白大白菜一棵完整置竹席，叶脉清楚，尺许高 **（原创扩展）** |
-| `it_jiucai` | 韭菜 | 食材·菜蔬 | 黄 | 古老栽培蔬菜，四时常见 | `grade=1; ingredientKind=vegetable; materialGrade=1` | 深绿韭菜一束置竹篮，细长叶齐整，一餐份量 **（原创扩展）** |
-| `it_qincai` | 芹菜 | 食材·菜蔬 | 黄 | 古代食谱常见水芹、旱芹 | `grade=2; ingredientKind=vegetable; materialGrade=2` | 青绿芹菜一束带细根置陶盘，茎叶分明 **（原创扩展）** |
-| `it_cong` | 葱 | 食材·菜蔬 | 黄 | 历代基础菜蔬与辛香料 | `grade=1; ingredientKind=vegetable; materialGrade=1` | 青白大葱三根并置竹板，根须完整，前臂长 **（原创扩展）** |
-| `it_shengjiang` | 生姜 | 食材·菜蔬 | 黄 | 历代基础食材，亦用于咸酸与汤羹 | `grade=2; ingredientKind=vegetable; materialGrade=2` | 土黄色老姜三块置粗陶碟，节瘤与薄皮清楚 **（原创扩展）** |
-| `it_luobo` | 萝卜 | 食材·菜蔬 | 黄 | 宋代市食与羹汤常见 | `grade=2; ingredientKind=vegetable; materialGrade=2` | 白萝卜两根带青叶置竹篮，表皮有浅泥痕 **（原创扩展）** |
-| `it_qiezi` | 茄子 | 食材·菜蔬 | 黄 | 魏晋后已在中国栽培，宋元明清均可投放 | `grade=3; ingredientKind=vegetable; materialGrade=3` | 紫黑长茄三只置白瓷盘，表皮哑亮，掌长 **（原创扩展）** |
-| `it_donggua` | 冬瓜 | 食材·菜蔬 | 黄 | 古代瓜蔬，宋代食用记录明确 | `grade=3; ingredientKind=vegetable; materialGrade=3` | 青绿冬瓜一截露白色瓜肉与籽，置木案，双掌宽 **（原创扩展）** |
-| `it_chunsun` | 春笋 | 食材·菜蔬 | 玄 | 《山家清供》多用笋蔬，春季山林时鲜 | `grade=4; ingredientKind=vegetable; materialGrade=4` | 黄褐鲜笋三支带笋衣置竹筛，掌至前臂长 **（原创扩展）** |
-| `it_juecai` | 蕨菜 | 食材·菜蔬 | 黄 | 山野菜；《山家清供》山海兜用笋蕨 | `grade=3; ingredientKind=vegetable; materialGrade=3` | 青绿卷头蕨菜一束置竹篮，嫩梗齐整 **（原创扩展）** |
-| `it_muer` | 木耳 | 食材·菜蔬 | 玄 | 山林菌蔬，宋元食谱可见菌类 | `grade=4; ingredientKind=vegetable; materialGrade=4` | 黑褐木耳一小簇置竹筛，薄卷耳状，干湿适中 **（原创扩展）** |
-| `it_doufu` | 豆腐 | 食材·菜蔬 | 黄 | 宋代已广泛进入市食与素斋 | `grade=3; ingredientKind=vegetable; materialGrade=3` | 雪白豆腐一方置青瓷浅盘，细嫩切面，约双掌宽 **（原创扩展）** |
-| `it_lajiao` | 辣椒 | 食材·菜蔬 | 玄 | 美洲作物；万历《遵生八笺》始见记载，仅碧血及以后书界投放 | `grade=4; ingredientKind=vegetable; materialGrade=4` | 鲜红细辣椒五枚置白瓷碟，完整带蒂，指长 **（原创扩展）** |
-| `it_fanshu` | 番薯 | 食材·菜蔬 | 黄 | 美洲作物；明末传入并推广，仅碧血及以后书界投放 | `grade=3; ingredientKind=vegetable; materialGrade=3` | 红褐番薯三块置竹篮，带少量泥土，拳头尺度 **（原创扩展）** |
-| `it_yumi` | 玉米 | 食材·谷物 | 黄 | 美洲作物；嘉靖《平凉府志》已有记录，本作统一仅碧血及以后书界投放 | `grade=3; ingredientKind=grain; materialGrade=3` | 金黄玉米穗两支带半开青皮置竹篮，前臂长 **（原创扩展）** |
-| `it_xiaomi` | 小米 | 食材·谷物 | 黄 | 北方传统粟粮，先秦至明清通用 | `grade=2; ingredientKind=grain; materialGrade=2` | 金黄小米盛小陶斗，圆细谷粒与少量谷壳可辨 **（原创扩展）** |
-| `it_gaoliang` | 高粱 | 食材·谷物 | 黄 | 北方旱作谷物；明清食用与酿造常见 | `grade=3; ingredientKind=grain; materialGrade=3` | 红褐高粱粒盛竹斗，旁置一小穗，市集一升尺度 **（原创扩展）** |
-| `it_qiaomai` | 荞麦 | 食材·谷物 | 黄 | 北方、西南山地传统杂粮 | `grade=2; ingredientKind=grain; materialGrade=2` | 灰褐三角荞麦粒盛木斗，少量浅壳，一餐份量 **（原创扩展）** |
-| `it_dadou` | 大豆 | 食材·谷物 | 黄 | 中国古老豆类，豆酱、豆豉、豆腐原料 | `grade=3; ingredientKind=grain; materialGrade=3` | 淡黄大豆盛粗陶碗，圆粒饱满，约一升 **（原创扩展）** |
-| `it_lvdou` | 绿豆 | 食材·谷物 | 黄 | 历代粥食与点心原料 | `grade=2; ingredientKind=grain; materialGrade=2` | 青绿小豆盛白瓷碗，颗粒干净，一餐份量 **（原创扩展）** |
-| `it_chidou` | 赤豆 | 食材·谷物 | 黄 | 历代粥羹、馅料常用 | `grade=3; ingredientKind=grain; materialGrade=3` | 暗红赤豆盛竹斗，颗粒细小，约一升 **（原创扩展）** |
-| `it_hongzao` | 红枣 | 食材·果 | 黄 | 北方传统果品与干果 | `grade=2; ingredientKind=fruit; materialGrade=2` | 深红鲜枣十余枚盛小竹篮，表皮自然皱亮 **（原创扩展）** |
-| `it_li` | 梨 | 食材·果 | 黄 | 宋代市食、蜜煎与鲜果常见 | `grade=2; ingredientKind=fruit; materialGrade=2` | 青黄梨三枚置浅瓷盘，带叶一片，拳头尺度 **（原创扩展）** |
-| `it_tao` | 桃 | 食材·果 | 黄 | 历代鲜果与糖霜果品原料 | `grade=3; ingredientKind=fruit; materialGrade=3` | 粉黄鲜桃三枚置竹盘，绒皮与浅缝清楚 **（原创扩展）** |
-| `it_xing` | 杏 | 食材·果 | 黄 | 北方传统果品，可鲜食或晒干 | `grade=2; ingredientKind=fruit; materialGrade=2` | 橙黄杏六枚盛青瓷碟，圆润带淡红晕 **（原创扩展）** |
-| `it_putao` | 葡萄 | 食材·果 | 玄 | 汉以后传入，西域与河西书界常见 | `grade=4; ingredientKind=fruit; materialGrade=4` | 紫青葡萄一串置白瓷盘，果粒半透明，双掌尺度 **（原创扩展）** |
-| `it_shiliu` | 石榴 | 食材·果 | 玄 | 汉以后传入，西域及中原园圃可得 | `grade=4; ingredientKind=fruit; materialGrade=4` | 红黄石榴两枚，一枚剖开露红籽，置青瓷盘 **（原创扩展）** |
-| `it_lizhi` | 荔枝 | 食材·果 | 玄 | 岭南时鲜，北运昂贵且易腐 | `grade=5; ingredientKind=fruit; materialGrade=5` | 红壳荔枝八枚带绿叶置竹篮，掌心一簇 **（原创扩展）** |
-| `it_hutao` | 胡桃 | 食材·果 | 玄 | 汉以后西来坚果，西北与中原可得 | `grade=4; ingredientKind=fruit; materialGrade=4` | 褐壳胡桃六枚置小木碟，一枚裂壳露仁 **（原创扩展）** |
-| `it_yan` | 盐 | 食材·调料 | 黄 | 历代基础调味与官营物资 | `grade=2; ingredientKind=spice; materialGrade=2` | 灰白粗盐盛小陶罐，木盖斜靠，约半斤 **（原创扩展）** |
-| `it_jiangzhi` | 酱汁 | 食材·调料 | 黄 | 豆酱与酱汁传统久远；不等同现代瓶装酱油 | `grade=3; ingredientKind=spice; materialGrade=3` | 深褐酱汁盛矮黑陶罐，木勺一柄，家厨小份 **（原创扩展）** |
-| `it_micu` | 米醋 | 食材·调料 | 黄 | 历代基础酸味调料 | `grade=2; ingredientKind=spice; materialGrade=2` | 琥珀色米醋盛小灰陶壶，布塞封口，约半斤 **（原创扩展）** |
-| `it_huajiao_xiangliao` | 花椒香料 | 食材·调料 | 玄 | 中国本土辛香料，辣椒传入前重要辛味来源 | `grade=4; ingredientKind=spice; materialGrade=4` | 红褐花椒一小撮盛铜碟，开裂果壳与黑籽可辨 **（原创扩展）** |
-| `it_shizhuyu` | 食茱萸 | 食材·调料 | 玄 | 古代辛味来源，辣椒普及后渐退 | `grade=5; ingredientKind=spice; materialGrade=5` | 暗红食茱萸果一小枝置白瓷碟，细粒成簇 **（原创扩展）** |
-| `it_hujiao` | 胡椒 | 食材·调料 | 地 | 宋代依海贸输入且价贵，元明后供应增加 | `grade=7; ingredientKind=spice; materialGrade=7` | 黑胡椒粒盛小银盒，盒盖半掩，珍贵香料小份 **（原创扩展）** |
-| `it_zhetang` | 蔗糖 | 食材·调料 | 玄 | 唐宋制糖渐精，明清点心与蜜饯广用 | `grade=4; ingredientKind=spice; materialGrade=4` | 淡褐砂糖结晶盛白瓷盏，木匙小巧，一碟份 **（原创扩展）** |
-| `it_jiuzao` | 酒糟 | 食材·调料 | 黄 | 酿造副产物，用于糟藏与调味 | `grade=3; ingredientKind=spice; materialGrade=3` | 米白湿酒糟盛粗陶碗，颗粒松散，约一斤 **（原创扩展）** |
-| `it_douchi` | 豆豉 | 食材·调料 | 玄 | 汉以后发酵豆调料，南北食谱皆见 | `grade=4; ingredientKind=spice; materialGrade=4` | 黑褐豆豉盛小陶罐，颗粒油润，木盖与麻布封口 **（原创扩展）** |
-| `it_hubing` | 胡饼 | 食品·干粮 | 黄 | 唐宋市食延续，西北与中原行旅可得 | `grade=2; staPct=11%; meal=bf_wenzhong:1battle` **（原创扩展）** | 扁圆烤饼两张叠在油纸上，芝麻点与焦边清楚，掌宽 **（原创扩展）** |
-| `it_zhengbing` | 蒸饼 | 食品·干粮 | 黄 | 《东京梦华录》所见汴京面食类型 | `grade=2; staPct=11%; meal=bf_yangsheng:1battle` **（原创扩展）** | 白面圆蒸饼三个置竹屉，表皮柔软无馅，一餐份量 **（原创扩展）** |
-| `it_zhimashaobing` | 芝麻烧饼 | 食品·干粮 | 黄 | 宋元城市面食；具体配方 **（原创扩展）** | `grade=3; staPct=12%; meal=bf_jiangu:1battle` **（原创扩展）** | 金黄圆烧饼两枚置油纸，表面芝麻与炉斑可辨 **（原创扩展）** |
-| `it_nangbing` | 馕饼 | 食品·干粮 | 黄 | 西域、回疆行旅主食；清代名目与形制 **（待考）** | `grade=3; staPct=12%; meal=bf_wenzhong:1battle` **（原创扩展）** | 宽圆薄馕一张折放粗布上，中央针纹无文字，焦黄厚边 **（原创扩展）** |
-| `it_qingkezanba` | 青稞糌粑 | 食品·干粮 | 玄 | 藏地高原主食；明清书界商路可得 | `grade=4; staPct=14%; meal=bf_yuhan:1battle` **（原创扩展）** | 淡褐糌粑团两个置木碗，粗粒与酥油润泽，一餐份量 **（原创扩展）** |
-| `it_naigan` | 奶干 | 食品·干粮 | 玄 | 蒙古与西北游牧乳食，便于行旅保存 | `grade=4; staPct=14%; meal=bf_jiangu:1battle` **（原创扩展）** | 象牙色硬奶块六片装小皮袋，干燥裂纹，掌心份量 **（原创扩展）** |
-| `it_songhelou_xiaren` | 松鹤楼虾仁 | 食品·菜肴 | 玄 | 《天龙八部》·姑苏松鹤楼酒肉场景；具体虾仁菜名 **（待考）** | `grade=5; staPct=15.5%; meal=bf_yangsheng:1battle` **（原创扩展）** | 粉白虾仁与茭白丁清炒盛青瓷盘，江南酒楼二人份 **（原创扩展）** |
-| `it_guokui` | 锅盔 | 食品·干粮 | 黄 | 关中、河西及西夏商旅节点投放；西夏地域投放与古代名称沿革 **（原创扩展）（待考）** | `grade=3; staPct=12%; meal=bf_wenzhong:1battle` **（原创扩展）** | 厚圆硬饼一块切开露层，黄褐炉斑，粗布包裹 **（原创扩展）** |
-| `it_huiyanlou_huncai` | 回雁楼荤菜 | 食品·名菜 | 黄 | 《笑傲江湖》·衡阳回雁楼点牛肉、猪肉、鸡鸭、鱼虾等荤菜 | `grade=3; staPct=12%; meal=bf_qingxin:1battle; party=4` **（原创扩展）** | 牛猪肉片、鸡鸭块与鱼虾分盛四只粗瓷盘，酒楼四人份 **（原创扩展）** |
-| `it_shaolin_sumian` | 少林素面 | 食品·菜肴 | 玄 | 《天龙八部》·虚竹在镇甸饭店点两碗素面；承接少林持斋 | `grade=4; staPct=14%; meal=bf_qingxin:1battle` **（原创扩展）** | 清汤素面盛灰白粗瓷碗，青菜与笋丝少许，一人份 **（原创扩展）** |
-| `it_dingshenggao` | 定胜糕 | 食品·点心 | 玄 | 南宋江南点心传说；确切始见年代 **（待考）** | `grade=5; staPct=15.5%; meal=bf_juqi:1battle` **（原创扩展）** | 淡红元宝形米糕三枚置白瓷盘，无字无印，掌心大小 **（原创扩展）** |
-| `it_guangmingding_suxian_yuanbing` | 光明顶素馅圆饼 | 食品·干粮 | 黄 | 《倚天屠龙记》·光明顶明教聚义，执事分食素馅圆饼 | `grade=3; staPct=12%; meal=bf_qingxin:1battle` **（原创扩展）** | 扁圆素馅饼两枚置粗布，切口露菜菇馅，无字无纹 **（原创扩展）** |
-| `it_yuebing` | 月饼 | 食品·点心 | 玄 | 明清节令点心，宋代同名形制不据此反推 | `grade=4; staPct=14%; meal=bf_yangsheng:1battle` **（原创扩展）** | 棕金圆饼一枚切开露豆沙仁，木模花纹无字，掌宽 **（原创扩展）** |
-| `it_hengshan_qingcaidoufu` | 恒山青菜豆腐 | 食品·菜肴 | 玄 | 《笑傲江湖》·令狐冲受困时每日食青菜豆腐，恒山持斋语境 | `grade=5; staPct=15.5%; meal=bf_shouyi:1battle` **（原创扩展）** | 清煮青菜豆腐盛灰白粗瓷碗，少油清淡，一人份 **（原创扩展）** |
-| `it_meigui_subing` | 玫瑰酥饼 | 食品·点心 | 玄 | 清代京师与西北花馅点心语境 **（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_qingxin:1battle` **（原创扩展）** | 金黄酥饼三枚，一枚剖开露暗红花馅，白瓷盘 **（原创扩展）** |
-| `it_suyoubing` | 酥油饼 | 食品·点心 | 玄 | 藏地、蒙古与西北乳油面点语境 **（原创扩展）** | `grade=4; staPct=14%; meal=bf_yuhan:1battle` **（原创扩展）** | 淡金层酥小饼三枚置木盘，酥层与乳油光泽清楚 **（原创扩展）** |
-| `it_jinyinmantou` | 金银馒头 | 食品·点心 | 地 | 清代宴席面点语境；《调鼎集》具体名目 **（待考）** | `grade=7; staPct=20%; meal=bf_juqi:2battle` **（原创扩展）** | 白色与金黄小馒头各三枚间列银盘，圆润一口大小 **（原创扩展）** |
-| `it_xianrou` | 咸肉 | 食品·腌藏 | 黄 | 历代盐腌肉，冬季与行旅常备 | `grade=3; staPct=12%; meal=bf_wenzhong:1battle` **（原创扩展）** | 暗红咸肉条两块麻绳悬束，白盐霜细薄，半臂长 **（原创扩展）** |
-| `it_larou` | 腊肉 | 食品·腌藏 | 玄 | 湖广、巴蜀及山地冬藏语境 **（原创扩展）** | `grade=4; staPct=14%; meal=bf_jiangu:1battle` **（原创扩展）** | 烟褐腊肉一条置竹板，脂肉分层、麻绳结，半臂长 **（原创扩展）** |
-| `it_banya` | 板鸭 | 食品·腌藏 | 玄 | 江南与清代城市腌藏食品；地域投放 **（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_wenzhong:1battle` **（原创扩展）** | 扁平风干整鸭一只置竹架，黄褐皮、形体完整 **（原创扩展）** |
-| `it_zaoyu` | 糟鱼 | 食品·腌藏 | 玄 | 江南酒糟腌鱼，宋明清食籍均有糟藏传统 | `grade=4; staPct=14%; meal=bf_yangsheng:1battle` **（原创扩展）** | 米白酒糟覆着鱼段盛灰陶罐，鱼皮银灰可辨 **（原创扩展）** |
-| `it_furu` | 腐乳 | 食品·腌藏 | 黄 | 发酵豆制品；明清食用记录较明确 | `grade=3; staPct=12%; meal=bf_yangsheng:1battle` **（原创扩展）** | 红褐腐乳六小方盛黑陶罐，汁液油润，家常小份 **（原创扩展）** |
-| `it_sunzha` | 笋鲊 | 食品·腌藏 | 玄 | 宋《山家清供》山蔬腌藏语境；具体条目 **（待考）** | `grade=4; staPct=14%; meal=bf_qingxin:1battle` **（原创扩展）** | 淡黄笋片装小陶罐，姜丝与盐卤可辨，一罐份 **（原创扩展）** |
-| `it_fenggan_yangrou` | 风干羊肉 | 食品·腌藏 | 玄 | 辽、蒙古与西北行旅肉食 | `grade=5; staPct=15.5%; meal=bf_yuhan:2battle` **（原创扩展）** | 深褐羊肉条三根麻绳束，干燥纤维清楚，油纸托底 **（原创扩展）** |
-| `it_mizi_jinju` | 蜜渍金橘 | 食品·腌藏 | 玄 | 宋代蜜煎果品与城市食单可见 | `grade=4; staPct=14%; meal=bf_qingxin:1battle` **（原创扩展）** | 琥珀糖汁中金橘六枚盛白瓷盏，果形完整，小食份量 **（原创扩展）** |
-| `it_tangshuangtaotiao` | 糖霜桃条 | 食品·腌藏 | 玄 | 《射雕英雄传》黄蓉所点宋代果品；据宋人食单化用 | `grade=5; staPct=15.5%; meal=bf_juqi:1battle` **（原创扩展）** | 粉金桃脯细条覆白糖霜，盛青瓷小碟，指长 **（原创扩展）** |
-| `it_huayuan_gaobing` | 花园糕饼 | 食品·点心 | 玄 | 《越女剑》·范蠡命婢仆以糕饼点心款待阿青；具体品种 **（待考）** | `grade=4; staPct=14%; meal=bf_jiangu:2battle` **（原创扩展）** | 四枚浅米色圆糕置竹编小盘，表面朴素无纹，先秦宴客小份 **（原创扩展）** |
-| `it_aqing_qingcha` | 阿青清茶 | 食品·汤羹 | 玄 | 《越女剑》·阿青在范蠡花园喝茶吃饼；茶种 **（待考）** | `grade=5; staPct=15.5%; meal=bf_ningshen:2battle` **（原创扩展）** | 清亮茶汤盛先秦黑陶小碗，旁置素陶茶壶，一人份 **（原创扩展）** |
-| `it_muwu_gancaifan` | 木屋干菜饭 | 食品·菜肴 | 玄 | 《天龙八部》·众人在木屋以干菜佐白米饭 | `grade=4; staPct=14%; meal=bf_qingxin:2battle` **（原创扩展）** | 白米饭覆褐绿干菜盛粗陶碗，木屋旅食一人份 **（原创扩展）** |
-| `it_liaoying_yangrou` | 辽营羊肉 | 食品·菜肴 | 地 | 《天龙八部》·萧峰辽地军旅宴饮，羊肉细节 **（待考）** | `grade=7; staPct=20%; meal=bf_shichen:2battle` **（原创扩展）** | 焦褐熟羊肋四根置大木盘，粗盐与刀痕可辨，四人份 **（原创扩展）** |
-| `it_dali_qingming_chadian` | 大理清茗茶点 | 食品·点心 | 玄 | 《天龙八部》·大理王府奉清茗、点心场景；茶种与点心品种 **（待考）**，不称现代普洱茶餐 | `grade=5; staPct=15.5%; meal=bf_ningshen:1battle` **（原创扩展）** | 青白盖碗清茶配三枚素米糕置木托，宋代大理待客一人份 **（原创扩展）** |
-| `it_qingshui_yufeng_mijiang` | 清水玉蜂蜜浆 | 食品·汤羹 | 玄 | 《神雕侠侣》·杨过以清水调玉蜂蜜浆喂小龙女、郭襄 | `grade=5; staPct=15.5%; meal=bf_huinei:2battle` **（原创扩展）** | 淡金蜜浆兑清水盛粗白瓷碗，清透微稠，一人份 **（原创扩展）** |
-| `it_qingcai_doufu_xiaoyufan` | 青菜豆腐小鱼饭 | 食品·名菜 | 地 | 《神雕侠侣》·程英照料杨过，备青菜豆腐、鸡蛋小鱼与米饭 | `grade=7; staPct=20%; meal=bf_ruiyi:2battle; party=4` **（原创扩展）** | 青菜豆腐、煎蛋小鱼三碟配一碗米饭，竹筷陶器，二人份 **（原创扩展）** |
-| `it_hanshui_siwan_fancai` | 汉水四碗饭菜 | 食品·名菜 | 玄 | 《倚天屠龙记》·汉水舟中鸡、肉、鱼、蔬四碗，周芷若喂张无忌 | `grade=5; staPct=15.5%; meal=bf_huichun:2battle; party=4` **（原创扩展）** | 鸡肉、熟肉、河鱼、青蔬四只粗陶碗围一饭碗，舟中小几尺度 **（原创扩展）** |
-| `it_binghuodao_kaoxiongrou` | 冰火岛烤熊肉 | 食品·菜肴 | 玄 | 《倚天屠龙记》·张翠山、殷素素熊洞生火烤熊肉 | `grade=6; staPct=17%; meal=bf_yuhan:2battle` **（原创扩展）** | 焦褐熊肉厚片三块置平石板，粗盐少许，一人份 **（原创扩展）** |
-| `it_fuzhou_yeji_huangtu` | 福州野鸡黄兔 | 食品·菜肴 | 玄 | 《笑傲江湖》·福州城外酒铺将野鸡、黄兔炒作下酒菜 | `grade=5; staPct=15.5%; meal=bf_ningshen:2battle` **（原创扩展）** | 炒野鸡块与黄兔肉分盛两只粗瓷盘，褐金油色，四人份 **（原创扩展）** |
-| `it_hengshan_suxianzong` | 恒山素馅粽 | 食品·名菜 | 地 | 《笑傲江湖》·岳灵珊送令狐冲草菇、莲子、蚕豆等素馅粽 **（待考）** | `grade=7; staPct=20%; meal=bf_dingxin,bf_yangsheng:2battle; party=4` **（原创扩展）** | 剥开竹叶的素粽四只，糯米中露草菇莲子蚕豆，四人份 **（原创扩展）** |
-| `it_xiakedao_siyang_dianxin` | 侠客岛四样点心 | 食品·名菜 | 玄 | 《侠客行》·侠客岛以烧卖、春卷、蒸糕等四碟点心待客 | `grade=4; staPct=14%; meal=bf_jiangu:2battle; party=4` **（原创扩展）** | 烧卖、春卷、蒸糕与一碟素点分置四只小瓷盘，四人份 **（原创扩展）** |
-| `it_houjianji_shaobing` | 侯监集烧饼 | 食品·干粮 | 玄 | 《侠客行》·侯监集争玄铁令，石破天捡食烧饼 | `grade=5; staPct=15.5%; meal=bf_yuhan:2battle` **（原创扩展）** | 新焙圆烧饼一枚置油纸，焦黄鼓面、无夹藏物，掌宽 **（原创扩展）** |
-| `it_huashan_qingcai_doufufan` | 华山青菜豆腐饭 | 食品·菜肴 | 黄 | 《碧血剑》·乱世途中板桌上有青菜豆腐、肥鸡与热饭菜 | `grade=3; staPct=12%; meal=bf_yangsheng:1battle` **（原创扩展）** | 青菜豆腐一碗配白饭与一只肥鸡盘，粗陶器，四人份 **（原创扩展）** |
-| `it_wenjia_huotui_larouyan` | 温家火腿腊肉宴 | 食品·名菜 | 地 | 《碧血剑》·温家款客上火腿、腊肉、肥鸡、鲜鱼 | `grade=7; staPct=20%; meal=bf_bidu:2battle; party=4` **（原创扩展）** | 火腿腊肉、整鸡、鲜鱼分盛四只明代瓷盘，四人宴份 **（原创扩展）** |
-| `it_zhayangwei` | 炸羊尾 | 食品·菜肴 | 玄 | 《鹿鼎记》·韦小宝京师点菜场景 | `grade=6; staPct=17%; meal=bf_yuhan:2battle` **（原创扩展）** | 金黄酥炸羊尾块六枚置白瓷盘，椒盐小碟从属，二人份 **（原创扩展）** |
-| `it_milian_huotui` | 蜜莲火腿 | 食品·名菜 | 地 | 《鹿鼎记》·韦小宝以宣威火腿、蜜饯莲子款待沐剑屏 | `grade=8; staPct=22%; meal=bf_huichun,bf_juqi:3battle; party=4` **（原创扩展）** | 鲜红火腿薄片围蜜莲子码青花盘，清代宫膳四人份 **（原创扩展）** |
-| `it_yangzhou_tangbao_changyumian` | 扬州汤包长鱼面 | 食品·名菜 | 地 | 《鹿鼎记》·韦小宝自称肚里装满扬州汤包、长鱼面；是否为当席实食 **（待考）** | `grade=7; staPct=20%; meal=bf_wenzhong,bf_juqi:2battle; party=4` **（原创扩展）** | 薄皮汤包四只与酱褐长鱼面一碗同置竹木托，清初扬州四人份 **（原创扩展）** |
-| `it_pomiao_shutang` | 破庙鼠汤 | 食品·汤羹 | 黄 | 《连城诀》·宝象误食受污染鼠汤；危险情节，不作增益菜谱 | `grade=1; staPct=10%; meal=bf_xuruo:1battle` **（原创扩展）** | 灰陶破碗盛浑浊薄汤，一小块鼠肉轮廓，克制不血腥 **（原创扩展）** |
-| `it_yuzhou_fanshu_caomifan` | 渔舟番薯糙米饭 | 食品·干粮 | 玄 | 《连城诀》·老渔人给狄云糙米饭，内混番薯、高粱 | `grade=4; staPct=14%; meal=bf_yuhan:2battle` **（原创扩展）** | 粗陶碗盛糙米、番薯块与高粱混饭，舟中一人份 **（原创扩展）** |
-| `it_naiyou_recha` | 奶油热茶 | 食品·汤羹 | 玄 | 《白马啸西风》·计老人给李文秀奶油热茶 | `grade=4; staPct=14%; meal=bf_yuhan:2battle` **（原创扩展）** | 浅褐热茶盛木碗，表面浮薄层乳油，一人份 **（原创扩展）** |
-| `it_yangrulao` | 羊乳酪 | 食品·腌藏 | 玄 | 《白马啸西风》·计老人以羊乳酒、乳酪、红茶待客 | `grade=5; staPct=15.5%; meal=bf_wenzhong:2battle` **（原创扩展）** | 象牙色乳酪三块置木盘，细孔与切痕可辨，一人份 **（原创扩展）** |
-| `it_xiaofu_shoujiuxi` | 萧府寿酒席 | 食品·名菜 | 玄 | 《鸳鸯刀》·萧半和寿宴，宾客先饮寿酒再饮喜酒；菜品 **（待考）** | `grade=5; staPct=15.5%; meal=bf_juqi:2battle; party=4` **（原创扩展）** | 熟肉、鸡、鱼、蔬四盘围一只空酒盏，清代寿宴四人份 **（原创扩展）** |
-| `it_huodui_kaozhangji` | 火堆烤獐麂 | 食品·菜肴 | 黄 | 《鸳鸯刀》·洞前群豪围火烤獐子、麂子 **（待考）** | `grade=3; staPct=12%; meal=bf_wenzhong:1battle` **（原创扩展）** | 焦褐獐肉与麂肉厚片置宽木盘，火烤痕清楚，四人份 **（原创扩展）** |
-| `it_huibu_zhuafan_kaorou` | 回部抓饭烤肉 | 食品·名菜 | 地 | 《书剑恩仇录》·回部营地分食抓饭、烤肉、蜜瓜、葡萄干 | `grade=7; staPct=20%; meal=bf_shichen,bf_yuhan:2battle; party=4` **（原创扩展）** | 金黄抓饭与烤肉盛铜大盘，蜜瓜、葡萄干分置小碟，四人份 **（原创扩展）** |
-| `it_xuedi_kaohuangyang` | 雪地烤黄羊 | 食品·名菜 | 地 | 《书剑恩仇录》·喀丝丽烤熟随身干黄羊与陈家洛分食 | `grade=8; staPct=22%; meal=bf_ruiyi,bf_juqi:3battle; party=4` **（原创扩展）** | 焦褐黄羊肉块置盐岩浅盘，雪地火烤痕，二人份 **（原创扩展）** |
-| `it_honghuahui_zongduo_yanxi` | 红花会总舵宴席 | 食品·名菜 | 玄 | 《书剑恩仇录》·红花会总舵群雄宴饮场景；具体菜点与配料 **（待考）** | `grade=6; staPct=17%; meal=bf_juqi:2battle; party=4` **（原创扩展）** | 熟鸡、河鱼、酱肉与时蔬分盛四只清代粗瓷盘，总舵四人席份，无酒器 **（原创扩展）** |
-| `it_chenglingsu_sancai_yitang` | 程灵素三菜一汤 | 食品·名菜 | 地 | 《飞狐外传》·程灵素备煎豆腐、笋炒豆芽、草菇白菜、咸菜豆瓣汤 | `grade=8; staPct=22%; meal=bf_bidu,bf_huichun:3battle; party=4` **（原创扩展）** | 三盘素菜与一碗豆瓣汤配白米饭，青瓷家常四人份 **（原创扩展）** |
-| `it_miaojia_huofan_sancai` | 苗家镬饭三菜 | 食品·名菜 | 黄 | 《飞狐外传》·胡斐、程灵素煮一大镬饭并炒三盘菜请苗人凤 | `grade=3; staPct=12%; meal=bf_yangsheng:1battle; party=4` **（原创扩展）** | 大铁镬白饭配三盘家常炒菜，粗瓷碗筷，四人份 **（原创扩展）** |
-| `it_humiao_mantou_jiyangtui` | 胡苗馒头鸡羊腿 | 食品·名菜 | 玄 | 《雪山飞狐》·胡一刀、苗人凤比武间同食馒头、鸡与羊腿 | `grade=5; staPct=15.5%; meal=bf_yuhan:2battle; party=4` **（原创扩展）** | 馒头、熟鸡与烤羊腿分置三只大盘，比武歇餐四人份 **（原创扩展）** |
-| `it_dianchi_shurou_shaoji` | 滇池熟肉烧鸡 | 食品·名菜 | 玄 | 《雪山飞狐》·四人在酒店买熟肉、烧鸡、馒头后登船饮食 | `grade=4; staPct=14%; meal=bf_wenzhong:2battle; party=4` **（原创扩展）** | 深褐熟肉、整只烧鸡与馒头分盛粗瓷盘，舟宴四人份 **（原创扩展）** |
-| `it_xieniangcheng` | 蟹酿橙 | 食品·名菜 | 地 | 宋《山家清供》载以蟹膏肉填黄熟橙蒸制 | `grade=7; staPct=20%; meal=bf_qingxin,bf_ningshen:2battle; party=4` **（原创扩展）** | 四只截顶黄橙盛蟹肉后复盖枝顶，置小蒸甑，四人份 **（原创扩展）** |
-| `it_shanhaidou` | 山海兜 | 食品·名菜 | 地 | 宋《山家清供》：笋、蕨与鱼虾作馅的蒸兜 | `grade=7; staPct=20%; meal=bf_dongxi,bf_yangsheng:2battle; party=4` **（原创扩展）** | 半透明粉皮兜四只露笋蕨鱼虾馅，白瓷盘，四人份 **（原创扩展）** |
-| `it_dongporou` | 东坡肉 | 食品·名菜 | 地 | 清《调鼎集》载做法；菜名源流更早，宋代定型 **（待考）** | `grade=8; staPct=22%; meal=bf_jiangu,bf_wenzhong:2battle; party=4` **（原创扩展）** | 酱红方肉四块皮朝上码青瓷盘，汁浓不腻，四人份 **（原创扩展）** |
-| `it_shanyaozhou` | 山药粥 | 食品·汤羹 | 玄 | 元《饮膳正要》载山药粥 | `grade=5; staPct=15.5%; meal=bf_yangsheng:2battle` **（原创扩展）** | 乳白稠粥盛青瓷碗，山药丁与米粒可辨，一人份 **（原创扩展）** |
-| `it_heliandouzi` | 荷莲兜子 | 食品·名菜 | 地 | 元《饮膳正要》所载多馅蒸兜 | `grade=8; staPct=22%; meal=bf_juqi,bf_huichun:2battle; party=4` **（原创扩展）** | 荷叶托四只蒸制粉皮兜，细碎多馅可辨，四人份 **（原创扩展）** |
-| `it_tuanyutang` | 团鱼汤 | 食品·汤羹 | 地 | 元《饮膳正要》载羊肉汤底煮团鱼并配面丝 | `grade=7; staPct=20%; meal=bf_yuhan,bf_jiangu:2battle` **（原创扩展）** | 浓白团鱼汤盛鎏锡碗，肉块与细面丝可辨，一人份 **（原创扩展）** |
-| `it_shanjia_sancui` | 山家三脆 | 食品·菜肴 | 玄 | 宋《山家清供》载嫩笋、小蕈、枸杞菜作羹或炒食 | `grade=6; staPct=17%; meal=bf_qingxin:2battle` **（原创扩展）** | 嫩笋丝、小菌与枸杞嫩叶清炒盛白瓷盘，二人份 **（原创扩展）** |
-| `it_lubeiji` | 炉焙鸡 | 食品·菜肴 | 地 | 宋元《吴氏中馈录》载鸡先煮、切块，以醋酒反复烹焙 | `grade=7; staPct=20%; meal=bf_jiangu:2battle` **（原创扩展）** | 酱褐鸡块盛带盖铜镟，醋酒收汁，四人份 **（原创扩展）** |
-| `it_wangtaishou_babaodoufu` | 王太守八宝豆腐 | 食品·名菜 | 地 | 清《随园食单》载嫩豆腐配蕈、蘑菇、松瓜仁、鸡与火腿屑 | `grade=8; staPct=22%; meal=bf_huixin,bf_ningshen:2battle; party=4` **（原创扩展）** | 雪白碎嫩豆腐羹盛青花大碗，菌菇仁屑与火腿丁可辨，四人份 **（原创扩展）** |
-| `it_jiangshilang_doufu` | 蒋侍郎豆腐 | 食品·名菜 | 地 | 清《随园食单》“豆腐”门所载蒋侍郎豆腐；复原配料 **（待考）** | `grade=7; staPct=20%; meal=bf_qingxin,bf_dingxin:2battle; party=4` **（原创扩展）** | 金黄煨豆腐厚片盛青瓷深盘，汤汁清亮，四人份 **（原创扩展）** |
-| `it_shaoxiaozhu` | 烧小猪 | 食品·名菜 | 地 | 清《随园食单》《调鼎集》均见烧小猪，满席重烧猪 | `grade=9; staPct=24%; meal=bf_shichen,bf_jiangu:3battle; party=4` **（原创扩展）** | 金红脆皮乳猪一只置银边大盘，完整宴席四人份 **（原创扩展）** |
-| `it_yanwojisitang` | 燕窝鸡丝汤 | 食品·名菜 | 天 | 清《扬州画舫录》满汉席菜单；仅乾隆书界固定宴席 | `grade=10; staPct=28%; meal=bf_huichun,bf_huinei:3battle; party=4; uniqueBatch=true` **（原创扩展）** | 象牙白燕窝鸡丝清汤盛黄釉盖盅，纤丝分明，四人份 **（原创扩展）** |
+| ID | 名称 | 子类 | 品阶 | 出处（书名 / 原创扩展） | 说明 | 效果字段 | 属性投影 | 外观要点（供出图） |
+|---|---|---|---|---|---|---|---|---|
+| `it_jingmi` | 精米 | 食材·谷物 | 黄 | **（原创扩展）** | 江南粮行把秋收稻谷舂净，筛出乳白整粒装入小竹斗。下锅前须淘洗，宜煮饭或熬粥；客栈掌柜常按一餐份量售给行脚人。**（原创扩展）** | `grade=3; ingredientKind=grain; materialGrade=3` | `—` | 乳白米粒盛小竹斗，少量谷壳，朴素市集尺度 **（原创扩展）** |
+| `it_huotuijian` | 火腿尖 | 食材·肉 | 黄 | 《射雕英雄传》·火腿入馔；部位定级 **（原创扩展）** | 《射雕英雄传》写黄蓉以火腿入馔；本件取咸香紧实的腿尖，切开后宜蒸煨取味。江南厨子多留给精细菜式，不作旅途中直接啃食。**（原创扩展）** | `grade=3; ingredientKind=meat; materialGrade=3` | `—` | 小段风干火腿，棕红切面与麻绳，约前臂长 **（原创扩展）** |
+| `it_xianyu` | 鲜鱼 | 食材·水产 | 黄 | 通用食材；定级 **（原创扩展）** | 江河码头清晨最常见的鲜货，银鳞、鱼眼与鳃色都是厨子验鲜的凭据。买到后应当日入汤或煎炙；久置只降为普通烹饪材料。**（原创扩展）** | `grade=3; ingredientKind=fish; materialGrade=3` **（原创扩展）** | `—` | 银灰河鱼一尾置青竹叶，鳞光克制，尺许长 **（原创扩展）** |
+| `it_cumian` | 粗面 | 食材·谷物 | 黄 | **（原创扩展）** | 北地麦坊连少量麦麸磨成的淡黄面粉，陶钵一份正够和一顿面食。适合蒸饼、汤面或营地烙饼，便宜耐放，镖队补给常成袋购入。**（原创扩展）** | `grade=3; ingredientKind=grain; materialGrade=3` | `—` | 淡黄粗面粉盛矮陶钵，旁置小木勺与少量麦麸，约一餐份量 **（原创扩展）** |
+| `it_xuelianzi` | 雪莲子 | 食材·珍材 | 玄 | **（原创扩展）** | 高寒商路传来的象牙白籽实，晒干后带一层淡霜般粉衣。厨子须先温水浸发，再配谷米慢煨；山客传说它能使长途跋涉者精神稍振。**（原创扩展）** | `grade=6; ingredientKind=rare; materialGrade=6` | `—` | 象牙白莲子十余颗盛浅瓷盏，淡霜粉感，指节大小 **（原创扩展）** |
+| `it_yuxueguo` | 玉雪果 | 食材·果 | 玄 | **（原创扩展）** | 雪线下背风谷地夏末结出的青白小果，薄蜡皮上常见冰裂斑。可鲜食或切片入羹，采下后不耐久藏；西行商队把无碰伤者称作玉雪。**（原创扩展）** | `grade=6; ingredientKind=fruit; materialGrade=6` | `—` | 青白梨形小果三枚，薄蜡皮、冰裂斑，不发光 **（原创扩展）** |
+| `it_xianggu` | 山林香菇 | 食材·菜蔬 | 玄 | 山林食材通名；定级 **（原创扩展）** | 春秋雨后采自山林腐木，褐伞厚实、菌褶分明者才列玄阶。鲜菇宜煨汤，晒干可随行；采菌人只认熟悉山场，不凭传闻混采陌生菌种。**（原创扩展）** | `grade=6; ingredientKind=vegetable; materialGrade=6` | `—` | 褐伞香菇五朵置竹筛，菌褶清楚、根部带少量松针，掌心尺度 |
+| `it_longganfengsui` | 龙肝凤髓料 | 食材·珍材 | 地 | 武侠宴席意象 **（原创扩展）** | “龙肝凤髓”只是豪宴行话，并非异兽真材；两只封釉食盒分别藏精选肉脯与髓脂。名厨以少量提鲜，江湖富户常拿整盒排场待客。**（原创扩展）** | `grade=9; ingredientKind=rare; materialGrade=9` | `—` | 两只封釉食盒分装深红肉脯与乳白髓脂，宫宴精致感 **（原创扩展）** |
+| `it_binghuxueou` | 冰湖雪藕 | 食材·菜蔬 | 地 | **（原创扩展）** | 寒湖夏末才起出的白藕，切面淡青，离水后须以湿布与薄冰护鲜。可清炖也可凉拌；北地客商称其入口脆净，常留给固定宴席。**（原创扩展）** | `grade=9; ingredientKind=vegetable; materialGrade=9` | `—` | 白净莲藕两节带淡青切面，水珠与薄霜，前臂尺度 **（原创扩展）** |
+| `it_xueshanlufu` | 雪山鹿脯 | 食材·肉 | 地 | **（原创扩展）** | 雪山猎户在秋冬合法委托所得鹿肉中拣瘦条盐藏风干，表面只留细薄盐霜。食前切薄温烘，适合寒路补给；不进入反复狩猎货池。**（原创扩展）** | `grade=9; ingredientKind=meat; materialGrade=9` | `—` | 深红鹿肉脯两条，盐霜细薄、青麻绳束，约半臂长 **（原创扩展）** |
+| `it_tianshanlingmi` | 天山灵蜜 | 食材·珍材 | 天 | **（原创扩展）** | 天山短促花期中收得的淡金稠蜜，只在固定蜂农与奇遇批次出现。以木蜡封入白玉小罐，可调羹点茶；江湖传闻开封香气经久不散。**（原创扩展）** | `grade=10; ingredientKind=rare; materialGrade=10; uniqueBatch=true` | `—` | 淡金蜂蜜盛白玉小罐，木蜡封口，细稠光泽无荧光 **（原创扩展）** |
+| `it_baihualinglu` | 百花灵露 | 食材·珍材 | 天 | **（原创扩展）** | 春夏百花盛放时逐晨收集的清露，经花农合藏于素银细颈壶，一批仅得数盏。宜作羹饮引子而非药水；花庄只赠真正守信的客人。**（原创扩展）** | `grade=10; ingredientKind=rare; materialGrade=10; uniqueBatch=true` | `—` | 清透花露盛素银细颈壶，壶口凝一滴露珠，配低饱和百花小碟 **（原创扩展）** |
+| `it_ganliang` | 行旅干粮 | 食品·干粮 | 黄 | **（原创扩展）** | 两块焦边烤饼以油纸和麻绳扎紧，是车马店四季常备的一日口粮。赶路时可冷食，若在营火旁略烘更松软；镖客常在行囊底多压一包。**（原创扩展）** | `grade=3; staPct=12%; context=field` | `stamina=12` | 两块烤饼与油纸包，焦黄边、麻绳系，行囊尺度 **（原创扩展）** |
+| `it_guisugao` | 桂酥糕 | 食品·点心 | 黄 | **（原创扩展）** | 江南作坊趁秋桂初放拌花蒸烤，浅金方糕上仍见细碎桂花。配清茶小口食用最合宜；掌柜常把当日出炉的一盘留给晚归渡客。**（原创扩展）** | `grade=3; staPct=12%; buff=bf_yangsheng:2h` | `stamina=12` | 四块浅金方糕，桂花碎点，白瓷小盘，掌心大小 **（原创扩展）** |
+| `it_niurougan` | 酱香牛肉干 | 食品·腌藏 | 玄 | **（原创扩展）** | 合法取得的瘦牛肉以酱香风干，切成深褐肉条后用纸包束紧。嚼食费时却耐饥，是北地驿路四季长途食；驿队把纤维干润、无霉斑者视为上货。**（原创扩展）** | `grade=6; staPct=17%; buff=bf_waigong_sheng:1battle` | `stamina=17` | 深褐肉条装牛皮纸包，麻绳束口，干润纤维清楚 **（原创扩展）** |
+| `it_furonggao` | 芙蓉糕 | 食品·点心 | 玄 | 《书剑恩仇录》江南饮食意象；物品 **（原创扩展）** | 取《书剑恩仇录》的江南饮食意象另制粉白花形蒸糕，双层细软，非原著明载菜名。宜佐茶静食；水乡糕铺多在春日花市售卖。**（原创扩展）** | `grade=6; staPct=17%; buff=bf_ningshen:1battle` | `stamina=17` | 粉白双层花形糕，浅青瓷盘，细腻蒸糕质感 **（原创扩展）** |
+| `it_baihuagao` | 百花糕 | 食品·点心 | 地 | **（原创扩展）** | 花庄在春末拣可食花瓣和细米粉蒸成淡紫圆糕，装入银边食盒保香。宜分食而不可久置；花农称伤后温食可缓解轻微皮肉伤势，江湖女侠也常以一盒回赠引路人。**（原创扩展）** | `grade=9; staPct=24%; meal=bf_huichun:2battle` | `healOuter=7; stamina=24` | 淡紫圆糕点缀可食花瓣，银边食盒，精巧小份 **（原创扩展）** |
+| `it_yuluwan` | 玉露丸子 | 食品·点心 | 地 | **（原创扩展）** | 细糯米裹花露蒸成六枚乳白丸子，以荷叶承托，外形虽似丹丸却只是点心。应趁软糯时分食；隐居庄客常用它招待远来故人。**（原创扩展）** | `grade=9; staPct=24%; meal=bf_huinei:2battle` | `stamina=24` | 乳白糯丸六枚置荷叶，透明露珠薄层，不像药丸 **（原创扩展）** |
+| `it_xueyulengchan` | 雪域冷膳 | 食品·腌藏 | 天 | **（原创扩展）** | 雪域冬祭前以香料腌藏的薄切冻肉，只在高原固定席面成批取用。入口前略回温，不可反复冻融；山口向导说它最能撑过漫长风雪。**（原创扩展）** | `grade=10; staPct=28%; meal=bf_yuhan,bf_jiangu:3battle; uniqueBatch=true` | `stamina=28` | 银白薄切冻肉配青玉冰盘，藏地香料细点，冷冽无魔法光 **（原创扩展）** |
+| `it_tianxiangyulu` | 天香玉露羹 | 食品·汤羹 | 天 | **（原创扩展）** | 以莲子、花露和清甜珍材慢煨成淡金清羹，只供固定雅宴。须温饮并避浓酒杂味；传说倦伤者饮后经络渐舒，此疗效属本作设定。**（原创扩展）** | `grade=10; staPct=28%; meal=bf_huichun,bf_huinei:3battle; uniqueBatch=true` | `healInner=6; stamina=28` | 羊脂玉碗盛半透明淡金羹，莲子与花瓣可辨，碗径一掌 **（原创扩展）** |
+| `it_jiaohuaji` | 叫化鸡 | 食品·菜肴 | 玄 | 《射雕英雄传》·黄蓉款待洪七公 | 《射雕英雄传》中黄蓉制叫化鸡款待洪七公，并由美食引出传功情节。鸡裹荷叶与泥烘熟，破泥后趁热分食；黄蓉亲制时另有更高品阶。**（原创扩展）** | `grade=5; meal=bf_jiangu:4battle; sta=full` **（原创扩展）** | `stamina=20` | 整鸡裹开裂黄泥与荷叶，金褐表皮，盘宽约双掌 |
+| `it_jiangniurou` | 酱牛肉 | 食品·菜肴 | 黄 | 江湖酒馆意象 **（原创扩展定级）** | 江湖酒馆把酱煮牛肉晾定后切成薄片，青花粗瓷一盘即可下饭。它不指向某段原著，四季皆可点；店小二常以“切一盘熟肉”招呼赶路客。**（原创扩展）** | `grade=2; meal=bf_waigong_sheng:2battle` **（原创扩展）** | `stamina=11` | 深红褐薄片整齐码盘，青花粗瓷盘，油润克制 |
+| `it_haoqiutang` | 好逑汤 | 食品·汤羹 | 地 | 《射雕英雄传》·黄蓉为洪七公所制 | 《射雕英雄传》中黄蓉为洪七公制好逑汤，以荷叶清汤、嫩笋及嵌肉樱桃寄寓菜名。须趁清鲜同席分饮；羁绊与膳食效果均属本作投影。**（原创扩展）** | `grade=7; meal=bf_ruiyi:3battle; party=4` **（原创扩展）** | `stamina=20` | 清汤、嫩笋、荷叶与嵌肉樱桃，白瓷汤盅，雅致小宴 |
+| `it_yudishuijiatingluomei` | 玉笛谁家听落梅 | 食品·名菜 | 地 | 《射雕英雄传》·黄蓉五味肉条名菜 | 《射雕英雄传》中黄蓉以羊、猪、牛、獐、兔五味合成肉条，制给洪七公品尝。食者须依次辨味，梅花摆盘与五项战斗增益为本作投影。**（原创扩展）** | `grade=8; meal=5buff:3battle; party=4` **（原创扩展）** | `stamina=22` | 五色肉条拼成梅花状，素白大盘，色泽低饱和、份量精致 |
+| `it_labazhou` | 腊八粥 | 食品·汤羹 | 地 | 《侠客行》·侠客岛 | 《侠客行》中侠客岛以异草熬制腊八粥，练武者须趁热服食方得其益。青石碗所盛只在腊八节期的岛上固定节点出现；永久内力与修为数值属本作扩展。**（原创扩展）** | `grade=9; perm.mpMaxPct=2%; sxpGrant=0.35` **（原创扩展）** | `qiCultivation=3500; stamina=24` | 深褐药粥盛厚青石碗，谷粒草叶可辨，热气极淡 |
+| `it_tianxiangyuyan` | 天香御宴 | 食品·名菜 | 天 | **（原创扩展）** | 宫中尚食依时令把三味珍馔分装朱漆套盒，开席时由同席者各择所需。它只在固定宫宴节点出现，不入普通酒楼；三项增益由本作规则选择。**（原创扩展）** | `grade=10; meal=select3buff:3battle; party=4; fixedNode=true` | `stamina=28` | 三只嵌套朱漆食盒展开成小宴，金边克制、无文字 **（原创扩展）** |
+| `it_yushan` | 御膳 | 食品·名菜 | 地 | 《鹿鼎记》·御膳房语境；菜品 **（原创扩展）** | 借《鹿鼎记》御膳房语境组合的一席清代宫膳，并非原著固定菜名。本作按宫中四季宴席投放，黄釉盖碗与三小碟按次序上桌，效果属本作扩展。**（原创扩展）** | `grade=8; meal=select3buff:3battle; party=4` | `stamina=22` | 龙纹不用文字的黄釉盖碗与三小碟，清代宫膳时代感 **（原创扩展）** |
+| `it_ershisiqiaomingyueye` | 二十四桥明月夜 | 食品·名菜 | 地 | 《射雕英雄传》·黄蓉为洪七公所制 | 《射雕英雄传》中黄蓉在火腿中嵌入二十四枚豆腐球蒸制，成菜只取入味豆腐给洪七公。须耐心去火腿留其香，闭关与膳食增益属原创。**（原创扩展）** | `grade=8; meal=bf_dingxin,bf_shouyi,bf_huinei:3battle` **（原创扩展）** | `stamina=22` | 二十四枚雪白豆腐球盛火腿槽中，青瓷长盘，精细而不夸张 |
+| `it_zhurou` | 猪肉 | 食材·肉 | 黄 | 宋代民间常见且地位低于羊馔；清《调鼎集》满席重全猪、烧小猪 | 宋代民间已有猪肉，清代食籍又见全猪与烧小猪宴馔；本件取屠肆当日鲜肉。宜煮炒或冬腌，不能直接食用；市井厨户按肥瘦选切。**（原创扩展）** | `grade=2; ingredientKind=meat; materialGrade=2` | `—` | 一块粉红带白脂鲜猪肉置粗陶盘，约一斤，不带血污 **（原创扩展）** |
+| `it_niurou` | 牛肉 | 食材·肉 | 玄 | 历代耕牛受保护，合法牛肉供应较少；具体法禁随书界核对 | 历代耕牛多受保护，故本件只来自各书界允许的合法少量供应，不作寻常肉摊通货。瘦肉宜酱煮或风干；具体法禁仍随年代核对。**（原创扩展）** | `grade=4; ingredientKind=meat; materialGrade=4` | `—` | 一块暗红瘦牛肉带细脂纹置木案，约一斤，无熟食配菜 **（原创扩展）** |
+| `it_yangrou` | 羊肉 | 食材·肉 | 黄 | 北宋尚羊，《东京梦华录》多见羊馔；辽、蒙古重羊，清代满洲烧煮亦重牛羊 | 北宋市食尚羊，辽、蒙古及清代北方宴饮也多用羊肉。本件带短骨与薄脂，秋冬最肥，适合汤煮或火烤；北地客店常按斤称售。**（原创扩展）** | `grade=3; ingredientKind=meat; materialGrade=3` | `—` | 淡红羊腿肉一块连短骨，白脂薄层置木盘，约二斤 **（原创扩展）** |
+| `it_jirou` | 鸡肉 | 食材·肉 | 黄 | 家禽通用；宋元明清均可得 | 宋元明清城乡皆能取得的家禽肉，本件是一只处理净的生鸡。可炖汤、烧烤或入宴，须彻底烹熟；农家与客栈四季都有少量供应。**（原创扩展）** | `grade=2; ingredientKind=meat; materialGrade=2` | `—` | 处理净的生鸡一只置竹叶，淡黄皮、双翼收拢，家常尺度 **（原创扩展）** |
+| `it_yarou` | 鸭肉 | 食材·肉 | 黄 | 江南水乡家禽通用；《东京梦华录》列鸭馔 | 江南水乡常养鸭，《东京梦华录》所录市食亦见鸭馔。本件取处理净的生鸭，秋季膘足，适合煨煮或腌藏；水镇肉铺最易购得。**（原创扩展）** | `grade=2; ingredientKind=meat; materialGrade=2` | `—` | 处理净的生鸭一只置浅木盘，灰白皮与扁喙可辨 **（原创扩展）** |
+| `it_erou` | 鹅肉 | 食材·肉 | 黄 | 家禽通用；宋代市食已有鹅馔记录 | 宋代市食已有鹅馔，后世城乡也常见家养鹅。本件取厚胸半鹅，秋冬肉肥，适合烧煮后同席分食；普通集市只在宰售日供应。**（原创扩展）** | `grade=3; ingredientKind=meat; materialGrade=3` | `—` | 处理净的生鹅半只置竹筛，乳白皮、厚胸肉，约三斤 **（原创扩展）** |
+| `it_lvrou` | 驴肉 | 食材·肉 | 玄 | 北方驿路与民间肉食；具体书界供应 **（原创扩展）** | 北方驿路偶见的深红腱肉，筋膜清楚，供应须服从当地牲畜用途与书界限制。宜久煮或酱制，不能视作全域通货；旅店掌柜多凭熟客预留。**（原创扩展）** | `grade=4; ingredientKind=meat; materialGrade=4` | `—` | 深红驴腱肉一块置灰陶盘，筋膜清楚，约一斤 **（原创扩展）** |
+| `it_marou` | 马肉 | 食材·肉 | 玄 | 辽、蒙古及西北游牧语境可得，农耕城镇不作常规货 | 辽、蒙古及西北游牧语境中偶有马肉，本作不把役马肉投进农耕城镇常规货架。厚片宜炖烤或风干，来源只限固定营地与事件。**（原创扩展）** | `grade=5; ingredientKind=meat; materialGrade=5` | `—` | 深红马肉厚片三片叠放木盘，瘦而紧实，约一斤 **（原创扩展）** |
+| `it_gourou` | 狗肉 | 食材·肉 | 黄 | 历代部分地域食用；投放依地方习俗，不作全域通货 | 历代仅部分地域有食用习俗，本件是否出现须服从当地文化与剧情，不作全域肉货。取得后只按普通生肉烹煮；无相应习俗的市镇不会售卖。**（原创扩展）** | `grade=2; ingredientKind=meat; materialGrade=2` | `—` | 一块浅红带皮生肉置粗陶碟，约半斤，无动物头足 **（原创扩展）** |
+| `it_turou` | 兔肉 | 食材·肉 | 黄 | 宋代市食有兔馔；农猎皆可得 | 宋代市食已有兔馔，农家饲养与合规猎获都可提供。本件是两只处理净的兔腿，秋冬肉实，适合炖煮或火烤；山店常随猎获限量供应。**（原创扩展）** | `grade=3; ingredientKind=meat; materialGrade=3` | `—` | 处理净的生兔腿两只置竹叶，淡粉肉色，尺内尺度 **（原创扩展）** |
+| `it_gerou` | 鸽肉 | 食材·肉 | 玄 | 城镇饲养与猎获；宴饮用材 **（原创扩展）** | 城镇鸽舍与合规猎获提供的宴饮小禽，一只乳鸽正够一份汤菜。须当日处理并熟制；酒楼厨子偏爱胸肉饱满、皮色匀净者。**（原创扩展）** | `grade=4; ingredientKind=meat; materialGrade=4` | `—` | 处理净的乳鸽一只置青瓷盘，淡粉皮肉，掌心稍大 **（原创扩展）** |
+| `it_anchunrou` | 鹌鹑肉 | 食材·肉 | 玄 | 《东京梦华录》及宋代食单可见鹌鹑馔 | 《东京梦华录》及宋代食单可见鹌鹑馔。本件两只并作一份，秋季较肥，适合炙烤或入羹；城中食店常把这等小禽留作精细宴菜。**（原创扩展）** | `grade=5; ingredientKind=meat; materialGrade=5` | `—` | 处理净的鹌鹑两只并置小陶盘，体形小巧、淡褐皮 **（原创扩展）** |
+| `it_zhudu` | 猪肚 | 食材·肉 | 黄 | 市井杂碎食材；宋以后通用 **（原创扩展）** | 宋以后市井肉案常见的杂碎食材，本件已洗净盘成椭圆，但仍须熟制。宜炖汤或切条烹炒；讲究的厨子会反复验净异味再下锅。**（原创扩展）** | `grade=3; ingredientKind=meat; materialGrade=3` | `—` | 洗净乳白猪肚一只盘成椭圆置陶盆，表面湿润，无熟食 **（原创扩展）** |
+| `it_yangweizhi` | 羊尾脂 | 食材·肉 | 玄 | 北方与清代京师羊馔常用；《鹿鼎记》有炸羊尾场景 | 北方及清代京师羊馔常用羊尾脂，《鹿鼎记》亦有炸羊尾菜名。本件只是一块生脂，须配肉或面食熟制；酒楼把洁白细腻者留作上等料。**（原创扩展）** | `grade=5; ingredientKind=meat; materialGrade=5` | `—` | 乳白羊尾脂一块带淡粉边置锡盘，拳头尺度 **（原创扩展）** |
+| `it_xianlurou` | 鲜鹿肉 | 食材·珍材 | 地 | 历代苑猎与山猎珍材；清代满洲烧煮兼用鹿肉 | 历代苑猎与山猎都曾以鹿肉为珍材，清代满洲烧煮亦见其踪。本件只来自合法委托或固定猎获，秋冬为佳；切片烤炙前须妥善保鲜。**（原创扩展）** | `grade=7; ingredientKind=rare; materialGrade=7` | `—` | 深绛鹿里脊一段置木盘，细瘦无脂，约一斤 **（原创扩展）** |
+| `it_xiongzhang` | 熊掌 | 食材·珍材 | 地 | 古代八珍意象；仅固定狩猎或贡膳节点，不进常规商店 | 古代八珍语境中的罕见贡膳材料，本作只允许历史旧藏或固定剧情收据出现，不设循环猎取。必须交由名厨处理，普通商店与营地不可烹制。**（原创扩展）** | `grade=9; ingredientKind=rare; materialGrade=9` | `—` | 经初步处理的熊掌一只置铜盘，深褐厚皮与掌垫可辨，无血腥 **（原创扩展）** |
+| `it_tuofeng` | 驼峰 | 食材·珍材 | 地 | 元《饮膳正要》所见蒙元珍馔语境；西北固定货源 | 元《饮膳正要》所见蒙元珍馔语境中的驼峰，脂厚而供应极少。本件只随西北固定货源出现，宜由名厨慢煨；不可从普通牧场反复取得。**（原创扩展）** | `grade=8; ingredientKind=rare; materialGrade=8` | `—` | 淡红驼峰肉一块带厚白脂置银盘，约双掌宽 **（原创扩展）** |
+| `it_xingchun` | 猩唇 | 食材·珍材 | 地 | 古代八珍名目；实际物种与加工 **（待考）**，只作传闻贡品 | 古代八珍名目中的传闻贡品，实际所指物种与加工方式尚待史料核对。**（待考：核名称所指及食用史）** 本作只作封存旧货，不开放采集或现实处理。**（原创扩展）** | `grade=9; ingredientKind=rare; materialGrade=9` | `—` | 深褐风干肉脯一小片封在竹叶包中，指掌尺度 **（原创扩展）** |
+| `it_baotai` | 豹胎 | 食材·珍材 | 地 | 古代珍馐名目；仅剧情禁猎货，具体食用史 **（待考）** | 古代珍馐名目中的禁猎货，具体食用史与原典仍未核定。**（待考：核名目来源与时代）** 本作只作查获证物或剧情旧藏，不供商店、采集与烹饪。**（原创扩展）** | `grade=9; ingredientKind=rare; materialGrade=9` | `—` | 封蜡小陶罐盛一份暗红珍肉，罐口半开，不呈血腥 **（原创扩展）** |
+| `it_shiyu` | 鲥鱼 | 食材·珍材 | 地 | 明清江鲜贡物，以初夏时令和易腐著称 | 明清江鲜贡物，以初夏洄游时节最受珍视，又因易腐而讲究疾运。本件须以湿叶薄冰护送，到埠即烹；江上鱼商把完整细鳞视为鲜货凭据。**（原创扩展）** | `grade=8; ingredientKind=rare; materialGrade=8` | `—` | 银白鲥鱼一尾完整置碎冰竹盘，细鳞清楚，尺半长 **（原创扩展）** |
+| `it_hetun` | 河豚 | 食材·珍材 | 地 | 江海时鲜，食用风险高；仅名厨剧情配方，不提供现实处理方法 | 江海时鲜中风险极高的一类，本作只在名厨剧情与受控配方中出现。玩家不能自行处理，也不展示现实方法；误取的普通货会被厨房直接拒收。**（原创扩展）** | `grade=8; ingredientKind=rare; materialGrade=8` | `—` | 灰青河豚一尾完整置湿竹叶，圆腹未鼓起，尺内尺度 **（原创扩展）** |
+| `it_huajiao` | 花胶 | 食材·珍材 | 地 | 鱼鳔干制品；明清海味贸易语境，北宋书界不投放 **（原创扩展边界）** | 明清海味贸易中的干制鱼鳔，琥珀色片身须先验无霉损，再交宴席厨师发制。本作不投放北宋书界，只随沿海商路或固定海味仓出现。**（原创扩展）** | `grade=7; ingredientKind=rare; materialGrade=7` | `—` | 琥珀色干鱼鳔三片置竹匣，半透明皱褶，掌长 **（原创扩展）** |
+| `it_haishen` | 海参 | 食材·珍材 | 地 | 明清宴席海味渐盛；早期书界仅沿海稀有节点 | 明清宴席渐重的海味干货，早期书界只在沿海稀有节点可见。入菜前须由厨师发制，本件不可直接食用；内陆富户多以海商竹匣为真伪凭据。**（原创扩展）** | `grade=7; ingredientKind=rare; materialGrade=7` | `—` | 深褐干海参三只置白瓷盘，棘刺清楚，指掌尺度 **（原创扩展）** |
+| `it_baoyu` | 鲍鱼 | 食材·珍材 | 地 | 历代海味，明清宴席尤重；内陆依商路稀缺 | 历代沿海可得而明清宴席尤重的海味，本件带壳鲜存，离岸后极难久藏。宜清蒸或煨制；内陆只能由快速商路与固定宴席少量取得。**（原创扩展）** | `grade=8; ingredientKind=rare; materialGrade=8` | `—` | 带壳鲜鲍三只置海藻竹盘，灰绿壳与乳白肉可辨 **（原创扩展）** |
+| `it_yanwo` | 燕窝 | 食材·珍材 | 天 | 明代成为珍贵贡膳，乾隆膳单大量使用；北宋至元末书界禁投 | 明代以后渐成珍贵贡膳，乾隆膳单尤多；本作硬禁北宋至元末投放。一盏纤维须细拣后入羹，只走固定批次，不设计循环采集。**（原创扩展）** | `grade=10; ingredientKind=rare; materialGrade=10; uniqueBatch=true` | `—` | 象牙白盏形燕窝一盏置黑漆小匣，纤维细密，掌心尺度 **（原创扩展）** |
+| `it_yuchi` | 鱼翅 | 食材·珍材 | 地 | 明清宴席海味盛行；北宋至元末书界禁投 | 明清宴席海味语境中的干货，本作硬禁北宋至元末书界投放。只作固定海商仓或宫宴食材，不给采捕流程；入菜须由名厨验货发制。**（原创扩展）** | `grade=9; ingredientKind=rare; materialGrade=9` | `—` | 淡金干鱼翅一片置竹匣，扇形纤维可辨，约前臂长 **（原创扩展）** |
+| `it_xueha` | 雪蛤 | 食材·珍材 | 地 | 清代东北山珍语境；仅鹿鼎以后辽东节点 **（待考）** | 清代东北山珍语境下的少量干货，本作仅在鹿鼎以后辽东固定节点出现。**（待考：核历史名称与书界用例）** 只供名厨入羹，不给现实取材步骤。**（原创扩展）** | `grade=8; ingredientKind=rare; materialGrade=8` | `—` | 淡黄干雪蛤油小团盛白瓷盏，半透明颗粒，少量一份 **（原创扩展）** |
+| `it_xiongbai` | 熊白 | 食材·珍材 | 地 | 古代所称熊脂珍品；名称与食法须核三联本及史料 **（待考）** | 古代文献所称熊脂珍品，名称所指与食法尚须核对三联本及史料。**（待考：核名物与出处）** 本作只保留历史旧藏，不设捕猎、买卖或加工交互。**（原创扩展）** | `grade=9; ingredientKind=rare; materialGrade=9` | `—` | 乳白熊脂一小块置青铜浅碟，蜡润质感，拳头尺度 **（原创扩展）** |
+| `it_jiangxia` | 江虾 | 食材·水产 | 黄 | 江河捕捞通用 **（原创扩展定级）** | 江河码头四季可见的小鲜货，春夏水暖时供应最盛。本件一篓正够一餐，宜清炒或入汤；渔贩用活力与壳色判断是否还能上灶。**（原创扩展）** | `grade=3; ingredientKind=fish; materialGrade=3` | `—` | 青灰鲜虾十余尾盛小竹篓，带水珠，一餐份量 **（原创扩展）** |
+| `it_heli` | 河鲤 | 食材·水产 | 黄 | 黄河、汉水等内河常见鱼获 **（原创扩展定级）** | 黄河、汉水等内河常见的一尾青金鲤鱼，春秋水温适中时肉质较佳。可煮汤或红烧；鱼铺只收鳞鳍完整、当日上岸的鲜货。**（原创扩展）** | `grade=2; ingredientKind=fish; materialGrade=2` | `—` | 青金鲤鱼一尾置芦叶，鳞片完整，尺许长 **（原创扩展）** |
+| `it_hanshui_qingyu` | 汉水青鱼 | 食材·水产 | 玄 | 《倚天屠龙记》汉水渔家场景；鱼种细节 **（待考）** | 取《倚天屠龙记》汉水渔家场景投影的一尾青黑河鱼。**（待考：核鱼种与具体情节）** 宜当日煮食；旧渔网与长身只沿用出图提示，不冒充原著定形。**（原创扩展）** | `grade=4; ingredientKind=fish; materialGrade=4` | `—` | 青黑河鱼一尾置旧渔网，长约尺半，鳍鳞完整 **（原创扩展）** |
+| `it_taihu_yinyu` | 太湖银鱼 | 食材·水产 | 玄 | 太湖地域水产；古代食用记录与书界投放 **（待考）** | 太湖春末夏初的小型时鲜，离水易损，须以浅盘轻盛迅速入厨。古代食用记录与各书界投放仍待核。**（待考：核时令与史料）** **（原创扩展）** | `grade=5; ingredientKind=fish; materialGrade=5` | `—` | 半透明细银鱼十余尾盛青瓷浅盘，指长尺度 **（原创扩展）** |
+| `it_huxie` | 湖蟹 | 食材·水产 | 玄 | 江南湖泊时鲜；宋《山家清供》有蟹馔 | 江南湖泊秋令时鲜，宋《山家清供》已有蟹馔语境。本件两只须鲜活入厨，可蒸食或作蟹酿橙；水乡酒楼往往只在当季挂牌。**（原创扩展）** | `grade=4; ingredientKind=fish; materialGrade=4` | `—` | 青壳湖蟹两只置蒲草小篓，完整生鲜，掌宽 **（原创扩展）** |
+| `it_haiyu` | 海鱼 | 食材·水产 | 黄 | 东南沿海与海岛常见鱼获 **（原创扩展定级）** | 东南沿海与海岛渔村常见的一尾梭形海鱼，随渔汛四季轮换具体品种。可煎、蒸或晒制，离岸后须盐冰保鲜；内陆并非常备货。**（原创扩展）** | `grade=3; ingredientKind=fish; materialGrade=3` | `—` | 银蓝海鱼一尾置海藻竹盘，梭形完整，尺许长 **（原创扩展）** |
+| `it_haili` | 海蛎 | 食材·水产 | 黄 | 闽粤沿海贝类食材 **（原创扩展定级）** | 闽粤沿海常见的带壳海蛎，冷季肉肥，本件六枚正够一餐。须验壳鲜活后熟制，可入汤或煎食；离开海港便只作短期鲜货。**（原创扩展）** | `grade=3; ingredientKind=fish; materialGrade=3` | `—` | 粗灰海蛎六枚带壳置竹篓，湿润海味尺度 **（原创扩展）** |
+| `it_huangyu` | 黄鱼 | 食材·水产 | 玄 | 东海时鲜；明清沿海贸易可得 **（原创扩展定级）** | 东海渔汛中的金黄时鲜，明清沿海商路更易取得。本件长约尺半，宜清蒸保其鲜味；港口鱼行会按体形、鳞色与到岸时辰定价。**（原创扩展）** | `grade=5; ingredientKind=fish; materialGrade=5` | `—` | 金黄大黄鱼一尾置青竹叶，体形修长，尺半长 **（原创扩展）** |
+| `it_jiangyaozhu` | 江瑶柱 | 食材·水产 | 地 | 宋代豪宴菜名有“鹿肚酿江瑶”；贝柱干货珍贵 | 宋代豪宴菜名已有“鹿肚酿江瑶”的海味语境，本件取八枚淡金干贝柱。需泡发后提鲜，少量便足；海商与大酒楼才有稳定存货。**（原创扩展）** | `grade=7; ingredientKind=fish; materialGrade=7` | `—` | 淡金干贝柱八枚盛小瓷盏，圆柱纤维清楚 **（原创扩展）** |
+| `it_lianou` | 莲藕 | 食材·菜蔬 | 黄 | 江南水田时蔬；宋代食谱常见 | 江南水田秋季起出的常见时蔬，宋代食谱中亦常入羹馔。本件两节尚带薄泥，切口乳白多孔；洗净后可煨汤、炒食或作素馅。**（原创扩展）** | `grade=2; ingredientKind=vegetable; materialGrade=2` | `—` | 带泥莲藕两节置荷叶，切口乳白多孔，前臂长 **（原创扩展）** |
+| `it_qingcai` | 青菜 | 食材·菜蔬 | 黄 | 泛指当季叶菜；各书界依地域替换具体品种 **（原创扩展）** | 泛指当地当季叶菜，春秋最易取得，各书界会依水土替换具体品种。洗去根泥即可入汤或清炒；它是客店家常饭最稳妥的配菜。**（原创扩展）** | `grade=1; ingredientKind=vegetable; materialGrade=1` | `—` | 鲜绿叶菜一小把麻绳束根，带少量泥土，一餐份量 **（原创扩展）** |
+| `it_baicai` | 白菜 | 食材·菜蔬 | 黄 | 北方耐藏菜蔬；《鹿鼎记》囚饭猪肉白菜场景 | 北方秋冬耐藏的青白菜蔬，《鹿鼎记》囚饭场景亦见猪肉白菜。可煮汤、炖肉或腌藏；地窖存菜让寒月客店也能端出热食。**（原创扩展）** | `grade=2; ingredientKind=vegetable; materialGrade=2` | `—` | 青白大白菜一棵完整置竹席，叶脉清楚，尺许高 **（原创扩展）** |
+| `it_jiucai` | 韭菜 | 食材·菜蔬 | 黄 | 古老栽培蔬菜，四时常见 | 栽培已久的细叶菜，暖季鲜嫩，割后还能再生，市集四时皆可见。切碎可作馅，也能炒食；平民灶头常以一小束添香佐饭。**（原创扩展）** | `grade=1; ingredientKind=vegetable; materialGrade=1` | `—` | 深绿韭菜一束置竹篮，细长叶齐整，一餐份量 **（原创扩展）** |
+| `it_qincai` | 芹菜 | 食材·菜蔬 | 黄 | 古代食谱常见水芹、旱芹 | 古代食谱所见水芹、旱芹在此合为通用食材，春季嫩茎最宜食。本件带细根，洗净后可凉拌、清炒或入羹；不同地域只替换品种。**（原创扩展）** | `grade=2; ingredientKind=vegetable; materialGrade=2` | `—` | 青绿芹菜一束带细根置陶盘，茎叶分明 **（原创扩展）** |
+| `it_cong` | 葱 | 食材·菜蔬 | 黄 | 历代基础菜蔬与辛香料 | 历代厨房都少不了的青白辛香菜蔬，四季随圃地供应。切段入汤、切末佐肉皆可；旅店后厨总会留三两根给清淡饭菜提味。**（原创扩展）** | `grade=1; ingredientKind=vegetable; materialGrade=1` | `—` | 青白大葱三根并置竹板，根须完整，前臂长 **（原创扩展）** |
+| `it_shengjiang` | 生姜 | 食材·菜蔬 | 黄 | 历代基础食材，亦用于咸酸与汤羹 | 历代常用的土黄根茎，秋后采收较耐存，既能去腥也可添辛香。切片用于咸酸与汤羹；药食用途须由具体配方决定，生料本身无即时治疗。**（原创扩展）** | `grade=2; ingredientKind=vegetable; materialGrade=2` | `—` | 土黄色老姜三块置粗陶碟，节瘤与薄皮清楚 **（原创扩展）** |
+| `it_luobo` | 萝卜 | 食材·菜蔬 | 黄 | 宋代市食与羹汤常见 | 宋代市食与羹汤常见的白根菜，秋冬霜后尤甜，也耐窖藏。本件带青叶与浅泥，削洗后可煮、腌或切丝；乡店常拿它配肉汤。**（原创扩展）** | `grade=2; ingredientKind=vegetable; materialGrade=2` | `—` | 白萝卜两根带青叶置竹篮，表皮有浅泥痕 **（原创扩展）** |
+| `it_qiezi` | 茄子 | 食材·菜蔬 | 黄 | 魏晋后已在中国栽培，宋元明清均可投放 | 魏晋以后已在中国栽培，宋元明清各书界均可投放，夏秋最盛。紫黑长茄吸味，宜蒸、煨或炒；菜贩以蒂青、皮面无伤为鲜。**（原创扩展）** | `grade=3; ingredientKind=vegetable; materialGrade=3` | `—` | 紫黑长茄三只置白瓷盘，表皮哑亮，掌长 **（原创扩展）** |
+| `it_donggua` | 冬瓜 | 食材·菜蔬 | 黄 | 古代瓜蔬，宋代食用记录明确 | 古代已有且宋代食用记录明确的夏秋瓜蔬，成熟后可久藏至冬。本件为露出白肉与籽的一截，宜煨汤或清蒸；大件通常由厨户分切售卖。**（原创扩展）** | `grade=3; ingredientKind=vegetable; materialGrade=3` | `—` | 青绿冬瓜一截露白色瓜肉与籽，置木案，双掌宽 **（原创扩展）** |
+| `it_chunsun` | 春笋 | 食材·菜蔬 | 玄 | 《山家清供》多用笋蔬，春季山林时鲜 | 《山家清供》多用笋蔬，本件专取春雨后初生嫩笋，过季即失鲜脆。剥衣后宜清炒、煨汤或作山海兜；山民清晨采来才进当日酒楼。**（原创扩展）** | `grade=4; ingredientKind=vegetable; materialGrade=4` | `—` | 黄褐鲜笋三支带笋衣置竹筛，掌至前臂长 **（原创扩展）** |
+| `it_juecai` | 蕨菜 | 食材·菜蔬 | 黄 | 山野菜；《山家清供》山海兜用笋蕨 | 《山家清供》山海兜所用山野菜意象，本件取春季卷头嫩梗。须由识菜山民拣选并熟制，可清炒或作馅；陌生蕨类不可凭外形混采。**（原创扩展）** | `grade=3; ingredientKind=vegetable; materialGrade=3` | `—` | 青绿卷头蕨菜一束置竹篮，嫩梗齐整 **（原创扩展）** |
+| `it_muer` | 木耳 | 食材·菜蔬 | 玄 | 山林菌蔬，宋元食谱可见菌类 | 宋元食谱已有菌类，本件为雨后山林腐木所得黑褐木耳，可鲜用亦可晒干。泡发后宜入汤或炒食；采菌必须由熟悉山场者辨认。**（原创扩展）** | `grade=4; ingredientKind=vegetable; materialGrade=4` | `—` | 黑褐木耳一小簇置竹筛，薄卷耳状，干湿适中 **（原创扩展）** |
+| `it_doufu` | 豆腐 | 食材·菜蔬 | 黄 | 宋代已广泛进入市食与素斋 | 宋代已广泛进入市食与素斋的豆制品，一方雪白嫩豆腐须当日售食。可煎、煨、入汤或制名菜；寺院与市坊豆腐铺都是稳定来源。**（原创扩展）** | `grade=3; ingredientKind=vegetable; materialGrade=3` | `—` | 雪白豆腐一方置青瓷浅盘，细嫩切面，约双掌宽 **（原创扩展）** |
+| `it_lajiao` | 辣椒 | 食材·菜蔬 | 玄 | 美洲作物；万历《遵生八笺》始见记载，仅碧血及以后书界投放 | 美洲作物，万历《遵生八笺》始见相关记载；本作仅碧血及以后书界投放。鲜红果实作辛味调料，夏秋采得；绝不倒投宋元剧情。**（原创扩展）** | `grade=4; ingredientKind=vegetable; materialGrade=4` | `—` | 鲜红细辣椒五枚置白瓷碟，完整带蒂，指长 **（原创扩展）** |
+| `it_fanshu` | 番薯 | 食材·菜蔬 | 黄 | 美洲作物；明末传入并推广，仅碧血及以后书界投放 | 美洲作物，明末传入后才逐渐推广；本作仅碧血及以后书界投放。秋收块根可蒸烤或掺粮煮饭，贫寒行旅尤其珍惜其耐饥。**（原创扩展）** | `grade=3; ingredientKind=vegetable; materialGrade=3` | `—` | 红褐番薯三块置竹篮，带少量泥土，拳头尺度 **（原创扩展）** |
+| `it_yumi` | 玉米 | 食材·谷物 | 黄 | 美洲作物；嘉靖《平凉府志》已有记录，本作统一仅碧血及以后书界投放 | 美洲作物，嘉靖《平凉府志》已有记录；为免把始见当普及，本作仅碧血及以后投放。秋熟穗粒可磨粉或煮食，早期书界不得出现。**（原创扩展）** | `grade=3; ingredientKind=grain; materialGrade=3` | `—` | 金黄玉米穗两支带半开青皮置竹篮，前臂长 **（原创扩展）** |
+| `it_xiaomi` | 小米 | 食材·谷物 | 黄 | 北方传统粟粮，先秦至明清通用 | 北方传统粟粮，自先秦至明清皆可使用，秋收后入仓最耐久。本件一小陶斗可煮粥或蒸饭；驿站常以小米粥招待病弱旅客。**（原创扩展）** | `grade=2; ingredientKind=grain; materialGrade=2` | `—` | 金黄小米盛小陶斗，圆细谷粒与少量谷壳可辨 **（原创扩展）** |
+| `it_gaoliang` | 高粱 | 食材·谷物 | 黄 | 北方旱作谷物；明清食用与酿造常见 | 北方耐旱谷物，明清尤其常用于杂粮饭与酿造，秋后收粒。本件一升红褐颗粒可掺米蒸煮；穷乡客店常以它延长粮仓周转。**（原创扩展）** | `grade=3; ingredientKind=grain; materialGrade=3` | `—` | 红褐高粱粒盛竹斗，旁置一小穗，市集一升尺度 **（原创扩展）** |
+| `it_qiaomai` | 荞麦 | 食材·谷物 | 黄 | 北方、西南山地传统杂粮 | 北方与西南山地常见的耐寒杂粮，夏秋收获，三角籽粒磨粉后可作面饼。本件夹少量浅壳，山道客栈常备，却不作精细宴食。**（原创扩展）** | `grade=2; ingredientKind=grain; materialGrade=2` | `—` | 灰褐三角荞麦粒盛木斗，少量浅壳，一餐份量 **（原创扩展）** |
+| `it_dadou` | 大豆 | 食材·谷物 | 黄 | 中国古老豆类，豆酱、豆豉、豆腐原料 | 中国栽培已久的豆类，秋收后晒干入仓，可制豆酱、豆豉与豆腐。本件一升圆粒不能直接当成品食用；作坊主最看重干燥无虫。**（原创扩展）** | `grade=3; ingredientKind=grain; materialGrade=3` | `—` | 淡黄大豆盛粗陶碗，圆粒饱满，约一升 **（原创扩展）** |
+| `it_lvdou` | 绿豆 | 食材·谷物 | 黄 | 历代粥食与点心原料 | 历代粥食与点心常用的小豆，夏末成熟后晒存。本件颗粒青绿干净，可熬粥、磨粉或作馅；茶棚常在暑月多备，却不赋予药物疗效。**（原创扩展）** | `grade=2; ingredientKind=grain; materialGrade=2` | `—` | 青绿小豆盛白瓷碗，颗粒干净，一餐份量 **（原创扩展）** |
+| `it_chidou` | 赤豆 | 食材·谷物 | 黄 | 历代粥羹、馅料常用 | 历代粥羹与糕点馅料常用的暗红小豆，秋收晒干后耐存。须提前浸泡煮软再食；寺观素厨与城镇糕坊都愿成斗购入日常备用。**（原创扩展）** | `grade=3; ingredientKind=grain; materialGrade=3` | `—` | 暗红赤豆盛竹斗，颗粒细小，约一升 **（原创扩展）** |
+| `it_hongzao` | 红枣 | 食材·果 | 黄 | 北方传统果品与干果 | 北方秋季成熟的传统果品，鲜枣可食，晾干后更耐远行。本件十余枚可入粥、点心或随身嚼食；果农以皮色匀整、无虫蛀者装篮。**（原创扩展）** | `grade=2; ingredientKind=fruit; materialGrade=2` | `—` | 深红鲜枣十余枚盛小竹篮，表皮自然皱亮 **（原创扩展）** |
+| `it_li` | 梨 | 食材·果 | 黄 | 宋代市食、蜜煎与鲜果常见 | 宋代市食、蜜煎与鲜果摊都常见的秋梨，本件三枚青黄带叶。可鲜食，也可切片蜜煎；驿路上须防磕伤，碰软者只进当日羹汤。**（原创扩展）** | `grade=2; ingredientKind=fruit; materialGrade=2` | `—` | 青黄梨三枚置浅瓷盘，带叶一片，拳头尺度 **（原创扩展）** |
+| `it_tao` | 桃 | 食材·果 | 黄 | 历代鲜果与糖霜果品原料 | 历代园圃常见的夏季鲜果，也是糖霜果品的原料。本件三枚粉黄带绒，宜鲜食或切条蜜渍；果农只把未碰伤者送进城中果铺。**（原创扩展）** | `grade=3; ingredientKind=fruit; materialGrade=3` | `—` | 粉黄鲜桃三枚置竹盘，绒皮与浅缝清楚 **（原创扩展）** |
+| `it_xing` | 杏 | 食材·果 | 黄 | 北方传统果品，可鲜食或晒干 | 北方春花夏果的传统果品，本件六枚橙黄带红晕。成熟时可鲜食，余果晒干便于行旅；山村孩童常在果期替客店送来小篮。**（原创扩展）** | `grade=2; ingredientKind=fruit; materialGrade=2` | `—` | 橙黄杏六枚盛青瓷碟，圆润带淡红晕 **（原创扩展）** |
+| `it_putao` | 葡萄 | 食材·果 | 玄 | 汉以后传入，西域与河西书界常见 | 汉以后传入的藤果，在西域与河西书界尤常见，夏末秋初成串成熟。可鲜食、晒干或酿酒；商旅以果粉完整、蒂梗尚青为佳。**（原创扩展）** | `grade=4; ingredientKind=fruit; materialGrade=4` | `—` | 紫青葡萄一串置白瓷盘，果粒半透明，双掌尺度 **（原创扩展）** |
+| `it_shiliu` | 石榴 | 食材·果 | 玄 | 汉以后传入，西域及中原园圃可得 | 汉以后由西域传入，中原园圃亦渐能栽培，秋季果熟。本件一枚剖开露红籽，可鲜食或入甜点；完整果常被旅人当作吉庆赠礼。**（原创扩展）** | `grade=4; ingredientKind=fruit; materialGrade=4` | `—` | 红黄石榴两枚，一枚剖开露红籽，置青瓷盘 **（原创扩展）** |
+| `it_lizhi` | 荔枝 | 食材·果 | 玄 | 岭南时鲜，北运昂贵且易腐 | 岭南初夏时鲜，红壳果离枝后极易失味，北运因而昂贵。本件八枚带叶，宜即刻鲜食或制蜜煎；驿骑送达的完好果往往先入贵客席。**（原创扩展）** | `grade=5; ingredientKind=fruit; materialGrade=5` | `—` | 红壳荔枝八枚带绿叶置竹篮，掌心一簇 **（原创扩展）** |
+| `it_hutao` | 胡桃 | 食材·果 | 玄 | 汉以后西来坚果，西北与中原可得 | 汉以后西来的坚果，在西北与中原秋收后可得。褐壳耐运，敲开取仁可生食、入糕或添羹；商队常用小木碟招待同行熟客。**（原创扩展）** | `grade=4; ingredientKind=fruit; materialGrade=4` | `—` | 褐壳胡桃六枚置小木碟，一枚裂壳露仁 **（原创扩展）** |
+| `it_yan` | 盐 | 食材·调料 | 黄 | 历代基础调味与官营物资 | 历代厨房的基础调味，也是多朝官营或受控物资。本件半斤灰白粗盐以陶罐防潮，可调味与腌藏；价格和供应随盐路、政局而变。**（原创扩展）** | `grade=2; ingredientKind=spice; materialGrade=2` | `—` | 灰白粗盐盛小陶罐，木盖斜靠，约半斤 **（原创扩展）** |
+| `it_jiangzhi` | 酱汁 | 食材·调料 | 黄 | 豆酱与酱汁传统久远；不等同现代瓶装酱油 | 豆酱与酱汁传统久远，本件是黑陶罐中供家厨取用的深褐咸鲜汁，并非现代瓶装酱油。以木勺少量入菜，开封后不宜久置。**（原创扩展）** | `grade=3; ingredientKind=spice; materialGrade=3` | `—` | 深褐酱汁盛矮黑陶罐，木勺一柄，家厨小份 **（原创扩展）** |
+| `it_micu` | 米醋 | 食材·调料 | 黄 | 历代基础酸味调料 | 历代常见的谷物酸味调料，琥珀色液体以布塞陶壶封存。可拌菜、去腥或入烹焙收汁；酒肆后厨通常按小壶领用以免走味。**（原创扩展）** | `grade=2; ingredientKind=spice; materialGrade=2` | `—` | 琥珀色米醋盛小灰陶壶，布塞封口，约半斤 **（原创扩展）** |
+| `it_huajiao_xiangliao` | 花椒香料 | 食材·调料 | 玄 | 中国本土辛香料，辣椒传入前重要辛味来源 | 中国本土辛香料，在辣椒传入前尤是重要辛味来源，秋季果壳开裂时采收。本件只需少量碾碎入菜；药用与战斗效果不由食材名推定。**（原创扩展）** | `grade=4; ingredientKind=spice; materialGrade=4` | `—` | 红褐花椒一小撮盛铜碟，开裂果壳与黑籽可辨 **（原创扩展）** |
+| `it_shizhuyu` | 食茱萸 | 食材·调料 | 玄 | 古代辛味来源，辣椒普及后渐退 | 古代常用的辛味果实，辣椒普及后渐退出厨房。本件暗红细果成簇，宜少量切碎入羹酱；各书界只按史料时代与南方货路投放。**（原创扩展）** | `grade=5; ingredientKind=spice; materialGrade=5` | `—` | 暗红食茱萸果一小枝置白瓷碟，细粒成簇 **（原创扩展）** |
+| `it_hujiao` | 胡椒 | 食材·调料 | 地 | 宋代依海贸输入且价贵，元明后供应增加 | 宋代多由海贸输入而价贵，元明以后供应渐增。本件黑粒只装一只小银盒，研碎少许即可辛香满席；海商、宫宴与大酒楼最常持有。**（原创扩展）** | `grade=7; ingredientKind=spice; materialGrade=7` | `—` | 黑胡椒粒盛小银盒，盒盖半掩，珍贵香料小份 **（原创扩展）** |
+| `it_zhetang` | 蔗糖 | 食材·调料 | 玄 | 唐宋制糖渐精，明清点心与蜜饯广用 | 唐宋制糖渐精，明清点心与蜜饯用量更广。本件淡褐结晶须避潮密藏，可入糕、蜜煎与甜羹；糖坊成色匀净者才列作玄阶。**（原创扩展）** | `grade=4; ingredientKind=spice; materialGrade=4` | `—` | 淡褐砂糖结晶盛白瓷盏，木匙小巧，一碟份 **（原创扩展）** |
+| `it_jiuzao` | 酒糟 | 食材·调料 | 黄 | 酿造副产物，用于糟藏与调味 | 米酒酿造后的湿润副产物，四季随酒坊取得，可用于糟藏鱼肉与调味。本件一斤装粗陶碗，须趁新鲜使用；它本身不按酒类结算醉意。**（原创扩展）** | `grade=3; ingredientKind=spice; materialGrade=3` | `—` | 米白湿酒糟盛粗陶碗，颗粒松散，约一斤 **（原创扩展）** |
+| `it_douchi` | 豆豉 | 食材·调料 | 玄 | 汉以后发酵豆调料，南北食谱皆见 | 汉以后南北食谱皆见的发酵豆调料，黑褐颗粒以陶罐和麻布封存。少量即可增添咸香，宜配鱼肉或豆腐；开罐后须保持干净。**（原创扩展）** | `grade=4; ingredientKind=spice; materialGrade=4` | `—` | 黑褐豆豉盛小陶罐，颗粒油润，木盖与麻布封口 **（原创扩展）** |
+| `it_hubing` | 胡饼 | 食品·干粮 | 黄 | 唐宋市食延续，西北与中原行旅可得 | 唐宋市食延续下来的扁圆烤饼，西北与中原驿路四季皆可取得。冷食耐放，临火略烘更香；芝麻与焦边是行脚客辨认新旧的线索。**（原创扩展）** | `grade=2; staPct=11%; meal=bf_wenzhong:1battle` **（原创扩展）** | `stamina=11` | 扁圆烤饼两张叠在油纸上，芝麻点与焦边清楚，掌宽 **（原创扩展）** |
+| `it_zhengbing` | 蒸饼 | 食品·干粮 | 黄 | 《东京梦华录》所见汴京面食类型 | 《东京梦华录》所见汴京面食类型之一，本件是无馅白面圆饼，城中四季早点摊皆可制。出笼时柔软，适合当顿饱腹，凉后可再蒸。**（原创扩展）** | `grade=2; staPct=11%; meal=bf_yangsheng:1battle` **（原创扩展）** | `stamina=11` | 白面圆蒸饼三个置竹屉，表皮柔软无馅，一餐份量 **（原创扩展）** |
+| `it_zhimashaobing` | 芝麻烧饼 | 食品·干粮 | 黄 | 宋元城市面食；具体配方 **（原创扩展）** | 宋元城市四季摊食语境下另制的芝麻烧饼，具体配方并无原著定本。炉烤后以油纸包两枚，可直接冷食；市民与护院都拿它充作短途口粮。**（原创扩展）** | `grade=3; staPct=12%; meal=bf_jiangu:1battle` **（原创扩展）** | `stamina=12` | 金黄圆烧饼两枚置油纸，表面芝麻与炉斑可辨 **（原创扩展）** |
+| `it_nangbing` | 馕饼 | 食品·干粮 | 黄 | 西域、回疆行旅主食；清代名目与形制 **（待考）** | 西域与回疆行旅四季所携的宽圆烤饼，厚边耐放，可掰开配肉汤食用。清代名目与各书界形制尚待核对。**（待考：核名称沿革与年代）** **（原创扩展）** | `grade=3; staPct=12%; meal=bf_wenzhong:1battle` **（原创扩展）** | `stamina=12` | 宽圆薄馕一张折放粗布上，中央针纹无文字，焦黄厚边 **（原创扩展）** |
+| `it_qingkezanba` | 青稞糌粑 | 食品·干粮 | 玄 | 藏地高原主食；明清书界商路可得 | 藏地高原以炒熟青稞粉和酥油揉成的主食，本作按明清商路四季投放。食用时捏成小团，耐寒路且便携；山口向导常备一木碗份量。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_yuhan:1battle` **（原创扩展）** | `stamina=14` | 淡褐糌粑团两个置木碗，粗粒与酥油润泽，一餐份量 **（原创扩展）** |
+| `it_naigan` | 奶干 | 食品·干粮 | 玄 | 蒙古与西北游牧乳食，便于行旅保存 | 蒙古与西北游牧人家四季备有乳食制成的象牙色硬块，干燥后便于长途保存。可直接嚼食，也可泡入热茶；小皮袋常由牧民赠给过路熟客。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_jiangu:1battle` **（原创扩展）** | `stamina=14` | 象牙色硬奶块六片装小皮袋，干燥裂纹，掌心份量 **（原创扩展）** |
+| `it_songhelou_xiaren` | 松鹤楼虾仁 | 食品·菜肴 | 玄 | 《天龙八部》·姑苏松鹤楼酒肉场景；具体虾仁菜名 **（待考）** | 取《天龙八部》姑苏松鹤楼酒肉场景投影的清炒虾仁，本作按姑苏四季酒席投放。具体菜名是否见原文尚待核。**（待考：核菜名与食客）** 配料与效果均为原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_yangsheng:1battle` **（原创扩展）** | `stamina=16` | 粉白虾仁与茭白丁清炒盛青瓷盘，江南酒楼二人份 **（原创扩展）** |
+| `it_guokui` | 锅盔 | 食品·干粮 | 黄 | 关中、河西及西夏商旅节点投放；西夏地域投放与古代名称沿革 **（原创扩展）（待考）** | 关中、河西与西夏商旅节点四季投放的厚圆硬饼，切开见层，便于长途携带。古代名称与地域沿革尚待核。**（待考：核西夏时期称谓）** **（原创扩展）** | `grade=3; staPct=12%; meal=bf_wenzhong:1battle` **（原创扩展）** | `stamina=12` | 厚圆硬饼一块切开露层，黄褐炉斑，粗布包裹 **（原创扩展）** |
+| `it_huiyanlou_huncai` | 回雁楼荤菜 | 食品·名菜 | 黄 | 《笑傲江湖》·衡阳回雁楼点牛肉、猪肉、鸡鸭、鱼虾等荤菜 | 《笑傲江湖》衡阳回雁楼点食牛肉、猪肉、鸡鸭与鱼虾等荤菜，本作按当地四季酒席投放。本件合并为四人席面，须在酒楼同席享用；效果属原创。**（原创扩展）** | `grade=3; staPct=12%; meal=bf_qingxin:1battle; party=4` **（原创扩展）** | `stamina=12` | 牛猪肉片、鸡鸭块与鱼虾分盛四只粗瓷盘，酒楼四人份 **（原创扩展）** |
+| `it_shaolin_sumian` | 少林素面 | 食品·菜肴 | 玄 | 《天龙八部》·虚竹在镇甸饭店点两碗素面；承接少林持斋 | 《天龙八部》中虚竹在镇甸饭店点两碗素面，承接少林持斋身份，本作按少林周边四季饭食投放。本件配青菜笋丝清汤，须趁热食；效果属原创。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_qingxin:1battle` **（原创扩展）** | `stamina=14` | 清汤素面盛灰白粗瓷碗，青菜与笋丝少许，一人份 **（原创扩展）** |
+| `it_dingshenggao` | 定胜糕 | 食品·点心 | 玄 | 南宋江南点心传说；确切始见年代 **（待考）** | 江南相传在喜庆与出征时蒸制元宝形米糕，节庆四季可制，淡红无字，宜配茶分食。其确切始见年代尚待核。**（待考：核南宋文献）** 本作按玄阶投放。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_juqi:1battle` **（原创扩展）** | `stamina=16` | 淡红元宝形米糕三枚置白瓷盘，无字无印，掌心大小 **（原创扩展）** |
+| `it_guangmingding_suxian_yuanbing` | 光明顶素馅圆饼 | 食品·干粮 | 黄 | 《倚天屠龙记》·光明顶明教聚义，执事分食素馅圆饼 | 《倚天屠龙记》光明顶明教聚义时有执事分食素馅圆饼，本作按山上四季干粮投放。本件以菜菇作馅，可冷食充饥；包装与清心效果属于本作投影。**（原创扩展）** | `grade=3; staPct=12%; meal=bf_qingxin:1battle` **（原创扩展）** | `stamina=12` | 扁圆素馅饼两枚置粗布，切口露菜菇馅，无字无纹 **（原创扩展）** |
+| `it_yuebing` | 月饼 | 食品·点心 | 玄 | 明清节令点心，宋代同名形制不据此反推 | 明清中秋节令点心，本件为无字木模圆饼，剖开可见豆沙仁。须按节令和书界投放，不能用后世形制定格宋代同名食物；配茶分食最佳。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_yangsheng:1battle` **（原创扩展）** | `stamina=14` | 棕金圆饼一枚切开露豆沙仁，木模花纹无字，掌宽 **（原创扩展）** |
+| `it_hengshan_qingcaidoufu` | 恒山青菜豆腐 | 食品·菜肴 | 玄 | 《笑傲江湖》·令狐冲受困时每日食青菜豆腐，恒山持斋语境 | 《笑傲江湖》中令狐冲受困时每日食青菜豆腐，承接恒山四季持斋语境。本件清煮少油，须热食；具体器皿与守一膳食效果为原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_shouyi:1battle` **（原创扩展）** | `stamina=16` | 清煮青菜豆腐盛灰白粗瓷碗，少油清淡，一人份 **（原创扩展）** |
+| `it_meigui_subing` | 玫瑰酥饼 | 食品·点心 | 玄 | 清代京师与西北花馅点心语境 **（原创扩展）** | 清代京师与西北花馅点心语境下另制的酥饼，夏季收花制馅，成饼后可四季售卖。剖开见暗红花馅，宜佐一盏清茶慢慢分食。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_qingxin:1battle` **（原创扩展）** | `stamina=16` | 金黄酥饼三枚，一枚剖开露暗红花馅，白瓷盘 **（原创扩展）** |
+| `it_suyoubing` | 酥油饼 | 食品·点心 | 玄 | 藏地、蒙古与西北乳油面点语境 **（原创扩展）** | 藏地、蒙古与西北乳油面点语境下的层酥小饼，寒季营地尤常制作。趁温热配奶茶食用，酥层不宜久压；商旅也会包作短程口粮。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_yuhan:1battle` **（原创扩展）** | `stamina=14` | 淡金层酥小饼三枚置木盘，酥层与乳油光泽清楚 **（原创扩展）** |
+| `it_jinyinmantou` | 金银馒头 | 食品·点心 | 地 | 清代宴席面点语境；《调鼎集》具体名目 **（待考）** | 清代宴席面点语境中的白、金两色小馒头，六枚间列成盘，须温食。是否为《调鼎集》确切名目仍待核。**（待考：核原书条目）** 造型与增益为原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_juqi:2battle` **（原创扩展）** | `stamina=20` | 白色与金黄小馒头各三枚间列银盘，圆润一口大小 **（原创扩展）** |
+| `it_xianrou` | 咸肉 | 食品·腌藏 | 黄 | 历代盐腌肉，冬季与行旅常备 | 历代冬季常备的盐腌肉，两条暗红肉上覆细薄盐霜，便于行旅携带。食前须切片蒸煮，不宜直接多食；乡店常拿它配热饭。**（原创扩展）** | `grade=3; staPct=12%; meal=bf_wenzhong:1battle` **（原创扩展）** | `stamina=12` | 暗红咸肉条两块麻绳悬束，白盐霜细薄，半臂长 **（原创扩展）** |
+| `it_larou` | 腊肉 | 食品·腌藏 | 玄 | 湖广、巴蜀及山地冬藏语境 **（原创扩展）** | 湖广、巴蜀与山地人家入冬后熏藏的脂肉条，烟褐外皮让它耐过寒月。食前切片蒸炒，可配杂粮饭；山客常把一条悬在灶边。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_jiangu:1battle` **（原创扩展）** | `stamina=14` | 烟褐腊肉一条置竹板，脂肉分层、麻绳结，半臂长 **（原创扩展）** |
+| `it_banya` | 板鸭 | 食品·腌藏 | 玄 | 江南与清代城市腌藏食品；地域投放 **（原创扩展）** | 江南及清代城市秋冬制作的扁平风干鸭，黄褐皮完整，便于久藏。食前须蒸熟斩件，不作生食；只在相应地域店铺与年节货架出现。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_wenzhong:1battle` **（原创扩展）** | `stamina=16` | 扁平风干整鸭一只置竹架，黄褐皮、形体完整 **（原创扩展）** |
+| `it_zaoyu` | 糟鱼 | 食品·腌藏 | 玄 | 江南酒糟腌鱼，宋明清食籍均有糟藏传统 | 江南以新酒糟腌藏鱼段，宋明清食籍都有糟藏传统，秋冬制作更便存。开坛后取鱼熟食，米白糟香佐饭；小陶罐适合水路携带。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_yangsheng:1battle` **（原创扩展）** | `stamina=14` | 米白酒糟覆着鱼段盛灰陶罐，鱼皮银灰可辨 **（原创扩展）** |
+| `it_furu` | 腐乳 | 食品·腌藏 | 黄 | 发酵豆制品；明清食用记录较明确 | 明清食用记录较明确的发酵豆制品，六小方浸在红褐汁中，可四季随作坊出坛。每次只取少量佐粥下饭；黑陶罐开后须封严。**（原创扩展）** | `grade=3; staPct=12%; meal=bf_yangsheng:1battle` **（原创扩展）** | `stamina=12` | 红褐腐乳六小方盛黑陶罐，汁液油润，家常小份 **（原创扩展）** |
+| `it_sunzha` | 笋鲊 | 食品·腌藏 | 玄 | 宋《山家清供》山蔬腌藏语境；具体条目 **（待考）** | 取宋《山家清供》的山蔬腌藏语境，以春笋片、姜丝和盐卤封成一罐。具体条目尚待逐字核。**（待考：核书中名目）** 本作作清口小菜。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_qingxin:1battle` **（原创扩展）** | `stamina=14` | 淡黄笋片装小陶罐，姜丝与盐卤可辨，一罐份 **（原创扩展）** |
+| `it_fenggan_yangrou` | 风干羊肉 | 食品·腌藏 | 玄 | 辽、蒙古与西北行旅肉食 | 辽、蒙古及西北在秋冬干冷时制作的羊肉条，纤维紧实，麻绳一束便于挂在鞍旁。可切片直接食用或煮汤；远行牧队最常携带。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_yuhan:2battle` **（原创扩展）** | `stamina=16` | 深褐羊肉条三根麻绳束，干燥纤维清楚，油纸托底 **（原创扩展）** |
+| `it_mizi_jinju` | 蜜渍金橘 | 食品·腌藏 | 玄 | 宋代蜜煎果品与城市食单可见 | 宋代城市食单可见蜜煎果品，本件以冬季金橘整果浸在琥珀糖汁中。饭后取一两枚清口，密封后可越季；果铺常装小盏售卖。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_qingxin:1battle` **（原创扩展）** | `stamina=14` | 琥珀糖汁中金橘六枚盛白瓷盏，果形完整，小食份量 **（原创扩展）** |
+| `it_tangshuangtaotiao` | 糖霜桃条 | 食品·腌藏 | 玄 | 《射雕英雄传》黄蓉所点宋代果品；据宋人食单化用 | 《射雕英雄传》中黄蓉所点的宋代果品，借宋人食单将桃脯切条覆糖霜。宜以青瓷小碟佐茶；具体形制与聚气膳食效果属于原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_juqi:1battle` **（原创扩展）** | `stamina=16` | 粉金桃脯细条覆白糖霜，盛青瓷小碟，指长 **（原创扩展）** |
+| `it_huayuan_gaobing` | 花园糕饼 | 食品·点心 | 玄 | 《越女剑》·范蠡命婢仆以糕饼点心款待阿青；具体品种 **（待考）** | 《越女剑》中范蠡命婢仆以糕饼点心款待阿青，具体品种尚未核定。**（待考：核糕饼名称与场景）** 本件以先秦素米糕投影，形制与效果为原创。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_jiangu:2battle` **（原创扩展）** | `stamina=14` | 四枚浅米色圆糕置竹编小盘，表面朴素无纹，先秦宴客小份 **（原创扩展）** |
+| `it_aqing_qingcha` | 阿青清茶 | 食品·汤羹 | 玄 | 《越女剑》·阿青在范蠡花园喝茶吃饼；茶种 **（待考）** | 《越女剑》中阿青在范蠡花园喝茶吃饼，茶种未明。**（待考：核饮茶措辞与器具）** 本件用先秦黑陶碗表现，须温饮；宁神与体力效果皆为原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_ningshen:2battle` **（原创扩展）** | `stamina=16` | 清亮茶汤盛先秦黑陶小碗，旁置素陶茶壶，一人份 **（原创扩展）** |
+| `it_muwu_gancaifan` | 木屋干菜饭 | 食品·菜肴 | 玄 | 《天龙八部》·众人在木屋以干菜佐白米饭 | 《天龙八部》中众人在木屋以干菜佐白米饭。本件是一人份粗陶碗饭，须热食，朴素却能安顿旅途；干菜形制与清心膳食效果为原创。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_qingxin:2battle` **（原创扩展）** | `stamina=14` | 白米饭覆褐绿干菜盛粗陶碗，木屋旅食一人份 **（原创扩展）** |
+| `it_liaoying_yangrou` | 辽营羊肉 | 食品·菜肴 | 地 | 《天龙八部》·萧峰辽地军旅宴饮，羊肉细节 **（待考）** | 取《天龙八部》萧峰辽地军旅宴饮语境投影的熟羊肋，具体羊肉细节待核。**（待考：核宴饮食物）** 秋冬军营趁热分切，摆盘与食辰增益属原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_shichen:2battle` **（原创扩展）** | `stamina=20` | 焦褐熟羊肋四根置大木盘，粗盐与刀痕可辨，四人份 **（原创扩展）** |
+| `it_dali_qingming_chadian` | 大理清茗茶点 | 食品·点心 | 玄 | 《天龙八部》·大理王府奉清茗、点心场景；茶种与点心品种 **（待考）**，不称现代普洱茶餐 | 《天龙八部》大理王府有奉清茗、点心的场景，本作按大理四季王府茶席投放；茶种与点心品种未明。**（待考：核具体品类）** 配素米糕与效果为原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_ningshen:1battle` **（原创扩展）** | `stamina=16` | 青白盖碗清茶配三枚素米糕置木托，宋代大理待客一人份 **（原创扩展）** |
+| `it_qingshui_yufeng_mijiang` | 清水玉蜂蜜浆 | 食品·汤羹 | 玄 | 《神雕侠侣》·杨过以清水调玉蜂蜜浆喂小龙女、郭襄 | 《神雕侠侣》中杨过以清水调玉蜂蜜浆喂小龙女、郭襄。本件须以清水调匀缓饮，用于照料伤弱者；内伤减层与体力数值为原创投影。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_huinei:2battle` **（原创扩展）** | `healInner=2; stamina=16` | 淡金蜜浆兑清水盛粗白瓷碗，清透微稠，一人份 **（原创扩展）** |
+| `it_qingcai_doufu_xiaoyufan` | 青菜豆腐小鱼饭 | 食品·名菜 | 地 | 《神雕侠侣》·程英照料杨过，备青菜豆腐、鸡蛋小鱼与米饭 | 《神雕侠侣》中程英照料杨过，备青菜豆腐、鸡蛋小鱼与米饭。本件合为二人小席，应趁热同食；供餐人数与锐意膳食效果均属原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_ruiyi:2battle; party=4` **（原创扩展）** | `stamina=20` | 青菜豆腐、煎蛋小鱼三碟配一碗米饭，竹筷陶器，二人份 **（原创扩展）** |
+| `it_hanshui_siwan_fancai` | 汉水四碗饭菜 | 食品·名菜 | 玄 | 《倚天屠龙记》·汉水舟中鸡、肉、鱼、蔬四碗，周芷若喂张无忌 | 《倚天屠龙记》汉水舟中有鸡、肉、鱼、蔬四碗，周芷若喂张无忌；本件随固定剧情投放，不另按四季刷新。须温热分食，外伤回复与供餐数值为原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_huichun:2battle; party=4` **（原创扩展）** | `healOuter=4; stamina=16` | 鸡肉、熟肉、河鱼、青蔬四只粗陶碗围一饭碗，舟中小几尺度 **（原创扩展）** |
+| `it_binghuodao_kaoxiongrou` | 冰火岛烤熊肉 | 食品·菜肴 | 玄 | 《倚天屠龙记》·张翠山、殷素素熊洞生火烤熊肉 | 《倚天屠龙记》中张翠山、殷素素在熊洞生火烤熊肉。本件只随岛上求生节点投放，不另按四季刷新；须彻底烤熟，粗盐、石板与御寒效果为原创。**（原创扩展）** | `grade=6; staPct=17%; meal=bf_yuhan:2battle` **（原创扩展）** | `stamina=17` | 焦褐熊肉厚片三块置平石板，粗盐少许，一人份 **（原创扩展）** |
+| `it_fuzhou_yeji_huangtu` | 福州野鸡黄兔 | 食品·菜肴 | 玄 | 《笑傲江湖》·福州城外酒铺将野鸡、黄兔炒作下酒菜 | 《笑傲江湖》福州城外酒铺把野鸡、黄兔炒作下酒菜，本作按当地四季酒席投放。本件两盘须热食，适合同席分尝；具体调味、份量与效果属原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_ningshen:2battle` **（原创扩展）** | `stamina=16` | 炒野鸡块与黄兔肉分盛两只粗瓷盘，褐金油色，四人份 **（原创扩展）** |
+| `it_hengshan_suxianzong` | 恒山素馅粽 | 食品·名菜 | 地 | 《笑傲江湖》·岳灵珊送令狐冲草菇、莲子、蚕豆等素馅粽 **（待考）** | 《笑傲江湖》中岳灵珊送令狐冲素馅粽，草菇、莲子、蚕豆等配料仍待终校。**（待考：核配料）** 粽子宜端午前后食，四人份与效果为原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_dingxin,bf_yangsheng:2battle; party=4` **（原创扩展）** | `stamina=20` | 剥开竹叶的素粽四只，糯米中露草菇莲子蚕豆，四人份 **（原创扩展）** |
+| `it_xiakedao_siyang_dianxin` | 侠客岛四样点心 | 食品·名菜 | 玄 | 《侠客行》·侠客岛以烧卖、春卷、蒸糕等四碟点心待客 | 《侠客行》中侠客岛以烧卖、春卷、蒸糕等四碟点心待客，本件随岛上固定节点投放，不另按四季刷新。四碟须同席趁热品尝；供餐与效果为原创。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_jiangu:2battle; party=4` **（原创扩展）** | `stamina=14` | 烧卖、春卷、蒸糕与一碟素点分置四只小瓷盘，四人份 **（原创扩展）** |
+| `it_houjianji_shaobing` | 侯监集烧饼 | 食品·干粮 | 玄 | 《侠客行》·侯监集争玄铁令，石破天捡食烧饼 | 《侠客行》侯监集争玄铁令时，石破天捡食烧饼，本作按当地四季摊食投放。本件是一枚新焙圆饼，可立即充饥，也能包作路粮；御寒效果为原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_yuhan:2battle` **（原创扩展）** | `stamina=16` | 新焙圆烧饼一枚置油纸，焦黄鼓面、无夹藏物，掌宽 **（原创扩展）** |
+| `it_huashan_qingcai_doufufan` | 华山青菜豆腐饭 | 食品·菜肴 | 黄 | 《碧血剑》·乱世途中板桌上有青菜豆腐、肥鸡与热饭菜 | 《碧血剑》乱世途中板桌上有青菜豆腐、肥鸡与热饭菜；本件随华山剧情投放，不另按四季刷新。合为粗陶家常席，四人份摆设与养生效果均为原创。**（原创扩展）** | `grade=3; staPct=12%; meal=bf_yangsheng:1battle` **（原创扩展）** | `stamina=12` | 青菜豆腐一碗配白饭与一只肥鸡盘，粗陶器，四人份 **（原创扩展）** |
+| `it_wenjia_huotui_larouyan` | 温家火腿腊肉宴 | 食品·名菜 | 地 | 《碧血剑》·温家款客上火腿、腊肉、肥鸡、鲜鱼 | 《碧血剑》中温家款客上火腿、腊肉、肥鸡与鲜鱼。本件把四样合成明代四人宴席，须同席进食；避毒膳食效果与器皿形制属原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_bidu:2battle; party=4` **（原创扩展）** | `stamina=20` | 火腿腊肉、整鸡、鲜鱼分盛四只明代瓷盘，四人宴份 **（原创扩展）** |
+| `it_zhayangwei` | 炸羊尾 | 食品·菜肴 | 玄 | 《鹿鼎记》·韦小宝京师点菜场景 | 《鹿鼎记》中韦小宝在京师点过炸羊尾，本作按京师四季酒楼菜投放。本件为六枚金黄酥块，椒盐只作从属小碟，宜出锅即食；数值为原创投影。**（原创扩展）** | `grade=6; staPct=17%; meal=bf_yuhan:2battle` **（原创扩展）** | `stamina=17` | 金黄酥炸羊尾块六枚置白瓷盘，椒盐小碟从属，二人份 **（原创扩展）** |
+| `it_milian_huotui` | 蜜莲火腿 | 食品·名菜 | 地 | 《鹿鼎记》·韦小宝以宣威火腿、蜜饯莲子款待沐剑屏 | 《鹿鼎记》中韦小宝以宣威火腿、蜜饯莲子款待沐剑屏；腌藏火腿使此菜四季可制。本件将鲜红薄片围蜜莲成盘，回春、聚气与摆盘均为原创。**（原创扩展）** | `grade=8; staPct=22%; meal=bf_huichun,bf_juqi:3battle; party=4` **（原创扩展）** | `stamina=22` | 鲜红火腿薄片围蜜莲子码青花盘，清代宫膳四人份 **（原创扩展）** |
+| `it_yangzhou_tangbao_changyumian` | 扬州汤包长鱼面 | 食品·名菜 | 地 | 《鹿鼎记》·韦小宝自称肚里装满扬州汤包、长鱼面；是否为当席实食 **（待考）** | 《鹿鼎记》中韦小宝提到扬州汤包、长鱼面，是否为当席实食仍待核。**（待考：核语境）** 本作按扬州四季食肆投放，合为四人热席；双增益属原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_wenzhong,bf_juqi:2battle; party=4` **（原创扩展）** | `stamina=20` | 薄皮汤包四只与酱褐长鱼面一碗同置竹木托，清初扬州四人份 **（原创扩展）** |
+| `it_pomiao_shutang` | 破庙鼠汤 | 食品·汤羹 | 黄 | 《连城诀》·宝象误食受污染鼠汤；危险情节，不作增益菜谱 | 《连城诀》中宝象误食受污染的鼠汤，这是危险剧情食物而非疗愈菜谱。玩家只能在对应节点辨识或误食；虚弱效果与克制外观属于原创。**（原创扩展）** | `grade=1; staPct=10%; meal=bf_xuruo:1battle` **（原创扩展）** | `stamina=10` | 灰陶破碗盛浑浊薄汤，一小块鼠肉轮廓，克制不血腥 **（原创扩展）** |
+| `it_yuzhou_fanshu_caomifan` | 渔舟番薯糙米饭 | 食品·干粮 | 玄 | 《连城诀》·老渔人给狄云糙米饭，内混番薯、高粱 | 《连城诀》中老渔人给狄云糙米饭，饭内混有番薯与高粱。本件是一人份舟中粗食，可冷食也可温热；御寒效果和陶碗形制为原创。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_yuhan:2battle` **（原创扩展）** | `stamina=14` | 粗陶碗盛糙米、番薯块与高粱混饭，舟中一人份 **（原创扩展）** |
+| `it_naiyou_recha` | 奶油热茶 | 食品·汤羹 | 玄 | 《白马啸西风》·计老人给李文秀奶油热茶 | 《白马啸西风》中计老人给李文秀奶油热茶。本件以木碗盛热茶，表面浮薄乳油，须趁热缓饮；御寒持续与体力回复数值属于原创。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_yuhan:2battle` **（原创扩展）** | `stamina=14` | 浅褐热茶盛木碗，表面浮薄层乳油，一人份 **（原创扩展）** |
+| `it_yangrulao` | 羊乳酪 | 食品·腌藏 | 玄 | 《白马啸西风》·计老人以羊乳酒、乳酪、红茶待客 | 《白马啸西风》中计老人以羊乳酒、乳酪、红茶待客。本件取三块象牙色乳酪，可直接切食或配热茶；稳重膳食效果与份量属于原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_wenzhong:2battle` **（原创扩展）** | `stamina=16` | 象牙色乳酪三块置木盘，细孔与切痕可辨，一人份 **（原创扩展）** |
+| `it_xiaofu_shoujiuxi` | 萧府寿酒席 | 食品·名菜 | 玄 | 《鸳鸯刀》·萧半和寿宴，宾客先饮寿酒再饮喜酒；菜品 **（待考）** | 《鸳鸯刀》萧半和寿宴中宾客先饮寿酒再饮喜酒，具体菜品待核。**（待考：核席面食物）** 本件以鸡鱼肉蔬投影四人席，聚气效果为原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_juqi:2battle; party=4` **（原创扩展）** | `stamina=16` | 熟肉、鸡、鱼、蔬四盘围一只空酒盏，清代寿宴四人份 **（原创扩展）** |
+| `it_huodui_kaozhangji` | 火堆烤獐麂 | 食品·菜肴 | 黄 | 《鸳鸯刀》·洞前群豪围火烤獐子、麂子 **（待考）** | 《鸳鸯刀》洞前群豪围火烤獐子、麂子的细节仍待终校。**（待考：核动物与场景）** 本件以熟肉厚片表现，须趁热分食；膳食增益为原创。**（原创扩展）** | `grade=3; staPct=12%; meal=bf_wenzhong:1battle` **（原创扩展）** | `stamina=12` | 焦褐獐肉与麂肉厚片置宽木盘，火烤痕清楚，四人份 **（原创扩展）** |
+| `it_huibu_zhuafan_kaorou` | 回部抓饭烤肉 | 食品·名菜 | 地 | 《书剑恩仇录》·回部营地分食抓饭、烤肉、蜜瓜、葡萄干 | 《书剑恩仇录》回部营地分食抓饭、烤肉、蜜瓜与葡萄干，本作按营地四季宴席投放。本件以铜盘和小碟组成四人席，应趁热同食；效果为原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_shichen,bf_yuhan:2battle; party=4` **（原创扩展）** | `stamina=20` | 金黄抓饭与烤肉盛铜大盘，蜜瓜、葡萄干分置小碟，四人份 **（原创扩展）** |
+| `it_xuedi_kaohuangyang` | 雪地烤黄羊 | 食品·名菜 | 地 | 《书剑恩仇录》·喀丝丽烤熟随身干黄羊与陈家洛分食 | 《书剑恩仇录》中喀丝丽烤熟随身干黄羊，与陈家洛在雪地分食。本件保留火烤痕与盐岩浅盘，宜热食；锐意、聚气与供餐数值属原创。**（原创扩展）** | `grade=8; staPct=22%; meal=bf_ruiyi,bf_juqi:3battle; party=4` **（原创扩展）** | `stamina=22` | 焦褐黄羊肉块置盐岩浅盘，雪地火烤痕，二人份 **（原创扩展）** |
+| `it_honghuahui_zongduo_yanxi` | 红花会总舵宴席 | 食品·名菜 | 玄 | 《书剑恩仇录》·红花会总舵群雄宴饮场景；具体菜点与配料 **（待考）** | 《书剑恩仇录》有红花会总舵群雄宴饮场景，具体菜点与配料未定。**（待考：核席面）** 本件以熟鸡、河鱼、酱肉、时蔬投影，效果为原创。**（原创扩展）** | `grade=6; staPct=17%; meal=bf_juqi:2battle; party=4` **（原创扩展）** | `stamina=17` | 熟鸡、河鱼、酱肉与时蔬分盛四只清代粗瓷盘，总舵四人席份，无酒器 **（原创扩展）** |
+| `it_chenglingsu_sancai_yitang` | 程灵素三菜一汤 | 食品·名菜 | 地 | 《飞狐外传》·程灵素备煎豆腐、笋炒豆芽、草菇白菜、咸菜豆瓣汤 | 《飞狐外传》中程灵素备煎豆腐、笋炒豆芽、草菇白菜与咸菜豆瓣汤。本件连白饭作四人家常席；避毒、回春与份量均属原创。**（原创扩展）** | `grade=8; staPct=22%; meal=bf_bidu,bf_huichun:3battle; party=4` **（原创扩展）** | `healOuter=7; stamina=22` | 三盘素菜与一碗豆瓣汤配白米饭，青瓷家常四人份 **（原创扩展）** |
+| `it_miaojia_huofan_sancai` | 苗家镬饭三菜 | 食品·名菜 | 黄 | 《飞狐外传》·胡斐、程灵素煮一大镬饭并炒三盘菜请苗人凤 | 《飞狐外传》中胡斐、程灵素煮一大镬饭并炒三盘菜请苗人凤；本件随苗家剧情投放，不另按四季刷新。铁镬与粗瓷碗呈现四人席，效果属原创。**（原创扩展）** | `grade=3; staPct=12%; meal=bf_yangsheng:1battle; party=4` **（原创扩展）** | `stamina=12` | 大铁镬白饭配三盘家常炒菜，粗瓷碗筷，四人份 **（原创扩展）** |
+| `it_humiao_mantou_jiyangtui` | 胡苗馒头鸡羊腿 | 食品·名菜 | 玄 | 《雪山飞狐》·胡一刀、苗人凤比武间同食馒头、鸡与羊腿 | 《雪山飞狐》中胡一刀、苗人凤比武间同食馒头、鸡与羊腿。本件把三样合为歇战四人餐，须趁热分食；御寒与供餐数值属原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_yuhan:2battle; party=4` **（原创扩展）** | `stamina=16` | 馒头、熟鸡与烤羊腿分置三只大盘，比武歇餐四人份 **（原创扩展）** |
+| `it_dianchi_shurou_shaoji` | 滇池熟肉烧鸡 | 食品·名菜 | 玄 | 《雪山飞狐》·四人在酒店买熟肉、烧鸡、馒头后登船饮食 | 《雪山飞狐》中四人在酒店买熟肉、烧鸡、馒头后登船饮食，本作按滇池四季酒店熟食投放。本件合成舟宴四人份，可冷食；效果与摆盘属原创。**（原创扩展）** | `grade=4; staPct=14%; meal=bf_wenzhong:2battle; party=4` **（原创扩展）** | `stamina=14` | 深褐熟肉、整只烧鸡与馒头分盛粗瓷盘，舟宴四人份 **（原创扩展）** |
+| `it_xieniangcheng` | 蟹酿橙 | 食品·名菜 | 地 | 宋《山家清供》载以蟹膏肉填黄熟橙蒸制 | 宋《山家清供》载以蟹膏肉填入黄熟橙后蒸制，秋季蟹肥橙熟时最合时令。本件四枚同甑上桌；清心、宁神与供餐数值属原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_qingxin,bf_ningshen:2battle; party=4` **（原创扩展）** | `stamina=20` | 四只截顶黄橙盛蟹肉后复盖枝顶，置小蒸甑，四人份 **（原创扩展）** |
+| `it_shanhaidou` | 山海兜 | 食品·名菜 | 地 | 宋《山家清供》：笋、蕨与鱼虾作馅的蒸兜 | 宋《山家清供》以笋、蕨与鱼虾作馅制蒸兜，春季笋蕨齐嫩时最合宜。本件四只同盘，蒸熟后分食；洞悉、养生效果为原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_dongxi,bf_yangsheng:2battle; party=4` **（原创扩展）** | `stamina=20` | 半透明粉皮兜四只露笋蕨鱼虾馅，白瓷盘，四人份 **（原创扩展）** |
+| `it_dongporou` | 东坡肉 | 食品·名菜 | 地 | 清《调鼎集》载做法；菜名源流更早，宋代定型 **（待考）** | 清《调鼎集》载有相关做法，菜名源流更早，但宋代定型说仍待核。**（待考：核菜名沿革）** 方肉须慢火收汁，四人份与双增益为原创。**（原创扩展）** | `grade=8; staPct=22%; meal=bf_jiangu,bf_wenzhong:2battle; party=4` **（原创扩展）** | `stamina=22` | 酱红方肉四块皮朝上码青瓷盘，汁浓不腻，四人份 **（原创扩展）** |
+| `it_shanyaozhou` | 山药粥 | 食品·汤羹 | 玄 | 元《饮膳正要》载山药粥 | 元《饮膳正要》载山药粥，本件以米粒和山药丁慢煨成乳白稠粥。宜温食作一人早膳，冬季尤受旅客欢迎；养生持续与数值为原创。**（原创扩展）** | `grade=5; staPct=15.5%; meal=bf_yangsheng:2battle` **（原创扩展）** | `stamina=16` | 乳白稠粥盛青瓷碗，山药丁与米粒可辨，一人份 **（原创扩展）** |
+| `it_heliandouzi` | 荷莲兜子 | 食品·名菜 | 地 | 元《饮膳正要》所载多馅蒸兜 | 元《饮膳正要》载多馅蒸兜，本件以荷叶托四只粉皮兜，蒸熟后同席分食。细碎馅料按当季替换；聚气、回春效果均为原创。**（原创扩展）** | `grade=8; staPct=22%; meal=bf_juqi,bf_huichun:2battle; party=4` **（原创扩展）** | `healOuter=7; stamina=22` | 荷叶托四只蒸制粉皮兜，细碎多馅可辨，四人份 **（原创扩展）** |
+| `it_tuanyutang` | 团鱼汤 | 食品·汤羹 | 地 | 元《饮膳正要》载羊肉汤底煮团鱼并配面丝 | 元《饮膳正要》载羊肉汤底煮团鱼并配面丝，本件盛为一人浓汤。须彻底煮熟并趁热食用，寒季最受欢迎；御寒、坚固效果为原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_yuhan,bf_jiangu:2battle` **（原创扩展）** | `stamina=20` | 浓白团鱼汤盛鎏锡碗，肉块与细面丝可辨，一人份 **（原创扩展）** |
+| `it_shanjia_sancui` | 山家三脆 | 食品·菜肴 | 玄 | 宋《山家清供》载嫩笋、小蕈、枸杞菜作羹或炒食 | 宋《山家清供》载嫩笋、小蕈与枸杞菜作羹或炒食，本件取春季三样清炒。须快火保持脆嫩，适合二人分食；清心效果为原创。**（原创扩展）** | `grade=6; staPct=17%; meal=bf_qingxin:2battle` **（原创扩展）** | `stamina=17` | 嫩笋丝、小菌与枸杞嫩叶清炒盛白瓷盘，二人份 **（原创扩展）** |
+| `it_lubeiji` | 炉焙鸡 | 食品·菜肴 | 地 | 宋元《吴氏中馈录》载鸡先煮、切块，以醋酒反复烹焙 | 宋元《吴氏中馈录》载鸡先煮切块，再以醋酒反复烹焙。本件盛在带盖铜镟中保温，宜四人趁热取食；坚固膳食效果为原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_jiangu:2battle` **（原创扩展）** | `stamina=20` | 酱褐鸡块盛带盖铜镟，醋酒收汁，四人份 **（原创扩展）** |
+| `it_wangtaishou_babaodoufu` | 王太守八宝豆腐 | 食品·名菜 | 地 | 清《随园食单》载嫩豆腐配蕈、蘑菇、松瓜仁、鸡与火腿屑 | 清《随园食单》载嫩豆腐配蕈、蘑菇、松瓜仁、鸡与火腿屑。本件作四人羹席，须轻搅温食；会心、宁神与供餐数值均为原创。**（原创扩展）** | `grade=8; staPct=22%; meal=bf_huixin,bf_ningshen:2battle; party=4` **（原创扩展）** | `stamina=22` | 雪白碎嫩豆腐羹盛青花大碗，菌菇仁屑与火腿丁可辨，四人份 **（原创扩展）** |
+| `it_jiangshilang_doufu` | 蒋侍郎豆腐 | 食品·名菜 | 地 | 清《随园食单》“豆腐”门所载蒋侍郎豆腐；复原配料 **（待考）** | 清《随园食单》“豆腐”门载蒋侍郎豆腐，复原配料尚待逐字核。**（待考：核原书用料）** 本件以金黄煨豆腐投影，四人份与双增益为原创。**（原创扩展）** | `grade=7; staPct=20%; meal=bf_qingxin,bf_dingxin:2battle; party=4` **（原创扩展）** | `stamina=20` | 金黄煨豆腐厚片盛青瓷深盘，汤汁清亮，四人份 **（原创扩展）** |
+| `it_shaoxiaozhu` | 烧小猪 | 食品·名菜 | 地 | 清《随园食单》《调鼎集》均见烧小猪，满席重烧猪 | 清《随园食单》《调鼎集》皆见烧小猪，满席也重烧猪。本件整只烤至金红脆皮，须宴席分切；四人供餐、食辰与坚固效果属于原创。**（原创扩展）** | `grade=9; staPct=24%; meal=bf_shichen,bf_jiangu:3battle; party=4` **（原创扩展）** | `stamina=24` | 金红脆皮乳猪一只置银边大盘，完整宴席四人份 **（原创扩展）** |
+| `it_yanwojisitang` | 燕窝鸡丝汤 | 食品·名菜 | 天 | 清《扬州画舫录》满汉席菜单；仅乾隆书界固定宴席 | 清《扬州画舫录》满汉席菜单载燕窝鸡丝汤，本作仅在乾隆书界固定宴席出现。纤丝清汤须温饮，供四人分盅；内伤舒缓与回春效果为原创。**（原创扩展）** | `grade=10; staPct=28%; meal=bf_huichun,bf_huinei:3battle; party=4; uniqueBatch=true` **（原创扩展）** | `healInner=6; stamina=28` | 象牙白燕窝鸡丝清汤盛黄釉盖盅，纤丝分明，四人份 **（原创扩展）** |
 
 ## 史实与出处依据
 
@@ -213,7 +213,7 @@
 
 ## 本文新增术语与 ID
 
-- AR-23 新增 146 个 `it_*`：食材 77、食品 69；逐项 ID 以七列表及 `design/10` §14.2 的“AR-23 食材／食品扩张（146）”为准。
+- AR-23 新增 146 个 `it_*`：食材 77、食品 69；逐项 ID 以九列表及 `design/10` §14.2 的“AR-23 食材／食品扩张（146）”为准。
 - `uniqueBatch=true`：天级食材或食品的固定剧情批次投影；不允许普通厨房、商店刷新或随机采集量产。
 - “原著场景菜肴”：原著明确出现可辨食物、菜点或饮食组合；未完成指定版本逐字终校者标 **（待考）**，游戏效果与未明载摆盘标 **（原创扩展）**。
 
@@ -221,7 +221,9 @@
 
 | 检查 | 通过条件 |
 |---|---|
-| 七列与总量 | `check_item_catalog.py` 解析 130–180 行；每行 ID、名称、子类、品阶、出处、效果、外观均非空 |
+| 九列与总量 | `check_item_catalog.py` 应解析 130–180 行；每行 ID、名称、子类、品阶、出处、说明、效果、属性投影、外观均非空 |
+| 说明与属性投影 | “说明”按 `design/10` §4.10.5 计 60–120 个字符；“属性投影”仅用 §4.10.4 白名单键并落在对应大阶取值带，普通食材无即时效用写 `—` |
+| 产地与时令 | 地方名食的说明同时写产地及春／夏／秋／冬／四季口径（沿 `catalog/gather-herbs.md`）；固定剧情菜应明示不另按四季刷新，不臆造具体月份 |
 | 字段 | 食材含 `ingredientKind/materialGrade`；新增食品含 `staPct/meal`；名菜含 `party=4`；新增天级含 `uniqueBatch=true` |
 | 品阶 | `grade` 落在黄 1–3、玄 4–6、地 7–9、天 10；常见肉菜不得为天级 |
 | Buff | 新增 `meal=` 只引用 `design/06` 已定义的 `bf_*`；酒类不进入本轮新增 |
@@ -234,6 +236,7 @@
 ### 替下游给出的建议值
 
 - 食品 `staPct=10%×G(grade)`，grade 1–10 依次为 10%／11%／12%／14%／15.5%／17%／20%／22%／24%／28%；膳食持续取 1–3 场，均为 **（原创扩展）**。
+- v2 投影沿用上述逐品级值并作 `roundHalfUp`：15.5% 写作 `stamina=16`；仅在说明已有调养伤势语义时，才从 `healInner/healOuter` 中增列一项，不把普通食材强行写成疗伤物。
 
 ### 本文依赖的上游事实
 
@@ -245,10 +248,12 @@
 
 ### 原著考据待办
 
-- 按七列表与 `design/10` §9.3 的 **（待考）** 标记，逐部核对三联／广州修订版中的宴饮场景、明确菜名、食材及人物关系；未核准前不得去掉原创标记。
+- 按九列表与 `design/10` §9.3 的 **（待考）** 标记，逐部核对三联／广州修订版中的宴饮场景、明确菜名、食材及人物关系；未核准前不得去掉原创标记。
 - 逐条复核《山家清供》《宋氏养生部》《遵生八笺》《随园食单》的具体菜名；当前仅史料类型可靠而条目未逐字确认者均已降为 **（待考）**。
 
 ### 开放问题（附默认值）
 
 - 酒类是否纳入本表：默认否，继续由 `design/10` §9.3 独立计 `bf_zuiyi`。
 - 天级是否保留 7 项：默认保留既有 5 项，并新增燕窝、燕窝鸡丝汤；全部只走天材或固定剧情批次。
+- `it_jiaohuaji` 的旧字段 `sta=full` 无法由 v2 百分比整数无损表达：默认保留旧字段为运行真值，投影暂取玄阶带上限 `stamina=20` 作展示摘要，编译时不得再叠加一份 20% 回复；待 `design/10` 登记旧字段兼容规则。
+- 已解决：按 `design/10` §4.10.4 的食品特例保留 `it_labazhou` 的 `qiCultivation=3500`，与 `sxpGrant=0.35` 双写且只结算一次。
