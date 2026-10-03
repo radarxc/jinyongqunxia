@@ -1083,3 +1083,8 @@
       - ART-items-gifts-catalog：等 DES-items-gifts-spec、TOOL-catalog-9col。
       - ART-ruins-maps-2：等 DES-ruins-ids。
       - build_portraits：协调者指定时段一次跑完 hero 175 张、polish 6 张、cast 余下若干，之后跑 gallery。
+  - **10-03 06:01–06:12 协调者 / 追踪者**：
+    - **ART-cast-polish-ch09 合入**（41b24202，06:07，r1 PASS）：万门六弟子（卜垣、冯坦、鲁坤、沈城、孙均、汪啸风）各重出 1 张覆盖原 asset_id，脸型 / 年纪 / 衣色 / 站姿已能区分；联系表 `_handoff/gem/codex_w15/sheets/`；runner w15 已停。
+    - **ART-ruins-maps 合入**（df54e2ef，06:12，r1 PASS）：56 张 Tiled 1.12.2 地图 + 预览（16 微型 + 40 标准），覆盖序章与十四书界 18 个区域，全部复用章节既有 `sc_*`；六邻连通检查通过。九老洞、敦煌地宫没有场景 ID 未做（等 DES-ruins-ids 合入后登记 ART-ruins-maps-2 接力）。报告 §6：美术缺洞壁 / 墓道 / 土坯残墙 / 石刻 / 矿支架 / 毡帐 / 药架 / 灯具 / 宝箱贴片（待登记贴片任务）；台阶缺 rampDir、急流缺 flowDir（本批未用）；任务 / 采集 / 奖励绑定归 CONTENT 各章。
+    - DES-items-gifts-spec 续作 35 分钟结束，校验通过（design/10、design/12），审核中。
+    - 磁盘：追踪者删掉五个已合入任务的日志目录（约 260 MB）；ruins / polish 合入后工作区自动清除，06:12 回到 5 GiB。规则：< 5 GiB 不新开工作区，< 2.5 GiB 停线。
