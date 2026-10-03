@@ -1,11 +1,11 @@
 # @tianshu/game
 
-| 项 | 内容 |
-|---|---|
-| 归属 | Vite + Vue 装配与发布层；游戏规则归 core，通用组件归 ui，浏览器能力归 platform |
-| 上游 | 作者 AR-19 / AR-21；tech/01、tech/05；design/02、03、09、10、11、13、14、15、18、21、22；ENG-01～08 / 10 / 12 |
-| 当前入口 | 启动先开存储并读设置，再显示标题；继续 / 新游戏进入 ENG-07 壳；角色部件演示仅开发模式提供 `/rig-demo` |
-| 栈 | Vue 3.5 + Pinia + 模块 Worker / Comlink + ENG-01 IndexedDB；不引入新 UI 框架 |
+| 项       | 内容                                                                                                          |
+| -------- | ------------------------------------------------------------------------------------------------------------- |
+| 归属     | Vite + Vue 装配与发布层；游戏规则归 core，通用组件归 ui，浏览器能力归 platform                                |
+| 上游     | 作者 AR-19 / AR-21；tech/01、tech/05；design/02、03、09、10、11、13、14、15、18、21、22；ENG-01～08 / 10 / 12 |
+| 当前入口 | 启动先开存储并读设置，再显示标题；继续 / 新游戏进入 ENG-07 壳；角色部件演示仅开发模式提供 `/rig-demo`         |
+| 栈       | Vue 3.5 + Pinia + 模块 Worker / Comlink + ENG-01 IndexedDB；不引入新 UI 框架                                  |
 
 ## 结论先行（TL;DR）
 
@@ -22,21 +22,23 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 
 ## 目录与组件
 
-| 路径 | 职责 |
-|---|---|
-| src/main.ts、loop.ts、App.vue、style.css | 装配 Pinia / controller、10 Hz 探索驱动、HUD、导航、快捷栏、键盘、无障碍设置和生命周期 |
-| src/settings.ts、recovery.ts、pages/TitlePage.vue、SettingsPage.vue、RecoveryPage.vue | 设置迁移、标题前存储探测、纯 DOM 故障恢复与异步页面 |
-| src/core-host.ts、core-worker.ts | Worker 握手、10 秒启动超时、Comlink 端口及启动期兼容回退 |
-| src/runtime/ | 会话聚合、命令转发、预览装配与应用快照验证；不持有大地图规则或可写边车 |
-| src/projection.ts、selectors/ | 脏标记 selector、物品分类、人物遮蔽、真实资源与经脉强度投影 |
-| src/pages/ | 懒加载 TownPage、WorldMapPage、CharacterPage、InventoryPage、SavePage；武功 / 任务 / 设置由 App 装配 |
-| src/scenes/ScenePlaceholder.vue | 遗迹等尚未实现的下游入口占位；城镇和战斗已有专页 |
-| src/battle/ | 战斗 Worker 适配、浅投影、六角场、CT、行动菜单、日志、自动回放与结算 |
-| src/storage/ | 槽位摘要与 ENG-01 保存 / 读取 / 删除 / 单槽导入导出 |
-| build/ | 构建期解析已验证内容、经脉目录与素材清单；不把 YAML 解析器放进浏览器 |
-| scripts/worker-smoke.mjs | 对生产构建的 Worker 做 Node 独立线程 RPC 冒烟；不等同浏览器实测 |
+| 路径                                                                                  | 职责                                                                                                 |
+| ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| src/main.ts、loop.ts、App.vue、style.css                                              | 装配 Pinia / controller、10 Hz 探索驱动、HUD、导航、快捷栏、键盘、无障碍设置和生命周期               |
+| src/settings.ts、recovery.ts、pages/TitlePage.vue、SettingsPage.vue、RecoveryPage.vue | 设置迁移、标题前存储探测、纯 DOM 故障恢复与异步页面                                                  |
+| src/core-host.ts、core-worker.ts                                                      | Worker 握手、10 秒启动超时、Comlink 端口及启动期兼容回退                                             |
+| src/runtime/                                                                          | 会话聚合、命令转发、预览装配与应用快照验证；不持有大地图规则或可写边车                               |
+| src/projection.ts、selectors/                                                         | 脏标记 selector、物品分类、人物遮蔽、真实资源与经脉强度投影                                          |
+| src/pages/                                                                            | 懒加载 TownPage、WorldMapPage、CharacterPage、InventoryPage、SavePage；武功 / 任务 / 设置由 App 装配 |
+| src/scenes/ScenePlaceholder.vue                                                       | 遗迹等尚未实现的下游入口占位；城镇和战斗已有专页                                                     |
+| src/battle/                                                                           | 战斗 Worker 适配、浅投影、六角场、CT、行动菜单、日志、自动回放与结算                                 |
+| src/storage/                                                                          | 槽位摘要与 ENG-01 保存 / 读取 / 删除 / 单槽导入导出                                                  |
+| build/                                                                                | 构建期解析已验证内容、经脉目录与素材清单；不把 YAML 解析器放进浏览器                                 |
+| scripts/worker-smoke.mjs                                                              | 对生产构建的 Worker 做 Node 独立线程 RPC 冒烟；不等同浏览器实测                                      |
 
 通用组件位于 packages/ui/src/components：除既有 HUD / 背包 / 存档组件外，标题、设置、恢复、旋转提示及纯展示的对话 / 任务组件也由 ui 提供；旧 `GameUi.vue` 已删除。
+
+M1 流程组件和页面都必须按首次使用异步加载；`src/flow/` 只放纯状态 / 展示适配，不重算 core 的预算、上下限、可用性或年份。标题入口传入的旧占位身份只令 controller 进入 `pendingCreation`，正式 `run/create` 必须等创角确认。对话和初眠事务期间手动存档继续被 controller 拒绝，初眠必须原样消费 `firstSleepAllocation.ruleVersion`。正式 ch00 / ch10 文本归内容包；流程卡使用 `flow.<chapter>.<scene>.<三位序号>.(title|body)`，卡数由完整键对决定。目录缺失时显示可读错误，绝不把原始 ID 当玩家文案。
 
 应用壳只从 @tianshu/ui/runtime 和单组件公开子路径取运行时依赖，页面组件动态加载。Worker 只引 @tianshu/platform/host，避免捎入 Dexie。不要从壳静态导入完整 UI 聚合入口，否则页面代码会提前载入。
 
@@ -54,7 +56,7 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 10. 主线程兼容宿主也克隆边界值；运行中 Worker 或 core 内部错误会锁死玩法命令和探索 tick、显示内部错误，不静默重启到初态；存档导出仍可用。
 11. `GameProjection.battle` 是 ENG-10 增量包：进入 / query 含 `info` 与全单位，后续只含变化单位；controller 以单位 ID 合并。战斗中 snapshot / restore / 普通命令被 Worker 拒绝，结束后 `battle/leave` 返回冻结的 `returnContext`。
 12. UI 的范围、目标合法性、可达集和路径只调用 core 的 `queryMoveAt()` / `queryReachable()` /
-`queryPath()`；提交完整行动计划后由 core 再算一次。CT 预计在一次性 timeline 副本上调用 core 调度函数，不推进真实状态或 RNG。
+    `queryPath()`；提交完整行动计划后由 core 再算一次。CT 预计在一次性 timeline 副本上调用 core 调度函数，不推进真实状态或 RNG。
 13. 自动战斗每个 `requestAnimationFrame` 至多发一个 `battle/step`，1× / 2× 只改回放间隔，“跳过”只省表现；关闭自动先停排帧，再经宿主 FIFO 切回手动。
 14. ENG-11 通过 `controller.battle.onMoveResolved((moveId, from, to, result) => ...)` 注册播放器；异常只记录，不改结算。日志与飘字消费 core 事件自带 `message`，不重选周天 / 外放文案。
 15. 城镇命令为 move / settle-building / exit-building / interact / meditate。点击只发整数格；core 返回整条路径并决定是否进入，页面以 90 ms / 格逐格驱动 rig（减少动效为 0）。到达后建筑淡变 260 ms（减少动效为 0）再发 settle-building，组件不得直接改阶段。
@@ -63,8 +65,8 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 18. 室内打坐锚点只有对应建筑处于 inside 才投影和受理。`TownRuntime.meditate()` 在 core 内原子完成敌意 NPC 筛选、是否掷骰、RNG、风险、岔气或恢复 / 练功、时钟与 `BattleSetup`；应用只提交内容事实、落盘返回状态并装配 `BattleLaunch`。战斗准备失败不提交状态或 RNG；无正式 encounter 时安全完成 600 tick 且不消费 RNG。
 19. `loop.ts` 仅用墙钟驱动 `world/tick`：固定 100 ms、帧差上限 250 ms、每帧最多 5 次；hidden、菜单、对话、战斗、加载或存档时清积压。Worker 请求未返回时不叠发，旧积压直接丢弃。场景必须显式声明是否运行探索时钟。
 20. ENG-16b 演示 setup 已携带逐单位经脉、战斗背包与奖励声明；runtime 在结束时调用 core
-`computeBattleRewards()`，用独立 `loot` RNG 生成一次并缓存，再以 `battle/rewards` 事件和
-`BattleResultPacket.rewards` 原样交给宿主。应用层不重算使用次数、周天或掉落。
+    `computeBattleRewards()`，用独立 `loot` RNG 生成一次并缓存，再以 `battle/rewards` 事件和
+    `BattleResultPacket.rewards` 原样交给宿主。应用层不重算使用次数、周天或掉落。
 
 ## 页面与持久化约定
 

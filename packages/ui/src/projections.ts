@@ -120,6 +120,39 @@ export interface DialoguePanelView {
   readonly history: readonly { readonly speaker: string; readonly text: string }[];
   readonly canContinue: boolean;
 }
+export interface CharacterCreationView {
+  readonly name: string;
+  readonly gender: 'male' | 'female';
+  readonly appearance: string;
+  readonly pronoun: string;
+  readonly originId: string;
+  readonly difficulty: FlowSettingsView['difficulty'];
+}
+export interface FlowChoiceView {
+  readonly id: string;
+  readonly title: string;
+  readonly duration: string;
+  readonly description: string;
+  readonly confirmation: string;
+}
+export interface FlowCardView {
+  readonly key: string;
+  readonly title: string;
+  readonly body: string;
+}
+export interface SleepAllocationRulesView {
+  readonly ruleVersion: string;
+  readonly keys: readonly string[];
+  readonly base: number;
+  readonly min: number;
+  readonly max: number;
+  readonly budget: number;
+  readonly requiredTotal: number;
+  readonly draft: Readonly<Record<string, number>> | null;
+  readonly balanced: Readonly<Record<string, number>>;
+  readonly lockedKeys: readonly string[];
+}
+export type SleepAllocationSourceView = 'manual' | 'balanced' | 'default';
 export interface QuestLogEntryView {
   readonly id: string;
   readonly name: string;
