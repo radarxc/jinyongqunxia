@@ -32243,6 +32243,9 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
+    ],
+    "shrink_exempt": [
+     "content/world/regions/rg_dongbei/sc_00_changbai_cave.tmj"
     ]
    },
    "id": "CONTENT-ch00b-maps",
