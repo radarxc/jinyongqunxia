@@ -1,11 +1,11 @@
 # 《连城诀》首领武学补录图鉴（`skills-bulu-09-liancheng`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 武学图鉴补录册。本文只定义《连城诀》书界首领缺口所需的新增武学、学习关系与逐招数据；不改写 `skills-kangxi` 已有定义。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14～16、`docs/00-canon.md` §3～§5、§9、§12、§16、§18、`docs/decisions/rulings-v1.md`、`design/05`、`design/21` v2.0、`chapters/09-liancheng`。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14～16、AR-27、`docs/00-canon.md` §3～§5、§9、§12、§16、§18、`docs/decisions/rulings-v1.md`、`design/03` v2、`design/05`、`design/21` v2.0、`chapters/09-liancheng`。
 > **引用而不重定义**：武学字段、层数、招式预算、内功贡献与装配规则见 `design/05`；经脉路线、护体内劲、调息与外放见 `design/21`；Buff 见 `design/06`；门派职级见 `design/17`；任务来源与投放见 `chapters/09-liancheng` §7、§9。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**须以三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。本文不编造引文、回目号或原著招名。
 > **覆盖声明**：本册只补万圭与凌退思的首领配装缺口。四门武学都属于万家门或荆州官差来源，玩家与其他合资格人物可按正常途径学习，不是人物独占招式。
-> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
+> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；属性门槛与修炼永久加成 v2（AR-27，2026-10-02）。
 
 ---
 
@@ -25,7 +25,7 @@
 
 ### 1.1 `sk_wanjiazhengqi` 万家正气诀（5 玄中 · 内功 · 阳）**（原创扩展）**
 
-**字段**｜`origin:expanded`；`sect:sect_wanjia`；`nature:yang`；`wOut/wIn:0/1`；`meridians:[mer_dumai]` **【建议值】**；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {con:30,wil:30}, aptitude {apInner:25}, sect rank:3, prereq [{skill:sk_wanjiaxinfa,layer:6}]`（硬：sect/prereq）；`inner.contribution:{mpMaxPct:17,hpMaxPct:10,attrs:{con:4,wil:2,str:1},mpRegen:1.5}`；`stats:{defOut:6,resMind:4}`；`breathProfileRef:txp_wanjiazhengqi`；`setTags:[]`。
+**字段**｜`origin:expanded`；`sect:sect_wanjia`；`nature:yang`；`wOut/wIn:0/1`；`meridians:[mer_dumai]` **【建议值】**；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {bre:35,wil:30}, aptitude {apInner:20}, sect rank:3, prereq [{skill:sk_wanjiaxinfa,layer:6}]`（硬：sect/prereq）；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`；`inner.contribution:{mpMaxPct:17,hpMaxPct:10,attrs:{con:4,wil:2,str:1},mpRegen:1.5}`；`stats:{defOut:6,resMind:4}`；`breathProfileRef:txp_wanjiazhengqi`；`setTags:[]`。
 
 - **门派 / 来源归属**：万家门；与 `skills-kangxi` §7、§11 的万家拳剑、万家心法属于同一门派图鉴体系。
 - **预算**：第 10 重主运 `IP=17+10+2×(4+2+1)+5×1.5=48.5`，等于 `design/05` §5.5 的玄中标准；`stats` 合计 `6+4=10`，不超玄阶档。
@@ -37,7 +37,7 @@
 
 ### 1.2 `sk_wanjiaanshenquan` 万家安身拳（5 玄中 · 拳脚／拳掌 · 阳）**（原创扩展）**
 
-**字段**｜`origin:expanded`；`sect:sect_wanjia`；`nature:yang`；`wOut/wIn:0.70/0.30`；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {str:30,con:28}, aptitude {apFist:25}, sect rank:3, prereq [{skill:sk_wanjiaquan,layer:5}]`（硬：sect/prereq）；`layerStats:{hit:[2,7],parry:[2,6]}`；`setTags:[]`。
+**字段**｜`origin:expanded`；`sect:sect_wanjia`；`nature:yang`；`wOut/wIn:0.70/0.30`；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {str:35,con:30}, aptitude {apFist:20}, sect rank:3, prereq [{skill:sk_wanjiaquan,layer:5}]`（硬：sect/prereq）；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`；`layerStats:{hit:[2,7],parry:[2,6]}`；`setTags:[]`。
 
 - **门派 / 来源归属**：万家门；与 `skills-kangxi` §7、§11 的万家拳剑、万家心法属于同一门派图鉴体系。
 - **招式**：护身短打 `mv_wanjiaanshenquan_hushen`（L1，单体近身，倍率 **1.00**，耗内 6%、cd1、收招 1000，命中后自身 `bf_shoushi` 1，`projection:false`）；核算 `1.00×(1+0.12)−0.10=1.02≈1.00`。逼步冲拳 `mv_wanjiaanshenquan_bibu`（L4，单体近身，倍率 **1.05**，耗内 6%、cd1、收招 1000，击退 1，`projection:false`）；核算 `1.00×(1+0.12)−0.05=1.07≈1.05`。回门架肘 `mv_wanjiaanshenquan_jiazhou`（L7，单体近身，倍率 **1.00**，耗内 6%、cd1、收招 1000，本回合未移动为常见条件且成功时自身招架 +5，`projection:false`）；核算 `1.00×(1+0.12+0.15)−0.25=1.02≈1.00`。
@@ -52,7 +52,7 @@
 
 ### 2.1 `sk_jingzhouguanfuqinfa` 荆州官府擒法（5 玄中 · 拳脚／擒拿 · 中性）**（原创扩展）**
 
-**字段**｜`origin:expanded`；`sect:null`；`lineage:荆州官差体系`；`nature:neutral`；`wOut/wIn:0.70/0.30`；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {str:30,agi:30}, aptitude {apGrapple:25}, prereq []`（硬：aptitude）；`layerStats:{hit:[2,7],seal:[2,6]}`；`setTags:[]`。
+**字段**｜`origin:expanded`；`sect:null`；`lineage:荆州官差体系`；`nature:neutral`；`wOut/wIn:0.70/0.30`；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {str:35,agi:30}, aptitude {apGrapple:20}, prereq []`（硬：aptitude）；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`；`layerStats:{hit:[2,7],seal:[2,6]}`；`setTags:[]`。
 
 - **门派 / 来源归属**：荆州官差组织传承（无门派 ID）；与 `skills-kangxi` §7、§11 的《连城诀》荆州来源条目属于同一图鉴体系，但不并入丁典—狄云狱中支系。
 - **招式**：锁腕拿人 `mv_jingzhouguanfuqinfa_suowan`（L1，单体近身，倍率 **1.00**，耗内 6%、cd1、收招 1000，`bf_jiaoxie` 40%·1，`projection:false`）；核算 `1.00×(1+0.12)−0.25×0.40=1.02≈1.00`。押肩移位 `mv_jingzhouguanfuqinfa_yajian`（L4，单体近身，倍率 **0.95**，耗内 6%、cd1、收招 1000，与目标换位，`projection:false`）；核算 `1.00×(1+0.12)−0.15=0.97≈0.95`。合围压肘 `mv_jingzhouguanfuqinfa_yazhou`（L7，单体近身，倍率 **1.05**，耗内 6%、cd2、收招 1000，相邻官差为常见条件，命中施加 `bf_dingshen` 50%·1，`projection:false`）；核算 `1.00×(1+0.24+0.15)−0.25×0.50=1.265`，范围条件折价后取 **1.05**，差额用于合围目标与站位限制。
@@ -62,7 +62,7 @@
 
 ### 2.2 `sk_jingzhouyangqigong` 荆州养气功（5 玄中 · 内功 · 调和）**（原创扩展）**
 
-**字段**｜`origin:expanded`；`sect:null`；`lineage:荆州官差体系`；`nature:harmony`；`wOut/wIn:0.20/0.80`；`meridians:[mer_renmai,mer_dumai]` **【建议值】**；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {con:30,wil:30}, aptitude {apInner:25}, prereq [{skill:sk_jingzhouguanfuqinfa,layer:4}]`（硬：prereq）；`inner.contribution:{mpMaxPct:17,hpMaxPct:10,attrs:{con:3,wil:3,wis:1},mpRegen:1.5}`；`stats:{defOut:6,resMind:4}`；`breathProfileRef:txp_jingzhouyangqigong`；`setTags:[]`。
+**字段**｜`origin:expanded`；`sect:null`；`lineage:荆州官差体系`；`nature:harmony`；`wOut/wIn:0.20/0.80`；`meridians:[mer_renmai,mer_dumai]` **【建议值】**；`sourceChapters:[ch09_liancheng]`；`reqs: attrs {bre:35,wil:30}, aptitude {apInner:20}, prereq [{skill:sk_jingzhouguanfuqinfa,layer:4}]`（硬：prereq）；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`；`inner.contribution:{mpMaxPct:17,hpMaxPct:10,attrs:{con:3,wil:3,wis:1},mpRegen:1.5}`；`stats:{defOut:6,resMind:4}`；`breathProfileRef:txp_jingzhouyangqigong`；`setTags:[]`。
 
 - **门派 / 来源归属**：荆州官差组织传承（无门派 ID）；与 `skills-kangxi` §7、§11 的《连城诀》荆州来源条目属于同一图鉴体系，但不并入丁典—狄云狱中支系。
 - **预算**：第 10 重主运 `IP=17+10+2×(3+3+1)+5×1.5=48.5`，等于玄中标准；`stats` 合计 `6+4=10`。
@@ -164,6 +164,7 @@
 | LC09-BL-V03 | 十二招均 `projection:false` 且无 `projectionSpreadSteps` | 失败即阻断 |
 | LC09-BL-V04 | 两个 `txp_*` 均为 5/10、scope 2、CT 1000、耗内 0、离战倍率 15000 | 失败即阻断 |
 | LC09-BL-V05 | 玩家满足门派条件，或满足官府关系 **≥40** / 持有效官府身份 / 取得衙门武册之一，并满足属性、资质与前置时可学；仅击败首领不自动习得 | 应通过 |
+| LC09-BL-V06 | 属性 v2 门槛与永久加成 | 4 门按玄中主 / 次带取值，资质均为 `5×5−5=20`；每门有唯一 3/6/9 重 `trainingAttrs`，单次 ≤4、单门 ≤12 |
 | LC09-BL-T01 | 万圭主运 `sk_wanjiazhengqi` 8 重、凌退思主运 `sk_jingzhouyangqigong` 8 重 | 七参均保持 `5/8`，不触发地位下限兜底 |
 | LC09-BL-T02 | 两首领血量 / 防御倍率保持 `1.00/1.00` 后运行节奏脚本 | 各自落在 Boss 12–25 轮 |
 

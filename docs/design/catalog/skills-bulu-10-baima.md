@@ -2,10 +2,10 @@
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的按书补录册；本文只定义书界 10 首领画像缺少、且既有十一册门派图鉴无法复用的武学、招式、路线与调息档案。
 > **覆盖声明**：不改写 `skills-kangxi.md`；四门补录分别归华辉传承与铁延部草原体系。主角及其他合格人物均可按传授、职级、秘籍或奇遇习得；瓦耳拉齐、马家骏和部族演武首领只是装配者，不拥有排他版本。稳定 ID 中的 `hasake` 仅为兼容键，不是唐代族属显示名。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14–AR-16、`docs/00-canon.md` §3–§5/§9/§12–§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/06`、`design/15`、`design/17`、`design/21`。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14–AR-16、AR-27、`docs/00-canon.md` §3–§5/§9/§12–§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/03` v2、`design/05`、`design/06`、`design/15`、`design/17`、`design/21`。
 > **引用而不重定义**：品阶、字段、招式 / 内功预算和习得规则见 `design/05`；Buff 本体见 `design/06`；铁延部的章节职级见 `chapters/10-baima` §7.4（`design/17` 尚待同步）；穴位见 `design/15`；经脉路线、外放、调息和护体内劲见 `design/21`；既有华辉与草原武学只引用 `skills-kangxi.md`。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为原著有人物、师承或动作依据但名称未见明载；**（待考）**须按三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
-> **版本**：首领所缺武学补录（2026-09-28）；经脉与 AR-18 终审（2026-09-29）；AR-26 唐代来源改写（2026-10-02）。
+> **版本**：首领所缺武学补录（2026-09-28）；经脉与 AR-18 终审（2026-09-29）；AR-26 唐代来源改写（2026-10-02）；属性门槛与修炼永久加成 v2（AR-27，2026-10-02）。
 
 ---
 
@@ -66,7 +66,8 @@
 | sourceChapters | `[ch10_baima]` |
 | category / subType / grade | `inner / inner / 9` |
 | nature · wOut/wIn · aptitude · moveSlots | `yin` · `0/1` · `apInner` · 4 |
-| reqs | `attrs:{con:40,wil:45}; aptitude:{apInner:40}; prereq:[{anyOf:[{skill:sk_huahuijibenjian,layer:6},{skill:sk_huahuijian,layer:4}]}]; hard:[prereq]` |
+| reqs | `attrs:{bre:55,wil:45}; aptitude:{apInner:40}; prereq:[{anyOf:[{skill:sk_huahuijibenjian,layer:6},{skill:sk_huahuijian,layer:4}]}]; hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | inner.contribution | `{mpMaxPct:34,hpMaxPct:20,attrs:{con:5,wil:5,agi:4},mpRegen:2.5,stats:{defIn:8,resInjury:7}}`；`IP=34+20+2×14+5×2.5=94.5`，恰等于地上预算；`stats` 合计 15，不计入 IP |
 | 经脉 / 调息 / 护体 | `meridians:[mer_renmai,mer_yinwei]` **【建议值】**；`breathProfileRef:txp_huahuixinfa`；`innerGuard:{enabled:true,reflectBp:0}` |
 | inner.yunjin / auxYunjin | `[tiaoxi,huti]` / `[tiaoxi]`；辅运只保留调息，不借辅运触发护体 |
@@ -101,7 +102,8 @@
 | sourceChapters | `[ch10_baima]` |
 | category / subType / grade | `unarmed / finger / 9` |
 | nature · wOut/wIn · aptitude · moveSlots | `yin` · `0.35/0.65` · `apFinger` · 4 |
-| reqs | `attrs:{agi:45,wil:40}; aptitude:{apFinger:40}; prereq:[{skill:sk_huahuixinfa,layer:6}]; hard:[prereq]` |
+| reqs | `attrs:{bre:55,agi:45}; aptitude:{apFinger:40}; prereq:[{skill:sk_huahuixinfa,layer:6}]; hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:1,agi:1}}]` |
 | layerStats / setTags | `{hit:[3,8],seal:[2,7]}`，合计 15 / `[]` |
 | conflicts / weaponReq | `[]` / `null` |
 | 层数要点 | 1 重探隙；3 重扣脉；5 重截指；7 重绝招镇江一指；9 重绝招封脉定息；10 重指意圆成 |
@@ -135,7 +137,8 @@
 | category / subType / grade | `hidden / hidden / 9` |
 | nature · wOut/wIn · aptitude · moveSlots | `yin` · `0.55/0.45` · `apHidden` · 4 |
 | hiddenKind | `needle`；须装备针类实体暗器，弹药与装备约束引用 `design/10` |
-| reqs | `attrs:{agi:45,wil:40}; aptitude:{apHidden:40}; prereq:[{skill:sk_huahuixinfa,layer:6}]; hard:[prereq]` |
+| reqs | `attrs:{agi:55,wis:45}; aptitude:{apHidden:40}; prereq:[{skill:sk_huahuixinfa,layer:6}]; hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1,wis:1}}]` |
 | layerStats / setTags | `{hit:[3,8],effHit:[2,7]}`，合计 15 / `[]` |
 | conflicts / weaponReq | `[]` / 不适用（暗器改用 `hiddenKind`） |
 | 层数要点 | 1 重投针；3 重连针；5 重引针；7 重绝招三针封路；9 重绝招伤脉针；10 重针路圆成 |
@@ -169,7 +172,8 @@
 | sourceChapters | `[ch10_baima]` |
 | category / subType / grade | `inner / inner / 5` |
 | nature · wOut/wIn · aptitude · moveSlots | `yang` · `0.20/0.80` · `apInner` · 3 |
-| reqs | `attrs:{con:30,str:28}; aptitude:{apInner:25}; sect:{id:sect_hasake,rank:3}; prereq:[{skill:sk_hasakexinfa,layer:5}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:35,wil:30}; aptitude:{apInner:20}; sect:{id:sect_hasake,rank:3}; prereq:[{skill:sk_hasakexinfa,layer:5}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `{mpMaxPct:17,hpMaxPct:10,attrs:{con:3,str:2,wil:2},mpRegen:1.5,stats:{tough:6,resCold:4}}`；`IP=17+10+2×7+5×1.5=48.5`，恰等于玄中预算；`stats` 合计 10，不计入 IP |
 | 经脉 / 调息 / 护体 | `meridians:[mer_dumai,mer_yangwei]` **【建议值】**；`breathProfileRef:txp_hasakeyunqi`；`innerGuard:{enabled:true,reflectBp:0}` |
 | inner.yunjin / auxYunjin | `[tiaoxi,huti]` / `[tiaoxi]`；辅运只保留调息，不借辅运触发护体 |
@@ -271,6 +275,7 @@
 | BM10-BL-V07 | 两个调息档案 | 显式 `outOfBattleScaleBp:15000`；满层分别 `2200/516`、`1800/420` |
 | BM10-BL-V08 | 点穴载荷 | `koumai`、`fengmai` 同时具有 `bf_xueweishoufeng`、合法 `value.level` 与 `targetAcupoint:{mode:targetPrimaryRouteKey}` |
 | BM10-BL-V09 | 习得途径 | 均允许主角与其他合资格人物学习；击败首领不直接掉完整武学 |
+| BM10-BL-V10 | 属性 v2 门槛与永久加成 | 4 门按类别 × 品阶带取值，资质为 `5×grade−5`；每门恰有 3/6/9 重 `trainingAttrs`，单次 ≤4、单门 ≤12 |
 | BM10-BL-T01 | 瓦耳拉齐 / 马家骏主运 `sk_huahuixinfa` 8 重 | 七参取真实 `9/8/.../yin/fullTemplate`，不再用地位下限伪装主运 |
 | BM10-BL-T02 | 部族演武首领主运 `sk_hasakeyunqi` 8 重 | 七参取真实 `5/8/.../yang/fullTemplate` |
 | BM10-BL-T03 | 三类首领在首书 D2 / Lv20 新包络重跑节奏脚本 | 旧 D3 / Lv46 的 18.44、16.32 仅为迁移前快照，不得作为唐代生产金标准；见章节 §12 |
