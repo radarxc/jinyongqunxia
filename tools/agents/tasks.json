@@ -30999,7 +30999,8 @@
     "DES-prologue-v2",
     "DES-attr-v2",
     "ENG-08b-worldmap-page",
-    "ENG-17a-newrun-dialogue"
+    "ENG-17a-newrun-dialogue",
+    "ENG-18d-items-leaf"
    ],
    "writes": [
     "packages/core/src/progression/**",
@@ -31153,7 +31154,8 @@
     "ENG-18-content-build",
     "ENG-16d-damage-geometry",
     "ENG-14b-meridian-golden-v3",
-    "ENG-08b-worldmap-page"
+    "ENG-08b-worldmap-page",
+    "ENG-18d-items-leaf"
    ],
    "writes": [
     "packages/core/src/battle/**",
@@ -31286,7 +31288,8 @@
    "title": "游戏工程 · Tiled 地图转换为 RegionMap（场景格网、对象与校验，接入内容编译管线）",
    "prompt": "ENG-tiled-regionmap.md",
    "deps": [
-    "ENG-18-content-build"
+    "ENG-18-content-build",
+    "ENG-18d-items-leaf"
    ],
    "writes": [
     "packages/data/src/schemas/region-map.ts",
@@ -31590,7 +31593,8 @@
    "prompt": "ENG-ui-shell.md",
    "deps": [
     "ENG-15-core-bus",
-    "ENG-18-content-build"
+    "ENG-18-content-build",
+    "ENG-18d-items-leaf"
    ],
    "writes": [
     "packages/ui/src/components/TxTitle*",
@@ -34330,8 +34334,7 @@
    "title": "游戏工程 · 物品数据移出 entry 闭包：物品成为内容包独立叶片，core Worker 启动时按需加载规则，文本只在展示时读（体积门禁不放宽）",
    "prompt": "ENG-items-leaf.md",
    "deps": [
-    "ENG-17a-newrun-dialogue",
-    "ENG-18b-tiled-regionmap"
+    "ENG-17a-newrun-dialogue"
    ],
    "writes": [
     "packages/data/**",

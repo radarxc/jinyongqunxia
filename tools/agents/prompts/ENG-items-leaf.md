@@ -7,7 +7,7 @@
 - 工程报告（都在 `tools/agents/reports/`）：
   - `ENG-18-content-build.md`：`content:build`、书界包、叶片、contentHash；**§4 O3**：运行时下载与接线交后续任务，现在仍用旧虚拟模块；
   - `ENG-17a-newrun-dialogue.md` 第 7 节：会话创建与宿主接线的现状；
-  - `ENG-18b-tiled-regionmap.md` 第 7 节：区域叶片接入 `partition` 的方式。
+  - `ENG-18b-tiled-regionmap.md` 第 7 节（若已合入）：区域叶片接入 `partition` 的方式。ENG-18b 可能与本任务并行，`packages/data/src/build/**` 只做物品叶片需要的最小改动。
 - `TOOL-items-catalog` 工作区的报告草稿 `.agents/wt/TOOL-items-catalog/tools/agents/reports/TOOL-items-catalog.md`（如有）：物品数 889、体积实测。
 
 ## 为什么做
@@ -22,6 +22,11 @@ TOOL-items-catalog 把 `content/items` 按名录重新生成，从 361 个增到
 - Worker 文件属于入口的 assets，算在 entry 闭包里（`tools/perf/check_size.mjs`）。
 
 物品 JSON 全量 gzip 约 102 KiB，其中去掉 text 后约 43 KiB。名录以后还会扩充（秘籍、兵器、药材）。
+
+**集成分支现在是红的**（10-02 23:26 开发监督实测）：ENG-17a 合入后 `pnpm check` 的体积门禁不过，entry 闭包 175.46 / 170 KiB gzip。
+- ENG-17a 自己的工作区约 169.x，单独看过线；和 ENG-16b / 16d / 12c-clip 合在一起就超了；
+- `core-worker` 打包后 135.4 KiB gzip，含 Ink 运行时与整个 `virtual:tianshu-content`，后者单独成块时是 71.6 KiB gzip，其中大部分是物品；
+- 在本任务合入前，基于当前 HEAD 新建的工作区 `pnpm check` 都过不了，所以 ENG-17 / 18b / 19a / 16c 都排在本任务之后。
 
 协调者裁定（10-02 23:20，作者 AR-21「性能要最好」）：
 - 体积预算一个字不放宽；
@@ -58,6 +63,10 @@ TOOL-items-catalog 把 `content/items` 按名录重新生成，从 361 个增到
    - 运行时：从夹具包加载物品规则后建会话，与原内联方式在同一内容下得到同一规范 state hash（证明只改了加载方式）；
    - 文本：首次展示触发加载，再次命中缓存；
    - 体积：在本工作区把 `content/items` 换成 889 个物品的规模时，`pnpm size` 的 entry 与 webgl total 都在预算内。可以从 `.agents/wt/TOOL-items-catalog/content/items` 临时复制做实测，**不要提交这些物品文件**，报告写数字。
+
+6. **验收硬条件**：本任务合入后，集成分支上 `pnpm check` 必须恢复全绿，entry 与 webgl total 都在预算内。
+   - 若只把物品移出还不够，可以让 Worker 在第一次进入对话前按需 `import()` Ink 运行时；但 `packages/core/**` 不在写集，只能在宿主侧（`core-worker.ts` / `runtime/**`）做注入式预载。
+   - 宿主侧做不到时，在报告写清各块大小，交开发监督另开任务。
 
 ## 约束
 
