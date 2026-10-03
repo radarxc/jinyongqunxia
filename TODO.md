@@ -127,6 +127,7 @@
 - [ ] 待登记设计：**主角外观随魅力分档**（AR-45「对应魅力较高的状态」：分档阈值、各档立绘 / 3D 模型、切换时机与界面表现）。
 
 - [ ] **AR-47 素材线第三波**（10-03 12:45 起，「素材线第三波追踪」Opus 子代理登记并驱动，执行器 Codex，同时 ≤ 3 个图像任务）：ART-region-maps（30 区域图 + 水墨衬纸）、ART-rig-std-refs（6）、ART-rig-sheet-f + TOOL-rig-parts-f（女主角三视图与切件）、ART-ruins-tiles（洞壁 / 墓道 / 石刻 / 宝箱等）、ART-cast-fill-c / -d（110 位新登记人物）、城图全量（按书拆 CITY-layouts-*，ch10 剩余 → ch01 … ch14）。进度 `_handoff/artw3/progress.md`。
+- [ ] 工具维护（第二波追踪移交，低优先，待登记 TOOL）：`tools/imagegen/ingest.py` 的原图归档与锁写在 `ROOT/.agents/coord/gemini_originals`，在任务工作区入库时会随工作区删除（hero-a 自包了一层改到 `_handoff/gem/`，manifest 的 source_path 因此指进 _handoff）→ 应固定写到 `_prod` 归档目录；`ingest8.py` 入库后不写 done.txt。`_handoff/gem/codex_w11–w16`（除已清的 homeN）、`baseline_small/`、`city/`、`ART-3d-tripo-avatars/`、`artw2_portrait_runner.py` 要保留（manifest 有 273 处引用）。
 ### 3.2 物品图（Gemini 网页）
 
 **已完成（10-03 04:28 收工）**：食品 174、衣物、旧兵器 / 暗器 / 药物、第二批 16，加上本轮 366 张（秘籍 162、兵器 128、药材 55、暗器 21）——`assets/default/item/**` 的物品图出齐，manifest 全是 `candidate`，每张按路径单独提交（最后 76d6a377）。限流 0 次；72 张返工过，15 张第 3 次才过；返工清单 0。总联系表 `_prod/.agents/coord/gemini_qa/final_{manuals,weapons,medicine,hidden-weapons}.jpg`（04:30 已发作者）。
