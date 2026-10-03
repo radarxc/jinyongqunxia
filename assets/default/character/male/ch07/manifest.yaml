@@ -2382,3 +2382,50 @@
   sha256: d0bd3e22d2cb4146920ad76c938cfd528549653b3c6119057fab723ce715db02
   status: candidate
   notes: AR-32 主要角色经典版重出（8 号出图员）：1985 TVB《碧血剑》 剧照 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘
+- id: por_npc_yuanchonghuan__ch07_prime_memory_base
+  file: por_npc_yuanchonghuan__ch07_prime_memory_base.png
+  category: character/male
+  style: default
+  subject: 袁崇焕（npc_yuanchonghuan，ch07_bixue，prime；阶段见提示词）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】《碧血剑》袁承志之父袁崇焕，仅限1630年以前的生前军务追忆，约四十六岁观感的中年男性。清瘦而有力量、身材端直，镇定克制的文武阅历，不是青年英雄也不是白发老人。
+
+    【面容】清瘦长方脸，额头较高、颧骨清楚、两颊略内收，下颌狭长而不尖；平直稍淡的眉、略深的眼窝与沉稳细长眼，细长鼻梁、平实嘴线。短髭和整齐短颏须带少量灰，眼角与颈部有适度中年细纹和风霜色差。
+
+    【衣饰】明末军务便装：乌纱式黑色软帽，内着灰青右衽交领长衣，外罩低调暗褐短身护甲，甲片以实用护身为主，腰带与佩刀挂带清楚，黑色布靴；不加无依据的官服补子、爵位徽章或龙纹。侧腰一把完整入鞘明式腰刀，手自然垂下、安静站立，不做战斗动作。
+
+    【阶段边界】这是一张过去时军务追忆立绘，不表现复活、现世招募或死刑场面；不要凌迟、血污、囚车、金蛇剑。面容、选衣配色与持物为原创扩展，原著体貌仍待考。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要清式剃额辫子、顶戴花翎、欧式板甲、帝王龙袍、刑具、文字年号。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: 【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要清式剃额辫子、顶戴花翎、欧式板甲、帝王龙袍、刑具、文字年号。
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 仅画风、设色、光照与纸底，不继承人物身份；本任务指定同性别基线
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 仅画风、设色、光照与纸底，不继承人物身份；本任务指定同性别基线
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（文字 + 两张同性别基线）
+  model: gpt-6-astra
+  effort: xhigh
+  created: '2026-10-03T06:25:00.569282+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w13/out/por_npc_yuanchonghuan__ch07_prime_memory_base.r1.png
+  source_size: 1024x1536
+  source_sha256: 45a78d6b3798860cd5702fde9ab75c321eb868f389cf5603ad1b9722220fd8b1
+  size: 1024x1536
+  sha256: 869eb6fea8922bf05fa639831905cf0155077a74cde60b70716e063c3650542a
+  status: candidate
+  notes: ART-cast-fill-a / worker 13；ref=text；目检通过：成年明末军官面貌、窄长脸短须与眼下纹理清楚；青灰右衽袍、轻甲、乌纱便帽、腰刀和全身双足完整，无文字水印。仅用于生前追忆，不扩展在世出场或战斗实例。；原图模式RGB，入库RGB；裁框无；1024×1536不透明底，非2048×3072 RGBA正式母版。created取原图mtime UTC。实际上传顺序：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
