@@ -1344,3 +1344,13 @@
     - **town-gaps-1**：说明修订后返修通过校验，09:05 手动第 2 次 `--from validate`，驱动 76627，`--rework-extra devsup_note_contract.md`。
 
   - **10-03 09:05–09:08 作者 AR-41 → 登记 3D 角色线**：作者原话见 `author-requirements.md` AR-41（调用 codex exec gpt-6 xhigh 看 Tripo quick-start，key 在本地 `.env`，生成主要角色 3D 模型与骨架并优化男女主角）。协调者登记 **ART-3d-tripo-avatars**（男女主角：多视图 / 立绘 → 高质量模型 + 骨架 + 3 个预设动作，修头发肉色；写 `tools/model3d/tripo_cli.py`；上限 600 点）与 **ART-3d-tripo-cast**（31 位主角群 image_to_model + 骨架；上限 2500 点或余额剩 25%），审核清单 `review_checks_model3d.md`（第 1 条密钥不泄露），batch_run CHECKS 加 `ART-3d-`；`.env` 进 `.gitignore`（主检出 `.env` 一行 `tripo_key=`，不进 `_prod`）。追踪者按 codex 常规起 avatars（无需出图 runner）。
+  - **10-03 09:09–09:21 开发监督**：TOOL-town-gaps-1 合入；tests-discover 手动复审。
+    - **TOOL-town-gaps-1**：说明修订后 r3 PASS，合入提交 f8491810，工作区已清。
+      - 洛阳、太原各 5 个核心文件，manifest `status: candidate`，`check_town --strict-assets` 0 错 0 警。
+      - 合入后 `prod_check`（`_handoff/prod_check_post-towngaps1_*.log`）全绿：138 个测试文件 / 966 条测试；entry 168.57 / 170 没变，webgl 329.80。
+    - **TOOL-tests-discover**：第 3 次运行（停滞重起那次）其实已修好 balance 的 `sys.path`，也补回了大理、杭州的覆盖。09:09 手动第 1 次 `--from validate`，驱动 94877，`--rework-extra devsup_note_r1.md`，在审。
+
+  - **10-03 09:07–09:21 协调者 / 开发监督 / 追踪者**：
+    - **ART-3d-tripo-avatars 09:07 起跑**（追踪者，驱动 91994，codex gpt-6-astra xhigh，基点 2841e3f3，无 runner）；追踪者加密钥泄露扫描（只报位置），首轮 5 处为说明文字里的占位误报，规则收紧后 0 处。
+    - **TOOL-town-gaps-1 合入**（f8491810，09:21；说明正式修订验收命令后 r3 PASS）：render_town 声明式水门、多重城垣 / 共用内隔墙、未声明墙水相交检查、plan_view 页眉按城、cities.yaml 庭州键与 ch10 年代带、唐 / 西域 / 吐蕃套件进 schema；洛阳、太原重跑管线后 manifest 改回 `candidate`，`check_town --strict-assets` 0 错 0 警。prod_check 全绿：138 文件 966 用例，entry 168.57 / 170 不变。
+    - TOOL-tests-discover 第 3 次（停滞重起）已修 balance 导入与大理 / 杭州覆盖，开发监督手动复审 r2 PASS（09:19），合入中。ENG-entry-split 执行 80+ 分钟仍在跑；ENG-12d-clip-perf（eng3）在跑；磁盘 9.7 GiB。
