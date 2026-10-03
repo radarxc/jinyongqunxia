@@ -1,10 +1,10 @@
 # 04 · 倚天屠龙记主线剧情（正邪双线与选择节点）
 
 > 归属（基准 §18；AR-10）：`ch04_yitian` 的主线剧情、正邪立场分流、选择节点、人物命运结果与原著重要剧情去向；本文件是本书界主线剧情的唯一归属。
-> 上游：`00-canon.md` v1.2（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
-> 引用而不重定义：锚点与主改命 → `design/01-vision-and-core-loop.md` §7.5；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；品德与声望 → `design/03-attributes.md` §8.3–§8.4；武学与装备 → `design/05-martial-arts-system.md`、`design/10-items-and-equipment.md` 及各图鉴；战斗、Boss、群战与剧情友军 → `design/09-combat-system.md`；区域与历史地名 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL 与门派关系 → `design/12-quests-npc-factions.md`（已落盘；本文策划契约仍须迁移校验）；天书之力与结局接口 → `design/13-progression-and-endings.md`；门派 → `design/17-sects-compendium.md`；NPC、生卒与招募 → `design/18-npc-and-companions.md`。
+> 上游：`00-canon.md` v1.10（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`，含 AR-26；跨文档裁定见 `decisions/rulings-v1.md`。
+> 引用而不重定义：锚点与主改命 → `design/01-vision-and-core-loop.md` §7.5；年代、书眠、携带与压制 → `design/02-timeline-and-world-tiers.md`；品德与声望 → `design/03-attributes.md` §8.3–§8.4；武学与装备 → `design/05-martial-arts-system.md`、`design/10-items-and-equipment.md` 及各图鉴；战斗、Boss、群战与剧情友军 → `design/09-combat-system.md`；区域与历史地名 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL 与门派关系 → `design/12-quests-npc-factions.md`（已落盘；本文策划契约仍须迁移校验）；天书之力与结局接口 → `design/13-progression-and-endings.md`；《长生诀》层数、3+3 与和氏璧生命周期 → `design/25-changshengjue.md`；休眠事件与第六层支线定义 → `design/story/sleep-events.md`、`design/story/changsheng-sidelines.md`；门派 → `design/17-sects-compendium.md`；NPC、生卒与招募 → `design/18-npc-and-companions.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给可用数值并在文末登记。
-> 版本：v1.2（P04 初稿；审校 P04.R，2026-09-26；AR-20 主要悲剧线改命补充，2026-10-01）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）。
+> 版本：v1.3（AR-26 书眠节点与第六层支线挂接，2026-10-02）；v1.2（P04 初稿；审校 P04.R，2026-09-26；AR-20 主要悲剧线改命补充，2026-10-01）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）。
 
 ---
 
@@ -28,7 +28,7 @@
 |---|---|
 | 书界 | 《倚天屠龙记》`ch04_yitian`；前接 `ch03_shendiao`，后接 `ch05_xiaoao` |
 | 年代 | 主体约 1336–1363；楔子约 1262；均引用基准 §2，精确年序仍（待考） |
-| 境界 | 高武；武运 95；难度 10；幕保底入场基准 `L_in(ch04)=62`；真实等级沿用存档，低于 62 时按成长系统追赶；等级上限 70；携带 3/3/3；外来压制 0 |
+| 境界 | 高武；武运 95；难度 10；幕保底入场基准 `L_in(ch04)=62`；真实等级沿用存档，低于 62 时按成长系统追赶；等级上限 70；固定保留 3 武功 + 3 内功，《长生诀》栏外固定；外来压制 0 |
 | 天书关键词 | “号令”；天书 `it_tianshu_04` |
 | 主改命 | 仅“武当百岁寿宴中，张翠山与殷素素不自尽”；其长期旗标决定 `tsp_04_fate`，见 §6 |
 | 共有 / 分线 | 3 个共有幕后分流；正线 11 幕、邪线 11 幕；任一完整路线共 14 幕 |
@@ -111,7 +111,8 @@ flowchart TB
     EZF --> T
     EXC --> T
     EXF --> T
-    T --> SL[书眠 160 年<br/>进入笑傲时代图层]
+    T --> SE[n_04_booksleep<br/>书眠选事]
+    SE --> SL[书眠 160 年<br/>进入笑傲时代图层]
 ```
 
 图中每对同序 `z/x` 幕在结尾回到同一时间点，因此切线不要求重玩已经结束的事件。`dc_04_02` 只确定改命轴；`dc_04_08` 只处理刀剑且保持当前路线；其余分线节点的每个出口都在 §5.2 写明。`dc_04_10` 最终写定正 / 邪结局骨架，再由 `fate_04` 正交选择原著 / 改命变体。
@@ -1383,9 +1384,17 @@ unknown
 
 两种路线都取得同一实体天书 `it_tianshu_04`，存入天书匣，不占背包、不可交易。正 / 邪不会再产生路线专属的第三、第四种天书之力 ID；同一周目也不能在余韵期更换变体。
 
-### 7.5 书眠过场引子
+### 7.5 书眠节点与正式休眠事件接口
 
-天书现世后进入 `afterglow`，立即选择“即刻入眠”或“了却尘缘”，完整流程引用 `design/02` §4。建议书眠之所沿用该文给出的光明顶：
+天书现世后进入 `afterglow`，四个主结局保留原状态写入并统一通向 `n_04_booksleep` **（原创扩展）**，再选择“即刻入眠”或“了却尘缘”；完整流程引用 `design/02` §4。余韵期可完成 `q_04_changsheng_01` 补证，提交书眠后即封窗。
+
+| 节点 / 事件 | 挂接与 `requires` 摘要 | `entryKnot` / 优先级**【建议值】** / `fallbackId` | 入眠与苏醒 |
+|---|---|---|---|
+| `n_04_booksleep` **（原创扩展）** | `z_canon`、`z_fate`、`x_canon`、`x_fate` 发天书后；按 `sleep-events` §2.2 求值 | 节点自身无事件 ID；确认后交公共 review / `BS_COMMIT` | 汇流原结局，不另发天书 |
+| `slp_04_haishoutingchao` **（原创扩展·路线候选）** | 海路证据已归档且灵蛇岛相关人物完成告别；完整表达式只见权威文档 | `sleep.04.haishoutingchao.entry` / 20 / `slp_04_guangmingxieqi` | `sc_04_qingyuan_wreck` 废船仓；与保底同醒 |
+| `slp_04_guangmingxieqi` **（原创扩展·保底）** | `it_tianshu_04` 已得、`phase == afterglow`、`not sleepCommitted`；不读可错过支线 | `sleep.04.guangmingxieqi.entry` / 10 / `null` | `sc_04_guangming_tunnel` 避风处；醒于 `sc_05_fuzhou_yilu` |
+
+候选失效只回本书保底；`requires` 只依 `design/story/sleep-events.md` §2.2 的闭集与求值次序，不在本文新造条件。倚天离界年 1363、笑傲玩法入界年约 1523，跨度为 `1523−1363=160` 年；两条事件都接笑傲最前期福州府外驿路，不跳过 `q_05_main_c_01`。正式演出继续采用：
 
 1. `BS_DIALOG`：书灵问“号令，是让众人听见你，还是让你听见众人？”；按四结局各有一句回应**（原创扩展）**。
 2. `BS_REVIEW`：依次展示百岁寿宴空位 / 团聚、蝴蝶谷获救名册、光明顶阵营、高塔撤离、灵蛇岛离船、少林证词、濠州婚帖与应天府令簿。
@@ -1394,7 +1403,21 @@ unknown
 5. `BS_WAKE` 进入 `ch05_xiaoao`；无论本界走哪种结局，都不改变笑傲的历史起点。
 6. 主改命的剧情单写者仍是 `fate_04`；书眠适配器按 `fate_04 == saved_parents` 派生 `design/02` §6.3 的标准 `echo_NN_fate`（本界 `NN=04`），不要求剧情节点双写。
 
-### 7.6 对下一书界的传承与彩蛋
+### 7.6 `side_changsheng_01` · 玉玺不令天下接口 **（原创扩展）**
+
+本节只登记主线 `StoryLine.sideHooks`；任务卡、15 节点 DAG、`dc_04_11` 三路后果、真实和氏璧三收据与第六层奖励只见 `design/story/changsheng-sidelines.md` §1、§6，物品生命周期只见 `design/25` §5。
+
+| 接口 | 主线挂点 / `when` 摘要 | 解锁内容 |
+|---|---|---|
+| 起点 | `q_04_changsheng_01` / `n_yt_echo`；`changshengLayer == 5` | 襄阳废墟比对刀剑目录与神雕史笺 |
+| `sideHook` 1 | Z/X09 的 `dc_04_08` 揭开刀剑藏物线索后 | `sc_04_xiangyang_ruins` 与 `sc_04_emei_jinding` 三源谱牒核验 |
+| `sideHook` 2 | Z/X09 结算后 | `sc_04_gaibang_secret_hall` 路引辨伪 |
+| `sideHook` 3 | Z/X10 屠狮大会后 | `sc_04_shaolin_tushihui` 公审封泥与证言 |
+| `sideHook` 4 | Z/X11 已开放、`dc_04_10` 结算前 | 从 `city_kaifeng` 进入旧库实例，完成 `dc_04_11`、真璧入匣与第六层结算 |
+
+四个挂点只解锁支线；刀剑命运、张无忌退位、主线正邪、锚点生死与天书轴均不被写回。普通失败回支线安全检查点；漏接或交权失败只在本书天书取得后、`n_04_booksleep` 提交前按 `changsheng-sidelines` §6.3 补证。补证只得第六层与唯一真璧，不补关系、政治筹码或公开声望；跨书后不得在笑傲重开或自动补层，统一服从该文 §1.4。
+
+### 7.7 对下一书界的传承与彩蛋
 
 | 钩子 | 条件 | 笑傲落点 | 来源 |
 |---|---|---|---|
@@ -1869,6 +1892,8 @@ recruitmentPatch:
 | `q_04_main_x_01`–`q_04_main_x_11` | 主线任务 | 邪线十一幕；是完整通关路线，不是失败分支**（原创扩展）** |
 | `dc_04_01`–`dc_04_10` | 剧情选择节点 | 本文定义；Canon v1.2 §12 已登记 `dc_<书界>_<序号>`，生产映射见 `design/12` §2.6 |
 | `vid_sleep_04_05` | 书眠视频逻辑 ID | 复用 `design/01` / `rulings-v1` 的 `vid_sleep_NN_MM` 模式，不代表资产文件名 |
+| `n_04_booksleep` | 书眠汇流节点 | 四个原结局完成状态写入后汇流的**（原创扩展）**节点；事件求值见 `sleep-events.md` §2.2 |
+| `q_04_changsheng_01`、`dc_04_11`、`side_changsheng_01`、`slp_04_*` | AR-26 上游引用 | 均由 `changsheng-sidelines.md` / `sleep-events.md` 定义，本文不重定义 |
 
 以下为本文状态键，不视作基准 §12 的独立内容实体，但保存 / 迁移时必须稳定：
 
@@ -1916,6 +1941,8 @@ recruitmentPatch:
 | V04-25 | 局部改命隔离 | 五条局部救援写 `fate_04` / 第三天书变体 / 固定书契分，或获救人物被后续原著默认二次判死 | 错误 |
 | V04-26 | 同伴改命费用 | 未曾入队者误发 `companionFateRescued`；曾入队者本界首次成功未支付 2 余韵；同事件多人重复收费，或后续救援再次收费 | 错误 |
 | V04-27 | 史自愈边界 | 任一获救者在 `ch05_xiaoao` 默认以活体出现，或局部结果改写下一书界原著起点 | 错误 |
+| V04-28 | AR-26 书眠接口 | 四结局未汇入 `n_04_booksleep`，或两条 `slp_04_*` 的优先级、回退、`entryKnot`、苏醒入口任一不符上游 | 错误 |
+| V04-29 | AR-26 支线接口 | `q_04_changsheng_01` 不能从 `n_yt_echo` 经四个主线挂点推进，真璧未入匣即发层，或跨书后仍可重开 / 自动补层 | 错误 |
 
 #### 9.6.2 金标准测试用例
 
@@ -1950,6 +1977,8 @@ recruitmentPatch:
 | T04-27 六线窗口 | 分别满足 / 缺少每线的关系、技艺或战力、持有物、时限、立场条件并跨过关闭节点 | 满足时只开放对应隐藏行动；缺项或超时承接该线原著结果且主线继续；六线互不替写生命轴 |
 | T04-28 同伴改命费用 | 余韵 1；同一事件救胡青牛、王难姑且二人曾入队；同界随后再救另一曾入队人物 | 首事件扣 1、记 `fateDebt=1`，多人仍只计一次；后续救援不再收费；未曾入队人物获救不发事件 |
 | T04-29 书契与后世 | 对比 `canon`、主改命成功、仅五条局部改命成功三档存档后书眠 | T 项分别为 30、50、30，主改命差值 `50−30=20`；局部线只形成尾声 / 档案 / 门人 / 遗物回响；笑傲锚点一致 |
+| T04-30 正式书眠 | 四个结局分别进入 `n_04_booksleep`，令候选条件满足 / 不满足后提交 | 满足时可选 `slp_04_haishoutingchao`，失效回 `slp_04_guangmingxieqi`；两路均在 `1523−1363=160` 年后醒于 `sc_05_fuzhou_yilu` |
+| T04-31 长生支线 | 依四个挂点推进 `q_04_changsheng_01`，另测交权失败后的余韵补证与跨书回查 | 三张收据齐才使真璧入匣并从第 5 层升第 6 层；跨书后不可重开、自动补层或补政治收益 |
 
 #### 9.6.3 覆盖与连通性人工核算
 
@@ -1983,6 +2012,7 @@ recruitmentPatch:
 | D04-08 | **部分解决：**胡青牛、王难姑、纪晓芙已定 D4，杨不悔为幼年 D3 / 成年 D4，陈友谅已定 D5；都大锦仍建议 D4、黄衫女子仍建议 D5 | 已落盘者见 `design/18` §13.4；剩余待补人物仍由 18 按作用核级 |
 | D04-09 | `dc_04_04#external_audit` 可由任一参会门派 L2 打开；职级只作替代入口 | `design/12` §2.6、§6 / `design/17`；引用既有五级职级，不以入派锁主线 |
 | D04-10 | 纪晓芙 `affinity≥40` / 托付、病患 ≥2、`speech≥40` / 峨眉 L2；胡王二人各 `affinity≥40` / 许可且 `med/antidote≥40`；灭绝 `med≥50` / 医者 / 好感；殷天正 `bond≥60` / 羁绊任务且 qg4 / 掩护；宋青书三证、`affinity≥20` / 武当长辈且 `speech≥50` / 武当 L3 | `design/12` 正式任务实例；均为 §6 的 AR-20 默认隐藏门槛，不新建任务 ID |
+| D04-11 | 休眠路线候选优先级 20、保底 10 **【建议值】** | 原样引用 `sleep-events.md` §2.1 / SE-D01；由 `design/12` / 工程事件调度定稿 |
 | 剧情遭遇补充分配 | 婚礼194059、终幕205629，万安寺超时援军17734由撤离预留划出；全部57组入口按章节 §8.6 / §12.3.1 **（原创扩展，【建议值】）** | `design/09` / `design/12` 落盘后验证T04-23–25；静态守恒不能替代真实整场回放 |
 
 #### 9.7.2 本文依赖的上游事实
