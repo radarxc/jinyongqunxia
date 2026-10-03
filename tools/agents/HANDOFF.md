@@ -1816,3 +1816,4 @@
       - 放行顺序排在 16c 后、23a 前，由协调者的 wait_attempt 守候起跑（traex Sol max，review_checks_eng）。
     - **CONTENT-ch00a**：第 9 次运行只改报告，驱动 53634，note `devsup_note_r4.md`。
 
+- **10-03 16:28 代码池放行链更新**：开发监督登记 ENG-ink-external-args（6cefcccd，`extractStoryText()` 把 EXTERNAL 字符串实参也换成文本键，导致 ch00a 的 get_flag / has_item 条件失效）；插在 16c 之后。现顺序 16c → ink-external-args（守候 59783）→ 23a（59788）→ 18c（96188）→ base-diet（96190）→ std-parts（83195）→ cropframe（96192）。CONTENT-ch00a 第 9 次运行只改报告（驱动 53634）。作者 AR-52「未来大地图都以实际地图地势为基础生成不要偏离」已转 Gemini 出图员：区域图以 docs/design/map 真实地理裁底图为第一参考，已入库的逐张比对；SR_HR.zip（42 MB）下载待作者许可。
