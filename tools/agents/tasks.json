@@ -47195,7 +47195,8 @@
    "prompt": "ENG-npc-species-roleslot.md",
    "deps": [
     "ENG-25-content-schemas-m1",
-    "ENG-region-gates-data"
+    "ENG-region-gates-data",
+    "CONTENT-ch00a-data"
    ],
    "writes": [
     "packages/data/src/schemas/character.ts",
@@ -47208,7 +47209,8 @@
     "packages/data/src/**/__fixtures__/**",
     "content/CLAUDE.md",
     "content/chapters/ch00_yuenv/roles/**",
-    "content/chapters/ch00_yuenv/npcs/**"
+    "content/chapters/ch00_yuenv/npcs/**",
+    "content/chapters/ch00_yuenv/quests/**"
    ]
   },
   {
