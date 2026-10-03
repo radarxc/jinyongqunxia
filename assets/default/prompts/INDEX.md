@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1009** 份：已入库 840、已通过（作者） 132、待出图 37。**待出图队列 37 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 841、待出图 187、已通过（作者） 132。**待出图队列 187 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -28,6 +28,156 @@
 
 | 组 | asset_id | 名称 | 输出 | 状态 | 提示词 |
 |---|---|---|---|---|---|
+| items | `it_beisonglinglongqin` | 宋式玲珑琴 | `assets/default/item/collectibles/it_beisonglinglongqin.png` | 待出图 | [it_beisonglinglongqin.md](items/collectibles/it_beisonglinglongqin.md) |
+| items | `it_beisongqimuqiguan` | 北宋漆木棋罐 | `assets/default/item/collectibles/it_beisongqimuqiguan.png` | 待出图 | [it_beisongqimuqiguan.md](items/collectibles/it_beisongqimuqiguan.md) |
+| items | `it_beisongsuqin` | 北宋素髹琴 | `assets/default/item/collectibles/it_beisongsuqin.png` | 待出图 | [it_beisongsuqin.md](items/collectibles/it_beisongsuqin.md) |
+| items | `it_beisongsutongjing` | 北宋素面铜镜 | `assets/default/item/collectibles/it_beisongsutongjing.png` | 待出图 | [it_beisongsutongjing.md](items/collectibles/it_beisongsutongjing.md) |
+| items | `it_beisongzhuganbi` | 北宋竹管书笔 | `assets/default/item/collectibles/it_beisongzhuganbi.png` | 待出图 | [it_beisongzhuganbi.md](items/collectibles/it_beisongzhuganbi.md) |
+| items | `it_biyufenghuang` | 碧玉凤凰 | `assets/default/item/collectibles/it_biyufenghuang.png` | 待出图 | [it_biyufenghuang.md](items/collectibles/it_biyufenghuang.md) |
+| items | `it_caihoufanghu` | 蔡侯申方壶 | `assets/default/item/collectibles/it_caihoufanghu.png` | 待出图 | [it_caihoufanghu.md](items/collectibles/it_caihoufanghu.md) |
+| items | `it_chenghuajigangbei` | 成化斗彩鸡缸杯 | `assets/default/item/collectibles/it_chenghuajigangbei.png` | 待出图 | [it_chenghuajigangbei.md](items/collectibles/it_chenghuajigangbei.md) |
+| items | `it_dingyaohuakouwan` | 定窑白釉花口碗 | `assets/default/item/collectibles/it_dingyaohuakouwan.png` | 待出图 | [it_dingyaohuakouwan.md](items/collectibles/it_dingyaohuakouwan.md) |
+| items | `it_dingyaojiangyougaiwan` | 定窑酱釉盖碗 | `assets/default/item/collectibles/it_dingyaojiangyougaiwan.png` | 待出图 | [it_dingyaojiangyougaiwan.md](items/collectibles/it_dingyaojiangyougaiwan.md) |
+| items | `it_gaochangguwu` | 高昌古物 | `assets/default/item/collectibles/it_gaochangguwu.png` | 待出图 | [it_gaochangguwu.md](items/collectibles/it_gaochangguwu.md) |
+| items | `it_gaochangqixianqin` | 高昌旧藏七弦琴 | `assets/default/item/collectibles/it_gaochangqixianqin.png` | 待出图 | [it_gaochangqixianqin.md](items/collectibles/it_gaochangqixianqin.md) |
+| items | `it_guanglingsan` | 《广陵散》琴谱 | `assets/default/item/collectibles/it_guanglingsan.png` | 待出图 | [it_guanglingsan.md](items/collectibles/it_guanglingsan.md) |
+| items | `it_guoxiangheiyuzhuo` | 郭襄寿礼黑玉镯 | `assets/default/item/collectibles/it_guoxiangheiyuzhuo.png` | 待出图 | [it_guoxiangheiyuzhuo.md](items/collectibles/it_guoxiangheiyuzhuo.md) |
+| items | `it_jianwenyudie` | 建文遗宝玉蝶 | `assets/default/item/collectibles/it_jianwenyudie.png` | 待出图 | [it_jianwenyudie.md](items/collectibles/it_jianwenyudie.md) |
+| items | `it_jianyaotuhaozhan` | 建窑兔毫盏 | `assets/default/item/collectibles/it_jianyaotuhaozhan.png` | 待出图 | [it_jianyaotuhaozhan.md](items/collectibles/it_jianyaotuhaozhan.md) |
+| items | `it_jinleisiwannianruyi` | 金累丝万年如意 | `assets/default/item/collectibles/it_jinleisiwannianruyi.png` | 待出图 | [it_jinleisiwannianruyi.md](items/collectibles/it_jinleisiwannianruyi.md) |
+| items | `it_jinpen` | 金盆 | `assets/default/item/collectibles/it_jinpen.png` | 待出图 | [it_jinpen.md](items/collectibles/it_jinpen.md) |
+| items | `it_jiuxiaohuanpei` | 九霄环佩琴 | `assets/default/item/collectibles/it_jiuxiaohuanpei.png` | 待出图 | [it_jiuxiaohuanpei.md](items/collectibles/it_jiuxiaohuanpei.md) |
+| items | `it_kangxifuzijiuzang` | 康熙福字旧藏 | `assets/default/item/collectibles/it_kangxifuzijiuzang.png` | 待出图 | [it_kangxifuzijiuzang.md](items/collectibles/it_kangxifuzijiuzang.md) |
+| items | `it_kangxijinwan` | 康熙赐黄金饭碗 | `assets/default/item/collectibles/it_kangxijinwan.png` | 待出图 | [it_kangxijinwan.md](items/collectibles/it_kangxijinwan.md) |
+| items | `it_lantingtangmoben` | 兰亭唐摹卷 | `assets/default/item/collectibles/it_lantingtangmoben.png` | 待出图 | [it_lantingtangmoben.md](items/collectibles/it_lantingtangmoben.md) |
+| items | `it_lianchenghanyuzhuo` | 连城汉玉腕镯 | `assets/default/item/collectibles/it_lianchenghanyuzhuo.png` | 待出图 | [it_lianchenghanyuzhuo.md](items/collectibles/it_lianchenghanyuzhuo.md) |
+| items | `it_longquanpankouping` | 龙泉青釉盘口瓶 | `assets/default/item/collectibles/it_longquanpankouping.png` | 待出图 | [it_longquanpankouping.md](items/collectibles/it_longquanpankouping.md) |
+| items | `it_longquanqingciwan` | 龙泉青瓷碗 | `assets/default/item/collectibles/it_longquanqingciwan.png` | 待出图 | [it_longquanqingciwan.md](items/collectibles/it_longquanqingciwan.md) |
+| items | `it_longquanzongshiping` | 龙泉青釉琮式瓶 | `assets/default/item/collectibles/it_longquanzongshiping.png` | 待出图 | [it_longquanzongshiping.md](items/collectibles/it_longquanzongshiping.md) |
+| items | `it_luoshenfulinben` | 洛神赋元临本 | `assets/default/item/collectibles/it_luoshenfulinben.png` | 待出图 | [it_luoshenfulinben.md](items/collectibles/it_luoshenfulinben.md) |
+| items | `it_mingdaimaozihaobi` | 明玳瑁管紫毫笔 | `assets/default/item/collectibles/it_mingdaimaozihaobi.png` | 待出图 | [it_mingdaimaozihaobi.md](items/collectibles/it_mingdaimaozihaobi.md) |
+| items | `it_mingfangxuanlu` | 明末仿宣铜炉 | `assets/default/item/collectibles/it_mingfangxuanlu.png` | 待出图 | [it_mingfangxuanlu.md](items/collectibles/it_mingfangxuanlu.md) |
+| items | `it_minghuzhoubaihao` | 明湖州白毫笔 | `assets/default/item/collectibles/it_minghuzhoubaihao.png` | 待出图 | [it_minghuzhoubaihao.md](items/collectibles/it_minghuzhoubaihao.md) |
+| items | `it_mingluwangshiqin` | 明末潞王式琴 | `assets/default/item/collectibles/it_mingluwangshiqin.png` | 待出图 | [it_mingluwangshiqin.md](items/collectibles/it_mingluwangshiqin.md) |
+| items | `it_mingqingheyatie` | 明清和拜帖 | `assets/default/item/collectibles/it_mingqingheyatie.png` | 待出图 | [it_mingqingheyatie.md](items/collectibles/it_mingqingheyatie.md) |
+| items | `it_mingqinghuahewenwan` | 明青花荷纹碗 | `assets/default/item/collectibles/it_mingqinghuahewenwan.png` | 待出图 | [it_mingqinghuahewenwan.md](items/collectibles/it_mingqinghuahewenwan.md) |
+| items | `it_mingsuqiqin` | 明素漆琴 | `assets/default/item/collectibles/it_mingsuqiqin.png` | 待出图 | [it_mingsuqiqin.md](items/collectibles/it_mingsuqiqin.md) |
+| items | `it_mingtongsujing` | 明素面铜镜 | `assets/default/item/collectibles/it_mingtongsujing.png` | 待出图 | [it_mingtongsujing.md](items/collectibles/it_mingtongsujing.md) |
+| items | `it_mingyinxiaoshuiyu` | 明式银水盂 | `assets/default/item/collectibles/it_mingyinxiaoshuiyu.png` | 待出图 | [it_mingyinxiaoshuiyu.md](items/collectibles/it_mingyinxiaoshuiyu.md) |
+| items | `it_mingyushizhuxiao` | 明玉饰竹箫 | `assets/default/item/collectibles/it_mingyushizhuxiao.png` | 待出图 | [it_mingyushizhuxiao.md](items/collectibles/it_mingyushizhuxiao.md) |
+| items | `it_mingyusuhuan` | 明素玉环 | `assets/default/item/collectibles/it_mingyusuhuan.png` | 待出图 | [it_mingyusuhuan.md](items/collectibles/it_mingyusuhuan.md) |
+| items | `it_nansongbolibei` | 南宋玻璃小杯 | `assets/default/item/collectibles/it_nansongbolibei.png` | 待出图 | [it_nansongbolibei.md](items/collectibles/it_nansongbolibei.md) |
+| items | `it_nansongduanwenqin` | 南宋断纹琴 | `assets/default/item/collectibles/it_nansongduanwenqin.png` | 待出图 | [it_nansongduanwenqin.md](items/collectibles/it_nansongduanwenqin.md) |
+| items | `it_nansonghuzhoubi` | 南宋湖州书笔 | `assets/default/item/collectibles/it_nansonghuzhoubi.png` | 待出图 | [it_nansonghuzhoubi.md](items/collectibles/it_nansonghuzhoubi.md) |
+| items | `it_nansongjinyinzhan` | 南宋金口银盏 | `assets/default/item/collectibles/it_nansongjinyinzhan.png` | 待出图 | [it_nansongjinyinzhan.md](items/collectibles/it_nansongjinyinzhan.md) |
+| items | `it_nansongmeiyingti` | 南宋梅影题字 | `assets/default/item/collectibles/it_nansongmeiyingti.png` | 待出图 | [it_nansongmeiyingti.md](items/collectibles/it_nansongmeiyingti.md) |
+| items | `it_nansongsongyanmo` | 南宋精烟墨 | `assets/default/item/collectibles/it_nansongsongyanmo.png` | 待出图 | [it_nansongsongyanmo.md](items/collectibles/it_nansongsongyanmo.md) |
+| items | `it_nansongtaoheyan` | 宋式洮河石砚 | `assets/default/item/collectibles/it_nansongtaoheyan.png` | 待出图 | [it_nansongtaoheyan.md](items/collectibles/it_nansongtaoheyan.md) |
+| items | `it_nansongtongdinglu` | 南宋鼎式铜炉 | `assets/default/item/collectibles/it_nansongtongdinglu.png` | 待出图 | [it_nansongtongdinglu.md](items/collectibles/it_nansongtongdinglu.md) |
+| items | `it_nansongtongjing` | 南宋素背铜镜 | `assets/default/item/collectibles/it_nansongtongjing.png` | 待出图 | [it_nansongtongjing.md](items/collectibles/it_nansongtongjing.md) |
+| items | `it_nansongwenxuejian` | 南宋问学笺 | `assets/default/item/collectibles/it_nansongwenxuejian.png` | 待出图 | [it_nansongwenxuejian.md](items/collectibles/it_nansongwenxuejian.md) |
+| items | `it_nansongyulianpei` | 南宋玉莲小雕 | `assets/default/item/collectibles/it_nansongyulianpei.png` | 待出图 | [it_nansongyulianpei.md](items/collectibles/it_nansongyulianpei.md) |
+| items | `it_nansongyulongbei` | 南宋龙柄玉杯 | `assets/default/item/collectibles/it_nansongyulongbei.png` | 待出图 | [it_nansongyulongbei.md](items/collectibles/it_nansongyulongbei.md) |
+| items | `it_nansongzhubingshan` | 南宋竹柄绢扇 | `assets/default/item/collectibles/it_nansongzhubingshan.png` | 待出图 | [it_nansongzhubingshan.md](items/collectibles/it_nansongzhubingshan.md) |
+| items | `it_nansongzhuxiao` | 南宋素竹箫 | `assets/default/item/collectibles/it_nansongzhuxiao.png` | 待出图 | [it_nansongzhuxiao.md](items/collectibles/it_nansongzhuxiao.md) |
+| items | `it_ouxuepu` | 《呕血谱》 | `assets/default/item/collectibles/it_ouxuepu.png` | 待出图 | [it_ouxuepu.md](items/collectibles/it_ouxuepu.md) |
+| items | `it_qianlongfuzimoben` | 乾隆福字摹片 | `assets/default/item/collectibles/it_qianlongfuzimoben.png` | 待出图 | [it_qianlongfuzimoben.md](items/collectibles/it_qianlongfuzimoben.md) |
+| items | `it_qianlongmudanhuashibi` | 乾隆牡丹花诗笔 | `assets/default/item/collectibles/it_qianlongmudanhuashibi.png` | 待出图 | [it_qianlongmudanhuashibi.md](items/collectibles/it_qianlongmudanhuashibi.md) |
+| items | `it_qianlongwenyupei` | 乾隆所赠温玉佩 | `assets/default/item/collectibles/it_qianlongwenyupei.png` | 待出图 | [it_qianlongwenyupei.md](items/collectibles/it_qianlongwenyupei.md) |
+| items | `it_qingbolixiaoping` | 清玻璃小瓶 | `assets/default/item/collectibles/it_qingbolixiaoping.png` | 待出图 | [it_qingbolixiaoping.md](items/collectibles/it_qingbolixiaoping.md) |
+| items | `it_qinggongyanyumo` | 清宫样精烟墨 | `assets/default/item/collectibles/it_qinggongyanyumo.png` | 待出图 | [it_qinggongyanyumo.md](items/collectibles/it_qinggongyanyumo.md) |
+| items | `it_qingheiqiqin` | 清黑漆琴 | `assets/default/item/collectibles/it_qingheiqiqin.png` | 待出图 | [it_qingheiqiqin.md](items/collectibles/it_qingheiqiqin.md) |
+| items | `it_qinghuaiyuanjian` | 清怀远拜帖 | `assets/default/item/collectibles/it_qinghuaiyuanjian.png` | 待出图 | [it_qinghuaiyuanjian.md](items/collectibles/it_qinghuaiyuanjian.md) |
+| items | `it_qinghuzhouyanghaobi` | 清湖州羊毫笔 | `assets/default/item/collectibles/it_qinghuzhouyanghaobi.png` | 待出图 | [it_qinghuzhouyanghaobi.md](items/collectibles/it_qinghuzhouyanghaobi.md) |
+| items | `it_qingjiaoyeqin` | 清式蕉叶琴 | `assets/default/item/collectibles/it_qingjiaoyeqin.png` | 待出图 | [it_qingjiaoyeqin.md](items/collectibles/it_qingjiaoyeqin.md) |
+| items | `it_qinglanliaoshanshuiwan` | 雍正蓝料彩山水碗 | `assets/default/item/collectibles/it_qinglanliaoshanshuiwan.png` | 待出图 | [it_qinglanliaoshanshuiwan.md](items/collectibles/it_qinglanliaoshanshuiwan.md) |
+| items | `it_qingonggui` | 秦公簋 | `assets/default/item/collectibles/it_qingonggui.png` | 待出图 | [it_qingonggui.md](items/collectibles/it_qingonggui.md) |
+| items | `it_qingqinghuaxiaozhan` | 清青花小盏 | `assets/default/item/collectibles/it_qingqinghuaxiaozhan.png` | 待出图 | [it_qingqinghuaxiaozhan.md](items/collectibles/it_qingqinghuaxiaozhan.md) |
+| items | `it_qingyinhuaibei` | 清素银小杯 | `assets/default/item/collectibles/it_qingyinhuaibei.png` | 待出图 | [it_qingyinhuaibei.md](items/collectibles/it_qingyinhuaibei.md) |
+| items | `it_qingzhugenruyi` | 清竹根如意 | `assets/default/item/collectibles/it_qingzhugenruyi.png` | 待出图 | [it_qingzhugenruyi.md](items/collectibles/it_qingzhugenruyi.md) |
+| items | `it_qingzhuxiao` | 清素竹箫 | `assets/default/item/collectibles/it_qingzhuxiao.png` | 待出图 | [it_qingzhuxiao.md](items/collectibles/it_qingzhuxiao.md) |
+| items | `it_qulingfengmanaobei` | 曲灵风旧藏玛瑙杯 | `assets/default/item/collectibles/it_qulingfengmanaobei.png` | 待出图 | [it_qulingfengmanaobei.md](items/collectibles/it_qulingfengmanaobei.md) |
+| items | `it_shiketapian` | 石刻拓片 | `assets/default/item/collectibles/it_shiketapian.png` | 待出图 | [it_shiketapian.md](items/collectibles/it_shiketapian.md) |
+| items | `it_shizhongyubiyuzhuo` | 石中玉赠碧玉镯 | `assets/default/item/collectibles/it_shizhongyubiyuzhuo.png` | 待出图 | [it_shizhongyubiyuzhuo.md](items/collectibles/it_shizhongyubiyuzhuo.md) |
+| items | `it_shuaiyitie` | 张旭《率意帖》 | `assets/default/item/collectibles/it_shuaiyitie.png` | 待出图 | [it_shuaiyitie.md](items/collectibles/it_shuaiyitie.md) |
+| items | `it_shupuzaoqimoben` | 书谱早期摹本 | `assets/default/item/collectibles/it_shupuzaoqimoben.png` | 待出图 | [it_shupuzaoqimoben.md](items/collectibles/it_shupuzaoqimoben.md) |
+| items | `it_shusutiejizhen` | 蜀素帖 | `assets/default/item/collectibles/it_shusutiejizhen.png` | 待出图 | [it_shusutiejizhen.md](items/collectibles/it_shusutiejizhen.md) |
+| items | `it_songjiuyubi` | 北宋旧藏玉璧 | `assets/default/item/collectibles/it_songjiuyubi.png` | 待出图 | [it_songjiuyubi.md](items/collectibles/it_songjiuyubi.md) |
+| items | `it_songlianbantonglu` | 北宋莲瓣铜炉 | `assets/default/item/collectibles/it_songlianbantonglu.png` | 待出图 | [it_songlianbantonglu.md](items/collectibles/it_songlianbantonglu.md) |
+| items | `it_songqingshiyuwenyan` | 青石鱼纹砚 | `assets/default/item/collectibles/it_songqingshiyuwenyan.png` | 待出图 | [it_songqingshiyuwenyan.md](items/collectibles/it_songqingshiyuwenyan.md) |
+| items | `it_songsanzhuobi` | 宋式散卓笔 | `assets/default/item/collectibles/it_songsanzhuobi.png` | 待出图 | [it_songsanzhuobi.md](items/collectibles/it_songsanzhuobi.md) |
+| items | `it_songxiaoyuyu` | 宋式小玉鱼 | `assets/default/item/collectibles/it_songxiaoyuyu.png` | 待出图 | [it_songxiaoyuyu.md](items/collectibles/it_songxiaoyuyu.md) |
+| items | `it_songyinhuaibei` | 北宋银花口杯 | `assets/default/item/collectibles/it_songyinhuaibei.png` | 待出图 | [it_songyinhuaibei.md](items/collectibles/it_songyinhuaibei.md) |
+| items | `it_songyulianbei` | 宋式玉莲瓣杯 | `assets/default/item/collectibles/it_songyulianbei.png` | 待出图 | [it_songyulianbei.md](items/collectibles/it_songyulianbei.md) |
+| items | `it_suibaicixiaozhan` | 隋式白瓷小盏 | `assets/default/item/collectibles/it_suibaicixiaozhan.png` | 待出图 | [it_suibaicixiaozhan.md](items/collectibles/it_suibaicixiaozhan.md) |
+| items | `it_suibolibianping` | 隋式玻璃扁瓶 | `assets/default/item/collectibles/it_suibolibianping.png` | 待出图 | [it_suibolibianping.md](items/collectibles/it_suibolibianping.md) |
+| items | `it_suijingaozubei` | 隋式金高足杯 | `assets/default/item/collectibles/it_suijingaozubei.png` | 待出图 | [it_suijingaozubei.md](items/collectibles/it_suijingaozubei.md) |
+| items | `it_suijinxiangyubei` | 隋式镶金玉杯 | `assets/default/item/collectibles/it_suijinxiangyubei.png` | 待出图 | [it_suijinxiangyubei.md](items/collectibles/it_suijinxiangyubei.md) |
+| items | `it_suiqingyougaiguan` | 青釉双层齿沿盖罐 | `assets/default/item/collectibles/it_suiqingyougaiguan.png` | 待出图 | [it_suiqingyougaiguan.md](items/collectibles/it_suiqingyougaiguan.md) |
+| items | `it_suiyuzhihuan` | 隋式白玉指环 | `assets/default/item/collectibles/it_suiyuzhihuan.png` | 待出图 | [it_suiyuzhihuan.md](items/collectibles/it_suiyuzhihuan.md) |
+| items | `it_sunruiqingshenpinmo` | 孙瑞卿神品墨 | `assets/default/item/collectibles/it_sunruiqingshenpinmo.png` | 待出图 | [it_sunruiqingshenpinmo.md](items/collectibles/it_sunruiqingshenpinmo.md) |
+| items | `it_tanghaishouputaojing` | 海兽葡萄铜镜 | `assets/default/item/collectibles/it_tanghaishouputaojing.png` | 待出图 | [it_tanghaishouputaojing.md](items/collectibles/it_tanghaishouputaojing.md) |
+| items | `it_tangjixingtaoyan` | 唐箕形陶砚 | `assets/default/item/collectibles/it_tangjixingtaoyan.png` | 待出图 | [it_tangjixingtaoyan.md](items/collectibles/it_tangjixingtaoyan.md) |
+| items | `it_tangshierfengyan` | 唐十二峰陶砚 | `assets/default/item/collectibles/it_tangshierfengyan.png` | 待出图 | [it_tangshierfengyan.md](items/collectibles/it_tangshierfengyan.md) |
+| items | `it_tangtongsanxianglu` | 武周素铜香炉 | `assets/default/item/collectibles/it_tangtongsanxianglu.png` | 待出图 | [it_tangtongsanxianglu.md](items/collectibles/it_tangtongsanxianglu.md) |
+| items | `it_tangyueyaoqingwan` | 越窑青瓷茶碗 | `assets/default/item/collectibles/it_tangyueyaoqingwan.png` | 待出图 | [it_tangyueyaoqingwan.md](items/collectibles/it_tangyueyaoqingwan.md) |
+| items | `it_tangyuwoshou` | 白玉卧兽 | `assets/default/item/collectibles/it_tangyuwoshou.png` | 待出图 | [it_tangyuwoshou.md](items/collectibles/it_tangyuwoshou.md) |
+| items | `it_tangzhuganbi` | 唐式竹管兔毫笔 | `assets/default/item/collectibles/it_tangzhuganbi.png` | 待出图 | [it_tangzhuganbi.md](items/collectibles/it_tangzhuganbi.md) |
+| items | `it_wenzhengmingchibifu` | 文徵明《赤壁赋》页 | `assets/default/item/collectibles/it_wenzhengmingchibifu.png` | 待出图 | [it_wenzhengmingchibifu.md](items/collectibles/it_wenzhengmingchibifu.md) |
+| items | `it_wuyazihuajuan` | 无崖子画卷 | `assets/default/item/collectibles/it_wuyazihuajuan.png` | 待出图 | [it_wuyazihuajuan.md](items/collectibles/it_wuyazihuajuan.md) |
+| items | `it_wuzhoubaijian` | 武周请益帖 | `assets/default/item/collectibles/it_wuzhoubaijian.png` | 待出图 | [it_wuzhoubaijian.md](items/collectibles/it_wuzhoubaijian.md) |
+| items | `it_wuzhouqimuqihe` | 武周漆木棋盒 | `assets/default/item/collectibles/it_wuzhouqimuqihe.png` | 待出图 | [it_wuzhouqimuqihe.md](items/collectibles/it_wuzhouqimuqihe.md) |
+| items | `it_wuzhousuqin` | 武周素漆琴 | `assets/default/item/collectibles/it_wuzhousuqin.png` | 待出图 | [it_wuzhousuqin.md](items/collectibles/it_wuzhousuqin.md) |
+| items | `it_wuzhouzhuseqin` | 武周朱漆琴 | `assets/default/item/collectibles/it_wuzhouzhuseqin.png` | 待出图 | [it_wuzhouzhuseqin.md](items/collectibles/it_wuzhouzhuseqin.md) |
+| items | `it_xiaozhonghuijinchai` | 萧中慧金钗 | `assets/default/item/collectibles/it_xiaozhonghuijinchai.png` | 待出图 | [it_xiaozhonghuijinchai.md](items/collectibles/it_xiaozhonghuijinchai.md) |
+| items | `it_xixiafashutie` | 西夏赐赠法书卷 | `assets/default/item/collectibles/it_xixiafashutie.png` | 待出图 | [it_xixiafashutie.md](items/collectibles/it_xixiafashutie.md) |
+| items | `it_xueshanxiaoyuma` | 雪山小玉马 | `assets/default/item/collectibles/it_xueshanxiaoyuma.png` | 待出图 | [it_xueshanxiaoyuma.md](items/collectibles/it_xueshanxiaoyuma.md) |
+| items | `it_xueyezhongqin` | 雪夜钟琴 | `assets/default/item/collectibles/it_xueyezhongqin.png` | 待出图 | [it_xueyezhongqin.md](items/collectibles/it_xueyezhongqin.md) |
+| items | `it_yongleyashoubei` | 永乐青花压手杯 | `assets/default/item/collectibles/it_yongleyashoubei.png` | 待出图 | [it_yongleyashoubei.md](items/collectibles/it_yongleyashoubei.md) |
+| items | `it_yongzhengmeimuwan` | 雍正珐琅彩梅牡碗 | `assets/default/item/collectibles/it_yongzhengmeimuwan.png` | 待出图 | [it_yongzhengmeimuwan.md](items/collectibles/it_yongzhengmeimuwan.md) |
+| items | `it_yuanheiquqin` | 元式黑漆琴 | `assets/default/item/collectibles/it_yuanheiquqin.png` | 待出图 | [it_yuanheiquqin.md](items/collectibles/it_yuanheiquqin.md) |
+| items | `it_yuanhetianyuyu` | 元玉鱼 | `assets/default/item/collectibles/it_yuanhetianyuyu.png` | 待出图 | [it_yuanhetianyuyu.md](items/collectibles/it_yuanhetianyuyu.md) |
+| items | `it_yuanhuangjingzhi` | 元黄色写经纸 | `assets/default/item/collectibles/it_yuanhuangjingzhi.png` | 待出图 | [it_yuanhuangjingzhi.md](items/collectibles/it_yuanhuangjingzhi.md) |
+| items | `it_yuanhuanxuezhai` | 元代焕雪斋题字 | `assets/default/item/collectibles/it_yuanhuanxuezhai.png` | 待出图 | [it_yuanhuanxuezhai.md](items/collectibles/it_yuanhuanxuezhai.md) |
+| items | `it_yuanhuzhoubaihaobi` | 元湖州白毫笔 | `assets/default/item/collectibles/it_yuanhuzhoubaihaobi.png` | 待出图 | [it_yuanhuzhoubaihaobi.md](items/collectibles/it_yuanhuzhoubaihaobi.md) |
+| items | `it_yuanliulizhan` | 元式琉璃盏 | `assets/default/item/collectibles/it_yuanliulizhan.png` | 待出图 | [it_yuanliulizhan.md](items/collectibles/it_yuanliulizhan.md) |
+| items | `it_yuanqinghualianpan` | 元青花莲纹盘 | `assets/default/item/collectibles/it_yuanqinghualianpan.png` | 待出图 | [it_yuanqinghualianpan.md](items/collectibles/it_yuanqinghualianpan.md) |
+| items | `it_yuanqinghuazhihu` | 元青花凤穿牡丹执壶 | `assets/default/item/collectibles/it_yuanqinghuazhihu.png` | 待出图 | [it_yuanqinghuazhihu.md](items/collectibles/it_yuanqinghuazhihu.md) |
+| items | `it_yuanqingyitie` | 元代清议帖 | `assets/default/item/collectibles/it_yuanqingyitie.png` | 待出图 | [it_yuanqingyitie.md](items/collectibles/it_yuanqingyitie.md) |
+| items | `it_yuanqingyouxiaowan` | 元青釉小碗 | `assets/default/item/collectibles/it_yuanqingyouxiaowan.png` | 待出图 | [it_yuanqingyouxiaowan.md](items/collectibles/it_yuanqingyouxiaowan.md) |
+| items | `it_yuanqinshufang` | 元代书房琴 | `assets/default/item/collectibles/it_yuanqinshufang.png` | 待出图 | [it_yuanqinshufang.md](items/collectibles/it_yuanqinshufang.md) |
+| items | `it_yuanqiyuqin` | 元式漆玉徽琴 | `assets/default/item/collectibles/it_yuanqiyuqin.png` | 待出图 | [it_yuanqiyuqin.md](items/collectibles/it_yuanqiyuqin.md) |
+| items | `it_yuantongshoulu` | 元式素铜香炉 | `assets/default/item/collectibles/it_yuantongshoulu.png` | 待出图 | [it_yuantongshoulu.md](items/collectibles/it_yuantongshoulu.md) |
+| items | `it_yuanxiangmuqiguan` | 元式香木棋罐 | `assets/default/item/collectibles/it_yuanxiangmuqiguan.png` | 待出图 | [it_yuanxiangmuqiguan.md](items/collectibles/it_yuanxiangmuqiguan.md) |
+| items | `it_yuanyinshuiyu` | 元式银水盂 | `assets/default/item/collectibles/it_yuanyinshuiyu.png` | 待出图 | [it_yuanyinshuiyu.md](items/collectibles/it_yuanyinshuiyu.md) |
+| items | `it_yuanyuheyezun` | 元式荷叶玉杯 | `assets/default/item/collectibles/it_yuanyuheyezun.png` | 待出图 | [it_yuanyuheyezun.md](items/collectibles/it_yuanyuheyezun.md) |
+| items | `it_yuanzhenkuanshiyan` | 元贞款石砚 | `assets/default/item/collectibles/it_yuanzhenkuanshiyan.png` | 待出图 | [it_yuanzhenkuanshiyan.md](items/collectibles/it_yuanzhenkuanshiyan.md) |
+| items | `it_yuanzhushan` | 元式素竹扇 | `assets/default/item/collectibles/it_yuanzhushan.png` | 待出图 | [it_yuanzhushan.md](items/collectibles/it_yuanzhushan.md) |
+| items | `it_yuanzhuyujue` | 元竹节玉玦 | `assets/default/item/collectibles/it_yuanzhuyujue.png` | 待出图 | [it_yuanzhuyujue.md](items/collectibles/it_yuanzhuyujue.md) |
+| items | `it_yuebeizhong` | 越地宝贝壳 | `assets/default/item/collectibles/it_yuebeizhong.png` | 待出图 | [it_yuebeizhong.md](items/collectibles/it_yuebeizhong.md) |
+| items | `it_yuegaobingdou` | 越地原始瓷豆 | `assets/default/item/collectibles/it_yuegaobingdou.png` | 待出图 | [it_yuegaobingdou.md](items/collectibles/it_yuegaobingdou.md) |
+| items | `it_yuehexiqin` | 越地合席琴 | `assets/default/item/collectibles/it_yuehexiqin.png` | 待出图 | [it_yuehexiqin.md](items/collectibles/it_yuehexiqin.md) |
+| items | `it_yuejinyubi` | 越地缀金礼璧 | `assets/default/item/collectibles/it_yuejinyubi.png` | 待出图 | [it_yuejinyubi.md](items/collectibles/it_yuejinyubi.md) |
+| items | `it_yuelongwenhuang` | 龙纹旧玉璜 | `assets/default/item/collectibles/it_yuelongwenhuang.png` | 待出图 | [it_yuelongwenhuang.md](items/collectibles/it_yuelongwenhuang.md) |
+| items | `it_yueluganruanbi` | 越地苇管软毫笔 | `assets/default/item/collectibles/it_yueluganruanbi.png` | 待出图 | [it_yueluganruanbi.md](items/collectibles/it_yueluganruanbi.md) |
+| items | `it_yuemanaochangzhu` | 越地玛瑙长珠 | `assets/default/item/collectibles/it_yuemanaochangzhu.png` | 待出图 | [it_yuemanaochangzhu.md](items/collectibles/it_yuemanaochangzhu.md) |
+| items | `it_yuemubaitie` | 越地木牍拜简 | `assets/default/item/collectibles/it_yuemubaitie.png` | 待出图 | [it_yuemubaitie.md](items/collectibles/it_yuemubaitie.md) |
+| items | `it_yueqimuzun` | 越地漆木盛器 | `assets/default/item/collectibles/it_yueqimuzun.png` | 待出图 | [it_yueqimuzun.md](items/collectibles/it_yueqimuzun.md) |
+| items | `it_yueqingtongxiangpan` | 越地青铜香草盘 | `assets/default/item/collectibles/it_yueqingtongxiangpan.png` | 待出图 | [it_yueqingtongxiangpan.md](items/collectibles/it_yueqingtongxiangpan.md) |
+| items | `it_yueqingyouguan` | 越地青釉双耳罐 | `assets/default/item/collectibles/it_yueqingyouguan.png` | 待出图 | [it_yueqingyouguan.md](items/collectibles/it_yueqingyouguan.md) |
+| items | `it_yuesuyuhuan` | 越地素玉环 | `assets/default/item/collectibles/it_yuesuyuhuan.png` | 待出图 | [it_yuesuyuhuan.md](items/collectibles/it_yuesuyuhuan.md) |
+| items | `it_yuetongjian` | 越地素面铜鉴 | `assets/default/item/collectibles/it_yuetongjian.png` | 待出图 | [it_yuetongjian.md](items/collectibles/it_yuetongjian.md) |
+| items | `it_yuewuseqin` | 越地乌漆礼琴 | `assets/default/item/collectibles/it_yuewuseqin.png` | 待出图 | [it_yuewuseqin.md](items/collectibles/it_yuewuseqin.md) |
+| items | `it_yuexianwenwan` | 越地弦纹原始瓷碗 | `assets/default/item/collectibles/it_yuexianwenwan.png` | 待出图 | [it_yuexianwenwan.md](items/collectibles/it_yuexianwenwan.md) |
+| items | `it_yueyanmoshi` | 越地研墨石 | `assets/default/item/collectibles/it_yueyanmoshi.png` | 待出图 | [it_yueyanmoshi.md](items/collectibles/it_yueyanmoshi.md) |
+| items | `it_yueyouqin` | 越地幽弦琴 | `assets/default/item/collectibles/it_yueyouqin.png` | 待出图 | [it_yueyouqin.md](items/collectibles/it_yueyouqin.md) |
+| items | `it_yueyushiwen` | 越地玉石盟辞摹片 | `assets/default/item/collectibles/it_yueyushiwen.png` | 待出图 | [it_yueyushiwen.md](items/collectibles/it_yueyushiwen.md) |
+| items | `it_yuezhuganhaobi` | 越地竹管毫笔 | `assets/default/item/collectibles/it_yuezhuganhaobi.png` | 待出图 | [it_yuezhuganhaobi.md](items/collectibles/it_yuezhuganhaobi.md) |
+| items | `it_yuezhukeqingci` | 越地竹刻请辞 | `assets/default/item/collectibles/it_yuezhukeqingci.png` | 待出图 | [it_yuezhukeqingci.md](items/collectibles/it_yuezhukeqingci.md) |
+| items | `it_zhaominjinhe` | 赵敏修补金盒 | `assets/default/item/collectibles/it_zhaominjinhe.png` | 待出图 | [it_zhaominjinhe.md](items/collectibles/it_zhaominjinhe.md) |
+| items | `it_zhenlongqiju` | 珍珑棋局图 | `assets/default/item/collectibles/it_zhenlongqiju.png` | 待出图 | [it_zhenlongqiju.md](items/collectibles/it_zhenlongqiju.md) |
+| items | `it_zunjuantielinben` | 尊眷帖临本 | `assets/default/item/collectibles/it_zunjuantielinben.png` | 待出图 | [it_zunjuantielinben.md](items/collectibles/it_zunjuantielinben.md) |
+| items | `it_zuqianqiujiubei` | 祖千秋酒杯组 | `assets/default/item/collectibles/it_zuqianqiujiubei.png` | 待出图 | [it_zuqianqiujiubei.md](items/collectibles/it_zuqianqiujiubei.md) |
 | maps | `map_jianghu_world__ink_base` | 江湖万里图 · 水墨衬纸（全国底图） | `assets/default/map/jianghu_world/ink_base.png` | 待出图 | [jianghu_world_ink_base.md](maps/jianghu_world_ink_base.md) |
 | maps | `map_region_bashu__base` | 巴蜀区域局部图 | `assets/default/map/regions/rg_bashu.png` | 待出图 | [rg_bashu.md](maps/region/rg_bashu.md) |
 | maps | `map_region_dali_cangshan__base` | 大理苍山区域局部图 | `assets/default/map/regions/rg_dali_cangshan.png` | 待出图 | [rg_dali_cangshan.md](maps/region/rg_dali_cangshan.md) |
@@ -66,7 +216,7 @@
 | rig | `rig_male_std__ref_front34` | 男性标准体 · front34 全身参考图 | `assets/default/rig/male_std/ref_front34.png` | 待出图 | [ref_front34.md](rig/male_std/ref_front34.md) |
 | rig | `rig_male_std__ref_side` | 男性标准体 · side 全身参考图 | `assets/default/rig/male_std/ref_side.png` | 待出图 | [ref_side.md](rig/male_std/ref_side.md) |
 
-## 物品（11 类，名录 894 项）
+## 物品（11 类，名录 1045 项）
 
 每张图的提示词在各文件「提示词」节。下表只列还要出的行（待出图 / 待重出），已入库的不再列出，标题里的计数含已出部分。作者要重出的，把 ID 写进 `items/REDO.md` 再重建索引即可回到队列。
 
