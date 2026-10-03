@@ -50,6 +50,7 @@ CHECKS = [  # (ID 前缀, 审核要点文件)
     ("ART-rig-std", ".agents/coord/PROD/review_checks_rig_sheet.md"),  # 2026-10-03：标准体三视图与视图参考（先于 ART-rig- 匹配）
     ("ART-rig-", ".agents/coord/PROD/review_checks_rig_parts.md"),
     ("TOOL-rig-parts", ".agents/coord/PROD/review_checks_rig_parts.md"),  # 2026-10-03：女主切件（先于 TOOL- 匹配）
+    ("TOOL-rig-std-parts", ".agents/coord/PROD/review_checks_rig_parts.md"),  # 2026-10-03：标准体切件（先于 TOOL- 匹配）
     ("TOOL-", ".agents/coord/PROD/review_checks_tool.md"),
     ("CONTENT-", ".agents/coord/PROD/review_checks_content.md"),  # 2026-10-03 协调者 13:22：内容任务的引擎缺口按交接处理，不判 FAIL
     ("DES-", ".agents/coord/PROD/review_checks_des.md"),
