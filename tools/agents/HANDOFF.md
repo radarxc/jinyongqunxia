@@ -1262,4 +1262,10 @@
       - 它的 validate 含 `items_from_catalog.py --check`，并要求十一份名录输出逐字节不变。lore 转九列后集成分支 `--check` rc=1（50 条 stale），只有重新生成能消。
       - 它的 validate 还含 `discover -s tools/content`，要等 tests-discover 修好 test_town_runtime。
     - items-regen 在拆分拿到池位后再起；collectibles 等 regen 与 tests-discover 都合入后起。
+  - **10-03 07:47–07:58 开发监督**：代码池按次序推进。
+    - **ENG-entry-split**：07:47:54 拿到池位（tests-discover 执行器结束让出的），执行器在跑。
+    - **TOOL-tests-discover**：执行完、校验通过，07:50 起审核。
+    - **TOOL-items-regen**：07:49 起驱动（52864），07:56:33 拿到池位，执行器在跑。
+    - **TOOL-ingest-cropframe**：07:56 解除让位 HOLD，状态置 PENDING，交 eng3 照常起。entry 告急那 15 个任务仍挂起，等拆分合入。
+    - **TOOL-town-gaps-1**：日志 40 分钟涨到 57 MB，盯 150 MB 线。
 
