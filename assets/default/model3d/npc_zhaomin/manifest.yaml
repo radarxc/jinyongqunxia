@@ -1,0 +1,78 @@
+- id: npc_zhaomin__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 赵敏（倚天屠龙记 ch04 · 绿柳山庄青年）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: d88ff8c9-d910-4ade-af88-9d2f6c17aef5
+    url: https://studio.tripo3d.ai/workspace/generate/d88ff8c9-d910-4ade-af88-9d2f6c17aef5
+    generate_op: cf91a6fe-5732-45ac-9ec2-93e1eecb0f62（image_to_model）→ Free Retry e689f158-7d5e-4e97-adf7-9e0d4b2d140b（选用）
+    rig_op: 1031fb65-0997-459a-bcd5-41aeb036b514
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch04/threeview/por_npc_zhaomin__ch04_youth_lvliu_apose_slim.png
+    sha256: c3841b2c2e3a1842eb69fe88904bd55ca139f2d2d609358c6fc59d14b564f283
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: ef0219be2c29e1e004cce62bd6ca8cfd5b41df36149291241ff3fbb64b3e9fbd
+  size_bytes: 5798756
+  joints: 66
+  triangles: 98482
+  vertices: 55618
+  animations: []
+  textures:
+  - image/jpeg 375324 B
+  - image/jpeg 1376771 B
+  - image/jpeg 539943 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T15:20:56-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，男装白袍 + 黑冠发髻 + 黑腰带可辨识；自动绑骨一次成功（Hips y0.546、头顶骨端 0.959、双手外展 y0.52、脚 0.071）。骨架为 66 关节 = 65 个 mixamorig:* + 1 个挂在 Armature 下的 neutral_bone（只绑了头顶发冠处 1 个顶点，y0.94）；引擎侧可把 neutral_bone
+    的权重并到 mixamorig:Head，或忽略。已知瑕疵：后脑右侧垂一缕灰白色发（贴图推测错误，非肉色）；首版更明显，用 Free Retry（0 点）重做一次后变小但仍在。试过 Magic Brush 修色：Gen Mode 不支持 8K 贴图（需先 4K 重贴图 30 点再修 5 点再升 8K），Paint Mode 用模拟拖拽多半变成转视角、画不上，未保存任何改动。窄轮廓参考（4aee374a）；同目录宽袖
+    _apose 未用。
+- id: npc_zhaomin__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 赵敏（倚天屠龙记 ch04 · 绿柳山庄青年）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: d88ff8c9-d910-4ade-af88-9d2f6c17aef5
+    url: https://studio.tripo3d.ai/workspace/generate/d88ff8c9-d910-4ade-af88-9d2f6c17aef5
+    generate_op: cf91a6fe-5732-45ac-9ec2-93e1eecb0f62（image_to_model）→ Free Retry e689f158-7d5e-4e97-adf7-9e0d4b2d140b（选用）
+    rig_op: 1031fb65-0997-459a-bcd5-41aeb036b514
+  size: 369x594
+  sha256: ff676253294fed99ed4005f2a53e3c190fe62228fc1476d5b02afb4c6da9694e
+  size_bytes: 128110
+  created: '2026-10-03T15:20:56-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
