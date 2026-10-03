@@ -49,6 +49,45 @@ export const UseSpecSchema = z.strictObject({
 }).refine((value) => value.meridianAid === undefined || value.meridianTemper === undefined, {
   path: ['meridianTemper'], message: 'temporary aid and permanent temper are mutually exclusive',
 });
+
+const ArtIdSchema = z.enum(['med', 'poi', 'antidote', 'forge', 'alchemy', 'formation', 'music', 'art', 'chess', 'speech']);
+const ProjectionIntegerSchema = z.number().int().min(0);
+const ProjectionReferenceIdSchema = z.string().regex(/^[a-z][a-z0-9_]*$/);
+export const AttributeProjectionV2Schema = z.strictObject({
+  version: z.literal(2),
+  atk: ProjectionIntegerSchema.optional(),
+  hardness: ProjectionIntegerSchema.optional(),
+  qiAffinity: ProjectionIntegerSchema.optional(),
+  qiEffect: ProjectionReferenceIdSchema.optional(),
+  def: ProjectionIntegerSchema.optional(),
+  reflect: ProjectionIntegerSchema.optional(),
+  antiHidden: ProjectionIntegerSchema.optional(),
+  agi: ProjectionIntegerSchema.optional(),
+  block: ProjectionIntegerSchema.optional(),
+  luck: ProjectionIntegerSchema.optional(),
+  poison: ProjectionIntegerSchema.optional(),
+  antiPoison: ProjectionIntegerSchema.optional(),
+  restoreQi: ProjectionIntegerSchema.optional(),
+  qiCultivation: ProjectionIntegerSchema.optional(),
+  con: ProjectionIntegerSchema.optional(),
+  healInner: ProjectionIntegerSchema.optional(),
+  healOuter: ProjectionIntegerSchema.optional(),
+  stamina: ProjectionIntegerSchema.optional(),
+  skillRef: SkillIdSchema.optional(),
+  readWis: ProjectionIntegerSchema.max(100).optional(),
+  readBre: ProjectionIntegerSchema.max(100).optional(),
+  maxLayer: z.number().int().positive().optional(),
+  cultivation: ProjectionIntegerSchema.optional(),
+  unlockRef: ProjectionReferenceIdSchema.optional(),
+  artRef: ArtIdSchema.optional(),
+  artReq: ProjectionIntegerSchema.max(100).optional(),
+  travel: ProjectionIntegerSchema.optional(),
+  ruleRef: ProjectionReferenceIdSchema.optional(),
+});
+const AttributeProjectionExtensionShape = {
+  attributes: AttributeProjectionV2Schema.optional(),
+};
+
 const BaseItemSchema = z.strictObject({
   schemaVersion: z.literal('item.v1'), id: ItemIdSchema, name: z.string().min(1),
   kind: ItemKindSchema, sub: z.string().regex(/^[a-z][a-zA-Z0-9_]*$/).nullable(),
@@ -63,6 +102,7 @@ const BaseItemSchema = z.strictObject({
   text: z.strictObject({ desc: z.string().min(1), lore: z.string().min(1).optional(), short: z.string().min(1).optional() }),
 });
 const EquipExtensionSchema = z.strictObject({
+  ...AttributeProjectionExtensionShape,
   slot: EquipmentSlotSchema,
   cat: z.enum(['sword', 'blade', 'staff', 'spear', 'whip', 'exotic', 'hidden', 'unarmed']).optional(),
   hiddenKind: z.enum(['needle', 'dart', 'ball', 'awl', 'bolt', 'powder', 'gun', 'bow']).optional(),
@@ -71,8 +111,8 @@ const EquipExtensionSchema = z.strictObject({
   matFamily: z.enum(['metal', 'fabric', 'leather', 'wood', 'jade']),
   divine: z.boolean(), catalogTian: z.boolean(), uniqueEquipped: z.boolean(),
 });
-const ArtIdSchema = z.enum(['med', 'poi', 'antidote', 'forge', 'alchemy', 'formation', 'music', 'art', 'chess', 'speech']);
 const MaterialExtensionSchema = z.strictObject({
+  ...AttributeProjectionExtensionShape,
   family: z.string().regex(/^[a-z][a-zA-Z0-9_]*$/),
   resourceRef: z.string().regex(/^res_[a-z0-9_]+$/),
   materialGrade: GradeSchema, rare: z.boolean(),
@@ -81,21 +121,28 @@ const MaterialExtensionSchema = z.strictObject({
   ingredientKind: z.enum(['grain', 'meat', 'fish', 'vegetable', 'fruit', 'spice', 'rare']).optional(),
 });
 const ManualExtensionSchema = z.strictObject({
+  ...AttributeProjectionExtensionShape,
   skill: SkillIdSchema, maxLayer: z.number().int().min(1).max(10),
   variant: z.enum(['full', 'partial', 'copy', 'original']),
   readMul: z.number().positive(), attuneFor: z.array(ChapterIdSchema).optional(),
 });
-const PageExtensionSchema = z.strictObject({ skill: SkillIdSchema, pagesTotal: z.number().int().positive() });
+const PageExtensionSchema = z.strictObject({ ...AttributeProjectionExtensionShape, skill: SkillIdSchema, pagesTotal: z.number().int().positive() });
 const RecipeExtensionSchema = z.strictObject({
+  ...AttributeProjectionExtensionShape,
   teaches: z.string().regex(/^rc_[a-z0-9_]+$/),
   craft: z.enum(['forge', 'alchemy', 'poison', 'cook', 'inscribe']),
   req: z.strictObject({ art: ArtIdSchema, minimum: z.number().int().min(0).max(100) }),
 });
-const QuestExtensionSchema = z.strictObject({ quest: QuestIdSchema.optional(), opens: z.array(z.string()), recognizedBy: z.array(NpcIdSchema) });
+const QuestExtensionSchema = z.strictObject({
+  ...AttributeProjectionExtensionShape, quest: QuestIdSchema.optional(),
+  opens: z.array(z.string()), recognizedBy: z.array(NpcIdSchema),
+});
 const CurioExtensionSchema = z.strictObject({
+  ...AttributeProjectionExtensionShape,
   rule: z.string().regex(/^[a-z][a-zA-Z0-9_.]*$/), consumable: z.boolean(),
 });
 const MountExtensionSchema = z.strictObject({
+  ...AttributeProjectionExtensionShape,
   travelMul: z.number().positive().max(1), staMul: z.number().positive().max(1),
   terrains: z.array(z.string().regex(/^[a-z][a-zA-Z0-9_]*$/)).min(1), stable: z.boolean(),
 });
@@ -116,7 +163,7 @@ export const ItemDefSchema = BaseItemSchema.extend({
     z.strictObject({ type: z.literal('curio'), value: CurioExtensionSchema }),
     z.strictObject({ type: z.literal('mount'), value: MountExtensionSchema }),
     z.strictObject({ type: z.literal('collectible'), value: CollectibleExtensionSchema }),
-    z.strictObject({ type: z.literal('generic'), value: z.strictObject({}) }),
+    z.strictObject({ type: z.literal('generic'), value: z.strictObject({ ...AttributeProjectionExtensionShape }) }),
   ]),
 }).superRefine((value, context) => {
   const equipment = ['weapon', 'armor', 'offhand', 'hidden', 'accessory'].includes(value.kind);
@@ -149,3 +196,4 @@ export const ItemDefSchema = BaseItemSchema.extend({
 });
 
 export type ItemDef = z.output<typeof ItemDefSchema>;
+export type AttributeProjectionV2 = z.output<typeof AttributeProjectionV2Schema>;

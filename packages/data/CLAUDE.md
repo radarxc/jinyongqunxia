@@ -27,6 +27,8 @@
   不结算伤害、资源、路线或范围。
 - `quest.v1` 的序章主线 ID 只接受 `q_00_main_c_01`–`q_00_main_c_04`；不得扩展到
   `05` 以后或 `q_00_main_z/x_*`。
+- `item.v1` 的适用 extension 可在 `value.attributes` 携带严格校验的
+  `AttributeProjectionV2`；data 只校验并保留该摘要，不结算或重复消费其数值。
 - `prop_*` 必须 `chapterBound:true` 且只属于一个章节；离章销毁由 core 执行，data
   只校验标记。`tutorial_projection` 只允许 ch00 且必须带回执引用。
 - Tiled 只发现 `content/world/regions/<rg_id>/<sc_id>.tmj`；正交有限图经
