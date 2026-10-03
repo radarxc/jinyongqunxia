@@ -1,0 +1,10 @@
+schemaVersion: event.v1
+id: ev_10_cold_entry_first_talk
+chapterId: ch10_baima
+event: story/coldEntryFirstTalk
+once: true
+condition:
+  sceneId: sc_10_fengshi_feiyi
+  anchorId: first_talk
+actions:
+  - {op: startStory, storyId: story_ch10_cold_entry, knot: fengshi_first_talk}

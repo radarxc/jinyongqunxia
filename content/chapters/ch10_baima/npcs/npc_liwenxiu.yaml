@@ -1,0 +1,51 @@
+schemaVersion: npc.v1
+id: npc_liwenxiu
+identity:
+  name: 李文秀
+  aliases: [阿斯托]
+  origin: fictional
+  sourceWorks: [白马啸西风]
+lifespan:
+  born: {kind: unknown, ageBand: young_adult, note: 原著准确年龄待考；本界统一使用成年视觉代理}
+  died: null
+  explicitAliveAt:
+    - {chapterId: ch10_baima, from: 702, to: 703, source: 唐代化玩法时间（原创扩展）}
+appearances:
+  - key: baima_tang_adult_proxy
+    chapterId: ch10_baima
+    years: {from: 702, to: 703, approx: true}
+    displayName: 李文秀
+    presenceMode: living
+    combatEligible: true
+    ageBand: young_adult
+    sects: []
+    location: {cityId: null, placeKey: sc_10_fengshi_feiyi}
+    contentLayer: mainline
+    recruitment:
+      difficulty: D5
+      questRef: q_10_main_z_08
+      gateRef: q_10_main_z_08#recruit_gate
+      valueGateRefs: [q_10_main_c_03#protect_aman]
+      mainlineGateRef: q_10_main_z_08#complete
+      windowKeys: [c02_to_d10]
+      canonicalConsequenceRef: q_10_main_c_05#eastward_choice
+      fallbackAllianceRef: q_10_main_c_05#alliance
+      lockWarningRef: q_10_main_z_08#lock_warning
+      fateRuleRef: null
+    build:
+      pipeline: full
+      templateRole: tmpl_elite
+      cultivationBand: 18
+      portrayal: tang_white_horse_swordswoman_adult_proxy
+      skills: []
+      unregisteredSkills: []
+    ai: {tier: ai_adept, personality: pers_huzhu}
+recruitment: {everRecruitable: true, allianceOnly: false, hardConflictWith: [], softConflictWith: []}
+bonds: {tags: [whiteHorse, compassionate, independent], comboCandidateRefs: []}
+crossBook:
+  enabled: false
+  reunionQuestByChapter: {}
+  legacy: {skillRefs: [], itemRefs: [], heirNpcRefs: []}
+sources:
+  - {kind: novel, work: 白马啸西风, locator: "李文秀主线；准确年龄、阿斯托称谓与回目待考"}
+  - {kind: expanded, locator: "docs/design/catalog/npcs-ch10-baima.md §2；唐代成年视觉代理"}
