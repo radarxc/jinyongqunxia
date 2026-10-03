@@ -140,6 +140,24 @@ describe('content build hashing and Ink', () => {
     expect(() => decodeInkTag('ts:battle/start encounter=(dynamic)')).toThrow('INK_TAG_PARAM');
   });
 
+  it.each([
+    ['quest/advance quest=q_00_main_c_01 stage=st_close', 'quest/advance quest=bad stage=st_close'],
+    ['party/giveItem item=prop_bamboo_staff count=1', 'party/giveItem item=prop_bamboo_staff count=0'],
+    ['party/takeItem item=it_tao count=1', 'party/takeItem item=it_tao count=many'],
+    ['battle/start encounter=enc_00_zhulin', 'battle/start encounter=battle_00'],
+    ['flag/set flagId=fl_00_ready value=true', 'flag/set flagId=fl_00_ready value=yes'],
+    ['world/openEntrance entrance=ent_00_east', 'world/openEntrance entrance=east'],
+    ['tutorial/mark tutorial=initial_battle state=completed', 'tutorial/mark tutorial=initial_battle state=done'],
+    ['story/requestTransmission skill=sk_changshengjue source=aqing', 'story/requestTransmission skill=bad source=aqing'],
+    ['ui/openAllocation mode=manual', 'ui/openAllocation mode=random'],
+    ['ui/showTitleCard card=baima_volume_one', 'ui/showTitleCard card=1'],
+    ['save/autosave reason=chapter_entry', 'save/autosave reason=chapter-entry'],
+    ['dialogue/speaker speaker=npc_aqing', 'dialogue/speaker speaker=aqing'],
+  ])('validates Ink opcode arguments: %s', (valid, invalid) => {
+    expect(decodeInkTag(`ts:${valid}`).opcode).toBe(valid.split(' ')[0]);
+    expect(() => decodeInkTag(`ts:${invalid}`)).toThrow('INK_TAG_PARAM');
+  });
+
   it('hashes canonical structured preimages without delimiters', async () => {
     await expect(hashValue(['a', ['b', 'c']])).resolves.toMatch(/^[a-f0-9]{64}$/u);
   });

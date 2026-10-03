@@ -13,6 +13,21 @@
 
 当前仅建空骨架；ENG-02 及后续内容任务负责写 schema 对应数据。
 
+M1 新增正式根类型 `quest.v1` 与 `move.v1`。序章主线只接受
+`q_00_main_c_01`–`q_00_main_c_04`；武学的 `moveIds` 引用 `mv_*`。章内临时道具使用
+`prop_*`、`chapterBound:true` 和恰好一个 `chapters` 条目，不能当作跨章背包物。
+武学教学预览的学习来源写 `tutorial_projection`，必须属于 ch00 并填写回执 `ref`。
+
+Ink 动作参数示例：
+
+```ink
+#ts:battle/start encounter=enc_00_zhulin
+#ts:quest/advance quest=q_00_main_c_01 stage=st_close
+#ts:party/takeItem item=it_tao count=1
+#ts:tutorial/mark tutorial=initial_battle state=completed
+#ts:dialogue/speaker speaker=npc_aqing
+```
+
 构建命令为 `pnpm content:build [--chapter chNN_name] [--locale zh-Hans] [--emit-refs]`。
 中间文件写入 `.cache/content-build/`，发布叶片与每书界 `manifest.json` 写入
 `dist/content/`；两处均为可重建产物，不提交 Git。当前 M1 以书界 base 分片，RegionMap

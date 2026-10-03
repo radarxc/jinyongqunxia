@@ -11,6 +11,19 @@ const common: readonly FieldSpec[] = [
 /** Explicit schema-side metadata; `*` is an intentional rule subtree, never a name heuristic. */
 
 export const CONTENT_FIELD_REGISTRY: Readonly<Record<ContentKind, readonly FieldSpec[]>> = {
+  move: [...common, { pattern: 'skillId', class: 'contentRef' },
+    { pattern: 'meridianRouteRef', class: 'contentRef' },
+    { pattern: 'affectedRouteRefs.*', class: 'contentRef' },
+    { pattern: 'targetAcupoint.acupointRef', class: 'contentRef' }, { pattern: '*', class: 'rule' }],
+  quest: [{ pattern: 'titleKey', class: 'contentRef' },
+    { pattern: 'subjectNpcIds.*', class: 'contentRef' },
+    { pattern: 'ownerSectId', class: 'contentRef' },
+    { pattern: 'stages.*.objectiveKeys.*', class: 'contentRef' },
+    { pattern: 'stages.*.objectives.*.storyId', class: 'contentRef' },
+    { pattern: 'stages.*.objectives.*.itemId', class: 'contentRef' },
+    { pattern: 'stages.*.effects.*.itemId', class: 'contentRef' },
+    { pattern: 'stages.*.effects.*.skillId', class: 'contentRef' },
+    { pattern: 'source.note', class: 'authoring' }, { pattern: '*', class: 'rule' }],
   item: [...common, { pattern: 'text.*', class: 'text' }, { pattern: 'assets.*', class: 'assetRef' },
     { pattern: 'assets', class: 'assetRef' },
     { pattern: 'extension.value.skill', class: 'contentRef' },
