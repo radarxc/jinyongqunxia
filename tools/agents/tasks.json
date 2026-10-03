@@ -34793,7 +34793,8 @@
    "web": true,
    "writes": [
     "docs/design/catalog/items-collectibles.md",
-    "assets/default/prompts/items/collectibles/**"
+    "assets/default/prompts/items/collectibles/**",
+    "docs/design/10-items-and-equipment.md"
    ],
    "vars": {},
    "sparse_include": [
