@@ -797,4 +797,13 @@
       - TOOL-items-catalog 在 ENG-18d 合入前不能合；之后由开发监督挪基点、`--from validate` 复验。
     - **eng3 队列**：ENG-18d 排在 ENG-18b 后，ENG-12d 排在 CONTENT-ch00c 后。要等 eng3 重启才生效，已报协调者。
     - **环境**：主检出 `.git/logs/refs/remotes/origin/` 下有 root 拥有的 `*.lock`，每次提交后的自动 gc 都报错。提交本身不受影响，已报协调者。
+  - **10-02 23:25–23:33 开发监督**：
+    - **ENG-17a 合入（M1）**：7543c30e，23:25。r1 FAIL；eng3 第 1 次复审 r2 PASS。
+    - **集成分支体积变红**：ENG-17a 合入后跑 `prod_check post-eng17a`，size 门禁不过：entry 175.46 / 170 KiB，ENG-16d 后是 138.63；webgl total 338.49 / 350，还过。
+      - 原因：ENG-17a 把 Ink 运行时放进了 core Worker，它自己的工作区约 169.x，单独看过线；和 ENG-16b / 16d / 12c-clip 叠在一起就超了。
+      - core-worker 打包后 135.4 KiB gzip，算在 entry 闭包里；其中整个 `virtual:tianshu-content`（单独成块时 71.6 KiB）大部分是物品。
+      - 处理（554bff51，协调者同意，entry 预算不放宽）：ENG-18d 改为只依赖 ENG-17a，硬验收是合入后集成分支 `pnpm check` 全绿；ENG-18b / 17 / 19a / 16c 加依赖 ENG-18d，免得在红基点上空跑。
+      - 协调者 23:28 重启 eng3（并发 4）；ENG-18d 23:29 起跑。
+    - **AR-37（作者）**：片段模式 rig 门禁放宽到 1.0 ms，程序步态 0.80 不动（538e1454）。ENG-12d 降为可选，已挪到 eng3 队尾，说明也已跟进（f9d84601）。
+    - **des34**（协调者新起，物品说明与属性投影 9 项，并发 6）：开发监督照常盯停住。注意 DES-items-lore-* 会改物品名录，TOOL-items-catalog 复验前要按最新名录重新生成。
 
