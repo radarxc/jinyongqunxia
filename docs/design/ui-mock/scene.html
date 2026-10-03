@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light"><title>天书录 · 山河尺牍</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&amp;display=swap&amp;text=天书录山河尺牍白马啸西风行囊武学人物图鉴江湖志系统张掖洛阳扬州行路笺驻足主角李文秀城中相逢六角决策青钢剑内外两册立身经脉藏锋于匣行旅手记调弦观卷先天八项随身装束江湖吐纳法落点预览">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- 既有六屏延伸为九屏，原生 radio 只翻阅方向稿；无规则结算、JS 或框架。 -->
+<input class="screen-input" type="radio" name="screen" id="map" aria-label="大地图样稿" checked>
+<input class="screen-input" type="radio" name="screen" id="town" aria-label="城镇对白样稿">
+<input class="screen-input" type="radio" name="screen" id="battle" aria-label="战斗样稿">
+<input class="screen-input tool-input" type="radio" name="screen" id="bag" aria-label="行囊样稿">
+<input class="screen-input tool-input" type="radio" name="screen" id="martial" aria-label="武学样稿">
+<input class="screen-input tool-input" type="radio" name="screen" id="character" aria-label="人物样稿">
+<input class="screen-input tool-input" type="radio" name="screen" id="codex" aria-label="图鉴样稿">
+<input class="screen-input tool-input" type="radio" name="screen" id="journal" aria-label="江湖志样稿">
+<input class="screen-input tool-input" type="radio" name="screen" id="system" aria-label="系统样稿">
+<div class="world" aria-hidden="true"></div>
+<header class="topbar halo">
+<div class="brand">天书录<small>白马啸西风 · 卷中</small></div>
+<nav class="scene-nav" aria-label="场景审阅切换">
+<label for="map"><img class="icon" src="img/ui_tool_map.webp" alt="">大地图</label>
+<label for="town"><img class="icon" src="img/ui_tool_town.webp" alt="">城镇</label>
+<label for="battle"><img class="icon" src="img/ui_tool_battle.webp" alt="">战斗</label>
+</nav>
+<div class="wallet"><img class="icon" src="img/ui_res_silver.webp" alt="银两">
+<details><summary aria-label="银两一千二百八十两，展开精确余额"><span><strong>一千二百八十</strong><small>两 · 申时</small></span></summary><p class="balance-detail wash">现银一千二百八十两<br><span class="small">合一百二十八万文<br>金额为排版示意</span></p></details>
+</div>
+</header>
+<main>
+<section class="screen map-screen" aria-label="大地图">
+<div class="scene-heading halo"><h1>山河尺牍</h1><div class="poem">白马啸西风<span class="seal">卷中</span></div></div>
+<div class="north halo" aria-hidden="true">北</div>
+<svg class="route" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true"><path d="M512 307 C600 310 641 416 794 414 S930 463 998 500"/></svg>
+<label for="town" class="city current halo"><img class="icon" src="img/ui_map_city.webp" alt="">张掖</label>
+<div class="city luoyang halo"><img class="icon" src="img/ui_map_city.webp" alt="">洛阳</div>
+<div class="city yangzhou halo"><img class="icon" src="img/ui_map_city.webp" alt="">扬州</div>
+<aside class="journey wash"><span class="note-mark">行路笺</span><h2>张掖</h2><p>落脚河西<br>且入城歇马。</p><p class="small extra">城门、街市与客舍<br>皆在一卷之中。</p><label class="link-action" for="town">入城一览</label></aside>
+<div class="party wash">
+<div class="companion"><img class="portrait-small" src="img/hero.webp" alt="主角立绘"><div class="stats"><h3>主角</h3><div class="resource"><img class="icon" src="img/ui_status_hp.webp" alt="气血"><span>84 / 100</span></div><div class="meter"><i style="width:84%"></i></div><div class="resource"><img class="icon" src="img/ui_status_mp.webp" alt="内力"><span>68 / 100</span></div><div class="meter mp"><i style="width:68%"></i></div><div class="resource"><img class="icon" src="img/ui_status_sta.webp" alt="体力"><span>92 / 100</span></div><div class="meter sta"><i style="width:92%"></i></div></div></div>
+<div class="companion secondary"><img class="portrait-small" src="img/li.webp" alt="李文秀立绘"><div><h3>李文秀</h3><p class="small">同行 · 状态平稳</p><label for="character" class="link-action">查看队伍</label></div></div>
+</div>
+<p class="travel-note halo">当前 · 张掖　　晴</p><p class="page-note halo">山河与数值皆为示意</p>
+</section>
+<section class="screen town-screen" aria-label="城镇对白">
+<div class="scene-heading halo"><h1>城中相逢</h1><div class="poem">张掖<span class="seal">申时</span></div></div>
+<img class="dialogue-portrait" src="img/li.webp" alt="李文秀">
+<article class="dialogue wash"><h2>李文秀</h2><p>风沙渐歇，前面便是城门。<br>走了这许久，不如先找一处歇脚。</p><footer><span class="small">原创演示对白 · 非原著引文</span><label class="link-action" for="map">回到山河</label></footer></article>
+</section>
+<section class="screen battle-screen" aria-label="战斗">
+<div class="timeline wash"><span class="note-mark">当前行动</span><img class="portrait-small" src="img/hero.webp" alt="主角"><p>主角</p><span class="small">随后</span><img class="portrait-small" src="img/li.webp" alt="李文秀"></div>
+<div class="battle-grid" aria-label="六角落点示意"><div class="hex"></div><div class="hex reach"></div><div class="hex reach"><img src="img/hero.webp" alt="当前单位"></div><div class="hex target">落点</div><div class="hex"></div><div class="hex"></div><div class="hex reach"></div><div class="hex reach"></div><div class="hex"></div><div class="hex"></div></div>
+<aside class="battle-summary wash"><h2>落点预览</h2><p>移步至选中六角<br>招式与目标另行确认</p><div class="resource"><img class="icon" src="img/ui_status_rage.webp" alt="气势"><span>气势　36 / 100</span></div><p class="small">仅展示布局 · 不结算行动</p></aside>
+<div class="actions wash" aria-label="战斗动作外观示意"><div class="action chosen"><img class="icon" src="img/ui_tool_battle.webp" alt="">招式</div><div class="action"><img class="icon" src="img/ui_status_sta.webp" alt="">移步</div><div class="action"><img class="icon" src="img/ui_status_mp.webp" alt="">调息</div><div class="action"><img class="icon" src="img/ui_tool_bag.webp" alt="">道具</div></div>
+</section>
+<section class="screen bag-screen" aria-label="行囊">
+<article class="folio wash"><header class="folio-head"><img class="icon" src="img/ui_tool_bag.webp" alt=""><div><h1>行囊</h1><p class="small">藏锋于匣 · 随身之物</p></div><label class="return" for="map">合卷</label></header>
+<div class="folio-body two-column"><div><p class="category-line"><span class="chosen">随身</span><span>兵器</span><span>丹药</span><span>秘籍</span></p><div class="inventory">
+<figure class="item selected"><img src="img/sword.webp" alt="青钢剑"><figcaption>青钢剑<small>黄 · 上品　已穿</small></figcaption></figure>
+<figure class="item"><img src="img/medicine.webp" alt="金创药"><figcaption>金创药<small>数量 · 三</small></figcaption></figure>
+<figure class="item"><img src="img/pill.webp" alt="九花玉露丸"><figcaption>九花玉露丸<small>数量 · 一</small></figcaption></figure>
+<figure class="item"><img src="img/manual.webp" alt="江湖吐纳法秘籍"><figcaption>江湖吐纳法<small>秘籍 · 全本</small></figcaption></figure>
+</div><div class="rule"></div><p class="small">仅陈列样例物品，不代表开局持有。</p></div>
+<div class="item-detail"><img class="item-hero" src="img/sword.webp" alt="青钢剑详情图"><span class="note-mark">兵器 · 主手</span><h2>青钢剑</h2><p>剑藏匣中，锋芒未露。<br>行走江湖，随身一柄。</p><p class="small">原创陈列短笺，不定义装备属性。</p><div class="rule"></div><div class="text-pair"><span>当前状态</span><b>已穿戴</b></div><label class="link-action" for="character">查看随身装束</label></div></div>
+</article></section>
+<section class="screen martial-screen" aria-label="武学">
+<article class="folio wash"><header class="folio-head"><img class="icon" src="img/ui_tool_martial.webp" alt=""><div><h1>内外两册</h1><p class="small">武学 · 翻卷观心</p></div><label class="return" for="map">合卷</label></header>
+<div class="folio-body two-column"><div><p class="category-line"><span>外功</span><span class="chosen">内功</span><span>轻功</span><span>其他</span></p><h2 class="section-name">江湖吐纳法</h2><p>静坐调息，内观其身。</p><p class="small">原创演示短笺 · 不展示未接入的成长数值</p><div class="rule"></div><p class="text-pair"><span>当前陈列</span><span class="note-mark">内功秘籍</span></p><label class="link-action" for="codex">翻阅图鉴</label></div><img class="book-image" src="img/manual.webp" alt="江湖吐纳法秘籍"></div>
+</article></section>
+<section class="screen character-screen" aria-label="人物">
+<article class="folio wash"><header class="folio-head"><img class="icon" src="img/ui_tool_character.webp" alt=""><div><h1>立身与经脉</h1><p class="small">人物 · 主角</p></div><label class="return" for="map">合卷</label></header>
+<div class="folio-body character-grid"><figure><img class="portrait-large" src="img/hero.webp" alt="主角全身立绘"><figcaption class="portrait-name">主角</figcaption></figure>
+<div><h2 class="section-name">先天八项</h2><div class="attributes"><p class="text-pair"><span>根骨</span><b>60</b></p><p class="text-pair"><span>臂力</span><b>60</b></p><p class="text-pair"><span>身法</span><b>60</b></p><p class="text-pair"><span>悟性</span><b>60</b></p><p class="text-pair"><span>定力</span><b>60</b></p><p class="text-pair"><span>福缘</span><b>60</b></p><p class="text-pair"><span>魅力</span><b>60</b></p><p class="text-pair"><span>内息</span><b>60</b></p></div><div class="rule"></div>
+<div class="resource"><img class="icon" src="img/ui_status_hp.webp" alt=""><span>气血　84 / 100</span></div><div class="meter"><i style="width:84%"></i></div><div class="resource"><img class="icon" src="img/ui_status_mp.webp" alt=""><span>内力　68 / 100</span></div><div class="meter mp"><i style="width:68%"></i></div><div class="resource"><img class="icon" src="img/ui_status_sta.webp" alt=""><span>体力　92 / 100</span></div><div class="meter sta"><i style="width:92%"></i></div><p class="small">数值示意 · 非开局配点建议</p></div>
+<div><h2 class="section-name">随身装束</h2><div class="equipment"><p>主手<strong>青钢剑</strong></p><p>副手<strong>未装配</strong></p><p>头饰<strong>未装配</strong></p><p>衣服<strong>未装配</strong></p><p>护手<strong>未装配</strong></p><p>腰带<strong>未装配</strong></p><p>鞋<strong>未装配</strong></p><p>佩饰<strong>未装配</strong></p><p>内甲<strong>未装配</strong></p><p>护肩<strong>未装配</strong></p><p>披风<strong>未装配</strong></p></div><div class="rule"></div><p class="small">原八栏与装束三槽共十一槽；立绘服装不代表装备记录。</p></div>
+</div></article></section>
+<section class="screen codex-screen" aria-label="图鉴">
+<article class="folio wash"><header class="folio-head"><img class="icon" src="img/ui_tool_codex.webp" alt=""><div><h1>图鉴</h1><p class="small">天书录 · 册目</p></div><label class="return" for="map">合卷</label></header>
+<div class="folio-body"><p class="category-line"><span class="chosen">人物</span><span>武学</span><span>物品</span><span>地点</span><span>书界</span></p><div class="codex-layout"><div class="codex-list"><p class="note-mark">李文秀 · 已录</p><p class="muted">主角 · 已录</p></div><img class="portrait-large" src="img/li.webp" alt="李文秀立绘"><div class="codex-copy"><span class="note-mark">白马啸西风</span><h2>李文秀</h2><p>风沙来处，白马相伴。<br>将一段江湖，收进一页书中。</p><p class="small">原创演示题记<br>仅陈列已公开人物</p></div></div></div>
+</article></section>
+<section class="screen journal-screen" aria-label="江湖志">
+<article class="folio wash"><header class="folio-head"><img class="icon" src="img/ui_tool_journal.webp" alt=""><div><h1>行旅手记</h1><p class="small">江湖志 · 一路见闻</p></div><label class="return" for="map">合卷</label></header>
+<div class="folio-body two-column"><div><span class="note-mark">当前驻足</span><h2 class="section-name">张掖</h2><p>行路至此，暂歇风尘。<br>一页记来处，一页记归途。</p><div class="rule"></div><p class="small">原创视觉短笺，不增剧情任务或报酬。</p><label class="link-action" for="map">回看山河</label></div><figure><img class="journal-art" src="img/scene.webp" alt="白马叙事插画"><figcaption class="small">白马啸西风 · 已有场景画</figcaption></figure></div>
+</article></section>
+<section class="screen system-screen" aria-label="系统">
+<article class="folio wash"><header class="folio-head"><img class="icon" src="img/ui_tool_system.webp" alt=""><div><h1>调弦与观卷</h1><p class="small">系统 · 外观陈列</p></div><label class="return" for="map">合卷</label></header>
+<div class="folio-body ledger"><div class="setting-row"><span class="setting-name"><img class="icon" src="img/ui_tool_save.webp" alt="">藏卷</span><span class="small">静态样稿不写存档</span></div><div class="rule"></div><div class="setting-row"><span>阅读材质</span><span>暖纸 · 墨字</span></div><div class="setting-row"><span>正文大小</span><span>标准</span></div><div class="setting-row"><span>界面动效</span><span>静止</span></div><div class="rule"></div><p class="small">字体加载失败时自动回退系统宋体或楷体。</p><label class="link-action" for="map">回到山河</label></div>
+</article></section>
+</main>
+<nav class="toolbar halo" aria-label="工具样稿切换">
+<label class="tool" for="bag"><img class="icon" src="img/ui_tool_bag.webp" alt="">行囊</label>
+<label class="tool" for="martial"><img class="icon" src="img/ui_tool_martial.webp" alt="">武学</label>
+<label class="tool" for="character"><img class="icon" src="img/ui_tool_character.webp" alt="">人物</label>
+<label class="tool" for="codex"><img class="icon" src="img/ui_tool_codex.webp" alt="">图鉴</label>
+<label class="tool" for="journal"><img class="icon" src="img/ui_tool_journal.webp" alt="">江湖志</label>
+<label class="tool" for="system"><img class="icon" src="img/ui_tool_system.webp" alt="">系统</label>
+</nav>
+</body></html>
