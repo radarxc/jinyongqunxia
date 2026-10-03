@@ -45,6 +45,10 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - 从 `@tianshu/render/rig` 动态导入；不要从根入口静态导入，避免进入首屏 chunk。
 - `loadRigSet(manifest)` 在启动时校验 `tianshu-rig.v1` 并把三视图 39 张 PNG 装入共享 atlas；素材缺失时用同尺寸描边色块，正式素材接入无需改角色 API。
 - `createRigCharacter(rigSet, equipment, stableId)` 返回 `RigInstance`；调用 `setMotion(dir8, speedMps, weightClass)`、`setEquipment(next)`、`setPosition(x,y,z)`、`update(dt)`，最终 `dispose()`。
+- `loadRigClip()` 严格校验 `tianshu-clip.v1` / `tianshu_humanoid.v1` / 许可与轨迹长度，解码为预分配 typed array；先 `registerRigClip()`，再调用 `playClip(id,{facingYawDeg,rate?,onEvent?})`，`stopClip()` 在 160 ms 内淡回程序步态。
+- 片段固定一拍二 12 fps；移动片段速率只取 `speedMps/nativeSpeedMps`，仅 `[0.8,1.4]` 使用，超界回程序步态。根运动原地；偏航辅助最多 ±30°；`nearHandWeapon` 可按动态深度镜像片段，但不得翻转玩法朝向。
+- 程序步态和片段都先写 caller-owned `PartPoseBuffer`，再经唯一姿势写入口更新实例。投影顺序是偏航、2D FK、逐部件三视图与 10° 滞回、缩短下限 0.45、躯干肩宽比、动态 z、剑轴；稳态热路径不得创建对象或数组。
+- `hit/end` 仅回调 VFX、SFX、cutin 等表现层；停止/取消不得伪造事件，core 禁止导入或读取 render 事件。`content/anim/clip-map.yaml` 是 `MoveDef.anim.clip` 键到片段参数的唯一映射，未知键硬失败。
 - `RigBatch` 按 atlas family 拥有一个双材质 `InstancedMesh`：alpha 芯与软边共 2 draw call。每角色固定 16 基础槽 + 最多 4 附加槽；默认容量 100 人 / 2,000 实例。
 - `EquipmentVisuals` 是 render 侧只读适配边界。core 的装备投影接入后只映射字段，不在 render 推导战斗合法性；可用 `weightClassForEquipment()` 推导轻/中/重表现档。
 - 资源所有权：`RigSet.dispose()` 销毁共享 atlas；`RigBatch.dispose()` 销毁 geometry/material；`RigInstance.dispose()` 只终止角色状态，调用方负责从批次移除。
@@ -56,6 +60,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - `performance.test.ts` 只由 Vitest 的 `perf` project 收集；普通 `node` project 显式排除它。`perf` 使用 `fileParallelism:false`、单 worker、`sequence.concurrent:false`。
 - **不在 `pnpm check` 里**（作者 AR-33）：根 `test` 脚本只跑普通项目；本门禁由 `pnpm check:perf`（先打印 loadavg，再跑 `pnpm test:perf`）在机器负载低时单独跑。开发监督在每批合入后与发布前跑一次，结果与负载记进 HANDOFF。
 - 负载只作诊断记录：每轮输出 `os.loadavg()` 与 CPU 数。**禁止**在任何测试里加「高负载跳过 / 放宽」逻辑，不得改阈值、采样帧数或分位数；`check:perf` 失败一律按真实性能退化处理。
+- 片段模式另跑 100 人 / 1,600 实例、120 帧预热、3×600 帧 best-of-3，P95 仍须 `<0.80 ms`；只放在 `pnpm test:perf` / `pnpm check:perf`，不得并入 `pnpm check`。
 
 ## 招式 VFX API（ENG-11）
 
@@ -80,7 +85,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - ENG-08 大地图已按上述接口接入；ENG-09 城镇区域加载时共享一个 `RigSet`/`RigBatch`，只把可见角色加入批次；超过 100 人时先把远景 C 级路人降为合成人群卡。
 - ENG-10 战斗已落地上述转换和批渲染；ENG-11 攻击大动作可经应用的 `onMoveResolved` 申请深度偏移，但不得重算命中、移动或朝向规则。
 - 所有下游每渲染帧先更新可见 `RigInstance`，再调用一次 `RigBatch.sync()`；不要逐角色提交 draw call，也不要直接修改实例属性。
-- 开发验证入口为 `/rig-demo`，含八方向、动作/重量、七类装备、连续/12 fps 姿势与 20 人压力开关。
+- 开发验证入口为 `/rig-demo`，含八方向与轮播、程序/动作库步态 A/B、片段选择、剑招按钮、事件日志、动作/重量、七类装备、连续/12 fps 姿势与 20 人压力开关。
 - ENG-21b 在 `createBattleRenderer()` / `createWorldMapScene()` 的 WebGLRenderer 创建和 `resize()` DPR 设置处接上下文恢复、自适应质量；保留 `setTimeOfDay()` 状态和 tint pass 重建。ENG-12c 可直接复用 `camera.yawDeg`、`spriteDir()` 与 `hexDirToRig()`。
 - 当前 `rig/character.ts` 的 `setMotion()` 会对镜头引发的 `Dir8` 变化启动约 160 ms 转身混合，与 tech/09 §4.3“转镜头不另开视图动画”不符；留给 rig 后续任务增加镜头重定向的无转身入口。
 
@@ -91,7 +96,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - [Three Raycaster](https://threejs.org/docs/pages/Raycaster.html)：`InstancedMesh` 命中结果携带 `instanceId`。以上访问日期 2026-10-01。
 - [OrthographicCamera](https://threejs.org/docs/pages/OrthographicCamera.html)、[TextureLoader](https://threejs.org/docs/pages/TextureLoader.html)：大地图斜视正交镜头与可选水墨底图。
 - [WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)：`renderer.info.render` 提供 draw call 与 triangle 统计；城镇性能面板直接读取，不自行估算。以上城镇相关官方页面于 2026-10-02 联网返回 HTTP 200。
-- 锁文件实际版本为 Three 0.186.1；未新增依赖。战斗专项测试覆盖方向映射、共享边裁决，根 `pnpm check` 继续执行 rig P95 和 bundle size 门禁。
+- 锁文件实际版本为 Three 0.186.1；未新增依赖。战斗专项测试覆盖方向映射、共享边裁决；根 `pnpm check` 执行普通测试与 bundle size，rig P95 仅由 `pnpm check:perf` 执行（AR-33）。
 - [Three WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)、[Texture](https://threejs.org/docs/pages/Texture.html)、[TextureLoader](https://threejs.org/docs/pages/TextureLoader.html)：核实 `powerPreference`、像素比、异步贴图加载及 renderer / texture 的显式 `dispose()`；访问日期 2026-10-01。
 - [Three Color](https://threejs.org/docs/pages/Color.html)、[WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)、[ShaderMaterial](https://threejs.org/docs/pages/ShaderMaterial.html)、[Material](https://threejs.org/docs/pages/Material.html)：核实 `setRGB(..., SRGBColorSpace)`、`info.autoReset/reset()`、手动 clear、uniform、混合/深度状态与显式释放；2026-10-02 联网返回 HTTP 200。
 - [MDN webglcontextlost](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/webglcontextlost_event)、[webglcontextrestored](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/webglcontextrestored_event)、[isContextLost](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isContextLost)、[WEBGL_lose_context](https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_lose_context)：核实丢失阻止默认行为、恢复事件、前台检查和开发测试扩展；访问日期 2026-10-02。
