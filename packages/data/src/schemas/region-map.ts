@@ -80,6 +80,10 @@ export const TERRAIN_IDS = [
 
 export const TerrainIdSchema = z.enum(TERRAIN_IDS);
 export const RegionIdSchema = z.string().regex(/^rg_[a-z0-9]+(?:_[a-z0-9]+)*$/);
+export const RegionGateIdSchema = z.string().regex(
+  /^gate_(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*$/,
+  'must be a Canon gate_<NN>_<name> ID',
+);
 export const RegionSceneIdSchema = z
   .string()
   .regex(/^sc_(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*$/);
@@ -192,14 +196,14 @@ export const DoorObjectSchema = z.strictObject({
   targetSceneId: RegionSceneIdSchema,
   targetSpawnId: LocalIdSchema,
   textKey: TextKeySchema.optional(),
-  lockedBy: ContentRefSchema.optional(),
+  lockedBy: RegionGateIdSchema.optional(),
   returnDoorId: LocalIdSchema.optional(),
 });
 export const TriggerObjectSchema = z.strictObject({
   ...ObjectBase,
   class: z.literal('Trigger'),
   eventId: ContentRefSchema.optional(),
-  action: z.string().regex(new RegExp('^[a-z][a-z0-9]*(?:/[a-z0-9]+)+$')).optional(),
+  action: z.string().regex(/^[a-z][a-z0-9]*(?:\/[a-z][A-Za-z0-9]*)+$/u).optional(),
   textKey: TextKeySchema.optional(),
   once: z.boolean(),
   autosave: z.boolean(),
@@ -280,7 +284,7 @@ export const GateExprSchema: z.ZodType<GateExpr> = z.lazy(() => z.union([
 export const QinggongGateObjectSchema = z
   .strictObject({
     ...ObjectBase,
-    id: z.string().regex(/^gate_(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*$/),
+    id: RegionGateIdSchema,
     class: z.literal('QinggongGate'),
     kind: QinggongKindSchema,
     tier: z.number().int().min(1).max(5),

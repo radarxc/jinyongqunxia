@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { canonicalBytes } from './hash';
+import { INK_OPCODE_NAMES } from './ink';
 import { compileTiledMap, validateTiledMaps } from './tiled';
 import { buildContent, regionRulesLogicalName } from './pipeline';
 import { emitLeaves, MAX_LEAF_BYTES } from './leaves';
@@ -463,6 +464,86 @@ describe('Tiled to RegionMap', () => {
 });
 
 describe('Tiled rejection diagnostics', () => {
+  const addTrigger = (map: Record<string, unknown>, action: string): void => {
+    const objects = (map['layers'] as Record<string, unknown>[])[3]!['objects'] as unknown[];
+    objects.push(
+      object(3, 'trigger_action', 'Trigger', 0, 0, [
+        property('action', action),
+        property('once', false),
+        property('autosave', false),
+        property('safe', false),
+      ]),
+    );
+  };
+  const addLockedDoor = (map: Record<string, unknown>, lockedBy: string): void => {
+    const objects = (map['layers'] as Record<string, unknown>[])[3]!['objects'] as unknown[];
+    objects.push(
+      object(3, 'door_locked', 'Door', 0, 0, [
+        property('mode', 'door'),
+        property('pairId', 'door_pair'),
+        property('oneWay', false),
+        property('targetRegionId', 'rg_jiangnan_taihu'),
+        property('targetSceneId', 'sc_00_fixture'),
+        property('targetSpawnId', 'spawn_a'),
+        property('lockedBy', lockedBy),
+      ]),
+    );
+  };
+
+  it.each(INK_OPCODE_NAMES)('accepts the registered Trigger action %s', async (action) => {
+    const map = fixture();
+    addTrigger(map, action);
+
+    expect((await build(map)).diagnostics).toEqual([]);
+  });
+
+  it('rejects a case-mismatched Trigger action with the registered spelling suggestion', async () => {
+    const map = fixture();
+    addTrigger(map, 'party/giveitem');
+
+    const diagnostic = (await build(map)).diagnostics[0];
+    expect(diagnostic).toMatchObject({
+      code: 'TS-CONTENT-MAP-009',
+      severity: 'error',
+      primary: { file: 'content/world/regions/rg_jiangnan_taihu/sc_00_fixture.tmj' },
+    });
+    expect(diagnostic?.message).toContain('trigger_action');
+    expect(diagnostic?.message).toContain('party/giveitem');
+    expect(diagnostic?.message).toContain('你是不是想写 party/giveItem');
+  });
+
+  it('rejects an unknown Trigger action without a case-only suggestion', async () => {
+    const map = fixture();
+    addTrigger(map, 'party/unknown');
+
+    const diagnostic = (await build(map)).diagnostics[0];
+    expect(diagnostic).toMatchObject({ code: 'TS-CONTENT-MAP-009', severity: 'error' });
+    expect(diagnostic?.message).toContain('trigger_action');
+    expect(diagnostic?.message).toContain('party/unknown');
+    expect(diagnostic?.message).not.toContain('你是不是想写');
+  });
+
+  it.each(['q_00_main_c_03', 'st_00_locked', 'fl_00_locked'])(
+    'rejects Door lockedBy from a non-RegionGate ID domain: %s',
+    async (lockedBy) => {
+      const map = fixture();
+      addLockedDoor(map, lockedBy);
+
+      const diagnostic = (await build(map)).diagnostics[0];
+      expect(diagnostic).toMatchObject({ code: 'TS-CONTENT-MAP-009', severity: 'error' });
+      expect(diagnostic?.message).toContain('door_locked');
+      expect(diagnostic?.message).toContain(lockedBy);
+      expect(diagnostic?.message).toContain('RegionGate');
+    },
+  );
+
+  it('keeps a gate-like Door lockedBy when no content-side RegionGate registry exists', async () => {
+    const map = fixture();
+    addLockedDoor(map, 'gate_00_zhulin_exit');
+
+    expect((await build(map)).diagnostics).toEqual([]);
+  });
+
   it('rejects an absolute external tileset outside content/tiled', async () => {
     const external = await mkdtemp(join(tmpdir(), 'tianshu-external-tsj-'));
     try {

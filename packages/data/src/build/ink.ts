@@ -38,6 +38,7 @@ const OPCODES: Readonly<Record<string, OpcodeSpec>> = {
   'save/autosave': { required: { reason: local } },
   'dialogue/speaker': { required: { speaker: /^(?:npc_[a-z0-9_]+|player|narrator|book_spirit)$/u } },
 };
+export const INK_OPCODE_NAMES: readonly string[] = Object.freeze(Object.keys(OPCODES));
 const EXTERNALS = new Set(['get_flag', 'quest_stage', 'has_item', 'affinity']);
 const META_ID = /^(?:story|ink)_[a-z0-9_]+$/u;
 const CHAPTER_ID = /^ch(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*$/u;
