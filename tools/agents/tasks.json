@@ -31592,6 +31592,10 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
+    ],
+    "shrink_exempt": [
+     "packages/ui/src/GameUi.vue",
+     "apps/game/src/storage-demo.ts"
     ]
    },
    "id": "ENG-19a-ui-shell",
