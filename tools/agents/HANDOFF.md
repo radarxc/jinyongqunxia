@@ -1333,3 +1333,4 @@
       - 已正式修订说明第 7 条为 `--min 1 --max 1 --min-side 1024`，注明协调者 08:25 修订与原因，提交 96624783。
       - 08:45 的返修读的是改前说明。它转 HOLD 后，用 `--from validate` 加 `--rework-extra .agents/coord/TOOL-town-gaps-1/devsup_note_contract.md` 复审。
 
+  - **10-03 08:55–09:02 磁盘告急（协调者 / 追踪者 / 开发监督）**：08:55 一分钟内从 6.7 GiB 跌到 0.77 GiB。元凶是两个 /private/tmp 临时检出：ENG-entry-split 执行器为量 HEAD 基线体积建的 `eng-entry-head.*`（5.98 GB，含整份 assets）与 TOOL-items-regen 的 `tool-items-regen-size-probe.*`（1.4 GB，regen 已停、孤儿）。协调者两个都删（基线数字直接取 `_handoff/prod_check_post-eng12e_0818.log`；已请开发监督在 entry-split 的返修说明里禁止再做整仓临时检出，并把「不得在 /private/tmp 做整仓检出」写进 ENG 说明通则）；追踪者删掉 /private/tmp 10 个旧 codex-home 类目录与 CITY 临时目录（0.75 GB）。09:01 回到 9 GiB；交换区 32.8 GB 未涨。w16 runner 曾被 < 3 GiB 护栏停下，rig-sheet-side 已出完 6 张、第 1 次运行结束校验通过（审核中）。
