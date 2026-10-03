@@ -31446,7 +31446,8 @@
    "deps": [
     "ENG-18-content-build",
     "ENG-18b-tiled-regionmap",
-    "ENG-25-content-schemas-m1"
+    "ENG-25-content-schemas-m1",
+    "ENG-18d-items-leaf"
    ],
    "writes": [
     "content/common/meridians/**",
@@ -32107,7 +32108,8 @@
    "title": "工具 · 物品生成器跟上名录扩充（去掉写死行数，重新生成 content/items）",
    "prompt": "TOOL-items-catalog.md",
    "deps": [
-    "ENG-18-content-build"
+    "ENG-18-content-build",
+    "ENG-18d-items-leaf"
    ],
    "writes": [
     "tools/content/items_from_catalog.py",
@@ -34265,6 +34267,131 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/content-loader.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-18d-items-leaf",
+   "title": "游戏工程 · 物品数据移出 entry 闭包：物品成为内容包独立叶片，core Worker 启动时按需加载规则，文本只在展示时读（体积门禁不放宽）",
+   "prompt": "ENG-items-leaf.md",
+   "deps": [
+    "ENG-17a-newrun-dialogue",
+    "ENG-18b-tiled-regionmap"
+   ],
+   "writes": [
+    "packages/data/**",
+    "apps/game/build/**",
+    "apps/game/src/runtime/**",
+    "apps/game/src/core-worker.ts",
+    "apps/game/src/core-host.ts",
+    "apps/game/src/content.d.ts",
+    "apps/game/src/selectors/items.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/rig/clip-player.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-12d-clip-perf",
+   "title": "游戏工程 · 动作原型 P9 补：片段驱动 rig 的 CPU 优化（100 人片段模式低负载 P95 ≤ 0.5 ms；接口、金样与阈值不变）",
+   "prompt": "ENG-12d-clip-perf.md",
+   "deps": [
+    "TOOL-rig-sheet",
+    "ENG-12c-clip"
+   ],
+   "writes": [
+    "packages/render/src/rig/**",
+    "packages/render/CLAUDE.md"
+   ]
   }
  ]
 }
