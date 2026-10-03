@@ -34945,6 +34945,69 @@
     "apps/game/scripts/check-dev-chunks.test.*",
     "package.json"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/agents/reports/TOOL-town-gaps-1.md",
+     "assets/default/town/city_luoyang__ch10/manifest.yaml",
+     "assets/default/town/city_taiyuan__ch10/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "{python}",
+      "tools/town/check_town.py",
+      "docs/design/town/city_luoyang__ch10.yaml",
+      "--strict-assets"
+     ],
+     [
+      "{python}",
+      "tools/town/check_town.py",
+      "docs/design/town/city_taiyuan__ch10.yaml",
+      "--strict-assets"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-town-gaps-1",
+   "title": "城镇工具缺口第一批 · 声明式水门、多重城垣 / 共用内隔墙、未声明墙水相交检查、plan_view 页眉按城、cities.yaml 庭州键与 ch10 年代带、唐 / 西域 / 吐蕃套件进 schema；用洛阳、太原重跑管线验证（CITY 审核 r2 的工具缺口）",
+   "prompt": "TOOL-town-gaps-1.md",
+   "deps": [
+    "CITY-layouts-all"
+   ],
+   "writes": [
+    "tools/town/**",
+    "docs/design/town/schema.yaml",
+    "docs/design/town/cities.yaml",
+    "docs/design/town/city_luoyang__ch10.yaml",
+    "docs/design/town/city_taiyuan__ch10.yaml",
+    "docs/design/town/progress.csv",
+    "docs/design/town/done.txt",
+    "assets/default/town/city_luoyang__ch10/**",
+    "assets/default/town/city_taiyuan__ch10/**",
+    "packages/data/src/schemas/town.ts",
+    "packages/data/src/schemas/town.test.ts"
+   ]
   }
  ]
 }
