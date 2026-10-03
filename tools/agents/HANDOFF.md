@@ -1528,4 +1528,7 @@
       - 合计全量 25.89，稀疏 18.69。
     - 首次会话真正用到的素材：1 张 `ref_map_jianghu` 地图、ch00 / ch10 的物品图标与出场 NPC 立绘，估约 0.5–0.8 KiB。worldMaps（ch01）在 M1 里用不上。
     - 已向协调者建议：assets 与 worldMaps 改成按章节懒加载叶片；并修正门禁口径风险（任务工作区会少算约 7 KiB）。等协调者登记瘦身任务，预算不动。
+  - **10-03 12:36 开发监督**：协调者登记 ENG-session-base-diet（提示词 `ENG-session-base-diet.md`）。
+    - 内容：worldMaps / assets / 章节 NPC 改成按章节懒加载叶片，基础内容只留 topology / factions / skills；readAssetManifest 只按 manifest 生成键；目标首次会话 ≤ 80 KiB，门槛 110 不变；顺手修 DEV 演示入口。
+    - 依赖 ENG-20b。20b 合入后，代码池有位我就单独起（traex Sol max，review_checks_eng），eng3 队列不改。
 
