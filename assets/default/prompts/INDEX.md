@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1009** 份：已入库 657、待出图 220、已通过（作者） 132。**待出图队列 220 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1009** 份：已入库 658、待出图 219、已通过（作者） 132。**待出图队列 219 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -36,7 +36,6 @@
 | items | `it_miji_baoshangfa` | 包伤法抄本 | `assets/default/item/manuals/it_miji_baoshangfa.png` | 待出图 | [it_miji_baoshangfa.md](items/manuals/it_miji_baoshangfa.md) |
 | items | `it_miji_biandufa` | 辨毒法全本 | `assets/default/item/manuals/it_miji_biandufa.png` | 待出图 | [it_miji_biandufa.md](items/manuals/it_miji_biandufa.md) |
 | items | `it_miji_biaojuqiangfa_can` | 镖局枪法残本 | `assets/default/item/manuals/it_miji_biaojuqiangfa_can.png` | 待出图 | [it_miji_biaojuqiangfa_can.md](items/manuals/it_miji_biaojuqiangfa_can.md) |
-| items | `it_miji_biaojurumen` | 镖局入门刀谱 | `assets/default/item/manuals/it_miji_biaojurumen.png` | 待出图 | [it_miji_biaojurumen.md](items/manuals/it_miji_biaojurumen.md) |
 | items | `it_miji_bixie` | 辟邪剑谱袈裟原本 | `assets/default/item/manuals/it_miji_bixie.png` | 待出图 | [it_miji_bixie.md](items/manuals/it_miji_bixie.md) |
 | items | `it_miji_boruozhang` | 般若掌法古本 | `assets/default/item/manuals/it_miji_boruozhang.png` | 待出图 | [it_miji_boruozhang.md](items/manuals/it_miji_boruozhang.md) |
 | items | `it_miji_bubingcao` | 步兵操全本 | `assets/default/item/manuals/it_miji_bubingcao.png` | 待出图 | [it_miji_bubingcao.md](items/manuals/it_miji_bubingcao.md) |
@@ -265,7 +264,7 @@
 
 （已全部入库。）
 
-### 武学秘籍（180）· 待出图 160、已入库 20
+### 武学秘籍（180）· 待出图 159、已入库 21
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -371,64 +370,63 @@
 | 100 | 包伤法抄本 | `it_miji_baoshangfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_baoshangfa.md](items/manuals/it_miji_baoshangfa.md) | template |
 | 101 | 辨毒法全本 | `it_miji_biandufa` | 黄 | 秘籍·全本 | 待出图 | [it_miji_biandufa.md](items/manuals/it_miji_biandufa.md) | template |
 | 102 | 镖局枪法残本 | `it_miji_biaojuqiangfa_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_biaojuqiangfa_can.md](items/manuals/it_miji_biaojuqiangfa_can.md) | template |
-| 103 | 镖局入门刀谱 | `it_miji_biaojurumen` | 黄 | 秘籍·全本 | 待出图 | [it_miji_biaojurumen.md](items/manuals/it_miji_biaojurumen.md) | template |
-| 104 | 步兵操全本 | `it_miji_bubingcao` | 黄 | 秘籍·全本 | 待出图 | [it_miji_bubingcao.md](items/manuals/it_miji_bubingcao.md) | template |
-| 105 | 布阵入门全本 | `it_miji_buzhenrumen` | 黄 | 秘籍·全本 | 待出图 | [it_miji_buzhenrumen.md](items/manuals/it_miji_buzhenrumen.md) | template |
-| 106 | 草上飞残本 | `it_miji_caoshangfei_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_caoshangfei_can.md](items/manuals/it_miji_caoshangfei_can.md) | template |
-| 107 | 草药知原本 | `it_miji_caoyaozhi` | 黄 | 秘籍·原本 | 待出图 | [it_miji_caoyaozhi.md](items/manuals/it_miji_caoyaozhi.md) | template |
-| 108 | 长枪入门谱 | `it_miji_changqiangrumen` | 黄 | 秘籍·全本 | 待出图 | [it_miji_changqiangrumen.md](items/manuals/it_miji_changqiangrumen.md) | template |
-| 109 | 长拳入门谱 | `it_miji_changquanrumen` | 黄 | 秘籍·全本 | 待出图 | [it_miji_changquanrumen.md](items/manuals/it_miji_changquanrumen.md) | template |
-| 110 | 传音法抄本 | `it_miji_chuanyinfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_chuanyinfa.md](items/manuals/it_miji_chuanyinfa.md) | template |
-| 111 | 丹田养气全本 | `it_miji_dantianyangqi` | 黄 | 秘籍·全本 | 待出图 | [it_miji_dantianyangqi.md](items/manuals/it_miji_dantianyangqi.md) | template |
-| 112 | 笛曲入门抄本 | `it_miji_diqurumen` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_diqurumen.md](items/manuals/it_miji_diqurumen.md) | template |
-| 113 | 短枪法抄本 | `it_miji_duanqiangfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_duanqiangfa.md](items/manuals/it_miji_duanqiangfa.md) | template |
-| 114 | 峨眉入门剑谱 | `it_miji_emeirumenjian` | 黄 | 秘籍·全本 | 待出图 | [it_miji_emeirumenjian.md](items/manuals/it_miji_emeirumenjian.md) | template |
-| 115 | 风石投术简谱 | `it_miji_fengshitoushu` | 黄 | 秘籍·全本 | 待出图 | [it_miji_fengshitoushu.md](items/manuals/it_miji_fengshitoushu.md) | template |
-| 116 | 改装法抄本 | `it_miji_gaizhuangfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_gaizhuangfa.md](items/manuals/it_miji_gaizhuangfa.md) | template |
-| 117 | 赶夜步全本 | `it_miji_ganyebu` | 黄 | 秘籍·全本 | 待出图 | [it_miji_ganyebu.md](items/manuals/it_miji_ganyebu.md) | template |
-| 118 | 弓手法残本 | `it_miji_gongshou_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_gongshou_can.md](items/manuals/it_miji_gongshou_can.md) | template |
-| 119 | 古墓心法抄本 | `it_miji_gumuxinfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_gumuxinfa.md](items/manuals/it_miji_gumuxinfa.md) | template |
-| 120 | 海风步全本 | `it_miji_haifengbu` | 黄 | 秘籍·全本 | 待出图 | [it_miji_haifengbu.md](items/manuals/it_miji_haifengbu.md) | template |
-| 121 | 横刀入门招全本 | `it_miji_hengdaorumenzhao` | 黄 | 秘籍·全本 | 待出图 | [it_miji_hengdaorumenzhao.md](items/manuals/it_miji_hengdaorumenzhao.md) | template |
-| 122 | 呼吸行气残本 | `it_miji_huxixingqi_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_huxixingqi_can.md](items/manuals/it_miji_huxixingqi_can.md) | template |
-| 123 | 护院拳谱全本 | `it_miji_huyuanquan` | 黄 | 秘籍·全本 | 待出图 | [it_miji_huyuanquan.md](items/manuals/it_miji_huyuanquan.md) | template |
-| 124 | 江湖长拳谱 | `it_miji_jianghuchangquan` | 黄 | 秘籍·全本 | 待出图 | [it_miji_jianghuchangquan.md](items/manuals/it_miji_jianghuchangquan.md) | template |
-| 125 | 江湖入门剑谱 | `it_miji_jianghurumenjian` | 黄 | 秘籍·全本 | 待出图 | [it_miji_jianghurumenjian.md](items/manuals/it_miji_jianghurumenjian.md) | template |
-| 126 | 救穴法残本 | `it_miji_jiuxuefa_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_jiuxuefa_can.md](items/manuals/it_miji_jiuxuefa_can.md) | template |
-| 127 | 军伍短刀抄本 | `it_miji_junwuduandao` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_junwuduandao.md](items/manuals/it_miji_junwuduandao.md) | template |
-| 128 | 军帐吐纳抄本 | `it_miji_junzhangtuna` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_junzhangtuna.md](items/manuals/it_miji_junzhangtuna.md) | template |
-| 129 | 看阵法抄本 | `it_miji_kanzhenfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_kanzhenfa.md](items/manuals/it_miji_kanzhenfa.md) | template |
-| 130 | 崆峒入门拳谱 | `it_miji_kongtongrumenquan` | 黄 | 秘籍·全本 | 待出图 | [it_miji_kongtongrumenquan.md](items/manuals/it_miji_kongtongrumenquan.md) | template |
-| 131 | 昆仑入门剑谱 | `it_miji_kunlunrumenjian` | 黄 | 秘籍·全本 | 待出图 | [it_miji_kunlunrumenjian.md](items/manuals/it_miji_kunlunrumenjian.md) | template |
-| 132 | 列阵步残本 | `it_miji_liezhengbu_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_liezhengbu_can.md](items/manuals/it_miji_liezhengbu_can.md) | template |
-| 133 | 临摹帖式原本 | `it_miji_linmotieshi` | 黄 | 秘籍·原本 | 待出图 | [it_miji_linmotieshi.md](items/manuals/it_miji_linmotieshi.md) | template |
-| 134 | 牧羊杖法简谱 | `it_miji_muyangzhang` | 黄 | 秘籍·全本 | 待出图 | [it_miji_muyangzhang.md](items/manuals/it_miji_muyangzhang.md) | template |
-| 135 | 蓬莱入门拳抄本 | `it_miji_penglairumenquan` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_penglairumenquan.md](items/manuals/it_miji_penglairumenquan.md) | template |
-| 136 | 平锋剑抄本 | `it_miji_pingfengjian` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_pingfengjian.md](items/manuals/it_miji_pingfengjian.md) | template |
-| 137 | 棋势入门残本 | `it_miji_qishirumen_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_qishirumen_can.md](items/manuals/it_miji_qishirumen_can.md) | template |
-| 138 | 全真吐纳诀抄本 | `it_miji_quanzhentunajue` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_quanzhentunajue.md](items/manuals/it_miji_quanzhentunajue.md) | template |
-| 139 | 散手全本 | `it_miji_sanshou` | 黄 | 秘籍·全本 | 待出图 | [it_miji_sanshou.md](items/manuals/it_miji_sanshou.md) | template |
-| 140 | 山野吐纳帛本 | `it_miji_shanyetuna` | 黄 | 秘籍·原本 | 待出图 | [it_miji_shanyetuna.md](items/manuals/it_miji_shanyetuna.md) | template |
-| 141 | 哨棒棍谱残本 | `it_miji_shaobanggun_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_shaobanggun_can.md](items/manuals/it_miji_shaobanggun_can.md) | template |
-| 142 | 少林棍法谱 | `it_miji_shaolingunfa` | 黄 | 秘籍·全本 | 待出图 | [it_miji_shaolingunfa.md](items/manuals/it_miji_shaolingunfa.md) | template |
-| 143 | 少林心法抄本 | `it_miji_shaolinxinfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_shaolinxinfa.md](items/manuals/it_miji_shaolinxinfa.md) | template |
-| 144 | 圣火吐纳诀抄本 | `it_miji_shenghuotunajue` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_shenghuotunajue.md](items/manuals/it_miji_shenghuotunajue.md) | template |
-| 145 | 识蛊虫残本 | `it_miji_shiguchong_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_shiguchong_can.md](items/manuals/it_miji_shiguchong_can.md) | template |
-| 146 | 书画笔法抄本 | `it_miji_shuhuabifa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_shuhuabifa.md](items/manuals/it_miji_shuhuabifa.md) | template |
-| 147 | 弹腿入门抄本 | `it_miji_tantuirumen` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_tantuirumen.md](items/manuals/it_miji_tantuirumen.md) | template |
-| 148 | 铁臂手全本 | `it_miji_tiebishou` | 黄 | 秘籍·全本 | 待出图 | [it_miji_tiebishou.md](items/manuals/it_miji_tiebishou.md) | template |
-| 149 | 铁袖功抄本 | `it_miji_tiexiu` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_tiexiu.md](items/manuals/it_miji_tiexiu.md) | template |
-| 150 | 通行飞石图谱 | `it_miji_tongxingfeishi` | 黄 | 秘籍·全本 | 待出图 | [it_miji_tongxingfeishi.md](items/manuals/it_miji_tongxingfeishi.md) | template |
-| 151 | 吐纳浅诀抄本 | `it_miji_tunaqianjue` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_tunaqianjue.md](items/manuals/it_miji_tunaqianjue.md) | template |
-| 152 | 武当长拳谱 | `it_miji_wudangchangquan` | 黄 | 秘籍·全本 | 待出图 | [it_miji_wudangchangquan.md](items/manuals/it_miji_wudangchangquan.md) | template |
-| 153 | 武馆刀法残本 | `it_miji_wuguandao_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_wuguandao_can.md](items/manuals/it_miji_wuguandao_can.md) | template |
-| 154 | 武馆棍法全本 | `it_miji_wuguangun` | 黄 | 秘籍·全本 | 待出图 | [it_miji_wuguangun.md](items/manuals/it_miji_wuguangun.md) | template |
-| 155 | 溪涧投步残卷 | `it_miji_xijiantoubu_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_xijiantoubu_can.md](items/manuals/it_miji_xijiantoubu_can.md) | template |
-| 156 | 训犬术全本 | `it_miji_xunquanshu` | 黄 | 秘籍·全本 | 待出图 | [it_miji_xunquanshu.md](items/manuals/it_miji_xunquanshu.md) | template |
-| 157 | 雁行步原本 | `it_miji_yanxingbu` | 黄 | 秘籍·原本 | 待出图 | [it_miji_yanxingbu.md](items/manuals/it_miji_yanxingbu.md) | template |
-| 158 | 越卒短剑简谱 | `it_miji_yuezu_duanjian` | 黄 | 秘籍·全本 | 待出图 | [it_miji_yuezu_duanjian.md](items/manuals/it_miji_yuezu_duanjian.md) | template |
-| 159 | 扎马步抄本 | `it_miji_zhamabu` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhamabu.md](items/manuals/it_miji_zhamabu.md) | template |
-| 160 | 壮行功抄本 | `it_miji_zhuangxingong` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhuangxingong.md](items/manuals/it_miji_zhuangxingong.md) | template |
+| 103 | 步兵操全本 | `it_miji_bubingcao` | 黄 | 秘籍·全本 | 待出图 | [it_miji_bubingcao.md](items/manuals/it_miji_bubingcao.md) | template |
+| 104 | 布阵入门全本 | `it_miji_buzhenrumen` | 黄 | 秘籍·全本 | 待出图 | [it_miji_buzhenrumen.md](items/manuals/it_miji_buzhenrumen.md) | template |
+| 105 | 草上飞残本 | `it_miji_caoshangfei_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_caoshangfei_can.md](items/manuals/it_miji_caoshangfei_can.md) | template |
+| 106 | 草药知原本 | `it_miji_caoyaozhi` | 黄 | 秘籍·原本 | 待出图 | [it_miji_caoyaozhi.md](items/manuals/it_miji_caoyaozhi.md) | template |
+| 107 | 长枪入门谱 | `it_miji_changqiangrumen` | 黄 | 秘籍·全本 | 待出图 | [it_miji_changqiangrumen.md](items/manuals/it_miji_changqiangrumen.md) | template |
+| 108 | 长拳入门谱 | `it_miji_changquanrumen` | 黄 | 秘籍·全本 | 待出图 | [it_miji_changquanrumen.md](items/manuals/it_miji_changquanrumen.md) | template |
+| 109 | 传音法抄本 | `it_miji_chuanyinfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_chuanyinfa.md](items/manuals/it_miji_chuanyinfa.md) | template |
+| 110 | 丹田养气全本 | `it_miji_dantianyangqi` | 黄 | 秘籍·全本 | 待出图 | [it_miji_dantianyangqi.md](items/manuals/it_miji_dantianyangqi.md) | template |
+| 111 | 笛曲入门抄本 | `it_miji_diqurumen` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_diqurumen.md](items/manuals/it_miji_diqurumen.md) | template |
+| 112 | 短枪法抄本 | `it_miji_duanqiangfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_duanqiangfa.md](items/manuals/it_miji_duanqiangfa.md) | template |
+| 113 | 峨眉入门剑谱 | `it_miji_emeirumenjian` | 黄 | 秘籍·全本 | 待出图 | [it_miji_emeirumenjian.md](items/manuals/it_miji_emeirumenjian.md) | template |
+| 114 | 风石投术简谱 | `it_miji_fengshitoushu` | 黄 | 秘籍·全本 | 待出图 | [it_miji_fengshitoushu.md](items/manuals/it_miji_fengshitoushu.md) | template |
+| 115 | 改装法抄本 | `it_miji_gaizhuangfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_gaizhuangfa.md](items/manuals/it_miji_gaizhuangfa.md) | template |
+| 116 | 赶夜步全本 | `it_miji_ganyebu` | 黄 | 秘籍·全本 | 待出图 | [it_miji_ganyebu.md](items/manuals/it_miji_ganyebu.md) | template |
+| 117 | 弓手法残本 | `it_miji_gongshou_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_gongshou_can.md](items/manuals/it_miji_gongshou_can.md) | template |
+| 118 | 古墓心法抄本 | `it_miji_gumuxinfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_gumuxinfa.md](items/manuals/it_miji_gumuxinfa.md) | template |
+| 119 | 海风步全本 | `it_miji_haifengbu` | 黄 | 秘籍·全本 | 待出图 | [it_miji_haifengbu.md](items/manuals/it_miji_haifengbu.md) | template |
+| 120 | 横刀入门招全本 | `it_miji_hengdaorumenzhao` | 黄 | 秘籍·全本 | 待出图 | [it_miji_hengdaorumenzhao.md](items/manuals/it_miji_hengdaorumenzhao.md) | template |
+| 121 | 呼吸行气残本 | `it_miji_huxixingqi_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_huxixingqi_can.md](items/manuals/it_miji_huxixingqi_can.md) | template |
+| 122 | 护院拳谱全本 | `it_miji_huyuanquan` | 黄 | 秘籍·全本 | 待出图 | [it_miji_huyuanquan.md](items/manuals/it_miji_huyuanquan.md) | template |
+| 123 | 江湖长拳谱 | `it_miji_jianghuchangquan` | 黄 | 秘籍·全本 | 待出图 | [it_miji_jianghuchangquan.md](items/manuals/it_miji_jianghuchangquan.md) | template |
+| 124 | 江湖入门剑谱 | `it_miji_jianghurumenjian` | 黄 | 秘籍·全本 | 待出图 | [it_miji_jianghurumenjian.md](items/manuals/it_miji_jianghurumenjian.md) | template |
+| 125 | 救穴法残本 | `it_miji_jiuxuefa_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_jiuxuefa_can.md](items/manuals/it_miji_jiuxuefa_can.md) | template |
+| 126 | 军伍短刀抄本 | `it_miji_junwuduandao` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_junwuduandao.md](items/manuals/it_miji_junwuduandao.md) | template |
+| 127 | 军帐吐纳抄本 | `it_miji_junzhangtuna` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_junzhangtuna.md](items/manuals/it_miji_junzhangtuna.md) | template |
+| 128 | 看阵法抄本 | `it_miji_kanzhenfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_kanzhenfa.md](items/manuals/it_miji_kanzhenfa.md) | template |
+| 129 | 崆峒入门拳谱 | `it_miji_kongtongrumenquan` | 黄 | 秘籍·全本 | 待出图 | [it_miji_kongtongrumenquan.md](items/manuals/it_miji_kongtongrumenquan.md) | template |
+| 130 | 昆仑入门剑谱 | `it_miji_kunlunrumenjian` | 黄 | 秘籍·全本 | 待出图 | [it_miji_kunlunrumenjian.md](items/manuals/it_miji_kunlunrumenjian.md) | template |
+| 131 | 列阵步残本 | `it_miji_liezhengbu_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_liezhengbu_can.md](items/manuals/it_miji_liezhengbu_can.md) | template |
+| 132 | 临摹帖式原本 | `it_miji_linmotieshi` | 黄 | 秘籍·原本 | 待出图 | [it_miji_linmotieshi.md](items/manuals/it_miji_linmotieshi.md) | template |
+| 133 | 牧羊杖法简谱 | `it_miji_muyangzhang` | 黄 | 秘籍·全本 | 待出图 | [it_miji_muyangzhang.md](items/manuals/it_miji_muyangzhang.md) | template |
+| 134 | 蓬莱入门拳抄本 | `it_miji_penglairumenquan` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_penglairumenquan.md](items/manuals/it_miji_penglairumenquan.md) | template |
+| 135 | 平锋剑抄本 | `it_miji_pingfengjian` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_pingfengjian.md](items/manuals/it_miji_pingfengjian.md) | template |
+| 136 | 棋势入门残本 | `it_miji_qishirumen_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_qishirumen_can.md](items/manuals/it_miji_qishirumen_can.md) | template |
+| 137 | 全真吐纳诀抄本 | `it_miji_quanzhentunajue` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_quanzhentunajue.md](items/manuals/it_miji_quanzhentunajue.md) | template |
+| 138 | 散手全本 | `it_miji_sanshou` | 黄 | 秘籍·全本 | 待出图 | [it_miji_sanshou.md](items/manuals/it_miji_sanshou.md) | template |
+| 139 | 山野吐纳帛本 | `it_miji_shanyetuna` | 黄 | 秘籍·原本 | 待出图 | [it_miji_shanyetuna.md](items/manuals/it_miji_shanyetuna.md) | template |
+| 140 | 哨棒棍谱残本 | `it_miji_shaobanggun_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_shaobanggun_can.md](items/manuals/it_miji_shaobanggun_can.md) | template |
+| 141 | 少林棍法谱 | `it_miji_shaolingunfa` | 黄 | 秘籍·全本 | 待出图 | [it_miji_shaolingunfa.md](items/manuals/it_miji_shaolingunfa.md) | template |
+| 142 | 少林心法抄本 | `it_miji_shaolinxinfa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_shaolinxinfa.md](items/manuals/it_miji_shaolinxinfa.md) | template |
+| 143 | 圣火吐纳诀抄本 | `it_miji_shenghuotunajue` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_shenghuotunajue.md](items/manuals/it_miji_shenghuotunajue.md) | template |
+| 144 | 识蛊虫残本 | `it_miji_shiguchong_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_shiguchong_can.md](items/manuals/it_miji_shiguchong_can.md) | template |
+| 145 | 书画笔法抄本 | `it_miji_shuhuabifa` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_shuhuabifa.md](items/manuals/it_miji_shuhuabifa.md) | template |
+| 146 | 弹腿入门抄本 | `it_miji_tantuirumen` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_tantuirumen.md](items/manuals/it_miji_tantuirumen.md) | template |
+| 147 | 铁臂手全本 | `it_miji_tiebishou` | 黄 | 秘籍·全本 | 待出图 | [it_miji_tiebishou.md](items/manuals/it_miji_tiebishou.md) | template |
+| 148 | 铁袖功抄本 | `it_miji_tiexiu` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_tiexiu.md](items/manuals/it_miji_tiexiu.md) | template |
+| 149 | 通行飞石图谱 | `it_miji_tongxingfeishi` | 黄 | 秘籍·全本 | 待出图 | [it_miji_tongxingfeishi.md](items/manuals/it_miji_tongxingfeishi.md) | template |
+| 150 | 吐纳浅诀抄本 | `it_miji_tunaqianjue` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_tunaqianjue.md](items/manuals/it_miji_tunaqianjue.md) | template |
+| 151 | 武当长拳谱 | `it_miji_wudangchangquan` | 黄 | 秘籍·全本 | 待出图 | [it_miji_wudangchangquan.md](items/manuals/it_miji_wudangchangquan.md) | template |
+| 152 | 武馆刀法残本 | `it_miji_wuguandao_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_wuguandao_can.md](items/manuals/it_miji_wuguandao_can.md) | template |
+| 153 | 武馆棍法全本 | `it_miji_wuguangun` | 黄 | 秘籍·全本 | 待出图 | [it_miji_wuguangun.md](items/manuals/it_miji_wuguangun.md) | template |
+| 154 | 溪涧投步残卷 | `it_miji_xijiantoubu_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_xijiantoubu_can.md](items/manuals/it_miji_xijiantoubu_can.md) | template |
+| 155 | 训犬术全本 | `it_miji_xunquanshu` | 黄 | 秘籍·全本 | 待出图 | [it_miji_xunquanshu.md](items/manuals/it_miji_xunquanshu.md) | template |
+| 156 | 雁行步原本 | `it_miji_yanxingbu` | 黄 | 秘籍·原本 | 待出图 | [it_miji_yanxingbu.md](items/manuals/it_miji_yanxingbu.md) | template |
+| 157 | 越卒短剑简谱 | `it_miji_yuezu_duanjian` | 黄 | 秘籍·全本 | 待出图 | [it_miji_yuezu_duanjian.md](items/manuals/it_miji_yuezu_duanjian.md) | template |
+| 158 | 扎马步抄本 | `it_miji_zhamabu` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhamabu.md](items/manuals/it_miji_zhamabu.md) | template |
+| 159 | 壮行功抄本 | `it_miji_zhuangxingong` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhuangxingong.md](items/manuals/it_miji_zhuangxingong.md) | template |
 
 ### 兵器（247）· 已入库 206、已通过（作者） 24、待出图 17
 
