@@ -1651,4 +1651,11 @@
     - CONTENT-ch10：第 2 次返修后，eng3（新进程）13:55 自动复审，`--from validate --checks review_checks_content.md`（驱动 65882），在审。
     - 监控改用 `scratchpad/kwloop.sh`（kw.py 循环重启，KEY 行写入 `kw_keys.log`）加 `w50b.py`（读 devsup_events.log）；单次工具调用 ≤ 1 分钟。
     - 磁盘 4.2–4.4 GiB（< 5，不新开工作区），负载 15–20。
+  - **10-03 14:12 开发监督**：代码池顺序更新（协调者）：
+    1. M1：gates-data、event-executor，依赖满足后的 19e；
+    2. 第三波 TOOL-city-generic；
+    3. 第三波 TOOL-rig-parts-f（女主角切件，依赖 ART-rig-sheet-f 合入；就绪了就排在 items-regen-2 前）；
+    4. TOOL-items-regen-2；
+    5. 第三波 TOOL-rig-std-parts。
+    - 重起 items-regen-2 之前先看 TOOL-rig-parts-f：若是 PENDING 且依赖已满足，先让它起。
 
