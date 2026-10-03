@@ -753,4 +753,8 @@
     - **TOOL-rig-sheet**：20:21 起第 2 次运行，第 1 次 Sol 停滞后自动续作。工作区根目录多出一个写集外文件 `:memory:.ses`，finish 时会自动丢弃。
     - **磁盘**：20:43 外部项目（a2ui-r2a-home 的 vitest）把 load 推到 30，交换区涨到 37.9 GB，可用空间最低 8.1 GiB，20:58 回到 10.3 GiB。没到 6 GB 的报告线。
   - **10-02 20:50 协调者**：故事线挂接口 5 组全部合入（g2 82b2deaa、g5 a290ef0c、g4 16568e99 经 Sol 复核、g1 / g3 各手动复审 2 次后合入），des33 只剩 DES-skills-reqs-v2-c。eng3 并发调回 4（kill 21839 → 重启），就绪的 ENG-16d / 14b / 18b / 19a 可多起一个。19:15 曾停掉 DES-story-hooks-g4 的复审驱动，改为 Sol 在 GPT-5.5 产物上复核后再审（run 3）。Gemini 线 20:42 恢复出图。
+  - **10-02 20:58–21:40 开发监督**：
+    - **des33 全部合入**：13 项都合了，最后是 g3（21:06，手动第 2 次复审 PASS）和 DES-skills-reqs-v2-c（21:38）。des33 的 batch_run 21:38 正常退出。合入后 `prod_check` 绿，check_ids 0。
+    - **eng3**：协调者 21:09 把并发调回 4（新 pid 15369），随即起了 ENG-16d。现在在跑 12c-clip、rig-sheet、17a、16d；ENG-14b、18b、19a 就绪，等空位。
+    - **GPT-5.6-Sol 停滞**：20:12–20:13 前后，ENG-12c-clip、ENG-17a、TOOL-rig-sheet 三个 Sol 执行器同时没了输出。20:37–20:39 停滞检测自动续作，第 2 次运行仍是 Sol，现在正常。和 16:02 Astra 那次一样是服务端集体停滞。
 
