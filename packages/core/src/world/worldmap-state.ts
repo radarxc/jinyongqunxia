@@ -1,7 +1,7 @@
 import type { MapPoint, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import { floorDivInt } from '@tianshu/shared';
-import type { MapJourney, MapPosition, RoadLeg, SceneEntry,
-  WorldMapProjection, WorldMapState } from './worldmap-types';
+import type { MapJourney, MapPosition, RoadLeg, SceneEntry, WorldMapFullProjection,
+  WorldMapProjection, WorldMapState, WorldMapStaticProjection } from './worldmap-types';
 
 export function createInitialWorldMapState(map: WorldMapRuntimeDefinition): WorldMapState {
   return { version: 1, mapRevision: map.revision,
@@ -89,9 +89,11 @@ export function worldMapPoint(map: WorldMapRuntimeDefinition, position: MapPosit
     from[1] + floorDivInt((to[1] - from[1]) * position.offsetLi, road.distanceLi)];
 }
 
-const componentCache = new WeakMap<WorldMapRuntimeDefinition, ReadonlyMap<string, readonly string[]>>();
-function mapComponents(map: WorldMapRuntimeDefinition): ReadonlyMap<string, readonly string[]> {
-  const cached = componentCache.get(map);
+const reachableByPositionCache = new WeakMap<
+  WorldMapRuntimeDefinition, ReadonlyMap<string, readonly string[]>
+>();
+function reachableByPosition(map: WorldMapRuntimeDefinition): ReadonlyMap<string, readonly string[]> {
+  const cached = reachableByPositionCache.get(map);
   if (cached) return cached;
   const adjacent = new Map(map.nodes.map((node) => [node.id, [] as string[]]));
   for (const road of map.roads) {
@@ -109,7 +111,7 @@ function mapComponents(map: WorldMapRuntimeDefinition): ReadonlyMap<string, read
     const sorted = [...reached].sort(compareIds);
     for (const id of sorted) components.set(id, sorted);
   }
-  componentCache.set(map, components);
+  reachableByPositionCache.set(map, components);
   return components;
 }
 
@@ -117,14 +119,26 @@ export function reachableWorldMapNodeIds(
   map: WorldMapRuntimeDefinition, position: MapPosition,
 ): readonly string[] {
   const nodeId = position.kind === 'node' ? position.nodeId : position.leg.from;
-  return mapComponents(map).get(nodeId) ?? [];
+  return reachableByPosition(map).get(nodeId) ?? [];
+}
+
+export function projectWorldMapStatic(
+  map: WorldMapRuntimeDefinition, mapTextureUrl: string | null,
+): WorldMapStaticProjection {
+  return { map, mapTextureUrl };
+}
+
+export function projectWorldMapStep(
+  map: WorldMapRuntimeDefinition, state: WorldMapState,
+): WorldMapProjection {
+  return { point: worldMapPoint(map, state.position), journey: state.journey,
+    reachableNodeIds: reachableWorldMapNodeIds(map, state.position) };
 }
 
 export function projectWorldMap(
-  map: WorldMapRuntimeDefinition, state: WorldMapState, mapTextureUrl: string | null,
-): WorldMapProjection {
-  return { map, mapTextureUrl, point: worldMapPoint(map, state.position),
-    reachableNodeIds: reachableWorldMapNodeIds(map, state.position),
+  map: WorldMapRuntimeDefinition, state: WorldMapState,
+): WorldMapFullProjection {
+  return { ...projectWorldMapStep(map, state),
     positionNodeId: state.position.kind === 'node' ? state.position.nodeId : null,
     journey: state.journey, scene: state.scene, law: state.law, lastMessage: state.lastMessage };
 }

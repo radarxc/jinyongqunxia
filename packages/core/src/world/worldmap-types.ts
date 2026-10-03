@@ -22,11 +22,24 @@ export interface WorldMapState {
   readonly scene: SceneEntry | null; readonly law: LawEnforcementState;
   readonly lastMessage: string;
 }
+export interface WorldMapStaticProjection {
+  readonly map: WorldMapRuntimeDefinition;
+  readonly mapTextureUrl: string | null;
+}
 export interface WorldMapProjection {
-  readonly map: WorldMapRuntimeDefinition; readonly point: MapPoint;
-  readonly mapTextureUrl: string | null; readonly reachableNodeIds: readonly string[];
-  readonly positionNodeId: string | null; readonly journey: MapJourney | null;
-  readonly scene: SceneEntry | null; readonly law: LawEnforcementState; readonly lastMessage: string;
+  readonly point: MapPoint;
+  readonly journey: MapJourney | null;
+  readonly reachableNodeIds: readonly string[];
+  readonly positionNodeId?: string | null;
+  readonly scene?: SceneEntry | null;
+  readonly law?: LawEnforcementState;
+  readonly lastMessage?: string;
+}
+export interface WorldMapFullProjection extends WorldMapProjection {
+  readonly positionNodeId: string | null;
+  readonly scene: SceneEntry | null;
+  readonly law: LawEnforcementState;
+  readonly lastMessage: string;
 }
 export type WorldMapCommand =
   | { readonly t: 'worldmap/travel'; readonly nodeId: string }

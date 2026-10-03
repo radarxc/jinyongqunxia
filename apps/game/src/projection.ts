@@ -1,5 +1,5 @@
-import { DAYS_PER_MONTH, MONTHS_PER_YEAR, projectWorldMap, worldMapLocation,
-  worldPaused } from '@tianshu/core';
+import { DAYS_PER_MONTH, MONTHS_PER_YEAR, projectWorldMap, projectWorldMapStatic,
+  worldMapLocation, worldPaused } from '@tianshu/core';
 import type { UiProjection } from '@tianshu/ui';
 import type { EquipmentVisuals } from '@tianshu/render/rig';
 import type { TownAnchorView, TownNpcView } from '@tianshu/render/town';
@@ -69,8 +69,15 @@ export function createSelectors(content: GameContent,
   selectedTown: () => TownRuntimeDefinition | undefined = () => undefined) {
   const items = new Map(content.items.map((item) => [item.id, item]));
   let view: GameProjection | undefined;
-  function update(session: SessionSnapshot, dirty: readonly DirtyView[], status = ''): Partial<GameProjection> {
+  function update(session: SessionSnapshot, dirty: readonly DirtyView[], status = '',
+    worldMapDynamicOnly = false): Partial<GameProjection> {
     const marked = new Set(view ? dirty : ALL_VIEWS);
+    const worldMap = marked.has('worldmap') && session.chapter.worldMap && content.worldMaps
+      ? content.worldMaps.find((entry) => entry.chapterId === session.chapter.chapterId)! : undefined;
+    const texture = worldMap
+      ? content.assets?.[`ref_map_jianghu__${worldMap.era}_base01`]?.map ?? null : null;
+    const staticChanged = marked.has('worldmap') && (!view || (worldMap
+      ? view.worldmapStatic?.map !== worldMap : view.worldmapStatic !== null));
     const changes: Partial<GameProjection> = { title: '天书录', coreVersion: session.meta.coreVersion,
       worldTick: session.meta.worldTick, status, worldPaused: worldPaused(session),
       ...(marked.has('hud') ? { hud: projectHud(session, content) } : {}),
@@ -86,19 +93,21 @@ export function createSelectors(content: GameContent,
       }) } : {}),
       ...(marked.has('quests') ? { quests: session.chapter.story.lines
         .filter((line) => line.status !== 'locked').map((line) => ({ id: line.lineId, name: line.lineId, status: line.status })) } : {}),
-      ...(marked.has('worldmap') ? { worldmap: session.chapter.worldMap && content.worldMaps
-        ? (() => {
-          const map = content.worldMaps.find((entry) => entry.chapterId === session.chapter.chapterId)!;
-          const texture = content.assets?.[`ref_map_jianghu__${map.era}_base01`]?.map ?? null;
-          return projectWorldMap(map, session.chapter.worldMap!, texture);
-        })() : null } : {}),
+      ...(marked.has('worldmap') ? { worldmap: worldMap && session.chapter.worldMap
+        ? projectWorldMap(worldMap, session.chapter.worldMap)
+        : null } : {}),
+      ...(staticChanged ? { worldmapStatic: worldMap
+        ? projectWorldMapStatic(worldMap, texture) : null } : {}),
       ...(marked.has('town') ? { town: projectTown(session, content, selectedTown()) } : {}),
       ...(marked.has('townRuntime') ? { townRuntime: session.chapter.town
         ? selectedTown() ?? content.towns?.find((entry) => entry.sceneId === session.chapter.town?.sceneId) ?? null
         : null } : {}),
     };
     view = { ...view, ...changes } as GameProjection;
-    return changes;
+    if (!worldMapDynamicOnly || changes.worldmap === undefined) return changes;
+    const full = changes.worldmap;
+    return { ...changes, worldmap: full ? { point: full.point, journey: full.journey,
+      reachableNodeIds: full.reachableNodeIds } : null };
   }
   return { update, query: (): GameProjection => {
     if (!view) throw new Error('PROJECTION_NOT_INITIALIZED');

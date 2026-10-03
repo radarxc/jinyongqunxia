@@ -1,4 +1,5 @@
-import type { Command, DomainEvent, GameState, KnownCharacterState, WorldMapProjection } from '@tianshu/core';
+import type { Command, DomainEvent, GameState, KnownCharacterState, WorldMapProjection,
+  WorldMapStaticProjection } from '@tianshu/core';
 import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
 import type { EquipmentVisuals } from '@tianshu/render/rig';
 import type { TownSceneProjection } from '@tianshu/render/town';
@@ -21,13 +22,14 @@ export interface TownProjection {
   readonly movementPath?: readonly (readonly [number, number])[];
 }
 
-export type GameProjection = UiProjection & {
+export interface GameProjection extends UiProjection {
   readonly worldPaused: boolean;
+  readonly worldmapStatic: WorldMapStaticProjection | null;
   readonly worldmap: WorldMapProjection | null;
   readonly townRuntime: TownRuntimeDefinition | null;
   readonly town: TownProjection | null;
   readonly battle?: BattlePacket | null;
-};
+}
 
 export type GameHost = ProjectionHost<GameCommand, GameProjection, SessionSnapshot, DomainEvent>;
 export type GameRemote = ProjectionRemote<GameCommand, GameProjection, SessionSnapshot, DomainEvent>;
