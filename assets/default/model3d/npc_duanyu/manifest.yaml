@@ -43,7 +43,7 @@
     sha256: 0c8b98bd80711336f950b490c769f1df33a6e8430a09f1f2c30782ddd0cb5b4c
     use: 单图生成输入（A 字姿势全身参考，作者已定脸）
   - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
-    sha256: ''
+    sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
     use: 作者选定的 B 版 base 立绘（A 字参考据此出图；本模型未直接输入）
   sha256: 17f4e83dce390ae532b3404041fd56def5364ab9be37f24ac0c0a309d8813477
   size_bytes: 5599940
