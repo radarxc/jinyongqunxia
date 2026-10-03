@@ -1139,3 +1139,17 @@
   - **10-03 06:38–06:48 协调者**：
     - TOOL-rig-sheet 审核 r5 FAIL（06:38）：前臂含手掌、侧视 `thigh_shared` 仍是调色的标准体梯形、`pelvis_skirt` 隐藏髋锚暴露。裁定：第 9 次返修为最后一轮，修手臂 / 手部与髋锚；侧腿若源图（侧视双腿并拢）分不出就按源图裤腿补绘并写明限制，r6 若只因侧腿 FAIL 置 HOLD 由协调者裁定按原型收口。登记 **ART-rig-sheet-side**（fa57fc23，依赖 TOOL-rig-sheet）：主角·男侧视双腿错开的补充三视图 `sheet_side_L / R`，给后续切件版本分出大腿 / 小腿；追踪者在 TOOL-rig-sheet 合入后按 codex 常规起。
     - **TOOL-catalog-food-qi-exception 合入**（608aa8aa，06:40，r1 PASS）：食品行旧字段含 sxpGrant / perm.mpMaxPct 时允许双写 qiCultivation；design/10 §4.10.4 / §4.10.6 加注。已请开发监督复验 lore-5。
+  - **10-03 06:38–06:59 开发监督**：rig-sheet 收口安排、食品特例合入、lore-5 重起；发现 tools 测试的校验漏洞。
+    - **TOOL-rig-sheet**（协调者 06:44 的两条指示）：
+      - eng3 自动复审驱动 75954 没带 `--rework-extra`。r5 FAIL 后第 9 次的 `9.prompt.md` 已写好、执行器尚未启动，我把协调者两句直接追加进提示词：侧视大腿按源图补绘并写「源图限制」，交 ART-rig-sheet-side；本轮是最后一轮返修，修好手臂 / 手部与髋锚即收口。06:40:19 启动，日志里已确认收到。
+      - 后台 `scratchpad/hold_then_review.py` 盯着：转 HOLD-REVIEWS 后改 HOLD-RUNS，抢在 eng3 自动复审之前；再起 `--from validate --max-runs 0` 的只复审驱动（日志 `supervise.r6.out`）。r6 PASS 自动合入，FAIL 停在 HOLD-RUNS 报协调者，不起第 10 次。
+    - **TOOL-catalog-food-qi-exception** 合入（608aa8aa），工作区已清，11 份名录检查全过。
+    - **lore-5**：挪基点到 c6d06966，带 `devsup_note_foodqi.md` 用 Sol max `--from start`，驱动 93359。
+      - 腊八粥行 `qiCultivation=3500; stamina=24` 在新校验器下已通过、无警告；本轮只改报告里的这一项。
+    - **校验漏洞**（已报协调者，门禁由其定）：`python3 -m unittest discover -s tools -p "test_*.py"` 只进入带 `__init__.py` 的目录（item、rig、rig/clips，共 33 条），content / lint / town / vfx / balance 的测试在任务校验里都没跑。
+      - 按目录单独跑：lint 289、town 107、vfx 50 全过。
+      - content 有 1 条 FAIL：`test_seven_column_repository_render_is_byte_identical` 依赖仓库内容，lore 转九列后 content/items stale，要等 TOOL-items-catalog 重新生成。
+      - content 有 2 条 ERROR：`test_town_runtime` 报 city_beijing__ch10 没有布局。town_runtime 找 `town_<suffix>.layout.yaml`，CITY 把布局放在 `assets/default/town/<city>/layout.yaml`。
+      - balance 按模块路径导入失败。
+      - pnpm check 不受影响。
+
