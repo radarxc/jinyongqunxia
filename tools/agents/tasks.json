@@ -35027,6 +35027,35 @@
     "-c",
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/agents/reports/DES-ruins-ids.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "DES-ruins-ids",
+   "title": "设计 · 遗迹 / 地宫补 ID：九老洞、敦煌地宫（AR-36 点名）与章节文档具名无 ID 的遗迹登记 sc_* / poi_*，供 ART-ruins-maps 接力",
+   "prompt": "DES-ruins-ids.md",
+   "deps": [],
+   "writes": [
+    "docs/design/chapters/*.md",
+    "docs/design/11-open-world.md",
+    "docs/design/19-world-map.md"
+   ]
   }
  ]
 }
