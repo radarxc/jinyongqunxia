@@ -35608,6 +35608,54 @@
     "assets/default/character/male/ch*/por_npc_*_base.png",
     "assets/default/character/female/ch*/por_npc_*_base.png"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/flow/m1-flow.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-19d-m1-flow-test-race",
+   "title": "游戏工程 · 小修：m1-flow.test.ts 全量并行时偶发失败（等状态后同步取未渲染元素），改为先等元素再交互",
+   "prompt": "ENG-19d-m1-flow-test-race.md",
+   "deps": [
+    "ENG-19b-ui-m1-flow"
+   ],
+   "writes": [
+    "apps/game/src/flow/m1-flow.test.ts"
+   ]
   }
  ]
 }
