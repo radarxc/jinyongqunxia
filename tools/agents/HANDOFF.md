@@ -1460,3 +1460,9 @@
     - 以后 ENG-ui-* 都用 codex。合入后要告诉协调者 `docs/design/ui-mock/index.html`，由协调者发给作者定方向。
     - CONTENT 收掉之前不新开工作区（磁盘 5.3 GiB）。
 
+  - **10-03 10:45–11:45 协调者**：作者四条新指示（AR-42 / AR-43，原话见 `docs/decisions/author-requirements.md`）与执行。
+    - **合入**：ENG-attr-v2-schema 540059ff（10:31）、TOOL-items-regen 3d6db806（11:18，r1 FAIL 只因报告过时，返修后复审 PASS）。之后 TOOL-catalog-collectibles 起跑（驱动 85865），ENG-size-session-gate 单独起（驱动 94025）。eng3 11:09 按 3 路重启（pid 36786，日志 `_batch/eng3.detach.r3.out`），在跑 CONTENT-ch00b / ch10 / ch00a。
+    - **Tripo（AR-42）**：API 余额 0、作者不充，改用作者 Chrome 里的 Tripo Studio 网页版；协调者在 Chrome 建「Claude」标签组（tabGroupId 1013410121、tabId 1957635120），起 Opus 5.5 子代理（Tripo 网页建模员）驱动。侦察：Premium、余额 25125；生成 65（H3.1 + Ultra Mesh + 8K + PBR）、绑骨 20、动作 20 / 个、导出 5；Private 可选；面数定 10 万。**待作者**：同意下载（GLB + 预览图都算下载）；扩展对 tripo3d.ai 截图 / read_page 注入超时（JS 与真实点击正常），需作者查扩展网站访问权限。ART-3d-tripo-avatars / -cast 保持 HOLD 不续。进度 `.agents/coord/ART-3d-tripo-web/progress.md`。
+    - **本地 dev**：曾在 5180 起 vite（主检出 `.claude/launch.json` 的 game-dev-latest）给作者看，作者随即改要审核页，已停。验证中发现 DEV「进入演示」走 ch01_tianlong、内容包无 bookWorld 章节定义 → `ITEM_RULES_UNAVAILABLE:CONTENT_CHAPTER_DEF_MISSING`（只影响 DEV，已记开发监督备忘）。旧的 5173 vite（pid 86094）不是本线起的，未动。
+    - **素材审核页**：https://claude.ai/artifact/7H7nYXyBSRJJSNFBwsDGjM（2322 件，44 张图集 21.7 MB，`db` + `user` 能力；结论在 `verdicts` 集合，doc id = 素材 id，字段 v（ok / redo / drop）、note、c、t）。生成：`.agents/coord/review_page/collect.py`（收 manifest 与遗迹目录、缩图打图集）→ `build_html.py`（模板 `template.html`）。功能检查：探针写入、读回、删除正常。回收：读 `verdicts` → ok 写 manifest `status: approved`、drop 写 `rejected`、redo 按备注登记返工。
+    - **界面改版（AR-43）**：登记 DES-ui-immersive（e2700476；design/26、catalog/ui-art-kit、docs/design/ui-mock 样稿）。作者随后定「UI的部分，让codex来修，如果codex没有额度，让traex cli调用gpt 6来修」→ 协调者停掉已起的 traex 链（31302 等），开发监督用 codex gpt-6-astra xhigh `--from start` 重起（驱动 51691，日志 `supervise.codex.out`），后续 ENG-ui-* 一律 codex。教训：样稿任务的 sparse_include 整类拉物品图约 1.6 GB，磁盘一度 5.3 GiB；以后只列具体文件。

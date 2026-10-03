@@ -13,6 +13,7 @@
 | 续作材料（简报、监督脚本、出图台账、联系表、小基线图） | `.agents/wt/_prod/.agents/coord/_handoff/`（不入库） |
 | 要作者决定 / 确认的事 | 本文 §8 |
 | 素材总览页（验收用） | https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A（10-03 09:58 第 4 版：128 张运行时立绘重建后的全量，含第二波人物与全部物品；生成 `python3 tools/review/build_gallery.py` → `.agents/coord/gallery/`，74 个文件 17.5 MB，用 Artifact 工具同地址重发） |
+| **素材审核页**（作者逐件定结论） | https://claude.ai/artifact/7H7nYXyBSRJJSNFBwsDGjM（10-03 11:44 首版：2322 件——人物立绘 814、物品 894、剧情插图 82、城图 16、遗迹地图 62、特效 125、部件 43、建筑 209、贴片 77；页面共享库 `verdicts` 集合存「通过 / 返工 / 不用」+ 备注，协调者用 ArtifactData 读回后改 manifest / 登记返工；生成 `.agents/coord/review_page/collect.py` → `build_html.py`，同 file_path 重发保持地址） |
 
 ## 0. 现状一句话
 
@@ -44,8 +45,8 @@
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
 
-| TOOL-items-regen | traex | 第 1 次运行 30 分钟生成完，校验被 data schema 挡住（`extension.value.attributes` 未定义）→ HOLD，等 ENG-attr-v2-schema 合入后挪基点 `--from validate` | 开发监督 |
-| ENG-attr-v2-schema | traex Sol | 运行中（09:57 起，驱动 97000）：item.v1 各 extension 加可选 attributes 投影（只校验不消费）；合入后 TOOL-items-regen 挪基点 `--from validate` | 开发监督 |
+| TOOL-items-regen | traex | **已合入 3d6db806**（11:18，r2 PASS）：889 个物品文件带 text.lore 与 extension.value.attributes，`--check` 894 行全新；之后 TOOL-catalog-collectibles（驱动 85865）→ gifts-catalog 复验 → TOOL-items-regen-2 | 开发监督 |
+| ENG-attr-v2-schema | traex Sol | **已合入 540059ff**（10:31）；合入后 983 条测试全过，entry 38.44 | — |
 | TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；要等 regen 与 tests-discover 合入（否则它的 --check 与 content 测试必红） | 开发监督起 |
 | ENG-19d-m1-flow-test-race | traex Sol | 已合入 3a3d58ca（09:54；merge 两次被 `_prod` 里的立绘重建挡住，第 3 次重试成功） | — |
 | ENG-entry-split | traex Sol | **已合入 e8357e76（09:56，r1 PASS）**：Worker 与子系统改为首次会话 / 首次触发加载。合入后 prod_check 975 条全过，entry 38.44 / 170（原 168.57）、render 161.87、webgl 200.32 / 350（原 330.44）；14 个暂停已解除回 PENDING，ENG-20b 等 ENG-size-session-gate | — |
@@ -185,12 +186,13 @@
 
 做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接 `_handoff/art_wave2_tracker_brief.md`；审核要点 `.agents/coord/PROD/review_checks_hero.md`（第 1 条已容许白马 / 侠客 / 鸳鸯不用剧照）/ `review_checks_ruins.md` / `review_checks_city.md`。审核模型写 `--review-model gpt-5.6-sol`（Codex 不认大写）。
 
-### 3.6 3D 角色（AR-41，10-03 09:06 登记）
+### 3.6 3D 角色（AR-41，10-03 09:06 登记；AR-42 改网页版）
 
 | 任务 | 内容 | 执行器 | 状态 |
 |---|---|---|---|
-| ART-3d-tripo-avatars | 男女主角高质量模型 + 骨架 + 3 个预设动作；写 `tools/model3d/tripo_cli.py` | codex gpt-6-astra xhigh | **卡在 Tripo API 余额 0 点**（09:35）：CLI 与账本已写好、测试通过，未提交任何付费任务；等作者充值后 `--from start` 续作（预估主角首轮 ≈ 210 点） |
-| ART-3d-tripo-cast | 十四书主角群约 31 位（主角精修新基线立绘）image_to_model + 骨架 | codex xhigh | 等 avatars 合入（点数上限 2500 或余额剩 25% 即停） |
+| ART-3d-tripo-avatars | 男女主角高质量模型 + 骨架 + 3 个预设动作；写 `tools/model3d/tripo_cli.py` | codex gpt-6-astra xhigh | **HOLD，不再续跑**（API 余额 0；作者 AR-42 改用网页版）。CLI 留在工作区未合入 |
+| ART-3d-tripo-cast | 十四书主角群约 31 位（主角精修新基线立绘）image_to_model + 骨架 | codex xhigh | **HOLD，不再续跑**（改网页版） |
+| **Tripo 网页版建模**（AR-42） | 男女主角（男主角多视图）+ 29 位主要角色：生成 H3.1 + Ultra Mesh + 8K + PBR（65 点）、绑骨 20、主角 idle / walk / run 动作各 20、导出 5；面数 10 万；Private | Opus 5.5 子代理驱动作者 Chrome（Premium，余额 25125，全做约 2800–4000 点） | 11:40 起生成男主角；**等作者同意下载 GLB 与预览图**；作者 Chrome 扩展对 tripo3d.ai 截图注入超时（需作者查扩展网站访问权限） |
 
 密钥：只在主检出 `.env`（`tripo_key=…`），执行器运行时读成环境变量，不得进日志 / 报告 / manifest / 提交（`.env` 已进 `.gitignore`）。产物：`assets/default/model3d/<npc_id>/`（`model_rig.glb`、`anim_*.glb`、`preview.png`、manifest）；审核要点 `review_checks_model3d.md`。女主角没有三视图（可登记 ART-rig-sheet-f）。
 
@@ -294,7 +296,7 @@
   ```
 - **hero-a 验收**：四张联系表已发（03:15）；不满意的指出人物 / 时期 / 插图名，登记返工。
 - **城市布局图的范围（AR-36 第 5 项）**：CITY-layouts-all 第 4 次运行后统计全量是 189 城、合并年代带后 1172 个「城 × 年代」，逐城联网查史料再出规格 / 平面图 / layout / 总装图，43 分钟只做了 4 座，全量要几百小时。已完成的 14 个完整候选全是白马（ch10）的城，这次合入先落库。**默认缩减方案**（作者不答就按这个登记 CITY-layouts-2）：① ch10 全部 + 每章 importance 最高的 3–5 座逐城考据；② 其余城按年代套件出通用格局，不逐城查史料；③ 每个年代带只渲染一份，其他章节只复制 layout。要全量就说一声，但得接受周期。
-- **Tripo API 充值（AR-41，阻塞）**：账号 API 余额 v2 / v3 都是 0 点（网页版额度与 API 点数分开）。按官方价目（单图 / 多图建模 50 点、绑骨 25、每个预设动作 10）：男女主角首轮 ≈ 210 点，31 位主角群 ≈ 2 300 点，建议至少充 2 600 点；充好后告诉我，任务自动续作。预算上限仍按默认（600 / 2500）。
+- ~~Tripo API 充值~~：作者 10-03 定改用网页版（AR-42），不充 API。**待作者**：① 同意从 Tripo 下载导出的 GLB 与预览图（约 31 个 GLB，每个 10–40 MB）；② 查 Chrome 扩展对 tripo3d.ai 的网站访问权限（截图注入超时）。
 - **双儿要不要精修**（hero-b 报告）：默认不动，作者说要再登记。
 - **110 个新登记人物要不要都出立绘**（ART-cast-fill-c / d，约 110 次 codex 出图）：默认等 hero-b 与 polish 之后再排，作者说不出就不出。
 
