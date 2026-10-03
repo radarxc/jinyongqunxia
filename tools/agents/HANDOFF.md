@@ -813,4 +813,16 @@
       - 合入后 `prod_check post-itemscat`：809 用例全过；体积红，entry 203.23 / 170，webgl 366.25 / 350。
       - ENG-18d 合入后集成分支必须转绿，不绿就带数字返修 18d。
     - **名录问题**（TOOL-items-catalog 报告）：design/10 §14.2 只登记了 569 / 894 个物品 ID，缺 manuals 170、weapons 128、hidden-weapons 27；没有 `items-herbs.md`，药材在 `items-medicine.md`，`gather-herbs.md` 只是分布表。交 des34 之后的同步任务。des34 改完名录后，开发监督再起 TOOL-items-catalog 的 `--from start` 重新生成，时间由协调者定。
+  - **10-03 00:08 协调者（磁盘告急处置）**：23:50 起交换区涨到 38.9 GB（人物线 build_portraits 的 BiRefNet 预计算推高内存，已停），可用一度 1.1 GiB，w11 / w12 出图 runner 自停。作者批准后删除：中午会话草稿 `0212031f-…/scratchpad/gem/`（2.4 GB 未选用试稿）、`~/.codex/sessions` 里 90 分钟前的会话记录（289 个文件，2.6 GB；在跑会话的 38 个文件保留）；此前已删旧 Playwright 包 539 MB 与已合入任务日志 0.37 GB。可用回到 6.0 GiB。eng3 并发 23:28 降 3、23:31 为让 ENG-18d 起跑又调回 4。
+  - **10-02 23:55 – 10-03 00:35 开发监督**：
+    - **磁盘**：00:04 跌到 1.4 GiB，交换区 38.9 GB，已报协调者。原因是人物线抠图预计算，已停；作者批准删掉约 5 GB 旧文件，00:06 回到 6–7 GiB。之后的报告线是 4 GiB。
+    - **合入**：
+      - DES-items-attrs-spec（d8a6ca9c，des34）：docs-only，跑了 check_ids，为 0；
+      - ENG-14b（94459b20）：合入后 `prod_check` 测试全过，119 文件 816 用例；体积仍红，entry 203.23 / 170，等 ENG-18d。meridian_flow_sim、damage_sim 的 check 都通过。
+    - **ENG-14b 防截断误判**：任务说明第 3 条要求把 `golden-runner.ts` 改名为旧协议回放器，执行器改成了 `legacy-protocol2-replay.ts`，防截断检查却当成「文件被删除」。已加 shrink_exempt（c287f636），之后校验通过。
+    - **TOOL-rig-sheet**：
+      - 审核 r1 FAIL：关节圆帽游离成黑点、侧视图重复大手、黑色弧块、写集外文件 `:memory:.ses`。我看姿势条带也是这样。
+      - 当时 3 次执行已用完，停在 HOLD-RUNS。00:30 用 r1 返修说明另起驱动（Sol max，pid 53693，说明在 `.agents/coord/TOOL-rig-sheet/devsup_note_rework_r1.md`）。
+      - 当前未合入的 GIF 在任务工作区 `assets/default/rig/npc_zhujue__ch00_m/preview/`，已告诉协调者。
+    - **ENG-18d**：第 1 次运行中，23:29 起。
 
