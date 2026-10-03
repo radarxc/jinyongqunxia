@@ -1,45 +1,60 @@
 ---
 asset_id: cg_ch11_benevolence_inscription
-name: "中条山双刀合读“仁者无敌”（正式回目待考）"
+name: 仁者无敌
 book: ch11_yuanyang
 characters:
 - npc_yuanguannan
 - npc_xiaozhonghui
-- npc_yuanfuren
-- npc_gaiyiming
-- npc_changchangfeng
 reference_upload:
-- assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scholar_base.png
-- assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_departure_base.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scholar_base.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scene_zizhu_first_twelve.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_scene_zizhu_short_blade_guard.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
 output: assets/default/scene/ch11/cg_ch11_benevolence_inscription.png
 manifest: assets/default/scene/ch11/manifest.yaml
 size: 1536x1024
-status: ready
+status: candidate
+redo_reason: 作者 10-02 晚：复合基线风格精修
+references:
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scholar_base.png
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scene_zizhu_first_twelve.png
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_scene_zizhu_short_blade_guard.png
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+  use: 项目画风基线
+generation_job: cg_ch11_benevolence_inscription.retry3.r2
+generation_attempts: 2
+title_text: 仁者无敌
+title_method: generated
+identity_revision: 使用本轮新复合base及对应新阶段立绘
+title_verified: 逐字放大核验：仁 / 者 / 無 / 敵；画面原生繁体「仁者無敵」正确，规范题名保留简体；未字体叠加
 ---
 
 ## Gemini 提示词
 
 ```text
-生成一张 3:2 横幅情景插画，输出尺寸 1536×1024，题材为《鸳鸯刀》多人剧情名场面。所有人类都必须一眼可辨为成年人。
+生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+第1张参考：袁冠南本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+第2张参考：袁冠南·紫竹初合刀阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+第3张参考：萧中慧本轮后期阶段图，锁定本人成人脸、灰白袄靛披巾褐裙和朴素木簪；不复制姿势背景。
+最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+【场面】中条山洞外篝火余暖，袁夫人托起一长鸳刀一短鸯刀，袁萧并肩侧身领会；后方两名泥泞四侠（盖一鸣、常长风）露出诙谐释然神情。刀刃不额外生成小字，右上竖排四字大题字准确写仁者无敌；林木山石衬出归隐余韵。 萧中慧本期穿灰白短袄、深靛披巾、褐膝裙灰长裤，深褐木簪；不是基础图的蓝衣双刀装。此衣色、外披和换装安排为原创扩展。
+【剧情边界】story11事件49–50，袁夫人揭刀铭；夜色/拂晓作为原创构图；精确人物站位（原创扩展构图），不宣称网页分段为指定版回目。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「仁」「者」「无」「敌」，合成「仁者无敌」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
 
-第 1 张参考图是袁冠南（npc_yuanguannan）的立绘，只用于保持其面容、成年年龄、发式与本场适用服饰；不要复制原图姿势、背景、机位或光线。
-第 2 张参考图是萧中慧（npc_xiaozhonghui）的立绘，只用于保持其面容、成年年龄、发式与本场适用服饰；不要复制原图姿势、背景、机位或光线。
-参考图之间身份严格隔离，只锁定各自人物，不互换脸、发式、身形或服装；没有列入上传的角色只能依据文字塑造。
-
-原著位置与改编边界：中条山双刀合读“仁者无敌”（正式回目待考）。
-地点与时刻：中条山石壁前；春日破晓。
-画面瞬间：袁夫人将两柄短刀合拢转向晨光，袁冠南与萧中慧并肩领会，满身泥泞的太岳四侠在后方咧嘴而笑。
-构图与站位：中全景；双刀居中但刻字不清晰，袁萧左右，袁夫人与四侠形成前后层次。
-情绪基调：释然、幽默、仁胜于武。让每个人的视线、表情和身体重心共同传达这一基调。
-人物身份与外貌口径：上传袁冠南、萧中慧；袁夫人与四侠均 A 级仅文字。
-未上传身份参考的人物文字要点：
-袁夫人：壮年女性，自然骨相，穿符合本书时代与其身份的完整传统服饰；不得借用未上传图片的脸。
-盖一鸣：壮年男性，自然骨相，穿符合本书时代与其身份的完整传统服饰；不得借用未上传图片的脸。
-常长风：壮年男性，自然骨相，穿符合本书时代与其身份的完整传统服饰；不得借用未上传图片的脸。
-制作边界：模型不得生成可读刻字，题义由名录说明；四侠到场动作（待考）。
-
-画风：写实手绘古风，与人物立绘一致；真实自然的皮肤、头发、手部与布料质感，衣料完整不透明，低饱和沉稳设色，自然光，电影感构图，可信空间纵深，不要 AI 塑料感。武打只表现动作方向、阵势与张力，不用发光武功或夸张能量特效。
-
-排除项：不要文字、题字、字幕、水印、签名、Logo、边框或分镜格；不要未指定的多余人物（明确要求的远景群像除外）；不要幼态、儿童体态、性化处理、裸露或恋物特写；不要血腥特写、断肢、尸体堆叠或伤口细节；不要真人、演员、影视剧照复刻；不要多余肢体、手指错误、脸部融合、身份串脸、时代错装、现代物件、动漫风、摄影棚感、3D 塑料感。
+【头饰时期修正】萧中慧必须继承上传的本轮后期阶段图：头顶只有一根无装饰深褐木簪穿过发髻，木色哑光；没有金簪、金钗、珍珠、珠坠、玉珠、发链或任何亮色饰品。她的原金花簪已赠出，本期不能重新佩戴。保留灰白袄、靛披巾、褐裙、成年新脸，以及原场面情节站位和指定题名；仅纠正头饰，不复刻基础图金簪。
 ```
 
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。

@@ -9,47 +9,50 @@ tier: S
 output: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
 manifest: assets/default/character/female/ch12/manifest.yaml
 references:
-- path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_113-1.png
-  use: 唯一人物身份来源：已实际view原始HDGRP_113-1.png及姓名表第4行第7列霍青桐，原字节与ZIP成员相同。只取可见长椭圆轮廓、连续鼻线、细长眼裂与克制唇线；不继承侧脸低头、像素或裁切。正面未见细节为美术补全。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 仅背景参考，已实际view：暖浅灰纸底、淡墨远山薄雾、留白；不采用人物脸、身体、发饰、服装或倾头姿势。
-status: redo
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_still0.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_still1.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_game.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  use: 项目画风基线
+status: candidate
 realism_revision: user_identity_face_rebuild_20261001
-codex_prompt_rev: 2026-10-02
-redo_reason: 作者 10-02：书剑恩仇录取 1976 TVB 版，下载剧照重出（上一版本机无剧照，只用文字）
+codex_prompt_rev: 2026-10-02 AR-36 retry3
+redo_reason: 作者 10-02 晚：复合基线风格精修
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261002/shujian/huoqingtong_1976_wangmingquan_sohu2024.jpg
-- .agents/coord/imagegen-reference/identity-20261002/shujian/huoqingtong_1976_wangmingquan_sinablog.jpg
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_still0.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_still1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_huoqingtong__ch12_youth_early_base_game.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
 classic_ref:
-  version: 1976 年 TVB《书剑恩仇录》（霍青桐由汪明荃饰演）
-  stills:
-  - .agents/coord/imagegen-reference/identity-20261002/shujian/huoqingtong_1976_wangmingquan_sohu2024.jpg
-  - .agents/coord/imagegen-reference/identity-20261002/shujian/huoqingtong_1976_wangmingquan_sinablog.jpg
+  note: 影视造型＋经典游戏绘画气质＋同性别双基线，五官重新设计
+generation_job: por_npc_huoqingtong__ch12_youth_early_base.retry3.r1
+generation_attempts: 1
 ---
 
 # 霍青桐 · 人物写实修正
 
 ## Gemini 提示词
 
-> 2026-10-02 AR-32 补记修改 B（9 号出图员，codex exec · image_gen）：作者 10-02（AR-32 补记）：书剑取 1976 TVB 版，下载剧照后重出；上一版本机无剧照，只用文字。上传顺序：第 1–2 张为 1976 TVB《书剑恩仇录》霍青桐剧照（huoqingtong_1976_wangmingquan_sohu2024.jpg、huoqingtong_1976_wangmingquan_sinablog.jpg 裁去水印），最后两张为同性别画风基线（缩小版 JPEG）。参考图只借造型、气质与面部特征，画面按项目画风重绘、不复制照片。上一版保留在下一节作历史。
-
 ```text
 生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
-【参考图】第 1–2 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
-【剧照借鉴要点】取剧照里的「翠羽黄衫」造型：黑底绣青白卷草纹的小圆帽、帽边一簇白绒和一根翠绿长羽、鹅黄衫子、多条长辫、圆耳环；脸型和英气沉着的神情也照剧照。
+【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第2张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第3张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
 【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-【人物】霍青桐，金庸《书剑恩仇录》的女主角，回部首领木卓伦之女，人称「翠羽黄衫」，能统兵打仗的回疆女侠，在追回经书、赠剑之前。
-【年龄与体态】约二十二岁的成年女子，身材高挑苗条，肩背挺拔，骑马练剑的结实身体，约七个半头身。
-【经典造型】要一眼认出是「翠羽黄衫」霍青桐——绣花小圆帽插翠绿长羽、鹅黄长衫、多条长辫、腰佩一长一短两剑；英姿飒爽、明艳照人的回部女将。
-【面容】照剧照的脸型和五官，带一点西域风情：鹅蛋偏长的脸，颧骨略高；眉毛浓黑修长、眉尾微扬；眼睛明亮有神、眼神冷静自信；鼻梁挺直秀气；嘴唇饱满，嘴角坚定；肤色白里透红，两颊天然红晕，看得见真实的肤理。美而有英气，有统兵的沉着；是成年女子，不是少女。
-【发式】乌黑浓密的长发编成好几条长辫，垂在肩前和背后；头顶戴一顶黑底绣青白卷草纹的回部小圆帽（贴着头顶，不是大头巾），帽边插一簇白绒和一根长长的翠绿色羽毛，羽毛向后上方翘起；耳垂挂一对金色圆耳环。
-【服饰】一身鹅黄色长衫，窄袖，长及小腿，前襟和袖口有墨绿与黑色的窄边和细小刺绣，立领处一枚深色盘扣；腰系一条深褐皮带；里面是宽松长裤，脚穿深褐色软皮长靴。回疆样式，衣料完整不透，可以骑马。
-【道具与姿态】腰带右侧斜插一柄带鞘短剑（父亲所赐，匕首长短，古铜色剑鞘），左侧佩一柄完全入鞘的长剑；两柄剑都不出鞘。挺拔站立，右手按在腰带上，左手轻扶长剑剑鞘，目光直视前方，英姿飒爽。
-【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要浓妆、性感化或暴露的衣着；不要缠成大包的头巾；不要汉族发髻或清宫旗头；不要舞台化的民族服装、面纱、露腰；不要网红脸；不要出鞘的剑；不要日式服饰。
-【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+【人物辨识与原创面孔】霍青桐；翠羽黄衫、沉着英气、善统兵而情感克制；原创成年新脸：偏长椭圆面、微显颧弓、平直修长眉与稳健眼神、鼻口有真实体积、略宽坚实下巴，避免演员复制或统一美女模板。
+【造型道具】细辫与黑底青白卷草纹小圆帽，帽缘白绒和一根翠绿羽；鹅黄窄袖长衫墨绿黑窄边、深褐皮带、宽松裤与软皮长靴；赠剑前右侧古铜鞘短剑、左侧鞘中长剑，均不出鞘。
+【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
 ```
 
 ## AR-32 补记修改前的 Gemini 提示词（6 号出图员版；2026-10-02 上午，历史，不再用于出图）
@@ -167,3 +170,7 @@ FINAL CHECK: her own game-derived face with long narrow eyes, a continuous longe
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-face-rebuild-20261001/por_npc_huoqingtong__ch12_youth_early_base.prepared.json`。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。

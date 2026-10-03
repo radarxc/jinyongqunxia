@@ -8,44 +8,54 @@ age_variant: youth
 tier: S
 output: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_rural_base.png
 manifest: assets/default/character/male/ch09/manifest.yaml
-references: []
-status: new
-codex_prompt_rev: 2026-10-02
-redo_reason: 作者 10-02 17:20：乡下装按 2004 版剧照补出，并以新的僧装版作同一人锚点；衣着照旧
+references:
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still0.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_game.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+  use: 项目画风基线
+status: candidate
+codex_prompt_rev: 2026-10-03 AR-36 + AR-35 rural identity synchronization
+redo_reason: 作者 10-02 晚：复合基线风格精修
 reference_upload:
-- assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
-- .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03a.jpg
-- .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03b.jpg
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still0.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_game.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
 classic_ref:
-  version: 2004 年内地电视剧《连城诀》（王新民导演，2003 年拍摄、2004 年 7 月首播）；狄云由吴樾饰演（经由新出的僧装版锚点 + 2 张剧照）
-  stills:
-  - .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03a.jpg
-  - .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03b.jpg
+  version: 2004 年经典影视造型
   anchor: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+  note: 新僧装身份 + 一张剧照 + 经典游戏 + 双男基线；五官沿新复合基础图
+generation_job: por_npc_diyun__ch09_youth_rural_base.retry3.r1
+generation_attempts: 1
+size: 1024x1536
 ---
 
 # 狄云（湘西乡下常装） · 基础立绘（2026-10-02 新建）
 
 ## Gemini 提示词
 
-> 2026-10-02 AR-32 补记修改 B 补做（9 号出图员，codex exec · image_gen）：作者 10-02 17:20：狄云乡下装补出——用 2004 版剧照，并以新出的僧装版作同一人锚点，两张同一张脸；衣着按乡下装描写。上一版本机无剧照，只用文字。上传顺序：第 1 张为本轮新出的狄云僧装立绘（同一人锚点，por_npc_diyun__ch09_youth_disguise_base）；第 2–3 张为 2004 年《连城诀》狄云剧照（diyun_2004_wuyue_baike03a.jpg、diyun_2004_wuyue_baike03b.jpg），最后两张为同性别画风基线（缩小版 JPEG）。参考图只借造型、气质与面部特征，画面按项目画风重绘、不复制照片。上一版保留在下一节作历史。
-
 ```text
 生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
-【参考图】第 1 张参考图是本项目刚画好的狄云立绘（几年后出狱、剃光头穿僧袍的样子，同一人锚点）：脸型、五官和肤色以第 1 张为准，保持同一张脸；但本张是他更早、入狱之前的乡下青年时期——面颊更饱满、神情更憨直，有头发（清初发式），双手十指完好；不要照搬第 1 张的光头、僧袍、残手、构图和姿势。第 2–3 张是该角色经典影视造型的剧照：借鉴脸型、五官和憨厚的神情；必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
+【复合参考】第1张是本轮精修的新僧装狄云，只锁定同一成年人的脸部骨相、眉眼鼻唇和晒黑肤色，回到入狱前约二十岁的饱满面颊；不继承光头、僧衣、残手、背景或姿势。第2张是经典影视造型剧照，只借乡间服饰、发式、配色与憨厚气质，不照搬演员五官；第3张是经典武侠游戏画风参考，只借古典插画气质与理想化造型感；最后两张是同性别项目画风基线，只取画风、纸底、光线和材质，不取身份。成品像狄云这个角色，保持本轮新基础脸，不像演员照片。
 【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
 【人物】狄云，《连城诀》男主角，湘西麻溪铺乡下长大、跟着师父戚长发练剑的农家青年；随师父去荆州万家之前、还没有蒙冤入狱的时期。
 【年龄与体态】约二十岁的成年青年男子，身材结实匀称、肩背宽厚，是常年耕田挑担练出来的力气；双手粗糙、指节粗大，十根手指完好。
 【经典造型】要一眼认出是《连城诀》的狄云——湘西农家青年：靛蓝短褂、卷腿布裤、草鞋、背后斗笠、手里一柄旧剑；憨厚木讷、眼神清澈真诚，朴实而端正好看，不丑化。
-【面容】与第 1 张是同一张脸（同一个人更年轻、还没坐牢的时候）：方圆的脸，颧颊和下颌厚实；较浓的眉毛；眼睛不大、眼神清澈憨直；鼻梁直、鼻头宽实；嘴唇较宽；这时他还没受过牢狱之苦，面颊饱满；皮肤是山里日晒的黝黑，有真实的毛孔和细纹。神情憨厚、木讷、真诚，带一点乡下人的拘谨。
+【面容】与第1张是同一张原创脸：偏长宽颊、厚实下颌、低而平的浓眉、窄内双深眼、宽实鼻头和不完全对称的宽唇，日晒深肤色；入狱之前面颊稍饱满、神情憨厚真诚，保留成年骨架。五官沿本轮新基础立绘的经典武侠游戏插画理想化设计，不复刻演员。
 【发式】清初乡下男子发式——前额和头顶前半剃过，脑后一条粗黑的辫子垂在背后。
 【服饰】湘西农家的靛蓝色粗布短褂（大襟右衽、布纽扣）、宽腿黑布裤卷到小腿、腰间扎一条旧布带、脚穿草鞋；衣服洗得发白，打过一两处补丁，但完整干净。
 【道具与姿态】左手握一柄连鞘的旧长剑（木鞘磨得发亮，是平日练剑用的普通剑）；背后挂一顶旧竹斗笠；右手自然垂下；憨直地站着，正面看人。
 【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要光头、僧衣、残缺的手指或镣铐；不要清瘦憔悴的牢狱相；不要偶像化的俊美脸；清初男子一律穿圆领大襟（衣襟从领口斜向右腋下扣合），不要汉式交领长衫，不要明代发髻或网巾；不要日式服饰。
 【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+【本轮一致性】本期尚未入狱：双手各五指完整，不包扎；衣物仍是靛蓝短褂、卷腿黑布裤、草鞋，背挂旧斗笠，左手握连鞘旧长剑，右手自然舒展。配色与站姿为（原创扩展），具体发式三联／广州修订版逐字终校（待考）。
 ```
 
 ## AR-32 补记修改前的 Gemini 提示词（6 号出图员版；2026-10-02 上午，历史，不再用于出图）
@@ -166,3 +176,7 @@ classic_ref:
 - 与现有狄云僧装立绘是同一张脸（偏长厚实的颧颊、浓低眉压深窄眼、宽实鼻、宽嘴薄上唇），但有头发、面颊饱满、日晒黝黑。
 - 十指完好、无镣铐、无僧衣；清初剃额留辫，短褂为大襟不是交领。
 - 一柄连鞘旧剑、竹斗笠；单人全身、暖浅灰纸底淡水墨远山、无文字水印。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已目检并入库为 candidate；实际作业与参考哈希见 manifest。

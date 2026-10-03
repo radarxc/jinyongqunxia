@@ -9,20 +9,27 @@ tier: S
 output: assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_late_base.png
 manifest: assets/default/character/male/ch12/manifest.yaml
 references:
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    use: candidate，当前工作副本 manifest 尚未批准；仅拟参考纸底、光线、笔触与设色，不沿用面容、体型、服饰或道具
-status: new
-redo_reason: "书剑男主尚无立绘；按原著「轻袍缓带、面如冠玉、贵介公子」补出，作为福康安（相貌极像）的身份参考。"
-codex_prompt_rev: 2026-10-02
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_chenjialuo__ch12_youth_late_base_still0.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_chenjialuo__ch12_youth_late_base_game.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+  use: 项目画风基线
+status: candidate
+redo_reason: 作者 10-02 晚：复合基线风格精修
+codex_prompt_rev: 2026-10-02 AR-36 retry3
 classic_ref:
-  version: "1976 年 TVB《书剑恩仇录》"
-  stills:
-  - ".agents/coord/imagegen-reference/identity-20261001/shujian/classic1976-20261002-prep_audit/chenjialuo-1976-zhengshaoqiu-sohu.jpg"
-  note: "剧照缩到长边 1024 的 JPEG 上传，放在两张同性别基线之前（AR-32）；chenjialuo-1976-zhengshaoqiu-sohu.jpg 裁切框 (0.2, 0.0, 1.0, 1.0)"
+  note: 影视造型＋经典游戏绘画气质＋同性别双基线，五官重新设计
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261001/shujian/classic1976-20261002-prep_audit/chenjialuo-1976-zhengshaoqiu-sohu.jpg
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_chenjialuo__ch12_youth_late_base_still0.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_chenjialuo__ch12_youth_late_base_game.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+generation_job: por_npc_chenjialuo__ch12_youth_late_base.retry3.r2
+generation_attempts: 2
+quality_retry_reason: r1未剃额：前额及前半头皮仍有头发；本次定向修正清制剃额留辫
 ---
 
 <!-- full-coverage-import:current-policy:v1 -->
@@ -36,22 +43,20 @@ reference_upload:
 
 ## Gemini 提示词
 
-> 2026-10-02 AR-32 经典剧照重出（6 号出图员，codex exec · image_gen 出图）：上传该角色经典影视版剧照 1 张（1976 年 TVB《书剑恩仇录》：chenjialuo-1976-zhengshaoqiu-sohu.jpg）在前、两张同性别基线在后。剧照只借鉴发型、服饰、配色、标志道具、气质与面部特征，重新绘制成项目画风，不照搬照片的构图、光影和姿势；人物一律成年；清代男子按清制剃额留辫。提示词里不写演员名。上一版提示词保留在下一节作历史。
-
 ```text
 生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
-【参考图】随提示词上传 3 张参考图。第 1 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。剧照与下文文字不一致的地方（年龄、所处阶段、帽饰与衣装细节、手中器物），以下文文字为准；画中人一律是成年人。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
+【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第2张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
 【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-【人物】陈家洛，金庸《书剑恩仇录》的男主角，红花会总舵主，海宁陈家的贵公子，文武双全，在回疆悟道之后、进京之前。
-【年龄与体态】二十四五岁的成年男子，身材修长挺拔，肩背舒展，约七个半头身。
-【经典造型】要一眼认出是红花会总舵主陈家洛——月白长衫外罩黑缎团花坎肩、轻袍缓带、手握书卷、腰悬短剑，面如冠玉、凤眼含愁，儒雅俊秀的贵公子兼一帮之主；英俊出众，一眼看去就是风度翩翩、年轻有书卷气的美男子，剃净的前额干净利落，不显老、不显僧相。
-【面容】脸以剧照为底子——保留剧照里这个角色的脸型、眉眼、鼻唇的比例关系和神气，画成成年人；面如冠玉：白净细致的皮肤（仍有真实的毛孔和淡淡血色，不是瓷娃娃）；长方脸，下颌线干净；剑眉，眉峰清楚；一双细长的凤眼，眼神温润沉静，眼底藏着心事和犹豫；鼻梁高挺笔直；嘴唇偏薄，线条分明；不留胡须。儒雅的书卷气里带着一帮之主的威仪。
-【发式】清代男子发式：前额与头顶前半部剃净，后脑长辫垂到背后，辫梢系素色丝绳。
-【服饰】月白色细布长衫，衣袍宽松（轻袍缓带），清代样式的圆领大襟（右衽，衣襟从领口斜向右腋下扣合）；外罩一件黑缎对襟坎肩，坎肩上缀着几团银灰色团花纹；领口露出白色中衣，腰间松松系一条浅青色丝绦；黑色布靴。整洁考究，像个贵介公子，没有绣金。
-【道具与姿态】左腰佩一柄短剑（霍青桐所赠，古朴的铜饰剑鞘，长度约一尺半），剑完全在鞘内；左手轻按剑柄，右手握一卷合起的线装书（封面无字）。微侧站立，身姿挺拔从容，目光平视远方。
-【不要】画面里不要任何文字、题款、印章、签名、水印、台标、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、日式服饰或日本刀、发光特效、法阵或能量光。不要照片或照片修图的质感，不要照搬剧照的构图、光影、背景和姿势，不要剧照里的字幕、台标和水印。不要络腮胡或粗犷相貌；不要帝王龙袍、道冠；不要笛子、盾牌、折扇；不要少年稚气的脸。清代男子穿圆领大襟，不要汉式交领长衫，不要明代发髻或网巾；不要照搬剧照里的站姿和白底。
-【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+【人物辨识与原创面孔】陈家洛；儒雅而优柔的贵公子、一帮之主的克制威仪、书卷与腰悬短剑；原创成年新脸：清瘦长方轮廓、平缓颧骨、细长凤眼、清晰而不过尖的下颌、薄唇略不对称，温润含忧，不复制剧照演员五官。
+【造型道具】清制剃额留辫；月白细布圆领右衽大襟长衫，黑缎对襟坎肩缀银灰小团花，浅青丝绦、黑布靴；左腰古朴铜鞘短剑完全入鞘，右手合拢无字书卷。
+【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+【本次只修发式】此人必须是清代剃额留辫：从额头一直到头顶前半圈完全剃净，必须看见连续、干净的浅肤色头皮；头发从头顶后半部才开始，编成一条长辫垂背。正面可见显著的光裸前额和前头皮，不得用完整发际线、全头背梳发或齐整前发代替。脸仍是成年文雅贵公子的原创新脸，衣服书卷短剑按原要求。
 ```
 
 ## 上一版 Gemini 提示词（2026-10-02 文字版；AR-32 经典剧照重出前，历史，不再用于出图）
@@ -152,3 +157,7 @@ Use case: stylized-concept。Asset type: 《金庸群侠传·天书录》default
 - 晚期悟道后的沉静通过神态呈现，双手没有气功光效。
 - 图像质量为 S；全身、剑鞘封尾均入画。
 - 跨书仅保留未来面容锚点，不能提前加入飞狐的年龄感。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。

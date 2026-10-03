@@ -9,47 +9,50 @@ tier: S
 output: assets/default/character/female/ch13/por_npc_chenglinsu__ch13_youth_alive_base.png
 manifest: assets/default/character/female/ch13/manifest.yaml
 references:
-- path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_3-1.png
-  use: 第一且唯一人物身份输入：1996原版游戏程灵素HDGRP_3-1，56×58原PNG已实际view、姓名配对沿既有审计。读取紧凑柔和小椭圆脸、细弯眉、横向而纵向开度有限的眼形、较短自然鼻口组合、软下颌与短圆下巴；正面化为朴实机敏少女，鼻翼和鼻尖保留实在体积。像素不支持精确正面测量。原侧转、乌发绿带黄绿领不复制，服饰发质遵循文字。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 第二输入只提供背景的暖浅灰纸、远山淡墨与留白；完全忽略画中女性，包括脸、身形、衣服、发型、饰物、姿势和人物绘制比例。不得把背景样图的面容或白色纱裙移植给程灵素。
-status: redo
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_chenglinsu__ch13_youth_alive_base_still0.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_chenglinsu__ch13_youth_alive_base_still1.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_chenglinsu__ch13_youth_alive_base_game.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  use: 项目画风基线
+status: candidate
 realism_revision: user_identity_face_rebuild_20261001
-codex_prompt_rev: 2026-10-02
-redo_reason: 作者 10-02：飞狐取最经典的 1991 台视版剧照重出；程灵素要清秀素净、聪慧、高级，不美化成艳丽（上一版本机无剧照，只用文字）
+codex_prompt_rev: 2026-10-02 AR-36 retry3
+redo_reason: 作者 10-02 晚：复合基线风格精修
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261002/feihu/chenglinsu_1991_gongcien_sohu2021.jpg
-- .agents/coord/imagegen-reference/identity-20261002/feihu/chenglinsu_1991_gongcien_sohu2022.jpg
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_chenglinsu__ch13_youth_alive_base_still0.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_chenglinsu__ch13_youth_alive_base_still1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_chenglinsu__ch13_youth_alive_base_game.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
 classic_ref:
-  version: 1991 台视《雪山飞狐》（含飞狐外传情节；作者「取最经典的一版」，新浪 2007 称其为公认最经典版本）；程灵素由龚慈恩饰演
-  stills:
-  - .agents/coord/imagegen-reference/identity-20261002/feihu/chenglinsu_1991_gongcien_sohu2021.jpg
-  - .agents/coord/imagegen-reference/identity-20261002/feihu/chenglinsu_1991_gongcien_sohu2022.jpg
+  note: 影视造型＋经典游戏绘画气质＋同性别双基线，五官重新设计
+generation_job: por_npc_chenglinsu__ch13_youth_alive_base.retry3.r1
+generation_attempts: 1
 ---
 
 # 程灵素 · 人物写实修正
 
 ## Gemini 提示词
 
-> 2026-10-02 AR-32 补记修改 B（9 号出图员，codex exec · image_gen）：作者 10-02：飞狐 / 雪山取最经典的一版（1991 台视版），下载剧照后重出；作者要程灵素「别太丑，弄得比较高级」。上一版本机无剧照，只用文字。上传顺序：第 1–2 张为 1991 台视《雪山飞狐》程灵素剧照（chenglinsu_1991_gongcien_sohu2021.jpg、chenglinsu_1991_gongcien_sohu2022.jpg 裁去字幕），最后两张为同性别画风基线（缩小版 JPEG）。参考图只借造型、气质与面部特征，画面按项目画风重绘、不复制照片。上一版保留在下一节作历史。
-
 ```text
 生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
-【参考图】第 1–2 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
-【剧照借鉴要点】取剧照里这一版程灵素的清秀脸型、额前薄齐刘海、黑白分明的明亮眼睛、沉静聪慧的神情，以及深色短袄配白色细滚边的配色；按原著把她画得素净、不施脂粉，清秀而高级，不画成艳丽的美人。
+【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第2张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第3张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
 【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-【人物】程灵素，金庸《飞狐外传》的女主角，毒手药王的关门弟子，住在药王庄、种花用药的村女，和胡斐初识之后。
-【年龄与体态】二十岁上下的成年女子：身材瘦小单薄，双肩窄而斜削，但五官和身体都是成年人的比例（约七头身），不是孩子。衣着完整端庄。
-【气质定位】不是艳丽的标准美女，而是清冷素净、有书卷气和高级感的女子——越看越有味道，像一株安静的兰草；聪慧、沉静、有主见（作者：别画丑，要高级一些）。
-【面容】照剧照的脸型和五官：清瘦小巧的脸，骨相清秀，颧骨微显，下巴小巧；肤色是偏暖的浅麦色，不施脂粉，干净有光泽，不是病容；眉毛淡而细长，鼻子小巧挺秀，嘴唇薄、颜色淡；一双眼睛明亮之极，眼珠漆黑、黑白分明，抬眼一看时精光四射——眼睛不必画得特别大，但要是全脸最亮、最有神的地方。神情安静、聪慧、温柔里带着倔强。
-【发式】乌发略带一点褐色光泽，发量不多但柔顺整洁；额前一排薄薄的齐刘海，脑后挽一个小小的低髻，用一条洗旧的绿色布带扎住，鬓边几缕细软的碎发。
-【服饰】深靛蓝近黑的交领短袄（右衽，穿着者左襟压右襟），领口和襟边一道白色细滚边；深蓝布裤，腰上系一条洗旧的浅灰布围裙，脚穿布鞋；朴素的村女打扮，干净平整、剪裁合身，配色素雅，朴素里见讲究。
-【道具与姿态】右手提一把小小的竹柄花锄；腰间挂一只灰褐色小布药囊。不拿兵器。安静地站着，微微抬眼望向前方，眼神清亮、聪明、温柔里带着倔强。
-【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要浓妆、红唇、耳坠流苏或性感化、暴露的衣着；不要艳丽的标准美女脸；也不要丑化、菜色病容、枯槁憔悴、蓬头垢面；不要丰满身材；不要病危、毒斑、死亡的样子；不要蜡烛和毒雾；不要日式服饰。
-【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+【人物辨识与原创面孔】程灵素；清瘦素净、漆黑眼睛聪慧有神、医毒双修却心善有主见；原创成年新脸：小而偏窄椭圆脸、轻显颧骨、细眉、自然水平眼形、短而真实鼻口和圆钝下颌，暖浅麦肤，不艳丽、不病态，不复制演员。
+【造型道具】按AR35保留乌发薄齐刘海和低髻、旧绿布带；深靛近黑右衽短袄白细滚边、深蓝布裤、浅灰旧围裙、布鞋；右手竹柄小花锄，腰挂灰褐药囊。
+【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
 ```
 
 ## AR-32 补记修改前的 Gemini 提示词（6 号出图员版；2026-10-02 上午，历史，不再用于出图）
@@ -163,3 +166,9 @@ FINAL CHECK: INPUT ONE alone defines Cheng Lingsu's face. Compact soft oval, res
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-face-rebuild-20261001/por_npc_chenglinsu__ch13_youth_alive_base.prepared.json`。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。
+
+- 作者造型例外：AR-35 明确保留乌发齐刘海，属于作者认可的原著外貌偏离；不把本轮乌发造型声称为原著「又黄又稀」的逐字复原。
