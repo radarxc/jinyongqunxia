@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 908、已通过（作者） 132、待出图 120。**待出图队列 120 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 909、已通过（作者） 132、待出图 119。**待出图队列 119 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -39,7 +39,6 @@
 | items | `it_qingheiqiqin` | 清黑漆琴 | `assets/default/item/collectibles/it_qingheiqiqin.png` | 待出图 | [it_qingheiqiqin.md](items/collectibles/it_qingheiqiqin.md) |
 | items | `it_qingjiaoyeqin` | 清式蕉叶琴 | `assets/default/item/collectibles/it_qingjiaoyeqin.png` | 待出图 | [it_qingjiaoyeqin.md](items/collectibles/it_qingjiaoyeqin.md) |
 | items | `it_shiketapian` | 石刻拓片 | `assets/default/item/collectibles/it_shiketapian.png` | 待出图 | [it_shiketapian.md](items/collectibles/it_shiketapian.md) |
-| items | `it_shupuzaoqimoben` | 书谱早期摹本 | `assets/default/item/collectibles/it_shupuzaoqimoben.png` | 待出图 | [it_shupuzaoqimoben.md](items/collectibles/it_shupuzaoqimoben.md) |
 | items | `it_shusutiejizhen` | 蜀素帖 | `assets/default/item/collectibles/it_shusutiejizhen.png` | 待出图 | [it_shusutiejizhen.md](items/collectibles/it_shusutiejizhen.md) |
 | items | `it_songjiuyubi` | 北宋旧藏玉璧 | `assets/default/item/collectibles/it_songjiuyubi.png` | 待出图 | [it_songjiuyubi.md](items/collectibles/it_songjiuyubi.md) |
 | items | `it_songlianbantonglu` | 北宋莲瓣铜炉 | `assets/default/item/collectibles/it_songlianbantonglu.png` | 待出图 | [it_songlianbantonglu.md](items/collectibles/it_songlianbantonglu.md) |
