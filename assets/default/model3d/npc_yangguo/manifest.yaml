@@ -1,0 +1,76 @@
+- id: npc_yangguo__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 杨过（神雕侠侣 ch03 · 独臂青年）· A 字参考版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 69bc599d-6988-411f-bdab-d6f99de29f9b
+    url: https://studio.tripo3d.ai/workspace/generate/69bc599d-6988-411f-bdab-d6f99de29f9b
+    generate_op: 4fe27889-b10c-45b6-8b6c-72d9f1345ff4（image_to_model）
+    rig_op: 1e4b1003-6f60-44d3-a6e2-139cfdb83f70
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch03/threeview/por_npc_yangguo__ch03_youth_onearm_apose.png
+    sha256: dc7eb0d23f72fba46961b3b846905389b50a1e121df5d0fe39200c051a66d3a1
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 46548cec0a3ea326dbc4c173a30b2d0ab75a60ba5dcbec3b507042610056ce89
+  size_bytes: 6793568
+  joints: 65
+  triangles: 97468
+  vertices: 56817
+  animations: []
+  textures:
+  - image/jpeg 643493 B
+  - image/jpeg 2021638 B
+  - image/jpeg 565907 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T14:52:08-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，左袖（角色右臂）空袖打结、独臂可辨识，头发深色、无肉色块。自动绑骨一次成功：仍是标准 65 关节 Mixamo 双臂骨架——空袖一侧的手臂骨链收在空袖里、手骨落在袖结下方（RightHand y0.54，比左手 0.49 略高、贴身），左臂正常外展（LeftHand y0.49）；腿脚正常（Hips 0.522、脚 0.063）。游戏里该侧手臂骨可不驱动或只给小幅摆动。
+- id: npc_yangguo__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 杨过（神雕侠侣 ch03 · 独臂青年）· A 字参考版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 69bc599d-6988-411f-bdab-d6f99de29f9b
+    url: https://studio.tripo3d.ai/workspace/generate/69bc599d-6988-411f-bdab-d6f99de29f9b
+    generate_op: 4fe27889-b10c-45b6-8b6c-72d9f1345ff4（image_to_model）
+    rig_op: 1e4b1003-6f60-44d3-a6e2-139cfdb83f70
+  size: 369x594
+  sha256: 71dc22e3bab8d19c4b0316787faa4ca0f38059c6ffd0c7cd79945d72a43d5609
+  size_bytes: 196968
+  created: '2026-10-03T14:52:08-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
