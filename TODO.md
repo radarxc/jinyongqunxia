@@ -21,7 +21,7 @@
   - 人物：AR-32 / AR-35 的修改全部完成；第二波（AR-36）cast-fill a / b 合入 57 张，hero-refine-a 合入 95 张（联系表已发作者），hero-refine-b 合入 80 张（2533a8fd；李文秀 6 图按「白马用游戏头像 + 基线」放行）；总览页 04:50 已重建重发；剩余 `build_portraits`（运行时裁切）等指定时段（§3.1）。
   - 物品（Gemini）：**366 张全部入库**（10-03 04:28 收工：秘籍 162、兵器 128、药材 55、暗器 21，限流 0），物品图至此出齐；下一批是 AR-40 的奢侈品 / 礼品约 120–180 张，等名录（§3.2）。
   - 情景图：改由 codex 主角精修任务出（hero-a 已入库 50 张插图，hero-b 待合入），Gemini 不再出；`key-scenes.md` 的统计口径待同步（§4）。
-  - 城市布局：CITY-layouts-all 03:36 续作（第 4 次运行）；遗迹地图等 ENG-18b；三视图切件 TOOL-rig-sheet 审核两次不过，第 3 次返修中（§3.4、§3.5）。
+  - 城市布局：CITY-layouts-all 05:28 合入 16 城（洛阳 / 太原因工具缺口标 rejected，TOOL-town-gaps-1 修工具后重做）；全量不接力，缩减范围等作者（§8.1）；遗迹地图等 ENG-18b；三视图切件 TOOL-rig-sheet 审核两次不过，第 3 次返修中（§3.4、§3.5）。
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
 - **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e 与 TOOL-items-catalog；集成分支 `pnpm check` 02:42 全绿（120 文件 825 用例，entry 129.51 / 170 KiB，webgl 292.75 / 350）。ENG-19a（04:32）、ENG-18b（05:09，3ef22aaf）、ENG-17（05:12，7febb5fc）合入——M1 的 25 / 17a / 19a / 17 齐了；在跑 ENG-12e、ENG-19c、TOOL-rig-sheet 返修、TOOL-catalog-9col 续作，ENG-19b 待 eng3 起；eng3 队列还有 18 项（§5）。
 - **分工**（作者 10-02 15:50 / 22:00）：三个 Opus subagent——素材线第二波追踪（codex 执行器）、Gemini 出图员、开发监督；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max；GPT-5.5 禁用）。协调者只规划、登记、裁定、合入。
@@ -47,7 +47,6 @@
 | TOOL-catalog-9col | traex Sol max | r2 返修两次停滞（模型无输出）后 05:10 带说明续作（只做双写完整性 + 测试 + 报告） | 27447（协调者另起，`supervise.r3.out`） |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | — | HOLD-RUNS：等 TOOL-catalog-9col 合入后挪基点复验（`_handoff/lore_plan.md`） | des34 batch 9492 看护 |
 | DES-items-gifts-spec | — | HOLD-RUNS：内存压力暂停（02:00） | — |
-| CITY-layouts-all | codex gpt-6-astra xhigh | r1 FAIL 后协调者停掉全量返修，04:39 另起只修洛阳水门 / 太原三城 / 页眉的收尾运行（`coord_note_0440.md`），PASS 即合入已产出的 16 城 | 36743（协调者另起，`supervise.r2.out`） |
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
 - codex 出图 runner：w12（pid 20933，2 槽）服务 hero-b；w11 已排空停掉。
@@ -176,7 +175,7 @@
 | ART-hero-refine-b | 同上，鹿鼎～雪山 | 同上 | **合入 2533a8fd**（80 张，r4 PASS） |
 | ART-cast-fill-a / -b | 逐书搜主要人物列表，补缺的提示词与立绘 | codex xhigh | **合入 e1698e93 / fe4765ef**（57 张） |
 | ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | 已登记（sparse_include 已补 female/ch09），等 DES-sync-keyscenes-ar36 合入（先改好 npcs-ch09 名录）且磁盘 ≥ 7 GiB |
-| CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | 第 4 次运行 04:19 结束（43 分钟做了 4 座：江宁、怀远、恒州、清池），校验通过、审核中；合入后**不接力全量**，范围缩减见 §8.1。进度在工作区 `progress.csv`（2367 行）/ `done.txt`。报告 §6 的工具缺口待登记：cities.yaml 缺庭州稳定键、ch10 年代带要核；唐代套件缺、xiyu / tubo 套件未进 schema（55 类里只有 38 个宋类有基线图）；render_town 不支持多重城垣 / 无墙营地 / 水门；plan_view.py 图头写死 linan |
+| CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | **合入 04f1133a**（05:28）：16 城目录——14 个完整候选 + 洛阳 / 太原（manifest 标 `rejected`：水门与内隔墙是工具缺口，构建不进包）；收尾运行修了页眉之外的两项未成。全量**不接力**，范围缩减见 §8.1；进度 `docs/design/town/progress.csv`（2367 行）/ `done.txt`，副本在 `_handoff/city/`。工具缺口已登记 **TOOL-town-gaps-1**（052aac53：水门 / 多重城垣 / 未声明墙水相交检查 / 页眉按城 / cities.yaml 庭州键与 ch10 年代带 / 唐 · 西域 · 吐蕃套件进 schema，用洛阳太原验证并改回 candidate），代码池有位时开发监督起 |
 | ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览（九老洞、敦煌地宫、长白山洞…） | codex xhigh | ENG-18b 已合入（3ef22aaf）；等 CITY 合入且负载 < 10、磁盘 ≥ 6 GiB 时追踪者直接起 |
 | ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录（瓷器 / 茶具、玉器、香炉铜器、琴、书法拜帖、笔…，书中宝物 + 史载物件）与 Gemini 提示词 | codex xhigh | 等 DES-items-gifts-spec（暂停）+ TOOL-catalog-9col |
 
