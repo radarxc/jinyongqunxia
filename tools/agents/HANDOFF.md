@@ -1187,4 +1187,16 @@
     - **TOOL-tests-discover**：07:01 起跑，驱动 3408，Sol max。当时条件：lore-5 合入后磁盘 5.1 GiB、负载 8.7、代码池 3/4。
     - **TOOL-town-gaps-1**：07:11 满足「磁盘 ≥ 6 GiB 且负载 < 8」，07:12 按 `--from start` 续作，驱动 66572，说明见 `devsup_note_resume.md`。代码池 4/4，它在排队等位。
     - ENG-12e 的续作由协调者起，已提醒条件满足。
+  - **10-03 07:14–07:27 开发监督**：ENG-20a 合入，entry 余量告急；lore-1 第 1 次手动复验。
+    - **ENG-20a**（M1）r1 PASS 合入，提交 d105c0b0，工作区已清。
+      - `prod_check`（`_handoff/prod_check_post-eng20a_0723.log`）全绿：130 个测试文件 / 939 条测试，`[dev-chunks] PASS`。
+      - **entry 166.34 / 170**（+6.17 KiB，余量 3.66），render 160.53，webgl 326.87。
+      - entry 闭包：entry.js 51.42 KiB + core-worker 95.78 KiB + 其余约 19 KiB。
+    - **ENG-19b**（M1）在审。它自己工作区实测 entry 162.90（基点早于 20a，增 2.73）。与 20a 相加约 169.1，合入后可能贴线或超线。
+      - 已向协调者建议现在就登记 ENG-entry-split：core-worker 内按需 `import()` 子系统，目标 ≤ 155 KiB，预算不放宽。等回复。
+    - **lore-1**（整份）：r2 FAIL，四条小项（玉管拂尘 qiAffinity、绣花针措辞、报告第 7 节）返修后转 HOLD-REVIEWS。07:15 手动第 1 次 `--from validate`，驱动 70416。r3 又 FAIL，正在返修。
+      - 作者确认项（默认）：
+        - 绣花针 atk=65 越带例外，保留；
+        - 金笛 grade 保留本表 6；
+        - 重兵先乘类别系数 × 标签，再钳制到大阶上限。
 
