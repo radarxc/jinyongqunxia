@@ -23,9 +23,9 @@
   - 情景图：改由 codex 主角精修任务出（hero-a 已入库 50 张插图，hero-b 待合入），Gemini 不再出；`key-scenes.md` 的统计口径待同步（§4）。
   - 城市布局：CITY-layouts-all 05:28 合入 16 城（洛阳 / 太原因工具缺口标 rejected，TOOL-town-gaps-1 修工具后重做）；全量不接力，缩减范围等作者（§8.1）；遗迹地图等 ENG-18b；三视图切件 TOOL-rig-sheet 审核两次不过，第 3 次返修中（§3.4、§3.5）。
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
-- **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e 与 TOOL-items-catalog；集成分支 `pnpm check` 02:42 全绿（120 文件 825 用例，entry 129.51 / 170 KiB，webgl 292.75 / 350）。ENG-19a（04:32）、ENG-18b（05:09，3ef22aaf）、ENG-17（05:12，7febb5fc）合入——M1 的 25 / 17a / 19a / 17 齐了；在跑 ENG-12e、ENG-19c、TOOL-rig-sheet 返修、TOOL-catalog-9col 续作，ENG-19b 待 eng3 起；eng3 队列还有 18 项（§5）。
+- **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e / TOOL-items-catalog，10-03 凌晨再合入 ENG-19a（04:32）、ENG-18b（05:09）、ENG-17（05:12）、ENG-19c（05:24）、TOOL-catalog-9col（05:37）——M1 的 25 / 17a / 19a / 17 齐了；集成分支 `pnpm check` 05:26 全绿（128 文件 922 用例，entry 160.17 / 170 KiB 余 9.8 KiB，webgl 320.70 / 350）。在跑 ENG-20a、ENG-19b、ENG-12e（返修：恢复 2D 演示 + 3D 并排）、TOOL-rig-sheet 返修、TOOL-town-gaps-1、TOOL-catalog-food-qi-exception、lore 复验（lore-6 已合入）；eng3 队列还有 17 项（§5）。
 - **分工**（作者 10-02 15:50 / 22:00）：三个 Opus subagent——素材线第二波追踪（codex 执行器）、Gemini 出图员、开发监督；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max；GPT-5.5 禁用）。协调者只规划、登记、裁定、合入。
-- **环境**：磁盘 7 GiB（交换区 33.8 GB 几乎用满），1 分钟负载 8～12；出图 runner 2 槽；eng3 并发 3（§6）。
+- **环境**：06:05 磁盘 3.4 GiB（32 个交换文件 ≈ 32 GB + 15 个在跑的工作区），1 分钟负载 7～10；规则：磁盘 < 5 GiB 不新开工作区、< 2.5 GiB 停线；eng3 并发 3（§6）。
 
 ---
 
