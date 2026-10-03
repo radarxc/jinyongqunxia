@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 846、待出图 182、已通过（作者） 132。**待出图队列 182 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 847、待出图 181、已通过（作者） 132。**待出图队列 181 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -29,7 +29,6 @@
 | 组 | asset_id | 名称 | 输出 | 状态 | 提示词 |
 |---|---|---|---|---|---|
 | items | `it_beisongsuqin` | 北宋素髹琴 | `assets/default/item/collectibles/it_beisongsuqin.png` | 待出图 | [it_beisongsuqin.md](items/collectibles/it_beisongsuqin.md) |
-| items | `it_caihoufanghu` | 蔡侯申方壶 | `assets/default/item/collectibles/it_caihoufanghu.png` | 待出图 | [it_caihoufanghu.md](items/collectibles/it_caihoufanghu.md) |
 | items | `it_chenghuajigangbei` | 成化斗彩鸡缸杯 | `assets/default/item/collectibles/it_chenghuajigangbei.png` | 待出图 | [it_chenghuajigangbei.md](items/collectibles/it_chenghuajigangbei.md) |
 | items | `it_dingyaohuakouwan` | 定窑白釉花口碗 | `assets/default/item/collectibles/it_dingyaohuakouwan.png` | 待出图 | [it_dingyaohuakouwan.md](items/collectibles/it_dingyaohuakouwan.md) |
 | items | `it_dingyaojiangyougaiwan` | 定窑酱釉盖碗 | `assets/default/item/collectibles/it_dingyaojiangyougaiwan.png` | 待出图 | [it_dingyaojiangyougaiwan.md](items/collectibles/it_dingyaojiangyougaiwan.md) |
