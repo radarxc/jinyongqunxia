@@ -1406,4 +1406,8 @@
     - **解除暂停**：14 个任务的状态清回 PENDING，交 eng3：ENG-16c / 26 / 23a / 16e / 18c、CONTENT-ch00a / b / c / ch10、ENG-27a / 27b / 28a / 28b / 27c。
       - ENG-20b 继续 HOLD，等 ENG-size-session-gate 合入，清单见 `scratchpad/entry_holds.txt`。
     - **ENG-attr-v2-schema**：Sol max，驱动 97000，review_checks_eng。
+  - **10-03 10:03 开发监督**：eng3 已于 09:34:15 退出，日志「队列结束：合入 21，停住 15」。
+    - 原因：当时剩余任务全是 HOLD、没有在跑的，batch_run 认为队列跑完了。09:57 解除的 14 个暂停因此没人接手。
+    - 已请协调者重启 eng3（parallel 3）。我不自己起调度器：之前单独起 batch_run 被权限系统拒绝过。
+    - 教训：以后成批 HOLD 前先确认调度器里还有在跑的任务，或者事先告知协调者，调度器可能因此提前退出。
 
