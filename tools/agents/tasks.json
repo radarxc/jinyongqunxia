@@ -34736,6 +34736,79 @@
      ]
     ]
    }
+  },
+  {
+   "id": "DES-items-gifts-spec",
+   "title": "奢侈品 / 礼品规格 · 收藏品扩充（瓷器茶具 / 玉器 / 香炉铜器 / 琴 / 书法拜帖 / 笔）、礼值与好感接口、按朝代可得性、求字支线模板（design/10 §11.5、design/12；作者 10-03）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-items-gifts-spec.md",
+   "deps": [
+    "DES-items-attrs-spec"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/10-items-and-equipment.md",
+    "docs/design/12-quests-npc-factions.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/10-items-and-equipment.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-items-gifts-catalog",
+   "title": "奢侈品 / 礼品名录与 Gemini 提示词 · 各朝代书中宝物与历史名器 120–180 件（codex xhigh 考据撰写，不出图；作者 10-03）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "ART-items-gifts-catalog.md",
+   "deps": [
+    "DES-items-gifts-spec",
+    "TOOL-catalog-9col"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "docs/design/catalog/items-collectibles.md",
+    "assets/default/prompts/items/collectibles/**"
+   ],
+   "vars": {},
+   "sparse_include": [
+    "assets/default/baseline/item"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-collectibles.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-collectibles.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
   }
  ]
 }
