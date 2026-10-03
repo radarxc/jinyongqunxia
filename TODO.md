@@ -48,7 +48,7 @@
 | TOOL-tests-discover | traex Sol | 07:01 起跑（unittest discover 跑全 tools 测试 + 两条红测试） | 3408（开发监督） |
 | ENG-12e-gltf-pilot | traex | 07:13 续作（恢复 2D 演示 + 3D 并排），07:16 开跑 | 69969（协调者，`supervise.r3.out`） |
 | TOOL-town-gaps-1 | traex Sol | 07:1x 续作（排队等池位） | 66572（开发监督） |
-| ENG-entry-split（待登记） | traex | ENG-20a 合入后 entry 166.34 / 170 只剩 3.66 KiB：core-worker 子系统按需 import()、主线程非首屏懒加载，目标 ≤ 155 KiB；排 19b 后、20b 前 | 开发监督登记后单独起 |
+| ENG-entry-split | traex Sol | 已登记（7f82fe44），07:29 起驱动排队等代码池位；合入前 15 个首屏相关任务 HOLD | 75729（开发监督） |
 
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
@@ -179,7 +179,7 @@
 | ART-cast-fill-a / -b | 逐书搜主要人物列表，补缺的提示词与立绘 | codex xhigh | **合入 e1698e93 / fe4765ef**（57 张） |
 | ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | **合入 41b24202**（06:07，六弟子各重出 1 张，联系表 `_handoff/gem/codex_w15/sheets/`） |
 | CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | **合入 04f1133a**（05:28）：16 城目录——14 个完整候选 + 洛阳 / 太原（manifest 标 `rejected`：水门与内隔墙是工具缺口，构建不进包）；收尾运行修了页眉之外的两项未成。全量**不接力**，范围缩减见 §8.1；进度 `docs/design/town/progress.csv`（2367 行）/ `done.txt`，副本在 `_handoff/city/`。工具缺口已登记 **TOOL-town-gaps-1**（052aac53：水门 / 多重城垣 / 未声明墙水相交检查 / 页眉按城 / cities.yaml 庭州键与 ch10 年代带 / 唐 · 西域 · 吐蕃套件进 schema，用洛阳太原验证并改回 candidate），代码池有位时开发监督起 |
-| ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览 | codex xhigh | **合入 df54e2ef**（06:12，56 张）。DES-ruins-ids 已合入（6d3121d7）：九老洞、敦煌地宫唐 / 清、达摩洞、若耶溪墓藏、华山后洞 6 个 `sc_*` → **ART-ruins-maps-2**（f052b904）追踪者按条件起；第 1 批报告 §6 缺的遗迹贴片待登记贴片任务 |
+| ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览 | codex xhigh | **合入 df54e2ef**（06:12，56 张）。DES-ruins-ids 已合入（6d3121d7）：九老洞、敦煌地宫唐 / 清、达摩洞、若耶溪墓藏、华山后洞 6 个 `sc_*` → **ART-ruins-maps-2**（f052b904）**07:28 起跑**（驱动 69438）；第 1 批报告 §6 缺的遗迹贴片待登记贴片任务 |
 | ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录与 Gemini 提示词 | codex xhigh | **06:44 起跑**（驱动 2757，基点 c6d06966） |
 
 做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接 `_handoff/art_wave2_tracker_brief.md`；审核要点 `.agents/coord/PROD/review_checks_hero.md`（第 1 条已容许白马 / 侠客 / 鸳鸯不用剧照）/ `review_checks_ruins.md` / `review_checks_city.md`。审核模型写 `--review-model gpt-5.6-sol`（Codex 不认大写）。
@@ -212,7 +212,7 @@
 - 10-02 16:10 之后：ENG-18（76f9381a）、ENG-15（5d719561）、ENG-21b（674476bf）、ENG-25（06e613ba）、ENG-08b（627b619e）、ENG-16b（393f07dc）、ENG-12c-clip（26697b74）、ENG-16d（80b97cf5）、TOOL-items-catalog（9bdc3e5f，物品 361 → 889 个）、ENG-14b（94459b20，经脉协议 3 黄金）、ENG-17a（7543c30e，新游戏与对话，M1）、ENG-18d（4f801d3f，物品移出 entry 闭包成内容包独立叶片）、ENG-18e（1af8afcf，build.test 夹具化）。
 - **ENG-19a 合入**（ed8898d6，04:32，M1 外壳：标题 / 设置 / 恢复 / 旋转提示 / 对话 / 任务组件，删掉旧 GameUi.vue 与 storage-demo.ts）、**ENG-18b 合入**（3ef22aaf，05:09，Tiled 区域地图管线）、**ENG-17 合入**（7febb5fc，05:12，书眠与章节切换 M1：序章结束 → 长白山初眠配点 → 白马）。集成分支 `pnpm check` 05:15 全绿（重建 dist 后）：127 文件 915 用例；**entry 160.17 / 170 KiB（余量 9.8 KiB）**，render 160.53 / 180，webgl total 320.70 / 350。19a 新加的 `build-shell.test.ts` 读的是上一次的 dist（旧 dist 误报、无 dist 空过）→ 登记 ENG-19c 小修；ENG-19b / 16e 说明已加「新页面组件一律懒加载、报告写 size 实测」（d433bed2），预算不放宽，再逼近就先拆分。
 - **ENG-20a 合入**（d105c0b0，07:23，区域探索 core）。prod_check 全绿：130 文件 939 用例；**entry 166.34 / 170（余 3.66 KiB）**，webgl 326.87 / 350 → 登记 ENG-entry-split（目标 ≤ 155 KiB，预算不放宽）。
-- **ENG-19b 合入**（8741f917，07:27，M1 界面流程：标题 → 新游戏 → 序章 → 初眠配点 → 白马）。M1 的 ENG 项齐了，剩 CONTENT-ch00a / b / c、CONTENT-ch10；合入后 entry 待量（20a 后 166.34 / 170），ENG-entry-split 先于 20b。
+- **ENG-19b 合入**（8741f917，07:27，M1 界面流程：标题 → 新游戏 → 序章 → 初眠配点 → 白马）。合入后 prod_check 全绿：133 文件 948 用例；**entry 169.07 / 170（只剩 0.93 KiB）** → ENG-entry-split（目标 ≤ 155 KiB）排在所有首屏任务之前，15 个相关任务暂停。M1 的 ENG 项齐了，剩 CONTENT-ch00a / b / c、CONTENT-ch10（等拆分）。
 - 此前 02:42 全绿：120 文件 825 用例；entry 129.51 / 170 KiB，webgl total 292.75 / 350（ENG-17a 后曾红到 203 / 170，ENG-18d 合入转绿）。`check:perf` 23:15（负载 7.3）：程序步态 min P95 0.319 ms，片段模式 0.795 ms（门禁已按 AR-37 放宽到 1.0）。
 
 **在跑**（eng3 并发 3 + 单独驱动）：ENG-17（书眠、初眠配点，M1）、ENG-18b（Tiled 区域地图）、ENG-19a（外壳，M1）01:14 起第 1 次运行；TOOL-rig-sheet 第 3 次返修；TOOL-catalog-9col 复审。
