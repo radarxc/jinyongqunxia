@@ -22758,7 +22758,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_dugu9"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_jiuyang",
@@ -22816,7 +22825,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_jiuyang"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_jiuyin",
@@ -22874,7 +22892,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_jiuyin"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_liumai",
@@ -22900,7 +22927,7 @@
     "nature": "harmony",
     "delivery": "finger",
     "catalog": "docs/design/catalog/skills-wujue.md",
-    "moves": "`mv_liumai_guanchong`、`mv_liumai_liumaiqifa`*P、`mv_liumai_shangyang`、`mv_liumai_shaochong`、`mv_liumai_shaoshang`*P、`mv_liumai_shaoze`*P、`mv_liumai_zhongchong`",
+    "moves": "`mv_liumai_guanchong`P、`mv_liumai_liumaiqifa`*P、`mv_liumai_shangyang`P、`mv_liumai_shaochong`P、`mv_liumai_shaoshang`*P、`mv_liumai_shaoze`*P、`mv_liumai_zhongchong`P",
     "emitter": "finger"
    },
    "validate": {
@@ -22932,7 +22959,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_liumai"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_taixuan",
@@ -22958,7 +22994,7 @@
     "nature": "harmony",
     "delivery": "inner",
     "catalog": "docs/design/catalog/skills-xiake-bixue.md",
-    "moves": "`mv_taixuan_guiyi`*P、`mv_taixuan_sada`*、`mv_taixuan_shibu`*、`mv_taixuan_tuyi`、`mv_taixuan_wuyue`",
+    "moves": "`mv_taixuan_guiyi`*P、`mv_taixuan_sada`*、`mv_taixuan_shibu`*、`mv_taixuan_tuyi`、`mv_taixuan_wuyue`P",
     "emitter": "palm"
    },
    "validate": {
@@ -22990,7 +23026,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_taixuan"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_xianglongxinggong",
@@ -23048,7 +23093,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_xianglongxinggong"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_anran",
@@ -23280,7 +23334,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_kuihua"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_qiankun",
@@ -23338,7 +23401,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_qiankun"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_suxin",
@@ -23396,7 +23468,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_suxin"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_taijijian",
@@ -23454,7 +23535,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_taijijian"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_taijiquan",
@@ -23512,7 +23602,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_taijiquan"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_taohuaguiyuanjue",
@@ -23570,7 +23669,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_taohuaguiyuanjue"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_tianshanliuyangxinfa",
@@ -23628,7 +23736,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_tianshanliuyangxinfa"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_xiantiangong",
@@ -23686,7 +23803,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_xiantiangong"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_xixing",
@@ -23744,7 +23870,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_xixing"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_xuantie",
@@ -23802,7 +23937,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_xuantie"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_yiyangzhi",
@@ -23828,7 +23972,7 @@
     "nature": "yang",
     "delivery": "finger",
     "catalog": "docs/design/catalog/skills-wujue.md",
-    "moves": "`mv_yiyangzhi_chunyang`、`mv_yiyangzhi_dianxue`、`mv_yiyangzhi_jiemai`、`mv_yiyangzhi_liaoshang`*、`mv_yiyangzhi_qianyang`*P、`mv_yiyangzhi_sanjiao`",
+    "moves": "`mv_yiyangzhi_chunyang`P、`mv_yiyangzhi_dianxue`P、`mv_yiyangzhi_jiemai`P、`mv_yiyangzhi_liaoshang`*、`mv_yiyangzhi_qianyang`*P、`mv_yiyangzhi_sanjiao`P",
     "emitter": "finger"
    },
    "validate": {
@@ -23860,7 +24004,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_yiyangzhi"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_baihuacuo",
@@ -24150,7 +24303,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_hama"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_huashanziqijue",
@@ -24382,7 +24544,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_jiuyinshenzhao"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_kongming",
@@ -24440,7 +24611,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_kongming"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_luohanfumo",
@@ -24466,7 +24646,7 @@
     "nature": "harmony",
     "delivery": "inner",
     "catalog": "docs/design/catalog/skills-xiake-bixue.md",
-    "moves": "`mv_luohanfumo_huti`*、`mv_luohanfumo_zhenqi`、`mv_luohanfumo_zhouliu`、`mv_luohanfumo_zhuxiang`*",
+    "moves": "`mv_luohanfumo_huti`*、`mv_luohanfumo_zhenqi`P、`mv_luohanfumo_zhouliu`、`mv_luohanfumo_zhuxiang`*",
     "emitter": "palm"
    },
    "validate": {
@@ -24498,7 +24678,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_luohanfumo"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_ningxue",
@@ -24556,7 +24745,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_ningxue"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_paoding",
@@ -24614,7 +24812,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_paoding"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_shenghuoling",
@@ -24672,7 +24879,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_shenghuoling"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_shenxing",
@@ -24730,7 +24946,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_shenxing"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_shenzhao",
@@ -24788,11 +25013,20 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_shenzhao"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_tanzhi",
-   "title": "招式特效 · 天级 弹指神通（sk_tanzhi，9 招）",
+   "title": "招式特效 · 天级 弹指神通（sk_tanzhi，8 招）",
    "phase": "PROD",
    "wave": 10,
    "kind": "draft",
@@ -24814,7 +25048,7 @@
     "nature": "harmony",
     "delivery": "finger",
     "catalog": "docs/design/catalog/skills-wujue.md",
-    "moves": "`mv_tanzhi_`、`mv_tanzhi_chuanshi`、`mv_tanzhi_dianxue`、`mv_tanzhi_jiemai`、`mv_tanzhi_lianzhu`*P、`mv_tanzhi_miaoshi`、`mv_tanzhi_tanjia`、`mv_tanzhi_tanzhi`、`mv_tanzhi_tianhua`*P",
+    "moves": "`mv_tanzhi_chuanshi`P、`mv_tanzhi_dianxue`P、`mv_tanzhi_jiemai`P、`mv_tanzhi_lianzhu`*P、`mv_tanzhi_miaoshi`、`mv_tanzhi_tanjia`、`mv_tanzhi_tanzhi`P、`mv_tanzhi_tianhua`*P",
     "emitter": "finger"
    },
    "validate": {
@@ -24846,7 +25080,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_tanzhi"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_tiangang",
@@ -24904,7 +25147,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_tiangang"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_tiezhang",
@@ -24962,7 +25214,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_tiezhang"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_tiezhangyunqigong",
@@ -25020,7 +25281,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_tiezhangyunqigong"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_xuanming",
@@ -25046,7 +25316,7 @@
     "nature": "yin",
     "delivery": "palm",
     "catalog": "docs/design/catalog/skills-yitian.md",
-    "moves": "`mv_xuanming_fumian`、`mv_xuanming_gusui`、`mv_xuanming_qichu`*、`mv_xuanming_rusi`*、`mv_xuanming_shuangxuan`、`mv_xuanming_yizhang`",
+    "moves": "`mv_xuanming_fumian`、`mv_xuanming_gusui`P、`mv_xuanming_qichu`*、`mv_xuanming_rusi`*、`mv_xuanming_shuangxuan`、`mv_xuanming_yizhang`",
     "emitter": "palm"
    },
    "validate": {
@@ -25078,7 +25348,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_xuanming"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_xuanminghanyuangong",
@@ -25136,7 +25415,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_xuanminghanyuangong"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_yihun",
@@ -25194,7 +25482,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_yihun"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_yunvxinjing",
@@ -25252,7 +25549,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_yunvxinjing"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "VFX-sk_zuoyouhubo",
@@ -25310,7 +25616,16 @@
       "--strict"
      ]
     ]
-   }
+   },
+   "sparse_include": [
+    "assets/default/vfx/emitters",
+    "assets/default/vfx/templates",
+    "assets/default/vfx/sk_zuoyouhubo"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ]
   },
   {
    "id": "TOWN-tiles-water",
