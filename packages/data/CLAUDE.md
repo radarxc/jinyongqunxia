@@ -14,6 +14,7 @@
 | `src/schemas/item.ts` | `ItemDef`、十一类 `kind` 的公共字段与类别扩展 | `design/10` §2 / §14 |
 | `src/schemas/story.ts`、`story-graph.ts` | `TimeWindow`、`StoryNode`、`StoryEdge`、`StoryLine` | `design/24` §§3–5 / §9 |
 | `src/schemas/world.ts` | `ShopDef`、`EventDef`、`BookWorldDef` | AR-19、`design/10`、`design/24` |
+| `src/schemas/region-map.ts` | `RegionMap`、chunk、11 类对象、48 地形闭集 | `tech/04` §6、`design/08`、`design/11` |
 
 ## 加载与公开入口
 
@@ -28,6 +29,10 @@
   `05` 以后或 `q_00_main_z/x_*`。
 - `prop_*` 必须 `chapterBound:true` 且只属于一个章节；离章销毁由 core 执行，data
   只校验标记。`tutorial_projection` 只允许 ch00 且必须带回执引用。
+- Tiled 只发现 `content/world/regions/<rg_id>/<sc_id>.tmj`；正交有限图经
+  `compileTiledMap()` 转为 `region-map.v1`，作为 region rules 叶片参与 `contentHash`。
+- `content/tiled/tianshu.tiled-project` 由 `scripts/generate-tiled.ts` 生成；提交前运行
+  `--check`。占位图片只生成到已忽略的 `.cache/content-build/tiled-placeholders/`，不得提交。
 
 ## 验证命令
 

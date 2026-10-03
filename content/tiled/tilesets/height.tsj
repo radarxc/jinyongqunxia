@@ -1,0 +1,27 @@
+{
+  "columns": 11,
+  "image": "../../../.cache/content-build/tiled-placeholders/height.png",
+  "imageheight": 48,
+  "imagewidth": 528,
+  "margin": 0,
+  "name": "tianshu-height",
+  "spacing": 0,
+  "tilecount": 11,
+  "tileheight": 48,
+  "tiles": [
+    {"id":0,"properties":[{"name":"height","type":"int","value":0}]},
+    {"id":1,"properties":[{"name":"height","type":"int","value":1}]},
+    {"id":2,"properties":[{"name":"height","type":"int","value":2}]},
+    {"id":3,"properties":[{"name":"height","type":"int","value":3}]},
+    {"id":4,"properties":[{"name":"height","type":"int","value":4}]},
+    {"id":5,"properties":[{"name":"height","type":"int","value":5}]},
+    {"id":6,"properties":[{"name":"height","type":"int","value":6}]},
+    {"id":7,"properties":[{"name":"height","type":"int","value":7}]},
+    {"id":8,"properties":[{"name":"height","type":"int","value":8}]},
+    {"id":9,"properties":[{"name":"height","type":"int","value":9}]},
+    {"id":10,"properties":[{"name":"height","type":"int","value":10}]}
+  ],
+  "tilewidth": 48,
+  "type": "tileset",
+  "version": "1.12"
+}

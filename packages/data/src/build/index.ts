@@ -6,4 +6,5 @@ export * from './manifest';
 export * from './pipeline';
 export * from './remaps';
 export * from './split-fields';
+export * from './tiled';
 export type * from './types';

@@ -19,14 +19,22 @@ export function splitLeaf(leaf: BuildLeaf, maxBytes = MAX_LEAF_BYTES): readonly 
     .map(([key, value]) => [key, value]);
   const materialize = (value: readonly JsonValue[]): JsonValue =>
     array ? value : Object.fromEntries(value as readonly [string, JsonValue][]);
-  const parts: JsonValue[][] = []; let current: JsonValue[] = [];
+  const parts: JsonValue[][] = [];
+  let current: JsonValue[] = [];
+  let currentBytes = 2;
   for (const entry of entries) {
-    if (canonicalBytes(materialize([entry])).byteLength > maxBytes)
+    const singleBytes = canonicalBytes(materialize([entry])).byteLength;
+    if (singleBytes > maxBytes)
       throw new TypeError(`CONTENT_LEAF_ENTRY_TOO_LARGE:${leaf.logicalName}`);
-    const candidate = [...current, entry];
-    if (current.length > 0 && canonicalBytes(materialize(candidate)).byteLength > maxBytes)
-      { parts.push(current); current = [entry]; }
-    else current = candidate;
+    const candidateBytes = currentBytes + singleBytes - 2 + (current.length === 0 ? 0 : 1);
+    if (current.length > 0 && candidateBytes > maxBytes) {
+      parts.push(current);
+      current = [entry];
+      currentBytes = singleBytes;
+    } else {
+      current.push(entry);
+      currentBytes = candidateBytes;
+    }
   }
   if (current.length > 0) parts.push(current);
   return parts.map((value, index) => ({ ...leaf, logicalName: numberedName(leaf.logicalName, index),
