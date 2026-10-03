@@ -2817,7 +2817,10 @@
   status: candidate
   size: 1024x1536
   variants:
+  - portrait/npc_weixiaobao/ch08_prime_scene_retirement
   - portrait/npc_weixiaobao/ch08_youth_bishou_base
+  - portrait/npc_weixiaobao/ch08_youth_scene_qingmu_incense
+  - portrait/npc_weixiaobao/ch08_youth_scene_yangzhou_gambler
   avatar: npc_weixiaobao/ch08_youth_bishou_base.ava256.webp
   bust: npc_weixiaobao/ch08_youth_bishou_base.bust512.webp
 - id: npc_weiyixiao

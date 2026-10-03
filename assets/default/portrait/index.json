@@ -7967,28 +7967,28 @@
   },
   "avatar/npc_weixiaobao/ch08_youth_bishou": {
    "128": {
-    "b": 4242,
+    "b": 4166,
     "f": "npc_weixiaobao/ch08_youth_bishou_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 11378,
+    "b": 11180,
     "f": "npc_weixiaobao/ch08_youth_bishou_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 30698,
+    "b": 29178,
     "f": "npc_weixiaobao/ch08_youth_bishou_base.ava512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    342,
-    46,
-    686,
-    390
+    336,
+    51,
+    676,
+    391
    ],
    "source": "por_npc_weixiaobao__ch08_youth_bishou_base"
   },
@@ -24127,22 +24127,22 @@
   },
   "bust/npc_weixiaobao/ch08_youth_bishou": {
    "256": {
-    "b": 11842,
+    "b": 11202,
     "f": "npc_weixiaobao/ch08_youth_bishou_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 33378,
+    "b": 30926,
     "f": "npc_weixiaobao/ch08_youth_bishou_base.bust512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    256,
-    36,
-    772,
-    552
+    251,
+    41,
+    761,
+    551
    ],
    "source": "por_npc_weixiaobao__ch08_youth_bishou_base"
   },
@@ -40254,23 +40254,80 @@
    "source_sha256": "cd3040f5bfed23f886dfeaeff919277c5ea47ea6304da55e204ce3cbb5344e13",
    "status": "candidate"
   },
+  "portrait/npc_weixiaobao/ch08_prime_scene_retirement": {
+   "alpha": false,
+   "low": {
+    "b": 201526,
+    "f": "npc_weixiaobao/ch08_prime_scene_retirement.low.webp",
+    "h": 1152,
+    "w": 768
+   },
+   "mid": {
+    "b": 312900,
+    "f": "npc_weixiaobao/ch08_prime_scene_retirement.mid.webp",
+    "h": 1536,
+    "w": 1024
+   },
+   "source": "por_npc_weixiaobao__ch08_prime_scene_retirement",
+   "source_file": "assets/default/character/male/ch08/por_npc_weixiaobao__ch08_prime_scene_retirement.png",
+   "source_sha256": "6dffe3210150a20560a4f395a5d0ab43cbd0c81e301cabe23a5bf004cb679d41",
+   "status": "candidate"
+  },
   "portrait/npc_weixiaobao/ch08_youth_bishou_base": {
    "alpha": true,
    "low": {
-    "b": 65682,
+    "b": 63836,
     "f": "npc_weixiaobao/ch08_youth_bishou_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 95358,
+    "b": 93038,
     "f": "npc_weixiaobao/ch08_youth_bishou_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_weixiaobao__ch08_youth_bishou_base",
    "source_file": "assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png",
-   "source_sha256": "8713f92abd849f5d45ea77a4350d02a26d753eb4961eb0243b42786fafb92714",
+   "source_sha256": "a780fc55cdb9f467da536040efed795f0e2d8c6cf52bd5d135aa5f619f28445c",
+   "status": "candidate"
+  },
+  "portrait/npc_weixiaobao/ch08_youth_scene_qingmu_incense": {
+   "alpha": false,
+   "low": {
+    "b": 90456,
+    "f": "npc_weixiaobao/ch08_youth_scene_qingmu_incense.low.webp",
+    "h": 1152,
+    "w": 768
+   },
+   "mid": {
+    "b": 140692,
+    "f": "npc_weixiaobao/ch08_youth_scene_qingmu_incense.mid.webp",
+    "h": 1536,
+    "w": 1024
+   },
+   "source": "por_npc_weixiaobao__ch08_youth_scene_qingmu_incense",
+   "source_file": "assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_scene_qingmu_incense.png",
+   "source_sha256": "bcf94dcffdf73b5afded110ee8cb3d0ed369870083ac3353bf342588eadab30e",
+   "status": "candidate"
+  },
+  "portrait/npc_weixiaobao/ch08_youth_scene_yangzhou_gambler": {
+   "alpha": false,
+   "low": {
+    "b": 168948,
+    "f": "npc_weixiaobao/ch08_youth_scene_yangzhou_gambler.low.webp",
+    "h": 1152,
+    "w": 768
+   },
+   "mid": {
+    "b": 258282,
+    "f": "npc_weixiaobao/ch08_youth_scene_yangzhou_gambler.mid.webp",
+    "h": 1536,
+    "w": 1024
+   },
+   "source": "por_npc_weixiaobao__ch08_youth_scene_yangzhou_gambler",
+   "source_file": "assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_scene_yangzhou_gambler.png",
+   "source_sha256": "ece9f60bce2ab55043aec8c472fcf540aace4a4aaf0b12bcedb2bb882c4b4326",
    "status": "candidate"
   },
   "portrait/npc_weiyixiao/ch04_prime_base": {
