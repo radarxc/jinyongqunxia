@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 912、已通过（作者） 132、待出图 116。**待出图队列 116 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 913、已通过（作者） 132、待出图 115。**待出图队列 115 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -41,7 +41,6 @@
 | items | `it_shiketapian` | 石刻拓片 | `assets/default/item/collectibles/it_shiketapian.png` | 待出图 | [it_shiketapian.md](items/collectibles/it_shiketapian.md) |
 | items | `it_shusutiejizhen` | 蜀素帖 | `assets/default/item/collectibles/it_shusutiejizhen.png` | 待出图 | [it_shusutiejizhen.md](items/collectibles/it_shusutiejizhen.md) |
 | items | `it_songqingshiyuwenyan` | 青石鱼纹砚 | `assets/default/item/collectibles/it_songqingshiyuwenyan.png` | 待出图 | [it_songqingshiyuwenyan.md](items/collectibles/it_songqingshiyuwenyan.md) |
-| items | `it_songxiaoyuyu` | 宋式小玉鱼 | `assets/default/item/collectibles/it_songxiaoyuyu.png` | 待出图 | [it_songxiaoyuyu.md](items/collectibles/it_songxiaoyuyu.md) |
 | items | `it_songyinhuaibei` | 北宋银花口杯 | `assets/default/item/collectibles/it_songyinhuaibei.png` | 待出图 | [it_songyinhuaibei.md](items/collectibles/it_songyinhuaibei.md) |
 | items | `it_songyulianbei` | 宋式玉莲瓣杯 | `assets/default/item/collectibles/it_songyulianbei.png` | 待出图 | [it_songyulianbei.md](items/collectibles/it_songyulianbei.md) |
 | items | `it_suibaicixiaozhan` | 隋式白瓷小盏 | `assets/default/item/collectibles/it_suibaicixiaozhan.png` | 待出图 | [it_suibaicixiaozhan.md](items/collectibles/it_suibaicixiaozhan.md) |
