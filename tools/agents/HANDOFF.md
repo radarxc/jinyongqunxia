@@ -1756,3 +1756,14 @@
   - CONTENT-ch00a-data r2 FAIL（报告数字过期；O4 招式附带效果缺 ENG 任务）：登记 ENG-move-onhit-effects（开发监督 5e56e7d5），ch00a 重起（驱动 78500，note `devsup_note_r2.md`）。
   - 招式特效 VFX-sk_* 剩 35 门交素材线第三波补位器（Codex 执行器直跑，先试点）；旧 `_batch_queue.txt` 已注释停用（CITY-* 由 CITY-layouts-* 取代）。
   - 作者 15:28「剧照要下」：黄蓉、阿青剧照许可下载（AR-49 补充 4），10 号改出带参考版；王语嫣场景立绘对齐 mantuo_base。三张待批联系表（大理苍山 A/B、段誉 A/B、高魅力形象）直接发给作者。
+  - **10-03 15:20–15:30 开发监督**：
+    - **ENG-region-gates-data** 15:21 拿到池位起跑，基点 7038f0a6，用的是新说明。
+      - event-executor 的执行器仍在跑，但状态是 HOLD-RUNS，artw3 的 wait_start 判它没拿到池位。
+      - 协调者已让 artw3 手动起 TOOL-city-generic 排队（15:24）。
+    - **DES-ui-immersive-2 合入 fc0fe2bb**（15:28）：
+      - r1 FAIL（漏了 `ui_status_stagnation` 深色描边规范；报告缺「需作者确认」），返修 4 分钟，复审 PASS；
+      - 已告诉协调者重发样稿。
+      - prod_check 全绿（HEAD ee442606）：1014 个测试；entry 38.44；render 161.87；webgl 200.32；会话闭包 93.40 / 110。
+    - **磁盘**：可用 3.7–4.4 GiB，低于 5 GiB，暂停新开工作区。
+      - ENG-session-base-diet 等 20b 合入、工作区清掉、空间回到 5 GiB 以上再起。
+
