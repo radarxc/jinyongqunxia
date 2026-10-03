@@ -47546,6 +47546,64 @@
    ],
    "validate": {
     "exists": [
+     "packages/data/src/build/ink.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-ink-external-args",
+   "title": "游戏工程 · 小修：Ink 文本抽取不得改写 EXTERNAL 调用的字符串实参（get_flag / has_item / quest_stage / affinity 保持原始 ID），补回归测试",
+   "prompt": "ENG-ink-external-args.md",
+   "deps": [
+    "ENG-content-validate-inkmeta"
+   ],
+   "writes": [
+    "packages/data/src/build/ink.ts",
+    "packages/data/src/build/*.test.ts",
+    "packages/data/src/**/__fixtures__/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
      "packages/core/src/dialogue/index.ts"
     ],
     "cmd": [
