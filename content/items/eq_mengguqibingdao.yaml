@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_mengguqibingdao
+name: 蒙古骑兵刀
+kind: weapon
+sub: blade
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·蒙古；射雕起蒙古营地可得 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/mengguqibingdao
+text:
+  desc: 外观：全长约九十厘米，狭长弧刃、短横镡、皮缠斜柄与帽形首。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

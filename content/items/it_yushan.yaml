@@ -22,8 +22,7 @@ use:
 assets:
   icon: item/yushan
 text:
-  desc: 名录投影：食品·名菜；grade=8; meal=select3buff:3battle; party=4。外观：龙纹不用文字的黄釉盖碗与三小碟，清代宫膳时代感 （原创扩展）
-  short: 御膳
+  desc: 外观：龙纹不用文字的黄釉盖碗与三小碟，清代宫膳时代感 （原创扩展）。 待运行时投影：party=4。
 extension:
   type: generic
   value: {}

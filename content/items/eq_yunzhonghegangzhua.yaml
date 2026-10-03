@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_yunzhonghegangzhua
+name: 云中鹤钢抓
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·云中鹤所持三尺钢抓；尺寸措辞 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yunzhonghegangzhua
+text:
+  desc: 外观：一对长柄钢抓并置，单件全长约九十厘米。 待运行时投影：exoticKind=misc。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

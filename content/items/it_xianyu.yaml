@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/xianyu
 text:
-  desc: 名录投影：食材·水产；grade=3; ingredientKind=fish; materialGrade=3。外观：银灰河鱼一尾置青竹叶，鳞光克制，尺许长 （原创扩展）
-  short: 鲜鱼
+  desc: 外观：银灰河鱼一尾置青竹叶，鳞光克制。
 extension:
   type: material
   value:

@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_humiao_mantou_jiyangtui
+name: 胡苗馒头鸡羊腿
+kind: dish
+sub: dish
+grade: 5
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《雪山飞狐》·胡一刀、苗人凤比武间同食馒头、鸡与羊腿
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_yuhan:2battle
+assets:
+  icon: item/humiao_mantou_jiyangtui
+text:
+  desc: 外观：馒头、熟鸡与烤羊腿分置三只大盘，比武歇餐四人份 （原创扩展）。 待运行时投影：party=4。
+extension:
+  type: generic
+  value: {}

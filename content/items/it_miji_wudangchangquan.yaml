@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_wudangchangquan
+name: 武当长拳谱
+kind: manual
+sub: full
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wudangchangquan
+text:
+  desc: 外观：明代青布线装小册，四眼白线。
+extension:
+  type: manual
+  value:
+    skill: sk_wudangchangquan
+    maxLayer: 10
+    variant: full
+    readMul: 1

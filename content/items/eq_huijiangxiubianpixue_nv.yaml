@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/huijiangxiubianpixue_nv
 text:
-  desc: 名录投影：鞋·皮靴；grade=4; slot=feet; wearer=female; qinggong=10。外观：女款枣红软皮靴一双并置，圆翘鞋头、中靿、蓝绿几何绣边与薄皮底，无字，成年足长、清代回疆城镇女装尺度
-  short: 回疆绣边皮靴·女
+  desc: 外观：女款枣红软皮靴一双并置，圆翘鞋头、中靿、蓝绿几何绣边与薄皮底。 待运行时投影：qinggong=10; wearer=female。
 extension:
   type: equipment
   value:

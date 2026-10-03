@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_banxia
+name: 半夏
+kind: material
+sub: herb
+grade: 5
+stack: 999
+chapters: any
+origin: canon
+canonRef: 常见本草；原材有毒，供剧情 / 暗器 / 解毒设定
+price: auto
+flags: []
+assets:
+  icon: item/banxia
+text:
+  desc: 外观：药用块茎炮制后呈类球形白片，表面粉性。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan6
+    materialGrade: 5
+    rare: false
+    herbFamily: banXia
+    ageYears: 0

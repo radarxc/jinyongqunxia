@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_tangjunzhangyue
+name: 唐军长钺
+kind: weapon
+sub: exotic
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·唐；白马（唐）军阵节点可得，实战普及度 （待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangjunzhangyue
+text:
+  desc: 外观：宽月牙铁钺刃接硬木长柄，通长约一百六十厘米。 待运行时投影：exoticKind=axe。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

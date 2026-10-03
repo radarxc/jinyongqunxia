@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/quanzhenfajian
 text:
-  desc: 名录投影：兵器·剑；grade=9; cat=sword; hands=1; unique=true; sect=sect_quanzhen。外观：修长直剑约七十五厘米，黄铜一字镡、深木柄青绦、黑漆鞘与北斗七星状无字铜钉，古旧克制，完整斜置，无人物与手
-  short: 全真法剑
+  desc: 外观：修长直剑约七十五厘米，黄铜一字镡、深木柄青绦、黑漆鞘与北斗七星状无字铜钉。 待运行时投影：sect=sect_quanzhen。
 extension:
   type: equipment
   value:

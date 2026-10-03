@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_huiyanlou_huncai
+name: 回雁楼荤菜
+kind: dish
+sub: dish
+grade: 3
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《笑傲江湖》·衡阳回雁楼点牛肉、猪肉、鸡鸭、鱼虾等荤菜
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: meal
+    params:
+      value: bf_qingxin:1battle
+assets:
+  icon: item/huiyanlou_huncai
+text:
+  desc: 外观：牛猪肉片、鸡鸭块与鱼虾分盛四只粗瓷盘，酒楼四人份 （原创扩展）。 待运行时投影：party=4。
+extension:
+  type: generic
+  value: {}

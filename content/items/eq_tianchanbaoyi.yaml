@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/tianchanbaoyi
 text:
-  desc: 名录投影：衣物·宝衣；grade=10; slot=body; armorWeight=light; catalogTian=true; divine=false; unique=true; price=null; defOutPct=8%。外观：珠白丝织长衣，极细金丝经纬、柔软可折叠，珍贵但不发光 （原创扩展）
-  short: 天蚕宝衣
+  desc: 外观：珠白丝织长衣，极细金丝经纬、柔软可折叠。 待运行时投影：defOutPct=8%。
 extension:
   type: equipment
   value:

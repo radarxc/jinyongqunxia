@@ -25,8 +25,7 @@ use:
 assets:
   icon: item/xueyulengchan
 text:
-  desc: 名录投影：食品·腌藏；grade=10; staPct=28%; meal=bf_yuhan,bf_jiangu:3battle; uniqueBatch=true。外观：银白薄切冻肉配青玉冰盘，藏地香料细点，冷冽无魔法光 （原创扩展）
-  short: 雪域冷膳
+  desc: 外观：银白薄切冻肉配青玉冰盘，藏地香料细点。 待运行时投影：uniqueBatch=true。
 extension:
   type: generic
   value: {}

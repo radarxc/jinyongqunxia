@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_boruozhang
+name: 般若掌法古本
+kind: manual
+sub: full
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·少林藏经楼三部黄黑旧经籍之一，原文名《般若掌法》
+price: auto
+flags: []
+assets:
+  icon: item/miji_boruozhang
+text:
+  desc: 外观：北宋黄黑麻纸蝴蝶装册，褐布书衣、细线缝缀。
+extension:
+  type: manual
+  value:
+    skill: sk_boruozhang
+    maxLayer: 10
+    variant: full
+    readMul: 1

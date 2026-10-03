@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_taixuan
+name: 太玄经石壁图解
+kind: manual
+sub: copy
+grade: 12
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《侠客行》·侠客岛二十四石室题诗与图解；本作以不可携地点载体登记
+price: null
+flags: []
+assets:
+  icon: item/miji_taixuan
+text:
+  desc: 外观：唐代海岛石室壁面局部，灰青石上阴刻诗句、经脉线与人形。
+extension:
+  type: manual
+  value:
+    skill: sk_taixuan
+    maxLayer: 8
+    variant: copy
+    readMul: 1

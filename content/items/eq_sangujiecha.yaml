@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/sangujiecha
 text:
-  desc: 名录投影：兵器·奇门叉；grade=3; cat=exotic; exoticKind=misc; hands=2。外观：三股对称铁叉头配硬木长杆，通长约一百八十厘米，中齿长而侧齿外张，铁箍与尾鐏清楚，完整斜置留足两端，无人物与手
-  short: 三股铁叉
+  desc: 外观：三股对称铁叉头配硬木长杆，通长约一百八十厘米。 待运行时投影：exoticKind=misc。
 extension:
   type: equipment
   value:

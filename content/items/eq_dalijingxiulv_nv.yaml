@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/dalijingxiulv_nv
 text:
-  desc: 名录投影：鞋·绣履；grade=6; slot=feet; wearer=female; qinggong=15。外观：女款青绿锦面软履一双并置，圆翘鞋头、薄皮底、银线莲瓣与绛红窄边，无文字，成年足长、宋代大理贵族尺度
-  short: 大理锦绣履·女
+  desc: 外观：女款青绿锦面软履一双并置，圆翘鞋头、薄皮底、银线莲瓣与绛红窄边。 待运行时投影：qinggong=15; wearer=female。
 extension:
   type: equipment
   value:

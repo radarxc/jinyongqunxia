@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/yuanzhijinzhanshidoupeng_nan
 text:
-  desc: 名录投影：披风·斗篷；grade=8; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005; resColdPp=4。外观：男款深蓝织金斗篷单件完整铺展，圆领铜搭扣、阔肩及膝、貂毛窄缘，几何云纹无字，元代蒙古贵族骑行尺度
-  short: 元织金战士斗篷·男
+  desc: 外观：男款深蓝织金斗篷单件完整铺展，圆领铜搭扣、阔肩及膝、貂毛窄缘。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=4; wearer=male。
 extension:
   type: equipment
   value:

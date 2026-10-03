@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_fengweishuangbi
+name: 凤尾双笔
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/fengweishuangbi
+text:
+  desc: 外观：两支精钢短笔并置，各约五十厘米。 待运行时投影：exoticKind=brush。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

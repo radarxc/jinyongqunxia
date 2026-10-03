@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/baonadai
 text:
-  desc: 名录投影：腰带·布带；grade=6; slot=waist; hpMaxPct=2%。外观：多色旧布条细密拼缝的宽腰封，低饱和、无文字 （原创扩展）
-  short: 百纳腰封
+  desc: 外观：多色旧布条细密拼缝的宽腰封，低饱和、无文字 （原创扩展）。 待运行时投影：hpMaxPct=2%。
 extension:
   type: equipment
   value:

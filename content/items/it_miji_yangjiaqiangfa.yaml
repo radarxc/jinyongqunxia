@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/miji_yangjiaqiangfa
 text:
-  desc: 名录投影：秘籍·全本；grade=6; skill=sk_yangjiaqiangfa; variant=full; maxLayer=10。外观：赭色纸册裹旧蓝布套，细长开本，边角磨白 （原创扩展）
-  short: 杨家枪法遗谱
+  desc: 外观：南宋赭色蝴蝶装长册，旧蓝布套。
 extension:
   type: manual
   value:

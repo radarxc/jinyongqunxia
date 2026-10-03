@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/bishuijian
 text:
-  desc: 名录投影：兵器·剑；grade=7; cat=sword; hands=1; unique=true; sect=sect_huashan。外观：水青冷光纤直钢剑，刃约七十厘米，窄云形护手、青丝缠柄与深绿鞘，刃口利落无魔法水纹，完整斜置，无人物与手 （原创扩展形制）
-  short: 碧水剑
+  desc: 外观：水青冷光纤直钢剑，刃约七十厘米。 待运行时投影：sect=sect_huashan。
 extension:
   type: equipment
   value:

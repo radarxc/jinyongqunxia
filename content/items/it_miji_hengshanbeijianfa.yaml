@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_hengshanbeijianfa
+name: 恒山剑法抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_hengshanbeijianfa
+text:
+  desc: 外观：明代月白线装册，青线四眼订。
+extension:
+  type: manual
+  value:
+    skill: sk_hengshanbeijianfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1

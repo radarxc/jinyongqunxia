@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_caoshangfei_can
+name: 草上飞残本
+kind: manual
+sub: partial
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_caoshangfei_can
+text:
+  desc: 外观：明代草绿色线装残册，粗麻补订。
+extension:
+  type: manual
+  value:
+    skill: sk_caoshangfei
+    maxLayer: 7
+    variant: partial
+    readMul: 1

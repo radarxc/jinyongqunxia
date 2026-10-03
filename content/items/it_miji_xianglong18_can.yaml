@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/miji_xianglong18_can
 text:
-  desc: 名录投影：秘籍·残本；grade=12; skill=sk_xianglong18; variant=partial; maxLayer=6。外观：旧黄纸残册，竹夹板护持，页角缺损但不散页，无文字 （原创扩展）
-  short: 降龙十八掌残本
+  desc: 外观：元代旧黄包背残册，竹夹板护持。
 extension:
   type: manual
   value:

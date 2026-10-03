@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/qiankunyiqidai
 text:
-  desc: 名录投影：兵器·奇门袋；grade=7; cat=exotic; exoticKind=misc; hands=1; unique=true; sect=sect_mingjiao。外观：厚韧灰白布袋收束平铺，约可容一人但画面按折叠尺度，袋口粗绳、补丁与撑裂旧痕，不画人物入袋 （原创扩展表现）
-  short: 乾坤一气袋
+  desc: 外观：厚韧灰白布袋收束平铺，约可容一人但画面按折叠尺度。 待运行时投影：exoticKind=misc; sect=sect_mingjiao。
 extension:
   type: equipment
   value:

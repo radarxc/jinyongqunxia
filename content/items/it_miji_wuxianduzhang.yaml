@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_wuxianduzhang
+name: 五仙毒掌抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuxianduzhang
+text:
+  desc: 外观：明代暗绿皮纸软册，红线双订。
+extension:
+  type: manual
+  value:
+    skill: sk_wuxianduzhang
+    maxLayer: 8
+    variant: copy
+    readMul: 1

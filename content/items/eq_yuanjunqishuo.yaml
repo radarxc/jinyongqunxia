@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_yuanjunqishuo
+name: 元军骑矟
+kind: weapon
+sub: spear
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·元；倚天起可得，名称沿用与器形 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/yuanjunqishuo
+text:
+  desc: 外观：四棱长锋接深色韧木杆，通长约三米。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

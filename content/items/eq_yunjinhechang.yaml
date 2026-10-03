@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/yunjinhechang
 text:
-  desc: 名录投影：衣物·氅服；grade=9; slot=body; armorWeight=light; wis=2; resMindPp=4。外观：银灰云锦长氅叠置，鹤羽仅作抽象暗纹，无官服补子 （原创扩展）
-  short: 云锦鹤氅
+  desc: 外观：银灰云锦长氅叠置，鹤羽仅作抽象暗纹。 待运行时投影：resMindPp=4; wis=2。
 extension:
   type: equipment
   value:

@@ -24,8 +24,7 @@ use:
 assets:
   icon: item/labazhou
 text:
-  desc: 名录投影：食品·汤羹；grade=9; perm.mpMaxPct=2%; sxpGrant=0.35。外观：深褐药粥盛厚青石碗，谷粒草叶可辨，热气极淡
-  short: 腊八粥
+  desc: 外观：深褐药粥盛厚青石碗，谷粒草叶可辨。
 extension:
   type: generic
   value: {}

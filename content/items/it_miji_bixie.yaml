@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_bixie
+name: 辟邪剑谱袈裟原本
+kind: manual
+sub: original
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《笑傲江湖》·林家老宅袈裟所录剑谱
+price: null
+flags: []
+assets:
+  icon: item/miji_bixie
+text:
+  desc: 外观：明代暗红旧袈裟折成长方包袱状，布边磨白。
+extension:
+  type: manual
+  value:
+    skill: sk_bixie
+    maxLayer: 10
+    variant: original
+    readMul: 1

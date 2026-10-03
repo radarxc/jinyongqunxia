@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/caoxie
 text:
-  desc: 名录投影：鞋·草鞋；grade=3; slot=feet; qinggong=7.5; defOutK=0.05。外观：一双黄麻草鞋，粗绳鞋带、轻微磨损，成年脚掌尺度 （原创扩展）
-  short: 麻编草鞋
+  desc: 外观：一双黄麻草鞋，粗绳鞋带、轻微磨损。 待运行时投影：defOutK=0.05; qinggong=7.5。
 extension:
   type: equipment
   value:

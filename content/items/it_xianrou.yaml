@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_xianrou
+name: 咸肉
+kind: food
+sub: food
+grade: 3
+stack: 20
+chapters: any
+origin: canon
+canonRef: 历代盐腌肉，冬季与行旅常备
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: meal
+    params:
+      value: bf_wenzhong:1battle
+assets:
+  icon: item/xianrou
+text:
+  desc: 外观：暗红咸肉条两块麻绳悬束，白盐霜细薄。
+extension:
+  type: generic
+  value: {}

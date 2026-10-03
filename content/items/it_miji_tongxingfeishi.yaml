@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_tongxingfeishi
+name: 通行飞石图谱
+kind: manual
+sub: full
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tongxingfeishi
+text:
+  desc: 外观：唐代粗麻纸卷轴，竹轴、草绳束缚。
+extension:
+  type: manual
+  value:
+    skill: sk_tongxingfeishi
+    maxLayer: 10
+    variant: full
+    readMul: 1

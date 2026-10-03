@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_menggutietaosuo
+name: 蒙古铁套索
+kind: weapon
+sub: whip
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·蒙古；射雕起蒙古营地可得，铁坠用途 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/menggutietaosuo
+text:
+  desc: 外观：三米深褐皮索松盘，前端活套闭合、末端拳大圆钝铁坠与皮护腕。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

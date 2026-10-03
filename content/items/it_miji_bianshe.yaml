@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_bianshe
+name: 边塞射法全本
+kind: manual
+sub: full
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_bianshe
+text:
+  desc: 外观：元代灰褐包背长册，黑布护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_bianshe
+    maxLayer: 10
+    variant: full
+    readMul: 1

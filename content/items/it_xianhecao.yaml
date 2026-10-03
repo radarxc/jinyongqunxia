@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_xianhecao
+name: 仙鹤草
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/xianhecao
+text:
+  desc: 外观：药用地上部分切作黄绿短段，残留穗状果刺。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: xianHeCao
+    ageYears: 0

@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/sanxiaosanxia
 text:
-  desc: 名录投影：暗器·毒粉匣；grade=8; hiddenKind=powder; ammoMul=1.160; hiddenHit=6.6; perBattle=3; onHit=bf_sanxiao; unique=true; sect=sect_xingxiu。外观：三格乌木粉匣完全闭合，格盖各嵌一枚素银圆点、边缘有密封蜡痕，不露粉末、不写字，无人物、手、投撒或中毒场景
-  short: 三笑逍遥散匣
+  desc: 外观：三格乌木粉匣完全闭合，格盖各嵌一枚素银圆点、边缘有密封蜡痕。 待运行时投影：ammoMul=1.160; hiddenHit=6.6; onHit=bf_sanxiao; sect=sect_xingxiu。
 extension:
   type: equipment
   value:

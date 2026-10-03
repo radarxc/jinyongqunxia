@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/zangdicuobu_nan
 text:
-  desc: 名录投影：衣物·胡服；grade=1; slot=body; armorWeight=light; wearer=male; resColdPp=1。外观：男款深褐粗氆氇宽袖藏袍单件平展，斜襟右衽、长袖厚重、右肩可翻折的裁片关系清楚，麻绳束腰，无纹，宋清藏地牧民尺度
-  short: 藏地粗氆氇袍·男
+  desc: 外观：男款深褐粗氆氇宽袖藏袍单件平展，斜襟右衽、长袖厚重、右肩可翻折的裁片关系清楚。 待运行时投影：resColdPp=1; wearer=male。
 extension:
   type: equipment
   value:

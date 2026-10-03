@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/bishou
 text:
-  desc: 名录投影：兵器·奇门匕；grade=10; cat=exotic; exoticKind=dagger; hands=1; divine=true; unique=true。外观：极薄锋锐短匕全长约三十厘米，冷白钢刃、小型椭圆护手、黑木柄与旧皮鞘，完整并置，无人物与手 （原创扩展形制）
-  short: 韦小宝匕首
+  desc: 外观：极薄锋锐短匕全长约三十厘米，冷白钢刃、小型椭圆护手、黑木柄与旧皮鞘。 待运行时投影：exoticKind=dagger。
 extension:
   type: equipment
   value:

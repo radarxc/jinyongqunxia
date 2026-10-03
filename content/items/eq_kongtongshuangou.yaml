@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/kongtongshuangou
 text:
-  desc: 名录投影：兵器·奇门钩；grade=7; cat=exotic; exoticKind=hook; hands=1; pair=true; unique=true; sect=sect_kongtong。外观：一对乌钢护手钩并置，单件约八十五厘米，钩尖、月牙护手与尖柄尾轮廓清晰，风沙旧化，无人物与手
-  short: 崆峒护山双钩
+  desc: 外观：一对乌钢护手钩并置，单件约八十五厘米。 待运行时投影：exoticKind=hook; sect=sect_kongtong。
 extension:
   type: equipment
   value:

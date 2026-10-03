@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qingqingduanxingxue_nan
 text:
-  desc: 名录投影：鞋·行靴；grade=4; slot=feet; wearer=male; qinggong=10。外观：男款深蓝细缎行靴一双并置，圆头、中靿、黑皮包头与软厚底，靴口窄滚边无字，成年足长、清前中期骑射行服尺度
-  short: 清青缎行靴·男
+  desc: 外观：男款深蓝细缎行靴一双并置，圆头、中靿、黑皮包头与软厚底。 待运行时投影：qinggong=10; wearer=male。
 extension:
   type: equipment
   value:

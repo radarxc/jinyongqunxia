@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_qiankun
+name: 乾坤大挪移羊皮原本
+kind: manual
+sub: original
+grade: 11
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·明教密道羊皮载体
+price: null
+flags: []
+assets:
+  icon: item/miji_qiankun
+text:
+  desc: 外观：元代淡褐薄羊皮折页，黑皮绳束缚。
+extension:
+  type: manual
+  value:
+    skill: sk_qiankun
+    maxLayer: 10
+    variant: original
+    readMul: 1

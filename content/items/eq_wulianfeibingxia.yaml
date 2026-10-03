@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_wulianfeibingxia
+name: 五联飞饼匣
+kind: hidden
+sub: dart
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/wulianfeibingxia
+text:
+  desc: 外观：五枚掌心大薄钢圆轮并排嵌于长匣，中央握孔无字、外缘四段浅刃互不遮挡。 待运行时投影：ammoMul=1.090; hiddenHit=5.1。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

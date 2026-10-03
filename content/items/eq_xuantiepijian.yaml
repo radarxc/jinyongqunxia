@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/xuantiepijian
 text:
-  desc: 名录投影：护肩·金属；grade=9; slot=shoulder; defOutK=0.025; tough=4。外观：乌铁双肩甲与短链相连，厚重圆弧、无夸张尖角 （原创扩展）
-  short: 玄铁披肩
+  desc: 外观：乌铁双肩甲与短链相连，厚重圆弧、无夸张尖角 （原创扩展）。 待运行时投影：defOutK=0.025; tough=4。
 extension:
   type: equipment
   value:

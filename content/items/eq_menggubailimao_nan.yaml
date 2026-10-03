@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/menggubailimao_nan
 text:
-  desc: 名录投影：头饰·毡帽；grade=2; slot=head; wearer=male。外观：男款乳白毡笠帽独立陈列，不画人头，圆锥低顶、翻折窄檐、红布顶结与皮下颏带，粗毡无字，蒙古牧骑尺度
-  short: 蒙古白毡笠帽·男
+  desc: 外观：男款乳白毡笠帽独立陈列，不画人头。 待运行时投影：wearer=male。
 extension:
   type: equipment
   value:

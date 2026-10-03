@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/chanzhang
 text:
-  desc: 名录投影：兵器·棍杖；grade=6; cat=staff; hands=2; tags=blunt。外观：铁环锡杖头、深木长杆，环片小而克制，约一人高
-  short: 禅杖
+  desc: 外观：铁环锡杖头、深木长杆，环片小而克制。
 extension:
   type: equipment
   value:

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_muwu_gancaifan
+name: 木屋干菜饭
+kind: dish
+sub: dish
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·众人在木屋以干菜佐白米饭
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_qingxin:2battle
+assets:
+  icon: item/muwu_gancaifan
+text:
+  desc: 外观：白米饭覆褐绿干菜盛粗陶碗，木屋旅食一人份 （原创扩展）。
+extension:
+  type: generic
+  value: {}

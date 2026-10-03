@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/tieguai
 text:
-  desc: 名录投影：兵器·棍杖；grade=5; cat=staff; hands=1; tags=blunt。外观：乌黑锻铁直拐约一百厘米，横握柄与圆钝杆端一体锻成，边缘磨亮、无雕字，完整斜置，无人物与手
-  short: 铁拐
+  desc: 外观：乌黑锻铁直拐约一百厘米，横握柄与圆钝杆端一体锻成。
 extension:
   type: equipment
   value:

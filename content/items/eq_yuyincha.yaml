@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/yuyincha
 text:
-  desc: 名录投影：兵器·奇门叉；grade=7; cat=exotic; exoticKind=misc; hands=2; unique=true; sect=sect_dali。外观：长柄渔叉约二米，中央长齿与两侧倒钩克制，深木杆、铁箍和尾鐏，水渍旧化，完整斜置留足两端，无人物与手 （原创扩展形制）
-  short: 渔隐叉
+  desc: 外观：长柄渔叉约二米，中央长齿与两侧倒钩克制。 待运行时投影：exoticKind=misc; sect=sect_dali。
 extension:
   type: equipment
   value:

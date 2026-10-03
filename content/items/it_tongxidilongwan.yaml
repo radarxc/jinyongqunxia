@@ -20,8 +20,7 @@ use:
 assets:
   icon: item/tongxidilongwan
 text:
-  desc: 名录投影：补品·抗毒；grade=9; carry.resPoisonPp=8; carry.resGuPp=4; unique=true。外观：琥珀色药丸一枚置犀角色小匣，西域卷草纹，凝润质感 （原创扩展）
-  short: 通犀地龙丸
+  desc: 外观：琥珀色药丸一枚置犀角色小匣，西域卷草纹。 待运行时投影：carry.resGuPp=4; carry.resPoisonPp=8。
 extension:
   type: generic
   value: {}

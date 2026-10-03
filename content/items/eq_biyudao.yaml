@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/biyudao
 text:
-  desc: 名录投影：兵器·刀；grade=9; cat=blade; hands=1; unique=true。外观：碧玉色刀装配窄直背短刀，玉质集中在柄与鞘，非整刃翡翠 （原创扩展）
-  short: 碧玉刀
+  desc: 外观：碧玉色刀装配窄直背短刀，玉质集中在柄与鞘。
 extension:
   type: equipment
   value:

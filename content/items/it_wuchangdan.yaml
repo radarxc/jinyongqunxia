@@ -26,8 +26,7 @@ use:
 assets:
   icon: item/wuchangdan
 text:
-  desc: 名录投影：药物·疗伤；grade=6; healPct=8.5%; dispel=injury:g6。外观：黑白相间双层漆盒，深褐丸药，银灰封蜡，半掌大小 （原创扩展）
-  short: 无常丹
+  desc: 外观：黑白相间双层漆盒，深褐丸药。
 extension:
   type: generic
   value: {}

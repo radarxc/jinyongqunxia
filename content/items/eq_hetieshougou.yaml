@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/hetieshougou
 text:
-  desc: 名录投影：兵器·奇门钩；grade=7; cat=exotic; exoticKind=hook; hands=1; unique=true; sect=sect_wudu。外观：前臂长乌钢义肢钩，弯刃与腕箍结构完整，内衬旧皮、表面暗绿氧化痕，不画断肢或毒液，无人物与手 （原创扩展形制）
-  short: 何铁手毒钩
+  desc: 外观：前臂长乌钢义肢钩，弯刃与腕箍结构完整。 待运行时投影：exoticKind=hook; sect=sect_wudu。
 extension:
   type: equipment
   value:

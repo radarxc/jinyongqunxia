@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_xiaomi
+name: 小米
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 北方传统粟粮，先秦至明清通用
+price: auto
+flags: []
+assets:
+  icon: item/xiaomi
+text:
+  desc: 外观：金黄小米盛小陶斗，圆细谷粒与少量谷壳可辨 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_liangshi_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: grain

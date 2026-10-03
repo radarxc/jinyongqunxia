@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/songqingbuyuantoulv_nv
 text:
-  desc: 名录投影：鞋·布履；grade=2; slot=feet; wearer=female; qinggong=5。外观：女款青灰麻布圆头履一双并置，圆头、低鞋墙、白麻纳底与素色包边，无绣纹，成年足长、宋代平民尺度
-  short: 宋青布圆头履·女
+  desc: 外观：女款青灰麻布圆头履一双并置，圆头、低鞋墙、白麻纳底与素色包边。 待运行时投影：qinggong=5; wearer=female。
 extension:
   type: equipment
   value:

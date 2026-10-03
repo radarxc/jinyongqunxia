@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_gegen
+name: 葛根
+kind: material
+sub: herb
+grade: 1
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/gegen
+text:
+  desc: 外观：药用块根切成乳白方块并晒干，纤维断面明显。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang9
+    materialGrade: 1
+    rare: false
+    herbFamily: geGen
+    ageYears: 0

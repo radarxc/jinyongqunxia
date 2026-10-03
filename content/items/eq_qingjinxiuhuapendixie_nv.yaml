@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/qingjinxiuhuapendixie_nv
 text:
-  desc: 名录投影：鞋·旗鞋；grade=8; slot=feet; wearer=female; qinggong=20。外观：女款月白锦缎花盆底鞋一双并置，宽圆鞋头、鞋底中央低矮倒梯形木台、蓝绦包边与折枝菊纹，无字，成年天足尺度，不夸大晚清高底
-  short: 清锦绣花盆底鞋·女
+  desc: 外观：女款月白锦缎花盆底鞋一双并置，宽圆鞋头、鞋底中央低矮倒梯形木台、蓝绦包边与折枝菊纹。 待运行时投影：qinggong=20; wearer=female。
 extension:
   type: equipment
   value:

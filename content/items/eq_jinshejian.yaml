@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/jinshejian
 text:
-  desc: 名录投影：兵器·剑；grade=10; cat=sword; divine=true; unique=true。外观：金色蛇形意象异剑，曲线集中于装具，刃口仍连续可辨 （待考形制；原创扩展表现）
-  short: 金蛇剑
+  desc: 外观：金色蛇形意象异剑，曲线集中于装具。
 extension:
   type: equipment
   value:

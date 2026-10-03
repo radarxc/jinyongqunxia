@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_yuxiaojianfa
+name: 玉箫剑法谱
+kind: manual
+sub: full
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_yuxiaojianfa
+text:
+  desc: 外观：南宋青碧蝴蝶装册，白绢包角。
+extension:
+  type: manual
+  value:
+    skill: sk_yuxiaojianfa
+    maxLayer: 10
+    variant: full
+    readMul: 1

@@ -26,8 +26,7 @@ use:
 assets:
   icon: item/xueshenyuchanwan
 text:
-  desc: 名录投影：补品·内力经脉；grade=10; perm.mpMaxPct=2%; meridianAid={rateBp:1000,successBp:500,costReduceBp:500,hours:12}。外观：雪白药丸嵌淡青玉蟾小盒，霜晶与参纹，冷润无荧光 （原创扩展）
-  short: 雪参玉蟾丸
+  desc: 外观：雪白药丸嵌淡青玉蟾小盒，霜晶与参纹。
 extension:
   type: generic
   value: {}

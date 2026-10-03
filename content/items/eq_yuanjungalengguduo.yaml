@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_yuanjungalengguduo
+name: 元军瓜棱骨朵
+kind: weapon
+sub: exotic
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·元；倚天起可得，辽宋骨朵后续沿用情况 （待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanjungalengguduo
+text:
+  desc: 外观：通长约六十五厘米，八棱铁首、短木柄包铁箍与皮腕绳。 待运行时投影：exoticKind=hammer。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

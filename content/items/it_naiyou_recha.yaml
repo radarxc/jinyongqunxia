@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_naiyou_recha
+name: 奶油热茶
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《白马啸西风》·计老人给李文秀奶油热茶
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_yuhan:2battle
+assets:
+  icon: item/naiyou_recha
+text:
+  desc: 外观：浅褐热茶盛木碗，表面浮薄层乳油。
+extension:
+  type: generic
+  value: {}

@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/yexingyi
 text:
-  desc: 名录投影：衣物·潜行服；grade=6; slot=body; armorWeight=light; tags=night; eva=2xG。外观：墨黑偏蓝窄袖衣裤折叠成套，哑光布、无蒙面人物 （原创扩展）
-  short: 夜行衣
+  desc: 外观：墨黑偏蓝窄袖衣裤折叠成套，哑光布、无蒙面人物 （原创扩展）。 待运行时投影：eva=2xG。
 extension:
   type: equipment
   value:

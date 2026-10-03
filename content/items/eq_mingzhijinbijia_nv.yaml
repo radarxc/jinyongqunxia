@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingzhijinbijia_nv
 text:
-  desc: 名录投影：衣物·礼服；grade=7; slot=body; armorWeight=light; wearer=female; talk=2。外观：女款方领对襟长比甲单件平展，无袖直身、两侧开衩，靛青织金折枝纹配暗红窄缘，无字，明代士绅女装尺度
-  short: 明织金比甲·女
+  desc: 外观：女款方领对襟长比甲单件平展，无袖直身、两侧开衩。 待运行时投影：talk=2; wearer=female。
 extension:
   type: equipment
   value:

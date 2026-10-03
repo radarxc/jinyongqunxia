@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_qingtengpai
+name: 清营藤牌
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·清；鹿鼎起军阵节点可得 （原创扩展复原）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingtengpai
+text:
+  desc: 外观：圆形密编藤牌直径约八十厘米，藤骨同心编纹、牛皮包边。 待运行时投影：exoticKind=misc。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

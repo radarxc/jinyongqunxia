@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_marou
+name: 马肉
+kind: material
+sub: ingredient
+grade: 5
+stack: 999
+chapters: any
+origin: canon
+canonRef: 辽、蒙古及西北游牧语境可得，农耕城镇不作常规货
+price: auto
+flags: []
+assets:
+  icon: item/marou
+text:
+  desc: 外观：深红马肉厚片三片叠放木盘，瘦而紧实。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_xuan6
+    materialGrade: 5
+    rare: false
+    ingredientKind: meat

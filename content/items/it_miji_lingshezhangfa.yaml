@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_lingshezhangfa
+name: 灵蛇杖法秘本
+kind: manual
+sub: full
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_lingshezhangfa
+text:
+  desc: 外观：南宋西域皮纸册，棕皮软封、绿丝双系。
+extension:
+  type: manual
+  value:
+    skill: sk_lingshezhangfa
+    maxLayer: 10
+    variant: full
+    readMul: 1

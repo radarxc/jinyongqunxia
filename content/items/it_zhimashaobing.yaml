@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_zhimashaobing
+name: 芝麻烧饼
+kind: food
+sub: food
+grade: 3
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: meal
+    params:
+      value: bf_jiangu:1battle
+assets:
+  icon: item/zhimashaobing
+text:
+  desc: 外观：金黄圆烧饼两枚置油纸，表面芝麻与炉斑可辨 （原创扩展）。
+extension:
+  type: generic
+  value: {}

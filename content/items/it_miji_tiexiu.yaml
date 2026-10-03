@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_tiexiu
+name: 铁袖功抄本
+kind: manual
+sub: copy
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tiexiu
+text:
+  desc: 外观：清代深灰线装小册，四眼黑线。
+extension:
+  type: manual
+  value:
+    skill: sk_tiexiu
+    maxLayer: 8
+    variant: copy
+    readMul: 1

@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/tiehuanchanzhang
 text:
-  desc: 名录投影：兵器·棍杖；grade=6; cat=staff; hands=2; tags=long,blunt。外观：黄铜锡杖头带六枚闭合小环，深色硬木杆约一百八十厘米、铁尾鐏，烟熏与握痕克制，完整斜置留足杆端，无人物与手
-  short: 铁环禅杖
+  desc: 外观：黄铜锡杖头带六枚闭合小环，深色硬木杆约一百八十厘米、铁尾鐏。
 extension:
   type: equipment
   value:

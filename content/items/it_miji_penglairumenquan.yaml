@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_penglairumenquan
+name: 蓬莱入门拳抄本
+kind: manual
+sub: copy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_penglairumenquan
+text:
+  desc: 外观：北宋浅蓝蝴蝶装小册，白绢包角。
+extension:
+  type: manual
+  value:
+    skill: sk_penglairumenquan
+    maxLayer: 8
+    variant: copy
+    readMul: 1

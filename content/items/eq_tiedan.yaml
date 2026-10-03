@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/tiedan
 text:
-  desc: 名录投影：兵器·奇门；grade=6; cat=exotic; exoticKind=misc; hands=1。外观：一对乌黑实心铁球，掌心大小，表面磨亮无雕字 （原创扩展形制）
-  short: 铁胆
+  desc: 外观：一对乌黑实心铁球，掌心大小。 待运行时投影：exoticKind=misc。
 extension:
   type: equipment
   value:

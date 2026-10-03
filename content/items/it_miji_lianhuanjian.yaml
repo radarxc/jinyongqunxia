@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_lianhuanjian
+name: 连环剑谱全本
+kind: manual
+sub: full
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_lianhuanjian
+text:
+  desc: 外观：明代月白线装册，四眼青线。
+extension:
+  type: manual
+  value:
+    skill: sk_lianhuanjian
+    maxLayer: 10
+    variant: full
+    readMul: 1

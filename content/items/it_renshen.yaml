@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/renshen
 text:
-  desc: 名录投影：药材·人参；grade=3; herbFamily=renShen; ageYears=0; materialGrade=3。外观：一支浅黄人参，根须完整，少量新土，约手掌长
-  short: 普通人参
+  desc: 外观：一支浅黄人参，根须完整。
 extension:
   type: material
   value:

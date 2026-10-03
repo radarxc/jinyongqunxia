@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_nizhuanjingmai_can
+name: 逆转经脉残本
+kind: manual
+sub: partial
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》相关逆练；成册 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_nizhuanjingmai_can
+text:
+  desc: 外观：南宋灰褐蝴蝶装残册，黑布包角。
+extension:
+  type: manual
+  value:
+    skill: sk_nizhuanjingmai
+    maxLayer: 7
+    variant: partial
+    readMul: 1

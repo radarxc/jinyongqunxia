@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/tianchansiruanjia
 text:
-  desc: 名录投影：内甲·蚕丝软甲；grade=10; slot=innerBody; catalogTian=true; divine=false; unique=true; price=null; weaponZ4=7%; poisonResPp=6。外观：珠灰天蚕丝密织短衣，银丝暗纹、柔软可卷，珍稀但不发光 （原创扩展）
-  short: 天蚕丝软甲
+  desc: 外观：珠灰天蚕丝密织短衣，银丝暗纹、柔软可卷。 待运行时投影：poisonResPp=6; weaponZ4=7%。
 extension:
   type: equipment
   value:

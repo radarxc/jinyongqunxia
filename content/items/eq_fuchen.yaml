@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/fuchen
 text:
-  desc: 名录投影：兵器·鞭索；grade=7; cat=whip; hands=1; tags=soft; unique=true。外观：黑木短柄配银箍，白色长拂丝约一米自然下垂，丝束完整不飞散，柄面使用磨痕，无人物与手 （原创扩展形制）
-  short: 李莫愁拂尘
+  desc: 外观：黑木短柄配银箍，白色长拂丝约一米自然下垂。
 extension:
   type: equipment
   value:

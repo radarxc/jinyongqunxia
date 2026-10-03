@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_huibufeidaoxia
+name: 回部飞刀匣
+kind: hidden
+sub: dart
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huibufeidaoxia
+text:
+  desc: 外观：深木扁匣开启，八柄短弯飞刀沿弧形嵌槽排列。 待运行时投影：ammoMul=1.020; hiddenHit=4.2。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/qiannianrenshen
 text:
-  desc: 名录投影：药材·人参；grade=10; herbFamily=renShen; ageYears=1000; materialGrade=10; unique=true。外观：巨大老参盘须如人形，古木匣与旧绢，干润自然无神光 （原创扩展）
-  short: 千年人参
+  desc: 外观：巨大老参盘须如人形，古木匣与旧绢。
 extension:
   type: material
   value:

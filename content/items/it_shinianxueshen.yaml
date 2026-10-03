@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/shinianxueshen
 text:
-  desc: 名录投影：药材·雪参；grade=6; herbFamily=xueShen; ageYears=10; materialGrade=6。外观：银白参体略弯，蓝灰布衬木盒，细小冻裂痕 （原创扩展）
-  short: 十年雪参
+  desc: 外观：银白参体略弯，蓝灰布衬木盒。
 extension:
   type: material
   value:

@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/shenghuoling
 text:
-  desc: 名录投影：兵器·奇门令；grade=10; cat=exotic; exoticKind=token; hands=1; divine=true; unique=true; sect=sect_mingjiao。外观：一组硬质短令以单件主令居中并置，约前臂长，非金非玉般深灰表面、弧边异形且刻痕不可读，完整剪影，无人物与手 （原创扩展表现）
-  short: 圣火令
+  desc: 外观：一组硬质短令以单件主令居中并置，约前臂长。 待运行时投影：exoticKind=token; sect=sect_mingjiao。
 extension:
   type: equipment
   value:

@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/heyudachang
 text:
-  desc: 名录投影：披风·大氅；grade=9; slot=cape; resColdPp=6; wis=2。外观：银灰大氅，羽纹织物与白绒窄边，宽大但不画真实羽翼 （原创扩展）
-  short: 鹤羽大氅
+  desc: 外观：银灰大氅，羽纹织物与白绒窄边。 待运行时投影：resColdPp=6; wis=2。
 extension:
   type: equipment
   value:

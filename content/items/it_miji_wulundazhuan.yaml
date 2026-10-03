@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_wulundazhuan
+name: 五轮大转图谱
+kind: manual
+sub: full
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《神雕侠侣》·金轮法王武学；图谱 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_wulundazhuan
+text:
+  desc: 外观：南宋藏式经夹装，赭色厚纸、木夹板与棉带。
+extension:
+  type: manual
+  value:
+    skill: sk_wulundazhuan
+    maxLayer: 10
+    variant: full
+    readMul: 1

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_baizhu
+name: 白术
+kind: material
+sub: herb
+grade: 4
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/baizhu
+text:
+  desc: 外观：药用根茎切作黄白不规则厚片，棕色油点可辨。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan9
+    materialGrade: 4
+    rare: false
+    herbFamily: baiZhu
+    ageYears: 0

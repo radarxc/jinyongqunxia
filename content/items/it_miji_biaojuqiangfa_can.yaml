@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_biaojuqiangfa_can
+name: 镖局枪法残本
+kind: manual
+sub: partial
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_biaojuqiangfa_can
+text:
+  desc: 外观：清代赭黄线装长册，麻线补缀。
+extension:
+  type: manual
+  value:
+    skill: sk_biaojuqiangfa
+    maxLayer: 7
+    variant: partial
+    readMul: 1

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_musangtieqizi
+name: 木桑铁棋子
+kind: hidden
+sub: ball
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《碧血剑》·木桑道人以铁、银棋子作暗器；数量 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/musangtieqizi
+text:
+  desc: 外观：黑铁与银灰圆棋子各八枚分色列在小木棋盒内，单枚指节大、扁圆无字。 待运行时投影：ammoMul=1.125; hiddenHit=6.0; sect=sect_tiejian。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: ball
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

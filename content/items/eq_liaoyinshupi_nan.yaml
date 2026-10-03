@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/liaoyinshupi_nan
 text:
-  desc: 名录投影：披风·裘披；grade=7; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005; resColdPp=5。外观：男款银白鼠裘披单件完整铺展，黑绿绢里、左襟皮绳扣、阔肩及膝，毛向整齐无兽首，辽代契丹贵族尺度
-  short: 辽银鼠披·男
+  desc: 外观：男款银白鼠裘披单件完整铺展，黑绿绢里、左襟皮绳扣、阔肩及膝。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=5; wearer=male。
 extension:
   type: equipment
   value:

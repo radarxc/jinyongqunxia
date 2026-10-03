@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_yizhichan
+name: 一指禅残本
+kind: manual
+sub: partial
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_yizhichan
+text:
+  desc: 外观：明代黄麻纸残册，蓝布包背。
+extension:
+  type: manual
+  value:
+    skill: sk_yizhichan
+    maxLayer: 8
+    variant: partial
+    readMul: 1

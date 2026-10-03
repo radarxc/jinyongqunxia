@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/hushoushuanggou
 text:
-  desc: 名录投影：兵器·奇门钩；grade=4; cat=exotic; exoticKind=hook; hands=1; pair=true。外观：一对钢钩并置，月牙护手、直刃钩尖与短尖柄尾，单件约九十厘米，灰钢旧亮，轮廓互不遮挡，无人物与手
-  short: 护手双钩
+  desc: 外观：一对钢钩并置，月牙护手、直刃钩尖与短尖柄尾。 待运行时投影：exoticKind=hook。
 extension:
   type: equipment
   value:

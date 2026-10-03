@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/xuansushuangjian
 text:
-  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; pair=true; unique=true; sect=sect_xuansuzhuang。外观：乌黑与象牙白两柄直剑成对并置，刃约七十厘米，装具一玄一素、护手形制相同，各自完整带鞘，无人物与手 （原创扩展形制）
-  short: 玄素双剑
+  desc: 外观：乌黑与象牙白两柄直剑成对并置，刃约七十厘米。 待运行时投影：sect=sect_xuansuzhuang。
 extension:
   type: equipment
   value:

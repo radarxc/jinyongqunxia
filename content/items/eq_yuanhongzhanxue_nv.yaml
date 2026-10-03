@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/yuanhongzhanxue_nv
 text:
-  desc: 名录投影：鞋·毡靴；grade=5; slot=feet; wearer=female; qinggong=12.5; resColdPp=2。外观：女款暗红羊毛毡靴一双并置，微翘圆头、中高靿、蓝黑几何窄绣边与软皮底，无字，成年足长、元代蒙古女装尺度
-  short: 元红毡靴·女
+  desc: 外观：女款暗红羊毛毡靴一双并置，微翘圆头、中高靿、蓝黑几何窄绣边与软皮底。 待运行时投影：qinggong=12.5; resColdPp=2; wearer=female。
 extension:
   type: equipment
   value:

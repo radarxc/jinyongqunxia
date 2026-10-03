@@ -18,8 +18,7 @@ use:
 assets:
   icon: item/feihuangshi
 text:
-  desc: 名录投影：暗器·弹丸；grade=3; hiddenKind=ball; ammoMul=0.985; hiddenHit=3.6。外观：三枚椭圆磨石置粗布小囊旁，灰褐自然石纹、指节大小 （原创扩展）
-  short: 飞蝗石
+  desc: 外观：三枚椭圆磨石置粗布小囊旁，灰褐自然石纹、指节大小 （原创扩展）。 待运行时投影：ammoMul=0.985; hiddenHit=3.6。
 extension:
   type: generic
   value: {}

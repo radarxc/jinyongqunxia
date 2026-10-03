@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_jinyinmantou
+name: 金银馒头
+kind: food
+sub: food
+grade: 7
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 清代宴席面点语境；《调鼎集》具体名目 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_juqi:2battle
+assets:
+  icon: item/jinyinmantou
+text:
+  desc: 外观：白色与金黄小馒头各三枚间列银盘，圆润一口大小 （原创扩展）。
+extension:
+  type: generic
+  value: {}

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Generate strict item.v1 YAML from the eleven seven-column item catalogs.
+"""Generate strict item.v1 YAML from discovered seven-column item catalogs.
 
 The catalog rows remain the authored source. Fields unsupported by the current Zod
-schema are retained in text.desc and marked runtimeProjection instead of invented.
+schema are retained in text.desc and marked runtimeProjection instead of invented;
+authoring-only image notes and duplicated structured fields stay in the catalog.
 """
 from __future__ import annotations
 
@@ -10,14 +11,14 @@ import argparse
 import re
 import sys
 from collections import Counter
+from dataclasses import dataclass
 from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
-import yaml
-
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG_DIR = ROOT / "docs/design/catalog"
+OFFICIAL_REGISTRY = ROOT / "docs/design/10-items-and-equipment.md"
 OUTPUT_DIR = ROOT / "content/items"
 # Keep the five catalog-backed bootstrap items at their established paths.
 COMMON_ITEMS_DIR = ROOT / "content/common/items"
@@ -25,18 +26,6 @@ COMMON_ITEM_IDS = frozenset({
     "eq_qinggangjian", "it_jinchuangyao", "it_jingmi",
     "it_miji_taizuchangquan", "it_xiaohuandan",
 })
-CATALOGS = (
-    "items-accessories.md", "items-armor.md", "items-belts.md",
-    "items-clothing.md", "items-food.md", "items-hidden-weapons.md",
-    "items-innerarmor.md", "items-manuals.md", "items-medicine.md",
-    "items-shoes.md", "items-weapons.md",
-)
-EXPECTED_COUNTS = {
-    "items-accessories.md": 48, "items-armor.md": 8, "items-belts.md": 26,
-    "items-clothing.md": 30, "items-food.md": 28, "items-hidden-weapons.md": 24,
-    "items-innerarmor.md": 8, "items-manuals.md": 18, "items-medicine.md": 32,
-    "items-shoes.md": 26, "items-weapons.md": 118,
-}
 CHAPTERS = {
     "ch01": "ch01_tianlong", "ch02": "ch02_shediao",
     "ch03": "ch03_shendiao", "ch04": "ch04_yitian",
@@ -46,9 +35,14 @@ CHAPTERS = {
     "ch11": "ch11_yuanyang", "ch12": "ch12_shujian",
     "ch13": "ch13_feihu", "ch14": "ch14_xueshan",
 }
-ROW = re.compile(r"^\|\s*`((?:it|eq)_[a-z0-9_]+)`\s*\|(.*)$")
+ITEM_ID = re.compile(r"`((?:it|eq)_[a-z0-9_]+)`")
 CODE = re.compile(r"`([^`]*)`")
 MARKUP = re.compile(r"\*\*|`")
+ITEM_HEADER = (
+    "ID", "名称", "子类", "品阶", "出处（书名 / 原创扩展）",
+    "效果字段", "外观要点（供出图）",
+)
+REGISTRY_HEADING = "### 14.2 ID 清单"
 GRADE_RESOURCE = {
     1: "huang9", 2: "huang6", 3: "huang3", 4: "xuan9",
     5: "xuan6", 6: "xuan3", 7: "di9", 8: "di6",
@@ -76,6 +70,16 @@ USE_CONTROL_KEYS = frozenset({
 })
 
 
+@dataclass(frozen=True)
+class RegistryAudit:
+    """Exact-ID coverage found in design/10's official registry section."""
+
+    catalog_count: int
+    registry_id_count: int
+    registered_catalog_count: int
+    unregistered_ids: tuple[str, ...]
+
+
 def clean(value: str) -> str:
     return MARKUP.sub("", value).strip()
 
@@ -99,33 +103,105 @@ def parse_effect(cell: str, path: Path, line: int) -> tuple[str, dict[str, str]]
     return raw, fields
 
 
-def rows() -> list[dict[str, Any]]:
+def catalog_paths(catalog_dir: Path = CATALOG_DIR) -> tuple[Path, ...]:
+    paths = tuple(sorted(catalog_dir.glob("items-*.md")))
+    if not paths:
+        raise ValueError(f"{catalog_dir}: no items-*.md catalogs found")
+    return paths
+
+
+def table_cells(line: str) -> list[str]:
+    return [part.strip() for part in line.strip().strip("|").split("|")]
+
+
+def is_separator(cells: list[str]) -> bool:
+    return bool(cells) and all(re.fullmatch(r":?-{3,}:?", cell) for cell in cells)
+
+
+def parse_catalog(path: Path) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
-    seen: set[str] = set()
-    for filename in CATALOGS:
-        path = CATALOG_DIR / filename
-        count = 0
-        for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-            match = ROW.match(line)
-            if match is None:
-                continue
-            cells = [part.strip() for part in match.group(2).strip().strip("|").split("|")]
-            if len(cells) != 6:
+    in_item_table = False
+    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.startswith("|"):
+            in_item_table = False
+            continue
+        cells = table_cells(line)
+        if tuple(cells) == ITEM_HEADER:
+            in_item_table = True
+            continue
+        if not in_item_table:
+            continue
+        if is_separator(cells):
+            if len(cells) != len(ITEM_HEADER):
                 raise ValueError(f"{path}:{line_number}: expected seven columns")
-            item_id = match.group(1)
+            continue
+        if len(cells) != len(ITEM_HEADER):
+            raise ValueError(f"{path}:{line_number}: expected seven columns")
+        match = ITEM_ID.fullmatch(cells[0])
+        if match is None:
+            raise ValueError(f"{path}:{line_number}: invalid item ID {cells[0]!r}")
+        if any(not cell for cell in cells[1:]):
+            raise ValueError(f"{path}:{line_number}: empty required field")
+        raw, fields = parse_effect(cells[5], path, line_number)
+        result.append({
+            "id": match.group(1), "name": cells[1], "subZh": cells[2],
+            "source": cells[4], "look": cells[6], "raw": raw,
+            "fields": fields, "catalog": path.name, "line": line_number,
+        })
+    if not result:
+        raise ValueError(f"{path}: no item rows found")
+    return result
+
+
+def rows(catalog_dir: Path = CATALOG_DIR) -> list[dict[str, Any]]:
+    result: list[dict[str, Any]] = []
+    seen: dict[str, tuple[Path, int]] = {}
+    for path in catalog_paths(catalog_dir):
+        for row in parse_catalog(path):
+            item_id = row["id"]
             if item_id in seen:
-                raise ValueError(f"duplicate item ID: {item_id}")
-            seen.add(item_id)
-            raw, fields = parse_effect(cells[4], path, line_number)
-            result.append({"id": item_id, "name": cells[0], "subZh": cells[1],
-                           "source": cells[3], "look": cells[5], "raw": raw,
-                           "fields": fields, "catalog": filename})
-            count += 1
-        if count != EXPECTED_COUNTS[filename]:
-            raise ValueError(f"{path}: expected {EXPECTED_COUNTS[filename]}, got {count}")
-    if len(result) != sum(EXPECTED_COUNTS.values()):
-        raise ValueError(f"expected 366 rows, got {len(result)}")
+                first_path, first_line = seen[item_id]
+                raise ValueError(
+                    f"duplicate item ID: {item_id} "
+                    f"({first_path}:{first_line}, {path}:{row['line']})"
+                )
+            seen[item_id] = (path, row["line"])
+            result.append(row)
     return sorted(result, key=lambda row: row["id"])
+
+
+def catalog_counts(parsed_rows: list[dict[str, Any]]) -> dict[str, int]:
+    return dict(sorted(Counter(row["catalog"] for row in parsed_rows).items()))
+
+
+def official_registry_ids(path: Path = OFFICIAL_REGISTRY) -> set[str] | None:
+    """Return exact IDs in design/10 §14.2, or None when no registry exists."""
+    if not path.is_file():
+        return None
+    text = path.read_text(encoding="utf-8")
+    heading = re.search(rf"^{re.escape(REGISTRY_HEADING)}\s*$", text, re.MULTILINE)
+    if heading is None:
+        return None
+    remainder = text[heading.end():]
+    next_section = re.search(r"^##\s+", remainder, re.MULTILINE)
+    section = remainder[:next_section.start()] if next_section else remainder
+    return set(ITEM_ID.findall(section))
+
+
+def audit_official_registry(
+    parsed_rows: list[dict[str, Any]], path: Path = OFFICIAL_REGISTRY
+) -> RegistryAudit | None:
+    registry_ids = official_registry_ids(path)
+    if registry_ids is None:
+        return None
+    catalog_ids = {row["id"] for row in parsed_rows}
+    registered = catalog_ids & registry_ids
+    return RegistryAudit(
+        catalog_count=len(catalog_ids),
+        registry_id_count=len(registry_ids),
+        registered_catalog_count=len(registered),
+        unregistered_ids=tuple(sorted(catalog_ids - registry_ids)),
+    )
 
 
 def scalar(value: str) -> Any:
@@ -430,30 +506,123 @@ def build(row: dict[str, Any]) -> dict[str, Any]:
     if kind in {"ammo", "pill", "tonic", "poison", "antidote", "food", "dish", "wine"}:
         item["use"] = use_spec(row, kind, grade)
     item["assets"] = {"icon": f"item/{row['id'][3:]}"}
-    description = f"名录投影：{row['subZh']}；{row['raw']}。外观：{clean(row['look'])}"
-    item["text"] = {"desc": description, "short": row["name"]}
+    appearance_parts = [
+        part.strip() for part in re.split(r"[，；。]", clean(row["look"]))
+        if part.strip()
+    ]
+    appearance = "，".join(appearance_parts[:2])
+    description = f"外观：{appearance}。"
+    if unsupported:
+        projection = "; ".join(f"{key}={fields[key]}" for key in unsupported)
+        description += f" 待运行时投影：{projection}。"
+    item["text"] = {"desc": description}
     item["extension"] = extension(row, kind, sub, grade)
     return item
 
 
+def yaml_scalar(value: Any) -> str:
+    if value is None:
+        return "null"
+    if value is True:
+        return "true"
+    if value is False:
+        return "false"
+    if isinstance(value, int):
+        return str(value)
+    if not isinstance(value, str):
+        raise TypeError(f"unsupported YAML scalar: {type(value).__name__}")
+    if (not value or "\n" in value or "\r" in value or "\t" in value
+            or " #" in value or ": " in value
+            or value[0] in "-?:,[]{}#&*!|>'\"%@`"
+            or value.lower() in {"null", "true", "false", "yes", "no", "on", "off", "~"}
+            or re.fullmatch(r"-?\d+(?:\.\d+)?", value)):
+        escaped = value.replace("\\", "\\\\").replace('\"', '\\"')
+        return f'"{escaped}"'
+    return value
+
+
+def yaml_lines(value: Any, indent: int = 0) -> list[str]:
+    prefix = " " * indent
+    if isinstance(value, dict):
+        lines: list[str] = []
+        for key, child in value.items():
+            scalar_key = yaml_scalar(key)
+            if isinstance(child, (dict, list)):
+                if not child:
+                    lines.append(f"{prefix}{scalar_key}: {'{}' if isinstance(child, dict) else '[]'}")
+                else:
+                    lines.append(f"{prefix}{scalar_key}:")
+                    child_indent = indent if isinstance(child, list) else indent + 2
+                    lines.extend(yaml_lines(child, child_indent))
+            else:
+                lines.append(f"{prefix}{scalar_key}: {yaml_scalar(child)}")
+        return lines
+    if isinstance(value, list):
+        lines = []
+        for child in value:
+            if isinstance(child, dict):
+                items = list(child.items())
+                first_key, first_value = items[0]
+                lines.append(f"{prefix}- {yaml_scalar(first_key)}: {yaml_scalar(first_value)}")
+                lines.extend(yaml_lines(dict(items[1:]), indent + 2))
+            elif isinstance(child, list):
+                lines.append(f"{prefix}-")
+                lines.extend(yaml_lines(child, indent + 2))
+            else:
+                lines.append(f"{prefix}- {yaml_scalar(child)}")
+        return lines
+    return [f"{prefix}{yaml_scalar(value)}"]
+
+
 def render(item: dict[str, Any]) -> str:
-    return yaml.safe_dump(item, allow_unicode=True, sort_keys=False, width=1000)
+    return "\n".join(yaml_lines(item)) + "\n"
 
 
-def expected_files() -> dict[Path, str]:
+def expected_files(parsed_rows: list[dict[str, Any]] | None = None) -> dict[Path, str]:
     result: dict[Path, str] = {}
-    for row in rows():
-        directory = COMMON_ITEMS_DIR if row["id"] in COMMON_ITEM_IDS else OUTPUT_DIR
-        path = directory / f"{row['id']}.yaml"
-        result[path] = render(build(row))
+    for row in parsed_rows if parsed_rows is not None else rows():
+        text = render(build(row))
+        if row["id"] not in COMMON_ITEM_IDS:
+            result[OUTPUT_DIR / f"{row['id']}.yaml"] = text
     return result
 
 
-def check(generated: dict[Path, str]) -> int:
-    problems: list[str] = []
+def registry_status(parsed_rows: list[dict[str, Any]]) -> str:
+    audit = audit_official_registry(parsed_rows)
+    if audit is None:
+        return "registry=absent"
+    return (
+        f"registryExact={audit.registered_catalog_count}/{audit.catalog_count}"
+        f" (sectionIds={audit.registry_id_count}, "
+        f"unregistered={len(audit.unregistered_ids)})"
+    )
+
+
+def common_item_problems(parsed_rows: list[dict[str, Any]]) -> list[str]:
+    catalog_ids = {row["id"] for row in parsed_rows}
+    problems = [
+        f"bootstrap ID absent from catalogs: {item_id}"
+        for item_id in sorted(COMMON_ITEM_IDS - catalog_ids)
+    ]
+    for item_id in sorted(COMMON_ITEM_IDS & catalog_ids):
+        path = COMMON_ITEMS_DIR / f"{item_id}.yaml"
+        if not path.is_file():
+            problems.append(f"missing bootstrap: {path.relative_to(ROOT)}")
+            continue
+        matches = re.findall(
+            r"^id:\s*([a-z0-9_]+)\s*$",
+            path.read_text(encoding="utf-8"),
+            re.MULTILINE,
+        )
+        if matches != [item_id]:
+            problems.append(f"bootstrap ID mismatch: {path.relative_to(ROOT)}")
+    return problems
+
+
+def check(generated: dict[Path, str], parsed_rows: list[dict[str, Any]] | None = None) -> int:
+    source_rows = parsed_rows if parsed_rows is not None else rows()
+    problems = common_item_problems(source_rows)
     actual = set(OUTPUT_DIR.glob("*.yaml")) if OUTPUT_DIR.exists() else set()
-    actual.update(path for path in COMMON_ITEMS_DIR.glob("*.yaml")
-                  if path.stem in COMMON_ITEM_IDS)
     for path, text in generated.items():
         if not path.is_file():
             problems.append(f"missing: {path.relative_to(ROOT)}")
@@ -466,9 +635,15 @@ def check(generated: dict[Path, str]) -> int:
         for problem in problems[:50]:
             print(f"  - {problem}", file=sys.stderr)
         return 1
-    counts = Counter(item_kind(row) for row in rows())
-    grades = Counter(int(row["fields"]["grade"]) for row in rows())
-    print(f"items_from_catalog: {len(generated)} files current; kinds={dict(sorted(counts.items()))}; grades={dict(sorted(grades.items()))}")
+    counts = Counter(item_kind(row) for row in source_rows)
+    grades = Counter(int(row["fields"]["grade"]) for row in source_rows)
+    print(
+        f"items_from_catalog: {len(source_rows)} rows current "
+        f"({len(generated)} generated, {len(COMMON_ITEM_IDS)} bootstrap); "
+        f"catalogs={catalog_counts(source_rows)}; "
+        f"kinds={dict(sorted(counts.items()))}; "
+        f"grades={dict(sorted(grades.items()))}; {registry_status(source_rows)}"
+    )
     return 0
 
 
@@ -476,17 +651,26 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
-    generated = expected_files()
+    parsed_rows = rows()
+    generated = expected_files(parsed_rows)
     if args.check:
-        return check(generated)
+        return check(generated, parsed_rows)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    COMMON_ITEMS_DIR.mkdir(parents=True, exist_ok=True)
+    bootstrap_problems = common_item_problems(parsed_rows)
+    if bootstrap_problems:
+        raise ValueError("; ".join(bootstrap_problems))
     for path in sorted(OUTPUT_DIR.glob("*.yaml")):
         if path not in generated:
             path.unlink()
     for path, text in generated.items():
-        path.write_text(text, encoding="utf-8")
-    print(f"items_from_catalog: wrote {len(generated)} sorted files under content/")
+        if not path.is_file() or path.read_text(encoding="utf-8") != text:
+            path.write_text(text, encoding="utf-8")
+    print(
+        f"items_from_catalog: validated {len(parsed_rows)} rows; wrote "
+        f"{len(generated)} sorted files under content/items/; "
+        f"retained {len(COMMON_ITEM_IDS)} bootstrap files; "
+        f"catalogs={catalog_counts(parsed_rows)}; {registry_status(parsed_rows)}"
+    )
     return 0
 
 

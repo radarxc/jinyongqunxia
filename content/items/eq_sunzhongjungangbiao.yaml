@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_sunzhongjungangbiao
+name: 孙仲君钢镖
+kind: hidden
+sub: dart
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《碧血剑》·孙仲君投掷钢镖；装具 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/sunzhongjungangbiao
+text:
+  desc: 外观：八枚燕尾钢镖平行列于深青皮囊旁，单件半掌长、菱形尖与短尾翼完整。 待运行时投影：ammoMul=1.090; hiddenHit=5.1; sect=sect_huashan。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

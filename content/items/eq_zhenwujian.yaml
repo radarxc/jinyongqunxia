@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/zhenwujian
 text:
-  desc: 名录投影：兵器·剑；grade=10; cat=sword; hands=1; catalogTian=true; divine=false; unique=true; price=null; sect=sect_wudang。外观：古朴直剑约八十厘米，深灰钢刃、如意形铁镡、黑丝缠柄与鲨鱼皮纹鞘，旧而无锈、无可读铭文，完整斜置，无人物与手 （原创扩展形制）
-  short: 真武剑
+  desc: 外观：古朴直剑约八十厘米，深灰钢刃、如意形铁镡、黑丝缠柄与鲨鱼皮纹鞘。 待运行时投影：sect=sect_wudang。
 extension:
   type: equipment
   value:

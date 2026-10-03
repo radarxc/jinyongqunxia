@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/lihuaqiang
 text:
-  desc: 名录投影：兵器·枪；grade=6; cat=spear; hands=2; tags=long。外观：轻薄柳叶锋、白蜡韧杆约二点八米，细密红白枪缨、铜箍与铁鐏，养护良好但有握痕，完整斜置留足两端，无人物与手
-  short: 梨花枪
+  desc: 外观：轻薄柳叶锋、白蜡韧杆约二点八米，细密红白枪缨、铜箍与铁鐏。
 extension:
   type: equipment
   value:

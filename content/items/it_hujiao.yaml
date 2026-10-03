@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_hujiao
+name: 胡椒
+kind: material
+sub: ingredient
+grade: 7
+stack: 999
+chapters: any
+origin: canon
+canonRef: 宋代依海贸输入且价贵，元明后供应增加
+price: auto
+flags: []
+assets:
+  icon: item/hujiao
+text:
+  desc: 外观：黑胡椒粒盛小银盒，盒盖半掩。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di9
+    materialGrade: 7
+    rare: false
+    ingredientKind: spice

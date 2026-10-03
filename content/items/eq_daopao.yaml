@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/daopao
 text:
-  desc: 名录投影：衣物·袍服；grade=6; slot=body; armorWeight=light; effRes=2xG。外观：青灰宽袖道袍平展，黑边与布扣，无太极符号，宋元朴雅感 （原创扩展）
-  short: 青布道袍
+  desc: 外观：青灰宽袖道袍平展，黑边与布扣。 待运行时投影：effRes=2xG。
 extension:
   type: equipment
   value:

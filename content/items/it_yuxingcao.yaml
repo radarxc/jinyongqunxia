@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuxingcao
+name: 鱼腥草
+kind: material
+sub: herb
+grade: 1
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/yuxingcao
+text:
+  desc: 外观：药用全草切成长段晒干，茎节与心形叶可辨。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang9
+    materialGrade: 1
+    rare: false
+    herbFamily: yuXingCao
+    ageYears: 0

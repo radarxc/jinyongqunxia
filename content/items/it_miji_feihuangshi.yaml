@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_feihuangshi
+name: 飞蝗石图谱
+kind: manual
+sub: full
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_feihuangshi
+text:
+  desc: 外观：明代窄幅经折图谱，土黄硬纸护面。
+extension:
+  type: manual
+  value:
+    skill: sk_feihuangshi
+    maxLayer: 10
+    variant: full
+    readMul: 1

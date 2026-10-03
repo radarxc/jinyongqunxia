@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/yuanchijinpiqixue_nan
 text:
-  desc: 名录投影：鞋·骑靴；grade=8; slot=feet; wearer=male; qinggong=20。外观：男款绛红软皮骑靴一双并置，圆翘鞋头、高靿、侧缝与鎏金窄包边，皮底耐磨无字，成年足长、元代贵族骑乘尺度
-  short: 元赤金皮骑靴·男
+  desc: 外观：男款绛红软皮骑靴一双并置，圆翘鞋头、高靿、侧缝与鎏金窄包边。 待运行时投影：qinggong=20; wearer=male。
 extension:
   type: equipment
   value:

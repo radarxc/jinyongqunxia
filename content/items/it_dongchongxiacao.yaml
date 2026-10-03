@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_dongchongxiacao
+name: 冬虫夏草
+kind: material
+sub: herb
+grade: 8
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/dongchongxiacao
+text:
+  desc: 外观：药用虫体与棕色子座相连、干燥成黄褐细条，绢衬木匣平码。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di6
+    materialGrade: 8
+    rare: false
+    herbFamily: dongChongXiaCao
+    ageYears: 0

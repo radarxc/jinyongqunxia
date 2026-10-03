@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_quanzhentunajue
+name: 全真吐纳诀抄本
+kind: manual
+sub: copy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_quanzhentunajue
+text:
+  desc: 外观：南宋灰青蝴蝶装小册，白麻纸页。
+extension:
+  type: manual
+  value:
+    skill: sk_quanzhentunajue
+    maxLayer: 8
+    variant: copy
+    readMul: 1

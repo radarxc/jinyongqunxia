@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_dagouzhen
+name: 打狗阵谱
+kind: manual
+sub: full
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_dagouzhen
+text:
+  desc: 外观：明代墨绿经折阵图册，竹夹板、麻绳束带。
+extension:
+  type: manual
+  value:
+    skill: sk_dagouzhen
+    maxLayer: 10
+    variant: full
+    readMul: 1

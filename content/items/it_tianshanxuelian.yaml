@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/tianshanxuelian
 text:
-  desc: 名录投影：药材·雪莲；grade=9; healPct=12%; dispel=poison,cold:g9; perm.resColdPp=3。外观：白瓣雪莲一朵连根，浅青叶、冰霜边缘，宽约双掌
-  short: 天山雪莲
+  desc: 外观：白瓣雪莲一朵连根，浅青叶、冰霜边缘。 待运行时投影：perm.resColdPp=3。
 extension:
   type: material
   value:

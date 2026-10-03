@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_hanshui_qingyu
+name: 汉水青鱼
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》汉水渔家场景；鱼种细节 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/hanshui_qingyu
+text:
+  desc: 外观：青黑河鱼一尾置旧渔网，长约尺半。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: fish

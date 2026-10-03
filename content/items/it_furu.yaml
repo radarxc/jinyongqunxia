@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_furu
+name: 腐乳
+kind: food
+sub: food
+grade: 3
+stack: 20
+chapters: any
+origin: canon
+canonRef: 发酵豆制品；明清食用记录较明确
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: meal
+    params:
+      value: bf_yangsheng:1battle
+assets:
+  icon: item/furu
+text:
+  desc: 外观：红褐腐乳六小方盛黑陶罐，汁液油润。
+extension:
+  type: generic
+  value: {}

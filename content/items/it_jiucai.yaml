@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_jiucai
+name: 韭菜
+kind: material
+sub: ingredient
+grade: 1
+stack: 999
+chapters: any
+origin: canon
+canonRef: 古老栽培蔬菜，四时常见
+price: auto
+flags: []
+assets:
+  icon: item/jiucai
+text:
+  desc: 外观：深绿韭菜一束置竹篮，细长叶齐整。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang9
+    materialGrade: 1
+    rare: false
+    ingredientKind: vegetable

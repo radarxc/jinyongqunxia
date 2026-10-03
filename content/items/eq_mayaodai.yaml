@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/mayaodai
 text:
-  desc: 名录投影：腰带·布绳；grade=3; slot=waist; defOutK=0.05; hpMaxK=0.01。外观：灰麻编绳腰带，木质小扣，盘成一圈，朴素行旅感 （原创扩展）
-  short: 麻绳腰带
+  desc: 外观：灰麻编绳腰带，木质小扣。 待运行时投影：defOutK=0.05; hpMaxK=0.01。
 extension:
   type: equipment
   value:

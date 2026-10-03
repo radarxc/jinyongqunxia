@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_lutianshuguitoudao
+name: 陆天抒鬼头刀
+kind: weapon
+sub: blade
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《连城诀》·陆天抒使用鬼头刀；刀形 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/lutianshuguitoudao
+text:
+  desc: 外观：宽厚大刀全长约一百一十厘米，前宽后窄、背部圆孔无环。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 2
+    tags:
+    - heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

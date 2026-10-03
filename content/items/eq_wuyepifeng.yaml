@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/wuyepifeng
 text:
-  desc: 名录投影：披风·潜行；grade=6; slot=cape; nightExposure=-10%; eva=2。外观：墨黑偏蓝连帽披风单件平置，哑光薄布、无人物 （原创扩展）
-  short: 乌夜披风
+  desc: 外观：墨黑偏蓝连帽披风单件平置，哑光薄布、无人物 （原创扩展）。 待运行时投影：eva=2; nightExposure=-10%。
 extension:
   type: equipment
   value:

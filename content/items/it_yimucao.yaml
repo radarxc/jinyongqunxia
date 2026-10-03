@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yimucao
+name: 益母草
+kind: material
+sub: herb
+grade: 1
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/yimucao
+text:
+  desc: 外观：药用地上部分切段晒干，方茎与裂叶混合。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang9
+    materialGrade: 1
+    rare: false
+    herbFamily: yiMuCao
+    ageYears: 0

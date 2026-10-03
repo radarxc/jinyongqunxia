@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/jinwupixue_nan
 text:
-  desc: 名录投影：鞋·皮靴；grade=3; slot=feet; wearer=male; qinggong=7.5。外观：男款乌黑皮靴一双并置，圆头、高靿、单层皮底与侧缝，皮面匀净略旧无纹，成年足长、金代常服尺度
-  short: 金乌皮靴·男
+  desc: 外观：男款乌黑皮靴一双并置，圆头、高靿、单层皮底与侧缝。 待运行时投影：qinggong=7.5; wearer=male。
 extension:
   type: equipment
   value:

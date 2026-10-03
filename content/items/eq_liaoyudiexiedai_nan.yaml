@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/liaoyudiexiedai_nan
 text:
-  desc: 名录投影：腰带·蹀躞带；grade=7; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款黑褐革蹀躞带盘成一圈，鎏金玉带扣、十二带箍与方形玉銙完整，短垂带空置不挂兵器，无字，辽代贵族骑装尺度
-  short: 辽玉蹀躞带·男
+  desc: 外观：男款黑褐革蹀躞带盘成一圈，鎏金玉带扣、十二带箍与方形玉銙完整。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
 extension:
   type: equipment
   value:

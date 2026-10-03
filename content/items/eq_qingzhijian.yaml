@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/qingzhijian
 text:
-  desc: 名录投影：兵器·剑；grade=4; cat=sword; hands=1。外观：修长钢剑全长约九十厘米，铁质盘镡、深木柄丝绦、鲨鱼皮纹鞘与素铜箍，克制旧化，完整斜置，无人物与手 （原创扩展简化）
-  short: 清制直剑
+  desc: 外观：修长钢剑全长约九十厘米，铁质盘镡、深木柄丝绦、鲨鱼皮纹鞘与素铜箍。
 extension:
   type: equipment
   value:

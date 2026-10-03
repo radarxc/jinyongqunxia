@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/pihudai
 text:
-  desc: 名录投影：腰带·皮革；grade=3; slot=waist; tough=2。外观：深褐宽皮带、黄铜方扣、细密缝线，无现代针扣造型 （原创扩展）
-  short: 皮护腰
+  desc: 外观：深褐宽皮带、黄铜方扣、细密缝线，无现代针扣造型 （原创扩展）。 待运行时投影：tough=2。
 extension:
   type: equipment
   value:

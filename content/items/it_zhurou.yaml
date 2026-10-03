@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_zhurou
+name: 猪肉
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 宋代民间常见且地位低于羊馔；清《调鼎集》满席重全猪、烧小猪
+price: auto
+flags: []
+assets:
+  icon: item/zhurou
+text:
+  desc: 外观：一块粉红带白脂鲜猪肉置粗陶盘，约一斤。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: meat

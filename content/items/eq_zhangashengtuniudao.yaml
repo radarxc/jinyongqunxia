@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_zhangashengtuniudao
+name: 张阿生屠牛刀
+kind: weapon
+sub: blade
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》·张阿生使用屠牛刀；刀形 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/zhangashengtuniudao
+text:
+  desc: 外观：宽厚短直背单刃约五十五厘米，圆钝近方刀尖、无格深木柄与铜尾环。 待运行时投影：sect=sect_jiangnanqiguai。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

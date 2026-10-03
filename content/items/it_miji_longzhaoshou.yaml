@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/miji_longzhaoshou
 text:
-  desc: 名录投影：秘籍·全本；grade=8; skill=sk_longzhaoshou; variant=full; maxLayer=10。外观：暗金棕薄册，封面压出无字爪痕浅纹，细线装 （原创扩展）
-  short: 龙爪手秘本
+  desc: 外观：元代暗金棕包背薄册，黑布护脊。
 extension:
   type: manual
   value:

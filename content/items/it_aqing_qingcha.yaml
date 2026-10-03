@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_aqing_qingcha
+name: 阿青清茶
+kind: food
+sub: food
+grade: 5
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《越女剑》·阿青在范蠡花园喝茶吃饼；茶种 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_ningshen:2battle
+assets:
+  icon: item/aqing_qingcha
+text:
+  desc: 外观：清亮茶汤盛先秦黑陶小碗，旁置素陶茶壶。
+extension:
+  type: generic
+  value: {}

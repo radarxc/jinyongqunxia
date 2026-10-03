@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/ruanbian
 text:
-  desc: 名录投影：兵器·鞭索；grade=3; cat=whip; hands=1; mainK=0.90。外观：深褐牛皮编鞭，短铜柄，盘成松弧，约两米长
-  short: 软鞭
+  desc: 外观：深褐牛皮编鞭，短铜柄。 待运行时投影：mainK=0.90。
 extension:
   type: equipment
   value:

@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qingzhenzhudiantzi_nv
 text:
-  desc: 名录投影：头饰·钿子；grade=8; slot=head; wearer=female; cha=2。外观：女款黑绒半环钿子独立陈列，不画人头，藤骨丝线网胎、对称点翠花叶与小珍珠，轮廓低矮，无大拉翅，清前中期贵族尺度
-  short: 清珠翠钿子·女
+  desc: 外观：女款黑绒半环钿子独立陈列，不画人头。 待运行时投影：cha=2; wearer=female。
 extension:
   type: equipment
   value:

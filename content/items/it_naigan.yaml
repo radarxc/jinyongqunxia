@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_naigan
+name: 奶干
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 蒙古与西北游牧乳食，便于行旅保存
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_jiangu:1battle
+assets:
+  icon: item/naigan
+text:
+  desc: 外观：象牙色硬奶块六片装小皮袋，干燥裂纹。
+extension:
+  type: generic
+  value: {}

@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/zaohedingxia
 text:
-  desc: 名录投影：暗器·名钉；grade=8; hiddenKind=awl; ammoMul=1.160; hiddenHit=6.6; perBattle=9; unique=true; sect=sect_jueqinggu。外观：乌木小匣开启陈列九枚枣核形短铁钉，单枚约指节长、两端尖锐、表面暗红褐，无口喷、人物、手、发射或命中场景
-  short: 枣核钉匣
+  desc: 外观：乌木小匣开启陈列九枚枣核形短铁钉，单枚约指节长、两端尖锐、表面暗红褐。 待运行时投影：ammoMul=1.160; hiddenHit=6.6; sect=sect_jueqinggu。
 extension:
   type: equipment
   value:

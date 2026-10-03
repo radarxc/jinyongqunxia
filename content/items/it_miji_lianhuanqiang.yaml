@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_lianhuanqiang
+name: 连环镖枪抄本
+kind: manual
+sub: copy
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_lianhuanqiang
+text:
+  desc: 外观：清代赭红线装长册，四眼麻线。
+extension:
+  type: manual
+  value:
+    skill: sk_lianhuanqiang
+    maxLayer: 8
+    variant: copy
+    readMul: 1

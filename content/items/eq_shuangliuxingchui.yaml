@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_shuangliuxingchui
+name: 双流星锤
+kind: weapon
+sub: whip
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 传统软兵；源流 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/shuangliuxingchui
+text:
+  desc: 外观：两枚拳大八棱圆钝铁锤以约两米细链接中置短握柄，链条松弧展开、锤面无尖刺。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

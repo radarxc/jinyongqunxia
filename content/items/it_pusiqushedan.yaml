@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_pusiqushedan
+name: 菩斯曲蛇胆
+kind: material
+sub: herb
+grade: 9
+stack: 999
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·神雕所取奇物；动物来源只作剧情节点
+price: auto
+flags: []
+assets:
+  icon: item/pusiqushedan
+text:
+  desc: 外观：一枚墨绿椭圆干胆置软蜡封小瓷盒，绢垫分隔。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di3
+    materialGrade: 9
+    rare: false
+    herbFamily: puSiQuSheDan
+    ageYears: 0

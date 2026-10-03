@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_jindunxinfa_can
+name: 金盾心法残本
+kind: manual
+sub: partial
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_jindunxinfa_can
+text:
+  desc: 外观：清代黄褐线装残册，黑麻补订。
+extension:
+  type: manual
+  value:
+    skill: sk_jindunxinfa
+    maxLayer: 7
+    variant: partial
+    readMul: 1

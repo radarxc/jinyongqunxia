@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/yuxueguo
 text:
-  desc: 名录投影：食材·果；grade=6; ingredientKind=fruit; materialGrade=6。外观：青白梨形小果三枚，薄蜡皮、冰裂斑，不发光 （原创扩展）
-  short: 玉雪果
+  desc: 外观：青白梨形小果三枚，薄蜡皮、冰裂斑。
 extension:
   type: material
   value:

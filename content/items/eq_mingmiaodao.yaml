@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_mingmiaodao
+name: 明军长刀（苗刀名待考）
+kind: weapon
+sub: blade
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·明；笑傲起可得，“苗刀”名目年代 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/mingmiaodao
+text:
+  desc: 外观：全长约一百四十厘米，窄长微弧刃、椭圆铁镡、加长双手柄棉绳缠绕。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

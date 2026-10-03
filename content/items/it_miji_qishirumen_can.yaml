@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_qishirumen_can
+name: 棋势入门残本
+kind: manual
+sub: partial
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_qishirumen_can
+text:
+  desc: 外观：宋代蝴蝶装小册，灰白纸衣。
+extension:
+  type: manual
+  value:
+    skill: sk_qishirumen
+    maxLayer: 7
+    variant: partial
+    readMul: 1

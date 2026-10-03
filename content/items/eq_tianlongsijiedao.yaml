@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/tianlongsijiedao
 text:
-  desc: 名录投影：兵器·刀；grade=9; cat=blade; hands=1; unique=true; sect=sect_tianlongsi。外观：短直背戒刀约六十厘米，圆头近尖、黄铜莲瓣镡、深木柄麻缠、旧皮鞘，寺院烟熏痕克制，完整斜置，无人物与手
-  short: 天龙寺戒刀
+  desc: 外观：短直背戒刀约六十厘米，圆头近尖、黄铜莲瓣镡、深木柄麻缠、旧皮鞘。 待运行时投影：sect=sect_tianlongsi。
 extension:
   type: equipment
   value:

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_songhelou_xiaren
+name: 松鹤楼虾仁
+kind: dish
+sub: dish
+grade: 5
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·姑苏松鹤楼酒肉场景；具体虾仁菜名 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_yangsheng:1battle
+assets:
+  icon: item/songhelou_xiaren
+text:
+  desc: 外观：粉白虾仁与茭白丁清炒盛青瓷盘，江南酒楼二人份 （原创扩展）。
+extension:
+  type: generic
+  value: {}

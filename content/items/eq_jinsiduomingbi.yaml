@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_jinsiduomingbi
+name: 金丝夺命笔
+kind: weapon
+sub: exotic
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinsiduomingbi
+text:
+  desc: 外观：一对精钢判官笔并置，各约四十五厘米。 待运行时投影：exoticKind=brush。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

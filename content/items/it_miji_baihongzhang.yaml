@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/miji_baihongzhang
 text:
-  desc: 名录投影：秘籍·残本；grade=9; skill=sk_baihongzhang; variant=partial; maxLayer=7。外观：月白薄册带淡虹色纤维，不发光，曼陀山庄精致藏书感 （原创扩展）
-  short: 白虹掌力藏本
+  desc: 外观：北宋月白蝴蝶装薄册，淡虹纤维纸衣。
 extension:
   type: manual
   value:

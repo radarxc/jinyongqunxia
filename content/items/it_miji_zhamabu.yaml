@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_zhamabu
+name: 扎马步抄本
+kind: manual
+sub: copy
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_zhamabu
+text:
+  desc: 外观：清代灰白线装小册，粗麻双订。
+extension:
+  type: manual
+  value:
+    skill: sk_zhamabu
+    maxLayer: 8
+    variant: copy
+    readMul: 1

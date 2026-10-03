@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_riyueqiankunquan
+name: 日月乾坤圈
+kind: weapon
+sub: exotic
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 传统圆环兵器；名称与年代 （待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/riyueqiankunquan
+text:
+  desc: 外观：一大一小两枚厚钢环并置，直径约三十五与三十厘米。 待运行时投影：exoticKind=wheel。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

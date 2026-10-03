@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_shenmen13
+name: 神门十三剑抄本
+kind: manual
+sub: copy
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shenmen13
+text:
+  desc: 外观：元代墨蓝包背图册，白麻护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_shenmen13
+    maxLayer: 8
+    variant: copy
+    readMul: 1

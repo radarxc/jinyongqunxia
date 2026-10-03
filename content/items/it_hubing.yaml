@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_hubing
+name: 胡饼
+kind: food
+sub: food
+grade: 2
+stack: 20
+chapters: any
+origin: canon
+canonRef: 唐宋市食延续，西北与中原行旅可得
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1100
+  - op: meal
+    params:
+      value: bf_wenzhong:1battle
+assets:
+  icon: item/hubing
+text:
+  desc: 外观：扁圆烤饼两张叠在油纸上，芝麻点与焦边清楚。
+extension:
+  type: generic
+  value: {}

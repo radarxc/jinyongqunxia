@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/jintongkuatuhu_nan
 text:
-  desc: 名录投影：腰带·金属；grade=3; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款黑色粗革吐鹘带盘成一圈，素铜方銙前小后大、方扣与双铊尾完整，无春水纹无悬刀，金代普通武人尺度
-  short: 金铜銙吐鹘·男
+  desc: 外观：男款黑色粗革吐鹘带盘成一圈，素铜方銙前小后大、方扣与双铊尾完整。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
 extension:
   type: equipment
   value:

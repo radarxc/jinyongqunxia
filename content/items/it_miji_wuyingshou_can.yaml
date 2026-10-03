@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_wuyingshou_can
+name: 无影手残本
+kind: manual
+sub: partial
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuyingshou_can
+text:
+  desc: 外观：清代灰褐线装残册，四眼黑线。
+extension:
+  type: manual
+  value:
+    skill: sk_wuyingshou
+    maxLayer: 7
+    variant: partial
+    readMul: 1

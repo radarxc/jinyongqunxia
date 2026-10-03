@@ -20,8 +20,7 @@ use:
 assets:
   icon: item/bailucao
 text:
-  desc: 名录投影：补品·补气；grade=3; mpPct=7.2%。外观：青绿草膏盛竹节小罐，叶脉与露痕，清新但不发光 （原创扩展）
-  short: 百露草膏
+  desc: 外观：青绿草膏盛竹节小罐，叶脉与露痕。
 extension:
   type: generic
   value: {}

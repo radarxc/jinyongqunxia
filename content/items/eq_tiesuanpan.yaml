@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_tiesuanpan
+name: 铁算盘
+kind: weapon
+sub: exotic
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tiesuanpan
+text:
+  desc: 外观：前臂长黑铁算盘，矩形厚框、七档铁珠与两侧握槽完整。 待运行时投影：exoticKind=misc。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

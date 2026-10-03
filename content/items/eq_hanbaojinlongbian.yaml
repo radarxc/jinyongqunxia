@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_hanbaojinlongbian
+name: 韩宝驹金龙鞭
+kind: weapon
+sub: whip
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》·韩宝驹使用金龙鞭；装具细节 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/hanbaojinlongbian
+text:
+  desc: 外观：金褐色多股皮鞭约两米，铜质龙鳞状节箍仅作抽象纹理、深木短柄与小尾坠。 待运行时投影：sect=sect_jiangnanqiguai。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

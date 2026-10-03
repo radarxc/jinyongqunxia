@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_dingshenggao
+name: 定胜糕
+kind: food
+sub: food
+grade: 5
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 南宋江南点心传说；确切始见年代 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_juqi:1battle
+assets:
+  icon: item/dingshenggao
+text:
+  desc: 外观：淡红元宝形米糕三枚置白瓷盘，无字无印。
+extension:
+  type: generic
+  value: {}

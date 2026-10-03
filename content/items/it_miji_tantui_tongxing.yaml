@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_tantui_tongxing
+name: 弹腿通行谱抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tantui_tongxing
+text:
+  desc: 外观：元代灰蓝包背图册，黑布护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_tantui_tongxing
+    maxLayer: 8
+    variant: copy
+    readMul: 1

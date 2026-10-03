@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/qiankundaidai
 text:
-  desc: 名录投影：腰带·宝带；grade=10; slot=waist; catalogTian=true; divine=false; unique=true; price=null; hpMaxPct=5%; mpMaxPct=5%。外观：深青宽带、暗金回纹与玉扣，厚实但可弯曲，无储物魔法表现 （原创扩展）
-  short: 乾坤宝带
+  desc: 外观：深青宽带、暗金回纹与玉扣，厚实但可弯曲。 待运行时投影：hpMaxPct=5%; mpMaxPct=5%。
 extension:
   type: equipment
   value:

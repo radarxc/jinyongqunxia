@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/xiaoyaoyubingfuchen
 text:
-  desc: 名录投影：兵器·鞭索；grade=9; cat=whip; hands=1; tags=soft; unique=true; sect=sect_xiaoyao。外观：青白玉短柄配银箍，雪白拂丝约一米自然垂落，柄端浅云纹、丝束整齐不飞散，轻微岁月旧痕，无人物与手
-  short: 逍遥玉柄拂尘
+  desc: 外观：青白玉短柄配银箍，雪白拂丝约一米自然垂落。 待运行时投影：sect=sect_xiaoyao。
 extension:
   type: equipment
   value:

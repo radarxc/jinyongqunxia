@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_zhujieduanzhang
+name: 竹节短杖
+kind: weapon
+sub: staff
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/zhujieduanzhang
+text:
+  desc: 外观：全长约九十厘米，深青老竹六节、根端较粗。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_huilongbi
+name: 回龙璧
+kind: hidden
+sub: dart
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《书剑恩仇录》·赵半山自创曲尺形精钢弯镖
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/huilongbi
+text:
+  desc: 外观：三枚曲尺形精钢弯镖分开平置，单件约一掌半长、内外弧刃线清楚、中段缠细皮。 待运行时投影：ammoMul=1.160; hiddenHit=6.6; sect=sect_taijimen。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

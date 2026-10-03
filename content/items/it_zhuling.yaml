@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_zhuling
+name: 猪苓
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/zhuling
+text:
+  desc: 外观：药用菌核切成灰白不规则厚片，外皮黑褐。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: zhuLing
+    ageYears: 0

@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/yuanyangdao
 text:
-  desc: 名录投影：兵器·刀；grade=10; cat=blade; hands=1; pair=true; divine=true; unique=true。外观：一长一短两柄单刃宝刀并置，银灰刃、成对鸳鸯纹铜镡、深红与墨黑柄缠，各自完整带鞘，无人物与手 （原创扩展装具）
-  short: 鸳鸯刀
+  desc: 外观：一长一短两柄单刃宝刀并置，银灰刃、成对鸳鸯纹铜镡、深红与墨黑柄缠。
 extension:
   type: equipment
   value:

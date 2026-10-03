@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_tielianfeizhua
+name: 铁链飞爪
+kind: weapon
+sub: whip
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/tielianfeizhua
+text:
+  desc: 外观：四爪乌铁抓头合拢朝内，以约两米铁链接短木柄。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

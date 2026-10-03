@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/mingyaojian
 text:
-  desc: 名录投影：兵器·剑；grade=2; cat=sword; hands=1。外观：钢质直身双刃，刃约七十五厘米，扁圆铁镡、木柄丝缠、黑漆木鞘，轻磨损，完整斜置，无人物与手 （原创扩展装具）
-  short: 明制腰剑
+  desc: 外观：钢质直身双刃，刃约七十五厘米。
 extension:
   type: equipment
   value:

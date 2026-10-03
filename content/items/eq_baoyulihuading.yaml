@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/baoyulihuading
 text:
-  desc: 名录投影：暗器·机括钉匣；grade=10; hiddenKind=gun; catalogTian=true; divine=false; unique=true; price=null; perBattle=1; aoe=cone; onHit=bf_liuxue。外观：银灰扁平机括匣，端面多孔、铜簧结构闭合，约前臂长，无字无发射场景 （原创扩展形制）
-  short: 暴雨梨花钉
+  desc: 外观：银灰扁平机括匣，端面多孔、铜簧结构闭合。 待运行时投影：aoe=cone; onHit=bf_liuxue。
 extension:
   type: equipment
   value:

@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_emeirumenjian
+name: 峨眉入门剑谱
+kind: manual
+sub: full
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_emeirumenjian
+text:
+  desc: 外观：元代月白包背图册，青布护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_emeirumenjian
+    maxLayer: 10
+    variant: full
+    readMul: 1

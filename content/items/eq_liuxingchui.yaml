@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/liuxingchui
 text:
-  desc: 名录投影：兵器·奇门锤；grade=5; cat=exotic; exoticKind=hammer; hands=1。外观：单枚棱面铁锤以约两米细铁链连接短木柄，链条松弧完整展开、锤头拳大，无旋转动作，无人物与手
-  short: 流星锤
+  desc: 外观：单枚棱面铁锤以约两米细铁链连接短木柄，链条松弧完整展开、锤头拳大。 待运行时投影：exoticKind=hammer。
 extension:
   type: equipment
   value:

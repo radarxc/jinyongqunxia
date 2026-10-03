@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_xionghuang
+name: 雄黄
+kind: material
+sub: herb
+grade: 5
+stack: 999
+chapters: any
+origin: canon
+canonRef: 矿物药历史设定；毒性，供剧情 / 暗器 / 解毒设定
+price: auto
+flags: []
+assets:
+  icon: item/xionghuang
+text:
+  desc: 外观：药用矿块呈橙黄至橙红蜡状碎片，粗粉少量。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan6
+    materialGrade: 5
+    rare: false
+    herbFamily: xiongHuang
+    ageYears: 0

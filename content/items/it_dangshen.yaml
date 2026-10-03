@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_dangshen
+name: 党参
+kind: material
+sub: herb
+grade: 4
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/dangshen
+text:
+  desc: 外观：药用长根晒成黄棕皱条，根头环纹清楚。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan9
+    materialGrade: 4
+    rare: false
+    herbFamily: dangShen
+    ageYears: 0

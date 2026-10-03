@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_yuanjunzhijian
+name: 元军护手直剑
+kind: weapon
+sub: sword
+grade: 3
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·元；倚天起可得 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/yuanjunzhijian
+text:
+  desc: 外观：全长约九十厘米，钢质窄直双刃、短弧铁镡、皮条缠柄与盘形首。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

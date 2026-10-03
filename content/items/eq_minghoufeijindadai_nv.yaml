@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/minghoufeijindadai_nv
 text:
-  desc: 名录投影：腰带·礼带；grade=9; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01。外观：女款朱红织金礼仪大带作松弧陈列，宽帛带、玉环与成对垂绅结构清楚，云花暗纹无字，明代后妃礼服尺度
-  short: 明后妃锦大带·女
+  desc: 外观：女款朱红织金礼仪大带作松弧陈列，宽帛带、玉环与成对垂绅结构清楚。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
 extension:
   type: equipment
   value:

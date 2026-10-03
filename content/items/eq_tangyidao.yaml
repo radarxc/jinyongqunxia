@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_tangyidao
+name: 唐仪刀
+kind: weapon
+sub: blade
+grade: 3
+stack: 1
+chapters: any
+origin: canon
+canonRef: 仪仗军器·唐；白马（唐）宫卫节点可得（《唐六典》卷十六）
+price: auto
+flags: []
+assets:
+  icon: item/tangyidao
+text:
+  desc: 外观：全长约一米，窄直单刃、鎏金色短镡、深木缠柄与环首。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

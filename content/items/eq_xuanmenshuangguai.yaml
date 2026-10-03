@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_xuanmenshuangguai
+name: 玄门双拐
+kind: weapon
+sub: staff
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/xuanmenshuangguai
+text:
+  desc: 外观：一对乌木丁字拐平行并置，单件约一百厘米。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: pair
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

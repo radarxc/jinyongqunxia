@@ -20,8 +20,7 @@ use:
 assets:
   icon: item/huoxuewan
 text:
-  desc: 名录投影：药物·补血；grade=2; healPct=5.5%。外观：褐色小丸三枚置青瓷浅碟，蜡纸小包，朴素药铺感 （原创扩展）
-  short: 活血丸
+  desc: 外观：褐色小丸三枚置青瓷浅碟，蜡纸小包。
 extension:
   type: generic
   value: {}

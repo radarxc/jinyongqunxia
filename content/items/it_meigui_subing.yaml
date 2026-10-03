@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_meigui_subing
+name: 玫瑰酥饼
+kind: food
+sub: food
+grade: 5
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_qingxin:1battle
+assets:
+  icon: item/meigui_subing
+text:
+  desc: 外观：金黄酥饼三枚，一枚剖开露暗红花馅。
+extension:
+  type: generic
+  value: {}

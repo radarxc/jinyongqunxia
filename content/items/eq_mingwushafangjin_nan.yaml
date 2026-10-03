@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingwushafangjin_nan
 text:
-  desc: 名录投影：头饰·方巾；grade=3; slot=head; wearer=male。外观：男款乌纱四方平定巾独立陈列，不画人头，方正硬胎、四角平整、细纱透气，配素黑巾环，无字，明代士人尺度
-  short: 明乌纱方巾·男
+  desc: 外观：男款乌纱四方平定巾独立陈列，不画人头。 待运行时投影：wearer=male。
 extension:
   type: equipment
   value:

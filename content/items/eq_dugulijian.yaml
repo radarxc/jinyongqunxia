@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/dugulijian
 text:
-  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true。外观：刚直双刃长剑，刃约八十厘米，锋线清楚、短铁护手、黑皮缠柄，朴素无铭且略有石尘旧痕，完整斜置，无人物与手 （原创扩展形制）
-  short: 独孤利剑
+  desc: 外观：刚直双刃长剑，刃约八十厘米。
 extension:
   type: equipment
   value:

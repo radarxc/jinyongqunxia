@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/tianfengpifeng
 text:
-  desc: 名录投影：披风·宝披；grade=10; slot=cape; catalogTian=true; divine=false; unique=true; price=null; eva=6; mov=1。外观：月白轻绢长披风，风纹暗织，完整铺展、轻盈无发光 （原创扩展）
-  short: 天风披风
+  desc: 外观：月白轻绢长披风，风纹暗织。 待运行时投影：eva=6; mov=1。
 extension:
   type: equipment
   value:

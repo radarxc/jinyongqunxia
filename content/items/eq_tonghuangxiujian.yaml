@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/tonghuangxiujian
 text:
-  desc: 名录投影：暗器·弩箭；grade=3; hiddenKind=bolt; ammoMul=0.985; hiddenHit=3.6; perBattle=6。外观：前臂长竹木箭匣配黄铜簧片与皮腕带，机括完全闭合，六支短箭整齐并置，箭尖朝同向，无人物、手、发射或命中场景
-  short: 铜簧袖箭
+  desc: 外观：前臂长竹木箭匣配黄铜簧片与皮腕带，机括完全闭合。 待运行时投影：ammoMul=0.985; hiddenHit=3.6。
 extension:
   type: equipment
   value:

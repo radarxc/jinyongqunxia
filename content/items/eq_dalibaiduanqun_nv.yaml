@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/dalibaiduanqun_nv
 text:
-  desc: 名录投影：衣物·礼服；grade=6; slot=body; armorWeight=light; wearer=female; resMindPp=3。外观：女款月白交领右衽窄袖衫与绛红百褶长裙成套平展，青绿团花窄边、银扣，宋代大理贵族尺度，不套用现代民族服装
-  short: 大理白缎裙衣·女
+  desc: 外观：女款月白交领右衽窄袖衫与绛红百褶长裙成套平展，青绿团花窄边、银扣。 待运行时投影：resMindPp=3; wearer=female。
 extension:
   type: equipment
   value:

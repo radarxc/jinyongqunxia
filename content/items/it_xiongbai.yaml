@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_xiongbai
+name: 熊白
+kind: material
+sub: ingredient
+grade: 9
+stack: 999
+chapters: any
+origin: canonExpanded
+canonRef: 古代所称熊脂珍品；名称与食法须核三联本及史料 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/xiongbai
+text:
+  desc: 外观：乳白熊脂一小块置青铜浅碟，蜡润质感。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di3
+    materialGrade: 9
+    rare: false
+    ingredientKind: rare

@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_junwuduandao
+name: 军伍短刀抄本
+kind: manual
+sub: copy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_junwuduandao
+text:
+  desc: 外观：明代土黄线装册，四眼黑线。
+extension:
+  type: manual
+  value:
+    skill: sk_junwuduandao
+    maxLayer: 8
+    variant: copy
+    readMul: 1

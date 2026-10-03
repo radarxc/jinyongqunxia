@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_qingyingpeijian
+name: 清营佩剑
+kind: weapon
+sub: sword
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·清；鹿鼎起可得，清宫华饰已下调为营伍装具 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/qingyingpeijian
+text:
+  desc: 外观：全长约九十五厘米，钢质直双刃、铁盘镡、鲨鱼皮纹柄与穗孔剑首。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

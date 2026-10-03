@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_langhuanjian
+name: 琅嬛剑法图谱
+kind: manual
+sub: full
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_langhuanjian
+text:
+  desc: 外观：北宋白绢横卷，青绫隔水、素木轴。
+extension:
+  type: manual
+  value:
+    skill: sk_langhuanjian
+    maxLayer: 10
+    variant: full
+    readMul: 1

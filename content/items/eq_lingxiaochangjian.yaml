@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/lingxiaochangjian
 text:
-  desc: 名录投影：兵器·剑；grade=9; cat=sword; hands=1; unique=true; sect=sect_xueshan。外观：长直窄剑约八十厘米，银灰刃、雪峰折线护手、白布缠柄与蓝黑鞘，冰霜仅作表面凝露，完整斜置，无人物与手
-  short: 凌霄长剑
+  desc: 外观：长直窄剑约八十厘米，银灰刃、雪峰折线护手、白布缠柄与蓝黑鞘。 待运行时投影：sect=sect_xueshan。
 extension:
   type: equipment
   value:

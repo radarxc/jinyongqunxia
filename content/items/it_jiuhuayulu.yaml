@@ -29,8 +29,7 @@ use:
 assets:
   icon: item/jiuhuayulu
 text:
-  desc: 名录投影：药物·补血疗伤；grade=9; healPct=12%; buff=bf_xuming; dispel=injury:g9。外观：九枚淡青丸置桃花瓣形白瓷盘，露珠光泽，小巧精致 （原创扩展）
-  short: 九花玉露丸
+  desc: 外观：九枚淡青丸置桃花瓣形白瓷盘，露珠光泽。
 extension:
   type: generic
   value: {}

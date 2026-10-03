@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/xuantiejian
 text:
-  desc: 名录投影：兵器·重剑；grade=11; cat=sword; hands=2; tags=heavy; divine=true。外观：无锋厚重黑铁剑身，极简小护手，粗柄，近人物身高 （原创扩展形制）
-  short: 玄铁重剑
+  desc: 外观：无锋厚重黑铁剑身，极简小护手。
 extension:
   type: equipment
   value:

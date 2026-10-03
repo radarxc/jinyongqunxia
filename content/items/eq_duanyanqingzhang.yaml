@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/duanyanqingzhang
 text:
-  desc: 名录投影：兵器·棍杖；grade=8; cat=staff; hands=1; pair=true; unique=true。外观：两根细长乌钢杖平行并置，各约一百三十厘米，锥形杖尖、圆头握柄，无宝石，承重处磨亮，完整留足两端，无人物与手
-  short: 段延庆钢杖
+  desc: 外观：两根细长乌钢杖平行并置，各约一百三十厘米。
 extension:
   type: equipment
   value:

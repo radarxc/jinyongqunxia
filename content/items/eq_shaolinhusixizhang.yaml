@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/shaolinhusixizhang
 text:
-  desc: 名录投影：兵器·棍杖；grade=9; cat=staff; hands=2; unique=true; sect=sect_shaolin。外观：黄铜轮形杖首带六枚闭合小环，深檀长杆约一百八十厘米、铁尾鐏，烟熏旧痕与握痕克制，完整斜置留足杆端，无人物与手
-  short: 少林护寺锡杖
+  desc: 外观：黄铜轮形杖首带六枚闭合小环，深檀长杆约一百八十厘米、铁尾鐏。 待运行时投影：sect=sect_shaolin。
 extension:
   type: equipment
   value:

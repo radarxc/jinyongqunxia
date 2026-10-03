@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/bintiejiangmochu
 text:
-  desc: 名录投影：兵器·奇门杵；grade=6; cat=exotic; exoticKind=pestle; hands=2; tags=heavy。外观：双手镔铁杵约一百二十厘米，中段皮缠握位、两端对称棱瓣钝首，沉黑金属有礼佛磨痕，完整斜置，无人物与手
-  short: 镔铁降魔杵
+  desc: 外观：双手镔铁杵约一百二十厘米，中段皮缠握位、两端对称棱瓣钝首。 待运行时投影：exoticKind=pestle。
 extension:
   type: equipment
   value:

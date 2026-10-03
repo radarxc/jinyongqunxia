@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_baiyuanjianyi_can
+name: 白猿剑意残本
+kind: manual
+sub: partial
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_baiyuanjianyi_can
+text:
+  desc: 外观：春秋窄竹简残束，麻绳补编。
+extension:
+  type: manual
+  value:
+    skill: sk_baiyuanjianyi
+    maxLayer: 7
+    variant: partial
+    readMul: 1

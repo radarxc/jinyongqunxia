@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/songwenguijian
 text:
-  desc: 名录投影：兵器·剑；grade=3; cat=sword; hands=1。外观：灰钢直刃带细密锻纹，刃约七十厘米，黄铜小护手、栗木柄、旧皮鞘，完整剪影斜置，无人物与手 （原创扩展）
-  short: 松纹古剑
+  desc: 外观：灰钢直刃带细密锻纹，刃约七十厘米。
 extension:
   type: equipment
   value:

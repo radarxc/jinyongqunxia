@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_qingyingtiebang
+name: 清营铁箍棒
+kind: weapon
+sub: staff
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·清；鹿鼎起可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/qingyingtiebang
+text:
+  desc: 外观：深木长棒约一百五十厘米，两端包厚铁箍、前端略粗。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

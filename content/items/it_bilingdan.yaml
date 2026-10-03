@@ -27,8 +27,7 @@ use:
 assets:
   icon: item/bilingdan
 text:
-  desc: 名录投影：药物·疗伤解毒；grade=9; healPct=12%; dispel=poison,injury:g9。外观：一枚碧绿丸药置雪莲纹银瓶旁，软木塞与旧青绢包裹，指腹大小 （原创扩展形制）
-  short: 碧灵丹
+  desc: 外观：一枚碧绿丸药置雪莲纹银瓶旁，软木塞与旧青绢包裹。
 extension:
   type: generic
   value: {}

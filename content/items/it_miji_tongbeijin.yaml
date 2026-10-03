@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_tongbeijin
+name: 通背劲原本
+kind: manual
+sub: original
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tongbeijin
+text:
+  desc: 外观：南宋赭黄蝴蝶装册，青绫包角。
+extension:
+  type: manual
+  value:
+    skill: sk_tongbeijin
+    maxLayer: 10
+    variant: original
+    readMul: 1

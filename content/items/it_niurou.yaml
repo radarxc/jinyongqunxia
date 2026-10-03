@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_niurou
+name: 牛肉
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 历代耕牛受保护，合法牛肉供应较少；具体法禁随书界核对
+price: auto
+flags: []
+assets:
+  icon: item/niurou
+text:
+  desc: 外观：一块暗红瘦牛肉带细脂纹置木案，约一斤。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: meat

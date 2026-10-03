@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_tougudingxia
+name: 透骨钉匣
+kind: hidden
+sub: awl
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tougudingxia
+text:
+  desc: 外观：乌木小匣开启，九枚四棱短钉平行嵌槽。 待运行时投影：ammoMul=1.055; hiddenHit=4.65。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: awl
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

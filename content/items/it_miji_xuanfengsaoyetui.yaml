@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_xuanfengsaoyetui
+name: 旋风扫叶腿修习谱
+kind: manual
+sub: full
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·黄药师赠陆乘风修习法
+price: auto
+flags: []
+assets:
+  icon: item/miji_xuanfengsaoyetui
+text:
+  desc: 外观：南宋蝴蝶装图谱，竹青纸衣、青绫包角。
+extension:
+  type: manual
+  value:
+    skill: sk_xuanfengsaoyetui
+    maxLayer: 10
+    variant: full
+    readMul: 1

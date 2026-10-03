@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_tianwangbuxin
+name: 天王补心针抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tianwangbuxin
+text:
+  desc: 外观：北宋月白蝴蝶装薄册，青绫包角。
+extension:
+  type: manual
+  value:
+    skill: sk_tianwangbuxin
+    maxLayer: 8
+    variant: copy
+    readMul: 1

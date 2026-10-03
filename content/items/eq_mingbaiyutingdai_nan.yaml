@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingbaiyutingdai_nan
 text:
-  desc: 名录投影：腰带·玉带；grade=8; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款青革鞓带盘成一圈，素白玉方銙均匀排列、铜鎏金扣与铊尾完整，无龙纹文字，明代高官腰带尺度
-  short: 明白玉鞓带·男
+  desc: 外观：男款青革鞓带盘成一圈，素白玉方銙均匀排列、铜鎏金扣与铊尾完整。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
 extension:
   type: equipment
   value:

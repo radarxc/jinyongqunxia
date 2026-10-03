@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_liaojintiebang
+name: 辽金铁头棒
+kind: weapon
+sub: staff
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·辽金；天龙至神雕北境可得 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/liaojintiebang
+text:
+  desc: 外观：硬木长棒约一百四十厘米，前端包八棱铁套、两道铆钉与皮缠握位。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

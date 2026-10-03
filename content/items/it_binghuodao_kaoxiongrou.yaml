@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_binghuodao_kaoxiongrou
+name: 冰火岛烤熊肉
+kind: dish
+sub: dish
+grade: 6
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·张翠山、殷素素熊洞生火烤熊肉
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1700
+  - op: meal
+    params:
+      value: bf_yuhan:2battle
+assets:
+  icon: item/binghuodao_kaoxiongrou
+text:
+  desc: 外观：焦褐熊肉厚片三块置平石板，粗盐少许。
+extension:
+  type: generic
+  value: {}

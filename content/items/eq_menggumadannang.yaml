@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_menggumadannang
+name: 蒙古马弹囊
+kind: hidden
+sub: ball
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/menggumadannang
+text:
+  desc: 外观：毛皮滚边小囊闭合，旁列六枚核桃大陶弹。 待运行时投影：ammoMul=0.985; ammoSlots=3; hiddenHit=3.6。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: ball
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

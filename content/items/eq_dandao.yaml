@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/dandao
 text:
-  desc: 名录投影：兵器·刀；grade=3; cat=blade; hands=1; mainK=1.05。外观：宋元朴素窄背微弧刀，木柄麻缠，无宝石，前臂加半臂长 （原创扩展）
-  short: 单刀
+  desc: 外观：宋元朴素窄背微弧刀，木柄麻缠。 待运行时投影：mainK=1.05。
 extension:
   type: equipment
   value:

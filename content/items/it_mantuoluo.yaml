@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_mantuoluo
+name: 曼陀罗花
+kind: material
+sub: herb
+grade: 7
+stack: 999
+chapters: any
+origin: canon
+canonRef: 有毒本草；毒性，供剧情 / 暗器 / 解毒设定；与情花是否同物 （待核实）
+price: auto
+flags: []
+assets:
+  icon: item/mantuoluo
+text:
+  desc: 外观：药用花干燥成黄褐漏斗状皱片，花萼仍在。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di9
+    materialGrade: 7
+    rare: false
+    herbFamily: manTuoLuo
+    ageYears: 0

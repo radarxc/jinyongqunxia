@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_shaolingunfa
+name: 少林棍法谱
+kind: manual
+sub: full
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shaolingunfa
+text:
+  desc: 外观：明代赭黄线装图册，粗麻四眼订。
+extension:
+  type: manual
+  value:
+    skill: sk_shaolingunfa
+    maxLayer: 10
+    variant: full
+    readMul: 1

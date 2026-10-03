@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/jinchunshuiyutuhu_nan
 text:
-  desc: 名录投影：腰带·玉带；grade=9; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款深褐鞓带盘成一圈，白玉带銙大小相间、浅雕海东青逐水草的春水纹，带扣与双铊尾完整，无佩刀文字，金代贵显尺度
-  short: 金春水玉吐鹘·男
+  desc: 外观：男款深褐鞓带盘成一圈，白玉带銙大小相间、浅雕海东青逐水草的春水纹。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
 extension:
   type: equipment
   value:

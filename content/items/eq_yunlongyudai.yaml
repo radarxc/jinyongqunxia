@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/yunlongyudai
 text:
-  desc: 名录投影：腰带·玉带；grade=9; slot=waist; cha=2; talk=5。外观：月白锦带嵌和田玉板，云纹浅雕、不画完整龙形 （原创扩展）
-  short: 云龙玉带
+  desc: 外观：月白锦带嵌和田玉板，云纹浅雕、不画完整龙形 （原创扩展）。 待运行时投影：cha=2; talk=5。
 extension:
   type: equipment
   value:

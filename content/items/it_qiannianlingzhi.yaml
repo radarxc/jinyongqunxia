@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/qiannianlingzhi
 text:
-  desc: 名录投影：药材·灵芝；grade=10; herbFamily=lingZhi; ageYears=1000; materialGrade=10; unique=true。外观：紫褐巨灵芝一株，层叠菌盖有深密年轮，旧檀木架托，约双掌宽 （原创扩展）
-  short: 千年灵芝
+  desc: 外观：紫褐巨灵芝一株，层叠菌盖有深密年轮。
 extension:
   type: material
   value:

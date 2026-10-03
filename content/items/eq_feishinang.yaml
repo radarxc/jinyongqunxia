@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/feishinang
 text:
-  desc: 名录投影：暗器·弹丸囊；grade=1; hiddenKind=ball; ammoMul=0.915; hiddenHit=3.0; ammoSlots=2。外观：巴掌大粗麻束口囊闭合平置，旁列三枚圆润飞蝗石以示用途，黄铜扣、补丁与尘土旧化，无人物、手、发射或命中场景
-  short: 飞石囊
+  desc: 外观：巴掌大粗麻束口囊闭合平置，旁列三枚圆润飞蝗石以示用途。 待运行时投影：ammoMul=0.915; ammoSlots=2; hiddenHit=3.0。
 extension:
   type: equipment
   value:

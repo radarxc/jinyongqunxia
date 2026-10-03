@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_bujiejiedao
+name: 不戒和尚戒刀
+kind: weapon
+sub: blade
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《笑傲江湖》·不戒和尚持刀情节及器形 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/bujiejiedao
+text:
+  desc: 外观：宽背短戒刀约六十厘米，圆头近尖、黄铜圆镡、深木柄麻缠与旧皮鞘。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

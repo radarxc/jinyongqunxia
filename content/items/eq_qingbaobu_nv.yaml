@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qingbaobu_nv
 text:
-  desc: 名录投影：头饰·包髻；grade=3; slot=head; wearer=female; cha=1。外观：女款靛蓝绸包髻巾独立打结陈列，不画人头假发，长巾折成低髻轮廓、折枝花窄绣边与银簪，无大拉翅，清代汉女尺度
-  short: 清绣边包髻·女
+  desc: 外观：女款靛蓝绸包髻巾独立打结陈列，不画人头假发。 待运行时投影：cha=1; wearer=female。
 extension:
   type: equipment
   value:

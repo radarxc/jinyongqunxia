@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_dajingangquan
+name: 大金刚拳神功古籍
+kind: manual
+sub: copy
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·少林藏经楼三部黄黑旧经籍之一，原文名《大金刚拳神功》
+price: auto
+flags: []
+assets:
+  icon: item/miji_dajingangquan
+text:
+  desc: 外观：北宋黄黑麻纸蝴蝶装厚册，靛布包角、细麻缝缀。
+extension:
+  type: manual
+  value:
+    skill: sk_dajingangquan
+    maxLayer: 8
+    variant: copy
+    readMul: 1

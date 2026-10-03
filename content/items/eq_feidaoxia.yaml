@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/feidaoxia
 text:
-  desc: 名录投影：暗器·飞刀；grade=5; hiddenKind=dart; ammoMul=1.055; hiddenHit=4.65; perBattle=8。外观：黑漆木扁匣开启展示八柄柳叶飞刀，刀刃掌长、无护手、短木柄，全部同向嵌槽并保持完整，无人物、手、发射或命中场景
-  short: 飞刀匣
+  desc: 外观：黑漆木扁匣开启展示八柄柳叶飞刀，刀刃掌长、无护手、短木柄。 待运行时投影：ammoMul=1.055; hiddenHit=4.65。
 extension:
   type: equipment
   value:

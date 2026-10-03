@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/bukuaixue
 text:
-  desc: 名录投影：鞋·布靴；grade=3; slot=feet; qinggong=7.5; mov=0。外观：一双黑布短靴，软底、灰布滚边，无官府文字 （原创扩展）
-  short: 捕快快靴
+  desc: 外观：一双黑布短靴，软底、灰布滚边。 待运行时投影：mov=0; qinggong=7.5。
 extension:
   type: equipment
   value:

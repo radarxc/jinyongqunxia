@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_buzhenrumen
+name: 布阵入门全本
+kind: manual
+sub: full
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_buzhenrumen
+text:
+  desc: 外观：明代经折阵册，土黄硬纸护面。
+extension:
+  type: manual
+  value:
+    skill: sk_buzhenrumen
+    maxLayer: 10
+    variant: full
+    readMul: 1

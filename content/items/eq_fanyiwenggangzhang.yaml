@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_fanyiwenggangzhang
+name: 樊一翁钢杖
+kind: weapon
+sub: staff
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《神雕侠侣》·樊一翁使用钢杖；长度与装具 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/fanyiwenggangzhang
+text:
+  desc: 外观：乌钢长杖约一百七十厘米，杆身均匀、上端圆钝葫芦首、下端铁鐏。 待运行时投影：sect=sect_jueqinggu。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

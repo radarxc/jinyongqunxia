@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_lurong
+name: 鹿茸
+kind: material
+sub: herb
+grade: 6
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/lurong
+text:
+  desc: 外观：药用幼角切成圆形薄片，外缘覆短绒、中央蜂窝状。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan3
+    materialGrade: 6
+    rare: false
+    herbFamily: luRong
+    ageYears: 0

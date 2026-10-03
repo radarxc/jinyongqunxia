@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/xuedao
 text:
-  desc: 名录投影：兵器·刀；grade=9; cat=blade; hands=1; unique=true。外观：暗红窄刃弯刀、黑皮柄、藏地铜饰，避免血腥和夸张锯齿 （原创扩展形制）
-  short: 血刀
+  desc: 外观：暗红窄刃弯刀、黑皮柄、藏地铜饰，避免血腥和夸张锯齿 （原创扩展形制）。
 extension:
   type: equipment
   value:

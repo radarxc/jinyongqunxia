@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_huibujiaojian
+name: 回部嵌角剑
+kind: weapon
+sub: sword
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·回疆；仅书剑至雪山清代节点原生可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/huibujiaojian
+text:
+  desc: 外观：全长约八十八厘米，精钢直身双刃、短铜护手、深色角片夹柄与圆首。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

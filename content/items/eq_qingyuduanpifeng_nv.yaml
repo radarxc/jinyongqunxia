@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qingyuduanpifeng_nv
 text:
-  desc: 名录投影：披风·披风；grade=6; slot=cape; wearer=female; defOutK=0.025; hpMaxK=0.005; resColdPp=3。外观：女款品月色羽缎披风单件完整铺展，小立领、右开襟、石青滚边与布扣，细密哑光无花字，清前中期士绅及膝尺度
-  short: 清羽缎披风·女
+  desc: 外观：女款品月色羽缎披风单件完整铺展，小立领、右开襟、石青滚边与布扣。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=3; wearer=female。
 extension:
   type: equipment
   value:

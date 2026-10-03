@@ -22,8 +22,7 @@ use:
 assets:
   icon: item/baotaiyijinwan
 text:
-  desc: 名录投影：药物·控制；grade=8; apply=bf_shouzhi; storyForced=true。外观：暗红大丸置蛇纹金属小盒，油亮表面，南疆秘教压迫感 （原创扩展）
-  short: 豹胎易筋丸
+  desc: 外观：暗红大丸置蛇纹金属小盒，油亮表面。 待运行时投影：storyForced=true。
 extension:
   type: generic
   value: {}

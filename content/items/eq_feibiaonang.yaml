@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/feibiaonang
 text:
-  desc: 名录投影：暗器·飞镖囊；grade=2; hiddenKind=dart; ammoMul=0.950; hiddenHit=3.3; ammoSlots=2。外观：深褐软皮扁囊闭合，旁列三枚无字燕尾钢镖，各约半掌长，缝线、铜扣与磨痕清楚，无人物、手、发射或命中场景
-  short: 飞镖囊
+  desc: 外观：深褐软皮扁囊闭合，旁列三枚无字燕尾钢镖。 待运行时投影：ammoMul=0.950; ammoSlots=2; hiddenHit=3.3。
 extension:
   type: equipment
   value:

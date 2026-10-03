@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qingqizhuangjifu_nv
 text:
-  desc: 名录投影：衣物·礼服；grade=8; slot=body; armorWeight=light; wearer=female; cha=1。外观：女款石青暗花缎圆领右开大襟旗装吉服单件平展，平直袍身、单道窄镶边饰月白折枝花刺绣、两侧开裾，无大拉翅配件，清前中期贵族尺度
-  short: 清绣旗装吉服·女
+  desc: 外观：女款石青暗花缎圆领右开大襟旗装吉服单件平展，平直袍身、单道窄镶边饰月白折枝花刺绣、两侧开裾。 待运行时投影：cha=1; wearer=female。
 extension:
   type: equipment
   value:

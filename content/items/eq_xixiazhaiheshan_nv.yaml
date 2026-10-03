@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/xixiazhaiheshan_nv
 text:
-  desc: 名录投影：衣物·胡服；grade=4; slot=body; armorWeight=light; wearer=female; effRes=2。外观：女款赭红交领右衽窄袖褙衫单件平展，短衫配低饱和百褶裙，黑色窄缘与布系带，无佛像纹，西夏城镇女装尺度
-  short: 西夏窄褙衫·女
+  desc: 外观：女款赭红交领右衽窄袖褙衫单件平展，短衫配低饱和百褶裙。 待运行时投影：effRes=2; wearer=female。
 extension:
   type: equipment
   value:

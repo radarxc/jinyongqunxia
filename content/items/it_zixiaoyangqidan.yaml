@@ -24,8 +24,7 @@ use:
 assets:
   icon: item/zixiaoyangqidan
 text:
-  desc: 名录投影：补品·补气修炼；grade=6; mpPct=10.2%; sxpBuff=1.20x:5battle。外观：紫褐丸药配云纹青瓷瓶，细银圈封口，掌中尺寸 （原创扩展）
-  short: 紫霞养气丹
+  desc: 外观：紫褐丸药配云纹青瓷瓶，细银圈封口。
 extension:
   type: generic
   value: {}

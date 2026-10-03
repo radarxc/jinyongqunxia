@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/qimeigun
 text:
-  desc: 名录投影：兵器·棍；grade=3; cat=staff; hands=2; mainK=1.10。外观：深色白蜡木长棍，齐眉长度，两端磨亮，粗细合手
-  short: 齐眉棍
+  desc: 外观：深色白蜡木长棍，齐眉长度。 待运行时投影：mainK=1.10。
 extension:
   type: equipment
   value:

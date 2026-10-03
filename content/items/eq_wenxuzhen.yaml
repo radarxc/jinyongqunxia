@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/wenxuzhen
 text:
-  desc: 名录投影：暗器·名针；grade=7; hiddenKind=needle; perBattle=15; hit=10; onHit=bf_zhongdu。外观：极细银针束于黑绸针筒旁，针如蚊须、尺寸纤小 （原创扩展形制）
-  short: 蚊须针
+  desc: 外观：极细银针束于黑绸针筒旁，针如蚊须、尺寸纤小 （原创扩展形制）。 待运行时投影：hit=10; onHit=bf_zhongdu。
 extension:
   type: equipment
   value:

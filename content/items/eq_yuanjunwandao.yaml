@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_yuanjunwandao
+name: 元军弯刀
+kind: weapon
+sub: blade
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·元；倚天起可得 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/yuanjunwandao
+text:
+  desc: 外观：全长约九十厘米，狭长缓弧单刃、短横铁镡、斜角皮缠柄。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

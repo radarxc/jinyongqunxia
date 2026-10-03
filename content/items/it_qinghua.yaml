@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_qinghua
+name: 情花
+kind: material
+sub: herb
+grade: 8
+stack: 999
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·绝情谷虚构毒花；现实原型 （待核实）
+price: auto
+flags: []
+assets:
+  icon: item/qinghua
+text:
+  desc: 外观：粉白花与带刺绿枝分置长竹匣，刺尖清楚。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di6
+    materialGrade: 8
+    rare: false
+    herbFamily: qingHua
+    ageYears: 0

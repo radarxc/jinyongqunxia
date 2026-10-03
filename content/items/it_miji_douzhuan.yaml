@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/miji_douzhuan
 text:
-  desc: 名录投影：秘籍·残本；grade=10; skill=sk_douzhuan; variant=partial; maxLayer=6。外观：深蓝绢面薄册，银灰星点仅作纤维斑，不画星图或文字 （原创扩展）
-  short: 斗转星移藏本
+  desc: 外观：北宋深蓝绢面蝴蝶装薄册，居中银灰绢签、墨楷。
 extension:
   type: manual
   value:

@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/xianggu
 text:
-  desc: 名录投影：食材·菜蔬；grade=6; ingredientKind=vegetable; materialGrade=6。外观：褐伞香菇五朵置竹筛，菌褶清楚、根部带少量松针，掌心尺度
-  short: 山林香菇
+  desc: 外观：褐伞香菇五朵置竹筛，菌褶清楚、根部带少量松针。
 extension:
   type: material
   value:

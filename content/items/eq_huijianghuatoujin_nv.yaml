@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/huijianghuatoujin_nv
 text:
-  desc: 名录投影：头饰·头巾；grade=1; slot=head; wearer=female。外观：女款靛红花布头巾独立折叠陈列，不画人头假发，长方棉布、边角流苏、几何小花无字，包覆后仍留双垂端，清代回疆平民尺度
-  short: 回疆花布头巾·女
+  desc: 外观：女款靛红花布头巾独立折叠陈列，不画人头假发。 待运行时投影：wearer=female。
 extension:
   type: equipment
   value:

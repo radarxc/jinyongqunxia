@@ -23,8 +23,7 @@ use:
 assets:
   icon: item/baihuagao
 text:
-  desc: 名录投影：食品·点心；grade=9; staPct=24%; meal=bf_huichun:2battle。外观：淡紫圆糕点缀可食花瓣，银边食盒，精巧小份 （原创扩展）
-  short: 百花糕
+  desc: 外观：淡紫圆糕点缀可食花瓣，银边食盒。
 extension:
   type: generic
   value: {}

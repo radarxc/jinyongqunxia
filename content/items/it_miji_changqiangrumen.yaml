@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_changqiangrumen
+name: 长枪入门谱
+kind: manual
+sub: full
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_changqiangrumen
+text:
+  desc: 外观：南宋赭黄蝴蝶装长册，蓝麻缝线。
+extension:
+  type: manual
+  value:
+    skill: sk_changqiangrumen
+    maxLayer: 10
+    variant: full
+    readMul: 1

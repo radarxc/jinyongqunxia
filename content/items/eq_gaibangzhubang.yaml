@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/gaibangzhubang
 text:
-  desc: 名录投影：兵器·棍；grade=7; cat=staff; hands=1; unique=true; sect=sect_gaibang。外观：深青老竹杖约齐眉长，天然竹节、根部短铁箍与布条修补，磨亮握位、无刻字，完整斜置，无人物与手
-  short: 丐帮竹杖
+  desc: 外观：深青老竹杖约齐眉长，天然竹节、根部短铁箍与布条修补。 待运行时投影：sect=sect_gaibang。
 extension:
   type: equipment
   value:

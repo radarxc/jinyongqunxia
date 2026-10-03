@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_tiandihuidao
+name: 天地会刀谱
+kind: manual
+sub: full
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tiandihuidao
+text:
+  desc: 外观：清代暗红线装图册，四眼黑线。
+extension:
+  type: manual
+  value:
+    skill: sk_tiandihuidao
+    maxLayer: 10
+    variant: full
+    readMul: 1

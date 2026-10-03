@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/songmabutaosheng_nan
 text:
-  desc: 名录投影：腰带·布绳；grade=1; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款灰褐麻布绦绳盘成一圈，双股粗编、木环与简单活结，纤维毛糙轻旧，无字无悬物，宋代庶民尺度
-  short: 宋麻布绦绳·男
+  desc: 外观：男款灰褐麻布绦绳盘成一圈，双股粗编、木环与简单活结。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
 extension:
   type: equipment
   value:

@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_qimeigun_can
+name: 齐眉棍谱残本
+kind: manual
+sub: partial
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_qimeigun_can
+text:
+  desc: 外观：明代细长竹纸残册，粗麻线补订。
+extension:
+  type: manual
+  value:
+    skill: sk_qimeigun
+    maxLayer: 7
+    variant: partial
+    readMul: 1

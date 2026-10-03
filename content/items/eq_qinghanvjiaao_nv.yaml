@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qinghanvjiaao_nv
 text:
-  desc: 名录投影：衣物·便服；grade=2; slot=body; armorWeight=light; wearer=female。外观：女款灰蓝交领右衽夹袄与黑色长裙成套折叠，宽袖收口、素棉布、布结系带，无旗装镶滚，清前中期汉族平民尺度
-  short: 清汉女夹袄·女
+  desc: 外观：女款灰蓝交领右衽夹袄与黑色长裙成套折叠，宽袖收口、素棉布、布结系带。 待运行时投影：wearer=female。
 extension:
   type: equipment
   value:

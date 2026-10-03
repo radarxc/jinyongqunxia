@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_jinboxunhua
+name: 金波旬花
+kind: material
+sub: herb
+grade: 9
+stack: 999
+chapters: any
+origin: canon
+canonRef: 《连城诀》·剧情奇毒；现实原型未定 （待核实）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/jinboxunhua
+text:
+  desc: 外观：金黄色干花连短枝封在双层漆匣，花形 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di3
+    materialGrade: 9
+    rare: false
+    herbFamily: jinBoXunHua
+    ageYears: 0

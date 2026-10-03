@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/huijianghongbudai_nan
 text:
-  desc: 名录投影：腰带·布带；grade=2; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款暗红棉布长带盘成一圈，数层缠绕痕与素结清楚，两端短垂、边缘轻磨损，无字无扣，清代回疆民人尺度
-  short: 回疆红布腰带·男
+  desc: 外观：男款暗红棉布长带盘成一圈，数层缠绕痕与素结清楚。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
 extension:
   type: equipment
   value:

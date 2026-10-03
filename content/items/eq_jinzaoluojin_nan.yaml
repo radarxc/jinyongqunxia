@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/jinzaoluojin_nan
 text:
-  desc: 名录投影：头饰·巾；grade=5; slot=head; wearer=male; effRes=3。外观：男款皂罗方顶巾独立陈列，不画人头，方顶十字缝、后折垂、两角各缀方罗与短带，黑纱匀净，金代贵显尺度
-  short: 金皂罗方顶巾·男
+  desc: 外观：男款皂罗方顶巾独立陈列，不画人头。 待运行时投影：effRes=3; wearer=male。
 extension:
   type: equipment
   value:

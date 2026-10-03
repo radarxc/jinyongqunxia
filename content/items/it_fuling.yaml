@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_fuling
+name: 茯苓
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/fuling
+text:
+  desc: 外观：药用菌核削皮切作白色方丁，外皮棕黑。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: fuLing
+    ageYears: 0

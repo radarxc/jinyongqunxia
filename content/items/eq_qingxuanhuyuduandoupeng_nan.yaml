@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qingxuanhuyuduandoupeng_nan
 text:
-  desc: 名录投影：披风·斗篷；grade=9; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005; resColdPp=6。外观：男款玄青羽缎斗篷单件完整铺展，立领、前开襟、玄狐窄缘与银扣，细密防风面料无字，清前中期贵族及踝尺度
-  short: 清玄狐羽缎斗篷·男
+  desc: 外观：男款玄青羽缎斗篷单件完整铺展，立领、前开襟、玄狐窄缘与银扣。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=6; wearer=male。
 extension:
   type: equipment
   value:

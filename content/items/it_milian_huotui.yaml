@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_milian_huotui
+name: 蜜莲火腿
+kind: dish
+sub: dish
+grade: 8
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《鹿鼎记》·韦小宝以宣威火腿、蜜饯莲子款待沐剑屏
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2200
+  - op: meal
+    params:
+      value: bf_huichun,bf_juqi:3battle
+assets:
+  icon: item/milian_huotui
+text:
+  desc: 外观：鲜红火腿薄片围蜜莲子码青花盘，清代宫膳四人份 （原创扩展）。 待运行时投影：party=4。
+extension:
+  type: generic
+  value: {}

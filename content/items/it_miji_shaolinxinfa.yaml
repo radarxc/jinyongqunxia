@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_shaolinxinfa
+name: 少林心法抄本
+kind: manual
+sub: copy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shaolinxinfa
+text:
+  desc: 外观：明代素黄线装小册，四眼白线。
+extension:
+  type: manual
+  value:
+    skill: sk_shaolinxinfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1

@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_wenfangshifeidaoxia
+name: 温方施飞刀备用匣
+kind: hidden
+sub: dart
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《碧血剑》·温方施四刀齐发情节；备用匣 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/wenfangshifeidaoxia
+text:
+  desc: 外观：乌木扁匣开启，八柄与其名器同制的尺许飞刀分槽平置。 待运行时投影：ammoMul=1.090; hiddenHit=5.1。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

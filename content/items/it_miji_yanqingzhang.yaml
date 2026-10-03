@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_yanqingzhang
+name: 延庆杖法抄本
+kind: manual
+sub: copy
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·段延庆武学；谱本 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_yanqingzhang
+text:
+  desc: 外观：北宋细长蝴蝶装册，墨灰书衣。
+extension:
+  type: manual
+  value:
+    skill: sk_yanqingzhang
+    maxLayer: 8
+    variant: copy
+    readMul: 1

@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/shinianrenshen
 text:
-  desc: 名录投影：药材·人参；grade=6; herbFamily=renShen; ageYears=10; materialGrade=6。外观：根体稍粗、须根繁密，黄麻绳束，木盒有轻微岁月痕 （原创扩展）
-  short: 十年人参
+  desc: 外观：根体稍粗、须根繁密，黄麻绳束。
 extension:
   type: material
   value:

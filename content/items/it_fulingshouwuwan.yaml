@@ -24,8 +24,7 @@ use:
 assets:
   icon: item/fulingshouwuwan
 text:
-  desc: 名录投影：药物·补气疗伤；grade=6; healPct=4.25%; mpPct=10.2%。外观：乌木小匣盛棕黑蜜丸，可见茯苓粉霜，素麻封条无字 （原创扩展）
-  short: 茯苓首乌丸
+  desc: 外观：乌木小匣盛棕黑蜜丸，可见茯苓粉霜。
 extension:
   type: generic
   value: {}

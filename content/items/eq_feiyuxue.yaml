@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/feiyuxue
 text:
-  desc: 名录投影：鞋·轻靴；grade=6; slot=feet; qinggong=15; staPct=3%。外观：深褐薄皮短靴，侧面羽纹压花、轻软窄底 （原创扩展）
-  short: 飞羽靴
+  desc: 外观：深褐薄皮短靴，侧面羽纹压花、轻软窄底 （原创扩展）。 待运行时投影：qinggong=15。
 extension:
   type: equipment
   value:

@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_tianboguangkuaidao
+name: 田伯光快刀
+kind: weapon
+sub: blade
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《笑傲江湖》·田伯光以快刀见长；兵器专名与形制 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/tianboguangkuaidao
+text:
+  desc: 外观：狭长轻薄单刃约七十厘米，浅弧刀身、椭圆小镡、黑布缠柄与素黑鞘。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

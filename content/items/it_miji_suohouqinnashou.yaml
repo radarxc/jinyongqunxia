@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/miji_suohouqinnashou
 text:
-  desc: 名录投影：秘籍·全本；grade=6; skill=sk_suohouqinnashou; variant=full; maxLayer=10。外观：褐红薄册，边缘有翻阅毛损，布包角，无字无血迹 （原创扩展）
-  short: 锁喉擒拿手遗谱
+  desc: 外观：北宋褐红蝴蝶装薄册，细线缝缀。
 extension:
   type: manual
   value:

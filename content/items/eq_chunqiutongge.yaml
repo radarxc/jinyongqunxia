@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_chunqiutongge
+name: 春秋青铜戈
+kind: weapon
+sub: exotic
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·春秋；仅序章原生可得，依春秋戈援内胡形制 （原创扩展定级）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/chunqiutongge
+text:
+  desc: 外观：青铜横刃戈头含援、内与下胡，直装硬木柲通长约二米。 待运行时投影：exoticKind=misc。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/wuyinglv
 text:
-  desc: 名录投影：鞋·宝履；grade=10; slot=feet; qinggong=25; catalogTian=true; divine=false; unique=true; price=null; eva=6。外观：墨青缎面软履，银灰窄边、极薄鞋底，低调无魔法痕迹 （原创扩展）
-  short: 无影履
+  desc: 外观：墨青缎面软履，银灰窄边、极薄鞋底。 待运行时投影：eva=6; qinggong=25。
 extension:
   type: equipment
   value:

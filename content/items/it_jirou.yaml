@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_jirou
+name: 鸡肉
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 家禽通用；宋元明清均可得
+price: auto
+flags: []
+assets:
+  icon: item/jirou
+text:
+  desc: 外观：处理净的生鸡一只置竹叶，淡黄皮、双翼收拢。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: meat

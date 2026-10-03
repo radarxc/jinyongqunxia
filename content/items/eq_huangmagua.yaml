@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/huangmagua
 text:
-  desc: 名录投影：衣物·礼服；grade=6; slot=body; armorWeight=light; dialogue.gov=15。外观：清代明黄色短褂单件平展，盘扣、深蓝滚边，不画补子文字 （原创扩展形制）
-  short: 黄马褂
+  desc: 外观：清代明黄色短褂单件平展，盘扣、深蓝滚边。 待运行时投影：dialogue.gov=15。
 extension:
   type: equipment
   value:

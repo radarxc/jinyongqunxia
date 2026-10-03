@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/yuanmengguzhanpi_nan
 text:
-  desc: 名录投影：披风·毡披；grade=4; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005; resColdPp=2。外观：男款炭灰羊毛毡披单件完整铺展，圆领、左前襟皮扣、短袖口与及膝下摆，红褐窄边无字，蒙古骑手厚实尺度
-  short: 元蒙古毡披·男
+  desc: 外观：男款炭灰羊毛毡披单件完整铺展，圆领、左前襟皮扣、短袖口与及膝下摆。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=2; wearer=male。
 extension:
   type: equipment
   value:

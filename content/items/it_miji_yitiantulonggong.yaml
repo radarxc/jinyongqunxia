@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_yitiantulonggong
+name: 倚天屠龙功王盘山石刻
+kind: manual
+sub: original
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·张翠山在王盘山石壁刻二十四字，笔画中含张三丰所授武功；本作登记不可携地点载体
+price: auto
+flags: []
+assets:
+  icon: item/miji_yitiantulonggong
+text:
+  desc: 外观：元代海岛浅灰巨石壁，二十四个大字依壁竖排、笔画入石。
+extension:
+  type: manual
+  value:
+    skill: sk_yitiantulonggong
+    maxLayer: 10
+    variant: original
+    readMul: 1

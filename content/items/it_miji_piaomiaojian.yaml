@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_piaomiaojian
+name: 缥缈剑法抄本
+kind: manual
+sub: copy
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 逍遥派·灵鹫宫传承 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_piaomiaojian
+text:
+  desc: 外观：北宋经折图册，月白硬纸护面。
+extension:
+  type: manual
+  value:
+    skill: sk_piaomiaojian
+    maxLayer: 8
+    variant: copy
+    readMul: 1

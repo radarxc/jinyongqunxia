@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_lianzhuziwunu
+name: 连珠子午弩
+kind: hidden
+sub: bolt
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/lianzhuziwunu
+text:
+  desc: 外观：前臂长黑木匣弩，上下双矢槽、钢弓片与铜扳机清楚。 待运行时投影：ammoMul=1.055; hiddenHit=4.65; reloadOwnActions=1。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: bolt
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

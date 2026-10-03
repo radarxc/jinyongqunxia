@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qinghongyingnuanmao_nan
 text:
-  desc: 名录投影：头饰·暖帽；grade=4; slot=head; wearer=male; resColdPp=2。外观：男款黑缎暖帽独立陈列，不画人头，圆顶上覆低矮红缨、窄熏貂帽缘、素铜顶珠，不冒充官阶宝石，清前中期士绅尺度
-  short: 清红缨暖帽·男
+  desc: 外观：男款黑缎暖帽独立陈列，不画人头。 待运行时投影：resColdPp=2; wearer=male。
 extension:
   type: equipment
   value:

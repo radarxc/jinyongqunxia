@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_jinyinhua
+name: 金银花
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/jinyinhua
+text:
+  desc: 外观：药用花蕾干燥成黄白细棒，少量初开花混入。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: jinYinHua
+    ageYears: 0

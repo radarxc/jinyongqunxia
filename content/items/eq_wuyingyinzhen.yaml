@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_wuyingyinzhen
+name: 无影银针
+kind: hidden
+sub: needle
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《飞狐外传》·汤沛靴底机括自足尖发银针
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/wuyingyinzhen
+text:
+  desc: 外观：一只黑色长靴侧卧展示鞋底闭合机括，足尖多孔银片与八枚细针另列。 待运行时投影：ammoMul=1.160; hiddenHit=6.6。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: needle
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_tangshijian
+name: 唐诗剑谱原本
+kind: manual
+sub: original
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《连城诀》·唐诗剑谱承载剑法与密码
+price: auto
+flags: []
+assets:
+  icon: item/miji_tangshijian
+text:
+  desc: 外观：清代藏蓝线装册，四眼麻线、白纸包角。
+extension:
+  type: manual
+  value:
+    skill: sk_tangshijian
+    maxLayer: 10
+    variant: original
+    readMul: 1

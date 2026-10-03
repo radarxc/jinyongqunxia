@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/liaowupiqixue_nan
 text:
-  desc: 名录投影：鞋·骑靴；grade=7; slot=feet; wearer=male; qinggong=17.5。外观：男款乌黑细皮骑靴一双并置，微翘圆头、高靿、内侧系带与厚皮底，靴口黑绿窄缘无字，成年足长、辽代贵族骑乘尺度
-  short: 辽乌皮骑靴·男
+  desc: 外观：男款乌黑细皮骑靴一双并置，微翘圆头、高靿、内侧系带与厚皮底。 待运行时投影：qinggong=17.5; wearer=male。
 extension:
   type: equipment
   value:

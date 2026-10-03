@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/duanshihushenjian
 text:
-  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true; sect=sect_dali。外观：大理式直剑约七十厘米，银质花叶小镡、深红丝缠柄、黑漆鞘嵌素银箍，纹样克制不写字，完整斜置，无人物与手
-  short: 段氏护身剑
+  desc: 外观：大理式直剑约七十厘米，银质花叶小镡、深红丝缠柄、黑漆鞘嵌素银箍。 待运行时投影：sect=sect_dali。
 extension:
   type: equipment
   value:

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_huatiegantieqiang
+name: 花铁干铁枪
+kind: weapon
+sub: spear
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《连城诀》·花铁干使用铁枪
+price: auto
+flags:
+- unique
+assets:
+  icon: item/huatiegantieqiang
+text:
+  desc: 外观：通长约二点二米，枪头与细杆均为乌铁。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

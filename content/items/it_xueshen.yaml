@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/xueshen
 text:
-  desc: 名录投影：药材·雪参；grade=3; herbFamily=xueShen; ageYears=0; materialGrade=3。外观：灰白小参附短须与霜土，粗布包，指掌大小 （原创扩展）
-  short: 普通雪参
+  desc: 外观：灰白小参附短须与霜土，粗布包。
 extension:
   type: material
   value:

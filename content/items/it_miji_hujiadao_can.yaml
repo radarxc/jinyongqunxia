@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_hujiadao_can
+name: 胡家刀谱残本
+kind: manual
+sub: partial
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《飞狐外传》《雪山飞狐》·刀谱缺首二页
+price: null
+flags: []
+assets:
+  icon: item/miji_hujiadao_can
+text:
+  desc: 外观：清代青布书衣四眼线装，前部缺页露线。
+extension:
+  type: manual
+  value:
+    skill: sk_hujiadao
+    maxLayer: 8
+    variant: partial
+    readMul: 1

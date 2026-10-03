@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_huashan_qingcai_doufufan
+name: 华山青菜豆腐饭
+kind: dish
+sub: dish
+grade: 3
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《碧血剑》·乱世途中板桌上有青菜豆腐、肥鸡与热饭菜
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: meal
+    params:
+      value: bf_yangsheng:1battle
+assets:
+  icon: item/huashan_qingcai_doufufan
+text:
+  desc: 外观：青菜豆腐一碗配白饭与一只肥鸡盘，粗陶器。
+extension:
+  type: generic
+  value: {}

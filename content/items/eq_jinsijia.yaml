@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/jinsijia
 text:
-  desc: 名录投影：内甲·金丝；grade=6; slot=innerBody; weaponZ4=3%。外观：暗金细丝交织无袖背心，织孔极细、边缘布包条 （原创扩展）
-  short: 金丝甲
+  desc: 外观：暗金细丝交织无袖背心，织孔极细、边缘布包条 （原创扩展）。 待运行时投影：weaponZ4=3%。
 extension:
   type: equipment
   value:

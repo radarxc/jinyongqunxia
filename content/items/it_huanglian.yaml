@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_huanglian
+name: 黄连
+kind: material
+sub: herb
+grade: 5
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/huanglian
+text:
+  desc: 外观：药用根茎呈黄褐分枝簇状，断面鲜黄。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan6
+    materialGrade: 5
+    rare: false
+    herbFamily: huangLian
+    ageYears: 0

@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/jinchunshuipanlingpao_nan
 text:
-  desc: 名录投影：衣物·袍服；grade=5; slot=body; armorWeight=light; wearer=male; effRes=3。外观：男款女真墨绿盘领窄袖袍单件平展，左衽暗合、膝下开衩，细布上仅有海东青与水草抽象暗纹，无文字，金代武人尺度
-  short: 金春水盘领袍·男
+  desc: 外观：男款女真墨绿盘领窄袖袍单件平展，左衽暗合、膝下开衩。 待运行时投影：effRes=3; wearer=male。
 extension:
   type: equipment
   value:

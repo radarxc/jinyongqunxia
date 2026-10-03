@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_fenggan_yangrou
+name: 风干羊肉
+kind: food
+sub: food
+grade: 5
+stack: 20
+chapters: any
+origin: canon
+canonRef: 辽、蒙古与西北行旅肉食
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_yuhan:2battle
+assets:
+  icon: item/fenggan_yangrou
+text:
+  desc: 外观：深褐羊肉条三根麻绳束，干燥纤维清楚。
+extension:
+  type: generic
+  value: {}

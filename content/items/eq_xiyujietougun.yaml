@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_xiyujietougun
+name: 西域节头棍
+kind: weapon
+sub: staff
+grade: 3
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·西域；白马（唐）起西域节点可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/xiyujietougun
+text:
+  desc: 外观：枣木长棍约一百六十厘米，天然节瘤打磨成连续握位。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

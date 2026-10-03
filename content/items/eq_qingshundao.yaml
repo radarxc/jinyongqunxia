@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_qingshundao
+name: 清顺刀
+kind: weapon
+sub: blade
+grade: 3
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·清；鹿鼎起可得（故宫藏木柄黑漆鞘顺刀名目）
+price: auto
+flags: []
+assets:
+  icon: item/qingshundao
+text:
+  desc: 外观：全长约八十五厘米，窄背微弧单刃、短铁盘镡、素木柄麻缠。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

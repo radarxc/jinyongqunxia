@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qinggedaihebao_nan
 text:
-  desc: 名录投影：腰带·荷包带；grade=4; slot=waist; wearer=male; defOutK=0.05; hpMaxK=0.01。外观：男款深蓝软革常服带作松弧陈列，黄铜双环扣与一只扁圆石青绣花荷包，荷包轻薄无腰包感，不挂兵器无字，清前中期士绅尺度
-  short: 清革带荷包·男
+  desc: 外观：男款深蓝软革常服带作松弧陈列，黄铜双环扣与一只扁圆石青绣花荷包。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
 extension:
   type: equipment
   value:

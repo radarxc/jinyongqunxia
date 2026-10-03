@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/miji_canhezhi
 text:
-  desc: 名录投影：秘籍·残本；grade=8; skill=sk_canhezhi; variant=partial; maxLayer=7。外观：湖蓝绢纸书衣，水阁藏书防潮布套，页口齐整 （原创扩展）
-  short: 参合指藏本
+  desc: 外观：北宋湖蓝蝴蝶装册，绢纸书衣、青布包角。
 extension:
   type: manual
   value:

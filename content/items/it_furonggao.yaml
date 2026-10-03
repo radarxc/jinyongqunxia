@@ -24,8 +24,7 @@ use:
 assets:
   icon: item/furonggao
 text:
-  desc: 名录投影：食品·点心；grade=6; staPct=17%; buff=bf_ningshen:1battle。外观：粉白双层花形糕，浅青瓷盘，细腻蒸糕质感 （原创扩展）
-  short: 芙蓉糕
+  desc: 外观：粉白双层花形糕，浅青瓷盘。
 extension:
   type: generic
   value: {}

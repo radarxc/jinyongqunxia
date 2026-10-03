@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_hanxiaoyingyuenvjian
+name: 韩小莹越女剑
+kind: weapon
+sub: sword
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》·韩小莹使越女剑法；佩剑是否具名 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/hanxiaoyingyuenvjian
+text:
+  desc: 外观：轻薄直剑约七十厘米，短弧铁镡、深红布缠柄与素皮鞘。 待运行时投影：sect=sect_jiangnanqiguai。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

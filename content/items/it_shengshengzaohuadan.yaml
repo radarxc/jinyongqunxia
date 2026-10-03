@@ -26,8 +26,7 @@ use:
 assets:
   icon: item/shengshengzaohuadan
 text:
-  desc: 名录投影：补品·永久属性；grade=10; breakCap=5; permStat=2; perChapter=1。外观：翠绿丹丸置银叶形药盒，细腻蜡光，药王庄清雅工艺 （原创扩展）
-  short: 生生造化丹
+  desc: 外观：翠绿丹丸置银叶形药盒，细腻蜡光。
 extension:
   type: generic
   value: {}

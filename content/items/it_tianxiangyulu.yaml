@@ -25,8 +25,7 @@ use:
 assets:
   icon: item/tianxiangyulu
 text:
-  desc: 名录投影：食品·汤羹；grade=10; staPct=28%; meal=bf_huichun,bf_huinei:3battle; uniqueBatch=true。外观：羊脂玉碗盛半透明淡金羹，莲子与花瓣可辨，碗径一掌 （原创扩展）
-  short: 天香玉露羹
+  desc: 外观：羊脂玉碗盛半透明淡金羹，莲子与花瓣可辨。 待运行时投影：uniqueBatch=true。
 extension:
   type: generic
   value: {}

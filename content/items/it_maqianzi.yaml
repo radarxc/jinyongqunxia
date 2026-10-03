@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_maqianzi
+name: 马钱子
+kind: material
+sub: herb
+grade: 8
+stack: 999
+chapters: any
+origin: canon
+canonRef: 有毒本草；毒性，供剧情 / 暗器 / 解毒设定
+price: auto
+flags: []
+assets:
+  icon: item/maqianzi
+text:
+  desc: 外观：药用成熟种子呈灰绿扁圆纽扣状，表面密生银毛。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di6
+    materialGrade: 8
+    rare: false
+    herbFamily: maQianZi
+    ageYears: 0

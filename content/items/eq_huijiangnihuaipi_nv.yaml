@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/huijiangnihuaipi_nv
 text:
-  desc: 名录投影：披风·呢披；grade=4; slot=cape; wearer=female; defOutK=0.025; hpMaxK=0.005; resColdPp=2。外观：女款枣红羊毛呢披单件完整铺展，无袖直身、圆领对襟、蓝绿几何绣边无文字，及膝宽幅，清代回疆城镇女装尺度
-  short: 回疆呢花披·女
+  desc: 外观：女款枣红羊毛呢披单件完整铺展，无袖直身、圆领对襟、蓝绿几何绣边无文字。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=2; wearer=female。
 extension:
   type: equipment
   value:

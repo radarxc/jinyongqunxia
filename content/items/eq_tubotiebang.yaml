@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_tubotiebang
+name: 吐蕃铁头杖
+kind: weapon
+sub: staff
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·吐蕃；白马（唐）起藏边节点可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/tubotiebang
+text:
+  desc: 外观：深木长杖约一百五十厘米，顶端八棱圆钝铁首、下端铁鐏。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

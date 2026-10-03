@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qingdiaoqiufengchang_nv
 text:
-  desc: 名录投影：披风·风氅；grade=8; slot=cape; wearer=female; defOutK=0.025; hpMaxK=0.005; resColdPp=5。外观：女款绛红缎面貂裘风氅单件完整铺展，圆领、大襟右开、宽幅及踝，黑紫貂毛缘与盘扣，无补纹，清前中期贵族尺度
-  short: 清貂裘风氅·女
+  desc: 外观：女款绛红缎面貂裘风氅单件完整铺展，圆领、大襟右开、宽幅及踝。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=5; wearer=female。
 extension:
   type: equipment
   value:

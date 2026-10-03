@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/kunlunliangyijian
 text:
-  desc: 名录投影：兵器·剑；grade=9; cat=sword; hands=1; pair=true; unique=true; sect=sect_kunlun。外观：一黑一白两柄同制直剑平行并置，刃约七十五厘米，圆镡分阴阳双色但无图文字样，各自完整带鞘，雪尘旧化，无人物与手
-  short: 昆仑两仪剑
+  desc: 外观：一黑一白两柄同制直剑平行并置，刃约七十五厘米。 待运行时投影：sect=sect_kunlun。
 extension:
   type: equipment
   value:
