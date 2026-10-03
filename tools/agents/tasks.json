@@ -47104,6 +47104,44 @@
    "sparse_include": [
     "assets/default/rig"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/26-immersive-ui.md",
+     "docs/design/ui-mock/index.html",
+     "tools/agents/reports/DES-ui-immersive-2.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import os,sys; s=sum(os.path.getsize(os.path.join(d,f)) for d,_,fs in os.walk('docs/design/ui-mock') for f in fs); print('ui-mock bytes',s); sys.exit(0 if 0<s<=4_500_000 else 1)"
+     ]
+    ]
+   },
+   "id": "DES-ui-immersive-2",
+   "title": "设计 · 沉浸式界面样稿第二版：去框去黑底、换用 codex 武侠图标、银两图标与中文数值、整体更武侠；1280×720 与 390×844 两种尺寸（作者 AR-48）",
+   "prompt": "DES-ui-immersive-2.md",
+   "deps": [
+    "DES-ui-immersive",
+    "ART-ui-icons"
+   ],
+   "writes": [
+    "docs/design/26-immersive-ui.md",
+    "docs/design/ui-mock/**"
+   ]
   }
  ]
 }
