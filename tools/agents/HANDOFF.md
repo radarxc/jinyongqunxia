@@ -1326,3 +1326,11 @@
       - 已把它们存成 `.agents/coord/TOOL-tests-discover/devsup_note_r1.md`。它转 HOLD-REVIEWS 后我手动复审时，用 `--rework-extra` 带上。
 
   - **10-03 08:44–08:46 协调者 / 开发监督**：**TOOL-rig-sheet 合入**（17f08829，r6 PASS，只复审驱动一次过）：`assets/default/rig/npc_zhujue__ch00_m/` 100 个文件——39 张部件（3 视图 × 13）、manifest、`preview/walk_dir8.gif`、`sword_attack_dir8.gif`、`gait_vs_clip_walk.gif`（程序步态 vs 动作库 A/B，C8）、姿势条带。最终返修：前臂截到腕点、手掌归手件、侧腿按源图裤纹补绘（标「源图限制」）、髋锚不再暴露。Q1 识别锚 15/15（ΔE ≤ 5.3）、Q2 39/39、Q3 关节缝隙 0、Q5 踩滑 0.366 cm；Apple Vision 本机跑不起来，关键点为 manual-prior；Q9 人工耗时未测。协调者 08:45 把三张 GIF + 姿势条带发作者判定（AR-29）。解锁：ENG-12d-clip-perf（eng3 会起，只动 render）、ART-rig-sheet-side（追踪者按条件起）。
+  - **10-03 08:45–08:52 开发监督**：rig-sheet 合入后集成仍绿；town-gaps-1 说明正式修订。
+    - 合入 rig-sheet 后 `prod_check`（`_handoff/prod_check_post-rigsheet_*.log`）全绿：137 个测试文件 / 962 条测试，webgl 329.80。tools 下的 discover 跑了 74 条，全过（含 rig 测试）。
+    - ENG-12d-clip-perf 已由 eng3 起（依赖满足，只动 render）。
+    - **TOOL-town-gaps-1** r2 FAIL：审核认为口径只在消息里定、说明没改，不得改用 `--min 1` 宣称通过。
+      - 已正式修订说明第 7 条为 `--min 1 --max 1 --min-side 1024`，注明协调者 08:25 修订与原因，提交 96624783。
+      - 08:45 的返修读的是改前说明。它转 HOLD 后，用 `--from validate` 加 `--rework-extra .agents/coord/TOOL-town-gaps-1/devsup_note_contract.md` 复审。
+
+  - **10-03 08:55–09:02 磁盘告急（协调者 / 追踪者 / 开发监督）**：08:55 一分钟内从 6.7 GiB 跌到 0.77 GiB。元凶是两个 /private/tmp 临时检出：ENG-entry-split 执行器为量 HEAD 基线体积建的 `eng-entry-head.*`（5.98 GB，含整份 assets）与 TOOL-items-regen 的 `tool-items-regen-size-probe.*`（1.4 GB，regen 已停、孤儿）。协调者两个都删（基线数字直接取 `_handoff/prod_check_post-eng12e_0818.log`；已请开发监督在 entry-split 的返修说明里禁止再做整仓临时检出，并把「不得在 /private/tmp 做整仓检出」写进 ENG 说明通则）；追踪者删掉 /private/tmp 10 个旧 codex-home 类目录与 CITY 临时目录（0.75 GB）。09:01 回到 9 GiB；交换区 32.8 GB 未涨。w16 runner 曾被 < 3 GiB 护栏停下，rig-sheet-side 已出完 6 张、第 1 次运行结束校验通过（审核中）。
