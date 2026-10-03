@@ -38,6 +38,9 @@ CHECKS = [  # (ID 前缀, 审核要点文件)
     ("TOWN-tiles-water", ".agents/coord/PROD/review_checks_tile_water.md"),
     ("ART-item-", ".agents/coord/PROD/review_checks_item.md"),
     ("ART-portrait-", ".agents/coord/PROD/review_checks_portrait.md"),  # 2026-10-02：AR-32 人物修改批
+    ("ART-hero-", ".agents/coord/PROD/review_checks_hero.md"),  # 2026-10-02 晚：主角精修与剧情插图
+    ("ART-cast-", ".agents/coord/PROD/review_checks_portrait.md"),  # 2026-10-02 晚：主要人物补齐
+    ("ART-ruins-", ".agents/coord/PROD/review_checks_ruins.md"),  # 2026-10-02 晚：遗迹地图
     ("ART-scenes-", ".agents/coord/PROD/review_checks_scene.md"),  # 2026-10-02：多人情景图
     ("ART-rig-sheet", ".agents/coord/PROD/review_checks_rig_sheet.md"),  # 2026-10-02：三视图设定图（先于 ART-rig- 前缀匹配）
     ("ART-rig-", ".agents/coord/PROD/review_checks_rig_parts.md"),

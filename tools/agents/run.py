@@ -153,6 +153,7 @@ class Task:
         self.priority = int(d.get("priority", 0))
         self.agent_args = list(d.get("agent_args", []))   # 追加给 CLI 的参数（如放开网络）
         self.full_checkout = bool(d.get("full_checkout", False))  # 强制全量检出（默认文档 / 代码任务稀疏检出，不含图片目录）
+        self.sparse_include = list(d.get("sparse_include", []))  # 2026-10-02 协调者：素材任务也用稀疏检出，只额外包含这些目录 / 文件模式（全量检出约 6 GB，磁盘不够）
         self.target: Task | None = None             # 审校任务的被审对象
         self.score = 0                              # 调度优先级：后继任务数 + priority
 

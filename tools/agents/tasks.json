@@ -33395,6 +33395,854 @@
     "packages/core/src/battle/damage/*.test.ts",
     "packages/core/CLAUDE.md"
    ]
+  },
+  {
+   "id": "ART-hero-refine-a",
+   "title": "主角精修 A（天龙八部～碧血剑）· 复合基线风格立绘、分时期立绘、关键剧情插图配古风题字（作者 10-02 晚，codex gpt-6-astra ultra）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "ART-hero-refine.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "assets/default/character/male/ch01/**",
+    "assets/default/character/male/ch02/**",
+    "assets/default/character/male/ch03/**",
+    "assets/default/character/male/ch04/**",
+    "assets/default/character/male/ch05/**",
+    "assets/default/character/male/ch06/**",
+    "assets/default/character/male/ch07/**",
+    "assets/default/character/female/ch01/**",
+    "assets/default/character/female/ch02/**",
+    "assets/default/character/female/ch03/**",
+    "assets/default/character/female/ch04/**",
+    "assets/default/character/female/ch05/**",
+    "assets/default/character/female/ch06/**",
+    "assets/default/character/female/ch07/**",
+    "assets/default/prompts/characters/ch01-tianlong/**",
+    "assets/default/prompts/characters/ch02-shediao/**",
+    "assets/default/prompts/characters/ch03-shendiao/**",
+    "assets/default/prompts/characters/ch04-yitian/**",
+    "assets/default/prompts/characters/ch05-xiaoao/**",
+    "assets/default/prompts/characters/ch06-xiake/**",
+    "assets/default/prompts/characters/ch07-bixue/**",
+    "assets/default/scene/ch01/**",
+    "assets/default/scene/ch02/**",
+    "assets/default/scene/ch03/**",
+    "assets/default/scene/ch04/**",
+    "assets/default/scene/ch05/**",
+    "assets/default/scene/ch06/**",
+    "assets/default/scene/ch07/**",
+    "assets/default/prompts/scenes/ch01-tianlong/**",
+    "assets/default/prompts/scenes/ch02-shediao/**",
+    "assets/default/prompts/scenes/ch03-shendiao/**",
+    "assets/default/prompts/scenes/ch04-yitian/**",
+    "assets/default/prompts/scenes/ch05-xiaoao/**",
+    "assets/default/prompts/scenes/ch06-xiake/**",
+    "assets/default/prompts/scenes/ch07-bixue/**",
+    "docs/design/catalog/key-scenes.md"
+   ],
+   "vars": {
+    "books_title": "天龙八部～碧血剑（ch01–ch07）",
+    "books": "- ch01 《天龙八部》：提示词 `assets/default/prompts/characters/ch01-tianlong/`，图 `assets/default/character/{male,female}/ch01/`，插图 `assets/default/scene/ch01/`\n- ch02 《射雕英雄传》：提示词 `assets/default/prompts/characters/ch02-shediao/`，图 `assets/default/character/{male,female}/ch02/`，插图 `assets/default/scene/ch02/`\n- ch03 《神雕侠侣》：提示词 `assets/default/prompts/characters/ch03-shendiao/`，图 `assets/default/character/{male,female}/ch03/`，插图 `assets/default/scene/ch03/`\n- ch04 《倚天屠龙记》：提示词 `assets/default/prompts/characters/ch04-yitian/`，图 `assets/default/character/{male,female}/ch04/`，插图 `assets/default/scene/ch04/`\n- ch05 《笑傲江湖》：提示词 `assets/default/prompts/characters/ch05-xiaoao/`，图 `assets/default/character/{male,female}/ch05/`，插图 `assets/default/scene/ch05/`\n- ch06 《侠客行》：提示词 `assets/default/prompts/characters/ch06-xiake/`，图 `assets/default/character/{male,female}/ch06/`，插图 `assets/default/scene/ch06/`\n- ch07 《碧血剑》：提示词 `assets/default/prompts/characters/ch07-bixue/`，图 `assets/default/character/{male,female}/ch07/`，插图 `assets/default/scene/ch07/`",
+    "heroes": "ch01 乔峰（萧峰）、段誉、虚竹；ch02 郭靖、黄蓉；ch03 杨过、小龙女；ch04 张无忌、赵敏、周芷若；ch05 令狐冲、任盈盈；ch06 石破天；ch07 袁承志、温青青",
+    "scene_counts": "ch01 8–10 张；ch02 8–10 张；ch03 8–10 张；ch04 8–10 张；ch05 8–10 张；ch06 5–6 张；ch07 5–6 张",
+    "ch_glob": "ch0[1-7]",
+    "worker_no": "11",
+    "slots": "3",
+    "writes_list": "`assets/default/character/male/ch01/**`、`assets/default/character/male/ch02/**`、`assets/default/character/male/ch03/**`、`assets/default/character/male/ch04/**`、`assets/default/character/male/ch05/**`、`assets/default/character/male/ch06/**`、`assets/default/character/male/ch07/**`、`assets/default/character/female/ch01/**`、`assets/default/character/female/ch02/**`、`assets/default/character/female/ch03/**`、`assets/default/character/female/ch04/**`、`assets/default/character/female/ch05/**`、`assets/default/character/female/ch06/**`、`assets/default/character/female/ch07/**`、`assets/default/prompts/characters/ch01-tianlong/**`、`assets/default/prompts/characters/ch02-shediao/**`、`assets/default/prompts/characters/ch03-shendiao/**`、`assets/default/prompts/characters/ch04-yitian/**`、`assets/default/prompts/characters/ch05-xiaoao/**`、`assets/default/prompts/characters/ch06-xiake/**`、`assets/default/prompts/characters/ch07-bixue/**`、`assets/default/scene/ch01/**`、`assets/default/scene/ch02/**`、`assets/default/scene/ch03/**`、`assets/default/scene/ch04/**`、`assets/default/scene/ch05/**`、`assets/default/scene/ch06/**`、`assets/default/scene/ch07/**`、`assets/default/prompts/scenes/ch01-tianlong/**`、`assets/default/prompts/scenes/ch02-shediao/**`、`assets/default/prompts/scenes/ch03-shendiao/**`、`assets/default/prompts/scenes/ch04-yitian/**`、`assets/default/prompts/scenes/ch05-xiaoao/**`、`assets/default/prompts/scenes/ch06-xiake/**`、`assets/default/prompts/scenes/ch07-bixue/**`、`docs/design/catalog/key-scenes.md`"
+   },
+   "validate": {
+    "exists": [
+     "assets/default/character/male/ch01/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_asset_dirs.py",
+      "assets/default/character/*/ch0[1-7]",
+      "--min",
+      "1",
+      "--max",
+      "999"
+     ],
+     [
+      "{python}",
+      "tools/agents/check_asset_dirs.py",
+      "assets/default/scene/ch0[1-7]",
+      "--min",
+      "1",
+      "--max",
+      "999"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem\",\"/Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference\",\"/private/tmp\"]"
+   ],
+   "sparse_include": [
+    "assets/default/character/male/ch01/*.png",
+    "assets/default/character/male/ch02/*.png",
+    "assets/default/character/male/ch03/*.png",
+    "assets/default/character/male/ch04/*.png",
+    "assets/default/character/male/ch05/*.png",
+    "assets/default/character/male/ch06/*.png",
+    "assets/default/character/male/ch07/*.png",
+    "assets/default/character/female/ch01/*.png",
+    "assets/default/character/female/ch02/*.png",
+    "assets/default/character/female/ch03/*.png",
+    "assets/default/character/female/ch04/*.png",
+    "assets/default/character/female/ch05/*.png",
+    "assets/default/character/female/ch06/*.png",
+    "assets/default/character/female/ch07/*.png"
+   ]
+  },
+  {
+   "id": "ART-hero-refine-b",
+   "title": "主角精修 B（鹿鼎记～雪山飞狐）· 复合基线风格立绘、分时期立绘、关键剧情插图配古风题字（作者 10-02 晚，codex gpt-6-astra ultra）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "ART-hero-refine.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "assets/default/character/male/ch08/**",
+    "assets/default/character/male/ch09/**",
+    "assets/default/character/male/ch10/**",
+    "assets/default/character/male/ch11/**",
+    "assets/default/character/male/ch12/**",
+    "assets/default/character/male/ch13/**",
+    "assets/default/character/male/ch14/**",
+    "assets/default/character/female/ch08/**",
+    "assets/default/character/female/ch09/**",
+    "assets/default/character/female/ch10/**",
+    "assets/default/character/female/ch11/**",
+    "assets/default/character/female/ch12/**",
+    "assets/default/character/female/ch13/**",
+    "assets/default/character/female/ch14/**",
+    "assets/default/prompts/characters/ch08-luding/**",
+    "assets/default/prompts/characters/ch09-liancheng/**",
+    "assets/default/prompts/characters/ch10-baima/**",
+    "assets/default/prompts/characters/ch11-yuanyang/**",
+    "assets/default/prompts/characters/ch12-shujian/**",
+    "assets/default/prompts/characters/ch13-feihu/**",
+    "assets/default/prompts/characters/ch14-xueshan/**",
+    "assets/default/scene/ch08/**",
+    "assets/default/scene/ch09/**",
+    "assets/default/scene/ch10/**",
+    "assets/default/scene/ch11/**",
+    "assets/default/scene/ch12/**",
+    "assets/default/scene/ch13/**",
+    "assets/default/scene/ch14/**",
+    "assets/default/prompts/scenes/ch08-luding/**",
+    "assets/default/prompts/scenes/ch09-liancheng/**",
+    "assets/default/prompts/scenes/ch10-baima/**",
+    "assets/default/prompts/scenes/ch11-yuanyang/**",
+    "assets/default/prompts/scenes/ch12-shujian/**",
+    "assets/default/prompts/scenes/ch13-feihu/**",
+    "assets/default/prompts/scenes/ch14-xueshan/**",
+    "docs/design/catalog/key-scenes.md"
+   ],
+   "vars": {
+    "books_title": "鹿鼎记～雪山飞狐（ch08–ch14）",
+    "books": "- ch08 《鹿鼎记》：提示词 `assets/default/prompts/characters/ch08-luding/`，图 `assets/default/character/{male,female}/ch08/`，插图 `assets/default/scene/ch08/`\n- ch09 《连城诀》：提示词 `assets/default/prompts/characters/ch09-liancheng/`，图 `assets/default/character/{male,female}/ch09/`，插图 `assets/default/scene/ch09/`\n- ch10 《白马啸西风》：提示词 `assets/default/prompts/characters/ch10-baima/`，图 `assets/default/character/{male,female}/ch10/`，插图 `assets/default/scene/ch10/`\n- ch11 《鸳鸯刀》：提示词 `assets/default/prompts/characters/ch11-yuanyang/`，图 `assets/default/character/{male,female}/ch11/`，插图 `assets/default/scene/ch11/`\n- ch12 《书剑恩仇录》：提示词 `assets/default/prompts/characters/ch12-shujian/`，图 `assets/default/character/{male,female}/ch12/`，插图 `assets/default/scene/ch12/`\n- ch13 《飞狐外传》：提示词 `assets/default/prompts/characters/ch13-feihu/`，图 `assets/default/character/{male,female}/ch13/`，插图 `assets/default/scene/ch13/`\n- ch14 《雪山飞狐》：提示词 `assets/default/prompts/characters/ch14-xueshan/`，图 `assets/default/character/{male,female}/ch14/`，插图 `assets/default/scene/ch14/`",
+    "heroes": "ch08 韦小宝；ch09 狄云；ch10 李文秀；ch11 袁冠南、萧中慧；ch12 陈家洛、霍青桐、喀丝丽（香香公主）；ch13 胡斐、程灵素；ch14 胡斐、苗若兰",
+    "scene_counts": "ch08 8–10 张；ch09 5–6 张；ch10 3–4 张；ch11 3–4 张；ch12 5–6 张；ch13 5–6 张；ch14 3–4 张",
+    "ch_glob": "ch[01][0-9]",
+    "worker_no": "12",
+    "slots": "3",
+    "writes_list": "`assets/default/character/male/ch08/**`、`assets/default/character/male/ch09/**`、`assets/default/character/male/ch10/**`、`assets/default/character/male/ch11/**`、`assets/default/character/male/ch12/**`、`assets/default/character/male/ch13/**`、`assets/default/character/male/ch14/**`、`assets/default/character/female/ch08/**`、`assets/default/character/female/ch09/**`、`assets/default/character/female/ch10/**`、`assets/default/character/female/ch11/**`、`assets/default/character/female/ch12/**`、`assets/default/character/female/ch13/**`、`assets/default/character/female/ch14/**`、`assets/default/prompts/characters/ch08-luding/**`、`assets/default/prompts/characters/ch09-liancheng/**`、`assets/default/prompts/characters/ch10-baima/**`、`assets/default/prompts/characters/ch11-yuanyang/**`、`assets/default/prompts/characters/ch12-shujian/**`、`assets/default/prompts/characters/ch13-feihu/**`、`assets/default/prompts/characters/ch14-xueshan/**`、`assets/default/scene/ch08/**`、`assets/default/scene/ch09/**`、`assets/default/scene/ch10/**`、`assets/default/scene/ch11/**`、`assets/default/scene/ch12/**`、`assets/default/scene/ch13/**`、`assets/default/scene/ch14/**`、`assets/default/prompts/scenes/ch08-luding/**`、`assets/default/prompts/scenes/ch09-liancheng/**`、`assets/default/prompts/scenes/ch10-baima/**`、`assets/default/prompts/scenes/ch11-yuanyang/**`、`assets/default/prompts/scenes/ch12-shujian/**`、`assets/default/prompts/scenes/ch13-feihu/**`、`assets/default/prompts/scenes/ch14-xueshan/**`、`docs/design/catalog/key-scenes.md`"
+   },
+   "validate": {
+    "exists": [
+     "assets/default/character/male/ch08/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_asset_dirs.py",
+      "assets/default/character/*/ch[01][0-9]",
+      "--min",
+      "1",
+      "--max",
+      "999"
+     ],
+     [
+      "{python}",
+      "tools/agents/check_asset_dirs.py",
+      "assets/default/scene/ch[01][0-9]",
+      "--min",
+      "1",
+      "--max",
+      "999"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem\",\"/Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference\",\"/private/tmp\"]"
+   ],
+   "sparse_include": [
+    "assets/default/character/male/ch08/*.png",
+    "assets/default/character/male/ch09/*.png",
+    "assets/default/character/male/ch10/*.png",
+    "assets/default/character/male/ch11/*.png",
+    "assets/default/character/male/ch12/*.png",
+    "assets/default/character/male/ch13/*.png",
+    "assets/default/character/male/ch14/*.png",
+    "assets/default/character/female/ch08/*.png",
+    "assets/default/character/female/ch09/*.png",
+    "assets/default/character/female/ch10/*.png",
+    "assets/default/character/female/ch11/*.png",
+    "assets/default/character/female/ch12/*.png",
+    "assets/default/character/female/ch13/*.png",
+    "assets/default/character/female/ch14/*.png"
+   ]
+  },
+  {
+   "id": "ART-cast-fill-a",
+   "title": "主要人物补齐 A（天龙八部～碧血剑）· 逐书搜索主要人物列表并补齐缺的立绘（作者 10-02 晚，codex gpt-6-astra xhigh）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "ART-cast-fill.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "assets/default/character/male/ch01/**",
+    "assets/default/character/male/ch02/**",
+    "assets/default/character/male/ch03/**",
+    "assets/default/character/male/ch04/**",
+    "assets/default/character/male/ch05/**",
+    "assets/default/character/male/ch06/**",
+    "assets/default/character/male/ch07/**",
+    "assets/default/character/female/ch01/**",
+    "assets/default/character/female/ch02/**",
+    "assets/default/character/female/ch03/**",
+    "assets/default/character/female/ch04/**",
+    "assets/default/character/female/ch05/**",
+    "assets/default/character/female/ch06/**",
+    "assets/default/character/female/ch07/**",
+    "assets/default/prompts/characters/ch01-tianlong/**",
+    "assets/default/prompts/characters/ch02-shediao/**",
+    "assets/default/prompts/characters/ch03-shendiao/**",
+    "assets/default/prompts/characters/ch04-yitian/**",
+    "assets/default/prompts/characters/ch05-xiaoao/**",
+    "assets/default/prompts/characters/ch06-xiake/**",
+    "assets/default/prompts/characters/ch07-bixue/**"
+   ],
+   "vars": {
+    "books_title": "天龙八部～碧血剑（ch01–ch07）",
+    "books": "- ch01 《天龙八部》：提示词 `assets/default/prompts/characters/ch01-tianlong/`，图 `assets/default/character/{male,female}/ch01/`，插图 `assets/default/scene/ch01/`\n- ch02 《射雕英雄传》：提示词 `assets/default/prompts/characters/ch02-shediao/`，图 `assets/default/character/{male,female}/ch02/`，插图 `assets/default/scene/ch02/`\n- ch03 《神雕侠侣》：提示词 `assets/default/prompts/characters/ch03-shendiao/`，图 `assets/default/character/{male,female}/ch03/`，插图 `assets/default/scene/ch03/`\n- ch04 《倚天屠龙记》：提示词 `assets/default/prompts/characters/ch04-yitian/`，图 `assets/default/character/{male,female}/ch04/`，插图 `assets/default/scene/ch04/`\n- ch05 《笑傲江湖》：提示词 `assets/default/prompts/characters/ch05-xiaoao/`，图 `assets/default/character/{male,female}/ch05/`，插图 `assets/default/scene/ch05/`\n- ch06 《侠客行》：提示词 `assets/default/prompts/characters/ch06-xiake/`，图 `assets/default/character/{male,female}/ch06/`，插图 `assets/default/scene/ch06/`\n- ch07 《碧血剑》：提示词 `assets/default/prompts/characters/ch07-bixue/`，图 `assets/default/character/{male,female}/ch07/`，插图 `assets/default/scene/ch07/`",
+    "ch_glob": "ch0[1-7]",
+    "worker_no": "13",
+    "slots": "3",
+    "writes_list": "`assets/default/character/male/ch01/**`、`assets/default/character/male/ch02/**`、`assets/default/character/male/ch03/**`、`assets/default/character/male/ch04/**`、`assets/default/character/male/ch05/**`、`assets/default/character/male/ch06/**`、`assets/default/character/male/ch07/**`、`assets/default/character/female/ch01/**`、`assets/default/character/female/ch02/**`、`assets/default/character/female/ch03/**`、`assets/default/character/female/ch04/**`、`assets/default/character/female/ch05/**`、`assets/default/character/female/ch06/**`、`assets/default/character/female/ch07/**`、`assets/default/prompts/characters/ch01-tianlong/**`、`assets/default/prompts/characters/ch02-shediao/**`、`assets/default/prompts/characters/ch03-shendiao/**`、`assets/default/prompts/characters/ch04-yitian/**`、`assets/default/prompts/characters/ch05-xiaoao/**`、`assets/default/prompts/characters/ch06-xiake/**`、`assets/default/prompts/characters/ch07-bixue/**`"
+   },
+   "validate": {
+    "exists": [
+     "assets/default/character/male/ch01/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_asset_dirs.py",
+      "assets/default/character/*/ch0[1-7]",
+      "--min",
+      "1",
+      "--max",
+      "999"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem\",\"/Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference\",\"/private/tmp\"]"
+   ],
+   "sparse_include": [
+    "assets/default/character/male/ch01/*.png",
+    "assets/default/character/male/ch02/*.png",
+    "assets/default/character/male/ch03/*.png",
+    "assets/default/character/male/ch04/*.png",
+    "assets/default/character/male/ch05/*.png",
+    "assets/default/character/male/ch06/*.png",
+    "assets/default/character/male/ch07/*.png",
+    "assets/default/character/female/ch01/*.png",
+    "assets/default/character/female/ch02/*.png",
+    "assets/default/character/female/ch03/*.png",
+    "assets/default/character/female/ch04/*.png",
+    "assets/default/character/female/ch05/*.png",
+    "assets/default/character/female/ch06/*.png",
+    "assets/default/character/female/ch07/*.png"
+   ]
+  },
+  {
+   "id": "ART-cast-fill-b",
+   "title": "主要人物补齐 B（鹿鼎记～雪山飞狐）· 逐书搜索主要人物列表并补齐缺的立绘（作者 10-02 晚，codex gpt-6-astra xhigh）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "ART-cast-fill.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "assets/default/character/male/ch08/**",
+    "assets/default/character/male/ch09/**",
+    "assets/default/character/male/ch10/**",
+    "assets/default/character/male/ch11/**",
+    "assets/default/character/male/ch12/**",
+    "assets/default/character/male/ch13/**",
+    "assets/default/character/male/ch14/**",
+    "assets/default/character/female/ch08/**",
+    "assets/default/character/female/ch09/**",
+    "assets/default/character/female/ch10/**",
+    "assets/default/character/female/ch11/**",
+    "assets/default/character/female/ch12/**",
+    "assets/default/character/female/ch13/**",
+    "assets/default/character/female/ch14/**",
+    "assets/default/prompts/characters/ch08-luding/**",
+    "assets/default/prompts/characters/ch09-liancheng/**",
+    "assets/default/prompts/characters/ch10-baima/**",
+    "assets/default/prompts/characters/ch11-yuanyang/**",
+    "assets/default/prompts/characters/ch12-shujian/**",
+    "assets/default/prompts/characters/ch13-feihu/**",
+    "assets/default/prompts/characters/ch14-xueshan/**"
+   ],
+   "vars": {
+    "books_title": "鹿鼎记～雪山飞狐（ch08–ch14）",
+    "books": "- ch08 《鹿鼎记》：提示词 `assets/default/prompts/characters/ch08-luding/`，图 `assets/default/character/{male,female}/ch08/`，插图 `assets/default/scene/ch08/`\n- ch09 《连城诀》：提示词 `assets/default/prompts/characters/ch09-liancheng/`，图 `assets/default/character/{male,female}/ch09/`，插图 `assets/default/scene/ch09/`\n- ch10 《白马啸西风》：提示词 `assets/default/prompts/characters/ch10-baima/`，图 `assets/default/character/{male,female}/ch10/`，插图 `assets/default/scene/ch10/`\n- ch11 《鸳鸯刀》：提示词 `assets/default/prompts/characters/ch11-yuanyang/`，图 `assets/default/character/{male,female}/ch11/`，插图 `assets/default/scene/ch11/`\n- ch12 《书剑恩仇录》：提示词 `assets/default/prompts/characters/ch12-shujian/`，图 `assets/default/character/{male,female}/ch12/`，插图 `assets/default/scene/ch12/`\n- ch13 《飞狐外传》：提示词 `assets/default/prompts/characters/ch13-feihu/`，图 `assets/default/character/{male,female}/ch13/`，插图 `assets/default/scene/ch13/`\n- ch14 《雪山飞狐》：提示词 `assets/default/prompts/characters/ch14-xueshan/`，图 `assets/default/character/{male,female}/ch14/`，插图 `assets/default/scene/ch14/`",
+    "ch_glob": "ch[01][0-9]",
+    "worker_no": "14",
+    "slots": "3",
+    "writes_list": "`assets/default/character/male/ch08/**`、`assets/default/character/male/ch09/**`、`assets/default/character/male/ch10/**`、`assets/default/character/male/ch11/**`、`assets/default/character/male/ch12/**`、`assets/default/character/male/ch13/**`、`assets/default/character/male/ch14/**`、`assets/default/character/female/ch08/**`、`assets/default/character/female/ch09/**`、`assets/default/character/female/ch10/**`、`assets/default/character/female/ch11/**`、`assets/default/character/female/ch12/**`、`assets/default/character/female/ch13/**`、`assets/default/character/female/ch14/**`、`assets/default/prompts/characters/ch08-luding/**`、`assets/default/prompts/characters/ch09-liancheng/**`、`assets/default/prompts/characters/ch10-baima/**`、`assets/default/prompts/characters/ch11-yuanyang/**`、`assets/default/prompts/characters/ch12-shujian/**`、`assets/default/prompts/characters/ch13-feihu/**`、`assets/default/prompts/characters/ch14-xueshan/**`"
+   },
+   "validate": {
+    "exists": [
+     "assets/default/character/male/ch08/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_asset_dirs.py",
+      "assets/default/character/*/ch[01][0-9]",
+      "--min",
+      "1",
+      "--max",
+      "999"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem\",\"/Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference\",\"/private/tmp\"]"
+   ],
+   "sparse_include": [
+    "assets/default/character/male/ch08/*.png",
+    "assets/default/character/male/ch09/*.png",
+    "assets/default/character/male/ch10/*.png",
+    "assets/default/character/male/ch11/*.png",
+    "assets/default/character/male/ch12/*.png",
+    "assets/default/character/male/ch13/*.png",
+    "assets/default/character/male/ch14/*.png",
+    "assets/default/character/female/ch08/*.png",
+    "assets/default/character/female/ch09/*.png",
+    "assets/default/character/female/ch10/*.png",
+    "assets/default/character/female/ch11/*.png",
+    "assets/default/character/female/ch12/*.png",
+    "assets/default/character/female/ch13/*.png",
+    "assets/default/character/female/ch14/*.png"
+   ]
+  },
+  {
+   "id": "CITY-layouts-all",
+   "title": "全部城市布局图 · 按城市 × 年代搜索史料、复原布局、总装完整城图（作者 10-02 晚，codex gpt-6-astra xhigh）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "CITY-layouts-all.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "docs/design/town/**",
+    "assets/default/town/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/town/schema.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_asset_dirs.py",
+      "assets/default/town/*",
+      "--min",
+      "1",
+      "--max",
+      "1",
+      "--min-side",
+      "512"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ],
+   "sparse_include": [
+    "assets/default/tile",
+    "assets/default/building-map",
+    "assets/default/baseline/tile",
+    "assets/default/baseline/building-map",
+    "assets/default/baseline/town",
+    "assets/default/town"
+   ]
+  },
+  {
+   "id": "ART-ruins-maps",
+   "title": "遗迹与探险地宫地图 · 九老洞、敦煌地宫等 Tiled 场景地图与预览（作者 10-02 晚，codex gpt-6-astra xhigh）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "ART-ruins-maps.md",
+   "deps": [
+    "ENG-18b-tiled-regionmap"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "content/world/regions/**",
+    "content/tiled/tilesets/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "content/world/README.md"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\",\"/private/tmp\"]"
+   ],
+   "sparse_include": [
+    "content"
+   ]
+  },
+  {
+   "id": "DES-items-attrs-spec",
+   "title": "物品属性投影规格 v2 · 作者分类字段（锋利 / 硬度 / 内力亲和、防御 / 反伤 / 防暗器、身法、格挡、吉运 / 放毒 / 避毒、药品食品效用）、取值带与名录「说明」列格式（design/10）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-items-attrs-spec.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/10-items-and-equipment.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/10-items-and-equipment.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-lore-1",
+   "title": "物品说明与属性投影 1（武器 A）· 逐件写短文并填属性投影（作者 10-02 晚）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-items-lore.md",
+   "deps": [
+    "DES-items-attrs-spec"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/items-weapons.md"
+   ],
+   "vars": {
+    "part": "1（武器 A）",
+    "files": "- `docs/design/catalog/items-weapons.md`",
+    "cats": "武器：攻击（锋利）、硬度（被格挡后损坏）、内力亲和（一般 100 即 1.00；特殊武器写 qiEffect）。本批只写该文件前半（按行序约前 124 行物品），后半由批次 2 写；两批写同一文件，各自只动自己那些行，表头由批次 1 加"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-weapons.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-weapons.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-lore-2",
+   "title": "物品说明与属性投影 2（武器 B）· 逐件写短文并填属性投影（作者 10-02 晚）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-items-lore.md",
+   "deps": [
+    "DES-items-attrs-spec",
+    "DES-items-lore-1"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/items-weapons.md"
+   ],
+   "vars": {
+    "part": "2（武器 B）",
+    "files": "- `docs/design/catalog/items-weapons.md`",
+    "cats": "武器：同批次 1；本批写该文件后半（约第 125 行起的物品）。表头若批次 1 已加就不再加；两批写同一文件，只动自己那些行"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-weapons.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-weapons.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-lore-3",
+   "title": "物品说明与属性投影 3（秘籍 A）· 逐件写短文并填属性投影（作者 10-02 晚）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-items-lore.md",
+   "deps": [
+    "DES-items-attrs-spec"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/items-manuals.md"
+   ],
+   "vars": {
+    "part": "3（秘籍 A）",
+    "files": "- `docs/design/catalog/items-manuals.md`",
+    "cats": "秘籍（其他）：根据描述设计——所载武学 / 内功的类别与品阶、研读条件（悟性 / 内息门槛）、研读收益（功法、修为），引用 design/05 的武学 ID；本批写前半（约前 90 行），批次 4 写后半"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-manuals.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-manuals.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-lore-4",
+   "title": "物品说明与属性投影 4（秘籍 B）· 逐件写短文并填属性投影（作者 10-02 晚）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-items-lore.md",
+   "deps": [
+    "DES-items-attrs-spec",
+    "DES-items-lore-3"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/items-manuals.md"
+   ],
+   "vars": {
+    "part": "4（秘籍 B）",
+    "files": "- `docs/design/catalog/items-manuals.md`",
+    "cats": "秘籍：同批次 3；本批写后半"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-manuals.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-manuals.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-lore-5",
+   "title": "物品说明与属性投影 5（食品）· 逐件写短文并填属性投影（作者 10-02 晚）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-items-lore.md",
+   "deps": [
+    "DES-items-attrs-spec"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/items-food.md"
+   ],
+   "vars": {
+    "part": "5（食品）",
+    "files": "- `docs/design/catalog/items-food.md`",
+    "cats": "食品：补充体力 / 治疗内伤 / 治疗外伤，一件取 1–2 项；地方名食写产地与时令（结合 catalog/gather-herbs.md 的季节口径）"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-food.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-food.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-lore-6",
+   "title": "物品说明与属性投影 6（药品与药材）· 逐件写短文并填属性投影（作者 10-02 晚）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-items-lore.md",
+   "deps": [
+    "DES-items-attrs-spec"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/items-medicine.md"
+   ],
+   "vars": {
+    "part": "6（药品与药材）",
+    "files": "- `docs/design/catalog/items-medicine.md`",
+    "cats": "药品：补充内力 / 增加内力修为 / 增加根骨（永久，受预算）/ 治疗内伤（疏通经络）/ 治疗外伤，依描述定；药材写产地与季节（gather-herbs.md）"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-medicine.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-medicine.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-lore-7",
+   "title": "物品说明与属性投影 7（衣物、盔甲、内甲、鞋、腰带）· 逐件写短文并填属性投影（作者 10-02 晚）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-items-lore.md",
+   "deps": [
+    "DES-items-attrs-spec"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/items-clothing.md",
+    "docs/design/catalog/items-armor.md",
+    "docs/design/catalog/items-innerarmor.md",
+    "docs/design/catalog/items-shoes.md",
+    "docs/design/catalog/items-belts.md"
+   ],
+   "vars": {
+    "part": "7（衣物、盔甲、内甲、鞋、腰带）",
+    "files": "- `docs/design/catalog/items-clothing.md`\n- `docs/design/catalog/items-armor.md`\n- `docs/design/catalog/items-innerarmor.md`\n- `docs/design/catalog/items-shoes.md`\n- `docs/design/catalog/items-belts.md`",
+    "cats": "衣物 / 盔甲 / 内甲：防御、反伤、防暗器等；鞋：防御、身法；腰带（其他装备）：吉运 / 防御 / 放毒 / 避毒按描述"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-clothing.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-clothing.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-armor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-innerarmor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-shoes.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-belts.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-items-lore-8",
+   "title": "物品说明与属性投影 8（护肩披风头饰与暗器）· 逐件写短文并填属性投影（作者 10-02 晚）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-items-lore.md",
+   "deps": [
+    "DES-items-attrs-spec"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/catalog/items-accessories.md",
+    "docs/design/catalog/items-hidden-weapons.md"
+   ],
+   "vars": {
+    "part": "8（护肩披风头饰与暗器）",
+    "files": "- `docs/design/catalog/items-accessories.md`\n- `docs/design/catalog/items-hidden-weapons.md`",
+    "cats": "护肩 / 护腕 / 披风 / 头饰：防御、格挡（硬度）、吉运等；暗器：攻击（锋利）、放毒、硬度（可回收与否），内力亲和多为 100"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/catalog/items-accessories.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-accessories.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-hidden-weapons.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
   }
  ]
 }

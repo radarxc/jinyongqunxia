@@ -172,6 +172,13 @@ SPARSE_FULL_IF_WRITES = SPARSE_EXCLUDE_DIRS + SPARSE_EXCLUDE_SUBDIRS + ("assets/
 
 
 def sparse_checkout_for(t) -> list | None:
+    inc = [x.strip("/") for x in getattr(t, "sparse_include", []) if x.strip("/")]
+    if inc:  # 2026-10-02 协调者：带 sparse_include 的任务（含素材池）稀疏检出 + 只包含自己要读写的图片目录；被排除的父目录不能再包含，故与 include 重叠的目录排除项直接不写
+        def clash(d: str) -> bool:
+            return any(i == d or i.startswith(d + "/") for i in inc)
+        pats = ["/*"] + [f"!/{d}/" for d in SPARSE_EXCLUDE_DIRS if not clash(d)] + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS if not clash(d)] \
+            + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES] + [f"/{i}" for i in inc]
+        return pats
     if getattr(t, "full_checkout", False) or pool_of(t.id) == "assets":
         return None
     if any(w.startswith(d) for w in t.writes for d in SPARSE_FULL_IF_WRITES):
