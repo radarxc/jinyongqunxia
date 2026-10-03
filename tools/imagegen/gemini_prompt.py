@@ -104,10 +104,31 @@ PACKAGING = re.compile(r"[；;，,、]?\s*(?:布套／木匣较完整|旧而妥�
 NO_PACK_CATS = {"weapons", "hidden-weapons", "armor", "innerarmor", "clothing", "accessories", "shoes", "belts"}
 
 
+# 协调者 10-03 03:25 裁定（Gemini 出图员 23:50 / 02:41 两次询问）：题签只写书名本体，纸本的版本 / 载体词一律不写；
+# 刻字载体（古墓顶、石壁、铁板、石刻）不贴纸质题签，只刻书名；泥人、圣火令完全无汉字。
+_TITLE_SPECIAL = {"笑傲江湖曲谱手本": "笑傲江湖曲"}
+_TITLE_CARVED = {"九阴真经古墓遗刻": "九阴真经", "太玄经石壁图解": "太玄经", "吸星大法铁板原刻": "吸星大法", "倚天屠龙功王盘山石刻": "倚天屠龙功"}
+_TITLE_NO_TEXT = {"罗汉伏魔神功泥人图", "圣火令武功原刻"}
+_TITLE_SUFFIX = re.compile(r"(梵文|袈裟|夹注|羊皮|帛卷|帛书|丝绢)?"
+                           r"(全本|原本|古本|古抄本|手抄本|抄本|残本|残卷|藏本|秘本|秘籍|遗谱|残谱|古册|传本|经折本|原卷|古籍|钞本|手本|帛本|民间谱|帛卷)$")
+
+
 def manual_title(name: str) -> str:
-    """秘籍封面题签上写的书名：去掉版本 / 载体后缀——藏本 / 残本 / 秘本 / 抄本 / 古抄本 / 手抄本 / 全本 / 原本 / 古本 / 残卷 / 秘籍 / 遗谱 / 残谱，
-    以及紧挨着它们的载体词（梵文 / 袈裟 / 夹注 / 羊皮 / 帛卷 / 帛书）；「图谱」「秘笈」是书名的一部分，保留（作者 10-02：秘籍都要写名字；协调者 10-02 19:30 扩充）。"""
-    return re.sub(r"(梵文|袈裟|夹注|羊皮|帛卷|帛书)?(全本|原本|古本|古抄本|手抄本|抄本|残本|残卷|藏本|秘本|秘籍|遗谱|残谱)$", "", name) or name
+    """秘籍封面题签 / 刻字上写的书名：去掉版本 / 载体后缀——藏本 / 残本 / 秘本 / 抄本 / 古抄本 / 手抄本 / 全本 / 原本 / 古本 / 残卷 / 秘籍 / 遗谱 / 残谱 /
+    古册 / 传本 / 经折本 / 原卷 / 古籍 / 钞本 / 手本 / 帛本 / 民间谱 / 帛卷，以及紧挨着它们的载体词（梵文 / 袈裟 / 夹注 / 羊皮 / 帛卷 / 帛书 / 丝绢）；
+    「图谱」「秘笈」是书名的一部分，保留（作者 10-02：秘籍都要写名字；协调者 10-02 19:30 扩充、10-03 03:25 再扩充并加特例表）。无字载体返回空串。"""
+    if name in _TITLE_NO_TEXT:
+        return ""
+    if name in _TITLE_SPECIAL:
+        return _TITLE_SPECIAL[name]
+    if name in _TITLE_CARVED:
+        return _TITLE_CARVED[name]
+    return _TITLE_SUFFIX.sub("", name) or name
+
+
+def manual_carrier(name: str) -> str:
+    """秘籍载体：paper（纸本 / 帛本 / 竹简，贴题签写书名）、carved（石 / 铁上刻书名，不贴题签）、none（泥人、圣火令，无汉字）。"""
+    return "none" if name in _TITLE_NO_TEXT else "carved" if name in _TITLE_CARVED else "paper"
 
 
 def build_short(asset_id: str) -> str:
@@ -148,14 +169,20 @@ def build_short(asset_id: str) -> str:
     neg = SHORT_NEG
     if fm.get("category") == "manuals":
         # 名录原写「空题签」，10-01 出的 18 本都没有书名；改为封面题签写书名，排除项只放行这一处文字
-        title = manual_title(name)
-        sign = f"封面题签上用端正楷书竖写书名「{title}」，墨色，字迹清楚、笔画准确"
-        look, special = (x.replace("空题签", sign) for x in (look, special))
-        if sign not in look + special:
-            special = (special + "；" if special else "") + sign
-        neg = SHORT_NEG.replace("文字、伪字、印章", "印章").replace(
-            "画面里不要出现任何文字：没有标题、标注、说明栏、引线标签（这是单独的物品图，不是设定稿）。",
-            f"除封面题签上的书名「{title}」外，不要任何其他文字、伪字、印章、标注或说明栏（这是单独的物品图，不是设定稿）。")
+        title, carrier = manual_title(name), manual_carrier(name)
+        if carrier == "none":  # 泥人、圣火令：没有题签，也不出现任何汉字（排除项用默认的「不要任何文字」）
+            look, special = (re.sub(r"[，,、]?空题签", "", x) for x in (look, special))
+            special = (special + "；" if special else "") + "载体上不贴题签、不出现任何汉字"
+        else:
+            sign = (f"封面题签上用端正楷书竖写书名「{title}」，墨色，字迹清楚、笔画准确" if carrier == "paper"
+                    else f"载体表面只阴刻书名「{title}」这几个字，端正楷书，不贴任何纸质题签")
+            where = "封面题签上" if carrier == "paper" else "刻字"
+            look, special = (x.replace("空题签", sign) for x in (look, special))
+            if sign not in look + special:
+                special = (special + "；" if special else "") + sign
+            neg = SHORT_NEG.replace("文字、伪字、印章", "印章").replace(
+                "画面里不要出现任何文字：没有标题、标注、说明栏、引线标签（这是单独的物品图，不是设定稿）。",
+                f"除{where}的书名「{title}」外，不要任何其他文字、伪字、印章、标注或说明栏（这是单独的物品图，不是设定稿）。")
     src = re.sub(r"\s*（(?:原创扩展|待考)[^）]*）", "", src.replace("**", "")).strip(" ；;")
     grade_line = grade_line.split("（禁")[0]
     if fm.get("category") in NO_PACK_CATS:
