@@ -8,6 +8,7 @@
 @property WebView *view;
 @property NSString *output;
 @property NSString *screen;
+@property NSString *checks;
 @end
 @implementation Snapshotter
 - (NSURLRequest *)webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse fromDataSource:(WebDataSource *)dataSource {
@@ -16,7 +17,7 @@
 - (void)webView:(WebView *)sender didFailLoadWithError:(NSError *)error forFrame:(WebFrame *)frame { NSLog(@"load failed %@",error); }
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
  if (frame != sender.mainFrame) return;
- NSString *checks = @"JSON.stringify((()=>{const failures=[],screens=[]; for(const input of document.querySelectorAll('input[name=screen]')){input.checked=true;const visible=[...document.querySelectorAll('.screen')].filter(x=>getComputedStyle(x).display!=='none');if(visible.length!==1)failures.push(input.id+':screen count');if(document.documentElement.scrollWidth>innerWidth)failures.push(input.id+':horizontal overflow');for(const x of document.querySelectorAll('.folio-body')){if(x.clientWidth&&x.scrollWidth>x.clientWidth+1)failures.push(input.id+':folio overflow')}for(const x of document.querySelectorAll('label,summary')){const r=x.getBoundingClientRect();if(r.width&&r.height&&(r.width<44||r.height<44))failures.push(input.id+':small target '+(x.htmlFor||x.tagName))}const folio=visible[0]?.querySelector('.folio');if(folio&&folio.getBoundingClientRect().bottom>document.querySelector('.toolbar').getBoundingClientRect().top)failures.push(input.id+':toolbar overlap');screens.push(input.id)}const broken=[...document.images].filter(x=>!x.complete||!x.naturalWidth).length;if(broken)failures.push('broken images:'+broken);return{viewport:[innerWidth,innerHeight],screens,failures,hasSelector:CSS.supports('selector(:has(*))'),fonts:'system fallback',images:document.images.length}})())";
+ NSString *checks = self.checks;
  NSString *result=[self.view stringByEvaluatingJavaScriptFromString:checks];
  printf("%s\n",result.UTF8String);
  NSData *json=[result dataUsingEncoding:NSUTF8StringEncoding];
@@ -25,8 +26,9 @@
  NSArray *screenJSON=@[self.screen];
  NSData *screenData=[NSJSONSerialization dataWithJSONObject:screenJSON options:0 error:nil];
  NSString *screenText=[[NSString alloc]initWithData:screenData encoding:NSUTF8StringEncoding];
- [self.view stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@[0]).checked=true",screenText]];
+ [self.view stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"location.hash=%@[0]",screenText]];
  dispatch_after(dispatch_time(DISPATCH_TIME_NOW,200*NSEC_PER_MSEC),dispatch_get_main_queue(),^{
+  [self.view stringByEvaluatingJavaScriptFromString:@"document.querySelectorAll('.folio-body').forEach(el=>{void el.offsetHeight;el.scrollTop=0});document.body.scrollTop=0;document.documentElement.scrollTop=0;window.scrollTo(0,0)"];
   NSView *document=self.view.mainFrame.frameView.documentView;
   [document display];
   NSBitmapImageRep *bitmap=[document bitmapImageRepForCachingDisplayInRect:self.view.bounds];
@@ -54,7 +56,8 @@ int main(int argc,const char *argv[]) {
   capture.view.resourceLoadDelegate=capture;
   window.contentView=capture.view;
   NSURL *input=[NSURL fileURLWithPath:[NSString stringWithUTF8String:argv[1]]];
-  NSString *html=[NSString stringWithContentsOfURL:input encoding:NSUTF8StringEncoding error:nil];
+  capture.checks=[NSString stringWithContentsOfURL:[input.URLByDeletingLastPathComponent URLByAppendingPathComponent:@"verify.js"] encoding:NSUTF8StringEncoding error:nil];
+ NSString *html=[NSString stringWithContentsOfURL:input encoding:NSUTF8StringEncoding error:nil];
   NSString *css=[NSString stringWithContentsOfURL:[input.URLByDeletingLastPathComponent URLByAppendingPathComponent:@"style.css"] encoding:NSUTF8StringEncoding error:nil];
   html=[html stringByReplacingOccurrencesOfString:@"<link rel=\"stylesheet\" href=\"style.css\">" withString:[NSString stringWithFormat:@"<style>%@</style>",css]];
   NSRegularExpression *fonts=[NSRegularExpression regularExpressionWithPattern:@"<link[^>]+https:[^>]+>" options:0 error:nil];
