@@ -47000,6 +47000,110 @@
     "assets/default/building-map/xiyu/manifest.yaml",
     "assets/default/building-map/xiyu/*.png"
    ]
+  },
+  {
+   "id": "TOOL-rig-std-parts",
+   "title": "标准体切件 · 男 / 女标准体由 A 字三视图切出 39 件正式部件、替换程序占位，make_parts --check 转绿（AR-47；main 13:58；traex GPT-5.6-Sol max）",
+   "phase": "PROD",
+   "wave": 18,
+   "kind": "draft",
+   "review": false,
+   "vars": {},
+   "prompt": "TOOL-rig-std-parts.md",
+   "deps": [
+    "ART-rig-std-refs"
+   ],
+   "web": false,
+   "writes": [
+    "assets/default/rig/male_std/manifest.yaml",
+    "assets/default/rig/male_std/front34/**",
+    "assets/default/rig/male_std/side/**",
+    "assets/default/rig/male_std/back34/**",
+    "assets/default/rig/male_std/preview/**",
+    "assets/default/rig/male_std/work/**",
+    "assets/default/rig/female_std/manifest.yaml",
+    "assets/default/rig/female_std/front34/**",
+    "assets/default/rig/female_std/side/**",
+    "assets/default/rig/female_std/back34/**",
+    "assets/default/rig/female_std/preview/**",
+    "assets/default/rig/female_std/work/**",
+    "tools/rig/*.py"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/rig/male_std/manifest.yaml",
+     "assets/default/rig/female_std/manifest.yaml"
+    ],
+    "shrink_exempt": [
+     "tools/rig/*.py",
+     "assets/default/rig/male_std/**",
+     "assets/default/rig/female_std/**"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "{python}",
+      "tools/rig/make_parts.py",
+      "assets/default/rig/male_std",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/rig/make_parts.py",
+      "assets/default/rig/female_std",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/rig/make_parts.py",
+      "assets/default/rig/npc_zhujue__ch00_m",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/agents/check_assets.py",
+      "assets/default/rig/male_std",
+      "--min",
+      "39",
+      "--max",
+      "60",
+      "--min-side",
+      "16"
+     ],
+     [
+      "{python}",
+      "tools/agents/check_assets.py",
+      "assets/default/rig/female_std",
+      "--min",
+      "39",
+      "--max",
+      "60",
+      "--min-side",
+      "16"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ],
+   "sparse_include": [
+    "assets/default/rig"
+   ]
   }
  ]
 }
