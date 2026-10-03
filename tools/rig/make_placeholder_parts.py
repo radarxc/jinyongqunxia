@@ -30,6 +30,20 @@ def placeholder_image(part: str, view: str, scale: float) -> Image.Image:
     if scale != 1.0:
         size = (max(2, round(template.size[0] * scale)), max(2, round(template.size[1] * scale)))
         mask = mask.resize(size, Image.Resampling.NEAREST)
+    cap_draw = ImageDraw.Draw(mask)
+    left, top, right, bottom = mask.getbbox()
+    joints = [(round((left + right - 1) / 2), top),
+              (round((left + right - 1) / 2), bottom - 1)]
+    if part == "torso":
+        shoulder_y = round(mask.height * .20)
+        joints += [(round(mask.width * ratio), shoulder_y) for ratio in
+                   ((.14, .86) if view == "back34" else (.86, .14))]
+    elif part == "pelvis_skirt":
+        joints += [(round(mask.width * ratio), top) for ratio in
+                   ((.32, .68) if view == "back34" else (.68, .32))]
+    radius = max(7, round(12 * scale))
+    for x, y in joints:
+        cap_draw.ellipse((x - radius, y - radius, x + radius, y + radius), fill=255)
     image = Image.new("RGBA", mask.size)
     color_key = (part.rsplit("_", 1)[0] if part.endswith(("_L", "_R"))
                  else part if part in PALETTE else template_key)

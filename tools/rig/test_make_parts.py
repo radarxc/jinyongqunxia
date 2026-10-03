@@ -10,7 +10,7 @@ import yaml
 from PIL import Image, ImageDraw
 
 from tools.item.common import BuildError, sha256_file
-from tools.rig.make_parts import Z_ORDER, build_manifest
+from tools.rig.make_parts import BONE_LENGTHS_M, Z_ORDER, build_manifest
 from tools.rig.make_placeholder_parts import generate
 from tools.rig.preview import SHARED_LIMB_Z, make_strip
 from tools.rig import preview
@@ -66,6 +66,72 @@ class RigPartPipelineTests(unittest.TestCase):
         self.assertEqual(before, sha256_file(self.set_dir / "manifest.yaml"))
         checked = build_manifest(self.set_dir, check=True)
         self.assertEqual(manifest, checked)
+
+    def test_identity_fields_and_canonical_male_bone_lengths(self) -> None:
+        identity = Path(self.temporary.name) / "npc_test__ch00_m"
+        for view in VIEWS:
+            directory = identity / view
+            directory.mkdir(parents=True)
+            for part in SOURCE_PARTS:
+                synthetic_part(directory / f"{part}.png", part)
+        (identity / "sheet").mkdir()
+        Image.new("RGB", (12, 12), (230, 225, 216)).save(identity / "sheet/sheet_L.png")
+        manifest = build_manifest(identity)
+        self.assertEqual("identity", manifest["kind"])
+        self.assertEqual("npc_test", manifest["identity"]["npcId"])
+        self.assertEqual("ch00_m", manifest["identity"]["variant"])
+        self.assertEqual("tianshu_humanoid.v1", manifest["skeleton"])
+        self.assertEqual({"torso": .52, "head": .24, "upper_arm": .30,
+                          "forearm": .26, "hand": .19, "thigh": .44,
+                          "shin": .40, "foot": .25}, BONE_LENGTHS_M)
+        self.assertEqual(BONE_LENGTHS_M, manifest["boneLengthsM"])
+        self.assertEqual(39, len(manifest["assets"]))
+        build_manifest(identity, check=True)
+
+    def test_attachment_contract_rejects_invalid_fields(self) -> None:
+        layer = self.set_dir / "attachments/hair_back.png"
+        layer.parent.mkdir()
+        Image.new("RGBA", (16, 24), (40, 30, 25, 255)).save(layer)
+        base = {"slot": "hair_back", "parent": "head",
+                "view": "back34", "file": "attachments/hair_back.png",
+                "pivot": [8, 3], "spring": {"k": 36, "c": 10.8}}
+        manifest = build_manifest(self.set_dir)
+        for field, value in (("parent", "unknown"), ("view", "front"),
+                             ("pivot", [999, 3]), ("spring", {"k": -1})):
+            manifest["attachments"] = [{**base, field: value}]
+            (self.set_dir / "manifest.yaml").write_text(
+                yaml.safe_dump(manifest, sort_keys=False), encoding="utf-8"
+            )
+            with self.subTest(field=field), self.assertRaises(BuildError):
+                build_manifest(self.set_dir, check=True)
+
+    def test_sidecar_joint_outside_alpha_is_kept_inside_normalized_canvas(self) -> None:
+        source = self.set_dir / "front34/hair_or_headgear.png"
+        image = Image.new("RGBA", (100, 120))
+        ImageDraw.Draw(image).ellipse((20, 12, 80, 82), fill=(45, 35, 30, 255))
+        image.save(source)
+        (self.set_dir / "front34/hair_or_headgear.pivots.yaml").write_text(
+            yaml.safe_dump({"coordinates": "source", "keypoints": {
+                "neck": [50, 102], "crown": [50, 12]}}, sort_keys=False),
+            encoding="utf-8")
+        manifest = build_manifest(self.set_dir)
+        record = next(item for item in manifest["parts"]
+                      if item["view"] == "front34" and
+                      item["id"] == "hair_or_headgear")
+        self.assertTrue(0 <= record["pivot"][1] < record["size"][1])
+        self.assertTrue(0 <= record["childJoint"]["crown"][1] < record["size"][1])
+        build_manifest(self.set_dir, check=True)
+
+    def test_failed_build_does_not_partially_rewrite_images(self) -> None:
+        target = self.set_dir / "front34/head.png"
+        before = target.read_bytes()
+        bad = self.set_dir / "side/foot_shared.pivots.yaml"
+        bad.write_text(yaml.safe_dump({"coordinates": "source", "keypoints": {
+            "ankle_L": [20, 10], "toe_L": [9999, 10]}}, sort_keys=False),
+            encoding="utf-8")
+        with self.assertRaisesRegex(BuildError, "outside (source )?image"):
+            build_manifest(self.set_dir)
+        self.assertEqual(before, target.read_bytes())
 
     def test_prefers_view_keypoint_sidecar_and_records_provenance(self) -> None:
         sidecar = self.set_dir / "front34/torso.keypoints.yaml"
