@@ -1,7 +1,6 @@
 # 10 · 物品与装备（Items & Equipment）
 
-> **版本**：v1.6（AR-24 兵器与暗器名录扩张，2026-10-01）；v1.5（AR-20 十一类物品名录与出图契约，2026-10-01）；v1.4（经脉落地终审，2026-09-29）；v1.3（经脉 Buff 载荷迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
-> **版本**：v1.6（AR-23 食材／食品扩张，2026-10-01）；v1.5（AR-20 十一类物品名录与出图契约，2026-10-01）；v1.4（经脉落地终审，2026-09-29）；v1.3（经脉 Buff 载荷迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
+> **版本**：v1.7（物品属性投影规格 v2，2026-10-02）；v1.6（AR-23～AR-25 名录扩张，2026-10-01）；v1.5（AR-20 十一类物品名录与出图契约，2026-10-01）；v1.4（经脉落地终审，2026-09-29）；v1.3（经脉 Buff 载荷迁移，2026-09-27）；v1.2（跨文档同步、全局审计，2026-09-26）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
 > **归属**（基准 §18）：装备栏、物品、神兵、锻造、丹药——物品分类与数据结构、装备栏与兵器、品阶→装备数值、词条、神兵宝甲与名器、装备成长（强化/工艺/铭刻/淬毒/锻造）、书眠携带与外来压制对装备的影响、丹药与消耗品、菜肴、秘籍与残页、背包仓库、价格锚点。
 > **上游**：`00-canon.md`（§3 境界规则、§4 品阶、§6 属性 ID、§7 武功与兵器类别、§8 战斗模型、§9 乘区、§10 Buff、§12 ID、§13 天级武学、§14 天级神兵宝甲、§16 改编原则、§20 装配栏与装备栏）。
 > **引用而不重定义**：外来/本土判定 `nativeTo`、有效品阶 `effGrade`、器合、藏史、史印/史笺、天材骰、掉落品阶分布 → `design/02-timeline-and-world-tiers.md`；属性形态与修饰（`flat`/`flatLv`/`pct`/`pp`）、等级曲线 `ATK_LV`/`DEF_LV`/`HP_LV`、`STD(L)`、技艺门槛 `T(g)`/`gMax`、买卖系数 `buyMul`/`sellMul` → `design/03-attributes.md`；伤害公式与乘区 Z0–Z10 → `design/04-damage-formula.md`；武学字段 `weaponReq`/`kinds`/`Mod_armed`、秘籍阅读天数、残页页数、`sxpGrant` 接口 → `design/05-martial-arts-system.md`；全部 Buff 定义（`bf_*`）、品阶对抗 ρ、族上限、驱散类型 → `design/06-buff-system.md`；套装目录、成员、档位与效果 → `design/07-set-system.md`；地形与轻功门禁、飞爪探索入口 → `design/08-terrain-and-qinggong.md`；六角格物品行动、范围、缴械拾取流程、AI → `design/09-combat-system.md`；统一大地图、时代图层、旅行与客栈休息 → `design/11`、`design/19`；任务、关系与生活技能（含烹饪）→ `design/12`；天书之力与难度模式 → `design/13`；界面 → `design/14`；穴道、经脉、周天、冲穴 → `design/15`；资源、家丁、营生与收入 → `design/16`；门派身份 → `design/17`；NPC 认物与同伴物品 → `design/18`；跨年代传承源、残本、关键信物与校合条件 → `design/20`；图标生成 → `tech/07`。
@@ -11,6 +10,7 @@
 > **经脉落地终审（2026-09-30）**：复核墓碑双侧兼容已闭合；登记康熙册三项谱本／残页与白马地上遗物，修正秘籍阅读式，收拢历史物品接口的已解决项与默认边界；终审返修逐条登记少林／五绝／逍遥 25 本秘籍与 5 种残页，回填 O16；第 3 次运行补齐大还丹正式配方，区分解锁 40 与制作 68 的炼丹门槛；第 6 次运行登记家常饭正式实体与失败产物映射，并澄清生血／毒物仍缺的消费契约；第 7 次运行按协调意见删除重复交办 O18，家常饭统一引用 §9.4／§9.3.1，凭据／总账未决保留于任务报告第 6 节。
 > **v1.5 变更摘要（AR-20，2026-10-01）**：补齐药物／补品／药材、食材／食品、秘籍、兵器、衣物、制式盔甲、内甲、护肩／披风／头饰、鞋、腰带、暗器十一类的天地玄黄投影名录；新增 `equip-slots.v2` 三槽迁移、官甲违法暴露、药材年限、冲穴药物和暗器命中／毒接口。名录只作本文定义的机器可读出图投影，不成为第二规则源。
 > **v1.6 变更摘要（AR-24，2026-10-01）**：为剑／枪／棍／刀／奇门及暗器补齐黄下至玄上六档通用制式；天地档补投影原著名器与主要门派可持用法器。新增 ID 只在 §14.2 登记，名录的史料、形制与出图口径不改写 §3–§5 数值规则。
+> **v1.7 变更摘要（物品属性投影规格 v2，2026-10-02）**：依作者分类增加 §4.10，冻结锋利／硬度／内力亲和、防御／反伤／防暗器、身法／格挡／吉运／毒，以及药品食品效用的整数投影、品阶取值带与既有公式接口；十一份名录由七列升级为九列，新增 60–120 字“说明”和机器可读“属性投影”，旧“效果字段”保留。
 
 ---
 
@@ -93,7 +93,7 @@
 | 淬毒 | `poisonCoat` | 以毒术给兵器/暗器附毒，3 场战斗（§6.5） |
 | 膳食 | `meal` | 菜肴带来的"下 N 场战斗开场即得"的 Buff 包（§9.1） |
 | 学识 | `knowledge` | 已学会的丹方、菜谱、锻造图谱、铭文；跨书界保留（§12.3） |
-| 出图名录投影 | `items-*.md` | 本文 `ItemDef` 的七列机器可读投影；只承载 ID、名称、子类、品阶、出处、效果摘要和外观，不覆写本文规则 |
+| 出图名录投影 | `items-*.md` | 本文 `ItemDef` 的九列机器可读投影；在原七列中保留“效果字段”，新增“说明”与“属性投影”，不覆写本文规则 |
 | 目录天级样本 | `catalogTian` | AR-20 新增而不在基准 12 神兵中的天级具名装备；固定、唯一、不可随机/锻造/商店，不得标 `divine` 或自动获得神兵护主 |
 | 官甲违法暴露 | `lawProfile` | 制式盔甲的物品侧声明；身份与通缉状态机归 `design/11`、`design/12`，本文只发出穿戴暴露事实（§3.4.1） |
 
@@ -218,7 +218,7 @@
 | `persistGrade` | bool | 施加的 Buff 品阶取物品品阶（默认 true，06 §3.1） | |
 | `meridianAid` | `{rateBp, successBp, costReduceBp, hours, meridians?}` | 仅战斗外冲穴辅助；三项为非负整数 bp，`hours` 为正整数游戏小时，`meridians?` 为 15 的正式 `mer_*` 白名单；总上限与结算只见 15 §5.6 | `{rateBp:500, successBp:0, costReduceBp:0, hours:6}` |
 
-`permStat` 的运行时参数仍为 `{stat: InnateId|'chosenInnate', value: int}`，`InnateId` 只取 `design/03` §2 的七项。七列名录中 `permStat=N` 是“玩家选定一项 +N”的简写；固定多属性可写 `permStat={str:1,con:1}`，内容编译器须按 `con,str,agi,wis,wil,luk,cha` 规范序展开为多个既有 `permStat` op。各值须为正整数，合计计入 §8.5 `permBudget`，任一项越界则整次使用回滚；未知键或重复键构建失败。此写法只扩展既有原语的名录投影，不新增效果字段。
+`permStat` 的运行时参数仍为 `{stat: InnateId|'chosenInnate', value: int}`，`InnateId` 只取 `design/03` §2 的八项 `con/str/agi/wis/wil/luk/cha/bre`。九列名录中 `permStat=N` 是“玩家选定一项 +N”的简写；固定多属性可写 `permStat={str:1,con:1}`，内容编译器须按 `con,str,agi,wis,wil,luk,cha,bre` 规范序展开为多个既有 `permStat` op。各值须为正整数，合计计入 §8.5 `permBudget`，任一项越界则整次使用回滚；未知键或重复键构建失败。此写法只扩展既有原语的名录投影，不新增效果字段。
 
 **其他分类的专属字段**
 
@@ -249,6 +249,7 @@
 | `inscription` | `{id, g}` \| null | 铭文与刻铭品阶（§6.4） |
 | `refine` | 0–10 | 强化等级（§6.2）；`refineFire` 为当前级的火候加成 pp |
 | `poisonCoat` | `{buff, g, battlesLeft}` \| null | 淬毒（§6.5）；书眠清除 |
+| `durability` | `{current,max}` \| null | 属性投影 v2 的兵器硬度状态；无 `hardness` 者为 `null`，损耗与修复见 §4.10.6【建议值】 |
 | `broken` | `{gBreak}` \| null | 断兵（06 `bf_duanbing` 的持久化状态），记录施加者效果品阶；修复前主属性按 §3.6 削减 |
 | `owner` | `player` / npcId | 玩家所有或 NPC 自带（§3.6、§7.1） |
 | `qipo` | bool | 已用器魄铸"器魂铭"（§6.7） |
@@ -301,6 +302,7 @@ export interface EquipInstance {
   uid: number; def: `eq_${string}`; absGrade: Grade; nativeTo: ChapterId;
   affixes: AffixRef[]; temper: AffixRef | null; inscription: { id: `ins_${string}`; g: Grade } | null;
   refine: number; refineFire: number; poisonCoat: { buff: `bf_${string}`; g: Grade; battlesLeft: number } | null;
+  durability: { current: number; max: number } | null; // §4.10.6；由 hardness 初始化并跨战保留
   broken: { gBreak: Grade } | null; owner: 'player' | `npc_${string}`; qipo: boolean; sleeps: number;
   history: { from: ChapterId; to: ChapterId; year: number; how: 'carry'|'stash'|'merge' }[];
 }
@@ -756,6 +758,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
   const g = gradeRoll(pool, ctx, rng);                       // 02 §2.12；随机池 g ≤ 9（02 R2）
   const slot = pickWeighted(SLOT_WEIGHT, rng);               // 主 18 / 副 8（副兵 3、牌 2、囊 3）/ 头 11 / 衣 14 / 手 12 / 腰 12 / 鞋 12 / 佩 13（%）
   const base = pickBase(slot, g, ctx.chapter.era, ctx.region, rng);   // 基底按时代/地域过滤（下表）
+  const hardness = readProjectionV2(base)?.hardness ?? 0;    // 内容编译器读取 extension.value.attributes，§4.10.5
   let n = AFFIX_MIN[g] + (AFFIX_MAX[g] > AFFIX_MIN[g] && rng() < P_EXTRA[pool] ? 1 : 0);
   if (slot === 'accessory') n += 1;
   const affixes: AffixRef[] = [];
@@ -767,6 +770,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
   }
   return { uid: nextUid(), def: base.id, absGrade: g, nativeTo: ctx.chapter.id, affixes,
            temper: null, inscription: null, refine: 0, refineFire: 0, poisonCoat: null,
+           durability: hardness > 0 ? { current: hardness, max: hardness } : null,
            broken: null, owner: 'player', qipo: false, sleeps: 0, history: [] };
 }
 // 显示名："<首条词条前缀>·<基底名>"，如"锋锐·青钢剑"；UI 规则归 design/14
@@ -786,12 +790,153 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 |---|---|---|
 | 单项评级 flat（`hit` `eva` `parry` `pierce` `crit` `tough` `effHit` `effRes`） | +40（牌的 `parry` 底值 `10 + 3×G` 另计） | 无效，面板灰显 |
 | `hpMax` / `mpMax` pct | 各 +25% | 同上 |
-| 先天临时加值 | 单项 +8、七项合计 +20 | 同上 |
+| 先天临时加值 | 单项 +8、八项合计 +20 | 同上 |
 | 技艺临时加值 | 单项 +15 | 同上 |
 | `apHidden` | +12 | 同上 |
 | 开场护体 | 10% `hpMax`（仍受 03 `shieldMax`） | 同上 |
 | `mov` / `jump` flat | 各 +1（06 `fam_move` 另计 Buff） | 同上 |
 | 触发词条 + 专属特效触发 | 同一次命中至多结算 2 个装备来源的触发（按 `priority`） | 其余本次不判定 |
+
+### 4.10 属性投影 v2（`item-attribute-projection.v2`）
+
+#### 4.10.1 定位、整数单位与四阶取样
+
+“属性投影”是十一份名录供作者逐件初配、UI 摘要和内容编译使用的**整数规范层**；它不取代“效果字段”，也不新开伤害乘区。`atk`、`def`、`agi` 等展示键必须编译回 §2–§4、§8–§10 已有字段／原语；同一效果只消费一次。品阶压制后的装备以 `gUse` 重新取带，消耗品按 `grade` 取带。
+
+| 记法 | 规则 |
+|---|---|
+| `bp` | 万分比整数，`10000=100%`；只用于公式明确按万分比消费的字段 |
+| 百分比整数 | 不带 `%`；倍率字段中 `100=1.00`、`125=1.25`，恢复字段中 `10=10%`。`atk`、`qiAffinity`、`restoreQi`、`healOuter`、`stamina` 使用此单位 |
+| 点 | 非负整数；评级、层数与先天字段表示各自现有量纲，不得擅自换算为 bp |
+| 四阶带 | 黄=`grade 1..3`、玄=`4..6`、地=`7..9`、天=`10..12`；速查典型值统一取黄上 3／玄上 6／地上 9／天下 10，即 `G=1.20/1.70/2.40/2.80` |
+| `0` 与省略 | `0` 表示本类合法但该件无此效用；不适用于该类则必须省略。特殊机制不能用虚构数字占位 |
+
+数值带由现有量级反推：兵器 `kA` 的既有常见跨度为 `0.60..1.15`，重兵标签再乘 1.20，故 `atk` 总带封在 `60..140`；护具 `def` 把 §3.1／§3.4 的主防御系数连同 `G(grade)` 百分化，`roundHalfUp(100×kDef×G)` 在全品阶得到 `3..123`。恢复带沿 §8.2：外伤 `5×G`、内力 `6×G`、体力 `10×G`，向最接近整数取整后覆盖同大阶三品；这使地上典型值分别为 `12/14/24`，不凭空另定量级。本文投影换算统一用 `roundHalfUp`：遇 `.5` 向上，其余取最近整数；旧效果字段若保留更高精度，投影只是舍入摘要，运行时仍消费旧字段精确值。
+
+#### 4.10.2 武器字段
+
+| 字段 | 中文名 | 单位 | 默认 | 黄 / 玄 / 地 / 天取值带 | 与现有字段、公式的关系 |
+|---|---|---:|---:|---|---|
+| `atk` | 攻击（锋利／打击效能） | 百分比整数 | 100 | 60–120 / 70–125 / 80–135 / 90–140 | **就是**现有最终兵器系数 `mainK×100`，不另起攻击值；`mainK=atk/100` 后作为 §4.1 中原 `kA×tagK` 的最终值生成唯一 `atkOut flatLv` 来源，不再与类别／标签重复相乘。未显式覆写的普通兵器以既有 `kA×tagK` 反投影；protocol 4 如何消费最终 `atkOut` 见 §4.10.6 的上游缺口与建议接线 |
+| `hardness` | 硬度 | 点 | 见材质默认 | 20–45 / 35–60 / 50–80 / 70–100 | 新的耐久池上限；只在成功被招架后的 `onParried` 扣减，见 §4.10.6。不会增加伤害、防御或 06 断兵抗性 |
+| `qiAffinity` | 内力亲和 | 百分比整数 | 100 | 80–105 / 90–110 / 95–120 / 100–130 | `100=1.00` 不加成；仅当招式 `wInBp>0` 时令 04 §4.1 `outwardAttack=floor(outwardAttackRaw×qiAffinity/100)`【建议值】，硬功支不变 |
+| `qiEffect` | 注入内力特效引用 | `bf_*`／`ue_*`／规则 ID | 省略 | 无数值带；特殊武器才可填 | 运行时只接受已登记效果，触发与品阶对抗走 06。逐件作者阶段若尚无正式 ID，可暂写任务要求的 `（原创扩展：一句话）` 占位，构建须报“待登记”并阻止该条进入运行内容 |
+
+材质默认硬度【建议值】：布／软皮／软兵 25、木竹 35、皮革 40、普通金属 50、精工金属 65、玉石 70、玄铁等名材 85；逐件仍须落在品阶带，原著或既定描述明确脆、柔、坚时可在带内偏移。暗器弹药若不可回收或一次性，`hardness=0`；可回收具名暗器按同表取值。
+
+#### 4.10.3 装备字段
+
+| 字段 | 中文名 | 单位 | 默认 | 黄 / 玄 / 地 / 天取值带 | 与现有字段、公式的关系 |
+|---|---|---:|---:|---|---|
+| `def` | 防御 | 点 | 按部位与品阶 | 3–42 / 4–60 / 5–84 / 7–123 | 既有主防御来源的可复算摘要：`def=roundHalfUp(100×kDef×G(grade))`；衣物 `kDef=kD+kI`，内甲 0.18，头手腰鞋 0.05，肩披 0.025，牌 0.10。只校验／编译回既有 `defOut/defIn flatLv`，不得额外叠加一份防御 |
+| `reflect` | 反伤 | bp | 0 | 0–200 / 0–400 / 0–700 / 0–1000 | 只映射 04 §6.3 的 `reflectPct=reflect/10000`；完整式为 `floor(hpDamage×reflectPct×(1−attackerZ4))`，多来源合计上限 40%。走 06 `onHurt`／`bf_fanzhen`，带 `reflected` 且不递归；软猬刺仍引用 `bf_weici`，不得同时再结一份通用反伤 |
+| `antiHidden` | 防暗器 | bp | 0 | 0–300 / 0–500 / 0–800 / 0–1200 | 匹配 `move.delivery=projectile` 或 `cat=hidden` 时作为 Z4 `dmgDown`，与其他减伤同进 04 §4.4 的 7500bp 总上限【建议值】；不改命中／招架 |
+| `agi` | 身法 | 点 | 0 | 0–1 / 0–2 / 0–3 / 0–4 | 现有 `agi flat` 装备修饰，进入 03 S1 后由速度／闪避／探索轻功各自消费；鞋必填，衣物可选，不能把既有 `qinggong` 点再折算为第二份 `agi` |
+| `block` | 格挡（硬度） | 点 | 0 | 0–4 / 0–7 / 0–10 / 0–14 | 注入既有 `parry flat`；仅护腕／护手／护肩／牌等可写。成功格挡后，本字段还参与攻击武器硬度损耗式，但自身不等于耐久池 `hardness` |
+| `luck` | 吉运 | 点 | 0 | 0–1 / 0–2 / 0–3 / 0–4 | 注入既有 `luk flat`，从而只在 03 §2.3 已有奇遇、掉落与化险接口消费【建议值】；不另造“装备幸运骰” |
+| `poison` | 放毒 | 点 | 0 | 0–3 / 0–6 / 0–9 / 0–12 | 装备侧毒术评分；“效果字段”须同时明列已登记毒 `bf_*` 的 `onHit`／`poisonCoat`，基础施加率 `poison×500bp`（最高 6000bp），再走 04 效果命中与 06 抗毒【建议值】。投影只作摘要，不得重复施毒 |
+| `antiPoison` | 避毒 | 点 | 0 | 0–3 / 0–6 / 0–9 / 0–12 | **就是**现有 `resPoisonPp`／`poisonResPp` 的整数 pp 摘要，编译后注入 03 `resPoison`；不再加第二份抗毒 |
+
+衣物／盔甲／内甲至少填 `def`；鞋填 `def; agi`；护腕／护手填 `def; block`，其“硬度”含义已经由 `block` 表示，不另填只供兵器耐久使用的 `hardness`；腰带、头饰、护肩、披风、佩饰等“其他装备”从 `luck/def/poison/antiPoison` 中按描述取 1–3 项，不能为了填满而赋予无叙事依据的毒性或吉运。
+
+#### 4.10.4 药品、食品与“其他”字段
+
+| 字段 | 中文名 | 单位 | 默认 | 黄 / 玄 / 地 / 天取值带 | 与现有字段、公式的关系 |
+|---|---|---:|---:|---|---|
+| `restoreQi` | 补充内力 | 百分比整数 | 0 | 0–8 / 0–12 / 0–16 / 0–22 | 若旧列为 `mpPct=p%`，则 `restoreQi=roundHalfUp(p)`；无旧效果时才生成 `mpPct=restoreQi%`，回复 `floor(mpMax×精确 mpPct)`；沿 §8.1 受 `healRecv`、不受 `healPower`。典型整数 `roundHalfUp(6×G)=7/10/14/17` |
+| `qiCultivation` | 增加内力修为 | bp | 0 | 0–1000 / 0–2000 / 0–3500 / 0–5000 | 编译为 05 §8.5 正式对象 `sxpGrant{target:mainInner,mode:pctNext,value:qiCultivation/10000}`；内容生成器可内部归一为 `pctNextBp`。即 10%/20%/35%/50%，效果字段可明列其他合法目标；同一武学同界丹药至多 2 层 |
+| `con` | 永久根骨 | 点 | 0 | 0 / 0–1 / 0–1 / 0–2 | 编译为 `permStat{stat:con,value}`，原子计入 §8.5 `permBudget.innate`；黄阶不得给永久根骨。全程药食先天点 ≤20，且它是 03 §2.9.1 常规外部预算约 24 的子预算，即“药食 + 奇遇／事件”合计 ≤24【建议值】，不得算成 `20+24`；普通来源不破 100 |
+| `healInner` | 治疗内伤／疏通经络 | 点 | 0 | 0–2 / 0–4 / 0–7 / 0–10 | 每点移除 1 层 06 `bf_neishang`，品阶检查仍按 06；这正是 15 §5.6 冲穴失败产生的内伤口径。走火状态仍须在“效果字段”显式驱散，战斗经气迟滞／经脉胀损只按 21 调息修复；本字段不会回退永久开穴、通脉或转数 |
+| `healOuter` | 治疗外伤 | 百分比整数 | 0 | 0–7 / 0–10 / 0–14 / 0–18 | 若旧列为 `healPct=p%`，则 `healOuter=roundHalfUp(p)`；无旧效果时才生成 `healPct=healOuter%`，按精确值回复并封顶。典型整数 `roundHalfUp(5×G)=6/9/12/14`；外伤驱散仍须效果字段明列 |
+| `stamina` | 补充体力 | 百分比整数 | 0 | 0–15 / 0–20 / 0–28 / 0–35 | 若旧列为 `staPct=p%`，则 `stamina=roundHalfUp(p)`；无旧效果时才生成 `staPct=stamina%`，按精确值回复 `min(staMax−sta,floor(staMax×staPct))` 并封顶，资源口径见 03 §5.3；不生成膳食 Buff。典型整数 `roundHalfUp(10×G)=12/17/24/28` |
+
+药品按物品描述从 `restoreQi/qiCultivation/con/healInner/healOuter` 取 1–3 项；可直接食用的食品至少填 `stamina`，再从 `healInner/healOuter` 按描述选填，合计 1–2 项。没有即时食用或治疗叙事的普通食材不适用这三键，属性投影写 `—`，不得用 0 占位；菜肴既有 `meal` 仍只留在“效果字段”。`healInner` 与 `healOuter` 必须分列：前者只减 `bf_neishang`，经气迟滞／胀损仍归 21 调息；后者回复气血并可搭配外伤驱散。不能用一个“疗伤”数字同时全额结算两次。
+
+秘籍、残页、任务物、工具、奇物等“其他”不得随意借用战斗字段；只按描述从下列可选键取用：
+
+| 类别 | 可选字段集 | 原则 |
+|---|---|---|
+| 秘籍／残页 | `skillRef`、`readWis`、`readBre`、`maxLayer`、`cultivation` | `skillRef` 必须是现有 `sk_*`；`readWis/readBre` 为 0–100 的研读门槛并引用 `design/05`，不是永久加点；`cultivation` 为一次研读取得的 `sxpGrant` bp，缺省目标就是 `skillRef`。既有 `skill/variant/maxLayer` 效果字段仍是真值 |
+| 配方／工具 | `unlockRef`、`artRef`、`artReq` | 只引用现有 `rc_*`／技艺 ID；不从名称猜战斗收益 |
+| 坐骑 | `travel`、`stamina` | `travel` 为旅行耗时减免 bp，编译回既有 `travelMul`；`stamina` 仅在物品明确补体时使用，不把 `staMul` 冒充即时回复 |
+| 任务物／信物／收藏品 | `luck` 或空行 | 只有明确护符／吉兆叙事才可给临时 `luck`；纯剧情物属性投影写 `—`，不得为完整度硬塞数值 |
+| 奇物 | 本节任一适用字段或 `ruleRef` | 必须由正文既定效果支持；超出字段表则先登记正式规则 ID，不能在机器行塞自然语言脚本 |
+
+| 字段 | 中文名 | 单位 | 默认 | 黄 / 玄 / 地 / 天取值带 | 与现有字段、公式的关系 |
+|---|---|---:|---:|---|---|
+| `skillRef` | 武学引用 | `sk_*` | 省略 | 引用键无数值带 | 必须等于秘籍既有 `skill`；只作可读别名，不生成第二份学习目标 |
+| `readWis` / `readBre` | 研读悟性／内息门槛 | 点 | 省略 | 15–30 / 25–40 / 35–55 / 45–80 | 仅描述明确需要悟法／行气时选一项；带取 05 §7.3.1 主次属性带及源流修正后的 15–80 边界【建议值】，不是永久加点 |
+| `maxLayer` | 来源可达层数 | 层 | 既有效果值 | 各阶均 1–10 | 必须等于秘籍既有 `maxLayer`；品阶不自动抬层，残本／全本仍按 §10 与 05 来源规则 |
+| `cultivation` | 研读修为 | bp | 0 | 0–1000 / 0–2000 / 0–3500 / 0–5000 | 与 `qiCultivation` 同尺度；生成 05 `sxpGrant{target:skillRef,mode:pctNext,value:cultivation/10000}`，已有原语时只作摘要 |
+| `unlockRef` | 解锁引用 | 正式 ID | 省略 | 引用键无数值带 | 必须等于配方／工具既有 `teaches`、`unlock` 或正文规则引用，常用 `rc_*` |
+| `artRef` | 技艺引用 | `ArtId` | 省略 | 枚举键无数值带 | 只取 03 §1.3.6 十项技艺；须与配方／工具用途一致 |
+| `artReq` | 技艺门槛 | 点 | 省略 | 4–20 / 28–44 / 52–68 / 76–92 | 必须等于具体品阶的 03 `T(g)=8g−4` 或效果字段已明列门槛，不得用大阶上限替代实际 `g` |
+| `travel` | 旅行耗时减免 | bp | 省略 | 0–3000 / 1500–4000 / 3000–6000 / 4500–7000 | `travel=roundHalfUp((1−travelMul)×10000)`；天阶带为现有地阶名驹向上预留【建议值】，不可骑物省略 |
+| `ruleRef` | 独立规则引用 | `rule_*` 等正式 ID | 省略 | 引用键无数值带 | 必须已有正文定义与消费方；不允许内嵌自然语言脚本 |
+
+上述“其他”键也属于 v2 白名单；复用的 `luck/stamina` 仍服从 §4.10.3–§4.10.4 的单位与品阶带。引用键不参与数值带校验，但引用必须存在。
+
+#### 4.10.5 名录九列格式与机器行语法
+
+十一份 `catalog/items-*.md` 的规范表头升级为：
+
+```markdown
+| ID | 名称 | 子类 | 品阶 | 出处（书名 / 原创扩展） | 说明 | 效果字段 | 属性投影 | 外观要点（供出图） |
+|---|---|---|---|---|---|---|---|---|
+```
+
+- **说明**：60–120 个字符（按 Unicode 码点计；标点计入，Markdown 标记不计），顺序建议为“来历／流传 → 用法或适用者 → 江湖传闻或限制”。原著物须在本格写书名与人物／情节大意；无把握处标 **（待考：核书名、人物或情节）**，不得编回目、引文或招名。原创物或原著未载的数值／形制须标 **（原创扩展）**。本列映射 `text.lore`，不复制“外观要点”。
+- **效果字段**：旧列逐字保留，仍承载 `grade/slot/cat/skill/buff` 等结构与规则真值；v2 迁移不得删除、改名或把它塞进说明。
+- **属性投影**：只放一个反引号代码跨度，语法为 `key=value; key=value`；分号后恰一个空格，键小写驼峰、不得重复，数值不得带 `%`、小数、千分位或单位。引用键的运行值用正式 ID；仅 `qiEffect` 允许作者阶段用 `（原创扩展：一句话）` 占位，但构建不通过；无属性写 `` `—` ``。
+- 规范顺序：武器 `atk; hardness; qiAffinity; qiEffect`；装备 `def; reflect; antiHidden; agi; block; luck; poison; antiPoison`；药食 `restoreQi; qiCultivation; con; healInner; healOuter; stamina`；其他按上表顺序。省略无关键，不要求每行填满。
+- 双写一致性按**规范化后相等**校验：`atk=roundHalfUp(100×mainK)`，`def` 由部位／轻重系数及 `G(grade)` 复算，`reflect=roundHalfUp(10000×reflectPct)`，`antiPoison` 对应整数 `resPoisonPp/poisonResPp`，`restoreQi/healOuter/stamina` 分别为 `mpPct/healPct/staPct` 的百分点评分经 `roundHalfUp`，`qiCultivation=roundHalfUp(10000×sxpGrant.value)`（要求 `mode=pctNext`；生成器内部等值 `pctNextBp`），`con` 对应整数 `permStat.con`。例如旧列 `healPct=5.5%` 合法投影为 `healOuter=6`、`staPct=15.5%` 为 `stamina=16`；编译器保留旧列精确原子，不得另生成舍入原子或相加。
+
+内容投影目标【建议值】为各适用 strict extension 的可选 `attributes: AttributeProjectionV2`，序列化位置统一为 `extension.value.attributes`；对象含 `version:2` 与本节合法键，不复制 `grade/kind/slot`。装备、秘籍、材料、坐骑及 `generic` 各自沿既有 extension，不能为了属性投影改变 `extension.type`。`说明` 则写 `text.lore`，原“效果字段”仍按既有映射生成结构／`use.effects`；运行时只消费后者或由投影编译出的同一原子一次。
+
+合法例：`atk=105; hardness=48; qiAffinity=100`、玄上中甲 `def=51; reflect=0; antiHidden=300`、`restoreQi=10; healInner=3; healOuter=4`。非法例：`atk=1.05`（小数）、`healOuter=12%`（带单位）、`mainK=105`（非白名单）、`qiEffect=内力很强`（自由文本）。
+
+#### 4.10.6 运行接口与默认判定【建议值】
+
+| 字段 | 消费点 | 唯一结算式／默认 |
+|---|---|---|
+| `atk` | 03 装备 `flatLv` → 04 §4.1 硬功支 | `mainK=atk/100` 取代原 `kA×tagK`，只生成一份兵器 `atkOut flatLv`。当前 03 仍生成最终 `atkOut`，但 04 protocol 4 裸式直接读 `Aref`，消费点尚未闭合；默认建议改为 `hardAttack=floor(atkOutSnapshot×wOutBp/10000)`，无装备修饰时与现式等价【建议值】。上游接纳前严禁另把 `atk/100` 乘进 `hardAttack` |
+| `qiAffinity` | 04 §4.1 外放支 | `outwardAttack=floor(outwardAttackRaw×qiAffinity/100)`；仅当前持用武器、`wInBp>0` 生效，成对兵器取实例值，不累乘主副手 |
+| `def` | 03 §4.1 静态 `hardDefense/innerDefense` → 04 Z2 | `roundHalfUp(100×kDef×G(grade))` 只反投影现有 `defOut/defIn flatLv`；受跨界压制时显示值按 `G(gUse)` 重算，无新的“总防御”槽 |
+| `reflect` | 04 §6.3、06 P7 `onHurt` | `reflectPct=reflect/10000`；唯一结算式 `floor(hpDamage×reflectPct×(1−attackerZ4))`，合计上限 40%；派生伤害标 `reflected`，不触发二次反伤 |
+| `antiHidden` | 04 Z4 | 暗器／投射命中时加入 `ΣdmgDown`；同来源只进一次，受 Z4 7500bp 总上限 |
+| `agi/luck/antiPoison/block` | 03 属性快照 → 04 Z0 或探索／世界 | 分别写入 `agi/luk/resPoison/parry` 既有修饰器；刷新按 `(sourceType,sourceId,modifierId)` 去重 |
+| `poison` | 04 Z0 效果命中 → 06 Buff | `baseBp=min(6000,poison×500)`；必须同时有正式毒 Buff 引用，未引用则该数值只展示、不运行 |
+| 五个药品字段、三个食品字段 | §2.4 `UseSpec.effects`、05／06／15 | 按 §4.10.4 映射；单个效果在 `UseSpec` 中只生成一个 op，永久写入失败则整笔永久部分回滚 |
+
+**硬度状态**为装备实例新增 `durability:{current,max}`【建议值】，初始化 `max=current=hardness`；无 `hardness` 的旧装备不进入磨损系统。攻击被成功招架后只扣攻击方当前兵器一次：
+
+```text
+blockHardness = 5 × defenderBlock
+loss = max(1, 1 + floor((blockHardness - attackerHardness) / 20))
+current' = max(0, current - loss)
+damaged = current' <= floor(max × 2000 / 10000)
+broken  = current' == 0
+```
+
+`defenderBlock` 为守方所有已生效 `block` 的最高值，不相加；无格挡装备取 0。系数 5 把本节 `block=0..14` 映到 `blockHardness=0..70`，与兵器硬度 `20..100` 同量纲，使高阶格挡对脆刃有额外损耗而不快速磨损同阶坚兵【建议值】。`damaged`（≤20%）时该兵器主属性来源 ×0.80；降到 0 写入既有 `broken:{gBreak}`，`gBreak` 取守方最高格挡装备 `gUse`（无则取 1），并按 §3.6／§6.6 修复。该 ×0.80 与既有 `brokenMul` 取更低者，不重复相乘；修复同时令 `current=max`。战斗结束不自动回满。神兵护主仍可免疫断兵，但是否免疫日常硬度损耗见 O27，首版默认免疫。
+
+核算：黄上青钢剑若 `hardness=45`，被玄上护腕 `block=7` 格挡，`blockHardness=35`，故 `loss=max(1,1+floor((35−45)/20))=1`，要 36 次成功格挡才进入 `≤9` 的受损区；若硬度 20 的脆刃被地上 `block=10` 格挡，`loss=1+floor((50−20)/20)=2`，第 8 次后降到 4 进入受损、第 10 次破损。常规同阶兵器仍是跨战维护压力，高阶格挡克制脆刃则可在长战显现。
+
+#### 4.10.7 八批次“分类 → 字段清单与典型值”速查
+
+典型值取各大阶上缘样本 `grade=3/6/9/10`；斜线依次为黄／玄／地／天。逐件先服从既有效果字段和描述，再在本节带内微调。
+
+| 批次 | 分类 | 必填／可选字段 | 典型值（黄／玄／地／天） |
+|---:|---|---|---|
+| 1–2 | 武器 | `atk; hardness; qiAffinity`；特殊加 `qiEffect` | `atk=100/105/110/115`；`hardness=40/55/70/85`；`qiAffinity=100/100/105/110` |
+| 3–4 | 秘籍 | `skillRef; maxLayer`；按描述加 `readWis/readBre/cultivation` | 门槛典型 `25/35/50/65`；`cultivation=0/2000/3500/5000`，必须以 05 目标武学为准 |
+| 5 | 食品／菜肴 | `stamina`；按描述选 `healInner/healOuter`，共 1–2 项 | `stamina=12/17/24/28`；`healInner=0/2/4/6`；`healOuter=0/4/7/9` |
+| 6 | 药品／药材 | 从 `restoreQi/qiCultivation/con/healInner/healOuter` 取 1–3 项 | `restoreQi=7/10/14/17`；`qiCultivation=0/2000/3500/5000`；`con=0/1/1/2`；`healInner=1/3/6/8`；`healOuter=6/9/12/14` |
+| 7 | 衣物／盔甲／内甲 | `def`；按描述加 `reflect/antiHidden` | 轻衣 `34/48/67/78`，中甲 `36/51/72/84`，重甲 `42/60/84/98`，内甲 `22/31/43/50`；`reflect=0/200/500/800` |
+| 7 | 鞋 | `def; agi` | `def=6/9/12/14`；`agi=1/2/3/4`；既有 `qinggong` 仍只在效果字段 |
+| 7 | 腰带等其他装备 | 从 `luck/def/poison/antiPoison` 取 1–3 项 | `luck=1/2/3/4`；`def=6/9/12/14`；`poison=0/3/6/9`；`antiPoison=0/3/6/9` |
+| 8 | 护肩／披风／头饰／护腕 | `def`；护腕加 `block`，其余按描述加 `luck/block` | 肩披 `def=3/4/6/7`，头手 `def=6/9/12/14`；牌 `12/17/24/28`；`block=3/6/9/12` |
+| 8 | 暗器 | `atk; hardness; qiAffinity`；毒器加 `poison`／`qiEffect` | `atk=90/100/110/120`；一次性 `hardness=0`、可回收 `30/45/60/75`；`qiAffinity=100`；`poison=3/6/9/12` |
 
 ---
 
@@ -799,7 +944,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 
 ### 5.1 神兵通用规则
 
-> **AR-20 后发例外**：基准 §14 的 12 件仍是唯一 `divine:true` 神兵宝甲，且继续完整享用下表通则。十一类名录为满足“天地玄黄等级对应物品”，可收录额外天级具名装备，但必须标 `catalogTian:true`、`divine:false`、`flags:[unique]`、`price:null`；七列投影中的 `unique=true` 序列化时等价写入 `flags:[unique]`。这些样本仅由固定剧情／奇遇节点产出，不进随机池、锻造、商店或天材骰，只可修复。它们没有“神兵护主”、两段专属、器合或藏史优待，除非未来基准逐件吸收。非天级名录条目仍须 ≤ 地上 9。
+> **AR-20 后发例外**：基准 §14 的 12 件仍是唯一 `divine:true` 神兵宝甲，且继续完整享用下表通则。十一类名录为满足“天地玄黄等级对应物品”，可收录额外天级具名装备，但必须标 `catalogTian:true`、`divine:false`、`flags:[unique]`、`price:null`；九列投影“效果字段”中的 `unique=true` 序列化时等价写入 `flags:[unique]`。这些样本仅由固定剧情／奇遇节点产出，不进随机池、锻造、商店或天材骰，只可修复。它们没有“神兵护主”、两段专属、器合或藏史优待，除非未来基准逐件吸收。非天级名录条目仍须 ≤ 地上 9。
 
 | 规则 | 内容 |
 |---|---|
@@ -1586,7 +1731,7 @@ AR-28 的具名药材字段、子类、效果与炼丹消费接口仍以本文 �
 
 | 项 | 全程上限（丹药/食物部分） | 每书界投放上限（高 / 中 / 低武） | 来源示例 | 超额处理 |
 |---|---|---|---|---|
-| 先天永久点 | +20（03 全程 +50 中，其余归奇遇） | 3 / 1 / 每两部 1 | 菩斯曲蛇胆、生生造化丹 | "药力已饱和"：只保留临时部分 |
+| 先天永久点 | +20【建议值】（这是 03 §2.9.1 常规外部预算约 24 的药食子预算；药食与奇遇／事件合计仍 ≤24，普通来源不破 100。显式 `breakCap` 另受稀有破限最多 20 约束） | 3 / 1 / 每两部 1 | 菩斯曲蛇胆、生生造化丹 | "药力已饱和"：只保留临时部分 |
 | `breakCap` | 与奇遇合计每书界 ≤ 2（03 §2.1） | 丹药 ≤ 1 | 生生造化丹 | 同上 |
 | `hpMax` pct | +16%（03 D-14：丹药 + 传功 ≤ 30%，预留传功 12%） | +2% / +1% / +0.5% | 千年人参 | 同上 |
 | `mpMax` pct | +28%（≤ 40%，预留传功 12%） | +3% / +2% / +1% | 腊八粥、千年人参、宝蛇之血 | 同上 |
@@ -1699,7 +1844,7 @@ AR-28 的具名药材字段、子类、效果与炼丹消费接口仍以本文 �
 | `it_putaojiu` | 葡萄酒 | 玄中 5 | 酒 | 同上；配夜光杯 ×1.5 | 06 | 同上 |
 | `it_zhuangyuanhong` | 状元红 | 玄中 5 | 酒 | 同上；配古瓷杯 ×1.5 | 06 | 同上 |
 
-**AR-23 新增原著场景菜肴**：下表只登记成品与膳食投影；七列机器名录、外观、史实边界与 **（待考）** 标记见 `catalog/items-food.md`。`meal` 仍按 §9.1 在战斗开场施加整场 ×0.5 Buff；数值、菜式复原与未见原著定本的形制均为 **（原创扩展）**。
+**AR-23 新增原著场景菜肴**：下表只登记成品与膳食投影；九列机器名录、外观、史实边界与 **（待考）** 标记见 `catalog/items-food.md`。`meal` 仍按 §9.1 在战斗开场施加整场 ×0.5 Buff；数值、菜式复原与未见原著定本的形制均为 **（原创扩展）**。
 
 | ID | 书界 / 场景 | 品阶 | 类 | `meal` | 供餐 | 考据状态 |
 |---|---|---:|---|---|---:|---|
@@ -2367,7 +2512,11 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 |---|---|---|---|---|
 | 物品大类 | `ItemKind`（24 值） | 枚举 | `weapon` `armor` `offhand` `hidden` `accessory` `ammo` `pill` `tonic` `poison` `antidote` `food` `dish` `wine` `material` `tool` `manual` `page` `recipe` `quest` `token` `curio` `mount` `collectible` `system` | §2.1 |
 | 物品定义 / 装备定义 | `ItemDef` / `EquipDef` / `UseSpec` | 数据结构 | 通用字段、装备专属字段、消耗品用法 | §2.3–2.4 |
-| 装备实例 | `EquipInstance` | 数据结构 | 含 `absGrade` `nativeTo` `affixes` `temper` `inscription` `refine` `refineFire` `poisonCoat` `broken` `owner` `qipo` `sleeps` `history` | §2.5 |
+| 装备实例 | `EquipInstance` | 数据结构 | 含 `absGrade` `nativeTo` `affixes` `temper` `inscription` `refine` `refineFire` `poisonCoat` `durability` `broken` `owner` `qipo` `sleeps` `history` | §2.5 |
+| 物品属性投影 v2 | `item-attribute-projection.v2` | 名录／schema 投影 | 九列名录的整数摘要层；旧“效果字段”仍为规则真值，同一效果不得双算 | §4.10 |
+| 属性投影字段 | `atk` `hardness` `qiAffinity` `qiEffect` `def` `reflect` `antiHidden` `agi` `block` `luck` `poison` `antiPoison` `restoreQi` `qiCultivation` `con` `healInner` `healOuter` `stamina` | 字段 | 作者分类的武器、装备、药品与食品字段；单位、四阶带及消费点见字段表 | §4.10.2–§4.10.4 |
+| 其他物品投影字段 | `skillRef` `readWis` `readBre` `maxLayer` `cultivation` `unlockRef` `artRef` `artReq` `travel` `ruleRef` | 字段／引用 | 秘籍、工具、坐骑、任务物与奇物的受限可选字段；引用必须闭合 | §4.10.4 |
+| 硬度状态 | `durability:{current,max}` | 实例状态 | 由 `hardness` 初始化；成功招架后扣减，20% 进入受损、0 进入破损【建议值】 | §4.10.6 |
 | 使用品阶 | `gUse` | 计算量 | `min(effGrade, gCap(Ld))`，一切装备数值的计算品阶 | §4.3 |
 | 等级封顶 | `gCap(Ld)` | 公式 | `min(12, gMain(Ld) + 2)`；"力有不逮" | §4.3 |
 | 满效等级 | `reqLv(g)` | 表 | 发挥全部品阶与专属特效所需显示等级 | §4.3 |
@@ -2410,7 +2559,7 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | 官甲合法性 | `lawProfile` / `uniformImpersonation` | 装备字段 / 事件 | 只发身份违法暴露；通缉与城门处理归 11/12 | §3.4.1 |
 | 药材年限 | `herbFamily` / `ageYears` | 材料字段 | 普通／十年／百年／千年映射黄／玄／地／天 | §8.2.1 |
 | 食材细类 | `ingredientKind` | 材料字段 | 谷物、肉、水产、菜蔬、果、调料、珍材 | §9.0 |
-| 物品出图名录 | `catalog/items-*.md` | 投影 | 十一份七列表，每 ID 一行；规则权威仍为本文 | §1.3、§15.1 |
+| 物品出图名录 | `catalog/items-*.md` | 投影 | 十一份九列表，每 ID 一行；新增“说明／属性投影”，规则权威仍为本文 | §1.3、§4.10、§15.1 |
 
 十一份固定投影路径为：`catalog/items-medicine.md`、`items-food.md`、`items-manuals.md`、`items-weapons.md`、`items-clothing.md`、`items-armor.md`、`items-innerarmor.md`、`items-accessories.md`、`items-shoes.md`、`items-belts.md`、`items-hidden-weapons.md`（均相对 `docs/design/`）。`tech/04` §2.5 的运行时 ID 注册表由内容定义扫描生成，**不是可手改文件**；因此本轮在下表登记全部新 ID，构建时再生成 `SymbolEntry`。
 
@@ -2503,11 +2652,19 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | V31 | §10.1.3 的 25 本须逐条校验 `skill/grade/chapters/variant/maxLayer`；§10.3.2 的 5 种按地 6／玄 4 页校验；来源前置、倚天排除与师授／秘籍上限不得相互覆盖。大手印旧 6 页字段不能作为新物品版本并存 | 错误 |
 | V32 | `rc_dahuandan.output=it_dahuandan`、`craftGrade=9`；首次解锁须同时满足伤科 ≥7 重与炼丹 ≥40，制作须已学方且炼丹 ≥68、合法丹炉及 §8.7.1 四份材料。两套门槛不得互换；学识跨界保留，产量不能改变单炉材料用量 | 错误 |
 | V33 | `householdMeal` 仅映射 §9.3.1 的 `it_jiachangfan`，固定 `dish/dish/grade:1/stack:20`；仅实际烹饪失败每批发 1 份，不能由前置拒绝发放或沿用成功成品品阶。使用仅回复向下取整且封顶的 10% 体力，不生成／替换膳食，不可战斗使用或跨书眠携带 | 错误 |
-| V34 | 十一份 `catalog/items-*.md` 每行恰为七列；ID 全局唯一且仅 `it_`／`eq_`；品阶只取天地玄黄，且效果字段 `grade=N` 必须同阶（1–3 黄／4–6 玄／7–9 地／10–12 天）；出处、效果、外观非空；每个 ID 必须在 §14.2 注册 | 错误 |
+| V34 | 十一份 `catalog/items-*.md` 每行恰为九列；表头顺序固定为 §4.10.5。ID 全局唯一且仅 `it_`／`eq_`；品阶只取天地玄黄，且效果字段 `grade=N` 必须同阶（1–3 黄／4–6 玄／7–9 地／10–12 天）；出处、说明、效果、属性投影、外观非空；每个 ID 必须在 §14.2 注册 | 错误 |
 | V35 | `ageYears` 普通／十年／百年／千年分别满足 `<10`／`10..99`／`100..999`／`>=1000` 且大阶不降；同一 `herbFamily` 年限增大时品阶不得降低 | 错误 |
 | V36 | 制式盔甲必填完整 `lawProfile`；穿戴暴露事件只含 §3.4.1 六字段。`equip-slots.v1→v2` 迁移后三个新槽存在，软猬甲／金丝背心恰在 `innerBody` 且实例总数不变 | 错误 |
 
 | V37 | 和氏璧只能由真璧取得收据形成一个主线信物实例；不得进入掉落池、普通背包、装备候选、`runLegacy.inventory` 或校合配方；重复取得 / 领悟请求不再发物或升层 | 错误 |
+| V10-01 | “说明”去除 Markdown 标记后按 Unicode 码点计须为 60–120 个字符（标点计入）；原著事实含书名与人物／情节，未核准细节带“待考”，原创物或原创数值／形制带“原创扩展”；禁止伪引文、伪回目号 | 错误 |
+| V10-02 | “属性投影”须为单个代码跨度，内容只可为 `—` 或 `key=value; key=value`；分隔符、单空格、camelCase、§4.10.5 规范键序固定，键不重复，数字为无单位非负整数，运行时引用值符合正式 ID 语法；`qiEffect=（原创扩展：…）` 只准作者占位并明确阻止构建 | 错误 |
+| V10-03 | 键只可取 §4.10.2–§4.10.4 白名单且符合物品分类：武器、衣、鞋、护腕、其他装备、药、食、秘籍／其他各按字段集；必填键不得省略，不适用键不得以 0 占位 | 错误 |
+| V10-04 | 数值须落在该 `grade` 大阶带；`def=roundHalfUp(100×kDef×G(grade))`，跨界显示按 `gUse` 重算；一次性暗器仅允许 `hardness=0` 例外；所有引用键必须闭合 | 错误 |
+| V10-05 | 投影与效果字段须按 §4.10.5 规范化后相等：百分比／系数以 `roundHalfUp` 转整数摘要，整数点数直接相等；运行保留旧效果字段精确值，只生成／复用一个原子，禁止把舍入投影再生成或叠加 | 错误 |
+| V10-06 | `qiAffinity` 省略时为 100，只可进入 protocol 4 外放支一次；`qiEffect`、`poison` 必须引用正式效果才可运行。`healInner` 只减 `bf_neishang` 层；走火／外伤驱散仍须效果字段明列 | 错误 |
+| V10-07 | `hardness>0` 初始化 `durability.current=max=hardness`；`0≤current≤max`。每次成功招架只扣攻击方兵器一次，20%／0 阈值、修复与神兵默认按 §4.10.6；无硬度旧物保持 `null` | 错误 |
+| V10-08 | 永久 `con` 黄阶必须为 0、单份不超过 `0/1/1/2`；药食累计 ≤20，且与常规奇遇／事件合计 ≤24，普通来源不得破 100；显式 `breakCap` 另受稀有破限池最多 20 约束。任一账越界时永久部分事务回滚 | 错误 |
 
 ### 15.2 金标准测试用例（玩法核心单元测试）
 
@@ -2560,6 +2717,14 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | T45 | 官甲身份暴露 | 无合法身份穿可见 `eq_mingjinyiweijia` 走正常城门，随后脱甲 | 穿戴时发六字段事件，12 判违法、11 激活通缉并阻止正常进城；脱甲不清除既有通缉 |
 | T46 | 槽位迁移原子性 | v1 存档的 `body=eq_ruanweijia`，模拟写新槽后事务失败，再成功重试 | 失败时存档逐字段不变；成功时 `body=null`、`innerBody` 为原同一 `uid`，肩／披风为空，总实例数不变 |
 | T47 | 年限分级 | 普通／10／100／1000 年人参，再尝试 100 年黄阶人参 | 前四项依次黄／玄／地／天；最后一项构建失败，不因名称或年限自动获得成药效果 |
+| T48 | 九列与说明边界 | 同一条合法 60／120 字符说明；另测 59／121、八列、十列、伪回目号 | 前两条合法；其余分别按 V10-01／V34 拒绝，并准确报告文件与行号 |
+| T49 | 投影语法与白名单 | `atk=105; hardness=48; qiAffinity=100`；另测 `atk=1.05`、重复 `atk`、`mainK=105`、双空格 | 首条解析为三个整数键；其余因小数／重复／非白名单／分隔格式失败 |
+| T50 | 防御复算与双写 | 玄上 6 中甲：`G=1.70,kD+kI=.30`，投影 `def=51`；效果列已有对应 `defOut/defIn` | `roundHalfUp(100×.30×1.70)=51` 且运行只保留原两项防御；写 50、或再加一份 `def` 均失败 |
+| T51 | 两支攻击接线 | 同一 protocol 4 招式 `outwardAttackRaw=790`，武器 `qiAffinity=110`；另以无装备修饰 `atkOutSnapshot=1200,wOutBp=4500` 核建议硬功接线 | 外放为 `floor(790×110/100)=869` 且只乘一次；硬功为 `floor(1200×4500/10000)=540`，与 04 裸式等价。`atk` 只生成既有兵器来源，不再作为第二乘数 |
+| T52 | 反伤唯一公式 | `hpDamage=1000,reflect=800,attackerZ4=2500bp`，另有来源使合计 4500bp | 单来源 `floor(1000×.08×.75)=60`；合计先钳 40% 后按 04 §6.3 结算；`reflected` 不递归 |
+| T53 | 硬度跨战损耗 | `hardness/current=20` 的兵器连续被 `block=10` 格挡并修复 | `blockHardness=50`，每次扣 2；第 8 次后 `current=4`、受损，第 10 次破损；战末不回满，修复后 `20/20` |
+| T54 | 药食映射与永久预算 | `restoreQi=10; con=1; healInner=3; healOuter=9`，效果字段已有等值原语；分别令药食累计由 20 加到 21、药食与常规奇遇合计由 24 加到 25 | 前四项各生成／复用恰一个效果，内伤只减 3 层且不退经脉进度；两种越界均拒绝永久事务，非永久效果照条目既定原子边界处理 |
+| T55 | 其他物品引用 | 秘籍 `skillRef=sk_x; maxLayer=8; cultivation=3500`，及任务物 `luck=2` 但无护符／吉兆叙事 | 前者仅在 `sk_x` 存在且与效果字段一致时通过；后者因无描述依据失败，纯任务物应写 `—` |
 
 ---
 
@@ -2592,6 +2757,8 @@ P(cat, g) = P0(cat) × 2.2^(g − 1)              // 单位：两（银）；取
 | D-21 | design/11、design/12 | AR-20 官甲只发 `{equipId,wearerId,lawProfile,exposure,locationId,time}`；12 校验 `allowedIdentityTags`，11 承接通缉激活与正常城门 `blocked`，且脱甲不自动洗罪 | §3.4.1、V36、T45 |
 | D-22 | tech/04／05、design/14 | `equip-slots.v2` 新增 `innerBody/shoulder/cape`，三字段初始化与软猬甲／金丝背心移槽必须原子；客户端 v1 只读不得覆写 | §3.1.1、V36、T46 |
 | D-23 | ART-item-*、tech/07 | 十一份 `catalog/items-*.md` 是批量出图输入；逐行消费 ID 与外观要点，沿 `assets/default/prompts/item.md` 的统一风格，不从名录反写玩法 | §1.3、§14.2、V34 |
+| D-24 | TOOL-items-catalog、packages/data | 解析九列并把“说明”写 `text.lore`、“属性投影”写各 strict extension 的可选 `attributes:AttributeProjectionV2`；保留效果字段既有映射，落实 V10-01～08／T48～55，禁止双算 | §4.10、§14.1、§15 |
+| D-25 | design/03／04／05／06、tech/05 | 接收建议接口：protocol 4 硬功支改读最终 `atkOutSnapshot` 以闭合既有兵器来源；`qiAffinity` 只乘外放支一次；`reflect` 唯一引用 04 §6.3；`antiHidden` 进条件 Z4；`poison` 进效果命中；`luck` 只复用 `luk`；`qiCultivation` 缺省目标主运内功 | §4.10.2–§4.10.6、O28–O29 |
 
 ### 16.2 本文依赖的上游事实
 
@@ -2668,3 +2835,7 @@ P-F／P-G 待基准吸收；在此之前运行数据按作者要求优先级执�
 | O23 | AR-24 哪些门派象征物算可装备法器 | 默认仅收可实际持用的兵器／法器；印信、令旗、掌门指环继续归 `design/11` 任务物品。无原著具名器物的门派以一件地级 **（原创扩展）** 公用法器补视觉位，不宣称为原著镇物 |
 | O24 | AR-24 天级兵器数量是否扩大 | 默认只新增原著明确为武当镇山之宝的真武剑，按 `catalogTian=true; divine=false`；基准 12 件 `divine` 闭集不变，其余新增名器／门派法器最高地上 9 |
 | O25 | AR-24 制式兵器是否按年代多件并存 | 默认是：同一六档矩阵允许宋／元／明／清形制并存，品阶代表制作质量而非年代先后；晚清牛尾刀不得投放到早期书界 |
+| O26 | 药品／食品永久根骨如何占用 03 v2 两本总账 | 默认药食累计至多 +20，作为 §2.9.1 常规外部约 24 的子预算，故药食与奇遇／事件合计 ≤24，普通来源不破 100；只有显式 `breakCap` 的部分才另受稀有破限最多 20 约束 |
+| O27 | 硬度的受损阈值、破损与神兵豁免 | 默认 `blockHardness=5×block` 后判损耗，`current≤20% max` 令兵器主属性来源 ×0.80（与 `brokenMul` 取更低者），0 进入既有 `broken`；成功招架每次至少扣 1、跨战保留，修复回满。神兵护主首版免日常损耗，待压测后确认 |
+| O28 | 装备“吉运”具体作用点 | 默认只写入现有 `luk flat`，因此按 03 §2.3 影响奇遇、掉落品阶中心与化险为夷；不另造装备专属幸运骰，也不直接加宝箱稀有率 |
+| O29 | `qiAffinity` 与放毒／防暗器建议接口是否纳入核心协议 | 默认 `qiAffinity` 仅乘 protocol 4 外放支一次；`poison` 用 `min(6000,poison×500)` 后走效果命中；`antiHidden` 作为暗器／投射条件 Z4 并受 7500bp 总上限。实现前均保持【建议值】 |
