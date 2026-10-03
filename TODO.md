@@ -119,6 +119,7 @@
 - `tools/agents/prompts/_codex_worker.md`：codex 执行器在沙箱里不能再起 `codex exec`（`workspace routing discovery failed`），所以执行器只用 `mk.py` 排队、`ingest8.py --no-commit` 入库，出图 runner（`runner.py`）由追踪者在沙箱外起；每个执行器各用自己的 `CODEX_HOME`（60b81607）。
 - `_handoff/gem/DISK_RULE.md`：每张图出完清 CODEX_HOME 的 `sessions/` 与 `generated_images`；执行器日志超 150 MB 自动 gzip 轮转。
 - 剧照放在主检出 `.agents/coord/imagegen-reference/identity-2026100{1,2}/`、作者给的游戏封面在 `author-20261002/`，不入库，目录里有 SOURCES.md。
+- 工具维护待办（追踪者报告，低优先，未登记）：通用 `ingest.py` 的归档 / 锁路径、`ingest8.py` 不记 done.txt；`crop_frame` 已登记 TOOL-ingest-cropframe。
 - 风险：剧照参考那批图会接近演员本人样貌，第二波已按「像角色不像演员」重做主角；公开发布前仍要复查。
 
 ### 3.2 物品图（Gemini 网页）
@@ -197,7 +198,7 @@
 - **des36 的 DES-items-gifts-spec**（礼品规格：吉运 / 送礼好感 / 年代字段）：HOLD-RUNS，续作条件同 CITY（磁盘 ≥ 8 GiB 且负载 < 10）。
 
 **待办**：
-- [ ] **DES-sync-keyscenes-ar36**（hero-b 合入后登记）：`key-scenes.md` §0、§16–17 的旧统计（每书恰 7 / 合计 102 / 只准 approved 参考）改成 AR-36 候选生产口径；ch01～07 各条按 hero-a 报告 §6 修正（聚贤庄新图与题字、雁门等待标记改已解决、张家口乞儿装、桃岛背诵经文、重阳杨过断右臂、梅庄 / 少林偏殿三战、长乐李四掷凳、金蛇洞铁盒等）；`story/07` §2.2 「十四岁发现铁盒、约十年后下山」措辞；design/18 孙婆婆 / 蒙哥 ID 核查。hero-b 报告 §6 出来后合并进去。
+- [ ] **DES-sync-keyscenes-ar36**（已登记并起跑：des37 batch，03:50）：`key-scenes.md` §0、§16–17 的旧统计（每书恰 7 / 合计 102 / 只准 approved 参考）改成 AR-36 候选生产口径；ch01～07 各条按 hero-a 报告 §6 修正（聚贤庄新图与题字、雁门等待标记改已解决、张家口乞儿装、桃岛背诵经文、重阳杨过断右臂、梅庄 / 少林偏殿三战、长乐李四掷凳、金蛇洞铁盒等）；`story/07` §2.2 「十四岁发现铁盒、约十年后下山」措辞；design/18 孙婆婆 / 蒙哥 ID 核查。hero-b 的 ch08～14 条目、`story/09` 制衣方向、`npcs-ch09` 铃剑双侠（水笙与汪啸风）、`npcs-ch08` 顺治 / 风际中主记录核查也在任务说明里。
 - [ ] design/10 §14.2 只登记 569 / 894 个物品 ID（缺 manuals 170、weapons 128、hidden-weapons 27）：lore 合入后登记同步任务。
 - [x] 设计定稿后的 ENG 任务已登记（eng3 队尾，四个串行）：ENG-27a 属性 v2 数据链 → 27b 战斗链 → 28a 一般书眠 → 28b 螺旋内力；27c 节奏锁放 28b 之后。金钱与采集等 ENG-20a / 26 合入后再登记。ENG-17 只覆盖 M1 里的初眠配点。
 
@@ -277,6 +278,7 @@
   sudo rm -f /Users/bytedance/Projects/jinyongqunxia/.git/logs/refs/remotes/origin/claude/*.lock /Users/bytedance/Projects/jinyongqunxia/.git/logs/refs/remotes/origin/HEAD.lock
   ```
 - **hero-a 验收**：四张联系表已发（03:15）；不满意的指出人物 / 时期 / 插图名，登记返工。
+- **双儿要不要精修**（hero-b 报告）：默认不动，作者说要再登记。
 - **110 个新登记人物要不要都出立绘**（ART-cast-fill-c / d，约 110 次 codex 出图）：默认等 hero-b 与 polish 之后再排，作者说不出就不出。
 
 ### 8.2 已按默认在做，待作者确认
