@@ -232,7 +232,7 @@ def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, searc
 
 
 WRAPPER = '"$@" < "$TS_PROMPT" >> "$TS_LOG" 2>&1; rc=$?; echo "$rc" > "$TS_EXIT"; exit $rc'
-FALLBACK_MODELS: list = ["GPT-5.6-Sol", "GPT-5.5"]  # 主模型不应答时回退
+FALLBACK_MODELS: list = ["GPT-5.6-Sol"]  # 主模型不应答时回退。作者只许 Astra → Sol（10-02 开发监督去掉 GPT-5.5：高负载下 Sol 探测超时曾落到 5.5）
 
 
 def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bool:
