@@ -1094,4 +1094,9 @@
       - 还剩三份：weapons（lore-1，r1 复审中；lore-2 等它）、manuals（lore-3，des34 自动复验后 r2 复审中；lore-4 等它）、food（lore-5，挂起）。
     - **lore-5**：06:10:31 转 HOLD-REVIEWS，4 秒后被 `hold_on_reviews.py` 改为 HOLD-RUNS；des34 只把它列入「停住待协调者」，没有重起。
       - TOOL-catalog-food-qi-exception 合入后，挪基点 `--from validate`。
+  - **10-03 06:21–06:27 开发监督**：内存压力。
+    - 06:21–06:22 交换区由 32.8 GB 涨到 35.8 GB，磁盘一分钟内从 6.1 掉到 3.1 GiB；当时有 10 个 traex 执行器同跑。
+    - 协调者 06:25 把两个低优先任务置 HOLD-RUNS，停了驱动与执行器、保留工作区：ENG-12e（协调者负责续作）和 TOOL-town-gaps-1（我的驱动 38690）。
+    - 续作条件：磁盘 ≥ 6 GiB 且负载 < 8。后台 `scratchpad/waitcond.py 6 8` 在等。条件满足后，我用 `--from start` 带「续作，工作区改动都在」说明重起 TOOL-town-gaps-1。
+    - ENG-16c 等继续不起。
 
