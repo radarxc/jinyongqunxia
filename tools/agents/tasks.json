@@ -34682,6 +34682,60 @@
     "packages/data/src/build/build.test.ts",
     "packages/data/src/build/__fixtures__/**"
    ]
+  },
+  {
+   "id": "ENG-12e-gltf-pilot",
+   "title": "游戏工程 · 3D 角色试点（Tripo GLB → GLTFLoader + toon 着色 + 8 方向转台 + 骨骼动画与片段重定向原型，与 2D 切件并排；作者 10-03）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "ENG-12e-gltf-pilot.md",
+   "deps": [
+    "ENG-12c-clip"
+   ],
+   "review": false,
+   "web": true,
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "writes": [
+    "packages/render/src/gltf/**",
+    "packages/render/src/index.ts",
+    "packages/render/CLAUDE.md",
+    "apps/game/src/rig-demo.ts",
+    "apps/game/src/style.css",
+    "apps/game/public/pilot/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "packages/render/src/gltf/index.ts",
+     "apps/game/public/pilot/zhujue_tripo_v1.glb"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
   }
  ]
 }
