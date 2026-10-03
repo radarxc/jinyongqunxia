@@ -8,34 +8,58 @@ age_variant: youth
 tier: S
 output: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
 manifest: assets/default/character/female/ch02/manifest.yaml
-references:
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "666c32c038ad578287862a4843af5bd60c7bb45fda4e56743c6a52f4499f8ae6"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still2.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "41ea8f6af53f62a9abfcd292bdc21fc1bf25baeead7bb22c873e5d9aa8ab98ac"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "16b4e092106f3f26946dd3c18bebda4d76c088e70e01a97f31b8265d42bca958"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae"}
 status: candidate
 realism_revision: user_identity_pose_20261001
-redo_reason: "作者 10-02 晚：复合基线风格精修"
+references:
+- path: .agents/coord/imagegen-reference/identity-20261002/shediao/huangrong_2017_liyitong_sina2020a.jpg
+  use: 身份参考：2017《射雕英雄传》 剧照（作者 10-03 指定版本）；只借造型、气质与五官神韵，按项目画风重画，不照搬照片
+  sha256: e22e5671b54c11e8ec7ef1c2371929fbde16680b9301706c921cacdfd580537b
+- path: .agents/coord/_handoff/gem/codex_w17/staging/stillface__huangrong.jpg
+  use: 剧照脸部特写：由上面这张剧照裁出放大（512×512），只为看清五官；同样只借神韵，按项目画风重画
+  sha256: d1afa0b76bc2ef9c2eedff27483496c704b763b822ec2aae1221c3094f7f89bf
+- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+  sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+- path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+  sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+redo_reason: "作者 10-03 AR-44：参考2017《射雕英雄传》造型重画 base，不要和照片一样"
 reference_upload:
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still1.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still2.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_game.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg"
-codex_prompt_rev: 2026-10-02
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/still__por_npc_huangrong__ch02_youth_bangzhu_base__1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/stillface__huangrong.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+codex_prompt_rev: 2026-10-03
 classic_ref:
-  version: 1994 年 TVB 张智霖、朱茵版《射雕英雄传》（黄蓉取朱茵版气质，AR-30 / AR-32）
-  actor: 朱茵
+  version: 2017《射雕英雄传》
   stills:
-  - .agents/coord/imagegen-reference/identity-20261002/shediao/huangrong_1994_zhuyin_sohu2025a.jpg
-  - .agents/coord/imagegen-reference/identity-20261002/shediao/huangrong_1994_zhuyin_sohu2025b.jpg
-composite_job: por_npc_huangrong__ch02_youth_bangzhu_base.resume3
+  - .agents/coord/imagegen-reference/identity-20261002/shediao/huangrong_2017_liyitong_sina2020a.jpg
 ---
 
 # 黄蓉 · 人物写实修正
 
 ## Gemini 提示词
+
+> 2026-10-03 AR-44 新 base（10 号出图员，codex exec · image_gen）：作者要求参考2017《射雕英雄传》造型、按项目画风重画、不要和照片一样；上传顺序：1 张剧照、1 张剧照脸部特写，最后两张为同性别画风基线（缩小版 JPEG）。上一版保留在下一节作历史。AR-44，作者 16:00 选 A（更像 2017 版、眼睛大一些）。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+【参考图】第 1 张是该角色经典影视造型的剧照，第 2 张是同一张剧照的脸部特写。人物的脸要明显向剧照靠拢——脸型、眉形与眉眼间距、眼型与眼神、鼻梁、嘴型和神情都要像剧照里的这个角色，让看过这一版的观众一眼认出；发型、服饰、配色和气质也借鉴剧照。但必须重新绘制成项目的手绘插画画风：不要照片质感，不要照搬剧照的构图、光影、背景和姿势，不要做成照片修图或照片贴脸。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
+【服饰以下文为准】剧照只借脸和神韵；服饰、发饰与道具按下文的丐帮帮主造型，不照搬剧照里的白衣和双辫。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物】黄蓉，《射雕英雄传》南宋的女主角，桃花岛主黄药师之女；君山大会接任丐帮帮主之后、射雕时期的少女帮主。聪明绝顶、俏皮灵动，又有一派帮主的从容。
+【年龄与体态】约十九岁的成年女子（不是儿童或少女体态），身材纤秀匀称，约 7.5 头身。
+【面容（作者：更像 2017 版、眼睛大一些）】明艳灵动：标准的鹅蛋脸、下巴小巧；一双又大又亮的杏眼——黑眼珠大、双眼皮清楚、眼尾微微上扬，眼神灵动狡黠、像随时藏着鬼主意；眉毛细长柔和；鼻子小巧挺直；唇形饱满、嘴角上扬带甜美的笑；肤色白皙透亮。五官比例是成年女子的，不要娃娃脸、婴儿肥或动漫大眼。
+【发式】乌黑长发半挽：头顶两侧挽小髻，簪碧玉珠花与小发饰，其余长发披在身后，鬓边垂两缕发丝。
+【服饰】沿用现有帮主造型：淡鹅黄与浅碧色相间的轻纱交领右衽长衣，内衬月白中衣，浅碧色腰带，及地长裙，浅色绣鞋；衣料轻盈完整、不暴露。
+【手与道具】右手持丐帮帮主的碧绿竹棒（打狗棒，约与她肩同高，竹节清楚），棒梢点地；左手自然垂放或轻提衣裙。
+【姿态】站姿轻盈俏立，身体基本朝向正面，头部端正，目光平视、带着狡黠的笑意。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要娃娃脸、婴儿肥、动漫大眼或少女体态；不要浓妆；不要换掉帮主的碧绿竹棒。
+【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+```
+
+## 上一版 Gemini 提示词（AR-44 新 base 之前，历史，不再用于出图）
 
 > 作者10-02晚复合精修；任务 `por_npc_huangrong__ch02_youth_bangzhu_base.resume3`；实际上传顺序见frontmatter，末两张为female项目基线。
 
