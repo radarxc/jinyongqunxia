@@ -44,7 +44,7 @@
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
 | TOOL-rig-sheet | traex Sol max | 审核 r4 又 FAIL（切件错分：pelvis_skirt 混入手臂、torso 含前臂残片、侧腿蓝灰楔块），第 7 次运行返修中 | 开发监督另起 |
-| DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | traex | TOOL-catalog-9col 已合入（4aa8c6db，05:37），开发监督按 `_handoff/lore_plan.md` 挪基点复验（并发 ≤ 4） | 开发监督另起 |
+| DES-items-lore-1 / 3 / 5 / 7 / 8 | traex | lore-6 已合入（20c1307a）；lore-1 / 3 因「整文件九列一致」与半批切分的矛盾改为各写整份名录（06:36 裁定，lore-2 / 4 取消，des34 调度器已停），开发监督改说明后挪基点重起；lore-5 等食品特例合入；lore-7 在跑；lore-8 等资源 | 开发监督另起 |
 | DES-items-gifts-spec | traex | 续作 35 分钟结束，校验通过，审核 r1 FAIL（06:12）自动返修中 | 38844（协调者另起，`supervise.r2.out`） |
 | ENG-12e-gltf-pilot | traex | 返修（恢复 2D 演示 + 3D 并排）跑了 25 分钟后 06:25 因内存压力暂停（HOLD-RUNS，工作区保留）；磁盘 ≥ 6 GiB 且负载 < 8 再 `--from start` 续作 | 协调者 |
 | TOOL-town-gaps-1 | traex Sol | 第 1 次运行 50 分钟后 06:25 因内存压力暂停（HOLD-RUNS）；条件同上，开发监督续作 | 开发监督 |
@@ -196,7 +196,7 @@
 - des35：DES-npcs-register-a（03c44028）/ b（3226fe15）——人物补齐发现的 110 个原著主要人物登记进各书名录与 design/18。
 
 **停住 / 在等**：
-- **des34 的 DES-items-lore-1～8**（武器 A/B、秘籍 A/B、食品、药品、衣甲鞋带、饰品暗器）：被七列校验器拦住（00:34），协调者 00:40 停驱动免得执行器把名录改回七列。TOOL-catalog-9col（校验器与生成器认九列，过渡期七九列都认）第 2 次运行已修掉审核唯一问题（`sxpGrant` 对象形式强制 `mode=pctNext`），03:16 复审中；合入后开发监督按 `_handoff/lore_plan.md` 逐个挪基点复验（1 / 3 / 5 / 6 `--from validate`，7 / 8 `--from start`，说明写「保持九列」），lore-2 / 4 由 des34 自动起；全部合入后 TOOL-items-catalog `--from start` 重新生成并提交 `content/items`（AR-39）。
+- **des34 的 DES-items-lore**（武器、秘籍、食品、药品、衣甲鞋带、饰品暗器）：TOOL-catalog-9col 合入后逐个挪基点复验；lore-6 已合入（20c1307a）。**切分改法（06:36 裁定）**：校验器要求整文件九列一致，lore-1 / lore-3 改为各写整份兵器 / 秘籍名录，lore-2 / lore-4 取消（des34 调度器已停）；lore-5 的腊八粥等食品特例等 TOOL-catalog-food-qi-exception 合入；全部合入后 TOOL-items-catalog `--from start` 重新生成并提交 `content/items`（AR-39）。
 - **des36 的 DES-items-gifts-spec**（礼品规格：吉运 / 送礼好感 / 年代字段）：05:30 已续作（单独驱动，auto-merge）；合入后 ART-items-gifts-catalog 还要等 TOOL-catalog-9col。
 
 **待办**：
