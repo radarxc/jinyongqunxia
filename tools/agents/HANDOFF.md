@@ -878,3 +878,12 @@
       - 协调者：清 ~/.codex 历史库 4.7 GB；step.py 改成每个执行器单独 CODEX_HOME；02:00 暂停 CITY 与 DES-items-gifts-spec。
     - **build_portraits**：已提交 29109cfe（ch02）、d255c157（ch04）、0343156b（ch06/07/09）、a03b120d（书剑部分，中止前先落库）。剩下的连同 hero 两任务的新图，等协调者指定时段一次跑完。INDEX 由协调者修脚本后重建；gallery 00:53 已重建。
     - **runner 运维**：w11 / w12 因磁盘自停后都续起过。w11 的旧进程没退干净，出现双 runner，写 STOP 排空后重起。执行器自己写的 STOP / EXIT_WHEN_EMPTY 改名为 `*.run1-*` / `*.disk-*`。
+  - **10-03 03:10–03:30 协调者**：
+    - hero-a 四张联系表（新旧基线对比、令狐冲三时期、神雕 / 笑傲插图）03:15 发给作者。
+    - **TOOL-catalog-9col**：返修（第 2 次运行：`sxpGrant` 对象形式强制 `mode=pctNext`、补 3 个拒绝测试，全部检查通过）校验通过后停在 HOLD-REVIEWS（原驱动 `--max-reviews 1`）。03:16 另起驱动 `--from review --max-reviews 1 --max-runs 2 --auto-merge --checks review_checks_tool.md`（pid 51856，日志 `.agents/coord/TOOL-catalog-9col/supervise.r2.out`）。PASS 自动合入后开发监督按 `lore_plan.md` 复验 lore；已告知开发监督别起第二个。
+    - **秘籍书名后缀**（Gemini 出图员 23:50、02:41 两次询问，18 本）：裁定题签只写书名本体，纸本的版本 / 载体词（古册 / 传本 / 经折本 / 原卷 / 古籍 / 钞本 / 手本 / 帛本 / 民间谱 / 帛卷）不写；古墓遗刻 / 石壁 / 铁板 / 石刻只刻书名、不贴题签；泥人图、圣火令无汉字；「笑傲江湖曲谱手本」题「笑傲江湖曲」；已出的「大金刚拳神功古籍」8 字版放回队尾重出。规则进 `tools/imagegen/gemini_prompt.py`（bf2f2663：`manual_title()` 加后缀与特例表，新增 `manual_carrier()`，`build_short` 按载体分题签 / 刻字 / 无字三种说法）。
+    - **入库裁框 bug**（出图员 01:36 报告）：`crop_frame()` 整行取均值，遇左右白框时上下扫描一直走进主体，it_miji_xingjunbu_can 第一次入库被切、已手工补救重入库（fa2c1895）。登记 TOOL-ingest-cropframe（a43039a3：扫描线只取另一轴框以内的像素，合成图回归测试），追加到 `_eng3_queue.txt` 队尾，下次重启 eng3 生效；也可在代码池有空位时单独起。
+    - **hero-b**：第 6 次运行执行器仍没重出李文秀（坚持要剧照），其余 80 图未动；r4 审核 03:08 起。已告诉追踪者：若再 FAIL，第 7 次说明写明不找剧照、按《金庸群侠传》头像 + 现基线直接出 1 基 2 期 3 景；PASS 就合入并另登记小补图任务。
+    - **TOOL-rig-sheet**：第 5 次运行校验通过，审核 r2 FAIL，03:18 自动进第 3 次运行。
+    - 磁盘 7 GiB、交换区 33.8 GB 用 32.8 GB、1 分钟负载 8.5～12；CITY / gifts-spec 仍暂停，eng3 并发 3。
+    - **TODO 整份更新**（03:25 版）：§0 现状、§1 工作区表、§3.1 / 3.2 / 3.4 / 3.5、§4～§8 全部按本轮改写；§2、§3.3、§8.2 原样保留。
