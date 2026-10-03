@@ -99,48 +99,47 @@
   category: scene
   style: default
   subject: 大胜关英雄大会（ch03_shendiao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是杨过的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是小龙女的身份基线（作者审核通过的立绘，脸部特写）；第 3 张是郭靖（神雕时期，四十岁上下）的身份基线（作者审核通过的立绘，脸部特写）；第 4 张是黄蓉（神雕时期，三十七八岁）的身份基线（作者审核通过的立绘，脸部特写）；第 5 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中杨过、小龙女、郭靖（神雕时期，四十岁上下）、黄蓉（神雕时期，三十七八岁）的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    大胜关英雄大会，双臂完好的青年杨过和白衣成年小龙女居台心，杨过手持普通竹棒，神情不羁而坚定；郭靖黄蓉在台侧，沿用本轮射雕基础图同一骨相但自然增龄为中年，郭靖鬓边些许霜意、深色朴素长袍，黄蓉成熟淡雅衣裙与沉静目光，不继承青年发饰或换影视演员。金轮法王为极高极瘦的中老年藏僧，黄色僧袍、头部剃净且额顶自然微陷、下巴仅短须影，手持金轮居远侧，其余金属轮束在腰侧，不画红袍壮汉或长发长髯；群豪低细节，所有站位为编辑性概括构图，具体动作待考。
+    【画里谁是谁】这张插图画的是：大胜关英雄大会，双臂完好的青年杨过和白衣成年小龙女居台心，杨过手持普通竹棒，神情不羁而坚定；郭靖黄蓉在台侧，沿用本轮射雕基础图同一骨相但自然增龄为中年，郭靖鬓边些许霜意、深色朴素长袍，黄蓉成熟淡雅衣裙与沉静目光，不继承青年发饰或换影视演员。金轮法王为极高极瘦的中老年藏僧，黄色僧袍、头部剃净且额顶自然微陷、下巴仅短须影，手持金轮居远侧，其余金属轮束在腰侧，不画红袍壮汉或长发长髯；群豪低细节，所有站位为编辑性概括构图，具体动作待考。
 
+    【要对齐的部分】杨过、小龙女、郭靖（神雕时期，四十岁上下）、黄蓉（神雕时期，三十七八岁）各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「大胜群英」和小朱印必须原样保留，一笔不改、不增不减。
 
-    第1张为npc_yangguo的本轮立绘；第2张为npc_xiaolongnv的本轮立绘；第3张为npc_guojing的本轮立绘；第4张为npc_huangrong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。 第3张是身份联系图，从左到右依次为guojing、huangrong；每一格只锁定该人的身份，不把格数画进成品。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
-
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「大胜群英」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: ae42658aa3617705e19411f75debe010b372a93aa1f35ece4ef64b21dcc322d8
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: f562a725652b9a510f14691e573322f0f1955f43fef8ee52e4a6b705863478d9
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch03_dashengguan_heroes_identity_board.jpg
-    use: 本轮主角身份联系图；源立绘与左右顺序见同名JSON
-    sha256: 8db9cd0d8deff437ffcde347fd4f1906576b0d55d3ea5d25a3bd735632e1b026
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
+    sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
+    use: 对脸基线：作者审核通过的 por_npc_yangguo__ch03_youth_onearm_base（杨过），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
+    use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch03/por_npc_guojing__ch03_prime_base.png
+    sha256: 14012a64b988839e6d861f5f7b0c3f4de074e0aa71dc42872df6c816948fbd30
+    use: 对脸基线：作者审核通过的 por_npc_guojing__ch03_prime_base（郭靖（神雕时期，四十岁上下）），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_huangrong__ch03_prime_base.png
+    sha256: 072a75f7267230b7533e6ee783c3783f1ebddc8f7df11a65a073c9e1aa47bd24
+    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch03_prime_base（黄蓉（神雕时期，三十七八岁）），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch03/cg_ch03_dashengguan_heroes.png
+    sha256: 399ac160c2ce0bfa9bc22a83b26b0ae38de7d9ab1b1d1aaf3aa9d4832ede1aee
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.399ac160.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T00:29:37-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch03_dashengguan_heroes.1791012577116737000/archive/cg_ch03_dashengguan_heroes.png
+  created: 2026-10-03T16:50:08-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_dashengguan_heroes.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 399ac160c2ce0bfa9bc22a83b26b0ae38de7d9ab1b1d1aaf3aa9d4832ede1aee
+  sha256: 7c0123739a34d62819219905c56497766ca169a7b2eba439c1d46a6ef9f74eae
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch03_dashengguan_heroes.1791012577116737000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch03_dashengguan_heroes.resume3.png
-  repair_runner_source_sha256: d13623faf797528e0a8f2b6cfcd0deae6114a8d157b48c7cee655d22a9646d90
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.399ac160.png
+    sha256: 399ac160c2ce0bfa9bc22a83b26b0ae38de7d9ab1b1d1aaf3aa9d4832ede1aee
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.399ac160.entry.yaml
   runner_job_records:
   - - cg_ch03_dashengguan_heroes.resume3
     - ok
@@ -148,8 +147,7 @@
     - '134'
     - exec-4745b2d2-0619-44d4-b569-12eeaaa1aba3.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch03_dashengguan_heroes.resume3
+  effort: ultra
 - id: cg_ch03_tomb_acceptance
   file: cg_ch03_tomb_acceptance.png
   category: scene
@@ -298,48 +296,46 @@
   category: scene
   style: default
   subject: 襄阳大战与蒙哥之死（ch03_shendiao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是杨过的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是郭靖（神雕时期，四十岁上下）的身份基线（作者审核通过的立绘，脸部特写）；第 3 张是黄蓉（神雕时期，三十七八岁）的身份基线（作者审核通过的立绘，脸部特写）；第 4 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中杨过、郭靖（神雕时期，四十岁上下）、黄蓉（神雕时期，三十七八岁）的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    襄阳大战中的飞石决胜，以超广角编辑性构图概括原著事件。中年杨过在近景仅左臂掷出石块，人物自身空右袖清楚，身体发力可信；左后城头郭靖与黄蓉均沿用本轮骨相明确增龄到五十岁上下：郭靖额头眼尾明显自然皱纹、两鬓少量灰白、沧桑稳重；黄蓉眼尾眼下细纹、鼻唇纹、成熟收敛颊面与素雅已婚盘发，没有少女发饰，绝不能照搬二十岁少女脸。二人注视远方，年龄变化必须一眼可辨且保持各自身份。蒙哥只用远景马上蒙古统帅的微小甲胄剪影表示，无需捏造面貌，不画中弹血腥。飞石轨迹靠动作和尘点暗示，不画光线；军阵雾尘压低细节，具体时空压缩属原创扩展构图。
+    【画里谁是谁】这张插图画的是：襄阳大战中的飞石决胜，以超广角编辑性构图概括原著事件。中年杨过在近景仅左臂掷出石块，人物自身空右袖清楚，身体发力可信；左后城头郭靖与黄蓉均沿用本轮骨相明确增龄到五十岁上下：郭靖额头眼尾明显自然皱纹、两鬓少量灰白、沧桑稳重；黄蓉眼尾眼下细纹、鼻唇纹、成熟收敛颊面与素雅已婚盘发，没有少女发饰，绝不能照搬二十岁少女脸。二人注视远方，年龄变化必须一眼可辨且保持各自身份。蒙哥只用远景马上蒙古统帅的微小甲胄剪影表示，无需捏造面貌，不画中弹血腥。飞石轨迹靠动作和尘点暗示，不画光线；军阵雾尘压低细节，具体时空压缩属原创扩展构图。
 
+    【要对齐的部分】杨过、郭靖（神雕时期，四十岁上下）、黄蓉（神雕时期，三十七八岁）各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「飞石靖难」和小朱印必须原样保留，一笔不改、不增不减。
 
-    第1张为npc_yangguo的本轮立绘；第2张为npc_guojing的本轮立绘；第3张为npc_huangrong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「飞石靖难」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【本张另外要求】这是十六年后的襄阳：杨过约四十岁、独臂（右袖空着），郭靖四十多岁、黄蓉三十七八岁。各人保持原图的年龄感（杨过眼角细纹、两颊略瘦、淡淡胡茬与风霜），只让五官骨相分别与各自的基线是同一个人，不要画年轻。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: d59258b455af825a78501b7f355f3d9f4bd15af80bf83502b325508e1d468183
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_guojing__ch02_youth_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 6dda0912ffe20515e847cf54dc77e7bd83e9ce977a205805effd6f7baf759a44
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_huangrong__ch02_youth_bangzhu_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 7c802d17d03504fdb6176f951dffd87b7a32f9e90c293a409c7ab4e8b776567f
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
+    sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
+    use: 对脸基线：作者审核通过的 por_npc_yangguo__ch03_youth_onearm_base（杨过），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch03/por_npc_guojing__ch03_prime_base.png
+    sha256: 14012a64b988839e6d861f5f7b0c3f4de074e0aa71dc42872df6c816948fbd30
+    use: 对脸基线：作者审核通过的 por_npc_guojing__ch03_prime_base（郭靖（神雕时期，四十岁上下）），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_huangrong__ch03_prime_base.png
+    sha256: 072a75f7267230b7533e6ee783c3783f1ebddc8f7df11a65a073c9e1aa47bd24
+    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch03_prime_base（黄蓉（神雕时期，三十七八岁）），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch03/cg_ch03_xiangyang_flying_stone.png
+    sha256: 460c58a645b1a7191da73068b21790dc63062302f5dbff6e25a27747d423529d
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_flying_stone.460c58a6.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T00:37:31-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch03_xiangyang_flying_stone.1791013050494658000/archive/cg_ch03_xiangyang_flying_stone.png
+  created: 2026-10-03T16:50:09-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_xiangyang_flying_stone.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 460c58a645b1a7191da73068b21790dc63062302f5dbff6e25a27747d423529d
+  sha256: 1d48e648f9eb86aa6735cfc80f03875b05b84845727a391d22815f44f1c9df39
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「飞石靖难」，实际字形「飞石靖难」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「飞石靖难」，实际字形「飞石靖难」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch03_xiangyang_flying_stone.1791013050494658000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch03_xiangyang_flying_stone.resume3r2.png
-  repair_runner_source_sha256: 70ba3f5fd2c7024fdbeefbc102bbb0b36c44577443361c52b8e61aa0bf4493b4
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_flying_stone.460c58a6.png
+    sha256: 460c58a645b1a7191da73068b21790dc63062302f5dbff6e25a27747d423529d
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_flying_stone.460c58a6.entry.yaml
   runner_job_records:
   - - cg_ch03_xiangyang_flying_stone.resume3r2
     - ok
@@ -347,52 +343,52 @@
     - '208'
     - exec-4dbe386d-563e-4955-8038-d2217b1ecc1c.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch03_xiangyang_flying_stone.resume3r2
+  effort: ultra
 - id: cg_ch03_xiangyang_gift
   file: cg_ch03_xiangyang_gift.png
   category: scene
   style: default
   subject: 郭襄生辰与神雕侠现身（ch03_shendiao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是杨过的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是郭襄的身份基线（作者审核通过的立绘，脸部特写）；第 3 张是黄蓉（神雕时期，三十七八岁）的身份基线（作者审核通过的立绘，脸部特写）；第 4 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中杨过、郭襄、黄蓉（神雕时期，三十七八岁）的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    郭襄生辰、群豪祝贺与神雕侠相认的编辑性概括构图（原创扩展构图，礼物明细和揭面地点动作待考）。中年杨过空右袖清楚，左手拿下朴素面具，目光温柔；成年化郭襄眉目清秀灵动，淡绿外衣、颈挂一串明珠，保持她本人的青春成年脸、不可复制黄蓉脸，惊喜看向杨过，双手自然合握、不捧虚构普通礼盒；后景黄蓉必须以本轮骨相清楚增龄到四十末至五十岁的母亲观感：眼尾与眼下细纹、自然鼻唇纹、脸颊略收，素雅盘起的已婚发髻，没有少女发饰，不磨皮。她与前景约二十岁观感的成年化郭襄必须有一代人的年龄差，绝不能读成同龄姐妹，保持两人独立骨相。黄蓉辨认故人。襄阳城门与温和灯火，无现代烟花大片、无纸盒礼物。
+    【画里谁是谁】这张插图画的是：郭襄生辰、群豪祝贺与神雕侠相认的编辑性概括构图（原创扩展构图，礼物明细和揭面地点动作待考）。中年杨过空右袖清楚，左手拿下朴素面具，目光温柔；成年化郭襄眉目清秀灵动，淡绿外衣、颈挂一串明珠，保持她本人的青春成年脸、不可复制黄蓉脸，惊喜看向杨过，双手自然合握、不捧虚构普通礼盒；后景黄蓉必须以本轮骨相清楚增龄到四十末至五十岁的母亲观感：眼尾与眼下细纹、自然鼻唇纹、脸颊略收，素雅盘起的已婚发髻，没有少女发饰，不磨皮。她与前景约二十岁观感的成年化郭襄必须有一代人的年龄差，绝不能读成同龄姐妹，保持两人独立骨相。黄蓉辨认故人。襄阳城门与温和灯火，无现代烟花大片、无纸盒礼物。
 
+    【要对齐的部分】杨过、郭襄、黄蓉（神雕时期，三十七八岁）各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「襄阳献礼」和小朱印必须原样保留，一笔不改、不增不减。
 
-    第1张为npc_yangguo的本轮立绘；第2张为npc_huangrong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「襄阳献礼」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【本张另外要求】这是十六年后：杨过约四十岁、独臂（右袖空着），黄蓉三十七八岁，郭襄是十六岁上下的成年化少女。杨过和黄蓉保持原图的年龄感（杨过眼角细纹、风霜），只让五官骨相与各自的基线是同一个人，不要画年轻；郭襄按她的基线对脸即可。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: d59258b455af825a78501b7f355f3d9f4bd15af80bf83502b325508e1d468183
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_huangrong__ch02_youth_bangzhu_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 7c802d17d03504fdb6176f951dffd87b7a32f9e90c293a409c7ab4e8b776567f
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
+    sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
+    use: 对脸基线：作者审核通过的 por_npc_yangguo__ch03_youth_onearm_base（杨过），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_guoxiang__ch03_youth_base.png
+    sha256: 6802a81da6871713490ca2dc5b966cff0908208057624d27ba16b40e0b4f45ae
+    use: 对脸基线：作者审核通过的 por_npc_guoxiang__ch03_youth_base（郭襄），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_huangrong__ch03_prime_base.png
+    sha256: 072a75f7267230b7533e6ee783c3783f1ebddc8f7df11a65a073c9e1aa47bd24
+    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch03_prime_base（黄蓉（神雕时期，三十七八岁）），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch03/cg_ch03_xiangyang_gift.png
+    sha256: 052e5819d14ee07d53035c51f63e25a1e2ea8513b34df367741c000eda68d029
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_gift.052e5819.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T00:37:35-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch03_xiangyang_gift.1791013055076037000/archive/cg_ch03_xiangyang_gift.png
+  created: 2026-10-03T16:50:10-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_xiangyang_gift.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 052e5819d14ee07d53035c51f63e25a1e2ea8513b34df367741c000eda68d029
+  sha256: 89948903a0c4f2dba0a310eb19f98757c051762e499117a2ad5ef042e6b60444
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「襄阳献礼」，实际字形「襄陽献礼」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「襄阳献礼」，实际字形「襄陽献礼」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_guoxiang__ch03_youth_base、por_npc_huangrong__ch03_prime_base
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch03_xiangyang_gift.1791013055076037000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch03_xiangyang_gift.resume3r2.png
-  repair_runner_source_sha256: 63456aff7fab1baab036718f53fe4ac8188625d3f54d8ab0a37ac1ccfd0d313a
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_gift.052e5819.png
+    sha256: 052e5819d14ee07d53035c51f63e25a1e2ea8513b34df367741c000eda68d029
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_gift.052e5819.entry.yaml
   runner_job_records:
   - - cg_ch03_xiangyang_gift.resume3r2
     - ok
@@ -400,5 +396,4 @@
     - '191'
     - exec-47c6e2f5-9f0f-4668-9873-b217a584040e.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch03_xiangyang_gift.resume3r2
+  effort: ultra
