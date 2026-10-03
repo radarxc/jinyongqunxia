@@ -15,8 +15,9 @@
 ## 产物（每座城 × 年代，照 CITY.md）
 - `docs/design/town/history/<city_id>__<band>.md`、`_plan.svg/.png`；
 - `docs/design/town/<city_id>__<chNN>.yaml`（每个章节一份）；
-- `assets/default/town/<city_id>__<chNN>/{town.png, preview.png, overlay.svg, layout.yaml, manifest.yaml}`（`id: town_<city_id>__<chNN>`，`tool: tools/town/render_town.py`，`model: none`，`prompt` 写实际命令，`status: candidate`）。
-- 「拼接出完整地图」= `render_town.py` 用贴片 + 建筑素材总装出的全尺寸 `town.png`；目检 `preview.png`（城垣 / 门 / 主街 / 水系与平面图一致，建筑不压水、不重叠）。
+- `assets/default/town/<city_id>__<chNN>/{preview.png, overlay.svg, layout.yaml, manifest.yaml}`（`id: town_<city_id>__<chNN>`，`file: preview.png`，`tool: tools/town/render_town.py`，`model: none`，`prompt` 写实际命令，`status: candidate`）。
+- **磁盘规则（协调者 10-03 01:05）**：全尺寸 `town.png`（18–35 MB 一张）只给 ch10 白马的城和每章 `importance` 最高的 1 座城；其余城**不渲染全尺寸**，只出 `preview.png`（`render_town.py --scale 0.5`，短边 ≥ 512）作为 manifest 的图，`notes` 写「全尺寸未渲染；运行时按 layout + 贴片渲染」。运行时城镇由 layout 和贴片实时渲染（ENG-09），全尺寸图只是审阅用。
+- 「拼接出完整地图」= `render_town.py` 用贴片 + 建筑素材总装（全尺寸或 0.5 缩放）；目检 `preview.png`（城垣 / 门 / 主街 / 水系与平面图一致，建筑不压水、不重叠）。
 
 ## 约束
 - 只写：`docs/design/town/**`、`assets/default/town/**`、本任务报告。
