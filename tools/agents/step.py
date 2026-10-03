@@ -350,8 +350,12 @@ def cmd_start(a) -> int:
     model = a.model or os.environ.get("TRAEX_MODEL") or g.defaults.get("model") or DEFAULT_MODEL
     effort = a.effort if a.effort is not None else (os.environ.get("TRAEX_EFFORT") or g.defaults.get("effort") or DEFAULT_EFFORT)
     binary = find_bin(a.bin, g.defaults)
+    cands = [model] + [m for m in FALLBACK_MODELS if m != model]
+    if "codex" in str(binary).lower():  # 2026-10-02 协调者：Codex（ChatGPT 账号）只认小写模型名（gpt-6-astra / gpt-5.6-sol），traex 认大写；按执行器换名
+        cands = [c.lower() for c in cands]
+        model = model.lower()
     if not a.no_probe:
-        for cand in [model] + [m for m in FALLBACK_MODELS if m != model]:
+        for cand in cands:
             print(f"… 探测模型 {cand}（≤ {a.probe_sec:g} 秒）", flush=True)
             if probe_model(binary, cand, effort, int(a.probe_sec)):
                 if cand != model:
