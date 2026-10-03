@@ -35102,6 +35102,56 @@
     "tools/lint/test_check_item_catalog.py",
     "docs/design/10-items-and-equipment.md"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_side_L.png",
+     "assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_side_R.png",
+     "tools/agents/reports/ART-rig-sheet-side.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_assets.py",
+      "assets/default/rig/npc_zhujue__ch00_m/sheet",
+      "--min",
+      "4",
+      "--max",
+      "4",
+      "--min-side",
+      "1000"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ART-rig-sheet-side",
+   "title": "动作原型 P1b · 主角·男侧视「双腿前后错开」补充三视图（sheet_side_L / R，给切件分出大腿 / 小腿；切件任务 r4 / r5 的侧腿阻断由新源图解决）",
+   "prompt": "ART-rig-sheet-side.md",
+   "deps": [
+    "TOOL-rig-sheet"
+   ],
+   "writes": [
+    "assets/default/rig/npc_zhujue__ch00_m/sheet/**"
+   ],
+   "sparse_include": [
+    "assets/default/rig/npc_zhujue__ch00_m/sheet/*.png",
+    "assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem\",\"/private/tmp\"]"
+   ]
   }
  ]
 }
