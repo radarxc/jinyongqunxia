@@ -992,7 +992,7 @@
     - 此后代码任务挪基点后，不必再先重建 dist（04:55 那条约定作废）。
     - 当前状态：eng3 在跑 ENG-12e、ENG-20a（M1 路径）、TOOL-rig-sheet；ENG-19b 已就绪，等 eng3 空位，代码池 4/4。
 
-  - **10-03 05:24–05:40 协调者（CITY 合入与工具缺口）**：
+  - **10-03 05:24–05:29 协调者（CITY 合入与工具缺口）**：
     - CITY 审核 r2 FAIL（05:24）只剩第 4 条：洛阳 18 格、太原 24 格墙水相交，太原缺三城内隔墙；审核自己写明要先补 `tools/town` 的声明式水门与多重城垣能力，任务写集改不到。驱动已自动起第 7 次返修，协调者置 HOLD 停掉。
     - 裁定（追踪者建议 b 的用意 + a 的改动量）：洛阳、太原两个 town 目录的 manifest 改 `status: rejected` 并加注（工具缺口，待 TOOL-town-gaps-1 后重做；文件留库对比，构建不进包），`review_checks_city.md` 加补充裁定 2；另起 `--from validate --no-review --auto-merge` 驱动（r4.out，pid 25318）免第三轮审核。**05:28 合入 04f1133a**（332 个文件：16 城目录、规格与史料、progress.csv / done.txt、报告）。
     - 登记 **TOOL-town-gaps-1**（052aac53；依赖 CITY-layouts-all）：声明式水门、多重城垣 / 共用内隔墙、无墙营地放行、未声明墙水相交新错误码、plan_view 页眉按城、cities.yaml 庭州键与 ch10 年代带、唐 / xiyu / tubo 套件进 schema（缺贴片按回退、不伪造基线），并用洛阳、太原两城重跑管线把 manifest 改回 candidate。已追加到 eng3 队尾；开发监督在代码池有位时单独起。
@@ -1005,4 +1005,8 @@
       - TOOL-catalog-9col（协调者的驱动 27447）执行完，05:24 进 r3 复审；
       - eng3 3/3：ENG-12e、ENG-20a（M1）、TOOL-rig-sheet；ENG-19b 就绪，等 eng3 空位。
       - 我没有单独起 ENG-19b，原因：协调者说 eng3 会自动起、eng3 不加并发；而且 batch_run 会把外部起的队列任务算进它自己的 3 个名额。
+  - **10-03 05:29–05:36 协调者 / 追踪者 / 开发监督**：
+    - 追踪者抽查 CITY 预览（敦煌、正定）通过；progress.csv / progress.md / done.txt 最终版拷到 `_handoff/city/`。**ART-ruins-maps 05:29 起跑**（驱动 35115，codex gpt-6-astra xhigh，基点 a9f12fd2，起跑时负载 7.1、磁盘 10.5 GiB）；ART-cast-polish-ch09 在 ruins 跑满 5 分钟、负载 < 10、磁盘 ≥ 7 GiB 时由追踪者自动起（codex_w15 已备）。
+    - **DES-items-gifts-spec 05:30 续作**（协调者，磁盘 9 GiB、负载 8 满足条件；驱动 38844，`supervise.r2.out`，说明 `coord_note_0532.md`）。
+    - **TOOL-town-gaps-1 05:32 起跑**（开发监督，驱动 38690；Astra 探测不通回退 Sol max）。按开发监督提醒，validate 补 `pnpm install --frozen-lockfile`、`pnpm typecheck`、`pnpm --filter @tianshu/data test` 与 pnpm 可写目录 agent_args（99d4e573）。
 
