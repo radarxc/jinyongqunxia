@@ -1422,4 +1422,11 @@
     - 只开 2 路：磁盘 8 GiB，每个代码工作区约 1.3 GB。等 attr-v2-schema 合入、工作区清掉、磁盘 ≥ 10 GiB 时，我报协调者，由他改回 3 路。
     - size-session-gate 与 attr-v2-schema 写集不重叠（tools/perf + vite 元数据插件 vs packages/data schema），已告知协调者，不加依赖。
     - 每个 CONTENT / schema 任务合入后，照常 prod_check 并报体积；ENG-20b 仍 HOLD。
+  - **10-03 10:07–10:36 开发监督**：ENG-attr-v2-schema 合入；TOOL-items-regen 挪基点后复验；keywait 加了兜底读法。
+    - **ENG-attr-v2-schema** 10:31 合入。`prod_check`（HEAD 540059ff）全绿：983 条测试；entry 38.44，render 161.87，webgl 200.31。
+    - **TOOL-items-regen**：`rebase_task.py` 挪到 540059ff（cherry-pick 890 个文件，无冲突），Sol max `--from validate`，驱动 34196，`--rework-extra devsup_note_rebase.md`。
+    - **keywait**：
+      - 10:27 我误用 `&` 起了一个 kw.py，输出进了 /dev/null，吞掉一次 KEY 后自己退出了。
+      - 现改用 `scratchpad/w50b.py` 读 `_handoff/devsup_events.log` 的新增行。不管是哪个 keywait 实例记的状态变化都能看到，不会再漏事件。
+    - 磁盘 8.5 GiB（< 10），eng3 仍 2 路：CONTENT-ch00b-maps、CONTENT-ch10-cold-entry 在执行。
 
