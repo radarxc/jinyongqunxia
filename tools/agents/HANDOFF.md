@@ -1776,3 +1776,10 @@
     - **ENG-session-base-diet** 已起（驱动 3883，traex Sol max，review_checks_eng），在等代码池空位。
       - 磁盘此时已回升到 15 GiB。
 
+- **10-03 15:36–15:55 协调者**（AR-50）：
+  - 作者挑图：大理苍山 B（Gemini 655f1cc7，其余 29 张照 B 画法出）、段誉 B（10 号 ee442606，场景图对脸与 A 字参考排队，A 字图出后交 Tripo）；高魅力形象只改脸重做（男金城武、女李嘉欣，参考照下载待问作者，先文字版）。
+  - 黄蓉 / 阿青剧照参考版 A/B 联系表已发作者，选定后 10 号替换 base 并对齐其余立绘与插图。王语嫣曼陀山茶、磨坊两张对脸已提交（af135e94）。
+  - DES-ui-immersive-2 合入（fc0fe2bb），样稿页同址更新为第 2 版；登记并起跑 DES-ui-immersive-3（0886be44，驱动 98977，codex gpt-6-astra xhigh，max-reviews 2）。
+  - 磁盘清理 1–5 项（作者「一到五都删掉」）：代码索引未占用的 6 个子目录、旧 pnpm 仓库（后台删除中）、npm 缓存与未在用 npx 包、旧 Codex 运行时、Codex 待装更新包、Playwright / Trae 缓存。磁盘 3.8 → 14.7 GiB。暂留：ckg_server 打开着的索引约 8 GB、tts-openapi MCP 用的 npx 包、Chrome 主配置缓存。
+  - ART-cast-fill-c 合入（88ad459e，72 张）；build_portraits / build_portrait_index 等 cast-d 合入后由协调者一次跑。素材线第三波按协调者意见修 run.py：稀疏检出未拉下的文件不算删除 / 截断。
+  - 特效试点 VFX-sk_zuoyouhubo 15:34 起跑（Codex 直跑）；35 门 vars 已按图鉴核对（a4df0a45，外放 P 标修 6 门，加 sparse_include）。TOOL-city-generic 15:24 起跑排池位（驱动 10066）。
