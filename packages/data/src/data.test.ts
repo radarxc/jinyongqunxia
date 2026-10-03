@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { loadChapterPack, type ContentSource } from './index';
+import { loadChapterPack, loadChapterPackLeaves, type ContentSource } from './index';
 import { emitLeaves, createManifest } from './build';
 import { ChapterPackManifestSchema, ContentManifestSchema } from './schemas';
 
@@ -28,6 +28,30 @@ describe('data boundaries', () => {
     const pack = await loadChapterPack(source, 'ch01_tianlong');
     expect(pack.manifest.chapter).toBe('ch01_tianlong');
     expect(pack.leaves['ch01.rules.base.json']).toEqual({ damage: 1 });
+  });
+
+  it('validates all hash domains while reading only selected leaves', async () => {
+    const leaves = await emitLeaves([
+      { logicalName: 'common.rules.items.json', kind: 'rules', load: 'resident',
+        value: [{ kind: 'item', id: 'it_fixture', value: { id: 'it_fixture' } }] },
+      { logicalName: 'common.text.zh-Hans.items.json', kind: 'text', load: 'resident',
+        locale: 'zh-Hans', value: { 'item.it_fixture.text.desc': '测试。' } },
+    ]);
+    const manifest = await createManifest('ch01_tianlong', hash, leaves, []);
+    const values = new Map<string, unknown>([['ch01_tianlong/manifest.json', manifest],
+      ...leaves.map((leaf): [string, unknown] =>
+        [`ch01_tianlong/${leaf.logicalName}`, leaf.value])]);
+    const reads: string[] = [];
+    const source = { readJson: async (path: string) => { reads.push(path); return values.get(path); } };
+    const pack = await loadChapterPackLeaves(source, 'ch01_tianlong', (leaf) =>
+      leaf.kind === 'rules');
+    expect(Object.keys(pack.leaves)).toEqual(['common.rules.items.json']);
+    expect(reads).toEqual(['ch01_tianlong/manifest.json',
+      'ch01_tianlong/common.rules.items.json']);
+    values.set('ch01_tianlong/common.rules.items.json', []);
+    await expect(loadChapterPackLeaves(source, 'ch01_tianlong', (leaf) =>
+      leaf.kind === 'rules')).rejects.toThrow(
+        'CHAPTER_PACK_LEAF_HASH_MISMATCH:common.rules.items.json');
   });
 
   it('propagates source errors and rejects malformed packs', async () => {

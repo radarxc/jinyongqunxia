@@ -14,6 +14,7 @@ export interface ChapterPackManifest {
 export interface ChapterPack { readonly manifest: ChapterPackManifest;
   readonly leaves: Readonly<Record<string, unknown>>; }
 export interface ContentSource { readJson(path: string): Promise<unknown>; }
+export type ChapterPackLeafSelector = (leaf: ChapterPackLeaf) => boolean;
 const HASH = /^[a-f0-9]{64}$/u;
 const CHAPTER = /^ch(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*$/u;
 const encoder = new TextEncoder();
@@ -69,19 +70,11 @@ function parseManifest(raw: unknown): ChapterPackManifest {
     throw new TypeError('INVALID_CHAPTER_PACK');
   return { ...(raw as unknown as ChapterPackManifest), leaves };
 }
-export async function loadChapterPack(source: ContentSource, chapterId: string): Promise<ChapterPack> {
+async function loadManifest(source: ContentSource, chapterId: string): Promise<ChapterPackManifest> {
   const manifest = parseManifest(await source.readJson(`${chapterId}/manifest.json`));
   if (manifest.chapter !== chapterId) throw new TypeError('CHAPTER_PACK_ID_MISMATCH');
   const base = { ...manifest, releaseHash: undefined } as Record<string, unknown>; delete base['releaseHash'];
   if (await hash(base) !== manifest.releaseHash) throw new TypeError('CHAPTER_PACK_RELEASE_HASH_MISMATCH');
-  const values: Record<string, unknown> = {};
-  for (const leaf of manifest.leaves) {
-    const value = await source.readJson(`${chapterId}/${leaf.logicalName}`);
-    const bytes = encoder.encode(canonicalJson(value as JsonValue));
-    if (bytes.byteLength !== leaf.rawBytes || await hash(value) !== leaf.sha256)
-      throw new TypeError(`CHAPTER_PACK_LEAF_HASH_MISMATCH:${leaf.logicalName}`);
-    values[leaf.logicalName] = value;
-  }
   const pairs = (kind: 'rules' | 'text', locale?: string): [string, string][] => manifest.leaves
     .filter((leaf) => leaf.kind === kind && (locale === undefined || leaf.locale === locale))
     .map((leaf) => [leaf.logicalName, leaf.sha256]);
@@ -91,5 +84,23 @@ export async function loadChapterPack(source: ContentSource, chapterId: string):
   for (const [locale, expected] of Object.entries(manifest.textHashes))
     if (await hash(['tianshu-text-v1', locale, ...pairs('text', locale)]) !== expected)
       throw new TypeError(`CHAPTER_PACK_TEXT_HASH_MISMATCH:${locale}`);
+  return manifest;
+}
+
+export async function loadChapterPackLeaves(source: ContentSource, chapterId: string,
+  select: ChapterPackLeafSelector): Promise<ChapterPack> {
+  const manifest = await loadManifest(source, chapterId);
+  const values: Record<string, unknown> = {};
+  for (const leaf of manifest.leaves.filter(select)) {
+    const value = await source.readJson(`${chapterId}/${leaf.logicalName}`);
+    const bytes = encoder.encode(canonicalJson(value as JsonValue));
+    if (bytes.byteLength !== leaf.rawBytes || await hash(value) !== leaf.sha256)
+      throw new TypeError(`CHAPTER_PACK_LEAF_HASH_MISMATCH:${leaf.logicalName}`);
+    values[leaf.logicalName] = value;
+  }
   return freeze({ manifest, leaves: values });
+}
+
+export async function loadChapterPack(source: ContentSource, chapterId: string): Promise<ChapterPack> {
+  return loadChapterPackLeaves(source, chapterId, () => true);
 }

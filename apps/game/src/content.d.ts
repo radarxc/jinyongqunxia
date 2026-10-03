@@ -1,6 +1,6 @@
 declare module 'virtual:tianshu-content' {
-  import type { GameContent } from './runtime/content';
-  const content: GameContent;
+  import type { StaticGameContent } from './runtime/content';
+  const content: StaticGameContent;
   export default content;
 }
 declare module 'virtual:tianshu-towns' {

@@ -20,5 +20,7 @@ export function createNewGameSessionState(content: GameContent, input: NewGameRe
   const masterSeed = seedSource();
   if (!Number.isSafeInteger(masterSeed) || masterSeed < 0 || masterSeed > 0xffff_ffff)
     throw new TypeError('NEW_GAME_SEED');
-  return createNewGameCore({ ...input, masterSeed }, newGameContent(content)).snapshot();
+  return createNewGameCore({ ...input, masterSeed,
+    ...(content.contentHash ? { contentHash: content.contentHash } : {}) },
+  newGameContent(content)).snapshot();
 }

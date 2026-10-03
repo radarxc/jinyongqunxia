@@ -3,7 +3,7 @@ import { join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { buildContent } from '@tianshu/data/build';
 import { parseContentFile } from '@tianshu/data/tooling';
-import { mapFromRegistration, type ItemDef, type MartialArtDef,
+import { mapFromRegistration, type MartialArtDef,
   type NpcDef, type TownRuntimeDefinition } from '@tianshu/data/schemas';
 import { filesIn, publishVfxRuntime, readAssetManifest } from './asset-manifest';
 
@@ -54,8 +54,7 @@ export async function loadTown(id){switch(id){${definitions.map((town) =>
         return 'export default ' + JSON.stringify(definition) + ';';
       }
       if (id !== '\0' + virtualId) return null;
-      const [common, catalog, npcs, skills, maps, meridianText, sectText, assetMap] = await Promise.all([
-        readDefinitions<ItemDef>('content/common/items'), readDefinitions<ItemDef>('content/items'),
+      const [npcs, skills, maps, meridianText, sectText, assetMap] = await Promise.all([
         readDefinitions<NpcDef>('content/chapters/ch01_tianlong/npcs'),
         readDefinitions<MartialArtDef>('content/common/skills'),
         readDefinitions<unknown>('content/world/ch01'),
@@ -89,7 +88,7 @@ export async function loadTown(id){switch(id){${definitions.map((town) =>
         nodes: map.nodes.map(({ coordinateNote: _coordinateNote, ...node }) => node),
         roads: map.roads.map(({ note: _note, ...road }) => road),
       }));
-      return 'export default ' + JSON.stringify({ items: [...common, ...catalog], npcs, skills, topology,
+      return 'export default ' + JSON.stringify({ npcs, skills, topology,
         factions, assets: assetMap, worldMaps,
         townEventAnchors: [], townNpcWorld: { presences: [], relationships: [] },
         townNpcPlacements: [] }) + ';';
