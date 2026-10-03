@@ -1724,4 +1724,15 @@
       - 驱动停期间没有卡死检测：开发监督自己盯日志（scratchpad `eecheck.sh`），25 分钟无输出就报协调者。
     - **ENG-npc-species-roleslot**（af0788c4，协调者 14:47 同意）：说明补「与 CONTENT-ch00a 的衔接」一节，写集加 `content/chapters/ch00_yuenv/{roles,npcs}/**`。
       - ch00a 若已合入，允许把它的角色槽与白猿 mockRef 迁到新 schema：只迁格式和位置（含移出 `_drafts/`），不改内容取舍，并在报告第 7 节逐项列明。
+  - **10-03 15:02–15:08 开发监督**（协调者 15:02）：
+    - **ENG-npc-species-roleslot**（915c81ab）：「ch00a 草案晋升」改为必做。
+      - 晋升对象：
+        - 3 人：`npcs/_drafts/npc_{aqing,baiyuan,fanli}`，`npc-draft.v1`；
+        - 3 类共 6 个角色槽：`roles/_drafts/role_{road_swordsman,wu_swordsman,yue_soldier}`，`role-slot-draft.v1`，各 count 2。
+      - 迁到正式路径和正式 schema，补回 4 个任务的 `subjectNpcIds`：c01 / c04 `[npc_aqing]`、c02 `[npc_aqing, npc_baiyuan]`、c03 `[npc_aqing, npc_fanli]`，以 DAG / Ink 核对。
+      - 写集加 `content/chapters/ch00_yuenv/quests/**`；依赖加 CONTENT-ch00a-data。
+    - **TOOL-items-regen-2**：ch00a 为了让自己的 `items_from_catalog --check` 通过，生成了 151 件收藏品，这正是 regen-2 的活。
+      - ch00a 合入后：标 CANCELLED（理由「由 CONTENT-ch00a 合入时生成」），删工作区，在集成分支跑 `--check`。
+      - 审核若判物品文件越界，就照审核意见处理，regen-2 照原计划跑。
+      - artw3 的 wait_start 52793 用 `--running … TOOL-items-regen-2` 作为 rig-std-parts 的起跑条件，已请协调者 / artw3 改条件后重起。
 
