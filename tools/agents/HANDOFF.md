@@ -1751,3 +1751,8 @@
       - 参数：`--from start --max-runs 1 --max-reviews 1 --auto-merge`，内容口径。
       - note：`devsup_note_r2.md`，内容是 r2 原文加协调者三点。
 
+- **10-03 15:05–15:35 协调者**：
+  - DES-ui-immersive-2：第 1 轮被防截断门误挡（index.html 拆成审阅壳 + scene.html；legend-sword.webp 不再使用），开发监督加 shrink_exempt（654aa9b8）；协调者停第 2 轮、`--from validate` 重起；审核 r1 只差文档两处（迟滞图标深底描边规范、报告「需作者确认」），返修后 15:20 `--from review` 起第 2 轮审核（驱动 87930）。截图联系表已发作者（`.agents/coord/ui_mock_page/v2_*.jpg`），合入后重发样稿页 Gs1y41HRhgPg29YGiXjAo2。
+  - CONTENT-ch00a-data r2 FAIL（报告数字过期；O4 招式附带效果缺 ENG 任务）：登记 ENG-move-onhit-effects（开发监督 5e56e7d5），ch00a 重起（驱动 78500，note `devsup_note_r2.md`）。
+  - 招式特效 VFX-sk_* 剩 35 门交素材线第三波补位器（Codex 执行器直跑，先试点）；旧 `_batch_queue.txt` 已注释停用（CITY-* 由 CITY-layouts-* 取代）。
+  - 作者 15:28「剧照要下」：黄蓉、阿青剧照许可下载（AR-49 补充 4），10 号改出带参考版；王语嫣场景立绘对齐 mantuo_base。三张待批联系表（大理苍山 A/B、段誉 A/B、高魅力形象）直接发给作者。
