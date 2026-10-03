@@ -1,0 +1,361 @@
+assets:
+- id: vfx_sk_kuihua__family_base01
+  file: effect/family/source_sheet.png
+  size: 1536x1024
+  sha256: db634512005bc0d87b89e951c033ea3a7f99623198c3beb092a2c9a11a1fc45f
+  category: vfx
+  style: default
+  negative: 人物、手、场景、文字、编号、网格、纸纹、投影、白色实心高光、火焰、激光；仅白底效果原料。
+  effort: 工具未披露
+  created: '2026-10-03'
+  status: candidate
+  subject: 《笑傲江湖》书界 ch05；葵花宝典 sk_kuihua（11 天中、yang、inner）；家族细丝针迹；飞针、鬼魅行共用。细丝、针尖残影与赤色显形均（原创扩展），不是原著颜色描写。
+  prompt: 'Use case: stylized-concept. Asset type: sprite sheet, Kuihua Baodian martial-arts VFX family, original
+    game interpretation. Create ONE white-background image containing exactly FOUR animation frames in a regular
+    2 columns by 2 rows grid, reading order. Target sheet 1536 x 1024, each cell 768 x 512. There are NO visible
+    grid lines.
+
+    Subject: an exquisitely fine cluster of vermilion and wine-red silken ink filaments swept horizontally from
+    left to right, with a few slim cool dark-steel needle-like points woven into the forward tips. Elegant, eerie
+    speed and precision; weightless translucent red ink wash, very sparse flecks, ample empty white space. This
+    is not a fireball, not a laser, not a sword, not a literal flower. Red is the game''s yang palette, NOT a claim
+    of the novel''s color.
+
+    Each frame uses IDENTICAL local coordinates: a small feathery root centered near (120,256); flowing lines extend
+    rightward, maximum endpoint near (672,256), with overall height under 200 pixels. Root width about 64 px. Pure
+    white margin at least 48 px on every cell edge. Keep the main narrow silhouette and origin stable, with subtle
+    changes of thread curvature and opacity. Top-left gathering wisps, top-right clean full form, bottom-left strongest
+    full form, bottom-right fading thread echoes still in same position. All four shapes are fully inside their
+    own cell; equal cell size and scale.
+
+    Style: sophisticated Chinese wuxia ink atmosphere, delicate dry-brush silk strands, clear needle-thin dark tips
+    and pale red translucent fringes. White backdrop exactly #FFFFFF, untextured. No hand, no person, no scenery,
+    no paper texture, no ground shadow, no black background, no frame numbers, no letters, no watermarks, no symbols.
+    No pure-white painted highlights inside the effect. Flat orthographic effect asset only.'
+  references: []
+  tool: codex · image_gen
+  model: image_gen（工具未披露图像子模型）
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_kuihua/codex-home/generated_images/01a1041d-2487-7bc2-9733-92f15ac6c67a/exec-5cee2e4d-3a32-4963-a23f-aef449cc568b.png
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 2×2白底四帧，逐字节保留生成原件；white_key/250/163 去白，normal 混合。调色为本作阳赤；具体原著动作、针线颜色和招名逐字书证（三联/广州修订版《笑傲江湖》东方不败黑木崖对战情节）仍（待考），不编引文/回目。
+  measurement:
+    root_section: 峰值帧 x=123，包含 y=254 的 alpha>=128 连续主根 y=226..282，宽57；游离细丝不计入根宽。
+    reference: 峰值最右边界733−根x123=610。
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 964
+    sha256: 92658ddaef31b121eb647c09ddac0fa51916b7e3ec341c2087d6d50a4d48cae4
+  - file: effect/family/frame_000.png
+    bytes: 100143
+    sha256: 047da0c2b3a22faf0939336dd8fc5f4c5bc647b54ccb9be3b7b0a630d9d6763c
+  - file: effect/family/frame_001.png
+    bytes: 132700
+    sha256: af0573981e402919d506bebaf9391ace0be1f14ae6057427500bdf13f4e9d341
+  - file: effect/family/frame_002.png
+    bytes: 182724
+    sha256: 1ab591e9926bb8e0a4121fd55af0e773d1a62e25af130bb9f9aa69683539d5df
+  - file: effect/family/frame_003.png
+    bytes: 131433
+    sha256: 141c0317fe6ec48dcda8fcea93745fdfef4944b94a69e383692b045fa40ef9a9
+  - file: effect/family/quality.json
+    bytes: 1033
+    sha256: e9a17c18a799eea1370eda3ad69f28bd0fcb3f8d58b08992fdd01c21e8810173
+  - file: source_requests.json
+    bytes: 7039
+    sha256: e4e46cbf7542712dd318c969648eff99aba02511dcc339004b000f95c38cbf1a
+- id: vfx_mv_kuihua_cimu__effect_base01
+  file: effect/mv_kuihua_cimu/source_sheet.png
+  size: 1536x1024
+  sha256: 868c3274815eed98bf88a998dab1232ea859b3aeae00425e933ed05ddb350064
+  category: vfx
+  style: default
+  negative: 人物、手、场景、文字、编号、网格、纸纹、投影、白色实心高光、火焰、激光；仅白底效果原料。
+  effort: 工具未披露
+  created: '2026-10-03'
+  status: candidate
+  subject: 《笑傲江湖》书界 ch05；葵花宝典 sk_kuihua（11 天中、yang、inner）；刺目单针；针身与收束丝环的具体造型（原创扩展）。图鉴近身绝招不表示手掌中生出实体针。
+  prompt: 'Use case: stylized-concept. Asset type: original wuxia game VFX sprite sheet, Kuihua Baodian ultimate
+    Cimu (a precise close-range needle thrust).
+
+    Create ONE image, 1536 x 1024, exactly FOUR frames in an invisible regular 2 columns x 2 rows layout, cell 768
+    x 512. Pure solid white #FFFFFF background; all cells isolated with at least 48 px whitespace to edges. No borders,
+    labels, text or numbering.
+
+    Subject: ONE extremely slender straight dark silver sewing needle pointing horizontally to the RIGHT, with a
+    sharply tapered fine point. Its trailing left end gathers a few vermilion / wine-red silk filaments and two
+    delicate looping translucent ink threads. The threads converge tightly onto the needle axis: elegant surgical
+    precision, sparse and restrained. A needle has a thin cylindrical shaft, NOT a broad spear or sword blade. No
+    eye, victim, wound or blood. The red material looks like silken lines, NOT liquid drops or splatter.
+
+    Local root about (120,256), small feathery red filament origin, about 40px tall. Needle at front from x390 to
+    x660 with point at x670,y256. Keep overall effect within x64..704,y180..332. Same positions in every frame:
+    top left faint gathering threads, top right clear thrust, bottom left strongest needle with slightly more defined
+    red threads, bottom right faint fading trails. Preserve the same length and central silhouette in all frames.
+
+    Refined Chinese ink atmosphere, wispy low-opacity red edges, cool steel gray needle, spare confident detailing,
+    no glow bloom, no solid white highlights. No character, no hand, no backdrop scene, no paper texture, no shadows,
+    no flower, no fire, no lightning, no wide energy beam. Every visual element is fully contained within its own
+    cell.'
+  references: []
+  tool: codex · image_gen
+  model: image_gen（工具未披露图像子模型）
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_kuihua/codex-home/generated_images/01a1041d-2487-7bc2-9733-92f15ac6c67a/exec-42b8d1ac-794f-435b-9321-4857f9763176.png
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 2×2白底四帧，逐字节保留生成原件；white_key/250/163 去白，normal 混合。调色为本作阳赤；具体原著动作、针线颜色和招名逐字书证（三联/广州修订版《笑傲江湖》东方不败黑木崖对战情节）仍（待考），不编引文/回目。
+  measurement:
+    root_section: 峰值帧 x=169，包含 y=242 的 alpha>=128 连续主根 y=229..254，宽26；上/下游离丝环不计。
+    reference: 针尖边界706−根x169=537。
+  file_integrity:
+  - file: effect/mv_kuihua_cimu/effect-set.yaml
+    bytes: 969
+    sha256: b7b1dd055ad8f638be74f11ffc4243078742dd14b654aa585885c9569f02140a
+  - file: effect/mv_kuihua_cimu/frame_000.png
+    bytes: 48131
+    sha256: 68391f3cc1038c7b92680b3e145d1cc85604baa4e0f2f04ff0330604e9ca4d54
+  - file: effect/mv_kuihua_cimu/frame_001.png
+    bytes: 61211
+    sha256: f9748f84401798094d0f67531d68f9b364153e9a831e51232970910b2160f84d
+  - file: effect/mv_kuihua_cimu/frame_002.png
+    bytes: 70890
+    sha256: a9b3a589c7367c73b06b47beea4bc08579206ada960cf50b22106b7d3f437e2b
+  - file: effect/mv_kuihua_cimu/frame_003.png
+    bytes: 60285
+    sha256: 178d897a7f80a276b8dcae1519a08d7253e95eb940363ea4af0ccdf4afadb419
+  - file: effect/mv_kuihua_cimu/quality.json
+    bytes: 1033
+    sha256: 02142e104ac5cfe9be082e88f443123e6068f28736972819da2f9ae33500240c
+- id: vfx_mv_kuihua_wanzhen__effect_base01
+  file: effect/mv_kuihua_wanzhen/source_sheet.png
+  size: 1536x1024
+  sha256: ba705facd47002395096c6b3f5122673b02114ce30d04e94c6b423e85ec1532f
+  category: vfx
+  style: default
+  negative: 人物、手、场景、文字、编号、网格、纸纹、投影、白色实心高光、火焰、激光；仅白底效果原料。
+  effort: 工具未披露
+  created: '2026-10-03'
+  status: candidate
+  subject: 《笑傲江湖》书界 ch05；葵花宝典 sk_kuihua（11 天中、yang、inner）；万针归宗针束；招名与多丝分束造型（原创扩展），分叉数不等于连锁跳数或伤害段。
+  prompt: 'Use case: stylized-concept. Asset type: original game VFX sprite sheet, Kuihua Baodian ultimate Wanzhen
+    Guizong.
+
+    Create ONE white-background image with exactly FOUR frames, invisible regular 2 by 2 layout, 1536 x 1024 sheet,
+    each cell 768 x 512. Read order top left, top right, bottom left, bottom right. No drawn grid, no text, no frame
+    numbers.
+
+    Subject: a graceful sheaf of many hair-thin dark silver sewing needles with translucent vermilion and deep cinnabar
+    silk-ink trails, issuing from ONE shared feathery root on the LEFT, spreading subtly into an elongated fan to
+    the RIGHT. Needle shafts are slim straight pointed pins, not swords, not spearheads. About nine to twelve visible
+    slim tips, arranged in fine separated streams with ample white space between them; exact number is visual texture,
+    not a count of attacks. Long silk filaments curve and weave delicately around the main direction, suggesting
+    impossibly quick precise needle work. All shafts point right; the array stays directional, never a radial explosion.
+
+    Identical local root centered near (120,256), about 70 px tall. All effects bounded by x64..704,y140..372 inside
+    each cell; at least 48 px pure white margin everywhere. Needle tips end around x660..690, distributed around
+    central y256. Preserve position, length and silhouette across all four frames: faint gathering, clear spread,
+    strongest elegant fan, sparse fading echoes. Frame 3 is strongest. Extremely fine Chinese wuxia ink atmosphere,
+    airy red silk with feathered translucent edges, steel-gray tips.
+
+    This red is the game''s yang color convention, not historical or novel color evidence. Strict pure #FFFFFF background.
+    No hand, person, body, eye, wound, blood, droplets, liquid splatter, paper grain, shadows, flower, flame, electrical
+    arcs, full-width laser, scenery, lettering or watermark. No solid white highlights inside the needles; use medium
+    gray highlights for clean white-background extraction.'
+  references: []
+  tool: codex · image_gen
+  model: image_gen（工具未披露图像子模型）
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_kuihua/codex-home/generated_images/01a1041d-2487-7bc2-9733-92f15ac6c67a/exec-1580be52-319d-44ec-b039-f94ab3978001.png
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 2×2白底四帧，逐字节保留生成原件；white_key/250/163 去白，normal 混合。调色为本作阳赤；具体原著动作、针线颜色和招名逐字书证（三联/广州修订版《笑傲江湖》东方不败黑木崖对战情节）仍（待考），不编引文/回目。
+    峰值原格顶部/右侧最小白边29px，低于32px建议值但未切断；根部逐帧对齐，针束由稀到密的轮廓变化留待动态审美确认。
+  measurement:
+    root_section: 峰值帧 x=113，包含 y=232 的 alpha>=128 连续主根 y=185..269，宽85。
+    reference: 峰值最右边界739−根x113=626。
+  file_integrity:
+  - file: effect/mv_kuihua_wanzhen/effect-set.yaml
+    bytes: 972
+    sha256: d8f1ee2a9dbe1120cf0cb7798cf1911a2f0a06b7352d969cd46e72c28a39f1b6
+  - file: effect/mv_kuihua_wanzhen/frame_000.png
+    bytes: 84817
+    sha256: 4bca039a3a6c04a63ba195e028258e9ed62273fd60c2fad7cb23ac2d0280f7bb
+  - file: effect/mv_kuihua_wanzhen/frame_001.png
+    bytes: 171183
+    sha256: 5e454d24fada2b35c8b26abc15ecef6ca7be23af8e4080c685a6f3865f45ad69
+  - file: effect/mv_kuihua_wanzhen/frame_002.png
+    bytes: 277419
+    sha256: 5fe356eeffe4a65e3d87383f35f36de48083d8919ee53333a62fed6f2c8f90b6
+  - file: effect/mv_kuihua_wanzhen/frame_003.png
+    bytes: 126122
+    sha256: 234253871405208a0a1a451a0b1f199c8f1c3fae4db5c26374109d75ee3a128f
+  - file: effect/mv_kuihua_wanzhen/quality.json
+    bytes: 1033
+    sha256: edac4a3d08e0bbd10ba2842b6b577b27eebf0dc36f0a8f2ace3594d8f5eebd4d
+- id: vfx_mv_kuihua_cimu__base01
+  file: moves/mv_kuihua_cimu/peak.png
+  size: 1536x1024
+  sha256: 4b654e33123da349d694136d00ee4e879353592bd8888a06f4c41f6ab3da0732
+  category: vfx
+  style: default
+  negative: 不复制或修改共享掌图；不新增轮廓、玩法射程、命中格、伤害段或外放扩展。
+  effort: 不适用（派生）
+  created: '2026-10-03'
+  status: candidate
+  subject: 《笑傲江湖》书界 ch05；葵花宝典·刺目；单体·1·近身；projection:false。
+  prompt: 由 compose.py/build_demo.py 依本招 Composition 合成共享掌图与已生成效果帧；源图完整实发提示词见原料条目和 source_requests.json；此条不另生图。
+  references:
+  - effect/mv_kuihua_cimu/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: python3 tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: 不适用（代码合成；图像源见原料条目）
+  source_path: assets/default/vfx/sk_kuihua/moves/mv_kuihua_cimu/composition.yaml
+  code: moves/mv_kuihua_cimu/demo.html
+  pipeline: two-part
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_kuihua_cimu/effect-set.yaml
+  notes: L=1×256=256px；sy=0.5×320/26×0.078=0.48。 普通 pulse=0.10+0.15+0.25+0.10=0.60s，绝招 wave=0.15+0.20+0.40+0.15=0.90s【建议值】，见
+    design/23 §5.2；不由CT换算。E=[510,552]，共享掌图缩放0.5；射程与范围只引用图鉴§7.3/§13.5。
+  shared_emitter_integrity:
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    bytes: 195
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    bytes: 626765
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+  file_integrity:
+  - file: moves/mv_kuihua_cimu/composition.yaml
+    bytes: 809
+    sha256: eb369f64d85eb32e2d49fd1eed0d00c7bf40ae08f1ce61460313da755cba5910
+  - file: moves/mv_kuihua_cimu/composition.json
+    bytes: 3293
+    sha256: 4cad58e48e06169cf2fe1b2f10f37d511e8a2c7679733ddfdbe62cd2ee6975a4
+  - file: moves/mv_kuihua_cimu/demo.html
+    bytes: 890656
+    sha256: 44cf12ae028055d12bc056d66924af8f64e05d869ff34fa7453a163a909e357b
+- id: vfx_mv_kuihua_feizhen__base01
+  file: moves/mv_kuihua_feizhen/peak.png
+  size: 1536x1024
+  sha256: 711be363b4744bf48802bc6ef137ffa790bd8b79098a8fd0854018ff347ba8d1
+  category: vfx
+  style: default
+  negative: 不复制或修改共享掌图；不新增轮廓、玩法射程、命中格、伤害段或外放扩展。
+  effort: 不适用（派生）
+  created: '2026-10-03'
+  status: candidate
+  subject: 《笑傲江湖》书界 ch05；葵花宝典·飞针；连锁3·1–5·实体投射；projection:false。
+  prompt: 由 compose.py/build_demo.py 依本招 Composition 合成共享掌图与已生成效果帧；源图完整实发提示词见原料条目和 source_requests.json；此条不另生图。
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: python3 tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: 不适用（代码合成；图像源见原料条目）
+  source_path: assets/default/vfx/sk_kuihua/moves/mv_kuihua_feizhen/composition.yaml
+  code: moves/mv_kuihua_feizhen/demo.html
+  pipeline: two-part
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  notes: 最大距离展示 L=5×160=800px；sy=0.5×320/57×0.2671875=0.75。 普通 pulse=0.10+0.15+0.25+0.10=0.60s，绝招 wave=0.15+0.20+0.40+0.15=0.90s【建议值】，见
+    design/23 §5.2；不由CT换算。E=[510,552]，共享掌图缩放0.5；射程与范围只引用图鉴§7.3/§13.5。 只展示一次出手的针迹；连锁跳数由已解算事件另行调度，不把针束展幅当AoE或 projectionSpreadSteps。
+  shared_emitter_integrity:
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    bytes: 195
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    bytes: 626765
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+  file_integrity:
+  - file: moves/mv_kuihua_feizhen/composition.yaml
+    bytes: 811
+    sha256: 6f4a03831b57d0da9d1d13735644416d4ab0c43a5e3480af5ea5de825899203e
+  - file: moves/mv_kuihua_feizhen/composition.json
+    bytes: 3290
+    sha256: 4b6a3d2e2c68a68ede8449beac32ce1f15bf8ea630ee009d50d8251a93487c3e
+  - file: moves/mv_kuihua_feizhen/demo.html
+    bytes: 1342711
+    sha256: b23517abc9a88c9cf057b913e7524fa109447f552bd024039f44f8f42a1685ee
+- id: vfx_mv_kuihua_guimei__base01
+  file: moves/mv_kuihua_guimei/peak.png
+  size: 1536x1024
+  sha256: 1ac12916389777c57a24f11561de74eaf4f621c9fd6688498f860fb02a0879ea
+  category: vfx
+  style: default
+  negative: 不复制或修改共享掌图；不新增轮廓、玩法射程、命中格、伤害段或外放扩展。
+  effort: 不适用（派生）
+  created: '2026-10-03'
+  status: candidate
+  subject: 《笑傲江湖》书界 ch05；葵花宝典·鬼魅行；自身·位移6格内；projection:false。
+  prompt: 由 compose.py/build_demo.py 依本招 Composition 合成共享掌图与已生成效果帧；源图完整实发提示词见原料条目和 source_requests.json；此条不另生图。
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: python3 tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: 不适用（代码合成；图像源见原料条目）
+  source_path: assets/default/vfx/sk_kuihua/moves/mv_kuihua_guimei/composition.yaml
+  code: moves/mv_kuihua_guimei/demo.html
+  pipeline: two-part
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  notes: range_hex=0；局部残迹 L=256×0.625=160px【建议值】，不绘制6格伤害束；sy=0.5×320/57×0.22265625=0.625；角度−25°为展示方向。 普通 pulse=0.10+0.15+0.25+0.10=0.60s，绝招
+    wave=0.15+0.20+0.40+0.15=0.90s【建议值】，见 design/23 §5.2；不由CT换算。E=[510,552]，共享掌图缩放0.5；射程与范围只引用图鉴§7.3/§13.5。 只表现局部收势残迹；真实角色位移、残影层数与落点由Core/渲染动作事件给出。
+  shared_emitter_integrity:
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    bytes: 195
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    bytes: 626765
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+  file_integrity:
+  - file: moves/mv_kuihua_guimei/composition.yaml
+    bytes: 812
+    sha256: cec1ad9b3c87a4bc165c1095c3a6e765c6c6822603f85970b87697325c96bb5e
+  - file: moves/mv_kuihua_guimei/composition.json
+    bytes: 3291
+    sha256: 43365643dce3d9d155f1e6dc0bd9b0cc0ea5791cde577d8a0987ca342fce3148
+  - file: moves/mv_kuihua_guimei/demo.html
+    bytes: 1252722
+    sha256: aa20b737b98e83996094ad120782bfe0f3a0a5b9518c1466fbed4d1bb6d3535d
+- id: vfx_mv_kuihua_wanzhen__base01
+  file: moves/mv_kuihua_wanzhen/peak.png
+  size: 1536x1024
+  sha256: 369edd14d580ab895603ff041ad6fe5d567778947f1f6290a93941e3cb4addc4
+  category: vfx
+  style: default
+  negative: 不复制或修改共享掌图；不新增轮廓、玩法射程、命中格、伤害段或外放扩展。
+  effort: 不适用（派生）
+  created: '2026-10-03'
+  status: candidate
+  subject: 《笑傲江湖》书界 ch05；葵花宝典·万针归宗；连锁5·1–5·实体投射；projection:false。
+  prompt: 由 compose.py/build_demo.py 依本招 Composition 合成共享掌图与已生成效果帧；源图完整实发提示词见原料条目和 source_requests.json；此条不另生图。
+  references:
+  - effect/mv_kuihua_wanzhen/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: python3 tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: 不适用（代码合成；图像源见原料条目）
+  source_path: assets/default/vfx/sk_kuihua/moves/mv_kuihua_wanzhen/composition.yaml
+  code: moves/mv_kuihua_wanzhen/demo.html
+  pipeline: two-part
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_kuihua_wanzhen/effect-set.yaml
+  notes: 最大距离展示 L=5×160=800px；sy=0.5×320/85×0.5525=1.04。 普通 pulse=0.10+0.15+0.25+0.10=0.60s，绝招 wave=0.15+0.20+0.40+0.15=0.90s【建议值】，见
+    design/23 §5.2；不由CT换算。E=[510,552]，共享掌图缩放0.5；射程与范围只引用图鉴§7.3/§13.5。 只展示一次出手的针迹；连锁跳数由已解算事件另行调度，不把针束展幅当AoE或 projectionSpreadSteps。
+  shared_emitter_integrity:
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    bytes: 195
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    bytes: 626765
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+  file_integrity:
+  - file: moves/mv_kuihua_wanzhen/composition.yaml
+    bytes: 819
+    sha256: 62221beeed8149da9a20c92dc309c6a2673058a7d447a013915bafc758ccec4a
+  - file: moves/mv_kuihua_wanzhen/composition.json
+    bytes: 3306
+    sha256: fe15b7af8528862caac8ab4c47cf29e341bfdf485c6b82a16012aa65b8a28ed9
+  - file: moves/mv_kuihua_wanzhen/demo.html
+    bytes: 1543199
+    sha256: c1a2f690a8b8f55b6a181168ce8f12f1b7a3b375a0cf59af2950e4f9e52d82ec
