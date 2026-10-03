@@ -14,15 +14,28 @@ from pathlib import Path
 from typing import Any
 
 ROW = re.compile(r"^\|\s*`((?:it|eq)_[a-z0-9_]+)`\s*\|(.*)$")
+COLLECTIBLE_SUBS = {
+    "porcelain": "porcelain", "瓷器／茶具": "porcelain", "瓷器/茶具": "porcelain",
+    "jade": "jade", "玉器": "jade",
+    "bronze": "bronze", "香炉／铜器／金银器": "bronze", "香炉/铜器/金银器": "bronze",
+    "qin": "qin", "琴与乐器": "qin", "琴／乐器": "qin", "琴/乐器": "qin",
+    "calligraphy": "calligraphy", "书法／拜帖／名家手迹": "calligraphy",
+    "书法/拜帖/名家手迹": "calligraphy",
+    "stationery": "stationery", "笔墨纸砚": "stationery",
+    "antique": "antique", "其他古玩": "antique",
+}
 SUBCATS = {
     "items-food.md": {"食材·谷物", "食材·肉", "食材·水产", "食材·菜蔬", "食材·果", "食材·调料", "食材·珍材",
                       "食品·干粮", "食品·点心", "食品·腌藏", "食品·汤羹", "食品·菜肴", "食品·名菜"},
+    "items-collectibles.md": set(COLLECTIBLE_SUBS),
 }
 GRADES = {"天", "地", "玄", "黄"}
 HEADER7 = ("ID", "名称", "子类", "品阶", "出处（书名 / 原创扩展）",
            "效果字段", "外观要点（供出图）")
 HEADER9 = ("ID", "名称", "子类", "品阶", "出处（书名 / 原创扩展）",
            "说明", "效果字段", "属性投影", "外观要点（供出图）")
+COLLECTIBLE_HEADER9 = ("ID", "名称", "子类", "品阶", "出处",
+                       "效果字段", "外观要点", "说明", "属性投影")
 ATTRIBUTE_KEYS = (
     "atk", "hardness", "qiAffinity", "qiEffect",
     "def", "reflect", "antiHidden", "agi", "block", "luck",
@@ -57,7 +70,25 @@ CATEGORY_KEYS = {
     "food": frozenset({"healInner", "healOuter", "stamina"}),
     "manual": frozenset({"skillRef", "readWis", "readBre", "maxLayer",
                            "cultivation"}),
+    "collectible": frozenset({
+        "giftValue", "giftTo", "eraRange", "provenance",
+        "study", "appraise", "luck",
+    }),
 }
+COLLECTIBLE_KEYS = (
+    "giftValue", "giftTo", "eraRange", "provenance",
+    "study", "appraise", "luck",
+)
+COLLECTIBLE_REQUIRED_KEYS = COLLECTIBLE_KEYS[:6]
+GIFT_TO_KEYS = ("preferred", "disliked", "taboo", "sectRefs", "npcOverrides")
+GIFT_PREFERENCES = (
+    "scholar", "warrior", "monastic", "lady", "noble",
+    "merchant", "sect", "musician", "collector",
+)
+GIFT_REACTIONS = frozenset({"favored", "neutral", "disliked", "taboo"})
+ERA_BANDS = ("chunqiu", "tang", "song_north", "song_south", "yuan", "ming", "qing")
+PROVENANCES = frozenset({"book", "history", "expanded"})
+STUDY_ARTS = frozenset({"music", "art", "chess", "lore"})
 REQUIRED_KEYS_BY_FILE = {
     "items-weapons.md": ("atk", "hardness", "qiAffinity"),
     "items-hidden-weapons.md": ("atk", "hardness", "qiAffinity"),
@@ -119,6 +150,58 @@ def effect_fields(cell: str) -> dict[str, str]:
     return fields
 
 
+def split_top_level(value: str, separator: str) -> list[str] | None:
+    parts: list[str] = []
+    start = 0
+    stack: list[str] = []
+    closing = {"[": "]", "{": "}"}
+    for index, character in enumerate(value):
+        if character in closing:
+            stack.append(closing[character])
+        elif character in "]}":
+            if not stack or character != stack.pop():
+                return None
+        elif character == separator and not stack:
+            parts.append(value[start:index])
+            start = index + 1
+    if stack:
+        return None
+    parts.append(value[start:])
+    return parts
+
+
+def parse_named_object(value: str) -> tuple[list[tuple[str, str]] | None, str | None]:
+    if not value.startswith("{") or not value.endswith("}"):
+        return None, "须为 {...} 对象"
+    tokens = split_top_level(value[1:-1], ",")
+    if tokens is None or not tokens or any(not token for token in tokens):
+        return None, "对象括号或逗号格式不合法"
+    result: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for token in tokens:
+        key, separator, raw = token.partition(":")
+        if not separator or not re.fullmatch(r"[a-z][A-Za-z0-9_]*", key) or not raw:
+            return None, f"对象项 `{token}` 须为 key:value"
+        if key in seen:
+            return None, f"对象键重复 `{key}`"
+        seen.add(key)
+        result.append((key, raw))
+    return result, None
+
+
+def parse_enum_list(value: str) -> tuple[list[str] | None, str | None]:
+    if not value.startswith("[") or not value.endswith("]"):
+        return None, "须为非空 [...] 列表"
+    values = value[1:-1].split(",")
+    if not values or any(not item for item in values):
+        return None, "列表不得为空或含空项"
+    if any(re.fullmatch(r"[a-z][a-z0-9_]*", item) is None for item in values):
+        return None, "列表项须为小写枚举或正式 ID"
+    if len(values) != len(set(values)):
+        return None, "列表项不得重复"
+    return values, None
+
+
 def round_half_up(value: Decimal) -> int:
     return int(value.quantize(Decimal("1"), rounding=ROUND_HALF_UP))
 
@@ -134,6 +217,8 @@ def decimal_number(value: str, *, percent: bool = False) -> Decimal | None:
 
 
 def category(path: Path) -> str:
+    if path.name == "items-collectibles.md":
+        return "collectible"
     if path.name in {"items-weapons.md", "items-hidden-weapons.md"}:
         return "weapon"
     if path.name in {
@@ -163,6 +248,168 @@ def required_attribute_keys(path: Path, subcategory: str) -> tuple[str, ...]:
         if subcategory.startswith(("护肩·", "披风·", "头饰·")):
             return ("def",)
     return REQUIRED_KEYS_BY_FILE.get(path.name, ())
+
+
+def parse_gift_to(value: str) -> tuple[dict[str, Any] | None, list[str]]:
+    pairs, error = parse_named_object(value)
+    if pairs is None:
+        return None, [f"giftTo {error}"]
+    errors: list[str] = []
+    keys = [key for key, _raw in pairs]
+    unknown = [key for key in keys if key not in GIFT_TO_KEYS]
+    errors.extend(f"giftTo 对象键 `{key}` 不在闭集" for key in unknown)
+    known = [key for key in keys if key in GIFT_TO_KEYS]
+    if known != sorted(known, key=GIFT_TO_KEYS.index):
+        errors.append("giftTo 对象键顺序不规范")
+    if "preferred" not in keys:
+        errors.append("giftTo 缺少必填键 `preferred`")
+    result: dict[str, Any] = {}
+    used_preferences: set[str] = set()
+    for key, raw in pairs:
+        if key in {"preferred", "disliked", "taboo"}:
+            values, list_error = parse_enum_list(raw)
+            if values is None:
+                errors.append(f"giftTo.{key} {list_error}")
+                continue
+            for item in values:
+                if item not in GIFT_PREFERENCES:
+                    errors.append(f"`{item}` 不在 giftTo 偏好标签闭集")
+                elif item in used_preferences:
+                    errors.append(f"giftTo 偏好标签 `{item}` 不得跨列表重复")
+                else:
+                    used_preferences.add(item)
+            known_values = [item for item in values if item in GIFT_PREFERENCES]
+            if known_values != sorted(known_values, key=GIFT_PREFERENCES.index):
+                errors.append(f"giftTo.{key} 标签顺序不规范")
+            result[key] = values
+        elif key == "sectRefs":
+            values, list_error = parse_enum_list(raw)
+            if values is None:
+                errors.append(f"giftTo.sectRefs {list_error}")
+                continue
+            for item in values:
+                if re.fullmatch(r"sect_[a-z0-9_]+", item) is None:
+                    errors.append(f"giftTo.sectRefs 的 `{item}` 须为正式 sect_ ID")
+            result[key] = values
+        elif key == "npcOverrides":
+            overrides, object_error = parse_named_object(raw)
+            if overrides is None:
+                errors.append(f"giftTo.npcOverrides {object_error}")
+                continue
+            parsed_overrides: dict[str, str] = {}
+            for npc_id, reaction in overrides:
+                if re.fullmatch(r"npc_[a-z0-9_]+", npc_id) is None:
+                    errors.append(f"giftTo.npcOverrides 的 `{npc_id}` 须为正式 npc_ ID")
+                if reaction not in GIFT_REACTIONS:
+                    errors.append(f"giftTo.npcOverrides 反应 `{reaction}` 不在闭集")
+                parsed_overrides[npc_id] = reaction
+            result[key] = parsed_overrides
+    return result, errors
+
+
+def parse_collectible_values(
+    raw: str, *, allow_structural: bool = False
+) -> tuple[dict[str, Any] | None, list[str]]:
+    if not raw or (";" in raw and re.fullmatch(r"[^;]+(?:; [^;]+)*", raw) is None):
+        return None, ["收藏品机器行须以分号加恰一个空格分隔"]
+    tokens: list[tuple[str, str]] = []
+    errors: list[str] = []
+    seen: set[str] = set()
+    for token in raw.split("; " if ";" in raw else ";"):
+        key, separator, value = token.partition("=")
+        if not separator or re.fullmatch(r"[a-z][A-Za-z0-9]*", key) is None:
+            errors.append(f"收藏品属性项 `{token}` 须为小写驼峰 key=value")
+            continue
+        if key not in COLLECTIBLE_KEYS:
+            if not allow_structural:
+                errors.append(f"属性键 `{key}` 不在收藏品白名单")
+            continue
+        if key in seen:
+            errors.append(f"属性键重复 `{key}`")
+            continue
+        seen.add(key)
+        tokens.append((key, value))
+    keys = [key for key, _value in tokens]
+    if keys != sorted(keys, key=COLLECTIBLE_KEYS.index):
+        errors.append("属性键顺序不规范（须按 §11.5.3）")
+    for key in COLLECTIBLE_REQUIRED_KEYS:
+        if key not in seen:
+            errors.append(f"收藏品必填属性缺少 `{key}`")
+    result: dict[str, Any] = {}
+    for key, value in tokens:
+        if key == "giftValue":
+            if re.fullmatch(r"[0-4]", value) is None:
+                errors.append("giftValue 须为 0–4 的整数")
+            else:
+                result[key] = int(value)
+        elif key == "giftTo":
+            parsed, nested_errors = parse_gift_to(value)
+            errors.extend(nested_errors)
+            if parsed is not None:
+                result[key] = parsed
+        elif key == "eraRange":
+            values, list_error = parse_enum_list(value)
+            if values is None:
+                errors.append(f"eraRange {list_error}")
+            else:
+                for item in values:
+                    if item not in ERA_BANDS:
+                        errors.append(f"`{item}` 不在 eraRange 年代带枚举")
+                known_values = [item for item in values if item in ERA_BANDS]
+                if known_values != sorted(known_values, key=ERA_BANDS.index):
+                    errors.append("eraRange 年代带顺序不规范")
+                result[key] = values
+        elif key == "provenance":
+            if value not in PROVENANCES:
+                errors.append("provenance 只允许 book/history/expanded")
+            else:
+                result[key] = value
+        elif key == "study":
+            if value == "none":
+                result[key] = value
+                continue
+            pairs, object_error = parse_named_object(value)
+            if pairs is None:
+                errors.append(f"study {object_error}，或写 none")
+                continue
+            study = dict(pairs)
+            if [key for key, _raw in pairs] != ["art", "delta", "once"]:
+                errors.append("study 对象须按 art,delta,once 且仅含这三个键")
+            if study.get("art") not in STUDY_ARTS:
+                errors.append("study.art 只允许 music/art/chess/lore")
+            if re.fullmatch(r"[1-9]\d*", study.get("delta", "")) is None:
+                errors.append("study.delta 须为正整数")
+            if study.get("once") != "true":
+                errors.append("study.once 必须为 true")
+            result[key] = {"art": study.get("art"),
+                           "delta": int(study["delta"]) if study.get("delta", "").isdigit() else study.get("delta"),
+                           "once": study.get("once") == "true"}
+        elif key == "appraise":
+            pairs, object_error = parse_named_object(value)
+            if pairs is None:
+                errors.append(f"appraise {object_error}")
+                continue
+            appraise = dict(pairs)
+            if [key for key, _raw in pairs] != ["art", "dc"]:
+                errors.append("appraise 对象须按 art,dc 且仅含这两个键")
+            if appraise.get("art") != "art":
+                errors.append("appraise.art 必须为 art")
+            if re.fullmatch(r"\d+", appraise.get("dc", "")) is None:
+                errors.append("appraise.dc 须为非负整数")
+            result[key] = {"art": appraise.get("art"),
+                           "dc": int(appraise["dc"]) if appraise.get("dc", "").isdigit() else appraise.get("dc")}
+        elif key == "luck":
+            if re.fullmatch(r"\d+", value) is None:
+                errors.append("luck 须为非负整数")
+            else:
+                result[key] = int(value)
+    return result, errors
+
+
+def parse_collectible_attributes(cell: str) -> tuple[dict[str, Any] | None, list[str]]:
+    if re.fullmatch(r"`[^`]*`", cell) is None:
+        return None, ["属性投影须为且仅为一个反引号代码跨度"]
+    return parse_collectible_values(cell[1:-1])
 
 
 def parse_attributes(cell: str) -> tuple[dict[str, Any] | None, list[str]]:
@@ -307,15 +554,21 @@ def expected_double_writes(
 
 
 def check_nine(
-    path: Path, line: int, cells: list[str]
+    path: Path, line: int, row: dict[str, str]
 ) -> tuple[list[str], list[str]]:
     problems: list[str] = []
     warnings: list[str] = []
-    subcategory, lore, effect, projection = cells[2], cells[5], cells[6], cells[7]
+    subcategory = markdown_text(row["子类"])
+    lore = row["说明"]
+    effect = row["效果字段"]
+    projection = row["属性投影"]
     lore_length = len(markdown_text(lore))
     if not 60 <= lore_length <= 120:
         problems.append(f"说明长度 {lore_length}，须为 60–120 个 Unicode 码点（Markdown 标记不计）")
-    attributes, attribute_errors = parse_attributes(projection)
+    if path.name == "items-collectibles.md":
+        attributes, attribute_errors = parse_collectible_attributes(projection)
+    else:
+        attributes, attribute_errors = parse_attributes(projection)
     problems.extend(attribute_errors)
     if attributes is None:
         return problems, warnings
@@ -328,6 +581,43 @@ def check_nine(
         grade = 0
     if not 1 <= grade <= 12:
         problems.append("效果字段 `grade` 须为 1–12 的整数")
+    if path.name == "items-collectibles.md":
+        effect_values, effect_errors = parse_collectible_values(
+            re.search(r"`([^`]*)`", effect).group(1)
+            if re.search(r"`([^`]*)`", effect) else "",
+            allow_structural=True,
+        )
+        problems.extend(f"效果字段：{error}" for error in effect_errors)
+        effect_sub = fields.get("sub")
+        if effect_sub is None or COLLECTIBLE_SUBS.get(effect_sub) != COLLECTIBLE_SUBS.get(subcategory):
+            problems.append("效果字段 `sub` 须与子类列对应")
+        if fields.get("stack") != "1":
+            problems.append("效果字段 `stack` 必须为 1")
+        if effect_values is not None:
+            for key in COLLECTIBLE_REQUIRED_KEYS:
+                if key in effect_values and key in attributes and effect_values[key] != attributes[key]:
+                    problems.append(
+                        f"双写不一致：`{key}` 效果字段为 {effect_values[key]!r}，"
+                        f"属性投影为 {attributes[key]!r}"
+                    )
+        if 1 <= grade <= 12 and isinstance(attributes.get("giftValue"), int):
+            expected_gift_value = grade_band(grade) + 1
+            actual_gift_value = attributes["giftValue"]
+            zero_exception = (
+                actual_gift_value == 0
+                and "无馈赠价值" in markdown_text(lore)
+            )
+            if actual_gift_value != expected_gift_value and not zero_exception:
+                problems.append(
+                    f"giftValue={actual_gift_value} 与品阶默认值 "
+                    f"{expected_gift_value} 不一致，且说明未写明无馈赠价值的剧情复制品依据"
+                )
+        if 1 <= grade <= 12 and isinstance(attributes.get("appraise"), dict):
+            expected_dc = 8 * grade - 4
+            actual_dc = attributes["appraise"].get("dc")
+            if actual_dc != expected_dc:
+                problems.append(f"appraise.dc 须为 8×{grade}−4={expected_dc}，实际 {actual_dc}")
+        return problems, warnings
     expected: dict[str, Any] = {}
     if 1 <= grade <= 12:
         expected, formula_warnings, formula_errors = expected_double_writes(path, fields, grade)
@@ -382,18 +672,38 @@ def check_catalog(path: Path, minimum: int = 1) -> tuple[list[str], list[str], i
     rows = 0
     formats: set[int] = set()
     current_columns: int | None = None
+    current_header: tuple[str, ...] | None = None
     allowed = SUBCATS.get(path.name)
     lines = path.read_text(encoding="utf-8").splitlines()
     for n, line in enumerate(lines, 1):
         if line.startswith("|"):
             header = tuple(table_cells(line))
+            if path.name == "items-collectibles.md" and header and header[0] == "ID":
+                if header == COLLECTIBLE_HEADER9:
+                    formats.add(9)
+                    current_columns = 9
+                    current_header = header
+                    continue
+                problems.append(
+                    f"第 {n} 行：收藏品九列表头顺序须为 "
+                    f"{'｜'.join(COLLECTIBLE_HEADER9)}"
+                )
+                formats.add(9)
+                current_columns = 9
+                current_header = (
+                    header if len(header) == 9 and set(header) == set(COLLECTIBLE_HEADER9)
+                    else COLLECTIBLE_HEADER9
+                )
+                continue
             if header == HEADER7:
                 formats.add(7)
                 current_columns = 7
+                current_header = HEADER7
                 continue
             if header == HEADER9:
                 formats.add(9)
                 current_columns = 9
+                current_header = HEADER9
                 continue
         match = ROW.match(line)
         if not match:
@@ -403,16 +713,24 @@ def check_catalog(path: Path, minimum: int = 1) -> tuple[list[str], list[str], i
         rows += 1
         iid = match.group(1)
         ids[iid] += 1
+        if path.name == "items-collectibles.md" and not iid.startswith("it_"):
+            problems.append(f"第 {n} 行 `{iid}`：收藏品 ID 须以 `it_` 开头")
         cells = [f"`{iid}`", *[cell.strip() for cell in match.group(2).strip().strip("|").split("|")]]
-        columns = current_columns or (next(iter(formats)) if len(formats) == 1 else 7)
+        columns = current_columns or (9 if path.name == "items-collectibles.md" else
+                                      next(iter(formats)) if len(formats) == 1 else 7)
         if len(cells) != columns:
             label = "七列" if columns == 7 else "九列"
             problems.append(f"第 {n} 行 `{iid}`：应为{label}，实际 {len(cells)} 列")
             continue
-        if columns == 7:
-            _id, name, sub, grade, source, effect, look = cells
-        else:
-            _id, name, sub, grade, source, _lore, effect, _projection, look = cells
+        row_header = current_header or (COLLECTIBLE_HEADER9 if path.name == "items-collectibles.md"
+                                        else HEADER7 if columns == 7 else HEADER9)
+        row = dict(zip(row_header, cells))
+        name = row["名称"]
+        sub = markdown_text(row["子类"])
+        grade = row["品阶"]
+        source = row.get("出处", row.get("出处（书名 / 原创扩展）", ""))
+        effect = row["效果字段"]
+        look = row.get("外观要点", row.get("外观要点（供出图）", ""))
         if not name:
             problems.append(f"第 {n} 行 `{iid}`：名称为空")
         if allowed is not None and sub not in allowed:
@@ -429,7 +747,7 @@ def check_catalog(path: Path, minimum: int = 1) -> tuple[list[str], list[str], i
         if len(look) < 6:
             problems.append(f"第 {n} 行 `{iid}`：外观要点太短，出不了图")
         if columns == 9:
-            row_problems, row_warnings = check_nine(path, n, cells)
+            row_problems, row_warnings = check_nine(path, n, row)
             problems.extend(f"第 {n} 行 `{iid}`：{reason}" for reason in row_problems)
             warnings.extend(f"第 {n} 行 `{iid}`：{reason}" for reason in row_warnings)
             fields = effect_fields(effect)
