@@ -41,47 +41,41 @@
   category: scene
   style: default
   subject: 桃花岛三道试题（ch02_shediao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是郭靖的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中郭靖、黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    桃花岛求亲三试的第三场默记经文（具体站位为原创扩展构图）。桃竹庭院与竹亭海雾；郭靖居中站定，双手自然下垂、空手，专注地背诵刚才看过的经文，不拿任何器物。清瘦中年黄药师青袍、黑发夹灰与三缕短须，手持无可读字的纸本经卷听其背诵；黄蓉在一旁关切，白衣成年贵公子欧阳克右侧沮丧。远处洪七公长方脸、花白发、颏下极短稀疏微须、朱红葫芦；欧阳锋五十余岁、高大、高鼻深目、棕黄络腮短须、灰黑束发、白衣，绝不是白发白须老仙。明确禁止鲁班锁、木机关方块、魔方、机关盒、棋盘、石块试题或猜谜游戏；三试不是木工解谜，郭靖始终空手。场中不画黄蓉手持打狗棒。
+    【画里谁是谁】这张插图画的是：桃花岛求亲三试的第三场默记经文（具体站位为原创扩展构图）。桃竹庭院与竹亭海雾；郭靖居中站定，双手自然下垂、空手，专注地背诵刚才看过的经文，不拿任何器物。清瘦中年黄药师青袍、黑发夹灰与三缕短须，手持无可读字的纸本经卷听其背诵；黄蓉在一旁关切，白衣成年贵公子欧阳克右侧沮丧。远处洪七公长方脸、花白发、颏下极短稀疏微须、朱红葫芦；欧阳锋五十余岁、高大、高鼻深目、棕黄络腮短须、灰黑束发、白衣，绝不是白发白须老仙。明确禁止鲁班锁、木机关方块、魔方、机关盒、棋盘、石块试题或猜谜游戏；三试不是木工解谜，郭靖始终空手。场中不画黄蓉手持打狗棒。
 
+    【要对齐的部分】郭靖、黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「桃岛三试」和小朱印必须原样保留，一笔不改、不增不减。
 
-    第1张为npc_guojing的本轮立绘；第2张为npc_huangrong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
-
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「桃岛三试」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: a2b01b368f05eda3ed62e1910c1e04242ad762cce8431480d5cf243f76176bee
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_huangrong__ch02_youth_bangzhu_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 7c802d17d03504fdb6176f951dffd87b7a32f9e90c293a409c7ab4e8b776567f
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.png
+    sha256: 9795e3af012aaa8a3c3540b1636fb19869663435e3ea0e6bd85ab6162711f940
+    use: 对脸基线：作者审核通过的 por_npc_guojing__ch02_youth_scene_peach_island_square_circle（郭靖），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
+    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
+    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch02/cg_ch02_peach_island_trials.png
+    sha256: 06c349434c1d30b3e66d2f69143d62ede8f36832192fb2553201f611d8f4d9ed
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.06c34943.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T00:13:03-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch02_peach_island_trials.1791011582806708000/archive/cg_ch02_peach_island_trials.png
+  created: 2026-10-03T16:36:46-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_peach_island_trials.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 06c349434c1d30b3e66d2f69143d62ede8f36832192fb2553201f611d8f4d9ed
+  sha256: 3137f5cede5f202d2d780333a327fc63d188491d2afd28701201a644656a0e98
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch02_peach_island_trials.1791011582806708000/archive/previous-prompt.md
-    png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch02_peach_island_trials.1791011582806708000/archive/previous.png
-    manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch02_peach_island_trials.1791011582806708000/archive/previous-entry.yaml
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch02_peach_island_trials.resume3r3.png
-  repair_runner_source_sha256: 55ad85f26095887a46d18c76cbd97f0be10beb9b86565c595ccaadfe7f5fbc9a
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.06c34943.png
+    sha256: 06c349434c1d30b3e66d2f69143d62ede8f36832192fb2553201f611d8f4d9ed
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.06c34943.entry.yaml
   runner_job_records:
   - - cg_ch02_peach_island_trials.resume3r3
     - ok
@@ -89,8 +83,7 @@
     - '187'
     - exec-e0d046cf-0951-49e4-b495-64c1d43a9f55.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch02_peach_island_trials.resume3r3
+  effort: ultra
 - id: cg_ch02_beiwuzhaoqin
   file: cg_ch02_beiwuzhaoqin.png
   category: scene
@@ -265,45 +258,41 @@
   category: scene
   style: default
   subject: 华山论剑与英雄之问（ch02_shediao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是郭靖的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中郭靖、黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    第二次华山论剑的编辑性全景（原创扩展构图，实际对决轮次待考）。成年郭靖换深色江湖布袍、收掌凝望群峰，黄蓉持竹棒站在他身旁，神情机敏而沉静；老乞丐洪七公长方脸、下巴只有微须、不长须垂胸；青袍黄药师清瘦沉静；神态失常的白衣欧阳锋高大、五十余岁、高鼻深目、棕黄色络腮短须、灰黑相间长发，绝不是白发白须的衰弱老仙。三人分置远处岩台，不处于同时进攻瞬间。绝顶破晓、冷云海与浅金晨光，气氛辽阔而克制，不把郭靖中年守襄阳造型提前放进本书。
+    【画里谁是谁】按人物的服饰、性别、位置和动作判断。
 
+    【要对齐的部分】郭靖、黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「华山论剑」和小朱印必须原样保留，一笔不改、不增不减。
 
-    第1张为npc_guojing的本轮立绘；第2张为npc_huangrong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
-
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「华山论剑」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: a2b01b368f05eda3ed62e1910c1e04242ad762cce8431480d5cf243f76176bee
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: a7e70176c73600162cba98ab6540cd96a4bcc52dbd4a9ec49127a1f9bdde26ca
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.png
+    sha256: 9795e3af012aaa8a3c3540b1636fb19869663435e3ea0e6bd85ab6162711f940
+    use: 对脸基线：作者审核通过的 por_npc_guojing__ch02_youth_scene_peach_island_square_circle（郭靖），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
+    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
+    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch02/cg_ch02_huashan_discourse.png
+    sha256: ce62b54bfd66bf90c804d671e362ab15ba1e58d2613f37ed9cea7bda64855a5a
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.ce62b54b.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T00:10:02-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch02_huashan_discourse.1791011402267281000/archive/cg_ch02_huashan_discourse.png
+  created: 2026-10-03T16:36:44-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_huashan_discourse.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: ce62b54bfd66bf90c804d671e362ab15ba1e58d2613f37ed9cea7bda64855a5a
+  sha256: 34bac69975a5148b1dd44d703b967f389c4eaad9875d2afeb7eb77ad8efc139c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「华山论剑」，实际字形「华山论剑」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「华山论剑」，实际字形「华山论剑」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch02_huashan_discourse.1791011402267281000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch02_huashan_discourse.resume3r2.png
-  repair_runner_source_sha256: 5d48f89f0051b43e531e40a6ea0a13433fdd9d2e3a2572624042e25227b54668
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.ce62b54b.png
+    sha256: ce62b54bfd66bf90c804d671e362ab15ba1e58d2613f37ed9cea7bda64855a5a
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.ce62b54b.entry.yaml
   runner_job_records:
   - - cg_ch02_huashan_discourse.resume3r2
     - ok
@@ -316,8 +305,7 @@
     - '186'
     - exec-ffd70e01-4855-445b-8421-46fd0d81549c.png
   runner_success_count: 2
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch02_huashan_discourse.resume3r2
+  effort: ultra
 - id: cg_ch02_ironspear_truth
   file: cg_ch02_ironspear_truth.png
   category: scene
