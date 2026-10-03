@@ -35887,6 +35887,64 @@
     "apps/game/vite.config.ts",
     "tools/perf/**"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/region-map.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-tiled-trigger-strict",
+   "title": "游戏工程 · 小修：Tiled Trigger 的 action 按已登记动作名（Ink OPCODES）大小写敏感校验；Door 的 lockedBy 不得填任务 ID（能查登记源则校验 RegionGate ID）",
+   "prompt": "ENG-tiled-trigger-strict.md",
+   "deps": [
+    "ENG-18b-tiled-regionmap",
+    "ENG-content-validate-inkmeta"
+   ],
+   "writes": [
+    "packages/data/src/schemas/region-map.ts",
+    "packages/data/src/build/tiled-*.ts",
+    "packages/data/src/build/ink.ts",
+    "packages/data/src/build/index.ts",
+    "packages/data/src/**/*.test.ts",
+    "packages/data/src/**/__fixtures__/**"
+   ]
   }
  ]
 }
