@@ -8,30 +8,57 @@ age_variant: youth
 tier: S
 output: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
 manifest: assets/default/character/male/ch01/manifest.yaml
-references:
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/duanyu_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "80aacefd1fbd1633f9e0224bc0d890d0862a8d8207ca3cef319d585e1395214d"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/duanyu_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "5cf61eff1900f82a71e5be382074c185896f0c2aef093589040bd77ae8064ba4"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
 status: candidate
 realism_revision: user_character_realism_20261001
-redo_reason: "作者 10-02 晚：复合基线风格精修"
+references:
+- path: .agents/coord/imagegen-reference/identity-20261002/tianlong/duanyu_2003_linzhiying_sina2021.jpg
+  use: 身份参考：2003《天龙八部》 剧照（作者 10-03 指定版本）；只借造型、气质与五官神韵，按项目画风重画，不照搬照片
+  sha256: cc0cc29af539391b5c641f56b0f2441ca1c182bcd21354b3c4b4321b1a4aef36
+- path: .agents/coord/_handoff/gem/codex_w17/staging/stillface__duanyu.jpg
+  use: 剧照脸部特写：由上面这张剧照裁出放大（512×512），只为看清五官；同样只借神韵，按项目画风重画
+  sha256: adccc76f218aabffcc9d16be61e90d4191eb4b9f7d63248f8ea889c0cf1d7d63
+- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+  sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+- path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+  sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+redo_reason: "作者 10-03 AR-44：参考2003《天龙八部》造型重画 base，不要和照片一样"
 reference_upload:
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/duanyu_still1.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/duanyu_game.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
-codex_prompt_rev: 2026-10-02
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/still__por_npc_duanyu__ch01_youth_shizi_base__1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/stillface__duanyu.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+codex_prompt_rev: 2026-10-03
 classic_ref:
-  version: 1997 TVB《天龙八部》
+  version: 2003《天龙八部》
   stills:
-  - .agents/coord/imagegen-reference/hero-20261001/classic_duanyu_1997.jpg
-composite_job: por_npc_duanyu__ch01_youth_shizi_base.resume3
+  - .agents/coord/imagegen-reference/identity-20261002/tianlong/duanyu_2003_linzhiying_sina2021.jpg
 ---
 
 # 段誉 · 人物写实修正
 
 ## Gemini 提示词
+
+> 2026-10-03 AR-44 新 base（10 号出图员，codex exec · image_gen）：作者要求参考2003《天龙八部》造型、按项目画风重画、不要和照片一样；上传顺序：1 张剧照、1 张剧照脸部特写，最后两张为同性别画风基线（缩小版 JPEG）。上一版保留在下一节作历史。AR-44，作者 15:40 选 B。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+【参考图】第 1 张是该角色经典影视造型的剧照，第 2 张是同一张剧照的脸部特写。人物的脸要明显向剧照靠拢——脸型、眉形与眉眼间距、眼型与眼神、鼻梁、嘴型和神情都要像剧照里的这个角色，让看过这一版的观众一眼认出；发型、服饰、配色和气质也借鉴剧照。但必须重新绘制成项目的手绘插画画风：不要照片质感，不要照搬剧照的构图、光影、背景和姿势，不要做成照片修图或照片贴脸。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物】段誉，《天龙八部》北宋大理国镇南王世子；无量山初入江湖、尚未学成北冥神功、凌波微步与六脉神剑的阶段。温文尔雅、心地仁厚，带一点书生的天真与痴气。
+【年龄与体态】约二十岁的成年男子（不是少年），身材修长匀称、肩背舒展，书生的清俊体态，约 7.5 头身。
+【面容（要像剧照里的段誉）】眉清目秀、俊美斯文：脸型清秀、下颌线干净、下巴略尖；眉毛浓黑细长、平直舒展；一双明亮的眼睛、双眼皮清楚、眼神温和带笑、略带痴气；鼻梁秀挺；唇形柔和、嘴角含笑；肤色白净。是成年的翩翩公子，不要娃娃脸、不要婴儿肥。
+【发式】黑发在头顶高高束成发髻、用白色发带扎住，额前头发向后梳，其余长发披在背后，两鬓各垂下一缕长发。
+【服饰：一袭白衣】白色交领右衽长衫，领缘、袖缘有浅青灰色窄边，内衬白色中衣，腰系一条浅青灰色丝绦，素色长裤、浅色布履；衣料细洁，大理世子的贵气只体现在做工上，不堆金饰。
+【手与道具】右手轻持一柄半开的素面折扇停在胸腹前，扇骨清楚、扇面无字无画；左手自然垂放。不佩剑、不拿书。
+【姿态】站姿放松而端正，身体基本朝向正面、微微侧身，头部端正，目光平视、带一点好奇的笑意。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要娃娃脸、婴儿肥或少年身材；不要佩剑、指剑气、六脉神剑光效；不要帝王冠或华丽官服；扇面不要任何字画。
+【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+```
+
+## 上一版 Gemini 提示词（AR-44 新 base 之前，历史，不再用于出图）
 
 > 作者10-02晚复合精修；任务 `por_npc_duanyu__ch01_youth_shizi_base.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
 
