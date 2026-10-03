@@ -845,4 +845,5 @@
     - **eng3 01:14 起跑**：ENG-17（M1）、ENG-18b、ENG-19a（M1）。
     - **磁盘**：00:52 跌到 4.0 GiB，已报协调者；01:00 回到 6–9 GiB。
     - **日志**：ART-hero-refine-a 的执行器日志到了 157 MB，由追踪 subagent 处理（gzip 后截断）。开发监督只管 traex 任务日志超 150 MB 的情况，目前都没超。
+  - **10-03 01:10–01:35 协调者**：作者在 Tripo 免费档生成并导出主角·男 3D 模型（第二版带 65 关节 Mixamo 骨骼，无动画），存 `apps/game/public/pilot/zhujue_tripo_v1.glb`，登记 ENG-12e-gltf-pilot（GLTFLoader + toon + 转台 + 片段重定向，排 ENG-18d 后）。磁盘：作者批准删 `~/.codex/thread_history_1.sqlite`（4.7 GB）；因 hero-a / hero-b / CITY 三个 codex 执行器仍持有该文件，01:27 用 step.py kill 重启三者释放空间（3.1 → 8.6 GiB）；step.py 改为给 Codex 执行器各自的 CODEX_HOME（60b81607），batch_run 合入时随日志清掉；eng3 并发降回 3。ENG-18d 01:13 合入体积转绿（entry 129.5 / 170），ENG-18e 修 build.test 超时在跑。INDEX.md 重建（作者指示移入 `_AUTHOR-NOTES.md`，4e78cf25）。
 
