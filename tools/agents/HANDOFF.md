@@ -1826,3 +1826,11 @@
     - **ENG-ui-***：ui_status_stagnation 深色描边 / 底光（design/26 §5.2）；用 codex，`--review-model gpt-6-astra`。
 
 - **10-03 16:40 立绘派生收尾**：暂存目录跑完 150 张（cast-fill-c / -d 新人 110 + AR-44 对脸替换 40），一次同步 877 个文件提交 d0b50b2d，用时约 31 分钟、_prod 只脏了几秒；人物立绘提示词索引重建 497f559a（700 份）。以后再有成批立绘入库，照样用 `.agents/coord/_handoff/portrait_stage_runner.py`（先 `--dry-run` 看张数）。AR-53 面部一致性总审子代理已起（说明 `.agents/coord/face_audit/BRIEF.md`）。Tripo 网页版累计入库 13 套（报告 ART-3d-tripo-web.md，ad04026c；模型归一化身高约 0.98，引擎需按身高缩放，已转开发监督）。
+  - **10-03 16:54–16:57 开发监督**：**ENG-region-gates-data 第 1 轮卡死**。
+    - 16:28 日志最后是 traex「context compacted」，之后 25 分钟没有输出，属于上下文压缩后挂住。
+    - supervise 的卡死检测 16:54 自动杀掉第 1 轮，起第 2 轮续作：
+      - 2.prompt.md 仍含「集成分支现状」一节；
+      - 工作区保留第 1 轮产物，region-binding.ts 等已写好。
+    - 它原来的池位在 16:54 被 ENG-16c 第 2 轮拿走（放行链第一位）。
+    - 协调者 17:00：ink-external-args 置 HOLD-RUNS，让 gates-data 第 2 轮先拿池位，wait_attempt 在 gates-data 拿到池位后再起 ink-external-args。
+
