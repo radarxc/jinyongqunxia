@@ -931,185 +931,145 @@
   category: character/male
   style: default
   subject: 萧峰（ch01_tianlong）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的萧峰立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中萧峰的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感，以及发式与头饰（深褐色粗布宽头巾在头上缠绕数圈（厚实、盖住额顶），头顶露出一个小发髻，两鬓和脑后垂下散乱的长黑发到胸前）。要让人一眼看出两张图里是同一个人。基线里的萧峰三十出头，脸型瘦削硬朗、下颌方正，高颧骨，浓黑剑眉压眼、眉头微蹙，眼型细长、目光锐利，鼻梁挺直，唇上一抹八字髭连着下巴一撮短须、两腮带青色胡茬，古铜肤色，神情刚毅沉郁。
 
-    【场景背景】初夏冰雪消融后的北地疏林：几棵淡墨树干、湿软的落叶土径、地上一串兽足印和远处浅草坡；同行猎人在画外。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【原图保持不变】除脸、发式与头饰以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【人物与场景】萧峰，《天龙八部》，北地行猎·林间寻踪。阶段：壮年约三十岁。在女真部落居留数月后的初夏，随完颜阿骨打及猎人出猎；取在泥泞森林发现、追踪熊迹的阶段，尚未在草原遇到契丹骑队与耶律洪基。 尚未受封南院大王。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【身份参考】随提示词上传的第 1 张图是萧峰本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（身材高大魁伟（比常人高出半头）、肩宽背厚；四方国字脸、下颌方正，浓黑粗眉、眉骨突出，一双大眼目光如电，高鼻梁、鼻翼宽，阔口厚唇，两颊与下巴是短而硬的络腮胡茬，脸上有风霜晒痕、额头两道浅横纹；约三十岁）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
-
-    【衣装】灰褐色布袍、腰带稳束，深色长裤与软靴，衣上只沾一点林路尘泥；裹巾包髻。
-
-    【动作与神情】站在林缘泥径上，身体三分之二侧向，一足前踏、后足承重，微微俯身察看脚前的兽迹，头略抬、眉眼清楚，像判断好方向正要继续前行；一手自然低放，一手收着腰侧衣摆。
-
-    【器物】空手；不画猎物与动物。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    sha256: 37587f1190e654d1d746049097a88f0c8e44761db3c4973dfe4acc528b381d59
-    use: 身份参考：本轮新出的萧峰（por_npc_xiaofeng__ch01_prime_gaibang_base，上传 codex 原图）
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
+    sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
+    use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.png
+    sha256: 5820c7892455fedad386719d937b8075fa9e20f3a96e2c50c84919106b871276
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.5820c789.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T02:54:52-0700
-  source_path: .agents/coord/gemini_originals/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.png
+  created: 2026-10-03T12:29:39-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 5820c7892455fedad386719d937b8075fa9e20f3a96e2c50c84919106b871276
+  sha256: 4957c35094451d7b3cb1bc48ab227a3098a357e90c06102d860331a44036a4ef
   status: candidate
-  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.5820c789.png
+    sha256: 5820c7892455fedad386719d937b8075fa9e20f3a96e2c50c84919106b871276
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.5820c789.entry.yaml
 - id: por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm
   file: por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
   category: character/male
   style: default
   subject: 萧峰（ch01_tianlong）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的萧峰立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中萧峰的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感，以及发式与头饰（深褐色粗布宽头巾在头上缠绕数圈（厚实、盖住额顶），头顶露出一个小发髻，两鬓和脑后垂下散乱的长黑发到胸前）。要让人一眼看出两张图里是同一个人。基线里的萧峰三十出头，脸型瘦削硬朗、下颌方正，高颧骨，浓黑剑眉压眼、眉头微蹙，眼型细长、目光锐利，鼻梁挺直，唇上一抹八字髭连着下巴一撮短须、两腮带青色胡茬，古铜肤色，神情刚毅沉郁。
 
-    【场景背景】少室山淡墨远峰、几株松影与少林山门一角；人物后上方用很淡的灰墨勾出一条不闭合的龙形意象（象征降龙十八掌，是平面的水墨笔意、不发光、不接触人物）。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【原图保持不变】除脸、发式与头饰以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【人物与场景】萧峰，《天龙八部》，少室山·降龙护人。阶段：壮年，约三十岁。已为辽南院大王，南返少室山、出掌相护的阶段；不是重新担任丐帮帮主。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【身份参考】随提示词上传的第 1 张图是萧峰本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（身材高大魁伟（比常人高出半头）、肩宽背厚；四方国字脸、下颌方正，浓黑粗眉、眉骨突出，一双大眼目光如电，高鼻梁、鼻翼宽，阔口厚唇，两颊与下巴是短而硬的络腮胡茬，脸上有风霜晒痕、额头两道浅横纹；约三十岁）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
-
-    【衣装】已为辽国南院大王、穿简洁的北地旅装（非王冠礼服）：深炭灰右衽长袍、温灰白内领、深灰腰束，肩上一件完整的暗灰短毡氅，深色长裤、行旅布靴，深灰裹巾包髻。
-
-    【动作与神情】平视略正面的稳健弓步，双脚真实承重；右掌向前护人，左掌在胸腹旁蓄势，每只手五根手指清楚；宽胸打开，有克制的力量与领袖气度。
-
-    【器物】双手空掌，没有竹棒或刀剑。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    sha256: 37587f1190e654d1d746049097a88f0c8e44761db3c4973dfe4acc528b381d59
-    use: 身份参考：本轮新出的萧峰（por_npc_xiaofeng__ch01_prime_gaibang_base，上传 codex 原图）
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
+    sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
+    use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+    sha256: 2786f3e0ce155a3e36ec4aef176186c0a3a5bc822a9107a0f56b56f67513bddc
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.2786f3e0.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T02:54:57-0700
-  source_path: .agents/coord/gemini_originals/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+  created: 2026-10-03T12:29:40-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 2786f3e0ce155a3e36ec4aef176186c0a3a5bc822a9107a0f56b56f67513bddc
+  sha256: 32c07b4927b3c75409dfdfc1e3da4ff75921e575529198be6dc9d5c8dbd6ab5d
   status: candidate
-  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.2786f3e0.png
+    sha256: 2786f3e0ce155a3e36ec4aef176186c0a3a5bc822a9107a0f56b56f67513bddc
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.2786f3e0.entry.yaml
 - id: por_npc_xiaofeng__ch01_prime_scene_songhelou_wine
   file: por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.png
   category: character/male
   style: default
   subject: 萧峰（ch01_tianlong）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的萧峰立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中萧峰的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感，以及发式与头饰（深褐色粗布宽头巾在头上缠绕数圈（厚实、盖住额顶），头顶露出一个小发髻，两鬓和脑后垂下散乱的长黑发到胸前）。要让人一眼看出两张图里是同一个人。基线里的萧峰三十出头，脸型瘦削硬朗、下颌方正，高颧骨，浓黑剑眉压眼、眉头微蹙，眼型细长、目光锐利，鼻梁挺直，唇上一抹八字髭连着下巴一撮短须、两腮带青色胡茬，古铜肤色，神情刚毅沉郁。
 
-    【场景背景】无锡松鹤楼二楼的浅墨木栏、屋檐与远处江南街影，一角淡赭色桌面。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【原图保持不变】除脸、发式与头饰以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【人物与场景】萧峰，《天龙八部》，松鹤楼·豪饮识英雄。阶段：壮年，约三十岁。仍以乔峰之名任丐帮帮主；与段誉在无锡酒楼相识的阶段，身世尚未揭露。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【身份参考】随提示词上传的第 1 张图是萧峰本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（身材高大魁伟（比常人高出半头）、肩宽背厚；四方国字脸、下颌方正，浓黑粗眉、眉骨突出，一双大眼目光如电，高鼻梁、鼻翼宽，阔口厚唇，两颊与下巴是短而硬的络腮胡茬，脸上有风霜晒痕、额头两道浅横纹；约三十岁）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
-
-    【衣装】灰色右衽旧布长袍、深灰短外衣、素白内领，窄布腰带，深色长裤与布鞋，深褐裹巾包髻。
-
-    【动作与神情】站在酒楼栏边，右手举一只朴素陶酒碗到胸前，左手自然垂下；略向画外的来客侧目，坦荡带笑，双脚稳稳落地。
-
-    【器物】右手一只素陶酒碗；桌边可露出另一只空碗，不堆酒坛。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    sha256: 37587f1190e654d1d746049097a88f0c8e44761db3c4973dfe4acc528b381d59
-    use: 身份参考：本轮新出的萧峰（por_npc_xiaofeng__ch01_prime_gaibang_base，上传 codex 原图）
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
+    sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
+    use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.png
+    sha256: abcd451eeef9fa780fb6d6b74a1da6f14f80abefc3d93109e9d9853ebdde8af5
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.abcd451e.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T02:55:01-0700
-  source_path: .agents/coord/gemini_originals/por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.png
+  created: 2026-10-03T12:29:41-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: abcd451eeef9fa780fb6d6b74a1da6f14f80abefc3d93109e9d9853ebdde8af5
+  sha256: b4ca3a6841660f2200fa485d68e330952dec29190cbb0f7ade325b568920eb55
   status: candidate
-  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.abcd451e.png
+    sha256: abcd451eeef9fa780fb6d6b74a1da6f14f80abefc3d93109e9d9853ebdde8af5
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.abcd451e.entry.yaml
 - id: por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure
   file: por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.png
   category: character/male
   style: default
   subject: 萧峰（ch01_tianlong）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的萧峰立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中萧峰的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感，以及发式与头饰（深褐色粗布宽头巾在头上缠绕数圈（厚实、盖住额顶），头顶露出一个小发髻，两鬓和脑后垂下散乱的长黑发到胸前）。要让人一眼看出两张图里是同一个人。基线里的萧峰三十出头，脸型瘦削硬朗、下颌方正，高颧骨，浓黑剑眉压眼、眉头微蹙，眼型细长、目光锐利，鼻梁挺直，唇上一抹八字髭连着下巴一撮短须、两腮带青色胡茬，古铜肤色，神情刚毅沉郁。
 
-    【场景背景】疏淡的杏树枝、林间空地和一条向留白延伸的土径，一两片落叶。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【原图保持不变】除脸、发式与头饰以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【人物与场景】萧峰，《天龙八部》，杏子林·释权辞帮。阶段：壮年，约三十岁。杏子林身世揭露、辞去帮主之后；仍是壮年乔峰，刚失去原有身份位置。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【身份参考】随提示词上传的第 1 张图是萧峰本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（身材高大魁伟（比常人高出半头）、肩宽背厚；四方国字脸、下颌方正，浓黑粗眉、眉骨突出，一双大眼目光如电，高鼻梁、鼻翼宽，阔口厚唇，两颊与下巴是短而硬的络腮胡茬，脸上有风霜晒痕、额头两道浅横纹；约三十岁）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
-
-    【衣装】灰色右衽旧布长袍、深灰短外衣、素白内领，窄布腰带，深色长裤与布鞋，深褐裹巾包髻。
-
-    【动作与神情】刚在杏子林辞去帮主：身体向林外转半步，头略回望、目光不低垂，双手空放；一脚已迈出、另一脚稳住，克制着受伤后的尊严。
-
-    【器物】双手空着，不持打狗棒（已交还）或兵器。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    sha256: 37587f1190e654d1d746049097a88f0c8e44761db3c4973dfe4acc528b381d59
-    use: 身份参考：本轮新出的萧峰（por_npc_xiaofeng__ch01_prime_gaibang_base，上传 codex 原图）
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
+    sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
+    use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.png
+    sha256: 4e588ccee85038a2350b0028a94387039a314704a56519672ad278099c732a64
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.4e588cce.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T02:55:09-0700
-  source_path: .agents/coord/gemini_originals/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.png
+  created: 2026-10-03T12:29:42-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 4e588ccee85038a2350b0028a94387039a314704a56519672ad278099c732a64
+  sha256: 2e77c13c7aa69a1c1849b9a5037edbc8893d3a1473da4760b639197d3003a41b
   status: candidate
-  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.4e588cce.png
+    sha256: 4e588ccee85038a2350b0028a94387039a314704a56519672ad278099c732a64
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.4e588cce.entry.yaml
 - id: por_npc_duanyu__ch01_youth_scene_langhuan_scroll
   file: por_npc_duanyu__ch01_youth_scene_langhuan_scroll.png
   category: character/male
