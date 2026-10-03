@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 841、待出图 187、已通过（作者） 132。**待出图队列 187 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 842、待出图 186、已通过（作者） 132。**待出图队列 186 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -28,7 +28,6 @@
 
 | 组 | asset_id | 名称 | 输出 | 状态 | 提示词 |
 |---|---|---|---|---|---|
-| items | `it_beisonglinglongqin` | 宋式玲珑琴 | `assets/default/item/collectibles/it_beisonglinglongqin.png` | 待出图 | [it_beisonglinglongqin.md](items/collectibles/it_beisonglinglongqin.md) |
 | items | `it_beisongqimuqiguan` | 北宋漆木棋罐 | `assets/default/item/collectibles/it_beisongqimuqiguan.png` | 待出图 | [it_beisongqimuqiguan.md](items/collectibles/it_beisongqimuqiguan.md) |
 | items | `it_beisongsuqin` | 北宋素髹琴 | `assets/default/item/collectibles/it_beisongsuqin.png` | 待出图 | [it_beisongsuqin.md](items/collectibles/it_beisongsuqin.md) |
 | items | `it_beisongsutongjing` | 北宋素面铜镜 | `assets/default/item/collectibles/it_beisongsutongjing.png` | 待出图 | [it_beisongsutongjing.md](items/collectibles/it_beisongsutongjing.md) |
