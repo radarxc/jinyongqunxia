@@ -33,7 +33,7 @@
   size: 1024x1536
   sha256: 6b37e9198821fe4aed7a0b561eb679275dc563f5fa130bb45445374c8ceadc76
   status: candidate
-  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_zhaomin__ch04_youth_lvliu_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_zhaomin__ch04_youth_lvliu_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44；绑骨用 _apose_slim，本张仅作造型参考（协调者 14:40）
 - id: por_npc_zhouzhiruo__ch04_youth_zhangmen_apose
   file: por_npc_zhouzhiruo__ch04_youth_zhangmen_apose.png
   category: character/female/tripo_ref
@@ -69,7 +69,7 @@
   size: 1024x1536
   sha256: c243a8c5e24c0402c4ae7d17e85d1b7d4126cf7e647913612b66333cf0be638c
   status: candidate
-  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_zhouzhiruo__ch04_youth_zhangmen_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_zhouzhiruo__ch04_youth_zhangmen_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44；绑骨用 _apose_slim，本张仅作造型参考（协调者 14:40）
 - id: por_npc_zhaomin__ch04_youth_lvliu_apose_slim
   file: por_npc_zhaomin__ch04_youth_lvliu_apose_slim.png
   category: character/female/tripo_ref
