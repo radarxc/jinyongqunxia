@@ -853,4 +853,11 @@
       - lore / 名录复验合入后，TOOL-items-catalog 的重新生成也要提交 content/items。
     - **TOOL-catalog-9col**：r1 FAIL，只剩一项：`sxpGrant` 的对象形式要求 `mode=pctNext`，并补正反测试。返修要等代码池空位，池上限 4，现在被 ENG-17 / 18b / 19a 与 TOOL-rig-sheet 占满。ENG-18e、ENG-12e（协调者新登记的 glTF 原型）也在排队等位。
     - **在跑**：ENG-17（M1）、ENG-18b、ENG-19a（M1）、TOOL-rig-sheet 第 4 次运行（返修）。
+  - **10-03 01:56–02:45 开发监督**：
+    - **集成分支恢复全绿**：ENG-18e 合入（1af8afcf，02:42）。它把真实内容构建用例改成夹具，单独运行从 4.5 s 降到 39 ms，没改超时，也没加按负载放宽的逻辑。
+      - 合入后 `prod_check post-eng18e`：RC=0，120 文件 825 用例，webgl total 292.75 / 350，当时负载 26–30。
+    - **磁盘**：01:58 跌到 2.1 GiB，交换区 39.9 GB，已报协调者。协调者暂停了 CITY-layouts-all 和 DES-items-gifts-spec，eng3 维持并发 3；02:02 后回到 4.6–6.7 GiB。
+    - **TOOL-rig-sheet**：返修第 1 次运行退出码 1，它自己新加的两条回归测试没过（hair_or_headgear 有游离连通块、torso 两肩圆帽）。supervise 已带校验结果自动续作第 2 次（02:34 起）。
+    - **排队等代码池空位**：TOOL-catalog-9col 的 r1 返修、ENG-12e。
+    - **负载**：02:30 前后 loadavg 到 42，主要是 Microsoft Defender（234% CPU）加上几个 vite build。
 
