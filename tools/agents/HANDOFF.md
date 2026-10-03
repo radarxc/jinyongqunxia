@@ -1510,3 +1510,11 @@
     - 起 **10 号出图员**（Opus 5.5 子代理，codex exec）：A 段立绘对脸（萧峰返工 → 杨过 / 段誉 / 张无忌新 base 请批 → 男女主角高魅力形象请批 → 其余已有通过图的主角对齐）；B 段 82 张剧情插图对脸。工具箱 `_handoff/gem/codex_w17/`，替换同路径文件，每人按路径提交，不跑 build_portraits。
     - Tripo 子代理：扩展权限修好后用 file_upload；Chrome 窗口作者已放前台；主要角色只做 base 已通过的黄蓉、小龙女，其余等新 base；预告 AR-45 高魅力形象（入库 `model3d/npc_zhujue__ch00_<g>_charmhigh/`）。
     - CONTENT-ch00a-data：第 1 轮停滞（25 分钟无输出）被自动续成第 2 轮；开发监督的兜底注入器往 2.prompt.md 追加的条件说明被执行器当捷径，2 分钟空跑 → 「缺报告」→ 第 3 轮。协调者 12:18 置 HOLD、停第 3 轮（防它为绕 inkmeta 缺口去改正确的 .inkmeta.yaml）。修复合入后挪基点 `--from start` + 说明。教训：不要往执行器提示词注入「条件放行」类说明，直接停。
+  - **10-03 12:20–12:26 开发监督**：ENG-size-session-gate 合入（95b02a59），`pnpm size` 改为三层报告；ENG-20b 解除 HOLD。
+    - `prod_check`（`_handoff/prod_check_post-sizegate_*.log`）全绿：140 个测试文件 / 990 条测试。
+      - 标题页：entry 38.44 / 170，render 161.87，webgl 200.31。
+      - 首次会话闭包：2.33 + 65.33 + 25.69 = **93.36 / 110**（余量 16.64）。
+      - 子系统块（未设门）：对话 / Ink 35.35、区域 44.19、战斗 33.77、城镇 25.64。
+    - 虚拟基础内容从任务工作区的 18.50 涨到集成分支的 25.69（+7.19），应来自之后合入的 items-regen 或 attr-v2-schema。已报协调者，是否追查由其定。
+    - ENG-20b 状态清回 PENDING 交 eng3；`entry_holds.txt` 已清空。ENG-16c 已由 eng3 起跑。
+
