@@ -1,4 +1,4 @@
-# 样稿素材来源 · 第二版
+# 样稿素材来源 · 第三版
 
 ## 1. 沿用的场景、立绘与物品
 
@@ -49,19 +49,44 @@
 
 截图仅为浏览器渲染的审阅证据，不属于生产美术；记录见 README。
 
-| 截图文件 | 原生视口 | 字节 | 来源 |
-|---|---|---:|---|
-| `img/review-bag-1280x720.webp` | 1280×720 | 65854 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-bag-390x844.webp` | 390×844 | 35542 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-battle-1280x720.webp` | 1280×720 | 87270 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-battle-390x844.webp` | 390×844 | 43772 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-character-1280x720.webp` | 1280×720 | 70912 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-character-390x844.webp` | 390×844 | 33930 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-codex-1280x720.webp` | 1280×720 | 59996 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-codex-390x844.webp` | 390×844 | 36080 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-map-1280x720.webp` | 1280×720 | 162114 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-map-390x844.webp` | 390×844 | 66998 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-town-1280x720.webp` | 1280×720 | 59630 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
-| `img/review-town-390x844.webp` | 390×844 | 42450 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| 截图文件 | 原生视口 | 字节 / WebP quality | 来源 |
+|---|---|---|---|
+| `img/review-map-1280x720.webp` | 1280×720 | 39592 / 20 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-town-1280x720.webp` | 1280×720 | 38714 / 79 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-battle-1280x720.webp` | 1280×720 | 39128 / 77 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-bag-1280x720.webp` | 1280×720 | 38876 / 77 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-martial-1280x720.webp` | 1280×720 | 38376 / 81 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-character-1280x720.webp` | 1280×720 | 39872 / 75 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-codex-1280x720.webp` | 1280×720 | 39662 / 80 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-journal-1280x720.webp` | 1280×720 | 39536 / 70 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-system-1280x720.webp` | 1280×720 | 39906 / 83 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-map-390x844.webp` | 390×844 | 39752 / 76 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-town-390x844.webp` | 390×844 | 38962 / 88 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-battle-390x844.webp` | 390×844 | 35708 / 88 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-bag-390x844.webp` | 390×844 | 32784 / 88 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-martial-390x844.webp` | 390×844 | 30140 / 88 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-character-390x844.webp` | 390×844 | 30506 / 88 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-codex-390x844.webp` | 390×844 | 33356 / 88 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-journal-390x844.webp` | 390×844 | 39296 / 84 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
+| `img/review-system-390x844.webp` | 390×844 | 28736 / 88 | 系统 WebKit · 同份 HTML/CSS · 字体回退 |
 
-以上 12 张只作审阅截图，不被场景 HTML/CSS 加载；PNG 转 WebP，未改像素尺寸。`verification.json` 记录渲染源 hash、引擎版本与几何检查。
+以上 18 张只作审阅截图，不被场景 HTML/CSS 加载；PNG 转同尺寸 WebP，按 ≤40,000 B 搜索最高整数质量（上限 88）。`verification.json` 记录源 / 截图 hash、引擎版本及检查边界；地图横屏压缩至 quality=20，细纹请直接打开 HTML 审阅。
+
+## 4. AR-50 地形与植物（8 件库内素材）
+
+本工作副本没有 `assets/default/building-map/`、`assets/default/tile/`，本轮逐件从集成副本 `/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/` 只读取以下源图和所在 manifest；源 SHA-256 均与清单一致。只输出本目录 WebP，没有复制整套 assets 或写入源目录。复现时按下表仓库相对路径取同 hash 文件；完整源 hash、原 / 输出尺寸与状态见 [terrain-sources.json](terrain-sources.json)。
+
+转换：预乘 alpha、Lanczos 等比缩至长边至多 192 px（小图不放大）、WebP quality=86 / method=6，保持透明。下列 ID 均为既有素材 ID；approved / candidate 仅转录源清单，不扩大作者批准范围。美术拼景不作为白马地区植物分布的事实依据。
+
+| 样稿文件 | 库内来源 ID（也是 PNG 文件名） | 来源目录（assets/default/ 下） | 输出 px / 字节 | 源状态 |
+|---|---|---|---|---|
+| `img/terrain-bamboo.webp` | `tex_town_ming_south_tree_cluster__bamboo_v01` | `tile/ming_south/` | 136×171 / 13418 | approved |
+| `img/terrain-willow.webp` | `tex_town_song_north_tree_cluster__willow_v01` | `tile/song_north/` | 192×139 / 11262 | approved |
+| `img/terrain-grass.webp` | `tex_town_mongol_grass_tuft__steppe_v01` | `tile/mongol/` | 84×57 / 2222 | approved |
+| `img/terrain-rubble.webp` | `deco_ruins_collapse_v01` | `tile/ruins/` | 144×107 / 4712 | candidate |
+| `img/terrain-wall.webp` | `deco_ruins_adobe_wall_brick_v01` | `tile/ruins/` | 120×103 / 3350 | candidate |
+| `img/terrain-flowers.webp` | `tex_town_song_dali_shrub__camellia_v01` | `baseline/tile/` | 147×103 / 7434 | candidate |
+| `img/terrain-reed.webp` | `tex_town_song_southern_reed__canal_v01` | `baseline/tile/` | 88×68 / 2578 | candidate |
+| `img/terrain-water.webp` | `tex_town_song_southern_water__v01` | `baseline/tile/` | 64×32 / 572 | candidate |
+
+台地顶面 / 侧壁、坡阶线、六角与落点轮廓均为场景原生 SVG 几何；溪水复用源水纹的中心矩形区域作连续填充（仅 SVG 取样，不改源图），格域与 `tr_qianshui` 完全重合。树、竹、碎石、断墙与花草使用上述透明缩图，不是手绘替代品。本轮 **样稿临时生成位图为零**；ART 正式补图建议为六角坡阶 / 台地侧壁、连续浅溪岸线、可站 / 不可站石块和独立动作 / 返回图标，见 design/26 §14.5。
