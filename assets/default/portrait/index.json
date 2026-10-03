@@ -1784,28 +1784,28 @@
   },
   "avatar/npc_duanyu/ch01_youth_shizi": {
    "128": {
-    "b": 4298,
+    "b": 4344,
     "f": "npc_duanyu/ch01_youth_shizi_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 10858,
+    "b": 11746,
     "f": "npc_duanyu/ch01_youth_shizi_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 27434,
+    "b": 30926,
     "f": "npc_duanyu/ch01_youth_shizi_base.ava512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    335,
-    28,
-    681,
-    374
+    313,
+    20,
+    661,
+    368
    ],
    "source": "por_npc_duanyu__ch01_youth_shizi_base"
   },
@@ -9047,28 +9047,28 @@
   },
   "avatar/npc_xuzhu/ch01_youth_lingjiu": {
    "128": {
-    "b": 4244,
+    "b": 4148,
     "f": "npc_xuzhu/ch01_youth_lingjiu_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 10976,
+    "b": 11240,
     "f": "npc_xuzhu/ch01_youth_lingjiu_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 29822,
+    "b": 30288,
     "f": "npc_xuzhu/ch01_youth_lingjiu_base.ava512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    344,
-    59,
-    681,
-    396
+    327,
+    39,
+    669,
+    381
    ],
    "source": "por_npc_xuzhu__ch01_youth_lingjiu_base"
   },
@@ -19318,22 +19318,22 @@
   },
   "bust/npc_duanyu/ch01_youth_shizi": {
    "256": {
-    "b": 10480,
+    "b": 10746,
     "f": "npc_duanyu/ch01_youth_shizi_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 27690,
+    "b": 31438,
     "f": "npc_duanyu/ch01_youth_shizi_base.bust512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    249,
-    17,
-    767,
-    535
+    226,
+    9,
+    748,
+    531
    ],
    "source": "por_npc_duanyu__ch01_youth_shizi_base"
   },
@@ -24967,22 +24967,22 @@
   },
   "bust/npc_xuzhu/ch01_youth_lingjiu": {
    "256": {
-    "b": 11748,
+    "b": 11892,
     "f": "npc_xuzhu/ch01_youth_lingjiu_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 32574,
+    "b": 33960,
     "f": "npc_xuzhu/ch01_youth_lingjiu_base.bust512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    260,
-    49,
-    765,
-    554
+    242,
+    29,
+    755,
+    542
    ],
    "source": "por_npc_xuzhu__ch01_youth_lingjiu_base"
   },
@@ -35336,20 +35336,20 @@
   "portrait/npc_duanyu/ch01_youth_shizi_base": {
    "alpha": true,
    "low": {
-    "b": 60396,
+    "b": 72292,
     "f": "npc_duanyu/ch01_youth_shizi_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 85396,
+    "b": 105098,
     "f": "npc_duanyu/ch01_youth_shizi_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_duanyu__ch01_youth_shizi_base",
    "source_file": "assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png",
-   "source_sha256": "760906758fcb2e0b56cfd7ebea915e397fca5ab1de97faeddbd4b01ffae19a17",
+   "source_sha256": "deb0dd99a63cc05043f9bcad23db6c0fbcc3f38de310f89f7c6375d1a96a562b",
    "status": "candidate"
   },
   "portrait/npc_duanzhengchun/ch01_prime_wangye_base": {
@@ -40786,6 +40786,25 @@
    "source_sha256": "4e588ccee85038a2350b0028a94387039a314704a56519672ad278099c732a64",
    "status": "candidate"
   },
+  "portrait/npc_xiaofeng/ch01_prime_scene_yanmen_raise_broken_arrow": {
+   "alpha": false,
+   "low": {
+    "b": 210830,
+    "f": "npc_xiaofeng/ch01_prime_scene_yanmen_raise_broken_arrow.low.webp",
+    "h": 1152,
+    "w": 768
+   },
+   "mid": {
+    "b": 334776,
+    "f": "npc_xiaofeng/ch01_prime_scene_yanmen_raise_broken_arrow.mid.webp",
+    "h": 1536,
+    "w": 1024
+   },
+   "source": "por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow",
+   "source_file": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.png",
+   "source_sha256": "5ddeae15d73669603d8e5002f628062601ea88eb7235360d7825d7c2e8f0942f",
+   "status": "candidate"
+  },
   "portrait/npc_xiaolongnv/ch03_youth_jueqing_base": {
    "alpha": true,
    "low": {
@@ -41245,20 +41264,20 @@
   "portrait/npc_xuzhu/ch01_youth_lingjiu_base": {
    "alpha": true,
    "low": {
-    "b": 66598,
+    "b": 71448,
     "f": "npc_xuzhu/ch01_youth_lingjiu_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 94570,
+    "b": 103412,
     "f": "npc_xuzhu/ch01_youth_lingjiu_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_xuzhu__ch01_youth_lingjiu_base",
    "source_file": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
-   "source_sha256": "cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4",
+   "source_sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
    "status": "candidate"
   },
   "portrait/npc_xuzhu/ch01_youth_scene_icecellar_practice": {
