@@ -35218,7 +35218,9 @@
     "tools/content/test_items_from_catalog.py",
     "tools/content/town_runtime.py",
     "tools/content/test_town_runtime.py",
-    "tools/README.md"
+    "tools/README.md",
+    "tools/balance/test_*.py",
+    "tools/balance/__init__.py"
    ]
   },
   {
