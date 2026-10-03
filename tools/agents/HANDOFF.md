@@ -861,3 +861,20 @@
     - **排队等代码池空位**：TOOL-catalog-9col 的 r1 返修、ENG-12e。
     - **负载**：02:30 前后 loadavg 到 42，主要是 Microsoft Defender（234% CPU）加上几个 vite build。
 
+  - **10-02 23:05 – 10-03 03:10 素材线第二波追踪**：
+    - **合入**：
+      - ART-cast-fill-a：e1698e93，7 张。
+      - ART-cast-fill-b：fe4765ef，50 张，其中复用 17 张。
+      - ART-hero-refine-a：d11b33a0，95 张 = 15 张 base + 30 张分时期 + 50 张 CG，题字已逐字核过。
+      - 三个都是审核一次 PASS（Codex gpt-5.6-sol）。联系表在 `_handoff/gem/codex_w1{1,3,4}/sheets/`，抽查合格。
+      - 留意 cast-b：ch09 万门弟子几张同脸，协调者已另登记 ART-cast-polish-ch09。
+    - **hero-a / hero-b 的执行次数**：
+      - 第 2 次运行拿到的是窄口径续作说明，只补了一张插图凑校验；审核把缺项全列出来，第 3 次补全。
+      - 第 4 次被磁盘护栏打断，停在 HOLD-RUNS。02:23 / 02:25 带审核 r2 的返修说明另起驱动（`tracker_note_*.md`）。
+      - hero-b 审核 r3 卡在李文秀没有剧照，协调者裁定白马 / 侠客 / 鸳鸯可不用剧照，已加进 review_checks_hero 第 1 条。第 6 次照原说明跑完。
+    - **磁盘 / 内存**（两次跌到 2.1 GiB）：
+      - 主要是交换区扩容：BiRefNet 抠图每次加载 +1–5 GB；eng3 同时起了 4 个工作区。
+      - 处理：追踪者停掉自己的 alpha 预计算和最后一批 build_portraits。codex 执行器的累计 diff 日志超过 150 MB 就自动 gzip 轮转（hero-a 两小时 330 MB）。w11 / w12 已入库的 out 原图换成指向工作区的符号链接（省 435 MB）。runner 的 SLOTS 降为 2。
+      - 协调者：清 ~/.codex 历史库 4.7 GB；step.py 改成每个执行器单独 CODEX_HOME；02:00 暂停 CITY 与 DES-items-gifts-spec。
+    - **build_portraits**：已提交 29109cfe（ch02）、d255c157（ch04）、0343156b（ch06/07/09）、a03b120d（书剑部分，中止前先落库）。剩下的连同 hero 两任务的新图，等协调者指定时段一次跑完。INDEX 由协调者修脚本后重建；gallery 00:53 已重建。
+    - **runner 运维**：w11 / w12 因磁盘自停后都续起过。w11 的旧进程没退干净，出现双 runner，写 STOP 排空后重起。执行器自己写的 STOP / EXIT_WHEN_EMPTY 改名为 `*.run1-*` / `*.disk-*`。
