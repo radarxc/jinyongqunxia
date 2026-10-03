@@ -771,3 +771,19 @@
       - `/private/tmp/tianshu-pw-browsers`（539 MB）是 10-01 01:45 下载的 Playwright，早于 AR-34，属旧遗留。
       - 没删任何东西；23:00 回到 7.3 GiB。
 
+  - **10-02 22:47–23:05 素材线第二波追踪**（`_handoff/art_wave2_tracker_brief.md`）：
+    - **起跑**：执行器都是 Codex gpt-6-astra，审核加 `--review-model gpt-5.6-sol`（supervise 会把 `--bin` 原样传给审核，Codex 不认 `GPT-5.6-Sol`，实测返回 400；协调者已批准）。
+      - ART-hero-refine-a：22:47，驱动 pid 60720，ultra。
+      - ART-hero-refine-b：22:48，驱动 pid 64990，ultra。
+      - ART-cast-fill-a：22:52，驱动 pid 86122，xhigh。
+      - ART-cast-fill-b：23:00，驱动 pid 48088，xhigh。磁盘一度降到 5.4 GiB（交换区涨了 1 GB），回到 7.3 GiB 后才起。
+    - **登记修正**：
+      - 4883a28f：-b 两个任务的人物检查 glob `ch[01][0-9]` 会连带 ch00–07，这几本书的 PNG 不在稀疏检出里，必报「文件不存在」。改为 `ch0[89]` + `ch1[0-4]` 两条，校验与提示词同步改。
+      - d01d7128：两份模板里「先读 _codex_worker.md」改指集成分支的绝对路径（旧基点工作区里的是旧版）。
+    - **嵌套 codex 失败**：
+      - 现象：在 codex 0.159 的 workspace-write 沙箱里（网络已开）再起 `codex exec`，一律报 `workspace routing discovery failed`。沙箱外同样的命令 7 秒就应答；前几波外层是 traex，没有这个问题。hero-a、hero-b 各失败 3 张后停了队列。
+      - 协调者裁定：runner 改由追踪者在沙箱外常驻，见 dff326fa。
+      - 已起 runner，都是 NSLOTS=3：w11 pid 45766、w12 pid 45769、w14 pid 47571、w13 pid 61768。w13 是等 cast-a 自己在沙箱里起的 runner 退出后才起的。
+      - 执行器留下的 STOP / EXIT_WHEN_EMPTY 改名为 `*.run1-sandbox`。w13 补了 ingest8.py；w14 新建；两者的 ROOT 都指向各自工作区（w8 的 ROOT 是 _prod 本身）。
+    - **续作**：hero-a 第 1 次运行校验失败（场景目录没有 manifest），23:00 自动续作第 2 次。
+    - **待起**：CITY-layouts-all 等磁盘 ≥ 9 GiB；ART-ruins-maps 等 ENG-18b 合入。
