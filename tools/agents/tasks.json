@@ -35333,6 +35333,70 @@
     "packages/core/package.json",
     "packages/core/src/entries/**"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/content/items_from_catalog.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools.content.test_items_from_catalog",
+      "tools.lint.test_check_item_catalog"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-items-regen",
+   "title": "工具 · 按九列名录重新生成 content/items（lore 全部合入后；提交生成物 AR-39；不改生成器）",
+   "prompt": "TOOL-items-regen.md",
+   "deps": [
+    "DES-items-lore-1",
+    "DES-items-lore-3",
+    "DES-items-lore-5",
+    "DES-items-lore-6",
+    "DES-items-lore-7",
+    "DES-items-lore-8",
+    "TOOL-catalog-food-qi-exception"
+   ],
+   "writes": [
+    "content/items/**"
+   ]
   }
  ]
 }
