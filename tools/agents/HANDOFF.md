@@ -1671,4 +1671,7 @@
     - **ART-ui-icons** 已合入（7aafb177，22 件武侠图标）。
     - **DES-ui-immersive-2**（711f77d2，依赖 DES-ui-immersive、ART-ui-icons）：codex gpt-6-astra xhigh，`--review-model gpt-6-astra`，review_checks_des，驱动 5349。说明补了「人物」图标无五官这一条。
     - 磁盘 4.9 GiB（略低于 5）：这两件是协调者点名要起的。
+  - **10-03 14:29–14:33 开发监督**：DES-ui-immersive-2 在协调者 14:29 补充之前已开跑。
+    - `ui_status_stagnation` 深底加描边 / 底光这一条已补进登记的说明（f6b69d03），返修或重跑时会读到；当前这轮不重起（协调者 14:32 选 b）。
+    - **待办**：登记 ENG-ui-* 实现任务时，把这条写进说明，并带上 codex 执行与 `--review-model gpt-6-astra`。草稿在 `scratchpad/pending/ENG-ui-notes.md`。
 
