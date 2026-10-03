@@ -1692,3 +1692,67 @@
     - 内容任务：新口径 `review_checks_content.md`（eng3 已重启读取，pid 21451，日志 `_batch/eng3.detach.r4.out`）。CONTENT-ch10 r2 FAIL（门禁 ID、阻塞 ID 过期、缺第 7 节）→ 合并说明重起（门禁 ID 用拼音 `gate_10_fengshi_dongmen`，驱动 66718），14:25 校验通过在审。CONTENT-ch00a 旧口径审核中途停 → 内容口径 r1 FAIL（NPC 永久招募、gateRef、白猿物种、角色槽）→ 登记 ENG 后带准确 ID 与默认方案重起（驱动 92084）。CONTENT-ch00b 仍 HOLD（等 ch00a）。
     - 磁盘：13:54 一度 2.7 GiB（交换区 31.8 → 38.7 GB）。清了旧临时目录与 161 个已合入任务日志、w13–w16 homeN；runner 降 1 槽。全盘清理清单在做：~/Projects 约 230 GB（node_modules 统计中）、飞书 24.6 + 6.3 GB、~/.codeverse/.ckg 13.5 GB、~/.trae/cli 12.4 GB、Claude vm_bundles 9.9 GB、两份 pnpm 仓库 18.4 GB、「下载」里 ChatGPT 安装包 1.26 GB 与 Gemini 重复图 1.3 GB——删除一律待作者确认。
     - 作者问「这个session能remote吗」→ 已开 Remote Control（remoteControlState=on）；提醒 Mac 需不休眠、Gemini / Tripo 窗口需可见。
+  - **10-03 14:38–14:42 开发监督**：CONTENT-ch10 合入；gates-data 说明补 ch10 binding 照抄。
+    - **CONTENT-ch10-cold-entry**：r3 复审（review_checks_content）PASS，14:38 自动合入（38a746bf）。
+      - prod_check 全绿（HEAD a8a58e14，日志 `_handoff/prod_check_post-ch10_1439.log`）：1014 个测试；entry 38.44 / 170；render 161.87 / 180；webgl 200.32 / 350；会话闭包 93.40 / 110。
+      - ch10 的东门 `lockedBy: gate_10_fengshi_dongmen` 已在集成分支，但还没有 binding 文件。
+      - 交接写在 ch10 报告 §4 O3 / §6：东门 gate（flag `fl_10_cold_entry_talked`，键 `ch10.coldEntry.interact.eastGateLocked`）、`first_talk` 的 dialogue binding、李文秀和驿卒两个锚点无对话。
+    - **ENG-region-gates-data**（5b18e19e）：说明补「集成分支现状」一节，写集加 `content/chapters/ch10_baima/bindings/**`。
+      - 原因：它新增的「lockedBy 必须已登记」是硬规则，不照抄 ch10 的 binding，合入后集成分支 `content:validate` 就红。
+      - 做法：照抄上述三项，不做内容取舍，「无对话」标注放进 binding 文件、不改地图。
+      - 它的说明在 13:54 就渲染好了（1.prompt.md，基点 4e193b0f）。驱动一直在等代码池空位，没有起过执行器。
+      - 已请协调者停 59669 / 59678；停后我挪基点到 HEAD，按原参数重起。
+      - 若停之前执行器已经起跑，改为登记小任务 CONTENT-ch10-bindings，等 gates-data 合入后马上起。
+      - 协调者若不同意由 gates-data 照抄，就退回 5b18e19e。
+  - **10-03 14:42 开发监督**：协调者 14:43 同意由 gates-data 照抄 ch10 的三项 binding，已停旧驱动 59669 / 59678，状态置 HOLD-RUNS。
+    - rebase_task 拒绝处理：基点之上 0 个提交，工作区也没有改动。
+      - 改为 `git worktree remove` 删掉这个干净工作区（不带 --force）。
+      - 再用 launch_std.sh 按原参数重起，驱动 70876。
+      - step start 从 HEAD 新建工作区，基点 7038f0a6；首次运行用干净提示词，不带续作 / 重试说明。
+    - 新 1.prompt.md 含「集成分支现状」一节，写集含 `content/chapters/ch10_baima/bindings/**`。
+    - 现在在等代码池空位。
+  - **10-03 14:44–14:52 开发监督**：event-executor 有同类合入顺序问题；species-roleslot 补 ch00a 衔接。
+    - **ENG-event-executor**：ch10 的 7 个 EventDef 用旧动作名（startStory、showText、revealText、loadScene、restoreBasicSurvival、observeOnly）。
+      - 它的基点 4e193b0f 早于 ch10，合入后严格动作词表会让集成分支变红。
+      - 协调者 14:47：只停驱动（supervise 59692、step wait 22558），执行器 63212 / 63215 继续跑，状态 HOLD-RUNS。
+      - 执行器写出 `.agents/logs/ENG-event-executor/1.exit` 后，开发监督依次做：
+        1. rebase_task 挪基点到 HEAD；
+        2. 按它报告里的新旧名对照，机械改 `content/chapters/ch10_baima/events/**` 的 op / 参数名；
+        3. 报告 §3 / §7 补一句「ch10 events 的 op 迁名由开发监督按本任务对照表机械完成」，并在 coord 写备注；
+        4. `launch_std.sh ENG-event-executor review_checks_eng.md --from validate`。
+      - 对照表若有一对多或要改语义，就不手改，改走 `--from start` 返修。
+      - 驱动停期间没有卡死检测：开发监督自己盯日志（scratchpad `eecheck.sh`），25 分钟无输出就报协调者。
+    - **ENG-npc-species-roleslot**（af0788c4，协调者 14:47 同意）：说明补「与 CONTENT-ch00a 的衔接」一节，写集加 `content/chapters/ch00_yuenv/{roles,npcs}/**`。
+      - ch00a 若已合入，允许把它的角色槽与白猿 mockRef 迁到新 schema：只迁格式和位置（含移出 `_drafts/`），不改内容取舍，并在报告第 7 节逐项列明。
+  - **10-03 15:02–15:08 开发监督**（协调者 15:02）：
+    - **ENG-npc-species-roleslot**（915c81ab）：「ch00a 草案晋升」改为必做。
+      - 晋升对象：
+        - 3 人：`npcs/_drafts/npc_{aqing,baiyuan,fanli}`，`npc-draft.v1`；
+        - 3 类共 6 个角色槽：`roles/_drafts/role_{road_swordsman,wu_swordsman,yue_soldier}`，`role-slot-draft.v1`，各 count 2。
+      - 迁到正式路径和正式 schema，补回 4 个任务的 `subjectNpcIds`：c01 / c04 `[npc_aqing]`、c02 `[npc_aqing, npc_baiyuan]`、c03 `[npc_aqing, npc_fanli]`，以 DAG / Ink 核对。
+      - 写集加 `content/chapters/ch00_yuenv/quests/**`；依赖加 CONTENT-ch00a-data。
+    - **TOOL-items-regen-2**：ch00a 为了让自己的 `items_from_catalog --check` 通过，生成了 151 件收藏品，这正是 regen-2 的活。
+      - ch00a 合入后：标 CANCELLED（理由「由 CONTENT-ch00a 合入时生成」），删工作区，在集成分支跑 `--check`。
+      - 审核若判物品文件越界，就照审核意见处理，regen-2 照原计划跑。
+      - artw3 的 wait_start 52793 用 `--running … TOOL-items-regen-2` 作为 rig-std-parts 的起跑条件，已请协调者 / artw3 改条件后重起。
+  - **10-03 15:13–15:20 开发监督**：CONTENT-ch00a r2 FAIL（内容口径）；登记 ENG-move-onhit-effects，重起 ch00a。
+    - **r2 意见**（`.agents/reviews/CONTENT-ch00a-data.r2.md`）：内容、写集、校验都过，只有两条不过：
+      - 报告数字过期：81 / 36，实测 144 个 `#ts:` / 65 个 speaker；
+      - O4 的 MoveDef 附带效果没有 ENG 任务 ID 和待消费字段。
+    - **ENG-move-onhit-effects**（5e56e7d5，协调者 15:16 批）：
+      - 字段：`onHit.applyBuffs[{buffId, chanceBp, turns}]`、`onHit.displace{kind: knockback, cells}`、`parryable` 默认 true；content:validate 校验 buffId。
+      - 另补 bf_shiheng / bf_pojia / bf_dongyao 定义；序章越女剑四招填值。
+      - 依赖 ENG-25 / 16c / 26 / CONTENT-ch00a。加 26 是因为同写 battle/types.ts、index.ts 和数据登记文件。
+      - ENG-27a 加依赖它（同写 schemas/**、battle/**）。
+        - eng3 只在启动时读依赖图，新依赖要等它重启后才生效。
+        - 在那之前，起 move-onhit-effects 前先确认 27a 没在跑；若 27a 已起，就等它合入再起。
+      - 位置：M1 三件与 19e 之后，非 M1 阻塞，traex Sol max，review_checks_eng，由开发监督单独起。
+    - **CONTENT-ch00a**：保留工作区（基点 e3e88508）续作，驱动 78500，第 7 次运行。
+      - 参数：`--from start --max-runs 1 --max-reviews 1 --auto-merge`，内容口径。
+      - note：`devsup_note_r2.md`，内容是 r2 原文加协调者三点。
+
+- **10-03 15:05–15:35 协调者**：
+  - DES-ui-immersive-2：第 1 轮被防截断门误挡（index.html 拆成审阅壳 + scene.html；legend-sword.webp 不再使用），开发监督加 shrink_exempt（654aa9b8）；协调者停第 2 轮、`--from validate` 重起；审核 r1 只差文档两处（迟滞图标深底描边规范、报告「需作者确认」），返修后 15:20 `--from review` 起第 2 轮审核（驱动 87930）。截图联系表已发作者（`.agents/coord/ui_mock_page/v2_*.jpg`），合入后重发样稿页 Gs1y41HRhgPg29YGiXjAo2。
+  - CONTENT-ch00a-data r2 FAIL（报告数字过期；O4 招式附带效果缺 ENG 任务）：登记 ENG-move-onhit-effects（开发监督 5e56e7d5），ch00a 重起（驱动 78500，note `devsup_note_r2.md`）。
+  - 招式特效 VFX-sk_* 剩 35 门交素材线第三波补位器（Codex 执行器直跑，先试点）；旧 `_batch_queue.txt` 已注释停用（CITY-* 由 CITY-layouts-* 取代）。
+  - 作者 15:28「剧照要下」：黄蓉、阿青剧照许可下载（AR-49 补充 4），10 号改出带参考版；王语嫣场景立绘对齐 mantuo_base。三张待批联系表（大理苍山 A/B、段誉 A/B、高魅力形象）直接发给作者。
