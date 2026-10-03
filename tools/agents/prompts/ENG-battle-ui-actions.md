@@ -42,6 +42,7 @@
    - 文案进 `packages/ui/src/i18n.ts`。
 
 约束：
+- **体积**（开发监督 10-03 04:38 补）：ENG-19a 合入后集成分支 entry 闭包已到 157.74 / 170 KiB（gzip，`tools/perf/budgets.json`，不放宽）。本任务新增的页面 / 组件一律按路由或首次使用懒加载（`defineAsyncComponent` / 动态 `import()`），不进入首屏同步依赖；报告写 `pnpm size` 的 entry / webgl total 实测。
 - 写集：`apps/game/src/battle/components/**`、`apps/game/src/battle/*.ts`（只做展示适配）、`apps/game/src/battle/battle.css`、`packages/render/src/battle/**`、`packages/render/CLAUDE.md`、`packages/ui/src/i18n.ts`。写集外的改动在提交时会被丢弃。
 - **不改**：`packages/core/**`；需要 core 补查询的，在报告里写明，不要改。
 - 分层：界面只消费投影与查询、发命令意图，不算规则。
