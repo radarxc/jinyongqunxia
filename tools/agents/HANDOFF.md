@@ -1803,3 +1803,17 @@
 - **10-03 16:00–16:15 协调者**：作者 AR-51「黄蓉用a，阿青再更接近林青霞一些」「金城武李嘉欣照片都下载」→ 已转 10 号（黄蓉换 A 并出窄轮廓 A 字图；阿青再出 A/B；高魅力加照片参考重出 A/B）。作者「大理苍山用c」→ Gemini 出图员 d897426a 覆盖入库（B 原图挪 rejected，B 实为照搬总图左半幅；区域图改用总图中部裁块 + 相关系数查重）。段誉 3D 入库 f78cc0dd。特效试点合入 3324e22e，其余 34 门开铺。
 - **磁盘清理 6 / 9 / 10**（作者「六到十删除六九十」，7、8 保留）：9 下载文件夹两个 ChatGPT 安装包、7 个 .har、681 张与归档同字节的 Gemini 图（.har.zip 不在清单内未删）；10 主检出 `generated_images/` 635 张有同字节副本的原图（对照表 `generated_images/DELETED_DUPLICATES_20261003.tsv`，剩 201 张无副本原图全部保留）；6 二十个两个月未动项目的 290 个 node_modules（后台删除中）。
 - **10-03 16:15 协调者**：补齐人物 cast-fill-d 合入（5b2b8753）。立绘派生改在暂存目录跑（新脚本 `.agents/coord/_handoff/portrait_stage_runner.py`：复制 portrait 目录到 `.agents/coord/portrait_stage/`、BiRefNet 只加载一次、全部处理完再一次性拷回 _prod 按路径提交，脏窗口只有几秒；驱动 87094，日志 `_handoff/portrait_stage.out`，待处理 150 张）。跑完后再跑 `build_portrait_index.py`。素材审核页第 3 版已同址重发（2603 件）。
+  - **10-03 16:20–16:30 开发监督**：CONTENT-ch00a r4 FAIL，查出 Ink 编译器 bug。
+    - **问题**：`packages/data/src/build/ink.ts` 的 `extractStoryText()` 把 EXTERNAL 调用的字符串实参也本地化成文本键。
+      - 例：`get_flag("fl_00_zhulin_loss_streak3")` 编译后传的是 `ink.story_ch00_main.text.0019`。
+      - 后果：序章的书灵示范永远不出现，投桃永远走「无桃」分支。
+      - ch00a 的内容和写集都过了；判 FAIL 是因为报告写成「已通过」，也没登记阻塞任务。
+    - **ENG-ink-external-args**（6cefcccd，协调者 16:27 批）：
+      - 修 `extractStoryText()`，求值上下文里的字符串保持原值；
+      - 回归测试覆盖 get_flag / has_item / quest_stage / affinity；
+      - 用 ch10、ch00 实测编译产物。
+      - 写集：`build/ink.ts` 及测试。
+      - 放行顺序排在 16c 后、23a 前，由协调者的 wait_attempt 守候起跑（traex Sol max，review_checks_eng）。
+    - **CONTENT-ch00a**：第 9 次运行只改报告，驱动 53634，note `devsup_note_r4.md`。
+
+- **10-03 16:28 代码池放行链更新**：开发监督登记 ENG-ink-external-args（6cefcccd，`extractStoryText()` 把 EXTERNAL 字符串实参也换成文本键，导致 ch00a 的 get_flag / has_item 条件失效）；插在 16c 之后。现顺序 16c → ink-external-args（守候 59783）→ 23a（59788）→ 18c（96188）→ base-diet（96190）→ std-parts（83195）→ cropframe（96192）。CONTENT-ch00a 第 9 次运行只改报告（驱动 53634）。作者 AR-52「未来大地图都以实际地图地势为基础生成不要偏离」已转 Gemini 出图员：区域图以 docs/design/map 真实地理裁底图为第一参考，已入库的逐张比对；SR_HR.zip（42 MB）下载待作者许可。
