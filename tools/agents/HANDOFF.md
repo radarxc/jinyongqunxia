@@ -1666,4 +1666,9 @@
     - r2 建议的 `gate_10_fengshi_east` 不合 canon §12 拼音规则。协调者选方案 a：停掉 eng3 驱动的返修（65882 等），由我重起。
     - 合并说明写在 `.agents/coord/CONTENT-ch10-cold-entry/devsup_note_r2.md`：r2 全文，加「门禁 ID 用 `gate_10_fengshi_dongmen`」。
     - 起跑：`--from start --max-runs 1 --max-reviews 1 --auto-merge --checks review_checks_content.md`，驱动 66718。PASS 合入，FAIL 报协调者。
+  - **10-03 14:19–14:27 开发监督**：ch00a 改用内容口径复审；DES-ui-immersive-2 登记并起跑。
+    - **CONTENT-ch00a-data**：续作后校验通过（32 个文件）。协调者停掉了旧口径的审核，我用 `--from review --checks review_checks_content.md --max-reviews 1 --max-runs 1 --auto-merge` 复审，驱动 99766。
+    - **ART-ui-icons** 已合入（7aafb177，22 件武侠图标）。
+    - **DES-ui-immersive-2**（711f77d2，依赖 DES-ui-immersive、ART-ui-icons）：codex gpt-6-astra xhigh，`--review-model gpt-6-astra`，review_checks_des，驱动 5349。说明补了「人物」图标无五官这一条。
+    - 磁盘 4.9 GiB（略低于 5）：这两件是协调者点名要起的。
 
