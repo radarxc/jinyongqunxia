@@ -35267,6 +35267,72 @@
     "-c",
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\",\"/private/tmp\"]"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/core-worker.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-entry-split",
+   "title": "游戏工程 · entry 闭包拆分：core Worker 子系统按需 import()、主线程非首屏懒加载（预算不放宽，目标 entry ≤ 155 KiB）",
+   "prompt": "ENG-entry-split.md",
+   "deps": [
+    "ENG-20a-region-core",
+    "ENG-19b-ui-m1-flow"
+   ],
+   "writes": [
+    "apps/game/src/core-worker.ts",
+    "apps/game/src/core-host.ts",
+    "apps/game/src/main.ts",
+    "apps/game/src/runtime/**",
+    "packages/core/package.json",
+    "packages/core/src/entries/**"
+   ]
   }
  ]
 }
