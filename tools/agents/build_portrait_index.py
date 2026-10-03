@@ -49,6 +49,8 @@ def collect():
         for f in sorted(d.glob("*.md")):
             if f.name.startswith(("_", "README", "INDEX", "GUIDE")):
                 continue
+            if not f.name.startswith("npc_"):  # 2026-10-03 协调者：目录里的覆盖表 / 审计（CAST-COVERAGE.md 等）不是提示词文件，跳过不报错
+                continue
             fm = frontmatter(f)
             if not fm or "asset_id" not in fm:
                 problems.append(f"{f.relative_to(ROOT)}：frontmatter 无法解析或缺 asset_id")
@@ -64,7 +66,8 @@ def render(groups: dict) -> str:
     by_gender = Counter(str(fm.get("gender")) for rows in groups.values() for fm, _ in rows)
     by_tier = Counter(str(fm.get("tier")) for rows in groups.values() for fm, _ in rows)
     out = ["# 人物立绘提示词 · 总索引", "",
-           "> 本文件由 `tools/agents/build_portrait_index.py` 生成，不要手改；改提示词就改各人物文件，改规程就改 `GUIDE.md`，然后重新生成。",
+           *([ln for ln in (BASE / "_AUTHOR-NOTES.md").read_text(encoding="utf-8").splitlines() if not ln.startswith("<!--")] + [""] if (BASE / "_AUTHOR-NOTES.md").exists() else []),  # 作者历次指示原样嵌入文首
+           "> 本文件由 `tools/agents/build_portrait_index.py` 生成，不要手改；改提示词就改各人物文件，改规程就改 `GUIDE.md`，作者指示放 `_AUTHOR-NOTES.md`，然后重新生成。",
            "> 每个人物一份提示词文件（`<分组>/<id>.md`）：文首 frontmatter 写明立绘素材 ID、输出文件与登记清单的位置，正文是人物要点、完整提示词、排除项与质检要点。",
            "",
            (f"已合入 **{total}** 份：" + "、".join(f"{GENDER.get(k, k)} {v}" for k, v in sorted(by_gender.items()))
