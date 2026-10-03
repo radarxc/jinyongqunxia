@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1009** 份：已入库 783、已通过（作者） 132、待出图 94。**待出图队列 94 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1009** 份：已入库 784、已通过（作者） 132、待出图 93。**待出图队列 93 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -28,7 +28,6 @@
 
 | 组 | asset_id | 名称 | 输出 | 状态 | 提示词 |
 |---|---|---|---|---|---|
-| items | `eq_menggumadannang` | 蒙古马弹囊 | `assets/default/item/hidden-weapons/eq_menggumadannang.png` | 待出图 | [eq_menggumadannang.md](items/hidden-weapons/eq_menggumadannang.md) |
 | items | `it_miji_baiyuanjianyi_can` | 白猿剑意残本 | `assets/default/item/manuals/it_miji_baiyuanjianyi_can.png` | 待出图 | [it_miji_baiyuanjianyi_can.md](items/manuals/it_miji_baiyuanjianyi_can.md) |
 | items | `it_miji_biandufa` | 辨毒法全本 | `assets/default/item/manuals/it_miji_biandufa.png` | 待出图 | [it_miji_biandufa.md](items/manuals/it_miji_biandufa.md) |
 | items | `it_miji_boruozhang` | 般若掌法古本 | `assets/default/item/manuals/it_miji_boruozhang.png` | 待出图 | [it_miji_boruozhang.md](items/manuals/it_miji_boruozhang.md) |
@@ -226,11 +225,9 @@
 
 （已全部入库。）
 
-### 暗器（51）· 已入库 50、待出图 1
+### 暗器（51）· 已入库 51
 
-| # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
-|---:|---|---|---|---|---|---|---|
-| 1 | 蒙古马弹囊 | `eq_menggumadannang` | 黄上 | 暗器·弹丸囊 | 待出图 | [eq_menggumadannang.md](items/hidden-weapons/eq_menggumadannang.md) | template |
+（已全部入库。）
 
 ## 地图（31）· 待出图 31
 
