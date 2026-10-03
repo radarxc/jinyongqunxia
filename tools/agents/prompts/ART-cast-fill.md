@@ -1,6 +1,6 @@
 # 本任务：主要人物补齐 · {{books_title}}（逐书搜索主要人物列表，补齐缺的立绘；作者 2026-10-02 晚）
 
-本任务出图并登记。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读 `tools/agents/prompts/_codex_worker.md`（执行环境与出图方式，`worker_no={{worker_no}}`，槽位 {{slots}}）、`_codex_portrait.md`、`assets/default/prompts/characters/GUIDE.md` §0 与各节。
+本任务出图并登记。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读 `tools/agents/prompts/_codex_worker.md`（执行环境与出图方式：**runner 由追踪者在沙箱外跑，你只入队取结果**；`worker_no={{worker_no}}`，槽位 {{slots}}）、`_codex_portrait.md`、`assets/default/prompts/characters/GUIDE.md` §0 与各节。
 
 ## 作者原话（2026-10-02 晚，逐字）
 > 其他人物中，缺少扫地僧等人物。你开两个个codex exec（gpt-6 astra extra high），每个subagent负责七本，逐一执行，每一本做这几个事情：
