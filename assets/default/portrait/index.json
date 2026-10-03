@@ -6887,28 +6887,28 @@
   },
   "avatar/npc_shipotian/ch06_youth_jinwu": {
    "128": {
-    "b": 4624,
+    "b": 5216,
     "f": "npc_shipotian/ch06_youth_jinwu_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 13084,
+    "b": 15612,
     "f": "npc_shipotian/ch06_youth_jinwu_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 33252,
+    "b": 41718,
     "f": "npc_shipotian/ch06_youth_jinwu_base.ava512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    336,
-    11,
-    682,
-    357
+    321,
+    22,
+    665,
+    366
    ],
    "source": "por_npc_shipotian__ch06_youth_jinwu_base"
   },
@@ -23287,22 +23287,22 @@
   },
   "bust/npc_shipotian/ch06_youth_jinwu": {
    "256": {
-    "b": 11954,
+    "b": 13276,
     "f": "npc_shipotian/ch06_youth_jinwu_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 35170,
+    "b": 41234,
     "f": "npc_shipotian/ch06_youth_jinwu_base.bust512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    250,
-    0,
-    769,
-    519
+    235,
+    11,
+    752,
+    528
    ],
    "source": "por_npc_shipotian__ch06_youth_jinwu_base"
   },
@@ -39326,20 +39326,20 @@
   "portrait/npc_shipotian/ch06_youth_jinwu_base": {
    "alpha": true,
    "low": {
-    "b": 78358,
+    "b": 85960,
     "f": "npc_shipotian/ch06_youth_jinwu_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 108766,
+    "b": 122290,
     "f": "npc_shipotian/ch06_youth_jinwu_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_shipotian__ch06_youth_jinwu_base",
    "source_file": "assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_jinwu_base.png",
-   "source_sha256": "a8335eb6d0d067f08ff9bc6670b7c8021d190b7f2682db94a367e073ac4d7fa4",
+   "source_sha256": "4975d0e673eaebc5d31b45a0476ca5844fbc6942fc903b27487713e238e88b69",
    "status": "candidate"
   },
   "portrait/npc_shipotian/ch06_youth_scene_jinwu": {
@@ -39383,39 +39383,39 @@
   "portrait/npc_shipotian/ch06_youth_scene_motianya": {
    "alpha": false,
    "low": {
-    "b": 208816,
+    "b": 152988,
     "f": "npc_shipotian/ch06_youth_scene_motianya.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 335510,
+    "b": 243610,
     "f": "npc_shipotian/ch06_youth_scene_motianya.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_shipotian__ch06_youth_scene_motianya",
    "source_file": "assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_scene_motianya.png",
-   "source_sha256": "ae0cdaaf7dfa6d5bd1fa4527afd3a4891fcc5f00454cda89cd942e0c7c3e659b",
+   "source_sha256": "7da3a30b2e462b3059b905e0f49a32dbf2ea9fbb00227146d1c4bc5b89fa5d3b",
    "status": "candidate"
   },
   "portrait/npc_shipotian/ch06_youth_scene_taixuan": {
    "alpha": false,
    "low": {
-    "b": 179452,
+    "b": 154484,
     "f": "npc_shipotian/ch06_youth_scene_taixuan.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 292506,
+    "b": 258898,
     "f": "npc_shipotian/ch06_youth_scene_taixuan.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_shipotian__ch06_youth_scene_taixuan",
    "source_file": "assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_scene_taixuan.png",
-   "source_sha256": "4f7dce2a0ac17b06175b30b9475ca3e68e1e95ad7d5f10a0af8a41303a5838fa",
+   "source_sha256": "1f1943a9412dba9258d3be76900c51c0480036c4422d8db3a63cbb62b79890c7",
    "status": "candidate"
   },
   "portrait/npc_shiqing/ch06_prime_xunzi_base": {
