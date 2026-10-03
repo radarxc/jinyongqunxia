@@ -56,6 +56,12 @@
   `progression/interruptMeditation`。返回的 `bf_chaqi` 仅是效果描述，具体 Buff 实例由 ENG-04 接入。
 - 回放：运气状态用 `meridian-flow-state.v2` 快照；恢复先完整校验后原子提交。所有规则量为整数，
   每 tick 热路径复用预分配 typed arrays；性能门禁为 `pnpm --filter @tianshu/core test:performance`。
+- 黄金：`meridian_flow_golden_v3.json`（fixture 3 / rules 3 / RNG 2）必须由测试直接驱动
+  `MeridianFlowRuntime` 及生产纯函数；SHA 在测试中硬锁。`legacy-protocol2-replay.ts` 只回放
+  `meridian_flow_golden.json` 的迁移前协议 2 录像，不得作为当前生产闸门证据。黄金只能经人工
+  `meridian_flow_sim.py --write-golden` 重录，CI 仅执行 `--check`。
+- 当前显式缺口：runtime 尚无 `regulateBreath`，防守 / 移动路线也没有提交结算入口；v3 工件保留
+  调息参考向量并标 `supportedByProductionRuntime=false`，接入前不得在测试中静默视为已支持。
 ## 剧情、时间与地图交接接口（ENG-05）
 
 - 剧情命令：构造 `StoryRuntime(lines, options)` 后用 `start()`、`activateLine(lineId)`、

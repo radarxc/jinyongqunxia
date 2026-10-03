@@ -17,6 +17,34 @@ const CIRCULATION_CURVE: readonly (readonly [number, number])[] = [
   [0, 5000], [2500, 6000], [5000, 7500], [7500, 9000], [9999, 10000],
 ];
 export const SEAL_FLOW_PENALTY_BP = [0, 500, 1000, 1600, 2300, 3200, 4300, 5700, 7500, 10000] as const;
+const GRAPPLE_MOVE_BP = [0, 10_000, 9000, 8000, 7000, 6000, 5000, 3500, 2000, 0] as const;
+const GRAPPLE_RECOVERY_ADD = [0, 50, 100, 150, 200, 250, 300, 400, 500, 0] as const;
+const GRAPPLE_STAT_BP = [0, 9500, 9000, 8500, 8000, 7500, 7000, 6000, 5000, 0] as const;
+const SEAL_MP_COST_ADD_BP = [0, 300, 600, 900, 1200, 1600, 2000, 2500, 3000, 0] as const;
+
+export interface GrappleControlProjection {
+  readonly level: number; readonly moveBp: number; readonly recoveryAdd: number;
+  readonly strBp: number; readonly agiBp: number; readonly evadeBp: number;
+  readonly weaponLocked: boolean; readonly actionLocked: boolean;
+}
+
+export interface AcupointControlProjection {
+  readonly level: number; readonly flowPenaltyBp: number; readonly mpCostAddBp: number;
+  readonly innerLocked: boolean; readonly breathLocked: boolean;
+}
+
+export function grappleControlProjection(level: number): GrappleControlProjection {
+  if (!Number.isSafeInteger(level) || level < 1 || level > 9) throw new RangeError('QI_GRAPPLE_LEVEL');
+  return { level, moveBp: GRAPPLE_MOVE_BP[level]!, recoveryAdd: GRAPPLE_RECOVERY_ADD[level]!,
+    strBp: GRAPPLE_STAT_BP[level]!, agiBp: GRAPPLE_STAT_BP[level]!,
+    evadeBp: GRAPPLE_STAT_BP[level]!, weaponLocked: level >= 7, actionLocked: level === 9 };
+}
+
+export function acupointControlProjection(level: number): AcupointControlProjection {
+  if (!Number.isSafeInteger(level) || level < 1 || level > 9) throw new RangeError('QI_SEAL_LEVEL');
+  return { level, flowPenaltyBp: SEAL_FLOW_PENALTY_BP[level]!,
+    mpCostAddBp: SEAL_MP_COST_ADD_BP[level]!, innerLocked: level >= 8, breathLocked: level === 9 };
+}
 
 function safeInt(value: number, code: string): number {
   if (!Number.isSafeInteger(value)) throw new RangeError(code);
@@ -149,6 +177,19 @@ export function speedMeridianBp(self: MeridianProfile, reference: MeridianProfil
     meridianStrengthBp(self), BP_SCALE, meridianStrengthBp(reference),
   ), 4000, 18000);
   return clampInt(interpolate(relativeBp, SPEED_CURVE), 6500, 13500);
+}
+
+export function applyMeridianSpeed(
+  baseSpd: number, baseMove: number, speedBp: number, grappleMoveBp = BP_SCALE,
+): { readonly spd: number; readonly move: number; readonly openingQinggongBp: number;
+  readonly evadeRatingDelta: number } {
+  const combinedBp = mulDivFloor(speedBp, clampInt(grappleMoveBp, 0, BP_SCALE), BP_SCALE);
+  const delta = combinedBp - BP_SCALE;
+  const moveDelta = clampInt((delta >= 0 ? 1 : -1)
+    * floorDivInt(Math.abs(delta), 1500), -2, 2);
+  return { spd: clampInt(mulDivFloor(baseSpd, combinedBp, BP_SCALE), 30, 300),
+    move: clampInt(baseMove + moveDelta, 1, 10), openingQinggongBp: combinedBp,
+    evadeRatingDelta: clampInt(floorDivInt(speedBp - BP_SCALE, 100), -35, 35) };
 }
 
 export function circulationDamageBp(circulationBp: number): number {
