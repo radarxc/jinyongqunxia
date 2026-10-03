@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 854、待出图 174、已通过（作者） 132。**待出图队列 174 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 855、待出图 173、已通过（作者） 132。**待出图队列 173 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -31,7 +31,6 @@
 | items | `it_beisongsuqin` | 北宋素髹琴 | `assets/default/item/collectibles/it_beisongsuqin.png` | 待出图 | [it_beisongsuqin.md](items/collectibles/it_beisongsuqin.md) |
 | items | `it_dingyaojiangyougaiwan` | 定窑酱釉盖碗 | `assets/default/item/collectibles/it_dingyaojiangyougaiwan.png` | 待出图 | [it_dingyaojiangyougaiwan.md](items/collectibles/it_dingyaojiangyougaiwan.md) |
 | items | `it_gaochangqixianqin` | 高昌旧藏七弦琴 | `assets/default/item/collectibles/it_gaochangqixianqin.png` | 待出图 | [it_gaochangqixianqin.md](items/collectibles/it_gaochangqixianqin.md) |
-| items | `it_jinleisiwannianruyi` | 金累丝万年如意 | `assets/default/item/collectibles/it_jinleisiwannianruyi.png` | 待出图 | [it_jinleisiwannianruyi.md](items/collectibles/it_jinleisiwannianruyi.md) |
 | items | `it_jinpen` | 金盆 | `assets/default/item/collectibles/it_jinpen.png` | 待出图 | [it_jinpen.md](items/collectibles/it_jinpen.md) |
 | items | `it_jiuxiaohuanpei` | 九霄环佩琴 | `assets/default/item/collectibles/it_jiuxiaohuanpei.png` | 待出图 | [it_jiuxiaohuanpei.md](items/collectibles/it_jiuxiaohuanpei.md) |
 | items | `it_kangxifuzijiuzang` | 康熙福字旧藏 | `assets/default/item/collectibles/it_kangxifuzijiuzang.png` | 待出图 | [it_kangxifuzijiuzang.md](items/collectibles/it_kangxifuzijiuzang.md) |
