@@ -1481,3 +1481,12 @@
     - 磁盘 5.17 → 6 GiB：ART-3d-tripo-avatars / -cast 标 CANCELLED（AR-42 改网页版），avatars 工作区删除（CLI、测试、报告存档 `_handoff/ART-3d-tripo-avatars/tripo_api_cli_and_report.tgz`）；删已合入任务日志（ART-ruins-maps / -2、ART-rig-sheet-side、ART-cast-polish-ch09、DES-items-lore-1）与 10-01 出图临时目录（`/private/tmp/KIT-liao_jin_north-hist-refs`、`art-item-clothing`、`art-item-food-candidates`）。没动 `/private/tmp/tianshu-npm-cache`、`vision-build.*`。追踪者的 keywait（pid 21584）请它去掉 Tripo 部分、只留 gifts-catalog 复验。
     - **CONTENT-ch10-cold-entry 校验失败是真缺口但不在它的写集**：`pnpm content:validate` 把 `content/story/ch10/story_ch10_cold_entry.inkmeta.yaml`（inkmeta.v1，按 content/README 必须与 .ink 配对）交给内容注册表 → `CONTENT_SCHEMA_VERSION`；编译管线 discover.ts / ink.ts 早就认 inkmeta。协调者置 HOLD-RUNS、停第 2 轮，登记 **ENG-content-validate-inkmeta**（4e3a2bec，traex Sol，代码池），开发监督起。合入后 ch10 挪基点 `--from validate`；ch00a 也写了 `story_ch00_main.inkmeta.yaml`，报同错时同样处理。
     - Tripo 子代理：扩展权限生效后截图 / find 恢复，改用 file_upload；但 Chrome 的 Claude 窗口被最小化（432×252，visibilityState hidden），3D 视图不渲染 → 已请作者恢复窗口（不最小化、≥ 1400×900、别全被挡住）。
+  - **10-03 11:52–12:09 开发监督**：CONTENT-ch00b 复验；inkmeta 校验缺口处理。
+    - **CONTENT-ch00b-maps**：协调者把豁免放宽为 `content/world/regions/**/*.tmj`（09c0653a）。我用 `--from validate` 起，traex Sol max，不带 checks（CONTENT- 前缀在 batch_run 里没有专属审核清单），驱动 8920。校验已过，在审。
+    - **inkmeta 缺口**：CONTENT-ch10 校验报 `CONTENT_SCHEMA_VERSION:…story_ch10_cold_entry.inkmeta.yaml:inkmeta.v1`。
+      - 根因：`validate-content.ts` 把所有 .yaml 都交给 loadContent，不认 inkmeta.v1；而 build 管线认 `*.inkmeta.yaml`，tech/04 也要求它存在。
+      - 协调者置 ch10 为 HOLD-RUNS，登记 ENG-content-validate-inkmeta（4e3a2bec）。我 12:07 单独起，驱动 43826，Sol max，review_checks_eng。
+      - ch00a 也会撞上这个问题：后台 `append_on_prompt.py CONTENT-ch00a-data 2` 会往它第 2 轮提示词注入条件说明。若只是 inkmeta 失败，就空跑，supervise 因同一失败连续两次自停在 HOLD-VALIDATE，不需要停进程。
+      - 修复合入后：ch10 / ch00a 都挪基点 `--from validate`。
+    - 协调者已把 Tripo API 任务标 CANCELLED（CLI 存档在 `_handoff/ART-3d-tripo-avatars/`），追踪者的等待进程由协调者处理。
+
