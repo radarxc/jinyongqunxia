@@ -1,0 +1,299 @@
+- id: npc_zhujue__ch00_f__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 普通魅力（越女剑 ch00 基线服饰）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 39a2305f-b0f2-442a-8218-8882e4e0c830
+    url: https://studio.tripo3d.ai/workspace/generate/39a2305f-b0f2-442a-8218-8882e4e0c830
+    generate_op: a20e927e-60f0-43cb-8b3d-42fbc03f5828（image_to_model）
+    rig_op: 631ed57d-c4b0-49a6-902d-8accb9829a28
+    animation_ops:
+      idle: e0dd157a-4dd3-42d7-8c17-2fe351646f90
+      walk: d935df2c-5be9-4259-88da-65253e816db2
+      run: 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（正面立绘）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
+    use: 单图生成输入（正面立绘原图；无三视图）
+  sha256: 55f24324c9930210bd7cd63119dcd4ca9bc0e6e5d4a50a4dcf6e615a21f9459c
+  size_bytes: 6319852
+  joints: 65
+  triangles: 96389
+  vertices: 56080
+  animations: []
+  textures:
+  - image/jpeg 454054 B
+  - image/jpeg 1785194 B
+  - image/jpeg 562644 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T12:29:00+08:00'
+  status: candidate
+  notes: 绑骨后的基础模型（无动画，绑定姿势）。Tripo 网页「Export」：GLB、贴图 2k、Export Skeleton 开；云端原件为 8K 贴图，可按需重导。 看图验收（2026-10-03）：正/左/右/背四视角完整；头发深色、无肉色块；骨架位置正确（腿骨在长裙内）。
+- id: npc_zhujue__ch00_f__anim_idle
+  file: anim_idle.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 普通魅力（越女剑 ch00 基线服饰）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 39a2305f-b0f2-442a-8218-8882e4e0c830
+    url: https://studio.tripo3d.ai/workspace/generate/39a2305f-b0f2-442a-8218-8882e4e0c830
+    generate_op: a20e927e-60f0-43cb-8b3d-42fbc03f5828（image_to_model）
+    rig_op: 631ed57d-c4b0-49a6-902d-8accb9829a28
+    animation_ops:
+      idle: e0dd157a-4dd3-42d7-8c17-2fe351646f90
+      walk: d935df2c-5be9-4259-88da-65253e816db2
+      run: 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（正面立绘）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - idle
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
+    use: 单图生成输入（正面立绘原图；无三视图）
+  sha256: 014502430d394af3afb11a188de7a8b4637805698568f94fca402605f52657f7
+  size_bytes: 6672948
+  joints: 65
+  triangles: 96389
+  vertices: 56080
+  animations:
+  - idle (15.333s)
+  textures:
+  - image/jpeg 454054 B
+  - image/jpeg 1785194 B
+  - image/jpeg 562644 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T12:29:00+08:00'
+  status: candidate
+  notes: 预设动作 idle（retarget op e0dd157a-4dd3-42d7-8c17-2fe351646f90），含网格+骨架+1 条动画；原地（Animation stay in Place 开）。
+- id: npc_zhujue__ch00_f__anim_walk
+  file: anim_walk.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 普通魅力（越女剑 ch00 基线服饰）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 39a2305f-b0f2-442a-8218-8882e4e0c830
+    url: https://studio.tripo3d.ai/workspace/generate/39a2305f-b0f2-442a-8218-8882e4e0c830
+    generate_op: a20e927e-60f0-43cb-8b3d-42fbc03f5828（image_to_model）
+    rig_op: 631ed57d-c4b0-49a6-902d-8accb9829a28
+    animation_ops:
+      idle: e0dd157a-4dd3-42d7-8c17-2fe351646f90
+      walk: d935df2c-5be9-4259-88da-65253e816db2
+      run: 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（正面立绘）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - walk
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
+    use: 单图生成输入（正面立绘原图；无三视图）
+  sha256: f942e6148858231522d024b1c6c247ca441186334b9c147230f15fbf974d7cf1
+  size_bytes: 6387788
+  joints: 65
+  triangles: 96389
+  vertices: 56080
+  animations:
+  - walk (2.333s)
+  textures:
+  - image/jpeg 454054 B
+  - image/jpeg 1785194 B
+  - image/jpeg 562644 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T12:29:00+08:00'
+  status: candidate
+  notes: 预设动作 walk（retarget op d935df2c-5be9-4259-88da-65253e816db2），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
+- id: npc_zhujue__ch00_f__anim_run
+  file: anim_run.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 普通魅力（越女剑 ch00 基线服饰）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 39a2305f-b0f2-442a-8218-8882e4e0c830
+    url: https://studio.tripo3d.ai/workspace/generate/39a2305f-b0f2-442a-8218-8882e4e0c830
+    generate_op: a20e927e-60f0-43cb-8b3d-42fbc03f5828（image_to_model）
+    rig_op: 631ed57d-c4b0-49a6-902d-8accb9829a28
+    animation_ops:
+      idle: e0dd157a-4dd3-42d7-8c17-2fe351646f90
+      walk: d935df2c-5be9-4259-88da-65253e816db2
+      run: 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（正面立绘）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - run
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
+    use: 单图生成输入（正面立绘原图；无三视图）
+  sha256: 82c8f2c66c222e7f18f5ef734d475772803475439c8c7d537564b5dcd63abcc2
+  size_bytes: 6378048
+  joints: 65
+  triangles: 96389
+  vertices: 56080
+  animations:
+  - run (1.25s)
+  textures:
+  - image/jpeg 454054 B
+  - image/jpeg 1785194 B
+  - image/jpeg 562644 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T12:29:00+08:00'
+  status: candidate
+  notes: 预设动作 run（retarget op 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
+- id: npc_zhujue__ch00_f__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 主角（女）· 普通魅力（越女剑 ch00 基线服饰） · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 39a2305f-b0f2-442a-8218-8882e4e0c830
+    url: https://studio.tripo3d.ai/workspace/generate/39a2305f-b0f2-442a-8218-8882e4e0c830
+    generate_op: a20e927e-60f0-43cb-8b3d-42fbc03f5828（image_to_model）
+    rig_op: 631ed57d-c4b0-49a6-902d-8accb9829a28
+    animation_ops:
+      idle: e0dd157a-4dd3-42d7-8c17-2fe351646f90
+      walk: d935df2c-5be9-4259-88da-65253e816db2
+      run: 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e
+  size: 502x1024
+  sha256: 509c648f9099144a270c4ae5bef0ec5da8414956f7cbea9320df00be0887af7c
+  size_bytes: 553727
+  created: '2026-10-03T12:29:00+08:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘后缩到长边 1024。
