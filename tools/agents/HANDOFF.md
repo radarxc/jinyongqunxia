@@ -787,3 +787,14 @@
       - 执行器留下的 STOP / EXIT_WHEN_EMPTY 改名为 `*.run1-sandbox`。w13 补了 ingest8.py；w14 新建；两者的 ROOT 都指向各自工作区（w8 的 ROOT 是 _prod 本身）。
     - **续作**：hero-a 第 1 次运行校验失败（场景目录没有 manifest），23:00 自动续作第 2 次。
     - **待起**：CITY-layouts-all 等磁盘 ≥ 9 GiB；ART-ruins-maps 等 ENG-18b 合入。
+  - **10-02 23:02–23:30 开发监督**：
+    - **check:perf 片段模式擦线**：23:15 跑（1 分钟 loadavg 7.31）。程序步态 min P95 0.319 ms；片段模式 0.795 / 0.797 / 0.795 ms，阈值 0.80，只剩 0.6% 余量（`_handoff/check_perf_2315.log`）。协调者同意登记 ENG-12d-clip-perf，目标低负载 ≤ 0.5 ms，阈值不动。
+    - **TOOL-items-catalog 体积超标**：
+      - 物品从 361 个生成到 889 个后，`pnpm check` 的 size 门禁不过：entry 188.41 / 170 KiB，webgl total 351.44 / 350。
+      - 原因：`core-worker.ts` 静态导入 `virtual:tianshu-content`，它内联了全部 ItemDef；Worker 文件算在 entry 闭包里。物品 gzip 102 KiB，去掉 text 后 43 KiB。
+      - 协调者裁定：预算不放宽；物品成为内容包独立叶片、按需加载，文本只在展示时读。
+      - 已登记 ENG-18d-items-leaf（56c2835f）：依赖 ENG-17a、18b；写集是 packages/data/**、apps/game/build/**、apps/game/src/runtime/**，加 core-worker / core-host / content.d.ts / selectors/items.ts。TOOL-items-catalog、ENG-18c 改为依赖它。
+      - TOOL-items-catalog 在 ENG-18d 合入前不能合；之后由开发监督挪基点、`--from validate` 复验。
+    - **eng3 队列**：ENG-18d 排在 ENG-18b 后，ENG-12d 排在 CONTENT-ch00c 后。要等 eng3 重启才生效，已报协调者。
+    - **环境**：主检出 `.git/logs/refs/remotes/origin/` 下有 root 拥有的 `*.lock`，每次提交后的自动 gc 都报错。提交本身不受影响，已报协调者。
+
