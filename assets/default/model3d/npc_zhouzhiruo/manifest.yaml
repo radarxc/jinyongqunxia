@@ -1,0 +1,76 @@
+- id: npc_zhouzhiruo__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 周芷若（倚天屠龙记 ch04 · 峨嵋掌门青年）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 11257841-7011-44e4-858f-26491ce38c4d
+    url: https://studio.tripo3d.ai/workspace/generate/11257841-7011-44e4-858f-26491ce38c4d
+    generate_op: cebec3c6-afae-4928-a52f-577b48623857（image_to_model）
+    rig_op: 41ab1290-9f4b-4ba4-a213-dcea34e91bf1
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch04/threeview/por_npc_zhouzhiruo__ch04_youth_zhangmen_apose_slim.png
+    sha256: e34383dc6f89aa391bdb04cacc3fdfff756054d2b47f871e5094802b5537b693
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 49c80786fb816c9abe27e91d8a08382b4a1629a7e08ab2d52ff5663c656f977d
+  size_bytes: 6217980
+  joints: 65
+  triangles: 96404
+  vertices: 58617
+  animations: []
+  textures:
+  - image/jpeg 335314 B
+  - image/jpeg 1406377 B
+  - image/jpeg 826535 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T15:06:55-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，淡紫长褙子 + 白裙、发髻发簪可辨识，后发深褐、无肉色块；自动绑骨一次成功（Hips y0.554、头顶骨端 1.006、双手外展 y0.51、脚 0.079）。窄轮廓参考（4aee374a）；同目录宽袖 _apose 未用。
+- id: npc_zhouzhiruo__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 周芷若（倚天屠龙记 ch04 · 峨嵋掌门青年）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 11257841-7011-44e4-858f-26491ce38c4d
+    url: https://studio.tripo3d.ai/workspace/generate/11257841-7011-44e4-858f-26491ce38c4d
+    generate_op: cebec3c6-afae-4928-a52f-577b48623857（image_to_model）
+    rig_op: 41ab1290-9f4b-4ba4-a213-dcea34e91bf1
+  size: 369x594
+  sha256: c8d1efcc514173b1a7e1247a80b02e5b41e9e9489782f8e8e2c61b28cc68db3f
+  size_bytes: 135910
+  created: '2026-10-03T15:06:55-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
