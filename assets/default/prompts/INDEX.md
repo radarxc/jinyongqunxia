@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 882、待出图 146、已通过（作者） 132。**待出图队列 146 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 883、待出图 145、已通过（作者） 132。**待出图队列 145 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -34,7 +34,6 @@
 | items | `it_mingyusuhuan` | 明素玉环 | `assets/default/item/collectibles/it_mingyusuhuan.png` | 待出图 | [it_mingyusuhuan.md](items/collectibles/it_mingyusuhuan.md) |
 | items | `it_nansongduanwenqin` | 南宋断纹琴 | `assets/default/item/collectibles/it_nansongduanwenqin.png` | 待出图 | [it_nansongduanwenqin.md](items/collectibles/it_nansongduanwenqin.md) |
 | items | `it_nansonghuzhoubi` | 南宋湖州书笔 | `assets/default/item/collectibles/it_nansonghuzhoubi.png` | 待出图 | [it_nansonghuzhoubi.md](items/collectibles/it_nansonghuzhoubi.md) |
-| items | `it_nansongjinyinzhan` | 南宋金口银盏 | `assets/default/item/collectibles/it_nansongjinyinzhan.png` | 待出图 | [it_nansongjinyinzhan.md](items/collectibles/it_nansongjinyinzhan.md) |
 | items | `it_nansongmeiyingti` | 南宋梅影题字 | `assets/default/item/collectibles/it_nansongmeiyingti.png` | 待出图 | [it_nansongmeiyingti.md](items/collectibles/it_nansongmeiyingti.md) |
 | items | `it_nansongsongyanmo` | 南宋精烟墨 | `assets/default/item/collectibles/it_nansongsongyanmo.png` | 待出图 | [it_nansongsongyanmo.md](items/collectibles/it_nansongsongyanmo.md) |
 | items | `it_nansongtaoheyan` | 宋式洮河石砚 | `assets/default/item/collectibles/it_nansongtaoheyan.png` | 待出图 | [it_nansongtaoheyan.md](items/collectibles/it_nansongtaoheyan.md) |
