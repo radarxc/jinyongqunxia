@@ -900,3 +900,18 @@
     - 不用剧照的例外（白马 / 侠客 / 鸳鸯用《金庸群侠传》头像 + 基线）写进 `_codex_portrait.md` §3 与 `ART-hero-refine.md` 复合参考一节，免得以后的执行器再搜图或拒出。
     - TOOL-catalog-9col 复审 r2 FAIL（03:27）：双写检查只在投影已有该键时比较，省略投影键即可绕过；驱动（`--max-runs 2`）等代码池空位后自动返修（池被 ENG-17 / 18b / 19a + TOOL-rig-sheet 占满）。
     - 03:41：负载回落到 6.3，交换区 33.8 GB 仍用 32.4 GB，磁盘 7 GiB。
+  - **10-03 02:45–03:50 开发监督**：
+    - **防截断误判又出两次**（都是任务说明要求的删除 / 重构，只扩校验豁免，不动驱动）：
+      - ENG-17 把 `BookWorldDefSchema` 移到 `chapter.ts` 的 ChapterDef，`world.ts` 从 40 行缩到 30 行，加 shrink_exempt（1e34a979）；
+      - ENG-19a 按审计 L1 删了 `GameUi.vue`、`storage-demo.ts`，加 shrink_exempt（2ca42cd5）。
+      - 已扫过其余待跑任务的说明，没有别的删除 / 改名要求。
+    - **TOOL-catalog-9col**：返修后 HOLD-REVIEWS，协调者 03:16 另起 `--from review`（pid 51856）。r2 又 FAIL，03:44 自动进返修。合入后按 `_handoff/lore_plan.md` 复验 lore，脚本见草稿目录 `lore_relaunch.sh`。
+    - **TOOL-rig-sheet**：r2 FAIL，03:18 进入另起驱动后的第 3 次运行。
+    - **协调者新登记 TOOL-ingest-cropframe**（物品图入库裁框 bug，低优先，在 eng3 队尾）。代码池有空位、且 M1 任务都在跑时，可以单独起。
+    - **磁盘 / 负载**：7–8 GiB，loadavg 6–18。
+
+  - **10-03 03:47–03:52 协调者（ENG-17 / ENG-19a 校验失败处置）**：
+    - ENG-19a 第 1 次运行（151 分钟）校验失败：防截断检查判「`packages/ui/src/GameUi.vue`、`apps/game/src/storage-demo.ts` 文件被删除」，但删除是任务内的 L1 无引用代码清理（报告 §2 写明），开发监督已加 shrink_exempt（2ca42cd5）。supervise 已带着「文件被删除」的误导说明起了第 2 次运行（03:48:47）。
+    - ENG-17 第 2 次运行校验失败：`pnpm check` 撞上 build.test 的旧随机超时（7976 ms）——工作区基点 51ba8003 早于 ENG-18e 的夹具化修复，写集又改不到 `packages/data/src/build/**`；supervise 正要起第 3 次（最后一次）运行，必然白跑。
+    - 处置（作者 AR-35 授权协调者管驱动）：03:50 停掉 eng3 的两个驱动（12006、12007）、ENG-19a 的第 2 次执行器（14005 / traex 14006 及其 node 子进程）和 ENG-17 正在起的第 3 次（step.py start 9598）。ENG-19a 由协调者 `rebase_task.py` 挪基点 51ba8003 → a7aad304（35 个文件，无冲突；备份引用 `refs/agents-backup/ENG-19a-ui-shell-pre-rebase-10030350`），03:50 另起 `--from validate --max-reviews 1 --max-runs 3 --auto-merge --worker --checks review_checks_eng.md`（pid 26214，日志 `.agents/coord/ENG-19a-ui-shell/supervise.r2.out`）。ENG-17 由开发监督挪基点后 Sol max `--from validate` 复验。
+    - eng3 并发 3 的两个位子腾出后会自动起 ENG-12e / ENG-16c；ENG-18b 还在跑（基点同样早于 18e，结束后若撞同一超时，协调者 kill、开发监督挪基点复验）。
