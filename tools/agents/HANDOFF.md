@@ -935,3 +935,9 @@
     - CITY-layouts-all 审核 r1 FAIL（04:37）：三条合理（洛阳河道穿实墙无水门、太原只总装西城、16 张平面图页眉写死 `history/linan.md`），第四条把要点「登记」扩成「2367 项要全部完成」，返修说明开头就是「继续完成 2351 项」——执行器会接着磨全量，与范围裁定冲突。处置：置 HOLD 后停掉驱动 49805 与第 5 次执行器（31256 树）；`review_checks_city.md` 追加补充裁定（只验收已产出的 16 城 + r1 第 1–3 条，未完成项不算不通过，页眉若需改工具不判 ❌）；用 `coord_note_0440.md` 另起驱动 `--from start --max-reviews 1 --max-runs 2 --auto-merge`（pid 36743，`supervise.r2.out`）：只修洛阳 / 太原 / 页眉，不新开城，报告 §1 写明部分交付。追踪者同意，合入后抽查预览并把 progress 文件拷到 `_handoff/city/`。
     - TOOL-rig-sheet 审核 r4 FAIL（04:38）：切件仍有错分（side/pelvis_skirt 混入裸肤手臂、三视图 torso 含前臂残片、side/thigh_shared 直接用标准体蓝灰楔块）；开发监督的驱动自动返修（第 7 次运行），要求回退件的轮廓与裤料一致、不得显示蓝灰填充。程序步态 vs clip_walk 的 A/B 仍待作者（合入后发 GIF）。
     - ENG-18b 第 1 次运行 189 分钟结束，校验中；基点早于 ENG-18e，若撞 build.test 超时按 03:50 的办法处理。
+  - **10-03 04:40–04:43 开发监督**：按协调者 04:36 登记 ENG-19c-build-shell-test（83b84135）并单独起。
+    - 起因：ENG-19a 的 `build-shell.test.ts` 读的是上一次构建留下的 dist；没有 dist 时又直接空过。
+    - 首选修法：生产包无 rig-demo 的检查改到 size 步骤构建之后，用新增的 `apps/game/scripts/check-dev-chunks.mjs`；dist 或 manifest 缺失时报错退出；`tools/perf/**` 与预算不动。
+    - 依赖 ENG-19a；`_eng3_queue.txt` 已插在 ENG-19b 之前，eng3 重启后生效。
+    - 代码池当时 2/4，已用 Sol max 单独起，驱动 pid 58545。
+
