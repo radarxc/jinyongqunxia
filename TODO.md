@@ -43,9 +43,9 @@
 
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
-| ENG-17-booksleep-m1 | traex | 第 1 次运行（01:14 起） | eng3 → supervise 12006 |
+| ENG-17-booksleep-m1 | traex | 第 2 次运行后 pnpm check 撞上旧基点的 build.test 超时（工作区无 ENG-18e）；03:52 协调者停掉 eng3 驱动与第 3 次执行器，开发监督挪基点后 Sol `--from validate` 复验 | 开发监督另起 |
 | ENG-18b-tiled-regionmap | traex | 第 1 次运行（01:14 起） | eng3 → supervise 12005 |
-| ENG-19a-ui-shell | traex | 第 1 次运行（01:14 起） | eng3 → supervise 12007 |
+| ENG-19a-ui-shell | traex | 第 1 次运行完成；防截断检查把任务内删除 GameUi.vue / storage-demo.ts 判失败，已加豁免（2ca42cd5）；03:52 协调者停掉误导的第 2 次运行，挪基点到 a7aad304 后 `--from validate` 复验中 | 26214（协调者另起，`supervise.r2.out`） |
 | TOOL-rig-sheet | traex Sol max | 第 3 次运行（审核 r2 FAIL 后返修，03:18 起） | 53693（开发监督另起） |
 | TOOL-catalog-9col | traex Sol max | 复审 r2 FAIL（03:27：双写检查省略键可绕过），等代码池空位自动返修 | 51856（协调者另起） |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | — | HOLD-RUNS：等 TOOL-catalog-9col 合入后挪基点复验（`_handoff/lore_plan.md`） | des34 batch 9492 看护 |
