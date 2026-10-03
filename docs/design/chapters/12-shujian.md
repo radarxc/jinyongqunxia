@@ -27,6 +27,7 @@
 |---|---:|---:|---|
 | 开放区域 | 8 | 8 | 全局区域时代实例 |
 | 开放城市 / 历史节点 | 18 | 18 | 名称取 `map/cities.yaml` 的 `ch12` 层 |
+| 章节场景 | 31 | — | 既有 30 个场景 + 敦煌地宫清代相位 1 个 |
 | 主线制作阶段 | 9 | 9 | 两条路线共享阶段号，引用 22 个正式任务 |
 | 支线任务 | 26 | 26 | 含门派、羁绊、奇遇 |
 | 完整奇遇链 | 14 | 14 | 一链可串联多个区域触点 |
@@ -246,11 +247,19 @@
 | 主要 NPC | `npc_wentailai`、`npc_luobing`、`npc_zhaobanshan`、`npc_zhangzhaozhong`、`npc_zhouzhongying`、`npc_zhouqi12` |
 | 可学武功 | `sk_guangpingchangquan`、`sk_guangpingxinfa`、`sk_taijimenchujian`、`sk_taijimenjian`、`sk_taijimenquan`；镖路补位 `sk_jianghubaizhanjian` |
 | 敌人等级 | 驿盗 Lv43–45；押解精英 Lv46–48；赤套渡首领 Lv44、铁胆庄首领 Lv42，见 §8.5 / §12.4 |
-| 专属场景 | `sc_12_tiedanzhuang`、`sc_12_chitaodu`、`sc_12_wushaoling`、`sc_12_dunhuang_yizhan` |
+| 专属场景 | `sc_12_tiedanzhuang`、`sc_12_chitaodu`、`sc_12_wushaoling`、`sc_12_dunhuang_yizhan`、`sc_12_dunhuang_digong` |
 | 秘境 / 奇遇 | 旧镖路合页、断桥浮油、无名驿井；完整链见 `q_12_qiyu_09/10` |
 | 资源 / 营生 | 3 个资源点、3 个营生 |
 
 铁胆庄、赤套渡与安西一带的精确州县 **（待考）**。在地图数据补齐前，它们以章节场景挂河西驿路，不反向宣称原著地望；故事引用的行程优先于视觉距离。
+
+**具名遗迹场景登记。** 敦煌地宫采用“一个稳定地理 POI、两个章节相位”：`poi_hexilongyou_dunhuang_digong` 代表同一位置，本章只拥有 1753–1759 年清代场景；唐代相位见 `sc_10_dunhuang_digong`。地下结构、用途与探险玩法均为**（原创扩展）**，精确入口及历史性质**（待考）**。
+
+| ID | 名称 | 类型 | 尺寸档 | 房间数 | 入口条件 | 年代 | 所属区域 | 关联任务 / 奇遇 |
+|---|---|---|---|---:|---|---|---|---|
+| `sc_12_dunhuang_digong` | 敦煌地宫·清代相位 | 地宫 / 墓道 | 标准（≤96×96，≤3×3 chunks） | 6 | 完成阶段 3 或持清廷通行牌，随河西区域开放；深入条件**（待设计）** | 1753–1759 | `rg_hexilongyou` | 暂无既有 `q_*`；探险内容**（原创扩展）** |
+
+六房按入口、三处外围房 / 岔路、核心室、回返出口组成，满足 `design/11` §4.4.1；不新增任务、守卫或奖励，也不与 `sc_12_dunhuang_yizhan` 合并。
 
 ### 3.8 西域南疆 `rg_xiyu_nanjiang`
 
@@ -1470,7 +1479,7 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 |---|---|---|---|
 | OE12-D01 | 杭州商号账房兼驿脚普通开局、外围舵口伙计隐藏开局、两日内接西北急信 | §2；`sc_12_hangzhou_duokou`、`q_12_side_01` | 两身份汇入故事同一共有幕；隐藏身份不等于正式会众 |
 | OE12-D02 | 把全局地图裁成 1753–1759 的 8 区 / 18 城时代实例，并为小说地点选挂点 | §3.1–§3.10 | `rg_*` 与城市名来自上游；挂点不是现实地理断言 |
-| OE12-D03 | 30 个章节场景制作键 | §3.2–§3.9 的全部 `sc_12_*` | 仅章节专属相位；不增造全球区域或历史城市 |
+| OE12-D03 | 31 个章节场景制作键（含敦煌地宫清代相位） | §3.2–§3.9 的全部 `sc_12_*` | 仅章节专属相位；不增造全球区域或历史城市；敦煌与唐代相位共享一个地理 POI |
 | OE12-D04 | 18 个可经营资源点的本时代状态、产物和取得路径 | §3.11 的全部 `rp_*` | 经营公式归 `design/16`；具名资源所有权待考 |
 | OE12-D05 | 22 个赌场 / 镖局 / 山庄实例、职位和代表委托 | §3.12 的全部 `biz_*` | 只实例化三类正式营生；同一行为只计一个经济桶 |
 | OE12-D06 | 夫妻刀法旧镖路、敦煌商队转递与双谱合页奇遇 | §3.13、`q_12_qiyu_09` | 传承源、三卷与信物本体归 `design/20`；不默认人物健在 |
@@ -1505,7 +1514,7 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 | R12-03 | 原著“兰封”在乾隆年间的行政名称与挂点 | UI 采用兰阳场景，数据挂 `city_kaifeng` | 城市提示和历史注释；不改变赈粮事件 |
 | R12-04 | 海宁州、观潮与陈家墓地的具体行政 / 地理关系 | 挂 `city_jiaxing` 的 `sc_12_haining_guanchao` | 小地图和旅行距离 |
 | R12-05 | 福建莆田少林寺的寺址、称谓、路线和与红花会关系措辞 | 挂兴化府 `city_putian`，组织用 `sect_nanshaolin` | 场景名、门派引见和证物路线 |
-| R12-06 | 敦煌县境、喀什噶尔、叶尔羌、伊犁营城、吐鲁番、昆仑山道在 1753–1759 的时代显示与行政地位 | 名称沿 `cities.yaml`，不加现代行政断言 | 城市百科和路牌 |
+| R12-06 | 敦煌县境、敦煌地宫的历史性质 / 精确入口，以及喀什噶尔、叶尔羌、伊犁营城、吐鲁番、昆仑山道在 1753–1759 的时代显示与行政地位 | 名称沿 `cities.yaml`；地宫暂复用敦煌城市锚，地下结构标原创，不加现代行政或特定遗址断言 | 城市百科、路牌与遗迹入口 |
 | R12-07 | 陈家洛遇见喀丝丽、天池传艺、玉峰悟掌的具体地点、同行者和先后 | 依已审校故事阶段；试招 / 解谜为玩法壳 | `qiyu_13/14` 演出与对白 |
 | R12-08 | 西湖、海宁、提督衙署、河港脚划船、天目山和六和塔各事件的逐回动作 | 沿故事文档已校结论，不写伪引文 | 关卡相位和过场动作 |
 | R12-09 | 袁士霄交出的两封材料与莆田取得供词、血衣、遗旨的精确原文和保管顺序 | 分别记任务记录，不预建物品 ID | 证词账来源与同源判定 |
@@ -1549,7 +1558,7 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 
 | 类别 | 数量 | 新增 / 确认的 ID | 归属说明 |
 |---|---:|---|---|
-| 章节场景 | 30 | `sc_12_baoding_biaolu`、`sc_12_chitaodu`、`sc_12_dunhuang_yizhan`、`sc_12_fuzhou_haidao`、`sc_12_haining_guanchao`、`sc_12_hangzhou_duokou`、`sc_12_heishuiying`、`sc_12_jingshi_huijichu`、`sc_12_jingshi_waicheng`、`sc_12_kunlun_chelu`、`sc_12_lanyang_liangcang`、`sc_12_lanyang_shifosi`、`sc_12_liuheta`、`sc_12_mengjin_yidao`、`sc_12_nanshaolin_houya`、`sc_12_putian_nanshaolin`、`sc_12_shacheng`、`sc_12_tianchi_shizhao`、`sc_12_tianshan_xuejing`、`sc_12_tidushiya`、`sc_12_tiedanzhuang`、`sc_12_turpan_shanglu`、`sc_12_wudang_jingxiu`、`sc_12_wudang_shandao`、`sc_12_wushaoling`、`sc_12_xihu_huchuan`、`sc_12_yarkand_mishi`、`sc_12_yili_yingdao`、`sc_12_yufeng_midong`、`sc_12_zijin_huanzhi` | AR-04 指定章节特有 `sc_NN_*`；与 11 的稳定 `scn_*` 前缀并存问题见提案 D12-P01 |
+| 章节场景 | 31 | `sc_12_baoding_biaolu`、`sc_12_chitaodu`、`sc_12_dunhuang_yizhan`、`sc_12_dunhuang_digong`、`sc_12_fuzhou_haidao`、`sc_12_haining_guanchao`、`sc_12_hangzhou_duokou`、`sc_12_heishuiying`、`sc_12_jingshi_huijichu`、`sc_12_jingshi_waicheng`、`sc_12_kunlun_chelu`、`sc_12_lanyang_liangcang`、`sc_12_lanyang_shifosi`、`sc_12_liuheta`、`sc_12_mengjin_yidao`、`sc_12_nanshaolin_houya`、`sc_12_putian_nanshaolin`、`sc_12_shacheng`、`sc_12_tianchi_shizhao`、`sc_12_tianshan_xuejing`、`sc_12_tidushiya`、`sc_12_tiedanzhuang`、`sc_12_turpan_shanglu`、`sc_12_wudang_jingxiu`、`sc_12_wudang_shandao`、`sc_12_wushaoling`、`sc_12_xihu_huchuan`、`sc_12_yarkand_mishi`、`sc_12_yili_yingdao`、`sc_12_yufeng_midong`、`sc_12_zijin_huanzhi` | AR-04 指定章节特有 `sc_NN_*`；与 11 的稳定 `scn_*` 前缀并存问题见提案 D12-P01 |
 | 普通支线 | 4 | `q_12_side_01`–`q_12_side_04` | 本章任务实体 |
 | 门派支线 | 5 | `q_12_faction_01`–`q_12_faction_05` | 本章任务实体 |
 | 羁绊支线 | 3 | `q_12_bond_01`–`q_12_bond_03` | 本章任务实体 |
@@ -1584,6 +1593,7 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 | `D12-V02` | 固定参数恰为 `ch12_shujian / 1753–1759 / MID / W55 / D5 / Lv52 / 3+3 before layer 9 / roaming at layer 9 / -2 / 9 / 恩仇 / 12h` | 构建失败 |
 | `D12-V03` | 时代图层恰有 8 个全局 `rg_*`、18 个 `city_*`；不得出现按书界编号的生产区域 ID；地图引用 `jianghu-ch12.svg` | 构建失败 |
 | `D12-V04` | 每区都有地形、qg 门禁、NPC、已有武学、敌人带、场景 / 奇遇、资源 / 营生；全局敌人等级均在 40–52 | 构建失败 |
+| `D12-V04a` | 本界场景恰 31 个 `sc_12_*`；`sc_12_dunhuang_digong` 只定义清代相位，并与唐代相位共享一个稳定 POI | 构建失败 |
 | `D12-V05` | 本界资源点恰 18、营生恰 22；城外 ≥11、初始势力控制 ≤7、多路径 ≥5，ID 全局唯一 | 构建失败 |
 | `D12-V06` | 主线只有故事文档的 22 个任务实体；本章恰 9 个制作阶段且每个指向故事小节；不得生成另一套无路线字母的主线任务实体 | 构建失败 |
 | `D12-V07` | 五锚点与故事同序；改命必须四旗标逻辑 AND；任何路线都可完成五锚点与获得一个且仅一个天书变体 | 构建失败 |
@@ -1735,5 +1745,6 @@ Z2 = floor(7,333×0.6075398…) = 4,455
 | D12-O17 | 铁胆庄是否建立正式 `sect_*` **（需作者确认）** | 沿补录册 SJ-BL-O01：不建，使用 `sect:null` 与 `lineage:周氏铁胆庄家传`；未来建档只迁移外键 |
 | D12-O18 | 陈家洛内功是否改用原著专名 **（需作者确认）** | 沿补录册 SJ-BL-O02：保留标为原创扩展的“天池神功”及 `sk_tianchishengong`；有三联 / 广州修订版逐字证据后再走重命名表，不凭推测改名 |
 | D12-O19 | 袁士霄遗谱开放范围 **（需作者确认）** | 沿补录册 SJ-BL-O03：主角及其他满足属性、前置、羁绊与许可者均可学习，不设 `enemyOnly`，也不限定陈家洛本人 |
+| D12-O20 | 敦煌地宫的历史性质、精确入口与清代状态如何定案 | 默认复用 `city_dunhuang` 地理锚，以 `sc_12_dunhuang_digong` 表示清代玩法相位；地下结构与探险内容标**（原创扩展）**，可靠考古 / 地方志证据确认前不绑定特定现实遗址 |
 | AR-18 配装确认 | 周仲英及张召重三战是否接受辅运改阴后的相冲？**（需作者确认）** | 默认保持 §12.9 原配装，接受相冲辅运比例 0.25、每场一次内息相冲及闭关心魔代价；两仪 5 品不桥接。太和“冲和”须先核有效层数及辅运生效条件，不预设免罚；固定 RNG 实战回放仍 **（待实测）** |
 | AR-18a | 广平心法所修带脉、江湖吐纳所修冲脉是否参与阴阳票？ | 沿作者需求与 05 §5.3 默认不投票，二者均按各自任脉阴票取阴；若作者改定，由图鉴先重算，本章随之同步 |

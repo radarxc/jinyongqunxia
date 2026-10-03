@@ -32,6 +32,7 @@
 |---|---:|---|
 | 全局区域 | 9 | §3.2 |
 | 时代城市 / 特殊聚落节点 | 21 | §3.3 |
+| 章节场景 | 26 | 既有 25 个场景 + 九老洞遗迹专线 1 个，见 §3.2.8、§3.3a |
 | 主线 | 每路线 14 幕；`design/11` 的旧“10 幕”待同步 | §4 |
 | 手工支线 | 31 条 | 原有 30 条见 §6.2；长生诀支线见 §6.3 |
 | 完整奇遇链 / 触点 | 16 / 36 | §6.4–§6.5 |
@@ -249,7 +250,7 @@
 | 势力与 NPC | 峨眉、商旅、地方山庄；`npc_miejueshitai`、`npc_zhouzhiruo` |
 | 可学武功 | `sk_emeixinfa`、`sk_emeijiuyang`、`sk_piaoxuechuanyunzhang`、`sk_miejuejian` |
 | 敌人等级带 | 58–66；掌门考校 66–68 |
-| 场景 / 奇遇 | `sc_04_emei_jinding`、`sc_04_jiading_ferry`；郭襄遗稿、师命两难；长生支线祖师藏记挂点 **（原创扩展）** |
+| 场景 / 奇遇 | `sc_04_emei_jinding`、`sc_04_jiading_ferry`、`sc_04_jiulaodong`；郭襄遗稿、师命两难；长生支线祖师藏记挂点 **（原创扩展）** |
 
 #### 3.2.9 江淮 `rg_jianghuai`
 
@@ -290,6 +291,16 @@
 | 19 | `city_chengdu` 成都路 | `rg_bashu` | 巴蜀商市、峨眉补给与情报场 | `rp_bashu_sicha_01` | `biz_chengdu_casino_01` |
 | 20 | `city_nanjing` 集庆路；终幕应天府 | `rg_jianghuai` | 元末义军争衡；徐达、朱元璋 | `rp_jianghuai_tieqi_01` | `biz_nanjing_escort_01` |
 | 21 | `city_hefei` 庐州路 | `rg_jianghuai` | 濠州前线补给与流民安置 | `rp_jianghuai_liangshi_01` | `biz_hefei_manor_01` |
+
+### 3.3a 具名遗迹场景登记
+
+九老洞是峨眉山真实洞穴；本章将其归入峨眉派所在的 `rg_bashu`，不把真实洞穴存在误写成《倚天屠龙记》原著情节。洞内房间、风险与探险用途全部为**（原创扩展）**。
+
+| ID | 名称 | 类型 | 尺寸档 | 房间数 | 入口条件 | 年代 | 所属区域 | 关联任务 / 奇遇 |
+|---|---|---|---|---:|---|---|---|---|
+| `sc_04_jiulaodong` | 九老洞 | 山洞 / 岩窟 | 标准（≤96×96，≤3×3 chunks） | 5 | 巴蜀区域开放；从峨眉山道可达，深入条件**（待设计）** | 元末，约 1360 | `rg_bashu` | 暂无既有 `q_*`；探险内容**（原创扩展）** |
+
+五房按入口、两处外围岔路、核心洞厅、回返出口组成，满足 `design/11` §4.4.1 的最小闭环；不在本任务新增任务线、奖励或守卫。现实洞口坐标和来源登记见 `design/19` §3.8。
 
 ### 3.4 图外节点与专线
 
@@ -1633,7 +1644,7 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 | 类别 | 原创扩展 | 正文位置 | 边界与回退 |
 |---|---|---|---|
 | 穿越开局 | 庆元路废船仓苏醒、“海路行脚客”公开身份、三种落脚凭证、通用路引兜底 | §2 | 不改张氏一家归航、寿宴或张无忌成长；凭证只改初始接触与便利 |
-| 地图玩法 | 25 个 `sc_04_*` 场景、九区轻功替代路线、图外波斯 28 日专船 | §3.2–§3.4 | 小说虚构地点不冒充史地坐标；波斯不画伪陆路 |
+| 地图玩法 | 26 个 `sc_04_*` 场景（含九老洞遗迹专线）、九区轻功替代路线、图外波斯 28 日专船 | §3.2–§3.4 | 九老洞实址与玩法扩展分层；小说虚构地点不冒充史地坐标；波斯不画伪陆路 |
 | 资源与营生 | 21 个资源点、25 个营生场所、两份代表合同、占领与职位的本界情境 | §3.5–§3.7 | 产出、税费、月结和公账仍由 `design/16` 决定 |
 | 支线 | 原有 30 条手工支线、长生诀第六层接口、16 条完整奇遇链与 36 个触点的玩家流程 | §6 | 长生诀任务定义只见 `changsheng-sidelines.md`；其余失败不得阻断主线 |
 | 门派落地 | 十二门派入门考验、门规证据、晋升特例、配给侧重和部分称谓落点 | §7 | 五级框架与开放状态引用 `design/17`；章节不改变武学硬前置 |
@@ -1655,6 +1666,7 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 | `YT-K01` | 楔子约 1262、主叙事约 1336–1363 与小说情节的对应 | 建立回目—人物年龄段—公元年对照，不把游戏推定年当原文明载 | §1、§4、§8、§11 |
 | `YT-K02` | 王盘山、冰火岛、灵蛇岛、蝴蝶谷、绿柳庄、朱武连环庄、丐帮据点与濠州的地望 | 区分原著可证地点、小说虚构地点与游戏专属 `sc_04_*` | §3、§4、§6 |
 | `YT-K03` | 武昌路 / 汉阳府、昆仑山道、喀什噶尔、河南府等元代名称和行政层级 | 逐项核对 `cities.yaml` 显示名；现代稳定 ID 不等于时代行政名 | §3.3 |
+| `YT-K03a` | 九老洞实址与本界关系 | 核对洞名、仙峰寺相对位置及指定版本是否曾提及；未有小说证据时不得把探险写成原著事件 | §3.2.8、§3.3a；坐标见 `design/19` §3.8 |
 | `YT-K04` | 百岁寿宴、汉水 / 蝴蝶谷、光明顶、绿柳庄、武当受袭、万安寺的事件次序与动作 | 只修正 story 索引和场景挂接，不在本章重写主线 | §4.2–§4.4、§5 |
 | `YT-K05` | 灵蛇岛夜变、波斯总教来使、小昭离去、濠州婚变、屠狮大会与终局收束 | 核对人物在场、因果、先后及版本差异 | §4、§5、§8 |
 | `YT-K06` | 倚天剑 / 屠龙刀的铸造材料、藏物、互斫方式和断刃后续 | 保持 `design/10` 物态与当前 P20 默认无损路线的原创边界 | §3.8、§9.4、§10.3 |
@@ -1699,7 +1711,7 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 
 | 类别 | 数量 | ID / 范围 |
 |---|---:|---|
-| 本界场景 | 25 | `sc_04_qingyuan_wreck`、`sc_04_longmen_old_route`、`sc_04_wangpanshan_ruins`、`sc_04_binghuo_cave`、`sc_04_lingshe_cliff`、`sc_04_wudang_banquet`、`sc_04_hanshui_ferry`、`sc_04_xiangyang_ruins`、`sc_04_hudiegu`、`sc_04_hanshui_orphan_camp`、`sc_04_zhuwo_manor`、`sc_04_jiuyang_valley`、`sc_04_guangmingding`、`sc_04_guangming_tunnel`、`sc_04_lvliu_manor`、`sc_04_ruyang_palace`、`sc_04_wanan_tower`、`sc_04_shaolin_tushihui`、`sc_04_jingang_circle`、`sc_04_gaibang_secret_hall`、`sc_04_emei_jinding`、`sc_04_jiading_ferry`、`sc_04_haozhou_camp`、`sc_04_jiqing_commandery`、`sc_04_yingtian_transition` |
+| 本界场景 | 26 | `sc_04_qingyuan_wreck`、`sc_04_longmen_old_route`、`sc_04_wangpanshan_ruins`、`sc_04_binghuo_cave`、`sc_04_lingshe_cliff`、`sc_04_wudang_banquet`、`sc_04_hanshui_ferry`、`sc_04_xiangyang_ruins`、`sc_04_hudiegu`、`sc_04_hanshui_orphan_camp`、`sc_04_zhuwo_manor`、`sc_04_jiuyang_valley`、`sc_04_guangmingding`、`sc_04_guangming_tunnel`、`sc_04_lvliu_manor`、`sc_04_ruyang_palace`、`sc_04_wanan_tower`、`sc_04_shaolin_tushihui`、`sc_04_jingang_circle`、`sc_04_gaibang_secret_hall`、`sc_04_emei_jinding`、`sc_04_jiading_ferry`、`sc_04_jiulaodong`、`sc_04_haozhou_camp`、`sc_04_jiqing_commandery`、`sc_04_yingtian_transition` |
 | 资源点 | 21 | `rp_zhedong_sicha_01`、`rp_zhedong_liangshi_01`、`rp_zhedong_mocai_01`、`rp_donghai_shicai_01`、`rp_liaodong_yaocai_01`、`rp_jingxiang_yaocai_01`、`rp_jingxiang_mucai_01`、`rp_jingxiang_liangshi_01`、`rp_jingxiang_yaocai_02`、`rp_jingxiang_shoucai_01`、`rp_xiyunanjiang_kuangshi_01`、`rp_xiyunanjiang_mapi_01`、`rp_xiyunanjiang_yaocai_01`、`rp_yanjing_mapi_01`、`rp_yanjing_tieqi_01`、`rp_zhongyuan_liangshi_01`、`rp_zhongyuan_mocai_01`、`rp_bashu_yaocai_01`、`rp_bashu_sicha_01`、`rp_jianghuai_liangshi_01`、`rp_jianghuai_tieqi_01` |
 | 营生场所 | 25 | `biz_ningbo_escort_01`、`biz_ningbo_casino_01`、`biz_jinhua_manor_01`、`biz_wangpanshan_escort_01`、`biz_binghuodao_manor_01`、`biz_lingshedao_manor_01`、`biz_shiyan_manor_01`、`biz_xiangyang_escort_01`、`biz_xiangyang_casino_01`、`biz_wuhan_escort_01`、`biz_jingzhou_manor_01`、`biz_yingkou_escort_01`、`biz_khotan_kunlun_manor_01`、`biz_kashgar_escort_01`、`biz_kashgar_casino_01`、`biz_beijing_casino_01`、`biz_beijing_escort_01`、`biz_baoding_manor_01`、`biz_dengfeng_manor_01`、`biz_kaifeng_casino_01`、`biz_luoyang_escort_01`、`biz_leshan_manor_01`、`biz_chengdu_casino_01`、`biz_nanjing_escort_01`、`biz_hefei_manor_01` |
 | 手工支线 | 30 | `q_04_side_01`–`07`、`q_04_side_94`–`97`；`q_04_faction_81`、`86`–`90`、`93`–`97`、`99`；`q_04_bond_85`、`91`、`94`–`98` |
@@ -1733,7 +1745,7 @@ Z4M / Z5M、防守反应、护体内劲、点穴 / 擒拿、调息和速度顺�
 |---|---|---|---|
 | `CH04-V01` | 章节结构 | 一级编号恰为 §0、§1–§13，且文末依次为术语、校验、待决；无缺节、重号或占位语 | error |
 | `CH04-V02` | 固定参数 | 年代、境界、武运 95、D10、上限 70、携带 3 门武功 + 3 门内功、装备 6、压制 0、“号令”逐项等于基准 §2 | error |
-| `CH04-V03` | 地图数量与 ID | 9 个唯一 `rg_*`、21 个唯一 `city_*` / 特殊节点；本界场景恰 25 个 `sc_04_*`，无实体使用“区域前缀后附书界号”的旧写法 | error |
+| `CH04-V03` | 地图数量与 ID | 9 个唯一 `rg_*`、21 个唯一 `city_*` / 特殊节点；本界场景恰 26 个 `sc_04_*`（既有 25 个 + 九老洞遗迹专线），无实体使用“区域前缀后附书界号”的旧写法 | error |
 | `CH04-V04` | 区域字段 | 九区各含地形 `tr_*`、入口、qg 门禁及替代路、NPC、合法 `sk_*`、敌人等级带、场景 / 奇遇 | error |
 | `CH04-V05` | 地图时代层 | `city_beijing` / `city_ningbo` 显示“大都路” / “庆元路”；`city_nanjing` 常态显示“集庆路”，终幕场景可覆写“应天府” | error |
 | `CH04-V06` | 资源与营生预算 | 资源点恰 21、营生恰 25；常态材料不越品级 7；总增量价值不超过 `460×15×8%=552` 两 | error |
