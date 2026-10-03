@@ -1100,3 +1100,8 @@
     - 续作条件：磁盘 ≥ 6 GiB 且负载 < 8。后台 `scratchpad/waitcond.py 6 8` 在等。条件满足后，我用 `--from start` 带「续作，工作区改动都在」说明重起 TOOL-town-gaps-1。
     - ENG-16c 等继续不起。
 
+  - **10-03 06:12–06:28 协调者 / 追踪者（内存压力）**：
+    - DES-items-gifts-spec 审核 r1 FAIL（06:12：每书 1–3 件可送礼的原著物件未列全、§11.5.3 九列顺序不对、报告口径），驱动自动返修（第 3 次运行）。
+    - 追踪者 06:20 按条件（负载 5.5、磁盘 6.2 GiB）起 build_portraits，BiRefNet 一加载交换区 32.8 → 35.8 GB，磁盘跌到 3.1 GiB，护栏在 6/134 张时停下（ch01 部分已提交 ab4cc1e8）。条件改为：磁盘 ≥ 10 GiB 且 1 分钟负载 < 6 且在跑的 ENG 执行器 ≤ 1，三条同时满足才自动起；剩 128 张（ch01 3、ch02–14 全部）。
+    - 协调者关掉两个空闲的 Gemini 标签页；06:25 把两个低优先任务置 HOLD-RUNS 并停掉驱动与执行器（工作区保留）：ENG-12e（返修中）、TOOL-town-gaps-1（第 1 次运行中）；续作条件：磁盘 ≥ 6 GiB 且负载 < 8，`--from start` 带「续作」说明。清点执行器：7 个任务执行器（gifts-spec、lore-1 / 3、ruins-ids、19b、20a、rig-sheet 第 8 次）+ food-qi-exception 在等池位，无孤儿进程；另有作者别的项目的一个 traex（a2ui，9 小时）不属本仓。
+    - 主检出同步只由协调者做（追踪者的一次 cherry-pick 让主检出短暂处于 cherry-pick 状态，已 abort）。
