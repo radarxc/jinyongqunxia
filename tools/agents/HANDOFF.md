@@ -1537,3 +1537,11 @@
     - CONTENT-ch00b-maps r2 FAIL（唯一安全出生点、Trigger action、报告如实）→ 返修过校验 → 开发监督起只复审（驱动 77749）。
     - 10 号出图员 A1 完成：萧峰 4 张返工图对齐 juxianzhuang_guard（53435b4d，联系表 `codex_w17/sheets/xf_faces_after.jpg`）。段誉剧照问题：本地 `classic_duanyu_1997.jpg` 是 TVB 1997 版（陈浩民），林志颖是 2003 版，本地没有 → 问作者是否允许下载 2003 版剧照（否则只用文字造型）。
     - **AR-47**（作者：未生产的素材都要做，城图全量）→ 起「素材线第三波追踪」子代理：ART-region-maps、ART-rig-std-refs、ART-rig-sheet-f + TOOL-rig-parts-f、ART-ruins-tiles、ART-cast-fill-c / -d、城图按书拆任务（写集不相交、2 路起步）。礼品图仍归原追踪线（名录复验合入后由协调者起 Gemini 出图员）。
+  - **10-03 12:36–12:40 开发监督**：TOOL-catalog-collectibles 合入；CONTENT-ch00b 只复审起跑。
+    - **collectibles** r1 PASS，合入（HEAD 6b0b64ca），工作区已清。
+      - `prod_check` 全绿：990 条测试；entry 38.44，首次会话 93.36 / 110。
+      - 11 份名录检查全过，`items_from_catalog --check` 通过。
+      - 下一步：追踪者复验合入 ART-items-gifts-catalog，之后我登记 TOOL-items-regen-2。
+    - **CONTENT-ch00b-maps**：返修后校验通过，停在 HOLD-REVIEWS。按协调者 12:38 起只复审：`--from validate --max-runs 0 --max-reviews 1 --auto-merge`，驱动 77749。
+    - DES-ui-immersive（codex）12:36 起审。
+
