@@ -43,10 +43,9 @@
 
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
-| ENG-17-booksleep-m1 | traex | 复审 PASS 后与 ENG-19a 在 game-controller.ts 撞车（一处 let 声明），协调者挪基点 357d25f9 并按并集手工解，04:46 起驱动复验 + 复审合并结果，PASS 自动合入 | 90020（协调者另起，`supervise.r3.out`） |
-| ENG-18b-tiled-regionmap | traex | 第 1 次运行 04:38 结束（189 分钟），校验通过，审核 r1 FAIL（04:47），自动返修中 | eng3 → supervise 12005 |
+| ENG-17-booksleep-m1 | traex | 冲突手工解、重建 dist 后校验通过，复审 r3 PASS（05:07），合入中 | 18342（协调者另起，`supervise.r4.out`） |
 | TOOL-rig-sheet | traex Sol max | 审核 r4 又 FAIL（切件错分：pelvis_skirt 混入手臂、torso 含前臂残片、侧腿蓝灰楔块），第 7 次运行返修中 | 开发监督另起 |
-| TOOL-catalog-9col | traex Sol max | 复审 r2 FAIL（03:27：双写检查省略键可绕过），等代码池空位自动返修 | 51856（协调者另起） |
+| TOOL-catalog-9col | traex Sol max | r2 返修两次停滞（模型无输出）后 05:10 带说明续作（只做双写完整性 + 测试 + 报告） | 27447（协调者另起，`supervise.r3.out`） |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | — | HOLD-RUNS：等 TOOL-catalog-9col 合入后挪基点复验（`_handoff/lore_plan.md`） | des34 batch 9492 看护 |
 | DES-items-gifts-spec | — | HOLD-RUNS：内存压力暂停（02:00） | — |
 | CITY-layouts-all | codex gpt-6-astra xhigh | r1 FAIL 后协调者停掉全量返修，04:39 另起只修洛阳水门 / 太原三城 / 页眉的收尾运行（`coord_note_0440.md`），PASS 即合入已产出的 16 城 | 36743（协调者另起，`supervise.r2.out`） |
@@ -179,7 +178,7 @@
 | ART-cast-fill-a / -b | 逐书搜主要人物列表，补缺的提示词与立绘 | codex xhigh | **合入 e1698e93 / fe4765ef**（57 张） |
 | ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | 已登记（sparse_include 已补 female/ch09），等 DES-sync-keyscenes-ar36 合入（先改好 npcs-ch09 名录）且磁盘 ≥ 7 GiB |
 | CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | 第 4 次运行 04:19 结束（43 分钟做了 4 座：江宁、怀远、恒州、清池），校验通过、审核中；合入后**不接力全量**，范围缩减见 §8.1。进度在工作区 `progress.csv`（2367 行）/ `done.txt`。报告 §6 的工具缺口待登记：cities.yaml 缺庭州稳定键、ch10 年代带要核；唐代套件缺、xiyu / tubo 套件未进 schema（55 类里只有 38 个宋类有基线图）；render_town 不支持多重城垣 / 无墙营地 / 水门；plan_view.py 图头写死 linan |
-| ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览（九老洞、敦煌地宫、长白山洞…） | codex xhigh | 等 ENG-18b 合入 |
+| ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览（九老洞、敦煌地宫、长白山洞…） | codex xhigh | ENG-18b 已合入（3ef22aaf）；等 CITY 合入且负载 < 10、磁盘 ≥ 6 GiB 时追踪者直接起 |
 | ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录（瓷器 / 茶具、玉器、香炉铜器、琴、书法拜帖、笔…，书中宝物 + 史载物件）与 Gemini 提示词 | codex xhigh | 等 DES-items-gifts-spec（暂停）+ TOOL-catalog-9col |
 
 做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接 `_handoff/art_wave2_tracker_brief.md`；审核要点 `.agents/coord/PROD/review_checks_hero.md`（第 1 条已容许白马 / 侠客 / 鸳鸯不用剧照）/ `review_checks_ruins.md` / `review_checks_city.md`。审核模型写 `--review-model gpt-5.6-sol`（Codex 不认大写）。
