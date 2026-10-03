@@ -1049,3 +1049,18 @@
     - ART-cast-polish-ch09 第 1 次运行 20 分钟结束，校验通过（20 个文件），审核中（追踪者盯）。
     - lore：lore-6（药品）返修一次后合入 20c1307a；lore-1 / 3（还有七列行）、lore-5（一条双写缺项）返修中；lore-7 05:56 起；lore-8 等位。合入后 `items_from_catalog --check` 报 medicine stale 是预期（等全部 lore 合入后 TOOL-items-catalog 重新生成）。
     - **腊八粥裁定**（lore-5 r1 提出：§4.10.4 食品只许 stamina / healInner / healOuter，§4.10.5 又要求 sxpGrant 双写 qiCultivation）：按作者「其他 - 根据描述设计」的口径，描述含内力增益的名菜 / 药膳是食品特例，允许双写 `qiCultivation`，普通食品不得带。登记并起跑 **TOOL-catalog-food-qi-exception**（28d1ad8d；Sol max，驱动 59758）：校验器特例 + design/10 §4.10.4 / §4.10.6 加注 + 测试。lore-5 若只剩这一行，置 HOLD 等它合入。
+  - **10-03 05:59–06:09 开发监督**：lore-7 合入；lore-8 起跑；lore-5 设自动挂起。
+    - **lore-7** 一轮 PASS 合入（6cb074da），工作区已清。11 份名录 `check_item_catalog.py` 全过，只有 shoes 第 14 行 `eq_feiyuxue` 报 `stamina` 不在 equipment 常用字段集的警告。
+    - **lore-8**：06:07 起跑，驱动 41339。当时满足协调者 06:06 的条件：
+      - 有任务合入且工作区已清；磁盘 5.0 GiB；负载 9.0；
+      - lore 并发 3（1 / 3 / 5）；
+      - 它的工作区早就在（316 MB），不算新开。
+      - 先挪基点（cherry-pick 无冲突，3 个文件），再 `--from start`，附「保持九列」说明。
+    - **lore-5**：协调者 06:05 已把腊八粥定为食品特例，并起了 TOOL-catalog-food-qi-exception。
+      - 后台挂了 `scratchpad/hold_on_reviews.py`：lore-5 一转 HOLD-REVIEWS 且驱动退出，就改成 HOLD-RUNS，防止 des34 在特例合入前自动复审空转。
+      - 特例合入后，挪基点 `--from validate`。
+    - **新约定**（协调者 06:06）：
+      - 磁盘 < 5 GiB 时不新开工作区；
+      - 每个任务合入后确认 `.agents/wt/<ID>` 已清；
+      - 磁盘 < 2.5 GiB 报协调者（`kw.py` / `w50.py` 阈值已同步）。
+
