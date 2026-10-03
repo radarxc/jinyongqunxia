@@ -218,145 +218,109 @@
   category: character/female
   style: default
   subject: 小龙女（ch03_shendiao）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的小龙女立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中小龙女的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的小龙女二十岁上下，标准的鹅蛋脸、轮廓柔和，细长平直的眉，一双清澈的长眼、双眼皮、眼神清冷淡然，鼻梁秀挺，小巧的嘴、唇色淡粉，肤色极白，神情超然出尘、不苟言笑。
 
-    【场景背景】重阳宫殿内外相接处的淡淡门柱、石阶与道观轮廓；围攻者只用画外方向与阴影暗示。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【人物与场景】小龙女，《神雕侠侣》，重阳宫·双剑御敌。阶段：第26回重阳宫主体交锋，已经周伯通传授左右互搏；选择受重伤之前、以双剑对付围攻的青年阶段。第27回救援续叙不混入本切片。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【身份参考】随提示词上传的第 1 张图是小龙女本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（清丽的长鹅蛋脸、下颌线柔和，眉毛细长平直、颜色偏淡，眼睛清澈而冷、眼神淡漠出尘，鼻梁细直，唇色极淡，肌肤苍白如雪、几乎没有血色（久居古墓），素面无妆）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
-
-    【衣装】素白不透明右衽长衣、白布腰带、完整齐腰裙与平底鞋，黑发简束；双手戴素白贴手手套。
-
-    【动作与神情】两手各握一柄剑，左右剑势一前一后错开（左手全真剑法、右手玉女剑法），步法轻灵果断、至少一脚稳稳承重；头眼朝向主要威胁（重伤之前、主动抗敌）。
-
-    【器物】两柄当场从全真弟子手中夺来的普通中式长剑（不是君子剑淑女剑）。
-
-    【体态】成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
-    sha256: 2370b04d08c4cdbf6e7f4be9ae380195297ef714d109de90418943c92e235e11
-    use: 身份参考：本轮新出的小龙女（por_npc_xiaolongnv__ch03_youth_jueqing_base，上传 codex 原图）（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
+    use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.png
+    sha256: 00fab6287db15cdbba637fb23b89cffb7da0950fff6144da37be97006f55d388
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.00fab628.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T03:37:10-0700
-  source_path: .agents/coord/gemini_originals/por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.png
+  created: 2026-10-03T13:59:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 00fab6287db15cdbba637fb23b89cffb7da0950fff6144da37be97006f55d388
+  sha256: 46f66ec816ca5a6633db95fe32b688d8d87162ab016da5a3382b3a889e910c93
   status: candidate
-  notes: 立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.00fab628.png
+    sha256: 00fab6287db15cdbba637fb23b89cffb7da0950fff6144da37be97006f55d388
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.00fab628.entry.yaml
 - id: por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells
   file: por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.png
   category: character/female
   style: default
   subject: 小龙女（ch03_shendiao）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的小龙女立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中小龙女的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的小龙女二十岁上下，标准的鹅蛋脸、轮廓柔和，细长平直的眉，一双清澈的长眼、双眼皮、眼神清冷淡然，鼻梁秀挺，小巧的嘴、唇色淡粉，肤色极白，神情超然出尘、不苟言笑。
 
-    【场景背景】大胜关宴厅的淡淡柱影、地面与几盏烛台，留出轻身腾挪的空间。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【人物与场景】小龙女，《神雕侠侣》，大胜关·金铃迎敌。阶段：第13回英雄大宴，重逢杨过后以古墓轻功、白绸金球应对金轮法王；绝情谷取剑与周伯通授左右互搏之前。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【身份参考】随提示词上传的第 1 张图是小龙女本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（清丽的长鹅蛋脸、下颌线柔和，眉毛细长平直、颜色偏淡，眼睛清澈而冷、眼神淡漠出尘，鼻梁细直，唇色极淡，肌肤苍白如雪、几乎没有血色（久居古墓），素面无妆）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
-
-    【衣装】素白不透明右衽衣、白布腰带、完整长裙与平底素鞋，黑发用窄白带收束；双手戴素白贴手手套。
-
-    【动作与神情】轻快移步、躯干自然侧转，两手各牵引一条白绸，至少一只脚明确承力；表情专注果断，正在迎战画外的金轮法王。
-
-    【器物】两条白绸带，每条外端系一枚小圆金球铃（金铃索），与衣袖、腰带分开，连接清楚；不持剑。
-
-    【体态】成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
-    sha256: 2370b04d08c4cdbf6e7f4be9ae380195297ef714d109de90418943c92e235e11
-    use: 身份参考：本轮新出的小龙女（por_npc_xiaolongnv__ch03_youth_jueqing_base，上传 codex 原图）（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
+    use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.png
+    sha256: b7b17a20ba6c0baafbcd6bf4a6e0197e7693636c0fa99f402bb50d1b75b157bf
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.b7b17a20.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T03:37:13-0700
-  source_path: .agents/coord/gemini_originals/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.png
+  created: 2026-10-03T13:59:21-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: b7b17a20ba6c0baafbcd6bf4a6e0197e7693636c0fa99f402bb50d1b75b157bf
+  sha256: 1ee4b63077e1b05f375dd67817f453ac1646fc1bc5fed47de5ca19d5ecb26ee4
   status: candidate
-  notes: 立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.b7b17a20.png
+    sha256: b7b17a20ba6c0baafbcd6bf4a6e0197e7693636c0fa99f402bb50d1b75b157bf
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.b7b17a20.entry.yaml
 - id: por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise
   file: por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.png
   category: character/female
   style: default
   subject: 小龙女（ch03_shendiao）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的小龙女立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中小龙女的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的小龙女二十岁上下，标准的鹅蛋脸、轮廓柔和，细长平直的眉，一双清澈的长眼、双眼皮、眼神清冷淡然，鼻梁秀挺，小巧的嘴、唇色淡粉，肤色极白，神情超然出尘、不苟言笑。
 
-    【场景背景】断肠崖石壁、远山与淡淡谷雾；不画坠落。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【人物与场景】小龙女，《神雕侠侣》，断肠崖·十六年留约。阶段：第32回，重阳宫成婚与求医之后；伤毒未愈，留下十六年之约，尚未开始谷底多年生活。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【身份参考】随提示词上传的第 1 张图是小龙女本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（清丽的长鹅蛋脸、下颌线柔和，眉毛细长平直、颜色偏淡，眼睛清澈而冷、眼神淡漠出尘，鼻梁细直，唇色极淡，肌肤苍白如雪、几乎没有血色（久居古墓），素面无妆）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
-
-    【衣装】素白不透明右衽行旅长衣、白布腰带和平底素鞋，乌发用窄素带整理；衣服完整清洁。
-
-    【动作与神情】在断肠崖内侧稳定的岩面上站着，双脚安全着地，双手空着，回首望向来路；面色较淡、站姿略弱（伤毒未愈），眼神却有自己决定的坚定——刚刻下十六年之约。
-
-    【器物】双手空着；石壁上只有不可读的浅浅刻痕。
-
-    【体态】成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
-    sha256: 2370b04d08c4cdbf6e7f4be9ae380195297ef714d109de90418943c92e235e11
-    use: 身份参考：本轮新出的小龙女（por_npc_xiaolongnv__ch03_youth_jueqing_base，上传 codex 原图）（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
+    use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.png
+    sha256: 145ee653575a1d925cdc411be2ba61696b23002e9bb61afb9c13b935dacda699
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.145ee653.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T03:37:17-0700
-  source_path: .agents/coord/gemini_originals/por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.png
+  created: 2026-10-03T13:59:22-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 145ee653575a1d925cdc411be2ba61696b23002e9bb61afb9c13b935dacda699
+  sha256: ca0a8a888b8bb83286a74c531a0e1a1c877926cb9852a2f3b9ad389bc30e5b73
   status: candidate
-  notes: 立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.145ee653.png
+    sha256: 145ee653575a1d925cdc411be2ba61696b23002e9bb61afb9c13b935dacda699
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.145ee653.entry.yaml
 - id: por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message
   file: por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message.png
   category: character/female
