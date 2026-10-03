@@ -109,7 +109,7 @@ function localeDiagnostics(
     }));
 }
 
-async function parseInkSources(
+export async function parseInkSources(
   sources: readonly DiscoveredSource[],
 ): Promise<readonly CompiledInk[]> {
   const metadata = new Map(
