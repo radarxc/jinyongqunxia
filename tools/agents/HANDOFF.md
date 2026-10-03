@@ -1411,3 +1411,9 @@
     - 已请协调者重启 eng3（parallel 3）。我不自己起调度器：之前单独起 batch_run 被权限系统拒绝过。
     - 教训：以后成批 HOLD 前先确认调度器里还有在跑的任务，或者事先告知协调者，调度器可能因此提前退出。
 
+  - **10-03 09:50–10:02 协调者**：立绘重建收尾、总览页第 4 版、eng3 退出。
+    - 立绘重建 128/128 09:55 跑完（追踪者；36142d3f..0cc39bf9 按章 14 次提交；index.json 814 变体 / 699 头像 / 433 人物；模型加载交换区 +7 GB，磁盘最低 5.1 GiB，现 8 GiB）。它直接写 `_prod`，把 ENG-19d 的 merge 挡了两次（09:50 / 09:52），09:54 第 3 次成功；entry-split 09:56 合入时 `_prod` 已干净。
+    - **新规**（追踪者脚本已实现）：连续改 `_prod` 超过 1 分钟的素材任务（build_portraits、批量入库、大清理），开跑前和每章前扫 `.agents/coord/*/supervise.status.json`，有 RUNNING 且 detail 含 reviewing / validating / merging 的驱动就每 60 秒等一次，等满 30 分钟先停并把已做的落盘提交；能换到单独工作区的换过去按路径提交。开发监督再遇此事直接报协调者，不等 20 分钟放弃。
+    - 协调者重建人物 INDEX 并提交 d0529625（590 份，16 组）；总览页第 4 版 09:58 同地址重发（https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A，74 个文件 17.5 MB，`root` + `files` + `overwrite_unread`）。
+    - eng3 09:34 自行退出（队列只剩 HOLD 项：「队列结束：合入 21，停住 15」），所以 09:57 解除的 14 个暂停没人接。协调者把 M1 的 CONTENT-ch00b / ch10 / ch00a 提到 ENG-16c 之前（队列文件已注明），按磁盘规则先用并发 2 重启（见下一条）。
+    - **10:03 eng3 重启**（协调者，`detach_launch.py` → `.agents/coord/_batch/eng3.detach.r2.out`，pid 17924，`--parallel 2`）：磁盘 8 GiB、代码工作区约 1.3 GB / 个，按「< 5 GiB 不新开工作区」先开 2 路；attr-v2-schema 合入清掉工作区、磁盘回到 ≥ 10 GiB 后可再按 3 路重启。起跑即起 CONTENT-ch00b-maps（17928）与 CONTENT-ch10-cold-entry（17929）；待启动 14：CONTENT-ch00a-data、ENG-16c、ENG-size-session-gate（队列里排在 attr-v2-schema 后，但 tasks.json 无依赖，显示 ready）…；ENG-20b 仍 HOLD。batch_run 对 RUNNING 且 pid 存活的任务（ENG-attr-v2-schema 97000）会跳过，不会重复起。

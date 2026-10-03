@@ -12,20 +12,20 @@
 | codex 出人物图 / 插图的做法 | `tools/agents/prompts/_codex_worker.md`（codex 执行器：只排队、入库；出图 runner 在沙箱外由追踪者起）、`_codex_portrait.md`（Opus subagent 直接出图）、`_imagegen.md`；runner 与工具在 `_prod/.agents/coord/_handoff/gem/codex_w8/`（不入库） |
 | 续作材料（简报、监督脚本、出图台账、联系表、小基线图） | `.agents/wt/_prod/.agents/coord/_handoff/`（不入库） |
 | 要作者决定 / 确认的事 | 本文 §8 |
-| 素材总览页（验收用） | https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A（10-03 04:50 第 3 版：含第二波人物 175 张与全部物品；生成 `python3 tools/review/build_gallery.py` → `.agents/coord/gallery/`，72 个文件 16.9 MB，用 Artifact 工具同地址重发） |
+| 素材总览页（验收用） | https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A（10-03 09:58 第 4 版：128 张运行时立绘重建后的全量，含第二波人物与全部物品；生成 `python3 tools/review/build_gallery.py` → `.agents/coord/gallery/`，74 个文件 17.5 MB，用 Artifact 工具同地址重发） |
 
 ## 0. 现状一句话
 
 - **设计**：des33 第三批 13 项全部合入；des34 物品说明与属性投影 **全部合入**（attrs-spec + lore 1 / 3 / 5 / 6 / 7 / 8，11 份名录九列，lore-2 / 4 取消），等 TOOL-items-catalog 重新生成；des35 人物名录补登记 a / b 合入；des36 礼品规格合入（0496cb32），礼品名录 ART-items-gifts-catalog 在跑；DES-sync-keyscenes-ar36、DES-ruins-ids 合入（§4）。
 - **素材**：
-  - 人物：AR-32 / AR-35 的修改全部完成；第二波（AR-36）cast-fill a / b 合入 57 张，hero-refine-a 合入 95 张（联系表已发作者），hero-refine-b 合入 80 张（2533a8fd；李文秀 6 图按「白马用游戏头像 + 基线」放行）；总览页 04:50 已重建重发；剩余 `build_portraits`（运行时裁切）等指定时段（§3.1）。
+  - 人物：AR-32 / AR-35 的修改全部完成；第二波（AR-36）cast-fill a / b 合入 57 张，hero-refine-a 合入 95 张（联系表已发作者），hero-refine-b 合入 80 张（2533a8fd；李文秀 6 图按「白马用游戏头像 + 基线」放行）；运行时立绘 `build_portraits` 剩余 128 张 09:44–09:55 重建完（36142d3f..0cc39bf9；index.json 814 变体 / 699 头像 / 433 人物），INDEX 重建 d0529625（590 份），总览页 09:58 第 4 版已重发。
   - 物品（Gemini）：**366 张全部入库**（10-03 04:28 收工：秘籍 162、兵器 128、药材 55、暗器 21，限流 0），物品图至此出齐；下一批是 AR-40 的奢侈品 / 礼品约 120–180 张，等名录（§3.2）。
   - 情景图：改由 codex 主角精修任务出（hero-a 已入库 50 张插图，hero-b 待合入），Gemini 不再出；`key-scenes.md` 的统计口径待同步（§4）。
   - 城市布局：CITY-layouts-all 05:28 合入 16 城（洛阳 / 太原因工具缺口标 rejected，TOOL-town-gaps-1 修工具后重做）；全量不接力，缩减范围等作者（§8.1）；遗迹地图 56 + 6 张全部合入（含作者点名的九老洞、敦煌地宫）；三视图切件 TOOL-rig-sheet 第 9 次返修（最后一轮）后按原型收口（§3.4、§3.5）。
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
 - **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e / TOOL-items-catalog，10-03 凌晨再合入 ENG-19a（04:32）、ENG-18b（05:09）、ENG-17（05:12）、ENG-19c（05:24）、TOOL-catalog-9col（05:37）——M1 的 25 / 17a / 19a / 17 齐了；集成分支 `pnpm check` 05:26 全绿（128 文件 922 用例，entry 160.17 / 170 KiB 余 9.8 KiB，webgl 320.70 / 350）。在跑 ENG-20a、ENG-19b、ENG-12e（返修：恢复 2D 演示 + 3D 并排）、TOOL-rig-sheet 返修、TOOL-town-gaps-1、TOOL-catalog-food-qi-exception、lore 复验（lore-6 已合入）；eng3 队列还有 17 项（§5）。
 - **分工**（作者 10-02 15:50 / 22:00）：三个 Opus subagent——素材线第二波追踪（codex 执行器）、Gemini 出图员、开发监督；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max；GPT-5.5 禁用）。协调者只规划、登记、裁定、合入。
-- **环境**：09:30 磁盘约 9 GiB（08:55 曾因 ENG-entry-split 执行器在 /private/tmp 做 6 GB 整仓检出跌到 0.8 GiB，已删并在 `_common.md` 加规则 12 禁止）、交换区 32 GB；规则：磁盘 < 5 GiB 不新开工作区、< 2.5 GiB 停线（§6）。校验漏洞已修（TOOL-tests-discover 2effff74：tools 测试 549 条全跑）。
+- **环境**：09:30 磁盘约 9 GiB（08:55 曾因 ENG-entry-split 执行器在 /private/tmp 做 6 GB 整仓检出跌到 0.8 GiB，已删并在 `_common.md` 加规则 12 禁止）、交换区 32 GB；规则：磁盘 < 5 GiB 不新开工作区、< 2.5 GiB 停线（§6）；连续改 `_prod` 超过 1 分钟的素材任务（build_portraits、批量入库）启动前先查没有驱动处在 reviewing / validating / merging，否则挡合入（10-03 10:00 新规，追踪者脚本已照办）。校验漏洞已修（TOOL-tests-discover 2effff74：tools 测试 549 条全跑）。
 
 ---
 
@@ -45,10 +45,10 @@
 |---|---|---|---|
 
 | TOOL-items-regen | traex | 第 1 次运行 30 分钟生成完，校验被 data schema 挡住（`extension.value.attributes` 未定义）→ HOLD，等 ENG-attr-v2-schema 合入后挪基点 `--from validate` | 开发监督 |
-| ENG-attr-v2-schema | traex Sol | 已登记（b7e1101f）：item.v1 各 extension 加可选 attributes 投影（只校验不消费）；依赖 ENG-entry-split（entry 余量） | 开发监督起 |
+| ENG-attr-v2-schema | traex Sol | 运行中（09:57 起，驱动 97000）：item.v1 各 extension 加可选 attributes 投影（只校验不消费）；合入后 TOOL-items-regen 挪基点 `--from validate` | 开发监督 |
 | TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；要等 regen 与 tests-discover 合入（否则它的 --check 与 content 测试必红） | 开发监督起 |
-| ENG-19d-m1-flow-test-race | traex Sol | r1 PASS（09:48），合入中 | 开发监督 |
-| ENG-entry-split | traex Sol | 第 1 次运行 119 分钟结束，校验中；自报 entry 闭包 169 → 38.9 KiB（Worker 与子系统改为首次会话 / 首次触发加载），合入后解除 15 个暂停任务并起 ENG-attr-v2-schema | 75729（开发监督） |
+| ENG-19d-m1-flow-test-race | traex Sol | 已合入 3a3d58ca（09:54；merge 两次被 `_prod` 里的立绘重建挡住，第 3 次重试成功） | — |
+| ENG-entry-split | traex Sol | **已合入 e8357e76（09:56，r1 PASS）**：Worker 与子系统改为首次会话 / 首次触发加载。合入后 prod_check 975 条全过，entry 38.44 / 170（原 168.57）、render 161.87、webgl 200.32 / 350（原 330.44）；14 个暂停已解除回 PENDING，ENG-20b 等 ENG-size-session-gate | — |
 
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
@@ -112,7 +112,7 @@
 - [x] ART-hero-refine-b（2533a8fd，鹿鼎～雪山 7 本）：80 张 = 16 张基线 + 32 张分时期 + 32 张插图（题字 32 幅核验）；审核 r4 PASS（李文秀 6 图按「白马用游戏头像 + 现基线」放行，图在 female/ch10，不再补）。合入时与 cast-b 在 6 个 manifest 末尾撞车，协调者手工保留两边条目后 finish，旧驱动自行合入。联系表 `_handoff/gem/codex_w12/sheets/`（`retry3-bases-before-after-0N.jpg`、`retry3-stages-chNN-npc_<id>.jpg`、`retry3-final-scenes-chNN-01.jpg`）；03:40 已发作者五张。
 - [x] ART-cast-polish-ch09（41b24202，06:07）：万门六弟子各重出 1 张，联系表 `_handoff/gem/codex_w15/sheets/`。
 - [ ] 110 个新登记人物的立绘（ART-cast-fill-c / d，待协调者登记）：等 hero-b、polish 之后，看磁盘与作者意见再排。
-- [ ] **收尾**：`build_portraits.py` 已分批提交 29109cfe / d255c157 / 0343156b / a03b120d / ab4cc1e8（06:20 只跑了 6 张就被磁盘护栏停下：BiRefNet 一加载交换区 +3 GB）；剩 128 张（ch01 3、ch02–14 全部，含 hero 175 与 polish 6 的派生图）由追踪者在「磁盘 ≥ 10 GiB 且负载 < 6 且在跑 ENG 执行器 ≤ 1」时自动跑（包装脚本只加载一次模型、按章提交、< 3 GiB 停）→ `build_portrait_index.py` → `build_gallery.py` → 总览页重发。
+- [x] **收尾**（10-03 09:58 完成）：`build_portraits.py` 剩余 128 张 09:44–09:55 跑完（36142d3f..0cc39bf9，按章 14 次提交；此前分批 29109cfe / d255c157 / 0343156b / a03b120d / ab4cc1e8；模型加载交换区 +7 GB，磁盘最低 5.1 GiB）→ INDEX d0529625 → 总览页第 4 版。教训：它直接写 `_prod`，把 ENG-19d 的合入挡了两次，新规见 §1 环境行。
 - [ ] `key-scenes.md` / `story/07` 等同步项：hero-a 报告 §6 列了 ch01～07 的条目修正与统计口径，hero-b 合入后一并登记 DES-sync-keyscenes-ar36（§4）。
 
 **做法**：
@@ -228,7 +228,7 @@
 **在跑**（eng3 并发 3 + 单独驱动）：ENG-17（书眠、初眠配点，M1）、ENG-18b（Tiled 区域地图）、ENG-19a（外壳，M1）01:14 起第 1 次运行；TOOL-rig-sheet 第 3 次返修；TOOL-catalog-9col 复审。
 
 **eng3 排队 19 项**（队列顺序即优先级；依赖满足就自动开跑）：ENG-12e-gltf-pilot（ready）、ENG-16c（ready）、ENG-20a（等 18b）、ENG-19b（等 19a + 17）、ENG-20b、ENG-26、ENG-23a、ENG-16e、ENG-18c、CONTENT-ch00b / ch10 / ch00a / ch00c、ENG-27a / 27b / 28a / 28b / 27c、ENG-12d（可选）；TOOL-ingest-cropframe 在队列文件末尾，下次重启生效。
-- **M1 路径**：ENG-25 ✓ → ENG-17a ✓ → ENG-19a ✓ → ENG-17 ✓ → ENG-19b ✓（8741f917）→ ENG-entry-split（体积余量）→ CONTENT-ch00a / b / c、CONTENT-ch10 → 新游戏 → 序章 → 初眠配点 → 白马冷入口打通。
+- **M1 路径**：ENG-25 ✓ → ENG-17a ✓ → ENG-19a ✓ → ENG-17 ✓ → ENG-19b ✓（8741f917）→ ENG-entry-split ✓（e8357e76，entry 38.44 KiB）→ CONTENT-ch00a / b / c、CONTENT-ch10 → 新游戏 → 序章 → 初眠配点 → 白马冷入口打通。
 - ENG-24 浏览器冒烟：不下载 Playwright 浏览器包（AR-34），不入队。
 - 开发监督提醒：ENG-17 / 18b / 19a 的工作区建于 ENG-18e 之前，若撞上 build.test 旧超时就挪基点复验。
 
@@ -267,7 +267,7 @@
 2. **开发监督**（Opus subagent，交接 `_handoff/dev_supervisor_brief_v3.md`）：先处理停住的——TOOL-catalog-9col 合入 → lore 复验（`lore_plan.md`）→ TOOL-items-catalog 重新生成；eng3 停了就按 §6 重启（并发 3）。
 3. **素材线第二波追踪**（Opus subagent，交接 `_handoff/art_wave2_tracker_brief.md`）：hero-b 合入 → cast-polish-ch09 → CITY 续作（条件见 §3.5）→ ruins（等 18b）→ items-gifts-catalog（等 gifts-spec）；runner 在沙箱外由它起。
 4. **Gemini 出图员**（Opus subagent，skill `gemini-imagegen`）：先建标签组、请作者把窗口摆到前台；做完返工 31 张 + 后缀 18 本，再等 collectibles 队列。
-5. **收尾**：指定时段跑剩余 `build_portraits.py` → INDEX → gallery 重发（§3.1）；hero-b 合入后登记 DES-sync-keyscenes-ar36（§4）。
+5. **收尾**（已完成）：`build_portraits.py` → INDEX → gallery 第 4 版 10-03 09:58 全部落库 / 重发；DES-sync-keyscenes-ar36 已合入 9b43b497。
 6. **清理**：AR-34 的清理已做；合入任务的日志目录由 batch_run 清，单独驱动的（`.agents/logs/ART-hero-refine-a` 336 MB 等）由追踪者归档联系表后清。
 
 ---
