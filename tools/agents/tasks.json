@@ -47142,6 +47142,139 @@
     "docs/design/26-immersive-ui.md",
     "docs/design/ui-mock/**"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/role-slot.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-npc-species-roleslot",
+   "title": "游戏工程 · 人物数据契约补两处：NPC 加 species（非人 ageBand 为 null、不进人类年龄管线），新增角色槽 RoleSlotDef（role-slot.v1，加载与校验，进章节包）",
+   "prompt": "ENG-npc-species-roleslot.md",
+   "deps": [
+    "ENG-25-content-schemas-m1",
+    "ENG-region-gates-data"
+   ],
+   "writes": [
+    "packages/data/src/schemas/character.ts",
+    "packages/data/src/schemas/role-slot.ts",
+    "packages/data/src/schemas/index.ts",
+    "packages/data/src/content-registry.ts",
+    "packages/data/src/content-index.ts",
+    "packages/data/src/build/**",
+    "packages/data/src/**/*.test.ts",
+    "packages/data/src/**/__fixtures__/**",
+    "content/CLAUDE.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/dialogue/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-ink-intents",
+   "title": "游戏工程 · Ink 标签动作（DialogueIntent）真正执行：对话推进时解码 #ts: 标签，经共享动作执行器在当下快照重验后落到 core 状态；一次性、确定性",
+   "prompt": "ENG-ink-intents.md",
+   "deps": [
+    "ENG-event-executor"
+   ],
+   "writes": [
+    "packages/core/src/dialogue/**",
+    "packages/core/src/command/**",
+    "packages/core/src/event/**",
+    "packages/core/src/api/**",
+    "packages/core/src/**/*.test.ts",
+    "packages/data/src/build/ink.ts",
+    "apps/game/src/runtime/**"
+   ]
   }
  ]
 }
