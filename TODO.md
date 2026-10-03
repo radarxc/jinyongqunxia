@@ -43,9 +43,9 @@
 
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
-| TOOL-rig-sheet | traex Sol max | 审核 r4 又 FAIL（切件错分：pelvis_skirt 混入手臂、torso 含前臂残片、侧腿蓝灰楔块），第 7 次运行返修中 | 开发监督另起 |
+| TOOL-rig-sheet | traex Sol max | 审核 r5 又 FAIL（前臂含手掌、侧腿占位、髋锚暴露）；第 9 次返修为最后一轮，侧腿问题转 ART-rig-sheet-side（新源图），之后按原型收口合入 | 开发监督另起 |
 | DES-items-lore-1 / 3 / 5 / 7 / 8 | traex | lore-6 已合入（20c1307a）；lore-1 / 3 因「整文件九列一致」与半批切分的矛盾改为各写整份名录（06:36 裁定，lore-2 / 4 取消，des34 调度器已停），开发监督改说明后挪基点重起；lore-5 等食品特例合入；lore-7 在跑；lore-8 等资源 | 开发监督另起 |
-| TOOL-catalog-food-qi-exception | traex Sol | 第 1 次运行结束、校验通过，审核中（合入后 lore-5 复验） | 59758（协调者） |
+
 | ENG-12e-gltf-pilot | traex | 返修（恢复 2D 演示 + 3D 并排）跑了 25 分钟后 06:25 因内存压力暂停（HOLD-RUNS，工作区保留）；磁盘 ≥ 6 GiB 且负载 < 8 再 `--from start` 续作 | 协调者 |
 | TOOL-town-gaps-1 | traex Sol | 第 1 次运行 50 分钟后 06:25 因内存压力暂停（HOLD-RUNS）；条件同上，开发监督续作 | 开发监督 |
 | ENG-19b-ui-m1-flow / ENG-20a-region-core | traex | eng3 在跑（M1 界面；区域探索 core） | eng3 |
@@ -164,7 +164,7 @@
 
 **在跑**：
 - TOOL-rig-sheet（P2–P5、P7：三视图切件 + 走路 / 剑招 GIF）：第 5 次运行校验通过（39 张部件、Q2 单连通、Q3 透明像素 0、Q5 踩滑 0.366 cm），但审核两次 FAIL（r1：关节圆帽游离成黑点、侧视图重复大手、黑色弧块；r2 见 `.agents/reviews/TOOL-rig-sheet.r2.md`），03:18 第 3 次返修。作者看到的「男切件原型第 1 版要好好修修」就是这批。未合入的 GIF 在任务工作区 `assets/default/rig/npc_zhujue__ch00_m/preview/`（`walk_dir8.gif`、`sword_attack_dir8.gif`、`gait_vs_clip_walk.gif`）。合入时部件、manifest、GIF 一起落库（AR-39）。
-- [ ] **原型交付**：rig-sheet 合入后把走路 + 剑招动图发作者判定（AR-29）。
+- [ ] **原型交付**：rig-sheet 第 9 次返修（最后一轮）后按原型收口合入，把走路 + 剑招动图发作者判定（AR-29）；侧视大腿分不出是源图侧视双腿并拢所致，已登记 ART-rig-sheet-side（侧视双腿错开的补充三视图，fa57fc23）给下一版切件。
 
 **3D（AR-38）**：作者定「做 2D，不做 3D」；之后在 Tripo 免费档用立绘单图生成了主角·男模型，第二次导出带 Mixamo 骨骼（65 关节、无动画、1 万三角），已入 `apps/game/public/pilot/zhujue_tripo_v1.glb`（bd64598a；作者指出左侧头发有肉色，试点里记录不修）。ENG-12e-gltf-pilot（a842fc60）在 eng3 队列 ready：GLTFLoader + toon 着色 + 转台 + 片段重定向，合入后给作者 8 方向截图与 2D 对比。参考图与来源在主检出 `imagegen-reference/tripo/`。
 

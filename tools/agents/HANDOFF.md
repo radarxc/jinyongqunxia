@@ -1136,3 +1136,6 @@
     - lore-1 / lore-3 按整份名录重起（开发监督 7b180abf 改说明与 vars；协调者停掉半批返修的驱动与执行器；挪基点到 7b180abf，Sol max `--from start`，驱动 44637 / 46127，日志 `supervise.whole.out`，note / rework-extra 用 `devsup_note_whole.md`）。des34 调度器已停，lore 的 HOLD 由开发监督手动复验（≤ 3 次）。
     - TOOL-catalog-food-qi-exception 第 1 次运行 11 分钟结束，校验通过（4 个文件），审核中；合入后 lore-5 复验。
     - 磁盘 3.0 GiB、负载 8；ENG-12e、TOOL-town-gaps-1 仍暂停。
+  - **10-03 06:38–06:48 协调者**：
+    - TOOL-rig-sheet 审核 r5 FAIL（06:38）：前臂含手掌、侧视 `thigh_shared` 仍是调色的标准体梯形、`pelvis_skirt` 隐藏髋锚暴露。裁定：第 9 次返修为最后一轮，修手臂 / 手部与髋锚；侧腿若源图（侧视双腿并拢）分不出就按源图裤腿补绘并写明限制，r6 若只因侧腿 FAIL 置 HOLD 由协调者裁定按原型收口。登记 **ART-rig-sheet-side**（fa57fc23，依赖 TOOL-rig-sheet）：主角·男侧视双腿错开的补充三视图 `sheet_side_L / R`，给后续切件版本分出大腿 / 小腿；追踪者在 TOOL-rig-sheet 合入后按 codex 常规起。
+    - **TOOL-catalog-food-qi-exception 合入**（608aa8aa，06:40，r1 PASS）：食品行旧字段含 sxpGrant / perm.mpMaxPct 时允许双写 qiCultivation；design/10 §4.10.4 / §4.10.6 加注。已请开发监督复验 lore-5。
