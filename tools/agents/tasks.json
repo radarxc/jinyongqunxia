@@ -35152,6 +35152,64 @@
     "-c",
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem\",\"/private/tmp\"]"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/test_suite.py",
+     "tools/agents/reports/TOOL-tests-discover.md"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ]
+    ]
+   },
+   "id": "TOOL-tests-discover",
+   "title": "工具 · unittest discover 跑全 tools/ 的测试（新增 tools/test_suite.py 按目录发现），并修两条红测试：物品七列字节对比改用夹具、town_runtime 认 CITY 的 assets/default/town/<city>/layout.yaml",
+   "prompt": "TOOL-tests-discover.md",
+   "deps": [
+    "TOOL-catalog-food-qi-exception",
+    "CITY-layouts-all"
+   ],
+   "writes": [
+    "tools/test_suite.py",
+    "tools/content/test_items_from_catalog.py",
+    "tools/content/town_runtime.py",
+    "tools/content/test_town_runtime.py",
+    "tools/README.md"
+   ]
   }
  ]
 }
