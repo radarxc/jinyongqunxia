@@ -1367,3 +1367,15 @@
     - ENG-12d-clip-perf 第 1 次运行 44 分钟结束，校验通过（9 个文件），审核中。
     - **ART-rig-sheet-side 合入**（85f2b464，09:31）：审核 r1 / r2 都只卡在「第 3 栏 T 字不够纯侧视、膝角 117° vs 100°」；协调者看图后按用途裁定（分腿只需前两栏：错步站、抬腿都是侧视且腿间透背景），停掉第 3 次返修，`review_checks_rig_sheet.md` 加专用补充裁定，`--from validate --no-review --auto-merge` 合入 r2 那版（sha 与 manifest 一致）。下一版切件（TOOL-rig-sheet-2，待登记）用 `sheet_side_L / R` 分大腿 / 小腿。
   - **10-03 09:34–09:38 协调者（AR-41 受阻：Tripo API 余额 0）**：ART-3d-tripo-avatars 第 1 次运行 27 分钟：`tools/model3d/tripo_cli.py` 八个子命令 + README + 裁图工具 + 600 点账本 + 18 项测试已落盘，真实上传成功；但账号 **v2 / v3 API 余额均为 0 点**，付费任务一个都没提交（0/600 点）。执行器按官方价目估算：单图 / 多图建模 50 点、绑骨 25、每个动作 10——双主角首轮约 210 点，31 位主角群约 2300 点。校验失败（无 GLB）后驱动自动起第 2 次，协调者置 HOLD 停掉（会白跑）；等作者给 API 账号充值后 `--from start` 续作。密钥扫描 0 命中。ENG-12d 合入（a6f96ed5，09:33）。
+  - **10-03 09:29–09:39 开发监督**：ENG-12d-clip-perf 合入（eng3 起的），片段模式性能达标。
+    - 合入提交在 HEAD a6f96ed5 之前，工作区已清。
+    - `prod_check` 全绿：972 条测试；entry 168.57 / 170 没变，render 161.87（+0.63），webgl 330.44。
+    - check:perf（负载 7.6）3/3 通过：
+      - 片段模式 100 人 min P95 由 0.764 降到 **0.285 ms**（目标 ≤ 0.5，AR-37 门 1.0）；
+      - 程序步态 0.332 ms；20 人 0.073 ms。
+      - 报告里的分项：播放器投影 −83%，角色 update −73%，update + sync 总计 0.641 → 0.245 ms。
+    - ENG-19d 在执行；entry-split 已跑 100 多分钟，日志 24 MB。
+
+  - **10-03 09:40–09:47 协调者 / 开发监督**：
+    - **ENG-12d-clip-perf 合入**（a6f96ed5，09:33）：片段模式 100 人 min P95 0.764 → 0.285 ms（目标 ≤ 0.5，AR-37 门 1.0），程序步态 0.332 ms，20 人 0.073 ms；播放器投影降 83%。prod_check 972 用例全过，entry 168.57 不变，render 161.87 / 180。
+    - Tripo：追踪者按约定不经手 key，协调者在 avatars 工作区给 `tools/model3d/tripo_cli.py` 加 `--env-file <path>`（CLI 自己从 dotenv 读 `tripo_key` 进本进程，输出 / 报错脱敏；18 项测试仍过，README 补注），追踪者每 10 分钟用它查余额，> 200 点即 `--from start` 续起 avatars。协调者实查余额 0.0 / 冻结 0.0。磁盘 11 GiB。ENG-entry-split 已跑 100+ 分钟（写 core entries/*），ENG-19d 在跑。
