@@ -12,13 +12,13 @@
 | codex 出人物图 / 插图的做法 | `tools/agents/prompts/_codex_worker.md`（codex 执行器：只排队、入库；出图 runner 在沙箱外由追踪者起）、`_codex_portrait.md`（Opus subagent 直接出图）、`_imagegen.md`；runner 与工具在 `_prod/.agents/coord/_handoff/gem/codex_w8/`（不入库） |
 | 续作材料（简报、监督脚本、出图台账、联系表、小基线图） | `.agents/wt/_prod/.agents/coord/_handoff/`（不入库） |
 | 要作者决定 / 确认的事 | 本文 §8 |
-| 素材总览页（验收用） | https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A（10-02 17:12 版；第二波合入后待重建，见 §3.1 收尾） |
+| 素材总览页（验收用） | https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A（10-03 04:50 第 3 版：含第二波人物 175 张与全部物品；生成 `python3 tools/review/build_gallery.py` → `.agents/coord/gallery/`，72 个文件 16.9 MB，用 Artifact 工具同地址重发） |
 
 ## 0. 现状一句话
 
 - **设计**：des33 第三批 13 项全部合入（故事线挂接口 g1～g5、tech / design 同步 a / b、名录门槛 v2 a / b / c、rig v1.1、ids-slp）；des34 的 DES-items-attrs-spec 合入（名录升九列），8 个 DES-items-lore 停在等 TOOL-catalog-9col（复审 r2 又 FAIL，等代码池空位返修）；des35 的人物名录补登记 a / b 合入（110 个原著人物进名录与 design/18）；des36 的礼品规格 DES-items-gifts-spec 因内存压力暂停（§4）。
 - **素材**：
-  - 人物：AR-32 / AR-35 的修改全部完成；第二波（AR-36）cast-fill a / b 合入 57 张，hero-refine-a 合入 95 张（联系表已发作者），hero-refine-b 合入 80 张（2533a8fd；李文秀 6 图按「白马用游戏头像 + 基线」放行）；剩余 `build_portraits` 等指定时段，总览页待重建（§3.1）。
+  - 人物：AR-32 / AR-35 的修改全部完成；第二波（AR-36）cast-fill a / b 合入 57 张，hero-refine-a 合入 95 张（联系表已发作者），hero-refine-b 合入 80 张（2533a8fd；李文秀 6 图按「白马用游戏头像 + 基线」放行）；总览页 04:50 已重建重发；剩余 `build_portraits`（运行时裁切）等指定时段（§3.1）。
   - 物品（Gemini）：**366 张全部入库**（10-03 04:28 收工：秘籍 162、兵器 128、药材 55、暗器 21，限流 0），物品图至此出齐；下一批是 AR-40 的奢侈品 / 礼品约 120–180 张，等名录（§3.2）。
   - 情景图：改由 codex 主角精修任务出（hero-a 已入库 50 张插图，hero-b 待合入），Gemini 不再出；`key-scenes.md` 的统计口径待同步（§4）。
   - 城市布局：CITY-layouts-all 03:36 续作（第 4 次运行）；遗迹地图等 ENG-18b；三视图切件 TOOL-rig-sheet 审核两次不过，第 3 次返修中（§3.4、§3.5）。
