@@ -35769,6 +35769,60 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/agents/reports/ENG-content-validate-inkmeta.md"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-content-validate-inkmeta",
+   "title": "游戏工程 · 小修：content:validate 与编译管线对齐，*.inkmeta.yaml 走 parseInkMeta 与 .ink 配对校验，不进内容注册表（挡住 CONTENT-ch10 / ch00a）",
+   "prompt": "ENG-content-validate-inkmeta.md",
+   "deps": [],
+   "writes": [
+    "packages/data/scripts/validate-content.ts",
+    "packages/data/src/tooling.ts",
+    "packages/data/src/build/*.ts",
+    "packages/data/src/**/*.test.ts",
+    "packages/data/src/**/__fixtures__/**"
+   ]
   }
  ]
 }
