@@ -30919,6 +30919,9 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
+    ],
+    "shrink_exempt": [
+     "packages/core/src/battle/meridian-flow/golden-runner.ts"
     ]
    },
    "id": "ENG-14b-meridian-golden-v3",
