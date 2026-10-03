@@ -1,8 +1,11 @@
 import type { RigBatchCharacter } from './batch';
+import { createClipPlayer, type ClipPlayer } from './clip-player';
+import { requireRigClip } from './clip';
 import { assembleEquipment, equipmentEquals, type EquipmentAssembly } from './equipment';
 import { createGaitPose, gaitPeriod, motionModeForSpeed, quantizePoseTime, resolveDirection, sampleGaitInto, sampleIdleInto, stableIdlePhase, weightTuning, type GaitPose } from './gait';
 import type { RigInstanceBuffer } from './instance-buffer';
-import { RIG_PARTS, type AtlasCell, type Dir8, type EquipmentVisuals, type MotionMode, type RigManifestPart, type RigPart, type RigSet, type RigView, type WeightClass } from './types';
+import { createPartPoseBuffer } from './project';
+import { RIG_PARTS, type AtlasCell, type ClipPlayOptions, type Dir8, type EquipmentVisuals, type MotionMode, type PartPoseBuffer, type RigManifestPart, type RigPart, type RigSet, type RigView, type WeightClass } from './types';
 
 const DEG = Math.PI / 180;
 const PART_INDEX = Object.fromEntries(RIG_PARTS.map((part, index) => [part, index])) as Record<RigPart, number>;
@@ -30,6 +33,7 @@ export interface RigInstance extends RigBatchCharacter {
   setEquipment(equipment: EquipmentVisuals): Promise<void>;
   setPosition(x: number, y: number, z: number): void;
   setStepFps(stepFps: number): void;
+  playClip(id: string, options: ClipPlayOptions): void; stopClip(): void;
   update(dtSeconds: number): void;
   readonly motionMode: MotionMode; readonly direction: Dir8; readonly equipment: EquipmentVisuals;
   readonly capeAngle: number; snapshot(): RigSnapshot | undefined; dispose(): void;
@@ -59,6 +63,9 @@ function resolveView(rigSet: RigSet, view: RigView, mirrored: boolean): Resolved
     return { manifest, cell };
   });
 }
+function resolvedViewIndex(viewIndex: number, mirrored: boolean): number {
+  const base = viewIndex === 0 ? 0 : viewIndex === 1 ? 4 : 2; return base + (mirrored ? 1 : 0);
+}
 
 function blendPose(out: GaitPose, from: GaitPose, to: GaitPose, alpha: number): void {
   out.hipL = from.hipL + (to.hipL - from.hipL) * alpha; out.hipR = from.hipR + (to.hipR - from.hipR) * alpha;
@@ -85,6 +92,8 @@ class RigCharacter implements RigInstance {
   readonly pose = createGaitPose(); readonly fromPose = createGaitPose(); readonly targetPose = createGaitPose();
   readonly jointX = new Float32Array(16); readonly jointY = new Float32Array(16); readonly globalAngle = new Float32Array(16);
   readonly jointScratch = new Float32Array(4);
+  readonly gaitPartPoses = createPartPoseBuffer(); readonly blendedPartPoses = createPartPoseBuffer();
+  readonly lastClipViews = new Uint8Array(16); readonly lastClipMirrors = new Uint8Array(16); readonly lastClipDepths = new Uint16Array(20);
   private equipmentState: EquipmentVisuals; private assemblies: readonly EquipmentAssembly[];
   private dir: Dir8 = 0; private speed = 0; private weight: WeightClass = 'medium';
   private mode: MotionMode = 'idle'; private fromMode: MotionMode = 'idle'; private targetMode: MotionMode = 'idle';
@@ -94,12 +103,16 @@ class RigCharacter implements RigInstance {
   private capePhi = 0; private capeOmega = 0; private attachmentCount = 0;
   private snapshotCanvas: HTMLCanvasElement | undefined;
   private initializedBuffers = new WeakSet<RigInstanceBuffer>();
+  private clipPlayer: ClipPlayer | undefined;
+  private clipPose: PartPoseBuffer | undefined; private clipProjectionGeneration = 0;
+  private poseGeneration = 0; private readonly bufferPoseGeneration = new WeakMap<RigInstanceBuffer, number>();
+  private clipStaticInitialized = false;
 
   constructor(readonly rigSet: RigSet, equipment: EquipmentVisuals, readonly stableId: number) {
     this.views = [resolveView(rigSet, 'front34', false), resolveView(rigSet, 'front34', true), resolveView(rigSet, 'back34', false), resolveView(rigSet, 'back34', true), resolveView(rigSet, 'side', false), resolveView(rigSet, 'side', true)];
     this.data = Array.from({ length: 20 }, (_, index) => ({ uvRect: this.uv.subarray(index * 4, index * 4 + 4), affine2d: this.affine.subarray(index * 6, index * 6 + 6), anchorDepth: this.anchor.subarray(index * 4, index * 4 + 4), sortTint: this.sort.subarray(index * 4, index * 4 + 4) }));
     this.equipmentState = equipment; this.assemblies = this.makeAssemblies(equipment);
-    this.evaluatePose(); this.writePose();
+    this.evaluatePose(); this.writeGaitPartPoses(); this.writePose(this.gaitPartPoses);
   }
 
   get activeInstanceCount(): number { return 16 + this.attachmentCount; }
@@ -120,6 +133,7 @@ class RigCharacter implements RigInstance {
     if (dir8 !== this.dir) { this.targetMirrored = direction.mirrored; this.targetViewIndex = nextView; this.turnProgress = 0; }
     this.dir = dir8;
     this.speed = speedMps; this.weight = weightClass;
+    this.clipPlayer?.setFacingYawDeg(dir8 * 45); this.clipPlayer?.setSpeedMps(speedMps);
   }
 
   async setEquipment(equipment: EquipmentVisuals): Promise<void> {
@@ -127,13 +141,13 @@ class RigCharacter implements RigInstance {
     const assemblies = this.makeAssemblies(equipment);
     await Promise.resolve();
     if (this.disposed) return;
-    this.equipmentState = equipment; this.assemblies = assemblies; this.writePose();
+    this.equipmentState = equipment; this.assemblies = assemblies; this.writeCurrentPose();
     this.invalidateStaticInstanceData();
   }
 
   setPosition(x: number, y: number, z: number): void {
     if (![x, y, z].every(Number.isFinite)) throw new RangeError('RIG_POSITION');
-    this.worldX = x; this.worldY = y; this.worldZ = z; this.writePose();
+    this.worldX = x; this.worldY = y; this.worldZ = z; this.writeCurrentPose();
     this.invalidateStaticInstanceData();
   }
 
@@ -141,6 +155,16 @@ class RigCharacter implements RigInstance {
     if (!Number.isFinite(stepFps) || stepFps < 0) throw new RangeError('RIG_STEP_FPS');
     this.stepFps = stepFps;
   }
+
+  playClip(id: string, options: ClipPlayOptions): void {
+    const clip = requireRigClip(id);
+    const player = createClipPlayer(clip, { ...options, speedMps: this.speed,
+      movement: options.movement ?? clip.nativeSpeedMmps > 0, rigSet: this.rigSet });
+    this.clipPlayer = player.fallbackToGait ? undefined : player; this.clipPose = this.clipPlayer?.output;
+    this.clipProjectionGeneration = 0; this.clipStaticInitialized = false;
+  }
+
+  stopClip(): void { this.clipPlayer?.stop(); }
 
   update(dtSeconds: number): void {
     if (this.disposed) return;
@@ -151,16 +175,26 @@ class RigCharacter implements RigInstance {
       const before = this.turnProgress; this.turnProgress = Math.min(1, this.turnProgress + dt / 0.16);
       if (before < .5 && this.turnProgress >= .5) {
         this.mirrored = this.targetMirrored; this.viewIndex = this.targetViewIndex;
-        this.invalidateStaticInstanceData();
+        this.markStaticPoseDirty();
       }
     }
-    this.evaluatePose(); this.updateCape(dt); this.writePose();
+    const player = this.clipPlayer;
+    if (player) {
+      const clipPose = player.update(dt); const blend = player.blend; const projectionChanged = player.projectionGeneration !== this.clipProjectionGeneration;
+      const needsGait = player.phase === 'stopped' || blend < 1 || this.transition < 1 ||
+        this.mode !== this.targetMode || this.hasDynamicAttachments();
+      if (needsGait) { this.evaluatePose(); this.updateCape(dt); }
+      if (player.phase === 'stopped') { this.clipPlayer = undefined; this.clipPose = undefined; this.clipStaticInitialized = false; this.markStaticPoseDirty(); this.writeGaitPartPoses(); this.writePose(this.gaitPartPoses); }
+      else if (blend < 1) { this.writeGaitPartPoses(); this.writePose(this.blendPartPoseBuffers(this.gaitPartPoses, clipPose, blend)); }
+      else if (blend > 0 && (projectionChanged || this.clipPose !== clipPose || this.hasDynamicAttachments())) this.writePose(clipPose);
+      this.clipPose = clipPose; this.clipProjectionGeneration = player.projectionGeneration;
+    } else { this.evaluatePose(); this.updateCape(dt); this.writeGaitPartPoses(); this.writePose(this.gaitPartPoses); }
   }
 
   writeInstances(buffer: RigInstanceBuffer, baseIndex: number, forceStatic = false): void {
-    if (!forceStatic && this.initializedBuffers.has(buffer)) { buffer.writeAffineBlock(baseIndex, this.affine); return; }
+    if (!forceStatic && this.initializedBuffers.has(buffer) && this.bufferPoseGeneration.get(buffer) === this.poseGeneration) { buffer.writeAffineBlock(baseIndex, this.affine); return; }
     for (let index = 0; index < 20; index += 1) buffer.write(baseIndex + index, index < 16 + this.attachmentCount ? this.data[index]! : HIDDEN);
-    this.initializedBuffers.add(buffer);
+    this.initializedBuffers.add(buffer); this.bufferPoseGeneration.set(buffer, this.poseGeneration);
   }
 
   snapshot(): RigSnapshot | undefined {
@@ -213,9 +247,18 @@ class RigCharacter implements RigInstance {
   private invalidateStaticInstanceData(): void {
     this.initializedBuffers = new WeakSet<RigInstanceBuffer>();
   }
+  private markStaticPoseDirty(): void { this.poseGeneration += 1; }
+
+  private writeCurrentPose(): void {
+    this.writeGaitPartPoses(); const player = this.clipPlayer;
+    this.writePose(player && player.blend > 0 ? this.blendPartPoseBuffers(this.gaitPartPoses, player.output, player.blend) : this.gaitPartPoses);
+  }
 
   private makeAssemblies(equipment: EquipmentVisuals): readonly EquipmentAssembly[] {
     return [assembleEquipment(equipment, 'front34', false), assembleEquipment(equipment, 'front34', true), assembleEquipment(equipment, 'back34', false), assembleEquipment(equipment, 'back34', true), assembleEquipment(equipment, 'side', false), assembleEquipment(equipment, 'side', true)];
+  }
+  private hasDynamicAttachments(): boolean {
+    return this.equipmentState.cape !== undefined;
   }
 
   private evaluatePose(): void {
@@ -243,15 +286,30 @@ class RigCharacter implements RigInstance {
     if (remainder > 0) { const decay = Math.exp(-remainder * 12); this.capePhi = target + (this.capePhi - target) * decay; this.capeOmega *= decay; }
   }
 
-  private writePose(): void {
+  private writeGaitPartPoses(): void {
     const view = this.views[this.viewIndex]!;
-    const assembly = this.assemblies[this.viewIndex]!;
     this.solveSkeleton(view);
-    this.attachmentCount = assembly.attachments.length;
     for (let index = 0; index < 16; index += 1) {
       const partName = RIG_PARTS[index]!; const resolved = view[index]!;
       const angle = this.globalAngle[index]! * DEG * (this.mirrored ? -1 : 1);
-      this.writePart(index, resolved.cell, resolved.manifest, angle, this.jointX[index]!, this.jointY[index]!, this.runtimeZ(partName), this.tintForPart(partName, assembly), this.mirrored);
+      this.writeGaitPartPose(index, resolved.manifest, angle, this.jointX[index]!, this.jointY[index]!, this.runtimeZ(partName), this.mirrored);
+    }
+    this.gaitPartPoses.weaponVisible = false;
+  }
+
+  private writePose(partPoses: PartPoseBuffer): void {
+    const firstView = partPoses.viewIndices[2] ?? 0; const firstMirror = partPoses.mirrors[2] === 1;
+    const assembly = this.assemblies[resolvedViewIndex(firstView, firstMirror)]!;
+    let staticChanged = !this.clipStaticInitialized || this.attachmentCount !== assembly.attachments.length;
+    this.attachmentCount = assembly.attachments.length;
+    for (let index = 0; index < 16; index += 1) {
+      const partName = RIG_PARTS[index]!; const viewIndex = partPoses.viewIndices[index]!; const mirrored = partPoses.mirrors[index] === 1;
+      const resolved = this.views[resolvedViewIndex(viewIndex, mirrored)]![index]!;
+      this.writePartPose(index, resolved.cell, partPoses.poses[index]!, this.tintForPart(partName, assembly));
+      const depth = this.data[index]!.sortTint[1]!;
+      if (!this.clipStaticInitialized || this.lastClipViews[index] !== viewIndex || this.lastClipMirrors[index] !== (mirrored ? 1 : 0) || this.lastClipDepths[index] !== depth) {
+        this.lastClipViews[index] = viewIndex; this.lastClipMirrors[index] = mirrored ? 1 : 0; this.lastClipDepths[index] = depth; staticChanged = true;
+      }
     }
     for (let index = 0; index < assembly.attachments.length; index += 1) {
       const attachment = assembly.attachments[index]!; const parentIndex = PART_INDEX[attachment.parent];
@@ -264,32 +322,56 @@ class RigCharacter implements RigInstance {
         const angle = this.capePhi * DEG; const cos = Math.cos(angle); const sin = Math.sin(angle);
         target.affine2d[0] = cos * 0.55; target.affine2d[1] = -sin * 0.55; target.affine2d[3] = sin * 0.52; target.affine2d[4] = cos * 0.52;
       } else if (attachment.kind.startsWith('weapon')) {
-        const right = attachment.kind === 'weapon_R';
-        const shoulder = right === this.mirrored ? this.pose.shoulderL : this.pose.shoulderR;
-        const angle = (-18 + shoulder * .35) * DEG * (this.mirrored ? -1 : 1);
-        target.affine2d[0] = Math.cos(angle) * .14; target.affine2d[1] = Math.sin(angle);
-        target.affine2d[3] = -Math.sin(angle) * .14; target.affine2d[4] = Math.cos(angle);
+        if (partPoses.weaponVisible) target.affine2d.set(partPoses.weaponAffine);
+        else {
+          const right = attachment.kind === 'weapon_R'; const shoulder = right === this.mirrored ? this.pose.shoulderL : this.pose.shoulderR;
+          const angle = (-18 + shoulder * .35) * DEG * (this.mirrored ? -1 : 1);
+          target.affine2d[0] = Math.cos(angle) * .14; target.affine2d[1] = Math.sin(angle);
+          target.affine2d[3] = -Math.sin(angle) * .14; target.affine2d[4] = Math.cos(angle);
+        }
       } else {
         target.affine2d[0] = target.affine2d[0]! * .45; target.affine2d[1] = target.affine2d[1]! * .45;
         target.affine2d[3] = target.affine2d[3]! * .45; target.affine2d[4] = target.affine2d[4]! * .45;
       }
-      target.sortTint[0] = 32_768 + this.stableId % 32_768; target.sortTint[1] = Math.round((attachment.zOrder + 2) * 20);
-      target.sortTint[2] = attachment.tint; target.sortTint[3] = 1 | (this.mirrored ? 2 : 0);
+      const z = attachment.kind.startsWith('weapon') && partPoses.weaponVisible ? partPoses.weaponZ : attachment.zOrder;
+      target.sortTint[0] = 32_768 + this.stableId % 32_768; target.sortTint[1] = Math.round((z + 2) * 20);
+      target.sortTint[2] = attachment.tint; target.sortTint[3] = 1 | (firstMirror ? 2 : 0);
+      if (!this.clipStaticInitialized || this.lastClipDepths[dataIndex] !== target.sortTint[1]) {
+        this.lastClipDepths[dataIndex] = target.sortTint[1]!; staticChanged = true;
+      }
     }
+    if (staticChanged) this.markStaticPoseDirty(); this.clipStaticInitialized = true;
   }
 
-  private writePart(index: number, cell: AtlasCell, part: RigManifestPart, angle: number, jointX: number, jointY: number, zOrder: number, tint: number, mirrored: boolean): void {
-    const data = this.data[index]!; const scale = 1 / this.rigSet.manifest.ppm;
-    data.uvRect[0] = cell.u0; data.uvRect[1] = cell.v0; data.uvRect[2] = cell.du; data.uvRect[3] = cell.dv;
-    const width = part.size[0] * scale; const height = part.size[1] * scale;
-    const cos = Math.cos(angle); const sin = Math.sin(angle);
-    const pivotX = (mirrored ? part.size[0] - part.pivot[0] : part.pivot[0]) * scale;
+  private writeGaitPartPose(index: number, part: RigManifestPart, angle: number, jointX: number, jointY: number, z: number, mirrored: boolean): void {
+    const pose = this.gaitPartPoses.poses[index] as { viewIndex: 0 | 1 | 2; mirrored: boolean; affine: Float32Array; z: number };
+    const affine = pose.affine; const scale = 1 / this.rigSet.manifest.ppm; const width = part.size[0] * scale; const height = part.size[1] * scale;
+    const cos = Math.cos(angle); const sin = Math.sin(angle); const pivotX = (mirrored ? part.size[0] - part.pivot[0] : part.pivot[0]) * scale;
     const offsetX = width * .5 - pivotX; const offsetY = part.pivot[1] * scale - height * .5;
-    data.affine2d[0] = cos * width; data.affine2d[1] = sin * height; data.affine2d[2] = jointX + cos * offsetX + sin * offsetY;
-    data.affine2d[3] = -sin * width; data.affine2d[4] = cos * height; data.affine2d[5] = jointY - sin * offsetX + cos * offsetY;
-    data.anchorDepth[0] = this.worldX; data.anchorDepth[1] = this.worldY; data.anchorDepth[2] = this.worldZ; data.anchorDepth[3] = 0.35;
-    data.sortTint[0] = 32_768 + this.stableId % 32_768; data.sortTint[1] = Math.round((zOrder + 2) * 20);
-    data.sortTint[2] = tint; data.sortTint[3] = 1 | (mirrored ? 2 : 0);
+    affine[0] = cos * width; affine[1] = sin * height; affine[2] = jointX + cos * offsetX + sin * offsetY;
+    affine[3] = -sin * width; affine[4] = cos * height; affine[5] = jointY - sin * offsetX + cos * offsetY;
+    const viewIndex = (this.viewIndex < 2 ? 0 : this.viewIndex < 4 ? 2 : 1) as 0 | 1 | 2;
+    pose.viewIndex = viewIndex; pose.mirrored = mirrored; pose.z = z; this.gaitPartPoses.viewIndices[index] = viewIndex;
+    this.gaitPartPoses.mirrors[index] = mirrored ? 1 : 0; this.gaitPartPoses.depths[index] = z;
+  }
+
+  private writePartPose(index: number, cell: AtlasCell, pose: PartPoseBuffer['poses'][number], tint: number): void {
+    const data = this.data[index]!; data.uvRect[0] = cell.u0; data.uvRect[1] = cell.v0; data.uvRect[2] = cell.du; data.uvRect[3] = cell.dv;
+    data.affine2d.set(pose.affine); data.anchorDepth[0] = this.worldX; data.anchorDepth[1] = this.worldY;
+    data.anchorDepth[2] = this.worldZ; data.anchorDepth[3] = .35; data.sortTint[0] = 32_768 + this.stableId % 32_768;
+    data.sortTint[1] = Math.round((pose.z + 2) * 20); data.sortTint[2] = tint; data.sortTint[3] = 1 | (pose.mirrored ? 2 : 0);
+  }
+
+  private blendPartPoseBuffers(from: PartPoseBuffer, to: PartPoseBuffer, alpha: number): PartPoseBuffer {
+    const out = this.blendedPartPoses; const chooseClip = alpha >= .5;
+    for (let part = 0; part < 16; part += 1) {
+      const offset = part * 6; for (let field = 0; field < 6; field += 1) out.affines[offset + field] = from.affines[offset + field]! + (to.affines[offset + field]! - from.affines[offset + field]!) * alpha;
+      out.depths[part] = from.depths[part]! + (to.depths[part]! - from.depths[part]!) * alpha;
+      out.viewIndices[part] = chooseClip ? to.viewIndices[part]! : from.viewIndices[part]!; out.mirrors[part] = chooseClip ? to.mirrors[part]! : from.mirrors[part]!;
+      const pose = out.poses[part] as { viewIndex: 0 | 1 | 2; mirrored: boolean; z: number }; pose.viewIndex = out.viewIndices[part] as 0 | 1 | 2; pose.mirrored = out.mirrors[part] === 1; pose.z = out.depths[part]!;
+    }
+    for (let field = 0; field < 6; field += 1) out.weaponAffine[field] = from.weaponAffine[field]! + (to.weaponAffine[field]! - from.weaponAffine[field]!) * alpha;
+    out.weaponZ = from.weaponZ + (to.weaponZ - from.weaponZ) * alpha; out.weaponVisible = chooseClip && to.weaponVisible; return out;
   }
 
   private tintForPart(part: RigPart, assembly: EquipmentAssembly): number {

@@ -1,6 +1,6 @@
 import { CanvasTexture, DataTexture, LinearFilter, RGBAFormat, SRGBColorSpace, type Texture } from 'three';
 import { createPlaceholderRigManifest } from './placeholder';
-import { RIG_NEAR_SIDE, RIG_SOURCE_PARTS, RIG_VIEWS, type AtlasCell, type RigManifest, type RigManifestPart, type RigSet } from './types';
+import { RIG_BONE_LENGTH_KEYS, RIG_NEAR_SIDE, RIG_SOURCE_PARTS, RIG_VIEWS, type AtlasCell, type RigManifest, type RigManifestPart, type RigSet } from './types';
 
 export type RigManifestInput = RigManifest | { readonly manifestUrl: string; readonly runtimePpm?: number };
 interface LoadedImage { readonly part: RigManifestPart; readonly image?: CanvasImageSource }
@@ -20,6 +20,12 @@ export function validateRigManifest(manifest: RigManifest): void {
   assert(manifest.schema === 'tianshu-rig.v1', 'schema');
   assert(/^[a-z][a-z0-9_-]*$/.test(manifest.set), 'set');
   assert(manifest.ppm === 256 && Number.isFinite(manifest.heightM), 'scale');
+  assert(manifest.skeleton === undefined || manifest.skeleton === 'tianshu_humanoid.v1', 'skeleton');
+  if (manifest.boneLengthsM !== undefined) {
+    const keys = Object.keys(manifest.boneLengthsM);
+    assert(keys.every((key) => RIG_BONE_LENGTH_KEYS.includes(key as (typeof RIG_BONE_LENGTH_KEYS)[number])), 'bone-length-key');
+    assert(keys.every((key) => { const value = manifest.boneLengthsM?.[key as keyof typeof manifest.boneLengthsM]; return Number.isFinite(value) && (value ?? 0) > 0; }), 'bone-length-value');
+  }
   assert(manifest.nearSide === RIG_NEAR_SIDE, 'near-side');
   assert(manifest.views.length === 3 && new Set(manifest.views).size === 3 && RIG_VIEWS.every((view) => manifest.views.includes(view)), 'views');
   const paletteEntries = Object.entries(manifest.palette);

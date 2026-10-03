@@ -63,6 +63,8 @@ describe('rig headless smoke', () => {
     }
     const unsafeParts = manifest.parts.map((part, index) => index === 0 ? { ...part, jointSource: '../escape.yaml' } : part);
     expect(() => validateRigManifest({ ...manifest, parts: unsafeParts })).toThrowError(/joint-source/);
+    expect(() => validateRigManifest({ ...manifest, boneLengthsM: { torso: 0 } })).toThrowError(/bone-length-value/);
+    expect(() => validateRigManifest({ ...manifest, boneLengthsM: { tail: 1 } as never })).toThrowError(/bone-length-key/);
     expect(() => validateRigManifest({ ...manifest, placeholder: false })).not.toThrow();
   });
 

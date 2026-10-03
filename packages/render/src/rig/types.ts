@@ -41,12 +41,41 @@ export const RIG_PARTS = [
   'foot_R',
 ] as const;
 export type RigPart = (typeof RIG_PARTS)[number];
+export const RIG_BONE_LENGTH_KEYS = [
+  'torso', 'head', 'upper_arm', 'forearm', 'hand', 'thigh', 'shin', 'foot',
+] as const;
+export type RigBoneLengthKey = (typeof RIG_BONE_LENGTH_KEYS)[number];
 
 export const RIG_ATTACHMENT_SLOTS = ['weapon_R', 'weapon_L', 'pauldron_near', 'utility'] as const;
 export type RigAttachmentSlot = (typeof RIG_ATTACHMENT_SLOTS)[number];
 export type Dir8 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export type WeightClass = 'light' | 'medium' | 'heavy';
 export type MotionMode = 'idle' | 'walk' | 'run';
+export type RigClipEventType = 'hit' | 'end';
+export interface ClipPlayOptions {
+  readonly facingYawDeg: number;
+  readonly rate?: number;
+  readonly movement?: boolean;
+  readonly nearHandWeapon?: boolean;
+  readonly yawAssistMaxDeg?: number;
+  readonly onEvent?: (event: RigClipEventType) => void;
+}
+export interface PartPose {
+  readonly viewIndex: 0 | 1 | 2;
+  readonly mirrored: boolean;
+  readonly affine: Float32Array;
+  readonly z: number;
+}
+export interface PartPoseBuffer {
+  readonly poses: readonly PartPose[];
+  readonly viewIndices: Uint8Array;
+  readonly mirrors: Uint8Array;
+  readonly affines: Float32Array;
+  readonly depths: Float32Array;
+  readonly weaponAffine: Float32Array;
+  weaponZ: number;
+  weaponVisible: boolean;
+}
 export type TintSlot =
   | false
   | 'clothPrimary'
@@ -72,6 +101,8 @@ export interface RigManifestPart {
 export interface RigManifest {
   readonly schema: 'tianshu-rig.v1';
   readonly set: string;
+  readonly skeleton?: 'tianshu_humanoid.v1';
+  readonly boneLengthsM?: Readonly<Partial<Record<RigBoneLengthKey, number>>>;
   readonly ppm: number;
   readonly heightM: number;
   readonly nearSide: typeof RIG_NEAR_SIDE;

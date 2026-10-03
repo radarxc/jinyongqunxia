@@ -220,7 +220,8 @@ kbd {
   font-size: 0.8rem;
 }
 #rig-demo select,
-#rig-demo input {
+#rig-demo input,
+#rig-demo button {
   width: 100%;
   accent-color: #b86c42;
 }
@@ -230,6 +231,14 @@ kbd {
   background: #49372b;
   border: 1px solid #8e7357;
 }
+#rig-demo button {
+  min-height: 2.4rem;
+  color: #fff4df;
+  background: #7b3f28;
+  border: 1px solid #c89563;
+  cursor: pointer;
+}
+#rig-demo button:hover { background: #985438; }
 #rig-demo fieldset {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -247,6 +256,13 @@ kbd {
     SFMono-Regular,
     Menlo,
     monospace;
+}
+#rig-demo .rig-event-log {
+  min-height: 4.5rem;
+  padding: 0.45rem;
+  color: #dec8a7;
+  background: #100c09;
+  border: 1px solid #705b45;
 }
 @media (max-width: 900px) {
   .game-shell {

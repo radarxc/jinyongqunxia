@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "event.v1",
+  "id": "ev_rig_clip_map",
+  "chapterId": "ch00_yuenv",
+  "event": "render/rigClipMap",
+  "once": false,
+  "actions": [{
+    "op": "rig/loadClipMap",
+    "payload": {
+      "schema": "tianshu-clip-map.v1",
+      "clips": {
+        "walk": {"clipId": "clip_walk", "rate": 1, "movement": true, "nearHandWeapon": false, "yawAssistMaxDeg": 0},
+        "sword_regular": {"clipId": "clip_sword_attack", "rate": 1, "movement": false, "nearHandWeapon": true, "yawAssistMaxDeg": 30},
+        "sword_attack": {"clipId": "clip_sword_attack", "rate": 1, "movement": false, "nearHandWeapon": true, "yawAssistMaxDeg": 30},
+        "idle": {"clipId": "clip_idle", "rate": 1, "movement": false, "nearHandWeapon": false, "yawAssistMaxDeg": 0},
+        "hit": {"clipId": "clip_hit_chest", "rate": 1, "movement": false, "nearHandWeapon": false, "yawAssistMaxDeg": 0},
+        "fall": {"clipId": "clip_fall", "rate": 1, "movement": false, "nearHandWeapon": false, "yawAssistMaxDeg": 0},
+        "meditate": {"clipId": "clip_meditate", "rate": 1, "movement": false, "nearHandWeapon": false, "yawAssistMaxDeg": 0},
+        "dodge": {"clipId": "clip_dodge_back", "rate": 1, "movement": false, "nearHandWeapon": false, "yawAssistMaxDeg": 15},
+        "punch": {"clipId": "clip_punch_jab", "rate": 1, "movement": false, "nearHandWeapon": false, "yawAssistMaxDeg": 15},
+        "run": {"clipId": "clip_run", "rate": 1, "movement": true, "nearHandWeapon": false, "yawAssistMaxDeg": 0}
+      }
+    }
+  }]
+}

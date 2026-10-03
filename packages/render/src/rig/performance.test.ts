@@ -1,10 +1,12 @@
 import * as os from 'node:os';
 import { describe, expect, it } from 'vitest';
 import { RigBatch } from './batch';
+import { loadRigClip, registerRigClip } from './clip';
 import { createRigCharacter, type RigInstance } from './character';
 import { loadRigSet } from './manifest';
 import { createPlaceholderRigManifest } from './placeholder';
 import type { EquipmentVisuals } from './types';
+import { readFileSync } from 'node:fs';
 
 const WARMUP_FRAMES = 120;
 const SAMPLE_FRAMES = 600;
@@ -114,6 +116,15 @@ async function setup(
   return { characters, batch };
 }
 
+function registerWalkClip(): void {
+  const value: unknown = JSON.parse(readFileSync(
+    new URL('../../../../assets/default/rig/clips/clip_walk.json', import.meta.url), 'utf8',
+  ));
+  try { registerRigClip(loadRigClip(value)); } catch (error) {
+    if (!(error instanceof Error) || !error.message.startsWith('RIG_CLIP_DUPLICATE_ID')) throw error;
+  }
+}
+
 describe('rig CPU performance', () => {
   it('keeps 20 fully equipped characters below a 60 fps CPU frame', async () => {
     const { characters, batch } = await setup(20, FULL);
@@ -141,5 +152,22 @@ describe('rig CPU performance', () => {
     } finally {
       dispose(characters, batch);
     }
+  });
+
+  it('keeps 100 clip-mode characters within the unchanged rig CPU gate', async () => {
+    registerWalkClip(); const { characters, batch } = await setup(100, {});
+    try {
+      for (let index = 0; index < characters.length; index += 1) {
+        characters[index]!.setMotion((index % 8) as 0, .78, 'medium');
+        characters[index]!.playClip('clip_walk', { facingYawDeg: (index % 8) * 45, movement: true });
+      }
+      const measurement = measureBest('100 clip characters / 1600 instances', characters, batch);
+      expect(batch.stats).toMatchObject({ characters: 100, activeInstances: 1_600, drawCalls: 2 });
+      expect(characters[0]?.activeInstanceCount).toBe(16);
+      expect(
+        measurement.minP95Ms,
+        failureDetails('100 clip characters / 1600 instances', .8, measurement),
+      ).toBeLessThan(.8);
+    } finally { dispose(characters, batch); }
   });
 });
