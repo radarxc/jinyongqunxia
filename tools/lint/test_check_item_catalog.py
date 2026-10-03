@@ -31,8 +31,9 @@ def row9(
     item_id: str = "it_test_food", *, lore: str = LORE60,
     effect: str = "grade=3; healPct=5.5%; staPct=15.5%",
     attributes: str = "`healOuter=6; stamina=16`",
+    name: str = "测试果", subcategory: str = "食材·果", grade: str = "黄",
 ) -> str:
-    return (f"| `{item_id}` | 测试果 | 食材·果 | 黄 | **（原创扩展）** | "
+    return (f"| `{item_id}` | {name} | {subcategory} | {grade} | **（原创扩展）** | "
             f"{lore} | `{effect}` | {attributes} | 青瓷小碟盛放 |")
 
 
@@ -228,6 +229,36 @@ class CheckItemCatalogTest(unittest.TestCase):
             attributes="`qiCultivation=3500`",
         )))
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+
+    def test_accepts_food_qi_cultivation_with_legacy_qi_effect(self) -> None:
+        result = self.run_checker(self.table9(row9(
+            item_id="it_labazhou", name="腊八粥",
+            subcategory="食品·汤羹", grade="地",
+            effect="grade=9; perm.mpMaxPct=2%; sxpGrant=0.35",
+            attributes="`qiCultivation=3500; stamina=24`",
+        )))
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+
+    def test_rejects_food_qi_cultivation_without_legacy_qi_effect(self) -> None:
+        self.assert_rejected(
+            self.table9(row9(
+                subcategory="食品·汤羹", grade="地",
+                effect="grade=9; staPct=24%",
+                attributes="`qiCultivation=3500; stamina=24`",
+            )),
+            "食品属性 `qiCultivation` 仅允许旧效果字段含",
+        )
+
+    def test_rejects_missing_food_qi_cultivation_double_write(self) -> None:
+        self.assert_rejected(
+            self.table9(row9(
+                item_id="it_labazhou", name="腊八粥",
+                subcategory="食品·汤羹", grade="地",
+                effect="grade=9; perm.mpMaxPct=2%; sxpGrant=0.35",
+                attributes="`—`",
+            )),
+            "双写不一致：缺少 `qiCultivation=3500`",
+        )
 
     def test_rejects_mixed_seven_and_nine_column_tables(self) -> None:
         body = (self.table7(row7("it_old")) + "\n\n"

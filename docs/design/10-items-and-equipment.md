@@ -866,7 +866,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | `healOuter` | 治疗外伤 | 百分比整数 | 0 | 0–7 / 0–10 / 0–14 / 0–18 | 若旧列为 `healPct=p%`，则 `healOuter=roundHalfUp(p)`；无旧效果时才生成 `healPct=healOuter%`，按精确值回复并封顶。典型整数 `roundHalfUp(5×G)=6/9/12/14`；外伤驱散仍须效果字段明列 |
 | `stamina` | 补充体力 | 百分比整数 | 0 | 0–15 / 0–20 / 0–28 / 0–35 | 若旧列为 `staPct=p%`，则 `stamina=roundHalfUp(p)`；无旧效果时才生成 `staPct=stamina%`，按精确值回复 `min(staMax−sta,floor(staMax×staPct))` 并封顶，资源口径见 03 §5.3；不生成膳食 Buff。典型整数 `roundHalfUp(10×G)=12/17/24/28` |
 
-药品按物品描述从 `restoreQi/qiCultivation/con/healInner/healOuter` 取 1–3 项；可直接食用的食品至少填 `stamina`，再从 `healInner/healOuter` 按描述选填，合计 1–2 项。没有即时食用或治疗叙事的普通食材不适用这三键，属性投影写 `—`，不得用 0 占位；菜肴既有 `meal` 仍只留在“效果字段”。`healInner` 与 `healOuter` 必须分列：前者只减 `bf_neishang`，经气迟滞／胀损仍归 21 调息；后者回复气血并可搭配外伤驱散。不能用一个“疗伤”数字同时全额结算两次。
+药品按物品描述从 `restoreQi/qiCultivation/con/healInner/healOuter` 取 1–3 项；可直接食用的食品至少填 `stamina`，再从 `healInner/healOuter` 按描述选填，合计 1–2 项。协调者 2026-10-03 06:05 裁定：描述含内力增益的名菜／药膳为食品特例，仅当旧“效果字段”含 `sxpGrant` 或 `perm.mpMaxPct` 时允许额外投影 `qiCultivation`；其中 `sxpGrant` 仍按 §4.10.5 双写复算（如腊八粥 `sxpGrant=0.35 → qiCultivation=3500`），普通食品不得填写，且 `perm.mpMaxPct` 当前没有对应投影键，继续以旧字段为真值。没有即时食用或治疗叙事的普通食材不适用这三键，属性投影写 `—`，不得用 0 占位；菜肴既有 `meal` 仍只留在“效果字段”。`healInner` 与 `healOuter` 必须分列：前者只减 `bf_neishang`，经气迟滞／胀损仍归 21 调息；后者回复气血并可搭配外伤驱散。不能用一个“疗伤”数字同时全额结算两次。
 
 秘籍、残页、任务物、工具、奇物等“其他”不得随意借用战斗字段；只按描述从下列可选键取用：
 
@@ -923,7 +923,7 @@ function genEquip(pool: 'common'|'elite'|'boss', ctx: LootCtx, rng: Rng): EquipI
 | `antiHidden` | 04 Z4 | 暗器／投射命中时加入 `ΣdmgDown`；同来源只进一次，受 Z4 7500bp 总上限 |
 | `agi/luck/antiPoison/block` | 03 属性快照 → 04 Z0 或探索／世界 | 分别写入 `agi/luk/resPoison/parry` 既有修饰器；刷新按 `(sourceType,sourceId,modifierId)` 去重 |
 | `poison` | 04 Z0 效果命中 → 06 Buff | `baseBp=min(6000,poison×500)`；必须同时有正式毒 Buff 引用，未引用则该数值只展示、不运行 |
-| 五个药品字段、三个食品字段 | §2.4 `UseSpec.effects`、05／06／15 | 按 §4.10.4 映射；单个效果在 `UseSpec` 中只生成一个 op，永久写入失败则整笔永久部分回滚 |
+| 五个药品字段、三个食品字段；食品条件特例 `qiCultivation` | §2.4 `UseSpec.effects`、05／06／15 | 按 §4.10.4 映射；食品仅在旧“效果字段”含 `sxpGrant` 或 `perm.mpMaxPct` 时可携 `qiCultivation`，`sxpGrant` 按 §4.10.5 双写；单个效果在 `UseSpec` 中只生成一个 op，永久写入失败则整笔永久部分回滚 |
 
 **硬度状态**为装备实例新增 `durability:{current,max}`【建议值】，初始化 `max=current=hardness`；无 `hardness` 的旧装备不进入磨损系统。攻击被成功招架后只扣攻击方当前兵器一次：
 
