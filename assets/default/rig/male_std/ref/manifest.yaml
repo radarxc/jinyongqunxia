@@ -1,0 +1,63 @@
+- id: rig_male_std__ref_front34
+  file: ref_front34.png
+  category: rig/ref
+  style: default
+  subject: 男性标准体 · front34 全身参考（原创扩展）
+  prompt: |-
+    由 sheet_L 经 tools/rig/sheet_split.py 拆出。实际命令：
+    python3 tools/rig/sheet_split.py assets/default/rig/male_std/sheet/sheet_L.png --out assets/default/rig/male_std/ref --facing L --height-m 1.70
+    随后仅将 front34.png 改名为 ref_front34.png，并同步 sheet.json 的 file。
+  tool: tools/rig/sheet_split.py
+  model: none
+  created: '2026-10-03T13:53:18-07:00'
+  size: 256x480
+  sha256: a66887cce56f34a7709529b20adea3cf55098bbe35fdc6b26561cdabf5e949fa
+  status: candidate
+  references:
+  - path: assets/default/rig/male_std/sheet/sheet_L.png
+    sha256: 057921c1a8b31a845b89b1a6750c7510b3268a62c36f4872304f7fbea38cf752
+    use: 整张 A 字三视图源图
+  notes: 源身高 881 px（BiRefNet alpha≥24）；归一身高 435 px（round(1.70×256)）；脚底边界 y=460，末个不透明像素行见 qa.yaml。源腋下抽样 y=429，背景间距 29 / 39 px；腿间 y=763，间距 117 px（独立 Lab 色键 alpha<48）。工具腋下检查通过，肩宽比
+    0.3522；facing=L，nearSide=L。
+- id: rig_male_std__ref_side
+  file: ref_side.png
+  category: rig/ref
+  style: default
+  subject: 男性标准体 · side 全身参考（原创扩展）
+  prompt: |-
+    由 sheet_L 经 tools/rig/sheet_split.py 拆出。实际命令：
+    python3 tools/rig/sheet_split.py assets/default/rig/male_std/sheet/sheet_L.png --out assets/default/rig/male_std/ref --facing L --height-m 1.70
+    随后仅将 side.png 改名为 ref_side.png，并同步 sheet.json 的 file。
+  tool: tools/rig/sheet_split.py
+  model: none
+  created: '2026-10-03T13:53:18-07:00'
+  size: 256x480
+  sha256: 3df74c492cc7a5b06b59c97b9beee23885bddca3394bba8e17b908e240d4f623
+  status: candidate
+  references:
+  - path: assets/default/rig/male_std/sheet/sheet_L.png
+    sha256: 057921c1a8b31a845b89b1a6750c7510b3268a62c36f4872304f7fbea38cf752
+    use: 整张 A 字三视图源图
+  notes: 源身高 874 px（BiRefNet alpha≥24）；归一身高 435 px（round(1.70×256)）；脚底边界 y=460，末个不透明像素行见 qa.yaml。源腋下抽样 y=483，背景间距 12 / 23 px；腿间 y=762，间距 111 px（独立 Lab 色键 alpha<48）。工具腋下检查通过，肩宽比
+    0.2037；facing=L，nearSide=L。侧视远足外撇，切件采用朝左的近侧足作共享源并人工复核髋、膝、踝；不可照搬远足方向。
+- id: rig_male_std__ref_back34
+  file: ref_back34.png
+  category: rig/ref
+  style: default
+  subject: 男性标准体 · back34 全身参考（原创扩展）
+  prompt: |-
+    由 sheet_L 经 tools/rig/sheet_split.py 拆出。实际命令：
+    python3 tools/rig/sheet_split.py assets/default/rig/male_std/sheet/sheet_L.png --out assets/default/rig/male_std/ref --facing L --height-m 1.70
+    随后仅将 back34.png 改名为 ref_back34.png，并同步 sheet.json 的 file。
+  tool: tools/rig/sheet_split.py
+  model: none
+  created: '2026-10-03T13:53:18-07:00'
+  size: 256x480
+  sha256: 3c68e8bfe8aeb1cc5ceff63396209e2fb067ab84838464205f222dd36d41ba1f
+  status: candidate
+  references:
+  - path: assets/default/rig/male_std/sheet/sheet_L.png
+    sha256: 057921c1a8b31a845b89b1a6750c7510b3268a62c36f4872304f7fbea38cf752
+    use: 整张 A 字三视图源图
+  notes: 源身高 875 px（BiRefNet alpha≥24）；归一身高 435 px（round(1.70×256)）；脚底边界 y=460，末个不透明像素行见 qa.yaml。源腋下抽样 y=426，背景间距 33 / 31 px；腿间 y=758，间距 115 px（独立 Lab 色键 alpha<48）。工具腋下检查通过，肩宽比
+    0.3326；facing=L，nearSide=L。
