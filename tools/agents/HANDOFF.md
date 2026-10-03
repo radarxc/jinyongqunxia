@@ -1362,3 +1362,7 @@
     - **ENG-19d-m1-flow-test-race**（b769fb3a）：只改该测试，先 waitFor 元素再交互；不加负载跳过，不改超时；要求单跑 10 次、加负载跑 3 次自证稳定。代码池 1/4，单独起，驱动 81589。
     - 物品线仍在 entry-split 之后。
 
+  - **10-03 09:22–09:31 协调者 / 开发监督 / 追踪者**：
+    - **TOOL-tests-discover 合入**（2effff74，09:22，r2 PASS）：`discover -s tools` 现跑 549 条全过（原 33 条）；物品七列字节对比改夹具、town_runtime 认 CITY 新布局，两条红项消失。合入后 prod_check 一次红在 `apps/game/src/flow/m1-flow.test.ts`（`cutscene-next` 未等 DOM 更新的竞态，单跑 3/3、重跑全量绿）→ 开发监督登记 **ENG-19d-m1-flow-test-race**（b769fb3a，只改测试、单跑 10 次 + 加负载 3 次自证），Sol max 单独起（驱动 81589）。
+    - ENG-12d-clip-perf 第 1 次运行 44 分钟结束，校验通过（9 个文件），审核中。
+    - **ART-rig-sheet-side 合入**（85f2b464，09:31）：审核 r1 / r2 都只卡在「第 3 栏 T 字不够纯侧视、膝角 117° vs 100°」；协调者看图后按用途裁定（分腿只需前两栏：错步站、抬腿都是侧视且腿间透背景），停掉第 3 次返修，`review_checks_rig_sheet.md` 加专用补充裁定，`--from validate --no-review --auto-merge` 合入 r2 那版（sha 与 manifest 一致）。下一版切件（TOOL-rig-sheet-2，待登记）用 `sheet_side_L / R` 分大腿 / 小腿。
