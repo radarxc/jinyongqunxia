@@ -8534,28 +8534,28 @@
   },
   "avatar/npc_xiaolongnv/ch03_youth_jueqing": {
    "128": {
-    "b": 4308,
+    "b": 4500,
     "f": "npc_xiaolongnv/ch03_youth_jueqing_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 11412,
+    "b": 11780,
     "f": "npc_xiaolongnv/ch03_youth_jueqing_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 28678,
+    "b": 30338,
     "f": "npc_xiaolongnv/ch03_youth_jueqing_base.ava512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    327,
-    47,
-    669,
-    389
+    307,
+    21,
+    655,
+    369
    ],
    "source": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
   },
@@ -9128,28 +9128,28 @@
   },
   "avatar/npc_yangguo/ch03_youth_onearm": {
    "128": {
-    "b": 4290,
+    "b": 4840,
     "f": "npc_yangguo/ch03_youth_onearm_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 12064,
+    "b": 14160,
     "f": "npc_yangguo/ch03_youth_onearm_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 30686,
+    "b": 37224,
     "f": "npc_yangguo/ch03_youth_onearm_base.ava512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    325,
-    16,
-    675,
-    366
+    327,
+    9,
+    680,
+    362
    ],
    "source": "por_npc_yangguo__ch03_youth_onearm_base"
   },
@@ -24568,22 +24568,22 @@
   },
   "bust/npc_xiaolongnv/ch03_youth_jueqing": {
    "256": {
-    "b": 9008,
+    "b": 9832,
     "f": "npc_xiaolongnv/ch03_youth_jueqing_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 21760,
+    "b": 28154,
     "f": "npc_xiaolongnv/ch03_youth_jueqing_base.bust512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    242,
-    37,
-    754,
-    549
+    220,
+    10,
+    742,
+    532
    ],
    "source": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
   },
@@ -25030,22 +25030,22 @@
   },
   "bust/npc_yangguo/ch03_youth_onearm": {
    "256": {
-    "b": 11566,
+    "b": 12562,
     "f": "npc_yangguo/ch03_youth_onearm_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 33776,
+    "b": 38606,
     "f": "npc_yangguo/ch03_youth_onearm_base.bust512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    238,
-    6,
-    763,
-    531
+    239,
+    0,
+    768,
+    529
    ],
    "source": "por_npc_yangguo__ch03_youth_onearm_base"
   },
@@ -40808,39 +40808,39 @@
   "portrait/npc_xiaolongnv/ch03_youth_jueqing_base": {
    "alpha": true,
    "low": {
-    "b": 52904,
+    "b": 74486,
     "f": "npc_xiaolongnv/ch03_youth_jueqing_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 74050,
+    "b": 96816,
     "f": "npc_xiaolongnv/ch03_youth_jueqing_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_xiaolongnv__ch03_youth_jueqing_base",
    "source_file": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
-   "source_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+   "source_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
    "status": "candidate"
   },
   "portrait/npc_xiaolongnv/ch03_youth_scene_ancient_tomb_sparrow_lesson": {
    "alpha": false,
    "low": {
-    "b": 106992,
+    "b": 126372,
     "f": "npc_xiaolongnv/ch03_youth_scene_ancient_tomb_sparrow_lesson.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 159470,
+    "b": 201080,
     "f": "npc_xiaolongnv/ch03_youth_scene_ancient_tomb_sparrow_lesson.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson",
    "source_file": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.png",
-   "source_sha256": "3b8fb0432611501755ffa0e7c43620312107b3f530e1cc67f92b0370fae1a66d",
+   "source_sha256": "4d6ece7d4b5a9cd964d341c6d78f3a419b1264fc757d9df53b2034eefb9e056f",
    "status": "candidate"
   },
   "portrait/npc_xiaolongnv/ch03_youth_scene_chongyang_two_sword_combat": {
@@ -40903,20 +40903,20 @@
   "portrait/npc_xiaolongnv/ch03_youth_scene_valley_jade_bee_message": {
    "alpha": false,
    "low": {
-    "b": 201104,
+    "b": 176006,
     "f": "npc_xiaolongnv/ch03_youth_scene_valley_jade_bee_message.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 329822,
+    "b": 285550,
     "f": "npc_xiaolongnv/ch03_youth_scene_valley_jade_bee_message.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message",
    "source_file": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message.png",
-   "source_sha256": "f43c9a91b3b293e566f877ebeabf50aa9e50e859c1aaae2399b7b4c43d0211a1",
+   "source_sha256": "478d5baee2f31de5d436d902ee1b95fcf001f7b1447bc34d914b6952c279b5fd",
    "status": "candidate"
   },
   "portrait/npc_xiaoxiangzi/ch03_elder_base": {
@@ -41416,20 +41416,20 @@
   "portrait/npc_yangguo/ch03_prime_scene_sixteen_years_valley_reunion": {
    "alpha": false,
    "low": {
-    "b": 159048,
+    "b": 220240,
     "f": "npc_yangguo/ch03_prime_scene_sixteen_years_valley_reunion.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 254520,
+    "b": 359622,
     "f": "npc_yangguo/ch03_prime_scene_sixteen_years_valley_reunion.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion",
    "source_file": "assets/default/character/male/ch03/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.png",
-   "source_sha256": "dda3c5103f5e6fcebe594522b168428becedf9ebfe186863d7082ac0ceeb384d",
+   "source_sha256": "f91a633a9ea39cdf57e274a76684bae8355a485c301ea2c31a2525b11b933c03",
    "status": "candidate"
   },
   "portrait/npc_yangguo/ch03_prime_scene_xiangyang_platform_rescue_palm": {
@@ -41454,20 +41454,20 @@
   "portrait/npc_yangguo/ch03_youth_onearm_base": {
    "alpha": true,
    "low": {
-    "b": 91890,
+    "b": 95450,
     "f": "npc_yangguo/ch03_youth_onearm_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 127056,
+    "b": 136376,
     "f": "npc_yangguo/ch03_youth_onearm_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_yangguo__ch03_youth_onearm_base",
    "source_file": "assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png",
-   "source_sha256": "86e0b235d11f1573dbefa568f0646f93b36cb6b284a0ec497da3a6636c9bbab6",
+   "source_sha256": "7ddc89cedc26392a2599ce16fce24c9d768a553d665807058caa5021e6a79f90",
    "status": "candidate"
   },
   "portrait/npc_yangguo/ch03_youth_scene_chongyang_palace_rescue": {
@@ -41492,20 +41492,20 @@
   "portrait/npc_yangguo/ch03_youth_scene_dashengguan_youth_bamboo_staff": {
    "alpha": false,
    "low": {
-    "b": 119628,
+    "b": 187886,
     "f": "npc_yangguo/ch03_youth_scene_dashengguan_youth_bamboo_staff.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 185514,
+    "b": 301574,
     "f": "npc_yangguo/ch03_youth_scene_dashengguan_youth_bamboo_staff.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff",
    "source_file": "assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.png",
-   "source_sha256": "3912e151b2fc968c99be78d98750309deb0fad18be005f71e58cb7fb2d82ec76",
+   "source_sha256": "1f8d54425898509529b5d03a4cb4e1a99cf15825f36e69d15905146ee809b618",
    "status": "candidate"
   },
   "portrait/npc_yangguo/ch03_youth_scene_torrent_heavy_sword_condor": {
