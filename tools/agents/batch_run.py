@@ -115,6 +115,7 @@ def main() -> int:
             if tid in done:
                 for f in (ROOT / ".agents" / "logs" / tid).glob("*.log"):
                     f.unlink(missing_ok=True)
+                __import__("shutil").rmtree(ROOT / ".agents" / "logs" / tid / "codex-home", ignore_errors=True)  # Codex 执行器的会话库随合入清掉
                 for f in (ROOT / ".agents" / "reviews").glob(f"{tid}.r*.log"):
                     f.unlink(missing_ok=True)
         active = 0

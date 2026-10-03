@@ -379,7 +379,15 @@ def cmd_start(a) -> int:
                 argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
                 logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
                                 f"# 工作区：{wt}\n# 基点：{base}\n\n", encoding="utf-8")
-                pid = launch(argv, pf, logf, exitf, wt, {"TIANSHU_TASK_ID": t.id})
+                extra_env = {"TIANSHU_TASK_ID": t.id}
+                if "codex" in str(binary).lower():  # 2026-10-03 协调者：Codex 执行器各用自己的 CODEX_HOME（线程历史库曾在 ~/.codex 涨到 4.7 GB）；auth / config 链接到 ~/.codex
+                    home = ld / "codex-home"; home.mkdir(parents=True, exist_ok=True)
+                    for name in ("auth.json", "config.toml"):
+                        link = home / name
+                        if not link.exists() and not link.is_symlink():
+                            link.symlink_to(Path.home() / ".codex" / name)
+                    extra_env["CODEX_HOME"] = str(home)
+                pid = launch(argv, pf, logf, exitf, wt, extra_env)
                 (ld / "current.json").write_text(json.dumps({
                     "attempt": attempt, "pid": pid, "model": model, "effort": effort, "started": now_s(),
                     "prompt": str(pf), "log": str(logf), "exit": str(exitf), "last": str(lastf), "wt": str(wt), "base": base,
