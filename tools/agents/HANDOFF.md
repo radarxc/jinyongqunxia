@@ -1306,3 +1306,14 @@
   - **10-03 08:26–08:38 协调者 / 开发监督**：
     - TOOL-rig-sheet 第 9 次（最后一轮）返修 106 分钟结束，校验通过（侧视裤腿已有纹理，无占位块；手部 / 髋部干净），停 HOLD-REVIEWS；开发监督 `hold_then_review` 起只复审驱动，r6 PASS 合入、只因侧腿 FAIL 则协调者按原型收口。
     - **TOOL-items-regen 被数据 schema 挡住**：重新生成 30 分钟跑完，`pnpm check` / `content:validate` 报 `ZodError unrecognized_keys: attributes`——生成器按 §4.10.5 写 `extension.value.attributes`，而 `packages/data/src/schemas/item.ts` 各 extension value 是 strictObject、没有 `attributes`（9col 当时不在 packages 写集，没重新生成所以没暴露）。协调者置 HOLD 停掉 regen 的返修（生成物留在工作区），登记 **ENG-attr-v2-schema**（b7e1101f：各 extension 加可选 `attributes: AttributeProjectionV2`，`version: 2` + §4.10.6 白名单整数键 + `qiEffect` / `skillRef` / `maxLayer`，只校验不消费；依赖 ENG-entry-split，因为 schema 在 entry 闭包、余量只剩 1.4 KiB）。开发监督同一结论、不重复登记。次序：entry-split → ENG-attr-v2-schema → items-regen 挪基点 `--from validate` → catalog-collectibles → gifts-catalog 复验 → regen-2。
+  - **10-03 08:33–08:41 开发监督**：撤回重复登记；物品线次序更新。
+    - 协调者 08:33 把 items-regen 置 HOLD-RUNS，停了驱动与执行器，工作区与生成物保留；随后登记 ENG-attr-v2-schema（b7e1101f，依赖 ENG-entry-split）。
+    - 我在协调者 08:38「不要再登记」的消息到达前，已提交同内容的 ENG-items-attr-schema（6a45bf86），已用 ae753258 撤回：删 tasks.json 条目，`git rm` 提示词，没有起驱动。
+    - 物品线次序：
+      1. entry-split 合入；
+      2. ENG-attr-v2-schema（Sol max，review_checks_eng）；
+      3. items-regen 挪基点 `--from validate`（不用 `--from start`）；
+      4. catalog-collectibles；
+      5. gifts-catalog 复验；
+      6. regen-2。
+
