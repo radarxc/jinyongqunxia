@@ -1613,3 +1613,17 @@
     - CONTENT-ch10 r1 FAIL：门 / 入口 binding、首谈 dialogue binding、EventDef 动作执行、NPC 说话人标签、M1 页面顺序都是引擎缺口 → 批开发监督：ENG-region-gates-data 扩成区域绑定数据（gates / dialogues / loot），新登记 ENG-event-executor、ENG-19e-m1-order；写内容审核补充裁定 `review_checks_content.md`（依赖未合入引擎的行为列交接项即不判 FAIL），CONTENT 三任务复审带上。
     - 开发监督已起 ENG-tiled-trigger-strict（5ae8af57，驱动 14355）。
     - Gemini 标签页：作者已把 Claude 组里的 Gemini 标签页放到前台（13:26）。
+  - **10-03 13:22–13:37 开发监督**：补齐引擎缺口的任务线与内容审核补充裁定（协调者 13:22 / 13:26 / 13:30）。
+    - **ENG-region-gates-data** 扩为区域绑定数据（d4989d39）：gate / dialogue / loot 三类共用 region-binding.ts；目录 `content/chapters/<ch>/bindings/*`；校验地图引用；依赖 tiled-strict、entry-split。
+    - **ENG-event-executor**（6e89568b）：
+      - EventDef 动作词表与 Ink OPCODES 共用登记；状态类动作在 core 事务内执行（once / 条件 / 回滚）；演出类动作发 `world/eventPresented`；
+      - 给出 ch10 op 名迁移对照；
+      - 依赖 ENG-20a 加 tiled-strict（共用 OPCODES 登记，已告知协调者）。
+    - **ENG-19e-m1-order**（6e89568b）：白马冷入口八步页面流；演出事件上屏；说话人标签取自 NPC 内容（去掉写死的 SPEAKERS）。依赖 gates-data、event-executor。
+    - **内容审核补充裁定**：
+      - 文件 `.agents/coord/PROD/review_checks_content.md`（gitignored，同其他 review_checks）；
+      - batch_run CHECKS 加 `CONTENT-` 前缀（2fbdb7df），eng3 重启后生效；在此之前手动起的 CONTENT 复审显式带 `--checks`。
+      - 要点：内容侧正确性必须达标（ID 统一、人物台词齐、奖励单一所有者、报告如实）；依赖未合入引擎的运行时行为，列明阻塞 ENG ID 与交接字段就不判 FAIL。
+    - **TOOL-items-regen-2**（04e997bc）：收藏品入库，驱动 93892，代码池 4/4 时排队等位。
+    - 起跑顺序：tiled-strict 合入 → gates-data 与 event-executor 并行 → 19e。ch10 返修完转 HOLD-REVIEWS 后，`--from review --checks review_checks_content.md` 复审。
+
