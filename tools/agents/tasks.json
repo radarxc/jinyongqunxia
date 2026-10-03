@@ -35210,6 +35210,63 @@
     "tools/content/test_town_runtime.py",
     "tools/README.md"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "content/world/regions/rg_bashu/sc_04_jiulaodong.tmj",
+     "content/world/regions/rg_hexilongyou/sc_10_dunhuang_digong.tmj",
+     "content/world/regions/rg_hexilongyou/sc_12_dunhuang_digong.tmj",
+     "content/world/regions/rg_zhongyuan/sc_01_damodong.tmj",
+     "content/world/regions/rg_jiangnan_taihu/sc_01_ruoye_muzang.tmj",
+     "content/world/regions/rg_guanzhong/sc_07_huashan_houdong.tmj",
+     "tools/agents/reports/ART-ruins-maps-2.md"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ART-ruins-maps-2",
+   "title": "遗迹与探险地宫地图 · 接力第 2 批：九老洞、敦煌地宫唐 / 清两相位、达摩洞、若耶溪墓藏、华山后洞（DES-ruins-ids 补的 6 个 sc_*；作者 AR-36 点名项）",
+   "prompt": "ART-ruins-maps-2.md",
+   "deps": [
+    "ART-ruins-maps",
+    "DES-ruins-ids"
+   ],
+   "writes": [
+    "content/world/regions/**",
+    "content/tiled/tilesets/**"
+   ],
+   "sparse_include": [
+    "content"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\",\"/private/tmp\"]"
+   ]
   }
  ]
 }
