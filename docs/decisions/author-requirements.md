@@ -890,3 +890,35 @@
 3. 分两步：先 **ART-3d-tripo-avatars**（优化男女主角 `npc_zhujue__ch00_m / _f`：多视图 / 立绘输入、高质量贴图、骨架 + 预设动作重定向，修上一版左侧头发肉色的问题，产出 `tools/model3d/tripo_cli.py` 供后续复用），再 **ART-3d-tripo-cast**（十四书主角群：以主角精修的新基线立绘做 image_to_model + 骨架）。
 4. 产物落库（AR-39）：`assets/default/model3d/<npc_id>/`（rigged GLB、带动作的 GLB（仅主角）、Tripo 渲染预览、manifest.yaml 记任务 ID / 版本 / 选项 / 消耗点数 / 来源立绘 sha256）。
 5. 点数预算：开跑前先查余额；主角优化上限 600 点，主角群上限 2500 点或余额剩 25% 即停并报告（作者可放宽）。
+
+
+## AR-42 · Tripo 改用网页版、由浏览器操作作者的 Chrome；素材落库后给审核页面（2026-10-03 上午）
+
+作者原文（2026-10-03 约 10:50–11:35 PDT，逐字照录，按先后）：
+
+> Tripo API 账号余额是 0 点
+> 那用网页版，你用browser use来操作
+>
+> https://studio.tripo3d.ai/?category=featured&model_type=all&page_type=1.2&recommended=recommended&use_case=all
+
+> 其他素材都生产完了吗？都落库，然后让我看看（开一个local dev我来看看）
+
+> Tripo 用browser use调用我的chrome，不是用embeded浏览器
+
+> 你用browser use操作tripo生成模型，然后给我一个素材审核页面，不需要dev local了
+
+协调者口径：
+1. AR-41 的两个 API 任务（ART-3d-tripo-avatars / -cast）保持 HOLD 不再续跑；改由协调者起的 Opus 5.5 子代理用作者 Chrome 里的 Tripo Studio 网页版（作者已登录，网页点数与 API 点数分开）生成男女主角与 29 位主要角色的模型并绑骨；参考图、选项、产物位置与 manifest 字段沿用 AR-41 第 3、4 条，`tool: tripo-studio-web`。
+2. 不输入密码、不买点数、不点条款同意；**从 Tripo 下载导出的 GLB 先征得作者同意**（10-03 11:30 已问）。
+3. 本地 dev（5180）已停；改做「素材审核页」（claude.ai 私有页面）：逐件「通过 / 返工 / 不用」加备注，结论存页面的共享库，协调者读回后把「通过」写成 manifest `status: approved`、「不用」写成 `rejected`、「返工」登记返工任务。
+
+
+## AR-43 · 游戏界面要有沉浸感：主视窗 + 工具，参考经典武侠，古风字体，高级融合的组件（2026-10-03 上午）
+
+作者原文（2026-10-03 约 11:38 PDT，逐字照录）：
+
+> 然后，local dev的操作界面太丑了，太像网页了。这是一个游戏，要有沉浸感。主要视窗（大地图/地图/战斗）+ 工具。参考经典武侠的操作页面，设计菜单、工具、物品、图鉴、状态展示等。文字用古风字体，可操作组件要比较高级和融合的。
+
+协调者口径：
+1. 先设计后实现：登记 **DES-ui-immersive**（traex，联网调研 ≥ 8 款经典武侠 / 仙侠游戏界面），在 design/14 之上写 `docs/design/26-immersive-ui.md`（诊断现状为何像网页、全屏主视窗 + HUD + 叠层面板、逐界面线框、材质与色彩 tokens、古风字体与自托管子集化、组件库、性能约束、交 ENG 拆分）、`catalog/ui-art-kit.md`（UI 美术清单与提示词）和一份静态样稿 `docs/design/ui-mock/index.html`。
+2. 样稿出来后协调者发作者定方向，再登记 ENG-ui-shell / ENG-ui-kit / ENG-ui-pages / ENG-ui-codex / ENG-ui-battle-hud 与 UI 美术任务；体积门禁不放宽，字体只用可商用开源授权。

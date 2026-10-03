@@ -35714,6 +35714,58 @@
     "apps/game/vite.config.ts",
     "apps/game/build/**"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "id": "DES-ui-immersive",
+   "title": "设计 · 沉浸式游戏界面改版：主视窗（大地图 / 区域城镇 / 战斗）+ 工具，菜单 / 物品 / 图鉴 / 状态，古风字体与子集化，高级融合组件库，UI 美术清单与静态样稿（作者 AR-43）",
+   "prompt": "DES-ui-immersive.md",
+   "deps": [],
+   "writes": [
+    "docs/design/26-immersive-ui.md",
+    "docs/design/catalog/ui-art-kit.md",
+    "docs/design/ui-mock/**",
+    "docs/design/14-ui-ux-mobile.md"
+   ],
+   "sparse_include": [
+    "assets/default/character/male/ch00/*.png",
+    "assets/default/character/female/ch00/*.png",
+    "assets/default/character/male/ch10/*.png",
+    "assets/default/character/female/ch10/*.png",
+    "assets/default/item/weapons/*.png",
+    "assets/default/item/manuals/*.png",
+    "assets/default/item/medicine/*.png",
+    "assets/default/item/food/*.png",
+    "assets/default/scene/ch10/*.png",
+    "assets/default/town/city_dunhuang__ch10/*",
+    "assets/default/town/city_hami__ch10/*",
+    "assets/default/baseline/map/*.png"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/26-immersive-ui.md",
+     "docs/design/catalog/ui-art-kit.md",
+     "docs/design/ui-mock/index.html",
+     "tools/agents/reports/DES-ui-immersive.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import os,sys; s=sum(os.path.getsize(os.path.join(d,f)) for d,_,fs in os.walk('docs/design/ui-mock') for f in fs); print('ui-mock bytes',s); sys.exit(0 if 0<s<=4_500_000 else 1)"
+     ]
+    ]
+   }
   }
  ]
 }
