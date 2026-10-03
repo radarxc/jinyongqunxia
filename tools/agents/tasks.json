@@ -34961,6 +34961,11 @@
     ],
     "cmd": [
      [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
       "{python}",
       "-m",
       "unittest",
@@ -34986,6 +34991,16 @@
       "{python}",
       "tools/lint/check_ids.py",
       "--strict"
+     ],
+     [
+      "pnpm",
+      "typecheck"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
      ]
     ]
    },
@@ -35007,6 +35022,10 @@
     "assets/default/town/city_taiyuan__ch10/**",
     "packages/data/src/schemas/town.ts",
     "packages/data/src/schemas/town.test.ts"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
    ]
   }
  ]
