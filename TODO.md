@@ -197,8 +197,8 @@
 - **des36 的 DES-items-gifts-spec**（礼品规格：吉运 / 送礼好感 / 年代字段）：HOLD-RUNS，续作条件同 CITY（磁盘 ≥ 8 GiB 且负载 < 10）。
 
 **待办**：
-- [ ] **DES-sync-keyscenes-ar36**（已登记并起跑：des37 batch，03:39）：`key-scenes.md` §0、§16–17 的旧统计（每书恰 7 / 合计 102 / 只准 approved 参考）改成 AR-36 候选生产口径；ch01～07 各条按 hero-a 报告 §6 修正（聚贤庄新图与题字、雁门等待标记改已解决、张家口乞儿装、桃岛背诵经文、重阳杨过断右臂、梅庄 / 少林偏殿三战、长乐李四掷凳、金蛇洞铁盒等）；`story/07` §2.2 「十四岁发现铁盒、约十年后下山」措辞；design/18 孙婆婆 / 蒙哥 ID 核查。hero-b 的 ch08～14 条目、`story/09` 制衣方向、`npcs-ch09` 铃剑双侠（水笙与汪啸风）、`npcs-ch08` 顺治 / 风际中主记录核查也在任务说明里。
-- [ ] design/10 §14.2 只登记 569 / 894 个物品 ID（缺 manuals 170、weapons 128、hidden-weapons 27）：lore 合入后登记同步任务。
+- [x] **DES-sync-keyscenes-ar36**（9b43b497，05:19 合入，r1 PASS）：`key-scenes.md` §0、§16–17 的旧统计（每书恰 7 / 合计 102 / 只准 approved 参考）改成 AR-36 候选生产口径；ch01～07 各条按 hero-a 报告 §6 修正（聚贤庄新图与题字、雁门等待标记改已解决、张家口乞儿装、桃岛背诵经文、重阳杨过断右臂、梅庄 / 少林偏殿三战、长乐李四掷凳、金蛇洞铁盒等）；`story/07` §2.2 「十四岁发现铁盒、约十年后下山」措辞；design/18 孙婆婆 / 蒙哥 ID 核查。hero-b 的 ch08～14 条目、`story/09` 制衣方向、`npcs-ch09` 铃剑双侠（水笙与汪啸风）、`npcs-ch08` 顺治 / 风际中主记录核查也在任务说明里。
+- [ ] design/10 §14.2 只登记 569 / 894 个物品 ID（缺 manuals 170、weapons 128、hidden-weapons 27）：lore 合入后登记同步任务；同一任务顺带把 `story/08-luding.md`（约 402、794 行）与 `chapters/08-luding.md`（约 186 行）的「顺治 / 行痴 ID 待登记」改成引用 `npc_shunzhi`（DES-sync-keyscenes-ar36 报告 §6）。
 - [x] 设计定稿后的 ENG 任务已登记（eng3 队尾，四个串行）：ENG-27a 属性 v2 数据链 → 27b 战斗链 → 28a 一般书眠 → 28b 螺旋内力；27c 节奏锁放 28b 之后。金钱与采集等 ENG-20a / 26 合入后再登记。ENG-17 只覆盖 M1 里的初眠配点。
 
 ---
@@ -208,7 +208,7 @@
 **已合入**：
 - ENG-00 至 ENG-14（含 00b、12b）、ENG-04b、ENG-16a、ENG-21a、TOOL-rig-pipeline、TOOL-item-sprites-run、TOOL-rig-nearside、TOOL-rig-clips；
 - 10-02 16:10 之后：ENG-18（76f9381a）、ENG-15（5d719561）、ENG-21b（674476bf）、ENG-25（06e613ba）、ENG-08b（627b619e）、ENG-16b（393f07dc）、ENG-12c-clip（26697b74）、ENG-16d（80b97cf5）、TOOL-items-catalog（9bdc3e5f，物品 361 → 889 个）、ENG-14b（94459b20，经脉协议 3 黄金）、ENG-17a（7543c30e，新游戏与对话，M1）、ENG-18d（4f801d3f，物品移出 entry 闭包成内容包独立叶片）、ENG-18e（1af8afcf，build.test 夹具化）。
-- **ENG-19a 合入**（ed8898d6，04:32，M1 外壳：标题 / 设置 / 恢复 / 旋转提示 / 对话 / 任务组件，删掉旧 GameUi.vue 与 storage-demo.ts）。集成分支 `pnpm check` 04:35 全绿（重建 dist 后）：125 文件 843 用例；**entry 157.74 / 170 KiB（只剩 12 KiB）**，webgl total 318.27 / 350。19a 新加的 `build-shell.test.ts` 读的是上一次的 dist（旧 dist 误报、无 dist 空过）→ 登记 ENG-19c 小修；ENG-19b / 16e 说明已加「新页面组件一律懒加载、报告写 size 实测」（d433bed2），预算不放宽，再逼近就先拆分。
+- **ENG-19a 合入**（ed8898d6，04:32，M1 外壳：标题 / 设置 / 恢复 / 旋转提示 / 对话 / 任务组件，删掉旧 GameUi.vue 与 storage-demo.ts）、**ENG-18b 合入**（3ef22aaf，05:09，Tiled 区域地图管线）、**ENG-17 合入**（7febb5fc，05:12，书眠与章节切换 M1：序章结束 → 长白山初眠配点 → 白马）。集成分支 `pnpm check` 05:15 全绿（重建 dist 后）：127 文件 915 用例；**entry 160.17 / 170 KiB（余量 9.8 KiB）**，render 160.53 / 180，webgl total 320.70 / 350。19a 新加的 `build-shell.test.ts` 读的是上一次的 dist（旧 dist 误报、无 dist 空过）→ 登记 ENG-19c 小修；ENG-19b / 16e 说明已加「新页面组件一律懒加载、报告写 size 实测」（d433bed2），预算不放宽，再逼近就先拆分。
 - 此前 02:42 全绿：120 文件 825 用例；entry 129.51 / 170 KiB，webgl total 292.75 / 350（ENG-17a 后曾红到 203 / 170，ENG-18d 合入转绿）。`check:perf` 23:15（负载 7.3）：程序步态 min P95 0.319 ms，片段模式 0.795 ms（门禁已按 AR-37 放宽到 1.0）。
 
 **在跑**（eng3 并发 3 + 单独驱动）：ENG-17（书眠、初眠配点，M1）、ENG-18b（Tiled 区域地图）、ENG-19a（外壳，M1）01:14 起第 1 次运行；TOOL-rig-sheet 第 3 次返修；TOOL-catalog-9col 复审。
