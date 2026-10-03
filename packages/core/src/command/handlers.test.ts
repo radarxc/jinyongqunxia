@@ -54,11 +54,11 @@ function initial(): GameState {
     chapterId: map.chapterId, epochId: 'epoch_bus', epochYear: 1093, rngProtocol: RNG_PROTOCOL,
     masterSeed: seed, rng: rng as GameState['meta']['rng'], locationId: map.startNodeId });
   const protagonist = createCharacterState({ characterId: 'npc_bus_hero', status: 'active',
-    innate: { con: 1, str: 1, agi: 1, wis: 1, wil: 1, luk: 1, cha: 1 }, skills: [],
+    innate: { con: 1, str: 1, bre: 1, agi: 1, wis: 1, wil: 1, luk: 1, cha: 1 }, skills: [],
     meridians: { schemaVersion: 2, opened: [], meridianStats: {}, acupointStats: {},
       targets: {}, turnCompleted: 0, lastAppliedMigration: 0 },
     legacyHpCredit: 0, legacyMpCredit: 0 }, []);
-  return { ...base, profile: { protagonist: { ...protagonist,
+  return { ...base, profile: { ...base.profile, protagonist: { ...protagonist,
     resources: { ...protagonist.resources, hp: 1 } }, companions: [] },
     party: { ...base.party, inventory: { stacks: [
       { itemId: sword.id, count: 1 }, { itemId: medicine.id, count: 2 }] } },

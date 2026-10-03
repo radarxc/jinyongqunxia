@@ -128,6 +128,8 @@ export const questChoiceHandler: CommandHandler<QuestChoiceCommand> = {
     const mode = command.optionId as keyof typeof PROLOGUE_ROUTES;
     const route = PROLOGUE_ROUTES[mode];
     if ((command.phase ?? 'select') === 'settle') {
+      const progression = tx.state.profile.progression!;
+      const receipt = 'aqing_transmission/layer_1';
       tx.set(['chapter', 'prologue'], { mode, routeNodeId: route.routeNodeId,
         completionNodeId: route.completionNodeId, exitKey: PROLOGUE_EXIT,
         receipts: [route.receipt, PROLOGUE_EXIT_RECEIPT] });
@@ -135,6 +137,16 @@ export const questChoiceHandler: CommandHandler<QuestChoiceCommand> = {
         completionNodeId: route.completionNodeId, routeReceipt: route.receipt,
         exitReceipt: PROLOGUE_EXIT_RECEIPT,
         exitKey: PROLOGUE_EXIT } });
+      tx.set(['profile', 'progression'], {
+        ...progression, changshengLayer: Math.max(1, progression.changshengLayer),
+        changshengLayerReceipts: progression.changshengLayerReceipts.includes(receipt)
+          ? progression.changshengLayerReceipts
+          : [...progression.changshengLayerReceipts, receipt],
+        prologueModeReceipt: { mode, routeNodeId: route.routeNodeId,
+          completionNodeId: route.completionNodeId, exitKey: PROLOGUE_EXIT,
+          receipts: [route.receipt, PROLOGUE_EXIT_RECEIPT] },
+      });
+      tx.set(['profile', 'protagonist', 'skills'], []);
       return;
     }
     tx.set(['chapter', 'prologue'], { mode, routeNodeId: route.routeNodeId,

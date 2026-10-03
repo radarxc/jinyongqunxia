@@ -1,5 +1,5 @@
-import type { Command, DomainEvent, GameState, KnownCharacterState, NewGameInput, WorldMapProjection,
-  WorldMapStaticProjection } from '@tianshu/core';
+import type { Command, DomainEvent, FirstSleepAllocationQuery, GameState, KnownCharacterState,
+  NewGameInput, WorldMapProjection, WorldMapStaticProjection } from '@tianshu/core';
 import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
 import type { EquipmentVisuals } from '@tianshu/render/rig';
 import type { TownSceneProjection } from '@tianshu/render/town';
@@ -32,9 +32,12 @@ export interface GameProjection extends UiProjection {
   readonly town: TownProjection | null;
   readonly dialogue: DialogueView | null;
   readonly battle?: BattlePacket | null;
+  readonly firstSleepAllocation: FirstSleepAllocationQuery | null;
 }
 
-export type GameHost = ProjectionHost<GameCommand, GameProjection, SessionSnapshot, DomainEvent>;
+export type GameHost = ProjectionHost<GameCommand, GameProjection, SessionSnapshot, DomainEvent> & {
+  fixupContentRefs?(snapshot: SessionSnapshot, fromContentHash: string): Promise<SessionSnapshot>;
+};
 export type GameRemote = ProjectionRemote<GameCommand, GameProjection, SessionSnapshot, DomainEvent>;
 export type GameUpdate = ProjectionUpdate<GameProjection, DomainEvent>;
 export interface NewGameHost {

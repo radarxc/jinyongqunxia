@@ -1,0 +1,14 @@
+schemaVersion: book-world.v1
+id: ch10_baima
+eraLayerId: ch10
+gameYear: {start: 702, end: 703, approx: true}
+worldTier: LOW
+levelCap: 20
+layerCap: 8
+foreignSuppression: 4
+startTick: 0
+countsRealLevel: true
+wake:
+  regionId: rg_xiyu_beijiang
+  sceneId: sc_10_fengshi_feiyi
+  spawnId: cold_open

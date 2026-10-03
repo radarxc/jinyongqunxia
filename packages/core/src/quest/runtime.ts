@@ -34,7 +34,7 @@ export class StoryRuntime {
     this.#ports = options.ports ?? { quest: noopQuestPorts() };
     const main = lines.find((line) => line.kind === 'main');
     if (main === undefined) throw new TypeError('STORY_MAIN_COUNT');
-    const epochYear = options.epochYear ?? 1093;
+    const epochYear = options.epochYear ?? (main.chapterId === 'ch00_yuenv' ? -482 : 1093);
     this.#clock = createGameClock(options.epochId ?? `epoch_${main.eraLayer}`, epochYear,
       options.nowTick ?? options.snapshot?.nowTick ?? 0);
     this.#snapshot = options.snapshot ?? { chapterId: main.chapterId, nowTick: this.#clock.elapsedTicks,

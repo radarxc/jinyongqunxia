@@ -5,15 +5,16 @@ import { parseContentFile } from '@tianshu/data/tooling';
 import { createManifest, emitLeaves } from '@tianshu/data/build';
 import type { ContentSource } from '@tianshu/data';
 import type { JsonValue } from '@tianshu/shared';
-import { mapFromRegistration, type ItemDef, type MartialArtDef,
-  type NpcDef, type TownRuntimeDefinition } from '@tianshu/data/schemas';
+import { mapFromRegistration, type ChapterDef, type ItemDef, type MartialArtDef,
+  type IdRemap, type NpcDef, type TownRuntimeDefinition } from '@tianshu/data/schemas';
 import type { GameContent } from './content';
 
 function read<T>(path: string): T {
   const text = readFileSync(resolve(dirname(fileURLToPath(import.meta.url)), '../../../../', path), 'utf8');
   return parseContentFile({ path, text }).value as T;
 }
-export function fixtureContent(): GameContent {
+let contentTemplate: GameContent | undefined;
+function createFixtureContent(): GameContent {
   return {
     items: [read<ItemDef>('content/common/items/eq_qinggangjian.yaml'),
       read<ItemDef>('content/common/items/it_jinchuangyao.yaml'),
@@ -29,8 +30,24 @@ export function fixtureContent(): GameContent {
     ] }],
   };
 }
+export function fixtureContent(): GameContent {
+  contentTemplate ??= createFixtureContent();
+  return structuredClone(contentTemplate);
+}
+function fixtureChapter(chapter: string): ChapterDef {
+  const token = chapter.slice(0, 4);
+  return { schemaVersion: 'book-world.v1', id: chapter, eraLayerId: token,
+    gameYear: { start: chapter === 'ch00_yuenv' ? -482 : chapter === 'ch10_baima' ? 702 : 1093,
+      end: chapter === 'ch10_baima' ? 703 : chapter === 'ch00_yuenv' ? -482 : 1094, approx: true },
+    worldTier: 'LOW', levelCap: chapter === 'ch00_yuenv' ? 10 : 20, layerCap: 9,
+    foreignSuppression: 4, startTick: 0, countsRealLevel: chapter !== 'ch00_yuenv',
+    wake: { regionId: chapter === 'ch10_baima' ? 'rg_xiyu_beijiang' : 'rg_fixture',
+      sceneId: chapter === 'ch10_baima' ? 'sc_10_fengshi_feiyi' : `sc_${token.slice(2)}_fixture`,
+      spawnId: 'fixture' } };
+}
 
-export async function fixtureItemPack(chapter = 'ch01_tianlong'): Promise<{
+export async function fixtureItemPack(chapter = 'ch01_tianlong',
+  idRemaps: readonly IdRemap[] = []): Promise<{
   readonly source: ContentSource;
   readonly manifest: Awaited<ReturnType<typeof createManifest>>;
   readonly values: Map<string, unknown>;
@@ -49,8 +66,10 @@ export async function fixtureItemPack(chapter = 'ch01_tianlong'): Promise<{
   const leaves = await emitLeaves([{ logicalName: 'common.rules.items.json',
     kind: 'rules', load: 'resident', value: rules },
   { logicalName: 'common.text.zh-Hans.items.json', kind: 'text', load: 'resident',
-    locale: 'zh-Hans', value: text }]);
-  const manifest = await createManifest(chapter, 'a'.repeat(64), leaves, []);
+    locale: 'zh-Hans', value: text },
+  { logicalName: `${chapter.slice(0, 4)}.rules.base.json`, kind: 'rules', load: 'chapter',
+    value: [{ kind: 'bookWorld', id: chapter, value: fixtureChapter(chapter) }] }]);
+  const manifest = await createManifest(chapter, 'a'.repeat(64), leaves, idRemaps);
   const values = new Map<string, unknown>([[`${chapter}/manifest.json`, manifest],
     ...leaves.map((leaf): [string, unknown] => [`${chapter}/${leaf.logicalName}`, leaf.value])]);
   const reads: string[] = [];

@@ -1,4 +1,5 @@
 export * from './character';
+export * from './chapter';
 export * from './content-pack';
 export * from './item';
 export * from './martial-art';

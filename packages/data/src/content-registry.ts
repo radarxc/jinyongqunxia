@@ -1,10 +1,10 @@
 import { parseAllDocuments, visit } from 'yaml';
 import type { ZodType } from 'zod';
 import {
-  AcupointDefSchema, BookWorldDefSchema, CharacterTemplateSchema, EventDefSchema,
+  AcupointDefSchema, ChapterDefSchema, CharacterTemplateSchema, EventDefSchema,
   ItemDefSchema, MartialArtDefSchema, MeridianDefSchema, NpcDefSchema, ShopDefSchema,
   MoveDefSchema, QuestDefSchema, StoryLineSchema, TownRuntimeSchema, WorldMapRegistrationSchema,
-  type AcupointDef, type BookWorldDef, type CharacterTemplate,
+  type AcupointDef, type ChapterDef, type CharacterTemplate,
   type EventDef, type ItemDef, type MartialArtDef, type MeridianDef, type NpcDef,
   type MoveDef, type QuestDef, type ShopDef, type StoryLine, type TownRuntimeDefinition,
 } from './schemas';
@@ -18,7 +18,7 @@ const SCHEMAS: Readonly<Record<ContentKind, ZodType>> = {
   npc: NpcDefSchema, characterTemplate: CharacterTemplateSchema, martialArt: MartialArtDefSchema,
   move: MoveDefSchema, quest: QuestDefSchema,
   meridian: MeridianDefSchema, acupoint: AcupointDefSchema, item: ItemDefSchema, shop: ShopDefSchema,
-  story: StoryLineSchema, event: EventDefSchema, bookWorld: BookWorldDefSchema, town: TownRuntimeSchema,
+  story: StoryLineSchema, event: EventDefSchema, bookWorld: ChapterDefSchema, town: TownRuntimeSchema,
 };
 const KIND_ORDER: readonly ContentKind[] = [
   'npc', 'characterTemplate', 'martialArt', 'move', 'quest', 'meridian', 'acupoint', 'item',
@@ -96,6 +96,7 @@ export interface ContentValues {
   readonly moves: readonly MoveDef[]; readonly quests: readonly QuestDef[];
   readonly acupoints: readonly AcupointDef[]; readonly items: readonly ItemDef[];
   readonly shops: readonly ShopDef[]; readonly stories: readonly StoryLine[];
-  readonly events: readonly EventDef[]; readonly bookWorlds: readonly BookWorldDef[];
+  readonly events: readonly EventDef[]; readonly bookWorlds: readonly ChapterDef[];
+  readonly chapters: readonly ChapterDef[];
   readonly towns: readonly TownRuntimeDefinition[];
 }

@@ -3,7 +3,6 @@ import {
   decodeZip,
   encodeJsonSave,
   encodeZip,
-  identityContentFixup,
   migrateSaveJson,
   packSaveJson,
   sha256Hex,
@@ -19,7 +18,7 @@ import {
   type TianshuStorage,
   type ZipEntry,
 } from '@tianshu/platform';
-import { SAVE_SCHEMA, migrateUiSessionV1, projectGameStateSummary } from '@tianshu/core';
+import { SAVE_SCHEMA, migrateBookSleepV2, migrateUiSessionV1, projectGameStateSummary } from '@tianshu/core';
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import type { SessionSnapshot } from '../runtime/contracts';
 
@@ -27,6 +26,7 @@ export interface SaveHost {
   snapshot(): Promise<SessionSnapshot>;
   validate(snapshot: SessionSnapshot): Promise<void>;
   restore(snapshot: SessionSnapshot): Promise<unknown>;
+  fixupContentRefs?(snapshot: SessionSnapshot, fromContentHash: string): Promise<SessionSnapshot>;
 }
 export type SaveExportFormat = 'json' | 'tsav';
 const APP_BUILD = '20261002-0000-local';
@@ -37,7 +37,10 @@ const LEGACY_HEADER_LIMIT = 16 * 1024;
 const FILE_LIMIT = 256 * 1024 * 1024;
 const STATE_MIGRATIONS = new Map([[1, ((value, context) => migrateUiSessionV1(
   value as JsonValue, { fromContentHash: context.fromContentHash,
-    targetSchema: context.toSchema, remapVersion: 'none' })) as SaveMigration]]);
+    targetSchema: context.toSchema, remapVersion: 'none' })) as SaveMigration],
+  [2, ((value, context) => migrateBookSleepV2(value as JsonValue, {
+    fromContentHash: context.fromContentHash, targetSchema: context.toSchema,
+    remapVersion: 'none' })) as SaveMigration]]);
 
 function hasMagic(bytes: Uint8Array, magic: ArrayLike<number>): boolean {
   if (bytes.length < magic.length) return false;
@@ -128,6 +131,12 @@ async function validateSession(host: SaveHost, session: SessionSnapshot): Promis
     compatibilityError(error);
   }
 }
+async function fixupSession(host: SaveHost, state: SaveJson,
+  fromContentHash: string): Promise<SaveJson> {
+  const migrated = asSession(state);
+  if (!host.fixupContentRefs) return state;
+  return asSaveJson(await host.fixupContentRefs(migrated, fromContentHash));
+}
 
 async function prepare(
   slot: string,
@@ -165,20 +174,21 @@ async function decodeStored(
       throw new Error(`SAVE_FILE_INVALID:${String(error)}`);
     }
   }
+  const fromContentHash = source?.contentHash ?? '0'.repeat(64);
+  const targetContentHash = source?.contentHash ?? '0'.repeat(64);
   const migrated = migrateSaveJson(state, {
     fromSchema: source?.saveSchema ?? save.meta.schemaVersion,
     targetSchema: SAVE_SCHEMA,
-    fromContentHash: source?.contentHash ?? '0'.repeat(64),
-    targetContentHash: source?.contentHash ?? '0'.repeat(64),
+    fromContentHash, targetContentHash,
     migrations: STATE_MIGRATIONS,
-    fixup: identityContentFixup,
   });
-  const session = asSession(migrated.state);
+  const session = asSession(await fixupSession(host, migrated.state, fromContentHash));
+  const fixedContent = session.meta.contentHash !== fromContentHash;
   await validateSession(host, session);
   if (
     source &&
     migrated.applied.length === 0 &&
-    !migrated.fixedContent &&
+    !migrated.fixedContent && !fixedContent &&
     source.slotId === save.slot
   ) {
     return { header: source, session, bytes: Uint8Array.from(save.snapshot) };
@@ -186,7 +196,8 @@ async function decodeStored(
   return prepare(
     save.slot,
     session,
-    migrated.applied.length || migrated.fixedContent ? 'migration' : (source?.origin ?? 'play'),
+    migrated.applied.length || migrated.fixedContent || fixedContent
+      ? 'migration' : (source?.origin ?? 'play'),
     deviceId,
     lineageId,
     source,
@@ -242,15 +253,15 @@ async function prepareImport(
   deviceId: string,
   lineageId: string,
 ): Promise<PreparedSave> {
+  const fromContentHash = decoded.header?.contentHash ?? '0'.repeat(64);
+  const targetContentHash = decoded.header?.contentHash ?? '0'.repeat(64);
   const migrated = migrateSaveJson(decoded.state, {
     fromSchema: decoded.header?.saveSchema ?? 1,
     targetSchema: SAVE_SCHEMA,
-    fromContentHash: decoded.header?.contentHash ?? '0'.repeat(64),
-    targetContentHash: decoded.header?.contentHash ?? '0'.repeat(64),
+    fromContentHash, targetContentHash,
     migrations: STATE_MIGRATIONS,
-    fixup: identityContentFixup,
   });
-  const session = asSession(migrated.state);
+  const session = asSession(await fixupSession(host, migrated.state, fromContentHash));
   await validateSession(host, session);
   return prepare(slot, session, 'import', deviceId, lineageId, decoded.header);
 }
@@ -310,6 +321,10 @@ export function createSaveService(storage: TianshuStorage, host: SaveHost) {
     persistenceStatus: () => storage.persistence.status(),
     async save(slot: string) {
       writable(slot);
+      const value = await capture(slot);
+      return storage.saves.save(slot, value.bytes, value.meta);
+    },
+    async checkpoint(slot: 'save_wake_ch10') {
       const value = await capture(slot);
       return storage.saves.save(slot, value.bytes, value.meta);
     },

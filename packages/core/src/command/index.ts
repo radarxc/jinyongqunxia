@@ -1,4 +1,4 @@
-import type { ItemDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import type { ChapterDef, ItemDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { JsonValue } from '@tianshu/shared';
 import type { EquipmentRule } from '../economy';
 import type { PendingDomainEvent } from '../event';
@@ -9,6 +9,7 @@ import type { WorldMapCommand } from '../world/worldmap-types';
 import type { EventAnchor } from '../event';
 import type { NpcWorldState } from '../npc';
 import type { DifficultyId } from '../state';
+import type { BookSleepPlan } from '../progression';
 
 export interface WorldTickCommand { readonly t: 'world/tick' }
 export type InventoryCommand =
@@ -23,8 +24,9 @@ export type QuestChoiceCommand = { readonly t: 'quest/choose'; readonly questId:
   readonly optionId: string; readonly phase?: 'select' | 'settle';
   readonly completionNodeId?: string };
 export type RulesCommand = { readonly t: 'rules/setDifficulty'; readonly difficulty: DifficultyId };
+export type ChapterCommand = { readonly t: 'chapter/bookSleep'; readonly plan: BookSleepPlan };
 export type Command = WorldTickCommand | WorldMapCommand | TownCommand | InventoryCommand
-  | DialogueCommand | QuestChoiceCommand | RulesCommand;
+  | DialogueCommand | QuestChoiceCommand | RulesCommand | ChapterCommand;
 
 export type RejectReason =
   | 'COMMAND_UNKNOWN' | 'WORLD_PAUSED' | 'MAP_UNAVAILABLE' | 'MAP_STILL_TRAVELLING'
@@ -43,7 +45,10 @@ export type RejectReason =
   | 'RULES_BATTLE_ACTIVE' | 'RULES_DIFFICULTY_INVALID' | 'DIALOGUE_ACTIVE'
   | 'DIALOGUE_INACTIVE' | 'DIALOGUE_STORY_UNKNOWN' | 'DIALOGUE_CHOICE_UNAVAILABLE'
   | 'DIALOGUE_CONTINUE_UNAVAILABLE' | 'QUEST_CHOICE_UNKNOWN' | 'QUEST_CHOICE_COMMITTED'
-  | 'QUEST_ROUTE_NOT_SELECTED' | 'QUEST_ROUTE_MISMATCH';
+  | 'QUEST_ROUTE_NOT_SELECTED' | 'QUEST_ROUTE_MISMATCH'
+  | 'BOOK_SLEEP_UNSUPPORTED' | 'BOOK_SLEEP_BUSY' | 'BOOK_SLEEP_NOT_READY'
+  | 'BOOK_SLEEP_PLAN_INVALID' | 'BOOK_SLEEP_PLAN_CONFLICT' | 'BOOK_SLEEP_ALLOCATION_INVALID'
+  | 'BOOK_SLEEP_CONTENT_UNAVAILABLE';
 
 export interface InkStoryContent { readonly storyId: string; readonly storyHash: string;
   readonly storyJson: string | Readonly<Record<string, unknown>> }
@@ -58,6 +63,7 @@ export interface CoreContent {
   readonly meditationPractices?: readonly TownMeditationPractice[];
   readonly meditationEncounters?: readonly TownMeditationEncounter[];
   readonly inkStories?: readonly InkStoryContent[];
+  readonly chapters?: readonly ChapterDef[]; readonly targetContentHash?: string;
 }
 export type StatePath = readonly (string | number)[];
 export interface CoreTransaction {

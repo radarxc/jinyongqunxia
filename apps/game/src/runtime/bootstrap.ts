@@ -15,7 +15,7 @@ function character(id: string, content: GameContent, learning: readonly { skillI
       attunedIn: null, latentExp: 0, movesEquipped: [], insight: 0, pages: [], flags: [] }];
   });
   return createCharacterState({ characterId: id, status: 'active',
-    innate: { con: 50, str: 50, agi: 50, wis: 50, wil: 50, luk: 50, cha: 50 },
+    innate: { con: 50, str: 50, bre: 50, agi: 50, wis: 50, wil: 50, luk: 50, cha: 50 },
     skills, meridians: emptyMeridians(), legacyHpCredit: 0, legacyMpCredit: 0,
   }, skills.map((skill) => ({ skillId: skill.skillId, absGrade: skill.sourceGrade,
     trueLayer: skill.trueLayer, category: content.skills.find((row) => row.id === skill.skillId)?.category === 'inner' ? 'inner' : 'other' })));
@@ -39,7 +39,7 @@ export function createPreviewSession(content: GameContent): SessionSnapshot {
   const map = content.worldMaps?.find((entry) => entry.chapterId === versioned.chapter.chapterId) ?? null;
   const worldMap = map ? createInitialWorldMapState(map) : null;
   return { ...versioned, meta: { ...versioned.meta, debugTainted: true },
-    profile: { protagonist, companions: [] }, party: { ...state.party, inventory },
+    profile: { ...versioned.profile, protagonist, companions: [] }, party: { ...state.party, inventory },
     world: { ...versioned.world, navigation: { ...versioned.world.navigation,
       locationId: worldMap?.position.kind === 'node' ? worldMap.position.nodeId : 'city_dali' } },
     chapter: { ...versioned.chapter, worldMap, town: null, npcs: [

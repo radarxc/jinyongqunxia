@@ -4,7 +4,8 @@ import { RNG_PROTOCOL, seedStream, type RngStreamName } from '../rng';
 import {
   advanceBattle, advanceGameClock, advanceInnRest, advanceMeditation, advanceTravel,
   createEmptyEquipment, createGameClock, createInitialGameState, parseGameState,
-  migrateUiSessionV1, RULES_PROTOCOL, SAVE_SCHEMA, TICKS_PER_DAY, TICKS_PER_HOUR,
+  migrateBookSleepV2, migrateUiSessionV1, RULES_PROTOCOL, SAVE_SCHEMA,
+  TICKS_PER_DAY, TICKS_PER_HOUR,
 } from '.';
 
 function initialState() {
@@ -64,7 +65,7 @@ describe('GameState JSON boundary', () => {
       masterSeed: 1, debugTainted: false });
     expect(state).not.toHaveProperty('transient');
     expect(state.world).toEqual({ navigation: { locationId: 'city_dali',
-      selectedDestinationId: null }, pendingTimeAdvance: null });
+      selectedDestinationId: null, pendingMount: null }, pendingTimeAdvance: null });
     expect(state).toMatchObject({ battle: null, dialogue: null });
   });
 
@@ -94,8 +95,11 @@ describe('GameState JSON boundary', () => {
       usage: { battleUses: {}, chapterUses: { it_old: 1 } },
       itemTargets: { npc_zhujue: target, npc_duanyu: npcTarget } };
     const sourceContentHash = 'a'.repeat(64);
-    const migrated = migrateUiSessionV1(JSON.parse(JSON.stringify(old)), {
+    const schema2 = migrateUiSessionV1(JSON.parse(JSON.stringify(old)), {
       fromContentHash: sourceContentHash, targetSchema: 2, remapVersion: 'none' }) as unknown as ReturnType<typeof initialState>;
+    const migrated = migrateBookSleepV2(schema2 as unknown as JsonValue, {
+      fromContentHash: sourceContentHash, targetSchema: 3, remapVersion: 'none'
+    }) as unknown as ReturnType<typeof initialState>;
     expect(migrated.chapter.npcs[0]).toMatchObject({
       npcId: 'npc_duanyu', relationship: 'met', affinity: 2,
     });

@@ -137,14 +137,6 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
           throw new TypeError(`CONTENT_REF:${entry.path}:characterTemplate:${appearance.build.templateId}`);
       }
     }
-    if (entry.kind === 'bookWorld') {
-      const world = entry.value as ContentValues['bookWorlds'][number];
-      for (const item of [...world.globalItems, ...world.collectibleLocations]) if (!has('item', item.itemId)) throw new TypeError(`CONTENT_REF:${entry.path}:item:${item.itemId}`);
-      if (!has('story', `${world.chapterId}/${world.mainStoryLine}`)) throw new TypeError(`CONTENT_REF:${entry.path}:story:${world.mainStoryLine}`);
-      for (const line of world.sideStoryLines) if (!has('story', `${world.chapterId}/${line}`)) throw new TypeError(`CONTENT_REF:${entry.path}:story:${line}`);
-      for (const key of world.shopKeys) if (!has('shop', `${world.chapterId}/${key}`)) throw new TypeError(`CONTENT_REF:${entry.path}:shop:${key}`);
-      for (const id of world.eventIds) if (!has('event', id)) throw new TypeError(`CONTENT_REF:${entry.path}:event:${id}`);
-    }
   }
 }
 
@@ -173,6 +165,7 @@ export function loadContent(files: readonly ContentFile[]): ContentRegistry {
     acupoints: values('acupoint') as ContentValues['acupoints'], items: values('item') as ContentValues['items'],
     shops: values('shop') as ContentValues['shops'], stories: values('story') as ContentValues['stories'],
     events: values('event') as ContentValues['events'], bookWorlds: values('bookWorld') as ContentValues['bookWorlds'],
+    chapters: values('bookWorld') as ContentValues['chapters'],
     towns: values('town') as ContentValues['towns'],
     get: <T>(kind: ContentKind, id: string) => lookup.get(`${kind}:${id}`) as T | undefined,
     require: <T>(kind: ContentKind, id: string) => {

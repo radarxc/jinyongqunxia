@@ -15,6 +15,7 @@ describe('item content leaves', () => {
       const rule = { ...item }; delete rule.text; return rule;
     }));
     expect(fixture.reads).toEqual(['ch01_tianlong/manifest.json',
+      'ch01_tianlong/ch01.rules.base.json',
       'ch01_tianlong/common.rules.items.json']);
   });
 

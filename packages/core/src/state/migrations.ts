@@ -1,5 +1,5 @@
 import type { JsonValue } from '@tianshu/shared';
-import { CONTENT_HASH_PLACEHOLDER, RULES_PROTOCOL, SAVE_SCHEMA } from './initial';
+import { CONTENT_HASH_PLACEHOLDER, RULES_PROTOCOL } from './initial';
 import { cloneJsonValue } from './json';
 import { dialogueStateWithLegacyDefaults } from '../dialogue/state';
 import type { DialogueState } from './models';
@@ -77,7 +77,7 @@ export const migrateUiSessionV1: StateMigration = (old, context) => {
     || 'city_dali';
   const masterSeed = number(meta['masterSeed'], 1);
   const dialogueValue = game['dialogue'] ?? oldTransient['dialogue'] ?? null;
-  return { meta: { ...meta, saveSchema: SAVE_SCHEMA, masterSeed,
+  return { meta: { ...meta, saveSchema: 2, masterSeed,
     runId: string(meta['runId'], `run_${masterSeed >>> 0}`),
     nextRuntimeOrdinal: number(meta['nextRuntimeOrdinal'], number(meta['stateVersion'], 0) + 1),
     contentHash: string(meta['contentHash'],
@@ -100,6 +100,57 @@ export const migrateUiSessionV1: StateMigration = (old, context) => {
       dialogueValue as unknown as DialogueState)) as unknown as JsonValue };
 };
 
+function characterWithBre(value: JsonValue): JsonValue {
+  const character = row(value, 'MIGRATION_CHARACTER_INVALID');
+  const innate = row(character['innate']!, 'MIGRATION_CHARACTER_INVALID');
+  return { ...character, innate: { ...innate, bre: number(innate['bre'], 0) } };
+}
+function charactersWithBre(value: JsonValue | undefined): JsonValue[] {
+  if (!Array.isArray(value)) throw new TypeError('MIGRATION_CHARACTER_INVALID');
+  return value.map(characterWithBre);
+}
+
+/** Pure schema-2 to schema-3 migration. It adds neutral facts and never invents receipts. */
+export const migrateBookSleepV2: StateMigration = (old) => {
+  const game = row(cloneJsonValue(old), 'MIGRATION_STATE_INVALID');
+  const meta = row(game['meta']!, 'MIGRATION_META_INVALID');
+  if (number(meta['saveSchema'], 2) >= 3) return game;
+  const profile = row(game['profile']!, 'MIGRATION_PROFILE_INVALID');
+  const chapter = row(game['chapter']!, 'MIGRATION_CHAPTER_INVALID');
+  const world = row(game['world']!, 'MIGRATION_WORLD_INVALID');
+  const navigation = row(world['navigation']!, 'MIGRATION_WORLD_INVALID');
+  const progressionValue = profile['progression'];
+  const progression = progressionValue === undefined
+    ? {} : row(progressionValue, 'MIGRATION_PROGRESSION_INVALID');
+  const legacyLayer = progression['changshengLayer'] ?? profile['changshengLayer'];
+  const protagonist = profile['protagonist'] === null ? null
+    : characterWithBre(profile['protagonist']!);
+  const knownValue = chapter['npcs'];
+  if (!Array.isArray(knownValue)) throw new TypeError('MIGRATION_KNOWN_INVALID');
+  const npcs = knownValue.map((value) => {
+    const known = row(value, 'MIGRATION_KNOWN_INVALID');
+    return { ...known, character: known['character'] === null ? null
+      : characterWithBre(known['character']!) };
+  });
+  const nextProfile: Row = { ...profile, protagonist,
+    companions: charactersWithBre(profile['companions']),
+    progression: { ...progression, changshengLayer: number(legacyLayer, 0),
+      sleepPoints: number(progression['sleepPoints'], 0),
+      bookSleepLog: Array.isArray(progression['bookSleepLog'])
+        ? progression['bookSleepLog'] : [],
+      changshengLayerReceipts: Array.isArray(progression['changshengLayerReceipts'])
+        ? progression['changshengLayerReceipts'] : [],
+      prologueModeReceipt: progression['prologueModeReceipt'] ?? null } };
+  delete nextProfile['changshengLayer'];
+  const chapterId = string(chapter['chapterId'], 'ch00_yuenv');
+  return { ...game, meta: { ...meta, saveSchema: 3 }, profile: nextProfile,
+    chapter: { ...chapter, chapterId, eraLayerId: string(chapter['eraLayerId'],
+      chapterId.slice(0, 4)), worldTier: string(chapter['worldTier'], 'LOW'), npcs },
+    world: { ...world, navigation: { ...navigation,
+      pendingMount: navigation['pendingMount'] ?? null } } };
+};
+
 export const CORE_STATE_MIGRATIONS: ReadonlyMap<number, StateMigration> = new Map([
   [1, migrateUiSessionV1],
+  [2, migrateBookSleepV2],
 ]);

@@ -139,7 +139,7 @@ function validateCharacter(value: unknown): void {
   string(row['characterId']);
   if (!['active', 'departed', 'dead'].includes(String(row['status']))) throw new TypeError('STATE_SHAPE');
   const innate = object(row['innate']);
-  keys(innate, ['con', 'str', 'agi', 'wis', 'wil', 'luk', 'cha']);
+  keys(innate, ['con', 'str', 'bre', 'agi', 'wis', 'wil', 'luk', 'cha']);
   for (const entry of Object.values(innate)) integer(entry);
   for (const entry of array(row['skills'])) {
     const skill = object(entry);
@@ -306,6 +306,34 @@ function validateReplayRules(value: unknown): void {
   integer(rules['ruleRevision'], 1);
   if (previousRevision > (rules['ruleRevision'] as number)) throw new TypeError('STATE_SHAPE');
 }
+function validateProgression(value: unknown): void {
+  const progression = object(value);
+  keys(progression, ['changshengLayer', 'sleepPoints', 'bookSleepLog',
+    'changshengLayerReceipts', 'prologueModeReceipt']);
+  integer(progression['changshengLayer'], 0, 9); integer(progression['sleepPoints']);
+  uniqueStrings(progression['changshengLayerReceipts']);
+  const plans = new Set<string>();
+  for (const value of array(progression['bookSleepLog'])) {
+    const receipt = object(value);
+    keys(receipt, ['planId', 'planJson', 'from', 'to', 'ruleVersion',
+      'allocationSource', 'sleepEventId', 'contentHash']);
+    for (const field of ['planId', 'planJson', 'from', 'to', 'ruleVersion',
+      'sleepEventId', 'contentHash']) string(receipt[field]);
+    if (!['manual', 'balanced', 'default'].includes(String(receipt['allocationSource'])) ||
+        plans.has(receipt['planId'] as string)) throw new TypeError('STATE_SHAPE');
+    plans.add(receipt['planId'] as string);
+  }
+  if (progression['prologueModeReceipt'] !== null) {
+    const receipt = object(progression['prologueModeReceipt']);
+    keys(receipt, ['mode', 'routeNodeId', 'completionNodeId', 'exitKey', 'receipts']);
+    if (!['full', 'summary', 'skip'].includes(String(receipt['mode'])) ||
+        !['n_c01', 'n_summary', 'n_skip_direct'].includes(String(receipt['routeNodeId'])) ||
+        !['n_full_complete', 'n_summary_complete', 'n_skip_complete']
+          .includes(String(receipt['completionNodeId'])) ||
+        receipt['exitKey'] !== 'first_sleep_to_baima') throw new TypeError('STATE_SHAPE');
+    uniqueStrings(receipt['receipts']);
+  }
+}
 function validateGameStateShape(value: StateRecord): void {
   keys(value, ['meta', 'profile', 'chapter', 'party', 'world', 'battle', 'dialogue']);
   const meta = object(value['meta']);
@@ -325,7 +353,7 @@ function validateGameStateShape(value: StateRecord): void {
     for (const word of words) integer(word, 0, 0xffff_ffff);
   }
   const profile = object(value['profile']);
-  const profileRequired = ['protagonist', 'companions'];
+  const profileRequired = ['protagonist', 'companions', 'progression'];
   const profileOptional = ['identity', 'replayRules'];
   if (profileRequired.some((key) => !(key in profile)) || Object.keys(profile).some((key) =>
     !profileRequired.includes(key) && !profileOptional.includes(key))) throw new TypeError('STATE_SHAPE');
@@ -337,12 +365,15 @@ function validateGameStateShape(value: StateRecord): void {
     for (const field of ['name', 'gender', 'appearance', 'pronoun', 'originId']) string(identity[field]);
   }
   if (profile['replayRules'] !== undefined) validateReplayRules(profile['replayRules']);
+  validateProgression(profile['progression']);
   const chapter = object(value['chapter']);
-  const chapterRequired = ['chapterId', 'worldYear', 'clock', 'story', 'worldItems', 'shops',
+  const chapterRequired = ['chapterId', 'eraLayerId', 'worldTier', 'worldYear', 'clock', 'story', 'worldItems', 'shops',
     'worldMap', 'town', 'npcs', 'itemChapterUses'];
   if (chapterRequired.some((key) => !(key in chapter)) || Object.keys(chapter).some((key) =>
     !chapterRequired.includes(key) && key !== 'prologue')) throw new TypeError('STATE_SHAPE');
-  string(chapter['chapterId']); integer(chapter['worldYear'], Number.MIN_SAFE_INTEGER); validateClock(chapter['clock']);
+  string(chapter['chapterId']); string(chapter['eraLayerId']);
+  if (!['HIGH', 'MID', 'LOW'].includes(String(chapter['worldTier']))) throw new TypeError('STATE_SHAPE');
+  integer(chapter['worldYear'], Number.MIN_SAFE_INTEGER); validateClock(chapter['clock']);
   validateStory(chapter['story']);
   const worldItems = object(chapter['worldItems']); keys(worldItems, ['entries']);
   for (const entry of array(worldItems['entries'])) {
@@ -413,8 +444,13 @@ function validateGameStateShape(value: StateRecord): void {
   }
   const world = object(value['world']); keys(world, ['navigation', 'pendingTimeAdvance']);
   const navigation = object(world['navigation']);
-  keys(navigation, ['locationId', 'selectedDestinationId']); string(navigation['locationId']);
+  keys(navigation, ['locationId', 'selectedDestinationId', 'pendingMount']); string(navigation['locationId']);
   if (navigation['selectedDestinationId'] !== null) string(navigation['selectedDestinationId']);
+  if (navigation['pendingMount'] !== null) {
+    const mount = object(navigation['pendingMount']);
+    keys(mount, ['regionId', 'sceneId', 'spawnId']);
+    string(mount['regionId']); string(mount['sceneId']); string(mount['spawnId']);
+  }
   if (world['pendingTimeAdvance'] !== null) {
     const pending = object(world['pendingTimeAdvance']); keys(pending, ['remainingTicks', 'reason']); integer(pending['remainingTicks']);
     if (pending['reason'] !== 'rest' && pending['reason'] !== 'story') throw new TypeError('STATE_SHAPE');
