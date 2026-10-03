@@ -1,11 +1,11 @@
 # 19 · 江湖大地图：城市、门派坐标、时代图层与水墨 SVG
 
 > 归属（基准 §18）：统一江湖大地图的几何、WGS84 坐标、历史城市名称与地位、治所迁移、门派地图落点、图外节点、跨区交通线和 SVG 生成契约。
-> 上游：`docs/decisions/author-requirements.md` AR-04、AR-08、AR-11，`docs/decisions/author-decisions.md` P53，`docs/00-canon.md` §2、§12、§16、§18，`docs/decisions/rulings-v1.md`，`design/02` 年代，`design/17` 门派 ID 与时代矩阵。
+> 上游：`docs/decisions/author-requirements.md` AR-04、AR-08、AR-11、AR-26，`docs/decisions/author-decisions.md` P53，`docs/00-canon.md` §2、§12、§16、§18，`docs/decisions/rulings-v1.md`，`design/02` 年代，`design/17` 门派 ID 与时代矩阵。
 > 引用而不重定义：区域玩法、入口状态、资源点与旅行事件 → `design/11`；大地图交互、筛选、可访问性与响应式布局 → `design/14`；门派史、称谓、武学与 `O/H/P/N/D/M` 开放矩阵 → `design/17`；世界层与区域内可行走渲染 → `tech/02` §7；运行时格式、质量档和分包 → `tech/06`。
 > 下游：`design/11` 定稿区域边界与玩法，`design/14` 消费 SVG/数据，`design/chapters/*` 选择 `chNN` 图层，`tech/04` 定 schema，`tech/06` 定生产分包。
 > 标注约定：**（原创扩展）**＝原著没有的内容；**（待考）**＝原著或史实尚需逐字核对；**（待核实）**＝技术事实尚未联网确认；**（待实测）**＝需真机/真浏览器验证；**【建议值】**＝依赖其他文档、先给可用值并在文末登记。
-> 版本：v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.3（AR-26 白马唐代首书图层契约，2026-10-02）；v1.2（跨文档同步，2026-09-26）。
 
 ---
 
@@ -19,6 +19,7 @@
 6. `routes.yaml` 含 **24 座驿站、28 个码头、48 条常规官道/驿路/水路、3 条图外专线**。时长与费用是大地图建议档，不替代 `design/11` 的旅行事件与经济终值。
 7. `regions.yaml` 已按 `design/11` §2 的终稿迁为 **30 个正式 `rg_*`**，保留 81 个简化陆地多边形、14 组河流和 11 组山脉。189 城、99 门派、18 个图内分支、52 个旅行节点与 51 条路线的派生区域在同一批次更新。
 8. `tools/map/render_map.py` 仅需 Python 3.9+ 标准库；四个 `.yaml` 使用 JSON-compatible YAML 1.2，故无 PyYAML 也能读。校验器强制三十区有序闭集及城市 / 门派 / 分支 / 驿站 / 码头 / 路线的派生区域一致；`--check` 与全量 `--render` 均为提交门禁。
+9. 展示书序固定为 `ch10,ch01,ch02,ch03,ch04,ch05,ch06,ch07,ch08,ch09,ch11,ch12,ch13,ch14`；`ch10_baima` / `era-ch10` 仍是稳定键，但白马以 702–703 年武周唐代层作为序章后的首个正式书界。规则见 Canon §2、`design/02` §1 与 `design/chapters/10-baima` §1。
 
 ### 0.1 文件契约
 
@@ -180,6 +181,8 @@ Y  = offsetY − s·y       // SVG y 轴向下
 
 ### 3.2 书界键与历史时期带
 
+下表按稳定 `chNN` 键排列，供数据索引；它不是玩家看到的书序。默认展示 / 运行顺序为白马置首，即 `10,01,02,03,04,05,06,07,08,09,11,12,13,14`，数字不得被 UI 或构建器当作排序依据。
+
 | 书界 | 游戏定年 / 朝代语义 | `band` |
 |---|---|---|
 | `ch01` 天龙 | 1093，北宋·辽·西夏·大理 | `northern_song` |
@@ -191,13 +194,13 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | `ch07` 碧血 | 1644，明末清初 | `ming` |
 | `ch08` 鹿鼎 | 1685，清初康熙 | `qing_early` |
 | `ch09` 连城 | 1708，清初**（原创扩展定年）** | `qing_early` |
-| `ch10` 白马 | 1725，雍正初**（原创扩展定年）** | `qing_early` |
+| `ch10` 白马 | 702–703，武周长安年间·西州 / 庭州 / 铁延部**（原创扩展）（待考）** | —（现有六期摘要无唐代 `band`；待地图归属任务扩展 schema 或逐章覆写） |
 | `ch11` 鸳鸯 | 1740，乾隆初**（原创扩展定年）** | `qing_middle` |
 | `ch12` 书剑 | 1755，乾隆 | `qing_middle` |
 | `ch13` 飞狐 | 1769，乾隆 | `qing_middle` |
 | `ch14` 雪山 | 1780，乾隆 | `qing_middle` |
 
-这张映射只复制 `design/02` 的定年，不在本文重定义年代。六期 `history` 用于摘要和编辑起点，最终消费 14 格 `eras[chNN]`；关键年份必须逐章覆盖，不能机械复制同一 `band`。
+这张映射只复制 `design/02` 的定年，不在本文重定义年代。六期 `history` 用于摘要和编辑起点，最终消费 14 格 `eras[chNN]`；关键年份必须逐章覆盖，不能机械复制同一 `band`。当前 `design/map/cities.yaml` 与既有 `jianghu-ch10.svg` 仍把 ch10 投影为清初旧稿，不符合本表，必须由地图资产归属任务整体重建，不能只改顶层年份。
 
 ### 3.3 城市记录
 
@@ -541,7 +544,7 @@ paper / fibers
   → base-geography (land polygons + island masks)
   → rivers
   → mountains
-  → era-ch01 ... era-ch14
+  → era-ch10 → era-ch01 ... era-ch09 → era-ch11 ... era-ch14
   → title / colophon / legend
 ```
 
@@ -552,13 +555,13 @@ paper / fibers
 `jianghu-base.svg` 包含全部 14 组：
 
 ```xml
-<g id="era-ch01" class="era-layer" display="inline">…</g>
-<g id="era-ch02" class="era-layer" display="none">…</g>
+<g id="era-ch10" class="era-layer" display="inline">…</g>
+<g id="era-ch01" class="era-layer" display="none">…</g>
 …
 <g id="era-ch14" class="era-layer" display="none">…</g>
 ```
 
-默认显示 ch01，避免 14 层同时叠出不可读海报。“全部时代图层”意为都存在且可单独切换，不是默认同时可见。UI 切换时只改变 `display` 或 CSS class。
+默认显示 `era-ch10`，因为白马是序章后的首个正式书界；稳定组键不因展示顺序改名。避免 14 层同时叠出不可读海报。“全部时代图层”意为都存在且可单独切换，不是默认同时可见。UI 切换时只改变 `display` 或 CSS class。
 
 ### 8.3 单时代 SVG
 
@@ -900,6 +903,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | `MAP-V008` | 陆地环、岛屿掩膜、河流/山脉几何合法；画布 ≥1024×768；全部 payload 写前 ≤2 MiB |
 | `MAP-V009` | 有 `city_id` 的门派必须同时出现在该城市 `sects[]`；反向引用也必须唯一一致。长乐帮应且只应挂 `city_zhenjiang` |
 | `MAP-V010` | 地望显示遵循时代层：`city_shenyang` 明层为“沈阳中卫”、清层为“盛京奉天府”；石梁剧情提示不把当前 `city_jinhua` 锚点宣称为确址 |
+| `MAP-V011` | 稳定时代键仍为 `ch10` / `era-ch10`，展示序为 `10,01..09,11..14`；ch10 元数据为 702–703 武周层且默认显示，不能再引用清初字段 |
 
 ### 15.2 已执行与负向用例
 
@@ -908,12 +912,12 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | T01 语法 / 数据 | `py_compile`、`--check` | ✅ 189 城、99 派、3 图外、51 路线，零错误 |
 | T02 生成 / XML | `--render`、`ElementTree.parse` | ✅ 15 个 SVG 全可解析且低于 2 MiB |
 | T03 确定性 | 两次全量输出逐文件 SHA-256 | ✅ 完全一致 |
-| T04 图层 / 风格 | 搜索 14 个 `era-chNN` 与三类滤镜原语 | ✅ 数量、结构正确 |
+| T04 图层 / 风格 | 搜索 14 个 `era-chNN` 与三类滤镜原语 | 既有资产数量、结构曾通过；ch10 唐代重绘后须重跑，当前不得沿用旧结果 |
 | N01–N04 | 注入重复 ID、越界坐标、缺时代名、海上城市 | 应分别报 ID、范围、时代、陆地错误并退出 1 |
 | N05–N08 | 注入坏端点、图外 `via`、普通城市登乘、普通线接图外 | 应报路线/图外规则错误并退出 1 |
 | T05 地望反向引用 | 比较 `sects[].city_id` 与 `cities[].sects[]` | `sect_changlebang ↔ city_zhenjiang` 双向唯一；`sect_shiliang ↔ city_jinhua` 暂存且带衢州府一带待考说明 |
 
-人工审图重点为 ch01/ch04/ch08/ch14 的城名、门派、岛屿和题签；本环境 Quick Look 受沙箱阻止、`sips` 不解析 SVG，Playwright 调用系统 Chrome 也因沙箱退出，故像素观感仍**（待实测）**。
+人工审图重点为 ch10/ch01/ch04/ch08/ch14 的城名、门派、岛屿和题签；ch10 还须逐项排除清代名称、地位、门派、营生和路线残留。本环境 Quick Look 受沙箱阻止、`sips` 不解析 SVG，Playwright 调用系统 Chrome 也因沙箱退出，故像素观感仍**（待实测）**。
 
 ---
 
@@ -940,6 +944,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | AR-11 | 水墨、真实城市坐标、历史地名、图外专线 | 已落实 |
 | 作者 P53 | 大地图是旅行示意 / 目的地选择，不可行走 | 已落实 |
 | 基准 §2 / `design/02` | 14 书界顺序与游戏定年 | 已复制为渲染键 |
+| AR-26 / `design/chapters/10-baima` §1、§3 | 白马为 702–703 年首个正式书界；稳定键不重编号 | 文档层已落实；ch10 地图源与 SVG 待归属任务重建 |
 | 基准 §12 | `sect_*`、`rg_*` 命名原则 | 已遵循；新增前已全仓检索 |
 | `design/17` | 99 门派 ID 与 14 时代矩阵 | 已一一复制并校验数量 |
 | `design/11` | 30 区闭集与 19→30 迁移表 | 已落实于四份 v2 地图源、派生区域索引及 15 张 SVG，见 §3.7 / §12 |
@@ -985,6 +990,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | `W1-O08` | 是否把完整 SVG 直接作为手机运行时资产 | 默认不；生产转 WebP/瓦片，SVG 保留审查与可交互高档备选 |
 | `W1-O09` | 岸线/小说岛掩膜是否参与真实距离 | 否；只用于绘制与陆地侧校验 |
 | `W1-O10` | 是否显示所有 189 个名称 | 全国层不显示；按缩放渐进展开，点和搜索始终存在 |
+| `W1-O11` | ch10 唐代层在地图资产同步前如何处理 | 默认禁止发布旧清初 `era-ch10`，编辑器显示“唐代层待重建”；运行时不可静默回退到旧清初年份 |
 
 ### 16.6 已解决的既有待决事项
 
