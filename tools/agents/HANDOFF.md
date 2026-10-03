@@ -979,3 +979,21 @@
     - **DES-sync-keyscenes-ar36 合入**（9b43b497，05:19，r1 PASS，des37 队列结束）：key-scenes.md 改为候选清单 + 入库数以 manifest 为准 + candidate 参考；各书条目按两份 hero 报告修正；story/07 §2.2、story/09 制衣方向、npcs-ch09 铃剑双侠改好；顺治 / 行痴补登记为 `npc_shunzhi`。报告 §6 余项：`story/08-luding.md`（约 402、794 行）与 `chapters/08-luding.md`（约 186 行）要把「顺治 / 行痴 ID 待登记」改成引用 `npc_shunzhi`——留给下一个小同步任务。§4 默认：插图保持 candidate、（待考）保留、3:2 原图另产 16:9 裁切、双儿待作者。
     - 已告诉追踪者：polish-ch09 的名录前提满足，排在 ruins 之后，条件满足直接起。
     - ENG-19c 第 1 次运行 31 分钟结束，校验通过（5 个文件），审核中。负载回落到 7.5，磁盘 6 GiB。
+  - **10-03 05:16–05:26 开发监督**：ENG-19c-build-shell-test 一轮合入（8b2297d4），旧 dist 误报的问题已根治。
+    - 过程：执行 31 分钟，校验通过，r1 PASS。
+    - 改法：
+      - 新增构建后检查 `apps/game/scripts/check-dev-chunks.mjs`，接在 `size` 脚本 `check_size.mjs` 之后；dist 缺失、或含只供开发用的块，都退出 1；
+      - `build-shell.test.ts` 只留源码层断言；
+      - 预算与 `tools/perf/**` 未动。
+    - 合入后 `prod_check`（`_handoff/prod_check_post-eng19c_0524.log`）全绿：
+      - 128 个测试文件 / 922 条测试；
+      - `[dev-chunks] PASS assets=1454 manifest=43`；
+      - entry 160.17 / 170，render 160.53 / 180，webgl 320.70 / 350。
+    - 此后代码任务挪基点后，不必再先重建 dist（04:55 那条约定作废）。
+    - 当前状态：eng3 在跑 ENG-12e、ENG-20a（M1 路径）、TOOL-rig-sheet；ENG-19b 已就绪，等 eng3 空位，代码池 4/4。
+
+  - **10-03 05:24–05:40 协调者（CITY 合入与工具缺口）**：
+    - CITY 审核 r2 FAIL（05:24）只剩第 4 条：洛阳 18 格、太原 24 格墙水相交，太原缺三城内隔墙；审核自己写明要先补 `tools/town` 的声明式水门与多重城垣能力，任务写集改不到。驱动已自动起第 7 次返修，协调者置 HOLD 停掉。
+    - 裁定（追踪者建议 b 的用意 + a 的改动量）：洛阳、太原两个 town 目录的 manifest 改 `status: rejected` 并加注（工具缺口，待 TOOL-town-gaps-1 后重做；文件留库对比，构建不进包），`review_checks_city.md` 加补充裁定 2；另起 `--from validate --no-review --auto-merge` 驱动（r4.out，pid 25318）免第三轮审核。**05:28 合入 04f1133a**（332 个文件：16 城目录、规格与史料、progress.csv / done.txt、报告）。
+    - 登记 **TOOL-town-gaps-1**（052aac53；依赖 CITY-layouts-all）：声明式水门、多重城垣 / 共用内隔墙、无墙营地放行、未声明墙水相交新错误码、plan_view 页眉按城、cities.yaml 庭州键与 ch10 年代带、唐 / xiyu / tubo 套件进 schema（缺贴片按回退、不伪造基线），并用洛阳、太原两城重跑管线把 manifest 改回 candidate。已追加到 eng3 队尾；开发监督在代码池有位时单独起。
+    - CITY 全量续作仍等作者定范围（TODO §8.1）；追踪者合入后抽查预览、拷 progress 文件到 `_handoff/city/`，并在负载 < 10 时起 ART-ruins-maps。
