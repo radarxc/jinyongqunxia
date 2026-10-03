@@ -1153,3 +1153,9 @@
       - balance 按模块路径导入失败。
       - pnpm check 不受影响。
 
+  - **10-03 06:44–07:02 协调者 / 追踪者 / 开发监督**：
+    - 追踪者清理 `_handoff/gem/codex_w9 / w11 / w12`：删重复件（与 `gemini_originals` / archive 同 sha，52 MB）、git 对象库已有的（484 MB）、未入库试稿与中间图（227 MB）；manifest `source_path` / `references` 指向的 229 个文件（566 MB）与联系表保留，273 处引用复核可打开；68 个悬空符号链接改指 `_prod` 已入库文件；协调者点头后再删 10 个 codex 单槽位缓存 homeN（638 MB）。清单 `_handoff/gem/cleanup_20261003.log`。磁盘 4.1 → 5.3 GiB。
+    - **ART-items-gifts-catalog 06:44 起跑**（追踪者；驱动 2757，codex gpt-6-astra xhigh，基点 c6d06966，审核 gpt-5.6-sol，review_checks_des）；稀疏检出 973 MB，磁盘回到 4.4 GiB。ART-rig-sheet-side 已进追踪者等待器（TOOL-rig-sheet 合入 + 资源条件）。
+    - lore：lore-7（6cb074da）、lore-8（1d86e1a9）已合入；lore-5 挪基点到 c6d06966 后带「腊八粥按特例 qiCultivation=3500」`--from start`（驱动 93359），新校验器下该行已通过；在跑 lore-1 / 3（整份）/ 5。
+    - 开发监督发现**校验漏洞**：`unittest discover -s tools` 只进入带 `__init__.py` 的子目录（item / rig / rig/clips 共 33 条），content / lint / town / vfx / balance 的测试从未在校验里跑过；按目录单独跑 lint 289、town 107、vfx 50 全过，content 两条红（物品七列字节对比依赖仓库状态——名录转九列后 `content/items` stale；town_runtime 按 baseline 路径找布局，找不到 CITY 的 `assets/default/town/<city>/layout.yaml`）。登记 **TOOL-tests-discover**（fb3261ea）：新增 `tools/test_suite.py` 按目录发现、物品对比改夹具、town_runtime 认新布局位置；磁盘 ≥ 5 GiB 时开发监督起。
+    - TOOL-rig-sheet 第 9 次运行 06:40 起（协调者 06:44 的两句已进提示词）；开发监督用 `hold_then_review.py` 在转 HOLD-REVIEWS 时抢先置 HOLD-RUNS，再起只复审不返修的驱动；r6 PASS 合入，FAIL 停住报协调者。

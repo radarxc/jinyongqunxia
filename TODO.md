@@ -25,7 +25,7 @@
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
 - **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e / TOOL-items-catalog，10-03 凌晨再合入 ENG-19a（04:32）、ENG-18b（05:09）、ENG-17（05:12）、ENG-19c（05:24）、TOOL-catalog-9col（05:37）——M1 的 25 / 17a / 19a / 17 齐了；集成分支 `pnpm check` 05:26 全绿（128 文件 922 用例，entry 160.17 / 170 KiB 余 9.8 KiB，webgl 320.70 / 350）。在跑 ENG-20a、ENG-19b、ENG-12e（返修：恢复 2D 演示 + 3D 并排）、TOOL-rig-sheet 返修、TOOL-town-gaps-1、TOOL-catalog-food-qi-exception、lore 复验（lore-6 已合入）；eng3 队列还有 17 项（§5）。
 - **分工**（作者 10-02 15:50 / 22:00）：三个 Opus subagent——素材线第二波追踪（codex 执行器）、Gemini 出图员、开发监督；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max；GPT-5.5 禁用）。协调者只规划、登记、裁定、合入。
-- **环境**：06:25 磁盘 3 GiB、交换区 35 GB（build_portraits 一加载模型就 +3 GB，已停，改为磁盘 ≥ 10 GiB 且负载 < 6 且 ENG 执行器 ≤ 1 才跑）；为降压暂停了 ENG-12e 与 TOOL-town-gaps-1；规则：磁盘 < 5 GiB 不新开工作区、< 2.5 GiB 停线（§6）。
+- **环境**：07:00 磁盘 4.4 GiB（追踪者清 _handoff 试稿与 codex 缓存共 1.4 GB 后一度 5.3）、交换区 35 GB；暂停中的 ENG-12e、TOOL-town-gaps-1 等磁盘 ≥ 6 GiB 且负载 < 8；规则：磁盘 < 5 GiB 不新开工作区、< 2.5 GiB 停线（§6）。校验漏洞：`unittest discover -s tools` 只跑 33 条（TOOL-tests-discover 修）。
 
 ---
 
@@ -44,7 +44,7 @@
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
 | TOOL-rig-sheet | traex Sol max | 审核 r5 又 FAIL（前臂含手掌、侧腿占位、髋锚暴露）；第 9 次返修为最后一轮，侧腿问题转 ART-rig-sheet-side（新源图），之后按原型收口合入 | 开发监督另起 |
-| DES-items-lore-1 / 3 / 5 / 7 / 8 | traex | lore-6 已合入（20c1307a）；lore-1 / 3 因「整文件九列一致」与半批切分的矛盾改为各写整份名录（06:36 裁定，lore-2 / 4 取消，des34 调度器已停），开发监督改说明后挪基点重起；lore-5 等食品特例合入；lore-7 在跑；lore-8 等资源 | 开发监督另起 |
+| DES-items-lore-1 / 3 / 5 | traex Sol | lore-6（20c1307a）、lore-7（6cb074da）、lore-8（1d86e1a9）已合入；lore-1 / 3 按整份名录重起（06:37），lore-5 带腊八粥特例续作（06:5x）；转 HOLD 由开发监督手动复验 | 开发监督另起 |
 
 | ENG-12e-gltf-pilot | traex | 返修（恢复 2D 演示 + 3D 并排）跑了 25 分钟后 06:25 因内存压力暂停（HOLD-RUNS，工作区保留）；磁盘 ≥ 6 GiB 且负载 < 8 再 `--from start` 续作 | 协调者 |
 | TOOL-town-gaps-1 | traex Sol | 第 1 次运行 50 分钟后 06:25 因内存压力暂停（HOLD-RUNS）；条件同上，开发监督续作 | 开发监督 |
@@ -180,7 +180,7 @@
 | ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | **合入 41b24202**（06:07，六弟子各重出 1 张，联系表 `_handoff/gem/codex_w15/sheets/`） |
 | CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | **合入 04f1133a**（05:28）：16 城目录——14 个完整候选 + 洛阳 / 太原（manifest 标 `rejected`：水门与内隔墙是工具缺口，构建不进包）；收尾运行修了页眉之外的两项未成。全量**不接力**，范围缩减见 §8.1；进度 `docs/design/town/progress.csv`（2367 行）/ `done.txt`，副本在 `_handoff/city/`。工具缺口已登记 **TOOL-town-gaps-1**（052aac53：水门 / 多重城垣 / 未声明墙水相交检查 / 页眉按城 / cities.yaml 庭州键与 ch10 年代带 / 唐 · 西域 · 吐蕃套件进 schema，用洛阳太原验证并改回 candidate），代码池有位时开发监督起 |
 | ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览 | codex xhigh | **合入 df54e2ef**（06:12，56 张地图覆盖序章与十四书）。九老洞、敦煌地宫没有 `sc_*` / `poi_*` ID 这轮没做 → DES-ruins-ids（在跑）补 ID 后登记 ART-ruins-maps-2 接力；报告 §6 缺的遗迹贴片（洞壁 / 墓道 / 石刻 / 宝箱…）待登记贴片任务 |
-| ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录（瓷器 / 茶具、玉器、香炉铜器、琴、书法拜帖、笔…，书中宝物 + 史载物件）与 Gemini 提示词 | codex xhigh | 依赖已齐（DES-items-gifts-spec 0496cb32、TOOL-catalog-9col 4aa8c6db）；追踪者在磁盘 ≥ 5 GiB、负载 < 10 时起 |
+| ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录与 Gemini 提示词 | codex xhigh | **06:44 起跑**（驱动 2757，基点 c6d06966） |
 
 做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接 `_handoff/art_wave2_tracker_brief.md`；审核要点 `.agents/coord/PROD/review_checks_hero.md`（第 1 条已容许白马 / 侠客 / 鸳鸯不用剧照）/ `review_checks_ruins.md` / `review_checks_city.md`。审核模型写 `--review-model gpt-5.6-sol`（Codex 不认大写）。
 
