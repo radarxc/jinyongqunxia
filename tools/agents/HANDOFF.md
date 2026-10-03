@@ -743,4 +743,13 @@
       - 每次合入后 `prod_check` 都绿。ENG-16b 之后为 736 用例，size 295.26 / 350；check_ids --strict 为 0。
     - **解锁**：ENG-16b 合入后，ENG-16d、ENG-14b 已就绪，但 eng3 并发 3 已满（12c-clip、rig-sheet、17a），要等空位。
     - **执行器**：Astra 探测一直不应答，在跑的都是 Sol；19:11 之后没有新的 GPT-5.5。
+  - **10-02 19:45–20:58 开发监督**：
+    - **合入**：DES-story-hooks-g4（19:57，协调者用 Sol 复核后重起）、DES-story-hooks-g1（20:49）。合入后 `prod_check` 都绿：size 295.26 / 350，check_ids 0。
+    - **手动复审**：des33 每个任务最多自动复审 3 次，用完就由开发监督接着用 `--from validate`（Sol max）起，计数记在 `devsup_revalidated.json`。
+      - g1：r1–r4 都 FAIL；手动第 1 次 r5 FAIL（story/02 §7.4 七个挂点拆成独立 SideHook）；手动第 2 次过审，合入。
+      - g3：r1–r4 都 FAIL；手动第 1 次 r5 FAIL（story/08 §7.8.1 挂点改用稳定任务 ID）；20:58 手动第 2 次。
+      - 审核每轮都能挑出一处新的小问题，所以按「每轮只剩一处」续审。手动 3 次用完还不过，就报协调者。
+    - **ENG-12c-clip 改 rig 门禁文件**：护栏查出它改了 `packages/render/src/rig/performance.test.ts`。核对后是任务说明要求的新增项：100 人片段模式，阈值同为 0.8 ms，没有放宽、也没有跳过逻辑，原有用例未动。
+    - **TOOL-rig-sheet**：20:21 起第 2 次运行，第 1 次 Sol 停滞后自动续作。工作区根目录多出一个写集外文件 `:memory:.ses`，finish 时会自动丢弃。
+    - **磁盘**：20:43 外部项目（a2ui-r2a-home 的 vitest）把 load 推到 30，交换区涨到 37.9 GB，可用空间最低 8.1 GiB，20:58 回到 10.3 GiB。没到 6 GB 的报告线。
 
