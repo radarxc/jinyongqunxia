@@ -518,6 +518,10 @@ source: { origin: expanded, note: schema fixture; not production story }
 
 测试前置先由 `design/16` fixture 建立 `biz_fixture_08_escort_01`、已占用正确日程块的活动合同 `contract_fixture_08_90`；任务不把测试日硬编码成 `worldDay=1`，只承载合同目标并调用正式 `EstateCondition/EstateAction`。结算动作本身生成收入账簿，因此不再追加一次 `reward/money`。标题中的走镖与临时护院都映射 `job_xingjiao`；镖局职位、山庄护院轮值、风险、收益和月结只读 `design/16` §8.2、§8.6。
 
+`job_zuozhen` 同样由任务层消费，但职位定义只读 `design/16` §8.2–§8.5：只可绑定镖局，合同 30 日、每月默认 8 个职责块，并与 `job_keqing` 共用唯一 `activeSeniorContractId`。坐堂、审路、压阵和救援均建成普通任务阶段 / 稳定事件，任务只预留十二时辰日程、推进职责与提交结算；不得自行算月薪、后台判胜，或在预约块内允许快速旅行、书眠和冲突职责。
+
+职责事件同时命中主支线时只共享叙事结果，不复制经济回报。若除合同结算外另有固定奖励，必须按 §4.2 写 `rewardSplit`，明确该实例究竟进入 `quest` 还是 `business`；`estate/settle_job_contract` 已创建的月薪不得再用 `reward/money` 补发。
+
 ### 3.6 资源点争夺与家丁事件
 
 ```yaml
@@ -679,6 +683,8 @@ directCashBudget = I(ch) × expectedHours × cashShare(kind)
 | `qiyu` | 0.20 | 价值主要在独特见闻 / 来源；并非必然给钱 |
 
 全书界总收入必须回到 `design/16` §12.1 的正式七桶：任务 40%、战利品出售 25%、敌人现银 10%、城市营生 10%、资源点 8%、门派 5%、赌场 / 其他 2%；相邻来源可调 ±5 个百分点，但总和必须 100%。例：笑傲 `g_mode=5`，主武器 `P=47 两`，故 `I=2×47×1=94 两/时`；若预计 30 分钟的普通支线将整段价值计入任务桶，直接现金上限为 `94×0.5×0.70=32.9`，配表取 33 两。若同段另发可售任务物，其参考值须从这 47 两任务段预算及对应 `cashShare` 中扣除；普通战斗掉落记战利品桶，不可再算作任务奖励。
+
+遗迹、剧情战或职责事件只要同时出现不同来源的奖励，就必须写 `rewardSplit[]`；每行至少含 `rewardRef/instanceKey/economySource/sourceId`，并逐实例映射到唯一来源。固定剧情银钱、关键物与遗迹固定探索奖为 `quest`，敌人非剧情现银为 `cash`，普通随机战利品为 `loot`，职位结算为 `business`，采集净新增为 `resource`；完整边界只读 `design/16` §12.1。任务推进、各奖励收据与 `effectId` 在同一事务提交，重放不得重复发放或换桶。
 
 ### 4.3 物品与武学奖励按品阶
 
@@ -963,7 +969,7 @@ sectTrainingMult = (10000 + deltaBp) / 10000
 | 连城 | `sk_wanjiazhengqi`、`sk_wanjiaanshenquan` | 万家门 L3，清白门人 / 护院教习或门内武册；问责改组后由未涉案门人代授 |
 | 连城 | `sk_jingzhouguanfuqinfa`、`sk_jingzhouyangqigong` | 官府关系 ≥40 或有效官府开局身份，由衙门教头传授；亦可研读衙门武册，养气功另需擒法 4 重 |
 | 白马 | `sk_huahuixinfa`、`sk_walalizhi`、`sk_majiajunfeizhen` | 瓦耳拉齐 / 马家骏信任线亲授至 10，须旧案问证与双方安全隔离；`q_10_bond_05` 完成问证、练习谱与针谱无毒检查、安全隔离并经李文秀辨认后，按 §6.7.3 原子发放三条 `it_miji_*`，均为残谱至 8；指法亦可由改命后的李文秀转授至 8 |
-| 白马 | `sk_hasakeyunqi` | 哈萨克庄园 `job_jiaotou`：L3 亲随且完成救援、守诺、演武认可后师授至 10；共同体接纳后观摩至 6 |
+| 白马 | `sk_hasakeyunqi` | 铁延部共同体场所 `job_jiaotou`：L3 亲随且完成救援、守诺、演武认可后师授至 10；共同体接纳后观摩至 6；见 `design/chapters/10-baima.md` §7.4、§9.2 |
 | 鸳鸯 | `sk_zhentiansanshizhang` | 卓天雄存活，完成 `q_11_side_08` 释放具结且关系 R3 后授至 10；观摩至 6，不并入清宫职级谱 |
 | 书剑 | `sk_tiedanzhuangxinfa`、`sk_tiedanzhuangquan` | 铁胆庄误会收束且关系达标后周仲英授艺 / 周氏谱本；拳另需心法 5 重与庄民保护目标 |
 | 书剑 | `sk_tianchishengong` | `q_12_qiyu_14` 后袁士霄亲授；或完成陈家洛羁绊、持天池引见，在余韵取得遗谱研习许可 |
@@ -1128,7 +1134,7 @@ effects:
 | `sect_jiangnanqiguai` 江南七怪 | O:SD；H:— | 正 | 客盟/传承 | `skills-wujue` | `city_jiaxing` / `rg_jiangnan_taihu` | 《射雕英雄传》；`design/17` §7.16 |
 | `sect_yaowangmen` 药王门 | O:FH/XS；H:YY/SJ | 正/中 | 正式 | `skills-qianlong` | `city_wuhan` / `rg_jingxiang` | 《飞狐外传》《雪山飞狐》；`design/17` §7.17 |
 | `sect_gaochang` 高昌遗脉 | O:BM；H:— | 中 | 客盟/传承 | `skills-kangxi` | `city_turpan` / `rg_xiyu_beijiang` | 《白马啸西风》；`design/17` §7.18 |
-| `sect_hasake` 哈萨克部族 | O:BM；H:TL/SD/SHD/YT/XA/XK/BX/LD/LC/YY/SJ/FH/XS | 不定（族群） | 结盟，不作师门 | `skills-kangxi` | `city_yining` / `rg_xiyu_beijiang` | 《白马啸西风》；`design/17` §7.19 |
+| `sect_hasake` 铁延部（仅 ch10 显示；稳定 ID 不改） | O:BM；H:TL/SD/SHD/YT/XA/XK/BX/LD/LC/YY/SJ/FH/XS | 不定（共同体） | 结盟，不作师门 | `skills-kangxi` | `city_yining` / `rg_xiyu_beijiang` | ch10 为 702–703 年虚构混合牧部，见 `design/chapters/10-baima.md` §7.1、§7.4；后世名称仍读时代配置 |
 | `sect_huibu` 回部 | O:SJ/FH/XS；H:YY | 不定（共同体） | 结盟，不作师门 | `skills-qianlong` | `city_kashgar` / `rg_xiyu_nanjiang` | 《书剑恩仇录》等；`design/17` §7.20 |
 | `sect_bohai` 渤海派 | O:BX；H:— | 中 | 正式 | `skills-xiake-bixue（待收录索引）` | `city_ningan` / `rg_dongbei` | 《碧血剑》；`design/17` §6.8/7.21 |
 | `sect_jiulongbian` 九龙鞭 | O:FH；H:SJ/XS | 中 | 正式 | `skills-qianlong` | `city_beijing` / `rg_yanjing_zhili` | 《飞狐外传》；`design/17` §6.8/7.21 |
@@ -1180,6 +1186,8 @@ effects:
 | `sect_wanmeishanzhuang` 万梅山庄 | O:BX；H:XK/LD/LC/BM/YY/SJ/FH/XS | 正/中 | 客盟/传承 | `skills-gulong` | `city_xian` / `rg_guanzhong` | 古龙《陆小凤传奇》；`design/17` §11.13 |
 | `sect_baiyuncheng` 白云城 | O:BX；H:XK/LD/LC/BM/YY/SJ/FH/XS | 多线 | 客盟/传承 | `skills-gulong` | `city_baiyuncheng` / `rg_nanhai_islands` | 古龙《陆小凤传奇》；`design/17` §11.14 |
 | `sect_renyizhuang` 仁义庄 | O:XA；H:XK/BX/LD/LC/BM/YY/SJ/FH/XS | 正 | 正式/结盟 | `skills-gulong` | `city_kaifeng` / `rg_zhongyuan` | 古龙《武林外史》；`design/17` §11.15 |
+
+白马 702–703 年任务文本中的“晋威号河东护商结社”只是人物旧案的文本组织**（原创扩展）**，没有正式 `sect_*`，不计入上表 99 组织，也不得映射、合并或借用 `sect_weixinbiaoju`。其任务边界见 `design/chapters/10-baima.md` §6.2、§7.1；若未来正式建组织，须由 `design/17` 另行登记后本文才能引用。
 
 ### 7.3 十四书界覆盖核算
 
@@ -1760,6 +1768,7 @@ modifierStates: {}
 | `moneyWen` | 当界现金的整数文账本；`1 两=1,000 文` | 本文 §9.1 |
 | `recipeMastery` | 每张已学菜谱 1–10 的独立熟练度，不是第十一项技艺 | 本文 §10.4 **（原创扩展）** |
 | `practiceKey` | 生活技能一次可计成长操作的稳定去重键 | 本文 §10.1 |
+| `rewardSplit` | 混合活动对每个奖励实例声明唯一 `economySource/sourceId` 的分账清单；不改变奖励归属公式 | 本文 §4.2；桶边界见 `design/16` §12.1 |
 
 `NpcDef`、招募难度、羁绊等级、同伴状态与重逢不是本文新增术语，均引用 `design/18`。`SectDef`、时代状态码和 T01–T12 也不在本文重定义，均引用 `design/17`。
 
@@ -1820,6 +1829,9 @@ q_06_qiyu_90
 | QST-V28 | error | 师授 / 谱本同时检查卡片 `reqs`、事件、教师可用性与 `maxLayer`；8 重残谱不得静默升成 10 重，首领装配不得自动生成掉落或授艺来源 |
 | QST-V29 | error | `q_10_bond_05` 遗谱阶段必须同时引用 §6.7.3 三条正式 ItemDef，并保留问证、谱 / 针谱无毒、安全隔离、辨认及共享领取检查；禁止拆分领取、复合 `skills[]` 秘籍和尸体 / 普通掉落来源 |
 | QST-V30 | error | 新写 `legacy/completeSynthesis` 只接受 `recipeKey`；历史 `recipeId` 只经版本化显式 remap，迁移不得改效果 / 收据身份；冲突或未映射引用必须失败 |
+| QST-V31 | error | `job_zuozhen` 只绑定镖局；与 `job_keqing` 的活动合同合计至多一份且等于 `activeSeniorContractId`；每月默认 8 个职责块，冲突时拒绝预约而非覆盖日程 |
+| QST-V32 | error | 遗迹、剧情战或职责事件含多来源奖励时必须逐实例写 `rewardSplit`；`quest/cash/loot/business/resource` 不得重叠，同一实例只生成一条新经济价值收据 |
+| QST-V33 | error | ch10 的 `sect_hasake` 显示名为“铁延部”；晋威号不得解析为任何 `sect_*`，尤其不得解析为 `sect_weixinbiaoju` |
 | QST-V20 | error | 所有 YAML 可无损转 JSON；禁止 anchor、alias、merge、多文档、重复键、未知键、NaN / Infinity 与隐式日期 |
 | QST-V21 | error | 99 个规范 `sect_*` 与 `design/17` 集合相等；每个有 14 个状态；计数矩阵逐格、逐列等于 §7.3 |
 | QST-V22 | warning→发布 error | 原创、待考和建议值有规范标注；正式内容不得含 fixture 名、占位依赖、未完成标记或省略正文的占位语 |
@@ -1887,6 +1899,7 @@ q_06_qiyu_90
 | QST-T35 | 华辉遗谱三谱资格齐全；在第 2 条物品写入或共享领取写入时故障，然后重试 / 重放 | 故障后物品增量为 0，阶段与效果记录不变；重试一次得到三条各 1 本并记录一次领取；后续重放、物品转移后重试均增量为 0，绝不补发或折现 |
 | QST-T36 | 三谱缺任一安全条件，或未记共享领取但已持有其中 1 条；分别触发死亡 / 制服结算 | 领取全部拒绝，物品与任务不变；死亡 / 制服不会转移谱本。原著死亡线只接受此前保全且完成无毒检查的任务来源 |
 | QST-T37 | 旧 `recipeId` 有 / 无显式 remap，或与 `recipeKey` 值冲突；迁移后重放已提交校合 | 有映射且无冲突时仅规范字段名、保留效果 / 收据身份并且不重复发奖；其余拒绝加载或构建 |
+| QST-T38 | 同时签一份客卿与一份坐镇合同，再让坐镇救援兼作主线并重复投递奖励 | 两份合同只一份成功；救援可推进职责与主线，但每个奖励实例只按 `rewardSplit` 入一个桶，重放不增值 |
 
 ### 13.5 人工审校清单
 
