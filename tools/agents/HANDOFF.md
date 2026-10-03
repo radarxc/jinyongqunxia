@@ -1785,3 +1785,18 @@
   - 特效试点 VFX-sk_zuoyouhubo 15:34 起跑（Codex 直跑）；35 门 vars 已按图鉴核对（a4df0a45，外放 P 标修 6 门，加 sparse_include）。TOOL-city-generic 15:24 起跑排池位（驱动 10066）。
 - **10-03 15:50 代码池优先级**（协调者）：16c、23a 第 1 轮各跑满 200 分钟超时，续作排队时池位被 city-generic、rig-parts-f 拿走。按 16c > 23a > base-diet > std-parts 放行：后三件置 HOLD-RUNS、停排队驱动；新脚本 `.agents/coord/_handoff/wait_attempt.py`（等某任务 current.json 的 attempt≥N 再脱离启动命令）挂三道守候 83191 / 83193 / 83195，事件见 `_handoff/wait_attempt.log`。若守候被停，按日志里的命令手动重起对应驱动。
 - 磁盘清理 1–5 项全部完成（旧 pnpm 仓库后台删完）；随后交换区涨到约 39 GB，可用回落到 11.5 GiB。
+  - **10-03 15:41–15:56 开发监督**：
+    - **ENG-16c / ENG-23a** 第 1 轮都跑满 200 分钟单次超时，续作第 2 轮，都在排队等代码池位。
+      - 协调者 15:58 定的代码池放行顺序：16c > 23a > base-diet > rig-std-parts。
+      - 23a、base-diet、std-parts 置 HOLD-RUNS，由 `_handoff/wait_attempt.py` 依次放行（守候进程 83191 / 83193 / 83195，日志 `_handoff/wait_attempt.log`）。
+      - 开发监督不再动这三件。
+    - **CONTENT-ch00a r3 FAIL**（`.agents/reviews/CONTENT-ch00a-data.r3.md`）：新挑出两处设计门槛没落实。
+      - `after_initial_battle` 的「书灵示范」与活血丸无条件出现；应在连败 3 次后才出现，设计见 chapters/00 第 185 行。
+      - `baiyuan_choice` 投桃无条件扣桃；应先 `has_item("it_tao")`，无桃时显示锁定理由。
+      - 协调者同意续作，驱动 90420，第 8 次运行，`--max-runs 1 --max-reviews 1 --auto-merge`，内容口径。
+      - note `devsup_note_r3.md`：r3 原文，加协调者「所有无条件选项、扣物 / 发奖 intent 都按设计门槛自查」，加开发监督提示：
+        - 只用 Ink 已登记的 EXTERNAL（get_flag、quest_stage、has_item、affinity）；
+        - 资格旗标例 `fl_00_zhulin_loss_streak3`，只读，交接 ch00c / ENG-26。
+    - **keywait 后台循环**到了 2 小时后台上限被系统停掉，不再重起；改为每轮前台跑 `scratchpad/cyc.sh`（kw.py 一轮 ≤ 1 分钟）。
+    - **check:perf**：`scratchpad/perf_when_idle.sh` 已在后台排队，负载降到 8 以下就在集成分支跑一次。
+
