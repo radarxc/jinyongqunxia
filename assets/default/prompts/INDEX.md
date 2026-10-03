@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1009** 份：已入库 623、待出图 254、已通过（作者） 132。**待出图队列 254 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1009** 份：已入库 624、待出图 253、已通过（作者） 132。**待出图队列 253 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -223,7 +223,6 @@
 | items | `eq_xiaoxiangzikusangbang` | 潇湘子哭丧棒 | `assets/default/item/weapons/eq_xiaoxiangzikusangbang.png` | 待出图 | [eq_xiaoxiangzikusangbang.md](items/weapons/eq_xiaoxiangzikusangbang.md) |
 | items | `eq_xiyujietougun` | 西域节头棍 | `assets/default/item/weapons/eq_xiyujietougun.png` | 待出图 | [eq_xiyujietougun.md](items/weapons/eq_xiyujietougun.md) |
 | items | `eq_xiyuyueyachan` | 西域月牙铲 | `assets/default/item/weapons/eq_xiyuyueyachan.png` | 待出图 | [eq_xiyuyueyachan.md](items/weapons/eq_xiyuyueyachan.md) |
-| items | `eq_xuangutieshan` | 玄骨铁扇 | `assets/default/item/weapons/eq_xuangutieshan.png` | 待出图 | [eq_xuangutieshan.md](items/weapons/eq_xuangutieshan.md) |
 | items | `eq_xuanmenshuangguai` | 玄门双拐 | `assets/default/item/weapons/eq_xuanmenshuangguai.png` | 待出图 | [eq_xuanmenshuangguai.md](items/weapons/eq_xuanmenshuangguai.md) |
 | items | `eq_xuantielepipa` | 铁琵琶 | `assets/default/item/weapons/eq_xuantielepipa.png` | 待出图 | [eq_xuantielepipa.md](items/weapons/eq_xuantielepipa.md) |
 | items | `eq_yeerniangfangdao` | 叶二娘方头薄刀 | `assets/default/item/weapons/eq_yeerniangfangdao.png` | 待出图 | [eq_yeerniangfangdao.md](items/weapons/eq_yeerniangfangdao.md) |
@@ -469,7 +468,7 @@
 | 161 | 扎马步抄本 | `it_miji_zhamabu` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhamabu.md](items/manuals/it_miji_zhamabu.md) | template |
 | 162 | 壮行功抄本 | `it_miji_zhuangxingong` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhuangxingong.md](items/manuals/it_miji_zhuangxingong.md) | template |
 
-### 兵器（247）· 已入库 184、待出图 39、已通过（作者） 24
+### 兵器（247）· 已入库 185、待出图 38、已通过（作者） 24
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -505,13 +504,12 @@
 | 30 | 吴越青铜剑 | `eq_wuyueqingtongjian` | 黄下 | 兵器·剑 | 待出图 | [eq_wuyueqingtongjian.md](items/weapons/eq_wuyueqingtongjian.md) | template |
 | 31 | 西域节头棍 | `eq_xiyujietougun` | 黄上 | 兵器·棍 | 待出图 | [eq_xiyujietougun.md](items/weapons/eq_xiyujietougun.md) | template |
 | 32 | 西域月牙铲 | `eq_xiyuyueyachan` | 黄上 | 兵器·奇门铲 | 待出图 | [eq_xiyuyueyachan.md](items/weapons/eq_xiyuyueyachan.md) | template |
-| 33 | 玄骨铁扇 | `eq_xuangutieshan` | 黄上 | 兵器·奇门扇 | 待出图 | [eq_xuangutieshan.md](items/weapons/eq_xuangutieshan.md) | template |
-| 34 | 铁琵琶 | `eq_xuantielepipa` | 黄上 | 兵器·奇门琴 | 待出图 | [eq_xuantielepipa.md](items/weapons/eq_xuantielepipa.md) | template |
-| 35 | 一字铁拐 | `eq_yiziguai` | 黄中 | 兵器·棍杖 | 待出图 | [eq_yiziguai.md](items/weapons/eq_yiziguai.md) | template |
-| 36 | 元军护手直剑 | `eq_yuanjunzhijian` | 黄上 | 兵器·剑 | 待出图 | [eq_yuanjunzhijian.md](items/weapons/eq_yuanjunzhijian.md) | template |
-| 37 | 鸳鸯钺 | `eq_yuanyangyue` | 黄下 | 兵器·奇门钺 | 待出图 | [eq_yuanyangyue.md](items/weapons/eq_yuanyangyue.md) | template |
-| 38 | 月牙双钩 | `eq_yueyashuanggou` | 黄中 | 兵器·奇门钩 | 待出图 | [eq_yueyashuanggou.md](items/weapons/eq_yueyashuanggou.md) | template |
-| 39 | 竹节短杖 | `eq_zhujieduanzhang` | 黄下 | 兵器·棍杖 | 待出图 | [eq_zhujieduanzhang.md](items/weapons/eq_zhujieduanzhang.md) | template |
+| 33 | 铁琵琶 | `eq_xuantielepipa` | 黄上 | 兵器·奇门琴 | 待出图 | [eq_xuantielepipa.md](items/weapons/eq_xuantielepipa.md) | template |
+| 34 | 一字铁拐 | `eq_yiziguai` | 黄中 | 兵器·棍杖 | 待出图 | [eq_yiziguai.md](items/weapons/eq_yiziguai.md) | template |
+| 35 | 元军护手直剑 | `eq_yuanjunzhijian` | 黄上 | 兵器·剑 | 待出图 | [eq_yuanjunzhijian.md](items/weapons/eq_yuanjunzhijian.md) | template |
+| 36 | 鸳鸯钺 | `eq_yuanyangyue` | 黄下 | 兵器·奇门钺 | 待出图 | [eq_yuanyangyue.md](items/weapons/eq_yuanyangyue.md) | template |
+| 37 | 月牙双钩 | `eq_yueyashuanggou` | 黄中 | 兵器·奇门钩 | 待出图 | [eq_yueyashuanggou.md](items/weapons/eq_yueyashuanggou.md) | template |
+| 38 | 竹节短杖 | `eq_zhujieduanzhang` | 黄下 | 兵器·棍杖 | 待出图 | [eq_zhujieduanzhang.md](items/weapons/eq_zhujieduanzhang.md) | template |
 
 ### 衣物（30）· 已入库 18、已通过（作者） 12
 
