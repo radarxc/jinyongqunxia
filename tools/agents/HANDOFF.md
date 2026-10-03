@@ -1088,3 +1088,20 @@
     - **ART-ruins-maps 合入**（df54e2ef，06:12，r1 PASS）：56 张 Tiled 1.12.2 地图 + 预览（16 微型 + 40 标准），覆盖序章与十四书界 18 个区域，全部复用章节既有 `sc_*`；六邻连通检查通过。九老洞、敦煌地宫没有场景 ID 未做（等 DES-ruins-ids 合入后登记 ART-ruins-maps-2 接力）。报告 §6：美术缺洞壁 / 墓道 / 土坯残墙 / 石刻 / 矿支架 / 毡帐 / 药架 / 灯具 / 宝箱贴片（待登记贴片任务）；台阶缺 rampDir、急流缺 flowDir（本批未用）；任务 / 采集 / 奖励绑定归 CONTENT 各章。
     - DES-items-gifts-spec 续作 35 分钟结束，校验通过（design/10、design/12），审核中。
     - 磁盘：追踪者删掉五个已合入任务的日志目录（约 260 MB）；ruins / polish 合入后工作区自动清除，06:12 回到 5 GiB。规则：< 5 GiB 不新开工作区，< 2.5 GiB 停线。
+  - **10-03 06:10–06:21 开发监督**：lore-8 合入，lore-5 已挂起。
+    - **lore-8**（护肩、披风、头饰、暗器）一轮合入（1d86e1a9），工作区已清，11 份名录检查全过。
+      - 已转九列 8 份：accessories / armor / belts / hidden-weapons / clothing / innerarmor / shoes / medicine。
+      - 还剩三份：weapons（lore-1，r1 复审中；lore-2 等它）、manuals（lore-3，des34 自动复验后 r2 复审中；lore-4 等它）、food（lore-5，挂起）。
+    - **lore-5**：06:10:31 转 HOLD-REVIEWS，4 秒后被 `hold_on_reviews.py` 改为 HOLD-RUNS；des34 只把它列入「停住待协调者」，没有重起。
+      - TOOL-catalog-food-qi-exception 合入后，挪基点 `--from validate`。
+  - **10-03 06:21–06:27 开发监督**：内存压力。
+    - 06:21–06:22 交换区由 32.8 GB 涨到 35.8 GB，磁盘一分钟内从 6.1 掉到 3.1 GiB；当时有 10 个 traex 执行器同跑。
+    - 协调者 06:25 把两个低优先任务置 HOLD-RUNS，停了驱动与执行器、保留工作区：ENG-12e（协调者负责续作）和 TOOL-town-gaps-1（我的驱动 38690）。
+    - 续作条件：磁盘 ≥ 6 GiB 且负载 < 8。后台 `scratchpad/waitcond.py 6 8` 在等。条件满足后，我用 `--from start` 带「续作，工作区改动都在」说明重起 TOOL-town-gaps-1。
+    - ENG-16c 等继续不起。
+
+  - **10-03 06:12–06:28 协调者 / 追踪者（内存压力）**：
+    - DES-items-gifts-spec 审核 r1 FAIL（06:12：每书 1–3 件可送礼的原著物件未列全、§11.5.3 九列顺序不对、报告口径），驱动自动返修（第 3 次运行）。
+    - 追踪者 06:20 按条件（负载 5.5、磁盘 6.2 GiB）起 build_portraits，BiRefNet 一加载交换区 32.8 → 35.8 GB，磁盘跌到 3.1 GiB，护栏在 6/134 张时停下（ch01 部分已提交 ab4cc1e8）。条件改为：磁盘 ≥ 10 GiB 且 1 分钟负载 < 6 且在跑的 ENG 执行器 ≤ 1，三条同时满足才自动起；剩 128 张（ch01 3、ch02–14 全部）。
+    - 协调者关掉两个空闲的 Gemini 标签页；06:25 把两个低优先任务置 HOLD-RUNS 并停掉驱动与执行器（工作区保留）：ENG-12e（返修中）、TOOL-town-gaps-1（第 1 次运行中）；续作条件：磁盘 ≥ 6 GiB 且负载 < 8，`--from start` 带「续作」说明。清点执行器：7 个任务执行器（gifts-spec、lore-1 / 3、ruins-ids、19b、20a、rig-sheet 第 8 次）+ food-qi-exception 在等池位，无孤儿进程；另有作者别的项目的一个 traex（a2ui，9 小时）不属本仓。
+    - 主检出同步只由协调者做（追踪者的一次 cherry-pick 让主检出短暂处于 cherry-pick 状态，已 abort）。
