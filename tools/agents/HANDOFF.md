@@ -672,4 +672,5 @@
       - ENG-29（金钱与采集）等 ENG-20a / 26 合入后再登记。
     - **磁盘**：可用 14 GiB。
   - **10-02 17:05 协调者（人物线 subagent 收工）**：9 号出图员（Opus）完成三视图（a78e14f3）、AR-32 修改 A / B 共 18 张入库（提交号见 TODO §3.1），24 次 codex exec 限流 0，剧照 17 张登记 SOURCES.md；`build_portraits` 增量重建 3be77b9a。协调者看过 `cmp_fixa.jpg` / `cmp_fixb.jpg`：画风一致、成年、可辨。四件事待作者定（TODO §8.1）：胡一刀发式、凌霜华左颊疤、狄云乡下装补出、程灵素 / 苗人凤偏离原著的造型。`build_gallery` 17:08 重建；总览页另发新地址（旧地址本账号读不到）。
+  - **10-02 17:12 协调者**：素材总览页第 9 版已发布：**https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A**（本账号发布；旧地址 1TACNarveseVhMusJxJnJ3 本账号读不到，以后更新用新地址）。页面含物品 11 类、建筑套件与贴片、地图、角色立绘（含 AR-32 修改后的 18 张）、各朝路人。
 
