@@ -46,7 +46,7 @@
 | TOOL-rig-sheet | traex Sol max | 审核 r4 又 FAIL（切件错分：pelvis_skirt 混入手臂、torso 含前臂残片、侧腿蓝灰楔块），第 7 次运行返修中 | 开发监督另起 |
 | TOOL-catalog-9col | traex Sol max | r2 返修两次停滞（模型无输出）后 05:10 带说明续作（只做双写完整性 + 测试 + 报告） | 27447（协调者另起，`supervise.r3.out`） |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | — | HOLD-RUNS：等 TOOL-catalog-9col 合入后挪基点复验（`_handoff/lore_plan.md`） | des34 batch 9492 看护 |
-| DES-items-gifts-spec | — | HOLD-RUNS：内存压力暂停（02:00） | — |
+| DES-items-gifts-spec | traex | 05:30 续作（磁盘 9 GiB、负载 8） | 38844（协调者另起，`supervise.r2.out`） |
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
 - codex 出图 runner：w12（pid 20933，2 槽）服务 hero-b；w11 已排空停掉。
@@ -174,9 +174,9 @@
 | ART-hero-refine-a | 主角复合基线精修、分时期 `_scene_<stage>` 立绘、关键剧情插图配古风题字 | codex gpt-6-astra ultra | **合入 d11b33a0**（95 张，审核一次 PASS） |
 | ART-hero-refine-b | 同上，鹿鼎～雪山 | 同上 | **合入 2533a8fd**（80 张，r4 PASS） |
 | ART-cast-fill-a / -b | 逐书搜主要人物列表，补缺的提示词与立绘 | codex xhigh | **合入 e1698e93 / fe4765ef**（57 张） |
-| ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | 已登记（sparse_include 已补 female/ch09），等 DES-sync-keyscenes-ar36 合入（先改好 npcs-ch09 名录）且磁盘 ≥ 7 GiB |
+| ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | 名录已改好（9b43b497）；ruins 跑满 5 分钟、负载 < 10、磁盘 ≥ 7 GiB 时追踪者自动起 |
 | CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | **合入 04f1133a**（05:28）：16 城目录——14 个完整候选 + 洛阳 / 太原（manifest 标 `rejected`：水门与内隔墙是工具缺口，构建不进包）；收尾运行修了页眉之外的两项未成。全量**不接力**，范围缩减见 §8.1；进度 `docs/design/town/progress.csv`（2367 行）/ `done.txt`，副本在 `_handoff/city/`。工具缺口已登记 **TOOL-town-gaps-1**（052aac53：水门 / 多重城垣 / 未声明墙水相交检查 / 页眉按城 / cities.yaml 庭州键与 ch10 年代带 / 唐 · 西域 · 吐蕃套件进 schema，用洛阳太原验证并改回 candidate），代码池有位时开发监督起 |
-| ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览（九老洞、敦煌地宫、长白山洞…） | codex xhigh | ENG-18b 已合入（3ef22aaf）；等 CITY 合入且负载 < 10、磁盘 ≥ 6 GiB 时追踪者直接起 |
+| ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览（九老洞、敦煌地宫、长白山洞…） | codex xhigh | **05:29 起跑**（驱动 35115，基点 a9f12fd2） |
 | ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录（瓷器 / 茶具、玉器、香炉铜器、琴、书法拜帖、笔…，书中宝物 + 史载物件）与 Gemini 提示词 | codex xhigh | 等 DES-items-gifts-spec（暂停）+ TOOL-catalog-9col |
 
 做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接 `_handoff/art_wave2_tracker_brief.md`；审核要点 `.agents/coord/PROD/review_checks_hero.md`（第 1 条已容许白马 / 侠客 / 鸳鸯不用剧照）/ `review_checks_ruins.md` / `review_checks_city.md`。审核模型写 `--review-model gpt-5.6-sol`（Codex 不认大写）。
@@ -193,7 +193,7 @@
 
 **停住 / 在等**：
 - **des34 的 DES-items-lore-1～8**（武器 A/B、秘籍 A/B、食品、药品、衣甲鞋带、饰品暗器）：被七列校验器拦住（00:34），协调者 00:40 停驱动免得执行器把名录改回七列。TOOL-catalog-9col（校验器与生成器认九列，过渡期七九列都认）第 2 次运行已修掉审核唯一问题（`sxpGrant` 对象形式强制 `mode=pctNext`），03:16 复审中；合入后开发监督按 `_handoff/lore_plan.md` 逐个挪基点复验（1 / 3 / 5 / 6 `--from validate`，7 / 8 `--from start`，说明写「保持九列」），lore-2 / 4 由 des34 自动起；全部合入后 TOOL-items-catalog `--from start` 重新生成并提交 `content/items`（AR-39）。
-- **des36 的 DES-items-gifts-spec**（礼品规格：吉运 / 送礼好感 / 年代字段）：HOLD-RUNS，续作条件同 CITY（磁盘 ≥ 8 GiB 且负载 < 10）。
+- **des36 的 DES-items-gifts-spec**（礼品规格：吉运 / 送礼好感 / 年代字段）：05:30 已续作（单独驱动，auto-merge）；合入后 ART-items-gifts-catalog 还要等 TOOL-catalog-9col。
 
 **待办**：
 - [x] **DES-sync-keyscenes-ar36**（9b43b497，05:19 合入，r1 PASS）：`key-scenes.md` §0、§16–17 的旧统计（每书恰 7 / 合计 102 / 只准 approved 参考）改成 AR-36 候选生产口径；ch01～07 各条按 hero-a 报告 §6 修正（聚贤庄新图与题字、雁门等待标记改已解决、张家口乞儿装、桃岛背诵经文、重阳杨过断右臂、梅庄 / 少林偏殿三战、长乐李四掷凳、金蛇洞铁盒等）；`story/07` §2.2 「十四岁发现铁盒、约十年后下山」措辞；design/18 孙婆婆 / 蒙哥 ID 核查。hero-b 的 ch08～14 条目、`story/09` 制衣方向、`npcs-ch09` 铃剑双侠（水笙与汪啸风）、`npcs-ch08` 顺治 / 风际中主记录核查也在任务说明里。
