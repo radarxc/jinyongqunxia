@@ -952,3 +952,9 @@
       - ENG-18b 工作区的基点早于 19a、没有这个测试，暂不受影响；若它以后挪基点，同样先重建。
     - ENG-18b r1 审核 FAIL（04:47），原因属实：占位图缓存目录 `.cache/tiled-placeholders/` 不在 gitignore 里。不是旧 dist 或旧基点类的误导，返修所需文件都在写集内，eng3 自动返修。
 
+  - **10-03 05:04–05:13 协调者**：
+    - **ENG-18b 合入**（3ef22aaf，05:09）：r1 FAIL → 返修 5 分钟 → HOLD-REVIEWS 由 eng3 自动重起复审（一次 REVIEW-ERROR 后重试）→ r3 PASS。Tiled 区域地图管线进集成分支，ART-ruins-maps 的依赖满足；追踪者建议等 CITY 合入且负载 < 10 再起，协调者同意（满足即起，不再请示）。
+    - **ENG-17**：重建工作区 dist 后校验通过（04:56，此前是 `build-shell.test` 读旧 dist 误报），复审 r3 PASS（05:07），驱动 18342 正在 finish + 合入。
+    - **TOOL-catalog-9col**：返修第 4 次运行（Sol）在改写 `test_items_from_catalog.py` 后模型停滞、进程消失，驱动按次数用尽停 HOLD-RUNS（05:09）。05:10 用 `coord_note_0512.md` 另起 `--from start --model GPT-5.6-Sol --max-runs 2 --auto-merge --stall-min 30`（pid 27447，`supervise.r3.out`）：只做 r2 返修说明（双写检查要求可复算键必须出现并相等 + 回归测试 + 报告）。
+    - CITY 收尾运行 25 分钟结束，校验通过（332 个文件），复审中；DES-sync-keyscenes-ar36 第 2 次运行结束，校验通过，审核中。
+    - 资源：磁盘 6.4 GiB、负载 14.8、交换区仍 33.8 GB 用满。
