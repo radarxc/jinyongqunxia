@@ -1,0 +1,53 @@
+- id: por_npc_zhujue__ch00_m_charmhigh_threeview
+  file: por_npc_zhujue__ch00_m_charmhigh_threeview.png
+  category: character/male/threeview
+  style: default
+  subject: 主角·男 高魅力形象三视图（front34 | side | back34，A 字姿势、空手、纯色背景）
+  prompt: 'Image 1 is the approved full-body portrait of this character: the male protagonist in his "high charm" look, a handsome Chinese swordsman of about 25. Use it for identity (face, age, body type), hairstyle and the exact costume (colors, layers, trims, belt, sash, bracers, boots). Image 2 is an older turnaround sheet of the same man in a different, plain outfit: use it ONLY for the layout (three figures side by side, spacing, scale, plain background, A-pose); do NOT copy its green tunic, beige trousers, older face or leg wraps — the costume and the face come from image 1.
+
+
+    IDENTITY ANCHORS, copied exactly from image 1 and identical in every view: (a) the same handsome clean-shaven face as image 1, thick neat sword-shaped brows, bright steady eyes; black hair gathered in a high top-knot bound with a dark cloth band, a short vermilion-red cord tied at the base of the knot, a few loose strands at the temples; (b) a fitted dark ink-navy (near black) Han crossed-collar martial jacket, right-lapped, hip length with side slits, narrow sleeves, the collar and hems edged with a dull silver-grey meander (key-fret) trim, a thin white inner collar showing at the neck; (c) a dark brown leather belt over a deep wine-red cloth waist sash, the sash ends hanging at the front, a small plain white jade disc pendant with a red tassel hanging from the belt; (d) dark brown leather bracers on both forearms; (e) dark trousers gathered at the calf, black high cloth boots bound with dark straps. Tall, broad-shouldered, lean athletic adult build, about 7.5 heads tall.
+
+
+    TASK: a clean CHARACTER TURNAROUND MODEL SHEET of this same person for 3D multi-view modeling. Exactly THREE full-body figures side by side, left to right:
+
+    (1) FRONT THREE-QUARTER: body turned 45° toward the viewer''s LEFT, face and chest visible; the character''s LEFT shoulder, arm and leg are nearer to the viewer (they appear on the right side of this figure).
+
+    (2) LEFT-FACING SIDE PROFILE: the character faces the left edge of the image in a true 90° profile; the character''s LEFT side is toward the viewer.
+
+    (3) BACK THREE-QUARTER: facing away toward the upper-left; back of head, top-knot and back visible; the character''s LEFT side is nearer to the viewer (it appears on the left side of this figure).
+
+    All three figures face the LEFT side of the image.
+
+
+    POSE identical in all three: neutral A-pose, arms straight and held about 20–30° away from the body so the armpits show background; palms toward the thighs, fingers relaxed and slightly apart; legs straight, feet shoulder-width apart, both soles on one common ground line; head level. Hands EMPTY: the sword from image 1 is a separate prop and is NOT on this sheet (no sword, no scabbard).
+
+
+    CONSISTENCY: same height (crown and soles aligned), same scale, same costume details in every view; Han crossed collar right-lapped (wearer''s left panel over right) in every view; never mirror a view.
+
+
+    STYLE: same refined realistic hand-painted rendering as image 1; soft even diffuse light from the upper left; muted colors; crisp silhouette edges. Hand-painted illustration texture, not a CG render: no overly smooth skin, no perfectly symmetrical features, no plastic highlights, no over-sharpened hair strands; keep natural brushwork and slight imperfections. Adult proportions.
+
+
+    LAYOUT: plain flat uniform warm light-grey background (#E6E1D8); no texture, ink wash, scenery, ground plane, cast shadow, vignette or frame; at least 6% empty margin around and between figures; orthographic eye-level view, no perspective distortion. Wide landscape 3:2 canvas, 1536×1024 pixels.
+
+
+    EXCLUDE: text, labels, arrows, grids, color swatches, extra views, close-ups, duplicate figures, transparent/checkerboard background, weapons, cape, armor.'
+  negative: text, labels, arrows, grids, color swatches, extra views, close-ups, duplicate figures, transparent/checkerboard background, weapons, cape, armor.
+  references:
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_charmhigh_base.png
+    sha256: 887a1a127f88a5cc99dc94e59cff510424ee0f19f1144d85a4cbb2f8a7ab2731
+    use: 身份与服装：作者选定的男主角高魅力 base（上传 1536 长边 JPEG）
+  - path: assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png
+    sha256: 2f356901dfab4c10e9353c2231089214a51ebaa5a9a5f20d1c4fc097b57f23e1
+    use: 版式参考：现有男主角三视图（只借三人并排、比例、纯色背景与 A 字姿势）
+  tool: codex exec · image_gen（以高魅力 base 为身份与服装来源、现有 sheet_L 只借版式，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T16:55:29-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhujue__ch00_m_charmhigh_threeview.t4.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 3116792c96381a0a248119a46c87016c348a8bbd04d780d403c195dcd1323bdd
+  status: candidate
+  notes: AR-45 高魅力三视图，供 Tripo 多视图；依据作者 16:50 选定的 por_npc_zhujue__ch00_m_charmhigh_base（同脸同服饰，长剑作单独道具不画）

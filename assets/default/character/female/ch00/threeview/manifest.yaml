@@ -1,0 +1,89 @@
+- id: por_npc_zhujue__ch00_f_charmhigh_threeview
+  file: por_npc_zhujue__ch00_f_charmhigh_threeview.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 高魅力形象三视图（front34 | side | back34，A 字姿势、空手、纯色背景）
+  prompt: 'Image 1 is the approved full-body portrait of this character: the female protagonist in her "high charm" look, a Chinese woman of about 22. Use it for identity (face, age, body type), hairstyle and the exact costume (colors, layers, trims, sash, shawl, shoes). Image 2 is a turnaround sheet of a DIFFERENT character: use it ONLY for the layout (three figures side by side, spacing, scale, plain background, A-pose); never copy that man''s face, body, hair or costume.
+
+
+    IDENTITY ANCHORS, copied exactly from image 1 and identical in every view: (a) the same beautiful gentle face, small mole under her eye on the same side as in image 1, black hair half-up: one loose bun on the crown with a plain white jade hairpin and a short vermilion-red cord at the base of the bun, the rest of the long straight hair falling down the back to the waist, a few loose strands at the temples; (b) moon-white (warm off-white) Han crossed-collar robe with wide flowing sleeves, right-lapped, over a white inner robe; (c) a pale silver-grey silk sash tied at the front waist in a simple knot with two long ends hanging down; (d) a floor-length white skirt with two or three layers of light gauze; (e) a very thin white shawl ribbon (pibo) draped over both forearms; (f) plain white cloth shoes. Slender graceful adult build, about 7.5 heads tall.
+
+
+    TASK: a clean CHARACTER TURNAROUND MODEL SHEET of this same person for 3D multi-view modeling. Exactly THREE full-body figures side by side, left to right:
+
+    (1) FRONT THREE-QUARTER: body turned 45° toward the viewer''s LEFT, face and chest visible; the character''s LEFT shoulder, arm and leg are nearer to the viewer (they appear on the right side of this figure).
+
+    (2) LEFT-FACING SIDE PROFILE: the character faces the left edge of the image in a true 90° profile; the character''s LEFT side is toward the viewer.
+
+    (3) BACK THREE-QUARTER: facing away toward the upper-left; back of head and back visible, the long hair falling down her back; the character''s LEFT side is nearer to the viewer (it appears on the left side of this figure).
+
+    All three figures face the LEFT side of the image.
+
+
+    POSE identical in all three: neutral relaxed A-pose, arms straight and held about 20–30° away from the body so the background shows between the arms and the body; the wide sleeves and the shawl ribbon hang straight down under gravity (NO wind, nothing flying), close to the body but not merging with it; palms toward the thighs, fingers relaxed; feet together about hip-width, both shoe tips visible under the skirt hem, both soles on one common ground line; head level. Hands EMPTY (no prop).
+
+
+    CONSISTENCY: same height (crown and soles aligned), same scale, same costume details in every view; Han crossed collar right-lapped (wearer''s left panel over right) in every view; never mirror a view. Opaque fabrics (no see-through), clean readable silhouettes and layers.
+
+
+    STYLE: same refined realistic hand-painted rendering as image 1; soft even diffuse light from the upper left; muted colors; crisp silhouette edges. Hand-painted illustration texture, not a CG render: no overly smooth skin, no perfectly symmetrical features, no plastic highlights, no over-sharpened hair strands; keep natural brushwork and slight imperfections. Adult proportions, no childlike face or body.
+
+
+    LAYOUT: plain flat uniform warm light-grey background (#E6E1D8); no texture, ink wash, scenery, ground plane, cast shadow, vignette or frame; at least 6% empty margin around and between figures; orthographic eye-level view, no perspective distortion. Wide landscape 3:2 canvas, 1536×1024 pixels.
+
+
+    EXCLUDE: text, labels, arrows, grids, color swatches, extra views, close-ups, duplicate figures, transparent/checkerboard background, weapons, flying ribbons or wind effects.'
+  negative: text, labels, arrows, grids, color swatches, extra views, close-ups, duplicate figures, transparent/checkerboard background, weapons, flying ribbons or wind effects.
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_charmhigh_base.png
+    sha256: f97acc0e803a522c73a6cb42325afc7969c6ff4428fc4495a63def176f9c698f
+    use: 身份与服装：作者选定的女主角高魅力 base（上传 1536 长边 JPEG）
+  - path: assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png
+    sha256: 2f356901dfab4c10e9353c2231089214a51ebaa5a9a5f20d1c4fc097b57f23e1
+    use: 版式参考：男主角三视图（只借版式，不取人物）
+  tool: codex exec · image_gen（以高魅力 base 为身份与服装来源、男主角 sheet_L 只借版式，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T16:55:31-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhujue__ch00_f_charmhigh_threeview.t3.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 77e014df790336fb6e474fc8138f477146ce97d936886eb47a08d447fc8532a9
+  status: candidate
+  notes: AR-45 高魅力三视图，供 Tripo 多视图；依据作者 16:50 选定的 por_npc_zhujue__ch00_f_charmhigh_base（同脸同服饰，披帛垂落不飘）；绑骨用同目录 _apose_slim
+- id: por_npc_zhujue__ch00_f_charmhigh_apose_slim
+  file: por_npc_zhujue__ch00_f_charmhigh_apose_slim.png
+  category: character/female/tripo_ref
+  style: default
+  subject: 主角·女 高魅力形象窄轮廓 A 字姿势全身参考：同脸，白衣改束袖、直筒窄裙、露鞋尖
+  prompt: '【任务】这是一张供 3D 建模自动绑骨使用的「窄轮廓」A 字姿势全身参考图。第 1 张参考图是本项目已定稿的女主角（高魅力形象）立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感、右侧脸颊眼下的小痣）、同样的发髻和发饰（半挽单髻、白玉簪、髻根朱红细绳，长发收在身后），衣服的颜色、面料和衣缘纹样沿用第 1 张，但剪裁改成便于绑骨的窄轮廓。
+
+    【服饰（窄轮廓）】月白色交领右衽上衣（内衬白色中衣），衣身合体；袖子改成束袖：袖口在手腕处收紧（或挽到小臂），整条手臂的轮廓清楚，袖子不下垂成大片、不外扩；腰间系浅银灰色丝绦；下身白色纱裙改成收窄的直筒长裙，裙摆宽度不超过肩宽，长到脚踝上方，露出两只鞋的鞋尖，裙内可以露出一点白色裤腿；没有飘带、披帛、长拖尾或任何外飘的布条。整个人的外轮廓肩宽、脚窄，或上下差不多宽，绝不能是下摆外扩的三角形。
+
+    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前。
+
+    【头发】长发全部收到身后，从背后垂下，不搭在肩前，不盖住手臂和手。
+
+    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+
+    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
+
+    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
+  negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_charmhigh_base.png
+    sha256: f97acc0e803a522c73a6cb42325afc7969c6ff4428fc4495a63def176f9c698f
+    use: 底图：作者选定的女主角高魅力 base（上传 1536 长边 JPEG）
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__charm_f_final.jpg
+    sha256: 96372aabade6f77719d4a6a825b0fa986138057053a02705bd70d967cbad5243
+    use: 同一 base 的脸部特写
+  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T16:55:32-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhujue__ch00_f_charmhigh_apose_slim.a2.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 03fb303d923325cf4e22d7dab040e6d746558276b42fe201442aaf3dec77c4c8
+  status: candidate
+  notes: 绑骨用的窄轮廓版 A 字姿势参考（女角 _apose_slim 口径）；依据作者 16:50 选定的 por_npc_zhujue__ch00_f_charmhigh_base（同脸，眼下小痣保留）；AR-45
