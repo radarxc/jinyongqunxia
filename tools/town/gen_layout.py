@@ -122,8 +122,9 @@ def generate_layout(spec, source_path="<memory>", source_bytes=None):
         building["entrance_hexes"] = [dict(q=h[0],r=h[1])]
     walkable = masks["walkable"]-occupied
     all_roads = road_union(roads)
-    primary = next(g for g in spec["gates"] if g["primary"])
-    connected = component(walkable,point(primary["at"]))
+    primary = next((g for g in spec["gates"] if g["primary"]), None)
+    root_cell = point(primary["at"]) if primary else min(all_roads, key=lambda p: (p[1], p[0]))
+    connected = component(walkable, root_cell)
     if any(point(b["entrance_cells"][0]) not in connected for b in buildings):
         raise GenerationError("TOWN_ENTRANCE_UNREACHABLE","最终规划入口断连","buildings")
     if len(components(all_roads)) != 1:
@@ -155,7 +156,7 @@ def generate_layout(spec, source_path="<memory>", source_bytes=None):
     layout = dict(schema_version="town.layout.v1",kind="TownLayout",
         source_spec=dict(path=str(source_path),sha256=hashlib.sha256(raw).hexdigest(),
                          city_id=spec["city_id"],chapter_id=spec["chapter_id"],seed=spec["seed"]),
-        generator=dict(name="town-gen",version="1.4.0",rng="pcg32-xsh-rr-64-32",algorithm_revision=6,
+        generator=dict(name="town-gen",version="1.5.0",rng="pcg32-xsh-rr-64-32",algorithm_revision=7,
                        root_seed_u64=f"0x{rng_root:016x}"),grid=spec["grid"],runtime_partition=spec["runtime_partition"],
         ground_cells=ground_layer(spec,winners,roads,masks,walkable,rng_root),
         roads={rid:cells_to_json(cells) for rid,cells in sorted(roads.items())},

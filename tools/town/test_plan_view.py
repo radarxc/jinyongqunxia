@@ -12,7 +12,7 @@ import xml.etree.ElementTree as ET
 from PIL import Image
 
 from common import TownError, canonical_bytes, cells_to_json, geometry_masks
-from plan_view import COLORS, find_font, main, plan_point, render_plan
+from plan_view import COLORS, find_font, history_reference, main, plan_point, render_plan
 from test_town import small_spec
 
 
@@ -38,6 +38,19 @@ def fixture():
 
 
 class PlanViewTests(unittest.TestCase):
+    def test_history_header_uses_city_specific_reference(self):
+        spec, layout = fixture()
+        spec.update(city_id="city_luoyang", historical_year=702, era_kit="tang")
+        spec["design_intent"]["notes"] = [
+            "复原依据：history/city_luoyang__tang_702.md（原创扩展）。"]
+        self.assertEqual(history_reference(spec), "city_luoyang__tang_702.md")
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "plan.svg"
+            render_plan(spec, layout, output, cell_px=10)
+            text = output.read_text(encoding="utf-8")
+            self.assertIn("history/city_luoyang__tang_702.md", text)
+            self.assertNotIn("history/linan.md", text)
+
     def test_north_and_east_directions(self):
         southwest = plan_point(0, 0, 64)
         northeast = plan_point(64, 64, 64)

@@ -18,7 +18,7 @@ from common import (HexGrid, PCG32, ROOT, TownError, bridge_rectangle,
                     cells_from_json, connected, entrance_path, gate_cells,
                     geometry_masks, hexes_from_json, load_yaml, polyline_cells,
                     rectangle, root_seed, substream, supercover)
-from check_town import validate_layout, validate_spec
+from check_town import check_fixed_geometry, validate_layout, validate_spec
 from render_town import (autotile_mask, building_sort_key, normalize_mask,
                          project, render_layout)
 from roads import GenerationError, connect_path, width_two_edge
@@ -50,7 +50,7 @@ def small_spec():
                      "points": [{"x": 32, "z": 4}, {"x": 32, "z": 58}],
                      "surface": "dirt_road", "priority": 100, "basis": basis}],
         "rivers": [{"id": "test_stream", "width_cells": 2,
-                    "points": [{"x": 4, "z": 32}, {"x": 60, "z": 32}],
+                    "points": [{"x": 8, "z": 32}, {"x": 56, "z": 32}],
                     "flow": "east", "navigable": False, "basis": basis}],
         "bridges": [{"id": "bridge_main_axis", "at": {"x": 32, "z": 32},
                      "river_ref": "test_stream", "road_ref": "main_north_south",
@@ -75,6 +75,179 @@ def small_spec():
 
 
 class ContractTests(unittest.TestCase):
+    def test_declared_water_gates_open_wall_and_undeclared_crossings_fail(self):
+        spec = small_spec()
+        spec["rivers"][0]["points"] = [{"x": 0, "z": 32}, {"x": 63, "z": 32}]
+        basis = "测试水门（原创扩展）"
+        spec["water_gates"] = [
+            {"id": "west_water_gate", "wall_ref": "outer", "kind": "water_gate",
+             "side": "west", "at": {"x": 4, "z": 32}, "width_cells": 4,
+             "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 90,
+             "footprint_cells": {"w": 8, "h": 4},
+             "passage_cells": {"w": 4, "h": 4}, "basis": basis},
+            {"id": "east_water_gate", "wall_ref": "outer", "kind": "water_gate",
+             "side": "east", "at": {"x": 60, "z": 32}, "width_cells": 4,
+             "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 270,
+             "footprint_cells": {"w": 8, "h": 4},
+             "passage_cells": {"w": 4, "h": 4}, "basis": basis}]
+        masks = geometry_masks(spec)
+        self.assertFalse(masks["wall"] & masks["water"] - masks["water_passages"])
+        self.assertNotIn("TOWN_GATE_ON_WATER",
+                         {row["code"] for row in check_fixed_geometry(spec, masks)})
+        undeclared = copy.deepcopy(spec)
+        undeclared["water_gates"].pop()
+        undeclared_masks = geometry_masks(undeclared)
+        issues = [row for row in check_fixed_geometry(undeclared, undeclared_masks)
+                  if row["code"] == "TOWN_WALL_WATER_UNDECLARED"]
+        expected = undeclared_masks["wall"] & undeclared_masks["water"] \
+                   - undeclared_masks["water_passages"]
+        self.assertEqual(len(issues), len(expected))
+        self.assertTrue(all(f"共 {len(expected)} 格" in row["message"] for row in issues))
+
+    def test_multiple_walls_share_cells_and_gate_belongs_to_named_wall(self):
+        spec = small_spec()
+        del spec["wall"]
+        basis = "测试城垣（原创扩展）"
+        spec["walls"] = [
+            {"id": "west_city", "role": "outer",
+             "polygon": {"points": [{"x": 4, "z": 4}, {"x": 32, "z": 4},
+                                        {"x": 32, "z": 60}, {"x": 4, "z": 60}]},
+             "inside_margin_cells": 2, "basis": basis},
+            {"id": "east_city", "role": "inner",
+             "polygon": {"points": [{"x": 32, "z": 4}, {"x": 60, "z": 4},
+                                        {"x": 60, "z": 60}, {"x": 32, "z": 60}]},
+             "inside_margin_cells": 2, "basis": basis},
+        ]
+        spec["gates"][0]["wall_ref"] = "west_city"
+        masks = geometry_masks(spec)
+        summed = sum(len(cells) for cells in masks["walls"].values())
+        self.assertLess(len(masks["wall"]), summed)
+        self.assertIn((32, 20), masks["walls"]["west_city"] & masks["walls"]["east_city"])
+        self.assertNotIn("TOWN_GATE_WALL_REF", {row["code"] for row in validate_spec(spec)})
+        spec["gates"][0]["wall_ref"] = "missing_wall"
+        self.assertIn("TOWN_GATE_WALL_REF", {row["code"] for row in validate_spec(spec)})
+
+    def test_water_gate_opens_only_its_named_wall(self):
+        spec = small_spec()
+        del spec["wall"]
+        basis = "测试命名水门归属（原创扩展）"
+        spec["walls"] = [
+            {"id": "west_city", "role": "outer",
+             "polygon": {"points": [{"x": 4, "z": 4}, {"x": 32, "z": 4},
+                                        {"x": 32, "z": 60}, {"x": 4, "z": 60}]},
+             "inside_margin_cells": 2, "basis": basis},
+            {"id": "east_city", "role": "inner",
+             "polygon": {"points": [{"x": 32, "z": 4}, {"x": 60, "z": 4},
+                                        {"x": 60, "z": 60}, {"x": 32, "z": 60}]},
+             "inside_margin_cells": 2, "basis": basis},
+        ]
+        spec["gates"][0]["wall_ref"] = "west_city"
+        spec["rivers"][0]["points"] = [{"x": 0, "z": 32}, {"x": 63, "z": 32}]
+        spec["water_gates"] = [{
+            "id": "west_city_water_gate", "wall_ref": "west_city",
+            "kind": "water_gate", "side": "east", "at": {"x": 32, "z": 32},
+            "width_cells": 4, "asset_type": "tex_town_song_dali_city_gate",
+            "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4},
+            "passage_cells": {"w": 4, "h": 4}, "basis": basis,
+        }]
+        masks = geometry_masks(spec)
+        issues = [row for row in check_fixed_geometry(spec, masks)
+                  if row["code"] == "TOWN_WALL_WATER_UNDECLARED"]
+        shared_water = (masks["walls"]["east_city"] & masks["water"]
+                        & masks["water_passages"])
+        self.assertTrue(shared_water)
+        reported = {(row["at"]["x"], row["at"]["z"]) for row in issues}
+        self.assertTrue(shared_water <= reported)
+
+    def test_named_wall_ids_are_stable_and_unique(self):
+        spec = small_spec()
+        del spec["wall"]
+        wall = {"id": "same_wall", "role": "outer",
+                "polygon": {"points": [{"x": 4, "z": 4}, {"x": 60, "z": 4},
+                                           {"x": 60, "z": 60}, {"x": 4, "z": 60}]},
+                "inside_margin_cells": 2, "basis": "测试城垣（原创扩展）"}
+        spec["walls"] = [copy.deepcopy(wall), copy.deepcopy(wall)]
+        issues = validate_schema(spec, "CitySpec")
+        self.assertIn("TOWN_SCHEMA_DUPLICATE_ID", {row["code"] for row in issues})
+        spec["walls"][1]["id"] = "Inner Wall"
+        issues = validate_schema(spec, "CitySpec")
+        self.assertIn("TOWN_SCHEMA_RANGE", {row["code"] for row in issues})
+
+    def test_walls_none_uses_full_bounds_and_allows_no_gate(self):
+        spec = small_spec()
+        del spec["wall"]
+        spec["walls"] = "none"
+        spec["gates"] = []
+        spec["rivers"] = []
+        spec["bridges"] = []
+        masks = geometry_masks(spec)
+        self.assertEqual(masks["wall"], set())
+        self.assertEqual(masks["interior"], masks["bounds"])
+        self.assertEqual(masks["margin"], masks["bounds"])
+        self.assertNotIn("TOWN_GATE_PRIMARY", {row["code"] for row in validate_spec(spec)})
+
+    def test_walls_none_pipeline_uses_main_axis_as_navigation_root(self):
+        from gen_layout import generate_layout
+        spec = small_spec()
+        del spec["wall"]
+        spec["walls"] = "none"
+        spec["gates"] = []
+        spec["rivers"] = []
+        spec["bridges"] = []
+        layout, stats = generate_layout(spec)
+        self.assertTrue(stats["complete"])
+        self.assertFalse([row for row in validate_layout(spec, layout, check_assets=False)
+                          if row["severity"] == "error"])
+
+    def test_tang_xiyu_tubo_are_valid_era_kits(self):
+        for era in ("tang", "xiyu", "tubo"):
+            spec = small_spec()
+            spec["era_kit"] = era
+            spec["gates"][0]["asset_type"] = f"tex_town_{era}_city_gate"
+            for gate in spec.get("water_gates", []):
+                gate["asset_type"] = f"tex_town_{era}_city_gate"
+            self.assertNotIn("TOWN_SCHEMA_ENUM",
+                             {row["code"] for row in validate_schema(spec, "CitySpec")})
+
+    def test_era_kit_asset_fallback_is_explicit(self):
+        from assets import AssetLibrary
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            Image.new("RGBA", (64, 32), (120, 90, 60, 255)).save(directory / "tile.png")
+            manifest = directory / "manifest.yaml"
+            manifest.write_bytes(canonical_bytes({"assets": [
+                {"id": "tex_town_song_southern_rammed_earth", "file": "tile.png"},
+                {"id": "tex_town_song_dali_rammed_earth", "file": "tile.png"},
+            ]}))
+            library = AssetLibrary(manifest)
+            for era, owner in (("tang", "song_southern"), ("xiyu", "song_dali"),
+                               ("tubo", "song_dali")):
+                requested = f"tex_town_{era}_rammed_earth"
+                found = library.resolve(requested)
+                self.assertIsNotNone(found)
+                self.assertIn(f"era-kit-fallback:{requested}->tex_town_{owner}_rammed_earth",
+                              found[1]["adaptations"])
+
+    def test_tang_bridge_fallback_selects_the_available_native_rotation(self):
+        from assets import AssetLibrary
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            Image.new("RGBA", (64, 32), (120, 90, 60, 255)).save(directory / "bridge-0.png")
+            Image.new("RGBA", (64, 32), (120, 90, 60, 255)).save(directory / "bridge-90.png")
+            manifest = directory / "manifest.yaml"
+            manifest.write_bytes(canonical_bytes({"assets": [
+                {"id": "tex_town_song_dali_bridge_deck", "file": "bridge-0.png",
+                 "rotation_deg": 0},
+                {"id": "tex_town_song_southern_bridge_deck", "file": "bridge-90.png",
+                 "rotation_deg": 90},
+            ]}))
+            found = AssetLibrary(manifest).resolve("tex_town_tang_bridge_deck", rotation_deg=0)
+            self.assertIsNotNone(found)
+            self.assertIn(
+                "shared-bridge-view:tex_town_song_southern_bridge_deck->"
+                "tex_town_song_dali_bridge_deck", found[1]["adaptations"]
+            )
+
     def test_pcg_reference_vectors(self):
         generator = PCG32(42, 54)
         self.assertEqual([generator.next() for _ in range(6)],

@@ -183,17 +183,27 @@ def polyline_water(river):
 
 def map_entrances(spec, masks, grid, buildings, occupied, roads):
     """重采样真实碰撞；入口预留包含七点，不用道路标签伪装修复。"""
+    from common import wall_spec
     walkable = masks["walkable"] - occupied
     hexes = grid.walkable(walkable)
-    primary = next(g for g in spec["gates"] if g["primary"])
-    wall_points = spec["wall"]["polygon"]["points"]
-    root = grid.gate_hex(primary, hexes, masks["interior"], roads[primary["road_ref"]], masks["passages"], wall_points=wall_points)
+    primary = next((g for g in spec["gates"] if g["primary"]), None)
+    if primary:
+        owner = wall_spec(spec, primary.get("wall_ref"))
+        wall_points = owner["polygon"]["points"] if owner else None
+        root = grid.gate_hex(primary, hexes, masks["interior"], roads[primary["road_ref"]],
+                             masks["passages"], wall_points=wall_points)
+    else:
+        root_cell = min(road_union(roads), key=lambda p: (p[1], p[0]))
+        root = grid.entrance_hex(root_cell, hexes, walkable, radius=2)
     if root is None:
         return None
     connected = grid.connected(hexes, root)
     reserved, mapped = set(), []
     for gate in spec["gates"]:
-        h = grid.gate_hex(gate, hexes, masks["interior"], roads[gate["road_ref"]], masks["passages"], connected, wall_points=wall_points)
+        owner = wall_spec(spec, gate.get("wall_ref"))
+        wall_points = owner["polygon"]["points"] if owner else None
+        h = grid.gate_hex(gate, hexes, masks["interior"], roads[gate["road_ref"]],
+                          masks["passages"], connected, wall_points=wall_points)
         if h is None:
             return None
         reserved |= grid.samples[h]

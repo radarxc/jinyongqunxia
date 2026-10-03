@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+from functools import lru_cache
+from io import BytesIO
 from pathlib import Path
 import re
+import subprocess
 from typing import Any
 
 import yaml
@@ -20,6 +23,42 @@ SHARED_TILE_OWNER = {"rammed_earth": "song_dali", "dirt_road": "song_dali",
                      "stone_slab": "song_southern", "water": "song_southern",
                      "riverbank": "song_dali", "road_edge": "song_southern",
                      "shadow_soft": "song_dali"}
+
+
+@lru_cache(maxsize=None)
+def _git_blob(path: Path) -> bytes | None:
+    """Read an index blob skipped by a sparse checkout; never mask real missing files."""
+    try:
+        relative = path.resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        return None
+    try:
+        tracked = subprocess.run(
+            ["git", "ls-files", "-t", "--", relative], cwd=ROOT, check=False,
+            stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+        )
+        if tracked.returncode != 0 or not tracked.stdout.startswith(b"S " + relative.encode()):
+            return None
+        result = subprocess.run(
+            ["git", "show", f":{relative}"], cwd=ROOT, check=False,
+            stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+        )
+    except OSError:
+        return None
+    return result.stdout if result.returncode == 0 else None
+
+
+def _read_bytes(path: Path) -> bytes:
+    if path.exists():
+        return path.read_bytes()
+    blob = _git_blob(path)
+    if blob is None:
+        raise FileNotFoundError(path)
+    return blob
+
+
+def _available(path: Path) -> bool:
+    return path.exists() or _git_blob(path) is not None
 
 
 def _normalize(record: dict) -> dict:
@@ -76,7 +115,7 @@ def _file(base: Path, value: str) -> Path:
     if candidate.is_absolute():
         return candidate
     local = base / candidate
-    return local if local.exists() else ROOT / candidate
+    return local if _available(local) else ROOT / candidate
 
 
 class AssetLibrary:
@@ -94,15 +133,15 @@ class AssetLibrary:
         self._composites: dict[tuple[str, int], tuple[Image.Image, dict]] = {}
         self._load(self.path)
         props = self.path.parent / "props/manifest.yaml"
-        if props.exists():
+        if _available(props):
             self._load(props)
 
     def _load(self, path: Path) -> None:
-        if not path.exists():
+        if not _available(path):
             self.warnings.add(f"manifest 不存在：{path}")
             return
         try:
-            entries = _entries(yaml.safe_load(path.read_text(encoding="utf-8")))
+            entries = _entries(yaml.safe_load(_read_bytes(path).decode("utf-8")))
         except (OSError, ValueError, yaml.YAMLError) as exc:
             self.warnings.add(f"manifest 读取失败：{path}：{exc}")
             return
@@ -119,7 +158,7 @@ class AssetLibrary:
                 metadata = entry.get("metadata", entry.get("meta", entry.get("meta_file")))
                 if isinstance(metadata, str):
                     meta_path = _file(base, metadata)
-                    meta = yaml.safe_load(meta_path.read_text(encoding="utf-8"))
+                    meta = yaml.safe_load(_read_bytes(meta_path).decode("utf-8"))
                     if not isinstance(meta, dict):
                         raise ValueError(f"{meta_path} 不是元数据映射")
                     merged = dict(entry, **meta)
@@ -178,13 +217,23 @@ class AssetLibrary:
         candidates = self._candidates(asset_id)
         if candidates:
             return candidates, []
+        fallback = {"tang": "song_southern", "xiyu": "song_dali", "tubo": "song_dali"}
+        requested = re.fullmatch(r"tex_town_(tang|xiyu|tubo)_(.+)", asset_id)
+        adaptations = []
+        if requested:
+            target = f"tex_town_{fallback[requested[1]]}_{requested[2]}"
+            candidates = self._candidates(target)
+            if candidates:
+                return candidates, [f"era-kit-fallback:{asset_id}->{target}"]
+            asset_id = target
+            adaptations.append(f"era-kit-fallback:{requested[0]}->{target}")
         match = re.fullmatch(r"tex_town_(song_dali|song_southern)_(.+)", asset_id)
         if match and match[2] in SHARED_TILE_OWNER:
             owner = SHARED_TILE_OWNER[match[2]]
             target = f"tex_town_{owner}_{match[2]}"
             candidates = self._candidates(target)
             if candidates:
-                return candidates, [f"shared-material:{asset_id}->{target}"]
+                return candidates, adaptations + [f"shared-material:{asset_id}->{target}"]
         return [], []
 
     def _read(self, chosen: dict, label: str) -> Image.Image | None:
@@ -196,7 +245,8 @@ class AssetLibrary:
         path = next((p for p in paths if p.exists()), _file(chosen["_base"], file_name))
         try:
             if path not in self._images:
-                with Image.open(path) as image:
+                source = path if path.exists() else BytesIO(_read_bytes(path))
+                with Image.open(source) as image:
                     if image.mode != "RGBA":
                         raise ValueError("贴片 / 建筑必须为 RGBA 图像")
                     self._images[path] = image.copy()
@@ -289,20 +339,27 @@ class AssetLibrary:
         candidates = [c for c in candidates if c.get("status") != "rejected"]
         if mask is not None:
             exact = [c for c in candidates if c.get("mask") == mask]
-            if not exact and re.fullmatch(r"tex_town_song_(dali|southern)_(riverbank|road_edge)", asset_id):
+            if not exact and re.fullmatch(r"tex_town_(?:song_(?:dali|southern)|tang|xiyu|tubo)_(riverbank|road_edge)", asset_id):
                 if composed := self._compose_edges(asset_id, mask, candidates):
                     return self._finish(*composed, asset_id, adaptations, rotation_deg)
             candidates = exact
         if rotation_deg is not None:
             exact = [c for c in candidates if c.get("rotation_deg", 0) == rotation_deg]
-            bridge = re.fullmatch(r"tex_town_(song_dali|song_southern)_(bridge_deck|bridge_rail)", asset_id)
+            bridge = re.fullmatch(
+                r"tex_town_(song_dali|song_southern|tang|xiyu|tubo)_(bridge_deck|bridge_rail)",
+                asset_id,
+            )
             if not exact and bridge and rotation_deg in (0, 90):
                 owner = "song_dali" if rotation_deg == 0 else "song_southern"
                 target = f"tex_town_{owner}_{bridge[2]}"
                 exact = [c for c in self._candidates(target)
                          if c.get("rotation_deg", 0) == rotation_deg and c.get("status") != "rejected"]
                 if exact:
-                    adaptations.append(f"shared-bridge-view:{asset_id}->{target}")
+                    source_era = {"tang": "song_southern", "xiyu": "song_dali",
+                                  "tubo": "song_dali"}.get(bridge[1], bridge[1])
+                    source = f"tex_town_{source_era}_{bridge[2]}"
+                    if source != target:
+                        adaptations.append(f"shared-bridge-view:{source}->{target}")
             if not exact and rotation_deg in (0, 90, 180, 270):
                 # Buildings require their actual requested camera view: reusing
                 # 0 degrees changes both entrances and nonsquare footprints.

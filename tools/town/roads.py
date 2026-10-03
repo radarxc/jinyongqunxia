@@ -152,10 +152,13 @@ def prepare_roads(spec, masks, winners, fixed_blocked):
     roads = {key: set(value) for key, value in masks["roads"].items()}
     connectors = []
     zones = {z["id"]: z for z in spec["zones"]}
-    primary = next(g for g in spec["gates"] if g["primary"])
-    root = primary["at"]["x"], primary["at"]["z"]
     main = road_union({s["id"]: roads[s["id"]] for s in spec["streets"]
                        if s["class"] == "main_axis"})
+    primary = next((g for g in spec["gates"] if g["primary"]), None)
+    root = ((primary["at"]["x"], primary["at"]["z"]) if primary else
+            min(main, key=lambda p: (p[1], p[0])) if main else None)
+    if root is None:
+        raise GenerationError("TOWN_ROAD_PRIMARY_DISCONNECTED", "无墙营地仍须有主轴作为道路根", "streets")
     if root not in main:
         raise GenerationError("TOWN_ROAD_PRIMARY_DISCONNECTED", "主门未接主轴", "streets", root)
     all_roads = road_union(roads)

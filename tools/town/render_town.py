@@ -60,7 +60,8 @@ def footprint_corners(building: dict) -> list[tuple[float, float]]:
 
 def visible_wall_cells(spec: dict, cells: set[tuple[int, int]]) -> set[tuple[int, int]]:
     """The Dali temple envelope is a planning boundary, not an excavated wall."""
-    if spec.get("city_id") == "city_dali" and "游戏包络" in spec["wall"].get("basis", ""):
+    if (spec.get("city_id") == "city_dali" and "wall" in spec
+            and "游戏包络" in spec["wall"].get("basis", "")):
         north = next(g for g in spec["gates"] if g["side"] == "north")["at"]["z"]
         return {(x, z) for x, z in cells if z <= north}
     return cells
@@ -386,15 +387,15 @@ class Painter:
 
     def objects(self) -> None:
         try:
-            from .common import gate_cells, polyline_cells
+            from .common import gate_cells, polyline_cells, wall_specs
             from .seam_assembly import WallAssembly
         except ImportError:
-            from common import gate_cells, polyline_cells
+            from common import gate_cells, polyline_cells, wall_specs
             from seam_assembly import WallAssembly
-        gates = self.spec.get("gates", [])
+        gates = [*self.spec.get("gates", []), *self.spec.get("water_gates", [])]
         covered = set().union(*(gate_cells(gate) for gate in gates))
-        vertices = self.spec["wall"]["polygon"]["points"]
-        all_wall = polyline_cells(vertices, vertices=True, closed=True) - covered
+        all_wall = set().union(*(polyline_cells(wall["polygon"]["points"], vertices=True,
+                                                closed=True) for wall in wall_specs(self.spec))) - covered
         wall = visible_wall_cells(self.spec, all_wall)
         walls = WallAssembly(self, wall, covered)
         # Nonphysical planning envelopes belong only in planning views, never the PNG.
@@ -492,7 +493,7 @@ def write_overlay(layout: dict, spec: dict, path: Path, image_path: Path,
         if points:
             lines.append(f'<polyline points="{coords([(p["x"]+.5,p["z"]+.5) for p in points])}" '
                          'stroke="#ffad00" stroke-width="4"/>')
-    for field in ("bridges", "gates"):
+    for field in ("bridges", "gates", "water_gates"):
         for item in spec.get(field, []):
             lines.append(text_at(item["at"]["x"], item["at"]["z"], item["id"], "#214d7a"))
     lines.append('</g><g id="buildings">')

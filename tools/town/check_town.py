@@ -133,7 +133,7 @@ def validate_spec(spec):
     result = validate_schema(spec, "CitySpec")
     if result:
         return result
-    from common import catalog, geometry_masks, in_polygon, polygon_cells, rectangle
+    from common import catalog, geometry_masks, in_polygon, polygon_cells, rectangle, wall_specs
     result += source_checks(spec)
     entries = catalog()
     zones = {z["id"]: z for z in spec["zones"]}
@@ -153,13 +153,15 @@ def validate_spec(spec):
             for i, child in enumerate(value):
                 check_points(child, f"{path}[{i}]")
     check_points(spec)
-    for group in ("gates", "streets", "rivers", "lakes", "bridges", "zones", "landmarks", "building_quotas"):
+    for group in ("gates", "water_gates", "streets", "rivers", "lakes", "bridges", "zones", "landmarks", "building_quotas"):
         key = "type" if group == "building_quotas" else "id"
         if len({row[key] for row in spec.get(group, [])}) != len(spec.get(group, [])):
             add("TOWN_GEOMETRY_DUPLICATE_ID", "局部键重复", group)
     if rivers.keys() & lakes.keys():
         add("TOWN_GEOMETRY_DUPLICATE_ID", "河流与湖体共用局部 ID，不能重名", "lakes")
-    polygons = [("wall.polygon", spec["wall"]["polygon"]["points"])]
+    walls = wall_specs(spec)
+    polygons = [(f"walls[{i}].polygon", wall["polygon"]["points"])
+                for i, wall in enumerate(walls)]
     polygons += [(f"lakes[{i}].polygon", lake["polygon"]["points"])
                  for i, lake in enumerate(spec.get("lakes", []))]
     for i, zone in enumerate(spec["zones"]):
@@ -174,7 +176,8 @@ def validate_spec(spec):
         else:
             polygons.append((path + ".geometry.polygon", geometry["polygon"]["points"]))
             vertices = geometry["polygon"]["points"]
-        if any(not in_polygon(p, spec["wall"]["polygon"]["points"]) for p in vertices):
+        if walls and any(not any(in_polygon(p, wall["polygon"]["points"]) for wall in walls)
+                         for p in vertices):
             add("TOWN_GEOMETRY_ZONE_OUTSIDE_WALL", "分区区框不得越墙或静默裁剪", path + ".geometry")
         mix = zone["ground_mix"]
         if sum(mix.values()) != 100 or any(k not in {"rammed_earth", "grey_brick", "stone_slab", "dirt_road", "grass", "bridge_deck"}
@@ -230,9 +233,15 @@ def validate_spec(spec):
         add("TOWN_ID_REF_SCENE", "街区分带需要相同数量、不重复、已登记的 sc_* 引用", "runtime_partition.formal_scene_refs")
     if not spec["book_world"].startswith(spec["chapter_id"] + "_"):
         add("TOWN_ID_REF_CHAPTER", "book_world 须属于 chapter_id", "book_world")
-    if sum(g["primary"] for g in spec["gates"]) != 1:
-        add("TOWN_GATE_PRIMARY", "必须恰有一个 primary 城门", "gates")
+    wall_ids = {wall["id"] for wall in walls}
+    if walls and sum(g["primary"] for g in spec["gates"]) != 1:
+        add("TOWN_GATE_PRIMARY", "有墙城镇必须恰有一个 primary 城门", "gates")
+    if not walls and any(g["primary"] for g in spec["gates"]):
+        add("TOWN_GATE_PRIMARY", "无墙营地不得声明 primary 城门", "gates")
     for i, gate in enumerate(spec["gates"]):
+        wall_ref = gate.get("wall_ref", "outer" if "wall" in spec else None)
+        if wall_ref not in wall_ids:
+            add("TOWN_GATE_WALL_REF", f"城门引用不存在的城垣 {wall_ref}", f"gates[{i}].wall_ref")
         if gate["road_ref"] not in streets:
             add("TOWN_ID_REF_ROAD", "城门引用不存在的道路", f"gates[{i}]")
         w = gate["width_cells"]
@@ -241,6 +250,15 @@ def validate_spec(spec):
                 or gate["rotation_deg"] != {"south": 0, "west": 90, "north": 180, "east": 270}[gate["side"]]
                 or gate["asset_type"] != "tex_town_" + spec["era_kit"] + "_city_gate"):
             add("TOWN_GATE_GEOMETRY", "门楼占地、孔宽、方向或资产 ID 不符合契约", f"gates[{i}]")
+    for i, gate in enumerate(spec.get("water_gates", [])):
+        if gate["wall_ref"] not in wall_ids:
+            add("TOWN_GATE_WALL_REF", f"水门引用不存在的城垣 {gate['wall_ref']}", f"water_gates[{i}].wall_ref")
+        w = gate["width_cells"]
+        if (gate["footprint_cells"] != {"w": w + 4, "h": 4}
+                or gate["passage_cells"] != {"w": w, "h": 4}
+                or gate["rotation_deg"] != {"south": 0, "west": 90, "north": 180, "east": 270}[gate["side"]]
+                or gate["asset_type"] != "tex_town_" + spec["era_kit"] + "_city_gate"):
+            add("TOWN_GATE_GEOMETRY", "水门门楼占地、孔宽、方向或回退资产 ID 不符合契约", f"water_gates[{i}]")
     for i, bridge in enumerate(spec["bridges"]):
         if bridge["road_ref"] not in streets or bridge["river_ref"] not in rivers.keys() | lakes.keys():
             add("TOWN_ID_REF_BRIDGE", "桥引用不存在的道路/河流或湖体", f"bridges[{i}]")
@@ -253,15 +271,15 @@ def validate_spec(spec):
         return sort_issues(result)
     masks = geometry_masks(spec)
     result += check_fixed_geometry(spec, masks)
-    primary = next(g for g in spec["gates"] if g["primary"])
+    primary = next((g for g in spec["gates"] if g["primary"]), None)
     main_roads = set().union(*(masks["roads"][s["id"]] for s in spec["streets"] if s["class"] == "main_axis"))
-    if (primary["at"]["x"], primary["at"]["z"]) not in main_roads:
+    if primary and (primary["at"]["x"], primary["at"]["z"]) not in main_roads:
         add("TOWN_ROAD_PRIMARY_DISCONNECTED", "主门 at 不在阶段 B 主轴格集合", "streets", primary["at"])
     return sort_issues(result)
 
 
 def check_fixed_geometry(spec, masks):
-    from common import catalog, gate_cells, rectangle, zone_winners, segment_distance
+    from common import catalog, gate_cells, rectangle, zone_winners, segment_distance, wall_spec
     from roads import GenerationError, bridge_footprint_cells, planning_bridge_groups
     result, occupied = [], set()
     bridge_footprints = bridge_footprint_cells(masks)
@@ -272,9 +290,12 @@ def check_fixed_geometry(spec, masks):
         footprint = gate_cells(gate)
         at = (gate["at"]["x"], gate["at"]["z"])
         road = masks["roads"][gate["road_ref"]]
-        if at not in masks["wall"]:
+        owner = wall_spec(spec, gate.get("wall_ref"))
+        owner_cells = masks["walls"].get(owner["id"], set()) if owner else set()
+        owner_interior = masks["wall_interiors"].get(owner["id"], set()) if owner else set()
+        if at not in owner_cells:
             add("TOWN_GATE_OFF_WALL", "城门锚点没有落在墙栅格", f"gates[{i}]", {at})
-        if not (passage & masks["interior"] and passage - masks["interior"]):
+        if owner and not (passage & owner_interior and passage - owner_interior):
             add("TOWN_GATE_PASSAGE", "城门通行孔没有跨墙", f"gates[{i}]")
         if not passage & {n for p in road for n in [p, *neighbors(p)]}:
             add("TOWN_GATE_PASSAGE", "城门通行孔未接指定路", f"gates[{i}]")
@@ -282,6 +303,25 @@ def check_fixed_geometry(spec, masks):
             add("TOWN_GATE_ON_WATER", "城门楼/孔压水", f"gates[{i}]", footprint & masks["water"])
         if not passage <= footprint:
             add("TOWN_GATE_PASSAGE", "通行孔超出门楼占地", f"gates[{i}]")
+    for i, gate in enumerate(spec.get("water_gates", [])):
+        passage, footprint = gate_cells(gate, True), gate_cells(gate)
+        at = (gate["at"]["x"], gate["at"]["z"])
+        owner = wall_spec(spec, gate["wall_ref"])
+        owner_cells = masks["walls"].get(owner["id"], set()) if owner else set()
+        water = masks["water"]
+        if at not in owner_cells:
+            add("TOWN_GATE_OFF_WALL", "水门锚点没有落在指定墙栅格", f"water_gates[{i}]", {at})
+        if at not in water or not (owner_cells & water & passage):
+            add("TOWN_WATER_GATE_PASSAGE", "水门锚点与孔须落在指定墙水交界", f"water_gates[{i}]", {at})
+        if not passage <= footprint:
+            add("TOWN_GATE_PASSAGE", "水门通行孔超出门楼占地", f"water_gates[{i}]")
+    undeclared = set().union(*(
+        cells & masks["water"] - masks["water_passages_by_wall"].get(wall_id, set())
+        for wall_id, cells in masks["walls"].items()
+    ))
+    total = len(undeclared)
+    for cell in sorted(undeclared, key=lambda p: (p[1], p[0])):
+        add("TOWN_WALL_WATER_UNDECLARED", f"墙水相交未由水门声明；共 {total} 格", "water_gates", {cell})
     try:
         planning_bridge_groups(spec["bridges"])
     except GenerationError as exc:
@@ -633,7 +673,7 @@ def check_layout_details(spec, layout, masks, road_map, walk, footprints):
 
 
 def check_hex(spec, layout, masks, road_map, walk):
-    from common import HexGrid
+    from common import HexGrid, wall_spec
     result = []
     grid = HexGrid(spec["grid"]["width"], spec["grid"]["height"])
     expected = grid.walkable(walk)
@@ -644,14 +684,20 @@ def check_hex(spec, layout, masks, road_map, walk):
         result.append(issue("TOWN_HEX_SAMPLE_MISMATCH", "六角走/挡全集必须按中心与六顶点重采样", "walk_layer"))
     primary = next((g for g in spec["gates"] if g["primary"]), None)
     if primary is None:
-        return result
-    root = grid.gate_hex(primary, expected, masks["interior"], road_map.get(primary["road_ref"], set()),
-                         masks["passages"], wall_points=spec["wall"]["polygon"]["points"])
+        roads = set().union(*road_map.values()) if road_map else set()
+        root = grid.entrance_hex(min(roads, key=lambda p: (p[1], p[0])), expected, walk, radius=2) if roads else None
+    else:
+        owner = wall_spec(spec, primary.get("wall_ref"))
+        points_ = owner["polygon"]["points"] if owner else None
+        root = grid.gate_hex(primary, expected, masks["interior"], road_map.get(primary["road_ref"], set()),
+                             masks["passages"], wall_points=points_)
     connected = grid.connected(expected, root) if root else set()
     for i, gate in enumerate(spec["gates"]):
+        owner = wall_spec(spec, gate.get("wall_ref"))
+        points_ = owner["polygon"]["points"] if owner else None
         selected = grid.gate_hex(gate, expected, masks["interior"], road_map.get(gate["road_ref"], set()),
                                 masks["passages"], component=connected,
-                                wall_points=spec["wall"]["polygon"]["points"])
+                                wall_points=points_)
         if selected is None:
             result.append(issue("TOWN_GATE_HEX_UNREACHABLE", "城门无主门分量内的合法六角入口", f"gates[{i}]", gate["at"]))
     for i, building in enumerate(layout["buildings"]):
@@ -714,7 +760,7 @@ def validate_assets(spec, layout, strict=False, tile_manifest=None, building_man
     from assets import AssetLibrary
     from edge_assembly import shore_bank_masks
     from render_town import autotile_mask, visible_wall_cells
-    from common import gate_cells, polyline_cells
+    from common import gate_cells, polyline_cells, wall_specs
     result = []
     severity = "error" if strict else "warning"
     tiles = AssetLibrary(tile_manifest or ROOT / "assets/default/baseline/tile/manifest.yaml")
@@ -735,7 +781,7 @@ def validate_assets(spec, layout, strict=False, tile_manifest=None, building_man
                         result.append(issue("TOWN_BUILDING_VIEW_FOOTPRINT",
                             f"{building['id']} 视图底面 {size} 与布局 {building['size']} 不符",
                             "assets.buildings", severity=severity))
-    for gate in spec["gates"]:
+    for gate in [*spec["gates"], *spec.get("water_gates", [])]:
         asset = tiles.resolve(gate["asset_type"], rotation_deg=gate["rotation_deg"], width_cells=gate["width_cells"])
         if asset is None:
             result.append(issue("TOWN_ASSET_MISSING", f"完整城门变体缺失 {gate['id']}", "assets.gates", severity=severity))
@@ -754,9 +800,9 @@ def validate_assets(spec, layout, strict=False, tile_manifest=None, building_man
                               for x, z in cells if (mask := autotile_mask(x, z, cells)) & 85 != 85)
     required_tiles.update((f"tex_town_{spec['era_kit']}_riverbank", mask, None)
                           for mask in shore_bank_masks(water_cells, set(ground_map)).values())
-    wall_points = spec["wall"]["polygon"]["points"]
-    covered = set().union(*(gate_cells(g) for g in spec["gates"]))
-    wall = polyline_cells(wall_points, vertices=True, closed=True) - covered
+    covered = set().union(*(gate_cells(g) for g in [*spec["gates"], *spec.get("water_gates", [])]))
+    wall = set().union(*(polyline_cells(row["polygon"]["points"], vertices=True, closed=True)
+                         for row in wall_specs(spec))) - covered
     if visible_wall_cells(spec, wall):
         # WallAssembly reprojects native face materials onto the cell union;
         # it never places the old doubled corner or borrows a rotated wall.

@@ -752,659 +752,634 @@ decorations:
   id: dec_0001
 - asset_id: prp_song_dali_grass
   at:
-    x: 79
+    x: 85
     z: 45
   id: dec_0002
 - asset_id: prp_song_dali_grass
   at:
-    x: 23
-    z: 46
+    x: 86
+    z: 45
   id: dec_0003
 - asset_id: prp_song_dali_grass
   at:
-    x: 24
+    x: 23
     z: 46
   id: dec_0004
 - asset_id: prp_song_dali_grass
   at:
-    x: 78
+    x: 24
     z: 46
   id: dec_0005
 - asset_id: prp_song_dali_grass
   at:
-    x: 79
+    x: 85
     z: 46
   id: dec_0006
 - asset_id: prp_song_dali_grass
   at:
-    x: 78
-    z: 47
+    x: 86
+    z: 46
   id: dec_0007
 - asset_id: prp_song_dali_grass
   at:
-    x: 79
+    x: 86
     z: 47
   id: dec_0008
 - asset_id: prp_song_dali_grass
   at:
-    x: 112
+    x: 150
     z: 47
   id: dec_0009
 - asset_id: prp_song_dali_grass
   at:
-    x: 112
+    x: 150
     z: 48
   id: dec_0010
 - asset_id: prp_song_dali_grass
   at:
-    x: 115
-    z: 49
+    x: 49
+    z: 50
   id: dec_0011
 - asset_id: prp_song_dali_grass
   at:
-    x: 116
-    z: 49
+    x: 50
+    z: 50
   id: dec_0012
 - asset_id: prp_song_dali_grass
   at:
-    x: 21
+    x: 145
     z: 50
   id: dec_0013
 - asset_id: prp_song_dali_grass
   at:
-    x: 61
-    z: 50
+    x: 35
+    z: 51
   id: dec_0014
 - asset_id: prp_song_dali_grass
   at:
-    x: 62
-    z: 50
+    x: 36
+    z: 51
   id: dec_0015
 - asset_id: prp_song_dali_grass
   at:
-    x: 115
-    z: 50
+    x: 49
+    z: 51
   id: dec_0016
 - asset_id: prp_song_dali_grass
   at:
-    x: 116
-    z: 50
+    x: 50
+    z: 51
   id: dec_0017
 - asset_id: prp_song_dali_grass
   at:
-    x: 21
+    x: 145
     z: 51
   id: dec_0018
 - asset_id: prp_song_dali_grass
   at:
-    x: 61
-    z: 51
+    x: 35
+    z: 52
   id: dec_0019
 - asset_id: prp_song_dali_grass
   at:
-    x: 62
-    z: 51
+    x: 36
+    z: 52
   id: dec_0020
 - asset_id: prp_song_dali_grass
   at:
-    x: 145
-    z: 51
+    x: 36
+    z: 53
   id: dec_0021
 - asset_id: prp_song_dali_grass
   at:
-    x: 90
-    z: 52
+    x: 149
+    z: 53
   id: dec_0022
 - asset_id: prp_song_dali_grass
   at:
-    x: 91
-    z: 52
+    x: 150
+    z: 53
   id: dec_0023
 - asset_id: prp_song_dali_grass
   at:
-    x: 145
-    z: 52
+    x: 36
+    z: 54
   id: dec_0024
 - asset_id: prp_song_dali_grass
   at:
-    x: 91
-    z: 53
+    x: 150
+    z: 54
   id: dec_0025
 - asset_id: prp_song_dali_grass
   at:
-    x: 35
-    z: 54
+    x: 68
+    z: 55
   id: dec_0026
 - asset_id: prp_song_dali_grass
   at:
-    x: 50
-    z: 54
+    x: 69
+    z: 55
   id: dec_0027
 - asset_id: prp_song_dali_grass
   at:
-    x: 91
-    z: 54
+    x: 126
+    z: 55
   id: dec_0028
 - asset_id: prp_song_dali_grass
   at:
-    x: 35
+    x: 150
     z: 55
   id: dec_0029
 - asset_id: prp_song_dali_grass
   at:
-    x: 49
-    z: 55
+    x: 126
+    z: 56
   id: dec_0030
 - asset_id: prp_song_dali_grass
   at:
-    x: 50
-    z: 55
+    x: 147
+    z: 56
   id: dec_0031
 - asset_id: prp_song_dali_grass
   at:
-    x: 116
-    z: 55
+    x: 126
+    z: 57
   id: dec_0032
 - asset_id: prp_song_dali_grass
   at:
-    x: 117
-    z: 55
+    x: 146
+    z: 57
   id: dec_0033
 - asset_id: prp_song_dali_grass
   at:
-    x: 118
-    z: 55
+    x: 147
+    z: 57
   id: dec_0034
 - asset_id: prp_song_dali_grass
   at:
-    x: 117
-    z: 56
+    x: 146
+    z: 58
   id: dec_0035
 - asset_id: prp_song_dali_grass
   at:
-    x: 118
-    z: 56
+    x: 147
+    z: 58
   id: dec_0036
 - asset_id: prp_song_dali_grass
   at:
-    x: 119
-    z: 56
+    x: 10
+    z: 59
   id: dec_0037
 - asset_id: prp_song_dali_grass
   at:
-    x: 119
-    z: 57
+    x: 10
+    z: 60
   id: dec_0038
 - asset_id: prp_song_dali_grass
   at:
-    x: 120
-    z: 57
+    x: 11
+    z: 60
   id: dec_0039
 - asset_id: prp_song_dali_grass
   at:
-    x: 90
-    z: 59
+    x: 99
+    z: 61
   id: dec_0040
 - asset_id: prp_song_dali_grass
   at:
-    x: 12
-    z: 60
+    x: 46
+    z: 62
   id: dec_0041
 - asset_id: prp_song_dali_grass
   at:
-    x: 13
-    z: 60
+    x: 47
+    z: 62
   id: dec_0042
 - asset_id: prp_song_dali_grass
   at:
-    x: 90
-    z: 60
+    x: 99
+    z: 62
   id: dec_0043
 - asset_id: prp_song_dali_grass
   at:
-    x: 12
-    z: 61
+    x: 46
+    z: 63
   id: dec_0044
 - asset_id: prp_song_dali_grass
   at:
-    x: 13
-    z: 61
+    x: 47
+    z: 63
   id: dec_0045
 - asset_id: prp_song_dali_grass
   at:
-    x: 31
-    z: 64
+    x: 65
+    z: 65
   id: dec_0046
 - asset_id: prp_song_dali_grass
   at:
-    x: 30
-    z: 65
+    x: 64
+    z: 66
   id: dec_0047
 - asset_id: prp_song_dali_grass
   at:
-    x: 31
-    z: 65
+    x: 65
+    z: 66
   id: dec_0048
 - asset_id: prp_song_dali_grass
   at:
-    x: 22
-    z: 66
+    x: 45
+    z: 67
   id: dec_0049
 - asset_id: prp_song_dali_grass
   at:
-    x: 23
-    z: 66
+    x: 46
+    z: 67
   id: dec_0050
 - asset_id: prp_song_dali_grass
   at:
-    x: 30
-    z: 66
+    x: 64
+    z: 67
   id: dec_0051
 - asset_id: prp_song_dali_grass
   at:
-    x: 31
-    z: 66
+    x: 65
+    z: 67
   id: dec_0052
 - asset_id: prp_song_dali_grass
   at:
-    x: 22
-    z: 67
+    x: 45
+    z: 68
   id: dec_0053
 - asset_id: prp_song_dali_grass
   at:
-    x: 23
-    z: 67
+    x: 46
+    z: 68
   id: dec_0054
 - asset_id: prp_song_dali_grass
   at:
-    x: 15
-    z: 68
+    x: 126
+    z: 76
   id: dec_0055
 - asset_id: prp_song_dali_grass
   at:
-    x: 16
-    z: 68
+    x: 126
+    z: 77
   id: dec_0056
 - asset_id: prp_song_dali_grass
   at:
-    x: 124
-    z: 83
+    x: 149
+    z: 85
   id: dec_0057
 - asset_id: prp_song_dali_grass
   at:
-    x: 34
-    z: 84
+    x: 85
+    z: 86
   id: dec_0058
 - asset_id: prp_song_dali_grass
   at:
-    x: 35
-    z: 84
+    x: 149
+    z: 86
   id: dec_0059
 - asset_id: prp_song_dali_grass
   at:
-    x: 36
-    z: 84
+    x: 84
+    z: 87
   id: dec_0060
 - asset_id: prp_song_dali_grass
   at:
-    x: 124
-    z: 84
+    x: 85
+    z: 87
   id: dec_0061
 - asset_id: prp_song_dali_grass
   at:
-    x: 35
-    z: 85
+    x: 90
+    z: 87
   id: dec_0062
 - asset_id: prp_song_dali_grass
   at:
-    x: 36
-    z: 85
+    x: 142
+    z: 87
   id: dec_0063
 - asset_id: prp_song_dali_grass
   at:
-    x: 111
-    z: 85
+    x: 143
+    z: 87
   id: dec_0064
 - asset_id: prp_song_dali_grass
   at:
-    x: 16
-    z: 86
+    x: 144
+    z: 87
   id: dec_0065
 - asset_id: prp_song_dali_grass
   at:
-    x: 41
-    z: 86
+    x: 78
+    z: 88
   id: dec_0066
 - asset_id: prp_song_dali_grass
   at:
-    x: 110
-    z: 86
+    x: 84
+    z: 88
   id: dec_0067
 - asset_id: prp_song_dali_grass
   at:
-    x: 111
-    z: 86
+    x: 85
+    z: 88
   id: dec_0068
 - asset_id: prp_song_dali_grass
   at:
-    x: 126
-    z: 86
+    x: 89
+    z: 88
   id: dec_0069
 - asset_id: prp_song_dali_grass
   at:
-    x: 15
-    z: 87
+    x: 90
+    z: 88
   id: dec_0070
 - asset_id: prp_song_dali_grass
   at:
-    x: 16
-    z: 87
+    x: 143
+    z: 88
   id: dec_0071
 - asset_id: prp_song_dali_grass
   at:
-    x: 41
-    z: 87
+    x: 144
+    z: 88
   id: dec_0072
 - asset_id: prp_song_dali_grass
   at:
-    x: 42
-    z: 87
+    x: 17
+    z: 89
   id: dec_0073
 - asset_id: prp_song_dali_grass
   at:
-    x: 110
-    z: 87
+    x: 77
+    z: 89
   id: dec_0074
 - asset_id: prp_song_dali_grass
   at:
-    x: 111
-    z: 87
+    x: 78
+    z: 89
   id: dec_0075
 - asset_id: prp_song_dali_grass
   at:
-    x: 126
-    z: 87
+    x: 17
+    z: 90
   id: dec_0076
 - asset_id: prp_song_dali_grass
   at:
-    x: 127
-    z: 87
+    x: 46
+    z: 90
   id: dec_0077
 - asset_id: prp_song_dali_grass
   at:
-    x: 135
-    z: 87
+    x: 77
+    z: 90
   id: dec_0078
 - asset_id: prp_song_dali_grass
   at:
-    x: 136
-    z: 87
+    x: 78
+    z: 90
   id: dec_0079
 - asset_id: prp_song_dali_grass
   at:
-    x: 137
-    z: 87
+    x: 45
+    z: 91
   id: dec_0080
 - asset_id: prp_song_dali_grass
   at:
-    x: 15
-    z: 88
+    x: 46
+    z: 91
   id: dec_0081
 - asset_id: prp_song_dali_grass
   at:
     x: 16
-    z: 88
+    z: 92
   id: dec_0082
 - asset_id: prp_song_dali_grass
   at:
-    x: 21
-    z: 88
+    x: 17
+    z: 92
   id: dec_0083
 - asset_id: prp_song_dali_grass
   at:
     x: 45
-    z: 88
+    z: 92
   id: dec_0084
 - asset_id: prp_song_dali_grass
   at:
     x: 46
-    z: 88
+    z: 92
   id: dec_0085
 - asset_id: prp_song_dali_grass
   at:
-    x: 126
-    z: 88
+    x: 49
+    z: 92
   id: dec_0086
 - asset_id: prp_song_dali_grass
   at:
-    x: 127
-    z: 88
+    x: 50
+    z: 92
   id: dec_0087
 - asset_id: prp_song_dali_grass
   at:
-    x: 128
-    z: 88
+    x: 16
+    z: 93
   id: dec_0088
 - asset_id: prp_song_dali_grass
   at:
-    x: 136
-    z: 88
+    x: 17
+    z: 93
   id: dec_0089
 - asset_id: prp_song_dali_grass
   at:
-    x: 137
-    z: 88
+    x: 21
+    z: 93
   id: dec_0090
 - asset_id: prp_song_dali_grass
   at:
-    x: 18
-    z: 89
+    x: 50
+    z: 93
   id: dec_0091
 - asset_id: prp_song_dali_grass
   at:
     x: 21
-    z: 89
+    z: 94
   id: dec_0092
 - asset_id: prp_song_dali_grass
   at:
-    x: 45
-    z: 89
+    x: 42
+    z: 94
   id: dec_0093
 - asset_id: prp_song_dali_grass
   at:
-    x: 46
-    z: 89
+    x: 50
+    z: 94
   id: dec_0094
 - asset_id: prp_song_dali_grass
   at:
-    x: 59
-    z: 89
+    x: 72
+    z: 94
   id: dec_0095
 - asset_id: prp_song_dali_grass
   at:
-    x: 60
-    z: 89
+    x: 73
+    z: 94
   id: dec_0096
 - asset_id: prp_song_dali_grass
   at:
-    x: 18
-    z: 90
+    x: 21
+    z: 95
   id: dec_0097
 - asset_id: prp_song_dali_grass
   at:
-    x: 19
-    z: 90
+    x: 42
+    z: 95
   id: dec_0098
 - asset_id: prp_song_dali_grass
   at:
-    x: 21
-    z: 90
+    x: 43
+    z: 95
   id: dec_0099
 - asset_id: prp_song_dali_grass
   at:
-    x: 59
-    z: 90
+    x: 72
+    z: 95
   id: dec_0100
 - asset_id: prp_song_dali_grass
   at:
-    x: 60
-    z: 90
+    x: 73
+    z: 95
   id: dec_0101
 - asset_id: prp_song_dali_grass
   at:
-    x: 40
-    z: 91
+    x: 18
+    z: 96
   id: dec_0102
 - asset_id: prp_song_dali_grass
   at:
-    x: 40
-    z: 92
+    x: 18
+    z: 97
   id: dec_0103
 - asset_id: prp_song_dali_grass
   at:
-    x: 41
-    z: 92
+    x: 19
+    z: 97
   id: dec_0104
 - asset_id: prp_song_dali_grass
   at:
-    x: 44
-    z: 94
+    x: 40
+    z: 99
   id: dec_0105
 - asset_id: prp_song_dali_grass
   at:
-    x: 85
-    z: 94
+    x: 70
+    z: 99
   id: dec_0106
 - asset_id: prp_song_dali_grass
   at:
-    x: 44
-    z: 95
+    x: 31
+    z: 100
   id: dec_0107
 - asset_id: prp_song_dali_grass
   at:
-    x: 45
-    z: 95
+    x: 40
+    z: 100
   id: dec_0108
 - asset_id: prp_song_dali_grass
   at:
-    x: 85
-    z: 95
+    x: 41
+    z: 100
   id: dec_0109
 - asset_id: prp_song_dali_grass
   at:
-    x: 86
-    z: 95
+    x: 70
+    z: 100
   id: dec_0110
 - asset_id: prp_song_dali_grass
   at:
-    x: 9
-    z: 96
+    x: 71
+    z: 100
   id: dec_0111
 - asset_id: prp_song_dali_grass
   at:
-    x: 9
-    z: 97
+    x: 31
+    z: 101
   id: dec_0112
 - asset_id: prp_song_dali_grass
   at:
-    x: 10
-    z: 97
+    x: 32
+    z: 101
   id: dec_0113
 - asset_id: prp_song_dali_grass
   at:
-    x: 20
-    z: 98
+    x: 67
+    z: 101
   id: dec_0114
 - asset_id: prp_song_dali_grass
   at:
-    x: 20
-    z: 99
+    x: 67
+    z: 102
   id: dec_0115
 - asset_id: prp_song_dali_grass
   at:
-    x: 29
-    z: 100
+    x: 22
+    z: 103
   id: dec_0116
 - asset_id: prp_song_dali_grass
   at:
-    x: 64
-    z: 100
+    x: 49
+    z: 103
   id: dec_0117
 - asset_id: prp_song_dali_grass
   at:
-    x: 28
-    z: 101
+    x: 21
+    z: 104
   id: dec_0118
 - asset_id: prp_song_dali_grass
   at:
-    x: 29
-    z: 101
+    x: 22
+    z: 104
   id: dec_0119
 - asset_id: prp_song_dali_grass
   at:
-    x: 62
-    z: 101
+    x: 47
+    z: 104
   id: dec_0120
 - asset_id: prp_song_dali_grass
   at:
-    x: 64
-    z: 101
+    x: 49
+    z: 104
   id: dec_0121
 - asset_id: prp_song_dali_grass
   at:
-    x: 28
-    z: 102
+    x: 21
+    z: 105
   id: dec_0122
 - asset_id: prp_song_dali_grass
   at:
-    x: 29
-    z: 102
+    x: 22
+    z: 105
   id: dec_0123
 - asset_id: prp_song_dali_grass
   at:
-    x: 61
-    z: 102
+    x: 46
+    z: 105
   id: dec_0124
 - asset_id: prp_song_dali_grass
   at:
-    x: 62
-    z: 102
+    x: 47
+    z: 105
   id: dec_0125
 - asset_id: prp_song_dali_grass
   at:
-    x: 61
-    z: 103
+    x: 46
+    z: 106
   id: dec_0126
 - asset_id: prp_song_dali_grass
   at:
-    x: 62
-    z: 103
+    x: 47
+    z: 106
   id: dec_0127
-- asset_id: prp_song_dali_grass
-  at:
-    x: 65
-    z: 103
-  id: dec_0128
-- asset_id: prp_song_dali_grass
-  at:
-    x: 64
-    z: 104
-  id: dec_0129
-- asset_id: prp_song_dali_grass
-  at:
-    x: 65
-    z: 104
-  id: dec_0130
-- asset_id: prp_song_dali_grass
-  at:
-    x: 64
-    z: 105
-  id: dec_0131
-- asset_id: prp_song_dali_grass
-  at:
-    x: 65
-    z: 105
-  id: dec_0132
 generated_connectors:
 - cells:
   - x: 30
@@ -1601,18 +1576,40 @@ generated_connectors:
 - cells:
   - x: 119
     z: 52
-  - x: 118
-    z: 52
-  - x: 117
-    z: 52
-  - x: 116
-    z: 52
-  - x: 115
-    z: 52
-  - x: 114
-    z: 52
-  - x: 113
-    z: 52
+  - x: 119
+    z: 51
+  - x: 119
+    z: 50
+  - x: 119
+    z: 49
+  - x: 120
+    z: 49
+  - x: 121
+    z: 49
+  - x: 122
+    z: 49
+  - x: 123
+    z: 49
+  - x: 124
+    z: 49
+  - x: 125
+    z: 49
+  - x: 126
+    z: 49
+  - x: 127
+    z: 49
+  - x: 128
+    z: 49
+  - x: 129
+    z: 49
+  - x: 130
+    z: 49
+  - x: 131
+    z: 49
+  - x: 132
+    z: 49
+  - x: 133
+    z: 49
   from:
     x: 119
     z: 52
@@ -1620,8 +1617,8 @@ generated_connectors:
   reason: required_entrance_unconnected
   surface: dirt_road
   to:
-    x: 113
-    z: 52
+    x: 133
+    z: 49
   width_cells: 2
   zone_ref: zone_east_houses
 - cells:
@@ -1643,11 +1640,11 @@ generated_connectors:
   width_cells: 2
   zone_ref: zone_office
 generator:
-  algorithm_revision: 6
+  algorithm_revision: 7
   name: town-gen
   rng: pcg32-xsh-rr-64-32
   root_seed_u64: '0x524a0930312d2b3d'
-  version: 1.4.0
+  version: 1.5.0
 grid:
   cell_m: 1
   chunk_cells: 32
@@ -2309,11 +2306,29 @@ ground_cells:
     overlay: null
     walkable: false
 - - 7261
-  - 39
+  - 26
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: true
+- - 7287
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7289
+  - 9
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 7298
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
 - - 7300
   - 6
   - elevation_m: 0
@@ -2321,7 +2336,25 @@ ground_cells:
     overlay: null
     walkable: false
 - - 7306
-  - 23
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7308
+  - 7
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 7315
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7317
+  - 12
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -2405,11 +2438,29 @@ ground_cells:
     overlay: null
     walkable: false
 - - 7421
-  - 39
+  - 26
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: true
+- - 7447
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7449
+  - 9
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 7458
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
 - - 7460
   - 6
   - elevation_m: 0
@@ -2417,7 +2468,25 @@ ground_cells:
     overlay: null
     walkable: false
 - - 7466
-  - 23
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7468
+  - 7
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 7475
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7477
+  - 12
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -2477,7 +2546,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 7578
-  - 42
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 7607
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7609
+  - 11
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -2489,7 +2570,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 7626
-  - 27
+  - 9
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 7635
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7637
+  - 16
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -2525,7 +2618,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 7738
-  - 42
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 7767
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7769
+  - 11
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -2537,13 +2642,25 @@ ground_cells:
     overlay: null
     walkable: false
 - - 7786
-  - 27
+  - 9
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: true
-- - 7813
-  - 4
+- - 7795
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7797
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 7799
+  - 18
   - elevation_m: 0
     ground: dirt_road
     overlay: null
@@ -2573,7 +2690,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 7898
-  - 42
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 7927
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7929
+  - 11
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -2585,13 +2714,25 @@ ground_cells:
     overlay: null
     walkable: false
 - - 7946
-  - 27
+  - 9
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: true
-- - 7973
-  - 4
+- - 7955
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 7957
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 7958
+  - 19
   - elevation_m: 0
     ground: dirt_road
     overlay: null
@@ -2621,7 +2762,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 8058
-  - 42
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8087
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8089
+  - 11
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -2633,9 +2786,27 @@ ground_cells:
     overlay: null
     walkable: false
 - - 8106
-  - 14
+  - 9
   - elevation_m: 0
     ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8115
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8117
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8118
+  - 2
+  - elevation_m: 0
+    ground: dirt_road
     overlay: null
     walkable: true
 - - 8120
@@ -2693,7 +2864,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 8218
-  - 35
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8247
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8249
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -2729,9 +2912,27 @@ ground_cells:
     overlay: null
     walkable: true
 - - 8274
-  - 6
+  - 1
   - elevation_m: 0
     ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8275
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8277
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8278
+  - 2
+  - elevation_m: 0
+    ground: dirt_road
     overlay: null
     walkable: true
 - - 8280
@@ -2813,7 +3014,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 8378
-  - 35
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8407
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8409
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -2843,7 +3056,31 @@ ground_cells:
     overlay: null
     walkable: true
 - - 8431
-  - 9
+  - 3
+  - elevation_m: 0
+    ground: dirt_road
+    overlay: null
+    walkable: true
+- - 8434
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8435
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8437
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8438
+  - 2
   - elevation_m: 0
     ground: dirt_road
     overlay: null
@@ -2927,7 +3164,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 8538
-  - 35
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8567
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8569
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -2957,9 +3206,27 @@ ground_cells:
     overlay: null
     walkable: true
 - - 8591
-  - 9
+  - 3
   - elevation_m: 0
     ground: dirt_road
+    overlay: null
+    walkable: true
+- - 8594
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8595
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8597
+  - 3
+  - elevation_m: 0
+    ground: rammed_earth
     overlay: null
     walkable: true
 - - 8600
@@ -3041,7 +3308,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 8698
-  - 35
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8727
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8729
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3077,7 +3356,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 8754
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8755
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8757
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3173,7 +3464,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 8864
-  - 29
+  - 23
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8887
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8889
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3209,7 +3512,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 8914
-  - 13
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 8915
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 8917
+  - 10
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3293,7 +3608,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 9024
-  - 29
+  - 23
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9047
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9049
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3329,7 +3656,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 9074
-  - 13
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9075
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9077
+  - 10
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3377,7 +3716,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 9202
-  - 11
+  - 5
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9207
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9209
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3413,7 +3764,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 9234
-  - 13
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9235
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9237
+  - 10
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3461,7 +3824,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 9362
-  - 11
+  - 5
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9367
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9369
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3497,7 +3872,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 9394
-  - 13
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9395
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9397
+  - 10
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3545,7 +3932,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 9522
-  - 11
+  - 5
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9527
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9529
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3581,7 +3980,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 9554
-  - 13
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9555
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9557
+  - 10
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3689,7 +4100,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 9682
-  - 11
+  - 5
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9687
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9689
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3725,7 +4148,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 9714
-  - 19
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9715
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9717
+  - 16
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3827,7 +4262,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 9842
-  - 11
+  - 5
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9847
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9849
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3863,7 +4310,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 9874
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 9875
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 9877
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -3971,7 +4430,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 9995
-  - 18
+  - 12
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10007
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10009
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4007,7 +4478,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10034
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10035
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10037
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4103,7 +4586,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 10155
-  - 18
+  - 12
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10167
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10169
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4139,7 +4634,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10194
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10195
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10197
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4235,7 +4742,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 10315
-  - 18
+  - 12
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10327
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10329
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4271,7 +4790,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10354
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10355
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10357
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4331,7 +4862,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10458
-  - 35
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10487
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10489
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4367,7 +4910,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10514
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10515
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10517
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4421,7 +4976,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10618
-  - 35
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10647
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10649
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4457,7 +5024,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10674
-  - 8
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10675
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10677
+  - 5
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4505,7 +5084,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10778
-  - 35
+  - 29
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10807
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10809
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4541,7 +5132,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10834
-  - 8
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10835
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10837
+  - 5
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4589,7 +5192,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10938
-  - 35
+  - 28
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 10966
+  - 4
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10970
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4610,7 +5225,7 @@ ground_cells:
   - 6
   - elevation_m: 0
     ground: water
-    overlay: tex_town_song_southern_bridge_deck
+    overlay: tex_town_tang_bridge_deck
     walkable: true
 - - 10986
   - 5
@@ -4625,7 +5240,13 @@ ground_cells:
     overlay: null
     walkable: true
 - - 10994
-  - 8
+  - 4
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 10998
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4673,7 +5294,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 11098
-  - 35
+  - 28
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 11126
+  - 4
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 11130
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4694,7 +5327,7 @@ ground_cells:
   - 6
   - elevation_m: 0
     ground: water
-    overlay: tex_town_song_southern_bridge_deck
+    overlay: tex_town_tang_bridge_deck
     walkable: true
 - - 11146
   - 5
@@ -4709,7 +5342,13 @@ ground_cells:
     overlay: null
     walkable: true
 - - 11154
-  - 8
+  - 4
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 11158
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -4754,7 +5393,7 @@ ground_cells:
   - 6
   - elevation_m: 0
     ground: water
-    overlay: tex_town_song_southern_bridge_deck
+    overlay: tex_town_tang_bridge_deck
     walkable: true
 - - 11306
   - 48
@@ -4778,7 +5417,7 @@ ground_cells:
   - 6
   - elevation_m: 0
     ground: water
-    overlay: tex_town_song_southern_bridge_deck
+    overlay: tex_town_tang_bridge_deck
     walkable: true
 - - 11466
   - 48
@@ -4802,7 +5441,7 @@ ground_cells:
   - 6
   - elevation_m: 0
     ground: water
-    overlay: tex_town_song_southern_bridge_deck
+    overlay: tex_town_tang_bridge_deck
     walkable: true
 - - 11626
   - 48
@@ -4826,7 +5465,7 @@ ground_cells:
   - 6
   - elevation_m: 0
     ground: water
-    overlay: tex_town_song_southern_bridge_deck
+    overlay: tex_town_tang_bridge_deck
     walkable: true
 - - 11786
   - 48
@@ -4850,7 +5489,7 @@ ground_cells:
   - 6
   - elevation_m: 0
     ground: water
-    overlay: tex_town_song_southern_bridge_deck
+    overlay: tex_town_tang_bridge_deck
     walkable: true
 - - 11946
   - 48
@@ -4910,7 +5549,7 @@ ground_cells:
   - 6
   - elevation_m: 0
     ground: water
-    overlay: tex_town_song_southern_bridge_deck
+    overlay: tex_town_tang_bridge_deck
     walkable: true
 - - 12106
   - 5
@@ -5009,7 +5648,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 12218
-  - 34
+  - 28
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 12246
+  - 4
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 12250
+  - 2
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5045,7 +5696,13 @@ ground_cells:
     overlay: null
     walkable: true
 - - 12274
-  - 7
+  - 4
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 12278
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5129,7 +5786,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 12404
-  - 8
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 12406
+  - 4
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 12410
+  - 2
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5165,7 +5834,13 @@ ground_cells:
     overlay: null
     walkable: true
 - - 12434
-  - 7
+  - 4
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 12438
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5249,7 +5924,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 12564
-  - 6
+  - 3
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 12567
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 12569
+  - 1
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5285,7 +5972,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 12594
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 12595
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 12597
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5363,7 +6062,19 @@ ground_cells:
     overlay: null
     walkable: true
 - - 12724
-  - 6
+  - 3
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 12727
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 12729
+  - 1
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5399,7 +6110,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 12754
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 12755
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 12757
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5489,7 +6212,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 12877
-  - 13
+  - 10
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 12887
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 12889
+  - 1
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5525,7 +6260,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 12914
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 12915
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 12917
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5615,7 +6362,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13037
-  - 13
+  - 10
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13047
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13049
+  - 1
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5651,7 +6410,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13074
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13075
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13077
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5747,7 +6518,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13197
-  - 13
+  - 10
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13207
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13209
+  - 1
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5783,7 +6566,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13234
-  - 6
+  - 1
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13235
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13237
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5867,7 +6662,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13357
-  - 23
+  - 10
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13367
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13369
+  - 11
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5879,7 +6686,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13386
-  - 19
+  - 9
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13395
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13397
+  - 8
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5963,7 +6782,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13517
-  - 23
+  - 10
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13527
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13529
+  - 11
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -5975,7 +6806,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13546
-  - 19
+  - 9
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13555
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13557
+  - 8
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -6059,7 +6902,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13677
-  - 23
+  - 10
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13687
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13689
+  - 11
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -6071,7 +6926,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13706
-  - 22
+  - 9
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13715
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13717
+  - 11
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -6137,7 +7004,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13837
-  - 23
+  - 10
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13847
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13849
+  - 11
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -6149,7 +7028,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13866
-  - 23
+  - 9
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 13875
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 13877
+  - 12
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -6209,7 +7100,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 13997
-  - 23
+  - 10
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 14007
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 14009
+  - 11
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -6221,7 +7124,19 @@ ground_cells:
     overlay: null
     walkable: false
 - - 14026
-  - 45
+  - 9
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 14035
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 14037
+  - 34
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -6269,11 +7184,29 @@ ground_cells:
     overlay: null
     walkable: false
 - - 14157
-  - 23
+  - 10
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: true
+- - 14167
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 14169
+  - 9
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 14178
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
 - - 14180
   - 6
   - elevation_m: 0
@@ -6281,7 +7214,25 @@ ground_cells:
     overlay: null
     walkable: false
 - - 14186
-  - 45
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 14188
+  - 7
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: true
+- - 14195
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 14197
+  - 34
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -10659,34 +11610,80 @@ roads:
   - x: 123
     z: 70
   gc_0010:
-  - x: 113
-    z: 52
-  - x: 114
-    z: 52
-  - x: 115
-    z: 52
-  - x: 116
-    z: 52
-  - x: 117
-    z: 52
+  - x: 119
+    z: 48
+  - x: 120
+    z: 48
+  - x: 121
+    z: 48
+  - x: 122
+    z: 48
+  - x: 123
+    z: 48
+  - x: 124
+    z: 48
+  - x: 125
+    z: 48
+  - x: 126
+    z: 48
+  - x: 127
+    z: 48
+  - x: 128
+    z: 48
+  - x: 129
+    z: 48
+  - x: 130
+    z: 48
+  - x: 131
+    z: 48
+  - x: 132
+    z: 48
+  - x: 133
+    z: 48
+  - x: 118
+    z: 49
+  - x: 119
+    z: 49
+  - x: 120
+    z: 49
+  - x: 121
+    z: 49
+  - x: 122
+    z: 49
+  - x: 123
+    z: 49
+  - x: 124
+    z: 49
+  - x: 125
+    z: 49
+  - x: 126
+    z: 49
+  - x: 127
+    z: 49
+  - x: 128
+    z: 49
+  - x: 129
+    z: 49
+  - x: 130
+    z: 49
+  - x: 131
+    z: 49
+  - x: 132
+    z: 49
+  - x: 133
+    z: 49
+  - x: 118
+    z: 50
+  - x: 119
+    z: 50
+  - x: 118
+    z: 51
+  - x: 119
+    z: 51
   - x: 118
     z: 52
   - x: 119
     z: 52
-  - x: 113
-    z: 53
-  - x: 114
-    z: 53
-  - x: 115
-    z: 53
-  - x: 116
-    z: 53
-  - x: 117
-    z: 53
-  - x: 118
-    z: 53
-  - x: 119
-    z: 53
   gc_0011:
   - x: 57
     z: 94
@@ -11740,7 +12737,7 @@ source_spec:
   city_id: city_taiyuan
   path: docs/design/town/city_taiyuan__ch10.yaml
   seed: 260094335
-  sha256: 97d76099cf50c81bc573b10a283d5b81fc1f534fe950947dc350457250fc8e2b
+  sha256: eddc88c84dd8d445133ae7ffd2e4d96d8066e5362f64aa39863ca50877bdd7b4
 validation:
   checks_run:
   - schema
@@ -11986,10 +12983,6 @@ walk_layer:
     z: 45
   - x: 86
     z: 45
-  - x: 87
-    z: 45
-  - x: 88
-    z: 45
   - x: 89
     z: 45
   - x: 90
@@ -12008,14 +13001,6 @@ walk_layer:
     z: 45
   - x: 97
     z: 45
-  - x: 98
-    z: 45
-  - x: 99
-    z: 45
-  - x: 106
-    z: 45
-  - x: 107
-    z: 45
   - x: 108
     z: 45
   - x: 109
@@ -12029,10 +13014,6 @@ walk_layer:
   - x: 113
     z: 45
   - x: 114
-    z: 45
-  - x: 115
-    z: 45
-  - x: 116
     z: 45
   - x: 117
     z: 45
@@ -12242,10 +13223,6 @@ walk_layer:
     z: 46
   - x: 86
     z: 46
-  - x: 87
-    z: 46
-  - x: 88
-    z: 46
   - x: 89
     z: 46
   - x: 90
@@ -12264,14 +13241,6 @@ walk_layer:
     z: 46
   - x: 97
     z: 46
-  - x: 98
-    z: 46
-  - x: 99
-    z: 46
-  - x: 106
-    z: 46
-  - x: 107
-    z: 46
   - x: 108
     z: 46
   - x: 109
@@ -12285,10 +13254,6 @@ walk_layer:
   - x: 113
     z: 46
   - x: 114
-    z: 46
-  - x: 115
-    z: 46
-  - x: 116
     z: 46
   - x: 117
     z: 46
@@ -12506,10 +13471,6 @@ walk_layer:
     z: 47
   - x: 86
     z: 47
-  - x: 87
-    z: 47
-  - x: 88
-    z: 47
   - x: 89
     z: 47
   - x: 90
@@ -12549,10 +13510,6 @@ walk_layer:
   - x: 113
     z: 47
   - x: 114
-    z: 47
-  - x: 115
-    z: 47
-  - x: 116
     z: 47
   - x: 117
     z: 47
@@ -12778,10 +13735,6 @@ walk_layer:
     z: 48
   - x: 86
     z: 48
-  - x: 87
-    z: 48
-  - x: 88
-    z: 48
   - x: 89
     z: 48
   - x: 90
@@ -12821,10 +13774,6 @@ walk_layer:
   - x: 113
     z: 48
   - x: 114
-    z: 48
-  - x: 115
-    z: 48
-  - x: 116
     z: 48
   - x: 117
     z: 48
@@ -13050,10 +13999,6 @@ walk_layer:
     z: 49
   - x: 86
     z: 49
-  - x: 87
-    z: 49
-  - x: 88
-    z: 49
   - x: 89
     z: 49
   - x: 90
@@ -13093,10 +14038,6 @@ walk_layer:
   - x: 113
     z: 49
   - x: 114
-    z: 49
-  - x: 115
-    z: 49
-  - x: 116
     z: 49
   - x: 117
     z: 49
@@ -13322,10 +14263,6 @@ walk_layer:
     z: 50
   - x: 86
     z: 50
-  - x: 87
-    z: 50
-  - x: 88
-    z: 50
   - x: 89
     z: 50
   - x: 90
@@ -13365,10 +14302,6 @@ walk_layer:
   - x: 113
     z: 50
   - x: 114
-    z: 50
-  - x: 115
-    z: 50
-  - x: 116
     z: 50
   - x: 117
     z: 50
@@ -13558,10 +14491,6 @@ walk_layer:
     z: 51
   - x: 86
     z: 51
-  - x: 87
-    z: 51
-  - x: 88
-    z: 51
   - x: 89
     z: 51
   - x: 90
@@ -13601,10 +14530,6 @@ walk_layer:
   - x: 113
     z: 51
   - x: 114
-    z: 51
-  - x: 115
-    z: 51
-  - x: 116
     z: 51
   - x: 117
     z: 51
@@ -13746,10 +14671,6 @@ walk_layer:
     z: 52
   - x: 86
     z: 52
-  - x: 87
-    z: 52
-  - x: 88
-    z: 52
   - x: 89
     z: 52
   - x: 90
@@ -13789,10 +14710,6 @@ walk_layer:
   - x: 113
     z: 52
   - x: 114
-    z: 52
-  - x: 115
-    z: 52
-  - x: 116
     z: 52
   - x: 117
     z: 52
@@ -13934,10 +14851,6 @@ walk_layer:
     z: 53
   - x: 86
     z: 53
-  - x: 87
-    z: 53
-  - x: 88
-    z: 53
   - x: 89
     z: 53
   - x: 90
@@ -13977,10 +14890,6 @@ walk_layer:
   - x: 113
     z: 53
   - x: 114
-    z: 53
-  - x: 115
-    z: 53
-  - x: 116
     z: 53
   - x: 117
     z: 53
@@ -14122,10 +15031,6 @@ walk_layer:
     z: 54
   - x: 86
     z: 54
-  - x: 87
-    z: 54
-  - x: 88
-    z: 54
   - x: 89
     z: 54
   - x: 90
@@ -14165,10 +15070,6 @@ walk_layer:
   - x: 113
     z: 54
   - x: 114
-    z: 54
-  - x: 115
-    z: 54
-  - x: 116
     z: 54
   - x: 117
     z: 54
@@ -14304,10 +15205,6 @@ walk_layer:
     z: 55
   - x: 86
     z: 55
-  - x: 87
-    z: 55
-  - x: 88
-    z: 55
   - x: 89
     z: 55
   - x: 90
@@ -14347,10 +15244,6 @@ walk_layer:
   - x: 113
     z: 55
   - x: 114
-    z: 55
-  - x: 115
-    z: 55
-  - x: 116
     z: 55
   - x: 117
     z: 55
@@ -14498,10 +15391,6 @@ walk_layer:
     z: 56
   - x: 86
     z: 56
-  - x: 87
-    z: 56
-  - x: 88
-    z: 56
   - x: 89
     z: 56
   - x: 90
@@ -14541,10 +15430,6 @@ walk_layer:
   - x: 113
     z: 56
   - x: 114
-    z: 56
-  - x: 115
-    z: 56
-  - x: 116
     z: 56
   - x: 117
     z: 56
@@ -14746,10 +15631,6 @@ walk_layer:
     z: 57
   - x: 86
     z: 57
-  - x: 87
-    z: 57
-  - x: 88
-    z: 57
   - x: 89
     z: 57
   - x: 90
@@ -14789,10 +15670,6 @@ walk_layer:
   - x: 113
     z: 57
   - x: 114
-    z: 57
-  - x: 115
-    z: 57
-  - x: 116
     z: 57
   - x: 117
     z: 57
@@ -14994,10 +15871,6 @@ walk_layer:
     z: 58
   - x: 86
     z: 58
-  - x: 87
-    z: 58
-  - x: 88
-    z: 58
   - x: 89
     z: 58
   - x: 90
@@ -15037,10 +15910,6 @@ walk_layer:
   - x: 113
     z: 58
   - x: 114
-    z: 58
-  - x: 115
-    z: 58
-  - x: 116
     z: 58
   - x: 117
     z: 58
@@ -15242,10 +16111,6 @@ walk_layer:
     z: 59
   - x: 86
     z: 59
-  - x: 87
-    z: 59
-  - x: 88
-    z: 59
   - x: 89
     z: 59
   - x: 90
@@ -15285,10 +16150,6 @@ walk_layer:
   - x: 113
     z: 59
   - x: 114
-    z: 59
-  - x: 115
-    z: 59
-  - x: 116
     z: 59
   - x: 117
     z: 59
@@ -15404,10 +16265,6 @@ walk_layer:
     z: 60
   - x: 86
     z: 60
-  - x: 87
-    z: 60
-  - x: 88
-    z: 60
   - x: 89
     z: 60
   - x: 90
@@ -15447,10 +16304,6 @@ walk_layer:
   - x: 113
     z: 60
   - x: 114
-    z: 60
-  - x: 115
-    z: 60
-  - x: 116
     z: 60
   - x: 117
     z: 60
@@ -15578,10 +16431,6 @@ walk_layer:
     z: 61
   - x: 86
     z: 61
-  - x: 87
-    z: 61
-  - x: 88
-    z: 61
   - x: 89
     z: 61
   - x: 90
@@ -15621,10 +16470,6 @@ walk_layer:
   - x: 113
     z: 61
   - x: 114
-    z: 61
-  - x: 115
-    z: 61
-  - x: 116
     z: 61
   - x: 117
     z: 61
@@ -15746,10 +16591,6 @@ walk_layer:
     z: 62
   - x: 86
     z: 62
-  - x: 87
-    z: 62
-  - x: 88
-    z: 62
   - x: 89
     z: 62
   - x: 90
@@ -15789,10 +16630,6 @@ walk_layer:
   - x: 113
     z: 62
   - x: 114
-    z: 62
-  - x: 115
-    z: 62
-  - x: 116
     z: 62
   - x: 117
     z: 62
@@ -15922,10 +16759,6 @@ walk_layer:
     z: 63
   - x: 86
     z: 63
-  - x: 87
-    z: 63
-  - x: 88
-    z: 63
   - x: 89
     z: 63
   - x: 90
@@ -15965,10 +16798,6 @@ walk_layer:
   - x: 113
     z: 63
   - x: 114
-    z: 63
-  - x: 115
-    z: 63
-  - x: 116
     z: 63
   - x: 117
     z: 63
@@ -16098,10 +16927,6 @@ walk_layer:
     z: 64
   - x: 86
     z: 64
-  - x: 87
-    z: 64
-  - x: 88
-    z: 64
   - x: 89
     z: 64
   - x: 90
@@ -16141,10 +16966,6 @@ walk_layer:
   - x: 113
     z: 64
   - x: 114
-    z: 64
-  - x: 115
-    z: 64
-  - x: 116
     z: 64
   - x: 117
     z: 64
@@ -16334,10 +17155,6 @@ walk_layer:
     z: 65
   - x: 86
     z: 65
-  - x: 87
-    z: 65
-  - x: 88
-    z: 65
   - x: 89
     z: 65
   - x: 90
@@ -16377,10 +17194,6 @@ walk_layer:
   - x: 113
     z: 65
   - x: 114
-    z: 65
-  - x: 115
-    z: 65
-  - x: 116
     z: 65
   - x: 117
     z: 65
@@ -16582,10 +17395,6 @@ walk_layer:
     z: 66
   - x: 86
     z: 66
-  - x: 87
-    z: 66
-  - x: 88
-    z: 66
   - x: 89
     z: 66
   - x: 90
@@ -16625,10 +17434,6 @@ walk_layer:
   - x: 113
     z: 66
   - x: 114
-    z: 66
-  - x: 115
-    z: 66
-  - x: 116
     z: 66
   - x: 117
     z: 66
@@ -16854,10 +17659,6 @@ walk_layer:
     z: 67
   - x: 86
     z: 67
-  - x: 87
-    z: 67
-  - x: 88
-    z: 67
   - x: 89
     z: 67
   - x: 90
@@ -16897,10 +17698,6 @@ walk_layer:
   - x: 113
     z: 67
   - x: 114
-    z: 67
-  - x: 115
-    z: 67
-  - x: 116
     z: 67
   - x: 117
     z: 67
@@ -17119,14 +17916,6 @@ walk_layer:
   - x: 84
     z: 68
   - x: 85
-    z: 68
-  - x: 86
-    z: 68
-  - x: 87
-    z: 68
-  - x: 88
-    z: 68
-  - x: 89
     z: 68
   - x: 90
     z: 68
@@ -17176,14 +17965,6 @@ walk_layer:
     z: 68
   - x: 113
     z: 68
-  - x: 114
-    z: 68
-  - x: 115
-    z: 68
-  - x: 116
-    z: 68
-  - x: 117
-    z: 68
   - x: 118
     z: 68
   - x: 119
@@ -17398,14 +18179,6 @@ walk_layer:
     z: 69
   - x: 85
     z: 69
-  - x: 86
-    z: 69
-  - x: 87
-    z: 69
-  - x: 88
-    z: 69
-  - x: 89
-    z: 69
   - x: 90
     z: 69
   - x: 91
@@ -17453,14 +18226,6 @@ walk_layer:
   - x: 112
     z: 69
   - x: 113
-    z: 69
-  - x: 114
-    z: 69
-  - x: 115
-    z: 69
-  - x: 116
-    z: 69
-  - x: 117
     z: 69
   - x: 118
     z: 69
@@ -19432,14 +20197,6 @@ walk_layer:
     z: 76
   - x: 85
     z: 76
-  - x: 86
-    z: 76
-  - x: 87
-    z: 76
-  - x: 88
-    z: 76
-  - x: 89
-    z: 76
   - x: 90
     z: 76
   - x: 91
@@ -19475,14 +20232,6 @@ walk_layer:
   - x: 112
     z: 76
   - x: 113
-    z: 76
-  - x: 114
-    z: 76
-  - x: 115
-    z: 76
-  - x: 116
-    z: 76
-  - x: 117
     z: 76
   - x: 118
     z: 76
@@ -19702,14 +20451,6 @@ walk_layer:
     z: 77
   - x: 85
     z: 77
-  - x: 86
-    z: 77
-  - x: 87
-    z: 77
-  - x: 88
-    z: 77
-  - x: 89
-    z: 77
   - x: 90
     z: 77
   - x: 91
@@ -19745,14 +20486,6 @@ walk_layer:
   - x: 112
     z: 77
   - x: 113
-    z: 77
-  - x: 114
-    z: 77
-  - x: 115
-    z: 77
-  - x: 116
-    z: 77
-  - x: 117
     z: 77
   - x: 118
     z: 77
@@ -19974,10 +20707,6 @@ walk_layer:
     z: 78
   - x: 86
     z: 78
-  - x: 87
-    z: 78
-  - x: 88
-    z: 78
   - x: 89
     z: 78
   - x: 96
@@ -19993,10 +20722,6 @@ walk_layer:
   - x: 107
     z: 78
   - x: 114
-    z: 78
-  - x: 115
-    z: 78
-  - x: 116
     z: 78
   - x: 117
     z: 78
@@ -20180,10 +20905,6 @@ walk_layer:
     z: 79
   - x: 86
     z: 79
-  - x: 87
-    z: 79
-  - x: 88
-    z: 79
   - x: 89
     z: 79
   - x: 96
@@ -20199,10 +20920,6 @@ walk_layer:
   - x: 107
     z: 79
   - x: 114
-    z: 79
-  - x: 115
-    z: 79
-  - x: 116
     z: 79
   - x: 117
     z: 79
@@ -20358,10 +21075,6 @@ walk_layer:
     z: 80
   - x: 86
     z: 80
-  - x: 87
-    z: 80
-  - x: 88
-    z: 80
   - x: 89
     z: 80
   - x: 96
@@ -20377,10 +21090,6 @@ walk_layer:
   - x: 107
     z: 80
   - x: 114
-    z: 80
-  - x: 115
-    z: 80
-  - x: 116
     z: 80
   - x: 117
     z: 80
@@ -20548,10 +21257,6 @@ walk_layer:
     z: 81
   - x: 86
     z: 81
-  - x: 87
-    z: 81
-  - x: 88
-    z: 81
   - x: 89
     z: 81
   - x: 96
@@ -20567,10 +21272,6 @@ walk_layer:
   - x: 107
     z: 81
   - x: 114
-    z: 81
-  - x: 115
-    z: 81
-  - x: 116
     z: 81
   - x: 117
     z: 81
@@ -20726,10 +21427,6 @@ walk_layer:
     z: 82
   - x: 86
     z: 82
-  - x: 87
-    z: 82
-  - x: 88
-    z: 82
   - x: 89
     z: 82
   - x: 96
@@ -20745,10 +21442,6 @@ walk_layer:
   - x: 107
     z: 82
   - x: 114
-    z: 82
-  - x: 115
-    z: 82
-  - x: 116
     z: 82
   - x: 117
     z: 82
@@ -20910,10 +21603,6 @@ walk_layer:
     z: 83
   - x: 86
     z: 83
-  - x: 87
-    z: 83
-  - x: 88
-    z: 83
   - x: 89
     z: 83
   - x: 90
@@ -20953,10 +21642,6 @@ walk_layer:
   - x: 113
     z: 83
   - x: 114
-    z: 83
-  - x: 115
-    z: 83
-  - x: 116
     z: 83
   - x: 117
     z: 83
@@ -21130,10 +21815,6 @@ walk_layer:
     z: 84
   - x: 86
     z: 84
-  - x: 87
-    z: 84
-  - x: 88
-    z: 84
   - x: 89
     z: 84
   - x: 90
@@ -21173,10 +21854,6 @@ walk_layer:
   - x: 113
     z: 84
   - x: 114
-    z: 84
-  - x: 115
-    z: 84
-  - x: 116
     z: 84
   - x: 117
     z: 84
@@ -21350,10 +22027,6 @@ walk_layer:
     z: 85
   - x: 86
     z: 85
-  - x: 87
-    z: 85
-  - x: 88
-    z: 85
   - x: 89
     z: 85
   - x: 90
@@ -21393,10 +22066,6 @@ walk_layer:
   - x: 113
     z: 85
   - x: 114
-    z: 85
-  - x: 115
-    z: 85
-  - x: 116
     z: 85
   - x: 117
     z: 85
@@ -21546,10 +22215,6 @@ walk_layer:
     z: 86
   - x: 86
     z: 86
-  - x: 87
-    z: 86
-  - x: 88
-    z: 86
   - x: 89
     z: 86
   - x: 90
@@ -21589,10 +22254,6 @@ walk_layer:
   - x: 113
     z: 86
   - x: 114
-    z: 86
-  - x: 115
-    z: 86
-  - x: 116
     z: 86
   - x: 117
     z: 86
@@ -21754,10 +22415,6 @@ walk_layer:
     z: 87
   - x: 86
     z: 87
-  - x: 87
-    z: 87
-  - x: 88
-    z: 87
   - x: 89
     z: 87
   - x: 90
@@ -21797,10 +22454,6 @@ walk_layer:
   - x: 113
     z: 87
   - x: 114
-    z: 87
-  - x: 115
-    z: 87
-  - x: 116
     z: 87
   - x: 117
     z: 87
@@ -21962,10 +22615,6 @@ walk_layer:
     z: 88
   - x: 86
     z: 88
-  - x: 87
-    z: 88
-  - x: 88
-    z: 88
   - x: 89
     z: 88
   - x: 90
@@ -21984,14 +22633,6 @@ walk_layer:
     z: 88
   - x: 97
     z: 88
-  - x: 98
-    z: 88
-  - x: 99
-    z: 88
-  - x: 106
-    z: 88
-  - x: 107
-    z: 88
   - x: 108
     z: 88
   - x: 109
@@ -22005,10 +22646,6 @@ walk_layer:
   - x: 113
     z: 88
   - x: 114
-    z: 88
-  - x: 115
-    z: 88
-  - x: 116
     z: 88
   - x: 117
     z: 88
@@ -42353,6 +42990,16 @@ walk_layer:
     r: 72
   - q: 31
     r: 72
+  - q: 39
+    r: 72
+  - q: 40
+    r: 72
+  - q: 41
+    r: 72
+  - q: 49
+    r: 72
+  - q: 50
+    r: 72
   - q: 51
     r: 72
   - q: 52
@@ -42364,6 +43011,14 @@ walk_layer:
   - q: 55
     r: 72
   - q: 56
+    r: 72
+  - q: 57
+    r: 72
+  - q: 58
+    r: 72
+  - q: 64
+    r: 72
+  - q: 65
     r: 72
   - q: 95
     r: 72
@@ -42455,6 +43110,12 @@ walk_layer:
     r: 73
   - q: 30
     r: 73
+  - q: 39
+    r: 73
+  - q: 40
+    r: 73
+  - q: 41
+    r: 73
   - q: 50
     r: 73
   - q: 51
@@ -42466,6 +43127,12 @@ walk_layer:
   - q: 54
     r: 73
   - q: 55
+    r: 73
+  - q: 63
+    r: 73
+  - q: 64
+    r: 73
+  - q: 65
     r: 73
   - q: 94
     r: 73
@@ -42563,6 +43230,12 @@ walk_layer:
     r: 74
   - q: 30
     r: 74
+  - q: 38
+    r: 74
+  - q: 39
+    r: 74
+  - q: 40
+    r: 74
   - q: 50
     r: 74
   - q: 51
@@ -42574,6 +43247,10 @@ walk_layer:
   - q: 54
     r: 74
   - q: 55
+    r: 74
+  - q: 63
+    r: 74
+  - q: 64
     r: 74
   - q: 82
     r: 74
@@ -42645,6 +43322,12 @@ walk_layer:
     r: 75
   - q: 29
     r: 75
+  - q: 38
+    r: 75
+  - q: 39
+    r: 75
+  - q: 40
+    r: 75
   - q: 49
     r: 75
   - q: 50
@@ -42656,6 +43339,12 @@ walk_layer:
   - q: 53
     r: 75
   - q: 54
+    r: 75
+  - q: 62
+    r: 75
+  - q: 63
+    r: 75
+  - q: 64
     r: 75
   - q: 71
     r: 75
@@ -42745,6 +43434,12 @@ walk_layer:
     r: 76
   - q: 29
     r: 76
+  - q: 37
+    r: 76
+  - q: 38
+    r: 76
+  - q: 39
+    r: 76
   - q: 49
     r: 76
   - q: 50
@@ -42756,6 +43451,10 @@ walk_layer:
   - q: 53
     r: 76
   - q: 54
+    r: 76
+  - q: 62
+    r: 76
+  - q: 63
     r: 76
   - q: 70
     r: 76
@@ -42841,6 +43540,10 @@ walk_layer:
     r: 77
   - q: 28
     r: 77
+  - q: 37
+    r: 77
+  - q: 38
+    r: 77
   - q: 39
     r: 77
   - q: 40
@@ -42878,6 +43581,12 @@ walk_layer:
   - q: 59
     r: 77
   - q: 60
+    r: 77
+  - q: 61
+    r: 77
+  - q: 62
+    r: 77
+  - q: 63
     r: 77
   - q: 65
     r: 77
@@ -42979,6 +43688,12 @@ walk_layer:
     r: 78
   - q: 28
     r: 78
+  - q: 36
+    r: 78
+  - q: 37
+    r: 78
+  - q: 38
+    r: 78
   - q: 39
     r: 78
   - q: 40
@@ -43014,6 +43729,10 @@ walk_layer:
   - q: 59
     r: 78
   - q: 60
+    r: 78
+  - q: 61
+    r: 78
+  - q: 62
     r: 78
   - q: 65
     r: 78
@@ -43115,6 +43834,10 @@ walk_layer:
     r: 79
   - q: 27
     r: 79
+  - q: 36
+    r: 79
+  - q: 37
+    r: 79
   - q: 38
     r: 79
   - q: 39
@@ -43152,6 +43875,12 @@ walk_layer:
   - q: 58
     r: 79
   - q: 59
+    r: 79
+  - q: 60
+    r: 79
+  - q: 61
+    r: 79
+  - q: 62
     r: 79
   - q: 64
     r: 79
@@ -43261,6 +43990,12 @@ walk_layer:
     r: 80
   - q: 27
     r: 80
+  - q: 35
+    r: 80
+  - q: 36
+    r: 80
+  - q: 37
+    r: 80
   - q: 38
     r: 80
   - q: 39
@@ -43297,6 +44032,10 @@ walk_layer:
     r: 80
   - q: 59
     r: 80
+  - q: 60
+    r: 80
+  - q: 61
+    r: 80
   - q: 64
     r: 80
   - q: 65
@@ -43373,6 +44112,10 @@ walk_layer:
     r: 81
   - q: -33
     r: 81
+  - q: 35
+    r: 81
+  - q: 36
+    r: 81
   - q: 37
     r: 81
   - q: 38
@@ -43410,6 +44153,12 @@ walk_layer:
   - q: 57
     r: 81
   - q: 58
+    r: 81
+  - q: 59
+    r: 81
+  - q: 60
+    r: 81
+  - q: 61
     r: 81
   - q: 63
     r: 81
@@ -43491,6 +44240,14 @@ walk_layer:
     r: 82
   - q: -33
     r: 82
+  - q: 33
+    r: 82
+  - q: 34
+    r: 82
+  - q: 35
+    r: 82
+  - q: 36
+    r: 82
   - q: 37
     r: 82
   - q: 38
@@ -43526,6 +44283,12 @@ walk_layer:
   - q: 57
     r: 82
   - q: 58
+    r: 82
+  - q: 59
+    r: 82
+  - q: 60
+    r: 82
+  - q: 61
     r: 82
   - q: 63
     r: 82
@@ -43605,6 +44368,14 @@ walk_layer:
     r: 83
   - q: -32
     r: 83
+  - q: 33
+    r: 83
+  - q: 34
+    r: 83
+  - q: 35
+    r: 83
+  - q: 36
+    r: 83
   - q: 45
     r: 83
   - q: 46
@@ -43616,6 +44387,16 @@ walk_layer:
   - q: 49
     r: 83
   - q: 50
+    r: 83
+  - q: 57
+    r: 83
+  - q: 58
+    r: 83
+  - q: 59
+    r: 83
+  - q: 60
+    r: 83
+  - q: 61
     r: 83
   - q: 88
     r: 83
@@ -43659,6 +44440,16 @@ walk_layer:
     r: 84
   - q: -32
     r: 84
+  - q: 32
+    r: 84
+  - q: 33
+    r: 84
+  - q: 34
+    r: 84
+  - q: 35
+    r: 84
+  - q: 36
+    r: 84
   - q: 45
     r: 84
   - q: 46
@@ -43670,6 +44461,14 @@ walk_layer:
   - q: 49
     r: 84
   - q: 50
+    r: 84
+  - q: 57
+    r: 84
+  - q: 58
+    r: 84
+  - q: 59
+    r: 84
+  - q: 60
     r: 84
   - q: 88
     r: 84
@@ -43847,6 +44646,24 @@ walk_layer:
     r: 90
   - q: -35
     r: 90
+  - q: 29
+    r: 90
+  - q: 30
+    r: 90
+  - q: 31
+    r: 90
+  - q: 32
+    r: 90
+  - q: 33
+    r: 90
+  - q: 54
+    r: 90
+  - q: 55
+    r: 90
+  - q: 56
+    r: 90
+  - q: 57
+    r: 90
   - q: 85
     r: 90
   - q: 86
@@ -43884,6 +44701,24 @@ walk_layer:
   - q: -37
     r: 91
   - q: -36
+    r: 91
+  - q: 29
+    r: 91
+  - q: 30
+    r: 91
+  - q: 31
+    r: 91
+  - q: 32
+    r: 91
+  - q: 53
+    r: 91
+  - q: 54
+    r: 91
+  - q: 55
+    r: 91
+  - q: 56
+    r: 91
+  - q: 57
     r: 91
   - q: 84
     r: 91
@@ -43926,6 +44761,16 @@ walk_layer:
   - q: -37
     r: 92
   - q: -36
+    r: 92
+  - q: 28
+    r: 92
+  - q: 29
+    r: 92
+  - q: 30
+    r: 92
+  - q: 31
+    r: 92
+  - q: 32
     r: 92
   - q: 41
     r: 92
@@ -43939,6 +44784,14 @@ walk_layer:
     r: 92
   - q: 46
     r: 92
+  - q: 53
+    r: 92
+  - q: 54
+    r: 92
+  - q: 55
+    r: 92
+  - q: 56
+    r: 92
   - q: 84
     r: 92
   - q: 85
@@ -43973,6 +44826,12 @@ walk_layer:
     r: 93
   - q: -39
     r: 93
+  - q: 29
+    r: 93
+  - q: 30
+    r: 93
+  - q: 31
+    r: 93
   - q: 40
     r: 93
   - q: 41
@@ -43984,6 +44843,12 @@ walk_layer:
   - q: 44
     r: 93
   - q: 45
+    r: 93
+  - q: 53
+    r: 93
+  - q: 54
+    r: 93
+  - q: 55
     r: 93
   - q: 84
     r: 93
@@ -44021,6 +44886,12 @@ walk_layer:
     r: 94
   - q: -39
     r: 94
+  - q: 28
+    r: 94
+  - q: 29
+    r: 94
+  - q: 30
+    r: 94
   - q: 40
     r: 94
   - q: 41
@@ -44032,6 +44903,10 @@ walk_layer:
   - q: 44
     r: 94
   - q: 45
+    r: 94
+  - q: 53
+    r: 94
+  - q: 54
     r: 94
   - q: 57
     r: 94
@@ -44147,6 +45022,12 @@ walk_layer:
     r: 95
   - q: 17
     r: 95
+  - q: 28
+    r: 95
+  - q: 29
+    r: 95
+  - q: 30
+    r: 95
   - q: 39
     r: 95
   - q: 40
@@ -44158,6 +45039,12 @@ walk_layer:
   - q: 43
     r: 95
   - q: 44
+    r: 95
+  - q: 52
+    r: 95
+  - q: 53
+    r: 95
+  - q: 54
     r: 95
   - q: 56
     r: 95
@@ -44289,6 +45176,12 @@ walk_layer:
     r: 96
   - q: 17
     r: 96
+  - q: 27
+    r: 96
+  - q: 28
+    r: 96
+  - q: 29
+    r: 96
   - q: 39
     r: 96
   - q: 40
@@ -44300,6 +45193,10 @@ walk_layer:
   - q: 43
     r: 96
   - q: 44
+    r: 96
+  - q: 52
+    r: 96
+  - q: 53
     r: 96
   - q: 56
     r: 96
@@ -44435,6 +45332,12 @@ walk_layer:
     r: 97
   - q: 16
     r: 97
+  - q: 27
+    r: 97
+  - q: 28
+    r: 97
+  - q: 29
+    r: 97
   - q: 38
     r: 97
   - q: 39
@@ -44446,6 +45349,12 @@ walk_layer:
   - q: 42
     r: 97
   - q: 43
+    r: 97
+  - q: 51
+    r: 97
+  - q: 52
+    r: 97
+  - q: 53
     r: 97
   - q: 55
     r: 97
@@ -44603,6 +45512,12 @@ walk_layer:
     r: 98
   - q: 22
     r: 98
+  - q: 26
+    r: 98
+  - q: 27
+    r: 98
+  - q: 28
+    r: 98
   - q: 38
     r: 98
   - q: 39
@@ -44614,6 +45529,10 @@ walk_layer:
   - q: 42
     r: 98
   - q: 43
+    r: 98
+  - q: 51
+    r: 98
+  - q: 52
     r: 98
   - q: 55
     r: 98
@@ -44769,6 +45688,12 @@ walk_layer:
     r: 99
   - q: 22
     r: 99
+  - q: 26
+    r: 99
+  - q: 27
+    r: 99
+  - q: 28
+    r: 99
   - q: 37
     r: 99
   - q: 38
@@ -44780,6 +45705,12 @@ walk_layer:
   - q: 41
     r: 99
   - q: 42
+    r: 99
+  - q: 50
+    r: 99
+  - q: 51
+    r: 99
+  - q: 52
     r: 99
   - q: 54
     r: 99
@@ -44937,6 +45868,12 @@ walk_layer:
     r: 100
   - q: 21
     r: 100
+  - q: 25
+    r: 100
+  - q: 26
+    r: 100
+  - q: 27
+    r: 100
   - q: 37
     r: 100
   - q: 38
@@ -44948,6 +45885,10 @@ walk_layer:
   - q: 41
     r: 100
   - q: 42
+    r: 100
+  - q: 50
+    r: 100
+  - q: 51
     r: 100
   - q: 60
     r: 100
@@ -45005,6 +45946,12 @@ walk_layer:
     r: 101
   - q: -43
     r: 101
+  - q: 25
+    r: 101
+  - q: 26
+    r: 101
+  - q: 27
+    r: 101
   - q: 36
     r: 101
   - q: 37
@@ -45016,6 +45963,12 @@ walk_layer:
   - q: 40
     r: 101
   - q: 41
+    r: 101
+  - q: 49
+    r: 101
+  - q: 50
+    r: 101
+  - q: 51
     r: 101
   - q: 59
     r: 101
@@ -45079,6 +46032,12 @@ walk_layer:
     r: 102
   - q: -43
     r: 102
+  - q: 24
+    r: 102
+  - q: 25
+    r: 102
+  - q: 26
+    r: 102
   - q: 36
     r: 102
   - q: 37
@@ -45090,6 +46049,10 @@ walk_layer:
   - q: 40
     r: 102
   - q: 41
+    r: 102
+  - q: 49
+    r: 102
+  - q: 50
     r: 102
   - q: 59
     r: 102
@@ -45201,6 +46164,12 @@ walk_layer:
     r: 103
   - q: 4
     r: 103
+  - q: 24
+    r: 103
+  - q: 25
+    r: 103
+  - q: 26
+    r: 103
   - q: 35
     r: 103
   - q: 36
@@ -45212,6 +46181,12 @@ walk_layer:
   - q: 39
     r: 103
   - q: 40
+    r: 103
+  - q: 48
+    r: 103
+  - q: 49
+    r: 103
+  - q: 50
     r: 103
   - q: 58
     r: 103
@@ -45327,6 +46302,12 @@ walk_layer:
     r: 104
   - q: 3
     r: 104
+  - q: 23
+    r: 104
+  - q: 24
+    r: 104
+  - q: 25
+    r: 104
   - q: 35
     r: 104
   - q: 36
@@ -45338,6 +46319,10 @@ walk_layer:
   - q: 39
     r: 104
   - q: 40
+    r: 104
+  - q: 48
+    r: 104
+  - q: 49
     r: 104
   - q: 58
     r: 104
@@ -45449,6 +46434,12 @@ walk_layer:
     r: 105
   - q: 3
     r: 105
+  - q: 23
+    r: 105
+  - q: 24
+    r: 105
+  - q: 25
+    r: 105
   - q: 34
     r: 105
   - q: 35
@@ -45460,6 +46451,12 @@ walk_layer:
   - q: 38
     r: 105
   - q: 39
+    r: 105
+  - q: 47
+    r: 105
+  - q: 48
+    r: 105
+  - q: 49
     r: 105
   - q: 51
     r: 105
@@ -45581,6 +46578,12 @@ walk_layer:
     r: 106
   - q: -16
     r: 106
+  - q: 22
+    r: 106
+  - q: 23
+    r: 106
+  - q: 24
+    r: 106
   - q: 34
     r: 106
   - q: 35
@@ -45592,6 +46595,10 @@ walk_layer:
   - q: 38
     r: 106
   - q: 39
+    r: 106
+  - q: 47
+    r: 106
+  - q: 48
     r: 106
   - q: 51
     r: 106
@@ -45707,6 +46714,12 @@ walk_layer:
     r: 107
   - q: -16
     r: 107
+  - q: 22
+    r: 107
+  - q: 23
+    r: 107
+  - q: 24
+    r: 107
   - q: 33
     r: 107
   - q: 34
@@ -45718,6 +46731,12 @@ walk_layer:
   - q: 37
     r: 107
   - q: 38
+    r: 107
+  - q: 46
+    r: 107
+  - q: 47
+    r: 107
+  - q: 48
     r: 107
   - q: 50
     r: 107
@@ -45839,6 +46858,12 @@ walk_layer:
     r: 108
   - q: -17
     r: 108
+  - q: 21
+    r: 108
+  - q: 22
+    r: 108
+  - q: 23
+    r: 108
   - q: 33
     r: 108
   - q: 34
@@ -45850,6 +46875,10 @@ walk_layer:
   - q: 37
     r: 108
   - q: 38
+    r: 108
+  - q: 46
+    r: 108
+  - q: 47
     r: 108
   - q: 50
     r: 108
@@ -45919,6 +46948,12 @@ walk_layer:
     r: 109
   - q: -47
     r: 109
+  - q: 21
+    r: 109
+  - q: 22
+    r: 109
+  - q: 23
+    r: 109
   - q: 32
     r: 109
   - q: 33
@@ -45930,6 +46965,12 @@ walk_layer:
   - q: 36
     r: 109
   - q: 37
+    r: 109
+  - q: 45
+    r: 109
+  - q: 46
+    r: 109
+  - q: 47
     r: 109
   - q: 49
     r: 109
@@ -46005,6 +47046,12 @@ walk_layer:
     r: 110
   - q: -47
     r: 110
+  - q: 20
+    r: 110
+  - q: 21
+    r: 110
+  - q: 22
+    r: 110
   - q: 32
     r: 110
   - q: 33
@@ -46016,6 +47063,10 @@ walk_layer:
   - q: 36
     r: 110
   - q: 37
+    r: 110
+  - q: 45
+    r: 110
+  - q: 46
     r: 110
   - q: 49
     r: 110
@@ -46085,6 +47136,12 @@ walk_layer:
     r: 111
   - q: -48
     r: 111
+  - q: 20
+    r: 111
+  - q: 21
+    r: 111
+  - q: 22
+    r: 111
   - q: 31
     r: 111
   - q: 32
@@ -46096,6 +47153,12 @@ walk_layer:
   - q: 35
     r: 111
   - q: 36
+    r: 111
+  - q: 44
+    r: 111
+  - q: 45
+    r: 111
+  - q: 46
     r: 111
   - q: 75
     r: 111
@@ -46133,6 +47196,12 @@ walk_layer:
     r: 112
   - q: -48
     r: 112
+  - q: 19
+    r: 112
+  - q: 20
+    r: 112
+  - q: 21
+    r: 112
   - q: 31
     r: 112
   - q: 32
@@ -46144,6 +47213,10 @@ walk_layer:
   - q: 35
     r: 112
   - q: 36
+    r: 112
+  - q: 44
+    r: 112
+  - q: 45
     r: 112
   - q: 75
     r: 112
@@ -46187,6 +47260,16 @@ walk_layer:
     r: 113
   - q: -4
     r: 113
+  - q: 19
+    r: 113
+  - q: 20
+    r: 113
+  - q: 21
+    r: 113
+  - q: 28
+    r: 113
+  - q: 29
+    r: 113
   - q: 30
     r: 113
   - q: 31
@@ -46198,6 +47281,16 @@ walk_layer:
   - q: 34
     r: 113
   - q: 35
+    r: 113
+  - q: 36
+    r: 113
+  - q: 37
+    r: 113
+  - q: 43
+    r: 113
+  - q: 44
+    r: 113
+  - q: 45
     r: 113
   - q: 55
     r: 113
@@ -46259,6 +47352,16 @@ walk_layer:
     r: 114
   - q: -4
     r: 114
+  - q: 18
+    r: 114
+  - q: 19
+    r: 114
+  - q: 20
+    r: 114
+  - q: 28
+    r: 114
+  - q: 29
+    r: 114
   - q: 30
     r: 114
   - q: 31
@@ -46270,6 +47373,14 @@ walk_layer:
   - q: 34
     r: 114
   - q: 35
+    r: 114
+  - q: 36
+    r: 114
+  - q: 37
+    r: 114
+  - q: 43
+    r: 114
+  - q: 44
     r: 114
   - q: 55
     r: 114
@@ -60882,12 +61993,6 @@ walk_layer:
     r: 72
   - q: 38
     r: 72
-  - q: 39
-    r: 72
-  - q: 40
-    r: 72
-  - q: 41
-    r: 72
   - q: 42
     r: 72
   - q: 43
@@ -60902,14 +62007,6 @@ walk_layer:
     r: 72
   - q: 48
     r: 72
-  - q: 49
-    r: 72
-  - q: 50
-    r: 72
-  - q: 57
-    r: 72
-  - q: 58
-    r: 72
   - q: 59
     r: 72
   - q: 60
@@ -60919,10 +62016,6 @@ walk_layer:
   - q: 62
     r: 72
   - q: 63
-    r: 72
-  - q: 64
-    r: 72
-  - q: 65
     r: 72
   - q: 66
     r: 72
@@ -61058,12 +62151,6 @@ walk_layer:
     r: 73
   - q: 38
     r: 73
-  - q: 39
-    r: 73
-  - q: 40
-    r: 73
-  - q: 41
-    r: 73
   - q: 42
     r: 73
   - q: 43
@@ -61093,12 +62180,6 @@ walk_layer:
   - q: 61
     r: 73
   - q: 62
-    r: 73
-  - q: 63
-    r: 73
-  - q: 64
-    r: 73
-  - q: 65
     r: 73
   - q: 66
     r: 73
@@ -61228,12 +62309,6 @@ walk_layer:
     r: 74
   - q: 37
     r: 74
-  - q: 38
-    r: 74
-  - q: 39
-    r: 74
-  - q: 40
-    r: 74
   - q: 41
     r: 74
   - q: 42
@@ -61265,10 +62340,6 @@ walk_layer:
   - q: 61
     r: 74
   - q: 62
-    r: 74
-  - q: 63
-    r: 74
-  - q: 64
     r: 74
   - q: 65
     r: 74
@@ -61424,12 +62495,6 @@ walk_layer:
     r: 75
   - q: 37
     r: 75
-  - q: 38
-    r: 75
-  - q: 39
-    r: 75
-  - q: 40
-    r: 75
   - q: 41
     r: 75
   - q: 42
@@ -61459,12 +62524,6 @@ walk_layer:
   - q: 60
     r: 75
   - q: 61
-    r: 75
-  - q: 62
-    r: 75
-  - q: 63
-    r: 75
-  - q: 64
     r: 75
   - q: 65
     r: 75
@@ -61602,12 +62661,6 @@ walk_layer:
     r: 76
   - q: 36
     r: 76
-  - q: 37
-    r: 76
-  - q: 38
-    r: 76
-  - q: 39
-    r: 76
   - q: 40
     r: 76
   - q: 41
@@ -61639,10 +62692,6 @@ walk_layer:
   - q: 60
     r: 76
   - q: 61
-    r: 76
-  - q: 62
-    r: 76
-  - q: 63
     r: 76
   - q: 64
     r: 76
@@ -61784,21 +62833,11 @@ walk_layer:
     r: 77
   - q: 36
     r: 77
-  - q: 37
-    r: 77
-  - q: 38
-    r: 77
   - q: 46
     r: 77
   - q: 47
     r: 77
   - q: 54
-    r: 77
-  - q: 61
-    r: 77
-  - q: 62
-    r: 77
-  - q: 63
     r: 77
   - q: 64
     r: 77
@@ -61924,12 +62963,6 @@ walk_layer:
     r: 78
   - q: 35
     r: 78
-  - q: 36
-    r: 78
-  - q: 37
-    r: 78
-  - q: 38
-    r: 78
   - q: 45
     r: 78
   - q: 46
@@ -61937,10 +62970,6 @@ walk_layer:
   - q: 47
     r: 78
   - q: 54
-    r: 78
-  - q: 61
-    r: 78
-  - q: 62
     r: 78
   - q: 63
     r: 78
@@ -62066,21 +63095,11 @@ walk_layer:
     r: 79
   - q: 35
     r: 79
-  - q: 36
-    r: 79
-  - q: 37
-    r: 79
   - q: 45
     r: 79
   - q: 46
     r: 79
   - q: 53
-    r: 79
-  - q: 60
-    r: 79
-  - q: 61
-    r: 79
-  - q: 62
     r: 79
   - q: 63
     r: 79
@@ -62198,12 +63217,6 @@ walk_layer:
     r: 80
   - q: 34
     r: 80
-  - q: 35
-    r: 80
-  - q: 36
-    r: 80
-  - q: 37
-    r: 80
   - q: 44
     r: 80
   - q: 45
@@ -62211,10 +63224,6 @@ walk_layer:
   - q: 46
     r: 80
   - q: 53
-    r: 80
-  - q: 60
-    r: 80
-  - q: 61
     r: 80
   - q: 62
     r: 80
@@ -62364,21 +63373,11 @@ walk_layer:
     r: 81
   - q: 34
     r: 81
-  - q: 35
-    r: 81
-  - q: 36
-    r: 81
   - q: 44
     r: 81
   - q: 45
     r: 81
   - q: 52
-    r: 81
-  - q: 59
-    r: 81
-  - q: 60
-    r: 81
-  - q: 61
     r: 81
   - q: 62
     r: 81
@@ -62522,14 +63521,6 @@ walk_layer:
     r: 82
   - q: 32
     r: 82
-  - q: 33
-    r: 82
-  - q: 34
-    r: 82
-  - q: 35
-    r: 82
-  - q: 36
-    r: 82
   - q: 43
     r: 82
   - q: 44
@@ -62537,12 +63528,6 @@ walk_layer:
   - q: 45
     r: 82
   - q: 52
-    r: 82
-  - q: 59
-    r: 82
-  - q: 60
-    r: 82
-  - q: 61
     r: 82
   - q: 62
     r: 82
@@ -62686,14 +63671,6 @@ walk_layer:
     r: 83
   - q: 32
     r: 83
-  - q: 33
-    r: 83
-  - q: 34
-    r: 83
-  - q: 35
-    r: 83
-  - q: 36
-    r: 83
   - q: 37
     r: 83
   - q: 38
@@ -62721,16 +63698,6 @@ walk_layer:
   - q: 55
     r: 83
   - q: 56
-    r: 83
-  - q: 57
-    r: 83
-  - q: 58
-    r: 83
-  - q: 59
-    r: 83
-  - q: 60
-    r: 83
-  - q: 61
     r: 83
   - q: 62
     r: 83
@@ -62910,16 +63877,6 @@ walk_layer:
     r: 84
   - q: 31
     r: 84
-  - q: 32
-    r: 84
-  - q: 33
-    r: 84
-  - q: 34
-    r: 84
-  - q: 35
-    r: 84
-  - q: 36
-    r: 84
   - q: 37
     r: 84
   - q: 38
@@ -62947,14 +63904,6 @@ walk_layer:
   - q: 55
     r: 84
   - q: 56
-    r: 84
-  - q: 57
-    r: 84
-  - q: 58
-    r: 84
-  - q: 59
-    r: 84
-  - q: 60
     r: 84
   - q: 61
     r: 84
@@ -64390,16 +65339,6 @@ walk_layer:
     r: 90
   - q: 28
     r: 90
-  - q: 29
-    r: 90
-  - q: 30
-    r: 90
-  - q: 31
-    r: 90
-  - q: 32
-    r: 90
-  - q: 33
-    r: 90
   - q: 34
     r: 90
   - q: 35
@@ -64439,14 +65378,6 @@ walk_layer:
   - q: 52
     r: 90
   - q: 53
-    r: 90
-  - q: 54
-    r: 90
-  - q: 55
-    r: 90
-  - q: 56
-    r: 90
-  - q: 57
     r: 90
   - q: 58
     r: 90
@@ -64630,14 +65561,6 @@ walk_layer:
     r: 91
   - q: 28
     r: 91
-  - q: 29
-    r: 91
-  - q: 30
-    r: 91
-  - q: 31
-    r: 91
-  - q: 32
-    r: 91
   - q: 33
     r: 91
   - q: 34
@@ -64677,16 +65600,6 @@ walk_layer:
   - q: 51
     r: 91
   - q: 52
-    r: 91
-  - q: 53
-    r: 91
-  - q: 54
-    r: 91
-  - q: 55
-    r: 91
-  - q: 56
-    r: 91
-  - q: 57
     r: 91
   - q: 58
     r: 91
@@ -64866,16 +65779,6 @@ walk_layer:
     r: 92
   - q: 27
     r: 92
-  - q: 28
-    r: 92
-  - q: 29
-    r: 92
-  - q: 30
-    r: 92
-  - q: 31
-    r: 92
-  - q: 32
-    r: 92
   - q: 33
     r: 92
   - q: 34
@@ -64903,14 +65806,6 @@ walk_layer:
   - q: 51
     r: 92
   - q: 52
-    r: 92
-  - q: 53
-    r: 92
-  - q: 54
-    r: 92
-  - q: 55
-    r: 92
-  - q: 56
     r: 92
   - q: 57
     r: 92
@@ -65100,12 +65995,6 @@ walk_layer:
     r: 93
   - q: 28
     r: 93
-  - q: 29
-    r: 93
-  - q: 30
-    r: 93
-  - q: 31
-    r: 93
   - q: 32
     r: 93
   - q: 33
@@ -65135,12 +66024,6 @@ walk_layer:
   - q: 51
     r: 93
   - q: 52
-    r: 93
-  - q: 53
-    r: 93
-  - q: 54
-    r: 93
-  - q: 55
     r: 93
   - q: 56
     r: 93
@@ -65330,12 +66213,6 @@ walk_layer:
     r: 94
   - q: 27
     r: 94
-  - q: 28
-    r: 94
-  - q: 29
-    r: 94
-  - q: 30
-    r: 94
   - q: 31
     r: 94
   - q: 32
@@ -65367,10 +66244,6 @@ walk_layer:
   - q: 51
     r: 94
   - q: 52
-    r: 94
-  - q: 53
-    r: 94
-  - q: 54
     r: 94
   - q: 55
     r: 94
@@ -65482,12 +66355,6 @@ walk_layer:
     r: 95
   - q: 27
     r: 95
-  - q: 28
-    r: 95
-  - q: 29
-    r: 95
-  - q: 30
-    r: 95
   - q: 31
     r: 95
   - q: 32
@@ -65517,12 +66384,6 @@ walk_layer:
   - q: 50
     r: 95
   - q: 51
-    r: 95
-  - q: 52
-    r: 95
-  - q: 53
-    r: 95
-  - q: 54
     r: 95
   - q: 55
     r: 95
@@ -65618,12 +66479,6 @@ walk_layer:
     r: 96
   - q: 26
     r: 96
-  - q: 27
-    r: 96
-  - q: 28
-    r: 96
-  - q: 29
-    r: 96
   - q: 30
     r: 96
   - q: 31
@@ -65655,10 +66510,6 @@ walk_layer:
   - q: 50
     r: 96
   - q: 51
-    r: 96
-  - q: 52
-    r: 96
-  - q: 53
     r: 96
   - q: 54
     r: 96
@@ -65750,12 +66601,6 @@ walk_layer:
     r: 97
   - q: 26
     r: 97
-  - q: 27
-    r: 97
-  - q: 28
-    r: 97
-  - q: 29
-    r: 97
   - q: 30
     r: 97
   - q: 31
@@ -65785,12 +66630,6 @@ walk_layer:
   - q: 49
     r: 97
   - q: 50
-    r: 97
-  - q: 51
-    r: 97
-  - q: 52
-    r: 97
-  - q: 53
     r: 97
   - q: 54
     r: 97
@@ -65860,12 +66699,6 @@ walk_layer:
     r: 98
   - q: 25
     r: 98
-  - q: 26
-    r: 98
-  - q: 27
-    r: 98
-  - q: 28
-    r: 98
   - q: 29
     r: 98
   - q: 30
@@ -65897,10 +66730,6 @@ walk_layer:
   - q: 49
     r: 98
   - q: 50
-    r: 98
-  - q: 51
-    r: 98
-  - q: 52
     r: 98
   - q: 53
     r: 98
@@ -65972,12 +66801,6 @@ walk_layer:
     r: 99
   - q: 25
     r: 99
-  - q: 26
-    r: 99
-  - q: 27
-    r: 99
-  - q: 28
-    r: 99
   - q: 29
     r: 99
   - q: 30
@@ -66007,12 +66830,6 @@ walk_layer:
   - q: 48
     r: 99
   - q: 49
-    r: 99
-  - q: 50
-    r: 99
-  - q: 51
-    r: 99
-  - q: 52
     r: 99
   - q: 53
     r: 99
@@ -66082,12 +66899,6 @@ walk_layer:
     r: 100
   - q: 24
     r: 100
-  - q: 25
-    r: 100
-  - q: 26
-    r: 100
-  - q: 27
-    r: 100
   - q: 28
     r: 100
   - q: 29
@@ -66119,10 +66930,6 @@ walk_layer:
   - q: 48
     r: 100
   - q: 49
-    r: 100
-  - q: 50
-    r: 100
-  - q: 51
     r: 100
   - q: 52
     r: 100
@@ -66292,12 +67099,6 @@ walk_layer:
     r: 101
   - q: 24
     r: 101
-  - q: 25
-    r: 101
-  - q: 26
-    r: 101
-  - q: 27
-    r: 101
   - q: 28
     r: 101
   - q: 29
@@ -66327,12 +67128,6 @@ walk_layer:
   - q: 47
     r: 101
   - q: 48
-    r: 101
-  - q: 49
-    r: 101
-  - q: 50
-    r: 101
-  - q: 51
     r: 101
   - q: 52
     r: 101
@@ -66496,12 +67291,6 @@ walk_layer:
     r: 102
   - q: 23
     r: 102
-  - q: 24
-    r: 102
-  - q: 25
-    r: 102
-  - q: 26
-    r: 102
   - q: 27
     r: 102
   - q: 28
@@ -66533,10 +67322,6 @@ walk_layer:
   - q: 47
     r: 102
   - q: 48
-    r: 102
-  - q: 49
-    r: 102
-  - q: 50
     r: 102
   - q: 51
     r: 102
@@ -66652,12 +67437,6 @@ walk_layer:
     r: 103
   - q: 23
     r: 103
-  - q: 24
-    r: 103
-  - q: 25
-    r: 103
-  - q: 26
-    r: 103
   - q: 27
     r: 103
   - q: 28
@@ -66687,12 +67466,6 @@ walk_layer:
   - q: 46
     r: 103
   - q: 47
-    r: 103
-  - q: 48
-    r: 103
-  - q: 49
-    r: 103
-  - q: 50
     r: 103
   - q: 51
     r: 103
@@ -66804,12 +67577,6 @@ walk_layer:
     r: 104
   - q: 22
     r: 104
-  - q: 23
-    r: 104
-  - q: 24
-    r: 104
-  - q: 25
-    r: 104
   - q: 26
     r: 104
   - q: 27
@@ -66841,10 +67608,6 @@ walk_layer:
   - q: 46
     r: 104
   - q: 47
-    r: 104
-  - q: 48
-    r: 104
-  - q: 49
     r: 104
   - q: 50
     r: 104
@@ -66960,12 +67723,6 @@ walk_layer:
     r: 105
   - q: 22
     r: 105
-  - q: 23
-    r: 105
-  - q: 24
-    r: 105
-  - q: 25
-    r: 105
   - q: 26
     r: 105
   - q: 27
@@ -66995,12 +67752,6 @@ walk_layer:
   - q: 45
     r: 105
   - q: 46
-    r: 105
-  - q: 47
-    r: 105
-  - q: 48
-    r: 105
-  - q: 49
     r: 105
   - q: 50
     r: 105
@@ -67106,12 +67857,6 @@ walk_layer:
     r: 106
   - q: 21
     r: 106
-  - q: 22
-    r: 106
-  - q: 23
-    r: 106
-  - q: 24
-    r: 106
   - q: 25
     r: 106
   - q: 26
@@ -67143,10 +67888,6 @@ walk_layer:
   - q: 45
     r: 106
   - q: 46
-    r: 106
-  - q: 47
-    r: 106
-  - q: 48
     r: 106
   - q: 49
     r: 106
@@ -67258,12 +67999,6 @@ walk_layer:
     r: 107
   - q: 21
     r: 107
-  - q: 22
-    r: 107
-  - q: 23
-    r: 107
-  - q: 24
-    r: 107
   - q: 25
     r: 107
   - q: 26
@@ -67293,12 +68028,6 @@ walk_layer:
   - q: 44
     r: 107
   - q: 45
-    r: 107
-  - q: 46
-    r: 107
-  - q: 47
-    r: 107
-  - q: 48
     r: 107
   - q: 49
     r: 107
@@ -67404,12 +68133,6 @@ walk_layer:
     r: 108
   - q: 20
     r: 108
-  - q: 21
-    r: 108
-  - q: 22
-    r: 108
-  - q: 23
-    r: 108
   - q: 24
     r: 108
   - q: 25
@@ -67441,10 +68164,6 @@ walk_layer:
   - q: 44
     r: 108
   - q: 45
-    r: 108
-  - q: 46
-    r: 108
-  - q: 47
     r: 108
   - q: 48
     r: 108
@@ -67602,12 +68321,6 @@ walk_layer:
     r: 109
   - q: 20
     r: 109
-  - q: 21
-    r: 109
-  - q: 22
-    r: 109
-  - q: 23
-    r: 109
   - q: 24
     r: 109
   - q: 25
@@ -67637,12 +68350,6 @@ walk_layer:
   - q: 43
     r: 109
   - q: 44
-    r: 109
-  - q: 45
-    r: 109
-  - q: 46
-    r: 109
-  - q: 47
     r: 109
   - q: 48
     r: 109
@@ -67794,12 +68501,6 @@ walk_layer:
     r: 110
   - q: 19
     r: 110
-  - q: 20
-    r: 110
-  - q: 21
-    r: 110
-  - q: 22
-    r: 110
   - q: 23
     r: 110
   - q: 24
@@ -67831,10 +68532,6 @@ walk_layer:
   - q: 43
     r: 110
   - q: 44
-    r: 110
-  - q: 45
-    r: 110
-  - q: 46
     r: 110
   - q: 47
     r: 110
@@ -67992,12 +68689,6 @@ walk_layer:
     r: 111
   - q: 19
     r: 111
-  - q: 20
-    r: 111
-  - q: 21
-    r: 111
-  - q: 22
-    r: 111
   - q: 23
     r: 111
   - q: 24
@@ -68027,12 +68718,6 @@ walk_layer:
   - q: 42
     r: 111
   - q: 43
-    r: 111
-  - q: 44
-    r: 111
-  - q: 45
-    r: 111
-  - q: 46
     r: 111
   - q: 47
     r: 111
@@ -68222,12 +68907,6 @@ walk_layer:
     r: 112
   - q: 18
     r: 112
-  - q: 19
-    r: 112
-  - q: 20
-    r: 112
-  - q: 21
-    r: 112
   - q: 22
     r: 112
   - q: 23
@@ -68259,10 +68938,6 @@ walk_layer:
   - q: 42
     r: 112
   - q: 43
-    r: 112
-  - q: 44
-    r: 112
-  - q: 45
     r: 112
   - q: 46
     r: 112
@@ -68446,12 +69121,6 @@ walk_layer:
     r: 113
   - q: 18
     r: 113
-  - q: 19
-    r: 113
-  - q: 20
-    r: 113
-  - q: 21
-    r: 113
   - q: 22
     r: 113
   - q: 23
@@ -68464,14 +69133,6 @@ walk_layer:
     r: 113
   - q: 27
     r: 113
-  - q: 28
-    r: 113
-  - q: 29
-    r: 113
-  - q: 36
-    r: 113
-  - q: 37
-    r: 113
   - q: 38
     r: 113
   - q: 39
@@ -68481,12 +69142,6 @@ walk_layer:
   - q: 41
     r: 113
   - q: 42
-    r: 113
-  - q: 43
-    r: 113
-  - q: 44
-    r: 113
-  - q: 45
     r: 113
   - q: 46
     r: 113
@@ -68652,12 +69307,6 @@ walk_layer:
     r: 114
   - q: 17
     r: 114
-  - q: 18
-    r: 114
-  - q: 19
-    r: 114
-  - q: 20
-    r: 114
   - q: 21
     r: 114
   - q: 22
@@ -68672,14 +69321,6 @@ walk_layer:
     r: 114
   - q: 27
     r: 114
-  - q: 28
-    r: 114
-  - q: 29
-    r: 114
-  - q: 36
-    r: 114
-  - q: 37
-    r: 114
   - q: 38
     r: 114
   - q: 39
@@ -68689,10 +69330,6 @@ walk_layer:
   - q: 41
     r: 114
   - q: 42
-    r: 114
-  - q: 43
-    r: 114
-  - q: 44
     r: 114
   - q: 45
     r: 114
@@ -73256,19 +73893,11 @@ zone_coverage:
     z: 50
   - x: 113
     z: 50
-  - x: 114
-    z: 50
-  - x: 115
-    z: 50
   - x: 108
     z: 51
   - x: 109
     z: 51
   - x: 110
-    z: 51
-  - x: 114
-    z: 51
-  - x: 115
     z: 51
   - x: 108
     z: 52
@@ -73276,208 +73905,124 @@ zone_coverage:
     z: 52
   - x: 110
     z: 52
-  - x: 114
-    z: 52
-  - x: 115
-    z: 52
   - x: 108
     z: 53
   - x: 109
     z: 53
   - x: 110
     z: 53
-  - x: 114
-    z: 53
-  - x: 115
-    z: 53
   - x: 108
     z: 54
   - x: 109
     z: 54
   - x: 110
-    z: 54
-  - x: 114
-    z: 54
-  - x: 115
     z: 54
   - x: 108
     z: 55
   - x: 109
     z: 55
   - x: 110
-    z: 55
-  - x: 114
-    z: 55
-  - x: 115
     z: 55
   - x: 108
     z: 56
   - x: 109
     z: 56
   - x: 110
-    z: 56
-  - x: 114
-    z: 56
-  - x: 115
     z: 56
   - x: 108
     z: 57
   - x: 109
     z: 57
   - x: 110
-    z: 57
-  - x: 114
-    z: 57
-  - x: 115
     z: 57
   - x: 108
     z: 58
   - x: 109
     z: 58
   - x: 110
-    z: 58
-  - x: 114
-    z: 58
-  - x: 115
     z: 58
   - x: 108
     z: 59
   - x: 109
     z: 59
   - x: 110
-    z: 59
-  - x: 114
-    z: 59
-  - x: 115
     z: 59
   - x: 108
     z: 60
   - x: 109
     z: 60
   - x: 110
-    z: 60
-  - x: 114
-    z: 60
-  - x: 115
     z: 60
   - x: 108
     z: 61
   - x: 109
     z: 61
   - x: 110
-    z: 61
-  - x: 114
-    z: 61
-  - x: 115
     z: 61
   - x: 108
     z: 62
   - x: 109
     z: 62
   - x: 110
-    z: 62
-  - x: 114
-    z: 62
-  - x: 115
     z: 62
   - x: 108
     z: 63
   - x: 109
     z: 63
   - x: 110
-    z: 63
-  - x: 114
-    z: 63
-  - x: 115
     z: 63
   - x: 108
     z: 64
   - x: 109
     z: 64
   - x: 110
-    z: 64
-  - x: 114
-    z: 64
-  - x: 115
     z: 64
   - x: 108
     z: 65
   - x: 109
     z: 65
   - x: 110
-    z: 65
-  - x: 114
-    z: 65
-  - x: 115
     z: 65
   - x: 108
     z: 66
   - x: 109
     z: 66
   - x: 110
-    z: 66
-  - x: 114
-    z: 66
-  - x: 115
     z: 66
   - x: 108
     z: 67
   - x: 109
     z: 67
   - x: 110
-    z: 67
-  - x: 114
-    z: 67
-  - x: 115
     z: 67
   - x: 108
     z: 68
   - x: 109
     z: 68
   - x: 110
-    z: 68
-  - x: 114
-    z: 68
-  - x: 115
     z: 68
   - x: 108
     z: 69
   - x: 109
     z: 69
   - x: 110
-    z: 69
-  - x: 114
-    z: 69
-  - x: 115
     z: 69
   - x: 108
     z: 75
   - x: 109
     z: 75
   - x: 110
-    z: 75
-  - x: 114
-    z: 75
-  - x: 115
     z: 75
   - x: 108
     z: 76
   - x: 109
     z: 76
   - x: 110
-    z: 76
-  - x: 114
-    z: 76
-  - x: 115
     z: 76
   - x: 108
     z: 77
   - x: 109
     z: 77
-  - x: 114
-    z: 77
-  - x: 115
-    z: 77
   - x: 108
     z: 78
   - x: 109
@@ -73489,10 +74034,6 @@ zone_coverage:
   - x: 112
     z: 78
   - x: 113
-    z: 78
-  - x: 114
-    z: 78
-  - x: 115
     z: 78
   - x: 108
     z: 79
@@ -73506,10 +74047,6 @@ zone_coverage:
     z: 79
   - x: 113
     z: 79
-  - x: 114
-    z: 79
-  - x: 115
-    z: 79
   - x: 108
     z: 80
   - x: 109
@@ -73521,10 +74058,6 @@ zone_coverage:
   - x: 112
     z: 80
   - x: 113
-    z: 80
-  - x: 114
-    z: 80
-  - x: 115
     z: 80
   - x: 108
     z: 81
@@ -73538,10 +74071,6 @@ zone_coverage:
     z: 81
   - x: 113
     z: 81
-  - x: 114
-    z: 81
-  - x: 115
-    z: 81
   - x: 108
     z: 82
   - x: 109
@@ -73553,10 +74082,6 @@ zone_coverage:
   - x: 112
     z: 82
   - x: 113
-    z: 82
-  - x: 114
-    z: 82
-  - x: 115
     z: 82
   - x: 108
     z: 83
@@ -73570,10 +74095,6 @@ zone_coverage:
     z: 83
   - x: 113
     z: 83
-  - x: 114
-    z: 83
-  - x: 115
-    z: 83
   - x: 108
     z: 84
   - x: 109
@@ -73585,10 +74106,6 @@ zone_coverage:
   - x: 112
     z: 84
   - x: 113
-    z: 84
-  - x: 114
-    z: 84
-  - x: 115
     z: 84
   - x: 108
     z: 85
@@ -73601,10 +74118,6 @@ zone_coverage:
   - x: 112
     z: 85
   - x: 113
-    z: 85
-  - x: 114
-    z: 85
-  - x: 115
     z: 85
   zone_middle_west:
   - x: 90

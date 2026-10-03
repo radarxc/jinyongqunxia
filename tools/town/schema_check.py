@@ -48,9 +48,25 @@ class SchemaValidator:
                 self.fail("REQUIRED", f"{path}.{key}", "缺少必填字段；null 不代替缺字段")
         for key in fields.keys() & data.keys():
             self.value(data[key], fields[key], f"{path}.{key}", name, key)
+        if name == "CitySpec":
+            present = [key for key in ("wall", "walls") if key in data]
+            if len(present) != 1:
+                self.fail("WALL_FORM", path, "wall 与 walls 必须且只能出现一个")
 
     def value(self, value, field, path, owner="", key=""):
         typ = field["type"]
+        if typ == "NamedWallSpec[]|none":
+            if value == "none":
+                return
+            if not isinstance(value, list) or not value:
+                self.fail("TYPE", path, "walls 需要非空 NamedWallSpec 数组或字符串 none")
+                return
+            for i, child in enumerate(value):
+                self.check(child, "NamedWallSpec", f"{path}[{i}]")
+            ids = [child.get("id") for child in value if isinstance(child, dict)]
+            if len(ids) != len(set(ids)):
+                self.fail("DUPLICATE_ID", path, "walls 的 id 必须唯一")
+            return
         if "|null" in typ:
             if value is None:
                 return
@@ -157,6 +173,7 @@ class SchemaValidator:
             pattern = rule[:rule.index("$") + 1] if rule.startswith("^") and "$" in rule else None
             patterns = {("BuildingInstance", "id"): r"bi_[0-9]{4}",
                         ("GeneratedConnector", "id"): r"gc_[0-9]{4}",
+                        ("NamedWallSpec", "id"): r"[a-z][a-z0-9_]*",
                         ("ZoneSpec", "id"): r"zone_[a-z0-9_]+",
                         ("Polyline", "id"): r"[a-z][a-z0-9_]*",
                         ("CitySpec", "chapter_id"): r"ch(?:0[1-9]|1[0-4])"}
