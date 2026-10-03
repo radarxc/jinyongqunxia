@@ -123,6 +123,9 @@
 - 工具维护待办（追踪者报告，低优先，未登记）：通用 `ingest.py` 的归档 / 锁路径、`ingest8.py` 不记 done.txt；`crop_frame` 已登记 TOOL-ingest-cropframe。
 - 风险：剧照参考那批图会接近演员本人样貌，第二波已按「像角色不像演员」重做主角；公开发布前仍要复查。
 
+- [ ] **AR-44 / 45 / 46（10-03 12:13 起）**：10 号出图员（Opus 5.5 子代理，codex exec，工具箱 `_handoff/gem/codex_w17/`）按作者在审核页「通过」的图对脸精修主角立绘：A1 萧峰 4 张返工图对齐 juxianzhuang_guard；A2 杨过（古天乐 1995）/ 段誉（林志颖 1997）/ 张无忌（苏有朋 2003，更帅更健壮）先出新 base 请作者批；A3 男女主角高魅力形象（侠客劲装 / 白衣飘飘，全身 + 三视图，批后交 Tripo）；A4 郭靖、黄蓉、小龙女、虚竹、赵敏、周芷若对齐通过图；B 再修 82 张剧情插图的脸。无通过图的主角等作者审。替换同路径文件、旧图备份；做完协调者跑 build_portraits → INDEX → 审核页重发（被替换图的旧结论要清掉）。
+- [ ] 待登记设计：**主角外观随魅力分档**（AR-45「对应魅力较高的状态」：分档阈值、各档立绘 / 3D 模型、切换时机与界面表现）。
+
 ### 3.2 物品图（Gemini 网页）
 
 **已完成（10-03 04:28 收工）**：食品 174、衣物、旧兵器 / 暗器 / 药物、第二批 16，加上本轮 366 张（秘籍 162、兵器 128、药材 55、暗器 21）——`assets/default/item/**` 的物品图出齐，manifest 全是 `candidate`，每张按路径单独提交（最后 76d6a377）。限流 0 次；72 张返工过，15 张第 3 次才过；返工清单 0。总联系表 `_prod/.agents/coord/gemini_qa/final_{manuals,weapons,medicine,hidden-weapons}.jpg`（04:30 已发作者）。
@@ -192,7 +195,7 @@
 |---|---|---|---|
 | ART-3d-tripo-avatars | 男女主角高质量模型 + 骨架 + 3 个预设动作；写 `tools/model3d/tripo_cli.py` | codex gpt-6-astra xhigh | **HOLD，不再续跑**（API 余额 0；作者 AR-42 改用网页版）。CLI 留在工作区未合入 |
 | ART-3d-tripo-cast | 十四书主角群约 31 位（主角精修新基线立绘）image_to_model + 骨架 | codex xhigh | **HOLD，不再续跑**（改网页版） |
-| **Tripo 网页版建模**（AR-42） | 男女主角（男主角多视图）+ 29 位主要角色：生成 H3.1 + Ultra Mesh + 8K + PBR（65 点）、绑骨 20、主角 idle / walk / run 动作各 20、导出 5；面数 10 万；Private | Opus 5.5 子代理驱动作者 Chrome（Premium，余额 25125，全做约 2800–4000 点） | 男女主角已生成并绑骨（Mixamo 兼容人形骨架 + idle / walk / run；男多视图 5223c172 99,466 面，女单图 39a2305f 96,389 面；头发像素初检合格；共用 235 点）；12:05 作者同意下载，正在导出入库；**主要角色暂停**：等作者定上传方式（扩展权限或剪贴板） |
+| **Tripo 网页版建模**（AR-42） | 男女主角（男主角多视图）+ 29 位主要角色：生成 H3.1 + Ultra Mesh + 8K + PBR（65 点）、绑骨 20、主角 idle / walk / run 动作各 20、导出 5；面数 10 万；Private | Opus 5.5 子代理驱动作者 Chrome（Premium，余额 25125，全做约 2800–4000 点） | 男女主角已生成并绑骨（Mixamo 兼容人形骨架 + idle / walk / run；男多视图 5223c172 99,466 面，女单图 39a2305f 96,389 面；头发像素初检合格；共用 235 点）；12:05 作者同意下载，正在导出入库；扩展权限已修（12:08），改用 file_upload；主要角色只做 base 已通过的（黄蓉、小龙女），其余等 AR-44 新 base；另加 AR-45 男女主角高魅力形象（等 2D 批准后多视图生成） |
 
 密钥：只在主检出 `.env`（`tripo_key=…`），执行器运行时读成环境变量，不得进日志 / 报告 / manifest / 提交（`.env` 已进 `.gitignore`）。产物：`assets/default/model3d/<npc_id>/`（`model_rig.glb`、`anim_*.glb`、`preview.png`、manifest）；审核要点 `review_checks_model3d.md`。女主角没有三视图（可登记 ART-rig-sheet-f）。
 

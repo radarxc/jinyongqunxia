@@ -1505,3 +1505,8 @@
     - 协调者新规：**以后不用提示词注入**，遇到类似情况直接报协调者，由其停进程。
     - 我的 keywait 改为从文件读任务 ID（`kw.py … @scratchpad/kw_ids.txt`）：命令行里带任务名时，协调者按任务名 pkill 会把它误杀。
 
+  - **10-03 12:08–12:22 协调者**：作者 AR-44 / 45 / 46（原话见 author-requirements.md）与内容任务处理。
+    - 审核页结论（12:15 读回，23 条）：通过 18（主角群：郭靖 2 张时期图、黄蓉 2 base、小龙女 base + 1 时期图、萧峰 juxianzhuang_guard、虚竹 lingjiu_compassion、赵敏 lvliu、周芷若 guangmingding；配角 7 张 base），返工 5（萧峰 4 张时期图「脸不对」、张无忌 wanansi「手朝上」）。
+    - 起 **10 号出图员**（Opus 5.5 子代理，codex exec）：A 段立绘对脸（萧峰返工 → 杨过 / 段誉 / 张无忌新 base 请批 → 男女主角高魅力形象请批 → 其余已有通过图的主角对齐）；B 段 82 张剧情插图对脸。工具箱 `_handoff/gem/codex_w17/`，替换同路径文件，每人按路径提交，不跑 build_portraits。
+    - Tripo 子代理：扩展权限修好后用 file_upload；Chrome 窗口作者已放前台；主要角色只做 base 已通过的黄蓉、小龙女，其余等新 base；预告 AR-45 高魅力形象（入库 `model3d/npc_zhujue__ch00_<g>_charmhigh/`）。
+    - CONTENT-ch00a-data：第 1 轮停滞（25 分钟无输出）被自动续成第 2 轮；开发监督的兜底注入器往 2.prompt.md 追加的条件说明被执行器当捷径，2 分钟空跑 → 「缺报告」→ 第 3 轮。协调者 12:18 置 HOLD、停第 3 轮（防它为绕 inkmeta 缺口去改正确的 .inkmeta.yaml）。修复合入后挪基点 `--from start` + 说明。教训：不要往执行器提示词注入「条件放行」类说明，直接停。
