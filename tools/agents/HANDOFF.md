@@ -892,3 +892,11 @@
     - **合入冲突**：cast-b（fe4765ef）与 hero-b 都在 female/ch09、female/ch14、male/ch09、male/ch12、male/ch13、male/ch14 六个 manifest 末尾追加条目。追踪者用 `rebase_task.py` 把基点挪到 d1a5a173（备份引用 `refs/agents-backup/ART-hero-refine-b-pre-rebase-10030328`），冲突标记留在六个文件里，拟另起 `--from start` 让执行器解。协调者裁定不花执行器：手工解——female/ch14、male/ch09 的冲突块从共用条目（苗若兰 / 狄云基线）的 `notes` 行开始，取 hero-b 一侧的 notes / redo_reason / generation_job / quality_retries / history，再接 cast-b 追加的条目、hero-b 追加的条目；其余四个纯追加、两边都保留。解后 YAML 可解析、ID 不重复、文件齐全；`step.py finish` 校验通过并提交 204df715；旧驱动 17953 的下一次重试（03:33:50）合入 **2533a8fd**（181 个文件），状态 MERGED。
     - 两组主角精修合计 175 张（a 95 + b 80）。hero-b 五张联系表 03:40 发作者。
     - 已告诉追踪者做合入后收尾（联系表归档、`.agents/logs/ART-hero-refine-b` 123 MB、w12 runner 排空停掉），cast-polish-ch09 等磁盘 ≥ 7 GiB，CITY 续作条件不变。
+  - **10-03 03:36–03:55 协调者**：
+    - CITY-layouts-all 03:36 由追踪者续作（第 4 次运行，驱动 49805；磁盘 8.2 GiB、负载 7.6 满足条件；说明「续作，按 done.txt 跳过已完成的城」）。
+    - 登记并起跑 **DES-sync-keyscenes-ar36**（eb617b22；des37 batch，并发 1，03:39）：key-scenes.md 口径改为候选清单 / 入库数以 manifest 为准 / candidate 参考，各书条目按 hero-a / hero-b 报告 §6 修正，story/07 §2.2、story/09 制衣方向、npcs-ch09 铃剑双侠（水笙与汪啸风）、npcs-ch08 顺治 / 风际中与 design/18 孙婆婆 / 蒙哥主记录核查。
+    - ART-cast-polish-ch09 改为等 DES-sync-keyscenes-ar36 合入后再起（追踪者建议：polish 会引用汪啸风，先改好名录）；追踪者已补 sparse_include female/ch09（7325c13e）。双儿精修进 TODO §8.1 等作者。
+    - 删掉已合入任务的 CODEX_HOME（hero-a 133 MB、hero-b 119 MB）。
+    - 不用剧照的例外（白马 / 侠客 / 鸳鸯用《金庸群侠传》头像 + 基线）写进 `_codex_portrait.md` §3 与 `ART-hero-refine.md` 复合参考一节，免得以后的执行器再搜图或拒出。
+    - TOOL-catalog-9col 复审 r2 FAIL（03:27）：双写检查只在投影已有该键时比较，省略投影键即可绕过；驱动（`--max-runs 2`）等代码池空位后自动返修（池被 ENG-17 / 18b / 19a + TOOL-rig-sheet 占满）。
+    - 03:50：负载回落到 6.3，交换区 33.8 GB 仍用 32.4 GB，磁盘 7 GiB。
