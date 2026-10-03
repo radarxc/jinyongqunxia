@@ -930,3 +930,4 @@
       - 这个测试本身有缺陷（没有 dist 时空过、dist 旧时误报），已报协调者。
     - **entry 余量只剩约 12 KiB**：19a 加了约 28 KiB。已在 ENG-19b / 16e 的说明里补「新页面和组件懒加载，报告写 size 实测」（d433bed2）。
 
+  - **10-03 04:21–04:36 协调者 / 开发监督（ENG-19a 合入）**：ENG-19a 返修后校验通过停 HOLD-REVIEWS，协调者 04:21 起 `--from review`（pid 59770）；r2 PASS（04:28），04:32 合入 **ed8898d6**。开发监督重建 dist 后 prod_check 全绿：125 文件 843 用例，entry 157.74 / 170，webgl 318.27 / 350。19a 的 `build-shell.test.ts` 依赖上一次 dist（旧 dist 误报 rig-demo 块、无 dist 空过）→ 登记 ENG-19c 小修（排 ENG-12e 后、19b 前）；entry 只剩 12 KiB，19b / 16e 说明已加懒加载与 size 实测约束（d433bed2）。ENG-17 返修后校验通过停 HOLD-REVIEWS，开发监督 04:30 另起驱动（96341）复验 + 复审。

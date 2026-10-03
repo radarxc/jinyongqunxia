@@ -23,7 +23,7 @@
   - 情景图：改由 codex 主角精修任务出（hero-a 已入库 50 张插图，hero-b 待合入），Gemini 不再出；`key-scenes.md` 的统计口径待同步（§4）。
   - 城市布局：CITY-layouts-all 03:36 续作（第 4 次运行）；遗迹地图等 ENG-18b；三视图切件 TOOL-rig-sheet 审核两次不过，第 3 次返修中（§3.4、§3.5）。
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
-- **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e 与 TOOL-items-catalog；集成分支 `pnpm check` 02:42 全绿（120 文件 825 用例，entry 129.51 / 170 KiB，webgl 292.75 / 350）。在跑 ENG-17、ENG-18b、ENG-19a（M1）与 TOOL-rig-sheet；eng3 队列还有 19 项（§5）。
+- **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e 与 TOOL-items-catalog；集成分支 `pnpm check` 02:42 全绿（120 文件 825 用例，entry 129.51 / 170 KiB，webgl 292.75 / 350）。ENG-19a 04:32 合入；在跑 ENG-17（复审）、ENG-18b 与 TOOL-rig-sheet（复审）；eng3 队列还有 19 项（§5）。
 - **分工**（作者 10-02 15:50 / 22:00）：三个 Opus subagent——素材线第二波追踪（codex 执行器）、Gemini 出图员、开发监督；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max；GPT-5.5 禁用）。协调者只规划、登记、裁定、合入。
 - **环境**：磁盘 7 GiB（交换区 33.8 GB 几乎用满），1 分钟负载 8～12；出图 runner 2 槽；eng3 并发 3（§6）。
 
@@ -43,9 +43,8 @@
 
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
-| ENG-17-booksleep-m1 | traex | 挪基点 a7aad304 后校验通过，审核 r1 FAIL（报告沿用旧超时说法），返修中 | 33190（开发监督另起，`supervise.r2.out`） |
+| ENG-17-booksleep-m1 | traex | 返修（改报告）后校验通过，04:30 开发监督另起驱动复验 + 复审 | 96341（开发监督另起） |
 | ENG-18b-tiled-regionmap | traex | 第 1 次运行（01:14 起） | eng3 → supervise 12005 |
-| ENG-19a-ui-shell | traex | 挪基点 a7aad304 后校验通过，审核 r1 FAIL（报告旧事实 / 交接不全），04:07 返修中；返修后停 HOLD-REVIEWS 由协调者 `--from review` 复审 | 46454（协调者另起，`supervise.r4.out`） |
 | TOOL-rig-sheet | traex Sol max | 第 3 次运行（审核 r2 FAIL 后返修，03:18 起） | 53693（开发监督另起） |
 | TOOL-catalog-9col | traex Sol max | 复审 r2 FAIL（03:27：双写检查省略键可绕过），等代码池空位自动返修 | 51856（协调者另起） |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | — | HOLD-RUNS：等 TOOL-catalog-9col 合入后挪基点复验（`_handoff/lore_plan.md`） | des34 batch 9492 看护 |
@@ -211,12 +210,13 @@
 **已合入**：
 - ENG-00 至 ENG-14（含 00b、12b）、ENG-04b、ENG-16a、ENG-21a、TOOL-rig-pipeline、TOOL-item-sprites-run、TOOL-rig-nearside、TOOL-rig-clips；
 - 10-02 16:10 之后：ENG-18（76f9381a）、ENG-15（5d719561）、ENG-21b（674476bf）、ENG-25（06e613ba）、ENG-08b（627b619e）、ENG-16b（393f07dc）、ENG-12c-clip（26697b74）、ENG-16d（80b97cf5）、TOOL-items-catalog（9bdc3e5f，物品 361 → 889 个）、ENG-14b（94459b20，经脉协议 3 黄金）、ENG-17a（7543c30e，新游戏与对话，M1）、ENG-18d（4f801d3f，物品移出 entry 闭包成内容包独立叶片）、ENG-18e（1af8afcf，build.test 夹具化）。
-- 集成分支 `pnpm check` **02:42 全绿**：120 文件 825 用例；entry 129.51 / 170 KiB，webgl total 292.75 / 350（ENG-17a 后曾红到 203 / 170，ENG-18d 合入转绿；预算没放宽）。`check:perf` 23:15（负载 7.3）：程序步态 min P95 0.319 ms，片段模式 0.795 ms（门禁已按 AR-37 放宽到 1.0）。
+- **ENG-19a 合入**（ed8898d6，04:32，M1 外壳：标题 / 设置 / 恢复 / 旋转提示 / 对话 / 任务组件，删掉旧 GameUi.vue 与 storage-demo.ts）。集成分支 `pnpm check` 04:35 全绿（重建 dist 后）：125 文件 843 用例；**entry 157.74 / 170 KiB（只剩 12 KiB）**，webgl total 318.27 / 350。19a 新加的 `build-shell.test.ts` 读的是上一次的 dist（旧 dist 误报、无 dist 空过）→ 登记 ENG-19c 小修；ENG-19b / 16e 说明已加「新页面组件一律懒加载、报告写 size 实测」（d433bed2），预算不放宽，再逼近就先拆分。
+- 此前 02:42 全绿：120 文件 825 用例；entry 129.51 / 170 KiB，webgl total 292.75 / 350（ENG-17a 后曾红到 203 / 170，ENG-18d 合入转绿）。`check:perf` 23:15（负载 7.3）：程序步态 min P95 0.319 ms，片段模式 0.795 ms（门禁已按 AR-37 放宽到 1.0）。
 
 **在跑**（eng3 并发 3 + 单独驱动）：ENG-17（书眠、初眠配点，M1）、ENG-18b（Tiled 区域地图）、ENG-19a（外壳，M1）01:14 起第 1 次运行；TOOL-rig-sheet 第 3 次返修；TOOL-catalog-9col 复审。
 
 **eng3 排队 19 项**（队列顺序即优先级；依赖满足就自动开跑）：ENG-12e-gltf-pilot（ready）、ENG-16c（ready）、ENG-20a（等 18b）、ENG-19b（等 19a + 17）、ENG-20b、ENG-26、ENG-23a、ENG-16e、ENG-18c、CONTENT-ch00b / ch10 / ch00a / ch00c、ENG-27a / 27b / 28a / 28b / 27c、ENG-12d（可选）；TOOL-ingest-cropframe 在队列文件末尾，下次重启生效。
-- **M1 路径**：ENG-25 ✓ → ENG-17a ✓ → ENG-17（在跑）→ ENG-19a（在跑）→ ENG-19b → CONTENT-ch00a / b / c、CONTENT-ch10 → 新游戏 → 序章 → 初眠配点 → 白马冷入口打通。
+- **M1 路径**：ENG-25 ✓ → ENG-17a ✓ → ENG-19a ✓（ed8898d6）→ ENG-17（复审中）→ ENG-19b → CONTENT-ch00a / b / c、CONTENT-ch10 → 新游戏 → 序章 → 初眠配点 → 白马冷入口打通。
 - ENG-24 浏览器冒烟：不下载 Playwright 浏览器包（AR-34），不入队。
 - 开发监督提醒：ENG-17 / 18b / 19a 的工作区建于 ENG-18e 之前，若撞上 build.test 旧超时就挪基点复验。
 
