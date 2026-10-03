@@ -813,4 +813,5 @@
       - 合入后 `prod_check post-itemscat`：809 用例全过；体积红，entry 203.23 / 170，webgl 366.25 / 350。
       - ENG-18d 合入后集成分支必须转绿，不绿就带数字返修 18d。
     - **名录问题**（TOOL-items-catalog 报告）：design/10 §14.2 只登记了 569 / 894 个物品 ID，缺 manuals 170、weapons 128、hidden-weapons 27；没有 `items-herbs.md`，药材在 `items-medicine.md`，`gather-herbs.md` 只是分布表。交 des34 之后的同步任务。des34 改完名录后，开发监督再起 TOOL-items-catalog 的 `--from start` 重新生成，时间由协调者定。
+  - **10-03 00:08 协调者（磁盘告急处置）**：23:50 起交换区涨到 38.9 GB（人物线 build_portraits 的 BiRefNet 预计算推高内存，已停），可用一度 1.1 GiB，w11 / w12 出图 runner 自停。作者批准后删除：中午会话草稿 `0212031f-…/scratchpad/gem/`（2.4 GB 未选用试稿）、`~/.codex/sessions` 里 90 分钟前的会话记录（289 个文件，2.6 GB；在跑会话的 38 个文件保留）；此前已删旧 Playwright 包 539 MB 与已合入任务日志 0.37 GB。可用回到 6.0 GiB。eng3 并发 23:28 降 3、23:31 为让 ENG-18d 起跑又调回 4。
 
