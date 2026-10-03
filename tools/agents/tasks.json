@@ -47206,7 +47206,9 @@
     "packages/data/src/build/**",
     "packages/data/src/**/*.test.ts",
     "packages/data/src/**/__fixtures__/**",
-    "content/CLAUDE.md"
+    "content/CLAUDE.md",
+    "content/chapters/ch00_yuenv/roles/**",
+    "content/chapters/ch00_yuenv/npcs/**"
    ]
   },
   {

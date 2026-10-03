@@ -45,6 +45,23 @@ CONTENT-ch00a 的内容口径审核 r1 FAIL，其中两条是数据契约缺口�
    - 章节包包含角色槽叶片；
    - 现有内容（`content/**`）在新规则下仍然全绿。
 
+## 与 CONTENT-ch00a 的衔接（10-03 14:50 补，协调者 14:47 同意）
+
+CONTENT-ch00a 正在返修。按协调者的默认方案，在本任务合入前：
+- 白猿用显式灰盒 `mockRef` 表达 `species=animal`、`ageBand=null`、不可招募；
+- 6 个角色槽写成交接数据文件；
+- schema 不认的，放在 content:validate 不扫描的 `_drafts/` 下。
+
+若你开工时 ch00a 已合入，而它的角色槽、白猿数据和本任务的新 schema 对不上：
+- 允许把这些文件**迁到新 schema**：
+  - 只迁格式（字段名、结构、文件位置，包括从 `_drafts/` 移到正式位置）；
+  - 不改内容取舍：模板、数量、梦境档位、白猿不可招募等一律照原样。
+- 写集为此加两项：`content/chapters/ch00_yuenv/roles/**`、`content/chapters/ch00_yuenv/npcs/**`。只动角色槽和白猿相关文件，其他 NPC 不动。
+- 迁了哪些文件、字段怎么对应、原值是什么，在报告第 7 节逐项列明。
+- 遇到一对多、或要改语义的情况，就不迁，在报告第 7 节交 CONTENT-ch00a。
+
+若 ch00a 还没合入：不动它的文件，只在报告第 7 节写清交接格式。
+
 ## 约束
 
 - 写集：
@@ -53,8 +70,9 @@ CONTENT-ch00a 的内容口径审核 r1 FAIL，其中两条是数据契约缺口�
   - `packages/data/src/build/**`（只做角色槽进章节包所需的最小改动）
   - `packages/data/src/**/*.test.ts`、`packages/data/src/**/__fixtures__/**`
   - `content/CLAUDE.md`（写角色槽文件位置约定）
+  - `content/chapters/ch00_yuenv/roles/**`、`content/chapters/ch00_yuenv/npcs/**`（只按上节迁 ch00a 的角色槽与白猿格式）
   - 写集外的改动在提交时会被丢弃。
-- 不改 `content/chapters/**` 正式内容（由 CONTENT-ch00a 写）、`packages/core/**`（若年龄管线在 core 里，写进报告交后续）、`apps/**`、`docs/**`、`tools/perf/**`。
+- 不改 `content/chapters/**` 正式内容（由 CONTENT-ch00a 写；唯一例外是上节的格式迁移）、`packages/core/**`（若年龄管线在 core 里，写进报告交后续）、`apps/**`、`docs/**`、`tools/perf/**`。
 - ENG-region-gates-data 也改 `content-registry.ts` / `content-index.ts`，合入顺序在它之后时，按集成分支最新代码续写，不覆盖它的改动。
 - 不加依赖；每次写入 ≤ 150 行；不得在 `/private/tmp` 做整仓检出（_common 规则 12）。
 
