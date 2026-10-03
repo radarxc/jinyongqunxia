@@ -1334,3 +1334,13 @@
       - 08:45 的返修读的是改前说明。它转 HOLD 后，用 `--from validate` 加 `--rework-extra .agents/coord/TOOL-town-gaps-1/devsup_note_contract.md` 复审。
 
   - **10-03 08:55–09:02 磁盘告急（协调者 / 追踪者 / 开发监督）**：08:55 一分钟内从 6.7 GiB 跌到 0.77 GiB。元凶是两个 /private/tmp 临时检出：ENG-entry-split 执行器为量 HEAD 基线体积建的 `eng-entry-head.*`（5.98 GB，含整份 assets）与 TOOL-items-regen 的 `tool-items-regen-size-probe.*`（1.4 GB，regen 已停、孤儿）。协调者两个都删（基线数字直接取 `_handoff/prod_check_post-eng12e_0818.log`；已请开发监督在 entry-split 的返修说明里禁止再做整仓临时检出，并把「不得在 /private/tmp 做整仓检出」写进 ENG 说明通则）；追踪者删掉 /private/tmp 10 个旧 codex-home 类目录与 CITY 临时目录（0.75 GB）。09:01 回到 9 GiB；交换区 32.8 GB 未涨。w16 runner 曾被 < 3 GiB 护栏停下，rig-sheet-side 已出完 6 张、第 1 次运行结束校验通过（审核中）。
+  - **10-03 08:55–09:08 开发监督**：磁盘一度跌到 0.77 GiB，已在 08:57 报协调者；新增 _common 规则 12；返修说明改为自动注入。
+    - **磁盘**：元凶由协调者查明并删除，删后回到约 8 GiB：
+      - ENG-entry-split 执行器在 `/private/tmp/eng-entry-head.*` 用 `git archive HEAD` 解包整仓量基线，5.98 GB；
+      - TOOL-items-regen 的孤儿 `tool-items-regen-size-probe.*`，1.4 GB。
+    - **_common 规则 12**（ebfcaf7a）：不得在 `/private/tmp` 等临时目录做整仓检出或复制整份 assets；基线取集成分支 `prod_check_post-*.log`；临时文件用完即删。
+    - **entry-split**：基线说明已存为 `devsup_note_baseline.md`（基线取 post-eng12e：entry 168.57 / render 161.24 / webgl 329.80）。后台 `append_on_prompt.py` 会在它下一次运行的 `N.prompt.md` 生成、执行器启动前自动追加。
+    - **tests-discover**：同样用 `append_on_prompt.py` 盯第 4 次运行，追加 `devsup_note_r1.md`。若它直接转 HOLD-REVIEWS，则在复审时用 `--rework-extra` 带上。
+    - **town-gaps-1**：说明修订后返修通过校验，09:05 手动第 2 次 `--from validate`，驱动 76627，`--rework-extra devsup_note_contract.md`。
+
+  - **10-03 09:05–09:08 作者 AR-41 → 登记 3D 角色线**：作者原话见 `author-requirements.md` AR-41（调用 codex exec gpt-6 xhigh 看 Tripo quick-start，key 在本地 `.env`，生成主要角色 3D 模型与骨架并优化男女主角）。协调者登记 **ART-3d-tripo-avatars**（男女主角：多视图 / 立绘 → 高质量模型 + 骨架 + 3 个预设动作，修头发肉色；写 `tools/model3d/tripo_cli.py`；上限 600 点）与 **ART-3d-tripo-cast**（31 位主角群 image_to_model + 骨架；上限 2500 点或余额剩 25%），审核清单 `review_checks_model3d.md`（第 1 条密钥不泄露），batch_run CHECKS 加 `ART-3d-`；`.env` 进 `.gitignore`（主检出 `.env` 一行 `tripo_key=`，不进 `_prod`）。追踪者按 codex 常规起 avatars（无需出图 runner）。
