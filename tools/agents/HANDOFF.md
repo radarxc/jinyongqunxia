@@ -705,4 +705,19 @@
       - des33 在跑 DES-sync-tech-a、design-a、skills-reqs-v2-a、story-hooks-g1 / g4。
     - **磁盘**：15 GiB。
   - **10-02 18:40 协调者**：AR-35 的 4 张补出完成（胡一刀 f09f90c3 / b3cc6702、凌霜华 3391d36d、狄云乡下装 40b27eed），立绘重建 abca5409；总览页第 10 版重发（同地址 CYs9JiV1G8C7RBYPwTW46A）。Chrome 扩展自 17:0x 断连，作者 18:35 说已重连但此端仍探测不到，Gemini 线暂停等待。
+  - **10-02 18:25–18:52 开发监督**：
+    - **合入**：
+      - ENG-21b（674476bf，18:25）：ENG-12c-clip 的两个依赖至此齐了；
+      - DES-sync-tech-a（a0164d38，18:26）；
+      - DES-skills-reqs-v2-a（1bd60aff，18:34）；
+      - DES-sync-design-a（a47a3818，18:50）。
+      - 每次合入后跑 `prod_check` 都绿。ENG-21b 之后为 107 文件 657 用例，size 295.46 / 350；check_ids --strict 为 0。
+    - **check:perf**：ENG-21b 改了渲染，所以 18:49 在 loadavg 7.36 时补跑一次：100 角色 min P95 0.249 ms，20 角色 0.059 ms，通过（`_handoff/check_perf_1849.log`）。
+    - **DES-sync-design-a**：
+      - 18:37 r1 FAIL 时执行次数已满，停在 HOLD-RUNS。r1 要改的是 design/14 的本命只能从保留的 3 门武功里选，以及报告 §7。
+      - 18:38 用 r1 返修说明另起驱动 `--from start`（Sol max，pid 12640；说明在 `.agents/coord/DES-sync-design-a/devsup_note_rework_r1.md`），r2 PASS 后合入。这次不计入复审次数，记在 `devsup_revalidated.json`。
+    - **ENG-16b**：第 3 次运行按返修说明自己把 `gather.ts`、`gather.test.ts`、`index.ts` 恢复了，所以 shrink_exempt（40c84ddd）没用上，留着也无害。18:43 校验通过，含 pnpm check、core 测试 / 性能门禁、build、ids，现在审核中。
+    - **ENG-25**：r1 FAIL，要求序章例外只收 `q_00_main_c_01`–`04`。已返修，校验通过，eng3 18:43 起第 1 次复审。
+    - **ENG-08b**：18:22 起审核。
+    - **磁盘**：10.8 GiB。
 
