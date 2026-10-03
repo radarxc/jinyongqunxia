@@ -31,6 +31,7 @@
 |---|---:|---|
 | 开放区域 | 7 | `design/11` §10.2 |
 | 开放城市 | 16 | 同上；按 `cities.yaml` 的 `ch07` 时代名显示 |
+| 章节场景 | 21 | 既有 20 个场景 + 华山后洞遗迹专线 1 个 |
 | 制作阶段 | 9 | 同上；23 个剧情任务归并生产，不删 story 节点 |
 | 单路线剧情幕 | 13 | `2 共有前幕 + 10 路线幕 + 1 共有终幕` |
 | 支线 | 24 | 通用 3、门派 8、羁绊 3、奇遇 10 个任务根 |
@@ -201,7 +202,7 @@ chapterStart:
 | 区域 | 本时代地貌与势力状态 | 入口与轻功门禁 | 主要 NPC / 门派 | 可学武功（已有 ID） | 敌人等级带 | 秘境 / 奇遇 |
 |---|---|---|---|---|---:|---|
 | `rg_lingnan` | 海陆驿道、丘陵密林、袁党旧线；`tr_pingdi`、`tr_caodi`、`tr_milin`、`tr_qianshui` | 开局即开；驿墙 qg1；圣峰嶂侧坡 qg2，均有正门 | `npc_yuanchengzhi`（幼年段）、`npc_yuanchonghuan`（追忆）；山宗外围 | `sk_caoshangfei`、`sk_jianghuchangquan`、`sk_jianghutuna` | 44–47 | 废驿密格、圣峰嶂旧营；遗信、潮痕、山祭三触点 |
-| `rg_guanzhong` | 华山险峰与西安—延安军民通道；`tr_qiaobi`、`tr_xuanya`、`tr_zhandao`、`tr_yunhaizhandao` | 共有幕 01 后开；山腰 qg2；金蛇洞捷径 qg3；绝壁暗格 qg5 仅奖励 | `npc_murenqing`、`npc_musang`、`npc_yuanchengzhi`、`npc_huangzhen`、`npc_guixinshu`；华山 / 闯王军 | `sk_huashantuna07`、`sk_hunyuanzhang`、`sk_tiejantuna`、`sk_shenxing` | 47–56 | `sc_07_jinshedong`、华山后洞、延安密储；棋谱、残承、旧饷三触点 |
+| `rg_guanzhong` | 华山险峰与西安—延安军民通道；`tr_qiaobi`、`tr_xuanya`、`tr_zhandao`、`tr_yunhaizhandao` | 共有幕 01 后开；山腰 qg2；金蛇洞捷径 qg3；绝壁暗格 qg5 仅奖励 | `npc_murenqing`、`npc_musang`、`npc_yuanchengzhi`、`npc_huangzhen`、`npc_guixinshu`；华山 / 闯王军 | `sk_huashantuna07`、`sk_hunyuanzhang`、`sk_tiejantuna`、`sk_shenxing` | 47–56 | `sc_07_jinshedong`、`sc_07_huashan_houdong`、延安密储；棋谱、残承、旧饷三触点 |
 | `rg_zhedong` | 金华庄田、衢温山道与湿林；`tr_milin`、`tr_duzhao`、`tr_suishi`、`tr_shinei` | `dc_07_02` 后开；石梁后墙 qg2；毒沼短线 qg3，可解毒绕行 | `npc_wenqingqing`、`npc_wenyi`、`npc_wenfangda`、`npc_wenfangyi`；石梁 / 仙都 | `sk_wenjiagong`、`sk_shiliangwuxingzhang`、`sk_xiandutuna`、`sk_shangqingjianfa07` | 46–51 | `sc_07_shiliangzhuang`、仙都山门；五行石、母女旧物、错谱三触点 |
 | `rg_jianghuai` | 应天府帮会街巷、扬州漕运水网；`tr_taijie`、`tr_gaoqiang`、`tr_qianshui`、`tr_dajiang` | 石梁阶段后开；屋脊 qg2；漕船跳帮 qg3，可走船舱 | `npc_jiaowaner`、`npc_jiaogongli`、`npc_chengqingzhu`；金龙帮及青竹帮来客 | `sk_chuangwangchangquan`、`sk_chuangwangtuna`、`sk_biaojujianfa`、`sk_sihaibiaodao` | 47–52 | 金龙帮旧堂、漕银船阵；冤案账页、竹符、沉箱三触点 |
 | `rg_qilu` | 济南驿路、泰安山道与会盟营地；`tr_pingdi`、`tr_caodi`、`tr_tiesuoqiao`、`tr_qiaobi` | 军饷到位后开；泰山偏道 qg2；断桥 qg3，可修桥 | `npc_yuanchengzhi`、`npc_chengqingzhu`、`npc_lizicheng`；闯军临营 | `sk_chuangwangqiangji`、`sk_shanzongquanfa`、`sk_fuhuzhang`、`sk_xingjunbu` | 49–53 | `sc_07_taishan_mengying`；空营火、断旗、义仓三触点 |
@@ -227,10 +228,18 @@ chapterStart:
 - **城市**：华阴县 `city_huayin`、西安府 `city_xian`、延安府 `city_yanan`。
 - **入口状态**：共有幕 01 结束后先开华阴；军饷线再开延安；A07-4 结算前开放西安方向。
 - **势力变化**：华山为师门驻地；延安承担闯军军需；西安府方向承接李岩 / 红娘子撤离窗口。
-- **关键场景**：`sc_07_huashan_shanmen`、`sc_07_jinshedong`、`sc_07_yanan_micang`。
+- **关键场景**：`sc_07_huashan_shanmen`、`sc_07_jinshedong`、`sc_07_huashan_houdong`、`sc_07_yanan_micang`。
 - **资源主题**：矿石、药材、粮食；华山稀缺点可以到地中 8，但不周期产天材。
 - **轻功上限**：主线洞路 qg3；qg5 暗格只给额外见闻，可用机关配重和木桑临时引路替代。
 - **探索闭环**：棋局揭洞路、洞谜给传承、军需账连接闯王宝藏种子。
+
+**具名遗迹场景登记。** 华山后洞已是 §9.7 的独孤九剑传承载体，不再只作为 `sc_07_huashan_shanmen` 的无名子空间；洞内布局、机关与本界投放均为**（原创扩展）**。
+
+| ID | 名称 | 类型 | 尺寸档 | 房间数 | 入口条件 | 年代 | 所属区域 | 关联任务 / 奇遇 |
+|---|---|---|---|---:|---|---|---|---|
+| `sc_07_huashan_houdong` | 华山后洞 | 山洞 / 岩窟 | 标准（≤96×96，≤3×3 chunks） | 5 | 共有幕 01 后开放外围；核心深入条件**（待设计）** | 明末，1630–1645 | `rg_guanzhong` | `lgs_dugu_jiujian`、`cache_dugu_siguoya`；无新增 `q_*` |
+
+五房按入口、两处外围岔路、剑痕核心洞厅、回返出口组成，满足 `design/11` §4.4.1；传承资格与卷位仍只见 `design/20`，本章不新增奖励或任务线。
 
 ### 3.4 区域详表：浙东与江淮
 
@@ -1641,7 +1650,7 @@ I(ch07) = 2 × 主武器价 × incomeCoeff
 | BX-X02 | 驿路行脚、山宗药徒、海商账手三种掩护履历 | §2.2 | 只改交互、引荐与首支线，不改变玩家真实身份 |
 | BX-X03 | 1630–1633 三年送信年表与闽粤线性接驳 | §2.3 | 不给玩家虚构十年修为，也不替袁承志成长 |
 | BX-X04 | 七区的地块组合、入口次序、轻功替代路与探索闭环 | §3.2–§3.5 | 区域本身沿用全局 `rg_*`，只新增 `sc_07_*` 场景 |
-| BX-X05 | 废驿密格、华山后洞、延安密储、仙都山路、漕运船阵、泰山营地、库银地道与军报驿等实例 | §3 | 作为玩法地块，不宣称小说逐一出现 |
+| BX-X05 | 废驿密格、独立登记的华山后洞、延安密储、仙都山路、漕运船阵、泰山营地、库银地道与军报驿等实例 | §3 | 华山后洞承接正式传承缓存；具体房间和机关为原创，不宣称小说逐一出现 |
 | BX-X06 | 每区三触点、合计二十一个奇遇触点 | §3.7 | 触点只服务调查、环境叙事与任务触发 |
 | BX-X07 | 十六个可占领 / 共管资源点 | §3.8 | 类别与经济规则引用 `design/16`；军库、库银不伪装成周期资源 |
 | BX-X08 | 二十个镖局、山庄、赌场营生实例与职位 | §3.9 | 职位规则引用 `design/16`；不把本作场所写成原著名号 |
@@ -1728,12 +1737,12 @@ I(ch07) = 2 × 主武器价 × incomeCoeff
 
 ### 本章登记的内容 ID 与局部接口键
 
-#### 场景 `sc_07_*`（20）
+#### 场景 `sc_07_*`（21）
 
 | 区域 | 场景 ID | 用途 |
 |---|---|---|
 | 岭南 / 闽粤 | `sc_07_lingnan_yizhan`、`sc_07_shengfengzhang`、`sc_07_minyue_yilu` | 苏醒、追捕与线性接驳 |
-| 关中 | `sc_07_huashan_shanmen`、`sc_07_jinshedong`、`sc_07_yanan_micang` | 师门、金蛇谜、军需 |
+| 关中 | `sc_07_huashan_shanmen`、`sc_07_jinshedong`、`sc_07_huashan_houdong`、`sc_07_yanan_micang` | 师门、金蛇谜、独孤传承洞窟、军需 |
 | 浙东 | `sc_07_shiliangzhuang`、`sc_07_wenyi_yuan`、`sc_07_xiandu_shandao` | 温家旧案、救援、仙都访证 |
 | 江淮 | `sc_07_jinlong_tangkou`、`sc_07_yangzhou_caoyun`、`sc_07_jiangshang_chuan` | 焦案、漕运、船路 |
 | 齐鲁 | `sc_07_taishan_mengying`、`sc_07_qilu_yicang` | 会盟、义仓 |
@@ -1808,7 +1817,7 @@ I(ch07) = 2 × 主武器价 × incomeCoeff
 | BX-V02 | 一级结构 | `## 1`–`## 13` 各出现一次且升序；文末三章顺序为“本文新增术语与 ID”→“数据校验规则与测试用例”→“待决事项 / 依赖” | error |
 | BX-V03 | 地图引用 | 使用 `design/map/jianghu-ch07.svg`；城市 ID 可在 `cities.yaml` 解析且 `ch07` 显示名一致 | error |
 | BX-V04 | 区域与城市量 | 开放区域集合恰为 7 个全局 `rg_*`，不存在正式 `rg_07_*`；开放城市 16 个 | error |
-| BX-V05 | 场景格式 | 本界专有场景恰为 20 个 `sc_07_*`；每个绑定一个开放区或声明为专线 | error |
+| BX-V05 | 场景格式 | 本界专有场景恰为 21 个 `sc_07_*`（既有 20 个 + 华山后洞遗迹专线）；每个绑定一个开放区或声明为专线 | error |
 | BX-V06 | 地形与轻功 | 所有 `tr_*` 可在 `design/08` 解析；主线最高 qg3 且有非轻功路线；qg4 / qg5 只用于额外支线 / 隐藏奖励 | error |
 | BX-V07 | 主线只索引 | §4 的 23 个 `q_07_main_*` 与 story 集合相等；不在章节另建剧情正文、选择后果或第二套节点 | error |
 | BX-V08 | 选择节点 | `dc_07_01`–`08` 各一次列入索引且语义与 story §5 一致 | error |

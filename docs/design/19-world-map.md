@@ -1,11 +1,11 @@
 # 19 · 江湖大地图：城市、门派坐标、时代图层与水墨 SVG
 
 > 归属（基准 §18）：统一江湖大地图的几何、WGS84 坐标、历史城市名称与地位、治所迁移、门派地图落点、图外节点、跨区交通线和 SVG 生成契约。
-> 上游：`docs/decisions/author-requirements.md` AR-04、AR-08、AR-11、AR-26，`docs/decisions/author-decisions.md` P53，`docs/00-canon.md` §2、§12、§16、§18，`docs/decisions/rulings-v1.md`，`design/02` 年代，`design/17` 门派 ID 与时代矩阵。
+> 上游：`docs/decisions/author-requirements.md` AR-04、AR-08、AR-11、AR-26、AR-36，`docs/decisions/author-decisions.md` P53，`docs/00-canon.md` §2、§12、§16、§18，`docs/decisions/rulings-v1.md`，`design/02` 年代，`design/17` 门派 ID 与时代矩阵。
 > 引用而不重定义：区域玩法、入口状态、资源点与旅行事件 → `design/11`；大地图交互、筛选、可访问性与响应式布局 → `design/14`；门派史、称谓、武学与 `O/H/P/N/D/M` 开放矩阵 → `design/17`；世界层与区域内可行走渲染 → `tech/02` §7；运行时格式、质量档和分包 → `tech/06`。
 > 下游：`design/11` 定稿区域边界与玩法，`design/14` 消费 SVG/数据，`design/chapters/*` 选择 `chNN` 图层，`tech/04` 定 schema，`tech/06` 定生产分包。
 > 标注约定：**（原创扩展）**＝原著没有的内容；**（待考）**＝原著或史实尚需逐字核对；**（待核实）**＝技术事实尚未联网确认；**（待实测）**＝需真机/真浏览器验证；**【建议值】**＝依赖其他文档、先给可用值并在文末登记。
-> 版本：v1.3（AR-26 白马唐代首书图层契约，2026-10-02）；v1.2（跨文档同步，2026-09-26）。
+> 版本：v1.4（AR-36 具名遗迹 POI 坐标登记，2026-10-03）；v1.3（AR-26 白马唐代首书图层契约，2026-10-02）；v1.2（跨文档同步，2026-09-26）。
 
 ---
 
@@ -20,6 +20,7 @@
 7. `regions.yaml` 已按 `design/11` §2 的终稿迁为 **30 个正式 `rg_*`**，保留 81 个简化陆地多边形、14 组河流和 11 组山脉。189 城、99 门派、18 个图内分支、52 个旅行节点与 51 条路线的派生区域在同一批次更新。
 8. `tools/map/render_map.py` 仅需 Python 3.9+ 标准库；四个 `.yaml` 使用 JSON-compatible YAML 1.2，故无 PyYAML 也能读。校验器强制三十区有序闭集及城市 / 门派 / 分支 / 驿站 / 码头 / 路线的派生区域一致；`--check` 与全量 `--render` 均为提交门禁。
 9. 展示书序固定为 `ch10,ch01,ch02,ch03,ch04,ch05,ch06,ch07,ch08,ch09,ch11,ch12,ch13,ch14`；`ch10_baima` / `era-ch10` 仍是稳定键，但白马以 702–703 年武周唐代层作为序章后的首个正式书界。规则见 Canon §2、`design/02` §1 与 `design/chapters/10-baima` §1。
+10. AR-36 点名及章节既有玩法共登记 **5 个稳定遗迹 POI、6 个章节相位场景**；敦煌地宫在唐 / 清两时代共用一个 POI，不复制地理实体。
 
 ### 0.1 文件契约
 
@@ -41,6 +42,7 @@
 - 不定义门派是否可加入、门规、月钱与武学，见 `design/12`、`16`、`17` 与图鉴。
 - 不把地理 SVG 转成战斗碰撞体、高度场或六角格，见 `tech/02` §7。
 - 不在源码仓直接定稿 WebP 切片与 CDN 包清单；这里的 SVG 是可审查生成源，生产转换与分包归 `tech/06`。
+- 不定义遗迹房间、任务、战斗与奖励；章节负责 `sc_*` 相位，`design/11` 负责 `PoiDef` 可达性与遗迹投影，本文只登记 WGS84 锚点和置信度。
 
 ---
 
@@ -240,6 +242,20 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | 其余八个旧区 | 原 ID 复用 | 中原、河东、齐鲁、江淮、福建、江西、巴蜀、青藏不拆 |
 
 完整 30 区表、189 城逐项归属与邻接见 `design/11` §2.2、§3.2。`tools/map/migrate_regions_v2.py` 从该城市表重建派生字段；脚本断言恰有 189 个唯一城市，不能凭坐标猜区。
+
+### 3.8 具名遗迹 POI 的 WGS84 锚点
+
+下表只拥有大地图地理锚点，不定义关卡内部六角坐标、任务、战斗或奖励。经纬度按本文 §1.3 量化到 0.01°；除九老洞外，当前均复用已登记城市 / 山体锚，表示导航落点而非精确洞口。场内 `cell` 由 `design/11` §12.2 与 Tiled 实测回填。
+
+| POI ID | 名称 | WGS84（经度, 纬度） | 区域 | 章节场景相位 | 可达条件 | 坐标置信度 |
+|---|---|---|---|---|---|---|
+| `poi_zhongyuan_damodong` | 达摩洞 | 112.94, 34.51 | `rg_zhongyuan` | `sc_01_damodong` | `q_01_qiyu_82=active` | `known_mountain_anchor`：复用少林山体锚；洞口未单独测绘 |
+| `poi_jiangnan_taihu_ruoye_muzang` | 若耶溪墓藏 | 120.58, 30.00 | `rg_jiangnan_taihu` | `sc_01_ruoye_muzang` | `q_01_qiyu_75=active` 且取得可靠题签 | `city-anchor-pending-research`：复用绍兴锚；墓址**（待考）** |
+| `poi_bashu_jiulaodong` | 九老洞 | 103.36, 29.55 | `rg_bashu` | `sc_04_jiulaodong` | `ch04` 巴蜀开放；深入条件**（待设计）** | `known_site`：地名资料坐标；地方志交叉核对其位于仙峰寺附近 |
+| `poi_guanzhong_huashan_houdong` | 华山后洞 | 110.09, 34.49 | `rg_guanzhong` | `sc_07_huashan_houdong` | `ch07` 共有幕 01 后开放外围；核心深入条件**（待设计）** | `known_mountain_anchor`：复用华山山体锚；小说洞口不作现实确址 |
+| `poi_hexilongyou_dunhuang_digong` | 敦煌地宫 | 94.68, 40.17 | `rg_hexilongyou` | `sc_10_dunhuang_digong`（702–703）/ `sc_12_dunhuang_digong`（1753–1759） | 对应时代河西区域开放；深入条件**（待设计）** | `city-anchor-pending-research`：复用敦煌锚；精确入口与历史性质**（待考）** |
+
+敦煌采用“一处 POI + 两个时代相位”，因为地理知识应跨时代稳定，而章节场景各自持有当期入口状态、布景与清理进度。达摩洞、若耶溪墓藏、华山后洞的章节玩法，以及敦煌地宫的地下结构均含**（原创扩展）**；九老洞真实地名不等于《倚天》原著事件。以上 POI 先服务 AR-36 地图制作，尚未写入 `map/*.yaml`，见 §16.5。
 
 ---
 
@@ -821,24 +837,27 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 13. 台南市历史资料平台，承天府 / 台湾府沿革交叉核对，访问 2026-09-26：https://historic.tainan.gov.tw/index.php?option=module&lang=cht&task=pageinfo&id=89&index=6
 14. 高德地图“重阳宫”，鄠邑祖庵地址与坐标，访问 2026-09-26：https://ditu.amap.com/place/B001D08OX8
 15. 承德市文物局“避暑山庄及周围寺庙”，清代行宫分支交叉核对，访问 2026-09-26：https://wwj.chengde.gov.cn/art/2018/11/8/art_962_753975.html
+16. 法鼓文理学院佛教地名规范资料库“九老洞”，地名与坐标交叉核对，访问 2026-10-03：https://authority.dila.edu.tw/place/search.php?code=PL000000036095
+17. 四川省地方志资料（峨眉山卷），九老洞位于仙峰寺附近的地望交叉核对，访问 2026-10-03：http://scdfz.sc.gov.cn/Upload/main/ContentManage/Article/File/201701102024030112.pdf
 
 ### 13.2 投影与 SVG
 
-16. EPSG Guidance Note / EPSG method 9822，Albers Equal Area 正算形式，访问 2026-09-26：https://epsg.io/9822-method
-17. Snyder, J. P., *Map Projections—A Working Manual*, USGS Professional Paper 1395，Albers 等积圆锥公式，访问 2026-09-26：https://pubs.usgs.gov/pp/1395/report.pdf
-18. W3C Filter Effects Module Level 1，`feDisplacementMap` / `feTurbulence`，访问 2026-09-26：https://www.w3.org/TR/filter-effects-1/
-19. MDN `<feDisplacementMap>`，Baseline Widely available（2015-07 起），访问 2026-09-26：https://developer.mozilla.org/docs/Web/SVG/Reference/Element/feDisplacementMap
-20. MDN `<feTurbulence>`，SVG 滤镜原语说明与兼容信息，访问 2026-09-26：https://developer.mozilla.org/docs/Web/SVG/Reference/Element/feTurbulence
-21. SVG 2，文本与 `writing-mode` 规范，访问 2026-09-26：https://www.w3.org/TR/SVG2/text.html
+18. EPSG Guidance Note / EPSG method 9822，Albers Equal Area 正算形式，访问 2026-09-26：https://epsg.io/9822-method
+19. Snyder, J. P., *Map Projections—A Working Manual*, USGS Professional Paper 1395，Albers 等积圆锥公式，访问 2026-09-26：https://pubs.usgs.gov/pp/1395/report.pdf
+20. W3C Filter Effects Module Level 1，`feDisplacementMap` / `feTurbulence`，访问 2026-09-26：https://www.w3.org/TR/filter-effects-1/
+21. MDN `<feDisplacementMap>`，Baseline Widely available（2015-07 起），访问 2026-09-26：https://developer.mozilla.org/docs/Web/SVG/Reference/Element/feDisplacementMap
+22. MDN `<feTurbulence>`，SVG 滤镜原语说明与兼容信息，访问 2026-09-26：https://developer.mozilla.org/docs/Web/SVG/Reference/Element/feTurbulence
+23. SVG 2，文本与 `writing-mode` 规范，访问 2026-09-26：https://www.w3.org/TR/SVG2/text.html
 
 ### 13.3 项目内规范与原著基线
 
-22. `docs/00-canon.md` §2、§12、§16、§18。
-23. `docs/decisions/author-requirements.md` AR-04、AR-08、AR-11。
-24. `docs/decisions/author-decisions.md` P53。
-25. `docs/design/02-timeline-and-world-tiers.md` §1。
-26. `docs/design/17-sects-compendium.md` §3、§5–§12。
-27. 金庸三联版 / 广州出版社修订版十四部小说为原著考据基线；本稿没有编造逐字引文或回目号。
+24. `docs/00-canon.md` §2、§12、§16、§18。
+25. `docs/decisions/author-requirements.md` AR-04、AR-08、AR-11、AR-26、AR-36。
+26. `docs/decisions/author-decisions.md` P53。
+27. `docs/design/02-timeline-and-world-tiers.md` §1。
+28. `docs/design/11-open-world.md` §4.4、§12.2。
+29. `docs/design/17-sects-compendium.md` §3、§5–§12。
+30. 金庸三联版 / 广州出版社修订版十四部小说为原著考据基线；本稿没有编造逐字引文或回目号。
 
 ---
 
@@ -858,6 +877,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | 图外节点 | 超出 73–135°E / 18–54°N 画布、只在题签框出现的目的地 |
 | 图外专线 | 两端式、不含中继、只能从驿站或货船码头登乘的 `offmap_special` 路线 |
 | 岸线容差掩膜 | 为小岛/简化海岸或小说岛屿显式加入的点在陆地侧校验圆 |
+| 遗迹地理 POI | 跨时代稳定的入口地理实体；同一位置可由时代层映射到不同章节 `sc_*` 相位 |
 | JSON-compatible YAML | 同时满足 JSON 与 YAML 1.2 的数据子集，保证标准库可读 |
 | 水墨三级 | 深墨、中墨、淡墨；朱砂只作强调，不算第四级墨 |
 
@@ -872,6 +892,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | `port_*` | 河港、海港、岛屿渡口 | 28；`port_quanzhou` |
 | `route_*` | 常规路线与图外专线 | 51；`route_offmap_persia` |
 | `rg_*` | 正式全局玩法区域的导航镜像 | 30；完整闭集见 `design/11` §2.2 |
+| `poi_*` | 区域内兴趣点与遗迹入口 | 本文登记 5 个遗迹地理 POI；完整可达性见 `design/11` §12.2 |
 | `river_*` | 渲染河流几何 | 14 组 |
 | `mount_*` | 渲染山系几何 | 11 组 |
 | `site_*` | 门派分舵 / 临时地点 | 只在门派 `branches` 内使用，交 11 定稿 |
@@ -904,6 +925,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | `MAP-V009` | 有 `city_id` 的门派必须同时出现在该城市 `sects[]`；反向引用也必须唯一一致。长乐帮应且只应挂 `city_zhenjiang` |
 | `MAP-V010` | 地望显示遵循时代层：`city_shenyang` 明层为“沈阳中卫”、清层为“盛京奉天府”；石梁剧情提示不把当前 `city_jinhua` 锚点宣称为确址 |
 | `MAP-V011` | 稳定时代键仍为 `ch10` / `era-ch10`，展示序为 `10,01..09,11..14`；ch10 元数据为 702–703 武周层且默认显示，不能再引用清初字段 |
+| `MAP-V012` | §3.8 恰有 5 个唯一遗迹 `poi_*`；每项区域存在于 30 区闭集、坐标按 0.01° 量化；敦煌恰映射唐 / 清两个 `sc_*` 相位，其余各映射一个相位 |
 
 ### 15.2 已执行与负向用例
 
@@ -916,6 +938,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | N01–N04 | 注入重复 ID、越界坐标、缺时代名、海上城市 | 应分别报 ID、范围、时代、陆地错误并退出 1 |
 | N05–N08 | 注入坏端点、图外 `via`、普通城市登乘、普通线接图外 | 应报路线/图外规则错误并退出 1 |
 | T05 地望反向引用 | 比较 `sects[].city_id` 与 `cities[].sects[]` | `sect_changlebang ↔ city_zhenjiang` 双向唯一；`sect_shiliang ↔ city_jinhua` 暂存且带衢州府一带待考说明 |
+| T06 遗迹登记 | 文档 ID 严格校验，并比对 §3.8 与 `design/11` §12.2 | 5 个 `poi_*` / 6 个 `sc_*` 名称、区域与相位映射一致；场内六角坐标仍待 Tiled 回填 |
 
 人工审图重点为 ch10/ch01/ch04/ch08/ch14 的城名、门派、岛屿和题签；ch10 还须逐项排除清代名称、地位、门派、营生和路线残留。本环境 Quick Look 受沙箱阻止、`sips` 不解析 SVG，Playwright 调用系统 Chrome 也因沙箱退出，故像素观感仍**（待实测）**。
 
@@ -933,6 +956,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | `W1-D04` | `tech/06` | 共享 base + 14 个时代增量；low 2K、mid/high 4K tiles | 定构建配方、素材键与包归属 |
 | `W1-D05` | chapters | 各章引用 `era: chNN` 与稳定 `city_*` | 定开局城市和剧情入口覆盖 |
 | `W1-D06` | `design/17` | 门派坐标精度字段与分舵 ID | 回写确址考据；不改变 17 的状态归属 |
+| `W1-D07` | `ART-ruins-maps` / 地图数据归属任务 | 以 §3.8 的 5 个 `poi_*` 和 6 个章节相位为遗迹绘图清单 | 绘制关卡后实测场内六角坐标；另由有权限任务决定是否写入 `map/*.yaml` |
 
 以上均为 **【建议值】**；不妨碍当前数据、校验和渲染工作。
 
@@ -942,6 +966,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 |---|---|---|
 | AR-04 | 统一地图 + 时代入口与状态 | 已落实 |
 | AR-11 | 水墨、真实城市坐标、历史地名、图外专线 | 已落实 |
+| AR-36 | 完成九老洞、敦煌地宫等遗迹 / 探险地图 | 已建立 5 个稳定地理 POI 与 6 个章节相位 ID；具体地图交下游制作 |
 | 作者 P53 | 大地图是旅行示意 / 目的地选择，不可行走 | 已落实 |
 | 基准 §2 / `design/02` | 14 书界顺序与游戏定年 | 已复制为渲染键 |
 | AR-26 / `design/chapters/10-baima` §1、§3 | 白马为 702–703 年首个正式书界；稳定键不重编号 | 文档层已落实；ch10 地图源与 SVG 待归属任务重建 |
@@ -975,6 +1000,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | `W1-K09` | 次要门派 | 17 中标待考的上清观、清代武馆、帮寨/山庄驻地 |
 | `W1-K10` | 历史城市 | 189 城所有带“待考”的宋金元路府州县名称与治所迁移 |
 | `W1-K11` | 石梁 / 沈阳 | 按指定版本和历史资料核定石梁相对衢州、金华的地望，以及“沈阳中卫—盛京—奉天府”的准确改称时点；本版只保守展示双称 |
+| `W1-K12` | 具名遗迹 | 若耶溪墓藏、华山后洞与敦煌地宫的精确位置 / 历史性质；达摩洞洞口与小说叙事地望。未核前只用城市或山体锚，不宣称确址 |
 
 ### 16.5 开放问题（附默认值）
 
@@ -991,6 +1017,8 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 | `W1-O09` | 岸线/小说岛掩膜是否参与真实距离 | 否；只用于绘制与陆地侧校验 |
 | `W1-O10` | 是否显示所有 189 个名称 | 全国层不显示；按缩放渐进展开，点和搜索始终存在 |
 | `W1-O11` | ch10 唐代层在地图资产同步前如何处理 | 默认禁止发布旧清初 `era-ch10`，编辑器显示“唐代层待重建”；运行时不可静默回退到旧清初年份 |
+| `W1-O12` | 五处遗迹的场内六角坐标与精确入口何时冻结 | 默认保持待回填；ART / 关卡制作完成后由 Tiled 实测，禁止从本节 WGS84 锚点反推 |
+| `W1-O13` | 敦煌地宫是否维持单 POI 双相位 | 默认维持：`poi_hexilongyou_dunhuang_digong` 跨时代稳定，唐代 / 清代分别加载 `sc_10_dunhuang_digong`、`sc_12_dunhuang_digong` |
 
 ### 16.6 已解决的既有待决事项
 

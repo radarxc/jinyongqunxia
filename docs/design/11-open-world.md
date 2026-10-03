@@ -1,10 +1,10 @@
 # 11 · 开放世界（Open World）
 
 > 归属（基准 §18）：统一江湖大地图的玩法结构、全局区域 ID、时代图层、区域入口、探索、奇遇、世界昼夜天气、旅行、遭遇与休整；资源点与营生场所只定义地图位置及数量预算。
-> 上游：`decisions/author-decisions.md` P52–P53、`decisions/author-requirements.md` AR-03–AR-06/AR-08/AR-11/AR-13/AR-26/AR-28、`00-canon.md`、`decisions/rulings-v1.md`、`design/01`–`03`、`design/08`、`design/10`、`design/13`、`design/15`–`19` 与 `design/map/*.yaml`。
+> 上游：`decisions/author-decisions.md` P52–P53、`decisions/author-requirements.md` AR-03–AR-06/AR-08/AR-11/AR-13/AR-26/AR-28/AR-36、`00-canon.md`、`decisions/rulings-v1.md`、`design/01`–`03`、`design/08`、`design/10`、`design/13`、`design/15`–`19` 与 `design/map/*.yaml`。
 > 引用而不重定义：年代、境界与书眠步骤 → `design/02`；属性、体力与恢复公式 → `design/03`；地形、轻功动作、门禁及战斗天气效果 → `design/08`；就地开战与遭遇战斗流程 → `design/09`；物品、坐骑与永久物品预算 → `design/10`；任务、门派关系与声望 → `design/12`；时长、多周目与结局 → `design/13`；冲穴动作、成本、进度与风险 → `design/15`；资源经营、家丁、营生职位与收益 → `design/16`；门派历史及开放矩阵 → `design/17`；NPC 生卒、招募与跨书重逢 → `design/18`；坐标、投影、路线几何、逐章城市状态与 SVG → `design/19`、`design/map/*.yaml`；跨年代传承源、遗迹资格、残本与信物规则 → `design/20`；数据格式与运行时实现 → `tech/04`、`tech/05`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖下游或尚待跨文档同步的可用默认值，统一登记于 §15.1。
-> 版本：v1.3（AR-28 遗迹探索、采集点与剧情战斗奖励，2026-10-02）；v1.2（跨文档同步、全局审计，2026-09-26）。
+> 版本：v1.4（AR-36 具名遗迹入口登记，2026-10-03）；v1.3（AR-28 遗迹探索、采集点与剧情战斗奖励，2026-10-02）；v1.2（跨文档同步、全局审计，2026-09-26）。
 
 ---
 
@@ -1443,10 +1443,17 @@ ruinProjection:
 
 本节正式登记的 POI 如下；每个 ID 只占一行。`cell` 未定的条目不得凭示意图补坐标，须由 `design/19` / Tiled 数据实测后回填。
 
-| ID | 名称 / 类别 | 区域与场景 | 目标 / 来源 | 六角坐标 |
-|---|---|---|---|---|
-| `poi_dali_langhuan_entrance_01` | 琅嬛福地入口眺望点 / `vista` | `rg_dali_cangshan` / `sc_01_jianhugong` | `q_01_qiyu_71`；上方 `PoiDef` 示例 | `{q: 42, r: 19, h: 6}` |
-| `poi_dali_wuliang_yubi_01` | 无量山玉璧机会点 / `inspect` | `rg_dali_cangshan` / `sc_01_jianhugong` | `q_01_qiyu_71`；下方 `QiyuDef.opportunityIds` | 未定，不虚构 |
+| ID | 名称 / 类别 | 区域与章节场景相位 | 可达条件 / 来源 | 六角坐标 | 遗迹投影 |
+|---|---|---|---|---|---|
+| `poi_dali_langhuan_entrance_01` | 琅嬛福地入口眺望点 / `vista` | `rg_dali_cangshan` / `sc_01_jianhugong` | `q_01_qiyu_71`；上方 `PoiDef` 示例 | `{q: 42, r: 19, h: 6}` | — |
+| `poi_dali_wuliang_yubi_01` | 无量山玉璧机会点 / `inspect` | `rg_dali_cangshan` / `sc_01_jianhugong` | `q_01_qiyu_71`；下方 `QiyuDef.opportunityIds` | 待 Tiled 回填 | — |
+| `poi_zhongyuan_damodong` | 达摩洞 / `entrance` | `rg_zhongyuan` / `sc_01_damodong` | `q_01_qiyu_82=active` | 待 Tiled 回填 | `cave / small / 3 rooms` |
+| `poi_jiangnan_taihu_ruoye_muzang` | 若耶溪墓藏 / `entrance` | `rg_jiangnan_taihu` / `sc_01_ruoye_muzang` | `q_01_qiyu_75=active` 且取得可靠题签 | 待 Tiled 回填 | `tomb / small / 4 rooms` |
+| `poi_bashu_jiulaodong` | 九老洞 / `entrance` | `rg_bashu` / `sc_04_jiulaodong` | `ch04` 巴蜀开放；深入条件**（待设计）** | 待 Tiled 回填 | `cave / medium / 5 rooms` |
+| `poi_guanzhong_huashan_houdong` | 华山后洞 / `entrance` | `rg_guanzhong` / `sc_07_huashan_houdong` | `ch07` 共有幕 01 后开放外围；核心深入条件**（待设计）** | 待 Tiled 回填 | `cave / medium / 5 rooms` |
+| `poi_hexilongyou_dunhuang_digong` | 敦煌地宫 / `entrance` | `rg_hexilongyou` / `sc_10_dunhuang_digong`、`sc_12_dunhuang_digong` | 对应时代河西区域开放；深入条件**（待设计）** | 待 Tiled 回填 | `tomb / medium / 6 rooms` |
+
+上表五个新增遗迹入口均启用 `ruinProjection`，`revisit.enabled=true`、重访投影周期默认 3 日；若后续增设 `kind=gather` 的遗迹采集点，其基础刷新仍按 D-OW05 取 5 日。首通核心和任务唯一物永不刷新。`small` 对应章节“微型”，`medium` 对应“标准”。敦煌只登记一个 `poi_hexilongyou_dunhuang_digong`：由时代层选择唐代或清代 `sceneId`，禁止为两个年代复制地理 POI。五处 POI 的具体关卡玩法均含**（原创扩展）**；若耶溪墓藏与敦煌地下结构本身亦为**（原创扩展）**，九老洞真实地名不等于《倚天》原著事件。待考边界见相应章节与 `design/19` §3.8。
 
 ### 12.3 `QiyuDef`：奇遇条件、概率与奖励
 
@@ -1586,7 +1593,7 @@ regions:
 | 全局区域 | `rg_<英文地理名>`；不带书界号 | §2.2 的 30 个闭集 ID |
 | 城市 | `city_<英文或既定拼音短名>` | 全部 189 个沿用 `cities.yaml`，本文不新增 |
 | 章节局部场景 | `sc_<NN>_<拼音>` | 正式登记 `sc_08_beijing_guanxingtai`；其余由各 `chapters/NN` 登记，旧 `scn_*` 只作迁移输入 |
-| POI | `poi_<区域短名>_<拼音>` | 正式登记：`poi_dali_langhuan_entrance_01`、`poi_dali_wuliang_yubi_01`（§12.2） |
+| POI | `poi_<区域短名>_<拼音>` | 正式登记：既有 `poi_dali_langhuan_entrance_01`、`poi_dali_wuliang_yubi_01`，以及遗迹入口 `poi_zhongyuan_damodong`、`poi_jiangnan_taihu_ruoye_muzang`、`poi_bashu_jiulaodong`、`poi_guanzhong_huashan_houdong`、`poi_hexilongyou_dunhuang_digong`（§12.2） |
 | 资源点 | `rp_<区域短名>_<类别>_<nn>` | **示例候选**：`rp_dali_herb_01`；类别与经营属性由 `design/16` 定 |
 | 营生场所 | `biz_<城市短名>_<casino\|escort\|manor>_<nn>` | **示例候选**：`biz_dali_manor_01`；职位和收益由 `design/16` 定 |
 | 奇遇 | `q_<两位书界号>_qiyu_<两位序号>` | 沿用 `q_01_qiyu_71`–`74`、`81`、`82`、`91` |
@@ -1607,7 +1614,7 @@ rg_dongbei rg_monan rg_mobei rg_donghai_islands rg_nanhai_islands
 
 W1 十九区迁移后净增 11 区：新增 `rg_qinba`、`rg_jiangnan_taihu`、`rg_zhedong`、`rg_jingxiang`、`rg_huxiang`、`rg_guangxi`、`rg_dali_cangshan`、`rg_yundian_qianzhong`、`rg_xixia_helan`、`rg_xiyu_nanjiang`、`rg_xiyu_beijiang`、`rg_liaoxi`、`rg_dongbei`、`rg_monan`、`rg_donghai_islands`、`rg_nanhai_islands` 共 16 个，废弃 5 个旧粗区，另有 14 个原 ID 复用。旧 `rg_liangzhe/rg_jingchu/rg_yungui/rg_xiyu/rg_islands` 仅保留迁移别名，不得用于新内容。
 
-基准 v1.2 §12 已登记 `city_*`、`sc_*`、`poi_*`、`rp_*` 与 `biz_*`。旧 `scn_*` 只允许作为迁移读取键；本文生产示例已改用 chapters/01 正式 `sc_01_*`，不得再双写。`region-*` / `era-*` 是 `tech/06` 的物理 `PackId` 而非游戏内容 ID。除 §12.2 明列的两项 POI 外，示例不意味着对象已经由章节或 `design/16` 完成生产配置。
+基准 v1.2 §12 已登记 `city_*`、`sc_*`、`poi_*`、`rp_*` 与 `biz_*`。旧 `scn_*` 只允许作为迁移读取键；本文生产示例已改用 chapters/01 正式 `sc_01_*`，不得再双写。`region-*` / `era-*` 是 `tech/06` 的物理 `PackId` 而非游戏内容 ID。除 §12.2 明列的七项 POI 外，示例不意味着对象已经由章节或 `design/16` 完成生产配置。
 
 ---
 
@@ -1650,6 +1657,7 @@ W1 十九区迁移后净增 11 区：新增 `rg_qinba`、`rg_jiangnan_taihu`、`
 | V-OW31 | error | 各界普通遗迹数按 §4.4.2 为 5～7 且总数 83，并包含于既有秘境预算；每个主线遗迹关键奖励可达且入口至少有替代解 |
 | V-OW32 | error | 同一奖励实例只有一个 `economySource`；剧情固定奖励为 `quest`、普通战利品为 `loot`、敌人现银为 `cash`、采集净新增为 `resource` |
 | V-OW33 | error | `sc_08_beijing_guanxingtai` 必须挂北京城外、标为非权力中心，且至少一条无需轻功的普通官道可达 |
+| V-OW34 | error | 五个具名遗迹 POI 各有合法 `rg_*` 与章节 `sc_*`；敦煌恰有一个地理 POI 并映射 `sc_10_dunhuang_digong` / `sc_12_dunhuang_digong` 两个时代相位；`cell` 未经 Tiled 实测不得填值 |
 
 `warning` 只允许策划复核后带理由豁免；`error` 阻断内容构建。迁移期旧区域 ID 可由单向 `idRemaps` 读取，发布数据中不得同时定义新旧对象。
 
@@ -1749,3 +1757,4 @@ W1 十九区迁移后净增 11 区：新增 `rg_qinba`、`rg_jiangnan_taihu`、`
 | O-B3-08 | 药材是否按真实季节完全缺货 | 默认野外节点严格按窗口关闭，但药铺库存、任务赠予和遗迹储藏可提供跨季替代；主线永不因现实采期锁死 |
 | O-B3-09 | 普通采集是否强制生活技能 | 默认常见植物可无技能取得 1 份；完整根茎、毒材、矿脉与稀有副产物才要求技艺或工具，避免把探索变成硬职业门槛 |
 | O-B3-10 | 遗迹重访是否统一刷新 | 默认仅明确可再生节点 3 日刷新，首通核心、唯一物、已清剧情守卫永不刷新；章节可把生态恢复延长但不得缩短防刷下限 |
+| O-B3-11 | 五个新增遗迹入口的场内六角坐标何时冻结 | 默认保持“待 Tiled 回填”，不得从 WGS84、章节示意图或父场景中心反推六角格；ART / 关卡制作完成后逐项实测登记 |
