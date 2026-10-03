@@ -1,0 +1,16 @@
+schemaVersion: item.v1
+id: it_validation_fixture
+name: 校验夹具
+kind: system
+sub: marker
+grade: null
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags: []
+assets: {icon: item/validation_fixture}
+text: {desc: 用于确认普通内容 YAML 仍进入内容注册表。}
+extension:
+  type: generic
+  value: {}

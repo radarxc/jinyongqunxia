@@ -1,0 +1,16 @@
+schemaVersion: item.v1
+id: it_content_only_fixture
+name: 普通内容夹具
+kind: system
+sub: marker
+grade: null
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags: []
+assets: {icon: item/content_only_fixture}
+text: {desc: 用于确认没有 Ink 时普通内容 YAML 行为不变。}
+extension:
+  type: generic
+  value: {}
