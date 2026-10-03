@@ -721,4 +721,20 @@
     - **ENG-08b**：18:22 起审核。
     - **磁盘**：10.8 GiB。
   - **10-02 19:05–19:15 协调者**：ENG-08b 合入后把 ENG-17a 挪到 ENG-18b 前并重启 eng3（pid 21839，并发 3），ENG-17a 19:09 起跑；TOOL-rig-sheet 19:03、ENG-12c-clip 18:54 已在跑。模型违规处理：高负载下探测双超时曾落到 GPT-5.5（开发监督已把回退表改为只有 Sol，c50ae62d）；DES-story-hooks-g3 的 5.5 运行由协调者 19:12 终止，驱动 19:13 以 Sol 续作第 2 次；ENG-16b 第 6 次（挪基点后解 2 个文件冲突）也是 5.5，因只解冲突且有审核把关，准其跑完，返修一律 Sol。Chrome 重连后标签组开在新窗口，两道都报 hidden，已请作者把该窗口放前台并分屏；出图员改为单道可见即跑。
+  - **10-02 18:52–19:20 开发监督**：
+    - **M1 路径合入**：
+      - ENG-25（06e613ba，18:54）：r1 FAIL，要求序章例外只收 `q_00_main_c_01`–`04`；返修后 eng3 第 1 次复审 PASS。
+      - ENG-08b（627b619e，19:03）。
+      - 两次合入后 `prod_check` 都绿：108 文件 679 用例，size 295.64 / 350。
+    - **起跑**：ENG-12c-clip（18:54）、TOOL-rig-sheet（19:03，稀疏检出）、ENG-17a（19:09，协调者把它调到 ENG-18b 前，19:05 重启 eng3 为 pid 21839）。
+    - **ENG-16b 合入冲突**：
+      - r1 PASS 后 cherry-pick 冲突，重试 10 次都失败，19:09 停在 READY。
+      - 19:10 `rebase_task.py`：基点 00712361 → 627b619e，只有 `apps/game/CLAUDE.md`（3 处）和 `timeline/index.test.ts`（import）带冲突标记。备份引用 `refs/agents-backup/ENG-16b-battle-actions-pre-rebase-10021910`。
+      - 带「两边都保留、只解冲突」的说明起驱动 `--from start`（pid 60447，说明在 `.agents/coord/ENG-16b-battle-actions/devsup_note_rebase.md`）。
+    - **GPT-5.5 回退**（作者只许 Astra → Sol）：
+      - 高负载下 Astra 和 Sol 探测都超时，step.py 的回退表就落到了 GPT-5.5。中招的运行：story-hooks-g4 第 1、2 次，g1 第 2 次，g3 第 1 次，ENG-16b 第 6 次。
+      - 回退表已改成只有 Sol（c50ae62d）：双超时时直接用 Sol 起。
+      - 协调者裁定：停掉 g3 第 1 次和 g4 的复审，g4 用 Sol 复核重起；g1 由 Sol 返修；ENG-16b 让它跑完、交审核把关，FAIL 就用 Sol 返修。
+      - 以后再出现 GPT-5.5 就报协调者，由协调者来停。
+    - **磁盘**：11.8 GiB。
 
