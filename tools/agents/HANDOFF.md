@@ -1466,3 +1466,14 @@
     - **本地 dev**：曾在 5180 起 vite（主检出 `.claude/launch.json` 的 game-dev-latest）给作者看，作者随即改要审核页，已停。验证中发现 DEV「进入演示」走 ch01_tianlong、内容包无 bookWorld 章节定义 → `ITEM_RULES_UNAVAILABLE:CONTENT_CHAPTER_DEF_MISSING`（只影响 DEV，已记开发监督备忘）。旧的 5173 vite（pid 86094）不是本线起的，未动。
     - **素材审核页**：https://claude.ai/artifact/7H7nYXyBSRJJSNFBwsDGjM（2322 件，44 张图集 21.7 MB，`db` + `user` 能力；结论在 `verdicts` 集合，doc id = 素材 id，字段 v（ok / redo / drop）、note、c、t）。生成：`.agents/coord/review_page/collect.py`（收 manifest 与遗迹目录、缩图打图集）→ `build_html.py`（模板 `template.html`）。功能检查：探针写入、读回、删除正常。回收：读 `verdicts` → ok 写 manifest `status: approved`、drop 写 `rejected`、redo 按备注登记返工。
     - **界面改版（AR-43）**：登记 DES-ui-immersive（e2700476；design/26、catalog/ui-art-kit、docs/design/ui-mock 样稿）。作者随后定「UI的部分，让codex来修，如果codex没有额度，让traex cli调用gpt 6来修」→ 协调者停掉已起的 traex 链（31302 等），开发监督用 codex gpt-6-astra xhigh `--from start` 重起（驱动 51691，日志 `supervise.codex.out`），后续 ENG-ui-* 一律 codex。教训：样稿任务的 sparse_include 整类拉物品图约 1.6 GB，磁盘一度 5.3 GiB；以后只列具体文件。
+  - **10-03 11:38–11:52 开发监督**：CONTENT-ch00b-maps（M1）防截断误判，已豁免。
+    - 第 1 次运行 104 分钟后校验报 `sc_00_changbai_cave.tmj 从 83 行缩短到 56 行`。
+    - 核对：ART-ruins 的占位版被本任务按说明重写成紧凑排版 JSON（说明第 21 行要求，写集内）。四层齐全（terrain / height / deco 各 80 格），对象层 4 → 5，不是截断。
+    - 已加 shrink_exempt（b08e8bec）。第 2 次运行的提示词已写好、执行器尚未启动，我追加了「不要改回、不要恢复，只重跑检查并更新报告」。
+    - DES-ui-immersive（codex）、collectibles、size-session-gate、CONTENT-ch10 / ch00a 都在执行；磁盘 5.1 GiB。
+
+  - **10-03 11:58–12:06 协调者**：Tripo 网页版进展与作者许可。
+    - 男女主角已生成、绑骨（Humanoid / Mixamo）并加 idle / walk / run（预设动作不收费）：男多视图 project 5223c172（99,466 面；单图对比版 aafbded0 未绑骨），女单图 39a2305f（96,389 面）；选项 H3.1 + Ultra Mesh + 8K + PBR + 去光照 + 三角面 + 面数上限 10 万 + Private；余额 25125 → 24890。头发用 canvas 取像素初检合格（头部后半深色 ≥ 67%、肤色 ≤ 9%）。
+    - 子代理因 find / read_page 在 tripo3d.ai 注入超时，改用「macOS 剪贴板 + 页面粘贴」上传参考图 → 会覆盖作者剪贴板、作者复制的内容可能被粘进第三方网站 → 协调者 12:02 叫停，请作者二选一（修扩展网站访问权限 / 同意剪贴板方式），未定前主要角色暂停上传。
+    - **作者 12:05「同意下载」**（GLB 与预览图）→ 已转子代理：先导出男女主角入库 `assets/default/model3d/<npc_id>/` 并按路径提交。
+    - CONTENT-ch00b-maps：防截断误报（sc_00_changbai_cave.tmj 紧凑重排）→ 停第 2 轮、豁免放宽 `content/world/regions/**/*.tmj`（09c0653a），开发监督 `--from validate` 重起（驱动 8920，日志 `supervise.devsup.out`），校验通过；r1 审核 REVIEW-ERROR（审核模型只回了自言自语，25 秒退出），驱动自动重审。
