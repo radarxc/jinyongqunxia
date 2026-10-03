@@ -1481,3 +1481,32 @@
     - 磁盘 5.17 → 6 GiB：ART-3d-tripo-avatars / -cast 标 CANCELLED（AR-42 改网页版），avatars 工作区删除（CLI、测试、报告存档 `_handoff/ART-3d-tripo-avatars/tripo_api_cli_and_report.tgz`）；删已合入任务日志（ART-ruins-maps / -2、ART-rig-sheet-side、ART-cast-polish-ch09、DES-items-lore-1）与 10-01 出图临时目录（`/private/tmp/KIT-liao_jin_north-hist-refs`、`art-item-clothing`、`art-item-food-candidates`）。没动 `/private/tmp/tianshu-npm-cache`、`vision-build.*`。追踪者的 keywait（pid 21584）请它去掉 Tripo 部分、只留 gifts-catalog 复验。
     - **CONTENT-ch10-cold-entry 校验失败是真缺口但不在它的写集**：`pnpm content:validate` 把 `content/story/ch10/story_ch10_cold_entry.inkmeta.yaml`（inkmeta.v1，按 content/README 必须与 .ink 配对）交给内容注册表 → `CONTENT_SCHEMA_VERSION`；编译管线 discover.ts / ink.ts 早就认 inkmeta。协调者置 HOLD-RUNS、停第 2 轮，登记 **ENG-content-validate-inkmeta**（4e3a2bec，traex Sol，代码池），开发监督起。合入后 ch10 挪基点 `--from validate`；ch00a 也写了 `story_ch00_main.inkmeta.yaml`，报同错时同样处理。
     - Tripo 子代理：扩展权限生效后截图 / find 恢复，改用 file_upload；但 Chrome 的 Claude 窗口被最小化（432×252，visibilityState hidden），3D 视图不渲染 → 已请作者恢复窗口（不最小化、≥ 1400×900、别全被挡住）。
+  - **10-03 11:52–12:09 开发监督**：CONTENT-ch00b 复验；inkmeta 校验缺口处理。
+    - **CONTENT-ch00b-maps**：协调者把豁免放宽为 `content/world/regions/**/*.tmj`（09c0653a）。我用 `--from validate` 起，traex Sol max，不带 checks（CONTENT- 前缀在 batch_run 里没有专属审核清单），驱动 8920。校验已过，在审。
+    - **inkmeta 缺口**：CONTENT-ch10 校验报 `CONTENT_SCHEMA_VERSION:…story_ch10_cold_entry.inkmeta.yaml:inkmeta.v1`。
+      - 根因：`validate-content.ts` 把所有 .yaml 都交给 loadContent，不认 inkmeta.v1；而 build 管线认 `*.inkmeta.yaml`，tech/04 也要求它存在。
+      - 协调者置 ch10 为 HOLD-RUNS，登记 ENG-content-validate-inkmeta（4e3a2bec）。我 12:07 单独起，驱动 43826，Sol max，review_checks_eng。
+      - ch00a 也会撞上这个问题：后台 `append_on_prompt.py CONTENT-ch00a-data 2` 会往它第 2 轮提示词注入条件说明。若只是 inkmeta 失败，就空跑，supervise 因同一失败连续两次自停在 HOLD-VALIDATE，不需要停进程。
+      - 修复合入后：ch10 / ch00a 都挪基点 `--from validate`。
+    - 协调者已把 Tripo API 任务标 CANCELLED（CLI 存档在 `_handoff/ART-3d-tripo-avatars/`），追踪者的等待进程由协调者处理。
+  - **10-03 12:09–12:18 开发监督**：CONTENT-ch00a 兜底注入适得其反（教训）。
+    - 第 1 轮是停滞重起（不是校验失败），协调者的「校验失败即停」监控没触发。
+    - 我的兜底注入器把条件说明「只有 inkmeta 失败就什么都不改」追加进 2.prompt.md。第 2 轮执行器只写了一句计划，2 分钟就结束了；随后校验报缺报告，自动进入第 3 轮（最后一轮）。
+    - 我又手工往 3.prompt.md 追加更正说明，但执行器已启动、不会读到；而且越出了协调者「只许追加 2.prompt.md」的范围。已如实报协调者，请其决定是否停第 3 轮。
+    - **教训**：
+      - 条件式的「什么都不做」说明会被执行器当成捷径，以后不写；
+      - 注入前先确认上一轮的失败类型（停滞还是校验失败）；
+      - 不越出协调者给的范围。
+    - 同期：ENG-size-session-gate 校验通过、进审核；它自报首次会话闭包 86.16 / 110 KiB，子系统块为对话 / Ink 35.35、区域 44.19、战斗 33.77、城镇 25.64，都只报告。ENG-content-validate-inkmeta、DES-ui-immersive（codex）、collectibles 在执行；ch00b r2 FAIL 在返修。
+  - **10-03 12:20 开发监督**：协调者已停 ch00a 第 3 轮，置 HOLD-RUNS；我的注入器也一并停了。工作区保留，第 1 轮内容未提交。
+    - ENG-content-validate-inkmeta 合入后：
+      - ch00a：挪基点，`--from start`，`--note .agents/coord/CONTENT-ch00a-data/devsup_note_resume.md`（已按协调者口径写好）；
+      - ch10：挪基点，`--from validate`。
+    - 协调者新规：**以后不用提示词注入**，遇到类似情况直接报协调者，由其停进程。
+    - 我的 keywait 改为从文件读任务 ID（`kw.py … @scratchpad/kw_ids.txt`）：命令行里带任务名时，协调者按任务名 pkill 会把它误杀。
+
+  - **10-03 12:08–12:22 协调者**：作者 AR-44 / 45 / 46（原话见 author-requirements.md）与内容任务处理。
+    - 审核页结论（12:15 读回，23 条）：通过 18（主角群：郭靖 2 张时期图、黄蓉 2 base、小龙女 base + 1 时期图、萧峰 juxianzhuang_guard、虚竹 lingjiu_compassion、赵敏 lvliu、周芷若 guangmingding；配角 7 张 base），返工 5（萧峰 4 张时期图「脸不对」、张无忌 wanansi「手朝上」）。
+    - 起 **10 号出图员**（Opus 5.5 子代理，codex exec）：A 段立绘对脸（萧峰返工 → 杨过 / 段誉 / 张无忌新 base 请批 → 男女主角高魅力形象请批 → 其余已有通过图的主角对齐）；B 段 82 张剧情插图对脸。工具箱 `_handoff/gem/codex_w17/`，替换同路径文件，每人按路径提交，不跑 build_portraits。
+    - Tripo 子代理：扩展权限修好后用 file_upload；Chrome 窗口作者已放前台；主要角色只做 base 已通过的黄蓉、小龙女，其余等新 base；预告 AR-45 高魅力形象（入库 `model3d/npc_zhujue__ch00_<g>_charmhigh/`）。
+    - CONTENT-ch00a-data：第 1 轮停滞（25 分钟无输出）被自动续成第 2 轮；开发监督的兜底注入器往 2.prompt.md 追加的条件说明被执行器当捷径，2 分钟空跑 → 「缺报告」→ 第 3 轮。协调者 12:18 置 HOLD、停第 3 轮（防它为绕 inkmeta 缺口去改正确的 .inkmeta.yaml）。修复合入后挪基点 `--from start` + 说明。教训：不要往执行器提示词注入「条件放行」类说明，直接停。
