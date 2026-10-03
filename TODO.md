@@ -21,7 +21,7 @@
   - 人物：AR-32 / AR-35 的修改全部完成；第二波（AR-36）cast-fill a / b 合入 57 张，hero-refine-a 合入 95 张（联系表已发作者），hero-refine-b 合入 80 张（2533a8fd；李文秀 6 图按「白马用游戏头像 + 基线」放行）；总览页 04:50 已重建重发；剩余 `build_portraits`（运行时裁切）等指定时段（§3.1）。
   - 物品（Gemini）：**366 张全部入库**（10-03 04:28 收工：秘籍 162、兵器 128、药材 55、暗器 21，限流 0），物品图至此出齐；下一批是 AR-40 的奢侈品 / 礼品约 120–180 张，等名录（§3.2）。
   - 情景图：改由 codex 主角精修任务出（hero-a 已入库 50 张插图，hero-b 待合入），Gemini 不再出；`key-scenes.md` 的统计口径待同步（§4）。
-  - 城市布局：CITY-layouts-all 05:28 合入 16 城（洛阳 / 太原因工具缺口标 rejected，TOOL-town-gaps-1 修工具后重做）；全量不接力，缩减范围等作者（§8.1）；遗迹地图等 ENG-18b；三视图切件 TOOL-rig-sheet 审核两次不过，第 3 次返修中（§3.4、§3.5）。
+  - 城市布局：CITY-layouts-all 05:28 合入 16 城（洛阳 / 太原因工具缺口标 rejected，TOOL-town-gaps-1 修工具后重做）；全量不接力，缩减范围等作者（§8.1）；遗迹地图 56 + 6 张全部合入（含作者点名的九老洞、敦煌地宫）；三视图切件 TOOL-rig-sheet 第 9 次返修（最后一轮）后按原型收口（§3.4、§3.5）。
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
 - **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e / TOOL-items-catalog，10-03 凌晨再合入 ENG-19a（04:32）、ENG-18b（05:09）、ENG-17（05:12）、ENG-19c（05:24）、TOOL-catalog-9col（05:37）——M1 的 25 / 17a / 19a / 17 齐了；集成分支 `pnpm check` 05:26 全绿（128 文件 922 用例，entry 160.17 / 170 KiB 余 9.8 KiB，webgl 320.70 / 350）。在跑 ENG-20a、ENG-19b、ENG-12e（返修：恢复 2D 演示 + 3D 并排）、TOOL-rig-sheet 返修、TOOL-town-gaps-1、TOOL-catalog-food-qi-exception、lore 复验（lore-6 已合入）；eng3 队列还有 17 项（§5）。
 - **分工**（作者 10-02 15:50 / 22:00）：三个 Opus subagent——素材线第二波追踪（codex 执行器）、Gemini 出图员、开发监督；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max；GPT-5.5 禁用）。协调者只规划、登记、裁定、合入。
@@ -46,7 +46,7 @@
 | TOOL-rig-sheet | traex Sol max | 审核 r5 又 FAIL（前臂含手掌、侧腿占位、髋锚暴露）；第 9 次返修为最后一轮，侧腿问题转 ART-rig-sheet-side（新源图），之后按原型收口合入 | 开发监督另起 |
 | TOOL-items-regen | traex | 已登记（dcb77156）：按九列名录重新生成并提交 content/items；次序 entry-split → tests-discover → **regen** → catalog-collectibles → gifts-catalog 复验合入 → regen-2（收藏品进 content/items） | 开发监督 |
 | TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；要等 regen 与 tests-discover 合入（否则它的 --check 与 content 测试必红） | 开发监督起 |
-| TOOL-tests-discover | traex Sol | 07:01 起跑（unittest discover 跑全 tools 测试 + 两条红测试） | 3408（开发监督） |
+| TOOL-tests-discover | traex Sol | 第 1 次运行 46 分钟，校验通过（全量 discover），审核中 | 3408（开发监督） |
 | ENG-12e-gltf-pilot | traex | 07:13 续作（恢复 2D 演示 + 3D 并排），07:16 开跑 | 69969（协调者，`supervise.r3.out`） |
 | TOOL-town-gaps-1 | traex Sol | 07:1x 续作（排队等池位） | 66572（开发监督） |
 | ENG-entry-split | traex Sol | 已登记（7f82fe44），07:29 起驱动排队等代码池位；合入前 15 个首屏相关任务 HOLD | 75729（开发监督） |
@@ -180,7 +180,7 @@
 | ART-cast-fill-a / -b | 逐书搜主要人物列表，补缺的提示词与立绘 | codex xhigh | **合入 e1698e93 / fe4765ef**（57 张） |
 | ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | **合入 41b24202**（06:07，六弟子各重出 1 张，联系表 `_handoff/gem/codex_w15/sheets/`） |
 | CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | **合入 04f1133a**（05:28）：16 城目录——14 个完整候选 + 洛阳 / 太原（manifest 标 `rejected`：水门与内隔墙是工具缺口，构建不进包）；收尾运行修了页眉之外的两项未成。全量**不接力**，范围缩减见 §8.1；进度 `docs/design/town/progress.csv`（2367 行）/ `done.txt`，副本在 `_handoff/city/`。工具缺口已登记 **TOOL-town-gaps-1**（052aac53：水门 / 多重城垣 / 未声明墙水相交检查 / 页眉按城 / cities.yaml 庭州键与 ch10 年代带 / 唐 · 西域 · 吐蕃套件进 schema，用洛阳太原验证并改回 candidate），代码池有位时开发监督起 |
-| ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览 | codex xhigh | **合入 df54e2ef**（06:12，56 张）。DES-ruins-ids 已合入（6d3121d7）：九老洞、敦煌地宫唐 / 清、达摩洞、若耶溪墓藏、华山后洞 6 个 `sc_*` → **ART-ruins-maps-2**（f052b904）**07:28 起跑**（驱动 69438）；第 1 批报告 §6 缺的遗迹贴片待登记贴片任务 |
+| ART-ruins-maps / -2 | 遗迹 / 地宫 Tiled 场景地图 + 预览 | codex xhigh | **合入 df54e2ef**（56 张）+ **ac069a22**（07:56：九老洞、敦煌地宫唐 / 清、达摩洞、若耶溪墓藏、华山后洞 6 张）——作者点名项完成。报告 §6 缺的遗迹贴片（洞壁 / 墓道 / 石刻 / 宝箱…）待登记贴片任务 |
 | ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录与 Gemini 提示词 | codex xhigh | 第 1 次运行写出 151 件九列名录 + 151 份提示词，校验被校验器挡住（不认新文件）→ HOLD；等 TOOL-catalog-collectibles 合入后 `--from validate` 复验合入，再起 Gemini 出图员出 collectibles |
 
 做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接 `_handoff/art_wave2_tracker_brief.md`；审核要点 `.agents/coord/PROD/review_checks_hero.md`（第 1 条已容许白马 / 侠客 / 鸳鸯不用剧照）/ `review_checks_ruins.md` / `review_checks_city.md`。审核模型写 `--review-model gpt-5.6-sol`（Codex 不认大写）。
