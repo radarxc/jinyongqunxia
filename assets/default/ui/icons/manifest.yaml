@@ -1,0 +1,1387 @@
+- id: ui_tool_bag
+  file: ui_tool_bag.png
+  category: ui/icon
+  style: default
+  subject: 行囊 · 工具栏行囊入口
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One full-bodied small cloth travel pouch, tied with a thick hemp drawstring, two flared mouth corners,
+    warm ochre cloth with restrained leather reinforcement and old-bronze cord fittings. Broad folded planes, convincing
+    weight. No coins spilling out.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:42:00-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_tool_bag_r1.png
+  source_sha256: 9ee94f8059e2c060f3d2514b2467d562ae88f62ca6a915d86eecb360217ef84a
+  size: 512x512
+  sha256: 2cad27fa880e1fc5aaf23b657ffa913362cc7852f69be217234b2ec73ee921c5
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 372x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_tool_martial
+  file: ui_tool_martial.png
+  category: ui/icon
+  style: default
+  subject: 武学 · 工具栏武学入口
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One open Chinese thread-bound martial-arts manual, substantial warm ivory blank pages, stone-blue cloth
+    cover, cinnabar binding, one short firm ink-and-bronze curved qi stroke beside it. No human, no martial pose,
+    absolutely no marks or writing on pages.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:41:54-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_tool_martial_r1.png
+  source_sha256: b91bd19b2cffc6574374ae6bd17e1bf5bf601b834fa6208f32a8c6db990322ce
+  size: 512x512
+  sha256: 1ccdae1889beacd6524adbafd414d760d1c45e164d3d0d15bb2c0ea2be94210f
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 384x330 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_tool_character
+  file: ui_tool_character.png
+  category: ui/icon
+  style: default
+  subject: 人物 · 工具栏人物状态入口
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: A compact anonymous head-and-shoulders silhouette in a round-collared wuxia robe, no facial features.
+    Ebony-dark hair in a simple topknot, stone-blue layered robe, old-bronze collar clasp, cinnabar inner collar.
+    No medallion or base behind the bust.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:49:00-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_tool_character_r1.png
+  source_sha256: 917c566927d5e44797ed2aab321088d11f523dfdc5bed2e15d0db6ecf7380605
+  size: 512x512
+  sha256: df6945092c423f7bf084f6372b9d1906513a327f6b37a4f68eda538c15a145e5
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 349x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_tool_codex
+  file: ui_tool_codex.png
+  category: ui/icon
+  style: default
+  subject: 图鉴 · 工具栏图鉴入口
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: Two offset closed thread-bound volumes with visible stacked spines, one small plain circular ivory
+    index tag attached at the upper side. Stone-blue and cinnabar covers, warm ivory page blocks, bronze binding
+    details. Tag is small and blank, never a background medallion. No writing or cover labels.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:48:47-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_tool_codex_r1.png
+  source_sha256: b2afde841d725d623da70c7ecf2bb2d4bec02330fbd4726788c9da91fb360201
+  size: 512x512
+  sha256: 72863b160ed7d2e0c06b74ce12f8ebe7e29ac1d9a160c432347689a459c38fa4
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 372x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_tool_journal
+  file: ui_tool_journal.png
+  category: ui/icon
+  style: default
+  subject: 江湖志 · 工具栏任务与行旅记录入口
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One short partly unrolled blank scroll with ebony roller ends and a single diagonal calligraphy brush
+    across it, cinnabar brush handle and dark bristles. Warm ivory scroll surface completely blank, no ink marks.
+    Broad compact readable silhouette.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:50:32-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_tool_journal_r1.png
+  source_sha256: afab373321c832b2e4ad68d9c457409575be09c3ed6a2a5d11fbbc3cc51b41ed
+  size: 512x512
+  sha256: 277d30685422477170070cdae63732435df03f561f7de250ea5b09950dd353fd
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 384x358 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_tool_system
+  file: ui_tool_system.png
+  category: ui/icon
+  style: default
+  subject: 系统 · 工具栏设置入口
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One ancient bronze mechanical fitting with four symmetrical projecting arms and a large clean circular
+    through-hole in its center. Old bronze bevels, ebony recesses and very small cinnabar detail. Four bold arms,
+    no modern fine-toothed gear, no surrounding circular plate.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:50:39-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_tool_system_r1.png
+  source_sha256: 72ecc0bdaf75c75792eeee8c182a43499247ac9b7e4cc4a1b9359d06a958088d
+  size: 512x512
+  sha256: b9f76b7615ef385e860148e2daf8ee780f673a4ceef527506f20a1d4477357ae
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 384x378 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_tool_map
+  file: ui_tool_map.png
+  category: ui/icon
+  style: default
+  subject: 地图 · 工具栏大地图入口
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One compact folded paper map whose raised folds and bold simple mountain-shaped silhouette read as
+    travel, with one small stone-blue location pebble. Warm ivory paper, ebony mountain contour, cinnabar fold edge.
+    No written coordinates, grid, compass letters or map labels.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:52:00-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_tool_map_r1.png
+  source_sha256: 457de0af0073e2e6e24e1fec40268eb1d835352933fd95f2d170b81a9c358bdc
+  size: 512x512
+  sha256: e69831983715fd780e5eaea179311f621b63071962615b818bfb2fcd5a25b496
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 384x255 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_tool_save
+  file: ui_tool_save.png
+  category: ui/icon
+  style: default
+  subject: 藏卷 · 工具栏存档入口
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: A compact bundle of three closed rolled scrolls held by one prominent cinnabar cord knot. Warm ivory
+    rolls, ebony roller ends, old bronze caps. Clear cylindrical volume and visible round ends. No floppy disk,
+    open book or writing.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:52:14-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_tool_save_r1.png
+  source_sha256: 24f57b884da011c403fa06796b8a712209efc51dd3a6dd9710d9204272869f1c
+  size: 512x512
+  sha256: 403ced7370a84973520697694d90b748d3fa31593cc530dbf5f18e3eec720470
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 384x316 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_tool_town
+  file: ui_tool_town.png
+  category: ui/icon
+  style: default
+  subject: 城镇 · 工具栏城镇入口
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One miniature Chinese gate tower with a short adjoining crenellated city wall. Broad single stone arch
+    opening, cinnabar timber upper storey, ebony tiled eaves with restrained old-bronze ridge ends, warm grey stone
+    wall. Clear stepped roof and gateway silhouette, no ground or scenic setting.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:53:39-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_tool_town_r1.png
+  source_sha256: c77f7d4ba6394dcc4806867f9b9bebd37e02868601b29cd34d0ab81d68c0fb74
+  size: 512x512
+  sha256: 1da634e143d8c929fe5d3ed2f22be02a78c5068130d3f75f24547a405916ac99
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 384x331 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_tool_battle
+  file: ui_tool_battle.png
+  category: ui/icon
+  style: default
+  subject: 战斗 · 工具栏战斗入口
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One crossed straight Chinese jian sword and curved dao sabre, forming a bold compact X. Distinct straight
+    narrow blade and broad curved blade, cool steel three-tone planes, ebony grips, old-bronze guards and one short
+    cinnabar sword tassel. Large clean negative gaps between weapons; no shield, explosion or blood.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:53:42-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_tool_battle_r1.png
+  source_sha256: f7ff7f54372618f2776e6d578d35abf871d178e32ed07a55a645d886d9837e68
+  size: 512x512
+  sha256: 752434e64a417c474c9efc29da1f407cceeefe4b226ef18f538ac2d97dd63506
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 346x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_res_silver
+  file: ui_res_silver.png
+  category: ui/icon
+  style: default
+  subject: 银两 · HUD 资源图标，数值由代码另排中文数字
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One heavy yuanbao-shaped silver ingot with raised boat-shaped ends and a smooth oval depression, accompanied
+    closely by exactly two old-bronze coins with open square holes. Cool silver light/mid/dark planes, tiny stone-blue
+    reflections and warm copper. Silver ingot dominates; no embossed symbols, coin inscriptions or numerals. HUD
+    resource icon only, number will be laid out separately by code.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:55:12-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_res_silver_r1.png
+  source_sha256: c735a07ff4919d4e44c592767c92a6631ef99fad2aa1829a0785088e9a303e6c
+  size: 512x512
+  sha256: ea09e942532ba72f9e58cb54d4b970c5c905168b64ea2532dc60b6ec28171e90
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 384x262 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_map_city
+  file: ui_map_city.png
+  category: ui/icon
+  style: default
+  subject: 城池 · 江湖大地图城池点位标记
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One compact miniature square fortified Chinese city viewed from slightly above, with four short raised
+    crenellated stone walls enclosing a clearly transparent courtyard and one prominent cinnabar gatehouse. Bold
+    ebony roof, old-bronze roof ends, pale warm stone bevels. This is architecture, not a stamp, seal, square card
+    or plaque. Strong stepped outer silhouette and open interior negative space must stand out against a landscape
+    map; no ground tile or surrounding terrain.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: front view, very slightly from above, centered on a square canvas, whole compact object
+    occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:55:18-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_map_city_r1.png
+  source_sha256: fc527a39d85659cf6d7f23c967a983dbdab3a8279372892dfe75962b072a1365
+  size: 512x512
+  sha256: c6e0f94f4118a9629d07d84be7df4aecd179b45076a234d56897421ee3d2ab3d
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 384x288 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_status_hp
+  file: ui_status_hp.png
+  category: ui/icon
+  style: default
+  subject: 气血 · HUD 与战斗气血资源
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: Exactly one warm cinnabar droplet, solid carved-lacquer material with a large clean crescent-shaped
+    transparent cutout inside. Rounded full lower body and a single upward point, no extra droplets. The crescent
+    is a real hole, not white paint.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: compact simplified front-facing emblem, centered, maximum span 75 percent of square canvas.
+    Strong unique monochrome silhouette, fewer details than toolbar icons, clear open negative space, equal margins.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.
+
+    Status simplification: smooth undecorated solid material, NO decorative engraving, cloud scrollwork, floral
+    patterns or inset trim. Use only three broad tonal planes and the specified structural negative space. Material
+    weight comes from form and bevels, not ornament.
+
+    Refinement: one single clean crescent-shaped cutout within the droplet, no spiral tail and no extra inner rings.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:46:02-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_status_hp_r2.png
+  source_sha256: df2eebda2b1e7babfe7b4e21a6742c148bb3ec52732f92bc936751c09aa5bff3
+  size: 512x512
+  sha256: 337e5e324d2ba08a8c06dfae92fe027e450765f3b308fc302a494ff66866c83c
+  status: candidate
+  notes: 原创扩展；AR-48；重出 1 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 271x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_status_mp
+  file: ui_status_mp.png
+  category: ui/icon
+  style: default
+  subject: 内力 · HUD 与战斗内力资源
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: Exactly two substantial stone-blue curling qi streams embracing each other around one large transparent
+    circular hole, like two carved jade comma arcs. Open ends and the central negative circle remain clear. No yin-yang
+    dots, no enclosing medallion.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: compact simplified front-facing emblem, centered, maximum span 75 percent of square canvas.
+    Strong unique monochrome silhouette, fewer details than toolbar icons, clear open negative space, equal margins.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.
+
+    Status simplification: smooth undecorated solid material, NO decorative engraving, cloud scrollwork, floral
+    patterns or inset trim. Use only three broad tonal planes and the specified structural negative space. Material
+    weight comes from form and bevels, not ornament.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:58:35-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_status_mp_r1.png
+  source_sha256: fbf8d35de4045dfd11c7a15e18c9abe8423fd10be33ac9da94da8216658f37f7
+  size: 512x512
+  sha256: b914cbcb5b4265a989943200c4037cc9906f3d3fecdfce52149ebb4303845079
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 354x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_status_sta
+  file: ui_status_sta.png
+  category: ui/icon
+  style: default
+  subject: 体力 · HUD 与战斗体力资源
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One short ochre-gold feather beside a simple upward curving sinew arc, compact connected composition.
+    Old-bronze feather with only three broad cuts, warm bone-jade arc, large clear negative gap. No detailed plumage
+    or wings.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: compact simplified front-facing emblem, centered, maximum span 75 percent of square canvas.
+    Strong unique monochrome silhouette, fewer details than toolbar icons, clear open negative space, equal margins.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.
+
+    Status simplification: smooth undecorated solid material, NO decorative engraving, cloud scrollwork, floral
+    patterns or inset trim. Use only three broad tonal planes and the specified structural negative space. Material
+    weight comes from form and bevels, not ornament.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:58:48-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_status_sta_r1.png
+  source_sha256: 053dc1c3ee0cb8922438b93f360e0ff78b581b70eac347f842a880c1ddfd0a94
+  size: 512x512
+  sha256: 88b2bc61a586373e1be3caff7d0521d75a060abd2995812700ef302149f1213f
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 316x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_status_rage
+  file: ui_status_rage.png
+  category: ui/icon
+  style: default
+  subject: 气势 · 战斗气势资源
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One upward cinnabar flame motif made of exactly three bold rising strokes, firm opaque carved-lacquer
+    planes. Three distinct flame tips and two deep transparent notches, compact continuous base. No smoke, sparks
+    or glowing aura.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: compact simplified front-facing emblem, centered, maximum span 75 percent of square canvas.
+    Strong unique monochrome silhouette, fewer details than toolbar icons, clear open negative space, equal margins.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.
+
+    Status simplification: smooth undecorated solid material, NO decorative engraving, cloud scrollwork, floral
+    patterns or inset trim. Use only three broad tonal planes and the specified structural negative space. Material
+    weight comes from form and bevels, not ornament.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:59:52-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_status_rage_r1.png
+  source_sha256: f85a5beb20a5da620d4673b8a870cef033b2929e290e4a8ab5dd641929f43bd7
+  size: 512x512
+  sha256: 4dca153cb96cd433df167ecf5c0305388e72899ce8da38dba9df55f1aa97ba22
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 291x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_status_poison
+  file: ui_status_poison.png
+  category: ui/icon
+  style: default
+  subject: 中毒 · 战斗负面状态
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One ink-green poison droplet with a sharply diagonal branching split carved through it as transparent
+    negative space. Malachite-dark jade material, forked pointed silhouette slightly leaning right to distinguish
+    it from the round upright health drop. No skull, teeth, bones, fumes or additional drops.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: compact simplified front-facing emblem, centered, maximum span 75 percent of square canvas.
+    Strong unique monochrome silhouette, fewer details than toolbar icons, clear open negative space, equal margins.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.
+
+    Status simplification: smooth undecorated solid material, NO decorative engraving, cloud scrollwork, floral
+    patterns or inset trim. Use only three broad tonal planes and the specified structural negative space. Material
+    weight comes from form and bevels, not ornament.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T14:01:05-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_status_poison_r1.png
+  source_sha256: 85b737374c3b97ee2b142454f079df3f23ee5acc34e9f44605b7f00b80d56506
+  size: 512x512
+  sha256: 77919d71e6ce671a71dcbd0f51edc521a28d1bb6c87788e6e01e392caf98f213
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 241x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_status_bleed
+  file: ui_status_bleed.png
+  category: ui/icon
+  style: default
+  subject: 流血 · 战斗负面状态
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: Exactly three separate cinnabar droplets staggered downward diagonally, one large and two smaller,
+    compact cascading silhouette. Warm red lacquer volume, clean transparent gaps; unmistakably three drops rather
+    than the single health drop. No wounds, organs or splashes.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: compact simplified front-facing emblem, centered, maximum span 75 percent of square canvas.
+    Strong unique monochrome silhouette, fewer details than toolbar icons, clear open negative space, equal margins.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.
+
+    Status simplification: smooth undecorated solid material, NO decorative engraving, cloud scrollwork, floral
+    patterns or inset trim. Use only three broad tonal planes and the specified structural negative space. Material
+    weight comes from form and bevels, not ornament.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T14:02:16-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_status_bleed_r1.png
+  source_sha256: b663ac9365b77f2a3fe7a6f1e76172e58762547c0eb488f4751689279e0651bb
+  size: 512x512
+  sha256: e554206ceea6a1248d3d0ffbfc1e4ac4bac1300fec14f8e6bd3b35a9aa029915
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 283x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_status_seal
+  file: ui_status_seal.png
+  category: ui/icon
+  style: default
+  subject: 穴封 · 战斗穴道封闭状态
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One small circular stone-blue acupoint ring crossed and blocked by one short thick horizontal old-bronze
+    bar. Ring has a large clean through-hole, the bar leaves two visible transparent semicircle gaps. Simple solid
+    jade and bronze planes, no disk backing or border badge.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: compact simplified front-facing emblem, centered, maximum span 75 percent of square canvas.
+    Strong unique monochrome silhouette, fewer details than toolbar icons, clear open negative space, equal margins.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.
+
+    Status simplification: smooth undecorated solid material, NO decorative engraving, cloud scrollwork, floral
+    patterns or inset trim. Use only three broad tonal planes and the specified structural negative space. Material
+    weight comes from form and bevels, not ornament.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T14:03:46-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_status_seal_r1.png
+  source_sha256: 65baef41a3aaf0e1d4b580833e44db6aef817af2da7213af0d6f0cd77565ef2d
+  size: 512x512
+  sha256: f1c27f4e91a1cba19a67eff7b669e6e516d75939f4ba7cedb5345dbb2a1d6bea
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 384x351 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_status_grapple
+  file: ui_status_grapple.png
+  category: ui/icon
+  style: default
+  subject: 擒拿 · 战斗关节受制状态
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: Exactly two interlocking curved hooks representing restrained joints, one old bronze and one stone-blue
+    jade, broad solid opposing hook shapes. Interlocking open gaps visibly transparent, compact diagonal silhouette.
+    No realistic palms, fingers, chain links or enclosing badge.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: compact simplified front-facing emblem, centered, maximum span 75 percent of square canvas.
+    Strong unique monochrome silhouette, fewer details than toolbar icons, clear open negative space, equal margins.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.
+
+    Status simplification: smooth undecorated solid material, NO decorative engraving, cloud scrollwork, floral
+    patterns or inset trim. Use only three broad tonal planes and the specified structural negative space. Material
+    weight comes from form and bevels, not ornament.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T14:05:02-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_status_grapple_r1.png
+  source_sha256: ccafd6f34414b0e4daf90586fddbadd8948b61c0798a04966e407e7caecf4e05
+  size: 512x512
+  sha256: 1aa0862b33db3c604496577491f69c1109a27f387ddbaa7f286650bb05d78a93
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 362x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_status_stagnation
+  file: ui_status_stagnation.png
+  category: ui/icon
+  style: default
+  subject: 迟滞 · 战斗气流迟滞状态
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One firm rising ebony-ink qi stream interrupted by exactly two short transverse bronze bars. Broad
+    S-shaped stream with a clear upward tip, bars separated vertically and crossing it, compact asymmetrical silhouette
+    with transparent gaps. No smoke, alphabet letters or decorative frame.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: compact simplified front-facing emblem, centered, maximum span 75 percent of square canvas.
+    Strong unique monochrome silhouette, fewer details than toolbar icons, clear open negative space, equal margins.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.
+
+    Status simplification: smooth undecorated solid material, NO decorative engraving, cloud scrollwork, floral
+    patterns or inset trim. Use only three broad tonal planes and the specified structural negative space. Material
+    weight comes from form and bevels, not ornament.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T14:06:23-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_status_stagnation_r1.png
+  source_sha256: d312e4bceb2119f36f1333bca550461d70b85791836015e5e21dcb898c3a6f19
+  size: 512x512
+  sha256: 0a634d1a2f83d60e0209477221f22cbad684e43c0dcf41f1476bcf8624842677
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 207x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
+- id: ui_status_rupture
+  file: ui_status_rupture.png
+  category: ui/icon
+  style: default
+  subject: 胀损 · 战斗经络胀损状态
+  prompt: 'The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration
+    tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG
+    path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.
+
+    Subject: One ochre-red meridian ring splitting outward at exactly three large gaps, three thick curved segments
+    with outward pointing fractured ends and a large empty transparent center. Red jade or lacquer volume. No detached
+    particles, gore, organs or enclosing disk.
+
+    Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material
+    texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px
+    at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait
+    references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative
+    space at 64 and 48 px.
+
+    View and composition: compact simplified front-facing emblem, centered, maximum span 75 percent of square canvas.
+    Strong unique monochrome silhouette, fewer details than toolbar icons, clear open negative space, equal margins.
+
+    Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside
+    the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no
+    mist or shadow.
+
+    References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape
+    is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.
+
+    Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border.
+
+    Status simplification: smooth undecorated solid material, NO decorative engraving, cloud scrollwork, floral
+    patterns or inset trim. Use only three broad tonal planes and the specified structural negative space. Material
+    weight comes from form and bevels, not ornament.'
+  negative: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square
+    card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery,
+    photorealism, plastic rendering, ornate border
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_eq_yitianjian__ch04_base01.jpg
+    sha256: 1d95f761c485fbbc5f845a810ff13a3190d92df7f29cf67231c1e7bca86143cc
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+    source_sha256: 919a1b4c57ec6d7b13a4186439263bdff2c3ba99ba8d5b3d63b700ec6c70f895
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_it_miji_jiuyin_shang__ch02_base01.jpg
+    sha256: ee558d88f5d2b4b4acc4c210ab390f61cf32a7fd4970b9dba9474f844e6a33f8
+    purpose: 仅器物体积、材质与墨线，不照搬器物
+    source: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+    source_sha256: 69d15c600e7ed7a7b077e07c1b7dc22d1e1212abd06f18224c7d0e9c2a0ca6e6
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/staging/ref_map_jianghu__ch01_base01.jpg
+    sha256: de653342fe178c7d0e2c56386e943116ccff99e423efa64bb91e9198b499ce01
+    purpose: 仅配色与墨韵，不复制场景
+    source: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    source_sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T14:07:37-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/out/ui_status_rupture_r1.png
+  source_sha256: 8a816300853e7b673caba9d5f46d116cd0c75b8ec9d50ecc6b25c53db38315eb
+  size: 512x512
+  sha256: 510d9a6569e2285db97481248e1e50ab62766cd4ce91908e066b3d7cb63a2e82
+  status: candidate
+  notes: 原创扩展；AR-48；重出 0 次；原生透明，无抠底；alpha≤8 清零、≥245 归满，清除实体边缘 2 px 外低 alpha 残留；按 alpha 外接框裁切，等比缩至 377x384 后居中放回
+    512；最大跨度 384/512=75%；仅几何处理，未代码绘制、拼贴或加影。
