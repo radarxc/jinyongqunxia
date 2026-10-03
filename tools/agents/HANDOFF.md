@@ -943,3 +943,18 @@
 
   - **10-03 04:50 协调者**：素材总览页重建（`tools/review/build_gallery.py`，72 个文件 16.9 MB）并用 Artifact 工具同地址重发（https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A 第 3 版）：含第二波人物 175 张、全部物品、城镇 / 贴片 / 路人。`build_portraits` 的运行时裁切仍等指定时段。
   - **10-03 04:45–04:58 协调者（ENG-17 合入冲突）**：ENG-17 复审 PASS 后 cherry-pick 冲突，只有 `apps/game/src/game-controller.ts`（ENG-19a 也改了它）。三方合并只有一处冲突块（第 60–68 行，两边各自新增的 `let` 声明：19a 的 autosaveTask / bookSleepActive / queuedForeground / commandQueue / lastGoodProjection，ENG-17 的 bookSleepInFlight），语义不重复（19a 的是界面挡存档标志，17 的是书眠命令进行中不标脏），开发监督只读试合结论相同。处置：置 HOLD 停掉开发监督的驱动 96341（合入重试循环），`rebase_task.py` 挪基点 a7aad304 → 357d25f9（备份引用 `refs/agents-backup/ENG-17-booksleep-m1-pre-rebase-10030446`），冲突按并集手工解，04:46 另起 `--from validate --max-reviews 1 --max-runs 2 --auto-merge`（pid 90020，`supervise.r3.out`）：pnpm check 后再复审一次合并结果，PASS 自动合入。协调者手工 `vue-tsc --noEmit -p` 看到的 `flowT` 缺导出是没用 `-b` 的假象（`runtime.ts` 是 `export *`）。ENG-18b 审核 r1 FAIL（04:47），eng3 驱动自动返修。
+  - **10-03 04:43–04:55 开发监督**：ENG-17 合入冲突与旧 dist 误报，均由协调者处理，记录如下。
+    - **合入冲突**：ENG-17 r2 审核 PASS 后，cherry-pick 在 `apps/game/src/game-controller.ts` 冲突（19a 也改了这个文件）。我用 merge-tree 只读试合，确认只有一处冲突块，全是 let 声明，两边并集即可。
+      - 19a 的 `bookSleepActive` 是界面挡存档用的标志；ENG-17 的 `bookSleepInFlight` 管书眠命令进行中不标脏。两者不重复。
+      - 协调者已挪基点到 357d25f9、按并集解开，另起驱动（pid 90020，`--from validate`）。
+    - **旧 dist 误报**：复验时 `build-shell.test.ts` 读到工作区挪基点前构建的旧 dist（含 `rig-demo-*.js`）而误报，正是 ENG-19c 要修的问题。协调者已置 HOLD-RUNS，重建 dist 后复验。
+    - **ENG-19c 合入前的操作约定**：代码任务挪基点（`rebase_task.py`）后若要 `--from validate`，先在该工作区 `pnpm --filter ./apps/game build` 重建 dist。
+      - ENG-18b 工作区的基点早于 19a、没有这个测试，暂不受影响；若它以后挪基点，同样先重建。
+    - ENG-18b r1 审核 FAIL（04:47），原因属实：占位图缓存目录 `.cache/tiled-placeholders/` 不在 gitignore 里。不是旧 dist 或旧基点类的误导，返修所需文件都在写集内，eng3 自动返修。
+
+  - **10-03 05:04–05:13 协调者**：
+    - **ENG-18b 合入**（3ef22aaf，05:09）：r1 FAIL → 返修 5 分钟 → HOLD-REVIEWS 由 eng3 自动重起复审（一次 REVIEW-ERROR 后重试）→ r3 PASS。Tiled 区域地图管线进集成分支，ART-ruins-maps 的依赖满足；追踪者建议等 CITY 合入且负载 < 10 再起，协调者同意（满足即起，不再请示）。
+    - **ENG-17**：重建工作区 dist 后校验通过（04:56，此前是 `build-shell.test` 读旧 dist 误报），复审 r3 PASS（05:07），驱动 18342 正在 finish + 合入。
+    - **TOOL-catalog-9col**：返修第 4 次运行（Sol）在改写 `test_items_from_catalog.py` 后模型停滞、进程消失，驱动按次数用尽停 HOLD-RUNS（05:09）。05:10 用 `coord_note_0512.md` 另起 `--from start --model GPT-5.6-Sol --max-runs 2 --auto-merge --stall-min 30`（pid 27447，`supervise.r3.out`）：只做 r2 返修说明（双写检查要求可复算键必须出现并相等 + 回归测试 + 报告）。
+    - CITY 收尾运行 25 分钟结束，校验通过（332 个文件），复审中；DES-sync-keyscenes-ar36 第 2 次运行结束，校验通过，审核中。
+    - 资源：磁盘 6.4 GiB、负载 14.8、交换区仍 33.8 GB 用满。
