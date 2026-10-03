@@ -57,6 +57,7 @@ const BaseItemSchema = z.strictObject({
   origin: z.enum(['canon', 'expanded', 'canonExpanded']), canonRef: z.string().min(1).optional(),
   price: z.union([z.literal('auto'), z.number().int().nonnegative(), z.null()]),
   flags: z.array(z.string().regex(/^[a-z][a-zA-Z0-9_]*$/)),
+  chapterBound: z.boolean().optional(),
   use: UseSpecSchema.optional(),
   assets: z.strictObject({ icon: z.string().min(1), model: z.string().min(1).optional(), sfx: z.string().min(1).optional() }),
   text: z.strictObject({ desc: z.string().min(1), lore: z.string().min(1).optional(), short: z.string().min(1).optional() }),
@@ -135,6 +136,12 @@ export const ItemDefSchema = BaseItemSchema.extend({
     code: 'custom', path: ['extension'], message: `${value.kind} items require the generic extension`,
   });
   if (value.id.startsWith('eq_') !== equipment) context.addIssue({ code: 'custom', path: ['id'], message: 'equipment IDs use eq_; other items use it_' });
+  if (value.id.startsWith('prop_') !== (value.chapterBound === true))
+    context.addIssue({ code: 'custom', path: ['chapterBound'],
+      message: 'prop_ items must be chapter-bound, and only prop_ items may set chapterBound' });
+  if (value.id.startsWith('prop_') && (value.chapters === 'any' || value.chapters.length !== 1))
+    context.addIssue({ code: 'custom', path: ['chapters'],
+      message: 'chapter-bound props belong to exactly one chapter' });
   if (value.origin !== 'expanded' && value.canonRef === undefined) context.addIssue({ code: 'custom', path: ['canonRef'], message: 'canon content needs a source note' });
   const consumable = ['ammo', 'pill', 'tonic', 'poison', 'antidote', 'food', 'dish', 'wine'].includes(value.kind);
   if (consumable && value.use === undefined) context.addIssue({ code: 'custom', path: ['use'], message: 'consumable categories require use' });

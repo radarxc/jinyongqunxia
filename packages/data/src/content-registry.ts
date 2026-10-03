@@ -3,22 +3,25 @@ import type { ZodType } from 'zod';
 import {
   AcupointDefSchema, BookWorldDefSchema, CharacterTemplateSchema, EventDefSchema,
   ItemDefSchema, MartialArtDefSchema, MeridianDefSchema, NpcDefSchema, ShopDefSchema,
-  StoryLineSchema, TownRuntimeSchema, WorldMapRegistrationSchema, type AcupointDef, type BookWorldDef, type CharacterTemplate,
+  MoveDefSchema, QuestDefSchema, StoryLineSchema, TownRuntimeSchema, WorldMapRegistrationSchema,
+  type AcupointDef, type BookWorldDef, type CharacterTemplate,
   type EventDef, type ItemDef, type MartialArtDef, type MeridianDef, type NpcDef,
-  type ShopDef, type StoryLine, type TownRuntimeDefinition,
+  type MoveDef, type QuestDef, type ShopDef, type StoryLine, type TownRuntimeDefinition,
 } from './schemas';
 
-export type ContentKind = 'npc' | 'characterTemplate' | 'martialArt' | 'meridian' | 'acupoint' | 'item' | 'shop' | 'story' | 'event' | 'bookWorld' | 'town';
+export type ContentKind = 'npc' | 'characterTemplate' | 'martialArt' | 'move' | 'quest' |
+  'meridian' | 'acupoint' | 'item' | 'shop' | 'story' | 'event' | 'bookWorld' | 'town';
 export interface ContentFile { readonly path: string; readonly text: string; }
 export interface ContentEntry { readonly path: string; readonly kind: ContentKind; readonly value: unknown; }
 
 const SCHEMAS: Readonly<Record<ContentKind, ZodType>> = {
   npc: NpcDefSchema, characterTemplate: CharacterTemplateSchema, martialArt: MartialArtDefSchema,
+  move: MoveDefSchema, quest: QuestDefSchema,
   meridian: MeridianDefSchema, acupoint: AcupointDefSchema, item: ItemDefSchema, shop: ShopDefSchema,
   story: StoryLineSchema, event: EventDefSchema, bookWorld: BookWorldDefSchema, town: TownRuntimeSchema,
 };
 const KIND_ORDER: readonly ContentKind[] = [
-  'npc', 'characterTemplate', 'martialArt', 'meridian', 'acupoint', 'item',
+  'npc', 'characterTemplate', 'martialArt', 'move', 'quest', 'meridian', 'acupoint', 'item',
   'shop', 'story', 'event', 'bookWorld', 'town',
 ];
 function schemaFor(kind: ContentKind, value: unknown): ZodType {
@@ -58,6 +61,7 @@ export function identifyContentKind(value: unknown, path: string): ContentKind {
   const kinds: Readonly<Record<string, ContentKind>> = {
     'npc.v1': 'npc', 'character-template.v1': 'characterTemplate',
     'martial-art.v1': 'martialArt', 'meridian.v1': 'meridian', 'acupoint.v2': 'acupoint',
+    'move.v1': 'move', 'quest.v1': 'quest',
     'item.v1': 'item', 'shop.v1': 'shop', 'story.v1': 'story', 'event.v1': 'event',
     'book-world.v1': 'bookWorld', 'town-runtime.v1': 'town',
   };
@@ -89,6 +93,7 @@ export function contentKindOrder(kind: ContentKind): number {
 export interface ContentValues {
   readonly npcs: readonly NpcDef[]; readonly characterTemplates: readonly CharacterTemplate[];
   readonly martialArts: readonly MartialArtDef[]; readonly meridians: readonly MeridianDef[];
+  readonly moves: readonly MoveDef[]; readonly quests: readonly QuestDef[];
   readonly acupoints: readonly AcupointDef[]; readonly items: readonly ItemDef[];
   readonly shops: readonly ShopDef[]; readonly stories: readonly StoryLine[];
   readonly events: readonly EventDef[]; readonly bookWorlds: readonly BookWorldDef[];

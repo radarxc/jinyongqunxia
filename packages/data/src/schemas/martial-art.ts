@@ -33,13 +33,17 @@ export const InnerDefSchema = z.strictObject({
   auxOverrideBp: z.number().int().min(0).max(10000).optional(),
 });
 
-const MartialCategorySchema = z.enum(['inner', 'unarmed', 'weapon', 'movement', 'hidden', 'misc']);
+const MartialCategorySchema = z.enum([
+  'inner', 'unarmed', 'weapon', 'movement', 'hidden', 'misc', 'story_art',
+]);
 const MartialLayerSchema = z.strictObject({
   n: LayerSchema,
   unlock: z.array(z.string().regex(/^(?:mv|ps)_[a-z0-9_]+$/)),
 });
 const LearnSourceSchema = z.strictObject({
-  type: z.enum(['master', 'manual', 'observe', 'qiyu', 'puzzle', 'combo', 'pages', 'fragment', 'fused', 'inherit', 'legacy_fragment', 'legacy_synthesis']),
+  type: z.enum(['master', 'manual', 'observe', 'qiyu', 'puzzle', 'combo', 'pages',
+    'fragment', 'fused', 'inherit', 'legacy_fragment', 'legacy_synthesis',
+    'tutorial_projection']),
   chapter: ChapterIdSchema.optional(),
   ref: z.string().min(1).optional(),
   maxLayer: LayerSchema,
@@ -76,6 +80,16 @@ export const MartialArtDefSchema = z
     if (value.wOutBp + value.wInBp !== 10000) context.addIssue({ code: 'custom', path: ['wOutBp'], message: 'wOutBp + wInBp must equal 10000' });
     if ((value.category === 'inner') !== (value.inner !== undefined)) context.addIssue({ code: 'custom', path: ['inner'], message: 'inner is required only for inner martial arts' });
     if (value.category === 'inner' && value.nature === 'neutral') context.addIssue({ code: 'custom', path: ['nature'], message: 'inner martial arts cannot be neutral' });
+    if (value.category === 'story_art' && value.id !== 'sk_changshengjue')
+      context.addIssue({ code: 'custom', path: ['id'], message: 'story_art is reserved for sk_changshengjue' });
+    if (value.category === 'story_art' && value.maxLayer !== 9)
+      context.addIssue({ code: 'custom', path: ['maxLayer'], message: 'story_art has exactly nine layers' });
+    for (const [index, source] of value.learnSources.entries()) {
+      if (source.type === 'tutorial_projection' &&
+          (source.chapter?.startsWith('ch00_') !== true || source.ref === undefined))
+        context.addIssue({ code: 'custom', path: ['learnSources', index],
+          message: 'tutorial projections require a ch00 chapter and receipt ref' });
+    }
     const layers = value.layers.map((entry) => entry.n);
     if (new Set(layers).size !== layers.length) context.addIssue({ code: 'custom', path: ['layers'], message: 'layer entries must be unique' });
   });

@@ -25,7 +25,7 @@ describe('ItemDefSchema', () => {
     ['material', { type: 'material', value: { family: 'wood', resourceRef: 'res_wood', materialGrade: 3, rare: false } }],
     ['manual', { type: 'manual', value: { skill: 'sk_fixture', maxLayer: 10, variant: 'full', readMul: 1 } }],
     ['page', { type: 'page', value: { skill: 'sk_fixture', pagesTotal: 4 } }],
-    ['quest', { type: 'quest', value: { quest: 'q_fixture', opens: [], recognizedBy: [] } }],
+    ['quest', { type: 'quest', value: { quest: 'q_01_side_90', opens: [], recognizedBy: [] } }],
   ])('accepts the matching %s extension', (kind, extension) => {
     expect(ItemDefSchema.safeParse(item(kind, extension)).success).toBe(true);
   });

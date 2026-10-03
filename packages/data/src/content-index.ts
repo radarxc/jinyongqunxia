@@ -28,7 +28,81 @@ function deepFreeze<T>(value: T, seen = new Set<object>()): T {
 
 function validateReferences(entries: readonly ContentEntry[], lookup: Map<string, unknown>): void {
   const has = (kind: ContentKind, id: string): boolean => lookup.has(`${kind}:${id}`);
+  const moveRegistryActive = entries.some((entry) => entry.kind === 'move');
+  const storyKnots = new Set<string>();
+  for (const entry of entries) if (entry.kind === 'story') {
+    const story = entry.value as ContentValues['stories'][number];
+    for (const node of story.nodes) if (node.type === 'dialogue' && 'ink' in node.payload)
+      storyKnots.add(`${node.payload.ink.storyId}:${node.payload.ink.knot}`);
+  }
   for (const entry of entries) {
+    if (entry.kind === 'martialArt') {
+      const skill = entry.value as ContentValues['martialArts'][number];
+      for (const moveId of skill.moveIds) if (moveRegistryActive && !has('move', moveId))
+        throw new TypeError(`CONTENT_REF:${entry.path}:move:${moveId}`);
+    }
+    if (entry.kind === 'move') {
+      const move = entry.value as ContentValues['moves'][number];
+      if (!has('martialArt', move.skillId))
+        throw new TypeError(`CONTENT_REF:${entry.path}:martialArt:${move.skillId}`);
+    }
+    if (entry.kind === 'quest') {
+      const quest = entry.value as ContentValues['quests'][number];
+      const flags = new Set(quest.flagIds); const encounters = new Set(quest.encounterIds);
+      const checkCondition = (condition: unknown): void => {
+        if (typeof condition !== 'object' || condition === null) return;
+        const record = condition as Record<string, unknown>;
+        if (typeof record['flag'] === 'object' && record['flag'] !== null) {
+          const id = (record['flag'] as Record<string, unknown>)['id'];
+          if (typeof id === 'string' && !flags.has(id))
+            throw new TypeError(`CONTENT_REF:${entry.path}:flag:${id}`);
+        }
+        if (typeof record['quest'] === 'object' && record['quest'] !== null) {
+          const id = (record['quest'] as Record<string, unknown>)['id'];
+          if (typeof id === 'string' && !has('quest', id))
+            throw new TypeError(`CONTENT_REF:${entry.path}:quest:${id}`);
+        }
+        if (typeof record['hasItem'] === 'object' && record['hasItem'] !== null) {
+          const id = (record['hasItem'] as Record<string, unknown>)['id'];
+          if (typeof id === 'string' && !has('item', id))
+            throw new TypeError(`CONTENT_REF:${entry.path}:item:${id}`);
+        }
+        for (const child of Object.values(record)) {
+          if (Array.isArray(child)) child.forEach(checkCondition); else checkCondition(child);
+        }
+      };
+      if (quest.offerWhen !== undefined) checkCondition(quest.offerWhen);
+      if (quest.showWhen !== undefined) checkCondition(quest.showWhen);
+      for (const stage of quest.stages) {
+        for (const edge of stage.transitions) checkCondition(edge.when);
+        for (const objective of stage.objectives) {
+          if ('flagId' in objective && !flags.has(objective.flagId))
+            throw new TypeError(`CONTENT_REF:${entry.path}:flag:${objective.flagId}`);
+          if ('itemId' in objective && !has('item', objective.itemId))
+            throw new TypeError(`CONTENT_REF:${entry.path}:item:${objective.itemId}`);
+          if ('encounterId' in objective && !encounters.has(objective.encounterId))
+            throw new TypeError(`CONTENT_REF:${entry.path}:encounter:${objective.encounterId}`);
+          if ('targetRef' in objective && !has('npc', objective.targetRef))
+            throw new TypeError(`CONTENT_REF:${entry.path}:npc:${objective.targetRef}`);
+          if ('storyId' in objective && !storyKnots.has(`${objective.storyId}:${objective.knot}`))
+            throw new TypeError(`CONTENT_REF:${entry.path}:storyKnot:${objective.storyId}:${objective.knot}`);
+        }
+        for (const effect of stage.effects) {
+          if ('flagId' in effect && !flags.has(effect.flagId))
+            throw new TypeError(`CONTENT_REF:${entry.path}:flag:${effect.flagId}`);
+          if ('itemId' in effect && !has('item', effect.itemId))
+            throw new TypeError(`CONTENT_REF:${entry.path}:item:${effect.itemId}`);
+          if ('skillId' in effect && !has('martialArt', effect.skillId))
+            throw new TypeError(`CONTENT_REF:${entry.path}:martialArt:${effect.skillId}`);
+          if ('sectId' in effect && effect.sectId !== quest.ownerSectId)
+            throw new TypeError(`CONTENT_REF:${entry.path}:sect:${effect.sectId}`);
+          if ('encounterId' in effect && !encounters.has(effect.encounterId))
+            throw new TypeError(`CONTENT_REF:${entry.path}:encounter:${effect.encounterId}`);
+          if ('storyId' in effect && !storyKnots.has(`${effect.storyId}:${effect.knot}`))
+            throw new TypeError(`CONTENT_REF:${entry.path}:storyKnot:${effect.storyId}:${effect.knot}`);
+        }
+      }
+    }
     if (entry.kind === 'shop') {
       const shop = entry.value as ContentValues['shops'][number];
       if (shop.keeperNpcId !== undefined && !has('npc', shop.keeperNpcId))
@@ -95,6 +169,7 @@ export function loadContent(files: readonly ContentFile[]): ContentRegistry {
   const registry: ContentRegistry = {
     entries, npcs: values('npc') as ContentValues['npcs'], characterTemplates: values('characterTemplate') as ContentValues['characterTemplates'],
     martialArts: values('martialArt') as ContentValues['martialArts'], meridians: values('meridian') as ContentValues['meridians'],
+    moves: values('move') as ContentValues['moves'], quests: values('quest') as ContentValues['quests'],
     acupoints: values('acupoint') as ContentValues['acupoints'], items: values('item') as ContentValues['items'],
     shops: values('shop') as ContentValues['shops'], stories: values('story') as ContentValues['stories'],
     events: values('event') as ContentValues['events'], bookWorlds: values('bookWorld') as ContentValues['bookWorlds'],

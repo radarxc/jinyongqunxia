@@ -17,12 +17,26 @@ export interface CompiledInk { readonly storyId: string; readonly storyJson: str
   readonly text: Readonly<Record<string, string>>;
   readonly structure: DialogueStructureDef; readonly diagnostics: readonly Diagnostic[]; }
 
-interface OpcodeSpec { readonly required: readonly string[]; readonly optional?: readonly string[]; }
+interface OpcodeSpec {
+  readonly required: Readonly<Record<string, RegExp>>;
+  readonly optional?: Readonly<Record<string, RegExp>>;
+}
+const id = (prefix: string): RegExp => new RegExp(`^${prefix}[a-z0-9]+(?:_[a-z0-9]+)*$`, 'u');
+const positive = /^[1-9][0-9]*$/u;
+const local = /^[a-z][A-Za-z0-9_]*$/u;
 const OPCODES: Readonly<Record<string, OpcodeSpec>> = {
-  'quest/advance': { required: ['quest', 'stage'] },
-  'party/giveItem': { required: ['item', 'count'] },
-  'battle/start': { required: ['encounter'] },
-  'flag/set': { required: ['flagId'], optional: ['value'] },
+  'quest/advance': { required: { quest: id('q_'), stage: id('st_') } },
+  'party/giveItem': { required: { item: /^(?:it|eq|prop)_[a-z0-9_]+$/u, count: positive } },
+  'party/takeItem': { required: { item: /^(?:it|eq|prop)_[a-z0-9_]+$/u, count: positive } },
+  'battle/start': { required: { encounter: id('enc_') } },
+  'flag/set': { required: { flagId: id('fl_') }, optional: { value: /^(?:true|false)$/u } },
+  'world/openEntrance': { required: { entrance: id('ent_') } },
+  'tutorial/mark': { required: { tutorial: local, state: /^(?:completed|skipped|pending)$/u } },
+  'story/requestTransmission': { required: { skill: id('sk_'), source: local } },
+  'ui/openAllocation': { required: { mode: /^(?:manual|balanced|default)$/u } },
+  'ui/showTitleCard': { required: { card: local } },
+  'save/autosave': { required: { reason: local } },
+  'dialogue/speaker': { required: { speaker: /^(?:npc_[a-z0-9_]+|player|narrator|book_spirit)$/u } },
 };
 const EXTERNALS = new Set(['get_flag', 'quest_stage', 'has_item', 'affinity']);
 const META_ID = /^(?:story|ink)_[a-z0-9_]+$/u;
@@ -34,15 +48,24 @@ export function decodeInkTag(raw: string, file = '<ink>', line = 1): DecodedTag 
   if (!raw.startsWith('ts:') || raw.includes('{') || raw.includes('}')) throw new TypeError(`INK_TAG_FORMAT:${file}:${line}`);
   const [opcode, ...tokens] = raw.slice(3).trim().split(/\s+/u); const spec = opcode ? OPCODES[opcode] : undefined;
   if (!spec) throw new TypeError(`INK_TAG_OPCODE:${file}:${line}:${String(opcode)}`);
-  const allowed = [...spec.required, ...(spec.optional ?? [])];
+  const allowed = { ...spec.required, ...(spec.optional ?? {}) };
   const args: Record<string, string> = {};
+  const tokenKeys = tokens.map((token) => token.match(/^([A-Za-z][A-Za-z0-9]*)=/u)?.[1])
+    .filter((key): key is string => key !== undefined);
+  const duplicateKey = tokenKeys.find((key, index) => tokenKeys.indexOf(key) !== index);
+  if (duplicateKey !== undefined)
+    throw new TypeError(`INK_TAG_DUPLICATE:${file}:${line}:${duplicateKey}`);
   for (const token of tokens) {
     const match = token.match(/^([A-Za-z][A-Za-z0-9]*)=([^{}()[\]"'\s]+)$/u);
-    if (!match || !allowed.includes(match[1]!)) throw new TypeError(`INK_TAG_PARAM:${file}:${line}:${token}`);
-    if (args[match[1]!] !== undefined) throw new TypeError(`INK_TAG_DUPLICATE:${file}:${line}:${match[1]}`);
+    const validator = match ? allowed[match[1]!] : undefined;
+    if (match && args[match[1]!] !== undefined)
+      throw new TypeError(`INK_TAG_DUPLICATE:${file}:${line}:${match[1]}`);
+    if (!match || validator === undefined || !validator.test(match[2]!))
+      throw new TypeError(`INK_TAG_PARAM:${file}:${line}:${token}`);
     args[match[1]!] = match[2]!;
   }
-  if (spec.required.some((key) => args[key] === undefined)) throw new TypeError(`INK_TAG_MISSING:${file}:${line}`);
+  if (Object.keys(spec.required).some((key) => args[key] === undefined))
+    throw new TypeError(`INK_TAG_MISSING:${file}:${line}`);
   return { opcode: opcode!, args };
 }
 

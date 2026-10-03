@@ -16,15 +16,20 @@ export const ChapterIdSchema = z
   .regex(/^ch(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*$/);
 export const EraLayerSchema = z.string().regex(/^ch(?:0[0-9]|1[0-5])$/);
 export const SkillIdSchema = namedId('sk_');
+export const MoveIdSchema = namedId('mv_');
 export const NpcIdSchema = namedId('npc_');
-export const ItemIdSchema = z.string().regex(/^(?:it|eq)_[a-z0-9]+(?:_[a-z0-9]+)*$/);
+export const ItemIdSchema = z.string().regex(/^(?:it|eq|prop)_[a-z0-9]+(?:_[a-z0-9]+)*$/);
 export const MeridianIdSchema = namedId('mer_').refine(
   (id) => !['mer_ren', 'mer_du', 'mer_chong', 'mer_dai'].includes(id),
   'legacy short meridian IDs are read-only migration inputs',
 );
 export const AcupointIdSchema = namedId('ap_');
 export const EventIdSchema = namedId('ev_');
-export const QuestIdSchema = namedId('q_');
+export const QuestIdSchema = z.string().regex(
+  /^(?:q_00_main_c_0[1-4]|q_(?:0[1-9]|1[0-4])_main_[czx]_[0-9]{2}|q_(?:0[0-9]|1[0-4])_(?:side|faction|bond|qiyu)_[0-9]{2}|q_15_main_[0-9]{2})$/,
+);
+export const FlagIdSchema = namedId('fl_');
+export const EncounterIdSchema = namedId('enc_');
 export const SceneIdSchema = z.string().regex(/^sc_[a-z0-9]+(?:_[a-z0-9]+)*$/);
 export const SectIdSchema = namedId('sect_');
 export const CityIdSchema = namedId('city_');
