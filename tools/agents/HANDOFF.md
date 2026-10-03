@@ -1064,3 +1064,22 @@
       - 每个任务合入后确认 `.agents/wt/<ID>` 已清；
       - 磁盘 < 2.5 GiB 报协调者（`kw.py` / `w50.py` 阈值已同步）。
 
+  - **10-03 03:10–06:15 素材线第二波追踪**：
+    - **合入**：
+      - ART-hero-refine-b：2533a8fd。80 张，李文秀按例外放行。与 cast-b 的 6 个 manifest 冲突由追踪者挪基点，协调者手工保留两边。
+      - CITY-layouts-all：04f1133a。16 座 ch10 城，其中洛阳、太原因工具缺口标 `rejected`。原计划全量 2367 项（城 × 章），实际 14 项完成，进度表与 done 存 `_handoff/city/`。缩减方案待作者定，工具缺口另登记为 TOOL-town-gaps-1。
+      - ART-cast-polish-ch09：41b24202，万门六弟子差异化。
+      - ART-ruins-maps：df54e2ef。56 张 Tiled 地图加预览，覆盖 18 区。九老洞、敦煌地宫缺 ID，待 DES-ruins-ids 补登后接力做 ART-ruins-maps-2。
+      - 至此原定 6 个任务全部合入。
+    - **CITY 审核**：
+      - r1：把「未完成全量」当阻断。协调者在 review_checks_city 加补充裁定 1。
+      - r2：卡在 render_town 不支持水门与多重城垣。协调者裁定两城 partial 后不再审合入，并加补充裁定 2。
+    - **ruins**：等 CITY 合入、负载 < 10 才起（05:29）；polish 在 ruins 稳定后起（05:36，沙箱外 runner w15）。
+    - **磁盘**：
+      - 降至 3.1 GiB，原因是别线新开的工作区。
+      - 经协调者同意，删除 5 个已合入任务的 `.agents/logs/<ID>`（约 260 MB）。
+      - 追踪者的等待器改为每 10 分钟一轮的后台等待；执行器日志超过 150 MB 自动 gzip 轮转。
+    - **待办**：
+      - ART-items-gifts-catalog：等 DES-items-gifts-spec、TOOL-catalog-9col。
+      - ART-ruins-maps-2：等 DES-ruins-ids。
+      - build_portraits：协调者指定时段一次跑完 hero 175 张、polish 6 张、cast 余下若干，之后跑 gallery。
