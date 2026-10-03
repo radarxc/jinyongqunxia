@@ -13,7 +13,7 @@
 | 续作材料（简报、监督脚本、出图台账、联系表、小基线图） | `.agents/wt/_prod/.agents/coord/_handoff/`（不入库） |
 | 要作者决定 / 确认的事 | 本文 §8 |
 | 素材总览页（验收用） | https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A（10-03 09:58 第 4 版：128 张运行时立绘重建后的全量，含第二波人物与全部物品；生成 `python3 tools/review/build_gallery.py` → `.agents/coord/gallery/`，74 个文件 17.5 MB，用 Artifact 工具同地址重发） |
-| **素材审核页**（作者逐件定结论） | https://claude.ai/artifact/7H7nYXyBSRJJSNFBwsDGjM（10-03 11:44 首版：2322 件——人物立绘 814、物品 894、剧情插图 82、城图 16、遗迹地图 62、特效 125、部件 43、建筑 209、贴片 77；页面共享库 `verdicts` 集合存「通过 / 返工 / 不用」+ 备注，协调者用 ArtifactData 读回后改 manifest / 登记返工；生成 `.agents/coord/review_page/collect.py` → `build_html.py`，同 file_path 重发保持地址） |
+| **素材审核页**（作者逐件定结论） | https://claude.ai/artifact/7H7nYXyBSRJJSNFBwsDGjM（10-03 16:15 第 3 版 2603 件：人物 924〔含 cast-fill-c / -d 新人 110〕、物品 988〔含礼品 94〕、区域图 5、3D 模型 11、界面图标 22、特效 130 等；被替换的 16 张里只有黄蓉 base 有旧结论「通过」，与作者 AR-51 选 A 一致，保留。11:44 首版：2322 件——人物立绘 814、物品 894、剧情插图 82、城图 16、遗迹地图 62、特效 125、部件 43、建筑 209、贴片 77；页面共享库 `verdicts` 集合存「通过 / 返工 / 不用」+ 备注，协调者用 ArtifactData 读回后改 manifest / 登记返工；生成 `.agents/coord/review_page/collect.py` → `build_html.py`，同 file_path 重发保持地址） |
 
 ## 0. 现状一句话
 
