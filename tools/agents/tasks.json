@@ -34395,6 +34395,139 @@
     "packages/render/src/rig/**",
     "packages/render/CLAUDE.md"
    ]
+  },
+  {
+   "id": "DES-npcs-register-a",
+   "title": "名录补登记 A（ch01–ch07）· 人物补齐发现的原著主要人物登记进各书名录与 design/18（AR-36 前置）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-npcs-register.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/18-npc-and-companions.md",
+    "docs/design/catalog/npcs-01-tianlong.md",
+    "docs/design/catalog/npcs-02-shediao.md",
+    "docs/design/catalog/npcs-03-shendiao.md",
+    "docs/design/catalog/npcs-04-yitian.md",
+    "docs/design/catalog/npcs-05-xiaoao.md",
+    "docs/design/catalog/npcs-06-xiake.md",
+    "docs/design/catalog/npcs-07-bixue.md"
+   ],
+   "vars": {
+    "group": "A（ch01–ch07）",
+    "report": "tools/agents/reports/ART-cast-fill-a.md",
+    "books": "- ch01：`docs/design/catalog/npcs-01-tianlong.md`\n- ch02：`docs/design/catalog/npcs-02-shediao.md`\n- ch03：`docs/design/catalog/npcs-03-shendiao.md`\n- ch04：`docs/design/catalog/npcs-04-yitian.md`\n- ch05：`docs/design/catalog/npcs-05-xiaoao.md`\n- ch06：`docs/design/catalog/npcs-06-xiake.md`\n- ch07：`docs/design/catalog/npcs-07-bixue.md`",
+    "writes_list": "`docs/design/18-npc-and-companions.md`、`docs/design/catalog/npcs-01-tianlong.md`、`docs/design/catalog/npcs-02-shediao.md`、`docs/design/catalog/npcs-03-shendiao.md`、`docs/design/catalog/npcs-04-yitian.md`、`docs/design/catalog/npcs-05-xiaoao.md`、`docs/design/catalog/npcs-06-xiake.md`、`docs/design/catalog/npcs-07-bixue.md`"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/18-npc-and-companions.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-npcs-register-b",
+   "title": "名录补登记 B（ch08–ch14）· 人物补齐发现的原著主要人物登记进各书名录与 design/18（AR-36 前置）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "DES-npcs-register.md",
+   "deps": [
+    "DES-npcs-register-a"
+   ],
+   "review": false,
+   "web": false,
+   "writes": [
+    "docs/design/18-npc-and-companions.md",
+    "docs/design/catalog/npcs-08-luding.md",
+    "docs/design/catalog/npcs-09-liancheng.md",
+    "docs/design/catalog/npcs-10-baima.md",
+    "docs/design/catalog/npcs-11-yuanyang.md",
+    "docs/design/catalog/npcs-12-shujian.md",
+    "docs/design/catalog/npcs-13-feihu.md",
+    "docs/design/catalog/npcs-14-xueshan.md"
+   ],
+   "vars": {
+    "group": "B（ch08–ch14）",
+    "report": "tools/agents/reports/ART-cast-fill-b.md",
+    "books": "- ch08：`docs/design/catalog/npcs-08-luding.md`\n- ch09：`docs/design/catalog/npcs-09-liancheng.md`\n- ch10：`docs/design/catalog/npcs-10-baima.md`\n- ch11：`docs/design/catalog/npcs-11-yuanyang.md`\n- ch12：`docs/design/catalog/npcs-12-shujian.md`\n- ch13：`docs/design/catalog/npcs-13-feihu.md`\n- ch14：`docs/design/catalog/npcs-14-xueshan.md`",
+    "writes_list": "`docs/design/18-npc-and-companions.md`、`docs/design/catalog/npcs-08-luding.md`、`docs/design/catalog/npcs-09-liancheng.md`、`docs/design/catalog/npcs-10-baima.md`、`docs/design/catalog/npcs-11-yuanyang.md`、`docs/design/catalog/npcs-12-shujian.md`、`docs/design/catalog/npcs-13-feihu.md`、`docs/design/catalog/npcs-14-xueshan.md`"
+   },
+   "validate": {
+    "exists": [
+     "docs/design/18-npc-and-companions.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-cast-polish-ch09",
+   "title": "人物差异化小返修 · 连城诀万门六弟子（脸、姿势、蓝袍几乎一样）",
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "prompt": "ART-cast-polish.md",
+   "deps": [
+    "ART-cast-fill-b"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "assets/default/character/male/ch09/**",
+    "assets/default/prompts/characters/ch09-liancheng/**"
+   ],
+   "sparse_include": [
+    "assets/default/character/male/ch09/*.png"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem\",\"/private/tmp\"]"
+   ],
+   "vars": {
+    "scope": "连城诀万门六弟子",
+    "worker_no": "15",
+    "people": "卜垣、冯坦、鲁坤、沈城、孙均、汪啸风（连城诀 ch09 万震山门下，asset_id 见 `assets/default/character/male/ch09/manifest.yaml`）",
+    "n": "6",
+    "ch": "ch09",
+    "writes_list": "`assets/default/character/male/ch09/**`、`assets/default/prompts/characters/ch09-liancheng/**`"
+   },
+   "validate": {
+    "exists": [
+     "assets/default/character/male/ch09/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_asset_dirs.py",
+      "assets/default/character/*/ch09",
+      "--min",
+      "1",
+      "--max",
+      "999"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
   }
  ]
 }
