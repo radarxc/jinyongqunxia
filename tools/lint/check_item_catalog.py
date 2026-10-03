@@ -356,8 +356,20 @@ def check_nine(
         if not CATEGORY_KEYS["medicine"].intersection(attributes):
             problems.append("类别必填属性须至少含一项药品效用字段")
     allowed = CATEGORY_KEYS.get(category(path))
+    food_qi_exception = (
+        path.name == "items-food.md"
+        and bool({"sxpGrant", "perm.mpMaxPct"}.intersection(fields))
+    )
+    if (path.name == "items-food.md" and "qiCultivation" in attributes
+            and not food_qi_exception):
+        problems.append(
+            "食品属性 `qiCultivation` 仅允许旧效果字段含 "
+            "`sxpGrant` 或 `perm.mpMaxPct`"
+        )
     if allowed is not None:
         for key in attributes:
+            if key == "qiCultivation" and food_qi_exception:
+                continue
             if key in ATTRIBUTE_KEYS and key not in allowed:
                 warnings.append(f"属性 `{key}` 不属于 {category(path)} 常用字段集")
     return problems, warnings
