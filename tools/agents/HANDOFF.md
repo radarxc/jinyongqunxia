@@ -1626,4 +1626,8 @@
       - 要点：内容侧正确性必须达标（ID 统一、人物台词齐、奖励单一所有者、报告如实）；依赖未合入引擎的运行时行为，列明阻塞 ENG ID 与交接字段就不判 FAIL。
     - **TOOL-items-regen-2**（04e997bc）：收藏品入库，驱动 93892，代码池 4/4 时排队等位。
     - 起跑顺序：tiled-strict 合入 → gates-data 与 event-executor 并行 → 19e。ch10 返修完转 HOLD-REVIEWS 后，`--from review --checks review_checks_content.md` 复审。
+  - **10-03 13:28–13:41 开发监督**：协调者已重启 eng3（pid 21451，`--parallel 3`，日志 `_batch/eng3.detach.r4.out`），新的 CONTENT- 审核清单已生效。
+    - 代码池排队顺序（协调者 13:28）：tiled-strict 合入 → gates-data、event-executor → items-regen-2 → 19e。M1 相关任务优先于 16e、26。
+    - 隐患：items-regen-2 的驱动已在 step.py 里等位，tiled-strict 执行器一结束就会占位。已请协调者决定是否先停它（HOLD-RUNS），之后由我 `--from start` 重起。
+    - **计划补记**：ch10 带 review_checks_content.md 复审，能过就先合入内容。引擎三件（gates-data、event-executor、19e）合入后，再起一次 ch10 / ch00 的验收复测。
 
