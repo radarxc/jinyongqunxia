@@ -1589,3 +1589,21 @@
     - 冲突面：runtime/** 与 ENG-16c、session-base-diet 重叠（说明要求最小改动）；content-registry / content-index 与 ENG-26、ENG-18c 重叠。
     - 门禁合入后：ch00a 若已合入，就另起小 CONTENT 任务补 C01 / C03 门禁；否则在 ch00b 返修时登记，lockedBy 填真实 gateId。
 
+  - **10-03 06:15–13:20 素材线第二波追踪（收尾）**：
+    - **合入**：
+      - ART-ruins-maps-2：ac069a22。九老洞、敦煌地宫（唐 / 清两相）等 6 张。
+      - ART-rig-sheet-side：85f2b464。前两栏分腿合格，第 3 栏的严格度由协调者裁定放行。
+      - ART-items-gifts-catalog：be7a8c39。151 件。中途两次工具缺口：校验器不认 AR-40 表头和礼品键，由 TOOL-catalog-collectibles 补；check_ids 要求在 design/10 §14.2 登记，写集加 design/10 后只追加一行。复验前先用 rebase_task 挪基点，让工作区带上新校验器。
+      - 第二波 6 项及追加的 4 项全部合入。ART-3d-tripo-avatars / -cast 因 AR-42 改网页版而取消。
+    - **build_portraits**：
+      - 128 张，按章提交 36142d3f…0cc39bf9，模型加载使交换区 +7 GB。
+      - 此前 06:20 那次被 3 GiB 护栏截停（ab4cc1e8）。
+      - 这次挡了 ENG-19d 合入两次。新规：长时间直接改 _prod 前，先等 reviewing / merging 的驱动合入；已写进追踪者的批处理脚本。
+      - gallery 09:56 重建；INDEX 由协调者重建（d0529625）。
+    - **磁盘**：
+      - 清 gem/codex_w9、w11、w12：只删能找回的重复或已入库件和试稿，共 763 MB；manifest 引用的 273 处来源全部保留。
+      - 删 10 个 homeN（638 MB）、/private/tmp 下旧 codex-home（约 0.75 GB），并把 68 个悬空的 out 链接改指 _prod。
+    - **Tripo**：
+      - 余额查询用 CLI 的 --env-file，追踪者不经手 key；余额一直是 0 点，后因 AR-42 撤掉。
+      - 密钥扫描只按形状匹配、不打印内容，命中 5 处，核为占位误报，规则已收紧。
+    - **等待器教训**：两个等待进程并发会互相覆盖状态文件，现在入口会先 pkill 旧的。
