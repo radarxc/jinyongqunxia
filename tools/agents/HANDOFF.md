@@ -1613,3 +1613,82 @@
     - CONTENT-ch10 r1 FAIL：门 / 入口 binding、首谈 dialogue binding、EventDef 动作执行、NPC 说话人标签、M1 页面顺序都是引擎缺口 → 批开发监督：ENG-region-gates-data 扩成区域绑定数据（gates / dialogues / loot），新登记 ENG-event-executor、ENG-19e-m1-order；写内容审核补充裁定 `review_checks_content.md`（依赖未合入引擎的行为列交接项即不判 FAIL），CONTENT 三任务复审带上。
     - 开发监督已起 ENG-tiled-trigger-strict（5ae8af57，驱动 14355）。
     - Gemini 标签页：作者已把 Claude 组里的 Gemini 标签页放到前台（13:26）。
+  - **10-03 13:22–13:37 开发监督**：补齐引擎缺口的任务线与内容审核补充裁定（协调者 13:22 / 13:26 / 13:30）。
+    - **ENG-region-gates-data** 扩为区域绑定数据（d4989d39）：gate / dialogue / loot 三类共用 region-binding.ts；目录 `content/chapters/<ch>/bindings/*`；校验地图引用；依赖 tiled-strict、entry-split。
+    - **ENG-event-executor**（6e89568b）：
+      - EventDef 动作词表与 Ink OPCODES 共用登记；状态类动作在 core 事务内执行（once / 条件 / 回滚）；演出类动作发 `world/eventPresented`；
+      - 给出 ch10 op 名迁移对照；
+      - 依赖 ENG-20a 加 tiled-strict（共用 OPCODES 登记，已告知协调者）。
+    - **ENG-19e-m1-order**（6e89568b）：白马冷入口八步页面流；演出事件上屏；说话人标签取自 NPC 内容（去掉写死的 SPEAKERS）。依赖 gates-data、event-executor。
+    - **内容审核补充裁定**：
+      - 文件 `.agents/coord/PROD/review_checks_content.md`（gitignored，同其他 review_checks）；
+      - batch_run CHECKS 加 `CONTENT-` 前缀（2fbdb7df），eng3 重启后生效；在此之前手动起的 CONTENT 复审显式带 `--checks`。
+      - 要点：内容侧正确性必须达标（ID 统一、人物台词齐、奖励单一所有者、报告如实）；依赖未合入引擎的运行时行为，列明阻塞 ENG ID 与交接字段就不判 FAIL。
+    - **TOOL-items-regen-2**（04e997bc）：收藏品入库，驱动 93892，代码池 4/4 时排队等位。
+    - 起跑顺序：tiled-strict 合入 → gates-data 与 event-executor 并行 → 19e。ch10 返修完转 HOLD-REVIEWS 后，`--from review --checks review_checks_content.md` 复审。
+  - **10-03 13:28–13:41 开发监督**：协调者已重启 eng3（pid 21451，`--parallel 3`，日志 `_batch/eng3.detach.r4.out`），新的 CONTENT- 审核清单已生效。
+    - 代码池排队顺序（协调者 13:28）：tiled-strict 合入 → gates-data、event-executor → items-regen-2 → 19e。M1 相关任务优先于 16e、26。
+    - 隐患：items-regen-2 的驱动已在 step.py 里等位，tiled-strict 执行器一结束就会占位。已请协调者决定是否先停它（HOLD-RUNS），之后由我 `--from start` 重起。
+    - **计划补记**：ch10 带 review_checks_content.md 复审，能过就先合入内容。引擎三件（gates-data、event-executor、19e）合入后，再起一次 ch10 / ch00 的验收复测。
+
+  - **10-03 12:45–13:40 素材线第三波追踪（AR-47 / AR-48，子代理）**：登记与第一项起跑。
+    - step.py 稀疏检出（fba964f5，main 13:12 批）：默认排除 `assets/default/town`、`assets/default/scene`；include 落在被排除目录之下时只排子目录（`!/d/*/`）再逐项包含（git 2.44 实测，新目录可 add）。只影响新建工作区；插图 / 城图任务须在 sparse_include 显式列文件。素材任务工作区约 1 GB → 约 0.2 GB。
+    - **城图磁盘规则 v2**（main 13:12 批，替代 44daac2f）：manifest 图 = `render_town.py --scale 0.25 -o preview.jpg`（JPEG q85，短边 ≥ 512）；`overlay.svg` 与全尺寸 `town.png` 只给各章首城（清单 `fullsize=yes`；ch10 已完成的 16 城保持原样，ch10 其余不再出全尺寸，待 main 确认）；同年代带其他章节只复制规格 + `layout.yaml`，不渲染、不写 manifest。校验 `tools/agents/check_city_batch.py`。
+    - 登记 018a16ad：ART-ui-icons（22 件，最先起）、ART-rig-std-refs、ART-rig-sheet-f → TOOL-rig-parts-f、ART-ruins-tiles、ART-cast-fill-c / -d（名单 `tools/agents/rosters/`，校验 `check_roster_portraits.py`）、TOOL-city-generic（推定格局生成器 + 年代套件接入 + JPEG 预览）、CITY-layouts-<章>-<a–d|g> 34 批（清单 `docs/design/town/progress/<任务>.expect.csv`，写集互不相交，依赖 TOOL-city-generic）。ART-region-maps 转 Gemini 出图员，未登记。wave 10 的 CITY-<城>__<带>（15 个）与 CITY-generic 已被取代，不要再起。
+    - 集成分支既有问题（不在本线写集）：`male_std` / `female_std` 的 `make_parts.py --check` 不通过；大理 / 临安基线 `check_town --strict-assets` 报墙水相交 error。
+    - 起跑：codex 执行任务一律 `--review-model gpt-6-astra`；runner 在 `_handoff/gem/codex_w18–w23/`（`_handoff/artw3/runner3.py`，第 3 列 `none` 不附人物基线）。进度 `_handoff/artw3/progress.md`。
+  - **10-03 13:58 开发监督**：代码池排位（协调者，第三波也要用代码池）：
+    1. ENG-region-gates-data、ENG-event-executor（M1，tiled-strict 合入后由我起）；
+    2. 第三波 TOOL-city-generic：等上面两件都 RUNNING 后由协调者或追踪者起；
+    3. TOOL-items-regen-2：city-generic 拿到池位后，由我 `--from start` 重起；
+    4. ENG-19e-m1-order：依赖满足时优先于 2、3。
+    - 16e、26、18c 照 eng3 队列。池位按这个顺序让，不抢。
+    - 起任务用 `scratchpad/launch_std.sh <ID> <checks|none> [参数]`：先查有无活进程、提示词能否渲染。
+  - **10-03 13:41–14:02 开发监督**：ENG-tiled-trigger-strict 合入（4e193b0f），M1 两件起跑。
+    - `prod_check`（post-tiledstrict）全绿：1014 条测试；entry 38.44；首次会话 93.40 / 110。
+    - ENG-region-gates-data（区域绑定数据）驱动 59669：在等池位，代码池 4/4，在跑 16c / 20b / 23a / event-executor。
+    - ENG-event-executor 驱动 59692：执行器已开跑。
+    - CONTENT-ch10：第 2 次返修后，eng3（新进程）13:55 自动复审，`--from validate --checks review_checks_content.md`（驱动 65882），在审。
+    - 监控改用 `scratchpad/kwloop.sh`（kw.py 循环重启，KEY 行写入 `kw_keys.log`）加 `w50b.py`（读 devsup_events.log）；单次工具调用 ≤ 1 分钟。
+    - 磁盘 4.2–4.4 GiB（< 5，不新开工作区），负载 15–20。
+  - **10-03 14:12 开发监督**：代码池顺序更新（协调者）：
+    1. M1：gates-data、event-executor，依赖满足后的 19e；
+    2. 第三波 TOOL-city-generic；
+    3. 第三波 TOOL-rig-parts-f（女主角切件，依赖 ART-rig-sheet-f 合入；就绪了就排在 items-regen-2 前）；
+    4. TOOL-items-regen-2；
+    5. 第三波 TOOL-rig-std-parts。
+    - 重起 items-regen-2 之前先看 TOOL-rig-parts-f：若是 PENDING 且依赖已满足，先让它起。
+  - **10-03 14:12–14:19 开发监督**：CONTENT-ch10 r2（新口径）FAIL，三点内容侧小修。
+    - 三点：
+      - 东门 lockedBy 用门禁 ID；
+      - 阻塞交接改列 gates-data / event-executor / 19e；
+      - 第 7 节补作者确认项。
+    - r2 建议的 `gate_10_fengshi_east` 不合 canon §12 拼音规则。协调者选方案 a：停掉 eng3 驱动的返修（65882 等），由我重起。
+    - 合并说明写在 `.agents/coord/CONTENT-ch10-cold-entry/devsup_note_r2.md`：r2 全文，加「门禁 ID 用 `gate_10_fengshi_dongmen`」。
+    - 起跑：`--from start --max-runs 1 --max-reviews 1 --auto-merge --checks review_checks_content.md`，驱动 66718。PASS 合入，FAIL 报协调者。
+  - **10-03 14:19–14:27 开发监督**：ch00a 改用内容口径复审；DES-ui-immersive-2 登记并起跑。
+    - **CONTENT-ch00a-data**：续作后校验通过（32 个文件）。协调者停掉了旧口径的审核，我用 `--from review --checks review_checks_content.md --max-reviews 1 --max-runs 1 --auto-merge` 复审，驱动 99766。
+    - **ART-ui-icons** 已合入（7aafb177，22 件武侠图标）。
+    - **DES-ui-immersive-2**（711f77d2，依赖 DES-ui-immersive、ART-ui-icons）：codex gpt-6-astra xhigh，`--review-model gpt-6-astra`，review_checks_des，驱动 5349。说明补了「人物」图标无五官这一条。
+    - 磁盘 4.9 GiB（略低于 5）：这两件是协调者点名要起的。
+  - **10-03 14:29–14:33 开发监督**：DES-ui-immersive-2 在协调者 14:29 补充之前已开跑。
+    - `ui_status_stagnation` 深底加描边 / 底光这一条已补进登记的说明（f6b69d03），返修或重跑时会读到；当前这轮不重起（协调者 14:32 选 b）。
+    - **待办**：登记 ENG-ui-* 实现任务时，把这条写进说明，并带上 codex 执行与 `--review-model gpt-6-astra`。草稿在 `scratchpad/pending/ENG-ui-notes.md`。
+  - **10-03 14:31–14:39 开发监督**：ch00a 内容口径 r1 FAIL 后补两个 ENG 任务并重起 ch00a。
+    - **ENG-npc-species-roleslot**（e3e88508）：NPC 加 species（非人 ageBand 为 null、不进年龄管线）；新增 role-slot.v1 RoleSlotDef。依赖 ENG-25、ENG-region-gates-data。
+    - **ENG-ink-intents**（e3e88508）：core 的 pendingIntents / consumedTagKeys 是空字段，Ink `#ts:` 标签没人执行，故另登记，依赖 ENG-event-executor。
+      - 没去扩 event-executor 的说明：它正在跑第一轮，扩范围必致审核 FAIL。
+    - **CONTENT-ch00a**：挪基点到 e3e88508，`--from start --max-runs 1 --max-reviews 1 --auto-merge --checks review_checks_content.md`，`--note devsup_note_r1.md`，驱动 92084。
+      - note 写了 r1 六条、协调者默认方案和准确的阻塞 ENG ID。
+    - 代码池顺序：M1（gates-data、event-executor）→ city-generic → rig-parts-f → items-regen-2 → rig-std-parts。19e、species-roleslot、ink-intents 依赖满足后与 19e 同级，优先于 city-generic 之后的各项。
+
+  - **10-03 13:27–14:40 协调者**：主角基线定稿、3D 绑骨经验、M1 引擎栈、磁盘与远程。
+    - 作者选定：杨过、张无忌「都是新版A」（3e7c8f9f / ed5deba9）；段誉 2003 版剧照「下载」（1 张已核实，`identity-20261002/tianlong/duanyu_2003_linzhiying_sina2021.jpg`），段誉 A/B 与男女主角高魅力形象（全身 + 三视图，三视图放 `character/<g>/ch00/threeview/`）已发作者待批；黄蓉「更像李一桐版本一些，眼睛大一些」，剧照下载待作者同意。审阅页：https://claude.ai/artifact/WRPLfJH8vKEic2FV6u97jp（源 `.agents/coord/hero_bases_page/`）。
+    - 10 号出图员：A4 对齐 14 张（郭靖、小龙女、虚竹、赵敏、周芷若）、杨过 / 张无忌各 5 张对齐新 base（万安寺「手朝上」已修）、7 个主角 A 字参考（`character/<g>/chNN/threeview/*_apose.png`）、女角窄轮廓 `_apose_slim`（小龙女 a92c5b18、赵敏 / 周芷若 4aee374a）；剧情插图第 1 批进行中（萧峰 3、郭靖 1 已提交 0e2b3f42）。
+    - Tripo：小龙女宽袖 / 外扩长裙让自动绑骨错位或上下颠倒（累计 210 点），窄轮廓版（束袖 + 直筒裙、上宽下窄）一次绑对 → 9959fed3（5.78 MB、65 关节）。**女角一律用 `_apose_slim`**。黄蓉 3D 停（作废 85 点）。萧峰、虚竹、郭靖、杨过、张无忌已提交生成；赵敏、周芷若排其后。余额 24185。
+    - Gemini 出图员：大理苍山两张候选（A 线描方位准 / B 画风贴基线，推荐 B）待作者定；礼品图已入库 28 / 151（14:13）。网页改版的兼容补丁在它自己目录，后续登记小任务把 `gemini_g.js` 改正式。
+    - 合入：ENG-tiled-trigger-strict 4e193b0f（prod_check 1014 测试、首次会话 93.40 / 110）、ART-ui-icons 7aafb177（22 件）、ART-rig-std-refs eed4b372。DES-ui-immersive-2 已起（codex，驱动 5349）。
+    - M1 引擎栈（开发监督登记 / 驱动，traex Sol）：ENG-region-gates-data（区域绑定数据：gates / dialogues / loot，驱动 59669）、ENG-event-executor（驱动 59692）在跑；ENG-ink-intents、ENG-npc-species-roleslot（e3e88508）、ENG-19e-m1-order 排队。代码池顺序：M1 → TOOL-city-generic → TOOL-rig-parts-f → TOOL-items-regen-2（已停让位）→ TOOL-rig-std-parts。
+    - 内容任务：新口径 `review_checks_content.md`（eng3 已重启读取，pid 21451，日志 `_batch/eng3.detach.r4.out`）。CONTENT-ch10 r2 FAIL（门禁 ID、阻塞 ID 过期、缺第 7 节）→ 合并说明重起（门禁 ID 用拼音 `gate_10_fengshi_dongmen`，驱动 66718），14:25 校验通过在审。CONTENT-ch00a 旧口径审核中途停 → 内容口径 r1 FAIL（NPC 永久招募、gateRef、白猿物种、角色槽）→ 登记 ENG 后带准确 ID 与默认方案重起（驱动 92084）。CONTENT-ch00b 仍 HOLD（等 ch00a）。
+    - 磁盘：13:54 一度 2.7 GiB（交换区 31.8 → 38.7 GB）。清了旧临时目录与 161 个已合入任务日志、w13–w16 homeN；runner 降 1 槽。全盘清理清单在做：~/Projects 约 230 GB（node_modules 统计中）、飞书 24.6 + 6.3 GB、~/.codeverse/.ckg 13.5 GB、~/.trae/cli 12.4 GB、Claude vm_bundles 9.9 GB、两份 pnpm 仓库 18.4 GB、「下载」里 ChatGPT 安装包 1.26 GB 与 Gemini 重复图 1.3 GB——删除一律待作者确认。
+    - 作者问「这个session能remote吗」→ 已开 Remote Control（remoteControlState=on）；提醒 Mac 需不休眠、Gemini / Tripo 窗口需可见。
