@@ -1,5 +1,5 @@
 import type { ContentSource } from '@tianshu/data';
-import { ChapterDefSchema, type ChapterDef } from '@tianshu/data/schemas';
+import { ChapterDefSchema, RegionMapSchema, type ChapterDef, type RegionMap } from '@tianshu/data/schemas';
 import type { GameContent, StaticGameContent } from './content';
 
 export const ITEM_CONTENT_CHAPTER = 'ch00_yuenv';
@@ -64,6 +64,27 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
     return { ...base, items: items as GameContent['items'], chapters,
       idRemaps: pack.manifest.idRemaps, contentHash: pack.manifest.contentHash };
   } catch (error) { throw loadError('ITEM_RULES_UNAVAILABLE', error); }
+}
+
+export async function loadRegionMaps(source: ContentSource, chapter: string,
+  regionId: string): Promise<readonly RegionMap[]> {
+  try {
+    const { loadChapterPackLeaves } = await import('@tianshu/data');
+    const pack = await loadChapterPackLeaves(source, chapter, (leaf) =>
+      leaf.kind === 'rules' && leaf.load === 'region' && leaf.region === regionId);
+    const selected = pack.manifest.leaves.filter((leaf) => leaf.kind === 'rules' &&
+      leaf.load === 'region' && leaf.region === regionId);
+    if (selected.length === 0) throw new TypeError('CONTENT_REGION_LEAF_MISSING');
+    const maps = selected.flatMap((leaf) => {
+      const value = pack.leaves[leaf.logicalName];
+      if (!Array.isArray(value)) throw new TypeError('CONTENT_REGION_LEAF_INVALID');
+      return value.map((entry) => RegionMapSchema.parse(entry));
+    });
+    const unique = new Set(maps.map((map) => map.id));
+    if (unique.size !== maps.length || maps.some((map) => map.regionId !== regionId))
+      throw new TypeError('CONTENT_REGION_ID_MISMATCH');
+    return maps.sort((left, right) => left.id < right.id ? -1 : left.id > right.id ? 1 : 0);
+  } catch (error) { throw loadError('REGION_RULES_UNAVAILABLE', error); }
 }
 
 export class ItemTextCache {

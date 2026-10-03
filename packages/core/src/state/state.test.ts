@@ -38,6 +38,17 @@ describe('GameState JSON boundary', () => {
     expect(() => parseGameState({ ...state, meta: metaWithoutProtocol })).toThrow('STATE_SHAPE');
   });
 
+  it('rejects unknown dynamic terrain IDs in a mounted region', () => {
+    const state = initialState();
+    const mountedRegion = { regionId: 'rg_fixture', spawnId: 'entry',
+      playerHex: { q: 0, r: 0 }, facing: 0,
+      dynamicTiles: [{ q: 0, r: 0, terrainId: 'tr_not_registered', height: 0 }],
+      entities: [] };
+    expect(() => parseGameState({ ...state, world: { ...state.world, navigation: {
+      ...state.world.navigation, mountedRegion,
+    } } })).toThrow('STATE_SHAPE');
+  });
+
   it('accepts a canonical town session and rejects incoherent building phases', () => {
     const state = initialState();
     const town = { version: 1 as const, townRevision: 'a'.repeat(64), sceneId: 'city_dali',
@@ -65,7 +76,8 @@ describe('GameState JSON boundary', () => {
       masterSeed: 1, debugTainted: false });
     expect(state).not.toHaveProperty('transient');
     expect(state.world).toEqual({ navigation: { locationId: 'city_dali',
-      selectedDestinationId: null, pendingMount: null }, pendingTimeAdvance: null });
+      selectedDestinationId: null, pendingMount: null, mountedRegion: null },
+      pendingTimeAdvance: null });
     expect(state).toMatchObject({ battle: null, dialogue: null });
   });
 

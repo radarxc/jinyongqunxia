@@ -147,7 +147,7 @@ export const migrateBookSleepV2: StateMigration = (old) => {
     chapter: { ...chapter, chapterId, eraLayerId: string(chapter['eraLayerId'],
       chapterId.slice(0, 4)), worldTier: string(chapter['worldTier'], 'LOW'), npcs },
     world: { ...world, navigation: { ...navigation,
-      pendingMount: navigation['pendingMount'] ?? null } } };
+      pendingMount: navigation['pendingMount'] ?? null, mountedRegion: null } } };
 };
 
 export const CORE_STATE_MIGRATIONS: ReadonlyMap<number, StateMigration> = new Map([

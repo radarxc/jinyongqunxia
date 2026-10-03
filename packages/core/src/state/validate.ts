@@ -1,5 +1,6 @@
 import { floorDivInt } from '@tianshu/shared';
 import { RNG_PROTOCOL } from '../rng';
+import { isRegionTerrainId } from '../world/region-codec';
 import { RULES_PROTOCOL, SAVE_SCHEMA } from './initial';
 import type { GameState } from './models';
 
@@ -287,6 +288,32 @@ function validateDialogue(value: unknown): void {
     string(line['speakerId']); string(line['textKey']);
   }
 }
+function validateMountedRegion(value: unknown): void {
+  const mounted = object(value);
+  keys(mounted, ['regionId', 'spawnId', 'playerHex', 'facing', 'dynamicTiles', 'entities']);
+  string(mounted['regionId']); string(mounted['spawnId']);
+  const playerHex = object(mounted['playerHex']); keys(playerHex, ['q', 'r']);
+  integer(playerHex['q'], Number.MIN_SAFE_INTEGER);
+  integer(playerHex['r'], Number.MIN_SAFE_INTEGER); integer(mounted['facing'], 0, 5);
+  const tileKeys = new Set<string>();
+  for (const value of array(mounted['dynamicTiles'])) {
+    const tile = object(value); keys(tile, ['q', 'r', 'terrainId', 'height']);
+    const q = integer(tile['q'], Number.MIN_SAFE_INTEGER);
+    const r = integer(tile['r'], Number.MIN_SAFE_INTEGER);
+    if (!isRegionTerrainId(string(tile['terrainId']))) throw new TypeError('STATE_SHAPE');
+    integer(tile['height'], 0, 10);
+    const key = `${q},${r}`; if (tileKeys.has(key)) throw new TypeError('STATE_SHAPE');
+    tileKeys.add(key);
+  }
+  const entityIds = new Set<string>();
+  for (const value of array(mounted['entities'])) {
+    const entity = object(value); keys(entity, ['anchorId', 'active', 'consumed']);
+    const anchorId = string(entity['anchorId']);
+    if (entityIds.has(anchorId) || typeof entity['active'] !== 'boolean' ||
+        typeof entity['consumed'] !== 'boolean') throw new TypeError('STATE_SHAPE');
+    entityIds.add(anchorId);
+  }
+}
 function validateReplayRules(value: unknown): void {
   const rules = object(value);
   keys(rules, ['difficulty', 'heavenlyTrialLevel', 'switches', 'difficultyLog', 'ruleRevision']);
@@ -444,13 +471,29 @@ function validateGameStateShape(value: StateRecord): void {
   }
   const world = object(value['world']); keys(world, ['navigation', 'pendingTimeAdvance']);
   const navigation = object(world['navigation']);
-  keys(navigation, ['locationId', 'selectedDestinationId', 'pendingMount']); string(navigation['locationId']);
+  const navigationRequired = ['locationId', 'selectedDestinationId', 'pendingMount'];
+  if (navigationRequired.some((key) => !(key in navigation)) ||
+      Object.keys(navigation).some((key) => !navigationRequired.includes(key) &&
+        key !== 'mountedRegion')) throw new TypeError('STATE_SHAPE');
+  string(navigation['locationId']);
   if (navigation['selectedDestinationId'] !== null) string(navigation['selectedDestinationId']);
   if (navigation['pendingMount'] !== null) {
     const mount = object(navigation['pendingMount']);
-    keys(mount, ['regionId', 'sceneId', 'spawnId']);
-    string(mount['regionId']); string(mount['sceneId']); string(mount['spawnId']);
+    const mountKeys = Object.keys(mount);
+    if (!['regionId', 'sceneId', 'spawnId'].every((key) => key in mount) ||
+        mountKeys.some((key) => !['regionId', 'sceneId', 'spawnId', 'targetHex'].includes(key)))
+      throw new TypeError('STATE_SHAPE');
+    string(mount['regionId']); string(mount['sceneId']);
+    if (mount['spawnId'] === null) {
+      const target = object(mount['targetHex']); keys(target, ['q', 'r']);
+      integer(target['q'], Number.MIN_SAFE_INTEGER); integer(target['r'], Number.MIN_SAFE_INTEGER);
+    } else {
+      string(mount['spawnId']);
+      if ('targetHex' in mount) throw new TypeError('STATE_SHAPE');
+    }
   }
+  if (navigation['mountedRegion'] !== undefined && navigation['mountedRegion'] !== null)
+    validateMountedRegion(navigation['mountedRegion']);
   if (world['pendingTimeAdvance'] !== null) {
     const pending = object(world['pendingTimeAdvance']); keys(pending, ['remainingTicks', 'reason']); integer(pending['remainingTicks']);
     if (pending['reason'] !== 'rest' && pending['reason'] !== 'story') throw new TypeError('STATE_SHAPE');
@@ -480,8 +523,12 @@ export function assertCanonicalGameState(state: GameState): void {
 export function parseGameState(value: unknown): GameState {
   walk(value, new Set<object>());
   if (typeof value !== 'object' || value === null || Array.isArray(value)) throw new TypeError('STATE_ROOT');
-  validateGameStateShape(value as StateRecord);
-  const state = value as unknown as GameState;
+  const root = value as StateRecord;
+  const world = object(root['world']); const navigation = object(world['navigation']);
+  const compatible = 'mountedRegion' in navigation ? value : { ...root, world: { ...world,
+    navigation: { ...navigation, mountedRegion: null } } };
+  validateGameStateShape(compatible as StateRecord);
+  const state = compatible as unknown as GameState;
   assertCanonicalGameState(state);
   return state;
 }

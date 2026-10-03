@@ -45,7 +45,8 @@ export function createInitialGameState(input: InitialGameStateInput): GameState 
         exitKey: null, receipts: [] } },
     party: { inventory: { stacks: [] }, equipment: createEmptyEquipment(), money: 0 },
     world: { navigation: { locationId: input.locationId ?? 'city_dali',
-      selectedDestinationId: null, pendingMount: null }, pendingTimeAdvance: null },
+      selectedDestinationId: null, pendingMount: null, mountedRegion: null },
+      pendingTimeAdvance: null },
     battle: null, dialogue: null,
   };
 }

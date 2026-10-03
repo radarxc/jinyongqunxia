@@ -1,5 +1,6 @@
 import type { Command, DomainEvent, FirstSleepAllocationQuery, GameState, KnownCharacterState,
-  NewGameInput, WorldMapProjection, WorldMapStaticProjection } from '@tianshu/core';
+  NewGameInput, RegionDynamicProjection, RegionPathQueryResult, RegionStaticProjection, WorldMapProjection,
+  WorldMapStaticProjection } from '@tianshu/core';
 import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
 import type { EquipmentVisuals } from '@tianshu/render/rig';
 import type { TownSceneProjection } from '@tianshu/render/town';
@@ -15,7 +16,9 @@ export type SessionSnapshot = GameState;
 /** Battle remains app-owned until ENG-16; every other command is core-owned. */
 export type NewGameRequest = Pick<NewGameInput, 'identity' | 'difficulty'>;
 export type NewGameCommand = NewGameRequest & { readonly t: 'run/create' };
-export type GameCommand = Command | BattleUiCommand | NewGameCommand;
+export type RegionPathPreviewCommand = { readonly t: 'world/previewRegionPath';
+  readonly hex: { readonly q: number; readonly r: number } };
+export type GameCommand = Command | BattleUiCommand | NewGameCommand | RegionPathPreviewCommand;
 
 export interface TownProjection {
   readonly scene: TownSceneProjection;
@@ -31,6 +34,9 @@ export interface GameProjection extends UiProjection {
   readonly townRuntime: TownRuntimeDefinition | null;
   readonly town: TownProjection | null;
   readonly dialogue: DialogueView | null;
+  readonly regionStatic: RegionStaticProjection | null;
+  readonly region: RegionDynamicProjection | null;
+  readonly regionPathPreview: RegionPathQueryResult | null;
   readonly battle?: BattlePacket | null;
   readonly firstSleepAllocation: FirstSleepAllocationQuery | null;
 }
@@ -46,11 +52,12 @@ export interface NewGameHost {
 
 export type DirtyView =
   | 'hud' | 'characters' | 'inventory' | 'equipment'
-  | 'quests' | 'dialogue' | 'worldmap' | 'townRuntime' | 'town';
+  | 'quests' | 'dialogue' | 'worldmap' | 'townRuntime' | 'town'
+  | 'regionStatic' | 'region';
 
 export const ALL_VIEWS: readonly DirtyView[] = [
   'hud', 'characters', 'inventory', 'equipment',
-  'quests', 'dialogue', 'worldmap', 'townRuntime', 'town',
+  'quests', 'dialogue', 'worldmap', 'townRuntime', 'town', 'regionStatic', 'region',
 ];
 
 export function townEquipment(projection: UiProjection): EquipmentVisuals {
