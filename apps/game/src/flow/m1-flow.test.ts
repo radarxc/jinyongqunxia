@@ -132,7 +132,9 @@ describe('M1 application flow with fake IndexedDB', () => {
       await wrapper.get('input[value=skip]').setValue();
       await wrapper.get('[data-testid=mode-confirm]').trigger('click');
       await vi.waitFor(() => expect(controller.flowStage.value).toBe('skip-bridge'));
+      await waitFor(wrapper, '[data-testid=cutscene-next]');
       await wrapper.get('[data-testid=cutscene-next]').trigger('click');
+      await waitFor(wrapper, '[data-testid=cutscene-next]');
       await wrapper.get('[data-testid=cutscene-next]').trigger('click');
       await waitFor(wrapper, '[data-testid=export-prompt]');
       await wrapper.get('[data-testid=export-later]').trigger('click');
@@ -192,6 +194,7 @@ describe('M1 application flow with fake IndexedDB', () => {
       ui.applyProjection({ dialogue: rejectedView });
       await waitFor(wrapper, '[data-testid=dialogue]');
       await wrapper.get('[data-testid=dialogue-page]').trigger('click');
+      await waitFor(wrapper, '[data-testid=dialogue-choice]');
       expect(wrapper.get('[data-testid=dialogue-choice-reason]').text()).toBe('正文尚未装载。');
       await wrapper.findAll('[data-testid=dialogue-choice]')[0]!.trigger('click');
       await vi.waitFor(() =>
