@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1009** 份：已入库 748、已通过（作者） 132、待出图 129。**待出图队列 129 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1009** 份：已入库 749、已通过（作者） 132、待出图 128。**待出图队列 128 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -71,7 +71,6 @@
 | items | `it_miji_tantuirumen` | 弹腿入门抄本 | `assets/default/item/manuals/it_miji_tantuirumen.png` | 待出图 | [it_miji_tantuirumen.md](items/manuals/it_miji_tantuirumen.md) |
 | items | `it_miji_tongrenhenglian` | 铜人横练抄本 | `assets/default/item/manuals/it_miji_tongrenhenglian.png` | 待出图 | [it_miji_tongrenhenglian.md](items/manuals/it_miji_tongrenhenglian.md) |
 | items | `it_miji_wuguandao_can` | 武馆刀法残本 | `assets/default/item/manuals/it_miji_wuguandao_can.png` | 待出图 | [it_miji_wuguandao_can.md](items/manuals/it_miji_wuguandao_can.md) |
-| items | `it_miji_wuguangun` | 武馆棍法全本 | `assets/default/item/manuals/it_miji_wuguangun.png` | 待出图 | [it_miji_wuguangun.md](items/manuals/it_miji_wuguangun.md) |
 | items | `it_miji_wuhuduandandao` | 五虎断门刀民间谱 | `assets/default/item/manuals/it_miji_wuhuduandandao.png` | 待出图 | [it_miji_wuhuduandandao.md](items/manuals/it_miji_wuhuduandandao.md) |
 | items | `it_miji_wulundazhuan` | 五轮大转图谱 | `assets/default/item/manuals/it_miji_wulundazhuan.png` | 待出图 | [it_miji_wulundazhuan.md](items/manuals/it_miji_wulundazhuan.md) |
 | items | `it_miji_wumuyishu` | 武穆遗书原本 | `assets/default/item/manuals/it_miji_wumuyishu.png` | 待出图 | [it_miji_wumuyishu.md](items/manuals/it_miji_wumuyishu.md) |
@@ -173,7 +172,7 @@
 
 （已全部入库。）
 
-### 武学秘籍（180）· 已入库 110、待出图 70
+### 武学秘籍（180）· 已入库 111、待出图 69
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -240,13 +239,12 @@
 | 61 | 识蛊虫残本 | `it_miji_shiguchong_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_shiguchong_can.md](items/manuals/it_miji_shiguchong_can.md) | template |
 | 62 | 弹腿入门抄本 | `it_miji_tantuirumen` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_tantuirumen.md](items/manuals/it_miji_tantuirumen.md) | template |
 | 63 | 武馆刀法残本 | `it_miji_wuguandao_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_wuguandao_can.md](items/manuals/it_miji_wuguandao_can.md) | template |
-| 64 | 武馆棍法全本 | `it_miji_wuguangun` | 黄 | 秘籍·全本 | 待出图 | [it_miji_wuguangun.md](items/manuals/it_miji_wuguangun.md) | template |
-| 65 | 溪涧投步残卷 | `it_miji_xijiantoubu_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_xijiantoubu_can.md](items/manuals/it_miji_xijiantoubu_can.md) | template |
-| 66 | 训犬术全本 | `it_miji_xunquanshu` | 黄 | 秘籍·全本 | 待出图 | [it_miji_xunquanshu.md](items/manuals/it_miji_xunquanshu.md) | template |
-| 67 | 雁行步原本 | `it_miji_yanxingbu` | 黄 | 秘籍·原本 | 待出图 | [it_miji_yanxingbu.md](items/manuals/it_miji_yanxingbu.md) | template |
-| 68 | 越卒短剑简谱 | `it_miji_yuezu_duanjian` | 黄 | 秘籍·全本 | 待出图 | [it_miji_yuezu_duanjian.md](items/manuals/it_miji_yuezu_duanjian.md) | template |
-| 69 | 扎马步抄本 | `it_miji_zhamabu` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhamabu.md](items/manuals/it_miji_zhamabu.md) | template |
-| 70 | 壮行功抄本 | `it_miji_zhuangxingong` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhuangxingong.md](items/manuals/it_miji_zhuangxingong.md) | template |
+| 64 | 溪涧投步残卷 | `it_miji_xijiantoubu_can` | 黄 | 秘籍·残本 | 待出图 | [it_miji_xijiantoubu_can.md](items/manuals/it_miji_xijiantoubu_can.md) | template |
+| 65 | 训犬术全本 | `it_miji_xunquanshu` | 黄 | 秘籍·全本 | 待出图 | [it_miji_xunquanshu.md](items/manuals/it_miji_xunquanshu.md) | template |
+| 66 | 雁行步原本 | `it_miji_yanxingbu` | 黄 | 秘籍·原本 | 待出图 | [it_miji_yanxingbu.md](items/manuals/it_miji_yanxingbu.md) | template |
+| 67 | 越卒短剑简谱 | `it_miji_yuezu_duanjian` | 黄 | 秘籍·全本 | 待出图 | [it_miji_yuezu_duanjian.md](items/manuals/it_miji_yuezu_duanjian.md) | template |
+| 68 | 扎马步抄本 | `it_miji_zhamabu` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhamabu.md](items/manuals/it_miji_zhamabu.md) | template |
+| 69 | 壮行功抄本 | `it_miji_zhuangxingong` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhuangxingong.md](items/manuals/it_miji_zhuangxingong.md) | template |
 
 ### 兵器（247）· 已入库 206、已通过（作者） 24、待出图 17
 
