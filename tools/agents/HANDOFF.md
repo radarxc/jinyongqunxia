@@ -1825,3 +1825,4 @@
       - 现在没有在排的 glTF 任务（ENG-12e 已合入），下次登记时写进说明。
     - **ENG-ui-***：ui_status_stagnation 深色描边 / 底光（design/26 §5.2）；用 codex，`--review-model gpt-6-astra`。
 
+- **10-03 16:40 立绘派生收尾**：暂存目录跑完 150 张（cast-fill-c / -d 新人 110 + AR-44 对脸替换 40），一次同步 877 个文件提交 d0b50b2d，用时约 31 分钟、_prod 只脏了几秒；人物立绘提示词索引重建 497f559a（700 份）。以后再有成批立绘入库，照样用 `.agents/coord/_handoff/portrait_stage_runner.py`（先 `--dry-run` 看张数）。AR-53 面部一致性总审子代理已起（说明 `.agents/coord/face_audit/BRIEF.md`）。Tripo 网页版累计入库 13 套（报告 ART-3d-tripo-web.md，ad04026c；模型归一化身高约 0.98，引擎需按身高缩放，已转开发监督）。
