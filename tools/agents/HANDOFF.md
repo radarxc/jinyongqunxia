@@ -1181,3 +1181,27 @@
     - **lore-5 合入**（711a48a5，食品；腊八粥按特例投影 qiCultivation=3500，新校验器通过）。r2 提出作者确认项：叫化鸡 `it_jiaohuaji` 的 `sta=full` 是否在投影 v2 加无损表示——默认旧 `sta=full` 为唯一运行真值，`stamina=20` 只作展示摘要（记 TODO §8.2）。
     - **lore-3 合入**（67ab5df4，秘籍整份 180 件；r3 FAIL 四条小项返修后开发监督手动复验 r4 PASS）。九列名录已 10 份，只剩兵器（lore-1 整份在跑）。
     - **TOOL-tests-discover 07:01 起跑**（开发监督，驱动 3408，Sol max；起跑时磁盘 5.1 GiB、代码池 3/4）。
+  - **10-03 07:02–07:14 开发监督**：lore-5、lore-3 合入；TOOL-tests-discover 起跑；town-gaps-1 续作。
+    - **lore-5**（食品）合入，提交 711a48a5；**lore-3**（秘籍整份，180 行）r4 PASS，合入提交 67ab5df4。两个工作区都已清。
+      - 九列名录已有 10 / 11 份，只剩兵器，lore-1（整份）在审。
+    - **TOOL-tests-discover**：07:01 起跑，驱动 3408，Sol max。当时条件：lore-5 合入后磁盘 5.1 GiB、负载 8.7、代码池 3/4。
+    - **TOOL-town-gaps-1**：07:11 满足「磁盘 ≥ 6 GiB 且负载 < 8」，07:12 按 `--from start` 续作，驱动 66572，说明见 `devsup_note_resume.md`。代码池 4/4，它在排队等位。
+    - ENG-12e 的续作由协调者起，已提醒条件满足。
+  - **10-03 07:14–07:27 开发监督**：ENG-20a 合入，entry 余量告急；lore-1 第 1 次手动复验。
+    - **ENG-20a**（M1）r1 PASS 合入，提交 d105c0b0，工作区已清。
+      - `prod_check`（`_handoff/prod_check_post-eng20a_0723.log`）全绿：130 个测试文件 / 939 条测试，`[dev-chunks] PASS`。
+      - **entry 166.34 / 170**（+6.17 KiB，余量 3.66），render 160.53，webgl 326.87。
+      - entry 闭包：entry.js 51.42 KiB + core-worker 95.78 KiB + 其余约 19 KiB。
+    - **ENG-19b**（M1）在审。它自己工作区实测 entry 162.90（基点早于 20a，增 2.73）。与 20a 相加约 169.1，合入后可能贴线或超线。
+      - 已向协调者建议现在就登记 ENG-entry-split：core-worker 内按需 `import()` 子系统，目标 ≤ 155 KiB，预算不放宽。等回复。
+    - **lore-1**（整份）：r2 FAIL，四条小项（玉管拂尘 qiAffinity、绣花针措辞、报告第 7 节）返修后转 HOLD-REVIEWS。07:15 手动第 1 次 `--from validate`，驱动 70416。r3 又 FAIL，正在返修。
+      - 作者确认项（默认）：
+        - 绣花针 atk=65 越带例外，保留；
+        - 金笛 grade 保留本表 6；
+        - 重兵先乘类别系数 × 标签，再钳制到大阶上限。
+
+  - **10-03 07:12–07:27 协调者 / 开发监督**：
+    - 续作：TOOL-town-gaps-1（开发监督 07:1x，磁盘 6.1 GiB、负载 6.4，驱动 66572，排队等池位）、ENG-12e（协调者 07:13，驱动 69969，`coord_note_0715.md` 带 05:58 返修原文；07:16 拿到池位开跑）。
+    - lore-1（兵器整份）r2 FAIL（玉管拂尘 qiAffinity、报告措辞、§7 清单）→ 返修 4 分钟 → 复审 r3 FAIL（07:18）：82 件无 qiEffect 的兵器填了 105–120 亲和，与作者「一般武器亲和为 1」不符，返修说明要求无注入设定的全部改 100、有设定的必须有正式 `qiEffect`；开发监督再起一轮。
+    - **ENG-20a 合入**（d105c0b0，07:23，r1 PASS；区域探索 core）。prod_check 全绿：130 文件 939 用例；**entry 166.34 / 170（余 3.66 KiB）**，render 160.53 / 180，webgl 326.87 / 350。ENG-19b（在审）工作区实测 162.90，叠加后可能贴线或超线。协调者同意登记 **ENG-entry-split**（目标 entry ≤ 155 KiB：core-worker 内子系统按需 import()、主线程非首屏懒加载，预算与 check_size 口径不改），排 19b 后、20b 前；19b 照常合入，若集成转红不返修 19b、等 entry-split 转绿，期间不起往首屏加东西的任务。
+    - ENG-19b 第 1 次运行 78 分钟结束，校验通过（38 个文件），审核中。DES-ruins-ids 第 2 次运行 18 分钟结束，校验通过，审核 r1 PASS（07:24），合入中。
