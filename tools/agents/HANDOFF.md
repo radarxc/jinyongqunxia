@@ -846,6 +846,20 @@
     - **磁盘**：00:52 跌到 4.0 GiB，已报协调者；01:00 回到 6–9 GiB。
     - **日志**：ART-hero-refine-a 的执行器日志到了 157 MB，由追踪 subagent 处理（gzip 后截断）。开发监督只管 traex 任务日志超 150 MB 的情况，目前都没超。
   - **10-03 01:10–01:35 协调者**：作者在 Tripo 免费档生成并导出主角·男 3D 模型（第二版带 65 关节 Mixamo 骨骼，无动画），存 `apps/game/public/pilot/zhujue_tripo_v1.glb`，登记 ENG-12e-gltf-pilot（GLTFLoader + toon + 转台 + 片段重定向，排 ENG-18d 后）。磁盘：作者批准删 `~/.codex/thread_history_1.sqlite`（4.7 GB）；因 hero-a / hero-b / CITY 三个 codex 执行器仍持有该文件，01:27 用 step.py kill 重启三者释放空间（3.1 → 8.6 GiB）；step.py 改为给 Codex 执行器各自的 CODEX_HOME（60b81607），batch_run 合入时随日志清掉；eng3 并发降回 3。ENG-18d 01:13 合入体积转绿（entry 129.5 / 170），ENG-18e 修 build.test 超时在跑。INDEX.md 重建（作者指示移入 `_AUTHOR-NOTES.md`，4e78cf25）。
+  - **10-03 01:20–01:56 开发监督**：
+    - **磁盘**：01:27 跌到 3.1 GiB（新起的 CITY-layouts-all 是 3.0 GB 稀疏检出），已报协调者。作者批准删掉 `~/.codex` 4.7 GB 线程历史库，协调者重启了三个 codex 执行器并让各用自己的 CODEX_HOME；01:28 后回到 6–9 GiB。报告线改为 < 3 GiB。
+    - **AR-39（作者）**：素材优化和生成后都要落库。
+      - TOOL-rig-sheet 的 39 张部件、manifest、三张 GIF 随合入进 `assets/default/rig/npc_zhujue__ch00_m/`；
+      - lore / 名录复验合入后，TOOL-items-catalog 的重新生成也要提交 content/items。
+    - **TOOL-catalog-9col**：r1 FAIL，只剩一项：`sxpGrant` 的对象形式要求 `mode=pctNext`，并补正反测试。返修要等代码池空位，池上限 4，现在被 ENG-17 / 18b / 19a 与 TOOL-rig-sheet 占满。ENG-18e、ENG-12e（协调者新登记的 glTF 原型）也在排队等位。
+    - **在跑**：ENG-17（M1）、ENG-18b、ENG-19a（M1）、TOOL-rig-sheet 第 4 次运行（返修）。
+  - **10-03 01:56–02:45 开发监督**：
+    - **集成分支恢复全绿**：ENG-18e 合入（1af8afcf，02:42）。它把真实内容构建用例改成夹具，单独运行从 4.5 s 降到 39 ms，没改超时，也没加按负载放宽的逻辑。
+      - 合入后 `prod_check post-eng18e`：RC=0，120 文件 825 用例，webgl total 292.75 / 350，当时负载 26–30。
+    - **磁盘**：01:58 跌到 2.1 GiB，交换区 39.9 GB，已报协调者。协调者暂停了 CITY-layouts-all 和 DES-items-gifts-spec，eng3 维持并发 3；02:02 后回到 4.6–6.7 GiB。
+    - **TOOL-rig-sheet**：返修第 1 次运行退出码 1，它自己新加的两条回归测试没过（hair_or_headgear 有游离连通块、torso 两肩圆帽）。supervise 已带校验结果自动续作第 2 次（02:34 起）。
+    - **排队等代码池空位**：TOOL-catalog-9col 的 r1 返修、ENG-12e。
+    - **负载**：02:30 前后 loadavg 到 42，主要是 Microsoft Defender（234% CPU）加上几个 vite build。
 
   - **10-02 23:05 – 10-03 03:10 素材线第二波追踪**：
     - **合入**：
@@ -864,3 +878,12 @@
       - 协调者：清 ~/.codex 历史库 4.7 GB；step.py 改成每个执行器单独 CODEX_HOME；02:00 暂停 CITY 与 DES-items-gifts-spec。
     - **build_portraits**：已提交 29109cfe（ch02）、d255c157（ch04）、0343156b（ch06/07/09）、a03b120d（书剑部分，中止前先落库）。剩下的连同 hero 两任务的新图，等协调者指定时段一次跑完。INDEX 由协调者修脚本后重建；gallery 00:53 已重建。
     - **runner 运维**：w11 / w12 因磁盘自停后都续起过。w11 的旧进程没退干净，出现双 runner，写 STOP 排空后重起。执行器自己写的 STOP / EXIT_WHEN_EMPTY 改名为 `*.run1-*` / `*.disk-*`。
+  - **10-03 03:10–03:30 协调者**：
+    - hero-a 四张联系表（新旧基线对比、令狐冲三时期、神雕 / 笑傲插图）03:15 发给作者。
+    - **TOOL-catalog-9col**：返修（第 2 次运行：`sxpGrant` 对象形式强制 `mode=pctNext`、补 3 个拒绝测试，全部检查通过）校验通过后停在 HOLD-REVIEWS（原驱动 `--max-reviews 1`）。03:16 另起驱动 `--from review --max-reviews 1 --max-runs 2 --auto-merge --checks review_checks_tool.md`（pid 51856，日志 `.agents/coord/TOOL-catalog-9col/supervise.r2.out`）。PASS 自动合入后开发监督按 `lore_plan.md` 复验 lore；已告知开发监督别起第二个。
+    - **秘籍书名后缀**（Gemini 出图员 23:50、02:41 两次询问，18 本）：裁定题签只写书名本体，纸本的版本 / 载体词（古册 / 传本 / 经折本 / 原卷 / 古籍 / 钞本 / 手本 / 帛本 / 民间谱 / 帛卷）不写；古墓遗刻 / 石壁 / 铁板 / 石刻只刻书名、不贴题签；泥人图、圣火令无汉字；「笑傲江湖曲谱手本」题「笑傲江湖曲」；已出的「大金刚拳神功古籍」8 字版放回队尾重出。规则进 `tools/imagegen/gemini_prompt.py`（bf2f2663：`manual_title()` 加后缀与特例表，新增 `manual_carrier()`，`build_short` 按载体分题签 / 刻字 / 无字三种说法）。
+    - **入库裁框 bug**（出图员 01:36 报告）：`crop_frame()` 整行取均值，遇左右白框时上下扫描一直走进主体，it_miji_xingjunbu_can 第一次入库被切、已手工补救重入库（fa2c1895）。登记 TOOL-ingest-cropframe（a43039a3：扫描线只取另一轴框以内的像素，合成图回归测试），追加到 `_eng3_queue.txt` 队尾，下次重启 eng3 生效；也可在代码池有空位时单独起。
+    - **hero-b**：第 6 次运行执行器仍没重出李文秀（坚持要剧照），其余 80 图未动；r4 审核 03:08 起。已告诉追踪者：若再 FAIL，第 7 次说明写明不找剧照、按《金庸群侠传》头像 + 现基线直接出 1 基 2 期 3 景；PASS 就合入并另登记小补图任务。
+    - **TOOL-rig-sheet**：第 5 次运行校验通过，审核 r2 FAIL，03:18 自动进第 3 次运行。
+    - 磁盘 7 GiB、交换区 33.8 GB 用 32.8 GB、1 分钟负载 8.5～12；CITY / gifts-spec 仍暂停，eng3 并发 3。
+    - **TODO 整份更新**（03:25 版）：§0 现状、§1 工作区表、§3.1 / 3.2 / 3.4 / 3.5、§4～§8 全部按本轮改写；§2、§3.3、§8.2 原样保留。
