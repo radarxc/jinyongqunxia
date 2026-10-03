@@ -1766,4 +1766,13 @@
       - prod_check 全绿（HEAD ee442606）：1014 个测试；entry 38.44；render 161.87；webgl 200.32；会话闭包 93.40 / 110。
     - **磁盘**：可用 3.7–4.4 GiB，低于 5 GiB，暂停新开工作区。
       - ENG-session-base-diet 等 20b 合入、工作区清掉、空间回到 5 GiB 以上再起。
+  - **10-03 15:38–15:41 开发监督**：**ENG-20b-region-scene 合入 80cde442**（eng3）。
+    - prod_check 全绿（HEAD 80cde442，`_handoff/prod_check_post-20b_1538.log`）：146 个测试文件 / 1028 个测试。
+      - entry 38.80 / 170，比 38.44 涨 0.36；
+      - render 168.86 / 180，比 161.87 涨 6.99，余量只剩 11 KiB；
+      - webgl 207.65 / 350；
+      - 会话闭包 93.40 / 110。
+    - `pnpm check:perf`（rig 门禁）要等机器负载低时再跑：现在负载 28，跑出来不可信（AR-33）。
+    - **ENG-session-base-diet** 已起（驱动 3883，traex Sol max，review_checks_eng），在等代码池空位。
+      - 磁盘此时已回升到 15 GiB。
 
