@@ -3,14 +3,14 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/04-data-pipeline.md` |
-| 版本 | v1.9（AR-19 战斗设置、命中区、异种气与自动模拟 schema，2026-10-01）；v1.8.1（AR-19 换路逐路线气包快照字段收口，2026-10-01）；v1.8（AR-19 人物资源、内功产气、经脉通量与战斗运行字段，2026-10-01）；v1.7（经脉落地终审（2026-09-30）：AR-18、书界构建校验与 CI 现状）；v1.6（经脉落地终审：NXT 构建门禁同步，2026-09-29）；v1.5（经脉落地终审，2026-09-29）；v1.4（AR-16 外放字段、端点与逐招覆盖门禁，2026-09-28）；v1.3（经脉 v2.1 与绝招新规则同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
-| 上游基准 | `docs/00-canon.md` v1.8 §3–§5、§8–§9、§12、§18、§19；`docs/decisions/author-requirements.md` AR-03–AR-07、AR-09、AR-14、AR-16–AR-19；`docs/decisions/rulings-v1.md` C12、C18、C22、C23 |
+| 版本 | v1.10（AR-28 采集、遗迹、职位与药材闭集，2026-10-02）；v1.9（AR-19 战斗设置、命中区、异种气与自动模拟 schema，2026-10-01）；v1.8.1（AR-19 换路逐路线气包快照字段收口，2026-10-01）；v1.8（AR-19 人物资源、内功产气、经脉通量与战斗运行字段，2026-10-01）；v1.7（经脉落地终审（2026-09-30）：AR-18、书界构建校验与 CI 现状）；v1.6（经脉落地终审：NXT 构建门禁同步，2026-09-29）；v1.5（经脉落地终审，2026-09-29）；v1.4（AR-16 外放字段、端点与逐招覆盖门禁，2026-09-28）；v1.3（经脉 v2.1 与绝招新规则同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
+| 上游基准 | `docs/00-canon.md` v1.10 §3–§5、§8–§9、§12、§18、§19；`docs/decisions/author-requirements.md` AR-03–AR-07、AR-09、AR-14、AR-16–AR-19、AR-28；`docs/decisions/rulings-v1.md` C12、C18、C22、C23 |
 | 强依赖 | `tech/01` §3.7、§4、§6.8、§8.3、§9；`tech/02` §1–§2、§7；`tech/03` §5.6；`tech/05` §7–§8、§11.2、§14–§16；`tech/06`；`tech/08` §3.6；`design/02`–`design/21` 已落盘的数据契约与校验规则；相关代理报告中的下游交接项 |
 | 下游文档 | `tech/05` 玩法引擎、`tech/09` 路线图；各书界内容文档 |
 | 读者 | 作者本人、内容编辑者、AI 编码/内容助手 |
 | 本文职责 | `content/` 源数据布局；YAML 与 Zod 契约；ID 注册、重命名与引用图；Tiled/Ink 转换；内容校验器；规则/文本书界包、`contentHash` 与增量更新；AI 草稿审核入库 |
 | 不在本文定义 | 武功/Buff/地形/战斗/经济等玩法语义；素材编码与 CDN；存档结构迁移；云同步。本文只实现其数据入口并引用唯一归属文档 |
-| 本次变更 | AR-19（2026-10-01）：在 §3.6 / §3.8 登记内功产气 / 速度 / 通量、命中区 / 透劲 / 打穴、异种气 / 占穴快照、`battle-setup.v1`、自动模拟及事实事件；只给 schema、校验与稳定序，不复制玩法算法 |
+| 本次变更 | AR-28（2026-10-02）：在 §3.9、§5.3–§5.4 登记 `GatherSpec`、遗迹掉落表、四职位 / 高阶合同、76 味药材闭集及确定性校验；玩法规则仍引用 `design/11`、`16` 与 `catalog/gather-herbs` |
 
 > **结论先行（TL;DR）**
 >
@@ -459,7 +459,7 @@ export type RegionId = z.output<typeof RegionIdSchema>;
 | 门派职级 | `SectCompendium`、`SectDef`、`RankTemplateDef`、`SectEraProfile`、`SectProgressionPolicy` | `sect_*`；L1–L5；T01–T12（T05A/T05B 分型） | `design/17` §12、§15；流程字段见 `design/12` §11.3 |
 | 经脉穴道 | `MeridianDef`、`AcupointDef`、`CirculationDef`、`MeridianProgress`、`MeridianSessionSnapshot` | `mer_*`、`ap_*`、`zt_*` | AR-03；`design/15` §11、§14 |
 | 战斗经脉 | `MeridianRouteDef`、`MeridianControlDef`、`BreathProfileDef`、`MeridianUnitTemplateDef`、`StdMeridianRow` | `mfr_*`、`qnl_*`、`dxl_*`、`txp_*`；敌人表内局部键 | AR-14；`design/21` §11.9、§12、§17 |
-| 资源经营 | `ResourceDef`、`ResourcePointDef/State`、`ServantDef/ContractState`、`BusinessDef`、`JobContractState`、`EconomyLot`、`SectLedger` | `res_*`、`rp_*`、`sv_*`、`biz_*`、`job_*` | AR-05–AR-07；`design/16` §14 |
+| 资源经营与采集 | `ResourceDef`、`ResourcePointDef/State`、`GatherSpec`、`RuinDropTableDef`、`ServantDef/ContractState`、`BusinessDef`、`JobContractState`、`EconomyLot`、`SectLedger` | `res_*`、`rp_*`、既有 `poi_*`、`sv_*`、`biz_*`、`job_*` | AR-05–AR-07、AR-28；`design/11` §4.3、§4.4.3、§12.2；`design/16` §14 |
 | 跨年代传承 | `LegacyRegistry`、`LegacySourceDef`、`LegacyFragmentDef`、`LegacyCacheDef`、`LegacyKeystoneDef`、`LegacyRecipeDef` | `lgs_*`、`frag_*`、`cache_*`、`it_xinwu_*` | AR-13；`design/20` §12、§14 |
 | 素材登记 | `AssetEntry`、`Provenance` | 素材逻辑键 / `art://` | 字段归 `tech/07`，存储与清单归 `tech/06` |
 | 特效 | `VfxDef`、表现阶段引用 | `fx_*` | 表现契约见 `tech/02`；只引用素材键 |
@@ -489,7 +489,9 @@ export type RegionId = z.output<typeof RegionIdSchema>;
 | `design/15` 经脉 / 穴道 / 周天 | `meridian/*.ts` | 严格消费 `meridian.v1`、`acupoint.v2`、`circulation.v1` 与 `MeridianProgress` v2；旧短 ID 只进 remap |
 | `design/21` 路线 / 控制 / 调息 | `meridian/flow.ts`、`meridian/control.ts` | 严格消费现行 `meridian-route.v2` / `meridian-control.v1`；路线 v1 经显式迁移后生成路线整数索引、九档控制表与 `STD_meridian` |
 | `design/21` 敌人经脉参数 | `combat/enemy.ts: MeridianUnitTemplateSchema` | 作为 `EnemyTemplateDef` 子对象或召唤定义强引用；展开只读基底，动态数组留给战斗逐单位复制 |
-| `design/16` 资源 / 营生 | `economy/*.ts`、`society/business.ts` | 严格消费四阶九品、lot、合同、排班与 DSL；旧英文类别 / 职位键只进迁移器 |
+| `design/11` 采集 / 遗迹掉落 | `world/poi.ts`、`economy/ruin-drop-table.ts` | 采集点从父 `PoiDef` 取产地；编译时冻结窗口、刷新、掉落引用和 RNG 流，不复制产量与奖池规则 |
+| `design/16` 资源 / 营生 | `economy/*.ts`、`society/business.ts` | 严格消费四阶九品、lot、四职位、合同、排班与 DSL；旧英文类别 / 职位键只进迁移器 |
+| `catalog/gather-herbs` 逐味分布 | `world/gather-catalog.ts` | 以药物名录与逐味分布交叉生成闭集索引；不得手抄另一份药材列表 |
 | `design/20` 跨年代传承 | `legacy/*.ts` | 严格消费 `legacy.v1` 五表；生成 `lgs_ / frag_ / cache_ / it_xinwu_` 引用边，校验三卷、信物、配方、地点、概率与稳定顺序 |
 | `design/17` 门派矩阵 | `society/sect.ts` | 严格消费 `sect-compendium.v1`；校验 99×14、L1–L5 与 T01–T12（含 T05A/T05B） |
 | `design/19` 四份地图源 + `design/11` 迁移表 | `world/navigation-source.ts` | 保留 snake_case/WGS84/短 `chNN` 键；生产校验 189 城、99 门派、30 区、24 驿站、28 码头、48 常规线、3 专线，再映射为 camelCase IR；旧 19 区别名只允许迁移模式读取 |
@@ -1148,7 +1150,7 @@ const ResourceIdSchema = z.string()
 const ResourcePointIdSchema = z.string().regex(/^rp_[a-z0-9_]+$/).brand<'ResourcePointId'>();
 const ServantIdSchema = z.string().regex(/^sv_[a-z0-9_]+$/).brand<'ServantId'>();
 const BusinessIdSchema = z.string().regex(/^biz_[a-z0-9_]+$/).brand<'BusinessId'>();
-const JobIdSchema = z.enum(['job_xingjiao', 'job_jiaotou', 'job_keqing']);
+const JobIdSchema = z.enum(['job_xingjiao', 'job_jiaotou', 'job_keqing', 'job_zuozhen']);
 const ScheduleBlockSchema = z.enum(['zi', 'chou', 'yin', 'mao', 'chen', 'si',
   'wu', 'wei', 'shen', 'you', 'xu', 'hai']);
 const ResourceCategorySchema = z.enum([
@@ -1206,7 +1208,66 @@ export const SectRankSchema = z.strictObject({
 
 其余正式结构——`ResourceStack` / `EconomyLot`、`ResourcePointDef/State` / `ResourceSettlement`、`EstateSacrificeQuote`、`ServantContractState`、`JobDef/JobContractState`、`EstateCareerState`、`SectLedger`——逐字段消费 `design/16` §14.1–§14.3；`EstateSacrificeQuote` 必须完整保存 `quoteId/chapterId/pointRef/quotedNetValueWen/generatedAtTick/expiresAtTick`，不得在任务侧退化成“最高收益点”动态 selector。任务条件和动作消费 §14.4–§14.6 的判别联合，不能用开放 `Record<string, unknown>` 兜底。所有内容 ID 前缀统一登记为 `res_ / rp_ / sv_ / biz_ / job_`；跨域 `LegacyExcavationOrder` 只保存家丁、排班与工作索引，`frag_ / lgs_ / cache_` 的实体和值域由下一节与 `design/20` 唯一定义。
 
-构建器必须精确重算 `resourceLevel = 9 × T + (10 − resourceRank)` 与 `materialGrade = 3 × T + 1 + floor((9 − resourceRank) / 3)`（`huang/xuan/di/tian` 的 `T=0/1/2/3`），并核对 `baseValueWen`；资源点 lot、家丁合同、职位合同和日程块均保留原子事务所需字段。职位只接受 `job_xingjiao / job_jiaotou / job_keqing`，旧 `walker / instructor / retainer` 只允许在一次性迁移器中出现；客卿活动合同全局至多一个。`settle_job_contract` 的 `partial` 结果必须编译为 6000 bp 报酬并落 `completed`，不得映为 `breached` 或 `ended`。`SectRankSchema.level` 保存运行时统一职级 ID（`L1`–`L5`）；导入 `design/17` 的 `RankLevel.level: 1..5` 时显式映射为 `L${level}`，不得把两个表示混用。
+构建器必须精确重算 `resourceLevel = 9 × T + (10 − resourceRank)` 与 `materialGrade = 3 × T + 1 + floor((9 − resourceRank) / 3)`（`huang/xuan/di/tian` 的 `T=0/1/2/3`），并核对 `baseValueWen`；资源点 lot、家丁合同、职位合同和日程块均保留原子事务所需字段。职位只接受 `job_xingjiao / job_jiaotou / job_keqing / job_zuozhen`；`job_zuozhen` 只允许镖局，武馆教练复用 `job_jiaotou`，不新增同义 ID。旧 `walker / instructor / retainer` 只允许在一次性迁移器中出现。活动 `job_keqing` 与 `job_zuozhen` 合计全存档至多一个，并由 `activeSeniorContractId` 恰好反指；旧 `activeKeqingContractId` 一对一迁入新键后删除（见 `design/16` §8.2、§14.3、§15）。`settle_job_contract` 的 `partial` 结果必须编译为 6000 bp 报酬并落 `completed`，不得映为 `breached` 或 `ended`。`SectRankSchema.level` 保存运行时统一职级 ID（`L1`–`L5`）；导入 `design/17` 的 `RankLevel.level: 1..5` 时显式映射为 `L${level}`，不得把两个表示混用。
+
+职位合同规范化输出必须保留以下字段；薪酬公式与各值唯一见 `design/16` §8.5、§14.3，不由管线重算第二套规则：
+
+| 字段组 | 字段 | 约束 |
+|---|---|---|
+| 身份 | `contractId/jobRef/businessRef/chapterId` | 引用存在，职位与场所相容 |
+| 履约 | `state/requiredBlocks/completedBlocks/outcome/startDay/endDay` | 块数为非负整数；结算前 `requiredBlocks>0` |
+| 精确薪酬输入 | `Iwen/basePayBp/Fbp/Rbp/qualityBp/outcomeBp` | 全为整数；可选乘区按职位显式存在 |
+| 职责分数 | `dutyDone/dutyNeed` | 整数分子 / 分母，`dutyNeed>0`；禁止先量化为 bp |
+| 账目 | `rewardBucket` | 固定进入 `business` 来源桶 |
+| 唯一槽 | `activeSeniorContractId` | 只指向活动客卿 / 坐镇合同，或为空 |
+
+精确有理分子使用加宽整数保存；现金只在合同 / 月约最外层执行一次 `round10`。源字段 `scaleBp` 仅作旧稿输入，须显式迁为 `Fbp` 后移除，不能与 `Fbp` 同时进入生产 IR。
+
+#### 3.9.1 `GatherSpec` 与产地窗口
+
+`kind=gather` 的 `PoiDef` 必须且只可携带一个 `GatherSpec`。产地不在子对象重复保存：区域与场景分别读取父对象的 `regionId`、`sceneId`，节点身份读取父 `id`；字段语义与数值唯一见 `design/11` §4.3、§6.2、§12.2。
+
+| 字段 | 类型 / 值域 | 数据契约 |
+|---|---|---|
+| `gatherType` | `urban | wild | ruin` | 点型；须与逐味分布相容 |
+| `habitatTags` | `string[]` | 生境标签集合；规范排序、去重 |
+| `seasons` | `Season[]` | 空数组表示不按季节限制 |
+| `lunarMonths` | `int[1..12][]` | 空数组表示不按月份限制 |
+| `phases` | `DayPhase[]` | 空数组表示全天；十二时辰由 `design/11` §6.2 的 `shichen→phase` 映射求值，不另存第二份窗口 |
+| `refresh` | `{cycleDays:int>0, epochDay:int≥0}` | 只保存刷新输入；`refreshIndex` 运行时派生 |
+| `skill` | `{primary, minValue:int≥0}` | 技艺键必须已登记 |
+| `requiredToolTags` | `string[]` | 工具能力标签须能追到已登记物品 |
+| `yields` | `GatherYield[]` | 每项含 `itemRef/weight/minYield/maxYield`；引用闭合 |
+| `maxYield` | `int>0` | 节点单轮上限 |
+| `economySource` | `resource` | 资产来源桶 |
+| `rngStream` | `world` | 不接受其他流 |
+| `persistence` | `{scope:era, harvestedRefreshIndex:int?}` | 当前时代的成功采收轮次 |
+
+普通采集稳定键固定为 `chapterId/poiId/refreshIndex`。构建器只验证字段和引用，不复制季节、刷新、产量或风险算法；候选、窗口和技艺规则仍以 `design/11` §4.3 为准。药材逐味分布见 `catalog/gather-herbs` §1，特殊物品见同文 §2，运行投放约束见同文 §3。
+
+#### 3.9.2 遗迹掉落表与首通引用
+
+| 字段 | 类型 / 值域 | 数据契约 |
+|---|---|---|
+| `tableId` | 稳定表键 | 全局唯一；作为 `ruinProjection.dropTableRefs[]` 目标 |
+| `chapterId` | `ChapterId` | 与遗迹时代开放范围相容 |
+| `sitePoiRef` | `PoiId` | 指向该遗迹入口或内部奖励节点 |
+| `sourceKind` | `chest | enemy | boss | inspect | firstClear` | 决定来源类别，不推导奖池 |
+| `rolls` | `int≥0` | 随机抽取次数；固定奖励可为 0 |
+| `poolRef` | 奖池引用或空 | 非空时只引用上游许可池 |
+| `gradeCap` | 品阶上限 | 不得越过书界与来源上限 |
+| `fixedItems` | 固定物品项数组 | 物品引用、数量均严格校验 |
+| `uniqueGuards` | 唯一收据 / 条件数组 | 剧情唯一物不得靠随机池生成 |
+| `economySource` | 来源桶 | 与钱、物拆账一致 |
+| `repeatPolicy` | 首通 / 重访策略 | 与遗迹刷新投影闭合 |
+
+遗迹入口 `ruinProjection` 另保存 `firstClearReceiptKey`；有首通奖励时必填且全局唯一，没有时为 `null`。掉落表字段与奖池限制唯一见 `design/11` §4.4.3，地图投影字段见同文 §12.2。随机奖励的稳定来源键为 `chapterId/sitePoiRef/rewardNode/refreshIndex`，内容数据不得内嵌已取样结果或 RNG cursor。
+
+#### 3.9.3 药材登记闭集
+
+药材索引由 `catalog/items-medicine.md` 中“药材”子类与 `catalog/gather-herbs.md` 逐味表交叉生成。发布闭集为 **76 个唯一 `it_*`**；其中 AR-28 新增子集为 **64 个**（复用 5 个旧 ID、新建 59 个），不是把总闭集截成 64 个。分类 `16+19+9+5+11+4=64`，品阶 `26+20+15+3=64`，仅作为生成物计数断言；权威逐行内容见 `catalog/gather-herbs` §1，术语、ID 与统计校验见同文 §5–§6。
+
+每个生成条目至少保留 `itemRef/realPrototype/regionIds/habitatTags/seasons/lunarMonths/phases/chapterIds/gatherType/rarity/minYield/maxYield`，且 `itemRef` 不得重复。管线不得另建可编辑药材清单，也不得从名称猜产地、采期或品阶。
 
 ### 3.10 跨年代传承（正式消费 `design/20`）
 
@@ -1622,6 +1683,9 @@ pnpm schema:gen
 | `design/19` 地图源 / `RegionDef` / `EraLayer` | 区域 / 城市 / 门派 / 驿站 / 码头 / 图外节点 / 资源点 / NPC | 导航源按 `design/19` 的 WGS84 契约并完成 `design/11` 19→30 迁移；时代层只能覆写 `design/11` 明列字段，不得创建隐形对象 |
 | `NpcDef.appearances` | 书界 / 城市 / 门派 / 武功 / 任务 / AI | 年代、生卒、D 级门槛与跨书界规则一致；`suggestedCityId` 在城市定稿前可 warning |
 | `ResourcePointDef.outputs` | `ResourceDef` | 资源存在且时代开放；阶品字段与 ID 一致 |
+| `PoiDef.gatherSpec.yields[].itemRef` | `ItemDef` / 药材分布索引 | 物品已登记；父 POI 的区域、章节、点型、生境与逐味分布相容 |
+| `RuinDropTableDef.sitePoiRef/poolRef/fixedItems[]` | 遗迹 POI / 奖池 / 物品 | 引用存在；来源类别、品阶上限与唯一守卫合法；入口反向引用闭合 |
+| `EstateCareerState.activeSeniorContractId` | `JobContractState` | 空或恰指向唯一活动 `job_keqing` / `job_zuozhen`；不得悬空或指向普通职位 |
 | 所有素材字段 | `AssetEntry` 逻辑键 | 登记存在且状态允许构建；见 `tech/06`、`tech/07` |
 | `BattleSetupV1.participants/start/end` | NPC / 单位初态 / 条件联合 | 参与者与初态一一对应，Buff / Boss / 波次引用存在；主角败北与返回上下文闭合 |
 | `ForeignQiRuntime.sourceInnerId/injectionAcupoint/reversePath[]` | 武学 / 穴位 / 经脉拓扑 | 来源为内功，穴位存在，逆向路径以累计长度及 ID 稳定选至丹田 |
@@ -1651,8 +1715,9 @@ pnpm schema:gen
 | `design/15` §14 V15-01–V15-23 | 20 经脉 / 180 穴、引用闭合、周天顺序、冲穴事务，以及 v2 的长度、逐脉 / 逐穴强度与通量、温养接口 | `meridian-lint`；结构、remap、v1→v2 幂等迁移与事务 golden 必须 |
 | `design/21` §2–§4、§17 MF-V01–MF-V28、MF-V04a～V04c | 路线 / 运气既有规则，加 AR-19 外放抵消、异种气消化 / 逆流、反引和打穴占穴 | `meridian-flow-lint`；字段、量速、路径、气量守恒与 Python golden / `tech/05` protocol 3 对拍 |
 | `design/19` §15 MAP-V001–V008 | 全国导航 ID、WGS84 范围、14 时代、99 门派落点、路线端点、图外专线与输出边界 | `world-source-lint`；源数据错误阻断；运行 `tools/map/render_map.py --check` |
-| `design/11` §14 V-OW01–V-OW27 | 30 区闭集、邻接、场景 / 战场上限、入口、势力、资源 / 营生、路线、天气、旅行可达；重复遭遇必须有稳定 `spawnPointId` | `world-play-lint`；错误级别直接服从归属文档 |
-| `design/16` §16 RES/RP/SV/BIZ/SECT/ECO/SLEEP/STORY/LEGACY 校验族 | 四阶九品、资源点产出、家丁槽、营生职位、客卿唯一、L1–L5 月钱档、lot / 合同事务、`EstateSacrificeQuote` 与传承挖掘适配 | `economy-lint`；公式、引用与原子结算必须 |
+| `design/11` §14 V-OW01–V-OW32 | 既有世界规则，加采集字段 / 稳定键、遗迹结构 / 掉落引用、RNG 分流与经济来源单归属 | `world-play-lint`；错误级别直接服从归属文档 |
+| `design/16` §16 RES/RP/SV/BIZ/SECT/ECO/SLEEP/STORY/LEGACY 校验族 | 四阶九品、资源点产出、四职位、高阶合同唯一、L1–L5 月钱档、lot / 合同事务、`EstateSacrificeQuote` 与传承挖掘适配 | `economy-lint`；公式、引用、加宽整数与原子结算必须 |
+| `catalog/gather-herbs` §6 GH-V01–V08 | 76 味药材两表闭集；AR-28 子集分类 / 品阶计数；区域、窗口、点型、禁限来源与安全字段 | `gather-catalog-lint`；差集、重复、非法分布或计数漂移均为 error |
 | `design/18` §14 NPC-V01–V14 | 生卒证据、D1–D5、书界存在、跨书 ID 复用、武学/任务/门派引用、设施与路人实例身份 | `npc-lint`；V01–V11/V13/V14 为 error，V12 按其发布级别执行 |
 | `design/20` §14 LEG-V01–V10 | 五表闭合、三卷 / 信物唯一、品阶、消隐证据、权重 / 配额、目标武学、地点与稳定顺序 | `legacy-lint`；任一结构、引用、整数 bp 或收据键不合法均 error |
 
