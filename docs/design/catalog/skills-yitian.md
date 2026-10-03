@@ -1,10 +1,10 @@
 # 门派武学图鉴 · 倚天诸派（`skills-yitian`）
 
 > **归属**（基准 §18）：`design/catalog/skills-*.md` 门派武学图鉴之一。本文覆盖倚天书界的明教（含波斯总教、五行旗、四大护教法王、五散人）、天鹰教、峨眉、昆仑、崆峒、倚天华山、玄冥二老与汝阳王府，以及海沙派、巨鲸帮、神拳门。
-> **上游**：`docs/decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-14–AR-18（含 2026-09-27 至 2026-09-29 作者决定）；`docs/00-canon.md` v1.8 §4、§6–§8、§12–§13、§16、§18、§20；`docs/decisions/rulings-v1.md` §2–§5；`design/21` v2.7.2。
+> **上游**：`docs/decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-14–AR-18（含 2026-09-27 至 2026-09-29 作者决定）；`docs/00-canon.md` v1.8 §4、§6–§8、§12–§13、§16、§18、§20；`docs/decisions/rulings-v1.md` §2–§5；`design/21` v2.7.2；`design/03` v2。
 > **引用而不重定义**：字段、层数、招式与内功预算见 `design/05`；战斗经脉运行、招式路线、绝招、擒拿／点穴、调息、护体内劲与经脉乘区见 `design/21`；经脉、穴位、冲穴、周天与九转见 `design/15`；Buff 见 `design/06`；属性见 `design/03`；书界、压制与残承见 `design/02`；阵法战斗流程见 `design/09`；套装规则与最终数值交 `design/07`。少林、武当主体、丐帮、九阴与吐蕃密宗武学只引用其既有 ID。
 > **标注约定**：**（原创扩展）**为原著没有的武学或设定；**（原创扩展命名）**为原著有其人、兵器或战法而无正式武学名；**（待考）**为须以三联／广州修订版逐字核对的原著事实。文中【建议值】均在 §13 登记。
-> **版本**：C1 初稿（2026-09-26）；审校 C1a.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记、绝招路线叙事化（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；路线唯一性第五轮（2026-09-30）。
+> **版本**：C1 初稿（2026-09-26）；审校 C1a.R（2026-09-26）；全局审计（2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记、绝招路线叙事化（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；路线唯一性第五轮（2026-09-30）；属性门槛与修炼永久加成 v2（AR-27，2026-10-02）。
 
 ---
 
@@ -195,7 +195,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 |---|---|
 | 基础字段 | `category: inner`；`subType: inner`；`grade: 12`；`origin: canon`；`sect: null`；`lineage: 觉远→张三丰/郭襄/无色各得部分，张无忌得全本`；`sourceChapters: [ch04_yitian]` |
 | 性质 · 内外 | `nature: harmony`；`wOut/wIn: 0/1`（任脉 1 阴票、督脉 1 阳票，平票取调和；刚热表现不反推性质） |
-| reqs | `attrs {con:50}`；`aptitude {apInner:55}`；`hard: []`（属性与资质均为软门槛） |
+| reqs | `attrs {bre:75,con:60,wil:60}`；`aptitude {apInner:55}`；`hard: []`（属性与资质均为软门槛） |
+| trainingAttrs | `[{layer:3,attrs:{bre:2,con:1}},{layer:6,attrs:{bre:3,con:1}},{layer:9,attrs:{bre:3,con:1}}]` |
 | 内功贡献 | `mpMaxPct 60 + hpMaxPct 36 + attrs 20×2 + mpRegen 3.6×5 = IP 154`；天上预算 156，偏差 −1.28%；`attrs {con:8,str:6,wil:6}`、`stats {resCold:20}` 均沿用 05，后者达天阶上限 20 |
 | meridians | `[mer_renmai, mer_dumai]`【建议值】：全本既有“任督并行”的专精定位，AR-18 计票为阴 1／阳 1 → 调和；只作 AR-03 专精接口 |
 | 层数要点 | 2 重“他强由他强”；3 重九阳护体；5 重九阳疗伤／九阳真气；6 重寒毒不侵；7 重生生不息／第一绝招九阳普照；8 重触类旁通；9 重第二绝招九阳护体；10 重第三绝招九阳疗伤／九阳大成；三招较少，内功适用 05 §3.5 的 1–4 个运功招式例外 |
@@ -230,7 +231,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 |---|---|
 | 基础字段 | `category: inner`；`subType: inner`；`grade: 11`；`origin: canonExpanded`；`sect: sect_mingjiao`；`lineage: 波斯明教传承（创始者待考）→历代明教教主→阳顶天→张无忌`；`sourceChapters: [ch04_yitian]` |
 | 性质 · 内外 | `nature: harmony`；`wOut/wIn: 0/1`（阴阳互引的调和归类为**（原创扩展）**游戏设定） |
-| reqs | `attrs {con:48,wis:55,wil:50}`；`aptitude {apInner:55}`；`sect {id:sect_mingjiao,rank:5}`；`prereq [{anyOf:[{skill:sk_guangmingxinfa,layer:8},{skill:sk_jiuyang,layer:5}]}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {bre:70,wis:60,wil:60}`；`aptitude {apInner:50}`；`sect {id:sect_mingjiao,rank:5}`；`prereq [{anyOf:[{skill:sk_guangmingxinfa,layer:8},{skill:sk_jiuyang,layer:5}]}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{wis:2,bre:1}},{layer:6,attrs:{wis:3,bre:1}},{layer:9,attrs:{wis:2,bre:2}}]` |
 | 内功贡献 | `mpMaxPct 50 + hpMaxPct 29 + attrs {con:6,wis:8,wil:6}=20×2 + mpRegen 3.3×5 = IP 135.5`，精确命中天中预算；`stats {effHit:10,resCC:10}` 合计 20 |
 | meridians | `[mer_chongmai, mer_daimai]`【建议值】：冲脉调十二经、带脉约束周身，定稿归 15 |
 | 层数要点 | 1 重牵引；2 重卸劲；4 重借力；5 重挪移护体；6 重颠倒阴阳；7 重第一绝招乾坤归一；9 重第二绝招颠倒阴阳；10 重圆满；早层仍有挪移护体、卸劲回旋两记普通运劲招 |
@@ -261,7 +263,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 |---|---|
 | 基础字段 | `category: unarmed`；`subType: fist`；`grade:10`；`origin:canonExpanded`；`sect:null`；`lineage: 玄冥二老`；`sourceChapters:[ch04_yitian]` |
 | 性质 · 内外 | `nature:yin`；`wOut/wIn:0.20/0.80` |
-| reqs | `attrs {con:48,str:42,wil:50}`；`aptitude {apFist:55,apInner:55}`；`prereq [{skill:sk_xuanmingxinfa,layer:7}]`；`hard:[prereq]` |
+| reqs | `attrs {str:60,bre:45}`；`aptitude {apFist:45,apInner:45}`；`prereq [{skill:sk_xuanmingxinfa,layer:7}]`；`hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,bre:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{effHit:[3,10], pierce:[3,10]}`，第 10 重合计 20 |
 | 层数要点 | 1 重寒掌／玄阴拂面／寒毒潜伏；3 重玄阴入体；5 重双掌；6 重寒毒侵骨；7 重绝招玄冥齐出；9 重绝招阴寒如丝；10 重玄冥极寒 |
 | 获取 | 玄冥二老羁绊／邪线私传 `q_04_bond_96`，`maxLayer:10`；夺得掌谱残页 8 张，`maxLayer:7`（原创扩展） |
@@ -295,7 +298,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 |---|---|
 | 基础字段 | `category:unarmed`；`subType:fist`；`grade:10`；`origin:canonExpanded`；`sect:sect_mingjiao`；`lineage: 波斯总教→风云月三使→张无忌`；`sourceChapters:[ch04_yitian]` |
 | 性质 · 内外 | `nature:harmony`；`wOut/wIn:0.60/0.40` |
-| reqs | `attrs {agi:55,wis:50}`；`aptitude {apFist:55,apExotic:45}`；`sect {id:sect_mingjiao,rank:4}`；`prereq [{skill:sk_shenghuoxinfa,layer:6}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {str:60,bre:45}`；`aptitude {apFist:45,apExotic:45}`；`sect {id:sect_mingjiao,rank:4}`；`prereq [{skill:sk_shenghuoxinfa,layer:6}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,bre:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{hit:[3,10],eva:[3,10]}`，第 10 重合计 20 |
 | 层数要点 | 1 重怪势／伏地旋身／怪势横击；2 重贴地；4 重关节反折；5 重双令；6 重阴风刀；7 重第一绝招圣火无定；9 重第二绝招阴风刀；10 重诸法无常；四记普通招仍满足天下 5–10 招下限的原著定数例外口径 |
 | 获取 | 波斯总教航线夺令并译读 `q_04_side_97`，`maxLayer:10`；与三使和解后传授 `q_04_faction_97`，`maxLayer:8`（后者为原创扩展分支） |
@@ -334,7 +338,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:unarmed`；`subType:fist`；`grade:9`；`origin:canonExpanded`；`sect:sect_mingjiao`；`lineage: 阳顶天一系`；`sourceChapters:[ch04_yitian]`；`nature:yang`；`wOut/wIn:0.45/0.55` |
-| reqs | `attrs {str:45,con:45,wil:40}`；`aptitude {apFist:48,apInner:42}`；`sect {id:sect_mingjiao,rank:4}`；`prereq [{skill:sk_dafengyunfeizhang,layer:5}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {str:55,bre:45}`；`aptitude {apFist:40,apInner:40}`；`sect {id:sect_mingjiao,rank:4}`；`prereq [{skill:sk_dafengyunfeizhang,layer:5}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,bre:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{crit:[2,7], pierce:[3,8]}`，第 10 重 15 点 |
 | 层数要点 | 1 重举火／抱日回掌／九天蓄阳；3 重九天震；5 重烈阳贯掌；7 重第一绝招九天贯日；9 重第二绝招烈阳贯掌；10 重日月同明；三记早层普通掌式保留 |
 | 获取 | 光明顶教主密库掌谱 `q_04_faction_95`，L4 由光明使监授，`maxLayer:10`；阳顶天遗刻残页 `maxLayer:7`（原创扩展投放） |
@@ -367,7 +372,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:misc`；`subType:formation`；`grade:8`；`origin:expanded`；`sect:sect_mingjiao`；`lineage: 五行旗`；`sourceChapters:[ch04_yitian]`；`nature:harmony`；`wOut/wIn:0.65/0.35` |
-| reqs | `attrs {wis:42,cha:38}`；`skills {formation:50}`；`sect {id:sect_mingjiao,rank:3}`；`prereq [{skill:sk_wuxingqiling,layer:6}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {wis:50,agi:40}`；`skills {formation:50}`；`sect {id:sect_mingjiao,rank:3}`；`prereq [{skill:sk_wuxingqiling,layer:6}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]` |
 | layerStats | `{hit:[2,7],resCC:[3,8]}`，第 10 重 15 点 |
 | 层数要点 | 1 重立旗／烈火焚阵／五旗相生；3 重两旗相生；5 重中宫；7 重绝招五行轮转；10 重生生不息 |
 | 获取 | 五位掌旗使共同考校 `q_04_faction_96`，`maxLayer:10`；任一旗分支只授残阵 `maxLayer:6` |
@@ -397,7 +403,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:unarmed`；`subType:grapple`；`grade:9`；`origin:canonExpanded`；`sect:sect_tianyingjiao`；`lineage: 殷天正→殷野王`；`sourceChapters:[ch04_yitian]`；`nature:yang`；`wOut/wIn:0.70/0.30` |
-| reqs | `attrs {str:48,agi:42}`；`aptitude {apGrapple:50}`；`sect {id:sect_tianyingjiao,rank:4}`；`prereq [{skill:sk_yingzhaoshou,layer:5}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {str:55,agi:45}`；`aptitude {apGrapple:40}`；`sect {id:sect_tianyingjiao,rank:4}`；`prereq [{skill:sk_yingzhaoshou,layer:5}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{seal:[3,9],crit:[2,6]}`，第 10 重 15 点 |
 | 层数要点 | 1 重铁爪／鹰爪探肩／鹰视；3 重扑击；5 重折兵锁肩；6 重锁肩；7 重第一绝招鹰击长空；9 重第二绝招折兵锁肩；10 重白眉雄风；三记早层普通擒拿招保留 |
 | 获取 | 殷天正亲传 `q_04_bond_94`，`maxLayer:10`；殷野王授艺 `maxLayer:8` |
@@ -427,7 +434,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:inner`；`subType:inner`；`grade:8`；`origin:canonExpanded`；`sect:sect_emei`；`lineage: 觉远→郭襄→峨眉`；`sourceChapters:[ch04_yitian]`；`nature:yin`；`wOut/wIn:0/1` |
-| reqs | `attrs {con:38,wil:42}`；`aptitude {apInner:42}`；`sect {id:sect_emei,rank:3}`；`prereq [{skill:sk_emeixinfa,layer:6}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {bre:50,wil:40}`；`aptitude {apInner:35}`；`sect {id:sect_emei,rank:3}`；`prereq [{skill:sk_emeixinfa,layer:6}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | 内功贡献 | `30+18+2×12+5×2.2=83`：`attrs {con:4,agi:3,wil:5}`；`stats {resCold:8,resInjury:7}`=15 |
 | meridians | `[mer_renmai, mer_yinqiao]`【建议值】：护心、疗伤与峨眉身法的既有定位不变，AR-18 计票为阴 2／阳 0 → 阴 |
 | 层数要点 | 1 重余音；3 重暖脉；5 重护心；7 重绝招金顶朝阳；10 重峨眉九阳 |
@@ -454,7 +462,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:inner`；`subType:inner`；`grade:8`；`origin:canonExpanded`；`sect:sect_wudang`；`lineage: 觉远→张三丰→武当`；`sourceChapters:[ch04_yitian]`；`nature:yang`；`wOut/wIn:0/1` |
-| reqs | `attrs {con:40,wil:42}`；`aptitude {apInner:42}`；`sect {id:sect_wudang,rank:3}`；`prereq [{anyOf:[{skill:sk_chunyangwuji,layer:5},{skill:sk_liangyixinfa,layer:7}]}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {bre:50,wil:45}`；`aptitude {apInner:35}`；`sect {id:sect_wudang,rank:3}`；`prereq [{anyOf:[{skill:sk_chunyangwuji,layer:5},{skill:sk_liangyixinfa,layer:7}]}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | 内功贡献 | `30+18+2×12+5×2.2=83`：`attrs {con:5,wil:5,wis:2}`；`stats {defIn:8,resCold:7}`=15 |
 | meridians | `[mer_dumai, mer_yangwei]`【建议值】 |
 | 层数要点 | 1 重守中；3 重阳和；5 重护体；7 重绝招真武阳和；10 重九阳归真 |
@@ -483,7 +492,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:weapon`；`subType:sword`；`grade:9`；`origin:canonExpanded`；`sect:sect_kunlun`；`sourceChapters:[ch04_yitian]`；`nature:harmony`；`wOut/wIn:0.55/0.45`；`weaponReq:{category:sword}` |
-| reqs | `attrs {agi:45,wis:48}`；`aptitude {apSword:50}`；`sect {id:sect_kunlun,rank:4}`；`prereq [{skill:sk_yudafeihuajian,layer:5}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {con:55,str:45}`；`aptitude {apSword:40}`；`sect {id:sect_kunlun,rank:4}`；`prereq [{skill:sk_yudafeihuajian,layer:5}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{con:1}},{layer:6,attrs:{con:2}},{layer:9,attrs:{con:2}}]` |
 | layerStats | `{parry:[3,9],hit:[2,6]}`，第 10 重 15 点 |
 | 层数要点 | 1 重两仪／坤仪守剑／阴阳换位；3 重阴仪回锋；5 重正奇互生；7 重第一绝招两仪化象；9 重第二绝招正奇互生；10 重六十四变；三记早层普通剑式保留 |
 | 获取 | 何太冲／班淑娴亲传 `q_04_faction_87`，`maxLayer:10`；光明顶观摩 `maxLayer:6` |
@@ -513,7 +523,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:unarmed`；`subType:fist`；`grade:9`；`origin:canonExpanded`；`sect:sect_kongtong`；`lineage: 崆峒→谢逊（拳谱）→张无忌（印证）`；`sourceChapters:[ch04_yitian]`；`nature:harmony`；`wOut/wIn:0.35/0.65` |
-| reqs | `attrs {con:50,str:45,wil:45}`；`aptitude {apFist:50,apInner:48}`；`sect {id:sect_kongtong,rank:4}`；`prereq [{skill:sk_qishangchujue,layer:6}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {str:60,con:50,wil:55}`；`aptitude {apFist:40,apInner:40}`；`sect {id:sect_kongtong,rank:4}`；`prereq [{skill:sk_qishangchujue,layer:6}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1,wil:1}},{layer:6,attrs:{str:2,wil:1}},{layer:9,attrs:{str:2,wil:1}}]` |
 | layerStats | `{pierce:[3,9],effHit:[2,6]}`，第 10 重 15 点 |
 | 层数要点 | 1 重刚柔／横直／一练七伤；3 重吞吐；5 重五行；6 重阴阳吞吐；7 重第一绝招七劲齐发；9 重第二绝招阴阳吞吐；10 重七伤归一；三记早层普通拳式保留 |
 | 获取 | 崆峒五老认可后传拳 `q_04_faction_88`，`maxLayer:10`；谢逊拳谱印证 `q_04_bond_95`，`reqsOverride {sect:null, prereq:[{anyOf:[{skill:sk_qishangchujue,layer:6},{skill:sk_jiuyang,layer:5}]}], hard:[prereq]}`，`maxLayer:10` |
@@ -545,7 +556,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:weapon`；`subType:blade`；`grade:8`；`origin:canonExpanded`；`sect:sect_huashan`；`lineage: 华山倚天支`；`sourceChapters:[ch04_yitian]`；`nature:harmony`；`wOut/wIn:0.70/0.30`；`weaponReq:{category:blade}` |
-| reqs | `attrs {str:42,agi:40}`；`aptitude {apBlade:45}`；`sect {id:sect_huashan,rank:4}`；`prereq [{skill:sk_liangyidaojia,layer:5}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {str:50,agi:40}`；`aptitude {apBlade:35}`；`sect {id:sect_huashan,rank:4}`；`prereq [{skill:sk_liangyidaojia,layer:5}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{crit:[2,7],parry:[3,8]}`，第 10 重 15 点 |
 | 层数要点 | 1 重反仪／逆步横刀／高低互易；3 重低式扫岳；5 重两仪夹持；7 重第一绝招四象反生；9 重第二绝招刚柔逆转；10 重反尽归正 |
 | 获取 | 高矮二老门派考校 `q_04_faction_89`，`maxLayer:10`；光明顶观摩 `maxLayer:6` |
@@ -575,7 +587,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:weapon`；`subType:sword`；`grade:7`；`origin:expanded`；`sect:sect_ruyangwangfu`；`lineage: 方东白百家剑术`；`sourceChapters:[ch04_yitian]`；`nature:harmony`；`wOut/wIn:0.65/0.35`；`weaponReq:{category:sword}` |
-| reqs | `attrs {agi:42,wis:38}`；`aptitude {apSword:45}`；`sect {id:sect_ruyangwangfu,rank:4}`；`prereq [{skill:sk_jifengbajian,layer:6}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {agi:45,wis:35}`；`aptitude {apSword:30}`；`sect {id:sect_ruyangwangfu,rank:4}`；`prereq [{skill:sk_jifengbajian,layer:6}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
 | layerStats | `{hit:[3,9],crit:[2,6]}`，第 10 重 15 点 |
 | 层数要点 | 1 重一臂／百家回腕／疾如多臂；3 重四路；5 重八方剑影；7 重绝招八臂齐出；10 重百家归一 |
 | 获取 | 方东白比剑后传授 `q_04_bond_97`，`reqsOverride {sect:null, hard:[prereq]}`；汝阳王府宿卫功勋 L4，均 `maxLayer:10` |
@@ -605,7 +618,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:misc`；`subType:poison`；`grade:7`；`origin:expanded`；`sect:sect_haisha`；`sourceChapters:[ch04_yitian]`；`nature:yin`；`wOut/wIn:0.60/0.40` |
-| reqs | `attrs {wis:36,agi:38}`；`skills {poi:45}`；`sect {id:sect_haisha,rank:4}`；`prereq [{skill:sk_yanxiaoshou,layer:5}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {wis:45,agi:35}`；`skills {poi:45}`；`sect {id:sect_haisha,rank:4}`；`prereq [{skill:sk_yanxiaoshou,layer:5}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]` |
 | layerStats | `{effHit:[3,10],eva:[2,5]}`，第 10 重 15 点 |
 | 层数要点 | 1 重扬盐／毒盐短打／盐入创口；3 重迷眼；5 重蚀伤；7 重绝招盐雾封江；10 重无形入隙 |
 | 获取 | 海沙派 L4 授艺；或查清毒盐仓后缴获配方 `q_04_side_94`，`reqsOverride {sect:null, hard:[prereq]}`，`maxLayer:8` |
@@ -635,7 +649,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:weapon`；`subType:exotic`；`grade:7`；`origin:expanded`；`sect:sect_jujing`；`sourceChapters:[ch04_yitian]`；`nature:harmony`；`wOut/wIn:0.75/0.25`；`weaponReq:{category:exotic,kinds:[emeici]}` |
-| reqs | `attrs {agi:40,str:35}`；`aptitude {apExotic:42}`；`sect {id:sect_jujing,rank:4}`；`prereq [{skill:sk_langlifenshuici,layer:5}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {wis:45,agi:35}`；`aptitude {apExotic:30}`；`sect {id:sect_jujing,rank:4}`；`prereq [{skill:sk_langlifenshuici,layer:5}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:2}},{layer:9,attrs:{wis:1}}]` |
 | layerStats | `{hit:[3,8],parry:[2,7]}`，第 10 重 15 点 |
 | 层数要点 | 1 重分水／潜浪横分／水下换气；3 重贴浪；5 重锁刃；7 重绝招鲸翻海覆；10 重水陆皆宜 |
 | 获取 | 巨鲸帮水战考校 L4；王盘山遗落刺谱 `q_04_side_95`，`reqsOverride {sect:null}`，`maxLayer:8` |
@@ -665,7 +680,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 | 项 | 内容 |
 |---|---|
 | 基础字段 | `category:unarmed`；`subType:fist`；`grade:7`；`origin:expanded`；`sect:sect_shenquan`；`sourceChapters:[ch04_yitian]`；`nature:yang`；`wOut/wIn:0.80/0.20` |
-| reqs | `attrs {str:42,con:38}`；`aptitude {apFist:42}`；`sect {id:sect_shenquan,rank:4}`；`prereq [{skill:sk_sandieshenquan,layer:6}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {str:45,con:35}`；`aptitude {apFist:30}`；`sect {id:sect_shenquan,rank:4}`；`prereq [{skill:sk_sandieshenquan,layer:6}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{crit:[3,9],hit:[2,6]}`，第 10 重 15 点 |
 | 层数要点 | 1 重一拳／震营直拳／拳数扬名；3 重连三；5 重蓄四；7 重绝招横扫千军；10 重拳不虚发 |
 | 获取 | 神拳门掌门考校 L4；王盘山见证线 `q_04_side_96` 取得残谱 `maxLayer:8`（原创扩展） |
@@ -742,201 +758,234 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 
 #### `sk_guangmingxinfa` 光明心法（6 玄上 · 内功 · 调和）**（原创扩展）**
 
-- 字段：`sect:sect_mingjiao`；`wOut/wIn:0/1`；`reqs {sect rank:2, prereq:[sk_shenghuotunajue≥5], hard:[sect,prereq]}`；内功 `IP=20+12+2×8+5×1.8=57`（`attrs {con:3,wil:3,wis:2}`；`stats {resMind:5,resInjury:5}`）；`meridians:[mer_chongmai]`【建议值】。
+- 字段：`sect:sect_mingjiao`；`wOut/wIn:0/1`；`reqs {attrs:{bre:40,wil:35},aptitude:{apInner:25},sect rank:2, prereq:[sk_shenghuotunajue≥5], hard:[sect,prereq]}`；内功 `IP=20+12+2×8+5×1.8=57`（`attrs {con:3,wil:3,wis:2}`；`stats {resMind:5,resInjury:5}`）；`meridians:[mer_chongmai]`【建议值】。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - 招式：光明护念 `_huming`（L3，自身，6%/3，`bf_dingxin` 2＋驱散1个 `mind`）；回光 `_huiguang`（L7，友方单体绝招，`ultimate:true`，8%/气势100/1200，治疗18% hpMax；支援绝招无伤害倍率）。被动：守明 `_shouming`（L1，resMind +4→10）；薪火 `_xinhuo`（L8，明教武学修炼 +10%）。唯一绝招依 05 §3.5 在 7 重解锁。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 获取：明教 L2；`setTags:[set_mingjiao_guangming]`；为乾坤大挪移前置。图鉴文本：把明教戒律、静心与基础运气抽象成通用心法，原著无此正式武学名。
 
 #### `sk_shenghuoxinfa` 圣火心法（6 玄上 · 内功 · 阳）**（原创扩展）**
 
-- 字段：波斯总教分支；`reqs {sect rank:3, prereq:[sk_shenghuotunajue≥6], hard:[sect,prereq]}`；内功 `IP=20+12+2×8+5×1.8=57`（`attrs {agi:3,wis:3,wil:2}`；`stats {eva:6,effHit:4}`）；`meridians:[mer_daimai,mer_yangqiao]`【建议值】，其中带脉不投票、阳跷投阳，AR-18 计票为阴 0／阳 1 → 阳。
+- 字段：波斯总教分支；`reqs {attrs:{bre:40,wil:35},aptitude:{apInner:25},sect rank:3, prereq:[sk_shenghuotunajue≥6], hard:[sect,prereq]}`；内功 `IP=20+12+2×8+5×1.8=57`（`attrs {agi:3,wis:3,wil:2}`；`stats {eva:6,effHit:4}`）；`meridians:[mer_daimai,mer_yangqiao]`【建议值】，其中带脉不投票、阳跷投阳，AR-18 计票为阴 0／阳 1 → 阳。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - 招式：燃心 `_ranxin`（L3，自身，7%/3，`bf_jisu` 2）；换形 `_huanxing`（L7，自身换位至3格空位的身法绝招，`ultimate:true`，8%/气势100/1200；无伤害倍率）。被动：异域步 `_yiyu`（eva +3→8）；辨刻 `_bianke`（解读圣火令谜题 `lore` 软门槛 −10）。唯一绝招依 05 §3.5 在 7 重解锁。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 获取：波斯航线支线 `q_04_side_97`；`setTags:[set_mingjiao_shenghuo]`；为圣火令武功前置。
 
 #### `sk_hanbingmianzhang` 寒冰绵掌（6 玄上 · 拳脚／拳掌 · 阴）——**核算抽样**
 
-- 原著：青翼蝠王韦一笑以阴寒掌力伤人，因练功出岔须压制体内寒毒；细节**（待考）**。`reqs {attrs:{agi:42,con:38}, aptitude:{apFist:40}, sect rank:3, prereq:[sk_guangmingquan≥5], hard:[sect,prereq]}`；`layerStats {effHit:[2,6],eva:[2,4]}`；`setTags:[set_mingjiao_sida_fawang]`。
+- 原著：青翼蝠王韦一笑以阴寒掌力伤人，因练功出岔须压制体内寒毒；细节**（待考）**。`reqs {attrs:{str:40,agi:35}, aptitude:{apFist:25}, sect rank:3, prereq:[sk_guangmingquan≥5], hard:[sect,prereq]}`；`layerStats {effHit:[2,6],eva:[2,4]}`；`setTags:[set_mingjiao_sida_fawang]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：寒绵贴掌 `_tiezhang`（L1，单体，**1.10**，7%/1/1000，`bf_hanqi` 50%·2；`1+.12+.05−.10×.50=1.12≈1.10`）；冰影掠 `_bingying`（L4，突进n3，**1.15**，7%/2，位移＋`bf_jiansu` 40%·2；`1+.24+.05−.10−.10×.40=1.15`）；寒潮 `_hanchao`（L7绝，`ultimate:true`，`aoe_cone {r:2,angle:60,dirCount:6}`，**2.30**，8%/气势100/1200，`bf_handu`100%·2；N=4、AF=.80，`3×.80−.10=2.30`）。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - **AR-16 审计**：“寒潮”只有扇面几何与寒掌语义，尚未说明是真气离体还是近身寒劲扩散，`mv_hanbingmianzhang_hanchao` 暂记待考、不写外放字段；贴掌为接触、冰影掠为突进，均不标。
 - 被动：三阴受损 `_sanyin`（主运非阳／调和内功时，战后自身 `bf_hanqi` +1，原著后果玩法化）；青翼 `_qingyi`（对减速目标 Z3 +5%→12%）。获取：韦一笑羁绊；`origin:canonExpanded`。
 
 #### `sk_lieyanzhang` 烈焰掌（5 玄中 · 拳脚／拳掌 · 阳）**（原创扩展命名）**
 
-- 依据：紫衫龙王与明教“火”意象并不自动证明一套具名掌法；本作为法王分支补位。`reqs {sect rank:3, prereq:[sk_guangmingquan≥4], hard:[sect,prereq]}`；`layerStats {crit:[1,5],effHit:[1,5]}`；`setTags:[set_mingjiao_sida_fawang]`。
+- 依据：紫衫龙王与明教“火”意象并不自动证明一套具名掌法；本作为法王分支补位。`reqs {attrs:{str:35,con:30},aptitude:{apFist:20},sect rank:3, prereq:[sk_guangmingquan≥4], hard:[sect,prereq]}`；`layerStats {crit:[1,5],effHit:[1,5]}`；`setTags:[set_mingjiao_sida_fawang]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：燃掌 `_ranzhang`（L1单体1.05，6%/1，`bf_zhuoshao`40%·2）；火衣 `_huoyi`（L4自身，`bf_gongshi`2）；焰轮 `_yanlun`（L7绝，周身1.80，8%，灼烧100%·2）。被动：见火 `_jianhuo`（火场格上 hit +4→10）；炎息 `_yanxi`（热标签抵抗 +5→12）。
 
 #### `sk_dafengyunfeizhang` 大风云飞掌（5 玄中 · 拳脚／拳掌 · 阳）
 
-- 原著名目与彭莹玉相关说法需核对修订版**（待考）**；招名扩展。`reqs {sect rank:3, prereq:[sk_guangmingquan≥4], hard:[sect,prereq]}`；`layerStats {hit:[2,6],crit:[1,4]}`；`setTags:[set_mingjiao_guangming]`。
+- 原著名目与彭莹玉相关说法需核对修订版**（待考）**；招名扩展。`reqs {attrs:{str:35,con:30},aptitude:{apFist:20},sect rank:3, prereq:[sk_guangmingquan≥4], hard:[sect,prereq]}`；`layerStats {hit:[2,6],crit:[1,4]}`；`setTags:[set_mingjiao_guangming]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：风起 `_fengqi`（L1单体1.00）；云涌 `_yunyong`（L3线n2 1.00，7%/1）；惊雷五掌 `_wuzhang`（L6乱击n5 1.20，8%/2，五段）。被动：迅雷 `_xunlei`（首招收招 −30→−80）；义烈 `_yilie`（相邻友军倒地时 `bf_ruiyi`2，每战1次）。
 - **AR-16 审计**：`mv_dafengyunfeizhang_yunyong` 只有线形范围与原创招名，不能证明离体掌力，暂记待考；风起与惊雷五掌按接触掌击处理。
 
 #### `sk_wuxingqiling` 五行旗令（5 玄中 · 杂学／阵法 · 调和）**（原创扩展）**——**核算抽样**
 
-- 字段：`reqs {skills:{formation:35}, sect rank:2, prereq:[sk_qizhenrumen≥4], hard:[sect,prereq]}`；`layerStats {hit:[1,5],resCC:[1,5]}`；`setTags:[]`。
+- 字段：`reqs {attrs:{wis:35,agi:30},skills:{formation:35}, sect rank:2, prereq:[sk_qizhenrumen≥4], hard:[sect,prereq]}`；`layerStats {hit:[1,5],resCC:[1,5]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]`。
 - 招式：分旗 `_fenqi`（L1，友方r2，6%/3，友方 `bf_jiangu`2）；合围 `_hewei`（L3，单体 **1.35**，6%/2，目标须邻接≥2友军，`bf_suoding`50%·2；`1+.24+.15−.10×.50=1.34≈1.35`）；鸣金 `_mingjin`（L6，友方r3，6%/4，驱散1个 `cc`、后撤1格）。
 - 被动：旗语 `_qiyu`（阵员 hit +2→5）；令行 `_lingxing`（阵员移动后保留1格移动力）。获取：任一旗 L2；为五行旗阵前置。
 
 #### `sk_qingyifashen` 青翼飞身（6 玄上 · 轻功 · 阴）**（原创扩展命名）**
 
-- 依据：韦一笑轻功卓绝为原著人物表现；无统一轻功名，故为**（原创扩展命名）**。`Q_skill=QS(6)=74`；`reqs {attrs:{agi:45}, aptitude:{apLight:42}, sect rank:3, hard:[sect]}`；`layerStats {eva:[2,6],spd:[2,4]}`；`setTags:[set_mingjiao_sida_fawang]`。
+- 依据：韦一笑轻功卓绝为原著人物表现；无统一轻功名，故为**（原创扩展命名）**。`Q_skill=QS(6)=74`；`reqs {attrs:{agi:40,bre:35}, aptitude:{apLight:25}, sect rank:3, hard:[sect]}`；`layerStats {eva:[2,6],spd:[2,4]}`；`setTags:[set_mingjiao_sida_fawang]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]`。
 - 招式：掠影 `_lueying`（L7自身身法绝招，`ultimate:true`，8%/气势100/1200，`bf_jisu`3；无伤害倍率）；倒挂 `_daogua`（L4后撤3格，5%/2，`bf_piaohu`2）。被动：蝠翼 `_fuyi`（跳跃 +1）；寒夜 `_hanye`（夜间 eva +3→8，昼夜归11）。唯一绝招依 05 §3.5 后移至默认 7 重；本组最高轻功为玄上6，低于倚天地上9上限。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 
 ### 4.3 天鹰教（3 门）
 
 #### `sk_yingzhaoshou` 鹰爪手（6 玄上 · 拳脚／擒拿 · 阳）——**核算抽样**
 
-- 原著：殷天正鹰爪功表现与名目**（待考）**；作为擒拿功前段。`reqs {sect rank:2, prereq:[sk_tianyingrumenquan≥4], hard:[sect,prereq]}`；`layerStats {seal:[2,6],parry:[1,4]}`；`setTags:[]`。
+- 原著：殷天正鹰爪功表现与名目**（待考）**；作为擒拿功前段。`reqs {attrs:{str:40,agi:35},aptitude:{apGrapple:25},sect rank:2, prereq:[sk_tianyingrumenquan≥4], hard:[sect,prereq]}`；`layerStats {seal:[2,6],parry:[1,4]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：鹰啄 `_yingzhuo`（L1单体 **1.10**，6%/1，`bf_pojia`30%；`1+.12−.10×.30=1.09≈1.10`）；拿腕 `_nawan`（L3单体 **1.10**，7%/1，`bf_xueweishoufeng(level:7,acupointRef:sourcePrimary)`30%·2；`1+.12+.05−.20×.30=1.11≈1.10`）；掠肩 `_luejian`（L7绕背绝招，`ultimate:true`，**2.55**，8%/气势100/1200，绕背；`3×.90−.15=2.55`）。唯一绝招依 05 §3.5 在 7 重解锁。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 被动：利爪 `_lizhua`（对持械目标 Z3 +4%→10%）；稳拿 `_wenna`（封经命中 +5→12）。获取：天鹰 L2。
 
 #### `sk_tianyingjian` 天鹰剑术（5 玄中 · 兵器／剑 · 阳）**（原创扩展命名）**
 
-- 依据：天鹰教人物使用刀剑是人物行为；无可靠具名剑法，故扩展。`reqs {sect rank:2, prereq:[sk_tianyingrumenjian≥4], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {hit:[1,5],parry:[1,5]}`；`setTags:[]`。
+- 依据：天鹰教人物使用刀剑是人物行为；无可靠具名剑法，故扩展。`reqs {attrs:{agi:35,wis:30},aptitude:{apSword:20},sect rank:2, prereq:[sk_tianyingrumenjian≥4], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {hit:[1,5],parry:[1,5]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - 招式：振翼 `_zhenyi`（L1单体1.00）；鹰回 `_yinghui`（L3 `aoe_cone {angle:120,r:1,dirCount:6}` 0.95，6%/1；N=3、AF=.85，`.85×1.12=.952≈.95`）；坠空 `_zhuikong`（L6跳斩1.10，7%/2，击退1）。被动：高翔 `_gaoxiang`（高处Z7+4%→10%）；护巢 `_huchao`（相邻友军被攻时 parry +5）。
 
 #### `sk_haishangbufa` 海上步法（4 玄下 · 轻功 · 调和）**（原创扩展）**
 
-- `Q_skill=QS(4)=56`；`reqs {attrs:{agi:28}, aptitude:{apLight:25}, sect rank:2, hard:[sect]}`；`layerStats {eva:[1,5],spd:[1,5]}`；`setTags:[]`。
+- `Q_skill=QS(4)=56`；`reqs {attrs:{agi:30,wil:25}, aptitude:{apLight:15}, sect rank:2, hard:[sect]}`；`layerStats {eva:[1,5],spd:[1,5]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]`。
 - 招式：踏舷 `_taxian`（L1自身，5%/3，`bf_jixing`2）；借浪 `_jielang`（L4自身移2格，5%/2，水域中移3格）。被动：稳舵 `_wenduo`（水域失衡抵抗 +5→12）；鹰舟 `_yingzhou`（船战跳跃 +1）。
 
 ### 4.4 峨眉派（5 门）
 
 #### `sk_emeixinfa` 峨眉心法（6 玄上 · 内功 · 阴）**（原创扩展命名）**
 
-- 字段：`reqs {sect rank:2, prereq:[sk_emeitunajue≥5], hard:[sect,prereq]}`；内功 `IP=20+12+2×8+5×1.8=57`（`attrs {con:2,agi:2,wis:2,wil:2}`；`stats {resMind:5,resInjury:5}`）；`meridians:[mer_renmai]`【建议值】，其清心、调息定位与任脉主修相符，AR-18 计票为阴 1／阳 0 → 阴；`setTags:[set_yitian_emei]`。
+- 字段：`reqs {attrs:{bre:40,wil:35},aptitude:{apInner:25},sect rank:2, prereq:[sk_emeitunajue≥5], hard:[sect,prereq]}`；内功 `IP=20+12+2×8+5×1.8=57`（`attrs {con:2,agi:2,wis:2,wil:2}`；`stats {resMind:5,resInjury:5}`）；`meridians:[mer_renmai]`【建议值】，其清心、调息定位与任脉主修相符，AR-18 计票为阴 1／阳 0 → 阴；`setTags:[set_yitian_emei]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - 招式：清心 `_qingxin`（L3自身，6%/3，`bf_qingxin`2）；金顶调息 `_tiaoxi`（L7友方单体绝招，`ultimate:true`，8%/气势100/1200，治疗18%；支援绝招无伤害倍率）。被动：清静 `_qingjing`（resMind+4→10）；掌剑兼修 `_jianxiu`（峨眉拳脚/剑修炼+10%）。唯一绝招依 05 §3.5 在 7 重解锁；原著有峨眉内功传统，本作总名为扩展。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 
 #### `sk_jindingmianzhang` 金顶绵掌（5 玄中 · 拳脚／拳掌 · 调和）
 
-- 原著武学名；具体施展人物与回目**（待考）**。`reqs {sect rank:2, prereq:[sk_emeirumenzhang≥4], hard:[sect,prereq]}`；`layerStats {parry:[2,6],hit:[1,4]}`；`setTags:[set_yitian_emei]`。
+- 原著武学名；具体施展人物与回目**（待考）**。`reqs {attrs:{str:35,con:30},aptitude:{apFist:20},sect rank:2, prereq:[sk_emeirumenzhang≥4], hard:[sect,prereq]}`；`layerStats {parry:[2,6],hit:[1,4]}`；`setTags:[set_yitian_emei]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：绵掌 `_mianzhang`（L1单体1.00）；吞吐 `_tuntu`（L3单体1.15，7%/1，`bf_neijin_jiang`30%·2）；金顶佛光 `_foguang`（L6锥n2 0.95，8%/2）。被动：绵劲 `_mianjin`（招架后Z4+4%→10%）；金顶 `_jinding`（未移动时 hit+4→10）。
 - **AR-16 审计**：`mv_jindingmianzhang_foguang` 只有锥形范围与招名，未说明离体掌力，暂记待考；绵掌、吞吐均按接触掌击处理。
 
 #### `sk_piaoxuechuanyunzhang` 飘雪穿云掌（5 玄中 · 拳脚／拳掌 · 阴）——**核算抽样**
 
-- 原著：灭绝师太与张无忌约掌时使用此掌的情节及回目**（待考）**。`reqs {sect rank:3, prereq:[sk_jindingmianzhang≥5], hard:[sect,prereq]}`；`layerStats {crit:[1,5],eva:[1,5]}`；`setTags:[set_yitian_emei]`。
+- 原著：灭绝师太与张无忌约掌时使用此掌的情节及回目**（待考）**。`reqs {attrs:{str:35,con:30},aptitude:{apFist:20},sect rank:3, prereq:[sk_jindingmianzhang≥5], hard:[sect,prereq]}`；`layerStats {crit:[1,5],eva:[1,5]}`；`setTags:[set_yitian_emei]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：飘雪 `_piaoxue`（L1 `aoe_cone {angle:120,r:1,dirCount:6}` **.95**，6%/1；N=3、AF=.85，`.85×1.12=.952≈.95`）；穿云 `_chuanyun`（L3直线n3远程 **.95**，7%/2；N=3、AF=.85，`.85×(1+.24+.05)×.85=.932≈.95`）；云雪回旋 `_huixuan`（L6周身 **.95**，7%/2，`bf_jiansu`30%·2；N=6、AF=.75，`.75×1.29−.10×.30=.9375≈.95`）。
 - **AR-16 审计**：`mv_piaoxuechuanyunzhang_chuanyun` 虽标远程直线，但原著情节与现文均未明确其伤害媒介为离体掌风，暂记待考；飘雪与云雪回旋均按近身范围掌击处理。
 - 被动：雪影 `_xueying`（移动后eva+3→8）；穿云 `_chuanyunbei`（对远程目标Z3+4%→10%）。
 
 #### `sk_jindingjiushi` 金顶九式（6 玄上 · 兵器／剑 · 调和）
 
-- 原著武学名，赵敏曾使所学峨眉剑招的情节**（待考）**；招名除“金顶佛光”外均为**（原创扩展命名）**。`reqs {sect rank:3, prereq:[sk_emeirumenjian≥5], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {hit:[2,6],parry:[2,4]}`；`setTags:[set_yitian_emei]`。
+- 原著武学名，赵敏曾使所学峨眉剑招的情节**（待考）**；招名除“金顶佛光”外均为**（原创扩展命名）**。`reqs {attrs:{agi:40,wis:35},aptitude:{apSword:25},sect rank:3, prereq:[sk_emeirumenjian≥5], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {hit:[2,6],parry:[2,4]}`；`setTags:[set_yitian_emei]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - 招式：金顶佛光 `_foguang`（L1单体1.05，6%/1）；千峰竞秀 `_qianfeng`（L3乱击n5 1.10，7%/2）；万流归宗 `_wanliu`（L7线n3绝招，`ultimate:true`，2.55，8%/气势100/1200；`3×.85=2.55`）。被动：九式相承 `_xiangcheng`（不同招式hit+3/层，上限3）；佛光照剑 `_zhaojian`（对邪派目标Z3+5%）。唯一绝招依 05 §3.5 在 7 重解锁。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 
 #### `sk_miejuejian` 灭剑绝剑（6 玄上 · 兵器／剑 · 阳）**（原创扩展命名）**
 
-- 原著有“灭剑”“绝剑”两路名称并与灭绝师太相关；是否应拆为两门、招理细节**（待考）**。为控制目录，本作合为一门双姿态。`reqs {sect rank:4, prereq:[sk_jindingjiushi≥6], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {crit:[2,6],pierce:[2,4]}`；`setTags:[set_yitian_emei]`。
+- 原著有“灭剑”“绝剑”两路名称并与灭绝师太相关；是否应拆为两门、招理细节**（待考）**。为控制目录，本作合为一门双姿态。`reqs {attrs:{agi:40,wis:35},aptitude:{apSword:25},sect rank:4, prereq:[sk_jindingjiushi≥6], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {crit:[2,6],pierce:[2,4]}`；`setTags:[set_yitian_emei]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - 招式：灭剑 `_miejian`（L1单体1.20，7%/2，`bf_pojian`30%·2）；绝剑 `_juejian`（L4单体1.25，8%/2，不可招架）；灭绝双锋 `_shuangfeng`（L7绝招，`ultimate:true`，**3.45**，8%/气势100/1200，目标已有破剑时可用；已有破剑为常见条件 `adj +.15`，`3.00×(1+.15)=3.45`）。被动：灭邪 `_miexie`（对morality≤−20者Z3+5%→12%）；绝意 `_jueyi`（气血<40%暴击+5→12）。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 
 ### 4.5 昆仑派（4 门）
 
 #### `sk_kunlunxinfa` 昆仑心法（5 玄中 · 内功 · 阳）**（原创扩展命名）**
 
-- `reqs {sect rank:2, prereq:[sk_kunluntunajue≥5], hard:[sect,prereq]}`；内功 `IP=17+10+2×7+5×1.5=48.5`（`attrs {agi:2,wis:3,wil:2}`；`stats {parry:5,resCold:5}`）；`meridians:[mer_yangqiao]`【建议值】，与雪峰身法、两仪剑根基的既有定位一致，AR-18 计票为阴 0／阳 1 → 阳；`setTags:[]`。
+- `reqs {attrs:{bre:35,wil:30},aptitude:{apInner:20},sect rank:2, prereq:[sk_kunluntunajue≥5], hard:[sect,prereq]}`；内功 `IP=17+10+2×7+5×1.5=48.5`（`attrs {agi:2,wis:3,wil:2}`；`stats {parry:5,resCold:5}`）；`meridians:[mer_yangqiao]`【建议值】，与雪峰身法、两仪剑根基的既有定位一致，AR-18 计票为阴 0／阳 1 → 阳；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - 招式：雪峰运息 `_yunxi`（L3自身，6%/3，`bf_dingxin`2）；阴阳调息 `_tiaoxi`（L6自身，7%/3，驱散1个`cold/heat`）。被动：高寒 `_gaohan`（resCold+4→10）；两仪根基 `_genji`（昆仑剑修炼+10%）。
 
 #### `sk_yudafeihuajian` 雨打飞花剑法（6 玄上 · 兵器／剑 · 调和）——**核算抽样**
 
-- 原著：剑走斜势、间杂正势的描述及使用者**（待考）**。`reqs {sect rank:2, prereq:[sk_kunlunrumenjian≥4], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {hit:[2,6],eva:[2,4]}`；`setTags:[]`。
+- 原著：剑走斜势、间杂正势的描述及使用者**（待考）**。`reqs {attrs:{agi:40,wis:35},aptitude:{apSword:25},sect rank:2, prereq:[sk_kunlunrumenjian≥4], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {hit:[2,6],eva:[2,4]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - 招式：斜雨 `_xieyu`（L1 `aoe_spokes {r:1}` **.80**，6%/1；N=7、AF=.70，`.70×1.12=.784≈.80`）；飞花 `_feihua`（L3乱击n4 **1.10**，7%/2；`.85×(1+.24+.05)=1.10`）；正势一剑 `_zhengshi`（L7单体绝招，`ultimate:true`，**3.45**，8%/气势100/1200，前两招均为斜势时可用；两斜势为常见条件 `adj +.15`，`3.00×(1+.15)=3.45`）。唯一绝招依 05 §3.5 在 7 重解锁。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 被动：斜中藏正 `_cangzheng`（连用两斜势后正势必中 ×1，3回合cd）；飞花不定 `_buding`（eva+3→8）。
 
 #### `sk_xunleijianfa` 迅雷剑法（6 玄上 · 兵器／剑 · 阳）
 
-- 原著：何足道曾以迅疾多剑交手的具体剑法名、十六剑描述与回目**（待考）**。`reqs {attrs:{agi:42}, aptitude:{apSword:42}, sect rank:3, prereq:[sk_kunlunrumenjian≥5], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {hit:[2,5],crit:[2,5]}`；`setTags:[]`。
+- 原著：何足道曾以迅疾多剑交手的具体剑法名、十六剑描述与回目**（待考）**。`reqs {attrs:{agi:40,wis:35}, aptitude:{apSword:25}, sect rank:3, prereq:[sk_kunlunrumenjian≥5], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {hit:[2,5],crit:[2,5]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - 招式：雷动 `_leidong`（L1单体0.95，5%/0，收900）；四方雷 `_sifang`（L4乱击n4 1.10，7%/1）；十六剑 `_shiliu`（L7绝招，`ultimate:true`，2.55，8%/气势100/1200，n16；乱击 AF=.85，`3×.85=2.55`）。被动：蓄雷 `_xulei`（未移动一回合获`bf_xushi`）；迅雷 `_xunlei`（本功收招−20→−70）。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 
 #### `sk_chuanyunbu` 穿云步（4 玄下 · 轻功 · 调和）**（原创扩展命名）**
 
-- 原著是否有“穿云”正式轻功名**（待考）**；本作按昆仑高山身法命名。`Q_skill=QS(4)=56`；`reqs {attrs:{agi:28}, aptitude:{apLight:25}, sect rank:2, hard:[sect]}`；`layerStats {eva:[1,5],jump:[0,1]}`；`setTags:[]`。
+- 原著是否有“穿云”正式轻功名**（待考）**；本作按昆仑高山身法命名。`Q_skill=QS(4)=56`；`reqs {attrs:{agi:30,bre:25}, aptitude:{apLight:15}, sect rank:2, hard:[sect]}`；`layerStats {eva:[1,5],jump:[0,1]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]`。
 - 招式：穿云 `_chuanyun`（L1自身，5%/3，`bf_jixing`2）；折峰 `_zhefeng`（L4突进至3格空位，5%/2）。被动：高原步 `_gaoyuan`（攀坡体力−10%→25%）；云隙 `_yunxi`（高处eva+3→8）。
 
 ### 4.6 崆峒派（3 门）
 
 #### `sk_qishangchujue` 七伤初诀（6 玄上 · 拳脚／拳掌 · 调和）**（原创扩展）**——**核算抽样**
 
-- 依据：七伤拳总纲的人身阴阳五行理念为原著；安全拆练的“初诀”是玩法扩展。`reqs {sect rank:2, prereq:[sk_kongtongrumenquan≥4], hard:[sect,prereq]}`；`layerStats {pierce:[2,6],resInjury:[2,4]}`；`setTags:[set_kongtong_qishang]`。
+- 依据：七伤拳总纲的人身阴阳五行理念为原著；安全拆练的“初诀”是玩法扩展。`reqs {attrs:{str:40,con:35},aptitude:{apFist:25},sect rank:2, prereq:[sk_kongtongrumenquan≥4], hard:[sect,prereq]}`；`layerStats {pierce:[2,6],resInjury:[2,4]}`；`setTags:[set_kongtong_qishang]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：刚劲 `_gangjin`（L1单体 **1.10**，6%/1；`1+.12=1.12≈1.10`）；柔劲 `_roujin`（L3单体 **1.15**，7%/1，`bf_jiansu`40%·2；`1+.12+.05−.10×.40=1.13≈1.15`）；吞吐 `_tuntu`（L7线n2绝招，`ultimate:true`，**2.50**，8%/气势100/1200，击退1；`3×.85−.05=2.50`）。唯一绝招依 05 §3.5 在 7 重解锁。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - **AR-16 审计**：`mv_qishangchujue_tuntu` 只有线形范围与吞吐劲名，未明确七股劲是否在本招离体伤敌，暂记待考；刚劲、柔劲均为接触拳掌，不标。
 - 被动：五行养脏 `_yangzang`（resInjury+4→10）；知伤 `_zhishang`（自身有injury时不再获得增伤，而是效果抵抗+10，避免鼓励自残）。
 
 #### `sk_kongtongyangshenggong` 崆峒养生功（5 玄中 · 内功 · 阴）**（原创扩展）**
 
-- `reqs {sect rank:2, prereq:[sk_kongtongtunajue≥5], hard:[sect,prereq]}`；内功 `IP=17+10+2×7+5×1.5=48.5`（`attrs {con:3,wil:3,wis:1}`；`stats {resInjury:10}`）；`meridians:[mer_renmai,mer_chongmai]`【建议值】，与养脏、固本定位一致；任脉投阴、冲脉不投票，AR-18 计票为阴 1／阳 0 → 阴；`setTags:[set_kongtong_qishang]`。
+- `reqs {attrs:{bre:35,wil:30},aptitude:{apInner:20},sect rank:2, prereq:[sk_kongtongtunajue≥5], hard:[sect,prereq]}`；内功 `IP=17+10+2×7+5×1.5=48.5`（`attrs {con:3,wil:3,wis:1}`；`stats {resInjury:10}`）；`meridians:[mer_renmai,mer_chongmai]`【建议值】，与养脏、固本定位一致；任脉投阴、冲脉不投票，AR-18 计票为阴 1／阳 0 → 阴；`setTags:[set_kongtong_qishang]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - 招式：养脏 `_yangzang`（L3自身，6%/3，驱散1个`injury`）；调五行 `_tiaowuxing`（L6自身，7%/3，`bf_huichun`3）。被动：先养后伤 `_xianyang`（七伤类自伤概率−10%）；固本 `_guben`（治疗接受+4%→10%）。
 
 #### `sk_kongtongjian` 崆峒剑术（4 玄下 · 兵器／剑 · 阳）**（原创扩展）**
 
-- `reqs {sect rank:2, prereq:[sk_kongtongrumenjian≥4], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {parry:[1,5],hit:[1,5]}`；`setTags:[set_kongtong_qishang]`。
+- `reqs {attrs:{agi:30,wis:25},aptitude:{apSword:15},sect rank:2, prereq:[sk_kongtongrumenjian≥4], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {parry:[1,5],hit:[1,5]}`；`setTags:[set_kongtong_qishang]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - 招式：问道 `_wendao`（L1单体1.00）；盘峰 `_panfeng`（L3 `aoe_cone {angle:120,r:1,dirCount:6}` .95，6%/1；N=3、AF=.85，`.85×1.12=.952≈.95`）；崆峒落日 `_luori`（L6线n2 1.05，7%/2）。被动：守山 `_shoushan`（未移动parry+3→8）；剑护五脏 `_huwuzang`（装配时resInjury+5）。
 
 ### 4.7 华山派（倚天支，4 门）
 
 #### `sk_huashanxinfa04` 华山心法（5 玄中 · 内功 · 调和）**（原创扩展命名）**
 
-- 仅指倚天支，不证明与后世气宗心法连续。`reqs {sect rank:2, prereq:[sk_huashantunajue04≥5], hard:[sect,prereq]}`；内功 `IP=17+10+2×7+5×1.5=48.5`（`attrs {con:2,str:2,agi:2,wil:1}`；`stats {parry:5,resCC:5}`）；`meridians:[mer_daimai]`【建议值】；`setTags:[]`。
+- 仅指倚天支，不证明与后世气宗心法连续。`reqs {attrs:{bre:35,wil:30},aptitude:{apInner:20},sect rank:2, prereq:[sk_huashantunajue04≥5], hard:[sect,prereq]}`；内功 `IP=17+10+2×7+5×1.5=48.5`（`attrs {con:2,str:2,agi:2,wil:1}`；`stats {parry:5,resCC:5}`）；`meridians:[mer_daimai]`【建议值】；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - 招式：抱元 `_baoyuan`（L3自身，6%/3，`bf_wenzhong`2）；阴阳回转 `_huizhuan`（L6自身，7%/3，驱散1个`weaken`）。被动：险峰立 `_xianfeng`（高处parry+3→8）；刀剑同门 `_daojian`（倚天支刀剑修炼+10%）。
 
 #### `sk_liangyidaojia` 两仪刀架（6 玄上 · 兵器／刀 · 调和）**（原创扩展）**——**核算抽样**
 
-- `reqs {sect rank:2, prereq:[sk_huashanrumendao04≥4], hard:[sect,prereq]}`；`weaponReq blade`；`layerStats {parry:[2,6],hit:[2,4]}`；`setTags:[]`。
+- `reqs {attrs:{str:40,agi:35},aptitude:{apBlade:25},sect rank:2, prereq:[sk_huashanrumendao04≥4], hard:[sect,prereq]}`；`weaponReq blade`；`layerStats {parry:[2,6],hit:[2,4]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：阳劈 `_yangpi`（L1单体 **1.10**，6%/1；`1+.12=1.12≈1.10`）；阴扫 `_yinsao`（L3 `aoe_cone {angle:120,r:1,dirCount:6}` **1.00**，7%/1；N=3、AF=.85，`.85×(1+.12+.05)=.9945≈1.00`）；互易 `_huyi`（L7换位单体绝招，`ultimate:true`，**2.55**，8%/气势100/1200；`3×.90−.15=2.55`）。唯一绝招依 05 §3.5 在 7 重解锁。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 被动：阴阳架 `_yinyangjia`（奇数回合parry+5，偶数回合hit+5）；反仪根基 `_genji`（反两仪刀法修炼+15%）。
 
 #### `sk_yingsheshengsibo` 鹰蛇生死搏（6 玄上 · 拳脚／擒拿 · 阴）
 
-- 原著：鲜于通以一手鹰抓、一手蛇头器械施展华山绝技；七十二路等细节**（待考）**。本作以拳脚/擒拿归类，扇柄蛇头为表现道具。`reqs {sect rank:4, prereq:[sk_huashanrumenquan04≥5], hard:[sect,prereq]}`；`layerStats {seal:[2,6],crit:[2,4]}`；`setTags:[]`。
+- 原著：鲜于通以一手鹰抓、一手蛇头器械施展华山绝技；七十二路等细节**（待考）**。本作以拳脚/擒拿归类，扇柄蛇头为表现道具。`reqs {attrs:{str:40,agi:35},aptitude:{apGrapple:25},sect rank:4, prereq:[sk_huashanrumenquan04≥5], hard:[sect,prereq]}`；`layerStats {seal:[2,6],crit:[2,4]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：鹰抓 `_yingzhua`（L1单体1.10，`bf_xueweishoufeng(level:7,acupointRef:sourcePrimary)`30%）；蛇啄 `_shezhuo`（L3单体1.10，`bf_zhongdu`1层，需毒针道具）；鹰蛇并搏 `_bingbo`（L6乱击n4 1.20）；生死搏 `_shengsi`（L7绝招，`ultimate:true`，2.45，8%/气势100/1200，封经50%；`3×.85−.20×.50=2.45`）。被动：双路 `_shuanglu`（两招交替hit+10）；毒心 `_duxin`（对中毒目标Z3+5%→12%）。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 路线说明：生死搏以带脉维道转入手阳明曲池作擒拿发力端，末两段龈交 → 气海为发劲后回气（见 `design/21` §4.3.1）。
 
 #### `sk_huashanqinggong04` 华山险径身法（4 玄下 · 轻功 · 阳）**（原创扩展）**
 
-- `Q_skill=QS(4)=56`；`reqs {attrs:{agi:28}, aptitude:{apLight:25}, sect rank:2, hard:[sect]}`；`layerStats {eva:[1,5],jump:[0,1]}`；`setTags:[]`。
+- `Q_skill=QS(4)=56`；`reqs {attrs:{agi:30,bre:25}, aptitude:{apLight:15}, sect rank:2, hard:[sect]}`；`layerStats {eva:[1,5],jump:[0,1]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]`。
 - 招式：踏栈 `_tazhan`（L1自身，5%/3，`bf_jixing`2）；猿渡 `_yuandu`（L4跳至3格空位，5%/2）。被动：险径 `_xianjing`（窄道移动体力−15%）；临崖 `_linya`（邻悬崖时eva+3→8）。
 
 ### 4.8 玄冥二老与汝阳王府（3 门）
 
 #### `sk_xuanmingxinfa` 玄冥心法（6 玄上 · 内功 · 阴）**（原创扩展命名）**
 
-- 原著有玄冥神掌与阴寒内力表现，未见独立心法名。`reqs {attrs:{con:40,wil:40}, aptitude:{apInner:42}, hard:[]}`；内功 `IP=20+12+2×8+5×1.8=57`（`attrs {con:3,wil:3,agi:2}`；`stats {effHit:5,resCold:5}`）；`meridians:[mer_yinwei,mer_yinqiao]`【建议值】；`setTags:[]`。
+- 原著有玄冥神掌与阴寒内力表现，未见独立心法名。`reqs {attrs:{bre:40,wil:35}, aptitude:{apInner:25}, hard:[]}`；内功 `IP=20+12+2×8+5×1.8=57`（`attrs {con:3,wil:3,agi:2}`；`stats {effHit:5,resCold:5}`）；`meridians:[mer_yinwei,mer_yinqiao]`【建议值】；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - 招式：玄寒 `_xuanhan`（L3自身，6%/3，下一掌效果命中+15）；凝霜 `_ningshuang`（L7周身支援绝招，`ultimate:true`，8%/气势100/1200，敌人`bf_hanqi`1层；无伤害倍率）。被动：寒脉 `_hanmai`（cold抵抗+4→10）；双老 `_shuanglao`（另一装配者2格内mpRegen+0.5pp）。唯一绝招依 05 §3.5 在 7 重解锁；为玄冥神掌前置。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 凝霜配路**（原创扩展）**：带脉束气、长强催动后，以主修阴维脉的府舍承接寒劲；关元、阴交仍为末三段中的护体出口，末段曲泽收束回气，仍属体段。按 `design/21` §2.4 计票：府舍、曲泽阴 2，长强阳 1，带脉不投票，路线为阴。NR5 **只换穴**：第 3 段腰俞换府舍，保留该段风险 140 bp（高于前段 120 bp，承接换脉）；6 段各 100 CT，风险仍为 `[100,120,140,160,180,200]`，`Σrisk=900`、`flowCt=6×100=600`、`1200+600=1800≤2000`。完整步骤与镜像见 §10.4。
 
 #### `sk_jifengbajian` 疾风八剑（6 玄上 · 兵器／剑 · 调和）**（原创扩展命名）**——**核算抽样**
 
-- 依据：方东白出剑快、似有多臂的原著人物表现；无正式剑谱名。`reqs {sect rank:3, prereq:[sk_suweijianfa≥4], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {hit:[2,6],crit:[2,4]}`；`setTags:[]`。
+- 依据：方东白出剑快、似有多臂的原著人物表现；无正式剑谱名。`reqs {attrs:{agi:40,wis:35},aptitude:{apSword:25},sect rank:3, prereq:[sk_suweijianfa≥4], hard:[sect,prereq]}`；`weaponReq sword`；`layerStats {hit:[2,6],crit:[2,4]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - 招式：疾刺 `_jici`（L1单体 **.90**，5%/0/900；`1−.05−.07=.88≈.90`）；八影 `_baying`（L4乱击n8 **1.00**，7%/1；`.85×(1+.12+.05)=.995≈1.00`）；骤雨 `_zhouyu`（L7 `aoe_cone {r:2,angle:60,dirCount:6}` 绝招，`ultimate:true`，**2.40**，8%/气势100/1200；N=4、AF=.80，`3×.80=2.40`）。唯一绝招依 05 §3.5 在 7 重解锁。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 被动：八臂影 `_duobiying`（不同目标命中后下一招hit+3/层）；疾风 `_jifeng`（收招−20→−70）。
 
 #### `sk_caoyuansheyi` 草原射艺（5 玄中 · 暗器／暗器 · 阳）**（原创扩展命名）**
 
-- 依据：汝阳王府神箭八雄及蒙古军射术为人物／军旅表现；武学总名为扩展。`reqs {attrs:{agi:35}, aptitude:{apHidden:38}, sect rank:2, hard:[sect]}`；`layerStats {hit:[2,6],crit:[1,4]}`；`setTags:[]`。弓箭按裁定 C16 归 `hidden/hidden`，不占兵器携带栏。
+- 依据：汝阳王府神箭八雄及蒙古军射术为人物／军旅表现；武学总名为扩展。`reqs {attrs:{agi:35,wis:30}, aptitude:{apHidden:20}, sect rank:2, hard:[sect]}`；`layerStats {hit:[2,6],crit:[1,4]}`；`setTags:[]`。弓箭按裁定 C16 归 `hidden/hidden`，不占兵器携带栏。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - 招式：骑射 `_qishe`（L1直线首中，投射1.00，6%/1）；连珠 `_lianzhu`（L3乱击n3，投射1.05，7%/2）；落雁 `_luoyan`（L6单体投射1.20，8%/3，对高处/飞跃目标必中×1）。被动：控弦 `_kongxian`（射程+1）；逐风 `_zhufeng`（移动≥2格后射击hit+4→10）。
 
 ### 4.9 海沙派（2 门）
 
 #### `sk_yanxiaoshou` 盐枭手（5 玄中 · 拳脚／擒拿 · 阴）**（原创扩展）**——**核算抽样**
 
-- `reqs {sect rank:2, prereq:[sk_haishaduanquan≥4], hard:[sect,prereq]}`；`layerStats {seal:[1,5],eva:[1,5]}`；`setTags:[]`。
+- `reqs {attrs:{str:35,agi:30},aptitude:{apGrapple:20},sect rank:2, prereq:[sk_haishaduanquan≥4], hard:[sect,prereq]}`；`layerStats {seal:[1,5],eva:[1,5]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：扣腕 `_kouwan`（L1单体 **1.05**，6%/1，`bf_xueweishoufeng(level:7,acupointRef:sourcePrimary)`30%·1；`1+.12−.20×.30=1.06≈1.05`）；抹盐 `_moyan`（L3单体 **1.20**，7%/1，目标已有流血时追加中毒1层；`1+.12+.05+.15−.10=1.22≈1.20`）；脱身 `_tuoshen`（L6绕背 **1.00**，7%/2；`.90×1.29−.15=1.01≈1.00`）。
 - 被动：盐枭 `_yanxiao`（中毒目标eva判定收益+5）；短打 `_duanda`（贴身时parry+3→8）。
 
 #### `sk_chaoxibu` 潮汐步（4 玄下 · 轻功 · 调和）**（原创扩展）**
 
-- `Q_skill=QS(4)=56`；`reqs {attrs:{agi:26}, aptitude:{apLight:24}, sect rank:2, hard:[sect]}`；`layerStats {eva:[1,6],spd:[1,4]}`；`setTags:[]`。
+- `Q_skill=QS(4)=56`；`reqs {attrs:{agi:30,bre:25}, aptitude:{apLight:15}, sect rank:2, hard:[sect]}`；`layerStats {eva:[1,6],spd:[1,4]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]`。
 - 招式：逐潮 `_zhuchao`（L1自身，5%/3，`bf_jisu`2）；退潮 `_tuichao`（L4后撤2格，5%/2）。被动：盐滩 `_yantan`（浅水、滩涂移动消耗−20%）；潮退 `_chaotui`（后撤后eva+5一回合）。
 
 ### 4.10 巨鲸帮（2 门）
 
 #### `sk_langlifenshuici` 浪里分水刺（5 玄中 · 兵器／奇门 · 调和）**（原创扩展命名）**
 
-- 依据：巨鲸帮少帮主使用分水峨眉刺及水战情节**（待考）**。`reqs {sect rank:2, prereq:[sk_fenshuiduanci≥4], hard:[sect,prereq]}`；`weaponReq {category:exotic,kinds:[emeici]}`；`layerStats {hit:[1,5],parry:[1,5]}`；`setTags:[]`。
+- 依据：巨鲸帮少帮主使用分水峨眉刺及水战情节**（待考）**。`reqs {attrs:{wis:35,agi:30},aptitude:{apExotic:20},sect rank:2, prereq:[sk_fenshuiduanci≥4], hard:[sect,prereq]}`；`weaponReq {category:exotic,kinds:[emeici]}`；`layerStats {hit:[1,5],parry:[1,5]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:2}},{layer:9,attrs:{wis:1}}]`。
 - 招式：破浪 `_polang`（L1单体1.00）；双分水 `_shuangfenshui`（L3穿透1.00，7%/1）；浪回 `_langhui`（L6回旋每程.85，7%/2）。被动：浪里 `_langli`（水域hit+4→10）；双刺 `_shuangci`（招架后下一击crit+5）。
 
 #### `sk_fanzhougong` 翻舟功（4 玄下 · 轻功 · 阳）**（原创扩展）**——**核算抽样（支援/位移）**
 
-- `Q_skill=QS(4)=56`；`reqs {attrs:{agi:25,str:25}, aptitude:{apLight:24}, sect rank:2, hard:[sect]}`；`layerStats {eva:[1,5],jump:[0,1]}`；`setTags:[]`。
+- `Q_skill=QS(4)=56`；`reqs {attrs:{agi:30,bre:25}, aptitude:{apLight:15}, sect rank:2, hard:[sect]}`；`layerStats {eva:[1,5],jump:[0,1]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]`。
 - 招式：踏桅 `_tawei`（L1自身，5%/3，`bf_tengyue`2；支援移动）；翻舟 `_fanzhou`（L4换位1–2格，5%/2，无伤害；换位价值0.15，以一次行动为成本）；落水不惊 `_bujing`（L6自身，5%/3，驱散`bf_shiheng`并获`bf_wenzhong`2）。
 - 被动：船稳 `_chuanwen`（船面/浮台失衡抵抗+5→12）；水落 `_shuiluo`（落水体力损耗−20%）。
 
@@ -944,18 +993,21 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 
 #### `sk_sandieshenquan` 三叠神拳（6 玄上 · 拳脚／拳掌 · 阳）——**核算抽样**
 
-- 依据：掌门以“三拳”或“四拳”绰号见诸版本资料，准确字样**（待考）**；“三叠神拳”为**（原创扩展命名）**。`reqs {sect rank:2, prereq:[sk_shenquanrumen≥4], hard:[sect,prereq]}`；`layerStats {crit:[2,6],hit:[2,4]}`；`setTags:[]`。
+- 依据：掌门以“三拳”或“四拳”绰号见诸版本资料，准确字样**（待考）**；“三叠神拳”为**（原创扩展命名）**。`reqs {attrs:{str:40,con:35},aptitude:{apFist:25},sect rank:2, prereq:[sk_shenquanrumen≥4], hard:[sect,prereq]}`；`layerStats {crit:[2,6],hit:[2,4]}`；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - 招式：第一拳 `_yi`（L1单体 **1.10**，6%/1；`1+.12=1.12≈1.10`）；第二拳 `_er`（L3单体 **1.30**，7%/1，前招命中条件；`1+.12+.05+.15=1.32≈1.30`）；第三拳 `_san`（L7单体绝招，`ultimate:true`，**3.40**，8%/气势100/1200，前两招命中条件、击退1；连中前两拳为常见条件 `adj +.15`，`3.00×(1+.15)−.05=3.40`）。唯一绝招依 05 §3.5 在 7 重解锁。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - 被动：叠劲 `_diejin`（连拳每段Z3+3%，至多2层）；断连 `_duanlian`（被控制则清空，下一回合获`bf_wenzhong`1）。
 
 #### `sk_tiequanzhuang` 铁拳桩（5 玄中 · 内功 · 阳）**（原创扩展）**
 
-- `reqs {sect rank:2, prereq:[sk_shenquanrumen≥5], hard:[sect,prereq]}`；内功 `IP=17+10+2×7+5×1.5=48.5`（`attrs {con:3,str:3,wil:1}`；`stats {defOut:5,resCC:5}`）；`meridians:[mer_dumai]`【建议值】；`setTags:[]`。
+- `reqs {attrs:{bre:35,wil:30},aptitude:{apInner:20},sect rank:2, prereq:[sk_shenquanrumen≥5], hard:[sect,prereq]}`；内功 `IP=17+10+2×7+5×1.5=48.5`（`attrs {con:3,str:3,wil:1}`；`stats {defOut:5,resCC:5}`）；`meridians:[mer_dumai]`【建议值】；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - 招式：站桩 `_zhanzhuang`（L3自身，6%/3，`bf_wenzhong`3）；沉肩 `_chenjian`（L6自身，7%/3，`bf_xushi`2）。被动：拳架 `_quanjia`（拳脚伤害Z3+3%→8%）；根稳 `_genwen`（击退距离−1，最低0）。
 
 #### `sk_tieniuyaogong` 铁牛腰功（4 玄下 · 内功 · 调和）**（原创扩展）**
 
-- `reqs {sect rank:1, prereq:[sk_shenquanrumen≥4], hard:[sect,prereq]}`；内功 `IP=14+8+2×6+5×1.5=41.5`（`attrs {con:3,str:2,wil:1}`；`stats {resCC:6,defOut:4}`）；`meridians:[mer_daimai]`【建议值】，以带脉约束腰腹、稳固撞击的既有设定不变；带脉不投票，AR-18 计票为阴 0／阳 0 → 调和；`setTags:[]`。
+- `reqs {attrs:{bre:30,wil:25},aptitude:{apInner:15},sect rank:1, prereq:[sk_shenquanrumen≥4], hard:[sect,prereq]}`；内功 `IP=14+8+2×6+5×1.5=41.5`（`attrs {con:3,str:2,wil:1}`；`stats {resCC:6,defOut:4}`）；`meridians:[mer_daimai]`【建议值】，以带脉约束腰腹、稳固撞击的既有设定不变；带脉不投票，AR-18 计票为阴 0／阳 0 → 调和；`setTags:[]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - 招式：沉腰 `_chenyao`（L3自身，5%/3，`bf_jiangu`2）；扛撞 `_kangzhuang`（L6自身架势，6%/3，被近战命中反击.8倍）。被动：牛力 `_niuli`（str+2→5）；腰马 `_yaoma`（撞击伤害承受−10%→25%）。
 
 ---
@@ -966,42 +1018,42 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点 + 5 × mpRegen
 
 | ID | 名称 | 门派／来源 | 类别（品阶·nature） | 原生书界 | 核心效果（含 `setTags`） | 前置 | 出处或标注 |
 |---|---|---|---|---|---|---|---|
-| `sk_shenghuotunajue` | 圣火吐纳诀 | 明教 | 内功（3 黄上·harmony） | 倚天 | IP `10+6+2×4+5×1.2=30`；`inner.meridians:[mer_daimai]`【建议值】；带脉不投票，AR-18 计票为阴 0／阳 0；调息驱散1个`mind`；`set_mingjiao_shenghuo` | L1 | **（原创扩展）** |
-| `sk_guangmingquan` | 光明拳 | 明教 | 拳脚/拳掌（3 黄上·yang） | 倚天 | 单体正拳、低血时命中；`set_mingjiao_guangming` | L1；无武学前置 | **（原创扩展）** |
-| `sk_mingjiaoduanjian` | 明教短剑 | 明教 | 兵器/剑（2 黄中·harmony） | 倚天 | 贴身快刺、侧击；`weaponReq:sword`；`set_mingjiao_shenghuo` | L1 | **（原创扩展）** |
-| `sk_guangmingduandao` | 光明短刀 | 明教 | 兵器/刀（2 黄中·yang） | 倚天 | 横扫与断后；`weaponReq:blade`；`set_mingjiao_guangming` | L1 | **（原创扩展）** |
-| `sk_qizhenrumen` | 旗阵入门 | 明教五行旗 | 杂学/阵法（3 黄上·harmony） | 倚天 | 单旗号令、友方 `bf_jiangu`；`skills.formation:15`；`[]` | L1 | **（原创扩展）** |
-| `sk_shenghuobu` | 圣火步 | 波斯总教 | 轻功（3 黄上·harmony） | 倚天 | `Q_skill=QS(3)=45`，侧移后`bf_piaohu`；`set_mingjiao_shenghuo` | L2 | **（原创扩展）** |
-| `sk_ruijinduanfu` | 锐金短飞斧 | 明教锐金旗 | 暗器（2 黄中·yang） | 倚天 | 投射破甲、耗短斧弹药；`[]` | L2 | 原著有锐金旗专门军战与投掷兵械印象，器械细节**（待考）**；武学名**（原创扩展命名）** |
-| `sk_tianyingrumenquan` | 天鹰入门拳 | 天鹰教 | 拳脚/拳掌（2 黄中·yang） | 倚天 | 基础抓打、对持械目标命中；`[]` | L1；无武学前置 | **（原创扩展）** |
-| `sk_tianyingrumenjian` | 天鹰入门剑 | 天鹰教 | 兵器/剑（2 黄中·yang） | 倚天 | 自上而下劈刺；`weaponReq:sword`；`[]` | L1 | **（原创扩展）** |
-| `sk_tianyingduandao` | 天鹰短刀 | 天鹰教 | 兵器/刀（3 黄上·yang） | 倚天 | 船战近身、击退1；`weaponReq:blade`；`[]` | L2；天鹰入门拳3重 | **（原创扩展）** |
-| `sk_emeitunajue` | 峨眉吐纳诀 | 峨眉 | 内功（3 黄上·yin） | 倚天 | IP 30；`inner.meridians:[mer_renmai]`【建议值】；任脉投阴，AR-18 计票为阴 1／阳 0；疗伤受益；`set_yitian_emei` | L1 | **（原创扩展）** |
-| `sk_emeirumenzhang` | 峨眉入门掌 | 峨眉 | 拳脚/拳掌（2 黄中·harmony） | 倚天 | 绵掌、招架后回手；`set_yitian_emei` | L1；无武学前置 | **（原创扩展）** |
-| `sk_emeirumenjian` | 峨眉入门剑 | 峨眉 | 兵器/剑（2 黄中·harmony） | 倚天 | 守中刺、回锋；`weaponReq:sword`；`set_yitian_emei` | L1；无武学前置 | **（原创扩展）** |
-| `sk_liuxujian` | 柳絮剑法 | 峨眉 | 兵器/剑（3 黄上·yin） | 倚天 | 连绵守势、`parry`成长；`set_yitian_emei` | L2；峨眉入门剑4重 | 原著武学名与具体出处**（待考）** |
-| `sk_emeishenfa` | 峨眉身法 | 峨眉 | 轻功（3 黄上·harmony） | 倚天 | `Q_skill=QS(3)=45`，后撤后`bf_piaohu`；`set_yitian_emei` | L2 | 原著有门派身法表现，正式名称未见；**（原创扩展命名）** |
-| `sk_kunluntunajue` | 昆仑吐纳诀 | 昆仑 | 内功（3 黄上·yang） | 倚天 | IP 30；`inner.meridians:[mer_yangqiao]`【建议值】；阳跷投阳，AR-18 计票为阴 0／阳 1；抗寒；`[]` | L1 | **（原创扩展）** |
-| `sk_kunlunrumenjian` | 昆仑入门剑 | 昆仑 | 兵器/剑（3 黄上·harmony） | 倚天 | 正斜两路基础；`weaponReq:sword`；`[]` | L1；无武学前置 | **（原创扩展）** |
-| `sk_kunlunchangquan` | 昆仑长拳 | 昆仑 | 拳脚/拳掌（2 黄中·yang） | 倚天 | 高原长桥发力、击退1；`[]` | L1；无武学前置 | **（原创扩展）** |
-| `sk_kunlunshenshu` | 昆仑山术 | 昆仑 | 轻功（3 黄上·harmony） | 倚天 | `Q_skill=QS(3)=45`，雪坡体力消耗降低；`[]` | L2 | **（原创扩展）** |
-| `sk_kongtongtunajue` | 崆峒吐纳诀 | 崆峒 | 内功（3 黄上·harmony） | 倚天 | IP 30；`inner.meridians:[mer_chongmai]`【建议值】；冲脉不投票，AR-18 计票为阴 0／阳 0；`resInjury`；`set_kongtong_qishang` | L1 | **（原创扩展）** |
-| `sk_kongtongrumenquan` | 崆峒入门拳 | 崆峒 | 拳脚/拳掌（3 黄上·yang） | 倚天 | 刚柔两式、七伤链起点；`set_kongtong_qishang` | L1；无武学前置 | **（原创扩展）** |
-| `sk_kongtongrumenjian` | 崆峒入门剑 | 崆峒 | 兵器/剑（2 黄中·yang） | 倚天 | 山门守剑、招架；`weaponReq:sword`；`set_kongtong_qishang` | L1 | **（原创扩展）** |
-| `sk_huashantunajue04` | 华山吐纳诀（倚天） | 华山倚天支 | 内功（3 黄上·harmony） | 倚天 | IP 30；`inner.meridians:[mer_daimai]`【建议值】；带脉不投票，AR-18 计票为阴 0／阳 0；立足险峰；`[]` | L1 | **（原创扩展）**；后缀04区分同门跨代资料 |
-| `sk_huashanrumenquan04` | 华山入门拳（倚天） | 华山倚天支 | 拳脚/拳掌（2 黄中·yang） | 倚天 | 鹰蛇链起点；`[]` | L1；无武学前置 | **（原创扩展）** |
-| `sk_huashanrumenjian04` | 华山入门剑（倚天） | 华山倚天支 | 兵器/剑（2 黄中·harmony） | 倚天 | 险峰守中；`weaponReq:sword`；`[]` | L1；无武学前置 | **（原创扩展）**；不等同笑傲华山剑法 |
-| `sk_huashanrumendao04` | 华山入门刀（倚天） | 华山倚天支 | 兵器/刀（3 黄上·harmony） | 倚天 | 高低刀架、反两仪链起点；`weaponReq:blade`；`[]` | L1；无武学前置 | **（原创扩展）** |
-| `sk_suweijianfa` | 宿卫剑法 | 汝阳王府 | 兵器/剑（3 黄上·harmony） | 倚天 | 守门快剑、八臂链起点；`weaponReq:sword`；`[]` | L1；无武学前置 | **（原创扩展）** |
-| `sk_wangfuchangquan` | 王府长拳 | 汝阳王府 | 拳脚/拳掌（2 黄中·yang） | 倚天 | 宿卫制敌、援护友军；`[]` | L1；无武学前置 | **（原创扩展）** |
-| `sk_beidiqubu` | 北地趋步 | 汝阳王府 | 轻功（3 黄上·yang） | 倚天 | `Q_skill=QS(3)=45`，骑战下马不失衡；`[]` | L2 | **（原创扩展）** |
-| `sk_haishaduanquan` | 海沙短拳 | 海沙派 | 拳脚/拳掌（2 黄中·yin） | 倚天 | 贴身抢手、盐枭链起点；`[]` | L1；无武学前置 | **（原创扩展）** |
-| `sk_sayanfa` | 撒盐法 | 海沙派 | 暗器（3 黄上·yin） | 倚天 | 单体投盐，`bf_shimang`低概率；`[]` | L2；`skills.poi:10` | 原著有毒盐手段，武学化为**（原创扩展）** |
-| `sk_yanxiaoduanren` | 盐枭短刃 | 海沙派 | 兵器/刀（2 黄中·yin） | 倚天 | 对中毒目标命中；`weaponReq:blade`；`[]` | L1 | **（原创扩展）** |
-| `sk_fenshuiduanci` | 分水短刺 | 巨鲸帮 | 兵器/奇门（3 黄上·harmony） | 倚天 | 峨眉刺入门、破浪；`weaponReq:exotic(emeici)`；`[]` | L1；无武学前置 | 原著有人使用分水峨眉刺，套路名**（原创扩展命名）**，细节**（待考）** |
-| `sk_jujingduanquan` | 巨鲸短拳 | 巨鲸帮 | 拳脚/拳掌（2 黄中·yang） | 倚天 | 船舱短打、击退抗性；`[]` | L1；无武学前置 | **（原创扩展）** |
-| `sk_chuanbangbu` | 船帮步 | 巨鲸帮 | 轻功（2 黄中·harmony） | 倚天 | `Q_skill=QS(2)=38`，船面移动不滑；`[]` | L1 | **（原创扩展）** |
-| `sk_shenquanrumen` | 神拳入门 | 神拳门 | 拳脚/拳掌（3 黄上·yang） | 倚天 | 直拳、站桩、三叠链起点；`[]` | L1；无武学前置 | **（原创扩展）** |
+| `sk_shenghuotunajue` | 圣火吐纳诀 | 明教 | 内功（3 黄上·harmony） | 倚天 | IP `10+6+2×4+5×1.2=30`；`inner.meridians:[mer_daimai]`【建议值】；带脉不投票，AR-18 计票为阴 0／阳 0；调息驱散1个`mind`；`set_mingjiao_shenghuo` | L1 | **（原创扩展）**；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_guangmingquan` | 光明拳 | 明教 | 拳脚/拳掌（3 黄上·yang） | 倚天 | 单体正拳、低血时命中；`set_mingjiao_guangming` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:30},aptitude:{apFist:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_mingjiaoduanjian` | 明教短剑 | 明教 | 兵器/剑（2 黄中·harmony） | 倚天 | 贴身快刺、侧击；`weaponReq:sword`；`set_mingjiao_shenghuo` | L1 | **（原创扩展）**；`reqs {attrs:{agi:25},aptitude:{apSword:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_guangmingduandao` | 光明短刀 | 明教 | 兵器/刀（2 黄中·yang） | 倚天 | 横扫与断后；`weaponReq:blade`；`set_mingjiao_guangming` | L1 | **（原创扩展）**；`reqs {attrs:{str:25},aptitude:{apBlade:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_qizhenrumen` | 旗阵入门 | 明教五行旗 | 杂学/阵法（3 黄上·harmony） | 倚天 | 单旗号令、友方 `bf_jiangu`；`skills.formation:15`；`[]` | L1 | **（原创扩展）**；`reqs {attrs:{wis:30}}`；`trainingAttrs:[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]` |
+| `sk_shenghuobu` | 圣火步 | 波斯总教 | 轻功（3 黄上·harmony） | 倚天 | `Q_skill=QS(3)=45`，侧移后`bf_piaohu`；`set_mingjiao_shenghuo` | L2 | **（原创扩展）**；`reqs {attrs:{agi:30},aptitude:{apLight:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_ruijinduanfu` | 锐金短飞斧 | 明教锐金旗 | 暗器（2 黄中·yang） | 倚天 | 投射破甲、耗短斧弹药；`[]` | L2 | 原著有锐金旗专门军战与投掷兵械印象，器械细节**（待考）**；武学名**（原创扩展命名）**；`reqs {attrs:{agi:25},aptitude:{apHidden:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_tianyingrumenquan` | 天鹰入门拳 | 天鹰教 | 拳脚/拳掌（2 黄中·yang） | 倚天 | 基础抓打、对持械目标命中；`[]` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_tianyingrumenjian` | 天鹰入门剑 | 天鹰教 | 兵器/剑（2 黄中·yang） | 倚天 | 自上而下劈刺；`weaponReq:sword`；`[]` | L1 | **（原创扩展）**；`reqs {attrs:{agi:25},aptitude:{apSword:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_tianyingduandao` | 天鹰短刀 | 天鹰教 | 兵器/刀（3 黄上·yang） | 倚天 | 船战近身、击退1；`weaponReq:blade`；`[]` | L2；天鹰入门拳3重 | **（原创扩展）**；`reqs {attrs:{str:30},aptitude:{apBlade:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_emeitunajue` | 峨眉吐纳诀 | 峨眉 | 内功（3 黄上·yin） | 倚天 | IP 30；`inner.meridians:[mer_renmai]`【建议值】；任脉投阴，AR-18 计票为阴 1／阳 0；疗伤受益；`set_yitian_emei` | L1 | **（原创扩展）**；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_emeirumenzhang` | 峨眉入门掌 | 峨眉 | 拳脚/拳掌（2 黄中·harmony） | 倚天 | 绵掌、招架后回手；`set_yitian_emei` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_emeirumenjian` | 峨眉入门剑 | 峨眉 | 兵器/剑（2 黄中·harmony） | 倚天 | 守中刺、回锋；`weaponReq:sword`；`set_yitian_emei` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{agi:25},aptitude:{apSword:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_liuxujian` | 柳絮剑法 | 峨眉 | 兵器/剑（3 黄上·yin） | 倚天 | 连绵守势、`parry`成长；`set_yitian_emei` | L2；峨眉入门剑4重 | 原著武学名与具体出处**（待考）**；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_emeishenfa` | 峨眉身法 | 峨眉 | 轻功（3 黄上·harmony） | 倚天 | `Q_skill=QS(3)=45`，后撤后`bf_piaohu`；`set_yitian_emei` | L2 | 原著有门派身法表现，正式名称未见；**（原创扩展命名）**；`reqs {attrs:{agi:30},aptitude:{apLight:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_kunluntunajue` | 昆仑吐纳诀 | 昆仑 | 内功（3 黄上·yang） | 倚天 | IP 30；`inner.meridians:[mer_yangqiao]`【建议值】；阳跷投阳，AR-18 计票为阴 0／阳 1；抗寒；`[]` | L1 | **（原创扩展）**；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_kunlunrumenjian` | 昆仑入门剑 | 昆仑 | 兵器/剑（3 黄上·harmony） | 倚天 | 正斜两路基础；`weaponReq:sword`；`[]` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_kunlunchangquan` | 昆仑长拳 | 昆仑 | 拳脚/拳掌（2 黄中·yang） | 倚天 | 高原长桥发力、击退1；`[]` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_kunlunshenshu` | 昆仑山术 | 昆仑 | 轻功（3 黄上·harmony） | 倚天 | `Q_skill=QS(3)=45`，雪坡体力消耗降低；`[]` | L2 | **（原创扩展）**；`reqs {attrs:{agi:30},aptitude:{apLight:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_kongtongtunajue` | 崆峒吐纳诀 | 崆峒 | 内功（3 黄上·harmony） | 倚天 | IP 30；`inner.meridians:[mer_chongmai]`【建议值】；冲脉不投票，AR-18 计票为阴 0／阳 0；`resInjury`；`set_kongtong_qishang` | L1 | **（原创扩展）**；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_kongtongrumenquan` | 崆峒入门拳 | 崆峒 | 拳脚/拳掌（3 黄上·yang） | 倚天 | 刚柔两式、七伤链起点；`set_kongtong_qishang` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:30},aptitude:{apFist:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_kongtongrumenjian` | 崆峒入门剑 | 崆峒 | 兵器/剑（2 黄中·yang） | 倚天 | 山门守剑、招架；`weaponReq:sword`；`set_kongtong_qishang` | L1 | **（原创扩展）**；`reqs {attrs:{agi:25},aptitude:{apSword:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_huashantunajue04` | 华山吐纳诀（倚天） | 华山倚天支 | 内功（3 黄上·harmony） | 倚天 | IP 30；`inner.meridians:[mer_daimai]`【建议值】；带脉不投票，AR-18 计票为阴 0／阳 0；立足险峰；`[]` | L1 | **（原创扩展）**；后缀04区分同门跨代资料；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_huashanrumenquan04` | 华山入门拳（倚天） | 华山倚天支 | 拳脚/拳掌（2 黄中·yang） | 倚天 | 鹰蛇链起点；`[]` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_huashanrumenjian04` | 华山入门剑（倚天） | 华山倚天支 | 兵器/剑（2 黄中·harmony） | 倚天 | 险峰守中；`weaponReq:sword`；`[]` | L1；无武学前置 | **（原创扩展）**；不等同笑傲华山剑法；`reqs {attrs:{agi:25},aptitude:{apSword:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_huashanrumendao04` | 华山入门刀（倚天） | 华山倚天支 | 兵器/刀（3 黄上·harmony） | 倚天 | 高低刀架、反两仪链起点；`weaponReq:blade`；`[]` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:30},aptitude:{apBlade:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_suweijianfa` | 宿卫剑法 | 汝阳王府 | 兵器/剑（3 黄上·harmony） | 倚天 | 守门快剑、八臂链起点；`weaponReq:sword`；`[]` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_wangfuchangquan` | 王府长拳 | 汝阳王府 | 拳脚/拳掌（2 黄中·yang） | 倚天 | 宿卫制敌、援护友军；`[]` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_beidiqubu` | 北地趋步 | 汝阳王府 | 轻功（3 黄上·yang） | 倚天 | `Q_skill=QS(3)=45`，骑战下马不失衡；`[]` | L2 | **（原创扩展）**；`reqs {attrs:{agi:30},aptitude:{apLight:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_haishaduanquan` | 海沙短拳 | 海沙派 | 拳脚/拳掌（2 黄中·yin） | 倚天 | 贴身抢手、盐枭链起点；`[]` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_sayanfa` | 撒盐法 | 海沙派 | 暗器（3 黄上·yin） | 倚天 | 单体投盐，`bf_shimang`低概率；`[]` | L2；`skills.poi:10` | 原著有毒盐手段，武学化为**（原创扩展）**；`reqs {attrs:{agi:30},aptitude:{apHidden:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_yanxiaoduanren` | 盐枭短刃 | 海沙派 | 兵器/刀（2 黄中·yin） | 倚天 | 对中毒目标命中；`weaponReq:blade`；`[]` | L1 | **（原创扩展）**；`reqs {attrs:{str:25},aptitude:{apBlade:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_fenshuiduanci` | 分水短刺 | 巨鲸帮 | 兵器/奇门（3 黄上·harmony） | 倚天 | 峨眉刺入门、破浪；`weaponReq:exotic(emeici)`；`[]` | L1；无武学前置 | 原著有人使用分水峨眉刺，套路名**（原创扩展命名）**，细节**（待考）**；`reqs {attrs:{wis:30},aptitude:{apExotic:10}}`；`trainingAttrs:[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]` |
+| `sk_jujingduanquan` | 巨鲸短拳 | 巨鲸帮 | 拳脚/拳掌（2 黄中·yang） | 倚天 | 船舱短打、击退抗性；`[]` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_chuanbangbu` | 船帮步 | 巨鲸帮 | 轻功（2 黄中·harmony） | 倚天 | `Q_skill=QS(2)=38`，船面移动不滑；`[]` | L1 | **（原创扩展）**；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_shenquanrumen` | 神拳入门 | 神拳门 | 拳脚/拳掌（3 黄上·yang） | 倚天 | 直拳、站桩、三叠链起点；`[]` | L1；无武学前置 | **（原创扩展）**；`reqs {attrs:{str:30},aptitude:{apFist:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
 
 ### 5.1 黄阶整体预算核对
 
@@ -1739,6 +1791,8 @@ NR5 返修按内功／护体动作识别末三段中的任督出口后，逐节�
 | `sk_wudangjiuyang` | `set_wudang_zhenwu` |
 
 ## 12. 数据校验规则与测试用例
+
+- **属性 v2 校验**：本册 88 门正式武学均含按 `design/05` §7.3.1 重算的 `reqs.attrs`；全部显式 `ap*` 门槛按 `5×grade−5` 迁移；每门含顶层 `trainingAttrs`，层位恰为 3/6/9，单节点 1–4、单门总和 ≤12，属性只取 `str/con/bre/wis/agi/wil`。
 
 ### 12.1 构建期校验
 
