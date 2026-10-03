@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { ItemDef } from '@tianshu/data/schemas';
 import { floorDivInt } from '@tianshu/shared';
+import { calculateJudgeChances } from '../damage';
 import { createRng } from '../../rng';
 import { BASIC_MOVE, battleSeed, combatFixture } from '../../testing/combat-fixture';
 import { createBattleState, createMeditationAmbushBattleSetup } from '../encounter';
@@ -65,6 +66,88 @@ describe('shared battle action resolver', () => {
       .map((event) => event.target)).toEqual(['enemy_0']);
     expect(state.acceptedCommands).toHaveLength(1); expect(state.units[0]?.mp).toBe(390);
     expect(state.units[0]?.ct).toBe(0);
+  });
+
+  it('uses dynamic facing, height, terrain and cover in production settlement', () => {
+    const highBack = combatFixture({ gridRadius: 3 });
+    const lowFront = combatFixture({ gridRadius: 3 });
+    for (const state of [highBack, lowFront]) {
+      state.units[0]!.pos = { q: -1, r: 0 }; state.units[1]!.pos = { q: 0, r: 0 };
+      state.units[1]!.facing = state === highBack ? 0 : 3;
+      Object.assign(state.grid.cells.find(cell => cell.q === -1 && cell.r === 0)!, {
+        height: state === highBack ? 2 : 0, terrainDealtBp: state === highBack ? 500 : 0,
+      });
+      Object.assign(state.grid.cells.find(cell => cell.q === 0 && cell.r === 0)!, {
+        height: state === highBack ? 0 : 2, terrainTakenBp: state === highBack ? 500 : 0,
+      });
+    }
+    const attack = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'skill' as const, move: BASIC_MOVE.id, target: 'enemy_0' } };
+    const boosted = resolveBattleAction(highBack, attack, createRng([0, 0, 9_999, 0]));
+    const penalized = resolveBattleAction(lowFront, attack, createRng([0, 0, 9_999, 0]));
+    expect(boosted.accepted).toBe(true); expect(penalized.accepted).toBe(true);
+    expect(boosted.hpDamage).toBeGreaterThan(penalized.hpDamage);
+  });
+
+  it('applies LOS and cover hit penalties before consuming the same hit roll', () => {
+    const ranged = { ...BASIC_MOVE, id: 'mv_test_geometry_hit' as const,
+      hitMod: -15, delivery: 'ranged' as const, range: { min: 1, max: 4 } };
+    const clear = combatFixture({ gridRadius: 4, playerMoves: [ranged] });
+    const obscured = combatFixture({ gridRadius: 4, playerMoves: [ranged] });
+    for (const state of [clear, obscured]) {
+      state.units[1]!.pos = { q: 4, r: 0 }; Object.assign(state.units[1]!.stats, { eva: 80 });
+    }
+    Object.assign(obscured.grid.cells.find(cell => cell.q === 2 && cell.r === 0)!,
+      { los: 'partial', canopy: 1 });
+    Object.assign(obscured.grid.cells.find(cell => cell.q === 4 && cell.r === 0)!,
+      { cover: { vs: ['ranged'], hit: -15, damageBp: 0 } });
+    const command = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'skill' as const, move: ranged.id, target: 'enemy_0' } };
+    const hitRoll = calculateJudgeChances({ hitEff: 85, eva: 80, parry: -100, pierce: 100,
+      crit: 100, tough: 40 }).hitBp - 1;
+    const rngState = [hitRoll, 0, 0, 0] as const;
+    expect(resolveBattleAction(clear, command, createRng(rngState)))
+      .toMatchObject({ accepted: true, hpDamage: expect.any(Number) });
+    expect(clear.units[1]!.hp).toBeLessThan(clear.units[1]!.hpMax);
+    expect(resolveBattleAction(obscured, command, createRng(rngState)))
+      .toMatchObject({ accepted: true, hpDamage: 0 });
+  });
+
+  it('evaluates area target geometry independently in distance then unit order', () => {
+    const area = { ...BASIC_MOVE, id: 'mv_test_geometry_area' as const, target: 'tile' as const,
+      range: { min: 1, max: 3 }, shape: { tpl: 'aoe_disk' as const, r: 1 }, autoTargetCap: 2 };
+    const state = combatFixture({ gridRadius: 3, enemies: 2, playerMoves: [area] });
+    state.units[1]!.pos = { q: 1, r: 0 }; state.units[1]!.facing = 0;
+    state.units[2]!.pos = { q: 2, r: 0 }; state.units[2]!.facing = 3;
+    Object.assign(state.grid.cells.find(cell => cell.q === 2 && cell.r === 0)!,
+      { height: 2, terrainTakenBp: 1_000 });
+    const result = resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: area.id, target: { q: 1, r: 0 } } },
+    createRng([0, 0, 9_999, 0]));
+    expect(result.accepted).toBe(true);
+    expect(state.events.filter(event => event.t === 'battle/damageResolved').map(event => event.target))
+      .toEqual(['enemy_0', 'enemy_1']);
+    expect(state.units[1]!.hp).not.toBe(state.units[2]!.hp);
+  });
+
+  it('keeps abstract resolution independent of board geometry', () => {
+    const flat = combatFixture({ gridRadius: 3 });
+    const altered = combatFixture({ gridRadius: 3 });
+    Object.assign(altered.grid.cells.find(cell => cell.q === 0 && cell.r === 0)!, {
+      height: 3, terrainDealtBp: 1_000,
+    });
+    Object.assign(altered.grid.cells.find(cell => cell.q === 1 && cell.r === 0)!, {
+      height: 0, terrainTakenBp: 1_000,
+    });
+    const command = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'skill' as const, move: BASIC_MOVE.id, target: 'enemy_0' } };
+    const flatRng = createRng([0, 0, 9_999, 0]);
+    const alteredRng = createRng([0, 0, 9_999, 0]);
+    const flatResult = resolveBattleAction(flat, command, flatRng, { ignoreGeometry: true });
+    const alteredResult = resolveBattleAction(altered, command, alteredRng, { ignoreGeometry: true });
+    expect(alteredResult).toEqual(flatResult);
+    expect(altered.units.map(unit => unit.hp)).toEqual(flat.units.map(unit => unit.hp));
+    expect(alteredRng.snapshot()).toEqual(flatRng.snapshot());
   });
 
   it('creates penetrating Qi and an acupoint occupancy after damage settlement', () => {

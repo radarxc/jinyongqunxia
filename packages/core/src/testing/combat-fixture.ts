@@ -36,7 +36,8 @@ export function combatFixture(input: { readonly seed?: number; readonly playerMo
     state: 'active' as const, required: true }))];
   const radius = input.gridRadius ?? Math.max(2, enemies);
   const grid = hexDisk({ q: 0, r: 0 }, radius).map(({ q, r }) => ({ q, r, height: 0,
-    moveCost: 1, canopy: 0, los: 'none' as const, standable: true, narrow: false, dangerous: false }));
+    moveCost: 1, canopy: 0, los: 'none' as const, standable: true, narrow: false, dangerous: false,
+    terrainDealtBp: 0, terrainTakenBp: 0, cover: null }));
   const initialUnits = participants.map((entry, index) => ({ unitRef: entry.unitRef,
     pos: index === 0 ? { q: 0, r: 0 } : { ...HEX_DIRECTIONS[(index - 1) % 6]! },
     facing: (index === 0 ? 0 : 3) as 0 | 3 }));

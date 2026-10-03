@@ -149,20 +149,28 @@ describe('BattleSetup and encounter state', () => {
   });
 
   it('normalizes grid and placements without retaining caller references', () => {
-    const grid = [{ q: 1, r: 0, height: 0, moveCost: 1 },
+    const grid = [{ q: 1, r: 0, height: 0, moveCost: 1, terrainDealtBp: 500,
+      terrainTakenBp: -250, cover: { vs: ['ranged' as const], hit: -10, damageBp: -500,
+        sourceDirs: [3 as const] } },
       { q: 0, r: 0, height: 0, moveCost: 1 }];
     const initialUnits = [{ unitRef: 'hero', pos: { q: 0, r: 0 }, facing: 0 as const },
       { unitRef: 'enemy', pos: { q: 1, r: 0 }, facing: 3 as const }];
     const setup = createBattleSetup({ ...base, entryKind: 'story', grid, initialUnits });
-    grid[0]!.height = 7; initialUnits[0]!.pos.q = 9;
+    grid[0]!.height = 7; (grid[0]!.cover!.sourceDirs as number[])[0] = 2; initialUnits[0]!.pos.q = 9;
     expect(setup.grid.cells.map(cell => [cell.q, cell.r, cell.height]))
       .toEqual([[0, 0, 0], [1, 0, 0]]);
+    expect(setup.grid.cells[0]).toMatchObject({ terrainDealtBp: 0, terrainTakenBp: 0, cover: null });
+    expect(setup.grid.cells[1]).toMatchObject({ terrainDealtBp: 500, terrainTakenBp: -250,
+      cover: { vs: ['ranged'], hit: -10, damageBp: -500, sourceDirs: [3] } });
     expect(setup.start.initialByUnit[0]!.pos).toEqual({ q: 0, r: 0 });
   });
 
   it('normalizes participant, placement and grid permutations to identical bytes', () => {
     const grid = [
-      { q: 1, r: -1, height: 1, moveCost: 2, los: 'partial' as const },
+      { q: 1, r: -1, height: 1, moveCost: 2, los: 'partial' as const, cover: {
+        vs: ['ranged' as const, 'projectile' as const], hit: -10, damageBp: -500,
+        sourceDirs: [5 as const, 1 as const],
+      } },
       { q: 0, r: 0, height: 0, moveCost: 1 },
       { q: 1, r: 0, height: 0, moveCost: 1, dangerous: true },
     ];
@@ -177,7 +185,10 @@ describe('BattleSetup and encounter state', () => {
       const actual = createBattleSetup({ ...base, entryKind: 'story',
         participants: shuffled(participants, seed),
         initialUnits: shuffled(initialUnits, seed ^ 0x1357_9bdf),
-        grid: shuffled(grid, seed ^ 0x2468_ace0) });
+        grid: shuffled(grid, seed ^ 0x2468_ace0).map((cell) => cell.cover === undefined ? cell : {
+          ...cell, cover: { ...cell.cover, vs: shuffled(cell.cover.vs, seed),
+            sourceDirs: shuffled(cell.cover.sourceDirs, seed ^ 0xfeed) },
+        }) });
       expect(JSON.stringify(actual), `seed=${seed}`).toBe(expected);
     }
   });
@@ -203,6 +214,23 @@ describe('BattleSetup and encounter state', () => {
       { q: 0, r: 0, height: 0, moveCost: 1, standable: 1 as unknown as boolean },
       { q: 0, r: 0, height: 0, moveCost: 1, narrow: 'yes' as unknown as boolean },
       { q: 0, r: 0, height: 0, moveCost: 1, dangerous: null as unknown as boolean },
+    ];
+    for (const cell of invalidCells) {
+      expect(() => createBattleSetup({ ...base, entryKind: 'story', grid: [cell,
+        { q: 1, r: 0, height: 0, moveCost: 1 }] })).toThrow('BATTLE_SETUP_GRID');
+    }
+  });
+
+  it('rejects malformed materialized terrain and cover values at runtime', () => {
+    const invalidCells = [
+      { q: 0, r: 0, height: 0, moveCost: 1, terrainDealtBp: 0.5 },
+      { q: 0, r: 0, height: 0, moveCost: 1, terrainTakenBp: Number.NaN },
+      { q: 0, r: 0, height: 0, moveCost: 1,
+        cover: { vs: ['melee' as 'ranged'], hit: -10, damageBp: -500 } },
+      { q: 0, r: 0, height: 0, moveCost: 1,
+        cover: { vs: ['ranged' as const], hit: -10.5, damageBp: -500 } },
+      { q: 0, r: 0, height: 0, moveCost: 1,
+        cover: { vs: ['ranged' as const], hit: -10, damageBp: -500, sourceDirs: [6 as 0] } },
     ];
     for (const cell of invalidCells) {
       expect(() => createBattleSetup({ ...base, entryKind: 'story', grid: [cell,

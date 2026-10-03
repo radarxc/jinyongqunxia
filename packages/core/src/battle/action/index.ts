@@ -9,7 +9,8 @@ import {
   tickHostileMeridianEffects,
 } from '../damage';
 import { evaluateBattleEnd, finishBattle } from '../encounter';
-import { directionBetween, hasBattleLineOfSight, isBattleUnitVisible, queryMoveAt, queryPath } from '../geometry';
+import { directionBetween, hasBattleLineOfSight, isBattleUnitVisible, queryDamageGeometry,
+  queryMoveAt, queryPath } from '../geometry';
 import { createMeridianFlowRuntime, type MeridianFlowRuntime, type MeridianFlowSnapshot,
   type MeridianFlowInput, type QiGatherStatus, type MeridianFlowPreview, type QiMoveResolution } from '../meridian-flow';
 import { nextTimelineEntry, peekReadyUnitId, settleTimelineAction, type TimelineEntry } from '../timeline';
@@ -213,14 +214,15 @@ function pushBuffEvents(state: BattleState, target: BattleUnit): 'active' | 'ski
 }
 
 function settleTarget(state: BattleState, actor: BattleUnit, target: BattleUnit,
-  move: BattleMove, rng: Rng, segmentIndex: number, qi?: QiMoveResolution): { damage: number;
+  move: BattleMove, rng: Rng, segmentIndex: number, useGeometry: boolean,
+  qi?: QiMoveResolution): { damage: number;
     critical: boolean; critRollBp: number | null; critChanceBp: number } {
   if (target.state === 'hidden') target.state = 'active';
-  if (move.delivery === 'melee' && hasGuardStance(target.buffs)) {
+  if (useGeometry && move.delivery === 'melee' && hasGuardStance(target.buffs)) {
     target.facing = directionBetween(target.pos, actor.pos, target.facing);
   }
-  const guardedMelee = move.delivery === 'melee' && hasGuardStance(target.buffs);
-  const attackDirection = guardedMelee ? 'front' : move.direction ?? 'front';
+  const geometry = useGeometry ? queryDamageGeometry(state, actor, target, move) : null;
+  const attackDirection = geometry?.direction ?? 'front';
   const defenderMpAtHit = target.mp;
   const guard = target.zoneGuards[move.hitZone];
   const zoneFlowBp = guard.carryCapacity === 0 ? 0
@@ -229,15 +231,18 @@ function settleTarget(state: BattleState, actor: BattleUnit, target: BattleUnit,
   const defenderStats = defenseBonusBp === 0 ? target.stats : { ...target.stats,
     defOut: mulBpFloor(target.stats.defOut, BP_SCALE + defenseBonusBp),
     defIn: mulBpFloor(target.stats.defIn, BP_SCALE + defenseBonusBp) };
-  const result = resolveDamage({ judge: { hitEff: actor.stats.hit + (move.hitMod ?? 0),
-    eva: target.stats.eva, parry: target.stats.parry + (hasGuardStance(target.buffs) ? 20 : 0),
+  const result = resolveDamage({ judge: { hitEff: actor.stats.hit + (move.hitMod ?? 0)
+    + (geometry?.hitAdd ?? 0),
+    eva: target.stats.eva, evadeRatingDelta: geometry?.evadeRatingDelta ?? 0,
+    parry: target.stats.parry + (hasGuardStance(target.buffs) ? 20 : 0),
     pierce: actor.stats.pierce,
     crit: actor.stats.crit, tough: target.stats.tough, direction: attackDirection },
   formula: { attacker: actor.stats, defender: defenderStats, wInBp: move.wInBp,
     actualPower: { n: move.powerBp, d: 10_000 }, referencePower: { n: move.referencePowerBp, d: 10_000 },
     pierceOutBp: move.pierceOutBp ?? 0, pierceInBp: move.pierceInBp ?? 0,
     dmgUpBp: move.dmgUpBp ?? 0, dmgDownBp: guardDamageDownBp(target.buffs),
-    direction: attackDirection,
+    direction: attackDirection, heightAddBp: geometry?.heightAddBp ?? 0,
+    terrainAddBp: geometry?.terrainAddBp ?? 0,
     zoneResistanceBp: calculateZoneResistanceBp(move.hitZone, target.stats.strength,
       target.stats.tough, zoneFlowBp), meridianAttackBp: qi?.meridianAttackBp
         ?? move.meridianAttackBp ?? 10_000,
@@ -510,7 +515,7 @@ function emitFullCycleCrit(state: BattleState, actor: BattleUnit, move: BattleMo
 }
 
 function performAction(state: BattleState, validated: ValidatedPlan, rng: Rng,
-  moved: boolean): { hpDamage: number; recovery: number } {
+  moved: boolean, useGeometry: boolean): { hpDamage: number; recovery: number } {
   const { actor, action, move, targets } = validated;
   if (moved) incrementStat(state.rewardStats.movementActions, actor.id);
   if (action.t === 'wait') { actor.waitStreak += 1; return { hpDamage: 0,
@@ -540,7 +545,7 @@ function performAction(state: BattleState, validated: ValidatedPlan, rng: Rng,
   }
   let hpDamage = 0; let criticalJudge: ReturnType<typeof settleTarget> | null = null;
   for (let index = 0; index < targets.length; index += 1) {
-    const settled = settleTarget(state, actor, targets[index]!, move, rng, index, route?.qi);
+    const settled = settleTarget(state, actor, targets[index]!, move, rng, index, useGeometry, route?.qi);
     if (settled.critical && criticalJudge === null) criticalJudge = settled;
     hpDamage += settled.damage;
   }
@@ -632,13 +637,16 @@ export function resolveBattleAction(
     if (start === 'active' && moved) {
       actor.facing = directionBetween(path[path.length - 2]!, destination, actor.facing);
     }
-    const performed = start === 'active' ? performAction(candidate, validated, transactionalRng, moved)
+    const useGeometry = options.ignoreGeometry !== true;
+    const performed = start === 'active'
+      ? performAction(candidate, validated, transactionalRng, moved, useGeometry)
       : { hpDamage: 0, recovery: 1_000 };
-    if (start === 'active' && targetPos !== null) {
+    if (useGeometry && start === 'active' && targetPos !== null) {
       actor.facing = directionBetween(actor.pos, targetPos, actor.facing);
     }
-    if (start === 'active' && planCommand.facing !== undefined) actor.facing = planCommand.facing;
-    else if (start === 'active') faceNearestEnemy(candidate, actor);
+    if (useGeometry && start === 'active' && planCommand.facing !== undefined) {
+      actor.facing = planCommand.facing;
+    } else if (useGeometry && start === 'active') faceNearestEnemy(candidate, actor);
     completeAction(candidate, actor, performed.recovery, command,
       options.deferEndCheck !== true);
     commitCandidate(state, candidate);

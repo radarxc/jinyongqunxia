@@ -23,10 +23,17 @@ export interface BattleParticipant {
 }
 export interface BattleInitialEffect { readonly unitRef: string; readonly buffRef: `bf_${string}`;
   readonly stacks: number; readonly remainingOwnActions: number; readonly cause: string }
+export interface BattleCover {
+  readonly vs: readonly Extract<HexDelivery, 'projectile' | 'ranged'>[];
+  readonly hit: number; readonly damageBp: number;
+  /** World directions from the target toward sources for which directional cover applies. */
+  readonly sourceDirs?: readonly HexDir[];
+}
 export interface BattleGridCell extends HexCoord {
   readonly height: number; readonly moveCost: number; readonly canopy: number;
   readonly los: HexLosKind; readonly standable: boolean; readonly narrow: boolean;
-  readonly dangerous: boolean;
+  readonly dangerous: boolean; readonly terrainDealtBp: number; readonly terrainTakenBp: number;
+  readonly cover: BattleCover | null;
 }
 export interface BattleInitialUnit {
   readonly unitRef: string; readonly ct: number; readonly rage: number;
