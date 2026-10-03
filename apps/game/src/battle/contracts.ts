@@ -1,5 +1,5 @@
 import type {
-  BattleCommand, BattleEvent, BattleSetup, BattleUnitSeed, HexAim, HexCoord,
+  AttackDirection, BattleCommand, BattleEvent, BattleSetup, BattleUnitSeed, HexAim, HexCoord,
   HexPrimitiveShape, RngState, BattleResult, SideId, BattleRewards as CoreBattleRewards,
 } from '@tianshu/core';
 import type { BattleCell, BattleMarker } from '@tianshu/render/battle';
@@ -43,7 +43,10 @@ export interface TimelineView { readonly unitId: string; readonly atTick: number
 export interface AreaPreview {
   readonly requestId: number; readonly revision: number; readonly actor: string; readonly moveId: string;
   readonly anchor: HexCoord; readonly aim: HexAim; readonly cells: readonly HexCoord[];
-  readonly targetIds: readonly string[]; readonly valid: boolean; readonly reason: string;
+  readonly targetIds: readonly string[]; readonly targetGeometry: readonly { readonly targetId: string;
+    readonly direction: AttackDirection; readonly heightDelta: number; readonly heightHit: number;
+    readonly hitAdd: number; readonly heightAddBp: number; readonly terrainAddBp: number;
+    readonly positionBp: number }[]; readonly valid: boolean; readonly reason: string;
 }
 export interface BattleRewards {
   readonly drops: CoreBattleRewards['drops'];

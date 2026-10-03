@@ -80,14 +80,22 @@ describe('battle replay protocol', () => {
   it('replays the same seed and accepted commands to the golden SHA-256', () => {
     const first = replay(accepted); const second = replay(accepted);
     expect(second.input).toBe(first.input); expect(second.hash).toBe(first.hash);
-    expect(first.hash).toBe('e3e3349441555c4d15ab3d4b043db82e82284ea707af72ff77550c14a97b26e3');
+    expect(first.hash).toBe('1b94019028cfc9c71c7caac3975e623c0f46f01e07bfe4323c697843f3a7a850');
     expect(first.run.session.battle.acceptedCommands).toEqual(accepted);
   });
 
-  it('explains the golden change solely by the newly serialized battle fields', () => {
+  it('explains the geometry golden change and still restores the ENG-16a baseline', () => {
     const current = replay(accepted); const previous = structuredClone(current.parts);
     const battle = previous.session as unknown as { battle: Record<string, unknown> };
     const setup = battle.battle['setup'] as Record<string, unknown>;
+    const setupGrid = setup['grid'] as { cells: Array<Record<string, unknown>> };
+    const setupCells = setupGrid.cells;
+    const stateCells = (battle.battle['grid'] as { cells: Array<Record<string, unknown>> }).cells;
+    for (const cell of [...setupCells, ...stateCells]) {
+      for (const key of ['terrainDealtBp', 'terrainTakenBp', 'cover']) delete cell[key];
+    }
+    expect(hashBattleReplay(previous, sha256))
+      .toBe('e3e3349441555c4d15ab3d4b043db82e82284ea707af72ff77550c14a97b26e3');
     for (const key of ['meridianInputs', 'inventory', 'itemDefs', 'rewards']) delete setup[key];
     for (const key of ['meridianByUnit', 'inventory', 'rewardStats']) delete battle.battle[key];
     for (const unit of battle.battle['units'] as Array<Record<string, unknown>>) {

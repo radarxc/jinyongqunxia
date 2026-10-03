@@ -2,8 +2,11 @@ import {
   HEX_DIRECTIONS, findHexPath, findReachableHexes, hexDistance, hexKey,
   lineOfSight, qinggongTier, type HexAim, type HexCoord, type HexDelivery, type HexDir, type HexPathQuery,
 } from '../../hex';
+import { clampInt, mulDivFloor } from '@tianshu/shared';
+import { hasGuardStance } from '../../buff';
 import { resolveAreaCells } from '../formation';
-import type { BattleMove, BattleState, BattleUnit } from '../types';
+import type { AttackDirection } from '../damage';
+import type { BattleGridCell, BattleMove, BattleState, BattleUnit } from '../types';
 
 export type BattleGeometryReject = 'PATH_BLOCKED' | 'OUT_OF_RANGE' | 'NO_LOS' | 'INVALID_TARGET';
 export interface BattleMoveQuery {
@@ -68,13 +71,68 @@ function cellAt(state: BattleState, pos: HexCoord) {
   return state.grid.cells.find((cell) => cell.q === pos.q && cell.r === pos.r);
 }
 
+function battleLineOfSight(state: BattleState, actor: BattleUnit,
+  target: HexCoord, delivery: HexDelivery) {
+  const from = cellAt(state, actor.pos); const to = cellAt(state, target);
+  if (from === undefined || to === undefined) return null;
+  return lineOfSight({ from: { ...from, occupied: true }, to: { ...to, occupied: true },
+    delivery, cells: losCells(state) });
+}
+
 export function hasBattleLineOfSight(state: BattleState, actor: BattleUnit,
   target: HexCoord, delivery: HexDelivery): boolean {
-  const from = cellAt(state, actor.pos); const to = cellAt(state, target);
-  if (from === undefined || to === undefined) return false;
-  const los = lineOfSight({ from: { ...from, occupied: true }, to: { ...to, occupied: true },
-    delivery, cells: losCells(state) });
-  return los.ok && los.partial <= 1;
+  const los = battleLineOfSight(state, actor, target, delivery);
+  return los !== null && los.ok && los.partial <= 1;
+}
+
+const DIRECTION_BP: Readonly<Record<AttackDirection, number>> =
+  { front: 10_000, side: 11_000, back: 13_000 };
+
+function attackDirection(sourceDirection: HexDir, targetFacing: HexDir): AttackDirection {
+  const delta = (sourceDirection - targetFacing + 6) % 6;
+  if (delta === 3) return 'back';
+  return delta === 2 || delta === 4 ? 'side' : 'front';
+}
+
+function coverFor(cell: BattleGridCell, delivery: HexDelivery, sourceDirection: HexDir) {
+  const cover = cell.cover;
+  return cover !== null && cover.vs.includes(delivery as 'projectile' | 'ranged')
+    && (cover.sourceDirs === undefined || cover.sourceDirs.includes(sourceDirection)) ? cover : null;
+}
+
+export interface BattleDamageGeometry {
+  readonly sourceDirection: HexDir; readonly direction: AttackDirection; readonly heightDelta: number;
+  readonly heightHit: number; readonly heightAddBp: number; readonly coverHit: number;
+  readonly coverDamageBp: number; readonly losHitPenalty: number; readonly hitAdd: number;
+  readonly terrainAddBp: number; readonly positionBp: number; readonly evadeRatingDelta: number;
+  readonly lineOfSight: NonNullable<ReturnType<typeof battleLineOfSight>>;
+}
+
+/** Pure damage geometry shared by settlement, prediction and presentation. */
+export function queryDamageGeometry(state: BattleState, actor: BattleUnit, target: BattleUnit,
+  move: BattleMove): BattleDamageGeometry {
+  const attackerCell = cellAt(state, actor.pos); const targetCell = cellAt(state, target.pos);
+  if (attackerCell === undefined || targetCell === undefined) throw new RangeError('INVALID_TARGET');
+  const sourceDirection = directionBetween(target.pos, actor.pos, target.facing);
+  const direction = move.delivery === 'melee' && hasGuardStance(target.buffs)
+    ? 'front' : attackDirection(sourceDirection, target.facing);
+  const heightDelta = attackerCell.height - targetCell.height;
+  const heightHit = clampInt(heightDelta * 4, -12, 12);
+  const heightAddBp = move.delivery === 'melee'
+    ? clampInt(heightDelta * 500, -1_000, 1_000)
+    : move.delivery === 'ranged' || move.delivery === 'projectile'
+      ? clampInt(heightDelta * 400, -1_200, 1_600) : 0;
+  const cover = coverFor(targetCell, move.delivery, sourceDirection);
+  const line = battleLineOfSight(state, actor, target.pos, move.delivery);
+  if (line === null) throw new RangeError('INVALID_TARGET');
+  const coverHit = cover?.hit ?? 0; const coverDamageBp = cover?.damageBp ?? 0;
+  const terrainAddBp = clampInt(attackerCell.terrainDealtBp + targetCell.terrainTakenBp
+    + coverDamageBp, -3_000, 3_000);
+  const positionBp = clampInt(mulDivFloor(DIRECTION_BP[direction],
+    (10_000 + heightAddBp) * (10_000 + terrainAddBp), 100_000_000), 5_000, 20_000);
+  return { sourceDirection, direction, heightDelta, heightHit, heightAddBp, coverHit, coverDamageBp,
+    losHitPenalty: line.hitPenalty, hitAdd: heightHit + coverHit + line.hitPenalty,
+    terrainAddBp, positionBp, evadeRatingDelta: 0, lineOfSight: line };
 }
 
 function unitPosAt(unit: BattleUnit, actor: BattleUnit, from: HexCoord): HexCoord {

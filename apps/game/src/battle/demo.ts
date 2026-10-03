@@ -8,7 +8,8 @@ export function createBattleDemo(source: 'world' | 'town'): BattleLaunch {
   const cells = hexDisk({ q: 0, r: 0 }, 3).map(cell => ({ ...cell, height: 0,
     terrain: 'tr_pingdi', label: '平地', color: 0xc8b994 }));
   const grid = cells.map(({ q, r, height }) => ({ q, r, height, moveCost: 1, canopy: 0,
-    los: 'none' as const, standable: true, narrow: false, dangerous: false }));
+    los: 'none' as const, standable: true, narrow: false, dangerous: false,
+    terrainDealtBp: 0, terrainTakenBp: 0, cover: null }));
   const meridianInputs: MeridianFlowInput[] = ['hero', 'enemy_0'].map((unitId) => ({
     unitId, productionPerTick: 8, qiSpeedBp: 10_000, practiceBp: 8_000,
     nodes: [

@@ -51,6 +51,9 @@ export interface BattleSetupInput {
     readonly q: number; readonly r: number; readonly height: number; readonly moveCost: number;
     readonly canopy?: number; readonly los?: 'none' | 'partial' | 'full';
     readonly standable?: boolean; readonly narrow?: boolean; readonly dangerous?: boolean;
+    readonly terrainDealtBp?: number; readonly terrainTakenBp?: number;
+    readonly cover?: { readonly vs: readonly ('projectile' | 'ranged')[]; readonly hit: number;
+      readonly damageBp: number; readonly sourceDirs?: readonly HexDir[] } | null;
   }[];
   readonly initialUnits?: readonly { readonly unitRef: string; readonly pos: HexCoord; readonly facing: HexDir }[];
 }
@@ -62,6 +65,7 @@ function orderedParticipants(input: readonly BattleParticipantInput[]): BattlePa
 }
 
 function validGridCell(cell: NonNullable<BattleSetupInput['grid']>[number]): boolean {
+  const cover = cell.cover;
   return Number.isSafeInteger(cell.q) && Number.isSafeInteger(cell.r)
     && Number.isSafeInteger(cell.height) && cell.height >= 0 && cell.height <= 10
     && Number.isSafeInteger(cell.moveCost) && cell.moveCost >= 1
@@ -69,7 +73,16 @@ function validGridCell(cell: NonNullable<BattleSetupInput['grid']>[number]): boo
     && (cell.los === undefined || cell.los === 'none' || cell.los === 'partial' || cell.los === 'full')
     && (cell.standable === undefined || typeof cell.standable === 'boolean')
     && (cell.narrow === undefined || typeof cell.narrow === 'boolean')
-    && (cell.dangerous === undefined || typeof cell.dangerous === 'boolean');
+    && (cell.dangerous === undefined || typeof cell.dangerous === 'boolean')
+    && (cell.terrainDealtBp === undefined || Number.isSafeInteger(cell.terrainDealtBp))
+    && (cell.terrainTakenBp === undefined || Number.isSafeInteger(cell.terrainTakenBp))
+    && (cover === undefined || cover === null || Array.isArray(cover.vs)
+      && cover.vs.length > 0 && new Set(cover.vs).size === cover.vs.length
+      && cover.vs.every((delivery) => delivery === 'projectile' || delivery === 'ranged')
+      && Number.isSafeInteger(cover.hit) && Number.isSafeInteger(cover.damageBp)
+      && (cover.sourceDirs === undefined || Array.isArray(cover.sourceDirs)
+        && cover.sourceDirs.length > 0 && new Set(cover.sourceDirs).size === cover.sourceDirs.length
+        && cover.sourceDirs.every(validFacing)));
 }
 
 function validFacing(value: number): value is HexDir {
@@ -125,13 +138,17 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
   }
   const defaultGrid: BattleGridCell[] = Array.from({ length: Math.max(2, participants.length) }, (_, q) =>
     ({ q, r: 0, height: 0, moveCost: 1, canopy: 0, los: 'none', standable: true,
-      narrow: false, dangerous: false }));
+      narrow: false, dangerous: false, terrainDealtBp: 0, terrainTakenBp: 0, cover: null }));
   const inputGrid = input.grid ?? defaultGrid;
   if (inputGrid.some((cell) => !validGridCell(cell))) throw new RangeError('BATTLE_SETUP_GRID');
   const grid = [...inputGrid].sort((left, right) => left.r - right.r || left.q - right.q)
     .map((cell) => ({ ...cell, canopy: cell.canopy ?? 0, los: cell.los ?? 'none' as const,
       standable: cell.standable ?? true, narrow: cell.narrow ?? false,
-      dangerous: cell.dangerous ?? false }));
+      dangerous: cell.dangerous ?? false, terrainDealtBp: cell.terrainDealtBp ?? 0,
+      terrainTakenBp: cell.terrainTakenBp ?? 0, cover: cell.cover === undefined || cell.cover === null
+        ? null : { ...cell.cover, vs: [...cell.cover.vs].sort(compareCodePoints),
+          ...(cell.cover.sourceDirs === undefined ? {}
+            : { sourceDirs: [...cell.cover.sourceDirs].sort((left, right) => left - right) }) } }));
   const qValues = grid.map((cell) => cell.q); const rValues = grid.map((cell) => cell.r);
   if (grid.length === 0 || grid.length > 400 || grid.some((cell) => !validGridCell(cell))
     || Math.max(...qValues) - Math.min(...qValues) > 20

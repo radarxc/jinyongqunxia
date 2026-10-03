@@ -8,6 +8,7 @@ function geometryWorkload() {
   const cells = Array.from({ length: 20 * 20 }, (_, index) => ({
     q: index % 20, r: (index / 20) | 0, height: 0, moveCost: 1, canopy: 0,
     los: 'none' as const, standable: true, narrow: false, dangerous: index % 29 === 0,
+    terrainDealtBp: 0, terrainTakenBp: 0, cover: null,
   }));
   const positions = [{ q: 9, r: 9 }, ...cells.filter((cell) =>
     !(cell.q === 9 && cell.r === 9) && cell.q % 3 === 0 && cell.r % 3 === 0).slice(0, 23)];

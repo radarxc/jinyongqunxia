@@ -117,7 +117,8 @@
 - 奖励：`computeBattleRewards()` 纯计算武学使用、移动训练、周天和 setup 掉落；仅随机掉落池
   消费独立 `loot` 流。`emitBattleRewards()` 幂等发 `battle/rewards`，core 不写世界状态。
 - 查询：`queryReachable()` / `queryPath()` / `queryMoveAt()` / `queryLegalTargets()` 是只读棋盘规则入口，
-  `isBattleUnitVisible()` 统一 LOS、遮蔽与隐匿可见性；
+  `isBattleUnitVisible()` 统一 LOS、遮蔽与隐匿可见性；`queryDamageGeometry()` 是结算、预测与展示
+  共用的方位 / 高差 / 地形 / 遮蔽 / LOS 纯查询，render 不得重算；
   `resolveAreaCells()` 返回六角范围格，`matchFormation()` 校验六向阵形。可达集、路径与 open set 不入状态。
 - 自动：棋盘 `chooseAutoCommand()` 通过上述查询在射程外先接近；无站位
   `simulateAbstractBattle()` 走独立抽象候选，不读取坐标、LOS、ZOC 或高差；`noAuto` 会拒绝。

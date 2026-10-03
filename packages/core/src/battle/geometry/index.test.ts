@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { createRng, RNG_STREAMS, seedStream } from '../../rng';
 import { lineOfSight } from '../../hex';
 import { BASIC_MOVE, combatFixture } from '../../testing/combat-fixture';
-import { directionBetween, queryLegalTargets, queryMoveAt, queryPath, queryReachable } from './index';
+import { directionBetween, queryDamageGeometry, queryLegalTargets, queryMoveAt, queryPath,
+  queryReachable } from './index';
 
 describe('battle geometry queries', () => {
   it('does not mutate battle state while querying reachability, path and targets', () => {
@@ -28,7 +29,8 @@ describe('battle geometry queries', () => {
     const state = combatFixture({ gridRadius: 4, playerMoves: [move] });
     const cells = state.grid.cells as Array<(typeof state.grid.cells)[number]>;
     for (let q = 5; q <= 13; q += 1) cells.push({ q, r: 0, height: 0, moveCost: 1, canopy: 0,
-      los: 'none', standable: true, narrow: false, dangerous: false });
+      los: 'none', standable: true, narrow: false, dangerous: false, terrainDealtBp: 0,
+      terrainTakenBp: 0, cover: null });
     state.units[1]!.pos = { q: 13, r: 0 };
     expect(queryMoveAt(state, 'hero', move.id, 'enemy_0').reason).toBe('NO_LOS');
   });
@@ -45,6 +47,108 @@ describe('battle geometry queries', () => {
     expect(directionBetween({ q: 0, r: 0 }, { q: 2, r: -1 }, 0)).toBe(0);
     expect(directionBetween({ q: 0, r: 0 }, { q: 2, r: -1 }, 1)).toBe(1);
     expect(directionBetween({ q: 0, r: 0 }, { q: 2, r: -1 }, 3)).toBe(1);
+  });
+
+  it('evaluates all 21 facing and melee-height vectors from target to source', () => {
+    const positions = { front: { q: 1, r: 0 }, side: { q: 0, r: -1 },
+      back: { q: -1, r: 0 } } as const;
+    const expected = [
+      ['front', [9_000, 9_000, 9_500, 10_000, 10_500, 11_000, 11_000]],
+      ['side', [9_900, 9_900, 10_450, 11_000, 11_550, 12_100, 12_100]],
+      ['back', [11_700, 11_700, 12_350, 13_000, 13_650, 14_300, 14_300]],
+    ] as const;
+    const heightHit = [-12, -8, -4, 0, 4, 8, 12];
+    const heightAddBp = [-1_000, -1_000, -500, 0, 500, 1_000, 1_000];
+    let vectors = 0;
+    for (const [direction, positionBp] of expected) {
+      for (let index = 0; index < 7; index += 1) {
+        const delta = index - 3;
+        const state = combatFixture({ gridRadius: 4 });
+        const actor = state.units[0]!; const target = state.units[1]!;
+        actor.pos = positions[direction]; target.pos = { q: 0, r: 0 }; target.facing = 0;
+        Object.assign(state.grid.cells.find(cell => cell.q === actor.pos.q && cell.r === actor.pos.r)!,
+          { height: 3 + delta });
+        Object.assign(state.grid.cells.find(cell => cell.q === 0 && cell.r === 0)!, { height: 3 });
+        expect(queryDamageGeometry(state, actor, target, BASIC_MOVE)).toMatchObject({
+          direction, heightDelta: delta, heightHit: heightHit[index],
+          hitAdd: heightHit[index], heightAddBp: heightAddBp[index], positionBp: positionBp[index],
+        });
+        vectors += 1;
+      }
+    }
+    expect(vectors).toBe(21);
+  });
+
+  it('combines directional cover, canopy LOS and materialized terrain per target', () => {
+    const move = { ...BASIC_MOVE, direction: 'front' as const, delivery: 'ranged' as const,
+      range: { min: 1, max: 4 } };
+    const state = combatFixture({ gridRadius: 4, playerMoves: [move] });
+    const actor = state.units[0]!; const target = state.units[1]!; target.pos = { q: 4, r: 0 };
+    Object.assign(state.grid.cells.find(cell => cell.q === 0 && cell.r === 0)!,
+      { terrainDealtBp: 700 });
+    Object.assign(state.grid.cells.find(cell => cell.q === 4 && cell.r === 0)!,
+      { terrainTakenBp: -200, cover: { vs: ['ranged'], hit: -15, damageBp: -1_000,
+        sourceDirs: [3] } });
+    Object.assign(state.grid.cells.find(cell => cell.q === 2 && cell.r === 0)!,
+      { los: 'partial', canopy: 1 });
+    const before = JSON.stringify(state);
+    expect(queryDamageGeometry(state, actor, target, move)).toMatchObject({
+      sourceDirection: 3, direction: 'front', coverHit: -15, coverDamageBp: -1_000,
+      losHitPenalty: -10, hitAdd: -25, terrainAddBp: -500, positionBp: 9_500,
+      evadeRatingDelta: 0, lineOfSight: { ok: true, partial: 1 },
+    });
+    expect(JSON.stringify(state)).toBe(before);
+    const permuted = structuredClone(state);
+    (permuted.grid as { cells: typeof permuted.grid.cells }).cells = [...permuted.grid.cells].reverse();
+    expect(queryDamageGeometry(permuted, permuted.units[0]!, permuted.units[1]!, move))
+      .toEqual(queryDamageGeometry(state, actor, target, move));
+  });
+
+  it('uses ranged height limits, cover delivery and directional exposure exactly once', () => {
+    const ranged = { ...BASIC_MOVE, delivery: 'ranged' as const, range: { min: 1, max: 4 } };
+    const projectile = { ...ranged, delivery: 'projectile' as const };
+    const sonic = { ...ranged, delivery: 'sonic' as const };
+    const state = combatFixture({ gridRadius: 4, playerMoves: [ranged, projectile, sonic] });
+    const actor = state.units[0]!; const target = state.units[1]!; target.pos = { q: 4, r: 0 };
+    Object.assign(state.grid.cells.find(cell => cell.q === 0 && cell.r === 0)!,
+      { height: 4, terrainDealtBp: 1_500 });
+    Object.assign(state.grid.cells.find(cell => cell.q === 4 && cell.r === 0)!, {
+      height: 0, terrainTakenBp: 1_000,
+      cover: { vs: ['projectile'], hit: -15, damageBp: -1_000, sourceDirs: [3] },
+    });
+    expect(queryDamageGeometry(state, actor, target, ranged)).toMatchObject({
+      heightHit: 12, heightAddBp: 1_600, coverHit: 0, coverDamageBp: 0, terrainAddBp: 2_500,
+    });
+    expect(queryDamageGeometry(state, actor, target, sonic)).toMatchObject({
+      heightHit: 12, heightAddBp: 0, coverHit: 0, coverDamageBp: 0, terrainAddBp: 2_500,
+    });
+    expect(queryDamageGeometry(state, actor, target, projectile)).toMatchObject({
+      sourceDirection: 3, coverHit: -15, coverDamageBp: -1_000, terrainAddBp: 1_500,
+    });
+    Object.assign(state.grid.cells.find(cell => cell.q === 4 && cell.r === 0)!, {
+      cover: { vs: ['projectile'], hit: -15, damageBp: -1_000, sourceDirs: [2] },
+    });
+    expect(queryDamageGeometry(state, actor, target, projectile)).toMatchObject({
+      sourceDirection: 3, coverHit: 0, coverDamageBp: 0, terrainAddBp: 2_500,
+    });
+  });
+
+  it('derives position from cells instead of the legacy static move direction', () => {
+    const state = combatFixture(); const actor = state.units[0]!; const target = state.units[1]!;
+    actor.pos = { q: 1, r: 0 }; target.pos = { q: 0, r: 0 }; target.facing = 0;
+    expect(queryDamageGeometry(state, actor, target, BASIC_MOVE).direction).toBe('front');
+    expect(queryDamageGeometry(state, actor, target, { ...BASIC_MOVE, direction: 'back' }).direction)
+      .toBe('front');
+  });
+
+  it('projects melee guard turning as a front attack without mutating the target', () => {
+    const state = combatFixture(); const actor = state.units[0]!; const target = state.units[1]!;
+    actor.pos = { q: -1, r: 0 }; target.pos = { q: 0, r: 0 }; target.facing = 0;
+    target.buffs.push({ iid: 1, def: 'bf_jiangu', holder: target.id, source: target.id,
+      grade: 1, stacks: 1, turnsLeft: 1, fresh: false });
+    const before = structuredClone(target);
+    expect(queryDamageGeometry(state, actor, target, BASIC_MOVE).direction).toBe('front');
+    expect(target).toEqual(before);
   });
 
   it('implements wall, unit and delivery LOS rules with integer comparisons', () => {

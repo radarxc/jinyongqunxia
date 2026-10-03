@@ -1,5 +1,5 @@
 import {
-  nextTimelineEntry, peekReadyUnitId, queryMoveAt, settleTimelineAction,
+  nextTimelineEntry, peekReadyUnitId, queryDamageGeometry, queryMoveAt, settleTimelineAction,
   type BattleState, type HexAim, type HexCoord, type TimelineState,
 } from '@tianshu/core';
 import type { AreaPreview, BattleLaunch, TimelineView } from './contracts';
@@ -42,5 +42,12 @@ export function queryArea(state: BattleState, launch: BattleLaunch, input: {
     : queryMoveAt(state, actor.id, move.id, unitAtAnchor.id, { aim: input.aim });
   const cells = byUnit.cells; const targets = byUnit.targets;
   if (!reason && byUnit.reason !== null) reason = byUnit.reason;
-  return { ...input, cells, targetIds: targets.map(unit => unit.id), valid: reason === '', reason };
+  const targetGeometry = targets.map(target => {
+    const geometry = queryDamageGeometry(state, actor, target, move);
+    return { targetId: target.id, direction: geometry.direction, heightDelta: geometry.heightDelta,
+      heightHit: geometry.heightHit, hitAdd: geometry.hitAdd, heightAddBp: geometry.heightAddBp,
+      terrainAddBp: geometry.terrainAddBp, positionBp: geometry.positionBp };
+  });
+  return { ...input, cells, targetIds: targets.map(unit => unit.id), targetGeometry,
+    valid: reason === '', reason };
 }

@@ -15,7 +15,10 @@ describe('battle UI queries', () => {
     expect(preview.cells).toEqual(resolveAreaCells(launch.moves[0]!.shape, {
       origin: launch.markers.find(unit => unit.id === actor)!, anchor: input.anchor,
       aim: input.aim, available: launch.cells }));
-    expect(preview).toMatchObject({ valid: true, targetIds: [marker.id] });
+    expect(preview).toMatchObject({ valid: true, targetIds: [marker.id], targetGeometry: [{
+      targetId: marker.id, direction: 'front', heightDelta: 0, heightHit: 0, hitAdd: 0,
+      heightAddBp: 0, terrainAddBp: 0, positionBp: 10_000,
+    }] });
   });
   it('projects eight CT entries without mutating the authoritative battle state', () => {
     const launch = createBattleDemo('world');
@@ -36,6 +39,7 @@ describe('battle UI queries', () => {
     expect(queryArea(state, seeded, { actor, moveId: tileMove.id, anchor: { q: marker.q, r: marker.r },
       aim: { dirCount: 6, dir: 0 }, revision: 0, requestId: 2 })).toMatchObject({
       valid: true, anchor: { q: marker.q, r: marker.r }, targetIds: [marker.id],
+      targetGeometry: [{ targetId: marker.id }],
     });
   });
 });
