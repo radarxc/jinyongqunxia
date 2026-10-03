@@ -47719,6 +47719,49 @@
     "content/CLAUDE.md",
     "apps/game/src/runtime/**"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/26-immersive-ui.md",
+     "docs/design/ui-mock/index.html",
+     "docs/design/ui-mock/scene.html",
+     "tools/agents/reports/DES-ui-immersive-3.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import os,sys; s=sum(os.path.getsize(os.path.join(d,f)) for d,_,fs in os.walk('docs/design/ui-mock') for f in fs); print('ui-mock bytes',s); sys.exit(0 if 0<s<=4_500_000 else 1)"
+     ]
+    ],
+    "shrink_exempt": [
+     "docs/design/ui-mock/index.html",
+     "docs/design/ui-mock/scene.html",
+     "docs/design/ui-mock/style.css"
+    ]
+   },
+   "id": "DES-ui-immersive-3",
+   "title": "设计 · 沉浸式界面样稿第三版：按钮只留图标、战斗六角格缩小、战场加地形与植物（作者 AR-50）",
+   "prompt": "DES-ui-immersive-3.md",
+   "deps": [
+    "DES-ui-immersive-2"
+   ],
+   "writes": [
+    "docs/design/26-immersive-ui.md",
+    "docs/design/ui-mock/**"
+   ]
   }
  ]
 }
