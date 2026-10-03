@@ -1517,4 +1517,15 @@
       - 子系统块（未设门）：对话 / Ink 35.35、区域 44.19、战斗 33.77、城镇 25.64。
     - 虚拟基础内容从任务工作区的 18.50 涨到集成分支的 25.69（+7.19），应来自之后合入的 items-regen 或 attr-v2-schema。已报协调者，是否追查由其定。
     - ENG-20b 状态清回 PENDING 交 eng3；`entry_holds.txt` 已清空。ENG-16c 已由 eng3 起跑。
+  - **10-03 12:27–12:34 开发监督**：查清基础内容「+7 KiB」——是稀疏检出造成的测量差，不是提交增长。只测量，未改代码。
+    - 测量脚本：`scratchpad/measure/base-content.mts`（tsx 直接调 content-plugin 的 load，copyAssets=false，按顶层键 gzip）。
+    - size-gate 基点 ac3f74bc 与 HEAD 95b02a59 之间，插件的全部输入无变化。
+    - 差值来自 `readAssetManifest` 的 access() 检查：稀疏工作区缺 item / character PNG 与 portrait webp，assets 只剩 1 条；_prod 全量有 566 条（433 立绘、132 图标、1 地图）。
+    - HEAD 各键 gzip KiB：
+      - worldMaps 12.53（只有 world/ch01 天龙）；
+      - assets 全量 6.71，稀疏 0.09；
+      - topology 2.27，npcs 1.34（ch01），factions 1.34，skills 1.25；
+      - 合计全量 25.89，稀疏 18.69。
+    - 首次会话真正用到的素材：1 张 `ref_map_jianghu` 地图、ch00 / ch10 的物品图标与出场 NPC 立绘，估约 0.5–0.8 KiB。worldMaps（ch01）在 M1 里用不上。
+    - 已向协调者建议：assets 与 worldMaps 改成按章节懒加载叶片；并修正门禁口径风险（任务工作区会少算约 7 KiB）。等协调者登记瘦身任务，预算不动。
 
