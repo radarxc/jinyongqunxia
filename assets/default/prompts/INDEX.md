@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 870、待出图 158、已通过（作者） 132。**待出图队列 158 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 871、待出图 157、已通过（作者） 132。**待出图队列 157 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -31,7 +31,6 @@
 | items | `it_beisongsuqin` | 北宋素髹琴 | `assets/default/item/collectibles/it_beisongsuqin.png` | 待出图 | [it_beisongsuqin.md](items/collectibles/it_beisongsuqin.md) |
 | items | `it_dingyaojiangyougaiwan` | 定窑酱釉盖碗 | `assets/default/item/collectibles/it_dingyaojiangyougaiwan.png` | 待出图 | [it_dingyaojiangyougaiwan.md](items/collectibles/it_dingyaojiangyougaiwan.md) |
 | items | `it_gaochangqixianqin` | 高昌旧藏七弦琴 | `assets/default/item/collectibles/it_gaochangqixianqin.png` | 待出图 | [it_gaochangqixianqin.md](items/collectibles/it_gaochangqixianqin.md) |
-| items | `it_luoshenfulinben` | 洛神赋元临本 | `assets/default/item/collectibles/it_luoshenfulinben.png` | 待出图 | [it_luoshenfulinben.md](items/collectibles/it_luoshenfulinben.md) |
 | items | `it_mingdaimaozihaobi` | 明玳瑁管紫毫笔 | `assets/default/item/collectibles/it_mingdaimaozihaobi.png` | 待出图 | [it_mingdaimaozihaobi.md](items/collectibles/it_mingdaimaozihaobi.md) |
 | items | `it_mingfangxuanlu` | 明末仿宣铜炉 | `assets/default/item/collectibles/it_mingfangxuanlu.png` | 待出图 | [it_mingfangxuanlu.md](items/collectibles/it_mingfangxuanlu.md) |
 | items | `it_minghuzhoubaihao` | 明湖州白毫笔 | `assets/default/item/collectibles/it_minghuzhoubaihao.png` | 待出图 | [it_minghuzhoubaihao.md](items/collectibles/it_minghuzhoubaihao.md) |
