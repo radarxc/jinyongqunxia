@@ -154,7 +154,10 @@ describe('rig CPU performance', () => {
     }
   });
 
-  it('keeps 100 clip-mode characters within the unchanged rig CPU gate', async () => {
+  // 作者 2026-10-02 晚（AR-37）：「片段模式 100 人 P95 实测 0.795 ms 这不错吧，可以放宽一些啊」——片段模式门禁放宽到 1.0 ms；
+  // 程序步态的 0.80 ms 门禁不动。仍禁止高负载跳过；失败按真实退化处理。
+  const CLIP_MODE_LIMIT_MS = 1.0;
+  it('keeps 100 clip-mode characters within the clip-mode rig CPU gate (1.0 ms, AR-37)', async () => {
     registerWalkClip(); const { characters, batch } = await setup(100, {});
     try {
       for (let index = 0; index < characters.length; index += 1) {
@@ -166,8 +169,8 @@ describe('rig CPU performance', () => {
       expect(characters[0]?.activeInstanceCount).toBe(16);
       expect(
         measurement.minP95Ms,
-        failureDetails('100 clip characters / 1600 instances', .8, measurement),
-      ).toBeLessThan(.8);
+        failureDetails('100 clip characters / 1600 instances', CLIP_MODE_LIMIT_MS, measurement),
+      ).toBeLessThan(CLIP_MODE_LIMIT_MS);
     } finally { dispose(characters, batch); }
   });
 });

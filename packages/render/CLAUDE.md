@@ -60,7 +60,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - `performance.test.ts` 只由 Vitest 的 `perf` project 收集；普通 `node` project 显式排除它。`perf` 使用 `fileParallelism:false`、单 worker、`sequence.concurrent:false`。
 - **不在 `pnpm check` 里**（作者 AR-33）：根 `test` 脚本只跑普通项目；本门禁由 `pnpm check:perf`（先打印 loadavg，再跑 `pnpm test:perf`）在机器负载低时单独跑。开发监督在每批合入后与发布前跑一次，结果与负载记进 HANDOFF。
 - 负载只作诊断记录：每轮输出 `os.loadavg()` 与 CPU 数。**禁止**在任何测试里加「高负载跳过 / 放宽」逻辑，不得改阈值、采样帧数或分位数；`check:perf` 失败一律按真实性能退化处理。
-- 片段模式另跑 100 人 / 1,600 实例、120 帧预热、3×600 帧 best-of-3，P95 仍须 `<0.80 ms`；只放在 `pnpm test:perf` / `pnpm check:perf`，不得并入 `pnpm check`。
+- 片段模式另跑 100 人 / 1,600 实例、120 帧预热、3×600 帧 best-of-3，P95 须 `<1.0 ms`（作者 2026-10-02 AR-37 放宽；程序步态仍 `<0.80 ms`）；只放在 `pnpm test:perf` / `pnpm check:perf`，不得并入 `pnpm check`。
 
 ## 招式 VFX API（ENG-11）
 
