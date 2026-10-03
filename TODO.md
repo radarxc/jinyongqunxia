@@ -43,8 +43,8 @@
 
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
-| ENG-17-booksleep-m1 | traex | 返修（改报告）后校验通过，04:30 开发监督另起驱动复验 + 复审 | 96341（开发监督另起） |
-| ENG-18b-tiled-regionmap | traex | 第 1 次运行 04:38 结束（189 分钟），校验中（基点早于 ENG-18e，可能撞 build.test 超时） | eng3 → supervise 12005 |
+| ENG-17-booksleep-m1 | traex | 复审 PASS 后与 ENG-19a 在 game-controller.ts 撞车（一处 let 声明），协调者挪基点 357d25f9 并按并集手工解，04:46 起驱动复验 + 复审合并结果，PASS 自动合入 | 90020（协调者另起，`supervise.r3.out`） |
+| ENG-18b-tiled-regionmap | traex | 第 1 次运行 04:38 结束（189 分钟），校验通过，审核 r1 FAIL（04:47），自动返修中 | eng3 → supervise 12005 |
 | TOOL-rig-sheet | traex Sol max | 审核 r4 又 FAIL（切件错分：pelvis_skirt 混入手臂、torso 含前臂残片、侧腿蓝灰楔块），第 7 次运行返修中 | 开发监督另起 |
 | TOOL-catalog-9col | traex Sol max | 复审 r2 FAIL（03:27：双写检查省略键可绕过），等代码池空位自动返修 | 51856（协调者另起） |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | — | HOLD-RUNS：等 TOOL-catalog-9col 合入后挪基点复验（`_handoff/lore_plan.md`） | des34 batch 9492 看护 |
