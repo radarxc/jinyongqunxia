@@ -1644,4 +1644,11 @@
     4. ENG-19e-m1-order：依赖满足时优先于 2、3。
     - 16e、26、18c 照 eng3 队列。池位按这个顺序让，不抢。
     - 起任务用 `scratchpad/launch_std.sh <ID> <checks|none> [参数]`：先查有无活进程、提示词能否渲染。
+  - **10-03 13:41–14:02 开发监督**：ENG-tiled-trigger-strict 合入（4e193b0f），M1 两件起跑。
+    - `prod_check`（post-tiledstrict）全绿：1014 条测试；entry 38.44；首次会话 93.40 / 110。
+    - ENG-region-gates-data（区域绑定数据）驱动 59669：在等池位，代码池 4/4，在跑 16c / 20b / 23a / event-executor。
+    - ENG-event-executor 驱动 59692：执行器已开跑。
+    - CONTENT-ch10：第 2 次返修后，eng3（新进程）13:55 自动复审，`--from validate --checks review_checks_content.md`（驱动 65882），在审。
+    - 监控改用 `scratchpad/kwloop.sh`（kw.py 循环重启，KEY 行写入 `kw_keys.log`）加 `w50b.py`（读 devsup_events.log）；单次工具调用 ≤ 1 分钟。
+    - 磁盘 4.2–4.4 GiB（< 5，不新开工作区），负载 15–20。
 
