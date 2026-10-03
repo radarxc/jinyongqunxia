@@ -1451,4 +1451,12 @@
     - 协调者 11:25：
       - 作者不需要本地 dev 了，5180 的服务已停；旧的 5173 vite 不是我们起的，别动。
       - DEV 演示入口坏了：「进入演示」走 ch01_tianlong，内容包里没有 bookWorld 章节定义，报 `ITEM_RULES_UNAVAILABLE:CONTENT_CHAPTER_DEF_MISSING`。只影响 DEV，等 CONTENT 线补 ch01 或顺手修，不单独登记。
+  - **10-03 11:28–11:38 开发监督**：DES-ui-immersive（AR-43 沉浸式 UI 设计与样稿）起跑，后按作者指示改用 Codex。
+    - 先用 traex 单独起（驱动 31302）。稀疏检出已验证：sparse_include 是文件通配，写在 `!/…/**/*.png` 之后，按「最后匹配者生效」重新包含。小仓库实测，加实际工作区 weapons 247 / food 174 / manuals 180 张都在。
+      - 物品四类整类拉入约 1.6 GB，磁盘 8.0 → 5.4 GiB。协调者同意：以后样稿类任务的 sparse_include 只列具体文件。
+    - 作者指示（协调者 11:52 转达）：UI 部分由 Codex 执行（无额度时改 traex GPT-6）。协调者停掉 traex 链（31302 / 41628 / 41629 / 41630）并置 HOLD-RUNS。
+      - 我用 `scratchpad/ui_codex_relaunch.sh` 重起：codex gpt-6-astra xhigh，`--from start`，驱动 51691，独立 CODEX_HOME。
+      - 首次运行正常，无额度或限流；联网由 tasks.json 的 `web: true` 经 build_argv 自动加。
+    - 以后 ENG-ui-* 都用 codex。合入后要告诉协调者 `docs/design/ui-mock/index.html`，由协调者发给作者定方向。
+    - CONTENT 收掉之前不新开工作区（磁盘 5.3 GiB）。
 
