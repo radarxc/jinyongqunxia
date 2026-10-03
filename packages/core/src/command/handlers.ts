@@ -80,7 +80,7 @@ function applyWorldMap(tx: CoreTransaction, command: WorldMapCommand): void {
   tx.set(['meta', 'worldTick'], result.state.meta.worldTick);
   tx.set(['chapter'], result.state.chapter);
   const map = result.state.chapter.worldMap;
-  if (map) tx.set(['world', 'navigation'], { locationId: map.scene?.nodeId ??
+  if (map) tx.set(['world', 'navigation'], { ...tx.state.world.navigation, locationId: map.scene?.nodeId ??
     (map.position.kind === 'node' ? map.position.nodeId : map.position.leg.to),
     selectedDestinationId: map.journey?.destination ?? null });
   for (const event of result.events) {
@@ -216,7 +216,8 @@ function runInventory(state: GameState, command: InventoryCommand, content: Core
   return { state: { ...state, meta: { ...state.meta, worldTick: clock.elapsedTicks },
     chapter: { ...state.chapter, clock, worldYear: clock.epochYear + clock.yearOffset,
       itemChapterUses: result.usage.chapterUses },
-    profile: { protagonist, companions }, party: { ...state.party, inventory: result.inventory } },
+    profile: { ...state.profile, protagonist, companions },
+    party: { ...state.party, inventory: result.inventory } },
     events: [...result.events, ...advanced.events] };
 }
 export const inventoryHandler: CommandHandler<InventoryCommand> = {

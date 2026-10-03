@@ -51,6 +51,24 @@ describe('new game host wiring', () => {
     host.dispose();
   });
 
+  it('fixes old references from a verified pack when the host transport has no fixup RPC', async () => {
+    const fixture = await fixtureItemPack('ch00_yuenv', [{ from: 'it_old_medicine',
+      to: 'it_jinchuangyao', since: 'c'.repeat(64), reason: 'test remap' }]);
+    const host = await createGameCoreHost({ contentSource: fixture.source });
+    try {
+      expect(host.fixupContentRefs).toBeTypeOf('function');
+      const current = await host.snapshot();
+      const candidate = { ...current, meta: { ...current.meta, contentHash: 'd'.repeat(64) },
+        party: { ...current.party, inventory: { stacks: [
+          { itemId: 'it_old_medicine', count: 1 },
+        ] } } };
+      const fixed = await host.fixupContentRefs!(candidate, candidate.meta.contentHash);
+      expect(fixed.party.inventory.stacks).toEqual([{ itemId: 'it_jinchuangyao', count: 1 }]);
+      expect(fixed.meta.contentHash).toBe(fixture.manifest.contentHash);
+      expect(candidate.party.inventory.stacks[0]?.itemId).toBe('it_old_medicine');
+    } finally { host.dispose(); }
+  });
+
   it('loads display text on first detail read and reuses the cache', async () => {
     const fixture = await fixtureItemPack();
     const host = await createGameCoreHost({ demo: true, contentSource: fixture.source });

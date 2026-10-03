@@ -62,6 +62,7 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
   let queuedForeground = 0;
   let commandQueue: Promise<unknown> = Promise.resolve();
   let lastGoodProjection: GameProjection | null = null;
+  let bookSleepInFlight = false;
   let dirtyRevision = 0;
   let savedRevision = 0;
   async function refresh(): Promise<void> {
@@ -143,15 +144,35 @@ export function createGameController(host: GameHost, ui: ReturnType<typeof useUi
     }
     if (update.events.length) {
       dirtyRevision += 1;
-      if (update.events.some((event) => event.t !== 'world/ticked')) void autosave('state-change');
+      if (!bookSleepInFlight && update.events.some((event) => event.t !== 'world/ticked'))
+        void autosave('state-change');
     }
   });
-  const offBus = uiBus.subscribe((intent) => {
-    void run(async () => {
-      const result = await host.dispatch(intent.command);
+  async function dispatchCoreCommand(command: Parameters<GameHost['dispatch']>[0]): Promise<GameUpdate> {
+    let existingPlan = false;
+    if (command.t === 'chapter/bookSleep') {
+      const progression = (await host.snapshot()).profile.progression;
+      if (!progression) throw new Error('STATE_PROGRESSION_MISSING');
+      existingPlan = progression.bookSleepLog.some((entry) => entry.planId === command.plan.id);
+    }
+    const firstSleep = command.t === 'chapter/bookSleep' && !existingPlan;
+    if (firstSleep) {
+      if (!saves) throw new Error('STORAGE_UNAVAILABLE');
+      saving.value = true;
+      const result = await saves.autosave('first-sleep', true);
+      if (result.status !== 'saved') throw new Error('BOOK_SLEEP_AUTOSAVE_FAILED');
+      savedRevision = dirtyRevision; await refresh(); bookSleepInFlight = true;
+    }
+    try {
+      const result = await host.dispatch(command);
       if (!result.accepted) throw new GameplayRejection(result.error);
-      notice.value = '';
-    }, true);
+      if (firstSleep) { await saves!.checkpoint('save_wake_ch10');
+        savedRevision = dirtyRevision; await refresh(); }
+      notice.value = ''; return result;
+    } finally { bookSleepInFlight = false; if (firstSleep) saving.value = false; }
+  }
+  const offBus = uiBus.subscribe((intent) => {
+    void run(async () => { await dispatchCoreCommand(intent.command); }, true);
   });
   async function autosave(trigger: string, force = false): Promise<void> {
     if (battleActive.value || ui.projection.dialogue || bookSleepActive) return;

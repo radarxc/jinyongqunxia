@@ -3,7 +3,7 @@ import { createEmptyEquipment } from './equipment';
 import { createGameClock } from './clock';
 import type { DifficultyId, GameState, ProtagonistIdentity } from './models';
 
-export const SAVE_SCHEMA = 2;
+export const SAVE_SCHEMA = 3;
 export const RULES_PROTOCOL = 3;
 export const CONTENT_HASH_PLACEHOLDER = '0'.repeat(64);
 
@@ -13,6 +13,7 @@ export interface InitialGameStateInput {
   readonly rng: Readonly<Record<RngStreamName, RngState>>;
   readonly masterSeed?: number; readonly contentHash?: string; readonly coreBuild?: string;
   readonly locationId?: string;
+  readonly eraLayerId?: string; readonly worldTier?: GameState['chapter']['worldTier'];
   readonly identity?: ProtagonistIdentity | null; readonly difficulty?: DifficultyId;
 }
 
@@ -30,18 +31,21 @@ export function createInitialGameState(input: InitialGameStateInput): GameState 
       rulesProtocol: RULES_PROTOCOL, rngProtocol: input.rngProtocol,
       coreVersion: input.coreVersion, coreBuild: input.coreBuild ?? input.coreVersion,
       stateVersion: 0, worldTick: 0, nextEventSeq: 1, rng: input.rng, debugTainted: false },
-    profile: { protagonist: null, companions: [], identity: input.identity ?? null,
+    profile: { protagonist: null, companions: [], progression: { changshengLayer: 0,
+      sleepPoints: 0, bookSleepLog: [], changshengLayerReceipts: [],
+      prologueModeReceipt: null }, identity: input.identity ?? null,
       replayRules: { difficulty: input.difficulty ?? 'diff_jianghu', heavenlyTrialLevel: null,
         switches: {}, difficultyLog: [{ difficulty: input.difficulty ?? 'diff_jianghu',
           worldTick: 0, revision: 1 }], ruleRevision: 1 } },
-    chapter: { chapterId: input.chapterId, worldYear: input.epochYear, clock,
+    chapter: { chapterId: input.chapterId, eraLayerId: input.eraLayerId ?? input.chapterId.slice(0, 4),
+      worldTier: input.worldTier ?? 'LOW', worldYear: input.epochYear, clock,
       story: { chapterId: input.chapterId, lines: [] }, worldItems: { entries: [] }, shops: [],
       worldMap: null, town: null, npcs: [], itemChapterUses: {},
       prologue: { mode: null, routeNodeId: null, completionNodeId: null,
         exitKey: null, receipts: [] } },
     party: { inventory: { stacks: [] }, equipment: createEmptyEquipment(), money: 0 },
     world: { navigation: { locationId: input.locationId ?? 'city_dali',
-      selectedDestinationId: null }, pendingTimeAdvance: null },
+      selectedDestinationId: null, pendingMount: null }, pendingTimeAdvance: null },
     battle: null, dialogue: null,
   };
 }

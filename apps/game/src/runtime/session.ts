@@ -1,5 +1,5 @@
-import { cloneGameState, createCore, createCoreFromState, projectDialogue, type Command, type CoreContent,
-  type GameState } from '@tianshu/core';
+import { cloneGameState, createCore, createCoreFromState, firstSleepQueryForState, projectDialogue,
+  type Command, type CoreContent, type GameState } from '@tianshu/core';
 import type { JsonValue } from '@tianshu/shared';
 import type { ContentSource } from '@tianshu/data';
 import type { BattleLaunch, BattleUiCommand } from '../battle/contracts';
@@ -26,7 +26,8 @@ function rejected(error: unknown): GameUpdate | null {
 function isBattleCommand(command: GameCommand): command is BattleUiCommand {
   return command.t.startsWith('battle/');
 }
-function coreContent(content: GameContent, towns: GameContent['towns'], chapterId: string): CoreContent {
+function coreContent(content: GameContent, towns: GameContent['towns'], chapterId: string,
+  target?: GameContent): CoreContent {
   const eraLayer = content.worldMaps?.find((entry) => entry.chapterId === chapterId)?.era;
   return {
     items: content.items as unknown as NonNullable<CoreContent['items']>,
@@ -43,6 +44,9 @@ function coreContent(content: GameContent, towns: GameContent['towns'], chapterI
       ? { meditationEncounters: content.meditationEncounters }
       : {}),
     ...(content.inkStories ? { inkStories: content.inkStories } : {}),
+    ...((target?.chapters ?? content.chapters)
+      ? { chapters: target?.chapters ?? content.chapters } : {}),
+    ...(target?.contentHash ? { targetContentHash: target.contentHash } : {}),
   };
 }
 function dirtyViews(command: Command): readonly DirtyView[] {
@@ -65,6 +69,7 @@ function defaultSession(content: GameContent, demo: boolean): SessionSnapshot {
     contentHash: content.contentHash } } : state;
 }
 export interface GameSessionOptions { readonly demo?: boolean; readonly seedSource?: MasterSeedSource;
+  readonly preloadChapter?: (chapterId: string) => Promise<GameContent>;
 }
 export function createGameSession(content: GameContent, initial?: SessionSnapshot,
   loadTown?: TownLoader, options: GameSessionOptions = {}): GameRemote & {
@@ -76,7 +81,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     ? loadedTowns.find((entry) => entry.sceneId === opening.chapter.town?.sceneId) : undefined;
   let state = validateSession(opening, content, townDefinition);
   let core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
-  const selectors = createSelectors(content, () => townDefinition);
+  let selectors = createSelectors(content, () => townDefinition);
   let battle: BattleRuntime | null = null;
   async function prepareBattle(launch: BattleLaunch): Promise<{
     runtime: BattleRuntime; update: GameUpdate }> {
@@ -147,6 +152,16 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     loadedTowns.push(definition); core = createCoreFromState(state,
       coreContent(content, loadedTowns, state.chapter.chapterId));
   }
+  async function preloadBookSleep(command: Command): Promise<GameContent | undefined> {
+    if (command.t !== 'chapter/bookSleep') return undefined;
+    if (command.plan.from !== 'ch00_yuenv' || command.plan.to !== 'ch10_baima' ||
+        state.chapter.chapterId !== 'ch00_yuenv') return undefined;
+    const target = await options.preloadChapter?.(command.plan.to);
+    if (!target || target.chapters?.length !== 1 ||
+        target.chapters[0]?.id !== command.plan.to || !target.contentHash)
+      throw new Error('BOOK_SLEEP_CONTENT_UNAVAILABLE');
+    return target;
+  }
   function validated(candidate: SessionSnapshot, definition = townDefinition): SessionSnapshot {
     const next = validateSession(candidate, content, definition);
     if (next.meta.debugTainted !== opening.meta.debugTainted) throw new Error('SAVE_MODE_INVALID');
@@ -155,6 +170,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
   selectors.update(state, ALL_VIEWS);
   return {
     query: () => ({ ...selectors.query(), dialogue: projectDialogue(state),
+      firstSleepAllocation: firstSleepQueryForState(state),
       battle: battle?.packet(true) ?? null }),
     snapshot: () => {
       if (battle) throw new Error('BATTLE_SAVE_UNAVAILABLE');
@@ -171,7 +187,8 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       const changes = selectors.update(next, ALL_VIEWS, '已读取存档');
       state = next; townDefinition = loaded;
       core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
-      return { accepted: true, changes, events: [] };
+      return { accepted: true, changes: { ...changes,
+        firstSleepAllocation: firstSleepQueryForState(state) }, events: [] };
     },
     async createNewGame(input): Promise<GameUpdate> {
       if (battle) throw new Error('BATTLE_BUSY');
@@ -179,6 +196,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       state = next; townDefinition = undefined;
       core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
       const changes = { ...selectors.update(state, ALL_VIEWS, '新篇已启'),
+        firstSleepAllocation: firstSleepQueryForState(state),
         dialogue: projectDialogue(state), battle: null };
       return { accepted: true, changes, events: [{ t: 'run/created', payload: {
         runId: state.meta.runId, chapterId: state.chapter.chapterId,
@@ -193,6 +211,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         }
       }
       if (battle) return { accepted: false, changes: {}, events: [], error: 'BATTLE_BUSY' };
+      const targetContent = await preloadBookSleep(command);
       await preloadWorldMapTown(command);
       const candidate = command.t === 'town/meditate' ? createCoreFromState(
         state, coreContent(content, loadedTowns, state.chapter.chapterId)) : null;
@@ -210,17 +229,29 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
           const result = rejected(error); if (result) return result; throw error;
         }
       }
-      const result = core.dispatch(command);
+      const commandCore = targetContent ? createCoreFromState(state,
+        coreContent(content, loadedTowns, state.chapter.chapterId, targetContent)) : core;
+      const result = commandCore.dispatch(command);
       if (!result.ok) return { accepted: false, changes: {}, events: [], error: result.reason };
-      state = core.snapshot();
+      const committed = commandCore.snapshot();
+      if (targetContent) {
+        const mounted = validateSession(committed, targetContent);
+        state = { ...mounted, world: { ...mounted.world, navigation: {
+          ...mounted.world.navigation, pendingMount: null } } };
+        content = targetContent;
+        selectors = createSelectors(content, () => townDefinition);
+        core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
+      } else state = committed;
       townDefinition = state.chapter.town
         ? loadedTowns.find((entry) => entry.sceneId === state.chapter.town?.sceneId) : undefined;
       if (state.chapter.town && !townDefinition) throw new TypeError('TOWN_CONTENT_INVARIANT');
       const stepTransition = result.events.some((event) =>
         event.t === 'worldmap/sceneRequested' || event.t === 'worldmap/encounterRequested' ||
         event.t === 'worldmap/gateBlocked');
-      let changes = selectors.update(state, dirtyViews(command), '',
+      let changes = selectors.update(state, command.t === 'chapter/bookSleep' ? ALL_VIEWS : dirtyViews(command), '',
         command.t === 'worldmap/step' && !stepTransition);
+      if (command.t === 'quest/choose' || command.t === 'chapter/bookSleep')
+        changes = { ...changes, firstSleepAllocation: firstSleepQueryForState(state) };
       if (command.t.startsWith('dialogue/')) changes = { ...changes,
         dialogue: projectDialogue(state) };
       const moved = result.events.find((event) => event.t === 'town/moved');
@@ -250,7 +281,7 @@ export async function createLoadedGameSession(base: StaticGameContent, source: C
     return pending;
   };
   const sessionFor = (content: GameContent, demo: boolean) =>
-    createGameSession(content, undefined, loadTown, { ...options, demo });
+    createGameSession(content, undefined, loadTown, { ...options, demo, preloadChapter: contentFor });
   const chapter = initial?.chapter.chapterId ?? itemContentChapter(options.demo === true);
   let debugTainted = initial?.meta.debugTainted ?? options.demo === true;
   let active = sessionFor(await contentFor(chapter), debugTainted);
@@ -277,6 +308,15 @@ export async function createLoadedGameSession(base: StaticGameContent, source: C
       const update = await replacement.restore(candidate);
       active = replacement;
       return update;
+    },
+    async fixupContentRefs(candidate: SessionSnapshot, fromContentHash: string) {
+      const { fixupContentRefs } = await import('@tianshu/data');
+      const target = await contentFor(candidate.chapter.chapterId);
+      if (fromContentHash === target.contentHash) return structuredClone(candidate);
+      const fixed = fixupContentRefs(candidate as unknown as JsonValue,
+        target.idRemaps ?? []) as unknown as SessionSnapshot;
+      return target.contentHash ? { ...fixed, meta: { ...fixed.meta,
+        contentHash: target.contentHash } } : fixed;
     },
     createNewGame,
     dispatch: (command: GameCommand) => command.t === 'run/create'

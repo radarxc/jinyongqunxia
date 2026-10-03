@@ -59,6 +59,8 @@ export function validateSession(value: SessionSnapshot, content: GameContent,
   const copy = JSON.parse(canonicalJson(value as unknown as JsonValue)) as SessionSnapshot;
   validateSaveVersion(copy);
   const state = parseGameState(copy);
+  if (content.contentHash && state.meta.contentHash !== content.contentHash)
+    throw new Error('SAVE_CONTENT_HASH_INVALID');
   if (state.meta.coreVersion.length === 0 || CORE_VERSION.length === 0) throw new Error('SAVE_VERSION_UNSUPPORTED');
   new InventoryRuntime(state.party.inventory, content.items);
   const slots = state.party.equipment.entries;

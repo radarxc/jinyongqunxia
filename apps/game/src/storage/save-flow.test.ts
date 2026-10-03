@@ -1,7 +1,8 @@
 // @vitest-environment happy-dom
 import { mount } from '@vue/test-utils';
+import { createPinia } from 'pinia';
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   createIndexedDbStorage,
   createProjectionMainThreadHost,
@@ -16,17 +17,31 @@ import {
   type SaveJson,
   type TianshuStorage,
 } from '@tianshu/platform';
-import { SAVE_SCHEMA, type GameState } from '@tianshu/core';
-import { TxSaveSlots } from '@tianshu/ui';
+import { createNewGameState, FIRST_SLEEP_RULE, SAVE_SCHEMA,
+  type BookSleepPlan, type GameState } from '@tianshu/core';
+import { TxSaveSlots, uiBus, useUiStore } from '@tianshu/ui';
+import { createGameController, type GameController } from '../game-controller';
+import type { GameHost, SessionSnapshot } from '../runtime/contracts';
+import { loadGameContent } from '../runtime/item-content';
 import { createGameSession } from '../runtime/session';
-import { fixtureContent } from '../runtime/test-fixture';
+import { fixtureContent, fixtureItemPack } from '../runtime/test-fixture';
 import { createSaveService } from './save-service';
 import { slotViews } from './slot-views';
 
 const opened: TianshuStorage[] = [];
+const controllers: GameController[] = [];
 afterEach(async () => {
+  for (const controller of controllers.splice(0)) controller.dispose();
   for (const storage of opened.splice(0)) await storage.deleteDatabase();
+  vi.unstubAllGlobals();
 });
+const sleepPlan: BookSleepPlan = {
+  id: '00000000-0000-4000-8000-000000000017', from: 'ch00_yuenv', to: 'ch10_baima',
+  targetTier: 'LOW', sleepEventId: 'slp_first_changbai',
+  skills: { martial: [], inner: [] }, convert: { forget: [], dissipate: [] }, equips: [],
+  sleepAlloc: Object.fromEntries(FIRST_SLEEP_RULE.keys.map((key) => [key, 50])),
+  acknowledged: [], allocationSource: 'balanced', allocationRuleVersion: FIRST_SLEEP_RULE.version,
+};
 async function setup() {
   const storage = await createIndexedDbStorage({
     databaseName: `ui-save-test-${opened.length}`,
@@ -38,6 +53,44 @@ async function setup() {
   const remote = createGameSession(fixtureContent());
   const host = createProjectionMainThreadHost(remote);
   return { storage, host, saves: createSaveService(storage, host) };
+}
+async function sleepHarness(failMount: boolean) {
+  const factory = new IDBFactory();
+  vi.stubGlobal('indexedDB', factory); vi.stubGlobal('IDBKeyRange', IDBKeyRange);
+  const [ch00, ch10] = await Promise.all([
+    fixtureItemPack('ch00_yuenv'), fixtureItemPack('ch10_baima'),
+  ]);
+  const source = { readJson: async (path: string) =>
+    ch00.values.get(path) ?? ch10.values.get(path) };
+  const base = fixtureContent();
+  const [opening, wake] = await Promise.all([
+    loadGameContent(base, source, 'ch00_yuenv'),
+    loadGameContent(base, source, 'ch10_baima'),
+  ]);
+  const openingChapter = opening.chapters?.[0];
+  if (!openingChapter) throw new TypeError('TEST_CHAPTER_MISSING');
+  const initial = createNewGameState({ masterSeed: 17, contentHash: ch00.manifest.contentHash,
+    identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',
+      originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake', chapter: openingChapter });
+  const invalidWake = { ...wake, worldMaps: [...(wake.worldMaps ?? []),
+    { ...base.worldMaps![0]!, chapterId: 'ch10_baima' }] };
+  const remote = createGameSession(opening, initial, undefined, { demo: false,
+    preloadChapter: async () => failMount ? invalidWake : wake });
+  await remote.dispatch({ t: 'quest/choose', questId: 'dc_00_01', optionId: 'skip' });
+  await remote.dispatch({ t: 'quest/choose', questId: 'dc_00_01', optionId: 'skip',
+    phase: 'settle', completionNodeId: 'n_skip_complete' });
+  const before = await remote.snapshot();
+  const host = createProjectionMainThreadHost(remote) as GameHost;
+  const controller = createGameController(host, useUiStore(createPinia()));
+  controllers.push(controller); await controller.initialize();
+  const storage = await createIndexedDbStorage({ databaseName: 'tianshu', indexedDB: factory,
+    IDBKeyRange });
+  return { controller, storage, before, wakeHash: ch10.manifest.contentHash, host };
+}
+async function dispatchSleep(controller: GameController): Promise<void> {
+  uiBus.emit({ type: 'core-command', command: { t: 'chapter/bookSleep', plan: sleepPlan } });
+  expect(controller.busy.value).toBe(true);
+  await vi.waitFor(() => expect(controller.busy.value).toBe(false), { timeout: 5_000 });
 }
 async function legacyTsui(state: GameState): Promise<Uint8Array> {
   const hero = state.profile.protagonist!;
@@ -236,6 +289,36 @@ describe('save slots through ENG-01 IndexedDB API', () => {
     expect(await host.snapshot()).toEqual(before);
     expect(await storage.saves.listHistory('save_manual_04')).toHaveLength(2);
     host.dispose();
+  });
+  it('keeps the pre-sleep autosave and writes no wake slot when target mount fails', async () => {
+    const { controller, storage, before, host } = await sleepHarness(true);
+    const logged = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    try {
+      await dispatchSleep(controller);
+      expect((await storage.saves.listSlots()).map((row) => row.slot))
+        .toEqual(['save_auto_1']);
+      const automatic = await storage.saves.load('save_auto_1');
+      expect((await unpackTsav(automatic!.snapshot)).state).toEqual(before);
+      expect(await storage.saves.load('save_wake_ch10')).toBeNull();
+      expect(await host.snapshot()).toEqual(before);
+    } finally { logged.mockRestore(); await storage.close(); }
+  });
+  it('writes wake after mount with matching TSAV and state content hashes', async () => {
+    const { controller, storage, wakeHash, host } = await sleepHarness(false);
+    try {
+      await dispatchSleep(controller);
+      expect((await storage.saves.listSlots()).map((row) => row.slot).sort())
+        .toEqual(['save_auto_1', 'save_wake_ch10']);
+      const automatic = await unpackTsav((await storage.saves.load('save_auto_1'))!.snapshot);
+      expect((automatic.state as unknown as SessionSnapshot).chapter.chapterId)
+        .toBe('ch00_yuenv');
+      const wake = await unpackTsav((await storage.saves.load('save_wake_ch10'))!.snapshot);
+      const state = wake.state as unknown as SessionSnapshot;
+      expect(state).toEqual(await host.snapshot());
+      expect(wake.header.contentHash).toBe(state.meta.contentHash);
+      expect(state.meta.contentHash).toBe(wakeHash);
+      expect(state.world.navigation.pendingMount).toBeNull();
+    } finally { await storage.close(); }
   });
   it('drives the slot component through save, overwrite confirmation, load and deletion', async () => {
     const { host, saves } = await setup();

@@ -1,4 +1,5 @@
 import type { ContentSource } from '@tianshu/data';
+import { ChapterDefSchema, type ChapterDef } from '@tianshu/data/schemas';
 import type { GameContent, StaticGameContent } from './content';
 
 export const ITEM_CONTENT_CHAPTER = 'ch00_yuenv';
@@ -25,6 +26,17 @@ export class FetchContentSource implements ContentSource {
 function itemRuleName(name: string): boolean {
   return /^common\.rules\.items(?:\.p\d{3})?\.json$/u.test(name);
 }
+function chapterRuleName(name: string, chapter: string): boolean {
+  return name.startsWith(`${chapter.slice(0, 4)}.rules.base`) && name.endsWith('.json');
+}
+function chapterDefs(leaves: Readonly<Record<string, unknown>>): readonly ChapterDef[] {
+  const rows = Object.values(leaves).flatMap((value) => Array.isArray(value) ? value : []);
+  return rows.flatMap((row) => {
+    if (!row || typeof row !== 'object' || Array.isArray(row)) return [];
+    const entry = row as { kind?: unknown; value?: unknown };
+    return entry.kind === 'bookWorld' ? [ChapterDefSchema.parse(entry.value)] : [];
+  });
+}
 function itemTextName(name: string, locale: string): boolean {
   const match = name.match(/^common\.text\.([A-Za-z0-9-]+)\.items(?:\.p\d{3})?\.json$/u);
   return match?.[1] === locale;
@@ -40,14 +52,17 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
     const [{ loadChapterPackLeaves }, { parseItemRuleLeaves }] = await Promise.all([
       import('@tianshu/data'), import('@tianshu/data/item-content'),
     ]);
-    const pack = await loadChapterPackLeaves(source, chapter, (leaf) =>
-      leaf.kind === 'rules' && itemRuleName(leaf.logicalName));
+    const pack = await loadChapterPackLeaves(source, chapter, (leaf) => leaf.kind === 'rules' &&
+      (itemRuleName(leaf.logicalName) || chapterRuleName(leaf.logicalName, chapter)));
     const names = pack.manifest.leaves.filter((leaf) => itemRuleName(leaf.logicalName))
       .map((leaf) => leaf.logicalName);
     if (names.length === 0) throw new TypeError('CONTENT_ITEM_RULE_LEAF_MISSING');
     const items = parseItemRuleLeaves(names.map((name) => pack.leaves[name]));
-    return { ...base, items: items as GameContent['items'],
-      contentHash: pack.manifest.contentHash };
+    const chapters = chapterDefs(pack.leaves);
+    if (chapters.length !== 1 || chapters[0]?.id !== chapter)
+      throw new TypeError('CONTENT_CHAPTER_DEF_MISSING');
+    return { ...base, items: items as GameContent['items'], chapters,
+      idRemaps: pack.manifest.idRemaps, contentHash: pack.manifest.contentHash };
   } catch (error) { throw loadError('ITEM_RULES_UNAVAILABLE', error); }
 }
 

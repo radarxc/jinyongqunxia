@@ -2,6 +2,8 @@ import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import { dispatchCommand, type Command, type CoreContent, type DispatchResult } from '../command';
 import { assertCanonicalGameState, cloneGameState, createNewGameState, type GameState,
   type NewGameInput } from '../state';
+import { firstSleepQueryForState, type FirstSleepAllocationQuery,
+  type SleepAllocation } from '../progression';
 
 export const CORE_VERSION = '0.0.0';
 export const CORE_BUILD = '20261002-core-bus';
@@ -12,6 +14,7 @@ export interface Core {
   snapshot(): GameState;
   serialize(): JsonValue;
   canonicalStateJson(): string;
+  firstSleepAllocation(draft?: SleepAllocation | null): FirstSleepAllocationQuery | null;
 }
 function legacyTickResult(result: DispatchResult): DispatchResult {
   // Pre-command-bus CoreHost callers inspected tick().accepted. Keep a non-wire alias while
@@ -36,6 +39,7 @@ export function createCore(masterSeed = 1, options: CreateCoreOptions = {}): Cor
     canonicalStateJson: () => {
       assertCanonicalGameState(state); return canonicalJson(cloneGameState(state) as unknown as JsonValue);
     },
+    firstSleepAllocation: (draft = null) => firstSleepQueryForState(state, draft),
   };
 }
 

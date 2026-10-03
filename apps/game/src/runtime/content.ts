@@ -1,4 +1,6 @@
-import type { ItemDef, MartialArtDef, NpcDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import type { ChapterDef, ItemDef, MartialArtDef, NpcDef,
+  TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import type { ContentIdRemap } from '@tianshu/data';
 import type { EquipmentRule, EventAnchor, NpcWorldState, TownMeditationEncounter,
   TownMeditationPractice, InkStoryContent } from '@tianshu/core';
 import type { BattleLaunch } from '../battle/contracts';
@@ -10,6 +12,7 @@ export interface MeridianTopology {
 export type GameItemDef = Omit<ItemDef, 'text'> & { readonly text?: ItemDef['text'] };
 export interface GameContent {
   readonly items: readonly GameItemDef[]; readonly contentHash?: string;
+  readonly chapters?: readonly ChapterDef[]; readonly idRemaps?: readonly ContentIdRemap[];
   readonly npcs: readonly NpcDef[];
   readonly skills: readonly MartialArtDef[]; readonly topology: readonly MeridianTopology[];
   readonly factions: Readonly<Record<string, string>>;

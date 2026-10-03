@@ -4,6 +4,7 @@ import { assertCanonicalGameState, type GameState } from '../state';
 import type { Command, CommandHandler, CoreContent, RejectReason } from '.';
 import { inventoryHandler, rejectionFrom, townHandler, worldMapHandler, worldTickHandler } from './handlers';
 import { dialogueHandler, difficultyHandler, questChoiceHandler } from './story-handlers';
+import { bookSleepHandler } from './chapter-handler';
 import { CommandAbort, MutableCoreTransaction } from './transaction';
 
 export type DispatchResult =
@@ -31,6 +32,7 @@ const HANDLERS: Readonly<Record<string, CommandHandler>> = {
   'dialogue/choose': dialogueHandler as CommandHandler,
   'quest/choose': questChoiceHandler as CommandHandler,
   'rules/setDifficulty': difficultyHandler as CommandHandler,
+  'chapter/bookSleep': bookSleepHandler as CommandHandler,
 };
 function rejection(reason: RejectReason, at?: string): DispatchResult {
   return at === undefined ? { ok: false, reason } : { ok: false, reason, at };
@@ -82,6 +84,8 @@ export function dispatchCommand(state: GameState, command: Command, content: Cor
   handlers: Readonly<Record<string, CommandHandler>> = HANDLERS): DispatchResult {
   const handler = handlers[command.t];
   if (!handler) return rejection('COMMAND_UNKNOWN', 't');
+  if (command.t === 'chapter/bookSleep' && bookSleepHandler.noop(state, command))
+    return { ok: true, stateVersion: state.meta.stateVersion, events: [] };
   const invalid = handler.validate(state, command, content);
   if (invalid) return rejection(invalid);
   const tx = new MutableCoreTransaction(state, content);

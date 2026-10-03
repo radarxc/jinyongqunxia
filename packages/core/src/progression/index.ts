@@ -4,6 +4,7 @@ import { advanceInnerPractice, applyMeridianBoost } from './meridian';
 import type { ProgressionCommand, ProgressionCommandResult, ProgressionState } from './types';
 
 export * from './martial-art';
+export * from './book-sleep';
 export * from './math';
 export * from './meditation';
 export * from './meridian';

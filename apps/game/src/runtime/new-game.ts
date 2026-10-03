@@ -11,7 +11,8 @@ export function browserMasterSeed(): number {
 }
 
 function newGameContent(content: GameContent): CoreContent {
-  return content.inkStories ? { inkStories: content.inkStories } : {};
+  return { ...(content.inkStories ? { inkStories: content.inkStories } : {}),
+    ...(content.chapters ? { chapters: content.chapters } : {}) };
 }
 
 /** Host boundary: entropy is sampled here and never inside deterministic core code. */
@@ -21,6 +22,8 @@ export function createNewGameSessionState(content: GameContent, input: NewGameRe
   if (!Number.isSafeInteger(masterSeed) || masterSeed < 0 || masterSeed > 0xffff_ffff)
     throw new TypeError('NEW_GAME_SEED');
   return createNewGameCore({ ...input, masterSeed,
-    ...(content.contentHash ? { contentHash: content.contentHash } : {}) },
+    ...(content.contentHash ? { contentHash: content.contentHash } : {}),
+    ...(content.chapters?.find((entry) => entry.id === 'ch00_yuenv')
+      ? { chapter: content.chapters.find((entry) => entry.id === 'ch00_yuenv')! } : {}) },
   newGameContent(content)).snapshot();
 }

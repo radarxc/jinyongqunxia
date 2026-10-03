@@ -33,14 +33,18 @@ export function slotViews(
           ? `自动存档 ${id.slice(-1)}`
           : kind === 'quick'
             ? '快速存档'
-            : '旅程纪念存档';
+          : id.startsWith('save_wake_ch')
+            ? `苏醒存档 · ${id.slice('save_wake_'.length)}`
+            : id.startsWith('save_booksleep_ch')
+              ? `书眠前存档 · ${id.slice('save_booksleep_'.length)}`
+              : '旅程纪念存档';
     return {
       id,
       kind,
       label,
       occupied: !!row,
       writable: kind === 'manual' || kind === 'quick',
-      readable: kind !== 'checkpoint',
+      readable: true,
       savedAt: row ? new Date(row.savedAt).toLocaleString('zh-CN') : '',
       summary: row
         ? `${row.meta.summary['name'] ?? '无名侠客'} · ${row.meta.summary['location'] ?? row.meta.worldId} · ${row.meta.summary['date'] ?? `世界刻 ${row.meta.gameTime}`}`

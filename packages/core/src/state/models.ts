@@ -12,7 +12,7 @@ export interface CharacterStats { readonly hpMax: number; readonly mpMax: number
 export interface CharacterResources { readonly hp: number; readonly mp: number; }
 export interface CharacterState {
   readonly characterId: string; readonly status: 'active' | 'departed' | 'dead';
-  readonly innate: Readonly<Record<'con' | 'str' | 'agi' | 'wis' | 'wil' | 'luk' | 'cha', number>>;
+  readonly innate: Readonly<Record<'con' | 'str' | 'bre' | 'agi' | 'wis' | 'wil' | 'luk' | 'cha', number>>;
   readonly skills: readonly SkillState[]; readonly meridians: MeridianProgress;
   readonly legacyHpCredit: number; readonly legacyMpCredit: number;
   readonly stats: CharacterStats; readonly resources: CharacterResources;
@@ -52,15 +52,35 @@ export interface RuleSwitchState {
 }
 export interface ProfileState {
   readonly protagonist: CharacterState | null; readonly companions: readonly CharacterState[];
+  /** Optional only in schema-2 construction fixtures; schema-3 validation requires it. */
+  readonly progression?: PersistentProgressionState;
   /** Optional only for schema-2 saves created before ENG-17a; factories always populate both. */
   readonly identity?: ProtagonistIdentity | null; readonly replayRules?: RuleSwitchState;
+}
+export type SleepAllocationSource = 'manual' | 'balanced' | 'default';
+export interface BookSleepLogEntry {
+  readonly planId: string; readonly planJson: string; readonly from: string; readonly to: string;
+  readonly ruleVersion: string; readonly allocationSource: SleepAllocationSource;
+  readonly sleepEventId: string; readonly contentHash: string;
+}
+export interface PersistentProgressionState {
+  readonly changshengLayer: number; readonly sleepPoints: number;
+  readonly bookSleepLog: readonly BookSleepLogEntry[];
+  readonly changshengLayerReceipts: readonly string[];
+  readonly prologueModeReceipt: PrologueModeReceipt | null;
+}
+export interface PrologueModeReceipt {
+  readonly mode: PrologueMode; readonly routeNodeId: PrologueRouteNodeId;
+  readonly completionNodeId: PrologueCompletionNodeId;
+  readonly exitKey: 'first_sleep_to_baima'; readonly receipts: readonly string[];
 }
 export interface KnownCharacterState {
   readonly npcId: string; readonly relationship: 'met' | 'befriended'; readonly affinity: number;
   readonly character: CharacterState | null;
 }
 export interface ChapterState {
-  readonly chapterId: string; readonly worldYear: number; readonly clock: GameClock;
+  readonly chapterId: string; readonly eraLayerId: string; readonly worldTier: 'HIGH' | 'MID' | 'LOW';
+  readonly worldYear: number; readonly clock: GameClock;
   readonly story: StoryState; readonly worldItems: WorldItems; readonly shops: readonly ShopState[];
   readonly worldMap: WorldMapState | null; readonly town: TownSessionState | null;
   readonly npcs: readonly KnownCharacterState[]; readonly itemChapterUses: Readonly<Record<string, number>>;
@@ -70,6 +90,8 @@ export interface ChapterState {
 export interface PartyState { readonly inventory: Inventory; readonly equipment: Equipment; readonly money: number; }
 export interface WorldNavigationState {
   readonly locationId: string; readonly selectedDestinationId: string | null;
+  readonly pendingMount: { readonly regionId: string; readonly sceneId: string;
+    readonly spawnId: string } | null;
 }
 export interface WorldState {
   readonly navigation: WorldNavigationState;

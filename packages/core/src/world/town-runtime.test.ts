@@ -140,7 +140,7 @@ function meditationGame(seed = 7) {
   const base = createCore(seed).snapshot();
   const clock = createGameClock('epoch_test', 1093, 600);
   const character: CharacterState = { characterId: 'npc_zhujue', status: 'active',
-    innate: { con: 1, str: 1, agi: 1, wis: 1, wil: 1, luk: 1, cha: 1 },
+    innate: { con: 1, str: 1, bre: 1, agi: 1, wis: 1, wil: 1, luk: 1, cha: 1 },
     skills: [], meridians: { schemaVersion: 2, opened: ['ap_test'],
       meridianStats: { mer_test: { grade: 6, strengthLayer: 3, strengthXp: 0, fluxCap: 16 } },
       acupointStats: { ap_test: { grade: 6, strengthLayer: 3, strengthXp: 0, fluxCap: 16 } },
@@ -151,7 +151,7 @@ function meditationGame(seed = 7) {
       temporaryEffects: [], permanentBonuses: { stats: {}, hpMaxBp: 0, mpMaxBp: 0 },
       meridianAids: [] } };
   return { ...base, meta: { ...base.meta, worldTick: clock.elapsedTicks },
-    profile: { protagonist: character, companions: [] },
+    profile: { ...base.profile, protagonist: character, companions: [] },
     chapter: { ...base.chapter, clock, worldYear: 1093, town: outside([0, 1]) } };
 }
 function meditationTarget(character: CharacterState): ConsumableTargetState {
@@ -237,7 +237,7 @@ describe('town meditation ambush', () => {
 
   it('advances one hour and restores resources with integer rounding', () => {
     const character: CharacterState = { characterId: 'npc_zhujue', status: 'active',
-      innate: { con: 1, str: 1, agi: 1, wis: 1, wil: 1, luk: 1, cha: 1 },
+      innate: { con: 1, str: 1, bre: 1, agi: 1, wis: 1, wil: 1, luk: 1, cha: 1 },
       skills: [], meridians: { schemaVersion: 2, opened: [], meridianStats: {},
         acupointStats: {}, targets: {}, turnCompleted: 0, lastAppliedMigration: 0 },
       legacyHpCredit: 0, legacyMpCredit: 0,

@@ -1,7 +1,7 @@
-import { createProjectionMainThreadHost, createProjectionWorkerHost } from '@tianshu/platform/host';
-import type { DomainEvent } from '@tianshu/core';
+import { createProjectionMainThreadHost } from '@tianshu/platform/host';
 import type { ContentSource } from '@tianshu/data';
-import type { GameCommand, GameHost, GameProjection, NewGameRequest,
+import type { JsonValue } from '@tianshu/shared';
+import type { GameHost, GameProjection, NewGameRequest,
   NewGameHost, SessionSnapshot } from './runtime/contracts';
 import { applyItemText } from './selectors/items';
 import { FetchContentSource, ItemTextCache, itemContentChapter } from './runtime/item-content';
@@ -11,7 +11,8 @@ function withNewGame(host: GameHost): GameHost & NewGameHost {
     host.dispatch({ ...input, t: 'run/create' }) });
 }
 
-function withItemText(host: GameHost, cache: ItemTextCache): GameHost {
+function withItemText(host: GameHost, cache: ItemTextCache,
+  fixup?: NonNullable<GameHost['fixupContentRefs']>): GameHost {
   const listeners = new Set<(update: Awaited<ReturnType<GameHost['dispatch']>>) => void>();
   let inventory: GameProjection['inventory'] = []; let equipment: GameProjection['equipment'] = [];
   const rawItems = new Map<string, GameProjection['inventory'][number]>();
@@ -57,6 +58,8 @@ function withItemText(host: GameHost, cache: ItemTextCache): GameHost {
     ({ ...view, ...decorate(view) })), snapshot: () => host.snapshot(),
   validate: (snapshot) => host.validate(snapshot), restore: (snapshot) => host.restore(snapshot).then(
     (update) => ({ ...update, changes: decorate(update.changes) })),
+  ...(fixup || host.fixupContentRefs ? { fixupContentRefs: (snapshot: SessionSnapshot, hash: string) =>
+    (fixup ?? host.fixupContentRefs!)(snapshot, hash) } : {}),
   subscribe(listener) { listeners.add(listener); return () => { listeners.delete(listener); }; },
   dispose() { off(); listeners.clear(); host.dispose(); } };
 }
@@ -65,17 +68,25 @@ export async function createGameCoreHost(options: { readonly demo?: boolean;
   readonly contentSource?: ContentSource } = {}):
 Promise<GameHost & NewGameHost> {
   const source = options.contentSource ?? new FetchContentSource();
-  const wrap = (entry: GameHost): GameHost & NewGameHost =>
-    withNewGame(withItemText(entry, new ItemTextCache(source,
-      itemContentChapter(options.demo === true))));
+  const localFixup: NonNullable<GameHost['fixupContentRefs']> = async (snapshot, fromHash) => {
+    const [{ loadGameContent }, { fixupContentRefs }, { default: base }] = await Promise.all([
+      import('./runtime/item-content'), import('@tianshu/data'), import('virtual:tianshu-content'),
+    ]);
+    const target = await loadGameContent(base, source, snapshot.chapter.chapterId);
+    if (fromHash === target.contentHash) return structuredClone(snapshot);
+    const fixed = fixupContentRefs(
+      snapshot as unknown as JsonValue, target.idRemaps ?? [],
+    ) as unknown as SessionSnapshot;
+    return { ...fixed, meta: { ...fixed.meta, contentHash: target.contentHash! } };
+  };
+  const wrap = (entry: GameHost): GameHost & NewGameHost => withNewGame(withItemText(entry,
+    new ItemTextCache(source, itemContentChapter(options.demo === true)), localFixup));
   let host: (GameHost & NewGameHost) | undefined;
   let timeout: ReturnType<typeof setTimeout> | undefined;
   if (typeof Worker === 'function' && options.demo !== true && options.contentSource === undefined) {
     try {
-      host = withNewGame(createProjectionWorkerHost<GameCommand, GameProjection,
-        SessionSnapshot, DomainEvent>(
-        new Worker(new URL('./core-worker.ts', import.meta.url), { type: 'module', name: 'tianshu-core' }),
-      ));
+      const { createWorkerGameHost } = await import('./runtime/worker-host');
+      host = withNewGame(createWorkerGameHost());
       await Promise.race([host.query(), new Promise<never>((_resolve, reject) => {
         timeout = setTimeout(() => reject(new Error('CORE_START_TIMEOUT')), 10_000);
       })]);

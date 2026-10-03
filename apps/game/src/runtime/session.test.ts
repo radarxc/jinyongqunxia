@@ -3,9 +3,17 @@ import { createBattleDemo } from '../battle/demo';
 import { createGameSession } from './session';
 import { createPreviewSession } from './bootstrap';
 import { fixtureContent } from './test-fixture';
+import { createNewGameState, FIRST_SLEEP_RULE } from '@tianshu/core';
 
 describe('Worker session command adapter', () => {
   const content = fixtureContent();
+  const sleepPlan = { id: '00000000-0000-4000-8000-000000000017',
+    from: 'ch00_yuenv', to: 'ch10_baima', targetTier: 'LOW' as const,
+    sleepEventId: 'slp_first_changbai', skills: { martial: [], inner: [] },
+    convert: { forget: [], dissipate: [] }, equips: [],
+    sleepAlloc: Object.fromEntries(FIRST_SLEEP_RULE.keys.map((key) => [key, 50])),
+    acknowledged: [], allocationSource: 'balanced' as const,
+    allocationRuleVersion: FIRST_SLEEP_RULE.version };
   function withAmbush(invalid = false, riskBaseBp = 10_000): typeof content {
     const demo = createBattleDemo('town'); const hero = 'npc_zhujue'; const enemy = 'npc_attacker';
     const definition = content.towns![0]!;
@@ -36,7 +44,7 @@ describe('Worker session command adapter', () => {
   it('uses ENG-06 recovery, persists the ledger, and refreshes only affected projections', async () => {
     const initial = createPreviewSession(content);
     const protagonist = initial.profile.protagonist!;
-    const core = createGameSession(content, { ...initial, profile: { protagonist: {
+    const core = createGameSession(content, { ...initial, profile: { ...initial.profile, protagonist: {
       ...protagonist, resources: { hp: 100, mp: 100 },
     }, companions: [] } });
     const update = await core.dispatch({ t: 'inventory/use', itemId: 'it_jinchuangyao', targetId: protagonist.characterId });
@@ -55,6 +63,34 @@ describe('Worker session command adapter', () => {
     expect(await core.snapshot()).toEqual(before);
     await core.dispatch({ t: 'world/tick' }); await core.restore(before);
     expect(await core.snapshot()).toEqual(before);
+  });
+  it('exposes the allocation query only after settlement and removes it after wake', async () => {
+    const source = { ...content, contentHash: 'a'.repeat(64), chapters: [{
+      schemaVersion: 'book-world.v1' as const, id: 'ch00_yuenv', eraLayerId: 'ch00',
+      gameYear: { start: -482, end: -482, approx: true }, worldTier: 'LOW' as const,
+      levelCap: 10, layerCap: 9, foreignSuppression: 4, startTick: 0, countsRealLevel: false,
+      wake: { regionId: 'rg_jiangnan_taihu', sceneId: 'sc_00_zhulin', spawnId: 'bookfall' },
+    }] };
+    const target = { ...content, contentHash: 'b'.repeat(64), chapters: [{
+      schemaVersion: 'book-world.v1' as const, id: 'ch10_baima', eraLayerId: 'ch10',
+      gameYear: { start: 702, end: 703, approx: true }, worldTier: 'LOW' as const,
+      levelCap: 20, layerCap: 8, foreignSuppression: 4, startTick: 0, countsRealLevel: true,
+      wake: { regionId: 'rg_xiyu_beijiang', sceneId: 'sc_10_fengshi_feiyi',
+        spawnId: 'cold_open' },
+    }] };
+    const state = createNewGameState({ masterSeed: 7, contentHash: source.contentHash,
+      identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',
+        originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake', chapter: source.chapters[0]! });
+    const core = createGameSession(source, state, undefined, { demo: false,
+      preloadChapter: async () => target });
+    expect((await core.query()).firstSleepAllocation).toBeNull();
+    await core.dispatch({ t: 'quest/choose', questId: 'dc_00_01', optionId: 'skip' });
+    const settled = await core.dispatch({ t: 'quest/choose', questId: 'dc_00_01',
+      optionId: 'skip', phase: 'settle', completionNodeId: 'n_skip_complete' });
+    expect(settled.changes.firstSleepAllocation).toMatchObject({
+      ruleVersion: 'first-sleep.v1', requiredTotal: 300, lockedKeys: ['luk', 'cha'] });
+    const woke = await core.dispatch({ t: 'chapter/bookSleep', plan: sleepPlan });
+    expect(woke.accepted).toBe(true); expect(woke.changes.firstSleepAllocation).toBeNull();
   });
   it('does not create battle-use counters when a field item has no chapter cap', async () => {
     const core = createGameSession(content);
