@@ -3,44 +3,39 @@
   category: scene
   style: default
   subject: 大漠成长与弯弓射雕（ch02_shediao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是郭靖的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中郭靖的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    大漠长风中的弯弓射雕，早年事件统一成年化追忆。郭靖身着骑装在前景弯弓，视线指向高空两只雕，人物占画面下方，草原与天空辽阔。华筝为英健成年草原女子，后方勒马仰望；哲别为沉静的成年草原射手，在更远处观察。华筝与哲别只按文字，无演员脸；不画命中血腥，具体同场站位属原创扩展构图。
+    【画里谁是谁】这张插图画的是：大漠长风中的弯弓射雕，早年事件统一成年化追忆。郭靖身着骑装在前景弯弓，视线指向高空两只雕，人物占画面下方，草原与天空辽阔。华筝为英健成年草原女子，后方勒马仰望；哲别为沉静的成年草原射手，在更远处观察。华筝与哲别只按文字，无演员脸；不画命中血腥，具体同场站位属原创扩展构图。
 
+    【要对齐的部分】郭靖各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「弯弓射雕」和小朱印必须原样保留，一笔不改、不增不减。
 
-    第1张为npc_guojing的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
-
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「弯弓射雕」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_guojing__ch02_youth_scene_grassland_double_eagle.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: b6d5f1cf216766eaa41c70ca235382b069ea96413fb819b1997936772568fc06
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.png
+    sha256: 9795e3af012aaa8a3c3540b1636fb19869663435e3ea0e6bd85ab6162711f940
+    use: 对脸基线：作者审核通过的 por_npc_guojing__ch02_youth_scene_peach_island_square_circle（郭靖），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch02/cg_ch02_grassland_eagles.png
+    sha256: 9bd6ac4cccb94cfff28327f2fc6791844c792dd1de96ab32a54cea842b2f92d8
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_grassland_eagles.9bd6ac4c.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T23:59:19-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch02_grassland_eagles.1791010759260485000/archive/cg_ch02_grassland_eagles.png
+  created: 2026-10-03T14:26:03-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_grassland_eagles.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 9bd6ac4cccb94cfff28327f2fc6791844c792dd1de96ab32a54cea842b2f92d8
+  sha256: 28298758b264d09c20e386343f82530873265d3563d394273c4dd954e6d17bcb
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「弯弓射雕」，实际字形「弯弓射雕」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「弯弓射雕」，实际字形「弯弓射雕」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch02_grassland_eagles.1791010759260485000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch02_grassland_eagles.resume3.png
-  repair_runner_source_sha256: 7f55478fb3616001f91fa3dc0788cea7e6d096438c2dfe9b6dc843005d62a264
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch02_grassland_eagles.resume3
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_grassland_eagles.9bd6ac4c.png
+    sha256: 9bd6ac4cccb94cfff28327f2fc6791844c792dd1de96ab32a54cea842b2f92d8
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_grassland_eagles.9bd6ac4c.entry.yaml
+  effort: ultra
 - id: cg_ch02_peach_island_trials
   file: cg_ch02_peach_island_trials.png
   category: scene
