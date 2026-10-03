@@ -837,4 +837,12 @@
       - lore-7 / 8 的执行器已停，lore-1 / 3 / 5 / 6 的执行器跑完第 1 次。
       - TOOL-catalog-9col 合入后由开发监督逐个挪基点复验（计划见 `_handoff/lore_plan.md`）：1 / 3 / 5 / 6 用 `--from validate`，7 / 8 用 `--from start`，说明里写「保持九列」。
     - **最后**：lore 全部合入、ENG-18d 也合入之后，TOOL-items-catalog 用 `--from start` 重新生成一次。
+  - **10-03 00:45–01:20 开发监督**：
+    - **ENG-18d 合入**（4f801d3f，01:13，r1 PASS）：物品成为内容包独立叶片（`common.rules.items.pNNN` / `common.text.zh-Hans.items`），core Worker 按需加载规则，文本在展示时读；会话 hash 对拍不变。
+      - 体积转绿：889 个物品时 entry 129.51 / 170，webgl total 292.53 / 350。
+    - **剩下一项随机红**：`packages/data/src/build/build.test.ts` 里 18d 新加的真实内容构建用例，在全量并行、负载 19 时超过 vitest 默认 5 s；单独跑 26 / 26 通过，7.6 s。
+      - 已登记并直接起跑 ENG-18e-build-test-timeout（e3ef6a11，Sol max，pid 30042）：优先夹具化，否则显式固定超时并注明原因；禁止按负载放宽，也不准改全局超时。
+    - **eng3 01:14 起跑**：ENG-17（M1）、ENG-18b、ENG-19a（M1）。
+    - **磁盘**：00:52 跌到 4.0 GiB，已报协调者；01:00 回到 6–9 GiB。
+    - **日志**：ART-hero-refine-a 的执行器日志到了 157 MB，由追踪 subagent 处理（gzip 后截断）。开发监督只管 traex 任务日志超 150 MB 的情况，目前都没超。
 
