@@ -2,9 +2,9 @@
 
 > 归属（基准 §18）：武功数据结构、层数、招式预算、内功接口、修炼、装配栏规则、武学图鉴。
 > 上游：`00-canon.md` v1.8（唯一事实来源）；作者新增需求与已采用决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
-> 引用而不重定义：携带、外来压制、残篇/残承 → `design/02-timeline-and-world-tiers.md`；属性公式、`MPREF` 与技艺 ID → `design/03-attributes.md`；伤害公式与乘区 → `design/04-damage-formula.md`；Buff 定义与目录 → `design/06-buff-system.md`；套装定义 → `design/07-set-system.md`；地形/轻功阈值 → `design/08-terrain-and-qinggong.md`；六角范围模板、集气、运劲、合击、反击流程与 AI → `design/09-combat-system.md`；物品/丹药/兵器属性 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务、关系与门派玩法 → `design/12-quests-npc-factions.md`；旧角色经验 / 等级迁移、难度与结局 → `design/13-progression-and-endings.md`（AR-19 后不得作为生产成长真值）；穴道、经脉、冲穴与周天 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；门派名录、历史与时代开放 → `design/17-sects-compendium.md`；NPC 身份、同伴与生卒 → `design/18-npc-and-companions.md`；地图节点、坐标与时代地图资产 → `design/19-world-map.md`；后人、宝藏、跨年代残本、信物、配方与投放 → `design/20-legacy-inheritance.md`；战斗经脉运行、攻防/轻功路线、绝招补充、护体内劲、擒拿/点穴、调息与逐单位模拟 → `design/21-meridian-flow-and-moves.md`。
+> 引用而不重定义：携带、外来压制、残篇/残承 → `design/02-timeline-and-world-tiers.md`；属性公式、`MPREF` 与技艺 ID → `design/03-attributes.md`；伤害公式与乘区 → `design/04-damage-formula.md`；Buff 定义与目录 → `design/06-buff-system.md`；套装定义 → `design/07-set-system.md`；地形/轻功阈值 → `design/08-terrain-and-qinggong.md`；六角范围模板、集气、运劲、合击、反击流程与 AI → `design/09-combat-system.md`；物品/丹药/兵器属性 → `design/10-items-and-equipment.md`；统一大地图与时代图层 → `design/11-open-world.md`；任务、关系与门派玩法 → `design/12-quests-npc-factions.md`；旧角色经验 / 等级迁移、难度、书眠转化与结局 → `design/13-progression-and-endings.md`；穴道、经脉、冲穴与周天 → `design/15-meridians-and-acupoints.md`；资源与营生 → `design/16-resources-and-estates.md`；门派名录、历史与时代开放 → `design/17-sects-compendium.md`；NPC 身份、同伴与生卒 → `design/18-npc-and-companions.md`；地图节点、坐标与时代地图资产 → `design/19-world-map.md`；后人、宝藏、跨年代残本、信物、配方与投放 → `design/20-legacy-inheritance.md`；战斗经脉运行、攻防/轻功路线、绝招补充、护体内劲、擒拿/点穴、调息与逐单位模拟 → `design/21-meridian-flow-and-moves.md`；《长生诀》九层效果与特殊生命周期 → `design/25-changshengjue.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v2.1（AR-27 属性 / 门槛 / 修炼加成与 protocol 4 接口，2026-10-02）；v2.0（AR-19 命中区、透劲、打穴、消化与斗转字段，2026-10-01）；v1.9（AR-19 内功产气 / 速度 / 通量锻炼与 1–9 资源熟练，2026-10-01）；其余版本记录沿用下文变更记录。
+> 版本：v2.2（《长生诀》特殊功法、累计经验与 3+3，2026-10-02）；v2.1（AR-27 属性 / 门槛 / 修炼加成与 protocol 4 接口，2026-10-02）；v2.0（AR-19 命中区、透劲、打穴、消化与斗转字段，2026-10-01）；其余版本记录沿用下文变更记录。
 > 变更记录：v1.2 接收 `design/15` 的 20 个正式经脉 ID、专精倍率与校验边界，补齐 `design/17`–`20` 的唯一归属引用，明确 `recalled` 仅为基础图鉴状态上的“再续朱印”，并将已落盘的跨文档待决项改为已解决。C14 图鉴实数重定与 CN-05 独孤六式预算结论保持不变。
 > 变更记录（2026-09-27，经脉系统落地）：接收 `design/21` v2.0 的武学侧接口：招式引用攻/防/轻功路线，内功引用调息档案并声明护体内劲能力，轻功提供常驻速度路线；路线段时间只计 `flowCt`，经脉攻防乘区独立于 `power` 预算；§14 数量与品阶总账不变。
 > 变更记录（2026-09-27，AR-14 追加）：绝招数量按十二品改为天阶 2–3、地阶 1–2、仅玄上 1；默认第一 / 第二 / 第三绝招在 7 / 9 / 10 重解锁，增加共享气势、武学级绝招冷却、连续重复限制与天上三绝招完整示例。
@@ -137,6 +137,12 @@
 
 分类硬规则（C16）：左右互搏固定为 `misc/mind`。弓箭武学固定为 `hidden/hidden`，占暗器栏、使用 `apHidden` 与箭类弹药；弓具本身的持用条件归 `design/10`。火铳等火器同属暗器/弹药体系（作者决定 P19），不另建兵器武学类别。
 
+### 2.2.1 栏外特殊功法登记：《长生诀》
+
+`sk_changshengjue` 是 `story_art` 主线功法**（原创扩展）**，登记口径唯一引用 `design/25` §1：普通 `SkillDef.category` 联合不增加 `story_art`，而由剧情进度表保存 `changshengLayer:1..9`。其普通品阶、`grade/G`、`subType`、武学威力、`sxp` 与装配栏均为“不适用”；只由剧情升层，不进入普通图鉴数量、天级池、套装、携带、遗忘、散功或融合候选，也不占苏醒 3+3。
+
+该栏外登记只为让内容注册表按同一 `sk_*` ID 查到显示名与主线状态，不得据此创建普通 `SkillState`、伪填 1–12 品或生成招式 / 被动。第九层的螺旋战斗字段见 `design/25` §3，并分别由 `design/04`、`design/21` 消费。
+
 ### 2.3 杂学 → 资质/技艺映射（建议，design/03 确认）
 
 | misc 子类 | 修炼速度所用"资质"位 | 效果强度所用技艺 |
@@ -208,6 +214,7 @@ reqs:
 | `skillId` | string | |
 | `trueLayer` | int 1–10 | **真实层数**，只增不减（被融会贯通消耗除外） |
 | `sxp` | int | 当前层内已积累武学经验 |
+| `cumulativeSxp` | int64 | 从首次习得到当前确认前实际投入该门的累计 `sxp`，单调不减；升层清当前 `sxp` 时不清零 |
 | `sourceCap` | int | 当前可达的最高层（取所有已获学习途径的最大 `maxLayer`，§7.1） |
 | `learnedIn` | chapterId | 首次习得书界 |
 | `nativeTo` | chapterId | 本土归属（design/02 §2.2）；`≠ 当前书界` 即外来 |
@@ -234,6 +241,7 @@ L         = 0.5 + 0.1 × effLayer                                            // 
 - 解锁判定（招式、被动、绝招）一律使用 `effLayer`。真实层数高于有效层数时，超出部分的招式在 UI 上显示为"天道封印"（书灵解释），战斗中不可用。
 - 武学施加的 Buff 品阶 = `effGrade`（基准 §10"通常继承来源武功品阶"）。
 - **修炼消耗与修为门槛使用绝对 `grade`**（防止"在低武书界便宜地修高阶外来武学"）。
+- `convertedSxp(skillId)` 不属于活动 `SkillState`：它是残篇 / 技能历史记录中的累计经验高水位，定义与更新事务见 `design/13` §4.10、`design/02` §5.2。遗忘、忆起、重学或散功都不得降低它。
 
 每门已装配武学的绝招轮换使用下列**战斗临时态**，不写回持久 `SkillState`：`ultimateCooldown: 0|1` 与 `lastUltimateMoveId: moveId|null`。同门任一绝招在 F2 原子支付资源后置冷却 1，并记录其 `moveId`；设置冷却的当前行动不递减，紧接着的下一次自身行动全程禁止同门绝招，待该行动结束才清零。即便冷却已经归零，下一次绝招仍不得与 `lastUltimateMoveId` 相同；先成功结算同门另一绝招或任一同门非绝招后，才解除重复限制。完整行动时序由 `design/09` 接入。
 
@@ -562,7 +570,8 @@ export interface InnerDef {
 }
 
 export interface SkillState {
-  skillId: string; trueLayer: number; sxp: number; sourceCap: number;
+  skillId: string; trueLayer: number; sxp: number; cumulativeSxp: bigint;
+  sourceCap: number;
   learnedIn: ChapterId; nativeTo: ChapterId; sourceGrade: Grade;
   formId?: 'base'|'legacy_complete';
   attunedGrade?: Grade; attunedIn?: ChapterId;
@@ -619,6 +628,8 @@ resourceLayer = min(trueLayer,9)
 ### 3.2 武学经验曲线
 
 - 武学经验记为 `sxp`（skill experience）；生产只增长具体武功，不生成角色经验。旧 `exp` 仅由 design/13 的 v2 迁移 / 回放适配器读取。
+- 每次实际投入 `deltaSxp≥0` 时，同时执行 `sxp += deltaSxp` 与 `cumulativeSxp += deltaSxp`；升层只从当前层 `sxp` 扣 `ExpToNext`，累计值不扣。奖励、战斗、闭关、指点、丹药、顿悟类别熟练度与真元投放都属于实际投入；预览、回滚、溢出拒绝及积蕴尚未释放部分不计。
+- 书眠可结算量只引用 `eligibleSxp=max(0,cumulativeSxp-convertedSxp)`，费率与高水位原子更新见 `design/13` §4.10；05 不复制 60%–72% 算法。
 - 习得即为第 1 重（`sxp = 0`）。从第 n 重升到第 n+1 重所需：
 
 ```
@@ -1513,6 +1524,10 @@ restore = floor(真实 mpMax × mpRegen / 100)
 ## 6. 装配规则（基准 §20 细则）
 
 ### 6.1 栏位
+
+本节是战斗装配容量；苏醒跨书保留容量是另一套规则。第九层前每次苏醒固定最多保留 **3 门武功合计 + 3 门内功**：武功池包含 `unarmed/weapon/movement/hidden` 以及具备独立 `SkillState.sxp` 的武艺型 `misc`，不按拳脚、兵器等类别各给 3 个名额；纯知识技艺不占。`inner` 只进入 3 门内功池；`sk_changshengjue` 栏外且不占名额。见 `design/25` §8。
+
+保留实例维持真实层数与历史累计经验，其余实例的遗忘 / 散功及 60%–72% 转化引用 `design/13` §4.10；外来压制仍照 `design/02` 结算。`changshengLayer=9` 后取消书眠与 3+3，全部武功 / 内功保留，但下表战斗装配栏不扩大（见 `design/25` §2、§9）。
 
 | 栏位 | 数量 | 可放入 | 细则 |
 |---|---|---|---|
@@ -3144,6 +3159,10 @@ description: >-
 | 术语 | ID / 字段 | 定义 | 章节 |
 |---|---|---|---|
 | 武学经验 | `sxp` | 单门武学的修炼进度；旧角色 `exp` 仅供迁移 / 回放 | §3.2 |
+| 累计武学经验 | `cumulativeSxp` | 单门武学自首次习得起实际投入的 `sxp` 总量；升层、遗忘 / 重学不倒退 | §2.6、§3.2 |
+| 已转化经验高水位 | `convertedSxp(skillId)` | 技能历史 / 残篇按 ID 保存的累计经验高水位；只引用 13 §4.10、02 §5.2 | §2.6 |
+| 栏外特殊功法 | `story_art` | 《长生诀》专用登记类别，不加入普通 `SkillDef.category` 或普通品阶体系 | §2.2.1；`design/25` §1 |
+| 苏醒 3+3 | — | 最多 3 门武功合计 + 3 门内功；九层后取消，《长生诀》始终不占 | §6.1；`design/25` §8 |
 | 修炼永久属性 | `trainingAttrs` | 真实层数首次到 3/6/9 重时发放的六项永久属性里程碑；受单门、角色与单项封顶 | §3.7 |
 | 属性门槛带 | — | 按类别、品阶三档与源流修正生成 `reqs.attrs` 的配表规则，不是运行时字段 | §7.3.1 |
 | 真实层数 / 有效层数 | `trueLayer` / `effLayer`（与 design/02 同名） | 修为所达层数 / 书界上限、修为门槛、途径上限截断后的可用层数 | §2.6、§3.4 |
@@ -3223,6 +3242,7 @@ description: >-
 | 经脉运行示例（仅引用） | 21 示例：`mfr_xianglong18_zhenjing`、`mfr_eighteen_palms_chain`、`mfr_xianglong18_shenlong`、`txp_harmony_supreme`；图鉴实例：`mfr_dugu9_wuzhao`、`mfr_jiuyang_puzhao`、`mfr_yijinjing_daozhuai`、`mfr_longzhaoshou_sanshiliu`、`txp_yijinjing`、`txp_jiuyang` | 归属分别见 `design/21` §12 与对应武学图鉴经脉章节；05 不登记第二份对象 |
 | 范围模板（仅引用 design/09 的生产 ID） | 基础：`aoe_single` `aoe_self` `aoe_ring` `aoe_around` `aoe_disk` `aoe_line` `aoe_bolt` `aoe_spokes` `aoe_cone` `aoe_zone` `aoe_allies` `aoe_field` `aoe_ally_all`；行为/组合：`aoe_wave` `aoe_pierce` `aoe_leap` `aoe_dash` `aoe_pull` `aoe_knock` `aoe_chain` `aoe_multi` `aoe_behind` `aoe_swap` `aoe_boomerang` `aoe_sequence` | §4.3；旧方格 ID 仅为迁移别名，不列生产清单 |
 | 武学（本文新增，非基准 §13） | `sk_basic` `sk_tieshazhang` `sk_taizuchangquan` `sk_quanzhenjian` `sk_longzhaoshou` `sk_luohanquan` `sk_qishangquan` `sk_jiuyinbaigu` `sk_zichuang01`–`03` | 完整定义于本文 |
+| 特殊功法（仅登记） | `sk_changshengjue` | `story_art` 栏外主线功法；效果与生命周期唯一见 `design/25`，本文不建普通 `SkillDef` |
 | 武学（仅引用，待 catalog 定义） | `sk_mianzhang` 绵掌、`sk_yunvjian` 玉女剑法、`sk_shaolinqinna` 少林擒拿手、`sk_huagong` 化功大法 | catalog |
 | 招式·降龙十八掌 | `mv_xianglong18_` + `kanglong` `jianlong` `qianlong` `hongjian` `lishe` `turu` `zhenjing` `huoyue` `shuanglong` `yuyue` `feilong` `shicheng` `miyun` `sunze` `longzhan` `lvshuang` `diyang` `shenlong` `lianhuan` | §13.1 |
 | 招式·独孤九剑 | `mv_dugu9_` + `zongjue` `pojian` `podao` `poqiang` `pobian` `posuo` `pozhang` `poanqi`（破箭式；"箭"与"剑"同拼音，以"暗器"区分） `poqi` `wuzhao` | §13.2 |
@@ -3301,6 +3321,9 @@ description: >-
 | V48 | `acupointStrike.level∈[1,9]`、`occupyingQiBp∈[1,10000]`；必须有合法穴位候选和内劲输出，既有 `bf_xueweishoufeng.value.level` 若并存必须相等 | 失败 |
 | V49 | 内功 `digestRatioBp` 为 10000–100000 安全整数、缺省 10000；`reverseQi` 为 bool 且只允许内功，首版 `sk_douzhuan` 建议为 true；同 cause 不得同时走反引与整招镜返 | 失败 |
 | V50 | `autoTargetCap` 只允许整数 1–4；`aoe_single` 必须规范化为 1，其他范围缺省 2；字段不得改变手动 `HexShape`、`AF` 或伤害倍率 | 失败 |
+| V51 | 普通 `SkillDef.category` 不得出现 `story_art`；`sk_changshengjue` 恰一条栏外剧情记录、无普通品阶 / `SkillState` / 装配 / 图鉴配额，且不进遗忘、散功或融合候选 | 失败 |
+| V52 | `cumulativeSxp` 为非负 int64 且只随实际投入增加；`convertedSxp(skillId)` 单调不减且不高于已见累计值；升层、忆起 / 重学不得清零二者 | 失败 |
+| V53 | 九层前苏醒保留池最多 3 门武功合计 + 3 门内功；武功池跨 `unarmed/weapon/movement/hidden/武艺型 misc` 共用名额；《长生诀》不计，九层后跳过此校验 | 失败 |
 
 ### 16.2 金标准测试用例
 
@@ -3355,6 +3378,9 @@ description: >-
 | T47 | 玄级外放伤害招标 `penetratingQi`；同招改黄级、非外放或纯支援 | 第一项通过；后三项均构建失败，运行时仍由 21 比较双方当前 MP |
 | T48 | 6 级打穴、`occupyingQiBp=7500`、`releasedQi=40`；候选穴两个 | 占穴量 `floor(40×7500/10000)=30`；按显式候选顺序取首个合法穴，严重度仍为 `dxl_lv06` |
 | T49 | 普通来源 / 幻阴指来源各注入 20 气；斗转反引 20 气 | 消化分别需 20 / 200 MP；反引消耗 20 MP 后仅得 `floor(20×5000/10000)=10` 临时反击气 |
+| T50 | 某剑法当前层 `sxp=900`、累计 8,000；投入 600 后升层需 1,000 | 当前层余 `500`，`cumulativeSxp=8,600`；此前 `convertedSxp=8,000` 时可结算基数仅 600 |
+| T51 | 选择拳法、剑法、轻功各一门，再选暗器；另选 3 内功与《长生诀》 | 前三门已占满武功总池，暗器被拒；3 内功合法，《长生诀》栏外不占名额 |
+| T52 | `changshengLayer=9`，角色已学 9 武功 / 5 内功 | 全部保留且不执行 3+3；战斗装配仍只按 §6.1 的 13 栏 |
 
 ---
 
@@ -3385,6 +3411,7 @@ description: >-
 | D26 | 全部武学图鉴、tech/04、lint | 绝招条件按 §4.8 唯一乘法式；任意持械常见 +0.15，指定兵器罕见 +0.30；门槛型必须明示 | **规则已解决，图鉴迁移 / 自动预算 lint 未完成**：重算表见 `tools/agents/reports/NAuF-rules.md` §7；绝回≤40%罕见档沿既有卡作 **【建议值】**，作者确认入口 O9 |
 | D27 | 通行图鉴、design/09、chapters/10 | 斩马用 `targetHasTag:mounted`；陷阵伤害路线改 `attack` | **规则已解决，实例待同步**：§4.2.1、§4.11；不扩普通战斗的骑乘玩法，具体特殊场景须由归属文档授权 |
 | D28 | 少林图鉴、design/09、design/10 | 伤科 `med=30`、七重配方 `alchemy=40`、罗汉阵 `formation=30`、伏魔圈 `formation=50` | **接口已解决，数值仍为【建议值】**：伤科技艺与两阵法的学习软门槛按既有 `Reqs` 处理；`alchemy=40` 只解锁七重配方，不变成整门学习硬门槛。战斗阵法与配方规则仍归 09 / 10，未做实玩校准，不冒充正式定价 |
+| D29-CS | tech/05、design/02 / 13 | 《长生诀》走栏外 `story_art`；`SkillState` 增 `cumulativeSxp:int64`，技能历史保留 `convertedSxp`；苏醒容量固定 3 武功合计 + 3 内功 | **本文接口已解决**：见 §2.2.1、§2.6、§3.2、§6.1；转化事务仍唯一见 13 §4.10 |
 | D29 | 五绝 / 少林等音功图鉴 | NR3 建议所有音功显式写 `voice` | **已解决（沿现行字段契约）**：§4.2.2 默认 false 不变；人声发劲必须显式 true，持乐器可显式 false，不引入第二判定字段；逐招标记与端点仍交图鉴核查 |
 | D30 | 五岳 / 少林 / 倚天 / 五绝 / 道家图鉴、design/06、tech/04 | 特殊钩子成本、混合招伤害子效果与存量几何预算 | **部分已解决**：§13.2 无招收招同步 1200，破箭 / 破气按门槛型保留；破气 / 无招特殊成本 0.02 / 0.07、九阳普照群盾驱散成本 0.45 仍为图鉴既有 **【建议值】**，须由效果价值归属校准。倒拽按单目标远程拉拽改 2.45，少林镜像待同步；九阳普照敌伤投送 / 招架字段未定，当前 1.80 不签出为预算已验证。七星 / 三清 / 推山 / 捉影 / 时乘的明确旧 AF 已复算为 0.90 / 1.05 / 1.00 / 1.00 / 1.00，镜像待同步；鱼跃 / 飞龙的高差与溅射成本未闭合，不按旧 leap AF 签出 |
 | D31 | design/03、15、21、tech/04、全部内功图鉴 | 输出 `practiceLayer/resourceLayer` 与 `InnerDef` 五类 AR-19 参数；默认曲线 `5000+625n`，穴 / 脉硬上限 64 / 96 | **已解决（规则 / schema）**：§3.0、§5.8.1、V44–V45；逐内功卡未填时按确定默认编译并报警，后续图鉴任务应物化字段 |
