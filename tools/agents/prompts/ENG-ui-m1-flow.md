@@ -49,6 +49,7 @@
      - 对话与初眠中不能存档。
 
 约束：
+- **体积**（开发监督 10-03 04:38 补）：ENG-19a 合入后集成分支 entry 闭包已到 157.74 / 170 KiB（gzip，`tools/perf/budgets.json`，不放宽）。本任务新增的页面 / 组件一律按路由或首次使用懒加载（`defineAsyncComponent` / 动态 `import()`），不进入首屏同步依赖；报告写 `pnpm size` 的 entry / webgl total 实测。
 - 写集：
   - 界面：`packages/ui/src/components/**`（只新增流程组件，不改战斗与已有面板的行为）、`packages/ui/src/projections.ts`（只改类型）、`packages/ui/src/i18n-flow.ts`、`packages/ui/src/index.ts`；
   - 应用：`apps/game/src/pages/**`、`apps/game/src/App.vue`、`apps/game/src/game-controller.ts`、`apps/game/src/flow/**`（新）、`apps/game/CLAUDE.md`。
