@@ -35810,6 +35810,9 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
+    ],
+    "shrink_exempt": [
+     "packages/data/scripts/validate-content.ts"
     ]
    },
    "id": "ENG-content-validate-inkmeta",
