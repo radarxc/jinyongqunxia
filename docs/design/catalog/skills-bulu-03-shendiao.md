@@ -1,7 +1,7 @@
 # 《神雕侠侣》首领武学补录图鉴（`skills-bulu-03-shendiao`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴补录册。本文只定义书界 03 为主书界、且现有十一册图鉴尚未定义的首领合规武学；不覆写既有门派图鉴。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/15/16、`docs/00-canon.md`、`docs/decisions/rulings-v1.md`、`design/05`、`design/21` v2.0、`design/chapters/03-shendiao.md`。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/15/16/27、`docs/00-canon.md`、`docs/decisions/rulings-v1.md`、`design/03` v2、`design/05`、`design/21` v2.0、`design/chapters/03-shendiao.md`。
 > **引用而不重定义**：字段、层数、招式预算与外放 schema 见 `design/05`；经脉路线、调息、护体内劲与首领参数见 `design/21`；Buff 见 `design/06`；门派与职级见 `design/17`；装备见 `design/10`；任务和人物来源见 `design/chapters/03-shendiao.md`、`design/18`。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为人物、兵器或表现有据但固定武学名无据；**（待考）**须以三联／广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
 >
@@ -68,7 +68,8 @@
 | sourceChapters | `[ch03_shendiao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0/1` · 4 |
 | meridians / InnerDef | `[mer_renmai,mer_yinwei,mer_shoujueyin]` **【建议值】**；`breathProfileRef:txp_chiliandugong`；`innerGuard:{enabled:true,reflectBp:0}`；`auxUsableMoves:[mv_chiliandugong_tiaodu]` |
-| reqs | `attrs {wil:55,con:50,wis:45}`；`aptitude {apInner:55}`；古墓叛支身份；前置为赤练神掌 7 重与五毒秘传 5 重（ID 见 `skills-daojia` §3）；`hard:[aptitude,prereq]`；正线不因古墓身份自动获传 |
+| reqs | `attrs {bre:55,wil:50}`；`aptitude {apInner:40}`；古墓叛支身份；前置为赤练神掌 7 重与五毒秘传 5 重（ID 见 `skills-daojia` §3）；`hard:[aptitude,prereq]`；正线不因古墓身份自动获传 |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | inner.contribution | `{mpMaxPct:34,hpMaxPct:20,attrs:{con:5,wil:6,wis:3},mpRegen:2.5}`；`IP=34+20+2×(5+6+3)+5×2.5=94.5`；`stats {resPoison:10,effHit:5}` 合计 15 |
 | 层数要点 | 1 重调毒入息；4 重催毒；**7 重绝招赤练护脉**；8 重以身试毒；**9 重绝招毒火攻心**；10 重毒功大成 |
 | setTags / conflicts | `[]` / 与阳性主运按 `design/05` §5.4 处理阴阳相冲；不获得通用毒免 |
@@ -106,7 +107,8 @@
 | sourceChapters | `[ch03_shendiao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.55/0.45` · 4 |
 | weaponReq | `{category:whip,tags:[fuchen]}`；普通拂尘挥击不是外放 |
-| reqs | `attrs {agi:55,wis:50}`；`aptitude {apWhip:55}`；前置为三无三不手 7 重与 `sk_chiliandugong` 5 重；`hard:[aptitude,prereq]` |
+| reqs | `attrs {agi:55,wis:45}`；`aptitude {apWhip:40}`；前置为三无三不手 7 重与 `sk_chiliandugong` 5 重；`hard:[aptitude,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2,wis:1}},{layer:9,attrs:{agi:1}}]` |
 | layerStats | `{hit:[3,9],effHit:[2,6]}`，10 重合计 15 |
 | 层数要点 | 1 重探尘；4 重幻影回拂；**7 重绝招拂尘锁脉**；8 重毒尘；**9 重绝招赤练回环**；10 重拂尘大成 |
 | setTags / conflicts | `[]` / 无 |
@@ -140,7 +142,8 @@
 | sourceChapters | `[ch03_shendiao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0/1` · 4 |
 | meridians / InnerDef | `[mer_renmai,mer_yinwei,mer_daimai]` **【建议值】**；`breathProfileRef:txp_jueqingbixuejue`；`innerGuard:{enabled:true,reflectBp:0}`；`auxUsableMoves:[mv_jueqingbixuejue_nixi]` |
-| reqs | `attrs {wil:55,con:55,wis:45}`；`aptitude {apInner:55}`；`sect {id:sect_jueqinggu,rank:4}`；前置为闭穴功 7 重与绝情心诀 7 重（ID 见 `skills-daojia` §6）；`hard:[aptitude,sect,prereq]` |
+| reqs | `attrs {bre:55,wil:45}`；`aptitude {apInner:40}`；`sect {id:sect_jueqinggu,rank:4}`；前置为闭穴功 7 重与绝情心诀 7 重（ID 见 `skills-daojia` §6）；`hard:[aptitude,sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | inner.contribution | `{mpMaxPct:34,hpMaxPct:20,attrs:{con:6,wil:6,wis:2},mpRegen:2.5}`；`IP=34+20+2×(6+6+2)+5×2.5=94.5`；`stats {resSeal:10,defIn:5}` 合计 15 |
 | 层数要点 | 1 重守心闭穴；4 重逆息开脉；**7 重绝招闭穴藏机**；8 重闭中留门；**9 重绝招锁元守一**；10 重闭穴大成 |
 | setTags / conflicts | `[]` / 保留基础闭穴功的罩门代价；不得叠成无条件点穴免疫 |
@@ -172,7 +175,8 @@
 | sourceChapters | `[ch03_shendiao]` |
 | nature · wOut/wIn · moveSlots | `harmony` · `0.65/0.35` · 4 |
 | weaponReq | `{category:blade}`；主手刀即可使用，副手为剑时激活“双刃”效果；异类双持接口沿用 `skills-daojia` §6.3 的既有约束，不借左右互搏 `dualWield` |
-| reqs | `attrs {agi:55,str:50,wis:50}`；`aptitude {apBlade:55,apSword:50}`；`sect {id:sect_jueqinggu,rank:4}`；前置为阴阳倒乱刃法 7 重（ID 见 `skills-daojia` §6）；`hard:[aptitude,sect,prereq]` |
+| reqs | `attrs {str:55,agi:45}`；`aptitude {apBlade:40,apSword:40}`；`sect {id:sect_jueqinggu,rank:4}`；前置为阴阳倒乱刃法 7 重（ID 见 `skills-daojia` §6）；`hard:[aptitude,sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,agi:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{pierce:[3,9],hit:[2,6]}`，10 重合计 15 |
 | 层数要点 | 1 重金刀横劈；4 重黑剑回锋；**7 重绝招刀乱剑正**；8 重交手换刃；**9 重绝招金刀黑剑合击**；10 重双刃大成 |
 | setTags / conflicts | `[]` / 破刀、破剑分别按实际伤害段判定；不得把两类克制相乘 |
@@ -206,7 +210,8 @@
 | sourceChapters | `[ch03_shendiao]` |
 | nature · wOut/wIn · moveSlots | `yang` · `0/1` · 4 |
 | meridians / InnerDef | `[mer_dumai,mer_yangwei,mer_yangqiao]` **【建议值】**；`breathProfileRef:txp_jinganghufagong`；`innerGuard:{enabled:true,reflectBp:0}`；`auxUsableMoves:[mv_jinganghufagong_xingqi]` |
-| reqs | `attrs {con:55,wil:55,str:45}`；`aptitude {apInner:55}`；`sect {id:sect_mizong,rank:3}`；前置为 `sk_mizonghufashen` 7 重与 `sk_zhuohuogong` 5 重；`hard:[aptitude,sect,prereq]` |
+| reqs | `attrs {bre:55,con:45}`；`aptitude {apInner:40}`；`sect {id:sect_mizong,rank:3}`；前置为 `sk_mizonghufashen` 7 重与 `sk_zhuohuogong` 5 重；`hard:[aptitude,sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1,con:1}},{layer:6,attrs:{bre:2,con:1}},{layer:9,attrs:{bre:2,con:1}}]` |
 | inner.contribution | `{mpMaxPct:34,hpMaxPct:20,attrs:{con:6,wil:5,str:3},mpRegen:2.5}`；`IP=34+20+2×(6+5+3)+5×2.5=94.5`；`stats {defIn:8,resCC:7}` 合计 15 |
 | 层数要点 | 1 重金刚守身；4 重行气固本；**7 重绝招金刚护体**；8 重护法持身；**9 重绝招震脉归元**；10 重护法大成 |
 | setTags / conflicts | `[]` / 与阴性主运按 `design/05` §5.4 处理阴阳相冲；护盾与护体内劲仍按 21 §4.8 顺序结算 |
@@ -238,7 +243,8 @@
 | sourceChapters | `[ch03_shendiao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.65/0.35` · 4 |
 | weaponReq | `{category:exotic,kinds:[fan]}`；折扇挥击与扇骨实体均不是离体真气外放 |
-| reqs | `attrs {agi:55,wis:50,wil:45}`；`aptitude {apExotic:55}`；`sect {id:sect_mizong,rank:3}`；前置为 `sk_huodushanfa` 7 重与 `sk_mizonghufashen` 5 重；`hard:[aptitude,sect,prereq]` |
+| reqs | `attrs {wis:55,agi:45}`；`aptitude {apExotic:40}`；`sect {id:sect_mizong,rank:3}`；前置为 `sk_huodushanfa` 7 重与 `sk_mizonghufashen` 5 重；`hard:[aptitude,sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:2,agi:1}},{layer:9,attrs:{wis:1}}]` |
 | layerStats | `{hit:[3,9],eva:[2,6]}`，10 重合计 15 |
 | 层数要点 | 1 重开扇压锋；4 重隐藏扇骨；**7 重绝招疾展封门**；8 重借扇回身；**9 重绝招雪山回扇**；10 重铁扇大成 |
 | setTags / conflicts | `[]` / 扇骨、毒针均按实体投射结算，不获得外放增益 |
@@ -272,7 +278,8 @@
 | sourceChapters | `[ch03_shendiao]` |
 | nature · wOut/wIn · moveSlots | `yang` · `0/1` · 4 |
 | meridians / InnerDef | `[mer_dumai,mer_yangqiao,mer_zuyangming]` **【建议值】**；`breathProfileRef:txp_caoyuanjunzhenxinfa`；`innerGuard:{enabled:true,reflectBp:0}`；`auxUsableMoves:[mv_caoyuanjunzhenxinfa_haohe]` |
-| reqs | `attrs {con:55,wil:55,str:45}`；`aptitude {apInner:55}`；`sect {id:sect_menggu,rank:4}`；前置为 `sk_baizhanxinfa` 7 重与 `sk_caoyuantunaxi` 5 重；`hard:[aptitude,sect,prereq]` |
+| reqs | `attrs {bre:55,wil:45}`；`aptitude {apInner:40}`；`sect {id:sect_menggu,rank:4}`；前置为 `sk_baizhanxinfa` 7 重与 `sk_caoyuantunaxi` 5 重；`hard:[aptitude,sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `{mpMaxPct:34,hpMaxPct:20,attrs:{con:6,wil:5,str:3},mpRegen:2.5}`；`IP=34+20+2×(6+5+3)+5×2.5=94.5`；`stats {tough:8,resCC:7}` 合计 15 |
 | 层数要点 | 1 重整旗定气；4 重号喝同袍；**7 重绝招守正如山**；8 重轮阵换位；**9 重绝招催锋并进**；10 重军阵大成 |
 | setTags / conflicts | `[]` / 与现有军伍百战套装属同一体系但不加入该套装；号令增益走既有 Buff，不为无军阵目标凭空生成友军 |
@@ -373,6 +380,7 @@
 | B03-V11 | 习得途径 | 每门至少一条非首领专用的门派、职级、秘籍或奇遇途径 |
 | B03-V12 | 主书界边界 | 不定义全真、桃花岛、铁掌帮新武学；其缺口只登记书界 02 |
 | B03-V13 | 首领构建闭合 | 李莫愁、公孙止、霍都、蒙古百户各有 9 品主运，前三者另有 9 品外功；杨过复用 12 品 `sk_jiuyin` |
+| B03-V14 | AR-27 门槛与修炼加成 | 七门 `reqs.attrs` 符合 `design/05` §7.3.1；资质为 `5×9−5=40`；`trainingAttrs` 仅 3/6/9 重、逐次合计 ≤4、单门合计 ≤12 |
 
 最小回归命令：`python3 tools/lint/check_skill_catalogs.py --strict`、`python3 tools/agents/check_route_unique_for.py docs/design/catalog/skills-bulu-03-shendiao.md`、`python3 tools/agents/check_undefined_in.py docs/design/chapters/03-shendiao.md docs/design/catalog/skills-bulu-03-shendiao.md`。
 

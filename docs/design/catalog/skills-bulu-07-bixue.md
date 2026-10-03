@@ -1,7 +1,7 @@
 # 门派武学补录图鉴 · 书界 07《碧血剑》（`skills-bulu-07-bixue`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的《碧血剑》首领缺口增量。本册只定义本轮新增的七门内功、一门拳法、对应招式 / 路线 / 调息实例，以及来源扩展登记；既有 44 门本土武学仍唯一见 `design/catalog/skills-xiake-bixue.md`。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14–AR-16、`docs/00-canon.md` §3–§5/§9/§12/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/15`、`design/17`、`design/21`。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14–AR-16、AR-27、`docs/00-canon.md` §3–§5/§9/§12/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/03` v2、`design/05`、`design/15`、`design/17`、`design/21`。
 > **引用而不重定义**：武学字段、品阶、招式 / 内功预算与学习规则见 `design/05`；Buff 本体见 `design/06`；门派 ID、职级与时代状态见 `design/17`；经脉 / 穴位见 `design/15`；战斗经脉路线、外放、调息和护体内劲见 `design/21`；原图鉴已有条目均只引用。
 > **覆盖声明**：本册是 `skills-xiake-bixue` 的追加册，不覆写、不升阶、不重复定义既有 `sk_*`。华山（碧血一系）、铁剑门、石梁温家、仙都派、山宗 / 闯军及金龙帮在其他书界复现时复用本册 ID；明宫护院仅属明代宫禁来源，不反推清宫传承。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为人物、组织或武学表现有依据但名称未见原著明载；**（待考）**须以三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
@@ -103,7 +103,8 @@
 | 基础字段 | `category:inner`；`subType:inner`；`grade:7`；`origin:expanded`；`sect:sect_chuangwangjun`；`lineage:山宗 / 闯军教头传承`；`sourceChapters:[ch07_bixue]` |
 | 来源归属 | 与 `skills-xiake-bixue` §13 的山宗 / 闯军体系相同。山宗人物与军中传承有原著背景，独立心法名与招式名未见明载。 |
 | 性质 / 权重 / 栏位 | `yang`；`wOut/wIn:0.15/0.85`；`moveSlots:4` |
-| reqs | `attrs:{con:35,wil:35}; aptitude:{apInner:30}; sect:{id:sect_chuangwangjun,rank:3}; prereq:[{skill:sk_shanzongxinfa,layer:6}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:45,wil:35}; aptitude:{apInner:30}; sect:{id:sect_chuangwangjun,rank:3}; prereq:[{skill:sk_shanzongxinfa,layer:6}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | inner.contribution | `{mpMaxPct:26,hpMaxPct:16,attrs:{str:3,con:4,wil:3},mpRegen:2.0}`；`IP=26+16+2×10+5×2=72`，恰等于地下预算；`stats:{defOut:8,resInjury:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_dumai,mer_yangwei]`；`breathProfileRef:txp_shanzongzhengqigong`；`innerGuard:{enabled:true,reflectBp:0}` |
 | layerStats | —（内功不用 `layerStats`；成长由 `inner.contribution` 按层缩放） |
@@ -129,7 +130,8 @@
 | 基础字段 | `category:inner`；`subType:inner`；`grade:7`；`origin:expanded`；`sect:sect_jinlongbang`；`lineage:焦公礼一系 / 金龙帮`；`sourceChapters:[ch07_bixue]` |
 | 来源归属 | 接 `skills-xiake-bixue` §13 的江湖盟友来源。焦公礼及金龙帮有原著依据，独立心法名、盘龙意象与招式层次为本作补名。 |
 | 性质 / 权重 / 栏位 | `harmony`；`wOut/wIn:0.20/0.80`；`moveSlots:4` |
-| reqs | `attrs:{con:35,wil:30}; aptitude:{apInner:30}; sect:{id:sect_jinlongbang,rank:3}; prereq:[{skill:sk_zhuangxingong,layer:5}]; hard:[sect,prereq]`；正式门派与职级见 `design/17` §8.9 |
+| reqs | `attrs:{bre:45,wil:35}; aptitude:{apInner:30}; sect:{id:sect_jinlongbang,rank:3}; prereq:[{skill:sk_zhuangxingong,layer:5}]; hard:[sect,prereq]`；正式门派与职级见 `design/17` §8.9 |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `{mpMaxPct:26,hpMaxPct:16,attrs:{con:4,wil:3,agi:3},mpRegen:2.0}`；`IP=26+16+2×10+5×2=72`；`stats:{parry:8,effRes:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_chongmai,mer_daimai]`；`breathProfileRef:txp_jinlongbangxinfa`；`innerGuard:{enabled:true,reflectBp:0}`；绝招以冲脉为核心，末两段转任脉定桩 |
 | layerStats | —（内功不用 `layerStats`；成长由 `inner.contribution` 按层缩放） |
@@ -157,7 +159,8 @@
 | 基础字段 | `category:inner`；`subType:inner`；`grade:8`；`origin:expanded`；`sect:sect_shiliang`；`lineage:石梁温家五老传承`；`sourceChapters:[ch07_bixue]` |
 | 来源归属 | 与 `skills-xiake-bixue` §10 同属石梁温家。五老合阵有原著依据，独立内功名、行功层次和招式名未见明载。 |
 | 性质 / 权重 / 栏位 | `yin`；`wOut/wIn:0.20/0.80`；`moveSlots:4` |
-| reqs | `attrs:{con:40,wil:40}; aptitude:{apInner:35}; sect:{id:sect_shiliang,rank:4}; prereq:[{skill:sk_wenjiagong,layer:6}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:50,wil:40}; aptitude:{apInner:35}; sect:{id:sect_shiliang,rank:4}; prereq:[{skill:sk_wenjiagong,layer:6}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `{mpMaxPct:30,hpMaxPct:18,attrs:{con:4,wil:4,agi:4},mpRegen:2.2}`；`IP=30+18+2×12+5×2.2=83`，恰等于地中预算；`stats:{parry:8,effRes:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_renmai,mer_daimai,mer_chongmai]`；`breathProfileRef:txp_shiliangwuxinggong`；`innerGuard:{enabled:true,reflectBp:0}`；任脉投阴一票、冲带不投票，故性质为阴 |
 | layerStats | —（内功不用 `layerStats`；成长由 `inner.contribution` 按层缩放） |
@@ -187,7 +190,8 @@
 | 基础字段 | `category:inner`；`subType:inner`；`grade:7`；`origin:expanded`；`sect:sect_xiandu`；`lineage:仙都派门内传承`；`sourceChapters:[ch07_bixue]` |
 | 来源归属 | 与 `skills-xiake-bixue` §12 的仙都体系相同。仙都派及闵子华关系仍须核对原著**（待考）**；武学名和招式均不冒充原著名。 |
 | 性质 / 权重 / 栏位 | `yin`；`wOut/wIn:0.15/0.85`；`moveSlots:4` |
-| reqs | `attrs:{con:35,wil:35}; aptitude:{apInner:30}; sect:{id:sect_xiandu,rank:3}; prereq:[{skill:sk_xianduxinfa,layer:6}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:45,wil:35}; aptitude:{apInner:30}; sect:{id:sect_xiandu,rank:3}; prereq:[{skill:sk_xianduxinfa,layer:6}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `{mpMaxPct:26,hpMaxPct:16,attrs:{con:3,wil:4,agi:3},mpRegen:2.0}`；`IP=26+16+2×10+5×2=72`；`stats:{parry:8,resMind:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_renmai,mer_chongmai]`；`breathProfileRef:txp_xianduyunqi`；`innerGuard:{enabled:true,reflectBp:0}`；任脉投阴一票、冲脉不投票，故性质为阴 |
 | layerStats | —（内功不用 `layerStats`；成长由 `inner.contribution` 按层缩放） |
@@ -215,7 +219,8 @@
 | 基础字段 | `category:inner`；`subType:inner`；`grade:7`；`origin:expanded`；`sect:sect_huashan`；`lineage:穆人清—归辛树一系 / 华山碧血支`；`sourceChapters:[ch07_bixue]` |
 | 来源归属 | 与 `skills-xiake-bixue` §8 同体系。华山重视由外而内的练法见既有图鉴，本名称和分层为本作补录。 |
 | 性质 / 权重 / 栏位 | `harmony`；`wOut/wIn:0.20/0.80`；`moveSlots:4` |
-| reqs | `attrs:{con:35,wil:35}; aptitude:{apInner:30}; sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashantuna07,layer:6}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:45,wil:35}; aptitude:{apInner:30}; sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashantuna07,layer:6}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `{mpMaxPct:26,hpMaxPct:16,attrs:{str:3,con:4,wil:3},mpRegen:2.0}`；`IP=26+16+2×10+5×2=72`；`stats:{defOut:8,resInjury:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_renmai,mer_dumai]`；`breathProfileRef:txp_huashanqigong07`；`innerGuard:{enabled:true,reflectBp:0}`；任、督各一票，故性质为调和 |
 | layerStats | —（内功不用 `layerStats`；成长由 `inner.contribution` 按层缩放） |
@@ -242,7 +247,8 @@
 |---|---|
 | 基础字段 | `category:unarmed`；`subType:fist`；`grade:8`；`origin:expanded`；`sect:sect_huashan`；`lineage:华山·碧血支（穆人清—归辛树一系）`；`sourceChapters:[ch07_bixue,ch08_luding]` |
 | 性质 / 权重 / 栏位 | `yang`；`wOut/wIn:0.75/0.25`；`moveSlots:5` |
-| reqs | `attrs:{str:45,con:42}; aptitude:{apFist:45}; sect:{id:sect_huashan,rank:4}; prereq:[{anyOf:[{skill:sk_hunyuanzhang,layer:6},{skill:sk_poyuquan,layer:6}]}]; hard:[sect,prereq]` |
+| reqs | `attrs:{str:50,con:40}; aptitude:{apFist:35}; sect:{id:sect_huashan,rank:4}; prereq:[{anyOf:[{skill:sk_hunyuanzhang,layer:6},{skill:sk_poyuquan,layer:6}]}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,con:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{hit:[3,8],pierce:[2,7]}`，10 重合计 `8+7=15`，不越地阶上限 15 |
 | 层数要点 | 1 重立架；3 重叠劲；5 重进拳；6 重回身；**7 重绝招三叠贯臂**；10 重拳势圆成 |
 | learnSources | `master`：华山碧血支第四职级按门规传授，`maxLayer:10`；`master`：穆人清 / 归辛树认可后授艺，`maxLayer:10`。两路均保留属性、拳掌资质与本门前置；主角和其他合格人物均可学，不设击败掉落或人物专属。 |
@@ -269,7 +275,8 @@
 | 基础字段 | `category:inner`；`subType:inner`；`grade:9`；`origin:expanded`；`sect:sect_tiejian`；`lineage:木桑道人一系 / 铁剑门`；`sourceChapters:[ch07_bixue]` |
 | 来源归属 | 与 `skills-xiake-bixue` §9 同体系。木桑、玉真子与铁剑门关系有原著依据，独立高阶内功名和招式名未见明载。 |
 | 性质 / 权重 / 栏位 | `yang`；`wOut/wIn:0.15/0.85`；`moveSlots:4` |
-| reqs | `attrs:{con:40,agi:40,wil:40}; aptitude:{apInner:40}; sect:{id:sect_tiejian,rank:4}; prereq:[{skill:sk_tiejianxinfa,layer:8}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:55,wil:45}; aptitude:{apInner:40}; sect:{id:sect_tiejian,rank:4}; prereq:[{skill:sk_tiejianxinfa,layer:8}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `{mpMaxPct:34,hpMaxPct:20,attrs:{con:5,agi:5,wil:4},mpRegen:2.5}`；`IP=34+20+2×14+5×2.5=94.5`，恰等于地上预算；`stats:{eva:8,effRes:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_renmai,mer_dumai,mer_yangwei]`；`breathProfileRef:txp_tiejianxuangong`；`innerGuard:{enabled:true,reflectBp:0}`；任脉一阴、督脉与阳维两阳，故性质为阳 |
 | layerStats | —（内功不用 `layerStats`；成长由 `inner.contribution` 按层缩放） |
@@ -297,7 +304,8 @@
 | 基础字段 | `category:inner`；`subType:inner`；`grade:7`；`origin:expanded`；`sect:null`；`lineage:明代宫禁护院训练`；`sourceChapters:[ch07_bixue]` |
 | 来源归属 | 仅用于本作对宫门护卫共通训练的抽象；原著无同名武学，不建立门派 ID，也不与 `skills-kangxi` 的清宫武学合并。 |
 | 性质 / 权重 / 栏位 | `yang`；`wOut/wIn:0.20/0.80`；`moveSlots:4` |
-| reqs | `attrs:{con:35,str:30}; aptitude:{apInner:30}; prereq:[{skill:sk_jindunxinfa,layer:5}]; hard:[prereq]`；合法宫禁武册来源可覆写前置，不覆写属性 / 资质 |
+| reqs | `attrs:{bre:45,con:35}; aptitude:{apInner:30}; prereq:[{skill:sk_jindunxinfa,layer:5}]; hard:[prereq]`；合法宫禁武册来源可覆写前置，不覆写属性 / 资质 |
+| trainingAttrs | `[{layer:3,attrs:{bre:1,con:1}},{layer:6,attrs:{bre:2,con:1}},{layer:9,attrs:{bre:1}}]` |
 | inner.contribution | `{mpMaxPct:26,hpMaxPct:16,attrs:{str:4,con:4,wil:2},mpRegen:2.0}`；`IP=26+16+2×10+5×2=72`；`stats:{defOut:8,resInjury:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_dumai,mer_yangwei,mer_renmai]`；`breathProfileRef:txp_minggonghuyuangong`；`innerGuard:{enabled:true,reflectBp:0}` |
 | layerStats | —（内功不用 `layerStats`；成长由 `inner.contribution` 按层缩放） |
@@ -413,6 +421,7 @@
 | BX07-SK-T07 | 调息与护体 | 七个 `txp_*` 均为 10 重、scope 3、CT 1000、耗内 0、离战倍率 15000；innerGuard III 且反震 0 |
 | BX07-SK-T08 | 可习得性 | 每卡至少有门派职级或合规秘籍 / 奇遇来源；不存在 Boss-only 或人物专属硬条件 |
 | BX07-SK-T09 | 重复与引用 | `sk_* / mv_* / ps_* / mfr_* / txp_*` 全仓唯一；旧图鉴只被引用，不被重定义 |
+| BX07-SK-T10 | AR-27 门槛与修炼加成 | 八门 `reqs.attrs` 符合 `design/05` §7.3.1；资质为地下 30、地中 35、地上 40；`trainingAttrs` 仅 3/6/9 重、逐次合计 ≤4、单门合计 ≤12 |
 
 ## 13. 待决事项 / 依赖
 
