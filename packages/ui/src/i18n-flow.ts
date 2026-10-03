@@ -22,6 +22,13 @@ export const flowText = {
   bookSleepSaveBlocked: '书眠事务结束后可保存旅程。',
   defaultHero: '无名侠客', defaultPronoun: '你', questCategory: '江湖',
   titleMenu: '标题菜单', recoveryActions: '恢复操作',
+  regionLoading: '正在铺开山川…', regionUnavailable: '区域地图尚未装载。',
+  regionHelp: '点击地面预览并行走 · 点击标记互动 · WASD 移动 · Q/E 转动视角',
+  regionAnchors: '近处可互动', regionDoors: '出口与门禁', regionNoAnchors: '近处暂无可互动之物。',
+  regionLeave: '返回大地图', regionAutosaved: '已到达自动存档点。',
+  regionSafe: '已到达安全落点。', regionTransition: '正在前往下一处场景…',
+  regionCoordinateExit: '出口已触发，但目标场景缺少可解析的出生点 ID。',
+  regionCamera: '区域视角', regionStats: '画面统计',
 } as const;
 
 export type FlowTextKey = keyof typeof flowText;

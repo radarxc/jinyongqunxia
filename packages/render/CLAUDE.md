@@ -40,6 +40,16 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - `stats` 暴露 drawCalls / triangles / frameMs / cpuMs / groundInstances / buildingInstances / rigInstances / visibleChunks / atlasTextures。目标为桌面 ≥60 fps、中端手机 ≥30 fps，当前仍待浏览器与真机实测。
 - 所有权：场景释放 rig、锚点、地面 chunk、建筑/室内 batch、两张 atlas 及 WebGLRenderer；`dispose()` 可重复调用。纹理缺失时 atlas 写入分类色块，结构与拾取仍可工作。
 
+## 区域场景 API（ENG-20b）
+
+- 从 `@tianshu/render/region` 动态导入 `createRegionScene(canvas,regionStatic,{ projection, ... })`；不要从根入口静态导出。输入是 core 的 `region-static.v1` / 动态投影，render 不计算路径、交互距离、门禁、出口或自动存档。
+- pointy-top 六角采用外接圆半径 `2/3 m`、行距 `1 m`、高度步长 `1 m`；地形为 32×32 槽 chunk。初次同步构建玩家周围 3×3，其余按距离排队、每帧最多上传 2 个；当前主线程构网和全场驻留是 MVP 降级，Worker + 离视野 LRU 留待后续。
+- 每 chunk 一个地形 mesh 与 32×32 RGBA8 `DataTexture` 索引图；共享 `DataArrayTexture` 按 `tr_*` 分层并可由调用方注入正式纹理，缺素材使用同接口 1×1 分类色层。斜坡、崖面及 `h-0.15 m` 水面由显式地图字段生成。
+- `RegionScene` 提供 render / resize / update / setPlayerPose / setTimeOfDay / setPath / setZoom / pickHex / pickAnchor / project / dispose；`stats` 给出 drawCalls / triangles / frameMs / cpuMs / chunk、格、物件与 rig 数。拾取仅返回格或 core 已投影的锚点。
+- CameraHint 局部消费 `yawDeg / zoom / allowRotation`；禁止旋转时有效 yaw 恒为 45°。角色继续使用容量 100 的 `RigBatch`；静态 deco/建筑/屋顶合批，可选 `occluder / castShadow / roof / fadeGroup` 驱动 250 ms 抖动淡出。
+- 稳态帧复用向量、矩阵、视锥和 loaded-chunk 数组；只做淡出、rig 同步、视锥裁剪与统计，不构造临时集合。路径变更与指针拾取属于事件路径，允许短生命周期数组。
+- 上下文由共享 `createContextGuard()` 管理，DPR 只取 `RenderQualitySource.effectivePixelRatio()`；恢复时重标数据纹理/材质，释放时先卸监听，再释放 rig、实例、chunk、仅自有 terrain array，最后 `forceContextLoss()` / `dispose()`；重复释放安全。
+
 ## 角色 rig API（ENG-12）
 
 - 从 `@tianshu/render/rig` 动态导入；不要从根入口静态导入，避免进入首屏 chunk。
@@ -102,6 +112,8 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 ## 参考资料与验证
 
 - [Three InstancedMesh](https://threejs.org/docs/pages/InstancedMesh.html)：同 geometry / material 的实例渲染用于减少 draw call。
+- [Three DataArrayTexture](https://threejs.org/docs/pages/DataArrayTexture.html)、[DataTexture](https://threejs.org/docs/pages/DataTexture.html)：地形分层纹理与 RGBA8 索引图；[Raycaster](https://threejs.org/docs/pages/Raycaster.html)：mesh / instance 拾取；2026-10-03 联网返回 HTTP 200。
+- [Three WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)、[MDN ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)：渲染统计、释放与 CSS 视口尺寸跟踪；2026-10-03 联网返回 HTTP 200。锁文件为 Three 0.186.1，未新增依赖。
 - [Three ShaderMaterial](https://threejs.org/docs/pages/ShaderMaterial.html)：高亮集合通过 `uniforms` 更新。
 - [Three Raycaster](https://threejs.org/docs/pages/Raycaster.html)：`InstancedMesh` 命中结果携带 `instanceId`。以上访问日期 2026-10-01。
 - [OrthographicCamera](https://threejs.org/docs/pages/OrthographicCamera.html)、[TextureLoader](https://threejs.org/docs/pages/TextureLoader.html)：大地图斜视正交镜头与可选水墨底图。
@@ -115,6 +127,10 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 
 ## 待决事项 / 依赖
 
+- Region 完整流式仍需把构网迁到 `mesh.worker` 并按“视野外 2 chunk + 显存预算”淘汰 LRU；当前实现只保证 3×3 首屏、每帧 2 chunk 上传与稳态零显式分配。
+- RegionMap 生产 schema / Tiled 转换器尚未输出 deco 的 `occluder / castShadow / roof / fadeGroup`；render 已接受可选字段并降级为不遮挡、不投影、不分组。
+- Region 冷入口与返回大地图仍需 core/app 提供显式 mount/unmount 合同；不得从坐标、场景名或特殊 ID 推断 spawn。QinggongGate 的 `targetHex` 也需补可原子挂载的目标协议。
+- （待实测）区域页 WebGL2 的 GPU draw / P50/P95 帧时、四偏航拾取、触控吸附、横竖屏、淡出观感与上下文恢复；Node mock 结构统计不能代替浏览器或真机结果。
 - （待实测）WebGL2 真机的共享边触控、低端 Android GPU shader uniform 上限、横竖屏切换与上下文丢失恢复；当前提供 DOM 格列表降级，不宣称真机完成。
 - ENG-11 若增加 VFX mesh / 粒子池，必须保留战场 terrain 1 draw、rig 2 draw 的基线统计，并为新增 GPU 资源补 dispose。
 - （待实测）VFX 的 WebGL draw / GPU 帧耗时、上下文丢失恢复与低端 Android 多特效表现；当前 Node 门禁只验证 48 个并发时间轴 / 实例属性计算 P95 < 16.67 ms，不冒充 GPU 真机数据。
