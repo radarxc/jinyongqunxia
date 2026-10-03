@@ -673,4 +673,19 @@
     - **磁盘**：可用 14 GiB。
   - **10-02 17:05 协调者（人物线 subagent 收工）**：9 号出图员（Opus）完成三视图（a78e14f3）、AR-32 修改 A / B 共 18 张入库（提交号见 TODO §3.1），24 次 codex exec 限流 0，剧照 17 张登记 SOURCES.md；`build_portraits` 增量重建 3be77b9a。协调者看过 `cmp_fixa.jpg` / `cmp_fixb.jpg`：画风一致、成年、可辨。四件事待作者定（TODO §8.1）：胡一刀发式、凌霜华左颊疤、狄云乡下装补出、程灵素 / 苗人凤偏离原著的造型。`build_gallery` 17:08 重建；总览页另发新地址（旧地址本账号读不到）。
   - **10-02 17:12 协调者**：素材总览页第 9 版已发布：**https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A**（本账号发布；旧地址 1TACNarveseVhMusJxJnJ3 本账号读不到，以后更新用新地址）。页面含物品 11 类、建筑套件与贴片、地图、角色立绘（含 AR-32 修改后的 18 张）、各朝路人。
+  - **10-02 16:35–17:15 开发监督**：
+    - **合入**：
+      - DES-sync-ids-slp（4107e6ad，16:50）：Sol 第 4 次运行，r1 PASS；
+      - DES-skills-reqs-v2-b（e022e150，17:07）；
+      - DES-sync-design-b（b6fc912d，17:09）：des33 第 2 次复审，r3 PASS。
+      - 三次 `prod_check`（post-idsslp / post-reqsb / post-designb）都绿：103 文件 619 用例，size 291.03 / 350。另跑了 check_ids --strict（0）、damage_sim（47 项）、meridian_flow_sim，都通过。
+    - **自动处理的停住**：DES-sync-design-b、DES-sync-tech-a 停在 HOLD-REVIEWS 后，des33 自动起复审。design-b 第 2 次复审已通过；tech-a 17:07 起第 2 次复审。
+    - **写集补漏**：devsup_guard 发现的。做法是只扩 tasks.json，不停驱动。
+      - ENG-21b 加 `packages/render/src/vfx/types.ts`（053788b8）：执行器给 stage 加了上下文 / 质量字段，这个文件丢了会断 typecheck；
+      - ENG-08b 加 `packages/core/src/world/worldmap.test.ts`（7af95b7e）：新增的缓存单测。
+      - ENG-16b 在 `packages/core/bench/meridian-flow.test.ts` 新增两条门禁：快进 100 万 tick ≤ 5 ms、预览 ≤ 2 ms。只加不放宽，原有用例不变。
+    - **下一波说明**跟进 DES-sync-design-b（e5f42859）：三性质真元账与第七层门控、Z0-CS 的 `SPIRAL_CANCEL_BP` 与护体预算、T47–T49。
+    - **磁盘**：
+      - 16:53–16:58 交换区涨到 38 GB，可用降到 8.5 GiB，已报协调者。当时人物线的 `build_portraits.py` 常驻 4.3 GB，另有 9 个执行器在跑。17:15 回到 11 GiB。
+      - 口径：低于 6 GB 再报；不起新的全量检出。
 
