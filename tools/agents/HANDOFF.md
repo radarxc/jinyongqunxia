@@ -1682,3 +1682,13 @@
       - note 写了 r1 六条、协调者默认方案和准确的阻塞 ENG ID。
     - 代码池顺序：M1（gates-data、event-executor）→ city-generic → rig-parts-f → items-regen-2 → rig-std-parts。19e、species-roleslot、ink-intents 依赖满足后与 19e 同级，优先于 city-generic 之后的各项。
 
+  - **10-03 13:27–14:40 协调者**：主角基线定稿、3D 绑骨经验、M1 引擎栈、磁盘与远程。
+    - 作者选定：杨过、张无忌「都是新版A」（3e7c8f9f / ed5deba9）；段誉 2003 版剧照「下载」（1 张已核实，`identity-20261002/tianlong/duanyu_2003_linzhiying_sina2021.jpg`），段誉 A/B 与男女主角高魅力形象（全身 + 三视图，三视图放 `character/<g>/ch00/threeview/`）已发作者待批；黄蓉「更像李一桐版本一些，眼睛大一些」，剧照下载待作者同意。审阅页：https://claude.ai/artifact/WRPLfJH8vKEic2FV6u97jp（源 `.agents/coord/hero_bases_page/`）。
+    - 10 号出图员：A4 对齐 14 张（郭靖、小龙女、虚竹、赵敏、周芷若）、杨过 / 张无忌各 5 张对齐新 base（万安寺「手朝上」已修）、7 个主角 A 字参考（`character/<g>/chNN/threeview/*_apose.png`）、女角窄轮廓 `_apose_slim`（小龙女 a92c5b18、赵敏 / 周芷若 4aee374a）；剧情插图第 1 批进行中（萧峰 3、郭靖 1 已提交 0e2b3f42）。
+    - Tripo：小龙女宽袖 / 外扩长裙让自动绑骨错位或上下颠倒（累计 210 点），窄轮廓版（束袖 + 直筒裙、上宽下窄）一次绑对 → 9959fed3（5.78 MB、65 关节）。**女角一律用 `_apose_slim`**。黄蓉 3D 停（作废 85 点）。萧峰、虚竹、郭靖、杨过、张无忌已提交生成；赵敏、周芷若排其后。余额 24185。
+    - Gemini 出图员：大理苍山两张候选（A 线描方位准 / B 画风贴基线，推荐 B）待作者定；礼品图已入库 28 / 151（14:13）。网页改版的兼容补丁在它自己目录，后续登记小任务把 `gemini_g.js` 改正式。
+    - 合入：ENG-tiled-trigger-strict 4e193b0f（prod_check 1014 测试、首次会话 93.40 / 110）、ART-ui-icons 7aafb177（22 件）、ART-rig-std-refs eed4b372。DES-ui-immersive-2 已起（codex，驱动 5349）。
+    - M1 引擎栈（开发监督登记 / 驱动，traex Sol）：ENG-region-gates-data（区域绑定数据：gates / dialogues / loot，驱动 59669）、ENG-event-executor（驱动 59692）在跑；ENG-ink-intents、ENG-npc-species-roleslot（e3e88508）、ENG-19e-m1-order 排队。代码池顺序：M1 → TOOL-city-generic → TOOL-rig-parts-f → TOOL-items-regen-2（已停让位）→ TOOL-rig-std-parts。
+    - 内容任务：新口径 `review_checks_content.md`（eng3 已重启读取，pid 21451，日志 `_batch/eng3.detach.r4.out`）。CONTENT-ch10 r2 FAIL（门禁 ID、阻塞 ID 过期、缺第 7 节）→ 合并说明重起（门禁 ID 用拼音 `gate_10_fengshi_dongmen`，驱动 66718），14:25 校验通过在审。CONTENT-ch00a 旧口径审核中途停 → 内容口径 r1 FAIL（NPC 永久招募、gateRef、白猿物种、角色槽）→ 登记 ENG 后带准确 ID 与默认方案重起（驱动 92084）。CONTENT-ch00b 仍 HOLD（等 ch00a）。
+    - 磁盘：13:54 一度 2.7 GiB（交换区 31.8 → 38.7 GB）。清了旧临时目录与 161 个已合入任务日志、w13–w16 homeN；runner 降 1 槽。全盘清理清单在做：~/Projects 约 230 GB（node_modules 统计中）、飞书 24.6 + 6.3 GB、~/.codeverse/.ckg 13.5 GB、~/.trae/cli 12.4 GB、Claude vm_bundles 9.9 GB、两份 pnpm 仓库 18.4 GB、「下载」里 ChatGPT 安装包 1.26 GB 与 Gemini 重复图 1.3 GB——删除一律待作者确认。
+    - 作者问「这个session能remote吗」→ 已开 Remote Control（remoteControlState=on）；提醒 Mac 需不休眠、Gemini / Tripo 窗口需可见。
