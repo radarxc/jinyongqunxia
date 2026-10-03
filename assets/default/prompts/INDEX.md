@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 849、待出图 179、已通过（作者） 132。**待出图队列 179 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 850、待出图 178、已通过（作者） 132。**待出图队列 178 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -30,7 +30,6 @@
 |---|---|---|---|---|---|
 | items | `it_beisongsuqin` | 北宋素髹琴 | `assets/default/item/collectibles/it_beisongsuqin.png` | 待出图 | [it_beisongsuqin.md](items/collectibles/it_beisongsuqin.md) |
 | items | `it_dingyaojiangyougaiwan` | 定窑酱釉盖碗 | `assets/default/item/collectibles/it_dingyaojiangyougaiwan.png` | 待出图 | [it_dingyaojiangyougaiwan.md](items/collectibles/it_dingyaojiangyougaiwan.md) |
-| items | `it_gaochangguwu` | 高昌古物 | `assets/default/item/collectibles/it_gaochangguwu.png` | 待出图 | [it_gaochangguwu.md](items/collectibles/it_gaochangguwu.md) |
 | items | `it_gaochangqixianqin` | 高昌旧藏七弦琴 | `assets/default/item/collectibles/it_gaochangqixianqin.png` | 待出图 | [it_gaochangqixianqin.md](items/collectibles/it_gaochangqixianqin.md) |
 | items | `it_guanglingsan` | 《广陵散》琴谱 | `assets/default/item/collectibles/it_guanglingsan.png` | 待出图 | [it_guanglingsan.md](items/collectibles/it_guanglingsan.md) |
 | items | `it_guoxiangheiyuzhuo` | 郭襄寿礼黑玉镯 | `assets/default/item/collectibles/it_guoxiangheiyuzhuo.png` | 待出图 | [it_guoxiangheiyuzhuo.md](items/collectibles/it_guoxiangheiyuzhuo.md) |
