@@ -4,7 +4,12 @@ import type * as Three from 'three';
 
 const fake = vi.hoisted(() => ({
   motions: [] as number[],
-  rigSet: { placeholderCount: 39, dispose: vi.fn() },
+  rigSet: { placeholderCount: 39, texture: { needsUpdate: false }, dispose: vi.fn() },
+  position: vi.fn(),
+  render: vi.fn(),
+  context: { isContextLost: vi.fn(() => false) },
+  forceContextLoss: vi.fn(),
+  coreMeshDispose: vi.fn(),
 }));
 
 vi.mock('three', async (importOriginal) => {
@@ -28,11 +33,14 @@ vi.mock('three', async (importOriginal) => {
       return this.pixelRatio;
     }
     setSize() {}
+    getContext() { return fake.context; }
     clear() {}
     clearDepth() {}
     render(scene: Three.Scene) {
+      fake.render(scene);
       this.info.render.calls += scene.children.some((child) => 'isInstancedMesh' in child) ? 3 : 1;
     }
+    forceContextLoss() { fake.forceContextLoss(); }
     dispose() {}
   }
   class HeadlessRaycaster {
@@ -50,7 +58,7 @@ vi.mock('../rig/character', () => ({
     activeInstanceCount: 16,
     equipment,
     setEquipment: vi.fn(async () => undefined),
-    setPosition: vi.fn(),
+    setPosition: fake.position,
     setMotion: vi.fn((direction: number) => fake.motions.push(direction)),
     update: vi.fn(),
     snapshot: vi.fn(),
@@ -60,7 +68,7 @@ vi.mock('../rig/character', () => ({
 }));
 vi.mock('../rig/batch', () => ({
   RigBatch: class {
-    readonly coreMesh = { dispose: vi.fn() };
+    readonly coreMesh = { dispose: fake.coreMeshDispose };
     readonly stats = { characters: 0, activeInstances: 0 };
     addTo() {}
     add() {
@@ -166,6 +174,39 @@ describe('battle camera', () => {
     expect(renderer.pick(10, 10)).toBeNull();
     renderer.render(10_150);
     expect(renderer.pick(10, 10)).toBe(cells[0]);
+    renderer.dispose();
+  });
+
+  it('releases the rig core mesh and the WebGL context exactly once', async () => {
+    const renderer = await createBattleRenderer(document.createElement('canvas'), cells);
+    renderer.dispose();
+    renderer.dispose();
+    expect(fake.coreMeshDispose).toHaveBeenCalledOnce();
+    expect(fake.forceContextLoss).toHaveBeenCalledOnce();
+  });
+
+  it('retains incoming unit projections while lost and keeps the night tint on recovery', async () => {
+    const canvas = document.createElement('canvas');
+    const requestFrame = vi.fn();
+    const renderer = await createBattleRenderer(canvas, cells, { requestFrame });
+    renderer.resize(320, 180);
+    renderer.setTimeOfDay(0);
+    renderer.updateUnits([marker]);
+    renderer.render(100);
+    const tintScene = fake.render.mock.calls.at(-1)![0] as Three.Scene;
+    const tint = (tintScene.children[0] as Three.Mesh<Three.BufferGeometry, Three.ShaderMaterial>).material;
+    const uniforms = tint.uniforms;
+    canvas.dispatchEvent(new Event('webglcontextlost', { cancelable: true }));
+    const renderCount = fake.render.mock.calls.length;
+    renderer.updateUnits([{ ...marker, q: 1, facing: 1 }]);
+    renderer.render(200);
+    expect(fake.render.mock.calls).toHaveLength(renderCount);
+    canvas.dispatchEvent(new Event('webglcontextrestored'));
+    renderer.render(300);
+    expect(fake.position).toHaveBeenLastCalledWith(expect.closeTo(Math.sqrt(3) * 2 / 3), 0.02, 0);
+    expect(fake.motions.at(-1)).toBe(hexDirToRig(1, 45));
+    expect(tint.uniforms).toBe(uniforms);
+    expect(requestFrame).toHaveBeenCalledOnce();
     renderer.dispose();
   });
 });

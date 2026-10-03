@@ -1,6 +1,6 @@
 import {
-  BufferGeometry, Float32BufferAttribute, InstancedBufferAttribute, InstancedMesh,
-  Matrix4, ShaderMaterial, Vector3, Color, DoubleSide,
+  BufferGeometry, Color, DataTexture, DoubleSide, Float32BufferAttribute, InstancedBufferAttribute,
+  InstancedMesh, Matrix4, NearestFilter, RGBAFormat, ShaderMaterial, UnsignedByteType, Vector3,
 } from 'three';
 import type { BattleCell, BattleHighlights } from './types';
 
@@ -22,13 +22,13 @@ function geometry(): BufferGeometry {
   result.computeBoundingSphere(); return result;
 }
 
-/** Two membership vectors (400 bits as float flags) are uniforms, never rebuilt geometry. */
+/** Four highlight flags per tile live in one retained 400 x 1 RGBA8 data texture. */
 export class HexLayer {
   readonly mesh: InstancedMesh;
   readonly material: ShaderMaterial;
   private readonly indices = new Map<string, number>();
-  private readonly reachable = new Float32Array(400);
-  private readonly area = new Float32Array(400);
+  private readonly highlightBytes = new Uint8Array(400 * 4);
+  private readonly highlights: DataTexture;
   constructor(readonly cells: readonly BattleCell[]) {
     if (!cells.length || cells.length > 400) throw new Error('BATTLE_TILE_CAPACITY');
     const shape = geometry();
@@ -42,24 +42,26 @@ export class HexLayer {
     }
     shape.setAttribute('tileIndex', new InstancedBufferAttribute(indexes, 1));
     shape.setAttribute('tileColor', new InstancedBufferAttribute(colors, 3));
+    this.highlights = new DataTexture(this.highlightBytes, 400, 1, RGBAFormat, UnsignedByteType);
+    this.highlights.minFilter = NearestFilter; this.highlights.magFilter = NearestFilter;
+    this.highlights.generateMipmaps = false; this.highlights.needsUpdate = true;
     this.material = new ShaderMaterial({ side: DoubleSide,
-      uniforms: { selected: { value: -1 }, ready: { value: -1 },
-        reachable: { value: this.reachable }, area: { value: this.area } },
+      uniforms: { highlights: { value: this.highlights } },
       vertexShader: `attribute float tileIndex; attribute vec3 tileColor;
-        varying vec3 baseColor; varying vec2 local; flat varying int tile;
-        void main() { tile=int(tileIndex); baseColor=tileColor; local=position.xz;
+        varying vec3 baseColor; varying vec2 local; varying float tile;
+        void main() { tile=tileIndex; baseColor=tileColor; local=position.xz;
           gl_Position=projectionMatrix*modelViewMatrix*instanceMatrix*vec4(position,1.0); }`,
-      fragmentShader: `uniform int selected; uniform int ready;
-        uniform float reachable[400]; uniform float area[400];
-        varying vec3 baseColor; varying vec2 local; flat varying int tile;
+      fragmentShader: `uniform sampler2D highlights;
+        varying vec3 baseColor; varying vec2 local; varying float tile;
         void main() {
+          vec4 flags=texture2D(highlights,vec2((tile+.5)/400.0,.5));
           float edge=max(abs(local.x), max(abs(dot(local,vec2(.5,.8660254))),abs(dot(local,vec2(.5,-.8660254)))));
           float border=smoothstep(.550,.574,edge);
           vec3 ink=mix(baseColor,vec3(.22,.24,.22),border*.55);
-          ink=mix(ink,vec3(.24,.61,.65),reachable[tile]*.42);
-          ink=mix(ink,vec3(.83,.39,.26),area[tile]*.55);
-          if(tile==ready) ink=mix(ink,vec3(.95,.78,.34),.4);
-          if(tile==selected) ink=mix(ink,vec3(1.,.87,.5),max(border,.3));
+          ink=mix(ink,vec3(.24,.61,.65),flags.r*.42);
+          ink=mix(ink,vec3(.83,.39,.26),flags.g*.55);
+          if(flags.b>.5) ink=mix(ink,vec3(.95,.78,.34),.4);
+          if(flags.a>.5) ink=mix(ink,vec3(1.,.87,.5),max(border,.3));
           gl_FragColor=vec4(ink,1.0); }`,
     });
     this.mesh = new InstancedMesh(shape, this.material, cells.length);
@@ -70,11 +72,15 @@ export class HexLayer {
     this.mesh.instanceMatrix.needsUpdate = true; this.mesh.computeBoundingSphere();
   }
   setHighlights(value: BattleHighlights): void {
-    this.material.uniforms['selected']!.value = value.selected === null ? -1 : this.indices.get(value.selected) ?? -1;
-    this.material.uniforms['ready']!.value = value.ready === null ? -1 : this.indices.get(value.ready) ?? -1;
-    this.reachable.fill(0); this.area.fill(0);
-    for (const key of value.reachable) { const index = this.indices.get(key); if (index !== undefined) this.reachable[index] = 1; }
-    for (const key of value.area) { const index = this.indices.get(key); if (index !== undefined) this.area[index] = 1; }
+    this.highlightBytes.fill(0);
+    for (const key of value.reachable) { const index = this.indices.get(key); if (index !== undefined) this.highlightBytes[index * 4] = 255; }
+    for (const key of value.area) { const index = this.indices.get(key); if (index !== undefined) this.highlightBytes[index * 4 + 1] = 255; }
+    const ready = value.ready === null ? undefined : this.indices.get(value.ready);
+    const selected = value.selected === null ? undefined : this.indices.get(value.selected);
+    if (ready !== undefined) this.highlightBytes[ready * 4 + 2] = 255;
+    if (selected !== undefined) this.highlightBytes[selected * 4 + 3] = 255;
+    this.highlights.needsUpdate = true;
   }
-  dispose(): void { this.mesh.dispose(); this.mesh.geometry.dispose(); this.material.dispose(); }
+  restore(): void { this.highlights.needsUpdate = true; this.material.needsUpdate = true; }
+  dispose(): void { this.mesh.dispose(); this.mesh.geometry.dispose(); this.highlights.dispose(); this.material.dispose(); }
 }

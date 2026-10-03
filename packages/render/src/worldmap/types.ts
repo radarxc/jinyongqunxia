@@ -1,4 +1,6 @@
 import type { Dir8, EquipmentVisuals } from '../rig/types';
+import type { ContextFailure, ContextState } from '../core/context-guard';
+import type { RenderQualitySource } from '../quality/tiers';
 
 /** Navigation-grid drawing coordinates. They are not combat hexes or metres. */
 export type MapPoint = readonly [number, number];
@@ -44,9 +46,16 @@ export interface WorldMapSceneOptions {
   readonly actor: MapActorView;
   readonly zoom?: number;
   readonly mapTextureUrl?: string;
+  readonly quality?: RenderQualitySource;
+  readonly onContextStateChange?: (state: ContextState) => void;
+  readonly onContextLoss?: (sessionLossCount: number) => void;
+  readonly onContextRecreate?: () => Promise<boolean>;
+  readonly onContextFatal?: (kind: ContextFailure) => void;
+  readonly requestFrame?: () => void;
 }
 export interface WorldMapScene {
   readonly stats: WorldMapStats;
+  readonly contextState: ContextState;
   render(timeMs: number): void;
   resize(width: number, height: number, pixelRatio?: number): void;
   setActor(actor: MapActorView): Promise<void>;

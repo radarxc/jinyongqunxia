@@ -10,15 +10,20 @@ import {
   WebGLRenderer,
 } from 'three';
 import { createFrameStatsTracker, type FrameStats } from './frame-stats';
+import { createContextGuard, type ContextState } from './core/context-guard';
+import { getDefaultRenderQuality } from './quality/tiers';
 
 export type RenderStats = FrameStats;
 export * from './frame-stats';
 export * from './camera';
 export * from './lighting';
+export * from './core/context-guard';
+export * from './quality';
 export interface RenderWorld {
   render(timeMs: number): void;
   resize(width: number, height: number, pixelRatio?: number): void;
   readonly stats: RenderStats;
+  readonly contextState: ContextState;
   dispose(): void;
 }
 
@@ -41,30 +46,52 @@ export async function createRenderer(canvas: HTMLCanvasElement): Promise<RenderW
   const keyLight = new DirectionalLight(0xfff4d6, 2.4);
   keyLight.position.set(3, 5, 2);
   scene.add(keyLight);
-  const frameStats = createFrameStatsTracker();
-  return {
+  const quality = getDefaultRenderQuality();
+  const frameStats = createFrameStatsTracker(quality);
+  let disposed = false;
+  let width = 1; let height = 1; let deviceDpr = 1; let appliedPixelRatio = quality.effectivePixelRatio(1);
+  const contextGuard = createContextGuard(canvas, renderer, {
+    onStateChange: () => frameStats.reset(),
+    onLoss: () => quality.reportContextLoss?.(),
+    onRestore: () => { material.needsUpdate = true; },
+    requestFrame: () => { frameStats.reset(); world.render(performance.now()); },
+  });
+  const world: RenderWorld = {
     render(timeMs) {
+      if (!contextGuard.canRender) return;
+      const started = performance.now();
       marker.rotation.y = ((timeMs % 12_000) / 12_000) * Math.PI * 2;
       marker.rotation.x = 0.24;
       renderer.render(scene, camera);
-      frameStats.sample(timeMs, renderer.info.render.calls);
+      frameStats.sample(timeMs, renderer.info.render.calls, performance.now() - started);
+      const nextPixelRatio = quality.effectivePixelRatio(deviceDpr);
+      if (nextPixelRatio !== appliedPixelRatio) {
+        appliedPixelRatio = nextPixelRatio; contextGuard.resize(width, height, appliedPixelRatio);
+      }
     },
-    resize(width, height, pixelRatio = 1) {
-      const safeHeight = Math.max(1, height);
-      const halfWidth = (1.5 * width) / safeHeight;
+    resize(nextWidth, nextHeight, pixelRatio = 1) {
+      width = Math.max(1, nextWidth); height = Math.max(1, nextHeight); deviceDpr = pixelRatio;
+      const halfWidth = (1.5 * width) / height;
       camera.left = -halfWidth;
       camera.right = halfWidth;
       camera.updateProjectionMatrix();
-      renderer.setPixelRatio(Math.min(2, Math.max(1, pixelRatio)));
-      renderer.setSize(width, safeHeight, false);
+      quality.markSizeChanged?.(performance.now());
+      appliedPixelRatio = quality.effectivePixelRatio(deviceDpr);
+      contextGuard.resize(width, height, appliedPixelRatio);
     },
     get stats() {
       return frameStats.value;
     },
+    get contextState() { return contextGuard.state; },
     dispose() {
+      if (disposed) return;
+      disposed = true;
+      contextGuard.dispose();
       geometry.dispose();
       material.dispose();
+      renderer.forceContextLoss();
       renderer.dispose();
     },
   };
+  return world;
 }
