@@ -9,9 +9,14 @@ tier: A
 output: assets/default/character/male/ch12/por_npc_afanti__ch12_elder_base.png
 manifest: assets/default/character/male/ch12/manifest.yaml
 references:
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    use: candidate，当前工作副本 manifest 尚未批准；仅拟参考纸底、光线、笔触与设色，不沿用面容、体型、服饰或道具
-status: ready
+- path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+  use: candidate，当前工作副本 manifest 尚未批准；仅拟参考纸底、光线、笔触与设色，不沿用面容、体型、服饰或道具
+status: new
+redo_reason: AR-36 补齐当前工作副本缺失的基础立绘；candidate待审
+reference_upload:
+- .agents/coord/imagegen-reference/user_wangyuyan_background_only_20261002.png
+codex_prompt_rev: '2026-10-02'
+classic_ref: 复用主检出既有候选（保留原始输入记录）
 ---
 
 <!-- full-coverage-import:current-policy:v1 -->
@@ -22,6 +27,41 @@ status: ready
 
 
 # 阿凡提 · 《书剑恩仇录》（ch12）
+
+## Gemini 提示词
+
+> ART-cast-fill-b：复用主检出既有候选（保留原始输入记录）；实际提交文本如下。面容细节与衣饰补足为（原创扩展），原著细节沿用原稿（待考）边界。
+
+```text
+POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes lie on a HORIZONTAL line. Keep the head centered over the torso, neck aligned with the body, chin neutral, gaze directly forward and camera level. NO head tilt, NO Dutch angle, no head leaning toward a shoulder, no rolled camera and no coquettish angled face. Ignore every reference image’s head angle, side-glance and body turn. Preserve natural facial asymmetry without tilting the head.
+
+Create a refined REALISTIC hand-painted Chinese wuxia character illustration: a clear and individually designed face, believable natural age, continuous skin and anatomy, readable eyes and hands, soft connected lighting, complete opaque tailored garments, intact seams and a clean silhouette. Clothing has a few broad weight-bearing folds, fine restrained material variation and real gravity. Ink wash and paper texture belong only to the pale background, never inside the figure. This is a newly composed illustration, not a photograph, movie screenshot, 3D model or collage. Natural age lines are continuous skin anatomy, not dirt, cracks or dry-brush flecks.
+
+THIS IS THE FIRST ORIGINAL IDENTITY IMAGE FOR THIS SUBJECT. No input supplies an identity, face, person, body, costume, prop or pose. Image 1 is the ONLY input: a person-free background derived from the user background, used ONLY for pale warm paper, extremely faint distant ink-wash mountains and open space. Establish this person solely from the specific written age, facial structure, expression, body, costume and stage below. Do not invent an identity-source claim or import another person’s face. The person remains fully realistic, intact and opaque; ink wash is confined to the background.
+
+CHARACTER AND STAGE: 阿凡提 / npc_afanti, por_npc_afanti__ch12_elder_base.
+《书剑恩仇录》ch12，回疆民间智者阿凡提。取第18回周旋张召重并指点追踪救人的支线阶段；本地非战斗、机智与交涉定位，不以其它媒介形象补成绝顶武者。 本项目书界主线年代为1753–1759年、清乾隆；前史人物严格以其生前回忆阶段为准，不把回忆像当作现时活体。
+
+AGE AND ORIGINAL FACE IDENTITY:
+中老年男性elder；普通结实的成人身躯、健康日晒深肤色与浓密花白胡须，保留自然年龄纹，不漫画化或故意贫穷丑化。 独立宽额、圆阔面颊和坚实宽下巴的中老年脸；眉毛浓密但不过长，眉尾轻松舒展，眼睛中等大小、眼角有细笑纹，水平目光机敏温和。中等高的鼻梁略宽、鼻头饱满但尺寸自然，鼻翼与面宽协调；嘴唇自然偏厚、闭口浅笑，大胡子根部连续，花白须毛浓密但不遮住嘴部表情。脸部有暖日晒肤色与真实老年体积，不夸张鼻子或以族属套用漫画刻板脸。胡须灰白比例、五官精确关系均为本次原创；不沿用木偶、动画或影视定型脸。
+
+CLOTHING AND HAIR:
+乾隆时期回疆民间长者的米灰粗织缠头，褐绿色完整长袍、浅灰内衣、窄布腰带、宽裤与旧皮平底鞋。缠头由连续布条合理盘绕，发束收妥，不套汉地剃额留辫。衣物朴实而体面，不透明、领襟严整，少量平整牢固修补而非破碎布边；少而宽的自然重力褶，克制纹样，无清宫官服或假宗教神光。
+
+POSE, EQUIPMENT AND STRUCTURE:
+正面站稳、头颈竖直、双眼水平直视，下巴自然。背负一口普通圆腹铁锅：锅口朝背，两条宽布肩带确实绕肩连到锅耳，下部托带承重；正常生活尺寸，略高于腰的锅底弧面与厚锅沿从肩腰侧后轮廓露出，正面头位不为展示锅而歪转。小布行囊单挂另一侧并避开铁锅。右手轻扶普通行路木杖，杖底着地、全部端点在框内；左手于腰前掌心微张作平和解释手势。锅不是盾牌、武器或法器，不挥锅攻击；没有毛驴、武器、书本或文字。
+
+ORIGINAL CHARACTER COLOR AND LIGHT:
+褐绿色衣袍、米灰缠头和暖日晒肤色保持克制暖土色；柔和左上漫射光清楚表现宽额圆颊、宽下巴、浓密花白胡须与机敏温和目光。
+
+COMPOSITION AND DELIVERY: one person, one view, full body from head to both shoes, both hands, entire hem and all specified prop endpoints comfortably inside the frame. Upright frontal head and body, relaxed level shoulders, believable grounded weight, neutral eye-level perspective. Vertical native 2:3 PNG, target 2048×3072, with natural margins; accept the tool’s actual native 2:3 size and record it truthfully. Preserve original PNG bytes, metadata and tool provenance; no upscaling, cropping or re-encoding to pretend compliance. Opaque warm pale-grey background with only extremely light distant ink-wash mountain/mist suggestions, generous empty space and a modest soft contact shadow. Background never erodes skin, clothes, shoes or equipment. No narrative scene, recognizable temple, building, other person or action effect. Soft upper-left diffuse light makes the face, hand joints, cloth and materials continuous and clearly readable. FAST1 production: first generate ONE candidate. Request another only for a serious identity, structural or readability failure. Every result remains candidate for user review, never automatically approved.
+
+FACT BOUNDARIES: 本图人物身份、年龄与剧情阶段沿当前本地角色稿、名录及故事事件。所选配角在当前已下载原版游戏语料中没有可靠本人头像配对，不等于断言所有版本从无头像。唯一输入为不含人物的派生纯背景参考；独立脸型五官、服色裁制与具体静态展示是原创美术，原稿待考照留，不冒称已逐字核对小说或实际观察到本人图片。项目基线原candidate/approved状态不变。
+
+完整排除项：不要 head tilt、Dutch angle、头歪向肩、头部中线偏斜、双眼高低倾斜、倾斜镜头、仰头、俯首藏眼、明显侧脸、侧身回眸、斜脸卖萌或高耸单肩。不要复制任何参考人物的脸、年龄、体型、发型、服装、姿势或身份，不要统一年轻模板脸、网红尖下巴、动漫大眼、丰唇滤镜、浓妆、塑料磨皮、摄影写真、三维模型、截图或拼贴。不要将老人和中年人年轻化，真实年龄纹理不能变成龟裂或污渍。不要人物本体碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、断裂衣摆、破洞、毛边、碎布条、无依据尘污和过密细碎褶；不要用雾或墨迹藏住人体轮廓。不要现代服饰、拉链、腕表、运动鞋、数码物件、塑料饰品、高跟鞋、时代族群混搭、晚清大拉翅、唐式齐胸裙、无依据官服补子或飞鱼服。汉式交领不要左衽，不水平镜像。不要和服、日式前结宽腰带、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻甲、赛博或蒸汽朋克。不要新增无依据兵器、发光武器、光翼、龙形能量、法阵、粒子特效、强逆光或泛光。不要多人物、多视角、分格、头像插框、额外肢体、多指、粘手、错接手腕、手物融合、悬空装备、失重衣带、重复武器、断裂器物、过短刀剑鞘或裁断头足器物端点。不要裸露、透衣、性感化、夸张健美肌肉、血腥特写、恶搞或丑化。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书信字符或新增装饰水印；保留工具原有溯源信息。 清代发式依本角色文字，回部民间及女性易装不机械套汉地男子剃额留辫。 不要漫画式巨大鼻子、固定木偶造型、真人改编相貌、滑稽丑角、毛驴同框或骑乘场景；不要把随身铁锅夸张武器化为带刃盾牌、巨型战具或发光法器，不画挥锅攻击动作，不省略背带承重点或让锅悬空；不要黄金权杖、清宫官服、飞刀法术、假宗教神光或夸张贫穷污垢。
+
+FINAL POSE CHECK: 阿凡提 is FRONT-FACING. Keep forehead–nose–chin vertically aligned, both eyes horizontally level, neck naturally upright and centered above the torso, shoulders relaxed and camera level. NO head tilt. NO Dutch angle. Ignore all input head angles. Preserve this person's own written age and face anchors; No input supplies a face.
+```
 
 ## 人物要点
 
