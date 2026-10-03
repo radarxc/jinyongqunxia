@@ -1589,6 +1589,8 @@
   size: 1024x1536
   variants:
   - portrait/npc_liwenxiu/ch10_youth_astuo_base
+  - portrait/npc_liwenxiu/ch10_youth_scene_astuo_snow_defense
+  - portrait/npc_liwenxiu/ch10_youth_scene_white_horse_east_departure
   avatar: npc_liwenxiu/ch10_youth_astuo_base.ava256.webp
   bust: npc_liwenxiu/ch10_youth_astuo_base.bust512.webp
 - id: npc_liyan

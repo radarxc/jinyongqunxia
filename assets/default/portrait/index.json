@@ -4511,28 +4511,28 @@
   },
   "avatar/npc_liwenxiu/ch10_youth_astuo": {
    "128": {
-    "b": 4916,
+    "b": 5056,
     "f": "npc_liwenxiu/ch10_youth_astuo_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 13010,
+    "b": 13302,
     "f": "npc_liwenxiu/ch10_youth_astuo_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 34214,
+    "b": 35448,
     "f": "npc_liwenxiu/ch10_youth_astuo_base.ava512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    342,
-    21,
-    685,
-    364
+    329,
+    16,
+    678,
+    365
    ],
    "source": "por_npc_liwenxiu__ch10_youth_astuo_base"
   },
@@ -21439,22 +21439,22 @@
   },
   "bust/npc_liwenxiu/ch10_youth_astuo": {
    "256": {
-    "b": 11412,
+    "b": 11314,
     "f": "npc_liwenxiu/ch10_youth_astuo_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 32184,
+    "b": 31114,
     "f": "npc_liwenxiu/ch10_youth_astuo_base.bust512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    256,
-    11,
-    770,
-    525
+    241,
+    5,
+    765,
+    529
    ],
    "source": "por_npc_liwenxiu__ch10_youth_astuo_base"
   },
@@ -37597,20 +37597,58 @@
   "portrait/npc_liwenxiu/ch10_youth_astuo_base": {
    "alpha": true,
    "low": {
-    "b": 72654,
+    "b": 75186,
     "f": "npc_liwenxiu/ch10_youth_astuo_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 97078,
+    "b": 98948,
     "f": "npc_liwenxiu/ch10_youth_astuo_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_liwenxiu__ch10_youth_astuo_base",
    "source_file": "assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png",
-   "source_sha256": "f310c81427c1eb88f90bb9a47125e11f40b8365169b2336cbce38175b1b16adf",
+   "source_sha256": "cd8225f8762b31a6f9ea314590cadc82d0d2f17f07dd4f4e327f863c891057da",
+   "status": "candidate"
+  },
+  "portrait/npc_liwenxiu/ch10_youth_scene_astuo_snow_defense": {
+   "alpha": false,
+   "low": {
+    "b": 155054,
+    "f": "npc_liwenxiu/ch10_youth_scene_astuo_snow_defense.low.webp",
+    "h": 1152,
+    "w": 768
+   },
+   "mid": {
+    "b": 240102,
+    "f": "npc_liwenxiu/ch10_youth_scene_astuo_snow_defense.mid.webp",
+    "h": 1536,
+    "w": 1024
+   },
+   "source": "por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense",
+   "source_file": "assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.png",
+   "source_sha256": "3d6eb5b927e6ea1ba1500e637af44f6ba9b43aee337929dc06af2bc1b7bd7328",
+   "status": "candidate"
+  },
+  "portrait/npc_liwenxiu/ch10_youth_scene_white_horse_east_departure": {
+   "alpha": false,
+   "low": {
+    "b": 174180,
+    "f": "npc_liwenxiu/ch10_youth_scene_white_horse_east_departure.low.webp",
+    "h": 1152,
+    "w": 768
+   },
+   "mid": {
+    "b": 277376,
+    "f": "npc_liwenxiu/ch10_youth_scene_white_horse_east_departure.mid.webp",
+    "h": 1536,
+    "w": 1024
+   },
+   "source": "por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure",
+   "source_file": "assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.png",
+   "source_sha256": "73fe79cacf42db89ed19fee0d0f087783179f61f1876f52d52966c8905d3c002",
    "status": "candidate"
   },
   "portrait/npc_liyan/ch07_base": {
