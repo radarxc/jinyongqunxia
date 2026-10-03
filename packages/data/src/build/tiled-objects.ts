@@ -1,12 +1,14 @@
 import type { JsonValue } from '@tianshu/shared';
-import { GateExprSchema, QinggongGateObjectSchema, type RegionObject } from '../schemas';
+import { GateExprSchema, QinggongGateObjectSchema, RegionGateIdSchema, type RegionObject } from '../schemas';
 import type { TiledCompileContext, TiledObject } from './tiled-types';
 import { mapError } from './tiled-types';
+import { INK_OPCODE_NAMES } from './ink';
 import { assertOnlyProperties, booleanProperty, intProperty, jsonProperty, listProperty,
   numberProperty, objectClass, propertyRecord, stringProperty } from './tiled-properties';
 
 const CLASSES = new Set(['NpcSpawn', 'PlayerSpawn', 'EnemyZone', 'Door', 'Trigger',
   'QinggongGate', 'Chest', 'CameraHint', 'BattleArena', 'Building', 'Light']);
+const INK_OPCODE_SET = new Set(INK_OPCODE_NAMES);
 const cell = (q: number, r: number, heightAt: (q: number, r: number) => number) =>
   ({ q, r, h: heightAt(q, r) });
 
@@ -107,6 +109,10 @@ function convertObjectTail(context: TiledCompileContext, kind: string, base: Bas
   if (kind === 'Door') { assert(context, properties, ['mode', 'pairId', 'oneWay', 'targetRegionId',
     'targetSceneId', 'targetSpawnId', 'textKey', 'lockedBy', 'returnDoorId'], pointer);
     const lockedBy = stringProperty(context, properties, 'lockedBy', pointer, false);
+    if (lockedBy !== undefined && !RegionGateIdSchema.safeParse(lockedBy).success)
+      throw mapError(context, 'TS-CONTENT-MAP-009',
+        `${base.id} lockedBy ${JSON.stringify(lockedBy)} must be a Canon RegionGate gateId (gate_<NN>_<name>)`,
+        `${pointer}/properties`);
     const returnDoorId = stringProperty(context, properties, 'returnDoorId', pointer, false);
     return { ...base, class: kind, mode: stringProperty(context, properties, 'mode', pointer)! as 'door' | 'portal',
       pairId: stringProperty(context, properties, 'pairId', pointer)!,
@@ -120,6 +126,13 @@ function convertObjectTail(context: TiledCompileContext, kind: string, base: Bas
   if (kind === 'Trigger') { assert(context, properties, ['eventId', 'action', 'textKey', 'once', 'autosave', 'safe'], pointer);
     const eventId = stringProperty(context, properties, 'eventId', pointer, false);
     const action = stringProperty(context, properties, 'action', pointer, false);
+    if (action !== undefined && !INK_OPCODE_SET.has(action)) {
+      const suggestion = INK_OPCODE_NAMES.find((name) => name.toLowerCase() === action.toLowerCase());
+      throw mapError(context, 'TS-CONTENT-MAP-009',
+        `${base.id} action ${JSON.stringify(action)} is not a registered Ink opcode` +
+          (suggestion === undefined ? '' : `；你是不是想写 ${suggestion}`),
+        `${pointer}/properties`);
+    }
     return { ...base, class: kind, ...(eventId === undefined ? {} : { eventId }),
       ...(action === undefined ? {} : { action }), ...(textKey === undefined ? {} : { textKey }),
       once: booleanProperty(context, properties, 'once', pointer, false),
