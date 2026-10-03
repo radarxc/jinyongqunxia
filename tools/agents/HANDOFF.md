@@ -1354,3 +1354,15 @@
     - **ART-3d-tripo-avatars 09:07 起跑**（追踪者，驱动 91994，codex gpt-6-astra xhigh，基点 2841e3f3，无 runner）；追踪者加密钥泄露扫描（只报位置），首轮 5 处为说明文字里的占位误报，规则收紧后 0 处。
     - **TOOL-town-gaps-1 合入**（f8491810，09:21；说明正式修订验收命令后 r3 PASS）：render_town 声明式水门、多重城垣 / 共用内隔墙、未声明墙水相交检查、plan_view 页眉按城、cities.yaml 庭州键与 ch10 年代带、唐 / 西域 / 吐蕃套件进 schema；洛阳、太原重跑管线后 manifest 改回 `candidate`，`check_town --strict-assets` 0 错 0 警。prod_check 全绿：138 文件 966 用例，entry 168.57 / 170 不变。
     - TOOL-tests-discover 第 3 次（停滞重起）已修 balance 导入与大理 / 杭州覆盖，开发监督手动复审 r2 PASS（09:19），合入中。ENG-entry-split 执行 80+ 分钟仍在跑；ENG-12d-clip-perf（eng3）在跑；磁盘 9.7 GiB。
+  - **10-03 09:21–09:29 开发监督**：TOOL-tests-discover 合入；登记并起跑 ENG-19d（M1 流程测试的偶发竞态）。
+    - **TOOL-tests-discover** 合入，提交 2effff74。集成分支 `python3 -m unittest discover -s tools` 现跑 549 条（原 33 条），全过；物品七列与 town_runtime 两条红项消失。
+    - 合入后 09:23 的 `prod_check` 红 1 条：`apps/game/src/flow/m1-flow.test.ts` M1 全流程，报 `Unable to get [data-testid=cutscene-next]`。
+      - 与 09:19 的绿之间只差 tools 改动；单跑两次 3/3 通过；09:25 全量重跑 138 / 966 全绿。判定为偶发竞态。
+      - 原因：第 134–136 行等的是控制器 flowStage，随后立刻同步 `wrapper.get`；DOM 尚未更新，组件又是懒加载。
+    - **ENG-19d-m1-flow-test-race**（b769fb3a）：只改该测试，先 waitFor 元素再交互；不加负载跳过，不改超时；要求单跑 10 次、加负载跑 3 次自证稳定。代码池 1/4，单独起，驱动 81589。
+    - 物品线仍在 entry-split 之后。
+
+  - **10-03 09:22–09:31 协调者 / 开发监督 / 追踪者**：
+    - **TOOL-tests-discover 合入**（2effff74，09:22，r2 PASS）：`discover -s tools` 现跑 549 条全过（原 33 条）；物品七列字节对比改夹具、town_runtime 认 CITY 新布局，两条红项消失。合入后 prod_check 一次红在 `apps/game/src/flow/m1-flow.test.ts`（`cutscene-next` 未等 DOM 更新的竞态，单跑 3/3、重跑全量绿）→ 开发监督登记 **ENG-19d-m1-flow-test-race**（b769fb3a，只改测试、单跑 10 次 + 加负载 3 次自证），Sol max 单独起（驱动 81589）。
+    - ENG-12d-clip-perf 第 1 次运行 44 分钟结束，校验通过（9 个文件），审核中。
+    - **ART-rig-sheet-side 合入**（85f2b464，09:31）：审核 r1 / r2 都只卡在「第 3 栏 T 字不够纯侧视、膝角 117° vs 100°」；协调者看图后按用途裁定（分腿只需前两栏：错步站、抬腿都是侧视且腿间透背景），停掉第 3 次返修，`review_checks_rig_sheet.md` 加专用补充裁定，`--from validate --no-review --auto-merge` 合入 r2 那版（sha 与 manifest 一致）。下一版切件（TOOL-rig-sheet-2，待登记）用 `sheet_side_L / R` 分大腿 / 小腿。
