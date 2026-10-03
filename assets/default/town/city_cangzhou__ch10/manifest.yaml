@@ -1,0 +1,29 @@
+- id: town_city_cangzhou__ch10
+  file: preview.png
+  category: town
+  style: default
+  subject: 沧州·清池县（702年推定）
+  prompt: 'python3 tools/town/gen_layout.py docs/design/town/city_cangzhou__ch10.yaml -o assets/default/town/city_cangzhou__ch10/layout.yaml --stats assets/default/town/city_cangzhou__ch10/stats.json
+
+    python3 tools/town/check_town.py docs/design/town/city_cangzhou__ch10.yaml assets/default/town/city_cangzhou__ch10/layout.yaml --strict-assets
+
+    python3 tools/town/plan_view.py docs/design/town/city_cangzhou__ch10.yaml assets/default/town/city_cangzhou__ch10/layout.yaml -o docs/design/town/history/city_cangzhou__tang_702_plan.svg
+
+    python3 tools/town/render_town.py assets/default/town/city_cangzhou__ch10/layout.yaml -o assets/default/town/city_cangzhou__ch10/preview.png --scale 0.5 --report assets/default/town/city_cangzhou__ch10/preview.render.json --overlay assets/default/town/city_cangzhou__ch10/overlay.svg
+
+    python3 tools/town/render_town.py assets/default/town/city_cangzhou__ch10/layout.yaml -o assets/default/town/city_cangzhou__ch10/town.png --scale 1 --report assets/default/town/city_cangzhou__ch10/town.render.json'
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-03'
+  size: 4096x2048
+  sha256: 42f0b88ca48bbaba565fc96a833697b476f2d622cdf1956265860e399fa4d786
+  status: candidate
+  references:
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  - docs/design/town/city_cangzhou__ch10.yaml
+  - docs/design/town/history/city_cangzhou__tang_702.md
+  notes:
+  - 唐代702–703；宋基线替代形制，历史推定与来源边界见history。
+  - ch10保留全尺寸town.png；manifest只登记preview.png；运行时按layout与贴片渲染。
+  - 严格素材检查通过不等于release；目检结果另见qa.md，未登记done前不计完成。

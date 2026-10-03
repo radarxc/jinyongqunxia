@@ -1,0 +1,36 @@
+- id: town_city_luoyang__ch10
+  file: preview.png
+  category: town
+  style: default
+  subject: 神都·洛阳（702年候选）
+  prompt: 'python3 tools/town/gen_layout.py docs/design/town/city_luoyang__ch10.yaml -o assets/default/town/city_luoyang__ch10/layout.yaml --stats assets/default/town/city_luoyang__ch10/stats.json
+
+    python3 tools/town/check_town.py docs/design/town/city_luoyang__ch10.yaml assets/default/town/city_luoyang__ch10/layout.yaml --strict-assets
+
+    python3 tools/town/plan_view.py docs/design/town/city_luoyang__ch10.yaml assets/default/town/city_luoyang__ch10/layout.yaml -o docs/design/town/history/city_luoyang__tang_702_plan.svg
+
+    python3 tools/town/render_town.py assets/default/town/city_luoyang__ch10/layout.yaml -o assets/default/town/city_luoyang__ch10/preview.png --scale 0.5
+    --report assets/default/town/city_luoyang__ch10/preview.render.json --overlay assets/default/town/city_luoyang__ch10/overlay.svg
+
+    python3 tools/town/render_town.py assets/default/town/city_luoyang__ch10/layout.yaml -o assets/default/town/city_luoyang__ch10/town.png --scale 1 --report
+    assets/default/town/city_luoyang__ch10/town.render.json'
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-03'
+  size: 5120x2560
+  sha256: d1a9bd30a39178369dcb1d3202b8c722862224755fa444dd605d59f3470b1e93
+  status: rejected
+  references:
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  - docs/design/town/city_luoyang__ch10.yaml
+  - docs/design/town/history/city_luoyang__tang_702.md
+  notes:
+  - 唐代702–703年按AR-26；宋代基线替代墙门及土木建筑；非唐代建筑考古复原。
+  - ch10保留town.png全尺寸；preview按0.5直接总装；运行时按layout与贴片渲染。
+  - 平面图内城/宫区只作功能区示意，当前工具仅支持一道外墙；古门名与街址推定。
+  - 严格素材检查允许candidate与已有共享材质适配，未做release验收；目检记录见qa.md。
+  - 部分完成：目检发现洛水穿城处实墙封河，水门未实现；两桥通行及严格素材检查通过，整城视觉验收未通过。
+  - 第6次重新目检与核算sha256/尺寸；两水门内存试验被现校验器拒绝，未改河道或伪称重渲染修复。阻碍见docs/design/town/r6-watergate-blocker.json。
+  - 全尺寸town.png SHA-256=874707b7c6abaed47899966ba4ab5f83597ef5ff524af75caf4bb6422680ba2c
+  - 协调者 10-03 05:32：水门 / 多重城垣是 tools/town 的工具缺口（审核 r2），本轮按 rejected 落库（文件留作对比，构建不进包）；TOOL-town-gaps-1 合入后由接力任务重做。

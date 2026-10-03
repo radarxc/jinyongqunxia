@@ -1,0 +1,44 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_hami"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "伊州·伊吾县（702年推定）"
+historical_year: 702
+era_kit: "song_southern"
+seed: 66156229
+design_intent: {"prosperity": "tang_regional_candidate", "notes": ["复原依据：history/city_hami__tang_702.md；702–703年按作者AR-26覆盖cities.yaml旧清初年代（原创扩展）。", "宋代基线替代：南宋墙门/通用地表与大理土木建筑；不是唐代建筑复原。xiyu未接入工具目录，大理缺西向门，故使用具备四向门的南宋基线；禁用清真寺及清制镖局。", "历史拓扑缩景；内城/宫区以分区表达，schema只支持一道外墙；正式场景与营生绑定留归属文档。"]}
+grid: {"width": 96, "height": 96, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -48, "r_min": 1, "q_slot_count": 131, "r_slot_count": 96, "q_band_slots": [66, 65], "r_band_slots": [96], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 12, "z": 12}, {"x": 84, "z": 12}, {"x": 84, "z": 84}, {"x": 12, "z": 84}]}, "inside_margin_cells": 2, "basis": "图名：外城；仅确定哈密地区唐伊州锚点；72×72方城与四门均按西域州县土城的一般格局（推定）（原创扩展），不套清回城。；依据：src_hami；各来源适用范围见史料文档。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 48, "z": 12}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：南门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 48, "z": 84}, "width_cells": 7, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 11, "h": 4}, "passage_cells": {"w": 7, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：北门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 12, "z": 48}, "width_cells": 5, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：西门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 84, "z": 48}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：东门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 48, "z": 12}, {"x": 48, "z": 84}], "surface": "dirt_road", "priority": 100, "basis": "图名：州城南北街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 12, "z": 48}, {"x": 84, "z": 48}], "surface": "dirt_road", "priority": 80, "basis": "图名：商路横街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+rivers: []
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 16, "z": 54}, "max": {"x": 42, "z": 80}}}, "priority": 100, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：州署院落（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 54, "z": 16}, "max": {"x": 80, "z": 42}}}, "priority": 90, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_inn", "bld_kit_song_dali_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：商旅补给区；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 16, "z": 16}, "max": {"x": 42, "z": 42}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_shrine"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：民居坊地；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 54, "z": 54}, "max": {"x": 80, "z": 80}}}, "priority": 85, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_guardhouse", "bld_kit_song_dali_stable", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：军驿与仓储；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_houses", "zone_service"], "count": {"min": 4, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shrine", "zone_refs": ["zone_houses"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不使用茶花、竹林与热带树木", "basis": "旱地视觉密度（原创扩展）【建议值】；不作唐代物候证据。"}
+sources:
+  - {"key": "src_hami", "kind": "academic", "title": "走进伊吾·历史沿革", "url": "https://www.xjyiwu.gov.cn/xjyiwu/c119597/zjyw.shtml", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "仅文字；古伊吾指哈密及周围地区，不能搬用今天伊吾县城。未提供唐州城轮廓。"}

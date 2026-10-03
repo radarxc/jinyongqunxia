@@ -1,0 +1,55 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_beijing"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "幽州·蓟城（702年候选）"
+historical_year: 702
+era_kit: "song_southern"
+seed: 648593664
+design_intent: {"prosperity": "tang_regional_candidate", "notes": ["复原依据：history/city_beijing__tang_702.md；702–703年按作者AR-26覆盖cities.yaml旧清初年代（原创扩展）。", "唐代无专用套件；用现有宋代基线作候选替代，非唐代建筑实物复原；新套件尚未接入权威建筑目录。", "历史拓扑缩景；内城/宫区以分区表达，schema只支持一道外墙；正式场景与营生绑定留归属文档。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 24, "z": 8}, {"x": 136, "z": 8}, {"x": 136, "z": 152}, {"x": 24, "z": 152}]}, "inside_margin_cells": 2, "basis": "图名：外城；src_youzhou：唐城南北九里、东西七里，比例144:112=9:7；轮廓坐标（推定）；不套元大都或明清北京城。"}
+gates:
+  - {"id": "south_48_8", "side": "south", "at": {"x": 48, "z": 8}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "west_axis", "primary": true, "basis": "图名：南门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。；八处外门是游戏裁剪，不以此解释src_youzhou所述十门的内外构成。"}
+  - {"id": "south_112_8", "side": "south", "at": {"x": 112, "z": 8}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "east_axis", "primary": false, "basis": "图名：南门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。；八处外门是游戏裁剪，不以此解释src_youzhou所述十门的内外构成。"}
+  - {"id": "north_48_152", "side": "north", "at": {"x": 48, "z": 152}, "width_cells": 7, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 11, "h": 4}, "passage_cells": {"w": 7, "h": 4}, "road_ref": "west_axis", "primary": false, "basis": "图名：北门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。；八处外门是游戏裁剪，不以此解释src_youzhou所述十门的内外构成。"}
+  - {"id": "north_112_152", "side": "north", "at": {"x": 112, "z": 152}, "width_cells": 7, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 11, "h": 4}, "passage_cells": {"w": 7, "h": 4}, "road_ref": "east_axis", "primary": false, "basis": "图名：北门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。；八处外门是游戏裁剪，不以此解释src_youzhou所述十门的内外构成。"}
+  - {"id": "west_24_44", "side": "west", "at": {"x": 24, "z": 44}, "width_cells": 5, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "south_cross", "primary": false, "basis": "图名：西门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。；八处外门是游戏裁剪，不以此解释src_youzhou所述十门的内外构成。"}
+  - {"id": "west_24_116", "side": "west", "at": {"x": 24, "z": 116}, "width_cells": 5, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "north_cross", "primary": false, "basis": "图名：西门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。；八处外门是游戏裁剪，不以此解释src_youzhou所述十门的内外构成。"}
+  - {"id": "east_136_44", "side": "east", "at": {"x": 136, "z": 44}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "south_cross", "primary": false, "basis": "图名：东门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。；八处外门是游戏裁剪，不以此解释src_youzhou所述十门的内外构成。"}
+  - {"id": "east_136_116", "side": "east", "at": {"x": 136, "z": 116}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "north_cross", "primary": false, "basis": "图名：东门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。；八处外门是游戏裁剪，不以此解释src_youzhou所述十门的内外构成。"}
+streets:
+  - {"id": "west_axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 48, "z": 8}, {"x": 48, "z": 152}], "surface": "dirt_road", "priority": 100, "basis": "图名：西部纵街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "east_axis", "class": "secondary", "width_cells": 5, "points": [{"x": 112, "z": 8}, {"x": 112, "z": 152}], "surface": "dirt_road", "priority": 80, "basis": "图名：东部纵街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "south_cross", "class": "secondary", "width_cells": 5, "points": [{"x": 24, "z": 44}, {"x": 136, "z": 44}], "surface": "dirt_road", "priority": 80, "basis": "图名：南坊横街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "north_cross", "class": "secondary", "width_cells": 5, "points": [{"x": 24, "z": 116}, {"x": 136, "z": 116}], "surface": "dirt_road", "priority": 80, "basis": "图名：北市前街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "center_cross", "class": "secondary", "width_cells": 4, "points": [{"x": 28, "z": 80}, {"x": 132, "z": 80}], "surface": "dirt_road", "priority": 80, "basis": "图名：中央横街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "center_axis", "class": "secondary", "width_cells": 3, "points": [{"x": 80, "z": 48}, {"x": 80, "z": 144}], "surface": "dirt_road", "priority": 80, "basis": "图名：中部坊巷；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+rivers: []
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 30, "z": 14}, "max": {"x": 74, "z": 38}}}, "priority": 100, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西南州署（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_north_market", "kind": "market", "geometry": {"rect": {"min": {"x": 56, "z": 120}, "max": {"x": 104, "z": 146}}}, "priority": 90, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_inn", "bld_kit_song_dali_market_stall", "bld_kit_song_dali_warehouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北市意象；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。；src_market据676年墓志说明北市商业，落点与702延续（推定）；不沿用781年才设置的幽都县分界。"}
+  - {"id": "zone_south_market", "kind": "market", "geometry": {"rect": {"min": {"x": 86, "z": 14}, "max": {"x": 130, "z": 38}}}, "priority": 85, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_inn", "bld_kit_song_dali_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：南坊商旅；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_west_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 30, "z": 50}, "max": {"x": 72, "z": 108}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西坊民居；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_east_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 86, "z": 50}, "max": {"x": 130, "z": 108}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard", "bld_kit_song_dali_shrine"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东坊民居；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 116, "z": 122}, "max": {"x": 130, "z": 144}}}, "priority": 95, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_guardhouse", "bld_kit_song_dali_stable"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东北军驿（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office", "zone_west_houses", "zone_east_houses"], "count": {"min": 3, "max": 9}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_north_market", "zone_south_market"], "count": {"min": 4, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_north_market", "zone_south_market"], "count": {"min": 2, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_north_market", "zone_south_market"], "count": {"min": 8, "max": 22}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_north_market"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_west_houses", "zone_east_houses"], "count": {"min": 14, "max": 32}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shrine", "zone_refs": ["zone_east_houses"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_service"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不使用茶花、竹林与热带树木", "basis": "旱地视觉密度（原创扩展）【建议值】；不作唐代物候证据。"}
+sources:
+  - {"key": "src_youzhou", "kind": "academic", "title": "陈康：唐代幽州蓟城里坊、村乡之我见", "url": "https://wwj.beijing.gov.cn/bjww/resource/cms/article/bjww_362762/10828734/2020071316573265799.pdf", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "仅文字：实际下载整期北京文博，读PDF第71–73页。9:7城形、里坊制、十门史述；作者提醒不得把辽26坊全部当作唐坊。"}
+  - {"key": "src_market", "kind": "academic", "title": "鲁晓帆：唐幽州城北市的留痕", "url": "https://wwj.beijing.gov.cn/bjww/362760/362770/743974740/index.html", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "仅文字：676年王道墓志及北市研究；所述幽都县与晚唐坊图不能前推至702年。"}

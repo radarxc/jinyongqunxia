@@ -1,0 +1,46 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_dunhuang"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "沙州·敦煌县（702年候选）"
+historical_year: 702
+era_kit: "song_southern"
+seed: 3831621161
+design_intent: {"prosperity": "tang_regional_candidate", "notes": ["复原依据：history/city_dunhuang__tang_702.md；702–703年按作者AR-26覆盖cities.yaml旧清初年代（原创扩展）。", "宋代基线替代：南宋墙门/通用地表与大理土木建筑；不是唐代建筑复原。xiyu未接入工具目录，大理缺西向门，故使用具备四向门的南宋基线；禁用清真寺及清制镖局。", "历史拓扑缩景；内城/宫区以分区表达，schema只支持一道外墙；正式场景与营生绑定留归属文档。"]}
+grid: {"width": 128, "height": 128, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -64, "r_min": 1, "q_slot_count": 175, "r_slot_count": 128, "q_band_slots": [88, 87], "r_band_slots": [64, 64], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 24, "z": 10}, {"x": 94, "z": 10}, {"x": 94, "z": 118}, {"x": 24, "z": 118}]}, "inside_margin_cells": 2, "basis": "图名：外城；src_shazhou记现存残垣范围718×1132米、西墙门洞；东临党河。矩形范围（推定），现存墙体非全为唐初层。；依据：src_shazhou；各来源适用范围见史料文档。"}
+gates:
+  - {"id": "west_gate", "side": "west", "at": {"x": 24, "z": 64}, "width_cells": 5, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "cross", "primary": true, "basis": "图名：西门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "south_gate", "side": "south", "at": {"x": 58, "z": 10}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：南门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 58, "z": 118}, "width_cells": 7, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 11, "h": 4}, "passage_cells": {"w": 7, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：北门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 58, "z": 10}, {"x": 58, "z": 118}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北通衢；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "cross", "class": "main_axis", "width_cells": 5, "points": [{"x": 24, "z": 64}, {"x": 90, "z": 64}], "surface": "dirt_road", "priority": 100, "basis": "图名：西门市街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "south_lane", "class": "secondary", "width_cells": 4, "points": [{"x": 28, "z": 42}, {"x": 90, "z": 42}], "surface": "dirt_road", "priority": 80, "basis": "图名：子城前街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "north_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 28, "z": 90}, {"x": 90, "z": 90}], "surface": "dirt_road", "priority": 80, "basis": "图名：北坊横巷；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+rivers:
+  - {"id": "danghe", "width_cells": 6, "points": [{"x": 108, "z": 2}, {"x": 104, "z": 50}, {"x": 106, "z": 90}, {"x": 112, "z": 126}], "flow": "north", "navigable": false, "basis": "图名：党河；src_shazhou据城在西岸；曲线及河宽（推定），不采用清代河东新城。"}
+bridges: []
+zones:
+  - {"id": "zone_southwest_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 28, "z": 16}, "max": {"x": 52, "z": 58}}}, "priority": 100, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西南子城官署；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_southeast_market", "kind": "market", "geometry": {"rect": {"min": {"x": 64, "z": 16}, "max": {"x": 90, "z": 58}}}, "priority": 90, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_inn", "bld_kit_song_dali_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：罗城商市；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_northwest_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 28, "z": 70}, "max": {"x": 52, "z": 112}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西北坊居；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_northeast_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 64, "z": 70}, "max": {"x": 90, "z": 112}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_warehouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东北坊居；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_temple", "kind": "religious", "geometry": {"rect": {"min": {"x": 64, "z": 94}, "max": {"x": 90, "z": 112}}}, "priority": 85, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_temple_hall", "bld_kit_song_dali_shrine"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：坊内佛寺（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_southwest_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_southwest_office", "zone_northwest_houses"], "count": {"min": 1, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_southeast_market"], "count": {"min": 2, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_southeast_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_southeast_market"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_northwest_houses", "zone_northeast_houses"], "count": {"min": 6, "max": 24}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_northeast_houses"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_temple_hall", "zone_refs": ["zone_temple"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shrine", "zone_refs": ["zone_temple"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不使用茶花、竹林与热带树木", "basis": "旱地视觉密度（原创扩展）【建议值】；不作唐代物候证据。"}
+sources:
+  - {"key": "src_shazhou", "kind": "academic", "title": "沧桑历史的见证——沙州故城", "url": "https://www.gswbj.gov.cn/a/2022/12/06/15822.html", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "仅文字：curl已下载读正文；敦煌市文旅局资料。残垣尺寸、党河西岸、西南子城；不能把晚唐豆卢军前置到702年。"}

@@ -1,0 +1,15 @@
+COMMAND python3 tools/town/gen_layout.py docs/design/town/city_beijing__ch10.yaml -o /tmp/CITY-layouts-all/recheck/city_beijing__ch10.yaml
+{"assembled_bridges": 0, "building_types": {"bld_kit_song_dali_courtyard": 9, "bld_kit_song_dali_guardhouse": 1, "bld_kit_song_dali_house": 32, "bld_kit_song_dali_inn": 2, "bld_kit_song_dali_market_stall": 22, "bld_kit_song_dali_shop": 12, "bld_kit_song_dali_shrine": 1, "bld_kit_song_dali_stable": 1, "bld_kit_song_dali_warehouse": 2, "bld_kit_song_dali_yamen": 1}, "buildings": 83, "city_id": "city_beijing", "complete": true, "decorations": 384, "generation_seconds": 4.3626, "lake_cells": {}, "layout_sha256": "0101776b42eff6109e828c457dd644768d606fc7ee90450615efadd1d2c31476", "merged_bridge_groups": [], "missing_required": {}, "parcels": 90, "placement_attempts": 96, "planning_walkable": 13000, "required_components": 1, "road_cells": 3576, "road_components": 1, "runtime_hex_walkable": 10284, "source_bridges": 0, "water_cells": 0}
+
+COMMAND python3 tools/town/check_town.py docs/design/town/city_beijing__ch10.yaml assets/default/town/city_beijing__ch10/layout.yaml --strict-assets
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+town check: 0 errors, 8 warnings
+
+PASS: regenerated layout byte-identical; source/render/manifest/reference files consistent.

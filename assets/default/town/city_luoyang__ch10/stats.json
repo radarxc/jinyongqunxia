@@ -1,0 +1,33 @@
+{
+  "placement_attempts": 98,
+  "parcels": 57,
+  "city_id": "city_luoyang",
+  "road_cells": 3681,
+  "buildings": 82,
+  "building_types": {
+    "bld_kit_song_dali_courtyard": 8,
+    "bld_kit_song_dali_guardhouse": 1,
+    "bld_kit_song_dali_house": 30,
+    "bld_kit_song_dali_inn": 2,
+    "bld_kit_song_dali_market_stall": 22,
+    "bld_kit_song_dali_shop": 12,
+    "bld_kit_song_dali_shrine": 1,
+    "bld_kit_song_dali_warehouse": 4,
+    "bld_kit_song_dali_yamen": 1,
+    "bld_kit_song_southern_palace_hall": 1
+  },
+  "water_cells": 960,
+  "lake_cells": {},
+  "source_bridges": 2,
+  "assembled_bridges": 2,
+  "merged_bridge_groups": [],
+  "planning_walkable": 13479,
+  "runtime_hex_walkable": 10564,
+  "road_components": 1,
+  "required_components": 1,
+  "complete": true,
+  "missing_required": {},
+  "decorations": 332,
+  "generation_seconds": 3.7888,
+  "layout_sha256": "886c0babedabab3345738de76db29b89570052271ed6813c69860307cd48cd4e"
+}
