@@ -1,17 +1,26 @@
-import { cloneGameState, createCore, createCoreFromState, firstSleepQueryForState, projectDialogue,
-  projectRegionDynamic, projectRegionStatic, queryRegionPath, type Command, type CoreContent, type GameState,
-  type RegionRuntimeContent } from '@tianshu/core';
+import type { Command, CoreContent } from '@tianshu/core/session';
+import { cloneGameState, firstSleepQueryForState } from '@tianshu/core/session';
+import type { GameState } from '@tianshu/core/state';
+import { createNewGameState } from '@tianshu/core/state';
+import type { RegionRuntimeContent } from '@tianshu/core/region';
 import type { JsonValue } from '@tianshu/shared';
 import type { ContentSource } from '@tianshu/data';
 import type { BattleLaunch, BattleUiCommand } from '../battle/contracts';
-import type { BattleRuntime } from '../battle/runtime';
-import { createSelectors } from '../projection';
+import type { BattleRuntime as BattleRuntimeInstance } from '../battle/runtime';
+import type * as RegionSubsystem from '@tianshu/core/region-runtime';
+import type { projectDialogue as ProjectDialogue } from '@tianshu/core/dialogue-projection';
+import type { createBattleDemo as CreateBattleDemo } from '../battle/demo';
+import type { BattleRuntime as BattleRuntimeClass } from '../battle/runtime';
 import { createPreviewSession } from './bootstrap';
 import { equipmentRules, type GameContent, type StaticGameContent, type TownLoader } from './content';
 import { ALL_VIEWS, type DirtyView, type GameCommand, type GameRemote, type GameUpdate,
   type GameProjection, type NewGameRequest, type SessionSnapshot } from './contracts';
 import { createNewGameSessionState, type MasterSeedSource } from './new-game';
 import { validateSession } from './validate';
+import { createAsyncCore } from './core-session';
+import type { AsyncCore } from './core-session';
+import { createSessionSelectors } from './session-projection';
+import { CORE_BUILD, CORE_VERSION } from './core-version';
 
 const BATTLE_REJECTIONS = new Set([
   'BATTLE_ALREADY_ACTIVE', 'BATTLE_DEMO_FORBIDDEN', 'BATTLE_NOT_ACTIVE', 'BATTLE_NOT_ENDED',
@@ -26,6 +35,37 @@ function rejected(error: unknown): GameUpdate | null {
 }
 function isBattleCommand(command: GameCommand): command is BattleUiCommand {
   return command.t.startsWith('battle/');
+}
+function unavailable(code: string, cause: unknown): Error {
+  return cause instanceof Error && cause.message === code
+    ? cause : new Error(code, { cause });
+}
+function retryableSubsystem<T>(code: string, factory: () => Promise<T>): () => Promise<T> {
+  let pending: Promise<T> | undefined;
+  return () => pending ??= factory().catch((error: unknown) => {
+    pending = undefined;
+    throw unavailable(code, error);
+  });
+}
+type BattleRuntimeConstructor = typeof BattleRuntimeClass;
+type BattleDemoFactory = typeof CreateBattleDemo;
+type RegionSubsystemModule = typeof RegionSubsystem;
+type DialogueProjection = typeof ProjectDialogue;
+async function loadBattleRuntime(): Promise<BattleRuntimeConstructor> {
+  try { return (await import('../battle/runtime')).BattleRuntime; }
+  catch (error) { throw unavailable('BATTLE_SUBSYSTEM_UNAVAILABLE', error); }
+}
+async function loadBattleDemo(): Promise<BattleDemoFactory> {
+  try { return (await import('../battle/demo')).createBattleDemo; }
+  catch (error) { throw unavailable('BATTLE_SUBSYSTEM_UNAVAILABLE', error); }
+}
+async function loadRegionSubsystem(): Promise<RegionSubsystemModule> {
+  try { return await import('@tianshu/core/region-runtime'); }
+  catch (error) { throw unavailable('REGION_SUBSYSTEM_UNAVAILABLE', error); }
+}
+async function loadDialogueProjection(): Promise<DialogueProjection> {
+  try { return (await import('@tianshu/core/dialogue-projection')).projectDialogue; }
+  catch (error) { throw unavailable('DIALOGUE_SUBSYSTEM_UNAVAILABLE', error); }
 }
 function coreContent(content: GameContent, towns: GameContent['towns'], chapterId: string,
   target?: GameContent): CoreContent {
@@ -77,7 +117,10 @@ function dirtyViews(command: Command): readonly DirtyView[] {
 /** Worker composition of core functions. This adapter defines no stat or combat formulas. */
 function defaultSession(content: GameContent, demo: boolean): SessionSnapshot {
   if (demo) return createPreviewSession(content);
-  const state = createCore().snapshot();
+  const state = createNewGameState({ masterSeed: 1, coreVersion: CORE_VERSION,
+    coreBuild: CORE_BUILD, identity: { name: '无名侠客', gender: 'unspecified',
+      appearance: 'appearance_default', pronoun: '你', originId: 'origin_wenshiguan' },
+    difficulty: 'diff_xiake' });
   return content.contentHash ? { ...state, meta: { ...state.meta,
     contentHash: content.contentHash } } : state;
 }
@@ -85,6 +128,12 @@ export interface GameSessionOptions { readonly demo?: boolean; readonly seedSour
   readonly preloadChapter?: (chapterId: string) => Promise<GameContent>;
   readonly preloadRegion?: (chapterId: string, regionId: string) =>
     Promise<readonly NonNullable<GameContent['regionMaps']>[number][]>;
+  readonly subsystemLoaders?: {
+    readonly battle?: () => Promise<BattleRuntimeConstructor>;
+    readonly battleDemo?: () => Promise<BattleDemoFactory>;
+    readonly region?: () => Promise<RegionSubsystemModule>;
+    readonly dialogueProjection?: () => Promise<DialogueProjection>;
+  };
 }
 export function createGameSession(content: GameContent, initial?: SessionSnapshot,
   loadTown?: TownLoader, options: GameSessionOptions = {}): GameRemote & {
@@ -95,13 +144,23 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
   let townDefinition = opening.chapter.town
     ? loadedTowns.find((entry) => entry.sceneId === opening.chapter.town?.sceneId) : undefined;
   let state = validateSession(opening, content, townDefinition);
+  if (state.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
   let regionStaticSentFor: string | null = null;
-  let core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
-  let selectors = createSelectors(content, () => townDefinition);
-  let battle: BattleRuntime | null = null;
+  let core: AsyncCore = createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
+  let selectors = createSessionSelectors(content, () => townDefinition);
+  let battle: BattleRuntimeInstance | null = null;
+  const subsystem = options.subsystemLoaders;
+  const battleRuntime = retryableSubsystem('BATTLE_SUBSYSTEM_UNAVAILABLE',
+    subsystem?.battle ?? loadBattleRuntime);
+  const battleDemo = retryableSubsystem('BATTLE_SUBSYSTEM_UNAVAILABLE',
+    subsystem?.battleDemo ?? loadBattleDemo);
+  const regionSubsystem = retryableSubsystem('REGION_SUBSYSTEM_UNAVAILABLE',
+    subsystem?.region ?? loadRegionSubsystem);
+  const dialogueProjection = retryableSubsystem('DIALOGUE_SUBSYSTEM_UNAVAILABLE',
+    subsystem?.dialogueProjection ?? loadDialogueProjection);
   async function prepareBattle(launch: BattleLaunch): Promise<{
-    runtime: BattleRuntime; update: GameUpdate }> {
-    const { BattleRuntime } = await import('../battle/runtime');
+    runtime: BattleRuntimeInstance; update: GameUpdate }> {
+    const BattleRuntime = await battleRuntime();
     const candidate = new BattleRuntime(launch);
     const packet = candidate.packet(true);
     const setup = candidate.launch.setup;
@@ -127,7 +186,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       if (battle) throw new Error('BATTLE_ALREADY_ACTIVE');
       if (command.t === 'battle/demo' && !state.meta.debugTainted) throw new Error('BATTLE_DEMO_FORBIDDEN');
       const launch = command.t === 'battle/demo'
-        ? (await import('../battle/demo')).createBattleDemo(command.source) : command.launch;
+        ? (await battleDemo())(command.source) : command.launch;
       const prepared = await prepareBattle(launch); battle = prepared.runtime;
       return prepared.update;
     }
@@ -165,7 +224,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     const definition = await loadTown?.(node.entry.sceneId) ?? undefined;
     if (!definition) throw new Error('TOWN_CONTENT_UNAVAILABLE');
     if (definition.chapterId !== state.chapter.chapterId.slice(0, 4)) throw new Error('TOWN_CONTENT_MISMATCH');
-    loadedTowns.push(definition); core = createCoreFromState(state,
+    loadedTowns.push(definition); core = createAsyncCore(state,
       coreContent(content, loadedTowns, state.chapter.chapterId));
   }
   async function preloadRegionMount(command: Command): Promise<GameContent | undefined> {
@@ -211,25 +270,27 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
   function validated(candidate: SessionSnapshot, definition = townDefinition,
     candidateContent = content): SessionSnapshot {
     const next = validateSession(candidate, candidateContent, definition);
+    if (next.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
     if (next.meta.debugTainted !== opening.meta.debugTainted) throw new Error('SAVE_MODE_INVALID');
     return next;
   }
-  function regionChanges(forceStatic = false, patch = false):
-    Partial<Pick<GameProjection, 'regionStatic' | 'region' | 'regionPathPreview'>> {
+  async function regionChanges(forceStatic = false, patch = false): Promise<
+    Partial<Pick<GameProjection, 'regionStatic' | 'region' | 'regionPathPreview'>>> {
     const runtime = regionContent(content); const sceneId = state.world.navigation.locationId;
-    const dynamic = runtime ? projectRegionDynamic(state, runtime) : null;
+    const region = runtime ? await regionSubsystem() : null;
+    const dynamic = runtime && region ? region.projectRegionDynamic(state, runtime) : null;
     const mountedKey = dynamic ? `${dynamic.regionId}/${dynamic.sceneId}` : null;
     const includeStatic = !patch || forceStatic || mountedKey !== regionStaticSentFor;
     if (includeStatic) regionStaticSentFor = mountedKey;
     return { ...(includeStatic ? { regionStatic: runtime && dynamic
-      ? projectRegionStatic(runtime, sceneId) : null } : {}), region: dynamic,
+      ? region!.projectRegionStatic(runtime, sceneId) : null } : {}), region: dynamic,
       regionPathPreview: null };
   }
   selectors.update(state, ALL_VIEWS);
   return {
-    query: () => ({ ...selectors.query(), dialogue: projectDialogue(state), ...regionChanges(),
-      firstSleepAllocation: firstSleepQueryForState(state),
-      battle: battle?.packet(true) ?? null }),
+    async query() { const projectDialogue = await dialogueProjection();
+      return { ...selectors.query(), dialogue: projectDialogue(state), ...await regionChanges(),
+        firstSleepAllocation: firstSleepQueryForState(state), battle: battle?.packet(true) ?? null }; },
     snapshot: () => {
       if (battle) throw new Error('BATTLE_SAVE_UNAVAILABLE');
       if (state.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
@@ -245,22 +306,24 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       const loaded = await townFor(candidate);
       const candidateContent = await contentForRegionState(candidate);
       const next = validated(candidate, loaded, candidateContent);
+      if (regionContent(candidateContent)) await regionSubsystem();
       const changes = selectors.update(next, ALL_VIEWS, '已读取存档');
       state = next; townDefinition = loaded; content = candidateContent;
       regionStaticSentFor = null;
-      core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
-      return { accepted: true, changes: { ...changes, ...regionChanges(true, true),
+      core = createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
+      return { accepted: true, changes: { ...changes, ...await regionChanges(true, true),
         firstSleepAllocation: firstSleepQueryForState(state) }, events: [] };
     },
     async createNewGame(input): Promise<GameUpdate> {
       if (battle) throw new Error('BATTLE_BUSY');
       const next = createNewGameSessionState(content, input, options.seedSource);
-      state = next; townDefinition = undefined;
-      regionStaticSentFor = null;
-      core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
-      const changes = { ...selectors.update(state, ALL_VIEWS, '新篇已启'), ...regionChanges(true, true),
-        firstSleepAllocation: firstSleepQueryForState(state),
-        dialogue: projectDialogue(state), battle: null };
+      const projectDialogue = await dialogueProjection();
+      const changes = { ...selectors.update(next, ALL_VIEWS, '新篇已启'),
+        firstSleepAllocation: firstSleepQueryForState(next),
+        dialogue: projectDialogue(next), battle: null };
+      state = next; townDefinition = undefined; regionStaticSentFor = null;
+      core = createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
+      Object.assign(changes, await regionChanges(true, true));
       return { accepted: true, changes, events: [{ t: 'run/created', payload: {
         runId: state.meta.runId, chapterId: state.chapter.chapterId,
         difficulty: state.profile.replayRules?.difficulty ?? 'diff_jianghu',
@@ -273,7 +336,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
           ok: false, reason: 'REGION_INTERACTION_BUSY',
         } }, events: [] };
         const runtime = regionContent(content);
-        const preview = runtime ? queryRegionPath(state, runtime, command.hex)
+        const preview = runtime ? (await regionSubsystem()).queryRegionPath(state, runtime, command.hex)
           : { ok: false as const, reason: 'REGION_UNAVAILABLE' as const };
         return { accepted: true, changes: { regionPathPreview: preview }, events: [] };
       }
@@ -283,6 +346,13 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         }
       }
       if (battle) return { accepted: false, changes: {}, events: [], error: 'BATTLE_BUSY' };
+      if (import.meta.env.MODE === 'test' && typeof document !== 'undefined')
+        await (await import('./flow-preload')).preloadFlowForCommand(command);
+      if (command.t.startsWith('dialogue/') || command.t === 'world/interact')
+        await dialogueProjection();
+      if (command.t === 'world/mountRegion' || command.t === 'world/walkTo' ||
+          command.t === 'world/interact' || command.t === 'chapter/bookSleep')
+        await regionSubsystem();
       const targetContent = await preloadBookSleep(command);
       await preloadWorldMapTown(command);
       let mountContent: GameContent | undefined;
@@ -292,9 +362,9 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
           return { accepted: false, changes: {}, events: [], error: error.message };
         throw error;
       }
-      const candidate = command.t === 'town/meditate' ? createCoreFromState(
+      const candidate = command.t === 'town/meditate' ? createAsyncCore(
         state, coreContent(content, loadedTowns, state.chapter.chapterId)) : null;
-      const candidateResult = candidate?.dispatch(command);
+      const candidateResult = await candidate?.dispatch(command);
       const meditationCommand = command.t === 'town/meditate' ? command : null;
       const battleEvent = candidateResult?.ok && meditationCommand
         ? candidateResult.events.find((event) => event.t === 'town/battleRequested') : undefined;
@@ -308,11 +378,11 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
           const result = rejected(error); if (result) return result; throw error;
         }
       }
-      const commandCore = targetContent ? createCoreFromState(state,
+      const commandCore = targetContent ? createAsyncCore(state,
         coreContent(content, loadedTowns, state.chapter.chapterId, targetContent))
-        : mountContent ? createCoreFromState(state,
+        : mountContent ? createAsyncCore(state,
           coreContent(mountContent, loadedTowns, state.chapter.chapterId)) : core;
-      const result = commandCore.dispatch(command);
+      const result = await commandCore.dispatch(command);
       if (!result.ok) return { accepted: false, changes: {}, events: [], error: result.reason };
       const committed = commandCore.snapshot();
       if (targetContent) {
@@ -322,8 +392,8 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         state = legacyWithoutRegions ? { ...mounted, world: { ...mounted.world, navigation: {
           ...mounted.world.navigation, pendingMount: null } } } : mounted;
         content = targetContent;
-        selectors = createSelectors(content, () => townDefinition);
-        core = createCoreFromState(state, coreContent(content, loadedTowns, state.chapter.chapterId));
+        selectors = createSessionSelectors(content, () => townDefinition);
+        core = createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
       } else {
         state = committed;
         if (mountContent) { content = mountContent; core = commandCore; }
@@ -339,12 +409,12 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       if (command.t === 'quest/choose' || command.t === 'chapter/bookSleep')
         changes = { ...changes, firstSleepAllocation: firstSleepQueryForState(state) };
       if (command.t === 'chapter/bookSleep') changes = { ...changes,
-        ...regionChanges(true, true) };
+        ...await regionChanges(true, true) };
       if (command.t.startsWith('dialogue/')) changes = { ...changes,
-        dialogue: projectDialogue(state) };
+        dialogue: (await dialogueProjection())(state) };
       if (command.t === 'world/mountRegion' || command.t === 'world/walkTo' ||
           command.t === 'world/interact') changes = { ...changes,
-        ...regionChanges(command.t === 'world/mountRegion', true) };
+        ...await regionChanges(command.t === 'world/mountRegion', true) };
       const moved = result.events.find((event) => event.t === 'town/moved');
       const path = moved?.payload && typeof moved.payload === 'object' && !Array.isArray(moved.payload)
         ? (moved.payload as { path?: readonly (readonly [number, number])[] }).path : undefined;
@@ -359,7 +429,8 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
 
 export async function createLoadedGameSession(base: StaticGameContent, source: ContentSource,
   initial?: SessionSnapshot, loadTown?: TownLoader, options: GameSessionOptions = {}) {
-  const { itemContentChapter, loadGameContent, loadRegionMaps } = await import('./item-content');
+  const { itemContentChapter, loadGameContent, loadRegionMaps } =
+    await import('./content-loader').then(({ createContentLoader }) => createContentLoader());
   const loaded = new Map<string, Promise<GameContent>>();
   const contentFor = (chapter: string): Promise<GameContent> => {
     const existing = loaded.get(chapter);

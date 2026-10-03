@@ -5,10 +5,18 @@ import type { GameHost, GameProjection, NewGameRequest,
   NewGameHost, SessionSnapshot } from './runtime/contracts';
 import { applyItemText } from './selectors/items';
 import { FetchContentSource, ItemTextCache, itemContentChapter } from './runtime/item-content';
+import { createLazyGameSession } from './runtime/lazy-session';
+import { preloadFlowForCommand } from './runtime/flow-preload';
 
 function withNewGame(host: GameHost): GameHost & NewGameHost {
   return Object.assign(host, { createNewGame: (input: NewGameRequest) =>
     host.dispatch({ ...input, t: 'run/create' }) });
+}
+function withFlowPreload(host: GameHost): GameHost {
+  return { ...host, async dispatch(command) {
+    await preloadFlowForCommand(command);
+    return host.dispatch(command);
+  } };
 }
 
 function withItemText(host: GameHost, cache: ItemTextCache,
@@ -69,8 +77,9 @@ export async function createGameCoreHost(options: { readonly demo?: boolean;
 Promise<GameHost & NewGameHost> {
   const source = options.contentSource ?? new FetchContentSource();
   const localFixup: NonNullable<GameHost['fixupContentRefs']> = async (snapshot, fromHash) => {
-    const [{ loadGameContent }, { fixupContentRefs }, { default: base }] = await Promise.all([
-      import('./runtime/item-content'), import('@tianshu/data'), import('virtual:tianshu-content'),
+    const [loadGameContent, { fixupContentRefs }, { default: base }] = await Promise.all([
+      import('./runtime/item-content').then(({ loadGameContent }) => loadGameContent),
+      import('@tianshu/data'), import('virtual:tianshu-content'),
     ]);
     const target = await loadGameContent(base, source, snapshot.chapter.chapterId);
     if (fromHash === target.contentHash) return structuredClone(snapshot);
@@ -79,8 +88,8 @@ Promise<GameHost & NewGameHost> {
     ) as unknown as SessionSnapshot;
     return { ...fixed, meta: { ...fixed.meta, contentHash: target.contentHash! } };
   };
-  const wrap = (entry: GameHost): GameHost & NewGameHost => withNewGame(withItemText(entry,
-    new ItemTextCache(source, itemContentChapter(options.demo === true)), localFixup));
+  const wrap = (entry: GameHost): GameHost & NewGameHost => withNewGame(withFlowPreload(withItemText(
+    entry, new ItemTextCache(source, itemContentChapter(options.demo === true)), localFixup)));
   let host: (GameHost & NewGameHost) | undefined;
   let timeout: ReturnType<typeof setTimeout> | undefined;
   if (typeof Worker === 'function' && options.demo !== true && options.contentSource === undefined) {
@@ -96,9 +105,7 @@ Promise<GameHost & NewGameHost> {
     } finally { if (timeout) clearTimeout(timeout); }
   }
   // Only initialization failure can fall back. A running Worker is never silently restarted.
-  const [{ createLoadedGameSession }, { default: content }, { loadTown }] = await Promise.all([
-    import('./runtime/session'), import('virtual:tianshu-content'), import('virtual:tianshu-towns'),
-  ]);
-  return wrap(createProjectionMainThreadHost(await
-    createLoadedGameSession(content, source, undefined, loadTown, { demo: options.demo === true })));
+  return wrap(createProjectionMainThreadHost(createLazyGameSession({
+    demo: options.demo === true, contentSource: source,
+  })));
 }

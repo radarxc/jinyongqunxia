@@ -226,6 +226,31 @@ describe('Worker session command adapter', () => {
     expect(validLoads).toBe(2);
   });
 
+  it('maps lazy subsystem failures to stable recoverable codes without committing state', async () => {
+    const initial = createNewGameState({ masterSeed: 7,
+      identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',
+        originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake' });
+    const before = structuredClone(initial);
+    const battle = createGameSession(content, initial, undefined, { demo: false,
+      subsystemLoaders: { battle: async () => { throw new Error('network'); } } });
+    await expect(battle.dispatch({ t: 'battle/enter', launch: createBattleDemo('world') }))
+      .rejects.toThrow('BATTLE_SUBSYSTEM_UNAVAILABLE');
+    expect(await battle.snapshot()).toEqual(before);
+
+    const region = createGameSession({ ...content, regionMaps: [regionFixtureMap()] }, initial,
+      undefined, { demo: false, subsystemLoaders: { region: async () => {
+        throw new Error('network');
+      } } });
+    await expect(region.dispatch({ t: 'world/previewRegionPath', hex: { q: 1, r: 0 } }))
+      .rejects.toThrow('REGION_SUBSYSTEM_UNAVAILABLE');
+    expect(await region.snapshot()).toEqual(before);
+
+    const dialogue = createGameSession(content, initial, undefined, { demo: false,
+      subsystemLoaders: { dialogueProjection: async () => { throw new Error('network'); } } });
+    await expect(dialogue.query()).rejects.toThrow('DIALOGUE_SUBSYSTEM_UNAVAILABLE');
+    expect(await dialogue.snapshot()).toEqual(before);
+  });
+
   it('preloads mounted RegionMap content before restoring a save and preserves state on failure', async () => {
     const map = regionFixtureMap(); const initial = createNewGameState({ masterSeed: 7,
       identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',

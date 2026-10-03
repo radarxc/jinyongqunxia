@@ -1,5 +1,7 @@
-import { CORE_VERSION, EQUIPMENT_SLOTS, InventoryRuntime, RNG_PROTOCOL, RULES_PROTOCOL,
-  SAVE_SCHEMA, parseGameState, validateWorldMapState, type CharacterState } from '@tianshu/core';
+import { EQUIPMENT_SLOTS, RNG_PROTOCOL, RULES_PROTOCOL, SAVE_SCHEMA, parseGameState,
+  type CharacterState } from '@tianshu/core/state';
+import { InventoryRuntime } from '@tianshu/core/inventory-runtime';
+import { validateWorldMapState } from '@tianshu/core/projection';
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import type { RegionMap, TownRuntimeDefinition } from '@tianshu/data/schemas';
 import { equipmentRules, type GameContent } from './content';
@@ -85,7 +87,7 @@ export function validateSession(value: SessionSnapshot, content: GameContent,
   const state = parseGameState(copy);
   if (content.contentHash && state.meta.contentHash !== content.contentHash)
     throw new Error('SAVE_CONTENT_HASH_INVALID');
-  if (state.meta.coreVersion.length === 0 || CORE_VERSION.length === 0) throw new Error('SAVE_VERSION_UNSUPPORTED');
+  if (state.meta.coreVersion.length === 0) throw new Error('SAVE_VERSION_UNSUPPORTED');
   new InventoryRuntime(state.party.inventory, content.items);
   const slots = state.party.equipment.entries;
   if (slots.length !== EQUIPMENT_SLOTS.length || new Set(slots.map((entry) => entry.slot)).size !== slots.length ||

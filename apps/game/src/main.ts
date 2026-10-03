@@ -1,21 +1,19 @@
 import { createPinia } from 'pinia';
 import { createApp, defineComponent, h, reactive, shallowRef,
   type App as VueApp, type Component } from 'vue';
-import { downloadBytes, type SaveSlotSummary } from '@tianshu/platform';
+import type { SaveSlotSummary, TianshuStorage } from '@tianshu/platform';
 import { useUiStore } from '@tianshu/ui/runtime';
 import { flowT } from '@tianshu/ui/runtime';
-import { createGameLoop } from './loop';
-import { exportStoredSaves, loadNewestAutosave, newestReadableSave, prepareStartup,
-  recoveryReason, type StartupState } from './recovery';
-import { saveGameSettings, silentAudioSettingsPort, updateGameSetting,
-  defaultGameSettings, type GameSettingKey } from './settings';
+import { defaultGameSettings, silentAudioSettingsPort,
+  type GameSettingKey, type GameSettings } from './settings';
 import type { GameController } from './game-controller';
-import { schedulePwaRegistration } from './pwa';
 import './style.css';
 
 const root = document.querySelector<HTMLDivElement>('#app');
 if (!root) throw new Error('APP_ROOT_MISSING');
 let view: VueApp<Element> | undefined; let controller: GameController | undefined;
+interface StartupState { readonly storage?: TianshuStorage; readonly settings: GameSettings;
+  readonly saves: readonly SaveSlotSummary[]; readonly error?: unknown }
 let stopLifecycle: (() => void) | undefined; let startup: StartupState;
 const pinia = createPinia(); const settings = shallowRef(defaultGameSettings());
 
@@ -30,12 +28,14 @@ function mountFlow(component: Component, props: () => Record<string, unknown>): 
 }
 function stopSession(): void { stopLifecycle?.(); stopLifecycle = undefined; controller?.dispose(); controller = undefined; }
 function latestSave(rows: readonly SaveSlotSummary[]): SaveSlotSummary | undefined {
-  return newestReadableSave(rows.filter(row => /^(save_manual_\d{2}|save_quick|save_auto_[123])$/.test(row.slot)));
+  return rows.filter(row => /^(save_manual_\d{2}|save_quick|save_auto_[123])$/.test(row.slot))
+    .sort((left, right) => right.savedAt - left.savedAt)[0];
 }
 async function quality(tier: StartupState['settings']['quality']): Promise<void> {
   (await (await import('./render-host')).createRenderQuality()).setTier(tier);
 }
-function attachLifecycle(current: GameController): void {
+async function attachLifecycle(current: GameController): Promise<void> {
+  const { createGameLoop } = await import('./loop');
   const loop = createGameLoop({ tick: current.tick, shouldRun: () =>
     document.visibilityState !== 'hidden' && current.canRunWorldTicks(),
   onError: (error) => current.reportInternalError(error) });
@@ -64,7 +64,7 @@ async function createSession(demo = false): Promise<GameController> {
     ...(demo || !startup.storage ? {} : { storage: startup.storage }), settings,
     audio: silentAudioSettingsPort, setQuality: quality, onFatal: error => { void renderRecovery(error); },
   });
-  controller = current; await current.initialize(); attachLifecycle(current); return current;
+  controller = current; await current.initialize(); await attachLifecycle(current); return current;
 }
 async function beginSession(input: { slot?: string; recoveredAt?: number; demo?: boolean; fresh?: boolean }): Promise<boolean> {
   try {
@@ -82,12 +82,16 @@ async function beginSession(input: { slot?: string; recoveredAt?: number; demo?:
 }
 async function recoverLatest(): Promise<boolean> {
   if (!startup.storage) return false;
+  const { loadNewestAutosave } = await import('./recovery');
   const auto = await loadNewestAutosave(startup.storage);
   if (!auto) return false; return beginSession({ slot: auto.slot, recoveredAt: auto.savedAt });
 }
 async function renderRecovery(error: unknown): Promise<void> {
   stopSession();
-  const { default: RecoveryPage } = await import('./pages/RecoveryPage.vue');
+  const [{ default: RecoveryPage }, { exportStoredSaves, loadNewestAutosave, recoveryReason },
+    { downloadBytes }] = await Promise.all([
+    import('./pages/RecoveryPage.vue'), import('./recovery'), import('@tianshu/platform'),
+  ]);
   const state = reactive({ busy: false, status: '',
     autosave: await loadNewestAutosave(startup.storage) });
   mountFlow(RecoveryPage, () => ({ reason: recoveryReason(error),
@@ -105,7 +109,9 @@ async function renderRecovery(error: unknown): Promise<void> {
   }));
 }
 async function showSettings(): Promise<void> {
-  const { default: SettingsPage } = await import('./pages/SettingsPage.vue');
+  const [{ default: SettingsPage }, { saveGameSettings, updateGameSetting }] = await Promise.all([
+    import('./pages/SettingsPage.vue'), import('./settings'),
+  ]);
   mountFlow(SettingsPage, () => ({ settings: settings.value,
     onChange: (key: GameSettingKey, value: unknown) => {
       settings.value = updateGameSetting(settings.value, key, value);
@@ -132,7 +138,11 @@ async function start(): Promise<void> {
     const dispose = await mountRigDemo(root!, canvas); window.addEventListener('pagehide', dispose, { once: true });
     return;
   }
-  root!.textContent = flowT('loadingStorage'); startup = await prepareStartup(); settings.value = startup.settings;
+  root!.textContent = flowT('loadingStorage');
+  const [{ prepareStartup }, { schedulePwaRegistration }] = await Promise.all([
+    import('./recovery'), import('./pwa'),
+  ]);
+  startup = await prepareStartup(); settings.value = startup.settings;
   if (startup.error) { await renderRecovery(startup.error); return; }
   await showTitle(); schedulePwaRegistration();
 }
