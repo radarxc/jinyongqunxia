@@ -1270,3 +1270,28 @@
     - **TOOL-town-gaps-1**：日志 40 分钟涨到 57 MB，盯 150 MB 线。
 
   - **10-03 07:47–07:56 协调者**：**ART-ruins-maps-2 合入**（ac069a22，07:56，r1 PASS，第 1 次运行 19 分钟）：九老洞、敦煌地宫唐 / 清两相位、达摩洞、若耶溪墓藏、华山后洞 6 张 Tiled 地图 + 预览，catalog / audit tsv 追加 6 行——作者 AR-36 点名的遗迹至此做完（第二波六项全部合入，礼品名录在等工具）。TOOL-tests-discover 第 1 次运行 46 分钟结束，校验通过（全量 discover 过），审核中。
+  - **10-03 07:58–08:01 开发监督**：TOOL-town-gaps-1 防截断误判，已豁免。
+    - 第 2 次运行（42 分钟）后校验失败：两城目录下的 `*.log`、`qa.md`、`stats.json`、`*.render.json`「文件被删除」。
+    - 核对后确认是任务要求：说明第 28 行磁盘规则（44daac2f）规定每城只留 5 个核心文件（layout / manifest / overlay / preview / town.png），校验 `check_asset_dirs --min 5 --max 5` 也这样查。
+    - 已在 tasks.json 给这两城的这几类文件加 shrink_exempt（475473bf）。核心文件不豁免，由 min 5 与 check_town 把关。
+    - 驱动已自动起第 3 次运行，在等池位。`3.prompt.md` 写好、执行器尚未启动时，我追加了说明：删除是对的，不要恢复，只确认其余检查并更新报告。
+  - **10-03 08:01–08:23 开发监督**：ENG-12e 合入；tests-discover、town-gaps-1 返修说明已注入。
+    - **ENG-12e** 合入，提交 81ca591b，工作区已清。
+      - `prod_check`（`_handoff/prod_check_post-eng12e_0818.log`）全绿：137 个测试文件 / 962 条测试；entry 168.57 / 170，render 161.24，webgl 329.80。
+      - 后台已挂 `perf_when_idle.sh`，负载 < 8 时跑 check:perf。
+    - **TOOL-tests-discover** r1 FAIL。协调者 08:02 的三句（balance 精确命令 discover 能过、town_runtime 恢复大理 / 杭州真实布局覆盖、CLI 测试不得同时 mock 两个函数）已在执行器启动前追加进 `2.prompt.md`；协调者另把写集扩了 `tools/balance/test_*.py`（728ba916）。返修后转 HOLD，由我手动复审。
+    - **TOOL-town-gaps-1** r1 FAIL，唯一阻断是验收口径：`check_asset_dirs` 数的是 manifest 图片条目，不是目录文件。
+      - 按默认口径处理：改用 `--min 1 --max 1 --min-side 1024`，5 个核心文件由报告贴 ls 输出佐证；不改检查器，不伪造。
+      - 已在第 3 次运行（也是最后一次）启动前追加进 `4.prompt.md`，并告知协调者，协调者可改。
+  - **10-03 08:20–08:26 开发监督**：ENG-12e 合入后 check:perf 通过；town-gaps-1 验收口径定了。
+    - **check:perf**（HEAD 81ca591b，负载 7.2）3/3 通过，三项都取 3 轮里最小的 P95：
+      - 程序步态 100 人 0.323 ms（< 0.80）；
+      - 片段模式 100 人 0.764 ms（< 1.0，AR-37）；
+      - 20 人 0.069 ms。
+    - **TOOL-town-gaps-1** 验收口径：协调者 08:25 确认按第一种（`--min 1 --max 1 --min-side 1024`，5 个核心文件用 ls 佐证）。
+    - 协调者已在 `/rig-demo?model=` 截了 0 / 90 / 180 / 270 四张 2D ↔ 3D 并排图（`_handoff/rigdemo/`）。2D 侧目前是占位块，要等 TOOL-rig-sheet 合入后才是真切件。
+
+  - **10-03 07:59–08:27 协调者 / 开发监督**：
+    - **ENG-12e 合入**（81ca591b，08:17，r1 PASS；续作 44 分钟）：/rig-demo 原 2D 演示全部恢复，`?model=` 时右侧并排 3D（GLTFLoader + toon + 描边开关 + 8 偏航 + 转台 + GLB 动画 / `tianshu-clip.v1` 重定向 + 1 / 20 实例 HUD）；GLTFLoader 与试点代码不进生产块。prod_check 全绿：137 文件 962 用例；entry 168.57 / 170，render 161.24 / 180，webgl 329.80 / 350；开发监督后台挂 check:perf（负载 < 8 自动跑）。协调者用本机已在跑的 vite dev server（5173，`_prod/apps/game`，已运行 1 天 18 小时）在 Claude 内置浏览器截 0 / 90 / 180 / 270 四张（`_handoff/rigdemo/`）发作者：3D 1 实例 10,022 三角面、1 draw、CPU 0.2–0.3 ms；2D 侧暂为占位块（TOOL-rig-sheet 未合入）。
+    - TOOL-town-gaps-1 r1 FAIL 只因验收命令口径（`check_asset_dirs --min 5 --max 5` 数的是 manifest 图片条目，每城只登记 1 张 preview）：按开发监督第一种处理（`--min 1 --max 1 --min-side 1024`，每城 5 个核心文件用 ls 佐证，不改检查器），第 3 次（最后一次）运行等池位。协调者同意。
+    - TOOL-tests-discover r1 FAIL（balance 独立 discover 导入、town_runtime 测试删了大理 / 杭州真实布局覆盖、CLI 测试双 mock）：写集加 `tools/balance/test_*.py`，返修说明补三句，第 2 次运行等池位。
