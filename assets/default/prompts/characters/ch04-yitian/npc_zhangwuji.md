@@ -8,31 +8,52 @@ age_variant: youth
 tier: S
 output: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
 manifest: assets/default/character/male/ch04/manifest.yaml
-references:
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhangwuji_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "05cda173494604ad685f8c87550572831ccb7e4f0f637791bb5b2cf213c20783"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhangwuji_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "357b667170634653a545d4881ddabac745cc971539c2e9d1b909ae3ca5085601"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
-- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
 status: candidate
 realism_revision: user_identity_pose_20261001
-codex_prompt_rev: 2026-10-02
-redo_reason: "作者 10-02 晚：复合基线风格精修"
+references:
+- path: .agents/coord/imagegen-reference/identity-20261002/yitian/zhangwuji_2003_suyoupeng_tvsou.jpg
+  use: 身份参考：2003《倚天屠龙记》 剧照（作者 10-03 指定版本）；只借造型、气质与五官神韵，按项目画风重画，不照搬照片
+  sha256: 826ee499517df053dd5edc5b5b2519f8c74f67930ccf9e01b987df631c106636
+- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+  sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+- path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+  sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+redo_reason: "作者 10-03 AR-44：参考2003《倚天屠龙记》造型重画 base，不要和照片一样"
+reference_upload:
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/still__por_npc_zhangwuji__ch04_youth_jiaozhu_base__1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+codex_prompt_rev: 2026-10-03
 classic_ref:
-  version: 2003 年苏有朋、贾静雯版《倚天屠龙记》（作者 AR-32 指定）
-  actor: 苏有朋
+  version: 2003《倚天屠龙记》
   stills:
   - .agents/coord/imagegen-reference/identity-20261002/yitian/zhangwuji_2003_suyoupeng_tvsou.jpg
-reference_upload:
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhangwuji_still1.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhangwuji_game.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
-- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
-composite_job: por_npc_zhangwuji__ch04_youth_jiaozhu_base.resume3
 ---
 
 # 张无忌 · 人物写实修正
 
 ## Gemini 提示词
+
+> 2026-10-03 AR-44 新 base（10 号出图员，codex exec · image_gen）：作者要求参考2003《倚天屠龙记》造型、按项目画风重画、不要和照片一样；上传顺序：剧照 1 张，最后两张为同性别画风基线（缩小版 JPEG）。上一版保留在下一节作历史。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+【参考图】第 1 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部神韵（眉眼、脸型的印象），让人一眼认出是这个角色；但五官不要照搬演员本人，要往经典武侠游戏插画里理想化的英俊脸型靠——成品像这个角色，而不像这位演员的写真；必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物】张无忌，《倚天屠龙记》元末的主角；九阳神功大成、接任明教教主之后。宅心仁厚、温和坚毅，医术高明。
+【年龄与体态】约二十二三岁的成年男子，身材高大、肩宽背厚、胸膛厚实、手臂结实——九阳神功大成的健壮体魄，体格明显比书生魁梧，宽肩窄腰、站得稳；肩宽约为头宽的三倍，脖颈结实，前臂粗壮；白袍合身，能看出宽肩厚背的轮廓。但不是夸张的健美肌肉，衣服穿得整齐，不袒胸。绝不清瘦单薄。
+【经典造型】以剧照里这位张无忌的造型为蓝本：黑发在头顶束成发髻，其余长发垂到背后，额前两侧垂下长鬓发；一侧鬓边垂着几缕编成细辫、末端缀小木珠的发绳；一身白色交领右衽长袍，衣襟边缘和两肩到前身有深色编织纹的窄镶边，腰束深色腰带，深色长裤、布靴；整体干净利落。
+【面容】比剧照更英俊：端正的脸型、轮廓清楚，额头饱满，下颌有力；浓而平直的剑眉，一双明亮清澈的眼睛，目光温和而坚定；鼻梁挺直，唇形端正、嘴角含着一点温厚的笑意；肤色健康。温润又有担当的青年英雄，帅气阳刚，不是奶油小生。
+【手与道具】左手提一只朴素的布药囊，右手自然放松垂在身侧；不拿屠龙刀、倚天剑或圣火令。
+【姿态】站姿稳重、肩背舒展，身体基本朝向正面，头部端正，目光平视，透出教主的沉稳气度。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要清瘦单薄、溜肩窄胸、少年身板；不要夸张的健美肌肉、袒胸露臂；不要金甲皇袍。
+【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+```
+
+## 上一版 Gemini 提示词（AR-44 新 base 之前，历史，不再用于出图）
 
 > 作者10-02晚复合精修；任务 `por_npc_zhangwuji__ch04_youth_jiaozhu_base.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
 
