@@ -1176,3 +1176,8 @@
     - 计数在 `_handoff/devsup_revalidated.json`（上限 3）。
     - **TOOL-tests-discover**（协调者 07:02 登记）：等磁盘 ≥ 5 GiB 且代码池有位再单独起（后台 `waitcond.py 5 10` 在等）。TOOL-town-gaps-1 仍等磁盘 ≥ 6 GiB 且负载 < 8。当前磁盘 4.1 GiB。
 
+  - **10-03 06:58–07:06 协调者 / 开发监督**：
+    - DES-ruins-ids 第 1 次运行 78 分钟后停滞（25 分钟无输出），驱动 06:59 自动续作第 2 次（Sol）。
+    - **lore-5 合入**（711a48a5，食品；腊八粥按特例投影 qiCultivation=3500，新校验器通过）。r2 提出作者确认项：叫化鸡 `it_jiaohuaji` 的 `sta=full` 是否在投影 v2 加无损表示——默认旧 `sta=full` 为唯一运行真值，`stamina=20` 只作展示摘要（记 TODO §8.2）。
+    - **lore-3 合入**（67ab5df4，秘籍整份 180 件；r3 FAIL 四条小项返修后开发监督手动复验 r4 PASS）。九列名录已 10 份，只剩兵器（lore-1 整份在跑）。
+    - **TOOL-tests-discover 07:01 起跑**（开发监督，驱动 3408，Sol max；起跑时磁盘 5.1 GiB、代码池 3/4）。
