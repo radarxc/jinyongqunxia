@@ -1350,3 +1350,7 @@
       - 合入后 `prod_check`（`_handoff/prod_check_post-towngaps1_*.log`）全绿：138 个测试文件 / 966 条测试；entry 168.57 / 170 没变，webgl 329.80。
     - **TOOL-tests-discover**：第 3 次运行（停滞重起那次）其实已修好 balance 的 `sys.path`，也补回了大理、杭州的覆盖。09:09 手动第 1 次 `--from validate`，驱动 94877，`--rework-extra devsup_note_r1.md`，在审。
 
+  - **10-03 09:07–09:21 协调者 / 开发监督 / 追踪者**：
+    - **ART-3d-tripo-avatars 09:07 起跑**（追踪者，驱动 91994，codex gpt-6-astra xhigh，基点 2841e3f3，无 runner）；追踪者加密钥泄露扫描（只报位置），首轮 5 处为说明文字里的占位误报，规则收紧后 0 处。
+    - **TOOL-town-gaps-1 合入**（f8491810，09:21；说明正式修订验收命令后 r3 PASS）：render_town 声明式水门、多重城垣 / 共用内隔墙、未声明墙水相交检查、plan_view 页眉按城、cities.yaml 庭州键与 ch10 年代带、唐 / 西域 / 吐蕃套件进 schema；洛阳、太原重跑管线后 manifest 改回 `candidate`，`check_town --strict-assets` 0 错 0 警。prod_check 全绿：138 文件 966 用例，entry 168.57 / 170 不变。
+    - TOOL-tests-discover 第 3 次（停滞重起）已修 balance 导入与大理 / 杭州覆盖，开发监督手动复审 r2 PASS（09:19），合入中。ENG-entry-split 执行 80+ 分钟仍在跑；ENG-12d-clip-perf（eng3）在跑；磁盘 9.7 GiB。
