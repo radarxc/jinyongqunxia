@@ -209,151 +209,109 @@
   category: character/female
   style: default
   subject: 黄蓉（ch02_shediao）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的黄蓉立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中黄蓉的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的黄蓉十九岁上下（作者选定的新脸）：圆润的鹅蛋脸、下巴小巧；一双又大又亮的杏眼、黑眼珠大、双眼皮清楚、眼尾微扬，眼神灵动狡黠；眉毛细长柔和；鼻子小巧挺直；唇形饱满、嘴角上扬的甜笑；肤色白皙。成年女子的五官比例，不是娃娃脸。
 
-    【场景背景】江南旅途中简朴的林间炊火处；洪七公与郭靖都在画外。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【人物与场景】黄蓉，《射雕英雄传》，巧烹佳肴·结缘七公。阶段：第12回江南行旅，黄蓉以厨艺结识洪七公；尚未受传帮主位。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【身份参考】随提示词上传的第 1 张图是黄蓉本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（圆润饱满的鹅蛋脸、下巴圆而小巧，一双灵动的大眼睛黑白分明、眼波流转、眼尾微微上挑，眉毛细长弯弯如蛾眉，鼻梁小巧挺直，嘴唇饱满、嘴角天生上翘带着俏皮狡黠的笑意，肌肤白皙透亮、两颊自然红润，妆容清淡；古灵精怪、聪明伶俐）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
-
-    【衣装】卸去乔装后的女装：浅暖白窄袖右衽衫、浅青绿短外衣、青灰齐腰长裙、平底布鞋，袖口收好便于烹调；黑发挽小髻，发间箍着玫瑰花枝纹的金环。
-
-    【动作与神情】站在身体侧方的小炉旁独自掌勺：右手用木箸处理菜肴，左手稳稳托着陶碗；目光专注，带着成竹在胸的俏皮笑意。
-
-    【器物】几件朴素陶器、木箸、少量食材和一个小炉火；不画现代厨具；小炉不遮挡双腿。
-
-    【体态】成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
-    sha256: 42c8353b7048efca84a83b789980e5f81bed2d0b1a2c7eb706fa1326de14e06c
-    use: 身份参考：本轮新出的黄蓉（por_npc_huangrong__ch02_youth_bangzhu_base，上传 codex 原图）
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
+    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong.png
+    sha256: 55f7e5d4317a429ce6fae52a1ceef3efcbaac539577372c1eff7a6a611d6a6d7
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong.55f7e5d4.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T03:16:54-0700
-  source_path: .agents/coord/gemini_originals/por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong.png
+  created: 2026-10-03T16:13:18-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong.e2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 55f7e5d4317a429ce6fae52a1ceef3efcbaac539577372c1eff7a6a611d6a6d7
+  sha256: d34a42e9489ad877df9fe42145f03bdfa678218187119396f9b98a3d4e430078
   status: candidate
-  notes: 立绘重审重出（AR-30）；黄蓉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；黄蓉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong.55f7e5d4.png
+    sha256: 55f7e5d4317a429ce6fae52a1ceef3efcbaac539577372c1eff7a6a611d6a6d7
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong.55f7e5d4.entry.yaml
 - id: por_npc_huangrong__ch02_youth_scene_iron_spear_temple_truth
   file: por_npc_huangrong__ch02_youth_scene_iron_spear_temple_truth.png
   category: character/female
   style: default
   subject: 黄蓉（ch02_shediao）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的黄蓉立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中黄蓉的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的黄蓉十九岁上下（作者选定的新脸）：圆润的鹅蛋脸、下巴小巧；一双又大又亮的杏眼、黑眼珠大、双眼皮清楚、眼尾微扬，眼神灵动狡黠；眉毛细长柔和；鼻子小巧挺直；唇形饱满、嘴角上扬的甜笑；肤色白皙。成年女子的五官比例，不是娃娃脸。
 
-    【场景背景】嘉兴铁枪庙：旧梁柱、斑驳墙面与门口透进的低光。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【人物与场景】黄蓉，《射雕英雄传》，铁枪庙中·揭破真凶。阶段：第35至36回，桃花岛惨案之后、铁掌伤已获救治；黄蓉借观察与证言揭露杨康、欧阳锋相关阴谋。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【身份参考】随提示词上传的第 1 张图是黄蓉本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（圆润饱满的鹅蛋脸、下巴圆而小巧，一双灵动的大眼睛黑白分明、眼波流转、眼尾微微上挑，眉毛细长弯弯如蛾眉，鼻梁小巧挺直，嘴唇饱满、嘴角天生上翘带着俏皮狡黠的笑意，肌肤白皙透亮、两颊自然红润，妆容清淡；古灵精怪、聪明伶俐）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
-
-    【衣装】青白窄袖右衽行旅衣、青灰齐腰长裙、朴素腰带、平底鞋，黑发收拢不遮眼，发间金环。
-
-    【动作与神情】站在破庙一侧，面向画外的证人与对质者；右手作克制清楚的引导手势，左手收在身侧；目光敏锐沉着——她在主导问话、揭破真凶。
-
-    【器物】双手空着；不画铁枪、毒药或打狗棒。
-
-    【体态】成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
-    sha256: 42c8353b7048efca84a83b789980e5f81bed2d0b1a2c7eb706fa1326de14e06c
-    use: 身份参考：本轮新出的黄蓉（por_npc_huangrong__ch02_youth_bangzhu_base，上传 codex 原图）
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
+    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_iron_spear_temple_truth.png
+    sha256: 1c38d352d2d0c05ea8c54d2d95140cb7223856214adada8f60bae36c1e7a6af6
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_iron_spear_temple_truth.1c38d352.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T03:26:58-0700
-  source_path: .agents/coord/gemini_originals/por_npc_huangrong__ch02_youth_scene_iron_spear_temple_truth.png
+  created: 2026-10-03T16:13:19-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_huangrong__ch02_youth_scene_iron_spear_temple_truth.e2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 1c38d352d2d0c05ea8c54d2d95140cb7223856214adada8f60bae36c1e7a6af6
+  sha256: b035e7f6ffb1866b523d7faaf67bc5d099641cd59cd2759eaea6f915b7ef23e5
   status: candidate
-  notes: 立绘重审重出（AR-30）；黄蓉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；黄蓉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_iron_spear_temple_truth.1c38d352.png
+    sha256: 1c38d352d2d0c05ea8c54d2d95140cb7223856214adada8f60bae36c1e7a6af6
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_iron_spear_temple_truth.1c38d352.entry.yaml
 - id: por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader
   file: por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.png
   category: character/female
   style: default
   subject: 黄蓉（ch02_shediao）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的黄蓉立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中黄蓉的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    输出1024×1536，完全成年，禁止童颜或少年身材。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的黄蓉十九岁上下（作者选定的新脸）：圆润的鹅蛋脸、下巴小巧；一双又大又亮的杏眼、黑眼珠大、双眼皮清楚、眼尾微扬，眼神灵动狡黠；眉毛细长柔和；鼻子小巧挺直；唇形饱满、嘴角上扬的甜笑；肤色白皙。成年女子的五官比例，不是娃娃脸。
 
-    【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
-
-    同一黄蓉成年青年身份，已传得打狗棒法并在君山立身的阶段。淡黄短衫配青绿长裙、利落束腰，发髻与乞儿帽巾截然不同，手持真正的翠绿打狗棒，另一手自信地轻按腰侧。神情仍灵动，眼神多一分临场决断。背景保留君山石台、洞庭湖面与月夜薄雾，远处灯火而无清晰第二人物。完整全身、端正平视，不画仪式跪拜群像。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
-
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_huangrong__ch02_youth_bangzhu_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 7c802d17d03504fdb6176f951dffd87b7a32f9e90c293a409c7ab4e8b776567f
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still1.jpg
-    use: 经典影视造型；只借服饰发型配色气质，不照搬演员五官
-    sha256: 666c32c038ad578287862a4843af5bd60c7bb45fda4e56743c6a52f4499f8ae6
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_game.jpg
-    use: 经典武侠游戏插画风格；只借绘画气质、线条、造型感
-    sha256: 16b4e092106f3f26946dd3c18bebda4d76c088e70e01a97f31b8265d42bca958
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
-  tool: codex exec · image_gen
+  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
+    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
+    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.png
+    sha256: 35c560c006135ad0e37e2aae3977fab34d7bb55b9b6ee12e335ab80adc00577d
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.35c560c0.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T23:56:54-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.1791010613883445000/archive/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.png
+  created: 2026-10-03T16:13:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 35c560c006135ad0e37e2aae3977fab34d7bb55b9b6ee12e335ab80adc00577d
+  sha256: 8f9e550cc14bfc3e499f2aaae31e6ee3bf67243ccbecdd677dfb0707a93c6339
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.1791010613883445000/archive/previous-prompt.md
-    png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.1791010613883445000/archive/previous.png
-    manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.1791010613883445000/archive/previous-entry.yaml
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.resume3.png
-  repair_runner_source_sha256: a7e70176c73600162cba98ab6540cd96a4bcc52dbd4a9ec49127a1f9bdde26ca
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.resume3
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.35c560c0.png
+    sha256: 35c560c006135ad0e37e2aae3977fab34d7bb55b9b6ee12e335ab80adc00577d
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_junshan_beggar_leader.35c560c0.entry.yaml
+  effort: ultra
 - id: por_npc_huangrong__ch02_youth_scene_yideng_heals_iron_palm_wound
   file: por_npc_huangrong__ch02_youth_scene_yideng_heals_iron_palm_wound.png
   category: character/female
