@@ -45,7 +45,7 @@
 |---|---|---|---|
 | TOOL-rig-sheet | traex Sol max | 审核 r4 又 FAIL（切件错分：pelvis_skirt 混入手臂、torso 含前臂残片、侧腿蓝灰楔块），第 7 次运行返修中 | 开发监督另起 |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | traex | TOOL-catalog-9col 已合入（4aa8c6db，05:37），开发监督按 `_handoff/lore_plan.md` 挪基点复验（并发 ≤ 4） | 开发监督另起 |
-| DES-items-gifts-spec | traex | 05:30 续作（磁盘 9 GiB、负载 8） | 38844（协调者另起，`supervise.r2.out`） |
+| DES-items-gifts-spec | traex | 续作 35 分钟结束，校验通过，审核 r1 FAIL（06:12）自动返修中 | 38844（协调者另起，`supervise.r2.out`） |
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
 - codex 出图 runner：w12（pid 20933，2 槽）服务 hero-b；w11 已排空停掉。
@@ -105,7 +105,7 @@
 - [x] ART-cast-fill-a（e1698e93，7 张）、ART-cast-fill-b（fe4765ef，50 张，其中复用 17 张）：逐书搜主要人物列表、补缺的立绘；名录里没有的人物只报不造 ID → DES-npcs-register-a / b 已把 110 个原著人物登记进名录与 design/18（03c44028、3226fe15）。
 - [x] ART-hero-refine-a（d11b33a0，天龙～碧血 7 本）：95 张 = 15 张复合基线（剧照 + 游戏画风参考 + 旧基线，像角色不像演员）+ 30 张分时期立绘 + 50 张关键剧情插图（古风题字已逐字核过）。联系表 `_handoff/gem/codex_w11/sheets/`：`resume-all-base-before-after.jpg`（新旧对比）、`resume-por_npc_<id>-stages.jpg`、`resume-chNN-all-cg.jpg`；03:15 已发作者四张。
 - [x] ART-hero-refine-b（2533a8fd，鹿鼎～雪山 7 本）：80 张 = 16 张基线 + 32 张分时期 + 32 张插图（题字 32 幅核验）；审核 r4 PASS（李文秀 6 图按「白马用游戏头像 + 现基线」放行，图在 female/ch10，不再补）。合入时与 cast-b 在 6 个 manifest 末尾撞车，协调者手工保留两边条目后 finish，旧驱动自行合入。联系表 `_handoff/gem/codex_w12/sheets/`（`retry3-bases-before-after-0N.jpg`、`retry3-stages-chNN-npc_<id>.jpg`、`retry3-final-scenes-chNN-01.jpg`）；03:40 已发作者五张。
-- [ ] ART-cast-polish-ch09（已登记）：cast-b 的 ch09 万门弟子几张同脸；hero 两任务已结束，等 DES-sync-keyscenes-ar36 合入（名录里铃剑双侠改好）且磁盘 ≥ 7 GiB 再起（追踪者起之前先报协调者）。
+- [x] ART-cast-polish-ch09（41b24202，06:07）：万门六弟子各重出 1 张，联系表 `_handoff/gem/codex_w15/sheets/`。
 - [ ] 110 个新登记人物的立绘（ART-cast-fill-c / d，待协调者登记）：等 hero-b、polish 之后，看磁盘与作者意见再排。
 - [ ] **收尾**：`build_portraits.py` 已分批提交 29109cfe / d255c157 / 0343156b / a03b120d；剩余（cast 约 40 张 + hero-a 95 张 + hero-b）等协调者指定时段一次跑完（BiRefNet 每次加载推高交换区 1–5 GB，只在 eng3 空闲、负载 < 8 时跑）→ `build_portrait_index.py`（作者批注已移到 `assets/default/prompts/characters/_AUTHOR-NOTES.md`，脚本嵌入文首）→ `build_gallery.py` → 总览页重发（同一地址）。
 - [ ] `key-scenes.md` / `story/07` 等同步项：hero-a 报告 §6 列了 ch01～07 的条目修正与统计口径，hero-b 合入后一并登记 DES-sync-keyscenes-ar36（§4）。
@@ -173,9 +173,9 @@
 | ART-hero-refine-a | 主角复合基线精修、分时期 `_scene_<stage>` 立绘、关键剧情插图配古风题字 | codex gpt-6-astra ultra | **合入 d11b33a0**（95 张，审核一次 PASS） |
 | ART-hero-refine-b | 同上，鹿鼎～雪山 | 同上 | **合入 2533a8fd**（80 张，r4 PASS） |
 | ART-cast-fill-a / -b | 逐书搜主要人物列表，补缺的提示词与立绘 | codex xhigh | **合入 e1698e93 / fe4765ef**（57 张） |
-| ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | **05:36 起跑**（驱动 63725，runner w15） |
+| ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | **合入 41b24202**（06:07，六弟子各重出 1 张，联系表 `_handoff/gem/codex_w15/sheets/`） |
 | CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | **合入 04f1133a**（05:28）：16 城目录——14 个完整候选 + 洛阳 / 太原（manifest 标 `rejected`：水门与内隔墙是工具缺口，构建不进包）；收尾运行修了页眉之外的两项未成。全量**不接力**，范围缩减见 §8.1；进度 `docs/design/town/progress.csv`（2367 行）/ `done.txt`，副本在 `_handoff/city/`。工具缺口已登记 **TOOL-town-gaps-1**（052aac53：水门 / 多重城垣 / 未声明墙水相交检查 / 页眉按城 / cities.yaml 庭州键与 ch10 年代带 / 唐 · 西域 · 吐蕃套件进 schema，用洛阳太原验证并改回 candidate），代码池有位时开发监督起 |
-| ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览 | codex xhigh | **05:29 起跑**（驱动 35115）。九老洞、敦煌地宫没有 `sc_*` / `poi_*` ID 这轮做不了 → DES-ruins-ids（936a7227，05:38 起跑）补 ID，之后登记 ART-ruins-maps-2 接力 |
+| ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览 | codex xhigh | **合入 df54e2ef**（06:12，56 张地图覆盖序章与十四书）。九老洞、敦煌地宫没有 `sc_*` / `poi_*` ID 这轮没做 → DES-ruins-ids（在跑）补 ID 后登记 ART-ruins-maps-2 接力；报告 §6 缺的遗迹贴片（洞壁 / 墓道 / 石刻 / 宝箱…）待登记贴片任务 |
 | ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录（瓷器 / 茶具、玉器、香炉铜器、琴、书法拜帖、笔…，书中宝物 + 史载物件）与 Gemini 提示词 | codex xhigh | 等 DES-items-gifts-spec（暂停）+ TOOL-catalog-9col |
 
 做法文件：`tools/agents/prompts/_codex_worker.md`；追踪交接 `_handoff/art_wave2_tracker_brief.md`；审核要点 `.agents/coord/PROD/review_checks_hero.md`（第 1 条已容许白马 / 侠客 / 鸳鸯不用剧照）/ `review_checks_ruins.md` / `review_checks_city.md`。审核模型写 `--review-model gpt-5.6-sol`（Codex 不认大写）。
