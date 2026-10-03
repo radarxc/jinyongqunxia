@@ -597,6 +597,9 @@
   variants:
   - portrait/npc_diyun/ch09_youth_disguise_base
   - portrait/npc_diyun/ch09_youth_rural_base
+  - portrait/npc_diyun/ch09_youth_scene_jingzhou_prison
+  - portrait/npc_diyun/ch09_youth_scene_maxipu_rural
+  - portrait/npc_diyun/ch09_youth_scene_snowvalley_feathers
   avatar: npc_diyun/ch09_youth_rural_base.ava256.webp
   bust: npc_diyun/ch09_youth_rural_base.bust512.webp
 - id: npc_dongfangbubai
@@ -2181,6 +2184,8 @@
   size: 1024x1536
   variants:
   - portrait/npc_qifang/ch09_youth_mother_base
+  - portrait/npc_qifang/ch09_youth_scene_maxipu_wooden_sword
+  - portrait/npc_qifang/ch09_youth_scene_wanfu_poetry_butterfly
   avatar: npc_qifang/ch09_youth_mother_base.ava256.webp
   bust: npc_qifang/ch09_youth_mother_base.bust512.webp
 - id: npc_qinnaizhi
@@ -2511,6 +2516,8 @@
   status: candidate
   size: 1024x1536
   variants:
+  - portrait/npc_shuisheng/ch09_youth_scene_xianghou
+  - portrait/npc_shuisheng/ch09_youth_scene_yuyi
   - portrait/npc_shuisheng/ch09_youth_travel_base
   avatar: npc_shuisheng/ch09_youth_travel_base.ava256.webp
   bust: npc_shuisheng/ch09_youth_travel_base.bust512.webp
