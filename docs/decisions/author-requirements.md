@@ -877,3 +877,16 @@
 2. 再 `ART-items-gifts-catalog`（codex gpt-6-astra xhigh，即作者说的「codex 的 subagent」，由素材线追踪 subagent 启动）联网考据书中宝物与历史名器，写名录 `catalog/items-collectibles.md`（120–180 件）与 Gemini 提示词；**出图由 Gemini 物品线做**（AR-31、本条），排在 366 张物品之后。
 3. 运行时 `collectible` 的送礼效果另开 ENG 任务（设计定稿后）。
 
+
+## AR-41 · 用 Tripo API 生成主要角色 3D 模型与骨架，并优化男女主角（2026-10-03 上午）
+
+作者原文（2026-10-03 约 09:05 PDT，逐字照录）：
+
+> 调用codex exec（gpt 6 extra high）去看 https://developers.tripo3d.ai/zh/docs/quick-start， （key在本地.env, tripo_key=XXXX)，然后生成主要角色的3D模型和骨架，并优化男女主角
+
+协调者口径：
+1. 执行器是 Codex `codex exec`，模型 gpt-6-astra、推理 xhigh（作者说的「gpt 6 extra high」），由素材线追踪 subagent 按 ART 任务常规启动；审核 gpt-5.6-sol。
+2. Tripo API key 只在主检出 `.env` 里（`tripo_key=…`），执行器运行时读取为环境变量，**不得**打印、写进日志 / 报告 / manifest / 提交；`.env` 加进 `.gitignore`。
+3. 分两步：先 **ART-3d-tripo-avatars**（优化男女主角 `npc_zhujue__ch00_m / _f`：多视图 / 立绘输入、高质量贴图、骨架 + 预设动作重定向，修上一版左侧头发肉色的问题，产出 `tools/model3d/tripo_cli.py` 供后续复用），再 **ART-3d-tripo-cast**（十四书主角群：以主角精修的新基线立绘做 image_to_model + 骨架）。
+4. 产物落库（AR-39）：`assets/default/model3d/<npc_id>/`（rigged GLB、带动作的 GLB（仅主角）、Tripo 渲染预览、manifest.yaml 记任务 ID / 版本 / 选项 / 消耗点数 / 来源立绘 sha256）。
+5. 点数预算：开跑前先查余额；主角优化上限 600 点，主角群上限 2500 点或余额剩 25% 即停并报告（作者可放宽）。

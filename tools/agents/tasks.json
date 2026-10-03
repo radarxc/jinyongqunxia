@@ -35522,6 +35522,92 @@
     "packages/data/src/schemas/*.test.ts",
     "packages/data/CLAUDE.md"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.network_access=true",
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/npc_zhujue__ch00_m/model_rig.glb",
+     "assets/default/model3d/npc_zhujue__ch00_m/manifest.yaml",
+     "assets/default/model3d/npc_zhujue__ch00_f/model_rig.glb",
+     "assets/default/model3d/npc_zhujue__ch00_f/manifest.yaml",
+     "tools/model3d/tripo_cli.py",
+     "tools/agents/reports/ART-3d-tripo-avatars.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ART-3d-tripo-avatars",
+   "title": "3D 角色 · Tripo API 优化男女主角（多视图 / 立绘 → 高质量模型 + 骨架 + 3 个预设动作，修头发肉色），并写 tools/model3d/tripo_cli.py（作者 AR-41；codex gpt-6-astra xhigh）",
+   "prompt": "ART-3d-tripo-avatars.md",
+   "deps": [],
+   "writes": [
+    "tools/model3d/**",
+    "assets/default/model3d/npc_zhujue__ch00_m/**",
+    "assets/default/model3d/npc_zhujue__ch00_f/**"
+   ],
+   "sparse_include": [
+    "assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png",
+    "assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png",
+    "assets/default/rig/npc_zhujue__ch00_m/sheet/*.png",
+    "apps/game/public/pilot/*"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.network_access=true",
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/agents/reports/ART-3d-tripo-cast.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ART-3d-tripo-cast",
+   "title": "3D 角色 · Tripo API 生成十四书主角群（约 31 位）的 3D 模型与骨架（作者 AR-41；codex gpt-6-astra xhigh；上限 2500 点）",
+   "prompt": "ART-3d-tripo-cast.md",
+   "deps": [
+    "ART-3d-tripo-avatars"
+   ],
+   "writes": [
+    "assets/default/model3d/**",
+    "tools/model3d/**"
+   ],
+   "sparse_include": [
+    "assets/default/character/male/ch*/por_npc_*_base.png",
+    "assets/default/character/female/ch*/por_npc_*_base.png"
+   ]
   }
  ]
 }
