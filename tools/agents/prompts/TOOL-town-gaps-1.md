@@ -20,7 +20,7 @@ CITY-layouts-all（AR-36 第 5 项）产出的 16 城里，洛阳（洛水穿城
 4. **cities.yaml**：补庭州的稳定键；核对 ch10（白马，唐 702–703，AR-26）各城的年份与年代带字段，写错的改，拿不准的标「（待考）」并在报告列出。
 5. **套件进 schema**：把 `tang`（唐代）、`xiyu`、`tubo` 登记进 `docs/design/town/schema.yaml` / `schema_check.py` 的合法套件表；唐代没有贴片时按现有规则回退到最接近的宋类并在 manifest notes 记「回退」，不要伪造唐代基线图。`packages/data/src/schemas/town.ts` 只在运行时必须认识新字段时才改，改了就补 schema 测试并跑 `pnpm --filter @tianshu/data test`。
 6. **用两城验证**：给 `city_luoyang__ch10.yaml` 加洛水东西两处水门声明，给 `city_taiyuan__ch10.yaml` 加三城内隔墙与汾河进出水门声明，各自重跑完整管线（layout → 平面图 → preview 0.5 → 全尺寸 town.png → overlay → manifest），`check_town.py --strict-assets` 通过、未声明墙水相交为 0；manifest 的 `status` 改回 `candidate`，notes 追加本次修复说明（保留协调者 05:32 那条作历史）；`progress.csv` / `done.txt` 把两城从 partial 改为完成候选。
-7. 测试：`tools/town/test_*.py` 补水门、内墙、无墙营地、未声明相交的正反用例；`python3 -m unittest discover -s tools -p "test_*.py"` 全过；`python3 tools/agents/check_asset_dirs.py "assets/default/town/city_*__ch10" --min 5 --max 5 --min-side 1024`（若该脚本参数不同以 `--help` 为准）与 `python3 tools/lint/check_ids.py --strict` 通过。
+7. 测试：`tools/town/test_*.py` 补水门、内墙、无墙营地、未声明相交的正反用例；`python3 -m unittest discover -s tools -p "test_*.py"` 全过；`python3 tools/agents/check_asset_dirs.py "assets/default/town/city_*__ch10" --min 1 --max 1 --min-side 1024`（**协调者 10-03 08:25 修订验收口径**：该脚本统计的是 manifest 中的图片条目，不是目录文件数，每城 manifest 合法登记 1 张 preview，原写的 `--min 5 --max 5` 不适用；「每城目录恰好 5 个核心文件 layout.yaml / manifest.yaml / overlay.svg / preview.png / town.png」改由报告第 3 节贴两城目录 `ls` 的实际输出佐证；不改检查器、不复制图片、不伪造 manifest 条目）与 `python3 tools/lint/check_ids.py --strict` 通过。
 
 ## 约束
 
