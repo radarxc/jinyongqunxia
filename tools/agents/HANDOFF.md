@@ -1658,4 +1658,12 @@
     4. TOOL-items-regen-2；
     5. 第三波 TOOL-rig-std-parts。
     - 重起 items-regen-2 之前先看 TOOL-rig-parts-f：若是 PENDING 且依赖已满足，先让它起。
+  - **10-03 14:12–14:19 开发监督**：CONTENT-ch10 r2（新口径）FAIL，三点内容侧小修。
+    - 三点：
+      - 东门 lockedBy 用门禁 ID；
+      - 阻塞交接改列 gates-data / event-executor / 19e；
+      - 第 7 节补作者确认项。
+    - r2 建议的 `gate_10_fengshi_east` 不合 canon §12 拼音规则。协调者选方案 a：停掉 eng3 驱动的返修（65882 等），由我重起。
+    - 合并说明写在 `.agents/coord/CONTENT-ch10-cold-entry/devsup_note_r2.md`：r2 全文，加「门禁 ID 用 `gate_10_fengshi_dongmen`」。
+    - 起跑：`--from start --max-runs 1 --max-reviews 1 --auto-merge --checks review_checks_content.md`，驱动 66718。PASS 合入，FAIL 报协调者。
 
