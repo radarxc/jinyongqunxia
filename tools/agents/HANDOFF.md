@@ -1249,3 +1249,4 @@
   - **10-03 07:36–07:50 协调者 / 开发监督 / 追踪者**：
     - ART-items-gifts-catalog 第 1 次运行 52 分钟结束（`items-collectibles.md` 377 行 151 件 + 151 份提示词），校验失败：`check_item_catalog.py` 不认识这个新文件名，按七列判「应为七列，实际 9 列」。协调者置 HOLD 停掉驱动 2757 与误导返修的执行器（工作区保留）。追踪者副本复现：表头是 §11.5.3 的 AR-40 列序（与校验器 `HEADER9` 顺序和列名不同），换成 HEADER9 后剩 906 个「键不在白名单」只涉及六个礼品键。登记 **TOOL-catalog-collectibles**（fb5cc48f + faeecc3b：校验器 / 生成器认该文件、AR-40 列序按列名取字段、六键 + 子类白名单、`kind: collectible` 投影），合入后追踪者 `--from validate` 复验 gifts-catalog。
     - 开发监督登记 **TOOL-items-regen**（dcb77156：按九列名录重新生成并提交 `content/items`；已合入任务不能重跑，故另登记）。代码池次序：ENG-entry-split → TOOL-catalog-collectibles → gifts-catalog 复验合入 → TOOL-items-regen（一次把收藏品也生成）。
+    - 次序更正（开发监督 07:50 指出 catalog-collectibles 的 validate 含 `--check` 与 content 测试，在 regen / tests-discover 合入前必红）：ENG-entry-split → TOOL-tests-discover → TOOL-items-regen → TOOL-catalog-collectibles → gifts-catalog 复验合入 → TOOL-items-regen-2（收藏品进 content/items）。协调者 07:52 同意。

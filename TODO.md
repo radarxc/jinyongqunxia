@@ -44,8 +44,8 @@
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
 | TOOL-rig-sheet | traex Sol max | 审核 r5 又 FAIL（前臂含手掌、侧腿占位、髋锚暴露）；第 9 次返修为最后一轮，侧腿问题转 ART-rig-sheet-side（新源图），之后按原型收口合入 | 开发监督另起 |
-| TOOL-items-regen | traex | 已登记（dcb77156）：按九列名录重新生成并提交 content/items；排在 entry-split、catalog-collectibles、gifts-catalog 复验之后 | 开发监督 |
-| TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；排 entry-split 后 | 开发监督起 |
+| TOOL-items-regen | traex | 已登记（dcb77156）：按九列名录重新生成并提交 content/items；次序 entry-split → tests-discover → **regen** → catalog-collectibles → gifts-catalog 复验合入 → regen-2（收藏品进 content/items） | 开发监督 |
+| TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；要等 regen 与 tests-discover 合入（否则它的 --check 与 content 测试必红） | 开发监督起 |
 | TOOL-tests-discover | traex Sol | 07:01 起跑（unittest discover 跑全 tools 测试 + 两条红测试） | 3408（开发监督） |
 | ENG-12e-gltf-pilot | traex | 07:13 续作（恢复 2D 演示 + 3D 并排），07:16 开跑 | 69969（协调者，`supervise.r3.out`） |
 | TOOL-town-gaps-1 | traex Sol | 07:1x 续作（排队等池位） | 66572（开发监督） |
