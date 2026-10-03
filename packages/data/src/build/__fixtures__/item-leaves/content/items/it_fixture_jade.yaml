@@ -1,0 +1,18 @@
+schemaVersion: item.v1
+id: it_fixture_jade
+name: 青玉签
+kind: system
+sub: marker
+grade: null
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags: []
+assets:
+  icon: item/fixture_jade
+text:
+  desc: 固定夹具乙用于验证物品正文独立发布，不随仓库真实内容数量增长，并保留足够长度触发确定分页。
+extension:
+  type: generic
+  value: {}

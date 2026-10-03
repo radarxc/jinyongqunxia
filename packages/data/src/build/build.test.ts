@@ -102,29 +102,66 @@ describe('content build hashing and Ink', () => {
   });
 
   it('publishes item rules and text as independent logical leaves', async () => {
-    const built = await buildContent({ rootDir: resolve(import.meta.dirname, '../../../..'),
-      write: false, chapter: 'ch01_tianlong' });
+    const options = {
+      rootDir: resolve(import.meta.dirname, '__fixtures__/item-leaves'),
+      write: false,
+      chapter: 'ch01_tianlong',
+      maxLeafBytes: 512,
+    } as const;
+    const [built, rebuilt] = await Promise.all([buildContent(options), buildContent(options)]);
     expect(built.diagnostics.filter((row) => row.severity === 'error')).toEqual([]);
+    expect(built.entryCount).toBe(6);
     const chapter = built.chapters[0]!;
     const itemRules = chapter.leaves.filter((row) =>
-      /^common\.rules\.items(?:\.p\d{3})?\.json$/u.test(row.logicalName));
+      /^common\.rules\.items(?:\.p\d{3})?\.json$/u.test(row.logicalName),
+    );
     const itemText = chapter.leaves.filter((row) =>
-      /^common\.text\.zh-Hans\.items(?:\.p\d{3})?\.json$/u.test(row.logicalName));
-    expect(itemRules.length).toBeGreaterThan(0);
-    expect(itemText.length).toBeGreaterThan(0);
+      /^common\.text\.zh-Hans\.items(?:\.p\d{3})?\.json$/u.test(row.logicalName),
+    );
+    expect(itemRules.map((row) => row.logicalName)).toEqual([
+      'common.rules.items.p000.json',
+      'common.rules.items.p001.json',
+      'common.rules.items.p002.json',
+    ]);
+    expect(itemText.map((row) => row.logicalName)).toEqual([
+      'common.text.zh-Hans.items.p000.json',
+      'common.text.zh-Hans.items.p001.json',
+    ]);
     const rows = itemRules.flatMap((row) => row.value as JsonValue[]);
-    expect(rows.length).toBeGreaterThan(300);
-    expect(rows.every((row) => {
-      const envelope = row as Record<string, JsonValue>;
-      const value = envelope['value'] as Record<string, JsonValue>;
-      return envelope['kind'] === 'item' && typeof value['name'] === 'string' &&
-        value['text'] === undefined;
-    })).toBe(true);
+    expect(rows.map((row) => (row as Record<string, JsonValue>)['id'])).toEqual([
+      'it_fixture_amber',
+      'it_fixture_jade',
+      'it_fixture_pearl',
+    ]);
+    expect(
+      rows.every((row) => {
+        const envelope = row as Record<string, JsonValue>;
+        const value = envelope['value'] as Record<string, JsonValue>;
+        return (
+          envelope['kind'] === 'item' &&
+          typeof value['name'] === 'string' &&
+          value['text'] === undefined
+        );
+      }),
+    ).toBe(true);
     const base = chapter.leaves.find((row) => row.logicalName === 'common.rules.base.json')!;
-    expect((base.value as JsonValue[]).some((row) =>
-      (row as Record<string, JsonValue>)['kind'] === 'item')).toBe(false);
-    expect(Object.keys(Object.assign({}, ...itemText.map((row) => row.value))))
-      .toEqual(expect.arrayContaining(['item.it_jinchuangyao.text.desc']));
+    expect(
+      (base.value as JsonValue[]).some(
+        (row) => (row as Record<string, JsonValue>)['kind'] === 'item',
+      ),
+    ).toBe(false);
+    expect(Object.keys(Object.assign({}, ...itemText.map((row) => row.value)))).toEqual([
+      'item.it_fixture_amber.text.desc',
+      'item.it_fixture_jade.text.desc',
+      'item.it_fixture_pearl.text.desc',
+    ]);
+    expect(chapter.manifest.contentHash).toBe(
+      'f8117e53e4dffeac4dff614caff4c1bd47f93e5b2fa3678be7ff4768ccbc3322',
+    );
+    expect(chapter.manifest.textHashes['zh-Hans']).toBe(
+      '495e4b26265461024bdc52368b27884bd94c70ca4d089b4f3d97ac8f8874fe76',
+    );
+    expect(rebuilt.chapters[0]!.manifest).toEqual(chapter.manifest);
   });
 
   it('splits 889-item rule and text fixtures below 256 KiB in order', () => {
