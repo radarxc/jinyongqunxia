@@ -1088,3 +1088,10 @@
     - **ART-ruins-maps 合入**（df54e2ef，06:12，r1 PASS）：56 张 Tiled 1.12.2 地图 + 预览（16 微型 + 40 标准），覆盖序章与十四书界 18 个区域，全部复用章节既有 `sc_*`；六邻连通检查通过。九老洞、敦煌地宫没有场景 ID 未做（等 DES-ruins-ids 合入后登记 ART-ruins-maps-2 接力）。报告 §6：美术缺洞壁 / 墓道 / 土坯残墙 / 石刻 / 矿支架 / 毡帐 / 药架 / 灯具 / 宝箱贴片（待登记贴片任务）；台阶缺 rampDir、急流缺 flowDir（本批未用）；任务 / 采集 / 奖励绑定归 CONTENT 各章。
     - DES-items-gifts-spec 续作 35 分钟结束，校验通过（design/10、design/12），审核中。
     - 磁盘：追踪者删掉五个已合入任务的日志目录（约 260 MB）；ruins / polish 合入后工作区自动清除，06:12 回到 5 GiB。规则：< 5 GiB 不新开工作区，< 2.5 GiB 停线。
+  - **10-03 06:10–06:21 开发监督**：lore-8 合入，lore-5 已挂起。
+    - **lore-8**（护肩、披风、头饰、暗器）一轮合入（1d86e1a9），工作区已清，11 份名录检查全过。
+      - 已转九列 8 份：accessories / armor / belts / hidden-weapons / clothing / innerarmor / shoes / medicine。
+      - 还剩三份：weapons（lore-1，r1 复审中；lore-2 等它）、manuals（lore-3，des34 自动复验后 r2 复审中；lore-4 等它）、food（lore-5，挂起）。
+    - **lore-5**：06:10:31 转 HOLD-REVIEWS，4 秒后被 `hold_on_reviews.py` 改为 HOLD-RUNS；des34 只把它列入「停住待协调者」，没有重起。
+      - TOOL-catalog-food-qi-exception 合入后，挪基点 `--from validate`。
+
