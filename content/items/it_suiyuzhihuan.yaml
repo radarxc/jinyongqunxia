@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_suiyuzhihuan
+name: 隋式白玉指环
+kind: collectible
+sub: jade
+grade: 3
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H11](#src-h11)；准入：白马702—703；隋器旧藏
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/suiyuzhihuan
+text:
+  desc: 外观：白玉粗圆环，外壁拱起。 待运行时投影：eraRange=[tang]; giftTo={preferred:[collector]}; giftValue=1; provenance=history。
+  lore: 隋代白玉指环有公开馆藏可据，武周旧藏的出现早于故事并无年代倒置。适合赠小件玉器藏家；游戏只作陈设，不占装备槽，所有权和传世链由原创支线明确登记。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

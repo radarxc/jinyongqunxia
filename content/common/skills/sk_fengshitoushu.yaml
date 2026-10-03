@@ -1,0 +1,24 @@
+schemaVersion: martial-art.v1
+id: sk_fengshitoushu
+name: 风石投术
+aliases: []
+category: hidden
+subType: hidden
+grade: 1
+origin: expanded
+sect: null
+lineage: 越地牧童与猎户的投石经验
+sourceChapters: [ch00_yuenv]
+nature: neutral
+wOutBp: 8500
+wInBp: 1500
+requirements: {attrs: {agi: 20}, aptitude: {apHidden: 0}}
+maxLayer: 10
+layers:
+  - {n: 1, unlock: []}
+moveIds: []
+learnSources:
+  - {type: master, chapter: ch00_yuenv, ref: 越地牧童角色槽, maxLayer: 10}
+  - {type: manual, chapter: ch00_yuenv, ref: it_miji_fengshitoushu, maxLayer: 10}
+tags: [hidden, common, prologue_role]
+description: 辨风、选取圆钝石并校准提前量的基础投术。（原创扩展）

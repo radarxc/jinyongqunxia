@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_xixiafashutie
+name: 西夏赐赠法书卷
+kind: collectible
+sub: calligraphy
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xixiafashutie
+text:
+  desc: 外观：单轴纸本手卷，素绫护首。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=expanded。
+  lore: 《天龙八部》西夏招亲有向来客赠名家书画的情节，具体作者题名待核修订版。本件从无名书法卷中设计一件，宜赠文士；单件名称与形制为（原创扩展），不伪托名家。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

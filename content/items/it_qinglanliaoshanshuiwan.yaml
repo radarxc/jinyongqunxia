@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_qinglanliaoshanshuiwan
+name: 雍正蓝料彩山水碗
+kind: collectible
+sub: porcelain
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H49](#src-h49)；准入：仅乾隆阶段五书；雍正器旧藏
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qinglanliaoshanshuiwan
+text:
+  desc: 外观：白釉碗外蓝料淡绘山石树木，细腻层次。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=history。
+  lore: 雍正蓝料彩山水图碗可据故宫资料确定器类，蓝料绘画并不等同釉下青花。适合赠文士藏家，流转为（原创扩展）；只投雍正之后旧藏，图标藏住诗款，不添人物。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

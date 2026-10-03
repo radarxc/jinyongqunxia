@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_mingsuqiqin
+name: 明素漆琴
+kind: collectible
+sub: qin
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingsuqiqin
+text:
+  desc: 外观：黑褐漆七弦琴，素净仲尼式轮廓。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,musician,collector]}; giftValue=1; provenance=expanded。
+  lore: 给明代琴友支线设计的普通七弦琴，独立于黄钟公的武功与兵器规则。适合赠初学乐人，琴式和获取为（原创扩展）；可演奏供叙事鉴赏，不因此学习七弦无形剑等武学。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

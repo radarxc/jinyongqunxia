@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_guoxiangheiyuzhuo
+name: 郭襄寿礼黑玉镯
+kind: collectible
+sub: jade
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B02](#src-b02)；准入：神雕1259贺寿之后；物权与转赠条件齐备
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/guoxiangheiyuzhuo
+text:
+  desc: 外观：一只墨黑温润玉镯，圆条完整。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[collector]}; giftValue=3; provenance=book。
+  lore: 《神雕侠侣》郭襄生辰贺礼中有黑玉镯，赠礼者及后续流转待核修订版。仅在郭襄自愿转让且纪念用途解除后候选，适合玉器藏家；游戏取得及单镯造型为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

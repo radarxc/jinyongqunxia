@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuetongjian
+name: 越地素面铜鉴
+kind: collectible
+sub: bronze
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuetongjian
+text:
+  desc: 外观：褐色青铜宽口浅腹鉴，低矮圈足。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 借春秋青铜盛水器传统设计的普通礼鉴，可供净手与陈设，不能作为镜面武器。适合赠门派或商贾作会客器，玩家从器主处购得；越地具体形制与流转为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

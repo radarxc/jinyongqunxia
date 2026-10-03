@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_mingdaimaozihaobi
+name: 明玳瑁管紫毫笔
+kind: collectible
+sub: stationery
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 历史器物／类型：[H29](#src-h29)；准入：仅碧血；明代器的具体纪年待考
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingdaimaozihaobi
+text:
+  desc: 外观：黄褐斑驳玳瑁质管一支，深褐短紫毫。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=history。
+  lore: 故宫文房目录列有明玳瑁管紫毫笔，可据材料和管形作收藏设计。宜赠文士藏家，具体制作期未核前只投明末；原主与交付为（原创扩展），不额外开放取材或制作配方。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

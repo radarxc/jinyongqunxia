@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_chenghuajigangbei
+name: 成化斗彩鸡缸杯
+kind: collectible
+sub: porcelain
+grade: 11
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H22](#src-h22)；准入：笑傲、侠客、碧血；成化以后固定旧藏，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/chenghuajigangbei
+text:
+  desc: 外观：小巧浅腹杯，青花勾线配淡黄绿红彩鸡与花石。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=4; provenance=history。
+  lore: 成化斗彩鸡缸杯有明确馆藏时代与细小器型，可供高阶礼物取形。适合赠瓷器藏家，默认固定旧藏授权转赠；游戏流传为（原创扩展），不复制成套，也不把仿杯沿用此名号。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 84

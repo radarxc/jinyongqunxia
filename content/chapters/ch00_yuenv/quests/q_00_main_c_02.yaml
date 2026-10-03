@@ -1,0 +1,64 @@
+schemaVersion: quest.v1
+id: q_00_main_c_02
+kind: main
+chapterId: ch00_yuenv
+titleKey: quest.q_00_main_c_02.title
+subjectNpcIds: []
+routeTone: neutral
+startStageId: st_initial_battle
+flagIds:
+  - fl_00_zhulin_loss_streak3
+  - fl_00_initial_battle_manual
+  - fl_00_initial_battle_assisted
+  - fl_00_baiyuan_tracked
+  - fl_00_baiyuan_peaceful
+  - fl_00_baiyuan_spar
+  - fl_00_baiyuan_bypass
+  - fl_00_baiyuan_spar_done
+  - fl_00_baiyuan_merged
+encounterIds: [enc_00_zhulin, enc_00_baiyuan]
+offerWhen: {quest: {id: q_00_main_c_01, state: completed}}
+stages:
+  - id: st_initial_battle
+    objectiveKeys: [quest.q_00_main_c_02.objective.initial_battle]
+    objectives: [{type: battle, encounterId: enc_00_zhulin}]
+    transitions:
+      - {id: edge_initial_assisted, priority: 20, when: {flag: {id: fl_00_initial_battle_assisted, is: true}}, to: st_track, branchKey: initial_battle_assisted}
+      - {id: edge_initial_manual, priority: 10, when: {flag: {id: fl_00_initial_battle_manual, is: true}}, to: st_track, branchKey: initial_battle_manual}
+    effects:
+      - {id: fx_initial_battle, op: battle/start, encounterId: enc_00_zhulin}
+  - id: st_track
+    objectiveKeys: [quest.q_00_main_c_02.objective.track]
+    objectives: [{type: confirmFlag, flagId: fl_00_baiyuan_tracked, is: true}]
+    transitions:
+      - {id: edge_baiyuan_choice, priority: 10, when: {flag: {id: fl_00_baiyuan_tracked, is: true}}, to: st_baiyuan_choice, branchKey: tracked_baiyuan}
+    effects: []
+  - id: st_baiyuan_choice
+    objectiveKeys: [quest.q_00_main_c_02.objective.baiyuan_choice]
+    objectives: []
+    transitions:
+      - {id: edge_baiyuan_peaceful, priority: 30, when: {flag: {id: fl_00_baiyuan_peaceful, is: true}}, to: st_merge, branchKey: baiyuan_peaceful}
+      - {id: edge_baiyuan_spar, priority: 20, when: {flag: {id: fl_00_baiyuan_spar, is: true}}, to: st_baiyuan_spar, branchKey: baiyuan_spar}
+      - {id: edge_baiyuan_bypass, priority: 10, when: {flag: {id: fl_00_baiyuan_bypass, is: true}}, to: st_merge, branchKey: baiyuan_bypass}
+    effects: []
+  - id: st_baiyuan_spar
+    objectiveKeys: [quest.q_00_main_c_02.objective.baiyuan_spar]
+    objectives: [{type: battle, encounterId: enc_00_baiyuan}]
+    transitions:
+      - {id: edge_spar_merge, priority: 10, when: {flag: {id: fl_00_baiyuan_spar_done, is: true}}, to: st_merge, branchKey: spar_resolved}
+    effects: []
+  - id: st_merge
+    objectiveKeys: [quest.q_00_main_c_02.objective.merge]
+    objectives: [{type: confirmFlag, flagId: fl_00_baiyuan_merged, is: true}]
+    transitions:
+      - {id: edge_merge_close, priority: 10, when: {flag: {id: fl_00_baiyuan_merged, is: true}}, to: st_close, branchKey: reached_yue_camp}
+    effects: []
+  - id: st_close
+    objectiveKeys: []
+    objectives: []
+    transitions: []
+    effects: []
+    terminal: completed
+    endingKey: baiyuan_resolved
+tracking: {defaultTracked: true, targetRef: enc_00_baiyuan, revealPolicy: known_only}
+source: {origin: canonExpanded, note: 白猿与阿青交锋取原著大意；三路解法与玩家介入为原创扩展}

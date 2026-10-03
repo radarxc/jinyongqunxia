@@ -1,0 +1,21 @@
+schemaVersion: move.v1
+id: mv_beiming_tianchi
+name: 天池纳川
+skillId: sk_beiming
+unlock: 7
+kind: attack
+ultimate: true
+rageCost: 100
+target: enemy
+range: {min: 1, max: 1}
+shape: {tpl: aoe_around}
+delivery: self
+hTol: 2
+powerBp: 21000
+referencePowerBp: 10000
+wInBp: 10000
+mpCost: 54
+recovery: 1200
+hitZone: body
+meridianRouteRef: mfr_beiming_tianchi
+friendlyFire: none

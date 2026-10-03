@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_wenzhengmingchibifu
+name: 文徵明《赤壁赋》页
+kind: collectible
+sub: calligraphy
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H50](#src-h50)；准入：仅碧血；1530前赋旧藏，固定授权，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/wenzhengmingchibifu
+text:
+  desc: 外观：一页纸本小楷收于半合素册，露出自拟护签「赤壁赋」三字。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,collector]}; giftValue=4; provenance=history。
+  lore: 故宫文徵明《赤壁赋》前页署嘉靖庚寅，换算为一五三〇年；后赋另作，不合并冒早。宜赠文士藏家，默认仅投碧血旧藏；授权流转和仅露短题签的展示均为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

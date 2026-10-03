@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_songsanzhuobi
+name: 宋式散卓笔
+kind: collectible
+sub: stationery
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songsanzhuobi
+text:
+  desc: 外观：栗色竹管毛笔一支，丰满黑褐毫束聚尖。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=expanded。
+  lore: 取宋代笔工传统设计高品质散卓式毛笔，适合赠长期习书的文士。具体笔制在一〇九三年前的适用性（待考），默认由工匠任务限量酬赠；器名和制作者为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

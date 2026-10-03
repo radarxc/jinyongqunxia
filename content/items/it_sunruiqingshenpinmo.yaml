@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_sunruiqingshenpinmo
+name: 孙瑞卿神品墨
+kind: collectible
+sub: stationery
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H29](#src-h29)；准入：仅碧血终段；实物纹饰及纪年核准后，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/sunruiqingshenpinmo
+text:
+  desc: 外观：乌黑长方墨锭，边缘整齐。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,collector]}; giftValue=4; provenance=history。
+  lore: 故宫文房目录列有明孙瑞卿神品墨，本件以制墨名品作为高阶馈赠方向。宜赠文士藏家；具体纪年与纹样（待考），默认仅投明末固定支线，取得与画面背向处理为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

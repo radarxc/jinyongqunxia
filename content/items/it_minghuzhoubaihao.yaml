@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_minghuzhoubaihao
+name: 明湖州白毫笔
+kind: collectible
+sub: stationery
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/minghuzhoubaihao
+text:
+  desc: 外观：细素竹管白毫笔，洁白毫束尖圆。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 借湖笔制作传统设计明代常用白毫书笔，适合文士与书吏间互赠。管材、配毫和作坊身份属于（原创扩展）；不冒指现存名工真品，普通笔只提供礼物价值，不叠加研读收益。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

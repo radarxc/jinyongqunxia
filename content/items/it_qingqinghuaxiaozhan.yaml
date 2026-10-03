@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_qingqinghuaxiaozhan
+name: 清青花小盏
+kind: collectible
+sub: porcelain
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingqinghuaxiaozhan
+text:
+  desc: 外观：白地淡蓝折枝花纹小盏，薄口深腹。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 以清代日用青花器为背景设计普通小盏，作为早期交游的体面薄礼。适合赠文士与商贾，具体窑作和获得为（原创扩展）；各书界使用同期花纹型式，不把乾隆工艺提前。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

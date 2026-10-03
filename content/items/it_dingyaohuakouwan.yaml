@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_dingyaohuakouwan
+name: 定窑白釉花口碗
+kind: collectible
+sub: porcelain
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H16](#src-h16)、[H17](#src-h17)；准入：天龙1093—1094；选北宋中期刻花式
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/dingyaohuakouwan
+text:
+  desc: 外观：暖白釉花口碗，瓣状口沿。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=history。
+  lore: 定窑北宋白釉花口碗可据馆藏确定时代，刻花工艺另有北宋中期纪年资料。宜赠文士藏家，交易归属为（原创扩展）；不套用晚出的繁密印花样式来表现天龙年间的器物。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yuanqiyuqin
+name: 元式漆玉徽琴
+kind: collectible
+sub: qin
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yuanqiyuqin
+text:
+  desc: 外观：深栗漆七弦琴，小颗白玉徽嵌入琴面。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,musician,collector]}; giftValue=4; provenance=expanded。
+  lore: 为元末知音支线设计稀有琴，以精良木胎与克制玉徽表达贵重。适合赠乐人或文士，琴名与制作谱系均为（原创扩展）；具体制式（待考），不把朱致远等人的归属争议写成定论。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

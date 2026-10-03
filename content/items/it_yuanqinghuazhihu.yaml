@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_yuanqinghuazhihu
+name: 元青花凤穿牡丹执壶
+kind: collectible
+sub: porcelain
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H20](#src-h20)；准入：倚天元末主体终段；固定授权获赠，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yuanqinghuazhihu
+text:
+  desc: 外观：白地钴蓝梨形执壶，长弯流与曲柄。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=4; provenance=history。
+  lore: 元青花凤穿牡丹执壶有故宫藏品资料，花鸟与壶式可供准确取形。宜赠重瓷器的贵客，游戏流转为（原创扩展）；默认放在倚天元末主体，不能倒投早年序幕或普通商店。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

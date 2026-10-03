@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_gaochangguwu
+name: 高昌古物
+kind: collectible
+sub: antique
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B13](#src-b13)；准入：白马；默认普通旧藏，不替代主线牺牲物
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/gaochangguwu
+text:
+  desc: 外观：一件合拢的褐色木质器物陈设，素面矩形木盖与盒体合为单体。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=2; provenance=book; tags=[relic]。
+  lore: 《白马啸西风》高昌旧藏沿用既有古物总名，具体器类须核修订版。图标用一件素木容器代示，不宣称书中具名；宜赠藏家，保留原鉴赏收益，取得须与牺牲物分开。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    study:
+      art: art
+      value: 3
+    appraise:
+      art: art
+      dc: 44

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuanzhuyujue
+name: 元竹节玉玦
+kind: collectible
+sub: jade
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanzhuyujue
+text:
+  desc: 外观：青白玉小玦，环身浅竹节纹。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[collector]}; giftValue=1; provenance=expanded。
+  lore: 以元代玉作花木题材构想小型玉玦，作为普通玉器酬礼。适合赠文士藏家，工匠赠物与纹样组合为（原创扩展）；具体玦式在元代的证据（待考），不赋予佩戴属性或宗派身份。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

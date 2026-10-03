@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_wuzhoubaijian
+name: 武周请益帖
+kind: collectible
+sub: calligraphy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/wuzhoubaijian
+text:
+  desc: 外观：淡黄纸短卷一件，卷首露出小题签「请益」二字。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 为武周书吏求教支线新作的短帖，玩家协助整纸后获赠，可转赠文士。不是历史名家真迹，也不赋予官府通行资格；文字、题签、装卷方式及取得均为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 12

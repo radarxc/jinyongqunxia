@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansongtongjing
+name: 南宋素背铜镜
+kind: collectible
+sub: bronze
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongtongjing
+text:
+  desc: 外观：暗金褐色小圆铜镜，素背与圆钮。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 为南宋市井交游设计便携铜镜，以朴实工艺作为低阶礼物。适合赠商贾或小器藏家，不对任何性别预设喜好；镜型与流转为（原创扩展），具体地区样式由考据后选择。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 12

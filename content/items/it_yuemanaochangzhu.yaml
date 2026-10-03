@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuemanaochangzhu
+name: 越地玛瑙长珠
+kind: collectible
+sub: antique
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuemanaochangzhu
+text:
+  desc: 外观：单颗橙红玛瑙长桶珠，中央细通孔。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 以先秦珠饰工艺为背景设计单颗赏玩珠，不能作为装备项链拆装。适合馈赠喜石质小物的藏家，原主转让后方可入库；越地来源与具体配色为（原创扩展），产地（待考）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

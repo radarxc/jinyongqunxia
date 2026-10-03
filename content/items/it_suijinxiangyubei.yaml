@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_suijinxiangyubei
+name: 隋式镶金玉杯
+kind: collectible
+sub: jade
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H10](#src-h10)；准入：白马702—703；同类旧藏固定支线
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/suijinxiangyubei
+text:
+  desc: 外观：白玉薄壁杯，杯口窄金沿。 待运行时投影：eraRange=[tang]; giftTo={preferred:[noble,collector]}; giftValue=3; provenance=history。
+  lore: 参照隋代金玉结合杯器的馆藏形制，作为武周商路旧藏候选。适合赠权贵与鉴玉者；具体器主和交易为（原创扩展），不能把后来发掘的墓中原杯写成当时流通实物。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

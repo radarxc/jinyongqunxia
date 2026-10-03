@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_suibolibianping
+name: 隋式玻璃扁瓶
+kind: collectible
+sub: antique
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H13](#src-h13)；准入：白马702—703；隋式同类器旧藏
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/suibolibianping
+text:
+  desc: 外观：浅绿透明玻璃扁圆瓶，细颈小口。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=history。
+  lore: 隋代玻璃扁瓶的公开研究提供了形制依据，作为武周旧藏的异域器物候选。宜赠珍爱玻璃的商贾与藏家；前朝传世路线为（原创扩展），不声称墓中原器曾流入高昌。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

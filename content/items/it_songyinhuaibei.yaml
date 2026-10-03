@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_songyinhuaibei
+name: 北宋银花口杯
+kind: collectible
+sub: bronze
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songyinhuaibei
+text:
+  desc: 外观：银质花口薄壁杯，六瓣轻折。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[noble,collector]}; giftValue=3; provenance=expanded。
+  lore: 借中古金银器工艺设计宋式花口礼杯，以轻薄锤揲和保存品相定为高阶。宜赠喜金银器的贵客，不能凭贵重材质跳过好感上限；具体形制和流转均为（原创扩展）（待考）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

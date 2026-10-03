@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_qingzhuxiao
+name: 清素竹箫
+kind: collectible
+sub: qin
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingzhuxiao
+text:
+  desc: 外观：单支深棕竹箫，管壁自然竹节。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,musician,collector]}; giftValue=1; provenance=expanded。
+  lore: 为清代乐人设计普通竹箫，可在修整乐器支线中作为酬谢。适合赠乐人，具体孔制、尺寸与取得为（原创扩展），按每书阶段核同期样式；不冒称金笛等人物兵器或信物。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

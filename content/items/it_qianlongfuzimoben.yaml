@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_qianlongfuzimoben
+name: 乾隆福字摹片
+kind: collectible
+sub: calligraphy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qianlongfuzimoben
+text:
+  desc: 外观：一张暖白纸片，中央仅一个黑色「福」字。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,collector]}; giftValue=2; provenance=expanded。
+  lore: 宫廷福字资料可作题材参考，此件明确为乾隆阶段的民间摹片。适合赠喜节令题字的文士藏家，摹写与流传为（原创扩展）；不得冒称御赐真迹，不在康熙鹿鼎阶段出现。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yuanzhenkuanshiyan
+name: 元贞款石砚
+kind: collectible
+sub: stationery
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 历史器物／类型：[H29](#src-h29)；准入：倚天主体；1295年后，纪年细节待考
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanzhenkuanshiyan
+text:
+  desc: 外观：灰黑长方石砚，平研面浅池。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=history。
+  lore: 故宫文房目录列有元贞款石砚，纪年不早于元贞时期。宜赠文士藏家，游戏中只设一条旧藏转让支线；真实铭文不让图像模型扩写，传世所有权和获得为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

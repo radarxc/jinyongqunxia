@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_mingtongsujing
+name: 明素面铜镜
+kind: collectible
+sub: bronze
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingtongsujing
+text:
+  desc: 外观：暗褐圆铜镜，宽窄适中边缘。 待运行时投影：eraRange=[ming]; giftTo={preferred:[merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 为明代市井馈赠设计素背铜镜，以使用痕迹和打磨质量表示普通品相。宜赠商贾藏家，不按受赠者性别匹配；镜型、器主与购买均为（原创扩展），不作为易容或侦查道具。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

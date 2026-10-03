@@ -1,0 +1,143 @@
+story:
+  ch00:
+    main:
+      title: 越女剑序章
+      opening: 雨夜入书
+      prologue_mode: 选择序章方式
+      skip_summary: 越地七幅
+      skip_direct: 一页千年
+      full_complete: 梦别越地
+      summary_complete: 摘要读毕
+      skip_complete: 直抵初眠
+    choice:
+      dc_00_01: 如何走过序章
+    dc00_01:
+      full: 完整序章
+      summary: 交互摘要
+      skip: 直接跳过
+      confirm:
+        full: 可快进已读表现；传功与配点不会被快进跳过。
+        summary: 会跳过可玩教学，不跳过主线功法与属性确认。
+        skip: 不会获得序章武学；补完传功与初眠后进入白马。
+quest:
+  q_00_main_c_01:
+    title: 入书寻青
+    objective:
+      wake: 在越地竹林醒来，确认周围情形。
+      find_aqing: 循羊铃声寻找竹林中的少女。
+      accept_staff: 拾取竹棒并收下章内补给。
+  q_00_main_c_02:
+    title: 竹林试步
+    objective:
+      initial_battle: 击退拦路剑士，完成首次战斗教学。
+      track: 循痕迹前往猿迹山径。
+      baiyuan_choice: 选择投果、切磋或绕路。
+      baiyuan_spar: 与白猿非致死切磋；可主动认输。
+      merge: 与阿青汇合，继续前往越营。
+  q_00_main_c_03:
+    title: 越营观剑
+    objective:
+      meet_fanli: 在越营听取范蠡的请求。
+      drill: 观看越卒试阵并了解友军阵位。
+      biandao: 制服边道拦截者，不处决、不掠夺。
+      sword_demo: 完成越女剑教学投影。
+      nine_preview: 查看九层功法远景；预览不等于习得。
+  q_00_main_c_04:
+    title: 一梦千年
+    objective:
+      transmission: 在越营传功墨点接受阿青传授第一层。
+      save_export: 检查存档与导出；普通游玩可稍后导出。
+      northbound: 离开越地，循山路北行。
+      avalanche: 经历雪崩并进入长白山雪穴。
+      allocation: 分配六项根基，确认总和为三百。
+      sleep_commit: 确认初眠配点并原子提交。
+      wake: 一千一百八十四年后醒来，继续西行。
+scene:
+  sc_00_zhulin:
+    name: 越地竹林
+  sc_00_shanjing:
+    name: 猿迹山径
+  sc_00_yueying:
+    name: 越营与边道
+  sc_00_changbai_cave:
+    name: 长白山雪穴
+npc:
+  npc_aqing:
+    name: 阿青
+  npc_baiyuan:
+    name: 白猿
+  npc_fanli:
+    name: 范蠡
+role:
+  role_road_swordsman:
+    name: 持剑路卒
+  role_wu_swordsman:
+    name: 吴国剑士
+  role_yue_soldier:
+    name: 越国兵卒
+prop:
+  prop_bamboo_staff:
+    name: 拾取的竹棒
+flow:
+  ch00:
+    opening:
+      '001':
+        title: 雨夜无字卷
+        body: 雨声贴着窗沿落下。桌上的旧书没有题名，纸页间却渗出一线墨光。
+      '002':
+        title: 身份不可略过
+        body: 书灵请你先确认身份；开场画面可以跳过，身份、可访问性设置与模式选择不会消失。
+      '003':
+        title: 墨落越地
+        body: 墨色漫过纸边。再睁眼时，脚下已是湿润竹叶，远处传来羊铃。
+    summary:
+      '001':
+        title: 入书
+        body: 你从现代翻开无字残卷，坠入墨色书界；沉睡的书灵随之醒来。
+      '002':
+        title: 阿青
+        body: 牧羊少女阿青以竹棒显出剑理；人物与情节只取《越女剑》大意，具体细节待考。
+      '003':
+        title: 白猿
+        body: 阿青与白猿交手而悟剑的大意化作见闻；这段摘要不授予武学或所谓“白猿剑意”。
+      '004':
+        title: 范蠡与越军
+        body: 范蠡请阿青帮助越军习剑；玩家参与试阵与边道止争属于原创扩展，不在摘要中冒充原著。
+      '005':
+        title: 双重远景
+        body: 你曾见地上九品越女剑与九层功法投影；两者都是教学实例，离章即失效。
+      '006':
+        title: 越营传功
+        body: 阿青在越营亲授《长生诀》第一层；书灵只记录这项事实，不代替她传功。
+      '007':
+        title: 长白初眠
+        body: 雪崩将你送入洞中。确认六项根基后，你会在一千一百八十四年后醒来并进入白马篇。
+    skipBridge:
+      '001':
+        title: 阿青传功
+        body: 无论摘要或直接跳过，阿青所授第一层都必须形成同一幂等收据；不会补发普通武学、物品或关系。
+      '002':
+        title: 北行雪崩
+        body: 越营火光远去，北行风雪化作雪崩；表现可以略过，长白山初眠事务不可略过。
+      '003':
+        title: 六项确认
+        body: 臂力、根骨、内息、悟性、身法、定力各以三十五为底，再分九十点；合法总和为三百。
+tutorial:
+  ch00:
+    '01': {title: 点地移动, body: 点选可达格移动；再次点选可调整路线。}
+    '02': {title: 镜头与交互, body: 可交互物带墨边；旋转镜头后再接近竹棒与人物。}
+    '03': {title: 任务与局部图, body: 任务页显示当前目标；墨点代表场景，不是第二张可行走地图。}
+    '04': {title: 对话与选择, body: 先揭示全文，再提交选项；历史记录可随时回看。}
+    '05': {title: 首轮与 CT, body: 首轮先看轻功；此后 CT 满一千才可行动。}
+    '06': {title: 移动、朝向与招式, body: 蓝格可达，红格为招式范围；确认六向朝向再出手。}
+    '07': {title: 防御、调息与物品, body: 防御能更快再动，调息恢复内力；战前先查看药品说明。}
+    '08': {title: 聚气, body: 急性聚气会放弃本次行动，并改变 CT 与在途气。}
+    '09': {title: 轻功门槛与绕路, body: 门禁不足时，主线总会提供明示的替代路线。}
+    '10': {title: 非战斗与非致死, body: 投果、认输或制服都可收束冲突；倒地不等于剧情死亡。}
+    '11': {title: 武学、层数与装配, body: 地上九品与九层远景均标为教学态；预览不是正式习得。}
+    '12': {title: 主线功法, body: 《长生诀》在主线功法位，不占普通武学栏；此处只保留真实第一层。}
+    '13': {title: 初眠配点, body: 六项底值各三十五，共分九十点；福缘与魅力本次锁定。}
+    '14': {title: 友军与阵位, body: 剧情友军默认由 AI 控制；可调整前后位并观察其行动。}
+    '15': {title: 本地存读档, body: 战斗、对话与初眠事务中不能手动存档；自动档轮转三代。}
+    '16': {title: 导出与导入, body: 导入前先预检，且不会覆盖当前档；验收需导回同一内容哈希。}
+    '17': {title: 教学态清理与初眠, body: 只带走《长生诀》第一层；演示武学、章内物品与梦境状态全部清除。}

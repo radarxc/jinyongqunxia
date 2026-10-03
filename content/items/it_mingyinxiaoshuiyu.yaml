@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_mingyinxiaoshuiyu
+name: 明式银水盂
+kind: collectible
+sub: bronze
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingyinxiaoshuiyu
+text:
+  desc: 外观：银质扁腹水盂，小口。 待运行时投影：eraRange=[ming]; giftTo={preferred:[merchant,collector]}; giftValue=2; provenance=expanded。
+  lore: 为明代文房设计银质小水盂，作为书友相赠的耐用器物。适合文士与商贾，材料不使它获得药物用途；器式、品相与取得为（原创扩展），具体时代细型尚待工艺资料核对。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_songlianbantonglu
+name: 北宋莲瓣铜炉
+kind: collectible
+sub: bronze
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songlianbantonglu
+text:
+  desc: 外观：暗褐铜质小炉，圆腹浅莲瓣。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,monastic,collector]}; giftValue=2; provenance=expanded。
+  lore: 为北宋书斋设计莲瓣小炉，以温雅陈设服务馈赠场景。适合送文士与僧道，不承担炼药或毒器功能；具体炉型及天龙年代适用性（待考），器名与获取均为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

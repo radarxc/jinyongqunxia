@@ -1,0 +1,32 @@
+schemaVersion: martial-art.v1
+id: sk_yuenvjian
+name: 越女剑法
+aliases: []
+category: weapon
+subType: sword
+grade: 9
+origin: canonExpanded
+sect: null
+lineage: 阿青与剑源教学传承
+sourceChapters: [ch00_yuenv]
+canonRef: 越女剑·阿青以竹棒显剑术并助越军习剑；招式名与玩法数值均为原创扩展
+nature: harmony
+wOutBp: 3500
+wInBp: 6500
+requirements:
+  attrs: {agi: 60, wis: 50}
+  aptitude: {apSword: 40}
+  prerequisite: [{skillId: sk_zhuzhijianfa, layer: 6}]
+maxLayer: 9
+layers:
+  - {n: 1, unlock: [mv_yuenvjian_zhuying]}
+  - {n: 2, unlock: [ps_yuenvjian_jianyuan]}
+  - {n: 3, unlock: [mv_yuenvjian_huizhi]}
+  - {n: 5, unlock: [ps_yuenvjian_wuzhao]}
+  - {n: 7, unlock: [mv_yuenvjian_wuhen, ps_yuenvjian_wanjia]}
+  - {n: 9, unlock: [mv_yuenvjian_yixian]}
+moveIds: [mv_yuenvjian_zhuying, mv_yuenvjian_huizhi, mv_yuenvjian_wuhen, mv_yuenvjian_yixian]
+learnSources:
+  - {type: tutorial_projection, chapter: ch00_yuenv, ref: fx_sword_demo_seen, maxLayer: 9, note: 序章教学实例，离章销毁，不建立正式技能实例}
+tags: [weapon, sword, prologue_projection, prologue_sealed]
+description: 阿青剑源的序章教学形态；地上九品投影只供演示，招名与数值为原创扩展。

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_luoshenfulinben
+name: 洛神赋元临本
+kind: collectible
+sub: calligraphy
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/luoshenfulinben
+text:
+  desc: 外观：纸本长卷大半卷起，素绫边。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=expanded。
+  lore: 赵孟頫《洛神赋》有多本及后世摹临，鉴别需区分馆藏与书写年代。本件明确为元人临本，宜赠文士；临者、题签与流转是（原创扩展），不把有争议的赵款卷当真迹。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 52

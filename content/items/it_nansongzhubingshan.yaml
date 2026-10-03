@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansongzhubingshan
+name: 南宋竹柄绢扇
+kind: collectible
+sub: antique
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongzhubingshan
+text:
+  desc: 外观：一柄团圆浅绢扇，细竹边与素木柄连为一件。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 以南宋日用清玩背景设计素绢团扇，可供赏玩或作为交游酬礼。适合赠文士藏家，不预设闺阁偏好；扇式、尺寸感和流转为（原创扩展），扇面不绘人物，也不藏机关。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

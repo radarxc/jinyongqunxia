@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansongyulongbei
+name: 南宋龙柄玉杯
+kind: collectible
+sub: jade
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongyulongbei
+text:
+  desc: 外观：青白玉浅腹花口杯，一体短龙形柄。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[noble,collector]}; giftValue=3; provenance=expanded。
+  lore: 参考宋元龙柄花口玉杯研究，设计供南宋旧家馈赠的高品相杯。宜赠权贵藏家；具体断到南宋及龙柄细节（待考），取得为（原创扩展），未核前不冒称已知馆藏的原件。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

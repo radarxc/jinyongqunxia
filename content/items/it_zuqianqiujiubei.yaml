@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_zuqianqiujiubei
+name: 祖千秋酒杯组
+kind: collectible
+sub: antique
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B14](#src-b14)；准入：仅笑傲；酒器归属结算后，整组转移
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/zuqianqiujiubei
+text:
+  desc: 外观：仅画一只白玉酒杯作为组物代表，厚壁矮足。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,merchant,collector],npcOverrides:{npc_zuqianqiu:favored}}; giftValue=3; provenance=book; tags=[vessel]。
+  lore: 《笑傲江湖》祖千秋论酒与杯，沿用上游酒杯组而不另造套装物品。宜赠懂酒的藏家，图标仅示一只代表杯，库存仍是一组；具体杯型待核修订版，不能拆图标刷实例。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 52

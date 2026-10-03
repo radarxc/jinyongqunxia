@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yuanhuanxuezhai
+name: 元代焕雪斋题字
+kind: collectible
+sub: calligraphy
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yuanhuanxuezhai
+text:
+  desc: 外观：素纸横卷，完整木轴。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,collector]}; giftValue=4; provenance=expanded。
+  lore: 为元末文士设计可通过求字支线取得的书斋题字，以笔墨完成度列为高阶。宜赠藏家；斋名、书者和手迹全部为（原创扩展），不伪称历史名家作品，不替代入门剧情条件。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

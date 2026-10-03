@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yuanhetianyuyu
+name: 元玉鱼
+kind: collectible
+sub: jade
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H25](#src-h25)；准入：倚天主体；旧藏固定授权转让
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanhetianyuyu
+text:
+  desc: 外观：白玉带墨色斑大鱼，宽扇尾。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[noble,collector]}; giftValue=3; provenance=history。
+  lore: 故宫藏元玉鱼体量较大，莲枝与鱼尾形制可直接作为鉴赏参考。宜赠玉器藏家，取得路线为（原创扩展）；不能当作小佩玉上身，也不把馆藏原件的传承链虚构为史实。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

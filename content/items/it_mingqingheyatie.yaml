@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_mingqingheyatie
+name: 明清和拜帖
+kind: collectible
+sub: calligraphy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingqingheyatie
+text:
+  desc: 外观：白纸折帖一件，浅绫窄边。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 为明代文士往还设计简洁拜帖，玩家完成抄书协助后可请当地书家题赠。适合馈赠好文之人，全文与身份为（原创扩展）；不署董其昌等名家，也不能当作梅庄入门凭证。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20
