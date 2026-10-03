@@ -202,49 +202,42 @@
   category: scene
   style: default
   subject: 珍珑棋局（ch01_tianlong）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是段誉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中虚竹、段誉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    擂鼓山珍珑棋局。虚竹旧僧衣、憨厚迟疑地把一枚棋子放到木棋盘边，苏星河清癯老者在对侧惊讶抬头；段誉青衫温雅站一旁。只画这三人，不必增加其他观众。晨雾、松树、石凳，俯角中全景，棋盘不用可复原棋谱。具体棋位与动作时序待考，构图为原创扩展。
+    【画里谁是谁】这张插图画的是：擂鼓山珍珑棋局。虚竹旧僧衣、憨厚迟疑地把一枚棋子放到木棋盘边，苏星河清癯老者在对侧惊讶抬头；段誉青衫温雅站一旁。只画这三人，不必增加其他观众。晨雾、松树、石凳，俯角中全景，棋盘不用可复原棋谱。具体棋位与动作时序待考，构图为原创扩展。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【要对齐的部分】虚竹、段誉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    上传人物图仅保持各自身份和骨相，衣物背景按剧情重绘，严禁串脸；同一人的基础与阶段图只代表一个人。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「珍珑破局」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「珍珑破局」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 884c583d99520684715b1eae73060ee48cfa26ae5ad7fd0b1d8fcc7773719403
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xuzhu__ch01_youth_lingjiu_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: e324ba659cc53440438dba7c1852d654547f4ec2cba20e09f8fc805ef2f601eb
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_duanyu__ch01_youth_shizi_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: f2f26705b81f9f769f0cae736d10c037a66da4cbafed57d55c8e602748a9112e
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png
+    sha256: 6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c
+    use: 对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（虚竹），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
+    sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
+    use: 对脸基线：作者审核通过的 por_npc_duanyu__ch01_youth_shizi_base（段誉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch01/cg_ch01_zhenlong_break.png
+    sha256: 22c43d69999b379e77a91d5d7930915504b9d9bbe48c379f4725061ec81417c3
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.22c43d69.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T23:41:35-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch01_zhenlong_break.1791009695022237000/archive/cg_ch01_zhenlong_break.png
+  created: 2026-10-03T15:49:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_zhenlong_break.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 22c43d69999b379e77a91d5d7930915504b9d9bbe48c379f4725061ec81417c3
+  sha256: bd9b5a5969e7e513281ecaeffbc7fc5b33c50bf234d31eb7849c47a4dc48d30c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch01_zhenlong_break.1791009695022237000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch01_zhenlong_break.resume3.png
-  repair_runner_source_sha256: 8d385e3a4d2f31df53c30e2d9e12c0468031106798ab568ff17969efe7a65046
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch01_zhenlong_break.resume3
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.22c43d69.png
+    sha256: 22c43d69999b379e77a91d5d7930915504b9d9bbe48c379f4725061ec81417c3
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.22c43d69.entry.yaml
+  effort: ultra
 - id: cg_ch01_songhe_wine_oath
   file: cg_ch01_songhe_wine_oath.png
   category: scene
@@ -291,46 +284,42 @@
   category: scene
   style: default
   subject: AR-26“一命换一命”（ch01_tianlong）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是萧峰的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是段誉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 4 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中萧峰、段誉、虚竹的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    本作AR-26一命换一命特殊改命，原创扩展，绝非原著结局。雁门关外黄昏绝壁，玩家男主素灰旅装以身拦住萧峰坠势，身体被风带向左侧崖洞；阿朱在安全右侧扶住萧峰，段誉、虚竹伸手相援。动作稳健可读，不画尸体、不画刺胸。萧峰风尘厚袍、神情惊痛；阿朱成年素衣，段誉青衫，虚竹灰僧衣。救阿朱前置已满足；玩家只按文字画普通成年男子背侧影，不借其他人的脸。
+    【画里谁是谁】这张插图画的是：本作AR-26一命换一命特殊改命，原创扩展，绝非原著结局。雁门关外黄昏绝壁，玩家男主素灰旅装以身拦住萧峰坠势，身体被风带向左侧崖洞；阿朱在安全右侧扶住萧峰，段誉、虚竹伸手相援。动作稳健可读，不画尸体、不画刺胸。萧峰风尘厚袍、神情惊痛；阿朱成年素衣，段誉青衫，虚竹灰僧衣。救阿朱前置已满足；玩家只按文字画普通成年男子背侧影，不借其他人的脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【要对齐的部分】萧峰、段誉、虚竹各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    第1张萧峰，第2张阿朱。人物身份严格隔离。 第3张是身份联系图，从左到右依次为duanyu、xuzhu；每一格只锁定该人的身份，不把格数画进成品。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「雁门换命」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「雁门换命」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 1420e35245e108e790119628c4a3e82c851438a46ee822ea8dfae90224b08833
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
-    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
-    sha256: d80304aabc32f6b945696496a5d70d02076549c38fd6460e022e3f919d07e39d
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch01_yanmen_life_for_life_identity_board.jpg
-    use: 本轮主角身份联系图；源立绘与左右顺序见同名JSON
-    sha256: 8a3798f35d2f0a918bf474a80aaaa205112510e42583ae118d66f84eebdbbdfb
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
+    sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
+    use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard（萧峰），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
+    sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
+    use: 对脸基线：作者审核通过的 por_npc_duanyu__ch01_youth_shizi_base（段誉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png
+    sha256: 6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c
+    use: 对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（虚竹），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch01/cg_ch01_yanmen_life_for_life.png
+    sha256: e5b3549a43beffbc0953cea0bc82ad45ad4cc2c4ec6601de13e0517ddca5d43f
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.e5b3549a.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T23:49:52-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch01_yanmen_life_for_life.1791010192380215000/archive/cg_ch01_yanmen_life_for_life.png
+  created: 2026-10-03T15:49:21-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_yanmen_life_for_life.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: e5b3549a43beffbc0953cea0bc82ad45ad4cc2c4ec6601de13e0517ddca5d43f
+  sha256: ef903cc18613e83bc0935d6826406918cc32fe322f837a4eb06b806c60adb2cb
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「雁门换命」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「雁门换命」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch01_yanmen_life_for_life.1791010192380215000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch01_yanmen_life_for_life.resume3r2.png
-  repair_runner_source_sha256: d5a4035bf97af71fa3456c256ab62721d310059145b062ae1f424ae34e5b2f53
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch01_yanmen_life_for_life.resume3r2
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.e5b3549a.png
+    sha256: e5b3549a43beffbc0953cea0bc82ad45ad4cc2c4ec6601de13e0517ddca5d43f
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.e5b3549a.entry.yaml
+  effort: ultra
