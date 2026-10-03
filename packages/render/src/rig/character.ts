@@ -105,7 +105,9 @@ class RigCharacter implements RigInstance {
   private initializedBuffers = new WeakSet<RigInstanceBuffer>();
   private clipPlayer: ClipPlayer | undefined;
   private clipPose: PartPoseBuffer | undefined; private clipProjectionGeneration = 0;
-  private poseGeneration = 0; private readonly bufferPoseGeneration = new WeakMap<RigInstanceBuffer, number>();
+  private poseGeneration = 0; private affineGeneration = 0;
+  private readonly bufferPoseGeneration = new WeakMap<RigInstanceBuffer, number>();
+  private readonly bufferAffineGeneration = new WeakMap<RigInstanceBuffer, number>();
   private clipStaticInitialized = false;
 
   constructor(readonly rigSet: RigSet, equipment: EquipmentVisuals, readonly stableId: number) {
@@ -192,9 +194,15 @@ class RigCharacter implements RigInstance {
   }
 
   writeInstances(buffer: RigInstanceBuffer, baseIndex: number, forceStatic = false): void {
-    if (!forceStatic && this.initializedBuffers.has(buffer) && this.bufferPoseGeneration.get(buffer) === this.poseGeneration) { buffer.writeAffineBlock(baseIndex, this.affine); return; }
+    if (!forceStatic && this.initializedBuffers.has(buffer) && this.bufferPoseGeneration.get(buffer) === this.poseGeneration) {
+      if (this.bufferAffineGeneration.get(buffer) !== this.affineGeneration) {
+        buffer.writeAffineBlock(baseIndex, this.affine); this.bufferAffineGeneration.set(buffer, this.affineGeneration);
+      }
+      return;
+    }
     for (let index = 0; index < 20; index += 1) buffer.write(baseIndex + index, index < 16 + this.attachmentCount ? this.data[index]! : HIDDEN);
     this.initializedBuffers.add(buffer); this.bufferPoseGeneration.set(buffer, this.poseGeneration);
+    this.bufferAffineGeneration.set(buffer, this.affineGeneration);
   }
 
   snapshot(): RigSnapshot | undefined {
@@ -340,6 +348,7 @@ class RigCharacter implements RigInstance {
         this.lastClipDepths[dataIndex] = target.sortTint[1]!; staticChanged = true;
       }
     }
+    this.affineGeneration += 1;
     if (staticChanged) this.markStaticPoseDirty(); this.clipStaticInitialized = true;
   }
 
