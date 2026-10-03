@@ -177,7 +177,7 @@
 | ART-hero-refine-b | 同上，鹿鼎～雪山 | 同上 | **合入 2533a8fd**（80 张，r4 PASS） |
 | ART-cast-fill-a / -b | 逐书搜主要人物列表，补缺的提示词与立绘 | codex xhigh | **合入 e1698e93 / fe4765ef**（57 张） |
 | ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | 已登记（sparse_include 已补 female/ch09），等 DES-sync-keyscenes-ar36 合入（先改好 npcs-ch09 名录）且磁盘 ≥ 7 GiB |
-| CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | **续作中**：第 4 次运行 03:36 起（磁盘 8.2 GiB、负载 7.6 时按条件续作，说明「按 done.txt 跳过已完成的城」）；磁盘 < 3 GiB 或交换区再涨就再暂停 |
+| CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | 第 4 次运行 04:19 结束（43 分钟做了 4 座：江宁、怀远、恒州、清池），校验通过、审核中；合入后**不接力全量**，范围缩减见 §8.1。进度在工作区 `progress.csv`（2367 行）/ `done.txt`。报告 §6 的工具缺口待登记：cities.yaml 缺庭州稳定键、ch10 年代带要核；唐代套件缺、xiyu / tubo 套件未进 schema（55 类里只有 38 个宋类有基线图）；render_town 不支持多重城垣 / 无墙营地 / 水门；plan_view.py 图头写死 linan |
 | ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览（九老洞、敦煌地宫、长白山洞…） | codex xhigh | 等 ENG-18b 合入 |
 | ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录（瓷器 / 茶具、玉器、香炉铜器、琴、书法拜帖、笔…，书中宝物 + 史载物件）与 Gemini 提示词 | codex xhigh | 等 DES-items-gifts-spec（暂停）+ TOOL-catalog-9col |
 
@@ -279,6 +279,7 @@
   sudo rm -f /Users/bytedance/Projects/jinyongqunxia/.git/logs/refs/remotes/origin/claude/*.lock /Users/bytedance/Projects/jinyongqunxia/.git/logs/refs/remotes/origin/HEAD.lock
   ```
 - **hero-a 验收**：四张联系表已发（03:15）；不满意的指出人物 / 时期 / 插图名，登记返工。
+- **城市布局图的范围（AR-36 第 5 项）**：CITY-layouts-all 第 4 次运行后统计全量是 189 城、合并年代带后 1172 个「城 × 年代」，逐城联网查史料再出规格 / 平面图 / layout / 总装图，43 分钟只做了 4 座，全量要几百小时。已完成的 14 个完整候选全是白马（ch10）的城，这次合入先落库。**默认缩减方案**（作者不答就按这个登记 CITY-layouts-2）：① ch10 全部 + 每章 importance 最高的 3–5 座逐城考据；② 其余城按年代套件出通用格局，不逐城查史料；③ 每个年代带只渲染一份，其他章节只复制 layout。要全量就说一声，但得接受周期。
 - **双儿要不要精修**（hero-b 报告）：默认不动，作者说要再登记。
 - **110 个新登记人物要不要都出立绘**（ART-cast-fill-c / d，约 110 次 codex 出图）：默认等 hero-b 与 polish 之后再排，作者说不出就不出。
 
