@@ -1,10 +1,10 @@
 # 14 · 雪山飞狐：正邪两条主线与选择节点
 
 > 归属（基准 §18）：`ch14_xueshan` 的书界主线、正邪分线、选择节点、原著事件去向、锚点落地与剧情数据接口；这是本书主线剧情的唯一归属文档。
-> 上游：`00-canon.md` v1.2；作者新增需求 AR-04、AR-09、AR-10、AR-20 见 `decisions/author-requirements.md`；作者决定见 `decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
-> 引用而不重定义：核心锚点与改命总览 → `design/01-vision-and-core-loop.md` §7.15；年代、书眠与跨书回响 → `design/02-timeline-and-world-tiers.md`；品德与声望 → `design/03-attributes.md` §8；武学 → `design/05-martial-arts-system.md` 及图鉴；战斗与 Boss → `design/09-combat-system.md`；物件 → `design/10-items-and-equipment.md`；区域与时代地名 → `design/11-open-world.md`；任务结构、DSL、旗标与效果动作 → `design/12-quests-npc-factions.md` §1–§4、§8、§11–§13；天书、结局与雪山抉择 → `design/13-progression-and-endings.md` §4.3、§7；门派 → `design/17-sects-compendium.md`；NPC、招募等级与跨书同伴 → `design/18-npc-and-companions.md` 及 `design/catalog/npcs-ch14-xueshan.md`。
+> 上游：`00-canon.md` v1.10；作者新增需求 AR-04、AR-09、AR-10、AR-20、AR-26 见 `decisions/author-requirements.md`；作者决定见 `decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`。
+> 引用而不重定义：核心锚点与改命总览 → `design/01-vision-and-core-loop.md` §7.15；年代、书眠与跨书回响 → `design/02-timeline-and-world-tiers.md`；《长生诀》层数与周游 → `design/25-changshengjue.md`；休眠事件 / 得层支线 → `story/sleep-events.md` / `story/changsheng-sidelines.md`；品德与声望 → `design/03-attributes.md` §8；武学 → `design/05-martial-arts-system.md` 及图鉴；战斗与 Boss → `design/09-combat-system.md`；物件 → `design/10-items-and-equipment.md`；区域与时代地名 → `design/11-open-world.md`；任务结构、DSL、旗标与效果动作 → `design/12-quests-npc-factions.md` §1–§4、§8、§11–§13；天书、结局与雪山抉择 → `design/13-progression-and-endings.md` §4.3、§7；门派 → `design/17-sects-compendium.md`；NPC、招募等级与跨书同伴 → `design/18-npc-and-companions.md` 及 `design/catalog/npcs-ch14-xueshan.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 三联 / 广州修订版原文尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需在游戏构建中验证；**【建议值】** = 依赖归属文档后续落盘或作者决定、先给可执行值并在文末登记。
-> 版本：v1.2（AR-20 四条主要悲剧线改命补充，2026-10-01）；v1.1（P14.R 审校，2026-09-26；修正原著事件归属并接入正式 `quest.v1` DSL）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）。
+> 版本：v1.3（AR-26 休眠事件与九层周游接口，2026-10-02）；v1.2（AR-20 四条主要悲剧线改命补充，2026-10-01）；v1.1（P14.R 审校，2026-09-26；修正原著事件归属并接入正式 `quest.v1` DSL）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）。
 
 ---
 
@@ -107,9 +107,17 @@ flowchart TD
   D08 -->|劈| E1[tsp_14_canon<br/>echo = pi]
   D08 -->|不劈| E2[tsp_14_canon<br/>echo = bupi]
   D08 -->|条件全满足| E3[tsp_14_fate<br/>echo = liangquan]
-  E1 --> G[玉笔峰余韵 → 归梦 → 天书守卷人]
+  E1 --> G[天书现世／玉笔峰余韵]
   E2 --> G
   E3 --> G
+  G --> G14{长生诀是否已成第九层}
+  G14 -->|未成：changshengLayer 小于 9| S14{休眠事件选择（原创扩展）}
+  S14 -->|两全候选可见| SC14[slp_14_baiyeshumian 白页书眠]
+  S14 -->|保底或候选失效| SF14[slp_14_yubifengjing 玉笔峰静]
+  G14 -->|已成：changshengLayer 大于等于 9| T14[周游世界：不眠、不执行 3+3（原创扩展）]
+  SC14 --> W15[ch15_guimeng 书海入口]
+  SF14 --> W15
+  T14 --> W15
 ```
 
 ### 0.5 幕数、汇合点与可通关承诺
@@ -232,8 +240,8 @@ flowchart TD
 | 字段 | 定案 | 设计目的 |
 |---|---|---|
 | 身份 | 玉笔山庄外聘门客，兼管峰下接引、雪路簿册与临时库房 | 不冒充任何原著具名人物，又能合理接触来客、物证和存粮 |
-| 苏醒时点 | 杜希孟离庄赴宁古塔之后、第一批争盒群豪抵达之前 | 保留原著“庄主缺席”的封闭局面；杜希孟只在后段返场 |
-| 苏醒地点 | `regionId: rg_liaodong`、`cityId: null`、`placeKey: yubifeng_lower_station` | 玉笔峰确切所属与今址待考，不伪造城市 ID |
+| 接入时点 | 杜希孟离庄赴宁古塔之后、第一批争盒群豪抵达之前 | 保留原著“庄主缺席”的封闭局面；杜希孟只在后段返场 |
+| 接入地点 | `regionId: rg_liaodong`、`cityId: null`、`placeKey: yubifeng_lower_station` | 未成九层由书眠苏醒，已成九层由周游抵达；玉笔峰确切所属与今址待考，不伪造城市 ID |
 | 最近时代城市 | `city_shenyang`，1780 年显示“盛京奉天府” | 只供地图远行与补给锚定，不宣称玉笔峰就在城内 |
 | 初始职责 | 清点吊篮、验来客名帖、记录铁盒暂存、把峰下消息送往山庄 | 让调查、隐瞒、夺物三种玩法都成立 |
 | 初始权限 | 可开峰下栈房、客簿柜与一只空库箱；不能擅开庄主密室 | 小人物起点，不预支杜希孟或清廷信任 |
@@ -1309,16 +1317,28 @@ canLiangquan = crossBookEvidence
 2. 归还珠钗、军刀、原卷副本或契约；`it_chuangwangjundao` 的任务归属由书界文档最终配置。
 3. 与胡斐完成 `sk_hujiadao` 的完整印证；若携 `eq_lengyuedao`，触发器合与“胡家传刀”只引用 `design/10`、`design/02`，不在剧情里重定义数值。
 4. 处理临时同伴离队 / 驻留，把本书招募状态交 `design/18`；苗若兰等非战斗同行不强行进入战斗编组。
-5. 在玉笔峰作为建议“书眠之所”发起归梦；若仍有开放支线，书灵按 `design/02` 的余韵规则提示而不强制离开。
+5. 在玉笔峰主动结束余韵并发起九层双出口；若仍有开放支线，书灵按 `design/02` 的余韵规则提示而不强制离开 **（原创扩展）**。
 
-### 7.6 “归梦”过场引子
+### 7.6 休眠 / 周游与“归梦”接口（原创扩展）
 
-本段只提供进入 `design/02` §4.7 和 `design/13` §7.1 的剧情钩子，不重定义书眠状态机：
+三种 `dc_14_08` 终态均保留；授予天书后汇入余韵，再以九层守卫分流。休眠事件的定义、`ConditionExpr` 求值和公共提交只见 `story/sleep-events.md` §2、§6.6；本文只登记终局出口，不重定义状态机。
+
+| 出口 | `requires` 摘要 | `entryKnot` / 优先级 | `fallbackId` | 入眠地点 | 后继 |
+|---|---|---|---|---|---|
+| `slp_14_baiyeshumian` 白页书眠 | 通用三项：已取得本书天书、`phase == afterglow`、尚未提交；九层守卫 `changshengLayer < 9`；另须 `echo_14_xueshan=liangquan`，且胡斐、苗人凤、苗若兰按既有生命轴均存活 | `sleep.14.baiyeshumian.entry` / 20 **【建议值】** | `slp_14_yubifengjing` | `placeKey: yubifeng_cliff` 的空白石壁前 | `ch15_guimeng` 书海入口 |
+| `slp_14_yubifengjing` 玉笔峰静 | 仅通用三项、`changshengLayer < 9` 与主动结束余韵；不得读取可错过支线 | `sleep.14.yubifengjing.entry` / 10 **【建议值】** | `null` | `sc_14_yubifeng_lower_station` | `ch15_guimeng` 书海入口 |
+| 周游世界 | 主动结束余韵且 `changshengLayer >= 9` | 见 `design/25` §9；无休眠 Ink | 不适用 | 不入眠 | `ch15_guimeng` 书海入口 |
+
+- 未成九层时，候选失效必须回同书保底；两条事件在 `BS_COMMIT` 前可撤销，并固定选择 3 武功 + 3 内功，《长生诀》不占槽，见 `design/25` §8。
+- 已成九层时不显示 `slp_14_*`，改走周游世界：不眠、不遗忘、不散功、不执行 3+3；外来压制与时代资产清理仍照 Canon §3、`design/02` 与 `design/25` §9。两路都只进入既有 `ch15_guimeng`，不新建第十五书界或第十五本天书。
+- `sideHook`：不适用。本书不在 `story/changsheng-sidelines.md` §1.1 的得层支线表内，故不登记任何得层支线、任务或选择节点；不得跨书重开补证的规则在本书无实例可挂。
+
+以下只提供进入 `design/02` §4.7 和 `design/13` §7.1 的剧情钩子：
 
 > 雪停时，山下没有新的年月可去。十四卷的题名从玩家身后依次浮上冰壁，最后一卷却仍在刀锋下留着半行空白。书灵问：“这一回不是睡到后来。你要回到所有故事合拢的地方吗？”
 
 - 选择“了却尘缘”：留在雪山余韵，显示等级仍为 58。
-- 选择“归梦”：先写 `save_booksleep_ch14`，再进入独立终局过场；第十四天书已把真实等级补到 70。
+- 选择“归梦”：进入上述九层判定；未成九层者由所选 `slp_14_*` 在公共 review 后请求 `BS_COMMIT`，已成者经周游出口进入独立终局过场。
 - 进入 `ch15_guimeng`：显示等级切至 70、关闭压制，开始 `design/13` §7 的六卷“天书守卷人”决战。
 - 雪山抉择与终局“悬刀之问”只产生“心口如一 / 回心”演出共鸣，不锁死玩家在终局的选择。
 
@@ -1767,6 +1787,8 @@ source:
 
 已有 ID `ch14_xueshan`、`npc_*`、`sect_*`、`sk_*`、`eq_lengyuedao`、`it_chuangwangjundao`、`echo_13_hushixueshu`、`echo_14_xueshan`、`tsp_14_canon`、`tsp_14_fate` 只引用，不算本文新增。
 
+`slp_14_yubifengjing`、`slp_14_baiyeshumian` 亦为 `story/sleep-events.md` §6.6 已登记的休眠事件 ID **（原创扩展）**；本文只复用其终局出口。雪山不在 `story/changsheng-sidelines.md` §1.1 的得层支线表内，因此不新增 `side_*`、`q_*_changsheng_*` 或 `dc_*`。
+
 ### 9.7 数据校验规则与测试用例
 
 #### 9.7.1 构建期规则
@@ -1798,6 +1820,8 @@ source:
 | `XS-V23` | 只有 F1 `liangquan` 可授 `tsp_14_fate`、令 `F+1` 和书契 T=`50`；F2–F4 不得补主改命条件、生成第三天书、增加 `F` 或直接加固定书契分 | error |
 | `XS-V24` | F2 不得取消或夺走胡斐封洞；F3 不得强配 / 洗白或把待考私事写成定论；F4 不得治愈独臂、复活胡氏夫妇或免除毁粮问责 | error |
 | `XS-V25` | 当前四线均不发送 `companionFateRescued`；只有纸本确认命定死亡、人物生命轴更新且获救者 `everRecruited=true` 后，才按 `design/13` §6.6 由上游事件收费 | error |
+| `XS-V26` | 三终态均先到玉笔峰余韵；`changshengLayer < 9` 只显示两条 `slp_14_*` 且候选回保底，`>= 9` 只走周游并跳过 3+3；两路只进 `ch15_guimeng` | error |
+| `XS-V27` | 本书 `sideHook` 不适用，不生成任何得层支线、任务或选择节点；不得伪造第十五历史书界、天书、休眠视频或场景 | error |
 
 #### 9.7.2 路径测试
 
@@ -1825,6 +1849,9 @@ source:
 | `XS-T20` | F3 三份自述、私事分卷、非致死分隔与各自退路齐备，但 F1 缺跨书证据 | 三人分别结算去向；仍不可选两全，只授 `tsp_14_canon` |
 | `XS-T21` | F4 保护开口、归还证卷、独立毒证和外侧记号齐备，平阿四在封门前放弃代行复仇 | 平阿四离队善后并接受毁粮问责；独臂和旧死不变；不发同伴改命收费 |
 | `XS-T22` | F2–F4 全成功、`dc_14_08=pi`；再以 F1 成功但 F2–F4 全失败各跑一次 | 前者只授 canon 且 `F` 不增；后者只授 fate 且 `F+1`，证明主 / 局部结果正交 |
+| `XS-T23` | 任一终态；`changshengLayer=8`；白页候选不满足 | 余韵只显示 `slp_14_yubifengjing`；执行 3+3 后进入 `ch15_guimeng` 书海入口 |
+| `XS-T24` | `liangquan` 且三人存活、`changshengLayer=8`；提交前令任一生命态失效 | `slp_14_baiyeshumian` 回退玉笔峰保底，不跨书补证、不死锁 |
+| `XS-T25` | 任一终态；`changshengLayer=9` | 两条 `slp_14_*` 均不可见；周游进入同一书海入口，武学全保留；时代资产清理仍执行 |
 
 ### 9.8 待决事项 / 依赖
 
@@ -1840,6 +1867,7 @@ source:
 | P14-S06 | 六个结局暂以 `routeState + echo_14_xueshan` 组合检索 | `design/13` 若需纳入全局结局索引，再由其定义正式 `end_*`，story 不抢占前缀 |
 | P14-S07 | **已解决：**任务 / 节点示例已迁到 `quest.v1`，选择以阶段、条件与 `branchKey` 表达 | `tech/04` 仍需把正式 schema 落为构建器，但不得更改 `design/12` 语义 |
 | P14-S08 | AR-20 局部线统一采用 `bond>=60`；8 品技艺采用 `T(8)=8×8−4=60`；F2 圆岩外援窗为 3 次环境行动 | `design/12` 落正式 guard / 时间窗；固定回放只可微调行动数，不得删除关系、证物、立场或代价维度 |
+| P14-S09 | `slp_14_yubifengjing` 为峰下保底、优先级 10，`slp_14_baiyeshumian` 为两全候选、优先级 20；两路后继均为既有 `ch15_guimeng` 书海入口 | 优先级沿 `story/sleep-events.md` §2.1 的 **【建议值】**；`chapters/14` 只登记场景接口，条件与回退仍以该文 §6.6 为准 |
 
 #### 9.8.2 本文依赖的上游事实
 
@@ -1848,6 +1876,7 @@ source:
 - 地点使用 `rg_liaodong`，最近城市 `city_shenyang` 在清中期显示“盛京奉天府”；玉笔峰精确地望待考，故不用城市 ID。
 - **已解决：**任务系统归属文档 `design/12-quests-npc-factions.md` 已存在；本文示例已使用 `quest.v1`、`fl_*`、ConditionExpr、`branchKey` 与白名单动作。
 - 23 名人物的生卒多为“待考”；剧情仅按目录给定的活体 / 回忆边界制作，不自行补精确年份。
+- 九层前 3+3、九层后不眠周游依 `design/25` §8–§9；休眠事件 ID 与条件依 `story/sleep-events.md` §2、§6.6，本书无得层支线。
 
 #### 9.8.3 对基准的修改提案
 
