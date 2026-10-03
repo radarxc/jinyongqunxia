@@ -1325,3 +1325,4 @@
     - **TOOL-tests-discover**：第 2 次返修 25 分钟无输出，被 stall 检测重起成第 3 次。重起用的是通用续作说明，r1 返修内容和协调者 08:02 的三句都没带上（supervise 的已知弱点）。
       - 已把它们存成 `.agents/coord/TOOL-tests-discover/devsup_note_r1.md`。它转 HOLD-REVIEWS 后我手动复审时，用 `--rework-extra` 带上。
 
+  - **10-03 08:44–08:46 协调者 / 开发监督**：**TOOL-rig-sheet 合入**（17f08829，r6 PASS，只复审驱动一次过）：`assets/default/rig/npc_zhujue__ch00_m/` 100 个文件——39 张部件（3 视图 × 13）、manifest、`preview/walk_dir8.gif`、`sword_attack_dir8.gif`、`gait_vs_clip_walk.gif`（程序步态 vs 动作库 A/B，C8）、姿势条带。最终返修：前臂截到腕点、手掌归手件、侧腿按源图裤纹补绘（标「源图限制」）、髋锚不再暴露。Q1 识别锚 15/15（ΔE ≤ 5.3）、Q2 39/39、Q3 关节缝隙 0、Q5 踩滑 0.366 cm；Apple Vision 本机跑不起来，关键点为 manual-prior；Q9 人工耗时未测。协调者 08:45 把三张 GIF + 姿势条带发作者判定（AR-29）。解锁：ENG-12d-clip-perf（eng3 会起，只动 render）、ART-rig-sheet-side（追踪者按条件起）。

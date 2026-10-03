@@ -43,7 +43,7 @@
 
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
-| TOOL-rig-sheet | traex Sol max | 第 9 次（最后一轮）返修校验通过（侧腿有纹理、无占位块），只复审驱动审 r6 中；PASS 合入，否则协调者按原型收口 | 开发监督 |
+
 | TOOL-items-regen | traex | 第 1 次运行 30 分钟生成完，校验被 data schema 挡住（`extension.value.attributes` 未定义）→ HOLD，等 ENG-attr-v2-schema 合入后挪基点 `--from validate` | 开发监督 |
 | ENG-attr-v2-schema | traex Sol | 已登记（b7e1101f）：item.v1 各 extension 加可选 attributes 投影（只校验不消费）；依赖 ENG-entry-split（entry 余量） | 开发监督起 |
 | TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；要等 regen 与 tests-discover 合入（否则它的 --check 与 content 测试必红） | 开发监督起 |
@@ -164,8 +164,8 @@
 - AR-37：片段模式门禁放宽到 1.0 ms（538e1454），程序步态 0.80 不动；ENG-12d-clip-perf 降为可选、排 eng3 队尾。
 
 **在跑**：
-- TOOL-rig-sheet（P2–P5、P7：三视图切件 + 走路 / 剑招 GIF）：第 5 次运行校验通过（39 张部件、Q2 单连通、Q3 透明像素 0、Q5 踩滑 0.366 cm），但审核两次 FAIL（r1：关节圆帽游离成黑点、侧视图重复大手、黑色弧块；r2 见 `.agents/reviews/TOOL-rig-sheet.r2.md`），03:18 第 3 次返修。作者看到的「男切件原型第 1 版要好好修修」就是这批。未合入的 GIF 在任务工作区 `assets/default/rig/npc_zhujue__ch00_m/preview/`（`walk_dir8.gif`、`sword_attack_dir8.gif`、`gait_vs_clip_walk.gif`）。合入时部件、manifest、GIF 一起落库（AR-39）。
-- [ ] **原型交付**：rig-sheet 第 9 次返修（最后一轮）后按原型收口合入，把走路 + 剑招动图发作者判定（AR-29）；侧视大腿分不出是源图侧视双腿并拢所致，已登记 ART-rig-sheet-side（侧视双腿错开的补充三视图，fa57fc23）给下一版切件。
+- TOOL-rig-sheet（P2–P5、P7）：**已合入 17f08829**（9 次运行、6 轮审核）。
+- [x] **原型交付**：TOOL-rig-sheet 合入（17f08829，08:44；39 张部件 + 走路 / 剑招 / 步态 A/B 三张 GIF + 姿势条带），08:45 发作者判定（AR-29，含 C8 的程序步态 vs 动作库选择）。侧视大腿按源图裤纹补绘（源图侧视双腿并拢），ART-rig-sheet-side（fa57fc23）出「侧视双腿错开」补充三视图后下一版重切。
 
 **3D（AR-38）**：作者定「做 2D，不做 3D」；之后在 Tripo 免费档用立绘单图生成了主角·男模型，第二次导出带 Mixamo 骨骼（65 关节、无动画、1 万三角），已入 `apps/game/public/pilot/zhujue_tripo_v1.glb`（bd64598a；作者指出左侧头发有肉色，试点里记录不修）。**ENG-12e 已合入**（81ca591b，08:17）：`/rig-demo?model=/pilot/zhujue_tripo_v1.glb` 右侧并排 3D（GLTFLoader + toon + 8 偏航转台 + 骨骼动画 / 片段重定向 + 1 / 20 实例 HUD），生产块不含试点；1 实例 10,022 三角面 1 draw、CPU 0.2–0.3 ms；0 / 90 / 180 / 270 截图 08:27 已发作者（`_handoff/rigdemo/`），2D 侧等 TOOL-rig-sheet 合入后才是真切件；中端手机实测待做。参考图与来源在主检出 `imagegen-reference/tripo/`。
 
