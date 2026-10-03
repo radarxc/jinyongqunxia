@@ -1,0 +1,76 @@
+- id: npc_xiaofeng__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 萧峰（天龙八部 ch01 · 丐帮帮主盛年）· A 字参考版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: f0afb746-797c-4245-b022-e00bbe43fb8a
+    url: https://studio.tripo3d.ai/workspace/generate/f0afb746-797c-4245-b022-e00bbe43fb8a
+    generate_op: c06f4620-de14-4a72-bfe8-a3735fce2316（image_to_model）
+    rig_op: e53ec3fa-6ed0-4133-831b-15ee339d3a17
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch01/threeview/por_npc_xiaofeng__ch01_prime_gaibang_apose.png
+    sha256: 0f6cc6258e886b00f241b7cf396e3304085d6c987c66877d4daf1dea280831cc
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: c528470afe3c38e0467fa19a5165575f187061f180bba062d4fab9642c75772d
+  size_bytes: 6377976
+  joints: 65
+  triangles: 95731
+  vertices: 54505
+  animations: []
+  textures:
+  - image/jpeg 612436 B
+  - image/jpeg 1711755 B
+  - image/jpeg 621946 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T14:37:05-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，丐帮缠头 + 坎肩可辨识，头发深色、无肉色块；自动绑骨一次成功（Hips y0.515、头顶 0.99、双手外展 y0.51、脚 0.067，与网格 0–0.98 吻合）。
+- id: npc_xiaofeng__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 萧峰（天龙八部 ch01 · 丐帮帮主盛年）· A 字参考版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: f0afb746-797c-4245-b022-e00bbe43fb8a
+    url: https://studio.tripo3d.ai/workspace/generate/f0afb746-797c-4245-b022-e00bbe43fb8a
+    generate_op: c06f4620-de14-4a72-bfe8-a3735fce2316（image_to_model）
+    rig_op: e53ec3fa-6ed0-4133-831b-15ee339d3a17
+  size: 369x594
+  sha256: 662b56497c8c45f2d37cb08d8b1e0f4d3acff60026496c47ecf02f88fd29286b
+  size_bytes: 200960
+  created: '2026-10-03T14:37:05-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
