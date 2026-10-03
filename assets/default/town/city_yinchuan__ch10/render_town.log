@@ -1,0 +1,132 @@
+{
+  "output": "assets/default/town/city_yinchuan__ch10/town.png",
+  "size_px": [
+    6144,
+    3072
+  ],
+  "scale": 1.0,
+  "diagnostic": false,
+  "elapsed_seconds": 1.755,
+  "top_padding_master_px": 0,
+  "water_surface": {
+    "water_cells": 0,
+    "sampling": "global_continuous",
+    "material_variants": 0,
+    "brightness_range": [],
+    "brightness_mode": "seeded_continuous_low_frequency",
+    "shore_water_cells": 0,
+    "shore_land_cells": 0,
+    "land_water_fringe_cells": 0.16
+  },
+  "missing_assets": [],
+  "warnings": [],
+  "used_asset_ids": [
+    "bld_kit_song_dali_courtyard",
+    "bld_kit_song_dali_guardhouse",
+    "bld_kit_song_dali_house",
+    "bld_kit_song_dali_inn",
+    "bld_kit_song_dali_market_stall",
+    "bld_kit_song_dali_shop",
+    "bld_kit_song_dali_shrine",
+    "bld_kit_song_dali_stable",
+    "bld_kit_song_dali_warehouse",
+    "bld_kit_song_dali_yamen",
+    "prp_song_dali_grass__v01",
+    "prp_song_dali_grass__v02",
+    "tex_town_song_dali_dirt_road__v01",
+    "tex_town_song_dali_dirt_road__v02",
+    "tex_town_song_dali_dirt_road__v03",
+    "tex_town_song_dali_dirt_road__v04",
+    "tex_town_song_dali_rammed_earth__v01",
+    "tex_town_song_dali_rammed_earth__v02",
+    "tex_town_song_dali_rammed_earth__v03",
+    "tex_town_song_dali_rammed_earth__v04",
+    "tex_town_song_southern_city_gate__k5_r090_v01",
+    "tex_town_song_southern_city_gate__k6_r270_v01",
+    "tex_town_song_southern_city_gate__k7_r180_v01",
+    "tex_town_song_southern_city_gate__k8_r000_v01",
+    "tex_town_song_southern_road_edge__e",
+    "tex_town_song_southern_road_edge__n",
+    "tex_town_song_southern_road_edge__ne",
+    "tex_town_song_southern_road_edge__nw",
+    "tex_town_song_southern_road_edge__s",
+    "tex_town_song_southern_road_edge__se",
+    "tex_town_song_southern_road_edge__sw",
+    "tex_town_song_southern_road_edge__w",
+    "tex_town_song_southern_wall__brick_r000_v01"
+  ],
+  "asset_substitutions": [
+    {
+      "requested_id": "tex_town_song_southern_dirt_road",
+      "actual_id": "tex_town_song_dali_dirt_road__v01",
+      "reason": "shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road"
+    },
+    {
+      "requested_id": "tex_town_song_southern_dirt_road",
+      "actual_id": "tex_town_song_dali_dirt_road__v02",
+      "reason": "shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road"
+    },
+    {
+      "requested_id": "tex_town_song_southern_dirt_road",
+      "actual_id": "tex_town_song_dali_dirt_road__v03",
+      "reason": "shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road"
+    },
+    {
+      "requested_id": "tex_town_song_southern_dirt_road",
+      "actual_id": "tex_town_song_dali_dirt_road__v04",
+      "reason": "shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road"
+    },
+    {
+      "requested_id": "tex_town_song_southern_rammed_earth",
+      "actual_id": "tex_town_song_dali_rammed_earth__v01",
+      "reason": "shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth"
+    },
+    {
+      "requested_id": "tex_town_song_southern_rammed_earth",
+      "actual_id": "tex_town_song_dali_rammed_earth__v02",
+      "reason": "shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth"
+    },
+    {
+      "requested_id": "tex_town_song_southern_rammed_earth",
+      "actual_id": "tex_town_song_dali_rammed_earth__v03",
+      "reason": "shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth"
+    },
+    {
+      "requested_id": "tex_town_song_southern_rammed_earth",
+      "actual_id": "tex_town_song_dali_rammed_earth__v04",
+      "reason": "shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth"
+    }
+  ],
+  "building_draw_order": [
+    "bi_0002",
+    "bi_0001",
+    "bi_0017",
+    "bi_0027",
+    "bi_0018",
+    "bi_0028",
+    "bi_0014",
+    "bi_0024",
+    "bi_0025",
+    "bi_0026",
+    "bi_0019",
+    "bi_0021",
+    "bi_0029",
+    "bi_0016",
+    "bi_0022",
+    "bi_0009",
+    "bi_0008",
+    "bi_0023",
+    "bi_0015",
+    "bi_0020",
+    "bi_0005",
+    "bi_0003",
+    "bi_0006",
+    "bi_0004",
+    "bi_0011",
+    "bi_0013",
+    "bi_0007",
+    "bi_0010",
+    "bi_0012"
+  ],
+  "overlay": null
+}

@@ -1,0 +1,63 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_taiyuan"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "并州·晋阳三城（702年候选，跨水城垣待修）"
+historical_year: 702
+era_kit: "song_southern"
+seed: 260094335
+design_intent: {"prosperity": "tang_regional_candidate", "notes": ["复原依据：history/city_taiyuan__tang_702.md；702–703年按作者AR-26覆盖cities.yaml旧清初年代（原创扩展）。", "唐代无专用套件；用现有宋代基线作候选替代，非唐代建筑实物复原；新套件尚未接入权威建筑目录。", "本次补齐西城、中城、东城的连续外围与分区；单多边形不表达共用内隔墙，汾河跨城垣处水门受工具限制未修，仍为部分候选。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 8, "z": 44}, {"x": 152, "z": 44}, {"x": 152, "z": 90}, {"x": 88, "z": 90}, {"x": 88, "z": 108}, {"x": 8, "z": 108}]}, "inside_margin_cells": 2, "basis": "图名：晋阳外三城连续外廓；src_jinyang支持西城及跨汾中城、河东东城；src_threecity图4-6支持西北突出、东部较低的总体关系。西城80×64格、东城36×46格、中城28×46格与归正坐标（推定）（原创扩展）；东中尺度未知，不能认作702实测。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 54, "z": 44}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：南门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 54, "z": 108}, "width_cells": 7, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 11, "h": 4}, "passage_cells": {"w": 7, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：北门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 8, "z": 72}, "width_cells": 5, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：西门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 152, "z": 72}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：东门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "east_south_gate", "side": "south", "at": {"x": 134, "z": 44}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "east_axis", "primary": false, "basis": "图名：东城南门（推定）；位置及门制（原创扩展），不指认史载门名。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 54, "z": 44}, {"x": 54, "z": 108}], "surface": "dirt_road", "priority": 100, "basis": "图名：西城南北通衢；线位、路宽（推定）（原创扩展）。"}
+  - {"id": "cross", "class": "main_axis", "width_cells": 5, "points": [{"x": 8, "z": 72}, {"x": 152, "z": 72}], "surface": "dirt_road", "priority": 100, "basis": "图名：三城东西联络街；线位、路宽（推定）（原创扩展）。"}
+  - {"id": "palace_lane", "class": "secondary", "width_cells": 4, "points": [{"x": 26, "z": 72}, {"x": 26, "z": 82}], "surface": "dirt_road", "priority": 80, "basis": "图名：宫区前路；线位、路宽（推定）（原创扩展）。"}
+  - {"id": "south_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 16, "z": 58}, {"x": 80, "z": 58}], "surface": "dirt_road", "priority": 80, "basis": "图名：西城南坊横街；线位、路宽（推定）（原创扩展）。"}
+  - {"id": "east_axis", "class": "secondary", "width_cells": 4, "points": [{"x": 134, "z": 44}, {"x": 134, "z": 84}], "surface": "dirt_road", "priority": 80, "basis": "图名：东城南北街；线位、路宽（推定）（原创扩展）。"}
+  - {"id": "middle_west_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 94, "z": 52}, {"x": 94, "z": 76}], "surface": "dirt_road", "priority": 80, "basis": "图名：中城西岸街；线位、路宽（推定）（原创扩展）。"}
+  - {"id": "middle_east_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 112, "z": 52}, {"x": 112, "z": 76}], "surface": "dirt_road", "priority": 80, "basis": "图名：中城东岸街；线位、路宽（推定）（原创扩展）。"}
+  - {"id": "office_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 54, "z": 78}, {"x": 82, "z": 78}], "surface": "dirt_road", "priority": 80, "basis": "图名：西城官署前街；坐标及路宽（推定）（原创扩展）。"}
+rivers:
+  - {"id": "fenhe", "width_cells": 6, "points": [{"x": 102, "z": 4}, {"x": 102, "z": 156}], "flow": "south", "navigable": false, "basis": "图名：汾河；src_jinyang与src_threecity支持贯穿中城、西东城分居两岸；南流直线与宽6格（推定）（原创扩展）。保留连续水面，未为迁就单城垣工具而截断。"}
+bridges:
+  - {"id": "middle_bridge", "at": {"x": 102, "z": 72}, "river_ref": "fenhe", "road_ref": "cross", "length_cells": 12, "width_cells": 8, "rotation_deg": 90, "basis": "图名：中城跨汾通行桥（推定）；src_jinyang跨汾相联的通行意象，桥位、座数及宋材代用（原创扩展），不指认唐代桥名。"}
+zones:
+  - {"id": "zone_palace", "kind": "palace", "geometry": {"rect": {"min": {"x": 14, "z": 82}, "max": {"x": 46, "z": 102}}}, "priority": 100, "density": 0.62, "allowed_building_types": ["bld_kit_song_southern_palace_hall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西城西北宫区；边界、用途与建筑座数（推定）（原创扩展）。"}
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 60, "z": 80}, "max": {"x": 82, "z": 102}}}, "priority": 95, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西城官署；边界、用途与建筑座数（推定）（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 60, "z": 50}, "max": {"x": 82, "z": 66}}}, "priority": 90, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_inn", "bld_kit_song_dali_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西城商坊；边界、用途与建筑座数（推定）（原创扩展）。"}
+  - {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 14, "z": 50}, "max": {"x": 46, "z": 66}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard", "bld_kit_song_dali_shrine"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西城南坊；边界、用途与建筑座数（推定）（原创扩展）。"}
+  - {"id": "zone_middle_west", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 90, "z": 50}, "max": {"x": 98, "z": 86}}}, "priority": 96, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_guardhouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：中城西岸守备；边界、用途与建筑座数（推定）（原创扩展）。"}
+  - {"id": "zone_middle_east", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 108, "z": 50}, "max": {"x": 116, "z": 86}}}, "priority": 96, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_guardhouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：中城东岸守备；边界、用途与建筑座数（推定）（原创扩展）。"}
+  - {"id": "zone_east_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 120, "z": 50}, "max": {"x": 148, "z": 66}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_southern_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东城民居；边界、用途与建筑座数（推定）（原创扩展）。"}
+  - {"id": "zone_east_market", "kind": "market", "geometry": {"rect": {"min": {"x": 120, "z": 78}, "max": {"x": 148, "z": 86}}}, "priority": 90, "density": 0.62, "allowed_building_types": ["bld_kit_song_southern_shop_1f", "bld_kit_song_southern_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东城商坊；边界、用途与建筑座数（推定）（原创扩展）。"}
+landmarks:
+  - {"id": "lm_jinyang_palace", "type": "bld_kit_song_southern_palace_hall", "origin": {"x": 22, "z": 86}, "size": {"w": 18, "h": 14}, "rotation_deg": 0, "zone_ref": "zone_palace", "poi": null, "basis": "图名：晋阳宫区殿堂意象；src_jinyang支持西北宫群；18×14宋殿仅为位置代用，具体坐标（推定）（原创扩展）。"}
+  - {"id": "lm_middle_west_guard", "type": "bld_kit_song_dali_guardhouse", "origin": {"x": 90, "z": 78}, "size": {"w": 6, "h": 5}, "rotation_deg": 0, "zone_ref": "zone_middle_west", "poi": null, "basis": "图名：中城西岸守舍；保证两岸均有实体功能建筑的固定意象（推定）（原创扩展）。"}
+  - {"id": "lm_middle_east_guard", "type": "bld_kit_song_dali_guardhouse", "origin": {"x": 108, "z": 78}, "size": {"w": 6, "h": 5}, "rotation_deg": 0, "zone_ref": "zone_middle_east", "poi": null, "basis": "图名：中城东岸守舍；保证两岸均有实体功能建筑的固定意象（推定）（原创扩展）。"}
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office", "zone_houses"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_market"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_houses"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_dali_shrine", "zone_refs": ["zone_houses"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_middle_west", "zone_middle_east"], "count": {"min": 2, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_southern_house", "zone_refs": ["zone_east_houses"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_southern_shop_1f", "zone_refs": ["zone_east_market"], "count": {"min": 2, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_southern_market_stall", "zone_refs": ["zone_east_market"], "count": {"min": 4, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+  - {"type": "bld_kit_song_southern_palace_hall", "zone_refs": ["zone_palace"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "三城缩景配额（原创扩展）【建议值】；不代表历史人口或真实建筑数。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不使用茶花、竹林与热带树木", "basis": "旱地视觉密度（原创扩展）【建议值】；不作唐代物候证据。"}
+sources:
+  - {"key": "src_jinyang", "kind": "academic", "title": "裴静蓉：山西晋阳城考古发掘和研究", "url": "https://tohoku-gakuin.repo.nii.ac.jp/record/2000285/files/20240625_peijingrong.pdf", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "仅文字：curl成功下载并读PDF第2、4页（印刷76、78页）；作者为太原市文物考古研究院。PDF无历史平面图；唐五代总体不能精确对应702。"}
+  - {"key": "src_threecity", "kind": "academic", "title": "樊晓静：唐代并州经济研究·图4-6晋阳城推想图", "url": "https://ygx.sxu.edu.cn/db/%E5%AD%A6%E4%BD%8D/D01640591.pdf", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已下载并view_image看PDF第64页（印刷54页）图4-6；转引山西省历史地图集2000年版239页，非702同期图；不采纳该页西城周长等未核混用数字。"}

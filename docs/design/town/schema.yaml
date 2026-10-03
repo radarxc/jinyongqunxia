@@ -68,8 +68,8 @@ definitions:
       notes: {type: "string[1..N]", unit: none, range: non_empty_items, example: ["土面多于砖面"]}
   GridSpec:
     fields:
-      width: {type: integer, unit: m/grid, range: "one of [64,96,160]", example: 96}
-      height: {type: integer, unit: m/grid, range: "one of [64,96,160]", example: 96}
+      width: {type: integer, unit: m/grid, range: "one of [64,96,128,160]", example: 96}
+      height: {type: integer, unit: m/grid, range: "one of [64,96,128,160]", example: 96}
       cell_m: {type: integer, unit: m, range: 1, example: 1}
       chunk_cells: {type: integer, unit: planning_cells, range: 32, example: 32}
   RuntimePartitionSpec:
@@ -196,7 +196,7 @@ definitions:
       chapter_id: {type: string, range: "ch01..ch14", example: ch01}
       book_world: {type: string, range: "existing full chapter ID", example: ch01_tianlong}
       display_name: {type: string, range: non_empty, example: 大理国都（羊苴咩城）}
-      historical_year: {type: integer, unit: CE, range: "900..1800", example: 1093}
+      historical_year: {type: integer, unit: CE, range: "702..1800", example: 1093}
       era_kit: {type: enum.era_kit, range: enum, example: song_dali}
       seed: {type: integer, unit: uint32, range: "0..4294967295", example: 109301}
       design_intent: {type: DesignIntent, unit: none, range: valid_fields, example: {prosperity: modest_capital, notes: ["低密院落"]}}

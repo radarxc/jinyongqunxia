@@ -1,0 +1,23 @@
+COMMAND python3 tools/town/gen_layout.py docs/design/town/city_luoyang__ch10.yaml -o /tmp/CITY-layouts-all/recheck/city_luoyang__ch10.yaml
+{"assembled_bridges": 2, "building_types": {"bld_kit_song_dali_courtyard": 8, "bld_kit_song_dali_guardhouse": 1, "bld_kit_song_dali_house": 30, "bld_kit_song_dali_inn": 2, "bld_kit_song_dali_market_stall": 22, "bld_kit_song_dali_shop": 12, "bld_kit_song_dali_shrine": 1, "bld_kit_song_dali_warehouse": 4, "bld_kit_song_dali_yamen": 1, "bld_kit_song_southern_palace_hall": 1}, "buildings": 82, "city_id": "city_luoyang", "complete": true, "decorations": 332, "generation_seconds": 3.8193, "lake_cells": {}, "layout_sha256": "886c0babedabab3345738de76db29b89570052271ed6813c69860307cd48cd4e", "merged_bridge_groups": [], "missing_required": {}, "parcels": 57, "placement_attempts": 98, "planning_walkable": 13479, "required_components": 1, "road_cells": 3681, "road_components": 1, "runtime_hex_walkable": 10564, "source_bridges": 2, "water_cells": 960}
+
+COMMAND python3 tools/town/check_town.py docs/design/town/city_luoyang__ch10.yaml assets/default/town/city_luoyang__ch10/layout.yaml --strict-assets
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_bridge_deck rotation=0: shared-bridge-view:tex_town_song_southern_bridge_deck->tex_town_song_dali_bridge_deck
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_bridge_rail rotation=0: shared-bridge-view:tex_town_song_southern_bridge_rail->tex_town_song_dali_bridge_rail
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=124: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=126: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=199: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=207: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=231: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=252: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+town check: 0 errors, 16 warnings
+
+PASS: regenerated layout byte-identical; source/render/manifest/reference files consistent.

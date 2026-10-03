@@ -1,0 +1,46 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_zhangye"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "甘州·张掖县（702年推定）"
+historical_year: 702
+era_kit: "song_southern"
+seed: 4161681239
+design_intent: {"prosperity": "tang_regional_candidate", "notes": ["复原依据：history/city_zhangye__tang_702.md；702–703年按作者AR-26覆盖cities.yaml旧清初年代（原创扩展）。", "宋代基线替代：南宋墙门/地表与大理土木建筑；不是唐代建筑复原；无清真寺、邦克楼、清制镖局。", "历史拓扑缩景；内城/宫区以分区表达，schema只支持一道外墙；正式场景与营生绑定留归属文档。"]}
+grid: {"width": 128, "height": 128, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -64, "r_min": 1, "q_slot_count": 175, "r_slot_count": 128, "q_band_slots": [88, 87], "r_band_slots": [64, 64], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 14, "z": 14}, {"x": 114, "z": 14}, {"x": 114, "z": 114}, {"x": 14, "z": 114}]}, "inside_margin_cells": 2, "basis": "图名：外城；轮廓与门位按本城已读史料的关系概化（推定）；不把明清扩城轮廓回投唐代。；src_zhangye称早期迁城时间有争议，四门十字为河西州城一般格局（推定），不沿明代东扩及清门额。；依据：src_zhangye"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 64, "z": 14}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：南门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 64, "z": 114}, "width_cells": 7, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 11, "h": 4}, "passage_cells": {"w": 7, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：北门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 14, "z": 64}, "width_cells": 5, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：西门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 114, "z": 64}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：东门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 64, "z": 14}, {"x": 64, "z": 114}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北通衢；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 14, "z": 64}, {"x": 114, "z": 64}], "surface": "dirt_road", "priority": 80, "basis": "图名：东西市街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+rivers: []
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 18, "z": 70}, "max": {"x": 58, "z": 110}}}, "priority": 100, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard", "bld_kit_song_dali_guardhouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：官署坊区（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 70, "z": 18}, "max": {"x": 110, "z": 58}}}, "priority": 90, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_market_stall", "bld_kit_song_dali_inn", "bld_kit_song_dali_restaurant"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：商市与食宿（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_houses_ne", "kind": "residential", "geometry": {"rect": {"min": {"x": 70, "z": 70}, "max": {"x": 110, "z": 110}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard", "bld_kit_song_dali_shrine", "bld_kit_song_dali_temple_hall", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_stable"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：坊居与寺观（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_houses_sw", "kind": "residential", "geometry": {"rect": {"min": {"x": 18, "z": 18}, "max": {"x": 58, "z": 58}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard", "bld_kit_song_dali_shrine", "bld_kit_song_dali_temple_hall", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_stable"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：坊居与寺观（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office", "zone_houses_ne", "zone_houses_sw"], "count": {"min": 2, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_restaurant", "zone_refs": ["zone_market"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_houses_ne", "zone_houses_sw"], "count": {"min": 6, "max": 24}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_temple_hall", "zone_refs": ["zone_houses_ne", "zone_houses_sw"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shrine", "zone_refs": ["zone_houses_ne", "zone_houses_sw"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_houses_ne", "zone_houses_sw"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_houses_ne", "zone_houses_sw"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不使用茶花、竹林与热带树木", "basis": "旱地视觉密度（原创扩展）【建议值】；不作唐代物候证据。"}
+sources:
+  - {"key": "src_zhangye", "kind": "academic", "title": "张掖市史志办：张掖城", "url": "https://www.zhangye.gov.cn/szb/dzdt/gjzy/202209/t20220902_905713.html", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "仅文字；迁城年代争议与元明清扩城分期。明1507鼓楼不前置唐代，也不引用西夏大佛寺为唐寺。"}

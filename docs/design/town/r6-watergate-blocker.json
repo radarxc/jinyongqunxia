@@ -1,0 +1,40 @@
+{
+  "scope": "水门候选仅在内存试验；不改变生效洛阳规格",
+  "command": "check_town.validate_spec: existing Luoyang plus two gate instances at (20,84)/(148,84)",
+  "errors": [
+    {
+      "code": "TOWN_GATE_ON_WATER",
+      "severity": "error",
+      "message": "城门楼/孔压水",
+      "path": "gates[8]",
+      "at": {
+        "x": 19,
+        "z": 81
+      }
+    },
+    {
+      "code": "TOWN_GATE_ON_WATER",
+      "severity": "error",
+      "message": "城门楼/孔压水",
+      "path": "gates[9]",
+      "at": {
+        "x": 146,
+        "z": 81
+      }
+    },
+    {
+      "code": "TOWN_GATE_PASSAGE",
+      "severity": "error",
+      "message": "城门通行孔未接指定路",
+      "path": "gates[8]",
+      "at": null
+    },
+    {
+      "code": "TOWN_GATE_PASSAGE",
+      "severity": "error",
+      "message": "城门通行孔未接指定路",
+      "path": "gates[9]",
+      "at": null
+    }
+  ]
+}
