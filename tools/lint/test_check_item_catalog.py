@@ -17,6 +17,9 @@ HEADER9 = (
     "| ID | 名称 | 子类 | 品阶 | 出处（书名 / 原创扩展） | 说明 | "
     "效果字段 | 属性投影 | 外观要点（供出图） |"
 )
+COLLECTIBLE_HEADER9 = (
+    "| ID | 名称 | 子类 | 品阶 | 出处 | 效果字段 | 外观要点 | 说明 | 属性投影 |"
+)
 SEPARATOR7 = "|---|---|---|---|---|---|---|"
 SEPARATOR9 = "|---|---|---|---|---|---|---|---|---|"
 LORE60 = "**" + "甲" * 60 + "**"
@@ -35,6 +38,24 @@ def row9(
 ) -> str:
     return (f"| `{item_id}` | {name} | {subcategory} | {grade} | **（原创扩展）** | "
             f"{lore} | `{effect}` | {attributes} | 青瓷小碟盛放 |")
+
+
+def collectible_row(
+    item_id: str = "it_test_collectible", *, subcategory: str = "`porcelain`",
+    gift_value: str = "1", gift_to: str = "{preferred:[scholar,collector]}",
+    era_range: str = "[song_north]", provenance: str = "expanded",
+    study: str = "none", appraise: str = "{art:art,dc:20}",
+    lore: str = LORE60,
+) -> str:
+    collectible = (
+        f"giftValue={gift_value}; giftTo={gift_to}; eraRange={era_range}; "
+        f"provenance={provenance}; study={study}; appraise={appraise}"
+    )
+    effect = f"grade=3; kind=collectible; sub=porcelain; stack=1; {collectible}"
+    return (
+        f"| `{item_id}` | 测试瓷盏 | {subcategory} | 黄 | **（原创扩展）** | "
+        f"`{effect}` | 青釉敞口小盏，矮足圆腹，掌心大小 | {lore} | `{collectible}` |"
+    )
 
 
 class CheckItemCatalogTest(unittest.TestCase):
@@ -58,6 +79,10 @@ class CheckItemCatalogTest(unittest.TestCase):
     def table9(self, *rows: str) -> str:
         return "\n".join((HEADER9, SEPARATOR9, *rows))
 
+    def collectible_table9(self, *rows: str) -> str:
+        self.path = self.path.with_name("items-collectibles.md")
+        return "\n".join((COLLECTIBLE_HEADER9, SEPARATOR9, *rows))
+
     def assert_rejected(self, body: str, reason: str) -> None:
         result = self.run_checker(body)
         self.assertEqual(1, result.returncode, result.stdout + result.stderr)
@@ -76,6 +101,71 @@ class CheckItemCatalogTest(unittest.TestCase):
         result = self.run_checker(self.table9(row9()))
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
         self.assertIn("九列", result.stdout)
+
+    def test_accepts_valid_collectible_rows_with_code_or_chinese_subcategory(self) -> None:
+        body = self.collectible_table9(
+            collectible_row(),
+            collectible_row("it_test_collectible_zh", subcategory="瓷器／茶具"),
+        )
+        result = self.run_checker(body)
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        self.assertIn("2 行九列", result.stdout)
+
+    def test_rejects_collectible_gift_to_tag_outside_closed_set(self) -> None:
+        self.assert_rejected(
+            self.collectible_table9(collectible_row(
+                gift_to="{preferred:[scholar,bard]}",
+            )),
+            "`bard` 不在 giftTo 偏好标签闭集",
+        )
+
+    def test_rejects_collectible_gift_value_out_of_range(self) -> None:
+        self.assert_rejected(
+            self.collectible_table9(collectible_row(gift_value="5")),
+            "giftValue 须为 0–4 的整数",
+        )
+
+    def test_rejects_collectible_era_range_outside_enum(self) -> None:
+        self.assert_rejected(
+            self.collectible_table9(collectible_row(era_range="[han]")),
+            "`han` 不在 eraRange 年代带枚举",
+        )
+
+    def test_rejects_collectible_nine_column_order_mismatch(self) -> None:
+        self.path = self.path.with_name("items-collectibles.md")
+        body = "\n".join((HEADER9, SEPARATOR9, collectible_row()))
+        self.assert_rejected(body, "九列表头顺序须为")
+
+    def test_accepts_collectible_full_gift_to_object(self) -> None:
+        gift_to = (
+            "{preferred:[scholar],disliked:[warrior],taboo:[monastic],"
+            "sectRefs:[sect_test],npcOverrides:{npc_test:favored}}"
+        )
+        result = self.run_checker(
+            self.collectible_table9(collectible_row(gift_to=gift_to))
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+
+    def test_rejects_collectible_semantic_mismatches(self) -> None:
+        cases = (
+            (collectible_row(gift_value="2"), "与品阶默认值 1 不一致"),
+            (collectible_row(appraise="{art:art,dc:19}"), "appraise.dc 须为 8×3−4=20"),
+            (collectible_row(study="{art:art,delta:3,once:false}"), "study.once 必须为 true"),
+            (collectible_row(provenance="legend"), "provenance 只允许"),
+        )
+        for row, reason in cases:
+            with self.subTest(reason=reason):
+                self.assert_rejected(self.collectible_table9(row), reason)
+
+    def test_rejects_collectible_double_write_mismatch(self) -> None:
+        row = collectible_row().replace(
+            "giftValue=1; giftTo={preferred:[scholar,collector]}",
+            "giftValue=2; giftTo={preferred:[scholar,collector]}",
+            1,
+        )
+        self.assert_rejected(
+            self.collectible_table9(row), "双写不一致：`giftValue`"
+        )
 
     def test_rejects_lore_outside_unicode_codepoint_bounds(self) -> None:
         for length in (59, 121):

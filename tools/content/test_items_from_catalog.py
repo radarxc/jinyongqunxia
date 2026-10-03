@@ -19,6 +19,9 @@ HEADER9 = (
     "| ID | 名称 | 子类 | 品阶 | 出处（书名 / 原创扩展） | 说明 | "
     "效果字段 | 属性投影 | 外观要点（供出图） |"
 )
+COLLECTIBLE_HEADER9 = (
+    "| ID | 名称 | 子类 | 品阶 | 出处 | 效果字段 | 外观要点 | 说明 | 属性投影 |"
+)
 SEPARATOR9 = "|---|---|---|---|---|---|---|---|---|"
 
 
@@ -38,6 +41,14 @@ def write_catalog(path: Path, lines: list[str]) -> None:
 def write_catalog9(path: Path, lines: list[str]) -> None:
     path.write_text(
         "# 测试物品名录\n\n" + HEADER9 + "\n" + SEPARATOR9 + "\n"
+        + "\n".join(lines) + "\n",
+        encoding="utf-8",
+    )
+
+
+def write_collectible_catalog(path: Path, lines: list[str]) -> None:
+    path.write_text(
+        "# 测试收藏品名录\n\n" + COLLECTIBLE_HEADER9 + "\n" + SEPARATOR9 + "\n"
         + "\n".join(lines) + "\n",
         encoding="utf-8",
     )
@@ -71,10 +82,7 @@ class ItemsFromCatalogTest(unittest.TestCase):
 
     def test_repository_catalog_counts_match_expanded_sources(self) -> None:
         parsed = items_from_catalog.rows()
-
-        self.assertEqual(894, len(parsed))
-        self.assertEqual(
-            {
+        expected = {
                 "items-accessories.md": 48,
                 "items-armor.md": 8,
                 "items-belts.md": 26,
@@ -86,9 +94,12 @@ class ItemsFromCatalogTest(unittest.TestCase):
                 "items-medicine.md": 96,
                 "items-shoes.md": 26,
                 "items-weapons.md": 247,
-            },
-            items_from_catalog.catalog_counts(parsed),
-        )
+        }
+        if (items_from_catalog.CATALOG_DIR / "items-collectibles.md").is_file():
+            expected["items-collectibles.md"] = 151
+
+        self.assertEqual(sum(expected.values()), len(parsed))
+        self.assertEqual(expected, items_from_catalog.catalog_counts(parsed))
 
     def test_rejects_duplicate_ids_across_catalogs(self) -> None:
         duplicate = item_line("it_same")
@@ -151,6 +162,62 @@ class ItemsFromCatalogTest(unittest.TestCase):
         item = items_from_catalog.build(items_from_catalog.rows(self.catalog_dir)[0])
 
         self.assertEqual({"version": 2}, item["extension"]["value"]["attributes"])
+
+    def test_collectible_row_projects_schema_supported_extension(self) -> None:
+        collectible = (
+            "giftValue=1; giftTo={preferred:[scholar,collector],"
+            "npcOverrides:{npc_test:favored}}; eraRange=[song_north]; "
+            "provenance=expanded; study={art:art,delta:3,once:true}; "
+            "appraise={art:art,dc:20}"
+        )
+        line = (
+            "| `it_collectible_nine` | 测试瓷盏 | `porcelain` | 黄 | "
+            "**（原创扩展）** | "
+            f"`grade=3; kind=collectible; sub=porcelain; stack=1; tags=painting; {collectible}` | "
+            "青釉敞口小盏，矮足圆腹，掌心大小 | "
+            f"{'甲' * 60} | `{collectible}` |"
+        )
+        write_collectible_catalog(self.catalog_dir / "items-collectibles.md", [line])
+
+        item = items_from_catalog.build(items_from_catalog.rows(self.catalog_dir)[0])
+
+        self.assertEqual("collectible", item["kind"])
+        self.assertEqual("porcelain", item["sub"])
+        self.assertEqual(1, item["stack"])
+        self.assertEqual("甲" * 60, item["text"]["lore"])
+        self.assertEqual(["runtimeProjection"], item["flags"])
+        self.assertIn("giftValue=1", item["text"]["desc"])
+        self.assertIn("giftTo={preferred:[scholar,collector]", item["text"]["desc"])
+        self.assertIn("eraRange=[song_north]", item["text"]["desc"])
+        self.assertIn("provenance=expanded", item["text"]["desc"])
+        self.assertIn("tags=painting", item["text"]["desc"])
+        self.assertEqual(
+            {
+                "type": "collectible",
+                "value": {
+                    "study": {"art": "art", "value": 3},
+                    "giftTo": [],
+                    "appraise": {"art": "art", "dc": 20},
+                },
+            },
+            item["extension"],
+        )
+
+    def test_collectible_chinese_subcategory_maps_to_code(self) -> None:
+        collectible = (
+            "giftValue=1; giftTo={preferred:[collector]}; eraRange=[song_north]; "
+            "provenance=expanded; study=none; appraise={art:art,dc:20}"
+        )
+        line = (
+            "| `it_collectible_zh` | 测试瓷盏 | 瓷器／茶具 | 黄 | **（原创扩展）** | "
+            f"`grade=3; kind=collectible; sub=porcelain; stack=1; {collectible}` | "
+            f"青釉敞口小盏，矮足圆腹，掌心大小 | {'甲' * 60} | `{collectible}` |"
+        )
+        write_collectible_catalog(self.catalog_dir / "items-collectibles.md", [line])
+
+        item = items_from_catalog.build(items_from_catalog.rows(self.catalog_dir)[0])
+
+        self.assertEqual("porcelain", item["sub"])
 
     def test_rejects_mixed_seven_and_nine_column_tables(self) -> None:
         nine = (

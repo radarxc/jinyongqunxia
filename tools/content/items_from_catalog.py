@@ -46,7 +46,30 @@ ITEM_HEADER9 = (
     "ID", "名称", "子类", "品阶", "出处（书名 / 原创扩展）",
     "说明", "效果字段", "属性投影", "外观要点（供出图）",
 )
+COLLECTIBLE_HEADER9 = (
+    "ID", "名称", "子类", "品阶", "出处", "效果字段",
+    "外观要点", "说明", "属性投影",
+)
 ITEM_HEADERS = {ITEM_HEADER7: 7, ITEM_HEADER9: 9}
+COLLECTIBLE_SUBS = {
+    "porcelain": "porcelain", "瓷器／茶具": "porcelain", "瓷器/茶具": "porcelain",
+    "jade": "jade", "玉器": "jade",
+    "bronze": "bronze", "香炉／铜器／金银器": "bronze", "香炉/铜器/金银器": "bronze",
+    "qin": "qin", "琴与乐器": "qin", "琴／乐器": "qin", "琴/乐器": "qin",
+    "calligraphy": "calligraphy", "书法／拜帖／名家手迹": "calligraphy",
+    "书法/拜帖/名家手迹": "calligraphy",
+    "stationery": "stationery", "笔墨纸砚": "stationery",
+    "antique": "antique", "其他古玩": "antique",
+}
+COLLECTIBLE_KEYS = (
+    "giftValue", "giftTo", "eraRange", "provenance",
+    "study", "appraise", "luck",
+)
+COLLECTIBLE_REQUIRED_KEYS = COLLECTIBLE_KEYS[:6]
+SCHEMA_ART_IDS = frozenset({
+    "med", "poi", "antidote", "forge", "alchemy", "formation",
+    "music", "art", "chess", "speech",
+})
 ATTRIBUTE_KEYS = (
     "atk", "hardness", "qiAffinity", "qiEffect",
     "def", "reflect", "antiHidden", "agi", "block", "luck",
@@ -156,6 +179,63 @@ def parse_attributes(cell: str, path: Path, line: int) -> dict[str, Any]:
     return result
 
 
+def split_top_level(value: str, separator: str) -> list[str]:
+    parts: list[str] = []
+    start = 0
+    stack: list[str] = []
+    closing = {"[": "]", "{": "}"}
+    for index, character in enumerate(value):
+        if character in closing:
+            stack.append(closing[character])
+        elif character in "]}":
+            if not stack or character != stack.pop():
+                raise ValueError(f"unbalanced collectible literal: {value!r}")
+        elif character == separator and not stack:
+            parts.append(value[start:index])
+            start = index + 1
+    if stack:
+        raise ValueError(f"unbalanced collectible literal: {value!r}")
+    parts.append(value[start:])
+    return parts
+
+
+def parse_literal(value: str) -> Any:
+    if value.startswith("[") and value.endswith("]"):
+        inner = value[1:-1]
+        return [] if not inner else [parse_literal(part) for part in split_top_level(inner, ",")]
+    if value.startswith("{") and value.endswith("}"):
+        result: dict[str, Any] = {}
+        for token in split_top_level(value[1:-1], ","):
+            key, separator, raw = token.partition(":")
+            if not separator or not key or key in result:
+                raise ValueError(f"malformed collectible object token: {token!r}")
+            result[key] = parse_literal(raw)
+        return result
+    return scalar(value)
+
+
+def parse_collectible_projection(cell: str, path: Path, line: int) -> dict[str, Any]:
+    if re.fullmatch(r"`[^`]+`", cell) is None:
+        raise ValueError(f"{path}:{line}: collectible projection must be one code span")
+    raw = cell[1:-1]
+    if re.fullmatch(r"[^;]+(?:; [^;]+)*", raw) is None:
+        raise ValueError(f"{path}:{line}: malformed collectible projection")
+    result: dict[str, Any] = {}
+    keys: list[str] = []
+    for token in raw.split("; "):
+        key, separator, value = token.partition("=")
+        if not separator or key not in COLLECTIBLE_KEYS or key in result:
+            raise ValueError(f"{path}:{line}: malformed/duplicate collectible token {token!r}")
+        keys.append(key)
+        result[key] = parse_literal(value)
+    if keys != sorted(keys, key=COLLECTIBLE_KEYS.index):
+        raise ValueError(f"{path}:{line}: collectible keys out of canonical order")
+    missing = [key for key in COLLECTIBLE_REQUIRED_KEYS if key not in result]
+    if missing:
+        raise ValueError(f"{path}:{line}: collectible keys missing: {', '.join(missing)}")
+    return result
+
+
 def catalog_paths(catalog_dir: Path = CATALOG_DIR) -> tuple[Path, ...]:
     paths = tuple(sorted(catalog_dir.glob("items-*.md")))
     if not paths:
@@ -176,13 +256,21 @@ def parse_catalog(path: Path) -> list[dict[str, Any]]:
     in_item_table = False
     columns: int | None = None
     formats: set[int] = set()
+    current_header: tuple[str, ...] | None = None
     for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
         if not line.startswith("|"):
             in_item_table = False
             continue
         cells = table_cells(line)
-        if tuple(cells) in ITEM_HEADERS:
-            columns = ITEM_HEADERS[tuple(cells)]
+        header = tuple(cells)
+        recognized = (
+            header == COLLECTIBLE_HEADER9
+            if path.name == "items-collectibles.md"
+            else header in ITEM_HEADERS
+        )
+        if recognized:
+            columns = len(header)
+            current_header = header
             formats.add(columns)
             if len(formats) > 1:
                 raise ValueError(f"{path}:{line_number}: mixed seven/nine-column item tables")
@@ -202,16 +290,27 @@ def parse_catalog(path: Path) -> list[dict[str, Any]]:
             raise ValueError(f"{path}:{line_number}: invalid item ID {cells[0]!r}")
         if any(not cell for cell in cells[1:]):
             raise ValueError(f"{path}:{line_number}: empty required field")
-        effect_index = 5 if columns == 7 else 6
-        raw, fields = parse_effect(cells[effect_index], path, line_number)
+        assert current_header is not None
+        table_row = dict(zip(current_header, cells))
+        raw, fields = parse_effect(table_row["效果字段"], path, line_number)
         row = {
-            "id": match.group(1), "name": cells[1], "subZh": cells[2],
-            "source": cells[4], "look": cells[-1], "raw": raw,
+            "id": match.group(1), "name": table_row["名称"],
+            "subZh": clean(table_row["子类"]),
+            "source": table_row.get("出处", table_row.get("出处（书名 / 原创扩展）", "")),
+            "look": table_row.get("外观要点", table_row.get("外观要点（供出图）", "")),
+            "raw": raw,
             "fields": fields, "catalog": path.name, "line": line_number,
         }
         if columns == 9:
-            row["lore"] = cells[5]
-            row["attributes"] = parse_attributes(cells[7], path, line_number)
+            row["lore"] = table_row["说明"]
+            if path.name == "items-collectibles.md":
+                row["collectible"] = parse_collectible_projection(
+                    table_row["属性投影"], path, line_number
+                )
+            else:
+                row["attributes"] = parse_attributes(
+                    table_row["属性投影"], path, line_number
+                )
         result.append(row)
     if not result:
         raise ValueError(f"{path}: no item rows found")
@@ -318,6 +417,8 @@ def material_kind(row: dict[str, Any]) -> str | None:
 
 
 def item_kind(row: dict[str, Any]) -> str:
+    if row["catalog"] == "items-collectibles.md":
+        return "collectible"
     if row["catalog"] in {
         "items-accessories.md", "items-armor.md", "items-belts.md",
         "items-clothing.md", "items-hidden-weapons.md",
@@ -352,6 +453,9 @@ def origin(source: str) -> tuple[str, str | None]:
 
 def sub_key(row: dict[str, Any], kind: str) -> str:
     fields = row["fields"]
+    if kind == "collectible":
+        sub = row["subZh"]
+        return COLLECTIBLE_SUBS.get(sub, sub)
     if kind in {"weapon", "ammo", "hidden"}:
         return fields.get("cat") or fields.get("hiddenKind") or kind
     if kind == "manual":
@@ -376,7 +480,8 @@ def sub_key(row: dict[str, Any], kind: str) -> str:
 
 
 def stack_limit(kind: str, grade: int) -> int:
-    if kind in {"weapon", "armor", "offhand", "hidden", "accessory", "manual"}:
+    if kind in {"weapon", "armor", "offhand", "hidden", "accessory", "manual",
+                "collectible"}:
         return 1
     if kind == "material":
         return 999
@@ -544,6 +649,18 @@ def extension(row: dict[str, Any], kind: str, sub: str, grade: int) -> dict[str,
         return {"type": "manual", "value": {"skill": fields["skill"],
                 "maxLayer": int(fields["maxLayer"]), "variant": fields["variant"],
                 "readMul": 1}}
+    if kind == "collectible":
+        collectible = row["collectible"]
+        # The current strict schema predates AR-40: it can encode only the old
+        # NPC gift list plus study/appraise.  Unsupported AR-40 fields remain
+        # visible through runtimeProjection text assembled by build().
+        value: dict[str, Any] = {"giftTo": []}
+        study = collectible["study"]
+        if study != "none" and study.get("art") in SCHEMA_ART_IDS:
+            value["study"] = {"art": study["art"], "value": study["delta"]}
+        appraise = collectible["appraise"]
+        value["appraise"] = {"art": appraise["art"], "dc": appraise["dc"]}
+        return {"type": "collectible", "value": value}
     return {"type": "generic", "value": {}}
 
 
@@ -555,8 +672,19 @@ def build(row: dict[str, Any]) -> dict[str, Any]:
         flags.append("unique")
     if fields.get("uniqueUse") == "true" or fields.get("perChapter") == "1":
         flags.append("uniqueUse")
-    unsupported = sorted(key for key in fields
-                         if key not in STRUCTURAL | USE_EFFECT_KEYS | USE_CONTROL_KEYS)
+    if kind == "collectible":
+        study = row["collectible"]["study"]
+        supported = {"grade", "sub", "stack", "unique", "price", "appraise"}
+        if fields.get("kind") == "collectible":
+            supported.add("kind")
+        if study == "none" or study.get("art") in SCHEMA_ART_IDS:
+            supported.add("study")
+        unsupported = sorted(key for key in fields if key not in supported)
+    else:
+        unsupported = sorted(
+            key for key in fields
+            if key not in STRUCTURAL | USE_EFFECT_KEYS | USE_CONTROL_KEYS
+        )
     if row["catalog"] == "items-armor.md" or unsupported:
         flags.append("runtimeProjection")
     item: dict[str, Any] = {
