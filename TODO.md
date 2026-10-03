@@ -126,6 +126,7 @@
 - [ ] **AR-44 / 45 / 46（10-03 12:13 起）**：10 号出图员（Opus 5.5 子代理，codex exec，工具箱 `_handoff/gem/codex_w17/`）按作者在审核页「通过」的图对脸精修主角立绘：A1 萧峰 4 张返工图对齐 juxianzhuang_guard；A2 杨过（古天乐 1995）/ 段誉（林志颖 1997）/ 张无忌（苏有朋 2003，更帅更健壮）先出新 base 请作者批；A3 男女主角高魅力形象（侠客劲装 / 白衣飘飘，全身 + 三视图，批后交 Tripo）；A4 郭靖、黄蓉、小龙女、虚竹、赵敏、周芷若对齐通过图；B 再修 82 张剧情插图的脸。无通过图的主角等作者审。替换同路径文件、旧图备份；做完协调者跑 build_portraits → INDEX → 审核页重发（被替换图的旧结论要清掉）。
 - [ ] 待登记设计：**主角外观随魅力分档**（AR-45「对应魅力较高的状态」：分档阈值、各档立绘 / 3D 模型、切换时机与界面表现）。
 
+- [ ] **AR-47 素材线第三波**（10-03 12:45 起，「素材线第三波追踪」Opus 子代理登记并驱动，执行器 Codex，同时 ≤ 3 个图像任务）：ART-region-maps（30 区域图 + 水墨衬纸）、ART-rig-std-refs（6）、ART-rig-sheet-f + TOOL-rig-parts-f（女主角三视图与切件）、ART-ruins-tiles（洞壁 / 墓道 / 石刻 / 宝箱等）、ART-cast-fill-c / -d（110 位新登记人物）、城图全量（按书拆 CITY-layouts-*，ch10 剩余 → ch01 … ch14）。进度 `_handoff/artw3/progress.md`。
 ### 3.2 物品图（Gemini 网页）
 
 **已完成（10-03 04:28 收工）**：食品 174、衣物、旧兵器 / 暗器 / 药物、第二批 16，加上本轮 366 张（秘籍 162、兵器 128、药材 55、暗器 21）——`assets/default/item/**` 的物品图出齐，manifest 全是 `candidate`，每张按路径单独提交（最后 76d6a377）。限流 0 次；72 张返工过，15 张第 3 次才过；返工清单 0。总联系表 `_prod/.agents/coord/gemini_qa/final_{manuals,weapons,medicine,hidden-weapons}.jpg`（04:30 已发作者）。
@@ -298,10 +299,10 @@
   sudo rm -f /Users/bytedance/Projects/jinyongqunxia/.git/logs/refs/remotes/origin/claude/*.lock /Users/bytedance/Projects/jinyongqunxia/.git/logs/refs/remotes/origin/HEAD.lock
   ```
 - **hero-a 验收**：四张联系表已发（03:15）；不满意的指出人物 / 时期 / 插图名，登记返工。
-- **城市布局图的范围（AR-36 第 5 项）**：CITY-layouts-all 第 4 次运行后统计全量是 189 城、合并年代带后 1172 个「城 × 年代」，逐城联网查史料再出规格 / 平面图 / layout / 总装图，43 分钟只做了 4 座，全量要几百小时。已完成的 14 个完整候选全是白马（ch10）的城，这次合入先落库。**默认缩减方案**（作者不答就按这个登记 CITY-layouts-2）：① ch10 全部 + 每章 importance 最高的 3–5 座逐城考据；② 其余城按年代套件出通用格局，不逐城查史料；③ 每个年代带只渲染一份，其他章节只复制 layout。要全量就说一声，但得接受周期。
+- ~~城市布局图的范围~~：作者 10-03 AR-47 定**全量**（1172 个城 × 年代），由素材线第三波追踪按书拆任务、写集不相交、先 2 路并行，周期以天计。
 - ~~Tripo API 充值~~：作者 10-03 定改用网页版（AR-42），不充 API。作者 12:05 已「同意下载」（GLB 与预览图）。**待作者**：上传方式二选一——修好 Chrome 扩展对 tripo3d.ai 的网站访问权限（之后正常文件上传），或同意继续用剪贴板粘贴上传（会反复覆盖作者剪贴板）；未定之前 29 位主要角色暂停上传。
 - **双儿要不要精修**（hero-b 报告）：默认不动，作者说要再登记。
-- **110 个新登记人物要不要都出立绘**（ART-cast-fill-c / d，约 110 次 codex 出图）：默认等 hero-b 与 polish 之后再排，作者说不出就不出。
+- ~~110 个新登记人物要不要都出立绘~~：作者 AR-47「都要做」→ ART-cast-fill-c / -d（codex），素材线第三波追踪登记驱动。
 
 ### 8.2 已按默认在做，待作者确认
 

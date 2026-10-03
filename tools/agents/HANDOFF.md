@@ -1510,3 +1510,30 @@
     - 起 **10 号出图员**（Opus 5.5 子代理，codex exec）：A 段立绘对脸（萧峰返工 → 杨过 / 段誉 / 张无忌新 base 请批 → 男女主角高魅力形象请批 → 其余已有通过图的主角对齐）；B 段 82 张剧情插图对脸。工具箱 `_handoff/gem/codex_w17/`，替换同路径文件，每人按路径提交，不跑 build_portraits。
     - Tripo 子代理：扩展权限修好后用 file_upload；Chrome 窗口作者已放前台；主要角色只做 base 已通过的黄蓉、小龙女，其余等新 base；预告 AR-45 高魅力形象（入库 `model3d/npc_zhujue__ch00_<g>_charmhigh/`）。
     - CONTENT-ch00a-data：第 1 轮停滞（25 分钟无输出）被自动续成第 2 轮；开发监督的兜底注入器往 2.prompt.md 追加的条件说明被执行器当捷径，2 分钟空跑 → 「缺报告」→ 第 3 轮。协调者 12:18 置 HOLD、停第 3 轮（防它为绕 inkmeta 缺口去改正确的 .inkmeta.yaml）。修复合入后挪基点 `--from start` + 说明。教训：不要往执行器提示词注入「条件放行」类说明，直接停。
+  - **10-03 12:20–12:26 开发监督**：ENG-size-session-gate 合入（95b02a59），`pnpm size` 改为三层报告；ENG-20b 解除 HOLD。
+    - `prod_check`（`_handoff/prod_check_post-sizegate_*.log`）全绿：140 个测试文件 / 990 条测试。
+      - 标题页：entry 38.44 / 170，render 161.87，webgl 200.31。
+      - 首次会话闭包：2.33 + 65.33 + 25.69 = **93.36 / 110**（余量 16.64）。
+      - 子系统块（未设门）：对话 / Ink 35.35、区域 44.19、战斗 33.77、城镇 25.64。
+    - 虚拟基础内容从任务工作区的 18.50 涨到集成分支的 25.69（+7.19），应来自之后合入的 items-regen 或 attr-v2-schema。已报协调者，是否追查由其定。
+    - ENG-20b 状态清回 PENDING 交 eng3；`entry_holds.txt` 已清空。ENG-16c 已由 eng3 起跑。
+  - **10-03 12:27–12:34 开发监督**：查清基础内容「+7 KiB」——是稀疏检出造成的测量差，不是提交增长。只测量，未改代码。
+    - 测量脚本：`scratchpad/measure/base-content.mts`（tsx 直接调 content-plugin 的 load，copyAssets=false，按顶层键 gzip）。
+    - size-gate 基点 ac3f74bc 与 HEAD 95b02a59 之间，插件的全部输入无变化。
+    - 差值来自 `readAssetManifest` 的 access() 检查：稀疏工作区缺 item / character PNG 与 portrait webp，assets 只剩 1 条；_prod 全量有 566 条（433 立绘、132 图标、1 地图）。
+    - HEAD 各键 gzip KiB：
+      - worldMaps 12.53（只有 world/ch01 天龙）；
+      - assets 全量 6.71，稀疏 0.09；
+      - topology 2.27，npcs 1.34（ch01），factions 1.34，skills 1.25；
+      - 合计全量 25.89，稀疏 18.69。
+    - 首次会话真正用到的素材：1 张 `ref_map_jianghu` 地图、ch00 / ch10 的物品图标与出场 NPC 立绘，估约 0.5–0.8 KiB。worldMaps（ch01）在 M1 里用不上。
+    - 已向协调者建议：assets 与 worldMaps 改成按章节懒加载叶片；并修正门禁口径风险（任务工作区会少算约 7 KiB）。等协调者登记瘦身任务，预算不动。
+  - **10-03 12:36 开发监督**：协调者登记 ENG-session-base-diet（提示词 `ENG-session-base-diet.md`）。
+    - 内容：worldMaps / assets / 章节 NPC 改成按章节懒加载叶片，基础内容只留 topology / factions / skills；readAssetManifest 只按 manifest 生成键；目标首次会话 ≤ 80 KiB，门槛 110 不变；顺手修 DEV 演示入口。
+    - 依赖 ENG-20b。20b 合入后，代码池有位我就单独起（traex Sol max，review_checks_eng），eng3 队列不改。
+
+  - **10-03 12:25–12:50 协调者**：体积门禁合入、基础内容口径、AR-47 第三波。
+    - ENG-size-session-gate 合入 95b02a59：首次会话 93.36 / 110（Worker 壳 2.33 + 静态闭包 65.33 + 基础内容 25.69），990 测试全过；ENG-20b 放行。开发监督实测「基础内容多 7 KiB」是稀疏检出口径差（readAssetManifest 按文件在不在生成键：稀疏 1 条、全量 566 条），并非回归；worldMaps（只有 ch01 天龙，12.5 KiB）也不该进首次会话 → 登记 **ENG-session-base-diet**（09aef148，依赖 ENG-20b，目标 ≤ 80 KiB，素材键改为只按 manifest 生成）。
+    - CONTENT-ch00b-maps r2 FAIL（唯一安全出生点、Trigger action、报告如实）→ 返修过校验 → 开发监督起只复审（驱动 77749）。
+    - 10 号出图员 A1 完成：萧峰 4 张返工图对齐 juxianzhuang_guard（53435b4d，联系表 `codex_w17/sheets/xf_faces_after.jpg`）。段誉剧照问题：本地 `classic_duanyu_1997.jpg` 是 TVB 1997 版（陈浩民），林志颖是 2003 版，本地没有 → 问作者是否允许下载 2003 版剧照（否则只用文字造型）。
+    - **AR-47**（作者：未生产的素材都要做，城图全量）→ 起「素材线第三波追踪」子代理：ART-region-maps、ART-rig-std-refs、ART-rig-sheet-f + TOOL-rig-parts-f、ART-ruins-tiles、ART-cast-fill-c / -d、城图按书拆任务（写集不相交、2 路起步）。礼品图仍归原追踪线（名录复验合入后由协调者起 Gemini 出图员）。
