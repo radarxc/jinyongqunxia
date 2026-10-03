@@ -1987,10 +1987,10 @@
   references: []
   tool: gemini-web · Nano Banana（Oil painting 模板，无参考图上传）
   model: gemini-app (Pro 订阅)
-  created: 2026-10-03T01:30:51-0700
+  created: 2026-10-03T01:33:25-0700
   source_path: .agents/coord/gemini_originals/it_miji_xingjunbu_can.jpeg
   source_size: 2048x2048
   size: 1536x1536
-  sha256: bdb0533d666c5437cd9511e644d8cf73697e64a34b8fde1cddb344cac194128f
+  sha256: d44c690b2bbb53339dd89bd1dbefc55a58007848501ddf3e8bdf51010e161a0c
   status: candidate
-  notes: 写实画风（作者 2026-10-01：要跟角色图对应上）；；裁掉画框 [125, 0, 1924, 1824]
+  notes: 写实画风（作者 2026-10-01：要跟角色图对应上）；原图左右与底边带白框，ingest的crop_frame在两侧也有白框时把底边裁进了书里（上一版a59e7bf9书底被切）；本版由出图员先按白框取内框、补成方图再入库，画面未改；带框原件另存.agents/coord/gemini_qa/frame_fix/it_miji_xingjunbu_can_orig.jpeg
