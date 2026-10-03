@@ -689,4 +689,19 @@
       - 16:53–16:58 交换区涨到 38 GB，可用降到 8.5 GiB，已报协调者。当时人物线的 `build_portraits.py` 常驻 4.3 GB，另有 9 个执行器在跑。17:15 回到 11 GiB。
       - 口径：低于 6 GB 再报；不起新的全量检出。
   - **10-02 18:20–18:25 协调者**：作者答四问（AR-35）：胡一刀改回不结辫、凌霜华文字重出疤在左颊、狄云乡下装补出、程灵素 / 苗人凤保留；9 号出图员已续作。作者指示重启 eng3：18:21 `kill -TERM 39391` 后 detach 重启为 pid 53496，并发 3（交换区 32 GB）；队列含 TOOL-rig-sheet、ENG-12c-clip、ENG-27a/27b/28a/28b。Gemini 线 subagent 与开发监督 subagent 都曾因「600 秒无进展」被看门狗停掉，已用原上下文续跑，并要求单次工具调用 ≤ 60 秒、等待放后台。磁盘 14 GiB。
+  - **10-02 17:15–18:30 开发监督**：
+    - **check:perf**：17:24 跑，loadavg 8.71。100 角色三轮 min P95 0.254 ms，20 角色 0.058 ms，阈值 0.80 ms，通过（`_handoff/check_perf_1724.log`）。
+    - **看门狗**：17:33–18:21 开发监督因单次调用串长等待被看门狗停掉，这段时间没人盯。之后的口径：单次调用 ≤ 60 秒，keywait 一律放后台。
+    - **ENG-16b 防截断误判**：
+      - 17:33 第 4 次运行后校验失败：`meridian-flow/gather.ts`、`gather.test.ts` 被删，`index.ts` 从 69 行缩到 3 行。
+      - 任务说明第 2 条正是「去掉 GatherState 双重记账」，删 gather 是任务要求。
+      - 处理：给 ENG-16b 校验加 `shrink_exempt`，只豁免这三个文件（40c84ddd）。这个字段 run.py 本来就给「删旧代码是任务要求」用；`pnpm check`、core 测试 / 性能门禁、GPT 审核都照常。
+      - 当时执行器已带「恢复被删文件」的返修说明在跑第 3 次；它恢复或不恢复，校验都能过，由审核把关是否又引回双重记账。
+    - **审核超时**：ENG-21b（r1）、DES-sync-tech-a（r5）的 GPT 审核都超过 60 分钟，rc=2，supervise 已自动重跑；连续 3 次才会进 ERROR。
+    - **在途**（18:30）：
+      - 校验已过、在审核的 M1 路径任务：ENG-08b（18:22）、ENG-25（18:24）；
+      - ENG-21b 第 2 次审核；ENG-16b 第 3 次运行（Sol）；
+      - eng3 已由协调者 18:21 重启（pid 53496，并发 3），TOOL-rig-sheet 已 ready，等空位；
+      - des33 在跑 DES-sync-tech-a、design-a、skills-reqs-v2-a、story-hooks-g1 / g4。
+    - **磁盘**：15 GiB。
 
