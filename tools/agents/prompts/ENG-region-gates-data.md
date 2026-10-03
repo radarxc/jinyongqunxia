@@ -48,7 +48,7 @@
 2. **内容位置**：`content/chapters/<ch>/bindings/{gates,dialogues,loot}/*.yaml`。
    - 在 `content-registry.ts` 登记三个 kind；在 `content-index.ts` 做引用检查：quest / flag / item / story / knot 都要存在。
    - 位置约定写进 `content/CLAUDE.md`。
-   - **本任务不新增正式 binding 内容**：ch00 / ch10 的 binding 由 CONTENT 任务登记；测试夹具放测试目录。
+   - **本任务不新增正式 binding 内容**，唯一例外是下文「集成分支现状」一节的 ch10 照抄；ch00 的 binding 由 CONTENT 任务登记；测试夹具放测试目录。
 3. **构建**：三类 binding 编进对应章节的规则包，作为区域规则叶片的一部分或独立叶片，按 tech/04 §8.1 命名，在报告第 6 节登记。contentHash 规则不变。
 4. **运行时装载**：区域子系统按需加载时（ENG-entry-split 的区域入口），一并读入该章的三类 binding，填进 `RegionRuntimeContent.gates`、`dialogues`、`loot`。
    - 读档、新游戏、书眠走同一入口；
@@ -68,6 +68,25 @@
    - 运行时：用夹具章节包加载后，`doorGate` 能按条件开或锁，NpcSpawn 互动进入正确的 story / knot，Chest 发放正确物品；
    - 加载失败走错误码路径。
 
+## 集成分支现状（10-03 14:40 开发监督补）
+
+CONTENT-ch10-cold-entry 已合入（38a746bf）。集成分支上已有：
+- `content/world/regions/rg_xiyu_beijiang/sc_10_fengshi_feiyi.tmj`：
+  - 东门 Door `lockedBy: gate_10_fengshi_dongmen`；
+  - NpcSpawn 三个：`first_talk`（沈青禾）、`li_wenxiu`、`postman`。
+- ch10 报告 `tools/agents/reports/CONTENT-ch10-cold-entry.md` 第 4 节 O3 与第 6 节给出了交接 binding：
+  - gate：`{gateId: gate_10_fengshi_dongmen, expression: {flag: fl_10_cold_entry_talked}}`，锁住提示文本键 `ch10.coldEntry.interact.eastGateLocked`；
+  - dialogue：`{sceneId: sc_10_fengshi_feiyi, anchorId: first_talk, storyId: story_ch10_cold_entry, entryKey: fengshi_first_talk}`；
+  - 李文秀、驿卒两个锚点没有独立对话。
+
+本任务新增的「Door 的 lockedBy 必须是已登记的 gateId」是硬规则，不得放宽。不处理的话，本任务合入后集成分支的 `content:validate` 会红。所以：
+- 把上面三项交接**照抄**成正式 binding 文件，放在 `content/chapters/ch10_baima/bindings/{gates,dialogues}/`；
+  - 只誊写，不做内容取舍；
+  - 字段对不上 schema 时，以 schema 为准做最小转写，并在报告第 7 节逐项写明。
+- 「无对话」标注放在章节 binding 文件里，不改地图（地图不在写集），这样李文秀、驿卒两个锚点不必动 tmj。
+- 若要在 `apps/game/src/runtime/**` 删掉写死的 `regionGates`，以合入后的内容文件为准。
+- 报告第 7 节写明 ch10 的三项 binding 已登记，交 ENG-19e 与验收任务直接使用。
+
 ## 约束
 
 - 写集：
@@ -77,9 +96,10 @@
   - `packages/data/src/**/*.test.ts`、`packages/data/src/**/__fixtures__/**`
   - `apps/game/src/runtime/**`（最小改动）
   - `content/CLAUDE.md`
+  - `content/chapters/ch10_baima/bindings/**`（只照抄 ch10 报告的交接 binding，见上节）
   - 写集外的改动在提交时会被丢弃。
 - 不改 `packages/core/**`：三类 binding 的类型已有，只消费；若必须改，在报告里写清原因，交 ENG-event-executor 或后续任务。
-- 不改 `content/world/**` 地图、`content/chapters/**` 正式内容、`docs/**`、`tools/perf/**`。
+- 不改 `content/world/**` 地图；`content/chapters/**` 正式内容只按上节照抄 ch10 的 binding，其余不改；不改 `docs/**`、`tools/perf/**`。
 - 体积：binding 按章节懒加载，不得进标题页 entry 或首次会话闭包的静态部分；报告写 `pnpm size` 三层数字。
 - 不加依赖；每次写入 ≤ 150 行；不得在 `/private/tmp` 做整仓检出（_common 规则 12）。
 
