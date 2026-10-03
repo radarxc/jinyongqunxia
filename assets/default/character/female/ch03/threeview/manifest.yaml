@@ -33,7 +33,7 @@
   size: 1024x1536
   sha256: 39b6d165293b88a5cfc7956ce29b7556e92385f10a8e7bf0f4641a93f729ef03
   status: candidate
-  notes: 供 Tripo 绑骨的 A 字姿势参考；依据作者已通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（同脸同服饰）；协调者 14:06 急件，不需作者批；AR-44
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据作者已通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（同脸同服饰）；协调者 14:06 急件，不需作者批；AR-44；绑骨用 _apose_slim，本张仅作造型参考（协调者 14:40）
 - id: por_npc_xiaolongnv__ch03_youth_jueqing_apose_slim
   file: por_npc_xiaolongnv__ch03_youth_jueqing_apose_slim.png
   category: character/female/tripo_ref
