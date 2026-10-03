@@ -47,8 +47,7 @@
 | TOOL-items-regen | traex | 第 1 次运行 30 分钟生成完，校验被 data schema 挡住（`extension.value.attributes` 未定义）→ HOLD，等 ENG-attr-v2-schema 合入后挪基点 `--from validate` | 开发监督 |
 | ENG-attr-v2-schema | traex Sol | 已登记（b7e1101f）：item.v1 各 extension 加可选 attributes 投影（只校验不消费）；依赖 ENG-entry-split（entry 余量） | 开发监督起 |
 | TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；要等 regen 与 tests-discover 合入（否则它的 --check 与 content 测试必红） | 开发监督起 |
-| TOOL-tests-discover | traex Sol | r1 FAIL（balance 导入、town_runtime 测试删了真实布局覆盖、CLI 双 mock），写集加 balance 测试后返修，等池位 | 3408（开发监督） |
-| TOOL-town-gaps-1 | traex Sol | 第 2 次运行校验的「文件被删除」是磁盘规则要求的清理（已豁免）；r1 FAIL 只因验收命令口径（改用 `check_asset_dirs --min 1 --max 1`），第 3 次（最后一次）运行等池位 | 66572（开发监督） |
+| TOOL-tests-discover | traex Sol | 第 3 次运行修好，复审 r2 PASS（09:19），合入中 | 开发监督 |
 | ENG-entry-split | traex Sol | 已登记（7f82fe44），07:29 起驱动排队等代码池位；合入前 15 个首屏相关任务 HOLD | 75729（开发监督） |
 
 
@@ -190,7 +189,7 @@
 
 | 任务 | 内容 | 执行器 | 状态 |
 |---|---|---|---|
-| ART-3d-tripo-avatars | 男女主角 `npc_zhujue__ch00_m / _f`：多视图 / 立绘 → Tripo 高质量模型 + 骨架 + 3 个预设动作（修上一版左侧头发肉色）；写 `tools/model3d/tripo_cli.py` | codex gpt-6-astra xhigh | 追踪者起跑中（点数上限 600） |
+| ART-3d-tripo-avatars | 男女主角 `npc_zhujue__ch00_m / _f`：多视图 / 立绘 → Tripo 高质量模型 + 骨架 + 3 个预设动作（修上一版左侧头发肉色）；写 `tools/model3d/tripo_cli.py` | codex gpt-6-astra xhigh | **09:07 起跑**（驱动 91994；点数上限 600） |
 | ART-3d-tripo-cast | 十四书主角群约 31 位（主角精修新基线立绘）image_to_model + 骨架 | codex xhigh | 等 avatars 合入（点数上限 2500 或余额剩 25% 即停） |
 
 密钥：只在主检出 `.env`（`tripo_key=…`），执行器运行时读成环境变量，不得进日志 / 报告 / manifest / 提交（`.env` 已进 `.gitignore`）。产物：`assets/default/model3d/<npc_id>/`（`model_rig.glb`、`anim_*.glb`、`preview.png`、manifest）；审核要点 `review_checks_model3d.md`。女主角没有三视图（可登记 ART-rig-sheet-f）。
