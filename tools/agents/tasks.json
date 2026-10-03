@@ -32245,7 +32245,7 @@
      ]
     ],
     "shrink_exempt": [
-     "content/world/regions/rg_dongbei/sc_00_changbai_cave.tmj"
+     "content/world/regions/**/*.tmj"
     ]
    },
    "id": "CONTENT-ch00b-maps",
