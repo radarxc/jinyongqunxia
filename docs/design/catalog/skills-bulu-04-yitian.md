@@ -1,7 +1,7 @@
 # 书界武学补录 · 04《倚天屠龙记》（`skills-bulu-04-yitian`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的按书补录册。本文只定义《倚天屠龙记》首领配装确实缺少的武学、学习来源及其经脉接口；既有门派图鉴仍是原条目的唯一归属。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/15/16、`docs/00-canon.md` §3–§5/§9/§12/§13/§16/§18/§20、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/21`。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/15/16/27、`docs/00-canon.md` §3–§5/§9/§12/§13/§16/§18/§20、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/03` v2、`design/05`、`design/21`。
 > **引用而不重定义**：既有倚天武学见 `skills-yitian.md`；少林武学见 `skills-shaolin.md`；通行武学见 `skills-general.md`；招式预算见 `design/05`；经脉路线、护体内劲与调息见 `design/21`；Buff 本体见 `design/06`；装备见 `design/10`；门派职级见 `design/17`。
 > **覆盖声明**：本册补录明教 / 波斯总教、成昆旁支、昆仑、崆峒、华山倚天支与玄冥二老所缺条目，不修改十一册既有图鉴。首领只是这些武学的使用者之一；除个人旁支外，主角与其他人物均可依门派、职级、秘籍或奇遇正常习得。
 > **标注约定**：**（原创扩展）**为原著没有的武学或玩法；**（原创扩展命名）**为原著有人物 / 兵器 / 劲力表现而总名或招名由本作补出；**（待考）**须以三联 / 广州修订版逐字核对；**【建议值】**为待归属文档确认的数值。
@@ -62,7 +62,8 @@
 |---|---|
 | 基础字段 | `category:inner`；`subType:inner`；`grade:9`；`origin:expanded`；`sect:sect_mingjiao`；`lineage: 明教护教法王传承`；`sourceChapters:[ch04_yitian]`；`nature:harmony`；`wOut/wIn:0/1`；`moveSlots:4` |
 | meridians / breathProfileRef | `[mer_chongmai,mer_daimai]` **【建议值】** / `txp_mingjiaohujiaogong` |
-| reqs | `attrs {con:48,wil:48,wis:42}`；`aptitude {apInner:50}`；`sect {id:sect_mingjiao,rank:4}`；`prereq [{skill:sk_guangmingxinfa,layer:7}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {bre:55,wil:45}`；`aptitude {apInner:40}`；`sect {id:sect_mingjiao,rank:4}`；`prereq [{skill:sk_guangmingxinfa,layer:7}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | inner.contribution | `{mpMaxPct:34,hpMaxPct:20,attrs:{con:5,wil:5,wis:4},mpRegen:2.5}`；`IP=34+20+2×14+5×2.5=94.5`；`stats {resCC:8,resMind:7}` 合计 15 |
 | 层数要点 | 1 重守明吐纳；4 重火云护脉；**7 重绝招护光**；**9 重绝招镇教**；10 重护教圆满 |
 | setTags / conflicts | `[]` / 与阴、阳主运的相性只按 `design/05` §5.4；不提供毒、寒或点穴免疫 |
@@ -90,7 +91,8 @@
 | 字段 | 值 |
 |---|---|
 | 基础字段 | `category:weapon`；`subType:staff`；`grade:8`；`origin:canonExpanded`；`sect:sect_mingjiao`；`lineage: 紫衫龙王黛绮丝的中土化杖术`；`sourceChapters:[ch04_yitian]`；`nature:harmony`；`wOut/wIn:0.65/0.35`；`weaponReq:{category:staff}`；`moveSlots:4` |
-| reqs | `attrs {str:40,agi:43,wis:38}`；`aptitude {apStaff:45}`；`sect {id:sect_mingjiao,rank:3}`；`prereq [{skill:sk_guangmingquan,layer:5}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {str:50,agi:40}`；`aptitude {apStaff:35}`；`sect {id:sect_mingjiao,rank:3}`；`prereq [{skill:sk_guangmingquan,layer:5}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,agi:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{hit:[2,7],parry:[3,8]}`，第 10 重合计 15 |
 | 层数要点 | 1 重点花；3 重横枝；5 重拨雾；**7 重绝招金花阵阵**；10 重花影归杖 |
 | setTags / conflicts | `[]` / 普通杖击不因搭配阴性内功自动变成寒毒或真气外放 |
@@ -118,7 +120,8 @@
 | 字段 | 值 |
 |---|---|
 | 基础字段 | `category:hidden`；`subType:hidden`；`hiddenKind:dart`；`grade:8`；`origin:canonExpanded`；`sect:sect_mingjiao`；`lineage: 紫衫龙王黛绮丝`；`sourceChapters:[ch04_yitian]`；`nature:yin`；`wOut/wIn:0.80/0.20`；`moveSlots:4` |
-| reqs | `attrs {agi:45,wis:40}`；`aptitude {apHidden:46}`；`sect {id:sect_mingjiao,rank:3}`；`prereq [{skill:sk_shenghuotunajue,layer:5}]`；`hard:[aptitude,prereq]` |
+| reqs | `attrs {agi:50,wis:40}`；`aptitude {apHidden:35}`；`sect {id:sect_mingjiao,rank:3}`；`prereq [{skill:sk_shenghuotunajue,layer:5}]`；`hard:[aptitude,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2,wis:1}},{layer:9,attrs:{agi:1}}]` |
 | layerStats | `{hit:[3,9],crit:[2,6]}`，第 10 重合计 15 |
 | 层数要点 | 1 重飞花；3 重错影；5 重回首；**7 重绝招金花三绽**；10 重花落无声 |
 | setTags / conflicts | `[]` / 使用实体暗器与暗器囊；不因远射而算真气外放，弹药耗用归 `design/10` |
@@ -143,7 +146,8 @@
 
 - **出处与边界**：原著有明教波斯总教、宝树王、风云月三使及圣火令武功；总教遣人来中土所涉教主心法前提须逐字核对**（待考）**。未见“波斯圣火玄功”这一固定名，名称、招式、机制与数值均为**（原创扩展）**。本功是波斯总教自身传承，不是 `sk_qiankun`，也不改写其教主门槛。
 - **字段**：`category:inner`；`subType:inner`；`grade:10`；`origin:expanded`；`sect:sect_mingjiao`；`lineage:波斯总教·圣火令行功`；`sourceChapters:[ch04_yitian]`；`nature:yang`；`wOut/wIn:0/1`；`moveSlots:5`；`special:{fusible:true}`；`observable:false`。
-- **reqs**：`attrs:{agi:55,wis:55,wil:50}`；`aptitude:{apInner:55}`；`prereq:[{skill:sk_shenghuoxinfa,layer:6},{skill:sk_shenghuoling,layer:7}]`；`sect:{id:sect_mingjiao,branch:persia,rank:4}`；`hard:[sect,prereq]`。
+- **reqs**：`attrs:{bre:60,wis:45}`；`aptitude:{apInner:45}`；`prereq:[{skill:sk_shenghuoxinfa,layer:6},{skill:sk_shenghuoling,layer:7}]`；`sect:{id:sect_mingjiao,branch:persia,rank:4}`；`hard:[sect,prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1,wis:1}},{layer:6,attrs:{bre:2,wis:1}},{layer:9,attrs:{bre:2,wis:1}}]`。
 - **内功**：`inner.contribution:{mpMaxPct:42,hpMaxPct:25,attrs:{agi:6,wis:6,wil:3,con:3},mpRegen:3.0,stats:{resMind:10,eva:10}}`；`IP=42+25+2×(6+6+3+3)+5×3.0=118`；`meridians:[mer_chongmai,mer_daimai,mer_yangqiao]`；`breathProfileRef:txp_bosishenghuoxuangong`；`innerGuard:{enabled:true,reflectBp:0}`。冲、带不投票，阳跷投阳一票，故性质为阳。
 - **层数**：1 重圣火吐纳｜3 重回环转换｜5 重护令｜**7 重第一绝招·幻明归环**｜8 重三使同息｜**9 重第二绝招·守令归真**｜10 重玄功圆成。
 
@@ -178,7 +182,8 @@
 |---|---|
 | 基础字段 | `category:inner`；`subType:inner`；`grade:9`；`origin:expanded`；`sect:null`；`lineage: 成昆个人旁支`；`sourceChapters:[ch04_yitian]`；`nature:yin`；`wOut/wIn:0/1`；`moveSlots:4` |
 | meridians / breathProfileRef | `[mer_yinwei,mer_yinqiao]` **【建议值】** / `txp_huanyinxinfa` |
-| reqs | `attrs {con:48,wil:52,wis:45}`；`aptitude {apInner:50}`；`prereq [{skill:sk_huanyinzhi,layer:6}]`；`hard:[aptitude,prereq]` |
+| reqs | `attrs {bre:55,wil:50}`；`aptitude {apInner:40}`；`prereq [{skill:sk_huanyinzhi,layer:6}]`；`hard:[aptitude,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | inner.contribution | `{mpMaxPct:34,hpMaxPct:20,attrs:{con:5,wil:6,wis:3},mpRegen:2.5}`；`IP=34+20+2×14+5×2.5=94.5`；`stats {effHit:8,resCold:7}` 合计 15 |
 | 层数要点 | 1 重敛阴；4 重潜息；**7 重绝招藏息**；**9 重绝招逆流**；10 重幻阴圆满 |
 | setTags / conflicts | `[]` / 阴性主运相性按 `design/05` §5.4；不等于玄冥传承，也不授寒毒免疫 |
@@ -206,7 +211,8 @@
 | 字段 | 值 |
 |---|---|
 | 基础字段 | `category:unarmed`；`subType:fist`；`grade:9`；`origin:expanded`；`sect:null`；`lineage: 成昆个人旁支`；`sourceChapters:[ch04_yitian]`；`nature:yin`；`wOut/wIn:0.30/0.70`；`moveSlots:4` |
-| reqs | `attrs {agi:46,wil:48}`；`aptitude {apFist:48,apInner:48}`；`prereq [{skill:sk_huanyinzhi,layer:6},{skill:sk_huanyinxinfa,layer:6}]`；`hard:[prereq]` |
+| reqs | `attrs {str:55,agi:45}`；`aptitude {apFist:40,apInner:40}`；`prereq [{skill:sk_huanyinzhi,layer:6},{skill:sk_huanyinxinfa,layer:6}]`；`hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,agi:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{effHit:[3,9],pierce:[2,6]}`，第 10 重合计 15 |
 | 层数要点 | 1 重阴掌；4 重错步回身；**7 重绝招伏阴**；**9 重绝招回煞**；10 重幻手无迹 |
 | setTags / conflicts | `[]` / 不继承 `sk_xuanming` 的寒毒与双老协同；普通掌劲不判真气外放 |
@@ -240,7 +246,8 @@
 | 字段 | 值 |
 |---|---|
 | 基础字段 | `category:weapon`；`subType:staff`；`grade:8`；`origin:canonExpanded`；`sect:null`；`lineage: 玄冥传承·鹿杖客支`；`sourceChapters:[ch04_yitian]`；`nature:yin`；`wOut/wIn:0.70/0.30`；`weaponReq:{category:staff,altItems:[eq_luzhang]}`；`moveSlots:4` |
-| reqs | `attrs {str:44,con:40}`；`aptitude {apStaff:45}`；`prereq [{skill:sk_xuanmingxinfa,layer:5}]`；`hard:[aptitude,prereq]` |
+| reqs | `attrs {str:50,con:40}`；`aptitude {apStaff:35}`；`prereq [{skill:sk_xuanmingxinfa,layer:5}]`；`hard:[aptitude,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,con:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{parry:[3,8],hit:[2,7]}`，第 10 重合计 15 |
 | 层数要点 | 1 重角顶；3 重横扫；5 重缠地；**7 重绝招鹿角横绝**；10 重寒杖归一 |
 | setTags / conflicts | `[]` / `eq_luzhang` 的玄冥寒气特效归装备；此卡不重复施加，也不把杖击标为外放 |
@@ -270,7 +277,8 @@
 | 字段 | 值 |
 |---|---|
 | 基础字段 | `category:weapon`；`subType:exotic`；`grade:8`；`origin:canonExpanded`；`sect:null`；`lineage: 玄冥传承·鹤笔翁支`；`sourceChapters:[ch04_yitian]`；`nature:yin`；`wOut/wIn:0.60/0.40`；`weaponReq:{category:exotic,kinds:[brush],dual:true,altItems:[eq_hebi]}`；`moveSlots:4` |
-| reqs | `attrs {agi:44,wis:42}`；`aptitude {apExotic:45}`；`prereq [{skill:sk_xuanmingxinfa,layer:5}]`；`hard:[aptitude,prereq]` |
+| reqs | `attrs {wis:50,agi:40}`；`aptitude {apExotic:35}`；`prereq [{skill:sk_xuanmingxinfa,layer:5}]`；`hard:[aptitude,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:2,agi:1}},{layer:9,attrs:{wis:1}}]` |
 | layerStats | `{seal:[3,9],hit:[2,6]}`，第 10 重合计 15 |
 | 层数要点 | 1 重啄脉；3 重双分；5 重回笔；**7 重绝招鹤嘴封穴**；10 重双笔归一 |
 | setTags / conflicts | `[]` / 点穴均用 `bf_xueweishoufeng`；`eq_hebi` 的 10% 九级点穴为装备效果，不与本卡同名效果重复触发 |
@@ -297,7 +305,8 @@
 
 - **出处与边界**：原著有玄冥二老与玄冥神掌的阴寒内力表现；是否另有具名成套上乘内功未见，故“玄冥寒元功”、招名、机制与数值均为**（原创扩展）**。它是玄冥一系共传，不是鹿杖客或鹤笔翁个人专属。
 - **字段**：`category:inner`；`subType:inner`；`grade:10`；`origin:expanded`；`sect:sect_ruyangwangfu`；`lineage:玄冥一系`；`sourceChapters:[ch04_yitian]`；`nature:yin`；`wOut/wIn:0/1`；`moveSlots:5`；`special:{fusible:true}`；`observable:false`。
-- **reqs**：`attrs:{con:55,wil:55,wis:48}`；`aptitude:{apInner:55}`；`prereq:[{skill:sk_xuanmingxinfa,layer:7},{skill:sk_xuanming,layer:7}]`；`sect:{id:sect_ruyangwangfu,rank:4}`；`hard:[prereq]`。人物传承可用 `reqsOverride` 解除王府身份，不解除两门前置。
+- **reqs**：`attrs:{bre:60,wil:50}`；`aptitude:{apInner:45}`；`prereq:[{skill:sk_xuanmingxinfa,layer:7},{skill:sk_xuanming,layer:7}]`；`sect:{id:sect_ruyangwangfu,rank:4}`；`hard:[prereq]`。人物传承可用 `reqsOverride` 解除王府身份，不解除两门前置。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]`。
 - **内功**：`inner.contribution:{mpMaxPct:42,hpMaxPct:25,attrs:{con:6,wil:6,wis:3,str:3},mpRegen:3.0,stats:{resCold:10,resInjury:10}}`；`IP=42+25+2×(6+6+3+3)+5×3.0=118`；`meridians:[mer_zushaoyin,mer_yinqiao,mer_yinwei,mer_renmai]`；`breathProfileRef:txp_xuanminghanyuangong`；`innerGuard:{enabled:true,reflectBp:0}`。
 - **层数**：1 重玄冥吐纳｜3 重凝元｜5 重护寒｜**7 重第一绝招·寒壁守元**｜8 重双源同脉｜**9 重第二绝招·霜元归一**｜10 重寒元圆成。
 
@@ -332,7 +341,8 @@
 |---|---|
 | 基础字段 | `category:inner`；`subType:inner`；`grade:8`；`origin:expanded`；`sect:sect_kunlun`；`lineage: 昆仑两仪剑理`；`sourceChapters:[ch04_yitian]`；`nature:harmony`；`wOut/wIn:0/1`；`moveSlots:4` |
 | meridians / breathProfileRef | `[mer_chongmai,mer_daimai]` **【建议值】** / `txp_kunlunliangyixinfa` |
-| reqs | `attrs {con:42,wis:45,wil:40}`；`aptitude {apInner:45}`；`sect {id:sect_kunlun,rank:4}`；`prereq [{skill:sk_kunlunxinfa,layer:7},{skill:sk_yudafeihuajian,layer:5}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {bre:50,wil:40}`；`aptitude {apInner:35}`；`sect {id:sect_kunlun,rank:4}`；`prereq [{skill:sk_kunlunxinfa,layer:7},{skill:sk_yudafeihuajian,layer:5}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `{mpMaxPct:30,hpMaxPct:18,attrs:{agi:4,wis:5,wil:3},mpRegen:2.2}`；`IP=30+18+2×12+5×2.2=83`；`stats {parry:8,resCold:7}` 合计 15 |
 | 层数要点 | 1 重阴阳吐纳；3 重转仪；5 重守正；**7 重绝招两仪合一**；10 重六十四变 |
 | setTags / conflicts | `[]` / 只强化昆仑同门运劲，不把两人夹击改写成强制合击 |
@@ -361,7 +371,8 @@
 |---|---|
 | 基础字段 | `category:inner`；`subType:inner`；`grade:8`；`origin:expanded`；`sect:sect_kongtong`；`lineage: 崆峒五行养脏一系`；`sourceChapters:[ch04_yitian]`；`nature:yin`；`wOut/wIn:0/1`；`moveSlots:4` |
 | meridians / breathProfileRef | `[mer_renmai,mer_chongmai]` **【建议值】** / `txp_kongtongwuxingxinfa`；任脉投阴一票、冲脉不投票，故性质为阴 |
-| reqs | `attrs {con:46,wil:42,wis:40}`；`aptitude {apInner:45}`；`sect {id:sect_kongtong,rank:4}`；`prereq [{skill:sk_kongtongyangshenggong,layer:7},{skill:sk_qishangchujue,layer:6}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {bre:50,wil:45}`；`aptitude {apInner:35}`；`sect {id:sect_kongtong,rank:4}`；`prereq [{skill:sk_kongtongyangshenggong,layer:7},{skill:sk_qishangchujue,layer:6}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | inner.contribution | `{mpMaxPct:30,hpMaxPct:18,attrs:{con:6,wil:4,wis:2},mpRegen:2.2}`；`IP=30+18+2×12+5×2.2=83`；`stats {resInjury:10,tough:5}` 合计 15 |
 | 层数要点 | 1 重调和五脏；3 重养脏；5 重换劲；**7 重绝招五行固元**；10 重五行圆满 |
 | setTags / conflicts | `[]` / 只降低七伤训练风险，不免除 `design/05` §9.1.1 的主运与品阶条件；本任务不越权修改既有正式套装成员 |
@@ -390,7 +401,8 @@
 |---|---|
 | 基础字段 | `category:inner`；`subType:inner`；`grade:8`；`origin:expanded`；`sect:sect_huashan`；`lineage: 华山倚天支两仪刀理`；`sourceChapters:[ch04_yitian]`；`nature:yang`；`wOut/wIn:0/1`；`moveSlots:4` |
 | meridians / breathProfileRef | `[mer_dumai,mer_yangwei]` **【建议值】** / `txp_huashanliangyixinfa04`；督脉、阳维各投阳一票，故性质为阳 |
-| reqs | `attrs {con:43,str:42,wil:42}`；`aptitude {apInner:45}`；`sect {id:sect_huashan,rank:4}`；`prereq [{skill:sk_huashanxinfa04,layer:7},{skill:sk_liangyidaojia,layer:6}]`；`hard:[sect,prereq]` |
+| reqs | `attrs {bre:50,wil:40}`；`aptitude {apInner:35}`；`sect {id:sect_huashan,rank:4}`；`prereq [{skill:sk_huashanxinfa04,layer:7},{skill:sk_liangyidaojia,layer:6}]`；`hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `{mpMaxPct:30,hpMaxPct:18,attrs:{con:4,str:4,wil:4},mpRegen:2.2}`；`IP=30+18+2×12+5×2.2=83`；`stats {parry:8,resCC:7}` 合计 15 |
 | 层数要点 | 1 重抱元；3 重回转；5 重互易；**7 重绝招反正还元**；10 重两仪圆满 |
 | setTags / conflicts | `[]` / 仅限倚天时代分支；不向后世华山气宗、剑宗自动继承 |
@@ -512,6 +524,7 @@
 | `B04-V10` | 调息 | 7 门内功各有唯一 `txp_*`；`scope:3;ct:1000;mpCostBp:0;outOfBattleScaleBp:15000` | error |
 | `B04-V11` | 来源可达 | 门派武学均有正常门派 / 职级 / 秘籍 / 奇遇路径；个人旁支有默认玩家路径并在 §11.5 请求确认 | error |
 | `B04-V12` | 原著边界 | 原著无固定名称者标原创扩展或原创扩展命名；待核动作不写引文、回目号或伪招名 | error |
+| `B04-V13` | AR-27 门槛与修炼加成 | 12 门 `reqs.attrs` 符合 `design/05` §7.3.1；资质按 `5×grade−5`，复合武学保留双资质；`trainingAttrs` 仅 3/6/9 重、逐次合计 ≤4、单门合计 ≤12 | error |
 
 ### 10.2 最小测试向量
 

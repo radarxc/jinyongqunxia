@@ -1,7 +1,7 @@
 # 《侠客行》首领武学补录图鉴（`skills-bulu-06-xiake`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 武学图鉴补录册。本文只定义《侠客行》书界首领缺口所需的新增武学、学习关系与逐招数据；不改写 `skills-xiake-bixue` 已有定义。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14～16、`docs/00-canon.md` §3～§5、§9、§12、§16、§18、`docs/decisions/rulings-v1.md`、`design/05`、`design/15`、`design/21` v2.4、`chapters/06-xiake`。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14～16、AR-27、`docs/00-canon.md` §3～§5、§9、§12、§16、§18、`docs/decisions/rulings-v1.md`、`design/03` v2、`design/05`、`design/15`、`design/21` v2.4、`chapters/06-xiake`。
 > **引用而不重定义**：武学字段、层数、招式预算与内功贡献见 `design/05`；穴位注册见 `design/15`；路线、护体内劲、调息与外放见 `design/21`；Buff 见 `design/06`；门派职级见 `design/17`；任务来源与投放见 `chapters/06-xiake` §6～§9。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（原创扩展命名）**为人物、门派或技艺来源有据而名称未获原著逐字确认；**（待考）**须以三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。本文不编造引文、回目号或原著招名。
 > **覆盖声明**：本册补齐谢烟客、丁不四、白自在、张三、李四、龙岛主、木岛主的主运或外功缺口。雪山派、侠客岛与丁氏家传武学均可由主角及其他合资格人物按职级、家传认可或秘籍途径学习；只有谢烟客的个人传承另列取得条件。六门均与 `skills-xiake-bixue` 属同一《侠客行》体系。
@@ -85,7 +85,8 @@
 |---|---|
 | 来源归属 | `canonExpanded` / `sect:null` / 谢烟客个人传承 / `[ch06_xiake]`；与 `skills-xiake-bixue` §2 的控鹤功、摩天崖人物体系相同。谢烟客及摩天崖有原著依据，独立内功名、层次与招式名未见原著明载。 |
 | 性质 / 权重 / 栏位 | `harmony`；`wOut/wIn:0.15/0.85`；`moveSlots:4` |
-| reqs | `attrs:{con:35,wil:35}; aptitude:{apInner:30}; prereq:[{skill:sk_konghegong,layer:5}]; hard:[prereq]` |
+| reqs | `attrs:{bre:45,wil:35}; aptitude:{apInner:30}; prereq:[{skill:sk_konghegong,layer:5}]; hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `{mpMaxPct:26,hpMaxPct:16,attrs:{con:4,wil:4,wis:2},mpRegen:2.0}`；`IP=26+16+2×10+5×2.0=72`，恰等于地下预算；`stats:{effRes:8,resMind:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_renmai,mer_dumai,mer_chongmai]`；`breathProfileRef:txp_motianyunqi`；`innerGuard:{enabled:true,reflectBp:0}` |
 | 层数要点 | 1 重运息；4 重护崖；5 重催劲；7 重绝招震天护气；10 重崖上自如 |
@@ -107,7 +108,8 @@
 |---|---|
 | 来源归属 | `canonExpanded` / `sect:null` / 谢烟客个人传承 / `[ch06_xiake]`；与 `skills-xiake-bixue` §2 的谢烟客体系相同。谢烟客掌力表现须逐字核对**（待考）**；“摩天掌”及各招均为本作补名。 |
 | 性质 / 权重 / 栏位 | `harmony`；`wOut/wIn:0.60/0.40`；`moveSlots:4` |
-| reqs | `attrs:{str:35,wil:35}; aptitude:{apFist:30}; prereq:[{skill:sk_motianyunqi,layer:5}]; hard:[prereq]` |
+| reqs | `attrs:{str:45,bre:35}; aptitude:{apFist:30}; prereq:[{skill:sk_motianyunqi,layer:5}]; hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,bre:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{hit:[3,8],pierce:[2,7]}`，满层合计 `8+7=15`，不超过地阶上限 |
 | 经脉 | `meridians:[mer_dumai,mer_daimai,mer_yangqiao,mer_shoujueyin]`；路线由足底起势、腰背蓄力至掌心，只有绝招凌云掌明确离体 |
 | 层数要点 | 1 重试掌；3 重压掌；5 重回身；7 重绝招凌云掌；10 重摩天劲成 |
@@ -131,7 +133,8 @@
 |---|---|
 | 来源归属 | `expanded` / `sect:null` / 丁氏家传 / `[ch06_xiake]`；与 `skills-xiake-bixue` 的《侠客行》人物传承同属一册体系。丁氏人物与家族关系有原著依据，成套心法名和招式名未见明载。 |
 | 性质 / 权重 / 栏位 | `yin`；`wOut/wIn:0.20/0.80`；`moveSlots:4` |
-| reqs | `attrs:{con:35,wil:35}; aptitude:{apInner:30}; prereq:[{skill:sk_jianghutuna,layer:5}]; hard:[prereq]` |
+| reqs | `attrs:{bre:45,wil:35}; aptitude:{apInner:30}; prereq:[{skill:sk_jianghutuna,layer:5}]; hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | inner.contribution | `{mpMaxPct:26,hpMaxPct:16,attrs:{con:4,wil:3,agi:3},mpRegen:2.0}`；`IP=26+16+2×10+5×2.0=72`；`stats:{parry:8,resInjury:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_renmai,mer_chongmai,mer_daimai]`；`breathProfileRef:txp_dingshixinfa`；`innerGuard:{enabled:true,reflectBp:0}`；任脉投阴一票、冲带不投票，故性质为阴 |
 | 层数要点 | 1 重纳息；4 重护脉；5 重环掌；7 重绝招双环守脉；10 重回环自守 |
@@ -153,7 +156,8 @@
 |---|---|
 | 来源归属 | `expanded` / `sect:null` / 丁氏家传 / `[ch06_xiake]`；与上节同源。丁氏人物有追逐、捆缚等情节背景，独立“丁氏擒拿手”及招式层次均为本作归纳，不宣称是原著专名。 |
 | 性质 / 权重 / 栏位 | `neutral`；`wOut/wIn:0.55/0.45`；`moveSlots:4` |
-| reqs | `attrs:{str:35,agi:35}; aptitude:{apGrapple:30}; prereq:[{skill:sk_dingshixinfa,layer:5}]; hard:[prereq]` |
+| reqs | `attrs:{str:45,agi:35}; aptitude:{apGrapple:30}; prereq:[{skill:sk_dingshixinfa,layer:5}]; hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,agi:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{hit:[3,8],seal:[2,7]}`，满层合计 `8+7=15` |
 | 经脉 | `meridians:[mer_daimai,mer_chongmai,mer_shouyangming,mer_shoujueyin]`；三记近身拿法分别收于腕、肘、肩臂，绝招仍是接触型擒拿 |
 | 层数要点 | 1 重扣腕；3 重锁肘；5 重反关；7 重绝招回环锁脉；10 重擒纵随心 |
@@ -177,7 +181,8 @@
 |---|---|
 | 来源归属 | `expanded` / `sect_xiakedao` / 侠客岛公传 / `[ch06_xiake]`；与 `skills-xiake-bixue` §2 的岛上拳基、赏善罚恶手及侠客岛掌法同一门派体系。它是岛使和护法的常规内功，不等于石壁《太玄经》。 |
 | 性质 / 权重 / 栏位 | `harmony`；`wOut/wIn:0.10/0.90`；`moveSlots:4` |
-| reqs | `attrs:{con:40,wil:40}; aptitude:{apInner:35}; sect:{id:sect_xiakedao,rank:4}; prereq:[{skill:sk_xiakedaoshangshanshou,layer:6}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:50,wis:40}; aptitude:{apInner:35}; sect:{id:sect_xiakedao,rank:4}; prereq:[{skill:sk_xiakedaoshangshanshou,layer:6}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1,wis:1}},{layer:6,attrs:{bre:2,wis:1}},{layer:9,attrs:{bre:2,wis:1}}]` |
 | inner.contribution | `{mpMaxPct:30,hpMaxPct:18,attrs:{con:4,wil:4,wis:4},mpRegen:2.2}`；`IP=30+18+2×12+5×2.2=83`，恰等于地中预算；`stats:{effRes:8,resMind:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_renmai,mer_chongmai,mer_daimai,mer_dumai]`；`breathProfileRef:txp_xiakedaoqigong`；`innerGuard:{enabled:true,reflectBp:0}` |
 | 层数要点 | 1 重岛上吐纳；4 重周流；5 重承势推手；7 重绝招双令调息；10 重刚柔并济 |
@@ -203,7 +208,8 @@
 |---|---|
 | 来源归属 | `expanded` / `sect_xueshan` / 雪山派高阶公传 / `[ch06_xiake]`；与 `skills-xiake-bixue` §3 的凌霄吐纳、无妄神功和雪山剑法同一门派体系。原著无此武学名。 |
 | 性质 / 权重 / 栏位 | `yang`；`wOut/wIn:0.15/0.85`；`moveSlots:4` |
-| reqs | `attrs:{con:35,wil:35}; aptitude:{apInner:30}; sect:{id:sect_xueshan,rank:4}; prereq:[{skill:sk_wuwangshengong,layer:8}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:45,con:35}; aptitude:{apInner:30}; sect:{id:sect_xueshan,rank:4}; prereq:[{skill:sk_wuwangshengong,layer:8}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1,con:1}},{layer:6,attrs:{bre:2,con:1}},{layer:9,attrs:{bre:1}}]` |
 | inner.contribution | `{mpMaxPct:26,hpMaxPct:16,attrs:{str:3,con:4,wil:3},mpRegen:2.0}`；`IP=26+16+2×10+5×2.0=72`；`stats:{defOut:8,resInjury:7}`，合计 15 |
 | 经脉 / 调息 / 护体 | `meridians:[mer_dumai,mer_yangwei,mer_yangqiao]`；`breathProfileRef:txp_lingxiaozhenyuegong`；`innerGuard:{enabled:true,reflectBp:0}` |
 | 层数要点 | 1 重镇息；4 重雪岭护体；5 重运掌；7 重绝招镇岳守城；10 重凌霄不退 |
@@ -300,6 +306,7 @@
 | XK06-SK-T07 | 调息与护体 | 4 个 `txp_*` 均含离战 15000 bp；护体 III、反震 0 |
 | XK06-SK-T08 | 可习得性 | 门派 / 家传武学不绑定首领；谢烟客个人传承有独立取得条件 |
 | XK06-SK-T09 | 旧定义保护 | `sk_wuwangshengong` 仍为 6 玄上；不覆写 `skills-xiake-bixue` |
+| XK06-SK-T10 | AR-27 门槛与修炼加成 | 六门 `reqs.attrs` 符合 `design/05` §7.3.1；资质为地下 30、地中 35；`trainingAttrs` 仅 3/6/9 重、逐次合计 ≤4、单门合计 ≤12 |
 
 ## 12. 待决事项 / 依赖
 

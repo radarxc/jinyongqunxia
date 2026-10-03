@@ -2,7 +2,7 @@
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的《射雕英雄传》按书补录册；只定义本轮首领 / 精英缺口所需武学，并登记跨书界复用与来源扩展，不改写既有 11 册图鉴。
 > **覆盖声明**：本册覆盖九阴下卷邪练支、丐帮、铁掌帮、全真教与桃花岛；新增武学与 `skills-wujue` / `skills-daojia` 的对应体系共用前置。武学不是首领专属，主角及其他合资格人物均可循门派传授、秘籍或奇遇习得。
-> **上游**：作者决定与 `docs/decisions/author-requirements.md` AR-14～AR-16、`docs/00-canon.md`、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/15`、`design/17`、`design/21`、`design/chapters/02-shediao.md`。
+> **上游**：作者决定与 `docs/decisions/author-requirements.md` AR-14～AR-16、AR-27、`docs/00-canon.md`、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/03` v2、`design/05`、`design/15`、`design/17`、`design/21`、`design/chapters/02-shediao.md`。
 > **引用而不重定义**：字段、预算与习得规则见 `design/05`；穴位事实见 `design/15`；路线、调息、护体内劲、外放与首领主运见 `design/21`；组织与职级见 `design/17`；同体系既有武学见 `skills-wujue` / `skills-daojia`。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**须按三联 / 广州修订版逐字核对；**（待核实）**为尚未联网确认的技术事实；**（待实测）**为需实机回放；**【建议值】**为待唯一归属文档确认的数值。
 > **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
@@ -71,7 +71,8 @@
 | `nature · wOut/wIn · moveSlots` | `yang` · `0/1` · `5` |
 | `inner` | `contribution:{mpMaxPct:42,hpMaxPct:25,attrs:{str:6,con:6,wil:3,agi:3},mpRegen:3.0,stats:{defOut:10,resInjury:10}}`；`meridians:[mer_dumai,mer_shouyangming]`；`breathProfileRef:txp_tiezhangyunqigong`；`innerGuard:{enabled:true,reflectBp:0}` |
 | IP 核算 | `42+25+2×(6+6+3+3)+5×3.0=118`，精确命中天下预算；`stats=10+10=20` |
-| `reqs` | `attrs:{str:55,con:55,wil:45}`；`aptitude:{apInner:52}`；`prereq:[{skill:sk_tiezhangxinfa,layer:8},{skill:sk_tiezhang,layer:7}]`；`sect:{id:sect_tiezhangbang,rank:4}`；`hard:[sect,prereq]` |
+| `reqs` | `attrs:{bre:60,con:50,str:45}`；`aptitude:{apInner:45}`；`prereq:[{skill:sk_tiezhangxinfa,layer:8},{skill:sk_tiezhang,layer:7}]`；`sect:{id:sect_tiezhangbang,rank:4}`；`hard:[sect,prereq]` |
+| `trainingAttrs` | `[{layer:3,attrs:{bre:1,str:1}},{layer:6,attrs:{bre:2,str:1}},{layer:9,attrs:{bre:2,con:1}}]` |
 | `layers` | 1 铁掌吐纳；3 运掌凝劲；5 凝息稳臂；7 绝招·连臂归气；9 绝招·守峰定息；10 铁掌运气圆成 |
 | `setTags / conflicts` | `[] / []` |
 | `special / observable` | `{fusible:true}` / `true`；观摩至 6 重，不设 `enemyOnly` |
@@ -99,7 +100,8 @@
 - **出处与边界**：原著有黄药师精通多门绝学、以内力驱动碧海潮生曲等表现，但未见“桃花归元诀”这一固定内功名。名称、招式、机制与数值均为**（原创扩展）**；不把黄药师的具体内功口诀写成原著事实。
 - **字段**：`category:inner` · `subType:xinfa` · `grade:11` · `origin:expanded` · `sect:sect_taohuadao` · `lineage:桃花岛归元内功` · `sourceChapters:[ch02_shediao,ch03_shendiao]` · `nature:yin` · `wOut/wIn:0/1` · `moveSlots:5` · `observable:false` · `special:{fusible:true}`。
 - **跨时代来源**：武学绝对品阶固定 11。射雕来源为 `partial:true,sourceGrade:10,lineageGrade:10,maxLayer:9`，黄药师据此使用 `10/9/yin`；神雕来源完成校合，按完整 11 品使用 `11/9/yin`。这是一门内功随时代补全，不生成两个近义 `sk_*`。
-- **reqs**：`attrs:{wis:60,wil:55,con:50}`；`aptitude:{apInner:58}`；`prereq:[{skill:sk_bitaoxuangong,layer:8}]`；`sect:{id:sect_taohuadao,rank:4}`；`hard:[sect,prereq]`。
+- **reqs**：`attrs:{bre:70,wis:55,wil:50}`；`aptitude:{apInner:50}`；`prereq:[{skill:sk_bitaoxuangong,layer:8}]`；`sect:{id:sect_taohuadao,rank:4}`；`hard:[sect,prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1,wis:1}},{layer:6,attrs:{bre:2,wis:1}},{layer:9,attrs:{bre:2,wis:1}}]`。
 - **内功**：`inner.meridians:[mer_yinwei,mer_chongmai,mer_renmai,mer_dumai]`；`inner.breathProfileRef:txp_taohuaguiyuanjue`；`inner.innerGuard:{enabled:true,reflectBp:0}`。阴维 / 冲脉承潮，任督归元护体，均为**（原创扩展）**配路；按 AR-18 计票为阴 2、阳 1，故性质为阴。
 - **内功贡献**：`{mpMaxPct:48,hpMaxPct:29,attrs:{wis:7,wil:7,con:7},mpRegen:3.3,stats:{resMind:10,resSeal:10}}`；`IP=48+29+2×(7+7+7)+5×3.3=135.5`，精确命中天中预算。
 - **层数**：1 重听潮定气｜3 重潮息往复｜5 重潮回护体｜**7 重第一绝招·碧回归一**｜8 重五行归流｜**9 重第二绝招·观潮归元**｜10 重归元大成。
@@ -139,7 +141,8 @@
 | `nature · wOut/wIn · moveSlots` | `harmony` · `0/1` · `4` |
 | `inner` | `contribution:{mpMaxPct:34,hpMaxPct:20,attrs:{con:4,wil:5,wis:3,agi:2},mpRegen:2.5,stats:{resSeal:8,resMind:7}}`；`meridians:[mer_renmai,mer_dumai]`；`breathProfileRef:txp_quanzhenzhoutiangong`；`innerGuard:{enabled:true,reflectBp:0}`；按 AR-18 任、督各一票，性质取调和 |
 | IP 核算 | `34+20+2×(4+5+3+2)+5×2.5=94.5`，精确命中地上预算；`stats=8+7=15` |
-| `reqs` | `attrs:{wil:50,wis:45,con:45}`；`aptitude:{apInner:48}`；`prereq:[{skill:sk_quanzhenxinfa,layer:8},{skill:sk_jinguanyusuo,layer:6}]`；`sect:{id:sect_quanzhen,rank:4}`；`hard:[sect,prereq]` |
+| `reqs` | `attrs:{bre:55,wil:45}`；`aptitude:{apInner:40}`；`prereq:[{skill:sk_quanzhenxinfa,layer:8},{skill:sk_jinguanyusuo,layer:6}]`；`sect:{id:sect_quanzhen,rank:4}`；`hard:[sect,prereq]` |
+| `trainingAttrs` | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | `layers` | 1 守一；3 守一调息；5 任督相接；7 绝招·三元归一；9 绝招·七星守宫；10 周流圆成 |
 | `setTags / conflicts` | `[] / []`；本功不擅自加入既有北斗套装成员表 |
 | `special / observable` | `{fusible:true}` / `true`；观摩至 6 重，不设 `enemyOnly` |
@@ -177,7 +180,8 @@
 | `nature · wOut/wIn · moveSlots` | `yang` · `0/1` · `4`；阳性只表示本作“逆意强催、横练护体”的战斗性质，不声称原著如此分类 |
 | `inner` | `contribution:{mpMaxPct:34,hpMaxPct:20,attrs:{con:5,str:4,agi:3,wil:2},mpRegen:2.5,stats:{tough:8,resInjury:7}}`；`meridians:[mer_dumai,mer_yangqiao]`；`breathProfileRef:txp_jiuyinxieliangong`；`innerGuard:{enabled:true,reflectBp:0}` |
 | IP 核算 | `34+20+2×(5+4+3+2)+5×2.5=94.5`，精确命中地上预算；`stats=8+7=15`，不越地阶上限 |
-| `reqs` | `attrs:{con:45,str:40,wil:40}`；`aptitude:{apInner:45}`；`prereq:[{skill:sk_tongshihenglian,layer:6},{skill:sk_jiuyinbaigu,layer:5}]`；`hard:[prereq]` |
+| `reqs` | `attrs:{bre:55,wil:50}`；`aptitude:{apInner:40}`；`prereq:[{skill:sk_tongshihenglian,layer:6},{skill:sk_jiuyinbaigu,layer:5}]`；`hard:[prereq]` |
+| `trainingAttrs` | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | `layers` | 1 逆意行气；3 逆运敛息；5 强催；7 绝招·催脉护身；9 绝招·回真敛息；10 邪练圆成 |
 | `setTags / conflicts` | `[] / []`；既有黑风双煞套装仅是候选，未进入正式注册表 |
 | `special / observable` | `{fusible:false,evilTraining:true}` / `true`；观摩仅至 6 重，不因首领使用而设 `enemyOnly` |
@@ -209,7 +213,8 @@
 | `nature · wOut/wIn · moveSlots` | `yang` · `0/1` · `4` |
 | `inner` | `contribution:{mpMaxPct:26,hpMaxPct:16,attrs:{con:4,str:3,wil:3},mpRegen:2.0,stats:{resCC:8,tough:7}}`；`meridians:[mer_dumai,mer_chongmai]`；`breathProfileRef:txp_gaibangjuyigong`；`innerGuard:{enabled:true,reflectBp:0}` |
 | IP 核算 | `26+16+2×(4+3+3)+5×2.0=72`，精确命中地下预算；`stats=8+7=15` |
-| `reqs` | `attrs:{con:40,wil:35}`；`aptitude:{apInner:40}`；`prereq:[{skill:sk_jiudaixingong,layer:7}]`；`sect:{id:sect_gaibang,rank:4,bagCount:7}`；`hard:[sect,prereq]` |
+| `reqs` | `attrs:{bre:45,con:40}`；`aptitude:{apInner:30}`；`prereq:[{skill:sk_jiudaixingong,layer:7}]`；`sect:{id:sect_gaibang,rank:4,bagCount:7}`；`hard:[sect,prereq]` |
+| `trainingAttrs` | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | `layers` | 1 聚息；3 结义守中；5 众志；7 绝招·同袍聚气；10 聚义圆成 |
 | `setTags / conflicts` | `[] / []` |
 | `special / observable` | `{fusible:true}` / `true`；观摩至 6 重，不设 `enemyOnly` |
@@ -329,6 +334,7 @@
 | SB02-V07 | 外放 | 18 招外放数为 0；无 `projectionSpreadSteps` |
 | SB02-V08 | 习得 | 五门均有门派 / 秘籍 / 奇遇路径；无首领专属与敌人专用 |
 | SB02-V09 | 跨书界 | 桃花 / 铁掌 / 全真新功含 `ch03_shendiao`；桃花射雕为10品残承、神雕为完整11品；既有 `sk_tiezhang` 来源扩展已在五绝册落实 |
+| SB02-V10 | AR-27 门槛与修炼加成 | 五门 `reqs.attrs` 符合 `design/05` §7.3.1；资质为 `5×grade−5`；`trainingAttrs` 仅 3/6/9 重、逐次合计 ≤4、单门合计 ≤12 |
 
 最小测试：构建黄药师（射雕 / 神雕）、裘千仞、陈玄风、梅超风、君山阵首、裘千尺与重阳七星阵首；验证主运取自实际武学，绝招只按 `MoveDef.ultimate` 识别，调息不推进永久经脉；对九记绝招做固定 RNG 路线回放，并运行 `check_route_unique_for.py`。
 

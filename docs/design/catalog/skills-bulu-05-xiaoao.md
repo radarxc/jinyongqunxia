@@ -2,7 +2,7 @@
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的按书补录册；本文只定义书界 05 首领画像缺少、且既有 11 册门派图鉴无法复用的武学、招式、路线与调息档案。
 > **覆盖声明**：不改写 `skills-wuyue.md`；八门补录分别归入该册既有的华山、嵩山、日月神教与青城体系。主角及其他合格人物可按门派职级、传授、秘籍或奇遇习得；仅个人独门另列条件。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-15、`docs/00-canon.md` §3–§5/§9/§12–§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/15`、`design/17`、`design/21`。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-15/27、`docs/00-canon.md` §3–§5/§9/§12–§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/03` v2、`design/05`、`design/15`、`design/17`、`design/21`。
 > **引用而不重定义**：品阶、招式预算与 `MoveDef` 见 `design/05`；Buff 见 `design/06`；门派边界见 `design/17`；穴位、路线、护体内劲、外放与调息见 `design/15`、`design/21`。
 > **标注约定**：**（原创扩展）**为原著没有的武学或机制；**（原创扩展命名）**为原著有人物或动作依据、但名称非原著定名；**（待考）**须按三联 / 广州修订版逐字核对；**【建议值】**为待唯一归属文档确认的数值。
 > **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
@@ -93,7 +93,8 @@
 
 - **出处与边界**：原著有华山气宗与紫霞神功，但未见“华山紫气诀”作为独立成套武学。名称、招式、机制与数值均为**（原创扩展）**；它是 `sk_zixiashengong` 之上的掌门级行功，不改写紫霞神功自身品阶。
 - **字段**：`category:inner` · `subType:inner` · `grade:10` · `origin:expanded` · `sect:sect_huashan` · `branch:qizong` · `lineage:华山气宗·紫霞进阶` · `sourceChapters:[ch05_xiaoao]` · `nature:yang` · `wOut/wIn:0/1` · `moveSlots:5` · `special:{fusible:true}` · `observable:false`。
-- **reqs**：`attrs:{con:55,wil:55,wis:48}`；`aptitude:{apInner:55}`；`prereq:[{skill:sk_zixiashengong,layer:9}]`；`sect:{id:sect_huashan,branch:qizong,rank:5}`；`hard:[sect,prereq]`。
+- **reqs**：`attrs:{bre:60,wil:50}`；`aptitude:{apInner:45}`；`prereq:[{skill:sk_zixiashengong,layer:9}]`；`sect:{id:sect_huashan,branch:qizong,rank:5}`；`hard:[sect,prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - **内功**：`inner.contribution:{mpMaxPct:42,hpMaxPct:25,attrs:{con:6,wil:6,wis:3,str:3},mpRegen:3.0,stats:{resInjury:10,parry:10}}`；`IP=42+25+2×(6+6+3+3)+5×3.0=118`；`meridians:[mer_renmai,mer_dumai,mer_yangwei]`；`breathProfileRef:txp_huashanziqijue`；`innerGuard:{enabled:true,reflectBp:0}`。
 - **层数**：1 重紫气吐纳｜3 重运气随剑｜5 重紫气护体｜**7 重第一绝招·迎峰守一**｜8 重气剑相济｜**9 重第二绝招·紫气归元**｜10 重紫气圆成。
 
@@ -129,7 +130,8 @@
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yang` · `0.25/0.75` · 5 |
 | meridians / breathProfileRef | `[mer_chongmai,mer_daimai,mer_dumai]` / `txp_jianzongxingqi`；冲、带不投票，督脉投阳一票，故性质为阳 |
-| reqs | `attrs:{agi:40,wil:35}; aptitude:{apInner:35}; sect:{id:sect_huashan,rank:4}; prereq:[{skill:sk_kuangfengkuaijian,layer:7}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:50,agi:40}; aptitude:{apInner:35}; sect:{id:sect_huashan,rank:4}; prereq:[{skill:sk_kuangfengkuaijian,layer:7}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2,agi:1}},{layer:9,attrs:{bre:1}}]` |
 | inner.contribution | `{mpMaxPct:30,hpMaxPct:18,attrs:{agi:5,wil:4,con:3},mpRegen:2.2}`；`IP=30+18+2×(5+4+3)+5×2.2=83` |
 | inner.stats / layerStats | `{hit:8,parry:7}`，合计 15 / —（内功不用 `layerStats`） |
 | 层数要点 | 1 重提气；3 重随剑；5 重催锋；6 重换气；**7 重绝招行气驭剑**；10 重气剑相承 |
@@ -165,7 +167,8 @@
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yang` · `0.15/0.85` · 5 |
 | meridians / breathProfileRef | `[mer_dumai,mer_yangwei]` / `txp_songshanzhenqi` |
-| reqs | `attrs:{con:40,str:35}; aptitude:{apInner:35}; sect:{id:sect_songshan,rank:4}; prereq:[{skill:sk_songyangxinfa,layer:7}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:50,con:40}; aptitude:{apInner:35}; sect:{id:sect_songshan,rank:4}; prereq:[{skill:sk_songyangxinfa,layer:7}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2,con:1}},{layer:9,attrs:{bre:1}}]` |
 | inner.contribution | `{mpMaxPct:30,hpMaxPct:18,attrs:{con:5,str:4,wil:3},mpRegen:2.2}`；`IP=30+18+2×(5+4+3)+5×2.2=83` |
 | inner.stats / layerStats | `{defOut:8,resCold:7}`，合计 15 / —（内功不用 `layerStats`） |
 | 层数要点 | 1 重运气；3 重立岳；5 重护岳；6 重解寒；**7 重绝招嵩岳镇气**；10 重真气圆成 |
@@ -198,7 +201,8 @@
 | origin / sect / lineage | `expanded` / `sect_songshan` / 嵩山公传；与 `skills-wuyue.md` 嵩山体系同门 |
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yang` · `0.70/0.30` · 5 |
-| reqs | `attrs:{str:40,con:35}; aptitude:{apFist:35}; sect:{id:sect_songshan,rank:4}; prereq:[{skill:sk_dayinyangshou,layer:6}]; hard:[sect,prereq]` |
+| reqs | `attrs:{str:50,con:40}; aptitude:{apFist:35}; sect:{id:sect_songshan,rank:4}; prereq:[{skill:sk_dayinyangshou,layer:6}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,con:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{hit:[3,8],pierce:[2,7]}`，合计 15 |
 | 层数要点 | 1 重开门；3 重合岳；5 重推阵；6 重守岳；**7 重绝招压阵**；10 重开合圆成 |
 | setTags / conflicts | `[]` / 无 |
@@ -233,7 +237,8 @@
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.15/0.85` · 5 |
 | meridians / breathProfileRef | `[mer_renmai,mer_yinwei,mer_zujueyin]` / `txp_qingchengyunqi` |
-| reqs | `attrs:{con:40,agi:35}; aptitude:{apInner:35}; sect:{id:sect_qingcheng,rank:4}; prereq:[{skill:sk_qingchengxinfa,layer:7}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:50,agi:40}; aptitude:{apInner:35}; sect:{id:sect_qingcheng,rank:4}; prereq:[{skill:sk_qingchengxinfa,layer:7}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2,agi:1}},{layer:9,attrs:{bre:1}}]` |
 | inner.contribution | `{mpMaxPct:30,hpMaxPct:18,attrs:{con:5,agi:4,wil:3},mpRegen:2.2}`；`IP=30+18+2×(5+4+3)+5×2.2=83` |
 | inner.stats / layerStats | `{eva:8,effRes:7}`，合计 15 / —（内功不用 `layerStats`） |
 | 层数要点 | 1 重运息；3 重藏劲；5 重护气；6 重掌助；**7 重绝招摧心运气**；10 重青城圆成 |
@@ -269,7 +274,8 @@
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.15/0.85` · 5 |
 | meridians / breathProfileRef | `[mer_chongmai,mer_daimai,mer_yinwei]` / `txp_heimuxuangong` |
-| reqs | `attrs:{con:40,wil:35}; aptitude:{apInner:35}; sect:{id:sect_riyue,rank:4}; prereq:[{skill:sk_riyuexinfa,layer:7}]; hard:[sect,prereq]` |
+| reqs | `attrs:{bre:50,wil:40}; aptitude:{apInner:35}; sect:{id:sect_riyue,rank:4}; prereq:[{skill:sk_riyuexinfa,layer:7}]; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]` |
 | inner.contribution | `{mpMaxPct:30,hpMaxPct:18,attrs:{con:5,wil:4,wis:3},mpRegen:2.2}`；`IP=30+18+2×(5+4+3)+5×2.2=83` |
 | inner.stats / layerStats | `{effRes:8,resMind:7}`，合计 15 / —（内功不用 `layerStats`） |
 | 层数要点 | 1 重玄息；3 重镇坛；5 重护身；6 重定心；**7 重绝招守崖玄气**；10 重黑木圆成 |
@@ -302,7 +308,8 @@
 | origin / sect / lineage | `expanded` / `sect_riyue` / 任我行个人传承；与 `skills-wuyue.md` 日月神教体系同源，但不是门派公传 |
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.45/0.55` · 6 |
-| reqs | `attrs:{str:45,wil:45}; aptitude:{apFist:40}; prereq:[{skill:sk_xixing,layer:7}]; hard:[prereq]` |
+| reqs | `attrs:{str:55,con:45}; aptitude:{apFist:40}; prereq:[{skill:sk_xixing,layer:7}]; hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,con:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `{hit:[3,8],pierce:[2,7]}`，合计 15 |
 | 层数要点 | 1 重直取；3 重回震；5 重破阵；6 重收纳；**7 重绝招震壁雄掌**；**9 重绝招吞纳回劲**；10 重雄掌大成 |
 | setTags / conflicts | `[]` / 吸内仍受 `sk_xixing` 的异种真气规则，不另开第二套吸星状态 |
@@ -335,7 +342,8 @@
 | origin / sect / lineage | `canonExpanded` / `sect_riyue` / 葵花传承针术；与 `skills-wuyue.md` 日月神教、`sk_kuihua` 同源 |
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.65/0.35` · 6 |
-| reqs | `attrs:{agi:50,wil:45}; aptitude:{apHidden:45}; prereq:[{skill:sk_kuihua,layer:7}]; hard:[prereq]`；装备针类暗器 |
+| reqs | `attrs:{agi:55,wis:45}; aptitude:{apHidden:40}; prereq:[{skill:sk_kuihua,layer:7}]; hard:[prereq]`；装备针类暗器 |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2,wis:1}},{layer:9,attrs:{agi:1}}]` |
 | layerStats | `{hit:[3,8],pierce:[2,7]}`，合计 15 |
 | 层数要点 | 1 重逐影；3 重连缀；5 重回身；6 重索隙；**7 重绝招夺命绣针**；**9 重绝招无影针雨**；10 重针意通神 |
 | setTags / conflicts | `[]` / 不与 `sk_kuihua` 的“以针代剑”重复给倍率；实体绣花针不算真气外放 |
@@ -439,6 +447,7 @@ repair = floor((120 + 24×8 + 18×10) × natureBp / 10000)
 5. 华山紫气诀 `IP=118`；四门 8 品内功各 `IP=83`；五门各绑定唯一调息档案并显式含 `outOfBattleScaleBp:15000`。
 6. 42 招均须显式 `projection:false` 且省略 `projectionSpreadSteps`；若以后把任一招改为外放，必须另过手部端点白名单与扩散模拟。
 7. 公传武学必须保留门派职级或秘籍途径，使主角及其他合格人物可学；个人传承不得降格为击败首领必掉。
+8. 八门 `reqs.attrs` 须符合 `design/05` §7.3.1，资质按 `5×grade−5`；`trainingAttrs` 只允许 3/6/9 重，逐次合计 ≤4、单门合计 ≤12。
 
 ### 10.2 验收用例
 

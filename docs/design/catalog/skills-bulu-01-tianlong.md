@@ -1,7 +1,7 @@
 # 武学补录图鉴 · 书界 01《天龙八部》首领主运（`skills-bulu-01-tianlong`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 武学图鉴的书界 01 补录册。本文只定义 NB4a 后确认缺失的三门门派 / 传承内功、招式、被动、经脉路线、调息档案与学习来源。
-> **上游**：`docs/decisions/author-requirements.md` AR-14/15/16、`docs/00-canon.md` §3–§5/§9/§12/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/15`、`design/21`。
+> **上游**：`docs/decisions/author-requirements.md` AR-14/15/16/27、`docs/00-canon.md` §3–§5/§9/§12/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/03` v2、`design/05`、`design/15`、`design/21`。
 > **引用而不重定义**：武学字段、IP、招式预算与外放字段见 `design/05`；Buff 见 `design/06`；经脉 / 穴位见 `design/15`；路线、调息、护体内劲及 Boss 地位下限见 `design/21`；门派与职级见 `design/17`；既有大理 / 丐帮武学见 `skills-wujue.md`，既有逍遥 / 灵鹫武学见 `skills-xiaoyao.md`。
 > **覆盖声明**：本文不覆写现有十一册图鉴；同门既有条目继续由原册唯一拥有。三门补录均可由玩家与其他合格人物按门派、师承或图谱正常习得，不是 `enemyOnly` 或首领私有武学。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**为须按三联 / 广州修订版核对的小说事实；**【建议值】**为待归属文档确认的数值。
@@ -69,7 +69,8 @@
 - **出处与边界**：原著有大理段氏一阳指与段氏家传武学；未见“一阳诀”作为独立成套内功之名，名称、招式及机制均为**（原创扩展）**。段延庆所学具体行功层次仍**（待考）**；本卡只据同族传承补一门玩家可学的段氏进阶内功，不把它写成段延庆独门。
 - **字段**：`category:inner` · `subType:inner` · `grade:11` · `origin:expanded` · `sect:sect_dali` · `lineage:大理段氏一阳指传承` · `sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]` · `canonRef:null` · `nature:harmony` · `wOut/wIn:0/1` · `moveSlots:5` · `observable:false` · `special:{fusible:true}` · `description:以段氏一阳指传承为根的调和行功，不是段延庆私有武学`。
 - **图鉴体系**：与 `skills-wujue.md` §5 的大理段氏 / 天龙寺条目属于同一门派体系；该册仍唯一拥有既有段氏武学，本文只拥有本卡。
-- **reqs**：`attrs {con:55,wis:55,wil:50}`、`aptitude {apInner:55}`、`prereq [{skill:sk_duanshiyangshenggong,layer:6},{skill:sk_yiyangzhi,layer:5}]`、`sect {id:sect_dali,rank:4}`；`hard:[sect,prereq]`。
+- **reqs**：`attrs {bre:65,wil:50,wis:50}`、`aptitude {apInner:50}`、`prereq [{skill:sk_duanshiyangshenggong,layer:6},{skill:sk_yiyangzhi,layer:5}]`、`sect {id:sect_dali,rank:4}`；`hard:[sect,prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wil:1}},{layer:9,attrs:{bre:1,wil:1}}]`。
 - **内功**：`inner.meridians:[mer_chongmai,mer_renmai,mer_dumai]`；`inner.breathProfileRef:txp_duanshiyangjue`；`inner.innerGuard:{enabled:true,reflectBp:0}`。冲脉负责调和承接，任脉蓄气、督脉护体；三脉关系及路线是**（原创扩展）**配表。
 - **内功贡献**：`{mpMaxPct:48,hpMaxPct:29,attrs:{con:7,wis:7,wil:7},mpRegen:3.3,stats:{resInjury:10,resSeal:10}}`；`IP=48+29+2×(7+7+7)+5×3.3=135.5`，精确命中天中预算。
 - **层数**：1 重一阳养气、段氏心源｜3 重护脉｜5 重关元回息｜**7 重第一绝招·一阳归元**｜8 重阴阳承接｜**9 重第二绝招·任督周流**｜10 重一阳圆融。
@@ -100,7 +101,8 @@
 - **出处与边界**：萧峰以内力催动降龙十八掌、掌力刚猛是原著人物与武学表现；未见“降龙行功”作为独立成套内功名，名称、招式及机制均为**（原创扩展）**。本卡补的是丐帮帮主级传承，不宣称原著另有一部秘籍，也不限定萧峰一人可用。
 - **字段**：`category:inner` · `subType:inner` · `grade:12` · `origin:expanded` · `sect:sect_gaibang` · `lineage:丐帮掌法行功 → 帮主传承` · `sourceChapters:[ch01_tianlong,ch02_shediao,ch03_shendiao]` · `canonRef:null` · `nature:yang` · `wOut/wIn:0/1` · `moveSlots:5` · `observable:false` · `special:{fusible:true}` · `description:以丐帮降龙掌法为前置的帮主级行功，不是萧峰私有武学`。
 - **图鉴体系**：与 `skills-wujue.md` §2 的丐帮条目属于同一门派体系；该册仍唯一拥有既有丐帮武学，本文只拥有本卡。
-- **reqs**：`attrs {str:60,con:60,wil:55}`、`aptitude {apInner:60}`、`prereq [{skill:sk_jiudaixingong,layer:6},{skill:sk_xianglong18,layer:7}]`、`sect {id:sect_gaibang,rank:5,bagCount:9}`；`hard:[sect,prereq]`。非帮主师承可用来源 `reqsOverride` 解除职级，但不解除两门前置。
+- **reqs**：`attrs {bre:70,con:55,str:55}`、`aptitude {apInner:55}`、`prereq [{skill:sk_jiudaixingong,layer:6},{skill:sk_xianglong18,layer:7}]`、`sect {id:sect_gaibang,rank:5,bagCount:9}`；`hard:[sect,prereq]`。非帮主师承可用来源 `reqsOverride` 解除职级，但不解除两门前置。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1,str:1}},{layer:6,attrs:{bre:2,str:1}},{layer:9,attrs:{bre:2,con:1}}]`。
 - **内功**：`inner.meridians:[mer_dumai,mer_chongmai]`；`inner.breathProfileRef:txp_xianglongxinggong`；`inner.innerGuard:{enabled:true,reflectBp:0}`。督脉蓄刚、冲脉承接为丐帮门派核心；任脉只在护体 / 回元路线作阳性跨脉，换脉点提高风险。
 - **内功贡献**：`{mpMaxPct:56,hpMaxPct:34,attrs:{str:8,con:8,wil:8},mpRegen:3.6,stats:{tough:10,resCC:10}}`；`IP=56+34+2×(8+8+8)+5×3.6=156`，精确命中天上预算。
 - **层数**：1 重降龙蓄势、刚气护身｜4 重掌息相随｜6 重刚柔换脉｜**7 重第一绝招·洪炉护元**｜8 重气贯掌心｜**9 重第二绝招·贯脉成掌**｜**10 重第三绝招·天行不息**、行功大成。
@@ -131,7 +133,8 @@
 - **出处与边界**：原著有天山六阳掌、八荒六合唯我独尊功及童姥 / 虚竹传承；未见“天山六阳心法”作为独立成套内功名，名称、招式与机制均为**（原创扩展）**。它是六阳掌的进阶行功配套，不取代原著已有的 `sk_bahuang`，也不做童姥个人私有功夫。
 - **字段**：`category:inner` · `subType:inner` · `grade:11` · `origin:expanded` · `sect:sect_lingjiu` · `lineage:逍遥派 → 灵鹫宫六阳掌传承` · `sourceChapters:[ch01_tianlong]` · `canonRef:null` · `nature:yang` · `wOut/wIn:0/1` · `moveSlots:5` · `observable:false` · `special:{fusible:true}` · `description:配合天山六阳掌的进阶行功，不是童姥私有武学`。
 - **图鉴体系**：与 `skills-xiaoyao.md` §2–§3 的逍遥派 / 灵鹫宫条目属于同一门派体系；该册仍唯一拥有既有逍遥、灵鹫武学，本文只拥有本卡。
-- **reqs**：`attrs {con:55,wis:55,wil:50}`、`aptitude {apInner:55}`、`prereq [{skill:sk_lingjiuxinfa,layer:6},{skill:sk_liuyangzhang,layer:7}]`、`sect {id:sect_lingjiu,rank:4}`；`hard:[sect,prereq]`。逍遥嫡传与石壁途径由 `reqsOverride` 分流。
+- **reqs**：`attrs {bre:70,wis:55}`、`aptitude {apInner:50}`、`prereq [{skill:sk_lingjiuxinfa,layer:6},{skill:sk_liuyangzhang,layer:7}]`、`sect {id:sect_lingjiu,rank:4}`；`hard:[sect,prereq]`。逍遥嫡传与石壁途径由 `reqsOverride` 分流。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1,wis:1}},{layer:6,attrs:{bre:2,wis:1}},{layer:9,attrs:{bre:2,wis:1}}]`。
 - **内功**：`inner.meridians:[mer_chongmai,mer_daimai,mer_dumai]`；`inner.breathProfileRef:txp_tianshanliuyangxinfa`；`inner.innerGuard:{enabled:true,reflectBp:0}`。冲、带二脉承接逍遥横向转换，阳性护体接督脉。
 - **内功贡献**：`{mpMaxPct:48,hpMaxPct:29,attrs:{con:7,wis:7,wil:7},mpRegen:3.3,stats:{resCold:10,resCC:10}}`；`IP=48+29+2×(7+7+7)+5×3.3=135.5`，精确命中天中预算。
 - **层数**：1 重六阳吐纳｜3 重换息｜5 重六阳护体｜**7 重第一绝招·六合脉**｜8 重阳息流转｜**9 重第二绝招·六阳归元**｜10 重六阳大成。
@@ -213,6 +216,7 @@
 | TL-BL-V08 | 外放 | 15 招全部显式 `projection:false`，无 `projectionSpreadSteps`；外放候选数为 0 | error |
 | TL-BL-V09 | 可习得性 | 三门均至少有一条非首领专用的门派 / 师承 / 图谱来源；不存在 `enemyOnly` | error |
 | TL-BL-V10 | 章节配装 | `npc_duanyanqing` / `npc_xiaofeng` / `npc_tonglao` 主运分别引用三门补录，七参及轮数不因同品阶替换而改变 | error |
+| TL-BL-V11 | AR-27 门槛与修炼加成 | 三门 `reqs.attrs` 符合 `design/05` §7.3.1；资质为 `5×grade−5` 或其允许偏移；`trainingAttrs` 仅 3/6/9 重、逐次合计 ≤4、单门合计 ≤12 | error |
 
 ## 待决事项 / 依赖
 
