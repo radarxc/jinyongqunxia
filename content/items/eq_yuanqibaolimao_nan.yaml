@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/yuanqibaolimao_nan
 text:
-  desc: 名录投影：头饰·笠帽；grade=7; slot=head; wearer=male; resMindPp=3。外观：男款朱红钹笠帽独立陈列，不画人头，宽圆笠檐、低尖顶、鎏金宝顶与细珠缘，毛毡挺括无字，元代蒙古贵族尺度
-  short: 元七宝钹笠帽·男
+  desc: 外观：男款朱红钹笠帽独立陈列，不画人头。 待运行时投影：resMindPp=3; wearer=male。
 extension:
   type: equipment
   value:

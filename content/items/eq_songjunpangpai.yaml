@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_songjunpangpai
+name: 宋军旁牌
+kind: weapon
+sub: exotic
+grade: 3
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·宋；天龙起军阵节点可得（《武经总要》牌类参照）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songjunpangpai
+text:
+  desc: 外观：及胸高长方木牌略向外弧，藤革包边、背面横木握把与皮带闭合。 待运行时投影：exoticKind=misc。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

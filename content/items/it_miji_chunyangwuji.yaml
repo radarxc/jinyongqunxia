@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_chunyangwuji
+name: 纯阳无极功抄本
+kind: manual
+sub: copy
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_chunyangwuji
+text:
+  desc: 外观：元代靛青包背册，白麻护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_chunyangwuji
+    maxLayer: 8
+    variant: copy
+    readMul: 1

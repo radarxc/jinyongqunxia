@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_huodui_kaozhangji
+name: 火堆烤獐麂
+kind: dish
+sub: dish
+grade: 3
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《鸳鸯刀》·洞前群豪围火烤獐子、麂子 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: meal
+    params:
+      value: bf_wenzhong:1battle
+assets:
+  icon: item/huodui_kaozhangji
+text:
+  desc: 外观：焦褐獐肉与麂肉厚片置宽木盘，火烤痕清楚。
+extension:
+  type: generic
+  value: {}

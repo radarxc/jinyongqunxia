@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/longlinpijian
 text:
-  desc: 名录投影：护肩·宝肩；grade=10; slot=shoulder; catalogTian=true; divine=false; unique=true; price=null; defOutPct=5%; resCCPp=5。外观：深青金属鳞片双肩甲，鎏金只作窄边，不画龙首 （原创扩展）
-  short: 龙鳞护肩
+  desc: 外观：深青金属鳞片双肩甲，鎏金只作窄边。 待运行时投影：defOutPct=5%; resCCPp=5。
 extension:
   type: equipment
   value:

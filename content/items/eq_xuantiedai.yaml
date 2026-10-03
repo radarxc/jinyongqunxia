@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/xuantiedai
 text:
-  desc: 名录投影：腰带·金属；grade=9; slot=waist; defOutPct=4%; resCCPp=4。外观：乌铁节片串成宽护腰，深红皮衬，沉稳不带尖刺 （原创扩展）
-  short: 玄铁护腰
+  desc: 外观：乌铁节片串成宽护腰，深红皮衬。 待运行时投影：defOutPct=4%; resCCPp=4。
 extension:
   type: equipment
   value:

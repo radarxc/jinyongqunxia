@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/jindaoheijian
 text:
-  desc: 名录投影：兵器·刀剑成对；grade=8; cat=exotic; exoticKind=misc; hands=1; pair=true; unique=true; sect=sect_jueqinggu。外观：金装锯齿背单刀与乌黑直剑交错并置，各约七十厘米，刀齿克制、两器装具一明一暗且轮廓独立，无人物与手 （原创扩展细节）
-  short: 金刀黑剑
+  desc: 外观：金装锯齿背单刀与乌黑直剑交错并置，各约七十厘米。 待运行时投影：exoticKind=misc; sect=sect_jueqinggu。
 extension:
   type: equipment
   value:

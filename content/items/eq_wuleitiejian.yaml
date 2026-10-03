@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_wuleitiejian
+name: 五雷铁简
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/wuleitiejian
+text:
+  desc: 外观：一对四棱乌铁简并置，各约七十厘米。 待运行时投影：exoticKind=misc。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

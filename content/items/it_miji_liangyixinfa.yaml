@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/miji_liangyixinfa
 text:
-  desc: 名录投影：秘籍·全本；grade=5; skill=sk_liangyixinfa; variant=full; maxLayer=10。外观：黑白双色但无太极符号的软纸书衣，细订线，克制道家感 （原创扩展）
-  short: 两仪心法谱
+  desc: 外观：元代黑白双色包背软册，麻布护脊。
 extension:
   type: manual
   value:

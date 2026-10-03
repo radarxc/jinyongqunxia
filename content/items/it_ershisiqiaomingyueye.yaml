@@ -21,8 +21,7 @@ use:
 assets:
   icon: item/ershisiqiaomingyueye
 text:
-  desc: 名录投影：食品·名菜；grade=8; meal=bf_dingxin,bf_shouyi,bf_huinei:3battle。外观：二十四枚雪白豆腐球盛火腿槽中，青瓷长盘，精细而不夸张
-  short: 二十四桥明月夜
+  desc: 外观：二十四枚雪白豆腐球盛火腿槽中，青瓷长盘。
 extension:
   type: generic
   value: {}

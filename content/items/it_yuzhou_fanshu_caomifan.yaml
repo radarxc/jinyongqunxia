@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_yuzhou_fanshu_caomifan
+name: 渔舟番薯糙米饭
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《连城诀》·老渔人给狄云糙米饭，内混番薯、高粱
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_yuhan:2battle
+assets:
+  icon: item/yuzhou_fanshu_caomifan
+text:
+  desc: 外观：粗陶碗盛糙米、番薯块与高粱混饭，舟中一人份 （原创扩展）。
+extension:
+  type: generic
+  value: {}

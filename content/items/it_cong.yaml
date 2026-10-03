@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_cong
+name: 葱
+kind: material
+sub: ingredient
+grade: 1
+stack: 999
+chapters: any
+origin: canon
+canonRef: 历代基础菜蔬与辛香料
+price: auto
+flags: []
+assets:
+  icon: item/cong
+text:
+  desc: 外观：青白大葱三根并置竹板，根须完整。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang9
+    materialGrade: 1
+    rare: false
+    ingredientKind: vegetable

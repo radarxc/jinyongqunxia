@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_jiuyinliaoshangpian
+name: 九阴真经古墓遗刻
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·王重阳刻于古墓地下石室顶的真经要旨；本作映射九阴疗伤篇
+price: auto
+flags: []
+assets:
+  icon: item/miji_jiuyinliaoshangpian
+text:
+  desc: 外观：南宋地下石室顶灰白石刻，密布字迹符号。
+extension:
+  type: manual
+  value:
+    skill: sk_jiuyinliaoshangpian
+    maxLayer: 8
+    variant: copy
+    readMul: 1

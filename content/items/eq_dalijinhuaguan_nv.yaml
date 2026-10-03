@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/dalijinhuaguan_nv
 text:
-  desc: 名录投影：头饰·花冠；grade=6; slot=head; wearer=female; cha=1。外观：女款大理低筒花冠独立陈列，不画人头，鎏金铜片花叶围成圆冠、白绢内衬、银簪一支，青绿点饰无字，宋代大理贵族尺度
-  short: 大理鎏金花冠·女
+  desc: 外观：女款大理低筒花冠独立陈列，不画人头。 待运行时投影：cha=1; wearer=female。
 extension:
   type: equipment
   value:

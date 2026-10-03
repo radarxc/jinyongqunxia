@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_jinzhongzhao
+name: 金钟罩秘籍
+kind: manual
+sub: full
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_jinzhongzhao
+text:
+  desc: 外观：明代赭黄线装厚册，四眼褐线。
+extension:
+  type: manual
+  value:
+    skill: sk_jinzhongzhao
+    maxLayer: 10
+    variant: full
+    readMul: 1

@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/linpijian
 text:
-  desc: 名录投影：护肩·鳞甲；grade=6; slot=shoulder; defOutK=0.025; resBleedPp=3。外观：小铁鳞覆深蓝布底的一对护肩，片缘磨亮 （原创扩展）
-  short: 鳞片护肩
+  desc: 外观：小铁鳞覆深蓝布底的一对护肩，片缘磨亮 （原创扩展）。 待运行时投影：defOutK=0.025; resBleedPp=3。
 extension:
   type: equipment
   value:

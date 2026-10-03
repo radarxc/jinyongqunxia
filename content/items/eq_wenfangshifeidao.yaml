@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_wenfangshifeidao
+name: 温方施二十四飞刀
+kind: hidden
+sub: dart
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《碧血剑》·温方施皮套藏二十四柄飞刀，刀柄中空；出场细节已据在线转录核验
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/wenfangshifeidao
+text:
+  desc: 外观：深褐环腰皮套展开，二十四柄尺许薄飞刀分槽排列。 待运行时投影：ammoMul=1.125; hiddenHit=6.0。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

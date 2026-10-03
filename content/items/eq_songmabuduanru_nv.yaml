@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/songmabuduanru_nv
 text:
-  desc: 名录投影：衣物·便服；grade=1; slot=body; armorWeight=light; wearer=female。外观：女款灰褐交领右衽短襦与黛青百褶裙成套折叠，窄袖、粗麻、布带，边角轻磨损无纹，宋代劳作女装尺度
-  short: 宋麻布短襦·女
+  desc: 外观：女款灰褐交领右衽短襦与黛青百褶裙成套折叠，窄袖、粗麻、布带。 待运行时投影：wearer=female。
 extension:
   type: equipment
   value:

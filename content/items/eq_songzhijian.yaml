@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/songzhijian
 text:
-  desc: 名录投影：兵器·剑；grade=1; cat=sword; hands=1。外观：素面直脊双刃铁剑，刃约六十五厘米，短一字护手、圆剑首、麻缠木柄，轻锈旧化，完整连鞘斜置，无人物与手 （原创扩展复原）
-  short: 宋制直剑
+  desc: 外观：素面直脊双刃铁剑，刃约六十五厘米。
 extension:
   type: equipment
   value:

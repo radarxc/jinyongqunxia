@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_xingqizhou
+name: 行气走抄本
+kind: manual
+sub: copy
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_xingqizhou
+text:
+  desc: 外观：明代浅青线装薄册，白线四眼订。
+extension:
+  type: manual
+  value:
+    skill: sk_xingqizhou
+    maxLayer: 8
+    variant: copy
+    readMul: 1

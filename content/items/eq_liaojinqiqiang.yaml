@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_liaojinqiqiang
+name: 辽金骑枪
+kind: weapon
+sub: spear
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·辽金；天龙至神雕北境可得 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/liaojinqiqiang
+text:
+  desc: 外观：窄长菱形铁锋配韧木杆，通长约二点七米。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

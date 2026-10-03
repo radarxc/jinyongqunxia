@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_haishen
+name: 海参
+kind: material
+sub: ingredient
+grade: 7
+stack: 999
+chapters: any
+origin: canon
+canonRef: 明清宴席海味渐盛；早期书界仅沿海稀有节点
+price: auto
+flags: []
+assets:
+  icon: item/haishen
+text:
+  desc: 外观：深褐干海参三只置白瓷盘，棘刺清楚。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di9
+    materialGrade: 7
+    rare: false
+    ingredientKind: rare

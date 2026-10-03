@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_xianlurou
+name: 鲜鹿肉
+kind: material
+sub: ingredient
+grade: 7
+stack: 999
+chapters: any
+origin: canon
+canonRef: 历代苑猎与山猎珍材；清代满洲烧煮兼用鹿肉
+price: auto
+flags: []
+assets:
+  icon: item/xianlurou
+text:
+  desc: 外观：深绛鹿里脊一段置木盘，细瘦无脂。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di9
+    materialGrade: 7
+    rare: false
+    ingredientKind: rare

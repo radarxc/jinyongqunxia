@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_yuanqishoufeidaonang
+name: 元骑手飞刀囊
+kind: hidden
+sub: dart
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanqishoufeidaonang
+text:
+  desc: 外观：红褐皮扁囊闭合，旁列六柄掌长单刃飞刀。 待运行时投影：ammoMul=0.950; hiddenHit=3.3。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

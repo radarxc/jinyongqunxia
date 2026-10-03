@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: eq_bailianruanbian
+name: 百炼软鞭
+kind: weapon
+sub: whip
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/bailianruanbian
+text:
+  desc: 外观：细密钢环编成约一百八十厘米软鞭，乌木短柄、末端小圆坠。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_chousuizhang_can
+name: 抽髓掌残本
+kind: manual
+sub: partial
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_chousuizhang_can
+text:
+  desc: 外观：北宋灰褐蝴蝶装残册，墨绿丝线补订。
+extension:
+  type: manual
+  value:
+    skill: sk_chousuizhang
+    maxLayer: 7
+    variant: partial
+    readMul: 1

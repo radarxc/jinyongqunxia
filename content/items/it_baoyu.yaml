@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_baoyu
+name: 鲍鱼
+kind: material
+sub: ingredient
+grade: 8
+stack: 999
+chapters: any
+origin: canon
+canonRef: 历代海味，明清宴席尤重；内陆依商路稀缺
+price: auto
+flags: []
+assets:
+  icon: item/baoyu
+text:
+  desc: 外观：带壳鲜鲍三只置海藻竹盘，灰绿壳与乳白肉可辨 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di6
+    materialGrade: 8
+    rare: false
+    ingredientKind: rare

@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/liaodiaoqiupao_nan
 text:
-  desc: 名录投影：衣物·胡服；grade=7; slot=body; armorWeight=light; wearer=male; resColdPp=4。外观：男款契丹紫黑貂裘窄袖长袍单件平展，左衽、侧开衩、黑绿缘，毛皮厚实但不画甲片，辽代贵族冬服尺度
-  short: 辽貂裘窄袍·男
+  desc: 外观：男款契丹紫黑貂裘窄袖长袍单件平展，左衽、侧开衩、黑绿缘。 待运行时投影：resColdPp=4; wearer=male。
 extension:
   type: equipment
   value:

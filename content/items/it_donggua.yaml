@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_donggua
+name: 冬瓜
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 古代瓜蔬，宋代食用记录明确
+price: auto
+flags: []
+assets:
+  icon: item/donggua
+text:
+  desc: 外观：青绿冬瓜一截露白色瓜肉与籽，置木案。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: vegetable

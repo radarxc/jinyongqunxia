@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_qingcai
+name: 青菜
+kind: material
+sub: ingredient
+grade: 1
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/qingcai
+text:
+  desc: 外观：鲜绿叶菜一小把麻绳束根，带少量泥土。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang9
+    materialGrade: 1
+    rare: false
+    ingredientKind: vegetable

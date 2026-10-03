@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/yuanhongjinyaodai_nv
 text:
-  desc: 名录投影：腰带·锦带；grade=8; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01。外观：女款绛红织锦宽带作松弧陈列，鎏金双环扣、两端短流苏与克制卷草暗纹，无悬刀无字，元代蒙古贵妇尺度
-  short: 元红锦腰带·女
+  desc: 外观：女款绛红织锦宽带作松弧陈列，鎏金双环扣、两端短流苏与克制卷草暗纹。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
 extension:
   type: equipment
   value:

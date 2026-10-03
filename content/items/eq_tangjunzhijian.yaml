@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_tangjunzhijian
+name: 唐军直剑
+kind: weapon
+sub: sword
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·唐；白马（唐）起可得，具体军伍普及度 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/tangjunzhijian
+text:
+  desc: 外观：全长约八十五厘米，铁质直身双刃、短直护手、木柄皮缠与环形剑首。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

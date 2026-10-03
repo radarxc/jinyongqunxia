@@ -21,8 +21,7 @@ use:
 assets:
   icon: item/tianxiangyuyan
 text:
-  desc: 名录投影：食品·名菜；grade=10; meal=select3buff:3battle; party=4; fixedNode=true。外观：三只嵌套朱漆食盒展开成小宴，金边克制、无文字 （原创扩展）
-  short: 天香御宴
+  desc: 外观：三只嵌套朱漆食盒展开成小宴，金边克制、无文字 （原创扩展）。 待运行时投影：fixedNode=true; party=4。
 extension:
   type: generic
   value: {}

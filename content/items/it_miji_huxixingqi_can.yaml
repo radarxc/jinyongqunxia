@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_huxixingqi_can
+name: 呼吸行气残本
+kind: manual
+sub: partial
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_huxixingqi_can
+text:
+  desc: 外观：唐代经折残册，灰麻纸护面。
+extension:
+  type: manual
+  value:
+    skill: sk_huxixingqi
+    maxLayer: 7
+    variant: partial
+    readMul: 1

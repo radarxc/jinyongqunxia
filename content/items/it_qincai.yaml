@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_qincai
+name: 芹菜
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 古代食谱常见水芹、旱芹
+price: auto
+flags: []
+assets:
+  icon: item/qincai
+text:
+  desc: 外观：青绿芹菜一束带细根置陶盘，茎叶分明 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: vegetable

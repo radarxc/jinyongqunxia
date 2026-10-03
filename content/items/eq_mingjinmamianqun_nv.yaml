@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingjinmamianqun_nv
 text:
-  desc: 名录投影：衣物·礼服；grade=9; slot=body; armorWeight=light; wearer=female; cha=2。外观：女款大红妆花短袄与深青马面裙成套平展，汉式交领右衽，裙前后光面、两侧密褶，织金折枝花无字，明代贵族尺度
-  short: 明锦马面裙·女
+  desc: 外观：女款大红妆花短袄与深青马面裙成套平展，汉式交领右衽。 待运行时投影：cha=2; wearer=female。
 extension:
   type: equipment
   value:

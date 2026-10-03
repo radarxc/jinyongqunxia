@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/lianzhudangong
 text:
-  desc: 名录投影：暗器·弹丸；grade=4; hiddenKind=ball; ammoMul=1.020; hiddenHit=4.2; perBattle=10。外观：牛角叉形弹弓约前臂长，双股皮筋松弛、木柄皮缠，十枚陶丸整齐列于小盒，机括静止，无人物、手、发射或命中场景
-  short: 连珠弹弓
+  desc: 外观：牛角叉形弹弓约前臂长，双股皮筋松弛、木柄皮缠。 待运行时投影：ammoMul=1.020; hiddenHit=4.2。
 extension:
   type: equipment
   value:

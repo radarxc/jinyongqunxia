@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_kuihua
+name: 葵花宝典传本
+kind: manual
+sub: copy
+grade: 11
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《笑傲江湖》·任我行手持一本册子并明言即《葵花宝典》
+price: null
+flags: []
+assets:
+  icon: item/miji_kuihua
+text:
+  desc: 外观：明代深紫纸衣线装薄册，四眼红丝线。
+extension:
+  type: manual
+  value:
+    skill: sk_kuihua
+    maxLayer: 10
+    variant: copy
+    readMul: 1

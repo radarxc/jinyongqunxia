@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/modahuqinjian
 text:
-  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true; sect=sect_hengshan_nan。外观：旧胡琴与抽出的又薄又窄长剑并列为同一器物，剑刃约六十厘米、琴筒乌木蒙皮、琴弓完整，机关闭合逻辑清楚，无人物与手 （原创扩展结构）
-  short: 莫大胡琴藏剑
+  desc: 外观：旧胡琴与抽出的又薄又窄长剑并列为同一器物，剑刃约六十厘米、琴筒乌木蒙皮、琴弓完整。 待运行时投影：sect=sect_hengshan_nan。
 extension:
   type: equipment
   value:

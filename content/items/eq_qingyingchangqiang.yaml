@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_qingyingchangqiang
+name: 清营长枪
+kind: weapon
+sub: spear
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·清；鹿鼎起可得 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/qingyingchangqiang
+text:
+  desc: 外观：小菱形钢锋接白蜡长杆，通长约二点六米。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

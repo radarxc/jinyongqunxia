@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/furongjinzhen
 text:
-  desc: 名录投影：暗器·金针；grade=7; hiddenKind=needle; ammoMul=1.125; hiddenHit=6.0; perBattle=12; onHit=bf_chizhi; unique=true; sect=sect_wudang。外观：十二枚细金针放射状整齐排成芙蓉轮廓但不相交，配深青布针套，针长半掌，无人物、手、发射或命中场景 （原创扩展陈设）
-  short: 芙蓉金针
+  desc: 外观：十二枚细金针放射状整齐排成芙蓉轮廓但不相交，配深青布针套。 待运行时投影：ammoMul=1.125; hiddenHit=6.0; onHit=bf_chizhi; sect=sect_wudang。
 extension:
   type: equipment
   value:

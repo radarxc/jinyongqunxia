@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/songzonglvsuoyi_nan
 text:
-  desc: 名录投影：披风·蓑衣；grade=1; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005。外观：男款棕榈蓑衣单件完整铺展，披肩式圆领、层叠棕丝垂至膝上、麻绳系口，粗糙旧化无斗笠人物，宋代农渔尺度
-  short: 宋棕榈蓑衣·男
+  desc: 外观：男款棕榈蓑衣单件完整铺展，披肩式圆领、层叠棕丝垂至膝上、麻绳系口。 待运行时投影：defOutK=0.025; hpMaxK=0.005; wearer=male。
 extension:
   type: equipment
   value:

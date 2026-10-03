@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/murongcangfengjian
 text:
-  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true; sect=sect_murong。外观：细长直剑约七十八厘米，燕尾形护手、白丝缠柄、乌木鞘配旧银箍，刃光内敛、江南藏家旧化，完整斜置，无人物与手
-  short: 慕容藏锋剑
+  desc: 外观：细长直剑约七十八厘米，燕尾形护手、白丝缠柄、乌木鞘配旧银箍。 待运行时投影：sect=sect_murong。
 extension:
   type: equipment
   value:

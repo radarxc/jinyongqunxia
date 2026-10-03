@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_tunaqianjue
+name: 吐纳浅诀抄本
+kind: manual
+sub: copy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tunaqianjue
+text:
+  desc: 外观：元代灰白包背小册，蓝布护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_tunaqianjue
+    maxLayer: 8
+    variant: copy
+    readMul: 1

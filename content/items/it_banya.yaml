@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_banya
+name: 板鸭
+kind: food
+sub: food
+grade: 5
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_wenzhong:1battle
+assets:
+  icon: item/banya
+text:
+  desc: 外观：扁平风干整鸭一只置竹架，黄褐皮、形体完整 （原创扩展）。
+extension:
+  type: generic
+  value: {}

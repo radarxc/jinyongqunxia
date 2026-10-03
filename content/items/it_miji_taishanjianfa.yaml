@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_taishanjianfa
+name: 泰山剑法全本
+kind: manual
+sub: full
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_taishanjianfa
+text:
+  desc: 外观：明代灰褐线装图册，蓝麻线。
+extension:
+  type: manual
+  value:
+    skill: sk_taishanjianfa
+    maxLayer: 10
+    variant: full
+    readMul: 1

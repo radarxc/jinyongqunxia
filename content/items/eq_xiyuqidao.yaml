@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_xiyuqidao
+name: 西域骑刀
+kind: weapon
+sub: blade
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·西域；白马（唐）起西域节点可得 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/xiyuqidao
+text:
+  desc: 外观：全长约八十五厘米，窄身浅弧单刃、短直镡、角片夹柄。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

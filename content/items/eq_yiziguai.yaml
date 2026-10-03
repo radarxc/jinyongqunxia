@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_yiziguai
+name: 一字铁拐
+kind: weapon
+sub: staff
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/yiziguai
+text:
+  desc: 外观：全长约一米，乌铁直杆上端横出一掌长握枝。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

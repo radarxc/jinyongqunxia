@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/songbuqiang
 text:
-  desc: 名录投影：兵器·枪；grade=1; cat=spear; hands=2; tags=long。外观：短柳叶铁枪头配硬木长杆，通长约二点二米，铁箍固定、无缨、杆面磨亮，完整细长件斜置并留足枪尖杆端，无人物与手
-  short: 宋步枪
+  desc: 外观：短柳叶铁枪头配硬木长杆，通长约二点二米。
 extension:
   type: equipment
   value:

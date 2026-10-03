@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_zaoyu
+name: 糟鱼
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 江南酒糟腌鱼，宋明清食籍均有糟藏传统
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_yangsheng:1battle
+assets:
+  icon: item/zaoyu
+text:
+  desc: 外观：米白酒糟覆着鱼段盛灰陶罐，鱼皮银灰可辨 （原创扩展）。
+extension:
+  type: generic
+  value: {}

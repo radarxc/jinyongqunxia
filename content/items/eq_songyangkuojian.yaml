@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/songyangkuojian
 text:
-  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true; sect=sect_songshan。外观：阔身直剑约八十厘米，厚脊双刃、方正铁镡、黄色丝缠柄与黑鞘，装具端严、刃面有寒霜般锻纹，完整斜置，无人物与手
-  short: 嵩阳阔剑
+  desc: 外观：阔身直剑约八十厘米，厚脊双刃、方正铁镡、黄色丝缠柄与黑鞘。 待运行时投影：sect=sect_songshan。
 extension:
   type: equipment
   value:

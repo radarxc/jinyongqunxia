@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/ningbijian
 text:
-  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true。外观：碧青冷光直剑，刃约七十五厘米，铜质如意护手、深绿丝缠柄、黑漆鞘，颜色仅在钢面反光，完整斜置，无人物与手 （原创扩展形制）
-  short: 凝碧剑
+  desc: 外观：碧青冷光直剑，刃约七十五厘米。
 extension:
   type: equipment
   value:

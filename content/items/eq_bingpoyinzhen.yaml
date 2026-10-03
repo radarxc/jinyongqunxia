@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/bingpoyinzhen
 text:
-  desc: 名录投影：暗器·名针；grade=8; hiddenKind=needle; perBattle=10; onHit=bf_judu; gloveCheck=50%。外观：银蓝细针十枚装入白瓷针管，冷色金属光、无冰魔法 （原创扩展形制）
-  short: 冰魄银针
+  desc: 外观：银蓝细针十枚装入白瓷针管，冷色金属光、无冰魔法 （原创扩展形制）。 待运行时投影：gloveCheck=50%; onHit=bf_judu。
 extension:
   type: equipment
   value:

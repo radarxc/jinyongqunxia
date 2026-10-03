@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_shanyetuna
+name: 山野吐纳帛本
+kind: manual
+sub: original
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shanyetuna
+text:
+  desc: 外观：春秋米白帛卷，素木细轴、麻带束缚。
+extension:
+  type: manual
+  value:
+    skill: sk_shanyetuna
+    maxLayer: 10
+    variant: original
+    readMul: 1

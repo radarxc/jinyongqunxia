@@ -18,8 +18,7 @@ use:
 assets:
   icon: item/meihuazhen
 text:
-  desc: 名录投影：暗器·针；grade=6; hiddenKind=needle; ammoMul=1.09; hiddenHit=5.1。外观：五枚细钢针排成梅花但不带文字，蓝布针套，针长半掌 （原创扩展）
-  short: 梅花针
+  desc: 外观：五枚细钢针排成梅花但不带文字，蓝布针套。 待运行时投影：ammoMul=1.09; hiddenHit=5.1。
 extension:
   type: generic
   value: {}

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_xijiao
+name: 犀角
+kind: material
+sub: herb
+grade: 9
+stack: 999
+chapters: any
+origin: canon
+canonRef: 动物性本草；受保护动物来源，仅作历史设定、不可循环采集
+price: auto
+flags: []
+assets:
+  icon: item/xijiao
+text:
+  desc: 外观：历史旧藏角质薄片呈灰褐细丝纹，封存于题签留白木匣。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di3
+    materialGrade: 9
+    rare: false
+    herbFamily: xiJiao
+    ageYears: 0

@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/eweibian
 text:
-  desc: 名录投影：兵器·鞭索；grade=6; cat=whip; hands=1; unique=true。外观：深褐粗皮长鞭约二米半，节纹似鳄尾但不写实，短铁柄与尾梢铜坠，松弧完整展开，无人物与手 （原创扩展形制）
-  short: 鳄尾鞭
+  desc: 外观：深褐粗皮长鞭约二米半，节纹似鳄尾但不写实。
 extension:
   type: equipment
   value:

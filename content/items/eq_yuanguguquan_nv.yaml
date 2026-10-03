@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/yuanguguquan_nv
 text:
-  desc: 名录投影：头饰·罟罟冠；grade=9; slot=head; wearer=female; cha=2。外观：女款高筒罟罟冠独立陈列，不画人头，上宽下窄骨架包深红绢，顶部枝状银饰与克制珠串，约一尺高，元代蒙古贵妇尺度
-  short: 元珠饰罟罟冠·女
+  desc: 外观：女款高筒罟罟冠独立陈列，不画人头。 待运行时投影：cha=2; wearer=female。
 extension:
   type: equipment
   value:

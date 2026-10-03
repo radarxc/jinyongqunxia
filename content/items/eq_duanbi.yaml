@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/duanbi
 text:
-  desc: 名录投影：兵器·奇门匕；grade=3; cat=exotic; exoticKind=dagger; hands=1。外观：双刃短匕，朴素铜护口、深木柄，连鞘约一尺 （原创扩展）
-  short: 短匕
+  desc: 外观：双刃短匕，朴素铜护口、深木柄。 待运行时投影：exoticKind=dagger。
 extension:
   type: equipment
   value:

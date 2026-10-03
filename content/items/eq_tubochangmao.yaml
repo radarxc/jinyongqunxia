@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_tubochangmao
+name: 吐蕃长矛
+kind: weapon
+sub: spear
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·吐蕃；白马（唐）起藏边节点可得 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/tubochangmao
+text:
+  desc: 外观：厚脊柳叶铁矛头接深褐木杆，通长约二点四米。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

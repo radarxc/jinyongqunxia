@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_hutougou
+name: 虎头护手钩
+kind: weapon
+sub: exotic
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/hutougou
+text:
+  desc: 外观：一对钢钩交错并置，单件约八十五厘米。 待运行时投影：exoticKind=hook。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

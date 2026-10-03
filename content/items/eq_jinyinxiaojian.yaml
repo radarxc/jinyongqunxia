@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/jinyinxiaojian
 text:
-  desc: 名录投影：兵器·奇门匕；grade=8; cat=exotic; exoticKind=dagger; hands=1; pair=true; unique=true。外观：两柄掌长直身短剑成对并置，一柄金色柄、一柄银色柄，薄刃、小护口与短鞘清楚，旧化克制，无血迹、人物或手
-  short: 金银小剑
+  desc: 外观：两柄掌长直身短剑成对并置，一柄金色柄、一柄银色柄。 待运行时投影：exoticKind=dagger。
 extension:
   type: equipment
   value:

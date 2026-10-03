@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/ziweiruanjian
 text:
-  desc: 名录投影：兵器·剑；grade=9; cat=sword; hands=1; tags=soft; unique=true。外观：紫灰窄薄软刃自然微垂，刃约八十厘米，极小铁镡、深紫丝缠柄与细长鞘，刃面旧蚀，完整斜置，无人物与手 （原创扩展形制）
-  short: 紫薇软剑
+  desc: 外观：紫灰窄薄软刃自然微垂，刃约八十厘米。
 extension:
   type: equipment
   value:

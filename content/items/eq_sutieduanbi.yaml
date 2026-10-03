@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/sutieduanbi
 text:
-  desc: 名录投影：兵器·奇门匕；grade=1; cat=exotic; exoticKind=dagger; hands=1。外观：双刃铁匕全长约三十厘米，无护手、木片夹柄麻缠、素皮鞘，轻锈旧化，完整横斜置，无人物与手
-  short: 素铁短匕
+  desc: 外观：双刃铁匕全长约三十厘米，无护手、木片夹柄麻缠、素皮鞘。 待运行时投影：exoticKind=dagger。
 extension:
   type: equipment
   value:

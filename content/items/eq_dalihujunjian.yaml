@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_dalihujunjian
+name: 大理护军剑
+kind: weapon
+sub: sword
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·大理；仅天龙大理节点原生可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/dalihujunjian
+text:
+  desc: 外观：全长约八十厘米，钢质直身双刃、银色花叶小镡、深红丝缠木柄。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

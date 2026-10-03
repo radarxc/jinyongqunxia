@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_muer
+name: 木耳
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 山林菌蔬，宋元食谱可见菌类
+price: auto
+flags: []
+assets:
+  icon: item/muer
+text:
+  desc: 外观：黑褐木耳一小簇置竹筛，薄卷耳状。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: vegetable

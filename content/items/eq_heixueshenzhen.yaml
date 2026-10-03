@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/heixueshenzhen
 text:
-  desc: 名录投影：暗器·毒针；grade=9; hiddenKind=needle; perBattle=8; onHit=bf_judu; hiddenHit=7.2。外观：乌黑钢针若干置暗红丝衬小匣，针尖细亮，无血迹 （原创扩展）
-  short: 黑血神针
+  desc: 外观：乌黑钢针若干置暗红丝衬小匣，针尖细亮。 待运行时投影：hiddenHit=7.2; onHit=bf_judu。
 extension:
   type: equipment
   value:

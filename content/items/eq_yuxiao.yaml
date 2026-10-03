@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/yuxiao
 text:
-  desc: 名录投影：兵器·奇门箫；grade=9; cat=exotic; exoticKind=flute; hands=1; unique=true; sect=sect_taohuadao。外观：温润青白玉箫约七十厘米，吹口与音孔清楚、尾端短穗，素面仅细海涛纹，完整横斜置，无人物与手 （原创扩展纹样）
-  short: 玉箫
+  desc: 外观：温润青白玉箫约七十厘米，吹口与音孔清楚、尾端短穗。 待运行时投影：exoticKind=flute; sect=sect_taohuadao。
 extension:
   type: equipment
   value:

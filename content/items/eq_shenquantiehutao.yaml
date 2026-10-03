@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/shenquantiehutao
 text:
-  desc: 名录投影：兵器·奇门拳套；grade=7; cat=exotic; exoticKind=misc; hands=1; pair=true; unique=true; sect=sect_shenquan。外观：一对分指铁护套并置，覆盖拳背与指节、掌心留空，内衬旧皮、铁片铆接圆滑无尖刺，完整静物，无人物与手
-  short: 神拳铁护套
+  desc: 外观：一对分指铁护套并置，覆盖拳背与指节、掌心留空。 待运行时投影：exoticKind=misc; sect=sect_shenquan。
 extension:
   type: equipment
   value:

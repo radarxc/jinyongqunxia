@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_canfengyinlugong
+name: 餐风饮露功秘籍
+kind: manual
+sub: full
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_canfengyinlugong
+text:
+  desc: 外观：明代土黄线装小册，粗麻四眼订。
+extension:
+  type: manual
+  value:
+    skill: sk_canfengyinlugong
+    maxLayer: 10
+    variant: full
+    readMul: 1

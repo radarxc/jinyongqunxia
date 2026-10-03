@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_tongrenhenglian
+name: 铜人横练抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tongrenhenglian
+text:
+  desc: 外观：明代赭黄线装厚册，四眼黑线。
+extension:
+  type: manual
+  value:
+    skill: sk_tongrenhenglian
+    maxLayer: 8
+    variant: copy
+    readMul: 1

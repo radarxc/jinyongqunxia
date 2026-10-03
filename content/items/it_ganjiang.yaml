@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_ganjiang
+name: 干姜
+kind: material
+sub: herb
+grade: 1
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/ganjiang
+text:
+  desc: 外观：药用根茎切成扁块晒至灰黄，断面粉性。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang9
+    materialGrade: 1
+    rare: false
+    herbFamily: ganJiang
+    ageYears: 0

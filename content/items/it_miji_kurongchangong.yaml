@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_kurongchangong
+name: 枯荣禅功经折本
+kind: manual
+sub: full
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 大理段氏·天龙寺传承；载体 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_kurongchangong
+text:
+  desc: 外观：北宋经折装，赭黄硬纸护面、蓝布函套。
+extension:
+  type: manual
+  value:
+    skill: sk_kurongchangong
+    maxLayer: 10
+    variant: full
+    readMul: 1

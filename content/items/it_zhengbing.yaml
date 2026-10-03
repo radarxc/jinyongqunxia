@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_zhengbing
+name: 蒸饼
+kind: food
+sub: food
+grade: 2
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《东京梦华录》所见汴京面食类型
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1100
+  - op: meal
+    params:
+      value: bf_yangsheng:1battle
+assets:
+  icon: item/zhengbing
+text:
+  desc: 外观：白面圆蒸饼三个置竹屉，表皮柔软无馅。
+extension:
+  type: generic
+  value: {}

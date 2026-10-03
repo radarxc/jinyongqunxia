@@ -22,8 +22,7 @@ use:
 assets:
   icon: item/haoqiutang
 text:
-  desc: 名录投影：食品·汤羹；grade=7; meal=bf_ruiyi:3battle; party=4。外观：清汤、嫩笋、荷叶与嵌肉樱桃，白瓷汤盅，雅致小宴
-  short: 好逑汤
+  desc: 外观：清汤、嫩笋、荷叶与嵌肉樱桃，白瓷汤盅。 待运行时投影：party=4。
 extension:
   type: generic
   value: {}

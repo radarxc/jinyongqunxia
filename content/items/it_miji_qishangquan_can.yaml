@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_qishangquan_can
+name: 七伤拳残本
+kind: manual
+sub: partial
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_qishangquan_can
+text:
+  desc: 外观：元代土黄包背残册，粗麻补线。
+extension:
+  type: manual
+  value:
+    skill: sk_qishangquan
+    maxLayer: 7
+    variant: partial
+    readMul: 1

@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_qingpiaodaoxia
+name: 清式镖刀匣
+kind: hidden
+sub: dart
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingpiaodaoxia
+text:
+  desc: 外观：黑漆木扁匣开启，六柄柳叶薄刀嵌槽排列。 待运行时投影：ammoMul=0.950; hiddenHit=3.3。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

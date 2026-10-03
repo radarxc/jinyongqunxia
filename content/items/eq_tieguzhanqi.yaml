@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/tieguzhanqi
 text:
-  desc: 名录投影：兵器·奇门旗；grade=6; cat=exotic; exoticKind=misc; hands=2。外观：乌木长旗杆约二米、杆首小菱枪锋，窄幅赭红旗面无字、边缘磨损，铁箍与尾鐏清楚，完整斜置留足两端，无人物与手
-  short: 铁骨战旗
+  desc: 外观：乌木长旗杆约二米、杆首小菱枪锋，窄幅赭红旗面无字、边缘磨损。 待运行时投影：exoticKind=misc。
 extension:
   type: equipment
   value:

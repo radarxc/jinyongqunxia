@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_huayuan_gaobing
+name: 花园糕饼
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《越女剑》·范蠡命婢仆以糕饼点心款待阿青；具体品种 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_jiangu:2battle
+assets:
+  icon: item/huayuan_gaobing
+text:
+  desc: 外观：四枚浅米色圆糕置竹编小盘，表面朴素无纹。
+extension:
+  type: generic
+  value: {}

@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/zijinfaguan
 text:
-  desc: 名录投影：头饰·冠；grade=9; slot=head; cha=2; effRes=5。外观：暗紫金束发冠，细云纹、玉簪，明代精工感 （原创扩展）
-  short: 紫金发冠
+  desc: 外观：暗紫金束发冠，细云纹、玉簪。 待运行时投影：cha=2; effRes=5。
 extension:
   type: equipment
   value:

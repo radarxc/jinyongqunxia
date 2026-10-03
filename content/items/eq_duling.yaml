@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/duling
 text:
-  desc: 名录投影：暗器·毒镖；grade=6; hiddenKind=dart; ammoMul=1.090; hiddenHit=5.1; perBattle=12; onHit=bf_zhongdu; unique=true。外观：十二枚四面带尖乌铁菱整齐列于旧皮匣，单枚核桃大，尖端暗哑不画毒液，无人物、手、发射或命中场景 （原创扩展陈设）
-  short: 毒菱
+  desc: 外观：十二枚四面带尖乌铁菱整齐列于旧皮匣，单枚核桃大。 待运行时投影：ammoMul=1.090; hiddenHit=5.1; onHit=bf_zhongdu。
 extension:
   type: equipment
   value:

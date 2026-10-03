@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_putao
+name: 葡萄
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 汉以后传入，西域与河西书界常见
+price: auto
+flags: []
+assets:
+  icon: item/putao
+text:
+  desc: 外观：紫青葡萄一串置白瓷盘，果粒半透明。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: fruit

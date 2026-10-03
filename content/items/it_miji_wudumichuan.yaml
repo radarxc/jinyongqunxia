@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_wudumichuan
+name: 五毒秘传抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·陆无双携带并交杨过翻阅的一册殷红封皮抄本
+price: auto
+flags: []
+assets:
+  icon: item/miji_wudumichuan
+text:
+  desc: 外观：南宋殷红纸衣蝴蝶装小册，黑麻缝缀。
+extension:
+  type: manual
+  value:
+    skill: sk_wudumichuan
+    maxLayer: 8
+    variant: copy
+    readMul: 1

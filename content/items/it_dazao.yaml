@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_dazao
+name: 大枣
+kind: material
+sub: herb
+grade: 1
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/dazao
+text:
+  desc: 外观：药用成熟果晒成红褐椭圆干枣，表皮深皱。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang9
+    materialGrade: 1
+    rare: false
+    herbFamily: daZao
+    ageYears: 0

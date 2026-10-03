@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_huashanjianfa
+name: 华山剑法抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_huashanjianfa
+text:
+  desc: 外观：明代青灰线装册，四眼白线。
+extension:
+  type: manual
+  value:
+    skill: sk_huashanjianfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1

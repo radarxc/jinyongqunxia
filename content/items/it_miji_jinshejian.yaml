@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_jinshejian
+name: 金蛇秘笈原本
+kind: manual
+sub: original
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《碧血剑》·夏雪宜遗留金蛇秘笈
+price: null
+flags: []
+assets:
+  icon: item/miji_jinshejian
+text:
+  desc: 外观：明末薄黄竹纸线装册，墨绿丝线、黑布包角。
+extension:
+  type: manual
+  value:
+    skill: sk_jinshejian
+    maxLayer: 10
+    variant: original
+    readMul: 1

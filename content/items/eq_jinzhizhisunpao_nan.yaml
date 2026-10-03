@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/jinzhizhisunpao_nan
 text:
-  desc: 名录投影：衣物·礼服；grade=9; slot=body; armorWeight=light; wearer=male; cha=2。外观：男款大红织金右衽窄袖质孙袍单件平展，腰间密褶、膝下长摆、窄金锦缘，无字纹，元代贵族宴服尺度
-  short: 金织质孙袍·男
+  desc: 外观：男款大红织金右衽窄袖质孙袍单件平展，腰间密褶、膝下长摆、窄金锦缘。 待运行时投影：cha=2; wearer=male。
 extension:
   type: equipment
   value:

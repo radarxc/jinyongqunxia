@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_chunqiujunbang
+name: 春秋军棒
+kind: weapon
+sub: staff
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·春秋；仅序章原生可得，器物用途 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/chunqiujunbang
+text:
+  desc: 外观：硬木直棒通长约一百五十厘米，一端略粗并套窄青铜箍。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - long
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

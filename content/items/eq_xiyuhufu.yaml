@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/xiyuhufu
 text:
-  desc: 名录投影：衣物·骑装；grade=9; slot=body; armorWeight=light; coldResPp=4; rideSta=-10%。外观：靛青窄袖长衫、皮革窄腰封与软毡边，西域元代感 （原创扩展）
-  short: 西域胡服
+  desc: 外观：靛青窄袖长衫、皮革窄腰封与软毡边，西域元代感 （原创扩展）。 待运行时投影：coldResPp=4; rideSta=-10%。
 extension:
   type: equipment
   value:

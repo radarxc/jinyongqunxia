@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_pomiao_shutang
+name: 破庙鼠汤
+kind: food
+sub: food
+grade: 1
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《连城诀》·宝象误食受污染鼠汤；危险情节，不作增益菜谱
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1000
+  - op: meal
+    params:
+      value: bf_xuruo:1battle
+assets:
+  icon: item/pomiao_shutang
+text:
+  desc: 外观：灰陶破碗盛浑浊薄汤，一小块鼠肉轮廓。
+extension:
+  type: generic
+  value: {}

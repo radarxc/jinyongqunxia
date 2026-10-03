@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_chunqiuduanmadao
+name: 春秋青铜短刀
+kind: weapon
+sub: blade
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·春秋；仅序章原生可得，器形与军用范围 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/chunqiuduanmadao
+text:
+  desc: 外观：全长约四十五厘米，青铜直背单刃、无格短茎、木片夹柄麻缠。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

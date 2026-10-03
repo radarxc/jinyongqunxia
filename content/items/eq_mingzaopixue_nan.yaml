@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingzaopixue_nan
 text:
-  desc: 名录投影：鞋·皂靴；grade=6; slot=feet; wearer=male; qinggong=15。外观：男款皂黑皮靴一双并置，方圆鞋头、高靿、厚白中底与细密纳线，素面无官阶字样，成年足长、明代官绅尺度
-  short: 明皂皮靴·男
+  desc: 外观：男款皂黑皮靴一双并置，方圆鞋头、高靿、厚白中底与细密纳线。 待运行时投影：qinggong=15; wearer=male。
 extension:
   type: equipment
   value:

@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/jinhubianpifeng_nan
 text:
-  desc: 名录投影：披风·裘披；grade=5; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005; resColdPp=3。外观：男款墨绿粗绢披风单件完整铺展，盘领、左襟暗扣、灰狐窄边，直摆及膝无纹，金代女真武人尺度
-  short: 金狐边披风·男
+  desc: 外观：男款墨绿粗绢披风单件完整铺展，盘领、左襟暗扣、灰狐窄边。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=3; wearer=male。
 extension:
   type: equipment
   value:

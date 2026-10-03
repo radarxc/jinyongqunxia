@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_jianghuchangquan
+name: 江湖长拳谱
+kind: manual
+sub: full
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_jianghuchangquan
+text:
+  desc: 外观：元代土黄包背小册，蓝麻护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_jianghuchangquan
+    maxLayer: 10
+    variant: full
+    readMul: 1

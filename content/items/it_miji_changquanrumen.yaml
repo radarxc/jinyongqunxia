@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_changquanrumen
+name: 长拳入门谱
+kind: manual
+sub: full
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_changquanrumen
+text:
+  desc: 外观：南宋赭黄蝴蝶装册，青布包角。
+extension:
+  type: manual
+  value:
+    skill: sk_changquanrumen
+    maxLayer: 10
+    variant: full
+    readMul: 1

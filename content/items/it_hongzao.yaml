@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_hongzao
+name: 红枣
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 北方传统果品与干果
+price: auto
+flags: []
+assets:
+  icon: item/hongzao
+text:
+  desc: 外观：深红鲜枣十余枚盛小竹篮，表皮自然皱亮 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: fruit

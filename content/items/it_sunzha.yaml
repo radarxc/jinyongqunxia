@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_sunzha
+name: 笋鲊
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 宋《山家清供》山蔬腌藏语境；具体条目 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_qingxin:1battle
+assets:
+  icon: item/sunzha
+text:
+  desc: 外观：淡黄笋片装小陶罐，姜丝与盐卤可辨。
+extension:
+  type: generic
+  value: {}

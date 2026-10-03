@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_mangguzhuha
+name: 莽牯朱蛤
+kind: material
+sub: herb
+grade: 10
+stack: 999
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·万毒之王；全作唯一剧情奇物
+price: null
+flags:
+- unique
+assets:
+  icon: item/mangguzhuha
+text:
+  desc: 外观：朱红小蛤蟆伏于透气竹笼内，皮肤湿润有疣点。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_tian9
+    materialGrade: 10
+    rare: true
+    herbFamily: mangGuZhuHa
+    ageYears: 0

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_huangqin
+name: 黄芩
+kind: material
+sub: herb
+grade: 5
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/huangqin
+text:
+  desc: 外观：药用根斜切成黄褐薄片，老根中空暗棕。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan6
+    materialGrade: 5
+    rare: false
+    herbFamily: huangQin
+    ageYears: 0

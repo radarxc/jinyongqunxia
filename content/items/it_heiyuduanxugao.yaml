@@ -24,8 +24,7 @@ use:
 assets:
   icon: item/heiyuduanxugao
 text:
-  desc: 名录投影：药物·接骨外敷；grade=9; cure=bf_gushang,bf_huagu; storyCure=fracture。外观：墨黑膏体盛黑玉色圆盒，铜扣与厚蜡封，沉重珍药感 （原创扩展）
-  short: 黑玉断续膏
+  desc: 外观：墨黑膏体盛黑玉色圆盒，铜扣与厚蜡封。 待运行时投影：storyCure=fracture。
 extension:
   type: generic
   value: {}

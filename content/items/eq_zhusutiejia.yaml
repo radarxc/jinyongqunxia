@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/zhusutiejia
 text:
-  desc: 名录投影：内甲·编织；grade=3; slot=innerBody; defOutK=0.10; defInK=0.08。外观：细竹篾与麻线编成短背心，浅褐色、柔韧薄片，半身尺度 （原创扩展）
-  short: 竹丝贴甲
+  desc: 外观：细竹篾与麻线编成短背心，浅褐色、柔韧薄片。 待运行时投影：defInK=0.08; defOutK=0.10。
 extension:
   type: equipment
   value:

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_mizi_jinju
+name: 蜜渍金橘
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 宋代蜜煎果品与城市食单可见
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_qingxin:1battle
+assets:
+  icon: item/mizi_jinju
+text:
+  desc: 外观：琥珀糖汁中金橘六枚盛白瓷盏，果形完整。
+extension:
+  type: generic
+  value: {}

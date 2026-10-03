@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_yuebing
+name: 月饼
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 明清节令点心，宋代同名形制不据此反推
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_yangsheng:1battle
+assets:
+  icon: item/yuebing
+text:
+  desc: 外观：棕金圆饼一枚切开露豆沙仁，木模花纹无字。
+extension:
+  type: generic
+  value: {}

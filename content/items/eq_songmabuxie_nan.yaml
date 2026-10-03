@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/songmabuxie_nan
 text:
-  desc: 名录投影：鞋·麻鞋；grade=1; slot=feet; wearer=male; qinggong=2.5。外观：男款灰褐麻布鞋一双并置，宽圆头、千层麻底、粗线纳缝与轻磨损，无纹无字，成年足长、宋代庶民尺度
-  short: 宋麻布鞋·男
+  desc: 外观：男款灰褐麻布鞋一双并置，宽圆头、千层麻底、粗线纳缝与轻磨损。 待运行时投影：qinggong=2.5; wearer=male。
 extension:
   type: equipment
   value:

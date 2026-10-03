@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/panguanbi
 text:
-  desc: 名录投影：兵器·奇门笔；grade=2; cat=exotic; exoticKind=brush; hands=1。外观：一对细长镔铁笔并置，各约四十厘米，尖锥笔端、护指圆盘、尾端钝圆，乌黑磨亮，完整无人物与手
-  short: 镔铁判官笔
+  desc: 外观：一对细长镔铁笔并置，各约四十厘米。 待运行时投影：exoticKind=brush。
 extension:
   type: equipment
   value:

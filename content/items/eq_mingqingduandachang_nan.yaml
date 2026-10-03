@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingqingduandachang_nan
 text:
-  desc: 名录投影：披风·大氅；grade=6; slot=cape; wearer=male; defOutK=0.025; hpMaxK=0.005; effRes=3。外观：男款深青缎大氅单件完整铺展，直领对襟、宽袖及踝，黑色宽缘与一对系带，素面无补子，明代士绅宽长尺度
-  short: 明青缎大氅·男
+  desc: 外观：男款深青缎大氅单件完整铺展，直领对襟、宽袖及踝。 待运行时投影：defOutK=0.025; effRes=3; hpMaxK=0.005; wearer=male。
 extension:
   type: equipment
   value:

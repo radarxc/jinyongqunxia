@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/liehuoqi
 text:
-  desc: 名录投影：兵器·奇门旗；grade=9; cat=exotic; exoticKind=misc; hands=2; onHit=bf_zhuoshao:20%。外观：深红窄幅战旗连乌木长杆与小型铜矛头，旗面无字，整件略高于成人 （原创扩展）
-  short: 烈火旗
+  desc: 外观：深红窄幅战旗连乌木长杆与小型铜矛头，旗面无字。 待运行时投影：exoticKind=misc; onHit=bf_zhuoshao:20%。
 extension:
   type: equipment
   value:

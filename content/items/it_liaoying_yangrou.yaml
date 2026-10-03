@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_liaoying_yangrou
+name: 辽营羊肉
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·萧峰辽地军旅宴饮，羊肉细节 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_shichen:2battle
+assets:
+  icon: item/liaoying_yangrou
+text:
+  desc: 外观：焦褐熟羊肋四根置大木盘，粗盐与刀痕可辨。
+extension:
+  type: generic
+  value: {}

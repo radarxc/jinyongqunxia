@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_shiguchong_can
+name: 识蛊虫残本
+kind: manual
+sub: partial
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shiguchong_can
+text:
+  desc: 外观：明代暗绿皮纸残册，红线双订。
+extension:
+  type: manual
+  value:
+    skill: sk_shiguchong
+    maxLayer: 7
+    variant: partial
+    readMul: 1

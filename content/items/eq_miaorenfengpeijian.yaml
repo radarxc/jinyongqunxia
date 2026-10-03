@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_miaorenfengpeijian
+name: 苗人凤佩剑
+kind: weapon
+sub: sword
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《飞狐外传》《雪山飞狐》·苗人凤使剑；佩剑专名与装具 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/miaorenfengpeijian
+text:
+  desc: 外观：精钢直剑约八十厘米，外撇铁镡、深蓝丝缠柄与素黑鞘。 待运行时投影：sect=sect_miaojia。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

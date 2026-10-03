@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/mazhadao
 text:
-  desc: 名录投影：兵器·刀；grade=3; cat=blade; hands=2; tags=long。外观：厚背长刃配双手木柄，刀刃约七十厘米，铁环首、皮绳缠柄、朴素军械旧痕，完整斜置并留足尖首，无人物与手 （原创扩展形制）
-  short: 麻札刀
+  desc: 外观：厚背长刃配双手木柄，刀刃约七十厘米。
 extension:
   type: equipment
   value:

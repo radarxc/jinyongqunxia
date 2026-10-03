@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_danshen
+name: 丹参
+kind: material
+sub: herb
+grade: 5
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/danshen
+text:
+  desc: 外观：药用根切成砖红圆片，中央木心淡黄。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan6
+    materialGrade: 5
+    rare: false
+    herbFamily: danShen
+    ageYears: 0

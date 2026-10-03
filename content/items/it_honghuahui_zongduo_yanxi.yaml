@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_honghuahui_zongduo_yanxi
+name: 红花会总舵宴席
+kind: dish
+sub: dish
+grade: 6
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《书剑恩仇录》·红花会总舵群雄宴饮场景；具体菜点与配料 （待考）
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1700
+  - op: meal
+    params:
+      value: bf_juqi:2battle
+assets:
+  icon: item/honghuahui_zongduo_yanxi
+text:
+  desc: 外观：熟鸡、河鱼、酱肉与时蔬分盛四只清代粗瓷盘，总舵四人席份。 待运行时投影：party=4。
+extension:
+  type: generic
+  value: {}

@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/songxunyijia
 text:
-  desc: 名录投影：制式盔甲·宋；grade=3; slot=body; armorWeight=medium; lawProfile={uniform:true,allowedIdentityTags:[office_song_patrol],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。外观：南宋灰蓝布甲配小片札甲护胸，短摆、皮带，无文字号衣 （原创扩展）
-  short: 宋制巡役甲
+  desc: 外观：南宋灰蓝布甲配小片札甲护胸，短摆、皮带。 待运行时投影：lawProfile={uniform:true,allowedIdentityTags:[office_song_patrol],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。
 extension:
   type: equipment
   value:

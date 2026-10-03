@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_shizhuyu
+name: 食茱萸
+kind: material
+sub: ingredient
+grade: 5
+stack: 999
+chapters: any
+origin: canon
+canonRef: 古代辛味来源，辣椒普及后渐退
+price: auto
+flags: []
+assets:
+  icon: item/shizhuyu
+text:
+  desc: 外观：暗红食茱萸果一小枝置白瓷碟，细粒成簇 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan6
+    materialGrade: 5
+    rare: false
+    ingredientKind: spice

@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/huotuijian
 text:
-  desc: 名录投影：食材·肉；grade=3; ingredientKind=meat; materialGrade=3。外观：小段风干火腿，棕红切面与麻绳，约前臂长 （原创扩展）
-  short: 火腿尖
+  desc: 外观：小段风干火腿，棕红切面与麻绳。
 extension:
   type: material
   value:

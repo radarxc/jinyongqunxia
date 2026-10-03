@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/daliyinkoujindai_nv
 text:
-  desc: 名录投影：腰带·锦带；grade=5; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01。外观：女款青绿织锦窄带作松弧陈列，錾花银双环扣、白色短流苏与小团花暗纹，无文字，大理国士绅女装尺度
-  short: 大理银扣锦带·女
+  desc: 外观：女款青绿织锦窄带作松弧陈列，錾花银双环扣、白色短流苏与小团花暗纹。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
 extension:
   type: equipment
   value:

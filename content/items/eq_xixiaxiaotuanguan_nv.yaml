@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/xixiaxiaotuanguan_nv
 text:
-  desc: 名录投影：头饰·冠；grade=2; slot=head; wearer=female。外观：女款赭红小团冠独立陈列，不画人头假发，低矮圆冠包棉布、青黑窄缘与两支素铜短簪，无珠翠文字，西夏城镇女子尺度
-  short: 西夏小团冠·女
+  desc: 外观：女款赭红小团冠独立陈列，不画人头假发。 待运行时投影：wearer=female。
 extension:
   type: equipment
   value:

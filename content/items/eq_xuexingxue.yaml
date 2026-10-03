@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/xuexingxue
 text:
-  desc: 名录投影：鞋·裘靴；grade=9; slot=feet; qinggong=22.5; resColdPp=6。外观：灰白皮裘长靴，宽软底与毛毡内衬，塞北雪地感 （原创扩展）
-  short: 雪行靴
+  desc: 外观：灰白皮裘长靴，宽软底与毛毡内衬。 待运行时投影：qinggong=22.5; resColdPp=6。
 extension:
   type: equipment
   value:

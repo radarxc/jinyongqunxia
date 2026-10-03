@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/duanbingmuchui
 text:
-  desc: 名录投影：兵器·奇门锤；grade=1; cat=exotic; exoticKind=hammer; hands=2。外观：梨木圆锤头配短粗双手柄，全长约八十厘米，铁箍加固、敲击面磨损，无夸张尖刺，完整斜置，无人物与手
-  short: 短柄木锤
+  desc: 外观：梨木圆锤头配短粗双手柄，全长约八十厘米。 待运行时投影：exoticKind=hammer。
 extension:
   type: equipment
   value:

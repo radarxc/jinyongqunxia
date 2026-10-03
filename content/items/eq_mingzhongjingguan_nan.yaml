@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingzhongjingguan_nan
 text:
-  desc: 名录投影：头饰·冠；grade=8; slot=head; wearer=male; effRes=4。外观：男款乌纱忠静冠独立陈列，不画人头，方筒冠体、顶部微隆、两侧收束，纱罗匀净配玉簪，无官阶字样，明代官绅尺度
-  short: 明忠静冠·男
+  desc: 外观：男款乌纱忠静冠独立陈列，不画人头。 待运行时投影：effRes=4; wearer=male。
 extension:
   type: equipment
   value:

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_tuanyutang
+name: 团鱼汤
+kind: food
+sub: food
+grade: 7
+stack: 20
+chapters: any
+origin: canon
+canonRef: 元《饮膳正要》载羊肉汤底煮团鱼并配面丝
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_yuhan,bf_jiangu:2battle
+assets:
+  icon: item/tuanyutang
+text:
+  desc: 外观：浓白团鱼汤盛鎏锡碗，肉块与细面丝可辨。
+extension:
+  type: generic
+  value: {}

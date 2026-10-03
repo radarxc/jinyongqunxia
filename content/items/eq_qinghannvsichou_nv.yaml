@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qinghannvsichou_nv
 text:
-  desc: 名录投影：腰带·丝带；grade=3; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01。外观：女款藕色丝绸束带作松弧陈列，中段略宽、两端收窄并缀短穗，折枝暗纹无字无扣，清前中期汉女日常尺度
-  short: 清汉女丝绸束带·女
+  desc: 外观：女款藕色丝绸束带作松弧陈列，中段略宽、两端收窄并缀短穗。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
 extension:
   type: equipment
   value:

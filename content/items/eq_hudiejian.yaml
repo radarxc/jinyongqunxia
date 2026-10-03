@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_hudiejian
+name: 蝴蝶双短剑
+kind: weapon
+sub: exotic
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 成对短兵；确切定型年代 （待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/hudiejian
+text:
+  desc: 外观：两柄短宽直刃并置，单件全长约四十五厘米。 待运行时投影：exoticKind=dagger。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

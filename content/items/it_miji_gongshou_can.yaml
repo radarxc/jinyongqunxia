@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_gongshou_can
+name: 弓手法残本
+kind: manual
+sub: partial
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_gongshou_can
+text:
+  desc: 外观：元代灰褐包背残册，皮条护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_gongshou
+    maxLayer: 7
+    variant: partial
+    readMul: 1

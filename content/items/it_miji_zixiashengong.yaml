@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_zixiashengong
+name: 紫霞秘笈传本
+kind: manual
+sub: copy
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《笑傲江湖》·劳德诺怀中掉出题有“紫霞秘笈”的册子
+price: auto
+flags: []
+assets:
+  icon: item/miji_zixiashengong
+text:
+  desc: 外观：明代紫灰纸衣线装册，四眼蓝线。
+extension:
+  type: manual
+  value:
+    skill: sk_zixiashengong
+    maxLayer: 8
+    variant: copy
+    readMul: 1

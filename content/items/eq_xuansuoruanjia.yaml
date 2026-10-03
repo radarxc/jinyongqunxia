@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/xuansuoruanjia
 text:
-  desc: 名录投影：内甲·锁甲；grade=9; slot=innerBody; weaponZ4=5%; mov=0。外观：乌黑极细锁环短衫，环径如米粒，布边收口、可卷叠 （原创扩展）
-  short: 玄锁软甲
+  desc: 外观：乌黑极细锁环短衫，环径如米粒。 待运行时投影：mov=0; weaponZ4=5%。
 extension:
   type: equipment
   value:

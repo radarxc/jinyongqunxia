@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/tianchanyaodai
 text:
-  desc: 名录投影：腰带·丝带；grade=10; slot=waist; catalogTian=true; divine=false; unique=true; price=null; tough=6; poisonResPp=6。外观：珠灰蚕丝宽带，银线细密经纬、白玉扣，柔韧无荧光 （原创扩展）
-  short: 天蚕腰带
+  desc: 外观：珠灰蚕丝宽带，银线细密经纬、白玉扣。 待运行时投影：poisonResPp=6; tough=6。
 extension:
   type: equipment
   value:

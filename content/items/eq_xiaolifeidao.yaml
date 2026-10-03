@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/xiaolifeidao
 text:
-  desc: 名录投影：暗器·飞刀；grade=10; hiddenKind=dart; catalogTian=true; divine=false; unique=true; price=null; perBattle=1; hiddenHit=8.4。外观：一柄极简柳叶飞刀，银灰薄刃、无护手、黑木短柄，掌长 （原创扩展）
-  short: 小李飞刀
+  desc: 外观：一柄极简柳叶飞刀，银灰薄刃、无护手、黑木短柄。 待运行时投影：hiddenHit=8.4。
 extension:
   type: equipment
   value:

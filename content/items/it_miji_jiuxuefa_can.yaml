@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_jiuxuefa_can
+name: 救穴法残本
+kind: manual
+sub: partial
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_jiuxuefa_can
+text:
+  desc: 外观：明代窄幅线装残册，红线双订。
+extension:
+  type: manual
+  value:
+    skill: sk_jiuxuefa
+    maxLayer: 7
+    variant: partial
+    readMul: 1

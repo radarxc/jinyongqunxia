@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_taihu_yinyu
+name: 太湖银鱼
+kind: material
+sub: ingredient
+grade: 5
+stack: 999
+chapters: any
+origin: canonExpanded
+canonRef: 太湖地域水产；古代食用记录与书界投放 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/taihu_yinyu
+text:
+  desc: 外观：半透明细银鱼十余尾盛青瓷浅盘，指长尺度 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan6
+    materialGrade: 5
+    rare: false
+    ingredientKind: fish

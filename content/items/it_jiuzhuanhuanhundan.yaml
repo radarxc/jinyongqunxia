@@ -24,8 +24,7 @@ use:
 assets:
   icon: item/jiuzhuanhuanhundan
 text:
-  desc: 名录投影：药物·复活；grade=10; apply=bf_fuhuo; perBattle=1; uniqueUse=true。外观：朱红丹丸一枚置九瓣金边漆盒，温润药光，非魔法泛光 （原创扩展）
-  short: 九转还魂丹
+  desc: 外观：朱红丹丸一枚置九瓣金边漆盒，温润药光。
 extension:
   type: generic
   value: {}

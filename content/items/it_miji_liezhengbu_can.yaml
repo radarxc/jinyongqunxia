@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_liezhengbu_can
+name: 列阵步残本
+kind: manual
+sub: partial
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_liezhengbu_can
+text:
+  desc: 外观：明代赭灰线装残册，麻线补订。
+extension:
+  type: manual
+  value:
+    skill: sk_liezhengbu
+    maxLayer: 7
+    variant: partial
+    readMul: 1

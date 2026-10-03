@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_jiangsigentiejang
+name: 蒋四根铁桨
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《书剑恩仇录》·蒋四根以铁桨为兵器；尺寸 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jiangsigentiejang
+text:
+  desc: 外观：乌铁长桨约一百五十厘米，窄长桨叶、圆杆中段皮缠与圆钝尾首。 待运行时投影：exoticKind=misc; sect=sect_honghuahui。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

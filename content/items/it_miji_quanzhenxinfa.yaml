@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/miji_quanzhenxinfa
 text:
-  desc: 名录投影：秘籍·抄本；grade=5; skill=sk_quanzhenxinfa; variant=copy; maxLayer=8。外观：灰青软纸册，麻线细订，道观藏书轻旧化，无太极文字图案 （原创扩展）
-  short: 全真心法抄本
+  desc: 外观：南宋灰青蝴蝶装软纸册，麻线缝缀。
 extension:
   type: manual
   value:

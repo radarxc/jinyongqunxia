@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/songluobeizi_nv
 text:
-  desc: 名录投影：衣物·袍服；grade=5; slot=body; armorWeight=light; wearer=female; eva=2。外观：女款浅杏直领对襟长褙子单件平展，窄袖、腋下开衩、素罗薄透配褐色缘边，无系扣无字，宋代士庶女装尺度
-  short: 宋罗褙子·女
+  desc: 外观：女款浅杏直领对襟长褙子单件平展，窄袖、腋下开衩、素罗薄透配褐色缘边。 待运行时投影：eva=2; wearer=female。
 extension:
   type: equipment
   value:

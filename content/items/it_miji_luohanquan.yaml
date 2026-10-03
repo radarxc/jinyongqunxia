@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/miji_luohanquan
 text:
-  desc: 名录投影：秘籍·全本；grade=1; skill=sk_luohanquan; variant=full; maxLayer=10。外观：素黄薄纸册，四眼细订线，空题签，边角轻磨，掌心略大 （原创扩展）
-  short: 罗汉拳谱
+  desc: 外观：北宋素黄蝴蝶装薄册，细线缝缀。
 extension:
   type: manual
   value:

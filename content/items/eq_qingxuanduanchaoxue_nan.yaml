@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qingxuanduanchaoxue_nan
 text:
-  desc: 名录投影：鞋·朝靴；grade=9; slot=feet; wearer=male; qinggong=22.5。外观：男款玄青缎朝靴一双并置，方圆厚底、高靿、黑缎面与细白中底，暗云纹无字，成年足长、清前中期贵族尺度
-  short: 清玄缎朝靴·男
+  desc: 外观：男款玄青缎朝靴一双并置，方圆厚底、高靿、黑缎面与细白中底。 待运行时投影：qinggong=22.5; wearer=male。
 extension:
   type: equipment
   value:

@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/kongqueling
 text:
-  desc: 名录投影：暗器·机括；grade=9; hiddenKind=gun; perBattle=1; unique=true; skill=sk_kongquelingfa。外观：黄金与青铜复合圆筒机括，端面如收拢孔雀尾，前臂长 （原创扩展）
-  short: 孔雀翎
+  desc: 外观：黄金与青铜复合圆筒机括，端面如收拢孔雀尾。
 extension:
   type: equipment
   value:

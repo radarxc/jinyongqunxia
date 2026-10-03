@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/miji_xisuijing
 text:
-  desc: 名录投影：秘籍·残本；grade=9; skill=sk_xisuijing; variant=partial; maxLayer=8。外观：米白经折式外观但不画经文，灰布护套，古旧藏经感 （原创扩展）
-  short: 洗髓经藏本
+  desc: 外观：清代米白经折藏本，灰布护套。
 extension:
   type: manual
   value:

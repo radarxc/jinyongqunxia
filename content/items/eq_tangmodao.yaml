@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_tangmodao
+name: 唐陌刀
+kind: weapon
+sub: blade
+grade: 5
+stack: 1
+chapters: any
+origin: canon
+canonRef: 步兵长刀·唐；白马（唐）军阵节点限定（《唐六典》卷十六）
+price: auto
+flags: []
+assets:
+  icon: item/tangmodao
+text:
+  desc: 外观：通长约一百六十厘米，厚直单刃约八十厘米接等长木柄。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 2
+    tags:
+    - long
+    - heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

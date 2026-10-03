@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_fengshitoushu
+name: 风石投术简谱
+kind: manual
+sub: full
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_fengshitoushu
+text:
+  desc: 外观：春秋细竹简十枚，麻绳单编。
+extension:
+  type: manual
+  value:
+    skill: sk_fengshitoushu
+    maxLayer: 10
+    variant: full
+    readMul: 1

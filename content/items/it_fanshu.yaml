@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_fanshu
+name: 番薯
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 美洲作物；明末传入并推广，仅碧血及以后书界投放
+price: auto
+flags: []
+assets:
+  icon: item/fanshu
+text:
+  desc: 外观：红褐番薯三块置竹篮，带少量泥土。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: vegetable

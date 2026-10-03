@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/songziluogaitou_nv
 text:
-  desc: 名录投影：头饰·盖头；grade=4; slot=head; wearer=female; resMindPp=2。外观：女款方幅淡紫罗盖头独立折叠陈列，不画人头，半透明长帛、四缘细绦与两角小坠，展开可蔽半身，宋代出行尺度
-  short: 宋紫罗盖头·女
+  desc: 外观：女款方幅淡紫罗盖头独立折叠陈列，不画人头。 待运行时投影：resMindPp=2; wearer=female。
 extension:
   type: equipment
   value:

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_shanjia_sancui
+name: 山家三脆
+kind: dish
+sub: dish
+grade: 6
+stack: 20
+chapters: any
+origin: canon
+canonRef: 宋《山家清供》载嫩笋、小蕈、枸杞菜作羹或炒食
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1700
+  - op: meal
+    params:
+      value: bf_qingxin:2battle
+assets:
+  icon: item/shanjia_sancui
+text:
+  desc: 外观：嫩笋丝、小菌与枸杞嫩叶清炒盛白瓷盘，二人份 （原创扩展）。
+extension:
+  type: generic
+  value: {}

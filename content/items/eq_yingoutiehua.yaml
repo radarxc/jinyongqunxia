@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/yingoutiehua
 text:
-  desc: 名录投影：兵器·奇门钩笔；grade=8; cat=exotic; exoticKind=hook; hands=1; pair=true; unique=true; sect=sect_wudang。外观：银色虎头钩与乌黑判官笔成对并置，各约半臂长，钩刃、护手与笔尖清楚，书法般线条只作装具纹，无人物与手 （原创扩展细节）
-  short: 银钩铁划
+  desc: 外观：银色虎头钩与乌黑判官笔成对并置，各约半臂长。 待运行时投影：exoticKind=hook; sect=sect_wudang。
 extension:
   type: equipment
   value:

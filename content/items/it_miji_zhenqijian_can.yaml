@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_zhenqijian_can
+name: 阵旗剑谱残本
+kind: manual
+sub: partial
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_zhenqijian_can
+text:
+  desc: 外观：南宋灰蓝蝴蝶装残册，红麻线补缀。
+extension:
+  type: manual
+  value:
+    skill: sk_zhenqijian
+    maxLayer: 7
+    variant: partial
+    readMul: 1

@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/songjinjunburenjia
 text:
-  desc: 名录投影：制式盔甲·宋；grade=9; slot=body; armorWeight=heavy; lawProfile={uniform:true,allowedIdentityTags:[office_song_imperial_army],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。外观：北宋重型札甲长摆、肩吞与护臂，铁灰配暗红绦，约半人高 （原创扩展）
-  short: 宋制禁军步人甲
+  desc: 外观：北宋重型札甲长摆、肩吞与护臂，铁灰配暗红绦。 待运行时投影：lawProfile={uniform:true,allowedIdentityTags:[office_song_imperial_army],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。
 extension:
   type: equipment
   value:

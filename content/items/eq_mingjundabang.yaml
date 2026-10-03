@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_mingjundabang
+name: 明军大棒
+kind: weapon
+sub: staff
+grade: 5
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·明；笑傲起军阵节点可得（《练兵实纪》营阵“大棒”）
+price: auto
+flags: []
+assets:
+  icon: item/mingjundabang
+text:
+  desc: 外观：深褐硬木大棒约一百八十厘米，前端稍粗并包窄铁箍。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - long
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

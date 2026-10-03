@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/jinlingsuo
 text:
-  desc: 名录投影：兵器·鞭索；grade=7; cat=whip; hands=1; unique=true; sect=sect_gumu。外观：雪白长绸索约三米，末端数枚小金铃与细金属坠，松弧完整铺展、不打结，绸面轻旧，无挥舞场景与人物 （原创扩展形制）
-  short: 金铃索
+  desc: 外观：雪白长绸索约三米，末端数枚小金铃与细金属坠。 待运行时投影：sect=sect_gumu。
 extension:
   type: equipment
   value:

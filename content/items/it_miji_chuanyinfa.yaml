@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_chuanyinfa
+name: 传音法抄本
+kind: manual
+sub: copy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_chuanyinfa
+text:
+  desc: 外观：元代灰蓝包背薄册，白麻护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_chuanyinfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1

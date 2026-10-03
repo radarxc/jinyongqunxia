@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/liuyedao
 text:
-  desc: 名录投影：兵器·刀；grade=5; cat=blade; hands=1。外观：柳叶状通体缓弧钢刃，刃约七十五厘米，椭圆铜镡、黑木柄、皮鞘铜箍，刃口轻磨，完整斜置，无人物与手
-  short: 柳叶刀
+  desc: 外观：柳叶状通体缓弧钢刃，刃约七十五厘米。
 extension:
   type: equipment
   value:

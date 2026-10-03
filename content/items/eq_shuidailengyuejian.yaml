@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_shuidailengyuejian
+name: 水岱冷月剑
+kind: weapon
+sub: sword
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《连城诀》·“冷月剑”水岱；称号是否兼指佩剑 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/shuidailengyuejian
+text:
+  desc: 外观：冷银直剑约七十五厘米，半月形小护手、深蓝丝缠柄与黑鞘。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

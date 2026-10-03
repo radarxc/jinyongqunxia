@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_shentuoxueshanzhang
+name: 神驼雪山掌遗谱
+kind: manual
+sub: partial
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shentuoxueshanzhang
+text:
+  desc: 外观：南宋西域皮纸折册，棕皮护面、绿绳双系。
+extension:
+  type: manual
+  value:
+    skill: sk_shentuoxueshanzhang
+    maxLayer: 8
+    variant: partial
+    readMul: 1

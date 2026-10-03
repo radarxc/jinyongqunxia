@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_zhuangxingong
+name: 壮行功抄本
+kind: manual
+sub: copy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_zhuangxingong
+text:
+  desc: 外观：清代靛青布面线装册，四眼白线。
+extension:
+  type: manual
+  value:
+    skill: sk_zhuangxingong
+    maxLayer: 8
+    variant: copy
+    readMul: 1

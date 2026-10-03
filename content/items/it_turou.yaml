@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_turou
+name: 兔肉
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 宋代市食有兔馔；农猎皆可得
+price: auto
+flags: []
+assets:
+  icon: item/turou
+text:
+  desc: 外观：处理净的生兔腿两只置竹叶，淡粉肉色。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: meat

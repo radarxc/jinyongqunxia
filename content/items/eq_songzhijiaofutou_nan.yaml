@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/songzhijiaofutou_nan
 text:
-  desc: 名录投影：头饰·幞头；grade=9; slot=head; wearer=male; cha=2。外观：男款黑漆纱直脚幞头独立陈列，不画人头，硬胎方正、两脚平直对称、漆纱细密，配一支素簪，宋代高官冠帽尺度
-  short: 宋直脚幞头·男
+  desc: 外观：男款黑漆纱直脚幞头独立陈列，不画人头。 待运行时投影：cha=2; wearer=male。
 extension:
   type: equipment
   value:

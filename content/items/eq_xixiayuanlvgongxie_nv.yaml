@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/xixiayuanlvgongxie_nv
 text:
-  desc: 名录投影：鞋·弓鞋；grade=3; slot=feet; wearer=female; qinggong=7.5。外观：女款赭红细布弓履一双并置，小幅翘头、薄底、青黑缘边与简素折枝绣，无珠宝无字，成年足长、不作情色化，西夏城镇尺度
-  short: 西夏缘履弓鞋·女
+  desc: 外观：女款赭红细布弓履一双并置，小幅翘头、薄底、青黑缘边与简素折枝绣。 待运行时投影：qinggong=7.5; wearer=female。
 extension:
   type: equipment
   value:

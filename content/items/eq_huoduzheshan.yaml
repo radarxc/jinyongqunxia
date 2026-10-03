@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/huoduzheshan
 text:
-  desc: 名录投影：兵器·奇门扇；grade=6; cat=exotic; exoticKind=fan; hands=1; unique=true; sect=sect_mizong。外观：闭合铁骨折扇与微展扇面并置为同一件展示，长约三十五厘米，扇骨细孔机括闭合、素白纸面、旧铜扇钉，无发射场景与人物 （原创扩展形制）
-  short: 霍都折扇
+  desc: 外观：闭合铁骨折扇与微展扇面并置为同一件展示，长约三十五厘米。 待运行时投影：exoticKind=fan; sect=sect_mizong。
 extension:
   type: equipment
   value:

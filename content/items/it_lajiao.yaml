@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_lajiao
+name: 辣椒
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 美洲作物；万历《遵生八笺》始见记载，仅碧血及以后书界投放
+price: auto
+flags: []
+assets:
+  icon: item/lajiao
+text:
+  desc: 外观：鲜红细辣椒五枚置白瓷碟，完整带蒂。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: vegetable

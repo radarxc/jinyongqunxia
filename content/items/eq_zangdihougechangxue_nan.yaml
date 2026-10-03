@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/zangdihougechangxue_nan
 text:
-  desc: 名录投影：鞋·藏靴；grade=5; slot=feet; wearer=male; qinggong=12.5; resColdPp=2。外观：男款深褐厚革藏靴一双并置，宽圆头、高靿、红蓝氆氇靴口与多层牛皮底，粗线缝合无字，成年足长、雪地行走尺度
-  short: 藏地厚革长靴·男
+  desc: 外观：男款深褐厚革藏靴一双并置，宽圆头、高靿、红蓝氆氇靴口与多层牛皮底。 待运行时投影：qinggong=12.5; resColdPp=2; wearer=male。
 extension:
   type: equipment
   value:

@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/longquanjian
 text:
-  desc: 名录投影：兵器·剑；grade=6; cat=sword; hands=1。外观：修长直身双刃，青灰钢、如意小护手、深青缠柄 （原创扩展）
-  short: 龙泉剑
+  desc: 外观：修长直身双刃，青灰钢、如意小护手、深青缠柄 （原创扩展）。
 extension:
   type: equipment
   value:

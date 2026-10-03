@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_wumuyishu
+name: 武穆遗书原本
+kind: manual
+sub: original
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·岳飞兵书，属阵法杂学
+price: auto
+flags: []
+assets:
+  icon: item/miji_wumuyishu
+text:
+  desc: 外观：南宋包背装厚册，栗壳色书衣、蓝布函套。
+extension:
+  type: manual
+  value:
+    skill: sk_wumuyishu
+    maxLayer: 10
+    variant: original
+    readMul: 1

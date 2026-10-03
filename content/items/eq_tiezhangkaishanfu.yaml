@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/tiezhangkaishanfu
 text:
-  desc: 名录投影：兵器·奇门斧；grade=7; cat=exotic; exoticKind=axe; hands=1; unique=true; sect=sect_tiezhangbang。外观：宽月牙铁斧配八十厘米硬木柄，斧面素黑、双铁箍与尾帽，山寨军械般磕痕旧化，无帮徽文字，完整斜置，无人物与手
-  short: 铁掌开山斧
+  desc: 外观：宽月牙铁斧配八十厘米硬木柄，斧面素黑、双铁箍与尾帽。 待运行时投影：exoticKind=axe; sect=sect_tiezhangbang。
 extension:
   type: equipment
   value:

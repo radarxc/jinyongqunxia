@@ -23,8 +23,7 @@ use:
 assets:
   icon: item/niurougan
 text:
-  desc: 名录投影：食品·腌藏；grade=6; staPct=17%; buff=bf_waigong_sheng:1battle。外观：深褐肉条装牛皮纸包，麻绳束口，干润纤维清楚 （原创扩展）
-  short: 酱香牛肉干
+  desc: 外观：深褐肉条装牛皮纸包，麻绳束口。
 extension:
   type: generic
   value: {}

@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_xijiantoubu_can
+name: 溪涧投步残卷
+kind: manual
+sub: partial
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_xijiantoubu_can
+text:
+  desc: 外观：春秋灰白残帛卷，无轴、麻带束起。
+extension:
+  type: manual
+  value:
+    skill: sk_xijiantoubu
+    maxLayer: 7
+    variant: partial
+    readMul: 1

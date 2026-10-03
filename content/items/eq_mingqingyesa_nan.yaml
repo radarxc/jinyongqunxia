@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingqingyesa_nan
 text:
-  desc: 名录投影：衣物·骑装；grade=6; slot=body; armorWeight=light; wearer=male; agi=1。外观：男款深青交领右衽曳撒单件平展，窄袖，前襟分裁、腰下两侧密褶与后襟整片，棉绸匀净，无飞鱼纹，明代骑射服尺度
-  short: 明青曳撒·男
+  desc: 外观：男款深青交领右衽曳撒单件平展，窄袖。 待运行时投影：agi=1; wearer=male。
 extension:
   type: equipment
   value:

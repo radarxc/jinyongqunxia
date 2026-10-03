@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/xixiaxiubianbodai_nv
 text:
-  desc: 名录投影：腰带·帛带；grade=2; slot=waist; wearer=female; defOutK=0.05; hpMaxK=0.01。外观：女款赭黄帛带作松弧陈列，蓝黑几何窄绣边、布结与两端短穗，粗绸无字无金属，西夏城镇女装尺度
-  short: 西夏绣边帛带·女
+  desc: 外观：女款赭黄帛带作松弧陈列，蓝黑几何窄绣边、布结与两端短穗。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
 extension:
   type: equipment
   value:

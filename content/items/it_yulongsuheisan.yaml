@@ -30,8 +30,7 @@ use:
 assets:
   icon: item/yulongsuheisan
 text:
-  desc: 名录投影：药物·救急；grade=10; healPct=14%; mpPct=8.4%; dispel=injury,poison:g10。外观：羊脂玉小葫芦盛银白细粉，银塞云纹，微冷润泽，无发光 （原创扩展）
-  short: 玉龙苏合散
+  desc: 外观：羊脂玉小葫芦盛银白细粉，银塞云纹。
 extension:
   type: generic
   value: {}

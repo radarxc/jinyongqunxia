@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_kunlunrumenjian
+name: 昆仑入门剑谱
+kind: manual
+sub: full
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_kunlunrumenjian
+text:
+  desc: 外观：元代灰白皮纸包背册，蓝布护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_kunlunrumenjian
+    maxLayer: 10
+    variant: full
+    readMul: 1

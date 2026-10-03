@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_xiakedao_siyang_dianxin
+name: 侠客岛四样点心
+kind: dish
+sub: dish
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《侠客行》·侠客岛以烧卖、春卷、蒸糕等四碟点心待客
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_jiangu:2battle
+assets:
+  icon: item/xiakedao_siyang_dianxin
+text:
+  desc: 外观：烧卖、春卷、蒸糕与一碟素点分置四只小瓷盘，四人份 （原创扩展）。 待运行时投影：party=4。
+extension:
+  type: generic
+  value: {}

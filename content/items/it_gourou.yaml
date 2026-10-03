@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_gourou
+name: 狗肉
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 历代部分地域食用；投放依地方习俗，不作全域通货
+price: auto
+flags: []
+assets:
+  icon: item/gourou
+text:
+  desc: 外观：一块浅红带皮生肉置粗陶碟，约半斤。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: meat

@@ -20,8 +20,7 @@ use:
 assets:
   icon: item/ganliang
 text:
-  desc: 名录投影：食品·干粮；grade=3; staPct=12%; context=field。外观：两块烤饼与油纸包，焦黄边、麻绳系，行囊尺度 （原创扩展）
-  short: 行旅干粮
+  desc: 外观：两块烤饼与油纸包，焦黄边、麻绳系。
 extension:
   type: generic
   value: {}

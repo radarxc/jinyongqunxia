@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_nanxirentiebian
+name: 南希仁铁扁担
+kind: weapon
+sub: staff
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》·南希仁所持扁担；材质 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/nanxirentiebian
+text:
+  desc: 外观：乌铁扁担约一百五十厘米，中段微弓、两端上翘并留绳槽。 待运行时投影：sect=sect_jiangnanqiguai。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

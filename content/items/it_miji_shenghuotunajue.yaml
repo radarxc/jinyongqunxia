@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_shenghuotunajue
+name: 圣火吐纳诀抄本
+kind: manual
+sub: copy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shenghuotunajue
+text:
+  desc: 外观：元代赭红包背小册，黄麻护脊。
+extension:
+  type: manual
+  value:
+    skill: sk_shenghuotunajue
+    maxLayer: 8
+    variant: copy
+    readMul: 1

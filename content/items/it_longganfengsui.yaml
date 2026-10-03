@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/longganfengsui
 text:
-  desc: 名录投影：食材·珍材；grade=9; ingredientKind=rare; materialGrade=9。外观：两只封釉食盒分装深红肉脯与乳白髓脂，宫宴精致感 （原创扩展）
-  short: 龙肝凤髓料
+  desc: 外观：两只封釉食盒分装深红肉脯与乳白髓脂，宫宴精致感 （原创扩展）。
 extension:
   type: material
   value:

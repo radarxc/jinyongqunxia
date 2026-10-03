@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/qingyunlv
 text:
-  desc: 名录投影：鞋·布履；grade=6; slot=feet; qinggong=15; eva=3。外观：青灰软底云头履，白布中底、细绦，无夸张翘头 （原创扩展）
-  short: 青云履
+  desc: 外观：青灰软底云头履，白布中底、细绦。 待运行时投影：eva=3; qinggong=15。
 extension:
   type: equipment
   value:

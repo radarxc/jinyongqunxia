@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_wuguandao_can
+name: 武馆刀法残本
+kind: manual
+sub: partial
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuguandao_can
+text:
+  desc: 外观：清代赭色线装残册，粗麻补订。
+extension:
+  type: manual
+  value:
+    skill: sk_wuguandao
+    maxLayer: 7
+    variant: partial
+    readMul: 1

@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingbuaoqun_nv
 text:
-  desc: 名录投影：衣物·便服；grade=3; slot=body; armorWeight=light; wearer=female。外观：女款藕灰交领右衽短袄与靛蓝素马面裙成套平展，窄袖、布纽、裙门平整两侧疏褶，棉布无纹，明代平民尺度
-  short: 明布袄裙·女
+  desc: 外观：女款藕灰交领右衽短袄与靛蓝素马面裙成套平展，窄袖、布纽、裙门平整两侧疏褶。 待运行时投影：wearer=female。
 extension:
   type: equipment
   value:

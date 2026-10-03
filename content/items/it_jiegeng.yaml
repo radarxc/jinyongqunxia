@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_jiegeng
+name: 桔梗
+kind: material
+sub: herb
+grade: 1
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/jiegeng
+text:
+  desc: 外观：药用根刮皮后呈淡黄白长条，纵沟明显。
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang9
+    materialGrade: 1
+    rare: false
+    herbFamily: jieGeng
+    ageYears: 0

@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_mingjunlangqiang
+name: 明军狼枪
+kind: weapon
+sub: spear
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·明；笑傲起可得，器名与形制见明代兵书语境 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/mingjunlangqiang
+text:
+  desc: 外观：细长钢锋、锋下倒须克制，白蜡长杆约二点七米。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

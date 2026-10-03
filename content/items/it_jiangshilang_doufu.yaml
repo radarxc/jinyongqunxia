@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: it_jiangshilang_doufu
+name: 蒋侍郎豆腐
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 清《随园食单》“豆腐”门所载蒋侍郎豆腐；复原配料 （待考）
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_qingxin,bf_dingxin:2battle
+assets:
+  icon: item/jiangshilang_doufu
+text:
+  desc: 外观：金黄煨豆腐厚片盛青瓷深盘，汤汁清亮。 待运行时投影：party=4。
+extension:
+  type: generic
+  value: {}

@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/songziluogongpao_nan
 text:
-  desc: 名录投影：衣物·官服；grade=8; slot=body; armorWeight=light; wearer=male; cha=1。外观：男款紫罗圆领大袖公袍单件平展，下施横襕、两侧整齐展袖，丝罗细密，无补子无文字，宋代高阶官服尺度
-  short: 宋紫罗公袍·男
+  desc: 外观：男款紫罗圆领大袖公袍单件平展，下施横襕、两侧整齐展袖。 待运行时投影：cha=1; wearer=male。
 extension:
   type: equipment
   value:

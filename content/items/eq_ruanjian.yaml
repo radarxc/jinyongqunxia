@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/ruanjian
 text:
-  desc: 名录投影：兵器·剑；grade=5; cat=sword; hands=1; tags=soft。外观：窄薄弹性钢刃自然微垂而不盘卷，刃约七十厘米，碗形小镡、黑丝缠柄、窄鞘，完整斜置，无人物与手 （原创扩展形制）
-  short: 百炼软剑
+  desc: 外观：窄薄弹性钢刃自然微垂而不盘卷，刃约七十厘米。
 extension:
   type: equipment
   value:

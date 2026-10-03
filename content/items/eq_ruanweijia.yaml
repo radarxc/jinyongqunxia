@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/ruanweijia
 text:
-  desc: 名录投影：内甲·猬刺宝甲；grade=10; slot=innerBody; divine=true; buff=bf_weici,bf_daoqiang。外观：深褐软甲表面密布短刺，贴身背心轮廓，刺短而不血腥 （待考形制；原创扩展表现）
-  short: 软猬甲
+  desc: 外观：深褐软甲表面密布短刺，贴身背心轮廓。
 extension:
   type: equipment
   value:

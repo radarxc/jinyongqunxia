@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_luobo
+name: 萝卜
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 宋代市食与羹汤常见
+price: auto
+flags: []
+assets:
+  icon: item/luobo
+text:
+  desc: 外观：白萝卜两根带青叶置竹篮，表皮有浅泥痕 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: vegetable

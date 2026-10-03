@@ -18,8 +18,7 @@ use:
 assets:
   icon: item/jinqianbiao
 text:
-  desc: 名录投影：暗器·飞镖；grade=3; hiddenKind=dart; ammoMul=0.985; hiddenHit=3.6。外观：三枚铜钱形薄镖，方孔但无文字，刃缘克制、掌心尺度 （原创扩展）
-  short: 金钱镖
+  desc: 外观：三枚铜钱形薄镖，方孔但无文字。 待运行时投影：ammoMul=0.985; hiddenHit=3.6。
 extension:
   type: generic
   value: {}

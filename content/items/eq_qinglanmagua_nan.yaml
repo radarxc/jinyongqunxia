@@ -21,8 +21,7 @@ flags:
 assets:
   icon: item/qinglanmagua_nan
 text:
-  desc: 名录投影：衣物·便服；grade=4; slot=body; armorWeight=light; wearer=male; talk=1。外观：男款石青圆领对襟短马褂单件平展，平袖、五枚铜盘扣、暗花缎面，袍身至胯，无补子无文字，清前中期士绅尺度
-  short: 清蓝缎马褂·男
+  desc: 外观：男款石青圆领对襟短马褂单件平展，平袖、五枚铜盘扣、暗花缎面。 待运行时投影：talk=1; wearer=male。
 extension:
   type: equipment
   value:

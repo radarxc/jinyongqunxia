@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingdongpojin_nan
 text:
-  desc: 名录投影：头饰·巾；grade=6; slot=head; wearer=male; wis=1。外观：男款乌青纱东坡巾独立陈列，不画人头，方高巾体、前檐短、后垂软脚，纱纹清楚配素巾环，无字，明代士人尺度
-  short: 明纱制东坡巾·男
+  desc: 外观：男款乌青纱东坡巾独立陈列，不画人头。 待运行时投影：wearer=male; wis=1。
 extension:
   type: equipment
   value:

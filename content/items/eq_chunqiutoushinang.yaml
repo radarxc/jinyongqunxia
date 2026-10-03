@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_chunqiutoushinang
+name: 春秋投石革囊
+kind: hidden
+sub: ball
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/chunqiutoushinang
+text:
+  desc: 外观：巴掌大原色革囊闭合，骨质小扣、麻绳束口。 待运行时投影：ammoMul=0.915; ammoSlots=2; hiddenHit=3.0。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: ball
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

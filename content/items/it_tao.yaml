@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_tao
+name: 桃
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 历代鲜果与糖霜果品原料
+price: auto
+flags: []
+assets:
+  icon: item/tao
+text:
+  desc: 外观：粉黄鲜桃三枚置竹盘，绒皮与浅缝清楚 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: fruit

@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/changsuo
 text:
-  desc: 名录投影：兵器·鞭索；grade=3; cat=whip; hands=1。外观：深褐多股牛皮索约三米，短木握柄、末端铜坠，松盘呈完整连续轮廓，不打死结，无人物与手
-  short: 牛皮长索
+  desc: 外观：深褐多股牛皮索约三米，短木握柄、末端铜坠。
 extension:
   type: equipment
   value:

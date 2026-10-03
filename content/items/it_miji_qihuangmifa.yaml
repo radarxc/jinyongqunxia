@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_qihuangmifa
+name: 胡青牛医经手本
+kind: manual
+sub: copy
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·胡青牛赠张无忌的一部手写医书；本作映射岐黄秘法 （原创扩展映射）
+price: auto
+flags: []
+assets:
+  icon: item/miji_qihuangmifa
+text:
+  desc: 外观：元代旧黄纸包背医书，蓝布护脊、棉线补缀。
+extension:
+  type: manual
+  value:
+    skill: sk_qihuangmifa
+    maxLayer: 8
+    variant: copy
+    readMul: 1

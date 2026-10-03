@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/sengyi
 text:
-  desc: 名录投影：衣物·袍服；grade=3; slot=body; armorWeight=light; resMindPp=2。外观：灰黄交领僧衣整齐叠置，棉麻哑光，不画袈裟文字与人物 （原创扩展）
-  short: 素色僧衣
+  desc: 外观：灰黄交领僧衣整齐叠置，棉麻哑光。 待运行时投影：resMindPp=2。
 extension:
   type: equipment
   value:

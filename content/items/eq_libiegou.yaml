@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/libiegou
 text:
-  desc: 名录投影：兵器·奇门钩；grade=9; cat=exotic; exoticKind=hook; hands=1; unique=true。外观：乌钢弯钩配内刃，短柄皮缠，整体约三尺，轮廓清楚 （原创扩展）
-  short: 离别钩
+  desc: 外观：乌钢弯钩配内刃，短柄皮缠。 待运行时投影：exoticKind=hook。
 extension:
   type: equipment
   value:

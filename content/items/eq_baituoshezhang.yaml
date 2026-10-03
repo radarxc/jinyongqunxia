@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/baituoshezhang
 text:
-  desc: 名录投影：兵器·棍杖；grade=9; cat=staff; hands=1; unique=true; sect=sect_baituoshan。外观：乌木长杖约一人高，杖首双蛇盘绕造型与闭合暗孔、银箍和铁尾鐏，旧化克制，不画活蛇扑咬，无人物与手 （原创扩展形制）
-  short: 白驼蛇杖
+  desc: 外观：乌木长杖约一人高，杖首双蛇盘绕造型与闭合暗孔、银箍和铁尾鐏。 待运行时投影：sect=sect_baituoshan。
 extension:
   type: equipment
   value:

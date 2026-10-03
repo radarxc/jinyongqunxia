@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_gaoliang
+name: 高粱
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 北方旱作谷物；明清食用与酿造常见
+price: auto
+flags: []
+assets:
+  icon: item/gaoliang
+text:
+  desc: 外观：红褐高粱粒盛竹斗，旁置一小穗。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_liangshi_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: grain

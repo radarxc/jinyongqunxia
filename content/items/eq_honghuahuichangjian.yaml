@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/honghuahuichangjian
 text:
-  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true; sect=sect_honghuahui。外观：清代直剑约七十五厘米，红褐丝缠柄、花瓣形小铜镡与黑漆鞘，鞘口一朵无字浅刻花，旅途磨痕，完整斜置，无人物与手
-  short: 红花会长剑
+  desc: 外观：清代直剑约七十五厘米，红褐丝缠柄、花瓣形小铜镡与黑漆鞘。 待运行时投影：sect=sect_honghuahui。
 extension:
   type: equipment
   value:

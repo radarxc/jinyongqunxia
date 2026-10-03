@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_zhangbaqushemao
+name: 丈八曲蛇矛
+kind: weapon
+sub: spear
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/zhangbaqushemao
+text:
+  desc: 外观：双刃矛锋呈连续浅波而非夸张蛇身，深木杆通长约三米、短红缨与铁鐏。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

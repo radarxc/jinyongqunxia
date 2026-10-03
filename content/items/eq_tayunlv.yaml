@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/tayunlv
 text:
-  desc: 名录投影：鞋·名履；grade=9; slot=feet; qinggong=22.5; climbSta=-20%; unique=true。外观：月白软履配灰蓝云纹织边，薄底、完整一双，精工不发光 （原创扩展）
-  short: 踏云履
+  desc: 外观：月白软履配灰蓝云纹织边，薄底、完整一双。 待运行时投影：climbSta=-20%; qinggong=22.5。
 extension:
   type: equipment
   value:

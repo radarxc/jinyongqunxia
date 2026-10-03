@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_danqingshengchangjian
+name: 丹青生长剑
+kind: weapon
+sub: sword
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《笑傲江湖》·丹青生用剑；是否有专名 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/danqingshengchangjian
+text:
+  desc: 外观：修长钢剑约七十八厘米，云头小护手、赭红丝缠柄、黑漆鞘带抽象泼墨纹但无字。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

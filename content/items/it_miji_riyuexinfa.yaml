@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_riyuexinfa
+name: 日月心法秘本
+kind: manual
+sub: full
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_riyuexinfa
+text:
+  desc: 外观：明代黑漆布面线装册，红丝线。
+extension:
+  type: manual
+  value:
+    skill: sk_riyuexinfa
+    maxLayer: 10
+    variant: full
+    readMul: 1

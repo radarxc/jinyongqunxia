@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/changlegangdao
 text:
-  desc: 名录投影：兵器·刀；grade=8; cat=blade; hands=1; unique=true; sect=sect_changlebang。外观：明代帮会宽背腰刀，刃约七十厘米，方形铁镡、褐皮柄与黑漆鞘，刀背厚重、使用缺口克制，无帮徽文字，完整斜置，无人物与手
-  short: 长乐帮刀
+  desc: 外观：明代帮会宽背腰刀，刃约七十厘米。 待运行时投影：sect=sect_changlebang。
 extension:
   type: equipment
   value:

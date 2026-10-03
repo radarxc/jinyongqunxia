@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_huajiao_xiangliao
+name: 花椒香料
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 中国本土辛香料，辣椒传入前重要辛味来源
+price: auto
+flags: []
+assets:
+  icon: item/huajiao_xiangliao
+text:
+  desc: 外观：红褐花椒一小撮盛铜碟，开裂果壳与黑籽可辨 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: spice

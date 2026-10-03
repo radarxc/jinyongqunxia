@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_qinlonggong
+name: 擒龙功秘本
+kind: manual
+sub: full
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·擒龙功；载体 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_qinlonggong
+text:
+  desc: 外观：北宋赭黄蝴蝶装册，青绫包角。
+extension:
+  type: manual
+  value:
+    skill: sk_qinlonggong
+    maxLayer: 10
+    variant: full
+    readMul: 1

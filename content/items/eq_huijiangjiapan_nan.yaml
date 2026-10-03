@@ -16,8 +16,7 @@ flags:
 assets:
   icon: item/huijiangjiapan_nan
 text:
-  desc: 名录投影：衣物·胡服；grade=2; slot=body; armorWeight=light; wearer=male。外观：男款土褐长领齐袖棉布袷袢单件平展，对襟、膝下直摆、红布窄腰带收拢，轻磨损无字，清代回疆平民尺度
-  short: 回疆棉布袷袢·男
+  desc: 外观：男款土褐长领齐袖棉布袷袢单件平展，对襟、膝下直摆、红布窄腰带收拢。 待运行时投影：wearer=male。
 extension:
   type: equipment
   value:

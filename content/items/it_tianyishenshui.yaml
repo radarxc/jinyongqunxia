@@ -23,8 +23,7 @@ use:
 assets:
   icon: item/tianyishenshui
 text:
-  desc: 名录投影：药物·奇毒；grade=9; action=dose; apply=bf_judu; unique=true; noCraft=true。外观：密封白玉小瓶嵌入乌木护匣，银扣与深蓝软衬，液体不外露，半掌高 （原创扩展形制）
-  short: 天一神水
+  desc: 外观：密封白玉小瓶嵌入乌木护匣，银扣与深蓝软衬。 待运行时投影：noCraft=true。
 extension:
   type: generic
   value: {}

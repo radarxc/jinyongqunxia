@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/jinlun
 text:
-  desc: 名录投影：兵器·奇门轮；grade=9; cat=exotic; exoticKind=wheel; hands=1; unique=true; sect=sect_mizong。外观：五枚不同金属色圆轮整齐错位并置，主金轮直径约四十厘米，外缘钝刃、内圈握位清楚，旧化克制，无飞旋场景与人物 （原创扩展形制）
-  short: 金轮
+  desc: 外观：五枚不同金属色圆轮整齐错位并置，主金轮直径约四十厘米。 待运行时投影：exoticKind=wheel; sect=sect_mizong。
 extension:
   type: equipment
   value:

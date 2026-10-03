@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_shiliu
+name: 石榴
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 汉以后传入，西域及中原园圃可得
+price: auto
+flags: []
+assets:
+  icon: item/shiliu
+text:
+  desc: 外观：红黄石榴两枚，一枚剖开露红籽。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: fruit

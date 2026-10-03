@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_tubotiejingangchu
+name: 吐蕃铁金刚杵
+kind: weapon
+sub: exotic
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域法兵·吐蕃；白马（唐）起藏边节点可得，战斗用途 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tubotiejingangchu
+text:
+  desc: 外观：通长约六十厘米，铸铁中握段配对称棱瓣圆钝首。 待运行时投影：exoticKind=pestle。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

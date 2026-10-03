@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/shunvjian
 text:
-  desc: 名录投影：兵器·剑；grade=9; cat=sword; hands=1; unique=true。外观：银白纤细直剑，浅青柄缠，与君子剑成对但独立完整 （原创扩展形制）
-  short: 淑女剑
+  desc: 外观：银白纤细直剑，浅青柄缠。
 extension:
   type: equipment
   value:

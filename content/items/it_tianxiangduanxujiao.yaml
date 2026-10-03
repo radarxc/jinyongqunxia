@@ -30,8 +30,7 @@ use:
 assets:
   icon: item/tianxiangduanxujiao
 text:
-  desc: 名录投影：药物·接骨外敷；grade=7; healPct=6%; dispel=bleed,injury.bone:g7; buff=bf_huoluo。外观：乳白半透明胶膏置青白瓷盒，浅金油纸，清雅恒山气质 （原创扩展）
-  short: 天香断续胶
+  desc: 外观：乳白半透明胶膏置青白瓷盒，浅金油纸。
 extension:
   type: generic
   value: {}

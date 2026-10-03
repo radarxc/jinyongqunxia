@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mengguyangmaozhanxue_nan
 text:
-  desc: 名录投影：鞋·毡靴；grade=2; slot=feet; wearer=male; qinggong=5; resColdPp=1。外观：男款灰白羊毛毡靴一双并置，宽圆微翘头、中高靿、褐皮包底与粗线缝口，无纹无字，成年足长、蒙古牧民尺度
-  short: 蒙古羊毛毡靴·男
+  desc: 外观：男款灰白羊毛毡靴一双并置，宽圆微翘头、中高靿、褐皮包底与粗线缝口。 待运行时投影：qinggong=5; resColdPp=1; wearer=male。
 extension:
   type: equipment
   value:

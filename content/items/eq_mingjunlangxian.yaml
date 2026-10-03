@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_mingjunlangxian
+name: 明军狼筅
+kind: weapon
+sub: exotic
+grade: 5
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·明；笑傲起军阵节点可得（《纪效新书》《练兵实纪》）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingjunlangxian
+text:
+  desc: 外观：保留多层侧枝的长竹筅通长约三米，枝端包小铁尖且全部朝外。 待运行时投影：exoticKind=misc。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

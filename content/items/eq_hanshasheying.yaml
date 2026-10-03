@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/hanshasheying
 text:
-  desc: 名录投影：暗器·机括；grade=6; hiddenKind=gun; perBattle=3; range=3; aoe=cone; poisonCoat=true。外观：乌木掌心机匣，黄铜细孔成扇面排列，无火器枪管 （原创扩展）
-  short: 含沙射影
+  desc: 外观：乌木掌心机匣，黄铜细孔成扇面排列。 待运行时投影：aoe=cone; poisonCoat=true; range=3。
 extension:
   type: equipment
   value:

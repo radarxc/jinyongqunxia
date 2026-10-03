@@ -23,8 +23,7 @@ use:
 assets:
   icon: item/yuluwan
 text:
-  desc: 名录投影：食品·点心；grade=9; staPct=24%; meal=bf_huinei:2battle。外观：乳白糯丸六枚置荷叶，透明露珠薄层，不像药丸 （原创扩展）
-  short: 玉露丸子
+  desc: 外观：乳白糯丸六枚置荷叶，透明露珠薄层。
 extension:
   type: generic
   value: {}

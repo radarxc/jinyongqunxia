@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/wandao
 text:
-  desc: 名录投影：兵器·刀；grade=4; cat=blade; hands=1。外观：狭长弧刃便于马上挥斩，刃约七十五厘米，短横镡、皮缠斜柄、木胎皮鞘与两道挂环，使用磨痕，完整斜置，无人物与手
-  short: 元蒙骑刀
+  desc: 外观：狭长弧刃便于马上挥斩，刃约七十五厘米。
 extension:
   type: equipment
   value:

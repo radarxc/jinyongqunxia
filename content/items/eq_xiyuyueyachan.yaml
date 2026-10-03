@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_xiyuyueyachan
+name: 西域月牙铲
+kind: weapon
+sub: exotic
+grade: 3
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域长兵·西域；白马（唐）起西域节点可得，名称年代 （待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xiyuyueyachan
+text:
+  desc: 外观：一端月牙铲刃、另一端小月牙尾铲，深木长杆约一百八十厘米。 待运行时投影：exoticKind=misc。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

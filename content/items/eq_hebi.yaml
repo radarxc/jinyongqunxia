@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/hebi
 text:
-  desc: 名录投影：兵器·奇门笔；grade=8; cat=exotic; exoticKind=brush; hands=1; pair=true; unique=true。外观：一对鹤嘴形长铁笔平行并置，各约五十厘米，弯尖笔端、圆盘护指与皮缠握位，乌钢磨亮，无人物与手 （原创扩展形制）
-  short: 鹤嘴双笔
+  desc: 外观：一对鹤嘴形长铁笔平行并置，各约五十厘米。 待运行时投影：exoticKind=brush。
 extension:
   type: equipment
   value:

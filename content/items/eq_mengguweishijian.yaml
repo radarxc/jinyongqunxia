@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: eq_mengguweishijian
+name: 蒙古卫士剑
+kind: weapon
+sub: sword
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·蒙古；射雕起仅蒙古营地可得，直剑比例 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/mengguweishijian
+text:
+  desc: 外观：全长约九十厘米，厚脊窄直双刃、短铁镡、皮缠柄与帽形首。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

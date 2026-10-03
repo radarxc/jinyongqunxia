@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_jinguanyusuo
+name: 金关玉锁二十四诀抄本
+kind: manual
+sub: copy
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_jinguanyusuo
+text:
+  desc: 外观：南宋青灰蝴蝶装册，白麻纸页。
+extension:
+  type: manual
+  value:
+    skill: sk_jinguanyusuo
+    maxLayer: 8
+    variant: copy
+    readMul: 1

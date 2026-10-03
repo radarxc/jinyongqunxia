@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/huanziqiang
 text:
-  desc: 名录投影：兵器·枪；grade=2; cat=spear; hands=2; tags=long。外观：菱形枪锋下设小铁环，白蜡长杆约二点三米，枪裤与尾鐏清楚，少量锈斑，完整斜置留足两端，无人物与手 （原创扩展尺度）
-  short: 环子枪
+  desc: 外观：菱形枪锋下设小铁环，白蜡长杆约二点三米。
 extension:
   type: equipment
   value:

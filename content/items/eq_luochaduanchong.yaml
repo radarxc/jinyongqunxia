@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/luochaduanchong
 text:
-  desc: 名录投影：暗器·火器；grade=8; hiddenKind=gun; perBattle=2; ammoMul=2.0; range=5; reloadOwnActions=1。外观：木柄短铳、黑铁短管、黄铜箍，清初火器感，无烟火场景 （原创扩展）
-  short: 罗刹短铳
+  desc: 外观：木柄短铳、黑铁短管、黄铜箍，清初火器感。 待运行时投影：ammoMul=2.0; range=5; reloadOwnActions=1。
 extension:
   type: equipment
   value:

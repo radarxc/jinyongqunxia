@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/jinchu
 text:
-  desc: 名录投影：兵器·奇门杵；grade=7; cat=exotic; exoticKind=pestle; hands=2; tags=heavy; unique=true; sect=sect_mizong。外观：粗长金色金属杵约一百三十厘米，中段皮缠双手握位、两端棱瓣钝首，金光作旧而不耀眼，完整斜置，无人物与手
-  short: 达尔巴金杵
+  desc: 外观：粗长金色金属杵约一百三十厘米，中段皮缠双手握位、两端棱瓣钝首。 待运行时投影：exoticKind=pestle; sect=sect_mizong。
 extension:
   type: equipment
   value:

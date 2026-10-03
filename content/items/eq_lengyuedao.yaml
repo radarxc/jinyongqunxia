@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/lengyuedao
 text:
-  desc: 名录投影：兵器·刀；grade=10; cat=blade; hands=1; divine=true; unique=true; sect=sect_hujia。外观：冷银微弧刀刃如弦月，刃约八十厘米，素铁圆镡、深蓝丝缠柄、旧黑鞘，寒光只作金属反光，完整斜置，无人物与手 （原创扩展形制）
-  short: 冷月宝刀
+  desc: 外观：冷银微弧刀刃如弦月，刃约八十厘米。 待运行时投影：sect=sect_hujia。
 extension:
   type: equipment
   value:

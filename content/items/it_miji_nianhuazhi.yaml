@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_nianhuazhi
+name: 拈花指法钞本
+kind: manual
+sub: copy
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·慕容博从少林藏经阁取出钞本并另行钞录
+price: auto
+flags: []
+assets:
+  icon: item/miji_nianhuazhi
+text:
+  desc: 外观：北宋旧黄纸蝴蝶装钞本，灰褐纸衣、细麻缝缀。
+extension:
+  type: manual
+  value:
+    skill: sk_nianhuazhi
+    maxLayer: 8
+    variant: copy
+    readMul: 1

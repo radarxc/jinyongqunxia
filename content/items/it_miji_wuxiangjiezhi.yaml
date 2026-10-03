@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_wuxiangjiezhi
+name: 无相劫指谱古本
+kind: manual
+sub: copy
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·萧远山在少林藏经阁找到“一本无相劫指谱”
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuxiangjiezhi
+text:
+  desc: 外观：北宋旧黄纸蝴蝶装册，褐绢包角、细麻缝缀。
+extension:
+  type: manual
+  value:
+    skill: sk_wuxiangjiezhi
+    maxLayer: 8
+    variant: copy
+    readMul: 1

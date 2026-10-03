@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/jinshezhui
 text:
-  desc: 名录投影：暗器·名锥；grade=8; hiddenKind=awl; ammoMul=1.160; hiddenHit=6.6; perBattle=8; unique=true。外观：八枚金色蛇形短锥等距排于黑绒匣，锥长约一掌、曲柄似蛇而锋尖清楚，无文字、人物、手、发射或命中场景 （原创扩展陈设）
-  short: 金蛇锥
+  desc: 外观：八枚金色蛇形短锥等距排于黑绒匣，锥长约一掌、曲柄似蛇而锋尖清楚。 待运行时投影：ammoMul=1.160; hiddenHit=6.6。
 extension:
   type: equipment
   value:

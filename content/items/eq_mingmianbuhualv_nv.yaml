@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingmianbuhualv_nv
 text:
-  desc: 名录投影：鞋·布履；grade=1; slot=feet; wearer=female; qinggong=2.5。外观：女款靛蓝棉布履一双并置，圆翘鞋头、平薄千层底、白线小折枝花与补缀，成年足长、不束足夸张，明代平民尺度
-  short: 明棉布花履·女
+  desc: 外观：女款靛蓝棉布履一双并置，圆翘鞋头、平薄千层底、白线小折枝花与补缀。 待运行时投影：qinggong=2.5; wearer=female。
 extension:
   type: equipment
   value:

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_xingchun
+name: 猩唇
+kind: material
+sub: ingredient
+grade: 9
+stack: 999
+chapters: any
+origin: canonExpanded
+canonRef: 古代八珍名目；实际物种与加工 （待考），只作传闻贡品
+price: auto
+flags: []
+assets:
+  icon: item/xingchun
+text:
+  desc: 外观：深褐风干肉脯一小片封在竹叶包中，指掌尺度 （原创扩展）。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di3
+    materialGrade: 9
+    rare: false
+    ingredientKind: rare

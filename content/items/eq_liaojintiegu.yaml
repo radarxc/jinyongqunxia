@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_liaojintiegu
+name: 辽金铁骨朵
+kind: weapon
+sub: exotic
+grade: 4
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·辽；天龙至神雕北境可得（赤峰市博物馆辽代铁骨朵参照）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/liaojintiegu
+text:
+  desc: 外观：通长约五十厘米，细铁柄与多棱圆钝铁首一体。 待运行时投影：exoticKind=hammer。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false

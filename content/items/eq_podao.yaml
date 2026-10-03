@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/podao
 text:
-  desc: 名录投影：兵器·刀；grade=2; cat=blade; hands=2; tags=long。外观：宽背单刃配一米余木柄，刀身约半臂长，铁吞口、麻绳防滑、无护手，完整长件斜置并留足杆端，无人物与手 （原创扩展复原）
-  short: 朴刀
+  desc: 外观：宽背单刃配一米余木柄，刀身约半臂长。
 extension:
   type: equipment
   value:

@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_jiebiaodaofa
+name: 解镖刀法原本
+kind: manual
+sub: original
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_jiebiaodaofa
+text:
+  desc: 外观：明代靛青线装册，四眼白线、黑布包角。
+extension:
+  type: manual
+  value:
+    skill: sk_jiebiaodaofa
+    maxLayer: 10
+    variant: original
+    readMul: 1

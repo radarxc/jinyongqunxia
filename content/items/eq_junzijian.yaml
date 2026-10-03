@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/junzijian
 text:
-  desc: 名录投影：兵器·剑；grade=9; cat=sword; hands=1; unique=true。外观：乌黑修长直剑，方正小护手，克制银边，完整剑鞘 （原创扩展形制）
-  short: 君子剑
+  desc: 外观：乌黑修长直剑，方正小护手。
 extension:
   type: equipment
   value:

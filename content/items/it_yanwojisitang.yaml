@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: it_yanwojisitang
+name: 燕窝鸡丝汤
+kind: dish
+sub: dish
+grade: 10
+stack: 9
+chapters: any
+origin: canon
+canonRef: 清《扬州画舫录》满汉席菜单；仅乾隆书界固定宴席
+price: null
+flags:
+- runtimeProjection
+- unique
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2800
+  - op: meal
+    params:
+      value: bf_huichun,bf_huinei:3battle
+assets:
+  icon: item/yanwojisitang
+text:
+  desc: 外观：象牙白燕窝鸡丝清汤盛黄釉盖盅，纤丝分明。 待运行时投影：party=4; uniqueBatch=true。
+extension:
+  type: generic
+  value: {}

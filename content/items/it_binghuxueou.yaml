@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/binghuxueou
 text:
-  desc: 名录投影：食材·菜蔬；grade=9; ingredientKind=vegetable; materialGrade=9。外观：白净莲藕两节带淡青切面，水珠与薄霜，前臂尺度 （原创扩展）
-  short: 冰湖雪藕
+  desc: 外观：白净莲藕两节带淡青切面，水珠与薄霜。
 extension:
   type: material
   value:

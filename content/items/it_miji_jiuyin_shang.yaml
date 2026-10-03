@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/miji_jiuyin_shang
 text:
-  desc: 名录投影：秘籍·原本；grade=12; skill=sk_jiuyin; variant=original; maxLayer=10; volume=upper。外观：墨青柔软纸书衣、微翘角、右侧四眼细订线、空题签，轻旧化 （原创扩展装帧）
-  short: 九阴真经上卷
+  desc: 外观：南宋墨青蝴蝶装册，柔软纸衣、细线缝缀。 待运行时投影：volume=upper。
 extension:
   type: manual
   value:

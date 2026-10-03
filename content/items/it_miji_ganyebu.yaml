@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_ganyebu
+name: 赶夜步全本
+kind: manual
+sub: full
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_ganyebu
+text:
+  desc: 外观：清代墨蓝线装薄册，黑线四眼订。
+extension:
+  type: manual
+  value:
+    skill: sk_ganyebu
+    maxLayer: 10
+    variant: full
+    readMul: 1

@@ -12,8 +12,7 @@ flags: []
 assets:
   icon: item/bainianxueshen
 text:
-  desc: 名录投影：药材·雪参；grade=9; herbFamily=xueShen; ageYears=100; materialGrade=9。外观：肥厚雪参与密须，冰蓝绢衬，老木匣边缘磨亮 （原创扩展）
-  short: 百年雪参
+  desc: 外观：肥厚雪参与密须，冰蓝绢衬。
 extension:
   type: material
   value:

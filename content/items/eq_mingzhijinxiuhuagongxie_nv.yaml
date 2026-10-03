@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/mingzhijinxiuhuagongxie_nv
 text:
-  desc: 名录投影：鞋·弓鞋；grade=9; slot=feet; wearer=female; qinggong=22.5。外观：女款绛红织金弓鞋一双并置，窄小翘头、低跟、云花暗纹与丝缎包边，按明代实物比例表现，不画脚、不作情色化陈列
-  short: 明织金绣花弓鞋·女
+  desc: 外观：女款绛红织金弓鞋一双并置，窄小翘头、低跟、云花暗纹与丝缎包边。 待运行时投影：qinggong=22.5; wearer=female。
 extension:
   type: equipment
   value:

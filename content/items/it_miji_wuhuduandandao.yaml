@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_wuhuduandandao
+name: 五虎断门刀民间谱
+kind: manual
+sub: full
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuhuduandandao
+text:
+  desc: 外观：明代深赭线装图册，四眼黑线。
+extension:
+  type: manual
+  value:
+    skill: sk_wuhuduandandao
+    maxLayer: 10
+    variant: full
+    readMul: 1

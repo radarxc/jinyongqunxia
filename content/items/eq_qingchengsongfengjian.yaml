@@ -15,8 +15,7 @@ flags:
 assets:
   icon: item/qingchengsongfengjian
 text:
-  desc: 名录投影：兵器·剑；grade=8; cat=sword; hands=1; unique=true; sect=sect_qingcheng。外观：青灰直剑约七十厘米，松枝形小护手、深绿丝缠柄、竹节纹黑鞘，纹样克制、刃面薄雾般锻纹，完整斜置，无人物与手
-  short: 青城松风剑
+  desc: 外观：青灰直剑约七十厘米，松枝形小护手、深绿丝缠柄、竹节纹黑鞘。 待运行时投影：sect=sect_qingcheng。
 extension:
   type: equipment
   value:

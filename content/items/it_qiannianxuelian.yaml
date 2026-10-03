@@ -13,8 +13,7 @@ flags:
 assets:
   icon: item/qiannianxuelian
 text:
-  desc: 名录投影：药材·雪莲；grade=10; herbFamily=xueLian; ageYears=1000; materialGrade=10; unique=true。外观：多层银白花瓣与苍青老根，寒玉匣衬旧绢，花冠约一掌宽 （原创扩展）
-  short: 千年雪莲
+  desc: 外观：多层银白花瓣与苍青老根，寒玉匣衬旧绢。
 extension:
   type: material
   value:

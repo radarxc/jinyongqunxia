@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/niuweidao
 text:
-  desc: 名录投影：兵器·刀；grade=5; cat=blade; hands=1。外观：根窄梢宽、刀尖上扬似牛尾的单刃钢刀，刃约七十厘米，圆铜镡、木柄棉绳缠绕、旧皮鞘，完整斜置，无人物与手
-  short: 牛尾刀
+  desc: 外观：根窄梢宽、刀尖上扬似牛尾的单刃钢刀，刃约七十厘米。
 extension:
   type: equipment
   value:

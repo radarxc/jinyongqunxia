@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/dugumujian
 text:
-  desc: 名录投影：兵器·剑；grade=6; cat=sword; hands=1; unique=true。外观：深色硬木削成的直剑，刃脊与剑尖皆钝，长约九十厘米，护手与剑身一体、握处磨亮，完整斜置，无人物与手 （原创扩展形制）
-  short: 独孤木剑
+  desc: 外观：深色硬木削成的直剑，刃脊与剑尖皆钝。
 extension:
   type: equipment
   value:

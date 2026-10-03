@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: eq_xiaoxiangzikusangbang
+name: 潇湘子哭丧棒
+kind: weapon
+sub: staff
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《神雕侠侣》·潇湘子使用哭丧棒；机关与毒性 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/xiaoxiangzikusangbang
+text:
+  desc: 外观：苍白硬木长棒约一百六十厘米，两端包乌铁、杆身缠数道旧白布但无文字纸幡。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

@@ -1,0 +1,23 @@
+schemaVersion: item.v1
+id: it_miji_baidubianzheng
+name: 王难姑毒经抄本
+kind: manual
+sub: copy
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·题签写书名的手写黄纸抄本；本作映射百毒辨证 （原创扩展映射）
+price: auto
+flags: []
+assets:
+  icon: item/miji_baidubianzheng
+text:
+  desc: 外观：元代黄纸包背抄本，褐布护脊、细麻补线。
+extension:
+  type: manual
+  value:
+    skill: sk_baidubianzheng
+    maxLayer: 8
+    variant: copy
+    readMul: 1

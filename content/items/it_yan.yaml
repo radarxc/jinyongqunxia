@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yan
+name: 盐
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 历代基础调味与官营物资
+price: auto
+flags: []
+assets:
+  icon: item/yan
+text:
+  desc: 外观：灰白粗盐盛小陶罐，木盖斜靠。
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: spice

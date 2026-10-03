@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_qingkezanba
+name: 青稞糌粑
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 藏地高原主食；明清书界商路可得
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_yuhan:1battle
+assets:
+  icon: item/qingkezanba
+text:
+  desc: 外观：淡褐糌粑团两个置木碗，粗粒与酥油润泽。
+extension:
+  type: generic
+  value: {}

@@ -13,8 +13,7 @@ flags: []
 assets:
   icon: item/minggangjian
 text:
-  desc: 名录投影：兵器·剑；grade=6; cat=sword; hands=1。外观：精炼钢质直脊双刃，刃约八十厘米，护手外撇、海棠形剑首、深青丝缠柄与黑漆鞘，少量旧痕，完整斜置，无人物与手 （原创扩展装具）
-  short: 明钢长剑
+  desc: 外观：精炼钢质直脊双刃，刃约八十厘米。
 extension:
   type: equipment
   value:

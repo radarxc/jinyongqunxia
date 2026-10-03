@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_jinhuabiao
+name: 金花镖
+kind: hidden
+sub: dart
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·金花婆婆使用金花状暗器；材质与细节 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jinhuabiao
+text:
+  desc: 外观：六枚梅花状金色薄镖整齐列于紫绒匣，真梅花大小、五瓣边缘克制开刃、银色细蕊。 待运行时投影：ammoMul=1.160; hiddenHit=6.6; sect=sect_mingjiao。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true

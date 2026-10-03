@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_larou
+name: 腊肉
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_jiangu:1battle
+assets:
+  icon: item/larou
+text:
+  desc: 外观：烟褐腊肉一条置竹板，脂肉分层、麻绳结。
+extension:
+  type: generic
+  value: {}

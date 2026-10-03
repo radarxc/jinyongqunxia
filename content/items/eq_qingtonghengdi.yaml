@@ -14,8 +14,7 @@ flags:
 assets:
   icon: item/qingtonghengdi
 text:
-  desc: 名录投影：兵器·奇门笛；grade=5; cat=exotic; exoticKind=flute; hands=1。外观：青铜横笛约六十五厘米，吹孔与指孔清楚、两端加厚，素面仅一圈云纹，铜绿克制，完整横置，无人物与手
-  short: 青铜横笛
+  desc: 外观：青铜横笛约六十五厘米，吹孔与指孔清楚、两端加厚。 待运行时投影：exoticKind=flute。
 extension:
   type: equipment
   value:

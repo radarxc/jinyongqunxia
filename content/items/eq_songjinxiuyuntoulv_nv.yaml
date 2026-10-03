@@ -17,8 +17,7 @@ flags:
 assets:
   icon: item/songjinxiuyuntoulv_nv
 text:
-  desc: 名录投影：鞋·云头履；grade=7; slot=feet; wearer=female; qinggong=17.5。外观：女款月白罗面云头履一双并置，鞋尖含蓄上翘、薄底、金线折枝花与绛色包边，成年足长、不极端缩小，宋代贵族尺度
-  short: 宋金绣云头履·女
+  desc: 外观：女款月白罗面云头履一双并置，鞋尖含蓄上翘、薄底、金线折枝花与绛色包边。 待运行时投影：qinggong=17.5; wearer=female。
 extension:
   type: equipment
   value:

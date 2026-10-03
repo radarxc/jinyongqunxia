@@ -1,0 +1,22 @@
+schemaVersion: item.v1
+id: it_miji_linmotieshi
+name: 临摹帖式原本
+kind: manual
+sub: original
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_linmotieshi
+text:
+  desc: 外观：唐代经折字帖，月白硬纸护面。
+extension:
+  type: manual
+  value:
+    skill: sk_linmotieshi
+    maxLayer: 10
+    variant: original
+    readMul: 1
