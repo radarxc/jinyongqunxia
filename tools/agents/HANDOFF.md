@@ -758,4 +758,16 @@
     - **eng3**：协调者 21:09 把并发调回 4（新 pid 15369），随即起了 ENG-16d。现在在跑 12c-clip、rig-sheet、17a、16d；ENG-14b、18b、19a 就绪，等空位。
     - **GPT-5.6-Sol 停滞**：20:12–20:13 前后，ENG-12c-clip、ENG-17a、TOOL-rig-sheet 三个 Sol 执行器同时没了输出。20:37–20:39 停滞检测自动续作，第 2 次运行仍是 Sol，现在正常。和 16:02 Astra 那次一样是服务端集体停滞。
   - **10-02 22:00–22:45 协调者（作者 AR-36：素材线第二波 + 物品说明）**：登记 ART-hero-refine-a/b、ART-cast-fill-a/b、CITY-layouts-all、ART-ruins-maps（bfc5f707，执行器 Codex gpt-6-astra，精修 ultra 其余 xhigh），起追踪 subagent 按 `_handoff/art_wave2_tracker_brief.md` 启动与验收；任务系统加 `sparse_include`（素材任务稀疏检出）与 `check_asset_dirs.py`；物品说明批次 des34（spec + 8 批，pid 9492）22:39 启动；Gemini 线改为只做物品；作者截图存 `imagegen-reference/author-20261002/`。提交时 `.git/logs/refs/remotes/origin/…lock` 残留导致 gc 报错，提交本身成功，锁文件未动。
+  - **10-02 21:40–23:02 开发监督**：
+    - **ENG-12c-clip 合入**（26697b74，22:39）：
+      - 动作原型 P8–P9：`playClip` / `stopClip`、`content/anim/clip-map.yaml`、`/rig-demo`（A/B 步态、8 方向、剑招按钮），目前用占位 rig。
+      - 报告实测：投影金样误差 0 px；片段模式 check:perf 三轮最好 0.742 ms（loadavg 9.85），离 0.80 的线较近。
+      - rig 门禁文件只新增了「100 人片段模式 < 0.8」一项，阈值未动、无跳过逻辑，已核对。
+      - 合入后 `prod_check` 绿：779 用例，size 301.66 / 350。低负载复核 check:perf 的后台脚本已挂上（`perf_when_idle.sh`，等 loadavg < 8 再跑）。
+    - **ENG-16d 合入**（23:00）：伤害链接几何。合入后 `prod_check` 绿，789 用例。
+    - **ENG-17a**：r1 FAIL 后在第 3 次运行里返修。TOOL-items-catalog 22:40 起跑。TOOL-rig-sheet 第 2 次运行已超过 2 小时。
+    - **磁盘**：
+      - 22:52 降到 5.6 GiB，已报协调者。新增的 ART-cast-fill-a / hero-refine-a / b 三个工作区合计约 2.9 GB；`/private/tmp` 涨到 9.2 GB，其中 TOOL-rig-sheet 编 Swift 留下的 swift-cache × 2、vision-debug 共 669 MB。
+      - `/private/tmp/tianshu-pw-browsers`（539 MB）是 10-01 01:45 下载的 Playwright，早于 AR-34，属旧遗留。
+      - 没删任何东西；23:00 回到 7.3 GiB。
 
