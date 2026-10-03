@@ -30991,6 +30991,9 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
+    ],
+    "shrink_exempt": [
+     "packages/data/src/schemas/world.ts"
     ]
    },
    "id": "ENG-17-booksleep-m1",
