@@ -1,0 +1,8 @@
+schemaVersion: event.v1
+id: ev_build_fixture
+chapterId: ch01_tianlong
+event: fixture/chapter
+once: true
+actions:
+  - map:
+      name: 章节夹具

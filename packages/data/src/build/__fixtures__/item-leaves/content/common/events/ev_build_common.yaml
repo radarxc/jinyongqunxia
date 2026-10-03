@@ -1,0 +1,8 @@
+schemaVersion: event.v1
+id: ev_build_common
+chapterId: ch01_tianlong
+event: fixture/common
+once: true
+actions:
+  - map:
+      name: 公共夹具

@@ -1,0 +1,8 @@
+schemaVersion: event.v1
+id: ev_build_world
+chapterId: ch01_tianlong
+event: fixture/world
+once: true
+actions:
+  - map:
+      name: 世界夹具
