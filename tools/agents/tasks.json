@@ -35959,7 +35959,7 @@
    ],
    "validate": {
     "exists": [
-     "packages/data/src/schemas/region-gate.ts"
+     "packages/data/src/schemas/region-binding.ts"
     ],
     "cmd": [
      [
@@ -35999,14 +35999,14 @@
     ]
    },
    "id": "ENG-region-gates-data",
-   "title": "游戏工程 · 区域门禁绑定进内容数据：region-gate.v1 schema、content/chapters/<ch>/gates、编进章节包、区域子系统按需装载，content:validate 校验 Door.lockedBy 必须是已登记 gateId",
+   "title": "游戏工程 · 区域绑定数据：gate / dialogue / loot 三类 binding 进内容数据（同一套 schema、content/chapters/<ch>/bindings、编进章节包、区域按需装载、校验地图引用已登记）",
    "prompt": "ENG-region-gates-data.md",
    "deps": [
     "ENG-tiled-trigger-strict",
     "ENG-entry-split"
    ],
    "writes": [
-    "packages/data/src/schemas/region-gate.ts",
+    "packages/data/src/schemas/region-binding.ts",
     "packages/data/src/schemas/index.ts",
     "packages/data/src/schemas/region-map.ts",
     "packages/data/src/content-registry.ts",
@@ -36016,8 +36016,7 @@
     "packages/data/src/**/*.test.ts",
     "packages/data/src/**/__fixtures__/**",
     "apps/game/src/runtime/**",
-    "content/CLAUDE.md",
-    "content/chapters/README.md"
+    "content/CLAUDE.md"
    ]
   },
   {
