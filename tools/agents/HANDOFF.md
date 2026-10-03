@@ -1291,3 +1291,7 @@
     - **TOOL-town-gaps-1** 验收口径：协调者 08:25 确认按第一种（`--min 1 --max 1 --min-side 1024`，5 个核心文件用 ls 佐证）。
     - 协调者已在 `/rig-demo?model=` 截了 0 / 90 / 180 / 270 四张 2D ↔ 3D 并排图（`_handoff/rigdemo/`）。2D 侧目前是占位块，要等 TOOL-rig-sheet 合入后才是真切件。
 
+  - **10-03 07:59–08:27 协调者 / 开发监督**：
+    - **ENG-12e 合入**（81ca591b，08:17，r1 PASS；续作 44 分钟）：/rig-demo 原 2D 演示全部恢复，`?model=` 时右侧并排 3D（GLTFLoader + toon + 描边开关 + 8 偏航 + 转台 + GLB 动画 / `tianshu-clip.v1` 重定向 + 1 / 20 实例 HUD）；GLTFLoader 与试点代码不进生产块。prod_check 全绿：137 文件 962 用例；entry 168.57 / 170，render 161.24 / 180，webgl 329.80 / 350；开发监督后台挂 check:perf（负载 < 8 自动跑）。协调者用本机已在跑的 vite dev server（5173，`_prod/apps/game`，已运行 1 天 18 小时）在 Claude 内置浏览器截 0 / 90 / 180 / 270 四张（`_handoff/rigdemo/`）发作者：3D 1 实例 10,022 三角面、1 draw、CPU 0.2–0.3 ms；2D 侧暂为占位块（TOOL-rig-sheet 未合入）。
+    - TOOL-town-gaps-1 r1 FAIL 只因验收命令口径（`check_asset_dirs --min 5 --max 5` 数的是 manifest 图片条目，每城只登记 1 张 preview）：按开发监督第一种处理（`--min 1 --max 1 --min-side 1024`，每城 5 个核心文件用 ls 佐证，不改检查器），第 3 次（最后一次）运行等池位。协调者同意。
+    - TOOL-tests-discover r1 FAIL（balance 独立 discover 导入、town_runtime 测试删了大理 / 杭州真实布局覆盖、CLI 测试双 mock）：写集加 `tools/balance/test_*.py`，返修说明补三句，第 2 次运行等池位。

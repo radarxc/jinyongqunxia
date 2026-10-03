@@ -46,9 +46,8 @@
 | TOOL-rig-sheet | traex Sol max | 审核 r5 又 FAIL（前臂含手掌、侧腿占位、髋锚暴露）；第 9 次返修为最后一轮，侧腿问题转 ART-rig-sheet-side（新源图），之后按原型收口合入 | 开发监督另起 |
 | TOOL-items-regen | traex | 已登记（dcb77156）：按九列名录重新生成并提交 content/items；次序 entry-split → tests-discover → **regen** → catalog-collectibles → gifts-catalog 复验合入 → regen-2（收藏品进 content/items） | 开发监督 |
 | TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；要等 regen 与 tests-discover 合入（否则它的 --check 与 content 测试必红） | 开发监督起 |
-| TOOL-tests-discover | traex Sol | 第 1 次运行 46 分钟，校验通过（全量 discover），审核中 | 3408（开发监督） |
-| ENG-12e-gltf-pilot | traex | 07:13 续作（恢复 2D 演示 + 3D 并排），07:16 开跑 | 69969（协调者，`supervise.r3.out`） |
-| TOOL-town-gaps-1 | traex Sol | 07:1x 续作（排队等池位） | 66572（开发监督） |
+| TOOL-tests-discover | traex Sol | r1 FAIL（balance 导入、town_runtime 测试删了真实布局覆盖、CLI 双 mock），写集加 balance 测试后返修，等池位 | 3408（开发监督） |
+| TOOL-town-gaps-1 | traex Sol | 第 2 次运行校验的「文件被删除」是磁盘规则要求的清理（已豁免）；r1 FAIL 只因验收命令口径（改用 `check_asset_dirs --min 1 --max 1`），第 3 次（最后一次）运行等池位 | 66572（开发监督） |
 | ENG-entry-split | traex Sol | 已登记（7f82fe44），07:29 起驱动排队等代码池位；合入前 15 个首屏相关任务 HOLD | 75729（开发监督） |
 
 
@@ -167,7 +166,7 @@
 - TOOL-rig-sheet（P2–P5、P7：三视图切件 + 走路 / 剑招 GIF）：第 5 次运行校验通过（39 张部件、Q2 单连通、Q3 透明像素 0、Q5 踩滑 0.366 cm），但审核两次 FAIL（r1：关节圆帽游离成黑点、侧视图重复大手、黑色弧块；r2 见 `.agents/reviews/TOOL-rig-sheet.r2.md`），03:18 第 3 次返修。作者看到的「男切件原型第 1 版要好好修修」就是这批。未合入的 GIF 在任务工作区 `assets/default/rig/npc_zhujue__ch00_m/preview/`（`walk_dir8.gif`、`sword_attack_dir8.gif`、`gait_vs_clip_walk.gif`）。合入时部件、manifest、GIF 一起落库（AR-39）。
 - [ ] **原型交付**：rig-sheet 第 9 次返修（最后一轮）后按原型收口合入，把走路 + 剑招动图发作者判定（AR-29）；侧视大腿分不出是源图侧视双腿并拢所致，已登记 ART-rig-sheet-side（侧视双腿错开的补充三视图，fa57fc23）给下一版切件。
 
-**3D（AR-38）**：作者定「做 2D，不做 3D」；之后在 Tripo 免费档用立绘单图生成了主角·男模型，第二次导出带 Mixamo 骨骼（65 关节、无动画、1 万三角），已入 `apps/game/public/pilot/zhujue_tripo_v1.glb`（bd64598a；作者指出左侧头发有肉色，试点里记录不修）。ENG-12e-gltf-pilot（a842fc60）在 eng3 队列 ready：GLTFLoader + toon 着色 + 转台 + 片段重定向，合入后给作者 8 方向截图与 2D 对比。参考图与来源在主检出 `imagegen-reference/tripo/`。
+**3D（AR-38）**：作者定「做 2D，不做 3D」；之后在 Tripo 免费档用立绘单图生成了主角·男模型，第二次导出带 Mixamo 骨骼（65 关节、无动画、1 万三角），已入 `apps/game/public/pilot/zhujue_tripo_v1.glb`（bd64598a；作者指出左侧头发有肉色，试点里记录不修）。**ENG-12e 已合入**（81ca591b，08:17）：`/rig-demo?model=/pilot/zhujue_tripo_v1.glb` 右侧并排 3D（GLTFLoader + toon + 8 偏航转台 + 骨骼动画 / 片段重定向 + 1 / 20 实例 HUD），生产块不含试点；1 实例 10,022 三角面 1 draw、CPU 0.2–0.3 ms；0 / 90 / 180 / 270 截图 08:27 已发作者（`_handoff/rigdemo/`），2D 侧等 TOOL-rig-sheet 合入后才是真切件；中端手机实测待做。参考图与来源在主检出 `imagegen-reference/tripo/`。
 
 旧任务 ART-rig-parts-male / female 作废，改用三视图切件。
 
