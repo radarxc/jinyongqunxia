@@ -167,14 +167,27 @@ def pool_of(tid: str) -> str:
 SPARSE_EXCLUDE_DIRS = ("assets/default/baseline/town", "assets/default/building-map", "assets/default/tile",
                        "assets/default/town", "assets/default/scene")
 SPARSE_EXCLUDE_SUBDIRS = ("assets/default/baseline/building-map", "assets/default/baseline/tile")
+# 2026-10-03（素材线第三波追踪，main 13:58 批）：vfx（约 180 MB）只有构建要读（apps/game/build 的 publishVfxRuntime）。
+# 代码池任务与校验命令含 pnpm 的任务照旧检出；其余（素材 / 文档）默认排除，要读的用 sparse_include 显式列。
+SPARSE_EXCLUDE_IF_NO_BUILD = ("assets/default/vfx",)
 SPARSE_EXCLUDE_FILES = ("assets/default/item/**/*.png", "assets/default/item/**/*.jpg", "assets/default/item/**/*.pdf",
                         "assets/default/character/**/*.png", "assets/default/portrait/**/*.webp")
 SPARSE_FULL_IF_WRITES = SPARSE_EXCLUDE_DIRS + SPARSE_EXCLUDE_SUBDIRS + ("assets/default/item", "assets/default/character",
                                                                         "assets/default/portrait")
 
 
+def needs_build(t) -> bool:
+    cmds = (getattr(t, "validate", None) or {}).get("cmd") or []
+    return pool_of(t.id) == "code" or any("pnpm" in " ".join(map(str, c)) for c in cmds)
+
+
+def exclude_dirs(t) -> tuple:
+    return SPARSE_EXCLUDE_DIRS + (() if needs_build(t) else SPARSE_EXCLUDE_IF_NO_BUILD)
+
+
 def sparse_checkout_for(t) -> list | None:
     inc = [x.strip("/") for x in getattr(t, "sparse_include", []) if x.strip("/")]
+    dirs = exclude_dirs(t)
     if inc:  # 2026-10-02 协调者：带 sparse_include 的任务（含素材池）稀疏检出 + 只包含自己要读写的图片目录
         # 2026-10-03（素材线第三波追踪）：include 落在被排除目录之下时，不再整目录放开，改为只排除其子目录（!/d/*/）
         # 再逐项包含——git 2.44 实测：/d/sub/ 与 /d/sub/*.png 都能在 !/d/*/ 之后再包含，尚不存在的新目录也能 git add；
@@ -184,7 +197,7 @@ def sparse_checkout_for(t) -> list | None:
 
         def under(d: str) -> bool:
             return any(i.startswith(d + "/") for i in inc)
-        pats = ["/*"] + [(f"!/{d}/*/" if under(d) else f"!/{d}/") for d in SPARSE_EXCLUDE_DIRS if not covers(d)] \
+        pats = ["/*"] + [(f"!/{d}/*/" if under(d) else f"!/{d}/") for d in dirs if not covers(d)] \
             + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS if not covers(d)] \
             + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES] + [f"/{i}" for i in inc]
         return pats
@@ -192,7 +205,7 @@ def sparse_checkout_for(t) -> list | None:
         return None
     if any(w.startswith(d) for w in t.writes for d in SPARSE_FULL_IF_WRITES):
         return None
-    return (["/*"] + [f"!/{d}/" for d in SPARSE_EXCLUDE_DIRS] + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS]
+    return (["/*"] + [f"!/{d}/" for d in dirs] + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS]
             + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES])
 
 
