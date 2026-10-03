@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1009** 份：已入库 640、待出图 237、已通过（作者） 132。**待出图队列 237 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1009** 份：已入库 641、待出图 236、已通过（作者） 132。**待出图队列 236 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -226,7 +226,6 @@
 | items | `eq_yunzhonghegangzhua` | 云中鹤钢抓 | `assets/default/item/weapons/eq_yunzhonghegangzhua.png` | 待出图 | [eq_yunzhonghegangzhua.md](items/weapons/eq_yunzhonghegangzhua.md) |
 | items | `eq_zhangbaqushemao` | 丈八曲蛇矛 | `assets/default/item/weapons/eq_zhangbaqushemao.png` | 待出图 | [eq_zhangbaqushemao.md](items/weapons/eq_zhangbaqushemao.md) |
 | items | `eq_zhudanchenpanguanbi` | 朱丹臣判官笔 | `assets/default/item/weapons/eq_zhudanchenpanguanbi.png` | 待出图 | [eq_zhudanchenpanguanbi.md](items/weapons/eq_zhudanchenpanguanbi.md) |
-| items | `eq_zhujieduanzhang` | 竹节短杖 | `assets/default/item/weapons/eq_zhujieduanzhang.png` | 待出图 | [eq_zhujieduanzhang.md](items/weapons/eq_zhujieduanzhang.md) |
 | items | `eq_zimuwuyanglun` | 子母五阳轮 | `assets/default/item/weapons/eq_zimuwuyanglun.png` | 待出图 | [eq_zimuwuyanglun.md](items/weapons/eq_zimuwuyanglun.md) |
 | maps | `map_jianghu_world__ink_base` | 江湖万里图 · 水墨衬纸（全国底图） | `assets/default/map/jianghu_world/ink_base.png` | 待出图 | [jianghu_world_ink_base.md](maps/jianghu_world_ink_base.md) |
 | maps | `map_region_bashu__base` | 巴蜀区域局部图 | `assets/default/map/regions/rg_bashu.png` | 待出图 | [rg_bashu.md](maps/region/rg_bashu.md) |
@@ -452,7 +451,7 @@
 | 161 | 扎马步抄本 | `it_miji_zhamabu` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhamabu.md](items/manuals/it_miji_zhamabu.md) | template |
 | 162 | 壮行功抄本 | `it_miji_zhuangxingong` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhuangxingong.md](items/manuals/it_miji_zhuangxingong.md) | template |
 
-### 兵器（247）· 已入库 201、已通过（作者） 24、待出图 22
+### 兵器（247）· 已入库 202、已通过（作者） 24、待出图 21
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -477,7 +476,6 @@
 | 19 | 唐仪刀 | `eq_tangyidao` | 黄上 | 兵器·刀 | 待出图 | [eq_tangyidao.md](items/weapons/eq_tangyidao.md) | template |
 | 20 | 吴越青铜剑 | `eq_wuyueqingtongjian` | 黄下 | 兵器·剑 | 待出图 | [eq_wuyueqingtongjian.md](items/weapons/eq_wuyueqingtongjian.md) | template |
 | 21 | 鸳鸯钺 | `eq_yuanyangyue` | 黄下 | 兵器·奇门钺 | 待出图 | [eq_yuanyangyue.md](items/weapons/eq_yuanyangyue.md) | template |
-| 22 | 竹节短杖 | `eq_zhujieduanzhang` | 黄下 | 兵器·棍杖 | 待出图 | [eq_zhujieduanzhang.md](items/weapons/eq_zhujieduanzhang.md) | template |
 
 ### 衣物（30）· 已入库 18、已通过（作者） 12
 
