@@ -2,13 +2,16 @@
 /* global Element, HTMLCanvasElement, KeyboardEvent, PointerEvent, ResizeObserver,
   cancelAnimationFrame, requestAnimationFrame, window */
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { storeToRefs } from 'pinia';
 import type { DomainEvent, TownCommand, TownPoint } from '@tianshu/core';
+import { useUiStore } from '@tianshu/ui/runtime';
 import type { TownAnchorView, TownScene, TownSceneProjection } from '@tianshu/render/town';
 import type { GameController } from '../game-controller';
 import type { GameUpdate } from '../runtime/contracts';
 import { townAnchorIntent, townDirection, townStep } from './town-input';
 
 const { controller } = defineProps<{ controller: GameController }>();
+const { projection } = storeToRefs(useUiStore());
 const emit = defineEmits<{ leave: [] }>();
 const canvas = ref<HTMLCanvasElement>();
 const zoom = ref(1);
@@ -45,14 +48,24 @@ function eventPayload(event: DomainEvent): Record<string, unknown> | undefined {
       typeof event.payload !== 'object') return undefined;
   return event.payload as Record<string, unknown>;
 }
+function npcName(id: unknown): string {
+  if (typeof id !== 'string') return '店内人物';
+  return projection.value.characters.find((entry) => entry.key === id)?.name ?? '店内人物';
+}
+function shopName(): string {
+  const id = controller.town.value?.scene.activeBuildingId;
+  const building = controller.townRuntime.value?.buildings.find((entry) => entry.id === id);
+  return building?.poi ?? ({ shop: '店铺', inn: '客栈', temple: '寺观',
+    residence: '宅院', other: '建筑' }[building?.interiorKind ?? 'shop']);
+}
 function describeUpdate(update: GameUpdate | undefined): void {
   if (!update) return;
   for (const event of update.events) {
     const payload = eventPayload(event);
     if (event.t === 'town/shopRequested')
-      actionNotice.value = `已请求打开店铺：${String(payload?.['businessRef'] ?? '未登记商号')}`;
+      actionNotice.value = `已请求打开${shopName()}`;
     else if (event.t === 'town/dialogueRequested')
-      actionNotice.value = `已请求交谈：${String(payload?.['npcId'] ?? '店内人物')}`;
+      actionNotice.value = `已请求交谈：${npcName(payload?.['npcId'])}`;
     else if (event.t === 'progression/meditationInterrupted')
       actionNotice.value = '打坐遇袭，真气岔行，正在切入战斗。';
     else if (event.t === 'town/meditationCompleted') actionNotice.value = '一周天运转完毕。';

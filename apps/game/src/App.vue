@@ -1,6 +1,7 @@
 <script setup lang="ts">
 /* global window, KeyboardEvent, Element, MediaQueryList, MediaQueryListEvent, matchMedia */
-import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch,
+  type Component } from 'vue';
 import { storeToRefs } from 'pinia';
 import { gradeLabel, menuLabels, t, uiBus, useUiStore, type MenuPage } from '@tianshu/ui/runtime';
 import TxHud from '@tianshu/ui/components/TxHud.vue';
@@ -18,6 +19,24 @@ const BattlePage = defineAsyncComponent(() => import('./battle/BattlePage.vue'))
 const WorldMapPage = defineAsyncComponent(() => import('./pages/WorldMapPage.vue'));
 const TownPage = defineAsyncComponent(() => import('./pages/TownPage.vue'));
 const SettingsPage = defineAsyncComponent(() => import('./pages/SettingsPage.vue'));
+const CharacterCreationPage = defineAsyncComponent(() => import('./pages/CharacterCreationPage.vue'));
+const OpeningPage = defineAsyncComponent(() => import('./pages/OpeningPage.vue'));
+const PrologueModePage = defineAsyncComponent(() => import('./pages/PrologueModePage.vue'));
+const SummaryPage = defineAsyncComponent(() => import('./pages/SummaryPage.vue'));
+const SkipBridgePage = defineAsyncComponent(() => import('./pages/SkipBridgePage.vue'));
+const ExportPromptPage = defineAsyncComponent(() => import('./pages/ExportPromptPage.vue'));
+const SleepAllocationPage = defineAsyncComponent(() => import('./pages/SleepAllocationPage.vue'));
+const WakePage = defineAsyncComponent(() => import('./pages/WakePage.vue'));
+const BaimaTitlePage = defineAsyncComponent(() => import('./pages/BaimaTitlePage.vue'));
+const DialogueLayer = defineAsyncComponent(() => import('./pages/DialogueLayer.vue'));
+const QuestPage = defineAsyncComponent(() => import('./pages/QuestPage.vue'));
+const QuestTrackerLayer = defineAsyncComponent(() => import('./pages/QuestTrackerLayer.vue'));
+const flowComponents: Readonly<Record<string, Component>> = { create: CharacterCreationPage,
+  opening: OpeningPage, mode: PrologueModePage, summary: SummaryPage,
+  'skip-bridge': SkipBridgePage, export: ExportPromptPage, allocation: SleepAllocationPage,
+  'allocation-confirm': SleepAllocationPage, 'wake-cutscene': WakePage,
+  'baima-title': BaimaTitlePage };
+const activeFlow = computed(() => flowComponents[controller.flowStage.value] ?? null);
 const page = ref<MenuPage>('journey');
 const scene = ref<'world' | 'town' | 'ruin' | 'battle'>('world');
 const sourceScene = ref<'world' | 'town'>('world');
@@ -40,6 +59,7 @@ function showWorld(): void {
   if (controller.worldmap.value?.scene) leaveScene();
   else scene.value = 'world';
 }
+function openQuest(): void { page.value = 'quests'; }
 const menu: readonly MenuPage[] = ['journey', 'characters', 'inventory', 'martial', 'quests', 'saves', 'settings'];
 const shortcuts = computed(() => projection.value.inventory.filter((item) => item.canUse).slice(0, 3));
 const skills = computed(() => projection.value.characters.find((entry) => entry.relation === 'self')?.detail?.skills ?? []);
@@ -75,38 +95,42 @@ onBeforeUnmount(() => { controller.setSceneRunsWorldTicks(false);
 <template>
   <main class="game-shell" :class="[`text-scale-${settings.textScale}`, { 'reduced-motion': settings.reducedMotion }]">
     <TxRotateHint :visible="portrait && !rotateDismissed" @dismiss="rotateDismissed = true" />
-    <TxHud :hud="projection.hud" />
-    <div class="shell-body">
-      <nav class="main-menu" :aria-label="t('mainMenu')">
-        <div class="menu-brand" aria-hidden="true">天书录</div>
-        <button v-for="entry in menu" :key="entry" type="button" :aria-current="page === entry ? 'page' : undefined" @click="page = entry">{{ menuLabels[entry] }}</button>
-      </nav>
-      <section class="page-surface" :aria-label="menuLabels[page]">
-        <header class="page-heading"><div><small>{{ t('tagline') }}</small><h2>{{ menuLabels[page] }}</h2></div><span v-if="projection.hud.preview" class="preview-badge">{{ t('preview') }}</span></header>
-        <div v-if="page === 'journey'" class="journey-page">
-          <nav class="action-row" :aria-label="t('sceneTabs')">
-            <button type="button" :aria-pressed="scene === 'world'" @click="showWorld">{{ t('world') }}</button>
-            <button type="button" :aria-pressed="scene === 'battle'" @click="scene = 'battle'">{{ t('battle') }}</button>
-          </nav>
-          <BattlePage v-if="scene === 'battle' && battle" :controller="battle" :source="sourceScene" :reduced-motion="settings.reducedMotion" @returned="returned" />
-          <p v-else-if="scene === 'battle'" class="paper-panel">正在展开战旗……</p>
-          <WorldMapPage v-else-if="scene === 'world'" :controller="controller" @scene="openScene" />
-          <TownPage v-else-if="scene === 'town'" :controller="controller" @leave="leaveScene" />
-          <ScenePlaceholder v-else :scene="scene" @leave="leaveScene" />
-          <p v-if="projection.hud.preview" class="muted">{{ t('previewNote') }}</p>
-        </div>
-        <CharacterPage v-else-if="page === 'characters'" />
-        <InventoryPage v-else-if="page === 'inventory'" :busy="busy" />
-        <SavePage v-else-if="page === 'saves'" :controller="controller" />
-        <section v-else-if="page === 'martial'" class="paper-panel reading-panel"><h3>{{ t('skills') }}</h3><article v-for="skill in skills" :key="skill.id"><h3>{{ skill.name }} · {{ gradeLabel(skill.grade) }} · {{ skill.layer }} {{ t('layer') }}</h3><p>{{ skill.description }}</p></article><p v-if="!skills.length">{{ t('noSkills') }}</p></section>
-        <section v-else-if="page === 'quests'" class="paper-panel reading-panel"><h3>{{ t('quests') }}</h3><p v-for="quest in projection.quests" :key="quest.id">{{ quest.name }} · {{ quest.status }}</p><p v-if="!projection.quests.length">{{ t('noQuests') }}</p></section>
-        <SettingsPage v-else :settings="settings" @change="controller.setSetting" @back="page = 'journey'" />
-      </section>
-    </div>
-    <footer class="bottom-bar paper-panel">
-      <nav class="quickbar" :aria-label="t('quickbar')"><button v-for="(item, index) in shortcuts" :key="item.id" type="button" :disabled="busy" @click="useQuick(index)"><kbd>{{ index + 1 }}</kbd> {{ item.name }} <small>×{{ item.count }}</small></button></nav>
-      <output role="status" aria-live="polite">{{ notice || saveStatus }}</output>
-      <button type="button" :disabled="busy || !storageAvailable || !controller.canSave()" @click="controller.saveAction('save', 'save_quick')">{{ t('quickSave') }}</button>
-    </footer>
+    <Suspense v-if="activeFlow"><component :is="activeFlow" :controller="controller" /><template #fallback><p class="paper-panel">正在展开书页……</p></template></Suspense>
+    <template v-else>
+      <TxHud :hud="projection.hud" /><Suspense><QuestTrackerLayer :controller="controller" :quests="projection.quests" @open="openQuest" /></Suspense>
+      <div class="shell-body">
+        <nav class="main-menu" :aria-label="t('mainMenu')">
+          <div class="menu-brand" aria-hidden="true">天书录</div>
+          <button v-for="entry in menu" :key="entry" type="button" :aria-current="page === entry ? 'page' : undefined" @click="page = entry">{{ menuLabels[entry] }}</button>
+        </nav>
+        <section class="page-surface" :aria-label="menuLabels[page]">
+          <header class="page-heading"><div><small>{{ t('tagline') }}</small><h2>{{ menuLabels[page] }}</h2></div><span v-if="projection.hud.preview" class="preview-badge">{{ t('preview') }}</span></header>
+          <div v-if="page === 'journey'" class="journey-page">
+            <nav class="action-row" :aria-label="t('sceneTabs')">
+              <button type="button" :aria-pressed="scene === 'world'" @click="showWorld">{{ t('world') }}</button>
+              <button type="button" :aria-pressed="scene === 'battle'" @click="scene = 'battle'">{{ t('battle') }}</button>
+            </nav>
+            <BattlePage v-if="scene === 'battle' && battle" :controller="battle" :source="sourceScene" :reduced-motion="settings.reducedMotion" @returned="returned" />
+            <p v-else-if="scene === 'battle'" class="paper-panel">正在展开战旗……</p>
+            <WorldMapPage v-else-if="scene === 'world'" :controller="controller" @scene="openScene" />
+            <TownPage v-else-if="scene === 'town'" :controller="controller" @leave="leaveScene" />
+            <ScenePlaceholder v-else :scene="scene" @leave="leaveScene" />
+            <p v-if="projection.hud.preview" class="muted">{{ t('previewNote') }}</p>
+          </div>
+          <CharacterPage v-else-if="page === 'characters'" />
+          <InventoryPage v-else-if="page === 'inventory'" :busy="busy" />
+          <SavePage v-else-if="page === 'saves'" :controller="controller" />
+          <section v-else-if="page === 'martial'" class="paper-panel reading-panel"><h3>{{ t('skills') }}</h3><article v-for="skill in skills" :key="skill.id"><h3>{{ skill.name }} · {{ gradeLabel(skill.grade) }} · {{ skill.layer }} {{ t('layer') }}</h3><p>{{ skill.description }}</p></article><p v-if="!skills.length">{{ t('noSkills') }}</p></section>
+          <QuestPage v-else-if="page === 'quests'" :controller="controller" :quests="projection.quests" />
+          <SettingsPage v-else :settings="settings" @change="controller.setSetting" @back="page = 'journey'" />
+        </section>
+      </div>
+      <footer class="bottom-bar paper-panel">
+        <nav class="quickbar" :aria-label="t('quickbar')"><button v-for="(item, index) in shortcuts" :key="item.id" type="button" :disabled="busy" @click="useQuick(index)"><kbd>{{ index + 1 }}</kbd> {{ item.name }} <small>×{{ item.count }}</small></button></nav>
+        <output role="status" aria-live="polite">{{ notice || saveStatus }}</output>
+        <button type="button" :disabled="busy || !storageAvailable || !controller.canSave()" @click="controller.saveAction('save', 'save_quick')">{{ t('quickSave') }}</button>
+      </footer>
+      <Suspense v-if="projection.dialogue"><DialogueLayer :controller="controller" :dialogue="projection.dialogue" /></Suspense>
+    </template>
   </main>
 </template>

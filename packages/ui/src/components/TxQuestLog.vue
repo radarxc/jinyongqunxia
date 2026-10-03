@@ -5,9 +5,9 @@ defineProps<{ quests: readonly QuestLogEntryView[]; selectedId?: string | undefi
 defineEmits<{ select: [questId: string]; track: [questId: string] }>();
 </script>
 <template>
-  <section class="tx-quest-log" aria-labelledby="quest-log-heading">
+  <section class="tx-quest-log" data-testid="quest-log" aria-labelledby="quest-log-heading">
     <h2 id="quest-log-heading">{{ flowT('questLog') }}</h2>
-    <ul><li v-for="quest in quests" :key="quest.id" :class="{ selected: selectedId === quest.id }"><button type="button" @click="$emit('select', quest.id)"><strong>{{ quest.name }}</strong><span>{{ quest.category }} · {{ quest.status }}</span><small>{{ quest.summary }}</small></button><button type="button" :aria-pressed="quest.tracked" @click="$emit('track', quest.id)">{{ quest.tracked ? flowT('untrack') : flowT('track') }}</button></li></ul>
+    <ul><li v-for="quest in quests" :key="quest.id" data-testid="quest-entry" :class="{ selected: selectedId === quest.id }"><button type="button" @click="$emit('select', quest.id)"><strong data-testid="quest-name">{{ quest.name }}</strong><span>{{ quest.category }} · {{ quest.status }}</span><small data-testid="quest-summary">{{ quest.summary }}</small></button><button type="button" :aria-pressed="quest.tracked" @click="$emit('track', quest.id)">{{ quest.tracked ? flowT('untrack') : flowT('track') }}</button></li></ul>
     <p v-if="!quests.length">{{ flowT('noQuests') }}</p>
   </section>
 </template>
