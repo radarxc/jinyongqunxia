@@ -25,7 +25,7 @@
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
 - **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e / TOOL-items-catalog，10-03 凌晨再合入 ENG-19a（04:32）、ENG-18b（05:09）、ENG-17（05:12）、ENG-19c（05:24）、TOOL-catalog-9col（05:37）——M1 的 25 / 17a / 19a / 17 齐了；集成分支 `pnpm check` 05:26 全绿（128 文件 922 用例，entry 160.17 / 170 KiB 余 9.8 KiB，webgl 320.70 / 350）。在跑 ENG-20a、ENG-19b、ENG-12e（返修：恢复 2D 演示 + 3D 并排）、TOOL-rig-sheet 返修、TOOL-town-gaps-1、TOOL-catalog-food-qi-exception、lore 复验（lore-6 已合入）；eng3 队列还有 17 项（§5）。
 - **分工**（作者 10-02 15:50 / 22:00）：三个 Opus subagent——素材线第二波追踪（codex 执行器）、Gemini 出图员、开发监督；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max；GPT-5.5 禁用）。协调者只规划、登记、裁定、合入。
-- **环境**：06:05 磁盘 3.4 GiB（32 个交换文件 ≈ 32 GB + 15 个在跑的工作区），1 分钟负载 7～10；规则：磁盘 < 5 GiB 不新开工作区、< 2.5 GiB 停线；eng3 并发 3（§6）。
+- **环境**：06:25 磁盘 3 GiB、交换区 35 GB（build_portraits 一加载模型就 +3 GB，已停，改为磁盘 ≥ 10 GiB 且负载 < 6 且 ENG 执行器 ≤ 1 才跑）；为降压暂停了 ENG-12e 与 TOOL-town-gaps-1；规则：磁盘 < 5 GiB 不新开工作区、< 2.5 GiB 停线（§6）。
 
 ---
 
@@ -46,6 +46,11 @@
 | TOOL-rig-sheet | traex Sol max | 审核 r4 又 FAIL（切件错分：pelvis_skirt 混入手臂、torso 含前臂残片、侧腿蓝灰楔块），第 7 次运行返修中 | 开发监督另起 |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | traex | TOOL-catalog-9col 已合入（4aa8c6db，05:37），开发监督按 `_handoff/lore_plan.md` 挪基点复验（并发 ≤ 4） | 开发监督另起 |
 | DES-items-gifts-spec | traex | 续作 35 分钟结束，校验通过，审核 r1 FAIL（06:12）自动返修中 | 38844（协调者另起，`supervise.r2.out`） |
+| ENG-12e-gltf-pilot | traex | 返修（恢复 2D 演示 + 3D 并排）跑了 25 分钟后 06:25 因内存压力暂停（HOLD-RUNS，工作区保留）；磁盘 ≥ 6 GiB 且负载 < 8 再 `--from start` 续作 | 协调者 |
+| TOOL-town-gaps-1 | traex Sol | 第 1 次运行 50 分钟后 06:25 因内存压力暂停（HOLD-RUNS）；条件同上，开发监督续作 | 开发监督 |
+| ENG-19b-ui-m1-flow / ENG-20a-region-core | traex | eng3 在跑（M1 界面；区域探索 core） | eng3 |
+| TOOL-catalog-food-qi-exception | traex Sol | 等代码池位（腊八粥食品特例） | 59758（协调者） |
+| DES-ruins-ids | traex | 第 1 次运行中（九老洞 / 敦煌地宫等补 ID） | 74820（协调者） |
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
 - codex 出图 runner：w12（pid 20933，2 槽）服务 hero-b；w11 已排空停掉。
@@ -107,7 +112,7 @@
 - [x] ART-hero-refine-b（2533a8fd，鹿鼎～雪山 7 本）：80 张 = 16 张基线 + 32 张分时期 + 32 张插图（题字 32 幅核验）；审核 r4 PASS（李文秀 6 图按「白马用游戏头像 + 现基线」放行，图在 female/ch10，不再补）。合入时与 cast-b 在 6 个 manifest 末尾撞车，协调者手工保留两边条目后 finish，旧驱动自行合入。联系表 `_handoff/gem/codex_w12/sheets/`（`retry3-bases-before-after-0N.jpg`、`retry3-stages-chNN-npc_<id>.jpg`、`retry3-final-scenes-chNN-01.jpg`）；03:40 已发作者五张。
 - [x] ART-cast-polish-ch09（41b24202，06:07）：万门六弟子各重出 1 张，联系表 `_handoff/gem/codex_w15/sheets/`。
 - [ ] 110 个新登记人物的立绘（ART-cast-fill-c / d，待协调者登记）：等 hero-b、polish 之后，看磁盘与作者意见再排。
-- [ ] **收尾**：`build_portraits.py` 已分批提交 29109cfe / d255c157 / 0343156b / a03b120d；剩余（cast 约 40 张 + hero-a 95 张 + hero-b）等协调者指定时段一次跑完（BiRefNet 每次加载推高交换区 1–5 GB，只在 eng3 空闲、负载 < 8 时跑）→ `build_portrait_index.py`（作者批注已移到 `assets/default/prompts/characters/_AUTHOR-NOTES.md`，脚本嵌入文首）→ `build_gallery.py` → 总览页重发（同一地址）。
+- [ ] **收尾**：`build_portraits.py` 已分批提交 29109cfe / d255c157 / 0343156b / a03b120d / ab4cc1e8（06:20 只跑了 6 张就被磁盘护栏停下：BiRefNet 一加载交换区 +3 GB）；剩 128 张（ch01 3、ch02–14 全部，含 hero 175 与 polish 6 的派生图）由追踪者在「磁盘 ≥ 10 GiB 且负载 < 6 且在跑 ENG 执行器 ≤ 1」时自动跑（包装脚本只加载一次模型、按章提交、< 3 GiB 停）→ `build_portrait_index.py` → `build_gallery.py` → 总览页重发。
 - [ ] `key-scenes.md` / `story/07` 等同步项：hero-a 报告 §6 列了 ch01～07 的条目修正与统计口径，hero-b 合入后一并登记 DES-sync-keyscenes-ar36（§4）。
 
 **做法**：
