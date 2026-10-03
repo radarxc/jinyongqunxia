@@ -1429,4 +1429,10 @@
       - 10:27 我误用 `&` 起了一个 kw.py，输出进了 /dev/null，吞掉一次 KEY 后自己退出了。
       - 现改用 `scratchpad/w50b.py` 读 `_handoff/devsup_events.log` 的新增行。不管是哪个 keywait 实例记的状态变化都能看到，不会再漏事件。
     - 磁盘 8.5 GiB（< 10），eng3 仍 2 路：CONTENT-ch00b-maps、CONTENT-ch10-cold-entry 在执行。
+  - **10-03 10:36–11:11 开发监督**：items-regen 返修后转只复审；当中有一次 API 网络中断（ENOTFOUND）。
+    - **TOOL-items-regen**：r1 FAIL，只因报告过时（生成物全过）。第 3 次运行 23 分钟，中途执行器网络重连过一次，11:07 校验通过、转 HOLD-REVIEWS。
+      - 11:10 手动第 1 次只复审，`--from validate --max-runs 0`，驱动 36953。r2 PASS 就自动合入；FAIL 就停 HOLD-RUNS 报协调者（协调者 10:50 口径）。
+    - 协调者 10:50 新约定：协调者在 `_prod` 起 vite dev 给作者看素材。prod_check 里的 `pnpm build` 会经 `build/asset-manifest.ts` 往 `apps/game/public` 复制、覆盖素材（不清空）。在协调者回复前，每次跑 prod_check 前先问一声。
+    - 磁盘 11.1 GiB，已报协调者可改回 3 路。
+    - `append_on_prompt.py` 两个注入器均超时退出，无需再注入：entry-split 与 tests-discover 都没再跑新一次运行就合入了。
 
