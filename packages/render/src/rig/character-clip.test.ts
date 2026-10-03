@@ -56,6 +56,27 @@ describe('RigInstance clip integration', () => {
     character.dispose(); rigSet.dispose();
   });
 
+  it('does not dirty the instance buffer between clip sample frames', async () => {
+    const rigSet = await loadRigSet(createPlaceholderRigManifest()); const character = createRigCharacter(rigSet);
+    character.setMotion(0, .78, 'medium'); character.playClip('clip_walk', { facingYawDeg: 0 }); character.update(.2);
+    const buffer = createRigInstanceBuffer(20); character.writeInstances(buffer, 0); buffer.flushDirtyRanges();
+    character.update(1 / 120); character.writeInstances(buffer, 0);
+    expect(buffer.flushDirtyRanges()).toEqual([]);
+    character.update(1 / 12); character.writeInstances(buffer, 0);
+    expect(buffer.flushDirtyRanges()).toEqual([{ start: 0, count: 16 }]);
+    character.dispose(); rigSet.dispose();
+  });
+
+  it('invalidates the projected pose when switching clips', async () => {
+    const rigSet = await loadRigSet(createPlaceholderRigManifest()); const character = createRigCharacter(rigSet);
+    character.setMotion(0, .78, 'medium'); character.playClip('clip_sword_attack', { facingYawDeg: 0 }); character.update(.2);
+    const before = createRigInstanceBuffer(20); character.writeInstances(before, 0);
+    character.playClip('clip_walk', { facingYawDeg: 0 }); character.update(.2);
+    const after = createRigInstanceBuffer(20); character.writeInstances(after, 0);
+    expect(Array.from(after.affine2d.array)).not.toEqual(Array.from(before.affine2d.array));
+    character.dispose(); rigSet.dispose();
+  });
+
   it('keeps the current gait ready while a fully blended action clip plays', async () => {
     const rigSet = await loadRigSet(createPlaceholderRigManifest()); const character = createRigCharacter(rigSet);
     character.playClip('clip_sword_attack', { facingYawDeg: 0 }); character.update(.2);

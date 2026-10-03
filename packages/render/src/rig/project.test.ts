@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { loadRigClip } from './clip';
 import { createClipProjection, projectClipFrame, resetClipProjection, roundHalfAway } from './project';
 import { loadRigSet } from './manifest';
@@ -95,6 +95,33 @@ describe('clip projection', () => {
     const initial = state.currentViews[2]; projectClipFrame(walk, state, 0, 8);
     expect(state.currentViews[2]).toBe(initial); resetClipProjection(state); projectClipFrame(walk, state, 0, 120);
     expect(state.currentViews[2]).not.toBe(initial);
+  });
+
+  it('shares an exact projection and invalidates it across yaw changes', () => {
+    const clip = { ...walk };
+    const first = createClipProjection(clip); const second = createClipProjection(clip);
+    const sin = vi.spyOn(Math, 'sin'); projectClipFrame(clip, first, 7, 0); sin.mockClear();
+    projectClipFrame(clip, second, 7, 0);
+    expect(sin).not.toHaveBeenCalled();
+    expect(Array.from(second.output.affines)).toEqual(Array.from(first.output.affines));
+    projectClipFrame(clip, second, 7, 45); expect(sin).toHaveBeenCalled();
+    expect(Array.from(second.output.affines)).not.toEqual(Array.from(first.output.affines));
+  });
+
+  it('does not share cached projections between clips', () => {
+    const firstClip = { ...walk }; const secondClip = { ...sword };
+    const first = createClipProjection(firstClip); const second = createClipProjection(secondClip);
+    const sin = vi.spyOn(Math, 'sin'); projectClipFrame(firstClip, first, 0, 0); sin.mockClear();
+    projectClipFrame(secondClip, second, 0, 0); expect(sin).toHaveBeenCalled();
+    expect(Array.from(second.output.affines)).not.toEqual(Array.from(first.output.affines));
+  });
+
+  it('keeps incoming hysteresis history in the cache key', () => {
+    const clip = { ...walk }; const fromLeft = createClipProjection(clip); const fromRight = createClipProjection(clip);
+    projectClipFrame(clip, fromLeft, 14, -45); projectClipFrame(clip, fromRight, 14, 45);
+    projectClipFrame(clip, fromLeft, 14, 0); const leftViews = Array.from(fromLeft.currentViews);
+    const sin = vi.spyOn(Math, 'sin'); projectClipFrame(clip, fromRight, 14, 0);
+    expect(sin).toHaveBeenCalled(); expect(Array.from(fromRight.currentViews)).not.toEqual(leftViews);
   });
 
   it('matches the Python Q4 torso-view switch counts in all eight directions', () => {

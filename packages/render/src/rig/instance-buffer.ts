@@ -62,7 +62,7 @@ export function createRigInstanceBuffer(capacity = 2_000): RigInstanceBuffer {
   const anchorRangePool: Array<{ start: number; count: number }> = Array.from({ length: capacity }, () => ({ start: 0, count: 0 }));
   const sortRangePool: Array<{ start: number; count: number }> = Array.from({ length: capacity }, () => ({ start: 0, count: 0 }));
   const ranges: Array<{ start: number; count: number }> = [];
-  let rangeCount = 0;
+  let rangeCount = 0; let hasDirty = false;
 
   function write(index: number, data: RigInstanceData): boolean {
     if (!Number.isInteger(index) || index < 0 || index >= capacity) throw new RangeError('RIG_INSTANCE_INDEX');
@@ -73,13 +73,14 @@ export function createRigInstanceBuffer(capacity = 2_000): RigInstanceBuffer {
     if (!changed) return false;
     copyNormalized(uvArray, index * 4, data.uvRect); copy(affineArray, index * 6, data.affine2d, 6);
     copy(anchorArray, index * 4, data.anchorDepth, 4); copy(sortArray, index * 4, data.sortTint, 4);
-    dirty[index] = 1;
+    dirty[index] = 1; hasDirty = true;
     return true;
   }
 
   function flushDirtyRanges(): readonly DirtyRange[] {
     uvRect.clearUpdateRanges(); affine2d.clearUpdateRanges(); anchorDepth.clearUpdateRanges(); sortTint.clearUpdateRanges();
-    rangeCount = 0;
+    rangeCount = 0; ranges.length = 0;
+    if (!hasDirty) return ranges;
     let start = -1;
     for (let index = 0; index <= capacity; index += 1) {
       if (index < capacity && dirty[index]) { if (start < 0) start = index; dirty[index] = 0; continue; }
@@ -94,7 +95,7 @@ export function createRigInstanceBuffer(capacity = 2_000): RigInstanceBuffer {
       const sortRange = sortRangePool[rangeCount - 1]!; sortRange.start = start * 4; sortRange.count = count * 4; sortTint.updateRanges.push(sortRange);
       start = -1;
     }
-    ranges.length = rangeCount;
+    ranges.length = rangeCount; hasDirty = false;
     if (rangeCount > 0) { uvRect.needsUpdate = true; affine2d.needsUpdate = true; anchorDepth.needsUpdate = true; sortTint.needsUpdate = true; }
     return ranges;
   }
@@ -104,9 +105,11 @@ export function createRigInstanceBuffer(capacity = 2_000): RigInstanceBuffer {
     if (!Number.isInteger(baseIndex) || !Number.isInteger(count)
       || baseIndex < 0 || baseIndex + count > capacity) throw new RangeError('RIG_INSTANCE_INDEX');
     affineArray.set(source, baseIndex * 6);
-    dirty.fill(1, baseIndex, baseIndex + count);
+    dirty.fill(1, baseIndex, baseIndex + count); hasDirty = true;
   }
 
   return { capacity, uvRect, affine2d, affineA, affineB, anchorDepth, sortTint, get dirtyRanges() { return ranges; },
-    write, writeAffineBlock, flushDirtyRanges, clear() { uvArray.fill(0); affineArray.fill(0); anchorArray.fill(0); sortArray.fill(0); dirty.fill(1); } };
+    write, writeAffineBlock, flushDirtyRanges, clear() {
+      uvArray.fill(0); affineArray.fill(0); anchorArray.fill(0); sortArray.fill(0); dirty.fill(1); hasDirty = true;
+    } };
 }

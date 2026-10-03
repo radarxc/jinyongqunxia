@@ -19,6 +19,19 @@ const PART_BONE: Readonly<Record<RigPart, number>> = {
 const VIEW_YAWS = new Float32Array([45, -45, 135, -135, 90, -90]);
 const VIEW_NAMES: readonly RigView[] = ['front34', 'front34', 'back34', 'back34', 'side', 'side'];
 const GENERIC_WIDTHS = new Float32Array([.32, .37, .52, .48, .2, .2, .18, .18, .14, .14, .22, .22, .19, .19, .27, .27]);
+// Preallocated working set covering common eight-direction, mirror and hysteresis variants.
+const PROJECTION_CACHE_SIZE = 8 * 2 * 2;
+
+interface ProjectionSnapshot {
+  valid: boolean; frame: number; facingYawDeg: number; mirrored: boolean; weaponZ: number; weaponVisible: boolean;
+  readonly inputViews: Int8Array; readonly currentViews: Int8Array; readonly positions: Float32Array;
+  readonly viewIndices: Uint8Array; readonly mirrors: Uint8Array; readonly affines: Float32Array;
+  readonly depths: Float32Array; readonly weaponAffine: Float32Array;
+}
+interface ProjectionCache { readonly entries: readonly ProjectionSnapshot[]; next: number }
+interface ClipProjectionCaches { generic?: ProjectionCache; readonly rigSets: WeakMap<RigSet, ProjectionCache> }
+const projectionCaches = new WeakMap<RigClip, ClipProjectionCaches>();
+const stateCaches = new WeakMap<ClipProjection, ProjectionCache>();
 
 export interface ClipProjection {
   readonly output: PartPoseBuffer; readonly positions: Float32Array; readonly restLengths: Float32Array;
@@ -33,6 +46,53 @@ export function createPartPoseBuffer(): PartPoseBuffer {
   const poses = RIG_PARTS.map((_, index) => ({ viewIndex: 0 as const, mirrored: false,
     affine: affines.subarray(index * 6, index * 6 + 6), z: 0 })) as Array<{ viewIndex: 0 | 1 | 2; mirrored: boolean; affine: Float32Array; z: number }>;
   return { poses, viewIndices, mirrors, affines, depths, weaponAffine: new Float32Array(6), weaponZ: 0, weaponVisible: false };
+}
+
+function createProjectionCache(): ProjectionCache {
+  const entries = Array.from({ length: PROJECTION_CACHE_SIZE }, (): ProjectionSnapshot => ({
+    valid: false, frame: -1, facingYawDeg: 0, mirrored: false, weaponZ: 0, weaponVisible: false,
+    inputViews: new Int8Array(RIG_PARTS.length), currentViews: new Int8Array(RIG_PARTS.length),
+    positions: new Float32Array(CLIP_JOINTS.length * 3), viewIndices: new Uint8Array(RIG_PARTS.length),
+    mirrors: new Uint8Array(RIG_PARTS.length), affines: new Float32Array(RIG_PARTS.length * 6),
+    depths: new Float32Array(RIG_PARTS.length), weaponAffine: new Float32Array(6),
+  }));
+  return { entries, next: 0 };
+}
+
+function projectionCacheFor(clip: RigClip, rigSet: RigSet | undefined): ProjectionCache {
+  let caches = projectionCaches.get(clip);
+  if (!caches) { caches = { rigSets: new WeakMap<RigSet, ProjectionCache>() }; projectionCaches.set(clip, caches); }
+  if (!rigSet) return caches.generic ??= createProjectionCache();
+  let cache = caches.rigSets.get(rigSet);
+  if (!cache) { cache = createProjectionCache(); caches.rigSets.set(rigSet, cache); }
+  return cache;
+}
+
+function viewsEqual(left: Int8Array, right: Int8Array): boolean {
+  for (let index = 0; index < left.length; index += 1) if (left[index] !== right[index]) return false;
+  return true;
+}
+
+function restoreSnapshot(state: ClipProjection, snapshot: ProjectionSnapshot): void {
+  state.positions.set(snapshot.positions); state.currentViews.set(snapshot.currentViews);
+  state.output.viewIndices.set(snapshot.viewIndices); state.output.mirrors.set(snapshot.mirrors);
+  state.output.affines.set(snapshot.affines); state.output.depths.set(snapshot.depths);
+  state.output.weaponAffine.set(snapshot.weaponAffine); state.output.weaponZ = snapshot.weaponZ;
+  state.output.weaponVisible = snapshot.weaponVisible;
+  for (let part = 0; part < RIG_PARTS.length; part += 1) {
+    const pose = state.output.poses[part] as { viewIndex: 0 | 1 | 2; mirrored: boolean; z: number };
+    pose.viewIndex = state.output.viewIndices[part] as 0 | 1 | 2;
+    pose.mirrored = state.output.mirrors[part] === 1; pose.z = state.output.depths[part]!;
+  }
+}
+
+function saveSnapshot(state: ClipProjection, snapshot: ProjectionSnapshot): void {
+  snapshot.valid = true; snapshot.frame = state.frame; snapshot.facingYawDeg = state.facingYawDeg; snapshot.mirrored = state.mirrored;
+  snapshot.currentViews.set(state.currentViews); snapshot.positions.set(state.positions);
+  snapshot.viewIndices.set(state.output.viewIndices); snapshot.mirrors.set(state.output.mirrors);
+  snapshot.affines.set(state.output.affines); snapshot.depths.set(state.output.depths);
+  snapshot.weaponAffine.set(state.output.weaponAffine); snapshot.weaponZ = state.output.weaponZ;
+  snapshot.weaponVisible = state.output.weaponVisible;
 }
 
 function sourceFor(part: RigPart, mirrored: boolean): string {
@@ -67,9 +127,9 @@ export function createClipProjection(clip: RigClip, rigSet?: RigSet): ClipProjec
     restLengths[bone] = key === undefined ? sourceLength * bodyScale : rigSet?.manifest.boneLengthsM?.[key] ?? sourceLength * bodyScale;
   }
   const currentViews = new Int8Array(RIG_PARTS.length); currentViews.fill(-1);
-  return { output: createPartPoseBuffer(), positions: new Float32Array(CLIP_JOINTS.length * 3), restLengths, partMetrics: createPartMetrics(rigSet),
-    currentViews,
-    frame: 0, facingYawDeg: 0, mirrored: false };
+  const state = { output: createPartPoseBuffer(), positions: new Float32Array(CLIP_JOINTS.length * 3), restLengths, partMetrics: createPartMetrics(rigSet),
+    currentViews, frame: 0, facingYawDeg: 0, mirrored: false };
+  stateCaches.set(state, projectionCacheFor(clip, rigSet)); return state;
 }
 export function resetClipProjection(state: ClipProjection): void {
   state.currentViews.fill(-1); state.frame = 0;
@@ -79,22 +139,21 @@ function setPoint(points: Float32Array, target: number, source: number, dx: numb
   const at = target * 3; const from = source * 3; points[at] = points[from]! + dx;
   points[at + 1] = points[from + 1]! + dy; points[at + 2] = points[from + 2]! + dz;
 }
-function writeBone(clip: RigClip, state: ClipProjection, frame: number, bone: number, start: number, end: number): void {
+function writeBone(clip: RigClip, state: ClipProjection, frame: number, bone: number, start: number, end: number, cosYaw: number, sinYaw: number): void {
   const sourceBone = state.mirrored ? MIRRORED_BONE[bone]! : bone;
   const value = (frame * CLIP_BONES.length + sourceBone) * 3;
   let x = clip.directionI16[value]! * SCALE; const y = clip.directionI16[value + 1]! * SCALE;
   let z = clip.directionI16[value + 2]! * SCALE;
   if (state.mirrored) x = -x;
-  const yaw = state.facingYawDeg * DEG; const cos = Math.cos(yaw); const sin = Math.sin(yaw);
-  const rotatedX = cos * x + sin * z; z = -sin * x + cos * z; x = rotatedX;
+  const rotatedX = cosYaw * x + sinYaw * z; z = -sinYaw * x + cosYaw * z; x = rotatedX;
   const size = Math.hypot(x, y, z); const length = state.restLengths[bone]! * clip.lengthRatioU16[frame * CLIP_BONES.length + sourceBone]! * SCALE;
   const multiplier = size < 1e-12 ? 0 : length / size; setPoint(state.positions, end, start, x * multiplier, y * multiplier, z * multiplier);
 }
-function writeSpan(clip: RigClip, state: ClipProjection, frame: number, bone: number, centre: number, left: number, right: number): void {
+function writeSpan(clip: RigClip, state: ClipProjection, frame: number, bone: number, centre: number, left: number, right: number, cosYaw: number, sinYaw: number): void {
   const value = (frame * CLIP_BONES.length + bone) * 3; let x = clip.directionI16[value]! * SCALE;
   let y = clip.directionI16[value + 1]! * SCALE; let z = clip.directionI16[value + 2]! * SCALE;
-  if (state.mirrored) { y = -y; z = -z; } const yaw = state.facingYawDeg * DEG; const cos = Math.cos(yaw); const sin = Math.sin(yaw);
-  const rx = cos * x + sin * z; z = -sin * x + cos * z; x = rx; const size = Math.hypot(x, y, z);
+  if (state.mirrored) { y = -y; z = -z; }
+  const rx = cosYaw * x + sinYaw * z; z = -sinYaw * x + cosYaw * z; x = rx; const size = Math.hypot(x, y, z);
   const half = size < 1e-12 ? 0 : state.restLengths[bone]! * clip.lengthRatioU16[frame * CLIP_BONES.length + bone]! * SCALE / size * .5;
   setPoint(state.positions, left, centre, -x * half, -y * half, -z * half);
   setPoint(state.positions, right, centre, x * half, y * half, z * half);
@@ -106,9 +165,11 @@ function solvePoints(clip: RigClip, state: ClipProjection, frame: number): void 
   const yaw = state.facingYawDeg * DEG; const cos = Math.cos(yaw); const sin = Math.sin(yaw);
   const rotatedX = cos * rootX + sin * rootZ; rootZ = -sin * rootX + cos * rootZ; rootX = rotatedX;
   points[0] = rootX; points[1] = rootY; points[2] = rootZ;
-  writeBone(clip, state, frame, 0, 0, 2); writeBone(clip, state, frame, 1, 2, 3);
-  writeSpan(clip, state, frame, 2, 2, 4, 8); writeSpan(clip, state, frame, 3, 0, 12, 16);
-  for (let bone = 4; bone < BONE_JOINTS.length; bone += 1) { const [start, end] = BONE_JOINTS[bone]!; writeBone(clip, state, frame, bone, start, end); }
+  writeBone(clip, state, frame, 0, 0, 2, cos, sin); writeBone(clip, state, frame, 1, 2, 3, cos, sin);
+  writeSpan(clip, state, frame, 2, 2, 4, 8, cos, sin); writeSpan(clip, state, frame, 3, 0, 12, 16, cos, sin);
+  for (let bone = 4; bone < BONE_JOINTS.length; bone += 1) {
+    const [start, end] = BONE_JOINTS[bone]!; writeBone(clip, state, frame, bone, start, end, cos, sin);
+  }
 }
 function chooseView(yaw: number, previous: number): number {
   let best = 0; let distance = Infinity;
@@ -125,14 +186,14 @@ function smoothedTrackYaw(clip: RigClip, frame: number, track: number, facing: n
   }
   const yaw = total / count; return (mirrored ? -yaw : yaw) - facing;
 }
-function writePart(clip: RigClip, state: ClipProjection, part: number, chestYaw: number): void {
+function writePart(clip: RigClip, state: ClipProjection, part: number, chestYaw: number, pelvisYaw: number, headYaw: number): void {
   const bone = PART_BONE[RIG_PARTS[part]!]; const [start, end] = BONE_JOINTS[bone]!; const points = state.positions;
   const a = start * 3; const b = end * 3; const dx = points[b]! - points[a]!; const dy = points[b + 1]! - points[a + 1]!;
   const dz = points[b + 2]! - points[a + 2]!; const length3 = Math.max(1e-12, Math.hypot(dx, dy, dz));
   const projected = Math.hypot(dx, dy); let along = Math.max(clip.viewHints.minForeshortenBp / 10_000, projected / length3);
   let yaw = chestYaw;
-  if (RIG_PARTS[part] === 'head' || RIG_PARTS[part] === 'hair_or_headgear') yaw = smoothedTrackYaw(clip, state.frame, 2, state.facingYawDeg, state.mirrored);
-  else if (RIG_PARTS[part] === 'pelvis_skirt' || part >= 10) yaw = smoothedTrackYaw(clip, state.frame, 0, state.facingYawDeg, state.mirrored);
+  if (RIG_PARTS[part] === 'head' || RIG_PARTS[part] === 'hair_or_headgear') yaw = headYaw;
+  else if (RIG_PARTS[part] === 'pelvis_skirt' || part >= 10) yaw = pelvisYaw;
   const view = chooseView(yaw, state.currentViews[part]!); state.currentViews[part] = view;
   const mirrored = view % 2 === 1; const viewIndex = viewType(view); const metric = (view * RIG_PARTS.length + part) * 4;
   const width = state.partMetrics[metric]!; const height = state.partMetrics[metric + 1]!;
@@ -168,9 +229,24 @@ function writeWeapon(clip: RigClip, state: ClipProjection): void {
 
 export function projectClipFrame(clip: RigClip, state: ClipProjection, frame: number, facingYawDeg: number, mirror = false): PartPoseBuffer {
   state.frame = Math.min(clip.frameCount - 1, Math.max(0, Math.trunc(frame))); state.facingYawDeg = Number.isFinite(facingYawDeg) ? facingYawDeg : 0; state.mirrored = mirror;
+  let cache = stateCaches.get(state);
+  if (!cache) { cache = createProjectionCache(); stateCaches.set(state, cache); }
+  for (let index = 0; index < cache.entries.length; index += 1) {
+    const cached = cache.entries[index]!;
+    if (cached.valid && cached.frame === state.frame && Object.is(cached.facingYawDeg, state.facingYawDeg) &&
+        cached.mirrored === mirror && viewsEqual(cached.inputViews, state.currentViews)) {
+      restoreSnapshot(state, cached); return state.output;
+    }
+  }
+  const snapshot = cache.entries[cache.next]!; cache.next = (cache.next + 1) % cache.entries.length;
+  snapshot.inputViews.set(state.currentViews);
   solvePoints(clip, state, state.frame);
+  const pelvisYaw = smoothedTrackYaw(clip, state.frame, 0, state.facingYawDeg, state.mirrored);
   const chestYaw = smoothedTrackYaw(clip, state.frame, 1, state.facingYawDeg, state.mirrored);
-  for (let part = 0; part < RIG_PARTS.length; part += 1) writePart(clip, state, part, chestYaw); writeWeapon(clip, state);
+  const headYaw = smoothedTrackYaw(clip, state.frame, 2, state.facingYawDeg, state.mirrored);
+  for (let part = 0; part < RIG_PARTS.length; part += 1) writePart(clip, state, part, chestYaw, pelvisYaw, headYaw);
+  writeWeapon(clip, state);
+  saveSnapshot(state, snapshot);
   return state.output;
 }
 export function isClipMainHandFar(clip: RigClip, state: ClipProjection): boolean {

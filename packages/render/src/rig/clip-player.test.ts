@@ -104,4 +104,18 @@ describe('clip player', () => {
     expect(player.mirrored).toBe(false);
     expect(isClipMainHandFar(sword, player.projection)).toBe(false);
   });
+
+  it('reuses shared projections but invalidates them during facing and fade changes', () => {
+    const clip = { ...sword };
+    createClipPlayer(clip, { facingYawDeg: 0 }); const sin = vi.spyOn(Math, 'sin');
+    const second = createClipPlayer(clip, { facingYawDeg: 0 }); expect(sin).not.toHaveBeenCalled();
+    const generation = second.projectionGeneration; second.update(1 / 60);
+    expect(second.projectionGeneration).toBe(generation);
+    second.setFacingYawDeg(45); second.update(0); expect(sin).toHaveBeenCalled();
+    expect(second.projectionGeneration).toBe(generation + 1);
+    const beforeFade = second.blend;
+    second.stop(); second.update(CLIP_CROSSFADE_SECONDS / 2);
+    expect(second.phase).toBe('fading-out'); expect(second.blend).toBeCloseTo(beforeFade * .5, 8);
+    expect(second.projectionGeneration).toBe(generation + 1);
+  });
 });
