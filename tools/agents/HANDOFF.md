@@ -900,3 +900,13 @@
     - 不用剧照的例外（白马 / 侠客 / 鸳鸯用《金庸群侠传》头像 + 基线）写进 `_codex_portrait.md` §3 与 `ART-hero-refine.md` 复合参考一节，免得以后的执行器再搜图或拒出。
     - TOOL-catalog-9col 复审 r2 FAIL（03:27）：双写检查只在投影已有该键时比较，省略投影键即可绕过；驱动（`--max-runs 2`）等代码池空位后自动返修（池被 ENG-17 / 18b / 19a + TOOL-rig-sheet 占满）。
     - 03:41：负载回落到 6.3，交换区 33.8 GB 仍用 32.4 GB，磁盘 7 GiB。
+  - **10-03 02:45–03:50 开发监督**：
+    - **防截断误判又出两次**（都是任务说明要求的删除 / 重构，只扩校验豁免，不动驱动）：
+      - ENG-17 把 `BookWorldDefSchema` 移到 `chapter.ts` 的 ChapterDef，`world.ts` 从 40 行缩到 30 行，加 shrink_exempt（1e34a979）；
+      - ENG-19a 按审计 L1 删了 `GameUi.vue`、`storage-demo.ts`，加 shrink_exempt（2ca42cd5）。
+      - 已扫过其余待跑任务的说明，没有别的删除 / 改名要求。
+    - **TOOL-catalog-9col**：返修后 HOLD-REVIEWS，协调者 03:16 另起 `--from review`（pid 51856）。r2 又 FAIL，03:44 自动进返修。合入后按 `_handoff/lore_plan.md` 复验 lore，脚本见草稿目录 `lore_relaunch.sh`。
+    - **TOOL-rig-sheet**：r2 FAIL，03:18 进入另起驱动后的第 3 次运行。
+    - **协调者新登记 TOOL-ingest-cropframe**（物品图入库裁框 bug，低优先，在 eng3 队尾）。代码池有空位、且 M1 任务都在跑时，可以单独起。
+    - **磁盘 / 负载**：7–8 GiB，loadavg 6–18。
+
