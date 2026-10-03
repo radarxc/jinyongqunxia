@@ -1783,3 +1783,5 @@
   - 磁盘清理 1–5 项（作者「一到五都删掉」）：代码索引未占用的 6 个子目录、旧 pnpm 仓库（后台删除中）、npm 缓存与未在用 npx 包、旧 Codex 运行时、Codex 待装更新包、Playwright / Trae 缓存。磁盘 3.8 → 14.7 GiB。暂留：ckg_server 打开着的索引约 8 GB、tts-openapi MCP 用的 npx 包、Chrome 主配置缓存。
   - ART-cast-fill-c 合入（88ad459e，72 张）；build_portraits / build_portrait_index 等 cast-d 合入后由协调者一次跑。素材线第三波按协调者意见修 run.py：稀疏检出未拉下的文件不算删除 / 截断。
   - 特效试点 VFX-sk_zuoyouhubo 15:34 起跑（Codex 直跑）；35 门 vars 已按图鉴核对（a4df0a45，外放 P 标修 6 门，加 sparse_include）。TOOL-city-generic 15:24 起跑排池位（驱动 10066）。
+- **10-03 15:50 代码池优先级**（协调者）：16c、23a 第 1 轮各跑满 200 分钟超时，续作排队时池位被 city-generic、rig-parts-f 拿走。按 16c > 23a > base-diet > std-parts 放行：后三件置 HOLD-RUNS、停排队驱动；新脚本 `.agents/coord/_handoff/wait_attempt.py`（等某任务 current.json 的 attempt≥N 再脱离启动命令）挂三道守候 83191 / 83193 / 83195，事件见 `_handoff/wait_attempt.log`。若守候被停，按日志里的命令手动重起对应驱动。
+- 磁盘清理 1–5 项全部完成（旧 pnpm 仓库后台删完）；随后交换区涨到约 39 GB，可用回落到 11.5 GiB。
