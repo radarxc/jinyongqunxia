@@ -34499,7 +34499,8 @@
     "assets/default/prompts/characters/ch09-liancheng/**"
    ],
    "sparse_include": [
-    "assets/default/character/male/ch09/*.png"
+    "assets/default/character/male/ch09/*.png",
+    "assets/default/character/female/ch09/*.png"
    ],
    "agent_args": [
     "-c",
