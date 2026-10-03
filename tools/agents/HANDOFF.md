@@ -1269,3 +1269,4 @@
     - **TOOL-ingest-cropframe**：07:56 解除让位 HOLD，状态置 PENDING，交 eng3 照常起。entry 告急那 15 个任务仍挂起，等拆分合入。
     - **TOOL-town-gaps-1**：日志 40 分钟涨到 57 MB，盯 150 MB 线。
 
+  - **10-03 07:47–07:56 协调者**：**ART-ruins-maps-2 合入**（ac069a22，07:56，r1 PASS，第 1 次运行 19 分钟）：九老洞、敦煌地宫唐 / 清两相位、达摩洞、若耶溪墓藏、华山后洞 6 张 Tiled 地图 + 预览，catalog / audit tsv 追加 6 行——作者 AR-36 点名的遗迹至此做完（第二波六项全部合入，礼品名录在等工具）。TOOL-tests-discover 第 1 次运行 46 分钟结束，校验通过（全量 discover 过），审核中。
