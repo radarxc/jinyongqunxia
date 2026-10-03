@@ -1027,4 +1027,20 @@
     - lore-7 / 8：等 lore 并发降到 4 以下且负载 < 10 时，再按 `--from start` 起（协调者：lore 并发不超过 4）。
     - lore-2 / 4 没有工作区，des34 起跑时从当前 HEAD 新建，不用挪基点。
     - 全部合入后：TOOL-items-catalog `--from start` 重新生成，并提交 `content/items`（AR-39）。
+  - **10-03 05:42–05:59 开发监督**：lore 进展；ENG-12e 防截断拦下真回归。
+    - **lore-6**（药品）返修一次后合入（20c1307a）。合入后在集成分支上：
+      - 11 份名录 `check_item_catalog.py` 全过（medicine 96 行九列，其余七列）；
+      - `python3 -m unittest discover -s tools` 33 条全过；
+      - `items_from_catalog.py --check` 报 medicine 条目 stale，属预期：要等 lore 全部合入后由 TOOL-items-catalog 重新生成。lore 任务的 validate 不含 `--check`，不受影响。
+    - **lore-5**（食品）r1 FAIL，返修项属实：
+      - 地方名食补时令；
+      - 腊八粥双写冲突：design/10 §4.10.4 规定食品只用 stamina / healInner / healOuter，§4.10.5 的旧字段双写又要求 `sxpGrant → qiCultivation`；
+      - 报告改 ⚠️。
+      - **需作者确认**：`it_labazhou` 能否作为食品类的 `qiCultivation` 特例。默认：旧 `sxpGrant=0.35` 仍是唯一运行真值，待 design/10 与校验器统一口径后再定投影。
+      - 驱动 `--max-reviews 1`，返修后会转 HOLD-REVIEWS，由 des34 自动复验。
+    - **lore-7**：05:56 负载降到 9 后，挪基点（cherry-pick 无冲突，6 个文件）并按 `--from start` 起，驱动 38898。lore 并发现为 4：1 / 3 / 5 / 7。lore-8 等有任务合入、负载 < 10 后再起。
+    - **ENG-12e-gltf-pilot**：第 1 次运行校验被防截断拦下（`rig-demo.ts` 87→63 行）。我核对后确认不是误判：执行器把 /rig-demo 原有的 2D 演示控制项整页换成了 3D 试点，任务要求是并排。
+      - 被删的控制项：八方向、装备覆盖、十个片段、程序 / 片段 A/B、事件日志。
+      - 协调者 05:58 结论相同，已停 eng3 的驱动，带说明另起 `--from start`（日志 `supervise.r2.out`）：恢复原功能，3D 只作为 `?model=` 时的附加面板。
+      - 合入后照常 `prod_check`。
 
