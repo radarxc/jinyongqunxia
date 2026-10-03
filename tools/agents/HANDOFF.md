@@ -1607,3 +1607,9 @@
       - 余额查询用 CLI 的 --env-file，追踪者不经手 key；余额一直是 0 点，后因 AR-42 撤掉。
       - 密钥扫描只按形状匹配、不打印内容，命中 5 处，核为占位误报，规则已收紧。
     - **等待器教训**：两个等待进程并发会互相覆盖状态文件，现在入口会先 pkill 旧的。
+  - **10-03 13:12–13:27 协调者**：作者意见与引擎缺口。
+    - AR-49：段誉剧照「下载」（已转 10 号）；「黄蓉要更像李一桐版本一些，眼睛大一些」（重画 ch02 base，李一桐剧照下载待作者同意，Tripo 黄蓉 3D 暂停）；「杨过再像古天乐版本一些。张无忌现在有点丑，更像苏有朋一些，但保持魁梧」（每人 2 张候选重出）。A2 联系表另发成页面：https://claude.ai/artifact/WRPLfJH8vKEic2FV6u97jp。
+    - ART-items-gifts-catalog 合入 be7a8c39（design/10 末尾补 151 个 it_* 登记）；开发监督登记 TOOL-items-regen-2；Gemini 出图员区域图之后接礼品图。
+    - CONTENT-ch10 r1 FAIL：门 / 入口 binding、首谈 dialogue binding、EventDef 动作执行、NPC 说话人标签、M1 页面顺序都是引擎缺口 → 批开发监督：ENG-region-gates-data 扩成区域绑定数据（gates / dialogues / loot），新登记 ENG-event-executor、ENG-19e-m1-order；写内容审核补充裁定 `review_checks_content.md`（依赖未合入引擎的行为列交接项即不判 FAIL），CONTENT 三任务复审带上。
+    - 开发监督已起 ENG-tiled-trigger-strict（5ae8af57，驱动 14355）。
+    - Gemini 标签页：作者已把 Claude 组里的 Gemini 标签页放到前台（13:26）。
