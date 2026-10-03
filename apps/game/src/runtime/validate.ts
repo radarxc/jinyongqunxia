@@ -1,7 +1,7 @@
 import { CORE_VERSION, EQUIPMENT_SLOTS, InventoryRuntime, RNG_PROTOCOL, RULES_PROTOCOL,
   SAVE_SCHEMA, parseGameState, validateWorldMapState, type CharacterState } from '@tianshu/core';
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
-import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
+import type { RegionMap, TownRuntimeDefinition } from '@tianshu/data/schemas';
 import { equipmentRules, type GameContent } from './content';
 import type { SessionSnapshot } from './contracts';
 
@@ -53,6 +53,30 @@ function validateChapterRuntime(state: SessionSnapshot, content: GameContent): v
       throw new Error('SAVE_USAGE_INVALID');
   }
 }
+function regionObject(map: RegionMap, id: string) {
+  return [...map.objects, ...map.chunks.flatMap((chunk) => chunk.objects)]
+    .find((object) => object.id === id);
+}
+function validRegionCell(map: RegionMap, q: number, r: number): boolean {
+  if (q < 0 || r < 0 || q > map.bounds.qMax || r > map.bounds.rMax) return false;
+  const chunk = map.chunks.find((entry) => entry.q === Math.floor(q / 32) &&
+    entry.r === Math.floor(r / 32));
+  if (!chunk) return false;
+  const bytes = Uint8Array.from(atob(chunk.valid), (character) => character.charCodeAt(0));
+  const index = (r % 32) * 32 + q % 32;
+  return (bytes[index >> 3]! & (1 << (index & 7))) !== 0;
+}
+function validateRegion(state: SessionSnapshot, content: GameContent): void {
+  const mounted = state.world.navigation.mountedRegion;
+  if (!mounted) return;
+  const map = content.regionMaps?.find((entry) => entry.id === state.world.navigation.locationId);
+  const spawn = map && regionObject(map, mounted.spawnId);
+  if (!map || map.regionId !== mounted.regionId || spawn?.class !== 'PlayerSpawn' ||
+      !validRegionCell(map, mounted.playerHex.q, mounted.playerHex.r) ||
+      mounted.dynamicTiles.some((tile) => !validRegionCell(map, tile.q, tile.r)) ||
+      mounted.entities.some((entity) => !regionObject(map, entity.anchorId)))
+    throw new Error('SAVE_REGION_INVALID');
+}
 
 export function validateSession(value: SessionSnapshot, content: GameContent,
   townDefinition?: TownRuntimeDefinition): SessionSnapshot {
@@ -86,6 +110,7 @@ export function validateSession(value: SessionSnapshot, content: GameContent,
     throw new Error('SAVE_EQUIPMENT_INVALID');
   validateParty(state, content);
   validateChapterRuntime(state, content);
+  validateRegion(state, content);
   const map = content.worldMaps?.find((entry) => entry.chapterId === state.chapter.chapterId);
   if ((state.chapter.worldMap === null) !== (map === undefined)) throw new Error('SAVE_WORLDMAP_INVALID');
   if (state.chapter.worldMap && map) validateWorldMapState(state.chapter.worldMap, map);

@@ -5,6 +5,7 @@ import type { Command, CommandHandler, CoreContent, RejectReason } from '.';
 import { inventoryHandler, rejectionFrom, townHandler, worldMapHandler, worldTickHandler } from './handlers';
 import { dialogueHandler, difficultyHandler, questChoiceHandler } from './story-handlers';
 import { bookSleepHandler } from './chapter-handler';
+import { regionHandler } from './region-handler';
 import { CommandAbort, MutableCoreTransaction } from './transaction';
 
 export type DispatchResult =
@@ -33,6 +34,9 @@ const HANDLERS: Readonly<Record<string, CommandHandler>> = {
   'quest/choose': questChoiceHandler as CommandHandler,
   'rules/setDifficulty': difficultyHandler as CommandHandler,
   'chapter/bookSleep': bookSleepHandler as CommandHandler,
+  'world/mountRegion': regionHandler as CommandHandler,
+  'world/walkTo': regionHandler as CommandHandler,
+  'world/interact': regionHandler as CommandHandler,
 };
 function rejection(reason: RejectReason, at?: string): DispatchResult {
   return at === undefined ? { ok: false, reason } : { ok: false, reason, at };

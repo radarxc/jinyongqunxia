@@ -5,6 +5,7 @@ import type { ConsumableTargetState } from '../economy/types';
 import type { BattleState } from '../battle/types';
 import type { WorldMapState } from '../world/worldmap-types';
 import type { TownSessionState } from '../world/town-runtime';
+import type { MountedRegionState, PendingRegionMount } from '../world/region-types';
 
 export type EquipmentSlot = 'mainHand' | 'offHand' | 'head' | 'body' | 'innerBody' | 'hands' | 'shoulder' | 'cape' | 'waist' | 'feet' | 'accessory';
 export type SkillState = SkillInstance;
@@ -90,8 +91,8 @@ export interface ChapterState {
 export interface PartyState { readonly inventory: Inventory; readonly equipment: Equipment; readonly money: number; }
 export interface WorldNavigationState {
   readonly locationId: string; readonly selectedDestinationId: string | null;
-  readonly pendingMount: { readonly regionId: string; readonly sceneId: string;
-    readonly spawnId: string } | null;
+  readonly pendingMount: PendingRegionMount | null;
+  readonly mountedRegion: MountedRegionState | null;
 }
 export interface WorldState {
   readonly navigation: WorldNavigationState;

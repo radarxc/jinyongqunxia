@@ -74,7 +74,8 @@ export const bookSleepHandler: CommandHandler<ChapterCommand> & {
       story: { chapterId: target.id, lines: [] }, worldItems: { entries: [] }, shops: [],
       worldMap: null, town: null, npcs: [], itemChapterUses: {} });
     tx.set(['world'], { navigation: { locationId: target.wake.sceneId,
-      selectedDestinationId: null, pendingMount: { ...target.wake } }, pendingTimeAdvance: null });
+      selectedDestinationId: null, pendingMount: { ...target.wake }, mountedRegion: null },
+      pendingTimeAdvance: null });
     tx.set(['meta', 'worldTick'], target.startTick);
     tx.set(['meta', 'contentHash'], tx.content.targetContentHash!);
     tx.emit({ t: 'chapter/bookSleepCommitted', payload: { planId: plan.id, from: plan.from,

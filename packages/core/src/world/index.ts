@@ -9,6 +9,10 @@ export * from './worldmap-runtime';
 export * from './worldmap-state';
 export * from './worldmap-types';
 export * from './town-runtime';
+export * from './region-types';
+export * from './region-codec';
+export * from './region-gates';
+export * from './region-runtime';
 
 export type TimeAdvanceReason = 'inn-rest' | 'meditation' | 'travel' | 'battle' | 'story';
 export interface TimeAdvance {

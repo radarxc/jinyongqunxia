@@ -19,7 +19,7 @@
 ## 状态、推导与时间入口
 
 - 边界：`createInitialGameState()`、`parseGameState()`、`assertCanonicalGameState()`、`cloneGameState()`；`Core.serialize()` / `canonicalStateJson()` 负责规范输出。
-- 版本：当前 `SAVE_SCHEMA=2`、`RULES_PROTOCOL=3`、`RNG_PROTOCOL=2`；调用方必须从 core 导出读取。`contentHash` 在内容管线接入前为 64 个零。
+- 版本：当前 `SAVE_SCHEMA=3`、`RULES_PROTOCOL=3`、`RNG_PROTOCOL=2`；调用方必须从 core 导出读取。`contentHash` 在内容管线接入前为 64 个零。
 - 深拷贝：core 内只使用 `cloneJsonValue()` 处理 JSON 状态；命令热路径禁止 `structuredClone()` 和整树复制。
 - 人物：`deriveCharacterStats()` 是 `hpMax/mpMax` 唯一推导入口；`createCharacterState()` 初始化资源，`withDerivedCharacterStats()` 重算并保持资源比例。
 - 容器：`addInventoryItem()`、`createEmptyEquipment()`、`createWorldItems()`、`createShopState()`、`createStoryState()`。
@@ -31,11 +31,26 @@
 - handler 的 `validate` 只读且不得取 RNG；`apply` 只经 `CoreTransaction.set/splice/rng/emit/abort` 写入。journal 仅登记每个 owner/key 的首次旧值，五流 RNG 与事件均先暂存。
 - 提交前验证事件 JSON、安全整数及整棵 `GameState`；成功后才推进版本、命令序和事件序。异常或 abort 逆序回滚状态并丢弃 RNG / 事件。`TypeError`、溢出和不变量错误必须上抛，不得伪装成玩法拒绝。
 - 规范事件为 `{ t,seq,stateVersion,causeId,parentSeq,payload }`；同命令 `causeId=stateVersion:commandOrdinal`，首事件无父项，其余默认指向首事件。战斗旧事件形状只保留至 ENG-16c。
-- `migrateUiSessionV1()` 是 schema 1→2 的纯 JSON 迁移：旧 known / chapterUses / itemTargets / location 归入正式状态；非空 battleUses 明确报错，绝不静默丢弃。
+- `migrateUiSessionV1()` 是 schema 1→2 的纯 JSON 迁移：旧 known / chapterUses / itemTargets / location 归入正式状态；
+  `migrateBookSleepV2()` 再做 schema 2→3 并补中性 `mountedRegion:null`。非空 battleUses 明确报错，绝不静默丢弃。
 - `createNewGameState()` / `createNewGameCore()` 是 ch00 唯一新档工厂；宿主注入 uint32
   `masterSeed`。创角只落身份与 `luk/cha=50`，六项战斗底子留给初眠。
 - `rules/setDifficulty` 仅接江湖 / 侠客 / 宗师，战斗中返回 `RULES_BATTLE_ACTIVE`；
   成功追加 `difficultyLog` 并发 `rules/changed`。
+
+### 区域探索（ENG-20a）
+
+- 宿主先预载并按 `RegionMapSchema` 校验区域包，再提交
+  `world/mountRegion {regionId,sceneId,spawnId}`；core 不联网、不读文件。状态只保存
+  `mountedRegion={regionId,spawnId,playerHex,facing,dynamicTiles,entities}`，静态格网留在内容层。
+- `world/walkTo {hex}` 与 `queryRegionPath()` 共用确定性搜索；提交始终重算，不信任预览。
+  六邻、高差、坡道、动态格、占用、轻功地形与 H4 直线跨沟均在 core 判定。
+- `world/interact {anchorId}` 统一校验距离、视线、消耗态与 `GateExpr`。NPC 启动 Ink；
+  Trigger 发剧情 intent；Chest 原子入包；Door / QinggongGate 写 `pendingMount`；
+  BattleArena 只发 `world/battleRequested`，由战斗宿主接续。
+- 安全锚和自动存档点只发 `world/safeAnchorReached` / `world/autosaveRequested`；core 不写存储，
+  对话、书眠待挂载与其他交互事务中抑制。静态投影 `RegionStaticProjection` 仅挂载时发送，
+  步进投影 `RegionDynamicProjection` 只含玩家、可交互锚、门状态和 `pendingMount`。
 
 ## 经脉运气与养成入口
 
@@ -165,6 +180,8 @@
 
 ## 变更记录
 
+- 2026-10-03：ENG-20a 接入 RegionMap 挂载、确定性场景行走与跨沟、交互锚、门禁、
+  出口、安全锚 / 自动存档事件及静态 / 动态区域投影；GameState schema 3 保存 mountedRegion。
 - 2026-10-02：ENG-17a 接入 ch00 新档、三档难度切换、core-owned Ink 对话与
   `dc_00_01`；StoryRuntime 改为快照 / deadline / quest port 原子提交。
 - 2026-10-02：ENG-15 统一非战斗命令总线与 mutation journal；GameState 升至 schema 2 / rules protocol 3，移除 `ui-session.v1` 边车与 `transient` 根。

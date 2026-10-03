@@ -4,6 +4,7 @@ import { createGameSession } from './session';
 import { createPreviewSession } from './bootstrap';
 import { fixtureContent } from './test-fixture';
 import { createNewGameState, FIRST_SLEEP_RULE } from '@tianshu/core';
+import { regionFixtureMap } from './region-test-fixture';
 
 describe('Worker session command adapter', () => {
   const content = fixtureContent();
@@ -82,7 +83,7 @@ describe('Worker session command adapter', () => {
       identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',
         originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake', chapter: source.chapters[0]! });
     const core = createGameSession(source, state, undefined, { demo: false,
-      preloadChapter: async () => target });
+      preloadChapter: async () => target, preloadRegion: async () => [] });
     expect((await core.query()).firstSleepAllocation).toBeNull();
     await core.dispatch({ t: 'quest/choose', questId: 'dc_00_01', optionId: 'skip' });
     const settled = await core.dispatch({ t: 'quest/choose', questId: 'dc_00_01',
@@ -91,6 +92,7 @@ describe('Worker session command adapter', () => {
       ruleVersion: 'first-sleep.v1', requiredTotal: 300, lockedKeys: ['luk', 'cha'] });
     const woke = await core.dispatch({ t: 'chapter/bookSleep', plan: sleepPlan });
     expect(woke.accepted).toBe(true); expect(woke.changes.firstSleepAllocation).toBeNull();
+    expect((await core.snapshot()).world.navigation.pendingMount).toEqual(target.chapters[0]!.wake);
   });
   it('does not create battle-use counters when a field item has no chapter cap', async () => {
     const core = createGameSession(content);
@@ -163,6 +165,103 @@ describe('Worker session command adapter', () => {
     const entered = await core.dispatch({ t: 'worldmap/enter' });
     expect(entered.accepted).toBe(true); expect(loads).toEqual(['city_dali']);
     expect(entered.changes.townRuntime?.sceneId).toBe('city_dali');
+  });
+
+  it('preloads a RegionMap before mount and sends static geometry only for the mount patch', async () => {
+    const map = regionFixtureMap(); const initial = createNewGameState({ masterSeed: 7,
+      identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',
+        originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake' });
+    const loads: string[] = [];
+    const core = createGameSession(content, initial, undefined, { demo: false,
+      preloadRegion: async (chapterId, regionId) => {
+        loads.push(chapterId + '/' + regionId); return [map];
+      } });
+    const mounted = await core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    expect(mounted.accepted).toBe(true); expect(loads).toEqual(['ch00_yuenv/rg_fixture']);
+    expect(mounted.changes.regionStatic).toMatchObject({ sceneId: 'sc_00_zhulin',
+      regionId: 'rg_fixture' });
+    const walked = await core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } });
+    expect(walked.accepted).toBe(true); expect(walked.changes).not.toHaveProperty('regionStatic');
+    expect(walked.changes.region).toMatchObject({ playerHex: { q: 1, r: 0 }, facing: 0 });
+    expect((await core.query()).regionStatic).toMatchObject({ sceneId: 'sc_00_zhulin' });
+    const beforePreview = await core.snapshot();
+    const preview = await core.dispatch({ t: 'world/previewRegionPath', hex: { q: 2, r: 0 } });
+    expect(preview).toMatchObject({ accepted: true, events: [], changes: {
+      regionPathPreview: { ok: true, preview: { destination: { q: 2, r: 0 }, cost: 1 } },
+    } });
+    expect(await core.snapshot()).toEqual(beforePreview);
+    const moved = await core.dispatch({ t: 'world/walkTo', hex: { q: 2, r: 0 } });
+    expect(moved.changes.regionPathPreview).toBeNull();
+  });
+
+  it('keeps state unchanged when region preload fails or supplies a mismatched package', async () => {
+    const initial = createNewGameState({ masterSeed: 7,
+      identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',
+        originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake' });
+    const loaders = [
+      { loader: async () => { throw new Error('offline'); }, error: 'REGION_UNAVAILABLE' },
+      { loader: async () => [{ ...regionFixtureMap(), regionId: 'rg_other' }],
+        error: 'REGION_CONTENT_MISMATCH' },
+    ] as const;
+    for (const row of loaders) {
+      const core = createGameSession(content, initial, undefined, { demo: false,
+        preloadRegion: row.loader }); const before = await core.snapshot();
+      const update = await core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+        sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+      expect(update).toMatchObject({ accepted: false, error: row.error, changes: {}, events: [] });
+      expect(await core.snapshot()).toEqual(before);
+    }
+    let validLoads = 0;
+    const badSpawn = createGameSession(content, initial, undefined, { demo: false,
+      preloadRegion: async () => { validLoads += 1; return [regionFixtureMap()]; } });
+    const before = await badSpawn.snapshot();
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const update = await badSpawn.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+        sceneId: 'sc_00_zhulin', spawnId: 'missing_spawn' });
+      expect(update).toMatchObject({ accepted: false, error: 'REGION_SPAWN_UNKNOWN',
+        changes: {}, events: [] });
+      expect(await badSpawn.snapshot()).toEqual(before);
+    }
+    expect(validLoads).toBe(2);
+  });
+
+  it('preloads mounted RegionMap content before restoring a save and preserves state on failure', async () => {
+    const map = regionFixtureMap(); const initial = createNewGameState({ masterSeed: 7,
+      identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',
+        originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake' });
+    const source = createGameSession({ ...content, regionMaps: [map] }, initial, undefined,
+      { demo: false });
+    await source.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    const saved = await source.snapshot(); const loads: string[] = [];
+    const restored = createGameSession(content, initial, undefined, { demo: false,
+      preloadRegion: async (chapterId, regionId) => {
+        loads.push(chapterId + '/' + regionId); return [map];
+      } });
+    const update = await restored.restore(saved);
+    expect(loads).toEqual(['ch00_yuenv/rg_fixture']);
+    expect(await restored.snapshot()).toEqual(saved);
+    expect(update.changes.regionStatic).toMatchObject({ sceneId: 'sc_00_zhulin' });
+
+    const unavailable = createGameSession(content, initial, undefined, { demo: false,
+      preloadRegion: async () => { throw new Error('offline'); } });
+    const before = await unavailable.snapshot();
+    await expect(unavailable.restore(saved)).rejects.toThrow('REGION_UNAVAILABLE');
+    expect(await unavailable.snapshot()).toEqual(before);
+
+    let stagedLoads = 0;
+    const staged = createGameSession(content, initial, undefined, { demo: false,
+      preloadRegion: async () => { stagedLoads += 1; return [map]; } });
+    const invalid = { ...saved, party: { ...saved.party, inventory: {
+      ...saved.party.inventory, stacks: [{ itemId: 'it_missing', count: 1 }],
+    } } };
+    await expect(staged.validate(invalid)).rejects.toThrow('INVENTORY_ITEM_UNKNOWN');
+    await expect(staged.restore(invalid)).rejects.toThrow('INVENTORY_ITEM_UNKNOWN');
+    const mounted = await staged.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    expect(mounted.accepted).toBe(true);
+    expect(stagedLoads).toBe(3);
   });
 
   it('moves through core, resolves location anchors, and enters a selected shared door', async () => {

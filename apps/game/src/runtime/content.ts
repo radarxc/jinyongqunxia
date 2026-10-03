@@ -1,8 +1,9 @@
 import type { ChapterDef, ItemDef, MartialArtDef, NpcDef,
-  TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+  RegionMap, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { ContentIdRemap } from '@tianshu/data';
 import type { EquipmentRule, EventAnchor, NpcWorldState, TownMeditationEncounter,
-  TownMeditationPractice, InkStoryContent } from '@tianshu/core';
+  TownMeditationPractice, InkStoryContent, RegionGateFacts, RegionGateBinding,
+  RegionDialogueBinding, RegionLootBinding } from '@tianshu/core';
 import type { BattleLaunch } from '../battle/contracts';
 
 export interface MeridianTopology {
@@ -28,6 +29,11 @@ export interface GameContent {
   readonly meditationEncounters?: readonly GameTownMeditationEncounter[];
   /** Compiled Ink registry; the build plugin supplies this once CONTENT-ch00 is present. */
   readonly inkStories?: readonly InkStoryContent[];
+  readonly regionMaps?: readonly RegionMap[];
+  readonly regionGateFacts?: RegionGateFacts;
+  readonly regionGates?: readonly RegionGateBinding[];
+  readonly regionDialogues?: readonly RegionDialogueBinding[];
+  readonly regionLoot?: readonly RegionLootBinding[];
 }
 export type StaticGameContent = Omit<GameContent, 'items' | 'contentHash'>;
 export type TownLoader = (sceneId: string) => Promise<TownRuntimeDefinition | null>;
