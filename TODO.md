@@ -19,7 +19,7 @@
 - **设计**：des33 第三批 13 项全部合入（故事线挂接口 g1～g5、tech / design 同步 a / b、名录门槛 v2 a / b / c、rig v1.1、ids-slp）；des34 的 DES-items-attrs-spec 合入（名录升九列），8 个 DES-items-lore 停在等 TOOL-catalog-9col（复审 r2 又 FAIL，等代码池空位返修）；des35 的人物名录补登记 a / b 合入（110 个原著人物进名录与 design/18）；des36 的礼品规格 DES-items-gifts-spec 因内存压力暂停（§4）。
 - **素材**：
   - 人物：AR-32 / AR-35 的修改全部完成；第二波（AR-36）cast-fill a / b 合入 57 张，hero-refine-a 合入 95 张（联系表已发作者），hero-refine-b 合入 80 张（2533a8fd；李文秀 6 图按「白马用游戏头像 + 基线」放行）；剩余 `build_portraits` 等指定时段，总览页待重建（§3.1）。
-  - 物品（Gemini）：10-02 16:00 起已入库 315+ 张（药材 53、兵器 117、暗器 20、秘籍 110+），只剩返工 31 张和后缀书名 18 本（口径 03:25 已答）；之后接 AR-40 的奢侈品 / 礼品约 120–180 张（§3.2）。
+  - 物品（Gemini）：**366 张全部入库**（10-03 04:28 收工：秘籍 162、兵器 128、药材 55、暗器 21，限流 0），物品图至此出齐；下一批是 AR-40 的奢侈品 / 礼品约 120–180 张，等名录（§3.2）。
   - 情景图：改由 codex 主角精修任务出（hero-a 已入库 50 张插图，hero-b 待合入），Gemini 不再出；`key-scenes.md` 的统计口径待同步（§4）。
   - 城市布局：CITY-layouts-all 03:36 续作（第 4 次运行）；遗迹地图等 ENG-18b；三视图切件 TOOL-rig-sheet 审核两次不过，第 3 次返修中（§3.4、§3.5）。
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
@@ -124,12 +124,14 @@
 
 ### 3.2 物品图（Gemini 网页）
 
-**已完成**：食品 174 张；旧 18 本秘籍补书名；衣物、旧兵器、旧暗器、旧药物；第二批 16 张；**本轮（10-02 16:00 起）315+ 张**：药材 53、兵器 117、暗器 20、秘籍 110+（02:41 计 315；每张入库即按路径提交）。
+**已完成（10-03 04:28 收工）**：食品 174、衣物、旧兵器 / 暗器 / 药物、第二批 16，加上本轮 366 张（秘籍 162、兵器 128、药材 55、暗器 21）——`assets/default/item/**` 的物品图出齐，manifest 全是 `candidate`，每张按路径单独提交（最后 76d6a377）。限流 0 次；72 张返工过，15 张第 3 次才过；返工清单 0。总联系表 `_prod/.agents/coord/gemini_qa/final_{manuals,weapons,medicine,hidden-weapons}.jpg`（04:30 已发作者）。
+- 秘籍题签口径（协调者 10-03 03:25）：只写书名本体；九阴真经 / 太玄经 / 吸星大法 / 倚天屠龙功直接刻在石面或铁板；泥人图、圣火令无字；实际写的书名记在 manifest notes；规则在 `tools/imagegen/gemini_prompt.py`（bf2f2663）。
+- **收下但与名录描述有出入的 5 张**（manifest notes 已写明，要不要返工待作者看总览页定）：地趣入门多了一支竹笛；红花会合集没画黑绳束带；五行奇阵函套有铜角饰；笑傲江湖曲经折谱半展开、封面有线装缝线；山野吐纳左右留白约 8%。
+- 续作材料：`gemini_qa/kit/`（提示词、attempts、events、预防句、质检 / 入库脚本）、`gemini_qa/progress.md`；出图员 subagent 已结束，标签页 A = 1957635082、B = 1957635086 空闲。
 
-**执行中**：Opus subagent 用 Chrome 驱动 Gemini（标签页 A = 1957635082、B = 1957635086，协调者在本会话标签组建；只有前台可见的标签页能提交，窗口要作者摆到前台）。进度表 `_prod/.agents/coord/gemini_qa/progress.md`，出图员小工具在 `gemini_qa/kit/`。
-- 剩余：返工 31 张（各 1～2 次失败，补救句已追加）+ 后缀书名 18 本。**后缀口径（协调者 03:25）**：题签只写书名本体，纸本的版本 / 载体词（古册 / 传本 / 经折本 / 原卷 / 古籍 / 钞本 / 手本 / 帛本 / 民间谱 / 帛卷）不写；古墓遗刻 / 石壁 / 铁板 / 石刻只刻书名不贴题签；泥人图、圣火令无汉字；「笑傲江湖曲谱手本」题「笑傲江湖曲」；已出的「大金刚拳神功古籍」8 字版重出。规则已进 `tools/imagegen/gemini_prompt.py`（bf2f2663）。
-- 之后：**奢侈品 / 礼品**（AR-40）约 120–180 张，等 ART-items-gifts-catalog 写完名录与提示词后 `make_queue.py --group items --cat collectibles` 装队列（§3.5）。
-- 情景图 102 张**不再由 Gemini 出**（10-02 22:40 范围变更）：hero-a 已出 50 张插图，hero-b 待合入。
+**下一批**：**奢侈品 / 礼品**（AR-40）约 120–180 张——等 ART-items-gifts-catalog 写完名录与提示词（依赖 DES-items-gifts-spec 与 TOOL-catalog-9col），再起一个 Gemini 出图员 subagent，用 `make_queue.py --group items --cat collectibles` 装队列。
+
+情景图 102 张不再由 Gemini 出（10-02 22:40 范围变更）：hero-a / hero-b 已入库 82 张插图（§3.1）。
 
 **工具问题**：`ingest.py` 的 `crop_frame()` 遇左右白框会把主体切掉（it_miji_xingjunbu_can 第一次入库被切，出图员手工补救重入库 fa2c1895）→ 已登记 TOOL-ingest-cropframe（a43039a3，eng3 队尾）。
 
