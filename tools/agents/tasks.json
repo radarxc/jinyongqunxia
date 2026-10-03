@@ -35002,6 +35002,16 @@
       "@tianshu/data",
       "test"
      ]
+    ],
+    "shrink_exempt": [
+     "assets/default/town/city_luoyang__ch10/*.log",
+     "assets/default/town/city_luoyang__ch10/*.render.json",
+     "assets/default/town/city_luoyang__ch10/qa.md",
+     "assets/default/town/city_luoyang__ch10/stats.json",
+     "assets/default/town/city_taiyuan__ch10/*.log",
+     "assets/default/town/city_taiyuan__ch10/*.render.json",
+     "assets/default/town/city_taiyuan__ch10/qa.md",
+     "assets/default/town/city_taiyuan__ch10/stats.json"
     ]
    },
    "id": "TOOL-town-gaps-1",
