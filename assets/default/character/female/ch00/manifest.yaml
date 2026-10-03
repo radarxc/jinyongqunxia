@@ -104,3 +104,43 @@
   sha256: e0c9befcb66a2d276ae6e6dbe6376351cc4490392c7e4830f2d30de011cf2e81
   status: candidate
   notes: AR-32 主要角色经典版重出（8 号出图员）：1986 亚视《越女剑》 剧照 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘
+- id: por_npc_zhujue__ch00_f_charmhigh_base
+  file: por_npc_zhujue__ch00_f_charmhigh_base.png
+  category: character/female
+  style: default
+  subject: 主角·女（npc_zhujue，ch00）高魅力形象：白衣飘飘，与现有主角同一人而更美
+  prompt: '【任务】重画第 3 张这幅女主角「高魅力」全身立绘的头部：服装、姿势、构图不变，但整张脸按第 1–2 张这位女星来画——可以把第 3 张原来的脸完全换掉，不必保留它的五官。输出完整的 2:3 竖幅全身立绘。
+
+    【参考】第 1 张是这位女星年轻时的正面半身照，第 2 张是她的脸部近景；第 3 张是要重画头部的立绘底稿。
+
+    【新的脸（作者：女生要跟这位女星类似）】二十二三岁的她：略带混血感的立体骨相——颧骨略高、下颌线清楚、下巴秀气；一双又大又深邃的眼睛，双眼皮宽而深、眼窝略深，眼神明亮而勾人；眉毛浓而弯长；鼻梁高挺笔直、鼻尖秀气；唇形饱满、唇峰清楚、唇色红润；肤色白皙；明艳大方、带一点骄傲的绝色美人，要让熟悉她的人一眼认出神似。保留右侧脸颊（画面左侧）眼下那颗小痣。用项目的手绘画风画，不要照片质感或照片贴脸，不要照搬照片的发型与衣服。
+
+    【保留】服装（月白广袖长衣、多层纱裙、银灰丝绦、飘起的披帛）、双手姿势、全身构图与取景、背景、光线、画风全部照第 3 张；发式照第 3 张（半挽单髻、白玉簪、髻根朱红细绳、长发披到腰际）。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【不要】不要照片质感、磨皮、网红脸（尖下巴大眼高鼻的模板脸）、浓妆；不要幼态；不要文字、水印；不要第二个人；不要水平镜像，衣襟保持右衽。'
+  negative: 不要照片质感、磨皮、网红脸（尖下巴大眼高鼻的模板脸）、浓妆；不要幼态；不要文字、水印；不要第二个人；不要水平镜像，衣襟保持右衽。
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261002/charm_f_lijiaxin/lijiaxin_sina2019a.jpg
+    sha256: 36ccd224bd6a74a22bed619cd9654a9e973991e40a61b714ac4c17cd48cac2de
+    use: 脸部气质参考（作者许可下载的李嘉欣年轻时正面照；不入库）
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261002/charm_f_lijiaxin/lijiaxin_sina2019b.jpg
+    sha256: c06b15930375bab045b357cf2d36168fed3bb95bb5524cc5a6ab81cb76da873e
+    use: 脸部气质参考（李嘉欣面部近景，上传脸部特写；不入库）
+  - path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhujue__ch00_f_charmhigh_base.b1.png
+    sha256: c4e1e68dfb18f2c19f183725bd92c89bb0bc68dadc79ba5514d535f63134d9e9
+    use: 底稿：上一版高魅力立绘（服装、姿势、构图来源）
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
+    use: 身份锚点：现有女主角 base（第一版生成时上传）
+  tool: codex exec · image_gen（AR-45：以 b1 立绘为底稿重画头部，上传李嘉欣照片与脸部特写作气质参考，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T16:49:13-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhujue__ch00_f_charmhigh_base.q2.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: f97acc0e803a522c73a6cb42325afc7969c6ff4428fc4495a63def176f9c698f
+  status: candidate
+  notes: AR-45 高魅力形象（女：白衣飘飘）；作者 16:50「高魅力男女主角都选b」；脸按作者 16:02 许可下载的李嘉欣照片往其气质靠（像但不照着画，照片只作参考不入库），眼下小痣保留；生成链：b1（以 ch00_f_base 为身份锚点、两张女性画风基线）→ q2（照片参考重画头部，服装姿势不变）
