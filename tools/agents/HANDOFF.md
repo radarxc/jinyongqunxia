@@ -1275,4 +1275,12 @@
     - 核对后确认是任务要求：说明第 28 行磁盘规则（44daac2f）规定每城只留 5 个核心文件（layout / manifest / overlay / preview / town.png），校验 `check_asset_dirs --min 5 --max 5` 也这样查。
     - 已在 tasks.json 给这两城的这几类文件加 shrink_exempt（475473bf）。核心文件不豁免，由 min 5 与 check_town 把关。
     - 驱动已自动起第 3 次运行，在等池位。`3.prompt.md` 写好、执行器尚未启动时，我追加了说明：删除是对的，不要恢复，只确认其余检查并更新报告。
+  - **10-03 08:01–08:23 开发监督**：ENG-12e 合入；tests-discover、town-gaps-1 返修说明已注入。
+    - **ENG-12e** 合入，提交 81ca591b，工作区已清。
+      - `prod_check`（`_handoff/prod_check_post-eng12e_0818.log`）全绿：137 个测试文件 / 962 条测试；entry 168.57 / 170，render 161.24，webgl 329.80。
+      - 后台已挂 `perf_when_idle.sh`，负载 < 8 时跑 check:perf。
+    - **TOOL-tests-discover** r1 FAIL。协调者 08:02 的三句（balance 精确命令 discover 能过、town_runtime 恢复大理 / 杭州真实布局覆盖、CLI 测试不得同时 mock 两个函数）已在执行器启动前追加进 `2.prompt.md`；协调者另把写集扩了 `tools/balance/test_*.py`（728ba916）。返修后转 HOLD，由我手动复审。
+    - **TOOL-town-gaps-1** r1 FAIL，唯一阻断是验收口径：`check_asset_dirs` 数的是 manifest 图片条目，不是目录文件。
+      - 按默认口径处理：改用 `--min 1 --max 1 --min-side 1024`，5 个核心文件由报告贴 ls 输出佐证；不改检查器，不伪造。
+      - 已在第 3 次运行（也是最后一次）启动前追加进 `4.prompt.md`，并告知协调者，协调者可改。
 
