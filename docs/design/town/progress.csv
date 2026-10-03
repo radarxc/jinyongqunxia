@@ -7,11 +7,11 @@ city_zhangye,ch10,tang_702,ch10,major,complete_candidate,history/city_zhangye__t
 city_wuwei,ch10,tang_702,ch10,major,complete_candidate,history/city_wuwei__tang_702.md,city_wuwei__ch10.yaml,assets/default/town/city_wuwei__ch10,完整管线与目检已记录；历史坐标仍为推定
 city_lanzhou,ch10,tang_702,ch10,major,complete_candidate,history/city_lanzhou__tang_702.md,city_lanzhou__ch10.yaml,assets/default/town/city_lanzhou__ch10,完整管线与目检已记录；历史坐标仍为推定
 city_xian,ch10,tang_702,ch10,major,complete_candidate,history/city_xian__tang_702.md,city_xian__ch10.yaml,assets/default/town/city_xian__ch10,完整管线与目检已记录；历史坐标仍为推定
-city_taiyuan,ch10,tang_702,ch10,major,partial_candidate,history/city_taiyuan__tang_702.md,city_taiyuan__ch10.yaml,assets/default/town/city_taiyuan__ch10,第6次补齐西中东三城分区与跨汾桥并重渲染；仍缺水门与共用内隔墙，目检未过
+city_taiyuan,ch10,tang_702,ch10,major,complete_candidate,history/city_taiyuan__tang_702.md,city_taiyuan__ch10.yaml,assets/default/town/city_taiyuan__ch10,TOOL-town-gaps-1补齐三道城垣、共用内隔墙与汾河南北水门；完整管线重跑；strict-assets零错误并目检通过
 city_yining,ch10,tang_702,ch10,major,research_only,history/city_yining__tang_702.md,city_yining__ch10.yaml,assets/default/town/city_yining__ch10,无墙营地/帐篷及西域类型未接入
 city_beijing,ch10,tang_702,ch10,capital,complete_candidate,history/city_beijing__tang_702.md,city_beijing__ch10.yaml,assets/default/town/city_beijing__ch10,完整管线与目检已记录；历史坐标仍为推定
 city_kaifeng,ch10,tang_702,ch10,capital,complete_candidate,history/city_kaifeng__tang_702.md,city_kaifeng__ch10.yaml,assets/default/town/city_kaifeng__ch10,完整管线与目检已记录；历史坐标仍为推定
-city_luoyang,ch10,tang_702,ch10,capital,partial_candidate,history/city_luoyang__tang_702.md,city_luoyang__ch10.yaml,assets/default/town/city_luoyang__ch10,第6次水门试验被TOWN_GATE_ON_WATER拒绝；洛水穿墙18格未修，保持部分候选
+city_luoyang,ch10,tang_702,ch10,capital,complete_candidate,history/city_luoyang__tang_702.md,city_luoyang__ch10.yaml,assets/default/town/city_luoyang__ch10,TOOL-town-gaps-1补齐洛水东西水门；完整管线重跑；strict-assets零错误且未声明墙水相交为零，目检通过
 city_datong,ch10,tang_702,ch10,capital,research_only,history/city_datong__tang_702.md,city_datong__ch10.yaml,assets/default/town/city_datong__ch10,第4次史料交接；702分期/城址或多城垣需落实，见history；没有图，不计完成
 city_nanjing,ch10,tang_702,ch10,capital,complete_candidate,history/city_nanjing__tang_702.md,city_nanjing__ch10.yaml,assets/default/town/city_nanjing__ch10,第4次完整候选；规格、文字依据、plan、两比例总装、manifest与目检齐；唐形制用宋基线替代
 city_hangzhou,ch10,tang_702,ch10,capital,research_only,history/city_hangzhou__tang_702.md,city_hangzhou__ch10.yaml,assets/default/town/city_hangzhou__ch10,第4次史料交接；702分期/城址或多城垣需落实，见history；没有图，不计完成

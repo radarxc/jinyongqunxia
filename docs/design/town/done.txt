@@ -6,12 +6,12 @@ city_zhangye__ch10 ✔ 规格+史料+平面图+layout+preview+town+overlay+manif
 city_wuwei__ch10 ✔ 规格+史料+平面图+layout+preview+town+overlay+manifest齐；strict-assets通过；已目检；candidate（宋套件替代）
 city_lanzhou__ch10 ✔ 规格+史料+平面图+layout+preview+town+overlay+manifest齐；strict-assets通过；已目检；candidate（宋套件替代）
 city_xian__ch10 ✔ 规格+史料+平面图+layout+preview+town+overlay+manifest齐；修复大明宫空区；strict-assets通过；已目检；candidate
-city_taiyuan__ch10 ✘ 第6次：西中东三城范围、建筑和跨汾桥已补齐；规格+依据+平面图+layout+双比例渲染+overlay+manifest更新；strict-assets通过；水门与共用内隔墙未解决，目检仍未过，不计完整候选
+city_taiyuan__ch10 ✔ TOOL-town-gaps-1补齐三道城垣、共用内隔墙与汾河南北水门；完整管线重跑；strict-assets零错误；已目检；candidate（唐套件回退）
 city_beijing__ch10 ✔ 规格+史料+平面图+layout+preview+town+overlay+manifest齐；strict-assets通过；已目检；八外口为推定裁剪；candidate
 city_kaifeng__ch10 ✔ 规格+史料+平面图+layout+preview+town+overlay+manifest齐；strict-assets通过；已目检；保留781扩城前城河关系；candidate
-city_luoyang__ch10 ✘ 第6次复核：实墙封河18格；新增水门被TOWN_GATE_ON_WATER拒绝；未改河道及成图，不声称已重渲染修复；manifest复核尺寸与哈希
-city_yining__ch10 ✘ 仅史料依据与布局建议；无墙营地及帐篷类型未接入，不用清城或宋城替代
-庭州（名录缺键） ✘ 史料与最终格局图已读；须先补稳定城市键并核702分期，不借其他城市ID
+city_luoyang__ch10 ✔ TOOL-town-gaps-1补齐洛水东西水门；完整管线重跑；strict-assets零错误且未声明墙水相交为零；已目检；candidate（唐套件回退）
+city_yining__ch10 ✘ 仅史料依据与布局建议；无墙营地与xiyu套件键已由TOOL-town-gaps-1接入，但帐篷基线及本城规格/成图仍待后续，不用清城或宋城替代
+city_tingzhou（修正包待合入地图总表） ✘ 已在town/cities.yaml登记稳定键与ch10年代；须由地图归属任务合入权威表并核702分期后再生成，不借其他城市ID
 city_nanjing__ch10 ✔ 第4次：规格+2来源文字依据+平面图+layout+两比例总装+overlay+manifest齐；strict-assets及目检通过；12项推定，candidate
 city_yinchuan__ch10 ✔ 第4次：规格+2来源文字依据+平面图+layout+两比例总装+overlay+manifest齐；strict-assets及目检通过；11项推定，candidate
 city_zhengding__ch10 ✔ 第4次：规格+3来源文字依据+平面图+layout+两比例总装+overlay+manifest齐；strict-assets及目检通过；16项推定，candidate
@@ -19,5 +19,5 @@ city_cangzhou__ch10 ✔ 第4次：规格+2来源文字依据+平面图+layout+�
 city_datong__ch10 ✘ 第4次仅史料：682废置至730复县，702需核残城/聚落，不绘后世繁荣州城
 city_hangzhou__ch10 ✘ 第4次仅史料：州城与钱唐县城两处范围，工具缺通用多城垣；不复制南宋ch02
 city_dali__ch10 ✘ 第4次仅史料：702城址需分期，不前推779羊苴咩都城，不复制1093基线
-第6次范围 ✔ 按协调者10-03 04:40裁定未新开城市；14完整候选+2基线不变；两项返修仍部分完成，具体阻碍见r6-repair-boundaries.md
-第6次页眉 ⚠ plan_view.py:235硬编码history/linan.md；按裁定保持现状，正确history在各城manifest中；已交报告§6
+第6次范围 ✔ 按协调者10-03 04:40裁定未新开城市；TOOL-town-gaps-1已解决洛阳水门与太原多城垣返修，具体历史阻碍见r6-repair-boundaries.md
+第6次页眉 ✔ 已解决：plan_view按规格显式引用或稳定命名推导各城history路径，不再硬编码history/linan.md（见tools/town/plan_view.py）

@@ -3,21 +3,29 @@ kind: "CitySpec"
 city_id: "city_taiyuan"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "并州·晋阳三城（702年候选，跨水城垣待修）"
+display_name: "并州·晋阳三城（702年多城垣候选）"
 historical_year: 702
-era_kit: "song_southern"
+era_kit: "tang"
 seed: 260094335
-design_intent: {"prosperity": "tang_regional_candidate", "notes": ["复原依据：history/city_taiyuan__tang_702.md；702–703年按作者AR-26覆盖cities.yaml旧清初年代（原创扩展）。", "唐代无专用套件；用现有宋代基线作候选替代，非唐代建筑实物复原；新套件尚未接入权威建筑目录。", "本次补齐西城、中城、东城的连续外围与分区；单多边形不表达共用内隔墙，汾河跨城垣处水门受工具限制未修，仍为部分候选。"]}
+design_intent: {"prosperity": "tang_regional_candidate", "notes": ["复原依据：history/city_taiyuan__tang_702.md；702–703年按作者AR-26覆盖城市登记旧清初年代（原创扩展）。", "唐代套件键已接入；当前无唐代基线图，工具显式回退song_southern并在manifest记录，不是唐代建筑实物复原。", "西城、中城、东城分别声明闭合墙环；相邻边去重为共用内隔墙，汾河南北穿墙处声明水门。"]}
 grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
 runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
 projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
-wall: {"polygon": {"points": [{"x": 8, "z": 44}, {"x": 152, "z": 44}, {"x": 152, "z": 90}, {"x": 88, "z": 90}, {"x": 88, "z": 108}, {"x": 8, "z": 108}]}, "inside_margin_cells": 2, "basis": "图名：晋阳外三城连续外廓；src_jinyang支持西城及跨汾中城、河东东城；src_threecity图4-6支持西北突出、东部较低的总体关系。西城80×64格、东城36×46格、中城28×46格与归正坐标（推定）（原创扩展）；东中尺度未知，不能认作702实测。"}
+walls:
+  - {"id": "west_city", "role": "outer", "polygon": {"points": [{"x": 8, "z": 44}, {"x": 88, "z": 44}, {"x": 88, "z": 108}, {"x": 8, "z": 108}]}, "inside_margin_cells": 2, "basis": "图名：西城；src_jinyang与src_threecity支持西北突出；80×64格及归正坐标（推定）（原创扩展），不能认作702实测墙线。"}
+  - {"id": "middle_city", "role": "division", "polygon": {"points": [{"x": 88, "z": 44}, {"x": 116, "z": 44}, {"x": 116, "z": 90}, {"x": 88, "z": 90}]}, "inside_margin_cells": 2, "basis": "图名：中城；src_jinyang支持跨汾相联；与西城、东城的邻边声明为共用内隔墙，28×46格（推定）（原创扩展）。"}
+  - {"id": "east_city", "role": "inner", "polygon": {"points": [{"x": 116, "z": 44}, {"x": 152, "z": 44}, {"x": 152, "z": 90}, {"x": 116, "z": 90}]}, "inside_margin_cells": 2, "basis": "图名：东城；src_jinyang与src_threecity支持河东城域；36×46格及归正坐标（推定）（原创扩展）。"}
 gates:
-  - {"id": "south_gate", "side": "south", "at": {"x": 54, "z": 44}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：南门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
-  - {"id": "north_gate", "side": "north", "at": {"x": 54, "z": 108}, "width_cells": 7, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 11, "h": 4}, "passage_cells": {"w": 7, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：北门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
-  - {"id": "west_gate", "side": "west", "at": {"x": 8, "z": 72}, "width_cells": 5, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：西门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
-  - {"id": "east_gate", "side": "east", "at": {"x": 152, "z": 72}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：东门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
-  - {"id": "east_south_gate", "side": "south", "at": {"x": 134, "z": 44}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "east_axis", "primary": false, "basis": "图名：东城南门（推定）；位置及门制（原创扩展），不指认史载门名。"}
+  - {"id": "south_gate", "wall_ref": "west_city", "side": "south", "at": {"x": 54, "z": 44}, "width_cells": 8, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：南门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额；唐套件缺图回退宋代。"}
+  - {"id": "north_gate", "wall_ref": "west_city", "side": "north", "at": {"x": 54, "z": 108}, "width_cells": 7, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 11, "h": 4}, "passage_cells": {"w": 7, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：北门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额；唐套件缺图回退宋代。"}
+  - {"id": "west_gate", "wall_ref": "west_city", "side": "west", "at": {"x": 8, "z": 72}, "width_cells": 5, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：西门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额；唐套件缺图回退宋代。"}
+  - {"id": "east_gate", "wall_ref": "east_city", "side": "east", "at": {"x": 152, "z": 72}, "width_cells": 6, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：东门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额；唐套件缺图回退宋代。"}
+  - {"id": "east_south_gate", "wall_ref": "east_city", "side": "south", "at": {"x": 134, "z": 44}, "width_cells": 8, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "east_axis", "primary": false, "basis": "图名：东城南门（推定）；位置及门制（原创扩展），不指认史载门名；唐套件缺图回退宋代。"}
+  - {"id": "west_middle_gate", "wall_ref": "west_city", "side": "east", "at": {"x": 88, "z": 72}, "width_cells": 6, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：西中城联络门；共用内隔墙通行孔（推定）（原创扩展），不指认史载门名；唐套件缺图回退宋代。"}
+  - {"id": "middle_east_gate", "wall_ref": "middle_city", "side": "east", "at": {"x": 116, "z": 72}, "width_cells": 6, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：中东城联络门；共用内隔墙通行孔（推定）（原创扩展），不指认史载门名；唐套件缺图回退宋代。"}
+water_gates:
+  - {"id": "fenhe_south_water_gate", "wall_ref": "middle_city", "kind": "water_gate", "side": "south", "at": {"x": 102, "z": 44}, "width_cells": 6, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "basis": "图名：汾河南水门；src_jinyang与src_threecity支持汾河贯穿中城；孔宽及门楼组合（推定）（原创扩展），专用贴片缺失时回退城门构件。"}
+  - {"id": "fenhe_north_water_gate", "wall_ref": "middle_city", "kind": "water_gate", "side": "north", "at": {"x": 103, "z": 90}, "width_cells": 6, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "basis": "图名：汾河北水门；src_jinyang与src_threecity支持汾河贯穿中城；孔宽及门楼组合（推定）（原创扩展），专用贴片缺失时回退城门构件。"}
 streets:
   - {"id": "axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 54, "z": 44}, {"x": 54, "z": 108}], "surface": "dirt_road", "priority": 100, "basis": "图名：西城南北通衢；线位、路宽（推定）（原创扩展）。"}
   - {"id": "cross", "class": "main_axis", "width_cells": 5, "points": [{"x": 8, "z": 72}, {"x": 152, "z": 72}], "surface": "dirt_road", "priority": 100, "basis": "图名：三城东西联络街；线位、路宽（推定）（原创扩展）。"}

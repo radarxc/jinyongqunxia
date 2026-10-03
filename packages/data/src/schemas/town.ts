@@ -39,11 +39,15 @@ export const TownAnchorSlotSchema = z.strictObject({
   ref: z.string().nullable(), riskBaseBp: NonNegativeInt.max(10_000).nullable(),
 });
 
+export const TownEraKitSchema = z.enum([
+  'tang', 'song_dali', 'song_southern', 'yuan', 'ming', 'qing_early', 'xiyu', 'tubo',
+]);
+
 export const TownRuntimeSchema = z.strictObject({
   schemaVersion: z.literal('town-runtime.v1'), revision: z.string().regex(/^[a-f0-9]{64}$/),
   cityId: z.string().regex(/^city_[a-z0-9_]+$/), chapterId: z.string().regex(/^ch(?:0[1-9]|1[0-4])$/),
   sceneId: z.string().min(1), displayName: z.string().min(1), historicalYear: z.number().int(),
-  eraKit: z.enum(['song_dali', 'song_southern', 'yuan', 'ming', 'qing_early']),
+  eraKit: TownEraKitSchema,
   source: z.strictObject({ spec: z.string().min(1), layout: z.string().min(1), sha256: z.string().regex(/^[a-f0-9]{64}$/) }),
   grid: z.strictObject({ width: z.number().int().positive(), height: z.number().int().positive(),
     cellM: z.literal(1), chunkCells: z.number().int().positive() }),

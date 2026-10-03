@@ -161,7 +161,8 @@ def _middle(points):
 def label_records(spec, winners):
     labels = []
     records = {**spec, "water_bodies": [*spec.get("rivers", []), *spec.get("lakes", [])]}
-    groups = (("G", "gates"), ("R", "streets"), ("W", "rivers"),
+    records["all_gates"] = [*spec.get("gates", []), *spec.get("water_gates", [])]
+    groups = (("G", "all_gates"), ("R", "streets"), ("W", "rivers"),
               ("B", "bridges"), ("Z", "zones"), ("L", "landmarks"))
     for category, key in groups:
         for number, record in enumerate(records.get("water_bodies" if category == "W" else key, []), 1):
@@ -232,7 +233,7 @@ def render_plan(spec, layout, output_svg, *, cell_px=None, font_path=None):
         raise TownError("平面图超过 20 MP 离线保护限额；请减小 --cell-px")
     canvas = Canvas(canvas_w, canvas_h, find_font(font_path))
     project = lambda x, z: plan_point(x, z, height, scale, left, top)
-    history = "dali.md" if spec["city_id"] == "city_dali" else "linan.md"
+    history = history_reference(spec)
     canvas.svg.append('<desc>' + escape(json.dumps({"city_id": spec["city_id"],
         "north_up": True, "labels": labels, "source": layout.get("source_spec", {})},
         ensure_ascii=False)) + '</desc>')
@@ -252,10 +253,13 @@ def render_plan(spec, layout, output_svg, *, cell_px=None, font_path=None):
     paint_cells(roads, COLORS["road"])
     paint_cells(cells_from_json(layout["water_cells"]), COLORS["water"])
     paint_cells(cells_from_json(layout["bridge_cells"]), COLORS["bridge"])
-    envelope = "游戏包络" in spec["wall"]["basis"]
+    from common import wall_specs
+    walls = wall_specs(spec)
+    envelope = bool(walls) and all("游戏包络" in wall.get("basis", "") for wall in walls)
     if envelope:
-        points = [project(*point(p)) for p in spec["wall"]["polygon"]["points"]]
-        canvas.line(points + points[:1], COLORS["wall"], 3, dashed=True)
+        for wall in walls:
+            points = [project(*point(p)) for p in wall["polygon"]["points"]]
+            canvas.line(points + points[:1], COLORS["wall"], 3, dashed=True)
         paint_cells(masks["passages"], COLORS["road"])
         paint_cells(masks["gate_footprints"] - masks["passages"], COLORS["wall"])
     else:
@@ -303,6 +307,18 @@ def render_plan(spec, layout, output_svg, *, cell_px=None, font_path=None):
     return {"svg": str(output), "png": str(output.with_suffix(".png")),
             "width": canvas_w, "height": canvas_h, "labels": len(labels),
             "font": canvas.font_path, "north_up": True}
+
+
+def history_reference(spec: dict) -> str:
+    """Use an explicit history reference; otherwise derive the stable era filename."""
+    pattern = re.compile(r"(?:^|/)history/([a-z0-9_]+\.md)\b")
+    for note in spec.get("design_intent", {}).get("notes", []):
+        if match := pattern.search(note):
+            return match.group(1)
+    legacy = {"city_dali": "dali.md", "city_hangzhou": "linan.md"}
+    if spec.get("city_id") in legacy:
+        return legacy[spec["city_id"]]
+    return f"{spec['city_id']}__{spec['era_kit']}_{spec['historical_year']}.md"
 
 
 def _sidebar(canvas, labels, x, top):

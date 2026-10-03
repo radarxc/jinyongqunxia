@@ -274,6 +274,24 @@ def gate_cells(gate: dict, passage=False) -> set[Cell]:
             (rotate_offset(p, gate["rotation_deg"]) for p in offsets)}
 
 
+def wall_specs(spec: dict) -> list[dict]:
+    """Normalize the legacy single wall and the declarative multi-wall form."""
+    if "walls" in spec:
+        if spec["walls"] == "none":
+            return []
+        return list(spec["walls"])
+    wall = spec.get("wall")
+    return [] if wall is None else [dict(wall, id="outer", role="outer")]
+
+
+def wall_spec(spec: dict, wall_ref: str | None) -> dict | None:
+    walls = wall_specs(spec)
+    if not walls:
+        return None
+    ref = wall_ref or ("outer" if "wall" in spec else walls[0]["id"])
+    return next((wall for wall in walls if wall["id"] == ref), None)
+
+
 def bridge_rectangle(bridge: dict) -> set[Cell]:
     x, z = point(bridge["at"])
     w, h = bridge["width_cells"], bridge["length_cells"]
@@ -303,20 +321,42 @@ def zone_winners(spec: dict) -> dict[str, set[Cell]]:
 def geometry_masks(spec: dict) -> dict:
     """空城掩膜；roads 保留无桥水冲突，让验证器报错而非裁掉。"""
     width, height = spec["grid"]["width"], spec["grid"]["height"]
-    points = spec["wall"]["polygon"]["points"]
     bounds = rectangle((0, 0), (width, height))
-    interior = polygon_cells(points, width, height)
-    wall = polyline_cells(points, vertices=True, closed=True) & bounds
-    passages = set().union(*(gate_cells(gate, True) for gate in spec["gates"])) & bounds
-    gates = set().union(*(gate_cells(gate) for gate in spec["gates"])) & bounds
-    hard = (wall - passages) | (gates - passages)
-    domain = (interior | passages) - hard
+    definitions = wall_specs(spec)
+    walls = {row["id"]: polyline_cells(row["polygon"]["points"], vertices=True,
+                                       closed=True) & bounds for row in definitions}
+    wall_interiors = {row["id"]: polygon_cells(row["polygon"]["points"], width, height)
+                      for row in definitions}
+    wall_raw = set().union(*walls.values())
+    interior = set().union(*wall_interiors.values()) if definitions else set(bounds)
+    normal_gates = spec.get("gates", [])
+    water_gates = spec.get("water_gates", [])
+    gate_passages = set().union(*(gate_cells(gate, True) for gate in normal_gates)) & bounds
+    water_passages = set().union(*(gate_cells(gate, True) for gate in water_gates)) & bounds
+    water_passages_by_wall = {row["id"]: set() for row in definitions}
+    for gate in water_gates:
+        if gate["wall_ref"] in water_passages_by_wall:
+            water_passages_by_wall[gate["wall_ref"]] |= gate_cells(gate, True) & bounds
+    passages = gate_passages | water_passages
+    normal_footprints = set().union(*(gate_cells(gate) for gate in normal_gates)) & bounds
+    water_footprints = set().union(*(gate_cells(gate) for gate in water_gates)) & bounds
+    gates = normal_footprints | water_footprints
+    # Ordinary gates retain the v1 shared-partition behaviour.  A water gate is
+    # narrower: its declaration opens only wall_ref, so a coincident second
+    # circuit still blocks and is reported as undeclared.
+    wall = (set().union(*(cells - water_passages_by_wall[row["id"]]
+                          for row, cells in ((row, walls[row["id"]])
+                                             for row in definitions)))
+            - gate_passages)
     river_cells = {r["id"]: polyline_cells(r["points"], r["width_cells"]) & bounds
                    for r in spec.get("rivers", [])}
     lake_cells = {lake["id"]: polygon_cells(lake["polygon"]["points"], width, height)
                   for lake in spec.get("lakes", [])}
     water_bodies = {**river_cells, **lake_cells}
     water = set().union(*water_bodies.values())
+    hard = (wall | (normal_footprints - gate_passages)
+            | ((water_footprints - water_passages) - water))
+    domain = (interior | passages) - hard
     navigable_water = set().union(*(water_bodies[body["id"]]
         for body in [*spec.get("rivers", []), *spec.get("lakes", [])]
         if body.get("navigable", False)))
@@ -325,8 +365,15 @@ def geometry_masks(spec: dict) -> dict:
     raw_roads = {s["id"]: polyline_cells(s["points"], s["width_cells"])
                  for s in spec["streets"]}
     roads = {name: cells & domain for name, cells in raw_roads.items()}
-    margin = wall_margin_cells(points, width, height, spec["wall"]["inside_margin_cells"])
-    return dict(bounds=bounds, interior=interior, wall=wall, passages=passages,
+    margins = {row["id"]: wall_margin_cells(row["polygon"]["points"], width, height,
+                                            row["inside_margin_cells"])
+               for row in definitions}
+    margin = set().union(*margins.values()) if definitions else set(bounds)
+    return dict(bounds=bounds, interior=interior, wall=wall, wall_raw=wall_raw,
+                walls=walls, wall_interiors=wall_interiors, wall_margins=margins,
+                passages=passages, gate_passages=gate_passages,
+                water_passages=water_passages,
+                water_passages_by_wall=water_passages_by_wall,
                 gate_footprints=gates, hard=hard, water=water, bridges=bridges,
                 river_cells=river_cells, lake_cells=lake_cells, water_bodies=water_bodies,
                 navigable_water=navigable_water,

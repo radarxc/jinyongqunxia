@@ -34,8 +34,10 @@ geometry_contract:
   bridge_rectangle: "at is a cell index; spans=(width,length) for 0/180 else (length,width); min=at-floor(spans/2); max=min+spans excluded; even spans bias negative"
   bridge_mask: "bridge_cells=rectangle intersect water; every road-water intersection must be covered by a declared bridge; both bridge ends connect dry road"
   gate_rectangle: "unrotated offsets x=-floor((w-1)/2)..ceil((w-1)/2),z=-1..2; rotate offsets clockwise around at cell center; even w biases local +x"
-  gate_collision: "P=union of all gate passage masks,G=union of all gate footprints; hard mask=(wall supercover minus P) union (G minus P); exactly one primary gate; overhead beam is not ground collision"
-  gate_walk_domain: "wall-interior cell centers union P, minus hard collision and non-bridge water; trim road end caps only at walls/exterior; P is the wall-margin passage exception"
+  wall_forms: "exactly one of legacy wall or walls; walls is NamedWallSpec[1..N] or literal none; shared wall cells are unioned once"
+  gate_collision: "P=union of ordinary and water-gate passage masks,G=union of their footprints; hard mask=(wall supercover minus P) union (G minus P); walled sites have exactly one primary ordinary gate; overhead beam is not ground collision"
+  gate_walk_domain: "union of every wall interior, or full bounds for walls:none, plus P; subtract hard collision and non-bridge water; P is the wall-margin passage exception"
+  water_gate: "WaterGateSpec opens only its named wall; every wall-water cell must be covered by a declared water passage or fail TOWN_WALL_WATER_UNDECLARED; water remains continuous beneath the gate assembly"
   entrance_path: "4-neighbor BFS <=6 edges; N/E/S/W; ties by length,road id,target z/x,full z/x path lexicographically"
   entrance_hex: "valid sampled hex center within 1.5m of entrance cell center, unobstructed centerline to entrance; choose primary-gate-connected candidate by squared distance,r,q"
   gate_hex: "valid hex center inside wall and in road_ref union P, within 4m of at center; order distance,r,q; primary selects root, others must join root component"
@@ -44,11 +46,13 @@ geometry_contract:
   road_connectivity: "stage B requires primary gate at in union(main_axis cells) only; multiple main-axis components are allowed; stage C lays secondary/alley roads then joins non-primary components before rebuilding buildable masks; 4-neighbor components over union(roads.values) only, with bridge road cells included; repeat after zone and entrance connectors and at final validation; walkable empty ground never substitutes for a road"
   primary_target_reachability: "check at end of stage C, after all component and zone connectors; among palace/princely/commercial/market zones select maximum priority; primary road component must intersect or 4-neighbor-touch a winning-cell boundary of at least one tied zone; missing or unreachable target raises TOWN_ROAD_PRIMARY_DISCONNECTED; component-repair failure raises TOWN_ROAD_COMPONENT_DISCONNECTED first"
 enums:
-  era_kit: [song_dali, song_southern, yuan, ming, qing_early]
+  era_kit: [tang, song_dali, song_southern, yuan, ming, qing_early, xiyu, tubo]
   zone_kind: [palace, princely, administrative, commercial, market, residential, religious, escort, waterfront, gate_service, garden]
   ground_type: [rammed_earth, grey_brick, stone_slab, dirt_road, grass, water, bridge_deck]
   street_class: [main_axis, secondary, alley]
   gate_side: [north, east, south, west]
+  wall_role: [outer, inner, division]
+  water_gate_kind: [water_gate, water_barrier]
   rotation_deg: [0, 90, 180, 270]
   validation_severity: [error, warning, info]
 definitions:
@@ -101,6 +105,14 @@ definitions:
       polygon: {type: Polygon, unit: m/grid, range: simple_inside_grid, example: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}}
       inside_margin_cells: {type: integer, unit: planning_cells, range: "0..8", example: 2}
       basis: {type: string, unit: none, range: non_empty, example: "历史城垣比例概化；网络资料，待核"}
+  NamedWallSpec:
+    description: "closed wall circuit; overlapping cells with another circuit are a shared partition and are rendered once"
+    fields:
+      id: {type: string, range: "unique within file; [a-z][a-z0-9_]*", example: outer}
+      role: {type: enum.wall_role, range: enum, example: outer}
+      polygon: {type: Polygon, unit: m/grid, range: simple_inside_grid, example: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}}
+      inside_margin_cells: {type: integer, unit: planning_cells, range: "0..8", example: 2}
+      basis: {type: string, unit: none, range: non_empty, example: "外廓与分城墙的历史格局概化（原创扩展）"}
   Polyline:
     description: ordered centerline expanded by width_cells during rasterization
     fields:
@@ -112,6 +124,7 @@ definitions:
       priority: {type: integer, unit: none, range: "0..100; higher wins", example: 90}
       basis: {type: string, unit: none, range: non_empty, example: "历史平面图概化；网络资料，待核"}
   GateSpec:
+    required: [id, side, at, width_cells, asset_type, rotation_deg, footprint_cells, passage_cells, road_ref, primary, basis]
     fields:
       id: {type: string, range: "unique within file", example: south_gate}
       side: {type: enum.gate_side, range: enum, example: south}
@@ -123,7 +136,22 @@ definitions:
       passage_cells: {type: "{w:int,h:int}", unit: m/grid, range: "unrotated w=width_cells,h=4; P from gate_rectangle; unobstructed opening", example: {w: 6, h: 4}}
       road_ref: {type: Polyline.id, range: existing_street, example: main_north_south}
       primary: {type: boolean, range: true_or_false, example: true}
+      wall_ref: {type: "string|null", required: false, range: "existing NamedWallSpec.id; omitted means outer for legacy wall", example: outer}
       basis: {type: string, range: non_empty, example: "城市主入口的设计概化（原创扩展）"}
+  WaterGateSpec:
+    description: "declared water opening; gatehouse fallback may reuse the era city-gate asset while water cells remain continuous"
+    fields:
+      id: {type: string, range: "unique within file", example: west_water_gate}
+      wall_ref: {type: string, range: existing_NamedWallSpec_id, example: outer}
+      kind: {type: enum.water_gate_kind, range: enum, example: water_gate}
+      side: {type: enum.gate_side, range: enum, example: west}
+      at: {type: GridPoint, unit: m/grid, range: on_named_wall_and_water, example: {x: 8, z: 48}}
+      width_cells: {type: integer, unit: m/grid, range: "2..16", example: 6}
+      asset_type: {type: string, unit: asset_id, range: "tex_town_<era_kit>_city_gate fallback until a dedicated water-gate asset exists", example: tex_town_tang_city_gate}
+      rotation_deg: {type: enum.rotation_deg, unit: degree, range: "south=0,west=90,north=180,east=270", example: 90}
+      footprint_cells: {type: "{w:int,h:int}", unit: m/grid, range: "unrotated w=width_cells+4,h=4", example: {w: 10, h: 4}}
+      passage_cells: {type: "{w:int,h:int}", unit: m/grid, range: "unrotated w=width_cells,h=4; water remains water", example: {w: 6, h: 4}}
+      basis: {type: string, range: non_empty, example: "河道穿墙处的水门位置概化（原创扩展）"}
   RiverSpec:
     fields:
       id: {type: string, range: "unique across rivers and lakes in this file", example: east_canal}
@@ -188,7 +216,7 @@ definitions:
       basis: {type: string, unit: none, range: non_empty, example: "作者美术要求（原创扩展）"}
   CitySpec:
     description: hand-authored historical abstraction consumed by generator
-    required: [schema_version, kind, city_id, chapter_id, book_world, display_name, historical_year, era_kit, seed, design_intent, grid, runtime_partition, projection, wall, gates, streets, rivers, bridges, zones, landmarks, building_quotas, vegetation, sources]
+    required: [schema_version, kind, city_id, chapter_id, book_world, display_name, historical_year, era_kit, seed, design_intent, grid, runtime_partition, projection, gates, streets, rivers, bridges, zones, landmarks, building_quotas, vegetation, sources]
     fields:
       schema_version: {type: string, range: town.city_spec.v1, example: town.city_spec.v1}
       kind: {type: string, range: CitySpec, example: CitySpec}
@@ -203,8 +231,10 @@ definitions:
       grid: {type: GridSpec, unit: m/grid, range: valid_fields, example: {width: 96, height: 96, cell_m: 1, chunk_cells: 32}}
       runtime_partition: {type: RuntimePartitionSpec, unit: axial_slots, range: "bands obey design/11 scene limits; prefix sums from q_min/r_min; local chunks start at each band minimum", example: {q_min: -48, r_min: 1, q_slot_count: 131, r_slot_count: 96, q_band_slots: [66, 65], r_band_slots: [96], formal_scene_refs: null}}
       projection: {type: ProjectionSpec, unit: degree_and_CSS_px, range: valid_fields, example: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}}
-      wall: {type: WallSpec, unit: m/grid, range: valid_fields, example: {polygon: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}, inside_margin_cells: 2, basis: "历史格局概化"}}
-      gates: {type: "GateSpec[1..N]", range: unique_ids, example: [{id: south_gate, side: south, at: {x: 48, z: 8}, width_cells: 6, asset_type: tex_town_song_dali_city_gate, rotation_deg: 0, footprint_cells: {w: 10, h: 4}, passage_cells: {w: 6, h: 4}, road_ref: main_north_south, primary: true, basis: "主入口的设计概化（原创扩展）"}]}
+      wall: {type: WallSpec, required: false, unit: m/grid, range: "legacy form; mutually exclusive with walls", example: {polygon: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}, inside_margin_cells: 2, basis: "历史格局概化"}}
+      walls: {type: "NamedWallSpec[]|none", required: false, unit: m/grid, range: "1..N unique closed circuits, or literal none for an unwalled camp; mutually exclusive with wall", example: [{id: outer, role: outer, polygon: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}, inside_margin_cells: 2, basis: "历史格局概化"}]}
+      gates: {type: "GateSpec[]", range: "unique_ids; walled sites require exactly one primary, walls:none requires none", example: [{id: south_gate, side: south, at: {x: 48, z: 8}, width_cells: 6, asset_type: tex_town_song_dali_city_gate, rotation_deg: 0, footprint_cells: {w: 10, h: 4}, passage_cells: {w: 6, h: 4}, road_ref: main_north_south, primary: true, basis: "主入口的设计概化（原创扩展）"}]}
+      water_gates: {type: "WaterGateSpec[]", required: false, range: unique_ids, example: []}
       streets: {type: "Polyline[1..N]", range: "unique_ids; raster union connected to primary gate after deterministic stage C repair", example: [{id: main_north_south, class: main_axis, width_cells: 5, points: [{x: 48, z: 8}, {x: 48, z: 86}], surface: dirt_road, priority: 100, basis: "南北主街的设计概化（原创扩展）"}]}
       rivers: {type: "RiverSpec[0..N]", range: unique_ids, example: []}
       lakes: {type: "LakeSpec[0..N]", required: false, range: "unique_ids_across_rivers_and_lakes; optional with default [] for existing v1 inputs", example: []}

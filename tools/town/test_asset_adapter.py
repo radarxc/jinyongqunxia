@@ -1,7 +1,9 @@
 """Real-delivery schema adapters, using tiny local fixtures without source assets."""
+from io import BytesIO
 import tempfile
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 from PIL import Image
 import yaml
@@ -69,6 +71,27 @@ class AssetAdapterTests(unittest.TestCase):
             self.assertIn(f"bld_kit_song_dali_house/rotation_deg={rotation}", lib.missing)
         self.assertFalse(lib.substitutions)
         self.assertIsNone(lib.resolve("bld_kit_song_dali_missing", rotation_deg=90))
+
+    def test_sparse_checkout_reads_tracked_metadata_and_png_blobs(self):
+        metadata = yaml.safe_dump(dict(
+            building=dict(footprint=[6, 5], anchor=[32, 16]),
+            views=[dict(rotation_deg=0, file="house.png")],
+        )).encode()
+        output = BytesIO()
+        Image.new("RGBA", (64, 32), (1, 2, 3, 255)).save(output, format="PNG")
+        blobs = {"house.yaml": metadata, "house.png": output.getvalue()}
+        self.write([dict(id="house", file="house.png", status="candidate",
+                         metadata="meta/house.yaml")])
+
+        def tracked(path):
+            return blobs.get(path.name)
+
+        with patch("assets._git_blob", side_effect=tracked):
+            lib = AssetLibrary(self.manifest)
+            image, meta = lib.resolve("house", rotation_deg=0)
+        self.assertEqual(image.size, (64, 32))
+        self.assertEqual(meta["footprint_cells"], {"w": 6, "h": 5})
+        self.assertFalse(lib.warnings)
 
     def test_props_submanifest_does_not_duplicate_shared_metadata_variants(self):
         self.write([])
