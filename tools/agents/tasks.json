@@ -34853,6 +34853,43 @@
     "tools/imagegen/test_ingest_crop.py",
     "tools/imagegen/README.md"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "docs/design/catalog/key-scenes.md",
+     "tools/agents/reports/DES-sync-keyscenes-ar36.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "DES-sync-keyscenes-ar36",
+   "title": "设计同步 · AR-36 情景图第二波之后：key-scenes.md 口径（候选清单 / 入库数以 manifest 为准 / candidate 参考）与各书条目修正、story/07 §2.2、story/09 制衣方向、npcs-ch09 铃剑双侠、npcs-ch08 与 design/18 人物主记录核查",
+   "prompt": "DES-sync-keyscenes-ar36.md",
+   "deps": [
+    "ART-hero-refine-a",
+    "ART-hero-refine-b"
+   ],
+   "writes": [
+    "docs/design/catalog/key-scenes.md",
+    "docs/design/story/07-bixue.md",
+    "docs/design/story/09-liancheng.md",
+    "docs/design/catalog/npcs-ch08-luding.md",
+    "docs/design/catalog/npcs-ch09-liancheng.md",
+    "docs/design/catalog/npcs-ch03-*.md",
+    "docs/design/18-npc-and-companions.md"
+   ]
   }
  ]
 }
