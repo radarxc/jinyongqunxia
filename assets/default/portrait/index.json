@@ -8507,28 +8507,28 @@
   },
   "avatar/npc_xiaofeng/ch01_prime_gaibang": {
    "128": {
-    "b": 4930,
+    "b": 5172,
     "f": "npc_xiaofeng/ch01_prime_gaibang_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 13760,
+    "b": 14700,
     "f": "npc_xiaofeng/ch01_prime_gaibang_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 36366,
+    "b": 38652,
     "f": "npc_xiaofeng/ch01_prime_gaibang_base.ava512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    315,
-    6,
-    669,
-    360
+    318,
+    14,
+    668,
+    364
    ],
    "source": "por_npc_xiaofeng__ch01_prime_gaibang_base"
   },
@@ -24547,21 +24547,21 @@
   },
   "bust/npc_xiaofeng/ch01_prime_gaibang": {
    "256": {
-    "b": 12938,
+    "b": 13642,
     "f": "npc_xiaofeng/ch01_prime_gaibang_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 38856,
+    "b": 41568,
     "f": "npc_xiaofeng/ch01_prime_gaibang_base.bust512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    227,
-    0,
-    757,
+    230,
+    4,
+    756,
     530
    ],
    "source": "por_npc_xiaofeng__ch01_prime_gaibang_base"
@@ -35241,20 +35241,20 @@
   "portrait/npc_duanyu/ch01_youth_scene_langhuan_scroll": {
    "alpha": false,
    "low": {
-    "b": 154298,
+    "b": 160252,
     "f": "npc_duanyu/ch01_youth_scene_langhuan_scroll.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 244614,
+    "b": 268842,
     "f": "npc_duanyu/ch01_youth_scene_langhuan_scroll.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_duanyu__ch01_youth_scene_langhuan_scroll",
    "source_file": "assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_scene_langhuan_scroll.png",
-   "source_sha256": "7c86e147c618c6e7f912885692c848b8fe0f56668e370e418235f18eac98767b",
+   "source_sha256": "d5622ec80ab2d5c45ad5dea680b02e0bf2ea412efe5e0373736826224453f6eb",
    "status": "candidate"
   },
   "portrait/npc_duanyu/ch01_youth_scene_lingbo_escape": {
@@ -35279,20 +35279,20 @@
   "portrait/npc_duanyu/ch01_youth_scene_shaoshi_invisible_sword": {
    "alpha": false,
    "low": {
-    "b": 151956,
+    "b": 151932,
     "f": "npc_duanyu/ch01_youth_scene_shaoshi_invisible_sword.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 232250,
+    "b": 226064,
     "f": "npc_duanyu/ch01_youth_scene_shaoshi_invisible_sword.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_duanyu__ch01_youth_scene_shaoshi_invisible_sword",
    "source_file": "assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_scene_shaoshi_invisible_sword.png",
-   "source_sha256": "373777b61dc5711bdc56259b7da73593a87e6c6935567a97b98dbbca53fc327f",
+   "source_sha256": "26fdede3a1f2e5fcd7359c8391e7a8845c3e7377f450ce95de7ae0f8333396b8",
    "status": "candidate"
   },
   "portrait/npc_duanyu/ch01_youth_scene_tianlongtemple_first_sword": {
@@ -40675,39 +40675,39 @@
   "portrait/npc_xiaofeng/ch01_prime_gaibang_base": {
    "alpha": true,
    "low": {
-    "b": 100448,
+    "b": 111868,
     "f": "npc_xiaofeng/ch01_prime_gaibang_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 143294,
+    "b": 160358,
     "f": "npc_xiaofeng/ch01_prime_gaibang_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_xiaofeng__ch01_prime_gaibang_base",
    "source_file": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
-   "source_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+   "source_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
    "status": "candidate"
   },
   "portrait/npc_xiaofeng/ch01_prime_scene_juxianzhuang_guard": {
    "alpha": false,
    "low": {
-    "b": 167854,
+    "b": 164348,
     "f": "npc_xiaofeng/ch01_prime_scene_juxianzhuang_guard.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 261356,
+    "b": 253184,
     "f": "npc_xiaofeng/ch01_prime_scene_juxianzhuang_guard.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard",
    "source_file": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png",
-   "source_sha256": "799d51e824de4c066a0d7072ec00b6229e4153ef64d85fb5cb93e35f5325c4d2",
+   "source_sha256": "26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734",
    "status": "candidate"
   },
   "portrait/npc_xiaofeng/ch01_prime_scene_northern_forest_hunt": {
@@ -41283,20 +41283,20 @@
   "portrait/npc_xuzhu/ch01_youth_scene_lingjiu_compassion": {
    "alpha": false,
    "low": {
-    "b": 145350,
+    "b": 187080,
     "f": "npc_xuzhu/ch01_youth_scene_lingjiu_compassion.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 223860,
+    "b": 304826,
     "f": "npc_xuzhu/ch01_youth_scene_lingjiu_compassion.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion",
    "source_file": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png",
-   "source_sha256": "d67a01ce923d7035c74b6650682507421b4353336f580ca4546e115a8a3e6b09",
+   "source_sha256": "6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c",
    "status": "candidate"
   },
   "portrait/npc_xuzhu/ch01_youth_scene_shaoshi_thin_ice": {
@@ -41340,20 +41340,20 @@
   "portrait/npc_xuzhu/ch01_youth_scene_zhenlong_unintended_move": {
    "alpha": false,
    "low": {
-    "b": 188414,
+    "b": 199618,
     "f": "npc_xuzhu/ch01_youth_scene_zhenlong_unintended_move.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 304602,
+    "b": 316414,
     "f": "npc_xuzhu/ch01_youth_scene_zhenlong_unintended_move.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move",
    "source_file": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.png",
-   "source_sha256": "7a0956621a7dcc193cf1a870718737348471bc5f1b8fe8c1e632c3a506bfb572",
+   "source_sha256": "73f67bf945f3ba5adfa606c1e6a4c82dfda8c6a42edcbae0ce43a4cd20b48ea8",
    "status": "candidate"
   },
   "portrait/npc_yandaping/ch09_prime_beggar_base": {
