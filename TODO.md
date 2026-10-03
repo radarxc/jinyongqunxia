@@ -16,12 +16,12 @@
 
 ## 0. 现状一句话
 
-- **设计**：des33 第三批 13 项全部合入（故事线挂接口 g1～g5、tech / design 同步 a / b、名录门槛 v2 a / b / c、rig v1.1、ids-slp）；des34 的 DES-items-attrs-spec 合入（名录升九列），8 个 DES-items-lore 停在等 TOOL-catalog-9col（复审中）；des35 的人物名录补登记 a / b 合入（110 个原著人物进名录与 design/18）；des36 的礼品规格 DES-items-gifts-spec 因内存压力暂停（§4）。
+- **设计**：des33 第三批 13 项全部合入（故事线挂接口 g1～g5、tech / design 同步 a / b、名录门槛 v2 a / b / c、rig v1.1、ids-slp）；des34 的 DES-items-attrs-spec 合入（名录升九列），8 个 DES-items-lore 停在等 TOOL-catalog-9col（复审 r2 又 FAIL，等代码池空位返修）；des35 的人物名录补登记 a / b 合入（110 个原著人物进名录与 design/18）；des36 的礼品规格 DES-items-gifts-spec 因内存压力暂停（§4）。
 - **素材**：
   - 人物：AR-32 / AR-35 的修改全部完成；第二波（AR-36）cast-fill a / b 合入 57 张，hero-refine-a 合入 95 张（联系表已发作者），hero-refine-b 合入 80 张（2533a8fd；李文秀 6 图按「白马用游戏头像 + 基线」放行）；剩余 `build_portraits` 等指定时段，总览页待重建（§3.1）。
   - 物品（Gemini）：10-02 16:00 起已入库 315+ 张（药材 53、兵器 117、暗器 20、秘籍 110+），只剩返工 31 张和后缀书名 18 本（口径 03:25 已答）；之后接 AR-40 的奢侈品 / 礼品约 120–180 张（§3.2）。
   - 情景图：改由 codex 主角精修任务出（hero-a 已入库 50 张插图，hero-b 待合入），Gemini 不再出；`key-scenes.md` 的统计口径待同步（§4）。
-  - 城市布局：CITY-layouts-all 跑了 3 次后因内存压力暂停；遗迹地图等 ENG-18b；三视图切件 TOOL-rig-sheet 审核两次不过，第 3 次返修中（§3.4、§3.5）。
+  - 城市布局：CITY-layouts-all 03:36 续作（第 4 次运行）；遗迹地图等 ENG-18b；三视图切件 TOOL-rig-sheet 审核两次不过，第 3 次返修中（§3.4、§3.5）。
   - 3D：作者定 2D 为主（AR-38），Tripo 免费档试点的主角·男 GLB 已入 `apps/game/public/pilot/`，ENG-12e 原型任务在 eng3 队列 ready。
 - **开发**：10-02 16:10 之后合入 ENG-15 / 18 / 21b / 25 / 08b / 16b / 12c-clip / 16d / 14b / 17a / 18d / 18e 与 TOOL-items-catalog；集成分支 `pnpm check` 02:42 全绿（120 文件 825 用例，entry 129.51 / 170 KiB，webgl 292.75 / 350）。在跑 ENG-17、ENG-18b、ENG-19a（M1）与 TOOL-rig-sheet；eng3 队列还有 19 项（§5）。
 - **分工**（作者 10-02 15:50 / 22:00）：三个 Opus subagent——素材线第二波追踪（codex 执行器）、Gemini 出图员、开发监督；代码与故事线走 TraeX（GPT-6-Astra max，不行就 5.6-Sol max；GPT-5.5 禁用）。协调者只规划、登记、裁定、合入。
@@ -47,10 +47,10 @@
 | ENG-18b-tiled-regionmap | traex | 第 1 次运行（01:14 起） | eng3 → supervise 12005 |
 | ENG-19a-ui-shell | traex | 第 1 次运行（01:14 起） | eng3 → supervise 12007 |
 | TOOL-rig-sheet | traex Sol max | 第 3 次运行（审核 r2 FAIL 后返修，03:18 起） | 53693（开发监督另起） |
-| TOOL-catalog-9col | traex Sol max | 返修后复审中（03:16 起，`--from review`） | 51856（协调者另起） |
+| TOOL-catalog-9col | traex Sol max | 复审 r2 FAIL（03:27：双写检查省略键可绕过），等代码池空位自动返修 | 51856（协调者另起） |
 | DES-items-lore-1 / 3 / 5 / 6 / 7 / 8 | — | HOLD-RUNS：等 TOOL-catalog-9col 合入后挪基点复验（`_handoff/lore_plan.md`） | des34 batch 9492 看护 |
 | DES-items-gifts-spec | — | HOLD-RUNS：内存压力暂停（02:00） | — |
-| CITY-layouts-all | — | HOLD-RUNS：3 次运行后内存压力暂停（02:00） | — |
+| CITY-layouts-all | codex gpt-6-astra xhigh | 第 4 次运行（03:36 续作，按 done.txt 跳过已完成的城） | 49805（追踪者另起） |
 
 - 调度器：eng3 batch_run pid 89679（01:27 起，并发 3；在跑 4 / 已合入 13 / 待启动 19）；des34 batch_run pid 9492（lore-2 / 4 等依赖）；des33、des35、des36 已结束。`batch_run` 只在启动时读队列文件：`_eng3_queue.txt` 新加的 TOOL-ingest-cropframe 要重启 eng3 才生效。
 - codex 出图 runner：w12（pid 20933，2 槽）服务 hero-b；w11 已排空停掉。
@@ -110,7 +110,7 @@
 - [x] ART-cast-fill-a（e1698e93，7 张）、ART-cast-fill-b（fe4765ef，50 张，其中复用 17 张）：逐书搜主要人物列表、补缺的立绘；名录里没有的人物只报不造 ID → DES-npcs-register-a / b 已把 110 个原著人物登记进名录与 design/18（03c44028、3226fe15）。
 - [x] ART-hero-refine-a（d11b33a0，天龙～碧血 7 本）：95 张 = 15 张复合基线（剧照 + 游戏画风参考 + 旧基线，像角色不像演员）+ 30 张分时期立绘 + 50 张关键剧情插图（古风题字已逐字核过）。联系表 `_handoff/gem/codex_w11/sheets/`：`resume-all-base-before-after.jpg`（新旧对比）、`resume-por_npc_<id>-stages.jpg`、`resume-chNN-all-cg.jpg`；03:15 已发作者四张。
 - [x] ART-hero-refine-b（2533a8fd，鹿鼎～雪山 7 本）：80 张 = 16 张基线 + 32 张分时期 + 32 张插图（题字 32 幅核验）；审核 r4 PASS（李文秀 6 图按「白马用游戏头像 + 现基线」放行，图在 female/ch10，不再补）。合入时与 cast-b 在 6 个 manifest 末尾撞车，协调者手工保留两边条目后 finish，旧驱动自行合入。联系表 `_handoff/gem/codex_w12/sheets/`（`retry3-bases-before-after-0N.jpg`、`retry3-stages-chNN-npc_<id>.jpg`、`retry3-final-scenes-chNN-01.jpg`）；03:40 已发作者五张。
-- [ ] ART-cast-polish-ch09（已登记）：cast-b 的 ch09 万门弟子几张同脸；hero 两任务已结束，等磁盘 ≥ 7 GiB 再起（追踪者起之前先报协调者）。
+- [ ] ART-cast-polish-ch09（已登记）：cast-b 的 ch09 万门弟子几张同脸；hero 两任务已结束，等 DES-sync-keyscenes-ar36 合入（名录里铃剑双侠改好）且磁盘 ≥ 7 GiB 再起（追踪者起之前先报协调者）。
 - [ ] 110 个新登记人物的立绘（ART-cast-fill-c / d，待协调者登记）：等 hero-b、polish 之后，看磁盘与作者意见再排。
 - [ ] **收尾**：`build_portraits.py` 已分批提交 29109cfe / d255c157 / 0343156b / a03b120d；剩余（cast 约 40 张 + hero-a 95 张 + hero-b）等协调者指定时段一次跑完（BiRefNet 每次加载推高交换区 1–5 GB，只在 eng3 空闲、负载 < 8 时跑）→ `build_portrait_index.py`（作者批注已移到 `assets/default/prompts/characters/_AUTHOR-NOTES.md`，脚本嵌入文首）→ `build_gallery.py` → 总览页重发（同一地址）。
 - [ ] `key-scenes.md` / `story/07` 等同步项：hero-a 报告 §6 列了 ch01～07 的条目修正与统计口径，hero-b 合入后一并登记 DES-sync-keyscenes-ar36（§4）。
@@ -119,6 +119,7 @@
 - `tools/agents/prompts/_codex_worker.md`：codex 执行器在沙箱里不能再起 `codex exec`（`workspace routing discovery failed`），所以执行器只用 `mk.py` 排队、`ingest8.py --no-commit` 入库，出图 runner（`runner.py`）由追踪者在沙箱外起；每个执行器各用自己的 `CODEX_HOME`（60b81607）。
 - `_handoff/gem/DISK_RULE.md`：每张图出完清 CODEX_HOME 的 `sessions/` 与 `generated_images`；执行器日志超 150 MB 自动 gzip 轮转。
 - 剧照放在主检出 `.agents/coord/imagegen-reference/identity-2026100{1,2}/`、作者给的游戏封面在 `author-20261002/`，不入库，目录里有 SOURCES.md。
+- 工具维护待办（追踪者报告，低优先，未登记）：通用 `ingest.py` 的归档 / 锁路径、`ingest8.py` 不记 done.txt；`crop_frame` 已登记 TOOL-ingest-cropframe。
 - 风险：剧照参考那批图会接近演员本人样貌，第二波已按「像角色不像演员」重做主角；公开发布前仍要复查。
 
 ### 3.2 物品图（Gemini 网页）
@@ -175,8 +176,8 @@
 | ART-hero-refine-a | 主角复合基线精修、分时期 `_scene_<stage>` 立绘、关键剧情插图配古风题字 | codex gpt-6-astra ultra | **合入 d11b33a0**（95 张，审核一次 PASS） |
 | ART-hero-refine-b | 同上，鹿鼎～雪山 | 同上 | **合入 2533a8fd**（80 张，r4 PASS） |
 | ART-cast-fill-a / -b | 逐书搜主要人物列表，补缺的提示词与立绘 | codex xhigh | **合入 e1698e93 / fe4765ef**（57 张） |
-| ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | 已登记，等 hero 结束、磁盘 ≥ 7 GiB |
-| CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | HOLD-RUNS（3 次运行；已完成的城在工作区 `done.txt`）。续作条件：磁盘 ≥ 8 GiB 且 1 分钟负载 < 10，`--from start` 并写「续作，按 done.txt 跳过已完成的城」 |
+| ART-cast-polish-ch09 | 万门弟子同脸修 | codex xhigh | 已登记（sparse_include 已补 female/ch09），等 DES-sync-keyscenes-ar36 合入（先改好 npcs-ch09 名录）且磁盘 ≥ 7 GiB |
+| CITY-layouts-all | 189 城 × 年代，照 `CITY.md` 搜史料、复原规格、`render_town.py` 总装；磁盘规则 44daac2f：全尺寸 town.png 只给白马城与各章首城，其余 0.5 预览 | codex xhigh | **续作中**：第 4 次运行 03:36 起（磁盘 8.2 GiB、负载 7.6 时按条件续作，说明「按 done.txt 跳过已完成的城」）；磁盘 < 3 GiB 或交换区再涨就再暂停 |
 | ART-ruins-maps | 遗迹 / 地宫 Tiled 场景地图 + 预览（九老洞、敦煌地宫、长白山洞…） | codex xhigh | 等 ENG-18b 合入 |
 | ART-items-gifts-catalog（AR-40） | 各朝代奢侈品 / 礼品名录（瓷器 / 茶具、玉器、香炉铜器、琴、书法拜帖、笔…，书中宝物 + 史载物件）与 Gemini 提示词 | codex xhigh | 等 DES-items-gifts-spec（暂停）+ TOOL-catalog-9col |
 
@@ -197,7 +198,7 @@
 - **des36 的 DES-items-gifts-spec**（礼品规格：吉运 / 送礼好感 / 年代字段）：HOLD-RUNS，续作条件同 CITY（磁盘 ≥ 8 GiB 且负载 < 10）。
 
 **待办**：
-- [ ] **DES-sync-keyscenes-ar36**（hero-b 合入后登记）：`key-scenes.md` §0、§16–17 的旧统计（每书恰 7 / 合计 102 / 只准 approved 参考）改成 AR-36 候选生产口径；ch01～07 各条按 hero-a 报告 §6 修正（聚贤庄新图与题字、雁门等待标记改已解决、张家口乞儿装、桃岛背诵经文、重阳杨过断右臂、梅庄 / 少林偏殿三战、长乐李四掷凳、金蛇洞铁盒等）；`story/07` §2.2 「十四岁发现铁盒、约十年后下山」措辞；design/18 孙婆婆 / 蒙哥 ID 核查。hero-b 报告 §6 出来后合并进去。
+- [ ] **DES-sync-keyscenes-ar36**（已登记并起跑：des37 batch，03:50）：`key-scenes.md` §0、§16–17 的旧统计（每书恰 7 / 合计 102 / 只准 approved 参考）改成 AR-36 候选生产口径；ch01～07 各条按 hero-a 报告 §6 修正（聚贤庄新图与题字、雁门等待标记改已解决、张家口乞儿装、桃岛背诵经文、重阳杨过断右臂、梅庄 / 少林偏殿三战、长乐李四掷凳、金蛇洞铁盒等）；`story/07` §2.2 「十四岁发现铁盒、约十年后下山」措辞；design/18 孙婆婆 / 蒙哥 ID 核查。hero-b 的 ch08～14 条目、`story/09` 制衣方向、`npcs-ch09` 铃剑双侠（水笙与汪啸风）、`npcs-ch08` 顺治 / 风际中主记录核查也在任务说明里。
 - [ ] design/10 §14.2 只登记 569 / 894 个物品 ID（缺 manuals 170、weapons 128、hidden-weapons 27）：lore 合入后登记同步任务。
 - [x] 设计定稿后的 ENG 任务已登记（eng3 队尾，四个串行）：ENG-27a 属性 v2 数据链 → 27b 战斗链 → 28a 一般书眠 → 28b 螺旋内力；27c 节奏锁放 28b 之后。金钱与采集等 ENG-20a / 26 合入后再登记。ENG-17 只覆盖 M1 里的初眠配点。
 
@@ -277,6 +278,7 @@
   sudo rm -f /Users/bytedance/Projects/jinyongqunxia/.git/logs/refs/remotes/origin/claude/*.lock /Users/bytedance/Projects/jinyongqunxia/.git/logs/refs/remotes/origin/HEAD.lock
   ```
 - **hero-a 验收**：四张联系表已发（03:15）；不满意的指出人物 / 时期 / 插图名，登记返工。
+- **双儿要不要精修**（hero-b 报告）：默认不动，作者说要再登记。
 - **110 个新登记人物要不要都出立绘**（ART-cast-fill-c / d，约 110 次 codex 出图）：默认等 hero-b 与 polish 之后再排，作者说不出就不出。
 
 ### 8.2 已按默认在做，待作者确认
