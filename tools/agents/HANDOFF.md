@@ -1802,3 +1802,4 @@
 
 - **10-03 16:00–16:15 协调者**：作者 AR-51「黄蓉用a，阿青再更接近林青霞一些」「金城武李嘉欣照片都下载」→ 已转 10 号（黄蓉换 A 并出窄轮廓 A 字图；阿青再出 A/B；高魅力加照片参考重出 A/B）。作者「大理苍山用c」→ Gemini 出图员 d897426a 覆盖入库（B 原图挪 rejected，B 实为照搬总图左半幅；区域图改用总图中部裁块 + 相关系数查重）。段誉 3D 入库 f78cc0dd。特效试点合入 3324e22e，其余 34 门开铺。
 - **磁盘清理 6 / 9 / 10**（作者「六到十删除六九十」，7、8 保留）：9 下载文件夹两个 ChatGPT 安装包、7 个 .har、681 张与归档同字节的 Gemini 图（.har.zip 不在清单内未删）；10 主检出 `generated_images/` 635 张有同字节副本的原图（对照表 `generated_images/DELETED_DUPLICATES_20261003.tsv`，剩 201 张无副本原图全部保留）；6 二十个两个月未动项目的 290 个 node_modules（后台删除中）。
+- **10-03 16:15 协调者**：补齐人物 cast-fill-d 合入（5b2b8753）。立绘派生改在暂存目录跑（新脚本 `.agents/coord/_handoff/portrait_stage_runner.py`：复制 portrait 目录到 `.agents/coord/portrait_stage/`、BiRefNet 只加载一次、全部处理完再一次性拷回 _prod 按路径提交，脏窗口只有几秒；驱动 87094，日志 `_handoff/portrait_stage.out`，待处理 150 张）。跑完后再跑 `build_portrait_index.py`。素材审核页第 3 版已同址重发（2603 件）。
