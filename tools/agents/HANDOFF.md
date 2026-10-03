@@ -1817,3 +1817,11 @@
     - **CONTENT-ch00a**：第 9 次运行只改报告，驱动 53634，note `devsup_note_r4.md`。
 
 - **10-03 16:28 代码池放行链更新**：开发监督登记 ENG-ink-external-args（6cefcccd，`extractStoryText()` 把 EXTERNAL 字符串实参也换成文本键，导致 ch00a 的 get_flag / has_item 条件失效）；插在 16c 之后。现顺序 16c → ink-external-args（守候 59783）→ 23a（59788）→ 18c（96188）→ base-diet（96190）→ std-parts（83195）→ cropframe（96192）。CONTENT-ch00a 第 9 次运行只改报告（驱动 53634）。作者 AR-52「未来大地图都以实际地图地势为基础生成不要偏离」已转 Gemini 出图员：区域图以 docs/design/map 真实地理裁底图为第一参考，已入库的逐张比对；SR_HR.zip（42 MB）下载待作者许可。
+  - **10-03 16:40 开发监督（登记新任务时要写进说明的备忘）**：
+    - **渲染类任务**：render 168.86 / 180 KiB，余量约 11 KiB（协调者）。
+    - **3D 角色接入 / glTF 任务**（ART-3d-tripo-web 报告，ad04026c）：
+      - `assets/default/model3d/` 已入库 13 套模型，尺寸都归一化了，身高约 0.98，引擎加载时要按人物身高缩放；
+      - 男女主角带 idle / walk / run 动作。
+      - 现在没有在排的 glTF 任务（ENG-12e 已合入），下次登记时写进说明。
+    - **ENG-ui-***：ui_status_stagnation 深色描边 / 底光（design/26 §5.2）；用 codex，`--review-model gpt-6-astra`。
+
