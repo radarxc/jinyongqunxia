@@ -180,7 +180,11 @@ export function createGameSession(content: GameContent, initial = createPreviewS
       townDefinition = state.chapter.town
         ? loadedTowns.find((entry) => entry.sceneId === state.chapter.town?.sceneId) : undefined;
       if (state.chapter.town && !townDefinition) throw new TypeError('TOWN_CONTENT_INVARIANT');
-      let changes = selectors.update(state, dirtyViews(command));
+      const stepTransition = result.events.some((event) =>
+        event.t === 'worldmap/sceneRequested' || event.t === 'worldmap/encounterRequested' ||
+        event.t === 'worldmap/gateBlocked');
+      let changes = selectors.update(state, dirtyViews(command), '',
+        command.t === 'worldmap/step' && !stepTransition);
       const moved = result.events.find((event) => event.t === 'town/moved');
       const path = moved?.payload && typeof moved.payload === 'object' && !Array.isArray(moved.payload)
         ? (moved.payload as { path?: readonly (readonly [number, number])[] }).path : undefined;

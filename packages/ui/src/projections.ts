@@ -1,4 +1,4 @@
-import type { EquipmentSlot } from '@tianshu/core';
+import type { EquipmentSlot, WorldMapStaticProjection } from '@tianshu/core';
 
 export interface ResourceView {
   readonly current: number;
@@ -109,6 +109,7 @@ export interface UiProjection {
   readonly inventory: readonly ItemView[];
   readonly equipment: readonly EquipmentView[];
   readonly quests: readonly QuestView[];
+  readonly worldmapStatic?: WorldMapStaticProjection | null;
 }
 export interface SaveSlotView {
   readonly id: string;

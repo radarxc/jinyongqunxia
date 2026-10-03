@@ -21,10 +21,12 @@ const fps = ref(0);
 const drawCalls = ref(0); const cpuMs = ref(0);
 let view: WorldMapScene | undefined;
 let observer: ResizeObserver | undefined;
+let disposed = false;
 let frame = 0; let stepTimer = 0; let statsAt = 0; let previousPoint: readonly [number, number] | undefined;
 
 const mapView = computed(() => controller.worldmap.value);
-const openNodes = computed(() => mapView.value?.map.nodes.filter((node) => node.open) ?? []);
+const mapStatic = computed(() => projection.value.worldmapStatic);
+const openNodes = computed(() => mapStatic.value?.map.nodes.filter((node) => node.open) ?? []);
 const selected = computed(() => openNodes.value.find((node) => node.id === selectedId.value) ?? hovered.value);
 const selectedReachable = computed(() => !selected.value ||
   (mapView.value?.reachableNodeIds.includes(selected.value.id) ?? false));
@@ -50,14 +52,19 @@ async function updateActor(next: WorldMapProjection): Promise<void> {
   view?.setDestination(next.journey?.destination ?? (selectedId.value || null));
 }
 async function mountScene(): Promise<void> {
-  const target = canvas.value; const state = mapView.value;
-  if (!target || !state) return;
+  const target = canvas.value; const state = mapView.value; const geometry = mapStatic.value;
+  if (!target || !state || !geometry) return;
   try {
     const { createWorldMapScene } = await import('@tianshu/render/worldmap');
-    view = await createWorldMapScene(target, state.map, {
+    if (disposed) return;
+    const created = await createWorldMapScene(target, geometry.map, {
       actor: { point: state.point, walking: false, equipment: equipment() },
-      ...(state.mapTextureUrl ? { mapTextureUrl: state.mapTextureUrl } : {}), zoom: zoom.value,
+      ...(geometry.mapTextureUrl ? { mapTextureUrl: geometry.mapTextureUrl } : {}), zoom: zoom.value,
     });
+    if (disposed) { created.dispose(); return; }
+    view = created;
+    await updateActor(state);
+    if (disposed) return;
     observer = new ResizeObserver(([entry]) => {
       if (entry) view?.resize(entry.contentRect.width, entry.contentRect.height, window.devicePixelRatio);
     });
@@ -70,8 +77,10 @@ async function mountScene(): Promise<void> {
       }
       frame = requestAnimationFrame(animate);
     };
-    frame = requestAnimationFrame(animate); await updateActor(state);
-  } catch (error) { renderError.value = error instanceof Error ? error.message : '地图渲染不可用'; }
+    frame = requestAnimationFrame(animate);
+  } catch (error) {
+    if (!disposed) renderError.value = error instanceof Error ? error.message : '地图渲染不可用';
+  }
 }
 function pick(event: PointerEvent): void {
   const target = canvas.value; if (!target || !view) return;
@@ -98,12 +107,13 @@ watch(mapView, (next) => {
 watch(zoom, (next) => view?.setZoom(next));
 onMounted(() => { void mountScene(); });
 onBeforeUnmount(() => {
+  disposed = true;
   window.clearTimeout(stepTimer); cancelAnimationFrame(frame); observer?.disconnect(); view?.dispose(); view = undefined;
 });
 </script>
 
 <template>
-  <section v-if="mapView" class="worldmap-page">
+  <section v-if="mapView && mapStatic" class="worldmap-page">
     <div class="worldmap-stage">
       <canvas
         ref="canvas" aria-label="江湖大地图"
@@ -117,13 +127,13 @@ onBeforeUnmount(() => {
     </div>
     <aside class="worldmap-panel paper-panel">
       <header>
-        <small>{{ mapView.map.years[0] }}—{{ mapView.map.years[1] }} 年 · {{ mapView.map.eraBand }}</small>
-        <h3>{{ mapView.map.name }}</h3>
+        <small>{{ mapStatic.map.years[0] }}—{{ mapStatic.map.years[1] }} 年 · {{ mapStatic.map.eraBand }}</small>
+        <h3>{{ mapStatic.map.name }}</h3>
       </header>
       <template v-if="selected">
         <h4>{{ selected.name }}</h4>
         <p>{{ selected.kind === 'town' ? '城镇' : '野外遗迹' }} · {{ selected.regionId }}</p>
-        <p>年代 {{ mapView.map.years[0] }}—{{ mapView.map.years[1] }} 年</p>
+        <p>年代 {{ mapStatic.map.years[0] }}—{{ mapStatic.map.years[1] }} 年</p>
         <p>等级 {{ selected.levelRange ? `${selected.levelRange[0]}—${selected.levelRange[1]}` : '未配置' }}</p>
         <p>{{ selected.levelNote }}</p>
         <p v-if="!selectedReachable" role="status">尚无已登记道路可达此地。</p>
@@ -159,7 +169,7 @@ onBeforeUnmount(() => {
         </button>
       </div>
       <small data-testid="worldmap-stats">
-        节点 {{ openNodes.length }} · 路段 {{ mapView.map.roads.length }} ·
+        节点 {{ openNodes.length }} · 路段 {{ mapStatic.map.roads.length }} ·
         {{ drawCalls }} draw · {{ fps.toFixed(0) }} fps · CPU {{ cpuMs.toFixed(2) }} ms
       </small>
     </aside>
