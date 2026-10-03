@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 935、已通过（作者） 132、待出图 93。**待出图队列 93 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 936、已通过（作者） 132、待出图 92。**待出图队列 92 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -44,7 +44,6 @@
 | items | `it_suijinxiangyubei` | 隋式镶金玉杯 | `assets/default/item/collectibles/it_suijinxiangyubei.png` | 待出图 | [it_suijinxiangyubei.md](items/collectibles/it_suijinxiangyubei.md) |
 | items | `it_wenzhengmingchibifu` | 文徵明《赤壁赋》页 | `assets/default/item/collectibles/it_wenzhengmingchibifu.png` | 待出图 | [it_wenzhengmingchibifu.md](items/collectibles/it_wenzhengmingchibifu.md) |
 | items | `it_wuzhouzhuseqin` | 武周朱漆琴 | `assets/default/item/collectibles/it_wuzhouzhuseqin.png` | 待出图 | [it_wuzhouzhuseqin.md](items/collectibles/it_wuzhouzhuseqin.md) |
-| items | `it_xueyezhongqin` | 雪夜钟琴 | `assets/default/item/collectibles/it_xueyezhongqin.png` | 待出图 | [it_xueyezhongqin.md](items/collectibles/it_xueyezhongqin.md) |
 | items | `it_yongleyashoubei` | 永乐青花压手杯 | `assets/default/item/collectibles/it_yongleyashoubei.png` | 待出图 | [it_yongleyashoubei.md](items/collectibles/it_yongleyashoubei.md) |
 | items | `it_yongzhengmeimuwan` | 雍正珐琅彩梅牡碗 | `assets/default/item/collectibles/it_yongzhengmeimuwan.png` | 待出图 | [it_yongzhengmeimuwan.md](items/collectibles/it_yongzhengmeimuwan.md) |
 | items | `it_yuanheiquqin` | 元式黑漆琴 | `assets/default/item/collectibles/it_yuanheiquqin.png` | 待出图 | [it_yuanheiquqin.md](items/collectibles/it_yuanheiquqin.md) |
