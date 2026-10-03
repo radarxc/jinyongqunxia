@@ -130,6 +130,31 @@
   z-index: 2;
   pointer-events: none;
 }
+.render-recovery {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
+  color: #302d27;
+  background: linear-gradient(#eee6d8f5, #d8ccb8f8);
+}
+.render-recovery h3,
+.render-recovery p {
+  margin: 0;
+}
+.render-recovery .action-row {
+  justify-content: center;
+}
+.render-recovery button {
+  min-width: 112px;
+  border: 1px solid #806f58;
+  background: #f7f0de;
+  color: inherit;
+}
 .battle-camera-controls {
   position: absolute;
   z-index: 6;

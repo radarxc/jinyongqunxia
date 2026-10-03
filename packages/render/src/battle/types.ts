@@ -1,4 +1,6 @@
 import type { EquipmentVisuals, RigManifestInput, RigSnapshot } from '../rig';
+import type { ContextFailure, ContextState } from '../core/context-guard';
+import type { RenderQualitySource } from '../quality/tiers';
 
 /** Coordinates are supplied by core; this package only projects them to world/screen. */
 export interface BattleCell {
@@ -52,6 +54,7 @@ export type BattleSnapshot = RigSnapshot & {
 export interface BattleRenderer {
   readonly stats: BattleRenderStats;
   readonly camera: BattleCameraControl;
+  readonly contextState: ContextState;
   updateUnits(units: readonly BattleMarker[]): void;
   setHighlights(highlights: BattleHighlights): void;
   render(timeMs: number, reducedMotion?: boolean): void;
@@ -65,4 +68,10 @@ export interface BattleRenderer {
 export interface BattleRendererOptions {
   readonly rig?: RigManifestInput;
   readonly reducedMotion?: boolean;
+  readonly quality?: RenderQualitySource;
+  readonly onContextStateChange?: (state: ContextState) => void;
+  readonly onContextLoss?: (sessionLossCount: number) => void;
+  readonly onContextRecreate?: () => Promise<boolean>;
+  readonly onContextFatal?: (kind: ContextFailure) => void;
+  readonly requestFrame?: () => void;
 }

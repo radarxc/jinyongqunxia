@@ -11,7 +11,11 @@ const fake = vi.hoisted(() => ({
         info: { render: { calls: number } };
       }
     | undefined,
-  rigSet: { dispose: vi.fn() },
+  rigSet: { texture: { needsUpdate: false }, dispose: vi.fn() },
+  context: { isContextLost: vi.fn(() => false) },
+  forceContextLoss: vi.fn(),
+  coreMeshDispose: vi.fn(),
+  pixelRatios: [] as number[],
 }));
 
 vi.mock('three', async (importOriginal) => {
@@ -30,16 +34,19 @@ vi.mock('three', async (importOriginal) => {
     }
     setPixelRatio(value: number) {
       this.pixelRatio = value;
+      fake.pixelRatios.push(value);
     }
     getPixelRatio() {
       return this.pixelRatio;
     }
     setSize() {}
+    getContext() { return fake.context; }
     render(scene: Three.Scene) {
       this.renders += 1;
       this.scene = scene;
       this.info.render.calls = 7;
     }
+    forceContextLoss() { fake.forceContextLoss(); }
     dispose() {}
   }
   return { ...actual, WebGLRenderer: HeadlessRenderer };
@@ -58,6 +65,7 @@ vi.mock('../rig/character', () => ({
 }));
 vi.mock('../rig/batch', () => ({
   RigBatch: class {
+    readonly coreMesh = { dispose: fake.coreMeshDispose };
     addTo() {}
     add() {}
     sync() {}
@@ -88,6 +96,7 @@ const map: MapGeometryView = {
 
 beforeEach(() => {
   fake.renderer = undefined;
+  fake.pixelRatios.length = 0;
   vi.clearAllMocks();
 });
 
@@ -108,6 +117,53 @@ describe('world map time of day', () => {
     expect(sun?.intensity).toBeCloseTo(0.25 * 2.2);
     expect(fake.renderer?.renders).toBe(1);
     expect(world.stats.drawCalls).toBe(7);
+    world.dispose();
+  });
+
+  it('releases the rig core mesh and the WebGL context exactly once', async () => {
+    const world = await createWorldMapScene(document.createElement('canvas'), map, {
+      actor: { point: [5, 5], walking: false, equipment: {} },
+    });
+    world.dispose();
+    world.dispose();
+    expect(fake.coreMeshDispose).toHaveBeenCalledOnce();
+    expect(fake.forceContextLoss).toHaveBeenCalledOnce();
+  });
+
+  it('does not compound render scale when zoom triggers a resize', async () => {
+    const quality = { tier: 'low' as const, renderScale: 0.7, effectivePixelRatio: (dpr: number) => dpr * 0.7 };
+    const canvas = document.createElement('canvas');
+    Object.defineProperties(canvas, { clientWidth: { value: 320 }, clientHeight: { value: 180 } });
+    const world = await createWorldMapScene(canvas, map, {
+      actor: { point: [5, 5], walking: false, equipment: {} }, quality,
+    });
+    world.resize(320, 180, 2);
+    world.setZoom(1.5);
+    expect(fake.pixelRatios.at(-1)).toBeCloseTo(1.4);
+    world.dispose();
+  });
+
+  it('pauses on context loss, restores night lighting and discards the wake interval', async () => {
+    const canvas = document.createElement('canvas');
+    const sample = vi.fn();
+    const requestFrame = vi.fn();
+    const quality = { tier: 'mid' as const, renderScale: 0.9, effectivePixelRatio: () => 1.35, sample };
+    const world = await createWorldMapScene(canvas, map, {
+      actor: { point: [5, 5], walking: false, equipment: {} }, quality, requestFrame,
+    });
+    world.resize(320, 180, 3);
+    world.setTimeOfDay(0);
+    world.render(100);
+    canvas.dispatchEvent(new Event('webglcontextlost', { cancelable: true }));
+    world.render(200);
+    expect(fake.renderer?.renders).toBe(1);
+    canvas.dispatchEvent(new Event('webglcontextrestored'));
+    world.render(4_000);
+    expect(world.stats.frameMs).toBe(0);
+    expect(sample).not.toHaveBeenCalled();
+    expect(fake.pixelRatios.at(-1)).toBe(1.35);
+    expect(fake.renderer?.clearColor.getHexString(SRGBColorSpace)).toBe('2a3140');
+    expect(requestFrame).toHaveBeenCalledOnce();
     world.dispose();
   });
 });

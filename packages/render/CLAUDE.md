@@ -5,7 +5,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 ## 六角战场 API（ENG-10）
 
 - 从 `@tianshu/render/battle` 动态导入 `createBattleRenderer(canvas,cells)`；战场采用 Three WebGL 2.5D 层，不另建 DOM 六角几何。
-- `HexLayer` 用一个 `InstancedMesh` 绘制最多 400 格；选中 / 就绪 / 可达 / 招式范围写 uniform 数组，不重建 geometry。地形颜色是实例属性。
+- `HexLayer` 用一个 `InstancedMesh` 绘制最多 400 格；选中 / 就绪 / 可达 / 招式范围写入 400×1 RGBA8 `DataTexture`，不得改回大数组 fragment uniform。地形颜色是实例属性。
 - `updateUnits()` 只消费 `BattleMarker[]`，以 ENG-12 `RigBatch` 呈现分层身体与装备；位置、朝向或装备不变时不重复写角色状态，每帧只做一次 `batch.sync()`。
 - 六向 `HexDir` 必须经 `hexDirToRig()` 映射为 `Dir8`。共享边拾取先按投影中心距，再按 `(r,q)`，与 design/09 §10 一致。
 - `project()` 给 Vue 标签提供屏幕坐标；应用层按单位位置缓存，只在单位移动或 resize 时重投影。renderer 不计算可达、敌我或命中。
@@ -67,6 +67,14 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - 无绑定、composition / catalog / 贴图 / 角色快照失败均不阻断战斗：退到 plain-strike 或程序色块，并按 move/reason 去重 `console.warn`，同时增加 `stage.stats.fallbacks`。命中、外放抵消、透劲入体、打穴分别是金 / 青 / 紫 / 赤的简洁目标环。
 - `/content/vfx/runtime-files.json` 是发布白名单；由 `python3 tools/vfx/export_bindings.py` 从作者 YAML 生成，包含 bindings、catalog、74 套正式 composition、2 套 baseline、source-sheet 与 emitter。构建复制到 public，但 PWA precache 明确排除，保持按招式请求。降龙亢龙直接消费 composition 的 `scale:[1,2]`，不得再乘 2。
 
+## 上下文恢复与自适应质量 API（ENG-21b）
+
+- `createContextGuard()` 管理 `ok / lost / failed`；丢失时必须 `preventDefault()`、停绘并报告计数，5 秒未恢复转 `failed`。恢复顺序为重设 DPR、重设尺寸、场景重建 render target / uniform / DataTexture，最后请求一帧；回前台先查 `renderer.getContext().isContextLost()`。
+- render 不读写存储。应用把 `onContextLoss` 接到一周计数，把 `onContextStateChange` 接纯 DOM 恢复页；`dispose()` 先移除守卫监听，再释放资源、调用 `renderer.forceContextLoss()` 与 `renderer.dispose()`。
+- `quality/tiers.ts` 是四档唯一代码表；所有可修改场景都通过 `effectivePixelRatio(deviceDpr, quality)` 计算 DPR。`AutoTuner` 使用固定 60 帧环形缓冲，每 500 ms 最多下降 0.05，在档位下限持续超预算 5 秒才降档；会话内不自动升档。
+- 应用入口 `createRenderQuality()` 负责一次 GPU 探测、30 天档位缓存、7 天丢失计数与 `?tier=` 覆盖；设置页以后只调用其 `setTier('auto' | 'low' | 'mid' | 'high' | 'ultra')` / `clearCachedDetection()`，不得把 localStorage 下沉到 render。
+- 战斗、大地图、VFX 渲染器已接守卫与共享质量代理；大地图页面仍需在首屏主动调用 `createRenderQuality()`。VFX 仍是第二 WebGL 上下文。城镇接线、标题画面基准、温控、FramePacer、`?perf=1` 与 Playwright 恢复场景不属于本批。
+
 ## 下游交接
 
 - ENG-08 大地图已按上述接口接入；ENG-09 城镇区域加载时共享一个 `RigSet`/`RigBatch`，只把可见角色加入批次；超过 100 人时先把远景 C 级路人降为合成人群卡。
@@ -86,11 +94,14 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - 锁文件实际版本为 Three 0.186.1；未新增依赖。战斗专项测试覆盖方向映射、共享边裁决，根 `pnpm check` 继续执行 rig P95 和 bundle size 门禁。
 - [Three WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)、[Texture](https://threejs.org/docs/pages/Texture.html)、[TextureLoader](https://threejs.org/docs/pages/TextureLoader.html)：核实 `powerPreference`、像素比、异步贴图加载及 renderer / texture 的显式 `dispose()`；访问日期 2026-10-01。
 - [Three Color](https://threejs.org/docs/pages/Color.html)、[WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)、[ShaderMaterial](https://threejs.org/docs/pages/ShaderMaterial.html)、[Material](https://threejs.org/docs/pages/Material.html)：核实 `setRGB(..., SRGBColorSpace)`、`info.autoReset/reset()`、手动 clear、uniform、混合/深度状态与显式释放；2026-10-02 联网返回 HTTP 200。
+- [MDN webglcontextlost](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/webglcontextlost_event)、[webglcontextrestored](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/webglcontextrestored_event)、[isContextLost](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isContextLost)、[WEBGL_lose_context](https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_lose_context)：核实丢失阻止默认行为、恢复事件、前台检查和开发测试扩展；访问日期 2026-10-02。
+- [Three WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)、[DataTexture](https://threejs.org/docs/pages/DataTexture.html)、[MDN deviceMemory](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/deviceMemory)、[localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)：核实上下文/资源 API、RGBA8 数据纹理、设备内存提示与缓存异常边界；访问日期 2026-10-02。
 
 ## 待决事项 / 依赖
 
 - （待实测）WebGL2 真机的共享边触控、低端 Android GPU shader uniform 上限、横竖屏切换与上下文丢失恢复；当前提供 DOM 格列表降级，不宣称真机完成。
 - ENG-11 若增加 VFX mesh / 粒子池，必须保留战场 terrain 1 draw、rig 2 draw 的基线统计，并为新增 GPU 资源补 dispose。
 - （待实测）VFX 的 WebGL draw / GPU 帧耗时、上下文丢失恢复与低端 Android 多特效表现；当前 Node 门禁只验证 48 个并发时间轴 / 实例属性计算 P95 < 16.67 ms，不冒充 GPU 真机数据。
+- （待实测）战斗 / 大地图 / VFX 的丢失遮罩、5 秒失败分支、资源恢复、各档实际 FPS 与显存；开发环境可用 `renderer.getContext().getExtension('WEBGL_lose_context')` 的 `loseContext()` / `restoreContext()` 驱动验证。
 - （待实测）城镇大理 / 杭州在桌面与中端手机的实际 P50/P95 帧时间、显存峰值、触控拾取和 WebGL 上下文恢复；当前只交付结构统计与合批/裁剪测试，不把 Node 测试冒充帧率数据。
 - 【建议值】战斗 multiply tint 的夜间通道下限暂取 0.42、混合强度 0.58；待真机逐关键帧校色后固化或按书界覆写。大地图页面尚须由 ENG-15 后续 UI 接线在世界时钟变化时调用 `setTimeOfDay(hours)`。

@@ -3,6 +3,8 @@ import { cameraBack, IsoCameraRotation } from '../camera/iso-camera';
 import { hexDirToRig } from '../camera/facing';
 import { createTimeTintPass } from '../lighting/tint-pass';
 import { createTimeOfDayFrame, evaluateTimeOfDay } from '../lighting/time-of-day';
+import { createContextGuard } from '../core/context-guard';
+import { getDefaultRenderQuality } from '../quality/tiers';
 import { RigBatch } from '../rig/batch';
 import { createRigCharacter, type RigInstance } from '../rig/character';
 import { equipmentEquals, weightClassForEquipment } from '../rig/equipment';
@@ -46,6 +48,7 @@ export async function createBattleRenderer(
   renderer.setClearColor(0xe7dec8);
   renderer.autoClear = false;
   renderer.info.autoReset = false;
+  const quality = options.quality ?? getDefaultRenderQuality();
   const scene = new Scene();
   const camera = new OrthographicCamera(-6, 6, 4, -4, 0.1, 100);
   const terrain = new HexLayer(cells);
@@ -58,7 +61,7 @@ export async function createBattleRenderer(
   } catch (error) {
     terrain.dispose();
     tintPass.dispose();
-    renderer.dispose();
+    renderer.forceContextLoss(); renderer.dispose();
     throw error;
   }
   const batch = new RigBatch(rigSet, 100);
@@ -103,10 +106,32 @@ export async function createBattleRenderer(
   placeCamera();
   let width = 1;
   let height = 1;
+  let deviceDpr = 1;
+  let appliedPixelRatio = quality.effectivePixelRatio(deviceDpr);
   let previousTime = 0;
+  let samplingPrevious: number | undefined;
   let disposed = false;
   let pickBlockedUntil = 0;
   let snapPickGuardPending = false;
+  const contextGuard = createContextGuard(canvas, renderer, {
+    onStateChange: (state) => {
+      previousTime = 0; samplingPrevious = undefined;
+      quality.invalidateSamples?.(performance.now());
+      options.onContextStateChange?.(state);
+    },
+    onLoss: (count) => { quality.reportContextLoss?.(); options.onContextLoss?.(count); },
+    onRecreate: options.onContextRecreate,
+    onFatal: options.onContextFatal,
+    onRestore: () => {
+      terrain.restore();
+      rigSet.texture.needsUpdate = true;
+      tintPass.setTime(timeFrame);
+    },
+    requestFrame: () => {
+      previousTime = 0; samplingPrevious = undefined;
+      quality.invalidateSamples?.(performance.now()); options.requestFrame?.();
+    },
+  });
   evaluateTimeOfDay(12, timeFrame);
   tintPass.setTime(timeFrame);
   const stats = {
@@ -147,8 +172,10 @@ export async function createBattleRenderer(
   return {
     stats,
     camera: cameraControl,
+    get contextState() { return contextGuard.state; },
     updateUnits(units) {
       if (disposed) return;
+      quality.invalidateSamples?.(performance.now());
       for (const unit of units) {
         let entry = characters.get(unit.id);
         if (!entry) {
@@ -182,7 +209,7 @@ export async function createBattleRenderer(
     },
     setHighlights: (value) => terrain.setHighlights(value),
     render(timeMs, reducedMotion = false) {
-      if (disposed) return;
+      if (!contextGuard.canRender) { samplingPrevious = undefined; previousTime = 0; return; }
       if (snapPickGuardPending) {
         pickBlockedUntil = Math.max(pickBlockedUntil, timeMs + 150);
         snapPickGuardPending = false;
@@ -207,14 +234,23 @@ export async function createBattleRenderer(
       renderer.clearDepth();
       tintPass.render(renderer);
       stats.cpuMs = performance.now() - start;
-      stats.frameMs = dt * 1000;
+      stats.frameMs = samplingPrevious === undefined ? 0 : Math.max(0, timeMs - samplingPrevious);
+      samplingPrevious = timeMs;
+      if (stats.frameMs > 0) quality.sample?.(stats.frameMs, stats.cpuMs, timeMs);
+      const nextPixelRatio = quality.effectivePixelRatio(deviceDpr);
+      if (nextPixelRatio !== appliedPixelRatio) {
+        appliedPixelRatio = nextPixelRatio; contextGuard.resize(width, height, appliedPixelRatio);
+      }
       stats.drawCalls = renderer.info.render.calls;
       stats.characters = batch.stats.characters;
       stats.instances = batch.stats.activeInstances;
     },
     resize(nextWidth, nextHeight, pixelRatio = 1) {
+      if (disposed) return;
       width = Math.max(1, nextWidth);
       height = Math.max(1, nextHeight);
+      deviceDpr = pixelRatio; appliedPixelRatio = quality.effectivePixelRatio(deviceDpr);
+      quality.markSizeChanged?.(performance.now());
       const aspect = width / height;
       const halfHeight = Math.max(radius * 0.65, radius / aspect);
       camera.left = -halfHeight * aspect;
@@ -222,8 +258,7 @@ export async function createBattleRenderer(
       camera.top = halfHeight;
       camera.bottom = -halfHeight;
       camera.updateProjectionMatrix();
-      renderer.setPixelRatio(Math.min(2, Math.max(1, pixelRatio)));
-      renderer.setSize(width, height, false);
+      contextGuard.resize(width, height, appliedPixelRatio);
     },
     project(q, r, elevation, out) {
       hexWorld(q, r, elevation, point).project(camera);
@@ -260,6 +295,7 @@ export async function createBattleRenderer(
       tintPass.setTime(timeFrame);
     },
     pick(x, y) {
+      if (!contextGuard.canRender) return null;
       if (rotation.rotating || snapPickGuardPending || previousTime < pickBlockedUntil) return null;
       mouse.set((x / width) * 2 - 1, 1 - (y / height) * 2);
       raycaster.setFromCamera(mouse, camera);
@@ -283,6 +319,7 @@ export async function createBattleRenderer(
     dispose() {
       if (disposed) return;
       disposed = true;
+      contextGuard.dispose();
       for (const entry of characters.values()) entry.character.dispose();
       characters.clear();
       batch.coreMesh.dispose();
@@ -290,6 +327,7 @@ export async function createBattleRenderer(
       rigSet.dispose();
       terrain.dispose();
       tintPass.dispose();
+      renderer.forceContextLoss();
       renderer.dispose();
     },
   };

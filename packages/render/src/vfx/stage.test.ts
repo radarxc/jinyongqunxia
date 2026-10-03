@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { Texture } from 'three';
 import type * as Three from 'three';
 
-const fake = vi.hoisted(() => ({ targets: [] as unknown[], renders: 0, disposed: 0 }));
+const fake = vi.hoisted(() => ({ targets: [] as unknown[], renders: 0, disposed: 0, forceContextLoss: 0, draws: 0 }));
 vi.mock('three', async importOriginal => {
   const actual = await importOriginal<typeof Three>();
   class HeadlessRenderer {
@@ -13,16 +13,22 @@ vi.mock('three', async importOriginal => {
     setPixelRatio(value: number) { this.pixelRatio = value; }
     getPixelRatio() { return this.pixelRatio; }
     setSize() {}
+    getContext() { return { isContextLost: () => false }; }
     setRenderTarget(value: unknown) { fake.targets.push(value); }
     clear() {}
-    render() { fake.renders += 1; }
+    render(scene: Three.Scene) {
+      fake.renders += 1;
+      scene.traverseVisible(object => { if ('isMesh' in object) fake.draws += 1; });
+    }
+    forceContextLoss() { fake.forceContextLoss += 1; }
     dispose() { fake.disposed += 1; }
   }
   return { ...actual, WebGLRenderer: HeadlessRenderer };
 });
 
-import { createBattleVfxStage } from './stage';
+import { createBattleVfxStage, sampleVfxBatchFrame } from './stage';
 import type { BattleVfxStageOptions, VfxComposition, VfxPlayRequest } from './types';
+import type { QualityTier, RenderQualitySource } from '../quality/tiers';
 
 const composition: VfxComposition = {
   kind: 'TemplateComposition', version: 1, canvas_px: [100, 100], background: '#000000',
@@ -41,8 +47,28 @@ const request: VfxPlayRequest = { moveId: 'mv_test', from: marker,
   targets: [{ ...marker, id: 'target', q: 1 }], accents: ['hit'] };
 
 describe('battle VFX stage', () => {
+  it('rejects afterimage counts beyond the fixed scratch capacity', () => {
+    const invalid = {
+      ...afterimage,
+      template: { ...afterimage.template!, params: { duration_s: 0.48, copies: 6, spacing_px: 28 } },
+    };
+    expect(() => sampleVfxBatchFrame([invalid], 0.1, new Float32Array(15)))
+      .toThrow('Afterimage copies must be 3 to 5');
+  });
+
+  it('preserves timeline validation and clamps a single authored frame', () => {
+    const mismatched = { ...composition, template: { ...composition.template!,
+      params: { duration_s: 0.31 } } };
+    expect(() => sampleVfxBatchFrame([mismatched], 0.1, new Float32Array(15)))
+      .toThrow('Template duration_s must equal the rhythm duration');
+    const singleFrame = { ...composition, effect: { size_px: [10, 10] as const,
+      direction: [1, 0] as const, reference_length_px: 10, root_width_px: 2,
+      blend: 'screen' as const, frames: [{ file: 'a.png', anchor_px: [0, 5] as const, phase: 0 }] } };
+    expect(() => sampleVfxBatchFrame([singleFrame], 0.32, new Float32Array(15))).not.toThrow();
+  });
+
   it('renders through a linear target, counts fallbacks and releases owned resources', async () => {
-    fake.targets.length = 0; fake.renders = 0; fake.disposed = 0;
+    fake.targets.length = 0; fake.renders = 0; fake.disposed = 0; fake.forceContextLoss = 0;
     let clock = 100;
     const textureDispose = vi.fn();
     const texture = new Texture(); texture.dispose = textureDispose;
@@ -61,6 +87,7 @@ describe('battle VFX stage', () => {
     expect(fake.renders).toBe(2); expect(stage.stats).toMatchObject({ active: 1, fallbacks: 1, textures: 1 });
     clock += 500; stage.render(clock); expect(stage.stats.active).toBe(0);
     stage.dispose(); expect(textureDispose).toHaveBeenCalledOnce(); expect(fake.disposed).toBe(1);
+    expect(fake.forceContextLoss).toBe(1);
     await expect(stage.play(request)).rejects.toThrow('VFX_STAGE_DISPOSED');
   });
 
@@ -80,5 +107,36 @@ describe('battle VFX stage', () => {
     await expect(stage.play(request)).resolves.toMatchObject({ fallback: true });
     expect(stage.stats.fallbacks).toBe(1); expect(warning).toHaveBeenCalledOnce();
     stage.dispose(); getContext.mockRestore(); warning.mockRestore();
+  });
+
+  it('tightens the active effect limit after a runtime tier drop', async () => {
+    let tier: QualityTier = 'high';
+    const quality: RenderQualitySource = {
+      get tier() { return tier; }, get renderScale() { return 1; }, effectivePixelRatio: value => value,
+    };
+    const assetStore = { load: vi.fn(async () => ({ resolved: { binding: null, mode: 'plain_strike' as const,
+      color: '#F4F4F4', durationMs: 320, fallback: false }, composition })) };
+    const textureStore = { size: 0, load: vi.fn(), dispose: vi.fn() };
+    const stage = createBattleVfxStage(document.createElement('canvas'), { quality, assetStore, textureStore, now: () => 0 });
+    for (let index = 0; index < 9; index += 1) await stage.play({ ...request, moveId: `mv_test_${index}` });
+    expect(stage.stats.active).toBe(9);
+    tier = 'low'; stage.render(1);
+    expect(stage.stats.active).toBe(8);
+    stage.dispose();
+  });
+
+  it('caps actual mesh draws including afterimages and the final display pass', async () => {
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const quality = { tier: 'low' as const, renderScale: 0.85, effectivePixelRatio: () => 0.85 };
+    const assetStore = { load: vi.fn(async () => ({ resolved: { binding: null, mode: 'afterimage' as const,
+      color: '#F4F4F4', durationMs: 480, fallback: false }, composition: afterimage })) };
+    const stage = createBattleVfxStage(document.createElement('canvas'), { quality, assetStore, now: () => 0,
+      textureStore: { size: 0, load: vi.fn(), dispose: vi.fn() } });
+    for (let index = 0; index < 8; index += 1) await stage.play(request);
+    fake.draws = 0; stage.render(100);
+    expect(fake.draws).toBeLessThanOrEqual(8);
+    expect(fake.draws).toBeGreaterThan(1);
+    stage.dispose();
+    vi.restoreAllMocks();
   });
 });

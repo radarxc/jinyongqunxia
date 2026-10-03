@@ -18,6 +18,8 @@ import { createRigCharacter } from '../rig/character';
 import { createPlaceholderRigManifest } from '../rig/placeholder';
 import { loadRigSet } from '../rig/manifest';
 import { createTimeOfDayFrame, evaluateTimeOfDay, sunAzimuthDeg } from '../lighting/time-of-day';
+import { createContextGuard } from '../core/context-guard';
+import { getDefaultRenderQuality } from '../quality/tiers';
 import { createDestinationMarker, createWorldMapGeometry, mapPointToWorld } from './geometry';
 import type { MapActorView, WorldMapScene, WorldMapSceneOptions, WorldMapStats } from './types';
 import type { MapGeometryView } from './types';
@@ -45,6 +47,7 @@ export async function createWorldMapScene(
     powerPreference: 'high-performance',
   });
   renderer.setClearColor(new Color(0xddd0ad), 1);
+  const quality = options.quality ?? getDefaultRenderQuality();
   const scene = new Scene();
   const camera = new OrthographicCamera(-10, 10, 6, -6, 0.1, 80);
   let mapTexture: Texture | undefined;
@@ -70,7 +73,12 @@ export async function createWorldMapScene(
   let sunOffsetZ = 0;
   const marker = createDestinationMarker();
   scene.add(marker);
-  const rigSet = await loadRigSet(createPlaceholderRigManifest('worldmap-player'));
+  let rigSet;
+  try { rigSet = await loadRigSet(createPlaceholderRigManifest('worldmap-player')); }
+  catch (error) {
+    geometry.dispose(); mapTexture?.dispose(); disposeObject(marker);
+    renderer.forceContextLoss(); renderer.dispose(); throw error;
+  }
   const batch = new RigBatch(rigSet, 1);
   batch.addTo(scene);
   const actor = createRigCharacter(rigSet, options.actor.equipment, 1);
@@ -89,7 +97,32 @@ export async function createWorldMapScene(
   let zoom = options.zoom ?? 1;
   let current = options.actor;
   let previous = 0;
+  let samplingPrevious: number | undefined;
   let disposed = false;
+  let viewportWidth = 1; let viewportHeight = 1;
+  let deviceDpr = 1; let appliedPixelRatio = quality.effectivePixelRatio(deviceDpr);
+  const contextGuard = createContextGuard(canvas, renderer, {
+    onStateChange: (state) => {
+      previous = 0; samplingPrevious = undefined; quality.invalidateSamples?.(performance.now());
+      options.onContextStateChange?.(state);
+    },
+    onLoss: (count) => { quality.reportContextLoss?.(); options.onContextLoss?.(count); },
+    onRecreate: options.onContextRecreate,
+    onFatal: options.onContextFatal,
+    onRestore: () => {
+      if (mapTexture) mapTexture.needsUpdate = true;
+      rigSet.texture.needsUpdate = true;
+      geometry.group.traverse((object) => {
+        const material = (object as Object3D & { material?: { needsUpdate: boolean; map?: Texture } }).material;
+        if (material) { material.needsUpdate = true; if (material.map) material.map.needsUpdate = true; }
+      });
+      setTimeOfDay(timeFrame.hours);
+    },
+    requestFrame: () => {
+      previous = 0; samplingPrevious = undefined; quality.invalidateSamples?.(performance.now());
+      options.requestFrame?.();
+    },
+  });
   function setTimeOfDay(hours: number): void {
     evaluateTimeOfDay(hours, timeFrame);
     ambient.color.setRGB(
@@ -136,23 +169,26 @@ export async function createWorldMapScene(
     placeSun();
   }
   function resize(width: number, height: number, pixelRatio = 1): void {
-    const safeHeight = Math.max(1, height);
-    const aspect = width / safeHeight;
+    if (disposed) return;
+    viewportWidth = Math.max(1, width); viewportHeight = Math.max(1, height);
+    const aspect = viewportWidth / viewportHeight;
     camera.left = (-6 * aspect) / zoom;
     camera.right = (6 * aspect) / zoom;
     camera.top = 6 / zoom;
     camera.bottom = -6 / zoom;
     camera.updateProjectionMatrix();
-    renderer.setPixelRatio(Math.min(2, Math.max(1, pixelRatio)));
-    renderer.setSize(width, safeHeight, false);
+    quality.markSizeChanged?.(performance.now());
+    deviceDpr = pixelRatio; appliedPixelRatio = quality.effectivePixelRatio(deviceDpr);
+    contextGuard.resize(viewportWidth, viewportHeight, appliedPixelRatio);
   }
   place(current);
   setTimeOfDay(12);
 
   return {
     stats,
+    get contextState() { return contextGuard.state; },
     render(timeMs) {
-      if (disposed) return;
+      if (!contextGuard.canRender) { previous = 0; samplingPrevious = undefined; return; }
       const started = performance.now();
       const dt = previous === 0 ? 0 : Math.min(0.1, Math.max(0, (timeMs - previous) / 1_000));
       previous = timeMs;
@@ -160,7 +196,13 @@ export async function createWorldMapScene(
       batch.sync();
       renderer.render(scene, camera);
       stats.cpuMs = performance.now() - started;
-      stats.frameMs = dt * 1_000;
+      stats.frameMs = samplingPrevious === undefined ? 0 : Math.max(0, timeMs - samplingPrevious);
+      samplingPrevious = timeMs;
+      if (stats.frameMs > 0) quality.sample?.(stats.frameMs, stats.cpuMs, timeMs);
+      const nextPixelRatio = quality.effectivePixelRatio(deviceDpr);
+      if (nextPixelRatio !== appliedPixelRatio) {
+        appliedPixelRatio = nextPixelRatio; contextGuard.resize(viewportWidth, viewportHeight, appliedPixelRatio);
+      }
       stats.drawCalls = renderer.info.render.calls;
       stats.triangles = renderer.info.render.triangles;
       stats.instances = actor.activeInstanceCount;
@@ -168,6 +210,7 @@ export async function createWorldMapScene(
     resize,
     setTimeOfDay,
     async setActor(view) {
+      if (disposed) return;
       current = view;
       await actor.setEquipment(view.equipment);
       place(view);
@@ -185,10 +228,10 @@ export async function createWorldMapScene(
       zoom = Math.min(2.5, Math.max(0.65, next));
       const width = canvas.clientWidth || canvas.width;
       const height = canvas.clientHeight || canvas.height;
-      resize(width, height, renderer.getPixelRatio());
+      resize(width, height, deviceDpr);
     },
     pickNode(clientX, clientY, bounds) {
-      if (bounds.width <= 0 || bounds.height <= 0) return null;
+      if (!contextGuard.canRender || bounds.width <= 0 || bounds.height <= 0) return null;
       pointer.set(
         ((clientX - bounds.left) * 2) / bounds.width - 1,
         1 - ((clientY - bounds.top) * 2) / bounds.height,
@@ -200,12 +243,15 @@ export async function createWorldMapScene(
     dispose() {
       if (disposed) return;
       disposed = true;
+      contextGuard.dispose();
       actor.dispose();
+      batch.coreMesh.dispose();
       batch.dispose();
       rigSet.dispose();
       geometry.dispose();
       mapTexture?.dispose();
       disposeObject(marker);
+      renderer.forceContextLoss();
       renderer.dispose();
     },
   };

@@ -8,7 +8,8 @@ import { VfxAssetStore } from './assets';
 import type { VfxAssetPlan } from './assets';
 import { ObjectPool } from './pool';
 import { VfxTextureStore } from './texture-store';
-import { sampleTimeline } from './timeline';
+import { createContextGuard, type ContextFailure, type ContextState } from '../core/context-guard';
+import { getDefaultRenderQuality, QUALITY_TIERS, type RenderQualitySource } from '../quality/tiers';
 import type { BattleVfxStage, BattleVfxStageOptions, VfxAccent, VfxComposition, VfxEffect, VfxPlayRequest, VfxProjector, VfxStageStats } from './types';
 
 const MAX_ACTIVE = 48;
@@ -21,29 +22,132 @@ const ATTRIBUTE_SIZE = 15;
 const ATTRIBUTE_SCALE = 9;
 export const VFX_POOL_CAPACITY = MAX_ACTIVE;
 
-export function effectDisplayScale(composition: VfxComposition, distancePx: number): readonly [number, number] {
+export interface RecoverableVfxStageOptions extends BattleVfxStageOptions {
+  readonly quality?: RenderQualitySource;
+  readonly onContextStateChange?: (state: ContextState) => void;
+  readonly onContextLoss?: (sessionLossCount: number) => void;
+  readonly onContextRecreate?: () => Promise<boolean>;
+  readonly onContextFatal?: (kind: ContextFailure) => void;
+  readonly requestFrame?: () => void;
+}
+export interface RecoverableVfxStage extends BattleVfxStage {
+  readonly contextState: ContextState;
+  readonly stats: VfxStageStats & { drawCalls: number; particles: number; cpuMs: number };
+}
+
+function effectDisplayScaleInto(composition: VfxComposition, distancePx: number, output: Float32Array): void {
   const effect = composition.effect;
-  if (!effect) return [1, 1];
+  if (!effect) { output[0] = 1; output[1] = 1; return; }
   const length = Math.max(56, distancePx) / Math.max(1, effect.reference_length_px) * composition.scale[0];
   const width = composition.emitter
     ? composition.emitter_scale * composition.emitter.emission_width_px
       * EMITTER_DISPLAY_SCALE / Math.max(1, effect.root_width_px) * composition.scale[1]
     : length * composition.scale[1];
-  return [length, width];
+  output[0] = length; output[1] = width;
 }
+
+export function effectDisplayScale(composition: VfxComposition, distancePx: number): readonly [number, number] {
+  const output = new Float32Array(2); effectDisplayScaleInto(composition, distancePx, output);
+  return [output[0]!, output[1]!];
+}
+
+interface TimelineScratch {
+  frameIndex: number; nextFrameIndex: number; mix: number; alpha: number; scale: number;
+  driftPx: number; brightness: number; maskEnabled: boolean; maskSoftness: number; reveal: number; erase: number;
+  ghostCount: number; readonly ghostAlpha: Float32Array; readonly ghostOffset: Float32Array; readonly ghostStretch: Float32Array;
+}
+
+function createTimelineScratch(): TimelineScratch {
+  return { frameIndex: 0, nextFrameIndex: 0, mix: 0, alpha: 1, scale: 1, driftPx: 0, brightness: 1,
+    maskEnabled: false, maskSoftness: 0.08, reveal: 1, erase: 0, ghostCount: 0,
+    ghostAlpha: new Float32Array(MAX_GHOSTS), ghostOffset: new Float32Array(MAX_GHOSTS),
+    ghostStretch: new Float32Array(MAX_GHOSTS) };
+}
+
+const clamp01 = (value: number): number => Math.min(1, Math.max(0, value));
+const smooth = (value: number): number => { const x = clamp01(value); return x * x * (3 - 2 * x); };
+
+function sampleTimelineInto(composition: VfxComposition, seconds: number, output: TimelineScratch): void {
+  if (!Number.isFinite(seconds)) throw new Error('Time must be finite');
+  const rhythm = composition.rhythm;
+  const charge = rhythm.charge_s; const release = rhythm.release_s;
+  const sustain = rhythm.sustain_s; const dissipate = rhythm.dissipate_s;
+  if (!Number.isFinite(charge) || charge < 0 || !Number.isFinite(release) || release < 0
+    || !Number.isFinite(sustain) || sustain < 0 || !Number.isFinite(dissipate) || dissipate < 0)
+    throw new Error('Invalid rhythm');
+  const duration = Number((charge + release + sustain + dissipate).toFixed(12));
+  if (!(duration > 0)) throw new Error('Duration must be positive');
+  const expected = composition.template?.params['duration_s'];
+  if (composition.template && (!Number.isFinite(expected) || (expected ?? 0) <= 0
+    || Math.abs(duration - expected!) > 1e-9))
+    throw new Error('Template duration_s must equal the rhythm duration');
+  if (composition.template?.mode === 'plain_strike' && duration > 0.4 + 1e-9)
+    throw new Error('Plain strike duration must not exceed 0.4 seconds');
+  const time = Math.min(duration, Math.max(0, seconds)); const phase = time / duration;
+  const frames = composition.effect?.frames; const frameCount = frames?.length ?? 0;
+  let frameIndex = 0;
+  while (frameIndex + 1 < Math.max(2, frameCount) && (frames?.[frameIndex + 1]?.phase ?? 1) <= phase) frameIndex += 1;
+  const nextFrameIndex = frameCount === 0 ? 1 : Math.min(frameIndex + 1, frameCount - 1);
+  const firstPhase = frames?.[frameIndex]?.phase ?? (frameIndex === 0 ? 0 : 1);
+  const nextPhase = frames?.[nextFrameIndex]?.phase ?? 1; const span = nextPhase - firstPhase;
+  output.frameIndex = frameIndex; output.nextFrameIndex = nextFrameIndex;
+  output.mix = composition.transition.interpolation === 'hold' || span === 0 ? 0 : clamp01((phase - firstPhase) / span);
+  output.alpha = 1; output.scale = 1; output.driftPx = 0; output.reveal = 1; output.erase = 0; output.ghostCount = 0;
+  const endRelease = rhythm.charge_s + rhythm.release_s; const endSustain = endRelease + rhythm.sustain_s;
+  if (time < rhythm.charge_s) { output.reveal = smooth(time / rhythm.charge_s); output.alpha = output.reveal;
+    output.scale = composition.transition.scale_from + (1 - composition.transition.scale_from) * output.reveal;
+  } else if (time >= endSustain) {
+    output.erase = rhythm.dissipate_s > 0 ? smooth((time - endSustain) / rhythm.dissipate_s) : 1;
+    output.alpha = 1 - output.erase; output.driftPx = composition.transition.drift_fraction
+      * (composition.length_px ?? composition.range_hex * composition.pixels_per_hex) * output.erase;
+  }
+  if (time === duration) { output.alpha = 0; output.erase = 1; }
+  const segment = time < rhythm.charge_s ? 0 : time < endRelease ? 1 : time < endSustain ? 2 : time < duration ? 3 : 4;
+  if (segment === 4) output.brightness = composition.transition.brightness[4];
+  else {
+    const starts = segment === 0 ? 0 : segment === 1 ? rhythm.charge_s : segment === 2 ? endRelease : endSustain;
+    const ends = segment === 0 ? rhythm.charge_s : segment === 1 ? endRelease : segment === 2 ? endSustain : duration;
+    const mix = (time - starts) / (ends - starts); const values = composition.transition.brightness;
+    output.brightness = values[segment]! + (values[segment + 1]! - values[segment]!) * mix;
+  }
+  const mask = composition.transition.directional_mask; output.maskEnabled = mask?.enabled ?? false;
+  output.maskSoftness = mask?.softness ?? 0.08;
+  const template = composition.template;
+  if (!template || template.mode === 'qi_projection') return;
+  const attack = 0.18; const envelope = phase < attack ? smooth(phase / attack) : 1 - smooth((phase - attack) / (1 - attack));
+  if (template.mode === 'plain_strike') {
+    output.alpha = envelope; output.brightness = 1; output.scale = 0.85 + 0.15 * smooth(phase / attack);
+    output.driftPx = 0; output.maskEnabled = false; output.maskSoftness = 0.08; output.reveal = 1; output.erase = 0; return;
+  }
+  const count = template.params['copies'] ?? 4; const spacing = template.params['spacing_px'] ?? 28;
+  const stretch = template.params['stretch'] ?? 0.04;
+  if (!Number.isInteger(count) || count < 3 || count > MAX_GHOSTS)
+    throw new Error('Afterimage copies must be 3 to 5');
+  if (!Number.isFinite(spacing) || spacing <= 0 || !Number.isFinite(stretch) || stretch < 0 || stretch > 0.1)
+    throw new Error('Invalid afterimage geometry');
+  output.alpha = 0; output.brightness = 1; output.driftPx = 0;
+  output.ghostCount = count;
+  for (let index = 0; index < count; index += 1) {
+    output.ghostAlpha[index] = envelope * 0.44 * (1 - index / count * 0.65);
+    output.ghostOffset[index] = (index + 1) * spacing * (1 + 0.25 * smooth((phase - attack) / (1 - attack)));
+    output.ghostStretch[index] = 1 + (index + 1) * stretch * envelope;
+  }
+}
+
+const batchTimeline = createTimelineScratch();
 
 /** Allocation-free portion of one frame; exported for the desktop performance gate. */
 export function sampleVfxBatchFrame(compositions: readonly VfxComposition[], timeSeconds: number, output: Float32Array): void {
   if (output.length < compositions.length * ATTRIBUTE_SIZE) throw new Error('VFX_FRAME_BUFFER_TOO_SMALL');
   for (let index = 0; index < compositions.length; index += 1) {
-    const state = sampleTimeline(compositions[index]!, timeSeconds); const offset = index * ATTRIBUTE_SIZE;
+    sampleTimelineInto(compositions[index]!, timeSeconds, batchTimeline); const state = batchTimeline; const offset = index * ATTRIBUTE_SIZE;
     output[offset] = state.alpha; output[offset + 1] = state.scale; output[offset + 2] = state.brightness;
     output[offset + 3] = state.mix; output[offset + 4] = state.driftPx;
-    output[offset + 5] = state.mask.enabled ? 1 : 0; output[offset + 6] = state.mask.softness;
-    output[offset + 7] = state.mask.reveal; output[offset + 8] = state.mask.erase;
+    output[offset + 5] = state.maskEnabled ? 1 : 0; output[offset + 6] = state.maskSoftness;
+    output[offset + 7] = state.reveal; output[offset + 8] = state.erase;
     for (let ghost = 0; ghost < MAX_GHOSTS; ghost += 1) {
-      const pose = state.ghosts?.[ghost]; const base = offset + ATTRIBUTE_SCALE + ghost;
-      output[base] = pose?.alpha ?? 0;
+      const base = offset + ATTRIBUTE_SCALE + ghost;
+      output[base] = ghost < state.ghostCount ? state.ghostAlpha[ghost]! : 0;
     }
   }
 }
@@ -120,6 +224,8 @@ interface Sprite {
   plan: VfxAssetPlan | null; fromX: number; fromY: number; toX: number; toY: number; angle: number;
   viewportWidth: number; viewportHeight: number;
   readonly accentX: Float32Array; readonly accentY: Float32Array;
+  readonly timeline: TimelineScratch; readonly uvA: Float32Array; readonly uvB: Float32Array;
+  readonly bounds: Float32Array; readonly displayScale: Float32Array;
   snapshotTexture: Texture | undefined; snapshotSize: readonly [number, number] | undefined;
   snapshotOffset: readonly [number, number] | undefined;
   snapshotCanvas: HTMLCanvasElement | undefined;
@@ -127,7 +233,7 @@ interface Sprite {
 
 function spriteMaterial(fragmentShader = SPRITE_FRAGMENT): ShaderMaterial {
   return new ShaderMaterial({ vertexShader: VERTEX, fragmentShader, transparent: true,
-    premultipliedAlpha: true, depthTest: false, depthWrite: false, side: DoubleSide, toneMapped: false,
+    premultipliedAlpha: true, depthTest: false, depthWrite: false, side: DoubleSide, forceSinglePass: true, toneMapped: false,
     uniforms: { map: { value: null }, uvRectA: { value: new Vector4(0, 0, 1, 1) },
       uvRectB: { value: new Vector4(0, 0, 1, 1) }, frameMix: { value: 0 },
       frameSizeA: { value: new Vector2(1, 1) }, frameSizeB: { value: new Vector2(1, 1) },
@@ -161,14 +267,18 @@ function createSprite(geometry: PlaneGeometry): Sprite {
   });
   return { root, effect, emitter, ghosts, accents, startedAt: 0, durationMs: 0, generation: 0,
     request: null, plan: null, fromX: 0, fromY: 0, toX: 0, toY: 0, angle: 0, viewportWidth: 1, viewportHeight: 1,
-    accentX: new Float32Array(4), accentY: new Float32Array(4), snapshotTexture: undefined,
+    accentX: new Float32Array(4), accentY: new Float32Array(4), timeline: createTimelineScratch(),
+    uvA: new Float32Array(6), uvB: new Float32Array(6), bounds: new Float32Array(4),
+    displayScale: new Float32Array(2), snapshotTexture: undefined,
     snapshotSize: undefined, snapshotOffset: undefined, snapshotCanvas: undefined };
 }
 
 function resetSprite(sprite: Sprite): void {
   sprite.generation += 1; sprite.request = null; sprite.plan = null;
   sprite.snapshotSize = undefined; sprite.snapshotOffset = undefined;
-  for (const mesh of [sprite.effect, sprite.emitter, ...sprite.ghosts, ...sprite.accents]) mesh.visible = false;
+  sprite.effect.visible = false; sprite.emitter.visible = false;
+  for (const mesh of sprite.ghosts) mesh.visible = false;
+  for (const mesh of sprite.accents) mesh.visible = false;
 }
 
 function assetUrl(base: string | undefined, file: string | undefined): string | undefined {
@@ -201,78 +311,81 @@ function setBlend(material: ShaderMaterial, mode: VfxEffect['blend'] | undefined
   material.needsUpdate = true;
 }
 
-function uvFor(texture: Texture, plan: VfxAssetPlan, frameIndex: number): { rect: readonly [number, number, number, number]; size: readonly [number, number] } {
+function uvForInto(texture: Texture, plan: VfxAssetPlan, frameIndex: number, output: Float32Array): void {
   const image = texture.image as { width?: number; height?: number } | undefined;
   const source = plan.composition.effect?.source; const rect = source?.rects[frameIndex]?.rect_px;
   const width = Math.max(1, image?.width ?? plan.composition.effect?.size_px[0] ?? 1);
   const height = Math.max(1, image?.height ?? plan.composition.effect?.size_px[1] ?? 1);
   const frameWidth = rect?.[2] ?? width; const frameHeight = rect?.[3] ?? height;
-  return { rect: [(rect?.[0] ?? 0) / width, (rect?.[1] ?? 0) / height, frameWidth / width, frameHeight / height],
-    size: [frameWidth, frameHeight] };
+  output[0] = (rect?.[0] ?? 0) / width; output[1] = (rect?.[1] ?? 0) / height;
+  output[2] = frameWidth / width; output[3] = frameHeight / height;
+  output[4] = frameWidth; output[5] = frameHeight;
 }
 
 /** Union of every root-aligned frame in the effect's own direction basis. */
-export function effectLocalBounds(effect: VfxEffect): readonly [number, number, number, number] {
+function effectLocalBoundsInto(effect: VfxEffect, output: Float32Array): void {
   const [width, height] = effect.size_px; const [dx, dy] = effect.direction;
   let left = Infinity; let top = Infinity; let right = -Infinity; let bottom = -Infinity;
-  const corners: readonly (readonly [number, number])[] = [[0, 0], [width, 0], [0, height], [width, height]];
-  for (const frame of effect.frames) for (const [x, y] of corners) {
+  for (const frame of effect.frames) for (let corner = 0; corner < 4; corner += 1) {
+    const x = corner & 1 ? width : 0; const y = corner & 2 ? height : 0;
     const px = x - frame.anchor_px[0]; const py = y - frame.anchor_px[1];
     const localX = dx * px + dy * py; const localY = -dy * px + dx * py;
-    left = Math.min(left, localX); right = Math.max(right, localX);
-    top = Math.min(top, localY); bottom = Math.max(bottom, localY);
+    if (localX < left) left = localX; if (localX > right) right = localX;
+    if (localY < top) top = localY; if (localY > bottom) bottom = localY;
   }
-  return [left, top, right - left, bottom - top];
+  output[0] = left; output[1] = top; output[2] = right - left; output[3] = bottom - top;
 }
 
-function setFullFrame(material: ShaderMaterial, size: readonly [number, number]): void {
+export function effectLocalBounds(effect: VfxEffect): readonly [number, number, number, number] {
+  const output = new Float32Array(4); effectLocalBoundsInto(effect, output);
+  return [output[0]!, output[1]!, output[2]!, output[3]!];
+}
+
+function setFullFrame(material: ShaderMaterial, width: number, height: number): void {
   (material.uniforms['uvRectA']!.value as Vector4).set(0, 0, 1, 1);
   (material.uniforms['uvRectB']!.value as Vector4).set(0, 0, 1, 1);
-  (material.uniforms['frameSizeA']!.value as Vector2).fromArray(size);
-  (material.uniforms['frameSizeB']!.value as Vector2).fromArray(size);
+  (material.uniforms['frameSizeA']!.value as Vector2).set(width, height);
+  (material.uniforms['frameSizeB']!.value as Vector2).set(width, height);
   (material.uniforms['anchorA']!.value as Vector2).set(0, 0);
   (material.uniforms['anchorB']!.value as Vector2).set(0, 0);
-  (material.uniforms['localBounds']!.value as Vector4).set(0, 0, size[0], size[1]);
+  (material.uniforms['localBounds']!.value as Vector4).set(0, 0, width, height);
   (material.uniforms['sourceDirection']!.value as Vector2).set(1, 0);
   material.uniforms['frameMix']!.value = 0; material.uniforms['keyEnabled']!.value = 0;
 }
 
 function updateEffect(sprite: Sprite, elapsed: number, textures: Readonly<{ effect?: Texture; emitter?: Texture }>): void {
   const plan = sprite.plan!; const composition = plan.composition;
-  const state = sampleTimeline(composition, elapsed / 1000);
+  const state = sprite.timeline; sampleTimelineInto(composition, elapsed / 1000, state);
   const progress = Math.min(1, elapsed / sprite.durationMs);
   const effect = sprite.effect; const effectMaterial = effect.material; const effectTexture = textures.effect;
   effectMaterial.uniforms['procedural']!.value = 0;
   if (effectTexture && composition.effect) {
-    const first = uvFor(effectTexture, plan, state.frameIndex); const second = uvFor(effectTexture, plan, state.nextFrameIndex);
-    (effectMaterial.uniforms['uvRectA']!.value as Vector4).fromArray(first.rect);
-    (effectMaterial.uniforms['uvRectB']!.value as Vector4).fromArray(second.rect);
+    const first = sprite.uvA; const second = sprite.uvB;
+    uvForInto(effectTexture, plan, state.frameIndex, first); uvForInto(effectTexture, plan, state.nextFrameIndex, second);
+    (effectMaterial.uniforms['uvRectA']!.value as Vector4).set(first[0]!, first[1]!, first[2]!, first[3]!);
+    (effectMaterial.uniforms['uvRectB']!.value as Vector4).set(second[0]!, second[1]!, second[2]!, second[3]!);
     effectMaterial.uniforms['map']!.value = effectTexture; effectMaterial.uniforms['frameMix']!.value = state.mix;
-    const [frameWidth, frameHeight] = first.size; const [nextWidth, nextHeight] = second.size;
     const frame = composition.effect.frames[state.frameIndex]!;
     const nextFrame = composition.effect.frames[state.nextFrameIndex]!;
-    (effectMaterial.uniforms['frameSizeA']!.value as Vector2).set(frameWidth, frameHeight);
-    (effectMaterial.uniforms['frameSizeB']!.value as Vector2).set(nextWidth, nextHeight);
+    (effectMaterial.uniforms['frameSizeA']!.value as Vector2).set(first[4]!, first[5]!);
+    (effectMaterial.uniforms['frameSizeB']!.value as Vector2).set(second[4]!, second[5]!);
     (effectMaterial.uniforms['anchorA']!.value as Vector2).fromArray(frame.anchor_px);
     (effectMaterial.uniforms['anchorB']!.value as Vector2).fromArray(nextFrame.anchor_px);
-    const bounds = effectLocalBounds(composition.effect);
-    (effectMaterial.uniforms['localBounds']!.value as Vector4).fromArray(bounds);
+    const bounds = sprite.bounds;
+    (effectMaterial.uniforms['localBounds']!.value as Vector4).set(bounds[0]!, bounds[1]!, bounds[2]!, bounds[3]!);
     (effectMaterial.uniforms['sourceDirection']!.value as Vector2).fromArray(composition.effect.direction);
     const displayDistance = Math.max(56, Math.hypot(sprite.toX - sprite.fromX, sprite.toY - sprite.fromY));
-    const [lengthScale, widthScale] = effectDisplayScale(composition, displayDistance);
+    effectDisplayScaleInto(composition, displayDistance, sprite.displayScale);
+    const lengthScale = sprite.displayScale[0]!; const widthScale = sprite.displayScale[1]!;
     const authoredLength = composition.length_px ?? composition.range_hex * composition.pixels_per_hex;
     const drift = state.driftPx * displayDistance / Math.max(1, authoredLength);
-    const baseX = sprite.fromX + Math.cos(sprite.angle) * drift;
-    const baseY = sprite.fromY + Math.sin(sprite.angle) * drift;
-    const placeEffect = (mesh: Mesh<PlaneGeometry, ShaderMaterial>) => {
-      const localX = (bounds[0] + bounds[2] / 2) * lengthScale * state.scale;
-      const localY = (bounds[1] + bounds[3] / 2) * widthScale * state.scale;
-      mesh.position.set(baseX + Math.cos(sprite.angle) * localX - Math.sin(sprite.angle) * localY,
-        baseY + Math.sin(sprite.angle) * localX + Math.cos(sprite.angle) * localY, 2);
-      mesh.rotation.z = sprite.angle; mesh.scale.set(bounds[2] * lengthScale * state.scale,
-        bounds[3] * widthScale * state.scale, 1);
-    };
-    placeEffect(effect);
+    const cosine = Math.cos(sprite.angle); const sine = Math.sin(sprite.angle);
+    const baseX = sprite.fromX + cosine * drift; const baseY = sprite.fromY + sine * drift;
+    const localX = (bounds[0]! + bounds[2]! / 2) * lengthScale * state.scale;
+    const localY = (bounds[1]! + bounds[3]! / 2) * widthScale * state.scale;
+    effect.position.set(baseX + cosine * localX - sine * localY, baseY + sine * localX + cosine * localY, 2);
+    effect.rotation.z = sprite.angle; effect.scale.set(bounds[2]! * lengthScale * state.scale,
+      bounds[3]! * widthScale * state.scale, 1);
     effect.visible = true;
     effectMaterial.uniforms['opacity']!.value = state.alpha; effectMaterial.uniforms['brightness']!.value = state.brightness;
     effectMaterial.uniforms['tint']!.value.set(plan.resolved.color);
@@ -284,10 +397,9 @@ function updateEffect(sprite: Sprite, elapsed: number, textures: Readonly<{ effe
     effectMaterial.uniforms['keyFull']!.value = (keying?.key_full_8bit ?? 100) / 255;
     effectMaterial.uniforms['keyEpsilon']!.value = keying?.epsilon ?? 1 / 255;
     effectMaterial.uniforms['keyDewhite']!.value = keying?.dewhite === false ? 0 : 1;
-    effectMaterial.uniforms['maskEnabled']!.value = state.mask.enabled ? 1 : 0;
-    effectMaterial.uniforms['maskSoftness']!.value = state.mask.softness;
-    effectMaterial.uniforms['reveal']!.value = state.mask.reveal;
-    effectMaterial.uniforms['erase']!.value = state.mask.erase;
+    effectMaterial.uniforms['maskEnabled']!.value = state.maskEnabled ? 1 : 0;
+    effectMaterial.uniforms['maskSoftness']!.value = state.maskSoftness;
+    effectMaterial.uniforms['reveal']!.value = state.reveal; effectMaterial.uniforms['erase']!.value = state.erase;
     effectMaterial.uniforms['maskReferenceLength']!.value = Math.max(1, composition.effect.reference_length_px);
     setBlend(effectMaterial, composition.template?.mode === 'plain_strike' ? 'normal' : composition.effect.blend);
   } else if (composition.template?.mode !== 'afterimage') {
@@ -296,8 +408,8 @@ function updateEffect(sprite: Sprite, elapsed: number, textures: Readonly<{ effe
     effectMaterial.uniforms['tint']!.value.set(plan.resolved.color); effectMaterial.uniforms['tintAmount']!.value = 1;
   } else effect.visible = false;
   updateEmitter(sprite, state.alpha, textures.emitter);
-  if (sprite.snapshotTexture && sprite.snapshotSize && sprite.snapshotOffset) updateActorGhosts(sprite, state.ghosts);
-  else updateFallbackGhosts(sprite, state.ghosts);
+  if (sprite.snapshotTexture && sprite.snapshotSize && sprite.snapshotOffset) updateActorGhosts(sprite, state);
+  else updateFallbackGhosts(sprite, state);
   updateAccents(sprite, progress);
 }
 
@@ -305,7 +417,7 @@ function updateEmitter(sprite: Sprite, alpha: number, texture: Texture | undefin
   const composition = sprite.plan!.composition; const emitter = composition.emitter; const mesh = sprite.emitter;
   if (!texture || !emitter) { mesh.visible = false; return; }
   const material = mesh.material; material.uniforms['procedural']!.value = 0; material.uniforms['map']!.value = texture;
-  setFullFrame(material, emitter.size_px); material.uniforms['opacity']!.value = alpha * 0.7;
+  setFullFrame(material, emitter.size_px[0], emitter.size_px[1]); material.uniforms['opacity']!.value = alpha * 0.7;
   const scale = composition.emitter_scale * EMITTER_DISPLAY_SCALE;
   const angle = sprite.angle - Math.atan2(emitter.direction[1], emitter.direction[0]);
   const offsetX = (emitter.size_px[0] / 2 - emitter.emit_point_px[0]) * scale;
@@ -315,20 +427,20 @@ function updateEmitter(sprite: Sprite, alpha: number, texture: Texture | undefin
   mesh.scale.set(emitter.size_px[0] * scale, emitter.size_px[1] * scale, 1); mesh.visible = true;
 }
 
-function updateActorGhosts(sprite: Sprite, poses: ReturnType<typeof sampleTimeline>['ghosts']): void {
+function updateActorGhosts(sprite: Sprite, poses: TimelineScratch): void {
   const texture = sprite.snapshotTexture; const size = sprite.snapshotSize; const offset = sprite.snapshotOffset;
   if (!texture || !size || !offset) return;
   const image = texture.image as { readonly width: number; readonly height: number };
   const width = image.width; const height = image.height;
   for (let index = 0; index < sprite.ghosts.length; index += 1) {
-    const mesh = sprite.ghosts[index]!; const pose = poses?.[index];
-    if (!pose) { mesh.visible = false; continue; }
+    const mesh = sprite.ghosts[index]!;
+    if (index >= poses.ghostCount) { mesh.visible = false; continue; }
     mesh.material.uniforms['procedural']!.value = 0; mesh.material.uniforms['map']!.value = texture;
-    setFullFrame(mesh.material, [width, height]); mesh.material.uniforms['opacity']!.value = pose.alpha;
-    const trail = pose.offsetPx;
+    setFullFrame(mesh.material, width, height); mesh.material.uniforms['opacity']!.value = poses.ghostAlpha[index]!;
+    const trail = poses.ghostOffset[index]!;
     mesh.position.set(sprite.fromX + Math.cos(sprite.angle) * trail + offset[0],
       sprite.fromY + Math.sin(sprite.angle) * trail + offset[1], 0);
-    mesh.rotation.z = 0; mesh.scale.set(size[0] * pose.stretch, size[1], 1); mesh.visible = true;
+    mesh.rotation.z = 0; mesh.scale.set(size[0] * poses.ghostStretch[index]!, size[1], 1); mesh.visible = true;
   }
 }
 
@@ -339,15 +451,15 @@ function copySnapshot(source: HTMLCanvasElement, canvas = document.createElement
   context.clearRect(0, 0, canvas.width, canvas.height); context.drawImage(source, 0, 0); return canvas;
 }
 
-function updateFallbackGhosts(sprite: Sprite, poses: ReturnType<typeof sampleTimeline>['ghosts']): void {
+function updateFallbackGhosts(sprite: Sprite, poses: TimelineScratch): void {
   for (let index = 0; index < sprite.ghosts.length; index += 1) {
-    const mesh = sprite.ghosts[index]!; const pose = poses?.[index];
-    if (!pose) { mesh.visible = false; continue; }
-    mesh.position.set(sprite.fromX + Math.cos(sprite.angle) * pose.offsetPx,
-      sprite.fromY + Math.sin(sprite.angle) * pose.offsetPx, 0);
-    mesh.rotation.z = sprite.angle; mesh.scale.set(20 * pose.stretch, 34, 1);
+    const mesh = sprite.ghosts[index]!;
+    if (index >= poses.ghostCount) { mesh.visible = false; continue; }
+    mesh.position.set(sprite.fromX + Math.cos(sprite.angle) * poses.ghostOffset[index]!,
+      sprite.fromY + Math.sin(sprite.angle) * poses.ghostOffset[index]!, 0);
+    mesh.rotation.z = sprite.angle; mesh.scale.set(20 * poses.ghostStretch[index]!, 34, 1);
     mesh.material.uniforms['procedural']!.value = 1; mesh.material.uniforms['tint']!.value.set(sprite.plan!.resolved.color);
-    mesh.material.uniforms['opacity']!.value = pose.alpha; mesh.visible = true;
+    mesh.material.uniforms['opacity']!.value = poses.ghostAlpha[index]!; mesh.visible = true;
   }
 }
 
@@ -376,9 +488,10 @@ function project(marker: VfxPlayRequest['from'], width: number, height: number):
 }
 
 /** One transparent Three.js renderer, shared textures/geometry and a bounded 48-slot pool. */
-export function createBattleVfxStage(canvas: HTMLCanvasElement, options: BattleVfxStageOptions = {}): BattleVfxStage {
+export function createBattleVfxStage(canvas: HTMLCanvasElement, options: RecoverableVfxStageOptions = {}): RecoverableVfxStage {
   const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: false, premultipliedAlpha: true, powerPreference: 'high-performance' });
   renderer.setClearColor(0x000000, 0); renderer.autoClear = true;
+  const quality = options.quality ?? getDefaultRenderQuality();
   const scene = new Scene(); const camera = new OrthographicCamera(0, 1, 0, 1, -10, 10);
   camera.position.z = 5; const geometry = new PlaneGeometry(1, 1);
   const target = new WebGLRenderTarget(1, 1, {
@@ -390,12 +503,35 @@ export function createBattleVfxStage(canvas: HTMLCanvasElement, options: BattleV
   display.position.set(0.5, 0.5, 0); displayScene.add(display);
   const textures = options.textureStore ?? new VfxTextureStore(); const assets = options.assetStore ?? new VfxAssetStore();
   const live = new Set<Sprite>(); const texturePlans = new WeakMap<Sprite, LoadedSpriteTextures>();
-  const pool = new ObjectPool<Sprite>(MAX_ACTIVE, () => createSprite(geometry), resetSprite);
-  const stats: VfxStageStats = { active: 0, pooled: 0, textures: 0, fallbacks: 0 };
+  let allocated = 0;
+  const pool = new ObjectPool<Sprite>(MAX_ACTIVE, () => { allocated += 1; return createSprite(geometry); }, resetSprite);
+  const stats = { active: 0, pooled: 0, textures: 0, fallbacks: 0, drawCalls: 0, particles: 0, cpuMs: 0 };
   const warnedTextures = new Set<string>();
-  let disposed = false; let width = 1; let height = 1;
+  let disposed = false; let width = 1; let height = 1; let deviceDpr = 1;
+  let appliedPixelRatio = quality.effectivePixelRatio(deviceDpr);
   const now = options.now ?? (() => performance.now());
   let projector: VfxProjector | undefined; const projected = { x: 0, y: 0, visible: true };
+  const contextGuard = createContextGuard(canvas, renderer, {
+    onStateChange: (state) => { quality.invalidateSamples?.(now()); options.onContextStateChange?.(state); },
+    onLoss: (count) => { quality.reportContextLoss?.(); options.onContextLoss?.(count); },
+    onRecreate: options.onContextRecreate,
+    onFatal: options.onContextFatal,
+    onRestore: () => {
+      target.dispose();
+      target.setSize(Math.ceil(width * renderer.getPixelRatio()), Math.ceil(height * renderer.getPixelRatio()));
+      display.material.uniforms['rendered']!.value = target.texture;
+      display.material.needsUpdate = true;
+      for (const sprite of live) {
+        const loaded = texturePlans.get(sprite);
+        if (loaded?.effect) loaded.effect.needsUpdate = true;
+        if (loaded?.emitter) loaded.emitter.needsUpdate = true;
+        if (sprite.snapshotTexture) sprite.snapshotTexture.needsUpdate = true;
+        for (const mesh of [sprite.effect, sprite.emitter, ...sprite.ghosts, ...sprite.accents])
+          mesh.material.needsUpdate = true;
+      }
+    },
+    requestFrame: options.requestFrame,
+  });
   function map(marker: VfxPlayRequest['from']): { x: number; y: number } {
     if (!projector) return project(marker, width, height);
     projector(marker.q, marker.r, marker.height, projected); return { x: projected.x, y: projected.y };
@@ -414,15 +550,32 @@ export function createBattleVfxStage(canvas: HTMLCanvasElement, options: BattleV
   }
 
   function resize(nextWidth = canvas.clientWidth, nextHeight = canvas.clientHeight, pixelRatio = devicePixelRatio): void {
+    if (disposed) return;
     width = Math.max(1, nextWidth); height = Math.max(1, nextHeight);
+    quality.markSizeChanged?.(performance.now());
+    deviceDpr = pixelRatio; appliedPixelRatio = quality.effectivePixelRatio(deviceDpr);
     camera.left = 0; camera.right = width; camera.top = 0; camera.bottom = height; camera.updateProjectionMatrix();
-    renderer.setPixelRatio(Math.min(2, Math.max(1, pixelRatio))); renderer.setSize(width, height, false);
+    contextGuard.resize(width, height, appliedPixelRatio);
     target.setSize(Math.ceil(width * renderer.getPixelRatio()), Math.ceil(height * renderer.getPixelRatio()));
     display.position.set(width / 2, height / 2, 0); display.scale.set(width, height, 1);
     for (const sprite of live) place(sprite);
   }
+  function releaseOldest(): void {
+    let oldest: Sprite | undefined;
+    for (const candidate of live) if (!oldest || candidate.startedAt < oldest.startedAt) oldest = candidate;
+    if (!oldest) return;
+    live.delete(oldest); scene.remove(oldest.root); pool.release(oldest);
+  }
+  function activeLimit(): number {
+    return Math.min(MAX_ACTIVE, QUALITY_TIERS[quality.tier].vfxDrawCalls);
+  }
+  function enforceActiveLimit(allowOneMore = false): void {
+    const limit = activeLimit() - (allowOneMore ? 1 : 0);
+    while (live.size > limit) releaseOldest();
+  }
   async function play(request: VfxPlayRequest) {
     if (disposed) throw new Error('VFX_STAGE_DISPOSED');
+    quality.invalidateSamples?.(now());
     const plan = await assets.load(request.moveId, request.nature);
     if (disposed) throw new Error('VFX_PLAY_CANCELLED');
     const loaded = await loadSpriteTextures(plan, textures);
@@ -432,14 +585,13 @@ export function createBattleVfxStage(canvas: HTMLCanvasElement, options: BattleV
     catch { snapshot = undefined; }
     let sourceMissing = plan.resolved.mode === 'afterimage' && !snapshot;
     let sprite: Sprite;
-    try { sprite = pool.acquire(); } catch {
-      const oldest = [...live].reduce((a, b) => a.startedAt <= b.startedAt ? a : b);
-      live.delete(oldest); scene.remove(oldest.root); pool.release(oldest); sprite = pool.acquire();
-    }
+    enforceActiveLimit(true);
+    try { sprite = pool.acquire(); } catch { releaseOldest(); sprite = pool.acquire(); }
     const generation = sprite.generation;
     try {
       if (disposed || generation !== sprite.generation) throw new Error('VFX_PLAY_CANCELLED');
       sprite.request = request; sprite.plan = plan; sprite.startedAt = now();
+      if (plan.composition.effect) effectLocalBoundsInto(plan.composition.effect, sprite.bounds);
       if (snapshot) {
         try {
           sprite.snapshotCanvas = copySnapshot(snapshot.image, sprite.snapshotCanvas);
@@ -463,24 +615,59 @@ export function createBattleVfxStage(canvas: HTMLCanvasElement, options: BattleV
     } catch (failure) { pool.release(sprite); throw failure; }
   }
   function render(timeMs: number): void {
-    if (disposed) return;
+    if (!contextGuard.canRender) return;
+    const started = now();
+    enforceActiveLimit();
+    const nextPixelRatio = quality.effectivePixelRatio(deviceDpr);
+    if (nextPixelRatio !== appliedPixelRatio) {
+      appliedPixelRatio = nextPixelRatio; contextGuard.resize(width, height, appliedPixelRatio);
+      target.setSize(Math.ceil(width * appliedPixelRatio), Math.ceil(height * appliedPixelRatio));
+    }
     for (const sprite of live) {
       const elapsed = Math.max(0, timeMs - sprite.startedAt);
       if (elapsed >= sprite.durationMs) { live.delete(sprite); scene.remove(sprite.root); pool.release(sprite); continue; }
-      updateEffect(sprite, elapsed, texturePlans.get(sprite) ?? {});
+      updateEffect(sprite, elapsed, texturePlans.get(sprite)!);
     }
+    // Reserve the display pass, keep hit feedback first, then the main effect, then decoration.
+    const tier = QUALITY_TIERS[quality.tier];
+    let remaining = tier.vfxDrawCalls - 1;
+    let particles = tier.particles;
+    for (const sprite of live) for (const mesh of sprite.accents) {
+      if (!mesh.visible) continue;
+      mesh.visible = remaining > 0; if (mesh.visible) remaining -= 1;
+    }
+    for (const sprite of live) {
+      if (sprite.effect.visible) {
+        sprite.effect.visible = remaining > 0; if (sprite.effect.visible) remaining -= 1;
+      }
+      if (sprite.emitter.visible) {
+        sprite.emitter.visible = remaining > 0; if (sprite.emitter.visible) remaining -= 1;
+      }
+      const ghostLimit = Math.ceil(sprite.timeline.ghostCount * tier.particleScale);
+      for (let index = 0; index < sprite.ghosts.length; index += 1) {
+        const mesh = sprite.ghosts[index]!;
+        mesh.visible = mesh.visible && index < ghostLimit && remaining > 0 && particles > 0;
+        if (mesh.visible) { remaining -= 1; particles -= 1; }
+      }
+    }
+    stats.drawCalls = tier.vfxDrawCalls - remaining;
+    stats.particles = tier.particles - particles;
     renderer.setRenderTarget(target); renderer.clear(); renderer.render(scene, camera);
     renderer.setRenderTarget(null); renderer.render(displayScene, camera);
-    stats.active = live.size; stats.pooled = pool.stats.pooled; stats.textures = textures.size;
+    stats.active = live.size; stats.pooled = allocated - live.size; stats.textures = textures.size;
+    stats.cpuMs = now() - started;
   }
   resize();
-  return { stats, play, setProjector(next) { projector = next; for (const sprite of live) place(sprite); }, resize, render, dispose() {
+  return { stats, get contextState() { return contextGuard.state; },
+    play, setProjector(next) { projector = next; for (const sprite of live) place(sprite); }, resize, render, dispose() {
     if (disposed) return; disposed = true;
+    contextGuard.dispose();
     for (const sprite of live) scene.remove(sprite.root); live.clear();
     pool.dispose(sprite => {
       sprite.snapshotTexture?.dispose();
       for (const mesh of [sprite.effect, sprite.emitter, ...sprite.ghosts, ...sprite.accents]) mesh.material.dispose();
     });
-    textures.dispose(); display.material.dispose(); target.dispose(); geometry.dispose(); renderer.dispose();
+    textures.dispose(); display.material.dispose(); target.dispose(); geometry.dispose();
+    renderer.forceContextLoss(); renderer.dispose();
   } };
 }
