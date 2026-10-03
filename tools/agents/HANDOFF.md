@@ -1563,3 +1563,53 @@
     - 第三波：批 step.py 稀疏检出瘦身（方案 A）与城图磁盘规则 v2（方案 B）；批 TOOL-city-generic；ART-region-maps 改由新起的 Gemini 出图员做（作者「gemini和tripo都在前台了」）。
     - Tripo：男女主角导出入库（427fa2a1 / 3d3dc810；model_rig.glb 约 6 MB、65 关节；动作 GLB 各带整份网格约 6 MB，后续可合并成一个多段动画 GLB）。
     - 10 号出图员 A2：杨过（784245da，参考 1995）、张无忌（08603fc9，参考 2003，更帅更健壮）新 base 已入库，联系表 `codex_w17/sheets/A2_new_bases.jpg` 已发作者待批；段誉剧照等作者定（本地只有 1997 TVB 版）。
+  - **10-03 13:03–13:15 开发监督**：inkmeta 修复与 UI 第一版合入；ch10 / ch00a 重起；登记并起跑 ENG-tiled-trigger-strict。
+    - 合入：ENG-content-validate-inkmeta（2f16faed）、DES-ui-immersive v1（761c6b83）。
+      - `prod_check`（post-inkmeta）全绿：996 条测试；entry 38.44；session 93.36 / 110。
+    - **CONTENT-ch10**：挪基点到 761c6b83（6 个文件，无冲突），`--from validate`，驱动 4675。
+    - **CONTENT-ch00a**：挪基点（13 个未提交路径都在），`--from start --note devsup_note_resume.md`，驱动 8157。
+    - **CONTENT-ch00b**：保持 HOLD。等 ch00a 合入后挪基点，`--from start --note .agents/reviews/CONTENT-ch00b-maps.r3.md`，另附协调者 13:06 的说明：
+      - 奖励只归 ch00a；投桃走 ch00a 的剧情；
+      - 门用真实 RegionGate ID，binding 不在写集就列为交接项，不用 quest ID 占位；
+      - 必要时给它的写集加上 binding 所在文件。
+    - **ENG-tiled-trigger-strict**（5ae8af57，驱动 14355，Sol max）：
+      - action 按 ink.ts OPCODES 大小写敏感白名单校验（共用一份）；修掉 region-map.ts 的全小写正则；
+      - lockedBy 有登记源就查，没有就拒绝 q_ / st_ / fl_ 前缀并写交接。
+      - 现状：RegionGate binding 只在运行时 `content.regionGates`，内容侧没有数据源。
+    - **DES-ui-immersive-2**：依赖的 ART-ui-icons 尚未登记。run.py 遇到未知依赖会 Fatal，波及所有工具，所以暂不登记；说明草稿在 `scratchpad/pending/DES-ui-immersive-2.md`。
+      - 执行器 codex gpt-6-astra xhigh，`--review-model gpt-6-astra`。
+      - ART-ui-icons 登记后补登记；它合入后起跑。
+  - **10-03 13:16–13:21 开发监督**：登记 ENG-region-gates-data（64978c77），依赖 ENG-tiled-trigger-strict、ENG-entry-split。
+    - 内容：
+      - region-gate.v1 schema，gateId 按 canon §12 为 `gate_<NN>_<拼音>`，expression 复用 core 的 RegionGateExpr；
+      - 内容放 `content/chapters/<ch>/gates/*.yaml`；编进章节包；区域按需装载；
+      - content:validate / content:build 校验 Door.lockedBy 必须已登记；
+      - 本任务不新增正式门禁内容。
+    - tiled-strict 合入后，代码池有位我就单独起（traex Sol max，review_checks_eng）。
+    - 冲突面：runtime/** 与 ENG-16c、session-base-diet 重叠（说明要求最小改动）；content-registry / content-index 与 ENG-26、ENG-18c 重叠。
+    - 门禁合入后：ch00a 若已合入，就另起小 CONTENT 任务补 C01 / C03 门禁；否则在 ch00b 返修时登记，lockedBy 填真实 gateId。
+
+  - **10-03 06:15–13:20 素材线第二波追踪（收尾）**：
+    - **合入**：
+      - ART-ruins-maps-2：ac069a22。九老洞、敦煌地宫（唐 / 清两相）等 6 张。
+      - ART-rig-sheet-side：85f2b464。前两栏分腿合格，第 3 栏的严格度由协调者裁定放行。
+      - ART-items-gifts-catalog：be7a8c39。151 件。中途两次工具缺口：校验器不认 AR-40 表头和礼品键，由 TOOL-catalog-collectibles 补；check_ids 要求在 design/10 §14.2 登记，写集加 design/10 后只追加一行。复验前先用 rebase_task 挪基点，让工作区带上新校验器。
+      - 第二波 6 项及追加的 4 项全部合入。ART-3d-tripo-avatars / -cast 因 AR-42 改网页版而取消。
+    - **build_portraits**：
+      - 128 张，按章提交 36142d3f…0cc39bf9，模型加载使交换区 +7 GB。
+      - 此前 06:20 那次被 3 GiB 护栏截停（ab4cc1e8）。
+      - 这次挡了 ENG-19d 合入两次。新规：长时间直接改 _prod 前，先等 reviewing / merging 的驱动合入；已写进追踪者的批处理脚本。
+      - gallery 09:56 重建；INDEX 由协调者重建（d0529625）。
+    - **磁盘**：
+      - 清 gem/codex_w9、w11、w12：只删能找回的重复或已入库件和试稿，共 763 MB；manifest 引用的 273 处来源全部保留。
+      - 删 10 个 homeN（638 MB）、/private/tmp 下旧 codex-home（约 0.75 GB），并把 68 个悬空的 out 链接改指 _prod。
+    - **Tripo**：
+      - 余额查询用 CLI 的 --env-file，追踪者不经手 key；余额一直是 0 点，后因 AR-42 撤掉。
+      - 密钥扫描只按形状匹配、不打印内容，命中 5 处，核为占位误报，规则已收紧。
+    - **等待器教训**：两个等待进程并发会互相覆盖状态文件，现在入口会先 pkill 旧的。
+  - **10-03 13:12–13:27 协调者**：作者意见与引擎缺口。
+    - AR-49：段誉剧照「下载」（已转 10 号）；「黄蓉要更像李一桐版本一些，眼睛大一些」（重画 ch02 base，李一桐剧照下载待作者同意，Tripo 黄蓉 3D 暂停）；「杨过再像古天乐版本一些。张无忌现在有点丑，更像苏有朋一些，但保持魁梧」（每人 2 张候选重出）。A2 联系表另发成页面：https://claude.ai/artifact/WRPLfJH8vKEic2FV6u97jp。
+    - ART-items-gifts-catalog 合入 be7a8c39（design/10 末尾补 151 个 it_* 登记）；开发监督登记 TOOL-items-regen-2；Gemini 出图员区域图之后接礼品图。
+    - CONTENT-ch10 r1 FAIL：门 / 入口 binding、首谈 dialogue binding、EventDef 动作执行、NPC 说话人标签、M1 页面顺序都是引擎缺口 → 批开发监督：ENG-region-gates-data 扩成区域绑定数据（gates / dialogues / loot），新登记 ENG-event-executor、ENG-19e-m1-order；写内容审核补充裁定 `review_checks_content.md`（依赖未合入引擎的行为列交接项即不判 FAIL），CONTENT 三任务复审带上。
+    - 开发监督已起 ENG-tiled-trigger-strict（5ae8af57，驱动 14355）。
+    - Gemini 标签页：作者已把 Claude 组里的 Gemini 标签页放到前台（13:26）。
