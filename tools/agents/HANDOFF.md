@@ -1563,3 +1563,20 @@
     - 第三波：批 step.py 稀疏检出瘦身（方案 A）与城图磁盘规则 v2（方案 B）；批 TOOL-city-generic；ART-region-maps 改由新起的 Gemini 出图员做（作者「gemini和tripo都在前台了」）。
     - Tripo：男女主角导出入库（427fa2a1 / 3d3dc810；model_rig.glb 约 6 MB、65 关节；动作 GLB 各带整份网格约 6 MB，后续可合并成一个多段动画 GLB）。
     - 10 号出图员 A2：杨过（784245da，参考 1995）、张无忌（08603fc9，参考 2003，更帅更健壮）新 base 已入库，联系表 `codex_w17/sheets/A2_new_bases.jpg` 已发作者待批；段誉剧照等作者定（本地只有 1997 TVB 版）。
+  - **10-03 13:03–13:15 开发监督**：inkmeta 修复与 UI 第一版合入；ch10 / ch00a 重起；登记并起跑 ENG-tiled-trigger-strict。
+    - 合入：ENG-content-validate-inkmeta（2f16faed）、DES-ui-immersive v1（761c6b83）。
+      - `prod_check`（post-inkmeta）全绿：996 条测试；entry 38.44；session 93.36 / 110。
+    - **CONTENT-ch10**：挪基点到 761c6b83（6 个文件，无冲突），`--from validate`，驱动 4675。
+    - **CONTENT-ch00a**：挪基点（13 个未提交路径都在），`--from start --note devsup_note_resume.md`，驱动 8157。
+    - **CONTENT-ch00b**：保持 HOLD。等 ch00a 合入后挪基点，`--from start --note .agents/reviews/CONTENT-ch00b-maps.r3.md`，另附协调者 13:06 的说明：
+      - 奖励只归 ch00a；投桃走 ch00a 的剧情；
+      - 门用真实 RegionGate ID，binding 不在写集就列为交接项，不用 quest ID 占位；
+      - 必要时给它的写集加上 binding 所在文件。
+    - **ENG-tiled-trigger-strict**（5ae8af57，驱动 14355，Sol max）：
+      - action 按 ink.ts OPCODES 大小写敏感白名单校验（共用一份）；修掉 region-map.ts 的全小写正则；
+      - lockedBy 有登记源就查，没有就拒绝 q_ / st_ / fl_ 前缀并写交接。
+      - 现状：RegionGate binding 只在运行时 `content.regionGates`，内容侧没有数据源。
+    - **DES-ui-immersive-2**：依赖的 ART-ui-icons 尚未登记。run.py 遇到未知依赖会 Fatal，波及所有工具，所以暂不登记；说明草稿在 `scratchpad/pending/DES-ui-immersive-2.md`。
+      - 执行器 codex gpt-6-astra xhigh，`--review-model gpt-6-astra`。
+      - ART-ui-icons 登记后补登记；它合入后起跑。
+
