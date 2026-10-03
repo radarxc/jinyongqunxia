@@ -1303,3 +1303,6 @@
       - 已向协调者建议登记 ENG-items-attr-schema：给 item.ts 加可选的 attributes v2 白名单与测试，排在 entry-split 之后。等裁定。
     - TOOL-tests-discover 第 2 次返修的日志 13 分钟没增长，交给 stall 检测。
 
+  - **10-03 08:26–08:38 协调者 / 开发监督**：
+    - TOOL-rig-sheet 第 9 次（最后一轮）返修 106 分钟结束，校验通过（侧视裤腿已有纹理，无占位块；手部 / 髋部干净），停 HOLD-REVIEWS；开发监督 `hold_then_review` 起只复审驱动，r6 PASS 合入、只因侧腿 FAIL 则协调者按原型收口。
+    - **TOOL-items-regen 被数据 schema 挡住**：重新生成 30 分钟跑完，`pnpm check` / `content:validate` 报 `ZodError unrecognized_keys: attributes`——生成器按 §4.10.5 写 `extension.value.attributes`，而 `packages/data/src/schemas/item.ts` 各 extension value 是 strictObject、没有 `attributes`（9col 当时不在 packages 写集，没重新生成所以没暴露）。协调者置 HOLD 停掉 regen 的返修（生成物留在工作区），登记 **ENG-attr-v2-schema**（b7e1101f：各 extension 加可选 `attributes: AttributeProjectionV2`，`version: 2` + §4.10.6 白名单整数键 + `qiEffect` / `skillRef` / `maxLayer`，只校验不消费；依赖 ENG-entry-split，因为 schema 在 entry 闭包、余量只剩 1.4 KiB）。开发监督同一结论、不重复登记。次序：entry-split → ENG-attr-v2-schema → items-regen 挪基点 `--from validate` → catalog-collectibles → gifts-catalog 复验 → regen-2。
