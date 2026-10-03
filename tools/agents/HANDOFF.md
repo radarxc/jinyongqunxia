@@ -1227,7 +1227,7 @@
   - **10-03 07:32–07:36 开发监督**：ENG-19b（M1）合入，集成分支仍绿但 entry 只剩 0.93 KiB；ENG-entry-split 起跑。
     - **ENG-19b** 合入，提交 8741f917，工作区已清。
       - 合入后 `prod_check`（`_handoff/prod_check_post-eng19b_0728.log`，HEAD 8ba60121）全绿：133 个测试文件 / 948 条测试，`[dev-chunks] PASS assets=1495 manifest=59`。
-      - **entry 169.07 / 170**，render 160.53，webgl 329.60。
+      - **entry 169.07 / 170：绿，但只剩 0.93 KiB。拆分前不合入任何首屏任务**（协调者 07:36）。render 160.53，webgl 329.60。
       - M1 路径已合入：25 / 17a / 19a / 17 / 20a / 19b。剩 CONTENT-ch00a/b/c、ch10 和 ENG-20b，都暂停，等 entry-split。
     - **ENG-entry-split**：07:29 起跑，驱动 75729，Sol max。代码池 4/4，它在排队等位。
       - TOOL-ingest-cropframe 临时置 HOLD-RUNS 让位，已记入 `entry_holds.txt`；拆分起跑后解除。
