@@ -1,0 +1,76 @@
+- id: npc_zhangwuji__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 张无忌（倚天屠龙记 ch04 · 明教教主青年）· A 字参考版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 829f322f-9a6f-4d4b-8e8b-a48b2382f7e5
+    url: https://studio.tripo3d.ai/workspace/generate/829f322f-9a6f-4d4b-8e8b-a48b2382f7e5
+    generate_op: e3339c0b-35a7-4759-b431-9028750c5804（image_to_model）
+    rig_op: 940d71ad-183d-4ed2-be18-e278b18b0e86
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch04/threeview/por_npc_zhangwuji__ch04_youth_jiaozhu_apose.png
+    sha256: c8f1a66966b16a6f53461ae8da5cbb3143a08cbd81ca09a2cba4f97a09aec27b
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 9aed89ce82c7ebbb8d07710e294ebd6275a687d80c85e9b7ecc8e01856f95a84
+  size_bytes: 5634680
+  joints: 65
+  triangles: 95226
+  vertices: 54018
+  animations: []
+  textures:
+  - image/jpeg 381709 B
+  - image/jpeg 1305553 B
+  - image/jpeg 544031 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T14:56:21-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，白袍黑缘 + 黑腰带可辨识，头发深色、无肉色块；自动绑骨一次成功（Hips y0.531、头顶骨端 1.016、双手外展 y0.50、脚 0.063）。
+- id: npc_zhangwuji__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 张无忌（倚天屠龙记 ch04 · 明教教主青年）· A 字参考版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 829f322f-9a6f-4d4b-8e8b-a48b2382f7e5
+    url: https://studio.tripo3d.ai/workspace/generate/829f322f-9a6f-4d4b-8e8b-a48b2382f7e5
+    generate_op: e3339c0b-35a7-4759-b431-9028750c5804（image_to_model）
+    rig_op: 940d71ad-183d-4ed2-be18-e278b18b0e86
+  size: 369x594
+  sha256: bc027f3ae0417c3daa07babce252d1a2c9b89edabaf000142c0e712e452a55f0
+  size_bytes: 146065
+  created: '2026-10-03T14:56:21-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
