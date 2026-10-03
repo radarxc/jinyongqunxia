@@ -43,8 +43,9 @@
 
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
-| TOOL-rig-sheet | traex Sol max | 审核 r5 又 FAIL（前臂含手掌、侧腿占位、髋锚暴露）；第 9 次返修为最后一轮，侧腿问题转 ART-rig-sheet-side（新源图），之后按原型收口合入 | 开发监督另起 |
-| TOOL-items-regen | traex | 已登记（dcb77156）：按九列名录重新生成并提交 content/items；次序 entry-split → tests-discover → **regen** → catalog-collectibles → gifts-catalog 复验合入 → regen-2（收藏品进 content/items） | 开发监督 |
+| TOOL-rig-sheet | traex Sol max | 第 9 次（最后一轮）返修校验通过（侧腿有纹理、无占位块），只复审驱动审 r6 中；PASS 合入，否则协调者按原型收口 | 开发监督 |
+| TOOL-items-regen | traex | 第 1 次运行 30 分钟生成完，校验被 data schema 挡住（`extension.value.attributes` 未定义）→ HOLD，等 ENG-attr-v2-schema 合入后挪基点 `--from validate` | 开发监督 |
+| ENG-attr-v2-schema | traex Sol | 已登记（b7e1101f）：item.v1 各 extension 加可选 attributes 投影（只校验不消费）；依赖 ENG-entry-split（entry 余量） | 开发监督起 |
 | TOOL-catalog-collectibles | traex Sol | 已登记（fb5cc48f）：校验器 / 生成器认 items-collectibles.md（AR-40 列序、六个礼品键）；要等 regen 与 tests-discover 合入（否则它的 --check 与 content 测试必红） | 开发监督起 |
 | TOOL-tests-discover | traex Sol | r1 FAIL（balance 导入、town_runtime 测试删了真实布局覆盖、CLI 双 mock），写集加 balance 测试后返修，等池位 | 3408（开发监督） |
 | TOOL-town-gaps-1 | traex Sol | 第 2 次运行校验的「文件被删除」是磁盘规则要求的清理（已豁免）；r1 FAIL 只因验收命令口径（改用 `check_asset_dirs --min 1 --max 1`），第 3 次（最后一次）运行等池位 | 66572（开发监督） |
