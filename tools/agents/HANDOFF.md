@@ -1439,4 +1439,11 @@
     - prod_check 照常跑。build 往 `apps/game/public` 复制、覆盖素材不影响 dev 服务；只有清空 `apps/game/public` 或删 node_modules 这类操作要先告诉协调者。
     - eng3 已按 3 路重启，日志 `_batch/eng3.detach.r3.out`；在跑的 CONTENT-ch00b / ch10 不受影响，接着起 CONTENT-ch00a-data。
     - Tripo 改网页版，由协调者另起 subagent 做，产物进 `assets/default/model3d/`。ART-3d-tripo-avatars / cast 继续 HOLD，不归开发监督。
+  - **10-03 11:12–11:23 开发监督**：TOOL-items-regen 合入；TOOL-catalog-collectibles 起跑。
+    - **TOOL-items-regen**：只复审 r2 PASS，合入提交 3d6db806，工作区已清。
+      - 集成分支 `items_from_catalog --check` 通过（894 行最新）；889 个物品都带 `text.lore` 与 `extension.value.attributes`（AR-39 生成物已提交）。
+      - `prod_check`：983 条测试全过；entry 38.44，render 161.87，webgl 200.31。
+    - **TOOL-catalog-collectibles**：单独起，Sol max，驱动 85865，起跑时代码池 0/4。
+    - 物品线剩下：collectibles → gifts-catalog 复验合入（追踪者负责）→ 登记 TOOL-items-regen-2。
+    - eng3 三路：CONTENT-ch00b / ch10 / ch00a 在执行。
 
