@@ -854,3 +854,26 @@
 3. 原图（Gemini / codex 全尺寸原件）按现行做法归档在 `.agents/coord/gemini_originals/` 并在 manifest 记 `source_path` 与 sha256，不进 git（体积）；只此一份的原图按 AR-34 留存并写引用。
 4. 试点 / 原型产物（如 Tripo 导出的 GLB、切件部件、动图）也要进仓库相应目录并提交（`apps/game/public/pilot/`、`assets/default/rig/<set>/`）。
 
+## AR-40 · 各朝代奢侈品 / 礼品（用于送礼），Gemini 出图（2026-10-03 凌晨）
+
+作者原文（2026-10-03 约 01:45 PDT，逐字照录）：
+
+> 增加一个codex的subagent，负责添加各个对应朝代的奢侈品，用于送礼，用书中描述的宝物和历史记载的物件
+>
+> * 瓷器/茶具
+> * 玉器
+> * 香炉，铜器等
+> * 琴
+> * 书法拜帖（主角在各个朝代，可以有支线任务获取书法）
+> * 笔
+> * 其他补充
+
+作者原文（同时，逐字照录）：
+
+> 奢侈品 / 礼品也要用gemini画图
+
+协调者口径：
+1. 归入 design/10 §11.5 收藏品 `collectible`，子类扩为 porcelain / jade / bronze / qin / calligraphy / stationery / antique；先 `DES-items-gifts-spec`（traex）定字段（礼值 `giftValue`、偏好 `giftTo`、年代带 `eraRange`、来源 `provenance`）、送礼好感公式与上限、按朝代可得性、「求字 / 求帖」支线模板。
+2. 再 `ART-items-gifts-catalog`（codex gpt-6-astra xhigh，即作者说的「codex 的 subagent」，由素材线追踪 subagent 启动）联网考据书中宝物与历史名器，写名录 `catalog/items-collectibles.md`（120–180 件）与 Gemini 提示词；**出图由 Gemini 物品线做**（AR-31、本条），排在 366 张物品之后。
+3. 运行时 `collectible` 的送礼效果另开 ENG 任务（设计定稿后）。
+
