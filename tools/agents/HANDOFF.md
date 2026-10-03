@@ -1044,3 +1044,8 @@
       - 协调者 05:58 结论相同，已停 eng3 的驱动，带说明另起 `--from start`（日志 `supervise.r2.out`）：恢复原功能，3D 只作为 `?model=` 时的附加面板。
       - 合入后照常 `prod_check`。
 
+  - **10-03 05:55–06:00 协调者**：
+    - **ENG-12e 第 1 次运行校验失败是真回归**：防截断报 `apps/game/src/rig-demo.ts` 87 → 63 行；核对 diff，执行器把 /rig-demo 原有的 2D 切件演示（八方向 / 轮播 / 步态 A/B / 10 片段 / 剑招 / 七类装备 / 动作 · 重量 / 连续 · 12 fps / 20 人压力）整页换成「2D ↔ 3D 试点」，任务要求是并排。置 HOLD 停掉 eng3 驱动 14591，用 `coord_note_0558.md` 另起 `--from start`（pid 40645，`supervise.r2.out`）：恢复原功能，3D 作 `?model=` 时的附加面板。开发监督核对结论一致（61a9a8cd）。
+    - ART-cast-polish-ch09 第 1 次运行 20 分钟结束，校验通过（20 个文件），审核中（追踪者盯）。
+    - lore：lore-6（药品）返修一次后合入 20c1307a；lore-1 / 3（还有七列行）、lore-5（一条双写缺项）返修中；lore-7 05:56 起；lore-8 等位。合入后 `items_from_catalog --check` 报 medicine stale 是预期（等全部 lore 合入后 TOOL-items-catalog 重新生成）。
+    - **腊八粥裁定**（lore-5 r1 提出：§4.10.4 食品只许 stamina / healInner / healOuter，§4.10.5 又要求 sxpGrant 双写 qiCultivation）：按作者「其他 - 根据描述设计」的口径，描述含内力增益的名菜 / 药膳是食品特例，允许双写 `qiCultivation`，普通食品不得带。登记并起跑 **TOOL-catalog-food-qi-exception**（28d1ad8d；Sol max，驱动 59758）：校验器特例 + design/10 §4.10.4 / §4.10.6 加注 + 测试。lore-5 若只剩这一行，置 HOLD 等它合入。
