@@ -34,17 +34,22 @@ CHECKS = [  # (ID 前缀, 审核要点文件)
     ("VFX-templates", ".agents/coord/PROD/review_checks_vfx_templates.md"),
     ("VFX-sk_", ".agents/coord/PROD/review_checks_vfx_skill.md"),
     ("KIT-", ".agents/coord/PROD/review_checks_kit.md"),
+    ("CITY-layouts-", ".agents/coord/PROD/review_checks_city_batch.md"),  # 2026-10-03：AR-47 城图全量分批（素材线第三波）
     ("CITY-", ".agents/coord/PROD/review_checks_city.md"),
     ("TOWN-tiles-water", ".agents/coord/PROD/review_checks_tile_water.md"),
     ("ART-item-", ".agents/coord/PROD/review_checks_item.md"),
     ("ART-portrait-", ".agents/coord/PROD/review_checks_portrait.md"),  # 2026-10-02：AR-32 人物修改批
     ("ART-hero-", ".agents/coord/PROD/review_checks_hero.md"),  # 2026-10-02 晚：主角精修与剧情插图
     ("ART-cast-", ".agents/coord/PROD/review_checks_portrait.md"),  # 2026-10-02 晚：主要人物补齐
+    ("ART-ruins-tiles", ".agents/coord/PROD/review_checks_tile_ruins.md"),  # 2026-10-03：遗迹贴片（先于 ART-ruins- 匹配）
     ("ART-ruins-", ".agents/coord/PROD/review_checks_ruins.md"),
+    ("ART-ui-", ".agents/coord/PROD/review_checks_ui_icons.md"),  # 2026-10-03：AR-48 界面图标
     ("ART-3d-", ".agents/coord/PROD/review_checks_model3d.md"),  # 2026-10-03 上午：Tripo 3D（AR-41）  # 2026-10-02 晚：遗迹地图
     ("ART-scenes-", ".agents/coord/PROD/review_checks_scene.md"),  # 2026-10-02：多人情景图
     ("ART-rig-sheet", ".agents/coord/PROD/review_checks_rig_sheet.md"),  # 2026-10-02：三视图设定图（先于 ART-rig- 前缀匹配）
+    ("ART-rig-std", ".agents/coord/PROD/review_checks_rig_sheet.md"),  # 2026-10-03：标准体三视图与视图参考（先于 ART-rig- 匹配）
     ("ART-rig-", ".agents/coord/PROD/review_checks_rig_parts.md"),
+    ("TOOL-rig-parts", ".agents/coord/PROD/review_checks_rig_parts.md"),  # 2026-10-03：女主切件（先于 TOOL- 匹配）
     ("TOOL-", ".agents/coord/PROD/review_checks_tool.md"),
     ("CONTENT-", ".agents/coord/PROD/review_checks_content.md"),  # 2026-10-03 协调者 13:22：内容任务的引擎缺口按交接处理，不判 FAIL
     ("DES-", ".agents/coord/PROD/review_checks_des.md"),
