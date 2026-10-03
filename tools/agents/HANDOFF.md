@@ -1376,3 +1376,6 @@
       - 报告里的分项：播放器投影 −83%，角色 update −73%，update + sync 总计 0.641 → 0.245 ms。
     - ENG-19d 在执行；entry-split 已跑 100 多分钟，日志 24 MB。
 
+  - **10-03 09:40–09:47 协调者 / 开发监督**：
+    - **ENG-12d-clip-perf 合入**（a6f96ed5，09:33）：片段模式 100 人 min P95 0.764 → 0.285 ms（目标 ≤ 0.5，AR-37 门 1.0），程序步态 0.332 ms，20 人 0.073 ms；播放器投影降 83%。prod_check 972 用例全过，entry 168.57 不变，render 161.87 / 180。
+    - Tripo：追踪者按约定不经手 key，协调者在 avatars 工作区给 `tools/model3d/tripo_cli.py` 加 `--env-file <path>`（CLI 自己从 dotenv 读 `tripo_key` 进本进程，输出 / 报错脱敏；18 项测试仍过，README 补注），追踪者每 10 分钟用它查余额，> 200 点即 `--from start` 续起 avatars。协调者实查余额 0.0 / 冻结 0.0。磁盘 11 GiB。ENG-entry-split 已跑 100+ 分钟（写 core entries/*），ENG-19d 在跑。
