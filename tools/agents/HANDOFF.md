@@ -1711,4 +1711,17 @@
       - step start 从 HEAD 新建工作区，基点 7038f0a6；首次运行用干净提示词，不带续作 / 重试说明。
     - 新 1.prompt.md 含「集成分支现状」一节，写集含 `content/chapters/ch10_baima/bindings/**`。
     - 现在在等代码池空位。
+  - **10-03 14:44–14:52 开发监督**：event-executor 有同类合入顺序问题；species-roleslot 补 ch00a 衔接。
+    - **ENG-event-executor**：ch10 的 7 个 EventDef 用旧动作名（startStory、showText、revealText、loadScene、restoreBasicSurvival、observeOnly）。
+      - 它的基点 4e193b0f 早于 ch10，合入后严格动作词表会让集成分支变红。
+      - 协调者 14:47：只停驱动（supervise 59692、step wait 22558），执行器 63212 / 63215 继续跑，状态 HOLD-RUNS。
+      - 执行器写出 `.agents/logs/ENG-event-executor/1.exit` 后，开发监督依次做：
+        1. rebase_task 挪基点到 HEAD；
+        2. 按它报告里的新旧名对照，机械改 `content/chapters/ch10_baima/events/**` 的 op / 参数名；
+        3. 报告 §3 / §7 补一句「ch10 events 的 op 迁名由开发监督按本任务对照表机械完成」，并在 coord 写备注；
+        4. `launch_std.sh ENG-event-executor review_checks_eng.md --from validate`。
+      - 对照表若有一对多或要改语义，就不手改，改走 `--from start` 返修。
+      - 驱动停期间没有卡死检测：开发监督自己盯日志（scratchpad `eecheck.sh`），25 分钟无输出就报协调者。
+    - **ENG-npc-species-roleslot**（af0788c4，协调者 14:47 同意）：说明补「与 CONTENT-ch00a 的衔接」一节，写集加 `content/chapters/ch00_yuenv/{roles,npcs}/**`。
+      - ch00a 若已合入，允许把它的角色槽与白猿 mockRef 迁到新 schema：只迁格式和位置（含移出 `_drafts/`），不改内容取舍，并在报告第 7 节逐项列明。
 
