@@ -1,8 +1,11 @@
 """Protocol-3 golden integrity tests for the independent Python oracle."""
 
 import json
+import sys
 import unittest
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from balance.meridian_flow_sim import (
     GOLDEN_V3_PATH, LEGACY_RNG_PROTOCOL, LEGACY_RULES_PROTOCOL,

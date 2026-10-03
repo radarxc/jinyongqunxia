@@ -14,7 +14,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC_DIR = ROOT / "docs/design/town"
-LAYOUT_DIR = ROOT / "assets/default/baseline/town"
+TOWN_LAYOUT_DIR = ROOT / "assets/default/town"
+LEGACY_LAYOUT_DIR = ROOT / "assets/default/baseline/town"
 TILE_MANIFEST = ROOT / "assets/default/baseline/tile/manifest.yaml"
 BUILDING_MANIFEST = ROOT / "assets/default/baseline/building-map/manifest.yaml"
 NON_ENTERABLE = ("market_stall", "pagoda", "wharf", "palace_gate")
@@ -274,14 +275,35 @@ def encode(value: dict[str, Any]) -> str:
     return json.dumps(value, ensure_ascii=False, separators=(",", ":"), allow_nan=False) + "\n"
 
 
+def layout_path_for_spec(spec_path: Path) -> Path:
+    """Resolve a CitySpec to its current layout, then the legacy baseline."""
+    current = TOWN_LAYOUT_DIR / spec_path.stem / "layout.yaml"
+    if current.is_file():
+        return current
+    suffix = spec_path.stem.removeprefix("city_")
+    legacy = LEGACY_LAYOUT_DIR / f"town_{suffix}.layout.yaml"
+    if legacy.is_file():
+        return legacy
+    raise FileNotFoundError(f"layout missing for {spec_path.relative_to(ROOT)}")
+
+
+def layout_status(layout_path: Path) -> str | None:
+    """Read the optional per-city manifest status beside a current layout."""
+    manifest_path = layout_path.parent / "manifest.yaml"
+    if not manifest_path.is_file():
+        return None
+    manifest = load_yaml(manifest_path)
+    rows = manifest if isinstance(manifest, list) else [manifest]
+    statuses = {row.get("status") for row in rows if isinstance(row, dict)}
+    return next(iter(statuses)) if len(statuses) == 1 else None
+
+
 def source_pairs() -> list[tuple[Path, Path]]:
     result = []
     for spec_path in sorted(SPEC_DIR.glob("city_*__ch*.yaml")):
-        spec = load_yaml(spec_path)
-        suffix = spec_path.stem.removeprefix("city_")
-        layout_path = LAYOUT_DIR / f"town_{suffix}.layout.yaml"
-        if not layout_path.exists():
-            raise FileNotFoundError(f"layout missing for {spec_path.relative_to(ROOT)}")
+        layout_path = layout_path_for_spec(spec_path)
+        if layout_status(layout_path) == "rejected":
+            continue
         result.append((spec_path, layout_path))
     return result
 
