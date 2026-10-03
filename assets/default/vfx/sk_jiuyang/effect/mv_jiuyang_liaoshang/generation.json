@@ -1,0 +1,11 @@
+{
+  "prompt": "Use case: stylized-concept. Asset type: Jiuyang Shengong Chinese wuxia game VFX, unique ultimate Liaoshang (healing), original visual design, not novel literal appearance. One landscape white-background spritesheet, requested 1536x1024, 2 columns x 2 rows FOUR equal cells; pure #FFFFFF, no grid lines or text. All four frames depict the SAME gentle GOLDEN healing qi: a wide soft root at cell coordinate x=25% y=50% gently unfurls toward the RIGHT as two interweaving rounded silk-like ink-wash ribbons, gathering into a delicate open oval loop and returning inward, self-renewing breath. A few warm gold mote droplets nestled close to the ribbons, no detached distant spray. Smooth nurturing curves, inner whitespace, translucent watercolor mist and finely broken dry brush edges, fine gold strands. Distinct from a protective shield: elongated soft figure-eight breathing loops, no sharp edges, no stiff shell. Colors warm antique gold #CBA54B, soft ochre #B48935, muted honey, never white or near-white solid pigment. Four stages reading left to right top to bottom: gentle gathering, ribbons forming, soft full weave, delicate fading. Keep identical root and camera, same overall contour and scale, small intensity changes. Keep within x=12%-86%, y=20%-80% of EACH cell, at least 50px pure white gutter and margins, do not overlap cells. No hands, people, body, weapons, dragons, literal suns, flames, beams, projectiles, leaves, flowers, medical cross, text, numbers, labels, magic diagrams, borders, 3D, neon, shadows or textured paper. Effects only, painterly airy gold internal energy on perfectly blank white.",
+  "negative": "No humans, hands, weapons, text, borders, watermarks, literal sun, projectile, white pigment or textured background.",
+  "tool": "image_gen",
+  "model": "not exposed by built-in image_gen",
+  "effort": "not exposed",
+  "candidates": 1,
+  "selected": 1,
+  "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-51a6a899-b141-4ca9-bd52-0936223ff14d.png",
+  "references": []
+}

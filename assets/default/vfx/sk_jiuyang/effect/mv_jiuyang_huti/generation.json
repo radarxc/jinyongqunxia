@@ -1,0 +1,11 @@
+{
+  "prompt": "Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet, Jiuyang Shengong ultimate Huti (protective internal qi), original visual interpretation. Create one landscape image, requested 1536x1024, EXACTLY 2 columns x 2 rows of FOUR equal animation cells, no visible grid. Pure flat WHITE #FFFFFF background, no texture. Every cell shows the SAME compact protective GOLDEN qi shell: at cell x=24% y=50% a broad, softly curling root opens toward the RIGHT into three nested rounded crescent strokes forming a protective cocoon, rounded forward edge, hollow and airy interior, cloudlike lower and upper edges. Strong graceful Chinese ink brush gold-wash, amber dry-brush veins and translucent mist, not a solid shield or object. Visually defensive, enfolding and calm. Four temporal states left-to-right top-to-bottom: light gathering shell, shell knitting together, strongest layered shell, lighter dispersing wisps. Keep contour, position, root, overall size fixed; vary density slightly only. Subject contained in x=12%-87% y=14%-86%, preserve at least 48px WHITE clearance per cell. Palette antique gold #CBA54B / ochre #B48935, muted warm gold; bright strokes must stay gold, never white or near-white pigment. The source is WIDE, about 25% of cell height, not a nozzle. No people, hands, characters, weapons, text, labels, frames, runes, taiji diagram, dragons, literal sun, sphere, laser, projectile, orange flame, 3D CGI, scene, shadows, watermark.",
+  "negative": "No humans, hands, weapons, text, borders, watermarks, literal sun, projectile, white pigment or textured background.",
+  "tool": "image_gen",
+  "model": "not exposed by built-in image_gen",
+  "effort": "not exposed",
+  "candidates": 1,
+  "selected": 1,
+  "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-5db1890d-6969-4c7f-98a7-0691a0dd7be0.png",
+  "references": []
+}

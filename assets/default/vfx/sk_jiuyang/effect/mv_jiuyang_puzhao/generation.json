@@ -1,0 +1,18 @@
+{
+  "prompt": "Use case: precise-object-edit. Edit this 2x2 FOUR-FRAME golden aura sprite sheet, preserving the exact golden ink-wash style, motif, palette, 2x2 equal cell layout, camera and four temporal states. The only correction is consistent size and safe white space: REDUCE each aura and all its droplets/rays to 72 percent of its current size, centered within its OWN cell, so every cell has at least 75px completely blank WHITE padding at TOP and BOTTOM and 90px left and right. In particular the bottom-left full-strength aura must be the SAME spatial size as the top-left, not larger, and must NOT approach the row divider. Keep each root center at identical local coordinates across frames, about x=350 y=256 in a 768x512 cell. Keep all existing details enclosed inside the reduced silhouette; density may differ. Perfect flat #FFFFFF outside effects. No text, no border or grid lines, no new symbols, no subjects, no background texture. Keep output 1536x1024 landscape requested. Four separate contained effects, broad clean white gutters and fixed root alignment for animation.",
+  "initial_prompt": "Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet for Jiuyang Shengong ultimate Puzhao, original visual interpretation of an enveloping benevolent golden radiance. One landscape image requested 1536x1024; EXACT 2x2 equal cell arrangement with FOUR animation frames, no visible grid, flat pure WHITE #FFFFFF background. Every cell contains the SAME open circular AURA OF GOLDEN INK radiating softly around a wide warm root located at x=40% y=50% within that cell. This root is a softly broken cloud of gold strokes, NOT an opaque glowing ball. Surround it with concentric broken arcs, short feathery radial ink rays, airy mist, flowing cloud curls, airy hollow spaces; a large local field that enfolds nearby allies, never an aimed projectile or beam. Arcs extend slightly farther toward the RIGHT; make it radial and rounded, not a bullet shape. Traditional Chinese golden ink wash with fine calligraphic strands and dry-brush texture, virtual/solid contrast. Muted antique gold #CBA54B, ochre #B48935, warm honey; all highlight pigment is colored GOLD, never white/near-white paint. Keep source, camera, size, silhouette aligned in all frames: gathering, soft radiating, full layered radiance, dissipating into fine wisps; density changes only, frame 3 strongest. Subject strictly inside x=12%-88%, y=12%-88% in each cell; at least 48px clean WHITE gap to all borders, all strokes contained, no cropped rays. NO figures, hands, bodies, weapons, physical sun, face, fireball, dragons, symbols, taiji, runes, text, numbers, labels, medical cross, borders, shadows, paper texture, background scene, neon or CGI.",
+  "negative": "No humans, hands, weapons, literal sun, symbols, text, border, watermark, white pigment or textured background.",
+  "tool": "image_gen",
+  "model": "not exposed by built-in image_gen",
+  "effort": "not exposed",
+  "candidates": 2,
+  "selected": 2,
+  "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-a8993373-909a-419b-8e73-d6b5502a678f.png",
+  "references": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-8ee66f78-8ece-4584-bdea-50d00e99ff62.png"
+  ],
+  "rejected": {
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-8ee66f78-8ece-4584-bdea-50d00e99ff62.png",
+    "reason": "第三帧上沿金色微粒接近分格边界；第二候选缩小主体并增加白边。"
+  }
+}
