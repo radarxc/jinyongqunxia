@@ -1316,4 +1316,12 @@
       4. catalog-collectibles；
       5. gifts-catalog 复验；
       6. regen-2。
+  - **10-03 08:34–08:45 开发监督**：TOOL-rig-sheet 合入；town-gaps-1 手动复审；tests-discover 停滞重起时丢了返修说明。
+    - **TOOL-rig-sheet** r6 PASS 合入，提交 17f08829，工作区已清；已报协调者。
+      - `assets/default/rig/npc_zhujue__ch00_m/` 下 100 个文件入库：39 部件、manifest，以及 `preview/` 下的 walk_dir8.gif、sword_attack_dir8.gif、gait_vs_clip_walk.gif、npc_zhujue__ch00_m__pose-strip.png。
+      - 报告：Q1 15/15（ΔE ≤ 5.3）；Q2 39/39；Q3 关节缝隙 0；Q5 踩滑 0.366 cm；Vision 降级为 manual-prior；侧腿按源图补绘并标「源图限制」。
+    - **TOOL-town-gaps-1**：第 3 次运行按默认验收口径修好，08:32 转 HOLD-REVIEWS。08:35 手动 `--from validate`，驱动 71941，`--max-runs 1`。
+      - eng3 内存队列里没有它（eng3 启动后才加进队列文件），所以不会自动复审。`kw.py` 已改为只把调度器 launched 过的任务视为会自动复审。
+    - **TOOL-tests-discover**：第 2 次返修 25 分钟无输出，被 stall 检测重起成第 3 次。重起用的是通用续作说明，r1 返修内容和协调者 08:02 的三句都没带上（supervise 的已知弱点）。
+      - 已把它们存成 `.agents/coord/TOOL-tests-discover/devsup_note_r1.md`。它转 HOLD-REVIEWS 后我手动复审时，用 `--rework-extra` 带上。
 
