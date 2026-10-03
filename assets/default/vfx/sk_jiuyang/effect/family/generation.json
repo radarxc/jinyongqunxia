@@ -1,0 +1,11 @@
+{
+  "prompt": "Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet, Jiuyang Shengong shared family vocabulary (original visual interpretation, not a quotation from the novel). Create one landscape image, 1536x1024 requested, arranged as an EXACT 2 columns by 2 rows equal-cell contact sheet containing FOUR animation frames read left-to-right top-to-bottom. Pure flat WHITE #FFFFFF background; no dividing lines, no numbers, no text, no paper texture, no shadows. In EVERY cell: a compact breath-like GOLDEN internal-qi aura with open curling brushwork, translucent mist and very fine dry-brush strands. A wide soft source at about x=18% y=50% feeds a short rounded cloud of interlocking open golden arcs toward the RIGHT; never a projectile, never a straight beam. Keep the same source position, scale, camera, identity and silhouette in all four frames: gathering, forming, full soft crest, fading, only modest density changes. Brush shapes use warm ochre #B48935, antique gold #CBA54B and muted amber, on white, with crisp richly colored interior strokes and airy broken edges; no opaque white pigment or near-white highlights inside the effect. Restrained Chinese ink-wash sensibility, virtual/solid contrast, lots of empty space, dignified internal cultivation. Each cell at least 48px clean white margin on all sides; effect stays within x=12%-88%, y=18%-82%. No human, hand, body, weapon, dragon, fireball, literal sun, text, border, watermark, geometric magic symbols, background scene, 3D rendering, neon, orange flames. This is one coherent shared aura vocabulary, not four different designs.",
+  "negative": "No human, hand, weapon, literal sun, magic symbols, text, border, watermark, near-white pigment, background texture.",
+  "tool": "image_gen",
+  "model": "not exposed by built-in image_gen",
+  "effort": "not exposed",
+  "candidates": 1,
+  "selected": 1,
+  "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-d5e9c699-dce6-4c22-9ac6-91963c65f690.png",
+  "references": []
+}

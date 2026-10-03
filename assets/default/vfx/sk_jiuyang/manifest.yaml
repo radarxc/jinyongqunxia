@@ -1,0 +1,381 @@
+# 九阳神功：4 套原料 + 3 招 Composition；全部 candidate。
+assets:
+- id: vfx_sk_jiuyang__family_base01
+  file: effect/family/source_sheet.png
+  size: 1536x1024
+  sha256: 2a5417af7072dd6bf2a3a6319ff6f199da2834acb3fa444a9e020a5e98b762eb
+  category: vfx
+  style: default
+  subject: 倚天书界 ch04_yitian / 元末语境；九阳神功 家族回卷金气（原创扩展）
+  prompt: 'Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet, Jiuyang Shengong shared family vocabulary (original visual interpretation, not a quotation from the novel). Create one landscape image, 1536x1024 requested, arranged as an EXACT 2 columns by 2 rows equal-cell contact sheet containing FOUR animation frames read left-to-right top-to-bottom. Pure flat WHITE #FFFFFF background; no dividing lines, no numbers, no text, no paper texture, no shadows. In EVERY cell: a compact breath-like GOLDEN internal-qi aura with open curling brushwork, translucent mist and very fine dry-brush strands. A wide soft source at about x=18% y=50% feeds a short rounded cloud of interlocking open golden arcs toward the RIGHT; never a projectile, never a straight beam. Keep the same source position, scale, camera, identity and silhouette in all four frames: gathering, forming, full soft crest, fading, only modest density changes. Brush shapes use warm ochre #B48935, antique gold #CBA54B and muted amber, on white, with crisp richly colored interior strokes and airy broken edges; no opaque white pigment or near-white highlights inside the effect. Restrained Chinese ink-wash sensibility, virtual/solid contrast, lots of empty space, dignified internal cultivation. Each cell at least 48px clean white margin on all sides; effect stays within x=12%-88%, y=18%-82%. No human, hand, body, weapon, dragon, fireball, literal sun, text, border, watermark, geometric magic symbols, background scene, 3D rendering, neon, orange flames. This is one coherent shared aura vocabulary, not four different designs.'
+  negative: No human, hand, weapon, literal sun, magic symbols, text, border, watermark, near-white pigment, background texture.
+  references: []
+  tool: codex built-in image_gen
+  model: not exposed by built-in image_gen
+  effort: not exposed
+  created: '2026-10-03T23:00:32+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-d5e9c699-dce6-4c22-9ac6-91963c65f690.png
+  status: candidate
+  skill: sk_jiuyang
+  role: family
+  candidate_count: 1
+  selected_candidate: 1
+  generation_record: effect/family/generation.json
+  notes:
+  - 性质 harmony，淡金 / 金色来自作者约定，非原著显色证据。
+  - 白底 2×2 四帧，原件不改，cut_frames.py 导出 straight RGBA；近白背景按 250 色键去除。
+  - 根部逐帧手工定位；frame_002 为峰值，参考长度和根宽见 verification.json。
+  - 家族仅作同门造型语汇，本门三招皆绝招，各用独有套。
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 1001
+    sha256: 35bd6990538b9e330e819fec2633b137dacfaee81d54ec7fcc70f5e7c23507d4
+  - file: effect/family/frame_000.png
+    bytes: 302343
+    sha256: 24dbc753654eba042f4333820ee0cb1783c7d92640f4d46de508f79ebe774f5a
+  - file: effect/family/frame_001.png
+    bytes: 328630
+    sha256: dac6f6ffa1a11f1e685b59f7e84e6aa78be327b95cb4be4e5aa34a24d822e627
+  - file: effect/family/frame_002.png
+    bytes: 385099
+    sha256: bd6fdf6b9d0a9408f918abc8d7076e36781ebec0a4b0813ec2eb36ff06f2b633
+  - file: effect/family/frame_003.png
+    bytes: 279028
+    sha256: 3677dd278f9f7783f5962984dd608ff6923d5c7989159a36a58fcca87049d2cc
+  - file: effect/family/generation.json
+    bytes: 2134
+    sha256: 443909467f64aba9ab82d78678807642539ac4ee6383777dfa4c0ff63228ac9d
+  - file: effect/family/preview_black.png
+    bytes: 904052
+    sha256: efb141091f368f81358a9b16658c740d4d5c5ae17d243a3778e6dd8ebbc02210
+  - file: effect/family/preview_gray.png
+    bytes: 965640
+    sha256: ac4c0d46a7ec1ec318ef665142fa1f518bb213d9962fe9d961dbc137e9dab0ad
+  - file: effect/family/preview_white.png
+    bytes: 974673
+    sha256: 91c42d3c37b544b9987b7c318c7fde10ffee07885478c9f04233351fe1ac886b
+  - file: effect/family/quality.json
+    bytes: 1036
+    sha256: 58b1232385030d654823f1c10a66d8ad0e398b996ef6b79adbba6c658d3e03e4
+  - file: README.md
+    bytes: 5737
+    sha256: 2f9c3a3db19b1f469cdaf9c207ada644a30a5837bb259031bdbe74bb72a906cc
+  - file: verification.json
+    bytes: 6091
+    sha256: 8c72a8aeebc5f0379a017915778dd2d7f433c1a9f5fdabb57fcb4b56f179bd02
+- id: vfx_sk_jiuyang__huti_base01
+  file: effect/mv_jiuyang_huti/source_sheet.png
+  size: 1536x1024
+  sha256: 3d707b61840e5a9b4a074fe7508148e6d1afe10b7c06a85a62c56a227f9153b3
+  category: vfx
+  style: default
+  subject: 倚天书界 ch04_yitian / 元末语境；九阳神功 九阳护体·层叠金弧（原创扩展）
+  prompt: 'Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet, Jiuyang Shengong ultimate Huti (protective internal qi), original visual interpretation. Create one landscape image, requested 1536x1024, EXACTLY 2 columns x 2 rows of FOUR equal animation cells, no visible grid. Pure flat WHITE #FFFFFF background, no texture. Every cell shows the SAME compact protective GOLDEN qi shell: at cell x=24% y=50% a broad, softly curling root opens toward the RIGHT into three nested rounded crescent strokes forming a protective cocoon, rounded forward edge, hollow and airy interior, cloudlike lower and upper edges. Strong graceful Chinese ink brush gold-wash, amber dry-brush veins and translucent mist, not a solid shield or object. Visually defensive, enfolding and calm. Four temporal states left-to-right top-to-bottom: light gathering shell, shell knitting together, strongest layered shell, lighter dispersing wisps. Keep contour, position, root, overall size fixed; vary density slightly only. Subject contained in x=12%-87% y=14%-86%, preserve at least 48px WHITE clearance per cell. Palette antique gold #CBA54B / ochre #B48935, muted warm gold; bright strokes must stay gold, never white or near-white pigment. The source is WIDE, about 25% of cell height, not a nozzle. No people, hands, characters, weapons, text, labels, frames, runes, taiji diagram, dragons, literal sun, sphere, laser, projectile, orange flame, 3D CGI, scene, shadows, watermark.'
+  negative: No humans, hands, weapons, text, borders, watermarks, literal sun, projectile, white pigment or textured background.
+  references: []
+  tool: codex built-in image_gen
+  model: not exposed by built-in image_gen
+  effort: not exposed
+  created: '2026-10-03T23:02:36+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-5db1890d-6969-4c7f-98a7-0691a0dd7be0.png
+  status: candidate
+  skill: sk_jiuyang
+  role: ultimate_effect
+  candidate_count: 1
+  selected_candidate: 1
+  generation_record: effect/mv_jiuyang_huti/generation.json
+  notes:
+  - 性质 harmony，淡金 / 金色来自作者约定，非原著显色证据。
+  - 白底 2×2 四帧，原件不改，cut_frames.py 导出 straight RGBA；近白背景按 250 色键去除。
+  - 根部逐帧手工定位；frame_002 为峰值，参考长度和根宽见 verification.json。
+  - 非离体攻击；具体支援 / 自身语义只消费图鉴。
+  file_integrity:
+  - file: effect/mv_jiuyang_huti/effect-set.yaml
+    bytes: 999
+    sha256: bed0c8a15a830ec31ad251602668399726fb469927e0a4edfa56d82a4923b6e2
+  - file: effect/mv_jiuyang_huti/frame_000.png
+    bytes: 347713
+    sha256: b74e90fcf9043d13bec5cd673bc77e111abd0a01028c0e42459498debb8f16bb
+  - file: effect/mv_jiuyang_huti/frame_001.png
+    bytes: 397254
+    sha256: b267d4ccf749cbb4e17969cdd248d5141403d58503caca70ed094a55ea6569a3
+  - file: effect/mv_jiuyang_huti/frame_002.png
+    bytes: 449464
+    sha256: 0d5a928d40fd1b33885a48d42e5c66cfb190f5ccb013f74764ccd6e25ec7dfe2
+  - file: effect/mv_jiuyang_huti/frame_003.png
+    bytes: 340276
+    sha256: 41eedb2876ff07cf85c3718635f9c92897519c456be258c7146edc94e25beb3d
+  - file: effect/mv_jiuyang_huti/generation.json
+    bytes: 1994
+    sha256: 68697bbd08e0aae764229b0ecb732b0384e7d19da3c4a1bb9854af32ff7dcb85
+  - file: effect/mv_jiuyang_huti/preview_black.png
+    bytes: 1060210
+    sha256: 1e16dff0378b15d95dc49054da4a2a4e7363e197705d578b65a24c34f8a83854
+  - file: effect/mv_jiuyang_huti/preview_gray.png
+    bytes: 1141457
+    sha256: 538ae7849aca8c23b4ea1d00bde46f7eba6ae3a3280d422d785c9f64dcbd09a3
+  - file: effect/mv_jiuyang_huti/preview_white.png
+    bytes: 1169245
+    sha256: c5388306603fc6cdcc9dab4edf18b919fe5a63fc555244ddab58a3e6284d8c10
+  - file: effect/mv_jiuyang_huti/quality.json
+    bytes: 1035
+    sha256: a456a8d2147f5ddfc2d09683778c30830747d7f241c7f15127f992788c024329
+- id: vfx_sk_jiuyang__liaoshang_base01
+  file: effect/mv_jiuyang_liaoshang/source_sheet.png
+  size: 1536x1024
+  sha256: 6d839c5c0e587f12845f6326195b8af788c8755b0c7ba4a71b103c98b724fedc
+  category: vfx
+  style: default
+  subject: 倚天书界 ch04_yitian / 元末语境；九阳神功 九阳疗伤·柔带回环（原创扩展）
+  prompt: 'Use case: stylized-concept. Asset type: Jiuyang Shengong Chinese wuxia game VFX, unique ultimate Liaoshang (healing), original visual design, not novel literal appearance. One landscape white-background spritesheet, requested 1536x1024, 2 columns x 2 rows FOUR equal cells; pure #FFFFFF, no grid lines or text. All four frames depict the SAME gentle GOLDEN healing qi: a wide soft root at cell coordinate x=25% y=50% gently unfurls toward the RIGHT as two interweaving rounded silk-like ink-wash ribbons, gathering into a delicate open oval loop and returning inward, self-renewing breath. A few warm gold mote droplets nestled close to the ribbons, no detached distant spray. Smooth nurturing curves, inner whitespace, translucent watercolor mist and finely broken dry brush edges, fine gold strands. Distinct from a protective shield: elongated soft figure-eight breathing loops, no sharp edges, no stiff shell. Colors warm antique gold #CBA54B, soft ochre #B48935, muted honey, never white or near-white solid pigment. Four stages reading left to right top to bottom: gentle gathering, ribbons forming, soft full weave, delicate fading. Keep identical root and camera, same overall contour and scale, small intensity changes. Keep within x=12%-86%, y=20%-80% of EACH cell, at least 50px pure white gutter and margins, do not overlap cells. No hands, people, body, weapons, dragons, literal suns, flames, beams, projectiles, leaves, flowers, medical cross, text, numbers, labels, magic diagrams, borders, 3D, neon, shadows or textured paper. Effects only, painterly airy gold internal energy on perfectly blank white.'
+  negative: No humans, hands, weapons, text, borders, watermarks, literal sun, projectile, white pigment or textured background.
+  references: []
+  tool: codex built-in image_gen
+  model: not exposed by built-in image_gen
+  effort: not exposed
+  created: '2026-10-03T23:02:36+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-51a6a899-b141-4ca9-bd52-0936223ff14d.png
+  status: candidate
+  skill: sk_jiuyang
+  role: ultimate_effect
+  candidate_count: 1
+  selected_candidate: 1
+  generation_record: effect/mv_jiuyang_liaoshang/generation.json
+  notes:
+  - 性质 harmony，淡金 / 金色来自作者约定，非原著显色证据。
+  - 白底 2×2 四帧，原件不改，cut_frames.py 导出 straight RGBA；近白背景按 250 色键去除。
+  - 根部逐帧手工定位；frame_002 为峰值，参考长度和根宽见 verification.json。
+  - 非离体攻击；具体支援 / 自身语义只消费图鉴。
+  file_integrity:
+  - file: effect/mv_jiuyang_liaoshang/effect-set.yaml
+    bytes: 1004
+    sha256: ee8dc96d5d21d5b3736641ef643bf1ae5f4609b01cdb1acb5c32414bdc3b7d65
+  - file: effect/mv_jiuyang_liaoshang/frame_000.png
+    bytes: 192548
+    sha256: 98911a4bc3453eb5073d399181a6cee31b820431ef09dc2dc4e770296c138cdc
+  - file: effect/mv_jiuyang_liaoshang/frame_001.png
+    bytes: 253633
+    sha256: ca93eed1dfc9b72a2b4c9cc9b9bbf14a2d3603f0769c2a3f13a7f350d9a9cdc9
+  - file: effect/mv_jiuyang_liaoshang/frame_002.png
+    bytes: 279273
+    sha256: 652a58ffbf96029e63f15bbefece8628549a28266de6e721b6253a19d38480f5
+  - file: effect/mv_jiuyang_liaoshang/frame_003.png
+    bytes: 219360
+    sha256: 2a1f28fa97f4c3bece620336ea1b65ba608618ad9db9bf1810dabb766f3a3377
+  - file: effect/mv_jiuyang_liaoshang/generation.json
+    bytes: 2142
+    sha256: 1a9f4d31197ae724a4d1777e28c6f292c414f4cd94995c062158fa57d534a281
+  - file: effect/mv_jiuyang_liaoshang/preview_black.png
+    bytes: 655643
+    sha256: 29b4b4821a1a4b76452332e97388b0849594903efe2a52b7fba544681c44e214
+  - file: effect/mv_jiuyang_liaoshang/preview_gray.png
+    bytes: 703513
+    sha256: 6d14d4dff5a09ea370c40aa9e9d43ff167dcc3ae59502069582cbad53a26db2c
+  - file: effect/mv_jiuyang_liaoshang/preview_white.png
+    bytes: 692570
+    sha256: b4476d87c2c9722222f04e7007b07e14a140d3c49b29711102aa96e92e78744f
+  - file: effect/mv_jiuyang_liaoshang/quality.json
+    bytes: 1033
+    sha256: 2be53c8343ec67c652fad55ace1aaf4a27f452da37039ceab5ddcd5566e3b1e0
+- id: vfx_sk_jiuyang__puzhao_base01
+  file: effect/mv_jiuyang_puzhao/source_sheet.png
+  size: 1536x1024
+  sha256: c79ff645b36a799fd35bea00a1a92bf6c4abbc6f023507eedce7bc8c3c1845ab
+  category: vfx
+  style: default
+  subject: 倚天书界 ch04_yitian / 元末语境；九阳神功 九阳普照·周身金环（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit this 2x2 FOUR-FRAME golden aura sprite sheet, preserving the exact golden ink-wash style, motif, palette, 2x2 equal cell layout, camera and four temporal states. The only correction is consistent size and safe white space: REDUCE each aura and all its droplets/rays to 72 percent of its current size, centered within its OWN cell, so every cell has at least 75px completely blank WHITE padding at TOP and BOTTOM and 90px left and right. In particular the bottom-left full-strength aura must be the SAME spatial size as the top-left, not larger, and must NOT approach the row divider. Keep each root center at identical local coordinates across frames, about x=350 y=256 in a 768x512 cell. Keep all existing details enclosed inside the reduced silhouette; density may differ. Perfect flat #FFFFFF outside effects. No text, no border or grid lines, no new symbols, no subjects, no background texture. Keep output 1536x1024 landscape requested. Four separate contained effects, broad clean white gutters and fixed root alignment for animation.'
+  negative: No humans, hands, weapons, literal sun, symbols, text, border, watermark, white pigment or textured background.
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-8ee66f78-8ece-4584-bdea-50d00e99ff62.png
+  tool: codex built-in image_gen
+  model: not exposed by built-in image_gen
+  effort: not exposed
+  created: '2026-10-03T23:03:35+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_jiuyang/codex-home/generated_images/01a103fd-ae9b-7181-8866-352e222bd012/exec-a8993373-909a-419b-8e73-d6b5502a678f.png
+  status: candidate
+  skill: sk_jiuyang
+  role: ultimate_effect
+  candidate_count: 2
+  selected_candidate: 2
+  generation_record: effect/mv_jiuyang_puzhao/generation.json
+  notes:
+  - 性质 harmony，淡金 / 金色来自作者约定，非原著显色证据。
+  - 白底 2×2 四帧，原件不改，cut_frames.py 导出 straight RGBA；近白背景按 250 色键去除。
+  - 根部逐帧手工定位；frame_002 为峰值，参考长度和根宽见 verification.json。
+  - 非离体攻击；具体支援 / 自身语义只消费图鉴。
+  file_integrity:
+  - file: effect/mv_jiuyang_puzhao/effect-set.yaml
+    bytes: 1001
+    sha256: 991adc2e4e9e95e7c82507a4b18243a20f537ab4e77cff18d1521b8c1b65ea8d
+  - file: effect/mv_jiuyang_puzhao/frame_000.png
+    bytes: 172679
+    sha256: 98a28dacc8dc4d1fec2e5b37a8b343b691d32cbd9c49d7bb3b2ea9fc6291857d
+  - file: effect/mv_jiuyang_puzhao/frame_001.png
+    bytes: 227817
+    sha256: 140fad27d0ff3d42be9d65bf9abc66ce3003d36a3fc014caba3ae4b3bed222fb
+  - file: effect/mv_jiuyang_puzhao/frame_002.png
+    bytes: 226163
+    sha256: 4fbc3eca77d370570144d768c7b01907766e1c1c7179f9859e01f56ab49b72eb
+  - file: effect/mv_jiuyang_puzhao/frame_003.png
+    bytes: 157279
+    sha256: aa66667b68ec52decbe0025e006b6144a5918f9a570d6d3881451f76cbad7c1f
+  - file: effect/mv_jiuyang_puzhao/generation.json
+    bytes: 3804
+    sha256: a7956bdd832c53fcd071089d11b9e2425a7ff99ef5fb34b2fdefe20cc4a6f8e5
+  - file: effect/mv_jiuyang_puzhao/preview_black.png
+    bytes: 585472
+    sha256: 4a25f31daf09b527a46fc6abef97708b688860c430a90797c8c7b290742559b3
+  - file: effect/mv_jiuyang_puzhao/preview_gray.png
+    bytes: 617778
+    sha256: ef7558fa20687a1ea955d6a6196579ff83de3a5649fe1b198ca22996fb926a41
+  - file: effect/mv_jiuyang_puzhao/preview_white.png
+    bytes: 606023
+    sha256: a2058ff61fb2dd1751e06de57e5dab86e7f1c6f8b972eff41cddacb2a5a206fa
+  - file: effect/mv_jiuyang_puzhao/quality.json
+    bytes: 1031
+    sha256: 2c97e649c53d55307344e908538bd0f90c81f2ce0c79a6741a2a1a57271beed9
+- id: vfx_mv_jiuyang_huti__base01
+  file: moves/mv_jiuyang_huti/peak.png
+  size: 1536x1024
+  sha256: 3e1320c5ae145d1aba9f14d0b3e9cafd602f17925bd7eff6a5e2bca86d35a078
+  category: vfx
+  style: default
+  subject: 倚天书界 ch04_yitian / 元末语境；九阳护体·层叠金弧·绝招非外放演示（原创扩展）
+  prompt: '原料实发提示词：Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet, Jiuyang Shengong ultimate Huti (protective internal qi), original visual interpretation. Create one landscape image, requested 1536x1024, EXACTLY 2 columns x 2 rows of FOUR equal animation cells, no visible grid. Pure flat WHITE #FFFFFF background, no texture. Every cell shows the SAME compact protective GOLDEN qi shell: at cell x=24% y=50% a broad, softly curling root opens toward the RIGHT into three nested rounded crescent strokes forming a protective cocoon, rounded forward edge, hollow and airy interior, cloudlike lower and upper edges. Strong graceful Chinese ink brush gold-wash, amber dry-brush veins and translucent mist, not a solid shield or object. Visually defensive, enfolding and calm. Four temporal states left-to-right top-to-bottom: light gathering shell, shell knitting together, strongest layered shell, lighter dispersing wisps. Keep contour, position, root, overall size fixed; vary density slightly only. Subject contained in x=12%-87% y=14%-86%, preserve at least 48px WHITE clearance per cell. Palette antique gold #CBA54B / ochre #B48935, muted warm gold; bright strokes must stay gold, never white or near-white pigment. The source is WIDE, about 25% of cell height, not a nozzle. No people, hands, characters, weapons, text, labels, frames, runes, taiji diagram, dragons, literal sun, sphere, laser, projectile, orange flame, 3D CGI, scene, shadows, watermark. 合成按同目录 composition.yaml：共享 palm、深墨底 screen、wave 0.90s。'
+  negative: No humans, hands, weapons, text, borders, watermarks, literal sun, projectile, white pigment or textured background.
+  references:
+  - effect/mv_jiuyang_huti/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: 'tools/vfx/compose.py + build_demo.py (source: built-in image_gen)'
+  model: composition deterministic; image_gen model not exposed
+  effort: not exposed
+  created: '2026-10-03T23:05:27+00:00'
+  source_path: moves/mv_jiuyang_huti/composition.yaml
+  status: candidate
+  code: moves/mv_jiuyang_huti/demo.html
+  pipeline: two-part
+  skill: sk_jiuyang
+  move: mv_jiuyang_huti
+  ultimate: true
+  projection: false
+  nature: harmony
+  delivery: inner
+  notes:
+  - 图鉴未标外放；不增加 projectionSpreadSteps，不从像素长度推导命中格。
+  - 仅引用共享掌图原字节；HTML 为既有工具内嵌原料，唯一显式外链是 Three.js r186 importmap。
+  - 浏览器和真机未实跑；candidate 不代表作者批准。
+  emitter_integrity:
+    emitter-plate.yaml:
+      sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+      matches_HEAD: true
+    source_palm.png:
+      sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+      matches_HEAD: true
+  file_integrity:
+  - file: moves/mv_jiuyang_huti/composition.json
+    bytes: 3337
+    sha256: d881a40c4e4951464eeef0ae2fc885d91c990c91b199c83fea0067ad36be986a
+  - file: moves/mv_jiuyang_huti/composition.yaml
+    bytes: 996
+    sha256: ca48342947ed65cb555c15ff3bc9b66f0567de03ad2a7577feec505eb9827a55
+  - file: moves/mv_jiuyang_huti/demo.html
+    bytes: 2358490
+    sha256: ec6c1c0351491d279bf770299beb2a37a5e5db02e85bf30d720cb73188bc151a
+- id: vfx_mv_jiuyang_liaoshang__base01
+  file: moves/mv_jiuyang_liaoshang/peak.png
+  size: 1536x1024
+  sha256: e8b7fe088deca3e2013d73b43f23b14217a76e1ddc26214aa40251a4c6f9608b
+  category: vfx
+  style: default
+  subject: 倚天书界 ch04_yitian / 元末语境；九阳疗伤·柔带回环·绝招非外放演示（原创扩展）
+  prompt: '原料实发提示词：Use case: stylized-concept. Asset type: Jiuyang Shengong Chinese wuxia game VFX, unique ultimate Liaoshang (healing), original visual design, not novel literal appearance. One landscape white-background spritesheet, requested 1536x1024, 2 columns x 2 rows FOUR equal cells; pure #FFFFFF, no grid lines or text. All four frames depict the SAME gentle GOLDEN healing qi: a wide soft root at cell coordinate x=25% y=50% gently unfurls toward the RIGHT as two interweaving rounded silk-like ink-wash ribbons, gathering into a delicate open oval loop and returning inward, self-renewing breath. A few warm gold mote droplets nestled close to the ribbons, no detached distant spray. Smooth nurturing curves, inner whitespace, translucent watercolor mist and finely broken dry brush edges, fine gold strands. Distinct from a protective shield: elongated soft figure-eight breathing loops, no sharp edges, no stiff shell. Colors warm antique gold #CBA54B, soft ochre #B48935, muted honey, never white or near-white solid pigment. Four stages reading left to right top to bottom: gentle gathering, ribbons forming, soft full weave, delicate fading. Keep identical root and camera, same overall contour and scale, small intensity changes. Keep within x=12%-86%, y=20%-80% of EACH cell, at least 50px pure white gutter and margins, do not overlap cells. No hands, people, body, weapons, dragons, literal suns, flames, beams, projectiles, leaves, flowers, medical cross, text, numbers, labels, magic diagrams, borders, 3D, neon, shadows or textured paper. Effects only, painterly airy gold internal energy on perfectly blank white. 合成按同目录 composition.yaml：共享 palm、深墨底 screen、wave 0.90s。'
+  negative: No humans, hands, weapons, text, borders, watermarks, literal sun, projectile, white pigment or textured background.
+  references:
+  - effect/mv_jiuyang_liaoshang/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: 'tools/vfx/compose.py + build_demo.py (source: built-in image_gen)'
+  model: composition deterministic; image_gen model not exposed
+  effort: not exposed
+  created: '2026-10-03T23:05:34+00:00'
+  source_path: moves/mv_jiuyang_liaoshang/composition.yaml
+  status: candidate
+  code: moves/mv_jiuyang_liaoshang/demo.html
+  pipeline: two-part
+  skill: sk_jiuyang
+  move: mv_jiuyang_liaoshang
+  ultimate: true
+  projection: false
+  nature: harmony
+  delivery: inner
+  notes:
+  - 图鉴未标外放；不增加 projectionSpreadSteps，不从像素长度推导命中格。
+  - 仅引用共享掌图原字节；HTML 为既有工具内嵌原料，唯一显式外链是 Three.js r186 importmap。
+  - 浏览器和真机未实跑；candidate 不代表作者批准。
+  emitter_integrity:
+    emitter-plate.yaml:
+      sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+      matches_HEAD: true
+    source_palm.png:
+      sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+      matches_HEAD: true
+  file_integrity:
+  - file: moves/mv_jiuyang_liaoshang/composition.json
+    bytes: 3357
+    sha256: cd8261256ad3a02e9b81042b462a7b7bcf8df6bd25511636181032e6b53934eb
+  - file: moves/mv_jiuyang_liaoshang/composition.yaml
+    bytes: 1009
+    sha256: 4d38dc84c3515d67f6a7b92e33b7834d8f87e59008bbfd702586cb2b923e8c06
+  - file: moves/mv_jiuyang_liaoshang/demo.html
+    bytes: 1687724
+    sha256: cf94f7532a4d12f2fb650d45e0813949b35f338e4d08dc43ffb29bbbc5e68e61
+- id: vfx_mv_jiuyang_puzhao__base01
+  file: moves/mv_jiuyang_puzhao/peak.png
+  size: 1536x1024
+  sha256: f7411a24756e44322726fbcd7db8f0d335d40e1cb13cc6f9f88865954318142b
+  category: vfx
+  style: default
+  subject: 倚天书界 ch04_yitian / 元末语境；九阳普照·周身金环·绝招非外放演示（原创扩展）
+  prompt: '原料实发提示词：Use case: precise-object-edit. Edit this 2x2 FOUR-FRAME golden aura sprite sheet, preserving the exact golden ink-wash style, motif, palette, 2x2 equal cell layout, camera and four temporal states. The only correction is consistent size and safe white space: REDUCE each aura and all its droplets/rays to 72 percent of its current size, centered within its OWN cell, so every cell has at least 75px completely blank WHITE padding at TOP and BOTTOM and 90px left and right. In particular the bottom-left full-strength aura must be the SAME spatial size as the top-left, not larger, and must NOT approach the row divider. Keep each root center at identical local coordinates across frames, about x=350 y=256 in a 768x512 cell. Keep all existing details enclosed inside the reduced silhouette; density may differ. Perfect flat #FFFFFF outside effects. No text, no border or grid lines, no new symbols, no subjects, no background texture. Keep output 1536x1024 landscape requested. Four separate contained effects, broad clean white gutters and fixed root alignment for animation. 合成按同目录 composition.yaml：共享 palm、深墨底 screen、wave 0.90s。'
+  negative: No humans, hands, weapons, literal sun, symbols, text, border, watermark, white pigment or textured background.
+  references:
+  - effect/mv_jiuyang_puzhao/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: 'tools/vfx/compose.py + build_demo.py (source: built-in image_gen)'
+  model: composition deterministic; image_gen model not exposed
+  effort: not exposed
+  created: '2026-10-03T23:05:40+00:00'
+  source_path: moves/mv_jiuyang_puzhao/composition.yaml
+  status: candidate
+  code: moves/mv_jiuyang_puzhao/demo.html
+  pipeline: two-part
+  skill: sk_jiuyang
+  move: mv_jiuyang_puzhao
+  ultimate: true
+  projection: false
+  nature: harmony
+  delivery: inner
+  notes:
+  - 图鉴未标外放；不增加 projectionSpreadSteps，不从像素长度推导命中格。
+  - 仅引用共享掌图原字节；HTML 为既有工具内嵌原料，唯一显式外链是 Three.js r186 importmap。
+  - 浏览器和真机未实跑；candidate 不代表作者批准。
+  emitter_integrity:
+    emitter-plate.yaml:
+      sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+      matches_HEAD: true
+    source_palm.png:
+      sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+      matches_HEAD: true
+  file_integrity:
+  - file: moves/mv_jiuyang_puzhao/composition.json
+    bytes: 3346
+    sha256: 33dbb91dd1abc1eda6c4c39631f2e70e5b84efb4d970b64249b98022ab3bb0b4
+  - file: moves/mv_jiuyang_puzhao/composition.yaml
+    bytes: 1043
+    sha256: d3a673efaadd7ff1fbe34e0c391870f8fbb5f74faa81c28482223685e9e29662
+  - file: moves/mv_jiuyang_puzhao/demo.html
+    bytes: 1764319
+    sha256: c674bf3d70e058ff6e2d9763cdcf613b10c184c1fd3422cfd6c883659fc6d451

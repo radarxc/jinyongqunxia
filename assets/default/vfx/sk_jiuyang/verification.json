@@ -1,0 +1,235 @@
+{
+  "scope": "制作静态检查；不等于浏览器或真机验收",
+  "browser_verified": false,
+  "effects": {
+    "family": {
+      "frames": 4,
+      "source_sha256": "2a5417af7072dd6bf2a3a6319ff6f199da2834acb3fa444a9e020a5e98b762eb",
+      "source_matches_generator": true,
+      "white_key_cutoff": 250,
+      "key_full": 200,
+      "source_effective_margin_px_by_frame": [
+        31,
+        49,
+        26,
+        50
+      ],
+      "max_border_alpha_ratio": 0.0,
+      "max_residual_white_edge_ratio": 0.0,
+      "max_white_rebuild_error_8bit": 1.3455657958984375,
+      "reference_length_px": 566,
+      "root_width_px": 286,
+      "root_anchors_px": [
+        [
+          174,
+          255
+        ],
+        [
+          170,
+          255
+        ],
+        [
+          176,
+          250
+        ],
+        [
+          170,
+          247
+        ]
+      ],
+      "measurement": "峰值格根部视觉中心逐帧量取；参考长取第3格阈值前端右边界减根x。根宽取根x±2列 alpha>32 的纵向包络；普照只取中心云气y±65，排除外围环。"
+    },
+    "mv_jiuyang_huti": {
+      "frames": 4,
+      "source_sha256": "3d707b61840e5a9b4a074fe7508148e6d1afe10b7c06a85a62c56a227f9153b3",
+      "source_matches_generator": true,
+      "white_key_cutoff": 250,
+      "key_full": 200,
+      "source_effective_margin_px_by_frame": [
+        17,
+        15,
+        15,
+        15
+      ],
+      "max_border_alpha_ratio": 0.0,
+      "max_residual_white_edge_ratio": 0.0,
+      "max_white_rebuild_error_8bit": 1.3455657958984375,
+      "reference_length_px": 473,
+      "root_width_px": 271,
+      "root_anchors_px": [
+        [
+          202,
+          264
+        ],
+        [
+          201,
+          264
+        ],
+        [
+          202,
+          260
+        ],
+        [
+          201,
+          258
+        ]
+      ],
+      "measurement": "峰值格根部视觉中心逐帧量取；参考长取第3格阈值前端右边界减根x。根宽取根x±2列 alpha>32 的纵向包络；普照只取中心云气y±65，排除外围环。"
+    },
+    "mv_jiuyang_liaoshang": {
+      "frames": 4,
+      "source_sha256": "6d839c5c0e587f12845f6326195b8af788c8755b0c7ba4a71b103c98b724fedc",
+      "source_matches_generator": true,
+      "white_key_cutoff": 250,
+      "key_full": 200,
+      "source_effective_margin_px_by_frame": [
+        63,
+        61,
+        62,
+        61
+      ],
+      "max_border_alpha_ratio": 0.0,
+      "max_residual_white_edge_ratio": 0.0,
+      "max_white_rebuild_error_8bit": 1.3455657958984375,
+      "reference_length_px": 571,
+      "root_width_px": 206,
+      "root_anchors_px": [
+        [
+          135,
+          255
+        ],
+        [
+          138,
+          255
+        ],
+        [
+          135,
+          249
+        ],
+        [
+          137,
+          249
+        ]
+      ],
+      "measurement": "峰值格根部视觉中心逐帧量取；参考长取第3格阈值前端右边界减根x。根宽取根x±2列 alpha>32 的纵向包络；普照只取中心云气y±65，排除外围环。"
+    },
+    "mv_jiuyang_puzhao": {
+      "frames": 4,
+      "source_sha256": "c79ff645b36a799fd35bea00a1a92bf6c4abbc6f023507eedce7bc8c3c1845ab",
+      "source_matches_generator": true,
+      "white_key_cutoff": 250,
+      "key_full": 200,
+      "source_effective_margin_px_by_frame": [
+        82,
+        80,
+        65,
+        70
+      ],
+      "max_border_alpha_ratio": 0.0,
+      "max_residual_white_edge_ratio": 0.0,
+      "max_white_rebuild_error_8bit": 1.3455657958984375,
+      "reference_length_px": 267,
+      "root_width_px": 130,
+      "root_anchors_px": [
+        [
+          355,
+          273
+        ],
+        [
+          326,
+          273
+        ],
+        [
+          352,
+          238
+        ],
+        [
+          326,
+          240
+        ]
+      ],
+      "measurement": "峰值格根部视觉中心逐帧量取；参考长取第3格阈值前端右边界减根x。根宽取根x±2列 alpha>32 的纵向包络；普照只取中心云气y±65，排除外围环。"
+    }
+  },
+  "moves": {
+    "mv_jiuyang_huti": {
+      "ultimate": true,
+      "projection": false,
+      "range_hex": 0,
+      "length_px": 320,
+      "rhythm_seconds": 0.9,
+      "html_bytes": 2358490,
+      "html_image_scale": 1.0,
+      "geometry": {
+        "visible_bounds_px": [
+          254.6,
+          150.20000000000002,
+          1087.7378435517971,
+          856.4
+        ],
+        "safe_margin_px": 150.20000000000002,
+        "blank_fraction_lower_bound": 0.6259295494611874
+      },
+      "sx_sy": [
+        0.6765327695560254,
+        0.7084870848708487
+      ]
+    },
+    "mv_jiuyang_liaoshang": {
+      "ultimate": true,
+      "projection": false,
+      "range_hex": 1,
+      "length_px": 256,
+      "rhythm_seconds": 0.9,
+      "html_bytes": 1687724,
+      "html_image_scale": 1.0,
+      "geometry": {
+        "visible_bounds_px": [
+          254.6,
+          150.20000000000002,
+          996.0,
+          856.4
+        ],
+        "safe_margin_px": 150.20000000000002,
+        "blank_fraction_lower_bound": 0.6671189117431642
+      },
+      "sx_sy": [
+        0.44833625218914186,
+        0.9320388349514563
+      ]
+    },
+    "mv_jiuyang_puzhao": {
+      "ultimate": true,
+      "projection": false,
+      "range_hex": 0,
+      "length_px": 512,
+      "rhythm_seconds": 0.9,
+      "html_bytes": 1764319,
+      "html_image_scale": 1.0,
+      "geometry": {
+        "visible_bounds_px": [
+          254.6,
+          150.20000000000002,
+          1252.4588014981273,
+          856.4
+        ],
+        "safe_margin_px": 150.20000000000002,
+        "blank_fraction_lower_bound": 0.5519715082690064
+      },
+      "sx_sy": [
+        1.9176029962546817,
+        1.476923076923077
+      ]
+    }
+  },
+  "shared_emitter": {
+    "emitter-plate.yaml": {
+      "sha256": "049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13",
+      "matches_HEAD": true
+    },
+    "source_palm.png": {
+      "sha256": "f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c",
+      "matches_HEAD": true
+    }
+  }
+}
