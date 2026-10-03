@@ -4,7 +4,7 @@ import { createGameCoreHost } from '../core-host';
 import type { NewGameHost } from './contracts';
 import { createGameSession } from './session';
 import { createNewGameSessionState } from './new-game';
-import { fixtureContent } from './test-fixture';
+import { fixtureContent, fixtureItemPack } from './test-fixture';
 
 vi.mock('virtual:tianshu-content', async () => {
   const { fixtureContent: fixture } = await import('./test-fixture');
@@ -41,13 +41,40 @@ describe('new game host wiring', () => {
   });
 
   it('exposes new-game creation through the public projection host', async () => {
-    const host = await createGameCoreHost();
+    const fixture = await fixtureItemPack('ch00_yuenv');
+    const host = await createGameCoreHost({ contentSource: fixture.source });
     const entry = host as typeof host & Partial<NewGameHost>;
     expect(entry.createNewGame).toBeTypeOf('function');
     const created = await entry.createNewGame!({ identity, difficulty: 'diff_jianghu' });
     expect(created).toMatchObject({ accepted: true, events: [{ t: 'run/created' }] });
     expect((await host.snapshot()).chapter.chapterId).toBe('ch00_yuenv');
     host.dispose();
+  });
+
+  it('loads display text on first detail read and reuses the cache', async () => {
+    const fixture = await fixtureItemPack();
+    const host = await createGameCoreHost({ demo: true, contentSource: fixture.source });
+    const updates: string[] = [];
+    const off = host.subscribe((update) => {
+      const text = update.changes.inventory?.find((item) =>
+        item.id === 'it_jinchuangyao')?.description;
+      if (text) updates.push(text);
+    });
+    try {
+      const initial = await host.query();
+      const item = initial.inventory.find((row) => row.id === 'it_jinchuangyao')!;
+      expect(item.name).toBe('金创药');
+      expect(fixture.reads.filter((path) => path.includes('.text.'))).toEqual([]);
+      expect(item.description).toBe('正文载入中……');
+      await vi.waitFor(() => expect(updates.some((text) => text !== '正文载入中……'))
+        .toBe(true));
+      const loaded = await host.query();
+      expect(loaded.inventory.find((row) => row.id === item.id)?.description)
+        .not.toBe('正文载入中……');
+      expect(fixture.reads.filter((path) => path.includes('.text.'))).toEqual([
+        'ch01_tianlong/common.text.zh-Hans.items.json',
+      ]);
+    } finally { off(); host.dispose(); }
   });
 
   it('projects a compiled Ink fixture through the game session', async () => {

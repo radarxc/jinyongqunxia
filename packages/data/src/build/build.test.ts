@@ -1,8 +1,10 @@
+import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { canonicalBytes, hashValue } from './hash';
 import { compileInk, decodeInkTag } from './ink';
-import { emitLeaves, packSizeDiagnostics, splitLeaf } from './leaves';
+import { emitLeaves, MAX_LEAF_BYTES, packSizeDiagnostics, splitLeaf } from './leaves';
 import { createManifest, manifestBytes } from './manifest';
+import { buildContent } from './pipeline';
 import type { BuildLeaf } from './types';
 import type { JsonValue } from '@tianshu/shared';
 
@@ -97,6 +99,49 @@ describe('content build hashing and Ink', () => {
     expect(manifestBytes(a)).toEqual(manifestBytes(b));
     expect(emitted.map((part) => part.logicalName)).toEqual(
       emitted.map((_, index) => `ch01.text.zh-Hans.base.p${String(index).padStart(3, '0')}.json`));
+  });
+
+  it('publishes item rules and text as independent logical leaves', async () => {
+    const built = await buildContent({ rootDir: resolve(import.meta.dirname, '../../../..'),
+      write: false, chapter: 'ch01_tianlong' });
+    expect(built.diagnostics.filter((row) => row.severity === 'error')).toEqual([]);
+    const chapter = built.chapters[0]!;
+    const itemRules = chapter.leaves.filter((row) =>
+      /^common\.rules\.items(?:\.p\d{3})?\.json$/u.test(row.logicalName));
+    const itemText = chapter.leaves.filter((row) =>
+      /^common\.text\.zh-Hans\.items(?:\.p\d{3})?\.json$/u.test(row.logicalName));
+    expect(itemRules.length).toBeGreaterThan(0);
+    expect(itemText.length).toBeGreaterThan(0);
+    const rows = itemRules.flatMap((row) => row.value as JsonValue[]);
+    expect(rows.length).toBeGreaterThan(300);
+    expect(rows.every((row) => {
+      const envelope = row as Record<string, JsonValue>;
+      const value = envelope['value'] as Record<string, JsonValue>;
+      return envelope['kind'] === 'item' && typeof value['name'] === 'string' &&
+        value['text'] === undefined;
+    })).toBe(true);
+    const base = chapter.leaves.find((row) => row.logicalName === 'common.rules.base.json')!;
+    expect((base.value as JsonValue[]).some((row) =>
+      (row as Record<string, JsonValue>)['kind'] === 'item')).toBe(false);
+    expect(Object.keys(Object.assign({}, ...itemText.map((row) => row.value))))
+      .toEqual(expect.arrayContaining(['item.it_jinchuangyao.text.desc']));
+  });
+
+  it('splits 889-item rule and text fixtures below 256 KiB in order', () => {
+    const ids = Array.from({ length: 889 }, (_, index) => `it_fixture_${String(index).padStart(4, '0')}`);
+    const rules = splitLeaf(leaf('common.rules.items.json', 'rules', ids.map((id) => ({
+      kind: 'item', id, value: { id, name: `物品${id}`, padding: 'r'.repeat(420) },
+    }))));
+    const text = splitLeaf(leaf('common.text.zh-Hans.items.json', 'text',
+      Object.fromEntries(ids.map((id) => [`item.${id}.text.desc`, '文'.repeat(160)]))));
+    expect(rules.length).toBeGreaterThan(1);
+    expect(text.length).toBeGreaterThan(1);
+    expect([...rules, ...text].every((part) =>
+      canonicalBytes(part.value).byteLength <= MAX_LEAF_BYTES)).toBe(true);
+    expect(rules.map((part) => part.logicalName)).toEqual(rules.map((_, index) =>
+      `common.rules.items.p${String(index).padStart(3, '0')}.json`));
+    expect(text.map((part) => part.logicalName)).toEqual(text.map((_, index) =>
+      `common.text.zh-Hans.items.p${String(index).padStart(3, '0')}.json`));
   });
 
   it('rejects a single object entry beyond the leaf limit', () => {

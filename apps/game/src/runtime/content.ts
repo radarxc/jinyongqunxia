@@ -7,8 +7,10 @@ export interface MeridianTopology {
   readonly id: string; readonly name: string;
   readonly points: readonly { readonly id: string; readonly name: string }[];
 }
+export type GameItemDef = Omit<ItemDef, 'text'> & { readonly text?: ItemDef['text'] };
 export interface GameContent {
-  readonly items: readonly ItemDef[]; readonly npcs: readonly NpcDef[];
+  readonly items: readonly GameItemDef[]; readonly contentHash?: string;
+  readonly npcs: readonly NpcDef[];
   readonly skills: readonly MartialArtDef[]; readonly topology: readonly MeridianTopology[];
   readonly factions: Readonly<Record<string, string>>;
   readonly identityTags?: readonly string[];
@@ -24,6 +26,7 @@ export interface GameContent {
   /** Compiled Ink registry; the build plugin supplies this once CONTENT-ch00 is present. */
   readonly inkStories?: readonly InkStoryContent[];
 }
+export type StaticGameContent = Omit<GameContent, 'items' | 'contentHash'>;
 export type TownLoader = (sceneId: string) => Promise<TownRuntimeDefinition | null>;
 export interface TownNpcPlacement {
   readonly npcId: string; readonly sceneId: string; readonly eraLayer: string;

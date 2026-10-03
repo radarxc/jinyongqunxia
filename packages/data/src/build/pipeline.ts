@@ -101,11 +101,22 @@ function partitions(entries: readonly BuildEntry[], inks: readonly CompiledInk[]
   const leaves: BuildLeaf[] = []; const split = entries.map((entry) => ({ entry, value: splitContentEntry(entry) }));
   const makeRules = (selected: typeof split): JsonValue => selected.map(({ entry, value }) =>
     ({ kind: entry.kind, id: identity(entry), value: value.rules }));
+  const makeItemRules = (selected: typeof split): JsonValue => selected.map(({ entry, value }) => {
+    const rule = value.rules as Record<string, JsonValue>;
+    const withoutText = { ...rule };
+    delete withoutText['text'];
+    return { kind: entry.kind, id: identity(entry), value: withoutText };
+  });
   const makeText = (selected: typeof split): JsonValue => Object.fromEntries(selected.flatMap(({ value }) => Object.entries(value.text)));
   const common = split.filter(({ entry }) => entry.owner === 'common');
+  const commonItems = common.filter(({ entry }) => entry.kind === 'item');
+  const commonBase = common.filter(({ entry }) => entry.kind !== 'item');
   const world = split.filter(({ entry }) => entry.owner === 'world');
-  leaves.push(buildLeaf('common.rules.base.json', 'rules', 'resident', makeRules(common)));
-  leaves.push(buildLeaf(`common.text.${locale}.json`, 'text', 'resident', makeText(common), locale));
+  leaves.push(buildLeaf('common.rules.base.json', 'rules', 'resident', makeRules(commonBase)));
+  leaves.push(buildLeaf(`common.text.${locale}.json`, 'text', 'resident', makeText(commonBase), locale));
+  leaves.push(buildLeaf('common.rules.items.json', 'rules', 'resident', makeItemRules(commonItems)));
+  leaves.push(buildLeaf(`common.text.${locale}.items.json`, 'text', 'resident',
+    makeText(commonItems), locale));
   leaves.push(buildLeaf('world.rules.navigation.json', 'rules', 'resident',
     { kind: 'worldNavigation', entries: [] }));
   for (const chapter of chapterIds(entries, inks)) {

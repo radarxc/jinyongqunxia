@@ -3,8 +3,8 @@ import { createProjectionMainThreadHost } from '@tianshu/platform/host';
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import { describe, expect, it } from 'vitest';
 import type { GameCommand, GameHost, GameRemote, GameUpdate, SessionSnapshot } from './contracts';
-import { createGameSession } from './session';
-import { fixtureContent } from './test-fixture';
+import { createGameSession, createLoadedGameSession } from './session';
+import { fixtureContent, fixtureItemPack } from './test-fixture';
 
 function copy<T>(value: T): T { return structuredClone(value); }
 
@@ -46,6 +46,55 @@ function stateHash(snapshot: SessionSnapshot): string {
 }
 
 describe('main-thread and Worker transport determinism', () => {
+  it('keeps the canonical session hash when item rules move out of the entry', async () => {
+    const fixture = await fixtureItemPack();
+    const inline = fixtureContent();
+    const expected = createGameSession({ ...inline, contentHash: fixture.manifest.contentHash },
+      undefined, undefined, { demo: true });
+    const loaded = await createLoadedGameSession(inline, fixture.source, undefined, undefined,
+      { demo: true });
+    const [before, after] = await Promise.all([expected.snapshot(), loaded.snapshot()]);
+    expect(stateHash(after)).toBe(stateHash(before));
+    expect(after).toEqual(before);
+  });
+
+  it('uses one verified loader for preview, new game, and another-chapter restore', async () => {
+    const packs = await Promise.all(['ch01_tianlong', 'ch00_yuenv', 'ch10_baima']
+      .map((chapter) => fixtureItemPack(chapter)));
+    const reads: string[] = [];
+    const source = { readJson: async (path: string) => {
+      reads.push(path);
+      return packs.find((pack) => pack.values.has(path))?.values.get(path);
+    } };
+    const session = await createLoadedGameSession(fixtureContent(), source, undefined, undefined,
+      { demo: true, seedSource: () => 7 });
+    await session.createNewGame({ identity: { name: '沈砚', gender: 'female',
+      appearance: 'hero_f01', pronoun: '她', originId: 'origin_wenshiguan' },
+    difficulty: 'diff_jianghu' });
+    const current = await session.snapshot();
+    const ch10 = packs[2]!;
+    const candidate = { ...current, meta: { ...current.meta,
+      contentHash: ch10.manifest.contentHash }, chapter: { ...current.chapter,
+      chapterId: 'ch10_baima', story: { ...current.chapter.story, chapterId: 'ch10_baima' } } };
+    await session.validate(candidate);
+    await session.restore(candidate);
+    expect((await session.snapshot()).chapter.chapterId).toBe('ch10_baima');
+    expect(reads).toEqual([
+      'ch01_tianlong/manifest.json', 'ch01_tianlong/common.rules.items.json',
+      'ch00_yuenv/manifest.json', 'ch00_yuenv/common.rules.items.json',
+      'ch10_baima/manifest.json', 'ch10_baima/common.rules.items.json',
+    ]);
+    const before = await session.snapshot();
+    const retry = await createLoadedGameSession(fixtureContent(), source, before, undefined,
+      { demo: false });
+    const foreign = { ...before, chapter: { ...before.chapter, chapterId: 'ch00_yuenv',
+      story: { ...before.chapter.story, chapterId: 'ch00_yuenv' } } };
+    packs[1]!.values.set('ch00_yuenv/common.rules.items.json', []);
+    await expect(retry.restore(foreign)).rejects.toThrow(
+      'ITEM_RULES_UNAVAILABLE:CHAPTER_PACK_LEAF_HASH_MISMATCH');
+    expect(await retry.snapshot()).toEqual(before);
+  });
+
   it('produces the same canonical hash for one accepted command sequence', async () => {
     const content = fixtureContent();
     const main = createProjectionMainThreadHost(createGameSession(content));

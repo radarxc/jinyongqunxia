@@ -1,11 +1,12 @@
 import { cloneGameState, createCore, createCoreFromState, projectDialogue, type Command, type CoreContent,
   type GameState } from '@tianshu/core';
 import type { JsonValue } from '@tianshu/shared';
+import type { ContentSource } from '@tianshu/data';
 import type { BattleLaunch, BattleUiCommand } from '../battle/contracts';
 import type { BattleRuntime } from '../battle/runtime';
 import { createSelectors } from '../projection';
 import { createPreviewSession } from './bootstrap';
-import { equipmentRules, type GameContent, type TownLoader } from './content';
+import { equipmentRules, type GameContent, type StaticGameContent, type TownLoader } from './content';
 import { ALL_VIEWS, type DirtyView, type GameCommand, type GameRemote, type GameUpdate,
   type NewGameRequest, type SessionSnapshot } from './contracts';
 import { createNewGameSessionState, type MasterSeedSource } from './new-game';
@@ -28,7 +29,7 @@ function isBattleCommand(command: GameCommand): command is BattleUiCommand {
 function coreContent(content: GameContent, towns: GameContent['towns'], chapterId: string): CoreContent {
   const eraLayer = content.worldMaps?.find((entry) => entry.chapterId === chapterId)?.era;
   return {
-    items: content.items,
+    items: content.items as unknown as NonNullable<CoreContent['items']>,
     equipmentRules: equipmentRules(content),
     ...(content.identityTags ? { identityTags: content.identityTags } : {}),
     ...(content.worldMaps ? { worldMaps: content.worldMaps } : {}),
@@ -58,7 +59,10 @@ function dirtyViews(command: Command): readonly DirtyView[] {
 
 /** Worker composition of core functions. This adapter defines no stat or combat formulas. */
 function defaultSession(content: GameContent, demo: boolean): SessionSnapshot {
-  return demo ? createPreviewSession(content) : createCore().snapshot();
+  if (demo) return createPreviewSession(content);
+  const state = createCore().snapshot();
+  return content.contentHash ? { ...state, meta: { ...state.meta,
+    contentHash: content.contentHash } } : state;
 }
 export interface GameSessionOptions { readonly demo?: boolean; readonly seedSource?: MasterSeedSource;
 }
@@ -157,7 +161,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       if (state.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
       return cloneGameState(state);
     },
-    async validate(candidate) {
+    async validate(candidate: SessionSnapshot) {
       const loaded = await townFor(candidate); validated(candidate, loaded);
     },
     async restore(candidate): Promise<GameUpdate> {
@@ -228,5 +232,55 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       return { accepted: true, changes: { ...changes, ...prepared.update.changes },
         events: [...result.events, ...prepared.update.events] };
     },
+  };
+}
+
+export async function createLoadedGameSession(base: StaticGameContent, source: ContentSource,
+  initial?: SessionSnapshot, loadTown?: TownLoader, options: GameSessionOptions = {}) {
+  const { itemContentChapter, loadGameContent } = await import('./item-content');
+  const loaded = new Map<string, Promise<GameContent>>();
+  const contentFor = (chapter: string): Promise<GameContent> => {
+    const existing = loaded.get(chapter);
+    if (existing) return existing;
+    const pending = loadGameContent(base, source, chapter).catch((error: unknown) => {
+      loaded.delete(chapter);
+      throw error;
+    });
+    loaded.set(chapter, pending);
+    return pending;
+  };
+  const sessionFor = (content: GameContent, demo: boolean) =>
+    createGameSession(content, undefined, loadTown, { ...options, demo });
+  const chapter = initial?.chapter.chapterId ?? itemContentChapter(options.demo === true);
+  let debugTainted = initial?.meta.debugTainted ?? options.demo === true;
+  let active = sessionFor(await contentFor(chapter), debugTainted);
+  if (initial) await active.restore(initial);
+  const createNewGame = async (input: NewGameRequest): Promise<GameUpdate> => {
+    const replacement = sessionFor(await contentFor(itemContentChapter(false)), false);
+    const update = await replacement.createNewGame(input);
+    if (update.accepted) { active = replacement; debugTainted = false; }
+    return update;
+  };
+  return {
+    query: () => active.query(),
+    snapshot: () => active.snapshot(),
+    async validate(candidate: SessionSnapshot) {
+      if (candidate.meta.debugTainted !== debugTainted) throw new Error('SAVE_MODE_INVALID');
+      const replacement = sessionFor(await contentFor(candidate.chapter.chapterId),
+        debugTainted);
+      await replacement.validate(candidate);
+    },
+    async restore(candidate: SessionSnapshot) {
+      if (candidate.meta.debugTainted !== debugTainted) throw new Error('SAVE_MODE_INVALID');
+      const replacement = sessionFor(await contentFor(candidate.chapter.chapterId),
+        debugTainted);
+      const update = await replacement.restore(candidate);
+      active = replacement;
+      return update;
+    },
+    createNewGame,
+    dispatch: (command: GameCommand) => command.t === 'run/create'
+      ? createNewGame(command)
+      : active.dispatch(command),
   };
 }

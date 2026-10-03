@@ -28,19 +28,21 @@ export function createPreviewSession(content: GameContent): SessionSnapshot {
   const state = createCore(1, { state: createInitialGameState({ coreVersion: CORE_VERSION,
     coreBuild: CORE_BUILD, chapterId: 'ch01_tianlong', epochId: 'epoch_ch01',
     epochYear: 1093, rngProtocol: RNG_PROTOCOL, masterSeed: 1, rng }) }).snapshot();
+  const versioned = content.contentHash ? { ...state, meta: { ...state.meta,
+    contentHash: content.contentHash } } : state;
   const protagonist = character('npc_zhujue', content, [{ skillId: 'sk_taizuchangquan', trueLayer: 1 }]);
   const duanyu = content.npcs.find((npc) => npc.id === 'npc_duanyu');
   const build = duanyu?.appearances[0]?.build;
   const inventory = new InventoryRuntime({ stacks: content.items.map((item) => ({
     itemId: item.id, count: item.extension.type === 'equipment' ? 1 : Math.min(3, item.stack),
   })) }, content.items).snapshot();
-  const map = content.worldMaps?.find((entry) => entry.chapterId === state.chapter.chapterId) ?? null;
+  const map = content.worldMaps?.find((entry) => entry.chapterId === versioned.chapter.chapterId) ?? null;
   const worldMap = map ? createInitialWorldMapState(map) : null;
-  return { ...state, meta: { ...state.meta, debugTainted: true },
+  return { ...versioned, meta: { ...versioned.meta, debugTainted: true },
     profile: { protagonist, companions: [] }, party: { ...state.party, inventory },
-    world: { ...state.world, navigation: { ...state.world.navigation,
+    world: { ...versioned.world, navigation: { ...versioned.world.navigation,
       locationId: worldMap?.position.kind === 'node' ? worldMap.position.nodeId : 'city_dali' } },
-    chapter: { ...state.chapter, worldMap, town: null, npcs: [
+    chapter: { ...versioned.chapter, worldMap, town: null, npcs: [
       { npcId: 'npc_duanyu', relationship: 'befriended', affinity: 0,
         character: build?.pipeline === 'full' ? character('npc_duanyu', content, build.skills) : null },
       { npcId: 'npc_zhongling', relationship: 'met', affinity: 0, character: null },

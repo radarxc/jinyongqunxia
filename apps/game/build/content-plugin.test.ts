@@ -16,6 +16,7 @@ describe('game content plugin town integration', () => {
     expect(loaded).toEqual(expect.stringContaining('townNpcWorld'));
     expect(loaded).toEqual(expect.stringContaining('townNpcPlacements'));
     expect(loaded).not.toEqual(expect.stringContaining('towns:'));
+    expect(loaded).not.toEqual(expect.stringContaining('"items"'));
     const indexId = await plugin.resolveId?.call({} as never, 'virtual:tianshu-towns',
       undefined, {} as never);
     const index = await plugin.load?.call({} as never, indexId as string);
