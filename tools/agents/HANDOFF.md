@@ -1049,3 +1049,42 @@
     - ART-cast-polish-ch09 第 1 次运行 20 分钟结束，校验通过（20 个文件），审核中（追踪者盯）。
     - lore：lore-6（药品）返修一次后合入 20c1307a；lore-1 / 3（还有七列行）、lore-5（一条双写缺项）返修中；lore-7 05:56 起；lore-8 等位。合入后 `items_from_catalog --check` 报 medicine stale 是预期（等全部 lore 合入后 TOOL-items-catalog 重新生成）。
     - **腊八粥裁定**（lore-5 r1 提出：§4.10.4 食品只许 stamina / healInner / healOuter，§4.10.5 又要求 sxpGrant 双写 qiCultivation）：按作者「其他 - 根据描述设计」的口径，描述含内力增益的名菜 / 药膳是食品特例，允许双写 `qiCultivation`，普通食品不得带。登记并起跑 **TOOL-catalog-food-qi-exception**（28d1ad8d；Sol max，驱动 59758）：校验器特例 + design/10 §4.10.4 / §4.10.6 加注 + 测试。lore-5 若只剩这一行，置 HOLD 等它合入。
+  - **10-03 05:59–06:09 开发监督**：lore-7 合入；lore-8 起跑；lore-5 设自动挂起。
+    - **lore-7** 一轮 PASS 合入（6cb074da），工作区已清。11 份名录 `check_item_catalog.py` 全过，只有 shoes 第 14 行 `eq_feiyuxue` 报 `stamina` 不在 equipment 常用字段集的警告。
+    - **lore-8**：06:07 起跑，驱动 41339。当时满足协调者 06:06 的条件：
+      - 有任务合入且工作区已清；磁盘 5.0 GiB；负载 9.0；
+      - lore 并发 3（1 / 3 / 5）；
+      - 它的工作区早就在（316 MB），不算新开。
+      - 先挪基点（cherry-pick 无冲突，3 个文件），再 `--from start`，附「保持九列」说明。
+    - **lore-5**：协调者 06:05 已把腊八粥定为食品特例，并起了 TOOL-catalog-food-qi-exception。
+      - 后台挂了 `scratchpad/hold_on_reviews.py`：lore-5 一转 HOLD-REVIEWS 且驱动退出，就改成 HOLD-RUNS，防止 des34 在特例合入前自动复审空转。
+      - 特例合入后，挪基点 `--from validate`。
+    - **新约定**（协调者 06:06）：
+      - 磁盘 < 5 GiB 时不新开工作区；
+      - 每个任务合入后确认 `.agents/wt/<ID>` 已清；
+      - 磁盘 < 2.5 GiB 报协调者（`kw.py` / `w50.py` 阈值已同步）。
+
+  - **10-03 03:10–06:15 素材线第二波追踪**：
+    - **合入**：
+      - ART-hero-refine-b：2533a8fd。80 张，李文秀按例外放行。与 cast-b 的 6 个 manifest 冲突由追踪者挪基点，协调者手工保留两边。
+      - CITY-layouts-all：04f1133a。16 座 ch10 城，其中洛阳、太原因工具缺口标 `rejected`。原计划全量 2367 项（城 × 章），实际 14 项完成，进度表与 done 存 `_handoff/city/`。缩减方案待作者定，工具缺口另登记为 TOOL-town-gaps-1。
+      - ART-cast-polish-ch09：41b24202，万门六弟子差异化。
+      - ART-ruins-maps：df54e2ef。56 张 Tiled 地图加预览，覆盖 18 区。九老洞、敦煌地宫缺 ID，待 DES-ruins-ids 补登后接力做 ART-ruins-maps-2。
+      - 至此原定 6 个任务全部合入。
+    - **CITY 审核**：
+      - r1：把「未完成全量」当阻断。协调者在 review_checks_city 加补充裁定 1。
+      - r2：卡在 render_town 不支持水门与多重城垣。协调者裁定两城 partial 后不再审合入，并加补充裁定 2。
+    - **ruins**：等 CITY 合入、负载 < 10 才起（05:29）；polish 在 ruins 稳定后起（05:36，沙箱外 runner w15）。
+    - **磁盘**：
+      - 降至 3.1 GiB，原因是别线新开的工作区。
+      - 经协调者同意，删除 5 个已合入任务的 `.agents/logs/<ID>`（约 260 MB）。
+      - 追踪者的等待器改为每 10 分钟一轮的后台等待；执行器日志超过 150 MB 自动 gzip 轮转。
+    - **待办**：
+      - ART-items-gifts-catalog：等 DES-items-gifts-spec、TOOL-catalog-9col。
+      - ART-ruins-maps-2：等 DES-ruins-ids。
+      - build_portraits：协调者指定时段一次跑完 hero 175 张、polish 6 张、cast 余下若干，之后跑 gallery。
+  - **10-03 06:01–06:12 协调者 / 追踪者**：
+    - **ART-cast-polish-ch09 合入**（41b24202，06:07，r1 PASS）：万门六弟子（卜垣、冯坦、鲁坤、沈城、孙均、汪啸风）各重出 1 张覆盖原 asset_id，脸型 / 年纪 / 衣色 / 站姿已能区分；联系表 `_handoff/gem/codex_w15/sheets/`；runner w15 已停。
+    - **ART-ruins-maps 合入**（df54e2ef，06:12，r1 PASS）：56 张 Tiled 1.12.2 地图 + 预览（16 微型 + 40 标准），覆盖序章与十四书界 18 个区域，全部复用章节既有 `sc_*`；六邻连通检查通过。九老洞、敦煌地宫没有场景 ID 未做（等 DES-ruins-ids 合入后登记 ART-ruins-maps-2 接力）。报告 §6：美术缺洞壁 / 墓道 / 土坯残墙 / 石刻 / 矿支架 / 毡帐 / 药架 / 灯具 / 宝箱贴片（待登记贴片任务）；台阶缺 rampDir、急流缺 flowDir（本批未用）；任务 / 采集 / 奖励绑定归 CONTENT 各章。
+    - DES-items-gifts-spec 续作 35 分钟结束，校验通过（design/10、design/12），审核中。
+    - 磁盘：追踪者删掉五个已合入任务的日志目录（约 260 MB）；ruins / polish 合入后工作区自动清除，06:12 回到 5 GiB。规则：< 5 GiB 不新开工作区，< 2.5 GiB 停线。
