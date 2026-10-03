@@ -1,0 +1,76 @@
+- id: npc_guojing__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 郭靖（射雕英雄传 ch02 · 青年）· A 字参考版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 2ee1d4a7-c005-4626-8baf-0fe98c2eb280
+    url: https://studio.tripo3d.ai/workspace/generate/2ee1d4a7-c005-4626-8baf-0fe98c2eb280
+    generate_op: 6c42187d-f98a-40b3-a0b7-fe66a68e4239（image_to_model）
+    rig_op: 38ad0a06-aace-4104-b094-9171c6f16bab
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch02/threeview/por_npc_guojing__ch02_youth_apose.png
+    sha256: b6ef56dbbde8c4ddfd940f89f6ff063bf022f71a94a7bbff8d43a9e9ba12b3af
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 87cb65ce125f2c0f831d724d73fa719fe4fbfa30fb7c728d50eac8aa770f953d
+  size_bytes: 6071092
+  joints: 65
+  triangles: 96410
+  vertices: 55669
+  animations: []
+  textures:
+  - image/jpeg 440023 B
+  - image/jpeg 1433133 B
+  - image/jpeg 701006 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T14:46:31-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，褐色短褐 + 蓝灰腰带可辨识，头发深色、无肉色块；自动绑骨一次成功（Hips y0.513、头顶 0.988、双手外展 y0.50、脚 0.06）。
+- id: npc_guojing__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 郭靖（射雕英雄传 ch02 · 青年）· A 字参考版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 2ee1d4a7-c005-4626-8baf-0fe98c2eb280
+    url: https://studio.tripo3d.ai/workspace/generate/2ee1d4a7-c005-4626-8baf-0fe98c2eb280
+    generate_op: 6c42187d-f98a-40b3-a0b7-fe66a68e4239（image_to_model）
+    rig_op: 38ad0a06-aace-4104-b094-9171c6f16bab
+  size: 369x594
+  sha256: 500236100e7de635ee77b542f07a1048ce40ecfc01302fc687db77c95206f547
+  size_bytes: 183437
+  created: '2026-10-03T14:46:31-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
