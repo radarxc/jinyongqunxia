@@ -7,6 +7,7 @@ export * from './meridian-migration';
 export * from './move';
 export * from './primitives';
 export * from './quest';
+export * from './region-map';
 export * from './story';
 export * from './story-graph';
 export * from './world';
