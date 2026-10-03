@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 940、已通过（作者） 132、待出图 88。**待出图队列 88 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 941、已通过（作者） 132、待出图 87。**待出图队列 87 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -44,7 +44,6 @@
 | items | `it_suijinxiangyubei` | 隋式镶金玉杯 | `assets/default/item/collectibles/it_suijinxiangyubei.png` | 待出图 | [it_suijinxiangyubei.md](items/collectibles/it_suijinxiangyubei.md) |
 | items | `it_wenzhengmingchibifu` | 文徵明《赤壁赋》页 | `assets/default/item/collectibles/it_wenzhengmingchibifu.png` | 待出图 | [it_wenzhengmingchibifu.md](items/collectibles/it_wenzhengmingchibifu.md) |
 | items | `it_wuzhouzhuseqin` | 武周朱漆琴 | `assets/default/item/collectibles/it_wuzhouzhuseqin.png` | 待出图 | [it_wuzhouzhuseqin.md](items/collectibles/it_wuzhouzhuseqin.md) |
-| items | `it_yuanhetianyuyu` | 元玉鱼 | `assets/default/item/collectibles/it_yuanhetianyuyu.png` | 待出图 | [it_yuanhetianyuyu.md](items/collectibles/it_yuanhetianyuyu.md) |
 | items | `it_yuanhuangjingzhi` | 元黄色写经纸 | `assets/default/item/collectibles/it_yuanhuangjingzhi.png` | 待出图 | [it_yuanhuangjingzhi.md](items/collectibles/it_yuanhuangjingzhi.md) |
 | items | `it_yuanhuanxuezhai` | 元代焕雪斋题字 | `assets/default/item/collectibles/it_yuanhuanxuezhai.png` | 待出图 | [it_yuanhuanxuezhai.md](items/collectibles/it_yuanhuanxuezhai.md) |
 | items | `it_yuanhuzhoubaihaobi` | 元湖州白毫笔 | `assets/default/item/collectibles/it_yuanhuzhoubaihaobi.png` | 待出图 | [it_yuanhuzhoubaihaobi.md](items/collectibles/it_yuanhuzhoubaihaobi.md) |
