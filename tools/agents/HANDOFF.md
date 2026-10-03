@@ -1121,3 +1121,13 @@
     - TOOL-rig-sheet 第 8 次运行后复验通过，eng3 自动复审 r5 中。
 
   - **10-03 06:33–06:36 协调者（lore 结构性矛盾裁定）**：开发监督报 lore-1（兵器）/ lore-3（秘籍）来回翻转：校验器要求同一名录整文件九列一致，而任务按前后半批切分（lore-1 / 2、lore-3 / 4 各写同一文件的一半），审核又要求后半批原样留给 lore-2 / 4，单批永远过不了。裁定方案 1、门禁不动：lore-1 写整份 `items-weapons.md`、lore-3 写整份 `items-manuals.md`，lore-2 / 4 取消；协调者停掉 des34 调度器（9492），开发监督改两份说明后由协调者停执行器、开发监督挪基点 `--from start` 重起（续作说明：已写成九列的后半批保留、按同样标准自检），审核用 `--rework-extra` 同口径。两条待作者确认按默认：秘籍 grade 1–12 全本 cultivation 基准 500 / 750 / 1000 / 1200 / 1600 / 2000 / 2500 / 3000 / 3500 / 4000 / 4500 / 5000，残本 / 抄本乘 maxLayer/10；绣花针 mainK=0.65 → atk=65 与地阶 atk ≥ 80 冲突，作特殊兵器例外报告登记、交 design/10 归属任务。
+  - **10-03 06:34–06:38 开发监督**：按协调者 06:36 裁定（方案 1，门禁不动），lore-1 / 3 改写整份名录，lore-2 / 4 取消。
+    - 提交 7b180abf：tasks.json 里 lore-1 / 3 的 vars（part / cats）改为整份名录（兵器 247 件、秘籍 180 件），写入裁定原文和两条作者确认项的默认值：
+      - 绣花针 atk=65 按特殊兵器例外，报告登记交 design/10；
+      - 秘籍 cultivation 曲线 500…5000，残本、抄本乘 maxLayer/10。
+    - `_des34_queue.txt` 里 lore-2 / 4 已注释取消；协调者停了 des34 调度器（9492）。
+    - 协调者停掉旧驱动与执行器后，我用 `scratchpad/lore_whole_relaunch.sh` 重起：先确认无活进程，再挪基点到 7b180abf，然后 Sol max `--from start`，`--note` 与 `--rework-extra` 都用 `devsup_note_whole.md`。
+      - 说明要点：后半批已写成九列的行保留并自检，不要退回七列；报告按整份重写。
+      - 驱动 pid：lore-1 44637、lore-3 46127。新提示词已核实含裁定。
+    - des34 已停，lore 转 HOLD-REVIEWS 后由开发监督手动复验，最多 3 次，计数在 `_handoff/devsup_revalidated.json`。`kw.py` 已改为只在调度器活着时才视为会自动复验。
+
