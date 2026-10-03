@@ -720,3 +720,59 @@ No Qing palace tower, modern tourist camp, enormous flag, snow mountain, water p
 默认7件均为 `candidate`；完整门楼的四向、孔掩膜与像素孔的精确重合、墙桥连续接缝及真机遮挡 **（待实测）**。新资产 `tex_town_mongol_*` 和套件标签 `mongol` 按本任务授权创建，具体ID见manifest；元骨架以外的地域枚举需上游后续登记。上述缺口沿用§9“按样例城效果后补”的默认，不以文件校验通过代替几何验收。
 | 吐蕃7张单向件、门孔及墙缝 | 默认保留candidate，按原向装配；净宽按规划掩膜，像素接缝待城镇联调 |
 | 吐蕃地域共用与历史差异 | 默认无名原创组合；具体年代、城门制度、植物古代栽植另考，不作为三城复原图 |
+
+## 11. 遗迹贴片（ruins；ART-ruins-tiles，2026-10-03）
+
+本套件按 AR-47 补齐两批遗迹地图报告 §6 的 22 件装饰：洞壁直段 / 转角、墓道口 / 壁段、土坯 / 夯土残墙、残碑 / 摩崖小龛、矿支架、毡帐、药架、两种灯、同箱开闭、钟乳 / 石笋、湿壁、夯土剖面、淤沙、坍塌与盗洞。全部为匿名场景组合 **（原创扩展）**；具体古代形制细部 **（待考）**，不认定为任何具名原著遗址复原。每件 ID / 文件名 / `decoId` 相同，均用 `deco_ruins_<题材>_v01`，单下划线。
+
+### 11.1 生成契约与差异
+
+```text
+One isolated realistic historical game decoration sprite.
+Orthographic yaw 45 degrees, elevation about 30 degrees, exact 2:1 ground axes;
+screen slopes +0.5 / -0.5, upright verticals, no perspective convergence.
+Soft upper-left light and short lower-right contact shadow.
+True transparent RGBA, opaque material alpha 255, empty space alpha zero;
+transparent holes, full silhouette, ample margin, no terrain island or plinth.
+Image 1: approved Song northern wall, use material realism, camera and light only.
+Subject: {SUBJECT}, footprint {W}x{H}; anonymous original game adaptation.
+No people, readable writing, pseudo-writing, modern fittings, glow, scenery,
+checkerboard, white halo, cropped silhouette, multiple views or display base.
+```
+
+- 洞壁取断裂岩面与局部苔痕；湿壁以竖向矿物水痕和微小水滴区别，不能变成瀑布。钟乳朝下、石笋朝上；倒悬件不套用地面接触影。
+- 墓道口用灰砖放射券圈与错缝砖墙；孔内含底面透明。盗洞为墓壁低处破口，保留碎砖断缘及土芯；不画黑色椭圆冒充贯穿孔。
+- 土坯残墙显示矩形土坯与泥缝；夯土残墙 / 墓壁剖面显示连续夯层、侵蚀沟与嵌粒。三者不混成水泥或烧结砖。
+- 残碑正面仅作空白风蚀面；小龛为岩内浅浮雕石造像，非活人，不附经文。矿架为木柱、横梁、短斜撑与木销；药架用陶罐和药草捆，不带玻璃与标签。
+- 长明灯为石座浅油碗；石灯笼为素石柱、透空灯室与低石盖，火光克制。淤沙为视觉高度 0 的薄覆层；乱石堆保留断裂面，不附地台。
+- 毡帐固定 2×2 格；参考 1913 年库伦照片中的低圆毡帐、浅锥顶、灰白毡面与横绳，仅作较晚的形制类比，不将其当作唐宋年代的证据。实际上传 JPEG、来源与 SHA-256 逐件记入 manifest。
+- 打开宝箱以关闭版缩小 JPEG 作第二张输入；仅改变箱盖，保留箱体、两道铁带、锁扣、木纹和基脚。开闭是两个装饰状态，奖励与交互仍归地图 `Chest` 对象。
+
+### 11.2 规格化、占地与交接
+
+每张由外部 worker 21 独立 `codex exec · image_gen` 生成；本任务只写提示词、入队、取图、几何规格化与登记。洞壁、关闭宝箱先与已审宋墙并排校准，再批量。若源图没有透明背景，调用既有 `tools/item/common.py::remove_background`；已有 alpha 则保留轮廓，仅清理近透明杂点、归一近不透明值，并作一次预乘 alpha 等比 LANCZOS 缩放。成品再按实际非零 alpha 裁框并加四边 8 px；不画 RGB、不拼贴补物体、不拉伸改投影。
+
+素材占地是 **【建议值】**：一般单体 1×1，长壁 / 墓道 / 矿架 / 剖面 / 淤沙 / 盗洞 2×1，洞壁转角 / 坍塌 / 毡帐 2×2。由 64×32 菱形格推出屏幕平面包络 `宽=32(w+h)`、`深=16(w+h)`：三档为 64×32、96×48、128×64 px。按源图主体跨度等比缩放；锚点按底面中心估计并随裁切、缩放换算，源跨度、源锚点和变换实数保存在 `normalization`。这不是自动碰撞掩膜，也不声称任意两件可无缝拼接。
+
+`deco_ruins.tsj` 将 22 个单图绑定到同名 `decoId`；地图需在 `deco` 层单格放一个锚点，不能以 2×2 重复刷四次替代大物件占地。`terrain_dir.tsj` 提供台阶 / 急流 / 瀑布各六个方向，复用 `terrain.tsj` 缓存 atlas 的原类别 48×48 子矩形，未新出方向地形图片。编辑器选方向看属性，不能旋转 / 翻转 GID 代替方向值；编译器会拒绝带翻转标志的 GID。
+
+### 11.3 参考资料
+
+以下技术格式于 2026-10-03 访问官方文档核实；本轮不新增价格、API 限额或浏览器兼容性主张。
+
+- [Tiled JSON Map Format](https://doc.mapeditor.org/en/stable/reference/json-map-format/)：图片集合、每图尺寸、属性类型，以及 tile 的 `x/y/width/height` 子矩形字段；按仓库锁定的 1.12.2 读取，JSON `version` 仍是格式版本。
+- [Tiled TMX Map Format](https://doc.mapeditor.org/en/stable/reference/tmx-map-format/)：图片集合的 tile 尺寸与图像子矩形语义；不将 atlas 全图缩进每个方向图块。
+- [Pillow Image module](https://pillow.readthedocs.io/en/stable/reference/Image.html)：RGBA、裁切、等比 resize 与 LANCZOS；本机版本记录在制作台账，不把文档版本当作本机版本。
+- [1913 in Khuree](https://commons.wikimedia.org/wiki/File:1913_in_Khuree.jpg)：本次查看既有下载件、联网核对图片页、缩成 JPEG 上传；仅为毡帐材质与低矮体量的较晚参照，照片本身不入库。
+
+### 11.4 本节新增术语 / 约定
+
+新增资产命名空间 `deco_ruins_`；22 个完整 ID、占地、锚点与实际生成记录以 `ruins/manifest.yaml` 为准。`rampDir/flowDir` 引用现有编译合同，未新增地形 ID。`source_path` 指向协调交接区保留的原始 PNG，`source_sha256` 校验该原图；`references` 只列实际图像输入，不把文字浏览页伪称上传图片。
+
+### 11.5 待决事项 / 依赖
+
+- 替下游给出的建议值：占地与锚点按 §11.2；默认全部 `candidate`。浮雕、灯具等古代细部不作测绘或分朝代复原承诺。
+- 上游依赖：AR-47、`design/22`、`tech/07`、两份遗迹地图报告 §6 与现行 Tiled 编译器；已解决：两报告所列本批 22 件与三类方向属性已产出，具体地图仍需另任务绑定。
+- 对基准的修改提案：无；装饰不改变地形通行、伤害、掉落与剧情规则。
+- 原著考据待办：具体场景采用何种灯、石刻和墓道须由章节任务逐字核对，本套件没有原著引文。
+- 开放问题（附默认值）：墙件接缝、编辑器实际落点、真机遮挡 **（待实测）**；默认按原向摆放。钟乳锚点表示地面投影，默认交洞顶 / 前景渲染处理，不自动生成地面碰撞。灯具光照、宝箱开闭切换、2×2 占地阻挡由接入任务实现，PNG 不承担玩法状态。
