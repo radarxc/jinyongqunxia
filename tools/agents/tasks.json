@@ -35656,6 +35656,64 @@
    "writes": [
     "apps/game/src/flow/m1-flow.test.ts"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/perf/check_size.mjs",
+     "tools/perf/budgets.json"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "node",
+      "tools/perf/check_size.mjs"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-size-session-gate",
+   "title": "游戏工程 · 体积门禁补「首次会话闭包」（Worker 壳 + 首次会话静态闭包 + 虚拟基础内容，预算 110 KiB gzip；entry 170 只约束标题页；子系统块只报告）",
+   "prompt": "ENG-size-session-gate.md",
+   "deps": [
+    "ENG-entry-split"
+   ],
+   "writes": [
+    "tools/perf/check_size.mjs",
+    "tools/perf/check_size.test.mjs",
+    "tools/perf/budgets.json",
+    "tools/perf/README.md",
+    "apps/game/vite.config.ts",
+    "apps/game/build/**"
+   ]
   }
  ]
 }
