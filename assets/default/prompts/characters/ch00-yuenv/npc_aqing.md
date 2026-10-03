@@ -8,25 +8,57 @@ age_variant: youth
 tier: S
 output: assets/default/character/female/ch00/por_npc_aqing__ch00_youth_base.png
 manifest: assets/default/character/female/ch00/manifest.yaml
-references: []
 status: new
-redo_reason: "序章核心人物（演示越女剑、按 AR-26 传主角《长生诀》第一层）尚无立绘与提示词，按原著与禁止幼态补出"
-codex_prompt_rev: 2026-10-02
+references:
+- path: .agents/coord/imagegen-reference/identity-20261002/yuenv/aqing_ref_linqingxia_portrait_tvsou.jpg
+  use: 身份参考：林青霞（正面肖像 + 东方不败剧照） 剧照（作者 10-03 指定版本）；只借造型、气质与五官神韵，按项目画风重画，不照搬照片
+  sha256: 9bc9eaed1e8ae2d3390009312d8de471e22b5ef82b2806983c07fa16508a2b23
+- path: .agents/coord/imagegen-reference/identity-20261002/yuenv/aqing_ref_linqingxia_1992_dongfangbubai_sina2019.jpg
+  use: 身份参考：林青霞（正面肖像 + 东方不败剧照） 剧照（作者 10-03 指定版本）；只借造型、气质与五官神韵，按项目画风重画，不照搬照片
+  sha256: 54046a492a2dc22b93aed184e0403fd1293d720ac6b4eb1a3f8dba91ab9c188f
+- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+  sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+- path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+  sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+redo_reason: "作者 10-03 AR-44：参考林青霞（正面肖像 + 东方不败剧照）造型重画 base，不要和照片一样"
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261002/yuenv/aqing_1986_lisaifeng_sina1.jpg
-- .agents/coord/imagegen-reference/identity-20261002/yuenv/aqing_1986_lisaifeng_sina2.jpg
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/still__por_npc_aqing__ch00_youth_base__1.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/still__por_npc_aqing__ch00_youth_base__2.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+codex_prompt_rev: 2026-10-03
 classic_ref:
-  version: 1986 亚视《越女剑》
+  version: 林青霞（正面肖像 + 东方不败剧照）
   stills:
-  - .agents/coord/imagegen-reference/identity-20261002/yuenv/aqing_1986_lisaifeng_sina1.jpg
-  - .agents/coord/imagegen-reference/identity-20261002/yuenv/aqing_1986_lisaifeng_sina2.jpg
+  - .agents/coord/imagegen-reference/identity-20261002/yuenv/aqing_ref_linqingxia_portrait_tvsou.jpg
+  - .agents/coord/imagegen-reference/identity-20261002/yuenv/aqing_ref_linqingxia_1992_dongfangbubai_sina2019.jpg
 ---
 
 # 阿青 · 基础立绘（2026-10-02 新建）
 
 ## Gemini 提示词
+
+> 2026-10-03 AR-44 新 base（10 号出图员，codex exec · image_gen）：作者要求参考林青霞（正面肖像 + 东方不败剧照）造型、按项目画风重画、不要和照片一样；上传顺序：2 张剧照，最后两张为同性别画风基线（缩小版 JPEG）。上一版保留在下一节作历史。AR-44，作者 16:58 选第 2 轮 B（更接近林青霞、高挑剑术宗师身形）。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+【参考图】第 1 张是作者指定的演员的正面肖像，第 2 张是她在一部古装武侠电影里的剧照。作者要求阿青「再更接近她一些」：阿青的脸以第 1 张肖像为准——脸型、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、嘴型与唇形、颧骨与下颌轮廓都要明显像她，熟悉她的人一眼就认出神似；第 2 张只借她的英气与神采。但这是阿青、不是剧照里的角色：服装、发式和道具完全按下文的越女装束，不要剧照里的帽子、戏服和男装，也不要肖像里的卷发造型；必须重新绘制成项目的手绘插画画风：不要照片质感，不要照搬肖像或剧照的构图、光影、背景和姿势，不要做成照片修图或照片贴脸。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物】阿青，《越女剑》的越国牧羊女：山野里长大，与白猿嬉戏中练成神妙剑术，只用一根竹棒便能击败吴国剑士；本作序章为主角演示越女剑。
+【年龄与体态（作者：身高高一些，剑法大师的身段）】约二十二岁的成年女子：身材高挑修长（约 8 头身）、肩背挺拔、腰身紧致、双腿修长，是剑术大家的身段——站姿如松、重心沉稳、颈项挺直，四肢纤长而有力量；衣着端庄，不性感化。
+【面容（作者：再更接近她一些）】以第 1 张肖像的五官为准：略长的鹅蛋脸、额头饱满、颧骨略高、下颌线清楚而不方硬；浓黑修长的剑眉、眉峰略挑、眉眼间距近；一双大而深邃的眼睛、双眼皮、眼尾略长，眼神清冷锐利、带着英气；鼻梁高挺笔直、鼻头秀气；唇形饱满、唇线清晰、唇色偏淡；肤色白皙，两颊有一点山风日晒的淡红；不施脂粉。英气逼人的成熟美人，不是柔弱少女。
+【发式】乌黑长发在头顶挽一个小髻，其余编成两条长辫垂在胸前，辫梢用浅蓝布条扎住；额前几缕短发；发间一只小小的青色珠花。
+【服饰（越女装束不变）】春秋越地的粗布衣裙：浅蓝色粗葛布交领短上衣（右衽，衣长过臀），白色内领；月白色及踝麻布长裙；腰系深蓝色布带；脚穿草鞋。衣料粗朴但干净完整，没有珠翠首饰。
+【道具】右手握一根细长的青竹棒（约到她肩头高），竹节清楚，棒梢点地——这是她施展越女剑的「剑」。不拿青铜剑。
+【姿态与神情】身体基本正面，挺拔站立，左手垂在身侧；神情平静、澄澈而锐利，目光直视前方。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要少女或儿童体态、娃娃脸；不要矮小、溜肩；不要性感化、浓妆；不要青铜剑和繁复头饰。
+【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+```
+
+## 上一版 Gemini 提示词（AR-44 林青霞基底重画之前，历史，不再用于出图）
 
 > 2026-10-02 AR-32 重出（8 号出图员，codex exec · image_gen）：主要角色参考经典造型加项目基线生成。上传顺序：第 1–2 张为 1986 亚视《越女剑》阿青剧照（aqing_1986_lisaifeng_sina1.jpg、aqing_1986_lisaifeng_sina2.jpg），最后两张为同性别画风基线（缩小版 JPEG）。参考图只借造型、气质与面部特征，画面按项目画风重绘、不复制照片或像素图。上一版保留在下一节作历史。
 
