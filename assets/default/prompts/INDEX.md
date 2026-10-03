@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1009** 份：已入库 632、待出图 245、已通过（作者） 132。**待出图队列 245 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1009** 份：已入库 633、待出图 244、已通过（作者） 132。**待出图队列 244 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -224,7 +224,6 @@
 | items | `eq_yinyangruanlun` | 阴阳软刃轮 | `assets/default/item/weapons/eq_yinyangruanlun.png` | 待出图 | [eq_yinyangruanlun.md](items/weapons/eq_yinyangruanlun.md) |
 | items | `eq_yuanjungalengguduo` | 元军瓜棱骨朵 | `assets/default/item/weapons/eq_yuanjungalengguduo.png` | 待出图 | [eq_yuanjungalengguduo.md](items/weapons/eq_yuanjungalengguduo.md) |
 | items | `eq_yuanjunqishuo` | 元军骑矟 | `assets/default/item/weapons/eq_yuanjunqishuo.png` | 待出图 | [eq_yuanjunqishuo.md](items/weapons/eq_yuanjunqishuo.md) |
-| items | `eq_yuanjunwandao` | 元军弯刀 | `assets/default/item/weapons/eq_yuanjunwandao.png` | 待出图 | [eq_yuanjunwandao.md](items/weapons/eq_yuanjunwandao.md) |
 | items | `eq_yuanjunzhijian` | 元军护手直剑 | `assets/default/item/weapons/eq_yuanjunzhijian.png` | 待出图 | [eq_yuanjunzhijian.md](items/weapons/eq_yuanjunzhijian.md) |
 | items | `eq_yuanyangyue` | 鸳鸯钺 | `assets/default/item/weapons/eq_yuanyangyue.png` | 待出图 | [eq_yuanyangyue.md](items/weapons/eq_yuanyangyue.md) |
 | items | `eq_yueyashuanggou` | 月牙双钩 | `assets/default/item/weapons/eq_yueyashuanggou.png` | 待出图 | [eq_yueyashuanggou.md](items/weapons/eq_yueyashuanggou.md) |
@@ -460,7 +459,7 @@
 | 161 | 扎马步抄本 | `it_miji_zhamabu` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhamabu.md](items/manuals/it_miji_zhamabu.md) | template |
 | 162 | 壮行功抄本 | `it_miji_zhuangxingong` | 黄 | 秘籍·抄本 | 待出图 | [it_miji_zhuangxingong.md](items/manuals/it_miji_zhuangxingong.md) | template |
 
-### 兵器（247）· 已入库 193、待出图 30、已通过（作者） 24
+### 兵器（247）· 已入库 194、待出图 29、已通过（作者） 24
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
@@ -478,22 +477,21 @@
 | 12 | 阴阳软刃轮 | `eq_yinyangruanlun` | 玄中 | 兵器·奇门轮 | 待出图 | [eq_yinyangruanlun.md](items/weapons/eq_yinyangruanlun.md) | template |
 | 13 | 元军瓜棱骨朵 | `eq_yuanjungalengguduo` | 玄下 | 兵器·奇门锤 | 待出图 | [eq_yuanjungalengguduo.md](items/weapons/eq_yuanjungalengguduo.md) | template |
 | 14 | 元军骑矟 | `eq_yuanjunqishuo` | 玄下 | 兵器·枪 | 待出图 | [eq_yuanjunqishuo.md](items/weapons/eq_yuanjunqishuo.md) | template |
-| 15 | 元军弯刀 | `eq_yuanjunwandao` | 玄下 | 兵器·刀 | 待出图 | [eq_yuanjunwandao.md](items/weapons/eq_yuanjunwandao.md) | template |
-| 16 | 玉管拂尘 | `eq_yuguanchen` | 玄上 | 兵器·鞭索 | 待出图 | [eq_yuguanchen.md](items/weapons/eq_yuguanchen.md) | template |
-| 17 | 张阿生屠牛刀 | `eq_zhangashengtuniudao` | 玄上 | 兵器·刀 | 待出图 | [eq_zhangashengtuniudao.md](items/weapons/eq_zhangashengtuniudao.md) | template |
-| 18 | 丈八曲蛇矛 | `eq_zhangbaqushemao` | 玄上 | 兵器·枪 | 待出图 | [eq_zhangbaqushemao.md](items/weapons/eq_zhangbaqushemao.md) | template |
-| 19 | 朱聪铁扇 | `eq_zhucongtieshan` | 玄上 | 兵器·奇门扇 | 待出图 | [eq_zhucongtieshan.md](items/weapons/eq_zhucongtieshan.md) | template |
-| 20 | 子母五阳轮 | `eq_zimuwuyanglun` | 玄上 | 兵器·奇门轮 | 待出图 | [eq_zimuwuyanglun.md](items/weapons/eq_zimuwuyanglun.md) | template |
-| 21 | 春秋青铜戈 | `eq_chunqiutongge` | 黄下 | 兵器·奇门戈 | 待出图 | [eq_chunqiutongge.md](items/weapons/eq_chunqiutongge.md) | template |
-| 22 | 九节鞭 | `eq_jiujiebian` | 黄中 | 兵器·鞭索 | 待出图 | [eq_jiujiebian.md](items/weapons/eq_jiujiebian.md) | template |
-| 23 | 清顺刀 | `eq_qingshundao` | 黄上 | 兵器·刀 | 待出图 | [eq_qingshundao.md](items/weapons/eq_qingshundao.md) | template |
-| 24 | 宋军直矛 | `eq_songjunzhimao` | 黄下 | 兵器·枪 | 待出图 | [eq_songjunzhimao.md](items/weapons/eq_songjunzhimao.md) | template |
-| 25 | 唐仪刀 | `eq_tangyidao` | 黄上 | 兵器·刀 | 待出图 | [eq_tangyidao.md](items/weapons/eq_tangyidao.md) | template |
-| 26 | 吴越青铜剑 | `eq_wuyueqingtongjian` | 黄下 | 兵器·剑 | 待出图 | [eq_wuyueqingtongjian.md](items/weapons/eq_wuyueqingtongjian.md) | template |
-| 27 | 元军护手直剑 | `eq_yuanjunzhijian` | 黄上 | 兵器·剑 | 待出图 | [eq_yuanjunzhijian.md](items/weapons/eq_yuanjunzhijian.md) | template |
-| 28 | 鸳鸯钺 | `eq_yuanyangyue` | 黄下 | 兵器·奇门钺 | 待出图 | [eq_yuanyangyue.md](items/weapons/eq_yuanyangyue.md) | template |
-| 29 | 月牙双钩 | `eq_yueyashuanggou` | 黄中 | 兵器·奇门钩 | 待出图 | [eq_yueyashuanggou.md](items/weapons/eq_yueyashuanggou.md) | template |
-| 30 | 竹节短杖 | `eq_zhujieduanzhang` | 黄下 | 兵器·棍杖 | 待出图 | [eq_zhujieduanzhang.md](items/weapons/eq_zhujieduanzhang.md) | template |
+| 15 | 玉管拂尘 | `eq_yuguanchen` | 玄上 | 兵器·鞭索 | 待出图 | [eq_yuguanchen.md](items/weapons/eq_yuguanchen.md) | template |
+| 16 | 张阿生屠牛刀 | `eq_zhangashengtuniudao` | 玄上 | 兵器·刀 | 待出图 | [eq_zhangashengtuniudao.md](items/weapons/eq_zhangashengtuniudao.md) | template |
+| 17 | 丈八曲蛇矛 | `eq_zhangbaqushemao` | 玄上 | 兵器·枪 | 待出图 | [eq_zhangbaqushemao.md](items/weapons/eq_zhangbaqushemao.md) | template |
+| 18 | 朱聪铁扇 | `eq_zhucongtieshan` | 玄上 | 兵器·奇门扇 | 待出图 | [eq_zhucongtieshan.md](items/weapons/eq_zhucongtieshan.md) | template |
+| 19 | 子母五阳轮 | `eq_zimuwuyanglun` | 玄上 | 兵器·奇门轮 | 待出图 | [eq_zimuwuyanglun.md](items/weapons/eq_zimuwuyanglun.md) | template |
+| 20 | 春秋青铜戈 | `eq_chunqiutongge` | 黄下 | 兵器·奇门戈 | 待出图 | [eq_chunqiutongge.md](items/weapons/eq_chunqiutongge.md) | template |
+| 21 | 九节鞭 | `eq_jiujiebian` | 黄中 | 兵器·鞭索 | 待出图 | [eq_jiujiebian.md](items/weapons/eq_jiujiebian.md) | template |
+| 22 | 清顺刀 | `eq_qingshundao` | 黄上 | 兵器·刀 | 待出图 | [eq_qingshundao.md](items/weapons/eq_qingshundao.md) | template |
+| 23 | 宋军直矛 | `eq_songjunzhimao` | 黄下 | 兵器·枪 | 待出图 | [eq_songjunzhimao.md](items/weapons/eq_songjunzhimao.md) | template |
+| 24 | 唐仪刀 | `eq_tangyidao` | 黄上 | 兵器·刀 | 待出图 | [eq_tangyidao.md](items/weapons/eq_tangyidao.md) | template |
+| 25 | 吴越青铜剑 | `eq_wuyueqingtongjian` | 黄下 | 兵器·剑 | 待出图 | [eq_wuyueqingtongjian.md](items/weapons/eq_wuyueqingtongjian.md) | template |
+| 26 | 元军护手直剑 | `eq_yuanjunzhijian` | 黄上 | 兵器·剑 | 待出图 | [eq_yuanjunzhijian.md](items/weapons/eq_yuanjunzhijian.md) | template |
+| 27 | 鸳鸯钺 | `eq_yuanyangyue` | 黄下 | 兵器·奇门钺 | 待出图 | [eq_yuanyangyue.md](items/weapons/eq_yuanyangyue.md) | template |
+| 28 | 月牙双钩 | `eq_yueyashuanggou` | 黄中 | 兵器·奇门钩 | 待出图 | [eq_yueyashuanggou.md](items/weapons/eq_yueyashuanggou.md) | template |
+| 29 | 竹节短杖 | `eq_zhujieduanzhang` | 黄下 | 兵器·棍杖 | 待出图 | [eq_zhujieduanzhang.md](items/weapons/eq_zhujieduanzhang.md) | template |
 
 ### 衣物（30）· 已入库 18、已通过（作者） 12
 
