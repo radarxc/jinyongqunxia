@@ -16,7 +16,7 @@
 
 ## 0. 现状一句话
 
-- **设计**：des33 第三批 13 项全部合入（故事线挂接口 g1～g5、tech / design 同步 a / b、名录门槛 v2 a / b / c、rig v1.1、ids-slp）；des34 的 DES-items-attrs-spec 合入（名录升九列），TOOL-catalog-9col 05:37 合入（4aa8c6db），8 个 DES-items-lore 由开发监督挪基点复验中；des35 的人物名录补登记 a / b 合入（110 个原著人物进名录与 design/18）；des36 的礼品规格 DES-items-gifts-spec 因内存压力暂停（§4）。
+- **设计**：des33 第三批 13 项全部合入；des34 物品说明与属性投影 **全部合入**（attrs-spec + lore 1 / 3 / 5 / 6 / 7 / 8，11 份名录九列，lore-2 / 4 取消），等 TOOL-items-catalog 重新生成；des35 人物名录补登记 a / b 合入；des36 礼品规格合入（0496cb32），礼品名录 ART-items-gifts-catalog 在跑；DES-sync-keyscenes-ar36、DES-ruins-ids 合入（§4）。
 - **素材**：
   - 人物：AR-32 / AR-35 的修改全部完成；第二波（AR-36）cast-fill a / b 合入 57 张，hero-refine-a 合入 95 张（联系表已发作者），hero-refine-b 合入 80 张（2533a8fd；李文秀 6 图按「白马用游戏头像 + 基线」放行）；总览页 04:50 已重建重发；剩余 `build_portraits`（运行时裁切）等指定时段（§3.1）。
   - 物品（Gemini）：**366 张全部入库**（10-03 04:28 收工：秘籍 162、兵器 128、药材 55、暗器 21，限流 0），物品图至此出齐；下一批是 AR-40 的奢侈品 / 礼品约 120–180 张，等名录（§3.2）。
@@ -44,7 +44,7 @@
 | 工作区 | 执行器 | 状态 | 驱动 pid |
 |---|---|---|---|
 | TOOL-rig-sheet | traex Sol max | 审核 r5 又 FAIL（前臂含手掌、侧腿占位、髋锚暴露）；第 9 次返修为最后一轮，侧腿问题转 ART-rig-sheet-side（新源图），之后按原型收口合入 | 开发监督另起 |
-| DES-items-lore-1 | traex Sol | 兵器整份：r2 / r3 FAIL（82 件无 qiEffect 却填了 105–120 亲和，须改 100），返修中 | 开发监督另起 |
+| TOOL-items-catalog（重新生成） | traex | 11 份名录已全部九列（lore-1 bbce8465 收官），等 ENG-entry-split 拿到池位后由开发监督起 `--force` 重新生成并提交 content/items（AR-39） | 开发监督 |
 | TOOL-tests-discover | traex Sol | 07:01 起跑（unittest discover 跑全 tools 测试 + 两条红测试） | 3408（开发监督） |
 | ENG-12e-gltf-pilot | traex | 07:13 续作（恢复 2D 演示 + 3D 并排），07:16 开跑 | 69969（协调者，`supervise.r3.out`） |
 | TOOL-town-gaps-1 | traex Sol | 07:1x 续作（排队等池位） | 66572（开发监督） |
@@ -195,7 +195,7 @@
 - des35：DES-npcs-register-a（03c44028）/ b（3226fe15）——人物补齐发现的 110 个原著主要人物登记进各书名录与 design/18。
 
 **停住 / 在等**：
-- **des34 的 DES-items-lore**：lore-5 / 6 / 7 / 8（711a48a5 / 20c1307a / 6cb074da / 1d86e1a9）与 lore-3 整份（67ab5df4）已合入，九列名录 10 / 11；lore-1 兵器整份在跑（lore-2 / 4 已取消）。全部合入后 TOOL-items-catalog `--from start` 重新生成并提交 `content/items`（AR-39）。
+- **des34 的 DES-items-lore**：**全部完成**——lore-1 兵器整份（bbce8465）、lore-3 秘籍整份（67ab5df4）、lore-5 / 6 / 7 / 8（711a48a5 / 20c1307a / 6cb074da / 1d86e1a9），11 份名录九列；lore-2 / 4 取消。下一步 TOOL-items-catalog `--force` 重新生成并提交 `content/items`（AR-39），之后 `items_from_catalog --check` 的 stale 红项消失。
 - **des36 的 DES-items-gifts-spec**（礼品规格）：**合入 0496cb32**（06:37）——design/10 §11.5 礼品品类、年代可得性、每书可送礼的原著物件；design/12 §3.8 书法拜帖与各朝代求字支线。下一步 ART-items-gifts-catalog（codex 考据写名录与提示词）→ Gemini 出 collectibles。
 
 **待办**：

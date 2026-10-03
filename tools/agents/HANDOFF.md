@@ -1236,3 +1236,4 @@
     - ENG-19b 合入后 prod_check 全绿（HEAD 8ba60121）：133 文件 948 用例；**entry 169.07 / 170（绿，只剩 0.93 KiB）**，render 160.53 / 180，webgl 329.60 / 350。拆分前不合任何首屏任务。
     - **ENG-entry-split** 登记（开发监督 7f82fe44：core Worker 子系统按需 import()、主线程非首屏懒加载，目标 entry ≤ 155 KiB，不改预算与 check_size 口径；写集 core-worker / core-host / main / runtime/** / packages/core exports 与 entries/**）；07:29 起驱动 75729（Sol max），排队等代码池位。会往首屏加东西的 15 个任务置 HOLD-RUNS（16c、20b、26、23a、16e、18c、CONTENT-ch00a/b/c、ch10、27a/b/c、28a/b；清单 `scratchpad/entry_holds.txt`），拆分合入转绿后开发监督解除；TOOL-ingest-cropframe 临时 HOLD 免抢位。协调者裁定不为腾位暂停 ENG-12e。
     - **ART-ruins-maps-2 07:28 起跑**（追踪者，驱动 69438，codex xhigh，基点 28c5cd22）。gifts-catalog 第 1 次仍在跑。
+  - **10-03 07:34–07:38 协调者**：**lore-1 合入**（bbce8465，兵器整份 247 件；r3 FAIL 后全表 qiAffinity 复核为 100、特殊兵器须有正式 qiEffect，开发监督第 3 次手动复审 r4 PASS）。至此 11 份物品名录全部九列（des34 的 attrs-spec + lore 1 / 3 / 5 / 6 / 7 / 8，lore-2 / 4 取消）。已请开发监督在 ENG-entry-split 拿到池位之后起 TOOL-items-catalog 重新生成 `content/items`（AR-39）。
