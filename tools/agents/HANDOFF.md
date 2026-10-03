@@ -1735,4 +1735,19 @@
       - ch00a 合入后：标 CANCELLED（理由「由 CONTENT-ch00a 合入时生成」），删工作区，在集成分支跑 `--check`。
       - 审核若判物品文件越界，就照审核意见处理，regen-2 照原计划跑。
       - artw3 的 wait_start 52793 用 `--running … TOOL-items-regen-2` 作为 rig-std-parts 的起跑条件，已请协调者 / artw3 改条件后重起。
+  - **10-03 15:13–15:20 开发监督**：CONTENT-ch00a r2 FAIL（内容口径）；登记 ENG-move-onhit-effects，重起 ch00a。
+    - **r2 意见**（`.agents/reviews/CONTENT-ch00a-data.r2.md`）：内容、写集、校验都过，只有两条不过：
+      - 报告数字过期：81 / 36，实测 144 个 `#ts:` / 65 个 speaker；
+      - O4 的 MoveDef 附带效果没有 ENG 任务 ID 和待消费字段。
+    - **ENG-move-onhit-effects**（5e56e7d5，协调者 15:16 批）：
+      - 字段：`onHit.applyBuffs[{buffId, chanceBp, turns}]`、`onHit.displace{kind: knockback, cells}`、`parryable` 默认 true；content:validate 校验 buffId。
+      - 另补 bf_shiheng / bf_pojia / bf_dongyao 定义；序章越女剑四招填值。
+      - 依赖 ENG-25 / 16c / 26 / CONTENT-ch00a。加 26 是因为同写 battle/types.ts、index.ts 和数据登记文件。
+      - ENG-27a 加依赖它（同写 schemas/**、battle/**）。
+        - eng3 只在启动时读依赖图，新依赖要等它重启后才生效。
+        - 在那之前，起 move-onhit-effects 前先确认 27a 没在跑；若 27a 已起，就等它合入再起。
+      - 位置：M1 三件与 19e 之后，非 M1 阻塞，traex Sol max，review_checks_eng，由开发监督单独起。
+    - **CONTENT-ch00a**：保留工作区（基点 e3e88508）续作，驱动 78500，第 7 次运行。
+      - 参数：`--from start --max-runs 1 --max-reviews 1 --auto-merge`，内容口径。
+      - note：`devsup_note_r2.md`，内容是 r2 原文加协调者三点。
 
