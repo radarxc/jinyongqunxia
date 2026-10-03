@@ -1489,4 +1489,13 @@
       - ch00a 也会撞上这个问题：后台 `append_on_prompt.py CONTENT-ch00a-data 2` 会往它第 2 轮提示词注入条件说明。若只是 inkmeta 失败，就空跑，supervise 因同一失败连续两次自停在 HOLD-VALIDATE，不需要停进程。
       - 修复合入后：ch10 / ch00a 都挪基点 `--from validate`。
     - 协调者已把 Tripo API 任务标 CANCELLED（CLI 存档在 `_handoff/ART-3d-tripo-avatars/`），追踪者的等待进程由协调者处理。
+  - **10-03 12:09–12:18 开发监督**：CONTENT-ch00a 兜底注入适得其反（教训）。
+    - 第 1 轮是停滞重起（不是校验失败），协调者的「校验失败即停」监控没触发。
+    - 我的兜底注入器把条件说明「只有 inkmeta 失败就什么都不改」追加进 2.prompt.md。第 2 轮执行器只写了一句计划，2 分钟就结束了；随后校验报缺报告，自动进入第 3 轮（最后一轮）。
+    - 我又手工往 3.prompt.md 追加更正说明，但执行器已启动、不会读到；而且越出了协调者「只许追加 2.prompt.md」的范围。已如实报协调者，请其决定是否停第 3 轮。
+    - **教训**：
+      - 条件式的「什么都不做」说明会被执行器当成捷径，以后不写；
+      - 注入前先确认上一轮的失败类型（停滞还是校验失败）；
+      - 不越出协调者给的范围。
+    - 同期：ENG-size-session-gate 校验通过、进审核；它自报首次会话闭包 86.16 / 110 KiB，子系统块为对话 / Ink 35.35、区域 44.19、战斗 33.77、城镇 25.64，都只报告。ENG-content-validate-inkmeta、DES-ui-immersive（codex）、collectibles 在执行；ch00b r2 FAIL 在返修。
 
