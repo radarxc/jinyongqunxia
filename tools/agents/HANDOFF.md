@@ -737,4 +737,10 @@
       - 协调者裁定：停掉 g3 第 1 次和 g4 的复审，g4 用 Sol 复核重起；g1 由 Sol 返修；ENG-16b 让它跑完、交审核把关，FAIL 就用 Sol 返修。
       - 以后再出现 GPT-5.5 就报协调者，由协调者来停。
     - **磁盘**：11.8 GiB。
+  - **10-02 19:20–19:45 开发监督**：
+    - **合入**：DES-story-hooks-g2、DES-story-hooks-g5、ENG-16b（393f07dc，19:42）。
+      - ENG-16b：挪基点后由 GPT-5.5 第 6 次运行解冲突，r2 PASS，审核 7.7 分钟。
+      - 每次合入后 `prod_check` 都绿。ENG-16b 之后为 736 用例，size 295.26 / 350；check_ids --strict 为 0。
+    - **解锁**：ENG-16b 合入后，ENG-16d、ENG-14b 已就绪，但 eng3 并发 3 已满（12c-clip、rig-sheet、17a），要等空位。
+    - **执行器**：Astra 探测一直不应答，在跑的都是 Sol；19:11 之后没有新的 GPT-5.5。
 
