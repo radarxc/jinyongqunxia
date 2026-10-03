@@ -806,4 +806,11 @@
       - 协调者 23:28 重启 eng3（并发 4）；ENG-18d 23:29 起跑。
     - **AR-37（作者）**：片段模式 rig 门禁放宽到 1.0 ms，程序步态 0.80 不动（538e1454）。ENG-12d 降为可选，已挪到 eng3 队尾，说明也已跟进（f9d84601）。
     - **des34**（协调者新起，物品说明与属性投影 9 项，并发 6）：开发监督照常盯停住。注意 DES-items-lore-* 会改物品名录，TOOL-items-catalog 复验前要按最新名录重新生成。
+  - **10-02 23:33–23:55 开发监督**：
+    - **TOOL-items-catalog 合入**（23:52，协调者裁定不拦）：
+      - 名录生成器去掉写死行数，物品从 361 个变成 889 个，另有 5 件 common bootstrap，`it_tao`、`it_aqing_qingcha` 都已生成。
+      - 第 2 次运行把生成的 desc 缩短了（去掉「名录投影：…」前缀，不再生成 `text.short`），在旧基点上过了体积门禁。
+      - 合入后 `prod_check post-itemscat`：809 用例全过；体积红，entry 203.23 / 170，webgl 366.25 / 350。
+      - ENG-18d 合入后集成分支必须转绿，不绿就带数字返修 18d。
+    - **名录问题**（TOOL-items-catalog 报告）：design/10 §14.2 只登记了 569 / 894 个物品 ID，缺 manuals 170、weapons 128、hidden-weapons 27；没有 `items-herbs.md`，药材在 `items-medicine.md`，`gather-herbs.md` 只是分布表。交 des34 之后的同步任务。des34 改完名录后，开发监督再起 TOOL-items-catalog 的 `--from start` 重新生成，时间由协调者定。
 
