@@ -1532,3 +1532,8 @@
     - 内容：worldMaps / assets / 章节 NPC 改成按章节懒加载叶片，基础内容只留 topology / factions / skills；readAssetManifest 只按 manifest 生成键；目标首次会话 ≤ 80 KiB，门槛 110 不变；顺手修 DEV 演示入口。
     - 依赖 ENG-20b。20b 合入后，代码池有位我就单独起（traex Sol max，review_checks_eng），eng3 队列不改。
 
+  - **10-03 12:25–12:50 协调者**：体积门禁合入、基础内容口径、AR-47 第三波。
+    - ENG-size-session-gate 合入 95b02a59：首次会话 93.36 / 110（Worker 壳 2.33 + 静态闭包 65.33 + 基础内容 25.69），990 测试全过；ENG-20b 放行。开发监督实测「基础内容多 7 KiB」是稀疏检出口径差（readAssetManifest 按文件在不在生成键：稀疏 1 条、全量 566 条），并非回归；worldMaps（只有 ch01 天龙，12.5 KiB）也不该进首次会话 → 登记 **ENG-session-base-diet**（09aef148，依赖 ENG-20b，目标 ≤ 80 KiB，素材键改为只按 manifest 生成）。
+    - CONTENT-ch00b-maps r2 FAIL（唯一安全出生点、Trigger action、报告如实）→ 返修过校验 → 开发监督起只复审（驱动 77749）。
+    - 10 号出图员 A1 完成：萧峰 4 张返工图对齐 juxianzhuang_guard（53435b4d，联系表 `codex_w17/sheets/xf_faces_after.jpg`）。段誉剧照问题：本地 `classic_duanyu_1997.jpg` 是 TVB 1997 版（陈浩民），林志颖是 2003 版，本地没有 → 问作者是否允许下载 2003 版剧照（否则只用文字造型）。
+    - **AR-47**（作者：未生产的素材都要做，城图全量）→ 起「素材线第三波追踪」子代理：ART-region-maps、ART-rig-std-refs、ART-rig-sheet-f + TOOL-rig-parts-f、ART-ruins-tiles、ART-cast-fill-c / -d、城图按书拆任务（写集不相交、2 路起步）。礼品图仍归原追踪线（名录复验合入后由协调者起 Gemini 出图员）。
