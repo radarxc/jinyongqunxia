@@ -15,6 +15,11 @@ HEADER = (
     "外观要点（供出图） |"
 )
 SEPARATOR = "|---|---|---|---|---|---|---|"
+HEADER9 = (
+    "| ID | 名称 | 子类 | 品阶 | 出处（书名 / 原创扩展） | 说明 | "
+    "效果字段 | 属性投影 | 外观要点（供出图） |"
+)
+SEPARATOR9 = "|---|---|---|---|---|---|---|---|---|"
 
 
 def item_line(item_id: str, *, sub: str = "食材·果", effect: str = "grade=3") -> str:
@@ -25,6 +30,14 @@ def item_line(item_id: str, *, sub: str = "食材·果", effect: str = "grade=3"
 def write_catalog(path: Path, lines: list[str]) -> None:
     path.write_text(
         "# 测试物品名录\n\n" + HEADER + "\n" + SEPARATOR + "\n"
+        + "\n".join(lines) + "\n",
+        encoding="utf-8",
+    )
+
+
+def write_catalog9(path: Path, lines: list[str]) -> None:
+    path.write_text(
+        "# 测试物品名录\n\n" + HEADER9 + "\n" + SEPARATOR9 + "\n"
         + "\n".join(lines) + "\n",
         encoding="utf-8",
     )
@@ -104,8 +117,66 @@ class ItemsFromCatalogTest(unittest.TestCase):
             item["text"]["desc"],
         )
         self.assertNotIn("short", item["text"])
+        self.assertNotIn("lore", item["text"])
+        self.assertNotIn("attributes", item["extension"]["value"])
         self.assertNotIn("grade=3", item["text"]["desc"])
         self.assertNotIn("ingredientKind", item["text"]["desc"])
+
+    def test_nine_column_row_projects_lore_and_attributes(self) -> None:
+        lore = "这是一段供测试使用的物品来历说明，交代流传、用法与限制，并明确属于原创扩展内容，长度满足名录规范且不会复制外观描述。"
+        line = (
+            "| `it_food_nine` | 九列表果 | 食品·果 | 黄 | **（原创扩展）** | "
+            f"**（原创扩展）**{lore} | `grade=3; staPct=15.5%` | "
+            "`stamina=16; ruleRef=rule_food_test` | 青瓷小碟盛放 |"
+        )
+        write_catalog9(self.catalog_dir / "items-food.md", [line])
+
+        parsed = items_from_catalog.rows(self.catalog_dir)
+        item = items_from_catalog.build(parsed[0])
+
+        self.assertEqual("（原创扩展）" + lore, item["text"]["lore"])
+        self.assertEqual(
+            {"version": 2, "stamina": 16, "ruleRef": "rule_food_test"},
+            item["extension"]["value"]["attributes"],
+        )
+
+    def test_nine_column_empty_projection_still_records_version(self) -> None:
+        lore = "甲" * 60
+        line = (
+            "| `it_material_nine` | 九列食材 | 食材·果 | 黄 | **（原创扩展）** | "
+            f"{lore} | `grade=3; ingredientKind=fruit` | `—` | 青瓷小碟盛放 |"
+        )
+        write_catalog9(self.catalog_dir / "items-food.md", [line])
+
+        item = items_from_catalog.build(items_from_catalog.rows(self.catalog_dir)[0])
+
+        self.assertEqual({"version": 2}, item["extension"]["value"]["attributes"])
+
+    def test_rejects_mixed_seven_and_nine_column_tables(self) -> None:
+        nine = (
+            "| `it_nine` | 九列果 | 食材·果 | 黄 | **（原创扩展）** | "
+            f"{'甲' * 60} | `grade=3` | `—` | 青瓷小碟盛放 |"
+        )
+        path = self.catalog_dir / "items-food.md"
+        path.write_text(
+            "# 测试\n\n" + HEADER + "\n" + SEPARATOR + "\n" + item_line("it_old")
+            + "\n\n" + HEADER9 + "\n" + SEPARATOR9 + "\n" + nine + "\n",
+            encoding="utf-8",
+        )
+
+        with self.assertRaisesRegex(ValueError, "mixed seven/nine-column"):
+            items_from_catalog.rows(self.catalog_dir)
+
+    def test_seven_column_repository_render_is_byte_identical(self) -> None:
+        parsed = items_from_catalog.rows()
+        generated = items_from_catalog.expected_files(parsed)
+
+        self.assertTrue(generated)
+        for path, rendered in generated.items():
+            self.assertEqual(
+                path.read_bytes(), rendered.encode("utf-8"),
+                str(path.relative_to(items_from_catalog.ROOT)),
+            )
 
     def test_audits_exact_ids_in_official_registry_when_present(self) -> None:
         parsed = [
