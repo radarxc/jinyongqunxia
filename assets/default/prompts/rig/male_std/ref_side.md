@@ -4,9 +4,9 @@ kind: rig_ref
 set: male_std
 view: side
 name: 男性标准体 · side 全身参考图
-output: assets/default/rig/male_std/ref_side.png
-manifest: assets/default/rig/male_std/manifest.yaml
-size: 512x512
+output: assets/default/rig/male_std/ref/ref_side.png
+manifest: assets/default/rig/male_std/ref/manifest.yaml
+size: 256x480
 figure_height_px: 435
 background: 透明 RGBA（alpha 同时含 0 与 255）
 references:
@@ -14,9 +14,13 @@ references:
   use: 人物比例、服饰时代感与画风规则（§6–§7）
 - path: docs/tech/09-character-rig.md
   use: §1 体型、视图、A 字站姿与部件拆分约定
-status: ready
+status: superseded
 order: 0
 ---
+
+已按 GUIDE §2 改由 sheet_L 拆出（ART-rig-std-refs）
+
+下文为 AR-22 历史提示词，不得执行；现行近侧为解剖学 L，生成提示词见对应 `sheet/manifest.yaml`，拆图记录见 `ref/sheet.json`。
 
 # 男性标准体 · side 全身参考图
 
