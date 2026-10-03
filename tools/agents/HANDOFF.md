@@ -1472,3 +1472,8 @@
     - 已加 shrink_exempt（b08e8bec）。第 2 次运行的提示词已写好、执行器尚未启动，我追加了「不要改回、不要恢复，只重跑检查并更新报告」。
     - DES-ui-immersive（codex）、collectibles、size-session-gate、CONTENT-ch10 / ch00a 都在执行；磁盘 5.1 GiB。
 
+  - **10-03 11:58–12:06 协调者**：Tripo 网页版进展与作者许可。
+    - 男女主角已生成、绑骨（Humanoid / Mixamo）并加 idle / walk / run（预设动作不收费）：男多视图 project 5223c172（99,466 面；单图对比版 aafbded0 未绑骨），女单图 39a2305f（96,389 面）；选项 H3.1 + Ultra Mesh + 8K + PBR + 去光照 + 三角面 + 面数上限 10 万 + Private；余额 25125 → 24890。头发用 canvas 取像素初检合格（头部后半深色 ≥ 67%、肤色 ≤ 9%）。
+    - 子代理因 find / read_page 在 tripo3d.ai 注入超时，改用「macOS 剪贴板 + 页面粘贴」上传参考图 → 会覆盖作者剪贴板、作者复制的内容可能被粘进第三方网站 → 协调者 12:02 叫停，请作者二选一（修扩展网站访问权限 / 同意剪贴板方式），未定前主要角色暂停上传。
+    - **作者 12:05「同意下载」**（GLB 与预览图）→ 已转子代理：先导出男女主角入库 `assets/default/model3d/<npc_id>/` 并按路径提交。
+    - CONTENT-ch00b-maps：防截断误报（sc_00_changbai_cave.tmj 紧凑重排）→ 停第 2 轮、豁免放宽 `content/world/regions/**/*.tmj`（09c0653a），开发监督 `--from validate` 重起（驱动 8920，日志 `supervise.devsup.out`），校验通过；r1 审核 REVIEW-ERROR（审核模型只回了自言自语，25 秒退出），驱动自动重审。
