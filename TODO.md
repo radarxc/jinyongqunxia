@@ -124,9 +124,11 @@
 - 风险：剧照参考那批图会接近演员本人样貌，第二波已按「像角色不像演员」重做主角；公开发布前仍要复查。
 
 - [ ] **AR-44 / 45 / 46（10-03 12:13 起）**：10 号出图员（Opus 5.5 子代理，codex exec，工具箱 `_handoff/gem/codex_w17/`）按作者在审核页「通过」的图对脸精修主角立绘：A1 萧峰 4 张返工图对齐 juxianzhuang_guard；A2 杨过（古天乐 1995）/ 段誉（林志颖 1997）/ 张无忌（苏有朋 2003，更帅更健壮）先出新 base 请作者批；A3 男女主角高魅力形象（侠客劲装 / 白衣飘飘，全身 + 三视图，批后交 Tripo）；A4 郭靖、黄蓉、小龙女、虚竹、赵敏、周芷若对齐通过图；B 再修 82 张剧情插图的脸。无通过图的主角等作者审。替换同路径文件、旧图备份；做完协调者跑 build_portraits → INDEX → 审核页重发（被替换图的旧结论要清掉）。
+- 15:28 作者「剧照要下」：黄蓉（李一桐版）、阿青（林青霞版）剧照许可下载，10 号改出带参考版；王语嫣 5 张场景立绘对齐 mantuo_base（先重出曼陀山茶、磨坊两张）。
 - [ ] 待登记设计：**主角外观随魅力分档**（AR-45「对应魅力较高的状态」：分档阈值、各档立绘 / 3D 模型、切换时机与界面表现）。
 
 - [ ] **AR-47 素材线第三波**（10-03 12:45 起，「素材线第三波追踪」Opus 子代理登记并驱动，执行器 Codex，同时 ≤ 3 个图像任务）：ART-region-maps（30 区域图 + 水墨衬纸）、ART-rig-std-refs（6）、ART-rig-sheet-f + TOOL-rig-parts-f（女主角三视图与切件）、ART-ruins-tiles（洞壁 / 墓道 / 石刻 / 宝箱等）、ART-cast-fill-c / -d（110 位新登记人物）、城图全量（按书拆 CITY-layouts-*，ch10 剩余 → ch01 … ch14）。进度 `_handoff/artw3/progress.md`。
+  - **招式特效 VFX-sk_***（45 门，10-01 只合入 10 门）：剩 35 门（33 门未起 + sk_hama r1 FAIL〔登记把 fajin 误标绝招〕+ sk_dugu9 停在沙箱连不上 Codex），10-03 15:22 交第三波补位器，改用 Codex 执行器直跑、先试点一门；城图跑时特效最多占 1 路。起跑前先按图鉴核对各门 vars.moves 的绝招星号。旧 `.agents/coord/_batch_queue.txt` 已停用（其中 CITY-* 由 CITY-layouts-* 取代），不要再起它的 batch_run。
 - [ ] 工具维护（第二波追踪移交，低优先，待登记 TOOL）：`tools/imagegen/ingest.py` 的原图归档与锁写在 `ROOT/.agents/coord/gemini_originals`，在任务工作区入库时会随工作区删除（hero-a 自包了一层改到 `_handoff/gem/`，manifest 的 source_path 因此指进 _handoff）→ 应固定写到 `_prod` 归档目录；`ingest8.py` 入库后不写 done.txt。`_handoff/gem/codex_w11–w16`（除已清的 homeN）、`baseline_small/`、`city/`、`ART-3d-tripo-avatars/`、`artw2_portrait_runner.py` 要保留（manifest 有 273 处引用）。
 ### 3.2 物品图（Gemini 网页）
 
@@ -236,6 +238,7 @@
 
 **eng3 排队 19 项**（队列顺序即优先级；依赖满足就自动开跑）：ENG-12e-gltf-pilot（ready）、ENG-16c（ready）、ENG-20a（等 18b）、ENG-19b（等 19a + 17）、ENG-20b、ENG-26、ENG-23a、ENG-16e、ENG-18c、CONTENT-ch00b / ch10 / ch00a / ch00c、ENG-27a / 27b / 28a / 28b / 27c、ENG-12d（可选）；TOOL-ingest-cropframe 在队列文件末尾，下次重启生效。
 - **M1 路径**：ENG-25 ✓ → ENG-17a ✓ → ENG-19a ✓ → ENG-17 ✓ → ENG-19b ✓（8741f917）→ ENG-entry-split ✓（e8357e76，entry 38.44 KiB）→ CONTENT-ch00a / b / c、CONTENT-ch10 → 新游戏 → 序章 → 初眠配点 → 白马冷入口打通。
+- **M1 引擎缺口**（内容审核发现，开发监督驱动）：ENG-region-gates-data、ENG-event-executor、ENG-ink-intents、ENG-npc-species-roleslot、ENG-19e-m1-order；另登记 **ENG-move-onhit-effects**（5e56e7d5，10-03 15:20）：招式命中附带 Buff / 击退 / 可否招架字段与结算，补 bf_shiheng / bf_pojia / bf_dongyao 定义并给序章四招填值；依赖 ENG-25、16c、26、CONTENT-ch00a-data，不算 M1 阻塞；ENG-27a 改为依赖它（eng3 下次重启才生效）。
 - ENG-24 浏览器冒烟：不下载 Playwright 浏览器包（AR-34），不入队。
 - 开发监督提醒：ENG-17 / 18b / 19a 的工作区建于 ENG-18e 之前，若撞上 build.test 旧超时就挪基点复验。
 
@@ -302,6 +305,8 @@
 - **hero-a 验收**：四张联系表已发（03:15）；不满意的指出人物 / 时期 / 插图名，登记返工。
 - ~~城市布局图的范围~~：作者 10-03 AR-47 定**全量**（1172 个城 × 年代），由素材线第三波追踪按书拆任务、写集不相交、先 2 路并行，周期以天计。
 - ~~Tripo API 充值~~：作者 10-03 定改用网页版（AR-42），不充 API。作者 12:05 已「同意下载」（GLB 与预览图）。**待作者**：上传方式二选一——修好 Chrome 扩展对 tripo3d.ai 的网站访问权限（之后正常文件上传），或同意继续用剪贴板粘贴上传（会反复覆盖作者剪贴板）；未定之前 29 位主要角色暂停上传。
+- **待作者挑图**（15:30 已把三张联系表直接发给作者）：大理苍山区域图 A / B（推荐 B，Gemini 在等）、段誉 A / B、男女主角高魅力形象批不批（批后交 Tripo）。
+- **磁盘清理**：清单按编号回（15:35 重发明细），清作者的个人项目与文件前必须等作者点编号。
 - **双儿要不要精修**（hero-b 报告）：默认不动，作者说要再登记。
 - ~~110 个新登记人物要不要都出立绘~~：作者 AR-47「都要做」→ ART-cast-fill-c / -d（codex），素材线第三波追踪登记驱动。
 
