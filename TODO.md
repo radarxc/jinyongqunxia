@@ -11,6 +11,7 @@
 | Gemini 出物品图的操作 | skill `gemini-imagegen`（`.claude/skills/gemini-imagegen/`），已入库（AR-34）。`.claude/` 里的其余本机设置仍由 `.git/info/exclude` 排除，所以以后往 skill 里加新文件要用 `git add -f` |
 | 续作材料（简报、监督脚本、出图台账、小基线图） | `.agents/wt/_prod/.agents/coord/_handoff/`（不入库） |
 | 要作者决定 / 确认的事 | 本文 §8 |
+| 素材总览页（验收用） | https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A（10-02 17:12 第 9 版，本账号发布；旧地址 1TACNarveseVhMusJxJnJ3 本账号读不到） |
 
 ## 0. 现状一句话
 
@@ -142,7 +143,7 @@
 - [x] **下载剧照后再出一版**：狄云（2004 吴樾，9d9ff86e）、丁典（2004 王海地，1b55c41d）、霍青桐（1976 汪明荃，0cd59a8e）、乾隆（1976 郑少秋，eb444425）、程灵素（1991 台视龚慈恩，4bd4e062）、苗人凤（1991 慕思成，飞狐 ab821bb7 / 雪山 533e3c54）、胡一刀（1991 孟飞，飞狐 b653227b / 雪山 5af8a030）。飞狐 / 雪山取 1991 台视版（三人同版，与已用的苗若兰、袁紫衣同版；1999 TVB 版没有程灵素）。
   - [ ] **凌霜华**未重出：找不到能核实的 2004 版高蓓蓓剧照；现图疤在她自己的右颊，与作者定的「左颊」相反——待作者定（§8.1）。
 - [x] **同书女角撞脸**：作者 10-02 确认，AR-32 重出后已经没有了。
-- [x] 收尾：`build_portraits.py` 已跑（3be77b9a）；`build_gallery.py` 17:08 已重建；旧总览页 1TACNarveseVhMusJxJnJ3 本账号读不到，新页地址见 HANDOFF §9.8 17:10 条，请作者验收。
+- [x] 收尾：`build_portraits.py` 已跑（3be77b9a）；`build_gallery.py` 17:08 已重建；总览页第 9 版 https://claude.ai/artifact/CYs9JiV1G8C7RBYPwTW46A（17:12），请作者验收。
 - [ ] **多人情景图**：`DES-scenes-keyart` 已合入，`assets/default/prompts/scenes/**` 下 102 份提示词。作者 15:50 定「其他图」走 Gemini：由物品线 subagent 在 366 张物品之后出（§3.2），上传立绘只限主角和 S 级（AR-29）；张无忌的 5 幅场景立绘已在 11:00 前后按新脸重出过（48508f22 等）。
 
 **做法**：
