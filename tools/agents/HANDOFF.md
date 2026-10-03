@@ -1544,4 +1544,12 @@
       - 下一步：追踪者复验合入 ART-items-gifts-catalog，之后我登记 TOOL-items-regen-2。
     - **CONTENT-ch00b-maps**：返修后校验通过，停在 HOLD-REVIEWS。按协调者 12:38 起只复审：`--from validate --max-runs 0 --max-reviews 1 --auto-merge`，驱动 77749。
     - DES-ui-immersive（codex）12:36 起审。
+  - **10-03 12:39–12:42 开发监督**：ENG-content-validate-inkmeta 防截断误判；codex 任务的审核模型。
+    - **ENG-content-validate-inkmeta**：第 1 次运行后校验报 `validate-content.ts 46→26 行`。
+      - 核对：校验逻辑抽到了新文件 `src/build/validate.ts`（59 行），脚本只剩调用壳，不是截断。
+      - 加 shrink_exempt（9b223c53）。协调者停掉了第 2 轮（带着「被截断」说明，怕它撤回重构），用 `--from validate --max-runs 2` 重起，驱动 30795，日志 `supervise.r2.out`。我不再起。
+    - **DES-ui-immersive**：审核报 REVIEW-ERROR，因为 codex 不支持 `GPT-5.6-Sol`。作者说 Codex 可用 gpt-6-astra，协调者已用 `--review-model gpt-6-astra --from review` 重起审核，驱动 24413。
+      - **规则：以后 codex 执行的任务（ENG-ui-* 等）一律加 `--review-model gpt-6-astra`。**
+      - 样稿已由协调者发给作者：https://claude.ai/artifact/Gs1y41HRhgPg29YGiXjAo2
+    - gifts-catalog 由追踪者复验；它合入后，我登记 TOOL-items-regen-2。
 
