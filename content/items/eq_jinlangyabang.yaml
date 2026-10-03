@@ -15,6 +15,7 @@ assets:
   icon: item/jinlangyabang
 text:
   desc: 外观：硬木长柄约一百二十厘米，前端包圆柱铁套并列短钝锥。 待运行时投影：exoticKind=hammer。
+  lore: 金境军旅场景中的双手狼牙棒，圆柱铁套和短钝锥形成沉重压砸，挥出后回势缓慢，须靠同列掩护。其确切军器形制仍 （待考：核金代兵器资料）；尺寸、锥形和投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 125
+      hardness: 58
+      qiAffinity: 100

@@ -15,6 +15,7 @@ assets:
   icon: item/dugumujian
 text:
   desc: 外观：深色硬木削成的直剑，刃脊与剑尖皆钝。
+  lore: 《神雕侠侣》剑冢木剑承接独孤求败不滞于物、草木竹石皆可为剑的境界。剑本无锋，威力全凭修为与运劲；“独孤木剑”之名和具体形制为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 40
+      qiAffinity: 100

@@ -13,6 +13,7 @@ assets:
   icon: item/miji_jianghuchangquan
 text:
   desc: 外观：元代土黄包背小册，蓝麻护脊。
+  lore: 乡勇与散人把常见长拳架势汇成土黄小谱，招法和载体均属 （原创扩展）。研读从站位、出拳到回护逐项练习，不求奇招；页角磨圆而墨线仍清，正适合作为启蒙全本。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jianghuchangquan
+      readWis: 20
+      maxLayer: 10
+      cultivation: 500

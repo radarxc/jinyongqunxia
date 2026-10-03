@@ -14,6 +14,7 @@ assets:
   icon: item/tanghengdao
 text:
   desc: 外观：全长约九十厘米，窄直单刃、短直铁镡、木柄皮缠与环首。
+  lore: 《唐六典》列横刀为兵士所佩，本作据此配置窄直单刃军刀。短镡不碍腰间抽取，宜行伍中迅速劈刺；具体尺寸、环首、黑漆鞘及游戏定级均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 42
+      qiAffinity: 100

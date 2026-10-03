@@ -16,6 +16,7 @@ assets:
   icon: item/bishou
 text:
   desc: 外观：极薄锋锐短匕全长约三十厘米，冷白钢刃、小型椭圆护手、黑木柄与旧皮鞘。 待运行时投影：exoticKind=dagger。
+  lore: 《鹿鼎记》中韦小宝所得匕首异常锋利，常凭其贴身防险。短刃适合狭处骤然出手，也能割断坚韧物件；得刀流转、尺寸与装具仍 （待考：核原著情节）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: true
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 95
+      qiAffinity: 100

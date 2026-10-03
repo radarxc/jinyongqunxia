@@ -14,6 +14,7 @@ assets:
   icon: item/tangjunyingbang
 text:
   desc: 外观：深色硬木短棒约一米，两端包窄铁箍。
+  lore: 唐代军营节点配置的短棒，两端铁箍防止木质劈裂，单手即可挥击或横在臂前拦挡。它便于巡夜携带，但确切军伍名目仍 （待考：核唐代营伍器械）；尺寸、装具与投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 38
+      qiAffinity: 100

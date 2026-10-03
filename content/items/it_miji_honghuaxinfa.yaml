@@ -13,6 +13,7 @@ assets:
   icon: item/miji_honghuaxinfa
 text:
   desc: 外观：清代朱红线装册，黑麻四眼订。
+  lore: 红花会门人共修的内功被清抄成朱红册页，心法细节、载体与传阅方式皆属 （原创扩展）。研读讲稳息互助，不求孤绝奇险；会中多人翻阅留下磨痕，抄本来源最高到八层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_honghuaxinfa
+      readBre: 35
+      maxLayer: 8
+      cultivation: 1280

@@ -15,6 +15,7 @@ assets:
   icon: item/heixueshenzhen
 text:
   desc: 外观：乌黑钢针若干置暗红丝衬小匣，针尖细亮。 待运行时投影：hiddenHit=7.2; onHit=bf_judu。
+  lore: 《笑傲江湖》中黑血神针与曲洋相关，乌黑细针便于暗处出手。（待考：核是否淬毒、针数与持有情节）；暗红丝衬小匣、每战八枚和剧毒接口均为玩法原创扩展。
 extension:
   type: equipment
   value:
@@ -26,3 +27,9 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 65
+      qiAffinity: 100
+      poison: 9

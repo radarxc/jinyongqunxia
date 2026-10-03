@@ -25,6 +25,10 @@ assets:
   icon: item/yuebing
 text:
   desc: 外观：棕金圆饼一枚切开露豆沙仁，木模花纹无字。
+  lore: 明清中秋节令点心，本件为无字木模圆饼，剖开可见豆沙仁。须按节令和书界投放，不能用后世形制定格宋代同名食物；配茶分食最佳。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

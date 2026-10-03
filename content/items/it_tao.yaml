@@ -14,6 +14,7 @@ assets:
   icon: item/tao
 text:
   desc: 外观：粉黄鲜桃三枚置竹盘，绒皮与浅缝清楚 （原创扩展）。
+  lore: 历代园圃常见的夏季鲜果，也是糖霜果品的原料。本件三枚粉黄带绒，宜鲜食或切条蜜渍；果农只把未碰伤者送进城中果铺。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: fruit
+    attributes:
+      version: 2

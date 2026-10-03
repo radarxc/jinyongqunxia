@@ -22,6 +22,10 @@ assets:
   icon: item/yangjingwan
 text:
   desc: 外观：浅褐蜜丸配竹筒，麻绳短系。
+  lore: 行脚药铺以浅褐蜜丸装入短竹筒，供长途奔波后静服调养。药力维持六时辰，只表现为短暂养生状态，不直接治疗伤势或增长先天；价廉而便于携带。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      qiCultivation: 0

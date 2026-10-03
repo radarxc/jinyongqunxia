@@ -13,6 +13,7 @@ assets:
   icon: item/miji_tongbeijin
 text:
   desc: 外观：南宋赭黄蝴蝶装册，青绫包角。
+  lore: 武馆师傅把肩背贯劲与长放短收写成宽开原稿，功法和纸本属 （原创扩展）。研读须先松肩活背，再逐势体会劲从足起；书页上的手汗痕说明此本常放在练功场边校架。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: original
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tongbeijin
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

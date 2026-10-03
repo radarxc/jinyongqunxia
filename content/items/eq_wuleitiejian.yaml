@@ -14,6 +14,7 @@ assets:
   icon: item/wuleitiejian
 text:
   desc: 外观：一对四棱乌铁简并置，各约七十厘米。 待运行时投影：exoticKind=misc。
+  lore: 一对四棱乌铁简以圆钝棱面压砸，盘形护手可承滑刃，左右并用时一封一击。所谓“五雷”只是江湖对沉响的夸称，棱面不刻符文；器名、锻造、来历与传闻均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 60
+      qiAffinity: 100

@@ -14,6 +14,7 @@ assets:
   icon: item/jirou
 text:
   desc: 外观：处理净的生鸡一只置竹叶，淡黄皮、双翼收拢。
+  lore: 宋元明清城乡皆能取得的家禽肉，本件是一只处理净的生鸡。可炖汤、烧烤或入宴，须彻底烹熟；农家与客栈四季都有少量供应。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: meat
+    attributes:
+      version: 2

@@ -14,6 +14,7 @@ assets:
   icon: item/qingyudai
 text:
   desc: 外观：青布束带嵌三块小青玉，白铜扣。 待运行时投影：cha=1; effRes=3。
+  lore: 青玉束带以青布嵌三块小玉，白铜扣压住带端，礼见时整束衣襟，动武前也不易散开。传闻温润玉色能静心，但并无护符神力。（原创扩展）
 extension:
   type: equipment
   value:
@@ -23,3 +24,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9

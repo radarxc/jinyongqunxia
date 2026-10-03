@@ -14,6 +14,7 @@ assets:
   icon: item/feiyuxue
 text:
   desc: 外观：深褐薄皮短靴，侧面羽纹压花、轻软窄底 （原创扩展）。 待运行时投影：qinggong=15。
+  lore: 飞羽靴用深褐薄皮裁成，窄底与短靿减去拖累，侧面羽纹只是压花记号。传闻轻功客赶夜路前会给鞋底抹蜡，求的是防潮而非飞行。（原创扩展）
 extension:
   type: equipment
   value:
@@ -23,3 +24,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9
+      agi: 2
+      stamina: 3

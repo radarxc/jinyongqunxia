@@ -16,6 +16,7 @@ assets:
   icon: item/shenquantiehutao
 text:
   desc: 外观：一对分指铁护套并置，覆盖拳背与指节、掌心留空。 待运行时投影：exoticKind=misc; sect=sect_shenquan。
+  lore: 神拳门弟子为护住拳背与指节而制的成对铁护套，掌心留空，仍可抓拿、运劲和攀握。铆片边缘必须磨圆以免自伤；器名、制度与结构均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 76
+      qiAffinity: 100

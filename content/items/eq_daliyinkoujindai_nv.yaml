@@ -16,6 +16,7 @@ assets:
   icon: item/daliyinkoujindai_nv
 text:
   desc: 外观：女款青绿织锦窄带作松弧陈列，錾花银双环扣、白色短流苏与小团花暗纹。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: 据《张胜温画卷》的大理服饰语汇演成，青绿窄锦带配錾花银双环扣，短流苏在礼见时垂于衣侧。团花暗纹与旧主传闻均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 8

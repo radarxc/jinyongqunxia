@@ -15,6 +15,7 @@ assets:
   icon: item/jindao
 text:
   desc: 外观：蒙古式浅弧腰刀，刃约七十五厘米。
+  lore: 《射雕英雄传》中成吉思汗以金刀赐郭靖，“金刀驸马”由此得名。此刀兼具军中赏赐与身份信物之用，仍按腰刀挥斩；鎏金装具而非金刃的表现为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 75
+      qiAffinity: 100

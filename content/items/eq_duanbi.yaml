@@ -14,6 +14,7 @@ assets:
   icon: item/duanbi
 text:
   desc: 外观：双刃短匕，朴素铜护口、深木柄。 待运行时投影：exoticKind=dagger。
+  lore: 一尺左右的双刃短匕便于藏在靴侧或腰后，狭处可反握割挑，正握则用于贴身突刺。它不靠华饰取胜，胜在出鞘快、修磨易，是商旅防身的 （原创扩展） 常备物。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 42
+      qiAffinity: 100

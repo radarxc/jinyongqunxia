@@ -14,6 +14,7 @@ assets:
   icon: item/miji_quanzhenxinfa
 text:
   desc: 外观：南宋灰青蝴蝶装软纸册，麻线缝缀。
+  lore: 全真内功见于《射雕英雄传》《神雕侠侣》，此道观抄本为 （原创扩展）。读者须依次调息守静，不可只背口诀；门人传说心浮气躁者翻得再熟，也难行成一个周天。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_quanzhenxinfa
+      readBre: 35
+      maxLayer: 8
+      cultivation: 1280

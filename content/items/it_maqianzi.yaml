@@ -14,6 +14,7 @@ assets:
   icon: item/maqianzi
 text:
   desc: 外观：药用成熟种子呈灰绿扁圆纽扣状，表面密生银毛。
+  lore: 闽地、岭南、广西与云滇黔林中秋冬八月至翌年一月果熟，按明代以后药名保守投放。银毛扁种须锁盒，本作只作剧毒素材，不给现实操作。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     rare: false
     herbFamily: maQianZi
     ageYears: 0
+    attributes:
+      version: 2

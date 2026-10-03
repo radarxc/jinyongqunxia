@@ -13,6 +13,7 @@ assets:
   icon: item/miji_huweijian
 text:
   desc: 外观：明代青布面线装册，四眼蓝线。
+  lore: 镖局将近身护客的剑路绘成八寸全谱，招法与册本皆属 （原创扩展）。研读讲守位、截线和同伴换防，须两人配合校图；剑尖越出护围太远，便违背此谱先护后击的本意。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_huweijian
+      readWis: 35
+      maxLayer: 10
+      cultivation: 1600

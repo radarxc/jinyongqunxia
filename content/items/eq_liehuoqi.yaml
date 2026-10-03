@@ -15,6 +15,7 @@ assets:
   icon: item/liehuoqi
 text:
   desc: 外观：深红窄幅战旗连乌木长杆与小型铜矛头，旗面无字。 待运行时投影：exoticKind=misc; onHit=bf_zhuoshao:20%。
+  lore: 《倚天屠龙记》有明教烈火旗，但旗本体是否如此直接作兵仍 （待考：核五行旗战斗情节）。本作以枪头刺挑、旗面扰敌，贯注内力后附灼烧，均属 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,9 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 72
+      qiAffinity: 110
+      qiEffect: bf_zhuoshao

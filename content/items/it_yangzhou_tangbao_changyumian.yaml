@@ -26,6 +26,10 @@ assets:
   icon: item/yangzhou_tangbao_changyumian
 text:
   desc: 外观：薄皮汤包四只与酱褐长鱼面一碗同置竹木托，清初扬州四人份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《鹿鼎记》中韦小宝提到扬州汤包、长鱼面，是否为当席实食仍待核。（待考：核语境） 本作按扬州四季食肆投放，合为四人热席；双增益属原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 20

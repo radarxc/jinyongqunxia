@@ -14,6 +14,7 @@ assets:
   icon: item/shiyu
 text:
   desc: 外观：银白鲥鱼一尾完整置碎冰竹盘，细鳞清楚。
+  lore: 明清江鲜贡物，以初夏洄游时节最受珍视，又因易腐而讲究疾运。本件须以湿叶薄冰护送，到埠即烹；江上鱼商把完整细鳞视为鲜货凭据。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 8
     rare: false
     ingredientKind: rare
+    attributes:
+      version: 2

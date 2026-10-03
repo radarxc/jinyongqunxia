@@ -13,6 +13,7 @@ assets:
   icon: item/miji_kongtongrumenquan
 text:
   desc: 外观：元代土黄包背册，粗麻护脊。
+  lore: 崆峒派把入门拳架编成厚韧册页，拳谱载体与传阅经历属 （原创扩展）。研读先分刚柔两式，再按呼吸衔接发力；门人反复翻旧的页角，多停在七伤一脉的根基提示处。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_kongtongrumenquan
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

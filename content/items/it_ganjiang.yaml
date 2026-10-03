@@ -13,6 +13,7 @@ assets:
   icon: item/ganjiang
 text:
   desc: 外观：药用根茎切成扁块晒至灰黄，断面粉性。
+  lore: 江南太湖、浙东、闽赣、湖湘、岭南与巴蜀冬季十至十二月收根茎。灰黄扁块便于商旅储藏，本作只将温暖意象投作少量回气。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: ganJiang
     ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 5

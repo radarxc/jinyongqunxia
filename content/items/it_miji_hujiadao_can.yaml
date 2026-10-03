@@ -14,6 +14,7 @@ assets:
   icon: item/miji_hujiadao_can
 text:
   desc: 外观：清代青布书衣四眼线装，前部缺页露线。
+  lore: 《飞狐外传》《雪山飞狐》中的胡家刀谱缺首二页。本谱须借后续招路反推起手，但来源最高只到八层，不能视作完整传承；青布书衣与雪水晕痕为 （原创扩展装帧），胡苗恩怨又添其分量。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 8
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_hujiadao
+      readWis: 60
+      maxLayer: 8
+      cultivation: 3200

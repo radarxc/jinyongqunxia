@@ -18,6 +18,7 @@ assets:
   icon: item/songluoshahechang_nv
 text:
   desc: 外观：女款灰白罗纱鹤氅单件完整铺展，直领对襟、宽袖、黛青窄缘。 待运行时投影：defOutK=0.025; eva=2; hpMaxK=0.005; wearer=female。
+  lore: （原创扩展）据宋代氅衣与褙子式外披意象，灰白罗纱轻薄，黛青窄缘压住宽袖。浅织羽纹远看近乎素面，穿者转身时衣摆不滞，江南春秋最常见。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 4

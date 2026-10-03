@@ -16,6 +16,7 @@ assets:
   icon: item/xiuhuazhen
 text:
   desc: 外观：一枚细长银针置于暗红绸垫中央，针长约十厘米。 待运行时投影：exoticKind=misc; sect=sect_riyue。
+  lore: 《笑傲江湖》中东方不败仅凭一枚绣花针迎战强敌，寻常细针在绝顶身法与内力下成为凌厉兵刃。它本身轻脆，不宜硬架；红线陈设和尺度表现为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 65
+      hardness: 50
+      qiAffinity: 100

@@ -13,6 +13,7 @@ assets:
   icon: item/mahuang
 text:
   desc: 外观：药用草质茎切成长段，黄绿有细纵棱。
+  lore: 燕京直隶、河东晋中、河西陇右、西夏贺兰及漠南漠北旱地，秋八至十月茎熟。本作取黄绿有棱茎作回气辅材，药性只用抽象数值表示。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: maHuang
     ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 8

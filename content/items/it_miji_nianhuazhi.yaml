@@ -14,6 +14,7 @@ assets:
   icon: item/miji_nianhuazhi
 text:
   desc: 外观：北宋旧黄纸蝴蝶装钞本，灰褐纸衣、细麻缝缀。
+  lore: 《天龙八部》中慕容博从少林藏经阁取出拈花指钞本并另行钞录。研读须从细微指势体会劲路，不宜以蛮力求成；纸衣与题签为 （原创扩展），深浅不一的墨迹提示此本历经转钞。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_nianhuazhi
+      readWis: 55
+      maxLayer: 8
+      cultivation: 2800

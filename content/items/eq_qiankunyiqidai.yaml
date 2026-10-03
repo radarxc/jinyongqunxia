@@ -16,6 +16,7 @@ assets:
   icon: item/qiankunyiqidai
 text:
   desc: 外观：厚韧灰白布袋收束平铺，约可容一人但画面按折叠尺度。 待运行时投影：exoticKind=misc; sect=sect_mingjiao。
+  lore: 《倚天屠龙记》中说不得以乾坤一气袋装住张无忌，后被九阳真气撑裂。本作将收束、罩人演为战斗用法 （原创扩展）；布袋不靠锋刃，重在缠困与隔绝视线。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 50
+      qiAffinity: 100

@@ -24,6 +24,10 @@ assets:
   icon: item/zhimashaobing
 text:
   desc: 外观：金黄圆烧饼两枚置油纸，表面芝麻与炉斑可辨 （原创扩展）。
+  lore: 宋元城市四季摊食语境下另制的芝麻烧饼，具体配方并无原著定本。炉烤后以油纸包两枚，可直接冷食；市民与护院都拿它充作短途口粮。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 12

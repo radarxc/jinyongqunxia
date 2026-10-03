@@ -16,6 +16,7 @@ assets:
   icon: item/jinshezhui
 text:
   desc: 外观：八枚金色蛇形短锥等距排于黑绒匣，锥长约一掌、曲柄似蛇而锋尖清楚。 待运行时投影：ammoMul=1.160; hiddenHit=6.6。
+  lore: 《碧血剑》中金蛇锥为夏雪宜遗物，共二十四枚。蛇形曲柄便于辨向，锋尖用来破衣伤敌；本文每战取八枚入黑绒匣，弹量与地中定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 65
+      qiAffinity: 100

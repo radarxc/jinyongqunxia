@@ -16,6 +16,7 @@ assets:
   icon: item/yuanguguquan_nv
 text:
   desc: 外观：女款高筒罟罟冠独立陈列，不画人头。 待运行时投影：cha=2; wearer=female。
+  lore: （原创扩展）据元墓壁画所见罟罟冠意象重构，高筒骨架包深红绢，顶缀银枝与克制珠串。贵妇礼仪时由侍者扶正佩戴，珠响被视作家门兴盛的吉兆。
 extension:
   type: equipment
   value:
@@ -25,3 +26,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12
+      luck: 3

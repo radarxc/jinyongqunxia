@@ -26,6 +26,11 @@ assets:
   icon: item/chenglingsu_sancai_yitang
 text:
   desc: 外观：三盘素菜与一碗豆瓣汤配白米饭，青瓷家常四人份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《飞狐外传》中程灵素备煎豆腐、笋炒豆芽、草菇白菜与咸菜豆瓣汤。本件连白饭作四人家常席；避毒、回春与份量均属原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healOuter: 7
+      stamina: 22

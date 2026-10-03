@@ -16,6 +16,7 @@ assets:
   icon: item/fanyiwenggangzhang
 text:
   desc: 外观：乌钢长杖约一百七十厘米，杆身均匀、上端圆钝葫芦首、下端铁鐏。 待运行时投影：sect=sect_jueqinggu。
+  lore: 《神雕侠侣》中绝情谷樊一翁以钢杖为兵，长重杖身适合双手横扫、压架，以力量封住狭路。原著所载长度与装具仍 （待考：核樊一翁交战情节）；葫芦形杖首、皮缠和定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -28,3 +29,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 80
+      qiAffinity: 100

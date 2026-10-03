@@ -13,6 +13,7 @@ assets:
   icon: item/miji_taishanjianfa
 text:
   desc: 外观：明代灰褐线装图册，蓝麻线。
+  lore: 泰山派剑法在本作整理为九寸图册，实体与绘图次序均属 （原创扩展）。研读须看准步位、山势般的起伏与收剑节点，再持剑复盘；封角磨白处多是门人翻查转折招路所留。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_taishanjianfa
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

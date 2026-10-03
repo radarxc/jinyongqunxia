@@ -14,6 +14,7 @@ assets:
   icon: item/tiehuanchanzhang
 text:
   desc: 外观：黄铜锡杖头带六枚闭合小环，深色硬木杆约一百八十厘米、铁尾鐏。
+  lore: 锡杖头悬六枚小环，行路时声响示警，遇敌则以长杆封架、钝首压击。寺僧使用须先守戒止争，不把法器当寻常凶兵；战斗用途、尺度和定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 60
+      qiAffinity: 100

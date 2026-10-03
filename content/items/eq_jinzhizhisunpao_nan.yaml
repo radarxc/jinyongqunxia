@@ -16,6 +16,7 @@ assets:
   icon: item/jinzhizhisunpao_nan
 text:
   desc: 外观：男款大红织金右衽窄袖质孙袍单件平展，腰间密褶、膝下长摆、窄金锦缘。 待运行时投影：cha=2; wearer=male。
+  lore: 据《元史·舆服志》所载质孙服制演成的男式宴袍，右衽窄袖与腰下密褶便于列宴起坐。宫廷旧制不授予穿者身份，流入江湖后多作贵重礼服收藏。（原创扩展）
 extension:
   type: equipment
   value:
@@ -26,3 +27,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 67

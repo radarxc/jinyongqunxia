@@ -22,6 +22,7 @@ assets:
   icon: item/qinglanmagua_nan
 text:
   desc: 外观：男款石青圆领对襟短马褂单件平展，平袖、五枚铜盘扣、暗花缎面。 待运行时投影：talk=1; wearer=male。
+  lore: 据清宫常服形制演成的石青短马褂，圆领对襟便于罩在长袍外，铜扣须逐枚扣牢。它曾由一位落第幕客抵作旅费，官府不认其为身份凭证。（原创扩展）
 extension:
   type: equipment
   value:
@@ -32,3 +33,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 39

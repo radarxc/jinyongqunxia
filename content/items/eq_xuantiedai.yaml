@@ -14,6 +14,7 @@ assets:
   icon: item/xuantiedai
 text:
   desc: 外观：乌铁节片串成宽护腰，深红皮衬。 待运行时投影：defOutPct=4%; resCCPp=4。
+  lore: 玄铁护腰以乌铁节片串联并垫深红软皮，护住腰腹又保留弯身余地，穿戴时须让片缘顺次相叠。传闻重兵击中只会留下沉闷回响。（原创扩展）
 extension:
   type: equipment
   value:
@@ -23,3 +24,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12

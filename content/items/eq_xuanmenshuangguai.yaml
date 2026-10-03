@@ -13,6 +13,7 @@ assets:
   icon: item/xuanmenshuangguai
 text:
   desc: 外观：一对乌木丁字拐平行并置，单件约一百厘米。
+  lore: 道门行脚者以乌木制成一对丁字拐，横柄贴臂可护住前臂，长端用于点、架、压，成对时尤重步法配合。铜头与铁尾只为耐磨；器名、门中流传、尺寸和用法均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 50
+      qiAffinity: 100

@@ -14,6 +14,7 @@ assets:
   icon: item/huibubaotiebang
 text:
   desc: 外观：深色硬木短棒约一百一十厘米，前半包素铁皮并以圆铆钉固定。
+  lore: 回疆商队护卫的包铁短棒，前半覆素铁皮以承受刀剑磕击，后段角片与皮条让单手握持更稳。它以拦砸开路，不靠锐刃伤人；器名、工艺、流通节点和装具均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 60
+      qiAffinity: 100

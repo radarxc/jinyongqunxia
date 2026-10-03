@@ -14,6 +14,7 @@ assets:
   icon: item/qingjin
 text:
   desc: 外观：青灰长方头巾打成软结，无人物。 待运行时投影：effRes=2。
+  lore: （原创扩展）青灰棉麻长巾原是市井常物，练家束发时会把软结压低，免得遮眼。它能吸汗挡尘，也可临时包扎小伤；颜色素净，混在人群里并不起眼。
 extension:
   type: equipment
   value:
@@ -23,3 +24,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

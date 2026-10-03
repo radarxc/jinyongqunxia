@@ -15,6 +15,7 @@ assets:
   icon: item/qingyulinjia
 text:
   desc: 外观：清代御前棉甲，明黄仅作窄边。 待运行时投影：lawProfile={uniform:true,allowedIdentityTags:[sect_qinggong,office_qing_imperial_guard],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。
+  lore: 清制御前侍卫甲以棉甲、铜钉和蓝黑甲片复合，窄明黄边只示御前规制。披挂讲究甲片平服、系带齐整；来历传为侍卫更替时遗失，冒穿必遭严查。（原创扩展）
 extension:
   type: equipment
   value:
@@ -25,3 +26,6 @@ extension:
     divine: false
     catalogTian: true
     uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 98

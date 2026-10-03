@@ -13,6 +13,7 @@ assets:
   icon: item/cumian
 text:
   desc: 外观：淡黄粗面粉盛矮陶钵，旁置小木勺与少量麦麸。
+  lore: 北地麦坊连少量麦麸磨成的淡黄面粉，陶钵一份正够和一顿面食。适合蒸饼、汤面或营地烙饼，便宜耐放，镖队补给常成袋购入。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: grain
+    attributes:
+      version: 2

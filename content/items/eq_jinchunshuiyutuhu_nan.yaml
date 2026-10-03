@@ -17,6 +17,7 @@ assets:
   icon: item/jinchunshuiyutuhu_nan
 text:
   desc: 外观：男款深褐鞓带盘成一圈，白玉带銙大小相间、浅雕海东青逐水草的春水纹。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: 据《金史·舆服志》的吐鹘束带语汇演成，白玉带銙浅雕海东青逐水草，供金代贵显束袍。带扣与铊尾须左右理顺，流入江湖不再代表官阶。（原创扩展）
 extension:
   type: equipment
   value:
@@ -26,3 +27,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12

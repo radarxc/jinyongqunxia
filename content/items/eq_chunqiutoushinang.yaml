@@ -14,6 +14,7 @@ assets:
   icon: item/chunqiutoushinang
 text:
   desc: 外观：巴掌大原色革囊闭合，骨质小扣、麻绳束口。 待运行时投影：ammoMul=0.915; ammoSlots=2; hiddenHit=3.0。
+  lore: （原创扩展）取春秋猎具意象制成原色革囊，以骨扣和麻绳束口，只在序章时代原生投放。猎人装入圆石驱兽示警，落地即弃；后世所见多是旧藏仿制。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 80
+      hardness: 0
+      qiAffinity: 100

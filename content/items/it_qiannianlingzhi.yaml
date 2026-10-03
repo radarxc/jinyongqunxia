@@ -14,6 +14,7 @@ assets:
   icon: item/qiannianlingzhi
 text:
   desc: 外观：紫褐巨灵芝一株，层叠菌盖有深密年轮。
+  lore: 秦巴、江南、闽赣、荆襄或巴蜀古木遗迹中的唯一密藏，夏秋见成熟菌盖，却不随季节循环刷新。“千年”为武侠夸饰，静服可疏内伤并固根骨。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,7 @@ extension:
     rare: true
     herbFamily: lingZhi
     ageYears: 1000
+    attributes:
+      version: 2
+      con: 2
+      healInner: 8

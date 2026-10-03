@@ -14,6 +14,7 @@ assets:
   icon: item/lizhi
 text:
   desc: 外观：红壳荔枝八枚带绿叶置竹篮，掌心一簇 （原创扩展）。
+  lore: 岭南初夏时鲜，红壳果离枝后极易失味，北运因而昂贵。本件八枚带叶，宜即刻鲜食或制蜜煎；驿骑送达的完好果往往先入贵客席。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 5
     rare: false
     ingredientKind: fruit
+    attributes:
+      version: 2

@@ -16,6 +16,7 @@ assets:
   icon: item/hetieshougou
 text:
   desc: 外观：前臂长乌钢义肢钩，弯刃与腕箍结构完整。 待运行时投影：exoticKind=hook; sect=sect_wudu。
+  lore: 《碧血剑》中五毒教主何铁手左手装有铁钩，以之锁拿、回割。名器规则设其常淬剧毒；原著是否明确每次淬毒仍 （待考：核用钩情节），腕箍结构为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 75
+      qiAffinity: 100

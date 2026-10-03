@@ -16,6 +16,7 @@ assets:
   icon: item/huilongbi
 text:
   desc: 外观：三枚曲尺形精钢弯镖分开平置，单件约一掌半长、内外弧刃线清楚、中段缠细皮。 待运行时投影：ammoMul=1.160; hiddenHit=6.6; sect=sect_taijimen。
+  lore: 《书剑恩仇录》中回龙璧为赵半山自创的曲尺形精钢弯镖。中段缠皮便于控旋，投掷路线仍靠手法；本文每战三枚、掌半尺度与地中定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 65
+      qiAffinity: 100

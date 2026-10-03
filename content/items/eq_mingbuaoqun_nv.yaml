@@ -18,6 +18,7 @@ assets:
   icon: item/mingbuaoqun_nv
 text:
   desc: 外观：女款藕灰交领右衽短袄与靛蓝素马面裙成套平展，窄袖、布纽、裙门平整两侧疏褶。 待运行时投影：wearer=female。
+  lore: 据明代风俗图像中的袄裙演成，棉布短袄配素马面裙，耐洗耐补，适合市井劳作。民间常把完整裙门留给节日，平日只在外罩旧围布。（原创扩展）
 extension:
   type: equipment
   value:
@@ -28,3 +29,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 34

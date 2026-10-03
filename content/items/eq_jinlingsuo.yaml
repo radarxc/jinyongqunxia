@@ -16,6 +16,7 @@ assets:
   icon: item/jinlingsuo
 text:
   desc: 外观：雪白长绸索约三米，末端数枚小金铃与细金属坠。 待运行时投影：sect=sect_gumu。
+  lore: 《神雕侠侣》中小龙女以末系金铃的白绸软索点穴破阵，铃声与飘忽来路皆可扰敌。使用者须以巧劲牵引，不可与重刃硬绞；长度与金属坠为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 50
+      qiAffinity: 100

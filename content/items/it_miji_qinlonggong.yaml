@@ -14,6 +14,7 @@ assets:
   icon: item/miji_qinlonggong
 text:
   desc: 外观：北宋赭黄蝴蝶装册，青绫包角。
+  lore: 《天龙八部》有擒龙功这一高明运劲手段；将其写成宽开秘本属 （原创扩展）。研读须先有深厚内息，再理解隔空牵引与收劲分寸，不可凭手势空摹；江湖罕见能把纸上劲路真正运成者。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_qinlonggong
+      readBre: 55
+      maxLayer: 10
+      cultivation: 3500

@@ -14,6 +14,7 @@ assets:
   icon: item/wujietiedi
 text:
   desc: 外观：乌铁横笛约六十厘米，五段竹节状加厚、吹孔与指孔清楚、两端圆封。 待运行时投影：exoticKind=flute。
+  lore: 江湖匠人把厚壁铁管分作五段竹节形制，既能吹奏简单曲调，也可握中段点打穴位或横挡轻兵。它重量远胜竹笛，久奏易疲；器名、制作来历、尺寸与流传均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 45
+      qiAffinity: 100

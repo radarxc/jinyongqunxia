@@ -25,6 +25,10 @@ assets:
   icon: item/binghuodao_kaoxiongrou
 text:
   desc: 外观：焦褐熊肉厚片三块置平石板，粗盐少许。
+  lore: 《倚天屠龙记》中张翠山、殷素素在熊洞生火烤熊肉。本件只随岛上求生节点投放，不另按四季刷新；须彻底烤熟，粗盐、石板与御寒效果为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 17

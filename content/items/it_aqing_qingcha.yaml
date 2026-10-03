@@ -25,6 +25,10 @@ assets:
   icon: item/aqing_qingcha
 text:
   desc: 外观：清亮茶汤盛先秦黑陶小碗，旁置素陶茶壶。
+  lore: 《越女剑》中阿青在范蠡花园喝茶吃饼，茶种未明。（待考：核饮茶措辞与器具） 本件用先秦黑陶碗表现，须温饮；宁神与体力效果皆为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 16

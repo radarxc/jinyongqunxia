@@ -24,6 +24,10 @@ assets:
   icon: item/guokui
 text:
   desc: 外观：厚圆硬饼一块切开露层，黄褐炉斑。
+  lore: 关中、河西与西夏商旅节点四季投放的厚圆硬饼，切开见层，便于长途携带。古代名称与地域沿革尚待核。（待考：核西夏时期称谓） （原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 12

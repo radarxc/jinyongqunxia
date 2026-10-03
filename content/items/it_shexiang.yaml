@@ -14,6 +14,7 @@ assets:
   icon: item/shexiang
 text:
   desc: 外观：历史药材为棕褐颗粒封入小绢囊，再置铜扣木匣。
+  lore: 秦巴、巴蜀、青藏与东北只标历史来源，本作不设采期、野采或交易。棕褐颗粒仅由古药库与合法旧藏交付，用作疏内伤素材，不展示猎取。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,6 @@ extension:
     rare: false
     herbFamily: sheXiang
     ageYears: 0
+    attributes:
+      version: 2
+      healInner: 5

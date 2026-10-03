@@ -14,6 +14,7 @@ assets:
   icon: item/tangyidao
 text:
   desc: 外观：全长约一米，窄直单刃、鎏金色短镡、深木缠柄与环首。
+  lore: 《唐六典》列有仪刀，本作将其放在宫卫仪仗节点，窄直刃仍可作护卫佩刀使用。持刀者重整齐佩挂，不以繁纹遮蔽刃形；尺度、鎏金短镡和朱漆鞘为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 45
+      qiAffinity: 100

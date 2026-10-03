@@ -21,6 +21,10 @@ assets:
   icon: item/ganliang
 text:
   desc: 外观：两块烤饼与油纸包，焦黄边、麻绳系。
+  lore: 两块焦边烤饼以油纸和麻绳扎紧，是车马店四季常备的一日口粮。赶路时可冷食，若在营火旁略烘更松软；镖客常在行囊底多压一包。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 12

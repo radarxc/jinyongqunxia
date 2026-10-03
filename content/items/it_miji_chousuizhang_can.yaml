@@ -13,6 +13,7 @@ assets:
   icon: item/miji_chousuizhang_can
 text:
   desc: 外观：北宋灰褐蝴蝶装残册，墨绿丝线补订。
+  lore: 星宿派抽髓掌传承被扩写为带药渍的残册，实体与散佚经过皆属 （原创扩展）。研读须辨掌路、用毒风险与收劲禁忌，不能照残图猛练；末叶缺失把来源限制在七层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_chousuizhang
+      readWis: 50
+      maxLayer: 7
+      cultivation: 2100

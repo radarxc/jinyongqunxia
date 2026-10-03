@@ -13,6 +13,7 @@ assets:
   icon: item/gegen
 text:
   desc: 外观：药用块根切成乳白方块并晒干，纤维断面明显。
+  lore: 中原、秦巴、江淮、江南太湖、荆襄、湖湘与巴蜀秋冬十至十二月取块根。晒干方块耐行路储存，本作让旅人用它获得少量回气。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: geGen
     ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 5

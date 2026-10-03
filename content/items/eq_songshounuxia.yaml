@@ -15,6 +15,7 @@ assets:
   icon: item/songshounuxia
 text:
   desc: 外观：木身短弩约四十厘米，短弓臂、铁扳机与三支短矢并置。 待运行时投影：ammoMul=0.915; hiddenHit=3.0。
+  lore: （待考：核宋代掌上短弩的具体军民形制）。本文据弩具意象设计四十厘米木身、短弓臂与三支短矢，天龙时代起投放；短矢耗尽后须另行补充。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 80
+      hardness: 35
+      qiAffinity: 100

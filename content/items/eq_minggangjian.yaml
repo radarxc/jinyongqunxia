@@ -14,6 +14,7 @@ assets:
   icon: item/minggangjian
 text:
   desc: 外观：精炼钢质直脊双刃，刃约八十厘米。
+  lore: 参照明代钢剑制作的精炼长剑，直脊双刃与外撇护手兼顾刺击、削切和格挡。工匠以刃线匀直、装具严合为佳，名号、品阶及深青柄缠均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 60
+      qiAffinity: 100

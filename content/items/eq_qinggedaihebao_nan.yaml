@@ -22,6 +22,7 @@ assets:
   icon: item/qinggedaihebao_nan
 text:
   desc: 外观：男款深蓝软革常服带作松弧陈列，黄铜双环扣与一只扁圆石青绣花荷包。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: 据清宫常服带与荷包实物演成，深蓝软革以双环扣合，扁圆佩囊只装印章、香丸等轻物。士绅常随衣色更换荷包，本件不带身份效力。（原创扩展）
 extension:
   type: equipment
   value:
@@ -31,3 +32,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 7

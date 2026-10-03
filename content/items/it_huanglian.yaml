@@ -13,6 +13,7 @@ assets:
   icon: item/huanglian
 text:
   desc: 外观：药用根茎呈黄褐分枝簇状，断面鲜黄。
+  lore: 秦巴、江西、荆襄、湖湘、巴蜀与云滇黔阴湿山地秋九至十一月采根。本作以断面鲜黄的分枝根茎辨识，纳入内伤药材池。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: huangLian
     ageYears: 0
+    attributes:
+      version: 2
+      healInner: 3

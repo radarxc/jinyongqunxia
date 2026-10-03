@@ -14,6 +14,7 @@ assets:
   icon: item/miji_suohouqinnashou
 text:
   desc: 外观：北宋褐红蝴蝶装薄册，细线缝缀。
+  lore: 《天龙八部》写锁喉擒拿手为马大元绝技；这部遗谱及其传世经过属 （原创扩展）。谱中细分拿腕、封肘与逼身次序，研读须先识关节走向，切忌照图向同伴猛试。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_suohouqinnashou
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

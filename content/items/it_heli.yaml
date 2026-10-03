@@ -13,6 +13,7 @@ assets:
   icon: item/heli
 text:
   desc: 外观：青金鲤鱼一尾置芦叶，鳞片完整。
+  lore: 黄河、汉水等内河常见的一尾青金鲤鱼，春秋水温适中时肉质较佳。可煮汤或红烧；鱼铺只收鳞鳍完整、当日上岸的鲜货。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: fish
+    attributes:
+      version: 2

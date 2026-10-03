@@ -13,6 +13,7 @@ assets:
   icon: item/binghuxueou
 text:
   desc: 外观：白净莲藕两节带淡青切面，水珠与薄霜。
+  lore: 寒湖夏末才起出的白藕，切面淡青，离水后须以湿布与薄冰护鲜。可清炖也可凉拌；北地客商称其入口脆净，常留给固定宴席。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 9
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

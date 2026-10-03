@@ -14,6 +14,7 @@ assets:
   icon: item/zimuwuyanglun
 text:
   desc: 外观：一大四小共五枚厚铜轮按同心错位平置，大轮直径约四十厘米。 待运行时投影：exoticKind=wheel。
+  lore: 一大四小五枚厚铜轮合称子母轮，大轮用于架压，小轮可换手扰敌，真正难处在收纳与逐件清点。外缘只留圆棱，不作飞掷暗器；器名、数量、配套练法与江湖流传均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 60
+      qiAffinity: 100

@@ -14,6 +14,7 @@ assets:
   icon: item/muer
 text:
   desc: 外观：黑褐木耳一小簇置竹筛，薄卷耳状。
+  lore: 宋元食谱已有菌类，本件为雨后山林腐木所得黑褐木耳，可鲜用亦可晒干。泡发后宜入汤或炒食；采菌必须由熟悉山场者辨认。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 4
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

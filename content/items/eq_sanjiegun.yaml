@@ -13,6 +13,7 @@ assets:
   icon: item/sanjiegun
 text:
   desc: 外观：三段枣木以短铁链相连，收拢平置。
+  lore: 三段枣木以短链相接，展开可绕过格挡击打，收拢又能当短棍架压。操练者须先熟悉回势，否则最易伤及自身；本件尺寸、用料与江湖流传均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -24,3 +25,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 52
+      qiAffinity: 100

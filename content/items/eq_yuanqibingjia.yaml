@@ -14,6 +14,7 @@ assets:
   icon: item/yuanqibingjia
 text:
   desc: 外观：元代铁札甲、皮革系片、暗褐肩带，骑兵短身甲。 待运行时投影：lawProfile={uniform:true,allowedIdentityTags:[office_yuan_army],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。
+  lore: 元制骑兵札甲以铁札和皮绦编缀成短身，骑乘时护住胸背又不压马鞍。军中讲究常查松脱系片；散落民间的旧甲常因宿主军籍不明而惹祸。（原创扩展）
 extension:
   type: equipment
   value:
@@ -24,3 +25,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 60

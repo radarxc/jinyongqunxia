@@ -18,6 +18,7 @@ assets:
   icon: item/mingmianbupifeng_nan
 text:
   desc: 外观：男款靛青棉布披风单件完整铺展，小圆领、前系带、两侧开衩、及膝直摆。 待运行时投影：defOutK=0.025; hpMaxK=0.005; wearer=male。
+  lore: （原创扩展）据明代民间行旅衣着意象裁成靛青棉布披风，小圆领系带，侧开衩便于迈步。及膝素面耐脏，客栈里常有人错拿，主人只好认针脚。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 3

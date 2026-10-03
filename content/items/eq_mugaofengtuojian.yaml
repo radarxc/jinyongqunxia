@@ -15,6 +15,7 @@ assets:
   icon: item/mugaofengtuojian
 text:
   desc: 外观：厚脊微弧直剑约七十五厘米，短铁镡、粗木柄旧皮缠与驼峰状圆钝剑首。
+  lore: 《笑傲江湖》中塞北明驼木高峰用剑，本表以“驼剑”作描述名而非原著专名。厚脊剑宜近身刺削，其具体佩剑形制仍 （待考：核木高峰交战情节）；驼峰状剑首、装具和定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 72
+      qiAffinity: 100

@@ -13,6 +13,7 @@ assets:
   icon: item/huangqi
 text:
   desc: 外观：药用根斜切成淡黄椭圆厚片，木质纹理清楚。
+  lore: 河东晋中、关中、河西陇右、漠南与东北山坡的黄芪，春三四月或秋九十月采根。淡黄厚片由药铺分装，本作取其作回气辅材。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: huangQi
     ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 6

@@ -14,6 +14,7 @@ assets:
   icon: item/dalihujundao
 text:
   desc: 外观：全长约六十五厘米，宽背微弧单刃、银色花叶小镡、深红丝缠柄。
+  lore: 大理护军在城巷与山道携带的短腰刀，宽背微弧刃利于近身劈削，小镡不妨碍快速拔刀。银色花叶装具用于本地辨识，器名、配发制度、流通节点与形制均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 57
+      qiAffinity: 100

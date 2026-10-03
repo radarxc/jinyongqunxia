@@ -18,6 +18,7 @@ assets:
   icon: item/mingyunjinhechang_nv
 text:
   desc: 外观：女款月白云锦鹤氅单件完整铺展，直领对襟、宽袖、黑缎滚边。 待运行时投影：cha=2; defOutK=0.025; hpMaxK=0.005; wearer=female。
+  lore: （原创扩展）取明代云锦与鹤氅意象制成月白女氅，直领对襟，羽纹只作暗织。宽袖适合礼行而不宜狭巷缠斗；据说主人行止端雅，衣上鹤纹才显精神。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

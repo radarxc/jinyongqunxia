@@ -25,6 +25,10 @@ assets:
   icon: item/yuzhou_fanshu_caomifan
 text:
   desc: 外观：粗陶碗盛糙米、番薯块与高粱混饭，舟中一人份 （原创扩展）。
+  lore: 《连城诀》中老渔人给狄云糙米饭，饭内混有番薯与高粱。本件是一人份舟中粗食，可冷食也可温热；御寒效果和陶碗形制为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

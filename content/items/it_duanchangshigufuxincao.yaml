@@ -14,6 +14,7 @@ assets:
   icon: item/duanchangshigufuxincao
 text:
   desc: 外观：十年生暗褐草根与卷曲叶片置石钵，形态 （原创扩展）。
+  lore: 《侠客行》侠客岛腊八粥所用主药，按十年一熟母题只在固定剧情轮次取得。暗褐草根不单独服用，只交菜肴流程消费；称谓与原文用途待核。（待考） （原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     rare: false
     herbFamily: duanChangShiGuFuXinCao
     ageYears: 10
+    attributes:
+      version: 2

@@ -15,6 +15,7 @@ assets:
   icon: item/yuanyangdao
 text:
   desc: 外观：一长一短两柄单刃宝刀并置，银灰刃、成对鸳鸯纹铜镡、深红与墨黑柄缠。
+  lore: 《鸳鸯刀》中两柄宝刀引来江湖争夺，刀中秘密归于“仁者无敌”。成对持用时一长一短彼此照应；两刀长短归属及揭示方式仍 （待考：核修订版原文）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: true
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 92
+      qiAffinity: 100

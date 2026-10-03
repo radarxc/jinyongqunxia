@@ -26,6 +26,10 @@ assets:
   icon: item/wenjia_huotui_larouyan
 text:
   desc: 外观：火腿腊肉、整鸡、鲜鱼分盛四只明代瓷盘，四人宴份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《碧血剑》中温家款客上火腿、腊肉、肥鸡与鲜鱼。本件把四样合成明代四人宴席，须同席进食；避毒膳食效果与器皿形制属原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 20

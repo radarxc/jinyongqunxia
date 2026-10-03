@@ -14,6 +14,7 @@ assets:
   icon: item/qiaomai
 text:
   desc: 外观：灰褐三角荞麦粒盛木斗，少量浅壳。
+  lore: 北方与西南山地常见的耐寒杂粮，夏秋收获，三角籽粒磨粉后可作面饼。本件夹少量浅壳，山道客栈常备，却不作精细宴食。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: grain
+    attributes:
+      version: 2

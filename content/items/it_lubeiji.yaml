@@ -25,6 +25,10 @@ assets:
   icon: item/lubeiji
 text:
   desc: 外观：酱褐鸡块盛带盖铜镟，醋酒收汁。
+  lore: 宋元《吴氏中馈录》载鸡先煮切块，再以醋酒反复烹焙。本件盛在带盖铜镟中保温，宜四人趁热取食；坚固膳食效果为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 20

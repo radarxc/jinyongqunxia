@@ -16,6 +16,7 @@ assets:
   icon: item/hanbaojinlongbian
 text:
   desc: 外观：金褐色多股皮鞭约两米，铜质龙鳞状节箍仅作抽象纹理、深木短柄与小尾坠。 待运行时投影：sect=sect_jiangnanqiguai。
+  lore: 《射雕英雄传》中韩宝驹使用金龙鞭，长鞭借腕势抽扫、缠拿，尤其考验距离与回势。金龙鞭究竟是皮鞭还是另有结构仍 （待考：核韩宝驹出手情节）；铜箍纹样、尺度和定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 50
+      qiAffinity: 100

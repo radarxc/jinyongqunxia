@@ -13,6 +13,7 @@ assets:
   icon: item/miji_emeirumenjian
 text:
   desc: 外观：元代月白包背图册，青布护脊。
+  lore: 峨眉派将入门剑路绘成窄长图册，剑谱载体和招图均属 （原创扩展）。研读重在守中、回锋与收势，须持剑逐页核对步位；门中常以剑尖能否稳住，判断根基是否扎实。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_emeirumenjian
+      readWis: 25
+      maxLayer: 10
+      cultivation: 750

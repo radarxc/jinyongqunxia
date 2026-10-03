@@ -16,6 +16,7 @@ assets:
   icon: item/xiaolifeidao
 text:
   desc: 外观：一柄极简柳叶飞刀，银灰薄刃、无护手、黑木短柄。 待运行时投影：hiddenHit=8.4。
+  lore: 古龙《多情剑客无情剑》中的小李飞刀，本文作非商业致敬。飞刀形制克制，胜负更系出手者而非奇材；掌长柳叶刃、每战一发和天级定级均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: true
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 125
+      hardness: 75
+      qiAffinity: 100

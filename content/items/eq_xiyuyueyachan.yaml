@@ -15,6 +15,7 @@ assets:
   icon: item/xiyuyueyachan
 text:
   desc: 外观：一端月牙铲刃、另一端小月牙尾铲，深木长杆约一百八十厘米。 待运行时投影：exoticKind=misc。
+  lore: 西域行旅场景复原的双端月牙铲，前后刃可推、挑、拦截，长杆换手时须留意尾铲伤及同伴。此名称与形制出现的年代仍 （待考：核兵器源流）；深木杆、铜箍和节点投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 44
+      qiAffinity: 100

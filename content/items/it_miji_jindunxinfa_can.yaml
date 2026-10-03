@@ -13,6 +13,7 @@ assets:
   icon: item/miji_jindunxinfa_can
 text:
   desc: 外观：清代黄褐线装残册，黑麻补订。
+  lore: 镖局护院把受击时稳息护身的法门记成黄褐残册，心法、载体与散佚均属 （原创扩展）。研读须缓缓运息配合守架，不能以憋气冒充护体；水渍毁去末篇，来源只到七层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jindunxinfa
+      readBre: 30
+      maxLayer: 7
+      cultivation: 840

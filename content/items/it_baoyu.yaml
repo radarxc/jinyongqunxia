@@ -14,6 +14,7 @@ assets:
   icon: item/baoyu
 text:
   desc: 外观：带壳鲜鲍三只置海藻竹盘，灰绿壳与乳白肉可辨 （原创扩展）。
+  lore: 历代沿海可得而明清宴席尤重的海味，本件带壳鲜存，离岸后极难久藏。宜清蒸或煨制；内陆只能由快速商路与固定宴席少量取得。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 8
     rare: false
     ingredientKind: rare
+    attributes:
+      version: 2

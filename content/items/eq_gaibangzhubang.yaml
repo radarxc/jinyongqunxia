@@ -16,6 +16,7 @@ assets:
   icon: item/gaibangzhubang
 text:
   desc: 外观：深青老竹杖约齐眉长，天然竹节、根部短铁箍与布条修补。 待运行时投影：sect=sect_gaibang。
+  lore: 丐帮弟子共用的老竹杖，与帮主信物打狗棒严格区分。竹节天然，既可行路支身，也能贴地扫腿、横架护伴；铁箍、修补布条与制度均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 55
+      qiAffinity: 100

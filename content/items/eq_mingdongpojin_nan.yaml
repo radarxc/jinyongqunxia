@@ -18,6 +18,7 @@ assets:
   icon: item/mingdongpojin_nan
 text:
   desc: 外观：男款乌青纱东坡巾独立陈列，不画人头。 待运行时投影：wearer=male; wis=1。
+  lore: （原创扩展）据明代士人图像中的东坡巾意象重构，乌青纱巾方高而前檐短，后垂软脚。访友、讲学皆可佩用，戴前须以巾环整形；无题字才显素雅。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9

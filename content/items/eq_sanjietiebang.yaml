@@ -13,6 +13,7 @@ assets:
   icon: item/sanjietiebang
 text:
   desc: 外观：三段空心乌铁棍以短链连接，总长约一百五十厘米。
+  lore: 三段空心铁棍以短链相连，展开可绕过招架抽击，折叠后又能贴臂作短棍。用者必须熟悉回势，链环磨损便会脱节伤己；名称、空心结构、尺寸与江湖传承均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -24,3 +25,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 55
+      qiAffinity: 100

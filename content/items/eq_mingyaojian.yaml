@@ -14,6 +14,7 @@ assets:
   icon: item/mingyaojian
 text:
   desc: 外观：钢质直身双刃，刃约七十五厘米。
+  lore: 参照明代钢剑形制配置的腰间直剑，刃长适中，黑漆木鞘可护刃防潮。它适合营伍值守与旅途防身，不以华饰示贵；品阶、装具细节与使用故事均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 44
+      qiAffinity: 100

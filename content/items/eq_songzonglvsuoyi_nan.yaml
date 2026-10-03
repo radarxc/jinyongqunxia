@@ -18,6 +18,7 @@ assets:
   icon: item/songzonglvsuoyi_nan
 text:
   desc: 外观：男款棕榈蓑衣单件完整铺展，披肩式圆领、层叠棕丝垂至膝上、麻绳系口。 待运行时投影：defOutK=0.025; hpMaxK=0.005; wearer=male。
+  lore: （原创扩展）依宋代风俗图像中的蓑衣意象制成，棕榈丝层层覆到膝上，以麻绳束口。农渔人迎雨劳作时披用，湿后悬挂通风；江湖客嫌粗重，却胜在易修。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 3

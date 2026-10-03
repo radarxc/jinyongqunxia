@@ -13,6 +13,7 @@ assets:
   icon: item/chanzhang
 text:
   desc: 外观：铁环锡杖头、深木长杆，环片小而克制。
+  lore: 佛门锡杖形制转作防身长兵，铁环声可示警，厚重杖首宜压、格、点，不以锋刃伤人。行脚僧须顾及法器礼制，不可无故逞凶；战斗用途与品阶为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 58
+      qiAffinity: 100

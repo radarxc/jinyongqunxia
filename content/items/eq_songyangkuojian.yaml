@@ -16,6 +16,7 @@ assets:
   icon: item/songyangkuojian
 text:
   desc: 外观：阔身直剑约八十厘米，厚脊双刃、方正铁镡、黄色丝缠柄与黑鞘。 待运行时投影：sect=sect_songshan。
+  lore: 嵩山门下偏重正面压制的阔身长剑，厚脊能承受连续格架，双刃仍可在换步时回削。寒霜锻纹只表现高山意象；整件器物及流传为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 80
+      qiAffinity: 100

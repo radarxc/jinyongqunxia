@@ -25,6 +25,10 @@ assets:
   icon: item/mizi_jinju
 text:
   desc: 外观：琥珀糖汁中金橘六枚盛白瓷盏，果形完整。
+  lore: 宋代城市食单可见蜜煎果品，本件以冬季金橘整果浸在琥珀糖汁中。饭后取一两枚清口，密封后可越季；果铺常装小盏售卖。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

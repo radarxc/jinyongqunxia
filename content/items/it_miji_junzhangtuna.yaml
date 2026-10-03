@@ -13,6 +13,7 @@ assets:
   icon: item/miji_junzhangtuna
 text:
   desc: 外观：清代灰布面线装册，四眼黑线。
+  lore: 军医将宿营后平息喘促、恢复精神的吐纳法抄成布面小册，心法与载体属 （原创扩展）。研读须在歇营时缓息收功，不能代替睡眠；烟熏泛黄见其常置军帐灯火旁，来源限八层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_junzhangtuna
+      readBre: 25
+      maxLayer: 8
+      cultivation: 600

@@ -16,6 +16,7 @@ assets:
   icon: item/miaorenfengpeijian
 text:
   desc: 外观：精钢直剑约八十厘米，外撇铁镡、深蓝丝缠柄与素黑鞘。 待运行时投影：sect=sect_miaojia。
+  lore: 《飞狐外传》《雪山飞狐》中苗人凤精于剑术，本表以其常用直剑作人物兵器。剑势重沉稳准确，宜刺削与封架；佩剑是否有专名及装具仍 （待考：核两书相关情节），形制和定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 80
+      qiAffinity: 100

@@ -14,6 +14,7 @@ assets:
   icon: item/xiyujietougun
 text:
   desc: 外观：枣木长棍约一百六十厘米，天然节瘤打磨成连续握位。
+  lore: 西域商旅用枣木节材制成的长棍，天然节瘤磨平后形成连续换手位置，两端铜箍防止干裂。持棍者以扫腿、架刀和推拒护住驮队；名称、来历、尺度与流通均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 40
+      qiAffinity: 100

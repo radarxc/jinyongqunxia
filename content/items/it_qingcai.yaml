@@ -13,6 +13,7 @@ assets:
   icon: item/qingcai
 text:
   desc: 外观：鲜绿叶菜一小把麻绳束根，带少量泥土。
+  lore: 泛指当地当季叶菜，春秋最易取得，各书界会依水土替换具体品种。洗去根泥即可入汤或清炒；它是客店家常饭最稳妥的配菜。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 1
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

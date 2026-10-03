@@ -16,6 +16,7 @@ assets:
   icon: item/yuyincha
 text:
   desc: 外观：长柄渔叉约二米，中央长齿与两侧倒钩克制。 待运行时投影：exoticKind=misc; sect=sect_dali。
+  lore: 点苍渔隐为一灯门下弟子，持用渔叉的具体形制仍 （待考：核《射雕》《神雕》相关情节）。本作令长叉在浅水中挑、刺、锁拿皆便，倒钩、尺度与玩法为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 72
+      qiAffinity: 100

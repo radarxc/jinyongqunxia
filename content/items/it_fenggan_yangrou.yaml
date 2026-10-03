@@ -25,6 +25,10 @@ assets:
   icon: item/fenggan_yangrou
 text:
   desc: 外观：深褐羊肉条三根麻绳束，干燥纤维清楚。
+  lore: 辽、蒙古及西北在秋冬干冷时制作的羊肉条，纤维紧实，麻绳一束便于挂在鞍旁。可切片直接食用或煮汤；远行牧队最常携带。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 16

@@ -22,6 +22,7 @@ assets:
   icon: item/qingbaobu_nv
 text:
   desc: 外观：女款靛蓝绸包髻巾独立打结陈列，不画人头假发。 待运行时投影：cha=1; wearer=female。
+  lore: （原创扩展）据清代汉女包头风俗意象重构，靛蓝长巾折成低髻轮廓，窄绣折枝花并插素银簪。日常劳作时收拢头发，赴集则把绣边翻在外侧，朴素又整洁。
 extension:
   type: equipment
   value:
@@ -31,3 +32,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

@@ -14,6 +14,7 @@ assets:
   icon: item/shizhuyu
 text:
   desc: 外观：暗红食茱萸果一小枝置白瓷碟，细粒成簇 （原创扩展）。
+  lore: 古代常用的辛味果实，辣椒普及后渐退出厨房。本件暗红细果成簇，宜少量切碎入羹酱；各书界只按史料时代与南方货路投放。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 5
     rare: false
     ingredientKind: spice
+    attributes:
+      version: 2

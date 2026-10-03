@@ -14,6 +14,7 @@ assets:
   icon: item/hetun
 text:
   desc: 外观：灰青河豚一尾完整置湿竹叶，圆腹未鼓起。
+  lore: 江海时鲜中风险极高的一类，本作只在名厨剧情与受控配方中出现。玩家不能自行处理，也不展示现实方法；误取的普通货会被厨房直接拒收。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 8
     rare: false
     ingredientKind: rare
+    attributes:
+      version: 2

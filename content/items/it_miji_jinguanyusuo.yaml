@@ -13,6 +13,7 @@ assets:
   icon: item/miji_jinguanyusuo
 text:
   desc: 外观：南宋青灰蝴蝶装册，白麻纸页。
+  lore: 全真教金关玉锁二十四诀被门人清抄成册，纸本形制和传阅痕迹属 （原创扩展）。读者须依呼吸次序逐关行气，不能跳段求快；道观中常把能否安稳收功视作要紧考校。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jinguanyusuo
+      readBre: 50
+      maxLayer: 8
+      cultivation: 2400

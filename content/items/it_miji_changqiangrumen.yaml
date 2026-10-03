@@ -13,6 +13,7 @@ assets:
   icon: item/miji_changqiangrumen
 text:
   desc: 外观：南宋赭黄蝴蝶装长册，蓝麻缝线。
+  lore: 军中教头把长枪握距、拦拿与直刺画成宽页长册，枪法与载体皆属 （原创扩展）。研读须用木杆先练腰马和枪尖线路，并留意同列间距；边角磨旧见其常在营中铺开校练。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_changqiangrumen
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

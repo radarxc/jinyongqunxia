@@ -13,6 +13,7 @@ assets:
   icon: item/miji_guangmingxinfa
 text:
   desc: 外观：元代赭红包背册，黄绫护脊。
+  lore: 明教基础内功在本作整理为光明心法全本，名目细节与纸本载体均属 （原创扩展）。研读从稳息、守中到运劲依次推进，不能借“光明”之名强求炽烈；烟熏页缘见其长期秘藏。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_guangmingxinfa
+      readBre: 40
+      maxLayer: 10
+      cultivation: 2000

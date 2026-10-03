@@ -16,6 +16,7 @@ assets:
   icon: item/xiaoyaoyubingfuchen
 text:
   desc: 外观：青白玉短柄配银箍，雪白拂丝约一米自然垂落。 待运行时投影：sect=sect_xiaoyao。
+  lore: 逍遥门人以青白玉作柄、细韧丝束作锋，抖腕时可拂、卷、点、缠，招势轻灵而内劲深藏。此物不对应原著具名法器，命名、来历与云纹均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -28,3 +29,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 83
+      hardness: 50
+      qiAffinity: 100

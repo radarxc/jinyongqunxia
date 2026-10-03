@@ -14,6 +14,7 @@ assets:
   icon: item/huotuijian
 text:
   desc: 外观：小段风干火腿，棕红切面与麻绳。
+  lore: 《射雕英雄传》写黄蓉以火腿入馔；本件取咸香紧实的腿尖，切开后宜蒸煨取味。江南厨子多留给精细菜式，不作旅途中直接啃食。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: meat
+    attributes:
+      version: 2

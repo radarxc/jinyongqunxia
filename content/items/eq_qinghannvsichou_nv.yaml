@@ -22,6 +22,7 @@ assets:
   icon: item/qinghannvsichou_nv
 text:
   desc: 外观：女款藕色丝绸束带作松弧陈列，中段略宽、两端收窄并缀短穗。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: 据清代汉女风俗图像演成，藕色丝绸带中段略宽、两端收窄，围系袄裙时打结后垂下短穗。折枝暗纹只是家常雅饰，不作旗装构件。（原创扩展）
 extension:
   type: equipment
   value:
@@ -31,3 +32,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

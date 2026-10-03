@@ -13,6 +13,7 @@ assets:
   icon: item/miji_honghuahuiheji
 text:
   desc: 外观：清代朱红布面经折图册，黑绳束带。
+  lore: 红花会群侠协同被扩写成三尺经折阵谱，招法、编次与实体皆为 （原创扩展）。展开后须由多人按页签分位演练，单人只能理解调度；反复翻旧处多在换位节点，见其重默契胜过个人逞强。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_honghuahuiheji
+      readWis: 45
+      maxLayer: 10
+      cultivation: 2500

@@ -22,6 +22,7 @@ assets:
   icon: item/qingdiaoqiufengchang_nv
 text:
   desc: 外观：女款绛红缎面貂裘风氅单件完整铺展，圆领、大襟右开、宽幅及踝。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=5; wearer=female。
+  lore: （原创扩展）取清代貂裘外氅意象，绛红缎面配黑紫窄缘，右开大襟用盘扣束住。宽幅及踝，适合严寒出行；贵家女眷传给晚辈时，往往先重换里衬。
 extension:
   type: equipment
   value:
@@ -31,3 +32,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

@@ -24,6 +24,10 @@ assets:
   icon: item/niurougan
 text:
   desc: 外观：深褐肉条装牛皮纸包，麻绳束口。
+  lore: 合法取得的瘦牛肉以酱香风干，切成深褐肉条后用纸包束紧。嚼食费时却耐饥，是北地驿路四季长途食；驿队把纤维干润、无霉斑者视为上货。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 17

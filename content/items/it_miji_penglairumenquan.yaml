@@ -13,6 +13,7 @@ assets:
   icon: item/miji_penglairumenquan
 text:
   desc: 外观：北宋浅蓝蝴蝶装小册，白绢包角。
+  lore: 蓬莱门人把临海练习的入门拳架抄成掌心小册，拳法与载体属 （原创扩展）。研读须稳住下盘、顺着潮湿地面调整步幅，再练出拳回护；轻微潮斑不妨辨图，抄本只到八层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_penglairumenquan
+      readWis: 25
+      maxLayer: 8
+      cultivation: 600

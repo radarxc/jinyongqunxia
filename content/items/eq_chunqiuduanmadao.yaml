@@ -14,6 +14,7 @@ assets:
   icon: item/chunqiuduanmadao
 text:
   desc: 外观：全长约四十五厘米，青铜直背单刃、无格短茎、木片夹柄麻缠。
+  lore: 序章军伍所见的青铜短刀，直背单刃便于随身切割和近身劈刺，铜刃较易崩卷，不宜硬磕铁兵。其器形与军用范围仍 （待考：核春秋出土刀器）；柄鞘和投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 32
+      qiAffinity: 100

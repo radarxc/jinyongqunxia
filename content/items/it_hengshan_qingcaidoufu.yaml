@@ -25,6 +25,10 @@ assets:
   icon: item/hengshan_qingcaidoufu
 text:
   desc: 外观：清煮青菜豆腐盛灰白粗瓷碗，少油清淡。
+  lore: 《笑傲江湖》中令狐冲受困时每日食青菜豆腐，承接恒山四季持斋语境。本件清煮少油，须热食；具体器皿与守一膳食效果为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 16

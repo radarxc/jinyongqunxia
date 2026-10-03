@@ -25,6 +25,10 @@ assets:
   icon: item/dingshenggao
 text:
   desc: 外观：淡红元宝形米糕三枚置白瓷盘，无字无印。
+  lore: 江南相传在喜庆与出征时蒸制元宝形米糕，节庆四季可制，淡红无字，宜配茶分食。其确切始见年代尚待核。（待考：核南宋文献） 本作按玄阶投放。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 16

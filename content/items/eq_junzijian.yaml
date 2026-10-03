@@ -15,6 +15,7 @@ assets:
   icon: item/junzijian
 text:
   desc: 外观：乌黑修长直剑，方正小护手。
+  lore: 《神雕侠侣》中君子剑藏于绝情谷，与淑女剑成对，杨过、小龙女曾取剑合使；后来郭芙以此斩断杨过右臂。乌黑装具与配对增益均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 80
+      qiAffinity: 100

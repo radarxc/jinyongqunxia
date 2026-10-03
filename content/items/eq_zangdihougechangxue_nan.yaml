@@ -17,6 +17,7 @@ assets:
   icon: item/zangdihougechangxue_nan
 text:
   desc: 外观：男款深褐厚革藏靴一双并置，宽圆头、高靿、红蓝氆氇靴口与多层牛皮底。 待运行时投影：qinggong=12.5; resColdPp=2; wearer=male。
+  lore: 据宋清藏地服饰图像演成，厚革高靿、氆氇靴口和多层牛皮底专应雪地碎石。旅人夜宿时会抽出内衬烘干，宽底虽稳却不适合精细步法。（原创扩展）
 extension:
   type: equipment
   value:
@@ -26,3 +27,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 8
+      agi: 2

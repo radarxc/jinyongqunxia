@@ -14,6 +14,7 @@ assets:
   icon: item/chansu
 text:
   desc: 外观：药用干燥物呈棕褐扁饼碎片，表面微亮。
+  lore: 中原、齐鲁、江淮、江南、荆湖与岭南湿地夏秋五至九月可见，月份仍待核实。本作仅以旧药中的棕褐干片表现受控毒材，不设计伤害性取材。（待核实） （原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     rare: false
     herbFamily: chanSu
     ageYears: 0
+    attributes:
+      version: 2

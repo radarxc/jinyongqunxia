@@ -18,6 +18,7 @@ assets:
   icon: item/songjinxiuyuntoulv_nv
 text:
   desc: 外观：女款月白罗面云头履一双并置，鞋尖含蓄上翘、薄底、金线折枝花与绛色包边。 待运行时投影：qinggong=17.5; wearer=female。
+  lore: 据南宋墓葬鞋履与女俑语汇演成，月白罗面、薄底和含蓄云头用于贵族日常礼服。金线折枝纹不耐泥水，侍女常另备布套护送。（原创扩展）
 extension:
   type: equipment
   value:
@@ -27,3 +28,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 10
+      agi: 3

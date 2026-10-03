@@ -13,6 +13,7 @@ assets:
   icon: item/miji_canfengyinlugong
 text:
   desc: 外观：明代土黄线装小册，粗麻四眼订。
+  lore: 丐帮行旅间总结的吐纳、耐饥与歇脚法被辑成小册，武学和载体皆为 （原创扩展）。研读须在赶路与休息之间体会呼吸节律；雨渍折角说明它常随帮众远行，而非供案头清谈。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_canfengyinlugong
+      readBre: 30
+      maxLayer: 10
+      cultivation: 1200

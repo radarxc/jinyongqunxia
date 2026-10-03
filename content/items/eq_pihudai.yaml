@@ -14,6 +14,7 @@ assets:
   icon: item/pihudai
 text:
   desc: 外观：深褐宽皮带、黄铜方扣、细密缝线，无现代针扣造型 （原创扩展）。 待运行时投影：tough=2。
+  lore: 皮护腰以深褐宽革和黄铜框扣制成，紧束腰腹以承受搬运和兵器碰撞，缝线松脱便须及时补牢。镖局趟子手多在内侧刻记尺码。（原创扩展）
 extension:
   type: equipment
   value:
@@ -23,3 +24,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

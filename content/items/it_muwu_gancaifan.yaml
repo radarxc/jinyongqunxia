@@ -25,6 +25,10 @@ assets:
   icon: item/muwu_gancaifan
 text:
   desc: 外观：白米饭覆褐绿干菜盛粗陶碗，木屋旅食一人份 （原创扩展）。
+  lore: 《天龙八部》中众人在木屋以干菜佐白米饭。本件是一人份粗陶碗饭，须热食，朴素却能安顿旅途；干菜形制与清心膳食效果为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

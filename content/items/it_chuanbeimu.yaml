@@ -13,6 +13,7 @@ assets:
   icon: item/chuanbeimu
 text:
   desc: 外观：药用鳞茎干燥成乳白小锥粒，两瓣抱合。
+  lore: 秦巴、巴蜀、云滇黔、青藏与河西陇右高山夏季六至八月可采。本作以乳白两瓣抱合的小鳞茎辨识，作为疏通内伤的稀有辅材。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: chuanBeiMu
     ageYears: 0
+    attributes:
+      version: 2
+      healInner: 4

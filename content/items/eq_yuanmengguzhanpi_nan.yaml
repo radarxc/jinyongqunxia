@@ -18,6 +18,7 @@ assets:
   icon: item/yuanmengguzhanpi_nan
 text:
   desc: 外观：男款炭灰羊毛毡披单件完整铺展，圆领、左前襟皮扣、短袖口与及膝下摆。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=2; wearer=male。
+  lore: （原创扩展）依蒙元草原毡披意象重构，炭灰羊毛毡厚实，左襟皮扣可单手解开。及膝直摆挡风沙，骑手下马便以它围肩守夜；红褐窄边也便于认领。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 4

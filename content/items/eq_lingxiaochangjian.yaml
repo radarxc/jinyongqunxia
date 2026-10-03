@@ -16,6 +16,7 @@ assets:
   icon: item/lingxiaochangjian
 text:
   desc: 外观：长直窄剑约八十厘米，银灰刃、雪峰折线护手、白布缠柄与蓝黑鞘。 待运行时投影：sect=sect_xueshan。
+  lore: 雪山派镇守凌霄城所用的长直剑，窄刃利于寒地厚衣下保持灵活，白布柄缠湿后可替换。雪峰护手与凝露只作环境表现；器名、来历和形制均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 80
+      qiAffinity: 100

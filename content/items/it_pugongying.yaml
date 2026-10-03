@@ -13,6 +13,7 @@ assets:
   icon: item/pugongying
 text:
   desc: 外观：药用全草连细根干燥，锯齿叶黄绿。
+  lore: 燕京直隶、中原、齐鲁、关中、江淮与东北路旁春至秋三至十月可采，本作连细根入篮。药铺把它列为轻伤配药，常随乡医药篓流转。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: puGongYing
     ageYears: 0
+    attributes:
+      version: 2
+      healOuter: 5

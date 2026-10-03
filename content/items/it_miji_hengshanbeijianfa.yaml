@@ -13,6 +13,7 @@ assets:
   icon: item/miji_hengshanbeijianfa
 text:
   desc: 外观：明代月白线装册，青线四眼订。
+  lore: 恒山派剑法被门人清抄成月白小册，载体与流传属 （原创扩展）。研读讲究守中、相护与克制，须两人对练方能看清照应；洁净书页不代表浅易，抄本来源仍只支持八层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_hengshanbeijianfa
+      readWis: 40
+      maxLayer: 8
+      cultivation: 1600

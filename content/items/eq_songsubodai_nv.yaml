@@ -18,6 +18,7 @@ assets:
   icon: item/songsubodai_nv
 text:
   desc: 外观：女款灰青素帛裙带作松弧陈列，窄长软带、中央压褶与两端自然下垂。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: 据宋墓女俑与服饰实物语汇演成，灰青素帛窄带围住襦裙，中央压褶后让两端自然垂落。粗绢无纹便于翻面再用，民家多自行裁制。（原创扩展）
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 5

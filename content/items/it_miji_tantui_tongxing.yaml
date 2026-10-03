@@ -13,6 +13,7 @@ assets:
   icon: item/miji_tantui_tongxing
 text:
   desc: 外观：元代灰蓝包背图册，黑布护脊。
+  lore: 市镇武师把弹腿的长幅腿势转抄为灰蓝图册，谱本与流传属 （原创扩展）。研读须逐折核对支撑脚、起腿和回收，不能只追踢高；边口磨白处正是常查的换势节点，来源止于八层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tantui_tongxing
+      readWis: 40
+      maxLayer: 8
+      cultivation: 1600

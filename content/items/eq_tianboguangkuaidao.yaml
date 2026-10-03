@@ -15,6 +15,7 @@ assets:
   icon: item/tianboguangkuaidao
 text:
   desc: 外观：狭长轻薄单刃约七十厘米，浅弧刀身、椭圆小镡、黑布缠柄与素黑鞘。
+  lore: 《笑傲江湖》中田伯光以快刀见长，轻薄浅弧刃便于迅速连斩与收刀，硬碰重兵并非所长。其佩刀是否有专名及确切形制仍 （待考：核田伯光交战情节）；装具、尺度和定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 68
+      qiAffinity: 100

@@ -25,6 +25,10 @@ assets:
   icon: item/zhengbing
 text:
   desc: 外观：白面圆蒸饼三个置竹屉，表皮柔软无馅。
+  lore: 《东京梦华录》所见汴京面食类型之一，本件是无馅白面圆饼，城中四季早点摊皆可制。出笼时柔软，适合当顿饱腹，凉后可再蒸。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 11

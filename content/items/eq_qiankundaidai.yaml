@@ -15,6 +15,7 @@ assets:
   icon: item/qiankundaidai
 text:
   desc: 外观：深青宽带、暗金回纹与玉扣，厚实但可弯曲。 待运行时投影：hpMaxPct=5%; mpMaxPct=5%。
+  lore: 乾坤宝带以深青厚织、暗金回纹和玉扣制成，宽带收束腰腹，可在运气与负重时稳住躯干。坊间称它内藏乾坤，实际没有储物神通。（原创扩展）
 extension:
   type: equipment
   value:
@@ -24,3 +25,6 @@ extension:
     divine: false
     catalogTian: true
     uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 14

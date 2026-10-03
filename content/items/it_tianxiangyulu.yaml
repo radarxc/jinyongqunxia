@@ -26,6 +26,11 @@ assets:
   icon: item/tianxiangyulu
 text:
   desc: 外观：羊脂玉碗盛半透明淡金羹，莲子与花瓣可辨。 待运行时投影：uniqueBatch=true。
+  lore: 以莲子、花露和清甜珍材慢煨成淡金清羹，只供固定雅宴。须温饮并避浓酒杂味；传说倦伤者饮后经络渐舒，此疗效属本作设定。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healInner: 6
+      stamina: 28

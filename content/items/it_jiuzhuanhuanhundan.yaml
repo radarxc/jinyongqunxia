@@ -25,6 +25,10 @@ assets:
   icon: item/jiuzhuanhuanhundan
 text:
   desc: 外观：朱红丹丸一枚置九瓣金边漆盒，温润药光。
+  lore: 九瓣漆盒只藏一枚朱红丹丸，是本作天材骰中的保命奇药。须在倒地前服下，药力仅护本场一次，不能兼作疗伤、解毒或经脉辅助；江湖遂称一丸抵一命。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healOuter: 0

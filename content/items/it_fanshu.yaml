@@ -14,6 +14,7 @@ assets:
   icon: item/fanshu
 text:
   desc: 外观：红褐番薯三块置竹篮，带少量泥土。
+  lore: 美洲作物，明末传入后才逐渐推广；本作仅碧血及以后书界投放。秋收块根可蒸烤或掺粮煮饭，贫寒行旅尤其珍惜其耐饥。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 3
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

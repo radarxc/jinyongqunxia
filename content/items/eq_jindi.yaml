@@ -15,6 +15,7 @@ assets:
   icon: item/jindi
 text:
   desc: 外观：哑光旧金色横笛，七孔与细卷草纹。 待运行时投影：exoticKind=flute。
+  lore: 《书剑恩仇录》中余鱼同以金笛为兵器。笛身既可点打穴位，也可随身吹奏；以内力送音时更便于扰乱心神。具体孔数、纹饰及亲和数值为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,9 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 58
+      qiAffinity: 105
+      qiEffect: bf_luanxin

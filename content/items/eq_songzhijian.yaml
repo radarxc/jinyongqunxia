@@ -14,6 +14,7 @@ assets:
   icon: item/songzhijian
 text:
   desc: 外观：素面直脊双刃铁剑，刃约六十五厘米。
+  lore: 依据宋铁剑考古轮廓复原的普通直剑，短护手与麻缠柄便于军民日常佩用。招法以平刺、斜削为主，磨钝后可由城镇铁匠修整；具体装具及流传为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 42
+      qiAffinity: 100

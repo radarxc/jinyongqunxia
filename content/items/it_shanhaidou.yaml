@@ -26,6 +26,10 @@ assets:
   icon: item/shanhaidou
 text:
   desc: 外观：半透明粉皮兜四只露笋蕨鱼虾馅，白瓷盘。 待运行时投影：party=4。
+  lore: 宋《山家清供》以笋、蕨与鱼虾作馅制蒸兜，春季笋蕨齐嫩时最合宜。本件四只同盘，蒸熟后分食；洞悉、养生效果为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 20

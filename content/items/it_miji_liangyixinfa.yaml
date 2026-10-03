@@ -13,6 +13,7 @@ assets:
   icon: item/miji_liangyixinfa
 text:
   desc: 外观：元代黑白双色包背软册，麻布护脊。
+  lore: 这部黑白相间的道门心法及其传承皆为 （原创扩展）。篇章以动静相参讲调息，研读时须轮换察看两路行气，不可执着一端；江湖传言能把相反口诀互证，才算读懂“两仪”。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_liangyixinfa
+      readBre: 35
+      maxLayer: 10
+      cultivation: 1600

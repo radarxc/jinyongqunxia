@@ -16,6 +16,7 @@ assets:
   icon: item/shenghuoling
 text:
   desc: 外观：一组硬质短令以单件主令居中并置，约前臂长。 待运行时投影：exoticKind=token; sect=sect_mingjiao。
+  lore: 《倚天屠龙记》中圣火令源自波斯明教，令上刻有武功，波斯三使以之应敌。本作一件代表整套，贯注内力可配合圣火令武功；枚数与材质仍 （待考：核原文）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,9 @@ extension:
     divine: true
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 92
+      qiAffinity: 120
+      qiEffect: ue_shenghuoling_1

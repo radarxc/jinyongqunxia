@@ -16,6 +16,7 @@ assets:
   icon: item/furongjinzhen
 text:
   desc: 外观：十二枚细金针放射状整齐排成芙蓉轮廓但不相交，配深青布针套。 待运行时投影：ammoMul=1.125; hiddenHit=6.0; onHit=bf_chizhi; sect=sect_wudang。
+  lore: 《书剑恩仇录》中芙蓉金针与陆菲青、李沅芷相关；（待考：核持用情节、针数与装具）。本文以深青针套收十二枚，迟滞效果、弹量和专属定级均为玩法原创扩展。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 60
+      qiAffinity: 100

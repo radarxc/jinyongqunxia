@@ -18,6 +18,7 @@ assets:
   icon: item/mingqingyesa_nan
 text:
   desc: 外观：男款深青交领右衽曳撒单件平展，窄袖。 待运行时投影：agi=1; wearer=male。
+  lore: 据明代曳撒形制演成，窄袖与腰下密褶适合骑射，行动前应收紧右衽系带。军伍与内廷各有规制，本件无飞鱼纹，也不据此授予官差身份。（原创扩展）
 extension:
   type: equipment
   value:
@@ -28,3 +29,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 48
+      agi: 1

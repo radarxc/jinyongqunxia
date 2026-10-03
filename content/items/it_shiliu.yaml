@@ -14,6 +14,7 @@ assets:
   icon: item/shiliu
 text:
   desc: 外观：红黄石榴两枚，一枚剖开露红籽。
+  lore: 汉以后由西域传入，中原园圃亦渐能栽培，秋季果熟。本件一枚剖开露红籽，可鲜食或入甜点；完整果常被旅人当作吉庆赠礼。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 4
     rare: false
     ingredientKind: fruit
+    attributes:
+      version: 2

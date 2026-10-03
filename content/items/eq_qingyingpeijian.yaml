@@ -14,6 +14,7 @@ assets:
   icon: item/qingyingpeijian
 text:
   desc: 外观：全长约九十五厘米，钢质直双刃、铁盘镡、鲨鱼皮纹柄与穗孔剑首。
+  lore: 清代营伍场景采用的朴素直剑，盘镡护住手背，鞘上双箍便于行军悬挂。它舍去宫廷华饰，重在日常值守、点刺与封架；配发范围、装具简化和定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 57
+      qiAffinity: 100

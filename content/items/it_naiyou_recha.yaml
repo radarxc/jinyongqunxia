@@ -25,6 +25,10 @@ assets:
   icon: item/naiyou_recha
 text:
   desc: 外观：浅褐热茶盛木碗，表面浮薄层乳油。
+  lore: 《白马啸西风》中计老人给李文秀奶油热茶。本件以木碗盛热茶，表面浮薄乳油，须趁热缓饮；御寒持续与体力回复数值属于原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 14

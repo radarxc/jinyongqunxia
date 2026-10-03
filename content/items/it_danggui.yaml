@@ -13,6 +13,7 @@ assets:
   icon: item/danggui
 text:
   desc: 外观：药用根切成黄棕薄片，油润形成层可辨。
+  lore: 秦巴、巴蜀、河西陇右与青藏药圃秋九至十月取根，本作以黄棕薄片的形成层辨货。江湖伤药常拿它作辅材，单味只投影轻度外伤恢复。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: dangGui
     ageYears: 0
+    attributes:
+      version: 2
+      healOuter: 6

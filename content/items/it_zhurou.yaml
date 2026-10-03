@@ -14,6 +14,7 @@ assets:
   icon: item/zhurou
 text:
   desc: 外观：一块粉红带白脂鲜猪肉置粗陶盘，约一斤。
+  lore: 宋代民间已有猪肉，清代食籍又见全猪与烧小猪宴馔；本件取屠肆当日鲜肉。宜煮炒或冬腌，不能直接食用；市井厨户按肥瘦选切。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: meat
+    attributes:
+      version: 2

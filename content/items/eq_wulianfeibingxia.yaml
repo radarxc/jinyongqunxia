@@ -14,6 +14,7 @@ assets:
   icon: item/wulianfeibingxia
 text:
   desc: 外观：五枚掌心大薄钢圆轮并排嵌于长匣，中央握孔无字、外缘四段浅刃互不遮挡。 待运行时投影：ammoMul=1.090; hiddenHit=5.1。
+  lore: （原创扩展）五枚掌心大薄钢圆轮并列嵌在长匣内，中央握孔便于抽取，四段浅刃互不相接。轮刃可旋掷也可回收，江湖俗称飞饼；碰缺后须整圈校平。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 50
+      qiAffinity: 100

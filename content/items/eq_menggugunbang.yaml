@@ -14,6 +14,7 @@ assets:
   icon: item/menggugunbang
 text:
   desc: 外观：硬木短棒约一米，前端外覆浅色骨片并以铁箍铆接。
+  lore: 蒙古营地工匠以骨片覆住硬木棒前端，再用铁箍铆紧，增加钝击分量而不生尖刺。骑手可单手挥击，腕绳防止落马时失兵；器名、制作方式、流通与形制均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 58
+      qiAffinity: 100

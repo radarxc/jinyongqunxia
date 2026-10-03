@@ -13,6 +13,7 @@ assets:
   icon: item/jiegeng
 text:
   desc: 外观：药用根刮皮后呈淡黄白长条，纵沟明显。
+  lore: 燕京直隶、中原、齐鲁、江淮、辽东与东北，春三四月或秋九十月采根。本作以淡黄长条和纵沟辨识，归入疏理内伤的基础药材。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: jieGeng
     ageYears: 0
+    attributes:
+      version: 2
+      healInner: 1

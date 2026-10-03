@@ -14,6 +14,7 @@ assets:
   icon: item/taihu_yinyu
 text:
   desc: 外观：半透明细银鱼十余尾盛青瓷浅盘，指长尺度 （原创扩展）。
+  lore: 太湖春末夏初的小型时鲜，离水易损，须以浅盘轻盛迅速入厨。古代食用记录与各书界投放仍待核。（待考：核时令与史料） （原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 5
     rare: false
     ingredientKind: fish
+    attributes:
+      version: 2

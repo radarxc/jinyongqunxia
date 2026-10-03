@@ -13,6 +13,7 @@ assets:
   icon: item/miji_shiguchong_can
 text:
   desc: 外观：明代暗绿皮纸残册，红线双订。
+  lore: 西南行商与猎户的蛊虫辨识笔记只余暗绿残册，知识、载体与散佚均属 （原创扩展）。研读须从形态、栖处和症候三处互证，虫蛀孔不可当图示；缺失末篇使来源上限七层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_shiguchong
+      readWis: 25
+      maxLayer: 7
+      cultivation: 525

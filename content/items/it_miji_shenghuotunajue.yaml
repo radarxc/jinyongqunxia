@@ -13,6 +13,7 @@ assets:
   icon: item/miji_shenghuotunajue
 text:
   desc: 外观：元代赭红包背小册，黄麻护脊。
+  lore: 明教入门吐纳被抄录成受烟熏的包背小册，名目、载体与流传皆属 （原创扩展）。研读须循序调匀内息，不能把火烟色痕误作躁烈功法的暗示；此抄本只容八层根基。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_shenghuotunajue
+      readBre: 30
+      maxLayer: 8
+      cultivation: 800

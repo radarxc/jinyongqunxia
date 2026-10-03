@@ -18,6 +18,7 @@ assets:
   icon: item/songzhijiaofutou_nan
 text:
   desc: 外观：男款黑漆纱直脚幞头独立陈列，不画人头。 待运行时投影：cha=2; wearer=male。
+  lore: （原创扩展）据宋代直脚幞头资料重构，黑漆纱硬胎方正，两脚平直，以素簪固定。官绅整冠后才入公堂或宴席，江湖人若无相称身份，佩戴反而惹眼。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12

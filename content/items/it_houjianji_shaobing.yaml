@@ -25,6 +25,10 @@ assets:
   icon: item/houjianji_shaobing
 text:
   desc: 外观：新焙圆烧饼一枚置油纸，焦黄鼓面、无夹藏物。
+  lore: 《侠客行》侯监集争玄铁令时，石破天捡食烧饼，本作按当地四季摊食投放。本件是一枚新焙圆饼，可立即充饥，也能包作路粮；御寒效果为原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 16

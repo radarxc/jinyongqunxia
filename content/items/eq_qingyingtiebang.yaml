@@ -14,6 +14,7 @@ assets:
   icon: item/qingyingtiebang
 text:
   desc: 外观：深木长棒约一百五十厘米，两端包厚铁箍、前端略粗。
+  lore: 清代营伍巡守使用的铁箍长棒，深木杆两端加厚，适合以双手横拦、推压和钝击控制狭道。蓝灰布缠便于磨损后替换，器名、配发场景、尺寸与全部装具均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 58
+      qiAffinity: 100

@@ -22,6 +22,7 @@ assets:
   icon: item/qinghongyingnuanmao_nan
 text:
   desc: 外观：男款黑缎暖帽独立陈列，不画人头。 待运行时投影：resColdPp=2; wearer=male。
+  lore: （原创扩展）据清代暖帽制度意象重构，黑缎圆顶配窄熏貂缘，低红缨下仅置素铜顶珠。士绅寒时出门佩用，顶珠不冒充官阶；入室后须顺毛收好。
 extension:
   type: equipment
   value:
@@ -31,3 +32,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 7

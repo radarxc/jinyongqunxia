@@ -18,6 +18,7 @@ assets:
   icon: item/mingzhongjingguan_nan
 text:
   desc: 外观：男款乌纱忠静冠独立陈列，不画人头。 待运行时投影：effRes=4; wearer=male。
+  lore: （原创扩展）据明代忠静冠服资料重构，乌纱方筒冠体顶部微隆，两侧收束，以玉簪贯定。官绅在正式场合佩用，冠形务求端整；无官阶字样，不单凭此冠授予身份。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11

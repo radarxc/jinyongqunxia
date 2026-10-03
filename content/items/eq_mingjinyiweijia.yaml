@@ -14,6 +14,7 @@ assets:
   icon: item/mingjinyiweijia
 text:
   desc: 外观：明代深青曳撒式罩甲、窄金线与皮革护腰，不画飞鱼纹文字 （原创扩展）。 待运行时投影：lawProfile={uniform:true,allowedIdentityTags:[office_ming_imperial_guard],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。
+  lore: 明制锦衣卫甲采用深青罩甲与皮护腰，兼顾仪卫威势和近身行动，金线只作克制边饰。市井常把华服误认官甲，但本件无飞鱼纹，合法性仍须身份核验。（原创扩展）
 extension:
   type: equipment
   value:
@@ -24,3 +25,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 72

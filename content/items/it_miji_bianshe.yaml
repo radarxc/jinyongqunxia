@@ -13,6 +13,7 @@ assets:
   icon: item/miji_bianshe
 text:
   desc: 外观：元代灰褐包背长册，黑布护脊。
+  lore: 边军射手把风向、估距和放矢节奏编成皮纸夹页长册，内容与载体均属 （原创扩展）。研读须配合实弓由近及远校准，风沙磨痕显示它常随巡哨携行，并非案头清赏之书。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_bianshe
+      readWis: 35
+      maxLayer: 10
+      cultivation: 1600

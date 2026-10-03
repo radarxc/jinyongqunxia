@@ -15,6 +15,7 @@ assets:
   icon: item/luochaduanchong
 text:
   desc: 外观：木柄短铳、黑铁短管、黄铜箍，清初火器感。 待运行时投影：ammoMul=2.0; range=5; reloadOwnActions=1。
+  lore: 《鹿鼎记》有罗刹火器与雅克萨语境；此木柄黑铁短铳为（原创扩展）。装填后只发有限弹药，贵在近距穿透与声势，每发均为耗材；不用内力催动。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 135
+      hardness: 65
+      qiAffinity: 100

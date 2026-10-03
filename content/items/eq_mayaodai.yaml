@@ -14,6 +14,7 @@ assets:
   icon: item/mayaodai
 text:
   desc: 外观：灰麻编绳腰带，木质小扣。 待运行时投影：defOutK=0.05; hpMaxK=0.01。
+  lore: 麻绳腰带由灰麻双股编成，以木扣和活结收束衣襟，也能临时捆扎行囊。行旅人讲究绳结朝外，遇险时一抽即松；旧带据说换过数位主人。（原创扩展）
 extension:
   type: equipment
   value:
@@ -23,3 +24,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

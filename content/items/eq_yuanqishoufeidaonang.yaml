@@ -14,6 +14,7 @@ assets:
   icon: item/yuanqishoufeidaonang
 text:
   desc: 外观：红褐皮扁囊闭合，旁列六柄掌长单刃飞刀。 待运行时投影：ammoMul=0.950; hiddenHit=3.3。
+  lore: （原创扩展）依元代骑旅装备意象，以红褐扁囊分槽收六柄掌长飞刀，角片短柄不碍持缰。刀尖同向便于腰侧抽取，风沙中用后须擦净；可寻回完好刀身。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 35
+      qiAffinity: 100

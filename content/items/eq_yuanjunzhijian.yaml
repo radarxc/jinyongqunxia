@@ -14,6 +14,7 @@ assets:
   icon: item/yuanjunzhijian
 text:
   desc: 外观：全长约九十厘米，钢质窄直双刃、短弧铁镡、皮条缠柄与盘形首。
+  lore: 元代军旅场景复原的护手直剑，窄刃用于马上佩带和下马刺削，短弧铁镡可挡住滑向手背的兵刃。中原与草原装具混合、军中投放、名称和尺寸均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 45
+      qiAffinity: 100

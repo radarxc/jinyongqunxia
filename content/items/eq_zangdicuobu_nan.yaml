@@ -17,6 +17,7 @@ assets:
   icon: item/zangdicuobu_nan
 text:
   desc: 外观：男款深褐粗氆氇宽袖藏袍单件平展，斜襟右衽、长袖厚重、右肩可翻折的裁片关系清楚。 待运行时投影：resColdPp=1; wearer=male。
+  lore: 据宋清藏地服饰图像演成的粗氆氇袍，长袖厚实，右肩可翻折，昼夜温差大时便于增减。牧人看重它挡风耐磨，麻绳束腰不作身份标记。（原创扩展）
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 28

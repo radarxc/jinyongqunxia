@@ -18,6 +18,7 @@ assets:
   icon: item/songmabutaosheng_nan
 text:
   desc: 外观：男款灰褐麻布绦绳盘成一圈，双股粗编、木环与简单活结。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: 据宋代士庶服制语汇演成，灰褐麻布绦绳以双股粗编和木环束衣，活结可迅速松紧。纤维起毛后仍能使用，是脚夫与农人的常备物。（原创扩展）
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 5

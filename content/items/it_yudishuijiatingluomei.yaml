@@ -23,6 +23,10 @@ assets:
   icon: item/yudishuijiatingluomei
 text:
   desc: 外观：五色肉条拼成梅花状，素白大盘。 待运行时投影：party=4。
+  lore: 《射雕英雄传》中黄蓉以羊、猪、牛、獐、兔五味合成肉条，制给洪七公品尝。食者须依次辨味，梅花摆盘与五项战斗增益为本作投影。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 22

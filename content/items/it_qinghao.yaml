@@ -13,6 +13,7 @@ assets:
   icon: item/qinghao
 text:
   desc: 外观：药用地上部分阴干成黄绿色细枝叶，叶裂纤细。
+  lore: 中原、齐鲁、江淮、江南、荆襄、湖湘与巴蜀荒地夏秋六至九月花蕾前后可采。纤细裂叶阴干扎束，本作归为较强疏内伤辅材，不给现实剂量。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,6 @@ extension:
     rare: false
     herbFamily: qingHao
     ageYears: 0
+    attributes:
+      version: 2
+      healInner: 3

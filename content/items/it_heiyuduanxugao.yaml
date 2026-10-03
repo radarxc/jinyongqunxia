@@ -25,6 +25,10 @@ assets:
   icon: item/heiyuduanxugao
 text:
   desc: 外观：墨黑膏体盛黑玉色圆盒，铜扣与厚蜡封。 待运行时投影：storyCure=fracture。
+  lore: 《倚天屠龙记》中西域金刚门秘药，墨黑膏体专为断骨旧伤外敷，俞岱岩、殷梨亭的伤势由此得治。铜扣厚蜡封为本作形制，专属接骨治愈仍只读旧效果字段。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healOuter: 0

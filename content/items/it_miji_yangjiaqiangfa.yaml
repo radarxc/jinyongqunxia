@@ -14,6 +14,7 @@ assets:
   icon: item/miji_yangjiaqiangfa
 text:
   desc: 外观：南宋赭色蝴蝶装长册，旧蓝布套。
+  lore: 《射雕英雄传》写杨铁心使家传枪法，这部细长遗谱为 （原创扩展）。图页按拦、拿、扎的步位铺陈，须持长枪在开阔处逐段校正；民间武师珍重其家传法度，不以花巧取胜。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_yangjiaqiangfa
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

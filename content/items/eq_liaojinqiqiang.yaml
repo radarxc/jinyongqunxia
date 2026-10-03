@@ -14,6 +14,7 @@ assets:
   icon: item/liaojinqiqiang
 text:
   desc: 外观：窄长菱形铁锋配韧木杆，通长约二点七米。
+  lore: 辽金北境骑军场景复原的长枪，菱锋利于借冲势贯刺，韧木杆上的皮握段可减轻风沙与寒冷造成的滑手。下马后须留出回转距离；形制、投放及装具均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 52
+      qiAffinity: 100

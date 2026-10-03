@@ -14,6 +14,7 @@ assets:
   icon: item/miji_canhezhi
 text:
   desc: 外观：北宋湖蓝蝴蝶装册，绢纸书衣、青布包角。
+  lore: 《天龙八部》中的参合指为慕容氏武学；这册水阁藏本及残缺形态属 （原创扩展）。读者要从散页校合指路与劲路，缺失处不可臆补；江湖只闻其名，外人难见慕容家抄藏。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_canhezhi
+      readWis: 50
+      maxLayer: 7
+      cultivation: 2100

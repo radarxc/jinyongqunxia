@@ -31,6 +31,12 @@ assets:
   icon: item/yulongsuheisan
 text:
   desc: 外观：羊脂玉小葫芦盛银白细粉，银塞云纹。
+  lore: 羊脂玉葫芦密藏银白细粉，危急时少量服下并立刻调息，可兼顾回气、内外伤救治与解毒。具体书名、持有人及原文药效尚待核对，现有数值均属玩法投影。（待考） （原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      restoreQi: 8
+      healInner: 8
+      healOuter: 14

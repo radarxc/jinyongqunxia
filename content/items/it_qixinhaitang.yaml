@@ -14,6 +14,7 @@ assets:
   icon: item/qixinhaitang
 text:
   desc: 外观：深绿叶与淡红小花连枝置封闭陶盘，形态 （原创扩展）。
+  lore: 《飞狐外传》中程灵素所种毒花，本作只在药王谷固定剧情点取得，不设自然采期。深绿叶与淡红小花连枝封存，用于下药或淬毒；形态与现实原型仍待核实。（原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     rare: false
     herbFamily: qiXinHaiTang
     ageYears: 0
+    attributes:
+      version: 2

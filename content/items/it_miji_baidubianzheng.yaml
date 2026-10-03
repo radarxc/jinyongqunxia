@@ -14,6 +14,7 @@ assets:
   icon: item/miji_baidubianzheng
 text:
   desc: 外观：元代黄纸包背抄本，褐布护脊、细麻补线。
+  lore: 《倚天屠龙记》有王难姑手写黄纸毒经抄本；本作映射百毒辨证属 （原创扩展）。细字按毒性、症候和解法相互索引，研读必须辨证，不可照方试毒；页缘药污只作辨材痕迹。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_baidubianzheng
+      readWis: 50
+      maxLayer: 8
+      cultivation: 2400

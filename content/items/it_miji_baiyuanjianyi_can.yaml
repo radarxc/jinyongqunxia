@@ -13,6 +13,7 @@ assets:
   icon: item/miji_baiyuanjianyi_can
 text:
   desc: 外观：春秋窄竹简残束，麻绳补编。
+  lore: 山野剑客把观白猿腾挪所得写成残缺竹简，剑意、笔录与流传均属 （原创扩展）。研读重在从断续身势悟出轻灵转折，不宜强拼缺简；现存七层足供印证，不能冒充完整传承。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_baiyuanjianyi
+      readWis: 35
+      maxLayer: 7
+      cultivation: 1120

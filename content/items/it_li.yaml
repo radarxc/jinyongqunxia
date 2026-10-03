@@ -14,6 +14,7 @@ assets:
   icon: item/li
 text:
   desc: 外观：青黄梨三枚置浅瓷盘，带叶一片。
+  lore: 宋代市食、蜜煎与鲜果摊都常见的秋梨，本件三枚青黄带叶。可鲜食，也可切片蜜煎；驿路上须防磕伤，碰软者只进当日羹汤。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: fruit
+    attributes:
+      version: 2

@@ -16,6 +16,7 @@ assets:
   icon: item/yuanhongzhanxue_nv
 text:
   desc: 外观：女款暗红羊毛毡靴一双并置，微翘圆头、中高靿、蓝黑几何窄绣边与软皮底。 待运行时投影：qinggong=12.5; resColdPp=2; wearer=female。
+  lore: 据蒙元墓葬图像中的毡靴语汇演成，羊毛毡高靿配软皮底，既保暖又适合毡帐内外行走。蓝黑绣边只作家族审美，不代表正式品级。（原创扩展）
 extension:
   type: equipment
   value:
@@ -25,3 +26,7 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 8
+      agi: 2

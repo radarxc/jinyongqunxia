@@ -21,6 +21,10 @@ assets:
   icon: item/huoxuewan
 text:
   desc: 外观：褐色小丸三枚置青瓷浅碟，蜡纸小包。
+  lore: 小镇药铺把褐色蜜丸分装在蜡纸包中，供轻伤后缓服。它只用于恢复气血，不替代接骨或解毒；脚夫、护院常在赶路前备上数枚。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healOuter: 6

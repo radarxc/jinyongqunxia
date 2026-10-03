@@ -13,6 +13,7 @@ assets:
   icon: item/miji_biaojurumen
 text:
   desc: 外观：明代暗红线装图册，四眼黑线。
+  lore: 镖局教头将护车开路的基础刀架绘成暗红图册，刀法和载体均属 （原创扩展）。研读须兼顾货队、同伴和狭路收刀，先以木刀走位；封角磨白见其是新镖师常用教材。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_biaojurumen
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

@@ -25,6 +25,10 @@ assets:
   icon: item/pomiao_shutang
 text:
   desc: 外观：灰陶破碗盛浑浊薄汤，一小块鼠肉轮廓。
+  lore: 《连城诀》中宝象误食受污染的鼠汤，这是危险剧情食物而非疗愈菜谱。玩家只能在对应节点辨识或误食；虚弱效果与克制外观属于原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 10

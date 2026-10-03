@@ -14,6 +14,7 @@ assets:
   icon: item/jiucai
 text:
   desc: 外观：深绿韭菜一束置竹篮，细长叶齐整。
+  lore: 栽培已久的细叶菜，暖季鲜嫩，割后还能再生，市集四时皆可见。切碎可作馅，也能炒食；平民灶头常以一小束添香佐饭。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 1
     rare: false
     ingredientKind: vegetable
+    attributes:
+      version: 2

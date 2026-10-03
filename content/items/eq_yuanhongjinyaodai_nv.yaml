@@ -16,6 +16,7 @@ assets:
   icon: item/yuanhongjinyaodai_nv
 text:
   desc: 外观：女款绛红织锦宽带作松弧陈列，鎏金双环扣、两端短流苏与克制卷草暗纹。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: 据元墓壁画与蒙元服饰语汇演成，绛红织锦宽带以双环扣合，两端短穗随礼服垂落。卷草暗纹只示精工，传承自哪一帐族为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11

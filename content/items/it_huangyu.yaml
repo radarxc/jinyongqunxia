@@ -13,6 +13,7 @@ assets:
   icon: item/huangyu
 text:
   desc: 外观：金黄大黄鱼一尾置青竹叶，体形修长。
+  lore: 东海渔汛中的金黄时鲜，明清沿海商路更易取得。本件长约尺半，宜清蒸保其鲜味；港口鱼行会按体形、鳞色与到岸时辰定价。（原创扩展）
 extension:
   type: material
   value:
@@ -21,3 +22,5 @@ extension:
     materialGrade: 5
     rare: false
     ingredientKind: fish
+    attributes:
+      version: 2

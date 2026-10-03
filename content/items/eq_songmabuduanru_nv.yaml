@@ -18,6 +18,7 @@ assets:
   icon: item/songmabuduanru_nv
 text:
   desc: 外观：女款灰褐交领右衽短襦与黛青百褶裙成套折叠，窄袖、粗麻、布带。 待运行时投影：wearer=female。
+  lore: 据宋墓女俑与风俗图像中的短襦裙演成，粗麻窄袖便于汲水、织作与田间劳作。裙角补缀被旧主故意保留，家人说那是迁居途中留下的记号。（原创扩展）
 extension:
   type: equipment
   value:
@@ -28,3 +29,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 28

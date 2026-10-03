@@ -13,6 +13,7 @@ assets:
   icon: item/miji_ganyebu
 text:
   desc: 外观：清代墨蓝线装薄册，黑线四眼订。
+  lore: 夜行镖师把暗处辨路、节省脚力与停步听声编成薄谱，步法和册本皆属 （原创扩展）。研读须先在熟路低速练习，不可以黑暗冒险；灯油斑与折角说明此本常在夜哨间翻看。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_ganyebu
+      readWis: 20
+      maxLayer: 10
+      cultivation: 500

@@ -13,6 +13,7 @@ assets:
   icon: item/miji_langhuanjian
 text:
   desc: 外观：北宋白绢横卷，青绫隔水、素木轴。
+  lore: 无量玉壁剑影在本作扩写为四尺琅嬛剑图，武学、卷轴与传承皆属 （原创扩展）。研读须把连续剑影还原为步法和出剑先后，再持剑验证；洞藏潮斑使局部线条更需谨慎辨认。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_langhuanjian
+      readWis: 45
+      maxLayer: 10
+      cultivation: 2500

@@ -14,6 +14,7 @@ assets:
   icon: item/bailagan
 text:
   desc: 外观：淡黄白蜡木韧杆约一百八十厘米，根粗梢细、无金属包头。
+  lore: 白蜡木根粗梢细，韧而不僵，抖杆时能借回弹发力，也适合练习枪棍基本功。此名称在明清时期的使用范围仍 （待考：核器材称谓）；尺寸、品阶和投放为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 34
+      qiAffinity: 100

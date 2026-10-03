@@ -14,6 +14,7 @@ assets:
   icon: item/menggutietaosuo
 text:
   desc: 外观：三米深褐皮索松盘，前端活套闭合、末端拳大圆钝铁坠与皮护腕。
+  lore: 蒙古营地猎骑将皮索改作战斗套索，活套用于牵制肢体，圆钝铁坠则帮助远端展开并可扫击。用者重在控距，不与刀剑硬磕；器名、铁坠用途、长度和军中投放均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 35
+      qiAffinity: 100

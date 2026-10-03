@@ -14,6 +14,7 @@ assets:
   icon: item/wuyueqingtongjian
 text:
   desc: 外观：通长约六十厘米，青铜直脊双刃、窄凹字格、圆茎圆首。
+  lore: 参照吴王夫差剑的春秋青铜剑形制复原，用于序章展示吴越军器。短柄配直脊双刃，宜刺击并须防铜刃崩卷；品阶、麻缠握柄、无字纹样和投放均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 35
+      qiAffinity: 100

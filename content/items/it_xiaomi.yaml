@@ -14,6 +14,7 @@ assets:
   icon: item/xiaomi
 text:
   desc: 外观：金黄小米盛小陶斗，圆细谷粒与少量谷壳可辨 （原创扩展）。
+  lore: 北方传统粟粮，自先秦至明清皆可使用，秋收后入仓最耐久。本件一小陶斗可煮粥或蒸饭；驿站常以小米粥招待病弱旅客。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: grain
+    attributes:
+      version: 2

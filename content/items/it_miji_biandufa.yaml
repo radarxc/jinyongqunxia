@@ -13,6 +13,7 @@ assets:
   icon: item/miji_biandufa
 text:
   desc: 外观：明代墨绿线装册，四眼黄线。
+  lore: 药商游医把常见毒物的色味、症候与避忌整理成墨绿手册，内容和载体属 （原创扩展）。研读重在交叉辨识，须隔离样品并备解救手段；页边药渍不可直接尝闻，传言以身试毒者多误事。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_biandufa
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

@@ -13,6 +13,7 @@ assets:
   icon: item/miji_tiebogong_can
 text:
   desc: 外观：明末土黄竹纸册，粗麻线补订。
+  lore: 丐帮铁钵功及这册留有钵痕的残本均按门派传承作 （原创扩展）。研读要配合负重、护身与吐纳循序练习，不可一开始便硬碰兵刃；散失篇章把来源限制在七层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 7
     variant: partial
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tiebogong
+      readBre: 45
+      maxLayer: 7
+      cultivation: 1750

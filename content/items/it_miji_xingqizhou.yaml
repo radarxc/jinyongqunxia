@@ -13,6 +13,7 @@ assets:
   icon: item/miji_xingqizhou
 text:
   desc: 外观：明代浅青线装薄册，白线四眼订。
+  lore: 游方轻功师把行气配步的节次抄成浅青薄册，身法、载体与流传皆属 （原创扩展）。研读须把步位小图与呼吸拍子一一对应，再在平地慢走；抄本仅至八层，越急越易气步相背。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_xingqizhou
+      readBre: 35
+      maxLayer: 8
+      cultivation: 1280

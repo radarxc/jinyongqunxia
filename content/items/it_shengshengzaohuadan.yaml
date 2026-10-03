@@ -27,6 +27,10 @@ assets:
   icon: item/shengshengzaohuadan
 text:
   desc: 外观：翠绿丹丸置银叶形药盒，细腻蜡光。
+  lore: 《飞狐外传》药王一脉丹药在本作改作破限补品，翠绿丹丸须静服一日。每界只容一枚，默认将两点永久药力投向根骨并记入总预算；原著药效与本作规则分开。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      con: 2

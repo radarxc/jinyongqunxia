@@ -13,6 +13,7 @@ assets:
   icon: item/miji_kunlunrumenjian
 text:
   desc: 外观：元代灰白皮纸包背册，蓝布护脊。
+  lore: 昆仑派入门剑路被绘在耐风沙的皮纸册上，载体与图序属 （原创扩展）。研读须辨正斜两路的转折，并在开阔处逐式走位；边角虽已干裂，剑势次序仍不可自行颠倒。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: full
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_kunlunrumenjian
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

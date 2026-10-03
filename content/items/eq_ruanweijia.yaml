@@ -14,6 +14,7 @@ assets:
   icon: item/ruanweijia
 text:
   desc: 外观：深褐软甲表面密布短刺，贴身背心轮廓。
+  lore: 《射雕英雄传》中软猬甲为桃花岛宝物，黄蓉贴身穿用，可御兵刃并以倒刺伤拳掌来袭者；来历与后续持有人仍 （待考）。本表背心形制为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -23,3 +24,6 @@ extension:
     divine: true
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 50

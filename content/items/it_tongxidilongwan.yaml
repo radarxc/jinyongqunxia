@@ -21,6 +21,10 @@ assets:
   icon: item/tongxidilongwan
 text:
   desc: 外观：琥珀色药丸一枚置犀角色小匣，西域卷草纹。 待运行时投影：carry.resGuPp=4; carry.resPoisonPp=8。
+  lore: 《射雕英雄传》中欧阳锋所制辟毒奇药，仅此一颗，重在佩持而非吞服。琥珀色药丸藏于西域纹小匣，人在背包中才得避毒之助；离身便失其效。（数值为原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healInner: 0

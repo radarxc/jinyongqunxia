@@ -24,6 +24,10 @@ assets:
   icon: item/meigui_subing
 text:
   desc: 外观：金黄酥饼三枚，一枚剖开露暗红花馅。
+  lore: 清代京师与西北花馅点心语境下另制的酥饼，夏季收花制馅，成饼后可四季售卖。剖开见暗红花馅，宜佐一盏清茶慢慢分食。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 16

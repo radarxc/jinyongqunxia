@@ -15,6 +15,7 @@ assets:
   icon: item/tiedan
 text:
   desc: 外观：一对乌黑实心铁球，掌心大小。 待运行时投影：exoticKind=misc。
+  lore: 《书剑恩仇录》中周仲英以铁胆作暗器并曾掷出击敌；掌中盘转亦可练腕力，近身则借沉重撞击。成对持用与器物细节仍 （待考：核周仲英用胆情节），玩法定级为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -26,3 +27,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 60
+      qiAffinity: 100

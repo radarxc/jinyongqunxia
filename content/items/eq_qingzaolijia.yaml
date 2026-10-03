@@ -14,6 +14,7 @@ assets:
   icon: item/qingzaolijia
 text:
   desc: 外观：清代深青号衣与黑红滚边，软帽另不入画。 待运行时投影：lawProfile={uniform:true,allowedIdentityTags:[office_qing_yamen],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。
+  lore: 清制皂隶衣甲以深青号衣和软衬构成，便于衙役奔走、拿人和维持堂前秩序。黑红滚边远处醒目，却无具体衙号；无合法身份穿用仍会触发盘查。（原创扩展）
 extension:
   type: equipment
   value:
@@ -24,3 +25,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 34

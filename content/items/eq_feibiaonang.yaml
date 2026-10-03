@@ -14,6 +14,7 @@ assets:
   icon: item/feibiaonang
 text:
   desc: 外观：深褐软皮扁囊闭合，旁列三枚无字燕尾钢镖。 待运行时投影：ammoMul=0.950; ammoSlots=2; hiddenHit=3.3。
+  lore: （原创扩展）深褐软皮扁囊按三枚燕尾镖的尺度缝槽，铜扣朝外，便于腰侧摸取。镖师练习后会逐枚磨去毛刺；普通钢镖撞墙易损，往往按耗材补充。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 0
+      qiAffinity: 100

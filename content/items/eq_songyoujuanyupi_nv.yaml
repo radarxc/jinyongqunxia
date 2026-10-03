@@ -18,6 +18,7 @@ assets:
   icon: item/songyoujuanyupi_nv
 text:
   desc: 外观：女款灰青油绢雨披单件完整铺展，连肩圆领、前开系绳、短宽袖。 待运行时投影：defOutK=0.025; hpMaxK=0.005; wearer=female。
+  lore: （原创扩展）据宋代油绢衣记载意象合制，灰青绢面经防雨处理，连肩圆领配短宽袖。行旅遇雨先系前绳，归店后须擦净晾开；久折最怕粘连。
 extension:
   type: equipment
   value:
@@ -27,3 +28,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 3

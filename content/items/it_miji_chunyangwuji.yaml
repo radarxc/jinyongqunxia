@@ -13,6 +13,7 @@ assets:
   icon: item/miji_chunyangwuji
 text:
   desc: 外观：元代靛青包背册，白麻护脊。
+  lore: 武当纯阳无极功的纸本转抄与藏印细节属 （原创扩展）。研读须守定呼吸、渐养纯阳内息，不可以刚猛之名强催经脉；道观只让具备门中根基者依次校读，抄本最高至八层。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 8
     variant: copy
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_chunyangwuji
+      readBre: 50
+      maxLayer: 8
+      cultivation: 2400

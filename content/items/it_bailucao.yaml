@@ -21,6 +21,10 @@ assets:
   icon: item/bailucao
 text:
   desc: 外观：青绿草膏盛竹节小罐，叶脉与露痕。
+  lore: 山民收集清润草叶制成青绿软膏，盛入带叶脉纹的竹节小罐。旅途中取用可稍复内力，开封后忌久置曝晒；所谓“百露”只是药铺雅名。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      restoreQi: 7

@@ -16,6 +16,7 @@ assets:
   icon: item/bishuijian
 text:
   desc: 外观：水青冷光纤直钢剑，刃约七十厘米。 待运行时投影：sect=sect_huashan。
+  lore: 《笑傲江湖》中碧水剑为岳灵珊佩剑，剑刃锋利，传为岳不群自龙泉所得的一节仍 （待考：核取得与削铁情节）。纤直剑身适合轻灵刺削，青色装具为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -27,3 +28,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 76
+      qiAffinity: 100

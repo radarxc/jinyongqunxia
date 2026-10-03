@@ -14,6 +14,7 @@ assets:
   icon: item/micu
 text:
   desc: 外观：琥珀色米醋盛小灰陶壶，布塞封口。
+  lore: 历代常见的谷物酸味调料，琥珀色液体以布塞陶壶封存。可拌菜、去腥或入烹焙收汁；酒肆后厨通常按小壶领用以免走味。（原创扩展）
 extension:
   type: material
   value:
@@ -22,3 +23,5 @@ extension:
     materialGrade: 2
     rare: false
     ingredientKind: spice
+    attributes:
+      version: 2

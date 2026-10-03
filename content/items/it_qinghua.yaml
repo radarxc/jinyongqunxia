@@ -14,6 +14,7 @@ assets:
   icon: item/qinghua
 text:
   desc: 外观：粉白花与带刺绿枝分置长竹匣，刺尖清楚。
+  lore: 《神雕侠侣》绝情谷的虚构毒花，只随本界剧情开放，不套现实采期。粉白花与带刺枝须分匣封存，碰刺可引情花毒；现实植物原型尚无定论。（待核实） （原创扩展）
 extension:
   type: material
   value:
@@ -23,3 +24,5 @@ extension:
     rare: false
     herbFamily: qingHua
     ageYears: 0
+    attributes:
+      version: 2

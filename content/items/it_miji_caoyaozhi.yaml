@@ -13,6 +13,7 @@ assets:
   icon: item/miji_caoyaozhi
 text:
   desc: 外观：唐代经折药册，浅褐硬纸护面。
+  lore: 采药人把常见草木的形色、时令与误认风险绘入经折药册，内容和载体属 （原创扩展）。研读须拿实物逐一比对叶脉与气味，夹存干叶只能作旧样；不明药材不可仅凭图下注。
 extension:
   type: manual
   value:
@@ -20,3 +21,9 @@ extension:
     maxLayer: 10
     variant: original
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_caoyaozhi
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

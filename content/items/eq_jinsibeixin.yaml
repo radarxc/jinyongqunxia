@@ -15,6 +15,7 @@ assets:
   icon: item/jinsibeixin
 text:
   desc: 外观：乌金丝、发丝与金丝猴毛混织的暗金短背心，柔软贴身 （待考形制）。 待运行时投影：fixed=af_jianjia,af_renxing,af_tipo; weaponZ4=3%xG。
+  lore: 《碧血剑》中木桑道人将金丝背心赠予袁承志，背心由乌金丝等混织而成的细节仍 （待考）。它宜贴身护住躯干，本表防护词条与具体短背心形制为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -24,3 +25,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 40

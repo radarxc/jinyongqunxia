@@ -14,6 +14,7 @@ assets:
   icon: item/yexingyi
 text:
   desc: 外观：墨黑偏蓝窄袖衣裤折叠成套，哑光布、无蒙面人物 （原创扩展）。 待运行时投影：eva=2xG。
+  lore: 夜行衣以墨蓝哑布裁成，窄袖衣裤贴身收束，专为昏暗巷道和屋脊潜行。传闻老练夜行客宁可补旧衣，也不肯让新布的窸窣声坏事。（原创扩展）
 extension:
   type: equipment
   value:
@@ -25,3 +26,6 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 48

@@ -26,6 +26,10 @@ assets:
   icon: item/tiansuixuminglu
 text:
   desc: 外观：透明微金药露盛细颈玉瓶，金丝软塞。
+  lore: 固定奇遇才得的细颈玉瓶，瓶中微金药露须在安静处缓服。它先救治外伤，再为十二时辰冲穴提供助力；经脉辅助不等同于治疗内伤，金丝软塞只用于辨识。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      healOuter: 14

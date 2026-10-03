@@ -14,6 +14,7 @@ assets:
   icon: item/dalihujunjian
 text:
   desc: 外观：全长约八十厘米，钢质直身双刃、银色花叶小镡、深红丝缠木柄。
+  lore: 大理护军按本地装具制成的直剑，花叶小镡护手而不妨翻腕，双刃宜在城门与山道间近身刺削。军中以银箍辨识修造批次；来历、配发与纹样均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 53
+      qiAffinity: 100

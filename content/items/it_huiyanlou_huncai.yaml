@@ -26,6 +26,10 @@ assets:
   icon: item/huiyanlou_huncai
 text:
   desc: 外观：牛猪肉片、鸡鸭块与鱼虾分盛四只粗瓷盘，酒楼四人份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《笑傲江湖》衡阳回雁楼点食牛肉、猪肉、鸡鸭与鱼虾等荤菜，本作按当地四季酒席投放。本件合并为四人席面，须在酒楼同席享用；效果属原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 12

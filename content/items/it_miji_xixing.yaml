@@ -14,6 +14,7 @@ assets:
   icon: item/miji_xixing
 text:
   desc: 外观：明代乌黑厚铁板，表面錾刻行气文字与划线。
+  lore: 《笑傲江湖》中任我行把吸星大法秘诀刻在梅庄地牢铁板上。参悟者须逐行拓读并校对锈蚀处，尤其不可忽略异种真气风险；铜题签为 （原创扩展），铁板本身不能当普通册页携行。
 extension:
   type: manual
   value:
@@ -21,3 +22,9 @@ extension:
     maxLayer: 10
     variant: original
     readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_xixing
+      readBre: 65
+      maxLayer: 10
+      cultivation: 4500

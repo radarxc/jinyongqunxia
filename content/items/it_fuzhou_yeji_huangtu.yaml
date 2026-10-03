@@ -25,6 +25,10 @@ assets:
   icon: item/fuzhou_yeji_huangtu
 text:
   desc: 外观：炒野鸡块与黄兔肉分盛两只粗瓷盘，褐金油色。
+  lore: 《笑傲江湖》福州城外酒铺把野鸡、黄兔炒作下酒菜，本作按当地四季酒席投放。本件两盘须热食，适合同席分尝；具体调味、份量与效果属原创。（原创扩展）
 extension:
   type: generic
-  value: {}
+  value:
+    attributes:
+      version: 2
+      stamina: 16

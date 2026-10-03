@@ -14,6 +14,7 @@ assets:
   icon: item/fengweishuangbi
 text:
   desc: 外观：两支精钢短笔并置，各约五十厘米。 待运行时投影：exoticKind=brush。
+  lore: 两支精钢判官笔以前端四棱尖认穴，分叉尾端可勾住衣袖或兵刃，成对换手时如笔画顿挫。凤尾只取抽象轮廓，不附神异；器名、形制、练法、持有者传闻均为 （原创扩展）。
 extension:
   type: equipment
   value:
@@ -25,3 +26,8 @@ extension:
     divine: false
     catalogTian: false
     uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 60
+      qiAffinity: 100
