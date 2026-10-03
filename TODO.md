@@ -230,7 +230,7 @@
 - 金钱、采集、药材：`design/16`、`design/11`、`catalog/gather-herbs.md`；
 - 秘籍扩充、兵器扩充、情景图清单（`catalog/key-scenes.md`）、各朝路人（`catalog/npcs-commoners-era.md`）、经脉快照名同步。
 
-**已合入（本轮）**：DES-attr-v2（4e9daeb2）、DES-sync-baima-year（7a89bf9b，白马 702–703 与 sleepYears、阿青 / 白猿 / 范蠡登记、序章任务 ID 例外、传功地点）。
+**已合入（本轮）**：DES-attr-v2（4e9daeb2）、DES-sync-baima-year（7a89bf9b）、DES-sync-ids-slp（4107e6ad）、DES-rig-v1.1（7ea9a85f）、DES-sync-tech-a（a0164d38）、DES-sync-design-a（a47a3818）、DES-skills-reqs-v2-a（1bd60aff）。
 
 **在跑（des33，cdb81d44 登记，队列顺序即优先级）**：
 - DES-sync-ids-slp：`slp_` 进 check_ids OWNERSHIP、28 个休眠事件 ID 转正式；
@@ -260,10 +260,8 @@
 - TOOL-rig-pipeline、TOOL-item-sprites-run、TOOL-rig-nearside、TOOL-rig-clips。
 
 **在跑**：
-- ENG-15：命令总线（第 2 次运行续作）；
-- ENG-18：内容编译管线（15:47 校验通过，审核中）；
-- ENG-16b：战斗补全 B；
-- ENG-21b：WebGL 上下文恢复与自适应质量。
+- 本轮已合入：ENG-18（76f9381a）、ENG-15（5d719561）、ENG-21b（674476bf，check:perf 0.249 ms）、ENG-25（06e613ba）；每次合入后 `pnpm check` 都绿（最近 108 文件 674 用例，size 295.46 / 350）。
+- 在跑：ENG-16b（审核中）、ENG-08b（审核中）、**ENG-12c-clip（18:54 起跑，动作原型 P8–P9）**；TOOL-rig-sheet 等下一个空位。ENG-17a 只差 ENG-08b。
 - eng3 队列 15:52 加了 **ENG-12c-clip**（动作原型 P8–P9，排在 ENG-25 之后，依赖 ENG-21b、DES-rig-v1.1 已合入 7ea9a85f）；16:20 后开发监督又加了 TOOL-rig-sheet（三视图已入库 a78e14f3）和 ENG-27a/27b/28a/28b（队尾），eng3 已于 18:21 按作者指示重启（pid 53496，并发降为 3），这几项已在队列里。
 - 16:01 起 GPT-6-Astra 执行器全部无输出；16:27 停滞检测自动续作并回退 GPT-5.6-Sol；同一任务 Astra 停滞两次就改用 Sol。
 
