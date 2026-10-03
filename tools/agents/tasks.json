@@ -36078,6 +36078,147 @@
    "writes": [
     "content/items/**"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/event/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-event-executor",
+   "title": "游戏工程 · EventDef 动作执行器：区域 Trigger 触发的一次性事件真正生效（旗标 / 发放物品 / 基础补给 / 自动存档 / 开入口），演出类动作作为领域事件交界面；动作词表与 Ink OPCODES 共用登记",
+   "prompt": "ENG-event-executor.md",
+   "deps": [
+    "ENG-20a-region-core",
+    "ENG-tiled-trigger-strict"
+   ],
+   "writes": [
+    "packages/core/src/event/**",
+    "packages/core/src/command/**",
+    "packages/core/src/world/region-types.ts",
+    "packages/core/src/world/region-runtime.ts",
+    "packages/core/src/api/**",
+    "packages/core/src/**/*.test.ts",
+    "packages/data/src/schemas/world.ts",
+    "packages/data/src/schemas/event-actions.ts",
+    "packages/data/src/schemas/index.ts",
+    "packages/data/src/build/**",
+    "packages/data/src/content-index.ts",
+    "packages/data/src/**/*.test.ts",
+    "apps/game/src/runtime/**",
+    "content/chapters/*/events/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/flow/stage.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-19e-m1-order",
+   "title": "游戏工程 · M1 白马冷入口页面流：过场 → 场景载入 → 移动 → 首谈 → 东出口点亮 → 自动档 → 题卡 → 自由操作；演出事件上屏；说话人标签取自 NPC 内容",
+   "prompt": "ENG-19e-m1-order.md",
+   "deps": [
+    "ENG-region-gates-data",
+    "ENG-event-executor"
+   ],
+   "writes": [
+    "apps/game/src/flow/**",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/main.ts",
+    "apps/game/src/runtime/**",
+    "packages/ui/src/**"
+   ]
   }
  ]
 }
