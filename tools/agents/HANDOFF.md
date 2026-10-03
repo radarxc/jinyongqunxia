@@ -1446,4 +1446,9 @@
     - **TOOL-catalog-collectibles**：单独起，Sol max，驱动 85865，起跑时代码池 0/4。
     - 物品线剩下：collectibles → gifts-catalog 复验合入（追踪者负责）→ 登记 TOOL-items-regen-2。
     - eng3 三路：CONTENT-ch00b / ch10 / ch00a 在执行。
+  - **10-03 11:25–11:27 开发监督**：ENG-size-session-gate 单独起跑（协调者 11:25 同意），驱动 94025，Sol max，review_checks_eng。起跑时代码池 1/4、磁盘 9.2 GiB。
+    - 合入后 prod_check：报首次会话闭包实测值与 110 KiB 门的余量，再把 ENG-20b 的 HOLD 解除交 eng3。
+    - 协调者 11:25：
+      - 作者不需要本地 dev 了，5180 的服务已停；旧的 5173 vite 不是我们起的，别动。
+      - DEV 演示入口坏了：「进入演示」走 ch01_tianlong，内容包里没有 bookWorld 章节定义，报 `ITEM_RULES_UNAVAILABLE:CONTENT_CHAPTER_DEF_MISSING`。只影响 DEV，等 CONTENT 线补 ch01 或顺手修，不单独登记。
 
