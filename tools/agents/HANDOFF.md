@@ -1435,4 +1435,8 @@
     - 协调者 10:50 新约定：协调者在 `_prod` 起 vite dev 给作者看素材。prod_check 里的 `pnpm build` 会经 `build/asset-manifest.ts` 往 `apps/game/public` 复制、覆盖素材（不清空）。在协调者回复前，每次跑 prod_check 前先问一声。
     - 磁盘 11.1 GiB，已报协调者可改回 3 路。
     - `append_on_prompt.py` 两个注入器均超时退出，无需再注入：entry-split 与 tests-discover 都没再跑新一次运行就合入了。
+  - **10-03 11:12 开发监督**：协调者口径更新。
+    - prod_check 照常跑。build 往 `apps/game/public` 复制、覆盖素材不影响 dev 服务；只有清空 `apps/game/public` 或删 node_modules 这类操作要先告诉协调者。
+    - eng3 已按 3 路重启，日志 `_batch/eng3.detach.r3.out`；在跑的 CONTENT-ch00b / ch10 不受影响，接着起 CONTENT-ch00a-data。
+    - Tripo 改网页版，由协调者另起 subagent 做，产物进 `assets/default/model3d/`。ART-3d-tripo-avatars / cast 继续 HOLD，不归开发监督。
 
