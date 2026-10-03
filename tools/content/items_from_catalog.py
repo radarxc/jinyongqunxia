@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate strict item.v1 YAML from discovered seven-column item catalogs.
+"""Generate strict item.v1 YAML from discovered seven/nine-column item catalogs.
 
 The catalog rows remain the authored source. Fields unsupported by the current Zod
 schema are retained in text.desc and marked runtimeProjection instead of invented;
@@ -38,10 +38,33 @@ CHAPTERS = {
 ITEM_ID = re.compile(r"`((?:it|eq)_[a-z0-9_]+)`")
 CODE = re.compile(r"`([^`]*)`")
 MARKUP = re.compile(r"\*\*|`")
-ITEM_HEADER = (
+ITEM_HEADER7 = (
     "ID", "名称", "子类", "品阶", "出处（书名 / 原创扩展）",
     "效果字段", "外观要点（供出图）",
 )
+ITEM_HEADER9 = (
+    "ID", "名称", "子类", "品阶", "出处（书名 / 原创扩展）",
+    "说明", "效果字段", "属性投影", "外观要点（供出图）",
+)
+ITEM_HEADERS = {ITEM_HEADER7: 7, ITEM_HEADER9: 9}
+ATTRIBUTE_KEYS = (
+    "atk", "hardness", "qiAffinity", "qiEffect",
+    "def", "reflect", "antiHidden", "agi", "block", "luck",
+    "poison", "antiPoison", "restoreQi", "qiCultivation", "con",
+    "healInner", "healOuter", "stamina", "skillRef", "readWis",
+    "readBre", "maxLayer", "cultivation", "unlockRef", "artRef",
+    "artReq", "travel", "ruleRef",
+)
+REFERENCE_ATTRIBUTES = frozenset({
+    "qiEffect", "skillRef", "unlockRef", "artRef", "ruleRef",
+})
+FORMAL_ATTRIBUTE_IDS = {
+    "qiEffect": re.compile(r"(?:bf|ue|rule)_[a-z0-9_]+"),
+    "skillRef": re.compile(r"sk_[a-z0-9_]+"),
+    "ruleRef": re.compile(r"rule_[a-z0-9_]+"),
+    "unlockRef": re.compile(r"[a-z][a-z0-9]*_[a-z0-9_]+"),
+    "artRef": re.compile(r"(?:med|poi|antidote|forge|alchemy|formation|music|art|chess|speech)"),
+}
 REGISTRY_HEADING = "### 14.2 ID 清单"
 GRADE_RESOURCE = {
     1: "huang9", 2: "huang6", 3: "huang3", 4: "xuan9",
@@ -103,6 +126,36 @@ def parse_effect(cell: str, path: Path, line: int) -> tuple[str, dict[str, str]]
     return raw, fields
 
 
+def parse_attributes(cell: str, path: Path, line: int) -> dict[str, Any]:
+    if re.fullmatch(r"`[^`]*`", cell) is None:
+        raise ValueError(f"{path}:{line}: attribute projection must be one code span")
+    raw = cell[1:-1]
+    result: dict[str, Any] = {"version": 2}
+    if raw == "—":
+        return result
+    if not raw or re.fullmatch(r"[^;]+(?:; [^;]+)*", raw) is None:
+        raise ValueError(f"{path}:{line}: malformed attribute projection")
+    keys: list[str] = []
+    for token in raw.split("; "):
+        key, separator, value = token.partition("=")
+        if not separator or key not in ATTRIBUTE_KEYS or key in result:
+            raise ValueError(f"{path}:{line}: malformed/duplicate attribute token {token!r}")
+        keys.append(key)
+        if key in REFERENCE_ATTRIBUTES:
+            if not value:
+                raise ValueError(f"{path}:{line}: empty attribute reference {key}")
+            if FORMAL_ATTRIBUTE_IDS[key].fullmatch(value) is None:
+                raise ValueError(f"{path}:{line}: invalid attribute reference {key}={value}")
+            result[key] = value
+        elif re.fullmatch(r"\d+", value):
+            result[key] = int(value)
+        else:
+            raise ValueError(f"{path}:{line}: attribute {key} must be a non-negative integer")
+    if keys != sorted(keys, key=ATTRIBUTE_KEYS.index):
+        raise ValueError(f"{path}:{line}: attribute keys out of canonical order")
+    return result
+
+
 def catalog_paths(catalog_dir: Path = CATALOG_DIR) -> tuple[Path, ...]:
     paths = tuple(sorted(catalog_dir.glob("items-*.md")))
     if not paths:
@@ -121,33 +174,45 @@ def is_separator(cells: list[str]) -> bool:
 def parse_catalog(path: Path) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     in_item_table = False
+    columns: int | None = None
+    formats: set[int] = set()
     for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
         if not line.startswith("|"):
             in_item_table = False
             continue
         cells = table_cells(line)
-        if tuple(cells) == ITEM_HEADER:
+        if tuple(cells) in ITEM_HEADERS:
+            columns = ITEM_HEADERS[tuple(cells)]
+            formats.add(columns)
+            if len(formats) > 1:
+                raise ValueError(f"{path}:{line_number}: mixed seven/nine-column item tables")
             in_item_table = True
             continue
         if not in_item_table:
             continue
+        assert columns is not None
         if is_separator(cells):
-            if len(cells) != len(ITEM_HEADER):
-                raise ValueError(f"{path}:{line_number}: expected seven columns")
+            if len(cells) != columns:
+                raise ValueError(f"{path}:{line_number}: expected {columns} columns")
             continue
-        if len(cells) != len(ITEM_HEADER):
-            raise ValueError(f"{path}:{line_number}: expected seven columns")
+        if len(cells) != columns:
+            raise ValueError(f"{path}:{line_number}: expected {columns} columns")
         match = ITEM_ID.fullmatch(cells[0])
         if match is None:
             raise ValueError(f"{path}:{line_number}: invalid item ID {cells[0]!r}")
         if any(not cell for cell in cells[1:]):
             raise ValueError(f"{path}:{line_number}: empty required field")
-        raw, fields = parse_effect(cells[5], path, line_number)
-        result.append({
+        effect_index = 5 if columns == 7 else 6
+        raw, fields = parse_effect(cells[effect_index], path, line_number)
+        row = {
             "id": match.group(1), "name": cells[1], "subZh": cells[2],
-            "source": cells[4], "look": cells[6], "raw": raw,
+            "source": cells[4], "look": cells[-1], "raw": raw,
             "fields": fields, "catalog": path.name, "line": line_number,
-        })
+        }
+        if columns == 9:
+            row["lore"] = cells[5]
+            row["attributes"] = parse_attributes(cells[7], path, line_number)
+        result.append(row)
     if not result:
         raise ValueError(f"{path}: no item rows found")
     return result
@@ -516,7 +581,11 @@ def build(row: dict[str, Any]) -> dict[str, Any]:
         projection = "; ".join(f"{key}={fields[key]}" for key in unsupported)
         description += f" 待运行时投影：{projection}。"
     item["text"] = {"desc": description}
+    if "lore" in row:
+        item["text"]["lore"] = clean(row["lore"])
     item["extension"] = extension(row, kind, sub, grade)
+    if "attributes" in row:
+        item["extension"]["value"]["attributes"] = row["attributes"]
     return item
 
 
