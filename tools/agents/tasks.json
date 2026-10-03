@@ -33080,7 +33080,8 @@
     "ENG-20a-region-core",
     "ENG-26-encounter-builder",
     "ENG-18c-content-from-docs",
-    "DES-sync-design-b"
+    "DES-sync-design-b",
+    "ENG-move-onhit-effects"
    ],
    "writes": [
     "packages/data/src/schemas/**",
@@ -36614,21 +36615,21 @@
      ]
     ],
     "shrink_exempt": [
-     "assets/default/character/male/ch01/*.png",
-     "assets/default/character/female/ch01/*.png",
-     "assets/default/character/male/ch02/*.png",
-     "assets/default/character/female/ch02/*.png",
-     "assets/default/character/male/ch03/*.png",
-     "assets/default/character/female/ch03/*.png",
-     "assets/default/character/male/ch04/*.png",
-     "assets/default/character/female/ch04/*.png",
-     "assets/default/character/male/ch05/*.png",
-     "assets/default/character/female/ch05/*.png",
-     "assets/default/character/male/ch06/*.png",
-     "assets/default/character/female/ch06/*.png",
-     "assets/default/character/male/ch07/*.png",
-     "assets/default/character/female/ch07/*.png",
-     "assets/default/character/other/ch03/*.png"
+     "assets/default/character/male/ch01/**/*.png",
+     "assets/default/character/female/ch01/**/*.png",
+     "assets/default/character/male/ch02/**/*.png",
+     "assets/default/character/female/ch02/**/*.png",
+     "assets/default/character/male/ch03/**/*.png",
+     "assets/default/character/female/ch03/**/*.png",
+     "assets/default/character/male/ch04/**/*.png",
+     "assets/default/character/female/ch04/**/*.png",
+     "assets/default/character/male/ch05/**/*.png",
+     "assets/default/character/female/ch05/**/*.png",
+     "assets/default/character/male/ch06/**/*.png",
+     "assets/default/character/female/ch06/**/*.png",
+     "assets/default/character/male/ch07/**/*.png",
+     "assets/default/character/female/ch07/**/*.png",
+     "assets/default/character/other/ch03/**/*.png"
     ]
    },
    "agent_args": [
@@ -36772,20 +36773,20 @@
      ]
     ],
     "shrink_exempt": [
-     "assets/default/character/male/ch08/*.png",
-     "assets/default/character/female/ch08/*.png",
-     "assets/default/character/male/ch09/*.png",
-     "assets/default/character/female/ch09/*.png",
-     "assets/default/character/male/ch10/*.png",
-     "assets/default/character/female/ch10/*.png",
-     "assets/default/character/male/ch11/*.png",
-     "assets/default/character/female/ch11/*.png",
-     "assets/default/character/male/ch12/*.png",
-     "assets/default/character/female/ch12/*.png",
-     "assets/default/character/male/ch13/*.png",
-     "assets/default/character/female/ch13/*.png",
-     "assets/default/character/male/ch14/*.png",
-     "assets/default/character/female/ch14/*.png"
+     "assets/default/character/male/ch08/**/*.png",
+     "assets/default/character/female/ch08/**/*.png",
+     "assets/default/character/male/ch09/**/*.png",
+     "assets/default/character/female/ch09/**/*.png",
+     "assets/default/character/male/ch10/**/*.png",
+     "assets/default/character/female/ch10/**/*.png",
+     "assets/default/character/male/ch11/**/*.png",
+     "assets/default/character/female/ch11/**/*.png",
+     "assets/default/character/male/ch12/**/*.png",
+     "assets/default/character/female/ch12/**/*.png",
+     "assets/default/character/male/ch13/**/*.png",
+     "assets/default/character/female/ch13/**/*.png",
+     "assets/default/character/male/ch14/**/*.png",
+     "assets/default/character/female/ch14/**/*.png"
     ]
    },
    "agent_args": [
@@ -47315,6 +47316,92 @@
     "packages/core/src/api/**",
     "packages/core/src/**/*.test.ts",
     "packages/data/src/build/ink.ts",
+    "apps/game/src/runtime/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/buff.ts",
+     "content/common/buffs/bf_shiheng.yaml",
+     "content/common/buffs/bf_pojia.yaml",
+     "content/common/buffs/bf_dongyao.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-move-onhit-effects",
+   "title": "游戏工程 · 招式命中附带效果：move.v1 加 onHit（附 Buff / 击退）与 parryable；战斗结算消费（确定性 RNG 子流）；补 bf_shiheng / bf_pojia / bf_dongyao 定义；序章越女剑四招填值",
+   "prompt": "ENG-move-onhit-effects.md",
+   "deps": [
+    "ENG-25-content-schemas-m1",
+    "ENG-16c-battle-session",
+    "ENG-26-encounter-builder",
+    "CONTENT-ch00a-data"
+   ],
+   "writes": [
+    "packages/data/src/schemas/move.ts",
+    "packages/data/src/schemas/buff.ts",
+    "packages/data/src/schemas/index.ts",
+    "packages/data/src/content-registry.ts",
+    "packages/data/src/content-index.ts",
+    "packages/data/src/build/**",
+    "packages/data/src/**/*.test.ts",
+    "packages/data/src/**/__fixtures__/**",
+    "packages/core/src/battle/**",
+    "packages/core/src/buff/**",
+    "packages/core/src/testing/**",
+    "packages/core/src/**/*.test.ts",
+    "content/common/buffs/**",
+    "content/common/moves/mv_yuenvjian_zhuying.yaml",
+    "content/common/moves/mv_yuenvjian_huizhi.yaml",
+    "content/common/moves/mv_yuenvjian_yixian.yaml",
+    "content/common/moves/mv_yuenvjian_wuhen.yaml",
+    "content/CLAUDE.md",
     "apps/game/src/runtime/**"
    ]
   }
