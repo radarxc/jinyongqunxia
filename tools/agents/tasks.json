@@ -35823,6 +35823,66 @@
     "packages/data/src/**/*.test.ts",
     "packages/data/src/**/__fixtures__/**"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/agents/reports/ENG-session-base-diet.md"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "size"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-session-base-diet",
+   "title": "游戏工程 · 首次会话基础内容瘦身：worldMaps / assets / 章节 NPC 改按章节懒加载叶片；素材键不依赖文件在不在（稀疏与全量口径一致），目标首次会话闭包 ≤ 80 KiB",
+   "prompt": "ENG-session-base-diet.md",
+   "deps": [
+    "ENG-20b-region-scene"
+   ],
+   "writes": [
+    "apps/game/build/**",
+    "apps/game/src/runtime/**",
+    "apps/game/src/selectors/**",
+    "apps/game/src/projection.ts",
+    "apps/game/src/core-host.ts",
+    "apps/game/src/core-worker.ts",
+    "apps/game/src/**/*.test.ts",
+    "apps/game/vite.config.ts",
+    "tools/perf/**"
+   ]
   }
  ]
 }
