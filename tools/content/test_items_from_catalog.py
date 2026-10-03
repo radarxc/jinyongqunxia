@@ -167,16 +167,43 @@ class ItemsFromCatalogTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "mixed seven/nine-column"):
             items_from_catalog.rows(self.catalog_dir)
 
-    def test_seven_column_repository_render_is_byte_identical(self) -> None:
-        parsed = items_from_catalog.rows()
+    def test_seven_column_fixture_render_is_byte_identical(self) -> None:
+        # Repository-wide generated-file parity belongs to
+        # ``items_from_catalog.py --check``.  This unit test pins the legacy
+        # seven-column renderer without depending on content/items freshness.
+        write_catalog(self.catalog_dir / "items-food.md", [
+            item_line("it_fixture_fruit"),
+        ])
+        parsed = items_from_catalog.rows(self.catalog_dir)
         generated = items_from_catalog.expected_files(parsed)
+        path = items_from_catalog.OUTPUT_DIR / "it_fixture_fruit.yaml"
+        expected = (
+            "schemaVersion: item.v1\n"
+            "id: it_fixture_fruit\n"
+            "name: 名称\n"
+            "kind: material\n"
+            "sub: ingredient\n"
+            "grade: 3\n"
+            "stack: 999\n"
+            "chapters: any\n"
+            "origin: expanded\n"
+            "price: auto\n"
+            "flags: []\n"
+            "assets:\n"
+            "  icon: item/fixture_fruit\n"
+            "text:\n"
+            "  desc: 外观：外观。\n"
+            "extension:\n"
+            "  type: material\n"
+            "  value:\n"
+            "    family: ingredient\n"
+            "    resourceRef: res_shicai_huang3\n"
+            "    materialGrade: 3\n"
+            "    rare: false\n"
+        ).encode("utf-8")
 
-        self.assertTrue(generated)
-        for path, rendered in generated.items():
-            self.assertEqual(
-                path.read_bytes(), rendered.encode("utf-8"),
-                str(path.relative_to(items_from_catalog.ROOT)),
-            )
+        self.assertEqual({path}, set(generated))
+        self.assertEqual(expected, generated[path].encode("utf-8"))
 
     def test_audits_exact_ids_in_official_registry_when_present(self) -> None:
         parsed = [
