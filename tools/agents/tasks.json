@@ -36928,23 +36928,6 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
-    ],
-    "shrink_exempt": [
-     "assets/default/character/male/ch01/**/*.png",
-     "assets/default/character/female/ch01/**/*.png",
-     "assets/default/character/male/ch02/**/*.png",
-     "assets/default/character/female/ch02/**/*.png",
-     "assets/default/character/male/ch03/**/*.png",
-     "assets/default/character/female/ch03/**/*.png",
-     "assets/default/character/male/ch04/**/*.png",
-     "assets/default/character/female/ch04/**/*.png",
-     "assets/default/character/male/ch05/**/*.png",
-     "assets/default/character/female/ch05/**/*.png",
-     "assets/default/character/male/ch06/**/*.png",
-     "assets/default/character/female/ch06/**/*.png",
-     "assets/default/character/male/ch07/**/*.png",
-     "assets/default/character/female/ch07/**/*.png",
-     "assets/default/character/other/ch03/**/*.png"
     ]
    },
    "agent_args": [
@@ -37086,22 +37069,6 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
-    ],
-    "shrink_exempt": [
-     "assets/default/character/male/ch08/**/*.png",
-     "assets/default/character/female/ch08/**/*.png",
-     "assets/default/character/male/ch09/**/*.png",
-     "assets/default/character/female/ch09/**/*.png",
-     "assets/default/character/male/ch10/**/*.png",
-     "assets/default/character/female/ch10/**/*.png",
-     "assets/default/character/male/ch11/**/*.png",
-     "assets/default/character/female/ch11/**/*.png",
-     "assets/default/character/male/ch12/**/*.png",
-     "assets/default/character/female/ch12/**/*.png",
-     "assets/default/character/male/ch13/**/*.png",
-     "assets/default/character/female/ch13/**/*.png",
-     "assets/default/character/male/ch14/**/*.png",
-     "assets/default/character/female/ch14/**/*.png"
     ]
    },
    "agent_args": [
