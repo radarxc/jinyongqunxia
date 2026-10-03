@@ -1,0 +1,87 @@
+- id: npc_xiaolongnv__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 小龙女（神雕侠侣 ch03 · 绝情谷）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 1f087cd3-c70e-438a-8a1d-19cccb66866e
+    url: https://studio.tripo3d.ai/workspace/generate/1f087cd3-c70e-438a-8a1d-19cccb66866e
+    generate_op: 5f72fb74-54b5-443b-9d97-49caf1c2ea21（image_to_model）
+    rig_op: 1b6c1072-450e-4f0b-8833-46067f29f719
+    failed_attempts:
+      83ecd9b8-d9d8-49cf-a27b-c5eff8ccb3a8: 原 base 宽袖+飘带：生成 65 + 绑骨 3×20，全部错位
+      96b40b34-09db-42bd-a828-9d0374cd2c58: A 字宽裙：生成 65 + 绑骨 20，骨架颠倒
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+    failed_attempts_total: 210
+  references:
+  - path: assets/default/character/female/ch03/threeview/por_npc_xiaolongnv__ch03_youth_jueqing_apose_slim.png
+    sha256: 0a5b8894c8a1de27ab25b6f4aaed84aa8e7dd30b1566014fc8c8e07af0eccd15
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
+    use: 作者已通过的 base 立绘（窄轮廓参考据此出图；本模型未直接输入）
+  sha256: 4895be0043c682efa1854bf7e808a051421075e1f015b2cc328e802da6883e1d
+  size_bytes: 5781456
+  joints: 65
+  triangles: 97547
+  vertices: 61168
+  animations: []
+  textures:
+  - image/jpeg 276685 B
+  - image/jpeg 1026625 B
+  - image/jpeg 688384 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T14:31:00+08:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，束袖直筒裙、双臂离身；骨架叠加与网格吻合（Hips y0.54、头顶 0.996、双手 y0.52 外展、脚 0.067）。已知瑕疵：背面长发贴图偏灰褐浅色（正面黑发），非肉色。 前置失败（均未导出、作废）：原 base 宽袖+飘带版 project 83ecd9b8 生成 1 次+Free Retry、绑骨 3 次全错位；A
+    字宽裙版 project 96b40b34 生成+Free Retry、绑骨 1 次骨架上下颠倒。结论：宽袖、外扩长裙会让自动绑骨判错方向，改用协调者让出图员出的窄轮廓参考（a92c5b18）后一次成功。
+- id: npc_xiaolongnv__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 小龙女（神雕侠侣 ch03 · 绝情谷）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 1f087cd3-c70e-438a-8a1d-19cccb66866e
+    url: https://studio.tripo3d.ai/workspace/generate/1f087cd3-c70e-438a-8a1d-19cccb66866e
+    generate_op: 5f72fb74-54b5-443b-9d97-49caf1c2ea21（image_to_model）
+    rig_op: 1b6c1072-450e-4f0b-8833-46067f29f719
+    failed_attempts:
+      83ecd9b8-d9d8-49cf-a27b-c5eff8ccb3a8: 原 base 宽袖+飘带：生成 65 + 绑骨 3×20，全部错位
+      96b40b34-09db-42bd-a828-9d0374cd2c58: A 字宽裙：生成 65 + 绑骨 20，骨架颠倒
+  size: 369x594
+  sha256: 631bab93e8839fee791caf32cb788eecae6b6f5e06977c056dc187624ff962c9
+  size_bytes: 118065
+  created: '2026-10-03T14:31:00+08:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
