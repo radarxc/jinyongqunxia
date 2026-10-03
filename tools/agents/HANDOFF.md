@@ -1015,3 +1015,37 @@
     - ART-ruins-maps 执行器报：九老洞、敦煌地宫只在作者需求里出现，章节文档没有 `sc_*` / `poi_*` ID，按约束「不自造 ID」做不了。协调者采追踪者方案 1：登记并起跑 **DES-ruins-ids**（936a7227；驱动 74820）——九老洞（默认倚天 ch04 峨眉）、敦煌地宫（河西 `rg_hexilongyou`，唐 / 清两套年代）与章节文档其他具名无 ID 的遗迹登记 `sc_*` / `poi_*`；两者合入后登记 ART-ruins-maps-2 接力补图。
     - **TOOL-catalog-9col 合入**（4aa8c6db，05:37，r3 PASS：双写检查要求可复算键必须出现并相等）。已请开发监督按 `lore_plan.md` 复验 8 个 DES-items-lore（并发 ≤ 4），全部合入后 TOOL-items-catalog 重新生成。
     - TOOL-rig-sheet 第 7 次运行 05:37 停滞（25 分钟无输出），开发监督的驱动自动续作。
+  - **10-03 05:36–05:42 开发监督**：TOOL-catalog-9col 合入（4aa8c6db，r3 PASS），按 `_handoff/lore_plan.md` 与协调者 05:44 的口径重起 lore 任务。
+    - 合入后 `prod_check`（`_handoff/prod_check_post-9col_0539.log`，HEAD 300312f6）全绿：128 个测试文件 / 922 条测试，entry 160.17 / 170。
+    - lore-1 / 3 / 5 / 6：
+      - 都先 `rebase_task.py` 挪基点（cherry-pick 无冲突），再用 Sol max `--from validate` 起驱动，`--rework-extra` 附「保持九列」说明（`.agents/coord/<ID>/devsup_note_9col.md`）；
+      - 驱动 pid：76509 / 76897 / 78015 / 80144。
+    - 新校验器下的复验结果，均属实，已自动返修：
+      - lore-1（兵器）、lore-3（秘籍）：名录里还有一批行是七列（「应为九列，实际 7 列」）。这两份名录在集成分支上最后一次修改是 10-02，不是基点新增的行，是首次运行没转完；
+      - lore-5（食品）：只有 1 条双写不一致，缺少 `qiCultivation=3500`；
+      - lore-6 复验中。
+    - lore-7 / 8：等 lore 并发降到 4 以下且负载 < 10 时，再按 `--from start` 起（协调者：lore 并发不超过 4）。
+    - lore-2 / 4 没有工作区，des34 起跑时从当前 HEAD 新建，不用挪基点。
+    - 全部合入后：TOOL-items-catalog `--from start` 重新生成，并提交 `content/items`（AR-39）。
+  - **10-03 05:42–05:59 开发监督**：lore 进展；ENG-12e 防截断拦下真回归。
+    - **lore-6**（药品）返修一次后合入（20c1307a）。合入后在集成分支上：
+      - 11 份名录 `check_item_catalog.py` 全过（medicine 96 行九列，其余七列）；
+      - `python3 -m unittest discover -s tools` 33 条全过；
+      - `items_from_catalog.py --check` 报 medicine 条目 stale，属预期：要等 lore 全部合入后由 TOOL-items-catalog 重新生成。lore 任务的 validate 不含 `--check`，不受影响。
+    - **lore-5**（食品）r1 FAIL，返修项属实：
+      - 地方名食补时令；
+      - 腊八粥双写冲突：design/10 §4.10.4 规定食品只用 stamina / healInner / healOuter，§4.10.5 的旧字段双写又要求 `sxpGrant → qiCultivation`；
+      - 报告改 ⚠️。
+      - **需作者确认**：`it_labazhou` 能否作为食品类的 `qiCultivation` 特例。默认：旧 `sxpGrant=0.35` 仍是唯一运行真值，待 design/10 与校验器统一口径后再定投影。
+      - 驱动 `--max-reviews 1`，返修后会转 HOLD-REVIEWS，由 des34 自动复验。
+    - **lore-7**：05:56 负载降到 9 后，挪基点（cherry-pick 无冲突，6 个文件）并按 `--from start` 起，驱动 38898。lore 并发现为 4：1 / 3 / 5 / 7。lore-8 等有任务合入、负载 < 10 后再起。
+    - **ENG-12e-gltf-pilot**：第 1 次运行校验被防截断拦下（`rig-demo.ts` 87→63 行）。我核对后确认不是误判：执行器把 /rig-demo 原有的 2D 演示控制项整页换成了 3D 试点，任务要求是并排。
+      - 被删的控制项：八方向、装备覆盖、十个片段、程序 / 片段 A/B、事件日志。
+      - 协调者 05:58 结论相同，已停 eng3 的驱动，带说明另起 `--from start`（日志 `supervise.r2.out`）：恢复原功能，3D 只作为 `?model=` 时的附加面板。
+      - 合入后照常 `prod_check`。
+
+  - **10-03 05:55–06:00 协调者**：
+    - **ENG-12e 第 1 次运行校验失败是真回归**：防截断报 `apps/game/src/rig-demo.ts` 87 → 63 行；核对 diff，执行器把 /rig-demo 原有的 2D 切件演示（八方向 / 轮播 / 步态 A/B / 10 片段 / 剑招 / 七类装备 / 动作 · 重量 / 连续 · 12 fps / 20 人压力）整页换成「2D ↔ 3D 试点」，任务要求是并排。置 HOLD 停掉 eng3 驱动 14591，用 `coord_note_0558.md` 另起 `--from start`（pid 40645，`supervise.r2.out`）：恢复原功能，3D 作 `?model=` 时的附加面板。开发监督核对结论一致（61a9a8cd）。
+    - ART-cast-polish-ch09 第 1 次运行 20 分钟结束，校验通过（20 个文件），审核中（追踪者盯）。
+    - lore：lore-6（药品）返修一次后合入 20c1307a；lore-1 / 3（还有七列行）、lore-5（一条双写缺项）返修中；lore-7 05:56 起；lore-8 等位。合入后 `items_from_catalog --check` 报 medicine stale 是预期（等全部 lore 合入后 TOOL-items-catalog 重新生成）。
+    - **腊八粥裁定**（lore-5 r1 提出：§4.10.4 食品只许 stamina / healInner / healOuter，§4.10.5 又要求 sxpGrant 双写 qiCultivation）：按作者「其他 - 根据描述设计」的口径，描述含内力增益的名菜 / 药膳是食品特例，允许双写 `qiCultivation`，普通食品不得带。登记并起跑 **TOOL-catalog-food-qi-exception**（28d1ad8d；Sol max，驱动 59758）：校验器特例 + design/10 §4.10.4 / §4.10.6 加注 + 测试。lore-5 若只剩这一行，置 HOLD 等它合入。
