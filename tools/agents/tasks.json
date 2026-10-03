@@ -34633,6 +34633,55 @@
     "tools/content/items_from_catalog.py",
     "tools/content/test_items_from_catalog.py"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/build.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-18e-build-test-timeout",
+   "title": "游戏工程 · 小修：build.test.ts 真实内容构建用例在全量测试并行时超时（夹具化或显式固定超时，不按负载放宽）",
+   "prompt": "ENG-18e-build-test-timeout.md",
+   "deps": [
+    "ENG-18d-items-leaf"
+   ],
+   "writes": [
+    "packages/data/src/build/build.test.ts",
+    "packages/data/src/build/__fixtures__/**"
+   ]
   }
  ]
 }
