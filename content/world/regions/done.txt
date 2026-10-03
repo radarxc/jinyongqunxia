@@ -54,5 +54,11 @@ sc_14_chuangwang_vault ✔ tmj + preview + 六邻连通 + view_image逐图目检
 sc_10_wushui_shalu ✔ tmj + preview + 六邻连通 + view_image逐图目检；仅地图，剧情/奖励绑定见交接。
 sc_10_qingzang_yaolu ✔ tmj + preview + 六邻连通 + view_image逐图目检；仅地图，剧情/奖励绑定见交接。
 sc_03_cangshan_yinzheju ✔ tmj + preview + 六邻连通 + view_image逐图目检；仅地图，剧情/奖励绑定见交接。
-九老洞 ✘ 章节未登记 sc / poi，按任务约束不造 ID。
-敦煌地宫 ✘ 章节未登记 sc / poi，按任务约束不造 ID。
+九老洞 ✔ 已解决：第 1 批因缺 sc / poi 未制作；DES-ruins-ids 登记后由第 2 批完成 sc_04_jiulaodong，见 ART-ruins-maps-2.md §1。
+敦煌地宫 ✔ 已解决：第 1 批因缺 sc / poi 未制作；第 2 批完成 sc_10_dunhuang_digong / sc_12_dunhuang_digong，见 ART-ruins-maps-2.md §2。
+sc_01_damodong ✔ ART-ruins-maps-2：tmj + preview；六邻连通、无战斗干路返程、逐张 view_image 目检通过；剧情 / 奖励待绑定。
+sc_01_ruoye_muzang ✔ ART-ruins-maps-2：tmj + preview；六邻连通、无战斗干路返程、逐张 view_image 目检通过；剧情 / 奖励待绑定。
+sc_04_jiulaodong ✔ ART-ruins-maps-2：tmj + preview；六邻连通、无战斗干路返程、逐张 view_image 目检通过；剧情 / 奖励待绑定。
+sc_07_huashan_houdong ✔ ART-ruins-maps-2：tmj + preview；六邻连通、无战斗干路返程、逐张 view_image 目检通过；剧情 / 奖励待绑定。
+sc_10_dunhuang_digong ✔ ART-ruins-maps-2：tmj + preview；六邻连通、无战斗干路返程、逐张 view_image 目检通过；剧情 / 奖励待绑定。
+sc_12_dunhuang_digong ✔ ART-ruins-maps-2：tmj + preview；六邻连通、无战斗干路返程、逐张 view_image 目检通过；剧情 / 奖励待绑定。
