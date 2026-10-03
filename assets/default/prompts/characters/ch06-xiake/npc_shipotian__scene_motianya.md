@@ -13,26 +13,40 @@ scene_key: motianya
 scene_title: 摩天崖泥偶
 stage: 摩天崖成长与错误练功次序阶段；少年成长后，尚未剥泥识木偶。 开篇之后已有成长间隔，当前按青年肩背、身高与面部发育；不把首场幼童体型锁到此图。
 references:
-- path: assets/default/character/male/ch06/por_npc_shipotian__ch06_child_scene_xuantie.png
-  use: 等待本人首场新写实 PNG 生成、保存并核验 realism_revision=user_character_realism_20261001 后才可使用；当前不声称已查看该新版本。路径存在旧初版不满足依赖。只保持本人面容身份及新版写实人物质量；本场年龄、发式、伤残、衣饰、姿势、器物和背景另绘。 首场是童年/幼少年，本场青年需正常发育、长大，不能把儿童头身、面颊和身高直接复制过来。
-- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-  use: 已实际查看并核验新写实首样 SHA-256 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922；仅借自然面容与肤质的描绘质量、完整坚实体积、连贯光影、连贯布料和干净轮廓，不复制萧峰的脸、性别、年龄、胡须、头巾、体型、服饰、姿态或龙影。
-- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-  use: 已实际查看的对应性别项目基线，仅低饱和配色色卡；此位置不作本人身份或人物画法参考，不继承碎墨、飞白、纸纹透衣、破布、脸、年龄、衣饰、武器与姿势。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际查看的用户王语嫣水墨图，只用于背景的浅淡山水、留白与环境层次；完全忽略其中人物、脸、体型、肤质、服饰、发饰和人物笔触，不让背景纸纹与飞白侵入本场人物。
-status: redo
-redo_reason: "基础立绘通过；本场景图的脸是少年模样（石壁会意一张又是另一张偶像脸），与基础立绘不一致、违反禁止幼态；以基础立绘为身份参考重画。"
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_jinwu_base.resume3.png", "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型", "sha256": "dab161c89134e3366a31b9d05a127ce3be6b0e095ee79d7245e73aca89e336eb"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/shipotian_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "9d7f84fddf16d88ade50e9188e4778d51ab89276f516095de5007c2d0334e6db"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+status: candidate
+redo_reason: "作者 10-02 晚：复合基线风格精修"
 reference_upload:
-  - assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_jinwu_base.png
-  - assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_jinwu_base.resume3.png"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/shipotian_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
 scene_revision: user_scenes_20261001
 realism_revision: user_character_realism_20261001
+composite_job: por_npc_shipotian__ch06_youth_scene_motianya.resume3
 ---
 
 # 石破天 · 人物写实修正
 
 ## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_shipotian__ch06_youth_scene_motianya.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
+摩天崖修习时期按项目成年化处理；头身比例成熟。褐灰粗布右衽短袍、布带束发、绑腿布鞋；身体自然站立，两手轻托一尊练功泥人，身旁矮石台排其余泥人。背景摩天崖石屋、炉火微光和门外冬雾，单人，绝无烧饼或食物夹泥人。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 > 2026-10-02 立绘审核（B 组，见 `tools/agents/reports/REVIEW-portraits-B-ch05-09.md`）：**微调重出（场景）**（P3）。基础立绘通过；本场景图的脸是少年模样（石壁会意一张又是另一张偶像脸），与基础立绘不一致、违反禁止幼态；以基础立绘为身份参考重画。
 >

@@ -7,14 +7,36 @@ characters:
 - npc_liuzhengfeng
 - npc_quyang
 reference_upload:
-- assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_huashan_base.resume3.png"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
 output: assets/default/scene/ch05/cg_ch05_hengyang_score.png
 manifest: assets/default/scene/ch05/manifest.yaml
 size: 1536x1024
-status: ready
+status: candidate
+references:
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_huashan_base.resume3.png", "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型", "sha256": "5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+redo_reason: "作者 10-02 晚：复合基线风格精修"
+composite_job: cg_ch05_hengyang_score.resume3
 ---
 
 ## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `cg_ch05_hengyang_score.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
+
+```text
+生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+衡阳城外荒山月夜，冷月映着山石。苍老琴者曲洋与儒雅中年箫客刘正风完成最后合奏；刘正风略矮胖、面颊饱满、腹部微隆，绝非瘦长文士，成年令狐冲坐在近旁凝神承接托付；古琴、竖持洞箫与一册无可读字迹的曲谱组成视觉中心。令狐冲穿旧灰蓝长衫，佩长剑与酒葫芦。刘曲只按文字塑造，不借主角面孔。三人中全景，苍凉知音气氛，伤势仅由疲惫姿态表现。
+原著为月夜而非日落；合奏与稍后的托谱压缩为三人编辑性构图（原创扩展），省略其他在场者；不画血腥。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+第1张为npc_linghuchong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「琴箫托谱」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 ```text
 生成一张 3:2 横幅情景插画，输出尺寸 1536×1024，题材为《笑傲江湖》多人剧情名场面。所有人类都必须一眼可辨为成年人。

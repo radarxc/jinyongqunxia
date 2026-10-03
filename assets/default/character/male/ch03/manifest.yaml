@@ -1122,97 +1122,123 @@
   category: character/male
   style: default
   subject: 杨过（ch03_shendiao）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    输出1024×1536，完全成年，禁止童颜或少年身材。
 
-    【场景背景】大胜关英雄宴厅：淡淡的柱影和少量席案轮廓，留出空旷的比试地面。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
 
-    【人物与场景】杨过，《神雕侠侣》，大胜关·少年扬威。阶段：第12–13回英雄大宴、对阵霍都，右臂尚未被斩；青年古墓传人，聪慧灵动的早期侠气。
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 
-    【身份参考】随提示词上传的第 1 张图是杨过本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（清瘦俊秀的长脸、颧骨略高，浓黑的剑眉斜飞入鬓，一双凤眼细长、眼神锐利，鼻梁高挺，薄唇，脸色偏苍白；身材高挑精瘦）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
+    【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
 
-    【伤残】本场双臂双手都健全（右臂此时还没有被斩断）。
+    保持本轮杨过基础图同一核心骨相，但是断臂前的成年青年游历阶段：必须双臂和双手完整，绝不继承基础图的空右袖、伤残或玄铁剑。灰褐利落旅装、墨绿腰带、绑腿布靴，黑发高束。右手握普通竹棒，左手自然按腰，轻扬眉眼里有不羁、自信和敏锐。背景保留大胜关客路、远处木台与群山，完整全身，无其他清楚人物。
 
-    【衣装】浅苍青交领右衽窄袖江湖长衣、墨灰布腰带、深色束口长裤和轻便布鞋，长黑发用窄布带半束；此时双臂健全（右臂还没被斩）。
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
 
-    【动作与神情】轻巧转身、竹棒点出后的收势，全身姿态完整；目光明亮机敏，带一点临敌从容的笑意（十八九岁的少年英气，但按成年人比例画）。
-
-    【器物】一根当场借用的竹质打狗棒（只此一件兵器）；不画玄铁重剑或神雕。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。'
   negative: ''
   references:
-  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
-    sha256: 82c625e1166388d9972393bdd67719030f031f919144038c4fa0b6f8da8a2df9
-    use: 身份参考：本轮新出的杨过（por_npc_yangguo__ch03_youth_onearm_base，上传 codex 原图）（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_youth_onearm_base.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 0c4fa42a5bbf79f72b7d699ab82766820ad3159245fffec7ed8043781dc42a50
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yangguo_still1.jpg
+    use: 经典影视造型；只借服饰发型配色气质，不照搬演员五官
+    sha256: 0215359e2593e5c4b60e2d8893d6688e84af24f9f8feda752c7a5688a41e6696
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yangguo_game.jpg
+    use: 经典武侠游戏插画风格；只借绘画气质、线条、造型感
+    sha256: 2d142ff242d716ec4947e179892cb4756395070bbbf850bd115959abf87c441e
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
   model: gpt-6-astra
-  created: 2026-10-02T03:32:02-0700
-  source_path: .agents/coord/gemini_originals/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.png
+  created: 2026-10-03T00:20:39-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.1791012038625845000/archive/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 3912e151b2fc968c99be78d98750309deb0fad18be005f71e58cb7fb2d82ec76
+  sha256: 1f8d54425898509529b5d03a4cb4e1a99cf15825f36e69d15905146ee809b618
   status: candidate
-  notes: 立绘重审重出（AR-30）；杨过基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.1791012038625845000/archive/previous-prompt.md
+    png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.1791012038625845000/archive/previous.png
+    manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.1791012038625845000/archive/previous-entry.yaml
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.resume3.png
+  repair_runner_source_sha256: ae42658aa3617705e19411f75debe010b372a93aa1f35ece4ef64b21dcc322d8
+  runner_job_records:
+  - - por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.resume3.png
+    - '119'
+    - exec-3e281f69-09b5-49c2-b7e9-84edf45bb9ce.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.resume3
 - id: por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion
   file: por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.png
   category: character/male
   style: default
   subject: 杨过（ch03_shendiao）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    输出1024×1536，完全成年，禁止童颜或少年身材。
 
-    【场景背景】绝情谷底的淡淡潭水、岩壁、洞口和朴素居所，柔和水汽。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
 
-    【人物与场景】杨过，《神雕侠侣》，十六年后·谷底重逢。阶段：十六年之约结束，跃下断肠崖后在谷底与小龙女重逢；第38–39回交界叙事的壮年阶段。
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 
-    【身份参考】随提示词上传的第 1 张图是杨过本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（清瘦俊秀的长脸、颧骨略高，浓黑的剑眉斜飞入鬓，一双凤眼细长、眼神锐利，鼻梁高挺，薄唇，脸色偏苍白；身材高挑精瘦）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。注意：本场是十六年后，他约三十六七岁——同一张脸更成熟、添了风霜与短须，眉眼鼻唇关系不变。
+    【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
 
-    【伤残】原著断的是右臂：右臂齐上臂断去，右边衣袖空着（不是藏起来的手），只有左手可用；按人物自身左右，不要水平镜像。
+    保持本轮杨过同一眼鼻口骨相，自然增龄为中年神雕大侠：脸形稍瘦、眼周细纹、神情由黯然转为将见故人的迟疑与温柔，不能换脸。墨灰旧长袍、厚重深色披衣、素布靴，头发低束，衣装朴素。人物自身右臂仍缺失，空右袖收妥；仅左手拿着已经摘下的朴素人皮面具，手中不加重剑。背景为绝情谷底水潭、竹舍和清晨薄雾，完整全身独立场景，不出现小龙女或第二人。
 
-    【衣装】十六年后的壮年杨过：深灰青右衽江湖衣、暗色腰带、长裤与行旅布靴，长黑发简束；衣衫带一点潭水浸湿的深浅；右边空袖自然垂落。
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
 
-    【动作与神情】左手空着微微伸出，身体向画外的故人（小龙女）倾近，眼神由难以置信转为温柔激动，全身站稳。
-
-    【器物】左手空着；没有重剑或面具。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。不要两只手都在、不要左臂断、不要义肢或伤口特写。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。'
   negative: ''
   references:
-  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
-    sha256: 82c625e1166388d9972393bdd67719030f031f919144038c4fa0b6f8da8a2df9
-    use: 身份参考：本轮新出的杨过（por_npc_yangguo__ch03_youth_onearm_base，上传 codex 原图）（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_youth_onearm_base.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 0c4fa42a5bbf79f72b7d699ab82766820ad3159245fffec7ed8043781dc42a50
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yangguo_still1.jpg
+    use: 经典影视造型；只借服饰发型配色气质，不照搬演员五官
+    sha256: 0215359e2593e5c4b60e2d8893d6688e84af24f9f8feda752c7a5688a41e6696
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yangguo_game.jpg
+    use: 经典武侠游戏插画风格；只借绘画气质、线条、造型感
+    sha256: 2d142ff242d716ec4947e179892cb4756395070bbbf850bd115959abf87c441e
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
   model: gpt-6-astra
-  created: 2026-10-02T03:32:05-0700
-  source_path: .agents/coord/gemini_originals/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.png
+  created: 2026-10-03T00:20:37-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.1791012036643051000/archive/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: dda3c5103f5e6fcebe594522b168428becedf9ebfe186863d7082ac0ceeb384d
+  sha256: f91a633a9ea39cdf57e274a76684bae8355a485c301ea2c31a2525b11b933c03
   status: candidate
-  notes: 立绘重审重出（AR-30）；杨过基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.1791012036643051000/archive/previous-prompt.md
+    png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.1791012036643051000/archive/previous.png
+    manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.1791012036643051000/archive/previous-entry.yaml
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.resume3.png
+  repair_runner_source_sha256: d59258b455af825a78501b7f355f3d9f4bd15af80bf83502b325508e1d468183
+  runner_job_records:
+  - - por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.resume3.png
+    - '119'
+    - exec-963804b7-c3e5-411f-864d-a6cbd06528ca.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: por_npc_yangguo__ch03_prime_scene_sixteen_years_valley_reunion.resume3
 - id: por_npc_yangguo__ch03_youth_scene_torrent_heavy_sword_condor
   file: por_npc_yangguo__ch03_youth_scene_torrent_heavy_sword_condor.png
   category: character/male
@@ -1506,52 +1532,57 @@
   subject: 杨过（ch03_shendiao）
   prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    输出1024×1536，完全成年，禁止童颜或少年身材。
+
+    【复合参考】第1张是该角色经典影视造型剧照：只借发型、服饰、配色、标志道具、气质和大致脸型，五官不要照搬演员本人，要往经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像这个演员。第2张是经典武侠游戏绘画参考：借其古典武侠插画的气质、线条与造型感，不保留像素块，不复刻头像角度。最后两张是项目画风基线，只取画风，不取人物五官。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
 
     【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
 
-    【人物】杨过，《神雕侠侣》南宋的主角，杨康之子、小龙女之徒；被郭芙斩断右臂、得独孤求败玄铁重剑之后，十六年分离之前。孤傲不羁、深情重义。
+    成年青年杨过，清瘦俊逸、剑眉与细长凤眼，眉间藏倔强不羁和历经伤痛的克制，绝不是演员写真。苍灰青交领右衽长袍、深色腰带，黑发束起，衣料完整自然旧化。原著断的是人物自身右臂，右侧上臂以下缺失，右袖空着妥帖收于右腰；只有左手握一柄乌黑厚重、宽钝无锋的玄铁剑，不能镜像成左臂缺失。人物辨识点：不羁、深情、坚忍；标志物：左手玄铁重剑与空右袖。淡墨远山和谷口，身旁不增加其他人物。
 
-    【年龄与体态】约二十三四岁的青年，身材高挑精瘦，肩背挺直。
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
 
-    【经典造型】以九十年代中期经典港剧里那位俊朗孤傲的杨过为蓝本（见剧照）：清瘦俊朗的脸、浓黑剑眉、深邃的眼睛，孤傲中带着深情与落寞；黑发上半束成小髻、其余披在背后，几缕散发垂在额边；一身深灰青的旧布袍，右边衣袖空荡荡；左手拄着黝黑的玄铁重剑（剧照里双手举剑的姿势和双臂一概不取）。
-
-    【面容】原著写他清癯俊秀、剑眉入鬓、凤眼生威，脸色苍白、颇见憔悴。具体为：清瘦俊秀的长脸、颧骨略高、两颊微陷，浓黑的剑眉斜飞入鬓，一双凤眼细长、眼神锐利而带傲气与落寞，鼻梁高挺，薄唇紧抿，脸色偏苍白、略显憔悴，下巴有短短的胡茬。清俊孤傲、剑眉星目的美男子。
-
-    【发式】黑发上半部分束成小髻、用一根灰白布条扎住，其余长发披在背后，几缕散发垂在额边。
-
-    【服饰】深灰青色交领右衽旧布袍（旧而整洁），深色布腰带，深色长裤、布靴。原著断的是右臂：他的右臂从上臂中段就没有了——右边衣袖从肩下开始就是空的，扁平、软塌塌地垂着，在上臂位置打了一个结，结下垂着一截空袖子；袖子里明显没有手臂、没有前臂、没有手（独臂必须一眼看清）。
-
-    【道具】左手（仅存的手）握着一柄又宽又厚的黑色玄铁重剑——无锋无尖、像一块长铁，剑尖拄地，剑身完整入画。
-
-    【姿态与神情】孤身而立，左手扶剑、空袖垂在右侧；神情冷傲而深情，目光看向远方。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要左臂断（原著是右臂）；不要两只手都在；不要右袖鼓起像藏着手臂、不要右袖垂到手腕处才打结；不要细长锋利的普通剑或剑光；不要神雕入画。
-
-    【参考图】随提示词上传的参考图共 3 张，按顺序：第 1 张是这个角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成本项目的画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图；剧照与上文文字有出入时，以上文文字为准。最后两张是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景以它们为准——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；基线图里人物的长相、年龄、发型、服饰和姿势一律不取。'
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。'
   negative: ''
   references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/yangguo_1995_caption_verified.jpg
-    sha256: 0445ec2ad9210b8eef26797e9d3855551f26407008ee6819c41885ca17d5f53e
-    use: 经典影视剧照（AR-32，1995 TVB《神雕侠侣》）：借鉴发型、服饰、配色、标志道具、气质和面部特征；不取构图、光影、背景、姿势与照片质感
-    uploaded: 缩到长边 ≤1024 的 JPEG
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相
-    uploaded: 缩小版 JPEG（gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg）
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相
-    uploaded: 缩小版 JPEG（gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg）
-  tool: codex exec · image_gen（AR-32：前置 1995 TVB《神雕侠侣》 剧照 1 张，后接两张同性别基线立绘作画风参考）
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yangguo_still1.jpg
+    use: 经典影视造型；只借服饰发型配色气质，不照搬演员五官
+    sha256: 0215359e2593e5c4b60e2d8893d6688e84af24f9f8feda752c7a5688a41e6696
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yangguo_game.jpg
+    use: 经典武侠游戏插画风格；只借绘画气质、线条、造型感
+    sha256: 2d142ff242d716ec4947e179892cb4756395070bbbf850bd115959abf87c441e
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
   model: gpt-6-astra
-  created: 2026-10-02T10:46:31-0700
-  source_path: .agents/coord/gemini_originals/por_npc_yangguo__ch03_youth_onearm_base.png
+  created: 2026-10-03T00:18:01-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_youth_onearm_base.1791011881030728000/archive/por_npc_yangguo__ch03_youth_onearm_base.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 86e0b235d11f1573dbefa568f0646f93b36cb6b284a0ec497da3a6636c9bbab6
+  sha256: 7ddc89cedc26392a2599ce16fce24c9d768a553d665807058caa5021e6a79f90
   status: candidate
-  notes: AR-32 主要角色经典影视剧照 + 基线重出（5 号出图员）：1995 TVB《神雕侠侣》；剧照只借造型、气质与面部特征，按项目画风重绘
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_youth_onearm_base.1791011881030728000/archive/previous-prompt.md
+    png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_youth_onearm_base.1791011881030728000/archive/previous.png
+    manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_yangguo__ch03_youth_onearm_base.1791011881030728000/archive/previous-entry.yaml
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_youth_onearm_base.resume3.png
+  repair_runner_source_sha256: 0c4fa42a5bbf79f72b7d699ab82766820ad3159245fffec7ed8043781dc42a50
+  runner_job_records:
+  - - por_npc_yangguo__ch03_youth_onearm_base.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yangguo__ch03_youth_onearm_base.resume3.png
+    - '105'
+    - exec-c835fef6-7ef6-4f9f-99ea-44a5c0bbf611.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: por_npc_yangguo__ch03_youth_onearm_base.resume3
 - id: por_npc_guojing__ch03_prime_base
   file: por_npc_guojing__ch03_prime_base.png
   category: character/male

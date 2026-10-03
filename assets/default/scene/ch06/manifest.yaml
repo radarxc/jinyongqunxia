@@ -1,0 +1,279 @@
+- id: cg_ch06_xuantie_token
+  file: cg_ch06_xuantie_token.png
+  category: scene
+  style: default
+  subject: 侯监集玄铁令交付（ch06_xiake）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    侯监集街头冬日黄昏，成年化的石破天穿朴素粗布短袍，双手递出一枚暗色玄铁令；谢烟客约五十岁、灰黑短须、高瘦挺拔、背脊笔直，沉郁地站在对面凝目，不能画成白须衰老仙翁。石清和闵柔为后景成年剑客夫妻，只依文字。令牌居中、不发光，街市灰瓦与行人远影拉开空间，突出赤诚与命运偶遇。
+
+    原著早期按项目成年化；不加大悲老人、十八泥人或烧饼夹物；具体递令姿态原创。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_shipotian的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「玄铁奇缘」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_jinwu_base.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: dab161c89134e3366a31b9d05a127ce3be6b0e095ee79d7245e73aca89e336eb
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch06/por_npc_xieyanke__ch06_elder_motian_base.png
+    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
+    sha256: 5f0f02c18856b04bd9421777af7dcbe5f21b2ad2db49d7ec95192c89e792c18e
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:42:56-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_xuantie_token.1791016976379716000/archive/cg_ch06_xuantie_token.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 81a68c41f487a87b6414ce525cfa3d09485f0f87464607c335b1122bfc001d32
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「玄铁奇缘」，实际字形「玄铁奇缘」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_xuantie_token.1791016976379716000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_xuantie_token.resume3.png
+  repair_runner_source_sha256: 0f270ec3f5fe2d348b94a644b6168eaac9000ce65a0e3330cf44a0ef488378c0
+  runner_job_records:
+  - - cg_ch06_xuantie_token.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_xuantie_token.resume3.png
+    - '175'
+    - exec-669247a3-0dd3-478f-8496-306ff7e5d160.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch06_xuantie_token.resume3
+- id: cg_ch06_laba_porridge
+  file: cg_ch06_laba_porridge.png
+  category: scene
+  style: default
+  subject: 腊八粥（ch06_xiake）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    侠客岛石灯宴厅，石破天着整洁浅褐右衽长衫坐于前景，坦然端碗饮粥，身旁武林来客迟疑观望。龙木二岛主分坐侧后，张三李四在门边静观；灰石、暖灯与粥碗蒸气形成克制悬疑感，表现朴实赤诚。
+
+    不指定未核实粥材，不画喝后中毒或粥碗发光。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_shipotian的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。 第3张是身份联系图，从左到右依次为mudaozhu、zhangsan06、lisi06；每一格只锁定该人的身份，不把格数画进成品。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「腊八赴约」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_jinwu_base.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: dab161c89134e3366a31b9d05a127ce3be6b0e095ee79d7245e73aca89e336eb
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch06/por_npc_longdaozhu__ch06_elder_alive_base.png
+    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
+    sha256: ac081453df5fa05b555625b503f7687dd0d26be30e9cbfaed4caf1a6b68c353c
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch06_laba_porridge_identity_board.jpg
+    use: 本轮主角身份联系图；源立绘与左右顺序见同名JSON
+    sha256: a1facfd3a5bd9b84f6ceeaced874dd2a3d6338da5ba7239d9fd77ac3f1c50ab1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:44:13-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_laba_porridge.1791017053291441000/archive/cg_ch06_laba_porridge.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: aa1c0b5767217088ef24f0489fcdefecaacf7955f6822d9f6b96e80ab7653851
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「腊八赴约」，实际字形「腊八赴约」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_laba_porridge.1791017053291441000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_laba_porridge.resume3.png
+  repair_runner_source_sha256: 9eec179d0c0663d4be911bd2c96729595545a63336659380422791959e161182
+  runner_job_records:
+  - - cg_ch06_laba_porridge.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_laba_porridge.resume3.png
+    - '177'
+    - exec-b9a9b5ed-a6cd-4880-8a23-1b3943293f70.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch06_laba_porridge.resume3
+- id: cg_ch06_motian_mudfigures
+  file: cg_ch06_motian_mudfigures.png
+  category: scene
+  style: default
+  subject: 十八泥人传承与摩天崖逆练（ch06_xiake）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    摩天崖石屋冬夜，石破天依十八泥人的姿势静心习练，完整粗布衣和成年身形清楚；约五十岁、灰黑短须、高瘦挺拔的谢烟客立在一旁以复杂严峻目光观察，精神矍铄无衰弱老态，不能画成白须老仙。泥人置在矮石台，炉火暖光对照门外山雾冷色，师徒般表象下暗藏凶险。画面只有当下两人，不增加幽灵叠化。
+
+    本图取摩天崖修习单一时点；不把大悲老人赠泥人同时实体化，不出现烧饼。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_shipotian的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「摩天传薪」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_scene_motianya.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 6c1f5179b7cb159b0b33a20fdafe453a92e8751a5ec7a3cbbe100f48320923f4
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch06/por_npc_xieyanke__ch06_elder_motian_base.png
+    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
+    sha256: 5f0f02c18856b04bd9421777af7dcbe5f21b2ad2db49d7ec95192c89e792c18e
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:45:51-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_motian_mudfigures.1791017150567286000/archive/cg_ch06_motian_mudfigures.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 5fb9444b42bb2b803a2e55c3544ed22bd38663fdec918adf0eb220ed8a7401e0
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「摩天传薪」，实际字形「摩天传薪」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_motian_mudfigures.1791017150567286000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_motian_mudfigures.resume3.png
+  repair_runner_source_sha256: 61bc75e0fbaed47395657c02c0dcce2418e8de0359f4589e77379858f0718be8
+  runner_job_records:
+  - - cg_ch06_motian_mudfigures.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_motian_mudfigures.resume3.png
+    - '187'
+    - exec-83748de4-9769-4be4-b8bf-ae1e2c3f2f90.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch06_motian_mudfigures.resume3
+- id: cg_ch06_taixuan_unlettered
+  file: cg_ch06_taixuan_unlettered.png
+  category: scene
+  style: default
+  subject: 石壁会意（ch06_xiake）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    侠客岛石室的分区剖示画。主画面为最后一间石室，石破天着浅青灰练功衣，循壁上蝌蚪状笔画自然转身运步，神态纯粹专注；龙木二岛主分别立在两侧，惊喜凝视。此室石壁只有不可辨读的笔画，没有人像图。画幅远侧隔着厚重岩壁，另示前面石室中的年长僧人与老道人各自研读旧册；他们不看见主室的悟功过程。冷石反光照亮成年人物和真实动作，不出现可读长篇诗文。
+
+    最后一室无图、仅蝌蚪状文字；石破天按笔画会意，不识字不是低智。保留既定五人而以原创跨室剖示隔开僧道，避免擅造旁观者目睹最终奥秘；不画诵经或魔法法阵。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_shipotian的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「石壁悟玄」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_scene_taixuan.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: 3218a6dd0a9b61a5617cc9cecc2819b83ffafcd8cea36936192bb40cfb994e79
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch06/por_npc_longdaozhu__ch06_elder_alive_base.png
+    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
+    sha256: ac081453df5fa05b555625b503f7687dd0d26be30e9cbfaed4caf1a6b68c353c
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch06/por_npc_mudaozhu__ch06_elder_alive_base.png
+    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
+    sha256: 71c3c3e067bac9746bdc5ea5fc53f069d126ea926ddd3656cf1ff0939b0b0e00
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:46:27-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_taixuan_unlettered.1791017187562162000/archive/cg_ch06_taixuan_unlettered.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 55c829b9eafbfbb53cb47cdc8ff302948d1734cfeda85148118040cf4d096d2c
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「石壁悟玄」，实际字形「石壁悟玄」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_taixuan_unlettered.1791017187562162000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_taixuan_unlettered.resume3.png
+  repair_runner_source_sha256: c32219dc559a942749cc98ef15d1ab87f457f05481963101e5f0c1c626037ded
+  runner_job_records:
+  - - cg_ch06_taixuan_unlettered.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_taixuan_unlettered.resume3.png
+    - '133'
+    - exec-bb9cb4b8-011d-4f5b-8977-6a35bc898992.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch06_taixuan_unlettered.resume3
+- id: cg_ch06_changle_truth
+  file: cg_ch06_changle_truth.png
+  category: scene
+  style: default
+  subject: 长乐帮真相曝光（ch06_xiake）
+  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+
+    长乐帮总舵宴厅，墙面只能有素木板与纯山水画，不准出现任何圆形字徽、牌匾、寿字、福字或任何可读装饰文字；只有右上角指定四字题名可读。屋顶刚被两张掷出的圆凳撞破，细尘从破洞落下。真正的石中玉已跌落在筵席前，狼狈坐起；厅内张三一胖带笑、李四一瘦神色冷淡，均立于地面，绝不站在屋顶示众。石破天在席旁惊讶而坦诚，病容年长的贝海石满面震惊。石中玉锦衣、石破天朴素厚实，两人均成年；破损屋顶与宴桌交代刚才的揭穿，不互换衣饰神态。
+
+    依原著长乐帮揭伪：李四在厅内掷两圆凳撞破屋顶，石中玉落到筵席前；不沿用张李挟他站屋顶的误构图。选落地后静态瞬间，不直接宣告血缘与生母谜底。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    第1张为npc_shipotian的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。 第3张是身份联系图，从左到右依次为zhangsan06、lisi06；每一格只锁定该人的身份，不把格数画进成品。
+
+    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「真假帮主」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+  negative: ''
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_jinwu_base.resume3.png
+    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
+    sha256: dab161c89134e3366a31b9d05a127ce3be6b0e095ee79d7245e73aca89e336eb
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch06/por_npc_shizhongyu__ch06_youth_bangzhu_base.png
+    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
+    sha256: 0586b34fa350e5286b3dcd0664c687501f0adc43acecc2cfcb0fd95f2fc3fa9b
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch06_changle_truth_identity_board.jpg
+    use: 本轮主角身份联系图；源立绘与左右顺序见同名JSON
+    sha256: 5d9d66bdfc7bcadda2a71aa1e6b4fb2013308f127689312d641f6ab2d75bc812
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    use: 项目同性别基线；只取画风
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T01:50:10-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_changle_truth.1791017409834416000/archive/cg_ch06_changle_truth.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 1edc04fea53f529c9844c3dd6e2298a0cb01758a83793c451a000af56a69112b
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出1。题字「真假帮主」，实际字形「真假帮主」逐字核验，原生题字，未叠加。
+  previous_revision:
+    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_changle_truth.1791017409834416000/archive/previous-prompt.md
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_changle_truth.resume3r2.png
+  repair_runner_source_sha256: db888ff9abaf004e0795b68d93216171b56b2d72e0f39a83dec720883f25ed5a
+  runner_job_records:
+  - - cg_ch06_changle_truth.resume3r2
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_changle_truth.resume3r2.png
+    - '193'
+    - exec-b3a8117e-8572-42d5-9bb2-306ea04c3b04.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch06_changle_truth.resume3r2

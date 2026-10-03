@@ -13,15 +13,12 @@ scene_key: sandu
 scene_title: 三松之前
 stage: 少林救谢逊、面对三渡金刚伏魔圈；九阳等已有，青年。
 references:
-- path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_scene_jiuyang.png
-  use: 等待本人首场新写实 PNG 生成、保存并核验 realism_revision=user_character_realism_20261001 后才可使用；当前不声称已查看该新版本。路径存在旧初版不满足依赖。只保持本人面容身份及新版写实人物质量；本场年龄、发式、伤残、衣饰、姿势、器物和背景另绘。
-- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-  use: 已实际查看并核验新写实首样 SHA-256 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922；仅借自然面容与肤质的描绘质量、完整坚实体积、连贯光影、连贯布料和干净轮廓，不复制萧峰的脸、性别、年龄、胡须、头巾、体型、服饰、姿态或龙影。
-- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-  use: 已实际查看的对应性别项目基线，仅低饱和配色色卡；此位置不作本人身份或人物画法参考，不继承碎墨、飞白、纸纹透衣、破布、脸、年龄、衣饰、武器与姿势。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际查看的用户王语嫣水墨图，只用于背景的浅淡山水、留白与环境层次；完全忽略其中人物、脸、体型、肤质、服饰、发饰和人物笔触，不让背景纸纹与飞白侵入本场人物。
-status: redo
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_zhangwuji__ch04_youth_jiaozhu_base.resume3.png", "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型", "sha256": "e272b054c1b027b808e198a9fc1aea0bf315d83e1c2e2ba3847cba9b5026607d"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhangwuji_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "05cda173494604ad685f8c87550572831ccb7e4f0f637791bb5b2cf213c20783"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhangwuji_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "357b667170634653a545d4881ddabac745cc971539c2e9d1b909ae3ca5085601"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+status: candidate
 scene_revision: user_scenes_20261001
 realism_revision: user_character_realism_20261001
 classic_ref:
@@ -29,16 +26,34 @@ classic_ref:
   via: npc_zhangwuji.md（por_npc_zhangwuji__ch04_youth_jiaozhu_base 本轮新图）
   stills: []
 reference_upload:
-- assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-redo_reason: "AR-32：张无忌基础立绘按 2003 苏有朋版剧照重出，本场景随新脸重出（作者：5 幅场景按新脸重出）（10-02，7 号出图员）"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_zhangwuji__ch04_youth_jiaozhu_base.resume3.png"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhangwuji_still1.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhangwuji_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
+redo_reason: "作者 10-02 晚：复合基线风格精修"
 codex_prompt_rev: 2026-10-02
+composite_job: por_npc_zhangwuji__ch04_youth_scene_sandu.resume3
 ---
 
 # 张无忌 · 人物写实修正
 
 ## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_zhangwuji__ch04_youth_scene_sandu.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
+同一张无忌成年青年身份，成为明教教主后赴少林救义父阶段。深青灰长袍配素白里衣、坚实腰带和布靴，发髻整齐，药囊系在腰后；空手立定收敛守势，眉眼温厚但决定坚定。背景保留少林枯禅林、石地、老树与远处真实黑长索，索不形成魔法阵，也不缠住人体。完整全身，仅一个人物；与幽谷捧经衣装和场景明确不同。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
 
 > 2026-10-02 AR-32（7 号出图员，codex exec · image_gen 出图）：上传本轮新出的 por_npc_zhangwuji__ch04_youth_jiaozhu_base（第 1 张，缩到长边 1024 的 JPEG）作身份参考，两张同性别缩小版基线放在最后；场景内容沿用原设定，衣装跟随新版基础立绘。旧提示词保留在后文作历史。
 
