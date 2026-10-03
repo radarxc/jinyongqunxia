@@ -842,3 +842,15 @@
 2. AR-33 的其余口径不变：门禁不进 `pnpm check`、禁止高负载跳过、失败按真实退化处理。
 3. ENG-12d-clip-perf（片段投影热路径优化）降为可选，排到 eng3 队尾；若以后片段模式在低负载下仍接近 1.0 ms 再提。
 
+## AR-39 · 素材优化与生成后都要落库（2026-10-03 凌晨）
+
+作者原文（2026-10-03 约 01:35 PDT，逐字照录）：
+
+> 素材优化和素材生成后都要落库
+
+协调者口径：
+1. 每条出图 / 优化线的终点都是**入库并提交到集成分支**：图进 `assets/default/<类别>/`、同目录 `manifest.yaml` 登记（tool / model / prompt / references / sha256 / status），按路径提交；任务制的在 finish / merge 时提交，subagent 直接出图的每张入库即提交。只放在草稿目录（`out/`、`/private/tmp`、`.agents/coord/...`）里的不算完成。
+2. 运行时派生物同样要落库：人物立绘的 `assets/default/portrait/`（`build_portraits.py`）、提示词总索引 `INDEX.md`（`build_portrait_index.py`）、素材总览页产物；每批合入后重建并提交。
+3. 原图（Gemini / codex 全尺寸原件）按现行做法归档在 `.agents/coord/gemini_originals/` 并在 manifest 记 `source_path` 与 sha256，不进 git（体积）；只此一份的原图按 AR-34 留存并写引用。
+4. 试点 / 原型产物（如 Tripo 导出的 GLB、切件部件、动图）也要进仓库相应目录并提交（`apps/game/public/pilot/`、`assets/default/rig/<set>/`）。
+
