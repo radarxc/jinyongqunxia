@@ -757,4 +757,5 @@
     - **des33 全部合入**：13 项都合了，最后是 g3（21:06，手动第 2 次复审 PASS）和 DES-skills-reqs-v2-c（21:38）。des33 的 batch_run 21:38 正常退出。合入后 `prod_check` 绿，check_ids 0。
     - **eng3**：协调者 21:09 把并发调回 4（新 pid 15369），随即起了 ENG-16d。现在在跑 12c-clip、rig-sheet、17a、16d；ENG-14b、18b、19a 就绪，等空位。
     - **GPT-5.6-Sol 停滞**：20:12–20:13 前后，ENG-12c-clip、ENG-17a、TOOL-rig-sheet 三个 Sol 执行器同时没了输出。20:37–20:39 停滞检测自动续作，第 2 次运行仍是 Sol，现在正常。和 16:02 Astra 那次一样是服务端集体停滞。
+  - **10-02 22:00–22:45 协调者（作者 AR-36：素材线第二波 + 物品说明）**：登记 ART-hero-refine-a/b、ART-cast-fill-a/b、CITY-layouts-all、ART-ruins-maps（bfc5f707，执行器 Codex gpt-6-astra，精修 ultra 其余 xhigh），起追踪 subagent 按 `_handoff/art_wave2_tracker_brief.md` 启动与验收；任务系统加 `sparse_include`（素材任务稀疏检出）与 `check_asset_dirs.py`；物品说明批次 des34（spec + 8 批，pid 9492）22:39 启动；Gemini 线改为只做物品；作者截图存 `imagegen-reference/author-20261002/`。提交时 `.git/logs/refs/remotes/origin/…lock` 残留导致 gc 报错，提交本身成功，锁文件未动。
 
