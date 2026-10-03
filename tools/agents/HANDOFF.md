@@ -997,3 +997,12 @@
     - 裁定（追踪者建议 b 的用意 + a 的改动量）：洛阳、太原两个 town 目录的 manifest 改 `status: rejected` 并加注（工具缺口，待 TOOL-town-gaps-1 后重做；文件留库对比，构建不进包），`review_checks_city.md` 加补充裁定 2；另起 `--from validate --no-review --auto-merge` 驱动（r4.out，pid 25318）免第三轮审核。**05:28 合入 04f1133a**（332 个文件：16 城目录、规格与史料、progress.csv / done.txt、报告）。
     - 登记 **TOOL-town-gaps-1**（052aac53；依赖 CITY-layouts-all）：声明式水门、多重城垣 / 共用内隔墙、无墙营地放行、未声明墙水相交新错误码、plan_view 页眉按城、cities.yaml 庭州键与 ch10 年代带、唐 / xiyu / tubo 套件进 schema（缺贴片按回退、不伪造基线），并用洛阳、太原两城重跑管线把 manifest 改回 candidate。已追加到 eng3 队尾；开发监督在代码池有位时单独起。
     - CITY 全量续作仍等作者定范围（TODO §8.1）；追踪者合入后抽查预览、拷 progress 文件到 `_handoff/city/`，并在负载 < 10 时起 ART-ruins-maps。
+  - **10-03 05:28–05:34 开发监督**：按协调者 05:40 的指示，单独起 TOOL-town-gaps-1（驱动 pid 38690）。
+    - 启动前确认：该任务没有别的驱动或执行进程在跑，代码池 3/4。
+    - 模型：先探测 Astra 不通，自动回退到 Sol max；执行器 05:31:59 开跑。
+    - 它的 validate 没覆盖 `packages/data/src/schemas/town.ts` 的 typecheck 和 data 测试，合入后以 `prod_check` 兜底，已告知协调者。
+    - 其他进展：
+      - TOOL-catalog-9col（协调者的驱动 27447）执行完，05:24 进 r3 复审；
+      - eng3 3/3：ENG-12e、ENG-20a（M1）、TOOL-rig-sheet；ENG-19b 就绪，等 eng3 空位。
+      - 我没有单独起 ENG-19b，原因：协调者说 eng3 会自动起、eng3 不加并发；而且 batch_run 会把外部起的队列任务算进它自己的 3 个名额。
+
