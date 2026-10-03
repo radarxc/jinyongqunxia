@@ -825,4 +825,16 @@
       - 当时 3 次执行已用完，停在 HOLD-RUNS。00:30 用 r1 返修说明另起驱动（Sol max，pid 53693，说明在 `.agents/coord/TOOL-rig-sheet/devsup_note_rework_r1.md`）。
       - 当前未合入的 GIF 在任务工作区 `assets/default/rig/npc_zhujue__ch00_m/preview/`，已告诉协调者。
     - **ENG-18d**：第 1 次运行中，23:29 起。
+  - **10-03 00:34–00:45 开发监督**：
+    - **des34 被七列校验器卡住**：
+      - DES-items-attrs-spec 已把十一份名录升到九列，新增「说明」「属性投影」。但 `tools/lint/check_item_catalog.py` 仍只认七列：DES-items-lore-8（00:34）、lore-7 校验失败，报「应为七列，实际 9 列」。
+      - `items_from_catalog.py` 也只解析七列。
+    - **已登记 TOOL-catalog-9col 并直接起跑**（0379a0d4；单独 supervise，pid 8181；协调者同意）：
+      - 校验器过渡期七列 / 九列都认，九列按 design/10 §4.10.5 校验；
+      - 生成器九列写 `text.lore` 与 `extension.value.attributes`，七列输出逐字节不变。
+    - **lore 驱动已停**（协调者 00:40）：
+      - 为免执行器按返修说明把名录改回七列，lore-1 / 3 / 5 / 6 / 7 / 8 都置为 HOLD-RUNS；
+      - lore-7 / 8 的执行器已停，lore-1 / 3 / 5 / 6 的执行器跑完第 1 次。
+      - TOOL-catalog-9col 合入后由开发监督逐个挪基点复验（计划见 `_handoff/lore_plan.md`）：1 / 3 / 5 / 6 用 `--from validate`，7 / 8 用 `--from start`，说明里写「保持九列」。
+    - **最后**：lore 全部合入、ENG-18d 也合入之后，TOOL-items-catalog 用 `--from start` 重新生成一次。
 
