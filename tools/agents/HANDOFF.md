@@ -1237,3 +1237,12 @@
     - **ENG-entry-split** 登记（开发监督 7f82fe44：core Worker 子系统按需 import()、主线程非首屏懒加载，目标 entry ≤ 155 KiB，不改预算与 check_size 口径；写集 core-worker / core-host / main / runtime/** / packages/core exports 与 entries/**）；07:29 起驱动 75729（Sol max），排队等代码池位。会往首屏加东西的 15 个任务置 HOLD-RUNS（16c、20b、26、23a、16e、18c、CONTENT-ch00a/b/c、ch10、27a/b/c、28a/b；清单 `scratchpad/entry_holds.txt`），拆分合入转绿后开发监督解除；TOOL-ingest-cropframe 临时 HOLD 免抢位。协调者裁定不为腾位暂停 ENG-12e。
     - **ART-ruins-maps-2 07:28 起跑**（追踪者，驱动 69438，codex xhigh，基点 28c5cd22）。gifts-catalog 第 1 次仍在跑。
   - **10-03 07:34–07:38 协调者**：**lore-1 合入**（bbce8465，兵器整份 247 件；r3 FAIL 后全表 qiAffinity 复核为 100、特殊兵器须有正式 qiEffect，开发监督第 3 次手动复审 r4 PASS）。至此 11 份物品名录全部九列（des34 的 attrs-spec + lore 1 / 3 / 5 / 6 / 7 / 8，lore-2 / 4 取消）。已请开发监督在 ENG-entry-split 拿到池位之后起 TOOL-items-catalog 重新生成 `content/items`（AR-39）。
+  - **10-03 07:36–07:42 开发监督**：lore-1 合入，11 份名录全部九列；登记 TOOL-items-regen。
+    - **lore-1**（兵器整份）合入，提交 bbce8465，工作区已清。
+    - **TOOL-items-regen**（dcb77156）：按协调者 07:38，用九列名录重新生成 content/items，提交生成物（AR-39），不改生成器，`--check` 必须通过，size 以集成分支为准。
+      - 为什么另开新 ID：原 TOOL-items-catalog 已合入，而 `step.py merge` 遇到「已在分支历史中」的任务会直接删工作区、不合入新提交；supervise 也不会给 start 传 `--force`。重跑已合入任务会丢产物。
+      - 校验用模块路径显式跑 `tools.content.test_items_from_catalog` / `tools.lint.test_check_item_catalog`，绕开 discover 漏洞。
+      - 依赖：lore-1 / 3 / 5 / 6 / 7 / 8 与 food-qi-exception。
+      - 起跑次序：ENG-entry-split 先拿到代码池位，再起它。拆分仍在排队，代码池 4/4。
+    - TOOL-ingest-cropframe 的临时 HOLD，等 items-regen 也拿到池位再解除，免得 eng3 抢在前面。
+
