@@ -4,7 +4,7 @@
 |---|---|
 | 归属 | Vite + Vue 装配与发布层；游戏规则归 core，通用组件归 ui，浏览器能力归 platform |
 | 上游 | 作者 AR-19 / AR-21；tech/01、tech/05；design/02、03、09、10、11、13、14、15、18、21、22；ENG-01～08 / 10 / 12 |
-| 当前入口 | ENG-07 壳 + ENG-08 大地图 + ENG-09 城镇 + ENG-10 六角战斗；根路径可切换，角色部件演示仍为 /rig-demo |
+| 当前入口 | 启动先开存储并读设置，再显示标题；继续 / 新游戏进入 ENG-07 壳；角色部件演示仅开发模式提供 `/rig-demo` |
 | 栈 | Vue 3.5 + Pinia + 模块 Worker / Comlink + ENG-01 IndexedDB；不引入新 UI 框架 |
 
 ## 结论先行（TL;DR）
@@ -25,6 +25,7 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 | 路径 | 职责 |
 |---|---|
 | src/main.ts、loop.ts、App.vue、style.css | 装配 Pinia / controller、10 Hz 探索驱动、HUD、导航、快捷栏、键盘、无障碍设置和生命周期 |
+| src/settings.ts、recovery.ts、pages/TitlePage.vue、SettingsPage.vue、RecoveryPage.vue | 设置迁移、标题前存储探测、纯 DOM 故障恢复与异步页面 |
 | src/core-host.ts、core-worker.ts | Worker 握手、10 秒启动超时、Comlink 端口及启动期兼容回退 |
 | src/runtime/ | 会话聚合、命令转发、预览装配与应用快照验证；不持有大地图规则或可写边车 |
 | src/projection.ts、selectors/ | 脏标记 selector、物品分类、人物遮蔽、真实资源与经脉强度投影 |
@@ -35,7 +36,7 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 | build/ | 构建期解析已验证内容、经脉目录与素材清单；不把 YAML 解析器放进浏览器 |
 | scripts/worker-smoke.mjs | 对生产构建的 Worker 做 Node 独立线程 RPC 冒烟；不等同浏览器实测 |
 
-通用组件位于 packages/ui/src/components：TxHud、TxResourceBar、TxAsset、TxVirtualList、TxModal、TxCharacterCollection、TxMeridianMap、TxInventory、TxSaveSlots；原有 TxButton / TxPanel / GameUi 保留兼容。
+通用组件位于 packages/ui/src/components：除既有 HUD / 背包 / 存档组件外，标题、设置、恢复、旋转提示及纯展示的对话 / 任务组件也由 ui 提供；旧 `GameUi.vue` 已删除。
 
 应用壳只从 @tianshu/ui/runtime 和单组件公开子路径取运行时依赖，页面组件动态加载。Worker 只引 @tianshu/platform/host，避免捎入 Dexie。不要从壳静态导入完整 UI 聚合入口，否则页面代码会提前载入。
 
@@ -72,7 +73,7 @@ core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`
 - 当前仅编译 ch01 地图进应用；14 章 `content/world/chNN/map.yaml` 由 `tools/content/worldmap_from_towns.py` 生成。时代切换应按章动态装载，不得把 14 章静态塞入首屏。
 - HUD 显示 HP / MP、行动槽、年月日时辰、地点和文钱；非战斗行动槽显示静息。无独立人物等级条。主菜单覆盖人物、物品、武功、任务、存档、设置。
 - C / B / K / J / M 切页，1–3 使用快捷药品，Escape 返回江湖；输入控件和确认框内不拦截快捷键。列表支持方向键 / Home / End；触屏点选等价于拖装。精确指针最小 44 px、触屏 60 px。
-- 配色引用 design/14，字体按 P04 使用系统中文黑体 / 宋体栈；不下载影视游戏字体。大字 / 减少动效为纯显示设置，写入 ENG-01 settings。
+- 配色引用 design/14，字体按 P04 使用系统中文黑体 / 宋体栈；不下载影视游戏字体。文字 100 / 125 / 150%、减少动效、字幕、分类音量、画质与难度写入 ENG-01 settings；旧“大字”只作单向迁移输入。
 - 背包分类为十一种素材类别加任务物品；只有存在未映射项目时才出现“其他”。装备栏完整展示 ENG-06 的十一槽，双手 / 成对限制由 core 判断。
 - 保存复用十二手动槽、一个快速槽、三个自动轮换槽。普通保存仅写手动 / 快速槽；特殊旅程检查点保留只读展示与导出，不擅自提供恢复和删除。
 - 覆盖、读档、删除、导入先在模态框确认；快速保存按钮是显式覆盖快速槽的快捷操作。操作期间阻止重复按钮提交。
@@ -119,6 +120,8 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 - 测试版本同样核对：[Vitest 5.0.3](https://registry.npmjs.org/vitest/5.0.3)、[Vue Test Utils 2.5.1](https://registry.npmjs.org/@vue/test-utils/2.5.1)、[happy-dom 20.14.5](https://registry.npmjs.org/happy-dom/20.14.5)、[fake-indexeddb 6.2.5](https://registry.npmjs.org/fake-indexeddb/6.2.5)。
 - [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)、[ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)：战斗回放分帧与画布尺寸监听；访问日期 2026-10-01，均为广泛支持的基线 API。
 - [Three InstancedMesh](https://threejs.org/docs/pages/InstancedMesh.html)、[Raycaster](https://threejs.org/docs/pages/Raycaster.html)、[OrthographicCamera](https://threejs.org/docs/pages/OrthographicCamera.html)、[WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)：城镇合批、实例拾取、固定斜视镜头与 draw/triangle 统计；2026-10-02 联网均返回 HTTP 200。锁文件版本 Three 0.186.1，无新增依赖、价格或远程限额。
+- [Window.matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)、[prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)：读取系统减少动态偏好并保持 CSS 与持久设置一致；访问日期 2026-10-03。
+- [Vite env 常量](https://vite.dev/guide/env-and-mode.html)：`import.meta.env.DEV` 会在生产构建中静态替换，使开发专用 `/rig-demo` 分支可被裁剪；访问日期 2026-10-03。
 
 ## 本文新增术语/约定
 

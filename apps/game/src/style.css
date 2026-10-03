@@ -28,6 +28,16 @@ body {
   padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right))
     max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
 }
+.game-shell.text-scale-125 { font-size: 125%; }
+.game-shell.text-scale-150 { font-size: 150%; }
+.flow-root { min-height: 100%; }
+.flow-root.text-scale-125 { font-size: 125%; }
+.flow-root.text-scale-150 { font-size: 150%; }
+.game-shell.text-scale-125 .shell-body,
+.game-shell.text-scale-150 .shell-body { grid-template-columns: minmax(120px, auto) minmax(0, 1fr); }
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after { scroll-behavior: auto !important; transition-duration: 1ms !important; animation-duration: 1ms !important; }
 .shell-body {
   display: grid;
   grid-template-columns: 108px minmax(0, 1fr);
@@ -359,4 +369,8 @@ kbd {
   .worldmap-page { grid-template-columns: 1fr; }
   .worldmap-stage { min-height: 58vw; }
   .worldmap-panel { max-height: 260px; }
+}
+@media (orientation: portrait) {
+  .game-shell .worldmap-page,
+  .game-shell .town-page { grid-template-columns: 1fr; }
 }
