@@ -35056,6 +35056,52 @@
     "docs/design/11-open-world.md",
     "docs/design/19-world-map.md"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/agents/reports/TOOL-catalog-food-qi-exception.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-food.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-catalog-food-qi-exception",
+   "title": "工具 · 物品名录校验器食品特例：描述含内力增益的名菜 / 药膳（腊八粥）允许双写 qiCultivation（协调者 10-03 裁定），design/10 §4.10.4 / §4.10.6 加注",
+   "prompt": "TOOL-catalog-food-qi-exception.md",
+   "deps": [
+    "TOOL-catalog-9col"
+   ],
+   "writes": [
+    "tools/lint/check_item_catalog.py",
+    "tools/lint/test_check_item_catalog.py",
+    "docs/design/10-items-and-equipment.md"
+   ]
   }
  ]
 }
