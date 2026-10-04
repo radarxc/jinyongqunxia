@@ -2028,41 +2028,43 @@
   category: character/male
   style: default
   subject: 陈家洛·香冢之后（ch12_shujian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的陈家洛立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中陈家洛的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: precise-object-edit
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的陈家洛二十二三岁，温文俊秀的世家公子：脸型是饱满年轻的方圆脸、两颊丰润不凹陷、下颌方正圆润；浓黑平直的眉；眼睛有神、双眼皮、眼神温和沉稳、带书卷气；鼻梁挺直；嘴唇端正；肤色白净；完全无须；清代发式（剃光前额、脑后辫子）。不要长脸、凹颊、高颧骨、显老。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样画幅比例构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 原图比例。必须在原画上修改，不要重画成另一幅画。
 
-    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。【神态】香冢之后西行：沉痛怅惘，此刻不笑。
+    【只改】陈家洛本图是北京城外黎明立香冢告别之后的西行取样。人物原姿态、脸、头部位置大小、双手与所有衣物兵器完全不变。仅将身后荒凉西域高山戈壁的香冢场景改为北京城外水边乱坟：近处新坟、身后原位置小石碑保留但无可读碑字，芦苇在水边成片，远处隐约城墙平原，东方刚大白的黎明天色。不可把香冢留在西域高山之中。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_19_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_late_base.png
-    sha256: 64ecfc59797ae92fe9f43baa21edace56167c4177358557dd95ae9cf0e6d9f60
-    use: 对脸基线：作者 AR-56 定下的 por_npc_chenjialuo__ch12_youth_late_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_scene_fragrant_tomb_westward.png
-    sha256: cd0e29927f0fa2d396edbdbdeda55ed6803362bc1de9d243d214dfe48b713202
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenjialuo__ch12_youth_scene_fragrant_tomb_westward.cd0e2992.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:36:22-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_chenjialuo__ch12_youth_scene_fragrant_tomb_westward.e1.png
+    sha256: 762a6dd185a2992dfa9d4ed5068a10fa9714a2e2d886fff2a2d5444fcaefaf77
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_chenjialuo__ch12_youth_scene_fragrant_tomb_westward.762a6dd1.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:10:20-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_19_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 762a6dd185a2992dfa9d4ed5068a10fa9714a2e2d886fff2a2d5444fcaefaf77
+  sha256: e14255ea7b574447f81a61352e7977a0ebf62beca3ec155b033867ab1c9b11be
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_chenjialuo__ch12_youth_late_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_chenjialuo__ch12_youth_late_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：陈家洛香冢改北京城外水边芦苇新坟黎明；依据：- AR-82 返修依据：《书剑恩仇录》第二十回“忍见红颜堕火窟，空余碧血葬香魂”：“出得城来”“水边一片芦苇”“东方大白，才连骑向西而去”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E4%B9%A6%E5%89%91%E6%81%A9%E4%BB%87%E5%BD%95/%E7%AC%AC20%E7%AB%A0%E3%80%80%E5%BF%8D%E8%A7%81%E7%BA%A2%E9%A2%9C%E5%A0%95%E7%81%AB%E7%AA%9F%EF%BC%8C%E7%A9%BA%E4%BD%99%E7%A2%A7%E8%A1%80%E8%91%AC%E9%A6%99%E9%AD%82.md；执行：若保留香冢在同一画面，改为北京城外水边、芦苇与新坟，黎明告别后西行；若选西域途中取样，移除身后的香冢，注明已离京西行而非立冢现场。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_chenjialuo__ch12_youth_scene_fragrant_tomb_westward.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenjialuo__ch12_youth_scene_fragrant_tomb_westward.cd0e2992.png
-    sha256: cd0e29927f0fa2d396edbdbdeda55ed6803362bc1de9d243d214dfe48b713202
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenjialuo__ch12_youth_scene_fragrant_tomb_westward.cd0e2992.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_chenjialuo__ch12_youth_scene_fragrant_tomb_westward.762a6dd1.png
+    sha256: 762a6dd185a2992dfa9d4ed5068a10fa9714a2e2d886fff2a2d5444fcaefaf77
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_chenjialuo__ch12_youth_scene_fragrant_tomb_westward.762a6dd1.entry.yaml
 - id: por_npc_mazhen__ch12_elder_wudang_base
   file: por_npc_mazhen__ch12_elder_wudang_base.png
   category: character/male
