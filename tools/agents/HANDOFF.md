@@ -1981,4 +1981,12 @@
     - 代码池（上限 3）：
       - 占用：content-plugin-timeout、gates-data、base-diet；
       - 排队：lazy-dispose → event-source-trigger → ink-intents → 26 → 23a → 18c → 16e → rig-parts-f → std-parts → cropframe。
+  - **10-03 19:16 开发监督 · 执行器挂住记录**（协调者 19:13：每次记时间、模型、最后一行；再挂就把池上限直接降到 2）：
+    - 16:54：ENG-region-gates-data 第 1 轮，GPT-5.6-Sol。最后一行是 traex「context compacted」提示，属于上下文压缩后挂住。
+    - 18:20：ENG-region-gates-data 第 2 轮，GPT-5.6-Sol。跟着 bits-unit-test-gen 技能跑完 prepare_test.sh 后没有输出。已加关技能参数。
+    - 19:07：ENG-23a-pwa-offline 第 3 轮，**GPT-6-Astra**。最后一行是 i18n 文案补丁（`retryUpdate`），工具调用完成后再没有模型输出。
+    - 19:09：ENG-26-encounter-builder 第 3 轮，**GPT-6-Astra**。最后一行是工具调用的 hook 完成，之后没有模型输出。
+    - 另：18:30 ENG-26 第 2 轮报 Trae 4050「请求队列超限」，也是 GPT-6-Astra。
+    - 小结：最近两次挂住和那次 4050 都在 GPT-6-Astra 上。eng3 风格起跑不带 `--model`，默认就用 Astra；开发监督起的都显式用 Sol。
+    - 每轮轮询加了挂住扫描（`scratchpad/stallwatch.py`）。
 
