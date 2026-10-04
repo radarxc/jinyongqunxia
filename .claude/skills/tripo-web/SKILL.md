@@ -52,7 +52,7 @@ const staged = await __t.stage(inp); inp.remove();
 ```
 参考图在 IndexedDB 里的键是文件名（仓库路径的 basename）。
 
-**1.4 存盘方式**：作者在 Chrome 里允许了 studio.tripo3d.ai「自动下载多个文件」就 `__t.setSaveMode('direct')`；否则保持默认 `reload`，见 §4。
+**1.4 存盘方式**：默认 `direct`（作者 10-04 已在 Chrome 里允许 studio.tripo3d.ai「自动下载多个文件」，实测连续存盘都落盘）。存了却不落盘，说明权限被收回了，改用 `__t.setSaveMode('reload')`，见 §4。
 
 **每次 navigate（整页刷新）后重新载入**：
 ```js
@@ -114,7 +114,7 @@ const p = await __t.preview(pid, 'npc_xxx__chNN_youth'); p
 - `exportGlb` 的参数照导出面板：GLB、贴图 2K、Export Skeleton 开、动作原地，和 10-03 在网页上点导出时完全一样（服务器直接返回了当时导出的文件）。`pending:true` 就再调一次，会接着等同一个导出任务；新导出一般十几秒。
 - 主角另导一个动作单文件：`await __t.exportGlb(pid, npc, { anims: ['idle', 'walk', 'run'] })`。
 - 存盘名：`tripo__<npc>.glb`、`tripo__<npc>__anim_idle_walk_run.glb`；预览是 Tripo 的封面渲染（`studio_mesh`，正面白底 600×778，文件头其实是 PNG），存成 `tripo__<npc>.png`。要骨架叠加图就 `preview(pid, npc, { kind: 'rig' })`，存成 `tripo__<npc>__rig.webp`。
-- `direct` 方式下这两步直接落盘；`reload` 方式下只是排队，接着按 §4 逐个刷新存盘。
+- 默认 `direct`，这两步直接落盘；改成 `reload` 后只是排队，要按 §4 逐个刷新存盘。
 - 核对：`ls -la ~/Downloads/tripo__<npc>*`。
 
 **2.8 入库**（Bash，在 `_prod` 根目录）：
@@ -148,16 +148,16 @@ python3 tools/model3d/ingest.py npc_xxx__chNN_youth --project <pid> --gen-op <�
 
 ## 4. 存盘的两种情况（Chrome「自动下载多个文件」权限）
 
-10-04 实测：Chrome 对页面脚本发起的下载有限制——整页载入之后放行第一个，之后的静默丢弃，连注入按钮再真实点击也一样。所以有两种用法，都写在驱动里：
+Chrome 对页面脚本发起的下载有限制：没有「自动下载多个文件」权限时，整页载入之后只放行第一个，之后的静默丢弃，连注入按钮再真实点击也一样（10-04 实测）。驱动里有两种存盘方式：
 
-- **作者允许了自动下载**（Tripo 标签页地址栏点了「允许」）：`__t.setSaveMode('direct')`，之后 `exportGlb`、`preview` 直接落盘。
-- **默认 `reload`**（没允许，或不确定）：`exportGlb`、`preview` 只把下载地址和文件名排进本标签页的 `sessionStorage.claudeTSave`。之后每个文件这样存：
+- **`direct`（默认）**：作者 10-04 在 Tripo 标签页地址栏点了「允许」，之后连续两个脚本下载都落了盘。`exportGlb`、`preview` 直接存。
+- **`reload`（备用，权限被收回时用）**：`__t.setSaveMode('reload')`。之后 `exportGlb`、`preview` 只把下载地址和文件名排进本标签页的 `sessionStorage.claudeTSave`。每个文件这样存：
   1. `navigate` 到当前 Tripo 地址（整页刷新）；
   2. 重新载入驱动（§1 末尾那段）；
   3. `await __t.flushSave()` 存队首一个，返回 `left` 还剩几个；
   4. Bash `ls ~/Downloads/tripo__*` 核对落盘。没落盘就 `__t.requeueLast()` 放回去，再从第 1 步来。
 
-  一个普通角色要存 2 个文件（GLB、预览），主角 3 个；签名地址大约两天内有效。
+  一个普通角色要存 2 个文件（GLB、预览），主角 3 个；签名地址大约两天内有效。这条路只验证到排队，没实际落过盘。
 - 站点被设成「阻止」时，同站刷新也不放行。这种情况不要绕，请协调者转告作者改设置。
 
 ## 5. 按钮兜底（API 路径出问题时）
@@ -184,7 +184,7 @@ python3 tools/model3d/ingest.py npc_xxx__chNN_youth --project <pid> --gen-op <�
 - Tripo 不能手动绑骨。绑坏了只能回退重绑（20 点）、Free Retry，或换参考图重新生成。
 - 头发：后脑偏灰褐、发色发肉色要看背面才看得出（小龙女、水笙偏灰褐，赵敏后脑有一缕灰白）。Magic Brush 不支持 8K 模型，4K 重贴图又卡住了，所以修发基本靠换参考图。
 - 引擎接入：模型高度归一化到约 0.98，加载时按人物身高缩放；赵敏多一个 `neutral_bone`，并入 Head；杨过空袖那侧的臂骨不驱动；兵器另挂（石破天的佩刀和网格是一体的）；导出贴图 2K，要 8K 可以从云端重导（`exportGlb(..., { textureSize: 8192 })`，未实测）。
-- 预览：10-04 起用 Tripo 自带的封面渲染（白底、600×778）；之前 37 套是 3D 视图截图（深灰底，多为 369×594），协调者定了统一换成封面图。
+- 预览：一律用 Tripo 自带的封面渲染（白底正面、600×778）。之前 37 套的深灰底截图已在 86c11ba7 统一换掉（一次取齐 37 张封面、只下载一个打包文件，逐套 `ingest.py --preview-only`）。
 - manifest 的 `created`：之前有 6 套（阿青、小龙女、4 套主角，共 22 条）把本机 PDT 时间写成了 `+08:00`，b71ab68e 已更正为 `-07:00`；ingest 按本机时区写，不会再错。
 
 ## 8. `__t` 接口速查
@@ -208,7 +208,7 @@ python3 tools/model3d/ingest.py npc_xxx__chNN_youth --project <pid> --gen-op <�
 | `retarget(pid, names, {go:true})` | 预设动作，0 点 | 🔸（dry ✅） |
 | `exportGlb(pid, npc, {anims})` | 导出 GLB。阿青单模型、男主三动作单文件都命中服务器缓存，sha256 和 10-03 入库的文件相同；重新导出的只差 GLB 里带导出任务 ID 的网格 / 材质名，二进制数据相同 | ✅ |
 | `cover()` / `preview()` / `showCovers()` / `hideCovers()` | 封面渲染：取地址、存盘、页面上并排看 | ✅ |
-| `saveMode()` / `setSaveMode()` / `flushSave()` / `requeueLast()` / `clearSaveQueue()` | 存盘方式和队列（§4） | ✅ 排队；落盘待作者定下载权限后验证 |
+| `saveMode()` / `setSaveMode()` / `flushSave()` / `requeueLast()` / `clearSaveQueue()` | 存盘方式和队列（§4） | ✅ `direct` 连续落盘；`reload` 只验证到排队 |
 | `freeRetry(pid, {go:true})` / `restore(pid, op, {go:true})` | 免费重出 / 版本回退，0 点 | 🔸（dry ✅） |
 | `genButton()` / `rigButton()` / `btn()` / `guard()` / `lastOp()` | 按钮兜底（§5） | 🖱 |
 | `logs(n)` | 驱动自己记的提交流水（生成、绑骨、动作、回退） | ✅ |
