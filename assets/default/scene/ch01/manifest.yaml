@@ -54,43 +54,37 @@
   category: scene
   style: default
   subject: 杏子林身世揭露（ch01_tianlong）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是阿朱的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中阿朱的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【画里谁是谁】这张插图画的是：杏子林身份揭露后的概括构图（原创扩展构图；具体同场站位待考）。萧峰壮年魁伟，灰褐旧袍，孤立在林中前景，面前案上放竹棒；他双手空着，神色豪烈克制。成年阿朱素裙在边缘凝望，群丐穿补缀布衣分散两侧，不复制任何演员。阴天杏林，人物面孔自然，留出空气。
+    图1是唯一待编辑原图。必须以这张图为底编辑。本图为局部正方形裁图，输出同样正方形裁图，不画全身，不扩图。
 
-    【要对齐的部分】阿朱各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【只改】只修改本裁图王语嫣的束发物：删除头顶金簪、白珠和所有粉红色系带，在同样位置仅用一根银灰色丝带系发，银色结及两条细长银色尾带。尾带须覆盖或替换原有粉红色尾带直到肩背；绝对不许留下旧粉红发带，不加新钗簪。耳坠不动，脸及衣服、背景、题字印章完全不动。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「杏林惊变」和小朱印必须原样保留，一笔不改、不增不减。
+    【原著依据】《天龙八部》第十五回 杏子林中 商略平生义：“立时便将他肩上四柄法刀拔了下来”；“创口中如喷泉般的鲜血立时便止”；https://www.xuges.com/wuxia/jinyong/tlbb/114.htm；《天龙八部》第十二回 从此醉：“用一根银色丝带轻轻挽住”；https://www.xuges.com/wuxia/jinyong/tlbb/087.htm
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】（作者选定阿朱新脸后统一对齐）右侧淡红衣少女是阿朱：阿朱的脸要像基线（作者选定的新版）：鹅蛋脸、两颊柔润、下巴小巧圆润，一双明亮灵动的大眼睛、双眼皮清楚、眼尾微扬，眉毛弯而秀长，鼻梁秀挺、鼻头小巧，唇形饱满、嘴角上扬；约二十岁的成年年轻女子。表情按原图的情绪（悲伤、惊讶、虚弱时就照原图的情绪，只是换成她这张脸）。萧峰和群丐的脸不要动。'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/44_cg_ch01_xingzilin_reveal.png
+    sha256: 1c348745fe0ed1d2f6a5a6c5b41f0d291f9ea3c4a718c7e34eb6832fd5b2ea79
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
     sha256: aa37f35be809f8d93fbf509f4f581dc6e8c9e3204a92f50a8b2c50ee66d4b8c8
     use: 对脸基线：作者审核通过的 por_npc_azhu__ch01_youth_alive_base（阿朱），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch01/cg_ch01_xingzilin_reveal.png
-    sha256: fc7fbe9e3a4f3ed687b638cfa595e00ecda498816cb559d15facd2d965ebd33f
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.fc7fbe9e.png
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T01:13:21.330742-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_31_45_r1.png
+  created: '2026-10-04T03:59:14.427343-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_44_r2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 1c348745fe0ed1d2f6a5a6c5b41f0d291f9ea3c4a718c7e34eb6832fd5b2ea79
+  sha256: 2634e77535a401aac15835c2e74573361bbbea9fd0fd5a81b45fa5dde656785c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「杏林惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留低头悲愤与眼神下视，不抬头、不微笑。；质检：已打开对照：萧峰基准眉眼鼻颌已对齐，保留杏林低垂视线及沉重神态；不笑，光线接缝自然；周围众人与题字蒙版外零变化
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「杏林惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留低头悲愤与眼神下视，不抬头、不微笑。；质检：已打开对照：萧峰基准眉眼鼻颌已对齐，保留杏林低垂视线及沉重神态；不笑，光线接缝自然；周围众人与题字蒙版外零变化；AR-82 原著核对返修：杏林插图同步萧峰肩伤及王语嫣银带
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.fc7fbe9e.png
-    sha256: fc7fbe9e3a4f3ed687b638cfa595e00ecda498816cb559d15facd2d965ebd33f
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.fc7fbe9e.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/44_cg_ch01_xingzilin_reveal.png
+    sha256: 1c348745fe0ed1d2f6a5a6c5b41f0d291f9ea3c4a718c7e34eb6832fd5b2ea79
   effort: ultra
   ar84_alignment:
     job: ar84_calign_31_45_r1
