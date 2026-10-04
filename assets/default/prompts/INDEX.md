@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 976、已通过（作者） 132、待出图 52。**待出图队列 52 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 977、已通过（作者） 132、待出图 51。**待出图队列 51 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -45,7 +45,6 @@
 | items | `it_wenzhengmingchibifu` | 文徵明《赤壁赋》页 | `assets/default/item/collectibles/it_wenzhengmingchibifu.png` | 待出图 | [it_wenzhengmingchibifu.md](items/collectibles/it_wenzhengmingchibifu.md) |
 | items | `it_wuzhouzhuseqin` | 武周朱漆琴 | `assets/default/item/collectibles/it_wuzhouzhuseqin.png` | 待出图 | [it_wuzhouzhuseqin.md](items/collectibles/it_wuzhouzhuseqin.md) |
 | items | `it_yuanqinshufang` | 元代书房琴 | `assets/default/item/collectibles/it_yuanqinshufang.png` | 待出图 | [it_yuanqinshufang.md](items/collectibles/it_yuanqinshufang.md) |
-| items | `it_yuanzhenkuanshiyan` | 元贞款石砚 | `assets/default/item/collectibles/it_yuanzhenkuanshiyan.png` | 待出图 | [it_yuanzhenkuanshiyan.md](items/collectibles/it_yuanzhenkuanshiyan.md) |
 | items | `it_yuanzhushan` | 元式素竹扇 | `assets/default/item/collectibles/it_yuanzhushan.png` | 待出图 | [it_yuanzhushan.md](items/collectibles/it_yuanzhushan.md) |
 | items | `it_yuanzhuyujue` | 元竹节玉玦 | `assets/default/item/collectibles/it_yuanzhuyujue.png` | 待出图 | [it_yuanzhuyujue.md](items/collectibles/it_yuanzhuyujue.md) |
 | items | `it_yuebeizhong` | 越地宝贝壳 | `assets/default/item/collectibles/it_yuebeizhong.png` | 待出图 | [it_yuebeizhong.md](items/collectibles/it_yuebeizhong.md) |
