@@ -20,7 +20,10 @@
    - 说明、外观要点写清朝代形制与颜色，外观要点要能直接用来出图；
    - 头饰、披风进 `items-accessories.md`，子类分别以「头饰·」「披风·」开头，生成器按子类定槽位。
 2. **生成内容数据**：跑 `python3 tools/content/items_from_catalog.py` 生成 `content/items/<ID>.yaml`。不手写、不手改生成结果。
-3. **出图提示词**：
+3. **登记 ID**：本批新 ID 要在 `docs/design/10-items-and-equipment.md` §14.2「ID 清单」表里登记，`check_ids --strict` 才认它们是已定义的物品 ID（`eq_` / `it_` 的归属文档是 design/10）。
+   - 在表末加一行：类别写「AR-77 衣物与护甲扩充 · 第 {{batch}} 批（件数）」，ID 列按名录顺序列出本批全部新 ID，格式同「AR-25 衣物扩张（18）」那一行；
+   - 只加这一行，design/10 其余内容不动。
+4. **出图提示词**：
    - 用 `python3 tools/agents/extract_item_prompts.py --cat <类>` 生成本批各件的提示词文件，status 为 draft；
    - 逐件核对朝代形制、颜色和品阶画面语言，按 `item.md` §8 补足；
    - 只新增本批的文件。脚本若改动了已有提示词，把那些改动还原；
@@ -32,17 +35,18 @@
      - 不许用代码改色相，也不许每种颜色各出一张款式不同的图。
      - `assets/default/prompts/items/GUIDE.md` 末尾追加一节「同款换色」，写明上面的出法和顺序（底图先出，换色件后出）。只追加，不改原有段落；已经有这一节的批次不再加。
    - 总索引 `assets/default/prompts/INDEX.md` 不在本任务重建：合入后由开发监督在全量检出里重建，本批各件随之进「待出图」队列。图由 Gemini 出图员出（AR-31），本任务不出图。
-4. **过程文件不进 assets/**：脚本、日志、临时文件放 `/private/tmp` 或 `.agents/`；`assets/` 下只新增本批提示词 `.md`。
-5. 其他批次的条目不动。发现总表本身有错，照总表落，在报告里列出交协调者。
+5. **过程文件不进 assets/**：脚本、日志、临时文件放 `/private/tmp` 或 `.agents/`；`assets/` 下只新增本批提示词 `.md`。
+6. 其他批次的条目不动。发现总表本身有错，照总表落，在报告里列出交协调者。
 
 ## 约束
 
 - 写集：
   - `docs/design/catalog/` 下的 `items-clothing.md`、`items-armor.md`、`items-innerarmor.md`、`items-accessories.md`、`items-belts.md`、`items-shoes.md`：只追加本批的行；
   - `content/items/**`：只由生成器写；
+  - `docs/design/10-items-and-equipment.md`：只在 §14.2 ID 清单表末加本批一行；
   - `assets/default/prompts/items/**`：只新增本批提示词，`GUIDE.md` 只在末尾追加「同款换色」一节；
   - 写集外的改动在提交时会被丢弃。
-- 不改总表与设计文档，不改生成器与校验脚本。
+- 不改总表与 design/27，不改生成器与校验脚本；design/10 只加 §14.2 那一行。
 - 每次写入 ≤ 150 行；不得在 `/private/tmp` 做整仓检出（_common 规则 12）。
 
 检查：以下命令必须全部通过。
