@@ -1,0 +1,36 @@
+{
+  "frames": [
+    {
+      "border_px": 8,
+      "border_alpha_ratio": 0.0,
+      "semi_transparent_pixels": 38948,
+      "residual_white_edge_ratio": 0.0,
+      "white_rebuild_max_8bit": 0.5362548828125,
+      "white_rebuild_mean_8bit": 0.04548645960307973
+    },
+    {
+      "border_px": 8,
+      "border_alpha_ratio": 0.0,
+      "semi_transparent_pixels": 27260,
+      "residual_white_edge_ratio": 0.0,
+      "white_rebuild_max_8bit": 0.537200927734375,
+      "white_rebuild_mean_8bit": 0.02968135397167856
+    },
+    {
+      "border_px": 8,
+      "border_alpha_ratio": 0.0,
+      "semi_transparent_pixels": 25438,
+      "residual_white_edge_ratio": 0.0,
+      "white_rebuild_max_8bit": 0.5266265869140625,
+      "white_rebuild_mean_8bit": 0.02258981598360553
+    },
+    {
+      "border_px": 8,
+      "border_alpha_ratio": 0.0,
+      "semi_transparent_pixels": 36597,
+      "residual_white_edge_ratio": 0.0,
+      "white_rebuild_max_8bit": 0.537200927734375,
+      "white_rebuild_mean_8bit": 0.04305757316982104
+    }
+  ]
+}

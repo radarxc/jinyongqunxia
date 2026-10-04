@@ -1,0 +1,118 @@
+{
+  "shared_emitter": [
+    {
+      "file": "assets/default/vfx/emitters/palm/emitter-plate.yaml",
+      "sha256": "049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13",
+      "bytes": 195,
+      "matches_head": true
+    },
+    {
+      "file": "assets/default/vfx/emitters/palm/source_palm.png",
+      "sha256": "f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c",
+      "bytes": 626765,
+      "matches_head": true
+    }
+  ],
+  "effects": [
+    {
+      "effect": "family",
+      "min_source_margin_px": 29,
+      "max_border_alpha_ratio": 0.0,
+      "max_residual_white_edge_ratio": 0.0,
+      "max_white_rebuild_8bit": 0.537200927734375
+    },
+    {
+      "effect": "mv_tiezhangyunqigong_lianbi",
+      "min_source_margin_px": 41,
+      "max_border_alpha_ratio": 0.0,
+      "max_residual_white_edge_ratio": 0.0,
+      "max_white_rebuild_8bit": 0.537200927734375
+    },
+    {
+      "effect": "mv_tiezhangyunqigong_shoufeng",
+      "min_source_margin_px": 92,
+      "max_border_alpha_ratio": 0.0,
+      "max_residual_white_edge_ratio": 0.0,
+      "max_white_rebuild_8bit": 0.5266265869140625
+    }
+  ],
+  "moves": [
+    {
+      "move": "mv_tiezhangyunqigong_lianbi",
+      "html_bytes": 2026279,
+      "json_matches_yaml": true,
+      "visible_bounds_px": [
+        114.60000000000001,
+        150.20000000000002,
+        1002.815144766147,
+        856.4
+      ],
+      "safe_margin_px": 114.60000000000001,
+      "blank_fraction_lower_bound": 0.601200399250124
+    },
+    {
+      "move": "mv_tiezhangyunqigong_ningxi",
+      "html_bytes": 2026264,
+      "json_matches_yaml": true,
+      "visible_bounds_px": [
+        114.60000000000001,
+        150.20000000000002,
+        936.0,
+        856.4
+      ],
+      "safe_margin_px": 114.60000000000001,
+      "blank_fraction_lower_bound": 0.6311997222900392
+    },
+    {
+      "move": "mv_tiezhangyunqigong_shoufeng",
+      "html_bytes": 1623095,
+      "json_matches_yaml": true,
+      "visible_bounds_px": [
+        114.60000000000001,
+        150.20000000000002,
+        1034.6764705882354,
+        856.4
+      ],
+      "safe_margin_px": 114.60000000000001,
+      "blank_fraction_lower_bound": 0.5868949867697324
+    },
+    {
+      "move": "mv_tiezhangyunqigong_tuna",
+      "html_bytes": 1992598,
+      "json_matches_yaml": true,
+      "visible_bounds_px": [
+        114.60000000000001,
+        150.20000000000002,
+        840.0,
+        856.4
+      ],
+      "safe_margin_px": 114.60000000000001,
+      "blank_fraction_lower_bound": 0.6743027496337891
+    },
+    {
+      "move": "mv_tiezhangyunqigong_yunzhang",
+      "html_bytes": 2009582,
+      "json_matches_yaml": true,
+      "visible_bounds_px": [
+        114.60000000000001,
+        150.20000000000002,
+        887.9999999999999,
+        856.4
+      ],
+      "safe_margin_px": 114.60000000000001,
+      "blank_fraction_lower_bound": 0.6527512359619141
+    }
+  ],
+  "visual_checks": {
+    "source_sheets": "4 viewed; family 1/1, lianbi 1/1, shoufeng 2/2 selected",
+    "three_backgrounds": "all 9 final black/gray/white contact sheets viewed; no hard white border; pale red wisps remain bright on black",
+    "peaks_viewed": [
+      "mv_tiezhangyunqigong_lianbi",
+      "mv_tiezhangyunqigong_shoufeng",
+      "mv_tiezhangyunqigong_ningxi"
+    ],
+    "root_connection": "attached at E=[600,560], rightwards; fingers and thumb visible",
+    "browser_webgl": "not run",
+    "device_performance": "not run"
+  }
+}
