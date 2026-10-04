@@ -1939,7 +1939,10 @@
 
     【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要清瘦单薄、溜肩窄胸、少年身板；不要夸张的健美肌肉、袒胸露臂；不要金甲皇袍。
 
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+
+    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_por_npc_zhangwuji__ch04_youth_jiaozhu_base.json'
   negative: 画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要清瘦单薄、溜肩窄胸、少年身板；不要夸张的健美肌肉、袒胸露臂；不要金甲皇袍。
   references:
   - path: .agents/coord/imagegen-reference/identity-20261002/yitian/zhangwuji_2003_suyoupeng_tvsou.jpg
@@ -1954,15 +1957,18 @@
   - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
     sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
     use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
-  tool: codex exec · image_gen（AR-44 新 base：前置 2003《倚天屠龙记》 剧照 1 张，后接两张同性别基线立绘作画风参考）
-  model: gpt-6-astra
-  created: 2026-10-03T13:34:20-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhangwuji__ch04_youth_jiaozhu_base.b5.png
+  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+    sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
+    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:03:16.502400-07:00'
+  source_path: .agents/coord/_lines/zhangwuji-final/out/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
+  sha256: 3320846559f71c5013f03eba4e872004b787141b59e774cba57b33d37bbe7103
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 新 base：作者 10-03 要求参考2003《倚天屠龙记》造型、按项目画风重画、不要和照片一样（AR-44 / AR-49 第 2 轮，作者选 A）
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 新 base：作者 10-03 要求参考2003《倚天屠龙记》造型、按项目画风重画、不要和照片一样（AR-44 / AR-49 第 2 轮，作者选 A）；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留
   runner_job_records:
   - - por_npc_zhangwuji__ch04_youth_jiaozhu_base.resume3
     - ok
@@ -1970,11 +1976,12 @@
     - '101'
     - exec-34e2e3f4-bce9-4e3e-9dec-f2b4d50ce028.png
   runner_success_count: 1
-  effort: ultra
+  effort: not applicable (deterministic composition)
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_jiaozhu_base.ae9bc6ae.png
-    sha256: ae9bc6aed59fa834707d76afa15b29fd8d5a19db226ae33b6169d9629e1ab3b9
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_jiaozhu_base.ae9bc6ae.entry.yaml
+    png: .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+    sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
+    entry: .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_jiaozhu_base.entry.yaml
+  executed_by: Codex gpt-6.1-sol（AR-86）
 - id: por_npc_zhangsanfeng__ch04_elder_taiji_base
   file: por_npc_zhangsanfeng__ch04_elder_taiji_base.png
   category: character/male
