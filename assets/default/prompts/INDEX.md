@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 1008、已通过（作者） 132、待出图 20。**待出图队列 20 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 1009、已通过（作者） 132、待出图 19。**待出图队列 19 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -30,7 +30,6 @@
 |---|---|---|---|---|---|
 | items | `it_nansongduanwenqin` | 南宋断纹琴 | `assets/default/item/collectibles/it_nansongduanwenqin.png` | 待出图 | [it_nansongduanwenqin.md](items/collectibles/it_nansongduanwenqin.md) |
 | items | `it_qingjiaoyeqin` | 清式蕉叶琴 | `assets/default/item/collectibles/it_qingjiaoyeqin.png` | 待出图 | [it_qingjiaoyeqin.md](items/collectibles/it_qingjiaoyeqin.md) |
-| items | `it_wuzhouzhuseqin` | 武周朱漆琴 | `assets/default/item/collectibles/it_wuzhouzhuseqin.png` | 待出图 | [it_wuzhouzhuseqin.md](items/collectibles/it_wuzhouzhuseqin.md) |
 | items | `it_yuanqinshufang` | 元代书房琴 | `assets/default/item/collectibles/it_yuanqinshufang.png` | 待出图 | [it_yuanqinshufang.md](items/collectibles/it_yuanqinshufang.md) |
 | items | `it_yuanzhushan` | 元式素竹扇 | `assets/default/item/collectibles/it_yuanzhushan.png` | 待出图 | [it_yuanzhushan.md](items/collectibles/it_yuanzhushan.md) |
 | items | `it_yuejinyubi` | 越地缀金礼璧 | `assets/default/item/collectibles/it_yuejinyubi.png` | 待出图 | [it_yuejinyubi.md](items/collectibles/it_yuejinyubi.md) |
