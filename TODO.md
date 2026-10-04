@@ -202,6 +202,14 @@
 | ART-3d-tripo-cast | 十四书主角群约 31 位（主角精修新基线立绘）image_to_model + 骨架 | codex xhigh | **HOLD，不再续跑**（改网页版） |
 | **Tripo 网页版建模**（AR-42） | 男女主角（男主角多视图）+ 29 位主要角色：生成 H3.1 + Ultra Mesh + 8K + PBR（65 点）、绑骨 20、主角 idle / walk / run 动作各 20、导出 5；面数 10 万；Private | Opus 5.5 子代理驱动作者 Chrome（Premium，余额 25125，全做约 2800–4000 点） | **完成（10-03 19:18，报告 10d02fb9）**：`assets/default/model3d/` 共 37 套 GLB（65 关节 mixamorig；19 位主角、王语嫣、阿朱、阿青、男女主角普通 / 高魅力、早先 11 位），男女主角带单文件 `anim_idle_walk_run.glb`；点数 25125 → 21620（实扣 3505，作废 380）。阿青已按 b 版新脸重做（A 字图 c813207d，模型 0ac4882a，85 点，余额 21535）；接入注意（0.98 归一化身高、2k 贴图、两种目录命名需映射）写进下一个 3D 接入任务的说明（ENG-12e 已于 08:17 合入 81ca591b）。 |
 
+**AR-85（10-03 23:40）：3D 先只做一男一女两个通用模型，其余搁置**（重点转到 M1 跑通）：
+- 在做：通用江湖男子 / 女子 A 字图（GPT 6.1 Sol）→ Tripo 子代理生成、绑骨、配待机 / 走 / 跑，入库 `assets/default/model3d/npc_generic_m/`、`npc_generic_f/`；工程侧 ENG-battle-generic-model：战斗单位没有专属模型时按性别用通用模型，单位旁显示可区分的标识，模型未到位时临时用普通形象男女主角模型。
+- **搁置，待 M1 跑通后再排**：
+  - [ ] AR-79 全量重做：新比例（男约八头身、女近九头身）、脸部还原、贴图严查、按原著身高；
+  - [ ] 郭靖金刀驸马装模型（AR-71 / AR-74 选 B 装）；
+  - [ ] 换脸主角（AR-84 等改了 base 的）模型重做。
+  在跑的零点数体检和比例样张做完就收，结果留作日后参考。
+
 密钥：只在主检出 `.env`（`tripo_key=…`），执行器运行时读成环境变量，不得进日志 / 报告 / manifest / 提交（`.env` 已进 `.gitignore`）。产物：`assets/default/model3d/<npc_id>/`（`model_rig.glb`、`anim_*.glb`、`preview.png`、manifest）；审核要点 `review_checks_model3d.md`。女主角没有三视图（可登记 ART-rig-sheet-f）。
 
 ---
