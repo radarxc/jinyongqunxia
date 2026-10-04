@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_mingmoqinglvxiuyuanchangfuweipi_tongyong
+name: 明末青绿绣缘长幅围披
+kind: armor
+sub: cape
+grade: 8
+stack: 1
+chapters:
+- ch07_bixue
+origin: canonExpanded
+canonRef: 明末；出现书界 ch07；（原创扩展）；形制／色系依据：故宫《明代帝后与宗室服饰述论》，引刘若愚《酌中志》卷20《饮食好尚纪略》 https://img.dpm.org.cn/Uploads/File/2019/12/15/u5df5edcb36fd7.pdf；故宫董进《图说明代宫廷服饰（九）——后妃吉服与便服》 https://img.dpm.org.cn/Uploads/File/2020/04/27/u5ea6aea86025c.pdf；崇祯阶段主色排行和低立领细节（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingmoqinglvxiuyuanchangfuweipi_tongyong
+text:
+  desc: 外观：明末通用款，主色青绿。 待运行时投影：defOutK=0.025; hpMaxK=0.005。
+  lore: （原创扩展）明末青绿长幅围披采用无袖直领对襟长幅与及踝窄缘，男女通用。细密花缘绣落长披缘口，出行先理顺披幅；具体晚明裁片与偏色（待考），不作水田拼布披，只取cape半小件预算。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6
