@@ -1298,19 +1298,19 @@
   },
   "avatar/npc_chenyouliang/ch04_prime_gaibang": {
    "128": {
-    "b": 4590,
+    "b": 4286,
     "f": "npc_chenyouliang/ch04_prime_gaibang_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 13094,
+    "b": 11386,
     "f": "npc_chenyouliang/ch04_prime_gaibang_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 33918,
+    "b": 29914,
     "f": "npc_chenyouliang/ch04_prime_gaibang_base.ava512.webp",
     "h": 512,
     "w": 512
@@ -22909,13 +22909,13 @@
   },
   "bust/npc_chenyouliang/ch04_prime_gaibang": {
    "256": {
-    "b": 11852,
+    "b": 11400,
     "f": "npc_chenyouliang/ch04_prime_gaibang_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 34450,
+    "b": 34052,
     "f": "npc_chenyouliang/ch04_prime_gaibang_base.bust512.webp",
     "h": 512,
     "w": 512
@@ -42701,20 +42701,20 @@
   "portrait/npc_chenyouliang/ch04_prime_gaibang_base": {
    "alpha": true,
    "low": {
-    "b": 74232,
+    "b": 77076,
     "f": "npc_chenyouliang/ch04_prime_gaibang_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 102310,
+    "b": 113374,
     "f": "npc_chenyouliang/ch04_prime_gaibang_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_chenyouliang__ch04_prime_gaibang_base",
    "source_file": "assets/default/character/male/ch04/por_npc_chenyouliang__ch04_prime_gaibang_base.png",
-   "source_sha256": "006ee18764f37d629b3b477aed0ac2848ca88852610995ba178943a6ac894104",
+   "source_sha256": "b27d2827d1a8a6de6209cdd0a3c4ea92907350cfdbd0270fac61f71933c5e0c2",
    "status": "candidate"
   },
   "portrait/npc_chenyu/ch13_prime_taiji_base": {
