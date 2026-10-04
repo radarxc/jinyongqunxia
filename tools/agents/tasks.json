@@ -47551,7 +47551,8 @@
     "content/CLAUDE.md",
     "content/chapters/ch00_yuenv/roles/**",
     "content/chapters/ch00_yuenv/npcs/**",
-    "content/chapters/ch00_yuenv/quests/**"
+    "content/chapters/ch00_yuenv/quests/**",
+    "apps/game/src/runtime/**/*.test.ts"
    ]
   },
   {
