@@ -2490,3 +2490,11 @@
       - r2 后第 4 轮返修 04:15 校验过，按协调者裁定只再审一轮（r3）。r2 那批问题（裤腿、袖片、肩缝）都修好了，r3 只剩一处：6 张 head.png 被补绘多加了头顶 crown 圆帽，对照图 `.agents/coord/TOOL-rig-std-parts/review_frames_r3.png`；
       - 按协调者裁定定点返修：取消 crown 补绘、重出 6 张头、重建条带与 GIF；manifest 的 model 写 none 或源图模型，created 写实际日期；其余不动。`--max-runs 1 --max-reviews 1`。
     - **ENG-16e** 04:05 起停滞（GPT-5.6-Sol，25 分钟无输出），supervise 04:32 在原工作区自动续作第 2 轮，池位没被别人拿走。
+  - **10-04 04:50–05:15 开发监督 · M1 进展**：
+    - **ENG-battle-generic-model 合入**（af1873a1，05:05）；**ENG-16e-battle-ui-actions 合入**（ecc68454，05:08）。M1 只剩 ENG-ch00-encounter-wiring。
+    - **ENG-battle-modules-lazy**：04:25 审核 PASS，但合入冲突在 content-registry：npc-species 的 roleSlot 撞上它把 encounter 并进 ContentKind。rebase_task 后，Codex 短会话 bml-conflict-0451 按并集解开，`--from validate` 重起。
+    - **ENG-18c**：第 4 轮按 r1 返修后校验过，按协调者裁定只再审一轮。
+    - **体积测量 bug**：generic-model 合入后 check_size 报 render 2.36、webgl 41.63，是按文件名前缀找 render，哈希字母序变了，误量成 render-host。
+      - 真正的 render 块仍约 164–170 KiB，在 180 门内；新出现的 3D 懒加载块 battle-model3d 约 17 KiB，没有预算。
+      - 登记并起跑 **ENG-size-render-measure**（02841fe4）：按清单定位、量静态闭包；新增 render-model3d 预算 24 KiB；原门值不动。
+    - TOOL-ops-dispatch-dedupe 已在空位续作。CONTENT-apparel-data-6 合入（47d018e3）。
