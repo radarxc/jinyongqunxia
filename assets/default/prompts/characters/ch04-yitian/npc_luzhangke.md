@@ -73,3 +73,8 @@ FINAL POSE CHECK: FRONT-FACING 鹿杖客. Forehead–nose–chin centreline VERT
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_luzhangke__ch04_elder_base.prepared.json`。
+
+## 原著依据
+
+- 《倚天屠龙记》二十六 俊貌玉面甘毁伤：“一根短杖，杖头分叉，作鹿角之形，通体黝黑”；https://www.xuges.com/wuxia/jinyong/yttlj/191.htm
+- AR-82 返修约束（本节优先于历史提示词）：只把近人高黄褐木色杖改为通体黝黑短杖，顶部分叉作鹿角形，短杖长度约本人前臂到手臂长，仍用原双手握持，杖的下端停在腰腿上部，去掉原伸到地面的长杆并补回背景。不要鹿头，不强定木或铁的材质。人脸、手指和衣服其余部分不动。
