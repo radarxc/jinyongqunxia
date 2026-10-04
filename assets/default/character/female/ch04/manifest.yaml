@@ -55,14 +55,17 @@
     sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
     archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
     status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T13:09:36.860044+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-fa4641a7-f2ac-4b2b-b607-77f1c2a894ba.png
+  - path: assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png
+    sha256: d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  effort: ultra
+  created: '2026-10-04T00:47:30.006621-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_22_57_r1.png
   size: 1024x1536
   mode: RGB
-  sha256: 3fea5fe2e35126a0a3659a6ebc51aede6f3e13d512fefa34380aabe0ddce3a60
+  sha256: 9353d0ee7fe62652c8405b71a46acf2e7c62d204a744344851c9f00720ff7914
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_character_realism_20261001
@@ -73,12 +76,23 @@
     manifest: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_zhouzhiruo__ch04_child_scene_hanshui/manifest-3b6ce6d230b8dda0809bac28f093e6e49c9cce71866d58ab6c742f2b91ac9a84.yaml
     png: null
   request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_zhouzhiruo__ch04_child_scene_hanshui.requests.json
-  notes: 宽松自查选择候选2：约10岁儿童周芷若的圆润面颊与身形，无成人妆容、成熟胸腰或首饰；褐灰完整布小袄、素裙和简单发辫，双手持粗瓷饭碗与两根筷子，碗中米饭可见，双赤足自然立于船板。船舱、汉水与苇岸清楚，无剑、峨眉装束或画内第二人。候选2米饭内容与托碗关系更明确，发辫比候选1编髻朴素。表情带忧虑，皮肤衣料完整，无明显多肢或重大结构问题。实际偏差：船舱与水面背景较具体、远山较浓，衣料做旧纹理略多但未碎裂；小袄下沿略不齐，不称严格平整收边或精确年龄测定。作为本人童年身份首图保留candidate，按宽松自查可用。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+  notes: 宽松自查选择候选2：约10岁儿童周芷若的圆润面颊与身形，无成人妆容、成熟胸腰或首饰；褐灰完整布小袄、素裙和简单发辫，双手持粗瓷饭碗与两根筷子，碗中米饭可见，双赤足自然立于船板。船舱、汉水与苇岸清楚，无剑、峨眉装束或画内第二人。候选2米饭内容与托碗关系更明确，发辫比候选1编髻朴素。表情带忧虑，皮肤衣料完整，无明显多肢或重大结构问题。实际偏差：船舱与水面背景较具体、远山较浓，衣料做旧纹理略多但未碎裂；小袄下沿略不齐，不称严格平整收边或精确年龄测定。作为本人童年身份首图保留candidate，按宽松自查可用。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-84 第二轮：周芷若五官对齐 por_npc_zhouzhiruo__ch04_youth_zhangmen_base；AR-53 仅头部，AR-75 神态与光向保留；本图是汉水童年周芷若，约十岁；必须保留原图儿童的骨骼比例、圆润稚气，眉眼鼻唇神韵与成年身份参考一致，不能把成人脸贴在孩子身上；保留担忧与侧向眼神。；质检：实看通过：眉眼、鼻唇神韵与周芷若base相通，仍是汉水儿童圆润骨骼与稚气；担忧侧视、原柔光保留，未贴成人脸，无可见接缝
   scene_revision: user_scenes_20261001
   scene_key: hanshui
   scene_title: 汉水一碗饭
   stage: 约10岁的船家孤女，尚未入峨眉。
   asset_variant: scene
+  source_size: 1024x1536
+  ar84_alignment:
+    job: ar84_calign_22_57_r1
+    before_sha256: 3fea5fe2e35126a0a3659a6ebc51aede6f3e13d512fefa34380aabe0ddce3a60
+    box:
+    - 409
+    - 131
+    - 554
+    - 294
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_22_57_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_daiqisi__ch04_prime_jinhua_base
   file: por_npc_daiqisi__ch04_prime_jinhua_base.png
   category: character/female
