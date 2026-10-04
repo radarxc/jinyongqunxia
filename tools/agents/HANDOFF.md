@@ -2154,4 +2154,14 @@
     - rebase_task：基点 95b02a59 → 1649db55，冲突 0。
     - `--from validate` 重起，驱动 45563。
     - TOOL-ops-dispatch 21:39 起跑（codex gpt-6.1-sol）；base-diet 返修 21:40 起跑。
+  - **10-03 21:59–22:12 开发监督**（协调者 21:47：代码池故障处置统一归开发监督，包括挪基点、HOLD、重起、合并冲突；协调者只看结果）：
+    - **ENG-23a 合入后撤回**：
+      - 23a 审核 PASS 后，finish 时的校验在负载 25+ 下栽了两条 5 秒超时；开发监督手动重跑 finish 通过，merge_when_clean 合入 9262b0a1。
+      - 合入后集成分支 build 失败：`OFFLINE_ENTER_TOO_LARGE:ch01_tianlong:116498140`。enterBytes 把全部复制素材都算进每章进入闭包，稀疏工作区看不到。
+      - 协调者选 B：**ffd8e505 撤回**，58 个文件。撤回后 build / size 恢复，content:validate 1176 文件全过，只剩 bench 那条计时用例在负载下没过。
+      - 23a 状态：已撤回待重合。
+    - 登记（0b6b6823）：
+      - **ENG-23b-offline-reland**（驱动 43756，名单第一，full_checkout）：`git apply` 重新应用 9262b0a1，修进入闭包；60 MiB 门不放宽、ch00 也在门内；按 AR-64 核对。
+      - **ENG-quest-test-timeout**（驱动 43905）：quest runtime-regression 用例加 30 秒显式超时。
+      - **ENG-bench-perf-split-2**（驱动 44063）：bench 的 transaction bus 与 ≤ 20 ms 两条挪到 check:perf。
 
