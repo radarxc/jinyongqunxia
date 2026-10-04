@@ -183,46 +183,37 @@
   category: scene
   style: default
   subject: 少室山群雄会（ch01_tianlong）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中虚竹的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【画里谁是谁】这张插图画的是：少室山三兄弟并肩抗敌的概括构图（原创扩展，非逐帧复刻）。萧峰粗犷豪烈、段誉清雅坚定、虚竹朴拙慈厚，三种不同脸型。三人站成前景稳固三角，各自衣物和骨相依参考；后方寺门、秋松、远处少量模糊江湖群雄。只有三兄弟为清晰主角，不画龙形能量。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【要对齐的部分】虚竹各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【只改】只将正中萧峰的灰旧袍改为玄黑色布衣与玄黑薄毡大氅，大氅随原掌势同方向翻起；原动作和构图不变。萧峰脸、头巾、双手、裤脚与鞋不动，左侧段誉、右侧虚竹、前景人物和剑、题字印章以及所有背景逐像素保持。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「少室同心」和小朱印必须原样保留，一笔不改、不增不减。
+    【原著依据】《天龙八部》第四十一回 燕云十八飞骑 奔腾如虎风烟举：“玄色薄毡大氅，里面玄色布衣”；https://www.xuges.com/wuxia/jinyong/tlbb/312.htm
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】（作者 AR-53 总审返修）右侧的僧人是虚竹：虚竹的脸要像基线：宽脸、方而圆的下巴、颧骨平、两颊饱满不凹陷、眉毛平直不紧压、鼻子宽厚不高挺、眼神温和憨厚、嘴角带一点和善；现在的脸太窄长、颧骨下颌太硬，像另一个英俊武僧，必须改掉。段誉和萧峰的脸不要动。'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/45_cg_ch01_shaoshi_three_brothers.png
+    sha256: 16d083d70b45af4146d0390c2c320110a4af80ee2de1ee562601786b73be7f88
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png
     sha256: 6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c
     use: 对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（虚竹），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch01/cg_ch01_shaoshi_three_brothers.png
-    sha256: e32aa93d98958389de78553280e2a23b37ae4ac138dc49b145415fabcc2d6c5c
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.e32aa93d.png
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png
-    sha256: cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T01:10:03.173404-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_28_46_r1.png
+  created: '2026-10-04T03:26:29.905781-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_45_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 16d083d70b45af4146d0390c2c320110a4af80ee2de1ee562601786b73be7f88
+  sha256: cd39220bfc6f25d14efc9a6e8ef3a27a7460a0612110c491af4f4829d77d1dfa
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「少室同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：已打开对照：萧峰眉眼鼻颌与base同人，保留严肃戒备及原光向，闭口无笑；仅本头蒙版，段誉虚竹和题字原像素保留；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：已打开对照：虚竹对齐base同人五官，原认真神态闭口无笑，侧光和头顶边缘自然；第二头仅自身蒙版合成，保留已提交的萧峰头及段誉题字
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「少室同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：已打开对照：萧峰眉眼鼻颌与base同人，保留严肃戒备及原光向，闭口无笑；仅本头蒙版，段誉虚竹和题字原像素保留；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：已打开对照：虚竹对齐base同人五官，原认真神态闭口无笑，侧光和头顶边缘自然；第二头仅自身蒙版合成，保留已提交的萧峰头及段誉题字；AR-82 原著核对返修：少室三兄弟插图同步萧峰玄衣玄氅
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.e32aa93d.png
-    sha256: e32aa93d98958389de78553280e2a23b37ae4ac138dc49b145415fabcc2d6c5c
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.e32aa93d.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/45_cg_ch01_shaoshi_three_brothers.png
+    sha256: 16d083d70b45af4146d0390c2c320110a4af80ee2de1ee562601786b73be7f88
   effort: ultra
   ar84_alignment:
     job: ar84_calign_28_46_r1
