@@ -87,3 +87,42 @@
   sha256: 03fb303d923325cf4e22d7dab040e6d746558276b42fe201442aaf3dec77c4c8
   status: candidate
   notes: 绑骨用的窄轮廓版 A 字姿势参考（女角 _apose_slim 口径）；依据作者 16:50 选定的 por_npc_zhujue__ch00_f_charmhigh_base（同脸，眼下小痣保留）；AR-45
+- id: por_npc_aqing__ch00_youth_apose_slim
+  file: por_npc_aqing__ch00_youth_apose_slim.png
+  category: character/female/tripo_ref
+  style: default
+  subject: 阿青（ch00_yuenv）窄轮廓 A 字姿势全身参考：与作者选定的林青霞基底新 base 同脸，束袖、直筒窄裙、露草鞋
+  prompt: '【任务】这是一张供 3D 建模自动绑骨使用的「窄轮廓」A 字姿势全身参考图。第 1 张参考图是本项目已定稿的阿青立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同样的发式（头顶小髻、两条长辫、小青色珠花），衣服的颜色、面料沿用第 1 张（青竹棒是单独道具，不画；脚穿草鞋），但剪裁改成便于绑骨的窄轮廓。
+
+    【服饰（窄轮廓）】浅蓝色粗葛布交领右衽短上衣（衣长过臀，白色内领），衣身合体；袖子改成束袖：袖口在手腕处收紧（或挽到小臂），整条手臂的轮廓清楚，袖子不下垂成大片、不外扩；腰间系深蓝色布带；下身月白色麻布长裙改成收窄的直筒长裙，裙摆宽度不超过肩宽，长到脚踝上方，露出两只鞋的鞋尖，裙内可以露出一点月白色裤腿；没有飘带、披帛、长拖尾或任何外飘的布条。整个人的外轮廓肩宽、脚窄，或上下差不多宽，绝不能是下摆外扩的三角形。
+
+    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前。
+
+    【头发】两条长辫甩到背后，不搭在肩前，不盖住手臂和手。
+
+    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+
+    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
+
+    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+
+
+    【身形】高挑修长、肩背挺拔的剑术宗师身段，与第 1 张一致。'
+  negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+  references:
+  - path: assets/default/character/female/ch00/por_npc_aqing__ch00_youth_base.png
+    sha256: 445dc59c8f722af9d7e3890d3bf98790405fc2c9a7cdddeea35277850cf9884a
+    use: 底图：作者选定的阿青新 base（上传 1536 长边 JPEG）
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_aqing__ch00_youth_base_v2.jpg
+    sha256: 719ab6e448febbcd77f95a9a9ce5e0a6e5c8cda7c971aad34e4b32557a5319f3
+    use: 同一 base 的脸部特写
+  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T17:03:21-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_aqing__ch00_youth_apose_slim.a2.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 0666008fe9d2fe904bcf2d613ada8c0bc2a71a9272ea5877f74b505f7cbd0940
+  status: candidate
+  notes: 绑骨用的窄轮廓版 A 字姿势参考（女角 _apose_slim 口径）；依据作者 16:58 选定的 por_npc_aqing__ch00_youth_base（同脸，青竹棒作单独道具不画，双辫甩到背后）；AR-44
