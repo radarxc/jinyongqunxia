@@ -1,0 +1,13 @@
+{
+  "tool": "built-in image_gen",
+  "model": "undisclosed image backend",
+  "effort": "not exposed by tool",
+  "created": "2026-10-04T00:02:47.046165+00:00",
+  "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_taixuan/codex-home/generated_images/01a10435-5249-7ca2-ae43-5b501a771799/exec-72c30537-beb9-41a2-97c3-a3d0a460a09d.png",
+  "sha256": "83a3f80e3f6493ef9b19bf3c4ad1f10a7bb6df9cdfa0f411ddd3d62809b83324",
+  "prompt": "Use case: stylized-concept. Asset type: Taixuan Guiyi ultimate wuxia 2D effect sprite sheet, original invented imagery. Exactly FOUR closely related animation frames on pure WHITE #FFFFFF 1536x1024 canvas, invisible 2x2 grid, each cell 768x512. Every frame is horizontal and moves LEFT TO RIGHT, with a broad rooted entry at local (125,256). Pale amber-gold inner qi forms three interlaced flowing ribbons that converge into ONE cohesive almond-shaped rushing current, a single open spiral knot at local (445,256), then one forward taper ending near (675,256). Motif of many streams returning to one; flowing calligraphic diagram lines but absolutely NO letters, symbols, runes, numbers or literal diagrams. Refined Chinese ink-wash translucence, dry-brush open gaps, feathered edges, limited rich ochre-gold strokes, airy glow implied by diluted pigment, never an opaque luminous white core. First gathering, second coalescing, third fullest peak, fourth fading; root stable, shape highly consistent, subtle temporal changes. Keep broad root 130px across vertically, maintain uninterrupted source connection, do not depict a detached sphere. All marks inside x=64..704 and y=70..442 within each cell, at least 48px completely empty white margin per cell. No person, palm, weapon, dragon, yin-yang emblem, scenery, paper texture, grid border, labels, checkerboard, text, lens flare or laser. The gold is harmony color styling, not a claim about novel descriptions.",
+  "references": [],
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "inspection": "view_image: selected source, keyed black and gray contact sheets; original bytes preserved"
+}
