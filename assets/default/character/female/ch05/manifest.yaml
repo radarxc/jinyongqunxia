@@ -3,84 +3,48 @@
   category: character/female
   style: default
   subject: 蓝凤凰 npc_lanfenghuang ch05_xiaoao
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    Create a REALISTIC Chinese wuxia full-body portrait of 蓝凤凰. Image 1 is the ONLY facial identity source: the verified original-game portrait of THIS person. Images 2 and 3 supply ZERO identity, age, anatomy or costume. Image 2 is only the corresponding gender project palette and soft painting quality; image 3 is only pale ink-wash background. Preserve image 1''s own brow/eye/nose/mouth/cheek/jaw relationships in a newly drawn FRONT-FACING, UPRIGHT, age-appropriate realistic face; do not copy pixel style, angle, costume or inappropriate expression.
+    输出和原图同样比例的完整画面。
 
+    只换服饰并放大两侧金耳环：蓝布印白色花纹的上衫与长裤（清楚的两条裤腿，不是裙装），从胸口至膝盖单独系一条彩绣围裙，上缘在胸部，围裙不能只是腰带；保持原图头发蓝彩带、酒罐、双手和赤足原样。两耳金环放大到酒杯口大小，耳垂处悬挂大圆金环。不能改变脸部身份。
 
-    身份与阶段：蓝凤凰（npc_lanfenghuang），《笑傲江湖》ch05_xiaoao。苗疆五仙教主，五霸岗前后协助任盈盈、参与解毒救治的阶段
+    【原著依据】《笑傲江湖》十六《注血》：“蓝布印白花衫裤，自胸至膝围一条绣花围裙”（https://xuges.com/WUXIA/jinyong/xajh/119.htm）；《笑傲江湖》十六《注血》：“足有酒杯口大小”（https://xuges.com/WUXIA/jinyong/xajh/119.htm）
 
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    年龄与体型：成年青年女性，二十三四岁观感沿主稿且仍待考；体态结实匀称、自信健康，不是少女或男性。温暖微黄的自然肤色、真实大小的明亮深色眼睛，不能用另一参考的纤弱体态和白皙滤镜覆盖。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
 
-
-    本人面容辨识：以第一图蓝凤凰本人为唯一身份，保留相对修长的面中与清楚颧骨、向下收束但有支撑的下颌，额角至颧部的棱角关系。眉形细长而有力量、眉峰与外眉走向清楚，双眼偏长且睑缘分明，眼鼻距离与挺直较窄鼻梁保持本人辨识；鼻尖小而完整、鼻翼自然，嘴形偏小、唇峰和较饱满下唇清楚，下巴收束而不是网红锥子。把参考稍侧的五官自然重建到正面，保留暖肤色和成年女性骨量、爽朗神态，闭唇轻微坦率笑，不刻意柔弱化。主稿略宽椭圆脸是旧艺术补足，本次以已核本人game较修长的骨相为准，不复制王语嫣的细弱脸或眼妆。
-
-
-    服制与发式：明代游戏时层下的苗疆女子服饰方向，靛蓝短上衣配深色齐踝裙，衣料不透明、胸腰完整遮蔽，领口以本版原创右衽裁制收拢；窄幅彩色织带束腰，双耳小金环，黑发盘束以简约蓝布头巾固定；双脚赤足自然落地。布料完整不透明、身体与衣料体积连续；保留清楚缝边及少量宽缓受力褶皱，绝不碎墨破衣。汉式或本版指定交领右衽，穿着者左襟覆右襟，不水平镜像。
-
-
-    正面姿态与器物：正面站稳、头颈端正、双眼水平、肩线自然，双脚赤足平稳落地。靛蓝裙摆止于踝上附近，完整双足自然露出但不前伸展示、镜头平视全身；衣领与胸腰完全遮蔽。本人左手在腹前托一只小封口陶药瓶的瓶底，右手指腹轻扶闭合瓶塞边缘，不拔塞、不灌药；手、瓶身、瓶塞清楚分离，陶瓶不贴胸且无文字标签。腰侧仅一只普通布药囊连腰带；彩色窄织带和双耳小金环可辨，无蛇蝎、水蛭或血液。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。按最新FAST指示先生成1张候选，每张仅一人；基本清晰、主要正面、人物可辨即保存，只有严重身份错误、重大结构问题或不可读才补图，细手指、微装备或轻微角度偏差记录而不反复追加。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实边界：本书原著淡化朝代，本作约1523–1525明中叶为项目原创定年，不声称小说明示年月。人物与生命状态依当前本地角色稿、名录、故事、章节；原稿待考继续保留，本轮没有新联网考据，不编造逐字引文页码。本人低分辨率game只提供面部关系，细部皮肤、服色选款、器型装具和静态持物为美术补足。五仙sect_wuxian不是碧血sect_wudu，不能借何铁手铁钩或造型。game脸取代旧稿原创宽脸，但年龄、女性身份、暖黄肤色、金耳环彩腰带和常态赤足保留；苗疆衣裙属于项目原创方向，非现代民族支系精确复原。
-
-
-    参考边界：第一且唯一面部身份参考：1996经典原版《金庸群侠传》蓝凤凰本人原始PNG；本轮逐人实际view并同有名总表严格配对。只取本人面骨和五官关系，重建为正面适龄写实人物；不复制原像素、衣色、发式阶段、侧转仰头或表情。以第一图蓝凤凰本人为唯一身份，保留相对修长的面中与清楚颧骨、向下收束但有支撑的下颌，额角至颧部的棱角关系。眉形细长而有力量、眉峰与外眉走向清楚，双眼偏长且睑缘分明，眼鼻距离与挺直较窄鼻梁保持本人辨识；鼻尖小而完整、鼻翼自然，嘴形偏小、唇峰和较饱满下唇清楚，下巴收束而不是网红锥子。把参考稍侧的五官自然重建到正面，保留暖肤色和成年女性骨量、爽朗神态，闭唇轻微坦率笑，不刻意柔弱化。主稿略宽椭圆脸是旧艺术补足，本次以已核本人game较修长的骨相为准，不复制王语嫣的细弱脸或眼妆。 第二图片只作对应性别项目的低饱和色卡、柔光及精细手绘质感，已本轮实际view；不取这张别人的脸、年龄、体型、发型、服饰、道具、姿势与头倾。原candidate/approved状态保持，不转为新图审批。 第三图片已本轮实际view，只取暖浅灰纸底、极浅水墨远山和留白，不取女性脸、身体、白青衣裙、发型、飘带和头倾，不复制清晰亭阁花枝；背景墨纹不侵入人物皮肤、衣料和器物。
-
-
-    完整排除项：不要文字、伪字、题字、题款、签名、印章、标签、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、塑料饰品、数码物件；不要其他人物的演员脸或游戏脸、剧照构图、游戏像素画风或拼贴；只使用第一张已核验本人游戏图的面部身份关系；不要动漫大眼、低幼脸、统一网红锥子脸、偶像磨皮、丰唇滤镜、油亮塑料皮肤、摄影写真或三维模型渲染感；不要日韩动漫风、和服、日式前结宽腰带、欧式奇幻铠甲、赛博或蒸汽朋克；不要朝代与族群混搭、清式剃额辫发、旗装、马蹄袖、大拉翅、唐式齐胸襦裙、无身份依据的官服补子与飞鱼服；汉式交领不要左衽，不要水平镜像；不要日本刀、日式圆盘刀镡、菱形缠柄、无依据的名器、发光兵器、龙形能量、仙法法阵或光翼；不要多肢、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、直剑弯折断裂、容不下剑刃的短鞘；不要大面积撕裂破衣、血腥特写、胸腰暴露、透明服装、色情化、丑化或畸形健美肌肉；不要复杂场景、额外人物、分格、多视图、头像特写框、广角畸变、强逆光、强烈泛光或遮挡结构的雾气；不要裁断头顶、手指、双足、兵器端点与衣带。本人物另禁高跟鞋、靴子遮掉赤足、脚部特写、性感化赤足姿势、裸腰、比基尼、羽毛头冠、夸张银角冠、异族服饰大拼贴、何铁手的铁钩、活体试药、水蛭血污与成群毒物。 不要 head tilt、Dutch angle、歪头、倾斜眼线、侧向目光、侧脸、低头藏眼或抬下巴；不要借第二张色卡人物或第三张背景图人物的五官、年龄、性别、体型、衣饰和姿势。不要人物飞白缺块、墨斑侵蚀、纸纹透肤透衣、衣料撕裂碎带、密集噪点或过密细皱；水墨仅在背景。保留工具原始溯源标识与元数据。
-
-
-    FINAL POSE CHECK: FRONT-FACING, head and neck naturally UPRIGHT, eyes HORIZONTALLY LEVEL, chin neutral, gaze forward, camera level. NO HEAD TILT. Preserve this person’s own face, age, body type and narrative stage; do not inherit any reference pose.'
-  negative: 不要文字、伪字、题字、题款、签名、印章、标签、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、塑料饰品、数码物件；不要其他人物的演员脸或游戏脸、剧照构图、游戏像素画风或拼贴；只使用第一张已核验本人游戏图的面部身份关系；不要动漫大眼、低幼脸、统一网红锥子脸、偶像磨皮、丰唇滤镜、油亮塑料皮肤、摄影写真或三维模型渲染感；不要日韩动漫风、和服、日式前结宽腰带、欧式奇幻铠甲、赛博或蒸汽朋克；不要朝代与族群混搭、清式剃额辫发、旗装、马蹄袖、大拉翅、唐式齐胸襦裙、无身份依据的官服补子与飞鱼服；汉式交领不要左衽，不要水平镜像；不要日本刀、日式圆盘刀镡、菱形缠柄、无依据的名器、发光兵器、龙形能量、仙法法阵或光翼；不要多肢、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、直剑弯折断裂、容不下剑刃的短鞘；不要大面积撕裂破衣、血腥特写、胸腰暴露、透明服装、色情化、丑化或畸形健美肌肉；不要复杂场景、额外人物、分格、多视图、头像特写框、广角畸变、强逆光、强烈泛光或遮挡结构的雾气；不要裁断头顶、手指、双足、兵器端点与衣带。本人物另禁高跟鞋、靴子遮掉赤足、脚部特写、性感化赤足姿势、裸腰、比基尼、羽毛头冠、夸张银角冠、异族服饰大拼贴、何铁手的铁钩、活体试药、水蛭血污与成群毒物。 不要 head tilt、Dutch angle、歪头、倾斜眼线、侧向目光、侧脸、低头藏眼或抬下巴；不要借第二张色卡人物或第三张背景图人物的五官、年龄、性别、体型、衣饰和姿势。不要人物飞白缺块、墨斑侵蚀、纸纹透肤透衣、衣料撕裂碎带、密集噪点或过密细皱；水墨仅在背景。保留工具原始溯源标识与元数据。
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_26-1.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_26-1.png
-    use: 第一且唯一面部身份参考：1996经典原版《金庸群侠传》蓝凤凰本人原始PNG；本轮逐人实际view并同有名总表严格配对。只取本人面骨和五官关系，重建为正面适龄写实人物；不复制原像素、衣色、发式阶段、侧转仰头或表情。以第一图蓝凤凰本人为唯一身份，保留相对修长的面中与清楚颧骨、向下收束但有支撑的下颌，额角至颧部的棱角关系。眉形细长而有力量、眉峰与外眉走向清楚，双眼偏长且睑缘分明，眼鼻距离与挺直较窄鼻梁保持本人辨识；鼻尖小而完整、鼻翼自然，嘴形偏小、唇峰和较饱满下唇清楚，下巴收束而不是网红锥子。把参考稍侧的五官自然重建到正面，保留暖肤色和成年女性骨量、爽朗神态，闭唇轻微坦率笑，不刻意柔弱化。主稿略宽椭圆脸是旧艺术补足，本次以已核本人game较修长的骨相为准，不复制王语嫣的细弱脸或眼妆。
-    sha256: 22bbdc42927465b03b8121461698d07b2dbb7e04343dd13cce75f7d8382c99ea
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/22bbdc42927465b03b8121461698d07b2dbb7e04343dd13cce75f7d8382c99ea.png
-    status_at_input: null
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 第二图片只作对应性别项目的低饱和色卡、柔光及精细手绘质感，已本轮实际view；不取这张别人的脸、年龄、体型、发型、服饰、道具、姿势与头倾。原candidate/approved状态保持，不转为新图审批。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第三图片已本轮实际view，只取暖浅灰纸底、极浅水墨远山和留白，不取女性脸、身体、白青衣裙、发型、飘带和头倾，不复制清晰亭阁花枝；背景墨纹不侵入人物皮肤、衣料和器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T21:09:28.433673+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-3edf6c9c-f898-435a-85d3-02c502dd896d.png
+  - path: assets/default/character/female/ch05/por_npc_lanfenghuang__ch05_youth_base.png
+    sha256: 2398517ce5919d42b52020c3ccfd21ff707bd1e9b384d3a84840555bd5bb0bda
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_lanfenghuang__ch05_youth_base.2398517c.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-04T02:11:48-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_02_r1.png
   size: 1024x1536
   mode: RGB
-  sha256: 2398517ce5919d42b52020c3ccfd21ff707bd1e9b384d3a84840555bd5bb0bda
+  sha256: 5f931ff35751f4105f24f1004c6f5c82606aaa25daa3d9b282c0e6d36af3c275
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_lanfenghuang__ch05_youth_base/prompt-8290a7a03b02aa7e548f821603e76daf26f2d8bf182bf2ba5aadc258965b84d7.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_lanfenghuang__ch05_youth_base/manifest-97f908e20122730fa963850e59d141e15d48a7a08d573c2dd1812e5f3808de0a.yaml
-    png: null
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_lanfenghuang__ch05_youth_base.2398517c.png
+    sha256: 2398517ce5919d42b52020c3ccfd21ff707bd1e9b384d3a84840555bd5bb0bda
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_lanfenghuang__ch05_youth_base.2398517c.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_lanfenghuang__ch05_youth_base.requests.json
   notes: '实际查看：蓝凤凰成年青年女性，本人game26修长眉眼与清楚面骨得到写实重建，正面端正，靛蓝短衣深裙完整，彩织腰带、金耳环、药瓶药囊、赤足常态站立均可辨；无明显多肢重大结构问题。偏差：面容较理想化、体型偏纤细，布巾发髻偏高，织带与袍缘花纹较多，陶瓶偏大；非现代民族服饰精确复原。先1张宽松自查candidate，非approved或旧严格通过；原生1024×1536 RGB不透明PNG原始字节保存。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-82 原著核对返修：蓝凤凰蓝底白花衫裤与绣花围裙、大金耳环'
+  source_size: 1024x1536
 - id: por_npc_dingxian__ch05_elder_base
   file: por_npc_dingxian__ch05_elder_base.png
   category: character/female
