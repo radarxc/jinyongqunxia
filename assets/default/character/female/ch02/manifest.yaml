@@ -286,38 +286,37 @@
   category: character/female
   style: default
   subject: 黄蓉（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的黄蓉立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中黄蓉的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的黄蓉十九岁上下（作者选定的新脸）：圆润的鹅蛋脸、下巴小巧；一双又大又亮的杏眼、黑眼珠大、双眼皮清楚、眼尾微扬，眼神灵动狡黠；眉毛细长柔和；鼻子小巧挺直；唇形饱满、嘴角上扬的甜笑；肤色白皙。成年女子的五官比例，不是娃娃脸。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+    【只改】只在黄蓉头顶戴一顶歪戴黑黝黝的破皮帽，盖住发髻。额头、脸颊和双手加明显但自然的黑煤污，保持原脸五官和表情、骨相不变，不换脸。灰破男装、竹杖、身形与背景完全原样。
 
-    【本张另外要求】（作者 AR-53 总审返修）保留脸上的灰土和男装；脸型改回基线的圆润鹅蛋脸、下巴不尖、两颊不瘦、杏眼大而亮。
+    【原著依据】《射雕英雄传》第七回 比武招亲：“头上歪戴着一顶黑黝黝的破皮帽，脸上手上全是黑煤”；https://www.xuges.com/wuxia/jinyong/sdyxz/049.htm
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/16_por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.png
+    sha256: fb4af38249f094f9d2238e2261219b00f91c23118641686911cd15391896c67f
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
     sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
     use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.png
-    sha256: 73b6d248e712a6b20fa7459985fb89328cd11d304d7f23099c0b83a780621d80
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.73b6d248.png
-  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T17:20:51-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.e3.png
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:34:17.208238-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_16_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: fb4af38249f094f9d2238e2261219b00f91c23118641686911cd15391896c67f
+  sha256: 3855815174bf16bad439497b9e6ab51f278f4fcea5d76ce9d0ec079afcf81012
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：脸改回圆润、下巴不尖）
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：脸改回圆润、下巴不尖）；AR-82 原著核对返修：黄蓉小叫化补黑破皮帽及煤污
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.73b6d248.png
-    sha256: 73b6d248e712a6b20fa7459985fb89328cd11d304d7f23099c0b83a780621d80
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.73b6d248.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/16_por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.png
+    sha256: fb4af38249f094f9d2238e2261219b00f91c23118641686911cd15391896c67f
   effort: ultra
 - id: por_npc_zhujue__ch02_f_base
   file: por_npc_zhujue__ch02_f_base.png
