@@ -26,9 +26,9 @@
   source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch10_desert_chase.p1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: fb30d0689725b62211f82aca57f36165f337adc6e101fd024476411d0fb2a0a0
+  sha256: 5bb7a478a3652d58247e336f38b1337eb56dd52ee8159a5d67b496b193d74aff
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「白马风沙」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_liwenxiu__ch10_youth_astuo_base（AR-53 / AR-56 总审返修：去掉李文秀右颊褐斑；局部合成——只把头部方块交 codex 去斑，对齐后只在斑点一圈羽化贴回（改动约 900 像素），其余像素不变）
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「白马风沙」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_liwenxiu__ch10_youth_astuo_base（AR-53 / AR-56 总审返修：去掉李文秀右颊褐斑；局部合成——只把头部方块交 codex 去斑，对齐后只在斑点一圈羽化贴回（改动约 900 像素），其余像素不变）；题字風→风；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch10_desert_chase.retry3.r1
   quality_retries: 0
@@ -38,6 +38,7 @@
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_desert_chase.ca22d607.png
     sha256: ca22d6078d0a9b35d682797ff4f319801de8c67216a2ebb936133b88ebec5a51
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_desert_chase.ca22d607.entry.yaml
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch10_desert_chase_fixed.png", "before_sha256": "fb30d0689725b62211f82aca57f36165f337adc6e101fd024476411d0fb2a0a0", "allowed_box": [[1410, 178, 1520, 245]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch10_desert_chase_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T01:07:38-07:00"}
 - id: cg_ch10_ghost_truth
   file: cg_ch10_ghost_truth.png
   category: scene
