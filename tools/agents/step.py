@@ -156,6 +156,27 @@ def pool_of(tid: str) -> str:
     return "assets" if tid.upper().startswith(ASSET_PREFIXES) else "docs"
 
 
+# 2026-10-03 开发监督（协调者 AR-85：素材线照常跑，但不占 M1 需要的池位）：并发计数用的「占位池」可按任务改归，
+# 规则在 tasks.json defaults.slot_pool_overrides（[[正则, 池名], ...]，自上而下取第一条命中），只影响排队与占位，
+# 不影响检出方式（needs_build / sparse_checkout_for 仍按 pool_of）。改规则对新起的 start 立即生效。
+_SLOT_OVR: tuple = (None, [])
+
+
+def slot_pool_of(tid: str) -> str:
+    global _SLOT_OVR
+    try:
+        mtime = R.TASKS_FILE.stat().st_mtime
+        if _SLOT_OVR[0] != mtime:
+            rules = json.loads(R.TASKS_FILE.read_text(encoding="utf-8")).get("defaults", {}).get("slot_pool_overrides") or []
+            _SLOT_OVR = (mtime, [(re.compile(str(r[0])), str(r[1])) for r in rules if isinstance(r, (list, tuple)) and len(r) == 2])
+    except (OSError, ValueError, TypeError, re.error):
+        _SLOT_OVR = (None, [])
+    for rx, pool in _SLOT_OVR[1]:
+        if rx.search(tid):
+            return pool
+    return pool_of(tid)
+
+
 # 2026-10-01：任务工作区曾是全量检出（素材图约 2 GB / 个），同时开 20 个就把磁盘写满。文档 / 代码 / 提示词池的任务
 # 不需要图片目录，改为稀疏检出（只排除下面这些图片目录）；素材池任务仍全量。任务可用 "full_checkout": true 强制全量。
 # 2026-10-02（ENG 监督）：ENG-11 起构建期 publishVfxRuntime 逐个 access() vfx/ 与 baseline/vfx/ 的运行时文件，缺了就构建失败，
@@ -233,7 +254,7 @@ def running_in_pool(root: Path, pool: str, exclude: str | None = None) -> list:
     if not base.is_dir():
         return []
     return sorted(d.name for d in base.iterdir()
-                  if d.is_dir() and d.name != exclude and pool_of(d.name) == pool and is_running(root, d.name))
+                  if d.is_dir() and d.name != exclude and slot_pool_of(d.name) == pool and is_running(root, d.name))
 
 
 # ---------------------------------------------------------------- 池位优先级（协调者 2026-10-03 18:20）
@@ -295,7 +316,7 @@ def live_waiters(root: Path, pool: str) -> dict:
             pid = int(info.get("pid", 0))
         except (OSError, ValueError, TypeError):
             continue
-        if pool_of(tid) != pool:
+        if slot_pool_of(tid) != pool:
             continue
         if pid <= 0 or not pid_alive(pid):
             f.unlink(missing_ok=True)
@@ -504,7 +525,7 @@ def cmd_start(a) -> int:
     # 池位优先级：探测模型之前就登记「在等」，同一批起的任务都先登记好再比先后，免得探测快的低优先任务先抢到空位
     # （进程异常退出时登记随 pid 失效，别的 start 判定时会顺手清掉）
     since = time.time()
-    register_waiting(root, t.id, pool_of(t.id), since)
+    register_waiting(root, t.id, slot_pool_of(t.id), since)
     model = a.model or os.environ.get("TRAEX_MODEL") or g.defaults.get("model") or DEFAULT_MODEL
     effort = a.effort if a.effort is not None else (os.environ.get("TRAEX_EFFORT") or g.defaults.get("effort") or DEFAULT_EFFORT)
     binary = find_bin(a.bin, g.defaults)
@@ -530,7 +551,7 @@ def cmd_start(a) -> int:
             # 高负载时探测常超时但执行器本身能跑：不再报错停住，改用第一个回退模型直接启动（作者：没有 Astra 就用 Sol）
             model = next((m for m in FALLBACK_MODELS if m != model), model)
             print(f"⚠ 所有候选模型探测都超时（机器负载高），不再探测，直接用 {model} 启动")
-    pool, cap = pool_of(t.id), pool_cap(g, pool_of(t.id))
+    pool, cap = slot_pool_of(t.id), pool_cap(g, slot_pool_of(t.id))
     lockf = root / ".agents" / "slots.lock"
     deadline = time.time() + a.slot_wait_min * 60
     announced = False
@@ -759,7 +780,7 @@ def cmd_slot(a) -> int:
     """等到本任务所在池有空位（不占位；随后仍需 start）。"""
     root = R.repo_root()
     g = R.Graph()
-    pool = pool_of(a.id)
+    pool = slot_pool_of(a.id)
     cap = pool_cap(g, pool)
     deadline = time.time() + a.max_min * 60
     while True:
@@ -795,7 +816,7 @@ def cmd_pool(a) -> int:
         print(f"  {i}. {tid}  {where}，已等 {waited:.0f} 分钟")
     ps = subprocess.run(["ps", "-axo", "pid=,command="], capture_output=True, text=True).stdout
     old = sorted({m.group(1) for m in re.finditer(r"step\.py start (\S+)", ps)
-                  if pool_of(m.group(1)) == pool and m.group(1) not in waiting and m.group(1) not in busy})
+                  if slot_pool_of(m.group(1)) == pool and m.group(1) not in waiting and m.group(1) not in busy})
     if old:
         print(f"  未登记的 start（旧代码或还在探测模型，不参与排序）：{'、'.join(old)}")
     free = cap - len(busy)

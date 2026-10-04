@@ -90,3 +90,38 @@ class LiveWaitersTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SlotPoolOverrideTest(unittest.TestCase):
+    """defaults.slot_pool_overrides 只改占位池，不改检出用的 pool_of（AR-85：素材线不占 M1 池位）。"""
+
+    def setUp(self) -> None:
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.orig = S.R.TASKS_FILE
+        self.addCleanup(setattr, S.R, "TASKS_FILE", self.orig)
+        S.R.TASKS_FILE = Path(self.tmp.name) / "tasks.json"
+        S._SLOT_OVR = (None, [])
+
+    def write(self, rules) -> None:
+        S.R.TASKS_FILE.write_text(json.dumps({"defaults": {"slot_pool_overrides": rules}}), encoding="utf-8")
+        os.utime(S.R.TASKS_FILE, (os.path.getmtime(S.R.TASKS_FILE) + 1,) * 2)
+
+    def test_override_moves_only_slot_pool(self) -> None:
+        self.write([["^TOOL-(map|rig|ingest|assets)-", "assets"]])
+        self.assertEqual(S.slot_pool_of("TOOL-map-terrain"), "assets")
+        self.assertEqual(S.pool_of("TOOL-map-terrain"), "code")
+        self.assertEqual(S.slot_pool_of("TOOL-ops-dispatch"), "code")
+        self.assertEqual(S.slot_pool_of("ENG-19e-m1-order"), "code")
+
+    def test_no_rules_or_bad_file_falls_back(self) -> None:
+        self.write([])
+        self.assertEqual(S.slot_pool_of("TOOL-map-terrain"), "code")
+        S.R.TASKS_FILE.write_text("{not json", encoding="utf-8")
+        os.utime(S.R.TASKS_FILE, (os.path.getmtime(S.R.TASKS_FILE) + 2,) * 2)
+        self.assertEqual(S.slot_pool_of("TOOL-map-terrain"), "code")
+
+    def test_first_matching_rule_wins(self) -> None:
+        self.write([["^TOOL-map-", "assets"], ["^TOOL-", "docs"]])
+        self.assertEqual(S.slot_pool_of("TOOL-map-compose"), "assets")
+        self.assertEqual(S.slot_pool_of("TOOL-city-generic"), "docs")
