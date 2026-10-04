@@ -1875,3 +1875,17 @@
       - 1d85ff7a：supervise 自动合入撞上未提交窗口时，改为每 2 秒重试；遇到 READY「auto-merge 未成功」，用 `_handoff/merge_when_clean.py` 补合入。
 
 - **10-03 18:05–18:12 协调者**：ENG-event-executor 到 18:05 未退出，协调者按约定停执行器（1.exit=143）；开发监督挪基点到 f24cbc6b、机械改 ch10 op 名与 Ink 参数（写集补 962f7db1），--from validate 因退出码 143 未过（step.py finish 把非 0 退出码记为问题，被停过的任务都要再走一轮短返修），已排到 18c 前（18c 守候 47226）。ENG-16c 改 --from validate 后审核 PASS。supervise.py 合入重试改为每 2 秒探工作树（1d85ff7a）；VFX-sk_tiangang 用 merge_when_clean 合入。面部总审主角全部审完：一致 207、轻微 43、明显 22（集中在 ch05、ch07–ch14，分给 12 号与 10 号）；下一步审配角。Gemini 出图员 17:33 在 Wikidata 请求 UA 里误带作者邮箱前缀 3 次（只读搜索），已改通用 UA 并如实告知作者；各联网代理已收到「不带作者个人信息」规矩。
+  - **10-03 18:10–18:16 开发监督**：
+    - **ENG-event-executor** 用 `--from validate` 没过：finish 看到 `1.exit = 143`（协调者按约定停的）就直接判失败，校验命令没跑。
+      - 被停过执行器的任务都会这样，以后只能走一轮返修。
+      - 驱动自动起了第 2 轮续作（通用模板：核对已有产物、重跑检查、更新报告），协调者同意让它跑，不改 .exit。
+    - **ENG-16c 合入**（18:12，HEAD 5adbe42c）。prod_check 全绿：
+      - 149 个测试文件 / 1074 个测试；
+      - entry 38.80；render 168.86；
+      - 首次会话闭包 **98.94 / 110**：session static 65.37 → 68.21，core 战斗会话进了 Worker 闭包；
+      - 战斗子系统块 33.77 → 71.86（只报告）。
+    - eng3 随即放出 ENG-26、ENG-16e，与 M1 抢池位。协调者 18:15 重排代码池放行链：
+      - 顺序：event-executor 返修 → 26 → 18c → 16e → base-diet → std-parts → cropframe；
+      - 守候进程：56785、56800、56807、56809、83195、96192。
+    - 协调者想给 step.py 加池位优先级文件（`pool_priority.txt` 加等待登记），开发监督评估：约 60–80 行加测试，风险可控，已回报。
+
