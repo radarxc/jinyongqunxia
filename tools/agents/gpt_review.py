@@ -75,9 +75,12 @@ def main():
     try:  # 2026-10-03 协调者（作者 AR-65）：审核也改走 Codex gpt-6.1-sol，读 executor_override.json 的 review_* 项
         ov = json.loads((ROOT / ".agents/coord/executor_override.json").read_text(encoding="utf-8"))
         if isinstance(ov, dict) and ov.get("enabled", True):
-            a.bin = ov.get("bin") or a.bin
-            a.model = ov.get("review_model") or ov.get("model") or a.model
-            a.effort = ov.get("review_effort") or ov.get("effort") or a.effort
+            rv = ov.get("review") if isinstance(ov.get("review"), dict) else {  # AR-66：审核一律 Codex gpt-6.1-sol
+                "bin": ov.get("bin"), "model": ov.get("review_model") or ov.get("model"),
+                "effort": ov.get("review_effort") or ov.get("effort")}
+            a.bin = rv.get("bin") or a.bin
+            a.model = rv.get("model") or a.model
+            a.effort = rv.get("effort") or a.effort
     except Exception:
         pass
     if "codex" in Path(str(a.bin)).name.lower():  # Codex 审核用独立 CODEX_HOME，线程历史不往 ~/.codex 堆；auth / config 链接过去

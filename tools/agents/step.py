@@ -375,15 +375,25 @@ WRAPPER = '"$@" < "$TS_PROMPT" >> "$TS_LOG" 2>&1; rc=$?; echo "$rc" > "$TS_EXIT"
 FALLBACK_MODELS: list = ["GPT-5.6-Sol"]  # 主模型不应答时回退。作者只许 Astra → Sol（10-02 开发监督去掉 GPT-5.5：高负载下 Sol 探测超时曾落到 5.5）
 
 
-def executor_override(root) -> dict:
-    """作者 AR-65（10-03 20:13）「除了 gemini 画图和 tripo 驱动，其他任务换成调用 GPT 6.1 Sol」：
-    .agents/coord/executor_override.json 存在且 enabled 不为 false 时，覆盖执行器 bin / model / effort / fallback。
-    每次 start（与 gpt_review）现读，在跑的驱动不用重起；文件不存在或读坏就照旧。"""
+def executor_override(root, tid: str = "") -> dict:
+    """作者 AR-65（10-03 20:13）「除了 gemini 画图和 tripo 驱动，其他任务换成调用 GPT 6.1 Sol」、
+    AR-66（20:33）「代码、城镇布局、特效的执行可以交给traex 的 gpt 6 或者gpt 5.6 max；内容，特效审核交给codex gpt-6.1-sol」：
+    .agents/coord/executor_override.json 存在且 enabled 不为 false 时，按 rules 里第一条 match（正则，对任务 ID）
+    覆盖执行器 bin / model / effort / fallback；没有 rules 就用顶层字段。每次 start 现读，在跑的驱动不用重起；
+    文件不存在、读坏或没有匹配的规则就照旧。"""
     try:
         d = json.loads((Path(root) / ".agents/coord/executor_override.json").read_text(encoding="utf-8"))
-        return d if isinstance(d, dict) and d.get("enabled", True) else {}
     except Exception:
         return {}
+    if not isinstance(d, dict) or not d.get("enabled", True):
+        return {}
+    rules = d.get("rules")
+    if not rules:
+        return d
+    for r in rules:
+        if isinstance(r, dict) and re.search(r.get("match", "^$"), tid or ""):
+            return r
+    return {}
 
 
 def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bool:
@@ -499,7 +509,7 @@ def cmd_start(a) -> int:
     effort = a.effort if a.effort is not None else (os.environ.get("TRAEX_EFFORT") or g.defaults.get("effort") or DEFAULT_EFFORT)
     binary = find_bin(a.bin, g.defaults)
     fallback = FALLBACK_MODELS
-    ov = executor_override(root)  # 作者 AR-65：统一改走 Codex gpt-6.1-sol
+    ov = executor_override(root, t.id)  # 作者 AR-65 / AR-66：按任务类型分流执行器
     if ov:
         binary, model, effort = ov.get("bin") or binary, ov.get("model") or model, ov.get("effort") or effort
         fallback = list(ov.get("fallback", []))
