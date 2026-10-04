@@ -23,12 +23,14 @@ GPT CLI（Codex，gpt-6-astra，推理强度 ultra / xhigh）。本脚本不做�
       HOLD-REVIEWS（审核轮数用尽仍 FAIL）、HOLD-RUNS（执行次数用尽）、
       HOLD-VALIDATE（同一条调度器校验失败连续出现两次：多半是校验命令或写集之外的文件有问题，
       执行器修不了，等协调者看 .agents/logs/<ID>/last_failure.md）、ERROR（流程性错误）。
-退出码：0 = READY / MERGED，1 = HOLD-*，2 = ERROR。
+退出码：0 = READY / MERGED，1 = HOLD-*，2 = ERROR，3 = 同一任务已有驱动。
 """
 from __future__ import annotations
 
 import argparse
 import datetime as _dt
+import errno
+import fcntl
 import json
 import os
 import re
@@ -110,6 +112,28 @@ def log(tid: str, msg: str) -> None:
     with open(cdir(tid) / "supervise.log", "a", encoding="utf-8") as f:
         f.write(line + "\n")
     print(line, flush=True)
+
+
+def acquire_driver_lock(tid: str):
+    """抢占任务驱动锁；返回的文件对象必须在整个 worker 生命周期内保持打开。"""
+    lock = open(cdir(tid) / "supervise.lock", "a+", encoding="utf-8")
+    try:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError as exc:
+        if exc.errno not in (errno.EACCES, errno.EAGAIN):
+            lock.close()
+            raise
+        lock.seek(0)
+        owner = lock.read()
+        match = re.search(r"(?m)^pid=(\d+)$", owner)
+        lock.close()
+        log(tid, f"已有驱动 pid={match.group(1) if match else '?'}，本次退出")
+        return None
+    lock.seek(0)
+    lock.truncate()
+    lock.write(f"pid={os.getpid()}\nstarted={now()}\n")
+    lock.flush()
+    return lock
 
 
 def set_status(tid: str, state: str, **kw) -> None:
@@ -315,7 +339,7 @@ def validate_with_rebase(tid: str) -> tuple:
     return rc, out
 
 
-def worker(a) -> int:
+def _worker(a) -> int:
     tid = a.id
     runs, reviews = 0, 0
     note = None
@@ -438,6 +462,19 @@ def worker(a) -> int:
     return 0
 
 
+def worker(a) -> int:
+    lock = acquire_driver_lock(a.id)
+    if lock is None:
+        return 3
+    try:
+        return _worker(a)
+    except Exception as e:  # noqa: BLE001  未预期错误也须在持锁期间落状态，避免与新驱动交错
+        set_status(a.id, "ERROR", detail=f"驱动脚本异常：{type(e).__name__}: {e}")
+        raise
+    finally:
+        lock.close()
+
+
 def attach(tid: str) -> int:
     """轮询状态文件直到终态或驱动进程消失。"""
     while True:
@@ -492,23 +529,18 @@ def main() -> int:
         return 0
     if a.attach:
         return attach(a.id)
-    st = get_status(a.id)
-    if not a.worker and st.get("state") == "RUNNING" and st.get("pid") and proc_alive(int(st["pid"])):
-        print(f"{a.id} 已有驱动进程在跑（pid {st['pid']}），改为接入等待")
-        return attach(a.id)
     if a.detach and not a.worker:
         argv = [PY, str(Path(__file__).resolve())] + [x for x in sys.argv[1:] if x != "--detach"] + ["--worker"]
-        out = open(cdir(a.id) / "supervise.out", "a", encoding="utf-8")
-        p = subprocess.Popen(argv, cwd=str(ROOT), stdin=subprocess.DEVNULL, stdout=out, stderr=subprocess.STDOUT,
-                             start_new_session=True)
-        set_status(a.id, "RUNNING", pid=p.pid, detail="detached worker started")
-        time.sleep(2)
-        return attach(a.id)
-    try:
-        return worker(a)
-    except Exception as e:  # noqa: BLE001  任何未预期错误都落到状态文件，便于协调者接手
-        set_status(a.id, "ERROR", detail=f"驱动脚本异常：{type(e).__name__}: {e}")
-        raise
+        with open(cdir(a.id) / "supervise.out", "a", encoding="utf-8") as out:
+            p = subprocess.Popen(argv, cwd=str(ROOT), stdin=subprocess.DEVNULL, stdout=out,
+                                 stderr=subprocess.STDOUT, start_new_session=True)
+        # 父进程不写状态、不持锁；等子进程写出自己的 pid 后再 attach，避免读到上轮终态。
+        while p.poll() is None:
+            if get_status(a.id).get("pid") == p.pid:
+                return attach(a.id)
+            time.sleep(0.05)
+        return p.returncode
+    return worker(a)
 
 
 if __name__ == "__main__":
