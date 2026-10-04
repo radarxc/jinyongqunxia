@@ -95,6 +95,13 @@ def source_checks(spec):
                 scan(child)
     scan(spec)
     counts = Counter(row["key"] for row in spec["sources"])
+    # Generic inferred specs keep every executable object's ``basis`` equal to
+    # the author's exact provenance sentence.  Only this reserved source key may
+    # therefore be cited from the CitySpec-level intent notes.
+    if "src_generic_layout" in counts:
+        notes = spec.get("design_intent", {}).get("notes", [])
+        if any(isinstance(note, str) and "src_generic_layout" in note for note in notes):
+            refs.add("src_generic_layout")
     for key, count in sorted(counts.items()):
         if count > 1:
             result.append(issue("TOWN_SOURCE_DUPLICATE", f"来源重复 {key}", "sources"))
@@ -176,7 +183,8 @@ def validate_spec(spec):
         else:
             polygons.append((path + ".geometry.polygon", geometry["polygon"]["points"]))
             vertices = geometry["polygon"]["points"]
-        if walls and any(not any(in_polygon(p, wall["polygon"]["points"]) for wall in walls)
+        enclosing = [wall for wall in walls if wall.get("role") in {"outer", "inner"}]
+        if enclosing and any(not any(in_polygon(p, wall["polygon"]["points"]) for wall in walls)
                          for p in vertices):
             add("TOWN_GEOMETRY_ZONE_OUTSIDE_WALL", "分区区框不得越墙或静默裁剪", path + ".geometry")
         mix = zone["ground_mix"]
@@ -234,9 +242,10 @@ def validate_spec(spec):
     if not spec["book_world"].startswith(spec["chapter_id"] + "_"):
         add("TOWN_ID_REF_CHAPTER", "book_world 须属于 chapter_id", "book_world")
     wall_ids = {wall["id"] for wall in walls}
-    if walls and sum(g["primary"] for g in spec["gates"]) != 1:
+    enclosing = [wall for wall in walls if wall.get("role") in {"outer", "inner"}]
+    if enclosing and sum(g["primary"] for g in spec["gates"]) != 1:
         add("TOWN_GATE_PRIMARY", "有墙城镇必须恰有一个 primary 城门", "gates")
-    if not walls and any(g["primary"] for g in spec["gates"]):
+    if not enclosing and any(g["primary"] for g in spec["gates"]):
         add("TOWN_GATE_PRIMARY", "无墙营地不得声明 primary 城门", "gates")
     for i, gate in enumerate(spec["gates"]):
         wall_ref = gate.get("wall_ref", "outer" if "wall" in spec else None)
@@ -757,14 +766,15 @@ def asset_metadata_issues(asset, label, path, *, isolated=False, footprint=False
 
 
 def validate_assets(spec, layout, strict=False, tile_manifest=None, building_manifest=None, release=False):
-    from assets import AssetLibrary
+    from assets import asset_library
+    from bridge_assembly import CALIBRATED_SHA256
     from edge_assembly import shore_bank_masks
     from render_town import autotile_mask, visible_wall_cells
     from common import gate_cells, polyline_cells, wall_specs
     result = []
     severity = "error" if strict else "warning"
-    tiles = AssetLibrary(tile_manifest or ROOT / "assets/default/baseline/tile/manifest.yaml")
-    buildings = AssetLibrary(building_manifest or ROOT / "assets/default/baseline/building-map/manifest.yaml")
+    tiles = asset_library("tile", spec["era_kit"], tile_manifest)
+    buildings = asset_library("building-map", spec["era_kit"], building_manifest)
     used_types = sorted({b["type"] for b in layout["buildings"]})
     for kind in used_types:
         used = [b for b in layout["buildings"] if b["type"] == kind]
@@ -818,7 +828,14 @@ def validate_assets(spec, layout, strict=False, tile_manifest=None, building_man
         is_ground = mask is None and rotation is None
         checked = set()
         for variant in range(4 if is_ground else 1):
-            asset = tiles.resolve(asset_id, mask=mask, rotation_deg=rotation, variant_index=variant)
+            bridge_part = next((index for index, suffix in enumerate(("bridge_deck", "bridge_rail"))
+                                if asset_id.endswith("_" + suffix)), None)
+            if rotation is not None and bridge_part is not None:
+                expected = CALIBRATED_SHA256.get(rotation, (None, None))[bridge_part]
+                asset = tiles.calibrated_bridge(asset_id, rotation, expected)
+            else:
+                asset = tiles.resolve(asset_id, mask=mask, rotation_deg=rotation,
+                                      variant_index=variant)
             if asset is None:
                 result.append(issue("TOWN_ASSET_MISSING", f"贴片缺失 {asset_id}{detail}", "assets.tiles", severity=severity))
                 continue

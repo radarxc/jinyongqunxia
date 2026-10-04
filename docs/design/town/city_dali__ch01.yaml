@@ -25,6 +25,9 @@ wall:
 gates:
   - {id: south_gate, side: south, at: {x: 56, z: 8}, width_cells: 6, asset_type: tex_town_song_dali_city_gate, rotation_deg: 0, footprint_cells: {w: 10, h: 4}, passage_cells: {w: 6, h: 4}, road_ref: main_north_south, primary: true, basis: "图名：南门（推定）；src_dali_settlement记南北门相对，取南入口；未见1093门名，禁套明代承恩门；x56为缩景原创"}
   - {id: north_gate, side: north, at: {x: 56, z: 61}, width_cells: 5, asset_type: tex_town_song_dali_city_gate, rotation_deg: 180, footprint_cells: {w: 9, h: 4}, passage_cells: {w: 5, h: 4}, road_ref: main_north_south, primary: false, basis: "图名：北门（推定）；src_dali_settlement南北对门与src_dali_archaeology北墙关系合读；寺塔在北门西北方，准确门位与1093延续待考"}
+water_gates:
+  - {id: taoxi_west_water_gate, wall_ref: outer, kind: water_gate, side: west, at: {x: 6, z: 64}, width_cells: 3, asset_type: tex_town_song_dali_city_gate, rotation_deg: 90, footprint_cells: {w: 7, h: 4}, passage_cells: {w: 3, h: 4}, basis: "图名：桃溪西水口（推定）；src_dali_archaeology与src_dali_santta仅支持桃溪、北墙和寺塔的相对关系；水流穿越游戏包络处按连续水面声明，水门锚点与门楼均为原创扩展，不认作1093年实证门址"}
+  - {id: taoxi_east_water_gate, wall_ref: outer, kind: water_gate, side: east, at: {x: 44, z: 64}, width_cells: 3, asset_type: tex_town_song_dali_city_gate, rotation_deg: 270, footprint_cells: {w: 7, h: 4}, passage_cells: {w: 3, h: 4}, basis: "图名：桃溪东水口（推定）；src_dali_archaeology与src_dali_santta仅支持桃溪、北墙和寺塔的相对关系；水流穿越游戏包络折点处按连续水面声明，水门锚点与门楼均为原创扩展，不认作1093年实证门址"}
 streets:
   - id: main_north_south
     class: main_axis

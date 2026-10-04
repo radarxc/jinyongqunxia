@@ -538,6 +538,38 @@ class PipelineTests(unittest.TestCase):
             actual = [ident for ident in report["building_draw_order"] if ident in expected]
             self.assertEqual(actual, expected)
 
+    def test_jpeg_render_flattens_to_plan_background_and_honors_quality(self):
+        with tempfile.TemporaryDirectory() as directory:
+            low = Path(directory) / "town-low.jpg"
+            high = Path(directory) / "town-high.jpeg"
+            missing = Path(directory) / "absent_manifest.yaml"
+            for output, quality in ((low, 25), (high, 95)):
+                report = render_layout(self.layout, output, spec=self.spec, scale=0.125,
+                                       tile_manifest=missing, building_manifest=missing,
+                                       jpeg_quality=quality)
+                self.assertEqual(report["size_px"], [512, 256])
+                with Image.open(output) as image:
+                    self.assertEqual((image.format, image.mode), ("JPEG", "RGB"))
+                    # JPEG is lossy; the corner remains within one value of
+                    # plan_view's #faf8ef paper colour.
+                    self.assertTrue(all(abs(a - b) <= 3 for a, b in
+                                        zip(image.getpixel((0, 0)), (250, 248, 239))))
+            self.assertLess(low.stat().st_size, high.stat().st_size)
+
+    def test_division_ruin_wall_does_not_shrink_site_domain(self):
+        spec = small_spec()
+        del spec["wall"]
+        spec["walls"] = [{"id": "ruin_wall", "role": "division",
+            "polygon": {"points": [{"x": 8, "z": 8}, {"x": 24, "z": 8},
+                                      {"x": 24, "z": 9}, {"x": 8, "z": 9}]},
+            "inside_margin_cells": 0, "basis": "测试残墙（原创扩展）"}]
+        spec["gates"] = []
+        masks = geometry_masks(spec)
+        self.assertEqual(masks["interior"], masks["bounds"])
+        self.assertEqual(masks["margin"], masks["bounds"])
+        self.assertFalse(masks["wall"].isdisjoint({(8, 8), (9, 8)}))
+        self.assertNotIn("TOWN_GATE_PRIMARY", {row["code"] for row in validate_spec(spec)})
+
     def test_cli_hard_failure_does_not_write_layout(self):
         with tempfile.TemporaryDirectory() as directory:
             source = Path(directory) / "spec.yaml"

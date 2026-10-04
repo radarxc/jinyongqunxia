@@ -107,7 +107,9 @@ def assemble_bridges(canvas, spec, library, project, scale):
         rotation = bridges[0]["rotation_deg"]
         deck_id = f"tex_town_{spec['era_kit']}_bridge_deck"
         rail_id = f"tex_town_{spec['era_kit']}_bridge_rail"
-        deck, rail = (library.resolve(key, rotation_deg=rotation) for key in (deck_id, rail_id))
+        expected_sha = CALIBRATED_SHA256.get(rotation, (None, None))
+        deck = library.calibrated_bridge(deck_id, rotation, expected_sha[0])
+        rail = library.calibrated_bridge(rail_id, rotation, expected_sha[1])
         if deck is None or rail is None:
             continue  # AssetLibrary records missing dependencies; never paint flat substitutes.
         expected = {0: ((328, 181), (302, 214)), 90: ((498, 270), (533, 362))}
