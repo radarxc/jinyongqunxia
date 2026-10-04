@@ -69,7 +69,7 @@
   - image/jpeg 574781 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T17:28:00+08:00'
+  created: '2026-10-03T17:28:00-07:00'
   status: candidate
   notes: 绑骨后基础模型（无动画，绑定姿势）。看图验收：正/左/右/背完整，白衣束袖直筒长裙 + 灰腰带 + 红色发饰，及腰长发深褐、无肉色块；自动绑骨一次成功（Hips y0.548、头顶骨端 0.995、双手外展 y0.52、脚 0.082）。说明：「白衣飘飘」的宽袖飘带在 3D 版收成了束袖（为了能绑骨），飘逸感需要靠引擎布料或另做配件补。
 - id: npc_zhujue__ch00_f_charmhigh__anim_idle_walk_run
@@ -149,7 +149,7 @@
   - image/jpeg 574781 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T17:28:00+08:00'
+  created: '2026-10-03T17:28:00-07:00'
   status: candidate
   notes: 一个 GLB 内含三段动画（idle 15.333 s / walk 2.333 s / run 1.25 s），附带网格与骨架；Animation stay in Place 开。
 - id: npc_zhujue__ch00_f_charmhigh__preview
@@ -170,6 +170,6 @@
   size: 369x594
   sha256: 9abe58b7f7956211405292c7988d8e3af65655cf017b5148dde24e40278c0ef6
   size_bytes: 116892
-  created: '2026-10-03T17:28:00+08:00'
+  created: '2026-10-03T17:28:00-07:00'
   status: candidate
   notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘。

@@ -61,7 +61,7 @@
   - image/jpeg 688384 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T14:31:00+08:00'
+  created: '2026-10-03T14:31:00-07:00'
   status: candidate
   notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，束袖直筒裙、双臂离身；骨架叠加与网格吻合（Hips y0.54、头顶 0.996、双手 y0.52 外展、脚 0.067）。已知瑕疵：背面长发贴图偏灰褐浅色（正面黑发），非肉色。 前置失败（均未导出、作废）：原 base 宽袖+飘带版 project 83ecd9b8 生成 1 次+Free Retry、绑骨 3 次全错位；A
     字宽裙版 project 96b40b34 生成+Free Retry、绑骨 1 次骨架上下颠倒。结论：宽袖、外扩长裙会让自动绑骨判错方向，改用协调者让出图员出的窄轮廓参考（a92c5b18）后一次成功。
@@ -82,6 +82,6 @@
   size: 369x594
   sha256: 631bab93e8839fee791caf32cb788eecae6b6f5e06977c056dc187624ff962c9
   size_bytes: 118065
-  created: '2026-10-03T14:31:00+08:00'
+  created: '2026-10-03T14:31:00-07:00'
   status: candidate
   notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
