@@ -3,7 +3,7 @@ id: q_00_main_c_04
 kind: main
 chapterId: ch00_yuenv
 titleKey: quest.q_00_main_c_04.title
-subjectNpcIds: []
+subjectNpcIds: [npc_aqing]
 routeTone: neutral
 startStageId: st_transmission
 flagIds:

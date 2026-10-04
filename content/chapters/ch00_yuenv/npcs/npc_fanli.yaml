@@ -1,5 +1,4 @@
-schemaVersion: npc-draft.v1
-mockRef: ENG-npc-species-roleslot
+schemaVersion: npc.v1
 id: npc_fanli
 identity:
   name: 范蠡

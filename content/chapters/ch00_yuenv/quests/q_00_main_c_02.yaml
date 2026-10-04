@@ -3,7 +3,7 @@ id: q_00_main_c_02
 kind: main
 chapterId: ch00_yuenv
 titleKey: quest.q_00_main_c_02.title
-subjectNpcIds: []
+subjectNpcIds: [npc_aqing, npc_baiyuan]
 routeTone: neutral
 startStageId: st_initial_battle
 flagIds:

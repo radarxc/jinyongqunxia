@@ -3,7 +3,7 @@ id: q_00_main_c_01
 kind: main
 chapterId: ch00_yuenv
 titleKey: quest.q_00_main_c_01.title
-subjectNpcIds: []
+subjectNpcIds: [npc_aqing]
 routeTone: neutral
 startStageId: st_wake
 flagIds: [fl_00_awake, fl_00_aqing_found, fl_00_staff_accepted]

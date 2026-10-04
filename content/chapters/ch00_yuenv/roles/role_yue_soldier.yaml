@@ -1,5 +1,4 @@
-schemaVersion: role-slot-draft.v1
-mockRef: ENG-npc-species-roleslot
+schemaVersion: role-slot.v1
 slotId: role_yue_soldier
 chapter: ch00_yuenv
 templateId: tmpl_normal

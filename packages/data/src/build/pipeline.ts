@@ -22,7 +22,7 @@ interface BuildEntry extends ContentEntry {
 const chapterToken = (chapter: string): string => chapter.slice(0, 4);
 const identity = (entry: ContentEntry): string => {
   const value = entry.value as Record<string, unknown>;
-  return String(value['id'] ?? value['gateId'] ?? value['lootRef'] ??
+  return String(value['id'] ?? value['slotId'] ?? value['gateId'] ?? value['lootRef'] ??
     (entry.kind === 'regionDialogue'
       ? `${String(value['sceneId'])}/${String(value['anchorId'])}`
       : value['key'] ?? value['lineId'] ?? value['cityId']));
@@ -173,6 +173,7 @@ function chapterIds(
     const value = entry.value as Record<string, unknown>;
     for (const candidate of [
       value['chapterId'],
+      value['chapter'],
       value['id'],
       ...(Array.isArray(value['sourceChapters']) ? value['sourceChapters'] : []),
     ])
@@ -255,14 +256,16 @@ function partitions(
       ({ entry }) => (entry.owner === chapter || entry.owner === token) &&
         !entry.kind.startsWith('region'),
     );
+    const chapterRoleSlots = chapterEntries.filter(({ entry }) => entry.kind === 'roleSlot');
+    const chapterBaseEntries = chapterEntries.filter(({ entry }) => entry.kind !== 'roleSlot');
     const chapterInks = inks.filter((ink) => ink.structure.chapter === chapter);
-    const entryRules = makeRules(chapterEntries) as JsonValue[];
+    const entryRules = makeRules(chapterBaseEntries) as JsonValue[];
     const rules: JsonValue[] = [
       ...entryRules,
       ...chapterInks.map((ink) => ink.structure as unknown as JsonValue),
     ];
     const text = {
-      ...(makeText(chapterEntries) as Record<string, JsonValue>),
+      ...(makeText(chapterBaseEntries) as Record<string, JsonValue>),
       ...Object.assign({}, ...chapterInks.map((ink) => ink.text)),
       ...Object.fromEntries(
         chapterInks.map((ink) => [`ink.${ink.storyId}`, JSON.parse(ink.storyJson) as JsonValue]),
@@ -281,6 +284,9 @@ function partitions(
       ),
     );
     leaves.push(buildLeaf(`${token}.rules.base.json`, 'rules', 'chapter', rules));
+    if (chapterRoleSlots.length > 0) leaves.push(
+      buildLeaf(`${token}.rules.roles.json`, 'rules', 'chapter', makeRules(chapterRoleSlots)),
+    );
     leaves.push(buildLeaf(`${token}.text.${locale}.base.json`, 'text', 'chapter', text, locale));
     for (const regionId of regionIds) {
       const regionMaps = maps

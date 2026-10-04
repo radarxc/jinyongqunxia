@@ -6,16 +6,18 @@ import {
   ItemDefSchema, MartialArtDefSchema, MeridianDefSchema, NpcDefSchema, ShopDefSchema,
   MoveDefSchema, QuestDefSchema, RegionDialogueBindingSchema, RegionGateBindingSchema,
   RegionLootBindingSchema, StoryLineSchema, TownRuntimeSchema, WorldMapRegistrationSchema,
+  RoleSlotDefSchema,
   type AcupointDef, type ChapterDef, type CharacterTemplate,
   type EncounterDef,
   type EventDef, type ItemDef, type MartialArtDef, type MeridianDef, type NpcDef,
   type MoveDef, type QuestDef, type ShopDef, type StoryLine, type TownRuntimeDefinition,
+  type RoleSlotDef,
   type RegionDialogueBindingDef, type RegionGateBindingDef, type RegionLootBindingDef,
 } from './schemas';
 
 export type ContentKind = 'npc' | 'characterTemplate' | 'martialArt' | 'move' | 'quest' |
   'meridian' | 'acupoint' | 'item' | 'shop' | 'story' | 'event' | 'bookWorld' | 'town' |
-  'regionGate' | 'regionDialogue' | 'regionLoot';
+  'roleSlot' | 'regionGate' | 'regionDialogue' | 'regionLoot';
 export type RegisteredContentKind = ContentKind | 'encounter';
 export interface ContentFile { readonly path: string; readonly text: string; }
 export interface ContentEntry { readonly path: string; readonly kind: ContentKind; readonly value: unknown; }
@@ -25,12 +27,14 @@ const SCHEMAS: Readonly<Record<RegisteredContentKind, ZodType>> = {
   move: MoveDefSchema, quest: QuestDefSchema, encounter: EncounterDefSchema,
   meridian: MeridianDefSchema, acupoint: AcupointDefSchema, item: ItemDefSchema, shop: ShopDefSchema,
   story: StoryLineSchema, event: EventDefSchema, bookWorld: ChapterDefSchema, town: TownRuntimeSchema,
+  roleSlot: RoleSlotDefSchema,
   regionGate: RegionGateBindingSchema, regionDialogue: RegionDialogueBindingSchema,
   regionLoot: RegionLootBindingSchema,
 };
 const KIND_ORDER: readonly RegisteredContentKind[] = [
-  'npc', 'characterTemplate', 'martialArt', 'move', 'encounter', 'quest', 'meridian', 'acupoint', 'item',
-  'shop', 'story', 'event', 'bookWorld', 'town', 'regionGate', 'regionDialogue', 'regionLoot',
+  'npc', 'characterTemplate', 'roleSlot', 'martialArt', 'move', 'encounter', 'quest', 'meridian',
+  'acupoint', 'item', 'shop', 'story', 'event', 'bookWorld', 'town', 'regionGate',
+  'regionDialogue', 'regionLoot',
 ];
 function schemaFor(kind: RegisteredContentKind, value: unknown): ZodType {
   if (kind === 'event' && typeof value === 'object' && value !== null &&
@@ -67,7 +71,7 @@ export function identifyContentKind(value: unknown, path: string): RegisteredCon
   if (typeof value !== 'object' || value === null || Array.isArray(value)) throw new TypeError(`CONTENT_ROOT:${path}`);
   const version = (value as Record<string, unknown>)['schemaVersion'];
   const kinds: Readonly<Record<string, RegisteredContentKind>> = {
-    'npc.v1': 'npc', 'character-template.v1': 'characterTemplate',
+    'npc.v1': 'npc', 'character-template.v1': 'characterTemplate', 'role-slot.v1': 'roleSlot',
     'martial-art.v1': 'martialArt', 'meridian.v1': 'meridian', 'acupoint.v2': 'acupoint',
     'move.v1': 'move', 'quest.v1': 'quest',
     'encounter.v1': 'encounter',
@@ -106,6 +110,7 @@ export interface ContentValues {
   readonly martialArts: readonly MartialArtDef[]; readonly meridians: readonly MeridianDef[];
   readonly moves: readonly MoveDef[]; readonly quests: readonly QuestDef[];
   readonly encounters: readonly EncounterDef[];
+  readonly roleSlots: readonly RoleSlotDef[];
   readonly acupoints: readonly AcupointDef[]; readonly items: readonly ItemDef[];
   readonly shops: readonly ShopDef[]; readonly stories: readonly StoryLine[];
   readonly events: readonly EventDef[]; readonly bookWorlds: readonly ChapterDef[];
