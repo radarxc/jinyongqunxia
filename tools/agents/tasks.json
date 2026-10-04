@@ -47889,6 +47889,50 @@
    "review": false,
    "web": false,
    "vars": {},
+   "agent_args": [],
+   "validate": {
+    "exists": [
+     "tools/agents/ops_dispatch.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools.agents.test_ops_dispatch",
+      "tools.agents.test_supervise_rebase",
+      "tools.agents.test_step_pool_priority"
+     ],
+     [
+      "{python}",
+      "tools/agents/ops_dispatch.py",
+      "--once",
+      "--dry-run"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-ops-dispatch-dedupe",
+   "title": "工具 · 小修：ops_dispatch 的 HOLD / ERROR / READY / 校验失败事件按「任务 + 状态 + 失败摘要」去重（键不含 HEAD 与 updated 时间戳），状态或摘要变了才再报；单测",
+   "prompt": "TOOL-ops-dispatch-dedupe.md",
+   "deps": [],
+   "writes": [
+    "tools/agents/ops_dispatch.py",
+    "tools/agents/test_ops_dispatch.py",
+    "tools/agents/fixtures/ops/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
    "agent_args": [
     "-c",
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
