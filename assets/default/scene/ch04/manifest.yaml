@@ -161,67 +161,34 @@
   category: scene
   style: default
   subject: 光明顶止战（ch04_yitian）
-  prompt: '（第一块：灭绝师太）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【任务】这是一次局部改脸，不是重新创作。第 1 张是灭绝师太定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里灭绝师太头部一带的放大方图（插图局部）。请以最后一张为底稿，只把灭绝师太改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【画里是谁】光明顶上，左后方戴高帽的峨嵋派掌门（灭绝师太，约五十余岁的出家女尼）。
+    【只改】只在画心张无忌灰外衫及白内衣的肩袖和衣摆添少量清楚旧裂口与破边，保持原衣服颜色、款式褶皱及白衣少年身份，不露大片裸皮。脸、头发、体格、手、腰带和裤鞋，所有其他人、剑、背景和题字朱印全部不动。
 
-    【要改成什么】把她改成基线这张脸：五十余岁、脸上有皱纹与法令纹的女尼，眉眼骨相与基线一致，眉心一点小戒点（基线那样）；头上的帽子改成基线那样的灰褐色布质僧帽（圆顶、包住头发，比现在矮），不要高耸的直筒帽，原来高帽占的地方补成后面的天空与人群。
+    【原著依据】《倚天屠龙记》二十 与子共穴相扶将：“衣衫褴褛的少年”；https://www.xuges.com/wuxia/jinyong/yttlj/146.htm
 
-    【原图保持】神情保持冷峻严厉；保留头部角度、身体与衣服、兵刃与背后的士兵队列。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
-
-    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
-
-
-    （第二块：杨逍）
-
-    【任务】这是一次局部改脸，不是重新创作。第 1 张是杨逍定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里杨逍头部一带的放大方图（插图局部）。请以最后一张为底稿，只把杨逍改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
-
-    【画里是谁】光明顶上，右侧白袍长发的男子（杨逍，明教光明左使，约四十岁）。
-
-    【要改成什么】把他的脸改成基线这张脸：去掉唇上的八字髭和下巴的山羊须（基线没有胡子，下巴干净），脸显年轻些（约四十岁），眉眼骨相、剑眉与基线一致。
-
-    【原图保持】保留发髻与披发、头部角度、冷峻的神情和衣服。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
-
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
-
-    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
-
-
-    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_cg_ch04_guangming_peak.json'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
   references:
-  - path: assets/default/character/female/ch04/por_npc_miejueshitai__ch04_elder_yitian_base.png
-    sha256: 26784e9ed8162013e7530bed04a462803b401c6d07c43772f6e073520f49ef4a
-    use: 对脸基准：灭绝师太的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_miejueshitai__ch04_elder_yitian_base.jpg）
-  - path: assets/default/character/male/ch04/por_npc_yangxiao__ch04_prime_base.png
-    sha256: 1df043517480db1b26f9360ad81e048ef136957eacd1bcb78f6fef713e85c148
-    use: 对脸基准：杨逍的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_yangxiao__ch04_prime_base.jpg）
-  - path: assets/default/scene/ch04/cg_ch04_guangming_peak.png
-    sha256: f5b19b016c21dadbb0d85d89b58bbf17472d80493b7938e7a2b0a78473704a0b
-    use: 待改插图：分别把灭绝师太、杨逍头部方块（各一块）交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch04_guangming_peak.f5b19b01.png
-  - path: assets/default/scene/ch04/cg_ch04_guangming_peak.png
-    sha256: 8e563a9e786a60ff0caac8ae0c348df4b7b16dc688a24401d8f1ab2956765b43
-    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_guangming_peak.png
-  - path: assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png
-    sha256: d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  - path: .agents/coord/_lines/novel-fix-1/before/54_cg_ch04_guangming_peak.png
+    sha256: bfb7594ca0cd91f846ff6ac141d11a36aa8de65f4f65adcd02f67696b5d9efca
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T01:35:04.922369-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_43_57_r1.png
+  created: '2026-10-04T03:33:25.776702-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_54_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: bfb7594ca0cd91f846ff6ac141d11a36aa8de65f4f65adcd02f67696b5d9efca
+  sha256: 329edff8d2efd80703e0a2812cac2cea612bd3ab69c7fc5056172f701f168f92
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「光明止戈」，实际字形「光明止戈」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：灭绝师太、杨逍按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：周芷若五官对齐 por_npc_zhouzhiruo__ch04_youth_zhangmen_base；AR-53 仅头部，AR-75 神态与光向保留；保留光明顶峨眉弟子周芷若的担忧侧视与紧张嘴形，不照搬base冷峻正视。；质检：已打开对照：周芷若同人眉眼鼻唇，对齐恢复base同时保留原关切蹙眉与转头视线，光向与接缝自然；张无忌等其他人、手与题字均原像素保留
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「光明止戈」，实际字形「光明止戈」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：灭绝师太、杨逍按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：周芷若五官对齐 por_npc_zhouzhiruo__ch04_youth_zhangmen_base；AR-53 仅头部，AR-75 神态与光向保留；保留光明顶峨眉弟子周芷若的担忧侧视与紧张嘴形，不照搬base冷峻正视。；质检：已打开对照：周芷若同人眉眼鼻唇，对齐恢复base同时保留原关切蹙眉与转头视线，光向与接缝自然；张无忌等其他人、手与题字均原像素保留；AR-82 原著核对返修：光明正戈插图同步张无忌衣衫褴褛
   previous_revision:
-    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_guangming_peak.png
-    sha256: 8e563a9e786a60ff0caac8ae0c348df4b7b16dc688a24401d8f1ab2956765b43
-    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_guangming_peak.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/54_cg_ch04_guangming_peak.png
+    sha256: bfb7594ca0cd91f846ff6ac141d11a36aa8de65f4f65adcd02f67696b5d9efca
   runner_job_records:
   - - cg_ch04_guangming_peak.resume3r2
     - ok
