@@ -223,6 +223,37 @@ describe('battle camera', () => {
     renderer.dispose(); expect(fake.modelStageDispose).toHaveBeenCalledOnce();
   });
 
+  it('projects 2D units from their cell and 3D units from the live model position', async () => {
+    let changed: (() => void) | undefined;
+    const modelPosition = new (await import('three')).Vector3(Math.sqrt(3) * 2 / 3, 0.25, 0);
+    const renderer = await createBattleRenderer(document.createElement('canvas'), cells, {
+      loadModelStage: async () => ({ createBattleModelStage: (_scene, options) => {
+        changed = options?.changed;
+        return { stats: { characters: 0, drawCalls: 0, failures: 0, moving: 0 },
+          updateUnits: vi.fn(), update: vi.fn(), hasModel: (id: string) => id === marker.id,
+          position: vi.fn((id, out) => {
+            if (id !== marker.id) return false; out.copy(modelPosition); return true;
+          }), restore: vi.fn(), dispose: fake.modelStageDispose };
+      } }),
+    });
+    renderer.resize(320, 180);
+    const fallback = { ...marker, id: 'fallback', index: 1 };
+    renderer.updateUnits([{ ...marker, model: { key: 'fixture', kind: 'generic', gender: 'male',
+      heightM: 1.7, modelUrl: '/fixture.glb' } }, fallback]);
+    await vi.waitFor(() => expect(changed).toBeTypeOf('function'));
+    const modeled = { x: 0, y: 0, visible: false };
+    const rigged = { x: 0, y: 0, visible: false };
+    renderer.projectUnit(marker.id, marker.q, marker.r, marker.height, modeled);
+    renderer.projectUnit(fallback.id, fallback.q, fallback.r, fallback.height, rigged);
+    const expectedModel = { x: 0, y: 0, visible: false };
+    const expectedRig = { x: 0, y: 0, visible: false };
+    renderer.project(1, 0, 1, expectedModel);
+    renderer.project(fallback.q, fallback.r, fallback.height, expectedRig);
+    expect(modeled).toEqual(expectedModel);
+    expect(rigged).toEqual(expectedRig);
+    renderer.dispose();
+  });
+
   it('retains incoming unit projections while lost and keeps the night tint on recovery', async () => {
     const canvas = document.createElement('canvas');
     const requestFrame = vi.fn();

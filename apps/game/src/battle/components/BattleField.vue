@@ -83,14 +83,31 @@ function project(force = false): void {
       x: 0,
       y: 0,
       visible: false,
-      q: unit.q,
-      r: unit.r,
-      height: unit.height,
+      q: Number.NaN,
+      r: Number.NaN,
+      height: Number.NaN,
     };
-    point.q = unit.q;
-    point.r = unit.r;
-    point.height = unit.height;
-    renderer.projectUnit(unit.id, unit.q, unit.r, unit.height, point);
+    let projected = false;
+    try {
+      renderer.projectUnit(unit.id, unit.q, unit.r, unit.height, point);
+      projected = true;
+    } catch {
+      try {
+        renderer.project(unit.q, unit.r, unit.height, point);
+        projected = true;
+      } catch {
+        point.visible = false;
+      }
+    }
+    if (projected) {
+      point.q = unit.q;
+      point.r = unit.r;
+      point.height = unit.height;
+    } else {
+      point.q = Number.NaN;
+      point.r = Number.NaN;
+      point.height = Number.NaN;
+    }
     next.set(unit.id, point);
   }
   triggerRef(positions);
@@ -109,9 +126,9 @@ function highlights(): void {
   });
 }
 function sync(): void {
+  highlights();
   renderer?.updateUnits(props.battle.units);
   project();
-  highlights();
 }
 function resize(): void {
   if (!root.value || !renderer) return;
