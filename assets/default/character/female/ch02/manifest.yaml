@@ -448,38 +448,33 @@
   category: character/female
   style: default
   subject: 穆念慈（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（穆念慈的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改穆念慈的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+  prompt: '【任务】局部脸部图像编辑。第1张是穆念慈 C 的头部方形裁图，第2、3张是同一人物身份参考：孟子义2017版穆念慈。请使用第2、3张中的孟子义本人面部身份，不要重设计一个泛化的漂亮少女。把参考的眉眼、眼睑、鼻尖、鼻唇比例、嘴唇和脸部骨相清楚地化入第1张写实手绘画风，比当前C更可辨识为孟子义。可把脸型自然略拉长，眼睛收掉当前娃娃大眼的感觉；不要强磨皮或网红妆。
 
-    【人物】穆念慈：杨铁心义女，约二十岁，坚毅正直、温柔。
+    【神态】眉眼端正，目光坚定从容，嘴角微收，闭唇，不露齿，带内在韧劲，仍是少女而非凶怒。
 
-    【新神态（按年龄与性格定，不要千篇一律的平静脸）】文静温柔：目光清澈，抿嘴浅浅一笑，温柔里带着坚毅。
-
-    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
-
-    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
-
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
-
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+    【保持】第1张头部的位置、大小、朝向、发式、花饰、发带、长发、耳饰、衣领、背景和光照完全不变，只改脸的相似度和神态。输出同一取景1:1方图，不能扩图或移动五官的位置造成头部漂移。'
+  negative: ''
   references:
+  - path: .agents/coord/_lines/portrait-final-1/munianci_C.png
+    sha256: 6fcd16c646ee9c653dcc0cf89412b38b9d5f511befa88bea431dbeb5408db6db
+    use: AR-80 作者明确选定 C；AR-70 孟子义参考与 AR-74 红衣坚毅修订
   - path: assets/default/character/female/ch02/por_npc_munianci__ch02_youth_base.png
-    sha256: 688b024703bc1b4310e7b84e9b3d0369daff8b4b130bfa61c544547e47e83bd1
-    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_munianci__ch02_youth_base.688b0247.png
-  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T19:43:27-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/por_npc_munianci__ch02_youth_base.x1.png
+    sha256: 19dc0c784ee4ef6f1b83af1d76bac86d9e2a2edc2672ccf6d508c1a53baa2571
+    use: AR-80 编辑前原图；旧图备份 .agents/coord/_lines/final-2/replaced/por_npc_munianci__ch02_youth_base.19dc0c78.png
+  tool: image_gen；作者选定的 AR-74 C 版，AR-80 原文件入库
+  model: gpt-6.1-sol
+  created: '2026-10-03T23:32:07-07:00'
+  source_path: .agents/coord/_lines/portrait-final-1/munianci_C.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 19dc0c784ee4ef6f1b83af1d76bac86d9e2a2edc2672ccf6d508c1a53baa2571
+  sha256: 6fcd16c646ee9c653dcc0cf89412b38b9d5f511befa88bea431dbeb5408db6db
   status: candidate
-  notes: AR-32 主要角色经典影视剧照 + 基线重出（5 号出图员）：1983 TVB《射雕英雄传》；剧照只借造型、气质与面部特征，按项目画风重绘；AR-58 神态（各书配角，11 号出图员）：文静的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
-  effort: ultra
+  notes: AR-32 主要角色经典影视剧照 + 基线重出（5 号出图员）：1983 TVB《射雕英雄传》；剧照只借造型、气质与面部特征，按项目画风重绘；AR-58 神态（各书配角，11 号出图员）：文静的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变；AR-70 / AR-74 / AR-80 参考孟子义，红衣按原著第七回，作者选 C
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_munianci__ch02_youth_base.688b0247.png
-    sha256: 688b024703bc1b4310e7b84e9b3d0369daff8b4b130bfa61c544547e47e83bd1
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_munianci__ch02_youth_base.688b0247.entry.yaml
+    png: .agents/coord/_lines/final-2/replaced/por_npc_munianci__ch02_youth_base.19dc0c78.png
+    sha256: 19dc0c784ee4ef6f1b83af1d76bac86d9e2a2edc2672ccf6d508c1a53baa2571
+    entry: .agents/coord/_lines/final-2/replaced/por_npc_munianci__ch02_youth_base.19dc0c78.entry.yaml
 - id: por_npc_huangrong__ch02_youth_bangzhu_base
   file: por_npc_huangrong__ch02_youth_bangzhu_base.png
   category: character/female
