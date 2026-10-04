@@ -122,3 +122,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.prepared.json`。
+
+## 原著依据
+
+- 《神雕侠侣》第五回 活死人墓：“飞出来三只麻雀”；https://www.xuges.com/wuxia/jinyong/sdxl/035.htm
+- AR-82 返修约束（本节优先于历史提示词）：只删除左下方停着的那只麻雀，补回原来的石地面及背景；其余三只飞麻雀必须原样保留，不能再补鸟。小龙女本人、白绸和背景其他部分完全不动。
