@@ -367,12 +367,6 @@
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
     sha256: 3320846559f71c5013f03eba4e872004b787141b59e774cba57b33d37bbe7103
     use: F头肩裁图：身份与比例
-  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
-    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
-    use: 赵敏f1cd1652最新base全身
-  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
-    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
-    use: 赵敏最新base头肩裁图：身份
   - path: .agents/coord/_handoff/gem/codex_w33/out/ar86_lvliu_footplay_F_v1.png
     sha256: c455ec743e8d5f2bfc48260e58470e2e4feeebc856895af1803332b556360c05
     use: 已质检的绿柳庄全图身体、赵敏、赤足、握足点穴与题字
@@ -382,15 +376,18 @@
   - path: .agents/coord/_handoff/gem/codex_w33/out/ar86_lvliu_head_F_v3.png
     sha256: 4a2dce8f2958e93f3c6ea8292a7c1a08ad826419f0b35320b6a45143f7defc4c
     use: 实际采用的F头肩补丁；原生1254×1254，局部合成
-  tool: codex exec · image_gen（codex_w33：全图v1 + F头肩补丁v3；Pillow局部合成）
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
   model: gpt-6.1-sol
-  created: '2026-10-04T00:20:58.347816-07:00'
-  source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_lvliu_footplay.png
-  source_size: 1536x1024; head patch native 1254x1254
+  created: '2026-10-04T01:28:58.754974-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_40_56_r1.png
+  source_size: 1536x1024
   size: 1536x1024
-  sha256: 86dfa97d91b1b65a43f8273c493363a85c6378d8959e9d6fb04c4d8c40ee51bc
+  sha256: e91c5f945709c7ef5fe514f8ca11404f0a87833023584fa23de1ca7e80d6f262
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「绿柳初逢」，实际字形「绿柳初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu；AR-86 肩胸略加宽、头部 94%；AR-75 绿柳庄整图重画，张无忌对齐 F、赵敏对齐 f1cd1652 现行 base，握赤足点足心，羞恼与逼问
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「绿柳初逢」，实际字形「绿柳初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu；AR-86 肩胸略加宽、头部 94%；AR-75 绿柳庄整图重画，张无忌对齐 F、赵敏对齐 f1cd1652 现行 base，握赤足点足心，羞恼与逼问；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；保留赵敏对张无忌的关切与复杂眼神、侧面朝图左，保持最新蓝衣；张无忌、赤足、点穴动作及衣服一律不动。；质检：已打开对照：赵敏眉眼鼻唇脸型为恢复base同人，保留绿柳恼怒警觉与原室内侧光，接缝自然；从张无忌完成后的最新重绘git取底，张无忌手脸动作及题字均头外零变化
   previous_revision:
     png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_lvliu_footplay.png
     sha256: e71838f74dc4729e5778640074485c2adc06d0cb2803645cc4179fdca6a88c9f
@@ -402,10 +399,20 @@
     - '166'
     - exec-0145ccc4-1f2e-4e82-a6be-ffce47570082.png
   runner_success_count: 1
-  effort: xhigh
+  effort: ultra
   executed_by: Codex gpt-6.1-sol（AR-86）
   composite_job: ar86_lvliu_footplay_F_v1 + ar86_lvliu_head_F_v3
   composition_parameters: .agents/coord/_lines/zhangwuji-final/composition_lvliu_final.json
+  ar84_alignment:
+    job: ar84_calign_40_56_r1
+    before_sha256: 86dfa97d91b1b65a43f8273c493363a85c6378d8959e9d6fb04c4d8c40ee51bc
+    box:
+    - 1029
+    - 236
+    - 1144
+    - 376
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_40_56_r1.png
+    outside_changed_pixels: 0
 - id: cg_ch04_wanan_fire_rescue
   file: cg_ch04_wanan_fire_rescue.png
   category: scene
