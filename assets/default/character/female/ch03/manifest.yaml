@@ -552,31 +552,32 @@
   category: character/female
   style: default
   subject: 郭襄（ch03_shendiao）
-  prompt: '【任务】这是作者已经选定的郭襄 A 的原头部方形裁图，编辑这张裁图，只做三处可见但自然的小调整：1.鼻翼到嘴角两侧法令纹显著减淡，保留颊部笑意；2.脸颊和下颌轮廓收瘦约8%，仍是同一张脸；3.两眼自然放大约12%，提高眼裂的可见面积，同时保持弯眼笑眼。
+  prompt: '【任务】AR-80 郭襄立绘精确局部微调。第1张是现行已定稿立绘头部方块（编辑目标）；第2张是同一原图全身供画风与身份核对。仅编辑第1张，输出1024×1024方图，头的位置、大小、角度和整个取景严格不变。
 
-    【保持】A的李绮红参考身份、上扬嘴角、露齿笑、牙齿形状与笑容幅度不变。眉形、鼻、唇、发式发饰、头部方向和位置、衣领、光线、色调与写实手绘笔触全部不变。只是微调，避免动漫大眼、尖下巴、年轻化或网红精修。输出与输入同样取景、位置和尺寸比例的1:1方图，不要扩图、不裁头、不写文字。'
-  negative: ''
+    【要改成】只把双眼自然地再放大约12%，维持李绮红版的弯眼笑意，眼睛有神；只把鼻子（鼻翼宽度、鼻头体积）自然地再收小约12%。效果要能看出，但符合真实少女五官比例。
+
+    【保持不变】现行郭襄是同一个人；脸型骨相、眉形、嘴唇、露齿笑容及嘴角弧度、年龄肤色全部不变；不改变笑容！头发、发饰、服饰衣领、耳饰、纸底水墨背景、位置构图、光影色温和写实手绘笔触全部不变。只调眼睛和鼻子。
+
+    【不要】不要改变笑容或牙齿；不要瘦脸；不要新增法令纹；不要美颜、AI网红脸、照片感、塑料皮肤、文字水印；不镜像。'
+  negative: 要改变笑容或牙齿；不要瘦脸；不要新增法令纹；不要美颜、AI网红脸、照片感、塑料皮肤、文字水印；不镜像。
   references:
-  - path: .agents/coord/_lines/portrait-guoxiang/guoxiang_A.png
-    sha256: b5b658f2c0fd6753128ba45766652a161453f540a8e3096c412a3c7170acbe9e
-    use: 作者选定 A；仅减淡法令纹、略收瘦脸、略放大眼睛，原笑容方向和服饰构图保留
   - path: assets/default/character/female/ch03/por_npc_guoxiang__ch03_youth_base.png
-    sha256: 6802a81da6871713490ca2dc5b966cff0908208057624d27ba16b40e0b4f45ae
-    use: AR-74 编辑前原图；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_guoxiang__ch03_youth_base.6802a81d.png
-  tool: 共享 w24 runner image_gen · AR-74 作者选 A 后第2次局部头部编辑，生成方图按原坐标合成脸部；蒙版外像素不变
+    sha256: 4d647735f95da9ef1058192aceec9922fd74d07fa515de5e19cee7af169c2169
+    use: AR-80 编辑前原图；旧图备份 .agents/coord/_lines/final-2/replaced/por_npc_guoxiang__ch03_youth_base.4d647735.png
+  tool: 共享 w30 runner · codex exec / image_gen；AR-80 局部编辑与有界蒙版合成
   model: gpt-6.1-sol
-  created: 2026-10-03T23:11:13-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/ar74_guoxiang_final_r2.png
+  created: '2026-10-03T23:36:11-07:00'
+  source_path: .agents/coord/_lines/final-2/guoxiang_r2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 4d647735f95da9ef1058192aceec9922fd74d07fa515de5e19cee7af169c2169
+  sha256: 01534d245cdc9e335bc6eec209bcb19d4b90a62f3b9a625c4677dfe3cdc7dc44
   status: candidate
-  notes: AR-32 主要角色经典影视剧照 + 基线重出（5 号出图员）：1995 TVB《神雕侠侣》；剧照只借造型、气质与面部特征，按项目画风重绘；AR-72 / AR-74 李绮红参考，作者选 A 并微调
+  notes: AR-32 主要角色经典影视剧照 + 基线重出（5 号出图员）：1995 TVB《神雕侠侣》；剧照只借造型、气质与面部特征，按项目画风重绘；AR-72 / AR-74 李绮红参考，作者选 A 并微调；AR-80 再调
   effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_guoxiang__ch03_youth_base.6802a81d.png
-    sha256: 6802a81da6871713490ca2dc5b966cff0908208057624d27ba16b40e0b4f45ae
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_guoxiang__ch03_youth_base.6802a81d.entry.yaml
+    png: .agents/coord/_lines/final-2/replaced/por_npc_guoxiang__ch03_youth_base.4d647735.png
+    sha256: 4d647735f95da9ef1058192aceec9922fd74d07fa515de5e19cee7af169c2169
+    entry: .agents/coord/_lines/final-2/replaced/por_npc_guoxiang__ch03_youth_base.4d647735.entry.yaml
 - id: por_npc_chengying__ch03_youth_unmasked_base
   file: por_npc_chengying__ch03_youth_unmasked_base.png
   category: character/female
