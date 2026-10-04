@@ -1,0 +1,38 @@
+- id: por_npc_liwenxiu__ch10_youth_astuo_apose_slim
+  file: por_npc_liwenxiu__ch10_youth_astuo_apose_slim.png
+  category: character/female/tripo_ref
+  style: default
+  subject: 李文秀 窄轮廓空手 A 字姿势全身参考（与 por_npc_liwenxiu__ch10_youth_astuo_base 同脸，束袖、窄下摆、去兵器道具）
+  prompt: '【任务】这是一张供 3D 建模自动绑骨使用的「窄轮廓」A 字姿势全身参考图。第 1 张参考图是本项目已定稿的李文秀立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同样的发式与头饰；衣服的颜色、面料、层次和衣缘纹样沿用第 1 张，但剪裁改成便于绑骨的窄轮廓。
+
+    【服饰（窄轮廓）】上衣合体、交领右衽照第 1 张；袖子改成束袖：袖口在手腕处收紧（或挽到小臂），整条手臂轮廓清楚，袖子不下垂成大片、不外扩；腰带照第 1 张；下身改成收窄的直筒长裙，裙摆宽度不超过肩宽，长到脚踝上方，露出两只鞋的鞋尖，裙内可以露出一点裤腿；没有飘带、披帛、长拖尾或任何外飘的布条。整个人的外轮廓肩宽、脚窄，或上下差不多宽，绝不能是下摆外扩的三角形。手里拿的兵器、乐器、工具和其他器物一律不画（它们是单独的道具）。
+
+    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前。
+
+    【头发】长发与辫子全部收到身后，从背后垂下，不搭在肩前，不盖住手臂和手；发髻与头饰照第 1 张。
+
+    【本人另外要求】她是西域装束：保留第 1 张的马甲、长衣与靴子，腰间盘着的绳鞭不画。
+
+    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+
+    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
+
+    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
+  negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+  references:
+  - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png
+    sha256: f310c81427c1eb88f90bb9a47125e11f40b8365169b2336cbce38175b1b16adf
+    use: 底图：AR-56 定稿 base（上传 1536 长边 JPEG）
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_liwenxiu__ch10_youth_astuo_base.jpg
+    sha256: c1d332c4e3faa05a23b50aa82a66a83fe630c300980e45bb43c990f9c7c1af81
+    use: 同一 base 的脸部特写
+  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T17:41:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_liwenxiu__ch10_youth_astuo_apose_slim.a1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 51819d26ed87c8d63874b1e357956a9db1fa063484b01f75e528df772589f3d4
+  status: candidate
+  notes: 绑骨用的窄轮廓空手 A 字参考（AR-56：作者 17:02 定基线后 Tripo 要求兵器道具全去掉、双臂离身约 30°、宽袖收窄）；依据 por_npc_liwenxiu__ch10_youth_astuo_base（同脸同服色）
