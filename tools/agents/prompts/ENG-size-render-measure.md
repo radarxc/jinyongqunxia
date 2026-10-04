@@ -30,7 +30,7 @@
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
 - `pnpm check`
-- `node --test tools/perf/check_size.test.mjs`
+- `pnpm exec vitest run --config vitest.workspace.ts tools/perf/check_size.test.mjs`
 - `python3 tools/lint/check_ids.py --strict`
 
 ## 报告

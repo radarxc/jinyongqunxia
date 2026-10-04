@@ -48235,8 +48235,12 @@
       "check"
      ],
      [
-      "node",
-      "--test",
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "--config",
+      "vitest.workspace.ts",
       "tools/perf/check_size.test.mjs"
      ],
      [
