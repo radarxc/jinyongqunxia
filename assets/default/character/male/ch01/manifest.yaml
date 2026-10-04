@@ -1033,20 +1033,33 @@
   - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
     sha256: 2786f3e0ce155a3e36ec4aef176186c0a3a5bc822a9107a0f56b56f67513bddc
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.2786f3e0.png
-  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T12:29:40-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.e1.png
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:17:02.126060-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_03_45_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 32c07b4927b3c75409dfdfc1e3da4ff75921e575529198be6dc9d5c8dbd6ab5d
+  sha256: 6906aecb00bd98b1c7ba336380968e1482c3551b395dbb7417d04c903601964d
   status: candidate
-  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard
+  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：眼型、眉骨、鼻口与base一致，掌击时肃厉神态和原光向保留；面部边缘自然
   effort: ultra
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.2786f3e0.png
     sha256: 2786f3e0ce155a3e36ec4aef176186c0a3a5bc822a9107a0f56b56f67513bddc
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.2786f3e0.entry.yaml
+  ar84_alignment:
+    job: ar84_calign_03_45_r1
+    before_sha256: 32c07b4927b3c75409dfdfc1e3da4ff75921e575529198be6dc9d5c8dbd6ab5d
+    box:
+    - 457
+    - 206
+    - 583
+    - 339
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_03_45_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_xiaofeng__ch01_prime_scene_songhelou_wine
   file: por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.png
   category: character/male
