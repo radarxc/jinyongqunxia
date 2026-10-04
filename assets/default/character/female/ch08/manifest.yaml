@@ -305,54 +305,37 @@
   category: character/female
   style: default
   subject: 阿珂（ch08_luding）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '任务：以图1现有阿珂立绘为底，重新编辑面部五官与神态。图2/3是同一演员年轻宁静的早期《红河谷》剧照与《阳光灿烂的日子》片场照片的面部裁图，作为五官主要来源。图4是宁静在2008年《鹿鼎记》饰陈圆圆的脸部，仅辅助母女家族骨相。
 
-    【参考图】随提示词上传 3 张参考图。第 1 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。剧照与下文文字不一致的地方（年龄、所处阶段、帽饰与衣装细节、手中器物），以下文文字为准；画中人一律是成年人。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
+    首轮返修：首轮脸太贴原图、年轻宁静辨识度和浅笑均不够。这次图1只锁定服装、头发、头颈角度、身形、站姿、手和剑；面部骨相从图2/3年轻宁静来。重点明确采用年轻宁静的眼睑眼形、鼻梁鼻翼、较丰润唇形与饱满面颊，眼睛自然明亮，不画狐狸尖眼，不削尖下巴；她是明艳的少女阿珂，与参考宁静的母亲陈圆圆有家族骨相但明显年轻，另一个小说人物，不照抄演员照片。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    神态必须是清楚可辨认的闭唇浅笑，两侧嘴角轻轻抬起、唇线有含蓄笑弧，不露齿；眼神有笑意，也保留少女的骄傲和一点倔强，避免冷脸、平直下压嘴角、深法令纹、谄媚或甜腻笑。
 
-    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+    严格保留图1的米白花纹外衣、灰蓝裙、腰带、衣服褶皱、发式发饰与辫子外轮廓、头部原有大小位置和角度、头身比例、身体姿势、双手、剑及其细节、背景与构图。仅脸部编辑，输出1024×1536完整单人立绘。匹配图1写实手绘纸感，不贴照片，自然细小不对称，有真实皮肤纹理和眼睑；不磨皮，不塑料高光，不网红V脸、不夸大眼睛、不完美对称，不加浓妆。没有文字、水印、第二个人或拼版。
 
-    【人物】阿珂，《鹿鼎记》中陈圆圆与李自成的女儿、独臂神尼九难的弟子，身世揭开前后的时期。
-
-    【年龄与体态】外观约二十岁的成年年轻女子，身材高挑纤秀，成人比例。
-
-    【经典造型】要一眼认出是阿珂——绝色容貌、齐刘海、胸前一条长辫、素银簪、杏色袄灰蓝裙、手握长剑，冷艳骄傲、下巴微扬，美得让人不敢逼视。
-
-    【面容】脸以剧照为底子——保留剧照里这个角色的脸型、眉眼、鼻唇的比例关系和神气，画成成年人；与母亲陈圆圆极为相像的绝美容貌——绝色的鹅蛋脸，下颌线柔美；肌肤白皙细腻（有真实质感，不磨皮）；眉如远山、细长舒展；一双眼尾微垂的美目；鼻梁秀挺、鼻头小巧；樱唇丰润、唇色淡红；但眼神清冷高傲，带着倔强和不耐烦，嘴唇常常紧抿着。冷艳、骄傲、对人爱理不理。
-
-    【发式】额前一排齐整的薄刘海；乌发在头顶挽成简洁的发髻，一支素银簪、两朵小珠花，其余长发编成一条粗长辫垂在胸前。
-
-    【服饰】清初汉族女侠装——浅杏色交领长袄（右衽）、灰蓝长裙、窄袖、平底布鞋。
-
-    【道具与姿态】右手握一柄连鞘长剑，剑斜垂在身侧；左手收在腰前；正面站立，下巴微扬。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、台标、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、日式服饰或日本刀、发光特效、法阵或能量光。不要照片或照片修图的质感，不要照搬剧照的构图、光影、背景和姿势，不要剧照里的字幕、台标和水印。不要尼姑装或宫廷公主装；不要网红脸；不要少女幼态。清初汉族女子仍穿明式袄裙：汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+    A版：较明显贴近年轻宁静的脸，眼鼻唇骨相辨认度较高；浅笑清楚，明艳有朝气。'
   negative: ''
   references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/ake_1998_liangxiaobing.jpg
-    sha256: fc77ae6b80442a0442025409918d4d21159f047cb198e772b484f07769b9b1e8
-    use: 经典影视版剧照（1998 年 TVB《鹿鼎记》，AR-32）：借鉴发型、服饰、配色、标志道具、气质与面部特征，重绘为项目画风，不照搬照片；上传前裁切 (0.0, 0.0, 0.72, 1.0)
-    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w6/staging/still_ake_1.jpg（长边 1024 JPEG）
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风基线（只取画风、光线、质感与背景，不取长相；AR-31 / AR-32）
-    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg（缩小版 JPEG，DISK_RULE）
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风基线（只取画风、光线、质感与背景，不取长相；AR-31 / AR-32）
-    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg（缩小版 JPEG，DISK_RULE）
-  tool: codex exec · image_gen（AR-32：经典影视剧照 1 张 + 同性别基线 2 张）
-  model: gpt-6-astra
-  created: 2026-10-02T10:57:23-0700
-  source_path: .agents/coord/gemini_originals/por_npc_ake__ch08_youth_base.png
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261002/luding/ningjing_young_honghegu_sina2012.jpg
+    sha256: 6dd75a8f0ea9458905ac1c0702a585bedd4417bcd0e616a2140113d2ed9f9fcb
+    use: 对脸基线：AR-73 / AR-84 作者点名参考 actor_reference_ake（年轻宁静），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch08/por_npc_ake__ch08_youth_base.png
+    sha256: 76d92377fe36f8b8285e3bae58a4527dcaebeaf94a2f7180e1bdae77dc1ba2d7
+    use: 待改原图（AR-73 / AR-84 参考 年轻宁静，作者选 A 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_ake__ch08_youth_base.76d92377.png
+  tool: codex exec · image_gen（AR-73 A/B 作者选版；AR-84 入库，面部局部合成）
+  model: gpt-6.1-sol
+  created: 2026-10-03T23:47:26-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/ar84_final4_accept_ake_A.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 76d92377fe36f8b8285e3bae58a4527dcaebeaf94a2f7180e1bdae77dc1ba2d7
+  sha256: b268298f30a8c9776fd1bf3612a98afc13c4dda6e95558ed53a0bd6d986cf142
   status: candidate
-  notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：1998 年 TVB《鹿鼎记》；job por_npc_ake__ch08_youth_base__t1
+  notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：1998 年 TVB《鹿鼎记》；job por_npc_ake__ch08_youth_base__t1；AR-73 / AR-84 参考 年轻宁静，作者选 A（Codex gpt-6.1-sol（AR-84）），基线 = actor_reference_ake（选定源作业 ar73_support_ake_A_r2_20261003；面部框外逐像素一致）
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_ake__ch08_youth_base.76d92377.png
+    sha256: 76d92377fe36f8b8285e3bae58a4527dcaebeaf94a2f7180e1bdae77dc1ba2d7
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_ake__ch08_youth_base.76d92377.entry.yaml
 - id: por_npc_suquan__ch08_youth_base
   file: por_npc_suquan__ch08_youth_base.png
   category: character/female
