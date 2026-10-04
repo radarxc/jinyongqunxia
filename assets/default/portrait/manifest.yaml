@@ -5248,7 +5248,9 @@
   size: 1024x1536
   variants:
   - portrait/npc_zhujue/ch00_f_base
+  - portrait/npc_zhujue/ch00_f_charmhigh_base
   - portrait/npc_zhujue/ch00_m_base
+  - portrait/npc_zhujue/ch00_m_charmhigh_base
   - portrait/npc_zhujue/ch01_f_base
   - portrait/npc_zhujue/ch01_m_base
   - portrait/npc_zhujue/ch02_f_base
