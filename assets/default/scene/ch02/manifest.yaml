@@ -252,36 +252,42 @@
   category: scene
   style: default
   subject: 华山论剑与英雄之问（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是洪七公的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中洪七公的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
+  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
 
-    【要改成】（AR-53 配角对齐）眉毛改成基线那样又白又浓、眉尾下垂的白浓眉；露出的头发和胡须改成灰白色（白多黑少）；脸是晒黑、多皱纹、慈祥带笑的老丐。
+    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
 
-    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；头巾与发型照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
+    【身份与年龄】以第1张作者选定的B脸为身份参考，青年郭靖：方正脸、浓眉大眼、厚实端正的鼻唇、憨厚坚毅，不画成另一张偶像脸。
 
-    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
 
-    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
-  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
+    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+
+    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
+
+
+
+    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
   references:
-  - path: assets/default/character/male/ch02/por_npc_hongqigong__ch02_elder_bangzhu_base.png
-    sha256: fda612c017b77c0c8e09d4916215d9818b61bbc032c7f71be02a0f1bd689095e
-    use: 对脸基线：作者审核通过的 por_npc_hongqigong__ch02_elder_bangzhu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
+    sha256: 8c7112d12f754f37c81443618a6a2d3b5218d654206f9a4791be496c2331b528
+    use: AR-87 身份基线，青年B或B年长化定稿
   - path: assets/default/scene/ch02/cg_ch02_huashan_discourse.png
-    sha256: 3aa9c8c0d859e4f441ebe04d84e5c0c5e06c310fba8955cbc92ae7f5f420b0ef
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.3aa9c8c0.png
-  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把洪七公头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
-  model: gpt-6-astra
-  created: 2026-10-03T19:24:45-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_huashan_discourse.k1.png
+    sha256: 8f07d8684d961027dca6fdc52ad815994174166de8c2b974bced484c0de4bfa7
+    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/cg_ch02_huashan_discourse.8f07d868.png
+  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:42:06-07:00'
+  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch02_huashan_discourse_v1_composite.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 8f07d8684d961027dca6fdc52ad815994174166de8c2b974bced484c0de4bfa7
+  sha256: 9b759b0862156553fdbe573eb6435f35ca4df6b7f138977fcf8f5ae7a2cbe221
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「华山论剑」，实际字形「华山论剑」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）；AR-44 对脸精修，基线 = por_npc_huangyaoshi__ch02_elder_base（AR-58：黄药师按作者 10-03 18:02 选定的新 base 对脸（中景小脸）；郭靖、黄蓉、洪七公、欧阳锋不动）；AR-44 对脸精修，基线 = por_npc_hongqigong__ch02_elder_bangzhu_base（AR-53 配角对齐：洪七公改成基准的白浓眉、灰白须发；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「华山论剑」，实际字形「华山论剑」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）；AR-44 对脸精修，基线 = por_npc_huangyaoshi__ch02_elder_base（AR-58：黄药师按作者 10-03 18:02 选定的新 base 对脸（中景小脸）；郭靖、黄蓉、洪七公、欧阳锋不动）；AR-44 对脸精修，基线 = por_npc_hongqigong__ch02_elder_bangzhu_base（AR-53 配角对齐：洪七公改成基准的白浓眉、灰白须发；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.3aa9c8c0.png
-    sha256: 3aa9c8c0d859e4f441ebe04d84e5c0c5e06c310fba8955cbc92ae7f5f420b0ef
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.3aa9c8c0.entry.yaml
+    png: .agents/coord/_lines/guojing-final/replaced/cg_ch02_huashan_discourse.8f07d868.png
+    sha256: 8f07d8684d961027dca6fdc52ad815994174166de8c2b974bced484c0de4bfa7
+    entry: .agents/coord/_lines/guojing-final/replaced/cg_ch02_huashan_discourse.8f07d868.entry.yaml
   runner_job_records:
   - - cg_ch02_huashan_discourse.resume3r2
     - ok
@@ -294,7 +300,7 @@
     - '186'
     - exec-ffd70e01-4855-445b-8421-46fd0d81549c.png
   runner_success_count: 2
-  effort: ultra
+  effort: xhigh
 - id: cg_ch02_ironspear_truth
   file: cg_ch02_ironspear_truth.png
   category: scene
