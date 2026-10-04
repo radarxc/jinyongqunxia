@@ -3,38 +3,35 @@
   category: character/female
   style: default
   subject: 王语嫣（ch01_tianlong）
-  prompt: '【任务】重画第 3 张这幅王语嫣全身立绘的头部：服装、姿势、构图、背景不变，只把脸按作者的新意见改好，输出完整的 2:3 竖幅全身立绘。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【参考】第 1 张是该角色经典影视造型的剧照，第 2 张是剧照的脸部特写：五官（眉形、眼型、鼻子、嘴型）照这一版的神仙姐姐来画，让看过这一版的人一眼认出；但按项目画风重画，不要照片质感、不要照片贴脸。第 3 张是要重画头部的立绘底稿。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【作者意见：参考这一版，但不要婴儿肥】脸型改清瘦：两颊不要鼓、不要圆嘟嘟，颧骨下方略收，下颌线清楚流畅、下巴秀气但不尖；是二十岁上下的成年女子，不是少女。眉毛平而细长，杏眼清澈、眼尾平而略长，鼻梁细直，嘴唇小而饱满。神态沉静、略带愁思，嘴角可以带一点浅浅的笑意。
+    【只改】只同步已经完成AR-82局部编辑的王语嫣base，原著银带轻挽长发；基线原图与修改前base完全相同，直接复制已打开核查的base成图，不再生成、不改脸。
 
-    【保留】发式与发饰（头顶挽起、素白玉簪、长发垂在胸前与背后、小银耳坠）、藕荷色长褙子与浅藕灰长裙、双手交叠的姿势、背景、光线、笔触与画风全部照第 3 张。
+    【原著依据】《天龙八部》第十二回 从此醉：“用一根银色丝带轻轻挽住”；https://www.xuges.com/wuxia/jinyong/tlbb/087.htm
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【不要】不要婴儿肥、圆脸、娃娃脸；不要网红尖下巴；不要照片质感、磨皮、浓妆；不要文字、水印；不要第二个人；不要水平镜像，衣襟保持右衽。'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要婴儿肥、圆脸、娃娃脸；不要网红尖下巴；不要照片质感、磨皮、浓妆；不要文字、水印；不要第二个人；不要水平镜像，衣襟保持右衽。
   references:
-  - path: assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png
+  - path: .agents/coord/_lines/novel-fix-1/before/57_ref_npc_wangyuyan__ch01_base01.png
     sha256: 2c8ca9f70a35d3067b52ade4f615107b055f738249078fd9503fb49d9a13645c
-    use: AR-84 作者说的版本，同图逐字节同步
-  tool: codex exec · image_gen（AR-44 王语嫣第 2 轮：以第 1 轮 B 为底稿重画头部，前置 2003 版剧照与剧照脸部特写，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T17:24:40-0700
-  source_path: assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: AR-82基线同步：直接复制已核查的局部合成base（不重新生成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:48:04.220964-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_57_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 2c8ca9f70a35d3067b52ade4f615107b055f738249078fd9503fb49d9a13645c
+  sha256: d683f7d4c8755923fbaef2bdc0f1b829ecc28df38d632bd7052809ebbbac435c
   status: candidate
-  notes: AR-32 主要角色经典影视剧照 + 基线重出（5 号出图员）：2003 央视《天龙八部》；剧照只借造型、气质与面部特征，按项目画风重绘；AR-44 新 base：作者 10-03 要求参考2003《天龙八部》造型、按项目画风重画、不要和照片一样（AR-44，作者
-    17:24 选第 2 轮 B（刘亦菲版、去婴儿肥））；AR-84 baseline 同步：来源 assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png，作者版本提交
-    260175cf，与 base 原始字节一致。
+  notes: AR-32 主要角色经典影视剧照 + 基线重出（5 号出图员）：2003 央视《天龙八部》；剧照只借造型、气质与面部特征，按项目画风重绘；AR-44 新 base：作者 10-03 要求参考2003《天龙八部》造型、按项目画风重画、不要和照片一样（AR-44，作者 17:24 选第 2 轮 B（刘亦菲版、去婴儿肥））；AR-84 baseline 同步：来源 assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png，作者版本提交 260175cf，与 base 原始字节一致。；AR-82 原著核对返修：王语嫣参考基线同步已核准银带base
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_mantuo_base.dd84f729.png
-    sha256: dd84f729ca81814f3269d44c3f576635972277e3c5fc2463792cceabe183aa60
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_mantuo_base.dd84f729.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/57_ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2c8ca9f70a35d3067b52ade4f615107b055f738249078fd9503fb49d9a13645c
 - id: ref_npc_xiaolongnv__ch03_base01
   file: ref_npc_xiaolongnv__ch03_base01.png
   category: character/female
