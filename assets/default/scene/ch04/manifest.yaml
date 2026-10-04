@@ -289,15 +289,18 @@
   - path: assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png
     sha256: d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642
     use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
   tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
   model: gpt-6.1-sol
-  created: '2026-10-04T01:26:34.777044-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_39_57_r1.png
+  created: '2026-10-04T01:53:01.125298-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_39_56_r2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: d37c6b68e7f9c963bb57ba8b0154c398c4b0f10db48abcdfff63d94cc7337682
+  sha256: 3d171fd58c544b26bf34d1cfc5d8a454525b8b242fbb6687f62a173a007f441a
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「濠州惊变」，实际字形「濠州惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base（AR-53 总审返修：张无忌新郎脸改回 A 版 base 的圆润温和）；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：周芷若五官对齐 por_npc_zhouzhiruo__ch04_youth_zhangmen_base；AR-53 仅头部，AR-75 神态与光向保留；保留婚礼破局时的紧绷、委屈或挑衅原神态，头部朝向完全照图1；不改婚服、红帘与另一人的头。；质检：已打开base与前后：周芷若眉眼鼻唇为恢复base同人，保留婚礼愤怒受挫视线及红喜服反光；发冠耳坠不变、接缝自然；张无忌赵敏题字等其他像素不动
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「濠州惊变」，实际字形「濠州惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base（AR-53 总审返修：张无忌新郎脸改回 A 版 base 的圆润温和）；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：周芷若五官对齐 por_npc_zhouzhiruo__ch04_youth_zhangmen_base；AR-53 仅头部，AR-75 神态与光向保留；保留婚礼破局时的紧绷、委屈或挑衅原神态，头部朝向完全照图1；不改婚服、红帘与另一人的头。；质检：已打开base与前后：周芷若眉眼鼻唇为恢复base同人，保留婚礼愤怒受挫视线及红喜服反光；发冠耳坠不变、接缝自然；张无忌赵敏题字等其他像素不动；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；赵敏必须为身份参考base的同一张脸：较圆的大眼、眉眼间距、鼻梁鼻头和唇弓颌骨均取base。只借待改裁剪保留三分之四侧转望向张无忌的关切神态和原光向，禁止转为正脸，禁止照搬base笑容，禁止复原旧泛化脸。发丝耳坠位置保留；同图其他头和文字不动。；质检：已实际打开base与返修前后：赵敏圆大眼、眉眼间距、鼻唇及颌骨采用恢复base同人，三分之四侧转关切神态与暖侧光保留，发丝耳坠不变、脸颈接缝自然；只合成本头，保留已提交周芷若及张无忌和题字全部原像素
   previous_revision:
     png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_haozhou_wedding.png
     sha256: 348a7545a263831983f50e345a67867c2f3005fc5030ba2faeecd09f255b361c
@@ -312,14 +315,14 @@
   effort: ultra
   executed_by: Codex gpt-6.1-sol（AR-86）
   ar84_alignment:
-    job: ar84_calign_39_57_r1
-    before_sha256: a002885b482b8038bf8bf088bd67c7614cc3de59c4c7d109f78d000a7932cd7c
+    job: ar84_calign_39_56_r2
+    before_sha256: d37c6b68e7f9c963bb57ba8b0154c398c4b0f10db48abcdfff63d94cc7337682
     box:
-    - 1210
-    - 365
-    - 1360
-    - 530
-    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_39_57_r1.png
+    - 243
+    - 219
+    - 375
+    - 370
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_39_56_r2.png
     outside_changed_pixels: 0
 - id: cg_ch04_lvliu_footplay
   file: cg_ch04_lvliu_footplay.png
