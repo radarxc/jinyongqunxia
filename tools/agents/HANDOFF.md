@@ -2310,3 +2310,17 @@
         `python3 .agents/coord/_handoff/detach_launch.py .agents/coord/_lines/<名>/launch.out "$PWD" -- python3 -u .agents/coord/_handoff/codex_session.py <名> - --resume`
       - 这次之前起的会话用的是旧代码，掉线要按上面手动续。canon-align 已于 00:21 续上。
     - DES-apparel-catalog 00:20 合入被拒：_prod 里有 Tripo 子代理没提交的 tripo_web.js 等文件。已提醒它按路径提交，半成品别放 assets/。
+  - **10-04 00:20–00:42 协调者（素材线）**：
+    - 已交付并发给作者：
+      - final-5：喀丝丽 B、程灵素 A、袁紫衣 A（c795e6f2）、苗若兰 A（bcf9f2a2），16 个文件对齐；
+      - final-6：陈友谅上唇薄约 30%（9e3c10a5）、黄衫女子 B（ddff0e22）；
+      - zhangwuji-final：F 加 14 张立绘和插图；
+      - cg-retirement 江湖归去，题字已修（09047861）；
+      - huoqingtong-r2：C/D/E 候选；
+      - hist-batch1：四人 A/B 候选。
+    - final-3c 5 轮仍不合格，停了；改派 xiaojinghu-regen（w30），重写提示词整张重出，要等 canon-align 交付后再提交。
+    - **AR-88**（02df1d14）：作者认可张无忌 F；绿柳庄要照作者剧照的动作和镜头重画。
+      - 剧照从会话记录里取出，存到主检出 `imagegen-reference/identity-20261002/yitian/author_screenshot_lvliu_footplay_20261004.png`。
+      - 作者中途发来的消息在 jsonl 里是 `attachment.type=queued_command` 的 `prompt[].image`，不是 `message.content`。
+      - 已派 lvliu-redo（w33）。
+    - 待作者选：霍青桐 C/D/E（建议 D）；历史人物四人（建议崇祯 B、皇太极 A、忽必烈 A、索菲娅 A），选完再批其余 21 人。
