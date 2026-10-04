@@ -252,26 +252,36 @@
     【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
   negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
-  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
-    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
-    use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.png
     sha256: b7b17a20ba6c0baafbcd6bf4a6e0197e7693636c0fa99f402bb50d1b75b157bf
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.b7b17a20.png
-  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: AR-53 程序局部合成：从作者刘亦菲版base直接取五官，人工双眼/唇关键点仿射适配原角度，低频RGB照明融合；蒙版外原像素不变，未调用生成器
   model: gpt-6-astra
-  created: 2026-10-03T13:59:21-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.e1.png
+  created: '2026-10-04T00:42:56.864286-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_14_52_direct.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 1ee4b63077e1b05f375dd67817f453ac1646fc1bc5fed47de5ca19d5ecb26ee4
+  sha256: b7915d4a2f63b4381e35376ff682d6d9f01818b517d19ed3e20777b706d71624
   status: candidate
-  notes: 立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base
+  notes: 立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；年龄相近，直接base头部局部合成；原神态与光向保留；质检：实看通过：眉眼鼻唇与刘亦菲base同人，沉静不笑，原头部朝向和光向保留，脸缘与颈部衔接自然；头部外0像素变化
   effort: ultra
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.b7b17a20.png
     sha256: b7b17a20ba6c0baafbcd6bf4a6e0197e7693636c0fa99f402bb50d1b75b157bf
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.b7b17a20.entry.yaml
+  ar84_alignment:
+    job: ar84_calign_14_52_direct
+    before_sha256: 1ee4b63077e1b05f375dd67817f453ac1646fc1bc5fed47de5ca19d5ecb26ee4
+    box:
+    - 466
+    - 185
+    - 587
+    - 315
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_14_52_direct.png
+    outside_changed_pixels: 0
 - id: por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise
   file: por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.png
   category: character/female
