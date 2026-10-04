@@ -118,3 +118,8 @@ FINAL CHECK: one FRONT-FACING tall and slender older man, UPRIGHT head and neck,
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_jinlunfawang__ch03_elder_base.prepared.json`。
+
+## 原著依据
+
+- 《神雕侠侣》第十三回 武林盟主：“这金轮径长尺半”；https://www.xuges.com/wuxia/jinyong/sdxl/092.htm
+- AR-82 返修约束（本节优先于历史提示词）：只修改五轮：手中金轮改成径长一尺半（约一前臂半长）的完整大金轮，用原手掌承托；原腰间银铜铁铅四个小轮和吊坠全部去掉，另外四轮收入袍下不露，不能再画成小饰品。原脸、手、袍服其余区域及背景不动。
