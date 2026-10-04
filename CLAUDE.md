@@ -24,7 +24,7 @@
 - core 默认通过 Worker Host 运行，保留主线程回退；消息只传可序列化命令、事件与投影。
 - 热路径避免每帧分配；渲染优先实例化、图集和显式资源生命周期。
 - Vite 保持 render 独立懒加载 chunk；`tools/perf/budgets.json` 是可执行门禁。
-- rig 100 角色 CPU 门禁（`packages/render/src/rig/performance.test.ts`：程序步态 P95 < 0.80 ms 不动；片段模式 P95 < 1.0 ms，作者 AR-37 放宽）、BattleSession 线性门禁（`packages/core/bench/battle-session.performance.test.ts`：2000 步 ≤ 2000 ms 且 ≤ 1000 步 × 3），以及自动战斗门禁（`packages/core/bench/combat.performance.test.ts`：20 回合单次 ≤ 20 ms；事务总线 2000 步 ≤ 2000 ms）均不在 `pnpm check` 里，由 `pnpm check:perf` 在机器负载低时单独跑（作者 AR-33 / AR-64）。禁止在任何测试里加「高负载跳过 / 放宽」逻辑；失败一律按真实退化处理。
+- rig 100 角色 CPU 门禁（`packages/render/src/rig/performance.test.ts`：程序步态 P95 < 0.80 ms 不动；片段模式 P95 < 1.0 ms，作者 AR-37 放宽）、BattleSession 线性门禁（`packages/core/bench/battle-session.performance.test.ts`：2000 步 ≤ 2000 ms 且 ≤ 1000 步 × 3）、自动战斗门禁（`packages/core/bench/combat.performance.test.ts`：20 回合单次 ≤ 20 ms；事务总线 2000 步 ≤ 2000 ms），以及存储门禁（`packages/platform/src/storage/storage.performance.test.ts`：fake-indexeddb 1 MiB 快照读取 / 写入各 < 50 ms）均不在 `pnpm check` 里，由 `pnpm check:perf` 在机器负载低时单独跑（作者 AR-33 / AR-64）。禁止在任何测试里加「高负载跳过 / 放宽」逻辑；失败一律按真实退化处理。
 - 修改 `core` 时补确定性测试；修改渲染时记录 draw call / 帧时间；修改 UI 时只更新浅投影。
 
 ## 后续任务落点
