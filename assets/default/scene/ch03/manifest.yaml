@@ -3,41 +3,36 @@
   category: scene
   style: default
   subject: 重阳宫并肩与婚誓（ch03_shendiao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是杨过的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是小龙女的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中杨过、小龙女的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是金轮法王的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中金轮法王的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】这张插图画的是：重阳宫重逢救援的编辑性构图，具体交战与婚誓先后待考。杨过人物自身右臂已断，仅左手持玄铁重剑，空右袖清楚，不许双臂或普通细剑；他站在疲惫的小龙女身前护住她。小龙女双手各有一柄细长古剑但收势低垂，素白衣被尘沾染仍完整。远处金轮法王是极高极瘦的中老年藏僧，身披黄袍、头部剃净、额顶轮廓自然微陷，脸颊瘦削、下巴仅短须影，不画红袍壮汉或白须仙翁；手持金属轮，其余轮束在腰侧，木殿残烛与碎瓦衬托危险；三人并非画成杨龙各一细剑交叉的错误造型。
+    【要改成】（AR-53 配角对齐）照基线：光头、长方脸、颧骨高、眼窝深、鼻梁高；没有胡须（去掉八字髭和山羊须，嘴周与下巴是干净的皮肤）；皱纹适中，不要比基线更多更重。（原图脸偏宽、皱纹偏重，收成长方脸、皱纹减少到基线的程度）
 
-    【要对齐的部分】杨过、小龙女各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；低头的角度与被遮挡的部分照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「重阳同心」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
-    sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
-    use: 对脸基线：作者审核通过的 por_npc_yangguo__ch03_youth_onearm_base（杨过），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
-    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
-    use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch03/por_npc_jinlunfawang__ch03_elder_base.png
+    sha256: 6905a0639bb012b0e7de96f7b83b248c610da3abdfebba1ee7b8759861157148
+    use: 对脸基线：作者审核通过的 por_npc_jinlunfawang__ch03_elder_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch03/cg_ch03_chongyang_swords.png
-    sha256: cbf8e2baf72c5b429f1dede4cc7395ddc4de717a795c8e4bf51debb8115a5b41
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.cbf8e2ba.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: 4cc101b0b142a66d29433464cb182a82775fec461733a5af337eee7565f7846b
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.4cc101b0.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把金轮法王头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T14:30:44-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_chongyang_swords.s1.png
+  created: 2026-10-03T19:29:36-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_chongyang_swords.k1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 4cc101b0b142a66d29433464cb182a82775fec461733a5af337eee7565f7846b
+  sha256: 528aeb2af9536af55a135f691e46b0b090441128fda91534be1c6ded6caaf6c7
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「重阳同心」，实际字形「重阳同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「重阳同心」，实际字形「重阳同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.cbf8e2ba.png
-    sha256: cbf8e2baf72c5b429f1dede4cc7395ddc4de717a795c8e4bf51debb8115a5b41
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.cbf8e2ba.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.4cc101b0.png
+    sha256: 4cc101b0b142a66d29433464cb182a82775fec461733a5af337eee7565f7846b
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.4cc101b0.entry.yaml
   runner_job_records:
   - - cg_ch03_chongyang_swords.resume3
     - ok
@@ -99,47 +94,36 @@
   category: scene
   style: default
   subject: 大胜关英雄大会（ch03_shendiao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是杨过的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是小龙女的身份基线（作者审核通过的立绘，脸部特写）；第 3 张是郭靖（神雕时期，四十岁上下）的身份基线（作者审核通过的立绘，脸部特写）；第 4 张是黄蓉（神雕时期，三十七八岁）的身份基线（作者审核通过的立绘，脸部特写）；第 5 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中杨过、小龙女、郭靖（神雕时期，四十岁上下）、黄蓉（神雕时期，三十七八岁）的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是金轮法王的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中金轮法王的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】这张插图画的是：大胜关英雄大会，双臂完好的青年杨过和白衣成年小龙女居台心，杨过手持普通竹棒，神情不羁而坚定；郭靖黄蓉在台侧，沿用本轮射雕基础图同一骨相但自然增龄为中年，郭靖鬓边些许霜意、深色朴素长袍，黄蓉成熟淡雅衣裙与沉静目光，不继承青年发饰或换影视演员。金轮法王为极高极瘦的中老年藏僧，黄色僧袍、头部剃净且额顶自然微陷、下巴仅短须影，手持金轮居远侧，其余金属轮束在腰侧，不画红袍壮汉或长发长髯；群豪低细节，所有站位为编辑性概括构图，具体动作待考。
+    【要改成】（AR-53 配角对齐）照基线：光头、长方脸、颧骨高、眼窝深、鼻梁高；没有胡须（去掉八字髭和山羊须，嘴周与下巴是干净的皮肤）；皱纹适中，不要比基线更多更重。
 
-    【要对齐的部分】杨过、小龙女、郭靖（神雕时期，四十岁上下）、黄蓉（神雕时期，三十七八岁）各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「大胜群英」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
-    sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
-    use: 对脸基线：作者审核通过的 por_npc_yangguo__ch03_youth_onearm_base（杨过），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
-    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
-    use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/male/ch03/por_npc_guojing__ch03_prime_base.png
-    sha256: 14012a64b988839e6d861f5f7b0c3f4de074e0aa71dc42872df6c816948fbd30
-    use: 对脸基线：作者审核通过的 por_npc_guojing__ch03_prime_base（郭靖（神雕时期，四十岁上下）），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch03/por_npc_huangrong__ch03_prime_base.png
-    sha256: 072a75f7267230b7533e6ee783c3783f1ebddc8f7df11a65a073c9e1aa47bd24
-    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch03_prime_base（黄蓉（神雕时期，三十七八岁）），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch03/por_npc_jinlunfawang__ch03_elder_base.png
+    sha256: 6905a0639bb012b0e7de96f7b83b248c610da3abdfebba1ee7b8759861157148
+    use: 对脸基线：作者审核通过的 por_npc_jinlunfawang__ch03_elder_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch03/cg_ch03_dashengguan_heroes.png
-    sha256: 399ac160c2ce0bfa9bc22a83b26b0ae38de7d9ab1b1d1aaf3aa9d4832ede1aee
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.399ac160.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: 7c0123739a34d62819219905c56497766ca169a7b2eba439c1d46a6ef9f74eae
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.7c012373.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把金轮法王头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T16:50:08-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_dashengguan_heroes.s1.png
+  created: 2026-10-03T19:29:36-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_dashengguan_heroes.k1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 7c0123739a34d62819219905c56497766ca169a7b2eba439c1d46a6ef9f74eae
+  sha256: 8f1ac58c72c354ecfefea666b989f254af3b7b7b9383dca59f512d3a0df11f26
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.399ac160.png
-    sha256: 399ac160c2ce0bfa9bc22a83b26b0ae38de7d9ab1b1d1aaf3aa9d4832ede1aee
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.399ac160.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.7c012373.png
+    sha256: 7c0123739a34d62819219905c56497766ca169a7b2eba439c1d46a6ef9f74eae
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.7c012373.entry.yaml
   runner_job_records:
   - - cg_ch03_dashengguan_heroes.resume3
     - ok
@@ -153,41 +137,36 @@
   category: scene
   style: default
   subject: 活死人墓相逢（ch03_shendiao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是杨过的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是小龙女的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中杨过、小龙女的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是孙婆婆的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中孙婆婆的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】这张插图画的是：初入古墓时相逢的成年化追忆。完整双臂的年轻成年杨过改穿早期灰旧布衣，在墓门外倔强抬眼；成年小龙女素白衣提油灯望向他，孙婆婆是白发老妪，脸上皮肤粗糙、皱纹深、相貌不美而目光仁慈温柔，不美化成贵妇，也不丑化成妖怪；她身体尚好，慈祥侧立墓门内；尚未发生受伤托孤，不画伤后虚弱。古墓门框、石阶、夜间冷雾与暖灯形成保护性的三角构图。早年杨过成年化为原创扩展表现；不画断臂杨过或玄铁剑。
+    【要改成】（AR-53 配角对齐）脸型改成基线那样的瘦长脸：两颊瘦削、颧骨略突、下巴偏长；灰白发髻；神情慈和（可以带一点微笑，但脸不要圆润）。
 
-    【要对齐的部分】杨过、小龙女各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「古墓相依」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
-    sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
-    use: 对脸基线：作者审核通过的 por_npc_yangguo__ch03_youth_onearm_base（杨过），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
-    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
-    use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_sunpopo__ch03_elder_gumu_base.png
+    sha256: 8c2072752a2017b93d1aad1ef290008b536726dce72756dbe3de106cf4ae5a37
+    use: 对脸基线：作者审核通过的 por_npc_sunpopo__ch03_elder_gumu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch03/cg_ch03_tomb_acceptance.png
-    sha256: b9c8ce1cfaf1929d05d08ad498867d07a68447fb609e89dde07a350b158eb165
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.b9c8ce1c.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: 7c9dca7003b947a34819571abf07deed95d0208592ebfd97a4a500c84353d05d
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.7c9dca70.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把孙婆婆头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T14:34:35-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_tomb_acceptance.s1.png
+  created: 2026-10-03T19:29:37-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_tomb_acceptance.k1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 7c9dca7003b947a34819571abf07deed95d0208592ebfd97a4a500c84353d05d
+  sha256: adf95134900125711b60f8ce94b5bd7d01f40179dd9b1653bbbce78a6bb74628
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「古墓相依」，实际字形「古墓相依」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「古墓相依」，实际字形「古墓相依」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_sunpopo__ch03_elder_gumu_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.b9c8ce1c.png
-    sha256: b9c8ce1cfaf1929d05d08ad498867d07a68447fb609e89dde07a350b158eb165
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.b9c8ce1c.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.7c9dca70.png
+    sha256: 7c9dca7003b947a34819571abf07deed95d0208592ebfd97a4a500c84353d05d
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.7c9dca70.entry.yaml
   runner_job_records:
   - - cg_ch03_tomb_acceptance.resume3
     - ok
