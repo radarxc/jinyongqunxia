@@ -118,3 +118,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_yangguo__ch03_youth_scene_dashengguan_youth_bamboo_staff.prepared.json`。
+
+## 原著依据
+
+- 《神雕侠侣》第十三回 武林盟主：“杨过却用铁桨柄去打他后臀”；https://www.xuges.com/wuxia/jinyong/sdxl/088.htm
+- AR-82 返修约束（本节优先于历史提示词）：只将手里黄褐竹杖换为渔隐断裂铁桨的桨柄，是一根黝黑金属杆、顶部或一端清楚的断裂金属口，不画竹节。保留握持位置、完整双臂、站姿、脸及背景，不提前断臂。
