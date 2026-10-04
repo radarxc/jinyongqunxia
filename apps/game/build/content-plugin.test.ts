@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { gameContentPlugin } from './content-plugin';
 
 describe('game content plugin town integration', () => {
+  // This integration builds the full authored content; its timeout is not a performance assertion.
   it('emits authored NPC presence and event-anchor registries with town data', async () => {
     const plugin = gameContentPlugin({ copyAssets: false });
     const resolved = await plugin.resolveId?.call({} as never, 'virtual:tianshu-content',
@@ -25,7 +26,7 @@ describe('game content plugin town integration', () => {
       undefined, {} as never);
     const town = await plugin.load?.call({} as never, townId as string);
     expect(town).toEqual(expect.stringContaining('town-runtime.v1'));
-  });
+  }, 60_000);
 });
 
 describe('content compiler bridge', () => {
