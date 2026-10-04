@@ -2289,3 +2289,17 @@
     - **cg-retirement 完成**（cca15026）：江湖归去改成韦小宝与七位夫人同框，八张脸对齐。题字「归」写成了日文字形「帰」，交给 title-audit 修。
     - **title-audit**（w24）：先修江湖归去题字，再逐张核对 82 张插图题字（错字、日文字形、繁简混用、印里有字），只修题字区域；另列没出图的 26 份提示词（108 份提示词、82 张图）。
     - 新出图器 w35、w36（由 w34 复制）。
+  - **10-04 00:10–00:25 开发监督**：
+    - **TOOL-ops-dispatch 合入**（26baf255，第 3 轮审核 PASS）。
+      - 单测 66 例全过；
+      - 真实协调目录上跑 `--once --dry-run`，前后比对 status、_ops、_inbox、slots 的文件哈希无变化、无新进程，用时 8.8 秒。
+    - **守护进程起跑**：00:17，pid 69789，`--interval 45`，经 detach_launch。
+      - 配置 `.agents/coord/_ops/config.json`：26 个任务的原驱动参数，已修问题 5 条（加了 app-flow waitFor → ENG-waitfor-timeout）；
+      - 收件箱 `.agents/coord/_inbox/ops.md` 开头注明：首轮 39 条是回放的历史告警，不用处理；
+      - 新合入后的 prod_check 由守护进程接管，开发监督不再手动跑。
+    - ENG-23a 置 CANCELLED（23b 已重新应用并合入），从名单删除。
+    - **ENG-ink-intents** 第 2 轮停滞：执行器卡在沙箱 tsx 的 EPERM 上，还改了工作区 `node_modules/.bin/tsx` 的 shim。
+      - 开发监督已还原 shim；
+      - 挪基点到 26baf255，与 event-source-trigger、base-diet 有 3 处冲突；
+      - 带 `devsup_note_rebase.md` 重起：`--max-runs 2 --max-reviews 1`，驱动 34041。
+    - 请协调者定：01:17 守护进程满一小时后退场，还是继续值守 M1 到实走。默认继续值守。
