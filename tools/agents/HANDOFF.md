@@ -2267,3 +2267,14 @@
       - generic-apose：通用男女 A 字图入库（6e571182），目测约 8.2 头身。Tripo 体检发现成品会把头放大 5–15%，已让 Tripo 子代理先把身体按系数拉长，做一张送 Tripo 的输入图，零点数验比例后再绑骨、配动作。
       - Tripo 体检报告在 `.agents/coord/ART-3d-tripo-web/audit_ar79.md`。袁紫衣的斗笠珠串印在了脸上，已记进 final-5 的 todo_3d。
     - **待作者**：郭靖（A，或等 C/D）、陈友谅 C/D、黄衫女子 A/B、霍青桐 C/D/E（出图中）、历史人物第一批（出图中）。
+  - **10-03 23:58–10-04 00:15 开发监督**：
+    - **ENG-session-base-diet 合入**（447caba5）：prod_check 全绿，1158 个测试；首次会话 88.52 KiB（worker 2.43 + static 79.25 + 基础内容 6.84）。
+    - **ENG-26 原样重合**（a051fc60）：对撤回提交 18ddf3f2 做 revert，无冲突。
+      - 会话 90.27，entry 38.79 / render 168.86 / webgl 207.65；
+      - 估计 gates-data、ink-intents 落地后 92–94，不过 95，不登注入式修复，逐件实测。
+    - **app-flow 计时误报**：「autosave 提交时接受第二条命令」里 `vi.waitFor` 用默认 1 秒，负载 30 时要 1.9 秒；同时单跑三次全过，耗时约 0.7 秒。
+      - 照 content-plugin / quest 先例，登记 **ENG-waitfor-timeout**（22a5797c）：功能用例的 vi.waitFor 加显式 10 秒、断言不改；代码池名单第一，驱动 89356。
+    - **ENG-region-gates-data**：等待器挪基点后，`apps/game/src/runtime/session.ts`、`item-content.ts` 两处冲突。
+      - 业务代码，不手改；起只解冲突的返修：`--from start --max-runs 1 --max-reviews 1`，说明 devsup_note_conflict.md，驱动 32922。
+    - **TOOL-ops-dispatch** 第 3 轮 00:03 校验通过，在审核。
+    - move-onhit、battle-modules-lazy 依赖已齐，先压着：等 19e、npc-species 拿到池位后再起。
