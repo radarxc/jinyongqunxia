@@ -2037,3 +2037,15 @@
     - 面部总审 19:56 收尾：明显 0、轻微 0（最后 3 张：丘处机 7e057b20、万圭 6623fdf6、平阿四 0eb265db；平阿四的疤只画到眉间，按细节判一致）。
     - AR-58 神态分工：11 号做 ch02–ch05（射雕 22 人，第 1 批已入库；神雕 18 人、倚天 19 人、笑傲 16 人已批）；10 号做 ch06–ch11（ch06–ch08 改 58 人已批）；12 号做 ch12–ch14（待报计划）。
     - 代码：event-source-trigger 校验栽在 content-plugin 5 秒超时（基点 c95f6371 早于修复 d0c0c1fa），协调者挪基点到 33f3e73c，--from validate 后 19:55 通过。gates-data 挪基点、合并 import 后，19:54 校验只栽在 core/bench 计时断言（负载 33–38，212 > 205 ms），已置 HOLD-VALIDATE；等待器 `after_merge_revalidate.py` 等 ENG-bench-perf-split 合入后自动挪基点、--from validate。supervise.py 改为合入遇 cherry-pick 冲突直接停（33f3e73c）。
+  - **10-03 19:52–20:03 开发监督**：
+    - **ENG-region-gates-data** 挪基点后的校验只栽在 core/bench 线性断言上（负载 33–38 下 212 > 205 ms）。
+      - 协调者置 HOLD-VALIDATE，并挂等待器 `_handoff/after_merge_revalidate.py`：bench-perf-split 合入后自动挪基点、`--from validate`。
+      - 协调者裁定：bench-perf-split 合入前，别的任务若也只栽在这条断言上，照此办：置 HOLD-VALIDATE、停驱动、挂等待器，不让执行器为它重跑，更不改断言。
+      - 判定脚本 `scratchpad/perfgate_check.py <ID>`，输出 ONLY-LINEARITY / OTHER，并列出驱动参数。
+    - **event-source-trigger** 校验栽在 5 秒超时上：它的基点早于超时修复。协调者挪基点到 33f3e73c 后 `--from validate`，已进审核。
+    - 协调者改了 supervise.py（33f3e73c）：合入遇到 cherry-pick 冲突就直接停在 READY，交人工挪基点。
+      - 以后：基点早于某个已合入的修复、校验栽在那个已修的问题上时，挪基点加 `--from validate`，不让执行器重跑。
+    - **ENG-bench-perf-split** 第 1 轮校验只栽在收缩门：combat.test.ts 42 → 27 行，是按任务要求把用例挪出去了，登记时漏了豁免。
+      - 补 shrink_exempt（f4d04a28）。
+      - 停掉自己起的驱动 65316 和返修 start 45330，`--from validate` 重起，驱动 50931。
+
