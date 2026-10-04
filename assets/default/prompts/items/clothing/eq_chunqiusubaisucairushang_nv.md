@@ -1,0 +1,76 @@
+---
+asset_id: eq_chunqiusubaisucairushang_nv
+kind: item
+name: 春秋素白素裁襦裳·女
+category: clothing
+category_name: 衣物
+subcategory: 衣物·衫裙
+grade: 黄中
+source: 春秋；**（原创扩展）**；形制／色系依据：《礼记·玉藻》 https://zh.wikisource.org/zh-hans/禮記/玉藻；越地具体制式与女性纁红主色（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+effect: '`grade=2; slot=body; armorWeight=light; wearer=female; defOutK=0.16; defInK=0.12; eva=2xG`'
+output: assets/default/item/clothing/eq_chunqiusubaisucairushang_nv.png
+manifest: assets/default/item/clothing/manifest.yaml
+size: 1536x1536
+background: RGB(230,225,216) 不透明均匀浅暖灰底，无投影、无地面
+references:
+- path: assets/default/item/clothing/eq_chunqiuxunhongsucairushang_nv.png
+  use: 底图：只改主色
+- path: assets/default/baseline/item/ref_eq_yitianjian__ch04_base01.png
+  use: 画风参考（作者已审）：清楚纤细的深灰墨线、薄层透明罩染、克制手绘笔触、低饱和冷暖、左上柔光、浅暖灰近象牙底；不复制剑本身
+- path: assets/default/baseline/item/ref_it_miji_jiuyin_shang__ch02_base01.png
+  use: 画风参考（作者已审）：同上；不复制书册、题签与磨损
+prompt_source: extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3（未经出图审核）；同款换色编辑，先出本组纁红底图
+status: draft
+batch: 1
+dynasty: 春秋
+color: 素白
+order: 2
+edit_from: eq_chunqiuxunhongsucairushang_nv
+---
+
+# 春秋素白素裁襦裳·女（`eq_chunqiusubaisucairushang_nv`）· 衣物 · 黄中阶
+
+## 物品要点
+
+| 项 | 内容 |
+|---|---|
+| 子类 | 衣物·衫裙 |
+| 品阶 | 黄中 —— 常见木、陶、麻、普通钢；结构实用，轻微使用痕，素包装（禁：黄色光、黄框、写“黄”） |
+| 出处 | 春秋；**（原创扩展）**；形制／色系依据：《礼记·玉藻》 https://zh.wikisource.org/zh-hans/禮記/玉藻；越地具体制式与女性纁红主色（待考）；八朝素白通用为原创设计，女服逐朝实证（待考） |
+| 说明（名录） | **（原创扩展）**据先秦衣裳语汇演成春秋素白襦裳，短襦与长裳分裁，以帛结收束裙腰。素面与实用缝边用于日常衣缘，行路前须整好下裳；越地裁片与女服用色仍（待考），同档换色不增加性能。 |
+| 属性投影（只作摘要，不画） | `def=31` |
+| 效果字段（只作理解，不画） | `grade=2; slot=body; armorWeight=light; wearer=female; defOutK=0.16; defInK=0.12; eva=2xG` |
+| 外观要点（名录） | 春秋女款，主色素白；右衽短襦与长裳分裁；裙腰帛结，窄缘遮蔽，麻丝素料；具体越地裁片（待考）；主色素白，素面与实用缝边（原创工艺分档），主体材质按形制保持；越地具体制式与女性纁红主色（待考）；单件平展，内外层合为一件衣物；无人物无文字无自发光 **（原创扩展）** |
+| 类别专项 | 短襦与长裳作为一件装备成套平展，裙腰帛结、内层遮蔽完整，不用人体撑衣 |
+
+## 提示词
+
+```text
+以参考底图 assets/default/item/clothing/eq_chunqiuxunhongsucairushang_nv.png 为唯一编辑底本，只把衣物现有主色面料从「纁红」改为「素白」（中性柔和素白，非蓝白）。这是同一款衣物的换色编辑：款式、剪裁、纹样、刺绣、配件、褶皱、材质、构图、光影、背景完全不变；所有结构的位置、比例、线条和纹饰布局都逐一保留，辅色、缘饰与系带颜色保持原样，禁止添加或删去任何物件。只改变主色面料的颜色，保留原有明暗层次、织纹和局部高光，不将改色覆盖到背景或配件。保留底图的纤细墨线、薄层罩染、手绘笔触与原有旧化程度，不重新设计、不重新起稿、不另出不同款式。保持原图1:1画幅、1536×1536尺寸、主体完整、四边留白至少10%、均匀浅暖灰背景，无文字、人物、投影或新增光效。
+```
+
+## 排除项
+
+文字、汉字、伪字、经文、书法、标题、数字、印章、签名、logo、文字水印；现代元素、塑料、拉链、订书钉、现代装帧、人物与手、真人演员脸；在世或近现代画师风格名、影视剧版造型、受保护画作或剧照的复制；演员名、游戏公司名、被借鉴作品名、具体游戏兵器设计、截图或海报构图；日韩动漫、欧美奇幻、赛博朋克、蒸汽朋克；霓虹、魔法阵、bloom、满屏金光、镜面眩光、血腥、裸露、道具堆叠；复杂布景、UI、品阶框、拼贴、多视图、透视畸变、主体截断、任何投影、地面、底纹；商品摄影、照片级写实、3D 渲染；专项排除：旗袍、马面裙、唐代高腰半臂、低胸裁片
+
+## 质检要点
+
+- 单一完整物品居中，四边留白 ≥ 10%，无地面、无投影、无场景；背景为均匀浅暖灰近象牙底。
+- 无文字 / 伪字 / 印章 / 品阶框 / 光效 / 粒子 / 魔法特效；无人物与手。
+- 画风对两张基线：纤细深灰墨线、薄层透明罩染、低饱和、左上柔光；不是粗黑描边或平涂色块。
+- 类别专项：短襦与长裳作为一件装备成套平展，裙腰帛结、内层遮蔽完整，不用人体撑衣；专项排除：旗袍、马面裙、唐代高腰半臂、低胸裁片。
+- 品阶信号：常见木、陶、麻、普通钢；结构实用，轻微使用痕，素包装（禁：黄色光、黄框、写“黄”）。
+- 对题：画面必须能辨认为“衣物·衫裙”里的“春秋素白素裁襦裳·女”，不得画成同类其他物品。
+
+## 同款换色执行
+
+先取得底图 `eq_chunqiuxunhongsucairushang_nv` 的 PNG，再按 [gemini-imagegen §4](../../../../../.claude/skills/gemini-imagegen/SKILL.md) 上传、暂存底图。以下登记不套模板；两张画风基线在 references 中保留作对照，实际编辑只上传本组底图。
+
+```js
+const id = 'eq_chunqiusubaisucairushang_nv';
+const O = JSON.parse(localStorage.getItem('claudeGemOpts') || '{}');
+O[id] = { template: '', refs: ['assets/default/item/clothing/eq_chunqiuxunhongsucairushang_nv.png'] };
+localStorage.setItem('claudeGemOpts', JSON.stringify(O));
+```
+
+- 逐点对比底图：除主色外，结构、纹饰、配件、褶皱、背景和光影均须一致；发现款式漂移就返工。

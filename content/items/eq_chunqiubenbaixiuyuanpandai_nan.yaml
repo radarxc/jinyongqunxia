@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_chunqiubenbaixiuyuanpandai_nan
+name: 春秋本白绣缘鞶带·男
+kind: armor
+sub: belt
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 春秋；（原创扩展）；形制／色系依据：《周礼·天官·染人／内司服／追师／屦人》 https://zh.wikisource.org/zh-hans/周禮/天官冢宰；《礼记·玉藻》 https://zh.wikisource.org/zh-hans/禮記/玉藻；越地具体制式与女性纁红主色（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/chunqiubenbaixiuyuanpandai_nan
+text:
+  desc: 外观：春秋男款，主色本白。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: （原创扩展）据韦鞶语汇演成春秋本白鞶带，韦带短端系结，带钩只作从属扣具。细密花缘绣置于覆帛边缘，使用时先束整垂端；越地裁制仍（待考），本白仅为原创配色，不采用后世玉版带制。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11

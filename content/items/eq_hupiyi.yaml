@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_hupiyi
+name: 虎皮衣
+kind: armor
+sub: clothing
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/hupiyi
+text:
+  desc: 外观：通用款，主色黄褐。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG。
+  lore: （原创扩展）按通用毛皮行衣设计虎皮衣，黄褐旧皮带暗横斑，麻丝内衬与革带便于贴身收束。行路须避湿并整理衣缘，不携虎头爪牙；尚未核到金庸修订版同名宝衣，默认普通轻衣，不声明原著持有者或免伤神效。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

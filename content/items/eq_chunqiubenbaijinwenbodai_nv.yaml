@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_chunqiubenbaijinwenbodai_nv
+name: 春秋本白锦纹帛带·女
+kind: armor
+sub: belt
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 春秋；（原创扩展）；形制／色系依据：《周礼·天官·染人／内司服／追师／屦人》 https://zh.wikisource.org/zh-hans/周禮/天官冢宰；《礼记·玉藻》 https://zh.wikisource.org/zh-hans/禮記/玉藻；越地具体制式与女性纁红主色（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/chunqiubenbaijinwenbodai_nv
+text:
+  desc: 外观：春秋女款，主色本白。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: （原创扩展）据帛带语汇演成春秋本白女式束带，软帛绕腰后以双结收住下裳。窄锦缘与细织线用于带缘，穿用时理平结处以免松脱；越地裁制仍（待考），不悬挂兵器，也不因织缘精细另加吉运。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 10

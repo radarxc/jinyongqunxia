@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_chunqiusubaijingxiusulv_nv
+name: 春秋素白精绣素履·女
+kind: armor
+sub: shoes
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 春秋；（原创扩展）；形制／色系依据：《周礼·天官·染人／内司服／追师／屦人》 https://zh.wikisource.org/zh-hans/周禮/天官冢宰；《礼记·玉藻》 https://zh.wikisource.org/zh-hans/禮記/玉藻；越地具体制式与女性纁红主色（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/chunqiusubaijingxiusulv_nv
+text:
+  desc: 外观：春秋女款，主色素白。 待运行时投影：agi=0; defOutK=0.05; hpMaxK=0.01; qinggong=22.5; wearer=female。
+  lore: （原创扩展）据屦履语汇演成春秋素白履，素织面与浅口麻底用于步行。精织双丝细绣缘仍保持成年足长，成双穿用须重系鞋口；越地鞋制仍（待考），轻功按品阶公式取值，不从鞋色或纹饰另加身法。
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12
+      agi: 0
