@@ -269,9 +269,9 @@
   source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch08_shenlong_mutiny.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 77e2eee1c5d2b2094d10505a1fa54b1d471ed91ec6bfd0d55fd6a38026de12ee
+  sha256: ed7541dbc8e5eb9be087ebcdfb692be3b370bb7226583ddac133cc3334d8f986
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「神龙风变」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：韦小宝窄长脸改成新基准的宽圆脸；局部合成——codex 整图编辑后只取韦小宝头部、羽化贴回原图，其余像素不变（原输出 codex_w17/out/cg_ch08_shenlong_mutiny.s1.raw.png））
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「神龙风变」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：韦小宝窄长脸改成新基准的宽圆脸；局部合成——codex 整图编辑后只取韦小宝头部、羽化贴回原图，其余像素不变（原输出 codex_w17/out/cg_ch08_shenlong_mutiny.s1.raw.png））；题字風→风；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch08_shenlong_mutiny.retry3.r1
   quality_retries: 0
@@ -281,6 +281,7 @@
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch08_shenlong_mutiny.b607d8d2.png
     sha256: b607d8d229d29328cc736db5a72f4ac326429ee081a81c24c62e3d66c012313d
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch08_shenlong_mutiny.b607d8d2.entry.yaml
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch08_shenlong_mutiny_fixed.png", "before_sha256": "77e2eee1c5d2b2094d10505a1fa54b1d471ed91ec6bfd0d55fd6a38026de12ee", "allowed_box": [[1410, 135, 1520, 189]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch08_shenlong_mutiny_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T00:55:12-07:00"}
 - id: cg_ch08_tongchi_betrayal
   file: cg_ch08_tongchi_betrayal.png
   category: scene
