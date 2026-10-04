@@ -175,43 +175,35 @@
   category: scene
   style: default
   subject: 张家口郭黄初相识（ch02_shediao）
-  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【身份与年龄】以第1张作者选定的B脸为身份参考，青年郭靖：方正脸、浓眉大眼、厚实端正的鼻唇、憨厚坚毅，不画成另一张偶像脸。
+    【只改】只将右侧黄蓉高髻上的破布帽换为歪戴黑黝黝破皮帽、盖住发髻，在额头、脸颊与两只手加清楚黑煤污。她仍是小叫化男装乔装，原五官骨相、眼神、神情、面容身份和姿势不变。郭靖、全部其他人、食物桌椅、题字朱印、原衣服其余处与背景完全不动。
 
-    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
+    【原著依据】《射雕英雄传》第七回 比武招亲：“头上歪戴着一顶黑黝黝的破皮帽，脸上手上全是黑煤”；https://www.xuges.com/wuxia/jinyong/sdyxz/049.htm
 
-    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
-
-
-
-    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
   references:
-  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
-    sha256: 8c7112d12f754f37c81443618a6a2d3b5218d654206f9a4791be496c2331b528
-    use: AR-87 身份基线，青年B或B年长化定稿
-  - path: assets/default/scene/ch02/cg_ch02_guorong_first_meet.png
-    sha256: 55cef98c44eadc60f67068c2a36e840d439c79e204dad9b1aa25b4bdad80f8a6
-    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/cg_ch02_guorong_first_meet.55cef98c.png
-  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
+  - path: .agents/coord/_lines/novel-fix-1/before/47_cg_ch02_guorong_first_meet.png
+    sha256: 3d2ee3ed746a2999a36b51f6844bfb60dca1ab77a2db293d31084c4a7113e085
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T00:42:03-07:00'
-  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch02_guorong_first_meet_v1_composite.png
+  created: '2026-10-04T03:26:40.331294-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_47_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 3d2ee3ed746a2999a36b51f6844bfb60dca1ab77a2db293d31084c4a7113e085
+  sha256: 2a5aae660a2a100134aeff8a59896a573f076387a504b1bbffcaf0b9abc35b59
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「张垣初逢」，实际字形「张垣初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「张垣初逢」，实际字形「张垣初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变；AR-82 原著核对返修：郭蓉初逢插图同步破皮帽和脸手煤污
   previous_revision:
-    png: .agents/coord/_lines/guojing-final/replaced/cg_ch02_guorong_first_meet.55cef98c.png
-    sha256: 55cef98c44eadc60f67068c2a36e840d439c79e204dad9b1aa25b4bdad80f8a6
-    entry: .agents/coord/_lines/guojing-final/replaced/cg_ch02_guorong_first_meet.55cef98c.entry.yaml
-  effort: xhigh
+    png: .agents/coord/_lines/novel-fix-1/before/47_cg_ch02_guorong_first_meet.png
+    sha256: 3d2ee3ed746a2999a36b51f6844bfb60dca1ab77a2db293d31084c4a7113e085
+  effort: ultra
 - id: cg_ch02_junshan_succession
   file: cg_ch02_junshan_succession.png
   category: scene
