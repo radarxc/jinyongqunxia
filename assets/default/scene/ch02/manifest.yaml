@@ -82,38 +82,36 @@
   category: scene
   style: default
   subject: 比武招亲（ch02_shediao）
-  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是穆念慈定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里穆念慈头部一带的放大方图（插图局部）。请以最后一张为底稿，只把穆念慈改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是杨康的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中杨康的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里是谁】比武招亲擂台上，右侧侧脸看向画面左边的红衣习武女子（穆念慈，约二十岁）。
+    【要改成】（AR-53 配角对齐）五官照基线：清俊的长脸、轮廓分明、下巴不要太尖也不要圆软，剑眉斜飞入鬓、眼型细长、眼神倨傲、高鼻薄唇。
 
-    【要改成什么】把她的脸改成基线这张脸：圆润柔和的鹅蛋脸、下巴不尖，额前一排齐刘海，眼睛大而温柔，鼻子秀气、不要高挺，嘴唇自然的淡红色（不要大红唇），轮廓柔和。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；发冠与发型照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持】保留她侧脸看向左边的角度、凝神而略带倔强的神情，以及高马尾与红发带。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
-
-    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
-  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/female/ch02/por_npc_munianci__ch02_youth_base.png
-    sha256: 688b024703bc1b4310e7b84e9b3d0369daff8b4b130bfa61c544547e47e83bd1
-    use: 对脸基准：穆念慈的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_munianci__ch02_youth_base.jpg）
+  - path: assets/default/character/male/ch02/por_npc_yangkang__ch02_youth_wangfu_base.png
+    sha256: a3f98ca5f484fb2a36b209c42f4b783b93831ce52c570f2a0a7943f396503c21
+    use: 对脸基线：作者审核通过的 por_npc_yangkang__ch02_youth_wangfu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_beiwuzhaoqin.png
-    sha256: b3fd950ad288a576b84e283c2556c010d56fd81950c6277603fbaec4257ac575
-    use: 待改插图：只把穆念慈头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_beiwuzhaoqin.b3fd950a.png
-  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把穆念慈头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
+    sha256: 485df8245db44be4f0619f07c4d0c9d9cfb099b9c91b1c8490ffadb4e266350e
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.485df824.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把杨康头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T18:58:02-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch02_beiwuzhaoqin.p1.png
+  created: 2026-10-03T19:29:29-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_beiwuzhaoqin.k1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 485df8245db44be4f0619f07c4d0c9d9cfb099b9c91b1c8490ffadb4e266350e
+  sha256: 868080d05c65f2e80ca70ad8136e6fb2f4cf3271a5287d2ea254404ca6e5dbe2
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「比武招亲」，实际字形「比武招亲」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：穆念慈按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「比武招亲」，实际字形「比武招亲」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：穆念慈按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-44 对脸精修，基线 = por_npc_yangkang__ch02_youth_wangfu_base（AR-53 配角对齐：杨康五官对齐基准（以 11 号改过穆念慈后的当前文件为底）；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_beiwuzhaoqin.b3fd950a.png
-    sha256: b3fd950ad288a576b84e283c2556c010d56fd81950c6277603fbaec4257ac575
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_beiwuzhaoqin.b3fd950a.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.485df824.png
+    sha256: 485df8245db44be4f0619f07c4d0c9d9cfb099b9c91b1c8490ffadb4e266350e
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.485df824.entry.yaml
   effort: ultra
 - id: cg_ch02_niujia_snow
   file: cg_ch02_niujia_snow.png
@@ -196,41 +194,36 @@
   category: scene
   style: default
   subject: 轩辕夺棒（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是郭靖的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄蓉、郭靖的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是杨康的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中杨康的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】这张插图画的是：君山轩辕台，黄蓉夺回打狗棒并获得群丐认可的关键事件。她立在石台前，翠绿竹棒斜指地面，神情灵动而果决；郭靖台侧护持，青年贵公子杨康退入远景，群丐的目光向黄蓉聚拢。夜色、湖雾、少量火把，人物真实不魔幻。选择胜负已定后的静态瞬间，不臆画具体招数，实际站位待考；这是编辑性概括构图。
+    【要改成】（AR-53 配角对齐）五官照基线：清俊的长脸、轮廓分明、下巴不要太尖也不要圆软，剑眉斜飞入鬓、眼型细长、眼神倨傲、高鼻薄唇。（远景里他披着裘，原图脸偏圆软，要改得清俊、轮廓分明）
 
-    【要对齐的部分】黄蓉、郭靖各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；皮裘与发型照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「轩辕夺棒」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
-    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
-    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.png
-    sha256: 9795e3af012aaa8a3c3540b1636fb19869663435e3ea0e6bd85ab6162711f940
-    use: 对脸基线：作者审核通过的 por_npc_guojing__ch02_youth_scene_peach_island_square_circle（郭靖），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch02/por_npc_yangkang__ch02_youth_wangfu_base.png
+    sha256: a3f98ca5f484fb2a36b209c42f4b783b93831ce52c570f2a0a7943f396503c21
+    use: 对脸基线：作者审核通过的 por_npc_yangkang__ch02_youth_wangfu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_junshan_succession.png
-    sha256: c944b6aeb92f8685ec6b4e47a3144f8da007e33228b1e83534efbeb2f6c8a9c4
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_junshan_succession.c944b6ae.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: b0bb48a490ec2ddfb76bbe02694930e638f9cc0991b361a5093491d47dad86d5
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_junshan_succession.b0bb48a4.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把杨康头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T16:32:02-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_junshan_succession.s1.png
+  created: 2026-10-03T19:29:30-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_junshan_succession.k1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: b0bb48a490ec2ddfb76bbe02694930e638f9cc0991b361a5093491d47dad86d5
+  sha256: f352e754eb417fb112a5a7ed372ba707b43c81e0c65beedf03499f1635e9fee7
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「轩辕夺棒」，实际字形「轩辕夺棒」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base、por_npc_guojing__ch02_youth_scene_peach_island_square_circle
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「轩辕夺棒」，实际字形「轩辕夺棒」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base、por_npc_guojing__ch02_youth_scene_peach_island_square_circle；AR-44 对脸精修，基线 = por_npc_yangkang__ch02_youth_wangfu_base（AR-53 配角对齐：远景杨康脸改得清俊、轮廓分明；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_junshan_succession.c944b6ae.png
-    sha256: c944b6aeb92f8685ec6b4e47a3144f8da007e33228b1e83534efbeb2f6c8a9c4
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_junshan_succession.c944b6ae.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_junshan_succession.b0bb48a4.png
+    sha256: b0bb48a490ec2ddfb76bbe02694930e638f9cc0991b361a5093491d47dad86d5
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_junshan_succession.b0bb48a4.entry.yaml
   runner_job_records:
   - - cg_ch02_junshan_succession.resume3
     - ok
