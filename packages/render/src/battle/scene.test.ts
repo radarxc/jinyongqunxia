@@ -146,6 +146,8 @@ describe('battle camera', () => {
     const renderer = await createBattleRenderer(document.createElement('canvas'), cells);
     renderer.resize(320, 180);
     renderer.updateUnits([marker]);
+    renderer.setHighlights({ selected: null, ready: '0,0', reachable: ['1,0'],
+      path: ['0,0', '1,0'], ghost: '1,0', area: [] });
     renderer.render(100);
     expect(renderer.stats.drawCalls).toBe(4);
     expect(fake.motions.at(-1)).toBe(7);

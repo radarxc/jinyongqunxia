@@ -48,6 +48,8 @@ export interface BattleHighlights {
   readonly ready: string | null;
   readonly reachable: readonly string[];
   readonly area: readonly string[];
+  readonly path: readonly string[];
+  readonly ghost: string | null;
 }
 export interface BattleRenderStats {
   drawCalls: number;
