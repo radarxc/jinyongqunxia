@@ -1,0 +1,9 @@
+HEAD abc123  20:24:00  load { 1.0 2.0 3.0 }
+entry                38.79          170  PASS
+render              168.86          180  PASS
+webgl total         207.65          350  PASS
+worker shell          2.33            —  计入合计
+session static       78.17            —  计入合计
+base content         28.40            —  计入合计
+session total       108.91          110  PASS
+PNPM_CHECK_RC=0  20:25:44

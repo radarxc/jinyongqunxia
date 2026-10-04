@@ -35,6 +35,8 @@ import re
 import subprocess
 import sys
 import time
+import tempfile
+import shutil
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -227,6 +229,92 @@ def summary(tid: str) -> str:
             f"审核={rf.relative_to(ROOT) if rf else '—'}（{verdict}）| {stat} | {st.get('detail', '')}")
 
 
+def rebase_before_rework(tid: str) -> bool:
+    """每次 finish 失败至多调用一次；预演含未提交产物，不改真实索引或引用。"""
+    if S.is_running(ROOT, tid):
+        log(tid, "rebase-before-rework: 执行器仍在跑，不挪基点")
+        return False
+    wt = ROOT / ".agents" / "wt" / tid
+    base = (S.LockedState(ROOT / ".agents/state.json").get(tid) or {}).get("base")
+    script = ROOT / ".agents/coord/_handoff/rebase_task.py"
+    if not base or not wt.is_dir() or not script.is_file():
+        log(tid, "rebase-before-rework: 缺基点、工作区或 rebase_task.py，沿用返修")
+        return False
+
+    def git(*args, env=None, input=None):
+        return subprocess.run(["git", "--no-optional-locks", *args], cwd=wt, env=env, input=input,
+                              capture_output=True, text=True, encoding="utf-8", errors="replace")
+
+    rc, out = sh(["git", "rev-parse", "HEAD"])
+    head = out.strip()
+    if rc or base == head:
+        log(tid, "rebase-before-rework: 基点未落后，不挪")
+        return False
+    if git("merge-base", "--is-ancestor", base, head).returncode != 0:
+        log(tid, "rebase-before-rework: 基点与集成 HEAD 非祖先关系，沿用返修")
+        return False
+    try:
+        dirty = git("status", "--porcelain").stdout.strip()
+        count = git("rev-list", "--count", f"{base}..HEAD")
+        # 交接脚本仅支持一个 finish 提交或一个未提交快照。
+        if count.returncode or int(count.stdout.strip()) + bool(dirty) != 1:
+            log(tid, "rebase-before-rework: 产物无法表示为一个任务提交，沿用返修")
+            return False
+        tip = git("rev-parse", "HEAD").stdout.strip()
+        if dirty:
+            # 复制索引保留稀疏检出的 skip-worktree 位，避免把缺图当删除。
+            with tempfile.TemporaryDirectory(prefix="tianshu-rebase-index-") as td:
+                index = git("rev-parse", "--git-path", "index").stdout.strip()
+                src = Path(index) if Path(index).is_absolute() else wt / index
+                dest = Path(td) / "index"
+                # 保留索引 mtime：否则同一秒改写的等长文件可能绕过 Git 的 racy 检查。
+                shutil.copy2(src, dest)
+                env = {**os.environ, "GIT_INDEX_FILE": str(dest),
+                       "GIT_AUTHOR_NAME": "ops-preview", "GIT_AUTHOR_EMAIL": "ops@local",
+                       "GIT_COMMITTER_NAME": "ops-preview", "GIT_COMMITTER_EMAIL": "ops@local"}
+                add = git("add", "-A", env=env)
+                tree = git("write-tree", env=env)
+                if add.returncode or tree.returncode:
+                    log(tid, "rebase-before-rework: 快照预演失败，沿用返修")
+                    return False
+                commit = git("commit-tree", tree.stdout.strip(), "-p", base, env=env,
+                             input="ops preview (unreferenced)\n")
+                if commit.returncode:
+                    log(tid, "rebase-before-rework: 无法构造预演提交，沿用返修")
+                    return False
+                tip = commit.stdout.strip()
+        preview = git("merge-tree", "--write-tree", "--name-only", f"--merge-base={base}", head, tip)
+        if preview.returncode:
+            files = preview.stdout.split("\n\n", 1)[0].splitlines()[1:]
+            log(tid, "rebase-before-rework: 预演冲突 / 失败，不挪；冲突文件：" +
+                ("、".join(files) or preview.stderr.strip()[:400] or "无法识别"))
+            return False
+        if S.is_running(ROOT, tid):
+            log(tid, "rebase-before-rework: 预演后执行器在跑，不挪")
+            return False
+        rc, out = sh([PY, str(script), tid, "--new-base", head])
+        log(tid, f"rebase-before-rework: {base[:12]} → {head[:12]} rc={rc}: " +
+            " / ".join(out.strip().splitlines()[-3:])[:600])
+        if rc or "带冲突标记 0 个" not in out:
+            return False
+        return True
+    except (OSError, ValueError) as exc:
+        log(tid, f"rebase-before-rework: 预演不可用（{exc}），沿用返修")
+        return False
+
+
+def validate_with_rebase(tid: str) -> tuple:
+    """保持原校验命令 / 超时；第二次失败直接回到原返修逻辑，不递归。"""
+    rc, out = step("finish", tid, "--no-commit", timeout=3600)
+    log(tid, f"finish --no-commit rc={rc}: " + (out.strip().splitlines() or [""])[0][:300])
+    if rc == 1 and rebase_before_rework(tid):
+        log(tid, "rebase-before-rework: 挪基点完成，重校验一次")
+        rc, out = step("finish", tid, "--no-commit", timeout=3600)
+        log(tid, f"finish --no-commit (after rebase) rc={rc}: " +
+            (out.strip().splitlines() or [""])[0][:300])
+    return rc, out
+
+
 def worker(a) -> int:
     tid = a.id
     runs, reviews = 0, 0
@@ -268,9 +356,8 @@ def worker(a) -> int:
                 return 2
         if phase == "validate":
             set_status(tid, "RUNNING", runs=runs, reviews=reviews, detail="validating")
-            rc, out = step("finish", tid, "--no-commit", timeout=3600)
+            rc, out = validate_with_rebase(tid)
             head = (out.strip().splitlines() or [""])[0][:300]
-            log(tid, f"finish --no-commit rc={rc}: {head}")
             if rc == 0:
                 phase = "review"
             elif rc == 1:

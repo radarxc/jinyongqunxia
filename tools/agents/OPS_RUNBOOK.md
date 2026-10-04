@@ -220,3 +220,44 @@
 ```
 
 需要协调者拍板的写成「【请判断】…」，并给默认做法：协调者不回，就按默认执行，执行后再记一笔。
+
+## 4. 自动化对照
+
+`supervise.py` 与 `ops_dispatch.py` 已接管下列可确定的步骤；本任务对停进程、改池上限和放宽门禁均无授权，遇到这些选择只写收件箱。
+
+| 手册条目 | 程序与动作 | 自动执行边界 |
+|---|---|---|
+| §2.1 窗口期 | dispatcher 调 `merge_when_clean.py`，经 `detach_launch.py` 脱离启动 | READY 且最后一次失败确为主检出未提交窗口；已有等待器不重复挂 |
+| §2.1 真冲突 | `merge-tree --write-tree --merge-base` 配合 diff3 列文件及完整冲突块 | 只把保留共同基线的单行 import / named export / 表格登记纯追加交 Codex `gpt-6.1-sol xhigh`；`export *` 无法从冲突块排除同名导出，和重复绑定、重命名、语义改动、未知格式一样写「【请判断】」；dry-run 或磁盘 < 2.5 GiB 时不运行会写对象的预演 |
+| §2.1 机械合并 | dispatcher 在会话外调 `rebase_task.py`；`codex_session.py` 只解冲突、写报告 §7 与 coord 备注；会话退出 0 且无冲突标记后，dispatcher 再按原参数 `--from validate` | 会话不再嵌套启动 Codex，也不负责写 state / 锁；新冲突、HEAD 变化或会话失败即交协调者；校验和审核继续把关 |
+| §2.2 已合入修复 | supervise 每次 `finish --no-commit` 失败后，返修前最多挪一次基点并重校验一次 | 基点是集成 HEAD 的严格祖先、执行器已退出、预演无冲突才调 `rebase_task.py --new-base <预演HEAD>`；预演含未提交产物，临时索引保留稀疏标记及 mtime；预演不改真实索引或引用；无法表示为交接脚本支持的单提交时沿用返修并记日志 |
+| §2.2–§2.4 未合入修复 | HOLD-VALIDATE 的失败匹配配置后挂 `after_merge_revalidate.py`；已合入但基点缺修复时交 supervise `--from validate` | 不停现有驱动 / 执行器；只有原驱动已 HOLD 才自动挂；运行中的失败由 supervise 接管，需拦住其后续返修时交协调者 |
+| §2.3、§2.4 未知计时 / 体积门 | 收件箱附校验日志中的失败值 / 阈值、当前负载 | 不修改断言、超时、预算，不擅自登记小修或换校验入口；首次会话余量 < 10 KiB 提醒提前瘦身 |
+| §2.5 停滞 | 增量监听 `wait: STALLED`，记执行器日志 mtime、模型、末行；同任务重复或不同任务集中时告知协调者 | 【建议值】集中时段为日志 mtime 相差 ≤ 300 秒；「【请判断】是否降池上限」，默认维持现上限；dispatcher 不杀、不重起执行器 |
+| §2.6–§2.10 其他事件 | HOLD-REVIEWS / HOLD-RUNS / ERROR / 等待器失败进收件箱 | 报告口径、缩短豁免、退出码 143、依赖图变更均需人工判断；默认保持状态 |
+| §2.11 新合入 | 从 HEAD 新提交的 `Agent-Task:` 尾注发现事件；负载 < 25 且上轮结束后调 `prod_check.sh` | 报 entry、render、webgl、session total 四个 gzip KiB 及相对上次完整绿检的差值；读取脚本日志的 `PNPM_CHECK_RC`，不把 shell 退出码当绿；红 / 缺数报摘要，由协调者决定重跑与修复；渲染专项 check:perf 仍需人工安排 |
+| §2.1 窗口合入收尾 | `merge_when_clean.py` 成功后核实等待起点之后出现精确 `Agent-Task:` 尾注，再通过 supervise 状态接口写 `MERGED` | 尾注缺失、仅相似 ID 或旧提交不改状态并写「【请判断】」；同步后 `after_merge_revalidate.py` 的依赖门可继续 |
+| §0 安全 | 出图前缀 ART / TOWN / VFX / CITY / SKILL / KIT 和 Gemini / Tripo 任务跳过；磁盘 < 2.5 GiB 只写收件箱 | 不停进程、不直接改工作区、不放宽门禁；守护进程单实例锁，处置子进程全部经现有 detach 脚本启动 |
+
+### 配置与状态
+
+- 配置默认读 `.agents/coord/_ops/config.json`；不存在时用 `tools/agents/fixtures/ops/config.json`。`fixes` 维护匹配正则（同一规则全部命中）、修复提交 / 任务 ID，不写死在 Python；内置 5 秒功能超时、HOST_DISPOSED、BattleSession 计时断言和首次会话瘦身四项。
+- `supervise_args` 按任务 ID 保存**原参数数组**（不含任务 ID、`--from`、`--worker`、`--detach`）。必须包括原 `--checks` 文件；缺配置只写「【请判断】」。示例：`"ENG-example": ["--max-reviews", "1", "--max-runs", "3", "--auto-merge", "--checks", ".agents/coord/PROD/review_checks_eng.md"]`。工具拒绝跳过审核等选项，不猜新的审核口径。
+- 每轮重新读任务状态与负载；`state.json` 保存 HEAD 游标、已处理事件、待处理事件、处置 pid 和上一轮完整数字；`offsets.json` 保存 supervise.log / supervise.out 的 inode 与字节位置。单次日志读取最多 256 KiB，半行留待下一轮，轮转 / 截短重置位置；首次启动只读尾段，不回放整份大日志。
+- 守护日志：`.agents/coord/_ops/ops_dispatch.log`；收件箱：`.agents/coord/_inbox/ops.md`；子进程日志：`_ops/jobs/*.log`。启动参数缺失、预演不可读、等待器超时、处置失败均可追溯。
+- 磁盘告警在低于 2.5 GiB 的时段只集中登记一次；READY / HOLD-VALIDATE / 合入检查保留在待处置队列，空间恢复后重新判断。进程探测无权限时写「【请判断】」，不把未知进程当作已退出；配置变化和新合入会让 HOLD 的失败重新分类。
+
+### 起停与核验
+
+以下命令在 **集成仓库根** 执行；交接脚本固定根为 `_prod`，不要从另一个工作副本运行真实处置。
+
+```sh
+python3 tools/agents/ops_dispatch.py --once --dry-run
+python3 .agents/coord/_handoff/detach_launch.py .agents/coord/_ops/launch.out "$PWD" -- python3 -u tools/agents/ops_dispatch.py --interval 45
+```
+
+正常轮询默认 45 秒（允许 30–60 秒）；`--once` 一轮退出，`--dry-run` 一轮只打印、不写状态 / offset / 收件箱、不启动子进程。独立工作副本默认只观察自身，可用 `--root` 明确指定集成根做只读预演。
+
+停止时核对 `_ops/pid` 对应的确为自己启动的 dispatcher，再只向该 pid 发 TERM；不会停止已脱离启动的等待器、检查或处置会话。不要使用进程组信号，也不要停其他监督、出图或 Gemini / Tripo 进程。改配置后重启自己启动的 dispatcher；原等待器能被进程扫描识别。
+
+单测：`python3 -m unittest tools.agents.test_ops_dispatch tools.agents.test_supervise_rebase tools.agents.test_step_pool_priority tools.agents.test_step_traex_args tools.agents.test_run_sparse_baseline`。测试只建少量文本文件的临时 git 仓库，不检出本项目，不启动真实模型。

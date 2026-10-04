@@ -1,0 +1,16 @@
+[
+  {"name": "窗口期", "event": {"kind": "ready", "task": "ENG-a", "text": "主检出有未提交的改动", "context": {}}, "action": "merge_wait"},
+  {"name": "历史窗口不能盖住真冲突", "event": {"kind": "ready", "task": "ENG-a", "text": "主检出有未提交的改动\ncherry-pick 失败：could not apply", "context": {}}, "action": "inbox"},
+  {"name": "证据不足", "event": {"kind": "ready", "task": "ENG-a", "text": "", "context": {}}, "action": "inbox"},
+  {"name": "合入冲突已消失", "event": {"kind": "ready", "task": "ENG-a", "context": {"preview_clean": true}}, "action": "merge_wait"},
+  {"name": "高负载", "event": {"kind": "merge", "task": "ENG-a", "context": {"load": 25}}, "action": "defer"},
+  {"name": "低负载", "event": {"kind": "merge", "task": "ENG-a", "context": {"load": 24.99}}, "action": "prod_check"},
+  {"name": "检查已在跑", "event": {"kind": "merge", "task": "ENG-a", "context": {"load": 1, "busy": true}}, "action": "defer"},
+  {"name": "磁盘不足", "event": {"kind": "ready", "task": "ENG-a", "text": "主检出有未提交的改动", "context": {"disk_gib": 2.49}}, "action": "inbox"},
+  {"name": "执行器在跑", "event": {"kind": "ready", "task": "ENG-a", "context": {"running": true}}, "action": "defer"},
+  {"name": "驱动在跑", "event": {"kind": "validate", "task": "ENG-a", "context": {"driver": true}}, "action": "defer"},
+  {"name": "停滞", "event": {"kind": "stall", "task": "ENG-a", "text": "context compacted", "context": {"mtime": 1000, "model": "gpt-6.1-sol"}}, "action": "inbox"},
+  {"name": "多件聚集", "event": {"kind": "cluster", "text": "ENG-a / ENG-b"}, "action": "inbox"},
+  {"name": "未知事件", "event": {"kind": "HOLD-REVIEWS", "task": "ENG-a", "text": "审核 FAIL"}, "action": "inbox"},
+  {"name": "Gemini 执行器", "event": {"kind": "ready", "task": "ENG-a", "context": {"model": "Gemini"}}, "action": "skip"}
+]
