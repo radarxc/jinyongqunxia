@@ -42,26 +42,23 @@
     FINAL POSE CHECK: FRONT-FACING full-body, head and neck UPRIGHT, forehead–nose–chin VERTICAL, both eyes HORIZONTALLY LEVEL, camera level, NO head tilt, NO Dutch angle. Preserve this person’s own age-adapted facial identity and narrative stage. Preserve ONLY the same-person identity from image 1; make the specified ch08 age and stage clearly readable.'
   negative: 不要文字、汉字、伪字、题款、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件；不要真人演员脸、明星相貌、剧照构图或具体改编的独创造型，不用画师姓名作风格词，不复制具体画作；不要动漫大眼、低幼化滤镜、统一网红锥子脸、丰唇浓妆、偶像磨皮、摄影写真、塑料皮肤或三维模型渲染感；不要日式服制、前结宽腰带、日本刀、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要时代与族群混搭、错误衣襟、水平镜像、无依据的冠服与兵器；不要额外人物、多视图、分格、面部特写框、多肢多指、粘连手指、错接手腕、手物融合、失重衣料、悬空装备、弯折断裂兵器或容不下剑刃的短鞘；不要无依据的破衣碎布、畸形健美肌肉、血腥特写、裸露、透明衣料、色情化、恶搞或丑化；不要发光兵器、法阵、仙法、龙形能量、粒子特效、强逆光、浓雾遮挡或具体剧情场景及清晰建筑；不要晚清大拉翅、民国旗袍、中山装与近现代军装；不要裁断头足、衣摆、发饰和兵器端点。不要青年美人脸、瘦弱少女腰、浓妆、尖下巴、恶婆婆漫画脸、无依据拐杖、针线篮、长剑、丈夫或儿子同框、死亡伤口。 不要 head tilt、Dutch angle、头歪向肩、眼线倾斜、侧脸侧视、回眸、低头藏眼、抬下巴或倾斜镜头。不要复制背景参考王语嫣或任何别人的脸、年龄、身体、发型、衣装、道具和姿势；本人ch07第一参考仅保留骨相身份，不沿用前界年龄、服制和器物，不借其他game或TV角色冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、浓妆丰唇、Q版、3D塑料或换头拼贴。不要以美化抹去中老年皱纹，病弱成人不画成儿童，不用怪物化和身体羞辱表达性格或健康。不要人物碎墨、飞白缺块、纸纹透肤透衣、墨斑侵蚀、破洞、撕裂衣摆、碎布毛边、密集噪点或过密细皱，衣料皮肤器物完整连续。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰物、晚清大拉翅、民国旗袍、中山装或近现代军装；清初服制和剃额细辫、女道髻、僧人剃度分别依人物本阶段，不泛化成同一种发式。不要左衽、镜像衣襟、无据冠服等级纹章、日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、赛博或蒸汽朋克。不要多人、分格、特写框、多视角、裁断头足器物端点、多肢多指、手物融合、错接手腕、无据缺肢失明、漂浮装备、无挂点鞘带或断裂兵器。不要无据加兵器、发光法阵、光翼、光龙、粒子、浓雾遮结构、强逆光；不要具体剧情场景、清晰建筑、室内布景或拥挤背景，保留极淡水墨远山与留白。不要裸露透衣、色情化、血腥特写、夸张抽搐或恶搞。不要文字、伪字、题款、签名、印章、logo、器物铭文、书页字或新装饰水印；保留工具原有溯源信息。
   references:
-  - path: assets/default/character/female/ch07/por_npc_guierniang__ch07_prime_base.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/female/ch07/por_npc_guierniang__ch07_prime_base.png
-    use: 第一输入是已实际查看并核验原始字节的本人归二娘 ch07项目生成候选（por_npc_guierniang__ch07_prime_base），不是原版游戏头像或影视演员照片。只保留本人骨相与眉眼鼻唇相对关系，按ch08年龄显著成熟/老化；本稿年龄、发式、衣装、器物和正面头直眼平要求覆盖参考。本人ch07中年照护阶段仅供骨相。本图是保护成年归钟、计划刺驾而尚无致命伤的老年女拳师；灰白低髻、木簪、深褐短衣与靛灰裙裤、空手低位拳掌。去掉前界药包及患儿照护器物，不携剑杖篮筐。 参考仍candidate，不转为approved。
-    sha256: 706048dea05f2eb9fe8f186e7a7d9657b04e44f4d688ac47cc85e8c2a1f5e7c6
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/706048dea05f2eb9fe8f186e7a7d9657b04e44f4d688ac47cc85e8c2a1f5e7c6.png
-    status_at_input: candidate
   - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
     original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
     use: 第二输入只取暖浅灰不透明纸底、极淡低对比水墨远山及留白；不取王语嫣的人物、五官、年龄、身体、发式、白青衣饰、头倾、亭阁花枝。墨迹纸纹不得侵入目标人物。
     sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
     archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
     status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T00:35:07.686993+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-b93f18f1-1dda-4d03-9ac9-350d1fe7e617.png
+  - path: assets/default/character/female/ch07/por_npc_guierniang__ch07_prime_base.png
+    sha256: 706048dea05f2eb9fe8f186e7a7d9657b04e44f4d688ac47cc85e8c2a1f5e7c6
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  effort: ultra
+  created: '2026-10-04T01:00:31.392274-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_60_58_r1.png
   size: 1024x1536
   mode: RGB
-  sha256: 41b7f8e3d6a441e5404cb103e00f62f5f353115c6d5a65824de77a75c44cc1ce
+  sha256: 795fa8f8608bf0ef9c5f1a0c5172bb041a5f6749342811e57aa589722e02d664
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
@@ -74,7 +71,18 @@
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_guierniang__ch08_elder_base.requests.json
   notes: '实际查看并与本人ch07候选比较：宽圆面、平直眉、自然长眼裂与鼻唇比例保留，ch08明确增加花白发、额眼鼻唇和口角老年纹理，紧实老年女拳师可辨，未把前界中年脸直接原样复用。深褐便袄、靛灰裙裤、空手右掌前护左手低垂，无旧药包或他人同框。主要正面头颈端正、眼线基本水平，完整全身双手双足，无明显多肢或重大结构问题，按用户快速宽松自查可用。细节：低髻成为较高发髻、缺少深色包髻布巾、左手未收腰侧，衣褶和背景亭花略多；记录后续精修，不追加。原生1024×1536 RGB不透明PNG原字节/元数据保存，candidate待审核。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-84 第二轮：归二娘五官对齐 por_npc_guierniang__ch07_prime_base；AR-53 仅头部，AR-75 神态与光向保留；归二娘晚年：保留图1白发、眼角和口鼻老年皱纹及长辈的严厉；与碧血剑壮年归二娘五官神韵一致，不能返老还童。；质检：实看通过：ch07归二娘眉眼鼻口身份相同，ch08保留灰发、皱纹、苍老与严厉；原光向和脸颈边缘自然，未返老还童'
+  source_size: 1024x1536
+  ar84_alignment:
+    job: ar84_calign_60_58_r1
+    before_sha256: 41b7f8e3d6a441e5404cb103e00f62f5f353115c6d5a65824de77a75c44cc1ce
+    box:
+    - 437
+    - 90
+    - 580
+    - 285
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_60_58_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_suofeiya__ch08_youth_regent_base
   file: por_npc_suofeiya__ch08_youth_regent_base.png
   category: character/female
