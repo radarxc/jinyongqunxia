@@ -65,47 +65,81 @@
   category: character/female
   style: default
   subject: 刀白凤 npc_daobaifeng ch01_tianlong prime；阶段以 assets/default/prompts/characters/ch01-tianlong/npc_daobaifeng.md 人物要点为准
-  prompt: 针对这张刀白凤候选做最后局部返修。把人物身后和四周大片灰色云状/花纹状墨斑全部清除，用均匀连续的不透明暖浅灰纸底替换，只有非常淡细纸纹和两脚下小面积轻微接触影，没有人物身后暗团和花纹。人物全身连头巾至鞋底等比例略缩小约2%，最终占画高约90–91%，上下边界都有清楚纸底净空，绝不裁切。还要纠正头相对身体偏小：自然头骨和脸部相对身躯增大约20%，肩颈与长身段相应自然调整，使全身约7个自然头长（不把高头巾算作头长），保留成熟女性修长鹅蛋脸、细长眉眼与已经显现的柔和眼角细纹，不恢复成无瑕少女。保持头巾朴素包住发髻、无首饰，素白浅灰不透明右衽道衣、窄布带、完整长裙和两只白灰布履；去除额外衣缘花纹，只留简单缝边。保留她的解剖学右手在画面左侧轻持木柄拂尘、左手身前；手指关节自然，木柄、束口、完整柔软白尘尾连续连接、自然下垂，不改变为毛笔或武器。维持原本微侧静立和成熟冷静神态。精细墨线柔和层染与左上柔光，单人完整全身竖幅2:3 PNG。不要少女脸、动漫眼、大头卡通、模特长颈长身、透衣、过高复杂头巾、珠宝礼冠、花纹背景、灰色背景暗团、山水花枝建筑、其他人、武器光效、文字签名印章或装饰水印；不移除工具已有溯源信息，不水平镜像，不裁头巾鞋尖或拂尘端点。
-  negative: 不要少女脸、动漫眼、大头卡通、模特长颈长身、透衣、过高复杂头巾、珠宝礼冠、花纹背景、灰色背景暗团、山水花枝建筑、其他人、武器光效、文字签名印章或装饰水印；不移除工具已有溯源信息，不水平镜像，不裁头巾鞋尖或拂尘端点。
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（刀白凤的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改刀白凤的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+
+    【人物】刀白凤：段誉之母、玉虚散人，四十岁上下，摆夷女子，外刚内柔。
+
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】温婉端庄：目光柔和，嘴角一丝淡淡的、略带心事的笑意（不愁苦）。
+
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
   references:
-  - path: generated_images/exec-48a53cf3-63dd-41e7-bbac-ec754708f961.png
-    use: 编辑目标：刀白凤本角色候选3，修背景、构图和相对头身比，不用于其他角色基线 实际输入 SHA-256 d671f5b0fe677c2b64f510d55a7f2de701b92c42eb75d210c8e88e29d0e8a03e
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；项目默认 gpt-6-astra
-  effort: 待核实；项目默认 ultra
-  created: '2026-09-30T19:20:21.979698+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-a288e524-9c5d-4a26-9a9a-c093e6128ce7.png
+  - path: assets/default/character/female/ch01/por_npc_daobaifeng__ch01_prime_yuxu_base.png
+    sha256: 41bdd3b02615df34be431e8bbcfa7d387b92a7f160b17a1df32f781ee8fa7531
+    use: 待改原图（AR-58 神态调整：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_daobaifeng__ch01_prime_yuxu_base.41bdd3b0.png
+  tool: codex exec · image_gen（AR-58 神态调整：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T18:24:00-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/por_npc_daobaifeng__ch01_prime_yuxu_base.x1.png
   size: 1024x1536
-  sha256: 41bdd3b02615df34be431e8bbcfa7d387b92a7f160b17a1df32f781ee8fa7531
+  sha256: ff0aff02be27abb7b8dfc29a18151e6c2dec6e966e3f298959baddfc988b71c7
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
-  notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际查看：成熟清冷道姑，素白头巾与拂尘完整，纸底均匀；人物略修长、占高约93.0–93.2%仅记偏差。 复用上轮原始候选，未新增生成；先前严格QC保留在 .agents/coord/portrait-generation/por_npc_daobaifeng__ch01_prime_yuxu_base.qc.json。其他候选逐张淘汰原因及实际参考见历史请求和QC。 提示词 assets/default/prompts/characters/ch01-tianlong/npc_daobaifeng.md；tier A。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_daobaifeng__ch01_prime_yuxu_base.requests.json。生成候选4张，入选第4张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/generated_images/exec-48a53cf3-63dd-41e7-bbac-ec754708f961.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用批准基线和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
+  notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际查看：成熟清冷道姑，素白头巾与拂尘完整，纸底均匀；人物略修长、占高约93.0–93.2%仅记偏差。 复用上轮原始候选，未新增生成；先前严格QC保留在 .agents/coord/portrait-generation/por_npc_daobaifeng__ch01_prime_yuxu_base.qc.json。其他候选逐张淘汰原因及实际参考见历史请求和QC。 提示词 assets/default/prompts/characters/ch01-tianlong/npc_daobaifeng.md；tier A。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_daobaifeng__ch01_prime_yuxu_base.requests.json。生成候选4张，入选第4张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/generated_images/exec-48a53cf3-63dd-41e7-bbac-ec754708f961.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用批准基线和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。；AR-58 神态调整（11 号出图员）：温婉浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  source_size: 1024x1536
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_daobaifeng__ch01_prime_yuxu_base.41bdd3b0.png
+    sha256: 41bdd3b02615df34be431e8bbcfa7d387b92a7f160b17a1df32f781ee8fa7531
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_daobaifeng__ch01_prime_yuxu_base.41bdd3b0.entry.yaml
 - id: por_npc_yeerniang__ch01_prime_prereunion_base
   file: por_npc_yeerniang__ch01_prime_prereunion_base.png
   category: character/female
   style: default
   subject: 叶二娘 npc_yeerniang ch01_tianlong prime；阶段以 assets/default/prompts/characters/ch01-tianlong/npc_yeerniang.md 人物要点为准
-  prompt: '编辑输入的叶二娘，保留原图人物识别、枣红灰褐服色、警惕压抑哀意、右手持刀左手空着和现有正确右衽方向。只定向修正以下缺陷：将整个人物含发顶和鞋底缩小并居中到画高90%，上下各5%干净暖浅灰纸底净空；低收发髻放在后脑枕骨下方，去高髻及披发，仅一根朴素木簪。脸部稍宽丰满、成熟中年女性，真实温和眼角细纹和轻法令纹，不以皱眉代替年龄；脸颊有几条可辨认暗淡平坦愈合旧疤线，绝无血液。枣红衫的袖子从肘至腕改贴臂窄袖、不露手臂，灰褐短外衣也自然合身不成大宽袍；胸颈完整遮蔽、长裙和两只黑布鞋保持。右手维持原位置低持长方形薄钢片刀，宽度适度增加、长度适度减短，成为清楚的长方矩形薄片；四周连续精细锋刃线，根部没有厚剑格，短柄从矩形短边正中牢固连接、握持自然，刀不贴裙摆，不是菜刀也不是剑。左手空着近衣襟。约7头身自然整体、均匀暖浅灰纸纹底，左上柔光，细墨线柔和层染，竖幅2:3完整全身PNG。
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（叶二娘的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改叶二娘的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
 
-    不要高髻披发、大垂袖、少女脸、青春磨皮、皱眉替代眼角年龄纹、鲜血或恐怖伤痕、婴儿、长剑菜刀圆盘、左衽、宽剑格、透衣露肤、场景背景、文字签名印章水印；不镜像裁切，不移除工具已有溯源。'
-  negative: 不要高髻披发、大垂袖、少女脸、青春磨皮、皱眉替代眼角年龄纹、鲜血或恐怖伤痕、婴儿、长剑菜刀圆盘、左衽、宽剑格、透衣露肤、场景背景、文字签名印章水印；不镜像裁切，不移除工具已有溯源。
+    【人物】叶二娘：四大恶人之二「无恶不作」，四十多岁，失子后行事阴森，常笑吟吟的。
+
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】笑吟吟却阴森：嘴角挂着笑吟吟的弧度，眼神却空茫阴冷、透着哀伤，叫人背脊发凉。
+
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
   references:
-  - path: generated_images/exec-d6f6f788-7c59-4463-b340-9f33763ff078.png
-    use: 编辑目标：叶二娘本角色候选1，只用于本角色局部返修，不作为其他角色基线 实际输入 SHA-256 f8158d875a6fd2ab3160ca26d7bd16038d4efa714481b6dd07760adb351273f0
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；项目默认 gpt-6-astra
-  effort: 待核实；项目默认 ultra
-  created: '2026-09-30T19:35:47.559263+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-b7bb0e63-ca81-4ac4-affa-55bb82da9f54.png
+  - path: assets/default/character/female/ch01/por_npc_yeerniang__ch01_prime_prereunion_base.png
+    sha256: a90a73dd147e458a4f62644d61698e484c0672301a22089f6b76172d261a63da
+    use: 待改原图（AR-58 神态调整：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_yeerniang__ch01_prime_prereunion_base.a90a73dd.png
+  tool: codex exec · image_gen（AR-58 神态调整：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T18:24:01-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/por_npc_yeerniang__ch01_prime_prereunion_base.x1.png
   size: 1024x1536
-  sha256: a90a73dd147e458a4f62644d61698e484c0672301a22089f6b76172d261a63da
+  sha256: 2f9856aeff2904c51a105628198addcd05da2315406eab87e103d7e834ea7c0a
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_relaxed_20260930
   counts_as_complete: true
-  notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际查看：成熟警惕脸与颊部旧痕、低髻窄袖、右手长方薄刀，手足完整；占高约84.4%留白较多，按新尺度可用。 复用上轮原始候选，未新增生成；先前严格QC保留在 .agents/coord/portrait-generation/por_npc_yeerniang__ch01_prime_prereunion_base.qc.json。其他候选逐张淘汰原因及实际参考见历史请求和QC。 提示词 assets/default/prompts/characters/ch01-tianlong/npc_yeerniang.md；tier A。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_yeerniang__ch01_prime_prereunion_base.requests.json。生成候选4张，入选第3张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/generated_images/exec-d6f6f788-7c59-4463-b340-9f33763ff078.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用批准基线和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
+  notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际查看：成熟警惕脸与颊部旧痕、低髻窄袖、右手长方薄刀，手足完整；占高约84.4%留白较多，按新尺度可用。 复用上轮原始候选，未新增生成；先前严格QC保留在 .agents/coord/portrait-generation/por_npc_yeerniang__ch01_prime_prereunion_base.qc.json。其他候选逐张淘汰原因及实际参考见历史请求和QC。 提示词 assets/default/prompts/characters/ch01-tianlong/npc_yeerniang.md；tier A。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_yeerniang__ch01_prime_prereunion_base.requests.json。生成候选4张，入选第3张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/generated_images/exec-d6f6f788-7c59-4463-b340-9f33763ff078.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用批准基线和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。；AR-58 神态调整（11 号出图员）：阴森的笑吟吟——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  source_size: 1024x1536
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_yeerniang__ch01_prime_prereunion_base.a90a73dd.png
+    sha256: a90a73dd147e458a4f62644d61698e484c0672301a22089f6b76172d261a63da
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_yeerniang__ch01_prime_prereunion_base.a90a73dd.entry.yaml
 - id: por_npc_xinshuangqing__ch01_prime_wuliang_base
   file: por_npc_xinshuangqing__ch01_prime_wuliang_base.png
   category: character/female
