@@ -22,7 +22,7 @@ references:
 generation_job: por_npc_xiaozhonghui__ch11_youth_scene_pine_cut_rope.retry3.r1
 generation_attempts: 1
 subject_id: npc_xiaozhonghui
-name: 萧中慧·松林断索
+name: 萧中慧·松林断索之后
 book: ch11_yuanyang
 gender: female
 age_variant: youth
@@ -32,7 +32,7 @@ manifest: assets/default/character/female/ch11/manifest.yaml
 size: 1024x1536
 ---
 
-# 萧中慧·松林断索
+# 萧中慧·松林断索之后
 
 ## Gemini 提示词
 
