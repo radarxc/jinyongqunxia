@@ -12,7 +12,7 @@
 ## 本批
 - 清单：`{{expect}}`（追踪者登记，**只读**）；每行一个「城 × 年代」单元：`chapters` 是该年代带出现的全部章节（第一个 = `primary_chapter`，其余是同带副本），`era_kit` 是建议套件（来自 `tools/agents/prod_plan.py` 的 `kit_for`；ch10 唐代中原城用 `tang`、西域 `xiyu`、吐蕃 `tubo`），`fullsize=yes` 是本章首城，`mode` 见下。
 - `mode=study`（都城 / 大城）：照 CITY.md 第 1–5 步逐城考据——联网搜史料与历史平面图（图片下到工作区 `refs/`，不入库，来源注明「已看图 / 仅文字」），写复原依据 `docs/design/town/history/<city>__<band>.md`（60–140 行）、规格、平面图、布局、渲染。史料少的按同年代同地域一般格局推定，逐项标（推定）/（原创扩展），不要跳过。
-- `mode=generic`（小城 / 遗址）：不联网，`python3 tools/town/make_generic_city.py --city <id> --band <band>` 生成各章规格；复原依据写短版（20–40 行：地域、年代、推定依据、与本区域大城的关系）；其余步骤同上。
+- `mode=generic`（小城 / 遗址）：不联网，`python3 tools/town/make_generic_city.py --city <id> --band <band> --out docs/design/town` 生成各章规格（用法见 `tools/agents/reports/TOOL-city-generic.md` §6）；复原依据写短版（20–40 行：地域、年代、推定依据、与本区域大城的关系）；其余步骤同上。**生成器不支持的年代带**（目前 `tang_702`，即 ch10）：照生成器同一规模规则（secondary 96×96 四面墙 2–3 门、site 64×64 残墙、水乡带河与桥）按 CITY.md 第 1 步「同年代同地域一般格局推定」手写规格，`basis` 写「推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）」，同样不联网。
 - `mode=copy_only`：主章节已完成，只补同带副本章节。
 - 套件：规格 `era_kit` 用清单值；工具按套件叠加 `assets/default/{tile,building-map}/<kit>/`，缺的种类回退基线（写入 `asset_substitutions`），manifest `notes` 写明回退。
 
