@@ -36546,6 +36546,55 @@
   },
   {
    "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [],
+   "validate": {
+    "exists": [
+     "tools/content/test_items_from_catalog.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools.content.test_items_from_catalog"
+     ],
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-items-count-sync",
+   "title": "工具 · 小修：物品名录件数快照用例跟上 AR-77 衣物与护甲 1–7 批（先核实 1540 行无误解析，再改预期件数；集成分支 unittest discover -s tools 红）",
+   "prompt": "TOOL-items-count-sync.md",
+   "deps": [],
+   "writes": [
+    "tools/content/test_items_from_catalog.py"
+   ]
+  },
+  {
+   "phase": "PROD",
    "wave": 17,
    "kind": "draft",
    "review": false,
