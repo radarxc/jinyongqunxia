@@ -62,10 +62,17 @@ def crop_frame(im: Image.Image) -> tuple[Image.Image, list]:
             if np.abs(line.mean(axis=0) - bg).max() < 7 and np.abs(line - bg).max(axis=1).mean() < 14:
                 return k
         return 0
-    top = scan([a[y] for y in range(lim)])
-    bottom = scan([a[h - 1 - y] for y in range(lim)])
-    left = scan([a[:, x] for x in range(lim)])
-    right = scan([a[:, w - 1 - x] for x in range(lim)])
+    # i0（16%）在 lim（15%）以内框的更深处，可作为必定越过外框的首轮扫描区。
+    # 一轴判定后，另一轴只在其内框里扫描；再迭代一轮，使最终四条扫描线都排除
+    # 垂直方向的框像素（尤其避免左右白框抬高上下扫描线的均值）。
+    left = scan(a[i0:h - i0, x] for x in range(lim))
+    right = scan(a[i0:h - i0, w - 1 - x] for x in range(lim))
+    top = scan(a[y, left:w - right] for y in range(lim))
+    bottom = scan(a[h - 1 - y, left:w - right] for y in range(lim))
+    left = scan(a[top:h - bottom, x] for x in range(lim))
+    right = scan(a[top:h - bottom, w - 1 - x] for x in range(lim))
+    top = scan(a[y, left:w - right] for y in range(lim))
+    bottom = scan(a[h - 1 - y, left:w - right] for y in range(lim))
     box = [left, top, w - right, h - bottom]
     if max(top, bottom, left, right) <= 2:
         return im, []

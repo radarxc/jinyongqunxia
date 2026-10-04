@@ -36,6 +36,8 @@ INGEST_ARGS="--manual-title 打狗棒法" zsh tools/imagegen/ingest_commit.sh it
 - 把原图归档到 `.agents/coord/gemini_originals/`；
 - 在 manifest 写 `status: candidate` 条目（同 id 覆盖旧条目，含 `source_size`、`sha256` 等）。`--manual-title` 时如实记改图提示词、工具（上传原图改图、不套模板），`references` 记被改的原图路径与改前 sha256。
 
+画框检测的每条扫描线只统计另一轴已判定内框以内的像素，避免上下与左右白框相互污染行 / 列均值；`it_miji_xingjunbu_can` 曾因左右白框参与横向扫描而误切书底，现由合成图回归覆盖。
+
 **入库后立刻提交**（脚本已做），否则会挡住工程线的自动合入（cherry-pick 要求工作区干净）。
 
 ## 可见标签页是硬约束
