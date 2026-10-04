@@ -24,7 +24,7 @@
 所有PNG均为RGBA，四角及整个最外缘alpha为0。原图的真实alpha由内置image_gen生成并保留。
 为满足规格，完整原画幅等比缩到目标边长的90%，居中补透明边距；未抠底，未裁主体，未用代码绘制素材内容。
 manifest含完整逐图提示词、两张基线输入、原始保存路径、原始/交付尺寸与SHA-256；独立图像后端未披露，不猜测型号。
-`prompts.json`为实际提示词集合，`generation.jsonl`为生成来源记录，`validation.jsonl`为逐图数值校验。
+AR-68 的实际提示词、生成来源与逐图数值校验已归档到`.agents/coord/_asset_logs/assets/default/map/kit/`下的`prompts.json`、`generation.jsonl`与`validation.jsonl`。
 
 笔墨以深/中/淡灰墨皴擦为主，沿用基线淡赭、灰绿树点与极淡灰青水色。
 主体内保留宣纸纤维与纸白雪坡，整幅宣纸底由后续渲染器统一提供，避免贴图各带矩形纸块。
@@ -37,13 +37,13 @@ manifest含完整逐图提示词、两张基线输入、原始保存路径、原
 ```sh
 python3 tools/agents/check_assets.py assets/default/map/kit --min 20 --min-side 512
 python3 tools/agents/check_assets.py assets/default/map/kit --min 20 --max 23 --min-side 512
-python3 assets/default/map/kit/build_review.py check
+python3 tools/map/kit/build_review.py check
 ```
 
-第一条是任务要求的原命令；检查器默认`--max 2`，与`--min 20`构成无解区间，修复状态后仍退出1；最新日志见`check_assets.log`。
-第二条显式给出上限`22件小样 + 1张对照表 = 23`，退出0，结果见`check_assets_explicit_max.log`。需协调者给任务验收命令追加`--max 23`；公共脚本不在本任务写集内，未修改。
+第一条是任务要求的原命令；检查器默认`--max 2`，与`--min 20`构成无解区间，修复状态后仍退出1；历史日志归档为`.agents/coord/_asset_logs/assets/default/map/kit/check_assets.log`。
+第二条显式给出上限`22件小样 + 1张对照表 = 23`，退出0，历史日志归档为`.agents/coord/_asset_logs/assets/default/map/kit/check_assets_explicit_max.log`。需协调者给任务验收命令追加`--max 23`；公共脚本不在本任务写集内，未修改。
 第三条按小样合同检查22件小样、清单完整性、尺寸、散列、真实alpha、四角与外缘、半透明笔触及两张基线未改动。状态使用`candidate`，`review_stage: draft`及对照表的draft标签继续表示草稿阶段。
-如需重排对照表，运行`python3 assets/default/map/kit/build_review.py compose`后再运行`check`。
+如需重排对照表，运行`python3 tools/map/kit/build_review.py compose`后再运行`check`。
 `ingest`需要日志所列原图仍可访问；已经入库的PNG与manifest可独立使用，不依赖原图目录。
 
 ## 本文新增术语与 ID
@@ -99,6 +99,6 @@ python3 tools/map/kit/full/build_kit.py check
 python3 tools/agents/check_assets.py assets/default/map/kit --min 64 --max 120 --min-side 512
 ```
 
-已解决：上文旧验收上下限冲突，本轮按明确的64–120张范围复核。原`build_review.py`及原过程文件保留AR-68记录；全量排版、检查使用本节入口。
+已解决：上文旧验收上下限冲突，本轮按明确的64–120张范围复核。AR-68 的`build_review.py`已迁到`tools/map/kit/`，过程文件已外置归档；全量排版、检查使用本节入口。
 本轮提示词集合、生成记录、原始字段快照和校验日志在`_prod/.agents/coord/_asset_logs/assets/default/map/kit/full/`，不入库；`--logs`可指定外置目录。`ingest`读取该处`prompts.json`与`generation.jsonl`，登记尚未入库的新件；`check`在有`before.json`时同时核对小样、基线、旧过程文件与README原文保持不变。
 开放问题：雪山件数默认4（允许4–6）；新件默认保持candidate。具体年代建筑形制（待考）、GIS拼合、融合参数与小尺寸辨识度（待实测），沿用上文依赖，由后续任务验证。

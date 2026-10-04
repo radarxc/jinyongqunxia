@@ -26,8 +26,8 @@
 ## 复现与限制
 
 ```sh
-python3 assets/default/vfx/sk_huashanziqijue/make_sources.py
-python3 assets/default/vfx/sk_huashanziqijue/make_compositions.py
+python3 tools/vfx/skills/sk_huashanziqijue/make_sources.py
+python3 tools/vfx/skills/sk_huashanziqijue/make_compositions.py
 python3 tools/vfx/cut_frames.py --config assets/default/vfx/sk_huashanziqijue/effect/family/effect-set.yaml --output assets/default/vfx/sk_huashanziqijue/effect/family/effect-set.yaml --root assets/default/vfx/sk_huashanziqijue --preview
 python3 tools/vfx/compose.py assets/default/vfx/sk_huashanziqijue/moves/mv_huashanziqijue_tuna/composition.yaml --root assets/default/vfx
 python3 tools/vfx/build_demo.py assets/default/vfx/sk_huashanziqijue/moves/mv_huashanziqijue_tuna/composition.yaml --root assets/default/vfx

@@ -19,8 +19,8 @@
 本续作工作树没有保留前两次运行产物，当前会话又未提供 `image_gen`；故按仓库已验收降级先例，使用确定性 Pillow 白底候选，并如实保持 `candidate`。
 
 ```sh
-python3 assets/default/vfx/sk_hujiadao/make_sources.py
-python3 assets/default/vfx/sk_hujiadao/make_effect_sets.py
+python3 tools/vfx/skills/sk_hujiadao/make_sources.py
+python3 tools/vfx/skills/sk_hujiadao/make_effect_sets.py
 python3 tools/vfx/check_skill_suite.py assets/default/vfx/sk_hujiadao --catalog docs/design/catalog/skills-qianlong.md
 ```
 

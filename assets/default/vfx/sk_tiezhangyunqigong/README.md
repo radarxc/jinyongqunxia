@@ -82,7 +82,7 @@ python3 tools/agents/check_assets.py assets/default/vfx/sk_tiezhangyunqigong --m
 python3 tools/lint/check_ids.py --strict
 ```
 
-元数据、质量与几何结果见 `validation.json`、各套 `quality.json`、`build-log.jsonl`、`vfx-check.jsonl`。
+元数据、质量与几何结果见 `validation.json`、各套 `quality.json`；构建与检查日志归档在 `.agents/coord/_asset_logs/assets/default/vfx/sk_tiezhangyunqigong/`。
 HTML 内嵌图片与播放器，唯一显式外链为工具固定的 Three.js r186 importmap；真实加载与设备播放（待实测）。
 JSON 是 YAML 与原料元数据的派生，不是另一个真值源；源码参数变动须重建并刷新 manifest 哈希。
 

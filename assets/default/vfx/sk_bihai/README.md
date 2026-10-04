@@ -28,13 +28,13 @@
 ## 复现
 
 ```sh
-python3 assets/default/vfx/sk_bihai/make_sources.py
+python3 tools/vfx/skills/sk_bihai/make_sources.py
 python3 tools/vfx/cut_frames.py --config assets/default/vfx/sk_bihai/effect/family/effect-set.yaml --output assets/default/vfx/sk_bihai/effect/family/effect-set.yaml --root assets/default/vfx/sk_bihai --preview
 python3 tools/vfx/compose.py assets/default/vfx/sk_bihai/moves/mv_bihai_chaoqi/composition.yaml --root assets/default/vfx
 python3 tools/vfx/build_demo.py assets/default/vfx/sk_bihai/moves/mv_bihai_chaoqi/composition.yaml --root assets/default/vfx
 ```
 
-make_sources.py 是本套原料的可复现绘制配方，不是运行时 VFX 逻辑。当前会话未暴露 image_gen；
+`tools/vfx/skills/sk_bihai/make_sources.py` 是本套原料的可复现绘制配方，不是运行时 VFX 逻辑。当前会话未暴露 image_gen；
 因此三张原料由 Pillow 程序化绘制，而非图像模型生成，manifest 如实登记。正式美术若要求模型生成，
 可保留 Composition 参数，仅替换候选原料并重新量取锚点、参考长和根宽。
 

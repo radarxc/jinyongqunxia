@@ -89,7 +89,7 @@ python3 tools/agents/check_assets.py assets/default/vfx/sk_tiangang --min 1 --ma
 python3 tools/lint/check_ids.py --strict
 ```
 
-重建改变文件后需刷新 manifest 的哈希。校验记录在 `verification.json` 和 `checks/`；打包尺寸 / 无损 WebP 展示比例在 `build-results.jsonl`。
+重建改变文件后需刷新 manifest 的哈希。素材内保留 `verification.json`；检查与打包日志归档在 `.agents/coord/_asset_logs/assets/default/vfx/sk_tiangang/`。
 演示仅有仓库指定的 Three.js r186 importmap 外链，其他内容内嵌；浏览器、CDN 和真机未实跑。
 
 ## 参考资料

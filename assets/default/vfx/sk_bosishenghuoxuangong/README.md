@@ -26,13 +26,13 @@
 ## 复现
 
 ```sh
-python3 assets/default/vfx/sk_bosishenghuoxuangong/make_sources.py
+python3 tools/vfx/skills/sk_bosishenghuoxuangong/make_sources.py
 python3 tools/vfx/cut_frames.py --config assets/default/vfx/sk_bosishenghuoxuangong/effect/family/effect-set.yaml --output assets/default/vfx/sk_bosishenghuoxuangong/effect/family/effect-set.yaml --root assets/default/vfx/sk_bosishenghuoxuangong --preview
 python3 tools/vfx/compose.py assets/default/vfx/sk_bosishenghuoxuangong/moves/mv_bosishenghuoxuangong_tuna/composition.yaml --root assets/default/vfx
 python3 tools/vfx/build_demo.py assets/default/vfx/sk_bosishenghuoxuangong/moves/mv_bosishenghuoxuangong_tuna/composition.yaml --root assets/default/vfx
 ```
 
-`make_sources.py` 是本套原料的可复现绘制配方，不是运行时 VFX 逻辑。当前会话未暴露
+`tools/vfx/skills/sk_bosishenghuoxuangong/make_sources.py` 是本套原料的可复现绘制配方，不是运行时 VFX 逻辑。当前会话未暴露
 `image_gen`，三张原料因此采用 Pillow 降级生成，并在 manifest 如实登记。后续若必须换成
 模型候选，可保留 Composition 语义，但须重新量取锚点、参考长、根宽并重跑全部门禁。
 
