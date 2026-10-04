@@ -52,42 +52,38 @@
   category: scene
   style: default
   subject: 衡阳金盆洗手前后，曲刘托谱（回目待考）（ch05_xiaoao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是令狐冲的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中令狐冲的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是曲洋定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里曲洋头部一带的放大方图（插图局部）。请以最后一张为底稿，只把曲洋改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
 
-    【画里谁是谁】这张插图画的是：衡阳城外荒山月夜，冷月映着山石。苍老琴者曲洋与儒雅中年箫客刘正风完成最后合奏；刘正风略矮胖、面颊饱满、腹部微隆，绝非瘦长文士，成年令狐冲坐在近旁凝神承接托付；古琴、竖持洞箫与一册无可读字迹的曲谱组成视觉中心。令狐冲穿旧灰蓝长衫，佩长剑与酒葫芦。刘曲只按文字塑造，不借主角面孔。三人中全景，苍凉知音气氛，伤势仅由疲惫姿态表现。
+    【画里是谁】衡山夜色中，左侧低头抚琴的老者（曲洋，日月神教长老，五十余岁）。
 
-    【要对齐的部分】令狐冲的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：低头凝神看着曲谱、承接托付，神情肃穆动容（此刻不笑）；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要改成什么】按基线改：头发在头顶束成整齐的发髻，灰白相间（黑发里夹白），只留少许碎发，不要满头披散凌乱的白发；胡须改成基线那样修整过的中长灰须；脸是五十余岁的样子、皱纹浅一些，五官骨相与基线一致。
 
-    【令狐冲的基线脸】基线里的令狐冲二十三四岁，是年轻俊朗的浪子：脸型是饱满的鹅蛋脸、两颊圆润不凹陷、颧骨不突出、下颌圆润、下巴干净；浓黑的剑眉平直舒展、眉尾略扬；一双笑眼——双眼皮、眼尾弯弯、下眼睑微微上提，眼神明亮洒脱、带三分狡黠；鼻梁挺直、鼻头圆润；嘴唇适中，笑时嘴角一侧上扬、露出一点牙齿的爽朗坏笑；完全无须——唇上、下巴和两腮都干干净净，没有八字须、没有山羊胡、没有短髯、没有胡茬；肤色是健康的浅麦色，皮肤紧致年轻。整体比原图年轻四五岁、脸更圆更饱满。
+    【原图保持】保留低头看琴的角度、专注的神情、衣服与夜色光影。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「琴箫托谱」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】令狐冲是画面右侧坐着、穿蓝灰长衫、头系黑布头带、低头看曲谱的青年（从左数第 3 个人）；左边白发抚琴老者曲洋和中间吹箫的胖汉刘正风的脸一律不改。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
   references:
-  - path: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
-    sha256: c3beaa49ca2c1d989d067e968ea3e812185123858f43f4106a95221aac72d55f
-    use: 对脸基线：作者 AR-56 定下的 por_npc_linghuchong__ch05_youth_huashan_base（令狐冲），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch05/por_npc_quyang__ch05_elder_before_ceremony_base.png
+    sha256: 3732c3e7fdd2dd2d54ff3a761493554ced86a58d166920abb00a88c977e0aebb
+    use: 对脸基准：曲洋的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_quyang__ch05_elder_before_ceremony_base.jpg）
   - path: assets/default/scene/ch05/cg_ch05_hengyang_score.png
-    sha256: b39f44cd8a4be2eb4d54c4d7d1fdb199e0f51b608c6c9b1f749ea486e1b69e63
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_hengyang_score.b39f44cd.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: 6bfcadf9cb42e8cbec49c683fbdf4fa5307904a35ced8d07ca90927ebdfffc5c
+    use: 待改插图：只把曲洋头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_hengyang_score.6bfcadf9.png
+  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把曲洋头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T17:50:21-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch05_hengyang_score.s1.png
+  created: 2026-10-03T19:03:05-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch05_hengyang_score.p2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 6bfcadf9cb42e8cbec49c683fbdf4fa5307904a35ced8d07ca90927ebdfffc5c
+  sha256: 2b59e8c40f50df08ce6b1653534f2472414c13d5e6c18d4c08c5dc61e75b1b63
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「琴箫托谱」，实际字形「琴箫托谱」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「琴箫托谱」，实际字形「琴箫托谱」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：曲洋按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_hengyang_score.b39f44cd.png
-    sha256: b39f44cd8a4be2eb4d54c4d7d1fdb199e0f51b608c6c9b1f749ea486e1b69e63
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_hengyang_score.b39f44cd.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_hengyang_score.6bfcadf9.png
+    sha256: 6bfcadf9cb42e8cbec49c683fbdf4fa5307904a35ced8d07ca90927ebdfffc5c
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_hengyang_score.6bfcadf9.entry.yaml
   runner_job_records:
   - - cg_ch05_hengyang_score.resume3
     - ok
@@ -118,21 +114,21 @@
     sha256: 6e3476e34f800f2ed358589db592cddbc458a892cc56111d3886f409d1c1e85f
     use: 对脸基准：方证的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_fangzheng__ch05_elder_base.jpg）
   - path: assets/default/scene/ch05/cg_ch05_shaolin_three_bouts.png
-    sha256: 170a6caf73689c417eb13fd36ebd50246517e1802584ef2bd6b9c734e74b0285
-    use: 待改插图：只把方证头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.170a6caf.png
+    sha256: 606d59f6b72773ee78bcba76919838872ed576ae417b38f6085fff4ff654a8ca
+    use: 上一版：同一 codex 输出的第一次贴回（170a6caf → 606d59f6），方块下沿留有细接缝；本次底图仍取改前原图 170a6caf；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.606d59f6.png
   tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把方证头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T18:58:09-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch05_shaolin_three_bouts.p1.png
+  created: 2026-10-03T19:03:05-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch05_shaolin_three_bouts.p1r.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 606d59f6b72773ee78bcba76919838872ed576ae417b38f6085fff4ff654a8ca
+  sha256: 72cd46e88bc38a2b9508fee35549bec4fe05e825693ec008ead4925e4b3b3ac1
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「少林三战」，实际字形「少林三战」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：方证按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「少林三战」，实际字形「少林三战」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：方证按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员）：方证重新贴回——同一 codex 输出，贴回区在方块边缘前渐隐，去掉上一版方块下沿的细接缝，其他人物与题字逐像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.170a6caf.png
-    sha256: 170a6caf73689c417eb13fd36ebd50246517e1802584ef2bd6b9c734e74b0285
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.170a6caf.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.606d59f6.png
+    sha256: 606d59f6b72773ee78bcba76919838872ed576ae417b38f6085fff4ff654a8ca
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.606d59f6.entry.yaml
   runner_job_records:
   - - cg_ch05_shaolin_three_bouts.resume3r2
     - ok
