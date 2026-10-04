@@ -331,7 +331,15 @@ def worker(a) -> int:
                 if rc == 0:
                     set_status(tid, "MERGED", runs=runs, reviews=reviews, detail="已合入")
                     return 0
-                time.sleep(120)
+                # 2026-10-03 协调者：出图线频繁入库，集成分支常有几秒的未提交窗口；不再干等 120 秒，
+                # 改为每 2 秒看一次工作树，干净了立即重试（最多等 120 秒）。
+                t_wait = time.time()
+                while time.time() - t_wait < 120:
+                    dirty = subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"], cwd=ROOT,
+                                           capture_output=True, text=True).stdout.strip()
+                    if not dirty:
+                        break
+                    time.sleep(2)
         set_status(tid, "READY", runs=runs, reviews=reviews, detail="auto-merge 未成功，待协调者手动 finish + merge")
         return 0
     set_status(tid, "READY", runs=runs, reviews=reviews, detail="校验与审核通过，待协调者准出（finish + merge）")
