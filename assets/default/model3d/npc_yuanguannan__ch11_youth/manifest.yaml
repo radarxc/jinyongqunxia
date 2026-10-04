@@ -1,0 +1,76 @@
+- id: npc_yuanguannan__ch11_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 袁冠南（鸳鸯刀 ch11 · 书生青年）· 空手 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 323ad70c-fcfa-4249-848f-0f3a27b1f513
+    url: https://studio.tripo3d.ai/workspace/generate/323ad70c-fcfa-4249-848f-0f3a27b1f513
+    generate_op: bf1272be-5aed-49db-916c-bc64053950cb（image_to_model）
+    rig_op: ac0ecdd1-1382-49fb-967e-71022c91c226
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch11/threeview/por_npc_yuanguannan__ch11_youth_scholar_apose_slim.png
+    sha256: 184a8def06911fc4e9a2ac9b2739572a858adaf66f18a9b71206fa74c8a823ae
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 4608d58ba60b2dd04678b66fb84273972046b533ff0da89698c95ceaebf04806
+  size_bytes: 6231324
+  joints: 65
+  triangles: 94784
+  vertices: 53677
+  animations: []
+  textures:
+  - image/jpeg 500539 B
+  - image/jpeg 1732641 B
+  - image/jpeg 614914 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T19:06:18-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，米白长衫 + 深色腰带，清代剃额、背后辫子；笔和卷轴已去掉。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 b461ba3f。
+- id: npc_yuanguannan__ch11_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 袁冠南（鸳鸯刀 ch11 · 书生青年）· 空手 A 字版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 323ad70c-fcfa-4249-848f-0f3a27b1f513
+    url: https://studio.tripo3d.ai/workspace/generate/323ad70c-fcfa-4249-848f-0f3a27b1f513
+    generate_op: bf1272be-5aed-49db-916c-bc64053950cb（image_to_model）
+    rig_op: ac0ecdd1-1382-49fb-967e-71022c91c226
+  size: 369x594
+  sha256: 60d634899482561334b00e0ec97e56ac0bd197d88f73f30caaa49156f6a39124
+  size_bytes: 153787
+  created: '2026-10-03T19:06:18-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
