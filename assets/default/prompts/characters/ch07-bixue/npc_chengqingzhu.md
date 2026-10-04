@@ -19,6 +19,12 @@ realism_revision: user_identity_pose_20261001
 
 # 程青竹 · 人物写实修正
 
+## AR-82 当前定稿要求
+
+只把须发与眉毛颜色改为白色为主：现有髭须、下巴须和两鬓发丝、小髻为白发白须，眉毛亦白。保留每处发丝走向、眉毛原形，不改脸型五官、肤色和年龄纹理，不新加笑容。衣服双竹杆不动。
+
+以上为当前原著核对后的要求，覆盖下文旧版中与之冲突的服饰、器物、伤残、光线和体态描述。
+
 ## 人物与阶段
 
 - subject_id：npc_chengqingzhu
@@ -74,3 +80,8 @@ FINAL POSE CHECK: 程青竹 is FRONT-FACING. Forehead–nose–chin VERTICAL; bo
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_chengqingzhu__ch07_base.prepared.json`。
+
+## 原著依据
+
+- 《碧血剑》十《不传传百变，无敌敌千招》：“须眉皆白的老者”（https://xuges.com/WUXIA/jinyong/bxj/066.htm）
+- AR-82 返修约束：只把须发与眉毛颜色改为白色为主：现有髭须、下巴须和两鬓发丝、小髻为白发白须，眉毛亦白。保留每处发丝走向、眉毛原形，不改脸型五官、肤色和年龄纹理，不新加笑容。衣服双竹杆不动。
