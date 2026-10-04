@@ -92,34 +92,35 @@
   category: character/female/tripo_ref
   style: default
   subject: 阿青（ch00_yuenv）窄轮廓 A 字姿势全身参考：与作者选定的林青霞基底新 base 同脸，束袖、直筒窄裙、露草鞋
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是阿青定稿立绘的脸部特写，第 2 张是她的定稿全身立绘（身份基线）；第 3 张是待改的 A 字姿势参考图。请以第 3 张为底稿，只把脸改成与基线是同一个人，输出修改后的完整图片：2:3 竖幅，构图与第 3 张完全一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【要对齐的部分（作者 AR-53 总审：现在眉形偏平、脸偏圆软，英气偏弱）】眉毛改成基线那样浓黑、修长、眉峰上挑的剑眉；脸型改成基线那样偏长的鹅蛋脸，颧骨与下颌有清楚的棱角，两颊不圆不软；眼神清冷锐利、带英气；鼻梁高挺；唇形清晰。熟悉基线的人一眼认出是同一个人。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【原图保持不变】除脸以外，第 3 张的一切都保留：A 字姿势、双臂离身的角度、空手、束袖短衣与直筒窄裙、草鞋、发髻与双辫、纯色背景、光线、笔触与画风。
+    【只改】只将浅蓝色粗布短上衣改为浅绿色，保留每道衣褶与原布料纹理。白色内领与月白裙、深蓝腰带、腰带垂尾、发辫、竹棒、手和背景全部原样不动。不是改变款式。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+    【原著依据】《越女剑》不分回·阿青出场：“身穿浅绿衫子”；https://www.xuges.com/wuxia/jinyong/ynj/04.htm
 
-    【不要】不要文字、水印；不要第二个人；不要改变身体姿势和衣服；不要幼态；不要水平镜像，衣襟保持右衽。'
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要文字、水印；不要第二个人；不要改变身体姿势和衣服；不要幼态；不要水平镜像，衣襟保持右衽。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/02_por_npc_aqing__ch00_youth_apose_slim.png
+    sha256: a62f5311f341f0c70f3d77acce9100b229d2edf75d5889d0cc88b6eae5cb18fe
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/female/ch00/por_npc_aqing__ch00_youth_base.png
     sha256: 445dc59c8f722af9d7e3890d3bf98790405fc2c9a7cdddeea35277850cf9884a
     use: 对脸基线：作者审核通过的 por_npc_aqing__ch00_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch00/threeview/por_npc_aqing__ch00_youth_apose_slim.png
-    sha256: 0666008fe9d2fe904bcf2d613ada8c0bc2a71a9272ea5877f74b505f7cbd0940
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_aqing__ch00_youth_apose_slim.0666008f.png
-  tool: codex exec · image_gen（AR-53 复核返修：以现有 A 字图为底稿只改脸，上传阿青定稿脸部特写与全身）
-  model: gpt-6-astra
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
   effort: ultra
-  created: 2026-10-03T17:59:03-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_aqing__ch00_youth_apose_slim.f1.png
+  created: '2026-10-04T02:19:35.692051-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_02_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: a62f5311f341f0c70f3d77acce9100b229d2edf75d5889d0cc88b6eae5cb18fe
+  sha256: 302af24d40075a3c4e87c18997dc1179131397c8d4e635d81d0b1f2b45aef5ce
   status: candidate
-  notes: 绑骨用的窄轮廓版 A 字姿势参考（女角 _apose_slim 口径）；依据作者 16:58 选定的 por_npc_aqing__ch00_youth_base（同脸，青竹棒作单独道具不画，双辫甩到背后）；AR-44；AR-44 对脸精修，基线 = por_npc_aqing__ch00_youth_base（AR-53 总审复核返修：只改脸，加上挑剑眉与颧骨棱角；Tripo 已用旧版建模，3D 暂不重做）
+  notes: 绑骨用的窄轮廓版 A 字姿势参考（女角 _apose_slim 口径）；依据作者 16:58 选定的 por_npc_aqing__ch00_youth_base（同脸，青竹棒作单独道具不画，双辫甩到背后）；AR-44；AR-44 对脸精修，基线 = por_npc_aqing__ch00_youth_base（AR-53 总审复核返修：只改脸，加上挑剑眉与颧骨棱角；Tripo 已用旧版建模，3D 暂不重做）；AR-82 原著核对返修：阿青浅蓝上衣改原著浅绿衫
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_aqing__ch00_youth_apose_slim.0666008f.png
-    sha256: 0666008fe9d2fe904bcf2d613ada8c0bc2a71a9272ea5877f74b505f7cbd0940
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_aqing__ch00_youth_apose_slim.0666008f.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/02_por_npc_aqing__ch00_youth_apose_slim.png
+    sha256: a62f5311f341f0c70f3d77acce9100b229d2edf75d5889d0cc88b6eae5cb18fe
