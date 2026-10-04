@@ -219,49 +219,38 @@
   category: scene
   style: default
   subject: 长乐帮真相曝光（ch06_xiake）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是贝海石定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里贝海石头部一带的放大方图（插图局部）。请以最后一张为底稿，只把贝海石改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
 
-    长乐帮总舵宴厅，墙面只能有素木板与纯山水画，不准出现任何圆形字徽、牌匾、寿字、福字或任何可读装饰文字；只有右上角指定四字题名可读。屋顶刚被两张掷出的圆凳撞破，细尘从破洞落下。真正的石中玉已跌落在筵席前，狼狈坐起；厅内张三一胖带笑、李四一瘦神色冷淡，均立于地面，绝不站在屋顶示众。石破天在席旁惊讶而坦诚，病容年长的贝海石满面震惊。石中玉锦衣、石破天朴素厚实，两人均成年；破损屋顶与宴桌交代刚才的揭穿，不互换衣饰神态。
+    【画里是谁】长乐帮大厅里，右后方站着的老者（贝海石，长乐帮总管，约五十岁）。
 
-    依原著长乐帮揭伪：李四在厅内掷两圆凳撞破屋顶，石中玉落到筵席前；不沿用张李挟他站屋顶的误构图。选落地后静态瞬间，不直接宣告血缘与生母谜底。
+    【要改成什么】把他改成基线这张脸：显年轻些（约五十岁），脸型清瘦，眉眼鼻口与基线一致；胡须改短——唇上短髭、颏下一小撮短须（基线那样），不要长须；头上戴基线那样的深色布帽（包住头发）。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持】保留头部角度、阴沉精明的神情、衣服与光影。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
 
-    第1张为npc_shipotian的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。 第3张是身份联系图，从左到右依次为zhangsan06、lisi06；每一格只锁定该人的身份，不把格数画进成品。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
-
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「真假帮主」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_jinwu_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: dab161c89134e3366a31b9d05a127ce3be6b0e095ee79d7245e73aca89e336eb
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch06/por_npc_shizhongyu__ch06_youth_bangzhu_base.png
-    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
-    sha256: 0586b34fa350e5286b3dcd0664c687501f0adc43acecc2cfcb0fd95f2fc3fa9b
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch06_changle_truth_identity_board.jpg
-    use: 本轮主角身份联系图；源立绘与左右顺序见同名JSON
-    sha256: 5d9d66bdfc7bcadda2a71aa1e6b4fb2013308f127689312d641f6ab2d75bc812
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch06/por_npc_beihaishi__ch06_elder_changle_base.png
+    sha256: 6e149c00c8996a9035e0d530120f3548e1b20d67ed0c09ce0b9dd7989d9d4f0e
+    use: 对脸基准：贝海石的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_beihaishi__ch06_elder_changle_base.jpg）
+  - path: assets/default/scene/ch06/cg_ch06_changle_truth.png
+    sha256: 1edc04fea53f529c9844c3dd6e2298a0cb01758a83793c451a000af56a69112b
+    use: 待改插图：只把贝海石头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch06_changle_truth.1edc04fe.png
+  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把贝海石头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T01:50:10-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_changle_truth.1791017409834416000/archive/cg_ch06_changle_truth.png
+  created: 2026-10-03T19:15:56-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch06_changle_truth.p1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 1edc04fea53f529c9844c3dd6e2298a0cb01758a83793c451a000af56a69112b
+  sha256: 49d08e9831cfa6e7dec9ed54c64afc4d8af3c0856addcfcc068b71b2ae79df04
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出1。题字「真假帮主」，实际字形「真假帮主」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出1。题字「真假帮主」，实际字形「真假帮主」逐字核验，原生题字，未叠加。；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：贝海石按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_changle_truth.1791017409834416000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_changle_truth.resume3r2.png
-  repair_runner_source_sha256: db888ff9abaf004e0795b68d93216171b56b2d72e0f39a83dec720883f25ed5a
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch06_changle_truth.1edc04fe.png
+    sha256: 1edc04fea53f529c9844c3dd6e2298a0cb01758a83793c451a000af56a69112b
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch06_changle_truth.1edc04fe.entry.yaml
   runner_job_records:
   - - cg_ch06_changle_truth.resume3r2
     - ok
@@ -269,5 +258,4 @@
     - '193'
     - exec-b3a8117e-8572-42d5-9bb2-306ea04c3b04.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch06_changle_truth.resume3r2
+  effort: ultra
