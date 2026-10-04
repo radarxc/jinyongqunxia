@@ -2452,3 +2452,7 @@
       - 近 6 小时内其他任务没有空转；`_common` 第 9 条已有同义规定。
     - **CONTENT-apparel-data 第 1 批合入**（8f9f5340）。全量检出里重建出图总索引，73 件进待出图（80d588e0）；第 2 批起跑。
     - 16e 若在 03:11 碰到 200 分钟上限：照 ink-intents 先例在原工作区续作，说明写清已完成与剩余项。
+  - **10-04 02:48 开发监督 · 节点：ENG-19e-m1-order 合入**（2070b36a，白马冷入口页面流）；同时 **CONTENT-ch00c-encounters 合入**（b2718159，三场遭遇仍在 `_drafts/`，转生产归 wiring）。
+    - ENG-ch00-encounter-wiring 随即起跑（驱动 10898）。为给它腾代码池位，停了非 M1 的 TOOL-ops-dispatch-dedupe 第 2 轮返修（约 15 分钟进度，工作区保留，状态记 PENDING），代码池有位再续作。
+    - 坑：zsh 里 `kill $pids` 不分词，多个 pid 会静默失败，要用 `xargs kill` 或 `${=pids}`。
+    - 02:46 那次合入被拦：城图调度 city_consolidate.py 留下 docs/design/town/ 下的未提交改动，协调者已补提交（e9244aef）。以后再见「主检出有未提交的改动」，先 git status；是 docs/design/town/ 的就告诉协调者。
