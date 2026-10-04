@@ -56,45 +56,44 @@
   category: scene
   style: default
   subject: 扬州初行（ch08_luding）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是韦小宝的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中韦小宝的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
-    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    【要对齐的部分】韦小宝各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    本次是原图局部放大裁图，输出同样的正方形裁图；不要生成全身，不要扩大场景。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「扬州初行」和小朱印必须原样保留，一笔不改、不增不减。
+    只给画面右侧前景的茅十八加密胡须为粗乱虬髯：上唇浓髭，两颊下部与下颌的黑须密实蓬乱，保持其原侧脸骨相、鼻嘴位置、神情、剃额辫子。韦小宝及任何其他人、衣服、长刀、码头和题字全不变。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【原著依据】《鹿鼎记》二《绝世奇事传闻里，最好交情见面初》：“一名虬髯大汉”（https://xuges.com/WUXIA/jinyong/ldj/008.htm）
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    【本张另外要求】（AR-53 / AR-56 总审轻微）画中戴瓜皮帽、留辫子、机灵坏笑的年轻人是韦小宝：他的脸现在是窄长脸、下颌尖——改成基线的宽圆脸、两颊饱满、下巴圆；眉眼、坏笑和表情方向照原图。其他人的脸不要动。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
-    sha256: 8713f92abd849f5d45ea77a4350d02a26d753eb4961eb0243b42786fafb92714
-    use: 对脸基线：作者审核通过的 por_npc_weixiaobao__ch08_youth_bishou_base（韦小宝），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch08/cg_ch08_yangzhou_departure.png
-    sha256: f78bd3e4ff5ac80c96b2d239c1e16f0cd53af31ecc02895cbf0fcfb493d98d9d
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch08_yangzhou_departure.f78bd3e4.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:37:00-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch08_yangzhou_departure.s1.png
+    sha256: d2351dc6b0007cb4005476ad93de2ac36dc8d56cb01b771e5a590e9485c129b7
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch08_yangzhou_departure.d2351dc6.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T02:51:27-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_34_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: d2351dc6b0007cb4005476ad93de2ac36dc8d56cb01b771e5a590e9485c129b7
+  sha256: 91facdd777f589e60486c4d954c67f12df959d4865e14e2b4f8f5035b4383d0e
   status: candidate
-  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「扬州初行」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：韦小宝窄长脸改成新基准的宽圆脸；局部合成——codex 整图编辑后只取韦小宝头部、羽化贴回原图，其余像素不变（原输出 codex_w17/out/cg_ch08_yangzhou_departure.s1.raw.png））；题字揚→扬；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）'
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「扬州初行」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：韦小宝窄长脸改成新基准的宽圆脸；局部合成——codex 整图编辑后只取韦小宝头部、羽化贴回原图，其余像素不变（原输出 codex_w17/out/cg_ch08_yangzhou_departure.s1.raw.png））；题字揚→扬；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）；AR-82 原著核对返修：扬州初行茅十八同步浓密虬髯'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch08_yangzhou_departure.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch08_yangzhou_departure.f78bd3e4.png
-    sha256: f78bd3e4ff5ac80c96b2d239c1e16f0cd53af31ecc02895cbf0fcfb493d98d9d
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch08_yangzhou_departure.f78bd3e4.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch08_yangzhou_departure.d2351dc6.png
+    sha256: d2351dc6b0007cb4005476ad93de2ac36dc8d56cb01b771e5a590e9485c129b7
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch08_yangzhou_departure.d2351dc6.entry.yaml
   title_revision:
     source_path: .agents/coord/_lines/title-audit/cg_ch08_yangzhou_departure_fixed.png
     before_sha256: cd9faeae382a4f77f1d410d068f2212ca0fdafd952fd089c77e23f25664a7405
