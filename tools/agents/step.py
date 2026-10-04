@@ -170,6 +170,9 @@ SPARSE_EXCLUDE_SUBDIRS = ("assets/default/baseline/building-map", "assets/defaul
 # 2026-10-03（素材线第三波追踪，main 13:58 批）：vfx（约 180 MB）只有构建要读（apps/game/build 的 publishVfxRuntime）。
 # 代码池任务与校验命令含 pnpm 的任务照旧检出；其余（素材 / 文档）默认排除，要读的用 sparse_include 显式列。
 SPARSE_EXCLUDE_IF_NO_BUILD = ("assets/default/vfx",)
+# 2026-10-03（素材线第三波）：被排除目录里 tools 单测要直接读的少数文件，稀疏检出时总是带上
+# （tools/content/test_town_runtime.py 的 test_compiles_current_town_deterministically 读南京 ch10 的现成布局）。
+SPARSE_ALWAYS_INCLUDE = ("assets/default/town/city_nanjing__ch10/layout.yaml",)
 SPARSE_EXCLUDE_FILES = ("assets/default/item/**/*.png", "assets/default/item/**/*.jpg", "assets/default/item/**/*.pdf",
                         "assets/default/character/**/*.png", "assets/default/portrait/**/*.webp")
 SPARSE_FULL_IF_WRITES = SPARSE_EXCLUDE_DIRS + SPARSE_EXCLUDE_SUBDIRS + ("assets/default/item", "assets/default/character",
@@ -199,14 +202,14 @@ def sparse_checkout_for(t) -> list | None:
             return any(i.startswith(d + "/") for i in inc)
         pats = ["/*"] + [(f"!/{d}/*/" if under(d) else f"!/{d}/") for d in dirs if not covers(d)] \
             + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS if not covers(d)] \
-            + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES] + [f"/{i}" for i in inc]
+            + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES] + [f"/{i}" for i in inc] + [f"/{a}" for a in SPARSE_ALWAYS_INCLUDE]
         return pats
     if getattr(t, "full_checkout", False) or pool_of(t.id) == "assets":
         return None
     if any(w.startswith(d) for w in t.writes for d in SPARSE_FULL_IF_WRITES):
         return None
     return (["/*"] + [f"!/{d}/" for d in dirs] + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS]
-            + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES])
+            + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES] + [f"/{a}" for a in SPARSE_ALWAYS_INCLUDE])
 
 
 def apply_sparse(wt: Path, patterns: list, ref: str) -> None:
