@@ -8,43 +8,85 @@ age_variant: elder
 tier: S
 output: assets/default/character/male/ch02/por_npc_huangyaoshi__ch02_elder_base.png
 manifest: assets/default/character/male/ch02/manifest.yaml
-references:
-- path: .agents/coord/imagegen-reference/identity-20261001/shediao/huangyaoshi_1983_zengjiang_sina_role.jpg
-  use: 第一参考仅为本人身份：1983 TVB 曾江饰黄药师。保持其宽而较高的额面、清楚眉骨、灰色上挑眉梢、收长眼形与紧凑眉眼关系；鼻梁挺直有体量、鼻头自然不尖削，嘴部克制，灰髭与颏下整齐灰须区分。颧颊有真实宽度，不强行套旧稿狭长尖脸，不把下颌被须遮挡部分伪画成网红锥子脸。保留自然中老年纹理，不复制剧照拧眉侧视，不复制白发老仙样板。
-- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-  use: 仅男性色卡、柔和明暗与细腻写实完整人物画法；禁止借脸、年龄、体型、衣型、剑或倾头。基线candidate原状态保留。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 仅暖浅灰纸底、极淡山水薄雾和留白；不复制王语嫣的脸、发型、薄纱裙或姿势。水墨不得侵入人物。
 status: redo
 realism_revision: user_identity_pose_20261001
-redo_reason: "面容源自 1983 版剧照（肖像风险），按原著“青衫、玉箫、形相清癯、高瘦隽爽”用文字原创重做，并作神雕黄药师身份参考"
+references:
+- path: .agents/coord/imagegen-reference/identity-20261002/shediao/huangyaoshi_1983_zengjiang_sina2024_front.jpg
+  sha256: b16f73a435b69454b9abdb49e9372e4fed6d7b0f5a8af2270f6bf40d45512743
+  use: 身份参考：1983 TVB《射雕英雄传》（曾江饰黄药师） 剧照（作者 10-03 点名参考港版，AR-57/58 常设授权下载；来源见同目录 SOURCES.md）；上传裁切 [330, 0, 700, 450] 后缩到长边 ≤1024 的 JPEG（still__huangyaoshi_front.jpg）；只借五官与神韵，按项目画风重画，不照搬照片；不入库
+- path: .agents/coord/imagegen-reference/identity-20261002/shediao/huangyaoshi_1983_zengjiang_sina2024_jiangnan.jpg
+  sha256: 10cb74bc8003b200184fb409385f9e19e833dc458d2b93da19dd04546826a72f
+  use: 身份参考：1983 TVB《射雕英雄传》（曾江饰黄药师） 剧照（作者 10-03 点名参考港版，AR-57/58 常设授权下载；来源见同目录 SOURCES.md）；上传裁切 [0, 0, 440, 442] 后缩到长边 ≤1024 的 JPEG（still__huangyaoshi_jiangnan.jpg）；只借五官与神韵，按项目画风重画，不照搬照片；不入库
+- path: .agents/coord/_handoff/gem/codex_w24/staging/stillface__huangyaoshi_front.jpg
+  sha256: ab7ff799566945d6b3958448bc92b257f36147b8dff0cba84802551d35208292
+  use: 剧照脸部特写：由第 1 张剧照裁出放大（640×640），只为看清五官；同样只借神韵
+- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+  sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+- path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+  sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+redo_reason: 作者 10-03 AR-58「黄药师参考港版，要高傲」：参考 1983 TVB 曾江重画射雕 base（清瘦中年约四十五岁，青衫与碧玉箫不变）；AR-62 选定 B
 reference_upload:
-- .agents/coord/imagegen-reference/identity-20261001/shediao/huangyaoshi_1983_zengjiang_sina_xiao.jpg
-- .agents/coord/imagegen-reference/identity-20261001/shediao/huangyaoshi_1983_zengjiang_sina_role.jpg
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-- assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-codex_prompt_rev: 2026-10-02
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w24/staging/still__huangyaoshi_front.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w24/staging/still__huangyaoshi_jiangnan.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w24/staging/stillface__huangyaoshi_front.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+codex_prompt_rev: '2026-10-03'
 classic_ref:
-  version: 1983 TVB《射雕英雄传》
+  version: 1983 TVB《射雕英雄传》（曾江饰黄药师）
   stills:
-  - .agents/coord/imagegen-reference/identity-20261001/shediao/huangyaoshi_1983_zengjiang_sina_xiao.jpg
-  - .agents/coord/imagegen-reference/identity-20261001/shediao/huangyaoshi_1983_zengjiang_sina_role.jpg
+  - .agents/coord/imagegen-reference/identity-20261002/shediao/huangyaoshi_1983_zengjiang_sina2024_front.jpg
+  - .agents/coord/imagegen-reference/identity-20261002/shediao/huangyaoshi_1983_zengjiang_sina2024_jiangnan.jpg
   crop:
-    huangyaoshi_1983_zengjiang_sina_xiao.jpg:
+    huangyaoshi_1983_zengjiang_sina2024_front.jpg:
+    - 330
+    - 0
+    - 700
+    - 450
+    huangyaoshi_1983_zengjiang_sina2024_jiangnan.jpg:
     - 0
     - 0
-    - 638
-    - 435
-    huangyaoshi_1983_zengjiang_sina_role.jpg:
-    - 0
-    - 0
-    - 595
-    - 437
+    - 440
+    - 442
+  sources: .agents/coord/imagegen-reference/identity-20261002/shediao/SOURCES.md
 ---
 
 # 黄药师 · 人物写实修正
 
-## Gemini 提示词
+## Gemini 提示词（AR-62 新基线）
+
+> 2026-10-03 AR-57 / AR-58 / AR-62 新基线（11 号出图员，codex exec · image_gen，gpt-6-astra ultra）：参考 1983 TVB《射雕英雄传》（曾江饰黄药师）；出 A / B 两版，作者 10-03 18:02 原话「钟灵b，马夫人b，黄药师b」（AR-62），本版即 B（B：黑发中年、鬓角几缕银丝，冷傲直视），已入库替换 `por_npc_huangyaoshi__ch02_elder_base`。
+> 上传顺序：2 张剧照（裁切后缩到长边 ≤1024 的 JPEG）、第 1 张剧照的脸部特写，最后两张为同性别画风基线（缩小版 JPEG）。剧照只借五官与神韵，按项目画风重画；剧照只存主检出 imagegen-reference、不入库，来源与图注见 classic_ref.sources。
+> 下面是实际提示词（codex 输入前另加一句只调用一次 image_gen 的工具说明）。旧提示词保留在后面各节作历史。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+【参考图】第 1、2 张是该角色经典影视造型（作者指定的版本）的剧照，第 3 张是第 1 张剧照的脸部特写。人物的脸要明显向剧照靠拢——脸型、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、嘴型与唇形都要像剧照里的这个角色，让看过这一版的观众一眼认出；神韵与气质也借鉴剧照。但必须重新绘制成项目的手绘插画画风：像这个角色，而不是照着照片描——不要照片质感，不要照搬剧照的构图、光影、背景、姿势和服装，不要做成照片修图或照片贴脸。服饰、发式、年龄与神情以下文文字为准。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
+【本版要点】只借剧照的脸、上挑的眉和傲气；年龄按原著四十余岁画年轻些，不照搬剧照的满头灰白和花纹黑衣。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物】黄药师，《射雕英雄传》东邪，桃花岛主，黄蓉之父，天下五绝之一；射雕时期。琴棋书画、医卜星相无所不通，孤傲不羁、蔑视礼法，目空一切。
+【年龄与体态】原著此时四十余岁：约四十五岁的清瘦中年男子，不是老翁；身材高瘦挺拔、肩背挺直、颈项修长，约 7.5 头身。
+【面容（作者：参考港版，要高傲）】脸要明显像剧照里的东邪：清癯的长脸、高颧骨、两颊微陷、下颌线清楚；两道浓眉斜飞入鬓、眉梢高高上挑（剧照最醒目的特征）；眼型细长、上眼睑微压，目光冷峻锐利；鼻梁高挺、鼻头有肉；薄唇；唇上一字髭须，颏下一绺修剪整齐的山羊须；肤色白皙、额头与眼角有几道细纹。俊雅而孤傲，不是偶像脸。
+【须发（黑发中年）】乌黑长发，只鬓角夹着几缕银丝；头顶束一个高髻、插一支青玉簪，其余长发披在肩背；髭须与山羊须乌黑浓密、修剪整齐，须长到下巴下一寸。
+【服饰】青色长衫（交领右衽的宋式文士袍，细密的青灰色绸，衣缘深青），白色内领，腰系素色丝绦，衫摆修长及踝；黑色布靴。
+【道具】右手握一支碧玉箫（通体碧绿、长约二尺，箫身完整），自然垂在身侧；左手负在身后。
+【姿态与神情】傲然独立，身体正面、头部端正（不仰不俯）；面无笑意，双眉上挑，眼神冷冽锐利地直视前方，薄唇紧抿、嘴角微微下压——孤高冷傲，一派「天下人皆不足道」的东邪气度。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要白发苍苍的老翁、满头白发或长及胸腹的长须；不要偶像脸；不要华丽锦袍金冠；不要剧照里的花纹黑衣和背景人物；不要人皮面具。
+【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+```
+
+参考（按实际上传顺序）：
+
+1. `.agents/coord/imagegen-reference/identity-20261002/shediao/huangyaoshi_1983_zengjiang_sina2024_front.jpg`（sha256 b16f73a435b6…）：身份参考：1983 TVB《射雕英雄传》（曾江饰黄药师） 剧照（作者 10-03 点名参考港版，AR-57/58 常设授权下载；来源见同目录 SOURCES.md）；上传裁切 [330, 0, 700, 450] 后缩到长边 ≤1024 的 JPEG（still__huangyaoshi_front.jpg）；只借五官与神韵，按项目画风重画，不照搬照片；不入库；来源 新浪 2024-08-24《“黄药师”别硬演……》曾江小节（裁右半）
+2. `.agents/coord/imagegen-reference/identity-20261002/shediao/huangyaoshi_1983_zengjiang_sina2024_jiangnan.jpg`（sha256 10cb74bc8003…）：身份参考：1983 TVB《射雕英雄传》（曾江饰黄药师） 剧照（作者 10-03 点名参考港版，AR-57/58 常设授权下载；来源见同目录 SOURCES.md）；上传裁切 [0, 0, 440, 442] 后缩到长边 ≤1024 的 JPEG（still__huangyaoshi_jiangnan.jpg）；只借五官与神韵，按项目画风重画，不照搬照片；不入库；来源 同上（背景有翁美玲版黄蓉）
+3. `.agents/coord/_handoff/gem/codex_w24/staging/stillface__huangyaoshi_front.jpg`（sha256 ab7ff7995669…）：剧照脸部特写：由第 1 张剧照裁出放大（640×640），只为看清五官；同样只借神韵
+4. `assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png`（sha256 3523d4d935ad…）：画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+5. `assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png`（sha256 c9f87f225636…）：画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+
+## 上一版 Gemini 提示词（AR-62 新基线之前，历史，不再用于出图）
 
 > 2026-10-02 AR-32 重出（5 号出图员，codex exec · image_gen）：主要角色改为参考经典影视版剧照加项目基线生成。上传顺序：1983 TVB《射雕英雄传》 剧照 2 张（huangyaoshi_1983_zengjiang_sina_xiao.jpg、huangyaoshi_1983_zengjiang_sina_role.jpg），最后两张为同性别画风基线（缩小版 JPEG）。剧照只借造型、气质与面部特征，画面按项目画风重绘、不复制照片。上一版（AR-31 文字版）保留在下一节作历史。
 
