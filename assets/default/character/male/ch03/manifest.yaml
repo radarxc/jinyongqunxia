@@ -1035,24 +1035,35 @@
     【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
   negative: ''
   references:
-  - path: assets/default/character/male/ch02/por_npc_zhoubotong__ch02_elder_base.png
-    sha256: 2dea69179c3cf4570101fb66707dd5c6a1ecda969e5abbc1d92d1083b958a36b
-    use: 身份参考：本轮新出的周伯通（por_npc_zhoubotong__ch02_elder_base，上传 codex 原图）
   - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
     sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
     use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
   - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
     sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
     use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
-  model: gpt-6-astra
-  created: 2026-10-02T03:31:55-0700
-  source_path: .agents/coord/gemini_originals/por_npc_zhoubotong__ch03_elder_base.png
+  - path: assets/default/character/male/ch02/por_npc_zhoubotong__ch02_elder_base.png
+    sha256: b8de4aa10e287d1eda45d5e2e0a4cda3fce1cb8a03a79241a49d0a74befaf85d
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:44:24.731670-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_54_49_r2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 63ce5004325067f9d4ea405234943437c43c344f0af52f2629d73f0df6ff6478
+  sha256: 61fcd3c3ead606daf9c582b8a3ded24ae724d5f160870216f2700791e8971a8e
   status: candidate
-  notes: 立绘重审重出（AR-30）；神雕周伯通尚无立绘；上传本轮新出的射雕周伯通作身份参考，同一个老顽童更老；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
+  notes: 立绘重审重出（AR-30）；神雕周伯通尚无立绘；上传本轮新出的射雕周伯通作身份参考，同一个老顽童更老；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）；AR-84 第二轮：周伯通五官对齐 por_npc_zhoubotong__ch02_elder_base；AR-53 仅头部，AR-75 神态与光向保留；周伯通本书老年。身份与图1同人，但表情必须改变为不笑：眼神好奇灵动而不眯笑，面颊放松不抬起，闭口无齿、两嘴角平直，完全不向上。不要浅笑、不要慈祥笑、不要照搬图1张嘴笑，也不要怒皱眉。白发长须、原头部倾斜与光向照图2。；质检：实际打开返修对照：ch02同人眉眼、鼻骨鼻头及颌骨，ch03老年白发长须与原手势衣饰保留；闭口平唇无笑但好奇灵动、不怒皱，光向接缝自然，头外零变化
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_54_49_r2
+    before_sha256: 63ce5004325067f9d4ea405234943437c43c344f0af52f2629d73f0df6ff6478
+    box:
+    - 428
+    - 112
+    - 578
+    - 309
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_54_49_r2.png
+    outside_changed_pixels: 0
 - id: por_npc_yangguo__ch03_youth_scene_chongyang_palace_rescue
   file: por_npc_yangguo__ch03_youth_scene_chongyang_palace_rescue.png
   category: character/male
