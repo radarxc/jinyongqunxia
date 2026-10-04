@@ -48432,6 +48432,59 @@
    ],
    "validate": {
     "exists": [
+     "packages/render/src/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,re; o=subprocess.run(['node','tools/perf/check_size.mjs'],capture_output=True,text=True); m=re.search(r'^render\\s+([0-9.]+)\\s',o.stdout+o.stderr,re.M); v=float(m.group(1)) if m else None; print('render',v); sys.exit(0 if v is not None and v<170 else 1)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-render-diet",
+   "title": "游戏工程 · render 瘦身：静态闭包 179.41 → < 170 KiB（门 180 不放宽）；先查构成（three 按需、rig 懒加载、调试代码），挪出去的块都要有预算",
+   "prompt": "ENG-render-diet.md",
+   "deps": [
+    "ENG-size-render-measure"
+   ],
+   "writes": [
+    "packages/render/src/**",
+    "apps/game/src/**",
+    "apps/game/vite.config.ts",
+    "tools/perf/budgets.json",
+    "tools/perf/check_size.mjs",
+    "tools/perf/check_size.test.mjs",
+    "tools/perf/README.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
      "tools/perf/check_size.mjs"
     ],
     "cmd": [
