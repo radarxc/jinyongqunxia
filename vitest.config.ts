@@ -1,9 +1,20 @@
 import vue from '@vitejs/plugin-vue';
 import { configDefaults, defineConfig } from 'vitest/config';
 
+const managedMaxWorkers = (() => {
+  const raw = process.env.TIANSHU_VITEST_MAX_WORKERS;
+  if (raw === undefined) return undefined;
+  const value = Number(raw);
+  if (!Number.isInteger(value) || value < 1) {
+    throw new Error(`TIANSHU_VITEST_MAX_WORKERS must be a positive integer, got ${raw}`);
+  }
+  return value;
+})();
+
 export default defineConfig({
   plugins: [vue()],
   test: {
+    ...(managedMaxWorkers === undefined ? {} : { maxWorkers: managedMaxWorkers }),
     projects: [
       {
         extends: true,

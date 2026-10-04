@@ -588,7 +588,9 @@ class Dispatcher:
         elif action.kind == "revalidate":
             command = [sys.executable, str(self.root / "tools/agents/supervise.py"), event.task, *args, "--from", "validate", "--worker"]
         elif action.kind == "prod_check":
-            command = ["zsh", str(handoff / "prod_check.sh"), "post-ops-" + key]
+            command = [sys.executable, str(self.root / "tools/agents/check_semaphore.py"),
+                       "--root", str(self.root), "--", "zsh", str(handoff / "prod_check.sh"),
+                       "post-ops-" + key]
         else:
             current_head = git(self.root, "rev-parse", "HEAD").stdout.strip()
             if not event.context.get("head") or current_head != event.context["head"]:

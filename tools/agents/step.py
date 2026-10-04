@@ -39,6 +39,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import run as R  # noqa: E402  复用 run.py
+from check_semaphore import check_slot  # noqa: E402
 
 DEFAULT_MODEL = "GPT-6-Astra"  # 作者 2026-10-01：「调用 traex-cli（GPT 6 astra max，如果没有就 5.6-sol max）」——默认 Astra，启动探测不应答自动回退 FALLBACK_MODELS
 DEFAULT_EFFORT = "max"  # 执行默认 ultra；审核默认 xhigh（作者 2026-09-30："gpt 6 astra ultra 和 extra high"）
@@ -679,7 +680,8 @@ def cmd_finish(a) -> int:
         rc = Path(cur["exit"]).read_text().strip()
         if rc != "0":
             problems.append(f"代理进程退出码 {rc}（见 {cur['log']}）")
-    problems += R.validate(t, wt, R.baseline_lines(wt, t, base), cfg)
+    with check_slot(root):
+        problems += R.validate(t, wt, R.baseline_lines(wt, t, base), cfg)
     files = R.changed_files(wt, base)
     allowed = [f for f in files if R.matches_any(f, t.all_writes)]
     discarded = [f for f in files if f not in allowed]
