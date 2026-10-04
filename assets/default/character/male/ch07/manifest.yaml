@@ -238,78 +238,58 @@
   category: character/male
   style: default
   subject: 崇祯帝朱由检 npc_chongzhen ch07_bixue
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+  prompt: '【任务】AR-73 / AR-89：崇祯帝朱由检，以图1现base为构图编辑目标，用图2作者提供的题「大明毅宗烈皇帝」画像改定人物。图3为这幅画像面部冠服细节。画像标题只用于辨认，输出不要文字。
 
+    【面容与年龄】五官、脸型、须式照图2和图3：清瘦略长面、纤细下颌，自然细长眼与平弧眉、鼻唇关系按画像；八字口髭加短颏须，短而稀疏，绝不能长络腮胡或长尖胡须。画三十出头、《碧血剑》崇祯末年，真实青年壮年肌肤，不画晚年。神情忧急、刚愎，眉宇轻收、嘴唇闭合，严肃不笑。体态清瘦，肩胸腰收而正常健康，不硬加胖。
 
-    Create a REALISTIC Chinese wuxia full-body portrait of 崇祯帝朱由检. THIS IS AN ORIGINAL TEXT-DEFINED FACE for this supporting character. There is NO identity image of this person among the inputs. Image 1 supplies ONLY the corresponding gender project palette and soft painting quality; image 2 supplies ONLY pale ink-wash background. Do not copy, blend or average either reference face, age, anatomy, hairstyle, clothes, props or pose. Establish the independent written face and proper stage below.
+    【冠服】严格照作者画像：黑色翼善冠，后部冠翼向后上折而不是横展乌纱官帽，两侧翼向后收；冠上金龙纹。红色圆领龙袍，胸前及双肩清晰金色盘龙团龙纹样，红袍有真实丝织垂坠与细腻明暗；保留画像的帝王领饰细节但转成可穿的立体织物。保留现base的玉带、黑靴和双手在腰前相叠的站姿，袖口白内层自然露出。胸前一个主团龙、两肩各一个团龙。整幅是项目写实手绘，不复制古画的平面面孔或平涂衣料。
 
+    【共同约束】单人单视图、完整全身，1024×1536、2:3竖幅、不透明PNG。人物站姿、双手动作、视角、头部方向、位置、占画面尺度、头顶与足底留白、背景底色及水墨景物严格照现base，不能改变或新增场景。项目精细写实数字手绘：真实骨肉和织物体积、自然五官不对称、柔和左上光、细腻笔触，纸纹水墨只在背景，不能画成平涂古画、照片、油画厚涂或3D。允许指定的脸、体态、冠服改定；人物高度不变。完整双手与双足、入鞘兵器，不增器物。只输出一张定稿，不做拼图。
 
-    身份与阶段：崇祯帝朱由检（npc_chongzhen），《碧血剑》ch07_bixue。1644年北京宫变前的明朝皇帝，尚未进入城破自缢结局。
+    【不要】不要文字、题字、画框、印章、水印、第二人、脸部特写框、多视图、现代衣饰、网红脸、动漫大眼、塑料磨皮、古画平涂、多肢、断手断足、裁掉帽或脚；不镜像现base。历史画像上的文字与边框绝不画入新图。
 
-
-    年龄与体型：1644年约33岁（1644−1611），成年壮年偏瘦体格；有疲态但非六旬老人。年龄为本地纪年近似推算，不照搬后世画像。
-
-
-    原创本人面容：原创清长椭圆偏长方脸，额头高窄、眉间略收但不扭曲，眉细长平展、眼裂中等偏窄，双眼清晰、下眼睑有淡疲色。鼻梁细直、鼻尖偏小而有肉，嘴形窄长、薄上唇清晰，下颌收窄但下巴钝而非尖。整齐细短髭与短颏须为深黑，鬓发黑，不配白眉长须；君王焦虑只在眉眼与浅纹。
-
-
-    服制与发式：晚明皇帝便朝式形象，低饱和赭黄圆领袍、窄玉色腰带、黑靴；乌纱翼善冠收住发髻，袍上只有克制同色团龙暗纹，礼制服章细节为原创简化，不复制历史画像。衣物完整不透明、领胸腰腹遮蔽，剪裁和缝线清楚，少量宽缓褶有真实重力；旧衣仅以柔和材质表现，不画破洞碎布。汉式服装以本人左襟压右襟为准；满洲军政人物严格沿本稿早期剃发细辫、马蹄袖与箭衣服式，不一刀切禁辫或套汉式发髻，不水平镜像。
-
-
-    正面姿态与器物：正面全身站立、头颈端正，水平直视、下巴中性。一手低置腹前扶另一侧袖缘，两手手指均露出，袖口层次清楚。乌纱翼善冠完整戴正，低饱和赭黄圆领便朝袍仅同色小范围团龙暗纹；无剑、无刀牌、无龙椅、无绞索或宫殿。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。按最新用户提速指示先生成1张候选，每张仅一人；基本清晰、正面、人物可辨即保存，只有严重身份错误、重大结构问题或不可读才补图，不因细手指、微装备或轻微角度反复追加。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实边界：书界为明末转清，项目范围1630–1645；每位仅用本稿的独立年份与生死状态。袁崇焕限1630以前生前军务追忆、皇太极不晚于1643死讯，不从鹿鼎小说或历史后世倒套本期衣冠与年龄。公历相减所得约岁不是逐日周岁或虚岁考定。人物角色、生命状态及器物按当前本地角色稿/名录/剧情；未新核外网或指定小说版本，不把原稿待考概括升级为核实事实。具体五官、衣饰选款、色彩、器物形制、伤疤布局及静立手势均为本次原创美术落实。1644北京宫变前在世形象；不画自缢现场、不更改城破历史结局。明式帝王身份允许本稿克制团龙衣纹但不加发光龙或冕旒遮脸，礼制细部仍美术简化。
-
-
-    参考边界：第一输入只为同性别项目色卡、柔和光线及精细手绘品质，已实际查看；不是本人照片或身份图，不取五官骨相、年龄、身体、发式、衣装、道具与倾头姿势。本人面孔仅由文字独立建立。参考原candidate/approved不转给新图。 第二输入已实际查看，只取暖浅灰纸底、极淡水墨远山和留白，不取参考中的女性人物、脸、身体、发型、衣裙、飘带、装饰或倾头姿势。背景墨迹不得侵入本人的皮肤、衣料和器物。
-
-
-    完整排除项：不要文字、汉字、伪字、题款、题字、标签、签名、印章、logo 或装饰水印。 不要现代服装、拉链、腕表、运动鞋、数码物件、塑料饰品、蕾丝或高跟鞋。 不要真人演员脸、明星相貌、剧照构图、影视或游戏独创造型，不复制具体画作。 不要动漫大眼、统一网红锥子脸、丰唇滤镜、浓妆磨皮、偶像脸、塑料皮肤、摄影写真或三维模型渲染感。 不要日韩动漫风、日式服制、前结宽腰带、日式刀具、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克。 不要时代与族群混搭、错误衣襟、水平镜像、无依据的官服纹章与繁复珠宝。 不要额外人物、多视图、分格、面部特写框、裁断头足或兵器端点。 不要多肢、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、断裂器物或容不下兵刃的短鞘。 不要夸张健美肌肉、大面积撕裂破衣、裸露、透明衣料、色情化、血腥特写、恶搞或丑化。 不要发光兵器、龙形能量、法阵、光翼、粒子特效、浓雾遮挡、强逆光、强烈泛光、复杂场景或山水建筑。 不要老年皇帝脸、绞索、自缢树木、血剑、清式龙袍、清冠顶戴、马蹄袖、冕旒遮脸或坐在龙椅上。 不要 head tilt、Dutch angle、歪头、倾斜眼线、侧向目光、侧脸、侧身回眸、低头藏眼或抬下巴。不要复制任何参考的脸、年龄、体型、发式、衣装、道具或姿势。不要人物飞白缺块、墨斑侵蚀、纸纹透肤透衣、破洞、撕裂衣摆、碎布条、密集噪点或过密细皱；皮肤、衣料、伤疤和器物必须完整连续。
-
-
-    FINAL POSE CHECK: FRONT-FACING, head facing forward, both eyes HORIZONTALLY LEVEL, camera level, NO head tilt, NO Dutch angle. Respect the described age, face, real anatomy, impairment and narrative stage; ignore reference poses.'
-  negative: 不要文字、汉字、伪字、题款、题字、标签、签名、印章、logo 或装饰水印。 不要现代服装、拉链、腕表、运动鞋、数码物件、塑料饰品、蕾丝或高跟鞋。 不要真人演员脸、明星相貌、剧照构图、影视或游戏独创造型，不复制具体画作。 不要动漫大眼、统一网红锥子脸、丰唇滤镜、浓妆磨皮、偶像脸、塑料皮肤、摄影写真或三维模型渲染感。 不要日韩动漫风、日式服制、前结宽腰带、日式刀具、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克。 不要时代与族群混搭、错误衣襟、水平镜像、无依据的官服纹章与繁复珠宝。 不要额外人物、多视图、分格、面部特写框、裁断头足或兵器端点。 不要多肢、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、断裂器物或容不下兵刃的短鞘。 不要夸张健美肌肉、大面积撕裂破衣、裸露、透明衣料、色情化、血腥特写、恶搞或丑化。 不要发光兵器、龙形能量、法阵、光翼、粒子特效、浓雾遮挡、强逆光、强烈泛光、复杂场景或山水建筑。 不要老年皇帝脸、绞索、自缢树木、血剑、清式龙袍、清冠顶戴、马蹄袖、冕旒遮脸或坐在龙椅上。 不要 head tilt、Dutch angle、歪头、倾斜眼线、侧向目光、侧脸、侧身回眸、低头藏眼或抬下巴。不要复制任何参考的脸、年龄、体型、发式、衣装、道具或姿势。不要人物飞白缺块、墨斑侵蚀、纸纹透肤透衣、破洞、撕裂衣摆、碎布条、密集噪点或过密细皱；皮肤、衣料、伤疤和器物必须完整连续。
+    '
+  negative: 不要文字、题字、画框、印章、水印、第二人、脸部特写框、多视图、现代衣饰、网红脸、动漫大眼、塑料磨皮、古画平涂、多肢、断手断足、裁掉帽或脚；不镜像现base。历史画像上的文字与边框绝不画入新图。
   references:
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 第一输入只为同性别项目色卡、柔和光线及精细手绘品质，已实际查看；不是本人照片或身份图，不取五官骨相、年龄、身体、发式、衣装、道具与倾头姿势。本人面孔仅由文字独立建立。参考原candidate/approved不转给新图。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二输入已实际查看，只取暖浅灰纸底、极淡水墨远山和留白，不取参考中的女性人物、脸、身体、发型、衣裙、飘带、装饰或倾头姿势。背景墨迹不得侵入本人的皮肤、衣料和器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T22:29:43.293003+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-af9ae42d-109b-4117-8a9d-863878567085.png
+  - path: .agents/coord/_lines/hist-r2/before/npc_chongzhen.png
+    sha256: 5b16682da938693583a11f061cffcd8320801469b6ddb0bb04a15ae9c81f0ddb
+    use: 改前base；仅站姿、构图、尺寸、底色和动作基准
+    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_chongzhen.r1__ref1.jpg
+    uploaded_sha256: 3bdbfcaaafe3e64216c4372cedabe2202f4a269574fd3aa2c1ef19c7c11c90fa
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/historical/npc_chongzhen/author_portrait_1_20261004.png
+    sha256: 1716f36dec44812ee5ffb7e7ad29788e45e1346b90d0c8ca19a59f32ce747790
+    use: 作者图1；五官、脸型、短须、翼善冠及红色团龙圆领袍
+    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_chongzhen.r1__ref2.jpg
+    uploaded_sha256: 8eb729c70d7b37777b30d43377fe777ef3439373381a45911b5baaf8dca74a33
+  - path: .agents/coord/_lines/hist-r2/author_chongzhen_detail.png
+    sha256: df6d4e255a5b9c0b68668d592d9e85134bac0293d76d74c96c53304271136d73
+    use: 作者图1面部冠服细节
+    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_chongzhen.r1__ref3.jpg
+    uploaded_sha256: 45eb25cbe1108c858ab7655e9b9bde7647d4c8103ab1782e3b5983c6ba701ec0
+  tool: codex exec · image_gen（AR-73 / AR-89 历史画像与作者意见改定；codex_w34队列）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: '2026-10-04T00:53:12-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w34/out/hist89_npc_chongzhen.r1.png
   size: 1024x1536
   mode: RGB
-  sha256: 5b16682da938693583a11f061cffcd8320801469b6ddb0bb04a15ae9c81f0ddb
+  sha256: 0e7e6d0b191bd75fbb8ba51279452d8fccfb4fc4ae926108f31e021b1467017a
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_chongzhen__ch07_prime_predeath_base/prompt-ae59111d011b365702df229126d2c250a6a307c59881c4ffd8dac74362deb397.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_chongzhen__ch07_prime_predeath_base/manifest-01986ea5e0f85ce66b487528ff672c95508ca67be02e5bda537ef32ab4b3f5c9.yaml
-    png: null
+    png: .agents/coord/_lines/hist-r2/before/npc_chongzhen.png
+    sha256: 5b16682da938693583a11f061cffcd8320801469b6ddb0bb04a15ae9c81f0ddb
+    entry: .agents/coord/_lines/hist-r2/before/npc_chongzhen.manifest.json
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_chongzhen__ch07_prime_predeath_base.requests.json
   notes: '实际查看原图：成年清瘦短须崇祯，正面站姿头直，黄色圆领袍玉带黑靴完整，人物清晰无重大身体结构问题，未画城破自缢。冠侧翼向横向展开、翼善冠形制不精确；团龙较显且花纹偏多，一只手藏袖未双手完全外露，背景小亭比要求具体。按用户宽松出齐标准保存，服冠简化与手部遮挡如实登记；未宣称严格服制考证通过。原始PNG，candidate待审核。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+
+    AR-73 / AR-89 照历史画像，作者意见：崇祯按图1来；五官脸型、八字须加短须照作者「大明毅宗烈皇帝」画像，三十出头、清瘦、忧急刚愎不笑；黑色金龙翼善冠、红色圆领团龙袍；项目写实手绘。 实际打开全身和独立脸部特写检查通过；站姿、构图、尺寸、底色沿现base。生成PNG原始字节入库。场景立绘、插图、A字图待作者看过后对齐，见 .agents/coord/_lines/hist-r2/align_todo.tsv。'
+  source_size: 1024x1536
 - id: por_npc_cuiqiushan__ch07_prime_opening_base
   file: por_npc_cuiqiushan__ch07_prime_opening_base.png
   category: character/male
