@@ -2164,4 +2164,11 @@
       - **ENG-23b-offline-reland**（驱动 43756，名单第一，full_checkout）：`git apply` 重新应用 9262b0a1，修进入闭包；60 MiB 门不放宽、ch00 也在门内；按 AR-64 核对。
       - **ENG-quest-test-timeout**（驱动 43905）：quest runtime-regression 用例加 30 秒显式超时。
       - **ENG-bench-perf-split-2**（驱动 44063）：bench 的 transaction bus 与 ≤ 20 ms 两条挪到 check:perf。
+  - **10-03 22:15–22:31 开发监督**：
+    - ENG-23b 的全量检出工作区约 8.5 GB，磁盘一度降到 5.5 GiB，之后回升。23b 22:21 起跑。
+    - **ENG-session-base-diet** 第 3 轮返修过了校验，停在 HOLD-REVIEWS。
+      - 协调者裁定再审一轮：用 `--from review --max-runs 0` 只审不返修，驱动 4935。
+      - PASS 自动合入，等待器随后给 gates-data 挪基点；FAIL 摘要报协调者。
+    - **ENG-quest-test-timeout 合入**（22:30）。prod_check 全绿（HEAD efb97d25）；会话闭包 108.91。
+    - TOOL-ops-dispatch 已过校验，在审核。合入后由开发监督起守护进程，跑稳一小时后收尾。
 
