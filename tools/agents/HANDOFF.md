@@ -2466,3 +2466,21 @@
     - **check:perf**（03:31，负载约 9–11）全绿，8 个用例：rig 程序步态最小 P95 0.372 ms（< 0.80），片段模式 0.299 ms（< 1.0），挪进来的 bench 与存储计时断言都过。00:23 那次因为等不到低负载、在负载 34 下跑，rig 门报 0.905，属负载失真，作废。
     - **TOOL-map-terrain 合入**（03:35，第 4 轮返修过 COVERAGE 门与审核）。ART-map-inkkit-tiles 00:58 已合入，至此 TOOL-map-compose 的依赖齐了，起跑（素材池）。
     - CONTENT-apparel-data-3 合入，重建出图总索引（c505833c），第 4 批起跑。
+  - **10-04 02:10–04:28 协调者**：
+    - **AR-82 原著核对返修全部完成**，作者无需定的项：
+      - novel-fix-1（ch00–ch04）：40 条，56 张图；
+      - novel-fix-2（ch05–ch09）：42 条，41 张图；另有 1 条剑鞘误判，已撤销；
+      - novel-fix-3（ch10–ch14）：29 条，29 张图。
+      - 历史人物的 base 等作者审完 hist-batch2 再一起换。
+    - **title-audit 完成**：82 张插图里 15 张题字有问题，全部修好；26 份提示词还没出图，清单在 `_lines/title-audit/missing_plates.tsv`。
+    - **已交付并发作者**：
+      - guojing-final：郭靖 B，含立绘和插图共 15 张；
+      - xiaojinghu-r5：阿朱「遗憾的笑」（362cda69）；
+      - lvliu-redo：绿柳庄照剧照重画（30224ef9）；
+      - hist-align：索菲娅身材（8de5d65a）。
+    - **M1 合入**：19e（2070b36a）、ch00c（b2718159）。
+      - 发现序章三战没有任何引擎任务接线，已登记 ENG-ch00-encounter-wiring（340964bb），正在跑。
+      - 02:46 合入被城图进度文件挡住：city_consolidate 撞 index.lock 没提交上。已补提交（e9244aef），并给它加了重试。
+    - **其他合入**：terrain（95acd873）、apparel 2–4 批；compose 已起。
+    - **M1 还剩**：16e（原工作区续作）、wiring、generic-model。
+    - **待作者**：霍青桐 C/D/E；历史第二批 21 人（建议徐达、常遇春穿戎装）。
