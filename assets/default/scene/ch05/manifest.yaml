@@ -77,9 +77,9 @@
   source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch05_hengyang_score.p3.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 0a29962ad4925423871fa8e0c859ed13857ace04a642df9e3fd567a4dfb1283e
+  sha256: 29155535f3d373ecd4cd6b063a020113a570e8247d9297fc59076fea85bf6bb6
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「琴箫托谱」，实际字形「琴箫托谱」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：曲洋按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：刘正风按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「琴箫托谱」，实际字形「琴箫托谱」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：曲洋按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：刘正风按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；朱印去可读笑形；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_hengyang_score.2b59e8c4.png
     sha256: 2b59e8c40f50df08ce6b1653534f2472414c13d5e6c18d4c08c5dc61e75b1b63
@@ -92,6 +92,7 @@
     - exec-0ec7ec49-1c0b-4ec2-91c1-d744675684d9.png
   runner_success_count: 1
   effort: ultra
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/hengyang_fixed.png", "before_sha256": "0a29962ad4925423871fa8e0c859ed13857ace04a642df9e3fd567a4dfb1283e", "allowed_box": [1443, 337, 1461, 358], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/hengyang_pixel_checks.json", "method": "只将朱印内可辨笑形填为同色朱砂印泥纹理，外框、题字四字及画面原像素保留", "created": "2026-10-04T00:41:12-07:00"}
 - id: cg_ch05_shaolin_three_bouts
   file: cg_ch05_shaolin_three_bouts.png
   category: scene
