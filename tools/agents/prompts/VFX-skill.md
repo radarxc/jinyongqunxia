@@ -33,7 +33,7 @@
 3. **出图与演示**：每招 `compose.py` 出 `moves/<mv_id>/peak.png`，`build_demo.py` 出 `moves/<mv_id>/demo.html`（≤ 3 MB，唯一外链为 three r186 importmap）。抽 2 张峰值帧 `view_image` 看：效果从发出点沿方向发出、根部衔接、无白边。
 4. **登记**：`assets/default/vfx/{{skill_id}}/manifest.yaml`：原料图每张一条（`id` 形如 `vfx_{{skill_id}}__family_base01`），招式每招一条（`id` 形如 `vfx_<mv_id>__base01`，`code` 指向 demo，`pipeline: two-part`），字段按 `assets/README.md`，`status: candidate`。
 
-约束：只用共用池的发出方图；不改 `tools/vfx/`；每次写入 ≤ 150 行；报告 ≤ 100 行（招式表 + 原料清单 + 待确认项）。
+约束：只用共用池的发出方图；不改 `tools/vfx/`；每次写入 ≤ 150 行；报告 ≤ 100 行（招式表 + 原料清单 + 待确认项）。**构建日志与检查产物**（`build-log*.jsonl`、`build-results*.jsonl`、`checks/`、`*.log`、临时校验输出等）写到工作区 `.agents/` 或 `/private/tmp`，用完删掉，不留在 `assets/default/vfx/` 下（协调者 2026-10-03：素材目录只放登记的素材与合成产物）。
 
 检查：以下命令必须全部通过。
 - `python3 tools/vfx/check_skill_suite.py assets/default/vfx/{{skill_id}} --catalog {{catalog}}`
