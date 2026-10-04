@@ -120,3 +120,8 @@ NO head tilt, NO Dutch angle. 不要画面文字、伪字、题款、签名、�
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_yinsusu__ch04_prime_ziwei_base.prepared.json`。
+
+## 原著依据
+
+- 《倚天屠龙记》五 皓臂似玉梅花妆：“身穿淡绿衫子，却已改了女装”；https://www.xuges.com/wuxia/jinyong/yttlj/027.htm
+- AR-82 返修约束（本节优先于历史提示词）：只把淡紫女衫改成淡绿，保持现有衣料纹理、褶皱和款式；月白裙、腰带、三枚银针、脸、手、长发、珠饰及背景全不动。
