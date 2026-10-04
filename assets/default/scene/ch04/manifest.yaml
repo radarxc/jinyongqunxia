@@ -446,15 +446,18 @@
   - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
     sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
     use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  - path: assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png
+    sha256: d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
   tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
   model: gpt-6.1-sol
-  created: '2026-10-04T01:29:54.154017-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_41_56_r1.png
+  created: '2026-10-04T01:31:11.916466-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_41_57_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 3cdfbe7713df1f84b8e0713d391b952aa41d3bf4baf37e6c751be3579fa76381
+  sha256: 9000c9205b21075bcb6ea464393d97811f1c36518904c7b64d45050b5842d822
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「火塔救群雄」，实际字形「火塔救群雄」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：范遥按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；保留火塔救援时原画紧张关切的眼神与火光方向；不微笑；周芷若在上层窗边、赵敏在院侧，身份不能串。；质检：已打开对照：赵敏眉眼鼻唇与恢复base同人，保留救援回望和原火光暖侧光，头脸接缝自然；张无忌、窗上周芷若、其他人物与题字均头外像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「火塔救群雄」，实际字形「火塔救群雄」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：范遥按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；保留火塔救援时原画紧张关切的眼神与火光方向；不微笑；周芷若在上层窗边、赵敏在院侧，身份不能串。；质检：已打开对照：赵敏眉眼鼻唇与恢复base同人，保留救援回望和原火光暖侧光，头脸接缝自然；张无忌、窗上周芷若、其他人物与题字均头外像素不变；AR-84 第二轮：周芷若五官对齐 por_npc_zhouzhiruo__ch04_youth_zhangmen_base；AR-53 仅头部，AR-75 神态与光向保留；保留火塔救援时原画紧张关切的眼神与火光方向；不微笑；周芷若在上层窗边、赵敏在院侧，身份不能串。；质检：已打开对照：楼窗远景周芷若眉眼鼻唇对齐恢复base，保持担忧视线、头倾与周围火光，不变远景尺度；接缝自然，头外零差异，保留已提交赵敏与张无忌其他人物题字
   previous_revision:
     png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wanan_fire_rescue.png
     sha256: df9b97a384522f2901772158a1ba34d1f80ac9d2aa3ebc42c300b2bac200a3a3
@@ -469,14 +472,14 @@
   effort: ultra
   executed_by: Codex gpt-6.1-sol（AR-86）
   ar84_alignment:
-    job: ar84_calign_41_56_r1
-    before_sha256: 7cb416becf6024ed40ccfca6d29258b0220b4383a9fa6a275e210407d81a57b5
+    job: ar84_calign_41_57_r1
+    before_sha256: 3cdfbe7713df1f84b8e0713d391b952aa41d3bf4baf37e6c751be3579fa76381
     box:
-    - 1340
-    - 437
-    - 1421
-    - 531
-    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_41_56_r1.png
+    - 490
+    - 73
+    - 543
+    - 145
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_41_57_r1.png
     outside_changed_pixels: 0
 - id: cg_ch04_wudang_taiji
   file: cg_ch04_wudang_taiji.png
