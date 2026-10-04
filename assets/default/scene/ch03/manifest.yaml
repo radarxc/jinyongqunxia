@@ -20,15 +20,18 @@
   - path: assets/default/scene/ch03/cg_ch03_chongyang_swords.png
     sha256: 4cc101b0b142a66d29433464cb182a82775fec461733a5af337eee7565f7846b
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.4cc101b0.png
-  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把金轮法王头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
-  model: gpt-6-astra
-  created: 2026-10-03T19:29:36-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_chongyang_swords.k1.png
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:46:38.616135-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_34_52_r2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 528aeb2af9536af55a135f691e46b0b090441128fda91534be1c6ded6caaf6c7
+  sha256: 87d3c8c1fe7d45d13d0efc7607352d1492643ca4b16b0e2aaf7b2e4d8f6b9fba
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「重阳同心」，实际字形「重阳同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「重阳同心」，实际字形「重阳同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女须明确为身份图的刘亦菲定稿五官：同样眉眼间距、杏眼、鼻梁鼻头、唇形与颌骨。允许画出base身份特征，禁止复原旧脸。保留待改图三分之四侧转头向、警惕关切视线和柔侧光，别变正脸，别改变耳坠发式。；质检：实际打开base与返修前后：小龙女眉眼鼻唇骨相明确采用恢复base，保持原侧转头向和警惕关切神态，柔侧光和接缝自然，耳坠发式尺度不变；杨过等其他人衣饰与题字蒙版外零变化
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.4cc101b0.png
     sha256: 4cc101b0b142a66d29433464cb182a82775fec461733a5af337eee7565f7846b
@@ -41,6 +44,16 @@
     - exec-147c7693-118e-492d-ad4d-48b070062188.png
   runner_success_count: 1
   effort: ultra
+  ar84_alignment:
+    job: ar84_calign_34_52_r2
+    before_sha256: 528aeb2af9536af55a135f691e46b0b090441128fda91534be1c6ded6caaf6c7
+    box:
+    - 322
+    - 152
+    - 450
+    - 310
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_34_52_r2.png
+    outside_changed_pixels: 0
 - id: cg_ch03_heartbreak_message
   file: cg_ch03_heartbreak_message.png
   category: scene
