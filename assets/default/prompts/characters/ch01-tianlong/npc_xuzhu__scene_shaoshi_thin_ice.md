@@ -102,3 +102,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_xuzhu__ch01_youth_scene_shaoshi_thin_ice.prepared.json`。
+
+## 原著依据
+
+- 《天龙八部》第三十六回 梦里真真语真幻：“圆圆的一小片，只不过是小指头大小，边缘锋锐，其薄如纸”；https://www.xuges.com/wuxia/jinyong/tlbb/279.htm
+- AR-82 返修约束（本节优先于历史提示词）：只把指尖捏住的不规则厚晶片改成圆圆的一小片冰，大小约小指头指甲，边缘锋利，其薄如纸，透明且边缘有一点冷光但无发光特效。手指、指环和手势不动。
