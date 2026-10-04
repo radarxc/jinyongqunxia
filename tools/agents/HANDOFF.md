@@ -2126,4 +2126,11 @@
     - 日志类 `generation.jsonl`、`validation.jsonl`、`prompts.json`、`check_assets.log` 挪到 `.agents/`；
     - 和特效构建日志一起处理。
     - 审核若因别的原因返修，就顺手在那一轮挪走。
+  - **10-03 21:20–21:26 开发监督**：
+    - **TOOL-assets-logs-cleanup**（c92c81ed，驱动 39067，名单在大地图之后）：
+      - 特效目录与 map/kit 的过程文件挪出：脚本挪到 `tools/vfx/skills/<sk>/`、`tools/map/kit/`；日志挪到 `.agents/coord/_asset_logs/`。
+      - 其余目录（town / building-map / tile / baseline，全仓共 218 个过程文件）只盘点，交协调者定。
+    - OPS_RUNBOOK §2.10 补两条（2bff6d87、61d3d79d）：
+      - 出图任务的 check_assets 要写全 `--min` / `--max`，status 用 candidate；
+      - 「过程文件不进 assets/」。
 
