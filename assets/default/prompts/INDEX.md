@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 1003、已通过（作者） 132、待出图 25。**待出图队列 25 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 1004、已通过（作者） 132、待出图 24。**待出图队列 24 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -30,7 +30,6 @@
 |---|---|---|---|---|---|
 | items | `it_nansongduanwenqin` | 南宋断纹琴 | `assets/default/item/collectibles/it_nansongduanwenqin.png` | 待出图 | [it_nansongduanwenqin.md](items/collectibles/it_nansongduanwenqin.md) |
 | items | `it_qingjiaoyeqin` | 清式蕉叶琴 | `assets/default/item/collectibles/it_qingjiaoyeqin.png` | 待出图 | [it_qingjiaoyeqin.md](items/collectibles/it_qingjiaoyeqin.md) |
-| items | `it_shiketapian` | 石刻拓片 | `assets/default/item/collectibles/it_shiketapian.png` | 待出图 | [it_shiketapian.md](items/collectibles/it_shiketapian.md) |
 | items | `it_shusutiejizhen` | 蜀素帖 | `assets/default/item/collectibles/it_shusutiejizhen.png` | 待出图 | [it_shusutiejizhen.md](items/collectibles/it_shusutiejizhen.md) |
 | items | `it_songqingshiyuwenyan` | 青石鱼纹砚 | `assets/default/item/collectibles/it_songqingshiyuwenyan.png` | 待出图 | [it_songqingshiyuwenyan.md](items/collectibles/it_songqingshiyuwenyan.md) |
 | items | `it_suijinxiangyubei` | 隋式镶金玉杯 | `assets/default/item/collectibles/it_suijinxiangyubei.png` | 待出图 | [it_suijinxiangyubei.md](items/collectibles/it_suijinxiangyubei.md) |
