@@ -152,3 +152,8 @@ FINAL POSE CHECK: FRONT-FACING OUYANG FENG, head and neck UPRIGHT, vertical fore
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_ouyangfeng__ch02_elder_sane_base.prepared.json`。
+
+## 原著依据
+
+- 《射雕英雄传》第十八回 三道试题：“杖头铸着个裂口而笑的人头”；https://www.xuges.com/wuxia/jinyong/sdyxz/127.htm
+- AR-82 返修约束（本节优先于历史提示词）：只把杖顶端蛇头换为黑色粗钢铸造的狰狞人头，裂口大笑、露尖白齿；保留黑色曲折粗钢杖身并明确盘着两条活小蛇，不能把铸人头又画成蛇头。欧阳锋本人及其手逐像素不变。
