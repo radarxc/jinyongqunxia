@@ -218,21 +218,21 @@
     sha256: f776ad1273144857ac0445a991bdfbe3336050b537890f1e34158287fa68b36e
     use: 对脸基准：苏星河的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_suxinghe__ch01_elder_zhenlong_base.jpg）
   - path: assets/default/scene/ch01/cg_ch01_zhenlong_break.png
-    sha256: 7656d132effb494d61b10e2a4ad16bfff831eb3ad0050f9facb04d41ed6152ba
-    use: 待改插图：只把苏星河头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.7656d132.png
+    sha256: c1bf0d6ef0e732a02dcf9d07a64f7be2d99c123dfb5db195fab941d9d055bdc0
+    use: 上一版：同一 codex 输出的第一次贴回（7656d132 → c1bf0d6e），方块下沿留有细接缝；本次底图仍取改前原图 7656d132；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.c1bf0d6e.png
   tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把苏星河头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T18:57:59-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch01_zhenlong_break.p1.png
+  created: 2026-10-03T19:03:01-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch01_zhenlong_break.p1r.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: c1bf0d6ef0e732a02dcf9d07a64f7be2d99c123dfb5db195fab941d9d055bdc0
+  sha256: 1352acfd1a0e1e865bcbd21b31236a67ab492a81d308793445b17f1bdd3ee694
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：苏星河按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：苏星河按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员）：苏星河重新贴回——同一 codex 输出，贴回区在方块边缘前渐隐，去掉上一版方块下沿的细接缝，其他人物与题字逐像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.7656d132.png
-    sha256: 7656d132effb494d61b10e2a4ad16bfff831eb3ad0050f9facb04d41ed6152ba
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.7656d132.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.c1bf0d6e.png
+    sha256: c1bf0d6ef0e732a02dcf9d07a64f7be2d99c123dfb5db195fab941d9d055bdc0
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.c1bf0d6e.entry.yaml
   effort: ultra
 - id: cg_ch01_songhe_wine_oath
   file: cg_ch01_songhe_wine_oath.png
