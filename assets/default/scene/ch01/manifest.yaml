@@ -22,20 +22,33 @@
   - path: assets/default/scene/ch01/cg_ch01_juxianzhuang_wine.png
     sha256: c00c8c61267444dd304deb34041b9e7cdad149b0f1159580d40acebd3af45464
     use: 待改插图：只把薛慕华头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_juxianzhuang_wine.c00c8c61.png
-  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把薛慕华头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
-  model: gpt-6-astra
-  created: 2026-10-03T18:57:58-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch01_juxianzhuang_wine.p1.png
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:08:30.098480-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_27_45_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 0c7140e280898c38b02e84e7f228535b16ac7793589c47a5cd782d375cb2623c
+  sha256: 47f0b37c752a09e5d6921100a4ed6f2d1db4e24666c97aa36d7d12628d475dc0
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「聚贤绝交」，右上角竖排毛笔楷书；原生生成，已2倍放大逐字核对聚/贤/绝/交，无错字多字；未字体叠加、无朱印；视觉重出0次。使用本轮萧峰基础与聚贤庄阶段新图及既有S级阿朱；主角与S级以外均文字塑造；开战前护人与举酒为原创扩展构图，具体站位与修订版字句待考。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：薛慕华按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「聚贤绝交」，右上角竖排毛笔楷书；原生生成，已2倍放大逐字核对聚/贤/绝/交，无错字多字；未字体叠加、无朱印；视觉重出0次。使用本轮萧峰基础与聚贤庄阶段新图及既有S级阿朱；主角与S级以外均文字塑造；开战前护人与举酒为原创扩展构图，具体站位与修订版字句待考。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：薛慕华按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：已打开base及前后整图：定稿眉眼鼻颌同人，原怒意与侧光保留，无笑无接缝；其他人物、酒杯与题字头外逐像素不变
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_juxianzhuang_wine.c00c8c61.png
     sha256: c00c8c61267444dd304deb34041b9e7cdad149b0f1159580d40acebd3af45464
     entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_juxianzhuang_wine.c00c8c61.entry.yaml
   effort: ultra
+  ar84_alignment:
+    job: ar84_calign_27_45_r1
+    before_sha256: 0c7140e280898c38b02e84e7f228535b16ac7793589c47a5cd782d375cb2623c
+    box:
+    - 607
+    - 155
+    - 715
+    - 287
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_27_45_r1.png
+    outside_changed_pixels: 0
 - id: cg_ch01_xingzilin_reveal
   file: cg_ch01_xingzilin_reveal.png
   category: scene
