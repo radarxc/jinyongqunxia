@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_yuanxuansucaiyaoxianpao_nan
+name: 元玄素裁腰线袍·男
+kind: armor
+sub: clothing
+grade: 2
+stack: 1
+chapters:
+- ch04_yitian
+origin: canonExpanded
+canonRef: 元；出现书界 ch04；（原创扩展）；形制／色系依据：《元史》卷78《舆服一·质孙》 https://zh.wikisource.org/zh-hans/元史/卷078；女性绛红袍色从首服借色，袍面偏好（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanxuansucaiyaoxianpao_nan
+text:
+  desc: 外观：元男款，主色玄。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=male。
+  lore: （原创扩展）据元代舆服语汇演成玄男式腰线袍，右衽窄袖，束腰细横线与腰下褶片、侧衩相接。素面实用缝边落衣缘，行旅先整系结；紫罗为取色名，同档换色同值，不以衣色授官阶或内廷身份。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31
