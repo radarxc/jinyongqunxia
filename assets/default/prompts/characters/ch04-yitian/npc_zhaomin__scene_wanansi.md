@@ -106,3 +106,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_zhaomin__ch04_youth_scene_wanansi.prepared.json`。
+
+## 原著依据
+
+- 《倚天屠龙记》二十六 俊貌玉面甘毁伤：“穿一对鹅黄缎鞋，鞋头上各缀一颗明珠”；https://www.xuges.com/wuxia/jinyong/yttlj/189.htm
+- AR-82 返修约束（本节优先于历史提示词）：只将脚下高筒黑靴换为一对鹅黄色缎鞋，每只鞋头各缀一颗圆明珠，珠数总共两颗。鞋从衣摆下自然露出，原脚的位置、足部大小不变。腿和裙摆、脸、衣服其余部分、手、背景完全不动。
