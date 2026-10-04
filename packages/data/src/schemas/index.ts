@@ -1,6 +1,7 @@
 export * from './character';
 export * from './chapter';
 export * from './event-actions';
+export * from './catalog';
 export * from './content-pack';
 export * from './encounter';
 export * from './item';

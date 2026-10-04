@@ -1,0 +1,63 @@
+schemaVersion: sect-catalog.v1
+id: ev_common_sects_temples
+event: content/sectCatalog
+group: temples
+sects:
+  - id: sect_shaolin
+    name: 少林
+  - id: sect_nanshaolin
+    name: 南少林
+  - id: sect_tianlongsi
+    name: 天龙寺
+  - id: sect_quanzhen
+    name: 全真教
+  - id: sect_wudang
+    name: 武当派
+  - id: sect_shangqingguan
+    name: 上清观
+  - id: sect_tiejian
+    name: 铁剑门
+  - id: sect_huashan
+    name: 华山派
+  - id: sect_emei
+    name: 峨眉派
+  - id: sect_kunlun
+    name: 昆仑派
+  - id: sect_kongtong
+    name: 崆峒派
+  - id: sect_qingcheng
+    name: 青城派
+  - id: sect_songshan
+    name: 嵩山派
+  - id: sect_taishan
+    name: 泰山派
+  - id: sect_hengshan_nan
+    name: 衡山派
+  - id: sect_hengshan_bei
+    name: 恒山派
+  - id: sect_xueshan
+    name: 雪山派
+  - id: sect_wuliang
+    name: 无量剑派
+  - id: sect_xiandu
+    name: 仙都派
+  - id: sect_taijimen
+    name: 太极门
+  - id: sect_baguamen
+    name: 八卦门
+  - id: sect_tianlongmen
+    name: 天龙门
+  - id: sect_fuwei
+    name: 福威镖局
+  - id: sect_penglai
+    name: 蓬莱派
+  - id: sect_jinwupai
+    name: 金乌派
+  - id: sect_taibai
+    name: 太白三英
+  - id: sect_weituomen
+    name: 韦陀门
+  - id: sect_baxianjian
+    name: 八仙剑
+  - id: sect_bajiquan
+    name: 八极拳

@@ -1,6 +1,10 @@
 # content 协作约定
 
 schema 即文档；新增内容先查稳定 ID，禁止重复定义。`_drafts/` 不进生产发现器。正式文件 UTF-8、LF、单一 YAML document，不用 anchor、隐式日期或重复键；提交前运行 `pnpm content:validate` 与 `pnpm check`。
+经脉拓扑和门派名录分别以 `common/meridians/*.yaml`、`common/sects/*.yaml` 为准；
+设计文档不再是构建输入，一次性导入脚本不得用于日常同步覆盖。
+`story/**/*.yaml` 改动后运行 `pnpm content:compile-story`；失败格式为
+`文件:行:列 error CODE message`，条件或内联动作有任一错误即阻断。
 
 Ink 放在 `story/**/<storyId>.ink`，并配同名 `.inkmeta.yaml`；`#ts:` 只用构建器白名单。
 M1 Ink 动作使用 `quest/advance`、`battle/start`、`flag/set`、`party/giveItem`、

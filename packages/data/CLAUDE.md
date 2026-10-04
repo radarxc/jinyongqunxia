@@ -13,6 +13,7 @@
 | `src/schemas/meridian.ts` | `MeridianDef`、`AcupointDef`、`MeridianProgress` | `tech/04` §3.8、`design/15` / `21` |
 | `src/schemas/item.ts` | `ItemDef`、十一类 `kind` 的公共字段与类别扩展 | `design/10` §2 / §14 |
 | `src/schemas/story.ts`、`story-graph.ts` | `TimeWindow`、`StoryNode`、`StoryEdge`、`StoryLine` | `design/24` §§3–5 / §9 |
+| `src/schemas/catalog.ts` | 经脉拓扑、门派名录内容分片 | `design/15` §§2–3、`design/17` §1 |
 | `src/schemas/world.ts` | `ShopDef`、`EventDef`、`BookWorldDef` | AR-19、`design/10`、`design/24` |
 | `src/schemas/region-map.ts` | `RegionMap`、chunk、11 类对象、48 地形闭集 | `tech/04` §6、`design/08`、`design/11` |
 
@@ -33,10 +34,14 @@
   只校验标记。`tutorial_projection` 只允许 ch00 且必须带回执引用。
 - Tiled 只发现 `content/world/regions/<rg_id>/<sc_id>.tmj`；正交有限图经
   `compileTiledMap()` 转为 `region-map.v1`，作为 region rules 叶片参与 `contentHash`。
+- 经脉拓扑与门派名录以 `content/common/{meridians,sects}` 的 YAML 为生产事实源；
+  `scripts/import-doc-catalogs.ts` 只用于一次性迁移及等价测试，生产构建不得读取设计文档。
+- `parseYamlFileWithLocations()` 是工具侧诊断入口；data 仍不得依赖 core。剧情条件的
+  可执行编译由根命令 `pnpm content:compile-story` 调用 core 完成。
 - `content/tiled/tianshu.tiled-project` 由 `scripts/generate-tiled.ts` 生成；提交前运行
   `--check`。占位图片只生成到已忽略的 `.cache/content-build/tiled-placeholders/`，不得提交。
 
 ## 验证命令
 
 - 包内：`pnpm --filter @tianshu/data test`、`pnpm --filter @tianshu/data typecheck`。
-- 全量内容：`pnpm content:validate`；交付前运行 `pnpm check`。
+- 全量内容：`pnpm content:validate`、`pnpm content:compile-story`；交付前运行 `pnpm check`。
