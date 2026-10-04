@@ -1970,3 +1970,35 @@
       - 已提议小修 ENG-battle-lazy-dispose，等协调者批。
 
     - 仓库维护（待低负载时做，先别动）：`.git/logs/refs/remotes/origin/` 下有 3 个 10-02 22:13–23:05 留下的 root 属主空锁（HEAD.lock、claude/jinyong-online-game-design-jko1v9.lock、claude/vigilant-wright-2unuk1.lock），所以每次提交触发的自动 gc 都在 reflog 一步失败。提交本身不受影响，返回 0。松散对象 21,413 个、3.42 GiB。现在删锁会让自动 gc 在随便哪次提交后后台全量打包，跟计时测试抢负载，所以等全部驱动和出图员停下的空档再删锁、手动 `git gc`。
+  - **10-03 19:10–19:16 开发监督**：
+    - **ENG-battle-lazy-dispose**（5defec29，协调者 19:10 批），驱动 55260，名单第 3 位。
+      - 修在产品代码：import 完成后确认宿主仍是当前那个、没被销毁，否则丢弃这次加载、清掉 battleLoading；调用方接住 promise。
+      - 回归测试要确定性复现：用可控的 deferred import 卡住加载，中途替换并销毁宿主，再放行；不许重试、加长超时或跳过。
+      - 合入后跑全量 prod_check 报协调者。
+    - **ENG-26、ENG-23a 卡死**：18:42–18:44 各自做完最后一次工具调用后，25 分钟没有模型输出，19:07 / 19:09 被停滞检测重起，现在排队。
+      - 不是技能流程，也不是上下文压缩，像是 Trae 服务端拥堵。
+      - 再有执行器这样挂住，就建议池上限降到 2，或错开起跑。
+    - 代码池（上限 3）：
+      - 占用：content-plugin-timeout、gates-data、base-diet；
+      - 排队：lazy-dispose → event-source-trigger → ink-intents → 26 → 23a → 18c → 16e → rig-parts-f → std-parts → cropframe。
+  - **10-03 19:16 开发监督 · 执行器挂住记录**（协调者 19:13：每次记时间、模型、最后一行；再挂就把池上限直接降到 2）：
+    - 16:54：ENG-region-gates-data 第 1 轮，GPT-5.6-Sol。最后一行是 traex「context compacted」提示，属于上下文压缩后挂住。
+    - 18:20：ENG-region-gates-data 第 2 轮，GPT-5.6-Sol。跟着 bits-unit-test-gen 技能跑完 prepare_test.sh 后没有输出。已加关技能参数。
+    - 19:07：ENG-23a-pwa-offline 第 3 轮，**GPT-6-Astra**。最后一行是 i18n 文案补丁（`retryUpdate`），工具调用完成后再没有模型输出。
+    - 19:09：ENG-26-encounter-builder 第 3 轮，**GPT-6-Astra**。最后一行是工具调用的 hook 完成，之后没有模型输出。
+    - 另：18:30 ENG-26 第 2 轮报 Trae 4050「请求队列超限」，也是 GPT-6-Astra。
+    - 小结（协调者 19:16 更正）：18:42–18:48 两个模型（Astra、Sol）同时段挂住，疑似服务端或网络抖动，不是 Astra 本身的问题；默认仍 Astra 在前，不换模型。
+    - 每轮轮询加了挂住扫描（`scratchpad/stallwatch.py`）。
+  - **10-03 19:13 开发监督 · 又一次挂住，池上限 3 → 2**（按协调者 19:13 的授权，降了再告知）：
+    - 19:13:06：ENG-session-base-diet，**GPT-5.6-Sol**。最后一行是代码补丁里的一行 `...leaves.map((leaf): [string, unknown] => ...`，之后 25 分钟没有模型输出，被停滞检测重起。
+    - 这次在 Sol 上，说明挂住不只出在 Astra，更像是服务端整体拥堵。
+    - tasks.json `defaults.max_parallel.code` = 2。排队中的新代码 start 每轮重读上限，立即生效。
+  - **10-03 19:17 开发监督 · 更正**（协调者 19:16）：
+    - base-diet 最后一行日志的时间是 **18:47:58**，19:13 只是停滞告警的时间。它和 26（18:42）、23a（18:44）是同一时段挂住的，不算新的一次。
+    - 池上限改回 3。
+    - 今后判断挂住看最后一行日志的时间，不看告警时间。只有 18:48 之后又挂住、且不同任务集中在同一时段，才按约定降到 2。
+  - **10-03 19:10–19:25 协调者**：
+    - 面部总审复核：11 号 ch01–ch06 配角 9 张，6 张一致；苏星河、丘处机、方证降为轻微，丘处机转 10 号与同图的包惜弱、杨铁心一起改。10 号 ch13–ch14 9 张，7 张一致；胡斐雪崖悬刀、圆性墓畔长风放开重改（7438385f），已交总审复核。现存明显 5 张（黛绮丝待作者定；ch08 4 张归 12 号）。
+    - 区域图新画法前 10 张入库（拼图 `.agents/coord/gemini_qa/maps/sheet_v5_first10.jpg`，已发作者）。关中把长安画在渭河北岸，排到队尾整张重出，现图先留。
+    - Tripo 网页版整批完成：37 套入库，报告 10d02fb9，已发作者 26 个新模型拼图。阿青模型用的是改脸前的 A 字图：已请 10 号出新脸 A 字图，到了再恢复 Tripo 子代理重做（约 85 点）。接入注意已交开发监督，写进 ENG-12e。
+    - 代码池：18:42–18:48 两个模型同时段挂住 3 件（26、23a、base-diet），判断为服务端或网络抖动，不换模型；上限一度降到 2，已回 3（9e460581）。ENG-battle-lazy-dispose 已登记（5defec29），ENG-content-plugin-timeout 19:19 合入 d0c0c1fa。
