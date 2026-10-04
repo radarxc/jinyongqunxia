@@ -154,47 +154,40 @@
   category: scene
   style: default
   subject: 毁红夷大炮后潜入崇政殿（ch07_bixue）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是袁承志的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是温青青的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中袁承志、温青青的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '这是一次剧情插图中单个人物的局部编辑。第1张是作者已认可的皇太极头部，第2张是同一人的定稿全身立绘，第3张是待编辑的场景裁块。只能修改第3张中坐在龙椅上的皇太极，输出与第3张完全相同取景的1024×1024方图。
 
-    【画里谁是谁】这张插图画的是：毁炮与盛京潜入的编辑性双时层宽幅画：左侧较小的回忆层为先前北上途中被毁的旧炮架，温青青男装与程青竹只在这一层警戒，和宫廷空间完全分隔。右侧主画面在崇政殿内，袁承志深青劲装、灰黑披风，持金蛇剑与手执拂尘的玉真子对峙；皇太极在殿中龙椅近旁，约五十一岁、壮硕丰厚、颈肩宽稳、面颊饱满、深色短须夹少量灰，威严沉着而非八十岁衰老形象。殿外冬寒与室内烛光相映，分层之间以大片烟灰留白断开，不把炮架放在宫门旁，不把青青或程青竹画成入殿援兵。
+    皇太极的头部必须为前两张参考图中的同一个人，沿用饱满面颊、宽厚下颌、眼眉鼻口、短八字须和红缨朝冠，不能换成消瘦长胡须的人。沿第3张的头部位置、大小和三分之四朝向，把基线人物自然转到这个角度，严肃不笑、威严沉着。保留场景暖烛光、远景柔和度与手绘笔触。
 
-    【要对齐的部分】袁承志、温青青各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    这是宫中崇政殿帝位的皇帝，衣服应按第2张的明黄帝王龙袍重画，深蓝金绣缘边和团龙纹样相同，去掉原第3张的黑色外袍与毛皮披肩；此刻没有出征或微服设定。身体与第2张同样壮硕丰厚：颈肩宽稳、胸腹丰满，坐姿躯干厚实，不能显瘦。保留坐在龙椅上的姿势、双手所在位置、脚的位置、人物整体高度，衣袍随丰满身体自然铺在膝上，体态可信。
 
-    【袁承志的基线脸】基线里的袁承志二十三四岁，端正俊朗、一身正气：脸型端正饱满、两颊丰润不凹陷、下颌方正而圆润；肤色白净（只是健康的浅肤色，不是晒黑的黝黑皮肤）；浓黑平直的剑眉；眼睛有神、双眼皮、眼神端正沉稳；鼻梁挺直；嘴唇端正、唇形清楚；完全无须、没有胡茬；没有深法令纹和风霜皱纹，皮肤紧致年轻。不要瘦削凹颊、高颧骨、晒黑、带胡茬的风霜脸。
-
-    【温青青的基线脸】基线里的温青青二十岁上下，俊俏而带英气：脸型是颧骨略宽、下颌有力的鹅蛋脸，不是瓜子脸、下巴不尖；眉毛浓黑平直、眉形清楚有力（不是细弯眉）；一双明亮的大杏眼、双眼皮，眼神倔强、带一点小性子；鼻梁挺直；嘴唇饱满、唇形略厚；肤色白皙健康；成年女子的五官比例。
-
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「剑动盛京」和小朱印必须原样保留，一笔不改、不增不减。
-
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】袁承志是画面中间偏左、持金蛇剑、披灰黑披风的青年（从左数第 3 个人，脸最大）：与玉真子对峙，神情警觉坚毅，此刻不笑。温青青是左上角回忆层里穿浅色男装的女子（从左数第 1 个人，脸很小）：神情机警。左上回忆层里她身边的男子程青竹、龙椅上的皇太极、右边执拂尘的玉真子，脸一律不改。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    不得改第3张任何其他区域：龙椅、龙纹屏、烛台、柱子、地砖、角落里其他人的头部或衣物、兵器拂尘都保持原样。不要复制立绘的正面站姿或纸底。不要重新构图、不要增加人物、文字、水印；不要摄影与3D塑料感；保持原裁块的朦胧绘画质感。'
+  negative: 不改变皇太极以外人物、题字、背景；不串脸、不改构图、不笑、不穿黑袍、不画消瘦长须。
   references:
-  - path: assets/default/character/male/ch07/por_npc_yuanchengzhi__ch07_youth_jinshe_base.png
-    sha256: c5c953ca8e0a2732fa880a3eecc7ad8a724ddf2b1547fa22b673eee0bb15685f
-    use: 对脸基线：作者 AR-56 定下的 por_npc_yuanchengzhi__ch07_youth_jinshe_base（袁承志），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch07/por_npc_wenqingqing__ch07_youth_disguise_base.png
-    sha256: 14a82d81a125ab4208e204a723dfb6b23fd8f671155d2be4a2722ee5e193324a
-    use: 对脸基线：作者 AR-56 定下的 por_npc_wenqingqing__ch07_youth_disguise_base（温青青），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch07/cg_ch07_chongzheng_cannon.png
-    sha256: 5a0e1f472559ab9837b713bbbdf78affa3efa2ec374e243f6d4f38bcbb133047
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_chongzheng_cannon.5a0e1f47.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:23:21-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch07_chongzheng_cannon.s1.png
-  source_size: 1536x1024
+  - path: .agents/coord/_lines/hist-align/refs/huangtaiji_head.png
+    sha256: 25355630015a91f79b563912713b71439dc49eba0925c93d2742ea8e57d43ab6
+  - path: assets/default/character/male/ch07/por_npc_huangtaiji__ch07_elder_predeath_base.png
+    sha256: 4ef50c0020952da204d4fe468a5d720e07a3c8a699b473b990db119ee1c9f77b
+  - path: .agents/coord/_lines/hist-align/refs/huangtaiji_scene.png
+    sha256: 303fefc235a5e685100cb2cd21785a29c5c35c4ad0d5dbc0a6673c6c8166668e
+  - path: .agents/coord/_lines/hist-align/before/cg_ch07_chongzheng_cannon.png
+    sha256: aea2a10aaece120fa3aff0222f55c912eb47d5cb2848678b888a0f6446152c1a
+    use: AR-53 局部合成的原始插图，其余人物与题字逐像素保持
+  tool: codex exec · image_gen（AR-90；codex_w34队列；指定区域局部合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:52:49-07:00'
+  source_path: .agents/coord/_lines/hist-align/candidates/scene.png
+  source_size: 1254x1254
   size: 1536x1024
-  sha256: aea2a10aaece120fa3aff0222f55c912eb47d5cb2848678b888a0f6446152c1a
+  sha256: 43a9d1bb881403b73353f39eb82132c1c7b8e29298edc29a3fcf510ef3fdce70
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；第5次续作接收外部runner结果，视觉重出0次。题字“剑动盛京”，实际字形“劍動盛京”逐字放大核验正确，原生题字，未叠加。毁炮回忆与崇政殿双时层明确分隔；袁承志、温青青为本轮新身份，程青竹与玉真子为既有S级身份，皇太极仅文字。金蛇剑弯折与分叉尖不显著，记录美术偏差供终审，保持candidate。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base、por_npc_wenqingqing__ch07_youth_disguise_base（编辑结果只取袁承志（#3）与温青青（#1）头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；第5次续作接收外部runner结果，视觉重出0次。题字“剑动盛京”，实际字形“劍動盛京”逐字放大核验正确，原生题字，未叠加。毁炮回忆与崇政殿双时层明确分隔；袁承志、温青青为本轮新身份，程青竹与玉真子为既有S级身份，皇太极仅文字。金蛇剑弯折与分叉尖不显著，记录美术偏差供终审，保持candidate。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base、por_npc_wenqingqing__ch07_youth_disguise_base（编辑结果只取袁承志（#3）与温青青（#1）头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+
+    AR-90 / AR-53 皇太极头部、丰满体态和宫中明黄龙袍对齐新base。皇太极的饱满面颊、宽厚下颌、眉眼鼻口与短八字须对齐作者认可base，严肃不笑；红缨朝冠、明黄帝王龙袍及深蓝金绣边与新base一致，坐姿胸腹肩颈丰满。只把皇太极局部裁块缩回原位置，沿本人轮廓羽化；前景玉真子及拂尘、左侧三人、题字逐像素保留，保护区变化0；保留原1536×1024、坐姿与双时层构图。已实际打开整图、独立头部、躯干及前后对照，细修拂尘遮挡边缘后无黑袍残片；原图、生成候选与最终合成均已实际打开。像素核对记录：.agents/coord/_lines/hist-align/qa/scene.json。对照表：.agents/coord/_lines/hist-align/huangtaiji_scene.jpg。A字图与3D依AR-85暂缓，见todo_3d.md。'
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_chongzheng_cannon.5a0e1f47.png
-    sha256: 5a0e1f472559ab9837b713bbbdf78affa3efa2ec374e243f6d4f38bcbb133047
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_chongzheng_cannon.5a0e1f47.entry.yaml
+    png: .agents/coord/_lines/hist-align/before/cg_ch07_chongzheng_cannon.png
+    sha256: aea2a10aaece120fa3aff0222f55c912eb47d5cb2848678b888a0f6446152c1a
+    entry: .agents/coord/_lines/hist-align/before/cg_ch07_chongzheng_cannon.manifest.json
+    commit: 11ada85fe9412c4e1826fe0e18ffd246fa56ed67
   runner_job_records:
   - - cg_ch07_chongzheng_cannon.resume3
     - ok
@@ -202,7 +195,13 @@
     - '194'
     - exec-e884a192-c5cb-4e07-a77c-a0283c3b438a.png
   runner_success_count: 1
-  effort: ultra
+  effort: xhigh
+  mode: RGB
+  request_log: .agents/coord/_handoff/gem/codex_w34/prompts/ar90_histalign_huangtaiji_scene_r1.json
+  repair_runner_source: .agents/coord/_handoff/gem/codex_w34/out/ar90_histalign_huangtaiji_scene_r1.png
+  repair_runner_source_sha256: 1a7e9dab34c094f5228ed8ae5552638e55c5525ec0bec8f92d86f44d4c2c5772
+  ingest_source_sha256: 43a9d1bb881403b73353f39eb82132c1c7b8e29298edc29a3fcf510ef3fdce70
+  composite_job: ar90_histalign_huangtaiji_scene_r1
 - id: cg_ch07_xueyi_wenyi_memory
   file: cg_ch07_xueyi_wenyi_memory.png
   category: scene
