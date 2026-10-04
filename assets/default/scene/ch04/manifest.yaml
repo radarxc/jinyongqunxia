@@ -89,9 +89,9 @@
   source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_jiuyang_valley.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 7090cb1a9404707bcb52c6695e98feba50ffa55fbc54b92b840daac9018b1abe
+  sha256: 5b528328787b61100edfa609e2f2f507922a2c3755b8e3d4f159eeed40d69179
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「幽谷九阳」，实际字形「幽谷九陽」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「幽谷九阳」，实际字形「幽谷九陽」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；题字陽→阳；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   previous_revision:
     png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_jiuyang_valley.png
     sha256: a7624f7cfbd017dd691bd89b683d145f5d5d9f37422314d8d3034e3eed735da7
@@ -105,6 +105,7 @@
   runner_success_count: 1
   effort: not applicable (deterministic composition)
   executed_by: Codex gpt-6.1-sol（AR-86）
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch04_jiuyang_valley_fixed.png", "before_sha256": "7090cb1a9404707bcb52c6695e98feba50ffa55fbc54b92b840daac9018b1abe", "allowed_box": [[1410, 258, 1520, 338]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch04_jiuyang_valley_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T00:55:05-07:00"}
 - id: cg_ch04_vajra_circle
   file: cg_ch04_vajra_circle.png
   category: scene
