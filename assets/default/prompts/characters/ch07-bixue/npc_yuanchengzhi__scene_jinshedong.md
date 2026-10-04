@@ -33,6 +33,12 @@ composite_job: por_npc_yuanchengzhi__ch07_youth_scene_jinshedong.resume3
 
 # 袁承志 · 人物写实修正
 
+## AR-82 当前定稿要求
+
+只在人物自身左眉上方（画面右侧眉毛上方）皮肤加一处小而淡的已愈旧刀疤，几毫米尺度、清晰可见但不夸张，不是新鲜血口。现有双眉形、眉毛、眼睛、鼻、嘴、脸型和其余五官绝不改变。不改发丝、头饰、服装和其他内容。
+
+以上为当前原著核对后的要求，覆盖下文旧版中与之冲突的服饰、器物、伤残、光线和体态描述。
+
 ## Gemini 提示词
 
 > 作者10-02晚复合精修；任务 `por_npc_yuanchengzhi__ch07_youth_scene_jinshedong.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
@@ -122,3 +128,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_yuanchengzhi__ch07_youth_scene_jinshedong.prepared.json`。
+
+## 原著依据
+
+- 《碧血剑》三《经年亲剑铗，长日对楸枰》：“小小疤痕”（https://xuges.com/WUXIA/jinyong/bxj/013.htm）
+- AR-82 返修约束：只在人物自身左眉上方（画面右侧眉毛上方）皮肤加一处小而淡的已愈旧刀疤，几毫米尺度、清晰可见但不夸张，不是新鲜血口。现有双眉形、眉毛、眼睛、鼻、嘴、脸型和其余五官绝不改变。不改发丝、头饰、服装和其他内容。
