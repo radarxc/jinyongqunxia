@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 1015、已通过（作者） 132、待出图 13。**待出图队列 13 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 1016、已通过（作者） 132、待出图 12。**待出图队列 12 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -32,7 +32,6 @@
 | items | `it_qingjiaoyeqin` | 清式蕉叶琴 | `assets/default/item/collectibles/it_qingjiaoyeqin.png` | 待出图 | [it_qingjiaoyeqin.md](items/collectibles/it_qingjiaoyeqin.md) |
 | items | `it_yuanqinshufang` | 元代书房琴 | `assets/default/item/collectibles/it_yuanqinshufang.png` | 待出图 | [it_yuanqinshufang.md](items/collectibles/it_yuanqinshufang.md) |
 | items | `it_yuemubaitie` | 越地木牍拜简 | `assets/default/item/collectibles/it_yuemubaitie.png` | 待出图 | [it_yuemubaitie.md](items/collectibles/it_yuemubaitie.md) |
-| items | `it_zuqianqiujiubei` | 祖千秋酒杯组 | `assets/default/item/collectibles/it_zuqianqiujiubei.png` | 待出图 | [it_zuqianqiujiubei.md](items/collectibles/it_zuqianqiujiubei.md) |
 | maps | `map_jianghu_world__ink_base` | 江湖万里图 · 水墨衬纸（全国底图） | `assets/default/map/jianghu_world/ink_base.png` | 待出图 | [jianghu_world_ink_base.md](maps/jianghu_world_ink_base.md) |
 | maps | `map_region_donghai_islands__base` | 东海诸岛区域局部图 | `assets/default/map/regions/rg_donghai_islands.png` | 待出图 | [rg_donghai_islands.md](maps/region/rg_donghai_islands.md) |
 | maps | `map_region_huxiang__base` | 湖湘区域局部图 | `assets/default/map/regions/rg_huxiang.png` | 待出图 | [rg_huxiang.md](maps/region/rg_huxiang.md) |
