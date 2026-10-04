@@ -375,6 +375,17 @@ WRAPPER = '"$@" < "$TS_PROMPT" >> "$TS_LOG" 2>&1; rc=$?; echo "$rc" > "$TS_EXIT"
 FALLBACK_MODELS: list = ["GPT-5.6-Sol"]  # 主模型不应答时回退。作者只许 Astra → Sol（10-02 开发监督去掉 GPT-5.5：高负载下 Sol 探测超时曾落到 5.5）
 
 
+def executor_override(root) -> dict:
+    """作者 AR-65（10-03 20:13）「除了 gemini 画图和 tripo 驱动，其他任务换成调用 GPT 6.1 Sol」：
+    .agents/coord/executor_override.json 存在且 enabled 不为 false 时，覆盖执行器 bin / model / effort / fallback。
+    每次 start（与 gpt_review）现读，在跑的驱动不用重起；文件不存在或读坏就照旧。"""
+    try:
+        d = json.loads((Path(root) / ".agents/coord/executor_override.json").read_text(encoding="utf-8"))
+        return d if isinstance(d, dict) and d.get("enabled", True) else {}
+    except Exception:
+        return {}
+
+
 def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bool:
     """用极小提示词探测模型是否在 timeout_s 内应答（GPT-6-Astra 曾出现整段时间无响应）。"""
     with tempfile.TemporaryDirectory(prefix="tianshu-probe-") as d:
@@ -487,7 +498,13 @@ def cmd_start(a) -> int:
     model = a.model or os.environ.get("TRAEX_MODEL") or g.defaults.get("model") or DEFAULT_MODEL
     effort = a.effort if a.effort is not None else (os.environ.get("TRAEX_EFFORT") or g.defaults.get("effort") or DEFAULT_EFFORT)
     binary = find_bin(a.bin, g.defaults)
-    cands = [model] + [m for m in FALLBACK_MODELS if m != model]
+    fallback = FALLBACK_MODELS
+    ov = executor_override(root)  # 作者 AR-65：统一改走 Codex gpt-6.1-sol
+    if ov:
+        binary, model, effort = ov.get("bin") or binary, ov.get("model") or model, ov.get("effort") or effort
+        fallback = list(ov.get("fallback", []))
+        print(f"… AR-65 执行器覆盖：{Path(str(binary)).name} · {model} · {effort}", flush=True)
+    cands = [model] + [m for m in fallback if m != model]
     if "codex" in str(binary).lower():  # 2026-10-02 协调者：Codex（ChatGPT 账号）只认小写模型名（gpt-6-astra / gpt-5.6-sol），traex 认大写；按执行器换名
         cands = [c.lower() for c in cands]
         model = model.lower()
