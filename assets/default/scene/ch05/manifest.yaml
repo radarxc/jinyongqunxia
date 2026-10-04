@@ -101,49 +101,42 @@
   category: scene
   style: default
   subject: 少林三战赌约（回目待考）（ch05_xiaoao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是令狐冲的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中令狐冲的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    少林寺内偏殿的江湖公议群像。殿后只放没有刻文的木雕佛像，墙面素净、门柱无字，绝对不要佛字、牌匾、楹联、旗字或经文；除右上“少林三战”四字题名之外，整幅图不能有第二处可读文字。令狐冲持长剑立于中央偏右，任盈盈在其侧后沉静相守，任我行在另一侧冷眼审度。左侧年老慈眉僧人方证合十、清瘦白须道人冲虚收剑，二人只文字。冷日斜光由高窗和殿门照入，木柱与殿内石地围合，画的是三战结束前后的编辑性静态对峙，不画山门前石坪，不画一人同时攻击三位对手。
+    【画里谁是谁】这张插图画的是：少林寺内偏殿的江湖公议群像。殿后只放没有刻文的木雕佛像，墙面素净、门柱无字，绝对不要佛字、牌匾、楹联、旗字或经文；除右上“少林三战”四字题名之外，整幅图不能有第二处可读文字。令狐冲持长剑立于中央偏右，任盈盈在其侧后沉静相守，任我行在另一侧冷眼审度。左侧年老慈眉僧人方证合十、清瘦白须道人冲虚收剑，二人只文字。冷日斜光由高窗和殿门照入，木柱与殿内石地围合，画的是三战结束前后的编辑性静态对峙，不画山门前石坪，不画一人同时攻击三位对手。
 
-    原创扩展构图；原著三战在寺内偏殿，前两战由任我行对方证、左冷禅，冲虚认输，岳令挑战另在后；不把令狐冲画成连续打三人。
+    【要对齐的部分】令狐冲的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：持剑而立，沉着镇定，嘴角微微上扬、带一点洒脱；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【令狐冲的基线脸】基线里的令狐冲二十三四岁，是年轻俊朗的浪子：脸型是饱满的鹅蛋脸、两颊圆润不凹陷、颧骨不突出、下颌圆润、下巴干净；浓黑的剑眉平直舒展、眉尾略扬；一双笑眼——双眼皮、眼尾弯弯、下眼睑微微上提，眼神明亮洒脱、带三分狡黠；鼻梁挺直、鼻头圆润；嘴唇适中，笑时嘴角一侧上扬、露出一点牙齿的爽朗坏笑；完全无须——唇上、下巴和两腮都干干净净，没有八字须、没有山羊胡、没有短髯、没有胡茬；肤色是健康的浅麦色，皮肤紧致年轻。整体比原图年轻四五岁、脸更圆更饱满。
 
-    第1张为npc_linghuchong的本轮立绘；第2张为npc_renyingying的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「少林三战」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「少林三战」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】令狐冲是画面中间偏右手握长剑、穿蓝灰长衫、头系黑布头带的青年（从左数第 3 个人）；左边合十的老僧方证、白须道人冲虚，他身后的紫衣女子任盈盈，右边戴斗笠的黑袍大汉任我行，以及背景里的人，脸一律不改。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_linghuchong__ch05_youth_huashan_base.1791015011194128000/archive/por_npc_linghuchong__ch05_youth_huashan_base.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_renyingying__ch05_youth_shenggu_base.1791015013396846000/archive/por_npc_renyingying__ch05_youth_shenggu_base.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 16995424f549c6353993aefa4744a095af1ca8a77a2e47c5aaba136675c807ae
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch05/por_npc_renwoxing__ch05_elder_released_base.png
-    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
-    sha256: 559bb6cf2e8b0c15b12793c73ccdfd646de7982e57e058a04cf52e6ff9701230
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
+    sha256: c3beaa49ca2c1d989d067e968ea3e812185123858f43f4106a95221aac72d55f
+    use: 对脸基线：作者 AR-56 定下的 por_npc_linghuchong__ch05_youth_huashan_base（令狐冲），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch05/cg_ch05_shaolin_three_bouts.png
+    sha256: a30f0f60adbca7f36f298859c2a536db013c3b85e1c0bff535f38644f26fc905
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_shaolin_three_bouts.a30f0f60.png
+  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:31:34-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_shaolin_three_bouts.1791016294328485000/archive/cg_ch05_shaolin_three_bouts.png
+  created: 2026-10-03T17:58:08-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch05_shaolin_three_bouts.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: a30f0f60adbca7f36f298859c2a536db013c3b85e1c0bff535f38644f26fc905
+  sha256: 170a6caf73689c417eb13fd36ebd50246517e1802584ef2bd6b9c734e74b0285
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「少林三战」，实际字形「少林三战」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「少林三战」，实际字形「少林三战」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_shaolin_three_bouts.1791016294328485000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_shaolin_three_bouts.resume3r2.png
-  repair_runner_source_sha256: 13235bed64780e0adc4127f112f45938e29b262e83573da2aee20aa60e996bba
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_shaolin_three_bouts.a30f0f60.png
+    sha256: a30f0f60adbca7f36f298859c2a536db013c3b85e1c0bff535f38644f26fc905
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_shaolin_three_bouts.a30f0f60.entry.yaml
   runner_job_records:
   - - cg_ch05_shaolin_three_bouts.resume3r2
     - ok
@@ -151,56 +144,48 @@
     - '155'
     - exec-567c4a92-889c-4989-be4f-67c76cf72380.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch05_shaolin_three_bouts.resume3r2
+  effort: ultra
 - id: cg_ch05_blackwood_showdown
   file: cg_ch05_blackwood_showdown.png
   category: scene
   style: default
   subject: 黑木崖决战（回目待考）（ch05_xiaoao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是令狐冲的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中令狐冲的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    黑木崖绣房中的紧张交锋：东方不败手拈细针立于绣架旁，令狐冲提剑抵御，任我行与向问天分居前侧和门侧。任盈盈位于后景侧门，警惕观察敌方牵挂所在，表情果断；不把她画成始终与令狐冲同正面围攻的人。针线、绣架、窄窗与剑构成尖锐空间，所有人完整着装，不画血腥。
+    【画里谁是谁】这张插图画的是：黑木崖绣房中的紧张交锋：东方不败手拈细针立于绣架旁，令狐冲提剑抵御，任我行与向问天分居前侧和门侧。任盈盈位于后景侧门，警惕观察敌方牵挂所在，表情果断；不把她画成始终与令狐冲同正面围攻的人。针线、绣架、窄窗与剑构成尖锐空间，所有人完整着装，不画血腥。
 
-    原创扩展群像构图；为避免擅造杨莲亭具体被制动作，仅示盈盈侧向观察；角色身份各自隔离。
+    【要对齐的部分】令狐冲的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：临敌提剑、全神贯注，目光锐利、嘴角紧抿（激战中不笑）；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【令狐冲的基线脸】基线里的令狐冲二十三四岁，是年轻俊朗的浪子：脸型是饱满的鹅蛋脸、两颊圆润不凹陷、颧骨不突出、下颌圆润、下巴干净；浓黑的剑眉平直舒展、眉尾略扬；一双笑眼——双眼皮、眼尾弯弯、下眼睑微微上提，眼神明亮洒脱、带三分狡黠；鼻梁挺直、鼻头圆润；嘴唇适中，笑时嘴角一侧上扬、露出一点牙齿的爽朗坏笑；完全无须——唇上、下巴和两腮都干干净净，没有八字须、没有山羊胡、没有短髯、没有胡茬；肤色是健康的浅麦色，皮肤紧致年轻。整体比原图年轻四五岁、脸更圆更饱满。
 
-    第1张为npc_linghuchong的本轮立绘；第2张为npc_renyingying的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。 第3张是身份联系图，从左到右依次为renwoxing、xiangwentian、dongfangbubai；每一格只锁定该人的身份，不把格数画进成品。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「黑木决战」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「黑木决战」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】令狐冲是画面左侧挥剑、穿蓝灰长衫、头系黑布头带、头顶发髻的青年（从左数第 2 个人）；门边的紫衣女子任盈盈、白衣老者向问天、前景戴斗笠的黑袍大汉任我行、右边红衣的东方不败，脸一律不改。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_linghuchong__ch05_youth_huashan_base.1791015011194128000/archive/por_npc_linghuchong__ch05_youth_huashan_base.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_renyingying__ch05_youth_shenggu_base.1791015013396846000/archive/por_npc_renyingying__ch05_youth_shenggu_base.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 16995424f549c6353993aefa4744a095af1ca8a77a2e47c5aaba136675c807ae
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch05_blackwood_showdown_identity_board.jpg
-    use: 本轮主角身份联系图；源立绘与左右顺序见同名JSON
-    sha256: 8cc30c37c828dc20443b1bcfc5213c046530dfbaf256e9ebd828441e627283ca
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
+    sha256: c3beaa49ca2c1d989d067e968ea3e812185123858f43f4106a95221aac72d55f
+    use: 对脸基线：作者 AR-56 定下的 por_npc_linghuchong__ch05_youth_huashan_base（令狐冲），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch05/cg_ch05_blackwood_showdown.png
+    sha256: 5e8860f705d8856b522a4d811e91c43af0ae315441e4ed5562494f3d53fdbb34
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_blackwood_showdown.5e8860f7.png
+  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:32:17-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_blackwood_showdown.1791016336755082000/archive/cg_ch05_blackwood_showdown.png
+  created: 2026-10-03T17:59:46-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch05_blackwood_showdown.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 5e8860f705d8856b522a4d811e91c43af0ae315441e4ed5562494f3d53fdbb34
+  sha256: e4820ba178f459e747a0c0f4e0653d18428bc7b5ea1cc5cd635ed46b860bb3c9
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「黑木决战」，实际字形「黑木决战」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「黑木决战」，实际字形「黑木决战」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_blackwood_showdown.1791016336755082000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_blackwood_showdown.resume3.png
-  repair_runner_source_sha256: df20c9aac11f5a2782768e07446c951d9afba6fc61f25c7a1e1e1722ab4ac6e3
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_blackwood_showdown.5e8860f7.png
+    sha256: 5e8860f705d8856b522a4d811e91c43af0ae315441e4ed5562494f3d53fdbb34
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_blackwood_showdown.5e8860f7.entry.yaml
   runner_job_records:
   - - cg_ch05_blackwood_showdown.resume3
     - ok
@@ -208,8 +193,7 @@
     - '200'
     - exec-3d45ea15-0ce9-4e5b-a73a-cafb2032ef9a.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch05_blackwood_showdown.resume3
+  effort: ultra
 - id: cg_ch05_hengshan_succession
   file: cg_ch05_hengshan_succession.png
   category: scene
