@@ -1,6 +1,6 @@
 export function schedulePwaRegistration(): void {
   const register = (): void => {
-    void import('./pwa/client').then(({ registerPwa }) => registerPwa());
+    void import('virtual:pwa-register').then(({ registerSW }) => registerSW({ immediate: false }));
   };
   const requestIdle = Reflect.get(window, 'requestIdleCallback') as
     typeof window.requestIdleCallback | undefined;
