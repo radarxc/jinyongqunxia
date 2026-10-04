@@ -41,40 +41,36 @@
   category: scene
   style: default
   subject: 桃花岛三道试题（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄药师的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄药师的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是欧阳锋的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中欧阳锋的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】这张插图画的是：桃花岛求亲三试的第三场默记经文（具体站位为原创扩展构图）。桃竹庭院与竹亭海雾；郭靖居中站定，双手自然下垂、空手，专注地背诵刚才看过的经文，不拿任何器物。清瘦中年黄药师青袍、黑发夹灰与三缕短须，手持无可读字的纸本经卷听其背诵；黄蓉在一旁关切，白衣成年贵公子欧阳克右侧沮丧。远处洪七公长方脸、花白发、颏下极短稀疏微须、朱红葫芦；欧阳锋五十余岁、高大、高鼻深目、棕黄络腮短须、灰黑束发、白衣，绝不是白发白须老仙。明确禁止鲁班锁、木机关方块、魔方、机关盒、棋盘、石块试题或猜谜游戏；三试不是木工解谜，郭靖始终空手。场中不画黄蓉手持打狗棒。
+    【要改成】（AR-53 配角对齐）须发颜色改成基线那样：灰白色的长发（白中夹黑）、灰白色的胡须（八字髭与下巴的长须）；脸改成五六十岁的年纪，眉骨高、浓眉压眼、目光阴鸷，额头与眼角有皱纹；不要黑发黑须，不要年轻。
 
-    【要对齐的部分】黄药师各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；发型照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「桃岛三试」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】黄药师是手持纸本经卷、听郭靖背诵的青袍清瘦中年人；只改他的脸，让他与基线是同一个人：清癯长脸、斜飞上挑的浓眉、细长冷峻的眼、唇上髭须与颏下山羊须、黑发鬓角夹几缕银丝。郭靖、黄蓉、欧阳克、洪七公、欧阳锋一概不动。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch02/por_npc_huangyaoshi__ch02_elder_base.png
-    sha256: 510f72616833913c2000045c9b9eff31062064156d3afb2bbf0f3d21b6249263
-    use: 对脸基线：作者审核通过的 por_npc_huangyaoshi__ch02_elder_base（黄药师），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch02/por_npc_ouyangfeng__ch02_elder_sane_base.png
+    sha256: 6ac3f4e3849dfcca4ee04e9b0221251db5314a49d9f75778ec3991848db20474
+    use: 对脸基线：作者审核通过的 por_npc_ouyangfeng__ch02_elder_sane_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_peach_island_trials.png
-    sha256: 683961e1c15d49696d7b02795f465a7b6301ef920f054b76240e9698b6a47a85
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_peach_island_trials.683961e1.png
-  tool: codex exec · image_gen（AR-58 剧情插图对脸：图像编辑，上传黄药师新 base 脸部特写 + 待改插图，只改黄药师，不加画风基线）
+    sha256: 338628ecadfedcdeb3ec30272e5a8b12cdaa03bf7adff425969a8267bb971e19
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.338628ec.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把欧阳锋头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T18:17:45-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch02_peach_island_trials.s1.png
+  created: 2026-10-03T19:24:45-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_peach_island_trials.k2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 338628ecadfedcdeb3ec30272e5a8b12cdaa03bf7adff425969a8267bb971e19
+  sha256: 6a2983a1cf275c60982c801414dc9632b87483525bfc91ff7eb3f8bd545e06dc
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-58 插图对脸（11 号出图员）：黄药师按作者 10-03 18:02 选定的新 base 对脸（郭靖、黄蓉（主角）与欧阳克、洪七公、欧阳锋不动，题字保留）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-58 插图对脸（11 号出图员）：黄药师按作者 10-03 18:02 选定的新 base 对脸（郭靖、黄蓉（主角）与欧阳克、洪七公、欧阳锋不动，题字保留）；AR-44 对脸精修，基线 = por_npc_ouyangfeng__ch02_elder_sane_base（AR-53 配角对齐：洪七公（白浓眉、灰白须发）、欧阳锋（灰白须发、年长）对齐各自基准；局部合成——两人头部方块分别交 codex 改，再依次贴回，其余像素不变（编辑 k1/k2））
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_peach_island_trials.683961e1.png
-    sha256: 683961e1c15d49696d7b02795f465a7b6301ef920f054b76240e9698b6a47a85
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_peach_island_trials.683961e1.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.338628ec.png
+    sha256: 338628ecadfedcdeb3ec30272e5a8b12cdaa03bf7adff425969a8267bb971e19
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.338628ec.entry.yaml
   runner_job_records:
   - - cg_ch02_peach_island_trials.resume3r3
     - ok
@@ -126,38 +122,36 @@
   category: scene
   style: default
   subject: 牛家村风雪与十八年之约（ch02_shediao）
-  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是丘处机定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里丘处机头部一带的放大方图（插图局部）。请以最后一张为底稿，只把丘处机改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是丘处机的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中丘处机的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里是谁】牛家村雪夜，右侧回头侧视的持剑道人（丘处机，此时约四十岁，比基线年轻十余岁，属剧情设定）。
+    【要改成】（AR-53 配角对齐；须形已改对，保留胡须的形状与颜色）他比基线年轻十余岁（设定），但脸要和基线是同一个人：长脸、颧骨不宽、下颌不方；眉毛细长、不浓、不压眼；眼神清正。
 
-    【要改成什么】把他的脸改成基线这张脸年轻十余岁的样子：长脸、下巴长，颧骨与下颌的骨相、眉形、眼型、鼻子、嘴与基线一致；胡须改成基线那样唇上髭须加颏下一绺长须（颜色以黑为主、夹少许灰），不要满脸短胡茬。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；道髻、头巾、胡须形状照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持】保留头上的布带与发髻、回头侧视的角度、锐利警觉的眼神和雪夜光影。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
-
-    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
-  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/male/ch02/por_npc_qiuchuji__ch02_elder_base.png
     sha256: f10d0d9b2d5914d2aff9937fa463aaecdc3504af36c7a2bcadb43039d71e1914
-    use: 对脸基准：丘处机的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_qiuchuji__ch02_elder_base.jpg）
+    use: 对脸基线：作者审核通过的 por_npc_qiuchuji__ch02_elder_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_niujia_snow.png
-    sha256: c1519834a98be110de6067e57d5159dc130e9dab3b605370f19907c33e885c9f
-    use: 待改插图：只把丘处机头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_niujia_snow.c1519834.png
-  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把丘处机头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
+    sha256: 09c40f6c43d92bbb0bf7fde119349d5feb69e9bea4d32b0471536ef30ae32cd1
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_niujia_snow.09c40f6c.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把丘处机头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T18:58:03-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch02_niujia_snow.p1.png
+  created: 2026-10-03T19:24:44-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_niujia_snow.k3.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 09c40f6c43d92bbb0bf7fde119349d5feb69e9bea4d32b0471536ef30ae32cd1
+  sha256: d007d1aef234b4fb8d0565392286084192ed18d36d68aeb62fbd5ed285eeb514
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「牛家风雪」，实际字形「牛家风雪」逐字核验，原生题字，未叠加。；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：丘处机按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「牛家风雪」，实际字形「牛家风雪」逐字核验，原生题字，未叠加。；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：丘处机按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐：包惜弱（眉细淡、眼适中、下巴圆）、杨铁心（深眼窝细长眼）、丘处机（长脸细眉，须形保留）对齐各自基准；局部合成——三人头部方块分别交 codex 改，再依次对齐、羽化贴回原图，其余像素不变（编辑 k1/k2/k3））
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_niujia_snow.c1519834.png
-    sha256: c1519834a98be110de6067e57d5159dc130e9dab3b605370f19907c33e885c9f
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_niujia_snow.c1519834.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_niujia_snow.09c40f6c.png
+    sha256: 09c40f6c43d92bbb0bf7fde119349d5feb69e9bea4d32b0471536ef30ae32cd1
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_niujia_snow.09c40f6c.entry.yaml
   effort: ultra
 - id: cg_ch02_guorong_first_meet
   file: cg_ch02_guorong_first_meet.png
@@ -252,40 +246,36 @@
   category: scene
   style: default
   subject: 华山论剑与英雄之问（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄药师的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄药师的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是洪七公的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中洪七公的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】按人物的服饰、性别、位置和动作判断。
+    【要改成】（AR-53 配角对齐）眉毛改成基线那样又白又浓、眉尾下垂的白浓眉；露出的头发和胡须改成灰白色（白多黑少）；脸是晒黑、多皱纹、慈祥带笑的老丐。
 
-    【要对齐的部分】黄药师各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；头巾与发型照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「华山论剑」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】黄药师是远处岩台上的青袍清瘦者，脸在画面里很小：只需把他画成与基线是同一个人——黑发鬓角几缕银丝、斜飞上挑的浓眉、唇上髭须与颏下山羊须、冷傲神情；不要放大他、不要挪动他。郭靖、黄蓉、洪七公、欧阳锋一概不动。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch02/por_npc_huangyaoshi__ch02_elder_base.png
-    sha256: 510f72616833913c2000045c9b9eff31062064156d3afb2bbf0f3d21b6249263
-    use: 对脸基线：作者审核通过的 por_npc_huangyaoshi__ch02_elder_base（黄药师），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch02/por_npc_hongqigong__ch02_elder_bangzhu_base.png
+    sha256: fda612c017b77c0c8e09d4916215d9818b61bbc032c7f71be02a0f1bd689095e
+    use: 对脸基线：作者审核通过的 por_npc_hongqigong__ch02_elder_bangzhu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_huashan_discourse.png
-    sha256: 7fbbc761f59caa65293d0fdb014277bf5b02f22628df843c3ce019afbde8f4e6
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_huashan_discourse.7fbbc761.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: 3aa9c8c0d859e4f441ebe04d84e5c0c5e06c310fba8955cbc92ae7f5f420b0ef
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.3aa9c8c0.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把洪七公头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T18:15:09-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch02_huashan_discourse.s1.png
+  created: 2026-10-03T19:24:45-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_huashan_discourse.k1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 3aa9c8c0d859e4f441ebe04d84e5c0c5e06c310fba8955cbc92ae7f5f420b0ef
+  sha256: 8f07d8684d961027dca6fdc52ad815994174166de8c2b974bced484c0de4bfa7
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「华山论剑」，实际字形「华山论剑」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）；AR-44 对脸精修，基线 = por_npc_huangyaoshi__ch02_elder_base（AR-58：黄药师按作者 10-03 18:02 选定的新 base 对脸（中景小脸）；郭靖、黄蓉、洪七公、欧阳锋不动）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「华山论剑」，实际字形「华山论剑」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）；AR-44 对脸精修，基线 = por_npc_huangyaoshi__ch02_elder_base（AR-58：黄药师按作者 10-03 18:02 选定的新 base 对脸（中景小脸）；郭靖、黄蓉、洪七公、欧阳锋不动）；AR-44 对脸精修，基线 = por_npc_hongqigong__ch02_elder_bangzhu_base（AR-53 配角对齐：洪七公改成基准的白浓眉、灰白须发；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_huashan_discourse.7fbbc761.png
-    sha256: 7fbbc761f59caa65293d0fdb014277bf5b02f22628df843c3ce019afbde8f4e6
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_huashan_discourse.7fbbc761.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.3aa9c8c0.png
+    sha256: 3aa9c8c0d859e4f441ebe04d84e5c0c5e06c310fba8955cbc92ae7f5f420b0ef
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.3aa9c8c0.entry.yaml
   runner_job_records:
   - - cg_ch02_huashan_discourse.resume3r2
     - ok
