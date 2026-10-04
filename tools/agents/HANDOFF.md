@@ -2439,3 +2439,16 @@
     - M1 已合入：ink-intents 87071d10、ch00b 6fb2b3fd、npc-species 58669ad2；singleton c427b147、storage-perf-split f94676ae 也已合入。
       - ink-intents 合入后首次会话涨到 96.02，原因是对话意图进了首屏执行器，已登记 ENG-dialogue-runtime-lazy，目标 92 以下。
     - 待作者：霍青桐 C/D/E；历史第二批 21 人。
+  - **10-04 02:12–02:35 开发监督**：
+    - **登记 ENG-ch00-encounter-wiring**（340964bb，M1，排在 19e 之后，依赖 ch00c）。
+      - 核实：core 会发 `world/battleRequested`，game 只消费 `town/battleRequested`；连败只在 builder 里作入参。所以序章三战此前没有任何任务能接上。
+      - 范围：草案转生产、开战接线、参战者解析、救场 / 提示 / 示范、连败持久化、结果旗标、builder 两处补强、三场确定性流程测试。
+      - 报告附「序章三战手动实走步骤」，合入后由开发监督转进 HANDOFF（46c8ae60）。
+    - **CONTENT-ch00c-encounters**：r1 只在报告上 FAIL。按协调者裁定只补报告；停掉自动返修，带任务 ID 清单（wiring / 26 / 16e / npc-species / generic-model）重起。
+    - **TOOL-map-terrain**：
+      - r2 FAIL 后按协调者裁定再返修，校验加回填覆盖率硬指标：`--check` 打 `COVERAGE` 行，每类 ≥ 0.95（ca0bb060）；
+      - 第 3 轮空转：只回一句计划，20 秒退出，不算数；
+      - 原参数重起，说明开头加「直接动手改代码并重建产物」，驱动 78444。
+      - 近 6 小时内其他任务没有空转；`_common` 第 9 条已有同义规定。
+    - **CONTENT-apparel-data 第 1 批合入**（8f9f5340）。全量检出里重建出图总索引，73 件进待出图（80d588e0）；第 2 批起跑。
+    - 16e 若在 03:11 碰到 200 分钟上限：照 ink-intents 先例在原工作区续作，说明写清已完成与剩余项。
