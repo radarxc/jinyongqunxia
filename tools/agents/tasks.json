@@ -36481,7 +36481,8 @@
     "packages/data/src/content-index.ts",
     "packages/data/src/**/*.test.ts",
     "apps/game/src/runtime/**",
-    "content/chapters/*/events/**"
+    "content/chapters/*/events/**",
+    "content/story/ch10/story_ch10_cold_entry.ink"
    ]
   },
   {
