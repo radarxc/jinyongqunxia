@@ -120,44 +120,40 @@
   category: scene
   style: default
   subject: 少室山群雄会（ch01_tianlong）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是萧峰的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是段誉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 4 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中萧峰、段誉、虚竹的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中虚竹的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】这张插图画的是：少室山三兄弟并肩抗敌的概括构图（原创扩展，非逐帧复刻）。萧峰粗犷豪烈、段誉清雅坚定、虚竹朴拙慈厚，三种不同脸型。三人站成前景稳固三角，各自衣物和骨相依参考；后方寺门、秋松、远处少量模糊江湖群雄。只有三兄弟为清晰主角，不画龙形能量。
 
-    【要对齐的部分】萧峰、段誉、虚竹各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】虚竹各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「少室同心」和小朱印必须原样保留，一笔不改、不增不减。
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（作者 AR-53 总审返修）右侧的僧人是虚竹：虚竹的脸要像基线：宽脸、方而圆的下巴、颧骨平、两颊饱满不凹陷、眉毛平直不紧压、鼻子宽厚不高挺、眼神温和憨厚、嘴角带一点和善；现在的脸太窄长、颧骨下颌太硬，像另一个英俊武僧，必须改掉。段誉和萧峰的脸不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
-    sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
-    use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard（萧峰），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
-    sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
-    use: 对脸基线：作者审核通过的 por_npc_duanyu__ch01_youth_shizi_base（段誉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png
     sha256: 6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c
     use: 对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（虚竹），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch01/cg_ch01_shaoshi_three_brothers.png
-    sha256: b60c7342586425149af8c01385ed29767a663144c78942bde7cd6920b26bd037
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.b60c7342.png
+    sha256: e32aa93d98958389de78553280e2a23b37ae4ac138dc49b145415fabcc2d6c5c
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.e32aa93d.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T15:47:39-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_shaoshi_three_brothers.s1.png
+  created: 2026-10-03T17:00:50-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_shaoshi_three_brothers.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: e32aa93d98958389de78553280e2a23b37ae4ac138dc49b145415fabcc2d6c5c
+  sha256: e3da620e7186d3c44d6d6ab8b2e8acf4f7774a69ad0b5e76dcb5c3da1394e78c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「少室同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「少室同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.b60c7342.png
-    sha256: b60c7342586425149af8c01385ed29767a663144c78942bde7cd6920b26bd037
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.b60c7342.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.e32aa93d.png
+    sha256: e32aa93d98958389de78553280e2a23b37ae4ac138dc49b145415fabcc2d6c5c
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_shaoshi_three_brothers.e32aa93d.entry.yaml
   effort: ultra
 - id: cg_ch01_wuliang_lingbo
   file: cg_ch01_wuliang_lingbo.png
@@ -202,41 +198,40 @@
   category: scene
   style: default
   subject: 珍珑棋局（ch01_tianlong）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是段誉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中虚竹、段誉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中虚竹的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】这张插图画的是：擂鼓山珍珑棋局。虚竹旧僧衣、憨厚迟疑地把一枚棋子放到木棋盘边，苏星河清癯老者在对侧惊讶抬头；段誉青衫温雅站一旁。只画这三人，不必增加其他观众。晨雾、松树、石凳，俯角中全景，棋盘不用可复原棋谱。具体棋位与动作时序待考，构图为原创扩展。
 
-    【要对齐的部分】虚竹、段誉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】虚竹各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「珍珑破局」和小朱印必须原样保留，一笔不改、不增不减。
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（作者 AR-53 总审返修）左侧低头执子的僧人是虚竹：虚竹的脸要像基线：宽脸、方而圆的下巴、颧骨平、两颊饱满不凹陷、眉毛平直不紧压、鼻子宽厚不高挺、眼神温和憨厚、嘴角带一点和善；现在的脸太窄长、颧骨下颌太硬，像另一个英俊武僧，必须改掉。低头侧脸也要看得出宽脸和圆下巴。段誉、苏星河的脸不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png
     sha256: 6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c
     use: 对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（虚竹），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
-    sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
-    use: 对脸基线：作者审核通过的 por_npc_duanyu__ch01_youth_shizi_base（段誉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch01/cg_ch01_zhenlong_break.png
-    sha256: 22c43d69999b379e77a91d5d7930915504b9d9bbe48c379f4725061ec81417c3
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.22c43d69.png
+    sha256: bd9b5a5969e7e513281ecaeffbc7fc5b33c50bf234d31eb7849c47a4dc48d30c
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.bd9b5a59.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T15:49:20-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_zhenlong_break.s1.png
+  created: 2026-10-03T17:00:51-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_zhenlong_break.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: bd9b5a5969e7e513281ecaeffbc7fc5b33c50bf234d31eb7849c47a4dc48d30c
+  sha256: 7656d132effb494d61b10e2a4ad16bfff831eb3ad0050f9facb04d41ed6152ba
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.22c43d69.png
-    sha256: 22c43d69999b379e77a91d5d7930915504b9d9bbe48c379f4725061ec81417c3
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.22c43d69.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.bd9b5a59.png
+    sha256: bd9b5a5969e7e513281ecaeffbc7fc5b33c50bf234d31eb7849c47a4dc48d30c
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.bd9b5a59.entry.yaml
   effort: ultra
 - id: cg_ch01_songhe_wine_oath
   file: cg_ch01_songhe_wine_oath.png
@@ -284,22 +279,21 @@
   category: scene
   style: default
   subject: AR-26“一命换一命”（ch01_tianlong）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是萧峰的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是段誉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 4 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中萧峰、段誉、虚竹的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是段誉的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中段誉、虚竹的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】这张插图画的是：本作AR-26一命换一命特殊改命，原创扩展，绝非原著结局。雁门关外黄昏绝壁，玩家男主素灰旅装以身拦住萧峰坠势，身体被风带向左侧崖洞；阿朱在安全右侧扶住萧峰，段誉、虚竹伸手相援。动作稳健可读，不画尸体、不画刺胸。萧峰风尘厚袍、神情惊痛；阿朱成年素衣，段誉青衫，虚竹灰僧衣。救阿朱前置已满足；玩家只按文字画普通成年男子背侧影，不借其他人的脸。
 
-    【要对齐的部分】萧峰、段誉、虚竹各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】段誉、虚竹各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「雁门换命」和小朱印必须原样保留，一笔不改、不增不减。
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（作者 AR-53 总审返修，优先于其他要求）右后方的僧人是虚竹：虚竹的脸要像基线：宽脸、方而圆的下巴、颧骨平、两颊饱满不凹陷、眉毛平直不紧压、鼻子宽厚不高挺、眼神温和憨厚、嘴角带一点和善；现在的脸太窄长、颧骨下颌太硬，像另一个英俊武僧，必须改掉。后排白衣书生是段誉：现在眉太粗太压、眼太细长、脸太宽方——改成基线里清秀的脸、细长舒展的眉、明亮带笑的眼。萧峰、阿朱和前景主角的脸都不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
-    sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
-    use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard（萧峰），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
     sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
     use: 对脸基线：作者审核通过的 por_npc_duanyu__ch01_youth_shizi_base（段誉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
@@ -307,19 +301,19 @@
     sha256: 6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c
     use: 对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（虚竹），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch01/cg_ch01_yanmen_life_for_life.png
-    sha256: e5b3549a43beffbc0953cea0bc82ad45ad4cc2c4ec6601de13e0517ddca5d43f
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.e5b3549a.png
+    sha256: ef903cc18613e83bc0935d6826406918cc32fe322f837a4eb06b806c60adb2cb
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.ef903cc1.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T15:49:21-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_yanmen_life_for_life.s1.png
+  created: 2026-10-03T17:00:49-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_yanmen_life_for_life.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: ef903cc18613e83bc0935d6826406918cc32fe322f837a4eb06b806c60adb2cb
+  sha256: 5bd5db6cd7dc00dc7e8109e29e48aea629c6a18c4ecab4bace11433b64d539e3
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「雁门换命」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「雁门换命」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚，段誉对齐基线）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.e5b3549a.png
-    sha256: e5b3549a43beffbc0953cea0bc82ad45ad4cc2c4ec6601de13e0517ddca5d43f
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.e5b3549a.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.ef903cc1.png
+    sha256: ef903cc18613e83bc0935d6826406918cc32fe322f837a4eb06b806c60adb2cb
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.ef903cc1.entry.yaml
   effort: ultra
