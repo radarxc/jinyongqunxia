@@ -44,6 +44,12 @@ classic_ref:
 
 # 任我行 · 人物写实修正
 
+## AR-82 当前定稿要求
+
+只将全身黑教主袍服改成青色布长衫（中深青蓝，粗布、低调出狱常服），不要黑色大礼服，取消肩部两处银饰而以朴素青布覆盖。现有头脸发须、斗笠、手势、腰剑、衣袍廓形、右衽、双靴与背景都保持。
+
+以上为当前原著核对后的要求，覆盖下文旧版中与之冲突的服饰、器物、伤残、光线和体态描述。
+
 ## Gemini 提示词
 
 > 2026-10-02 AR-32 重出（8 号出图员，codex exec · image_gen）：主要角色参考经典造型加项目基线生成。上传顺序：第 1–2 张为 1996 TVB《笑傲江湖》任我行剧照（renwoxing_1996_luolelin_sohu.jpg、sina1.jpg，裁去水印与字幕），最后两张为同性别画风基线（缩小版 JPEG）。参考图只借造型、气质与面部特征，画面按项目画风重绘、不复制照片或像素图。上一版保留在下一节作历史。
@@ -165,3 +171,8 @@ FINAL POSE CHECK: one FRONT-FACING figure, forehead–nose–chin centreline VER
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_renwoxing__ch05_elder_released_base.prepared.json`。
+
+## 原著依据
+
+- 《笑傲江湖》二十二《脱困》：“穿的是一袭青衫”（https://xuges.com/WUXIA/jinyong/xajh/165.htm）
+- AR-82 返修约束：只将全身黑教主袍服改成青色布长衫（中深青蓝，粗布、低调出狱常服），不要黑色大礼服，取消肩部两处银饰而以朴素青布覆盖。现有头脸发须、斗笠、手势、腰剑、衣袍廓形、右衽、双靴与背景都保持。
