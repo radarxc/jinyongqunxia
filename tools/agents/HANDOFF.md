@@ -1908,4 +1908,20 @@
       - 今天 11 份 traex 执行日志都跑过 prepare_test.sh。
       - gates-data 第 3 轮又在走技能流程，建议协调者停掉，开发监督用 `--from start --note devsup_note_noskill.md` 重起。
       - 另提议在 `_common.md` 加第 13 条「不调用 Trae 技能」。
+  - **10-03 18:27–18:42 开发监督**：
+    - **池位优先级修正**（1c608177）。
+      - 问题：18:29 协调者批量重起时，18c、std-parts 探测模型快，先进了等位循环，抢在没登记的 26、base-diet、23a 前面拿到空位。
+      - 改法：探测模型前就登记；有名单时登记满 15 秒才拿空位。
+      - 协调者已让 18c、std-parts 退回重排；现在排队顺序与名单一致。
+    - **协调者 18:29 用新参数重起**：
+      - gates-data 第 3 轮，带 `devsup_note_noskill.md`；
+      - event-executor、23a、26，带 `coord_note_noskill.md`；
+      - 直接起 18c、16e、base-diet、std-parts、cropframe 排队。
+    - **ENG-26 第 2 轮**秒退：Trae 服务报「request queue size is exceed」code=4050。
+      - 目前全部日志里只这 1 次，按服务端临时拥堵处理；每轮轮询用 `scratchpad/q4050.py` 盯着，再出现就报协调者，考虑代码池 4 → 3。
+    - **TOOL-city-generic 合入**（协调者 merge_when_clean，HEAD b6c90dd2），之后 prod_check 两次都红，都是计时类测试：
+      - 负载 31–37 那次：`core/bench/combat.test.ts` 的 BattleSession 线性比 3.57 > 3（ENG-16c 加的门）；
+      - 负载 50 那次：content-plugin 的 town integration 和 combat bench 的 transaction bus 两条 5 秒超时；
+      - 单独重跑 combat bench 3 次都过。
+      - 已报协调者，建议：降代码池上限、低负载时重跑 prod_check；`core/bench` 是否比照 AR-33 挪到 check:perf，交协调者 / 作者定。
 
