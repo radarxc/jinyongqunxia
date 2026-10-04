@@ -36496,6 +36496,56 @@
   },
   {
    "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/battle/components/BattleField.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-fix-battlefield-highlights",
+   "title": "游戏工程 · 小修：集成分支红——16e 与 generic-model 合并后 BattleField 可达高亮用例失败（setHighlights 0 次）；查清 2D / 3D 两路高亮下发，修代码或用例，不删断言",
+   "prompt": "ENG-fix-battlefield-highlights.md",
+   "deps": [
+    "ENG-16e-battle-ui-actions",
+    "ENG-battle-generic-model"
+   ],
+   "writes": [
+    "apps/game/src/battle/**",
+    "packages/render/src/battle/**"
+   ]
+  },
+  {
+   "phase": "PROD",
    "wave": 17,
    "kind": "draft",
    "review": false,
