@@ -153,38 +153,35 @@
   category: scene
   style: default
   subject: 夹墙生机（ch09_liancheng）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是万圭的身份基线（本人基础立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中万圭的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
-    【画里谁是谁】这张插图画的是：荆州万府夹墙边，狄云及时截住万圭持刀的手臂，戚芳在他身后退向灯光出口；墙缝与倒地砖形成紧张空间，不画儿童或尸体。 【姿态重出修正】狄云只用解剖学左手扣住万圭持刀的手腕，刀锋指向地面；其右前臂向下自然垂在身侧，整只右掌完全藏进宽大的完整右袖，从袖口绝不露出任何手指或拳头。右手五指早已缺失，不可恢复；画面不描绘残端。狄云绝不能用双手抓对手。
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    【要对齐的部分】万圭的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    输出和原图同样比例的完整画面。
 
-    【万圭的基线脸】基线里的万圭二十出头，白净清秀的富家公子：脸型瘦长、下颌线清楚、下巴略尖；皮肤白净，不是黝黑；眉毛细长、略向上斜挑；一双细长的眼睛、双眼皮、眼神带一点阴鸷傲气；鼻梁高挺；嘴唇薄；完全无须；不是硬朗的武夫脸。
+    只把画面中央狄云身上的砖红内层旧僧衣改褪色土黄，与他自宝象处取得、雪谷继续穿用的黄袍一致。保持灰外披、腰带、羽物、本人脸头发、双手脚、接触动作全原样；右侧少年和左后方女子的全部像素、墙巷、灯火与题字完全不动，不重画其他人。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「夹墙生机」和小朱印必须原样保留，一笔不改、不增不减。
+    【原著依据】《连城诀》六《血刀老祖》：“身穿黄袍”（https://xuges.com/WUXIA/jinyong/lcj/033.htm）
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
 
-    【本张另外要求】万圭是画面右边戴瓜皮小帽、穿深蓝短褂、被人抓住手腕的青年（从左数第 3 个人）：保持原图惊怒的神情方向和头部角度。上一次改得不够，这次要明显改：①皮肤改白净（在夜巷灯光下也要看得出是白皙的富家公子，不是黝黑的武夫）；②脸型改成基线那样瘦长清秀、下巴略尖，两腮收窄，颧骨和咬肌不要突出；③眉毛改成基线那样细长、向上斜挑，眼睛细长；④嘴唇薄。左边的戚芳和中间光头的狄云，脸一律不改。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/character/male/ch09/por_npc_wangui__ch09_youth_wanfu_base.png
-    sha256: e9125e16dddebfdfca73bb410c098ad4aabffe1d16e48e5c6803311aa3355329
-    use: 对脸基线：AR-53 总审默认基准 por_npc_wangui__ch09_youth_wanfu_base（万圭），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch09/cg_ch09_wall_rescue.png
-    sha256: 2023c9f79012de5a78287c7c9fbd654f8e7e422751174ea8874874d051620b4f
-    use: 待改原图（AR-53 配角对齐 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch09_wall_rescue.2023c9f7.png
-  tool: codex exec · image_gen（AR-53 配角对齐 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线；编辑结果只取目标人物头部合成回原图）
-  model: gpt-6-astra
-  created: 2026-10-03T19:42:38-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch09_wall_rescue.s2.png
+    sha256: a9447ca4e7d51d0c09f2eacd8d1561614c65f861f729cad2826222e1a5085fcf
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_wall_rescue.a9447ca4.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T03:18:57-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_41_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: a9447ca4e7d51d0c09f2eacd8d1561614c65f861f729cad2826222e1a5085fcf
+  sha256: 06e3b219c118da7914e06d9e334509fd2a7066c454efc86d43001b5a2a5b2c7b
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；第5次续作：题字「夹墙生机」逐字放大正确，原生题字，未字体叠加；采用本轮新女主对应阶段身份。；AR-53 配角对齐（12 号出图员），基线 = por_npc_wangui__ch09_youth_wanfu_base（第 1 次（s1）改得不够未入库，第 2 次加重要求后入选；编辑结果只取万圭（#3）头部区域羽化合成回原图，其余像素保持原图（狄云、戚芳不动）；头部转角比原图略正；原始编辑结果 out/<job>.raw.png）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；第5次续作：题字「夹墙生机」逐字放大正确，原生题字，未字体叠加；采用本轮新女主对应阶段身份。；AR-53 配角对齐（12 号出图员），基线 = por_npc_wangui__ch09_youth_wanfu_base（第 1 次（s1）改得不够未入库，第 2 次加重要求后入选；编辑结果只取万圭（#3）头部区域羽化合成回原图，其余像素保持原图（狄云、戚芳不动）；头部转角比原图略正；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：夹墙生机狄云承接旧黄僧衣
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch09_wall_rescue.retry3.r3
   quality_retries: 2
@@ -199,11 +196,11 @@
     archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_wall_rescue/f92536b1acdc70f5539ccad0d4bfe16e72ade413737967bbebfab1ff8c26bd78.png
     archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_wall_rescue/f92536b1acdc70f5539ccad0d4bfe16e72ade413737967bbebfab1ff8c26bd78.yaml
     archived_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_wall_rescue/1ca0ce5eee597d8cbd3cf634cf23e2399beefc38b245ce554c391f7e41843702.source.png
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch09_wall_rescue.2023c9f7.png
-    sha256: 2023c9f79012de5a78287c7c9fbd654f8e7e422751174ea8874874d051620b4f
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch09_wall_rescue.2023c9f7.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_wall_rescue.a9447ca4.png
+    sha256: a9447ca4e7d51d0c09f2eacd8d1561614c65f861f729cad2826222e1a5085fcf
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_wall_rescue.a9447ca4.entry.yaml
 - id: cg_ch09_tianning_treasure
   file: cg_ch09_tianning_treasure.png
   category: scene
