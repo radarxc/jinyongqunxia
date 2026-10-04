@@ -1874,3 +1874,4 @@
       - eb1fa142：稀疏检出始终带 `assets/default/town/city_nanjing__ch10/layout.yaml`，否则 test_town_runtime 会 ERROR；
       - 1d85ff7a：supervise 自动合入撞上未提交窗口时，改为每 2 秒重试；遇到 READY「auto-merge 未成功」，用 `_handoff/merge_when_clean.py` 补合入。
 
+- **10-03 18:05–18:12 协调者**：ENG-event-executor 到 18:05 未退出，协调者按约定停执行器（1.exit=143）；开发监督挪基点到 f24cbc6b、机械改 ch10 op 名与 Ink 参数（写集补 962f7db1），--from validate 因退出码 143 未过（step.py finish 把非 0 退出码记为问题，被停过的任务都要再走一轮短返修），已排到 18c 前（18c 守候 47226）。ENG-16c 改 --from validate 后审核 PASS。supervise.py 合入重试改为每 2 秒探工作树（1d85ff7a）；VFX-sk_tiangang 用 merge_when_clean 合入。面部总审主角全部审完：一致 207、轻微 43、明显 22（集中在 ch05、ch07–ch14，分给 12 号与 10 号）；下一步审配角。Gemini 出图员 17:33 在 Wikidata 请求 UA 里误带作者邮箱前缀 3 次（只读搜索），已改通用 UA 并如实告知作者；各联网代理已收到「不带作者个人信息」规矩。
