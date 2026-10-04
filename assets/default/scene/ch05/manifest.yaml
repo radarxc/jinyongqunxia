@@ -101,9 +101,9 @@
 
     【画里是谁】少林寺殿中，左侧合十低头的老僧（方证大师，少林方丈，约七十岁）。
 
-    【要改成什么】把他的脸改成基线这张脸：圆润饱满的老僧脸、皱纹浅一些，白色长眉，下巴光洁、没有胡须（去掉白胡子，露出下巴与脖颈，领口照原样）。
+    【要改成什么】这是第二次修改：胡子已经去掉了，现在要把脸改得像基线那样圆润饱满——两颊丰满、不要凹陷，下颌圆润，皱纹浅很多（只在眼角和额头留几道细纹），不要瘦削的长脸，不要深刻的皱纹；白色长眉、光头与基线一致；下巴仍然没有胡须。
 
-    【原图保持】保留光头、低头侧视的角度、平和的神情、佛珠与光影。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
+    【原图保持】保留低头侧视的角度、平和的神情、佛珠、合十的手与光影。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
 
@@ -114,21 +114,21 @@
     sha256: 6e3476e34f800f2ed358589db592cddbc458a892cc56111d3886f409d1c1e85f
     use: 对脸基准：方证的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_fangzheng__ch05_elder_base.jpg）
   - path: assets/default/scene/ch05/cg_ch05_shaolin_three_bouts.png
-    sha256: 606d59f6b72773ee78bcba76919838872ed576ae417b38f6085fff4ff654a8ca
-    use: 上一版：同一 codex 输出的第一次贴回（170a6caf → 606d59f6），方块下沿留有细接缝；本次底图仍取改前原图 170a6caf；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.606d59f6.png
+    sha256: 72cd46e88bc38a2b9508fee35549bec4fe05e825693ec008ead4925e4b3b3ac1
+    use: 待改插图：只把方证头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.72cd46e8.png
   tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把方证头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T19:03:05-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch05_shaolin_three_bouts.p1r.png
+  created: 2026-10-03T19:21:35-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch05_shaolin_three_bouts.p2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 72cd46e88bc38a2b9508fee35549bec4fe05e825693ec008ead4925e4b3b3ac1
+  sha256: 0c72f23df3b9678ae66441be8f5098ed7df83f1560762f8ad93f81db2f5acf96
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「少林三战」，实际字形「少林三战」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：方证按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员）：方证重新贴回——同一 codex 输出，贴回区在方块边缘前渐隐，去掉上一版方块下沿的细接缝，其他人物与题字逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「少林三战」，实际字形「少林三战」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：方证按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员）：方证重新贴回——同一 codex 输出，贴回区在方块边缘前渐隐，去掉上一版方块下沿的细接缝，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员，总审 10-03 复核后第二次收拾）：方证脸改圆润饱满、皱纹变浅，向本人默认基础立绘再靠一步；只合成目标人物头部，其他人物与题字逐像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.606d59f6.png
-    sha256: 606d59f6b72773ee78bcba76919838872ed576ae417b38f6085fff4ff654a8ca
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.606d59f6.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.72cd46e8.png
+    sha256: 72cd46e88bc38a2b9508fee35549bec4fe05e825693ec008ead4925e4b3b3ac1
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_shaolin_three_bouts.72cd46e8.entry.yaml
   runner_job_records:
   - - cg_ch05_shaolin_three_bouts.resume3r2
     - ok
