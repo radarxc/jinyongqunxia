@@ -62,7 +62,7 @@
   - image/jpeg 675080 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T19:31:00+08:00'
+  created: '2026-10-03T19:31:00-07:00'
   status: candidate
   notes: 绑骨后基础模型（无动画）。换脸重做（2026-10-03 19:30）：输入换成 A 字参考 c813207d 版——AR-53 总审复核返修，只改脸（上挑剑眉、颧骨有棱角），底图和服饰与旧版 3bc052d0 相同；base 是作者选定的第 2 轮 B 版（08a2a3fb，AR-44）。看图验收：正/侧/背完整，灰蓝短襦 + 深灰腰带 + 白长裙 + 草鞋，后发深褐、无肉色块；自动绑骨一次成功（JS
     核对关节：Hips y0.535、头顶骨端 0.973、双手外展 y0.50、脚 0.063），骨架叠加截图与网格吻合。旧版（project 26a4de40，提交 4cf94b5e，用的是 3bc052d0 旧脸 A 字图）已备份到 .agents/coord/ART-3d-tripo-web/replaced/npc_aqing__ch00_youth__4cf94b5e/（git 历史里也有）。
@@ -85,6 +85,6 @@
   size: 369x594
   sha256: e6e873562aec9b5a9b60871fb91791ef2a4f7ed0bb29413bd194a338436eb8bb
   size_bytes: 129705
-  created: '2026-10-03T19:31:00+08:00'
+  created: '2026-10-03T19:31:00-07:00'
   status: candidate
   notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。

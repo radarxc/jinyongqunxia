@@ -63,7 +63,7 @@
   - image/jpeg 562644 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T12:29:00+08:00'
+  created: '2026-10-03T12:29:00-07:00'
   status: candidate
   notes: 绑骨后的基础模型（无动画，绑定姿势）。Tripo 网页「Export」：GLB、贴图 2k、Export Skeleton 开；云端原件为 8K 贴图，可按需重导。 看图验收（2026-10-03）：正/左/右/背四视角完整；头发深色、无肉色块；骨架位置正确（腿骨在长裙内）。
 - id: npc_zhujue__ch00_f__anim_idle
@@ -133,7 +133,7 @@
   - image/jpeg 562644 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T12:29:00+08:00'
+  created: '2026-10-03T12:29:00-07:00'
   status: candidate
   notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 idle（retarget op e0dd157a-4dd3-42d7-8c17-2fe351646f90），含网格+骨架+1 条动画；原地（Animation stay in Place 开）。
 - id: npc_zhujue__ch00_f__anim_walk
@@ -203,7 +203,7 @@
   - image/jpeg 562644 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T12:29:00+08:00'
+  created: '2026-10-03T12:29:00-07:00'
   status: candidate
   notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 walk（retarget op d935df2c-5be9-4259-88da-65253e816db2），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
 - id: npc_zhujue__ch00_f__anim_run
@@ -273,7 +273,7 @@
   - image/jpeg 562644 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T12:29:00+08:00'
+  created: '2026-10-03T12:29:00-07:00'
   status: candidate
   notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 run（retarget op 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
 - id: npc_zhujue__ch00_f__anim_idle_walk_run
@@ -347,7 +347,7 @@
   - image/jpeg 1785194 B
   - image/jpeg 562644 B
   preview: preview.png
-  created: '2026-10-03T19:15:00+08:00'
+  created: '2026-10-03T19:15:00-07:00'
   status: candidate
   notes: 正式使用的动作文件：一个 GLB 内含 run / walk / idle 三段动画（同一套网格 + 65 关节骨架），原地（Animation stay in Place 开）。协调者 2026-10-03 口径：动作统一单文件；同目录 anim_idle.glb / anim_walk.glb / anim_run.glb 三个分文件仅作备份。
 - id: npc_zhujue__ch00_f__preview
@@ -368,6 +368,6 @@
   size: 502x1024
   sha256: 509c648f9099144a270c4ae5bef0ec5da8414956f7cbea9320df00be0887af7c
   size_bytes: 553727
-  created: '2026-10-03T12:29:00+08:00'
+  created: '2026-10-03T12:29:00-07:00'
   status: candidate
   notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘后缩到长边 1024。
