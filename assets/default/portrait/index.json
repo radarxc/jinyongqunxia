@@ -4106,19 +4106,19 @@
   },
   "avatar/npc_huangshannvzi/ch04_youth_gumu": {
    "128": {
-    "b": 4520,
+    "b": 4462,
     "f": "npc_huangshannvzi/ch04_youth_gumu_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 11998,
+    "b": 11826,
     "f": "npc_huangshannvzi/ch04_youth_gumu_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 30354,
+    "b": 29802,
     "f": "npc_huangshannvzi/ch04_youth_gumu_base.ava512.webp",
     "h": 512,
     "w": 512
@@ -25093,13 +25093,13 @@
   },
   "bust/npc_huangshannvzi/ch04_youth_gumu": {
    "256": {
-    "b": 9372,
+    "b": 9402,
     "f": "npc_huangshannvzi/ch04_youth_gumu_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 26610,
+    "b": 26032,
     "f": "npc_huangshannvzi/ch04_youth_gumu_base.bust512.webp",
     "h": 512,
     "w": 512
@@ -45019,20 +45019,20 @@
   "portrait/npc_huangshannvzi/ch04_youth_gumu_base": {
    "alpha": true,
    "low": {
-    "b": 59056,
+    "b": 58682,
     "f": "npc_huangshannvzi/ch04_youth_gumu_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 80856,
+    "b": 79498,
     "f": "npc_huangshannvzi/ch04_youth_gumu_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_huangshannvzi__ch04_youth_gumu_base",
    "source_file": "assets/default/character/female/ch04/por_npc_huangshannvzi__ch04_youth_gumu_base.png",
-   "source_sha256": "32df0d6e329133b2cd42da2218047fe1ccc2b63378b6df0acdf618def64ff9a6",
+   "source_sha256": "4dd1536d60608218c36835216bc6b44f01af3ac46ed4f4bc82bb523316368694",
    "status": "candidate"
   },
   "portrait/npc_huangtaiji/ch07_elder_predeath_base": {
