@@ -8,38 +8,54 @@ age_variant: youth
 tier: S
 output: assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
 manifest: assets/default/character/female/ch01/manifest.yaml
-references:
-- path: .agents/coord/portrait-generation/realism-20261001/base-reference-archives/fc10de16588f30662ce13250cfd4921a1ac4ee367aac6d10bb90cc430a5ed820.png
-  use: 已实际view。仅本人身份、年龄体型与可辨面部特征；不借旧图碎墨、纸片、斑驳、破洞或撕裂衣料。
-- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-  use: 已实际view，SHA 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922，本轮写实candidate。仅自然面手、完整人体体积、连贯衣料的渲染质量；不借萧峰身份、性别体型、须发衣装、掌势或龙影。
-- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-  use: 已实际view。仅同性别项目低饱和色卡，文档服色优先；不借身份、年龄、发式、服装、道具、旧碎墨或织纹。基线审批原样保留。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际view。仅背景的浅淡水墨远景、空气层次与留白；完全忽略女性人物脸、薄纱、衣纹、肤质和姿势，水墨不能侵入本体。
 status: redo
 realism_revision: user_character_realism_20261001
-redo_reason: "面容与发饰几乎照搬剧集剧照且显少女幼态，按原著“鹅蛋脸、眼珠灵动、淡绛纱衫”画成成年年轻女子"
+references:
+- path: .agents/coord/imagegen-reference/identity-20261002/tianlong/azhu_2003_liutao_sohu2022b.jpg
+  use: 身份参考：2003《天龙八部》 剧照（作者 10-03 指定版本）；只借造型、气质与五官神韵，按项目画风重画，不照搬照片
+  sha256: 83ee82d61678075ae74831e7ff81b294a1f609c7e3d71b4f976431e1178f8948
+- path: .agents/coord/_handoff/gem/codex_w17/staging/stillface__azhu.jpg
+  use: 剧照脸部特写：由上面这张剧照裁出放大（512×512），只为看清五官；同样只借神韵，按项目画风重画
+  sha256: 39c9b65f5c421da918772ba4ec0a6a51b77ead6485f5f82d51509af0c481cecc
+- path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_azhu__ch01_youth_alive_base.b3.png
+  use: 底稿：上一轮候选图（服装、姿势、构图来源），本轮只重画头部
+  sha256: a93deb01fca4fbbba5c0e37c86a73fa749ae559c5db486340df245ffbf4c2ae5
+redo_reason: "作者 10-03 AR-44：参考2003《天龙八部》造型重画 base，不要和照片一样"
 reference_upload:
-- .agents/coord/imagegen-reference/hero-20261001/classic_azhu_1997.jpg
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-codex_prompt_rev: 2026-10-02
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/orig__azhu_b3.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/stillface__azhu.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/out/por_npc_azhu__ch01_youth_alive_base.b3.png
+codex_prompt_rev: 2026-10-03
 classic_ref:
-  version: 1997 TVB《天龙八部》
+  version: 2003《天龙八部》
   stills:
-  - .agents/coord/imagegen-reference/hero-20261001/classic_azhu_1997.jpg
-  crop:
-    classic_azhu_1997.jpg:
-    - 0
-    - 0
-    - 395
-    - 764
+  - .agents/coord/imagegen-reference/identity-20261002/tianlong/azhu_2003_liutao_sohu2022b.jpg
 ---
 
 # 阿朱 · 人物写实修正
 
 ## Gemini 提示词
+
+> 2026-10-03 AR-44 阿朱新 base（10 号出图员，codex exec · image_gen）：作者 17:24「天龙八部阿朱按刘涛参考，配合书中描述，精细出图」，17:45「阿朱选b，表情一样，眼睛再大一些但不要太夸张」。B（候选 b3）前置 2003 版刘涛剧照与剧照脸部特写、画风基线只用小龙女一张，按原著写淡绛纱衫、鹅蛋脸、眼珠灵动、易容小布包；再以 B 为底稿只把眼睛放大约一成（y1）。下面的提示词是 B 的生成提示词；改眼睛的编辑提示词记在 manifest。上一版保留在下一节作历史。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+【参考图】第 1 张是该角色经典影视造型（2003 版）的剧照，第 2 张是同一版本的面部近景。人物的脸要明显向这一版靠拢——脸型、眉眼、鼻口、灵动的眼神和俏皮甜美的笑都要像剧照里的阿朱，让看过这一版的观众一眼认出；发式与衣裙的配色气质也借鉴剧照，但细节按下文的原著描写来画。必须重新绘制成项目的手绘插画画风：不要照片质感，不要照搬剧照的构图、光影、背景和姿势，不要做成照片修图或照片贴脸。最后一张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它为准，但不取基线人物的长相。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物】阿朱，《天龙八部》姑苏慕容家的侍女，精于易容之术；与萧峰同行、小镜湖之前，以本来面目示人。温柔聪慧、善解人意，又灵动俏皮、爱说笑。
+【原著描写】原著写她身穿淡绛纱衫、一张鹅蛋脸、眼珠灵动、肌肤白腻，笑起来俏皮动人，另有一股动人的气韵。
+【年龄与体态】原著十六七岁，按本作规定画成约二十岁的成年年轻女子，身量娇小玲珑但为成人比例（约 7 头身），衣着完整端庄、不透明、不暴露。
+【面容（精细）】鹅蛋脸、两颊柔润、下巴小巧圆润；一双明亮灵动的大眼睛，黑眼珠又黑又亮、双眼皮清楚、眼尾微微上扬，眼神机敏温暖、像在打什么俏皮主意；眉毛弯而秀长、颜色自然；鼻梁秀挺、鼻头小巧；唇形饱满、唇色自然的淡红，嘴角上扬、露出俏皮甜美的笑；肤色白腻、两颊带一点自然的红润；皮肤有细腻的真实质感与细小的不对称，睫毛、眉毛、发丝都一根根画清楚。
+【发式（精细）】乌黑长发半挽：头顶两侧各挽一个小巧的螺髻，用浅红丝带系住，插一支小巧的珍珠珠花；其余长发顺直地垂在背后，鬓边各垂一缕细发；耳下一对小珍珠耳坠。
+【服饰（精细，淡绛纱衫）】内穿暖白交领右衽中衣；外穿淡绛色（浅红中带一点赭）交领右衽窄袖短衫，外面再罩一层同色的轻纱褙子（纱有经纬纹理，轻薄但不透明，不露肌肤）；衣领与袖口有同色系的细密暗纹刺绣；腰束一条浅米色素绸腰带，打一个小巧的结；下着暖米色及踝长裙，裙褶细密自然；脚穿浅色平底绣鞋。
+【道具】腰侧挂一只合口的小绣花布包（易容用具，包口收好，不露出人皮面具）；双手空着。
+【姿态与神情】身体基本正面、微微侧身前倾，像在倾听后忍不住笑，一手轻扶腰侧布包的系带，另一手自然垂放；眼神温暖机敏，嘴角带俏皮的笑意。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要娃娃脸、婴儿肥或少女体态；不要浓妆、网红脸；不要透明暴露的纱衣；不要照搬剧照的衣服花纹和背景。
+【画风基线】随提示词上传的参考图里，最后一张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+```
+
+## 上一版 Gemini 提示词（AR-44 刘涛版重画之前，历史，不再用于出图）
 
 > 2026-10-02 AR-32 重出（5 号出图员，codex exec · image_gen）：主要角色改为参考经典影视版剧照加项目基线生成。上传顺序：1997 TVB《天龙八部》 剧照 1 张（classic_azhu_1997.jpg），最后两张为同性别画风基线（缩小版 JPEG）。剧照只借造型、气质与面部特征，画面按项目画风重绘、不复制照片。上一版（AR-31 文字版）保留在下一节作历史。
 
