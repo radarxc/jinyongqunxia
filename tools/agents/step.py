@@ -236,6 +236,88 @@ def running_in_pool(root: Path, pool: str, exclude: str | None = None) -> list:
                   if d.is_dir() and d.name != exclude and pool_of(d.name) == pool and is_running(root, d.name))
 
 
+# ---------------------------------------------------------------- 池位优先级（协调者 2026-10-03 18:20）
+# .agents/coord/pool_priority.txt：每行一个任务 ID（# 起注释、空行忽略），越靠前越先拿空位，按 pool_of 自动归池。
+# 文件不存在时行为与原来完全一样：谁先轮询到空位谁拿。只决定「谁先拿空位」，不碰校验、门禁和阈值。
+# 排队中的 start 在 .agents/slots/waiting/<ID>.json 登记 {pid, since, pool}，拿到空位或退出时删掉；
+# 名单内的按名单顺序，名单外的排在名单之后、按开始等的时间先来先得。登记的 pid 已死就当作没在等（顺手清掉）。
+PRIORITY_FILE = Path(".agents") / "coord" / "pool_priority.txt"
+WAITING_DIR = Path(".agents") / "slots" / "waiting"
+
+
+def parse_priority(text: str) -> list:
+    """纯函数：名单文本 → 去重后的任务 ID 列表（保持先后）。"""
+    out: list = []
+    for line in text.splitlines():
+        tid = line.split("#", 1)[0].strip()
+        if tid and tid not in out:
+            out.append(tid)
+    return out
+
+
+def read_priority(root: Path):
+    """读名单；文件不存在返回 None（= 原行为）。"""
+    try:
+        return parse_priority((root / PRIORITY_FILE).read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return None
+
+
+def slot_order(waiting: dict, priority: list) -> list:
+    """纯函数：同池正在等位的任务 {ID: 开始等的时间戳} → 拿空位的先后。"""
+    rank = {tid: i for i, tid in enumerate(priority)}
+    return sorted(waiting, key=lambda tid: (rank.get(tid, len(priority)),
+                                            0.0 if tid in rank else float(waiting[tid]), tid))
+
+
+def may_take_slot(me: str, free: int, waiting: dict, priority, me_since: float) -> bool:
+    """纯函数：池里有 free 个空位时，me 现在能不能拿。priority 为 None（没有名单文件）→ 有空位就拿（原行为）。"""
+    if free <= 0:
+        return False
+    if priority is None:
+        return True
+    w = dict(waiting)
+    w.setdefault(me, me_since)
+    return me in slot_order(w, priority)[:free]
+
+
+def live_waiters(root: Path, pool: str) -> dict:
+    """同池里登记在等、且进程还活着的任务 {ID: 开始等的时间戳}；死进程的登记顺手删掉。"""
+    d = root / WAITING_DIR
+    out: dict = {}
+    if not d.is_dir():
+        return out
+    for f in d.glob("*.json"):
+        tid = f.stem
+        try:
+            info = json.loads(f.read_text(encoding="utf-8"))
+            pid = int(info.get("pid", 0))
+        except (OSError, ValueError, TypeError):
+            continue
+        if pool_of(tid) != pool:
+            continue
+        if pid <= 0 or not pid_alive(pid):
+            f.unlink(missing_ok=True)
+            continue
+        out[tid] = float(info.get("since", 0.0))
+    return out
+
+
+def register_waiting(root: Path, tid: str, pool: str, since: float) -> None:
+    d = root / WAITING_DIR
+    d.mkdir(parents=True, exist_ok=True)
+    (d / f"{tid}.json").write_text(json.dumps({"pid": os.getpid(), "since": since, "pool": pool}), encoding="utf-8")
+
+
+def unregister_waiting(root: Path, tid: str) -> None:
+    f = root / WAITING_DIR / f"{tid}.json"
+    try:
+        if int(json.loads(f.read_text(encoding="utf-8")).get("pid", 0)) == os.getpid():
+            f.unlink(missing_ok=True)
+    except (OSError, ValueError, TypeError):
+        pass
+
+
 def find_bin(explicit: str | None, defaults: dict) -> str:
     """执行器：作者 2026-09-30 「gpt额度没有了，用traex cli调用 gpt6 max吧」——默认 traex / traecli；Codex 只作最后备选。"""
     cands = [explicit] if explicit else []
@@ -395,36 +477,49 @@ def cmd_start(a) -> int:
     lockf = root / ".agents" / "slots.lock"
     deadline = time.time() + a.slot_wait_min * 60
     announced = False
-    while True:
-        with open(lockf, "w") as lf:
-            fcntl.flock(lf, fcntl.LOCK_EX)
-            busy = running_in_pool(root, pool, exclude=t.id)
-            if len(busy) < cap:
-                st.update(t.id, attempts=attempt)  # 探针通过、确定启动后才计入运行次数
-                argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
-                logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
-                                f"# 工作区：{wt}\n# 基点：{base}\n\n", encoding="utf-8")
-                extra_env = {"TIANSHU_TASK_ID": t.id}
-                if "codex" in str(binary).lower():  # 2026-10-03 协调者：Codex 执行器各用自己的 CODEX_HOME（线程历史库曾在 ~/.codex 涨到 4.7 GB）；auth / config 链接到 ~/.codex
-                    home = ld / "codex-home"; home.mkdir(parents=True, exist_ok=True)
-                    for name in ("auth.json", "config.toml"):
-                        link = home / name
-                        if not link.exists() and not link.is_symlink():
-                            link.symlink_to(Path.home() / ".codex" / name)
-                    extra_env["CODEX_HOME"] = str(home)
-                pid = launch(argv, pf, logf, exitf, wt, extra_env)
-                (ld / "current.json").write_text(json.dumps({
-                    "attempt": attempt, "pid": pid, "model": model, "effort": effort, "started": now_s(),
-                    "prompt": str(pf), "log": str(logf), "exit": str(exitf), "last": str(lastf), "wt": str(wt), "base": base,
-                }, ensure_ascii=False, indent=1), encoding="utf-8")
-                break
-        if time.time() >= deadline:
-            raise R.Fatal(f"并行已满（{pool} 池 {len(busy)}/{cap}：{'、'.join(busy)}）。这不是任务失败："
-                          f"请后台运行 `python3 tools/agents/step.py slot {t.id} --max-min 25` 等到空位后再 start")
-        if not announced:
-            print(f"… {pool} 池并行已满（{len(busy)}/{cap}），排队等空位（最多 {a.slot_wait_min:g} 分钟）", flush=True)
-            announced = True
-        time.sleep(20)
+    deferred_to = None
+    since = time.time()
+    register_waiting(root, t.id, pool, since)
+    try:
+        while True:
+            with open(lockf, "w") as lf:
+                fcntl.flock(lf, fcntl.LOCK_EX)
+                busy = running_in_pool(root, pool, exclude=t.id)
+                free = cap - len(busy)
+                prio = read_priority(root) if free > 0 else None
+                waiting = live_waiters(root, pool) if prio is not None else {}
+                if may_take_slot(t.id, free, waiting, prio, since):
+                    st.update(t.id, attempts=attempt)  # 探针通过、确定启动后才计入运行次数
+                    argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
+                    logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
+                                    f"# 工作区：{wt}\n# 基点：{base}\n\n", encoding="utf-8")
+                    extra_env = {"TIANSHU_TASK_ID": t.id}
+                    if "codex" in str(binary).lower():  # 2026-10-03 协调者：Codex 执行器各用自己的 CODEX_HOME（线程历史库曾在 ~/.codex 涨到 4.7 GB）；auth / config 链接到 ~/.codex
+                        home = ld / "codex-home"; home.mkdir(parents=True, exist_ok=True)
+                        for name in ("auth.json", "config.toml"):
+                            link = home / name
+                            if not link.exists() and not link.is_symlink():
+                                link.symlink_to(Path.home() / ".codex" / name)
+                        extra_env["CODEX_HOME"] = str(home)
+                    pid = launch(argv, pf, logf, exitf, wt, extra_env)
+                    (ld / "current.json").write_text(json.dumps({
+                        "attempt": attempt, "pid": pid, "model": model, "effort": effort, "started": now_s(),
+                        "prompt": str(pf), "log": str(logf), "exit": str(exitf), "last": str(lastf), "wt": str(wt), "base": base,
+                    }, ensure_ascii=False, indent=1), encoding="utf-8")
+                    break
+                ahead = [x for x in slot_order({**waiting, t.id: since}, prio) if x != t.id][:free] if prio is not None else []
+            if time.time() >= deadline:
+                raise R.Fatal(f"并行已满（{pool} 池 {len(busy)}/{cap}：{'、'.join(busy)}）。这不是任务失败："
+                              f"请后台运行 `python3 tools/agents/step.py slot {t.id} --max-min 25` 等到空位后再 start")
+            if not announced:
+                print(f"… {pool} 池并行已满（{len(busy)}/{cap}），排队等空位（最多 {a.slot_wait_min:g} 分钟）", flush=True)
+                announced = True
+            if ahead and ahead != deferred_to:
+                print(f"… {pool} 池有空位，按 pool_priority.txt 让给排在前面的：{'、'.join(ahead)}", flush=True)
+                deferred_to = ahead
+            time.sleep(20)
+    finally:
+        unregister_waiting(root, t.id)
     print(f"▶ {t.id} 第 {attempt} 次运行已启动（pid {pid}，模型 {model}，推理强度 {effort or '默认'}，"
           f"联网搜索 {'开' if (t.web or a.search) else '关'}）\n  工作区：{wt}\n  提示词：{pf}\n  日志：{logf}\n"
           f"  下一步：python tools/agents/step.py wait {t.id}")
@@ -621,6 +716,42 @@ def cmd_slot(a) -> int:
         time.sleep(30)
 
 
+def cmd_pool(a) -> int:
+    """只读查看（dry-run）：某池现在谁占着、谁在排队、按 pool_priority.txt 下一个空位给谁。不改任何状态。"""
+    root = R.repo_root()
+    g = R.Graph()
+    pool, cap = a.pool, pool_cap(g, a.pool)
+    busy = running_in_pool(root, pool)
+    if a.file:  # 预演：用草稿名单看放行顺序，不影响正在排队的 start
+        prio = parse_priority(Path(a.file).read_text(encoding="utf-8"))
+    else:
+        prio = read_priority(root)
+    waiting = live_waiters(root, pool)
+    print(f"{pool} 池：占用 {len(busy)}/{cap}：{'、'.join(busy) or '无'}")
+    src = a.file or str(root / PRIORITY_FILE)
+    print(f"名单：{'（无 pool_priority.txt，谁先轮询到谁拿）' if prio is None else str(len(prio)) + ' 项，' + src}")
+    order = slot_order(waiting, prio or [])
+    for i, tid in enumerate(order, 1):
+        rank = (prio.index(tid) + 1) if prio and tid in prio else None
+        waited = (time.time() - waiting[tid]) / 60
+        where = f"名单第 {rank} 位" if rank else "不在名单（先来先得）"
+        print(f"  {i}. {tid}  {where}，已等 {waited:.0f} 分钟")
+    ps = subprocess.run(["ps", "-axo", "pid=,command="], capture_output=True, text=True).stdout
+    old = sorted({m.group(1) for m in re.finditer(r"step\.py start (\S+)", ps)
+                  if pool_of(m.group(1)) == pool and m.group(1) not in waiting and m.group(1) not in busy})
+    if old:
+        print(f"  未登记的 start（旧代码或还在探测模型，不参与排序）：{'、'.join(old)}")
+    free = cap - len(busy)
+    nxt = order[:max(free, 0)] if prio is not None else []
+    if free <= 0:
+        print("下一个空位：池满，等占用者结束")
+    elif prio is None:
+        print(f"下一个空位：{free} 个空位，谁先轮询到谁拿")
+    else:
+        print(f"下一个空位给：{'、'.join(nxt) or '（没有登记在等的任务）'}")
+    return 0
+
+
 # ---------------------------------------------------------------- kill / status / smoke
 
 def cmd_kill(a) -> int:
@@ -718,6 +849,11 @@ def build_parser():
     p.add_argument("id")
     p.add_argument("--max-min", type=float, default=25, help="最多等待分钟数（默认 25；到时打印 SLOT-BUSY，退出码 3）")
     p.set_defaults(func=cmd_slot)
+
+    p = sub.add_parser("pool", help="只读查看某池的占用、排队与 pool_priority.txt 下的放行顺序（dry-run，不改状态）")
+    p.add_argument("--pool", default="code", choices=["code", "docs", "assets", "prompts"])
+    p.add_argument("--file", help="用这份草稿名单预演（不读 pool_priority.txt，不改任何状态）")
+    p.set_defaults(func=cmd_pool)
 
     p = sub.add_parser("wait", help="等待本次运行结束")
     p.add_argument("id")
