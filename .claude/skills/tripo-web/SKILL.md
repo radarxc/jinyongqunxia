@@ -13,7 +13,7 @@ description: 用作者 Chrome 里已登录的 Tripo Studio 网页版给人物建
 - 上一轮 38 套的选项、点数、逐位结果见 `tools/agents/reports/ART-3d-tripo-web.md`；
 - 本文是操作手册，与源码冲突时以源码为准。
 
-**哪些已用 JS 跑通**：见 §8 的状态列。生成、绑骨两步的请求体已和页面源码、10-03 抓到的真实请求逐字段核对过，但 AR-65 没有为测试花点数，**第一次真用时按 §2.2 / §2.5 的核对清单跑**。
+**哪些已用 JS 跑通**：见 §8 的状态列。2026-10-04 做 AR-85 通用男女模型时第一次真提交，生成、绑骨、动作、导出全程走 JS，没点一次按钮。结果见 §2.10。
 
 ## 0. 规矩
 
@@ -133,6 +133,20 @@ python3 tools/model3d/ingest.py npc_xxx__chNN_youth --project <pid> --gen-op <�
 
 **2.9 记录**：在本任务 `done.txt` 记 npc_id、project、op、提交号、点数；做完一批写报告。
 
+**2.10 第一次真跑的结果（2026-10-04，AR-85 通用男女，共 170 点）**
+- **生成**：`generate({go:true})` 两次都对上了：扣 65 点，项目 `model_version` 为 v3.1-20260211，`ultra`、`pbr` 都是 true。8K 生成约 2.5 分钟。
+- **绑骨**：`rig({go:true})` 两次都扣 20 点，绑骨约 1 分钟；`joints()` 全过。
+- **动作**：一次提交多个预设，第二个起会报 406 12003「Failed to acquire lock」。驱动已改成每次调用只提交一个并等它跑完（04a13124），反复调到 `left:0` 为止；每个预设约 10 秒。
+- **导出**：没绑骨的模型也能导出（不带骨架），用来先量比例。`exportGlb` 一般 10–20 秒，`pending` 时再调一次就行。
+- **比例**（AR-79 / AR-85 新增，0 点）：生成完、绑骨前，先导出 2K GLB，跑 `python3 tools/model3d/measure_heads.py <glb>`，看 `heads_crown`。偏离目标超过 5% 就调输入图重出，别急着绑骨。
+  - 本次 Tripo 把头放大约 4–6%：男模 2D 7.99 → 3D 7.66，女模拉长图 9.14 → 8.69。
+  - 拉长输入图：`python3 tools/model3d/stretch_apose.py <A字图> <输出> --neck <脖子行> --target <2D目标> --skull <头顶骨行> --chin <下巴行>`。2D 目标 = 3D 目标 × 1.05。
+  - 派生图放模型目录的 `source/` 下，manifest 写明来源和倍数；仓库里的 A 字图本身不改。
+- **跑步片段整段偏离原点**：Tripo 导出的原地「run」虽然没有逐帧位移，但整段离原点约 0.53–0.57（约半个身高），切换动作会跳位。
+  - 导出后、入库前跑 `python3 tools/model3d/fix_anim_offset.py <in.glb> <out.glb>`，只平移 Hips 的水平分量。
+  - 10-03 那 4 套主角的动作文件也有同样问题，未修。
+- **原地动作的移动速度**：支撑脚后移约 walk 0.6、run 2.1 模型单位/秒（模型高约 0.98）。引擎要按这个速度乘身高缩放来移动角色，才不会脚滑。
+
 ## 3. 点数（2026-10 实测）
 
 | 步骤 | 点数 | 说明 |
@@ -189,7 +203,7 @@ Chrome 对页面脚本发起的下载有限制：没有「自动下载多个文�
 
 ## 8. `__t` 接口速查
 
-状态：✅ = AR-65 已在页面上用 JS 跑通（0 点）；🔸 = 请求体已对照页面源码和 10-03 的真实请求核对，下次真做模型时第一次跑；🖱 = 按钮兜底。
+状态：✅ = 已在页面上用 JS 真跑通；🔸 = 请求体已核对、还没真跑；🖱 = 按钮兜底。
 
 | 方法 | 作用 | 状态 |
 |---|---|---|
@@ -201,11 +215,11 @@ Chrome 对页面脚本发起的下载有限制：没有「自动下载多个文�
 | `stage()` / `idbKeys()` / `idbDel(k)` | 参考图暂存进 IndexedDB | ✅ |
 | `toGenerate(mode)` / `uploadRef(name, {slot})` / `clearUpload()` | 切生成页和模式、纯 JS 上传参考图（单图和多视图）、清掉 | ✅ |
 | `checkSettings()` / `genBody()` / `generate()` | 核对面板设置、拼请求体、dry 看请求体 | ✅ |
-| `generate({go:true})` | 生成，65 点 | 🔸 |
+| `generate({go:true})` | 生成，65 点 | ✅（10-04 首次真跑，见 §2.10） |
 | `rig(pid)` | dry 看绑骨请求体 | ✅ |
-| `rig(pid, {go:true})` | pre_rig_check + 绑骨，20 点 | 🔸 |
+| `rig(pid, {go:true})` | pre_rig_check + 绑骨，20 点 | ✅（10-04） |
 | `joints(pid)` | 绑骨体检（对 10-03 的好模型和两版绑坏的小龙女都判对了） | ✅ |
-| `retarget(pid, names, {go:true})` | 预设动作，0 点 | 🔸（dry ✅） |
+| `retarget(pid, names, {go:true})` | 预设动作，0 点；每次调用提交一个，调到 `left:0` 为止 | ✅（10-04） |
 | `exportGlb(pid, npc, {anims})` | 导出 GLB。阿青单模型、男主三动作单文件都命中服务器缓存，sha256 和 10-03 入库的文件相同；重新导出的只差 GLB 里带导出任务 ID 的网格 / 材质名，二进制数据相同 | ✅ |
 | `cover()` / `preview()` / `showCovers()` / `hideCovers()` | 封面渲染：取地址、存盘、页面上并排看 | ✅ |
 | `saveMode()` / `setSaveMode()` / `flushSave()` / `requeueLast()` / `clearSaveQueue()` | 存盘方式和队列（§4） | ✅ `direct` 连续落盘；`reload` 只验证到排队 |
