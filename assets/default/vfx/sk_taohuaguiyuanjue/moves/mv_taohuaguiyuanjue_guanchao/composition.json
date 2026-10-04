@@ -1,0 +1,187 @@
+{
+  "kind": "Composition",
+  "version": 1,
+  "asset_id": "vfx_mv_taohuaguiyuanjue_guanchao__base01",
+  "subject_ref": "mv_taohuaguiyuanjue_guanchao",
+  "mode": "baseline",
+  "effect_set": "../../effect/mv_taohuaguiyuanjue_guanchao/effect-set.yaml",
+  "emitter_plate": "../../../emitters/palm/emitter-plate.yaml",
+  "canvas_px": [
+    1536,
+    1024
+  ],
+  "background": "#EFE6D2",
+  "emit_at_px": [
+    600,
+    560
+  ],
+  "angle_deg": 0,
+  "range_hex": 0,
+  "pixels_per_hex": 256,
+  "length_px": 432,
+  "scale": [
+    1,
+    1.8
+  ],
+  "emitter_scale": 0.6,
+  "rhythm": {
+    "charge_s": 0.15,
+    "release_s": 0.2,
+    "sustain_s": 0.4,
+    "dissipate_s": 0.15
+  },
+  "transition": {
+    "interpolation": "crossfade",
+    "scale_from": 0.95,
+    "drift_fraction": 0,
+    "brightness": [
+      0.8,
+      1,
+      1,
+      1,
+      0.8
+    ],
+    "directional_mask": {
+      "enabled": false,
+      "softness": 0.08
+    }
+  },
+  "output": {
+    "fps": 20,
+    "loop": true,
+    "loop_gap_s": 0.4,
+    "peak_phase": 0.3888888888888889,
+    "preview_size_px": [
+      768,
+      512
+    ],
+    "html_max_bytes": 3000000,
+    "optional_animation": "none"
+  },
+  "effect": {
+    "kind": "EffectSet",
+    "version": 1,
+    "asset_id": "vfx_sk_taohuaguiyuanjue__guanchao_base01",
+    "size_px": [
+      627,
+      627
+    ],
+    "color_space": "srgb",
+    "alpha_mode": "straight",
+    "style": "ink",
+    "direction": [
+      1,
+      0
+    ],
+    "reference_length_px": 411.5,
+    "root_width_px": 460,
+    "blend": "normal",
+    "source": {
+      "mode": "grid",
+      "files": [
+        "source_sheet.png"
+      ],
+      "rects": [
+        {
+          "file_index": 0,
+          "rect_px": [
+            0,
+            0,
+            627,
+            627
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            627,
+            0,
+            627,
+            627
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            0,
+            627,
+            627,
+            627
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            627,
+            627,
+            627,
+            627
+          ]
+        }
+      ],
+      "keying": {
+        "method": "white_key",
+        "white_cutoff_8bit": 250,
+        "opaque_luma": 0.2,
+        "key_full_8bit": 163,
+        "epsilon": 0.00392156862745098,
+        "dewhite": true
+      }
+    },
+    "frames": [
+      {
+        "file": "frame_000.png",
+        "anchor_px": [
+          155.5,
+          317
+        ],
+        "phase": 0
+      },
+      {
+        "file": "frame_001.png",
+        "anchor_px": [
+          155.5,
+          317
+        ],
+        "phase": 0.3888888888888889
+      },
+      {
+        "file": "frame_002.png",
+        "anchor_px": [
+          155.5,
+          317
+        ],
+        "phase": 0.8
+      },
+      {
+        "file": "frame_003.png",
+        "anchor_px": [
+          155.5,
+          317
+        ],
+        "phase": 1
+      }
+    ]
+  },
+  "emitter": {
+    "kind": "EmitterPlate",
+    "version": 1,
+    "file": "source_palm.png",
+    "size_px": [
+      1254,
+      1254
+    ],
+    "color_space": "srgb",
+    "alpha_mode": "straight",
+    "category": "palm",
+    "emit_point_px": [
+      850,
+      704
+    ],
+    "direction": [
+      1,
+      0
+    ],
+    "emission_width_px": 320
+  }
+}
