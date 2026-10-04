@@ -1249,3 +1249,28 @@
 2. **分工**：Claude 只负责给目标和判断最终结果，这里的 Claude 包括协调者和各 Opus 子代理。现在由 Opus 子代理做的执行性工作，逐条交给 Codex `gpt-6.1-sol` 会话，包括人物出图线（10 / 11 / 12 号）、开发监督和素材线追踪。Claude 写目标说明，看最终对照表和报告。Opus 子代理先把手上这一批收尾，写好交接，再退场。
 3. **例外**：Gemini 画图（作者 Chrome）和 Tripo 驱动，仍由 Claude 子代理操作浏览器。
 4. **Tripo**：把网页版操作写成页面内 JS 调用的驱动，和 Gemini 的 `gemini_g.js` 同一做法。以后建模用 JS 调用，代替逐步截图点击的 browser use。
+
+
+## AR-66 · 代码、城镇布局、特效的执行交 traex GPT-6 / GPT-5.6 max；内容与特效审核交 Codex gpt-6.1-sol（2026-10-03 约 20:33）
+
+作者原文（2026-10-03 约 20:33 PDT，逐字照录，补充 AR-65）：
+
+> 代码、城镇布局、特效的执行可以交给traex 的 gpt 6 或者gpt 5.6 max
+> 内容，特效审核交给codex gpt-6.1-sol
+
+协调者口径：在 AR-65 基础上按任务类型分流，规则写在 `.agents/coord/executor_override.json`，`step.py` 和 `gpt_review.py` 每次现读。
+1. **traex，GPT-6-Astra max，不应答回退 GPT-5.6-Sol max**：代码（ENG-、TOOL-、LINT-）、城镇布局（CITY-）、特效（VFX-）的执行。
+2. **Codex gpt-6.1-sol，xhigh**：其余任务的执行，包括内容、设计、剧情、人物出图等。
+3. **审核一律走 Codex gpt-6.1-sol**：特效审核按作者原话；代码和城图的审核沿用 AR-65。
+
+
+## AR-67 · 大地图还是用 Codex 做（2026-10-03 约 20:36）
+
+作者原文（2026-10-03 约 20:36 PDT，逐字照录）：
+
+> 大地图还是用codex做，gemini做的效果跟原来地图不太一致
+
+协调者口径：
+1. 区域图停用 Gemini，改由 Codex gpt-6.1-sol 出图。画风以作者已审的地图基线为准：`assets/default/baseline/map/ref_map_jianghu__ch01_base01.png`（江湖总图）和 `ref_map_dali__ch01_base01.png`（大理）。
+2. 地势继续按 AR-52 贴合真实地形：沿用已做好的 SR_HR 晕渲、Natural Earth 河湖与海陆底图（v4 起伏度底图），作为布局参考图。叠图质检照旧，看河道重合和海域 IoU。
+3. 已入库的 Gemini 区域图 20 张，等 Codex 版逐张通过后覆盖。在那之前先留着，状态不改。Gemini 出图员停做区域图，把底图与质检流程交接给 Codex 会话。礼品等物品图仍按原分工。
