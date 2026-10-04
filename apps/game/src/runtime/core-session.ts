@@ -5,9 +5,11 @@ import { dispatchCoreCommand } from './core-dispatch';
 
 export interface AsyncCore {
   dispatch(command: Command): Promise<DispatchResult>; snapshot(): GameState;
+  /** In-host read boundary; callers must never mutate or forward this reference. */
+  read(): Readonly<GameState>;
 }
 export function createAsyncCore(state: GameState, content: CoreContent = {}): AsyncCore {
   const owned = cloneGameState(state);
   return { dispatch: (command) => dispatchCoreCommand(owned, command, content),
-    snapshot: () => cloneGameState(owned) };
+    snapshot: () => cloneGameState(owned), read: () => owned };
 }

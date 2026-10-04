@@ -11,6 +11,7 @@ import type { NpcWorldState } from '../npc';
 import type { DifficultyId } from '../state';
 import type { BookSleepPlan } from '../progression';
 import type { RegionCommand, RegionRuntimeContent } from '../world/region-types';
+import type { BattleActCommand, BattleSetup, BattleUnitSeed } from '../battle';
 
 export interface WorldTickCommand { readonly t: 'world/tick' }
 export type InventoryCommand =
@@ -26,8 +27,23 @@ export type QuestChoiceCommand = { readonly t: 'quest/choose'; readonly questId:
   readonly completionNodeId?: string };
 export type RulesCommand = { readonly t: 'rules/setDifficulty'; readonly difficulty: DifficultyId };
 export type ChapterCommand = { readonly t: 'chapter/bookSleep'; readonly plan: BookSleepPlan };
+export interface BattleEnterCommand { readonly t: 'battle/enter'; readonly setup: BattleSetup;
+  readonly seeds: readonly BattleUnitSeed[] }
+export type BattleBusActCommand =
+  | (BattleActCommand & { readonly expectedRevision?: number; readonly automatic?: false })
+  | { readonly t: 'battle/act'; readonly automatic: true; readonly expectedRevision?: number };
+export interface BattleSetAutoBusCommand { readonly t: 'battle/setAuto'; readonly mode: 'manual' | 'auto';
+  readonly expectedRevision?: number }
+export interface BattleRetryBusCommand { readonly t: 'battle/retry'; readonly option: 'restart';
+  readonly expectedRevision?: number }
+export interface BattleReceiptCommand { readonly battleId: string; readonly outcomeSeq: number }
+export type BattleFinalizeCommand = BattleReceiptCommand & { readonly t: 'battle/finalize' };
+export type BattleLeaveCommand = BattleReceiptCommand & { readonly t: 'battle/leave' };
+export type BattleBusCommand = BattleEnterCommand | BattleBusActCommand | BattleSetAutoBusCommand
+  | BattleRetryBusCommand | BattleFinalizeCommand | BattleLeaveCommand;
 export type Command = WorldTickCommand | WorldMapCommand | TownCommand | InventoryCommand
-  | DialogueCommand | QuestChoiceCommand | RulesCommand | ChapterCommand | RegionCommand;
+  | DialogueCommand | QuestChoiceCommand | RulesCommand | ChapterCommand | RegionCommand
+  | BattleBusCommand;
 
 export type RejectReason =
   | 'COMMAND_UNKNOWN' | 'WORLD_PAUSED' | 'MAP_UNAVAILABLE' | 'MAP_STILL_TRAVELLING'
@@ -57,7 +73,12 @@ export type RejectReason =
   | 'REGION_LOOT_UNKNOWN' | 'REGION_LOOT_CAPACITY' | 'REGION_EXIT_PENDING'
   | 'REGION_INTERACTION_BUSY'
   | 'REGION_GATE_QINGGONG' | 'REGION_GATE_ITEM' | 'REGION_GATE_QUEST'
-  | 'REGION_GATE_FLAG' | 'REGION_GATE_CAPABILITY' | 'REGION_GATE_LOCKED';
+  | 'REGION_GATE_FLAG' | 'REGION_GATE_CAPABILITY' | 'REGION_GATE_LOCKED'
+  | 'BATTLE_ALREADY_ACTIVE' | 'BATTLE_NOT_ACTIVE' | 'BATTLE_NOT_ENDED'
+  | 'BATTLE_ENDED'
+  | 'BATTLE_STALE_REVISION' | 'BATTLE_AUTO_FORBIDDEN' | 'BATTLE_AUTO_ACTIVE'
+  | 'BATTLE_MANUAL_TURN' | 'BATTLE_NOT_MANUAL_TURN' | 'BATTLE_ACTION_REJECTED'
+  | 'BATTLE_RECEIPT_MISMATCH' | 'BATTLE_REWARD_ITEM_UNKNOWN' | 'BATTLE_REWARD_CAPACITY';
 
 export interface InkStoryContent { readonly storyId: string; readonly storyHash: string;
   readonly storyJson: string | Readonly<Record<string, unknown>> }
@@ -85,9 +106,12 @@ export interface CoreTransaction {
   abort(reason: RejectReason, at?: string): never;
 }
 export interface CommandHandler<C extends Command = Command> {
+  /** A successful retry-safe no-op. It must not read or advance an RNG stream. */
+  readonly noop?: (state: Readonly<GameState>, command: C, content: CoreContent) => boolean;
   validate(state: Readonly<GameState>, command: C, content: CoreContent): RejectReason | null;
   apply(tx: CoreTransaction, command: C): void;
 }
 export interface CommandFact { readonly t: string; readonly payload?: JsonValue }
 export * from './bus';
 export { worldPaused } from './handlers';
+export { battleHandler } from './battle-handler';

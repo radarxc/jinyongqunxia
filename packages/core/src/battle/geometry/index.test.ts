@@ -24,6 +24,16 @@ describe('battle geometry queries', () => {
     expect(queryMoveAt(state, 'hero', BASIC_MOVE.id, 'missing').reason).toBe('INVALID_TARGET');
   });
 
+  it('keeps the zero-distance path valid without ignoring an occupied or missing origin', () => {
+    const state = combatFixture(); const actor = state.units[0]!;
+    expect(queryPath(state, actor.id, actor.pos)).toEqual({ path: [{ ...actor.pos }],
+      cost: 0, actionCount: 0, dangerCount: 0 });
+    state.units[1]!.pos = { ...actor.pos };
+    expect(queryPath(state, actor.id, actor.pos)).toBeNull();
+    actor.pos = { q: 100, r: 100 };
+    expect(() => queryPath(state, actor.id, actor.pos)).toThrow('PATH_START_OUTSIDE_GRID');
+  });
+
   it('rejects a direct target outside the default twelve-cell sight radius', () => {
     const move = { ...BASIC_MOVE, delivery: 'ranged' as const, range: { min: 1, max: 13 } };
     const state = combatFixture({ gridRadius: 4, playerMoves: [move] });

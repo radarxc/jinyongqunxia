@@ -1,5 +1,5 @@
 import type {
-  AttackDirection, BattleCommand, BattleEvent, BattleSetup, BattleUnitSeed, HexAim, HexCoord,
+  AttackDirection, BattleEvent, BattleRecordedCommand, BattleSetup, BattleUnitSeed, HexAim, HexCoord,
   HexPrimitiveShape, RngState, BattleResult, SideId, BattleRewards as CoreBattleRewards,
 } from '@tianshu/core';
 import type { BattleCell, BattleMarker } from '@tianshu/render/battle';
@@ -91,6 +91,6 @@ export type BattleUiCommand =
   | { readonly t: 'battle/defend'; readonly actor: string; readonly revision: number }
   | { readonly t: 'battle/gather'; readonly actor: string; readonly routeId: string; readonly revision: number };
 export interface BattleTranscript {
-  readonly launch: BattleLaunch; readonly commands: readonly BattleCommand[];
+  readonly launch: BattleLaunch; readonly commands: readonly BattleRecordedCommand[];
   readonly events: readonly BattleEvent[]; readonly rng: RngState;
 }

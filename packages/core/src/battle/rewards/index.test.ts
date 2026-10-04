@@ -38,6 +38,21 @@ describe('battle rewards', () => {
     expect(calls).toBe(2);
   });
 
+  it('keeps training facts but neither grants nor draws loot when drops are excluded', () => {
+    const state = combatFixture({ rewards: {
+      drops: [{ itemId: 'it_a', name: '甲', count: 1 }],
+      lootPool: [{ itemId: 'it_b', name: '乙', count: 1, weight: 1 }], lootDraws: 2,
+    } });
+    state.rewardStats.martialUses.push({ unitId: 'hero', skillId: 'sk_basic', uses: 1 });
+    let calls = 0;
+    const rng: Rng = { nextU32: () => { calls += 1; return 0; },
+      snapshot: () => [calls, 0, 0, 0] };
+    expect(computeBattleRewards(state, rng, { includeDrops: false })).toMatchObject({
+      drops: [], martialUses: [{ unitId: 'hero', skillId: 'sk_basic', uses: 1 }],
+    });
+    expect(calls).toBe(0);
+  });
+
   it('draws with replacement when draw count exceeds pool entry count', () => {
     const state = combatFixture({ rewards: { lootPool: [
       { itemId: 'it_a', name: '甲', count: 2, weight: 1 },

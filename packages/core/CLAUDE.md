@@ -1,5 +1,13 @@
 # @tianshu/core
 
+| 项 | 内容 |
+|---|---|
+| 归属 | tech/01、tech/05 的纯规则内核与命令事务实现；玩法定义引用对应 design 文档 |
+| 上游 | canon §18–19；作者已定需求；ENG-15、ENG-16a/b/d、ENG-14b |
+| 当前战斗入口 | `Core.dispatch()` → `battleHandler` → `BattleSession`；应用只消费投影 |
+
+## 结论先行（TL;DR）
+
 同步、纯 TypeScript、无 DOM 的唯一玩法权威。依赖只允许 `shared` 与 `data` 的公开边界；禁止平台 / UI / render / Node import，禁止墙钟、隐式随机、近似数学、无比较器排序与非整数规则状态。RNG 消费量、命令事务、事件顺序和规范序列化都是协议，变更必须补固定向量或 golden。各后续任务只改对应子目录，不再改根 `src/index.ts`。
 
 ## `GameState` 根结构
@@ -10,9 +18,9 @@
 | `profile` | 跨书界长期人物：主角、创角身份、难度 / 规则日志与同伴 |
 | `chapter` | 当前书界：定年 / 日历、剧情线、序章模式 / 回执、世界物品、店铺、NPC 运行态与章节道具用量 |
 | `party` | 当前队伍：背包、十一装备槽、金钱 |
-| `world` | `navigation` 位置事实与 `pendingTimeAdvance` |
+| `world` | `navigation` 位置事实、`pendingTimeAdvance` 与按需创建的 `battleReceipts` |
 | `dialogue` | Ink 对话临时态；非对话时为 `null` |
-| `battle` | 战斗临时态入口；完整命令总线接入由 ENG-16c 扩展 |
+| `battle` | `battle-session.v1`，包含战况、两流 RNG、冻结入场快照与命令历史；非战斗为 null |
 
 所有规则状态必须是可规范 JSON 序列化的安全整数 / 字符串 / 布尔 / null / 稠密数组 / 普通对象。Core 源码禁止原生 `/`、`/=`；整数除法使用 `@tianshu/shared` 的 `floorDivInt()` / `ceilDivInt()`。
 
@@ -27,10 +35,10 @@
 
 ## 命令总线与事务
 
-- 非战斗写入口统一为 `Core.dispatch(Command)`：world tick、大地图、城镇 / 打坐和装备 / 使用物品都按 `t` 查唯一 handler。成功返回 `{ ok:true,stateVersion,events }`；合法拒绝返回稳定代码 `{ ok:false,reason,at? }`。
+- 写入口统一为 `Core.dispatch(Command)`：世界、剧情、背包与六个战斗命令都按 `t` 查唯一 handler。成功返回 `{ ok:true,stateVersion,events }`；合法拒绝返回稳定代码 `{ ok:false,reason,at? }`。
 - handler 的 `validate` 只读且不得取 RNG；`apply` 只经 `CoreTransaction.set/splice/rng/emit/abort` 写入。journal 仅登记每个 owner/key 的首次旧值，五流 RNG 与事件均先暂存。
 - 提交前验证事件 JSON、安全整数及整棵 `GameState`；成功后才推进版本、命令序和事件序。异常或 abort 逆序回滚状态并丢弃 RNG / 事件。`TypeError`、溢出和不变量错误必须上抛，不得伪装成玩法拒绝。
-- 规范事件为 `{ t,seq,stateVersion,causeId,parentSeq,payload }`；同命令 `causeId=stateVersion:commandOrdinal`，首事件无父项，其余默认指向首事件。战斗旧事件形状只保留至 ENG-16c。
+- 规范事件为 `{ t,seq,stateVersion,causeId,parentSeq,payload }`；同命令 `causeId=stateVersion:commandOrdinal`，首事件无父项，其余默认指向首事件。战斗本地事实保留在会话中，提交时包装成同一运输信封。
 - `migrateUiSessionV1()` 是 schema 1→2 的纯 JSON 迁移：旧 known / chapterUses / itemTargets / location 归入正式状态；
   `migrateBookSleepV2()` 再做 schema 2→3 并补中性 `mountedRegion:null`。非空 battleUses 明确报错，绝不静默丢弃。
 - `createNewGameState()` / `createNewGameCore()` 是 ch00 唯一新档工厂；宿主注入 uint32
@@ -124,7 +132,7 @@
   `shoulder/cape/waist/feet/accessory`。
 - ENG-07 使用物品：`useConsumable()` 返回新背包、目标、`ConsumableUseState`、`fieldTime` 与事件；
   永久经脉强化唯一调用 `progression.applyMeridianBoost()`，临时冲穴药效写入 `meridianAids`。
-  战外命令总线把 `chapterUses` 写入 chapter；`battleUses` 仅属于活动战斗并由 ENG-16c 接入。
+  战外命令总线把 `chapterUses` 写入 chapter；`battleUses` 仅属于活动战斗。战斗冻结章节限用账本，finalize 原子写回，重试恢复入场账本。
 - ENG-08 探索与城镇：`WorldItemsRuntime` 按场景分桶，`get()` / `queryScene()` 应用于场景 ID、
   锚点、tick 窗口和旗标可见性，`pickup()` 原子返回背包与已取快照。`checkUniformExposure()`
   产生官甲六字段事件并返回执法状态；普通城门只调用 `canEnterNormalCityGate()`。
@@ -140,23 +148,32 @@
 
 - 创建：遭遇、剧情、城镇打坐被袭分别调用 `createEncounterBattleSetup()`、
   `createStoryBattleSetup()`、`createMeditationAmbushBattleSetup()`，再以单位快照调用
-  `createBattleState()`。`BattleSetup` 冻结参战者、阵营、胜负条件与特殊规则；战中不得扫描世界补人。
-- 推进：`advanceBattleToReady()` 推进事件驱动 CT 与逐 tick 异种气；提交
-  `BattleCommand` 给 `resolveBattleAction()`。`battle/act` 原子提交
+  `battle/enter`。同事务由 `tx.rng('world').nextU32()` 覆盖 seed，冻结世界背包 / 章节用量并创建
+  `BattleSession`；实例 ID 为 `setupId:nextRuntimeOrdinal`，重复遭遇不会共用结算回执。
+- 推进：`BattleSession` 持有 battle / ai 流并统一 CT、胜负、自动事件与命令日志；总线的
+  `battle/act` 原子提交
   `walkTo? + skill|item|guard|acuteQiGather|wait + facing?`；`battle/wait` 是原地待机别名。
   提交时重算路径、射程、LOS、目标、道具次数 / 冷却与经脉状态，不接受预览结果。
 - 行动：防御写入 `bf_jiangu/bf_xieli`；聚气只能选已打通攻击路线且不带移动；战斗物品只改
   setup 背包副本。带防御路线暂以 `MERIDIAN_ROUTE_BLOCKED` 拒绝，直到防御路线提交接口落地。
-- 奖励：`computeBattleRewards()` 纯计算武学使用、移动训练、周天和 setup 掉落；仅随机掉落池
-  消费独立 `loot` 流。`emitBattleRewards()` 幂等发 `battle/rewards`，core 不写世界状态。
+- 奖励：`projectBattleRewards()` 零 RNG 展示已知奖励；随机掉落只在 `battle/finalize` 消费
+  世界 `loot` 流。背包、章节限用、资源、`profile.battleTraining` 与 `battleId+outcomeSeq` 回执
+  同事务写入后清 battle；重复 finalize 零写入，`battle/leave` 复用 finalize。
 - 查询：`queryReachable()` / `queryPath()` / `queryMoveAt()` / `queryLegalTargets()` 是只读棋盘规则入口，
   `isBattleUnitVisible()` 统一 LOS、遮蔽与隐匿可见性；`queryDamageGeometry()` 是结算、预测与展示
   共用的方位 / 高差 / 地形 / 遮蔽 / LOS 纯查询，render 不得重算；
   `resolveAreaCells()` 返回六角范围格，`matchFormation()` 校验六向阵形。可达集、路径与 open set 不入状态。
 - 自动：棋盘 `chooseAutoCommand()` 通过上述查询在射程外先接近；无站位
-  `simulateAbstractBattle()` 走独立抽象候选，不读取坐标、LOS、ZOC 或高差；`noAuto` 会拒绝。
-- 回放：`runBattleReplay()` 仅记录已接受命令；`hashBattleReplay()` 接收宿主注入的 SHA-256，
-  Core 不引入 Node / Web API。拒绝命令不得进入命令前缀或推进 RNG。
+  `simulateAbstractBattle(state, policies, rng, maxActions?)` 接受调用方当前 RNG，不重新播种；
+  抽象模式不读取坐标、LOS、ZOC 或高差，`noAuto` 会拒绝。
+- 重试：`battle/retry` 从入场 seed 与累计 retryCount 经 `deriveRetrySeed()` 混合，重置两流，
+  保留命令 / 事件历史；固定向量 `(0x12345678,1) → 0x48c69a09`。上限为 `min(2000,max(60,N×40))` 次行动。
+- 回放：`runBattleReplay()` 经同一会话执行 act / setAuto / retry；自动命令录具体行动和 aiSeed，
+  回放只验证该种子并推进 ai 流。拒绝命令不进前缀或推进 RNG；SHA-256 仍由宿主注入。
+- 性能：候选只复制可变单位与小账本，三个历史数组用追加缓冲；提交用逐项 push，避免历史展开。
+  `assertCanonicalGameState(state)` 在存档边界完整扫描；事务内部才复用已冻结历史前缀的校验。
+  journal 覆写 / 回滚使缓存失效；投影依赖单位 revision，不依赖整单位 JSON 比较。
+  原地路径直接返回零步结果且保留占格 / 越界拒绝；无可用路线或招式时 AI 不做无用视线查询。
 
 ### 战斗事件与下游约定
 
@@ -170,8 +187,8 @@
   动画、倍速和提示不回写 Core。`combat.qiRepel.message` 可显示，业务判断使用其规范事实名。
 - ENG-09：打坐被袭只传当时实际打坐者到 `meditationUnitRefs`；工厂会给这些单位创建
   `bf_chaqi` 三次自身行动并赋敌方先机，不会补入附近 NPC。
-- 当前 `BattleEvent` 是同步战斗内核的精简事实；持久化的 `BattleEventV3` 信封、`setupHash`、
-  完整 payload 和 protocol 3 切换由宿主 / 数据模型任务接入。
+- `BattleEvent` 是同步战斗内核的本地事实；总线已包装规范运输信封。完整录像文件、setupHash、
+  命令摘要兼容和跨浏览器对拍交 ENG-22；运输事件序号不回传影响本地战斗 hash。
 
 ## 验证命令
 
@@ -180,6 +197,8 @@
 
 ## 变更记录
 
+- 2026-10-03：ENG-16c 收回战斗会话、六命令事务、世界流种子、幂等奖励回执与实战 / 回放对拍；
+  移除历史整树克隆，抽象战斗改为调用方传 RNG。旧 schema 3 不补空 receipts，保留原 golden。
 - 2026-10-03：ENG-20a 接入 RegionMap 挂载、确定性场景行走与跨沟、交互锚、门禁、
   出口、安全锚 / 自动存档事件及静态 / 动态区域投影；GameState schema 3 保存 mountedRegion。
 - 2026-10-02：ENG-17a 接入 ch00 新档、三档难度切换、core-owned Ink 对话与
@@ -187,3 +206,23 @@
 - 2026-10-02：ENG-15 统一非战斗命令总线与 mutation journal；GameState 升至 schema 2 / rules protocol 3，移除 `ui-session.v1` 边车与 `transient` 根。
 - 2026-10-01：`rngProtocol` 升至 2；`intInclusive()` 改为 16 位半字乘加的 32×32→64 位乘积高 32 位映射，保持每次公开抽样恰消费一个 `nextU32()`。协议 1 的浮点缩放结果不得作为协议 2 golden；package-local ESLint 同时禁用 `/` 与 `/=`。
 - 2026-10-01：时钟与状态校验改用 shared 的 BigInt 整数除法；根 `pnpm check` 显式执行 package-local ESLint。
+
+## 参考资料
+
+- [Math.imul](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/imul)：32 位整数乘法；MDN 列为广泛支持，访问 2026-10-03。
+- [Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)：只冻结当前层，历史缓存前递归冻结且完整校验 JSON，访问 2026-10-03。
+- 行为契约见 design/09 §2.11–2.12、tech/05 §7.7、§14.3–14.4；无新增依赖、付费 API 或远程配额。
+
+## 本文新增术语/约定
+
+- `battle-session.v1`：core 持有的战斗状态与重放边界；`revision` 是投影失效标记，不是第二份规则。
+- `battleReceipts`：结算实例与结局序号；`battleTraining`：已结算的武学使用、移动、周天事实。
+
+## 待决事项 / 依赖
+
+- 已解决：ENG-16c 战斗命令总线、独立 battleUses、世界流种子、回滚与幂等结算，见上述入口。
+- ENG-16e 接 `queryBattleAction/previewBattleRoute/queryBattleQi`、可达 / 路径 / 方位查询与奖励投影；按钮与高亮默认维持现有可用性。
+- ENG-22 接入场快照、两流、命令前缀与会话 hash；deploy/order/free/concede/undo 完整指令仍待其对应规则实现。
+- SXP / 永久穴脉换算、伤势 / 调息和地形 / 任务结算依赖完整养成与场景输入；当前保存精确次数，默认不猜转换系数。
+- 浏览器 / 真机确定性与性能仍为（待实测）；Node 对拍和 best-of-N 不代替移动端验收。
+- 对基准修改提案：无；不新增原著事实或玩法 ID。

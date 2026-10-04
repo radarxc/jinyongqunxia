@@ -1,14 +1,15 @@
 // eslint-disable-next-line no-restricted-imports -- Test-only SHA-256 port; runtime stays platform-neutral.
 import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-import { advanceBattleToReady, computeBattleRewards, emitBattleRewards, previewBattleRoute,
-  resolveBattleAction, type BattleCommand, type BattleState, type MeridianFlowInput } from '../battle';
+import { advanceBattleToReady, computeBattleRewards, createBattleSession, emitBattleRewards,
+  previewBattleRoute, resolveBattleAction, retryBattleSession, setBattleAuto, stepBattleSession,
+  type BattleCommand, type BattleState, type MeridianFlowInput } from '../battle';
 import { createRng, seedStream } from '../rng';
-import { BASIC_MOVE, combatFixture } from '../testing/combat-fixture';
+import { BASIC_MOVE, battleSeed, combatFixture } from '../testing/combat-fixture';
 import type { ItemDef } from '@tianshu/data/schemas';
 import {
   acceptedCommandPrefix, battleReplayHashDomain, canonicalBattleReplayHashInput, hashBattleReplay,
-  runBattleReplay, type BattleReplayHashParts,
+  replaySessionProjection, runBattleReplay, type BattleReplayHashParts,
 } from './index';
 
 const accepted: readonly BattleCommand[] = [
@@ -69,7 +70,8 @@ function terminalReplay(previews: number, restoreAt?: number) {
   emitBattleRewards(battle, computeBattleRewards(battle));
   const session = { battle, battleRng: rng.snapshot(),
     aiRng: createRng(seedStream(battle.setup.seed, 'ai')).snapshot(),
-    acceptedOrdinal: battle.actionNo, decisionOrdinal: battle.actionNo };
+    acceptedOrdinal: battle.actionNo, decisionOrdinal: 0, revision: battle.actionNo,
+    retryCount: 0, auto: false, outcomeSeq: battle.phase === 'ended' ? 1 : 0 };
   const parts: BattleReplayHashParts = { appBuild: 'test-app-1', coreVersion: 'test-core-1',
     rulesProtocol: 3, rngProtocol: 2, contentHash: 'a'.repeat(64), runtimeMartialArts: [],
     commandPrefix: battle.acceptedCommands, session };
@@ -80,13 +82,28 @@ describe('battle replay protocol', () => {
   it('replays the same seed and accepted commands to the golden SHA-256', () => {
     const first = replay(accepted); const second = replay(accepted);
     expect(second.input).toBe(first.input); expect(second.hash).toBe(first.hash);
-    expect(first.hash).toBe('1b94019028cfc9c71c7caac3975e623c0f46f01e07bfe4323c697843f3a7a850');
+    expect(first.hash).toBe('63a0b822bf5f06550cf411d5dfd861bf0cc3216f4bfbfb919a1c80246f6d2fdf');
     expect(first.run.session.battle.acceptedCommands).toEqual(accepted);
+  });
+
+  it('explains the BattleSession golden change and restores the ENG-16d golden', () => {
+    const current = replay(accepted); const previous = structuredClone(current.parts);
+    const session = previous.session as unknown as Record<string, unknown>;
+    for (const key of ['revision', 'retryCount', 'auto', 'outcomeSeq']) delete session[key];
+    session['decisionOrdinal'] = 2;
+    const battle = session as unknown as { battle: Record<string, unknown> };
+    for (const unit of battle.battle['units'] as Array<Record<string, unknown>>) delete unit['revision'];
+    expect(hashBattleReplay(previous, sha256))
+      .toBe('1b94019028cfc9c71c7caac3975e623c0f46f01e07bfe4323c697843f3a7a850');
   });
 
   it('explains the geometry golden change and still restores the ENG-16a baseline', () => {
     const current = replay(accepted); const previous = structuredClone(current.parts);
-    const battle = previous.session as unknown as { battle: Record<string, unknown> };
+    const session = previous.session as unknown as Record<string, unknown>;
+    for (const key of ['revision', 'retryCount', 'auto', 'outcomeSeq']) delete session[key];
+    session['decisionOrdinal'] = 2;
+    const battle = session as unknown as { battle: Record<string, unknown> };
+    for (const unit of battle.battle['units'] as Array<Record<string, unknown>>) delete unit['revision'];
     const setup = battle.battle['setup'] as Record<string, unknown>;
     const setupGrid = setup['grid'] as { cells: Array<Record<string, unknown>> };
     const setupCells = setupGrid.cells;
@@ -124,7 +141,9 @@ describe('battle replay protocol', () => {
 
     const restoredSession = { battle: restoredBattle, battleRng: restoredRng.snapshot(),
       aiRng: createRng(seedStream(state.setup.seed, 'ai')).snapshot(),
-      acceptedOrdinal: 2, decisionOrdinal: 2 };
+      acceptedOrdinal: 2, decisionOrdinal: 0, revision: 2, retryCount: 0, auto: false,
+      outcomeSeq: restoredBattle.phase === 'ended' ? 1 : 0 };
+    for (const unit of restoredBattle.units) unit.revision += 3;
     const restoredParts = { ...control.parts, session: restoredSession };
     expect(canonicalBattleReplayHashInput(restoredParts)).toBe(control.input);
     expect(hashBattleReplay(restoredParts, sha256)).toBe(control.hash);
@@ -136,6 +155,33 @@ describe('battle replay protocol', () => {
       error: 'NOT_YOUR_TURN' })]);
     expect(withRejected.parts.commandPrefix).toEqual(accepted);
     expect(withRejected.input).toBe(clean.input); expect(withRejected.hash).toBe(clean.hash);
+  });
+
+  it('replays a capped long battle to the identical terminal session', () => {
+    const opening = combatFixture({ playerMoves: [], enemyMoves: [] });
+    const setup = { ...opening.setup, rules: { ...opening.setup.rules, roundLimit: 10_000 } };
+    const live = createBattleSession(setup, opening.units.map((unit) => battleSeed(unit.id, [])));
+    setBattleAuto(live, true);
+    while (live.battle.phase !== 'ended') stepBattleSession(live);
+    const replayed = runBattleReplay(live, live.commandLog);
+    expect(live.battle).toMatchObject({ phase: 'ended', result: 'draw', actionNo: 80 });
+    expect(replayed.rejected).toEqual([]);
+    expect(replayed.session).toEqual(replaySessionProjection(live));
+  });
+
+  it('replays both outcomes and RNG resets across a recorded retry', () => {
+    const opening = combatFixture({ hp: 100 });
+    const live = createBattleSession(opening.setup, opening.units);
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      if (attempt > 0) retryBattleSession(live);
+      setBattleAuto(live, true);
+      while (live.battle.phase !== 'ended') stepBattleSession(live);
+    }
+    const replayed = runBattleReplay(live, live.commandLog);
+    expect(replayed.rejected).toEqual([]);
+    expect(live.outcomeSeq).toBe(2);
+    expect(replayed.session).toEqual(replaySessionProjection(live));
+    expect(acceptedCommandPrefix(replayed.records)).toEqual(live.commandLog);
   });
 
   it('reaches the same routed terminal hash with 0, 1 or 100 previews before every action', () => {

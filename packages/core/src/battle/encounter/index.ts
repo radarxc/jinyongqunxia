@@ -209,12 +209,13 @@ type DefaultedBattleUnitField = 'meridianDefenseBp' | 'qiProductionPerTick' | 'r
   | 'medical' | 'innerGrade' | 'stamina' | 'staminaMax' | 'healingReceivedBp'
   | 'itemEffects' | 'itemState';
 export type BattleUnitSeed = Omit<BattleUnit, 'unitIndex' | 'side' | 'control' | 'state' | 'active' | 'ct'
-  | 'pos' | 'facing' | 'move' | 'jump' | 'waitStreak' | DefaultedBattleUnitField>
+  | 'revision' | 'pos' | 'facing' | 'move' | 'jump' | 'waitStreak' | DefaultedBattleUnitField>
   & Partial<Pick<BattleUnit, DefaultedBattleUnitField | 'move' | 'jump' | 'waitStreak'>>;
 function cloneUnitSeed(seed: BattleUnitSeed, participant: BattleParticipant, ct: number,
   initialBuffs: BattleUnit['buffs']): BattleUnit {
   const medical = seed.medical ?? 0;
   return { ...seed, unitIndex: participant.unitIndex, side: participant.side, control: participant.control,
+    revision: 0,
     state: participant.state, active: participant.state === 'active' || participant.state === 'hidden', ct,
     zoneGuards: { body: { ...seed.zoneGuards.body }, hand: { ...seed.zoneGuards.hand },
       leg: { ...seed.zoneGuards.leg } }, buffs: [...seed.buffs.map((buff) => ({ ...buff })), ...initialBuffs],
@@ -269,6 +270,7 @@ export function createBattleState(setup: BattleSetup, seeds: readonly BattleUnit
     tick: 0, round: 0, actionNo: 0, phase: 'opening', result: null,
     openingOrder: createOpeningOrder(units, setup.start.initiativeSide), meridianByUnit,
     inventory: { stacks: setup.inventory.stacks.map((stack) => ({ ...stack })) },
+    ...(setup.itemChapterUses === undefined ? {} : { itemChapterUses: { ...setup.itemChapterUses } }),
     rewardStats: { martialUses: [], movementActions: [], fullCirculations: [] },
     events: [], acceptedCommands: [] };
 }

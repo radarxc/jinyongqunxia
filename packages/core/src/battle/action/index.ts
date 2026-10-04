@@ -4,6 +4,8 @@ import { endOwnAction, executeBuffHook, forbidsAcuteGather, guardDamageDownBp,
   guardDefenseBonusBp, hasGuardStance, qiProductionBp } from '../../buff';
 import { useConsumable, type ConsumableTargetState, type UseConsumableResult } from '../../economy';
 import { hexDistance, type HexCoord } from '../../hex';
+import { cloneJsonValue } from '../../state/json';
+import { battleActionCandidate as actionCandidate } from '../candidate';
 import {
   applyAcupointStrike, calculateZoneResistanceBp, injectPenetratingQi, resolveDamage,
   tickHostileMeridianEffects,
@@ -18,6 +20,14 @@ import type { BattleActCommand, BattleAction, BattleCommand, BattleMove, BattleS
 
 export interface BattleActionResult { readonly accepted: boolean; readonly error?: string;
   readonly hpDamage: number; readonly eventsAdded: number }
+const ACTION_REJECTIONS = new Set(['BATTLE_ENDED', 'INVALID_ACTOR', 'NOT_YOUR_TURN',
+  'INVALID_FACING', 'PATH_BLOCKED', 'QI_ROUTE_UNAVAILABLE', 'MERIDIAN_ROUTE_BLOCKED',
+  'DISABLED_BY_STATUS', 'QI_CARRY_FULL', 'ILLEGAL_TARGET', 'NO_LOS', 'LIMIT_REACHED',
+  'ON_COOLDOWN', 'UNKNOWN_MOVE', 'MP_NOT_ENOUGH', 'INVALID_TARGET', 'OUT_OF_RANGE',
+  'HEIGHT_BLOCKED', 'TARGET_NOT_VISIBLE']);
+export function isBattleActionRejection(error: unknown): error is RangeError {
+  return error instanceof RangeError && ACTION_REJECTIONS.has(error.message);
+}
 
 function actorFor(state: BattleState, command: BattleCommand): BattleUnit {
   if (state.phase === 'ended') throw new RangeError('BATTLE_ENDED');
@@ -347,10 +357,12 @@ function useBattleItem(state: BattleState, actor: BattleUnit, target: BattleUnit
     used = useConsumable({ inventory: state.inventory, itemDefs: state.setup.itemDefs, item,
       target: consumableTarget(target), context: 'battle', currentTick: state.tick,
       battleTurnToken: actor.ownActions, healingReceivedBp: target.healingReceivedBp,
-      usage: { battleUses: actor.itemState.battleUses, chapterUses: {},
+      usage: { battleUses: actor.itemState.battleUses, chapterUses: state.itemChapterUses ?? {},
         lastBattleUseTurns: actor.itemState.lastBattleUseTurns } });
   } catch (error) { mapConsumableError(error); }
   state.inventory = { stacks: used.inventory.stacks.map((stack) => ({ ...stack })) };
+  if (state.itemChapterUses !== undefined || Object.keys(used.usage.chapterUses).length > 0)
+    state.itemChapterUses = { ...used.usage.chapterUses };
   applyConsumableTarget(target, used);
   actor.itemState.uses += 1;
   actor.itemState.battleUses = { ...actor.itemState.battleUses,
@@ -369,7 +381,7 @@ function mapConsumableError(error: unknown): never {
     || error.message === 'INVENTORY_INSUFFICIENT') throw new RangeError('LIMIT_REACHED');
   if (error.message === 'CONSUMABLE_CONTEXT' || error.message === 'CONSUMABLE_PERMANENT_CONTEXT'
     || error.message === 'CONSUMABLE_MERIDIAN_CONTEXT') throw new RangeError('DISABLED_BY_STATUS');
-  throw new RangeError('ILLEGAL_TARGET');
+  throw error;
 }
 
 function incrementStat(rows: Array<{ unitId: string; count: number }>, unitId: string): void {
@@ -448,8 +460,8 @@ function roundAnchorId(state: BattleState, actingUnitId: string): string | undef
 }
 
 function faceNearestEnemy(state: BattleState, actor: BattleUnit): void {
-  const nearest = state.units.filter((unit) => isBattleUnitVisible(state, actor, unit)
-    && state.setup.relations[actor.side][unit.side] === 'hostile')
+  const nearest = state.units.filter((unit) => state.setup.relations[actor.side][unit.side] === 'hostile'
+    && isBattleUnitVisible(state, actor, unit))
     .sort((left, right) => {
       const leftDistance = Math.max(Math.abs(left.pos.q - actor.pos.q), Math.abs(left.pos.r - actor.pos.r),
         Math.abs(left.pos.q + left.pos.r - actor.pos.q - actor.pos.r));
@@ -483,7 +495,7 @@ function completeAction(state: BattleState, actor: BattleUnit, recovery: number,
   snapshotMeridian(state, actor, runtime);
   if (state.openingOrder[0] === actor.id) state.openingOrder.shift();
   if (state.openingOrder.length === 0 && state.phase === 'opening') state.phase = 'running';
-  state.acceptedCommands.push(structuredClone(command));
+  state.acceptedCommands.push(cloneJsonValue(command));
   const end = checkEnd ? evaluateBattleEnd(state) : null; if (end !== null) finishBattle(state, end);
 }
 
@@ -607,7 +619,7 @@ export function advanceBattleToReady(state: BattleState): TimelineEntry {
 export function queryBattleAction(state: BattleState, command: BattleCommand): {
   readonly enabled: boolean; readonly reason: string | null;
 } {
-  const candidate = structuredClone(state);
+  const candidate = actionCandidate(state);
   try {
     const plan = validatePlan(candidate, command.t === 'battle/wait'
       ? { t: 'battle/act', actor: command.actor, action: { t: 'wait' } } : command);
@@ -620,13 +632,13 @@ export function queryBattleAction(state: BattleState, command: BattleCommand): {
 
 export function resolveBattleAction(
   state: BattleState, command: BattleCommand, rng: Rng, options: { readonly deferEndCheck?: boolean;
-    readonly ignoreGeometry?: boolean } = {},
+    readonly ignoreGeometry?: boolean; readonly ownedCandidate?: boolean } = {},
 ): BattleActionResult {
-  const candidate = structuredClone(state);
+  const candidate = options.ownedCandidate === true ? state : actionCandidate(state);
+  const beforeEvents = candidate.events.length;
   const stagedRng = createRng(rng.snapshot()); let rngCalls = 0;
   const transactionalRng: Rng = { nextU32: () => { rngCalls += 1; return stagedRng.nextU32(); },
     snapshot: () => stagedRng.snapshot() };
-  const beforeEvents = candidate.events.length;
   try {
     const planCommand: BattleActCommand = command.t === 'battle/wait'
       ? { t: 'battle/act', actor: command.actor, action: { t: 'wait' } } : command;
@@ -649,32 +661,38 @@ export function resolveBattleAction(
     } else if (useGeometry && start === 'active') faceNearestEnemy(candidate, actor);
     completeAction(candidate, actor, performed.recovery, command,
       options.deferEndCheck !== true);
-    commitCandidate(state, candidate);
+    const touched = new Set([actor.id, ...validated.targets.map((unit) => unit.id)]);
+    if (options.ownedCandidate === true) {
+      for (const unit of candidate.units) if (touched.has(unit.id)) unit.revision += 1;
+    } else commitCandidate(state, candidate, touched);
     for (let call = 0; call < rngCalls; call += 1) rng.nextU32();
-    return { accepted: true, hpDamage: performed.hpDamage, eventsAdded: state.events.length - beforeEvents };
+    return { accepted: true, hpDamage: performed.hpDamage, eventsAdded: candidate.events.length - beforeEvents };
   } catch (error) {
+    if (!isBattleActionRejection(error)) throw error;
     return { accepted: false, error: error instanceof Error ? error.message : 'BATTLE_ACTION_ERROR',
       hpDamage: 0, eventsAdded: 0 };
   }
 }
 
-function commitCandidate(state: BattleState, candidate: BattleState): void {
+function commitCandidate(state: BattleState, candidate: BattleState, touched: ReadonlySet<string>): void {
   for (const next of candidate.units) {
     const current = state.units.find((unit) => unit.id === next.id);
-    if (current !== undefined) Object.assign(current, next);
+    if (current !== undefined && touched.has(next.id)) Object.assign(current, next,
+      { revision: current.revision + 1 });
   }
   state.tick = candidate.tick; state.round = candidate.round; state.actionNo = candidate.actionNo;
   state.phase = candidate.phase; state.result = candidate.result;
   state.inventory = { stacks: candidate.inventory.stacks.map((stack) => ({ ...stack })) };
+  if (candidate.itemChapterUses !== undefined) state.itemChapterUses = { ...candidate.itemChapterUses };
   state.meridianByUnit.splice(0, state.meridianByUnit.length,
-    ...structuredClone(candidate.meridianByUnit));
+    ...cloneJsonValue(candidate.meridianByUnit));
   state.rewardStats.martialUses.splice(0, state.rewardStats.martialUses.length,
-    ...structuredClone(candidate.rewardStats.martialUses));
+    ...cloneJsonValue(candidate.rewardStats.martialUses));
   state.rewardStats.movementActions.splice(0, state.rewardStats.movementActions.length,
-    ...structuredClone(candidate.rewardStats.movementActions));
+    ...cloneJsonValue(candidate.rewardStats.movementActions));
   state.rewardStats.fullCirculations.splice(0, state.rewardStats.fullCirculations.length,
-    ...structuredClone(candidate.rewardStats.fullCirculations));
+    ...cloneJsonValue(candidate.rewardStats.fullCirculations));
   state.openingOrder.splice(0, state.openingOrder.length, ...candidate.openingOrder);
-  state.events.splice(0, state.events.length, ...candidate.events);
-  state.acceptedCommands.splice(0, state.acceptedCommands.length, ...candidate.acceptedCommands);
+  for (const event of candidate.events) state.events.push(event);
+  for (const command of candidate.acceptedCommands) state.acceptedCommands.push(command);
 }

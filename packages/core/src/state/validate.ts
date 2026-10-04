@@ -3,31 +3,37 @@ import { RNG_PROTOCOL } from '../rng';
 import { isRegionTerrainId } from '../world/region-codec';
 import { RULES_PROTOCOL, SAVE_SCHEMA } from './initial';
 import type { GameState } from './models';
+import { completeAppendValidation, invalidateAppendValidation, isVerifiedFrozenJson, markVerifiedFrozenJson,
+  verifiedAppendLength } from './immutable-json';
 
-function walk(value: unknown, seen: Set<object>): void {
+function walk(value: unknown, seen: Set<object>, appendOnlyHistory = false): void {
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return;
   if (typeof value === 'number') {
     if (!Number.isSafeInteger(value)) throw new TypeError('STATE_NON_INTEGER');
     return;
   }
   if (typeof value !== 'object' || seen.has(value)) throw new TypeError('STATE_NOT_JSON');
+  if (isVerifiedFrozenJson(value)) return;
   const prototype = Object.getPrototypeOf(value);
   if (!Array.isArray(value) && prototype !== Object.prototype && prototype !== null)
     throw new TypeError('STATE_NOT_JSON');
   seen.add(value);
   if (Array.isArray(value)) {
-    for (let index = 0; index < value.length; index += 1) {
+    if (!appendOnlyHistory) invalidateAppendValidation(value);
+    for (let index = appendOnlyHistory ? verifiedAppendLength(value) : 0; index < value.length; index += 1) {
       if (!(index in value)) throw new TypeError('STATE_SPARSE_ARRAY');
-      walk(value[index], seen);
+      walk(value[index], seen, appendOnlyHistory);
     }
+    completeAppendValidation(value);
   } else {
     for (const key of Object.keys(value)) {
       const child = (value as Record<string, unknown>)[key];
       if (child === undefined) throw new TypeError('STATE_UNDEFINED');
-      walk(child, seen);
+      walk(child, seen, appendOnlyHistory);
     }
   }
   seen.delete(value);
+  markVerifiedFrozenJson(value);
 }
 
 type StateRecord = Record<string, unknown>;
@@ -162,6 +168,39 @@ function validateCharacter(value: unknown): void {
   const stats = row['stats'] as StateRecord;
   integer(resources['hp'], 0, stats['hpMax'] as number); integer(resources['mp'], 0, stats['mpMax'] as number);
   validateConsumableState(row['consumable']);
+}
+function validateRngState(value: unknown): void {
+  const words = array(value);
+  if (words.length !== 4) throw new TypeError('STATE_SHAPE');
+  for (const word of words) integer(word, 0, 0xffff_ffff);
+}
+function validateBattleSession(value: unknown, appendOnlyHistory: boolean): void {
+  const session = object(value);
+  keys(session, ['schema', 'battleId', 'battle', 'battleRng', 'aiRng', 'opening',
+    'acceptedOrdinal', 'decisionOrdinal', 'revision', 'retryCount', 'auto', 'outcomeSeq',
+    'commandLog']);
+  if (session['schema'] !== 'battle-session.v1') throw new TypeError('STATE_SHAPE');
+  string(session['battleId']); validateRngState(session['battleRng']); validateRngState(session['aiRng']);
+  for (const field of ['acceptedOrdinal', 'decisionOrdinal', 'revision', 'retryCount', 'outcomeSeq'])
+    integer(session[field]);
+  if (typeof session['auto'] !== 'boolean') throw new TypeError('STATE_SHAPE');
+  const opening = object(session['opening']); keys(opening, ['setup', 'seeds']);
+  object(opening['setup']); array(opening['seeds']);
+  const commandLog = array(session['commandLog']);
+  for (let index = appendOnlyHistory ? verifiedAppendLength(commandLog, 'commands') : 0;
+    index < commandLog.length; index += 1)
+    string(object(commandLog[index])['t']);
+  completeAppendValidation(commandLog, 'commands');
+  const battle = object(session['battle']);
+  if (battle['phase'] !== 'opening' && battle['phase'] !== 'running' && battle['phase'] !== 'ended')
+    throw new TypeError('STATE_SHAPE');
+  integer(battle['actionNo']); array(battle['events']); array(battle['acceptedCommands']);
+  for (const unitValue of array(battle['units'])) integer(object(unitValue)['revision']);
+  if ((battle['phase'] === 'ended') !== (battle['result'] !== null) ||
+      battle['phase'] === 'ended' && (session['outcomeSeq'] as number) < 1 ||
+      session['battleId'] !== object(battle['setup'])['setupId'] ||
+      session['battleId'] !== object(opening['setup'])['setupId'])
+    throw new TypeError('STATE_SHAPE');
 }
 function validateClock(value: unknown): void {
   const row = object(value);
@@ -361,7 +400,7 @@ function validateProgression(value: unknown): void {
     uniqueStrings(receipt['receipts']);
   }
 }
-function validateGameStateShape(value: StateRecord): void {
+function validateGameStateShape(value: StateRecord, appendOnlyHistory = false): void {
   keys(value, ['meta', 'profile', 'chapter', 'party', 'world', 'battle', 'dialogue']);
   const meta = object(value['meta']);
   keys(meta, ['saveSchema', 'masterSeed', 'runId', 'nextRuntimeOrdinal', 'contentHash',
@@ -381,7 +420,7 @@ function validateGameStateShape(value: StateRecord): void {
   }
   const profile = object(value['profile']);
   const profileRequired = ['protagonist', 'companions', 'progression'];
-  const profileOptional = ['identity', 'replayRules'];
+  const profileOptional = ['identity', 'replayRules', 'battleTraining'];
   if (profileRequired.some((key) => !(key in profile)) || Object.keys(profile).some((key) =>
     !profileRequired.includes(key) && !profileOptional.includes(key))) throw new TypeError('STATE_SHAPE');
   if (profile['protagonist'] !== null) validateCharacter(profile['protagonist']);
@@ -393,6 +432,21 @@ function validateGameStateShape(value: StateRecord): void {
   }
   if (profile['replayRules'] !== undefined) validateReplayRules(profile['replayRules']);
   validateProgression(profile['progression']);
+  if (profile['battleTraining'] !== undefined) {
+    const training = object(profile['battleTraining']);
+    keys(training, ['martialUses', 'movementActions', 'fullCirculations']);
+    for (const [kind, value] of Object.entries(training)) {
+      const unique = new Set<string>();
+      for (const raw of array(value)) {
+        const entry = object(raw); const martial = kind === 'martialUses';
+        keys(entry, martial ? ['unitId', 'skillId', 'uses'] : ['unitId', 'count']);
+        const id = string(entry['unitId']);
+        const key = JSON.stringify([id, martial ? string(entry['skillId']) : null]);
+        if (unique.has(key)) throw new TypeError('STATE_SHAPE');
+        unique.add(key); integer(entry[martial ? 'uses' : 'count']);
+      }
+    }
+  }
   const chapter = object(value['chapter']);
   const chapterRequired = ['chapterId', 'eraLayerId', 'worldTier', 'worldYear', 'clock', 'story', 'worldItems', 'shops',
     'worldMap', 'town', 'npcs', 'itemChapterUses'];
@@ -469,7 +523,9 @@ function validateGameStateShape(value: StateRecord): void {
     const slot = object(entry); keys(slot, ['slot', 'itemId']); string(slot['slot']);
     if (slot['itemId'] !== null) string(slot['itemId']);
   }
-  const world = object(value['world']); keys(world, ['navigation', 'pendingTimeAdvance']);
+  const world = object(value['world']);
+  keys(world, ['navigation', 'pendingTimeAdvance',
+    ...('battleReceipts' in world ? ['battleReceipts'] : [])]);
   const navigation = object(world['navigation']);
   const navigationRequired = ['locationId', 'selectedDestinationId', 'pendingMount'];
   if (navigationRequired.some((key) => !(key in navigation)) ||
@@ -498,13 +554,21 @@ function validateGameStateShape(value: StateRecord): void {
     const pending = object(world['pendingTimeAdvance']); keys(pending, ['remainingTicks', 'reason']); integer(pending['remainingTicks']);
     if (pending['reason'] !== 'rest' && pending['reason'] !== 'story') throw new TypeError('STATE_SHAPE');
   }
+  const battleReceiptKeys = new Set<string>();
+  for (const entry of array(world['battleReceipts'] ?? [])) {
+    const receipt = object(entry); keys(receipt, ['battleId', 'outcomeSeq']);
+    const key = `${string(receipt['battleId'])}/${integer(receipt['outcomeSeq'], 1)}`;
+    if (battleReceiptKeys.has(key)) throw new TypeError('STATE_SHAPE');
+    battleReceiptKeys.add(key);
+  }
   if (value['dialogue'] !== null) validateDialogue(value['dialogue']);
-  if (value['battle'] !== null) object(value['battle']);
+  if (value['battle'] !== null) validateBattleSession(value['battle'], appendOnlyHistory);
 }
 
-export function assertCanonicalGameState(state: GameState): void {
-  walk(state, new Set<object>());
-  validateGameStateShape(state as unknown as StateRecord);
+/** History caching is only safe inside a journaled command; boundary validation always scans arrays. */
+export function assertCanonicalGameState(state: GameState, appendOnlyHistory = false): void {
+  walk(state, new Set<object>(), appendOnlyHistory);
+  validateGameStateShape(state as unknown as StateRecord, appendOnlyHistory);
   if (state.meta.saveSchema !== SAVE_SCHEMA || state.meta.rulesProtocol !== RULES_PROTOCOL ||
       state.meta.rngProtocol !== RNG_PROTOCOL) throw new TypeError('STATE_PROTOCOL_MISMATCH');
   if (state.meta.worldTick !== state.chapter.clock.elapsedTicks) throw new TypeError('STATE_CLOCK_MISMATCH');
@@ -525,8 +589,10 @@ export function parseGameState(value: unknown): GameState {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) throw new TypeError('STATE_ROOT');
   const root = value as StateRecord;
   const world = object(root['world']); const navigation = object(world['navigation']);
-  const compatible = 'mountedRegion' in navigation ? value : { ...root, world: { ...world,
-    navigation: { ...navigation, mountedRegion: null } } };
+  const compatibleNavigation = 'mountedRegion' in navigation ? navigation
+    : { ...navigation, mountedRegion: null };
+  const compatibleWorld = { ...world, navigation: compatibleNavigation };
+  const compatible = { ...root, world: compatibleWorld };
   validateGameStateShape(compatible as StateRecord);
   const state = compatible as unknown as GameState;
   assertCanonicalGameState(state);

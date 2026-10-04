@@ -1,5 +1,6 @@
 import { compareCodePoints } from '@tianshu/shared';
 import { intInclusive, type Rng } from '../../rng';
+import { cloneJsonValue } from '../../state/json';
 import type { BattleDrop, BattleRewards, BattleState } from '../types';
 
 function addDrop(target: BattleDrop[], drop: BattleDrop): void {
@@ -19,11 +20,14 @@ function drawWeighted(state: BattleState, rng: Rng): BattleDrop {
   throw new RangeError('BATTLE_LOOT_POOL');
 }
 
+export interface BattleRewardOptions { readonly includeDrops?: boolean }
+
 /** Computes battle facts only. World inventory/progression writes belong to battle/finalize. */
-export function computeBattleRewards(state: BattleState, lootRng?: Rng): BattleRewards {
+export function computeBattleRewards(state: BattleState, lootRng?: Rng,
+  options: BattleRewardOptions = {}): BattleRewards {
   const drops: BattleDrop[] = [];
-  for (const drop of state.setup.rewards.drops) addDrop(drops, drop);
-  if (state.setup.rewards.lootDraws > 0) {
+  if (options.includeDrops !== false) for (const drop of state.setup.rewards.drops) addDrop(drops, drop);
+  if (options.includeDrops !== false && state.setup.rewards.lootDraws > 0) {
     if (state.setup.rewards.lootPool.length === 0) throw new RangeError('BATTLE_LOOT_POOL');
     if (lootRng === undefined) throw new RangeError('BATTLE_LOOT_RNG_REQUIRED');
     for (let draw = 0; draw < state.setup.rewards.lootDraws; draw += 1) {
@@ -46,5 +50,5 @@ export function computeBattleRewards(state: BattleState, lootRng?: Rng): BattleR
 export function emitBattleRewards(state: BattleState, rewards: BattleRewards): void {
   if (state.phase !== 'ended') throw new RangeError('BATTLE_NOT_ENDED');
   if (state.events.some((event) => event.t === 'battle/rewards')) return;
-  state.events.push({ t: 'battle/rewards', actionNo: state.actionNo, payload: structuredClone(rewards) });
+  state.events.push({ t: 'battle/rewards', actionNo: state.actionNo, payload: cloneJsonValue(rewards) });
 }

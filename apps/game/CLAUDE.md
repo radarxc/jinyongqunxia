@@ -16,7 +16,7 @@ core 默认运行在模块 Worker；仅启动失败或不支持 Worker 时回退
 大地图定义由 data 校验，权威 `WorldMapState`、整数 A*、旅行事务、城门判定与场景事件均由
 core 持有。应用层只转发命令并消费只读 `WorldMapProjection.scene`；`worldmap/sceneRequested`
 保留给 ENG-09 的场景挂载协调器，不得在 app 新增规则副本。
-战斗页同时以 ENG-04 固定种子夹具演示六角范围、CT、逐行动自动回放与结算；演示进度不发旅程奖励。
+战斗页以 ENG-04 内容夹具演示六角范围、CT 与逐行动播放；seed 由 core 入场事务从 world 流派生，自动事件与结算均归 `BattleSession`。
 城镇定义由 data 校验；可走性、整数 A*、碰撞、建筑阶段、锚点判定和打坐遇袭全在 core。
 `TownPage` 只消费投影并把拾取结果转成命令；Three 场景按需载入，主角与 NPC 统一使用 ENG-12 rig。
 
@@ -47,14 +47,14 @@ M1 流程组件和页面都必须按首次使用异步加载；`src/flow/` 只�
 1. GameRemote 为 dispatch / query / snapshot / validate / restore；GameHost 另有 subscribe / dispose / mode。参数与结果必须可结构化克隆；快照仅交给存档服务。新档以传输命令 `run/create` 进入，公开便捷入口为 `NewGameHost.createNewGame()`。
 2. dispatch、query、snapshot、restore 共用 FIFO 队列；保存快照排在先前命令之后。订阅返回退订函数；dispose 清理 Worker、监听器并拒绝尚未完成的请求。
 3. GameUpdate 包含 accepted、changes、events 和可选 error。主线程按 changes 合并浅投影；拒绝命令不改 UI 与存档。stateVersion / nextEventSeq 只由 core 事务推进；session 不再拼状态或事件信封。
-4. GameCommand 的非战斗分支直接复用 core `Command` 联合（含对话、剧情选择和难度）；step 必须携带 journeyId 与 expectedTravelledLi。战斗分支暂交既有 BattleRuntime，ENG-16c 再并入同一总线。
+4. GameCommand 复用 core `Command` 联合；战斗界面 DTO 经 `BattleRuntime.coreCommand()` 转发，原生 act / setAuto / retry / finalize / leave 直接进 core 总线。旅行 step 仍携带 journeyId 与 expectedTravelledLi。
 5. dirty 分支含 hud / characters / inventory / equipment / quests / dialogue / worldmap；旅行步进同时更新 hud 与 worldmap，restore 全量投影。增加玩法写入时同时登记 dirty 分支。
 6. 未遇见人物在 Worker selector 内变成无姓名、无 NPC ID、无门派、无图片路径和无详情的剪影；相遇数据变化后才开放资料。affinity 沿用 design/18 的 −100..100，不从好感数值推断结交。
 7. 所有非战斗事件都使用 core 的 `seq/stateVersion/causeId/parentSeq/payload` 信封。ENG-08 / 09 / 10 应复用 host.subscribe，禁止另开一份可写 core。
 8. `SessionSnapshot` 就是唯一 `GameState`：known 在 `chapter.npcs`，chapterUses 在 `chapter.itemChapterUses`，itemTargets 已吸收进 CharacterState，location 从 `world.navigation` 投影。`ui-session.v1` 只允许出现在 schema 1 迁移和测试夹具中。
 9. ENG-08 发 `worldmap/sceneRequested`，payload 是 SceneEntry（kind / nodeId / sceneId / townSpec / templateYear / gateId / spawn / returnNodeId）。ENG-09 消费此入口并以 worldmap/leave 返回；战斗与真实相遇由 ENG-10 接入。场景显示层不直接改投影。
 10. 主线程兼容宿主也克隆边界值；运行中 Worker 或 core 内部错误会锁死玩法命令和探索 tick、显示内部错误，不静默重启到初态；存档导出仍可用。
-11. `GameProjection.battle` 是 ENG-10 增量包：进入 / query 含 `info` 与全单位，后续只含变化单位；controller 以单位 ID 合并。战斗中 snapshot / restore / 普通命令被 Worker 拒绝，结束后 `battle/leave` 返回冻结的 `returnContext`。
+11. `GameProjection.battle` 是增量包：进入 / query 含 `info` 与全单位，后续按 core 单位 revision 投影；controller 以 ID 合并。snapshot / restore 包含完整 BattleSession；战斗中 world/tick 由 core 返回 WORLD_PAUSED，界面 leave 先 finalize，再返回冻结的 returnContext。
 12. UI 的范围、目标合法性、可达集和路径只调用 core 的 `queryMoveAt()` / `queryReachable()` /
     `queryPath()`；提交完整行动计划后由 core 再算一次。CT 预计在一次性 timeline 副本上调用 core 调度函数，不推进真实状态或 RNG。
 13. 自动战斗每个 `requestAnimationFrame` 至多发一个 `battle/step`，1× / 2× 只改回放间隔，“跳过”只省表现；关闭自动先停排帧，再经宿主 FIFO 切回手动。
@@ -64,9 +64,11 @@ M1 流程组件和页面都必须按首次使用异步加载；`src/flow/` 只�
 17. NPC 出现同时要求 eraLayer、sceneId 与 presence 匹配；精确格位来自 `townNpcPlacements`。事件只读 `townEventAnchors`，不得由人物简介或城市归属猜坐标。当前生产注册表显式为空，直到内容任务提供权威锚点。
 18. 室内打坐锚点只有对应建筑处于 inside 才投影和受理。`TownRuntime.meditate()` 在 core 内原子完成敌意 NPC 筛选、是否掷骰、RNG、风险、岔气或恢复 / 练功、时钟与 `BattleSetup`；应用只提交内容事实、落盘返回状态并装配 `BattleLaunch`。战斗准备失败不提交状态或 RNG；无正式 encounter 时安全完成 600 tick 且不消费 RNG。
 19. `loop.ts` 仅用墙钟驱动 `world/tick`：固定 100 ms、帧差上限 250 ms、每帧最多 5 次；hidden、菜单、对话、战斗、加载或存档时清积压。Worker 请求未返回时不叠发，旧积压直接丢弃。场景必须显式声明是否运行探索时钟。
-20. ENG-16b 演示 setup 已携带逐单位经脉、战斗背包与奖励声明；runtime 在结束时调用 core
-    `computeBattleRewards()`，用独立 `loot` RNG 生成一次并缓存，再以 `battle/rewards` 事件和
-    `BattleResultPacket.rewards` 原样交给宿主。应用层不重算使用次数、周天或掉落。
+20. 演示 setup 携带逐单位经脉与奖励声明；`BattleRuntime` 只做命令适配、预览和投影。
+    终局 `projectBattleRewards()` 零 RNG 展示已知奖励；随机掉落只在 core finalize 消费世界 loot 流，
+    由 `battle/rewards` 运输事件公布实领结果。应用不持有战斗 RNG、判平规则或奖励账本。
+21. `AsyncCore.read()` 仅用于同宿主只读投影，严禁修改或跨线程发送；`snapshot()` 才深拷贝完整状态。
+    `BattleRuntime.transcript()` 导出真实入场 seed、已接受命令与本地事件；拒绝命令不进入录像前缀。
 
 ## 页面与持久化约定
 
@@ -83,9 +85,9 @@ M1 流程组件和页面都必须按首次使用异步加载；`src/flow/` 只�
 - 对话期间 `snapshot()` 明确抛 `DIALOGUE_SAVE_UNAVAILABLE`；controller 的事件自动存档请求可到达，
   但不得生成半段 Ink 存档。书眠同类门禁由 ENG-17 接入。
 - 单槽文件为 TSAV v1（.tsav），正文只含 schema 2 `GameState`；旧 TSUI / `ui-session.v1` 仅可导入并经 1→2 迁移，不再导出。高版本或协议不兼容不会被当作损坏而回退到更老一代。
-- 战外命令总线接通 healPct / mpPct / staPct / dispel / permStat / permMaxPct，`fieldTime` 按时辰换算；战斗专用、复活、临时 Buff 与战斗次数 / 冷却由 ENG-16c 接入活动 `BattleState`。
+- 战外命令总线接通 healPct / mpPct / staPct / dispel / permStat / permMaxPct，`fieldTime` 按时辰换算；战斗物品及次数 / 冷却走 core action，章节限用随 finalize 原子写回。
 - core 命令已支持移动 + 招式 / 待机，以及战斗物品、防御、急性聚气；现有按钮仍按 capability
-  显式禁用并显示原因，待 ENG-16c 接命令总线与只读可用性查询。禁止 UI 自算次数、冷却、
+  显式禁用并显示原因，交 ENG-16e 接已导出的只读可用性查询。禁止 UI 自算次数、冷却、
   路线满载或防御规则。经脉面板仍展示 core 已提供的透劲、占穴、丹田损伤与 Buff。
 - 已有装备 schema 缺数值 modifiers / 执法配置，当前换装只改变装备与背包；不得从说明文本解析出属性、通缉或剧情奖励。正式人物 / 装备汇总接齐后才扩展面板。
 
@@ -124,6 +126,7 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 - [Three InstancedMesh](https://threejs.org/docs/pages/InstancedMesh.html)、[Raycaster](https://threejs.org/docs/pages/Raycaster.html)、[OrthographicCamera](https://threejs.org/docs/pages/OrthographicCamera.html)、[WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)：城镇合批、实例拾取、固定斜视镜头与 draw/triangle 统计；2026-10-02 联网均返回 HTTP 200。锁文件版本 Three 0.186.1，无新增依赖、价格或远程限额。
 - [Window.matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)、[prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)：读取系统减少动态偏好并保持 CSS 与持久设置一致；访问日期 2026-10-03。
 - [Vite env 常量](https://vite.dev/guide/env-and-mode.html)：`import.meta.env.DEV` 会在生产构建中静态替换，使开发专用 `/rig-demo` 分支可被裁剪；访问日期 2026-10-03。
+- [Math.imul](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/imul)、[Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)：core 重试种子的 32 位乘法与递归冻结历史的依据；访问日期 2026-10-03。
 
 ## 本文新增术语/约定
 
@@ -136,6 +139,7 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
   后者只投影 story 标识、说话人、文本 key、选择锁定理由与历史。
 - 无新增玩法、人物、物品、穴道或槽位 ID；命名复用 canon §12 与现有内容。
 - BattlePacket / BattleView：Worker 到主线程的全量首包与增量战况包；不是第二份规则状态。
+- BattleSession / outcomeSeq：core 会话与结局序号；世界结算以 battleId+outcomeSeq 去重，应用不另建回执。
 - onMoveResolved：交 ENG-11 的只读播放钩子，签名为 `(moveId, from, to, result)`。
 - town-runtime.v1 / TownProjection：构建期城镇格网与浏览器只读投影；前者含 RLE 地面、导航、建筑、锚点和 atlas 引用，后者只含角色、可见 NPC/锚点与建筑阶段。
 
@@ -146,17 +150,18 @@ ENG-07 当前仅复制清单中存在的 64 px 物品图与 portrait 文件，�
 - 【建议值】福缘目前随其他先天显示数值，design/03 的五档词未给出阈值；默认保持真实数值，待上游提供档位映射后改为词并提供设置切换。
 - 依赖后续聚合：真实 NPC 招募、装备 modifiers / lawProfile、战外临时 Buff 的持久解释、任务中文名；默认没有配置便不创建效果或新规则。
 - 已解决：正式 TSAV v1 与 schema 2 已接线，默认演示只导出 TSAV / JSON；旧 TSUI 保留单向迁移。特殊检查点恢复、铁人模式与正式战斗存档条件仍交后续任务。
-- 已解决：移动、可达集、路径预览、逐单位经脉及五类战斗行动已进入 core resolver；ENG-16c
-  仍需接入战斗物品、防御、急性聚气的命令与按钮可用性，并在 `battle/finalize` 把
-  `BattleResultPacket.rewards` 和战斗背包差量写回世界。当前默认能力继续禁用。
-- 依赖 ENG-15：明确战斗副本中的 `itemState.battleUses` 与世界 `usage.battleUses` 的归并 / 清空
-  关系；应用层在该契约落地前不得自行合并。
+- 已解决：ENG-16c 将移动、招式、物品、防御、急性聚气统一送入 core 总线；finalize 原子
+  写回背包、资源、章节限用和训练次数。ENG-16e 仍需接按钮可用性 / 高亮；当前默认能力继续禁用。
+- 已解决：`itemState.battleUses` 只在活动 BattleState，重试恢复入场值，finalize 丢弃；
+  `itemChapterUses` 从世界冻结入场并原子写回，应用没有第二份账本。
 - 依赖章节内容装载：默认天龙三名 NPC 加主角、367 件已编译物品，不表示这些物品在正式开局可得。
-- 依赖 ENG-16c：`battleUses` 只存活动 `BattleState`；战外使用传空战斗账本且只提交 `chapterUses`，不得再建应用侧账本。
+- 已解决：战外使用传空 battleUses 且只提交 chapterUses；战斗规则与账本归 core（见桥接约定 20–21）。
 - 依赖 ENG-06 / 内容 schema：正式官服装备 lawProfile 与玩家 identityTags 尚未入当前内容；没有配置时城门仅遵循已有通缉状态，不从文案猜执法规则。
 - 依赖事件装配：EventAnchor 与随机遭遇端口已定义并发 probe / request 事件，正式会话当前未注入锚点或选择器。
 - 依赖内容装配：`townNpcPlacements` / `townEventAnchors` 当前为空，默认不显示或触发未登记 NPC/位置事件；须由 ENG-05 内容提供 scene + era + 整数格坐标后接入。
 - 依赖正式打坐遭遇：core 与 ENG-10 入口已测试，但现有内容没有可复用的通用 `enc_*` 和正式 CharacterState→BattleUnitSeed 转换；默认无遭遇时完成周天，不用演武夹具冒充剧情。
+- 依赖养成 / 世界结算：SXP、永久经脉增益、伤势 / 调息、地形和任务写回尚需完整输入；默认只持久化可核算的训练事实。随机掉落的结果展示交 ENG-16e 消费 finalize 事件。
+- 依赖 ENG-22：全局录像、deploy/order/free/concede/undo 和 Safari / Android hash 对拍；当前 Node 回归覆盖实际应用命令、自动事件、重试及行动上限。
 - （待实测）城镇桌面 ≥60 fps、中端手机 ≥30 fps、触屏拾取、横竖屏和上下文丢失；页面展示实时 renderer 统计，Node 合批测试不作帧率结论。
 - 对基准的修改提案：无；以上为实现边界和上游待归位事项，不重定义 canon 规则。
 - 原著考据：人物简介仅引用内容已有 sourceWorks / locator 并保留“回目待考”；不新增回目、引文或人物身世断言。

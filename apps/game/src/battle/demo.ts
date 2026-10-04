@@ -28,7 +28,8 @@ export function createBattleDemo(source: 'world' | 'town'): BattleLaunch {
     assets: { icon: 'item/jinchuangyao' }, text: { desc: '演示战斗背包副本。' },
     extension: { type: 'generic', value: {} } };
   const setup = createEncounterBattleSetup({ encounterId: 'enc_combat_fixture', setupId: 'setup-fixture',
-    seed: 20261001, sourceSnapshotHash: '0'.repeat(64), sourceId: 'fixture', triggerId: 'fixture',
+    // Presentation fixtures do not own entropy; battle/enter replaces this with one world-stream draw.
+    seed: 0, sourceSnapshotHash: '0'.repeat(64), sourceId: 'fixture', triggerId: 'fixture',
     worldTick: 0, sceneRef: source, anchorRef: 'anchor_fixture', mode: 'spar', noItems: true,
     meridianInputs, inventory: { stacks: [{ itemId: medicine.id, count: 2 }] }, itemDefs: [medicine],
     participants: [

@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import type { JsonValue } from '@tianshu/shared';
+import { createBattleSession } from '../battle';
 import { RNG_PROTOCOL, seedStream, type RngStreamName } from '../rng';
+import { battleSeed, combatFixture } from '../testing/combat-fixture';
 import {
   advanceBattle, advanceGameClock, advanceInnRest, advanceMeditation, advanceTravel,
   createEmptyEquipment, createGameClock, createInitialGameState, parseGameState,
@@ -36,6 +38,23 @@ describe('GameState JSON boundary', () => {
       Object.entries(state.meta).filter(([key]) => key !== 'rngProtocol'),
     );
     expect(() => parseGameState({ ...state, meta: metaWithoutProtocol })).toThrow('STATE_SHAPE');
+  });
+
+  it('preserves schema-3 bytes before the first receipt and rejects malformed sessions', () => {
+    const state = initialState();
+    const legacyWorld = Object.fromEntries(Object.entries(state.world)
+      .filter(([key]) => key !== 'battleReceipts'));
+    expect(parseGameState({ ...state, world: legacyWorld }).world).toEqual(legacyWorld);
+    const battle = combatFixture();
+    const session = createBattleSession(battle.setup, battle.units.map((unit) =>
+      battleSeed(unit.id, unit.moves)));
+    expect(parseGameState({ ...state, battle: session }).battle).toEqual(session);
+    expect(() => parseGameState({ ...state, battle: { ...session, battleId: '' } }))
+      .toThrow('STATE_SHAPE');
+    expect(() => parseGameState({ ...state, battle: { ...session, battle: {
+      ...session.battle, phase: 'ended', result: null,
+    } } }))
+      .toThrow('STATE_SHAPE');
   });
 
   it('rejects unknown dynamic terrain IDs in a mounted region', () => {

@@ -6,6 +6,7 @@ import { inventoryHandler, rejectionFrom, townHandler, worldMapHandler, worldTic
 import { dialogueHandler, difficultyHandler, questChoiceHandler } from './story-handlers';
 import { bookSleepHandler } from './chapter-handler';
 import { regionHandler } from './region-handler';
+import { battleHandler } from './battle-handler';
 import { CommandAbort, MutableCoreTransaction } from './transaction';
 
 export type DispatchResult =
@@ -37,6 +38,12 @@ const HANDLERS: Readonly<Record<string, CommandHandler>> = {
   'world/mountRegion': regionHandler as CommandHandler,
   'world/walkTo': regionHandler as CommandHandler,
   'world/interact': regionHandler as CommandHandler,
+  'battle/enter': battleHandler as CommandHandler,
+  'battle/act': battleHandler as CommandHandler,
+  'battle/setAuto': battleHandler as CommandHandler,
+  'battle/retry': battleHandler as CommandHandler,
+  'battle/finalize': battleHandler as CommandHandler,
+  'battle/leave': battleHandler as CommandHandler,
 };
 function rejection(reason: RejectReason, at?: string): DispatchResult {
   return at === undefined ? { ok: false, reason } : { ok: false, reason, at };
@@ -88,10 +95,10 @@ export function dispatchCommand(state: GameState, command: Command, content: Cor
   handlers: Readonly<Record<string, CommandHandler>> = HANDLERS): DispatchResult {
   const handler = handlers[command.t];
   if (!handler) return rejection('COMMAND_UNKNOWN', 't');
-  if (command.t === 'chapter/bookSleep' && bookSleepHandler.noop(state, command))
-    return { ok: true, stateVersion: state.meta.stateVersion, events: [] };
   const invalid = handler.validate(state, command, content);
   if (invalid) return rejection(invalid);
+  if (handler.noop?.(state, command, content) === true)
+    return { ok: true, stateVersion: state.meta.stateVersion, events: [] };
   const tx = new MutableCoreTransaction(state, content);
   try {
     handler.apply(tx, command); assertPendingEvents(tx); tx.commitRng();
@@ -102,7 +109,7 @@ export function dispatchCommand(state: GameState, command: Command, content: Cor
     tx.set(['meta', 'stateVersion'], version);
     tx.set(['meta', 'nextRuntimeOrdinal'], ordinal + 1);
     tx.set(['meta', 'nextEventSeq'], state.meta.nextEventSeq + events.length);
-    assertCanonicalGameState(state);
+    assertCanonicalGameState(state, true);
     return { ok: true, stateVersion: version, events };
   } catch (error) {
     tx.rollback();

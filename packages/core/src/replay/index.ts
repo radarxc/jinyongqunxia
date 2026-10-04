@@ -1,7 +1,7 @@
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
-import { advanceBattleToReady, resolveBattleAction } from '../battle/action';
-import type { BattleCommand, BattleState } from '../battle/types';
-import { createRng, seedStream, type RngState } from '../rng';
+import { actBattleSession, createBattleSession, retryBattleSession, setBattleAuto } from '../battle/session';
+import type { BattleRecordedCommand, BattleSessionState, BattleState } from '../battle/types';
+import type { RngState } from '../rng';
 
 export const BATTLE_REPLAY_SCHEMA = 1 as const;
 export const BATTLE_REPLAY_HASH_DOMAIN = 'tianshu:battle-replay:v1' as const;
@@ -16,7 +16,7 @@ export interface ReplayHashHeader {
 
 export interface BattleReplayCommandRecord {
   readonly seq: number;
-  readonly command: BattleCommand;
+  readonly command: BattleRecordedCommand;
   readonly afterHash?: string;
 }
 
@@ -26,11 +26,22 @@ export interface BattleReplaySession {
   readonly aiRng: RngState;
   readonly acceptedOrdinal: number;
   readonly decisionOrdinal: number;
+  readonly revision: number;
+  readonly retryCount: number;
+  readonly auto: boolean;
+  readonly outcomeSeq: number;
+}
+
+export function replaySessionProjection(session: BattleSessionState): BattleReplaySession {
+  return { battle: session.battle, battleRng: session.battleRng, aiRng: session.aiRng,
+    acceptedOrdinal: session.acceptedOrdinal, decisionOrdinal: session.decisionOrdinal,
+    revision: session.revision, retryCount: session.retryCount, auto: session.auto,
+    outcomeSeq: session.outcomeSeq };
 }
 
 export interface BattleReplayRejection {
   readonly inputIndex: number;
-  readonly command: BattleCommand;
+  readonly command: BattleRecordedCommand;
   readonly error: string;
 }
 
@@ -42,13 +53,13 @@ export interface BattleReplayRun {
 
 export interface BattleReplayHashParts extends ReplayHashHeader {
   readonly runtimeMartialArts: readonly JsonValue[];
-  readonly commandPrefix: readonly BattleCommand[];
+  readonly commandPrefix: readonly BattleRecordedCommand[];
   readonly session: BattleReplaySession | JsonValue;
 }
 
 export type BattleReplayHashDomain = readonly [
   typeof BATTLE_REPLAY_HASH_DOMAIN, string, string, number, number, string,
-  readonly JsonValue[], readonly BattleCommand[], BattleReplaySession | JsonValue,
+  readonly JsonValue[], readonly BattleRecordedCommand[], BattleReplaySession | JsonValue,
 ];
 
 /** The port may return a string in Node or a Promise in a Web Crypto host. */
@@ -56,7 +67,7 @@ export type Sha256Utf8Port<Result> = (canonicalUtf8: string) => Result;
 
 export function acceptedCommandPrefix(
   records: readonly BattleReplayCommandRecord[],
-): readonly BattleCommand[] {
+): readonly BattleRecordedCommand[] {
   const sorted = [...records].sort((left, right) => left.seq - right.seq);
   for (let index = 0; index < sorted.length; index += 1) {
     if (sorted[index]!.seq !== index) throw new RangeError('REPLAY_COMMAND_SEQUENCE');
@@ -81,21 +92,30 @@ export function hashBattleReplay<Result>(
 
 /** Executes submitted commands with the production action resolver; only accepted commands enter the prefix. */
 export function runBattleReplay(
-  state: BattleState, commands: readonly BattleCommand[],
+  source: BattleState | BattleSessionState, commands: readonly BattleRecordedCommand[],
 ): BattleReplayRun {
-  const battleRng = createRng(seedStream(state.setup.seed, 'battle'));
-  const aiRng = createRng(seedStream(state.setup.seed, 'ai'));
+  const session = 'battleId' in source
+    ? createBattleSession(source.opening.setup, source.opening.seeds)
+    : createBattleSession(source.setup, source.units);
   const records: BattleReplayCommandRecord[] = [];
   const rejected: BattleReplayRejection[] = [];
-  if (state.phase !== 'ended') advanceBattleToReady(state);
   for (let inputIndex = 0; inputIndex < commands.length; inputIndex += 1) {
     const command = commands[inputIndex]!;
-    const result = resolveBattleAction(state, command, battleRng);
-    if (result.accepted) {
-      records.push({ seq: records.length, command });
-      if (state.phase !== 'ended') advanceBattleToReady(state);
-    } else rejected.push({ inputIndex, command, error: result.error ?? 'BATTLE_ACTION_ERROR' });
+    const before = session.commandLog.length; let error: string | undefined;
+    try {
+      if (command.t === 'battle/setAuto') setBattleAuto(session, command.mode === 'auto');
+      else if (command.t === 'battle/retry') retryBattleSession(session);
+      else {
+        const result = actBattleSession(session, command);
+        if (!result.accepted) error = result.error ?? 'BATTLE_ACTION_ERROR';
+      }
+    } catch (cause) {
+      if (!(cause instanceof RangeError) || !['BATTLE_ENDED', 'BATTLE_NOT_ENDED',
+        'BATTLE_AUTO_FORBIDDEN'].includes(cause.message)) throw cause;
+      error = cause.message;
+    }
+    if (error !== undefined) rejected.push({ inputIndex, command, error });
+    else if (session.commandLog.length > before) records.push({ seq: records.length, command });
   }
-  return { records, rejected, session: { battle: state, battleRng: battleRng.snapshot(),
-    aiRng: aiRng.snapshot(), acceptedOrdinal: records.length, decisionOrdinal: records.length } };
+  return { records, rejected, session: replaySessionProjection(session) };
 }

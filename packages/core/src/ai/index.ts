@@ -8,7 +8,7 @@ import type { BattleCommand, BattleMove, BattleResult, BattleState, BattleUnit, 
 import {
   forbidsAcuteGather, guardDamageDownBp, guardDefenseBonusBp, hasGuardStance,
 } from '../buff';
-import { createRng, seedStream } from '../rng';
+import type { Rng } from '../rng';
 
 export interface AutoPolicy { readonly style: 'aggressive' | 'steady' | 'support' | 'custom';
   readonly reserveMpBp: number; readonly allowUltimate: boolean; readonly allowItems: boolean;
@@ -30,8 +30,8 @@ function viableMoves(actor: BattleUnit, policy: AutoPolicy): readonly BattleUnit
 
 function targets(state: BattleState, actor: BattleUnit, preferred?: string, geometry = true): BattleUnit[] {
   return state.units.filter((unit) => unit.active && unit.hp > 0
-    && (!geometry || isBattleUnitVisible(state, actor, unit))
-    && state.setup.relations[actor.side][unit.side] === 'hostile').sort((left, right) => {
+    && state.setup.relations[actor.side][unit.side] === 'hostile'
+    && (!geometry || isBattleUnitVisible(state, actor, unit))).sort((left, right) => {
       if (preferred !== undefined) {
         if (left.id === preferred && right.id !== preferred) return -1;
         if (right.id === preferred && left.id !== preferred) return 1;
@@ -109,13 +109,13 @@ function survivalEstimateBp(state: BattleState, actor: BattleUnit): number {
 export function chooseAcuteGatherAction(
   state: BattleState, actor: BattleUnit,
 ): Extract<BattleCommand, { readonly t: 'battle/act' }> | null {
-  if (forbidsAcuteGather(actor.buffs)
-    || survivalEstimateBp(state, actor) < GATHER_SURVIVAL_THRESHOLD_BP) return null;
+  if (forbidsAcuteGather(actor.buffs)) return null;
   const input = state.setup.meridianInputs.find((candidate) => candidate.unitId === actor.id);
   const saved = state.meridianByUnit[actor.unitIndex];
   if (input === undefined || saved?.unitId !== actor.id) return null;
   const routes = [...input.routes].filter((route) => (route.purpose ?? 'attack') === 'attack')
     .sort((left, right) => compareCodePoints(left.routeId, right.routeId));
+  if (routes.length === 0 || survivalEstimateBp(state, actor) < GATHER_SURVIVAL_THRESHOLD_BP) return null;
   for (const route of routes) {
     try {
       const status = queryBattleQi(state, actor.id, route.routeId);
@@ -136,6 +136,7 @@ export function chooseAutoCommand(
   const gather = chooseAcuteGatherAction(state, actor);
   if (gather !== null) return gather;
   const move = viableMoves(actor, policy)[0];
+  if (move === undefined) return { t: 'battle/wait', actor: actor.id };
   const candidates = targets(state, actor, policy.preferredTarget);
   if (move === undefined || candidates.length === 0) return { t: 'battle/wait', actor: actor.id };
   const legal = new Set(queryLegalTargets(state, actor.id, move.id).map((unit) => unit.id));
@@ -187,10 +188,10 @@ function effectiveState(state: BattleState): string {
 }
 
 export function simulateAbstractBattle(
-  state: BattleState, policyBySide: Partial<Record<SideId, AutoPolicy>>, maxActions = defaultMaxActions(state.units.length),
+  state: BattleState, policyBySide: Partial<Record<SideId, AutoPolicy>>, rng: Rng,
+  maxActions = defaultMaxActions(state.units.length),
 ): AutoBattleResult {
   if (state.setup.rules.noAuto) throw new RangeError('BATTLE_AUTO_FORBIDDEN');
-  const rng = createRng(seedStream(state.setup.seed, 'battle'));
   state.events.push({ t: 'battle/autoSimulationStarted', actionNo: state.actionNo });
   let unchangedActions = 0;
   while (state.phase !== 'ended' && state.actionNo < maxActions) {
