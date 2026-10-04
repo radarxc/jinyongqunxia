@@ -117,3 +117,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.prepared.json`。
+
+## 原著依据
+
+- 《射雕英雄传》第十七回 双手互搏：“左手画方，右手画圆”；https://www.xuges.com/wuxia/jinyong/sdyxz/123.htm
+- AR-82 返修约束（本节优先于历史提示词）：左手（画面右）与右手（画面左）各执一根短树枝，半蹲俯身，两枝枝尖同时触地；左手画方，右手画圆。不能仍为两臂平举对招，不留旧长杖、旧手或旧站立的头。完整原批准头部以原图像素平移合成，衣服款式与桃花岛背景保持。
