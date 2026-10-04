@@ -1553,54 +1553,34 @@
   category: character/male
   style: default
   subject: 虚竹（ch01_tianlong）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    输出1024×1536，完全成年，禁止童颜或少年身材。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
+    【只改】只把右下方独立木棋桌改为一块大青石，石顶直接雕出十九路棋盘，棋盘必须刻在整块石面上，不能是另放木板。棋盘上是密集而错综的黑白珍珑残局，双方各百余子（合计两百余子，约十九路棋盘六成填满），密集棋子不规则分布，不画零散几粒。虚竹与手中白子和其他背景完全不动。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原著依据】《天龙八部》第三十一回 输赢成败 又争由人算：“棋盘雕在一块大青石上”；“双方各已下了百余子”；https://www.xuges.com/wuxia/jinyong/tlbb/236.htm
 
-    【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    虚竹少林僧人阶段，成年同脸，灰黄旧右衽僧衣、布行囊、朴素绑腿布鞋，没有掌门指环。右手捏一枚小棋子，左手挠衣袖，拘谨憨厚。站在擂鼓山木棋盘一侧，完整全身，山间松林棋坪，不画可复原棋谱，不画旁人。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
-
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: ''
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xuzhu__ch01_youth_lingjiu_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: e324ba659cc53440438dba7c1852d654547f4ec2cba20e09f8fc805ef2f601eb
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/xuzhu_still1.jpg
-    use: 经典影视造型；只借服饰发型配色气质，不照搬演员五官
-    sha256: 9e1149aaaca8d1e34778c98fe90e36e8c06b6b224bdb6e8727500c0efc0179a4
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/xuzhu_game.jpg
-    use: 经典武侠游戏插画风格；只借绘画气质、线条、造型感
-    sha256: 955a4e6445eb5cd8fc83beab4e80b7261f6f91a03a1bf9e364195ac3e82a831f
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png
-    sha256: cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  - path: .agents/coord/_lines/novel-fix-1/before/07_por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.png
+    sha256: 5b10d2a2adb24e1fce1306f2561b33d6273fb5b72b908815d13e65516ac28915
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T00:26:46.925487-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_11_46_r1.png
+  created: '2026-10-04T02:24:45.741114-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_07_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 5b10d2a2adb24e1fce1306f2561b33d6273fb5b72b908815d13e65516ac28915
+  sha256: ab1bd5b21b2fc41af6ff80fd28bf124c788446e8e3529b1fc266b9adf74b9f4a
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：眉眼、鼻、唇形对齐base，沉静不笑，珍珑场景的器物与光向保留，无可见接缝
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：眉眼、鼻、唇形对齐base，沉静不笑，珍珑场景的器物与光向保留，无可见接缝；AR-82 原著核对返修：虚竹珍珑改青石刻棋盘及密集残局
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.1791009451334549000/archive/previous-prompt.md
-    png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.1791009451334549000/archive/previous.png
-    manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.1791009451334549000/archive/previous-entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/07_por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.png
+    sha256: 5b10d2a2adb24e1fce1306f2561b33d6273fb5b72b908815d13e65516ac28915
   repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.resume3.png
   repair_runner_source_sha256: 884c583d99520684715b1eae73060ee48cfa26ae5ad7fd0b1d8fcc7773719403
   ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83

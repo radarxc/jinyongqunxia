@@ -118,3 +118,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.prepared.json`。
+
+## 原著依据
+
+- 《天龙八部》第三十一回 输赢成败 又争由人算：“棋盘雕在一块大青石上”；“双方各已下了百余子”；https://www.xuges.com/wuxia/jinyong/tlbb/236.htm
+- AR-82 返修约束（本节优先于历史提示词）：只把右下方独立木棋桌改为一块大青石，石顶直接雕出十九路棋盘，棋盘必须刻在整块石面上，不能是另放木板。棋盘上是密集而错综的黑白珍珑残局，双方各百余子（合计两百余子，约十九路棋盘六成填满），密集棋子不规则分布，不画零散几粒。虚竹与手中白子和其他背景完全不动。
