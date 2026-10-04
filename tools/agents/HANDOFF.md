@@ -2172,3 +2172,24 @@
     - **ENG-quest-test-timeout 合入**（22:30）。prod_check 全绿（HEAD efb97d25）；会话闭包 108.91。
     - TOOL-ops-dispatch 已过校验，在审核。合入后由开发监督起守护进程，跑稳一小时后收尾。
 
+  - **10-03 22:33–22:50 开发监督**：
+    - **ENG-session-base-diet 再给一轮返修**（协调者 22:33）：审核 FAIL 在地图文本解析（地图名、节点名、等级注记、入口注记丢失）。
+      - 用 `--from start --max-runs 1 --max-reviews 1` 重起，note 用 r2 审核原文加协调者限定的范围（`devsup_note_r2.md`），驱动 51055。
+      - 这轮再 FAIL 就把审核摘要报协调者，当面看代码再定。
+    - **AR-69 大地图**（协调者 22:4x 交办，4c8122e6）：
+      - 新登记 **ART-map-inkkit-full**（素材池，驱动 12617）：
+        - 件数按合计算，含小样：山峰、山脉各 6–8；雪山另算，默认 4–6；丘陵、湖泊、海面、平原底纹各 4–6；聚落每级 3–4；标记每种 2–3；关隘 3。
+        - 城镇与标记照小景画法；每件单独生成，不许用代码派生变体。
+        - manifest 每条加机读字段 `kit`（kind / volume / orient / anchor），供拼合取件。
+        - 过程文件放 `.agents/coord/_asset_logs/…/kit/full/`，脚本放 `tools/map/kit/full/`。
+        - 审核要点 `.agents/coord/PROD/review_checks_map_kit_full.md`。
+      - **TOOL-map-compose** 说明加「随机与融合」一节：
+        - 扰动给默认范围：有朝向的品类旋转 ±6°、只水平翻转；可点击标记不挪位置。
+        - 泊松盘分布、遮挡排序、羽化、墨色叠加、渐变蒙版、纸纹墨晕。
+        - 样区附「无扰动 / 有扰动」对比图，校验检查对比图存在。
+        - 依赖补上 inkkit-full。step 不按依赖卡启动：terrain 合入后就起 compose，inkkit-full 未合入时先用小样跑通，合入后用同一命令重出。
+      - TOOL-assets-logs-cleanup 校验里 kit 的 `check_assets --max` 由 60 改为 120：补齐后约 88 条。这是件数上限，不是门禁。
+    - **ENG-26**（协调者 22:4x）：
+      - 第 4 轮校验只栽在防截断：`apps/game/src/battle/demo.ts` 55 → 27 行。原因是改走 `buildEncounter(COMBAT_DEMO_ENCOUNTER, …)`，属有意缩短。
+      - 已加这一个文件的 shrink_exempt，用原参数加 `--from validate` 重起，驱动 11819。
+      - 新驱动的执行次数从 0 计；审核 FAIL 会照常起返修。
