@@ -399,81 +399,85 @@
   category: character/female
   style: default
   subject: 喀丝丽·绿洲初见（ch12_shujian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的喀丝丽立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中喀丝丽的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: '【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的喀丝丽新 base 脸部特写（参考古力娜扎，作者选B）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的喀丝丽十八九岁（成年），天真甜美：圆润的鹅蛋脸、两颊饱满、下巴圆润；细长柔和的眉；一双又大又亮的眼睛、双眼皮、眼神纯真；鼻子小巧挺直；嘴唇红润、带甜甜的微笑；肤色白皙。不要长脸、窄眼、冷淡的神情。
+    【身份】明确成为第1张的同一位喀丝丽：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
 
-    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。【神态】绿洲初见：天真甜美的微笑，眼神纯净明亮。
+    【剧情神态与造型】保留绿洲初遇的纯净柔和、平静含蓄神态；原图左上自然日光。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
+
+    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
+  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
   references:
   - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
-    sha256: 2934aecf9b53126a54857f03bbb888dcfc6fd2c9a65c8d5a67101168beaca787
-    use: 对脸基线：作者 AR-56 定下的 por_npc_kasili__ch12_youth_prepalace_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+    sha256: fbf08c4442a5b7dde945e9ea2473aaa26e7904e5a5a583346221e1f7d58eb60f
+    use: 对脸基线：作者审核通过的 por_npc_kasili__ch12_youth_prepalace_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.png
-    sha256: 0e400f35e9265c3f262bb0c41b833a27aebbd7bed7390d312eff585c7fc1942b
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.0e400f35.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:43:25-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.e1.png
+    sha256: 66e046f48591ba6fb5cc9dabd0e2a98ad5c89a4b91757833158a13c8ec024fe6
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.66e046f4.png
+  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T00:12:26-0700
+  source_path: .agents/coord/_handoff/gem/codex_w32/out/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.ar86_kasili1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 66e046f48591ba6fb5cc9dabd0e2a98ad5c89a4b91757833158a13c8ec024fe6
+  sha256: a8afd321257221179cdfb65ebf6273258d3b5bb27dfef7b5714b974ab744fedd
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 / AR-75 / AR-86：喀丝丽头部局部合成，对齐作者新 base（AR-73 参考古力娜扎，AR-86 选B）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_kasili__ch12_youth_scene_oasis_first_meeting.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.0e400f35.png
-    sha256: 0e400f35e9265c3f262bb0c41b833a27aebbd7bed7390d312eff585c7fc1942b
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.0e400f35.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.66e046f4.png
+    sha256: 66e046f48591ba6fb5cc9dabd0e2a98ad5c89a4b91757833158a13c8ec024fe6
+    entry: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.66e046f4.entry.yaml
 - id: por_npc_kasili__ch12_youth_scene_palace_warning_letter
   file: por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
   category: character/female
   style: default
   subject: 喀丝丽·宫中急信（ch12_shujian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的喀丝丽立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中喀丝丽的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: '【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的喀丝丽新 base 脸部特写（参考古力娜扎，作者选B）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的喀丝丽十八九岁（成年），天真甜美：圆润的鹅蛋脸、两颊饱满、下巴圆润；细长柔和的眉；一双又大又亮的眼睛、双眼皮、眼神纯真；鼻子小巧挺直；嘴唇红润、带甜甜的微笑；肤色白皙。不要长脸、窄眼、冷淡的神情。
+    【身份】明确成为第1张的同一位喀丝丽：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
 
-    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。【神态】宫中写急信：忧伤而坚定，神情温柔，嘴角带一点极淡的浅笑。
+    【剧情神态与造型】保留宫中护信时侧望、警觉与忧虑，不改成微笑；原图冷窗漫射光。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
+
+    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
+  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
   references:
   - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
-    sha256: 2934aecf9b53126a54857f03bbb888dcfc6fd2c9a65c8d5a67101168beaca787
-    use: 对脸基线：作者 AR-56 定下的 por_npc_kasili__ch12_youth_prepalace_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+    sha256: fbf08c4442a5b7dde945e9ea2473aaa26e7904e5a5a583346221e1f7d58eb60f
+    use: 对脸基线：作者审核通过的 por_npc_kasili__ch12_youth_prepalace_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
-    sha256: bc0cf71da5e53ad149ae342b5262d824ae170669e15127a06f230fa1ce37ae2d
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_kasili__ch12_youth_scene_palace_warning_letter.bc0cf71d.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:44:00-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_kasili__ch12_youth_scene_palace_warning_letter.e1.png
+    sha256: 7e8116f5d1ff5ac0f79a0827627e7aea650fc80a56edf42a03c90904d2541303
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_palace_warning_letter.7e8116f5.png
+  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T00:12:27-0700
+  source_path: .agents/coord/_handoff/gem/codex_w32/out/por_npc_kasili__ch12_youth_scene_palace_warning_letter.ar86_kasili1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 7e8116f5d1ff5ac0f79a0827627e7aea650fc80a56edf42a03c90904d2541303
+  sha256: 338de7e3e4bef5b25b9807d7e0b7cbc1b45e33d5cbdeda7a768f9df7582d7678
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 / AR-75 / AR-86：喀丝丽头部局部合成，对齐作者新 base（AR-73 参考古力娜扎，AR-86 选B）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_kasili__ch12_youth_scene_palace_warning_letter.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_kasili__ch12_youth_scene_palace_warning_letter.bc0cf71d.png
-    sha256: bc0cf71da5e53ad149ae342b5262d824ae170669e15127a06f230fa1ce37ae2d
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_kasili__ch12_youth_scene_palace_warning_letter.bc0cf71d.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_palace_warning_letter.7e8116f5.png
+    sha256: 7e8116f5d1ff5ac0f79a0827627e7aea650fc80a56edf42a03c90904d2541303
+    entry: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_palace_warning_letter.7e8116f5.entry.yaml
 - id: por_npc_zhoudanainai__ch12_elder_household_base
   file: por_npc_zhoudanainai__ch12_elder_household_base.png
   category: character/female
