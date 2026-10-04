@@ -1,11 +1,7 @@
 import { AmbientLight, CircleGeometry, Color, DirectionalLight, Frustum, InstancedMesh, Matrix4,
   MeshBasicMaterial, OrthographicCamera, Raycaster, Scene, Vector2, Vector3,
   WebGLRenderer } from 'three';
-import { RigBatch } from '../rig/batch';
-import { createRigCharacter, type RigInstance } from '../rig/character';
-import { weightClassForEquipment } from '../rig/equipment';
-import { loadRigSet } from '../rig/manifest';
-import { createPlaceholderRigManifest } from '../rig/placeholder';
+import type { RigInstance } from '../rig/character';
 import { createTownGeometry, loadTownAtlas } from './geometry';
 import { createTownHeightPicker, elevationAtHex, townCameraOffset, townHexToWorld } from './projection';
 import type { TownAnchorView, TownNpcView, TownRuntimeView, TownScene,
@@ -24,6 +20,7 @@ function markerColor(anchor: TownAnchorView): number {
 
 export async function createTownScene(canvas: HTMLCanvasElement, town: TownRuntimeView,
   options: TownSceneOptions): Promise<TownScene> {
+  const rig = await (options.loadRigRuntime ?? (() => import('../rig/runtime')))();
   const renderer = new WebGLRenderer({ canvas, antialias: false, alpha: false,
     powerPreference: 'high-performance' }); renderer.setClearColor(new Color(0xddd0ad));
   const scene = new Scene(); const camera = new OrthographicCamera(-12, 12, 8, -8, 0.1, 200);
@@ -32,9 +29,9 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
   const geometry = createTownGeometry(town, tileAtlas, buildingAtlas);
   scene.add(geometry.group, new AmbientLight(0xfff4dc, 2));
   const light = new DirectionalLight(0xfff2d3, 2); light.position.set(-20, 35, 12); scene.add(light);
-  const rigSet = await loadRigSet(createPlaceholderRigManifest('town-actors'));
-  const batch = new RigBatch(rigSet, 100); batch.addTo(scene);
-  const player = createRigCharacter(rigSet, options.projection.actor.equipment, 1); batch.add(player);
+  const rigSet = await rig.loadRigSet(rig.createPlaceholderRigManifest('town-actors'));
+  const batch = new rig.RigBatch(rigSet, 100); batch.addTo(scene);
+  const player = rig.createRigCharacter(rigSet, options.projection.actor.equipment, 1); batch.add(player);
   const npcs = new Map<string, { readonly actor: RigInstance; view: TownNpcView }>();
   const anchorMesh = new InstancedMesh(new CircleGeometry(0.24, 16),
     new MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.88 }), 256);
@@ -54,7 +51,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
     townHexToWorld(view.point, town.grid.height, elevationAtHex(town.navigation.nodes, view.point), scratch);
     actor.setPosition(scratch.x, scratch.y + 0.03, scratch.z);
     actor.setMotion(view.direction ?? 1, 'walking' in view && view.walking ? 1.35 : 0,
-      weightClassForEquipment(view.equipment));
+      rig.weightClassForEquipment(view.equipment));
   }
   function setCamera(): void {
     townHexToWorld(projection.actor.point, town.grid.height,
@@ -84,7 +81,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
     for (let index = 0; index < next.length; index += 1) {
       const view = next[index]!; let entry = npcs.get(view.npcId);
       if (!entry) {
-        const actor = createRigCharacter(rigSet, view.equipment, index + 2);
+        const actor = rig.createRigCharacter(rigSet, view.equipment, index + 2);
         batch.add(actor); entry = { actor, view }; npcs.set(view.npcId, entry);
       } else await entry.actor.setEquipment(view.equipment);
       entry.view = view; placeActor(entry.actor, view);

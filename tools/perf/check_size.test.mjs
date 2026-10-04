@@ -67,6 +67,7 @@ async function fixture(options = {}) {
         entry: options.entryBudget ?? 170,
         session: options.sessionBudget ?? 110,
         render: options.renderBudget ?? 180,
+        'render-rig': options.rigBudget ?? 20,
         'render-model3d': options.model3dBudget ?? 24,
         'render-webgpu': 300,
         basis: 255,
@@ -92,6 +93,7 @@ describe('three-level size gate', () => {
     const result = run(root);
     expect(result.status, result.stdout + result.stderr).toBe(0);
     expect(result.stdout).toContain('标题页 entry 闭包（预算 170 KiB gzip）');
+    expect(result.stdout).toMatch(/render-rig\s+—\s+20\s+not emitted/);
     expect(result.stdout).toMatch(/render-model3d\s+—\s+24\s+not emitted/);
     expect(result.stdout).toContain('首次会话闭包（预算 110 KiB gzip）');
     expect(result.stdout).toMatch(
@@ -190,6 +192,21 @@ describe('three-level size gate', () => {
     const result = run(root);
     expect(result.status, result.stdout + result.stderr).toBe(1);
     expect(result.stdout).toMatch(/render\s+\d+\.\d+\s+0\.1\s+FAIL/);
+  });
+
+  it('fails when the rig lazy closure exceeds its separate budget', async () => {
+    const manifest = renderFixtureManifest('render.js', 'render-host.js');
+    manifest['_render.js'].imports = ['src/main.ts'];
+    manifest['_render.js'].dynamicImports = ['_rig.js'];
+    manifest['_rig.js'].imports = ['_render.js'];
+    const root = await fixture({
+      manifest,
+      rigBudget: 0.1,
+      files: { render: 'export{};', 'render-host': 'export{};', rig: noisy(2_000) },
+    });
+    const result = run(root);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stdout).toMatch(/render-rig\s+\d+\.\d+\s+0\.1\s+FAIL/);
   });
 
   it('fails when the battle 3D lazy chunk exceeds its budget', async () => {

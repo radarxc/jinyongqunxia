@@ -12,8 +12,6 @@ import {
 import { createFrameStatsTracker, type FrameStats } from './frame-stats';
 import { createContextGuard, type ContextState } from './core/context-guard';
 import { getDefaultRenderQuality } from './quality/tiers';
-import type { PilotModel } from './gltf/load';
-import type { PilotDemoController, PilotDemoOptions } from './gltf/pilot-scene';
 
 export type RenderStats = FrameStats;
 export * from './frame-stats';
@@ -23,21 +21,6 @@ export * from './core/context-guard';
 export * from './quality';
 export type { ClipPlayOptions, PartPose, PartPoseBuffer, RigBoneLengthKey, RigClipEventType } from './rig/types';
 export type { RigClip, RigClipEvent } from './rig/clip';
-export type {
-  PilotDemoController, PilotDemoOptions, PilotDemoStats, PilotModel, PilotModelStats, PilotRetargeter, PilotSkeletonKind,
-} from './gltf';
-
-/** Development pilot stays behind a second dynamic boundary inside the route-only render import. */
-export async function loadPilotModel(url: string): Promise<PilotModel> {
-  const modulePath = './gltf/load.ts';
-  return (await import(/* @vite-ignore */ modulePath)).loadPilotModel(url);
-}
-export async function createPilotDemoScene(
-  canvas: HTMLCanvasElement, options: PilotDemoOptions,
-): Promise<PilotDemoController> {
-  const modulePath = './gltf/pilot-scene.ts';
-  return (await import(/* @vite-ignore */ modulePath)).createPilotDemoScene(canvas, options);
-}
 export interface RenderWorld {
   render(timeMs: number): void;
   resize(width: number, height: number, pixelRatio?: number): void;

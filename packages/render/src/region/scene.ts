@@ -8,11 +8,7 @@ import { hexDirToRig } from '../camera/facing';
 import { createContextGuard } from '../core/context-guard';
 import { createTimeOfDayFrame, evaluateTimeOfDay, sunAzimuthDeg } from '../lighting/time-of-day';
 import { getDefaultRenderQuality } from '../quality/tiers';
-import { RigBatch } from '../rig/batch';
-import { createRigCharacter, type RigInstance } from '../rig/character';
-import { weightClassForEquipment } from '../rig/equipment';
-import { loadRigSet } from '../rig/manifest';
-import { createPlaceholderRigManifest } from '../rig/placeholder';
+import type { RigInstance } from '../rig/character';
 import { collectRegionObjects, createRegionObjectLayer } from './objects';
 import { createRegionTerrainChunk, createTerrainPlaceholderArray, prepareRegionTerrain, regionCellKey, regionHexWorld,
   REGION_CHUNK_SIZE, REGION_UPLOADS_PER_FRAME, setRegionTerrainHighlight,
@@ -43,6 +39,7 @@ function initialChunkOrder(view: RegionStaticView, focus: RegionHexPoint): reado
 
 export async function createRegionScene(canvas: HTMLCanvasElement, definition: RegionStaticView,
   options: RegionSceneOptions): Promise<RegionScene> {
+  const rig = await (options.loadRigRuntime ?? (() => import('../rig/runtime')))();
   const renderer = new WebGLRenderer({ canvas, alpha: false, antialias: false,
     powerPreference: 'high-performance' }); renderer.setClearColor(new Color(0xd7ccb0));
   const quality = options.quality ?? getDefaultRenderQuality(); const scene = new Scene();
@@ -76,17 +73,17 @@ export async function createRegionScene(canvas: HTMLCanvasElement, definition: R
   const sun = new DirectionalLight(0xffedc7, 2.2); scene.add(sun);
   const clearColor = new Color(); const timeFrame = createTimeOfDayFrame();
   let rigSet;
-  try { rigSet = await loadRigSet(options.rig ?? createPlaceholderRigManifest('region-actors')); }
+  try { rigSet = await rig.loadRigSet(options.rig ?? rig.createPlaceholderRigManifest('region-actors')); }
   catch (error) { staticLayer.dispose();
     for (let index = 0; index < loadedChunks.length; index += 1) loadedChunks[index]!.dispose();
     if (options.terrainAlbedo === undefined) terrainAlbedo.dispose();
     renderer.forceContextLoss(); renderer.dispose(); throw error; }
-  const batch = new RigBatch(rigSet, 100); batch.addTo(scene);
-  const player = createRigCharacter(rigSet, options.playerEquipment ?? {}, 1); batch.add(player);
+  const batch = new rig.RigBatch(rigSet, 100); batch.addTo(scene);
+  const player = rig.createRigCharacter(rigSet, options.playerEquipment ?? {}, 1); batch.add(player);
   const npcEntries: Array<{ readonly object: RegionObjectView; readonly actor: RigInstance }> = [];
   const npcObjects = allObjects.filter((entry) => entry.class === 'NpcSpawn').slice(0, 99);
   for (let index = 0; index < npcObjects.length; index += 1) { const object = npcObjects[index]!;
-    const actor = createRigCharacter(rigSet, options.npcEquipment?.[object.npcId ?? ''] ?? {}, index + 2);
+    const actor = rig.createRigCharacter(rigSet, options.npcEquipment?.[object.npcId ?? ''] ?? {}, index + 2);
     npcEntries.push({ object, actor }); batch.add(actor);
   }
   const markerGeometry = new CircleGeometry(.22, 12); markerGeometry.rotateX(-Math.PI / 2);
@@ -150,7 +147,7 @@ export async function createRegionScene(canvas: HTMLCanvasElement, definition: R
   function placeActor(actor: RigInstance, point: RegionHexPoint, facing: number, speed = 0): void {
     regionHexWorld(point.q, point.r, displayHeight(prepared, point), projected);
     actor.setPosition(projected.x, projected.y + .02, projected.z);
-    actor.setMotion(hexDirToRig(facing as 0, effectiveYaw()), speed, weightClassForEquipment(actor.equipment));
+    actor.setMotion(hexDirToRig(facing as 0, effectiveYaw()), speed, rig.weightClassForEquipment(actor.equipment));
   }
   function updateDirections(): void {
     placeActor(player, playerPoint, playerFacing);
