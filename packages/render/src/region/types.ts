@@ -2,6 +2,7 @@ import type { ContextFailure, ContextState } from '../core/context-guard';
 import type { EquipmentVisuals, RigManifestInput } from '../rig';
 import type { RenderQualitySource } from '../quality/tiers';
 import type { DataArrayTexture } from 'three';
+import type * as RigRuntime from '../rig/runtime';
 
 export type RegionHexDir = 0 | 1 | 2 | 3 | 4 | 5;
 export interface RegionHexPoint { readonly q: number; readonly r: number }
@@ -84,6 +85,8 @@ export interface RegionSceneOptions {
   readonly onContextLoss?: (sessionLossCount: number) => void;
   readonly onContextRecreate?: () => Promise<boolean>;
   readonly onContextFatal?: (kind: ContextFailure) => void; readonly requestFrame?: () => void;
+  /** Test seam; production loads the rig runtime when the region is first entered. */
+  readonly loadRigRuntime?: () => Promise<typeof RigRuntime>;
 }
 export interface RegionScene {
   readonly stats: RegionSceneStats; readonly camera: RegionCameraControl;

@@ -5,11 +5,7 @@ import { createTimeTintPass } from '../lighting/tint-pass';
 import { createTimeOfDayFrame, evaluateTimeOfDay } from '../lighting/time-of-day';
 import { createContextGuard } from '../core/context-guard';
 import { getDefaultRenderQuality } from '../quality/tiers';
-import { RigBatch } from '../rig/batch';
-import { createRigCharacter, type RigInstance } from '../rig/character';
-import { equipmentEquals, weightClassForEquipment } from '../rig/equipment';
-import { loadRigSet } from '../rig/manifest';
-import { createPlaceholderRigManifest } from '../rig/placeholder';
+import type { RigInstance } from '../rig/character';
 import type { Dir8 } from '../rig/types';
 import { HexLayer, hexWorld } from './hex-layer';
 import type { BattleCell, BattleMarker, BattleRenderer, BattleRendererOptions } from './types';
@@ -40,6 +36,7 @@ export async function createBattleRenderer(
   cells: readonly BattleCell[],
   options: BattleRendererOptions = {},
 ): Promise<BattleRenderer> {
+  const rig = await (options.loadRigRuntime ?? (() => import('../rig/runtime')))();
   const renderer = new WebGLRenderer({
     canvas,
     antialias: false,
@@ -58,14 +55,14 @@ export async function createBattleRenderer(
   const timeFrame = createTimeOfDayFrame();
   let rigSet;
   try {
-    rigSet = await loadRigSet(options.rig ?? createPlaceholderRigManifest());
+    rigSet = await rig.loadRigSet(options.rig ?? rig.createPlaceholderRigManifest());
   } catch (error) {
     terrain.dispose();
     tintPass.dispose();
     renderer.forceContextLoss(); renderer.dispose();
     throw error;
   }
-  const batch = new RigBatch(rigSet, 100);
+  const batch = new rig.RigBatch(rigSet, 100);
   batch.addTo(scene);
   const characters = new Map<string, { character: RigInstance; marker: BattleMarker; dir: Dir8 }>();
   let modelStage: BattleModelStage | undefined;
@@ -194,7 +191,7 @@ export async function createBattleRenderer(
       const direction = hexDirToRig(entry.marker.facing, rotation.yawDeg);
       if (direction !== entry.dir) {
         entry.dir = direction;
-        entry.character.setMotion(direction, 0, weightClassForEquipment(entry.marker.equipment));
+        entry.character.setMotion(direction, 0, rig.weightClassForEquipment(entry.marker.equipment));
       }
     }
   }
@@ -209,17 +206,17 @@ export async function createBattleRenderer(
       for (const unit of units) {
         let entry = characters.get(unit.id);
         if (!entry) {
-          const character = createRigCharacter(rigSet, unit.equipment, unit.index + 1);
+          const character = rig.createRigCharacter(rigSet, unit.equipment, unit.index + 1);
           const dir = hexDirToRig(unit.facing, rotation.yawDeg);
           entry = { character, marker: unit, dir };
           characters.set(unit.id, entry);
           if (unit.active && !modelStage?.hasModel(unit.id)) batch.add(character);
           hexWorld(unit.q, unit.r, unit.height, point);
           character.setPosition(point.x, point.y + 0.02, point.z);
-          character.setMotion(dir, 0, weightClassForEquipment(unit.equipment));
+          character.setMotion(dir, 0, rig.weightClassForEquipment(unit.equipment));
         } else {
           const previous = entry.marker;
-          const equipmentChanged = !equipmentEquals(previous.equipment, unit.equipment);
+          const equipmentChanged = !rig.equipmentEquals(previous.equipment, unit.equipment);
           if (equipmentChanged) void entry.character.setEquipment(unit.equipment);
           if (unit.active !== entry.marker.active) {
             if (unit.active && !modelStage?.hasModel(unit.id)) batch.add(entry.character);
@@ -231,7 +228,7 @@ export async function createBattleRenderer(
           }
           if (unit.facing !== previous.facing || equipmentChanged) {
             entry.dir = hexDirToRig(unit.facing, rotation.yawDeg);
-            entry.character.setMotion(entry.dir, 0, weightClassForEquipment(unit.equipment));
+            entry.character.setMotion(entry.dir, 0, rig.weightClassForEquipment(unit.equipment));
           }
           entry.marker = unit;
         }

@@ -13,6 +13,9 @@ gzip 字节并阻断超限，输出分为三层：
 - 战斗 3D：清单中的 `battle-model3d` 动态块作为 `render-model3d` 计量；扣除
   entry 与 render 已计静态闭包后执行 24 KiB gzip 门禁。该值由当前实测约
   17.25 KiB 加约 6.75 KiB（39%）余量得出；未构建该块时显示 `not emitted`。
+- 角色 rig：清单中的 `rig` 动态块作为 `render-rig` 计量；扣除 entry 与
+  render 已计静态闭包后执行 20 KiB gzip 门禁。该值由拆分后实测约 14.95 KiB
+  加约 5.05 KiB（34%）余量得出；首次进入战斗、区域、城镇或大地图时加载。
 - 首次会话：读取 Worker 构建生成的 `.vite/size-groups.json`，把 Worker 壳、
   `runtime/session.ts` 静态闭包和 `virtual:tianshu-content` 基础内容去重相加，
   对合计执行 110 KiB 门禁；任一组缺失时以 `SIZE_SESSION_GROUP_MISSING` 失败。

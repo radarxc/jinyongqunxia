@@ -81,7 +81,7 @@ async function createDemo(canvas: HTMLCanvasElement, modelUrl: string | null, on
     const rig = await import('@tianshu/render/rig');
     return rig.createRigDemoScene(canvas, onEvent);
   }
-  const pilot = await import('@tianshu/render');
+  const pilot = await import('../../../packages/render/src/gltf/demo');
   return pilot.createPilotDemoScene(canvas, { modelUrl, onClipEvent: onEvent }) as Promise<DemoController>;
 }
 

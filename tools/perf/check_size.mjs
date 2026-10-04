@@ -213,30 +213,36 @@ const existingRecords = await Promise.all(
   }),
 );
 const renderRecord = existingRecords.find((record) => record.name === 'render');
-const model3dTarget = findManifestChunk('render-model3d', {
-  sources: ['packages/render/src/battle/model-stage.ts'],
-  manifestNames: ['battle-model3d', 'render-model3d'],
-});
-if (!model3dTarget)
-  existingRecords.push({
-    name: 'render-model3d',
-    file: 'not emitted',
-    size: null,
-    budget: budgets.chunks['render-model3d'],
-  });
-else {
-  const [key] = model3dTarget;
+async function appendRenderLazyRecord(name, target) {
+  if (!target) {
+    existingRecords.push({ name, file: 'not emitted', size: null, budget: budgets.chunks[name] });
+    return;
+  }
+  const [key] = target;
   const alreadyBudgeted = new Set(entryFiles);
   if (renderRecord?.key)
     for (const file of staticClosure(renderRecord.key)) alreadyBudgeted.add(file);
   const files = withoutFiles(staticClosure(key), alreadyBudgeted);
   existingRecords.push({
-    name: 'render-model3d',
+    name,
     file: [...files].join(', '),
     size: await gzipFiles(files),
-    budget: budgets.chunks['render-model3d'],
+    budget: budgets.chunks[name],
   });
 }
+await appendRenderLazyRecord(
+  'render-rig',
+  findManifestChunk('render-rig', {
+    sources: ['packages/render/src/rig/runtime.ts'],
+    manifestNames: ['rig', 'render-rig'],
+    dynamicImporterKeys: renderRecord?.key ? [renderRecord.key] : [],
+  }),
+);
+const model3dTarget = findManifestChunk('render-model3d', {
+  sources: ['packages/render/src/battle/model-stage.ts'],
+  manifestNames: ['battle-model3d', 'render-model3d'],
+});
+await appendRenderLazyRecord('render-model3d', model3dTarget);
 const bookFiles = emittedJs.filter((file) => file.startsWith('book-'));
 if (bookFiles.length === 0)
   existingRecords.push({

@@ -41,6 +41,14 @@ import { regionDynamicFixture, regionStaticFixture } from './test-fixture';
 beforeEach(() => { fake.motions.length = 0; fake.scene = undefined; fake.deferEquipment = false;
   fake.equipmentUpdates.length = 0; vi.clearAllMocks(); });
 describe('region camera and lifecycle', () => {
+  it('loads the rig runtime when the region is first entered', async () => {
+    const loadRigRuntime = vi.fn(() => import('../rig/runtime'));
+    const scene = await createRegionScene(document.createElement('canvas'), regionStaticFixture(2, 1),
+      { projection: regionDynamicFixture(), loadRigRuntime });
+    expect(loadRigRuntime).toHaveBeenCalledOnce();
+    scene.dispose();
+  });
+
   it('forces yaw 45 in a locked CameraHint and restores authored rotation outside it', async () => {
     const base = regionStaticFixture(2, 1);
     const locked = { id: 'hint_locked', class: 'CameraHint', q: 0, r: 0, h: 0,

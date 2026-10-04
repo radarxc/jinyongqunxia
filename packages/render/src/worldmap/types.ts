@@ -1,6 +1,7 @@
 import type { Dir8, EquipmentVisuals } from '../rig/types';
 import type { ContextFailure, ContextState } from '../core/context-guard';
 import type { RenderQualitySource } from '../quality/tiers';
+import type * as RigRuntime from '../rig/runtime';
 
 /** Navigation-grid drawing coordinates. They are not combat hexes or metres. */
 export type MapPoint = readonly [number, number];
@@ -52,6 +53,8 @@ export interface WorldMapSceneOptions {
   readonly onContextRecreate?: () => Promise<boolean>;
   readonly onContextFatal?: (kind: ContextFailure) => void;
   readonly requestFrame?: () => void;
+  /** Test seam; production loads the rig runtime when the world map is first entered. */
+  readonly loadRigRuntime?: () => Promise<typeof RigRuntime>;
 }
 export interface WorldMapScene {
   readonly stats: WorldMapStats;

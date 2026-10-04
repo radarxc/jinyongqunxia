@@ -1,4 +1,5 @@
 import type { Dir8, EquipmentVisuals } from '../rig/types';
+import type * as RigRuntime from '../rig/runtime';
 
 export type TownPoint = readonly [number, number];
 export type TownBuildingPhase = 'outside' | 'fading-in' | 'inside' | 'fading-out';
@@ -55,7 +56,9 @@ export interface TownSceneStats {
   visibleChunks: number; atlasTextures: number;
 }
 export interface TownScreenPoint { x: number; y: number; visible: boolean }
-export interface TownSceneOptions { readonly projection: TownSceneProjection; readonly zoom?: number }
+export interface TownSceneOptions { readonly projection: TownSceneProjection; readonly zoom?: number;
+  /** Test seam; production loads the rig runtime when the town is first entered. */
+  readonly loadRigRuntime?: () => Promise<typeof RigRuntime> }
 export interface TownScene {
   readonly stats: TownSceneStats;
   render(timeMs: number, reducedMotion?: boolean): void;

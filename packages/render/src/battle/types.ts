@@ -2,6 +2,7 @@ import type { EquipmentVisuals, RigManifestInput, RigSnapshot } from '../rig';
 import type { ContextFailure, ContextState } from '../core/context-guard';
 import type { RenderQualitySource } from '../quality/tiers';
 import type { createBattleModelStage } from './model-stage';
+import type * as RigRuntime from '../rig/runtime';
 
 /** Coordinates are supplied by core; this package only projects them to world/screen. */
 export interface BattleCell {
@@ -101,6 +102,8 @@ export interface BattleRendererOptions {
   readonly onContextRecreate?: () => Promise<boolean>;
   readonly onContextFatal?: (kind: ContextFailure) => void;
   readonly requestFrame?: () => void;
+  /** Test seam; production loads the rig runtime when battle rendering first starts. */
+  readonly loadRigRuntime?: () => Promise<typeof RigRuntime>;
   /** Test seam; production uses the dynamic model-stage import. */
   readonly loadModelStage?: () => Promise<{
     createBattleModelStage: typeof createBattleModelStage;

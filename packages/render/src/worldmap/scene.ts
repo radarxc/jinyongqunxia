@@ -13,10 +13,6 @@ import {
   type Object3D,
   type Texture,
 } from 'three';
-import { RigBatch } from '../rig/batch';
-import { createRigCharacter } from '../rig/character';
-import { createPlaceholderRigManifest } from '../rig/placeholder';
-import { loadRigSet } from '../rig/manifest';
 import { createTimeOfDayFrame, evaluateTimeOfDay, sunAzimuthDeg } from '../lighting/time-of-day';
 import { createContextGuard } from '../core/context-guard';
 import { getDefaultRenderQuality } from '../quality/tiers';
@@ -40,6 +36,7 @@ export async function createWorldMapScene(
   map: MapGeometryView,
   options: WorldMapSceneOptions,
 ): Promise<WorldMapScene> {
+  const rig = await (options.loadRigRuntime ?? (() => import('../rig/runtime')))();
   const renderer = new WebGLRenderer({
     canvas,
     antialias: false,
@@ -74,14 +71,14 @@ export async function createWorldMapScene(
   const marker = createDestinationMarker();
   scene.add(marker);
   let rigSet;
-  try { rigSet = await loadRigSet(createPlaceholderRigManifest('worldmap-player')); }
+  try { rigSet = await rig.loadRigSet(rig.createPlaceholderRigManifest('worldmap-player')); }
   catch (error) {
     geometry.dispose(); mapTexture?.dispose(); disposeObject(marker);
     renderer.forceContextLoss(); renderer.dispose(); throw error;
   }
-  const batch = new RigBatch(rigSet, 1);
+  const batch = new rig.RigBatch(rigSet, 1);
   batch.addTo(scene);
-  const actor = createRigCharacter(rigSet, options.actor.equipment, 1);
+  const actor = rig.createRigCharacter(rigSet, options.actor.equipment, 1);
   batch.add(actor);
   const stats: WorldMapStats = {
     drawCalls: 0,

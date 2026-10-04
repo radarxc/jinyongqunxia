@@ -142,6 +142,15 @@ describe('battle scene selection', () => {
 });
 
 describe('battle camera', () => {
+  it('loads the rig runtime when battle rendering first starts', async () => {
+    const loadRigRuntime = vi.fn(() => import('../rig/runtime'));
+    const renderer = await createBattleRenderer(document.createElement('canvas'), cells, {
+      loadRigRuntime,
+    });
+    expect(loadRigRuntime).toHaveBeenCalledOnce();
+    renderer.dispose();
+  });
+
   it('rotates to yaw 135, updates Dir8, blocks picking, and renders four draws', async () => {
     const renderer = await createBattleRenderer(document.createElement('canvas'), cells);
     renderer.resize(320, 180);
