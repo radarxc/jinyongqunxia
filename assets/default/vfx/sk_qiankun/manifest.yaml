@@ -1,0 +1,457 @@
+- id: vfx_sk_qiankun__family_base01
+  file: effect/family/source_sheet.png
+  size: 1536x1024
+  sha256: a999b2561195049284631e3c59b806beec490a72235fab5ff1c9bfb02df9a33e
+  category: vfx
+  style: default
+  subject: 倚天 ch04_yitian，乾坤大挪移 家族金墨回环（护体 / 卸劲共用）；金色和造型均为原创扩展，无人物年代造型
+  prompt: "Use case: stylized-concept. Edit target: the supplied Qiankun Danuoyi family VFX source sheet. Create candidate 2, fixing ONLY the hard straight vertical cutoffs at the LEFT ROOT of all four gold-ink swirls. Keep the amber-gold and umber ink wash palette, airy hollow clockwise open loops, four animation phases, 2 by 2 grid without visible dividers, pure white background, and original camera/layout. Requested landscape size 1536 x 1024, each local cell 768 x 512. No characters or palm; this is only energy material.\nCritical repair: every root must have a soft ORGANIC irregular rounded silhouette, with several curved thin ink wisps that gradually dilute into pure white to the LEFT and above/below. A generous feathered fade at the left end, over at least 60 pixels, with no constant-x edge, no rectangle, no straight crop boundary, no flat ends, no hard seam, no visible masking box. The leftmost wisps end at different x positions. The center of each root near local (160,256) should contain translucent gold pigment and be connected continuously to the loop; fade occurs to its LEFT around x70..150. Root joins the loop without any gap. Do not draw a solid blob or a flare. Delicate semitransparent ink washes, separated curling strands, no solid outer contour. Keep all pigment and particles at least 48 pixels from each of the four cell edges. Center open vortex near local (435,256), rightmost near x665. Same fixed root in all cells, very small camera/position drift. Phases reading left-to-right top-to-bottom: gathering, fully visible peak, gently turning sustain, fading residue. This is an original visual interpretation of redirecting force, not a claim about novel-described light.\nAvoid text, labels, numbers, watermarks, signature, borders, grid lines, symbols, yin-yang disk, human body, fingers, weapons, dragon, background scene, paper texture, gray shadows, lasers, fire, metallic objects, white highlight core, checkerboard. The entire background must be clean uniform white. Prioritize natural taper and translucent fading on every root over extra detail."
+  negative: text, numbers, labels, grids, borders, watermark, signature, yin-yang icon, bagua, black/white disk,
+    weapons, dragons, fingers, metallic object, hard outline, neon red/blue, white highlights, checkerboard, glow
+    touching edges.
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_qiankun/codex-home/generated_images/01a1042c-0595-7452-83a7-60093442bb7b/exec-8e9fe382-33bb-4284-a215-c901d41f1177.png
+  tool: codex exec · built-in image_gen
+  model: 工具未暴露模型标识
+  effort: 工具未暴露推理档位
+  created: '2026-10-04T00:13:55.862Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_qiankun/codex-home/generated_images/01a10440-f327-7c43-b4f9-59ff64982fc5/exec-f907da63-4088-4cce-b7d4-11332c35abb1.png
+  status: candidate
+  notes: 家族第二候选，定向修复首版根部竖直切口；原件逐字节保存，4 帧由 cut_frames.py 以阈值 246 切成 straight RGBA，三底及两招峰值目检无切口。gold_ink / harmony；normal 混合；小说显色（待考），不主张原著记载金色；首版来源与哈希见 request.json。
+  candidates:
+    generated: 2
+    selected: 2
+  effect_set: effect/family/effect-set.yaml
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 1014
+    sha256: 75b1bcc0b1e27dcc039738beeca7d68eb1ac32cdaafc4a3d5b3cf66ee01ba905
+  - file: effect/family/frame_000.png
+    bytes: 211074
+    sha256: 50e2a96e629923a2da6b3e19c06e5d9940d5875535a5d54bd970c9234661745f
+  - file: effect/family/frame_001.png
+    bytes: 392551
+    sha256: 367d99c71bc2795f26bc832a1b4bcefc16b937defc0009373569e70dfba655fe
+  - file: effect/family/frame_002.png
+    bytes: 346008
+    sha256: da623f07ac45f1ed1a1ff60a2cbe3125c2ce041b0d809479ceec71d4470ea8a5
+  - file: effect/family/frame_003.png
+    bytes: 251403
+    sha256: c136baf94529238228e8a252502d768169ec00cb12059fef9cedc03532a93fcc
+  - file: effect/family/quality.json
+    bytes: 1021
+    sha256: f74c89f3f0eabfdb31c588ba67d2aa77b1ab45bdfad7ff62820636fc237592c0
+  - file: effect/family/request.json
+    bytes: 5564
+    sha256: f8df785fdacb41de7616987e4554d6a6b0e87a8dde888922c1a4aaf233f03978
+  - file: effect/family/source_sheet.png
+    bytes: 1624254
+    sha256: a999b2561195049284631e3c59b806beec490a72235fab5ff1c9bfb02df9a33e
+  - file: README.md
+    bytes: 7844
+    sha256: 1c6a98f9769c27af0b692d89a7e445b3a879f0013e69fe3f0dacc646cc01db16
+  - file: verification.json
+    bytes: 6328
+    sha256: 313a56e4977535e454f0fe47be2216f31e2ada968792c87c0c533da9ebc21b51
+- id: vfx_sk_qiankun__diandao_base01
+  file: effect/mv_qiankun_diandao/source_sheet.png
+  size: 1536x1024
+  sha256: a002b1a68a60dacaedcd0d0fd1d8925d91c9fe67d61d02f0dcf1ebbc153d24e5
+  category: vfx
+  style: default
+  subject: 倚天 ch04_yitian，乾坤大挪移 颠倒阴阳双旋金墨；金色和造型均为原创扩展，无人物年代造型
+  prompt: 'Use case: stylized-concept
+
+    Asset type: wuxia VFX source sprite sheet, Qiankun Danuoyi ultimate Diandao Yinyang, original interpretation
+    of reversing and redirecting force.
+
+    ONE landscape image 1536x1024, exactly four equally sized cells arranged 2 columns x 2 rows, each 768x512. Read
+    left-right then top-bottom. Absolutely white #FFFFFF backdrop with no separators.
+
+    Four consecutive animation poses of ONE coherent aura: gathering, peak, sustained counter-rotation, faint residue.
+    Each frame has an identical broad root centred at local (145,256), flowing right into a compact vortex; keep
+    this location constant. Two interlocked gold ink crescents turn in opposite directions in the same hollow round
+    space near local (440,256): upper sweeping crescent in deep amber and lower returning crescent in pale ochre,
+    twisting past each other through a curved S-shaped gap. The two flows trade upper/lower prominence over time
+    yet stay attached to the same broad root. This must look like circulating inner force deflecting momentum near
+    the body. NOT two separate projectiles or a yin-yang symbol.
+
+    Fine Chinese ink wash, soft wet washes and airy transparent-looking breaks, gold pigment with umber accents,
+    visible color rather than white interior highlights. Root about 110px high with soft feathering on its left
+    edge; never draw a rectangular cut edge. Peak is in TOP RIGHT cell. Reserve at least 56px white margin on ALL
+    four sides of EVERY cell; all wisps stay within bounds. Do not exaggerate scale between poses. Full vortex diameter
+    about 300px; no long beam.
+
+    No hands, human, weapons, animals, scene, paper grain, shadow, text, numbers, labels, diagram, grid, frame,
+    border, watermark, icon, bagua, circular magic sigil, black-white disk, white paint, neon red/blue, physical
+    metal or fire.'
+  negative: 'No hands, human, weapons, animals, scene, paper grain, shadow, text, numbers, labels, diagram, grid, frame,
+    border, watermark, icon, bagua, circular magic sigil, black-white disk, white paint, neon red/blue, physical
+    metal or fire.'
+  references: []
+  tool: codex exec · built-in image_gen
+  model: 工具未暴露模型标识
+  effort: 工具未暴露推理档位
+  created: '2026-10-03T23:53:39.467Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_qiankun/codex-home/generated_images/01a1042c-0595-7452-83a7-60093442bb7b/exec-5feba5a3-8dad-400c-bc81-fb76cd67c9d3.png
+  status: candidate
+  notes: 白底生成原件逐字节保存；4 帧由 cut_frames.py 切成 straight RGBA。gold_ink / harmony；normal 混合；小说显色（待考），本次不主张原著记载金色。
+  candidates:
+    generated: 1
+    selected: 1
+  effect_set: effect/mv_qiankun_diandao/effect-set.yaml
+  file_integrity:
+  - file: effect/mv_qiankun_diandao/effect-set.yaml
+    bytes: 1015
+    sha256: 8e4baefb940476ca63ecd5f4127e7b7a54faea88e22605371da673bb1c95ff86
+  - file: effect/mv_qiankun_diandao/frame_000.png
+    bytes: 358992
+    sha256: 1dcc14c215b989cbf4609be61b538e015f8626151617194b6cc6846b05a75b2a
+  - file: effect/mv_qiankun_diandao/frame_001.png
+    bytes: 490580
+    sha256: c09df05107f40f981a9152af759900c34b74c826e87527b87c11c648e4f5c890
+  - file: effect/mv_qiankun_diandao/frame_002.png
+    bytes: 439854
+    sha256: c972a7cb11c8429029fdf3d6a4561e83182f0e280e3b8104eee056eb408fccca
+  - file: effect/mv_qiankun_diandao/frame_003.png
+    bytes: 346794
+    sha256: dfdd495adbc296223cc94fc7e71f55e33dc7855949f3c109ca33ec8e36ab906e
+  - file: effect/mv_qiankun_diandao/quality.json
+    bytes: 1033
+    sha256: 216687e8a991acea546e5562d1c42596df4e411307d4e66440d8b2b0ec03bd7e
+  - file: effect/mv_qiankun_diandao/request.json
+    bytes: 2296
+    sha256: 5fdea791bdbb90903161248882e31708580bc95feae61b5299ba57e9c3f69cfe
+  - file: effect/mv_qiankun_diandao/source_sheet.png
+    bytes: 1924519
+    sha256: a002b1a68a60dacaedcd0d0fd1d8925d91c9fe67d61d02f0dcf1ebbc153d24e5
+- id: vfx_sk_qiankun__guiyi_base01
+  file: effect/mv_qiankun_guiyi/source_sheet.png
+  size: 1536x1024
+  sha256: 91b2bdefc083881c643af5ecb592b09578d79d1a6f015a24e0069e9b1fdf0988
+  category: vfx
+  style: default
+  subject: 倚天 ch04_yitian，乾坤大挪移 乾坤归一向心金墨；金色和造型均为原创扩展，无人物年代造型
+  prompt: 'Use case: stylized-concept
+
+    Asset type: Chinese wuxia game VFX white-background source sprite sheet, Qiankun Danuoyi ultimate Qiankun Guiyi.
+    Original visual design for forces gathering into unity.
+
+    One landscape image, requested 1536x1024, EXACT 2 columns by 2 rows, four equal 768x512 cells. No panel lines
+    or text. Each cell pure #FFFFFF background. Four consecutive lifecycle keyframes read left to right top to bottom:
+    gathering, full peak, sustained winding inward, diluted fading remnant.
+
+    Same short connected root in every cell near local (145,256), width 120px, a soft golden ink fan at the left
+    feeding a round hollow swirl to its immediate right, centered around local (450,256). Distinctive design: THREE
+    nested open elliptical gold ink ribbons curl inward toward one compact amber knot, as scattered force gathers
+    into a single calm centre. A visible broad soft root connects the swirl back to its left emitter location throughout.
+    Open airy spaces separate the bands, no filled disk. The circles should feel organic and intertwined, not concentric
+    machine rings; dry brush, liquid wisps and soft transparent wash. Keep the same shape identity throughout. Top-right
+    cell is the richest peak. Do not make a long linear beam.
+
+    Palette antique gold, muted amber and pale ochre with small umber accents. Ink-wash atmosphere with real pigment
+    texture and transparent-looking passages. No white pigment or white solid highlights; the white gaps belong
+    to the background. At least 56px white safety margin on every side of each cell, including every speck. Soft
+    rounded root with feathered left edge, no rectangular cutoffs. Small frame-to-frame changes, fixed root and
+    camera.
+
+    Avoid: hands, people, objects, weapons, dragons, birds, fireball, laser, glyphs, bagua or taiji icons, text,
+    numbers, grid, borders, watermark, labels, paper texture, gray shadows, checkerboard, physical metal, plastic
+    shine, neon, white highlights, cropped edges, dust at cell boundaries.'
+  negative: hands, people, objects, weapons, dragons, birds, fireball, laser, glyphs, bagua or taiji icons, text,
+    numbers, grid, borders, watermark, labels, paper texture, gray shadows, checkerboard, physical metal, plastic
+    shine, neon, white highlights, cropped edges, dust at cell boundaries.
+  references: []
+  tool: codex exec · built-in image_gen
+  model: 工具未暴露模型标识
+  effort: 工具未暴露推理档位
+  created: '2026-10-03T23:53:39.797Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_qiankun/codex-home/generated_images/01a1042c-0595-7452-83a7-60093442bb7b/exec-682d7f1e-794c-454e-b4f9-5be0994f1819.png
+  status: candidate
+  notes: 白底生成原件逐字节保存；4 帧由 cut_frames.py 切成 straight RGBA。gold_ink / harmony；normal 混合；小说显色（待考），本次不主张原著记载金色。
+  candidates:
+    generated: 1
+    selected: 1
+  effect_set: effect/mv_qiankun_guiyi/effect-set.yaml
+  file_integrity:
+  - file: effect/mv_qiankun_guiyi/effect-set.yaml
+    bytes: 1015
+    sha256: 9b364557dc982bea569db408090e5276f18c3e225a3e680fb768418043219341
+  - file: effect/mv_qiankun_guiyi/frame_000.png
+    bytes: 265558
+    sha256: 938d77606613ddc15502c7d275dea6315ee40e6842fc22b721e3cf093ae1e047
+  - file: effect/mv_qiankun_guiyi/frame_001.png
+    bytes: 383040
+    sha256: b01c60248a2b29da23312dadda90542f18df072d4bc87f370c1501a2d210743f
+  - file: effect/mv_qiankun_guiyi/frame_002.png
+    bytes: 268612
+    sha256: 834ad9cccf01f4560e9a88b8f7ded952f6f71dfca44f97a825ab9f3a2642b7f0
+  - file: effect/mv_qiankun_guiyi/frame_003.png
+    bytes: 211711
+    sha256: 7f78c1f79a01af6444aab217184a3a5b7077de411f0a780b3923a5856a9b5d8f
+  - file: effect/mv_qiankun_guiyi/quality.json
+    bytes: 1032
+    sha256: 9cd2af88fad91bc079511803acb49cde6f97c912b3dbd15a414e9612f7a4a169
+  - file: effect/mv_qiankun_guiyi/request.json
+    bytes: 2471
+    sha256: a819959da19888133bce9fe3caa36c17bded15e02908ea4f7b7bb8f3d7c3e84d
+  - file: effect/mv_qiankun_guiyi/source_sheet.png
+    bytes: 1636948
+    sha256: 91b2bdefc083881c643af5ecb592b09578d79d1a6f015a24e0069e9b1fdf0988
+- id: vfx_mv_qiankun_huti__base01
+  file: moves/mv_qiankun_huti/peak.png
+  size: 1536x1024
+  sha256: 1b096702dee7ea55ab56625720a7b282ebfaba1de77952dacc2a8ff552358d6b
+  category: vfx
+  style: default
+  subject: 倚天 ch04_yitian，乾坤大挪移 mv_qiankun_huti；普通招；近身 / 自身内功演出（原创扩展）
+  prompt: "Use case: stylized-concept. Edit target: the supplied Qiankun Danuoyi family VFX source sheet. Create candidate 2, fixing ONLY the hard straight vertical cutoffs at the LEFT ROOT of all four gold-ink swirls. Keep the amber-gold and umber ink wash palette, airy hollow clockwise open loops, four animation phases, 2 by 2 grid without visible dividers, pure white background, and original camera/layout. Requested landscape size 1536 x 1024, each local cell 768 x 512. No characters or palm; this is only energy material.\nCritical repair: every root must have a soft ORGANIC irregular rounded silhouette, with several curved thin ink wisps that gradually dilute into pure white to the LEFT and above/below. A generous feathered fade at the left end, over at least 60 pixels, with no constant-x edge, no rectangle, no straight crop boundary, no flat ends, no hard seam, no visible masking box. The leftmost wisps end at different x positions. The center of each root near local (160,256) should contain translucent gold pigment and be connected continuously to the loop; fade occurs to its LEFT around x70..150. Root joins the loop without any gap. Do not draw a solid blob or a flare. Delicate semitransparent ink washes, separated curling strands, no solid outer contour. Keep all pigment and particles at least 48 pixels from each of the four cell edges. Center open vortex near local (435,256), rightmost near x665. Same fixed root in all cells, very small camera/position drift. Phases reading left-to-right top-to-bottom: gathering, fully visible peak, gently turning sustain, fading residue. This is an original visual interpretation of redirecting force, not a claim about novel-described light.\nAvoid text, labels, numbers, watermarks, signature, borders, grid lines, symbols, yin-yang disk, human body, fingers, weapons, dragon, background scene, paper texture, gray shadows, lasers, fire, metallic objects, white highlight core, checkerboard. The entire background must be clean uniform white. Prioritize natural taper and translucent fading on every root over extra detail."
+  negative: No additional generated shapes; no white matte, text or copied emitter. 原料排除项沿用对应原料记录。
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py；原料由内置 image_gen 生成
+  model: 派生合成不调用模型；原料模型未暴露
+  effort: 不适用（确定性合成）
+  created: '2026-10-04T00:13:55.862Z'
+  source_path: assets/default/vfx/sk_qiankun/moves/mv_qiankun_huti/composition.yaml
+  status: candidate
+  code: moves/mv_qiankun_huti/demo.html
+  pipeline: two-part
+  skill_ref: sk_qiankun
+  move_ref: mv_qiankun_huti
+  ultimate: false
+  projection: false
+  delivery: inner
+  nature: harmony
+  effect_set: effect/family/effect-set.yaml
+  rhythm_template: pulse
+  length_px: 256
+  notes: 所有范围与非外放判定见 skills-yitian §2.2 / §8.4；局部长度和缩放仅为制作建议值。独立掌图示意不覆写 bindings 的 emitter:null；浏览器 / 真机（待实测）。
+  shared_dependencies:
+  - file: ../emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    bytes: 195
+    copied: false
+  - file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    bytes: 626765
+    copied: false
+  file_integrity:
+  - file: moves/mv_qiankun_huti/composition.json
+    bytes: 3347
+    sha256: 6f031f1f8ab133a2b8b9740542c3b2ff74e301a44b77c984e24694f32cecf4f9
+  - file: moves/mv_qiankun_huti/composition.yaml
+    bytes: 818
+    sha256: a08b55163193ae67b2686e7dfc146e1551a21ac44de8adb8526a9327a8ba9565
+  - file: moves/mv_qiankun_huti/demo.html
+    bytes: 1986364
+    sha256: 23995aade4cf86eedad8841948a9c815d49c41861cb79c571170825cb4f17cd1
+  - file: moves/mv_qiankun_huti/peak.png
+    bytes: 335782
+    sha256: 1b096702dee7ea55ab56625720a7b282ebfaba1de77952dacc2a8ff552358d6b
+- id: vfx_mv_qiankun_xiejin__base01
+  file: moves/mv_qiankun_xiejin/peak.png
+  size: 1536x1024
+  sha256: 6580131bad8756dbcc87dc36c9b23fc550a934fd6359e23b6f55ee0379a8dec3
+  category: vfx
+  style: default
+  subject: 倚天 ch04_yitian，乾坤大挪移 mv_qiankun_xiejin；普通招；近身 / 自身内功演出（原创扩展）
+  prompt: "Use case: stylized-concept. Edit target: the supplied Qiankun Danuoyi family VFX source sheet. Create candidate 2, fixing ONLY the hard straight vertical cutoffs at the LEFT ROOT of all four gold-ink swirls. Keep the amber-gold and umber ink wash palette, airy hollow clockwise open loops, four animation phases, 2 by 2 grid without visible dividers, pure white background, and original camera/layout. Requested landscape size 1536 x 1024, each local cell 768 x 512. No characters or palm; this is only energy material.\nCritical repair: every root must have a soft ORGANIC irregular rounded silhouette, with several curved thin ink wisps that gradually dilute into pure white to the LEFT and above/below. A generous feathered fade at the left end, over at least 60 pixels, with no constant-x edge, no rectangle, no straight crop boundary, no flat ends, no hard seam, no visible masking box. The leftmost wisps end at different x positions. The center of each root near local (160,256) should contain translucent gold pigment and be connected continuously to the loop; fade occurs to its LEFT around x70..150. Root joins the loop without any gap. Do not draw a solid blob or a flare. Delicate semitransparent ink washes, separated curling strands, no solid outer contour. Keep all pigment and particles at least 48 pixels from each of the four cell edges. Center open vortex near local (435,256), rightmost near x665. Same fixed root in all cells, very small camera/position drift. Phases reading left-to-right top-to-bottom: gathering, fully visible peak, gently turning sustain, fading residue. This is an original visual interpretation of redirecting force, not a claim about novel-described light.\nAvoid text, labels, numbers, watermarks, signature, borders, grid lines, symbols, yin-yang disk, human body, fingers, weapons, dragon, background scene, paper texture, gray shadows, lasers, fire, metallic objects, white highlight core, checkerboard. The entire background must be clean uniform white. Prioritize natural taper and translucent fading on every root over extra detail."
+  negative: No additional generated shapes; no white matte, text or copied emitter. 原料排除项沿用对应原料记录。
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py；原料由内置 image_gen 生成
+  model: 派生合成不调用模型；原料模型未暴露
+  effort: 不适用（确定性合成）
+  created: '2026-10-04T00:13:55.862Z'
+  source_path: assets/default/vfx/sk_qiankun/moves/mv_qiankun_xiejin/composition.yaml
+  status: candidate
+  code: moves/mv_qiankun_xiejin/demo.html
+  pipeline: two-part
+  skill_ref: sk_qiankun
+  move_ref: mv_qiankun_xiejin
+  ultimate: false
+  projection: false
+  delivery: inner
+  nature: harmony
+  effect_set: effect/family/effect-set.yaml
+  rhythm_template: pulse
+  length_px: 256
+  notes: 所有范围与非外放判定见 skills-yitian §2.2 / §8.4；局部长度和缩放仅为制作建议值。独立掌图示意不覆写 bindings 的 emitter:null；浏览器 / 真机（待实测）。
+  shared_dependencies:
+  - file: ../emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    bytes: 195
+    copied: false
+  - file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    bytes: 626765
+    copied: false
+  file_integrity:
+  - file: moves/mv_qiankun_xiejin/composition.json
+    bytes: 3352
+    sha256: 7b9ae8ca55aa8624ede17abe1e305ff6ab88011ebfc4932e413d25bfeff5f544
+  - file: moves/mv_qiankun_xiejin/composition.yaml
+    bytes: 823
+    sha256: 0105052284ef2cb9b1661548f8385cf0011280c6a038f2ee3eaf3d8210d1dbf5
+  - file: moves/mv_qiankun_xiejin/demo.html
+    bytes: 1966189
+    sha256: e6b5f20abc2f9a068de10a32be135c67ae3ace596d13544245c8d722dfa4e58a
+  - file: moves/mv_qiankun_xiejin/peak.png
+    bytes: 314299
+    sha256: 6580131bad8756dbcc87dc36c9b23fc550a934fd6359e23b6f55ee0379a8dec3
+- id: vfx_mv_qiankun_diandao__base01
+  file: moves/mv_qiankun_diandao/peak.png
+  size: 1536x1024
+  sha256: f2bc44689f43cbebc7d15b364597700da1a19b092b0cca1bb5e9c2af54d027ab
+  category: vfx
+  style: default
+  subject: 倚天 ch04_yitian，乾坤大挪移 mv_qiankun_diandao；绝招；近身 / 自身内功演出（原创扩展）
+  prompt: 'Use case: stylized-concept
+
+    Asset type: wuxia VFX source sprite sheet, Qiankun Danuoyi ultimate Diandao Yinyang, original interpretation
+    of reversing and redirecting force.
+
+    ONE landscape image 1536x1024, exactly four equally sized cells arranged 2 columns x 2 rows, each 768x512. Read
+    left-right then top-bottom. Absolutely white #FFFFFF backdrop with no separators.
+
+    Four consecutive animation poses of ONE coherent aura: gathering, peak, sustained counter-rotation, faint residue.
+    Each frame has an identical broad root centred at local (145,256), flowing right into a compact vortex; keep
+    this location constant. Two interlocked gold ink crescents turn in opposite directions in the same hollow round
+    space near local (440,256): upper sweeping crescent in deep amber and lower returning crescent in pale ochre,
+    twisting past each other through a curved S-shaped gap. The two flows trade upper/lower prominence over time
+    yet stay attached to the same broad root. This must look like circulating inner force deflecting momentum near
+    the body. NOT two separate projectiles or a yin-yang symbol.
+
+    Fine Chinese ink wash, soft wet washes and airy transparent-looking breaks, gold pigment with umber accents,
+    visible color rather than white interior highlights. Root about 110px high with soft feathering on its left
+    edge; never draw a rectangular cut edge. Peak is in TOP RIGHT cell. Reserve at least 56px white margin on ALL
+    four sides of EVERY cell; all wisps stay within bounds. Do not exaggerate scale between poses. Full vortex diameter
+    about 300px; no long beam.
+
+    No hands, human, weapons, animals, scene, paper grain, shadow, text, numbers, labels, diagram, grid, frame,
+    border, watermark, icon, bagua, circular magic sigil, black-white disk, white paint, neon red/blue, physical
+    metal or fire.'
+  negative: No additional generated shapes; no white matte, text or copied emitter. 原料排除项沿用对应原料记录。
+  references:
+  - effect/mv_qiankun_diandao/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py；原料由内置 image_gen 生成
+  model: 派生合成不调用模型；原料模型未暴露
+  effort: 不适用（确定性合成）
+  created: '2026-10-03T23:53:39.467Z'
+  source_path: assets/default/vfx/sk_qiankun/moves/mv_qiankun_diandao/composition.yaml
+  status: candidate
+  code: moves/mv_qiankun_diandao/demo.html
+  pipeline: two-part
+  skill_ref: sk_qiankun
+  move_ref: mv_qiankun_diandao
+  ultimate: true
+  projection: false
+  delivery: inner
+  nature: harmony
+  effect_set: effect/mv_qiankun_diandao/effect-set.yaml
+  rhythm_template: wave
+  length_px: 384
+  notes: 所有范围与非外放判定见 skills-yitian §2.2 / §8.4；局部长度和缩放仅为制作建议值。独立掌图示意不覆写 bindings 的 emitter:null；浏览器 / 真机（待实测）。
+  shared_dependencies:
+  - file: ../emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    bytes: 195
+    copied: false
+  - file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    bytes: 626765
+    copied: false
+  file_integrity:
+  - file: moves/mv_qiankun_diandao/composition.json
+    bytes: 3363
+    sha256: 6732aaa09c1a21a2882ad7bea8789f5614ab5cbb01cf0321445e6b9c85fda8dd
+  - file: moves/mv_qiankun_diandao/composition.yaml
+    bytes: 833
+    sha256: 663ef55039e6d47f2b1d0278c80c44bbdc17f8dd5740d184e4b9fb8976ba2f47
+  - file: moves/mv_qiankun_diandao/demo.html
+    bytes: 2590618
+    sha256: 7a611f6dd86580630448f568493f2e1d06ef7e6a3ac6214cf9638a843d714c89
+  - file: moves/mv_qiankun_diandao/peak.png
+    bytes: 446360
+    sha256: f2bc44689f43cbebc7d15b364597700da1a19b092b0cca1bb5e9c2af54d027ab
+- id: vfx_mv_qiankun_guiyi__base01
+  file: moves/mv_qiankun_guiyi/peak.png
+  size: 1536x1024
+  sha256: e26b656d27c2f38bba4d14377a586a9ec769ca54259503e98135ef08adb2d4ce
+  category: vfx
+  style: default
+  subject: 倚天 ch04_yitian，乾坤大挪移 mv_qiankun_guiyi；绝招；近身 / 自身内功演出（原创扩展）
+  prompt: 'Use case: stylized-concept
+
+    Asset type: Chinese wuxia game VFX white-background source sprite sheet, Qiankun Danuoyi ultimate Qiankun Guiyi.
+    Original visual design for forces gathering into unity.
+
+    One landscape image, requested 1536x1024, EXACT 2 columns by 2 rows, four equal 768x512 cells. No panel lines
+    or text. Each cell pure #FFFFFF background. Four consecutive lifecycle keyframes read left to right top to bottom:
+    gathering, full peak, sustained winding inward, diluted fading remnant.
+
+    Same short connected root in every cell near local (145,256), width 120px, a soft golden ink fan at the left
+    feeding a round hollow swirl to its immediate right, centered around local (450,256). Distinctive design: THREE
+    nested open elliptical gold ink ribbons curl inward toward one compact amber knot, as scattered force gathers
+    into a single calm centre. A visible broad soft root connects the swirl back to its left emitter location throughout.
+    Open airy spaces separate the bands, no filled disk. The circles should feel organic and intertwined, not concentric
+    machine rings; dry brush, liquid wisps and soft transparent wash. Keep the same shape identity throughout. Top-right
+    cell is the richest peak. Do not make a long linear beam.
+
+    Palette antique gold, muted amber and pale ochre with small umber accents. Ink-wash atmosphere with real pigment
+    texture and transparent-looking passages. No white pigment or white solid highlights; the white gaps belong
+    to the background. At least 56px white safety margin on every side of each cell, including every speck. Soft
+    rounded root with feathered left edge, no rectangular cutoffs. Small frame-to-frame changes, fixed root and
+    camera.
+
+    Avoid: hands, people, objects, weapons, dragons, birds, fireball, laser, glyphs, bagua or taiji icons, text,
+    numbers, grid, borders, watermark, labels, paper texture, gray shadows, checkerboard, physical metal, plastic
+    shine, neon, white highlights, cropped edges, dust at cell boundaries.'
+  negative: No additional generated shapes; no white matte, text or copied emitter. 原料排除项沿用对应原料记录。
+  references:
+  - effect/mv_qiankun_guiyi/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py；原料由内置 image_gen 生成
+  model: 派生合成不调用模型；原料模型未暴露
+  effort: 不适用（确定性合成）
+  created: '2026-10-03T23:53:39.797Z'
+  source_path: assets/default/vfx/sk_qiankun/moves/mv_qiankun_guiyi/composition.yaml
+  status: candidate
+  code: moves/mv_qiankun_guiyi/demo.html
+  pipeline: two-part
+  skill_ref: sk_qiankun
+  move_ref: mv_qiankun_guiyi
+  ultimate: true
+  projection: false
+  delivery: inner
+  nature: harmony
+  effect_set: effect/mv_qiankun_guiyi/effect-set.yaml
+  rhythm_template: wave
+  length_px: 384
+  notes: 所有范围与非外放判定见 skills-yitian §2.2 / §8.4；局部长度和缩放仅为制作建议值。独立掌图示意不覆写 bindings 的 emitter:null；浏览器 / 真机（待实测）。
+  shared_dependencies:
+  - file: ../emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    bytes: 195
+    copied: false
+  - file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    bytes: 626765
+    copied: false
+  file_integrity:
+  - file: moves/mv_qiankun_guiyi/composition.json
+    bytes: 3357
+    sha256: 6e21fd8230b9a7ba1cf3cefb45d28946466cd6543b82df5c5f76efb85a641d9a
+  - file: moves/mv_qiankun_guiyi/composition.yaml
+    bytes: 827
+    sha256: 5fa18e83abdf08e6e99ea47b930a84e4e05a72873ac1a38f46687a2ce6f99497
+  - file: moves/mv_qiankun_guiyi/demo.html
+    bytes: 2016308
+    sha256: a69abc02f7b9506fdc69e0a7446fff17ec722796c3a45bf5e32c695b5d9e7842
+  - file: moves/mv_qiankun_guiyi/peak.png
+    bytes: 432768
+    sha256: e26b656d27c2f38bba4d14377a586a9ec769ca54259503e98135ef08adb2d4ce

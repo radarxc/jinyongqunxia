@@ -1,0 +1,12 @@
+{
+  "tool": "image_gen",
+  "model": "not exposed by built-in tool",
+  "effort": "not exposed by built-in tool",
+  "created": "2026-10-03T23:53:39.797Z",
+  "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_qiankun/codex-home/generated_images/01a1042c-0595-7452-83a7-60093442bb7b/exec-682d7f1e-794c-454e-b4f9-5be0994f1819.png",
+  "transparent_background": false,
+  "candidates_generated": 1,
+  "selected_candidate": 1,
+  "prompt": "Use case: stylized-concept\nAsset type: Chinese wuxia game VFX white-background source sprite sheet, Qiankun Danuoyi ultimate Qiankun Guiyi. Original visual design for forces gathering into unity.\nOne landscape image, requested 1536x1024, EXACT 2 columns by 2 rows, four equal 768x512 cells. No panel lines or text. Each cell pure #FFFFFF background. Four consecutive lifecycle keyframes read left to right top to bottom: gathering, full peak, sustained winding inward, diluted fading remnant.\nSame short connected root in every cell near local (145,256), width 120px, a soft golden ink fan at the left feeding a round hollow swirl to its immediate right, centered around local (450,256). Distinctive design: THREE nested open elliptical gold ink ribbons curl inward toward one compact amber knot, as scattered force gathers into a single calm centre. A visible broad soft root connects the swirl back to its left emitter location throughout. Open airy spaces separate the bands, no filled disk. The circles should feel organic and intertwined, not concentric machine rings; dry brush, liquid wisps and soft transparent wash. Keep the same shape identity throughout. Top-right cell is the richest peak. Do not make a long linear beam.\nPalette antique gold, muted amber and pale ochre with small umber accents. Ink-wash atmosphere with real pigment texture and transparent-looking passages. No white pigment or white solid highlights; the white gaps belong to the background. At least 56px white safety margin on every side of each cell, including every speck. Soft rounded root with feathered left edge, no rectangular cutoffs. Small frame-to-frame changes, fixed root and camera.\nAvoid: hands, people, objects, weapons, dragons, birds, fireball, laser, glyphs, bagua or taiji icons, text, numbers, grid, borders, watermark, labels, paper texture, gray shadows, checkerboard, physical metal, plastic shine, neon, white highlights, cropped edges, dust at cell boundaries.",
+  "references": []
+}
