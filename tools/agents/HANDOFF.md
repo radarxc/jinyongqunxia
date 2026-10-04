@@ -2484,3 +2484,9 @@
     - **其他合入**：terrain（95acd873）、apparel 2–4 批；compose 已起。
     - **M1 还剩**：16e（原工作区续作）、wiring、generic-model。
     - **待作者**：霍青桐 C/D/E；历史第二批 21 人（建议徐达、常遇春穿戎装）。
+  - **10-04 04:00–04:35 开发监督**：
+    - CONTENT-apparel-data-4、-5 合入，各自重建出图总索引（fd7efe04、30bcd3f1）；第 6 批起跑。
+    - **TOOL-rig-std-parts**：
+      - r2 后第 4 轮返修 04:15 校验过，按协调者裁定只再审一轮（r3）。r2 那批问题（裤腿、袖片、肩缝）都修好了，r3 只剩一处：6 张 head.png 被补绘多加了头顶 crown 圆帽，对照图 `.agents/coord/TOOL-rig-std-parts/review_frames_r3.png`；
+      - 按协调者裁定定点返修：取消 crown 补绘、重出 6 张头、重建条带与 GIF；manifest 的 model 写 none 或源图模型，created 写实际日期；其余不动。`--max-runs 1 --max-reviews 1`。
+    - **ENG-16e** 04:05 起停滞（GPT-5.6-Sol，25 分钟无输出），supervise 04:32 在原工作区自动续作第 2 轮，池位没被别人拿走。
