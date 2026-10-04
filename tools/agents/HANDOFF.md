@@ -2324,3 +2324,18 @@
       - 作者中途发来的消息在 jsonl 里是 `attachment.type=queued_command` 的 `prompt[].image`，不是 `message.content`。
       - 已派 lvliu-redo（w33）。
     - 待作者选：霍青桐 C/D/E（建议 D）；历史人物四人（建议崇祯 B、皇太极 A、忽必烈 A、索菲娅 A），选完再批其余 21 人。
+  - **10-04 00:25–00:55 开发监督 · 节点：ENG-region-gates-data 合入**（1e17e18d，00:50）：
+    - 00:25 合入时又冲突：ENG-26 重合带来的 `RegisteredContentKind` 撞上本任务给 ContentKind 加的三类 region kind，冲突在 `packages/data/src/content-index.ts`、`content-registry.ts`。
+      - rebase_task 挪到 e82a9041；
+      - Codex 短会话 `gd-conflict-0026`（codex_session.py）按并集解了 5 处，data 类型检查与 204 个测试通过；
+      - `--from validate` 重起，校验、审核 PASS 后合入。
+    - ENG-waitfor-timeout 合入（f7befdd4）。TOOL-ingest-cropframe 合入（7c8c88e4）。
+      - 异常：cropframe 23:49:02 多冒出一个驱动，来源不明，不是开发监督起的，当时也没有 wait_attempt 进程在跑。两个执行器在同一工作区续作，第二个 finish 因工作区已删报 FileNotFound，状态回到 READY。已核：尾注在 HEAD，结果是合入的；现在每个任务只有一个驱动。
+    - DES-apparel-catalog 合入（44ab9485）：新条目 565 件，引用已有 36 件，分 8 批（69–75 件 / 批）。
+      - 已登记 CONTENT-apparel-data-2…8，逐批串行（8561ce06）；
+      - 第 1 批驱动 18910（文档池）。
+    - gates-data 合入后起跑：
+      - ENG-19e-m1-order（驱动 75458）、ENG-npc-species-roleslot（75473），代码池 2/4，空位先给它们；
+      - CONTENT-ch00b-maps：挪基点 0 冲突，按 r3 审核意见与 devsup_note_r3.md 返修，驱动 78856；
+      - ENG-move-onhit-effects：依赖已齐，起跑，在 M1 之后排队。
+    - 在审：ENG-ink-intents（00:45 校验过）。它的基点早于 gates-data，合入时可能再冲突，照同样办法处理。
