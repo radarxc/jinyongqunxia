@@ -209,6 +209,11 @@
   - [ ] 郭靖金刀驸马装模型（AR-71 / AR-74 选 B 装）；
   - [ ] 换脸主角（AR-84 等改了 base 的）模型重做。
   在跑的零点数体检和比例样张做完就收，结果留作日后参考。
+  - **日后参考（10-04 00:24 收齐）**：
+    - Tripo 零点数体检 `_prod/.agents/coord/ART-3d-tripo-web/audit_ar79.md`：37 套都头大身短，男中位 6.3 头身、女 6.5；Tripo 比 A 字图还会再放大头 5–15%，所以 A 字图要比目标多拉长一成；脸差的 3 套是黄蓉、韦小宝、袁紫衣（袁紫衣斗笠珠串印在脸上）；贴图问题 18 套。
+    - 新比例 A 字样张 `_prod/.agents/coord/_lines/apose-ar79/apose_samples.jpg`：萧峰、郭靖男八头身，小龙女、王语嫣女九头身，原 base 头等比缩小合成。郭靖样张用的还是旧脸，已改 B（AR-87），重做时要换。
+    - 人物身高草表 `_prod/.agents/coord/_lines/apose-ar79/heights.csv`（503 条），接入时按书中设定缩放。
+    - 各换脸会话留下的 `todo_3d.md`（A 字图与 3D 按新脸重做）：`_lines/final-5/`、`zhangwuji-final/`、`canon-align/`、`guojing-final/`、`final-6/`。
 
 密钥：只在主检出 `.env`（`tripo_key=…`），执行器运行时读成环境变量，不得进日志 / 报告 / manifest / 提交（`.env` 已进 `.gitignore`）。产物：`assets/default/model3d/<npc_id>/`（`model_rig.glb`、`anim_*.glb`、`preview.png`、manifest）；审核要点 `review_checks_model3d.md`。女主角没有三视图（可登记 ART-rig-sheet-f）。
 
