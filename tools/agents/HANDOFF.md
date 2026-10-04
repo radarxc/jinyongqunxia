@@ -2133,4 +2133,9 @@
     - OPS_RUNBOOK §2.10 补两条（2bff6d87、61d3d79d）：
       - 出图任务的 check_assets 要写全 `--min` / `--max`，status 用 candidate；
       - 「过程文件不进 assets/」。
+  - **10-03 21:18–21:28 开发监督**：
+    - **ART-map-inkkit 合入**（21:18，只合小样）。prod_check 全绿：1102 个测试，会话闭包 108.90。
+    - **CITY-layouts-batch.md** 加「过程文件不进 assets/」（540b6400）：日志写工作区内 `.agents/coord/_asset_logs/<任务ID>/`。城图沙箱只放开 /private/tmp 和工作区。
+      - 未起跑的 32 批生效；补位器没动。
+      - 218 个存量等城图全部做完再一次清。
 
