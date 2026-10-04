@@ -98,3 +98,8 @@ REFERENCE ROLES: Image 1 is an authorized classic portrayal of Qiao Feng: use it
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.prepared.json`。
+
+## 原著依据
+
+- 《天龙八部》第四十一回 燕云十八飞骑 奔腾如虎风烟举：“玄色薄毡大氅，里面玄色布衣”；https://www.xuges.com/wuxia/jinyong/tlbb/312.htm
+- AR-82 返修约束（本节优先于历史提示词）：仅修改人物穿戴的袍服：内为玄黑布衣，外加玄黑薄毡大氅随降龙掌风向原外袍同方向翻开；黑色稍有灰亮布纹，但须明确区别于丐帮灰旧袍。动作、手、脸、头巾、下腿鞋、背景完全不动。
