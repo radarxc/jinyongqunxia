@@ -15,7 +15,11 @@ export default defineConfig({
             'apps/**/*.test.ts',
             'tools/perf/**/*.test.mjs',
           ],
-          exclude: [...configDefaults.exclude, 'packages/render/src/rig/performance.test.ts'],
+          exclude: [
+            ...configDefaults.exclude,
+            'packages/render/src/rig/performance.test.ts',
+            'packages/core/bench/battle-session.performance.test.ts',
+          ],
         },
       },
       {
@@ -31,7 +35,10 @@ export default defineConfig({
         test: {
           name: 'perf',
           environment: 'node',
-          include: ['packages/render/src/rig/performance.test.ts'],
+          include: [
+            'packages/render/src/rig/performance.test.ts',
+            'packages/core/bench/battle-session.performance.test.ts',
+          ],
           fileParallelism: false,
           maxWorkers: 1,
           disableConsoleIntercept: true,

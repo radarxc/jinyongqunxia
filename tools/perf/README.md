@@ -1,5 +1,7 @@
 # 性能预算
 
+`pnpm check:perf` 包含 rig 角色 CPU 与 BattleSession 2000 步线性两项门禁；两者依赖墙钟计时、易受整机负载干扰，按 AR-33 / AR-64 在低负载时单独运行而不进入日常 `pnpm check`，断言与阈值均不放宽。
+
 `budgets.json` 镜像 `docs/tech/01-architecture.md` §5.4，并增加协调者待作者确认的
 首次会话闭包 110 KiB gzip 门禁。`tools/perf/check_size.mjs` 在 Vite 构建后逐项计算
 gzip 字节并阻断超限，输出分为三层：
