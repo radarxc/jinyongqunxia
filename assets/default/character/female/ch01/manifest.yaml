@@ -204,9 +204,11 @@
   subject: 王语嫣（ch01_tianlong）
   prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的王语嫣立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中王语嫣的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的王语嫣十八九岁，清丽绝俗：鹅蛋脸、下巴秀气，细长柔和的眉，一双温柔明亮的杏眼、双眼皮，鼻梁秀挺，小巧的嘴、唇色淡红，肤色白皙，神情温婉娴静、略带书卷气。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的王语嫣二十岁上下（作者选定的新版）：清瘦的鹅蛋脸、两颊不鼓、下颌线清楚流畅、下巴秀气不尖；眉毛平而细长；一双清澈的杏眼、眼尾平而略长；鼻梁细直、鼻头小巧；嘴唇小而饱满、唇色淡红；肤色白皙；神情沉静、略带愁思，嘴角可带一点浅笑。成年女子，不要婴儿肥、不要娃娃脸。
 
     【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+
+    【本张另外要求】（第二遍精修，优先于其他要求）上一遍改得还不够：脸仍然偏圆、两颊鼓、眼睛偏大偏圆，有婴儿肥和娃娃感。这次把脸型改成基线那样清瘦：两颊收、颧骨下方略凹、下颌线清楚流畅、下巴秀气不尖；眼睛缩到与基线相同的大小，杏眼、眼尾平而略长；是二十岁的成年女子，沉静端雅。表情方向保留第 3 张（原图）的情绪。
 
     【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
@@ -214,73 +216,63 @@
   negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png
-    sha256: dd84f729ca81814f3269d44c3f576635972277e3c5fc2463792cceabe183aa60
+    sha256: 2c8ca9f70a35d3067b52ade4f615107b055f738249078fd9503fb49d9a13645c
     use: 对脸基线：作者审核通过的 por_npc_wangyuyan__ch01_youth_mantuo_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.png
-    sha256: 267265666591b9acddf3fb9fb251d8b850371f36db61db74e5d2e682e5a2c728
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.26726566.png
+    sha256: 80d26d4ca0b48c90f352784776b623a4417bbeb64161d7c7bff109791a779ad8
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.80d26d4c.png
   tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T15:29:51-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.e1.png
+  created: 2026-10-03T17:39:17-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.e3.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 80d26d4ca0b48c90f352784776b623a4417bbeb64161d7c7bff109791a779ad8
+  sha256: 24da3f09a44e73f0c6b5adb5d7939333cefef2725affc0155b6ff5dd4a238f87
   status: candidate
-  notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base
+  notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base（作者 17:24 选定新 base 后对齐（两遍精修：去婴儿肥））
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.26726566.png
-    sha256: 267265666591b9acddf3fb9fb251d8b850371f36db61db74e5d2e682e5a2c728
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.26726566.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.80d26d4c.png
+    sha256: 80d26d4ca0b48c90f352784776b623a4417bbeb64161d7c7bff109791a779ad8
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.80d26d4c.entry.yaml
 - id: por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea
   file: por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea.png
   category: character/female
   style: default
   subject: 王语嫣（ch01_tianlong）
-  prompt: '生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的王语嫣立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中王语嫣的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的王语嫣二十岁上下（作者选定的新版）：清瘦的鹅蛋脸、两颊不鼓、下颌线清楚流畅、下巴秀气不尖；眉毛平而细长；一双清澈的杏眼、眼尾平而略长；鼻梁细直、鼻头小巧；嘴唇小而饱满、唇色淡红；肤色白皙；神情沉静、略带愁思，嘴角可带一点浅笑。成年女子，不要婴儿肥、不要娃娃脸。
 
-    【场景背景】少室山浅墨石坪、松影与遥远的寺檐；不画刀剑对打或群豪。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【人物与场景】王语嫣，《天龙八部》，少室观战·出言止剑。阶段：青年女子，确龄待考，沿同人基础图保持年轻而不低幼。段誉与慕容复交手、慕容复陷入不利时，她出言请求段誉留情；选在段誉后来右肩受伤之前。 对应《天龙八部》第42回。
+    【本张另外要求】（第二遍精修，优先于其他要求）上一遍改得还不够：脸仍然偏圆、两颊鼓、眼睛偏大偏圆，有婴儿肥和娃娃感。这次把脸型改成基线那样清瘦：两颊收、颧骨下方略凹、下颌线清楚流畅、下巴秀气不尖；眼睛缩到与基线相同的大小，杏眼、眼尾平而略长；是二十岁的成年女子，沉静端雅。表情方向保留第 3 张（原图）的情绪。
 
-    【身份参考】随提示词上传的第 1 张图是王语嫣本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（修长柔和的鹅蛋脸、额头光洁，眉毛细长如远山、颜色偏淡，眼睛清澈、眼尾略长微垂，带书卷气和一缕淡淡的愁思，鼻梁细直小巧，唇薄色淡，下颌柔和；肤色白皙、气色清淡、几乎不施脂粉）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【衣装】完整浅藕长身外衣、玉白交领内衫、行旅长裙、素鞋；简洁束发、素簪。
-
-    【动作与神情】双脚站定、身体略向前倾，一手张开作出阻止的手势，另一手收在胸下；眉眼焦急而果断，视线直指画外交手之处（她在请段誉手下留情）。
-
-    【器物】双手空着。
-
-    【体态】成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
-
-    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png
-    sha256: 040a0889d9f05e0dec63b7b084317fb9693a2d0b5a92a914eab37cdb609ec143
-    use: 身份参考：本轮新出的王语嫣（por_npc_wangyuyan__ch01_youth_mantuo_base，上传 codex 原图）
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+    sha256: 2c8ca9f70a35d3067b52ade4f615107b055f738249078fd9503fb49d9a13645c
+    use: 对脸基线：作者审核通过的 por_npc_wangyuyan__ch01_youth_mantuo_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea.png
+    sha256: ffb7270c13c2407cd52f393fbcfd1415ba69d1cbb042ce48e5b8f4c82377db97
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea.ffb7270c.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T03:08:28-0700
-  source_path: .agents/coord/gemini_originals/por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea.png
+  created: 2026-10-03T17:39:17-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea.e2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: ffb7270c13c2407cd52f393fbcfd1415ba69d1cbb042ce48e5b8f4c82377db97
+  sha256: b7815c7f3089de7ba93383aaa4900d2fee4597bc6bee8d0a339744bde5e57138
   status: candidate
-  notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base（作者 17:24 选定新 base 后对齐（两遍精修：去婴儿肥））
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea.ffb7270c.png
+    sha256: ffb7270c13c2407cd52f393fbcfd1415ba69d1cbb042ce48e5b8f4c82377db97
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea.ffb7270c.entry.yaml
 - id: por_npc_wangyuyan__ch01_youth_scene_tingxiang_discernment
   file: por_npc_wangyuyan__ch01_youth_scene_tingxiang_discernment.png
   category: character/female
