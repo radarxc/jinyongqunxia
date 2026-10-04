@@ -71,6 +71,7 @@ export const CONTENT_FIELD_REGISTRY: Readonly<Record<ContentKind, readonly Field
     { pattern: 'nodes.*.payload.questId', class: 'contentRef' },
     { pattern: '*', class: 'rule' }],
   event: [
+    { pattern: 'actions.*.text', class: 'text' },
     { pattern: 'actions.*.map.name', class: 'text' },
     { pattern: 'actions.*.map.travel.note', class: 'authoring' },
     { pattern: 'actions.*.map.nodes.*.name', class: 'text' },

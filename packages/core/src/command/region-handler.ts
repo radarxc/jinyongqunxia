@@ -1,5 +1,6 @@
 import { addInventory } from '../economy';
 import { dialogueHandler } from './story-handlers';
+import { executeEvent } from '../event';
 import { hexDistance } from '../hex';
 import { decodeRegionMap, objectGate, previewRegionPath, queryRegionPath, regionMap, regionObjects,
   projectRegionDynamic, regionRuntimeForState, reachedRegionTriggers,
@@ -86,6 +87,11 @@ function interact(state: Readonly<GameState>,
       throw error;
     }
   }
+  if (anchor.class === 'Trigger' && anchor.eventId) {
+    const event = content.events?.find((entry) => entry.id === anchor.eventId);
+    if (!event) throw new Error('REGION_EVENT_UNKNOWN');
+    if (event.chapterId !== state.chapter.chapterId) throw new Error('REGION_EVENT_CHAPTER');
+  }
   if (anchor.class === 'NpcSpawn') {
     const binding = runtime.dialogues?.find((entry) => entry.sceneId === state.world.navigation.locationId &&
       entry.anchorId === anchor.id);
@@ -98,6 +104,24 @@ function interact(state: Readonly<GameState>,
 function consume(tx: CoreTransaction, anchorId: string): void {
   tx.set(['world', 'navigation', 'mountedRegion'],
     consumeRegionEntity(mounted(tx.state), anchorId));
+}
+function trigger(tx: CoreTransaction, anchor: Extract<ReturnType<typeof regionObjects>[number],
+  { class: 'Trigger' }>): void {
+  tx.emit({ t: 'world/triggered', payload: { anchorId: anchor.id,
+    eventId: anchor.eventId ?? null, action: anchor.action ?? null } });
+  if (anchor.eventId) executeEvent(tx, anchor.eventId, anchor.id);
+  if (anchor.once) consume(tx, anchor.id);
+  if (anchor.safe) emitCheckpoint(tx, anchor.id, 'safe');
+  if (anchor.autosave) emitCheckpoint(tx, anchor.id, 'autosave');
+}
+function validateTriggerEvents(state: Readonly<GameState>, content: CoreContent,
+  triggers: readonly Extract<ReturnType<typeof regionObjects>[number], { class: 'Trigger' }>[]): void {
+  for (const anchor of triggers) {
+    if (!anchor.eventId) continue;
+    const event = content.events?.find((entry) => entry.id === anchor.eventId);
+    if (!event) throw new Error('REGION_EVENT_UNKNOWN');
+    if (event.chapterId !== state.chapter.chapterId) throw new Error('REGION_EVENT_CHAPTER');
+  }
 }
 function emitCheckpoint(tx: CoreTransaction, anchorId: string, kind: 'autosave' | 'safe'): void {
   if (tx.state.dialogue !== null || tx.state.world.navigation.pendingMount !== null) return;
@@ -121,18 +145,13 @@ function applyWalk(tx: CoreTransaction, command: Extract<RegionCommand, { t: 'wo
   const runtime = currentRegion(tx.state, tx.content); const current = mounted(tx.state);
   const path = previewRegionPath(tx.state, runtime, command.hex)!;
   const triggers = reachedRegionTriggers(tx.state, runtime, path.path);
-  let next = { ...current, playerHex: command.hex, facing: path.facing };
-  for (const trigger of triggers) if (trigger.once) next = consumeRegionEntity(next, trigger.id);
-  tx.set(['world', 'navigation', 'mountedRegion'], next);
+  validateTriggerEvents(tx.state, tx.content, triggers);
+  tx.set(['world', 'navigation', 'mountedRegion'],
+    { ...current, playerHex: command.hex, facing: path.facing });
   tx.emit({ t: 'world/walked', payload: { regionId: current.regionId,
     sceneId: tx.state.world.navigation.locationId, destination: { ...command.hex },
     facing: path.facing, cost: path.cost, path: path.path.map((cell) => ({ ...cell })) } });
-  for (const object of triggers) {
-      tx.emit({ t: 'world/triggered', payload: { anchorId: object.id,
-        eventId: object.eventId ?? null, action: object.action ?? null } });
-      if (object.safe) emitCheckpoint(tx, object.id, 'safe');
-      if (object.autosave) emitCheckpoint(tx, object.id, 'autosave');
-  }
+  for (const object of triggers) trigger(tx, object);
 }
 function applyInteract(tx: CoreTransaction, command: Extract<RegionCommand, { t: 'world/interact' }>): void {
   const runtime = currentRegion(tx.state, tx.content); const sceneId = tx.state.world.navigation.locationId;
@@ -167,11 +186,7 @@ function applyInteract(tx: CoreTransaction, command: Extract<RegionCommand, { t:
       sceneId: anchor.to.scene, spawnId: null, targetHex: anchor.to.cell } }); return;
   }
   if (anchor.class === 'Trigger') {
-    if (anchor.once) consume(tx, anchor.id);
-    tx.emit({ t: 'world/triggered', payload: { anchorId: anchor.id,
-      eventId: anchor.eventId ?? null, action: anchor.action ?? null } });
-    if (anchor.safe) emitCheckpoint(tx, anchor.id, 'safe');
-    if (anchor.autosave) emitCheckpoint(tx, anchor.id, 'autosave'); return;
+    trigger(tx, anchor); return;
   }
   if (anchor.class !== 'BattleArena') throw new TypeError('REGION_INTERACTION_INVARIANT');
   tx.emit({ t: 'world/battleRequested', payload: { anchorId: anchor.id,

@@ -27,7 +27,9 @@ export function regionRuntimeForState(state: Readonly<GameState>,
     line.status === 'completed' ? 'completed' :
       line.status === 'active' || line.status === 'available' ? 'active' : 'inactive';
   const flags = [...new Set([...content.gateFacts.flags ?? [],
-    ...state.chapter.story.lines.flatMap((line) => line.appliedEffectIds)])]
+    ...state.chapter.story.lines.flatMap((line) => line.appliedEffectIds),
+    ...Object.entries(state.profile.replayRules?.switches ?? {})
+      .filter(([, enabled]) => enabled).map(([key]) => key)])]
     .sort((left, right) => left < right ? -1 : left > right ? 1 : 0);
   return { ...content, gateFacts: { ...content.gateFacts,
     items: { ...content.gateFacts.items, ...items },

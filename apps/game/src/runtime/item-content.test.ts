@@ -14,6 +14,9 @@ describe('item content leaves', () => {
     expect(loaded.items).toEqual(inline.items.map((item) => {
       const rule = { ...item }; delete rule.text; return rule;
     }));
+    expect(loaded.events).toEqual([{ schemaVersion: 'event.v1', id: 'ev_ch01_fixture',
+      chapterId: 'ch01_tianlong', event: 'fixture/chapterLoaded', once: true,
+      actions: [{ op: 'ui/showText', textKey: 'fixture.ch01_tianlong.event' }] }]);
     expect(fixture.reads).toEqual(['ch01_tianlong/manifest.json',
       'ch01_tianlong/ch01.rules.base.json',
       'ch01_tianlong/common.rules.items.json']);

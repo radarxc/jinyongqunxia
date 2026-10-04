@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { loadContent, parseContentFile, parseSerializedContent, serializeContentEntry } from './tooling';
+import { INK_OPCODE_REGISTRY } from './schemas/event-actions';
 
 const itemYaml = `
 schemaVersion: item.v1
@@ -47,6 +48,44 @@ describe('content registry', () => {
       chapterId: 'ch01_tianlong', event: 'world/mapRegistered', once: false,
       actions: [{ op: 'mountWorldMap', map: { version: 'worldmap.v1' } }] };
     expect(() => parseSerializedContent('event', JSON.stringify(registration)))
+      .toThrow();
+  });
+
+  it('accepts registered EventDef actions and rejects unknown or malformed actions', () => {
+    const event = { schemaVersion: 'event.v1', id: 'ev_fixture',
+      chapterId: 'ch01_tianlong', event: 'world/fixture', once: true,
+      condition: { sceneId: 'sc_fixture', anchorId: 'fixture', gate: { all: [
+        { flag: 'fl_fixture_ready' }, { not: { flag: 'fl_fixture_blocked' } },
+      ] } },
+      actions: [{ op: 'flag/set', flagId: 'fl_fixture', value: true }] };
+    expect(parseSerializedContent('event', JSON.stringify(event)).value).toEqual(event);
+    expect(() => parseSerializedContent('event', JSON.stringify({ ...event,
+      actions: [{ op: 'flag/unknown', flagId: 'fl_fixture' }] }))).toThrow();
+    expect(() => parseSerializedContent('event', JSON.stringify({ ...event,
+      actions: [{ op: 'party/giveItem', item: 'it_fixture', count: 0 }] }))).toThrow();
+    expect(() => parseSerializedContent('event', JSON.stringify({ ...event,
+      condition: { gate: { flag: 'fx_not_a_persistent_flag' } } }))).toThrow();
+    expect(() => parseSerializedContent('event', JSON.stringify({ ...event,
+      condition: { gate: { all: [] } } }))).toThrow();
+  });
+
+  it('keeps infrastructure EventDef actions strict and outside the Ink opcode surface', () => {
+    const base = { schemaVersion: 'event.v1', id: 'ev_fixture',
+      chapterId: 'ch01_tianlong', event: 'render/fixture', once: false };
+    const rig = { ...base, actions: [{ op: 'rig/loadClipMap', payload: {
+      schema: 'tianshu-clip-map.v1', clips: { idle: { clipId: 'clip_idle' } },
+    } }] };
+    const vfx = { ...base, actions: [{ id: 'vfx_fixture', op: 'vfx/loadRuntimeData', payload: {
+      schema: 'tianshu-vfx-runtime.v1', files: ['assets/fixture.png'],
+    } }] };
+    expect(parseSerializedContent('event', JSON.stringify(rig)).value).toEqual(rig);
+    expect(parseSerializedContent('event', JSON.stringify(vfx)).value).toEqual(vfx);
+    expect(INK_OPCODE_REGISTRY).not.toHaveProperty('rig/loadClipMap');
+    expect(INK_OPCODE_REGISTRY).not.toHaveProperty('vfx/loadRuntimeData');
+    expect(() => parseSerializedContent('event', JSON.stringify({ ...vfx,
+      actions: [{ ...vfx.actions[0], extra: true }] }))).toThrow();
+    expect(() => parseSerializedContent('event', JSON.stringify({ ...vfx,
+      actions: [{ ...vfx.actions[0], payload: { schema: 'tianshu-vfx-unknown.v1' } }] })))
       .toThrow();
   });
 

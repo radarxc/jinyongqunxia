@@ -1,0 +1,7 @@
+schemaVersion: event.v1
+id: ev_invalid_action
+chapterId: ch01_tianlong
+event: world/invalidAction
+once: true
+actions:
+  - {op: ui/notRegistered, textKey: fixture.invalid}

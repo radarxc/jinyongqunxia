@@ -4,5 +4,4 @@ chapterId: ch01_tianlong
 event: fixture/world
 once: true
 actions:
-  - map:
-      name: 世界夹具
+  - {op: flag/set, flagId: fl_build_world, value: true}

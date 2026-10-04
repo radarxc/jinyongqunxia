@@ -7,4 +7,4 @@ condition:
   sceneId: sc_10_fengshi_feiyi
   anchorId: first_talk
 actions:
-  - {op: startStory, storyId: story_ch10_cold_entry, knot: fengshi_first_talk}
+  - {op: dialogue/start, storyId: story_ch10_cold_entry, knot: fengshi_first_talk}

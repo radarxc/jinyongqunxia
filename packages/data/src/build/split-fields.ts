@@ -47,7 +47,14 @@ export function splitContentEntry(entry: ContentEntry): SplitEntry {
     if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return value;
     if (Array.isArray(value)) return value.map((item, index) => visit(item, [...path, String(index)]) ?? null);
     const result: Record<string, JsonValue> = {};
-    for (const [key, child] of Object.entries(value as Record<string, unknown>)) { const next = visit(child, [...path, key]); if (next !== undefined) result[key] = next; }
+    for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
+      if (entry.kind === 'event' && path[0] === 'actions' && path.length === 2 &&
+          key === 'text' && typeof child === 'string') {
+        const textPath = [...path, key]; const textKey = textKeyFor(entry.kind, identity, textPath);
+        text[textKey] = child; result['textKey'] = textKey; continue;
+      }
+      const next = visit(child, [...path, key]); if (next !== undefined) result[key] = next;
+    }
     return result;
   };
   return { rules: visit(entry.value, [])!, text, contentRefs, assetRefs };

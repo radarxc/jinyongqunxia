@@ -3,6 +3,7 @@ import { canonicalJson, compareCodePoints, type JsonValue } from '@tianshu/share
 import { parseYamlFile } from '../content-registry';
 import type { Diagnostic, SourceSpan } from './types';
 import { hashValue } from './hash';
+import { INK_OPCODE_REGISTRY } from '../schemas/event-actions';
 
 export interface InkMeta { readonly schemaVersion: 'inkmeta.v1'; readonly storyId: string;
   readonly chapter: string; readonly region?: string; readonly entryKnots: readonly string[];
@@ -17,27 +18,7 @@ export interface CompiledInk { readonly storyId: string; readonly storyJson: str
   readonly text: Readonly<Record<string, string>>;
   readonly structure: DialogueStructureDef; readonly diagnostics: readonly Diagnostic[]; }
 
-interface OpcodeSpec {
-  readonly required: Readonly<Record<string, RegExp>>;
-  readonly optional?: Readonly<Record<string, RegExp>>;
-}
-const id = (prefix: string): RegExp => new RegExp(`^${prefix}[a-z0-9]+(?:_[a-z0-9]+)*$`, 'u');
-const positive = /^[1-9][0-9]*$/u;
-const local = /^[a-z][A-Za-z0-9_]*$/u;
-const OPCODES: Readonly<Record<string, OpcodeSpec>> = {
-  'quest/advance': { required: { quest: id('q_'), stage: id('st_') } },
-  'party/giveItem': { required: { item: /^(?:it|eq|prop)_[a-z0-9_]+$/u, count: positive } },
-  'party/takeItem': { required: { item: /^(?:it|eq|prop)_[a-z0-9_]+$/u, count: positive } },
-  'battle/start': { required: { encounter: id('enc_') } },
-  'flag/set': { required: { flagId: id('fl_') }, optional: { value: /^(?:true|false)$/u } },
-  'world/openEntrance': { required: { entrance: id('ent_') } },
-  'tutorial/mark': { required: { tutorial: local, state: /^(?:completed|skipped|pending)$/u } },
-  'story/requestTransmission': { required: { skill: id('sk_'), source: local } },
-  'ui/openAllocation': { required: { mode: /^(?:manual|balanced|default)$/u } },
-  'ui/showTitleCard': { required: { card: local } },
-  'save/autosave': { required: { reason: local } },
-  'dialogue/speaker': { required: { speaker: /^(?:npc_[a-z0-9_]+|player|narrator|book_spirit)$/u } },
-};
+const OPCODES = INK_OPCODE_REGISTRY;
 export const INK_OPCODE_NAMES: readonly string[] = Object.freeze(Object.keys(OPCODES));
 const EXTERNALS = new Set(['get_flag', 'quest_stage', 'has_item', 'affinity']);
 const META_ID = /^(?:story|ink)_[a-z0-9_]+$/u;

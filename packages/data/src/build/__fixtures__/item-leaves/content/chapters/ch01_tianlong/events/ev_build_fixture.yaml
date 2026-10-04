@@ -4,5 +4,4 @@ chapterId: ch01_tianlong
 event: fixture/chapter
 once: true
 actions:
-  - map:
-      name: 章节夹具
+  - {op: ui/showText, text: 章节夹具}

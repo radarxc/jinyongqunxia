@@ -92,6 +92,7 @@ function coreContent(content: GameContent, towns: GameContent['towns'], chapterI
       ? { meditationEncounters: content.meditationEncounters }
       : {}),
     ...(content.inkStories ? { inkStories: content.inkStories } : {}),
+    ...((target?.events ?? content.events) ? { events: target?.events ?? content.events } : {}),
     ...((target?.chapters ?? content.chapters)
       ? { chapters: target?.chapters ?? content.chapters } : {}),
     ...(target?.contentHash ? { targetContentHash: target.contentHash } : {}),

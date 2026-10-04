@@ -7,4 +7,4 @@ condition:
   sceneId: sc_10_fengshi_feiyi
   anchorId: brazier_rest
 actions:
-  - {op: restoreBasicSurvival, mode: full_once}
+  - {op: party/restore, mode: full_once}

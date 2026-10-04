@@ -48,6 +48,10 @@ describe('content validation discovery', () => {
     );
   });
 
+  it('rejects an unregistered EventDef action through content validation', async () => {
+    await expect(validateContent(fixture('invalid-event'))).rejects.toThrow();
+  });
+
   it('accepts ordinary content YAML without requiring an Ink story', async () => {
     const result = await validateContent(fixture('content-only'));
 
