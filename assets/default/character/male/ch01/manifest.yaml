@@ -1340,40 +1340,38 @@
   category: character/male
   style: default
   subject: 虚竹（ch01_tianlong）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的虚竹立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中虚竹的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的虚竹二十五六岁，光头，宽脸、颧骨略高、下颌方，浓眉，眼睛不大、目光朴实和善，鼻子宽厚，嘴唇厚、嘴角带着憨厚的微笑，略黝黑的肤色，老实温厚的僧人相貌。
+    图1是唯一待编辑原图。必须以这张图为底编辑。本图为局部正方形裁图，输出同样正方形裁图，不画全身，不扩图。
 
-    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+    【只改】仅移除图中抬起手指上的两枚金属戒指，补为原手指皮肤纹理；手指骨骼、关节、位置、姿势完全相同。此时七宝指环在童姥手上，虚竹不戴任何指环。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【原著依据】《天龙八部》第三十六回 梦里真真语真幻：“说着左手一伸，将拇指上戴着的宝石指环现了出来”；https://www.xuges.com/wuxia/jinyong/tlbb/273.htm
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/06_por_npc_xuzhu__ch01_youth_scene_icecellar_practice.png
+    sha256: b53acdbcb8d2f9656f62ac9daa52fa932d60af6f8dacd89b012a2f18480c4b3b
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png
     sha256: 6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c
     use: 对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_icecellar_practice.png
-    sha256: 2f73a98aed1e254da360d6680b88cdb4365985780c6cfadd9e9c51870a3b6043
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xuzhu__ch01_youth_scene_icecellar_practice.2f73a98a.png
-  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png
-    sha256: cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T00:22:56.626431-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_07_46_r1.png
+  created: '2026-10-04T02:24:43.007460-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_06_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: b53acdbcb8d2f9656f62ac9daa52fa932d60af6f8dacd89b012a2f18480c4b3b
+  sha256: 39495ba8ae1e544b340c6607a8bca37b924317aa5ca5405095d31cd33aae3f90
   status: candidate
-  notes: 立绘重审重出（AR-30）；虚竹基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：眉形、眼型、鼻口对齐base；练功时闭口肃静、侧向目光与冰窖冷光保留；头顶耳缘自然
+  notes: 立绘重审重出（AR-30）；虚竹基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：眉形、眼型、鼻口对齐base；练功时闭口肃静、侧向目光与冰窖冷光保留；头顶耳缘自然；AR-82 原著核对返修：虚竹冰窖练功去指环
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xuzhu__ch01_youth_scene_icecellar_practice.2f73a98a.png
-    sha256: 2f73a98aed1e254da360d6680b88cdb4365985780c6cfadd9e9c51870a3b6043
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xuzhu__ch01_youth_scene_icecellar_practice.2f73a98a.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/06_por_npc_xuzhu__ch01_youth_scene_icecellar_practice.png
+    sha256: b53acdbcb8d2f9656f62ac9daa52fa932d60af6f8dacd89b012a2f18480c4b3b
   ar84_alignment:
     job: ar84_calign_07_46_r1
     before_sha256: 1d0078fd2f5cc4c434965289e059bda64932c1b89116dbefbdd79c003e2522c6

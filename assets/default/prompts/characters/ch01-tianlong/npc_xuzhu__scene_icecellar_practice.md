@@ -102,3 +102,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_xuzhu__ch01_youth_scene_icecellar_practice.prepared.json`。
+
+## 原著依据
+
+- 《天龙八部》第三十六回 梦里真真语真幻：“说着左手一伸，将拇指上戴着的宝石指环现了出来”；https://www.xuges.com/wuxia/jinyong/tlbb/273.htm
+- AR-82 返修约束（本节优先于历史提示词）：仅移除图中抬起手指上的两枚金属戒指，补为原手指皮肤纹理；手指骨骼、关节、位置、姿势完全相同。此时七宝指环在童姥手上，虚竹不戴任何指环。
