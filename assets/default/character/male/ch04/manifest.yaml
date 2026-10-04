@@ -982,80 +982,58 @@
   category: character/male
   style: default
   subject: 常遇春 npc_changyuchun ch04_yitian
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+  prompt: 'Use case: historical-scene. 为写实手绘武侠项目编辑一张定稿候选，不是古画复刻。
+
+    输入1现base锁定站姿、手势、道具、左右方向、构图、人物占高、背景底色和画风；衣服与体态按以下要求修改。输入2是此人公有领域画像（多人画只裁本人），输入3是画像脸部，取本人五官骨肉、须式、服饰可见资料，古像年龄须转译成指定小说阶段。不复制坐姿、画框、旁人、建筑、题字、印章、摄影日期或水印。
+
+    原尺寸1024×1536，不透明2:3单人完整全身PNG；头端正、眼线水平、平视，手脚和器物完整入画，保持base顶底留白。保持现base姿势与手中器物，不用历史像的姿勢替换。背景照base暖浅灰纸底和淡水墨。
+
+    写实数字手绘、自然皮肤和衣料经纬、柔和左上光、真实立体骨肉、细腻笔触和轻微自然不对称；不要古画平涂、木刻线条、摄影、油画厚涂、3D、动漫、磨皮网红脸或塑料皮肤。衣冠按角色朝代与身份，不混朝代。汉式交领右衽，不左右镜像；清制男子剃额留辫，蒙古人不用清辫。
+
+    体态从历史像的脸颊、颈、肩胸与可见腰腹转译；丰满者是自然脂肉重量和受力，束带随体围，不画细腰偶像或健美肌肉；清瘦者保持清瘦，不把宽袍、甲胄或半身像当肥胖证明，不机械加胖。按指定年龄，不能照搬画像晚年发福、白须、深皱和病老。
+
+    除福康安外男性一律不笑，嘴自然闭合，不扬嘴角、不露齿。无文字、印章、水印、边框、分格、第二个人、额外道具或发光特效。只输出一张全身候选。
 
 
-    Create a REALISTIC full-body portrait for a Chinese wuxia game of 常遇春. This supporting character has an ORIGINAL TEXT-DEFINED FACE. Neither input is an identity portrait: image 1 supplies palette/painting quality only and image 2 pale ink background only. Do not copy, average or borrow any reference face. Build the distinct facial anchors below; no claim of game, TV actor or historical likeness.
+    人物：常遇春。本轮原著阶段：书末应天军务；视觉年龄：约33–34岁，不是画像年龄。
 
-
-    身份与阶段：常遇春（npc_changyuchun），《倚天屠龙记》 ch04_yitian。壮年明教义军将领，后段应天府军务窗口，不采用汉水护送的早年阶段。
-
-
-    年龄与体型：壮年成年男子；本稿选书末应天府军务期，项目约1363减史实两说1329/1330，视觉约33–34岁只是时代参照，不强称原著确岁。宽肩厚实、有军伍力量而非夸张健美。
-
-
-    原创本人面容：原创宽阔方脸：额头宽而略低，平直粗眉横向舒展，眼裂中等偏长且眼距较宽，眼尾克制有精神；颧骨宽、颊肉与咬肌结实，下颌角方正、下巴较短而有骨量。鼻梁厚直、鼻头圆实，鼻翼宽度自然，嘴宽而唇线平稳；上唇和颏有整洁短黑须、两颊少量胡茬。暖棕日晒肤色，年轻壮年的浅眼角纹，眼神勇健坦率。区别徐达狭长精干脸和王保保较突颧骨，不能借萧峰脸换甲。
-
-
-    服制与发式：元末义军的暗红布巾包髻、赭褐右衽短战袍、朴素铁札甲与皮护臂、深色裤和布面靴；甲片穿绳清楚，无明代补子。衣料完整不透明，衣缘缝线连续；只少量宽缓有重力的褶皱，不画裂纹、碎布和飞白。红色布巾扎实收住发髻；铁札甲为层叠小铁片与系带，不能做成欧式一体板甲。
-
-
-    正面姿态与器物：正面平稳站立，头直、双眼水平、两肩自然平衡，双足分开承重。本人右手（观者左侧）握一杆普通木杆长枪中下段，枪杆在身体外侧近直立轻斜，单枚朴素铁枪头、枪头下短红缨、枪尾落地且两端均留边完整入画。左手轻搭腰带不遮衣襟，只有这一杆长枪，不骑马，不增加大刀弓箭。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。按最新提速要求先1张候选，基本清晰、正面端正、身份可辨即可保存；仅严重身份/结构/不可读才补，不为细手指、微装备、微角重复。每张仅一人。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实边界：元末，项目主体约1336–1363；每人只用本稿具体阶段。约年只作时代与视觉年龄参照，不能覆盖小说化生平。 身份、年龄、生命态、器物依最新本地角色/名录/剧情；原稿标记待考仍保留，未新浏览外网或声称指定版本终校。元末军伍、散人、和尚各循本稿服制，不套后世明清官服；历史原型身份与小说画像分开。具体衣色、器型细节、面部写实转译及静立姿态属于本次美术落实。本图是终段应天府军务，非早期汉水受伤青年。史实年龄计算只供视觉时代一致性；甲装、脸和普通枪具为明确原创补足，非称原著制服或历史肖像。
-
-
-    图像输入使用边界：第一输入同性别项目基线只供低饱和色卡、柔和光线、细腻手绘品质；不是本人，不抄其五官、年龄、身体、发式、服饰、道具或姿势。保留原审批状态，不传递给新图。 第二输入用户王语嫣图只供暖浅灰留白、极浅水墨远山背景；不继承其中女性、脸、衣裙、体型、飘带或倾头，墨迹不侵入人物。
-
-
-    完整排除项：不要文字、汉字、伪字、题款、标签、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、数码物件、蕾丝、高跟鞋；不要真人演员脸、明星相貌、剧照构图、影视或游戏独创造型，不复制具体画作，不使用画师姓名作风格词；不要动漫大眼、低幼化、统一网红锥子脸、丰唇滤镜、偶像磨皮、塑料皮肤、摄影写真或三维模型渲染感；不要日式服制、夸张前结宽腰带、日本刀、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要时代与族群混搭、汉式交领左衽、水平镜像、明代官服补子、清式剃发长辫、顶戴花翎、马蹄袖、旗装或大拉翅；不要额外人物、多视图、分格、脸部特写框、多余肢体或手指、粘连手指、错接手腕、手物融合、悬空装备、断裂弯曲剑刃、短于剑刃的鞘、失重衣料；不要大面积破衣、血腥特写、裸露、透明服装、色情化、伤残丑化、畸形健美肌肉、发光兵器、龙形能量、仙法光翼、法阵、强逆光泛光、具体剧情场景或清晰建筑或裁断头足与兵器端点。专项排除：青年汉水护送伤病态、明朝开国封爵礼服、后期补子、欧式重板甲、夸张大肌肉、双头枪、骑马和威吓平民场景。 保留工具原有溯源标识与元数据。 不要 head tilt、Dutch angle、歪头、抬下巴、低头藏眼、侧脸或侧身；眼线必须水平。不要人物碎墨、飞白缺块、纸纹透肤透衣、裂衣碎布、密集噪点或过密细皱；人物完整连续。不要从风格基线或背景参考复制面孔、身体、年龄、发式、衣装与姿态。
-
-
-    FINAL POSE CHECK: FRONT-FACING, head upright, eyes HORIZONTALLY LEVEL, camera level, chin neutral. NO head tilt. Respect identity and age, intact skin and clothing, correct stage and props.'
-  negative: 不要文字、汉字、伪字、题款、标签、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、数码物件、蕾丝、高跟鞋；不要真人演员脸、明星相貌、剧照构图、影视或游戏独创造型，不复制具体画作，不使用画师姓名作风格词；不要动漫大眼、低幼化、统一网红锥子脸、丰唇滤镜、偶像磨皮、塑料皮肤、摄影写真或三维模型渲染感；不要日式服制、夸张前结宽腰带、日本刀、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要时代与族群混搭、汉式交领左衽、水平镜像、明代官服补子、清式剃发长辫、顶戴花翎、马蹄袖、旗装或大拉翅；不要额外人物、多视图、分格、脸部特写框、多余肢体或手指、粘连手指、错接手腕、手物融合、悬空装备、断裂弯曲剑刃、短于剑刃的鞘、失重衣料；不要大面积破衣、血腥特写、裸露、透明服装、色情化、伤残丑化、畸形健美肌肉、发光兵器、龙形能量、仙法光翼、法阵、强逆光泛光、具体剧情场景或清晰建筑或裁断头足与兵器端点。专项排除：青年汉水护送伤病态、明朝开国封爵礼服、后期补子、欧式重板甲、夸张大肌肉、双头枪、骑马和威吓平民场景。 保留工具原有溯源标识与元数据。 不要 head tilt、Dutch angle、歪头、抬下巴、低头藏眼、侧脸或侧身；眼线必须水平。不要人物碎墨、飞白缺块、纸纹透肤透衣、裂衣碎布、密集噪点或过密细皱；人物完整连续。不要从风格基线或背景参考复制面孔、身体、年龄、发式、衣装与姿态。
+    明代家传坐像方圆厚实面、自然细长眼、宽鼻、黑八字髭与短颏须，按应天军务约33–34岁画，不能画成老王。脸颊、厚颈、肩胸、腰腹均有强壮自然肉量，非健美细腰。服装照画像红色圆领武臣袍、克制金色蟒纹（四爪，非皇帝五爪龙）与黑色高顶软冠轮廓、白内领、腰带、靴，不照搬死后封王品秩；不要现base整套甲胄。长枪和双手站姿不变。'
+  negative: ''
   references:
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    use: 第一输入同性别项目基线只供低饱和色卡、柔和光线、细腻手绘品质；不是本人，不抄其五官、年龄、身体、发式、服饰、道具或姿势。保留原审批状态，不传递给新图。
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二输入用户王语嫣图只供暖浅灰留白、极浅水墨远山背景；不继承其中女性、脸、衣裙、体型、飘带或倾头，墨迹不侵入人物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T04:19:19.037853+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-db3e56e8-56e1-4d3a-a02c-a108bafc0186.png
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_changyuchun.r1__ref1.jpg
+    sha256: 301371488dc8a24d0b00172fe1bd0f59d8287bb22af3893f5321fa90f1ec7ac8
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_changyuchun.r1__ref2.jpg
+    sha256: 0e4811a268d766c78a75128d3ff698dcadba18c8811256aa0142668b350c13f3
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_changyuchun.r1__ref3.jpg
+    sha256: 49e8497c8da921eb64baac6297e8f62ead35aafcd4e2ee10418e6252c64f3fbc
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  tool: codex exec · image_gen（AR-73 / AR-89 历史画像；AR-91 批准候选原样入库）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: '2026-10-04T09:15:20-07:00'
+  source_path: .agents/coord/_lines/hist-batch2/candidates/npc_changyuchun.png
   size: 1024x1536
   mode: RGB
-  sha256: 1b83aefe5aac1702c3c82d8d1303f60abaa242884af1ebb1d5c5ab7ccb22a9d1
+  sha256: 3ac100da69ac54eb04ce766341e8101eb6fb70012b8280e151fba2b28e1792d6
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_changyuchun__ch04_prime_general_base/prompt-3b11b8b7bdc9c502e5968947e1f1cf96d250fdf46943e7ba711b9cee1fd74be5.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_changyuchun__ch04_prime_general_base/manifest-ccb221efe6b1f5d86059452050ceaea8041f9736b52dfa0d384e6de106919161.yaml
-    png: null
+    png: .agents/coord/_lines/hist-ingest2/replaced/por_npc_changyuchun__ch04_prime_general_base.png
+    sha256: 1b83aefe5aac1702c3c82d8d1303f60abaa242884af1ebb1d5c5ab7ccb22a9d1
+    entry: .agents/coord/_lines/hist-ingest2/replaced/por_npc_changyuchun__ch04_prime_general_base.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_changyuchun__ch04_prime_general_base.requests.json
   notes: '实际查看唯一候选1：常遇春壮年方阔脸浓眉短须、魁梧军伍体格、暗红巾赭褐战衣铁札甲，右手唯一完整木杆长枪带红缨、左手扶腰，头颈直正面两足与枪两端完整，无明显多肢或重大结构问题，宽松自查可用。偏差：枪尖顶部仅极窄余白、红缨略长，巾外髻露出，衣摆毛边及密旧纹，脸型与前一军将有类似美化，但比王保保更宽颌、体格更厚实且装束不同。未冒称原著唯一长相、历史肖像或精确甲制；微细差异登记不补。原生1024×1536不透明PNG原始字节保存，candidate待审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
-    AR-69：作者定男性默认不笑，改回 AR-58 前版本（237ea5a9）'
+
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（237ea5a9）；AR-73 / AR-89 / AR-91 照历史画像，作者批准入库'
+  source_size: 1024x1536
+  historical_source_page: https://commons.wikimedia.org/wiki/File:開平王常遇春坐像.jpg
 - id: por_npc_pengyingyu__ch04_prime_base
   file: por_npc_pengyingyu__ch04_prime_base.png
   category: character/male
