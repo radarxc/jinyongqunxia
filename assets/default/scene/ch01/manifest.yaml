@@ -3,40 +3,38 @@
   category: scene
   style: default
   subject: 聚贤庄英雄宴（ch01_tianlong）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是阿朱的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中阿朱的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是薛慕华定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里薛慕华头部一带的放大方图（插图局部）。请以最后一张为底稿，只把薛慕华改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
 
-    【画里谁是谁】这张插图画的是：排除项：除「聚贤绝交」四字之外不要任何其他文字、字幕、题款、印章、水印、Logo、分镜、边框；不要现代物件、发光武功、龙影、尸体、断肢、血腥、儿童、娃娃脸、性化裸露；不要多肢、多指、手物粘连、悬空酒碗、身份串脸、镜像左衽。所有汉式交领右衽，穿着者左襟压右襟。不要把阿朱画成站立的健康少女，不把萧峰画成瘦弱偶像脸。
+    【画里是谁】聚贤庄英雄宴上，左后方站立的灰蓝长衫中年男子（薛慕华，神医「阎王敌」，约五十岁）。
 
-    【要对齐的部分】阿朱各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要改成什么】把他的脸改成基线这张脸：脸型更宽、两颊饱满，颧骨不要高耸，下颌宽；鼻子是基线那样鼻翼宽、鼻头厚的阔鼻；眉眼、嘴型、唇上短髭与颏下短须的样子与基线一致。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「聚贤绝交」和小朱印必须原样保留，一笔不改、不增不减。
+    【原图保持】保留原图的发髻、皱眉凝视的严肃神情和头部角度。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】（作者 17:45 选定阿朱新脸后统一对齐）坐着的淡红衣少女是阿朱：阿朱的脸要像基线（作者选定的新版）：鹅蛋脸、两颊柔润、下巴小巧圆润，一双明亮灵动的大眼睛、双眼皮清楚、眼尾微扬，眉毛弯而秀长，鼻梁秀挺、鼻头小巧，唇形饱满、嘴角上扬；约二十岁的成年年轻女子。表情按原图的情绪（悲伤、惊讶、虚弱时就照原图的情绪，只是换成她这张脸）。萧峰和其他人的脸不要动。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
   references:
-  - path: assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
-    sha256: aa37f35be809f8d93fbf509f4f581dc6e8c9e3204a92f50a8b2c50ee66d4b8c8
-    use: 对脸基线：作者审核通过的 por_npc_azhu__ch01_youth_alive_base（阿朱），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_xuemuhua__ch01_prime_juxian_base.png
+    sha256: 07e8eb5e329c44fdad29ed9dba81315872ea96bb5556698dc98770905d1a643f
+    use: 对脸基准：薛慕华的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_xuemuhua__ch01_prime_juxian_base.jpg）
   - path: assets/default/scene/ch01/cg_ch01_juxianzhuang_wine.png
-    sha256: 781c76251daf511596b7ce0eb3fbfe525ca5704579c8b1bb0a197711b58b7423
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_juxianzhuang_wine.781c7625.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: c00c8c61267444dd304deb34041b9e7cdad149b0f1159580d40acebd3af45464
+    use: 待改插图：只把薛慕华头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_juxianzhuang_wine.c00c8c61.png
+  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把薛慕华头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T17:51:58-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_juxianzhuang_wine.s3.png
+  created: 2026-10-03T18:57:58-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch01_juxianzhuang_wine.p1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: c00c8c61267444dd304deb34041b9e7cdad149b0f1159580d40acebd3af45464
+  sha256: 0c7140e280898c38b02e84e7f228535b16ac7793589c47a5cd782d375cb2623c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「聚贤绝交」，右上角竖排毛笔楷书；原生生成，已2倍放大逐字核对聚/贤/绝/交，无错字多字；未字体叠加、无朱印；视觉重出0次。使用本轮萧峰基础与聚贤庄阶段新图及既有S级阿朱；主角与S级以外均文字塑造；开战前护人与举酒为原创扩展构图，具体站位与修订版字句待考。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「聚贤绝交」，右上角竖排毛笔楷书；原生生成，已2倍放大逐字核对聚/贤/绝/交，无错字多字；未字体叠加、无朱印；视觉重出0次。使用本轮萧峰基础与聚贤庄阶段新图及既有S级阿朱；主角与S级以外均文字塑造；开战前护人与举酒为原创扩展构图，具体站位与修订版字句待考。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：薛慕华按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_juxianzhuang_wine.781c7625.png
-    sha256: 781c76251daf511596b7ce0eb3fbfe525ca5704579c8b1bb0a197711b58b7423
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_juxianzhuang_wine.781c7625.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_juxianzhuang_wine.c00c8c61.png
+    sha256: c00c8c61267444dd304deb34041b9e7cdad149b0f1159580d40acebd3af45464
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_juxianzhuang_wine.c00c8c61.entry.yaml
   effort: ultra
 - id: cg_ch01_xingzilin_reveal
   file: cg_ch01_xingzilin_reveal.png
@@ -203,40 +201,38 @@
   category: scene
   style: default
   subject: 珍珑棋局（ch01_tianlong）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是虚竹的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中虚竹的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是苏星河定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里苏星河头部一带的放大方图（插图局部）。请以最后一张为底稿，只把苏星河改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
 
-    【画里谁是谁】这张插图画的是：擂鼓山珍珑棋局。虚竹旧僧衣、憨厚迟疑地把一枚棋子放到木棋盘边，苏星河清癯老者在对侧惊讶抬头；段誉青衫温雅站一旁。只画这三人，不必增加其他观众。晨雾、松树、石凳，俯角中全景，棋盘不用可复原棋谱。具体棋位与动作时序待考，构图为原创扩展。
+    【画里是谁】珍珑棋局旁，右下方俯身、抬头向上看的老者（苏星河，聪辩先生，约六十岁）。
 
-    【要对齐的部分】虚竹各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要改成什么】按基线把他收拾得整齐一点（只是收一点，不要变成另一个人）：头发灰白相间（不是全白），在头顶束成整齐的发髻，只留少量碎发，不要满头凌乱披散的长白发；胡须改成基线那样修整过的中长灰须（到胸口以上），不要又长又乱的白须；脸的五官骨相与基线一致（原图已经相近，只微调）。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「珍珑破局」和小朱印必须原样保留，一笔不改、不增不减。
+    【原图保持】保留抬头向上看的角度、目光与神情，衣服与姿势不变。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】（作者 AR-53 总审返修）左侧低头执子的僧人是虚竹：虚竹的脸要像基线：宽脸、方而圆的下巴、颧骨平、两颊饱满不凹陷、眉毛平直不紧压、鼻子宽厚不高挺、眼神温和憨厚、嘴角带一点和善；现在的脸太窄长、颧骨下颌太硬，像另一个英俊武僧，必须改掉。低头侧脸也要看得出宽脸和圆下巴。段誉、苏星河的脸不要动。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
   references:
-  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png
-    sha256: 6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c
-    use: 对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（虚竹），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_suxinghe__ch01_elder_zhenlong_base.png
+    sha256: f776ad1273144857ac0445a991bdfbe3336050b537890f1e34158287fa68b36e
+    use: 对脸基准：苏星河的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_suxinghe__ch01_elder_zhenlong_base.jpg）
   - path: assets/default/scene/ch01/cg_ch01_zhenlong_break.png
-    sha256: bd9b5a5969e7e513281ecaeffbc7fc5b33c50bf234d31eb7849c47a4dc48d30c
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.bd9b5a59.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: 7656d132effb494d61b10e2a4ad16bfff831eb3ad0050f9facb04d41ed6152ba
+    use: 待改插图：只把苏星河头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.7656d132.png
+  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把苏星河头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T17:00:51-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_zhenlong_break.s2.png
+  created: 2026-10-03T18:57:59-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch01_zhenlong_break.p1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 7656d132effb494d61b10e2a4ad16bfff831eb3ad0050f9facb04d41ed6152ba
+  sha256: c1bf0d6ef0e732a02dcf9d07a64f7be2d99c123dfb5db195fab941d9d055bdc0
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：苏星河按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.bd9b5a59.png
-    sha256: bd9b5a5969e7e513281ecaeffbc7fc5b33c50bf234d31eb7849c47a4dc48d30c
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_zhenlong_break.bd9b5a59.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.7656d132.png
+    sha256: 7656d132effb494d61b10e2a4ad16bfff831eb3ad0050f9facb04d41ed6152ba
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.7656d132.entry.yaml
   effort: ultra
 - id: cg_ch01_songhe_wine_oath
   file: cg_ch01_songhe_wine_oath.png
