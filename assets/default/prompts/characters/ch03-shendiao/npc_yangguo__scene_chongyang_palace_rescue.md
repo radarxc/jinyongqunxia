@@ -102,3 +102,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_yangguo__ch03_youth_scene_chongyang_palace_rescue.prepared.json`。
+
+## 原著依据
+
+- 《神雕侠侣》第二十六回 神雕重剑：“剑尖更圆圆的似是个半球”；https://www.xuges.com/wuxia/jinyong/sdxl/187.htm
+- AR-82 返修约束（本节优先于历史提示词）：只改玄铁重剑尖端，改半球形圆钝厚铁尖，双刃不开锋；不要三角锐尖，不改剑柄、剑的长度、持剑角度及原左手。其余人与画面完全保持。
