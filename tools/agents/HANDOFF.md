@@ -2205,3 +2205,21 @@
       - 校验：Worker 壳与首次会话静态块里不得出现 `regionArena`、`ENCOUNTER_TEMPLATE_UNSUPPORTED`，builder 仍要在产物里。
       - 依赖 26 重合与 base-diet；名单排在 26 之后（M1 链之后）。
     - 旁注：主仓 `.git/logs/refs/remotes/origin/` 下有 3 个 root 所有的锁文件，10-02 22:13–23:05 留下，每次提交后的自动 gc 都报 reflog 失败。提交本身不受影响，没去动。
+  - **10-03 23:15–23:40 开发监督**：
+    - **ENG-23b-offline-reland 合入**（23:07）：
+      - 全量素材下 prod_check 全绿：1153 个测试，会话 108.91；
+      - 进入闭包：ch00 1.91 MiB、ch01 9.29 MiB、ch10 2.21 MiB，60 MiB / 8 MiB 门值不变。
+    - **ENG-session-base-diet**：第 4 轮审核 PASS，但合入时 cherry-pick 冲突 7 个文件。
+      - 冲突来源：23b 的离线闭包登记、content-plugin 的 60 秒超时、event-executor 的 events 字段。
+      - rebase_task 挪到 bf137b23，冲突标记留在工作区；起了一轮只解冲突的返修：`--from start --max-runs 1 --max-reviews 1`，说明 `devsup_note_r5_conflict.md`，驱动 37701，23:22 拿到池位。
+    - **TOOL-ops-dispatch** 第 2 轮返修过了校验，审核 1 轮 FAIL，停在 HOLD-REVIEWS。
+      - 协调者裁定再审一轮：`--from review --max-reviews 1 --max-runs 0`，驱动 92503。
+      - PASS 就合入，先 `--once --dry-run`，再起守护进程；FAIL 就停下，把审核摘要报协调者。
+    - **ENG-ink-intents**：第 1 轮跑满 supervise 的 200 分钟上限被停，当时报告已写到自检一节；23:11 在原工作区续作第 2 轮（GPT-5.6-Sol）。
+    - **AR-77 衣物与护甲扩充**（26f11422）：
+      - **DES-apparel-catalog**（文档池，驱动 15644）：考证写进新设计文档 27，产出总表 `docs/design/catalog/apparel-master.yaml`（schema apparel-catalog.v1，分批 ≤ 120）。
+      - **CONTENT-apparel-data**（第 1 批，依赖 DES）：追加名录行，用 items_from_catalog 生成内容数据，用 extract_item_prompts 出提示词。
+        - INDEX.md 合入后由开发监督在全量检出里重建：稀疏检出看不到物品图，重建出来的状态会错。
+        - 后续批次按 DES 定的批数登记 `CONTENT-apparel-data-2…N`，用同一份说明、vars.batch 改批号。
+      - 校验脚本 `tools/agents/check_apparel_catalog.py`（开发监督写），只查结构与覆盖；`--landed N` 查第 N 批是否已落地。
+      - 按口径的下限约 566 件，实际多半 600–700 件，已报协调者。
