@@ -82,37 +82,35 @@
   category: scene
   style: default
   subject: 比武招亲（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是杨康的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中杨康的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
+  prompt: '【任务】AR-80 剧情插图头部局部编辑。第1张是穆念慈的现行定稿立绘脸部特写（身份基线）；第2张是插图目标头部放大的方图（编辑目标）。只编辑第2张，输出1024×1024，取景、头部位置大小和朝向角度与第2张完全相同。
 
-    【要改成】（AR-53 配角对齐）五官照基线：清俊的长脸、轮廓分明、下巴不要太尖也不要圆软，剑眉斜飞入鬓、眼型细长、眼神倨傲、高鼻薄唇。
+    【要改成】脸以第1张作者选定C立绘为准：孟子义式五官，清秀而坚毅，同一个穆念慈；保持插图原有认真、警惕而有气节的状态，嘴闭不笑，目光依旧向画面左方杨康。
 
-    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；发冠与发型照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
+    【保持不变】第2张人物的头发、发饰、耳饰、衣领、服饰、身体、背景、场景色温与光照、写实手绘笔触以及其他人一律不动；只修改目标人物脸部。第2张是放大裁块，保持同样柔和度，不做高清照片。保持原有头部方向与位置。
 
-    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
-
-    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
-  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
+    【不要】不要新人物、新物件，不镜像，不变衣装，不变背景，不改变旁人，不加文字水印，不画AI美颜脸。'
+  negative: 要新人物、新物件，不镜像，不变衣装，不变背景，不改变旁人，不加文字水印，不画AI美颜脸。
   references:
-  - path: assets/default/character/male/ch02/por_npc_yangkang__ch02_youth_wangfu_base.png
-    sha256: a3f98ca5f484fb2a36b209c42f4b783b93831ce52c570f2a0a7943f396503c21
-    use: 对脸基线：作者审核通过的 por_npc_yangkang__ch02_youth_wangfu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch02/por_npc_munianci__ch02_youth_base.png
+    sha256: 6fcd16c646ee9c653dcc0cf89412b38b9d5f511befa88bea431dbeb5408db6db
+    use: 穆念慈现行身份立绘基线，只取本人面部身份
   - path: assets/default/scene/ch02/cg_ch02_beiwuzhaoqin.png
-    sha256: 485df8245db44be4f0619f07c4d0c9d9cfb099b9c91b1c8490ffadb4e266350e
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.485df824.png
-  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把杨康头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
-  model: gpt-6-astra
-  created: 2026-10-03T19:29:29-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_beiwuzhaoqin.k1.png
+    sha256: 868080d05c65f2e80ca70ad8136e6fb2f4cf3271a5287d2ea254404ca6e5dbe2
+    use: AR-80 编辑前原图；旧图备份 .agents/coord/_lines/final-2/replaced/cg_ch02_beiwuzhaoqin.868080d0.png
+  tool: 共享 w30 runner · codex exec / image_gen；AR-80 局部编辑与有界蒙版合成
+  model: gpt-6.1-sol
+  created: '2026-10-03T23:38:41-07:00'
+  source_path: .agents/coord/_lines/final-2/munianci_cg_final.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 868080d05c65f2e80ca70ad8136e6fb2f4cf3271a5287d2ea254404ca6e5dbe2
+  sha256: 224280cc2ebdc3b1138d5439e9a4ea48e4254fe31fcc489372409ff95324ff2c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「比武招亲」，实际字形「比武招亲」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：穆念慈按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-44 对脸精修，基线 = por_npc_yangkang__ch02_youth_wangfu_base（AR-53 配角对齐：杨康五官对齐基准（以 11 号改过穆念慈后的当前文件为底）；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「比武招亲」，实际字形「比武招亲」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：穆念慈按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-44 对脸精修，基线 = por_npc_yangkang__ch02_youth_wangfu_base（AR-53 配角对齐：杨康五官对齐基准（以 11 号改过穆念慈后的当前文件为底）；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-53 / AR-80 穆念慈头部局部合成；其余人物、衣装、场景、题字逐像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.485df824.png
-    sha256: 485df8245db44be4f0619f07c4d0c9d9cfb099b9c91b1c8490ffadb4e266350e
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.485df824.entry.yaml
-  effort: ultra
+    png: .agents/coord/_lines/final-2/replaced/cg_ch02_beiwuzhaoqin.868080d0.png
+    sha256: 868080d05c65f2e80ca70ad8136e6fb2f4cf3271a5287d2ea254404ca6e5dbe2
+    entry: .agents/coord/_lines/final-2/replaced/cg_ch02_beiwuzhaoqin.868080d0.entry.yaml
+  effort: xhigh
 - id: cg_ch02_niujia_snow
   file: cg_ch02_niujia_snow.png
   category: scene
