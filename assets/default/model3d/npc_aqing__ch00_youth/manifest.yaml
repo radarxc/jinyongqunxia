@@ -2,14 +2,19 @@
   file: model_rig.glb
   category: model3d
   style: default
-  subject: 阿青（越女剑 ch00 · 少女，第 2 轮 B 版新脸）· 窄轮廓 A 字版
+  subject: 阿青（越女剑 ch00 · 少女，第 2 轮 B 版新脸 · c813207d 剑眉版）· 窄轮廓 A 字版
   tool: tripo-studio-web
   model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
   tripo_model:
-    project_id: 26a4de40-56fd-48f1-bb46-25b2e3b3fac7
-    url: https://studio.tripo3d.ai/workspace/generate/26a4de40-56fd-48f1-bb46-25b2e3b3fac7
-    generate_op: e7c7c327-2b9c-4ae8-aa6d-39e6290571b5（image_to_model）
-    rig_op: cb4df483-a1fb-4cdf-b913-268644cdcfbc
+    project_id: 1ab2acee-c0e3-460a-8762-25f41fff9eca
+    url: https://studio.tripo3d.ai/workspace/generate/1ab2acee-c0e3-460a-8762-25f41fff9eca
+    generate_op: 30db8705-a98e-44bc-8598-93554a7c91cc（image_to_model）
+    rig_op: d5ad6944-7ba1-4db3-808e-a183e833ee37
+    replaces:
+      project_id: 26a4de40-56fd-48f1-bb46-25b2e3b3fac7
+      commit: 4cf94b5e
+      reference_commit: 3bc052d0
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_aqing__ch00_youth__4cf94b5e/
   options:
     generate:
       ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
@@ -40,40 +45,46 @@
     export: 0
   references:
   - path: assets/default/character/female/ch00/threeview/por_npc_aqing__ch00_youth_apose_slim.png
-    sha256: 0666008fe9d2fe904bcf2d613ada8c0bc2a71a9272ea5877f74b505f7cbd0940
-    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+    sha256: a62f5311f341f0c70f3d77acce9100b229d2edf75d5889d0cc88b6eae5cb18fe
+    use: 单图生成输入（窄轮廓 A 字参考，c813207d 换脸版：AR-53 总审复核只改脸——剑眉、颧骨棱角）
   - path: assets/default/character/female/ch00/por_npc_aqing__ch00_youth_base.png
     sha256: 445dc59c8f722af9d7e3890d3bf98790405fc2c9a7cdddeea35277850cf9884a
-    use: 作者选定的 base 立绘（本模型未直接输入）
-  sha256: b68dff825f223bc84a7124bc69f9c970e5e037f82650226b5861797400027b6c
-  size_bytes: 6103284
+    use: 作者选定的第 2 轮 B 版 base 立绘（08a2a3fb，AR-44；本模型未直接输入）
+  sha256: b97f2fac50b7d0f85ca8491a4d14e6b64bf28a7e4b92d7eecfd5b1f29c75bf43
+  size_bytes: 5922276
   joints: 65
-  triangles: 96036
-  vertices: 57992
+  triangles: 93244
+  vertices: 54873
   animations: []
   textures:
-  - image/jpeg 331140 B
-  - image/jpeg 1510950 B
-  - image/jpeg 645652 B
+  - image/jpeg 326509 B
+  - image/jpeg 1484832 B
+  - image/jpeg 675080 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T17:37:50-07:00'
+  created: '2026-10-03T19:31:00+08:00'
   status: candidate
-  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，灰蓝短襦 + 白长裙 + 草鞋可辨识，头发深色、无肉色块；自动绑骨一次成功（Hips y0.538、头顶骨端 0.972、双手外展 y0.50、脚 0.067）。窄轮廓 A 字参考 3bc052d0，base 为作者选定第 2 轮 B 版（08a2a3fb）。
+  notes: 绑骨后基础模型（无动画）。换脸重做（2026-10-03 19:30）：输入换成 A 字参考 c813207d 版——AR-53 总审复核返修，只改脸（上挑剑眉、颧骨有棱角），底图和服饰与旧版 3bc052d0 相同；base 是作者选定的第 2 轮 B 版（08a2a3fb，AR-44）。看图验收：正/侧/背完整，灰蓝短襦 + 深灰腰带 + 白长裙 + 草鞋，后发深褐、无肉色块；自动绑骨一次成功（JS
+    核对关节：Hips y0.535、头顶骨端 0.973、双手外展 y0.50、脚 0.063），骨架叠加截图与网格吻合。旧版（project 26a4de40，提交 4cf94b5e，用的是 3bc052d0 旧脸 A 字图）已备份到 .agents/coord/ART-3d-tripo-web/replaced/npc_aqing__ch00_youth__4cf94b5e/（git 历史里也有）。
 - id: npc_aqing__ch00_youth__preview
   file: preview.png
   category: model3d
   style: default
-  subject: 阿青（越女剑 ch00 · 少女，第 2 轮 B 版新脸）· 窄轮廓 A 字版 · 3D 预览
+  subject: 阿青（越女剑 ch00 · 少女，第 2 轮 B 版新脸 · c813207d 剑眉版）· 窄轮廓 A 字版 · 3D 预览
   tool: tripo-studio-web（Claude in Chrome 截图）
   tripo_model:
-    project_id: 26a4de40-56fd-48f1-bb46-25b2e3b3fac7
-    url: https://studio.tripo3d.ai/workspace/generate/26a4de40-56fd-48f1-bb46-25b2e3b3fac7
-    generate_op: e7c7c327-2b9c-4ae8-aa6d-39e6290571b5（image_to_model）
-    rig_op: cb4df483-a1fb-4cdf-b913-268644cdcfbc
+    project_id: 1ab2acee-c0e3-460a-8762-25f41fff9eca
+    url: https://studio.tripo3d.ai/workspace/generate/1ab2acee-c0e3-460a-8762-25f41fff9eca
+    generate_op: 30db8705-a98e-44bc-8598-93554a7c91cc（image_to_model）
+    rig_op: d5ad6944-7ba1-4db3-808e-a183e833ee37
+    replaces:
+      project_id: 26a4de40-56fd-48f1-bb46-25b2e3b3fac7
+      commit: 4cf94b5e
+      reference_commit: 3bc052d0
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_aqing__ch00_youth__4cf94b5e/
   size: 369x594
-  sha256: af12b0b04142f089b24e58020e4c5dd2262ddddbde960f4bd66de0f3a5934002
-  size_bytes: 131462
-  created: '2026-10-03T17:37:50-07:00'
+  sha256: e6e873562aec9b5a9b60871fb91791ef2a4f7ed0bb29413bd194a338436eb8bb
+  size_bytes: 129705
+  created: '2026-10-03T19:31:00+08:00'
   status: candidate
   notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
