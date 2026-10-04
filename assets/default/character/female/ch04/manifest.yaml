@@ -505,20 +505,33 @@
   - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_wanansi.png
     sha256: 438d53cfc30ba735c3f05d0e378098afa3073fb492cca1033380e0ba68f68a72
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhaomin__ch04_youth_scene_wanansi.438d53cf.png
-  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T14:00:02-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhaomin__ch04_youth_scene_wanansi.e1.png
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:44:02.498301-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_20_56_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 4f4eef81db1f155de50195d3881f8053db321c6e16cc9d79188a06c729776e3d
+  sha256: 7f42590a344f4d7f99aaf4fc0ed9f88822841f1483a5178285cac73943bae5f6
   status: candidate
-  notes: 立绘重审重出（AR-30）；赵敏基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_zhaomin__ch04_youth_scene_lvliu
+  notes: 立绘重审重出（AR-30）；赵敏基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_zhaomin__ch04_youth_scene_lvliu；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：恢复base眉眼鼻唇一致；万安寺观察神态与原光向保留；发饰、衣领边缘自然
   effort: ultra
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhaomin__ch04_youth_scene_wanansi.438d53cf.png
     sha256: 438d53cfc30ba735c3f05d0e378098afa3073fb492cca1033380e0ba68f68a72
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhaomin__ch04_youth_scene_wanansi.438d53cf.entry.yaml
+  ar84_alignment:
+    job: ar84_calign_20_56_r1
+    before_sha256: 4f4eef81db1f155de50195d3881f8053db321c6e16cc9d79188a06c729776e3d
+    box:
+    - 440
+    - 127
+    - 570
+    - 262
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_20_56_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_zhaomin__ch04_youth_scene_wudang
   file: por_npc_zhaomin__ch04_youth_scene_wudang.png
   category: character/female
