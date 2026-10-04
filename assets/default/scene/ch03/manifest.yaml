@@ -279,21 +279,21 @@
     【本张另外要求】（作者 AR-53 总审返修）白衣女子是小龙女：原著写她十六年后容貌如昔，所以她的脸要和基线一模一样年轻——清丽的鹅蛋脸、轮廓柔和不宽、肤色极白、神情清冷淡然，不要显年长、不要脸变宽。杨过的脸不要动（他保持四十岁上下的样子）。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
-    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
-    use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch03/cg_ch03_valley_reunion.png
     sha256: 5799300656ab620251a2c3ec90a18f4cacb7e66cdf8c3f3807b4c37a78e0f66c
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.57993006.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T17:31:47-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_valley_reunion.s3.png
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:51:39.645624-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_38_52_r2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 961dd4d83319b9b6d89a049a69801b628c560bc958fce3665fa78fa7ec3da10e
+  sha256: 389f28bb2fd5f91b65f5a5b2d61f7564eeb272828ec2a423014d99de174ede56
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「谷底重逢」，实际字形「谷底重逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base（十六年后重逢，保留两人原图的年龄感）；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base（AR-53 总审返修：小龙女十六年后容貌如昔，对齐 jueqing_base）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「谷底重逢」，实际字形「谷底重逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base（十六年后重逢，保留两人原图的年龄感）；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base（AR-53 总审返修：小龙女十六年后容貌如昔，对齐 jueqing_base）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须采用身份参考刘亦菲定稿眉眼鼻唇颌骨，但十六年后对应年龄阶段照待改原图，不能画回少女。保留侧面仰望杨过的关切神态、视线、头向与原山谷柔光；禁止变正脸、禁止复原旧脸、禁止变更耳坠发式。；质检：实际打开base与返修前后：小龙女以恢复base身份画对应十六年后阶段，侧面仰望关切神态和原山谷柔光保留，五官同人、耳坠发式不改、接缝自然；杨过和题字等头外像素一致
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.57993006.png
     sha256: 5799300656ab620251a2c3ec90a18f4cacb7e66cdf8c3f3807b4c37a78e0f66c
@@ -306,6 +306,16 @@
     - exec-18f069e3-1295-4d3f-9d49-b51a59936fba.png
   runner_success_count: 1
   effort: ultra
+  ar84_alignment:
+    job: ar84_calign_38_52_r2
+    before_sha256: 961dd4d83319b9b6d89a049a69801b628c560bc958fce3665fa78fa7ec3da10e
+    box:
+    - 1025
+    - 164
+    - 1140
+    - 294
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_38_52_r2.png
+    outside_changed_pixels: 0
 - id: cg_ch03_xiangyang_flying_stone
   file: cg_ch03_xiangyang_flying_stone.png
   category: scene
