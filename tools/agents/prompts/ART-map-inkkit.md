@@ -24,7 +24,7 @@
    - PNG RGBA，真透明，四角 alpha 为 0；
    - 边长 512 或 1024，按体量定；
    - 无文字、无现代元素、无水印。
-3. 产物放 `assets/default/map/kit/`，写 `manifest.yaml`，`status: draft`。
+3. 产物放 `assets/default/map/kit/`，写 `manifest.yaml`，`status: candidate`（check_assets 只认 approved / candidate / rejected；作者过目前一律 candidate）。
 4. 把全部小样拼成一张对照表 `assets/default/map/kit/_contact_sheet.png`，按品类分行、标品类名，供协调者转作者过目。
 5. **本轮只出小样，不补齐全套**：作者通过后另起任务补齐。
 
