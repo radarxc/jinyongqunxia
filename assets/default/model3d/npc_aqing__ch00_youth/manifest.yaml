@@ -1,0 +1,79 @@
+- id: npc_aqing__ch00_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 阿青（越女剑 ch00 · 少女，第 2 轮 B 版新脸）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 26a4de40-56fd-48f1-bb46-25b2e3b3fac7
+    url: https://studio.tripo3d.ai/workspace/generate/26a4de40-56fd-48f1-bb46-25b2e3b3fac7
+    generate_op: e7c7c327-2b9c-4ae8-aa6d-39e6290571b5（image_to_model）
+    rig_op: cb4df483-a1fb-4cdf-b913-268644cdcfbc
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_aqing__ch00_youth_apose_slim.png
+    sha256: 0666008fe9d2fe904bcf2d613ada8c0bc2a71a9272ea5877f74b505f7cbd0940
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  - path: assets/default/character/female/ch00/por_npc_aqing__ch00_youth_base.png
+    sha256: 445dc59c8f722af9d7e3890d3bf98790405fc2c9a7cdddeea35277850cf9884a
+    use: 作者选定的 base 立绘（本模型未直接输入）
+  sha256: b68dff825f223bc84a7124bc69f9c970e5e037f82650226b5861797400027b6c
+  size_bytes: 6103284
+  joints: 65
+  triangles: 96036
+  vertices: 57992
+  animations: []
+  textures:
+  - image/jpeg 331140 B
+  - image/jpeg 1510950 B
+  - image/jpeg 645652 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T17:37:50-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，灰蓝短襦 + 白长裙 + 草鞋可辨识，头发深色、无肉色块；自动绑骨一次成功（Hips y0.538、头顶骨端 0.972、双手外展 y0.50、脚 0.067）。窄轮廓 A 字参考 3bc052d0，base 为作者选定第 2 轮 B 版（08a2a3fb）。
+- id: npc_aqing__ch00_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 阿青（越女剑 ch00 · 少女，第 2 轮 B 版新脸）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 26a4de40-56fd-48f1-bb46-25b2e3b3fac7
+    url: https://studio.tripo3d.ai/workspace/generate/26a4de40-56fd-48f1-bb46-25b2e3b3fac7
+    generate_op: e7c7c327-2b9c-4ae8-aa6d-39e6290571b5（image_to_model）
+    rig_op: cb4df483-a1fb-4cdf-b913-268644cdcfbc
+  size: 369x594
+  sha256: af12b0b04142f089b24e58020e4c5dd2262ddddbde960f4bd66de0f3a5934002
+  size_bytes: 131462
+  created: '2026-10-03T17:37:50-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
