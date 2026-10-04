@@ -1857,3 +1857,21 @@
 
 - **10-03 17:24–17:32 协调者**：AR-59 王语嫣定第 2 轮 B、阿朱改按刘涛参考精细重出（10 号）。面部总审 ch03–ch06：令狐冲换回剧照结合版后其余 13 张全部明显不一致，任盈盈 3 张明显、石破天 1 张轻微 → 新起 12 号出图员（说明 `.agents/coord/_handoff/gem/codex_w25/BRIEF.md`）专做 ch05–ch14 主角对脸返修，总审 ch07 起的主角清单直接发 12 号并抄 main。Codex 图像并发再分：10 号 2、11 号 1、12 号 1、素材线 1（城图优先）。
 - **10-03 17:55 磁盘清理收尾**：第 6 项 20 个老项目的 node_modules 全部删完（两次后台运行，首次 1 小时超时后续删），可用 34.1 GiB、交换区 33.8 GB。AR-59～61：王语嫣第 2 轮 B 入库 260175cf 并对齐 5 张；阿朱刘涛版 B（眼睛略放大）入库 4e36407e，插图对齐中；钟灵 / 马夫人 / 黄药师港版 A/B 待作者选（11 号 `codex_w24/sheets/AB_*.jpg`）。A 字图已出 13 / 18 张并转 Tripo。
+  - **10-03 17:54–18:10 开发监督**：
+    - **ENG-16c** 第 2 轮校验只卡在收缩门：`apps/game/src/battle/runtime.ts` 188 → 123 行。
+      - 原因是规则、RNG、命令历史迁进了 core 的 BattleSession，宿主这层变成只读适配器。
+      - 加 shrink_exempt（1fd888f7）。协调者停了第 3 轮的排队，用 `--from validate` 重起（驱动 41997），已进审核。
+    - **ENG-event-executor**：18:05 仍未退出，协调者停掉执行器（1.exit = 143），此时报告与检查都已完成。
+      - rebase_task 把基点 4e193b0f 移到 f24cbc6b，26 个文件，冲突 0。
+      - 开发监督按它报告 §3 的对照机械改名：
+        - ch10 的 7 个 EventDef，11 处 op 改名；
+        - ch10 Ink 第 40 行 `world/openEntrance entrance=` 改为 `entranceId=`，这个 Ink 文件加进写集（962f7db1）。
+      - 报告 §1 / §3 / §7 补了迁名说明；coord 备注在 `devsup_note_migration.md`。
+      - `--from validate` 重起，驱动 11464。
+      - 风险：它和 ENG-ink-external-args 都改 `packages/data/src/build/ink.ts`，后合入的那件要防 cherry-pick 冲突。
+    - **ENG-region-gates-data** 第 2 轮 17:54 拿到池位；**ENG-ink-external-args** 17:57 起跑。
+    - 素材线 / 协调者的工具修复：
+      - eb1fa142：稀疏检出始终带 `assets/default/town/city_nanjing__ch10/layout.yaml`，否则 test_town_runtime 会 ERROR；
+      - 1d85ff7a：supervise 自动合入撞上未提交窗口时，改为每 2 秒重试；遇到 READY「auto-merge 未成功」，用 `_handoff/merge_when_clean.py` 补合入。
+
+- **10-03 18:05–18:12 协调者**：ENG-event-executor 到 18:05 未退出，协调者按约定停执行器（1.exit=143）；开发监督挪基点到 f24cbc6b、机械改 ch10 op 名与 Ink 参数（写集补 962f7db1），--from validate 因退出码 143 未过（step.py finish 把非 0 退出码记为问题，被停过的任务都要再走一轮短返修），已排到 18c 前（18c 守候 47226）。ENG-16c 改 --from validate 后审核 PASS。supervise.py 合入重试改为每 2 秒探工作树（1d85ff7a）；VFX-sk_tiangang 用 merge_when_clean 合入。面部总审主角全部审完：一致 207、轻微 43、明显 22（集中在 ch05、ch07–ch14，分给 12 号与 10 号）；下一步审配角。Gemini 出图员 17:33 在 Wikidata 请求 UA 里误带作者邮箱前缀 3 次（只读搜索），已改通用 UA 并如实告知作者；各联网代理已收到「不带作者个人信息」规矩。
