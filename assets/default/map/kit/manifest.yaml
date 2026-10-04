@@ -45,6 +45,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: shanmai
+    volume: large
+    orient: ew
+    anchor:
+    - 0.505859
+    - 0.692383
 - id: map_kit_xueshan_xibei_01
   file: map_kit_xueshan_xibei_01.png
   category: map
@@ -91,6 +98,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: xueshan
+    volume: medium
+    orient: nwse
+    anchor:
+    - 0.499023
+    - 0.882812
 - id: map_kit_qiuling_01
   file: map_kit_qiuling_01.png
   category: map
@@ -137,6 +151,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: qiuling
+    volume: medium
+    orient: none
+    anchor:
+    - 0.51709
+    - 0.813477
 - id: map_kit_hupo_01
   file: map_kit_hupo_01.png
   category: map
@@ -183,6 +204,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: hupo
+    volume: large
+    orient: none
+    anchor:
+    - 0.507812
+    - 0.922852
 - id: map_kit_haimian_01
   file: map_kit_haimian_01.png
   category: map
@@ -229,6 +257,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: haimian
+    volume: large
+    orient: none
+    anchor:
+    - 0.506836
+    - 0.871094
 - id: map_kit_pendi_01
   file: map_kit_pendi_01.png
   category: map
@@ -275,6 +310,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: pendi
+    volume: large
+    orient: none
+    anchor:
+    - 0.499512
+    - 0.798828
 - id: map_kit_pingyuan_01
   file: map_kit_pingyuan_01.png
   category: map
@@ -321,6 +363,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: pingyuan
+    volume: large
+    orient: none
+    anchor:
+    - 0.511719
+    - 0.854492
 - id: map_kit_heliu_wanqu_01
   file: map_kit_heliu_wanqu_01.png
   category: map
@@ -367,6 +416,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: heliu
+    volume: large
+    orient: none
+    anchor:
+    - 0.507812
+    - 0.884766
 - id: map_kit_heliu_zhiliu_01
   file: map_kit_heliu_zhiliu_01.png
   category: map
@@ -413,6 +469,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: heliu
+    volume: large
+    orient: none
+    anchor:
+    - 0.513184
+    - 0.916016
 - id: map_kit_daolu_wanqu_01
   file: map_kit_daolu_wanqu_01.png
   category: map
@@ -459,6 +522,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: daolu
+    volume: small
+    orient: none
+    anchor:
+    - 0.498047
+    - 0.59375
 - id: map_kit_daolu_zhexian_01
   file: map_kit_daolu_zhexian_01.png
   category: map
@@ -505,6 +575,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: daolu
+    volume: small
+    orient: none
+    anchor:
+    - 0.511719
+    - 0.855469
 - id: map_kit_guanai_01
   file: map_kit_guanai_01.png
   category: map
@@ -551,6 +628,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: guanai
+    volume: medium
+    orient: ew
+    anchor:
+    - 0.514648
+    - 0.857422
 - id: map_kit_dacheng_01
   file: map_kit_dacheng_01.png
   category: map
@@ -597,6 +681,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: dacheng
+    volume: large
+    orient: none
+    anchor:
+    - 0.498535
+    - 0.777344
 - id: map_kit_zhoufu_01
   file: map_kit_zhoufu_01.png
   category: map
@@ -643,6 +734,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: zhoufu
+    volume: medium
+    orient: none
+    anchor:
+    - 0.511719
+    - 0.783203
 - id: map_kit_xianzhen_01
   file: map_kit_xianzhen_01.png
   category: map
@@ -689,6 +787,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: xianzhen
+    volume: small
+    orient: none
+    anchor:
+    - 0.506836
+    - 0.820312
 - id: map_kit_cunluo_01
   file: map_kit_cunluo_01.png
   category: map
@@ -735,6 +840,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: cunluo
+    volume: small
+    orient: none
+    anchor:
+    - 0.523438
+    - 0.779297
 - id: ico_map_kit_simiao_01
   file: ico_map_kit_simiao_01.png
   category: map
@@ -781,6 +893,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: simiao
+    volume: small
+    orient: none
+    anchor:
+    - 0.5
+    - 0.779297
 - id: ico_map_kit_daoguan_01
   file: ico_map_kit_daoguan_01.png
   category: map
@@ -827,6 +946,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: daoguan
+    volume: small
+    orient: none
+    anchor:
+    - 0.501953
+    - 0.867188
 - id: ico_map_kit_menpai_01
   file: ico_map_kit_menpai_01.png
   category: map
@@ -873,6 +999,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: menpai
+    volume: small
+    orient: none
+    anchor:
+    - 0.498047
+    - 0.796875
 - id: ico_map_kit_yizhan_01
   file: ico_map_kit_yizhan_01.png
   category: map
@@ -919,6 +1052,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: yizhan
+    volume: small
+    orient: none
+    anchor:
+    - 0.501953
+    - 0.832031
 - id: ico_map_kit_matou_01
   file: ico_map_kit_matou_01.png
   category: map
@@ -965,6 +1105,13 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: matou
+    volume: small
+    orient: none
+    anchor:
+    - 0.499023
+    - 0.818359
 - id: ico_map_kit_yiji_01
   file: ico_map_kit_yiji_01.png
   category: map
@@ -1011,13 +1158,20 @@
   review_stage: draft
   notes: 两张 approved 基线均作为风格输入；真透明由 image_gen 生成，保留 alpha，未抠底或用代码画主体。仅等比缩放完整原画幅并加透明边距；内含主体纸纹与淡墨渗化，整幅纸底交渲染器。建筑形制是识别性概念（待考），不作历史复原；走向、河湖轮廓不得替代
     GIS 几何；道路河流不是无缝连续贴图。执行会话与图像后端型号不混同，本轮不声称后端型号已核实。
+  kit:
+    kind: yiji
+    volume: small
+    orient: none
+    anchor:
+    - 0.514648
+    - 0.853516
 - id: map_kit_contact_sheet_01
   file: _contact_sheet.png
   category: map
   style: default
   role: contact_sheet
-  subject: 22件小样按品类分行，并列两张已审基线；仅供作者审样。
-  prompt: Pillow排版；照manifest顺序、九个品类分行，中文品类名和尺寸由系统字体绘制；每图浅格底与深底小图检查alpha；无新增AI绘画。
+  subject: AR-69：63件水墨贴图按20组品类分行，小样在前、新件在后，并列两张已审基线。
+  prompt: Pillow按manifest的kit.kind分行排版；中文品类名、件数、小样/新件标签及浅格深底预览仅在对照表绘制。
   negative: 不回写基线，不将审样底色或文字写入贴图，不作为生产地图。
   references:
   - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
@@ -1044,13 +1198,2325 @@
   - assets/default/map/kit/ico_map_kit_yizhan_01.png
   - assets/default/map/kit/ico_map_kit_matou_01.png
   - assets/default/map/kit/ico_map_kit_yiji_01.png
-  tool: Pillow · build_review.py
+  - assets/default/map/kit/map_kit_shanfeng_01.png
+  - assets/default/map/kit/map_kit_shanfeng_02.png
+  - assets/default/map/kit/map_kit_shanfeng_03.png
+  - assets/default/map/kit/map_kit_shanfeng_04.png
+  - assets/default/map/kit/map_kit_shanfeng_05.png
+  - assets/default/map/kit/map_kit_shanfeng_06.png
+  - assets/default/map/kit/map_kit_shanmai_02.png
+  - assets/default/map/kit/map_kit_shanmai_03.png
+  - assets/default/map/kit/map_kit_shanmai_04.png
+  - assets/default/map/kit/map_kit_shanmai_05.png
+  - assets/default/map/kit/map_kit_shanmai_06.png
+  - assets/default/map/kit/map_kit_xueshan_02.png
+  - assets/default/map/kit/map_kit_xueshan_03.png
+  - assets/default/map/kit/map_kit_xueshan_04.png
+  - assets/default/map/kit/map_kit_qiuling_02.png
+  - assets/default/map/kit/map_kit_qiuling_03.png
+  - assets/default/map/kit/map_kit_qiuling_04.png
+  - assets/default/map/kit/map_kit_hupo_02.png
+  - assets/default/map/kit/map_kit_hupo_03.png
+  - assets/default/map/kit/map_kit_hupo_04.png
+  - assets/default/map/kit/map_kit_haimian_02.png
+  - assets/default/map/kit/map_kit_haimian_03.png
+  - assets/default/map/kit/map_kit_haimian_04.png
+  - assets/default/map/kit/map_kit_pingyuan_02.png
+  - assets/default/map/kit/map_kit_pendi_02.png
+  - assets/default/map/kit/map_kit_dacheng_02.png
+  - assets/default/map/kit/map_kit_dacheng_03.png
+  - assets/default/map/kit/map_kit_zhoufu_02.png
+  - assets/default/map/kit/map_kit_zhoufu_03.png
+  - assets/default/map/kit/map_kit_xianzhen_02.png
+  - assets/default/map/kit/map_kit_xianzhen_03.png
+  - assets/default/map/kit/map_kit_cunluo_02.png
+  - assets/default/map/kit/map_kit_cunluo_03.png
+  - assets/default/map/kit/ico_map_kit_simiao_02.png
+  - assets/default/map/kit/ico_map_kit_daoguan_02.png
+  - assets/default/map/kit/ico_map_kit_menpai_02.png
+  - assets/default/map/kit/ico_map_kit_yizhan_02.png
+  - assets/default/map/kit/ico_map_kit_matou_02.png
+  - assets/default/map/kit/ico_map_kit_yiji_02.png
+  - assets/default/map/kit/map_kit_guanai_02.png
+  - assets/default/map/kit/map_kit_guanai_03.png
+  tool: Pillow · tools/map/kit/full/build_kit.py
   model: not_applicable（本地排版，无生成模型）
   effort: not_applicable
-  created: '2026-10-04T03:59:48.621164+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-map-inkkit/assets/default/map/kit/build_review.py
-  size: 2400x3780
-  sha256: 8bdbd9059445bf1a12b6cb2cfd6e0086e90c7234f9778ed42c38e84056e75293
+  created: '2026-10-04T06:27:47.747529+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-map-inkkit-full/tools/map/kit/full/build_kit.py
+  size: 2400x6640
+  sha256: b80e30b74028a8985683b7a20e8a8ef553bf3dbf9569d06ea9b35074a7796b2c
   status: candidate
   review_stage: draft
-  notes: RGBA，四角及外缘alpha=0；内层宣纸色审样板、浅格与深底小图为可见排版内容。标签只在本表；所有22件原贴图无字。对照表尺寸例外，不是512/1024的可用贴图。
+  notes: 'RGBA；四角及外缘透明。审样板、标签及浅格深底仅属于本表。本条role: contact_sheet，拼合器须排除。'
+  kit:
+    kind: contact
+    volume: large
+    orient: none
+    anchor:
+    - 0.5
+    - 0.996536
+- id: map_kit_shanfeng_01
+  file: map_kit_shanfeng_01.png
+  category: map
+  style: default
+  role: variant
+  group: 山峰
+  label: 峻峭独峰
+  subject: 山峰：峻峭独峰；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 大体量孤立高峻石峰，一主峰直立，右下小肩，坡面披麻皴，少量松树；轮廓窄高，山脚不扩成一排山脉。
+
+    Deliverable: one 1024x1024 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T05:49:47.332629+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-e68de7c4-52e9-470e-9508-c7b47060c9ec.png
+  source_size: 1254x1254
+  source_sha256: 39931a21568476cb47de1e85498681a89f02ffee5caa80711c9984a64951b5f1
+  size: 1024x1024
+  sha256: 9959df72d66173ad5ae788f04f561a907324566b066d8721673daa798c38e8a5
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanfeng
+    volume: large
+    orient: none
+    anchor:
+    - 0.512695
+    - 0.931641
+- id: map_kit_shanfeng_02
+  file: map_kit_shanfeng_02.png
+  category: map
+  style: default
+  role: variant
+  group: 山峰
+  label: 鞍部双峰
+  subject: 山峰：鞍部双峰；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 大体量双峰，一左高圆顶、一右低尖峰，中间明显鞍部空隙，宽横向底脚；只两峰，无连续山岭。
+
+    Deliverable: one 1024x1024 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T05:51:12.076984+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-0e99e76c-4a99-40b4-be39-1e89174eef06.png
+  source_size: 1254x1254
+  source_sha256: a802739cd602283fbee1660b6394408b63ea1d32e83d69e3f9cd1cfc5a506f12
+  size: 1024x1024
+  sha256: 1e33f23f04e687032164013f9c56d31e2f1f81072227596b057a341362fba91d
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanfeng
+    volume: large
+    orient: none
+    anchor:
+    - 0.500488
+    - 0.731445
+- id: map_kit_shanfeng_03
+  file: map_kit_shanfeng_03.png
+  category: map
+  style: default
+  role: variant
+  group: 山峰
+  label: 错落峰丛
+  subject: 山峰：错落峰丛；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 中体量紧凑三峰丛，前方两低峰与后方一高峰不对称，轮廓呈扇形，干笔岩面。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T05:52:44.367140+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-508379e3-7160-4d97-8746-262cb120ab9e.png
+  source_size: 1254x1254
+  source_sha256: f5e44a067ee244379ae8d21b8f3f567eaf8e09d520e0bd2e8f17278bd307296f
+  size: 512x512
+  sha256: a27651f38aedb7674fb7dea875bdb4a6863e1df21e00ad7849aa0baf4576731f
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanfeng
+    volume: medium
+    orient: none
+    anchor:
+    - 0.5
+    - 0.822266
+- id: map_kit_shanfeng_04
+  file: map_kit_shanfeng_04.png
+  category: map
+  style: default
+  role: variant
+  group: 山峰
+  label: 削壁孤峰
+  subject: 山峰：削壁孤峰；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 中体量一座上窄下宽的削壁峰，左侧直崖、右侧缓肩，主峰偏右，疏松灰绿树点。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T05:51:57.156929+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-0b851cef-e061-412f-bfe8-a3a9af731136.png
+  source_size: 1254x1254
+  source_sha256: f4b02df822e88e4e115351af465939960bae209563696a210cad87887daa461a
+  size: 512x512
+  sha256: 0fe95c7afa482a0657cd562438df52b716a5da539111ad390c32ca394b0150a3
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanfeng
+    volume: medium
+    orient: none
+    anchor:
+    - 0.509766
+    - 0.884766
+- id: map_kit_shanfeng_05
+  file: map_kit_shanfeng_05.png
+  category: map
+  style: default
+  role: variant
+  group: 山峰
+  label: 矮石独峰
+  subject: 山峰：矮石独峰；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 小体量低矮石峰，圆钝顶，横向宽脚和两三簇小松，淡墨，轮廓与陡峭独峰明显不同。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T05:58:55.920436+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-af580f9b-1491-46c3-a16b-5481a54489f0.png
+  source_size: 1254x1254
+  source_sha256: 4a64a0389efb5dd624ae7d1a6dca34c22f628ca25ee80fabe57c7c789ea12b4f
+  size: 512x512
+  sha256: 3e302d0b8186a47fc5e057351bc529ebe6b12fa3aa49451e4a237c018662f6c5
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanfeng
+    volume: small
+    orient: none
+    anchor:
+    - 0.512695
+    - 0.730469
+- id: map_kit_shanfeng_06
+  file: map_kit_shanfeng_06.png
+  category: map
+  style: default
+  role: variant
+  group: 山峰
+  label: 小双石峰
+  subject: 山峰：小双石峰；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 小体量两座高低不同的细瘦石峰，左峰偏低、右峰较高，之间狭窄裂隙，不附大范围山地。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T05:59:44.008277+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-4263705a-1b51-41e5-ad9c-8099a6cb51c8.png
+  source_size: 1254x1254
+  source_sha256: 58cd599129fbbfcada84c1f1ba263faf092264f5d59d9913ff81f0875a467ac8
+  size: 512x512
+  sha256: cc8a32f6f67493871c6d504c9f1e49f061daf8994c63e6e2fc3c9c4ddb069c14
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanfeng
+    volume: small
+    orient: none
+    anchor:
+    - 0.514648
+    - 0.865234
+- id: map_kit_shanmai_02
+  file: map_kit_shanmai_02.png
+  category: map
+  style: default
+  role: variant
+  group: 山脉
+  label: 南北纵岭
+  subject: 山脉：南北纵岭；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 大体量南北纵向连续山岭，上方高峰，下方逐次降低，6段连脊，整体窄长，非横排山峰。
+
+    Deliverable: one 1024x1024 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T05:58:13.570943+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-d2a44abd-f5be-4fcf-a0e0-246193a43646.png
+  source_size: 1254x1254
+  source_sha256: e5ffd8e89162f28e5a4fc5c4c83df5e858a26ad7e681ab03c33e0b618cbed98d
+  size: 1024x1024
+  sha256: 2f4d7fdc1015c0c26e9d86b78962dbc3feda97cdcc4aed1a32849d28b8d17078
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanmai
+    volume: large
+    orient: ns
+    anchor:
+    - 0.530762
+    - 0.94043
+- id: map_kit_shanmai_03
+  file: map_kit_shanmai_03.png
+  category: map
+  style: default
+  role: variant
+  group: 山脉
+  label: 东北西南斜岭
+  subject: 山脉：东北西南斜岭；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 大体量从右上东北到左下西南的斜向山脉，后半段宽厚、前半段收尖，中部峡谷一小豁口。
+
+    Deliverable: one 1024x1024 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:00:33.309437+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-bf736278-ae3a-44dc-a26e-b9c4dfa86808.png
+  source_size: 1254x1254
+  source_sha256: 2ce490e07ddbf1241a10b348a9c43e52d58d7f94dc48b46b3e85c40be4387632
+  size: 1024x1024
+  sha256: 4f675d13ad8ec0522940498b36576674dae269cc2be2f5c06c5c086906d27daf
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanmai
+    volume: large
+    orient: nesw
+    anchor:
+    - 0.502441
+    - 0.889648
+- id: map_kit_shanmai_04
+  file: map_kit_shanmai_04.png
+  category: map
+  style: default
+  role: variant
+  group: 山脉
+  label: 西北东南细岭
+  subject: 山脉：西北东南细岭；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 中体量从左上西北到右下东南的4段相连石岭，低矮前脊，高峰在左后，轮廓狭长。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:02:24.135638+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-115a442b-e94e-4923-9163-c7c7f30d9073.png
+  source_size: 1254x1254
+  source_sha256: ac20b88e405980e202a83ff0e2cbcf504bc5863ed431427caeed7b6662218d30
+  size: 512x512
+  sha256: db4e1e0c0fdb905bb8c073b6cfaa9000f4286a3925bdf1b3a0d75c06747be5dd
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanmai
+    volume: medium
+    orient: nwse
+    anchor:
+    - 0.499023
+    - 0.806641
+- id: map_kit_shanmai_05
+  file: map_kit_shanmai_05.png
+  category: map
+  style: default
+  role: variant
+  group: 山脉
+  label: 东西曲岭
+  subject: 山脉：东西曲岭；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 中体量东西横向弯弧山脉，左段低圆脊，右段两座峻峰，中段凹入，区别于参照居中最高的长岭。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:03:09.771204+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-e2d5d771-da26-4b42-a152-0539b32937f0.png
+  source_size: 1254x1254
+  source_sha256: 311bf69e9ccf1da5de27e99e3f531be206d75db1f37abd77e638376f320008cc
+  size: 512x512
+  sha256: 5f75fc7af8c8bcae6635427340d3bf5d6123d0f350617503f827bcde64490f5a
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanmai
+    volume: medium
+    orient: ew
+    anchor:
+    - 0.501953
+    - 0.716797
+- id: map_kit_shanmai_06
+  file: map_kit_shanmai_06.png
+  category: map
+  style: default
+  role: variant
+  group: 山脉
+  label: 南北断续岭
+  subject: 山脉：南北断续岭；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 中体量南北纵向4峰连脊，北端宽低，南端单一高峰，中央鞍部明显，浅雾小范围收脚。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:03:59.347194+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-04fe8774-14f8-4d37-b4e2-6f961a592fc7.png
+  source_size: 1254x1254
+  source_sha256: af7c979cb29fef2b5c4868fdcbb0f6abedd9a3e92e573400ac85fc73cf67ce0c
+  size: 512x512
+  sha256: 92c5971fdab632f93cdba16ce2ea7c2114fa1be42dd1c6a1b17d493dd3bbe045
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: shanmai
+    volume: medium
+    orient: ns
+    anchor:
+    - 0.52832
+    - 0.912109
+- id: map_kit_xueshan_02
+  file: map_kit_xueshan_02.png
+  category: map
+  style: default
+  role: variant
+  group: 雪山
+  label: 东西雪岭
+  subject: 雪山：东西雪岭；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 大体量东西雪岭，5座冰雪峰横列，右段主峰高，雪坡纸白保持不透明，墨色裸岩脊，少树。
+
+    Deliverable: one 1024x1024 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_xueshan_xibei_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:04:47.572564+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-0d42024a-7dee-46b5-86a8-9fb3c27095ec.png
+  source_size: 1254x1254
+  source_sha256: 6aaa943f8f4b480c103959aa45f8a764c8434b5d00110a24f7dd890957deb4a5
+  size: 1024x1024
+  sha256: 6f8b19ce853cbe52b251e4c517e1e7bf5e4044f5c16e491ad0e460ee36a801e1
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: xueshan
+    volume: large
+    orient: ew
+    anchor:
+    - 0.5
+    - 0.823242
+- id: map_kit_xueshan_03
+  file: map_kit_xueshan_03.png
+  category: map
+  style: default
+  role: variant
+  group: 雪山
+  label: 东北西南雪脊
+  subject: 雪山：东北西南雪脊；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 大体量右上至左下的雪山长脊，右上两座尖锐雪峰，左下宽阔雪坡渐低，岩脊错落，无林带。
+
+    Deliverable: one 1024x1024 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_xueshan_xibei_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:03:15.229399+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-e549f5ba-307d-4b15-9c16-31c956b4d45b.png
+  source_size: 1254x1254
+  source_sha256: 0a9a627f68d87de38e82a70dd3a3da37476a1c65f4e4db25f8931475b0358637
+  size: 1024x1024
+  sha256: 27dae7945ee79d192b9ea6a0f70ffe282da8a5d1c6f63ff71b5587cfb7856226
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: xueshan
+    volume: large
+    orient: nesw
+    anchor:
+    - 0.505859
+    - 0.927734
+- id: map_kit_xueshan_04
+  file: map_kit_xueshan_04.png
+  category: map
+  style: default
+  role: variant
+  group: 雪山
+  label: 南北小雪峰
+  subject: 雪山：南北小雪峰；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 小体量南北纵向的一高一低两雪峰，紧凑窄轮廓，深墨山脊、纸白雪坡，不铺大面积白纸底。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_xueshan_xibei_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:03:59.135138+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-4817e5d2-32ea-4424-85a9-a1780744d564.png
+  source_size: 1254x1254
+  source_sha256: c940dc7b78a8e599a6dadb6016d1be1edaa74990bf6ab8cc41bc4258d29de478
+  size: 512x512
+  sha256: ba9ad8e4cfc78b7db9713763fdb809a6aaddd029970af11cb072419ae7a1bae5
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: xueshan
+    volume: small
+    orient: ns
+    anchor:
+    - 0.509766
+    - 0.919922
+- id: map_kit_qiuling_02
+  file: map_kit_qiuling_02.png
+  category: map
+  style: default
+  role: variant
+  group: 丘陵
+  label: 密集浅丘
+  subject: 丘陵：密集浅丘；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 中体量密集9个低矮圆丘呈斜向错列，短灰绿草坡，细树点，浅灰墨，无高峰。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_qiuling_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:04:52.017092+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-6d5af0b2-e510-4866-99b4-11c6bf5e0b07.png
+  source_size: 1254x1254
+  source_sha256: 2f7ee8e880f66c40d6d14ebd34db489d6979325ab26ae1089aa5d55e2afef65f
+  size: 512x512
+  sha256: 9701e31fb30e7da5af907c08f31d7f04aebbb044222265a32776507d7502a83e
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: qiuling
+    volume: medium
+    orient: none
+    anchor:
+    - 0.5
+    - 0.863281
+- id: map_kit_qiuling_03
+  file: map_kit_qiuling_03.png
+  category: map
+  style: default
+  role: variant
+  group: 丘陵
+  label: 疏散三丘
+  subject: 丘陵：疏散三丘；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 小体量3个疏散低丘，两左一右，之间大留白，仅淡赭草地细墨纹，不画陡峭山。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_qiuling_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:05:46.276506+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-5d02e68e-42b5-4274-a835-e2002d9dba47.png
+  source_size: 1254x1254
+  source_sha256: f22b7c690a55231b5051eea480ba4eb48f146d9abdcfc305bd40ed2a36b7f879
+  size: 512x512
+  sha256: d42433e5c22422ab46908865775dd0217a33b8774c2b62568a84add9ab089a89
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: qiuling
+    volume: small
+    orient: none
+    anchor:
+    - 0.510742
+    - 0.837891
+- id: map_kit_qiuling_04
+  file: map_kit_qiuling_04.png
+  category: map
+  style: default
+  role: variant
+  group: 丘陵
+  label: 宽缓台丘
+  subject: 丘陵：宽缓台丘；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 中体量两条宽阔平缓台状丘带，前后叠置，横向低轮廓，干笔草纹比参照更疏。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_qiuling_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:05:49.771142+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-f298d05e-5b38-4bf9-accb-8736c8279f89.png
+  source_size: 1254x1254
+  source_sha256: 62786097f9378df83342045062faa190a05e087708117708ed875b3dfc1d4669
+  size: 512x512
+  sha256: 8d2cf33dd86a202087dcc71a63200dc7711900c3c5e6c08d8a0f809f8bdd134e
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: qiuling
+    volume: medium
+    orient: none
+    anchor:
+    - 0.505859
+    - 0.816406
+- id: map_kit_hupo_02
+  file: map_kit_hupo_02.png
+  category: map
+  style: default
+  role: variant
+  group: 湖泊
+  label: 圆阔浅湖
+  subject: 湖泊：圆阔浅湖；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 完整近圆而不规则宽阔内陆湖，少量极窄芦苇岸，水面浅灰青，中心留淡水纹，不附山城。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_hupo_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:06:42.817943+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-5f95ae33-52d1-4d57-9d97-b564e42fca50.png
+  source_size: 1254x1254
+  source_sha256: 974d534004ec79adb0eae22376585174fd399317f51fc024dfcca7ee4e1bbf84
+  size: 512x512
+  sha256: ab6352cf38a444d2e462010563b251f77f3645ac34ed4f636ef77a044c653a9c
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: hupo
+    volume: medium
+    orient: none
+    anchor:
+    - 0.501953
+    - 0.900391
+- id: map_kit_hupo_03
+  file: map_kit_hupo_03.png
+  category: map
+  style: default
+  role: variant
+  group: 湖泊
+  label: 多汊湖湾
+  subject: 湖泊：多汊湖湾；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 完整三汊内陆湖，中央水面向左上、右方、左下伸出三臂，岸缘细墨，不能连外海。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_hupo_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:06:39.529974+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-b685a1e3-4bf0-48b1-8953-842d10477cc9.png
+  source_size: 1254x1254
+  source_sha256: 8dbf507dd601f0a623b5e5727f168b43fa0d2250924d61352e3f26bf97bc450a
+  size: 512x512
+  sha256: b03fb932d2481f91399729926d587c51a57e916456e4e5060a7729e1354ff903
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: hupo
+    volume: medium
+    orient: none
+    anchor:
+    - 0.524414
+    - 0.931641
+- id: map_kit_hupo_04
+  file: map_kit_hupo_04.png
+  category: map
+  style: default
+  role: variant
+  group: 湖泊
+  label: 小湖群
+  subject: 湖泊：小湖群；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 4座大小不同的紧凑小湖群，湖与湖之间留透明间隙，极窄浅岸和细水纹，无建筑树山。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_hupo_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:07:29.572722+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-81c6f392-5f58-4c60-91e8-b88d32c00816.png
+  source_size: 1254x1254
+  source_sha256: fa3551741d1af9d9f3cf9112f897344e781b22fb4324e9c5b87d8a4d34f36ed5
+  size: 512x512
+  sha256: a8d9272ec0172d002331d76865ec832d2352d6dd1024af723e69925b75e9ba0c
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: hupo
+    volume: small
+    orient: none
+    anchor:
+    - 0.49707
+    - 0.876953
+- id: map_kit_haimian_02
+  file: map_kit_haimian_02.png
+  category: map
+  style: default
+  role: variant
+  group: 海面
+  label: 疏淡外海
+  subject: 海面：疏淡外海；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 无海岸的外海半透明灰青淡墨水面，不规则细长晕染区域，稀疏水平飞白波纹，留白多，非蓝色实心块。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_haimian_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:07:30.168763+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-f85e84ce-c1ca-45d1-ad2c-146b9d8bf0c5.png
+  source_size: 1254x1254
+  source_sha256: 60ed64a3815422374c4f91f38f682bcf7611a16afa8bc01227cf7b1b1714fce8
+  size: 512x512
+  sha256: 88911a2bb67a04e7d62004ac6f19077840cd020974de309b55b25fd92f518dca
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: haimian
+    volume: medium
+    orient: none
+    anchor:
+    - 0.509766
+    - 0.914062
+- id: map_kit_haimian_03
+  file: map_kit_haimian_03.png
+  category: map
+  style: default
+  role: variant
+  group: 海面
+  label: 近岸浪纹
+  subject: 海面：近岸浪纹；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 单件近岸海面浪纹，弧形三层浅灰青细浪向右下展开，左上仅一条很窄淡岸，不画山岛船，非封闭湖。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_haimian_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:08:23.579831+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-05eadd26-4f3c-44e0-a071-0d5c0ad5bb5d.png
+  source_size: 1254x1254
+  source_sha256: 4f57cac1ac20e76398368ef4519675917b4d68f6d33df31c1b3422e6ce22a76b
+  size: 512x512
+  sha256: cf268484a19ccd9ab25c4b8ddf087eec8b6cec825315c0ff0c7501fec53aa11c
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: haimian
+    volume: medium
+    orient: none
+    anchor:
+    - 0.501953
+    - 0.900391
+- id: map_kit_haimian_04
+  file: map_kit_haimian_04.png
+  category: map
+  style: default
+  role: variant
+  group: 海面
+  label: 弯月海湾
+  subject: 海面：弯月海湾；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 半月形海湾海面，左侧和上方极窄弯岸，右下向外海开口，淡灰青弧浪，不封闭成湖，不画城船。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_haimian_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:09:16.936818+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-8c19e2a3-dd30-49bf-b374-83db09495b4c.png
+  source_size: 1254x1254
+  source_sha256: 575d4f4c97844acbd984461b6fdc49cd14bd7e9bdbcf75756e20007b7fcb7e00
+  size: 512x512
+  sha256: 5ffb1be7e32debebfab80fabe7fae7fd839de3362c8a4bf5684463e68b801270
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: haimian
+    volume: medium
+    orient: none
+    anchor:
+    - 0.500977
+    - 0.914062
+- id: map_kit_pingyuan_02
+  file: map_kit_pingyuan_02.png
+  category: map
+  style: default
+  role: variant
+  group: 平原 / 盆地
+  label: 斜纹淡原
+  subject: 平原 / 盆地：斜纹淡原；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 极平坦浅墨草地底纹，淡赭、稀疏灰绿短笔，纹理从左下往右上，松散不规则边，无丘山屋树。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_pingyuan_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:09:59.114958+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-f90c6695-20b2-4379-9a66-fe4f46a53d93.png
+  source_size: 1254x1254
+  source_sha256: 1781b6d415524339b0fc48d2e5c542bef6ebd68aa3d86ffb312ab06492139b40
+  size: 512x512
+  sha256: a29146d551d67b42dae520025b0758e9c57cb4f8a8a9d78da14b3246b41ab5e7
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: pingyuan
+    volume: small
+    orient: none
+    anchor:
+    - 0.498047
+    - 0.876953
+- id: map_kit_pendi_02
+  file: map_kit_pendi_02.png
+  category: map
+  style: default
+  role: variant
+  group: 平原 / 盆地
+  label: 横纹宽盆
+  subject: 平原 / 盆地：横纹宽盆；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 宽浅盆地底纹，横向干笔泥草纹和极低边缘坡带围出凹地，中部浅淡，右侧开口，不画山峰建筑河水。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_pendi_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:10:13.545171+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-ded24bdb-8279-4d37-9e97-1d26fc19c289.png
+  source_size: 1254x1254
+  source_sha256: 3dd3bca30286e35df5f218c2736f2407af5d99fd225e15bb28003689da9d5a96
+  size: 512x512
+  sha256: b0aa0e5396a9a9d8d5d70e931ab5593fba20a0101f08318ddcb3072f7641d70e
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: pendi
+    volume: medium
+    orient: none
+    anchor:
+    - 0.493164
+    - 0.826172
+- id: map_kit_dacheng_02
+  file: map_kit_dacheng_02.png
+  category: map
+  style: default
+  role: variant
+  group: 大城
+  label: 长垣大城
+  subject: 大城：长垣大城；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视东西长方大城小景，完整城垣、4角楼、至少40座灰瓦屋，东西主街，左上官署，南门偏右；比州府明显密集庞大，非参照方城构图。
+
+    Deliverable: one 1024x1024 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_dacheng_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:11:10.113122+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-aa0c9908-3492-40ff-a10e-8255d4b5f28f.png
+  source_size: 1254x1254
+  source_sha256: 7970644d8b04df4fc7875cf17c29bd4dd237924aad2ad30152c6ba9cc910b3b7
+  size: 1024x1024
+  sha256: a8ab2fad7165bd659b0edcca9656bfdd05765e9f2e821ae8db558dd25321cc14
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: dacheng
+    volume: large
+    orient: none
+    anchor:
+    - 0.5
+    - 0.884766
+- id: map_kit_dacheng_03
+  file: map_kit_dacheng_03.png
+  category: map
+  style: default
+  role: variant
+  group: 大城
+  label: 曲垣大城
+  subject: 大城：曲垣大城；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视北宽南窄的不规则古代大城小景，完整弯曲城垣、5座门楼、至少45屋，中央偏左两层鼓楼，街巷错落，非方形整齐网格。
+
+    Deliverable: one 1024x1024 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_dacheng_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:11:13.423056+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-ffab6c18-0782-40c0-8160-75cf9acff422.png
+  source_size: 1254x1254
+  source_sha256: 76fdb623d249728385bbd2a093d3901946d13d738ef87dd290b8b9a128f8da0a
+  size: 1024x1024
+  sha256: a5b93ac78c725f5554781db619334e3f87d3daf49977f5939467227df4e9ef06
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: dacheng
+    volume: large
+    orient: none
+    anchor:
+    - 0.500977
+    - 0.910156
+- id: map_kit_zhoufu_02
+  file: map_kit_zhoufu_02.png
+  category: map
+  style: default
+  role: variant
+  group: 州府
+  label: 纵街州府
+  subject: 州府：纵街州府；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视南北长方州府小景，较矮完整城墙、两门楼、20座灰瓦屋，北端府署三院，南北主街，体量少于大城多于县镇。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_zhoufu_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:12:13.186242+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-36078db0-c047-4ecc-b627-a2d4b8ed0b27.png
+  source_size: 1254x1254
+  source_sha256: 64c3dc16d9038f3155d0ecaf14050e0837104c12a4e05bfff0cf9061a6886d13
+  size: 512x512
+  sha256: 32f250922f01243e46e98207831a96dcd974ed0adaf3bb15b9bbf916c1aa7d30
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: zhoufu
+    volume: medium
+    orient: none
+    anchor:
+    - 0.510742
+    - 0.908203
+- id: map_kit_zhoufu_03
+  file: map_kit_zhoufu_03.png
+  category: map
+  style: default
+  role: variant
+  group: 州府
+  label: 半圆州府
+  subject: 州府：半圆州府；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视半圆形州府小景，低城墙围合，前缘直线双门，18座屋错列，右侧官署、左侧小市集；不同于方城小样。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_zhoufu_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:12:04.874979+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-0e4248bf-c35b-400f-8dd3-aaab4a6c8a11.png
+  source_size: 1254x1254
+  source_sha256: 542d812adaf354007fdcdf86d67e13d986a8016cbcc1b28c5fb5b008765f580c
+  size: 512x512
+  sha256: abf5b472003ede3c73a463a38651cadcaaa252512bb008bc86b6f5d6c76b04fa
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: zhoufu
+    volume: medium
+    orient: none
+    anchor:
+    - 0.499023
+    - 0.798828
+- id: map_kit_xianzhen_02
+  file: map_kit_xianzhen_02.png
+  category: map
+  style: default
+  role: variant
+  group: 县镇
+  label: 沿街县镇
+  subject: 县镇：沿街县镇；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视狭长沿街县镇小景，12座灰瓦民房沿一弯街排列，街头小公堂与低矮短墙，围合不完整，无高楼，屋数多于村落。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_xianzhen_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:13:05.422690+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-f76e1163-51a1-493d-ba66-3d2cfc3ec41f.png
+  source_size: 1254x1254
+  source_sha256: 81abd8be440c262eaf2698930346587067f8219e109763771fc61d6884cd4d9d
+  size: 512x512
+  sha256: 2487735e88c8d9c48193128a22220b9d75cb1a13df03b37bf7a49215b01601d9
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: xianzhen
+    volume: small
+    orient: none
+    anchor:
+    - 0.49707
+    - 0.912109
+- id: map_kit_xianzhen_03
+  file: map_kit_xianzhen_03.png
+  category: map
+  style: default
+  role: variant
+  group: 县镇
+  label: 桥头县镇
+  subject: 县镇：桥头县镇；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视三角形县镇小景，10座屋围小广场，一侧短石桥和极窄水沟，低门楼但无完整大城墙，非简化建筑图标。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_xianzhen_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:13:03.522316+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-8e3bb4f2-45c2-4d69-ba19-5210dae2f94c.png
+  source_size: 1254x1254
+  source_sha256: 8d096dfdb4a005274ec2548006af74bd0956db8154d7facd88fa834f58fcb23a
+  size: 512x512
+  sha256: da0039a1d1d65338756ed7062148e17fa676df0905dd6e1eab1d568e47128c58
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: xianzhen
+    volume: small
+    orient: none
+    anchor:
+    - 0.489258
+    - 0.912109
+- id: map_kit_cunluo_02
+  file: map_kit_cunluo_02.png
+  category: map
+  style: default
+  role: variant
+  group: 村落
+  label: 散居村落
+  subject: 村落：散居村落；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视村落小景，4座疏散茅顶与灰瓦小屋，右侧井台、低篱笆、一株树，非成排整齐庭院，无城墙庙塔。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_cunluo_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:13:55.283160+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-ea9c212f-4a66-47a7-9fb5-71f250bd6abd.png
+  source_size: 1254x1254
+  source_sha256: 70547df8928123dbb7034a1b9038b7c0fae187cfc1fc5e640ac57d395ff7e7b7
+  size: 512x512
+  sha256: a4e79e2cc80ca7af680ed0cf09c23000541c42cd9ea0bd59445bb1a561641e08
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: cunluo
+    volume: small
+    orient: none
+    anchor:
+    - 0.505859
+    - 0.841797
+- id: map_kit_cunluo_03
+  file: map_kit_cunluo_03.png
+  category: map
+  style: default
+  role: variant
+  group: 村落
+  label: 山脚村落
+  subject: 村落：山脚村落；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视坡脚村落小景，仅3间茅舍呈弯弧分布，前方小晒场，后方一小块低土坡与竹丛，体量轻巧，无大山无城墙。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_cunluo_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:14:43.702542+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-774cde89-25e7-41fc-8bbb-0d29ae7bb3e6.png
+  source_size: 1254x1254
+  source_sha256: 137ac9ab194dd3754922dae3de6cccdebadb6df93c77b337c332868582b6f717
+  size: 512x512
+  sha256: 52a2d00cd1f8ee625ae7c8dff4b3f3261b7492d55787e13e769b93a90d3b78e7
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: cunluo
+    volume: small
+    orient: none
+    anchor:
+    - 0.511719
+    - 0.824219
+- id: ico_map_kit_simiao_02
+  file: ico_map_kit_simiao_02.png
+  category: map
+  style: default
+  role: variant
+  group: 寺庙
+  label: 双院佛寺
+  subject: 寺庙：双院佛寺；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视佛寺小景，两进殿宇纵向串联，左侧一座小石塔、前方香炉与石阶，稀疏树丛；别于参照右侧高塔，不画文字佛像人。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/ico_map_kit_simiao_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:15:38.329898+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-381fee8e-6da7-4af2-a323-b35a2df03993.png
+  source_size: 1254x1254
+  source_sha256: 9ef01f825f553d3a61d69dda829f28d4e840e5491ad24e61cda17ae87d37bb45
+  size: 512x512
+  sha256: 20f56ea8f36523b65235a5b2dcc502149230f34a7cfd1bf08abd1df1d7bb0676
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: simiao
+    volume: small
+    orient: none
+    anchor:
+    - 0.498047
+    - 0.878906
+- id: ico_map_kit_daoguan_02
+  file: ico_map_kit_daoguan_02.png
+  category: map
+  style: default
+  role: variant
+  group: 道观
+  label: 纵院道观
+  subject: 道观：纵院道观；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视一座南北纵长的平地道观小景。唯一主殿在画面最上部，下面一个很长的狭窄开放院落；右侧沿院有一列三间低偏房，左下有小八角道亭和竹篱。整体窄长、上下轴，低矮平地，只有少量竹。完整屋顶与庭院。禁止月洞门、圆形拱门、溪水、瀑布、假山和高岩。禁止复制参考的小桥圆门、左右两殿、中央弯石径布局。参考小样仅取笔墨与设色。
+
+    Deliverable: one 512x512 square transparent standalone painting.
+
+    Composition priority: Invent the distinct layout above; match reference brushwork ONLY, never reference architecture
+    arrangement.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/ico_map_kit_daoguan_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:24:34.534347+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-cb2f9690-5dd7-4912-a66f-bcc25f7a0786.png
+  source_size: 1254x1254
+  source_sha256: c0a73eafcb8cf0d5de528f19cb37e8ee6dce9e41212615d448712264693d90a5
+  size: 512x512
+  sha256: a9696da63d82f56e54f683971c920aa76a01824212901596e17ac5a0a5d20152
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: daoguan
+    volume: small
+    orient: none
+    anchor:
+    - 0.503906
+    - 0.935547
+- id: ico_map_kit_menpai_02
+  file: ico_map_kit_menpai_02.png
+  category: map
+  style: default
+  role: variant
+  group: 门派
+  label: 山坡武馆
+  subject: 门派：山坡武馆；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视门派驻地小景，左后两层厅堂、右边3间练武附房，前方不规则露天演武场含一架木兵器架，低坡少树，无庙塔无招牌。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/ico_map_kit_menpai_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:16:36.455459+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-4198ad4b-a67b-4805-ac1e-16ac549297a0.png
+  source_size: 1254x1254
+  source_sha256: 2e8d74b70c082cc04a0c0b9f338f1f050f5f88577efa8c3a239dd42527f6d1e1
+  size: 512x512
+  sha256: 6851d7a2d04a1c9fe513e63fb2798bb3a99afb09c329a671e61b6e1c2ca6a088
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: menpai
+    volume: small
+    orient: none
+    anchor:
+    - 0.50293
+    - 0.888672
+- id: ico_map_kit_yizhan_02
+  file: ico_map_kit_yizhan_02.png
+  category: map
+  style: default
+  role: variant
+  group: 驿站
+  label: 三棚驿站
+  subject: 驿站：三棚驿站；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视古代驿站小景，整体横宽、低矮，后边正中一座两层驿舍，左边和右边各一条长木马棚，前边另有半长货棚，三个棚围开阔前院，院内两只食槽、几根拴马柱和草料垛。没有马、没有人。不要围墙，不是宗教门派庭院。禁止参考图左前小屋加左后主屋加右棚的L形布局；新图必须中心驿舍加左右双长棚，横向展开的U形宽轮廓。
+
+    Deliverable: one 512x512 square transparent standalone painting.
+
+    Composition priority: Invent the distinct layout above; match reference brushwork ONLY, never reference architecture
+    arrangement.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/ico_map_kit_yizhan_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:26:12.407938+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-c1a2b9b8-91cc-4e02-b420-489414179ad4.png
+  source_size: 1254x1254
+  source_sha256: e46e647d1eb72b25b06188ddafa3c6d4693f51bbfa52e3e6f90f1449299c2c66
+  size: 512x512
+  sha256: 1e8452585e5430f450a5b62afd47d4f054440e8bd2ecef3f1737cf12ec6c65a8
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: yizhan
+    volume: small
+    orient: none
+    anchor:
+    - 0.49707
+    - 0.810547
+- id: ico_map_kit_matou_02
+  file: ico_map_kit_matou_02.png
+  category: map
+  style: default
+  role: variant
+  group: 码头
+  label: 石阶河埠
+  subject: 码头：石阶河埠；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视古代石阶码头小景，岸上后方一排三间横向连接的低货仓，前方宽阔弯曲石岸，三层宽石阶直接降入下面狭窄灰青水面。左下并排停两只小木货船，右侧只有石岸和系船石。整体横向宽浅轮廓，水面在底部，货仓在背部。完全没有木栈桥，没有伸入水中的长木平台，也没有右侧孤舟。禁止复制参考图左上茅棚、中央木栈桥向右下伸出和右舟的构图。石阶、石岸和三间货仓必须清楚。
+
+    Deliverable: one 512x512 square transparent standalone painting.
+
+    Composition priority: Invent the distinct layout above; match reference brushwork ONLY, never reference architecture
+    arrangement.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/ico_map_kit_matou_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:25:22.917984+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-01da4036-948b-4fb4-afdd-acdd6c3271ad.png
+  source_size: 1254x1254
+  source_sha256: 866a3ec960dcc3b557e8c737e19aa461a00a1e6464cfcb2d21aea796dee5f6f8
+  size: 512x512
+  sha256: 7fb3467ec9bb3740f02b48afec0e912832818c02fac9636e064ccd190e813152
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: matou
+    volume: small
+    orient: none
+    anchor:
+    - 0.498047
+    - 0.806641
+- id: ico_map_kit_yiji_02
+  file: ico_map_kit_yiji_02.png
+  category: map
+  style: default
+  role: variant
+  group: 遗迹
+  label: 残台石迹
+  subject: 遗迹：残台石迹；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 近俯视遗迹小景，低矮残破石台、两段曲折断墙、半倒的石拱门和零散石础，左高右低，不画参照巨大高墙，杂草淡墨。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/ico_map_kit_yiji_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:17:25.406113+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-68fa3cd3-36e2-47ff-8216-89816c98826b.png
+  source_size: 1254x1254
+  source_sha256: 7cb715543ff2fb372afae9e74114b6ebb9e959cefd313f9530f7443347745a08
+  size: 512x512
+  sha256: 47f574e074cf6d6e71c12be92f7dc6bf65d8d81c1ceb95941011bda525d667b6
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: yiji
+    volume: small
+    orient: none
+    anchor:
+    - 0.49707
+    - 0.861328
+- id: map_kit_guanai_02
+  file: map_kit_guanai_02.png
+  category: map
+  style: default
+  role: variant
+  group: 关隘
+  label: 河谷关隘
+  subject: 关隘：河谷关隘；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 南北纵向河谷关隘小景，上下走向狭窄灰青河道穿过两侧低崖，中段横跨石桥设矮门楼与短墙，非山口双峰夹门。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_guanai_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:18:19.340862+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-500389e0-90e3-4236-8fd3-b9945dceec16.png
+  source_size: 1254x1254
+  source_sha256: a7b626a59ac9c8f5e6f92a7814c6c8430c176a33215e1667518040a85a6f4f81
+  size: 512x512
+  sha256: 8c1c31043a99441614f0ae59f82bb54f9f68e88c92fbc38ff3e53bdbb14f302e
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: guanai
+    volume: medium
+    orient: ns
+    anchor:
+    - 0.498047
+    - 0.904297
+- id: map_kit_guanai_03
+  file: map_kit_guanai_03.png
+  category: map
+  style: default
+  role: variant
+  group: 关隘
+  label: 长墙关段
+  subject: 关隘：长墙关段；通用古代江湖地图概念贴图（原创扩展），不绑定书界地点与精确年代。
+  prompt: 'Use case: historical-scene / stylized-concept.
+
+    Asset type: 《金庸群侠传·天书录》AR-69 江湖大地图，独立水墨贴图，一件新原画。
+
+    Input images: 第一张江湖总图、第二张大理图仅作水墨设色与近俯视散点透视参考；第三张是已通过的同类小样（山峰尚无小样时参照山脉笔墨）。只借画法，必须重设计轮廓、主体数量、间距和构图；绝不翻转、旋转或复制参照。
+
+    Style/medium: 深墨#211f1a、中墨#554c3e、淡墨#8e8065，细腻披麻皴、干笔飞白、湿墨渗化；极淡赭和灰绿点树，水色极淡灰青#526d6d。宣纸细纤维只存在于主体内部，薄墨边缘自然半透明。与参照相同的近俯视散点透视，无天空、无地平线。
+
+    Scene/backdrop: true transparent RGBA, outside the asset alpha=0, not white, not beige, no checkerboard painted
+    into image, no rectangular paper background. Isolate the requested subject with a subtle irregular fading ink
+    edge.
+
+    Composition/framing: single coherent asset, centered square full canvas, complete silhouette and all scene elements
+    wholly inside generous 12% transparent margins. No contact sheet, no multiple panels. For architecture draw
+    a detailed small landscape scene with real roofs, walls and courtyards, never a simplified icon or glyph.
+
+    Constraints: no text, characters, pseudo writing, signage, seal, signature, watermark, people, modern elements,
+    fantasy effects, heavy cartoon outlines or 3D rendering. Original concept art, no specific historical location
+    or exact dynasty claim.
+
+    Subject: 东西走向关隘长墙段小景，城墙横跨3段低石坡，中部偏左门楼，右方独立小烽台，横向长、纵向浅，不画参照高耸夹峰。
+
+    Deliverable: one 512x512 square transparent standalone painting.'
+  negative: 无文字、伪字、印章、水印、现代元素、整幅纸底；不复用参照构图，不作代码派生变体。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_guanai_01.png
+  tool: codex exec · image_gen; Pillow 完整画幅等比缩放与透明补边
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:19:08.973921+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-full/codex-home/generated_images/01a10571-ec50-7f00-940d-f5a57b6e1c08/exec-708b4224-4419-4737-be4b-caee18cccb51.png
+  source_size: 1254x1254
+  source_sha256: 14f4c2eeab9a4b14ec0d56998d344ab2a0f916485b51d8f402c2539a04d8a6cc
+  size: 512x512
+  sha256: 9220fe58de736afd480ec6a95ce1fd1a01406b5a0b1426c5f879a792b801d524
+  status: candidate
+  review_stage: draft
+  notes: 两张已审基线及同品类小样作输入（山峰无小样时参照山脉）；逐件独立生成。image_gen直接生成透明alpha，未抠底；只等比缩放完整原画幅至90%并居中补透明边，无旋转翻转裁切调色或拼接。纸感在主体内，城镇标记用小景画法；具体建筑年代形制（待考），GIS落位与缩小辨识度（待实测）。
+  kit:
+    kind: guanai
+    volume: medium
+    orient: ew
+    anchor:
+    - 0.504883
+    - 0.748047
