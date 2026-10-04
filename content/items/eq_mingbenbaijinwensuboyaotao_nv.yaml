@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_mingbenbaijinwensuboyaotao_nv
+name: 明本白锦纹素帛腰绦·女
+kind: armor
+sub: belt
+grade: 7
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+origin: canonExpanded
+canonRef: 明；出现书界 ch05/ch06；（原创扩展）；形制／色系依据：故宫《明代官员服饰研究》 https://www.dpm.org.cn/Uploads/File/2019/11/25/u5ddbb3f9e989e.pdf；故宫董进《图说明代宫廷服饰（九）——后妃吉服与便服》 https://img.dpm.org.cn/Uploads/File/2020/04/27/u5ea6aea86025c.pdf；官仪服色不直接等同江湖常服；八朝素白通用为原创设计，女服逐朝实证（待考）；公服／女服用色并参《明史》卷67《舆服三·公服／士庶妻冠服》 https://zh.wikisource.org/zh-hans/明史/卷67
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingbenbaijinwensuboyaotao_nv
+text:
+  desc: 外观：明女款，主色本白。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: （原创扩展）依明代腰绦语汇演成本白女式素帛腰绦，软帛带身以系结束裙。窄幅锦纹缘用于带缘与端头，着装先理顺绦结；不加桃形绦环或垂绅玉环，只占腰槽，品阶不改变身份。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 10

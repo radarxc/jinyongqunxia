@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_yulianyi
+name: 玉莲衣
+kind: armor
+sub: clothing
+grade: 8
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yulianyi
+text:
+  desc: 外观：明通用款，主色玉白。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG。
+  lore: （原创扩展）玉莲衣取明式交领右衽长衣作玉白莲纹精衣，浅灰莲瓣织绣与窄绿缘相接。行旅可作轻衣穿用，玉只指色泽，不是玉石甲；未核到金庸修订版同名物，默认原创，不加疗伤、回内或门派身份。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 62
