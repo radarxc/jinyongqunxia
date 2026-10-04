@@ -1,0 +1,335 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_guiyang
+chapter_id: ch01
+book_world: ch01_tianlong
+display_name: 矩州一带（待考）
+historical_year: 1093
+era_kit: song_dali
+seed: 2632500902
+design_intent:
+  prosperity: major_candidate
+  notes:
+  - 复原依据：history/city_guiyang__northern_song.md；1093年历史拓扑缩景。
+  - 贵州广播电视台正文援引地方志讨论宋初矩州首领归附，但名称解释仍有异说；治所与今贵阳街网不可直接等同。
+  - 未获同期地籍控制点的坐标均标推定；正式场景与营生绑定不在本任务定义。
+grid:
+  width: 128
+  height: 128
+  cell_m: 1
+  chunk_cells: 32
+runtime_partition:
+  q_min: -64
+  r_min: 1
+  q_slot_count: 175
+  r_slot_count: 128
+  q_band_slots:
+  - 96
+  - 79
+  r_band_slots:
+  - 96
+  - 32
+  formal_scene_refs: null
+projection:
+  tile_px:
+  - 64
+  - 32
+  pitch_deg: 30
+  yaw_deg: 45
+walls: none
+gates: []
+streets:
+- id: axis
+  class: main_axis
+  width_cells: 5
+  points:
+  - x: 64
+    z: 4
+  - x: 64
+    z: 124
+  surface: dirt_road
+  priority: 100
+  basis: 图名：南北主街；山谷聚落、无墙候选均为推定据src_city，线位与5格宽（推定）。
+- id: cross
+  class: secondary
+  width_cells: 5
+  points:
+  - x: 4
+    z: 64
+  - x: 124
+    z: 64
+  surface: dirt_road
+  priority: 90
+  basis: 图名：东西横街；线位与宽度（推定）（原创扩展）。
+- id: market_lane
+  class: secondary
+  width_cells: 3
+  points:
+  - x: 20
+    z: 34
+  - x: 108
+    z: 34
+  surface: dirt_road
+  priority: 70
+  basis: 图名：市肆横巷；可玩街区补线（推定）（原创扩展）。
+rivers:
+- id: city_water
+  width_cells: 4
+  points:
+  - x: 90
+    z: 8
+  - x: 90
+    z: 120
+  flow: south
+  navigable: false
+  basis: 图名：山谷溪流（推定）；水陆关系有依据，线位与4格宽（推定）。
+bridges:
+- id: cross_bridge
+  at:
+    x: 91
+    z: 64
+  river_ref: city_water
+  road_ref: cross
+  length_cells: 6
+  width_cells: 5
+  rotation_deg: 90
+  basis: 图名：横街桥；为保证主街连通的可玩缩景（推定）（原创扩展）。
+- id: market_bridge
+  at:
+    x: 91
+    z: 34
+  river_ref: city_water
+  road_ref: market_lane
+  length_cells: 6
+  width_cells: 3
+  rotation_deg: 90
+  basis: 图名：市肆巷桥；为保证支路连通的可玩缩景（推定）（原创扩展）。
+zones:
+- id: zone_office
+  kind: administrative
+  geometry:
+    rect:
+      min:
+        x: 20
+        z: 20
+      max:
+        x: 56
+        z: 56
+  priority: 100
+  density: 0.48
+  allowed_building_types:
+  - bld_kit_song_dali_yamen
+  - bld_kit_song_dali_wangfu
+  - bld_kit_song_dali_courtyard
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：行政区；山谷聚落、无墙候选均为推定仅约束关系，边界（推定）。
+- id: zone_market
+  kind: market
+  geometry:
+    rect:
+      min:
+        x: 72
+        z: 20
+      max:
+        x: 108
+        z: 56
+  priority: 90
+  density: 0.58
+  allowed_building_types:
+  - bld_kit_song_dali_shop
+  - bld_kit_song_dali_market_stall
+  - bld_kit_song_dali_inn
+  - bld_kit_song_dali_warehouse
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：市肆区；功能与边界（推定）（原创扩展）。
+- id: zone_residential
+  kind: residential
+  geometry:
+    rect:
+      min:
+        x: 20
+        z: 72
+      max:
+        x: 56
+        z: 108
+  priority: 50
+  density: 0.56
+  allowed_building_types:
+  - bld_kit_song_dali_house
+  - bld_kit_song_dali_courtyard
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：坊居；边界和密度（推定）（原创扩展）。
+- id: zone_temple
+  kind: religious
+  geometry:
+    rect:
+      min:
+        x: 72
+        z: 72
+      max:
+        x: 108
+        z: 98
+  priority: 75
+  density: 0.48
+  allowed_building_types:
+  - bld_kit_song_dali_temple_hall
+  - bld_kit_song_dali_courtyard
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：寺观区；位置与范围（推定）（原创扩展）。
+- id: zone_service
+  kind: gate_service
+  geometry:
+    rect:
+      min:
+        x: 72
+        z: 102
+      max:
+        x: 108
+        z: 108
+  priority: 80
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_song_dali_guardhouse
+  - bld_kit_song_dali_warehouse
+  - bld_kit_song_dali_stable
+  - bld_kit_song_dali_house
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：军驿仓储区；位置与范围（推定）（原创扩展）。
+landmarks: []
+building_quotas:
+- type: bld_kit_song_dali_yamen
+  zone_refs:
+  - zone_office
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_dali_wangfu
+  zone_refs:
+  - zone_office
+  count:
+    min: 0
+    max: 1
+  required: false
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_dali_courtyard
+  zone_refs:
+  - zone_office
+  - zone_residential
+  - zone_temple
+  count:
+    min: 2
+    max: 5
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_dali_shop
+  zone_refs:
+  - zone_market
+  count:
+    min: 6
+    max: 8
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_dali_market_stall
+  zone_refs:
+  - zone_market
+  count:
+    min: 4
+    max: 10
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_dali_inn
+  zone_refs:
+  - zone_market
+  count:
+    min: 1
+    max: 2
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_dali_house
+  zone_refs:
+  - zone_residential
+  - zone_service
+  count:
+    min: 9
+    max: 18
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_dali_temple_hall
+  zone_refs:
+  - zone_temple
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_dali_guardhouse
+  zone_refs:
+  - zone_service
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_dali_warehouse
+  zone_refs:
+  - zone_market
+  - zone_service
+  count:
+    min: 1
+    max: 2
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_dali_stable
+  zone_refs:
+  - zone_service
+  count:
+    min: 0
+    max: 1
+  required: false
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+vegetation:
+  palette:
+  - prp_song_dali_grass
+  density: 0.012
+  avoid_road_cells: 2
+  cluster_rule: 院落空地少量草簇；植物种类不作1093年物候证据
+  basis: 图名：空地植被；密度与落点（原创扩展）【建议值】。
+sources:
+- key: src_city
+  kind: academic
+  title: 贵州广播电视台：《贵州历史笔记丨贵州省名的由来，和宋太祖有关？》
+  url: https://www.gzstv.com/a/f0322861a79a46b9aea7f6ccf4312c0d
+  accessed: '2026-10-04'
+  confidence: verified_summary
+  supports:
+  - historical_topology
+  note: 仅文字；已打开正文；贵州广播电视台正文援引地方志讨论宋初矩州首领归附，但名称解释仍有异说；治所与今贵阳街网不可直接等同。

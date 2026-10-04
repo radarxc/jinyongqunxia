@@ -1,0 +1,21 @@
+- id: town_city_kunming__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 鄯阐府（大理国）1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_kunming__ch01/layout.yaml -o assets/default/town/city_kunming__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2560x1280
+  sha256: 05764f18e4db13f0ac12886bb17e80a95ecbb8a3187e9af57efde1f61c1d3e35
+  status: candidate
+  references:
+  - docs/design/town/city_kunming__ch01.yaml
+  - docs/design/town/history/city_kunming__northern_song.md
+  - assets/default/tile/song_dali/
+  - assets/default/building-map/song_dali/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；套件回退 12 项（按素材变体计）：路缘、城门、桥面、桥栏使用 song_dali / song_southern 共享或替代贴片

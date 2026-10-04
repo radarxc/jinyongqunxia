@@ -1,0 +1,22 @@
+- id: town_city_luoyang__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 西京河南府1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_luoyang__ch01/layout.yaml -o assets/default/town/city_luoyang__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2560x1280
+  sha256: b200e9dcd5e27ec799a39a0629bce7b507be939053092cabdcae2ee2c2dc1b78
+  status: candidate
+  references:
+  - docs/design/town/city_luoyang__ch01.yaml
+  - docs/design/town/history/city_luoyang__northern_song.md
+  - assets/default/tile/song_north/
+  - assets/default/building-map/song_north/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；套件回退 32 项（按素材变体计）：地面、道路、路缘、城门、水面、河岸、桥面、桥栏使用 song_dali / song_southern 共享或替代贴片；因本套件 guardhouse / temple_hall
+    / warehouse / yamen 的 views=[S] 暂不可读，功能位降级为同套件 house_small / courtyard / house_large
