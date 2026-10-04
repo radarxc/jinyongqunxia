@@ -3,43 +3,62 @@
   category: scene
   style: default
   subject: 雪崖悬刀（ch14_xueshan）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是胡斐的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中胡斐的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
+  prompt: 'Use case: precise-object-edit
 
-    【要改成】（作者 AR-53 总审复核：上次眼眉几乎没变，这次放开改眼周）眼睛改成基线那样的双眼皮笑眼——眼睛更大更亮、双眼皮清楚、眼神爽朗带一点笑意；眉毛改成浓黑但略弯、眉尾上扬，眉骨不要粗重低压，眼窝不要深陷。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样画幅比例构图、同样人物位置尺度的一张完整编辑图，画布 1536×1024 原图比例。必须在原画上修改，不要重画成另一幅画。
 
-    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；满脸虬髯、长乱发、三十出头的年纪保留（这是《雪山飞狐》时期的他）。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
+    【只改】只在原图脚下岩体内部和岩下加危险信息，不变动地面标高：原图四只靴子的位置、形状、大小、足底高度全部绝对不变，不能抬高平台，不能缩短腿，不能抬腿，不能给四只脚新增脚、重画脚或复制脚。原两人原姿态和整个人完全不变，只在原地面同一标高上加清晰大裂缝、岩根裂开，原平台正面变为向外悬出的圆滑结冰巨岩正面，岩下露出黑暗深渊，碎石夹冰从现岩缘下面正在下坠；巨岩根部在最右侧冰壁下裂开，两个原位置的人共同踏在原位置同一巨岩上。不能把岩面顶端抬到任何一只原靴之上，画面中四个足底仍然分别处在原图的下沿附近。背景冰壁、天月、树、两人所有衣物脸手、树刀树剑、题字雪崖悬刀与红印逐像素完全不动。
 
-    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
-  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_34_r2_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+
+    【最终局部合成范围】保持原图两个人的完整身体、四只靴子、树刀树剑、题字与所有脚下接触面逐像素不变；只在原岩缘以下合成突出冰滑岩体正面、岩根裂开、岩下正在掉落的碎石夹冰，不抬高平台，不改变原脚位。原巨岩原面整体保留，明确摇动欲坠的危险。
+
+
+    【最终局部合成范围】保持原图两个人的完整身体、四只靴子、树刀树剑、题字与所有脚下接触面逐像素不变；只在原岩缘以下合成突出冰滑岩体正面、岩根裂开、岩下正在掉落的碎石夹冰，不抬高平台，不改变原脚位。原巨岩原面整体保留，明确摇动欲坠的危险。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
-    sha256: ba5eb4786147e34a6d51cdd7513b12bfefcef4941d93d8726f650aff8e3a059f
-    use: 对脸基线：作者审核通过的 por_npc_hufei__ch13_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch14/cg_ch14_cliff_raised_blade.png
-    sha256: d29a37447e61d601ea29dff0890cc3c79d312bd39846b6848b6a69b4ffc84ccb
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.d29a3744.png
-  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把胡斐头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
-  model: gpt-6-astra
-  created: 2026-10-03T19:19:27-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch14_cliff_raised_blade.r1.png
+    sha256: 6e5e0be37e50f65e3ce34169aeb7d9aa584baa0031b181cfea0c8df048b040b8
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch14_cliff_raised_blade.6e5e0be3.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:00:27-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_34_r2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 6e5e0be37e50f65e3ce34169aeb7d9aa584baa0031b181cfea0c8df048b040b8
+  sha256: 17de90a285f98709968847aed27e5a8ea0f35abb599612104ee5d05422d475bf
   status: candidate
-  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「雪崖悬刀」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。 实际题字「雪崖懸刀」，繁简同字，规范题名「雪崖悬刀」；原生生成，未字体叠加。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：胡斐只改眼睛眉毛；局部合成——codex 编辑后只取胡斐头部、羽化贴回原图，其余像素不变；虬髯与年长按设定保留）；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 总审复核返修：胡斐放开改眼周（双眼皮笑眼、眉形略弯、眉骨不压），虬髯与年纪保留；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；题字懸→悬；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「雪崖悬刀」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。 实际题字「雪崖懸刀」，繁简同字，规范题名「雪崖悬刀」；原生生成，未字体叠加。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：胡斐只改眼睛眉毛；局部合成——codex 编辑后只取胡斐头部、羽化贴回原图，其余像素不变；虬髯与年长按设定保留）；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 总审复核返修：胡斐放开改眼周（双眼皮笑眼、眉形略弯、眉骨不压），虬髯与年纪保留；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；题字懸→悬；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）；AR-82 原著核对返修：雪崖悬刀原脚位下方摇动突出巨岩、岩根裂开与下坠沙冰；依据：；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch14_cliff_raised_blade.retry3.r1
   quality_retries: 0
   history: []
   title_rendered_text: 雪崖懸刀
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.d29a3744.png
-    sha256: d29a37447e61d601ea29dff0890cc3c79d312bd39846b6848b6a69b4ffc84ccb
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.d29a3744.entry.yaml
-  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch14_cliff_raised_blade_fixed.png", "before_sha256": "2f01e9498827161dd7feeffe3402c5592797af3c50c7714e941d89ec084723a0", "allowed_box": [[1410, 191, 1520, 273]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch14_cliff_raised_blade_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T01:00:45-07:00"}
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch14_cliff_raised_blade.6e5e0be3.png
+    sha256: 6e5e0be37e50f65e3ce34169aeb7d9aa584baa0031b181cfea0c8df048b040b8
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch14_cliff_raised_blade.6e5e0be3.entry.yaml
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/cg_ch14_cliff_raised_blade_fixed.png
+    before_sha256: 2f01e9498827161dd7feeffe3402c5592797af3c50c7714e941d89ec084723a0
+    allowed_box:
+    - - 1410
+      - 191
+      - 1520
+      - 273
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/cg_ch14_cliff_raised_blade_pixel_checks.json
+    method: w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留
+    created: '2026-10-04T01:00:45-07:00'
 - id: cg_ch14_manor_poison_reveal
   file: cg_ch14_manor_poison_reveal.png
   category: scene
