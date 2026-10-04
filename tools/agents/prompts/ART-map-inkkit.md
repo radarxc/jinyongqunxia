@@ -34,7 +34,7 @@
 - 不改基线与已有素材。
 
 检查：
-- `python3 tools/agents/check_assets.py assets/default/map/kit --min 20 --min-side 512`
+- `python3 tools/agents/check_assets.py assets/default/map/kit --min 20 --max 60 --min-side 512`
 - 对照表存在，且所有 PNG 都是 RGBA 真透明
 
 ## 报告
