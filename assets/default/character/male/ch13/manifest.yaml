@@ -2011,43 +2011,43 @@
   category: character/male
   style: default
   subject: 胡斐·墓前归刀（ch13_feihu）
-  prompt: '【任务】这是一次图像编辑（只改眼睛和眉毛），不是重新创作。第 1 张参考图是作者审核通过的胡斐立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中胡斐的眼睛和眉毛改成与身份基线一样，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: precise-object-edit
 
-    【要对齐基线的部分】只改眼睛和眉毛：眼型、双眼皮、眼睛大小、眼神，眉形、眉毛粗细与高低、眉眼间距，都要和身份基线一样。基线的胡斐是一双明亮的大眼睛、双眼皮清楚、眼神爽朗带笑，不是小而深陷的眼；眉毛浓黑但舒展，眉形平直略扬、眉尾上挑，不压着眼睛，眉眼间距比原图宽一些。脸型、颧骨、鼻子、嘴、胡须、头发、皱纹与年龄感都保持原图不变。改完要让人一眼看出与基线是同一个人。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
 
-    【原图保持不变】除眼睛和眉毛以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向。
+    【只改】只将墓前归刀与安放程灵素骨灰的连续时刻由晴昼改为冷月夜色：背景天空暗蓝灰，远山树林与墓地在月光下微暗，有冷月或月光；人物衣料相应受到冷月柔光。原刀已经放回墓中，不重新持刀。保留胡斐双手抱骨灰坛的瞬间、墓的位置、原服装、发式、手势、人物身体轮廓与头部面容身份，悲恸不笑，不增加第二个人或文字。
 
-    【本张另外要求】（AR-53 / AR-56 总审轻微：还是凌晨精修那张脸，眉粗压、眼小深陷、显老）只把眼睛改成基线那样明亮的大眼、双眼皮清楚、眼神爽朗，眉毛改成浓黑但舒展、不压眼。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_23_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
-    sha256: ba5eb4786147e34a6d51cdd7513b12bfefcef4941d93d8726f650aff8e3a059f
-    use: 对脸基线：作者审核通过的 por_npc_hufei__ch13_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/male/ch13/por_npc_hufei__ch13_youth_scene_grave_return_blade.png
-    sha256: d224b57f668a30970d9902f9afa4b292abff1af39196a68621671860bfe527a1
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch13_youth_scene_grave_return_blade.d224b57f.png
-  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:51:47-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_hufei__ch13_youth_scene_grave_return_blade.e1.png
+    sha256: 10748148a8a102eaccb191a8f5acc165594775b2e70e26b21f2c9c66f9c1bc0d
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_hufei__ch13_youth_scene_grave_return_blade.10748148.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:11:58-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_23_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 10748148a8a102eaccb191a8f5acc165594775b2e70e26b21f2c9c66f9c1bc0d
+  sha256: 90f1bc1bab61a358bb330ace30bdc19ed120f8eb4c9fdfc59096e2ec8d552bd2
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：只改眼睛眉毛（大眼、双眼皮、眉不压眼））
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：只改眼睛眉毛（大眼、双眼皮、眉不压眼））；AR-82 原著核对返修：胡斐墓前归刀安放骨灰改冷月夜色；依据：- AR-82 返修依据：《飞狐外传》第二十章“恨无常”：“刀光如水，在冷月下流转不定”；“将宝刀放回土坑之中”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E9%A3%9E%E7%8B%90%E5%A4%96%E4%BC%A0/%E7%AC%AC20%E7%AB%A0%E3%80%80%E6%81%A8%E6%97%A0%E5%B8%B8.md；执行：墓前归刀、安放程灵素骨灰的连续时刻改为冷月夜色；刀既归墓，不重新持刀。胡仍可在放坛前短暂停立，面容不变。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_hufei__ch13_youth_scene_grave_return_blade.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch13_youth_scene_grave_return_blade.d224b57f.png
-    sha256: d224b57f668a30970d9902f9afa4b292abff1af39196a68621671860bfe527a1
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch13_youth_scene_grave_return_blade.d224b57f.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_hufei__ch13_youth_scene_grave_return_blade.10748148.png
+    sha256: 10748148a8a102eaccb191a8f5acc165594775b2e70e26b21f2c9c66f9c1bc0d
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_hufei__ch13_youth_scene_grave_return_blade.10748148.entry.yaml
 - id: por_npc_wuchen13__ch13_elder_memory_base
   file: por_npc_wuchen13__ch13_elder_memory_base.png
   category: character/male
