@@ -2395,3 +2395,24 @@
       - ink-intents 已合入（87071d10），gates-data 早前已合入；
       - ch00b 在复审（按裁定 --max-runs 0）；
       - npc-species 是负载下测试超时：role-slot 改用最小夹具，battle-replay 加固定超时，已返修。
+  - **10-04 01:20–01:50 开发监督**：
+    - **eng3 已停**：协调者经作者同意，01:40 结束 `batch_run.py --name eng3`（pid 21451）。
+      - cropframe 23:49 的双驱动、ch00b 01:32 的自动复审都是它拉起的；
+      - 此后起、重起驱动都由开发监督手动按依赖办，守护进程只处置、不起新任务。city_scheduler.py（pid 28988，只管 CITY-layouts）协调者留着。
+      - eng3 队列里还没起的，归开发监督按依赖起：
+        - CONTENT-ch00c-encounters：等 ch00b 合入（M1）；
+        - ENG-27a：等 18c 与 move-onhit；27b 再等 27a 与 16e；之后 28a → 28b → 27c；
+        - ENG-12d、TOOL-town-gaps-1。
+      - 规矩：起驱动前先用 ps 查有没有同任务的 supervise。单例锁 TOOL-supervise-singleton 排在 M1 之后第一位。
+    - **ENG-ink-intents 合入**（87071d10，01:36）：r2 审核 PASS，合入无冲突。
+    - **CONTENT-ch00b-maps**：r4 返修后校验过，按协调者裁定只再审一轮。
+      - 停掉 eng3 起的 `--max-runs 3` 驱动和它留下的孤儿审核进程，重起 `--from review --max-reviews 1 --max-runs 0`，驱动 3014。
+    - **ENG-npc-species-roleslot**：
+      - 先栽在「_drafts 文件被删除」：迁出草案是说明要求的，加 shrink_exempt（96545d99）；
+      - 后栽在两条负载下的测试超时：role-slot 整树构建跑不完 10 秒、battle-replay 默认 5 秒。
+      - 按协调者口径带说明（devsup_note_timeouts.md）返修，写集补 apps/game/src/runtime 测试（dfed3dd6），驱动 10310。
+    - **CONTENT-apparel-data 第 1 批**：HOLD-VALIDATE 的根因是说明漏了「在 design/10 §14.2 登记 ID」。
+      - 已补进说明与 8 批的写集（f86d743c）；龙爪手 / 鹰爪手加进近似白名单（5572ba92）；
+      - 挪基点后带说明重起。
+    - **登记 TOOL-ops-dispatch-dedupe**（0eb4ea41）：守护进程同一 HOLD 反复报，事件键含 HEAD 与 updated 时间戳；已起跑。
+    - TOOL-assets-logs-cleanup 合入（01:21）。TOOL-rig-parts-f 合入（e04d5c58）。TOOL-ingest-cropframe 状态更正为 MERGED。
