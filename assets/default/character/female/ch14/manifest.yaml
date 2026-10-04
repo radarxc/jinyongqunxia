@@ -265,84 +265,82 @@
   category: character/female
   style: default
   subject: 苗若兰·山庄止争（ch14_xueshan）
-  prompt: '【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的苗若兰新 base 脸部特写（参考佘诗曼，作者选A）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
+  prompt: 'Use case: precise-object-edit
 
-    【身份】明确成为第1张的同一位苗若兰：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
 
-    【剧情神态与造型】保留山庄止斗的担忧、恳切而温婉的神态；原图左后窗光不变。
+    【只改】苗若兰本图是首次站门口笑吟吟柔声止争的时刻：只将主体上衣和左右袖的淡绿长皮袄改为黄色衣装，颜色明确柔和鹅黄色，原白色毛缘、裙子、头饰、发式、手势和面容不变。上衣胸前、背侧、两袖所有原淡绿面料均变黄色，不再混用随后讲述故事换上的淡绿皮袄。
 
-    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
 
-    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
-  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_24_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_base.png
-    sha256: 93d0c601bc0ef6bb96b824c3b662a83ea3c70387190c528cf437198dd806127a
-    use: 对脸基线：作者审核通过的 por_npc_miaoruolan__ch14_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.png
-    sha256: fee39ebf1d65974cffbc45b078ed21e7ee6a7d8d4ab9b090cf3da3950af3a5e1
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.fee39ebf.png
-  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+    sha256: 7f557dde965de55e88c0eb9843a67eecca2dcabde9a23c34268e1d88fdd1ff42
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.7f557dde.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
   model: gpt-6.1-sol
-  created: 2026-10-04T00:30:10-0700
-  source_path: .agents/coord/_handoff/gem/codex_w32/out/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.ar86_miaoruolan1.png
+  created: '2026-10-04T01:59:05-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_24_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 7f557dde965de55e88c0eb9843a67eecca2dcabde9a23c34268e1d88fdd1ff42
+  sha256: 678560428831980ae277e7595938c190b959812b369ebb342a241ad254f8e7ff
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-53 / AR-75 / AR-86：苗若兰头部局部合成，对齐作者新 base（AR-73 参考佘诗曼，AR-86 选A）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-53 / AR-75 / AR-86：苗若兰头部局部合成，对齐作者新 base（AR-73 参考佘诗曼，AR-86 选A）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变；AR-82 原著核对返修：苗若兰门口止争阶段主体上衣改黄衣；依据：- AR-82 返修依据：《雪山飞狐》第三章（本书数字章，无回目标题）：“别打架！别打架！”；“只见一个黄衣少女笑吟吟的站在门口”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E9%9B%AA%E5%B1%B1%E9%A3%9E%E7%8B%90/%E7%AC%AC03%E7%AB%A0.md；执行：将山庄止争的主体上衣改为黄色，仍站门口柔声止争；淡绿皮袄与鹅黄百褶裙留给换衣后讲述、辨伪阶段。不要把两段服装混成同一时刻。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.retry3.r1
   quality_retries: 0
   history: []
   effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.fee39ebf.png
-    sha256: fee39ebf1d65974cffbc45b078ed21e7ee6a7d8d4ab9b090cf3da3950af3a5e1
-    entry: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.fee39ebf.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.7f557dde.png
+    sha256: 7f557dde965de55e88c0eb9843a67eecca2dcabde9a23c34268e1d88fdd1ff42
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.7f557dde.entry.yaml
 - id: por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy
   file: por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.png
   category: character/female
   style: default
   subject: 苗若兰·洞前劝留生路（ch14_xueshan）
-  prompt: '【本次返修最重要的神态约束】第2张原图人物在山洞求情，表情严肃克制、担忧而恳切。第1张基线只用于身份；绝对不能照搬基线的浅笑。两侧嘴角保持平直或略下压，唇放松自然，不上扬；面颊不要笑肌隆起，眼睛不要笑眯或开心。保留第2张原有的目光、眉眼情绪与唇开合，不添加哭泣或夸张愁容；只是换身份，不改变剧情神态。
+  prompt: 'Use case: precise-object-edit
 
-    【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的苗若兰新 base 脸部特写（参考佘诗曼，作者选A）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
 
-    【身份】明确成为第1张的同一位苗若兰：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
+    【只改】苗若兰藏宝洞劝饶宝树阶段已被夺外裳，胡斐给她披上自己的宽大男式长袍。将现在米白披被及下面可见的淡绿绣边外袄、鹅黄外裙整体换为宽大灰褐男式长袍，从肩颈到脚踝完全裹住保暖，领内仅露一点素色贴身小衣。两手拢紧宽袍，手姿不变，衣服完全不透明且充分覆盖，不需裸露。绝不可保留绿皮袄和鹅黄百褶外裙。保留火堆、洞壁、鞋、人物位置、原面容和关切表情。
 
-    【剧情神态与造型】保留山洞求情的担忧恳切、含泪克制与闭唇神态；原图右侧暖火光和左侧冷雪光方向不变。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
 
-    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
 
-    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
-  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_25_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_base.png
-    sha256: 93d0c601bc0ef6bb96b824c3b662a83ea3c70387190c528cf437198dd806127a
-    use: 对脸基线：作者审核通过的 por_npc_miaoruolan__ch14_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.png
-    sha256: a7288a8cc1599321065967f23c847721d6ab8fd3263c711bdd556f2ac61ee104
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.a7288a8c.png
-  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+    sha256: 25d48f1e24a82e3a3336907ca28d3ef780c04c666c7a65998cbbed514aa992fd
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.25d48f1e.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
   model: gpt-6.1-sol
-  created: 2026-10-04T00:35:18-0700
-  source_path: .agents/coord/_handoff/gem/codex_w32/out/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.ar86_miaoruolan2.png
+  created: '2026-10-04T01:59:05-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_25_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 25d48f1e24a82e3a3336907ca28d3ef780c04c666c7a65998cbbed514aa992fd
+  sha256: d1cd8e25175df83681a0b5b150f149908e17ac2074a4bd8b41eec6d3e9acb95b
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-53 / AR-75 / AR-86：苗若兰头部局部合成，对齐作者新 base（AR-73 参考佘诗曼，AR-86 选A）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-53 / AR-75 / AR-86：苗若兰头部局部合成，对齐作者新 base（AR-73 参考佘诗曼，AR-86 选A）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变；AR-82 原著核对返修：苗若兰洞中披胡斐长袍，不保留被夺绿袄黄裙；依据：- AR-82 返修依据：《雪山飞狐》第九章：“除去苗若兰的外裳，尚留下贴身小衣”；第十章：“早已除下自己长袍，披在苗若兰身上”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E9%9B%AA%E5%B1%B1%E9%A3%9E%E7%8B%90/%E7%AC%AC09%E7%AB%A0.md；https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E9%9B%AA%E5%B1%B1%E9%A3%9E%E7%8B%90/%E7%AC%AC10%E7%AB%A0.md；执行：藏宝洞劝饶宝树阶段改为披胡斐的宽大长袍，袍内素色贴身衣，用袍或厚被完全包覆保暖；不保留被夺的绿皮袄、鹅黄外裙，不需裸露。火堆可以保留。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.retry3.r1
   quality_retries: 0
   history: []
   effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.a7288a8c.png
-    sha256: a7288a8cc1599321065967f23c847721d6ab8fd3263c711bdd556f2ac61ee104
-    entry: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.a7288a8c.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.25d48f1e.png
+    sha256: 25d48f1e24a82e3a3336907ca28d3ef780c04c666c7a65998cbbed514aa992fd
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.25d48f1e.entry.yaml
