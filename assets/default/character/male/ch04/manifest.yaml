@@ -2164,44 +2164,37 @@
   category: character/male
   style: default
   subject: 张无忌（ch04_yitian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的张无忌立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中张无忌的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感，以及发式与头饰（额前头发向后梳、露出饱满的额头，头顶束小发髻，其余长发披在肩后，一侧鬓边垂着几缕编成细辫的发绳）。要让人一眼看出两张图里是同一个人。基线里的张无忌二十二三岁，清秀俊朗：端正的鹅蛋脸、下巴圆润，浓黑整齐的眉毛平直略带弧度，一双明亮的大眼睛、双眼皮清楚、眼神温和清澈，鼻梁挺直、鼻头圆润，唇形端正、嘴角平和，肤色白净健康，几乎无须；温润又有英气。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【原图保持不变】除脸、发式与头饰以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+    【只改】仅改变张无忌以外环境：去掉寺门石阶与枯枝阔叶树，改少林后山三株苍松作品字排列的地窖区域，高松有容人老僧的树穴，黑索从树穴伸出。三渡可以画外；不额外添加人物。张无忌身体、衣服、头脸、手势与原尺寸逐像素不变。
 
-    【本张另外要求】体格也对齐基线：肩更宽、胸背更厚实、手臂更结实（魁梧但不夸张），姿势与服装款式不变。
+    【原著依据】《倚天屠龙记》三十六 夭矫三松郁青苍：“更无房舍，只有三株高松，作品字形排列”；“每一株树的凹洞中均坐着一个老僧”；https://www.xuges.com/wuxia/jinyong/yttlj/268.htm
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
-
-
-    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_por_npc_zhangwuji__ch04_youth_scene_sandu.json'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/30_por_npc_zhangwuji__ch04_youth_scene_sandu.png
+    sha256: 4c1bd92fae363a964332cdd9c841a7cdf4397ef73f73555204aab40c2773e350
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
     sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
     use: 对脸基线：作者审核通过的 por_npc_zhangwuji__ch04_youth_jiaozhu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_scene_sandu.png
-    sha256: 31e50c8370ca33bd7be6c14e40084e5c4c7feeeeef9bd995789898f998de1d0c
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_scene_sandu.31e50c83.png
-  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_scene_sandu.png
-    sha256: e44e5fd3af12ac58068da42506f21936f1523e232e77fa59569b048e174e6bc2
-    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_scene_sandu.png
-  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T00:06:46.181998-07:00'
-  source_path: .agents/coord/_lines/zhangwuji-final/out/por_npc_zhangwuji__ch04_youth_scene_sandu.png
+  created: '2026-10-04T02:50:33.754391-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_30_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 4c1bd92fae363a964332cdd9c841a7cdf4397ef73f73555204aab40c2773e350
+  sha256: eeaa6dcdeb3a8f944deaabda2b86fb91a01a9cb1a1f3afabfd973014572f1e1f
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；AR-82 原著核对返修：张无忌三渡场景改少林后山三松
   previous_revision:
-    png: .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_scene_sandu.png
-    sha256: e44e5fd3af12ac58068da42506f21936f1523e232e77fa59569b048e174e6bc2
-    entry: .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_scene_sandu.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/30_por_npc_zhangwuji__ch04_youth_scene_sandu.png
+    sha256: 4c1bd92fae363a964332cdd9c841a7cdf4397ef73f73555204aab40c2773e350
   runner_job_records:
   - - por_npc_zhangwuji__ch04_youth_scene_sandu.resume3
     - ok
@@ -2209,7 +2202,7 @@
     - '124'
     - exec-af43c8be-a117-4937-9cc4-7ef1942f347c.png
   runner_success_count: 1
-  effort: not applicable (deterministic composition)
+  effort: ultra
   executed_by: Codex gpt-6.1-sol（AR-86）
 - id: por_npc_zhangwuji__ch04_youth_scene_taiji
   file: por_npc_zhangwuji__ch04_youth_scene_taiji.png
