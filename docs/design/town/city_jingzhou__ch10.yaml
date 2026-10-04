@@ -1,0 +1,50 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_jingzhou"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "荆州·江陵县城（702年推定）"
+historical_year: 702
+era_kit: "tang"
+seed: 1016770086
+design_intent: {"prosperity": "tang_major_study_candidate", "notes": ["江陵为唐荆州治；湖北文旅介绍的现城长椭圆与明清墙体，仅用于提醒年代差异。", "702年外郭长宽、长江故道位置待考；东西长的低地城廓是形态推定，不抄现城3750米尺度。", "复原依据：history/city_jingzhou__tang_702.md；AR-26与基准v1.10的702–703覆盖名录旧清初带。", "major是本批资源画幅档位，不表示702年均为大城；所有地籍与数量（原创扩展）。", "era_kit=tang；唐贴片目录缺失，墙门与地表由工具回退宋基线；建筑显式借用song_southern，不代表唐式考据。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 20, "z": 42}, {"x": 140, "z": 42}, {"x": 140, "z": 118}, {"x": 20, "z": 118}]}, "inside_margin_cells": 2, "basis": "图名：推定城垣；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 80, "z": 42}, "width_cells": 6, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：南门（推定）；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 80, "z": 118}, "width_cells": 6, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：北门（推定）；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 20, "z": 67}, "width_cells": 6, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross_s", "primary": false, "wall_ref": "outer", "basis": "图名：西门（推定）；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 140, "z": 92}, "width_cells": 6, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross_n", "primary": false, "wall_ref": "outer", "basis": "图名：东门（推定）；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 80, "z": 42}, {"x": 80, "z": 118}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北联系街；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+  - {"id": "cross_s", "class": "secondary", "width_cells": 5, "points": [{"x": 20, "z": 67}, {"x": 140, "z": 67}], "surface": "dirt_road", "priority": 70, "basis": "图名：南横街；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+  - {"id": "cross_n", "class": "secondary", "width_cells": 5, "points": [{"x": 20, "z": 92}, {"x": 140, "z": 92}], "surface": "dirt_road", "priority": 70, "basis": "图名：北横街；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+rivers:
+  - {"id": "south_water", "width_cells": 12, "points": [{"x": 0, "z": 12}, {"x": 160, "z": 12}], "flow": "unknown", "navigable": true, "basis": "图名：长江故道方向；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+lakes: []
+bridges: []
+water_gates: []
+zones:
+  - {"id": "zone_1", "kind": "residential", "geometry": {"rect": {"min": {"x": 25, "z": 47}, "max": {"x": 75, "z": 63}}}, "priority": 100, "density": 0.58, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_shop_1f", "bld_kit_song_southern_warehouse", "bld_kit_song_southern_stable"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民街坊；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+  - {"id": "zone_2", "kind": "market", "geometry": {"rect": {"min": {"x": 85, "z": 47}, "max": {"x": 135, "z": 63}}}, "priority": 99, "density": 0.58, "allowed_building_types": ["bld_kit_song_southern_shop_1f", "bld_kit_song_southern_market_stall", "bld_kit_song_southern_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：临路交易区；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+  - {"id": "zone_3", "kind": "residential", "geometry": {"rect": {"min": {"x": 25, "z": 71}, "max": {"x": 75, "z": 88}}}, "priority": 98, "density": 0.58, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_shop_1f"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民街坊；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+  - {"id": "zone_4", "kind": "residential", "geometry": {"rect": {"min": {"x": 85, "z": 71}, "max": {"x": 135, "z": 88}}}, "priority": 97, "density": 0.58, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_shop_1f"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民街坊；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+  - {"id": "zone_5", "kind": "administrative", "geometry": {"rect": {"min": {"x": 25, "z": 96}, "max": {"x": 75, "z": 113}}}, "priority": 96, "density": 0.58, "allowed_building_types": ["bld_kit_song_southern_yamen", "bld_kit_song_southern_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：州县署区；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+  - {"id": "zone_6", "kind": "religious", "geometry": {"rect": {"min": {"x": 85, "z": 96}, "max": {"x": 135, "z": 113}}}, "priority": 95, "density": 0.58, "allowed_building_types": ["bld_kit_song_southern_temple_hall", "bld_kit_song_southern_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：寺观院落（推定）；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_jingzhou。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_southern_house", "zone_refs": ["zone_1", "zone_3", "zone_4", "zone_6"], "count": {"min": 11, "max": 28}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_shop_1f", "zone_refs": ["zone_1", "zone_2", "zone_3", "zone_4"], "count": {"min": 6, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_market_stall", "zone_refs": ["zone_2"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_inn", "zone_refs": ["zone_2"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_yamen", "zone_refs": ["zone_5"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_courtyard", "zone_refs": ["zone_5"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_temple_hall", "zone_refs": ["zone_6"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_warehouse", "zone_refs": ["zone_1"], "count": {"min": 0, "max": 2}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_stable", "zone_refs": ["zone_1"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+vegetation: {"palette": ["prp_song_broadleaf", "prp_song_dali_grass"], "density": 0.018, "avoid_road_cells": 2, "cluster_rule": "空地少量阔叶与草簇；不以植被复原山体", "basis": "图名：空地植被；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_jingzhou", "kind": "official_web", "title": "荆州古城", "url": "https://wlt.hubei.gov.cn/bmdt/ztzl/zshb/201912/t20191226_1799529.shtml", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "仅文字；可信度B；只支持复原依据所列事实，不支持游戏坐标。"}
