@@ -47660,6 +47660,54 @@
    ],
    "validate": {
     "exists": [
+     "apps/game/src/game-controller.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-battle-lazy-dispose",
+   "title": "游戏工程 · 小修：战斗控制器懒加载期间宿主被替换时丢弃加载、不订阅已销毁宿主，调用方接住 promise；确定性回归测试（消除 HOST_DISPOSED 未处理 rejection）",
+   "prompt": "ENG-battle-lazy-dispose.md",
+   "deps": [],
+   "writes": [
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/battle/controller.ts",
+    "apps/game/src/**/*.test.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
      "packages/core/src/event/index.ts"
     ],
     "cmd": [
