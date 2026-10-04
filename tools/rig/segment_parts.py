@@ -475,7 +475,10 @@ def _point_subset(part: str, points: Mapping[str, tuple[float, float]]) -> dict[
 
 
 def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view: str,
-                 standard: Path | None = None) -> list[dict[str, Any]]:
+                 standard: Path | None = None,
+                 garment_profile: str = "short") -> list[dict[str, Any]]:
+    if garment_profile not in {"short", "ankle-robe"}:
+        raise ValueError(f"unknown garment profile: {garment_profile}")
     with Image.open(image_path) as opened:
         source_image = opened.convert("RGBA")
     rgba = np.asarray(source_image, dtype=np.uint8)
@@ -510,15 +513,46 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
                 "reusedFrom": near_part})
             continue
         source_note: dict[str, Any] = {}
+        if garment_profile == "ankle-robe" and part in {"thigh_shared", "shin_shared"}:
+            source_note.update(sourceLimitation="garmentHidden",
+                               reconstruction="sourceRobeTexture")
         caps = core_joint_caps(part, visible.shape, points)
         seam_caps = joint_caps(part, visible.shape, points, radius_px=3.5)
         desired = ((part_mask(part, visible.shape, points, view) &
                     isolation_mask(part, visible.shape, points)) | caps)
         if part == "hair_or_headgear":
             desired = hair_mask(rgba, points)
+        if (garment_profile == "ankle-robe" and view == "side"
+                and part == "torso"):
+            # Both profile sleeves cross the narrow body column.  Removing
+            # their full capsules can split the collar/chest from the waist,
+            # after which largest-component cleanup discards the upper torso.
+            # Restore only a slim neck-to-pelvis core; sleeves remain owned by
+            # the arm parts and the source pixels keep the torso connected.
+            desired |= capsule(visible.shape, points["neck"], points["pelvis"],
+                               visible.shape[0] * .035)
         pivot_name, child_name = PART_JOINTS[part]
-        exposed = keep_primary_component(desired & visible,
-                                         (points[pivot_name], points[child_name]))
+        robe_foot_region = None
+        robe_foot_component = False
+        if garment_profile == "ankle-robe" and part == "foot_shared":
+            # The broad foot capsule otherwise captures a rectangular strip of
+            # the ankle-length robe.  Only the exposed shoe/sock below the
+            # ankle belongs to the articulated foot.
+            yy = np.indices(visible.shape)[0]
+            robe_foot_component = view == "front34"
+            offset = 2 if robe_foot_component else 3
+            robe_foot_region = yy >= round(points[pivot_name][1] - offset)
+            if robe_foot_component:
+                desired = visible & robe_foot_region
+            else:
+                desired &= robe_foot_region
+        seeds = ((points[pivot_name],) if robe_foot_component else
+                 (points[pivot_name], points[child_name]))
+        exposed = keep_primary_component(desired & visible, seeds)
+        if robe_foot_component:
+            # At ankle height the skirt and both shoes can be one silhouette;
+            # below it, keep only the component containing the near ankle.
+            desired = exposed.copy()
         if part.startswith("hand_"):
             exposed &= hand_pixel_mask(rgba)
         if part.startswith(("forearm_", "hand_")):
@@ -530,8 +564,9 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
         removed_occluder = np.zeros_like(exposed)
         if part not in {"torso", "pelvis_skirt", "head",
                         "hair_or_headgear"}:
-            core = part_mask(part, visible.shape, points, view) & visible
-            exposed &= ndimage.binary_dilation(core, iterations=2)
+            if not robe_foot_component:
+                core = part_mask(part, visible.shape, points, view) & visible
+                exposed &= ndimage.binary_dilation(core, iterations=2)
             blocked = neighbouring_limb_mask(part, visible.shape, points)
             keep_joints = joint_caps(part, visible.shape, points, radius_px=5.0)
             removed_occluder |= exposed & blocked & ~keep_joints
@@ -559,6 +594,16 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
             unwanted = skin_mask(repaired)
             clean = (repaired[..., 3] >= 8) & ~unwanted
             repaired = _nearest_fill(repaired, unwanted, clean)
+        if garment_profile == "ankle-robe" and view == "side" and (
+                part.startswith(("upper_arm_", "forearm_", "hand_"))):
+            # Source joints contain no solid black disks; interpolation at the
+            # narrow profile seams can nevertheless create them.  They become
+            # conspicuous dots when the arm rotates across the waist.
+            opaque = repaired[..., 3] >= 8
+            cap_region = joint_caps(part, visible.shape, points, radius_px=10.0)
+            near_black = (opaque & cap_region &
+                          (repaired[..., :3].max(axis=2) < 45))
+            repaired = _nearest_fill(repaired, near_black, opaque & ~near_black)
         joint_points = dict(points)
         if part.startswith(("forearm_", "hand_")):
             joint_points["wrist_" + part[-1]] = arm_wrist(points, part[-1])
@@ -572,7 +617,11 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
         else:
             repaired, seam_pixels = enforce_joint_disks(
                 repaired, (joint_points[name] for name in joint_names),
+                radius=(2.0 if robe_foot_region is not None else 8.0),
                 bridge_disconnected=False)
+            if robe_foot_region is not None:
+                repaired[~robe_foot_region] = 0
+                seam_pixels &= robe_foot_region
         if part == "torso":
             repaired, seam_pixels = enforce_joint_disks(
                 repaired, (points[pivot_name],), radius=8.0)
@@ -582,11 +631,20 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
         measured_inpainted_pct = inpainted_pct
         part_image = Image.fromarray(repaired, "RGBA")
         subset = _point_subset(part, points)
+        if robe_foot_component:
+            shoe_y, shoe_x = np.nonzero(repaired[..., 3] >= 8)
+            ankle_x, ankle_y = points[pivot_name]
+            farthest = np.argmax((shoe_x - ankle_x) ** 2 +
+                                 (shoe_y - ankle_y) ** 2)
+            subset[child_name] = (float(shoe_x[farthest]),
+                                  float(shoe_y[farthest]))
         fallback = False
         use_fallback = inpainted_pct > MAX_INPAINTED_PCT
         if use_fallback and view == "side" and part == "thigh_shared":
             part_image, subset, source_rect = _reconstruct_side_thigh(rgba, points)
-            source_note.update(reconstruction="sourceTrouserPatch",
+            source_note.update(reconstruction=("sourceRobePatch"
+                               if garment_profile == "ankle-robe"
+                               else "sourceTrouserPatch"),
                                sourceRect=source_rect, coordinates="reconstructed")
             use_fallback = False
             inpainted_pct = 0.0
@@ -636,6 +694,8 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--out", type=Path, required=True)
     result.add_argument("--view", choices=("front34", "side", "back34"), required=True)
     result.add_argument("--standard", type=Path, help="male_std/female_std fallback root")
+    result.add_argument("--garment-profile", choices=("short", "ankle-robe"),
+                        default="short")
     return result
 
 
@@ -643,7 +703,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser().parse_args(argv)
     try:
         records = segment_view(args.image.resolve(), args.keypoints.resolve(), args.out.resolve(),
-                               view=args.view, standard=args.standard.resolve() if args.standard else None)
+                               view=args.view, standard=args.standard.resolve() if args.standard else None,
+                               garment_profile=args.garment_profile)
     except (OSError, ValueError, KeyError, yaml.YAMLError) as exc:
         print(f"segment_parts: {exc}", file=sys.stderr)
         return 1

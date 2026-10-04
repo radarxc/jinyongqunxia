@@ -10,7 +10,8 @@ import yaml
 from PIL import Image, ImageDraw
 
 from tools.item.common import BuildError, sha256_file
-from tools.rig.make_parts import BONE_LENGTHS_M, Z_ORDER, build_manifest
+from tools.rig.make_parts import (BONE_LENGTHS_M, FEMALE_BONE_LENGTHS_M, Z_ORDER,
+                                  build_manifest)
 from tools.rig.make_placeholder_parts import generate
 from tools.rig.preview import SHARED_LIMB_Z, make_strip
 from tools.rig import preview
@@ -88,6 +89,25 @@ class RigPartPipelineTests(unittest.TestCase):
         self.assertEqual(39, len(manifest["assets"]))
         build_manifest(identity, check=True)
 
+    def test_female_identity_uses_canonical_height_and_bone_lengths(self) -> None:
+        identity = Path(self.temporary.name) / "npc_test__ch00_f"
+        for view in VIEWS:
+            directory = identity / view
+            directory.mkdir(parents=True)
+            for part in SOURCE_PARTS:
+                synthetic_part(directory / f"{part}.png", part)
+        (identity / "sheet").mkdir()
+        Image.new("RGB", (12, 12), (230, 225, 216)).save(identity / "sheet/sheet_L.png")
+        manifest = build_manifest(identity)
+        self.assertEqual(1.62, manifest["heightM"])
+        self.assertEqual(FEMALE_BONE_LENGTHS_M, manifest["boneLengthsM"])
+        build_manifest(identity, check=True)
+        stored = yaml.safe_load((identity / "manifest.yaml").read_text())
+        stored["heightM"] = 1.64
+        (identity / "manifest.yaml").write_text(
+            yaml.safe_dump(stored, sort_keys=False), encoding="utf-8")
+        self.assertEqual(1.64, build_manifest(identity)["heightM"])
+
     def test_attachment_contract_rejects_invalid_fields(self) -> None:
         layer = self.set_dir / "attachments/hair_back.png"
         layer.parent.mkdir()
@@ -120,6 +140,20 @@ class RigPartPipelineTests(unittest.TestCase):
                       item["id"] == "hair_or_headgear")
         self.assertTrue(0 <= record["pivot"][1] < record["size"][1])
         self.assertTrue(0 <= record["childJoint"]["crown"][1] < record["size"][1])
+        build_manifest(self.set_dir, check=True)
+
+    def test_manifest_preserves_garment_source_limitation(self) -> None:
+        sidecar = self.set_dir / "front34/thigh_shared.pivots.yaml"
+        sidecar.write_text(yaml.safe_dump({"coordinates": "source", "keypoints": {
+            "hip_L": [20, 20], "knee_L": [20, 60]}, "source": {
+            "keypoints": ["hip_L", "knee_L"], "inpaintedPct": 3.0,
+            "standardFallback": False, "reconstruction": "sourceRobeTexture",
+            "sourceLimitation": "garmentHidden"}}, sort_keys=False), encoding="utf-8")
+        manifest = build_manifest(self.set_dir)
+        part = next(item for item in manifest["parts"]
+                    if item["view"] == "front34" and item["id"] == "thigh_shared")
+        self.assertEqual("garmentHidden", part["source"]["sourceLimitation"])
+        self.assertEqual("sourceRobeTexture", part["source"]["reconstruction"])
         build_manifest(self.set_dir, check=True)
 
     def test_failed_build_does_not_partially_rewrite_images(self) -> None:
