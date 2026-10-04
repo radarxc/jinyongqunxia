@@ -5,6 +5,7 @@ identity:
   aliases: []
   origin: fictional
   species: human
+  gender: female
   sourceWorks: [越女剑]
 lifespan:
   born: {kind: unknown, ageBand: youth, note: 小说未给出可安全落库的生年（待考）}

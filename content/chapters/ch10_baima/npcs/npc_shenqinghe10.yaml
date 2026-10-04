@@ -4,6 +4,7 @@ identity:
   name: 沈青禾
   aliases: []
   origin: expanded
+  gender: male
   sourceWorks: [白马啸西风, 天书录原创扩展]
 lifespan:
   born: {kind: unknown, ageBand: mature, note: 原创人物；精确生年不设定}

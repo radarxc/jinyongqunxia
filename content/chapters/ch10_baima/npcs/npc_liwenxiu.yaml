@@ -4,6 +4,7 @@ identity:
   name: 李文秀
   aliases: [阿斯托]
   origin: fictional
+  gender: female
   sourceWorks: [白马啸西风]
 lifespan:
   born: {kind: unknown, ageBand: young_adult, note: 原著准确年龄待考；本界统一使用成年视觉代理}

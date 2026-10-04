@@ -16,6 +16,8 @@ export function createBattleDemo(source: 'world' | 'town'): BattleLaunch {
     markers: launch.seeds.map((unit, index) => {
       const initial = launch.setup.start.initialByUnit.find((row) => row.unitRef === unit.id)!;
       return { id: unit.id, index, name: unit.id === 'hero' ? '演武侠客' : '陪练',
+        appearance: unit.id === 'hero' ? { kind: 'protagonist' as const }
+          : { kind: 'template' as const, templateId: 'tmpl_normal' },
         q: initial.pos.q, r: initial.pos.r, height: 0, facing: initial.facing, active: true,
         qiNature: unit.id === 'hero' ? 'neutral' : 'yang',
         equipment: unit.id === 'hero' ? { mainHand: { id: 'eq_qinggangjian', tint: '#a9b9c1' },

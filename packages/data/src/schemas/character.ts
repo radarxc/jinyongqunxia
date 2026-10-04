@@ -6,6 +6,7 @@ import {
 
 export const AgeBandSchema = z.enum(['child', 'youth', 'young_adult', 'prime', 'mature', 'elder', 'venerable']);
 export const SpeciesSchema = z.enum(['human', 'animal', 'spirit', 'projection']);
+export const GenderSchema = z.enum(['male', 'female']);
 const YearValueSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('exact'), year: z.number().int(), basis: z.enum(['historical', 'textual']), ref: z.string().min(1) }),
   z.strictObject({ kind: z.literal('range'), from: z.number().int(), to: z.number().int(), basis: z.literal('inferred'), note: z.string().min(1) }),
@@ -53,7 +54,8 @@ export const NpcDefSchema = z.strictObject({
   identity: z.strictObject({
     name: z.string().min(1), aliases: z.array(z.string()),
     origin: z.enum(['fictional', 'historical_fictionalized', 'expanded', 'generated']),
-    species: SpeciesSchema.default('human'), sourceWorks: z.array(z.string()).min(1),
+    species: SpeciesSchema.default('human'), gender: GenderSchema.optional(),
+    sourceWorks: z.array(z.string()).min(1),
   }),
   lifespan: z.strictObject({ born: YearValueSchema, died: YearValueSchema.nullable(), explicitAliveAt: z.array(z.strictObject({ chapterId: ChapterIdSchema, from: z.number().int(), to: z.number().int(), source: z.string().min(1) })).optional(), canonicalDied: YearValueSchema.optional() }),
   appearances: z.array(NpcAppearanceSchema).min(1),
@@ -91,6 +93,7 @@ export const NpcDefSchema = z.strictObject({
 export const CharacterTemplateSchema = z.strictObject({
   schemaVersion: z.literal('character-template.v1'), id: CharacterTemplateIdSchema,
   role: z.enum(['normal', 'elite', 'head', 'boss']),
+  gender: GenderSchema.optional(),
   innate: z.record(z.enum(['con', 'str', 'agi', 'wis', 'wil', 'luk', 'cha']), z.number().int().min(1).max(100)),
   cultivationBand: z.strictObject({ min: z.number().int().min(1).max(70), max: z.number().int().min(1).max(70), derived: z.literal(true) }),
   skillSeeds: z.array(z.strictObject({ skillId: SkillIdSchema, grade: GradeSchema, trueLayer: LayerSchema })),
@@ -101,3 +104,4 @@ export const CharacterTemplateSchema = z.strictObject({
 export type NpcDef = z.output<typeof NpcDefSchema>;
 export type CharacterTemplate = z.output<typeof CharacterTemplateSchema>;
 export type Species = z.output<typeof SpeciesSchema>;
+export type Gender = z.output<typeof GenderSchema>;

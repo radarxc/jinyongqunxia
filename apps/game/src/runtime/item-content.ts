@@ -94,8 +94,16 @@ function runtimeNpc(value: unknown, text: Readonly<Record<string, string>>): Gam
     return NpcAppearanceSchema.parse({ ...compiled,
       displayName: textValue(compiled['displayName'], text, true) });
   });
+  const species = identity['species'] ?? 'human';
+  if (!['human', 'animal', 'spirit', 'projection'].includes(String(species)))
+    throw new TypeError('CONTENT_CHAPTER_NPC_INVALID');
+  const gender = identity['gender'];
+  if (gender !== undefined && gender !== 'male' && gender !== 'female')
+    throw new TypeError('CONTENT_CHAPTER_NPC_INVALID');
   return { id: NpcIdSchema.parse(row['id']), identity: {
-    name: textValue(identity['name'], text, true), aliases }, appearances };
+    name: textValue(identity['name'], text, true), aliases,
+    species: species as GameNpcDef['identity']['species'],
+    ...(gender === undefined ? {} : { gender }) }, appearances };
 }
 function runtimeWorldMap(value: unknown, text: Readonly<Record<string, string>>):
 WorldMapRuntimeDefinition {
@@ -215,11 +223,13 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
       throw new TypeError('CONTENT_CHAPTER_DEF_MISSING');
     let assets: AssetMap | undefined;
     let mapText: Readonly<Record<string, string>> = {};
+    let battleModels: ChapterRuntimeLeaf['battleModels'];
     try {
       const shared = loadAssets ? runtimeLeaf(await loadAssets('__shared__')) : undefined;
       const leaf = loadAssets ? runtimeLeaf(await loadAssets(chapter)) : undefined;
       assets = leaf ? { ...shared?.assets, ...leaf.assets } : base.assets;
       mapText = leaf?.mapText ?? {};
+      battleModels = leaf?.battleModels;
     }
     catch (error) {
       if (error instanceof Error && error.message.endsWith('_SUBSYSTEM_UNAVAILABLE')) throw error;
@@ -227,6 +237,7 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
     }
     const runtime = chapterRuntime(pack.leaves, chapter, mapText);
     return { ...base, ...runtime, ...(assets ? { assets } : {}),
+      ...(battleModels ? { battleModels } : {}),
       items: items as GameContent['items'], chapters, events, quests,
       ...(stories.length === 0 ? {} : { inkStories: stories }),
       idRemaps: pack.manifest.idRemaps, contentHash: pack.manifest.contentHash };

@@ -9,6 +9,7 @@ import type { BattleLogEntry } from '../controller';
 import type { BattleController } from '../controller';
 import { bindBattleVfx } from '../vfx';
 import { createRenderQuality, reloadLatestRenderAutosave } from '../../render-host';
+import { battleUnitLabelPosition } from '../unit-label';
 const props = defineProps<{
   controller: BattleController;
   battle: BattleView;
@@ -38,6 +39,7 @@ const restoreFailedText = computed(() => lossCount.value >= 3
 const stats = ref('');
 type ProjectedUnit = ScreenPoint & { q: number; r: number; height: number };
 const positions = shallowRef<ReadonlyMap<string, ProjectedUnit>>(new Map());
+const viewportWidth = ref(1280);
 let renderer: BattleRenderer | undefined;
 let resizeObserver: ResizeObserver | undefined;
 type VfxStage = ReturnType<typeof import('@tianshu/render/vfx')['createBattleVfxStage']>;
@@ -86,7 +88,7 @@ function project(force = false): void {
     point.q = unit.q;
     point.r = unit.r;
     point.height = unit.height;
-    renderer.project(unit.q, unit.r, unit.height, point);
+    renderer.projectUnit(unit.id, unit.q, unit.r, unit.height, point);
     next.set(unit.id, point);
   }
   triggerRef(positions);
@@ -108,6 +110,7 @@ function sync(): void {
 }
 function resize(): void {
   if (!root.value || !renderer) return;
+  viewportWidth.value = root.value.clientWidth;
   renderer.resize(root.value.clientWidth, root.value.clientHeight, window.devicePixelRatio);
   project(true);
   vfxStage?.resize();
@@ -118,6 +121,7 @@ function draw(time: number): void {
   requestDraw();
   if (document.visibilityState === 'hidden') return;
   renderer?.render(time, props.reducedMotion || props.skip);
+  if (renderer?.stats.modelMoving) project(true);
   if (renderer) {
     const yaw = renderer.camera.yawDeg;
     cameraRotating.value = renderer.camera.rotating;
@@ -129,7 +133,7 @@ function draw(time: number): void {
   vfxStage?.render(time);
   if (renderer && time - lastStats > 1000) {
     lastStats = time;
-    stats.value = `${renderer.stats.drawCalls} draw · CPU ${renderer.stats.cpuMs.toFixed(2)} ms · ${renderer.stats.characters} 人`;
+    stats.value = `${renderer.stats.drawCalls} draw · CPU ${renderer.stats.cpuMs.toFixed(2)} ms · ${renderer.stats.modelCharacters} 个 3D / ${renderer.stats.characters} 个 2D`;
   }
 }
 function requestDraw(): void {
@@ -419,36 +423,39 @@ onBeforeUnmount(() => {
           },
         ]"
         :style="{
-          left: `${positions.get(unit.id)?.x ?? 0}px`,
-          top: `${positions.get(unit.id)?.y ?? 0}px`,
+          left: `${battleUnitLabelPosition(positions.get(unit.id)?.x ?? 0,
+                                           positions.get(unit.id)?.y ?? 0, viewportWidth, unit.index).left}px`,
+          top: `${battleUnitLabelPosition(positions.get(unit.id)?.x ?? 0,
+                                          positions.get(unit.id)?.y ?? 0, viewportWidth, unit.index).top}px`,
+          '--unit-label-width': `${battleUnitLabelPosition(0, 0, viewportWidth, unit.index).metrics.width}px`,
+          '--unit-avatar-size': `${battleUnitLabelPosition(0, 0, viewportWidth, unit.index).metrics.avatar}px`,
+          '--unit-name-font': `${battleUnitLabelPosition(0, 0, viewportWidth, unit.index).metrics.nameFont}px`,
+          '--unit-aux-font': `${battleUnitLabelPosition(0, 0, viewportWidth, unit.index).metrics.auxiliaryFont}px`,
         }"
         @click="emit('select', unit.id)"
       >
-        <strong>
-          {{ unit.name }}
-          <span aria-label="朝向">{{ directionLabels[unit.facing] }}</span>
-        </strong>
-        <meter
-          :value="unit.hp"
-          :max="unit.hpMax"
-          min="0"
-          :aria-label="`${unit.name} 气血 ${unit.hp}/${unit.hpMax}`"
-        />
-        <meter
-          class="mp"
-          :value="unit.mp"
-          :max="unit.mpMax"
-          min="0"
-          :aria-label="`${unit.name} 内力 ${unit.mp}/${unit.mpMax}`"
-        />
-        <meter
-          class="ct"
-          :value="Math.max(0, Math.min(1000, unit.ct))"
-          max="1000"
-          min="0"
-          :aria-label="`行动槽 ${unit.ct}`"
-        />
-        <small>{{ unit.ct < 0 ? `收招 ${-unit.ct}` : `CT ${unit.ct}` }}</small>
+        <span class="unit-avatar" aria-hidden="true">
+          <img v-if="unit.portraitUrl" :src="'/' + unit.portraitUrl" alt="">
+          <span v-else>{{ unit.name.slice(0, 1) }}</span>
+        </span>
+        <span class="unit-label-copy">
+          <strong>{{ unit.name }}<span aria-label="朝向">{{ directionLabels[unit.facing] }}</span></strong>
+          <span class="unit-meters">
+            <meter
+              :value="unit.hp" :max="unit.hpMax" min="0"
+              :aria-label="`${unit.name} 气血 ${unit.hp}/${unit.hpMax}`"
+            />
+            <meter
+              class="mp" :value="unit.mp" :max="unit.mpMax" min="0"
+              :aria-label="`${unit.name} 内力 ${unit.mp}/${unit.mpMax}`"
+            />
+            <meter
+              class="ct" :value="Math.max(0, Math.min(1000, unit.ct))" max="1000" min="0"
+              :aria-label="`行动槽 ${unit.ct}`"
+            />
+          </span>
+          <small>{{ unit.ct < 0 ? `收招 ${-unit.ct}` : `CT ${unit.ct}` }}</small>
+        </span>
         <span
           v-for="status in unit.statuses"
           :key="status.id"

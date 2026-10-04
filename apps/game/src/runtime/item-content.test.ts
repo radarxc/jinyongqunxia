@@ -60,6 +60,7 @@ describe('item content leaves', () => {
       chapterId: 'ch01_tianlong', event: 'fixture/chapterLoaded', once: true,
       actions: [{ op: 'ui/showText', textKey: 'fixture.ch01_tianlong.event' }] }]);
     expect(loaded.npcs.map((npc) => npc.identity.name)).toEqual(['段誉', '钟灵', '萧峰']);
+    expect(loaded.npcs.every((npc) => npc.identity.species === 'human')).toBe(true);
     expect(loaded.npcs.every((npc) => npc.identity.sourceWorks === undefined &&
       npc.sources === undefined)).toBe(true);
     expect(loaded.worldMaps?.[0]).toMatchObject({ chapterId: 'ch01_tianlong', era: 'ch01' });
@@ -71,6 +72,17 @@ describe('item content leaves', () => {
       'ch01_tianlong/ch01.text.zh-Hans.base.json',
       'ch01_tianlong/common.rules.items.json',
       'ch01_tianlong/world.rules.era.ch01.json']);
+  });
+
+  it('merges the build-time battle model catalog into the chapter runtime', async () => {
+    const fixture = await fixtureItemPack(); const generic = { key: 'npc_generic_m',
+      kind: 'generic' as const, gender: 'male' as const, heightM: 1.7,
+      modelUrl: '/assets/default/model3d/npc_generic_m/anim_idle_walk_run.glb' };
+    const battleModels = { schema: 'battle-models.v1' as const, generic: { male: generic },
+      protagonist: {}, npcs: {}, templates: { tmpl_normal: generic } };
+    const loaded = await loadGameContent(fixtureContent(), fixture.source, 'ch01_tianlong',
+      async () => ({ assets: {}, mapText: {}, battleModels }));
+    expect(loaded.battleModels).toEqual(battleModels);
   });
 
   it('rejects a tampered rule leaf with a recoverable error code', async () => {

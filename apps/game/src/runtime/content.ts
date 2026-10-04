@@ -5,6 +5,7 @@ import type { EquipmentRule, EventAnchor, NpcWorldState, TownMeditationEncounter
   TownMeditationPractice, InkStoryContent, RegionGateFacts, RegionGateBinding,
   RegionDialogueBinding, RegionLootBinding } from '@tianshu/core';
 import type { BattleLaunch } from '../battle/contracts';
+import type { BattleModelCatalog } from '@tianshu/render/battle';
 
 export interface MeridianTopology {
   readonly id: string; readonly name: string;
@@ -14,7 +15,8 @@ export type GameItemDef = Omit<ItemDef, 'text'> & { readonly text?: ItemDef['tex
 export interface GameNpcDef {
   readonly id: NpcDef['id'];
   readonly identity: { readonly name: string; readonly aliases: readonly string[];
-    readonly sourceWorks?: readonly string[] };
+    readonly species: NpcDef['identity']['species'];
+    readonly gender?: NpcDef['identity']['gender']; readonly sourceWorks?: readonly string[] };
   readonly appearances: NpcDef['appearances'];
   readonly sources?: readonly { readonly locator: string }[];
 }
@@ -27,6 +29,7 @@ export interface GameContent {
   readonly factions: Readonly<Record<string, string>>;
   readonly identityTags?: readonly string[];
   readonly assets?: Readonly<Record<string, { readonly icon?: string; readonly portrait?: string; readonly map?: string }>>;
+  readonly battleModels?: BattleModelCatalog;
   readonly equipmentRules?: readonly EquipmentRule[];
   readonly worldMaps?: readonly WorldMapRuntimeDefinition[];
   readonly towns?: readonly TownRuntimeDefinition[];
@@ -48,9 +51,9 @@ export type AssetMap = NonNullable<GameContent['assets']>;
 export interface ChapterRuntimeLeaf {
   readonly assets: AssetMap;
   readonly mapText: Readonly<Record<string, string>>;
+  readonly battleModels?: BattleModelCatalog;
 }
-export type ChapterAssetLoader = (chapterId: string) =>
-  Promise<AssetMap | ChapterRuntimeLeaf>;
+export type ChapterAssetLoader = (chapterId: string) => Promise<AssetMap | ChapterRuntimeLeaf>;
 export type TownLoader = (sceneId: string) => Promise<TownRuntimeDefinition | null>;
 export interface TownNpcPlacement {
   readonly npcId: string; readonly sceneId: string; readonly eraLayer: string;
