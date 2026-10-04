@@ -331,6 +331,9 @@ def worker(a) -> int:
                 if rc == 0:
                     set_status(tid, "MERGED", runs=runs, reviews=reviews, detail="已合入")
                     return 0
+                # 2026-10-03 协调者：cherry-pick 冲突是真冲突，重试无用，直接交协调者挪基点。
+                if "cherry-pick 失败" in out:
+                    break
                 # 2026-10-03 协调者：出图线频繁入库，集成分支常有几秒的未提交窗口；不再干等 120 秒，
                 # 改为每 2 秒看一次工作树，干净了立即重试（最多等 120 秒）。
                 t_wait = time.time()
