@@ -195,6 +195,8 @@
   - 要么让内容任务排在它之后再登记。
 - 依赖只能写已登记的任务 ID，run.py 遇到未知依赖会 Fatal，所有工具都会挂。
 - eng3 等批量调度器只在启动时读依赖图。改依赖要等调度器重启才生效，期间人工防止并行改同一批文件。
+- 出图任务的校验：`check_assets.py` 的 `--min` 和 `--max` 都要写，`--max` 默认是 2，不写会误判；manifest 的 `status` 只认 approved / candidate / rejected，新图用 candidate。
+- 写进说明的校验命令，登记前先在集成分支上空跑一次，确认参数和路径对。
 
 ### 2.11 prod_check（每次合入后）
 
