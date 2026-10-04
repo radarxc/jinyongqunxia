@@ -207,13 +207,13 @@
   category: scene
   style: default
   subject: 夏雪宜与温仪旧事揭晓（ch07_bixue）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是温青青的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中温青青的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是温仪的身份基线（本人基础立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中温仪的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】这张插图画的是：石梁温家旧园的双时层记忆画：前景成年温青青穿与新版石梁阶段相同的米白色右衽短襦、深灰蓝长裙与素布鞋握紧素帕，神情迟悟悲愤；中景以更柔暖的画中追忆层表现夏雪宜放下金蛇剑、与温仪静静相对，温仪为端庄成年女子、素色襦裙，只文字。梨花与旧木窗衔接冷暖两层，人物之间不作跨时间触碰。
 
-    【要对齐的部分】温青青的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：迟悟往事，悲愤伤心，此刻不笑；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】温仪的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：与夏雪宜静静相对，温柔而略带哀伤；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【温青青的基线脸】基线里的温青青二十岁上下，俊俏而带英气：脸型是颧骨略宽、下颌有力的鹅蛋脸，不是瓜子脸、下巴不尖；眉毛浓黑平直、眉形清楚有力（不是细弯眉）；一双明亮的大杏眼、双眼皮，眼神倔强、带一点小性子；鼻梁挺直；嘴唇饱满、唇形略厚；肤色白皙健康；成年女子的五官比例。
+    【温仪的基线脸】基线里的温仪（追忆层里是年轻时的她）二十岁上下，端庄温婉：圆润的鹅蛋脸、下巴圆润；细长柔和的眉；一双温柔的杏眼、双眼皮；鼻子小巧挺直；嘴唇小巧、唇色淡红；肤色白皙、皮肤紧致年轻，没有中年人的松弛、法令纹和皱纹。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「金蛇旧梦」和小朱印必须原样保留，一笔不改、不增不减。
 
@@ -221,28 +221,31 @@
 
     【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【本张另外要求】温青青是画面左侧前景、手握素帕的女子（从左数第 1 个人）；中景回忆层里的夏雪宜和温仪，脸一律不改。'
+    【本张另外要求】温仪是画面中景偏右、穿浅色襦裙、侧脸朝左的女子（从左数第 3 个人，脸很小、是侧脸）。保持侧脸角度，把显中年的侧脸改成基线那样二十岁上下、皮肤紧致的年轻女子侧脸。左边前景的温青青和中间的夏雪宜，脸一律不改。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
+  - path: assets/default/character/female/ch07/por_npc_wenyi__ch07_base.png
+    sha256: 4b5bea6c165545495fdfd62dea1c5d86e29686332d9c5d536566f526e9d72db8
+    use: 对脸基线：AR-53 总审默认基准 por_npc_wenyi__ch07_base（温仪），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch07/cg_ch07_xueyi_wenyi_memory.png
+    sha256: f01e433cf3e645ddc332bfd7861f7c8a66410def4a9e3176ad4a0e3e82010783
+    use: 待改原图（AR-53 配角对齐 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_xueyi_wenyi_memory.f01e433c.png
   - path: assets/default/character/female/ch07/por_npc_wenqingqing__ch07_youth_disguise_base.png
     sha256: 14a82d81a125ab4208e204a723dfb6b23fd8f671155d2be4a2722ee5e193324a
-    use: 对脸基线：作者 AR-56 定下的 por_npc_wenqingqing__ch07_youth_disguise_base（温青青），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch07/cg_ch07_xueyi_wenyi_memory.png
-    sha256: 8a84b16ae8d544198e04e7a98c8e56d7e3ada743aec0079723af9058306c87ac
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_xueyi_wenyi_memory.8a84b16a.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
+    use: 对脸基线：作者 AR-56 定下的 por_npc_wenqingqing__ch07_youth_disguise_base（温青青），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写（前次对脸已改入此图，本次未动，保留引用）
+  tool: codex exec · image_gen（AR-53 配角对齐 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线；编辑结果只取目标人物头部合成回原图）
   model: gpt-6-astra
-  created: 2026-10-03T18:31:21-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch07_xueyi_wenyi_memory.s1.png
+  created: 2026-10-03T19:36:45-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch07_xueyi_wenyi_memory.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: f01e433cf3e645ddc332bfd7861f7c8a66410def4a9e3176ad4a0e3e82010783
+  sha256: 204a7bc7e191bb2630e2809c9d23f6d657b78e743009aaed1620aa0484750ff9
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；第5次续作首次生成成功，视觉重出0次。题字“金蛇旧梦”逐字放大核验正确，原生题字，未叠加。第1张身份参考为已核验入库的新版温青青石梁r2，第2张为既有S级夏雪宜，其后两张为女性项目基线；温仪只文字。前景青青悲愤、后景父母旧事追忆，双时层为原创扩展构图，不宣称父母生还；具体动作待纸本终校。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_wenqingqing__ch07_youth_disguise_base（编辑结果只取温青青头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；第5次续作首次生成成功，视觉重出0次。题字“金蛇旧梦”逐字放大核验正确，原生题字，未叠加。第1张身份参考为已核验入库的新版温青青石梁r2，第2张为既有S级夏雪宜，其后两张为女性项目基线；温仪只文字。前景青青悲愤、后景父母旧事追忆，双时层为原创扩展构图，不宣称父母生还；具体动作待纸本终校。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_wenqingqing__ch07_youth_disguise_base（编辑结果只取温青青头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（12 号出图员），基线 = por_npc_wenyi__ch07_base（编辑结果只取温仪（#3，侧脸）头部区域羽化合成回原图，其余像素保持原图（温青青、夏雪宜不动）；原始编辑结果 out/<job>.raw.png）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_xueyi_wenyi_memory.8a84b16a.png
-    sha256: 8a84b16ae8d544198e04e7a98c8e56d7e3ada743aec0079723af9058306c87ac
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_xueyi_wenyi_memory.8a84b16a.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_xueyi_wenyi_memory.f01e433c.png
+    sha256: f01e433cf3e645ddc332bfd7861f7c8a66410def4a9e3176ad4a0e3e82010783
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_xueyi_wenyi_memory.f01e433c.entry.yaml
   runner_job_records:
   - - cg_ch07_xueyi_wenyi_memory.resume3
     - ok
