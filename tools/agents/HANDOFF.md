@@ -1888,4 +1888,24 @@
       - 顺序：event-executor 返修 → 26 → 18c → 16e → base-diet → std-parts → cropframe；
       - 守候进程：56785、56800、56807、56809、83195、96192。
     - 协调者想给 step.py 加池位优先级文件（`pool_priority.txt` 加等待登记），开发监督评估：约 60–80 行加测试，风险可控，已回报。
+  - **10-03 18:16–18:42 开发监督**：
+    - **池位优先级名单上线**（f6813854；协调者 18:20 交办）。
+      - 机制：
+        - `.agents/coord/pool_priority.txt` 每行一个任务 ID，越靠前越先拿空位，不在名单的排在后面、先来先得；没有这个文件就是原行为。
+        - 排队的 start 在 `.agents/slots/waiting/<ID>.json` 登记 pid 与开始等的时间，进程死了自动清掉。
+        - `python3 tools/agents/step.py pool [--pool code] [--file 草稿]` 是只读预演，不改状态。
+        - 单测 `test_step_pool_priority.py`，10 例。
+      - 初始名单（代码池）：
+        - M1：event-executor → gates-data → ink-external-args → 19e → npc-species → ink-intents → 26；
+        - 预算：base-diet，排在 18c / 16e 前，因为首次会话闭包 98.94 / 110；
+        - 其余：23a → 18c → 16e → move-onhit → city-generic → rig-parts-f → std-parts → cropframe → 27a…。
+      - 协调者的 wait_attempt 在 18:15 起 ENG-26 时参数拼错（supervise 报 unrecognized arguments），没起成，后面的链也卡住了。
+        - 开发监督 18:21 用 launch_std 重起 26（驱动 99087），新代码已登记排队，名单第 7 位。
+    - **Trae 技能跑偏**（协调者 18:20）：
+      - gates-data 第 2 轮跟着作者本机的 bits-unit-test-gen 技能走「生成单测」流程，跑 prepare_test.sh 后卡死。
+      - 查到 `traex exec -c skills.include_instructions=false` 只去掉提示里的技能清单（58 → 33 KB）。
+      - 已写进 step.py `build_argv`（只对 traex）和 gpt_review.py（9efa29fa，单测 `test_step_traex_args.py`），不动 `~/.trae`。
+      - 今天 11 份 traex 执行日志都跑过 prepare_test.sh。
+      - gates-data 第 3 轮又在走技能流程，建议协调者停掉，开发监督用 `--from start --note devsup_note_noskill.md` 重起。
+      - 另提议在 `_common.md` 加第 13 条「不调用 Trae 技能」。
 
