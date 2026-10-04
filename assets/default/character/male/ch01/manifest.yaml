@@ -2089,21 +2089,35 @@
   - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
     use: 项目同性别基线；只取画风
     sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  created: 2026-10-02T23:36:28-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.1791009388405224000/archive/por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.png
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:22:52.913054-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_06_45_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 5ddeae15d73669603d8e5002f628062601ea88eb7235360d7825d7c2e8f0942f
+  sha256: 998b7dcbddc0c6092db850bcce3b9f6be1b44d176b79e86e08191a4397907882
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；雁门关举断箭止战阶段；保留背景，原生无文字。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；雁门关举断箭止战阶段；保留背景，原生无文字。；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：五官回到恢复base，雁门关肃穆、不笑与夕光保留；胡须和脸边无可见接缝
   previous_revision:
     prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.1791009388405224000/archive/previous-prompt.md
   repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.resume3.png
   repair_runner_source_sha256: 1420e35245e108e790119628c4a3e82c851438a46ee822ea8dfae90224b08833
   ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
   composite_job: por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.resume3
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_06_45_r1
+    before_sha256: 5ddeae15d73669603d8e5002f628062601ea88eb7235360d7825d7c2e8f0942f
+    box:
+    - 431
+    - 127
+    - 564
+    - 279
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_06_45_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_madayuan__ch01_elder_memory_base
   file: por_npc_madayuan__ch01_elder_memory_base.png
   category: character/male
