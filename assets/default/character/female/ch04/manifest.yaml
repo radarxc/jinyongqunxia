@@ -178,77 +178,43 @@
   category: character/female
   style: default
   subject: 辉月使 npc_huiyueshi ch04_yitian · 约三十岁观感的成年波斯女性使者，灵蛇岛三使联手阶段
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference portrait pose. Preserve natural facial asymmetry without tilting the head.
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    Create a beautiful REALISTIC Chinese wuxia full-body character illustration of 辉月使 (npc_huiyueshi). This is an ORIGINAL individual facial design based on the current character document: NO verified portrait of this person is available in the audited original-game corpus. The user expressly permits original supporting-character faces. Image 1 is ONLY the gender-appropriate project rendering/colour reference; image 2 is ONLY background. Neither image supplies a face or identity. Do not borrow another character or actor''s face.
+    【只改】只将两手中短小金色饰牌改成两尺来长的黑色圣火令，每只手一条，长度各约60厘米，长条厚实而非黄金挂牌，非金非玉的黑色材质，浅刻波斯纹且微弱折光。保持原手抓握位置与手指，黑牌长度向手上下延伸、需完整可见，不改变人物脸、衣服或火焰标记。
 
+    【原著依据】《倚天屠龙记》二十九 四女同舟何所望：“每只手中各拿着一条两尺来长的黑牌”；https://www.xuges.com/wuxia/jinyong/yttlj/216.htm
 
-    当前阶段：约三十岁观感的成年波斯女性使者，灵蛇岛三使联手阶段
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    体态与正面姿势：成年女性修长有力量，肩臂与腰腿比例自然，身体面向正面、头颈端正、双眼水平。用稳定立足、两臂一收一展传达自主干练，取消旧侧身轻转，不性感化、不舞蹈扭腰。
-
-
-    本人的原创面容辨识：原创成年波斯女性瓜子脸，颧部柔和但有骨相支撑，下颌自然收束、下巴不削尖；较长略拱的深眉与细长清楚眼形，鼻梁细直、鼻头精巧但不网红化，上唇弧线清楚、下唇自然稍丰，嘴角克制。虹膜极浅淡灰、有完整虹膜边界和正常瞳孔，仍有视力、不发光。约三十岁成熟美丽、有判断力，保留轻微眼周年龄感，不借王语嫣少女五官或小昭脸。
-
-
-    服装发式：元末来华波斯女使的米白不透明长袍、暗紫窄缘、素布腰带、宽松长裤与平底皮靴，薄而不透明的浅灰头巾只包拢头顶，侧边保留黑发，胸前小暗红火焰纹。汉式交领一律穿着者左襟压右襟、向本人右侧合拢，不镜像；完整连续衣料，旧色不等于破烂。
-
-
-    阶段器物硬要求：双手各一枚圣火令 eq_shenghuoling，钝厚短金属令牌，长短略异，刻文面朝掌或身体，仅露无字背面和边缘；两令保持分离且不发光
-
-
-    具体左右与结构：双手各1枚圣火令，共2枚，钝厚短金属牌长短略异。本人左手在腰腹前收持稍短令，右手在身体外侧略展持稍长令，腕关节自然，二令完全分离不挡脸。刻文向掌心/身体，露出无字背与窄边；无火焰法术、无项链替代令牌。浅灰头巾只拢头顶，黑发侧边可见、脸无遮蔽。
-
-
-    人物渲染：完整清楚、精细美观的写实国风人物，自然年龄与体态，面孔和实际手部皮肤有连续体积、柔和真实肤质。保留原稿伤残、旧疤和皱纹；完整渲染绝不等于抹掉这些事实。衣物是完整裁剪的连续不透明布料，领袖、下摆、鞋履和器物有干净确定边缘，少量自然受力褶皱，不用细碎噪点证明真实。柔和左上光，低饱和设色，人体与背景分离；墨痕、纸纹、飞白、雾气全部停留在背景，不能割裂或吞没人物。第一图只有同性别项目画法色卡，第二图只有水墨背景；没有本人脸部图像参考，严禁借基线人物脸、年龄、头身、姿势或衣装来换装。
-
-
-    背景与交付：不透明暖浅灰纸底，边缘可有极浅、低对比的远山淡墨与薄雾，留白充足，脚下仅少量接触阴影；背景墨痕、纸纹与山影全部停留在人物、衣料、手部和器物轮廓外。无具体剧情建筑、第二个人、动物或画面文字。单人单视图、完整全身，原生竖幅2:3；头顶、发式、双足、实际存在的手部和器物端点完整入画，四周自然留边，不为固定占高强拉头身。目标2048×3072不透明PNG，接受工具实际原生2:3尺寸并如实登记，保留原始PNG字节，不裁切、插值或重编码。默认一张独立候选经执行者实际自查，仍为candidate，等待用户审核；每张画面只含一个本人。
-
-
-    身份依据边界：当前经典游戏头像语料未可靠映射本人，不冒称已看本人图，不用MOD/其他人头像代替。面部的具体长宽、眉眼鼻唇关系和本次左右布局明确为原创艺术设计，身份、年龄、伤残、阶段、道具仍按正式角色稿。原著具体岁数、服饰与器物形制仍待指定版本终校，不补造页码、引文或史实制服。最新正面、写实整衣和淡墨背景要求覆盖旧轻侧/低头/固定占高/纯纸底门槛。
-
-
-    完整排除项：不要男性胡须壮汉体型、王语嫣幼嫩脸、小昭少女或黛绮丝真容；不要白化病刻板造型、无瞳孔白眼、失明、光眼或性感舞衣。；男性胡须、金发、青少年少女脸、白化病刻板造型、失明白眼、发光瞳孔、露腰舞衣、面纱遮脸、圣女王冠、刻文和火焰。 不要 head tilt、Dutch angle、头歪向肩、脸部中线倾斜、双眼高低倾斜、倾斜镜头、侧脸、背身回眸、耸单肩、俯首藏眼或仰头藏眼。不要令狐冲、萧峰、郭靖、王语嫣或其他角色的脸；不要旧通用俊男脸换衣、网红尖下巴、动漫大眼、偶像磨皮、浓妆、夸张健美肌肉、照片截图、3D模型、塑料皮肤、像素画放大、黑色硬边或游戏UI。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸片侵蚀、白斑、划痕、碎布条、撕裂下摆、过密褶皱、斑驳脸或模糊眼睛；墨雾不能吞没人体和衣料。不要额外人物、多视图、拼贴分格、脸部特写框、无依据新增肢体和伤残、手物融合、错接手腕、悬空器物、头足或器物端点裁切。不要日式刀服、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、近现代物品、汉式交领左衽或水平镜像。不要裸露、透明衣料、性感化、血腥特写、恶搞或丑化。不要光龙、法阵、发光武器、粒子特效、强泛光、强逆光、复杂背景、题款、印章、标签、logo或装饰水印；保留工具原有溯源标识与元数据。
-
-
-    FINAL POSE CHECK: FRONT-FACING 辉月使. Forehead–nose–chin centreline VERTICAL, both eyes HORIZONTAL, head and neck naturally UPRIGHT, camera level, chin neutral. NO head tilt and NO Dutch angle. Keep the individually designed face, current-stage anatomy, complete clothing and required objects clearly visible.'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要男性胡须壮汉体型、王语嫣幼嫩脸、小昭少女或黛绮丝真容；不要白化病刻板造型、无瞳孔白眼、失明、光眼或性感舞衣。；男性胡须、金发、青少年少女脸、白化病刻板造型、失明白眼、发光瞳孔、露腰舞衣、面纱遮脸、圣女王冠、刻文和火焰。 不要 head tilt、Dutch angle、头歪向肩、脸部中线倾斜、双眼高低倾斜、倾斜镜头、侧脸、背身回眸、耸单肩、俯首藏眼或仰头藏眼。不要令狐冲、萧峰、郭靖、王语嫣或其他角色的脸；不要旧通用俊男脸换衣、网红尖下巴、动漫大眼、偶像磨皮、浓妆、夸张健美肌肉、照片截图、3D模型、塑料皮肤、像素画放大、黑色硬边或游戏UI。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸片侵蚀、白斑、划痕、碎布条、撕裂下摆、过密褶皱、斑驳脸或模糊眼睛；墨雾不能吞没人体和衣料。不要额外人物、多视图、拼贴分格、脸部特写框、无依据新增肢体和伤残、手物融合、错接手腕、悬空器物、头足或器物端点裁切。不要日式刀服、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、近现代物品、汉式交领左衽或水平镜像。不要裸露、透明衣料、性感化、血腥特写、恶搞或丑化。不要光龙、法阵、发光武器、粒子特效、强泛光、强逆光、复杂背景、题款、印章、标签、logo或装饰水印；保留工具原有溯源标识与元数据。
   references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 第一参考仅同性别项目低饱和色卡、柔和左上光与连续写实设色品质；本会话已实际view并核对SHA。没有本人身份原图，不能借此图人物面孔、年龄、发式、体型、衣装、兵器或倾头角度；新面貌按本稿逐人原创。当前基线状态为approved，不变更其审批。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二参考仅背景：暖浅灰纸底、极淡水墨远山薄雾和留白；已实际view并复核SHA。不取王语嫣脸、性别、年龄、头发、体态、衣装或倾头。背景墨痕不得进入人物和器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T20:55:38.549910+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-cc28679f-8ce2-42ec-8776-9ed27d138217.png
+  - path: .agents/coord/_lines/novel-fix-1/before/24_por_npc_huiyueshi__ch04_prime_base.png
+    sha256: c0af1d1ec72b26dbd118d1dd40aba5ceb73dd99981ca884b72144f74f8347e63
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  effort: ultra
+  created: '2026-10-04T02:44:03.134886-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_24_r1.png
   size: 1024x1536
   mode: RGB
-  sha256: c0af1d1ec72b26dbd118d1dd40aba5ceb73dd99981ca884b72144f74f8347e63
+  sha256: e56542a4ca16e71481b6d83ea6b986690f978672511d4f9afc999a1a34de7dba
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_huiyueshi__ch04_prime_base/prompt-7d5165c87298171a9940d66c43d88c08d1350dc47b457ee5f392041e317429b4.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_huiyueshi__ch04_prime_base/manifest-0c493a6f475dae1560bedc33fee2f2aa60d04a0fc57a217aae315907777bc606.yaml
-    png: null
+    png: .agents/coord/_lines/novel-fix-1/before/24_por_npc_huiyueshi__ch04_prime_base.png
+    sha256: c0af1d1ec72b26dbd118d1dd40aba5ceb73dd99981ca884b72144f74f8347e63
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_huiyueshi__ch04_prime_base.requests.json
   notes: '实际查看：辉月使为黑发浅灰眼的成年女性，正面头颈端正，米白淡紫完整衣袍与头巾、双足完整，双手分别持两枚短金属令牌，无明显多肢或重大结构问题。原生1024×1536 RGB不透明PNG保留原始字节。按作者先1张宽松自查存candidate，不声称严格原文复原或approved。偏差明确记录：面貌理想化偏年轻、妆感较明显，额饰耳饰和袍缘花纹比素净方案华丽，头巾局部轻透但躯干衣物完整覆盖；令牌露装饰刻纹且外形偏小牌而非纯无字厚令，火焰纹较大；背景亭花较丰富。双令与女使核心身份清楚，这些装备装饰细节留待用户集中审核。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-82 原著核对返修：波斯使者圣火令改两尺长黑牌'
+  source_size: 1024x1536
 - id: por_npc_yinsusu__ch04_prime_ziwei_base
   file: por_npc_yinsusu__ch04_prime_ziwei_base.png
   category: character/female
