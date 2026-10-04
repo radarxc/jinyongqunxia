@@ -517,50 +517,40 @@
   category: scene
   style: default
   subject: 武当太极传承（ch04_yitian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是张无忌的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是赵敏的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中张无忌、赵敏的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【画里谁是谁】这张插图画的是：武当太极剑传承。百岁以上、身形高大且骨架宽厚的张三丰，须发如银、面色红润、神情慈和，素朴旧青布道袍，不能缩成细瘦的通用仙翁，他正面朝向观者站在三清殿内，必须是人物自身左手持唯一一柄木制假倚天剑：这只握剑左手清楚位于画面右侧，木剑从画面右方向左方横伸；人物自身右手在画面左侧只捏剑诀、不握剑。请严格按人物解剖左右，不得镜像，不得把木剑放在画面左侧的右手；成年张无忌穿青灰道童布衣，空手静立凝神观看剑意，不与太师父持剑对练，青年赵敏换深蓝利落行旅男装站在殿门处观察。张三丰仅文字，不取不明演员脸；无发光太极圆盘、无浮空口诀。三人中全景、殿内木柱与石铺地，侧面天光；按传剑意而不死记招式的时刻构图，具体步法待三联纸本复核。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【要对齐的部分】张无忌、赵敏各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【只改】只将右后方门边赵敏的深蓝色袍改为白色男装长袍，胸前明显绣一个血红火焰标记。保留她的束发男冠、面容、身材、手和鞋。张无忌与张三丰、木剑、题字朱印、其他人和背景完全不动。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「太极初传」和小朱印必须原样保留，一笔不改、不增不减。
+    【原著依据】《倚天屠龙记》二十四 太极初传柔克刚：“一身白袍，袍上绣着个血红的火焰”；https://www.xuges.com/wuxia/jinyong/yttlj/176.htm
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-
-    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_cg_ch04_wudang_taiji.json'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/52_cg_ch04_wudang_taiji.png
+    sha256: aea6b043777b51c4ca60732acdbd4c4d84b60c38d194bed8fc8a09b1cf343625
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
     sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
     use: 对脸基线：作者审核通过的 por_npc_zhangwuji__ch04_youth_jiaozhu_base（张无忌），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png
     sha256: ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188
     use: 对脸基线：作者审核通过的 por_npc_zhaomin__ch04_youth_scene_lvliu（赵敏），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch04/cg_ch04_wudang_taiji.png
-    sha256: 779dfa070a5bdf18400c9681b083e54a0f9b26c3cb7e2bb639497d51f9bdbbad
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_wudang_taiji.779dfa07.png
-  - path: assets/default/scene/ch04/cg_ch04_wudang_taiji.png
-    sha256: c365c2cb8d8c0f86f27cfc518888c95a2b60642e1378a376fd4b87dff12affcf
-    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wudang_taiji.png
-  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
-    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T01:34:53.308003-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_42_56_r1.png
+  created: '2026-10-04T03:33:19.503554-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_52_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: aea6b043777b51c4ca60732acdbd4c4d84b60c38d194bed8fc8a09b1cf343625
+  sha256: e916471892712debe71f38d2db1e12190084d57ab99469baefa410a539ab00c3
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「太极初传」，实际字形「太极初传」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；保留远处院门边赵敏观察太极的神态，头巾与耳环不动，其他人逐像素不动。；质检：已打开对照：远景赵敏眉眼鼻唇对齐恢复base，保留观察太极的原神态、视线和尺度，原柔侧光自然；张三丰张无忌与题字头外像素一致，无接缝
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「太极初传」，实际字形「太极初传」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；保留远处院门边赵敏观察太极的神态，头巾与耳环不动，其他人逐像素不动。；质检：已打开对照：远景赵敏眉眼鼻唇对齐恢复base，保留观察太极的原神态、视线和尺度，原柔侧光自然；张三丰张无忌与题字头外像素一致，无接缝；AR-82 原著核对返修：武当太极插图同步赵敏白袍血红火焰
   previous_revision:
-    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wudang_taiji.png
-    sha256: c365c2cb8d8c0f86f27cfc518888c95a2b60642e1378a376fd4b87dff12affcf
-    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wudang_taiji.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/52_cg_ch04_wudang_taiji.png
+    sha256: aea6b043777b51c4ca60732acdbd4c4d84b60c38d194bed8fc8a09b1cf343625
   runner_job_records:
   - - cg_ch04_wudang_taiji.resume3r2
     - ok
