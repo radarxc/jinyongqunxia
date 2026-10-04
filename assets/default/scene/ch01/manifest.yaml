@@ -288,13 +288,13 @@
     use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T03:26:37.719663-07:00'
+  created: '2026-10-04T03:56:08.746892-07:00'
   source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_46_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 5549664799342ccd71b8f3445429ddc84b8430d594b4fb363dc38fa0a7a304f5
+  sha256: 3ab06bf467c78eeb45014a7800d803229b558c08ac177f5e9f3e531dd5d1721e
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：苏星河按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员）：苏星河重新贴回——同一 codex 输出，贴回区在方块边缘前渐隐，去掉上一版方块下沿的细接缝，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员，总审 10-03 复核后第二次收拾）：苏星河两鬓散发拢到耳后、不再遮脸，胡须再修短成灰须，向本人默认基础立绘再靠一步；只合成目标人物头部，其他人物与题字逐像素不变；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；保留低头思考棋局的眼神与朝向，闭口不笑。；质检：实际打开base和前后：虚竹同人眉眼鼻唇，俯视落子原专注神态与光向保留，不笑；邻人和棋局题字均蒙版外零变化，接缝自然；AR-82 原著核对返修：珍珑插图去木板改直接青石刻盘密集残局
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：苏星河按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员）：苏星河重新贴回——同一 codex 输出，贴回区在方块边缘前渐隐，去掉上一版方块下沿的细接缝，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员，总审 10-03 复核后第二次收拾）：苏星河两鬓散发拢到耳后、不再遮脸，胡须再修短成灰须，向本人默认基础立绘再靠一步；只合成目标人物头部，其他人物与题字逐像素不变；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；保留低头思考棋局的眼神与朝向，闭口不笑。；质检：实际打开base和前后：虚竹同人眉眼鼻唇，俯视落子原专注神态与光向保留，不笑；邻人和棋局题字均蒙版外零变化，接缝自然；AR-82 原著核对返修：珍珑插图去木板改直接青石刻盘密集残局；AR-82 原著核对返修：珍珑插图去木板改直接青石刻盘密集残局
   previous_revision:
     png: .agents/coord/_lines/novel-fix-1/before/46_cg_ch01_zhenlong_break.png
     sha256: d23a9f8afb3104ce7eb1ec0beb98642b9b1e8c485d52962a9b6766555a28ac66
