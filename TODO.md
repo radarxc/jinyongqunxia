@@ -214,6 +214,10 @@
     - 新比例 A 字样张 `_prod/.agents/coord/_lines/apose-ar79/apose_samples.jpg`：萧峰、郭靖男八头身，小龙女、王语嫣女九头身，原 base 头等比缩小合成。郭靖样张用的还是旧脸，已改 B（AR-87），重做时要换。
     - 人物身高草表 `_prod/.agents/coord/_lines/apose-ar79/heights.csv`（503 条），接入时按书中设定缩放。
     - 各换脸会话留下的 `todo_3d.md`（A 字图与 3D 按新脸重做）：`_lines/final-5/`、`zhangwuji-final/`、`canon-align/`、`guojing-final/`、`final-6/`。
+    - AR-85 两套通用模型（Tripo 子代理，10-04 01:00；男 bef08e9b、女 3b6ab305，共 170 点）的结论：
+      - Tripo 实际会把头放大 4–6%（男模 A 字图 7.99 → 成品 7.66 头身）。女模送图前我把 A 字图脖子以下拉长到 ×1.1644，成品 8.69 头身。重做时先用 `tools/model3d/stretch_apose.py` 拉长，绑骨前用 `tools/model3d/measure_heads.py` 量一遍，零点数。
+      - 原地动作的支撑脚后移约走 0.6、跑 2.1 模型单位/秒（模型高约 0.98）。引擎移动速度要按这个乘身高缩放来对上，不然会脚滑。Tripo 的 run 片段还会整段偏离原点约半个身高，已用 `tools/model3d/fix_anim_offset.py` 修了通用男女和 4 套主角（4dbaf660），以后新导出的也要过一遍。
+      - 男模瞳色偏灰蓝，女模鬓边两缕碎发贴成了肤色。没花点数去修，留到以后重做时一起改。
 
 密钥：只在主检出 `.env`（`tripo_key=…`），执行器运行时读成环境变量，不得进日志 / 报告 / manifest / 提交（`.env` 已进 `.gitignore`）。产物：`assets/default/model3d/<npc_id>/`（`model_rig.glb`、`anim_*.glb`、`preview.png`、manifest）；审核要点 `review_checks_model3d.md`。女主角没有三视图（可登记 ART-rig-sheet-f）。
 
