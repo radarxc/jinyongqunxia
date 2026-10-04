@@ -205,41 +205,43 @@
   category: character/female
   style: default
   subject: 李文秀·风雪夜的阿斯托（ch10_baima）
-  prompt: '【任务】这是一次极小的局部修图，不是重新创作。第 1 张参考图是李文秀的定稿立绘脸部特写（基线）；第 2 张是待修的原图。请以第 2 张为底稿，只做下面这一处修改，输出修改后的完整图片：2:3 竖幅，构图、尺寸比例与第 2 张完全一致。
+  prompt: 'Use case: precise-object-edit
 
-    【只改这一处】去掉李文秀右脸颊（画面左侧）颧骨下方那一块圆形的褐色斑点，那里换成和周围一样干净的皮肤（可保留一点自然的风吹日晒红晕）；基线里她脸上没有这块斑。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
 
-    【其余一律不动】人物的五官、脸型、表情、发式、头巾、衣服、姿势、手、其他人物、背景、光线、色调、题字与印章、笔触与画风都和第 2 张保持一致；不要重画、不要美化、不要改构图。
+    【只改】将李文秀本图由屋外雪地改为计家屋内火堆旁夺金银短剑制伏陈达海的取样。保持李文秀原头部位置、大小、角度、五官与原深蓝衣服、羊皮披肩。身体改为侧身护住画外苏普阿曼的方向，两手各拿一柄从陈达海腰间夺来的匕首尺度短剑（金柄、银柄各一），双臂向旁侧伸出，剑尖分别刺住旁侧陈达海的左右肩窝；只画陈达海局部肩背与受制双臂，不露他的脸，不需完整第二人，他原长剑下垂落势。表现被制住而非血腥：不画喷血、开放伤口。李文秀是主体，不能改成独自垂刀站立。原完整单人尺寸和视角保持，土屋木梁墙壁及小火堆可见，暖火光与冷窗光有原手绘笔触。
 
-    【画风】项目的写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。修过的地方要和周围皮肤的质感、光影自然衔接。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【不要】不要新增任何东西；不要文字、水印；不要水平镜像。'
-  negative: 不要新增任何东西；不要文字、水印；不要水平镜像。
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_02_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png
-    sha256: f310c81427c1eb88f90bb9a47125e11f40b8365169b2336cbce38175b1b16adf
-    use: 对脸基线：作者审核通过的 por_npc_liwenxiu__ch10_youth_astuo_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.png
-    sha256: 3d6eb5b927e6ea1ba1500e637af44f6ba9b43aee337929dc06af2bc1b7bd7328
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.3d6eb5b9.png
-  tool: codex exec · image_gen（AR-53 局部小修：去掉李文秀右脸颊（画面左侧）颧骨下方那一块圆形的褐色斑点，那…；上传基线脸部特写 + 原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:17:01-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.x1.png
+    sha256: 71d858c948490fb1cd4865a5f9e27ed66dd9566ad7a28a48545c208fe24f5a11
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.71d858c9.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:02:27-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_02_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 71d858c948490fb1cd4865a5f9e27ed66dd9566ad7a28a48545c208fe24f5a11
+  sha256: 82e7e53cc2c7b1f2c885f357494dabeb48e07cf43c3d0f1c200ad112c9bc9aee
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_liwenxiu__ch10_youth_astuo_base（AR-53 / AR-56 总审：去掉右颊褐斑，其余不动）
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_liwenxiu__ch10_youth_astuo_base（AR-53 / AR-56 总审：去掉右颊褐斑，其余不动）；AR-82 原著核对返修：李文秀计家屋内夺双短剑制陈达海双肩；依据：- AR-82 返修依据：“插入了他左右肩窝”——《白马啸西风》第06章（三联版转载分章，计家屋内夺剑制陈达海）；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E7%99%BD%E9%A9%AC%E5%95%B8%E8%A5%BF%E9%A3%8E/%E7%AC%AC06%E7%AB%A0.md；执行：场景改为计家屋内火堆旁；先空手迎长剑，再从陈达海腰间夺金银小剑刺入其双肩；画出她护苏普、阿曼的方向及陈达海受制状态。保持作者认可面容。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.3d6eb5b9.png
-    sha256: 3d6eb5b927e6ea1ba1500e637af44f6ba9b43aee337929dc06af2bc1b7bd7328
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.3d6eb5b9.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.71d858c9.png
+    sha256: 71d858c948490fb1cd4865a5f9e27ed66dd9566ad7a28a48545c208fe24f5a11
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.71d858c9.entry.yaml
 - id: por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure
   file: por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.png
   category: character/female
