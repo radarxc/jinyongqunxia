@@ -106,3 +106,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_zhaomin__ch04_youth_scene_wudang.prepared.json`。
+
+## 原著依据
+
+- 《倚天屠龙记》二十四 太极初传柔克刚：“一身白袍，袍上绣着个血红的火焰”；https://www.xuges.com/wuxia/jinyong/yttlj/176.htm
+- AR-82 返修约束（本节优先于历史提示词）：只把灰蓝花纹锦袍换为白色男装长袍，袍上胸前明显绣一个血红色火焰标记（刺绣、非真实燃烧）。保留原束发男冠、脸、折扇、手、体型、袍服衣褶、鞋与背景原样。
