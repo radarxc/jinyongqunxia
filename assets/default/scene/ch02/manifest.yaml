@@ -317,28 +317,30 @@
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（作者 AR-53 总审返修）黄蓉的脸要像基线（作者选定的新版）：圆润饱满的鹅蛋脸、两颊有肉、下巴小巧圆润不尖，一双又大又亮的杏眼（不要细长眼、不要上挑的丹凤眼），眉毛细长柔和，小巧挺直的鼻子，嘴角带甜笑或按原图情绪，十九岁的少女感（成年），不要长脸、高颧骨和成熟感。其他人的脸不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
     sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
     use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_ironspear_truth.png
-    sha256: 2944e64e742eb00725e07a931bd9a751fa150f8a9c740b3482db338f049aca56
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.2944e64e.png
+    sha256: c466628f2a15c983e84a5a45dc9cf627591b30b29856f921c54cbffc36998e88
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.c466628f.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T16:28:35-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_ironspear_truth.s1.png
+  created: 2026-10-03T17:21:51-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_ironspear_truth.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: c466628f2a15c983e84a5a45dc9cf627591b30b29856f921c54cbffc36998e88
+  sha256: 1faab80c5ca90c980abdca1386a2202aacd5075ab59e95a23cf6151c0c8c039d
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「铁枪辨冤」，实际字形「铁枪辨冤」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「铁枪辨冤」，实际字形「铁枪辨冤」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.2944e64e.png
-    sha256: 2944e64e742eb00725e07a931bd9a751fa150f8a9c740b3482db338f049aca56
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.2944e64e.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.c466628f.png
+    sha256: c466628f2a15c983e84a5a45dc9cf627591b30b29856f921c54cbffc36998e88
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.c466628f.entry.yaml
   runner_job_records:
   - - cg_ch02_ironspear_truth.resume3r2
     - ok
