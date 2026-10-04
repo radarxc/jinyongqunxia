@@ -51,6 +51,18 @@ full_generation_references:
 title_text: 江湖归去
 title_method: generated
 identity_revision: 阿珂AR-84作者选A（ff0e4020）；其余七人使用现行base；八人分别局部合成
+generation_job: cg_ch08_retirement_choice.ar75_full1
+generation_attempts: 1
+identity_patch_jobs:
+- cg_ch08_retirement_choice.ar75_face_weixiaobao1
+- cg_ch08_retirement_choice.ar75_face_shuanger1
+- cg_ch08_retirement_choice.ar75_face_ake1
+- cg_ch08_retirement_choice.ar75_face_suquan1
+- cg_ch08_retirement_choice.ar75_face_fangyi2
+- cg_ch08_retirement_choice.ar75_face_mujianping2
+- cg_ch08_retirement_choice.ar75_face_zengrou1
+- cg_ch08_retirement_choice.ar75_face_jianning1
+title_verified: 已打开整图逐字确认江／湖／归／去与朱印；局部合成后题字像素完全一致
 ---
 
 ## 原著依据
@@ -88,3 +100,11 @@ identity_revision: 阿珂AR-84作者选A（ff0e4020）；其余七人使用现�
 - `reference_upload`列出八人现行base，供身份追溯；每次runner调用最多5张参考。整图阶段只传韦小宝、双儿、阿珂、苏荃4张。
 - 构图通过后，八人逐一使用本人base头部特写与手工坐标圈定的场景头部裁块；局部编辑后羽化贴回，八个头部以外像素保持整图原样。
 - 按AR-53打开八组base脸／图中脸对照核验；按AR-75核验八人、动作、健康状态、家庭关系与题字。
+
+## AR-75 实际验收记录
+
+- 韦小宝与七位夫人八人均在：后方阿珂、韦小宝、双儿、苏荃；前方曾柔、建宁、方怡、沐剑屏。
+- 八人各自按现行base完成单人头部局部合成；逐组打开base脸／图中脸对照检查。
+- 八个头部以外像素变化数为0；原生毛笔题字「江湖归去」和朱印保持整图生成结果。
+- 场景、动作、健康状态、亲密家庭关系及各人不同神态均已目检；母亲与孩子安排于遮篷舱内，不另外露脸。
+- 完整对照表：`.agents/coord/_lines/cg-retirement/retirement.jpg`；像素验证：同目录`pixel_checks.json`。
