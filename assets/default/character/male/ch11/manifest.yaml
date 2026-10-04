@@ -592,44 +592,84 @@
   category: character/male
   style: default
   subject: 逍遥子 npc_xiaoyaozi11 ch11_yuanyang
-  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（逍遥子的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改逍遥子的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+  prompt: 'Create a premium REALISTIC Chinese wuxia full-body character illustration, with an airy, extremely pale INK-WASH BACKGROUND. Render one beautiful, believable, individually recognizable human with continuous anatomy, finely resolved eyes and natural skin, anatomically legible hands and feet, connected soft light and shade, fully opaque intact clean cloth, precise tailoring and clean sewn hems. Use refined hand-painted realism, never a photograph or a 3D model. Skin, hair, clothes and shoes must remain solid, connected and readable. Paper texture, dry ink and loose atmospheric marks belong exclusively BEHIND the human figure. Prefer a few broad weight-bearing folds to tiny shards or ribbons; faded economical clothes remain complete, washed and cared for. Preserve any specifically required small neatly sewn repair without making a patchwork costume. Character age, disability, social role and equipment are established by the written facts, not by the quality-reference man.
 
-    【人物】逍遥子：「太岳四侠」之首，约五十岁，疲倦而故作镇定、爱装高人。
 
-    【新神态（按年龄与性格定，不要千篇一律的平静脸）】故作高深的淡笑：眼皮微垂，嘴角一丝自以为高深的淡笑。
+    REFERENCE ROLES: There is no existing image of this subject. Establish this character’s FIRST realistic visual identity from the written facts below. Image 1 is Xiao Feng ONLY as a quality demonstration for continuous realistic human rendering; it supplies no identity, gender, age, costume, body type, action or dragon. Image 2 is ONLY the male project muted color palette. Image 3 is ONLY the user-requested pale ink-wash background. All faces, bodies, poses and clothes in these references must be disregarded when designing this new subject.
 
-    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
 
-    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+    BASE ASSET: por_npc_xiaoyaozi11__ch11_prime_road_base
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    CHARACTER FACTS:
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+    身份与阶段：太岳四侠之首，松林初次拦镖、尚未受肩伤
+
+    年龄与体貌：中年男子；瘦长脸、面颊略凹、肩窄背薄，神情疲倦而故作镇定，肤色偏苍不呈尸灰色
+
+    服饰与发式：旧灰绿长衫、褐色布带、打小补丁的长裤和旧布鞋，衣料略粗且有局部磨损，仍完整遮蔽身体；清式剃发留辫，辫发简单梳拢，深灰小布帽；不是道士，不梳逍遥派高髻
+
+    兵器与标志物：精铁旱烟管、旧衣与病弱体态；只属于太岳四侠逍遥子
+
+    气质与姿态：两足踏稳，肩膀微收，左手轻按胸前衣襟，眼皮半敛似在维持前辈气派，烟管与身体分开
+
+    原著概括：病弱外观、旧衣与旱烟管为原著概括（待考）；不照搬夸张辱称
+
+    美术补足：瘦长脸细部、衣物灰绿配色、补丁分布与未点燃烟管的静立处理
+
+
+    CHARACTER-SPECIFIC CONSTRUCTION:
+
+    只画《鸳鸯刀》太岳四侠之首逍遥子，松林第一次拦镖、尚未受肩伤；绝非《天龙八部》逍遥派创始人或道士。中年瘦长脸、略凹面颊、窄肩薄背，偏苍但自然有血色的皮肤，眼皮半敛，疲倦而努力维持镇定和前辈气派；病弱只以体态体现，不添加诊断或羞辱性夸张。清式剃发、普通后辫、深灰小布帽。旧灰绿长衫、褐布带、长裤仅少量小而整齐缝好的补丁、旧布鞋；旧衣洗净、完整、有连续清晰的缝边，绝不变成碎布。右手低持一根精铁旱烟管，细杆、烟锅与烟嘴结构准确连通且与身体分开，腰侧一个小素布烟袋；烟管不点燃无烟无火。左手轻按胸前衣襟、两足稳稳踏地、肩微收。
+
+
+    COMPOSITION AND DELIVERY: Single subject, one view, calm complete full-body base portrait, vertical 2:3 PNG with target 2048×3072; native generated PNG bytes and actual dimensions must be preserved by the production workflow. Eye-level neutral perspective, near frontal with a slight natural turn; comfortable margins around hair, both hands, clothing, both shoes and every prop tip. Use natural proportions and overall completeness instead of a rigid height percentage. Soft diffuse upper-left light, no theatrical rim light. Opaque warm pale-grey paper fills the canvas, with at most an almost imperceptible distant ink wash and generous empty space, no identifiable episode, landscape landmark, architecture, floor scene or added contact shadow. Keep the clean human silhouette separate from that background. No writing, decorative seal or new watermark; retain tool provenance. Traditional Han crossed collars close to the wearer’s right with the wearer’s left panel over the right; an explicitly
+    Qing round right-fastening robe is not changed into a Song/Ming crossed collar.
+
+
+    EXCLUSIONS: No fragmented, broken, translucent or erased human figure; no dry-brush gaps, white flecks, paper erosion, dirty blotches or crackle on skin or clothing. No shredded fabric, frayed noisy hems, torn ribbons, holes, randomly layered scraps, armor made of fragments or excessive patchwork. No photorealistic photographic pores, plastic smoothing, oily 3D shine, anime eyes, doll face, generic copied face, celebrity portrait, beauty-filter skin or exaggerated muscles. No copying Xiao Feng’s face, beard, physique, headwrap, costume, dragon or palm pose; no copying palette/background reference identities. No extra people, duplicate limbs or props, fused fingers, broken wrists, dislocated joints, floating equipment, cropped head or feet, mirrored identity marks, unclear prop connections, transparent clothes, sexualized pose, gratuitous blood, modern items, foreign fantasy armor, katana, Japanese collar or unknown sect symbols. No text, calligraphy, labels, measurements, UI, split panels,
+    signatures, seals, logos or new decorative watermarks. Preserve tool provenance. 不要天龙逍遥派、白发仙人、道冠、高髻、拂尘、仙风长白须、肩伤、绷带、新伤、阴森尸灰肤色、烟雾火光、石块或流星锤；不要为旧衣增加破洞破边。'
+  negative: No fragmented, broken, translucent or erased human figure; no dry-brush gaps, white flecks, paper erosion, dirty blotches or crackle on skin or clothing. No shredded fabric, frayed noisy hems, torn ribbons, holes, randomly layered scraps, armor made of fragments or excessive patchwork. No photorealistic photographic pores, plastic smoothing, oily 3D shine, anime eyes, doll face, generic copied face, celebrity portrait, beauty-filter skin or exaggerated muscles. No copying Xiao Feng’s face, beard, physique, headwrap, costume, dragon or palm pose; no copying palette/background reference identities. No extra people, duplicate limbs or props, fused fingers, broken wrists, dislocated joints, floating equipment, cropped head or feet, mirrored identity marks, unclear prop connections, transparent clothes, sexualized pose, gratuitous blood, modern items, foreign fantasy armor, katana, Japanese collar or unknown sect symbols. No text, calligraphy, labels, measurements, UI, split panels,
+    signatures, seals, logos or new decorative watermarks. Preserve tool provenance. 不要天龙逍遥派、白发仙人、道冠、高髻、拂尘、仙风长白须、肩伤、绷带、新伤、阴森尸灰肤色、烟雾火光、石块或流星锤；不要为旧衣增加破洞破边。
   references:
-  - path: assets/default/character/male/ch11/por_npc_xiaoyaozi11__ch11_prime_road_base.png
-    sha256: d31d3fc08679d16ab3e91895e7c5a481ee257d81b13f788d61f19a532e276ba1
-    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaoyaozi11__ch11_prime_road_base.d31d3fc0.png
-  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
-  model: gpt-6.1-sol
-  effort: xhigh
-  created: 2026-10-03T21:13:59-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaoyaozi11__ch11_prime_road_base.x1.png
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+    use: 仅参考新版萧峰连贯精细的写实人物绘法、自然皮肤与双手、完整衣料和柔光体积；绝不复制其脸、男性性别、年龄、胡须、魁梧体型、发型、衣装、掌势、金龙或场景。该参考不提供本角色身份。
+    sha256: 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922.png
+    status_at_input: candidate
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 仅取对应性别项目基线的低饱和国风色卡；不借用面容、年龄、身体、发式、服装、兵器、姿态、碎墨笔触或皮肤质地；用户授权使用现有基线，原审批状态保持。
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
+    status_at_input: candidate
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 只取用户图背景的淡水墨、暖浅灰纸底、空气感和留白；背景墨气留在人物背后。绝不复制人物、面容、青白衣装、披帛或把纸纹碎墨覆盖到皮肤和衣服。基础立绘不照搬具体山水场景。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-01T11:19:07.454317+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-a03ca828-f1cb-4c9d-a6a3-6110772f2012.png
   size: 1024x1536
   mode: RGB
-  sha256: 9d70d6ca6f7284bd31443379caefb3e9c9889f9934b5d58305b22f90a6f81f3d
+  sha256: d31d3fc08679d16ab3e91895e7c5a481ee257d81b13f788d61f19a532e276ba1
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_character_realism_20261001
   realism_revision: user_character_realism_20261001
   counts_as_complete: true
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaoyaozi11__ch11_prime_road_base.d31d3fc0.png
-    sha256: d31d3fc08679d16ab3e91895e7c5a481ee257d81b13f788d61f19a532e276ba1
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaoyaozi11__ch11_prime_road_base.d31d3fc0.entry.yaml
+    prompt: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_xiaoyaozi11__ch11_prime_road_base/prompt-8843971218e48e6bc9034f21c454af173e9e301757475e6374c596f3186eaf06.md
+    manifest: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_xiaoyaozi11__ch11_prime_road_base/manifest-a922b4629dc715dd6a63fd595df9ce05be9120cad27dc633c2ae7d69207797c7.yaml
+    png: null
   request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_xiaoyaozi11__ch11_prime_road_base.requests.json
-  notes: 实际查看两张有效候选，选1。第一请求曾因exec-server transport closed未能读取参考，无图返回；核对参考SHA及本机读写后仅补发候选1，未重复候选2。两张均为《鸳鸯刀》太岳四侠中年逍遥子，瘦长脸、薄身板、半敛疲倦眼神，灰绿旧长衫与少量整齐补丁，无道冠白发仙人造型、无肩伤。1的右手低持旱烟管与身体分离更清楚，烟锅、细杆、烟嘴完整，无烟火；左手按衣襟、双脚稳立。候选略显五十岁上下、胡须比短茬长，布纹背景较浓但人物连续完整；宽松可用candidate待终审。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角）·10 号出图员：故作高深的淡笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
-  source_size: 1024x1536
+  notes: '实际查看两张有效候选，选1。第一请求曾因exec-server transport closed未能读取参考，无图返回；核对参考SHA及本机读写后仅补发候选1，未重复候选2。两张均为《鸳鸯刀》太岳四侠中年逍遥子，瘦长脸、薄身板、半敛疲倦眼神，灰绿旧长衫与少量整齐补丁，无道冠白发仙人造型、无肩伤。1的右手低持旱烟管与身体分离更清楚，烟锅、细杆、烟嘴完整，无烟火；左手按衣襟、双脚稳立。候选略显五十岁上下、胡须比短茬长，布纹背景较浓但人物连续完整；宽松可用candidate待终审。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+  
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（ef1242c8）'
 - id: por_npc_yanhe11__ch11_base
   file: por_npc_yanhe11__ch11_base.png
   category: character/male
@@ -716,46 +756,84 @@
   category: character/male
   style: default
   subject: 周威信 npc_zhouweixin ch11_yuanyang
-  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（周威信的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改周威信的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+  prompt: 'Create a premium REALISTIC Chinese wuxia full-body character illustration, with an airy, extremely pale INK-WASH BACKGROUND. Render one beautiful, believable, individually recognizable human with continuous anatomy, finely resolved eyes and natural skin, anatomically legible hands and feet, connected soft light and shade, fully opaque intact clean cloth, precise tailoring and clean sewn hems. Use refined hand-painted realism, never a photograph or a 3D model. Skin, hair, clothes and shoes must remain solid, connected and readable. Paper texture, dry ink and loose atmospheric marks belong exclusively BEHIND the human figure. Prefer a few broad weight-bearing folds to tiny shards or ribbons; faded economical clothes remain complete, washed and cared for. Preserve any specifically required small neatly sewn repair without making a patchwork costume. Character age, disability, social role and equipment are established by the written facts, not by the quality-reference man.
 
-    【人物】周威信：威信镖局总镖头「铁鞭镇八方」，约五十岁，老于世故、谨小慎微，满口「江湖上有言道」。
 
-    【新神态（按年龄与性格定，不要千篇一律的平静脸）】世故谨慎：眼神警惕地打量四周，嘴角挂着赔小心的笑。
+    REFERENCE ROLES: There is no existing image of this subject. Establish this character’s FIRST realistic visual identity from the written facts below. Image 1 is Xiao Feng ONLY as a quality demonstration for continuous realistic human rendering; it supplies no identity, gender, age, costume, body type, action or dragon. Image 2 is ONLY the male project muted color palette. Image 3 is ONLY the user-requested pale ink-wash background. All faces, bodies, poses and clothes in these references must be disregarded when designing this new subject.
 
-    【本张另外要求】上一版仍像警惕的严肃脸，赔小心的笑不明显。保持原图转头方向与警惕视线，只让双侧嘴角清楚上扬，双唇自然略分可微露少量上齿，显出世故谨慎的赔笑；不是豪迈开怀笑，不能只微动嘴角。原脸型骨相五官、胡须皱纹年龄、帽子发辫衣饰、手势兵器姿势、构图背景全部保持。
 
-    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+    BASE ASSET: por_npc_zhouweixin__ch11_base
 
-    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+    CHARACTER FACTS:
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    身份与阶段：威信镖局总镖头，受官府委托押刀且家眷仍被挟制的官道阶段
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+    年龄与体貌：中年男子，视觉约四十岁（原创扩展）；宽额方脸、鼻翼稍宽、眼角有行旅细纹、肩背厚实而腰腹略宽，眼神审慎、嘴角收紧
+
+    服饰与发式：深靛清式长袍配灰褐短褂、结实皮布混合窄腰带、长裤和磨旧布靴，袖口收紧，镖局标识只用无字素布结；清式剃发留辫、深色小便帽，辫尾压在后肩外，不戴顶戴花翎
+
+    兵器与标志物：铁鞭、封口暗器囊；押刀不等于自用宝刀
+
+    气质与姿态：双足落地、身体微侧像在护住身后货物，左手半抬示意稍候，肩颈绷而不缩
+
+    原著概括：押刀家眷受制、铁鞭与江湖戒心为原著概括；外号字形不在图上写，铁鞭数目与细形仍（待考）
+
+    美术补足：宽额方脸、略宽腰腹、深靛短褂组合、单根铁鞭展示与护货手势
+
+
+    CHARACTER-SPECIFIC CONSTRUCTION:
+
+    周威信是威信镖局总镖头，受官府委托押送鸳鸯刀且家眷仍被挟制；取官道阶段，不画事后家眷获救或授官奖赏。约四十岁视觉原创骨相：宽额方脸、鼻翼稍宽、自然眼角行旅细纹，肩背厚实、腰腹略宽，嘴角收紧而眼神审慎，不奸笑不卑屈。深靛清式长袍配灰褐短褂、结实皮布混合窄腰带、完整长裤与磨旧但整洁的布靴，袖口收束，无字素布结表示职业。清式前部剃发、后部实辫，深色小便帽，辫尾伏在后肩外，不戴顶戴花翎。右手持一根刚性精铁鞭，明确是有节棱的短棒状兵器，不是软皮鞭或链鞭，铁鞭低垂且末端完整入画，手柄接杆连续。腰间仅一只封口小暗器囊，不展示飞镖。左手半抬作稍候手势；双脚稳、身体稍侧像护住身后画外货物，肩颈紧但不缩。
+
+
+    COMPOSITION AND DELIVERY: Single subject, one view, calm complete full-body base portrait, vertical 2:3 PNG with target 2048×3072; native generated PNG bytes and actual dimensions must be preserved by the production workflow. Eye-level neutral perspective, near frontal with a slight natural turn; comfortable margins around hair, both hands, clothing, both shoes and every prop tip. Use natural proportions and overall completeness instead of a rigid height percentage. Soft diffuse upper-left light, no theatrical rim light. Opaque warm pale-grey paper fills the canvas, with at most an almost imperceptible distant ink wash and generous empty space, no identifiable episode, landscape landmark, architecture, floor scene or added contact shadow. Keep the clean human silhouette separate from that background. No writing, decorative seal or new watermark; retain tool provenance. Traditional Han crossed collars close to the wearer’s right with the wearer’s left panel over the right; an explicitly
+    Qing round right-fastening robe is not changed into a Song/Ming crossed collar.
+
+
+    EXCLUSIONS: No fragmented, broken, translucent or erased human figure; no dry-brush gaps, white flecks, paper erosion, dirty blotches or crackle on skin or clothing. No shredded fabric, frayed noisy hems, torn ribbons, holes, randomly layered scraps, armor made of fragments or excessive patchwork. No photorealistic photographic pores, plastic smoothing, oily 3D shine, anime eyes, doll face, generic copied face, celebrity portrait, beauty-filter skin or exaggerated muscles. No copying Xiao Feng’s face, beard, physique, headwrap, costume, dragon or palm pose; no copying palette/background reference identities. No extra people, duplicate limbs or props, fused fingers, broken wrists, dislocated joints, floating equipment, cropped head or feet, mirrored identity marks, unclear prop connections, transparent clothes, sexualized pose, gratuitous blood, modern items, foreign fantasy armor, katana, Japanese collar or unknown sect symbols. No text, calligraphy, labels, measurements, UI, split panels,
+    signatures, seals, logos or new decorative watermarks. Preserve tool provenance. 不要鸳鸯双刀、自持宝刀、开箱刀匣、第二铁鞭、软皮鞭或链条鞭、发射暗器、车马镖旗、家眷群像、获救后官服、顶戴花翎、跪伏或奸笑。'
+  negative: No fragmented, broken, translucent or erased human figure; no dry-brush gaps, white flecks, paper erosion, dirty blotches or crackle on skin or clothing. No shredded fabric, frayed noisy hems, torn ribbons, holes, randomly layered scraps, armor made of fragments or excessive patchwork. No photorealistic photographic pores, plastic smoothing, oily 3D shine, anime eyes, doll face, generic copied face, celebrity portrait, beauty-filter skin or exaggerated muscles. No copying Xiao Feng’s face, beard, physique, headwrap, costume, dragon or palm pose; no copying palette/background reference identities. No extra people, duplicate limbs or props, fused fingers, broken wrists, dislocated joints, floating equipment, cropped head or feet, mirrored identity marks, unclear prop connections, transparent clothes, sexualized pose, gratuitous blood, modern items, foreign fantasy armor, katana, Japanese collar or unknown sect symbols. No text, calligraphy, labels, measurements, UI, split panels,
+    signatures, seals, logos or new decorative watermarks. Preserve tool provenance. 不要鸳鸯双刀、自持宝刀、开箱刀匣、第二铁鞭、软皮鞭或链条鞭、发射暗器、车马镖旗、家眷群像、获救后官服、顶戴花翎、跪伏或奸笑。
   references:
-  - path: assets/default/character/male/ch11/por_npc_zhouweixin__ch11_base.png
-    sha256: 6d1cc4449d1c62d5cd17de19e044f0c6451cbc785417a758965c915a92ead62a
-    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhouweixin__ch11_base.6d1cc444.png
-  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
-  model: gpt-6.1-sol
-  effort: xhigh
-  created: 2026-10-03T21:16:25-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhouweixin__ch11_base.x2.png
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
+    use: 仅参考新版萧峰连贯精细的写实人物绘法、自然皮肤与双手、完整衣料和柔光体积；绝不复制其脸、男性性别、年龄、胡须、魁梧体型、发型、衣装、掌势、金龙或场景。该参考不提供本角色身份。
+    sha256: 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922.png
+    status_at_input: candidate
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 仅取对应性别项目基线的低饱和国风色卡；不借用面容、年龄、身体、发式、服装、兵器、姿态、碎墨笔触或皮肤质地；用户授权使用现有基线，原审批状态保持。
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
+    status_at_input: candidate
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 只取用户图背景的淡水墨、暖浅灰纸底、空气感和留白；背景墨气留在人物背后。绝不复制人物、面容、青白衣装、披帛或把纸纹碎墨覆盖到皮肤和衣服。基础立绘不照搬具体山水场景。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/realism-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-01T11:24:48.626758+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-2eed1581-1db5-47c0-b0be-7ab6962cc38d.png
   size: 1024x1536
   mode: RGB
-  sha256: a40f6f9fe6baaff7c540b8f6ed3f6b3e3d6813df6620a57e816721903e18bc35
+  sha256: 6d1cc4449d1c62d5cd17de19e044f0c6451cbc785417a758965c915a92ead62a
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_character_realism_20261001
   realism_revision: user_character_realism_20261001
   counts_as_complete: true
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhouweixin__ch11_base.6d1cc444.png
-    sha256: 6d1cc4449d1c62d5cd17de19e044f0c6451cbc785417a758965c915a92ead62a
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhouweixin__ch11_base.6d1cc444.entry.yaml
+    prompt: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_zhouweixin__ch11_base/prompt-78327447471b2191793048b8c4ad1a5d6f3c5b2dac8ed464dd2876a833a3afee.md
+    manifest: .agents/coord/portrait-generation/realism-20261001/backups/por_npc_zhouweixin__ch11_base/manifest-a4bef4cfb8ead90a6ec803a4c27e7c388cfecc4eab460ff215c5912834c1ca77.yaml
+    png: null
   request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_zhouweixin__ch11_base.requests.json
-  notes: 实际比较两张，选2。中年宽额方脸、厚实肩背和审慎回望的总镖头形象明确；右手一根刚性有节棱铁鞭、左手稍候手势、封口小囊与清式后辫均清楚，没有双刀、软鞭或官服。2铁鞭末端和整根连接更明确、左手五指可辨、前侧剃发区显现，双足稳立、布料完整。与文本相比身形略精壮而腰腹不宽，灰褐外层成无袖短坎肩、背景较浓；非阻塞偏差登记，按宽松标准candidate。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角）·10 号出图员：世故谨慎的赔笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
-  source_size: 1024x1536
+  notes: '实际比较两张，选2。中年宽额方脸、厚实肩背和审慎回望的总镖头形象明确；右手一根刚性有节棱铁鞭、左手稍候手势、封口小囊与清式后辫均清楚，没有双刀、软鞭或官服。2铁鞭末端和整根连接更明确、左手五指可辨、前侧剃发区显现，双足稳立、布料完整。与文本相比身形略精壮而腰腹不宽，灰褐外层成无袖短坎肩、背景较浓；非阻塞偏差登记，按宽松标准candidate。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+  
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（ba34c988）'
 - id: por_npc_zhujue__ch11_m_base
   file: por_npc_zhujue__ch11_m_base.png
   category: character/male
