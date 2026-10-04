@@ -2462,3 +2462,7 @@
       - 坑：停 M1 任务的执行器重起时，它腾出的池位会被别的等位任务马上拿走。这次是非 M1 的 move-onhit 返修。已停 move-onhit 的返修让位（刚起约 2 分钟，工作区保留，返修说明存 devsup_resume_r2.md，状态记 PENDING），代码池有位再续作。
     - 非 M1、暂停待续：TOOL-ops-dispatch-dedupe（PENDING）、ENG-move-onhit-effects（PENDING）、ENG-dialogue-runtime-lazy（PENDING，工作区已撤）。
     - 代码池（03:20）：16e、generic-model、battle-modules-lazy、ch00-encounter-wiring；18c 在等。
+  - **10-04 03:20–03:40 开发监督**：
+    - **check:perf**（03:31，负载约 9–11）全绿，8 个用例：rig 程序步态最小 P95 0.372 ms（< 0.80），片段模式 0.299 ms（< 1.0），挪进来的 bench 与存储计时断言都过。00:23 那次因为等不到低负载、在负载 34 下跑，rig 门报 0.905，属负载失真，作废。
+    - **TOOL-map-terrain 合入**（03:35，第 4 轮返修过 COVERAGE 门与审核）。ART-map-inkkit-tiles 00:58 已合入，至此 TOOL-map-compose 的依赖齐了，起跑（素材池）。
+    - CONTENT-apparel-data-3 合入，重建出图总索引（c505833c），第 4 批起跑。
