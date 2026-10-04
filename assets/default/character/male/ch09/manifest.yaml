@@ -1349,61 +1349,44 @@
   category: character/male
   style: default
   subject: 狄云·荆州铁狱（ch09_liancheng）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
-    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    输出和原图同样比例的完整画面。
 
-    【主角】狄云；憨厚朴实、历尽冤屈仍善良、疲惫而倔强；约二十四岁成年骨架。原创新脸设计：偏长宽颊、厚实下颌、低而平的浓眉、窄内双深眼、宽实鼻头和不完全对称的宽唇，日晒深肤色；只借剧照大致脸型，五官重新理想化为经典武侠游戏插画，不照搬演员。
+    只改身上束缚与右手（人物自身右手在画面左侧）：双肩各一条铁链从衣缝垂下，连接到新增两腕铁铐和双踝镣链，锁链真实连在身上不能只在墙边悬挂；不表现穿刺血肉。右手旧布包扎成残掌、无拇指也无其余四指，原外露指头全部去掉，仅残掌轮廓和包扎布，左手完整持碗原样。保持头脸发式、完整衣服、姿势、碗及牢室。
 
-    【本期】荆州铁狱；同脸瘦削，眼神由委屈转坚毅；长年囚困散乱长发和清代旧辫痕，不提前借宝象衣剃光；灰褐粗布囚衣，右手五指旧残、旧布包覆无血腥；左手握粗陶水碗。
+    【原著依据】《连城诀》二《牢狱》：“两条铁链从自己双肩垂了下来”（https://xuges.com/WUXIA/jinyong/lcj/009.htm）；《连城诀》二《牢狱》：“右手的五根手指已被人削落”（https://xuges.com/WUXIA/jinyong/lcj/008.htm）
 
-    【阶段背景】斑驳湿石墙、铁栏透入冷光，脚边稻草，完整站立全身。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    【考据边界】lc2；发式具体外观待考，囚服配色原创扩展。；第一参考为本轮新 base，只锁定成年脸部身份。；配色、镜头、成人化、具体站姿是（原创扩展）。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
 
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
-  negative: ''
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
-    sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
-    uploaded_sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03a.jpg
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still0.jpg
-    sha256: 619f5ffe81a84df98c6641516fe44e30d778a5287d55339b7cad83be9f06b253
-    uploaded_sha256: aed8c61ad1afb02c58ba7c97267148f1a5ca96c5db14a6f9bebee4c80b36e76f
-    use: 影视造型、衣饰与气质；不复制演员五官
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_38-1.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_game.jpg
-    sha256: 350da7fd51afb0e958376939d132e69883e39b8d1353b1b34794af269a57cb54
-    uploaded_sha256: a432d532a497dca4c3ca5598f3e97da7dffba50cd91d246d3b209d99f3c4eb2d
-    use: 经典游戏绘画风格
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  created: 2026-10-02T23:59:09-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_diyun__ch09_youth_scene_jingzhou_prison.png
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_jingzhou_prison.png
+    sha256: be3e92d94fd73d5934cf75ef8bdfa4f86bd347da609c3bb619a42527706ef437
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_diyun__ch09_youth_scene_jingzhou_prison.be3e92d9.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T02:38:18-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_23_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: be3e92d94fd73d5934cf75ef8bdfa4f86bd347da609c3bb619a42527706ef437
+  sha256: 63191ee70c74f5d243da7ad25872f16b27d01947ce2c9a4a67a10c1eae380aeb
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-82 原著核对返修：狄云荆州牢狱肩腕脚锁链及右手五指全失
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_diyun__ch09_youth_scene_jingzhou_prison.retry3.r1
   quality_retries: 0
   history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_diyun__ch09_youth_scene_jingzhou_prison.be3e92d9.png
+    sha256: be3e92d94fd73d5934cf75ef8bdfa4f86bd347da609c3bb619a42527706ef437
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_diyun__ch09_youth_scene_jingzhou_prison.be3e92d9.entry.yaml
 - id: por_npc_diyun__ch09_youth_scene_snowvalley_feathers
   file: por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
   category: character/male
