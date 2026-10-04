@@ -2048,4 +2048,15 @@
     - **ENG-bench-perf-split** 第 1 轮校验只栽在收缩门：combat.test.ts 42 → 27 行，是按任务要求把用例挪出去了，登记时漏了豁免。
       - 补 shrink_exempt（f4d04a28）。
       - 停掉自己起的驱动 65316 和返修 start 45330，`--from validate` 重起，驱动 50931。
+  - **10-03 20:02–20:08 开发监督**：
+    - **ENG-battle-lazy-dispose 合入**（20:02）、**ENG-event-source-trigger 合入 bd4a5aa7**（20:04）。
+    - prod_check（bd4a5aa7）全绿：149 个测试文件 / 1103 个测试，没有未处理错误；main-flow 连跑 3 次干净。
+      - 20:03 那次红是 prod_check 正撞上 source-trigger 合入中途，build 读到半套文件（MISSING_EXPORT），不是真问题。
+    - **首次会话闭包 108.91 / 110**：session static 69.28 → 78.17。
+      - 原因：source-trigger 让 `core/command/transaction.ts` 静态 import `event-executor`（默认参数 `sourceEventDispatcher = executeSourceEventDefs`），连带拉进 `region-runtime`、`hex`，「区域」块 44.19 → 37.52。
+      - 会话静态里最大的块是 `item-content`，44.09 KiB，主要是 data 的 zod schema。
+    - 建议已报协调者：
+      - base-diet 最先合入；
+      - 合入前任务校验若只栽在 110 上，照计时断言的办法挂等待器，依赖改为 base-diet；
+      - 事件执行器算不算首屏必需（AR-64），等 base-diet 合入后看余量再定。
 
