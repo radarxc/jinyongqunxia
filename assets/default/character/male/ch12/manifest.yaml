@@ -1646,14 +1646,17 @@
     sha256: a857748bb106bab0001e3c3a32a5bad5050d2488ca502cd1b773f3d1710ef195
     archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/a857748bb106bab0001e3c3a32a5bad5050d2488ca502cd1b773f3d1710ef195.png
     status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T07:13:50.362070+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-d6facfc2-4207-42d6-a27d-4ebf448bf3da.png
+  - path: assets/default/character/male/ch13/por_npc_zhaobanshan__ch13_elder_base.png
+    sha256: 8e072d3fc4c7b1e1894113988afb7d16a871a4f323d334dcb49e4bcff982a5f7
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  effort: ultra
+  created: '2026-10-04T01:46:28.777290-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_63_67_r2.png
   size: 1024x1536
   mode: RGB
-  sha256: 895de5f469ebe79cb60756118c652b40dd33ab0e04d01a645424985d92b8a1ad
+  sha256: cc877e69f08d8371102d15611e51e5357594c53167277b16dc0b94385c75d9e2
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
@@ -1668,8 +1671,19 @@
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 
-    ART-cast-fill-b：从主检出原字节补入缺失候选，联系表复核；历史参考方式与轻微偏差原样保留，不冒称本轮新生成。'
+    ART-cast-fill-b：从主检出原字节补入缺失候选，联系表复核；历史参考方式与轻微偏差原样保留，不冒称本轮新生成。；AR-84 第二轮：赵半山五官对齐 por_npc_zhaobanshan__ch13_elder_base；AR-53 仅头部，AR-75 神态与光向保留；赵半山保持温厚沉稳眼神，嘴角必须水平、面颊放松、嘴唇闭合，不露牙，不微笑，不慈祥笑。不照搬身份参考的笑意，也不皱怒。原年龄、胡须长短与原光向照待改裁剪。；质检：已打开返修对照：与ch13基准同人眉眼宽鼻唇颌，ch12原年龄胡须衣饰保留，温厚沉稳但平唇闭口无笑；原光向、头颈接缝自然，头外零变化'
   tier: S
+  source_size: 1024x1536
+  ar84_alignment:
+    job: ar84_calign_63_67_r2
+    before_sha256: 895de5f469ebe79cb60756118c652b40dd33ab0e04d01a645424985d92b8a1ad
+    box:
+    - 431
+    - 129
+    - 586
+    - 284
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_63_67_r2.png
+    outside_changed_pixels: 0
 - id: por_npc_yangchengxie__ch12_prime_base
   file: por_npc_yangchengxie__ch12_prime_base.png
   category: character/male
