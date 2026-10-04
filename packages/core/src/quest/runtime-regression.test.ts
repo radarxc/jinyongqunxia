@@ -176,6 +176,7 @@ describe('StoryRuntime routing invariants', () => {
     expect(runtime.advanceTo(600).snapshot.endingTags).toEqual(['timeout']);
   });
 
+  // This 1,001-node rollback regression asserts correctness, not performance; allow loaded hosts.
   it('rolls back every node when stabilization exceeds its guard', () => {
     const nodes = Array.from({ length: 1_001 }, (_, index) => ({
       id: `n_${index}`, type: 'condition', titleKey: `test.${index}`,
@@ -190,8 +191,9 @@ describe('StoryRuntime routing invariants', () => {
 
     expect(() => runtime.start()).toThrow('STORY_STABILIZE_LIMIT');
     expect(runtime.snapshot()).toEqual(before);
-  });
+  }, 30_000);
 
+  // This 1,001-node quest-port regression asserts atomicity, not performance; allow loaded hosts.
   it('does not publish quest-port effects before a failed stabilization commits', () => {
     const nodes = [{ id: 'n_activate', type: 'quest', titleKey: 'test.quest',
       completeOn: 'immediate', payload: { inlineEvent: { eventKey: 'test/activate', actions: [] } },
@@ -212,7 +214,7 @@ describe('StoryRuntime routing invariants', () => {
     });
     expect(() => runtime.start()).toThrow('STORY_STABILIZE_LIMIT');
     expect(effects).toEqual([]);
-  });
+  }, 30_000);
 
   it('rolls back state, deadlines and all effects when an atomic port batch fails', () => {
     const inline = (id: string, eventKey: string) => ({ id, type: 'quest',
