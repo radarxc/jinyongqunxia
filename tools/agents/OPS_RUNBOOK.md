@@ -236,6 +236,7 @@
 | §2.5 停滞 | 增量监听 `wait: STALLED`，记执行器日志 mtime、模型、末行；同任务重复或不同任务集中时告知协调者 | 【建议值】集中时段为日志 mtime 相差 ≤ 300 秒；「【请判断】是否降池上限」，默认维持现上限；dispatcher 不杀、不重起执行器 |
 | §2.6–§2.10 其他事件 | HOLD-REVIEWS / HOLD-RUNS / ERROR / 等待器失败进收件箱 | 报告口径、缩短豁免、退出码 143、依赖图变更均需人工判断；默认保持状态 |
 | §2.11 新合入 | 从 HEAD 新提交的 `Agent-Task:` 尾注发现事件；负载 < 25 且上轮结束后调 `prod_check.sh` | 报 entry、render、webgl、session total 四个 gzip KiB 及相对上次完整绿检的差值；读取脚本日志的 `PNPM_CHECK_RC`，不把 shell 退出码当绿；红 / 缺数报摘要，由协调者决定重跑与修复；渲染专项 check:perf 仍需人工安排 |
+| §2.11 校验并发 | `step.py finish` 的整段 `run.validate` 与 dispatcher 的 `prod_check.sh` 共用 `.agents/slots/check/` 文件锁信号量；默认同时最多 2 个（`TIANSHU_CHECK_SLOTS` 可覆盖） | 持槽进程退出即由文件锁自动释放；受管校验按 `floor(逻辑核数 / 2)`、至少 1 设置 `TIANSHU_VITEST_MAX_WORKERS`，根 Vitest 配置读取它；未设置时本地开发行为不变 |
 | §2.1 窗口合入收尾 | `merge_when_clean.py` 成功后核实等待起点之后出现精确 `Agent-Task:` 尾注，再通过 supervise 状态接口写 `MERGED` | 尾注缺失、仅相似 ID 或旧提交不改状态并写「【请判断】」；同步后 `after_merge_revalidate.py` 的依赖门可继续 |
 | §0 安全 | 出图前缀 ART / TOWN / VFX / CITY / SKILL / KIT 和 Gemini / Tripo 任务跳过；磁盘 < 2.5 GiB 只写收件箱 | 不停进程、不直接改工作区、不放宽门禁；守护进程单实例锁，处置子进程全部经现有 detach 脚本启动 |
 

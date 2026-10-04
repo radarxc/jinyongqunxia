@@ -31,6 +31,10 @@ import tempfile
 import threading
 import time
 from pathlib import Path
+try:
+    from .check_semaphore import check_environment
+except ImportError:  # 直接执行 tools/agents/run.py
+    from check_semaphore import check_environment
 
 HERE = Path(__file__).resolve().parent
 PROMPTS_DIR = HERE / "prompts"
@@ -502,7 +506,7 @@ def validate(t: Task, wt: Path, baseline: dict, cfg: Config) -> list:
         argv = [sys.executable if a == "{python}" else a for a in cmd]
         shown = " ".join(cmd).replace("{python}", "python")
         try:
-            p = subprocess.run(argv, cwd=str(wt), capture_output=True, text=True,
+            p = subprocess.run(argv, cwd=str(wt), env=check_environment(), capture_output=True, text=True,
                                encoding="utf-8", errors="replace", timeout=900)
         except subprocess.TimeoutExpired:
             problems.append(f"校验命令超时：{shown}")
