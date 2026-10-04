@@ -23,38 +23,71 @@ async function gzipKiB(file) {
 }
 
 function findEntry() {
-  const entries = Object.values(manifest).filter((item) => item.isEntry);
+  const entries = Object.entries(manifest).filter(([, item]) => item.isEntry);
   if (entries.length !== 1) throw new Error(`SIZE_ENTRY_COUNT:${entries.length}`);
   return entries[0];
 }
 
-async function gzipClosure(entryKey, excludedPrefixes = []) {
+const manifestEntries = Object.entries(manifest);
+function sourceMatches(source, suffix) {
+  const normalized = source.replaceAll('\\', '/');
+  return normalized === suffix || normalized.endsWith(`/${suffix}`);
+}
+
+function findManifestChunk(
+  name,
+  {
+    sources = [],
+    manifestNames = [name],
+    dynamicImporters = [],
+    dynamicImporterNames = [],
+    dynamicImporterKeys = [],
+  } = {},
+) {
+  let candidates = manifestEntries.filter(([key, item]) =>
+    sources.some((source) => sourceMatches(item.src ?? key, source)),
+  );
+  if (candidates.length === 0) {
+    const importers = manifestEntries.filter(
+      ([key, item]) =>
+        dynamicImporterKeys.includes(key) ||
+        dynamicImporterNames.includes(item.name) ||
+        dynamicImporters.some((source) => sourceMatches(item.src ?? key, source)),
+    );
+    const dynamicKeys = new Set(importers.flatMap(([, item]) => item.dynamicImports ?? []));
+    const dynamicTargets = manifestEntries.filter(([key]) => dynamicKeys.has(key));
+    const namedTargets = dynamicTargets.filter(([, item]) => manifestNames.includes(item.name));
+    candidates =
+      namedTargets.length > 0 ? namedTargets : dynamicTargets.length === 1 ? dynamicTargets : [];
+  }
+  if (candidates.length === 0)
+    candidates = manifestEntries.filter(([, item]) => manifestNames.includes(item.name));
+  if (candidates.length > 1)
+    throw new Error(`SIZE_MANIFEST_TARGET_AMBIGUOUS:${name}:${candidates.length}`);
+  return candidates[0] ?? null;
+}
+
+function staticClosure(entryKey) {
   const seenEntries = new Set();
   const seenFiles = new Set();
-  const addFile = async (file) => {
-    const fileName = file.split('/').at(-1) ?? file;
-    if (
-      !file.endsWith('.js') ||
-      seenFiles.has(file) ||
-      excludedPrefixes.some((prefix) => fileName.startsWith(prefix))
-    )
-      return 0;
-    seenFiles.add(file);
-    return gzipKiB(file);
+  const addFile = (file) => {
+    if (file.endsWith('.js')) seenFiles.add(file);
   };
-  const visit = async (key) => {
-    if (seenEntries.has(key)) return 0;
+  const visit = (key) => {
+    if (seenEntries.has(key)) return;
     seenEntries.add(key);
     const item = manifest[key];
     if (!item) throw new Error(`SIZE_MANIFEST_IMPORT_MISSING:${key}`);
-    const fileName = item.file.split('/').at(-1) ?? item.file;
-    if (excludedPrefixes.some((prefix) => fileName.startsWith(prefix))) return 0;
-    let total = await addFile(item.file);
-    for (const asset of item.assets ?? []) total += await addFile(asset);
-    for (const dependency of item.imports ?? []) total += await visit(dependency);
-    return total;
+    addFile(item.file);
+    for (const asset of item.assets ?? []) addFile(asset);
+    for (const dependency of item.imports ?? []) visit(dependency);
   };
-  return visit(entryKey);
+  visit(entryKey);
+  return seenFiles;
+}
+
+function withoutFiles(files, excluded) {
+  return new Set([...files].filter((file) => !excluded.has(file)));
 }
 
 function readGroup(name) {
@@ -97,13 +130,12 @@ async function gzipFiles(files) {
 const emittedJs = (await readdir(resolve(distDir, 'assets'))).filter((file) =>
   file.endsWith('.js'),
 );
-const entry = findEntry();
-const entryKey = Object.entries(manifest).find(([, item]) => item === entry)?.[0];
-if (!entryKey) throw new Error('SIZE_ENTRY_KEY_MISSING');
+const [entryKey, entry] = findEntry();
+const entryFiles = staticClosure(entryKey);
 const shellRecord = {
   name: 'entry',
   file: entry.file,
-  size: await gzipClosure(entryKey, ['render-', 'render.', 'book-']),
+  size: await gzipFiles(entryFiles),
   budget: budgets.chunks.entry,
 };
 
@@ -129,16 +161,80 @@ const subsystemRecords = await Promise.all(
   }),
 );
 
-const existingRecords = [];
-for (const name of ['render', 'render-webgpu', 'basis', 'devtools']) {
-  const file = emittedJs.find(
-    (candidate) => candidate === `${name}.js` || candidate.startsWith(`${name}-`),
-  );
+const targets = [
+  {
+    name: 'render',
+    sources: ['packages/render/src/index.ts'],
+    dynamicImporters: ['apps/game/src/render-host.ts'],
+    dynamicImporterNames: ['render-host'],
+    closure: true,
+  },
+  {
+    name: 'render-webgpu',
+    sources: ['packages/render/src/webgpu/index.ts'],
+    dynamicImporters: ['apps/game/src/render-webgpu-host.ts'],
+    dynamicImporterNames: ['render-webgpu-host'],
+    closure: false,
+  },
+  {
+    name: 'basis',
+    sources: ['packages/render/src/basis/index.ts'],
+    dynamicImporterNames: ['basis-host'],
+    closure: false,
+  },
+  {
+    name: 'devtools',
+    sources: ['packages/devtools/src/index.ts'],
+    dynamicImporterNames: ['devtools-host'],
+    closure: false,
+  },
+];
+const existingRecords = await Promise.all(
+  targets.map(async (target) => {
+    const located = findManifestChunk(target.name, target);
+    if (!located)
+      return {
+        name: target.name,
+        file: 'not emitted',
+        size: null,
+        budget: budgets.chunks[target.name],
+      };
+    const [key, item] = located;
+    const files = target.closure
+      ? withoutFiles(staticClosure(key), entryFiles)
+      : new Set([item.file]);
+    return {
+      name: target.name,
+      file: [...files].join(', '),
+      size: await gzipFiles(files),
+      budget: budgets.chunks[target.name],
+      key,
+    };
+  }),
+);
+const renderRecord = existingRecords.find((record) => record.name === 'render');
+const model3dTarget = findManifestChunk('render-model3d', {
+  sources: ['packages/render/src/battle/model-stage.ts'],
+  manifestNames: ['battle-model3d', 'render-model3d'],
+});
+if (!model3dTarget)
   existingRecords.push({
-    name,
-    file: file ?? 'not emitted',
-    size: file ? await gzipKiB(`assets/${file}`) : null,
-    budget: budgets.chunks[name],
+    name: 'render-model3d',
+    file: 'not emitted',
+    size: null,
+    budget: budgets.chunks['render-model3d'],
+  });
+else {
+  const [key] = model3dTarget;
+  const alreadyBudgeted = new Set(entryFiles);
+  if (renderRecord?.key)
+    for (const file of staticClosure(renderRecord.key)) alreadyBudgeted.add(file);
+  const files = withoutFiles(staticClosure(key), alreadyBudgeted);
+  existingRecords.push({
+    name: 'render-model3d',
+    file: [...files].join(', '),
+    size: await gzipFiles(files),
+    budget: budgets.chunks['render-model3d'],
   });
 }
 const bookFiles = emittedJs.filter((file) => file.startsWith('book-'));

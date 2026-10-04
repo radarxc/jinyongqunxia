@@ -4,6 +4,7 @@
     "entry": 170,
     "session": 110,
     "render": 180,
+    "render-model3d": 24,
     "render-webgpu": 300,
     "basis": 255,
     "devtools": 130

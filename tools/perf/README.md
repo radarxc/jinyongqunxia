@@ -7,7 +7,12 @@
 gzip 字节并阻断超限，输出分为三层：
 
 - 标题页 entry：沿 `.vite/manifest.json` 的唯一页面入口追踪静态闭包，继续使用
-  170 KiB 预算；render、WebGL/WebGPU total 与其余既有预算保持不变。
+  170 KiB 预算；render、WebGL/WebGPU total 与其余既有预算保持不变。render、
+  `render-webgpu`、Basis 与 devtools 均按清单中的源模块或动态导入边定位，不再
+  以输出文件名前缀猜块；render 计入静态 import 闭包，并扣除 entry 已计文件。
+- 战斗 3D：清单中的 `battle-model3d` 动态块作为 `render-model3d` 计量；扣除
+  entry 与 render 已计静态闭包后执行 24 KiB gzip 门禁。该值由当前实测约
+  17.25 KiB 加约 6.75 KiB（39%）余量得出；未构建该块时显示 `not emitted`。
 - 首次会话：读取 Worker 构建生成的 `.vite/size-groups.json`，把 Worker 壳、
   `runtime/session.ts` 静态闭包和 `virtual:tianshu-content` 基础内容去重相加，
   对合计执行 110 KiB 门禁；任一组缺失时以 `SIZE_SESSION_GROUP_MISSING` 失败。
@@ -15,5 +20,5 @@ gzip 字节并阻断超限，输出分为三层：
   增量静态闭包，当前统一显示“未设门”，不会改变退出码。
 
 `apps/game/build/size-groups-plugin.ts` 只读取 Rollup 输出块图并生成上述 JSON，
-不改代码、分块或运行时产物。Basis、devtools、WebGPU 与书界包尚无产物时显示
-`not emitted`，不得把它们并进入 entry 或首次会话闭包逃避门禁。
+不改代码、分块或运行时产物。Basis、devtools、WebGPU、战斗 3D 与书界包尚无
+产物时显示 `not emitted`，不得把它们并进入 entry 或首次会话闭包逃避门禁。
