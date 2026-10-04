@@ -2080,4 +2080,21 @@
       - `ops_dispatch.py` 守护进程按 RUNBOOK 处置；
       - 决策逻辑有单测。
     - 收尾条件：它合入、守护进程跑稳一小时后，开发监督把未了的事写进 HANDOFF，然后退场。
-
+  - **10-03 20:13–20:40 协调者 · AR-65 / 66 / 67 切换**：
+    - **执行器分流**：`.agents/coord/executor_override.json`，step.py 起跑和 gpt_review.py 审核时现读（e82758fd、bfaa657f）。
+      - ENG / TOOL / LINT / CITY / VFX 的执行走 traex：GPT-6-Astra max，不应答回退 GPT-5.6-Sol。
+      - 其余任务的执行走 Codex gpt-6.1-sol xhigh，回退 gpt-6-astra。
+      - 审核一律走 Codex gpt-6.1-sol。
+      - traex 没有 6.1 Sol（metadata could not be resolved）。
+      - 要恢复旧行为，把 enabled 改成 false 即可。
+    - **GPT 长会话**：`.agents/coord/_handoff/codex_session.py`。
+      - 运行环境：沙箱 workspace-write，主检出 .git 可写，会话目录在 `.agents/coord/_lines/<名>/`。
+      - 汇报：会话往 `.agents/coord/_inbox/<名>.md` 追加，watch_drivers 会转给协调者。
+      - 沙箱里不能嵌套起 codex exec（workspace routing discovery failed）。所以出图 runner 由协调者在沙箱外起，会话只往队列加作业。
+    - **人物出图线**：
+      - 10 号、12 号已交接退场。portrait-w17（ch08–ch11 共 48 人，runner pid 13306）和 portrait-w25（ch12–ch14 共 17 人，runner pid 19748）由 gpt-6.1-sol 会话接手，说明在 `.agents/coord/_lines/briefs/`。
+      - 11 号做完神雕第 2 批后交接；倚天、笑傲待开 portrait-w24。
+    - **区域图（AR-67）**：停用 Gemini，改 Codex 出。画风对齐 baseline/map 两张作者已审基线，地势沿用 v4 底图。Gemini 出图员在写 `gemini_qa/maps/HANDOFF_CODEX.md`，写好后开 Codex 区域图会话。已入库的 20 张 Gemini 版等 Codex 版逐张通过后再覆盖。
+    - **开发监督**：OPS_RUNBOOK 已写（bd6e6fb0），TOOL-ops-dispatch 已登记（a2114018）。它合入并跑稳一小时后，开发监督交接退场。
+    - **素材线追踪**：补位器脚本化，进度写进 `_inbox/artw3.md`，然后交接退场。
+    - **Tripo**：子代理在写 `tools/model3d/tripo_web.js` 和 `.claude/skills/tripo-web/SKILL.md`。
