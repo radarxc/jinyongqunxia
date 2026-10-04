@@ -1,0 +1,76 @@
+- id: npc_kasili__ch12_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 喀丝丽（书剑恩仇录 ch12 · 入宫前青年）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 524a5119-02a0-4f87-9024-b138f8ec134a
+    url: https://studio.tripo3d.ai/workspace/generate/524a5119-02a0-4f87-9024-b138f8ec134a
+    generate_op: 6ccfb17c-67be-47ef-ac89-1f735f255a38（image_to_model）
+    rig_op: e628b27f-2c49-400d-8876-dee2a8924d77
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch12/threeview/por_npc_kasili__ch12_youth_prepalace_apose_slim.png
+    sha256: 517086cd758629f6d6c93f0d712497adde575ac776df5f070bc51673a098c40f
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 2744dad4d1bffa67f0c38ffe3ac0b08414a4d2c08595eb8c144e91d4a3ed3b17
+  size_bytes: 5775768
+  joints: 65
+  triangles: 96222
+  vertices: 54684
+  animations: []
+  textures:
+  - image/jpeg 492934 B
+  - image/jpeg 1341468 B
+  - image/jpeg 497190 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T18:59:44-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，白色回部长袍 + 红缘绣纹 + 珠饰头冠，及腰长发深褐。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 34c0031e。
+- id: npc_kasili__ch12_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 喀丝丽（书剑恩仇录 ch12 · 入宫前青年）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 524a5119-02a0-4f87-9024-b138f8ec134a
+    url: https://studio.tripo3d.ai/workspace/generate/524a5119-02a0-4f87-9024-b138f8ec134a
+    generate_op: 6ccfb17c-67be-47ef-ac89-1f735f255a38（image_to_model）
+    rig_op: e628b27f-2c49-400d-8876-dee2a8924d77
+  size: 369x594
+  sha256: fcc4966bc97df384d0708ccb1699bd6b653ddcd2f08fface4cea2ee987908b2b
+  size_bytes: 133061
+  created: '2026-10-03T18:59:44-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
