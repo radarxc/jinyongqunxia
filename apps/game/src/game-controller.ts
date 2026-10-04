@@ -28,6 +28,8 @@ import type { ContentSource } from '@tianshu/data';
 import type { BattleController, createBattleController } from './battle/controller';
 import type { createSaveService } from './storage/save-service';
 import { slotViews } from './storage/slot-views';
+import { presentedEvent, type PresentedEvent } from './flow/event-presentation';
+import { presentationText } from './flow/content-text';
 import {
   defaultGameSettings,
   loadGameSettings,
@@ -38,7 +40,7 @@ import {
   type GameSettingKey,
   type GameSettings,
 } from './settings';
-import { type M1FlowStage } from './flow/stage';
+import { COLD_ENTRY, type ColdEntryStage, type M1FlowStage } from './flow/stage';
 
 export type GameController = ReturnType<typeof createGameController>;
 export interface GameControllerOptions {
@@ -50,9 +52,9 @@ export interface GameControllerOptions {
   readonly autosave?: (trigger: string, force: boolean) => Promise<'saved' | 'throttled'>;
   readonly flowTextSource?: ContentSource;
   /** Test seam for holding the dynamic import at a deterministic lifecycle boundary. */
-  readonly loadBattleController?: () => Promise<
-    { readonly createBattleController: typeof createBattleController }
-  >;
+  readonly loadBattleController?: () => Promise<{
+    readonly createBattleController: typeof createBattleController;
+  }>;
 }
 class GameplayRejection extends Error {
   public constructor(code?: string) {
@@ -94,7 +96,8 @@ export function createGameController(
         return controller;
       })
       .catch((_error: unknown) =>
-        disposed || generation !== hostGeneration ? null : recoverBattleLoad())
+        disposed || generation !== hostGeneration ? null : recoverBattleLoad(),
+      )
       .finally(() => {
         if (battleLoading === loading) battleLoading = undefined;
       });
@@ -123,6 +126,8 @@ export function createGameController(
   const chapterId = shallowRef('ch00_yuenv');
   const trackedQuestId = shallowRef<string | null>(null);
   const flowStage = shallowRef<M1FlowStage>('game');
+  const coldEntryStage = shallowRef<ColdEntryStage>('inactive');
+  const presentationNotice = shallowRef('');
   const townRuntime = shallowRef<TownRuntimeDefinition | null>(null);
   const town = shallowRef<TownProjection | null>(null);
   let storage: TianshuStorage | undefined = options.storage;
@@ -137,6 +142,12 @@ export function createGameController(
   let dirtyRevision = 0;
   let savedRevision = 0;
   let firstSleepPlanId: string | undefined;
+  let coldEntryPresentation: PresentedEvent | undefined;
+  let titleCardReady = false;
+  let coldEntryTitlePending = false;
+  let domainAutosavePending: { reason: string; coldEntry: boolean } | undefined;
+  let arrivalCutsceneReady = false;
+  let presentationTask: Promise<void> = Promise.resolve();
   async function refresh(): Promise<void> {
     if (!saves) return;
     const listed = await saves.list();
@@ -221,6 +232,118 @@ export function createGameController(
       });
     return next;
   }
+  function matchesColdEntryPresentation(value: PresentedEvent): boolean {
+    return (
+      value.eventId === COLD_ENTRY.arrivalEventId &&
+      value.steps.some(
+        (step) =>
+          step.op === 'dialogue/start' &&
+          step.storyId === COLD_ENTRY.storyId &&
+          step.knot === 'westward_journey',
+      ) &&
+      value.steps.some(
+        (step) =>
+          step.op === 'world/loadScene' &&
+          step.regionId === COLD_ENTRY.regionId &&
+          step.sceneId === COLD_ENTRY.sceneId &&
+          step.spawnId === COLD_ENTRY.spawnId,
+      )
+    );
+  }
+  async function showTextStep(
+    step: Extract<
+      PresentedEvent['steps'][number],
+      { readonly op: 'ui/showText' | 'ui/revealText' }
+    >,
+  ): Promise<void> {
+    presentationNotice.value =
+      'text' in step
+        ? step.text
+        : await presentationText(chapterId.value, step.textKey, options.flowTextSource);
+    notice.value = presentationNotice.value;
+  }
+  function showTitleCard(card: string): void {
+    if (card !== COLD_ENTRY.titleCard) return;
+    titleCardReady = true;
+    coldEntryTitlePending = false;
+    coldEntryStage.value = 'title-card';
+    flowStage.value = 'baima-title';
+  }
+  async function flushDomainAutosave(): Promise<void> {
+    const pending = domainAutosavePending;
+    if (!pending || ui.projection.dialogue) return;
+    if (autosaveTask) {
+      await autosaveTask;
+      return;
+    }
+    await autosave(pending.reason, true);
+  }
+  async function performPresentationStep(step: PresentedEvent['steps'][number]): Promise<void> {
+    if (step.op === 'ui/showText' || step.op === 'ui/revealText') {
+      await showTextStep(step);
+      return;
+    }
+    if (step.op === 'dialogue/start') {
+      if (step.presentation !== 'text_stills')
+        await run(async () => {
+          await dispatchCoreCommand({
+            t: 'dialogue/start',
+            storyId: step.storyId,
+            entryKey: step.knot,
+          });
+        }, true);
+      return;
+    }
+    if (step.op === 'world/loadScene') {
+      const revealed = presentationNotice.value;
+      await run(async () => {
+        await dispatchCoreCommand({
+          t: 'world/mountRegion',
+          regionId: step.regionId,
+          sceneId: step.sceneId,
+          spawnId: step.spawnId,
+        });
+      }, true);
+      if (!sessionFailed.value && revealed) notice.value = revealed;
+      return;
+    }
+    if (step.op === 'ui/showTitleCard' && step.card === COLD_ENTRY.titleCard) {
+      coldEntryTitlePending = true;
+      await flushDomainAutosave();
+      if (!domainAutosavePending) showTitleCard(step.card);
+    }
+  }
+  function queuePresentation(steps: readonly PresentedEvent['steps'][number][]): void {
+    const foreground = commandQueue;
+    presentationTask = presentationTask
+      .then(async () => {
+        await foreground;
+        for (const step of steps) await performPresentationStep(step);
+      })
+      .catch((error: unknown) => {
+        if (terminal(error)) reportInternalError(error);
+        else {
+          notice.value = describe(error);
+          saveStatus.value = notice.value;
+        }
+      });
+  }
+  function consumePresentation(value: PresentedEvent): void {
+    if (matchesColdEntryPresentation(value)) {
+      coldEntryPresentation = value;
+      arrivalCutsceneReady = true;
+      coldEntryStage.value = 'cutscene';
+      flowStage.value = 'wake-cutscene';
+      return;
+    }
+    queuePresentation(value.steps);
+  }
+  function finishArrivalCutscene(): void {
+    if (!arrivalCutsceneReady || !coldEntryPresentation) return;
+    arrivalCutsceneReady = false;
+    coldEntryStage.value = 'scene-loading';
+    queuePresentation(coldEntryPresentation.steps.slice(1));
+  }
   const offHost = host.subscribe((update) => {
     if (!update.accepted) {
       if (terminal(update.error)) reportInternalError(new Error(update.error));
@@ -253,6 +376,31 @@ export function createGameController(
         wakeYear.value = payload['worldYear'];
       if (event.t === 'chapter/woke' && typeof payload?.['chapterId'] === 'string')
         chapterId.value = payload['chapterId'];
+      const presentation = presentedEvent(event);
+      if (presentation) consumePresentation(presentation);
+      if (
+        event.t === 'world/regionMounted' &&
+        payload?.['regionId'] === COLD_ENTRY.regionId &&
+        payload?.['sceneId'] === COLD_ENTRY.sceneId &&
+        payload?.['spawnId'] === COLD_ENTRY.spawnId
+      ) {
+        coldEntryStage.value = 'movement';
+        flowStage.value = 'game';
+      }
+      if (
+        event.t === 'dialogue/started' &&
+        payload?.['storyId'] === COLD_ENTRY.storyId &&
+        payload?.['entryKey'] === COLD_ENTRY.firstTalkKnot
+      )
+        coldEntryStage.value = 'first-talk';
+      if (event.t === 'world/entranceOpened' && payload?.['entranceId'] === COLD_ENTRY.entranceId)
+        coldEntryStage.value = 'east-exit-open';
+      if (event.t === 'world/autosaveRequested') {
+        domainAutosavePending = {
+          reason: typeof payload?.['reason'] === 'string' ? payload['reason'] : 'core-request',
+          coldEntry: coldEntryStage.value === 'east-exit-open',
+        };
+      }
     }
     if (update.changes.battle !== undefined) {
       battleActive.value = update.changes.battle !== null;
@@ -263,15 +411,13 @@ export function createGameController(
           .catch(() => recoverBattleLoad());
       }
     }
-    if (update.events.length) {
-      dirtyRevision += 1;
-      if (
-        !pendingCreation.value &&
-        !bookSleepInFlight &&
-        update.events.some((event) => event.t !== 'world/ticked')
-      )
-        void autosave('state-change');
-    }
+    const stateChanged = update.events.some((event) => event.t !== 'world/ticked');
+    if (stateChanged) dirtyRevision += 1;
+    const coldEntryControlsAutosave =
+      coldEntryStage.value !== 'inactive' && coldEntryStage.value !== 'free';
+    if (stateChanged && !coldEntryControlsAutosave && !pendingCreation.value && !bookSleepInFlight)
+      void autosave('state-change');
+    if (domainAutosavePending && !ui.projection.dialogue) void flushDomainAutosave();
   });
   async function dispatchCoreCommand(
     command: Parameters<GameHost['dispatch']>[0],
@@ -336,6 +482,14 @@ export function createGameController(
           savedRevision = capturedRevision;
           saveStatus.value = '已自动保存';
           await refresh();
+          if (domainAutosavePending?.reason === trigger) {
+            const coldEntry = domainAutosavePending.coldEntry;
+            domainAutosavePending = undefined;
+            if (coldEntry && !disposed) {
+              coldEntryStage.value = 'autosave';
+              if (coldEntryTitlePending) showTitleCard(COLD_ENTRY.titleCard);
+            }
+          }
         }
       } catch (error) {
         if (disposed) return;
@@ -549,6 +703,12 @@ export function createGameController(
     }
     bookSleepActive = true;
     wakeYear.value = null;
+    arrivalCutsceneReady = false;
+    coldEntryPresentation = undefined;
+    titleCardReady = false;
+    coldEntryTitlePending = false;
+    domainAutosavePending = undefined;
+    coldEntryStage.value = 'inactive';
     const plan: BookSleepPlan = {
       id: planId(),
       from: 'ch00_yuenv',
@@ -639,6 +799,8 @@ export function createGameController(
     chapterId,
     trackedQuestId,
     flowStage,
+    coldEntryStage,
+    presentationNotice,
     flowTextSource: options.flowTextSource,
     ensureBattle,
     initialize,
@@ -658,6 +820,14 @@ export function createGameController(
       trackedQuestId.value = trackedQuestId.value === questId ? null : questId;
     },
     setFlowStage(stage: M1FlowStage) {
+      if (stage === 'baima-title' && arrivalCutsceneReady) {
+        finishArrivalCutscene();
+        return;
+      }
+      if (stage === 'game' && flowStage.value === 'baima-title' && titleCardReady) {
+        titleCardReady = false;
+        coldEntryStage.value = 'free';
+      }
       flowStage.value = stage;
     },
     setBookSleepActive(value: boolean) {
