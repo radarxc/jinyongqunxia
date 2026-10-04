@@ -2522,3 +2522,10 @@
     - **wiring**：06:12 自动续作第 2 轮；开发监督 06:33 停下，挪基点 17415fd6 → 80b0577a，7 个冲突，涉及 16e / generic-model / 18c / ch10 的改动；带解冲突与剩余项说明续作，本轮上限 300 分钟，06:34 拿回池位。
     - 第 8 批 apparel 在 count-sync 合入后起跑（会把件数快照同步到终值）。
     - 负载降到 10 以下，wiring 仍在执行器阶段，恢复三件：size-render-measure `--from validate`、move-onhit 续作返修、dialogue-runtime-lazy 起跑。
+  - **10-04 06:40–07:02 开发监督**：
+    - **ENG-size-render-measure 合入**（811aeb40）：口径改对后 render 实测 179.41 / 180。登记 **ENG-render-diet**（14da9edf）：降到 < 170，挪出的块都要有预算；与 dialogue-runtime-lazy 并列，排在 M1 之后。
+    - **TOOL-rig-std-parts** r5 FAIL（大腿上段楔形缺口）：停掉自动返修，按协调者要求加全量自查与清单后重起。这轮再 FAIL 就停下报协调者。
+    - **TOOL-map-compose**：协调者目检判样区画风完全不合格。审核中途停下，置 HOLD，不合入。
+      - 起完整返修（devsup_note_style.md，以已审 `map/regions/rg_dali_cangshan.png` 为基准，出 `_vs_approved` 对照）；sparse_include 补 map/regions；
+      - `--max-reviews 0`，跑完停在审核前，先把对照图给协调者看。
+    - **ENG-battle-modules-lazy** 第二次合入冲突（× 18c content-registry）。Codex 短会话 bml-conflict-0655 中途发【请判断】，协调者选 A：保留已审的 EncounterDefSchema 直接导入，冲突只取并集。解完 `--from validate`。
