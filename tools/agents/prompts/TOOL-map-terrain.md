@@ -11,6 +11,21 @@
   - §9 地理几何与来源处理。
 - `tools/map/render_map.py`：现有 Albers 投影、Natural Earth 数据的读取方式、确定性抖动。本任务复用它的投影与画布，不另造一套。
 
+## 参考与质检工具：Gemini 出图员的数据侧交接（协调者 10-03 20:45；能复用就复用，不要从零再写）
+
+交接文档：`/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/gemini_qa/maps/HANDOFF_CODEX.md`，机器可读的区域数据在同目录 `region_frames.json`，脚本都在 `/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/gemini_qa/maps/`。这些文件在 `.agents/` 下，不入库，只读引用。内容：
+- 数据源与 sha256：SR_HR 晕渲、Natural Earth 10m 海陆 / 湖泊 / 河流，`ne.py` 是无第三方库的读取器，带缓存。
+- Albers 正反算：`basemap.py` 的 `frame(rid)` / `proj`，`basemap_sr.py` 的 `inv`。
+- v4 起伏度底图的算法与命令：`basemap_sr2.py --rugged all`，产物在 `basemaps_sr4/`。
+- 叠图质检 `overlay2.py` 及其及格线：河道重合率、海域 IoU、湖面命中、凭空水面。`qa5.py` 一条命令跑完。
+- 30 区范围表。
+- 易错地形提示：黄河改道、湖泊变迁等，见交接文档第 7 节。
+
+要求：
+- 投影、NE 读取、起伏度能用交接里的实现，就复制进写集再用，并在报告注明出处；不另写一套。
+- 图层与成品用 `overlay2.py` 的及格线做质检，结果写进报告。
+- 和 design/19 §2 的公式或测试向量不一致时，以 design/19 为准，并把差异列进报告。
+
 ## 要做的事
 
 1. **数据**：
