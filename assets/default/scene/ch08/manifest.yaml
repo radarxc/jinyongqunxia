@@ -193,11 +193,13 @@
   category: scene
   style: default
   subject: 五台护驾（ch08_luding）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是韦小宝的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中韦小宝的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是桑结的身份基线（本人基础立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中桑结的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+    【画里谁是谁】这张插图画的是：五台山寺院雪阶，韦小宝与双儿护住通向禅房的窄路，远处番僧逼近；行痴隐在门内不露脸；不要把后来相遇的九难硬挤同一刻。
 
-    【要对齐的部分】韦小宝各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】桑结的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：领头逼上台阶，神情凶悍阴沉；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+
+    【桑结的基线脸】基线里的桑结是五十岁上下的藏地番僧：光头，完全无须——下巴、两腮和唇上都干干净净，没有络腮胡、没有八字须、没有胡茬；方阔结实的脸、颧骨高、下颌方；浓眉、眼窝深、眼神凶悍阴沉；鼻梁宽挺；嘴唇厚、嘴角下压；黝黑粗糙的皮肤，额头和法令纹有深皱纹。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「五台护驾」和小朱印必须原样保留，一笔不改、不增不减。
 
@@ -205,33 +207,36 @@
 
     【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【本张另外要求】（AR-53 / AR-56 总审轻微）画中戴瓜皮帽、留辫子、机灵坏笑的年轻人是韦小宝：他的脸现在是窄长脸、下颌尖——改成基线的宽圆脸、两颊饱满、下巴圆；眉眼、坏笑和表情方向照原图。其他人的脸不要动。'
+    【本张另外要求】桑结是画面左侧台阶上领头的那个红袍光头番僧（最靠前、左手持禅杖的那个，脸不大，在画面左边约四分之一处）。去掉他满脸的络腮胡须，改成基线那样完全无须的光头脸（下巴、两腮、唇上干干净净）。他身后另外几个番僧、右边的双儿和韦小宝，脸一律不改。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
+  - path: assets/default/character/male/ch08/por_npc_sangjie__ch08_elder_uninjured_base.png
+    sha256: 586fc58be19a1b83befd7c083c1c32b00808efcabddc39fd26969c4a2d3e94e9
+    use: 对脸基线：AR-53 总审默认基准 por_npc_sangjie__ch08_elder_uninjured_base（桑结），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch08/cg_ch08_wutai_guard.png
+    sha256: c64dada3b1b2788cc626bafc31afe30355fad6dbfb40ab85c164630499caa331
+    use: 待改原图（AR-53 配角对齐 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch08_wutai_guard.c64dada3.png
   - path: assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
     sha256: 8713f92abd849f5d45ea77a4350d02a26d753eb4961eb0243b42786fafb92714
-    use: 对脸基线：作者审核通过的 por_npc_weixiaobao__ch08_youth_bishou_base（韦小宝），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch08/cg_ch08_wutai_guard.png
-    sha256: 8b0317ccd427443f7f2554b1c273e90730566a7fd0731e907e1fed7a0ed634e3
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch08_wutai_guard.8b0317cc.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    use: 对脸基线：作者审核通过的 por_npc_weixiaobao__ch08_youth_bishou_base（韦小宝），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写（前次对脸已改入此图，本次未动，保留引用）
+  tool: codex exec · image_gen（AR-53 配角对齐 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线；编辑结果只取目标人物头部合成回原图）
   model: gpt-6-astra
-  created: 2026-10-03T18:36:55-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch08_wutai_guard.s1.png
+  created: 2026-10-03T19:27:50-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch08_wutai_guard.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: c64dada3b1b2788cc626bafc31afe30355fad6dbfb40ab85c164630499caa331
+  sha256: 8d7e94145dd5a34d3bdd14cfbcfe579898718cc093834c5bc4ec284e86b957c7
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「五台护驾」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：韦小宝窄长脸改成新基准的宽圆脸；局部合成——codex 整图编辑后只取韦小宝头部、羽化贴回原图，其余像素不变（原输出 codex_w17/out/cg_ch08_wutai_guard.s1.raw.png））
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「五台护驾」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：韦小宝窄长脸改成新基准的宽圆脸；局部合成——codex 整图编辑后只取韦小宝头部、羽化贴回原图，其余像素不变（原输出 codex_w17/out/cg_ch08_wutai_guard.s1.raw.png））；AR-53 配角对齐（12 号出图员），基线 = por_npc_sangjie__ch08_elder_uninjured_base（编辑结果只取桑结（领头红袍番僧，手动框 108,392–172,462）头部椭圆羽化合成回原图，其余像素保持原图（韦小宝 10 号已改、双儿与其他番僧不动）；原始编辑结果 out/<job>.raw.png）
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch08_wutai_guard.retry3.r1
   quality_retries: 0
   history: []
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch08_wutai_guard.8b0317cc.png
-    sha256: 8b0317ccd427443f7f2554b1c273e90730566a7fd0731e907e1fed7a0ed634e3
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch08_wutai_guard.8b0317cc.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch08_wutai_guard.c64dada3.png
+    sha256: c64dada3b1b2788cc626bafc31afe30355fad6dbfb40ab85c164630499caa331
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch08_wutai_guard.c64dada3.entry.yaml
 - id: cg_ch08_shenlong_mutiny
   file: cg_ch08_shenlong_mutiny.png
   category: scene
