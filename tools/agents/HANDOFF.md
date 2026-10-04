@@ -1937,3 +1937,15 @@
 
 - **10-03 18:20–18:47 工程线调度**：查明几乎所有 traex 执行器都被作者本机 Trae 技能 bits-unit-test-gen 带偏（走「Step1–7 生成单测」并跑 prepare_test.sh），开发监督在 step.py / gpt_review.py 加 `-c skills.include_instructions=false`（9efa29fa）；协调者停掉旧参数的 gates-data、event-executor、23a、26 并带 no-skill note 重起。池位优先级名单上线（f6813854，名单 `.agents/coord/pool_priority.txt`，探测前登记 1c608177，排队时每轮重读上限 c3dbfa63），wait_attempt 守候全部撤掉；高负载（31–50）下计时测试与 content-plugin 5 秒超时不稳，代码池上限临时 4→3，登记 ENG-content-plugin-timeout（a9a155e1，只加显式超时）；core/bench 计时断言是否比照 AR-33 挪出 pnpm check 待作者定。合入：ENG-16c（f47d2bcd）、TOOL-city-generic（05eecb28，merge_when_clean）、ENG-ink-external-args（08fe39a0，merge_when_clean）；event-executor --from validate 18:44 通过、审核中。
 - **人物（18:00–18:47）**：11 号做完全部任务（钟灵 / 马夫人 / 黄药师 B 入库与插图对齐、天龙配角神态 26 人、四个提示词 md 写回），追加 ch01–ch06 配角插图对脸；10 号做完 ch08–ch10（20 张），转做 ch13–ch14；12 号做完 ch05–ch07（30 张），在做 ch11–ch12。插图返修统一「只合成目标人物头部」（10 号 patch.py、12 号同法）。
+  - **10-03 18:44–18:50 开发监督**：
+    - 协调者用新上限 3 和名单重起了 16e、18c、std-parts、cropframe 的排队（驱动 63682 / 63687 / 63700 / 63713）。
+      - `step.py pool` 显示的排队顺序：content-plugin-timeout → 18c → 16e → std-parts → cropframe，与名单一致。
+    - event-executor 由协调者用 `--from validate` 重起（驱动 53180），18:44 校验通过，进入审核。
+    - **低负载下重跑 prod_check 全绿**（HEAD 86b38de9，负载 13–22）：149 个测试文件 / 1075 个测试；entry 38.80；render 168.86；会话闭包 98.94。
+    - **ENG-ink-external-args 合入 08fe39a0**。content:build 产物里序章 Ink 的三处调用已是原始 ID：
+      - `get_flag("fl_00_zhulin_loss_streak3")`；
+      - `has_item("it_tao")`；
+      - `not has_item("it_tao")`。
+      - ch00a r4 指出的编译器问题，验收通过。
+    - 池上限回 4 的建议：等 event-executor 合入、占用降到 3 以内、负载稳定在 25 以下再回调。
+
