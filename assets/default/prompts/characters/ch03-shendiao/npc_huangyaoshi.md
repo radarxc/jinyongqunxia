@@ -8,23 +8,49 @@ age_variant: elder
 tier: A
 output: assets/default/character/male/ch03/por_npc_huangyaoshi__ch03_elder_base.png
 manifest: assets/default/character/male/ch03/manifest.yaml
-references:
-- path: .agents/coord/imagegen-reference/identity-20261001/shendiao/huangyaoshi_1995_luoyingjun_sina2024.jpg
-  use: 第一且唯一面部身份：1995 TVB古天乐/李若彤版《神雕侠侣》的骆应钧饰黄药师，已实际view并有独立来源/像素审计PASS。第一图骆应钧饰老年黄药师的本人面容是唯一身份锚：额部较宽，保留有分量的眉骨和本人自然眉形，较深眼窝、偏长的眼形及本人眉眼间距；鼻梁明确，鼻尖和鼻翼有真实厚度，颧颊与面中部保留本人比例。长须覆盖部分唇颌，不臆造胡须下的精确下颌线，也不照搬旧稿的通用窄长脸。以自然灰白髭须和适度老年纹理呈现本阶段，嘴自然合拢、平静直视前方，不复制剧照向右转头、略张口与低清噪点。须发不遮住双眼与鼻部，不借1983曾江、同演员1994射雕年轻形象或其他角色的脸。 仅取本人五官，不复制剧照发式、衣饰、妆容、摄影姿势或背景；年龄、伤残与剧情阶段以当前项目设计为准。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 第二仅用户水墨图的暖浅灰纸底、极浅低对比水墨远山与留白，已实际view；不取其中女性的脸、年龄、身体、发型、白青衣裙、首饰、飘带、头倾或站姿，不画前景花枝与亭阁。墨迹纸纹止于人物轮廓外。
 status: redo
 realism_revision: user_identity_pose_20261001
-redo_reason: "面容源自 1995 版剧照且与射雕黄药师不是同一人；改为上传新出的射雕黄药师，同一张清癯长脸老二十年"
+references:
+- path: assets/default/character/male/ch02/por_npc_huangyaoshi__ch02_elder_base.png
+  use: 身份基线：作者 AR-62 选定的射雕黄药师新 base（B），取脸型骨相、上挑剑眉、细长眼、髭须与山羊须的形状；上传长边 1024 的 JPEG
+  sha256: 510f72616833913c2000045c9b9eff31062064156d3afb2bbf0f3d21b6249263
+- path: .agents/coord/_handoff/gem/codex_w24/staging/face__por_npc_huangyaoshi__ch02_elder_base.jpg
+  use: 同一张新 base 的脸部特写（640×640），看清五官用
+  sha256: ebdb2b399c73c163b400ca708fad5bffb5dadd972098ce8eafe138d79ef2e080
+- path: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_huangyaoshi__ch03_elder_base.2816165b.png
+  use: 待改原图：上一版神雕期立绘（图像编辑底稿，只改脸，保留年龄、灰白须发、头巾、服饰、玉箫与构图）；上传 JPEG
+  sha256: 2816165b1ad75daa1f96847187d9a97f58d618f1cf96f2d27260d1bcdf5d58a0
+redo_reason: 作者 10-03 AR-62 选定射雕黄药师 B；神雕时期不另换脸，按新脸年长化（图像编辑只改脸）
 reference_upload:
-- assets/default/character/male/ch02/por_npc_huangyaoshi__ch02_elder_base.png
-- assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-codex_prompt_rev: 2026-10-02
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w24/staging/base__por_npc_huangyaoshi__ch02_elder_base.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w24/staging/face__por_npc_huangyaoshi__ch02_elder_base.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w24/staging/orig__por_npc_huangyaoshi__ch03_elder_base.jpg
+codex_prompt_rev: '2026-10-03'
 ---
 
 # 黄药师 · 人物写实修正
 
-## Gemini 提示词
+## Gemini 提示词（AR-62 新基线）
+
+> 2026-10-03 AR-62 新基线（11 号出图员，codex exec · image_gen 图像编辑）：作者 10-03 18:02 原话「钟灵b，马夫人b，黄药师b」（AR-62）；射雕黄药师以 B 为新 base，神雕时期不另换脸——以上一版神雕期立绘为底稿，只把脸改成新 base 年长二十多年的样子（约六十五岁，灰白须发、头巾、青衫、玉箫与构图不变），已入库替换本条。
+> 这是图像编辑提示词，要配合下列三张参考按顺序上传才成立；不加画风基线。旧提示词保留在后面各节作历史。
+
+```text
+【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的黄药师立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中黄药师的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+【要对齐基线的部分】脸型与骨相、眉形与眉眼间距、眼型、鼻梁与鼻头、颧骨、嘴型、下颌与下巴。要让人一眼看出是同一个人。基线里的黄药师约四十五岁：清癯的长脸、高颧骨、两颊微陷、下颌线清楚；两道浓眉斜飞入鬓、眉梢高高上挑（最醒目的特征）；眼型细长、上眼睑微压、目光冷峻锐利；鼻梁高挺、鼻头有肉；薄唇紧抿；唇上一字髭须、颏下一绺修剪整齐的山羊须；肤色白皙，神情冷傲。【年龄】原图是神雕时期的黄药师，比射雕时老了二十多年，约六十五岁：须发灰白、额头眼角皱纹更深，但仍清瘦挺拔、目光冷傲：保持原图人物的年龄感、皱纹、胡须与风霜，不要画年轻；只是五官骨相与基线是同一个人（年长后的他）。
+【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+【本张另外要求】两道斜飞上挑的浓眉要保留（变成灰白色）；唇上髭须与颏下山羊须的形状和基线一致，颜色随原图灰白。神情孤傲冷峻。
+【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+```
+
+参考（按实际上传顺序）：
+
+1. `assets/default/character/male/ch02/por_npc_huangyaoshi__ch02_elder_base.png`（sha256 510f72616833…）：身份基线：作者 AR-62 选定的射雕黄药师新 base（B），取脸型骨相、上挑剑眉、细长眼、髭须与山羊须的形状；上传长边 1024 的 JPEG
+2. `.agents/coord/_handoff/gem/codex_w24/staging/face__por_npc_huangyaoshi__ch02_elder_base.jpg`（sha256 ebdb2b399c73…）：同一张新 base 的脸部特写（640×640），看清五官用
+3. `.agents/coord/_handoff/gem/codex_w24/replaced/por_npc_huangyaoshi__ch03_elder_base.2816165b.png`（sha256 2816165b1ad7…）：待改原图：上一版神雕期立绘（图像编辑底稿，只改脸，保留年龄、灰白须发、头巾、服饰、玉箫与构图）；上传 JPEG
+
+## 上一版 Gemini 提示词（AR-62 新基线之前，历史，不再用于出图）
 
 > 2026-10-02 AR-31 改写（1 号出图员，codex exec · image_gen 出图）：重要人物借鉴经典影视造型，只写成文字——不写演员名、不上传剧照、原创面孔；主角和美人画得好看，去 AI 味，禁止幼态。出图时上传两张同性别基线立绘作画风参考（放在最后）；第 1 张为身份参考（por_npc_huangyaoshi__ch02_elder_base.png）。审核组原稿保留在下一节作历史。
 

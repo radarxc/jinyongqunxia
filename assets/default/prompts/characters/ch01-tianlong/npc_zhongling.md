@@ -8,29 +8,84 @@ age_variant: youth
 tier: A
 output: assets/default/character/female/ch01/por_npc_zhongling__ch01_youth_diaoalive_base.png
 manifest: assets/default/character/female/ch01/manifest.yaml
-references:
-- path: .agents/coord/imagegen-reference/hero-20261001/classic_zhongling_2003.png
-  use: 已实际下载并view_image查看。第一主人物设计参考：圆润小脸、明亮有焦点的眼睛、自然率真的少女感与灵动反应；保留项目未成年自然比例，不夸大眼睛。不继承影视蓝光、复杂红花发饰、长高发束或裁切构图；项目青绿衣装及真实托抱的一只闪电貂不变。 SHA-256 3be01fac46aa09e93785cdd482919a7f18a548d603eddc6812d8ad21bcc182a9；来源见参考图目录sources.json。
-- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-  use: 已实际查看。仅参考项目细墨线、柔光、暖浅灰纸底和淡雅设色，不锁定脸、年龄体型、发饰、服装与姿态；基线原approved状态不作任何修改。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际查看的用户水墨风参考，仅取精细国风人物、淡墨层染、纸面透色和衣料笔触；不复制其脸、青白衣装、发饰、披帛或山水背景。
 status: redo
-redo_reason: "明显幼态（孩童脸、双丫髻）且面容源自剧集剧照，按禁止幼态画成成年年轻女子，保留青衫、圆脸大眼与闪电貂"
+references:
+- path: .agents/coord/imagegen-reference/identity-20261002/tianlong/zhongling_1997_hemeitian_163_2026a.jpg
+  sha256: 6b5e2d42514d4b566fed6c08728993d18aa03275c8ad97930410845396f4d8d7
+  use: 身份参考：1997 TVB《天龙八部》（何美钿饰钟灵） 剧照（作者 10-03 点名参考港版，AR-57/58 常设授权下载；来源见同目录 SOURCES.md）；上传裁切 [0, 0, 1080, 787] 后缩到长边 ≤1024 的 JPEG（still__zhongling_a_top.jpg）；只借五官与神韵，按项目画风重画，不照搬照片；不入库
+- path: .agents/coord/imagegen-reference/identity-20261002/tianlong/zhongling_1997_hemeitian_163_2026b.jpg
+  sha256: 4955f0cf50f0d61530ca8d643bd3f561166ceb498a456f39b7a3c04dfad3b9e8
+  use: 身份参考：1997 TVB《天龙八部》（何美钿饰钟灵） 剧照（作者 10-03 点名参考港版，AR-57/58 常设授权下载；来源见同目录 SOURCES.md）；上传裁切 [0, 0, 1080, 785] 后缩到长边 ≤1024 的 JPEG（still__zhongling_b_top.jpg）；只借五官与神韵，按项目画风重画，不照搬照片；不入库
+- path: .agents/coord/_handoff/gem/codex_w24/staging/stillface__zhongling_a_top.jpg
+  sha256: 1312a3e25f0ee3cb334aa09a4b62e60fb58446190c5ccdddd525bac975a57e45
+  use: 剧照脸部特写：由第 1 张剧照裁出放大（640×640），只为看清五官；同样只借神韵
+- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+  sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+- path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+  sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+  use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+redo_reason: 作者 10-03 AR-57「钟灵用港版的演员参考」：参考 1997 TVB 何美钿重画 base（成年人比例、不幼态，青衫与闪电貂不变）；AR-62 选定 B
 reference_upload:
-- .agents/coord/imagegen-reference/hero-20261001/classic_zhongling_2003.png
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-codex_prompt_rev: 2026-10-02
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w24/staging/still__zhongling_a_top.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w24/staging/still__zhongling_b_top.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w24/staging/stillface__zhongling_a_top.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+codex_prompt_rev: '2026-10-03'
 classic_ref:
-  version: 2003 央视《天龙八部》
+  version: 1997 TVB《天龙八部》（何美钿饰钟灵）
   stills:
-  - .agents/coord/imagegen-reference/hero-20261001/classic_zhongling_2003.png
+  - .agents/coord/imagegen-reference/identity-20261002/tianlong/zhongling_1997_hemeitian_163_2026a.jpg
+  - .agents/coord/imagegen-reference/identity-20261002/tianlong/zhongling_1997_hemeitian_163_2026b.jpg
+  crop:
+    zhongling_1997_hemeitian_163_2026a.jpg:
+    - 0
+    - 0
+    - 1080
+    - 787
+    zhongling_1997_hemeitian_163_2026b.jpg:
+    - 0
+    - 0
+    - 1080
+    - 785
+  sources: .agents/coord/imagegen-reference/identity-20261002/tianlong/SOURCES.md
 ---
 
 # 钟灵 · 《天龙八部》（ch01）
 
-## Gemini 提示词
+## Gemini 提示词（AR-62 新基线）
+
+> 2026-10-03 AR-57 / AR-58 / AR-62 新基线（11 号出图员，codex exec · image_gen，gpt-6-astra ultra）：参考 1997 TVB《天龙八部》（何美钿饰钟灵）；出 A / B 两版，作者 10-03 18:02 原话「钟灵b，马夫人b，黄药师b」（AR-62），本版即 B（B：沿用现有发髻，抿嘴狡黠笑），已入库替换 `por_npc_zhongling__ch01_youth_diaoalive_base`。
+> 上传顺序：2 张剧照（裁切后缩到长边 ≤1024 的 JPEG）、第 1 张剧照的脸部特写，最后两张为同性别画风基线（缩小版 JPEG）。剧照只借五官与神韵，按项目画风重画；剧照只存主检出 imagegen-reference、不入库，来源与图注见 classic_ref.sources。
+> 下面是实际提示词（codex 输入前另加一句只调用一次 image_gen 的工具说明）。旧提示词保留在后面各节作历史。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+【参考图】第 1、2 张是该角色经典影视造型（作者指定的版本）的剧照，第 3 张是第 1 张剧照的脸部特写。人物的脸要明显向剧照靠拢——脸型、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、嘴型与唇形都要像剧照里的这个角色，让看过这一版的观众一眼认出；神韵与气质也借鉴剧照。但必须重新绘制成项目的手绘插画画风：像这个角色，而不是照着照片描——不要照片质感，不要照搬剧照的构图、光影、背景、姿势和服装，不要做成照片修图或照片贴脸。服饰、发式、年龄与神情以下文文字为准。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准，但不取基线人物的长相。
+【本版要点】发式与服饰沿用项目现有造型（成年发髻、青衫）；只有脸和神韵向剧照靠拢。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物】钟灵，《天龙八部》万劫谷钟万仇与甘宝宝之女（生父是段正淳），段誉在无量山结识的活泼姑娘，养着一只闪电貂；无量山初遇、闪电貂仍随身的阶段。
+【年龄与体态】原著十六七岁，本作一律画成约二十岁的成年年轻女子：成年女性的骨相与身体比例（约 7 头身），身材轻盈匀称；衣着完整端庄、不透明、不暴露、不性感化。
+【面容（作者：钟灵用港版的演员参考）】脸要明显像剧照里的钟灵：圆润饱满的脸型（成年骨相，颧骨与下颌线清楚，不是婴儿肥、不是嘟嘟的娃娃脸）；一双又大又亮的眼睛、黑眼珠大、双眼皮清楚、眼神灵动；眉毛浓而略短、弯弯的；鼻子小巧、鼻头圆润；嘴巴略宽、唇形饱满、唇色自然红润；笑起来两颊各有一个浅浅的酒窝。鼻梁两侧几点很淡的雀斑（原创扩展，用来区别阿朱、阿紫）。甜美娇憨的成年美人，一眼看出是二十岁的大姑娘，而不是小孩。
+【发式（沿用现有造型）】乌发挽成成年女子的发髻，用一条草绿色发带束住，发间一枚小银花发夹；额前几缕碎发，鬓边留两缕短发垂到下颌；耳垂一对小红珠耳坠。不扎孩童双丫髻。
+【服饰】原著一身青衫：浅青绿色交领右衽短衫（衣长过臀、袖口收束），草绿内衫，米白齐腰长裙，腰系草绿布带；脚穿葱绿色布鞋，鞋边绣几朵小黄花。
+【道具】左前臂上伏着一只灰白色的闪电貂（细长身体、短腿、圆耳、蓬松长尾，爪子抓在她的衣袖上、与她的手指分开，有真实重量），右手轻抚貂背。
+【姿态与神情】双脚稳稳站立，身体正面，头部端正；抿着嘴笑、一边嘴角翘得更高，大眼睛亮晶晶地望着前方、像刚想到一个鬼点子，俏皮又机灵，两颊浅浅的酒窝。不卖萌、不歪头、不嘟嘴。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要孩童脸、婴儿肥、双下巴、儿童或少女身材、双丫髻；不要剧照里的白衣、刀剑和背景；不要第二只动物或其他人物。
+【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+```
+
+参考（按实际上传顺序）：
+
+1. `.agents/coord/imagegen-reference/identity-20261002/tianlong/zhongling_1997_hemeitian_163_2026a.jpg`（sha256 6b5e2d42514d…）：身份参考：1997 TVB《天龙八部》（何美钿饰钟灵） 剧照（作者 10-03 点名参考港版，AR-57/58 常设授权下载；来源见同目录 SOURCES.md）；上传裁切 [0, 0, 1080, 787] 后缩到长边 ≤1024 的 JPEG（still__zhongling_a_top.jpg）；只借五官与神韵，按项目画风重画，不照搬照片；不入库；来源 网易号 2026-06-23《四版《天龙八部》钟灵对比，你最喜欢哪一个女演员？》1997 TVB 小节
+2. `.agents/coord/imagegen-reference/identity-20261002/tianlong/zhongling_1997_hemeitian_163_2026b.jpg`（sha256 4955f0cf50f0…）：身份参考：1997 TVB《天龙八部》（何美钿饰钟灵） 剧照（作者 10-03 点名参考港版，AR-57/58 常设授权下载；来源见同目录 SOURCES.md）；上传裁切 [0, 0, 1080, 785] 后缩到长边 ≤1024 的 JPEG（still__zhongling_b_top.jpg）；只借五官与神韵，按项目画风重画，不照搬照片；不入库；来源 同上
+3. `.agents/coord/_handoff/gem/codex_w24/staging/stillface__zhongling_a_top.jpg`（sha256 1312a3e25f0e…）：剧照脸部特写：由第 1 张剧照裁出放大（640×640），只为看清五官；同样只借神韵
+4. `assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png`（sha256 2d1b0b0905e7…）：画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+5. `assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png`（sha256 725271dfebbb…）：画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相（上传缩小版 JPEG）
+
+## 上一版 Gemini 提示词（AR-62 新基线之前，历史，不再用于出图）
 
 > 2026-10-02 AR-32 重出（5 号出图员，codex exec · image_gen）：主要角色改为参考经典影视版剧照加项目基线生成。上传顺序：2003 央视《天龙八部》 剧照 1 张（classic_zhongling_2003.png），最后两张为同性别画风基线（缩小版 JPEG）。剧照只借造型、气质与面部特征，画面按项目画风重绘、不复制照片。上一版（AR-31 文字版）保留在下一节作历史。
 
