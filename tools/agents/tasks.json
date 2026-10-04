@@ -48489,6 +48489,11 @@
       "{python}",
       "tools/map/terrain/build_terrain.py",
       "--check"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,re; o=subprocess.run([sys.executable,'tools/map/terrain/build_terrain.py','--check'],capture_output=True,text=True); s=o.stdout+o.stderr; c={m.group(1):float(m.group(2)) for m in re.finditer(r'^COVERAGE\\s+(\\w+)\\s+([0-9.]+)\\s*$',s,re.M)}; need=('hills','plateaus','basins_plains'); bad=[k for k in need if c.get(k,0)<0.95]; print('coverage',c,'bad',bad); sys.exit(1 if bad or o.returncode else 0)"
      ]
     ]
    }
