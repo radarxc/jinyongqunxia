@@ -875,78 +875,56 @@
   category: character/male
   style: default
   subject: 施琅 npc_shilang ch08_luding
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+  prompt: 'Use case: historical-scene. 为写实手绘武侠项目编辑一张定稿候选，不是古画复刻。
+
+    输入1现base锁定站姿、手势、道具、左右方向、构图、人物占高、背景底色和画风；衣服与体态按以下要求修改。输入2是此人公有领域画像（多人画只裁本人），输入3是画像脸部，取本人五官骨肉、须式、服饰可见资料，古像年龄须转译成指定小说阶段。不复制坐姿、画框、旁人、建筑、题字、印章、摄影日期或水印。
+
+    原尺寸1024×1536，不透明2:3单人完整全身PNG；头端正、眼线水平、平视，手脚和器物完整入画，保持base顶底留白。保持现base姿势与手中器物，不用历史像的姿勢替换。背景照base暖浅灰纸底和淡水墨。
+
+    写实数字手绘、自然皮肤和衣料经纬、柔和左上光、真实立体骨肉、细腻笔触和轻微自然不对称；不要古画平涂、木刻线条、摄影、油画厚涂、3D、动漫、磨皮网红脸或塑料皮肤。衣冠按角色朝代与身份，不混朝代。汉式交领右衽，不左右镜像；清制男子剃额留辫，蒙古人不用清辫。
+
+    体态从历史像的脸颊、颈、肩胸与可见腰腹转译；丰满者是自然脂肉重量和受力，束带随体围，不画细腰偶像或健美肌肉；清瘦者保持清瘦，不把宽袍、甲胄或半身像当肥胖证明，不机械加胖。按指定年龄，不能照搬画像晚年发福、白须、深皱和病老。
+
+    除福康安外男性一律不笑，嘴自然闭合，不扬嘴角、不露齿。无文字、印章、水印、边框、分格、第二个人、额外道具或发光特效。只输出一张全身候选。
 
 
-    Create a REALISTIC Chinese wuxia full-body portrait of 施琅. THIS IS AN ORIGINAL TEXT-DEFINED FACE for this supporting character. There is NO identity image of this person among the inputs. Image 1 supplies ONLY the corresponding gender palette and soft painting quality; image 2 supplies ONLY pale ink-wash background. Do not copy, blend or average either reference face, age, anatomy, hairstyle, clothes, props or pose. Do not claim this original face is a verified original-game portrait or actor likeness.
+    人物：施琅。本轮原著阶段：1683水师晚期；视觉年龄：约62岁，不是画像年龄。
 
-
-    身份与阶段：施琅（npc_shilang），《鹿鼎记》ch08_luding。台湾战事与宣旨通道相关的清水师将领，取1683年前后任务窗口
-
-
-    年龄与体型：年长水师将领男性，按1621年出生与1683前后本图窗口约六十二岁；不沿用早期郑氏部将青年阶段。厚背、粗糙大手与真实中老年体重，久经海风的皮肤和稍松但稳实的身体。
-
-
-    原创本人面容：独立原创宽长脸、较高额头、坚实宽下颌，颧部深折痕与海风日晒纹理，直而粗的鼻梁、略宽鼻翼、紧闭中等厚嘴唇。眼窝稍深、锐利务实而不凶恶，灰黑短须修整齐，鬓角灰发明显；与冯锡范瘦长冷脸、吴六奇满颊方脸区分。
-
-
-    服制与发式：清初水师将官行装：剃额，灰黑细辫整齐垂束，低调素军帽；深蓝右衽军袍、暗灰轻棉甲背心及小护肩、朴素腰带、防滑软底靴。服饰结实完整，不捏造具体顶戴品级、花翎或补子，不画明式全发官冠或现代海军制服。
-
-
-    正面姿态与器物：一个人头直眼水平的完整正面站姿，双足踏实。仅一柄普通柳叶腰刀完全入鞘，刀鞘与弯刃长度相配。左手持闭合无字军务卷，右手自然扶腰带；双手、卷、刀鞘与衣服清晰分离。无望远镜、六分仪、舰炮、军舰甲板或水师群像。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。按最新用户提速指示先生成1张候选，每张仅一人；基本清晰、正面、人物可辨即保存，只有严重身份错误、重大结构问题或不可读才补图，不因细手指、微装备或轻微角度反复追加。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实边界：本图身份与阶段依当前本地角色稿、名录、story 和 chapter；项目处于清初语境；官军与内地汉人剃额细辫、郑氏归清前明式全发例外、藏传僧人光头各依本人的完整主稿，不通用禁辫或统一服制。人物阶段依本稿专门边界。所有具体五官、服色选款、器物形制细部和静立展示都是原创美术落实；原稿待考照留，不冒称已逐字终校小说或精确历史复原。作者指定1998《鹿鼎记》本人参考优先；当前尚无本机已验证本人图可输入，游戏审计只记录缺口、不能用game替代指定TV。按本轮明确配角授权采用文字原创脸，不冒充原版游戏或演员本人、不拿别人头像代替，也不声称该角色在所有游戏版本从无头像。两张输入都不是本人身份参考，保留原项目基线 candidate/approved 状态。 按本图1683前后台湾水师窗口约62岁，项目全章48–69岁不是本图任意抽取范围；不移用早年效郑阶段。 确切须貌、军服细制与惯用兵器仍待考；一柄普通腰刀和无字军务卷为主稿视觉补足，不声称史实随身物已验证。仅短时战役／任务同行，不改变其正式军职。
-
-
-    参考边界：第一输入只为同性别项目色卡、柔和光线及精细手绘品质，已实际查看；不是本人照片或身份图，不取五官骨相、年龄、身体、发式、衣装、道具与倾头姿势。本人面孔仅由文字独立建立。参考原candidate/approved不转给新图。 第二输入已实际查看，只取暖浅灰纸底、极淡水墨远山和留白，不取参考中的女性人物、脸、身体、发型、衣裙、飘带、装饰或倾头姿势。背景墨迹不得侵入本人的皮肤、衣料和器物。
-
-
-    完整排除项：不要文字、汉字、伪字、题款、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件；本配角没有可靠本人身份图输入，明确文字原创面孔；不要冒充原版游戏脸或演员本人，不借其他游戏角色、演员或基线脸；不复制具体画作或剧照，不使用画师姓名作风格词；不要动漫大眼、低幼化滤镜、统一网红锥子脸、丰唇浓妆、偶像磨皮、摄影写真、塑料皮肤或三维模型渲染感；不要日式服制、前结宽腰带、日本刀、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要时代与族群混搭、错误衣襟、水平镜像、无依据的冠服与兵器；不要额外人物、多视图、分格、面部特写框、多肢多指、粘连手指、错接手腕、手物融合、失重衣料、悬空装备、弯折断裂兵器或容不下剑刃的短鞘；不要无依据的破衣碎布、畸形健美肌肉、血腥特写、裸露、透明衣料、色情化、恶搞或丑化；不要发光兵器、法阵、仙法、龙形能量、粒子特效、强逆光、浓雾遮挡或具体剧情场景、清晰建筑；不要晚清大拉翅、民国旗袍、中山装与近现代军装；不要裁断头足、衣摆、发饰和兵器端点。不要青年脸、现代海军帽、军衔肩章、现代望远镜、六分仪、蒸汽军舰、欧式板甲、长枪炮械或甲板场景；不要戴不明品级花翎。。不要 head tilt、Dutch angle、头向肩侧歪、倾斜眼线、低头藏眼、侧脸回眸或倾斜镜头。不要人物飞白缺块、墨斑侵蚀、纸纹透肤透衣、破洞撕裂、碎布条、密集噪点或过密细皱。水墨仅背景，人物皮肤、衣料、毛发和器物完整连续。
-
-
-    FINAL POSE CHECK: FRONT-FACING, head facing forward, both eyes HORIZONTALLY LEVEL, camera level, NO head tilt, NO Dutch angle. Respect the described age, face, body, impairment and narrative stage; do not straighten a described hunchback; ignore reference poses.'
-  negative: 不要文字、汉字、伪字、题款、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件；本配角没有可靠本人身份图输入，明确文字原创面孔；不要冒充原版游戏脸或演员本人，不借其他游戏角色、演员或基线脸；不复制具体画作或剧照，不使用画师姓名作风格词；不要动漫大眼、低幼化滤镜、统一网红锥子脸、丰唇浓妆、偶像磨皮、摄影写真、塑料皮肤或三维模型渲染感；不要日式服制、前结宽腰带、日本刀、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要时代与族群混搭、错误衣襟、水平镜像、无依据的冠服与兵器；不要额外人物、多视图、分格、面部特写框、多肢多指、粘连手指、错接手腕、手物融合、失重衣料、悬空装备、弯折断裂兵器或容不下剑刃的短鞘；不要无依据的破衣碎布、畸形健美肌肉、血腥特写、裸露、透明衣料、色情化、恶搞或丑化；不要发光兵器、法阵、仙法、龙形能量、粒子特效、强逆光、浓雾遮挡或具体剧情场景、清晰建筑；不要晚清大拉翅、民国旗袍、中山装与近现代军装；不要裁断头足、衣摆、发饰和兵器端点。不要青年脸、现代海军帽、军衔肩章、现代望远镜、六分仪、蒸汽军舰、欧式板甲、长枪炮械或甲板场景；不要戴不明品级花翎。。不要 head tilt、Dutch angle、头向肩侧歪、倾斜眼线、低头藏眼、侧脸回眸或倾斜镜头。不要人物飞白缺块、墨斑侵蚀、纸纹透肤透衣、破洞撕裂、碎布条、密集噪点或过密细皱。水墨仅背景，人物皮肤、衣料、毛发和器物完整连续。
+    只参考《妈祖神迹》册页中馆方题名施琅本人，不用妈祖、随员或水井人物；小尺度叙事画不宣称真容。按本人圆方较丰满颊、细长眼、自然鼻唇与髭颏须，适配约62岁水师将领灰黑须、晒痕与细纹。服装借画像清初红缨黑缘官冠、紫褐近黑官袍与克制四爪蟒纹、马蹄袖、剃额后辫，不加帝王明黄。厚颈、宽肩厚胸、腰腹有自然晚年重量，勿健美瘦腰；base卷轴、另一手扶带、入鞘刀和站姿不变，无水井、海岸或侍从。'
+  negative: ''
   references:
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 第一输入只为同性别项目色卡、柔和光线及精细手绘品质，已实际查看；不是本人照片或身份图，不取五官骨相、年龄、身体、发式、衣装、道具与倾头姿势。本人面孔仅由文字独立建立。参考原candidate/approved不转给新图。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二输入已实际查看，只取暖浅灰纸底、极淡水墨远山和留白，不取参考中的女性人物、脸、身体、发型、衣裙、飘带、装饰或倾头姿势。背景墨迹不得侵入本人的皮肤、衣料和器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T02:18:33.563368+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-a479053e-e76c-4c2e-866a-029d78e925b5.png
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_shilang.r1__ref1.jpg
+    sha256: 86d062fd7c5243cd936d770dd0374947bb75d1b25681858e1842cf3d39f8facf
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_shilang.r1__ref2.jpg
+    sha256: e977f1cd36c7bb2c17764c77b92001d9bd97b4e92f265037718ca6cdd70e3ea0
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_shilang.r1__ref3.jpg
+    sha256: d2b93a7e9ae51c198d83ec94657f62c02e6ead723bb5e600f8d28289229f9224
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  tool: codex exec · image_gen（AR-73 / AR-89 历史画像；AR-91 批准候选原样入库）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: '2026-10-04T09:16:56-07:00'
+  source_path: .agents/coord/_lines/hist-batch2/candidates/npc_shilang.png
   size: 1024x1536
   mode: RGB
-  sha256: 92c05f4c37360cda4defe54cbae0c3604ec3115a5545b4284a54ee8b32b0d612
+  sha256: d4d988246dd781170d3e5d4938ab8b6ba5d0fdd3af8b8e86dc513b2e749dba60
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_shilang__ch08_elder_navy_base/prompt-24851783a6f7c80f9a7674c9a44ecd6936cd40d61ff314d5b0bf8c65643ec227.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_shilang__ch08_elder_navy_base/manifest-8146ba04c794308d4fd34e439d9d2816a48986649088e3663147d80f873b9597.yaml
-    png: null
+    png: .agents/coord/_lines/hist-ingest2/replaced/por_npc_shilang__ch08_elder_navy_base.png
+    sha256: 92c05f4c37360cda4defe54cbae0c3604ec3115a5545b4284a54ee8b32b0d612
+    entry: .agents/coord/_lines/hist-ingest2/replaced/por_npc_shilang__ch08_elder_navy_base.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_shilang__ch08_elder_navy_base.requests.json
   notes: '实际查看候选1：施琅年长宽长脸、灰黑须眉与颊额年龄纹理清楚，深蓝军袍暗灰轻甲和护肩、素军帽后辫，一柄略弯刀完整收鞘，左手无字卷、右手扶带；人物头直眼平、全身双手双足及器物齐全，无重大结构错误。约六旬水师将领与当前阶段可辨，按快速宽松自查可用。帽前小装饰非品级已验证、剃额被帽遮，刀鞘与护臂装饰偏多、衣纹细密，背景花枝小亭偏具体，记录不精确复原、不追加。原生1024×1536 RGB不透明PNG原始字节保存，candidate待审核，非approved。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-73 / AR-89 / AR-91 照历史画像，作者批准入库'
+  source_size: 1024x1536
+  historical_source_page: https://commons.wikimedia.org/wiki/File:Generaal_Shi_Lang_met_een_gezelschap_hoogwaardigheidsbekleders_bij_een_waterput_aan_zee.jpg
 - id: por_npc_wuliuqi__ch08_prime_general_base
   file: por_npc_wuliuqi__ch08_prime_general_base.png
   category: character/male
