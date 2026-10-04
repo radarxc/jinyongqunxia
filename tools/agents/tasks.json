@@ -47756,6 +47756,52 @@
   },
   {
    "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/app-flow.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-waitfor-timeout",
+   "title": "游戏工程 · 小修：apps/game 功能用例里默认 1 秒超时的 vi.waitFor 加显式超时 10 秒（照 content-plugin / quest 先例；断言不改），止住负载高时 app-flow 误报",
+   "prompt": "ENG-waitfor-timeout.md",
+   "deps": [],
+   "writes": [
+    "apps/game/src/**/*.test.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
    "wave": 19,
    "kind": "draft",
    "review": false,
