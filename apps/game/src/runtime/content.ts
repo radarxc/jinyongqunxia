@@ -6,6 +6,7 @@ import type { EquipmentRule, EventAnchor, NpcWorldState, TownMeditationEncounter
   RegionDialogueBinding, RegionLootBinding } from '@tianshu/core';
 import type { BattleLaunch } from '../battle/contracts';
 import type { BattleModelCatalog } from '@tianshu/render/battle';
+import type { JsonValue } from '@tianshu/shared';
 
 export interface MeridianTopology {
   readonly id: string; readonly name: string;
@@ -20,10 +21,14 @@ export interface GameNpcDef {
   readonly appearances: NpcDef['appearances'];
   readonly sources?: readonly { readonly locator: string }[];
 }
+export interface GameEncounterDef {
+  readonly id: `enc_${string}`; readonly chapterId: string; readonly value: JsonValue;
+}
 export interface GameContent {
   readonly items: readonly GameItemDef[]; readonly contentHash?: string;
   readonly chapters?: readonly ChapterDef[]; readonly idRemaps?: readonly ContentIdRemap[];
   readonly events?: readonly EventDef[]; readonly quests?: readonly QuestDef[];
+  readonly encounters?: readonly GameEncounterDef[];
   readonly npcs: readonly GameNpcDef[];
   readonly skills: readonly MartialArtDef[]; readonly topology: readonly MeridianTopology[];
   readonly factions: Readonly<Record<string, string>>;

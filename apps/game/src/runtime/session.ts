@@ -13,8 +13,6 @@ import type * as RegionSubsystem from '@tianshu/core/region-runtime';
 import type { projectDialogue as ProjectDialogue } from '@tianshu/core/dialogue-projection';
 import type { createBattleDemo as CreateBattleDemo } from '../battle/demo';
 import type { BattleRuntime as BattleRuntimeClass } from '../battle/runtime';
-import { projectBattleUnit } from '../battle/presentation';
-import { withBattleModels } from '../battle/model-selection';
 import { createPreviewSession } from './bootstrap';
 import { equipmentRules, type ChapterAssetLoader, type GameContent, type StaticGameContent,
   type TownLoader } from './content';
@@ -34,6 +32,7 @@ const BATTLE_REJECTIONS = new Set([
   'BATTLE_AUTO_ACTIVE', 'BATTLE_STALE_PREVIEW', 'BATTLE_ACTION_UNAVAILABLE',
   'BATTLE_COMMAND_UNKNOWN', 'BATTLE_MANUAL_TURN', 'BATTLE_NOT_MANUAL_TURN', 'PATH_BLOCKED',
   'BATTLE_TARGET_INVALID', 'BATTLE_MOVE_UNKNOWN', 'BATTLE_ACTION_FAILED',
+  'BATTLE_ENCOUNTER_INVALID',
 ]);
 function rejected(error: unknown): GameUpdate | null {
   return error instanceof Error && BATTLE_REJECTIONS.has(error.message)
@@ -184,7 +183,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     const BattleRuntime = await battleRuntime();
     const protagonistId = state.profile.protagonist?.characterId;
     const protagonistGender = state.profile.identity?.gender;
-    const projected = withBattleModels(launch, content, {
+    const projected = BattleRuntime.withModels(launch, content, {
       ...(protagonistId ? { protagonistId } : {}),
       ...(protagonistGender ? { protagonistGender } : {}),
     });
@@ -264,19 +263,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     const result = await core.dispatch(coreCommand);
     if (!result.ok) return acceptedUpdate(result, {});
     state = core.read(); battle.update(state.battle!);
-    const action = state.battle!.commandLog.at(-1);
-    const move = action?.t === 'battle/act' && action.action.t === 'skill' ? action.action : null;
-    const localEvents = state.battle!.battle.events.slice(before);
-    const actor = move && action?.t === 'battle/act'
-      ? state.battle!.battle.units.find(unit => unit.id === action.actor) : undefined;
-    const targets = move ? localEvents.filter(event => event.t === 'battle/damageResolved' && event.target)
-      .flatMap(event => state.battle!.battle.units.filter(unit => unit.id === event.target)) : [];
-    const resolved = move && actor ? { moveId: move.move, from: projectBattleUnit(actor, battle.launch),
-      to: targets.map(unit => projectBattleUnit(unit, battle!.launch)), result: {
-        actionNo: state.battle!.battle.actionNo, hpDamage: localEvents.filter(event =>
-          event.t === 'battle/damageResolved').reduce((sum, event) => sum + (event.amount ?? 0), 0),
-        events: localEvents } } : undefined;
-    return acceptedUpdate(result, { battle: battle.packet(false, resolved) });
+    return acceptedUpdate(result, { battle: battle.actionPacket(before) });
   }
   async function townFor(candidate: GameState) {
     const sceneId = candidate.chapter.town?.sceneId;

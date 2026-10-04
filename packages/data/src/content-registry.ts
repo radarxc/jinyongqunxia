@@ -5,7 +5,6 @@ import {
   ChapterDefSchema,
   CharacterTemplateSchema,
   EventDefSchema,
-  EncounterDefSchema,
   ItemDefSchema,
   MartialArtDefSchema,
   MeridianDefSchema,
@@ -25,7 +24,6 @@ import {
   type AcupointDef,
   type ChapterDef,
   type CharacterTemplate,
-  type EncounterDef,
   type EventDef,
   type ItemDef,
   type MartialArtDef,
@@ -43,6 +41,7 @@ import {
   type RegionGateBindingDef,
   type RegionLootBindingDef,
 } from './schemas';
+import { EncounterDefSchema, type EncounterDef } from './schemas/encounter';
 
 export type ContentKind =
   | 'npc'
@@ -61,8 +60,9 @@ export type ContentKind =
   | 'roleSlot'
   | 'regionGate'
   | 'regionDialogue'
-  | 'regionLoot';
-export type RegisteredContentKind = ContentKind | 'encounter';
+  | 'regionLoot'
+  | 'encounter';
+export type RegisteredContentKind = ContentKind;
 export interface ContentFile {
   readonly path: string;
   readonly text: string;

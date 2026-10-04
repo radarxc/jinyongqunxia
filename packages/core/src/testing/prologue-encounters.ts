@@ -1,4 +1,4 @@
-import { EncounterDefSchema, type CharacterTemplate, type EncounterDef } from '@tianshu/data/schemas';
+import type { CharacterTemplate, EncounterDef } from '@tianshu/data/schemas';
 import { hexDisk, hexRing } from '../hex';
 import type { BattleUnitSeed } from '../battle';
 import { BASIC_MOVE, battleSeed } from './combat-fixture';
@@ -31,7 +31,7 @@ const baseOutcome = { lose: [{ kind: 'unitDown' as const, unitRef: 'hero' }], dr
   onDefeat: 'retry' as const, concede: 'forbidden' as const };
 
 export const PROLOGUE_ENCOUNTERS: readonly EncounterDef[] = [
-  EncounterDefSchema.parse({ schemaVersion: 'encounter.v1', id: 'enc_00_zhulin',
+  { schemaVersion: 'encounter.v1', id: 'enc_00_zhulin',
     chapterId: 'ch00_yuenv', kind: 'story', arena: { kind: 'inline', topology: 'hex-pointy',
       anchorId: 'arena_zhulin', cells: grid(61) }, participants: [hero,
       template('road_swordsman_1', 'role_road_swordsman', 'enemy', 1, 1),
@@ -40,8 +40,8 @@ export const PROLOGUE_ENCOUNTERS: readonly EncounterDef[] = [
     beats: [{ id: 'aqing_rescue', once: true, when: { kind: 'hpBelow', unitRef: 'hero', thresholdBp: 4_500 },
       actions: [{ kind: 'emit', event: 'battle/aqingRescue' }] },
     { id: 'spirit_demo', once: true, when: { kind: 'lossStreak', count: 3 },
-      actions: [{ kind: 'offerDemonstration', replayId: 'replay_zhulin_demo' }] }], difficulty }),
-  EncounterDefSchema.parse({ schemaVersion: 'encounter.v1', id: 'enc_00_baiyuan',
+      actions: [{ kind: 'offerDemonstration', replayId: 'replay_zhulin_demo' }] }], difficulty },
+  { schemaVersion: 'encounter.v1', id: 'enc_00_baiyuan',
     chapterId: 'ch00_yuenv', kind: 'spar', arena: { kind: 'inline', topology: 'hex-pointy',
       anchorId: 'arena_baiyuan', cells: grid(73) }, participants: [hero,
       { unitRef: 'baiyuan', source: { kind: 'npc', npcId: 'npc_baiyuan' }, side: 'enemy',
@@ -51,8 +51,8 @@ export const PROLOGUE_ENCOUNTERS: readonly EncounterDef[] = [
       { kind: 'hitCount', actorSide: 'player', targetSide: 'enemy', hits: 1 },
       { kind: 'surviveRounds', rounds: 2 }] },
     rules: { ...rules, mode: 'spar', noItems: true, retry: false, skippable: true },
-    beats: [], difficulty }),
-  EncounterDefSchema.parse({ schemaVersion: 'encounter.v1', id: 'enc_00_biandao',
+    beats: [], difficulty },
+  { schemaVersion: 'encounter.v1', id: 'enc_00_biandao',
     chapterId: 'ch00_yuenv', kind: 'story', arena: { kind: 'inline', topology: 'hex-pointy',
       anchorId: 'arena_biandao', cells: grid(91) }, participants: [hero,
       template('yue_soldier_1', 'role_yue_soldier', 'ally', -1, 2),
@@ -64,7 +64,7 @@ export const PROLOGUE_ENCOUNTERS: readonly EncounterDef[] = [
     outcome: { ...baseOutcome, win: [{ kind: 'allHostileDown', side: 'player' }] },
     rules: { ...rules, mercyAllowed: true, lethalIntent: false },
     beats: [{ id: 'aqing_projection', once: true, when: { kind: 'lossStreak', count: 3 },
-      actions: [{ kind: 'switchControl', unitRef: 'aqing_projection', control: 'player' }] }], difficulty }),
+      actions: [{ kind: 'switchControl', unitRef: 'aqing_projection', control: 'player' }] }], difficulty },
 ];
 
 export const PROLOGUE_TEMPLATE: CharacterTemplate = { schemaVersion: 'character-template.v1',

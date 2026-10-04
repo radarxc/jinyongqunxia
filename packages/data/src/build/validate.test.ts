@@ -52,6 +52,10 @@ describe('content validation discovery', () => {
     await expect(validateContent(fixture('invalid-event'))).rejects.toThrow();
   });
 
+  it('rejects an invalid encounter through the build-time content gate', async () => {
+    await expect(validateContent(fixture('invalid-encounter'))).rejects.toThrow();
+  });
+
   it('accepts ordinary content YAML without requiring an Ink story', async () => {
     const result = await validateContent(fixture('content-only'));
 

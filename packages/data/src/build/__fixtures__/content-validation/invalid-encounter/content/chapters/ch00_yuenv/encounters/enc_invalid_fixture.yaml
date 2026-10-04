@@ -1,0 +1,4 @@
+schemaVersion: encounter.v1
+id: enc_invalid_fixture
+chapterId: ch00_yuenv
+kind: story
