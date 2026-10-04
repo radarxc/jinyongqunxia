@@ -36,19 +36,31 @@
     【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
   negative: ''
   references:
-  - path: assets/default/character/male/ch13/por_npc_tianguinong__ch13_prime_base.png
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
   - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
     use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  tool: codex exec · image_gen（基线画风参考 2 张＋身份参考 1 张）
-  model: gpt-6-astra
-  created: 2026-10-02T02:54:10-0700
-  source_path: .agents/coord/gemini_originals/por_npc_tianguinong__ch14_prime_memory_base.png
+  - path: assets/default/character/male/ch13/por_npc_tianguinong__ch13_prime_base.png
+    sha256: 12770fdfab31210a22593ac1fb3f18beee098548986a2b3fc86c91943864dacc
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:06:18.558829-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_69_66_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: dddcbcab184170a9affce860d968843730dbe1339603a2c9155b414c2f32acad
+  sha256: ca7e7e7e35634a7efa59044ce3c7556cd58dbb8d464ef35974e79d198685f1f6
   status: candidate
-  notes: 立绘重审重出（AR-30）；主检出现图沿用了飞狐旧图的阴沉瘦脸；以重出后的飞狐田归农为参考，统一为俊朗儒雅的中年掌门，佩直剑。
+  notes: 立绘重审重出（AR-30）；主检出现图沿用了飞狐旧图的阴沉瘦脸；以重出后的飞狐田归农为参考，统一为俊朗儒雅的中年掌门，佩直剑。；AR-84 第二轮：田归农五官对齐 por_npc_tianguinong__ch13_prime_base；AR-53 仅头部，AR-75 神态与光向保留；田归农以飞狐外传戏份更重的定稿版本为准；雪山飞狐是同一时期回忆，不额外变老，保持图1清代光额辫发，冷厉野心的眼神，不笑。；质检：已打开对照：ch13同人眉眼、鼻骨、唇颌一致，ch14回忆保留壮年衣饰和头向；闭口沉稳无笑，原光向与接缝自然，头外零变化
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_69_66_r1
+    before_sha256: dddcbcab184170a9affce860d968843730dbe1339603a2c9155b414c2f32acad
+    box:
+    - 445
+    - 109
+    - 576
+    - 284
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_69_66_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_hufei__ch14_prime_base
   file: por_npc_hufei__ch14_prime_base.png
   category: character/male
