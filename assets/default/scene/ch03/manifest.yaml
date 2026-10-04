@@ -319,36 +319,48 @@
   category: scene
   style: default
   subject: 郭襄生辰与神雕侠现身（ch03_shendiao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是郭襄的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中郭襄的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
+  prompt: '【任务】AR-80 郭襄插图局部。第1张是郭襄再调眼鼻后的定稿立绘脸（身份基线）；第2张是襄阳献礼插图中的郭襄头部放大裁图（编辑目标）。只改第2张本人面部，输出1024×1024方图，位置、大小、取景、仰头方向和角度与第2张严格一致。
 
-    【要改成】与第1张定稿郭襄是同一个人：李绮红参考的五官、减淡法令纹、较瘦脸型、略大的笑眼、弯眼扬嘴的明亮笑容。保留第2张朝画面左上看杨过的头部姿态、露齿笑方向和夕阳光照，只改郭襄脸。
+    【要改成】郭襄与第1张是同一个人：李绮红版参考、再放大的眼睛和收小的鼻子。插图内要把露齿大笑收成含蓄的闭嘴浅笑：嘴唇自然合拢、嘴角轻轻上扬，不露牙齿，双眼有温柔的喜悦，保留仰头望向画面左上方杨过的视线。她十六岁生日，杨过以三件大礼为她祝寿；她欣喜、感动而含蓄，杨过是长辈关怀小辈，不能画成嬉笑或情侣调情。
 
-    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；同图杨过、黄蓉、围观众人完全不变；郭襄花饰、发式、耳饰、珍珠项链、衣服和手保持不变。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
+    【保持】少女青春身份、脸型骨相、年龄感、发式发饰、耳饰、颈部、衣领服饰、位置大小、周边人和背景、温暖暮色光线、柔和写实手绘笔触均不变。只编辑她的脸，不改变场景和别人的脸。第2张为放大裁块，保持其柔和度，勿照片化或锐化。
 
-    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+    【不要】不要露齿大笑，不要新增法令纹，不要AI网红脸、CG渲染、文字水印，不镜像，不加人物、礼物或烟花。
 
-    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
-  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
+
+    【杨过局部神情编辑】
+
+    【任务】AR-80 插图杨过表情返修。第1张是十六年后杨过现行定稿立绘面部（只取身份年龄）；第2张是插图目标头部原始方块（底稿）；第3张是上一版编辑，仍显得蹙眉严肃，需要明确修正。请编辑第2张，输出1024×1024，头部取景、位置大小、朝向角度严格不变。
+
+    【目标】同一个杨过，只改神情和视线。眉间完全舒展、去掉原图那种两眉向中间挤压的紧绷凶气，两眉保持正常形状，双眼带温柔的笑意。嘴角两侧可见但克制地上扬，闭嘴含笑，不露牙齿。目光温柔而专注地看画面右下方郭襄的脸，呈现长辈看小辈的宠溺、关心和欣慰。含笑必须清楚可见，不能仍是冷脸或愁眉。郭襄十六岁生日，杨过送三件大礼为她祝寿，温暖的长辈祝福，不能男女情侣暧昧。
+
+    【保持】严格保持第2张的脸型骨相、五官身份、成熟年龄感与肤色、头发发饰、衣领衣服、身体、背景、暮色光线、写实手绘笔触、头部朝向位置。仅动眉眼情绪、嘴角和眼球视线，不重塑脸，不变年轻，不换发式、不换衣装。原图被放大，所以保持柔和，不锐化。
+
+    【不要】不要蹙眉，不要嘴角下压，不要冷酷，不要露齿大笑，不要暧昧轻佻，不要AI美颜脸或照片拼贴，不改变旁人、场景或文字，不镜像。'
+  negative: 要露齿大笑，不要新增法令纹，不要AI网红脸、CG渲染、文字水印，不镜像，不加人物、礼物或烟花。
   references:
   - path: assets/default/character/female/ch03/por_npc_guoxiang__ch03_youth_base.png
-    sha256: 4d647735f95da9ef1058192aceec9922fd74d07fa515de5e19cee7af169c2169
-    use: 对脸基线：作者审核通过的 por_npc_guoxiang__ch03_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+    sha256: 01534d245cdc9e335bc6eec209bcb19d4b90a62f3b9a625c4677dfe3cdc7dc44
+    use: AR-80 再调后的郭襄现行base，仅取身份五官；插图独立收敛笑容
+  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_prime_scene_xiangyang_platform_rescue_palm.png
+    sha256: 6a2f222db03994dc883c68649030f84746ae20186ac2c3c56e9e03206476ed1c
+    use: 十六年后杨过现行立绘：与郭襄生日时代一致，只取面部身份与年龄
   - path: assets/default/scene/ch03/cg_ch03_xiangyang_gift.png
-    sha256: 34699a22df0904deec5f16dd9aecc30b87c6698999a69c019f925e68e71f1027
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch03_xiangyang_gift.34699a22.png
-  tool: w17 mkpatch.py / patch.py 本线副本重定向共享 w24 runner；显式郭襄框、对齐羽化、限制头部蒙版，其他人物像素完全保留
+    sha256: ac30bfa994a5d72d90a08bc5ba385084cfd47b2c9448ed8ae309cdecd82c1936
+    use: AR-80 编辑前原图；旧图备份 .agents/coord/_lines/final-2/replaced/cg_ch03_xiangyang_gift.ac30bfa9.png
+  tool: 共享 w30 runner · codex exec / image_gen；AR-80 局部编辑与有界蒙版合成
   model: gpt-6.1-sol
-  created: 2026-10-03T23:16:13-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch03_xiangyang_gift.ar74gx1.png
+  created: '2026-10-03T23:48:41-07:00'
+  source_path: .agents/coord/_lines/final-2/guoxiang_cg_final.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: ac30bfa994a5d72d90a08bc5ba385084cfd47b2c9448ed8ae309cdecd82c1936
+  sha256: d38145d79437f623494a601739979e295ed6b042a9c6f6fc044351c8a3cd6947
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「襄阳献礼」，实际字形「襄陽献礼」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_guoxiang__ch03_youth_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch03_prime_base（AR-53 总审返修：黄蓉年龄与眼睛对齐壮年 base）；AR-53 / AR-72 / AR-74 郭襄定稿脸同步襄阳贺礼，仅局部合成郭襄头部，同图其他人逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「襄阳献礼」，实际字形「襄陽献礼」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_guoxiang__ch03_youth_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch03_prime_base（AR-53 总审返修：黄蓉年龄与眼睛对齐壮年 base）；AR-53 / AR-72 / AR-74 郭襄定稿脸同步襄阳贺礼，仅局部合成郭襄头部，同图其他人逐像素不变；AR-53 / AR-75 / AR-80 郭襄与杨过双头部局部合成；郭襄含蓄浅笑，杨过含笑看她、长辈看小辈的宠溺；十六岁生辰三件大礼祝寿；其余人物、衣装、场景和题字逐像素不变；杨过以十六年后襄阳立绘为身份年龄基线
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch03_xiangyang_gift.34699a22.png
-    sha256: 34699a22df0904deec5f16dd9aecc30b87c6698999a69c019f925e68e71f1027
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch03_xiangyang_gift.34699a22.entry.yaml
+    png: .agents/coord/_lines/final-2/replaced/cg_ch03_xiangyang_gift.ac30bfa9.png
+    sha256: ac30bfa994a5d72d90a08bc5ba385084cfd47b2c9448ed8ae309cdecd82c1936
+    entry: .agents/coord/_lines/final-2/replaced/cg_ch03_xiangyang_gift.ac30bfa9.entry.yaml
   runner_job_records:
   - - cg_ch03_xiangyang_gift.resume3r2
     - ok
