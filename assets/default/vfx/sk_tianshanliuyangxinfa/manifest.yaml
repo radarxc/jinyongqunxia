@@ -1,0 +1,482 @@
+assets:
+- id: vfx_sk_tianshanliuyangxinfa__family_base01
+  file: effect/family/source_sheet.png
+  size: 1536x1024
+  sha256: 791ae30b3deba73c53ac978fc2bff4e2d0dc1bb09df72785539f1c4185ddcbcc
+  category: vfx
+  style: default
+  subject: 天龙书界 / 北宋；天山六阳心法（原创扩展）family 阳性赤色自身气场白底四帧
+  prompt: 'Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet.
+
+    Make ONE pure-white RGB background sheet containing FOUR sequential animation frames in a precise 2-column by
+    2-row grid, equal cells, reading left to right then top to bottom. Landscape canvas, ideally 1536 x 1024. No
+    grid lines, borders, labels, text or characters.
+
+    Subject: Tianshan Six Yang inner cultivation, an ORIGINAL artistic extension for a yang-nature self-support
+    skill. A small, elegant vermilion-red cinnabar qi aura, curling from a broad misty contact patch on the LEFT
+    toward a compact hollow oval to the RIGHT. Three layered brush ribbons turn back inward like slow breathing;
+    airy broken contours and transparent gaps. Compact protective breathing aura, never a projectile or attacking
+    beam.
+
+    Style: refined Chinese ink-wash energy, liquid pigment, delicate dry-brush edges, semi-transparent veils with
+    dark-red accents, restrained warm red-ochre highlights. No literal fire, lotus, dragon, sun disc, religious
+    symbols, anatomy, hands or scenery. NO white or near-white painted highlights inside the effect.
+
+    Layout: each cell is 768 x 512; keep effect within local x=90..680, y=90..422 with at least 48 pixels of pure
+    white at every edge. A broad soft root patch at local x=180,y=256, about 140 pixels high, always stays in the
+    same place. Direction is positive X. The largest hollow oval is centered near local x=410,y=256 and ends near
+    x=650. Each frame keeps the same scale, root and viewpoint.
+
+    Sequence: 1 quiet gathering, 2 breathing coil forms, 3 full but translucent protective coil, 4 faint returning
+    wisps. Frame 4 must still contain visible red pigment. Separate all four frames completely with white space.
+    Flat sprite artwork only, no page texture, no drop shadows, no glow painted onto the background.'
+  negative: 无文字、网格、纸纹、边框、人物、手、兵器、实体火焰、龙、莲花、符文、白色实心高光；不画离体攻击。
+  references: []
+  tool: codex · 内置 image_gen
+  model: image_gen（工具未公开底层模型）
+  effort: 工具未公开
+  created: '2026-10-04T01:13:47+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tianshanliuyangxinfa/codex-home/generated_images/01a1046e-c136-7fc2-80ce-8a4018fa18ca/exec-7e9caa35-e1d8-4054-908d-ea1dca653eac.png
+  status: candidate
+  pipeline: two-part
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 仅 1 次生成；源 PNG 与 image_gen 原件逐字节相同。颜色、回环、交织与旋纹均为原创扩展；原著未逐字考据。完整测量与局部长度见 README；未生成普通招单独原料。 家族原件根部中心漂移约 9
+    px，逐帧锚点补偿；连续性待实测。 原件白底有 253–255 近白色差，归元 32 px 边带另有极少 248–249 淡尾；按 cutoff=250 去底，8 px 透明边框无残留。
+  files:
+  - effect/family/effect-set.yaml
+  - effect/family/frame_000.png
+  - effect/family/frame_001.png
+  - effect/family/frame_002.png
+  - effect/family/frame_003.png
+  - effect/family/preview_black.png
+  - effect/family/preview_gray.png
+  - effect/family/preview_white.png
+  - effect/family/quality.json
+  - effect/family/source_sheet.png
+  - README.md
+  - source_requests.yaml
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 987
+    sha256: 4dcda701eedf47d71699b7cf7645394a656dddf60f14c026ffb4d608b2086955
+  - file: effect/family/frame_000.png
+    bytes: 267576
+    sha256: ba207d93cac054bd2b62143da4731722a5b6c35cbbf9ee5107a5a03f6a7caec5
+  - file: effect/family/frame_001.png
+    bytes: 341000
+    sha256: ef87124e2bf0b6bcb1a8929fbf1f9bf354a9bb4b2b0318a68ec652cbf47ff864
+  - file: effect/family/frame_002.png
+    bytes: 402710
+    sha256: 2c9cc11b4cffce2a40366a8ba6c8719d35eb1defb1bfd290e4514a9c488b5762
+  - file: effect/family/frame_003.png
+    bytes: 296041
+    sha256: f3f63b674cfd608d3275de6e5cea27c3a46c4ea5188984e6f70770fab8343059
+  - file: effect/family/preview_black.png
+    bytes: 948115
+    sha256: 9d50ad54eef65dc5d941c730389e1679872be6b39ca5fab7e086fc8b71245626
+  - file: effect/family/preview_gray.png
+    bytes: 928249
+    sha256: 9ee4ea90e189f9857fb1ee23b615731ce4fdca3c9f0a4e234b748c811d869cfe
+  - file: effect/family/preview_white.png
+    bytes: 957166
+    sha256: 95a9ff1b2356e76fdcf984037c2700b32fe76d4a181c13a9adcd4ff2c376d5b6
+  - file: effect/family/quality.json
+    bytes: 1032
+    sha256: 9898586b595715120ffd7f27dd73e31ddb6596af335232b13dfe04f3e26e5271
+  - file: effect/family/source_sheet.png
+    bytes: 1640496
+    sha256: 791ae30b3deba73c53ac978fc2bff4e2d0dc1bb09df72785539f1c4185ddcbcc
+  - file: README.md
+    bytes: 7653
+    sha256: 48ab42aaa6e1df0ef0bf3eec1a28997e8f19640f48e2cab3e5a3f401c774f15e
+  - file: source_requests.yaml
+    bytes: 5987
+    sha256: de91cf93ed4c84dffe48b7399525856d280c83db232f1f6e21b7ba1ff6ebcd43
+- id: vfx_sk_tianshanliuyangxinfa__hemai_base01
+  file: effect/mv_tianshanliuyangxinfa_hemai/source_sheet.png
+  size: 1536x1024
+  sha256: 4087029eaeeb5ef4438eab0b051832cc334b4f40965a7fb6a7059a5093f40f4f
+  category: vfx
+  style: default
+  subject: 天龙书界 / 北宋；天山六阳心法（原创扩展）mv_tianshanliuyangxinfa_hemai 阳性赤色自身气场白底四帧
+  prompt: 'Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet.
+
+    Make ONE pure-white RGB background sheet containing FOUR sequential animation frames in a precise 2-column by
+    2-row grid, equal cells, reading left to right then top to bottom. Landscape canvas, ideally 1536 x 1024. No
+    grid lines, borders, labels, text or characters.
+
+    Subject: He Mai, an ORIGINAL self-support ultimate of Tianshan Six Yang inner cultivation. Six slender vermilion-red
+    qi ribbons interlace into a compact hollow protective knot: rising inner arcs meet a horizontal encircling belt,
+    suggesting pathways joining without drawing a body or anatomical meridians. The six strands share one BROAD
+    translucent contact patch on the LEFT and loop toward the RIGHT before folding inward. Rich cinnabar red, restrained
+    burnt-ochre accents, sparse dark-crimson ink accents.
+
+    Style: elegant Chinese ink-wash energy, translucent pigment washes and flying-white negative space. Clear gaps
+    between ribbons, quiet controlled power rather than explosion. No literal fire, runes, star, lotus, dragon,
+    weapons, hands, human, scenery or white painted highlights. All shapes are fictional visual metaphors, not canonical
+    novel details.
+
+    Layout: each cell is 768 x 512; keep effect within local x=90..680,y=70..442, leaving at least 48 pixels pure
+    white at every edge. Broad soft root at local x=180,y=256, about 140 pixels high, same in every frame. Direction
+    positive X. Interlaced knot centered near x=420,y=256, far edge near x=650. Maintain matching root, scale and
+    viewpoint.
+
+    Sequence: 1 six faint connected threads gather, 2 threads interlace, 3 full broad interlaced protective knot,
+    4 threads loosen into faint returning wisps. Frame 4 retains visible red pigment. Four separate frames, pure
+    white gutters. Flat sprite artwork, no paper texture, no shadow, no background halo.'
+  negative: 无文字、网格、纸纹、边框、人物、手、兵器、实体火焰、龙、莲花、符文、白色实心高光；不画离体攻击。
+  references: []
+  tool: codex · 内置 image_gen
+  model: image_gen（工具未公开底层模型）
+  effort: 工具未公开
+  created: '2026-10-04T01:13:47+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tianshanliuyangxinfa/codex-home/generated_images/01a1046e-c136-7fc2-80ce-8a4018fa18ca/exec-fab3db39-fcbf-40f5-9119-ad24abd76230.png
+  status: candidate
+  pipeline: two-part
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 仅 1 次生成；源 PNG 与 image_gen 原件逐字节相同。颜色、回环、交织与旋纹均为原创扩展；原著未逐字考据。完整测量与局部长度见 README；未生成普通招单独原料。 原件白底有 253–255
+    近白色差，归元 32 px 边带另有极少 248–249 淡尾；按 cutoff=250 去底，8 px 透明边框无残留。
+  files:
+  - effect/mv_tianshanliuyangxinfa_hemai/effect-set.yaml
+  - effect/mv_tianshanliuyangxinfa_hemai/frame_000.png
+  - effect/mv_tianshanliuyangxinfa_hemai/frame_001.png
+  - effect/mv_tianshanliuyangxinfa_hemai/frame_002.png
+  - effect/mv_tianshanliuyangxinfa_hemai/frame_003.png
+  - effect/mv_tianshanliuyangxinfa_hemai/preview_black.png
+  - effect/mv_tianshanliuyangxinfa_hemai/preview_gray.png
+  - effect/mv_tianshanliuyangxinfa_hemai/preview_white.png
+  - effect/mv_tianshanliuyangxinfa_hemai/quality.json
+  - effect/mv_tianshanliuyangxinfa_hemai/source_sheet.png
+  file_integrity:
+  - file: effect/mv_tianshanliuyangxinfa_hemai/effect-set.yaml
+    bytes: 986
+    sha256: 7b6c47083472bb48013ac59d97396d5bef9a594e1fd1cbc533d524df9b88bddf
+  - file: effect/mv_tianshanliuyangxinfa_hemai/frame_000.png
+    bytes: 200469
+    sha256: 10da20a29dcdb3affb6e3d61f9c917cb12858b81a9c9410022699c4c004252a5
+  - file: effect/mv_tianshanliuyangxinfa_hemai/frame_001.png
+    bytes: 312957
+    sha256: d4319d430c059b670404319f994121d838e9939709e01bd177d9049240c0ede9
+  - file: effect/mv_tianshanliuyangxinfa_hemai/frame_002.png
+    bytes: 321988
+    sha256: 53dc1bbf43425b3098edfe9e0adad9f3e15e7f3721f25f577e4d70cb5cc17943
+  - file: effect/mv_tianshanliuyangxinfa_hemai/frame_003.png
+    bytes: 268161
+    sha256: 80fc8a657c4dc6c80104b9600ec290484d9715169b2bbebb370df70ad5c0dce3
+  - file: effect/mv_tianshanliuyangxinfa_hemai/preview_black.png
+    bytes: 841208
+    sha256: bbbc13e15e9ff3a97313a67e0cb1d48699a2300272af5c1fc07e2851cee7bbe1
+  - file: effect/mv_tianshanliuyangxinfa_hemai/preview_gray.png
+    bytes: 824276
+    sha256: 8c7b3251f9b31756e7d18fdcb335e0640bb4e80ec90cd8e188703bf0372464df
+  - file: effect/mv_tianshanliuyangxinfa_hemai/preview_white.png
+    bytes: 832896
+    sha256: 62e86e82d610c4a6e61b532a3947afacb90c91fc490ecec4969290a07f6eba19
+  - file: effect/mv_tianshanliuyangxinfa_hemai/quality.json
+    bytes: 1033
+    sha256: 8e638fbe83aca76ecc4e96926b5c5ec1f992734fa70ff09464dc33b070ad9e57
+  - file: effect/mv_tianshanliuyangxinfa_hemai/source_sheet.png
+    bytes: 1482651
+    sha256: 4087029eaeeb5ef4438eab0b051832cc334b4f40965a7fb6a7059a5093f40f4f
+- id: vfx_sk_tianshanliuyangxinfa__guiyuan_base01
+  file: effect/mv_tianshanliuyangxinfa_guiyuan/source_sheet.png
+  size: 1536x1024
+  sha256: 93c8f40d21b3a7604053f400c4808c3f342a00d0a2488919baca42e167710ad3
+  category: vfx
+  style: default
+  subject: 天龙书界 / 北宋；天山六阳心法（原创扩展）mv_tianshanliuyangxinfa_guiyuan 阳性赤色自身气场白底四帧
+  prompt: 'Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet.
+
+    Make ONE pure-white RGB background sheet containing FOUR sequential animation frames in a precise 2-column by
+    2-row grid, equal cells, reading left to right then top to bottom. Landscape canvas, ideally 1536 x 1024. No
+    grid lines, borders, labels, text or characters.
+
+    Subject: Six Yang Returning to Origin, an ORIGINAL self-restoration ultimate. Six curving vermilion brush streams
+    form an open spiral surrounding a SMALL warm cinnabar core. Each stroke folds inward, conveying gathering and
+    return. Broad translucent LEFT contact patch links continuously to the compact RIGHT spiral. A round open structure
+    with asymmetrical breathing gaps, never a sun, fireball, projectile, blossom or magic seal.
+
+    Style: refined Chinese ink-wash energy, luminous red-ochre pigment rather than neon, deep red fine accents,
+    semi-transparent flowing ribbons, soft broken edges and generous hollow center. NO white or near-white painted
+    highlights. No actual fire, dragon, lotus, runes, weapons, people, hands or scenery. Fictional visual metaphor,
+    not a claimed description from a novel.
+
+    Layout: each equal cell is 768 x 512. Keep all pigment within local x=90..680,y=70..442 with at least 48 pixels
+    pure white on all edges. Broad soft root at local x=180,y=256 about 140 pixels high, fixed in all frames. Direction
+    positive X. Spiral center near x=420,y=256, far edge near x=650. Same root, viewpoint and overall scale throughout.
+
+    Sequence: 1 quiet gathering arcs, 2 six streams curl inward, 3 peak inward spiral and small warm core, 4 the
+    same coil fades into delicate inward wisps. Frame 4 is not blank. Separate frames with pure white space. No
+    paper texture, shadows or glow on background.'
+  negative: 无文字、网格、纸纹、边框、人物、手、兵器、实体火焰、龙、莲花、符文、白色实心高光；不画离体攻击。
+  references: []
+  tool: codex · 内置 image_gen
+  model: image_gen（工具未公开底层模型）
+  effort: 工具未公开
+  created: '2026-10-04T01:13:47+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tianshanliuyangxinfa/codex-home/generated_images/01a1046e-c136-7fc2-80ce-8a4018fa18ca/exec-4a119fc8-4ae2-49c9-854d-2e26f6c5fd55.png
+  status: candidate
+  pipeline: two-part
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 仅 1 次生成；源 PNG 与 image_gen 原件逐字节相同。颜色、回环、交织与旋纹均为原创扩展；原著未逐字考据。完整测量与局部长度见 README；未生成普通招单独原料。 原件白底有 253–255
+    近白色差，归元 32 px 边带另有极少 248–249 淡尾；按 cutoff=250 去底，8 px 透明边框无残留。
+  files:
+  - effect/mv_tianshanliuyangxinfa_guiyuan/effect-set.yaml
+  - effect/mv_tianshanliuyangxinfa_guiyuan/frame_000.png
+  - effect/mv_tianshanliuyangxinfa_guiyuan/frame_001.png
+  - effect/mv_tianshanliuyangxinfa_guiyuan/frame_002.png
+  - effect/mv_tianshanliuyangxinfa_guiyuan/frame_003.png
+  - effect/mv_tianshanliuyangxinfa_guiyuan/preview_black.png
+  - effect/mv_tianshanliuyangxinfa_guiyuan/preview_gray.png
+  - effect/mv_tianshanliuyangxinfa_guiyuan/preview_white.png
+  - effect/mv_tianshanliuyangxinfa_guiyuan/quality.json
+  - effect/mv_tianshanliuyangxinfa_guiyuan/source_sheet.png
+  file_integrity:
+  - file: effect/mv_tianshanliuyangxinfa_guiyuan/effect-set.yaml
+    bytes: 988
+    sha256: bfa1a455af0e9969dfb88f03d1dbb2cf09d31c1c24a80e7399633d88fe5ca6b8
+  - file: effect/mv_tianshanliuyangxinfa_guiyuan/frame_000.png
+    bytes: 277284
+    sha256: 1d592558db3fc20e8fe9aff28bda1a04688233ec6e8c504a380351807f2dbed3
+  - file: effect/mv_tianshanliuyangxinfa_guiyuan/frame_001.png
+    bytes: 274677
+    sha256: ab4ff8456bfad7c06b55fea8b59163014c281ec3f28a3209a98a0de8f1a3bc21
+  - file: effect/mv_tianshanliuyangxinfa_guiyuan/frame_002.png
+    bytes: 300898
+    sha256: d2d30e90ea234964e3c303908947217ec7faa05ff423ebab173fb670c9d19763
+  - file: effect/mv_tianshanliuyangxinfa_guiyuan/frame_003.png
+    bytes: 253803
+    sha256: 919a61875bfe5a8d7f97db46fb9db0fd6c10ea52de3af5d7a88fdd5384b8be5d
+  - file: effect/mv_tianshanliuyangxinfa_guiyuan/preview_black.png
+    bytes: 814365
+    sha256: 0066e1a69e903f772362a5d91bf2306df4c010f986dd3bd6f39d01a67db08587
+  - file: effect/mv_tianshanliuyangxinfa_guiyuan/preview_gray.png
+    bytes: 814113
+    sha256: 92c40db1b2e01258f642526328f3c4687e309d1f803154b7fdf728d4743c5cf1
+  - file: effect/mv_tianshanliuyangxinfa_guiyuan/preview_white.png
+    bytes: 834679
+    sha256: 73a1f6b9d9f9bdb7bbcbdb0a87de78e83cc2289008532a1f0c86e6435c944281
+  - file: effect/mv_tianshanliuyangxinfa_guiyuan/quality.json
+    bytes: 1033
+    sha256: 31b761afc789073e57d95ccff4a1f596b5a00f9f42a79d61191b80fc3b20ed15
+  - file: effect/mv_tianshanliuyangxinfa_guiyuan/source_sheet.png
+    bytes: 1564202
+    sha256: 93c8f40d21b3a7604053f400c4808c3f342a00d0a2488919baca42e167710ad3
+- id: vfx_mv_tianshanliuyangxinfa_guiyuan__base01
+  file: moves/mv_tianshanliuyangxinfa_guiyuan/peak.png
+  size: 1536x1024
+  sha256: 0f69dcf883480195b330c41145bdca09f7dd51b30a4ccaf9755cf1341f0043f6
+  category: vfx
+  style: default
+  subject: 天龙书界 / 北宋；天山六阳心法 mv_tianshanliuyangxinfa_guiyuan（原创扩展）；自身支援，无外放
+  prompt: 用 effect/mv_tianshanliuyangxinfa_guiyuan/effect-set.yaml 的四帧 RGBA 与共享 palm 发出方合成；E=[680,560]，方向向右，range_hex=0，局部长度
+    384 px；节奏 wave 0.90 秒，峰值 phase=0.5。仅缩放、根部对齐与线性透明叠化，玩法以图鉴 §3.1 为准。
+  negative: 无文字、网格、纸纹、边框、人物、手、兵器、实体火焰、龙、莲花、符文、白色实心高光；不画离体攻击。
+  references:
+  - effect/mv_tianshanliuyangxinfa_guiyuan/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py（Three.js）
+  model: 确定性合成；原料由 image_gen 生成，底层模型未公开
+  effort: 不适用（脚本导出）
+  created: '2026-10-04T01:13:47+00:00'
+  source_path: assets/default/vfx/sk_tianshanliuyangxinfa/moves/mv_tianshanliuyangxinfa_guiyuan/composition.yaml
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_tianshanliuyangxinfa_guiyuan/demo.html
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_tianshanliuyangxinfa_guiyuan/effect-set.yaml
+  notes: 普通招共用家族原料；绝招各用独有套。range_hex=0 与局部 length_px 仅作自身气场示意，不定义攻击射程或游戏时钟；共享 palm 未复制、未修改。浏览器与真机待实测。
+  files:
+  - moves/mv_tianshanliuyangxinfa_guiyuan/composition.json
+  - moves/mv_tianshanliuyangxinfa_guiyuan/composition.yaml
+  - moves/mv_tianshanliuyangxinfa_guiyuan/demo.html
+  - moves/mv_tianshanliuyangxinfa_guiyuan/peak.png
+  file_integrity:
+  - file: moves/mv_tianshanliuyangxinfa_guiyuan/composition.json
+    bytes: 3361
+    sha256: 8ed984b496d9271927678572ad0e35c56282fb7f29ee403df72cf842362ce456
+  - file: moves/mv_tianshanliuyangxinfa_guiyuan/composition.yaml
+    bytes: 955
+    sha256: b572dd00f2b6f3c292fef3705f22ba512c6c297dc3820a4f4844e5f4d5fc9101
+  - file: moves/mv_tianshanliuyangxinfa_guiyuan/demo.html
+    bytes: 1910262
+    sha256: 62bb5d3a2c9e0cd4ee7819334f496065dbcfb7388abf1f6b7d741295a6e1920a
+  - file: moves/mv_tianshanliuyangxinfa_guiyuan/peak.png
+    bytes: 366342
+    sha256: 0f69dcf883480195b330c41145bdca09f7dd51b30a4ccaf9755cf1341f0043f6
+- id: vfx_mv_tianshanliuyangxinfa_hemai__base01
+  file: moves/mv_tianshanliuyangxinfa_hemai/peak.png
+  size: 1536x1024
+  sha256: 86b49c5e6259ce2f27e9ee51b99b8f0ef425854f5c65635a4b8b3963d2253f02
+  category: vfx
+  style: default
+  subject: 天龙书界 / 北宋；天山六阳心法 mv_tianshanliuyangxinfa_hemai（原创扩展）；自身支援，无外放
+  prompt: 用 effect/mv_tianshanliuyangxinfa_hemai/effect-set.yaml 的四帧 RGBA 与共享 palm 发出方合成；E=[680,560]，方向向右，range_hex=0，局部长度
+    384 px；节奏 wave 0.90 秒，峰值 phase=0.5。仅缩放、根部对齐与线性透明叠化，玩法以图鉴 §3.1 为准。
+  negative: 无文字、网格、纸纹、边框、人物、手、兵器、实体火焰、龙、莲花、符文、白色实心高光；不画离体攻击。
+  references:
+  - effect/mv_tianshanliuyangxinfa_hemai/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py（Three.js）
+  model: 确定性合成；原料由 image_gen 生成，底层模型未公开
+  effort: 不适用（脚本导出）
+  created: '2026-10-04T01:13:47+00:00'
+  source_path: assets/default/vfx/sk_tianshanliuyangxinfa/moves/mv_tianshanliuyangxinfa_hemai/composition.yaml
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_tianshanliuyangxinfa_hemai/demo.html
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_tianshanliuyangxinfa_hemai/effect-set.yaml
+  notes: 普通招共用家族原料；绝招各用独有套。range_hex=0 与局部 length_px 仅作自身气场示意，不定义攻击射程或游戏时钟；共享 palm 未复制、未修改。浏览器与真机待实测。
+  files:
+  - moves/mv_tianshanliuyangxinfa_hemai/composition.json
+  - moves/mv_tianshanliuyangxinfa_hemai/composition.yaml
+  - moves/mv_tianshanliuyangxinfa_hemai/demo.html
+  - moves/mv_tianshanliuyangxinfa_hemai/peak.png
+  file_integrity:
+  - file: moves/mv_tianshanliuyangxinfa_hemai/composition.json
+    bytes: 3353
+    sha256: 66746f44be409f71c4756765b965e66bee349c4b23e07e1ac8e6f842bf043e2d
+  - file: moves/mv_tianshanliuyangxinfa_hemai/composition.yaml
+    bytes: 949
+    sha256: 8e098e918e30b7a027e0194491f52408d24dcf88ed93c5732b7130f057e910f6
+  - file: moves/mv_tianshanliuyangxinfa_hemai/demo.html
+    bytes: 1942802
+    sha256: cda32a75c862ed8a2394ad92dc4503b4dad50b1ef6f09881e8c91f85b3b474b0
+  - file: moves/mv_tianshanliuyangxinfa_hemai/peak.png
+    bytes: 383007
+    sha256: 86b49c5e6259ce2f27e9ee51b99b8f0ef425854f5c65635a4b8b3963d2253f02
+- id: vfx_mv_tianshanliuyangxinfa_huanxi__base01
+  file: moves/mv_tianshanliuyangxinfa_huanxi/peak.png
+  size: 1536x1024
+  sha256: ae07f0227a51827978f1e6a6dd5f76fc1197a2df20df04ea9f91a8c0499e743d
+  category: vfx
+  style: default
+  subject: 天龙书界 / 北宋；天山六阳心法 mv_tianshanliuyangxinfa_huanxi（原创扩展）；自身支援，无外放
+  prompt: 用 effect/family/effect-set.yaml 的四帧 RGBA 与共享 palm 发出方合成；E=[680,560]，方向向右，range_hex=0，局部长度 288 px；节奏 pulse
+    0.60 秒，峰值 phase=0.5。仅缩放、根部对齐与线性透明叠化，玩法以图鉴 §3.1 为准。
+  negative: 无文字、网格、纸纹、边框、人物、手、兵器、实体火焰、龙、莲花、符文、白色实心高光；不画离体攻击。
+  references:
+  - effect/family/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py（Three.js）
+  model: 确定性合成；原料由 image_gen 生成，底层模型未公开
+  effort: 不适用（脚本导出）
+  created: '2026-10-04T01:13:47+00:00'
+  source_path: assets/default/vfx/sk_tianshanliuyangxinfa/moves/mv_tianshanliuyangxinfa_huanxi/composition.yaml
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_tianshanliuyangxinfa_huanxi/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  notes: 普通招共用家族原料；绝招各用独有套。range_hex=0 与局部 length_px 仅作自身气场示意，不定义攻击射程或游戏时钟；共享 palm 未复制、未修改。浏览器与真机待实测。
+  files:
+  - moves/mv_tianshanliuyangxinfa_huanxi/composition.json
+  - moves/mv_tianshanliuyangxinfa_huanxi/composition.yaml
+  - moves/mv_tianshanliuyangxinfa_huanxi/demo.html
+  - moves/mv_tianshanliuyangxinfa_huanxi/peak.png
+  file_integrity:
+  - file: moves/mv_tianshanliuyangxinfa_huanxi/composition.json
+    bytes: 3335
+    sha256: 66e37415d0a808295f1288f7884a3ef9ff39a4b21a6af24445a5709eddc11b9e
+  - file: moves/mv_tianshanliuyangxinfa_huanxi/composition.yaml
+    bytes: 930
+    sha256: 461c90176f4e5750260ef72feac22ef41126094612a1361a8f2e28b87f6fd0f2
+  - file: moves/mv_tianshanliuyangxinfa_huanxi/demo.html
+    bytes: 2155430
+    sha256: b101e1973a82e71d0cc228ea66d4bb85a146ba58c3bdbc01aa55790b53b34f6e
+  - file: moves/mv_tianshanliuyangxinfa_huanxi/peak.png
+    bytes: 297955
+    sha256: ae07f0227a51827978f1e6a6dd5f76fc1197a2df20df04ea9f91a8c0499e743d
+- id: vfx_mv_tianshanliuyangxinfa_huti__base01
+  file: moves/mv_tianshanliuyangxinfa_huti/peak.png
+  size: 1536x1024
+  sha256: 26f6914eeef4a3fac12271cfa4adc41e2d64ca995e91a12ba7b74d1e71e51bda
+  category: vfx
+  style: default
+  subject: 天龙书界 / 北宋；天山六阳心法 mv_tianshanliuyangxinfa_huti（原创扩展）；自身支援，无外放
+  prompt: 用 effect/family/effect-set.yaml 的四帧 RGBA 与共享 palm 发出方合成；E=[680,560]，方向向右，range_hex=0，局部长度 336 px；节奏 pulse
+    0.60 秒，峰值 phase=0.5。仅缩放、根部对齐与线性透明叠化，玩法以图鉴 §3.1 为准。
+  negative: 无文字、网格、纸纹、边框、人物、手、兵器、实体火焰、龙、莲花、符文、白色实心高光；不画离体攻击。
+  references:
+  - effect/family/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py（Three.js）
+  model: 确定性合成；原料由 image_gen 生成，底层模型未公开
+  effort: 不适用（脚本导出）
+  created: '2026-10-04T01:13:47+00:00'
+  source_path: assets/default/vfx/sk_tianshanliuyangxinfa/moves/mv_tianshanliuyangxinfa_huti/composition.yaml
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_tianshanliuyangxinfa_huti/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  notes: 普通招共用家族原料；绝招各用独有套。range_hex=0 与局部 length_px 仅作自身气场示意，不定义攻击射程或游戏时钟；共享 palm 未复制、未修改。浏览器与真机待实测。
+  files:
+  - moves/mv_tianshanliuyangxinfa_huti/composition.json
+  - moves/mv_tianshanliuyangxinfa_huti/composition.yaml
+  - moves/mv_tianshanliuyangxinfa_huti/demo.html
+  - moves/mv_tianshanliuyangxinfa_huti/peak.png
+  file_integrity:
+  - file: moves/mv_tianshanliuyangxinfa_huti/composition.json
+    bytes: 3329
+    sha256: 82efd7730c1ace809125b5141d4a2fd8d449db2dae24360eda3fcf5b371cb8d8
+  - file: moves/mv_tianshanliuyangxinfa_huti/composition.yaml
+    bytes: 924
+    sha256: 6edd8afb634b141d13209a5877c27414aba361600a2787b63ca61d33777ec1d1
+  - file: moves/mv_tianshanliuyangxinfa_huti/demo.html
+    bytes: 2179336
+    sha256: 921241fd377e68e285fc766a5f083014ff0107ac6a610f5e7b9588afae0d9511
+  - file: moves/mv_tianshanliuyangxinfa_huti/peak.png
+    bytes: 328355
+    sha256: 26f6914eeef4a3fac12271cfa4adc41e2d64ca995e91a12ba7b74d1e71e51bda
+- id: vfx_mv_tianshanliuyangxinfa_tuna__base01
+  file: moves/mv_tianshanliuyangxinfa_tuna/peak.png
+  size: 1536x1024
+  sha256: 7b05b750a6c3832ab0cee94893f74c221219d4dcd97a350d4b7c8bd3064fa4aa
+  category: vfx
+  style: default
+  subject: 天龙书界 / 北宋；天山六阳心法 mv_tianshanliuyangxinfa_tuna（原创扩展）；自身支援，无外放
+  prompt: 用 effect/family/effect-set.yaml 的四帧 RGBA 与共享 palm 发出方合成；E=[680,560]，方向向右，range_hex=0，局部长度 240 px；节奏 pulse
+    0.60 秒，峰值 phase=0.5。仅缩放、根部对齐与线性透明叠化，玩法以图鉴 §3.1 为准。
+  negative: 无文字、网格、纸纹、边框、人物、手、兵器、实体火焰、龙、莲花、符文、白色实心高光；不画离体攻击。
+  references:
+  - effect/family/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py（Three.js）
+  model: 确定性合成；原料由 image_gen 生成，底层模型未公开
+  effort: 不适用（脚本导出）
+  created: '2026-10-04T01:13:47+00:00'
+  source_path: assets/default/vfx/sk_tianshanliuyangxinfa/moves/mv_tianshanliuyangxinfa_tuna/composition.yaml
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_tianshanliuyangxinfa_tuna/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  notes: 普通招共用家族原料；绝招各用独有套。range_hex=0 与局部 length_px 仅作自身气场示意，不定义攻击射程或游戏时钟；共享 palm 未复制、未修改。浏览器与真机待实测。
+  files:
+  - moves/mv_tianshanliuyangxinfa_tuna/composition.json
+  - moves/mv_tianshanliuyangxinfa_tuna/composition.yaml
+  - moves/mv_tianshanliuyangxinfa_tuna/demo.html
+  - moves/mv_tianshanliuyangxinfa_tuna/peak.png
+  file_integrity:
+  - file: moves/mv_tianshanliuyangxinfa_tuna/composition.json
+    bytes: 3331
+    sha256: 21619b8d2f85ef45ed25b3dd92082c5d66b56e38f9c82e946f69bc8a16e3adfd
+  - file: moves/mv_tianshanliuyangxinfa_tuna/composition.yaml
+    bytes: 926
+    sha256: b8bb837bbac4099ae4a863a3d8a907277bc7f84bb0e703799f22adbfeb2a2420
+  - file: moves/mv_tianshanliuyangxinfa_tuna/demo.html
+    bytes: 2140882
+    sha256: 5f96292a782a2b7d9286665feb5aeb5a1096f716cc151721487bcbf8422f414b
+  - file: moves/mv_tianshanliuyangxinfa_tuna/peak.png
+    bytes: 281102
+    sha256: 7b05b750a6c3832ab0cee94893f74c221219d4dcd97a350d4b7c8bd3064fa4aa

@@ -1,0 +1,33 @@
+skill: sk_tianshanliuyangxinfa
+tool: image_gen
+status: candidate
+originality: 心法名、五招、赤色及全部可见气场为原创扩展；不主张原著有可见六阳光效。
+source: docs/design/catalog/skills-bulu-01-tianlong.md §3.1
+requests:
+  family:
+    candidates_requested: 1
+    prompt: |-
+      Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet.
+      Make ONE pure-white RGB background sheet containing FOUR sequential animation frames in a precise 2-column by 2-row grid, equal cells, reading left to right then top to bottom. Landscape canvas, ideally 1536 x 1024. No grid lines, borders, labels, text or characters.
+      Subject: Tianshan Six Yang inner cultivation, an ORIGINAL artistic extension for a yang-nature self-support skill. A small, elegant vermilion-red cinnabar qi aura, curling from a broad misty contact patch on the LEFT toward a compact hollow oval to the RIGHT. Three layered brush ribbons turn back inward like slow breathing; airy broken contours and transparent gaps. Compact protective breathing aura, never a projectile or attacking beam.
+      Style: refined Chinese ink-wash energy, liquid pigment, delicate dry-brush edges, semi-transparent veils with dark-red accents, restrained warm red-ochre highlights. No literal fire, lotus, dragon, sun disc, religious symbols, anatomy, hands or scenery. NO white or near-white painted highlights inside the effect.
+      Layout: each cell is 768 x 512; keep effect within local x=90..680, y=90..422 with at least 48 pixels of pure white at every edge. A broad soft root patch at local x=180,y=256, about 140 pixels high, always stays in the same place. Direction is positive X. The largest hollow oval is centered near local x=410,y=256 and ends near x=650. Each frame keeps the same scale, root and viewpoint.
+      Sequence: 1 quiet gathering, 2 breathing coil forms, 3 full but translucent protective coil, 4 faint returning wisps. Frame 4 must still contain visible red pigment. Separate all four frames completely with white space. Flat sprite artwork only, no page texture, no drop shadows, no glow painted onto the background.
+  mv_tianshanliuyangxinfa_hemai:
+    candidates_requested: 1
+    prompt: |-
+      Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet.
+      Make ONE pure-white RGB background sheet containing FOUR sequential animation frames in a precise 2-column by 2-row grid, equal cells, reading left to right then top to bottom. Landscape canvas, ideally 1536 x 1024. No grid lines, borders, labels, text or characters.
+      Subject: He Mai, an ORIGINAL self-support ultimate of Tianshan Six Yang inner cultivation. Six slender vermilion-red qi ribbons interlace into a compact hollow protective knot: rising inner arcs meet a horizontal encircling belt, suggesting pathways joining without drawing a body or anatomical meridians. The six strands share one BROAD translucent contact patch on the LEFT and loop toward the RIGHT before folding inward. Rich cinnabar red, restrained burnt-ochre accents, sparse dark-crimson ink accents.
+      Style: elegant Chinese ink-wash energy, translucent pigment washes and flying-white negative space. Clear gaps between ribbons, quiet controlled power rather than explosion. No literal fire, runes, star, lotus, dragon, weapons, hands, human, scenery or white painted highlights. All shapes are fictional visual metaphors, not canonical novel details.
+      Layout: each cell is 768 x 512; keep effect within local x=90..680,y=70..442, leaving at least 48 pixels pure white at every edge. Broad soft root at local x=180,y=256, about 140 pixels high, same in every frame. Direction positive X. Interlaced knot centered near x=420,y=256, far edge near x=650. Maintain matching root, scale and viewpoint.
+      Sequence: 1 six faint connected threads gather, 2 threads interlace, 3 full broad interlaced protective knot, 4 threads loosen into faint returning wisps. Frame 4 retains visible red pigment. Four separate frames, pure white gutters. Flat sprite artwork, no paper texture, no shadow, no background halo.
+  mv_tianshanliuyangxinfa_guiyuan:
+    candidates_requested: 1
+    prompt: |-
+      Use case: stylized-concept. Asset type: Chinese wuxia game VFX sprite sheet.
+      Make ONE pure-white RGB background sheet containing FOUR sequential animation frames in a precise 2-column by 2-row grid, equal cells, reading left to right then top to bottom. Landscape canvas, ideally 1536 x 1024. No grid lines, borders, labels, text or characters.
+      Subject: Six Yang Returning to Origin, an ORIGINAL self-restoration ultimate. Six curving vermilion brush streams form an open spiral surrounding a SMALL warm cinnabar core. Each stroke folds inward, conveying gathering and return. Broad translucent LEFT contact patch links continuously to the compact RIGHT spiral. A round open structure with asymmetrical breathing gaps, never a sun, fireball, projectile, blossom or magic seal.
+      Style: refined Chinese ink-wash energy, luminous red-ochre pigment rather than neon, deep red fine accents, semi-transparent flowing ribbons, soft broken edges and generous hollow center. NO white or near-white painted highlights. No actual fire, dragon, lotus, runes, weapons, people, hands or scenery. Fictional visual metaphor, not a claimed description from a novel.
+      Layout: each equal cell is 768 x 512. Keep all pigment within local x=90..680,y=70..442 with at least 48 pixels pure white on all edges. Broad soft root at local x=180,y=256 about 140 pixels high, fixed in all frames. Direction positive X. Spiral center near x=420,y=256, far edge near x=650. Same root, viewpoint and overall scale throughout.
+      Sequence: 1 quiet gathering arcs, 2 six streams curl inward, 3 peak inward spiral and small warm core, 4 the same coil fades into delicate inward wisps. Frame 4 is not blank. Separate frames with pure white space. No paper texture, shadows or glow on background.
