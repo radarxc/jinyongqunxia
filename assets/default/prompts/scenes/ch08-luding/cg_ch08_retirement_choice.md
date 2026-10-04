@@ -11,6 +11,105 @@ characters:
 - npc_mujianping
 - npc_zengrou
 - npc_jianning
+output: assets/default/scene/ch08/cg_ch08_retirement_choice.png
+manifest: assets/default/scene/ch08/manifest.yaml
+size: 1536x1024
+status: candidate
+redo_reason: AR-89 拉远同归，重写提示词整张重出
+references:
+- path: assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
+  sha256: 8713f92abd849f5d45ea77a4350d02a26d753eb4961eb0243b42786fafb92714
+  use: 韦小宝现行base服色与发型；身份及画风参考
+- path: assets/default/character/female/ch08/por_npc_shuanger__ch08_youth_base.png
+  sha256: 3316d1fcf22fb8f59911b673be17fb582d3b247575685e2cacf823117ee64eb6
+  use: 双儿现行base服色与发型；身份及画风参考
+- path: assets/default/character/female/ch08/por_npc_ake__ch08_youth_base.png
+  sha256: b268298f30a8c9776fd1bf3612a98afc13c4dda6e95558ed53a0bd6d986cf142
+  use: 阿珂现行base服色与发型；AR-84作者选A
+- path: assets/default/character/female/ch08/por_npc_suquan__ch08_youth_base.png
+  sha256: 1892b6ba86b08d9cfb422fbd62b4deb6d4dcc7cddd63ac8d5c6656483bcbbe81
+  use: 苏荃现行base服色与发型；身份及画风参考
+- path: assets/default/character/female/ch08/por_npc_fangyi__ch08_youth_base.png
+  sha256: e781660d6cc280642c24afd69c90c6de1e4c3de88bef12336898d14f64d4fdf2
+  use: 方怡现行base服色与发型；身份及画风参考
+- path: assets/default/character/female/ch08/por_npc_mujianping__ch08_youth_base.png
+  sha256: 311389e9ee91d0b57a73051469dc8f393a27e7bc024a82291a0503f9ead8d2ea
+  use: 沐剑屏现行base服色与发型；身份及画风参考
+- path: assets/default/character/female/ch08/por_npc_zengrou__ch08_youth_base.png
+  sha256: 114553d5257c41d7a4831941a012c926fcaf3e18a50392bde97bc57df6f4615e
+  use: 曾柔现行base服色与发型；身份及画风参考
+- path: assets/default/character/female/ch08/por_npc_jianning__ch08_child_palace_base.png
+  sha256: df57b28d41579492a993721c45e350be907f76f2926a64f33412cf280ce78c5f
+  use: 建宁现行base服色与发型；身份及画风参考
+generation_reference_limit: 5
+generation_reference_boards: 4
+generation_method: 全新整张生成，仅四张双人base资料板；不上传现CG，不局部改脸
+title_text: 江湖归去
+title_method: generated
+generation_attempts: 0
+---
+
+## 原著依据
+
+- 金庸《鹿鼎记》第五十回「鹗立云端原矫矫　鸿飞天外又冥冥」。
+- 原文短摘：「夫妻八人依计而行」；「一家人同去云南」；「在大理城过那逍遥自在的日子」。
+- 去哪里：先改装到扬州接母，再全家赴云南，最终在大理隐姓埋名生活。不是留在京城，也不是康熙来渡口送行。
+- 怎么走：官船烧毁后，韦小宝、建宁、双儿先改装赴淮阴客店等候，苏荃带方怡、阿珂、沐剑屏、曾柔去泗阳集余船取回财物，随后夫妻八人依计共同离开。末段对扬州至云南的路线和交通工具未作具体描写，不能断言八人原文就同乘这一艘船。
+- 谁在场：夫妻八人为韦小宝、双儿、阿珂、苏荃、方怡、沐剑屏、曾柔、建宁。扬州接母后同行家庭还包括母亲韦春芳与孩子；画面把他们安排在遮蔽船舱内，八位主角之外不另露人影。无康熙或岸上送行者。
+- 本图取景：扬州接母之后远行途中的民用篷船已经离岸，八人共同面向航行方向。船、渡口、清晨薄雾和人物站位为原创视觉扩展；并非把原著官船烧毁那一刻改画成平静离岸。
+- 核查来源：[第五十回末段，经典书库](https://www.jingdianbook.com/book_9370/50_8.html)；[第五十回，努努书坊](https://www.kanunu8.com/wuxia/201102/1624/36996.html)交叉核对。2026-10-04访问。前者少数字用图片替代，摘句避开缺字；据在线转录核情节，未宣称纸本逐字校勘。直接抓取使用通用 `User-Agent: TianshuBot/1.0`，请求不带作者个人标识。
+
+## AR-89 当前提示词
+
+```text
+Use case: historical-scene
+Asset type: 江湖群侠项目《鹿鼎记》剧情CG；全新完整生成，1536×1024，3:2横幅。
+【核心】江湖归去：镜头拉远的山水远景，韦小宝与七位夫人八人已经同乘一艘民用篷船离开渡口，一起驶向前方。不是合影，不是登船时刻；岸上没有任何相送的人。八人小而可数，山水是画面主体。
+【四张参考的用途】参考图都是现行base服色、发型和手绘质感的资料板，绝不是待编辑场景。第1张左韦小宝、右双儿；第2张左阿珂（AR-84作者选A）、右苏荃；第3张左方怡、右沐剑屏；第4张左曾柔、右建宁。每人仅出现一次。不要把参考板边框、序号、姓名、立绘背景或站姿复制进画面。没有旧CG参考；从空白整张创作。
+【场景与剧情】清初，夫妻八人已取回财物，改装到扬州接母后，全家赴云南隐姓埋名。这是远行途中一个不指认地名的山水河段。宽阔江水、层层青灰远山、烟岚、稀疏芦苇与岸树；左下远离船身的小渡口已经空无一人。民用船无官旗、无皇家标识，船舱篷帘合拢，母亲与孩子在舱内，不露出额外人物。渡口、晨雾和这一段乘船为取景扩展，不能画成原官船燃烧前后的现场。
+【距离与运动】岸上较高处的远景视点，略俯视船的斜后侧，绝不近景或半身构图。完整船身约画宽35%至40%；八人聚集的整体约画宽23%，每人可见身形仅画高8%至12%，头部很小。至少三分之二画幅留给山、水和空白。船已与渡口明显拉开水面间隔，船头朝画面右上方开阔水面，船尾淡淡V形尾波通向左下旧渡口；船帆带风、船头轻微破水。用船身、尾波和八人身体方向让人一眼读懂一家人共同离去。
+【恰好八人】开放甲板上仅1位成年男性韦小宝和7位成年女性；八个独立头部都露出，任何头部不被人或篷遮挡，不增船夫、孩童、侍卫、路人、远处人影。八人在同一甲板内紧密聚成两层自然错落的家庭小组，全部随船朝右上前进，多为侧面或斜背三分之四面，可以略见脸，没人向岸上回望挥手，没人站在渡口。人物表情和五官只需小尺度的自然概括，服色与发型优先；不是八人一字排开的合影。
+【八人的衣装和位置】
+1. 韦小宝靠近小组中间，深藏蓝长袍、棕红马褂、黑瓜皮帽，剃额留辫，年轻成年男性；握着双儿的手，轻松安定，望向船头。
+2. 双儿在韦小宝身旁：白底淡蓝花纹衣、浅蓝裙；软刘海、盘髻与淡粉花饰；温柔信赖，共看前路。
+3. 阿珂在韦小宝另一侧：米白花纹衣、灰蓝腰裙；齐刘海、花饰髻、单侧长辫，作者选定A的秀丽气质；矜持平静。
+4. 苏荃在小组靠舱一侧：深紫长衣、金褐绣缘；成熟高髻、彩色花蝶饰；安稳从容，一手护住身边的行李箱。
+5. 方怡靠近苏荃和沐剑屏：暗紫花纹背心、米白花纹宽袖；髻配小红花、单侧长辫；聪慧沉静。
+6. 沐剑屏紧邻方怡：浅绿花纹衣、淡粉衣缘；碎齐刘海、绿花头饰、双侧细辫；欣悦地挽着方怡手臂。
+7. 曾柔在小组外侧但始终在船内：灰绿衣、土黄围巾；朴素盘髻、木簪、短刘海；安静含羞，轻扶身旁建宁的衣袖。
+8. 建宁紧邻曾柔：暗蓝花纹背心、玫红宽袖衣；左右双髻簪花，成年妻子比例；神态稍骄矜而对前方好奇。不用公主朝冠或幼童造型。
+【人物状态和关系】八人无伤无病，无战斗无内力爆发；便服与小包袱、行李箱表现离开官场。互相挽臂、扶袖、相依站坐，温暖而自然，行动一致，不表演统一笑容。手与身体比例正常。
+【画风】遵照项目STYLE：男性写实武侠，女性古典美丽，人物衣料、头发和船木有细腻手绘质感；低饱和靛蓝、紫、灰绿与淡粉米白服色，温和清晨自然光。山水有更多水墨意趣：宣纸纹理、虚实、淡墨晕染、清雅留白，仍是可读的真实空间。非照片、动漫、3D、塑料CG或厚重油画。画面安静宽远，别用宏伟宫殿、浓艳天空或壮观奇幻瀑布抢主题。
+【唯一题字】右上方空白处，自上而下竖排楷书毛笔准确写“江”“湖”“归”“去”，四字每字仅一次。简体“归”是U+5F52，左边两笔、右边彐，严禁日文字形“帰”和繁体“歸”。楷书清晰端正，不用草书变体；整列约画高25%至30%，不挡山水主体或人物。底下可有一枚小朱红方印，无其他可读文字，绝不出现参考板姓名和编号。
+【强制检查】8个头部＝1男＋7女，8人全部在同一条离岸的船上；服色发型逐个符合上述参考；山水远景、人物小；船头、尾波和人物朝向一致；岸上无人；题字恰为简体竖排楷书“江湖归去”。
+```
+
+## 出图与验收
+
+- 仅往 codex_w17 已启动 runner 的 queue.txt 追加作业；不启动、重启或改动其他 runner。
+- 先整张生成2张候选，必要时再生成第3张；总调用最多6次。各张仅上传四张双人base参考板。
+- 每张必须真实打开整图和人物、题字放大图；数清8人、1男7女、全部在船上，逐人核服色与发型，核同一航向与岸上无人。
+- 逐字检查楷书简体江／湖／归／去，禁止帰；远景不做逐人五官贴回。
+- 最终对照表：`.agents/coord/_lines/retire-regen/retire_new.jpg`，含旧图、新图、八人位置标注。
+
+## 历史提示词
+
+以下完整保留 AR-75 旧文件（含元数据和旧验收记录），仅供追溯，不用于本次生成。
+
+````markdown
+---
+asset_id: cg_ch08_retirement_choice
+name: 江湖归去
+book: ch08_luding
+characters:
+- npc_weixiaobao
+- npc_shuanger
+- npc_ake
+- npc_suquan
+- npc_fangyi
+- npc_mujianping
+- npc_zengrou
+- npc_jianning
 reference_upload:
 - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
 - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/character/female/ch08/por_npc_shuanger__ch08_youth_base.png
@@ -108,3 +207,4 @@ title_verified: 已打开整图逐字确认江／湖／归／去与朱印；局�
 - 八个头部以外像素变化数为0；原生毛笔题字「江湖归去」和朱印保持整图生成结果。
 - 场景、动作、健康状态、亲密家庭关系及各人不同神态均已目检；母亲与孩子安排于遮篷舱内，不另外露脸。
 - 完整对照表：`.agents/coord/_lines/cg-retirement/retirement.jpg`；像素验证：同目录`pixel_checks.json`。
+````
