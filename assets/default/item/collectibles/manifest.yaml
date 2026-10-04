@@ -2377,4 +2377,4 @@
   size: 1536x1536
   sha256: 2862b310d7189a6fb82b91b74aefa37a38317249dd5123095bdc92f2cc6fe001
   status: candidate
-  notes: 写实画风（作者 2026-10-01：要跟角色图对应上）；收下但有出入：去白框后长琴斜置，左右留白约8%（提示词要求≥14%，未触边）；七弦已核对；第2次出图通过（前1次：仍只画6根弦（已有弦数要求））；原图左右带白框：出图员先取内框补成方图再入库（避开crop_frame误裁），画面未改；带框原件存.agents/coord/gemini_qa/frame_fix/it_wuzhouzhuseqin_orig.jpeg
+  notes: 写实画风（作者 2026-10-01：要跟角色图对应上）；收下但有出入：去白框后长琴斜置，左右留白约6–7%（提示词要求≥14%，未触边）；七弦已核对；第2次出图通过（前1次：仍只画6根弦（已有弦数要求））；原图左右带白框：出图员先取内框补成方图再入库（避开crop_frame误裁），画面未改；带框原件存.agents/coord/gemini_qa/frame_fix/it_wuzhouzhuseqin_orig.jpeg
