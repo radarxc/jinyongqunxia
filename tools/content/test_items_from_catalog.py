@@ -83,16 +83,16 @@ class ItemsFromCatalogTest(unittest.TestCase):
     def test_repository_catalog_counts_match_expanded_sources(self) -> None:
         parsed = items_from_catalog.rows()
         expected = {
-                "items-accessories.md": 48,
-                "items-armor.md": 8,
-                "items-belts.md": 26,
-                "items-clothing.md": 30,
+                "items-accessories.md": 155,
+                "items-armor.md": 15,
+                "items-belts.md": 110,
+                "items-clothing.md": 243,
                 "items-food.md": 174,
                 "items-hidden-weapons.md": 51,
                 "items-innerarmor.md": 8,
                 "items-manuals.md": 180,
                 "items-medicine.md": 96,
-                "items-shoes.md": 26,
+                "items-shoes.md": 110,
                 "items-weapons.md": 247,
         }
         if (items_from_catalog.CATALOG_DIR / "items-collectibles.md").is_file():
