@@ -48,189 +48,128 @@
   category: character/female
   style: default
   subject: 闵柔 npc_minrou ch06_xiake · 中年玄素庄庄主，开篇寻子、白剑被夺前
-  prompt: 'EDIT image 1 to correct ONLY the severely under-age appearance of 闵柔 (Min Rou), a mature middle-aged Chinese woman and mother searching for her adult son in 《侠客行》. Image 1 is our original candidate, NOT an approved identity baseline; retain its coherent full-body clothing, one white sheathed sword and soft painted finish, but rebuild the visibly young face into an unmistakably mature woman of about 45 (an art direction age, not a claim about novel canon). She must NOT appear like her son''s peer, a teenage girl or an elderly woman. Use a distinctly elongated oval facial structure with supported jaw, mature cheek volume, subtle natural under-eye contours, fine crow''s-feet, fine nasolabial and mouth-corner lines, and ordinary human skin without beauty-filter smoothing. Eyes are naturally proportioned and thoughtful, gentle worried gaze; fine relaxed brows, straight moderate nose and unembellished lips. Preserve graceful beauty and capable martial posture with real middle-aged anatomy.
-    Do not just paste superficial scratches onto the same young face.
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（闵柔的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改闵柔的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
 
+    【人物】闵柔：石清之妻、玄素庄女主人，约四十岁，温柔贤淑、思子心切。
 
-    身份阶段：闵柔，玄素庄庄主、黑白双剑之一，开篇侯监集寻子、白剑尚未被谢烟客夺走。单人，不加石清或儿子，不解释血缘结局。项目约1582–1583明万历方向为原创定年，不是小说精确年号。脸部细节属于文字原创，没有可核验的本人演员或game参考，不冒称本人既有肖像。
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】温柔慈和：眉眼柔和，嘴角带温柔的浅笑，眼底一点思子的愁。
 
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
 
-    服饰：完整不透明素白交领右衽长袄，穿着者左襟压右襟，暖灰白马面长裙，浅墨青窄布腰带，白色平底布鞋。乌发全部整齐收成简洁成熟鬏髻，一枚素银簪，减少第一图披在肩胸的少女长发。衣料是可穿整片织物，温和细腻手绘材质，克制宽缓褶，不是透纱。只一柄白剑全部入白色足长鞘，白色握柄和小银灰剑格，两条短带连左腰，剑鞘全长可见。左手轻扶剑鞘，右手空着在腰前，人物两手自然可辨。无黑剑、第二剑和额外道具。
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
 
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    姿态：头颈直立、双眼水平、下巴中性，正面端正望前，双足稳定着地、全身及双鞋入画。保持适龄成熟比例，不强行精确占高。人物年龄与面孔是本次唯一必须修正的问题；不要因细微手指、鞋遮挡或小装备问题机械重画。
-
-
-    第二张仅提供暖浅灰不透明纸底、极淡水墨远山和留白，不取其中少女面孔、年龄、头发、白青衣装或歪头。仅背景水墨，人物皮肤、衣料及器物完整实体。不要清晰建筑、花枝或剧情场景。
-
-
-    交付：单人单视图，原生竖幅2:3 PNG，目标2048×3072但接受实际原生尺寸并如实登记，保存原始PNG字节和元数据，不裁切、缩放、重新编码。全部仍candidate待用户审核。This is the single explicitly authorized second candidate for a major age/stage problem; do not produce a grid or multiple views.
-
-
-    排除：少女面孔、幼态大眼、年轻王语嫣模板脸、磨皮、网红尖下巴、浓妆丰唇、老妪白发、夸张衰老、皱纹贴图污斑、摄影照片、3D塑料、换头拼贴；歪头、Dutch angle、侧脸、侧向目光；裸露、透明衣料、性感化、细腰丰胸；现代物件、清朝辫发旗装、日式衣剑、奇幻光效；多肢、明显错接手腕、重复兵器、裁头裁脚；文字、伪字、题款、签名、印章、新增水印。保留工具原始溯源信息。
-
-
-    FINAL: clearly MIDDLE-AGED MATURE MOTHER, naturally about 45, graceful but visibly a generation older than a young adult. Full body FRONT-FACING; head UPRIGHT; eyes LEVEL; one white sheathed sword.
-
-
-    完整排除项：不画青年少女脸或老妪；不新增肢体兵器；不复制背景人物脸；不新增文字水印，保留工具溯源。'
-  negative: 不画青年少女脸或老妪；不新增肢体兵器；不复制背景人物脸；不新增文字水印，保留工具溯源。
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
   references:
-  - path: generated_images/exec-04d87450-bb19-4c7e-b70a-3ba8ec629488.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-04d87450-bb19-4c7e-b70a-3ba8ec629488.png
-    use: 已实际查看的闵柔初始candidate1原始PNG，仅保留衣装全身白剑构图，本次纠正严重偏青年面貌，不作为已批准身份。SHA b231d9c163ca95ec28fe4acd48a1c8da7eded29e7fce6c86f71d9aa4001d0230。
-    sha256: b231d9c163ca95ec28fe4acd48a1c8da7eded29e7fce6c86f71d9aa4001d0230
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/b231d9c163ca95ec28fe4acd48a1c8da7eded29e7fce6c86f71d9aa4001d0230.png
-    status_at_input: null
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已查看用户水墨背景参考，仅纸底极淡水墨背景，不提供女性身份或年龄。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T22:03:33.526228+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-ad8b1daa-4e06-420e-aeb9-e62128c6a8b3.png
+  - path: assets/default/character/female/ch06/por_npc_minrou__ch06_prime_xunzi_base.png
+    sha256: a2ee69ed516483efb334e3cb3c90b8e33d9d8ae4ade90e96dcd7e4155b02a707
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_minrou__ch06_prime_xunzi_base.a2ee69ed.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T19:57:37-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_minrou__ch06_prime_xunzi_base.x1.png
   size: 1024x1536
   mode: RGB
-  sha256: a2ee69ed516483efb334e3cb3c90b8e33d9d8ae4ade90e96dcd7e4155b02a707
+  sha256: 06c41ee969d60be853d9e1678a1bc75b74cdbd985fc97c150c9fc8180101cbe7
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_minrou__ch06_prime_xunzi_base/prompt-41aa24a0b04aebad9b32115f7c2efc5197989986d2c09dbe0bc99892e3532ba9.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_minrou__ch06_prime_xunzi_base/manifest-402fab8a7cc28bd3072b4ec8977bbb1f959b92a1914435ac4c8693ce49c3bd54.yaml
-    png: null
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_minrou__ch06_prime_xunzi_base.a2ee69ed.png
+    sha256: a2ee69ed516483efb334e3cb3c90b8e33d9d8ae4ade90e96dcd7e4155b02a707
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_minrou__ch06_prime_xunzi_base.a2ee69ed.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_minrou__ch06_prime_xunzi_base.requests.json
   notes: '实际对比初始1与年龄补2：第2张在眼下、鼻唇沟、口侧和面颊体积已有自然成熟感，神态比第1张明显更沉静，按最新宽松尺度中年女性辨识可用；仍偏保养良好的年轻中年，不能声称精确45岁或完全脱离基线脸部影响。素白完整衣裙、一柄白剑入鞘、正面全身与自然双手清楚，无明显多肢或重大结构问题。长发仍有披落、银簪偏装饰、裙摆略遮一鞋、马面结构不明显、剑装较繁，这些细节登记，不再追加。选补2，保留原1失败年龄评审与全部原始字节，1024×1536 RGB不透明PNG，candidate待用户最终审核。
 
-    本轮依作者先1张、重大问题才补画的指示，实际候选数：2；初始候选经独立自查判定存在重大问题，按明确补画请求生成候选2，实际查看后选用候选2；原候选1、失败证据及原始先1张政策均保留。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
+    本轮依作者先1张、重大问题才补画的指示，实际候选数：2；初始候选经独立自查判定存在重大问题，按明确补画请求生成候选2，实际查看后选用候选2；原候选1、失败证据及原始先1张政策均保留。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，10 号出图员）：温柔慈和的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+  source_size: 1024x1536
 - id: por_npc_shixiaocui__ch06_elder_jinwu_base
   file: por_npc_shixiaocui__ch06_elder_jinwu_base.png
   category: character/female
   style: default
   subject: 史小翠 npc_shixiaocui ch06_xiake · 老年史婆婆、金乌派创派者；取紫烟岛教石破天刀法、与阿绣相伴的阶段
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（史小翠的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改史小翠的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
 
+    【人物】史小翠：白自在之妻、金乌派开山，约六十五岁，性子刚烈好强、嘴硬心软。
 
-    Create a REALISTIC Chinese wuxia portrait of 史小翠. THIS IS AN ORIGINAL WRITTEN FACE DESIGN for this supporting character: there is NO verified picture of this person among the inputs. Image 1 is ONLY the corresponding gender project colour palette and soft light; image 2 is ONLY the pale ink-wash background. Neither image provides face, age, body type, clothes, hair or pose. Do not copy, blend or average either reference face; create the independent written identity below.
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】爽利倔强的笑：眉梢一挑，眼神精明，嘴角带着不服输的笑意。
 
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
 
-    身份与阶段：史小翠（npc_shixiaocui），《侠客行》ch06_xiake。老年史婆婆、金乌派创派者；取紫烟岛教石破天刀法、与阿绣相伴的阶段。
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
 
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    年龄与体型：头发灰白的年长女性，瘦长椭圆脸、清楚颧骨、眉目锐利，眼角和口边皱纹自然，能看出年轻时端丽骨相；身材偏瘦而筋骨坚韧，精神强健，不抹去老态，轻微年长肩背变化。自然适龄体格，不采用固定头身拉伸。
-
-
-    本人面容辨识：原创年长女性面貌：瘦长椭圆骨架、额面较高，颧骨清楚、两颊自然略凹，下颌转折窄而硬朗，圆钝下巴有支撑。灰白眉细长平直、眉尾微挑但不妖媚，狭长清亮眼睛目光锐利，眼角细纹与上睑自然老化可见。鼻梁细直而鼻尖不削尖、鼻翼正常；上唇薄而嘴线坚定，下唇仍有自然厚度。颈部与口周老年纹理清楚，保留成熟端丽和独立宗师神态，不用少女脸贴白头发。身体偏瘦、筋骨坚韧，站立稳固，正常年长肩背变化而非枯萎驼背。
-
-
-    服制与发式：低饱和深褐紫右衽长袄、灰褐齐腰裙，窄袖收口，暗赭布带，厚底布鞋；灰白发梳成低鬏髻，用木簪固定，额边发丝收拢整洁。汉式交领右衽，穿着者左襟覆盖右襟、向本人右侧合拢；衣服完整不透明、领胸腰腹遮蔽，裤裙鞋袜完整，布料厚度和重力清楚，不将旧衣画成破损碎布。
-
-
-    正面姿态与器物：正面稳立，头直眼水平，下巴中性。本人左腰（观者右侧）一柄普通中国单刃微弯刀完全入朴素木鞘，小护手、柄与鞘口轴线连续，短挂带实在连腰带。左手轻扶刀柄，不拔刀，右手在腰前稍伸、掌心朝下作讲解；两手分离，不结印。刀鞘尾露在裙轮廓外且完整入画，不拿拐杖，不画金鸟法相。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。默认一张独立候选经执行者实际自查；每张仅一人。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实边界：身份、阶段、年龄和伤势沿当前项目角色稿、名录与事件线；本作约1582–1583明万历为项目原创定年，不是原著明示公历。原稿原著概括仍待指定版本逐字复核，本次未进行新联网考据、不编造引句页码。未核定的服装款式、色彩细分、器物装具、自然静立手势和低分辨率图以外的细脸材质属美术补足。普通入鞘佩刀只是角色稿美术补足，不冒称原著该次木片或刀具的逐字考定。
-
-
-    参考边界：第1参考：对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。 第2参考：已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
-
-
-    完整排除项：不要少女容貌、染黑全头发、光滑无皱纹脸、性感化衣装、白发幼脸；不要雪山统一掌门制服、拐杖替代刀、巨型金刀、神鸟法相、落水湿身或强迫情感场景。 不要 head tilt、Dutch angle、头歪向肩、额鼻下巴中线倾斜、双眼高低倾斜、倾斜镜头、抬下巴、仰头、低头藏眼、侧向目光、明显侧脸、侧身回眸、单肩高耸。不要借性别基线或背景图的脸、年龄、体型、发际、衣装、道具或姿势，不要统一偶像脸、网红锥子脸、动漫大眼、Q版、浓妆丰唇、摄影半身照、3D塑料或换头拼贴。不要把老者减龄成青年，不用畸形和丑化代替年龄。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、破洞、撕裂衣摆、碎布条、毛边、大片补丁污渍、密集噪点或过密细皱，不用雾遮结构。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、数码物件、塑料饰品，禁止清式剃额长辫、马蹄袖、旗装、大拉翅、民国旗袍、唐式齐胸裙与时代族群混搭；不要无依据官服补子或飞鱼服。不要汉式左衽、反向衣襟或水平镜像；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、仙侠冕冠、赛博或蒸汽朋克。不要新增兵器、发光武器、光翼、法阵、光龙、粒子、强逆光或过度泛光。不要多人、分格、多视角、特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、失重衣带、缺失挂点、断裂器物、过短刀剑鞘、裁断头足和器物端点。不要裸露、透衣、性感化、血腥特写、恶搞、身体羞辱或无依据伤残。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书页字符和新增装饰水印；保留工具原有溯源标识和元数据。
-
-
-    FINAL POSE CHECK: 史小翠 is FRONT-FACING. Forehead–nose–chin VERTICAL; both eyes HORIZONTALLY LEVEL; head and neck upright, chin neutral, gaze forward and camera level. NO head tilt. NO Dutch angle. Preserve only this person''s proper facial identity and this role''s age, stage and complete body; never inherit another reference face or pose.'
-  negative: 不要少女容貌、染黑全头发、光滑无皱纹脸、性感化衣装、白发幼脸；不要雪山统一掌门制服、拐杖替代刀、巨型金刀、神鸟法相、落水湿身或强迫情感场景。 不要 head tilt、Dutch angle、头歪向肩、额鼻下巴中线倾斜、双眼高低倾斜、倾斜镜头、抬下巴、仰头、低头藏眼、侧向目光、明显侧脸、侧身回眸、单肩高耸。不要借性别基线或背景图的脸、年龄、体型、发际、衣装、道具或姿势，不要统一偶像脸、网红锥子脸、动漫大眼、Q版、浓妆丰唇、摄影半身照、3D塑料或换头拼贴。不要把老者减龄成青年，不用畸形和丑化代替年龄。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、破洞、撕裂衣摆、碎布条、毛边、大片补丁污渍、密集噪点或过密细皱，不用雾遮结构。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、数码物件、塑料饰品，禁止清式剃额长辫、马蹄袖、旗装、大拉翅、民国旗袍、唐式齐胸裙与时代族群混搭；不要无依据官服补子或飞鱼服。不要汉式左衽、反向衣襟或水平镜像；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、仙侠冕冠、赛博或蒸汽朋克。不要新增兵器、发光武器、光翼、法阵、光龙、粒子、强逆光或过度泛光。不要多人、分格、多视角、特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、失重衣带、缺失挂点、断裂器物、过短刀剑鞘、裁断头足和器物端点。不要裸露、透衣、性感化、血腥特写、恶搞、身体羞辱或无依据伤残。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书页字符和新增装饰水印；保留工具原有溯源标识和元数据。
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
   references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640.png
-    status_at_input: approved
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T22:09:24.478707+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-68053b30-f2b8-4e58-8eb3-33031cc265db.png
+  - path: assets/default/character/female/ch06/por_npc_shixiaocui__ch06_elder_jinwu_base.png
+    sha256: ad0fae42d8add1ea0bd860023c78b65179450929c6cdafec6b4d7aa07685245d
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shixiaocui__ch06_elder_jinwu_base.ad0fae42.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T19:57:40-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_shixiaocui__ch06_elder_jinwu_base.x1.png
   size: 1024x1536
   mode: RGB
-  sha256: ad0fae42d8add1ea0bd860023c78b65179450929c6cdafec6b4d7aa07685245d
+  sha256: 249d190627eb117aad7ce42d6e6b3786e81ad16606d30bfb9fb6aee1e33d022a
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_shixiaocui__ch06_elder_jinwu_base/prompt-1fd2ef99d27515bbc8dcfb155d0075428562960723f32f2f066d134486b2e2a4.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_shixiaocui__ch06_elder_jinwu_base/manifest-a7a3e1bed165e3614fc929cbd9f020729165bd4fc4e1667d07a30b3e5355fa14.yaml
-    png: null
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shixiaocui__ch06_elder_jinwu_base.ad0fae42.png
+    sha256: ad0fae42d8add1ea0bd860023c78b65179450929c6cdafec6b4d7aa07685245d
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shixiaocui__ch06_elder_jinwu_base.ad0fae42.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_shixiaocui__ch06_elder_jinwu_base.requests.json
   notes: '宽松自查：灰白发、成熟老年面颈纹与坚定目光，深褐紫衣、空手讲解及腰侧入鞘兵器，史小翠独立女宗师形象可用；正面全身、两鞋可辨，无明显多肢或重大结构问题。发髻偏高、袖较宽且滚边纹饰比素服繁，鞘身近直而非明显微弯刀、器型偏剑，列装备细节待审，不冒称严格刀形通过。按出齐优先不追加，原始PNG保存，candidate。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，10 号出图员）：爽利倔强的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+  source_size: 1024x1536
 - id: por_npc_shijian__ch06_youth_alive_base
   file: por_npc_shijian__ch06_youth_alive_base.png
   category: character/female
   style: default
   subject: 侍剑（ch06_xiake）
-  prompt: '生成一张 2:3 竖幅全身人物立绘。
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（侍剑的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改侍剑的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
 
+    【人物】侍剑：长乐帮帮主的贴身丫鬟，约二十岁，善良乖巧、心地单纯。
 
-    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】乖巧甜美：眼睛明亮，抿嘴甜甜一笑，带一点腼腆。
 
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
 
-    人物：侍剑，《侠客行》中长乐帮的侍女，在总舵照料刚醒来的石破天的时期。
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
 
-    年龄与体态：外观约二十岁的成年年轻女子，身材匀称结实，有做惯活计的利落，成人比例。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    面容：圆润的鹅蛋脸，眉目端正，眼神温和认真、带一点谨慎戒备；鼻子圆小，嘴唇自然；肤色健康，脸上有真实的皮肤纹理。朴实可靠，不是娇弱的小丫头。
-
-    发式：黑发在脑后挽成一个简洁的单髻，用素布带扎住，额前少许碎发；不梳双丫髻或双鬟。
-
-    服饰：鹅黄色交领短袄（右衽）、灰黄色长裙、腰系布带、褐色平底布鞋。
-
-    道具与姿态：双手端着一只木托盘，盘里放一只青瓷药碗；正面站立。
-
-
-    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
-
-
-    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要双丫髻、双鬟等孩童发式；不要童颜和小孩身材。汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
-
-    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
-
-    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
   references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  tool: codex exec · image_gen（基线画风参考 2 张）
+  - path: assets/default/character/female/ch06/por_npc_shijian__ch06_youth_alive_base.png
+    sha256: 5244eb99767fc0c3a283496b4c7e465cddeecbda48b684af061fd1e0fb0c1e99
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shijian__ch06_youth_alive_base.5244eb99.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T02:32:57-0700
-  source_path: .agents/coord/gemini_originals/por_npc_shijian__ch06_youth_alive_base.png
+  created: 2026-10-03T19:57:38-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_shijian__ch06_youth_alive_base.x1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 5244eb99767fc0c3a283496b4c7e465cddeecbda48b684af061fd1e0fb0c1e99
+  sha256: 2032c077da86cb33ef033016d9852d0659fc75d188aacc7aba20532e97faa7e7
   status: candidate
-  notes: 立绘重审重出（AR-30）；现图双鬟小髻配娃娃脸，像孩子，违反禁止幼态；改为约二十岁、做惯活计的成年侍女。
+  notes: 立绘重审重出（AR-30）；现图双鬟小髻配娃娃脸，像孩子，违反禁止幼态；改为约二十岁、做惯活计的成年侍女。；AR-58 神态（各书配角，10 号出图员）：乖巧甜美的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shijian__ch06_youth_alive_base.5244eb99.png
+    sha256: 5244eb99767fc0c3a283496b4c7e465cddeecbda48b684af061fd1e0fb0c1e99
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shijian__ch06_youth_alive_base.5244eb99.entry.yaml
 - id: por_npc_axiu__ch06_youth_scene_ziyan
   file: por_npc_axiu__ch06_youth_scene_ziyan.png
   category: character/female
