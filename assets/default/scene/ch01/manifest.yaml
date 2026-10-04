@@ -126,9 +126,6 @@
     【B构图】中景，萧峰跪在桥面中左位置，把几乎平躺的阿朱紧紧护在怀里；她的肩与头由手臂支撑，脸朝镜头约四分之三角度，眼睛虚弱半开。萧峰眼含泪看着她，额头将近相触。湿青石桥从前景向湖雾纵深延伸；桥、夜雨、闪电与人物紧密关系都能读出来。'
   negative: 不要第三人、不要站立的阿朱、不要健康红润脸、不要笑、不要没有血迹、不要段正淳的脸、不要把阿朱画成另一位美女；不要串脸、磨皮、网红脸、镜像右衽、现代物件、发光武功、夸张血腥、错误手指或多余肢体；除指定四字与无字朱印外不加任何文字或水印。
   references:
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    sha256: e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f
-    use: 作者认可现行xiaofeng base；保持本人面部身份、衣饰发式；上传参考第1张
   - path: .agents/coord/_handoff/gem/codex_w30/staging/cg_ch01_xiaojinghu_azhu.ar75.redraw_b__ref2.jpg
     sha256: ab36d947458b3675738a1ec81a84724575aadb7d11c71ddb420aca77e37e3c9f
     use: 上一个base的等比例脸部裁图；仅加强同人五官身份；上传参考第2张
@@ -141,20 +138,33 @@
   - path: assets/default/scene/ch01/cg_ch01_xiaojinghu_azhu.png
     sha256: c5641e2de9675606f68689f7f93da2d33a3d71a34e5e27a7d9994f4c6db19d52
     use: 重画前插图，仅供青石桥场景与题字位置样式参考；不沿用原人物状态；旧图备份 .agents/coord/_handoff/gem/codex_w30/replaced/cg_ch01_xiaojinghu_azhu.c5641e2d.png
-  tool: codex exec · image_gen（AR-75 整张剧情重画；现行双人base及脸部特写+旧图构图题字惯例，共5张参考）
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
   model: gpt-6.1-sol
-  created: 2026-10-03T23:17:45-0700
-  source_path: .agents/coord/_handoff/gem/codex_w30/out/cg_ch01_xiaojinghu_azhu.ar75.redraw_b.png
+  created: '2026-10-04T01:37:33.505921-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_30_45_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 7f4749f26b7b4f07087619888ea90ebb47c8ed4b6bfa8a1cb1360f75ea4cd499
+  sha256: 413f12d64518523caf7e16446cc8b2d2b5dc736d74f721865db4c876c5a8e8aa
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「镜湖回生」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_azhu__ch01_youth_alive_base（作者返工「乔峰抱着阿朱」：按小镜湖青石桥情节重绘构图，乔峰半跪抱着中掌的阿朱，题字「镜湖回生」与夜雨石桥原样）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-75 小镜湖按原著重画；场景、动作、伤情、关系齐备；萧峰与阿朱对齐现行base，阿朱以AR-61 B修眼稿为准（作者AR-75要求按原著：雷雨夜青石桥；阿朱易容段正淳受掌后恢复本人，苍白失力、嘴角带血、伤重垂死；萧峰悲恸护抱。双人base与脸部对照已打开，阿朱基准为AR-61 B修眼稿。两候选视觉比较后选择B；题字按现图右上竖排毛笔与朱印惯例，内容改为镜湖诀别。）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「镜湖回生」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_azhu__ch01_youth_alive_base（作者返工「乔峰抱着阿朱」：按小镜湖青石桥情节重绘构图，乔峰半跪抱着中掌的阿朱，题字「镜湖回生」与夜雨石桥原样）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-75 小镜湖按原著重画；场景、动作、伤情、关系齐备；萧峰与阿朱对齐现行base，阿朱以AR-61 B修眼稿为准（作者AR-75要求按原著：雷雨夜青石桥；阿朱易容段正淳受掌后恢复本人，苍白失力、嘴角带血、伤重垂死；萧峰悲恸护抱。双人base与脸部对照已打开，阿朱基准为AR-61 B修眼稿。两候选视觉比较后选择B；题字按现图右上竖排毛笔与朱印惯例，内容改为镜湖诀别。）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；只改萧峰：保留俯头、湿发、泪痕、悲恸、急切关心阿朱的神态，鼻尖朝图右下，不抬头转正面；阿朱整个头部、苍白伤情、嘴角血与题字绝对不动。；质检：已实际打开base前后及接触边界蒙版：萧峰五官对齐恢复base，保留悲恸低头视线、泪痕、湿发冷光，无笑无接缝；多边形仅覆盖萧峰脸，阿朱头脸泪血耳坠及题字逐像素保留。以final-3c停止后最新git为底
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w30/replaced/cg_ch01_xiaojinghu_azhu.c5641e2d.png
     sha256: c5641e2de9675606f68689f7f93da2d33a3d71a34e5e27a7d9994f4c6db19d52
     entry: .agents/coord/_handoff/gem/codex_w30/replaced/cg_ch01_xiaojinghu_azhu.c5641e2d.entry.yaml
-  effort: xhigh
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_30_45_r1
+    before_sha256: 7f4749f26b7b4f07087619888ea90ebb47c8ed4b6bfa8a1cb1360f75ea4cd499
+    box:
+    - 480
+    - 182
+    - 677
+    - 353
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_30_45_r1.png
+    outside_changed_pixels: 0
 - id: cg_ch01_shaoshi_three_brothers
   file: cg_ch01_shaoshi_three_brothers.png
   category: scene
