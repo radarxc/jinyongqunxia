@@ -150,3 +150,8 @@ FINAL POSE CHECK: FRONT-FACING ZHANG SANFENG. Forehead–nose–chin centreline 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_zhangsanfeng__ch04_elder_taiji_base.prepared.json`。
+
+## 原著依据
+
+- 《倚天屠龙记》二十四 太极初传柔克刚：“身穿一袭污秽的灰布道袍，须眉如银”；https://www.xuges.com/wuxia/jinyong/yttlj/176.htm
+- AR-82 返修约束（本节优先于历史提示词）：仅改衣服：主体为污秽灰布道袍，原白色主袍及大面积褐黄披衣统一成灰布道袍，保持原右衽款式和布褶，可有少量旧污迹；银白须眉、脸、手、发式、身材、鞋、背景原样不动。
