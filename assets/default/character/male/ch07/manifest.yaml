@@ -150,89 +150,59 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_caohuachun__ch07_base.requests.json
   notes: '宽松自查：无须中老年宽面、厚睑和审慎神态，深绛圆领内监袍、乌纱帽、双手合册且无武器，曹化淳小说宫廷阶段辨识清楚。正面完整全身、双足可见，没有明显多肢或重大结构问题。帽型略高、袍面鸟云锦纹比克制设定丰富、鞋形偏布鞋，作为服制细节登记，不擅宣称品级或历史行为。原始PNG保存，candidate待用户审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（bba98e19）'
 - id: por_npc_chengqingzhu__ch07_base
   file: por_npc_chengqingzhu__ch07_base.png
   category: character/male
   style: default
   subject: 程青竹 npc_chengqingzhu ch07_bixue · 青竹帮主，护送军饷与群雄会盟期间，承担江湖船路责任
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    Create a REALISTIC Chinese wuxia portrait of 程青竹. THIS IS AN ORIGINAL WRITTEN FACE DESIGN: no verified picture of this person is supplied, and no existing own cross-book identity image was found in the checked project asset/identity locations. Image 1 supplies ONLY the male project palette and soft light; image 2 supplies ONLY the pale ink-wash background. Neither reference supplies the target face, age, body, hair, clothing, props or pose. Never copy or average these reference faces or use a different game/TV character. Create the distinct written identity below.
+    本次是原图局部放大裁图，输出同样的正方形裁图；不要生成全身，不要扩大场景。
 
+    只把须发与眉毛颜色改为白色为主：现有髭须、下巴须和两鬓发丝、小髻为白发白须，眉毛亦白。保留每处发丝走向、眉毛原形，不改脸型五官、肤色和年龄纹理，不新加笑容。衣服双竹杆不动。
 
-    身份与阶段：程青竹（npc_chengqingzhu），《碧血剑》ch07_bixue。青竹帮主，护送军饷与群雄会盟期间，承担江湖船路责任。
+    【原著依据】《碧血剑》十《不传传百变，无敌敌千招》：“须眉皆白的老者”（https://xuges.com/WUXIA/jinyong/bxj/066.htm）
 
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    年龄与体型：五十五至六十岁中老年视觉默认，确龄待指定版本核；高而清瘦细劲、长臂和窄肩、灰黑短髯，老练沉着且能稳定持长竿，不是矮壮归辛树或白须高龄仙人。 不以固定头身或画面占高数字强行拉伸人体。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
 
-
-    本人面容辨识：独立原创清瘦长方脸：额部较高而两侧窄直，眉峰低平、灰黑眉较细，窄长眼裂和清楚年长眼睑，正視安静精明。鼻梁偏长笔直、鼻尖稍向下而不鹰钩夸张，鼻翼窄；口形中等偏窄、薄唇平稳，上唇和颏缘灰黑短髯整齐。颧线高而不过凸、颊部略收，下颌窄方，下巴长中带钝圆，眼角与鼻唇纹真实连续。高瘦水路前辈的沉稳来自目光和骨相，与归辛树宽方短鼻厚颊及孙仲寿宽颧坚实宿将脸不同。
-
-
-    服制与发式：明末水路江湖常服，竹青右衽窄袖长衫、深灰束腿裤、灰布腰带、布靴；发束小髻、素方巾系牢，不戴官帽。布料完整不透明、剪裁缝线清楚，旧衣只保留柔和材质而不主动添破洞补丁；身体与衣料体积连续，汉式交领为穿着者左襟覆右襟的右衽，不水平镜像。
-
-
-    正面姿态与器物：严格正面站立，头颈竖直、眼线水平、肩部放松，双足稳落地。左右手各握一根青竹长竿，恰好两根，双手分别环握各自竿身；两竿分置身体两侧、略向外倾，下端落地，上端各稍高于头顶。竹竿是光整的实体竹材，节理自然可辨，不长叶、不带金属枪头；两竿共四个端点全入画。竿身与手、衣身分开，不合并单竿、不两手共握一根，不悬空、不交叉遮脸。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。依作者最新提速指示默认一张候选、每张仅一人。只有严重身份错误、重大结构问题或图片不可读才补图，不因细手指、微小装备或轻微角度偏差追加。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实边界：本书项目时间窗1630–1645、主体1640–1645、成年江湖段约1643年起，各图时点以具体阶段为准；不把整个时间窗当人物确岁。当前本地role/catalog/story/chapter支持身份与阶段，原著概括保留指定三联/广州修订版待考，本次未新增联网考据或编造引句页码。具体五官、衣饰选款、器型与静态持法为美术补足。护送军饷与群雄会盟期间的青竹帮主；主稿已按在线正文核定双竹竿数量，指定修订版长短粗细仍待考。本地名录sk_shuangqiangqiangfa是原创配置，不能反推两根钢枪。朴素水路布衣，单人无船、无随从。
-
-
-    参考边界：第1参考：对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。 第2参考：已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
-
-
-    完整排除项：不要漏画任一竹竿、将两竿合并为单竿、两手共握同一根、裁断两竿任一端点、添加金属枪头、竹竿长叶、魔法竹杖、金属双枪、钓竿鱼线、绿色皮肤、清式辫发、官甲或巨大斗笠遮脸。 不要 head tilt、Dutch angle、歪头、额鼻颏中线倾斜、双眼高低倾斜、低头藏眼、侧向目光、侧脸、回眸、抬下巴或倾斜镜头。不要复制或混合两张参考人物的脸、年龄、体型、性别、发式、衣服、道具与姿势，不借其他人物game/TV脸冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、Q版、浓妆丰唇、照片剧照、3D塑料或换头拼贴。不要把中年老年减龄、把矮成年人画成儿童，不以身体羞辱和丑化表现责任或年龄。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、破洞、撕裂衣摆、碎布条、毛边、大片补丁污渍、密集噪点或过密细皱，不用浓雾遮结构。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰品、清式剃额留辫、旗装、马蹄袖、大拉翅、民国旗袍、中山装或无身份官服补子；明末汉地发式服制按各自角色，不混后世清宫衣装。不要汉式交领左衽、反向衣襟或水平镜像；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、仙侠冕冠、赛博或蒸汽朋克。不要新增兵器、发光武器、光翼、法阵、光龙、粒子、强逆光或过度泛光。不要多人、分格、多视角、特写框、多肢多指、无依据缺手缺脚缺指、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、失重衣带、缺失挂点、断裂器物、过短刀剑鞘、裁断头足和器物端点。不要裸露、透衣、性感化、血腥特写、恶搞、身体羞辱或无依据伤残。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书页字符和新增装饰水印；保留工具原有溯源标识和元数据。
-
-
-    FINAL POSE CHECK: 程青竹 is FRONT-FACING. Forehead–nose–chin VERTICAL; both eyes HORIZONTALLY LEVEL; head and neck upright, chin neutral, gaze forward and camera level. NO head tilt. NO Dutch angle. Keep the unique written face, correct age, body and stage; never inherit reference faces or poses.'
-  negative: 不要漏画任一竹竿、将两竿合并为单竿、两手共握同一根、裁断两竿任一端点、添加金属枪头、竹竿长叶、魔法竹杖、金属双枪、钓竿鱼线、绿色皮肤、清式辫发、官甲或巨大斗笠遮脸。 不要 head tilt、Dutch angle、歪头、额鼻颏中线倾斜、双眼高低倾斜、低头藏眼、侧向目光、侧脸、回眸、抬下巴或倾斜镜头。不要复制或混合两张参考人物的脸、年龄、体型、性别、发式、衣服、道具与姿势，不借其他人物game/TV脸冒充本人。不要统一网红锥子脸、偶像磨皮、动漫大眼、Q版、浓妆丰唇、照片剧照、3D塑料或换头拼贴。不要把中年老年减龄、把矮成年人画成儿童，不以身体羞辱和丑化表现责任或年龄。不要人物碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、破洞、撕裂衣摆、碎布条、毛边、大片补丁污渍、密集噪点或过密细皱，不用浓雾遮结构。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机、塑料饰品、清式剃额留辫、旗装、马蹄袖、大拉翅、民国旗袍、中山装或无身份官服补子；明末汉地发式服制按各自角色，不混后世清宫衣装。不要汉式交领左衽、反向衣襟或水平镜像；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻甲、仙侠冕冠、赛博或蒸汽朋克。不要新增兵器、发光武器、光翼、法阵、光龙、粒子、强逆光或过度泛光。不要多人、分格、多视角、特写框、多肢多指、无依据缺手缺脚缺指、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、失重衣带、缺失挂点、断裂器物、过短刀剑鞘、裁断头足和器物端点。不要裸露、透衣、性感化、血腥特写、恶搞、身体羞辱或无依据伤残。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书页字符和新增装饰水印；保留工具原有溯源标识和元数据。
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 对应性别项目基线只作低饱和设色色卡和柔和光线参考；已实际view，不是本人身份图。完全忽略基线脸型、眉眼鼻唇、年龄、体型、发式、服装、道具、手势和头倾。人物完整写实要求来自文字，不能靠借基线面孔实现画风一致。原审批状态保持，不转给新candidate。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 已实际view，只取暖浅灰不透明纸底、极淡低对比水墨远山和留白；忽略女性人物、头倾、体型、五官、白青衣饰、亭阁和花枝。背景纸纹墨迹不得侵入目标人物皮肤、头发、衣料或器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-01T22:21:53.759076+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-d4a255ec-5766-4c56-b52f-215c570aa0bb.png
+  - path: assets/default/character/male/ch07/por_npc_chengqingzhu__ch07_base.png
+    sha256: e09286591f8804de8382697d05a93443a2eeb78cb42669d8b2f6a11e07070fec
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_chengqingzhu__ch07_base.e0928659.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-04T02:23:37-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_10_r1.png
   size: 1024x1536
   mode: RGB
-  sha256: e09286591f8804de8382697d05a93443a2eeb78cb42669d8b2f6a11e07070fec
+  sha256: 5da6fac85f0cfc8c0a5b77387359df1749bf282c12480efe830484508b953428
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_chengqingzhu__ch07_base/prompt-2d25e0c836493555df1463de1e95464428a78295c25f4fe7a75120a551467c09.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_chengqingzhu__ch07_base/manifest-31ec851644bd2c1312c9813f43b52e906354c91e5d22b5cc6533a9870c7c6e01.yaml
-    png: null
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_chengqingzhu__ch07_base.e0928659.png
+    sha256: e09286591f8804de8382697d05a93443a2eeb78cb42669d8b2f6a11e07070fec
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_chengqingzhu__ch07_base.e0928659.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_chengqingzhu__ch07_base.requests.json
   notes: '宽松自查：清瘦长面与灰黑短髯、竹青长衫，左右手各一根青竹长竿，恰好两根且四端完整入画，双竿辨识明确，程青竹水路帮主阶段可用。主要正面全身、双鞋清楚，无明显多肢或重大结构问题。竿上端净空很窄，年龄偏年轻中老年、灰发少、衣纹略密，实际小项登记不追加。原始PNG保存，candidate待最终审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
-    AR-69：作者定男性默认不笑，改回 AR-58 前版本（0cb8e20f）'
+
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（0cb8e20f）；AR-82 原著核对返修：程青竹须发眉毛改白'
+  source_size: 1024x1536
 - id: por_npc_chongzhen__ch07_prime_predeath_base
   file: por_npc_chongzhen__ch07_prime_predeath_base.png
   category: character/male
@@ -365,9 +335,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_cuiqiushan__ch07_prime_opening_base.requests.json
   notes: '实际查看：单人正面中年短须崔秋山，土褐短衫布裤绑腿布靴、双手空着基础掌势完整，无幼童猛虎或擅加伤残；主体可辨，整体头足完整无重大结构错误。体格较匀称未达特别魁梧，衣料细皱较多、背景含小亭花枝，右掌略偏斜，按本轮宽松尺度登记接受，不重复生成。保存原始PNG与元数据，candidate待用户审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（0cb8e20f）'
 - id: por_npc_cuiximin__ch07_base
   file: por_npc_cuiximin__ch07_base.png
@@ -444,9 +414,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_cuiximin__ch07_base.requests.json
   notes: '实际查看：成年青年无须、头颈端正，单人全身正面抱拳，土黄灰褐衣、绑腿鞋完整，无兵器或重大身体结构错误。体格未特别胸厚黝黑，外衫下摆偏长，抱拳位置高于腰腹，背景花枝亭阁更具体，按本轮宽松出齐尺度接受并记录。保留原始PNG，candidate待用户审核，无自动approved。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（1a88c7f6）'
 - id: por_npc_duoergun__ch07_base
   file: por_npc_duoergun__ch07_base.png
@@ -739,9 +709,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_huangzhen__ch07_base.requests.json
   notes: '实际查看：黄真五六十岁中老年短灰须、精明和气，土褐商旅衣、铜制尖判官笔与有框杆算珠的算盘均可辨，单人正面头直全身手足和器物端点完整，无重大结构错误。头巾形制较简化、算盘持位稍高，衣纹较密且背景有亭枝；不对算珠严格数量或器物历史尺寸作虚假认证。按宽松标准保存原始PNG，candidate待审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（1a88c7f6）'
 - id: por_npc_jiaogongli__ch07_base
   file: por_npc_jiaogongli__ch07_base.png
@@ -818,9 +788,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_jiaogongli__ch07_base.requests.json
   notes: '实际查看恢复后返回原图：焦公礼为成熟灰短须、宽阔脸、暗褐外衣深靛内衣，头颈端正、单人全身正面，右手持完整入鞘刀、左手止斗，双足完整，无重大身体结构问题。体格较匀称、刀鞘偏直且装具纹饰偏多，止斗掌偏向前而非向下，衣料细纹较密；按本轮宽松出齐标准接受记录，不宣称严格旧标准通过。此前连接失败0图记录保留，本次实际1候选，原始PNG，candidate待审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（d1f1260b）'
 - id: por_npc_liupeisheng__ch07_base
   file: por_npc_liupeisheng__ch07_base.png
@@ -974,9 +944,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_liyan__ch07_base.requests.json
   notes: '实际查看：李岩壮年细短须、清长脸，灰青长衣暗褐短甲、素巾、入鞘直剑和扎闭无字军报，单人主要正面头颈端正，双手两脚完整，没有末局匕首或重大结构问题。护甲呈分段板状、布甲质感偏硬，装具饰纹偏多，袖子略宽，背景含小亭花枝；细节按宽松生产要求记录后修，不机械补图。原始PNG，candidate待用户审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（d1f1260b）'
 - id: por_npc_lizicheng__ch07_prime_leader_base
   file: por_npc_lizicheng__ch07_prime_leader_base.png
@@ -1053,9 +1023,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_lizicheng__ch07_prime_leader_base.requests.json
   notes: '实际查看：李自成壮年短密络腮须、双眼完整，灰褐衣墨色甲暗红束带及入鞘腰刀，单人正面头直、手足与装备完整，无重大身体结构错误。布面甲生成成明显片甲，毡帽带皮毛边且发髻露出，腰刀偏短直和装饰较多；不是严格明末装备复原，按本轮宽松出齐标准登记接受。无帝王龙袍、鹿鼎老态或擅加眼伤。原始PNG，candidate待审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（42e42b81）'
 - id: por_npc_meijianhe__ch07_base
   file: por_npc_meijianhe__ch07_base.png
@@ -1286,9 +1256,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_murenqing__ch07_base.requests.json
   notes: '实际查看：穆人清为长白须白发老年宗师，眼额纹自然，单人正面头直、青灰衣、普通入鞘直剑，右手拈须左手垂，头足器物完整，无重大结构错误。方巾未按文字包髻，衣装多一层外袍、袖口偏宽，剑纹饰偏繁，须与指局部重叠但持法可读。按宽松出齐标准记录接受，未称严格服制或比例全部合规，原始PNG与元数据，candidate待审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（5572353f）'
 - id: por_npc_musang__ch07_base
   file: por_npc_musang__ch07_base.png
@@ -1365,9 +1335,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_musang__ch07_base.requests.json
   notes: '实际查看：木桑道人为灰白须眉老者、细瘦脸与温和棋兴，小道冠灰蓝袍，右手一枚黑棋子、左手扶闭合棋袋、腰侧入鞘剑，全身正面头颈端正，无重大身体结构问题。道袍袖口偏宽、剑未完全置后腰，棋袋带流苏饰，背景有小亭花枝，按用户宽松出齐尺度记录接受。原始PNG，candidate待审核，不虚称旧严格规范全部达标。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（5572353f）'
 - id: por_npc_shatianguang__ch07_base
   file: por_npc_shatianguang__ch07_base.png
@@ -1444,9 +1414,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_shatianguang__ch07_base.requests.json
   notes: '实际查看：沙天广中年络腮须、较厚实身躯，暗赭外衫深灰衣裤、束巾绑腿靴，右手握真实金属扇骨铁扇，左手垂下，正面头颈端正且全身手足完整，无重大结构错误或沙通天伤残误植。扇展开接近全幅而非半开，表面较旧、上衣细纹密，腹部厚度表现较弱；背景小亭花枝较具体。按本轮宽松标准记录接受，不追加，原始PNG，candidate待审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（95dc2326）'
 - id: por_npc_sunzhongshou__ch07_base
   file: por_npc_sunzhongshou__ch07_base.png
@@ -1908,9 +1878,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_yuzhenzi__ch07_elder_huashan_base.requests.json
   notes: '实际查看原始候选1：中老年高瘦道人，长脸高颧、灰黑短髭颏须，灰紫右衽袍、束髻小白玉饰、本人右手低持直剑左持拂尘，主要正面头颈端直、眼线基本水平，四肢及双足与剑尖拂尘端点完整，无明显多肢或重大人物结构错误。按用户快速宽松自查可用。待后续细修：发饰未形成明确道冠；腰鞘口似有额外柄头，空鞘关系不够准确；袍纹及金属装饰偏繁，背景花枝和小亭超出极淡纯远山要求。未伪称旧严格装备/背景标准通过，不为这些细节追加。保存工具原生1024×1536 RGB不透明PNG原始字节及溯源元数据，candidate待用户审核，非approved。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（95dc2326）'
 - id: por_npc_zhangchaotang__ch07_prime_opening_base
   file: por_npc_zhangchaotang__ch07_prime_opening_base.png
@@ -1987,9 +1957,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_zhangchaotang__ch07_prime_opening_base.requests.json
   notes: '实际查看原始候选1：约四十岁中年海客，日晒肤色、修整黑褐短须，砂褐长衫与暗蓝外褂、束发深色布巾，右手低提闭合布行囊、左手护胸前衣襟；主要正面头颈端直、两眼基本水平，完整单人全身、两手双足清楚，无明显多肢或重大结构问题，没有现代海盗/水手装或错误兵器。按用户提速宽松自查可用。细节记录：脸形比文字长圆更瘦长，布鞋有较高绑腿；背景花枝小亭及山石略复杂，超出极淡远山要求，后续统一细修。本次不为这些细节追加，保持原生1024×1536 RGB不透明PNG及全部元数据原始字节，candidate待用户审核，不声称旧严格标准通过。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（95dc2326）'
 - id: por_npc_yuanchengzhi__ch07_child_scene_huashan
   file: por_npc_yuanchengzhi__ch07_child_scene_huashan.png
@@ -2606,7 +2576,7 @@
   sha256: 3befb249e0a6e166fd169b9cf1ee96a1aed49e4c51cc9daeeaa395cbcfa49d86
   status: candidate
   notes: 'ART-cast-fill-c / worker 22；文字；batch09联系表通过：身份年龄及阶段、完整轮廓、手物可辨、无字、纸底与基线画风；细部和美术终审待作者；原图模式RGB，入库RGB重编码，未裁切或缩放；1024×1536不透明底，非2048×3072 RGBA正式母版。created取原图mtime UTC。提示词：assets/default/prompts/characters/ch07-bixue/npc_hongshenghai.md；本次入选1张，重出次数见done与报告；美术补足为原创扩展，原著外貌仍待考。实际上传顺序：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（e1b003e1）'
 - id: por_npc_huguinan__ch07_prime_jianghu_base
   file: por_npc_huguinan__ch07_prime_jianghu_base.png
@@ -2658,7 +2628,7 @@
   sha256: 6a7dd15eac703bfbaf23d6eb4d4f01d2a5b2b7b422d27ba7a3fbb961f8d7dd41
   status: candidate
   notes: 'ART-cast-fill-c / worker 22；文字；batch09联系表通过：身份年龄及阶段、完整轮廓、手物可辨、无字、纸底与基线画风；细部和美术终审待作者；原图模式RGB，入库RGB重编码，未裁切或缩放；1024×1536不透明底，非2048×3072 RGBA正式母版。created取原图mtime UTC。提示词：assets/default/prompts/characters/ch07-bixue/npc_huguinan.md；本次入选1张，重出次数见done与报告；美术补足为原创扩展，原著外貌仍待考。实际上传顺序：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（d1f1260b）'
 - id: por_npc_mengbofei__ch07_elder_qunxiong_base
   file: por_npc_mengbofei__ch07_elder_qunxiong_base.png
@@ -2710,7 +2680,7 @@
   sha256: dccdfbefcc50eaa096ceb6d9f9e7e9438c0221b28ca6e438d02fbad2874f3fb0
   status: candidate
   notes: 'ART-cast-fill-c / worker 22；文字；batch09联系表通过：身份年龄及阶段、完整轮廓、手物可辨、无字、纸底与基线画风；细部和美术终审待作者；原图模式RGB，入库RGB重编码，未裁切或缩放；1024×1536不透明底，非2048×3072 RGBA正式母版。created取原图mtime UTC。提示词：assets/default/prompts/characters/ch07-bixue/npc_mengbofei.md；本次入选1张，重出次数见done与报告；美术补足为原创扩展，原著外貌仍待考。实际上传顺序：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（5572353f）'
 - id: por_npc_guisong__ch07_youth_adult_base
   file: por_npc_guisong__ch07_youth_adult_base.png
@@ -2767,5 +2737,5 @@
   sha256: 14fe1bdcdd42a9dc4b9f523b62d65e21bd1dc87bd87d4c5bcffb56ac7cefa0d6
   status: candidate
   notes: 'ART-cast-fill-c / worker 22；跨书锚点；batch09联系表通过：身份年龄及阶段、完整轮廓、手物可辨、无字、纸底与基线画风；细部和美术终审待作者；原图模式RGB，入库RGB重编码，未裁切或缩放；1024×1536不透明底，非2048×3072 RGBA正式母版。created取原图mtime UTC。提示词：assets/default/prompts/characters/ch07-bixue/npc_guisong.md；本次入选1张，重出次数见done与报告；美术补足为原创扩展，原著外貌仍待考。实际上传顺序：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w22/staging/por_npc_guisong__ch08_prime_base.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（1a88c7f6）'
