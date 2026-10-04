@@ -2149,4 +2149,9 @@
     - **其他**：TOOL-assets-logs-cleanup 已登记（c92c81ed）。CITY 批说明加「过程文件不进 assets/」（540b6400）。supervise 审核 FAIL 后立即改状态（663b0a0c）。base-diet 闭包已降到 73.52，但 r1 FAIL（ch10 包读不出 NPC 与地图），返修排在 ops-dispatch 之后。
   - **10-03 21:40 开发监督**：代码池上限 3 → 4。回调条件都满足：event-executor 已合入；占用不超；负载稳在 25 以下；18:48 之后近 3 小时没有执行器挂住。已先告知协调者。
     - CONTENT-map-poi 合入（21:31，30 条：高 6 / 中 14 / 低 10）。TOOL-map-compose 说明补了按置信度区分画法（840bbfd0）。
+  - **10-03 21:43 开发监督**：ENG-23a 第 4 轮校验只栽在 content-plugin 那条 5 秒超时上，基点 95b02a59 早于修复。
+    - 停掉驱动 63608 和返修 start 40475。
+    - rebase_task：基点 95b02a59 → 1649db55，冲突 0。
+    - `--from validate` 重起，驱动 45563。
+    - TOOL-ops-dispatch 21:39 起跑（codex gpt-6.1-sol）；base-diet 返修 21:40 起跑。
 
