@@ -13,7 +13,10 @@
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+
+    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_cg_ch04_lingshe_farewell.json'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/female/ch04/por_npc_xiaozhao__ch04_youth_chained_base.png
@@ -25,19 +28,22 @@
   - path: assets/default/scene/ch04/cg_ch04_lingshe_farewell.png
     sha256: dfb9d5f786e35fcfb93a5080e45f06fdf5937c7a233037d21bf488204366a4ce
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_lingshe_farewell.dfb9d5f7.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T14:45:09-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch04_lingshe_farewell.s1.png
+  - path: assets/default/scene/ch04/cg_ch04_lingshe_farewell.png
+    sha256: 4b2543c6f2f2f4ec83d64262ede775ce1945c52e527ce704a7ca61f31634766c
+    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_lingshe_farewell.png
+  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:14:09.970934-07:00'
+  source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_lingshe_farewell.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 4b2543c6f2f2f4ec83d64262ede775ce1945c52e527ce704a7ca61f31634766c
+  sha256: 9219e8f35188a1c30cee0738ebe12b5c6c2ed7adc9fe748f57916f4ebae9d3b0
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「灵蛇别梦」，实际字形「灵蛇别梦」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaozhao__ch04_youth_chained_base、por_npc_zhangwuji__ch04_youth_jiaozhu_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「灵蛇别梦」，实际字形「灵蛇别梦」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaozhao__ch04_youth_chained_base、por_npc_zhangwuji__ch04_youth_jiaozhu_base；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_lingshe_farewell.dfb9d5f7.png
-    sha256: dfb9d5f786e35fcfb93a5080e45f06fdf5937c7a233037d21bf488204366a4ce
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_lingshe_farewell.dfb9d5f7.entry.yaml
+    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_lingshe_farewell.png
+    sha256: 4b2543c6f2f2f4ec83d64262ede775ce1945c52e527ce704a7ca61f31634766c
+    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_lingshe_farewell.entry.yaml
   runner_job_records:
   - - cg_ch04_lingshe_farewell.resume3
     - ok
@@ -45,7 +51,8 @@
     - '93'
     - exec-86cf0509-0021-4255-b7d4-2d11e31b62d1.png
   runner_success_count: 1
-  effort: ultra
+  effort: not applicable (deterministic composition)
+  executed_by: Codex gpt-6.1-sol（AR-86）
 - id: cg_ch04_jiuyang_valley
   file: cg_ch04_jiuyang_valley.png
   category: scene
@@ -114,7 +121,10 @@
 
     最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「金刚伏魔」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
+    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「金刚伏魔」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。
+
+
+    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_cg_ch04_vajra_circle.json'
   negative: ''
   references:
   - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_zhangwuji__ch04_youth_scene_sandu.resume3.png
@@ -129,17 +139,22 @@
   - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
     use: 项目同性别基线；只取画风
     sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  created: 2026-10-03T00:54:55-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch04_vajra_circle.1791014095583943000/archive/cg_ch04_vajra_circle.png
+  - path: assets/default/scene/ch04/cg_ch04_vajra_circle.png
+    sha256: 5cb045b740975c7f4f7610f90b42fa7c189257ea6b3b36bb337a5aa58d8ef279
+    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_vajra_circle.png
+  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:14:10.160310-07:00'
+  source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_vajra_circle.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 5cb045b740975c7f4f7610f90b42fa7c189257ea6b3b36bb337a5aa58d8ef279
+  sha256: d24322fe6298bc1fde2b67e3aa05d16ca6e2fe1c9f20717518096ab3432dcab0
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「金刚伏魔」，实际字形「金刚伏魔」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「金刚伏魔」，实际字形「金刚伏魔」逐字核验，原生题字，未叠加。；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch04_vajra_circle.1791014095583943000/archive/previous-prompt.md
+    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_vajra_circle.png
+    sha256: 5cb045b740975c7f4f7610f90b42fa7c189257ea6b3b36bb337a5aa58d8ef279
+    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_vajra_circle.entry.yaml
   repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch04_vajra_circle.resume3.png
   repair_runner_source_sha256: 68a7f73da8ec7b385ff8c6497cf21596b3237d35d43dbdd6d68f2859f61928aa
   runner_job_records:
@@ -151,6 +166,8 @@
   runner_success_count: 1
   ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
   composite_job: cg_ch04_vajra_circle.resume3
+  effort: not applicable (deterministic composition)
+  executed_by: Codex gpt-6.1-sol（AR-86）
 - id: cg_ch04_guangming_peak
   file: cg_ch04_guangming_peak.png
   category: scene
@@ -340,7 +357,10 @@
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
 
-    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
+    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
+
+
+    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_cg_ch04_wanan_fire_rescue.json'
   negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
   references:
   - path: assets/default/character/male/ch04/por_npc_fanyao__ch04_prime_kutoutuo_base.png
@@ -349,19 +369,22 @@
   - path: assets/default/scene/ch04/cg_ch04_wanan_fire_rescue.png
     sha256: 3da97dcf21ae37b135f3de842b94bfb97b27cfd929248a5783cd944e2d6275dd
     use: 待改插图：只把范遥头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch04_wanan_fire_rescue.3da97dcf.png
-  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把范遥头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
-  model: gpt-6-astra
-  created: 2026-10-03T18:58:06-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch04_wanan_fire_rescue.p1.png
+  - path: assets/default/scene/ch04/cg_ch04_wanan_fire_rescue.png
+    sha256: df9b97a384522f2901772158a1ba34d1f80ac9d2aa3ebc42c300b2bac200a3a3
+    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wanan_fire_rescue.png
+  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:14:10.262051-07:00'
+  source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_wanan_fire_rescue.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: df9b97a384522f2901772158a1ba34d1f80ac9d2aa3ebc42c300b2bac200a3a3
+  sha256: 7cb416becf6024ed40ccfca6d29258b0220b4383a9fa6a275e210407d81a57b5
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「火塔救群雄」，实际字形「火塔救群雄」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：范遥按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「火塔救群雄」，实际字形「火塔救群雄」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：范遥按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch04_wanan_fire_rescue.3da97dcf.png
-    sha256: 3da97dcf21ae37b135f3de842b94bfb97b27cfd929248a5783cd944e2d6275dd
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch04_wanan_fire_rescue.3da97dcf.entry.yaml
+    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wanan_fire_rescue.png
+    sha256: df9b97a384522f2901772158a1ba34d1f80ac9d2aa3ebc42c300b2bac200a3a3
+    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wanan_fire_rescue.entry.yaml
   runner_job_records:
   - - cg_ch04_wanan_fire_rescue.resume3
     - ok
@@ -369,7 +392,8 @@
     - '218'
     - exec-bfb0ebbf-fb03-4687-8dde-038d659b71ac.png
   runner_success_count: 1
-  effort: ultra
+  effort: not applicable (deterministic composition)
+  executed_by: Codex gpt-6.1-sol（AR-86）
 - id: cg_ch04_wudang_taiji
   file: cg_ch04_wudang_taiji.png
   category: scene
