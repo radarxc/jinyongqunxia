@@ -122,3 +122,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_zhouzhiruo__ch04_youth_scene_shaolin.prepared.json`。
+
+## 原著依据
+
+- 《倚天屠龙记》三十八 君子可欺之以方：“青影闪动，一条长鞭迎面击来”；https://www.xuges.com/wuxia/jinyong/yttlj/284.htm
+- AR-82 返修约束（本节优先于历史提示词）：只把灰紫色主体衫裙改为素淡青色（清淡的青绿、不是紫色），保留原衣服款式和衣褶、右手软鞭与左手抓鞭圈状态；不要加短剑。脸、发式、手、鞭、背景不动。
