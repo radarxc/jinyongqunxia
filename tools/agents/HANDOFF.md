@@ -2147,3 +2147,123 @@
     - **大地图（AR-68）**：TOOL-map-terrain、CONTENT-map-poi、ART-map-inkkit 已登记（91b0ff6b）。ART-map-inkkit 小样 22 件已合入（6b93d92c），对照表已发作者，**待作者**定笔墨能否照此补齐、城镇与寺庙标记用小景还是简化符号。CONTENT-map-poi 审核中；map-terrain 排在 base-diet 之后；TOOL-map-compose 等前三项合入后再起。Gemini 数据交接 `gemini_qa/maps/HANDOFF_CODEX.md` 已写进两项说明。
     - **Tripo**：JS 驱动 `tools/model3d/tripo_web.js`（71587827）、ingest.py（899e2655）、SKILL.md（2791603c / f270845c）；6 套 manifest 时区更正（b71ab68e）。**待作者**在 Tripo 标签页地址栏处理「下载多个文件」：允许则直接用 JS 存盘，否则每次存盘前刷新页面；之后统一 38 套预览为白底封面。
     - **其他**：TOOL-assets-logs-cleanup 已登记（c92c81ed）。CITY 批说明加「过程文件不进 assets/」（540b6400）。supervise 审核 FAIL 后立即改状态（663b0a0c）。base-diet 闭包已降到 73.52，但 r1 FAIL（ch10 包读不出 NPC 与地图），返修排在 ops-dispatch 之后。
+  - **10-03 21:40 开发监督**：代码池上限 3 → 4。回调条件都满足：event-executor 已合入；占用不超；负载稳在 25 以下；18:48 之后近 3 小时没有执行器挂住。已先告知协调者。
+    - CONTENT-map-poi 合入（21:31，30 条：高 6 / 中 14 / 低 10）。TOOL-map-compose 说明补了按置信度区分画法（840bbfd0）。
+  - **10-03 21:43 开发监督**：ENG-23a 第 4 轮校验只栽在 content-plugin 那条 5 秒超时上，基点 95b02a59 早于修复。
+    - 停掉驱动 63608 和返修 start 40475。
+    - rebase_task：基点 95b02a59 → 1649db55，冲突 0。
+    - `--from validate` 重起，驱动 45563。
+    - TOOL-ops-dispatch 21:39 起跑（codex gpt-6.1-sol）；base-diet 返修 21:40 起跑。
+  - **10-03 21:59–22:12 开发监督**（协调者 21:47：代码池故障处置统一归开发监督，包括挪基点、HOLD、重起、合并冲突；协调者只看结果）：
+    - **ENG-23a 合入后撤回**：
+      - 23a 审核 PASS 后，finish 时的校验在负载 25+ 下栽了两条 5 秒超时；开发监督手动重跑 finish 通过，merge_when_clean 合入 9262b0a1。
+      - 合入后集成分支 build 失败：`OFFLINE_ENTER_TOO_LARGE:ch01_tianlong:116498140`。enterBytes 把全部复制素材都算进每章进入闭包，稀疏工作区看不到。
+      - 协调者选 B：**ffd8e505 撤回**，58 个文件。撤回后 build / size 恢复，content:validate 1176 文件全过，只剩 bench 那条计时用例在负载下没过。
+      - 23a 状态：已撤回待重合。
+    - 登记（0b6b6823）：
+      - **ENG-23b-offline-reland**（驱动 43756，名单第一，full_checkout）：`git apply` 重新应用 9262b0a1，修进入闭包；60 MiB 门不放宽、ch00 也在门内；按 AR-64 核对。
+      - **ENG-quest-test-timeout**（驱动 43905）：quest runtime-regression 用例加 30 秒显式超时。
+      - **ENG-bench-perf-split-2**（驱动 44063）：bench 的 transaction bus 与 ≤ 20 ms 两条挪到 check:perf。
+  - **10-03 22:15–22:31 开发监督**：
+    - ENG-23b 的全量检出工作区约 8.5 GB，磁盘一度降到 5.5 GiB，之后回升。23b 22:21 起跑。
+    - **ENG-session-base-diet** 第 3 轮返修过了校验，停在 HOLD-REVIEWS。
+      - 协调者裁定再审一轮：用 `--from review --max-runs 0` 只审不返修，驱动 4935。
+      - PASS 自动合入，等待器随后给 gates-data 挪基点；FAIL 摘要报协调者。
+    - **ENG-quest-test-timeout 合入**（22:30）。prod_check 全绿（HEAD efb97d25）；会话闭包 108.91。
+    - TOOL-ops-dispatch 已过校验，在审核。合入后由开发监督起守护进程，跑稳一小时后收尾。
+
+  - **10-03 22:33–22:50 开发监督**：
+    - **ENG-session-base-diet 再给一轮返修**（协调者 22:33）：审核 FAIL 在地图文本解析（地图名、节点名、等级注记、入口注记丢失）。
+      - 用 `--from start --max-runs 1 --max-reviews 1` 重起，note 用 r2 审核原文加协调者限定的范围（`devsup_note_r2.md`），驱动 51055。
+      - 这轮再 FAIL 就把审核摘要报协调者，当面看代码再定。
+    - **AR-69 大地图**（协调者 22:4x 交办，4c8122e6）：
+      - 新登记 **ART-map-inkkit-full**（素材池，驱动 12617）：
+        - 件数按合计算，含小样：山峰、山脉各 6–8；雪山另算，默认 4–6；丘陵、湖泊、海面、平原底纹各 4–6；聚落每级 3–4；标记每种 2–3；关隘 3。
+        - 城镇与标记照小景画法；每件单独生成，不许用代码派生变体。
+        - manifest 每条加机读字段 `kit`（kind / volume / orient / anchor），供拼合取件。
+        - 过程文件放 `.agents/coord/_asset_logs/…/kit/full/`，脚本放 `tools/map/kit/full/`。
+        - 审核要点 `.agents/coord/PROD/review_checks_map_kit_full.md`。
+      - **TOOL-map-compose** 说明加「随机与融合」一节：
+        - 扰动给默认范围：有朝向的品类旋转 ±6°、只水平翻转；可点击标记不挪位置。
+        - 泊松盘分布、遮挡排序、羽化、墨色叠加、渐变蒙版、纸纹墨晕。
+        - 样区附「无扰动 / 有扰动」对比图，校验检查对比图存在。
+        - 依赖补上 inkkit-full。step 不按依赖卡启动：terrain 合入后就起 compose，inkkit-full 未合入时先用小样跑通，合入后用同一命令重出。
+      - TOOL-assets-logs-cleanup 校验里 kit 的 `check_assets --max` 由 60 改为 120：补齐后约 88 条。这是件数上限，不是门禁。
+    - **ENG-26**（协调者 22:4x）：
+      - 第 4 轮校验只栽在防截断：`apps/game/src/battle/demo.ts` 55 → 27 行。原因是改走 `buildEncounter(COMBAT_DEMO_ENCOUNTER, …)`，属有意缩短。
+      - 已加这一个文件的 shrink_exempt，用原参数加 `--from validate` 重起，驱动 11819。
+      - 新驱动的执行次数从 0 计；审核 FAIL 会照常起返修。
+  - **10-03 22:45–23:10 开发监督**：
+    - **ENG-bench-perf-split-2 合入**（ee50a78f）。prod_check 全绿（HEAD 921bbd34）：1100 个测试；entry 38.79 / render 168.86 / webgl 207.65 / 会话 108.91。check:perf 等负载降到 8 以下再跑（脱离进程）。
+    - **ENG-26 合入后撤回**：
+      - ENG-26 合入（a60c8074）后，集成分支首次会话 110.67 > 110，红。来源：`content-registry.ts` 的 `SCHEMAS` 静态引入 `EncounterDefSchema`，worker 的 item-content 共享块 159.74 → 164.38 kB；builder 本身在懒加载的 encounter 块。
+      - 按 23a 先例撤回（18ddf3f2），撤回后 prod_check 全绿：会话 108.91，1100 个测试。协调者同意。
+      - 26 状态：HOLD-RUNS「已撤回待重合」。base-diet 合入后，对 18ddf3f2 做 git revert 原样重合，再跑 prod_check。
+      - ENG-move-onhit-effects 依赖 26：驱动已停（排队中，未起执行器），空工作区已删，状态改回 PENDING，等 26 重合后再起。
+    - **登记 ENG-battle-modules-lazy**（bcbd0f80，协调者 23:0x）：
+      - 遭遇 schema、builder 等战斗专用模块移出首次会话，改走战斗懒加载块。
+      - 校验：Worker 壳与首次会话静态块里不得出现 `regionArena`、`ENCOUNTER_TEMPLATE_UNSUPPORTED`，builder 仍要在产物里。
+      - 依赖 26 重合与 base-diet；名单排在 26 之后（M1 链之后）。
+    - 旁注：主仓 `.git/logs/refs/remotes/origin/` 下有 3 个 root 所有的锁文件，10-02 22:13–23:05 留下，每次提交后的自动 gc 都报 reflog 失败。提交本身不受影响，没去动。
+  - **10-03 23:15–23:40 开发监督**：
+    - **ENG-23b-offline-reland 合入**（23:07）：
+      - 全量素材下 prod_check 全绿：1153 个测试，会话 108.91；
+      - 进入闭包：ch00 1.91 MiB、ch01 9.29 MiB、ch10 2.21 MiB，60 MiB / 8 MiB 门值不变。
+    - **ENG-session-base-diet**：第 4 轮审核 PASS，但合入时 cherry-pick 冲突 7 个文件。
+      - 冲突来源：23b 的离线闭包登记、content-plugin 的 60 秒超时、event-executor 的 events 字段。
+      - rebase_task 挪到 bf137b23，冲突标记留在工作区；起了一轮只解冲突的返修：`--from start --max-runs 1 --max-reviews 1`，说明 `devsup_note_r5_conflict.md`，驱动 37701，23:22 拿到池位。
+    - **TOOL-ops-dispatch** 第 2 轮返修过了校验，审核 1 轮 FAIL，停在 HOLD-REVIEWS。
+      - 协调者裁定再审一轮：`--from review --max-reviews 1 --max-runs 0`，驱动 92503。
+      - PASS 就合入，先 `--once --dry-run`，再起守护进程；FAIL 就停下，把审核摘要报协调者。
+    - **ENG-ink-intents**：第 1 轮跑满 supervise 的 200 分钟上限被停，当时报告已写到自检一节；23:11 在原工作区续作第 2 轮（GPT-5.6-Sol）。
+    - **AR-77 衣物与护甲扩充**（26f11422）：
+      - **DES-apparel-catalog**（文档池，驱动 15644）：考证写进新设计文档 27，产出总表 `docs/design/catalog/apparel-master.yaml`（schema apparel-catalog.v1，分批 ≤ 120）。
+      - **CONTENT-apparel-data**（第 1 批，依赖 DES）：追加名录行，用 items_from_catalog 生成内容数据，用 extract_item_prompts 出提示词。
+        - INDEX.md 合入后由开发监督在全量检出里重建：稀疏检出看不到物品图，重建出来的状态会错。
+        - 后续批次按 DES 定的批数登记 `CONTENT-apparel-data-2…N`，用同一份说明、vars.batch 改批号。
+      - 校验脚本 `tools/agents/check_apparel_catalog.py`（开发监督写），只查结构与覆盖；`--landed N` 查第 N 批是否已落地。
+      - 按口径的下限约 566 件，实际多半 600–700 件，已报协调者。
+  - **10-03 23:40–23:50 开发监督**：
+    - **AR-77 出图口径**（协调者 23:4x）：同朝代、同性别、同档的衣物先出底图，其他颜色上传底图做「只改主色」的编辑（claudeGemOpts refs、不套模板），不用代码改色相。
+      - 已写进 CONTENT-apparel-data：换色件 `edit_from` 指向底图，第一张参考图是底图；GUIDE.md 末尾追加「同款换色」一节（0d7bdc78）。
+      - `check_apparel_catalog.py --landed` 查分组：每组恰一件底图。
+    - **TOOL-ops-dispatch** 再审 FAIL（r2）：dry-run 有副作用，`reap()` 会写 MERGED、会起 supervise。
+      - 协调者裁定再给一轮返修：`--from start --max-runs 1 --max-reviews 1`，说明是 r2 原文加「dry-run 下一切写状态、起进程、挪基点的动作都只打印不执行，补单测证明」（devsup_note_r3.md），驱动 52700。
+      - 这轮再 FAIL 就把它在名单里降下来，开发监督继续值守。
+    - **AR-83 大地图改「贴片 + 程序」**（47743173）：
+      - 登记 **ART-map-inkkit-tiles**（驱动 70694，审核要点 review_checks_map_tiles.md）：
+        - 无缝填充贴片六种、边界笔触条五种 × 粗细档；
+        - 执行器写 check_tiles.py（带 --self-test），任务校验另有独立的环绕接缝复核（≤ 内部中位差 2.5 倍）。
+      - **TOOL-map-compose** 按 AR-83 第 2–7 条重写，AR-69 的随机与融合并入；样区附 `_rivers_compare`、`_jitter_compare` 两组对比；依赖加 tiles。
+    - **ART-map-inkkit-full 合入**（ae8a15fe）：新出 41 件，加小样共 63 件，每类都在下限；对照表 2400×6640。
+  - **10-03 23:45–00:00 开发监督（AR-85：重点转 M1 跑通）**：
+    - **TOOL-assets-logs-cleanup** 第 1 轮校验失败：工作区基点 c92c81ed 早于贴图集合入，kit 目录不存在。
+      - rebase_task 挪到 df847b6d，0 冲突；
+      - 起返修，说明 `devsup_note_rebase.md`：补做 map/kit，再盘一遍特效目录。
+    - **登记 ENG-battle-generic-model**（31d5f142）：
+      - 战斗 3D 通用模型与标识。前提：战斗现在是 2D 纸偶，3D 只有 12e 试点，所以范围包括把单位改成 3D 渲染；
+      - 按性别解析：npc.v1 加可选 `identity.gender`；非人类不套通用模型；通用模型未到位时用主角模型顶替；
+      - 依赖 npc-species。
+    - **占位池改归**：step.py 新加 `slot_pool_of`，规则在 tasks.json `defaults.slot_pool_overrides`：`^TOOL-(map|rig|ingest|assets)-` 改占素材池。只影响排队与占位，检出方式不变；单测 3 例。
+      - 停旧驱动后同参重起：rig-std-parts、ingest-cropframe、assets-logs-cleanup、rig-parts-f（带 note_run3 续作说明），以及 16e。都在排队、没起执行器。
+    - **池位名单按 M1 重排**：代码池 base-diet → gates-data → ink-intents → 19e → npc-species → 26 → 16e → generic-model；文档池 ch00b、ch00c；其余往后。旧名单备份在开发监督 scratchpad。
+    - **TODO §3.6** 记 AR-85：AR-79 全量重做、郭靖金刀驸马装模型、换脸主角模型重做，搁置到 M1 跑通后（2f5f9539）。
+    - **M1 现状已报协调者**：总阀门是 base-diet → gates-data；白马靠 19e；序章靠 ink-intents、ch00b、26 → ch00c、16e、npc-species。一轮都过约 05:00–06:00 全部合入；按常见一轮返修算 07:00–09:00。合入后建议在浏览器实走一遍。
+  - **10-03 23:50–00:05 协调者（素材线，AR-86 与收尾判断）**：
+    - **AR-86 记录**（e28b1b6f），作者补「霍青桐神情也要和关咏荷版本类似」（b44d6def）。
+    - **新出图器**：codex_w31–w34，由 w30 复制，去掉产物目录；各自的 `HANDOFF_GPT.md` 已把路径改成本目录，在沙箱外用 detach_launch 起。
+      - 目录里旧的 `chars_*.py` 写死了 w17 的路径，说明里已叮嘱 GPT 不要直接用。
+    - **新 GPT 会话**（说明在 `.agents/coord/_lines/briefs/`）：
+      - huoqingtong-r2（w31）：霍青桐 C/D/E 候选，要求神情像关咏荷、去掉照片感、年轻、回部美女。做完请作者选。
+      - final-5（w32）：喀丝丽 B、程灵素 A、袁紫衣 A、苗若兰 A 入库，场景立绘与插图按 AR-53 对脸；A 字图和 3D 记 todo_3d.md。
+      - zhangwuji-final（w33）：张无忌 F（头部缩到 94%，肩胸加宽约 6–8%），直接入库后全量更新；绿柳庄 AR-75 一并重做（赵敏露脚）。协调者看 F 的对照表，不对就叫停。
+      - guojing-r3（w31 共用）：郭靖 A/B 两版都皱眉偏凶，在 A 的基础上修 C/D，去皱纹，神态照黄日华版憨厚。
+      - final-3c（w30）：小镜湖阿朱，final-3b 试满 3 次唇形仍不对，「保留现行图」不可行。这轮改成程序关键点变形，保住 base 唇形，表情按原著改成临终浅笑。
+      - hist-batch1（w34）：历史人物第一批，崇祯、皇太极、忽必烈、索菲娅出 A/B。作者认可过的脸不动，只改体态。其余第 01–25 条等作者看过方向再批，第 26–29 条暂缓。
+    - **判断**：
+      - canon-bases 待定的 54 人（89 条）照现版。作者只要求「我说了更新的」改成他说的版本；跨书同一人、缺图源的，下一轮按已定 base 局部对脸。
+      - final-2：穆念慈 C 和郭襄再调已入库；郭靖 A/B 已发作者，并说明 C/D 在修。
+      - final-4：岳灵珊 A、陈圆圆 B（含 ch07）、阿珂 A 已入库；陈友谅 C/D、黄衫女子 A/B 已发作者，建议 C 和 B。
+      - generic-apose：通用男女 A 字图入库（6e571182），目测约 8.2 头身。Tripo 体检发现成品会把头放大 5–15%，已让 Tripo 子代理先把身体按系数拉长，做一张送 Tripo 的输入图，零点数验比例后再绑骨、配动作。
+      - Tripo 体检报告在 `.agents/coord/ART-3d-tripo-web/audit_ar79.md`。袁紫衣的斗笠珠串印在了脸上，已记进 final-5 的 todo_3d。
+    - **待作者**：郭靖（A，或等 C/D）、陈友谅 C/D、黄衫女子 A/B、霍青桐 C/D/E（出图中）、历史人物第一批（出图中）。
