@@ -34,7 +34,13 @@
    "assets": 12,
    "prompts": 16,
    "code": 4
-  }
+  },
+  "slot_pool_overrides": [
+   [
+    "^TOOL-(map|rig|ingest|assets)-",
+    "assets"
+   ]
+  ]
  },
  "tasks": [
   {
@@ -47746,6 +47752,72 @@
     "apps/game/src/game-controller.ts",
     "apps/game/src/battle/controller.ts",
     "apps/game/src/**/*.test.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/battle/scene.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-battle-generic-model",
+   "title": "游戏工程 · 战斗单位用 3D 模型（AR-85）：有专属模型用专属，没有的人类单位按性别用通用模型 npc_generic_m / _f（未到位时用普通形象男女主角模型顶替，只换资源不改代码）；单位旁显示可区分的标识（design/26，竖屏可读、不遮挡）；模型按引用发布、懒加载；补测试",
+   "prompt": "ENG-battle-generic-model.md",
+   "deps": [
+    "ENG-npc-species-roleslot",
+    "ENG-16c-battle-session",
+    "ENG-12e-gltf-pilot"
+   ],
+   "writes": [
+    "packages/render/src/**",
+    "packages/ui/src/**",
+    "packages/data/src/schemas/**",
+    "apps/game/src/**",
+    "apps/game/build/**",
+    "content/chapters/ch00_yuenv/npcs/**",
+    "content/chapters/ch10_baima/npcs/**"
    ]
   },
   {
