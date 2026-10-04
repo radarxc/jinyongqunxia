@@ -20,6 +20,7 @@ const WorldMapPage = defineAsyncComponent(() => import('./pages/WorldMapPage.vue
 const TownPage = defineAsyncComponent(() => import('./pages/TownPage.vue'));
 const RegionPage = defineAsyncComponent(() => import('./pages/RegionPage.vue'));
 const SettingsPage = defineAsyncComponent(() => import('./pages/SettingsPage.vue'));
+const PwaControls = defineAsyncComponent(() => import('./pwa/PwaControls.vue'));
 const CharacterCreationPage = defineAsyncComponent(() => import('./pages/CharacterCreationPage.vue'));
 const OpeningPage = defineAsyncComponent(() => import('./pages/OpeningPage.vue'));
 const PrologueModePage = defineAsyncComponent(() => import('./pages/PrologueModePage.vue'));
@@ -133,6 +134,7 @@ onBeforeUnmount(() => { controller.setSceneRunsWorldTicks(false);
       <footer class="bottom-bar paper-panel">
         <nav class="quickbar" :aria-label="t('quickbar')"><button v-for="(item, index) in shortcuts" :key="item.id" type="button" :disabled="busy" @click="useQuick(index)"><kbd>{{ index + 1 }}</kbd> {{ item.name }} <small>×{{ item.count }}</small></button></nav>
         <output role="status" aria-live="polite">{{ notice || saveStatus }}</output>
+        <PwaControls :transaction-complete="!busy && !controller.saving.value && !controller.loading.value && controller.canSave()" :in-battle="battleActive" :dialogue-committing="!!projection.dialogue" />
         <button type="button" :disabled="busy || !storageAvailable || !controller.canSave()" @click="controller.saveAction('save', 'save_quick')">{{ t('quickSave') }}</button>
       </footer>
       <Suspense v-if="projection.dialogue"><DialogueLayer :controller="controller" :dialogue="projection.dialogue" /></Suspense>
