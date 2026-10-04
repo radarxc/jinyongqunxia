@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import date
 import math
 import re
 import sys
@@ -432,7 +433,8 @@ def build_manifest(set_dir: Path, *, check: bool = False, placeholder: bool | No
                         raise BuildError(f"{joint_source_path}: inpaintedPct outside 0..100")
                     record["source"] = {"keypoints": [str(item) for item in keys],
                                           "inpaintedPct": percent}
-                    for key in ("reconstruction", "sourceRect", "sourceLimitation"):
+                    for key in ("reconstruction", "sourceRect", "sourceLimitation",
+                                "reconstructedPixels"):
                         if key in source_note:
                             record["source"][key] = source_note[key]
                     if source_note.get("standardFallback"):
@@ -453,17 +455,31 @@ def build_manifest(set_dir: Path, *, check: bool = False, placeholder: bool | No
                 record.pop("sourceOrigin", None)
             records.append(record)
     manifest["parts"] = records
-    if "assets" in manifest or manifest.get("kind") == "identity":
-        manifest["assets"] = [{
-            "id": f"{manifest['set']}__{item['view']}__{item['id']}",
-            "file": item["file"], "category": "rig/part", "style": "default",
-            "subject": f"{manifest['set']} {item['view']} {item['id']} segmented rig part",
-            "prompt": "Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.",
-            "tool": "tools/rig/segment_parts.py + tools/rig/make_parts.py",
-            "model": "deterministic", "created": "2026-10-02",
-            "size": f"{item['size'][0]}x{item['size'][1]}",
-            "sha256": item["sha256"], "status": "candidate",
-        } for item in records]
+    if "assets" in manifest or not placeholder:
+        prior_assets = {item.get("file"): item for item in (existing or {}).get("assets", [])
+                        if isinstance(item, dict)}
+        standard = manifest.get("kind", "standard") == "standard"
+        assets = []
+        for item in records:
+            prior = prior_assets.get(item["file"], {})
+            # Cutting is deterministic tooling, not a model invocation.  Keep
+            # identity-set legacy metadata stable, while formal standard sets
+            # use the registry's explicit non-model value and real build date.
+            model = "none" if standard else str(prior.get("model", "deterministic"))
+            created = str(prior.get("created", date.today().isoformat()))
+            if standard and (created < "2026-10-03" or prior.get("model") == "deterministic"):
+                created = date.today().isoformat()
+            assets.append({
+                "id": f"{manifest['set']}__{item['view']}__{item['id']}",
+                "file": item["file"], "category": "rig/part", "style": "default",
+                "subject": f"{manifest['set']} {item['view']} {item['id']} segmented rig part",
+                "prompt": "Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.",
+                "tool": "tools/rig/segment_parts.py + tools/rig/make_parts.py",
+                "model": model, "created": created,
+                "size": f"{item['size'][0]}x{item['size'][1]}",
+                "sha256": item["sha256"], "status": "candidate",
+            })
+        manifest["assets"] = assets
     _validate_extensions(manifest, set_dir)
     if check:
         if existing != manifest:

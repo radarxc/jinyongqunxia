@@ -90,8 +90,16 @@ def polygon_mask(shape: tuple[int, int], points: Sequence[Sequence[float]]) -> n
 
 
 def part_mask(part: str, shape: tuple[int, int], points: Mapping[str, Sequence[float]],
-              view: str = "front34") -> np.ndarray:
+              view: str = "front34", *, strict_ownership: bool = False) -> np.ndarray:
     height = shape[0]; pivot_name, child_name = PART_JOINTS[part]
+    if part == "head" and strict_ownership:
+        crown, neck = points["crown"], points["neck"]
+        radius = height * .082
+        return capsule(shape, crown, neck, radius) & polygon_mask(shape, (
+            (crown[0]-radius, crown[1]-height*.025),
+            (crown[0]+radius, crown[1]-height*.025),
+            (neck[0]+height*.045, neck[1]+height*.018),
+            (neck[0]-height*.045, neck[1]+height*.018)))
     if part in {"head", "hair_or_headgear"}:
         crown, neck = points["crown"], points["neck"]
         radius = height * (.100 if part == "head" else .105)
@@ -104,13 +112,29 @@ def part_mask(part: str, shape: tuple[int, int], points: Mapping[str, Sequence[f
         neck, pelvis = points["neck"], points["pelvis"]
         sl, sr = points["shoulder_L"], points["shoulder_R"]
         neck_half = height * (.017 if view == "side" else .025)
-        shoulder_half = (height * .055 if view == "side" else
-                         abs(sl[0] - sr[0]) * .55)
+        center = (neck[0] + pelvis[0]) * .5; top = neck[1] - height * .008
+        if strict_ownership:
+            left, right = sorted((sl, sr), key=lambda point: point[0])
+            armpit_y = min(sl[1], sr[1]) + height * .065
+            waist_half = height * (.070 if view == "side" else .090)
+            armpit_left = (left[0] - height*.005 if view == "side"
+                            else center - waist_half)
+            armpit_right = (right[0] + height*.005 if view == "side"
+                             else center + waist_half)
+            return polygon_mask(shape, ((neck[0]-neck_half, top),
+                (neck[0]+neck_half, top), right, (armpit_right, armpit_y),
+                (pelvis[0]+waist_half, pelvis[1]+height*.045),
+                (pelvis[0]-waist_half, pelvis[1]+height*.045),
+                (armpit_left, armpit_y), left))
+        shoulder_half = (height * (.045 if strict_ownership else .055)
+                         if view == "side" else
+                         abs(sl[0] - sr[0]) * (.48 if strict_ownership else .55))
         # The old lower corners followed the arm span and admitted hanging
         # forearms.  A torso owns the body column; sleeves own the arms.
-        body_half = height * (.075 if view == "side" else .105)
-        center = (neck[0] + pelvis[0]) * .5; top = neck[1] - height * .008
-        shoulder_y = min(sl[1], sr[1]) - height * .045
+        body_half = height * (.075 if view == "side" else
+                              (.095 if strict_ownership else .105))
+        shoulder_y = min(sl[1], sr[1]) - height * (
+            .0125 if strict_ownership else .045)
         return polygon_mask(shape, ((neck[0]-neck_half, top),
             (neck[0]+neck_half, top), (center+shoulder_half, shoulder_y),
             (pelvis[0]+body_half, pelvis[1]+height*.045),
@@ -118,13 +142,20 @@ def part_mask(part: str, shape: tuple[int, int], points: Mapping[str, Sequence[f
             (center-shoulder_half, shoulder_y)))
     if part == "pelvis_skirt":
         pelvis, hem = points["pelvis"], points["hem"]
-        half_top, half_bottom = height * .16, height * .22
-        return polygon_mask(shape, ((pelvis[0]-half_top, pelvis[1]-height*.035),
-            (pelvis[0]+half_top, pelvis[1]-height*.035),
-            (hem[0]+half_bottom, hem[1]+height*.015),
-            (hem[0]-half_bottom, hem[1]+height*.015)))
+        half_top = height * (.105 if strict_ownership else .16)
+        half_bottom = height * (.135 if strict_ownership else .22)
+        top = pelvis[1] - height * (.075 if strict_ownership else .035)
+        bottom = hem[1] + (2 if strict_ownership else height*.015)
+        return polygon_mask(shape, ((pelvis[0]-half_top, top),
+            (pelvis[0]+half_top, top), (hem[0]+half_bottom, bottom),
+            (hem[0]-half_bottom, bottom)))
     if part == "foot_shared":
         ankle = points[pivot_name]; toe = points[child_name]
+        if strict_ownership:
+            direction = 1.0 if toe[0] >= ankle[0] else -1.0
+            heel = (ankle[0] - direction * height * .025,
+                    ankle[1] + height * .005)
+            return limb_tube(shape, heel, toe, height * .042, overlap=height*.018)
         direction = 1.0 if toe[0] >= ankle[0] else -1.0
         toe = (toe[0] + direction * height * .055, toe[1])
         return limb_tube(shape, ankle, toe, height * .075)
@@ -191,6 +222,29 @@ def neighbouring_limb_mask(part: str, shape: tuple[int, int],
     return blocked
 
 
+def _segment_distance2(shape: tuple[int, int], start: Sequence[float],
+                       end: Sequence[float]) -> np.ndarray:
+    yy, xx = np.indices(shape, dtype=np.float32)
+    ax, ay = start; bx, by = end; vx, vy = bx-ax, by-ay
+    scale = max(vx*vx + vy*vy, 1e-6)
+    along = np.clip(((xx-ax)*vx + (yy-ay)*vy) / scale, 0.0, 1.0)
+    return (xx-(ax+along*vx))**2 + (yy-(ay+along*vy))**2
+
+
+def strict_limb_partition(part: str, shape: tuple[int, int],
+                          points: Mapping[str, Sequence[float]]) -> np.ndarray:
+    """Voronoi ownership prevents a shared source from containing both legs."""
+    joints = {"thigh_shared": ("hip", "knee"),
+              "shin_shared": ("knee", "ankle"),
+              "foot_shared": ("ankle", "toe")}
+    if part not in joints:
+        return np.ones(shape, dtype=bool)
+    start, end = joints[part]
+    near = _segment_distance2(shape, points[f"{start}_L"], points[f"{end}_L"])
+    far = _segment_distance2(shape, points[f"{start}_R"], points[f"{end}_R"])
+    return near <= far
+
+
 def skin_mask(rgba: np.ndarray) -> np.ndarray:
     """Conservative identity-skin mask used to reject overlapping hands."""
     red = rgba[..., 0].astype(np.int16)
@@ -198,6 +252,28 @@ def skin_mask(rgba: np.ndarray) -> np.ndarray:
     blue = rgba[..., 2].astype(np.int16)
     return ((rgba[..., 3] >= 32) & (red > 140) &
             (red - green > 25) & (green - blue > 4))
+
+
+def warm_pixel_mask(rgba: np.ndarray) -> np.ndarray:
+    """Brown tunic/shoe pixels, distinct from the neutral blue-grey pants."""
+    red = rgba[..., 0].astype(np.int16)
+    green = rgba[..., 1].astype(np.int16)
+    blue = rgba[..., 2].astype(np.int16)
+    return ((rgba[..., 3] >= 32) & (red - green >= 7) &
+            (green - blue >= 3) & (red - blue >= 12))
+
+
+def skirt_garment_mask(rgba: np.ndarray,
+                       points: Mapping[str, Sequence[float]]) -> np.ndarray:
+    """Keep the belt/tunic and stop before cool-grey trouser pixels."""
+    opaque = rgba[..., 3] >= 32
+    warm = warm_pixel_mask(rgba)
+    cloth = ndimage.binary_fill_holes(
+        ndimage.binary_closing(warm, iterations=2))
+    cloth = ndimage.binary_dilation(cloth, iterations=1) & opaque
+    yy = np.indices(opaque.shape)[0]
+    waist = yy <= points["pelvis"][1] + rgba.shape[0] * .025
+    return opaque & (waist | cloth)
 
 
 def hand_pixel_mask(rgba: np.ndarray) -> np.ndarray:
@@ -263,7 +339,8 @@ def keep_primary_component(mask: np.ndarray, seeds: Sequence[Sequence[float]]) -
 
 
 def enforce_joint_disks(rgba: np.ndarray, points: Sequence[Sequence[float]],
-                        radius: float = 8.0, *, bridge_disconnected: bool = False
+                        radius: float = 8.0, *, bridge_disconnected: bool = False,
+                        edge_safe_fill: bool = False
                         ) -> tuple[np.ndarray, np.ndarray]:
     """Fill only disks touching the part; an authored miss must not float."""
     result = rgba.copy(); visible = result[..., 3] >= 8
@@ -281,7 +358,7 @@ def enforce_joint_disks(rgba: np.ndarray, points: Sequence[Sequence[float]],
             candidate |= capsule(visible.shape, point, target, max(2.0, radius * .4))
         disks |= candidate
     missing = disks & ~visible
-    result = _nearest_fill(result, missing, visible)
+    result = _nearest_fill(result, missing, visible, edge_safe=edge_safe_fill)
     connected = keep_primary_component(result[..., 3] >= 8, points)
     result[..., 3][~connected] = 0; result[..., :3][~connected] = 0
     missing &= connected
@@ -343,32 +420,42 @@ def repair_region(desired: np.ndarray, exposed: np.ndarray, caps: np.ndarray,
     return exposed | small | near_caps
 
 
-def _nearest_fill(rgba: np.ndarray, missing: np.ndarray, visible: np.ndarray) -> np.ndarray:
+def _nearest_fill(rgba: np.ndarray, missing: np.ndarray, visible: np.ndarray, *,
+                  edge_safe: bool = False) -> np.ndarray:
     result = rgba.copy()
     if not missing.any() or not visible.any():
         return result
-    candidates = visible & ndimage.binary_dilation(missing, iterations=8)
+    # Segmentation accepts feathered alpha as visible so silhouettes remain
+    # smooth, but fully transparent RGB is conventionally zero.  Restrict
+    # colour donors to substantive alpha whenever possible; otherwise a joint
+    # cap beside an antialiased edge can turn opaque black.
+    opaque = visible & (rgba[..., 3] >= 128)
+    donors = opaque if edge_safe and opaque.any() else visible
+    candidates = donors & ndimage.binary_dilation(missing, iterations=8)
     if not candidates.any():
-        candidates = visible
+        candidates = donors
     indices = ndimage.distance_transform_edt(~candidates, return_distances=False, return_indices=True)
     result[missing, :3] = rgba[indices[0][missing], indices[1][missing], :3]
     result[missing, 3] = 255
     return result
 
 
-def inpaint_occlusion(rgba: np.ndarray, desired: np.ndarray, visible: np.ndarray) -> tuple[np.ndarray, float]:
+def inpaint_occlusion(rgba: np.ndarray, desired: np.ndarray, visible: np.ndarray, *,
+                      edge_safe_fill: bool = False) -> tuple[np.ndarray, float]:
     missing = desired & ~visible
     if not missing.any():
         return rgba.copy(), 0.0
-    seed = _nearest_fill(rgba, missing, visible)
+    seed = _nearest_fill(rgba, missing, visible, edge_safe=edge_safe_fill)
     # Biharmonic inpaint is used on small holes; nearest-fill remains the
     # deterministic fallback for large garment-hidden areas.
-    if missing.sum() <= 4096 and visible.any():
+    inpaint_mask = (missing & ndimage.binary_fill_holes(visible)
+                    if edge_safe_fill else missing)
+    if inpaint_mask.sum() <= 4096 and inpaint_mask.any() and visible.any():
         working = seed[..., :3].astype(np.float64) / 255.0
         try:
-            boundary_holes = missing
-            repaired = inpaint.inpaint_biharmonic(working, boundary_holes, channel_axis=-1)
-            seed[..., :3][boundary_holes] = np.rint(np.clip(repaired[boundary_holes], 0, 1) * 255).astype(np.uint8)
+            repaired = inpaint.inpaint_biharmonic(working, inpaint_mask, channel_axis=-1)
+            seed[..., :3][inpaint_mask] = np.rint(
+                np.clip(repaired[inpaint_mask], 0, 1) * 255).astype(np.uint8)
         except (ValueError, RuntimeError):
             pass
     percent = round(100.0 * float(missing.sum()) / max(float(desired.sum()), 1.0), 3)
@@ -462,6 +549,94 @@ def _reconstruct_side_thigh(
                            left+int(xs.max())+1, top+int(ys.max())+1]
 
 
+def complete_hidden_thigh(
+        image: Image.Image, points: Mapping[str, Sequence[int]]
+        ) -> tuple[Image.Image, int]:
+    """Extend a source-textured trouser leg through a garment-hidden hip.
+
+    ``image`` is already rotated so hip-to-knee points down.  The lower half
+    of the authored thigh supplies both its width and texture.  Only missing
+    pixels above the first stable-width row are synthesized; visible source
+    pixels are never replaced.  This is deliberately opt-in because a broad
+    hidden leg must be paired with a garment-aware production asset.
+    """
+    rgba = np.asarray(image, dtype=np.uint8).copy()
+    alpha = rgba[..., 3] >= 8
+    opaque = rgba[..., 3] >= 128
+    hip_x, hip_y = (int(round(value)) for value in points["hip_L"][:2])
+    knee_x, knee_y = (int(round(value)) for value in points["knee_L"][:2])
+    length = knee_y - hip_y
+    if length < 16 or abs(knee_x - hip_x) > max(3, round(length * .05)):
+        return image, 0
+
+    search_half = max(12, round(length * .45))
+    x_min = max(0, hip_x - search_half)
+    x_max = min(alpha.shape[1], hip_x + search_half + 1)
+    band_start = max(hip_y + 1, round(hip_y + length * .58))
+    band_end = min(knee_y, round(hip_y + length * .82))
+    rows: list[tuple[int, np.ndarray]] = []
+    for y in range(band_start, band_end + 1):
+        xs = np.flatnonzero(opaque[y, x_min:x_max]) + x_min
+        if len(xs) >= 8:
+            rows.append((y, xs))
+    if not rows:
+        return image, 0
+
+    stable_width = float(np.median([xs[-1] - xs[0] + 1 for _, xs in rows]))
+    minimum_width = max(8, round(stable_width * .55))
+    join_y = rows[0][0]
+    for y in range(max(hip_y + 1, round(hip_y + length * .12)), rows[0][0] + 1):
+        widths = []
+        for probe in range(y, min(y + 4, alpha.shape[0])):
+            xs = np.flatnonzero(opaque[probe, x_min:x_max]) + x_min
+            widths.append(xs[-1] - xs[0] + 1 if len(xs) else 0)
+        if len(widths) == 4 and min(widths) >= minimum_width:
+            join_y = y
+            break
+
+    donor_rows = [(y, xs) for y, xs in rows if y >= join_y]
+    if not donor_rows:
+        donor_rows = rows
+    donor_centres = [(xs[0] + xs[-1]) / 2.0 for _, xs in donor_rows]
+    donor_halves = [(xs[-1] - xs[0] + 1) / 2.0 for _, xs in donor_rows]
+    join_centre = float(np.median(donor_centres))
+    join_half = max(5.0, float(np.median(donor_halves)))
+    top_y = max(0, hip_y - 7)
+    target = np.zeros(alpha.shape, dtype=bool)
+    span = max(1, join_y - hip_y)
+    for y in range(top_y, min(join_y + 2, alpha.shape[0])):
+        t = min(1.0, max(0.0, (y - hip_y) / span))
+        centre = hip_x + (join_centre - hip_x) * t
+        half = join_half * (0.96 + 0.04 * t)
+        left = max(0, int(math.ceil(centre - half)))
+        right = min(alpha.shape[1] - 1, int(math.floor(centre + half)))
+        if right >= left:
+            target[y, left:right + 1] = True
+
+    # Treat feathered remnants inside the extension as gaps as well.  Keeping
+    # them produced a dotted horizontal seam exactly where the source trouser
+    # first emerged from behind the tunic.
+    missing = target & ~opaque
+    if not missing.any():
+        return image, 0
+    for y in np.flatnonzero(missing.any(axis=1)):
+        row_t = min(1.0, max(0.0, (y - top_y) / max(join_y - top_y, 1)))
+        donor_index = round(row_t * (len(donor_rows) - 1))
+        donor_y, donor_xs = donor_rows[donor_index]
+        targets = np.flatnonzero(missing[y])
+        target_xs = np.flatnonzero(target[y])
+        if not len(target_xs):
+            continue
+        scale = (targets - target_xs[0]) / max(target_xs[-1] - target_xs[0], 1)
+        mapped = np.rint(donor_xs[0] + scale * (donor_xs[-1] - donor_xs[0])).astype(int)
+        opaque_donors = donor_xs[opaque[donor_y, donor_xs]]
+        if len(opaque_donors):
+            mapped = opaque_donors[np.abs(opaque_donors[:, None] - mapped).argmin(axis=0)]
+        rgba[y, targets] = rgba[donor_y, mapped]
+        rgba[y, targets, 3] = 255
+    return Image.fromarray(rgba, "RGBA"), int(missing.sum())
+
+
 def _point_subset(part: str, points: Mapping[str, tuple[float, float]]) -> dict[str, tuple[float, float]]:
     pivot, child = PART_JOINTS[part]
     result = {name: points[name] for name in (pivot, child)}
@@ -476,7 +651,11 @@ def _point_subset(part: str, points: Mapping[str, tuple[float, float]]) -> dict[
 
 def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view: str,
                  standard: Path | None = None,
-                 garment_profile: str = "short") -> list[dict[str, Any]]:
+                 garment_profile: str = "short",
+                 edge_safe_fill: bool = False,
+                 strict_ownership: bool = False,
+                 only_parts: set[str] | None = None,
+                 complete_thigh: bool = False) -> list[dict[str, Any]]:
     if garment_profile not in {"short", "ankle-robe"}:
         raise ValueError(f"unknown garment profile: {garment_profile}")
     with Image.open(image_path) as opened:
@@ -492,6 +671,8 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
     out_dir.mkdir(parents=True, exist_ok=True)
     records: list[dict[str, Any]] = []
     for part in SOURCE_PARTS:
+        if only_parts is not None and part not in only_parts:
+            continue
         reuse = (view == "side" and part in {"upper_arm_R", "forearm_R", "hand_R"})
         if reuse:
             near_part = part[:-1] + "L"
@@ -516,10 +697,26 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
         if garment_profile == "ankle-robe" and part in {"thigh_shared", "shin_shared"}:
             source_note.update(sourceLimitation="garmentHidden",
                                reconstruction="sourceRobeTexture")
-        caps = core_joint_caps(part, visible.shape, points)
-        seam_caps = joint_caps(part, visible.shape, points, radius_px=3.5)
-        desired = ((part_mask(part, visible.shape, points, view) &
-                    isolation_mask(part, visible.shape, points)) | caps)
+        strict_cap = (part in {"head", "torso", "pelvis_skirt",
+                               "foot_shared"} and strict_ownership)
+        strict_head = strict_ownership and part == "head"
+        if strict_head:
+            # ``crown`` is an orientation landmark, not a seam.  Filling a
+            # disk there extends the authored hair silhouette into a round
+            # cap; standard heads need overlap only where they meet the neck.
+            caps = capsule(visible.shape, points["neck"], points["neck"], 5.0)
+            seam_caps = capsule(visible.shape, points["neck"], points["neck"], 3.5)
+        else:
+            caps = (joint_caps(part, visible.shape, points, radius_px=5.0)
+                    if strict_cap else core_joint_caps(part, visible.shape, points))
+            seam_caps = joint_caps(part, visible.shape, points, radius_px=3.5)
+        base_mask = part_mask(part, visible.shape, points, view,
+                              strict_ownership=strict_ownership)
+        if strict_ownership and part == "torso":
+            caps &= base_mask
+        ownership = (np.ones_like(visible) if strict_ownership and part == "torso"
+                     else isolation_mask(part, visible.shape, points))
+        desired = (base_mask & ownership) | caps
         if part == "hair_or_headgear":
             desired = hair_mask(rgba, points)
         if (garment_profile == "ankle-robe" and view == "side"
@@ -553,6 +750,8 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
             # At ankle height the skirt and both shoes can be one silhouette;
             # below it, keep only the component containing the near ankle.
             desired = exposed.copy()
+        if strict_ownership and part == "pelvis_skirt":
+            exposed &= skirt_garment_mask(rgba, points)
         if part.startswith("hand_"):
             exposed &= hand_pixel_mask(rgba)
         if part.startswith(("forearm_", "hand_")):
@@ -565,8 +764,13 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
         if part not in {"torso", "pelvis_skirt", "head",
                         "hair_or_headgear"}:
             if not robe_foot_component:
-                core = part_mask(part, visible.shape, points, view) & visible
+                core = part_mask(part, visible.shape, points, view,
+                                 strict_ownership=strict_ownership) & visible
                 exposed &= ndimage.binary_dilation(core, iterations=2)
+            if strict_ownership:
+                exposed &= strict_limb_partition(part, visible.shape, points)
+                if part in {"thigh_shared", "shin_shared"}:
+                    exposed &= ~warm_pixel_mask(rgba)
             blocked = neighbouring_limb_mask(part, visible.shape, points)
             keep_joints = joint_caps(part, visible.shape, points, radius_px=5.0)
             removed_occluder |= exposed & blocked & ~keep_joints
@@ -578,7 +782,8 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
         if removed_occluder.any():
             repair_target |= ndimage.binary_closing(removed_occluder, iterations=4)
         cut = rgba.copy(); cut[..., 3][~exposed] = 0; cut[..., :3][cut[..., 3] == 0] = 0
-        repaired, inpainted_pct = inpaint_occlusion(cut, repair_target, exposed)
+        repaired, inpainted_pct = inpaint_occlusion(
+            cut, repair_target, exposed, edge_safe_fill=edge_safe_fill)
         if part in {"torso", "pelvis_skirt"}:
             # Faces legitimately overlap the neck cap; hands/forearms do not
             # belong to garment parts below the shoulders.
@@ -586,14 +791,16 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
             unwanted = skin_mask(repaired) & (yy > min(points["shoulder_L"][1],
                                                         points["shoulder_R"][1]))
             garment = (repaired[..., 3] >= 8) & ~unwanted
-            repaired = _nearest_fill(repaired, unwanted, garment)
+            repaired = _nearest_fill(repaired, unwanted, garment,
+                                     edge_safe=edge_safe_fill)
         if part in {"thigh_shared", "shin_shared", "foot_shared"}:
             # Biharmonic interpolation can recreate skin-like colours after
             # the overlapping hand was removed.  Refill those pixels from
             # opaque, non-skin garment pixels without changing the silhouette.
             unwanted = skin_mask(repaired)
             clean = (repaired[..., 3] >= 8) & ~unwanted
-            repaired = _nearest_fill(repaired, unwanted, clean)
+            repaired = _nearest_fill(repaired, unwanted, clean,
+                                     edge_safe=edge_safe_fill)
         if garment_profile == "ankle-robe" and view == "side" and (
                 part.startswith(("upper_arm_", "forearm_", "hand_"))):
             # Source joints contain no solid black disks; interpolation at the
@@ -607,7 +814,8 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
         joint_points = dict(points)
         if part.startswith(("forearm_", "hand_")):
             joint_points["wrist_" + part[-1]] = arm_wrist(points, part[-1])
-        joint_names = [pivot_name] if part.startswith("hand_") else [pivot_name, child_name]
+        joint_names = ([pivot_name] if part.startswith("hand_") or strict_head
+                       else [pivot_name, child_name])
         if part == "pelvis_skirt":
             # The hip anchors are metadata inside the garment; do not synthesize
             # visible disks or bridges when an occluding arm hides the waist.
@@ -617,8 +825,10 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
         else:
             repaired, seam_pixels = enforce_joint_disks(
                 repaired, (joint_points[name] for name in joint_names),
-                radius=(2.0 if robe_foot_region is not None else 8.0),
-                bridge_disconnected=False)
+                radius=(2.0 if robe_foot_region is not None else
+                        7.0 if strict_ownership and part == "foot_shared"
+                        else 8.0),
+                bridge_disconnected=False, edge_safe_fill=edge_safe_fill)
             if robe_foot_region is not None:
                 repaired[~robe_foot_region] = 0
                 seam_pixels &= robe_foot_region
@@ -662,6 +872,21 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
             )
         else:
             rotated_points = {name: [round(value[0]), round(value[1])] for name, value in subset.items()}
+        if complete_thigh and part == "thigh_shared":
+            part_image, hidden_pixels = complete_hidden_thigh(
+                part_image, rotated_points)
+            if hidden_pixels:
+                base_pixels = int((repair_target & ~exposed).sum() +
+                                  seam_pixels.sum())
+                final_pixels = int((np.asarray(
+                    part_image.getchannel("A")) >= 8).sum())
+                inpainted_pct = round(
+                    100.0 * (base_pixels + hidden_pixels) /
+                    max(float(final_pixels), 1.0), 3)
+                source_note.update(
+                    sourceLimitation="garmentOccludedHip",
+                    reconstruction="sourceTrouserContinuation",
+                    reconstructedPixels=hidden_pixels)
         part_image = Image.fromarray(keep_largest_component(
             np.asarray(part_image, dtype=np.uint8)), "RGBA")
         part_image, local_points = _crop_part(part_image, rotated_points)
@@ -673,7 +898,7 @@ def segment_view(image_path: Path, keypoints_path: Path, out_dir: Path, *, view:
                               "rejectedInpaintedPct": (measured_inpainted_pct
                                                        if fallback else 0.0),
                               "jointCaps": ("wristOnly" if part.startswith("hand_")
-                                            else True),
+                                            else "neckOnly" if strict_head else True),
                               "standardFallback": fallback,
                               "lowConfidence": [name for name in subset
                                                 if confidence.get(name, 1.0) < .5]}}
@@ -696,6 +921,14 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--standard", type=Path, help="male_std/female_std fallback root")
     result.add_argument("--garment-profile", choices=("short", "ankle-robe"),
                         default="short")
+    result.add_argument("--edge-safe-fill", action="store_true",
+                        help="补绘只取实色边缘，并仅对封闭孔洞做双调和插值")
+    result.add_argument("--strict-ownership", action="store_true",
+                        help="收紧头、衣摆和共享腿的像素所有权")
+    result.add_argument("--only", action="append", choices=SOURCE_PARTS,
+                        help="仅重切指定部件；可重复传入")
+    result.add_argument("--complete-hidden-thigh", action="store_true",
+                        help="用可见裤料补齐衣摆遮挡的大腿上段")
     return result
 
 
@@ -704,7 +937,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         records = segment_view(args.image.resolve(), args.keypoints.resolve(), args.out.resolve(),
                                view=args.view, standard=args.standard.resolve() if args.standard else None,
-                               garment_profile=args.garment_profile)
+                               garment_profile=args.garment_profile,
+                               edge_safe_fill=args.edge_safe_fill,
+                               strict_ownership=args.strict_ownership,
+                               only_parts=set(args.only) if args.only else None,
+                               complete_thigh=args.complete_hidden_thigh)
     except (OSError, ValueError, KeyError, yaml.YAMLError) as exc:
         print(f"segment_parts: {exc}", file=sys.stderr)
         return 1

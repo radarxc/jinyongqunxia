@@ -1,0 +1,17 @@
+coordinates: source
+keypoints:
+  neck:
+  - 29
+  - 67
+  crown:
+  - 43
+  - 6
+source:
+  keypoints:
+  - neck
+  - crown
+  inpaintedPct: 0.175
+  rejectedInpaintedPct: 0.0
+  jointCaps: neckOnly
+  standardFallback: false
+  lowConfidence: []

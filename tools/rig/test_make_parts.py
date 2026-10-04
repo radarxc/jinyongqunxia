@@ -1,6 +1,7 @@
 """Tests for rig part normalization, metadata and pose-strip preview."""
 from __future__ import annotations
 
+from datetime import date
 import tempfile
 import unittest
 from pathlib import Path
@@ -148,12 +149,14 @@ class RigPartPipelineTests(unittest.TestCase):
             "hip_L": [20, 20], "knee_L": [20, 60]}, "source": {
             "keypoints": ["hip_L", "knee_L"], "inpaintedPct": 3.0,
             "standardFallback": False, "reconstruction": "sourceRobeTexture",
-            "sourceLimitation": "garmentHidden"}}, sort_keys=False), encoding="utf-8")
+            "sourceLimitation": "garmentHidden", "reconstructedPixels": 123}},
+            sort_keys=False), encoding="utf-8")
         manifest = build_manifest(self.set_dir)
         part = next(item for item in manifest["parts"]
                     if item["view"] == "front34" and item["id"] == "thigh_shared")
         self.assertEqual("garmentHidden", part["source"]["sourceLimitation"])
         self.assertEqual("sourceRobeTexture", part["source"]["reconstruction"])
+        self.assertEqual(123, part["source"]["reconstructedPixels"])
         build_manifest(self.set_dir, check=True)
 
     def test_failed_build_does_not_partially_rewrite_images(self) -> None:
@@ -212,6 +215,11 @@ class RigPartPipelineTests(unittest.TestCase):
         manifest = build_manifest(self.set_dir, placeholder=False)
         self.assertNotIn("placeholder", manifest)
         self.assertEqual(39, len(manifest["parts"]))
+        self.assertEqual(39, len(manifest["assets"]))
+        self.assertEqual({"candidate"}, {item["status"] for item in manifest["assets"]})
+        self.assertEqual({"none"}, {item["model"] for item in manifest["assets"]})
+        self.assertEqual({date.today().isoformat()},
+                         {item["created"] for item in manifest["assets"]})
         records = {view: {item["id"]: item for item in manifest["parts"]
                           if item["view"] == view} for view in VIEWS}
         expected_sign = {"front34": 1, "back34": -1, "side": 0}
