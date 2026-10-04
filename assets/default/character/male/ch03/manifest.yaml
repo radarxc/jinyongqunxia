@@ -817,24 +817,35 @@
     【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
   negative: ''
   references:
-  - path: assets/default/character/male/ch02/por_npc_ouyangfeng__ch02_elder_sane_base.png
-    sha256: 9b1e49679674a70108bb4efb3fa89998c9a4359fc72d7fcb6f943ad695f6f391
-    use: 身份参考：本轮新出的欧阳锋（por_npc_ouyangfeng__ch02_elder_sane_base，上传 codex 原图）
   - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
     sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
     use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
   - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
     sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
     use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
-  model: gpt-6-astra
-  created: 2026-10-02T03:27:30-0700
-  source_path: .agents/coord/gemini_originals/por_npc_ouyangfeng__ch03_elder_base.png
+  - path: assets/default/character/male/ch02/por_npc_ouyangfeng__ch02_elder_sane_base.png
+    sha256: 6ac3f4e3849dfcca4ee04e9b0221251db5314a49d9f75778ec3991848db20474
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:55:42.545937-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_50_47_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: c60d09d8b1925e0213b1ca9e1b44bdb0c025f207023fd79bcc75a3d32da2e6f8
+  sha256: f35aaaddf0e7c0041ca724e12b3547e33e136f275db1810970e2c4441135a67a
   status: candidate
-  notes: 立绘重审重出（AR-30）；面容源自 1995 版剧照且与射雕欧阳锋不是同一人；改为上传新出的射雕欧阳锋作身份参考，同一张西域面孔老去、疯癫；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
+  notes: 立绘重审重出（AR-30）；面容源自 1995 版剧照且与射雕欧阳锋不是同一人；改为上传新出的射雕欧阳锋作身份参考，同一张西域面孔老去、疯癫；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）；AR-84 第二轮：欧阳锋五官对齐 por_npc_ouyangfeng__ch02_elder_sane_base；AR-53 仅头部，AR-75 神态与光向保留；欧阳锋本书疯癫，保留蓬乱长发、污痕、怒目执拗与苍老；参考只用五官骨相，不恢复整洁发式。；质检：实看通过：欧阳锋眉骨、眼型、宽鼻与鼻唇下颌符合ch02身份；ch03疯癫怒目、蓬乱发、污痕和苍老保留，闭口不笑；原光向与接缝自然
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_50_47_r1
+    before_sha256: c60d09d8b1925e0213b1ca9e1b44bdb0c025f207023fd79bcc75a3d32da2e6f8
+    box:
+    - 449
+    - 111
+    - 585
+    - 293
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_50_47_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_yideng__ch03_elder_base
   file: por_npc_yideng__ch03_elder_base.png
   category: character/male
