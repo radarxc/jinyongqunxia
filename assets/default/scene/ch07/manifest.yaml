@@ -3,42 +3,39 @@
   category: scene
   style: default
   subject: 李岩、红娘子死局（ch07_bixue）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是袁承志的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中袁承志的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
-    【画里谁是谁】这张插图画的是：黎明冷雨中的军帐，AR-20原创改命瞬间：李岩低头坐于案前，男玩家主角轻按其手臂制止绝望行动，红娘子在一侧扶住他的肩，袁承志掀帐赶到形成明亮出口。四人中景，匕首收在桌面边缘且不接触身体，衣着完整无血腥，表情由绝望转为被唤回。
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    【要对齐的部分】袁承志的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：掀帐赶到，神情关切而坚定；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    本次是原图局部放大裁图，输出同样的正方形裁图；不要生成全身，不要扩大场景。
 
-    【袁承志的基线脸】基线里的袁承志二十三四岁，端正俊朗、一身正气：脸型端正饱满、两颊丰润不凹陷、下颌方正而圆润；肤色白净（只是健康的浅肤色，不是晒黑的黝黑皮肤）；浓黑平直的剑眉；眼睛有神、双眼皮、眼神端正沉稳；鼻梁挺直；嘴唇端正、唇形清楚；完全无须、没有胡茬；没有深法令纹和风霜皱纹，皮肤紧致年轻。不要瘦削凹颊、高颧骨、晒黑、带胡茬的风霜脸。
+    本次只改局部裁图里的袁承志：在人物自身左眉上方（画面右侧眉毛上方）皮肤加一处小而淡的已愈旧刀疤，清晰可见。请确实画出一道小旧疤，不是原有眉毛或皱纹；不要动眉毛、眉形和眼睛，五官发式神情全保持。输出同裁图。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「碧血留人」和小朱印必须原样保留，一笔不改、不增不减。
+    【原著依据】《碧血剑》三《经年亲剑铗，长日对楸枰》：“小小疤痕”（https://xuges.com/WUXIA/jinyong/bxj/013.htm）；《碧血剑》四《矫矫金蛇剑，翩翩美少年》：“身穿书生服色”（https://xuges.com/WUXIA/jinyong/bxj/021.htm）
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
 
-    【本张另外要求】袁承志是画面最左边掀开帐门走进来的青年（从左数第 1 个人）；中间按住李岩手臂的男子、低头坐着的李岩、右边扶肩的红娘子，脸一律不改。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/character/male/ch07/por_npc_yuanchengzhi__ch07_youth_jinshe_base.png
-    sha256: c5c953ca8e0a2732fa880a3eecc7ad8a724ddf2b1547fa22b673eee0bb15685f
-    use: 对脸基线：作者 AR-56 定下的 por_npc_yuanchengzhi__ch07_youth_jinshe_base（袁承志），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch07/cg_ch07_liyan_rescue.png
-    sha256: 1335cca13fc7caa0e09ca920495a9959c22b6348388c42439274563b4d4e4060
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_liyan_rescue.1335cca1.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:26:14-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch07_liyan_rescue.s1.png
+    sha256: 604d09516b35fd029e16840861f4e62a3f485e36f07be64b8dd404b1efec2490
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_liyan_rescue.604d0951.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T03:08:11-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_35_r2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 604d09516b35fd029e16840861f4e62a3f485e36f07be64b8dd404b1efec2490
+  sha256: 94526fa2702ce86a71d9f15d4ae44a5010d469ac7407dff4eaf3ccc638aab1e8
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「碧血留人」，实际字形「碧血留人」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「碧血留人」，实际字形「碧血留人」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：碧血留人李岩去胸甲并补袁承志左眉旧疤
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_liyan_rescue.1335cca1.png
-    sha256: 1335cca13fc7caa0e09ca920495a9959c22b6348388c42439274563b4d4e4060
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_liyan_rescue.1335cca1.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_liyan_rescue.604d0951.png
+    sha256: 604d09516b35fd029e16840861f4e62a3f485e36f07be64b8dd404b1efec2490
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_liyan_rescue.604d0951.entry.yaml
   runner_job_records:
   - - cg_ch07_liyan_rescue.resume3
     - ok
@@ -46,7 +43,7 @@
     - '198'
     - exec-cf5a70ea-be44-4d7f-90c1-15fe68e5e3b6.png
   runner_success_count: 1
-  effort: ultra
+  effort: xhigh
 - id: cg_ch07_taishan_alliance
   file: cg_ch07_taishan_alliance.png
   category: scene
@@ -135,7 +132,7 @@
   size: 1536x1024
   sha256: 9bbdf3687467f8e20394377af6e31dbff3bcf4d8669ba384fd16b9f45d6b3227
   status: candidate
-  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「金蛇遗藏」，实际字形「金蛇遺藏」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；题字遺→遗；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「金蛇遗藏」，实际字形「金蛇遺藏」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；题字遺→遗；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）'
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_golden_serpent_cave.abfd344d.png
     sha256: abfd344d6c0b40225ec16017d5b50998d1b32afc8a6384f9f5b499baf116b5eb
@@ -148,7 +145,18 @@
     - exec-0d4cb963-6731-42e5-92ef-ee58af72d0c0.png
   runner_success_count: 1
   effort: ultra
-  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch07_golden_serpent_cave_fixed.png", "before_sha256": "f2425407467a28c872f879c9b0f56a3c784d7b668a3c088effe376539e98868c", "allowed_box": [[1410, 201, 1520, 282]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch07_golden_serpent_cave_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T00:55:08-07:00"}
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/cg_ch07_golden_serpent_cave_fixed.png
+    before_sha256: f2425407467a28c872f879c9b0f56a3c784d7b668a3c088effe376539e98868c
+    allowed_box:
+    - - 1410
+      - 201
+      - 1520
+      - 282
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/cg_ch07_golden_serpent_cave_pixel_checks.json
+    method: w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留
+    created: '2026-10-04T00:55:08-07:00'
 - id: cg_ch07_chongzheng_cannon
   file: cg_ch07_chongzheng_cannon.png
   category: scene
