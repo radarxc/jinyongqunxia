@@ -47761,6 +47761,60 @@
    ],
    "validate": {
     "exists": [
+     "packages/data/src/content-registry.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys,glob; from pathlib import Path; d=Path('apps/game/dist'); g=json.load(open(d/'.vite/size-groups.json',encoding='utf-8'))['groups']; txt=lambda f: (d/f).read_text(encoding='utf-8',errors='ignore'); sess=list(g['workerShell'])+list(g['sessionStatic']); hits=[(f,s) for f in sess for s in ('regionArena','ENCOUNTER_TEMPLATE_UNSUPPORTED') if s in txt(f)]; kept=[Path(f).name for f in glob.glob(str(d/'assets'/'*.js')) if 'ENCOUNTER_TEMPLATE_UNSUPPORTED' in Path(f).read_text(encoding='utf-8',errors='ignore')]; print('session_hits',hits,'builder_chunks',kept); sys.exit(1 if hits or not kept else 0)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-battle-modules-lazy",
+   "title": "游戏工程 · 小修：只有进战斗才用的模块（遭遇 encounter.v1 schema 与 builder 等）移出首次会话静态闭包，改走战斗懒加载块；构建期校验不漏、运行时失败可恢复（AR-64，协调者 10-03 23:0x）",
+   "prompt": "ENG-battle-modules-lazy.md",
+   "deps": [
+    "ENG-26-encounter-builder",
+    "ENG-session-base-diet"
+   ],
+   "writes": [
+    "packages/data/src/**",
+    "packages/core/src/**",
+    "apps/game/src/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
      "packages/core/bench/combat.test.ts"
     ],
     "cmd": [
