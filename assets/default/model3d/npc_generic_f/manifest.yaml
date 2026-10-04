@@ -1,0 +1,191 @@
+- id: npc_generic_f__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 通用江湖女子（AR-85：无专属 3D 模型的人物在战斗中使用）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 778e5cdb-7973-4619-8a7e-f414425d72ff
+    url: https://studio.tripo3d.ai/workspace/generate/778e5cdb-7973-4619-8a7e-f414425d72ff
+    generate_op: ddd65620-045e-4b3e-afc6-bf7768a4efbe（image_to_model）
+    rig_op: a8253ee8-2ac9-4ab5-88c4-87df3430d03e
+    animation_ops:
+      idle: 3577f667-ad1c-42d7-9fc3-9ac42e182d27
+      walk: 5c0c04fb-9a3e-444e-9956-0311b31564e7
+      run: 552059a8-5211-4335-99e0-233f118b0402
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（拉长后的 A 字图；见 source/）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/model3d/npc_generic_f/source/npc_generic_f_tripo_input.png
+    sha256: 85b892abc0ed9c69841a1745839a19c53c22623d5a2e80e85840fde5a534cab1
+    use: 单图生成输入：由 AR-85 通用女 A 字图派生的拉长图（source/npc_generic_f_tripo_input.png，脖子线以下纵向 ×1.1644）
+  - path: assets/default/character/female/generic/threeview/por_npc_generic_f_apose.png
+    sha256: d6ef4d1071487a94e3acf81903d5df01069638ad9a2856e5c8b3cda8930b6f39
+    use: 派生来源：AR-85 通用江湖女子 A 字图原图（6e571182，仓库里不改）
+  sha256: 92b71e803be661607b48a87a53ba1109ac55e9b2e086b4dd811e0336281d58fe
+  size_bytes: 5446448
+  joints: 65
+  triangles: 98862
+  vertices: 55092
+  animations: []
+  textures:
+  - image/jpeg 332399 B
+  - image/jpeg 1107064 B
+  - image/jpeg 525345 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-04T00:50:53-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。通用战斗人物（女）。输入是由 AR-85 通用女 A 字图派生的拉长图：脖子线（第 249 行）以下纵向 ×1.1644，用 tools/model3d/stretch_apose.py 生成，2D 头身比 8.00 → 9.14（头顶骨到下巴，不含发髻）。成品 3D 头身比 8.69（含发髻 7.21），在 8.5–9 的目标内，所以没重出。肩宽 / 身高
+    0.156，髋高 / 身高 0.553。看图验收：正、背、侧都完整，没有破洞；鬓边两缕碎发被贴成了肤色，近看可见、远景不明显。自动绑骨一次成功；关节体检（ingest.py）：髋 y0.572、头 y0.866、头顶骨端 y0.976、双手 y0.592/0.594 外展 0.236/0.238、脚 y0.059/0.059。
+- id: npc_generic_f__anim_idle_walk_run
+  file: anim_idle_walk_run.glb
+  category: model3d
+  style: default
+  subject: 通用江湖女子（AR-85：无专属 3D 模型的人物在战斗中使用）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 778e5cdb-7973-4619-8a7e-f414425d72ff
+    url: https://studio.tripo3d.ai/workspace/generate/778e5cdb-7973-4619-8a7e-f414425d72ff
+    generate_op: ddd65620-045e-4b3e-afc6-bf7768a4efbe（image_to_model）
+    rig_op: a8253ee8-2ac9-4ab5-88c4-87df3430d03e
+    animation_ops:
+      idle: 3577f667-ad1c-42d7-9fc3-9ac42e182d27
+      walk: 5c0c04fb-9a3e-444e-9956-0311b31564e7
+      run: 552059a8-5211-4335-99e0-233f118b0402
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（拉长后的 A 字图；见 source/）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - idle
+      - run
+      - walk
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/model3d/npc_generic_f/source/npc_generic_f_tripo_input.png
+    sha256: 85b892abc0ed9c69841a1745839a19c53c22623d5a2e80e85840fde5a534cab1
+    use: 单图生成输入：由 AR-85 通用女 A 字图派生的拉长图（source/npc_generic_f_tripo_input.png，脖子线以下纵向 ×1.1644）
+  - path: assets/default/character/female/generic/threeview/por_npc_generic_f_apose.png
+    sha256: d6ef4d1071487a94e3acf81903d5df01069638ad9a2856e5c8b3cda8930b6f39
+    use: 派生来源：AR-85 通用江湖女子 A 字图原图（6e571182，仓库里不改）
+  sha256: 5906d7218de379c401aec0517ded698443a55799f720ba1e225224ef0d3396ba
+  size_bytes: 5925512
+  joints: 65
+  triangles: 98862
+  vertices: 55092
+  animations:
+  - idle (15.333s)
+  - run (1.25s)
+  - walk (2.333s)
+  textures:
+  - image/jpeg 332399 B
+  - image/jpeg 1107064 B
+  - image/jpeg 525345 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-04T00:50:53-07:00'
+  status: candidate
+  notes: 动作单文件：一个 GLB 内含 idle / run / walk，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。 导出后用 tools/model3d/fix_anim_offset.py 修过一处：Tripo 的跑步片段即使「原地」也整段偏离原点（Hips 水平偏移 x/z -0.032 / +0.565，约半个身高），切换动作会跳位，已平移回原点，只改
+    Hips 平移通道的水平分量。零点数离线渲染体检（idle / walk / run 各 6 个相位，正面 + 侧面）：没看到穿模；着地时脚骨最低 y 0.054（绑定姿势 0.06），鞋底约下沉 1 cm（模型单位）；待机着地时脚几乎不动（平均 0.03），中段有一次抬脚换重心；走、跑是原地动作，支撑脚后移速度分别约 0.66 / 2.13 模型单位/秒（模型高约 0.98），引擎按这个速度（乘以身高缩放）移动角色才不会脚滑。
+- id: npc_generic_f__tripo_input
+  file: source/npc_generic_f_tripo_input.png
+  category: model3d
+  style: default
+  subject: 通用江湖女子 · Tripo 输入图（A 字图脖子以下拉长）
+  tool: tools/model3d/stretch_apose.py
+  derived_from:
+    path: assets/default/character/female/generic/threeview/por_npc_generic_f_apose.png
+    sha256: d6ef4d1071487a94e3acf81903d5df01069638ad9a2856e5c8b3cda8930b6f39
+    commit: 6e571182
+  transform:
+    neck_row: 249
+    scale_below_neck: 1.1644
+    src_size: 1024x1536
+    size: 1024x1748
+    heads_2d_before: 8.0
+    heads_2d_after: 9.14
+    measure: 头顶骨（不含发髻）到下巴为一头
+    target_3d: 8.5–9
+    tripo_head_enlarge: 约 1.05（同批男模实测：2D 7.99 → 3D 7.66）
+  sha256: 85b892abc0ed9c69841a1745839a19c53c22623d5a2e80e85840fde5a534cab1
+  size_bytes: 1247233
+  created: '2026-10-04T00:51:42-07:00'
+  status: candidate
+  notes: 协调者 AR-85 要求的比例补偿：头部（脖子线以上）原样不动，脖子以下纵向拉长；只作 Tripo 生成输入，不进游戏。仓库里的 A 字图本身没改。
+- id: npc_generic_f__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 通用江湖女子（AR-85：无专属 3D 模型的人物在战斗中使用） · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 778e5cdb-7973-4619-8a7e-f414425d72ff
+    url: https://studio.tripo3d.ai/workspace/generate/778e5cdb-7973-4619-8a7e-f414425d72ff
+    generate_op: ddd65620-045e-4b3e-afc6-bf7768a4efbe（image_to_model）
+    rig_op: a8253ee8-2ac9-4ab5-88c4-87df3430d03e
+    animation_ops:
+      idle: 3577f667-ad1c-42d7-9fc3-9ac42e182d27
+      walk: 5c0c04fb-9a3e-444e-9956-0311b31564e7
+      run: 552059a8-5211-4335-99e0-233f118b0402
+  size: 600x778
+  sha256: a9b824e4b2b4b74ff45bc2e2d7d33230ee1d5183f1cc56ff0ae1ad2125964c57
+  size_bytes: 101895
+  created: '2026-10-04T00:50:53-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。
