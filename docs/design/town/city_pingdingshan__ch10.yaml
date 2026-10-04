@@ -1,0 +1,41 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_pingdingshan
+chapter_id: ch10
+book_world: ch10_baima
+display_name: 汝州
+historical_year: 702
+era_kit: tang
+seed: 1071340045
+design_intent: {prosperity: generic_secondary, notes: [推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）, 依据：src_generic_layout, 复原依据：docs/design/town/history/city_pingdingshan__tang_702.md, region=rg_zhongyuan; band=tang_702；按同区域大城开封、洛阳与郑州候选作一般格局参照。, tang建筑目录缺失；建筑显式使用song_southern基线，墙门与共通贴片由渲染器审计回退。]}
+grid: {width: 96, height: 96, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -48, r_min: 1, q_slot_count: 131, r_slot_count: 96, q_band_slots: [66, 65], r_band_slots: [96], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls: [{id: outer, role: outer, polygon: {points: [{x: 10, z: 10}, {x: 86, z: 10}, {x: 86, z: 86}, {x: 10, z: 86}]}, inside_margin_cells: 2, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}]
+gates:
+  - {id: south_gate, side: south, at: {x: 48, z: 10}, width_cells: 4, asset_type: tex_town_tang_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: main_north_south, primary: true, wall_ref: outer, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: north_gate, side: north, at: {x: 48, z: 86}, width_cells: 4, asset_type: tex_town_tang_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: main_north_south, primary: false, wall_ref: outer, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+streets:
+  - {id: main_north_south, class: main_axis, width_cells: 4, points: [{x: 48, z: 10}, {x: 48, z: 86}], surface: dirt_road, priority: 100, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: market_cross_street, class: secondary, width_cells: 4, points: [{x: 12, z: 48}, {x: 84, z: 48}], surface: dirt_road, priority: 80, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+rivers: []
+bridges: []
+zones:
+  - {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 12, z: 12}, max: {x: 29, z: 47}}}, priority: 100, density: 0.52, allowed_building_types: [bld_kit_song_southern_yamen], ground_mix: {rammed_earth: 100}, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: zone_market, kind: market, geometry: {rect: {min: {x: 51, z: 12}, max: {x: 84, z: 47}}}, priority: 90, density: 0.52, allowed_building_types: [bld_kit_song_southern_market_stall, bld_kit_song_southern_shop_1f], ground_mix: {rammed_earth: 100}, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: zone_commercial, kind: commercial, geometry: {rect: {min: {x: 51, z: 51}, max: {x: 84, z: 84}}}, priority: 85, density: 0.52, allowed_building_types: [bld_kit_song_southern_shop_1f, bld_kit_song_southern_inn, bld_kit_song_southern_biaoju], ground_mix: {rammed_earth: 100}, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 29, z: 12}, max: {x: 47, z: 47}}}, priority: 80, density: 0.52, allowed_building_types: [bld_kit_song_southern_temple_hall], ground_mix: {rammed_earth: 100}, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 12, z: 51}, max: {x: 47, z: 84}}}, priority: 50, density: 0.52, allowed_building_types: [bld_kit_song_southern_house, bld_kit_song_southern_manor], ground_mix: {rammed_earth: 100}, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+landmarks: []
+building_quotas:
+  - {type: bld_kit_song_southern_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_market_stall, zone_refs: [zone_market], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_shop_1f, zone_refs: [zone_commercial], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_house, zone_refs: [zone_residential], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_inn, zone_refs: [zone_commercial], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_biaoju, zone_refs: [zone_commercial], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_manor, zone_refs: [zone_residential], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 1, cluster_rule: 2至5株成组, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+sources:
+  - {key: src_generic_layout, kind: design_interpretation, title: 小城与遗址推定格局规则, url: null, accessed: null, confidence: original_extension, supports: [layout], note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
