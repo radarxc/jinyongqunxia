@@ -207,3 +207,8 @@ BACKGROUND AND OUTPUT: A very pale, unobtrusive ink-wash landscape on an opaque 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_yangguo__ch03_youth_onearm_base.prepared.json`。
+
+## 原著依据
+
+- 《神雕侠侣》第二十六回 神雕重剑：“剑尖更圆圆的似是个半球”；https://www.xuges.com/wuxia/jinyong/sdxl/187.htm
+- AR-82 返修约束（本节优先于历史提示词）：仅把玄铁重剑的平切剑尖改为圆圆的半球状钝尖，厚重暗黑铁，无尖角、方切口或开刃。剑身不加白线、边框、文字、透光或任何标记，不改原剑的宽度长度、剑柄和原左手。输出完整原图，人物与背景逐像素保留。
