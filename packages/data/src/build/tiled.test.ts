@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { canonicalBytes } from './hash';
 import { INK_OPCODE_NAMES } from './ink';
 import { compileTiledMap, validateTiledMaps } from './tiled';
-import { buildContent, regionRulesLogicalName } from './pipeline';
+import { buildContent, regionBindingsLogicalName, regionRulesLogicalName } from './pipeline';
 import { emitLeaves, MAX_LEAF_BYTES } from './leaves';
 import { tiledProjectBytes } from './tiled-project';
 import { RegionMapSchema } from '../schemas/region-map';
@@ -360,8 +360,15 @@ describe('Tiled to RegionMap', () => {
       expect(first.diagnostics.filter((entry) => entry.severity === 'error')).toEqual([]);
       const logicalName = regionRulesLogicalName('ch01', 'rg_jiangnan_taihu');
       const leaf = first.chapters[0]!.leaves.find((entry) => entry.logicalName === logicalName);
+      const bindingName = regionBindingsLogicalName('ch01', 'rg_jiangnan_taihu');
+      const bindingLeaf = first.chapters[0]!.leaves.find((entry) =>
+        entry.logicalName === bindingName);
       expect(logicalName).toBe('ch01.rules.rg-jiangnan-taihu.json');
       expect(leaf).toMatchObject({ kind: 'rules', load: 'region', region: 'rg_jiangnan_taihu' });
+      expect(bindingName).toBe('ch01.rules.rg-jiangnan-taihu.bindings.json');
+      expect(bindingLeaf).toMatchObject({ kind: 'rules', load: 'region',
+        region: 'rg_jiangnan_taihu', value: { schemaVersion: 'region-bindings-leaf.v1',
+          chapter: 'ch01_tianlong', regionId: 'rg_jiangnan_taihu', entries: [] } });
       ((map['layers'] as Record<string, unknown>[])[1]!['data'] as number[])[0] = 101;
       await writeFile(mapPath, JSON.stringify(map));
       const second = await buildContent({ rootDir: root, write: false, chapter: 'ch01_tianlong' });

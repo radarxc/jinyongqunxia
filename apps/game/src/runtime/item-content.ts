@@ -1,7 +1,8 @@
 import type { ContentSource } from '@tianshu/data';
-import { ChapterDefSchema, EventDefSchema, NpcAppearanceSchema, NpcIdSchema, RegionMapSchema,
-  WorldMapDefinitionSchema, type ChapterDef, type EventDef, type RegionMap,
-  type WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import { ChapterDefSchema, EventDefSchema, NpcAppearanceSchema, NpcIdSchema,
+  RegionBindingLeafSchema, RegionMapSchema, WorldMapDefinitionSchema, type ChapterDef,
+  type EventDef, type RegionMap, type WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import type { RegionDialogueBinding, RegionGateBinding, RegionLootBinding } from '@tianshu/core';
 import type { AssetMap, ChapterAssetLoader, ChapterRuntimeLeaf, GameContent, GameNpcDef,
   StaticGameContent } from './content';
 
@@ -205,16 +206,26 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
   }
 }
 
-export async function loadRegionMaps(source: ContentSource, chapter: string,
-  regionId: string): Promise<readonly RegionMap[]> {
+export interface RegionContentSlice {
+  readonly maps: readonly RegionMap[]; readonly gates: readonly RegionGateBinding[];
+  readonly dialogues: readonly RegionDialogueBinding[]; readonly loot: readonly RegionLootBinding[];
+}
+function regionBindingName(name: string): boolean {
+  return /^ch\d{2}\.rules\..+\.bindings(?:\.p\d{3})?\.json$/u.test(name);
+}
+export async function loadRegionContent(source: ContentSource, chapter: string,
+  regionId: string): Promise<RegionContentSlice> {
   try {
     const { loadChapterPackLeaves } = await import('@tianshu/data');
     const pack = await loadChapterPackLeaves(source, chapter, (leaf) =>
       leaf.kind === 'rules' && leaf.load === 'region' && leaf.region === regionId);
     const selected = pack.manifest.leaves.filter((leaf) => leaf.kind === 'rules' &&
       leaf.load === 'region' && leaf.region === regionId);
-    if (selected.length === 0) throw new TypeError('CONTENT_REGION_LEAF_MISSING');
-    const maps = selected.flatMap((leaf) => {
+    const mapLeaves = selected.filter((leaf) => !regionBindingName(leaf.logicalName));
+    const bindingLeaves = selected.filter((leaf) => regionBindingName(leaf.logicalName));
+    if (mapLeaves.length === 0 || bindingLeaves.length === 0)
+      throw new TypeError('CONTENT_REGION_LEAF_MISSING');
+    const maps = mapLeaves.flatMap((leaf) => {
       const value = pack.leaves[leaf.logicalName];
       if (!Array.isArray(value)) throw new TypeError('CONTENT_REGION_LEAF_INVALID');
       return value.map((entry) => RegionMapSchema.parse(entry));
@@ -222,7 +233,27 @@ export async function loadRegionMaps(source: ContentSource, chapter: string,
     const unique = new Set(maps.map((map) => map.id));
     if (unique.size !== maps.length || maps.some((map) => map.regionId !== regionId))
       throw new TypeError('CONTENT_REGION_ID_MISMATCH');
-    return maps.sort((left, right) => left.id < right.id ? -1 : left.id > right.id ? 1 : 0);
+    const bindings = bindingLeaves.flatMap((leaf) => {
+      const value = pack.leaves[leaf.logicalName];
+      const parsed = RegionBindingLeafSchema.safeParse(value);
+      if (!parsed.success || parsed.data.chapter !== chapter || parsed.data.regionId !== regionId)
+        throw new TypeError('CONTENT_REGION_BINDING_LEAF_INVALID');
+      return parsed.data.entries;
+    });
+    const gates: RegionGateBinding[] = [];
+    const dialogues: RegionDialogueBinding[] = [];
+    const loot: RegionLootBinding[] = [];
+    for (const binding of bindings) {
+      if (binding.kind === 'regionGate') gates.push({ gateId: binding.value.gateId,
+        expression: binding.value.expression });
+      if (binding.kind === 'regionDialogue' && binding.value.noDialogue !== true)
+        dialogues.push({ sceneId: binding.value.sceneId, anchorId: binding.value.anchorId,
+          storyId: binding.value.storyId!, entryKey: binding.value.entryKey! });
+      if (binding.kind === 'regionLoot') loot.push({ lootRef: binding.value.lootRef,
+        items: binding.value.items });
+    }
+    return { maps: maps.sort((left, right) => left.id < right.id ? -1 : left.id > right.id ? 1 : 0),
+      gates, dialogues, loot };
   } catch (error) { throw loadError('REGION_RULES_UNAVAILABLE', error); }
 }
 

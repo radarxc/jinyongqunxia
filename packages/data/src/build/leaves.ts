@@ -10,10 +10,36 @@ export const PACK_ERROR_BYTES = 1536 * 1024;
 function numberedName(name: string, index: number): string {
   return name.replace(/\.json$/u, `.p${String(index).padStart(3, '0')}.json`);
 }
+function splitRegionBindingLeaf(leaf: BuildLeaf, maxBytes: number): readonly BuildLeaf[] | undefined {
+  const value = leaf.value;
+  if (Array.isArray(value) || value === null || typeof value !== 'object') return undefined;
+  const record = value as Readonly<Record<string, JsonValue>>;
+  if (record['schemaVersion'] !== 'region-bindings-leaf.v1' ||
+      typeof record['chapter'] !== 'string' || typeof record['regionId'] !== 'string' ||
+      !Array.isArray(record['entries'])) return undefined;
+  const base = { schemaVersion: record['schemaVersion'], chapter: record['chapter'],
+    regionId: record['regionId'] };
+  const parts: JsonValue[][] = []; let current: JsonValue[] = [];
+  for (const entry of record['entries']) {
+    const candidate = { ...base, entries: [...current, entry] } as JsonValue;
+    if (canonicalBytes(candidate).byteLength > maxBytes) {
+      if (current.length === 0)
+        throw new TypeError(`CONTENT_LEAF_ENTRY_TOO_LARGE:${leaf.logicalName}`);
+      parts.push(current); current = [entry];
+      if (canonicalBytes({ ...base, entries: current } as JsonValue).byteLength > maxBytes)
+        throw new TypeError(`CONTENT_LEAF_ENTRY_TOO_LARGE:${leaf.logicalName}`);
+    } else current.push(entry);
+  }
+  if (current.length > 0) parts.push(current);
+  return parts.map((entries, index) => ({ ...leaf, logicalName: numberedName(leaf.logicalName, index),
+    value: { ...base, entries } as JsonValue }));
+}
 
 export function splitLeaf(leaf: BuildLeaf, maxBytes = MAX_LEAF_BYTES): readonly BuildLeaf[] {
   const bytes = canonicalBytes(leaf.value);
   if (bytes.byteLength <= maxBytes) return [leaf];
+  const bindingParts = splitRegionBindingLeaf(leaf, maxBytes);
+  if (bindingParts !== undefined) return bindingParts;
   const array = Array.isArray(leaf.value);
   const entries: readonly JsonValue[] = array ? leaf.value : Object.entries(leaf.value as Record<string, JsonValue>)
     .map(([key, value]) => [key, value]);

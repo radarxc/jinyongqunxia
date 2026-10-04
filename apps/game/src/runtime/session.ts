@@ -25,6 +25,7 @@ import { createAsyncCore } from './core-session';
 import type { AsyncCore } from './core-session';
 import { createSessionSelectors } from './session-projection';
 import { CORE_BUILD, CORE_VERSION } from './core-version';
+import type { RegionContentSlice } from './item-content';
 
 const BATTLE_REJECTIONS = new Set([
   'BATTLE_ALREADY_ACTIVE', 'BATTLE_DEMO_FORBIDDEN', 'BATTLE_NOT_ACTIVE', 'BATTLE_NOT_ENDED',
@@ -107,6 +108,14 @@ function regionContent(content: GameContent): RegionRuntimeContent | undefined {
     ...(content.regionDialogues ? { dialogues: content.regionDialogues } : {}),
     ...(content.regionLoot ? { loot: content.regionLoot } : {}) };
 }
+function mergeRegionContent(content: GameContent, loaded: RegionContentSlice): GameContent {
+  return { ...content,
+    regionMaps: [...content.regionMaps ?? [], ...loaded.maps],
+    regionGates: [...content.regionGates ?? [], ...loaded.gates],
+    regionDialogues: [...content.regionDialogues ?? [], ...loaded.dialogues],
+    regionLoot: [...content.regionLoot ?? [], ...loaded.loot],
+  };
+}
 function dirtyViews(command: Command): readonly DirtyView[] {
   if (command.t === 'world/tick') return ['hud'];
   if (command.t.startsWith('dialogue/')) return ['dialogue'];
@@ -135,7 +144,7 @@ function defaultSession(content: GameContent, demo: boolean): SessionSnapshot {
 export interface GameSessionOptions { readonly demo?: boolean; readonly seedSource?: MasterSeedSource;
   readonly preloadChapter?: (chapterId: string) => Promise<GameContent>;
   readonly preloadRegion?: (chapterId: string, regionId: string) =>
-    Promise<readonly NonNullable<GameContent['regionMaps']>[number][]>;
+    Promise<RegionContentSlice>;
   readonly subsystemLoaders?: {
     readonly battle?: () => Promise<BattleRuntimeConstructor>;
     readonly battleDemo?: () => Promise<BattleDemoFactory>;
@@ -289,9 +298,11 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
   async function preloadRegionMount(command: Command): Promise<GameContent | undefined> {
     if (command.t !== 'world/mountRegion' ||
         content.regionMaps?.some((map) => map.id === command.sceneId)) return undefined;
-    let maps: readonly NonNullable<GameContent['regionMaps']>[number][];
-    try { maps = await options.preloadRegion?.(state.chapter.chapterId, command.regionId) ?? []; }
+    let loaded: RegionContentSlice;
+    try { loaded = await options.preloadRegion?.(state.chapter.chapterId, command.regionId) ??
+      { maps: [], gates: [], dialogues: [], loot: [] }; }
     catch (error) { throw new Error('REGION_UNAVAILABLE', { cause: error }); }
+    const { maps } = loaded;
     const ids = new Set(content.regionMaps?.map((map) => map.id) ?? []);
     if (maps.length === 0) throw new Error('REGION_UNAVAILABLE');
     if (maps.some((map) => map.regionId !== command.regionId || ids.has(map.id) ||
@@ -299,22 +310,24 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         (map.eraLayer !== 'base' && map.eraLayer !== state.chapter.eraLayerId)) ||
         !maps.some((map) => map.id === command.sceneId))
       throw new Error('REGION_CONTENT_MISMATCH');
-    return { ...content, regionMaps: [...content.regionMaps ?? [], ...maps] };
+    return mergeRegionContent(content, loaded);
   }
   async function contentForRegionState(candidate: SessionSnapshot): Promise<GameContent> {
     const mounted = candidate.world.navigation.mountedRegion;
     const sceneId = candidate.world.navigation.locationId;
     if (!mounted || content.regionMaps?.some((map) => map.id === sceneId)) return content;
-    let maps: readonly NonNullable<GameContent['regionMaps']>[number][];
-    try { maps = await options.preloadRegion?.(candidate.chapter.chapterId, mounted.regionId) ?? []; }
+    let loaded: RegionContentSlice;
+    try { loaded = await options.preloadRegion?.(candidate.chapter.chapterId, mounted.regionId) ??
+      { maps: [], gates: [], dialogues: [], loot: [] }; }
     catch (error) { throw new Error('REGION_UNAVAILABLE', { cause: error }); }
+    const { maps } = loaded;
     const ids = new Set(content.regionMaps?.map((map) => map.id) ?? []);
     if (maps.length === 0) throw new Error('REGION_UNAVAILABLE');
     if (maps.some((map) => map.regionId !== mounted.regionId || ids.has(map.id) ||
         (!map.chapterScope.includes('all') && !map.chapterScope.includes(candidate.chapter.chapterId)) ||
         (map.eraLayer !== 'base' && map.eraLayer !== candidate.chapter.eraLayerId)) ||
         !maps.some((map) => map.id === sceneId)) throw new Error('REGION_CONTENT_MISMATCH');
-    return { ...content, regionMaps: [...content.regionMaps ?? [], ...maps] };
+    return mergeRegionContent(content, loaded);
   }
   async function preloadBookSleep(command: Command): Promise<GameContent | undefined> {
     if (command.t !== 'chapter/bookSleep') return undefined;
@@ -504,7 +517,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
 export async function createLoadedGameSession(base: StaticGameContent, source: ContentSource,
   initial?: SessionSnapshot, loadTown?: TownLoader, options: GameSessionOptions = {},
   loadAssets?: ChapterAssetLoader) {
-  const { itemContentChapter, loadGameContent, loadRegionMaps } =
+  const { itemContentChapter, loadGameContent, loadRegionContent } =
     await import('./content-loader').then(({ createContentLoader }) => createContentLoader());
   const loaded = new Map<string, Promise<GameContent>>();
   const contentFor = (chapter: string): Promise<GameContent> => {
@@ -520,7 +533,7 @@ export async function createLoadedGameSession(base: StaticGameContent, source: C
   const sessionFor = (content: GameContent, demo: boolean) =>
     createGameSession(content, undefined, loadTown, { ...options, demo, preloadChapter: contentFor,
       preloadRegion: options.preloadRegion ?? ((chapterId, regionId) =>
-        loadRegionMaps(source, chapterId, regionId)) });
+        loadRegionContent(source, chapterId, regionId)) });
   const chapter = initial?.chapter.chapterId ?? itemContentChapter(options.demo === true);
   let debugTainted = initial?.meta.debugTainted ?? options.demo === true;
   let active = sessionFor(await contentFor(chapter), debugTainted);

@@ -8,6 +8,8 @@ import { regionFixtureMap } from './region-test-fixture';
 
 describe('Worker session command adapter', () => {
   const content = fixtureContent();
+  const regionSlice = (maps = [regionFixtureMap()]) =>
+    ({ maps, gates: [], dialogues: [], loot: [] });
   const sleepPlan = { id: '00000000-0000-4000-8000-000000000017',
     from: 'ch00_yuenv', to: 'ch10_baima', targetTier: 'LOW' as const,
     sleepEventId: 'slp_first_changbai', skills: { martial: [], inner: [] },
@@ -92,7 +94,7 @@ describe('Worker session command adapter', () => {
       identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',
         originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake', chapter: source.chapters[0]! });
     const core = createGameSession(source, state, undefined, { demo: false,
-      preloadChapter: async () => target, preloadRegion: async () => [] });
+      preloadChapter: async () => target, preloadRegion: async () => regionSlice([]) });
     expect((await core.query()).firstSleepAllocation).toBeNull();
     await core.dispatch({ t: 'quest/choose', questId: 'dc_00_01', optionId: 'skip' });
     const settled = await core.dispatch({ t: 'quest/choose', questId: 'dc_00_01',
@@ -190,7 +192,7 @@ describe('Worker session command adapter', () => {
     const loads: string[] = [];
     const core = createGameSession(content, initial, undefined, { demo: false,
       preloadRegion: async (chapterId, regionId) => {
-        loads.push(chapterId + '/' + regionId); return [map];
+        loads.push(chapterId + '/' + regionId); return regionSlice([map]);
       } });
     const mounted = await core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
       sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
@@ -217,7 +219,7 @@ describe('Worker session command adapter', () => {
         originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake' });
     const loaders = [
       { loader: async () => { throw new Error('offline'); }, error: 'REGION_UNAVAILABLE' },
-      { loader: async () => [{ ...regionFixtureMap(), regionId: 'rg_other' }],
+      { loader: async () => regionSlice([{ ...regionFixtureMap(), regionId: 'rg_other' }]),
         error: 'REGION_CONTENT_MISMATCH' },
     ] as const;
     for (const row of loaders) {
@@ -230,7 +232,7 @@ describe('Worker session command adapter', () => {
     }
     let validLoads = 0;
     const badSpawn = createGameSession(content, initial, undefined, { demo: false,
-      preloadRegion: async () => { validLoads += 1; return [regionFixtureMap()]; } });
+      preloadRegion: async () => { validLoads += 1; return regionSlice(); } });
     const before = await badSpawn.snapshot();
     for (let attempt = 0; attempt < 2; attempt += 1) {
       const update = await badSpawn.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
@@ -278,7 +280,7 @@ describe('Worker session command adapter', () => {
     const saved = await source.snapshot(); const loads: string[] = [];
     const restored = createGameSession(content, initial, undefined, { demo: false,
       preloadRegion: async (chapterId, regionId) => {
-        loads.push(chapterId + '/' + regionId); return [map];
+        loads.push(chapterId + '/' + regionId); return regionSlice([map]);
       } });
     const update = await restored.restore(saved);
     expect(loads).toEqual(['ch00_yuenv/rg_fixture']);
@@ -293,7 +295,7 @@ describe('Worker session command adapter', () => {
 
     let stagedLoads = 0;
     const staged = createGameSession(content, initial, undefined, { demo: false,
-      preloadRegion: async () => { stagedLoads += 1; return [map]; } });
+      preloadRegion: async () => { stagedLoads += 1; return regionSlice([map]); } });
     const invalid = { ...saved, party: { ...saved.party, inventory: {
       ...saved.party.inventory, stacks: [{ itemId: 'it_missing', count: 1 }],
     } } };
