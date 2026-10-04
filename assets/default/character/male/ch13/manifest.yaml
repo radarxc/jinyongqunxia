@@ -1766,11 +1766,6 @@
 
     '
   references:
-  - path: assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_late_base.png
-    sha256: 64ecfc59797ae92fe9f43baa21edace56167c4177358557dd95ae9cf0e6d9f60
-    use: 书剑版陈家洛同人身份锚点；只保持骨相，年龄与衣装依飞狐外传阶段
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w14/staging/chenjialuo_ch12.jpg
-    uploaded_sha256: 38c0a9d10cca255c0a19d94f5a7c5311790769d71b085ed6e30fd5c1cb709a72
   - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
     sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
     use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
@@ -1781,16 +1776,30 @@
     use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
     uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
     uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen（AR-36；同人锚点 + 两张同性别基线）
-  model: gpt-6-astra
-  created: '2026-10-02T23:21:51.237014-07:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w14/out/por_npc_chenjialuo__ch13_youth_afterassembly_base.r1.png
+  - path: assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_late_base.png
+    sha256: 64ecfc59797ae92fe9f43baa21edace56167c4177358557dd95ae9cf0e6d9f60
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:04:39.749645-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_64_62_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: e22ee6f04ce1d0750795b27e5744f55be27d08e8590f442009bf05af8c271d16
+  sha256: 3fe64332585fedf7553115d9a4f467f4f07b17eb1678fad3353a052230a7ad34
   status: candidate
-  notes: ART-cast-fill-b：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；本轮1张候选，选por_npc_chenjialuo__ch13_youth_afterassembly_base.r1；未获作者批准。
+  notes: ART-cast-fill-b：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；本轮1张候选，选por_npc_chenjialuo__ch13_youth_afterassembly_base.r1；未获作者批准。；AR-84 第二轮：陈家洛五官对齐 por_npc_chenjialuo__ch12_youth_late_base；AR-53 仅头部，AR-75 神态与光向保留；飞狐外传陈家洛为书剑经历后的三十余岁阶段，眉眼鼻唇必须同图2作者定稿的书剑版本；加适度成熟，不画成二十岁或老人。保留图1清代帽、辫和蓝灰衣饰，不照搬参考的光额前发式，闭口不笑。；质检：已打开对照：眉眼鼻唇骨相与ch12作者基准一致，保留ch13三十余岁及帽辫衣着；无笑，光线接缝自然，头外零变化
   tier: S
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_64_62_r1
+    before_sha256: e22ee6f04ce1d0750795b27e5744f55be27d08e8590f442009bf05af8c271d16
+    box:
+    - 442
+    - 137
+    - 568
+    - 267
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_64_62_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_changhezhi__ch13_prime_rescue_base
   file: por_npc_changhezhi__ch13_prime_rescue_base.png
   category: character/male
