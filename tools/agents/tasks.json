@@ -48054,6 +48054,171 @@
     "docs/design/26-immersive-ui.md",
     "docs/design/ui-mock/**"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "vars": {},
+   "id": "TOOL-map-terrain",
+   "title": "大地图 · 地形数据：公有领域 DEM + Natural Earth 海陆河湖，按 design/19 Albers 投影分山脉脊线 / 丘陵 / 高原 / 盆地平原 / 水域图层，可复跑脚本与预览（AR-68 第 1 步）",
+   "prompt": "TOOL-map-terrain.md",
+   "deps": [],
+   "web": true,
+   "writes": [
+    "tools/map/terrain/**"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/geodata\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/map/terrain/build_terrain.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/map/terrain",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "{python}",
+      "tools/map/terrain/build_terrain.py",
+      "--check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "vars": {},
+   "id": "ART-map-inkkit",
+   "title": "大地图 · 水墨贴图集小样（地形 / 聚落四级 / 标记，透明底，照江湖总图与大理基线；拼对照表交作者过目；AR-68 第 2 步）",
+   "prompt": "ART-map-inkkit.md",
+   "deps": [],
+   "web": false,
+   "writes": [
+    "assets/default/map/kit/**"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ],
+   "sparse_include": [
+    "assets/default/baseline/map",
+    "assets/default/map/kit"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/map/kit/manifest.yaml",
+     "assets/default/map/kit/_contact_sheet.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_assets.py",
+      "assets/default/map/kit",
+      "--min",
+      "20",
+      "--min-side",
+      "512"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import glob,sys; from PIL import Image; fs=[f for f in sorted(glob.glob('assets/default/map/kit/*.png')) if not f.endswith('_contact_sheet.png')]; bad=[f for f in fs if (lambda im: im.mode!='RGBA' or max(im.getchannel('A').crop(b).getextrema()[1] for b in ((0,0,8,8),(im.width-8,0,im.width,8),(0,im.height-8,8,im.height),(im.width-8,im.height-8,im.width,im.height)))>0)(Image.open(f))]; print('pngs',len(fs),'bad',bad); sys.exit(1 if bad or not fs else 0)"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "vars": {},
+   "id": "CONTENT-map-poi",
+   "title": "大地图 · 历史坐标补全：以 design/map 为准补城镇 / 遗迹 / 关隘经纬度，注明来源与置信度、对上书界年代（公开数据优先，通用 UA；AR-68 第 3 步）",
+   "prompt": "CONTENT-map-poi.md",
+   "deps": [],
+   "web": true,
+   "writes": [
+    "docs/design/map/pois.yaml"
+   ],
+   "agent_args": [],
+   "validate": {
+    "exists": [
+     "docs/design/map/pois.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-c",
+      "import sys,yaml; d=yaml.safe_load(open('docs/design/map/pois.yaml',encoding='utf-8')); items=d.get('pois') if isinstance(d,dict) else d; req=('id','name','kind','lat','lon','chapters','source','confidence'); bad=[i.get('id') for i in items if any(k not in i for k in req)]; print('pois',len(items),'missing',bad[:10]); sys.exit(1 if bad or not items else 0)"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "vars": {},
+   "id": "TOOL-map-compose",
+   "title": "大地图 · 拼合生成器：按地形图层与历史坐标摆水墨贴图（固定种子、密度与避让、design/19 §8 时代图层），输出地图与标记坐标 JSON；本轮先出样区（AR-68 第 4 步）",
+   "prompt": "TOOL-map-compose.md",
+   "deps": [
+    "TOOL-map-terrain",
+    "ART-map-inkkit",
+    "CONTENT-map-poi"
+   ],
+   "web": false,
+   "writes": [
+    "tools/map/compose/**",
+    "assets/default/map/composed/**"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\"]"
+   ],
+   "sparse_include": [
+    "assets/default/map/kit",
+    "assets/default/baseline/map"
+   ],
+   "validate": {
+    "exists": [
+     "tools/map/compose/compose_map.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/map/compose",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "{python}",
+      "tools/map/compose/compose_map.py",
+      "--sample",
+      "--check"
+     ]
+    ]
+   }
   }
  ]
 }
