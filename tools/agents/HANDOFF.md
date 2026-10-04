@@ -2236,3 +2236,16 @@
         - 执行器写 check_tiles.py（带 --self-test），任务校验另有独立的环绕接缝复核（≤ 内部中位差 2.5 倍）。
       - **TOOL-map-compose** 按 AR-83 第 2–7 条重写，AR-69 的随机与融合并入；样区附 `_rivers_compare`、`_jitter_compare` 两组对比；依赖加 tiles。
     - **ART-map-inkkit-full 合入**（ae8a15fe）：新出 41 件，加小样共 63 件，每类都在下限；对照表 2400×6640。
+  - **10-03 23:45–00:00 开发监督（AR-85：重点转 M1 跑通）**：
+    - **TOOL-assets-logs-cleanup** 第 1 轮校验失败：工作区基点 c92c81ed 早于贴图集合入，kit 目录不存在。
+      - rebase_task 挪到 df847b6d，0 冲突；
+      - 起返修，说明 `devsup_note_rebase.md`：补做 map/kit，再盘一遍特效目录。
+    - **登记 ENG-battle-generic-model**（31d5f142）：
+      - 战斗 3D 通用模型与标识。前提：战斗现在是 2D 纸偶，3D 只有 12e 试点，所以范围包括把单位改成 3D 渲染；
+      - 按性别解析：npc.v1 加可选 `identity.gender`；非人类不套通用模型；通用模型未到位时用主角模型顶替；
+      - 依赖 npc-species。
+    - **占位池改归**：step.py 新加 `slot_pool_of`，规则在 tasks.json `defaults.slot_pool_overrides`：`^TOOL-(map|rig|ingest|assets)-` 改占素材池。只影响排队与占位，检出方式不变；单测 3 例。
+      - 停旧驱动后同参重起：rig-std-parts、ingest-cropframe、assets-logs-cleanup、rig-parts-f（带 note_run3 续作说明），以及 16e。都在排队、没起执行器。
+    - **池位名单按 M1 重排**：代码池 base-diet → gates-data → ink-intents → 19e → npc-species → 26 → 16e → generic-model；文档池 ch00b、ch00c；其余往后。旧名单备份在开发监督 scratchpad。
+    - **TODO §3.6** 记 AR-85：AR-79 全量重做、郭靖金刀驸马装模型、换脸主角模型重做，搁置到 M1 跑通后（2f5f9539）。
+    - **M1 现状已报协调者**：总阀门是 base-diet → gates-data；白马靠 19e；序章靠 ink-intents、ch00b、26 → ch00c、16e、npc-species。一轮都过约 05:00–06:00 全部合入；按常见一轮返修算 07:00–09:00。合入后建议在浏览器实走一遍。
