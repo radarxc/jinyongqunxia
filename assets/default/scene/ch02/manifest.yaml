@@ -41,41 +41,40 @@
   category: scene
   style: default
   subject: 桃花岛三道试题（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是郭靖的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中郭靖、黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】这张插图画的是：桃花岛求亲三试的第三场默记经文（具体站位为原创扩展构图）。桃竹庭院与竹亭海雾；郭靖居中站定，双手自然下垂、空手，专注地背诵刚才看过的经文，不拿任何器物。清瘦中年黄药师青袍、黑发夹灰与三缕短须，手持无可读字的纸本经卷听其背诵；黄蓉在一旁关切，白衣成年贵公子欧阳克右侧沮丧。远处洪七公长方脸、花白发、颏下极短稀疏微须、朱红葫芦；欧阳锋五十余岁、高大、高鼻深目、棕黄络腮短须、灰黑束发、白衣，绝不是白发白须老仙。明确禁止鲁班锁、木机关方块、魔方、机关盒、棋盘、石块试题或猜谜游戏；三试不是木工解谜，郭靖始终空手。场中不画黄蓉手持打狗棒。
 
-    【要对齐的部分】郭靖、黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「桃岛三试」和小朱印必须原样保留，一笔不改、不增不减。
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（作者 AR-53 总审返修）鹅黄浅碧衣裙的少女是黄蓉：黄蓉的脸要像基线（作者选定的新版）：圆润饱满的鹅蛋脸、两颊有肉、下巴小巧圆润不尖，一双又大又亮的杏眼（不要细长眼、不要上挑的丹凤眼），眉毛细长柔和，小巧挺直的鼻子，嘴角带甜笑或按原图情绪，十九岁的少女感（成年），不要长脸、高颧骨和成熟感。其他人的脸不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.png
-    sha256: 9795e3af012aaa8a3c3540b1636fb19869663435e3ea0e6bd85ab6162711f940
-    use: 对脸基线：作者审核通过的 por_npc_guojing__ch02_youth_scene_peach_island_square_circle（郭靖），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
     sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
     use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_peach_island_trials.png
-    sha256: 06c349434c1d30b3e66d2f69143d62ede8f36832192fb2553201f611d8f4d9ed
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.06c34943.png
+    sha256: 3137f5cede5f202d2d780333a327fc63d188491d2afd28701201a644656a0e98
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.3137f5ce.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T16:36:46-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_peach_island_trials.s1.png
+  created: 2026-10-03T17:13:44-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_peach_island_trials.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 3137f5cede5f202d2d780333a327fc63d188491d2afd28701201a644656a0e98
+  sha256: 683961e1c15d49696d7b02795f465a7b6301ef920f054b76240e9698b6a47a85
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.06c34943.png
-    sha256: 06c349434c1d30b3e66d2f69143d62ede8f36832192fb2553201f611d8f4d9ed
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.06c34943.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.3137f5ce.png
+    sha256: 3137f5cede5f202d2d780333a327fc63d188491d2afd28701201a644656a0e98
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.3137f5ce.entry.yaml
   runner_job_records:
   - - cg_ch02_peach_island_trials.resume3r3
     - ok
@@ -89,41 +88,40 @@
   category: scene
   style: default
   subject: 比武招亲（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是郭靖的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中郭靖、黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】这张插图画的是：燕京街市比武招亲。擂台上年轻成年贵公子杨康手持红绣鞋、神情轻佻，成年女侠穆念慈红衣劲装、收势怒视；台下郭靖已经向前迈步、义愤难平，仍着乞儿乔装的黄蓉在侧观察。郭黄面容使用本轮身份图；杨康俊美华服、穆念慈坚韧朴素仅文字。热闹围观人群压成低细节背景，擂台无可读字，鞋的取得方式和站位待考，不定格夸张踢鞋动作。
 
-    【要对齐的部分】郭靖、黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「比武招亲」和小朱印必须原样保留，一笔不改、不增不减。
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（作者 AR-53 总审返修）左侧穿乞丐装、脸上抹灰的少年模样就是女扮男装的黄蓉：保留她的乞丐装、乱发和脸上的灰，但黄蓉的脸要像基线（作者选定的新版）：圆润饱满的鹅蛋脸、两颊有肉、下巴小巧圆润不尖，一双又大又亮的杏眼（不要细长眼、不要上挑的丹凤眼），眉毛细长柔和，小巧挺直的鼻子，嘴角带甜笑或按原图情绪，十九岁的少女感（成年），不要长脸、高颧骨和成熟感。其他人的脸不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.png
-    sha256: 9795e3af012aaa8a3c3540b1636fb19869663435e3ea0e6bd85ab6162711f940
-    use: 对脸基线：作者审核通过的 por_npc_guojing__ch02_youth_scene_peach_island_square_circle（郭靖），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
     sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
     use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_beiwuzhaoqin.png
-    sha256: 92d43984674d90c30e6ad797a18b2424266d386c1c30efba5a2486374044ceee
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.92d43984.png
+    sha256: e9578dc5f238714c88aab5d88c6953e14256b1077f75715e9d4f224ce45c6d15
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.e9578dc5.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T16:32:17-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_beiwuzhaoqin.s1.png
+  created: 2026-10-03T17:13:42-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_beiwuzhaoqin.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: e9578dc5f238714c88aab5d88c6953e14256b1077f75715e9d4f224ce45c6d15
+  sha256: b3fd950ad288a576b84e283c2556c010d56fd81950c6277603fbaec4257ac575
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「比武招亲」，实际字形「比武招亲」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「比武招亲」，实际字形「比武招亲」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.92d43984.png
-    sha256: 92d43984674d90c30e6ad797a18b2424266d386c1c30efba5a2486374044ceee
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.92d43984.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.e9578dc5.png
+    sha256: e9578dc5f238714c88aab5d88c6953e14256b1077f75715e9d4f224ce45c6d15
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.e9578dc5.entry.yaml
   effort: ultra
 - id: cg_ch02_niujia_snow
   file: cg_ch02_niujia_snow.png
@@ -169,41 +167,40 @@
   category: scene
   style: default
   subject: 张家口郭黄初相识（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是郭靖的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中郭靖、黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】这张插图画的是：张家口初识，两位明确成年。酒肆木桌前，朴实的郭靖把一碟食物推向仍戴旧帽巾、穿乞儿装的黄蓉；黄蓉侧头看他，机敏目光里初生信任。木窗外淡雪，室内暖光温和，双人中景与衣着完整。不要画黄蓉在此脱帽变女装，也不要把后来女装揭晓与初次共餐合并；餐桌器皿和动作属原创扩展美术构图。
 
-    【要对齐的部分】郭靖、黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「张垣初逢」和小朱印必须原样保留，一笔不改、不增不减。
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（作者 AR-53 总审返修）托着腮、穿乞丐装的就是女扮男装的黄蓉：保留装扮与托腮的动作，但黄蓉的脸要像基线（作者选定的新版）：圆润饱满的鹅蛋脸、两颊有肉、下巴小巧圆润不尖，一双又大又亮的杏眼（不要细长眼、不要上挑的丹凤眼），眉毛细长柔和，小巧挺直的鼻子，嘴角带甜笑或按原图情绪，十九岁的少女感（成年），不要长脸、高颧骨和成熟感。郭靖的脸不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.png
-    sha256: 9795e3af012aaa8a3c3540b1636fb19869663435e3ea0e6bd85ab6162711f940
-    use: 对脸基线：作者审核通过的 por_npc_guojing__ch02_youth_scene_peach_island_square_circle（郭靖），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
     sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
     use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_guorong_first_meet.png
-    sha256: ff43cf7815c82e52c49de9ec3c88edb56ee18f57c4e324d6be6d7206e7090dd5
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_guorong_first_meet.ff43cf78.png
+    sha256: 10a0541e196e7725a056a8c596f553a20cf3f258e97420267f70cd3c89d25b45
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_guorong_first_meet.10a0541e.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T16:28:34-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_guorong_first_meet.s1.png
+  created: 2026-10-03T17:13:43-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_guorong_first_meet.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 10a0541e196e7725a056a8c596f553a20cf3f258e97420267f70cd3c89d25b45
+  sha256: 55cef98c44eadc60f67068c2a36e840d439c79e204dad9b1aa25b4bdad80f8a6
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「张垣初逢」，实际字形「张垣初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「张垣初逢」，实际字形「张垣初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_guorong_first_meet.ff43cf78.png
-    sha256: ff43cf7815c82e52c49de9ec3c88edb56ee18f57c4e324d6be6d7206e7090dd5
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_guorong_first_meet.ff43cf78.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_guorong_first_meet.10a0541e.png
+    sha256: 10a0541e196e7725a056a8c596f553a20cf3f258e97420267f70cd3c89d25b45
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_guorong_first_meet.10a0541e.entry.yaml
   effort: ultra
 - id: cg_ch02_junshan_succession
   file: cg_ch02_junshan_succession.png
