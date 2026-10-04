@@ -2223,3 +2223,16 @@
         - 后续批次按 DES 定的批数登记 `CONTENT-apparel-data-2…N`，用同一份说明、vars.batch 改批号。
       - 校验脚本 `tools/agents/check_apparel_catalog.py`（开发监督写），只查结构与覆盖；`--landed N` 查第 N 批是否已落地。
       - 按口径的下限约 566 件，实际多半 600–700 件，已报协调者。
+  - **10-03 23:40–23:50 开发监督**：
+    - **AR-77 出图口径**（协调者 23:4x）：同朝代、同性别、同档的衣物先出底图，其他颜色上传底图做「只改主色」的编辑（claudeGemOpts refs、不套模板），不用代码改色相。
+      - 已写进 CONTENT-apparel-data：换色件 `edit_from` 指向底图，第一张参考图是底图；GUIDE.md 末尾追加「同款换色」一节（0d7bdc78）。
+      - `check_apparel_catalog.py --landed` 查分组：每组恰一件底图。
+    - **TOOL-ops-dispatch** 再审 FAIL（r2）：dry-run 有副作用，`reap()` 会写 MERGED、会起 supervise。
+      - 协调者裁定再给一轮返修：`--from start --max-runs 1 --max-reviews 1`，说明是 r2 原文加「dry-run 下一切写状态、起进程、挪基点的动作都只打印不执行，补单测证明」（devsup_note_r3.md），驱动 52700。
+      - 这轮再 FAIL 就把它在名单里降下来，开发监督继续值守。
+    - **AR-83 大地图改「贴片 + 程序」**（47743173）：
+      - 登记 **ART-map-inkkit-tiles**（驱动 70694，审核要点 review_checks_map_tiles.md）：
+        - 无缝填充贴片六种、边界笔触条五种 × 粗细档；
+        - 执行器写 check_tiles.py（带 --self-test），任务校验另有独立的环绕接缝复核（≤ 内部中位差 2.5 倍）。
+      - **TOOL-map-compose** 按 AR-83 第 2–7 条重写，AR-69 的随机与融合并入；样区附 `_rivers_compare`、`_jitter_compare` 两组对比；依赖加 tiles。
+    - **ART-map-inkkit-full 合入**（ae8a15fe）：新出 41 件，加小样共 63 件，每类都在下限；对照表 2400×6640。
