@@ -159,36 +159,32 @@
   category: scene
   style: default
   subject: 墓畔长风（ch13_feihu）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是袁紫衣的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中袁紫衣的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是袁紫衣的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中袁紫衣的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+    【要改成】（作者 AR-53 总审复核：脸仍偏宽偏圆）整个脸型收成基线的 V 形脸：两颊收窄、下颌线收成尖而秀气的下巴；眉毛细长、眉尾上扬；一双上挑的凤眼。
 
-    【要对齐的部分】袁紫衣各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；她落发为尼：光头、僧衣、素颜（不化妆、没有眼线和口红）、低头哀伤的神情都保留。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「墓畔长风」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】（AR-53 / AR-56 总审轻微）落发为尼的女子是袁紫衣（圆性）：光头、僧衣保留，而且她是素颜——不化妆、没有眼线和眼影、没有口红，唇色是自然的淡色；只把脸型改成基线的 V 形脸、下巴尖而秀气，眉眼改成上挑的凤眼。胡斐和其他人的脸不要动。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/female/ch13/por_npc_yuanziyi__ch13_youth_ziyi_base.png
     sha256: a13e61ee1d34992fda08da42869e3a43e816ac19f10604fd4e6a5bc69928de59
-    use: 对脸基线：作者审核通过的 por_npc_yuanziyi__ch13_youth_ziyi_base（袁紫衣），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+    use: 对脸基线：作者审核通过的 por_npc_yuanziyi__ch13_youth_ziyi_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch13/cg_ch13_graveside_farewell.png
-    sha256: 20d77b665f54545b1f8ac1e3b4e2f27c284d50f589efc13391c8dba9c088d401
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch13_graveside_farewell.20d77b66.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: afec337d5289db87d81df5e0dd65826a89e94cea5e503daad2ab2e1f41e99b1a
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch13_graveside_farewell.afec337d.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把袁紫衣头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T19:04:20-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch13_graveside_farewell.s3.png
+  created: 2026-10-03T19:19:27-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch13_graveside_farewell.r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: afec337d5289db87d81df5e0dd65826a89e94cea5e503daad2ab2e1f41e99b1a
+  sha256: 3625dc3a4f2bdff98ff0447e4c794a1443a389ceb82c5b998a0afd87b8c504f3
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「墓畔长风」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。 实际题字「墓畔長風」，繁简同字，规范题名「墓畔长风」；原生生成，未字体叠加。；AR-44 对脸精修，基线 = por_npc_yuanziyi__ch13_youth_ziyi_base（AR-53 / AR-56 总审返修：胡斐只改眼眉（编辑 cg_ch13_graveside_farewell.s1）＋袁紫衣（圆性）改回 V 形脸、素颜（编辑 cg_ch13_graveside_farewell.s3）；局部合成——两次 codex 编辑各只取目标人物头部、先后羽化贴回原图，其余像素不变；原输出见 codex_w17/out/cg_ch13_graveside_farewell.s1.raw.png、cg_ch13_graveside_farewell.s3.raw.png）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「墓畔长风」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。 实际题字「墓畔長風」，繁简同字，规范题名「墓畔长风」；原生生成，未字体叠加。；AR-44 对脸精修，基线 = por_npc_yuanziyi__ch13_youth_ziyi_base（AR-53 / AR-56 总审返修：胡斐只改眼眉（编辑 cg_ch13_graveside_farewell.s1）＋袁紫衣（圆性）改回 V 形脸、素颜（编辑 cg_ch13_graveside_farewell.s3）；局部合成——两次 codex 编辑各只取目标人物头部、先后羽化贴回原图，其余像素不变；原输出见 codex_w17/out/cg_ch13_graveside_farewell.s1.raw.png、cg_ch13_graveside_farewell.s3.raw.png）；AR-44 对脸精修，基线 = por_npc_yuanziyi__ch13_youth_ziyi_base（AR-53 总审复核返修：圆性脸型收成基准 V 脸、尖下巴、上挑凤眼，光头素颜保留；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch13_graveside_farewell.retry3.r1
   quality_retries: 0
@@ -196,9 +192,9 @@
   title_rendered_text: 墓畔長風
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch13_graveside_farewell.20d77b66.png
-    sha256: 20d77b665f54545b1f8ac1e3b4e2f27c284d50f589efc13391c8dba9c088d401
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch13_graveside_farewell.20d77b66.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch13_graveside_farewell.afec337d.png
+    sha256: afec337d5289db87d81df5e0dd65826a89e94cea5e503daad2ab2e1f41e99b1a
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch13_graveside_farewell.afec337d.entry.yaml
 - id: cg_ch13_leaders_assembly
   file: cg_ch13_leaders_assembly.png
   category: scene

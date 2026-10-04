@@ -3,36 +3,32 @@
   category: scene
   style: default
   subject: 雪崖悬刀（ch14_xueshan）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是胡斐的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中胡斐的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是胡斐的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中胡斐的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+    【要改成】（作者 AR-53 总审复核：上次眼眉几乎没变，这次放开改眼周）眼睛改成基线那样的双眼皮笑眼——眼睛更大更亮、双眼皮清楚、眼神爽朗带一点笑意；眉毛改成浓黑但略弯、眉尾上扬，眉骨不要粗重低压，眼窝不要深陷。
 
-    【要对齐的部分】只改胡斐的眼睛和眉毛：眼型、双眼皮、眼睛大小、眼神，眉形、眉毛粗细与高低、眉眼间距，都要和基线一样；脸型、颧骨、鼻子、嘴、胡须、头发、皱纹与年龄感都保持原图不变；表情保留原图的情绪方向。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；满脸虬髯、长乱发、三十出头的年纪保留（这是《雪山飞狐》时期的他）。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「雪崖悬刀」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】（AR-53 / AR-56 总审轻微）满脸虬髯的胡斐（三十出头）：（AR-53 / AR-56 总审轻微：还是凌晨精修那张脸，眉粗压、眼小深陷、显老）只把眼睛改成基线那样明亮的大眼、双眼皮清楚、眼神爽朗，眉毛改成浓黑但舒展、不压眼。 虬髯与年龄保留。其他人的脸不要动。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
     sha256: ba5eb4786147e34a6d51cdd7513b12bfefcef4941d93d8726f650aff8e3a059f
-    use: 对脸基线：作者审核通过的 por_npc_hufei__ch13_youth_base（胡斐），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+    use: 对脸基线：作者审核通过的 por_npc_hufei__ch13_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch14/cg_ch14_cliff_raised_blade.png
-    sha256: 6a2eb1fc25481a2c51182c22312c2c460a0c3488e8b92692bb93c295423e955e
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.6a2eb1fc.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: d29a37447e61d601ea29dff0890cc3c79d312bd39846b6848b6a69b4ffc84ccb
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.d29a3744.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把胡斐头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T19:01:07-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch14_cliff_raised_blade.s1.png
+  created: 2026-10-03T19:19:27-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch14_cliff_raised_blade.r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: d29a37447e61d601ea29dff0890cc3c79d312bd39846b6848b6a69b4ffc84ccb
+  sha256: 2f01e9498827161dd7feeffe3402c5592797af3c50c7714e941d89ec084723a0
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「雪崖悬刀」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。 实际题字「雪崖懸刀」，繁简同字，规范题名「雪崖悬刀」；原生生成，未字体叠加。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：胡斐只改眼睛眉毛；局部合成——codex 编辑后只取胡斐头部、羽化贴回原图，其余像素不变；虬髯与年长按设定保留）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「雪崖悬刀」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。 实际题字「雪崖懸刀」，繁简同字，规范题名「雪崖悬刀」；原生生成，未字体叠加。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：胡斐只改眼睛眉毛；局部合成——codex 编辑后只取胡斐头部、羽化贴回原图，其余像素不变；虬髯与年长按设定保留）；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 总审复核返修：胡斐放开改眼周（双眼皮笑眼、眉形略弯、眉骨不压），虬髯与年纪保留；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch14_cliff_raised_blade.retry3.r1
   quality_retries: 0
@@ -40,9 +36,9 @@
   title_rendered_text: 雪崖懸刀
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.6a2eb1fc.png
-    sha256: 6a2eb1fc25481a2c51182c22312c2c460a0c3488e8b92692bb93c295423e955e
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.6a2eb1fc.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.d29a3744.png
+    sha256: d29a37447e61d601ea29dff0890cc3c79d312bd39846b6848b6a69b4ffc84ccb
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.d29a3744.entry.yaml
 - id: cg_ch14_manor_poison_reveal
   file: cg_ch14_manor_poison_reveal.png
   category: scene
