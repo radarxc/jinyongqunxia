@@ -1,7 +1,8 @@
 import type { ContentSource } from '@tianshu/data';
 import { ChapterDefSchema, EventDefSchema, NpcAppearanceSchema, NpcIdSchema,
-  RegionBindingLeafSchema, RegionMapSchema, WorldMapDefinitionSchema, type ChapterDef,
-  type EventDef, type RegionMap, type WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+  QuestDefSchema, RegionBindingLeafSchema, RegionMapSchema, WorldMapDefinitionSchema,
+  type ChapterDef, type EventDef, type QuestDef, type RegionMap,
+  type WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { RegionDialogueBinding, RegionGateBinding, RegionLootBinding } from '@tianshu/core';
 import type { AssetMap, ChapterAssetLoader, ChapterRuntimeLeaf, GameContent, GameNpcDef,
   StaticGameContent } from './content';
@@ -151,6 +152,26 @@ function chapterRuntime(leaves: Readonly<Record<string, unknown>>, chapter: stri
     throw new TypeError('CONTENT_CHAPTER_RUNTIME_MISMATCH');
   return { npcs, worldMaps };
 }
+function questDefs(leaves: Readonly<Record<string, unknown>>): readonly QuestDef[] {
+  return ruleRows(leaves).flatMap((entry) =>
+    entry.kind === 'quest' ? [QuestDefSchema.parse(entry.value)] : []);
+}
+function inkStories(leaves: Readonly<Record<string, unknown>>): NonNullable<GameContent['inkStories']> {
+  return ruleRows(leaves).flatMap((entry) => {
+    if (entry.kind !== 'dialogueStructure') return [];
+    const row = entry as unknown as { readonly storyId?: unknown; readonly storyHash?: unknown };
+    if (typeof row.storyId !== 'string' || typeof row.storyHash !== 'string')
+      throw new TypeError('CONTENT_INK_STRUCTURE_INVALID');
+    const story = Object.values(leaves).find((value) => typeof value === 'object' &&
+      value !== null && !Array.isArray(value) &&
+      Object.hasOwn(value, `ink.${row.storyId}`)) as Record<string, unknown> | undefined;
+    const storyJson = story?.[`ink.${row.storyId}`];
+    if (typeof storyJson !== 'object' || storyJson === null || Array.isArray(storyJson))
+      throw new TypeError(`CONTENT_INK_STORY_MISSING:${row.storyId}`);
+    return [{ storyId: row.storyId, storyHash: row.storyHash,
+      storyJson: storyJson as Readonly<Record<string, unknown>> }];
+  });
+}
 function itemTextName(name: string, locale: string): boolean {
   const match = name.match(/^common\.text\.([A-Za-z0-9-]+)\.items(?:\.p\d{3})?\.json$/u);
   return match?.[1] === locale;
@@ -176,10 +197,20 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
         worldRuleName(leaf.logicalName, chapter));
     const names = pack.manifest.leaves.filter((leaf) => itemRuleName(leaf.logicalName))
       .map((leaf) => leaf.logicalName);
-    if (names.length === 0) throw new TypeError('CONTENT_ITEM_RULE_LEAF_MISSING');
-    const items = parseItemRuleLeaves(names.map((name) => pack.leaves[name]));
+    const chapterNames = pack.manifest.leaves.filter((leaf) =>
+      chapterRuleName(leaf.logicalName, chapter)).map((leaf) => leaf.logicalName);
+    const chapterItems = ruleRows(Object.fromEntries(chapterNames.map((name) =>
+      [name, pack.leaves[name]])))
+      .filter((entry) => entry.kind === 'item');
+    if (names.length === 0 && chapterItems.length === 0)
+      throw new TypeError('CONTENT_ITEM_RULE_LEAF_MISSING');
+    const itemLeaves = [...names.map((name) => pack.leaves[name])];
+    if (chapterItems.length > 0) itemLeaves.push(chapterItems);
+    const items = parseItemRuleLeaves(itemLeaves);
     const chapters = chapterDefs(pack.leaves);
     const events = eventDefs(pack.leaves);
+    const quests = questDefs(pack.leaves);
+    const stories = inkStories(pack.leaves);
     if (chapters.length !== 1 || chapters[0]?.id !== chapter)
       throw new TypeError('CONTENT_CHAPTER_DEF_MISSING');
     let assets: AssetMap | undefined;
@@ -196,7 +227,8 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
     }
     const runtime = chapterRuntime(pack.leaves, chapter, mapText);
     return { ...base, ...runtime, ...(assets ? { assets } : {}),
-      items: items as GameContent['items'], chapters, events,
+      items: items as GameContent['items'], chapters, events, quests,
+      ...(stories.length === 0 ? {} : { inkStories: stories }),
       idRemaps: pack.manifest.idRemaps, contentHash: pack.manifest.contentHash };
   } catch (error) {
     if (error instanceof Error && (error.message.startsWith('CHAPTER_ASSETS_UNAVAILABLE:') ||

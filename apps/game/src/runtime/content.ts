@@ -1,4 +1,4 @@
-import type { ChapterDef, EventDef, ItemDef, MartialArtDef, NpcDef,
+import type { ChapterDef, EventDef, ItemDef, MartialArtDef, NpcDef, QuestDef,
   RegionMap, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { ContentIdRemap } from '@tianshu/data';
 import type { EquipmentRule, EventAnchor, NpcWorldState, TownMeditationEncounter,
@@ -21,7 +21,7 @@ export interface GameNpcDef {
 export interface GameContent {
   readonly items: readonly GameItemDef[]; readonly contentHash?: string;
   readonly chapters?: readonly ChapterDef[]; readonly idRemaps?: readonly ContentIdRemap[];
-  readonly events?: readonly EventDef[];
+  readonly events?: readonly EventDef[]; readonly quests?: readonly QuestDef[];
   readonly npcs: readonly GameNpcDef[];
   readonly skills: readonly MartialArtDef[]; readonly topology: readonly MeridianTopology[];
   readonly factions: Readonly<Record<string, string>>;

@@ -1,4 +1,4 @@
-import type { ChapterDef, EventDef, ItemDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import type { ChapterDef, EventDef, ItemDef, QuestDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { JsonValue } from '@tianshu/shared';
 import type { EquipmentRule } from '../economy';
 import type { PendingDomainEvent } from '../event';
@@ -61,7 +61,10 @@ export type RejectReason =
   | 'CONSUMABLE_PERMANENT_CONTEXT' | 'CONSUMABLE_MERIDIAN_CONTEXT'
   | 'RULES_BATTLE_ACTIVE' | 'RULES_DIFFICULTY_INVALID' | 'DIALOGUE_ACTIVE'
   | 'DIALOGUE_INACTIVE' | 'DIALOGUE_STORY_UNKNOWN' | 'DIALOGUE_CHOICE_UNAVAILABLE'
-  | 'DIALOGUE_CONTINUE_UNAVAILABLE' | 'QUEST_CHOICE_UNKNOWN' | 'QUEST_CHOICE_COMMITTED'
+  | 'DIALOGUE_CONTINUE_UNAVAILABLE' | 'DIALOGUE_INTENT_ACTION'
+  | 'DIALOGUE_INTENT_REFERENCE' | 'DIALOGUE_INTENT_INVENTORY'
+  | 'DIALOGUE_INTENT_QUEST' | 'DIALOGUE_INTENT_BATTLE'
+  | 'QUEST_CHOICE_UNKNOWN' | 'QUEST_CHOICE_COMMITTED'
   | 'QUEST_ROUTE_NOT_SELECTED' | 'QUEST_ROUTE_MISMATCH'
   | 'BOOK_SLEEP_UNSUPPORTED' | 'BOOK_SLEEP_BUSY' | 'BOOK_SLEEP_NOT_READY'
   | 'BOOK_SLEEP_PLAN_INVALID' | 'BOOK_SLEEP_PLAN_CONFLICT' | 'BOOK_SLEEP_ALLOCATION_INVALID'
@@ -98,7 +101,7 @@ export interface CoreContent {
   readonly meditationEncounters?: readonly TownMeditationEncounter[];
   readonly inkStories?: readonly InkStoryContent[];
   readonly chapters?: readonly ChapterDef[]; readonly targetContentHash?: string;
-  readonly events?: readonly EventDef[];
+  readonly events?: readonly EventDef[]; readonly quests?: readonly QuestDef[];
   readonly region?: RegionRuntimeContent;
 }
 export type StatePath = readonly (string | number)[];
