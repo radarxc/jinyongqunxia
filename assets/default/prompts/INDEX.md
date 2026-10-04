@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 1001、已通过（作者） 132、待出图 27。**待出图队列 27 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 1002、已通过（作者） 132、待出图 26。**待出图队列 26 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -29,7 +29,6 @@
 | 组 | asset_id | 名称 | 输出 | 状态 | 提示词 |
 |---|---|---|---|---|---|
 | items | `it_nansongduanwenqin` | 南宋断纹琴 | `assets/default/item/collectibles/it_nansongduanwenqin.png` | 待出图 | [it_nansongduanwenqin.md](items/collectibles/it_nansongduanwenqin.md) |
-| items | `it_nansongzhuxiao` | 南宋素竹箫 | `assets/default/item/collectibles/it_nansongzhuxiao.png` | 待出图 | [it_nansongzhuxiao.md](items/collectibles/it_nansongzhuxiao.md) |
 | items | `it_qingheiqiqin` | 清黑漆琴 | `assets/default/item/collectibles/it_qingheiqiqin.png` | 待出图 | [it_qingheiqiqin.md](items/collectibles/it_qingheiqiqin.md) |
 | items | `it_qingjiaoyeqin` | 清式蕉叶琴 | `assets/default/item/collectibles/it_qingjiaoyeqin.png` | 待出图 | [it_qingjiaoyeqin.md](items/collectibles/it_qingjiaoyeqin.md) |
 | items | `it_shiketapian` | 石刻拓片 | `assets/default/item/collectibles/it_shiketapian.png` | 待出图 | [it_shiketapian.md](items/collectibles/it_shiketapian.md) |
