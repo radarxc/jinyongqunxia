@@ -1013,43 +1013,43 @@
   category: character/male
   style: default
   subject: 胡斐·雪崖悬刀（ch14_xueshan）
-  prompt: '【任务】这是一次图像编辑（只改眼睛和眉毛），不是重新创作。第 1 张参考图是作者审核通过的胡斐立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中胡斐的眼睛和眉毛改成与身份基线一样，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: precise-object-edit
 
-    【要对齐基线的部分】只改眼睛和眉毛：眼型、双眼皮、眼睛大小、眼神，眉形、眉毛粗细与高低、眉眼间距，都要和身份基线一样。基线的胡斐是一双明亮的大眼睛、双眼皮清楚、眼神爽朗带笑，不是小而深陷的眼；眉毛浓黑但舒展，眉形平直略扬、眉尾上挑，不压着眼睛，眉眼间距比原图宽一些。脸型、颧骨、鼻子、嘴、胡须、头发、皱纹与年龄感都保持原图不变。改完要让人一眼看出与基线是同一个人。【年龄】原图是《雪山飞狐》时期三十出头、满脸虬髯的胡斐：保持原图人物的年龄感、皱纹、胡须与风霜，不要画年轻。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
 
-    【原图保持不变】除眼睛和眉毛以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向。
+    【只改】只修正胡斐脚下与对敌方向：将原稳固宽平崖台改成突出崖外、根部裂开、摇晃欲坠的巨大圆滑冰岩，两脚仍踏同一块巨岩（保持原双脚位置，不改为单脚窄崖）；巨岩下方石块夹碎冰正在脱落坠入深渊，岩根有断裂缝，不能连成稳固平台。画面左边界加入极少量指向胡斐的木树剑尖/枯枝，交代画外苗人凤的对敌方向，不画另一个完整人。胡斐仍右手高举现有树枝作树刀欲劈又止，保持原头脸、双手、衣服、刀势、身体姿势和冷月冰壁，不换成金属刀。
 
-    【本张另外要求】（AR-53 / AR-56 总审轻微：还是凌晨精修那张脸，眉粗压、眼小深陷、显老）只把眼睛改成基线那样明亮的大眼、双眼皮清楚、眼神爽朗，眉毛改成浓黑但舒展、不压眼。 虬髯与年长是本书设定，保留。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_28_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
-    sha256: ba5eb4786147e34a6d51cdd7513b12bfefcef4941d93d8726f650aff8e3a059f
-    use: 对脸基线：作者审核通过的 por_npc_hufei__ch13_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/male/ch14/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.png
-    sha256: 44c108a4bff8d256a5658690c8597b880909bb596fc61a8cb16a84d96653da2e
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.44c108a4.png
-  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:51:51-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.e1.png
+    sha256: f79474ae0bf8ca80df0bbbb835e32007cc5450c1ce65f51484acf971ab68d915
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.f79474ae.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:02:37-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_28_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: f79474ae0bf8ca80df0bbbb835e32007cc5450c1ce65f51484acf971ab68d915
+  sha256: 60fa8f3bfe56d03cd49935a2cb137b9377e92223610ca95a0eb0f6800b4eaaa7
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：只改眼睛眉毛，虬髯与年长按设定保留）
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：只改眼睛眉毛，虬髯与年长按设定保留）；AR-82 原著核对返修：胡斐终局脚下改摇动巨岩与坠落沙冰，补画外木剑方向；依据：- AR-82 返修依据：《雪山飞狐》第十章：“沙石夹冰纷纷下堕，巨岩越晃越是厉害”；“胡斐举起树刀，一招就能将他劈下岩去”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E9%9B%AA%E5%B1%B1%E9%A3%9E%E7%8B%90/%E7%AC%AC10%E7%AB%A0.md；执行：终局取样落在摇动的突出巨岩上，岩下沙石与冰正在坠落、岩面圆滑；胡抬树刀欲劈又止，明确面对画外苗人凤的方向，或加入局部树剑交代互逼坠岩。不要改成金属刀，也不把前一段单足窄崖强加到最终巨岩阶段。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.44c108a4.png
-    sha256: 44c108a4bff8d256a5658690c8597b880909bb596fc61a8cb16a84d96653da2e
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.44c108a4.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.f79474ae.png
+    sha256: f79474ae0bf8ca80df0bbbb835e32007cc5450c1ce65f51484acf971ab68d915
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.f79474ae.entry.yaml
 - id: por_npc_lizicheng__ch14_prime_memory_base
   file: por_npc_lizicheng__ch14_prime_memory_base.png
   category: character/male
