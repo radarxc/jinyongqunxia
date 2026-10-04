@@ -128,7 +128,7 @@
   - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_charmhigh_base.png
     sha256: 887a1a127f88a5cc99dc94e59cff510424ee0f19f1144d85a4cbb2f8a7ab2731
     use: 作者选定的高魅力 B 版 base 立绘（三视图据此出图；本模型未直接输入）
-  sha256: dfd4b728923de62be4bb9810dd71598733c417d3a3da67404a61cb751e0951d8
+  sha256: 031ca39597ffbc303cd69054a892d5a5f14cbbc92820cc3df84260e7049df744
   size_bytes: 6435044
   joints: 65
   triangles: 98304
@@ -145,7 +145,8 @@
   visibility: private
   created: '2026-10-03T17:20:00-07:00'
   status: candidate
-  notes: 一个 GLB 内含三段动画（run 1.25 s / walk 2.333 s / idle 15.333 s，各 195 通道），附带网格与骨架；导出面板「Number of Animations」选 3、Animation stay in Place 开（Hips 仅 Y 向起伏）。比普通形象拆成 3 个文件省约 12 MB。
+  notes: 一个 GLB 内含三段动画（run 1.25 s / walk 2.333 s / idle 15.333 s，各 195 通道），附带网格与骨架；导出面板「Number of Animations」选 3、Animation stay in Place 开（Hips 仅 Y 向起伏）。比普通形象拆成 3 个文件省约 12 MB。 2026-10-04 修跑步跳位（AR-85 同款，零点数）：Tripo
+    的原地 run 片段整段偏离原点（Hips 水平偏移 x -0.030 / z +0.530，约半个身高），切换动作会跳位；用 tools/model3d/fix_anim_offset.py 平移回原点，只改 Hips 平移通道的水平分量，高度起伏和其他片段不动。
 - id: npc_zhujue__ch00_m_charmhigh__preview
   file: preview.png
   category: model3d

@@ -260,7 +260,7 @@
   - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
     sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
     use: 单图生成输入（正面立绘原图；无三视图）
-  sha256: 82c8f2c66c222e7f18f5ef734d475772803475439c8c7d537564b5dcd63abcc2
+  sha256: a5bf7f1d1f9ffdb5f68677702720dcf11737a4c2abc62c0ab8bb51e963a79eda
   size_bytes: 6378048
   joints: 65
   triangles: 96389
@@ -275,7 +275,8 @@
   visibility: private
   created: '2026-10-03T12:29:00-07:00'
   status: candidate
-  notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 run（retarget op 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
+  notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 run（retarget op 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。 2026-10-04 修跑步跳位（AR-85 同款，零点数）：Tripo 的原地 run 片段整段偏离原点（Hips
+    水平偏移 x -0.032 / z +0.567，约半个身高），切换动作会跳位；用 tools/model3d/fix_anim_offset.py 平移回原点，只改 Hips 平移通道的水平分量，高度起伏和其他片段不动。
 - id: npc_zhujue__ch00_f__anim_idle_walk_run
   file: anim_idle_walk_run.glb
   category: model3d
@@ -333,7 +334,7 @@
   credits:
     animation_preset: 0
     export: 0
-  sha256: f6be7ef3f4f2f0991ec3c1f43541cb54da08ea30ec4fee5c2355a42792514bff
+  sha256: 4943db3e044684b7e20ff987f264fe11731b3bd9f73dc21572bfa7c8d37d6768
   size_bytes: 6799224
   joints: 65
   triangles: 96389
@@ -349,7 +350,8 @@
   preview: preview.png
   created: '2026-10-03T19:15:00-07:00'
   status: candidate
-  notes: 正式使用的动作文件：一个 GLB 内含 run / walk / idle 三段动画（同一套网格 + 65 关节骨架），原地（Animation stay in Place 开）。协调者 2026-10-03 口径：动作统一单文件；同目录 anim_idle.glb / anim_walk.glb / anim_run.glb 三个分文件仅作备份。
+  notes: 正式使用的动作文件：一个 GLB 内含 run / walk / idle 三段动画（同一套网格 + 65 关节骨架），原地（Animation stay in Place 开）。协调者 2026-10-03 口径：动作统一单文件；同目录 anim_idle.glb / anim_walk.glb / anim_run.glb 三个分文件仅作备份。 2026-10-04 修跑步跳位（AR-85
+    同款，零点数）：Tripo 的原地 run 片段整段偏离原点（Hips 水平偏移 x -0.032 / z +0.567，约半个身高），切换动作会跳位；用 tools/model3d/fix_anim_offset.py 平移回原点，只改 Hips 平移通道的水平分量，高度起伏和其他片段不动。
 - id: npc_zhujue__ch00_f__preview
   file: preview.png
   category: model3d

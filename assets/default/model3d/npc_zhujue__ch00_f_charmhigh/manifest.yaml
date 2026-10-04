@@ -134,7 +134,7 @@
   - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_charmhigh_threeview.png
     sha256: 77e014df790336fb6e474fc8138f477146ce97d936886eb47a08d447fc8532a9
     use: 宽袖飘带三视图（未输入：宽袖 / 外扩裙会让自动绑骨判错，改用窄轮廓 A 字版）
-  sha256: 74dbe150d47472f82c17880c4dafc691ac6cc3868197c4da56316f62ff692ec2
+  sha256: 0639be72eeb83bcd7d3ecff082f09454e6fe7bf22cd5d4f545525884a046edcb
   size_bytes: 5945620
   joints: 65
   triangles: 96916
@@ -151,7 +151,8 @@
   visibility: private
   created: '2026-10-03T17:28:00-07:00'
   status: candidate
-  notes: 一个 GLB 内含三段动画（idle 15.333 s / walk 2.333 s / run 1.25 s），附带网格与骨架；Animation stay in Place 开。
+  notes: 一个 GLB 内含三段动画（idle 15.333 s / walk 2.333 s / run 1.25 s），附带网格与骨架；Animation stay in Place 开。 2026-10-04 修跑步跳位（AR-85 同款，零点数）：Tripo 的原地 run 片段整段偏离原点（Hips 水平偏移 x -0.030 / z +0.530，约半个身高），切换动作会跳位；用
+    tools/model3d/fix_anim_offset.py 平移回原点，只改 Hips 平移通道的水平分量，高度起伏和其他片段不动。
 - id: npc_zhujue__ch00_f_charmhigh__preview
   file: preview.png
   category: model3d

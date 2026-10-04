@@ -276,7 +276,7 @@
   - path: assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png
     sha256: 2f356901dfab4c10e9353c2231089214a51ebaa5a9a5f20d1c4fc097b57f23e1
     use: 多视图 Left 槽：裁中间那人（纯侧面、脸朝画面左＝角色左侧），裁切框 (651,1)-(893,1007)，裁后 242×1006，sha256 c3f1071ad707344c3875a336f1b18f16bfda0c929abf5317353ed23742799a2a
-  sha256: 611dfbb338275293a7a2b722b529bdb15145f1b60a2d6fa8ed364939ae0028bd
+  sha256: 246272e574634a9caa645963c8f00de487e71472bc13dad51a3a86786aa78f79
   size_bytes: 6120476
   joints: 65
   triangles: 99466
@@ -291,7 +291,8 @@
   visibility: private
   created: '2026-10-03T12:21:00-07:00'
   status: candidate
-  notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 run（retarget op 5c09c84e-6754-44ea-a7ae-a4d265bc4fd7），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
+  notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 run（retarget op 5c09c84e-6754-44ea-a7ae-a4d265bc4fd7），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。 2026-10-04 修跑步跳位（AR-85 同款，零点数）：Tripo 的原地 run 片段整段偏离原点（Hips
+    水平偏移 x -0.029 / z +0.518，约半个身高），切换动作会跳位；用 tools/model3d/fix_anim_offset.py 平移回原点，只改 Hips 平移通道的水平分量，高度起伏和其他片段不动。
 - id: npc_zhujue__ch00_m__anim_idle_walk_run
   file: anim_idle_walk_run.glb
   category: model3d
@@ -353,7 +354,7 @@
   credits:
     animation_preset: 0
     export: 0
-  sha256: fa3a30507f2e529e9792ed91842f3702b9faed57a1d3aaa54193420aa43d3271
+  sha256: d53b0e4064dda0a8ceeef4843660c6529caf5dcb2dce7a95bad913720bb24797
   size_bytes: 6540412
   joints: 65
   triangles: 99466
@@ -369,7 +370,8 @@
   preview: preview.png
   created: '2026-10-03T19:15:00-07:00'
   status: candidate
-  notes: 正式使用的动作文件：一个 GLB 内含 run / walk / idle 三段动画（同一套网格 + 65 关节骨架），原地（Animation stay in Place 开）。协调者 2026-10-03 口径：动作统一单文件；同目录 anim_idle.glb / anim_walk.glb / anim_run.glb 三个分文件仅作备份。
+  notes: 正式使用的动作文件：一个 GLB 内含 run / walk / idle 三段动画（同一套网格 + 65 关节骨架），原地（Animation stay in Place 开）。协调者 2026-10-03 口径：动作统一单文件；同目录 anim_idle.glb / anim_walk.glb / anim_run.glb 三个分文件仅作备份。 2026-10-04 修跑步跳位（AR-85
+    同款，零点数）：Tripo 的原地 run 片段整段偏离原点（Hips 水平偏移 x -0.029 / z +0.518，约半个身高），切换动作会跳位；用 tools/model3d/fix_anim_offset.py 平移回原点，只改 Hips 平移通道的水平分量，高度起伏和其他片段不动。
 - id: npc_zhujue__ch00_m__preview
   file: preview.png
   category: model3d
