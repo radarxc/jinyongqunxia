@@ -58,44 +58,37 @@
   category: scene
   style: default
   subject: 幽谷九阳（ch04_yitian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是张无忌的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中张无忌的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【画里谁是谁】这张插图画的是：昆仑幽谷得经后修习九阳，成年张无忌穿完整粗布旧衣，坐在岩石上凝神捧经，眉眼温厚安定；已康复的白猿在旁边安静坐着，远处绿树、泉水与洞口构成幽谷纵深。只画经卷已取出后的安宁瞬间，不画剖腹、血迹或手术，不画发光经书、法阵；书页不生成可读段落。实际取经动作待考，本画机位与布景属原创扩展美术设计。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【要对齐的部分】张无忌各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【只改】只把张无忌两手捧的山水卷轴改为一本打开的薄经书，经文为异文夹蝇头汉字，不画山水卷。身旁前下方石上放另三本薄经书及打开油布包，总共四本。手指、脸、体格、衣服、白猿、山水风景和题字印章全不动。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「幽谷九阳」和小朱印必须原样保留，一笔不改、不增不减。
+    【原著依据】《倚天屠龙记》十六 剥极而复参九阳：“四本薄薄的经书”；https://www.xuges.com/wuxia/jinyong/yttlj/112.htm
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-
-    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_cg_ch04_jiuyang_valley.json'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/50_cg_ch04_jiuyang_valley.png
+    sha256: 5b528328787b61100edfa609e2f2f507922a2c3755b8e3d4f159eeed40d69179
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
     sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
     use: 对脸基线：作者审核通过的 por_npc_zhangwuji__ch04_youth_jiaozhu_base（张无忌），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch04/cg_ch04_jiuyang_valley.png
-    sha256: 37432576d12f9493cea89eff6931dcafa7de318d6f635514e219f505da89ecbd
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_jiuyang_valley.37432576.png
-  - path: assets/default/scene/ch04/cg_ch04_jiuyang_valley.png
-    sha256: a7624f7cfbd017dd691bd89b683d145f5d5d9f37422314d8d3034e3eed735da7
-    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_jiuyang_valley.png
-  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T00:14:06.564992-07:00'
-  source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_jiuyang_valley.png
+  created: '2026-10-04T03:28:57.184206-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_50_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 5b528328787b61100edfa609e2f2f507922a2c3755b8e3d4f159eeed40d69179
+  sha256: c6e7a7e3a2414858f08eb33dbdc9c3cffd2989064f9310c5bf43f692a3a4eea1
   status: candidate
-  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「幽谷九阳」，实际字形「幽谷九陽」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；题字陽→阳；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「幽谷九阳」，实际字形「幽谷九陽」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；题字陽→阳；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）；AR-82 原著核对返修：九阳幽谷插图同步四本薄经书及油布包'
   previous_revision:
-    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_jiuyang_valley.png
-    sha256: a7624f7cfbd017dd691bd89b683d145f5d5d9f37422314d8d3034e3eed735da7
-    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_jiuyang_valley.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/50_cg_ch04_jiuyang_valley.png
+    sha256: 5b528328787b61100edfa609e2f2f507922a2c3755b8e3d4f159eeed40d69179
   runner_job_records:
   - - cg_ch04_jiuyang_valley.resume3
     - ok
@@ -103,9 +96,20 @@
     - '189'
     - exec-7a9351db-ceb6-405c-be1f-6ae7b40156a5.png
   runner_success_count: 1
-  effort: not applicable (deterministic composition)
+  effort: ultra
   executed_by: Codex gpt-6.1-sol（AR-86）
-  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch04_jiuyang_valley_fixed.png", "before_sha256": "7090cb1a9404707bcb52c6695e98feba50ffa55fbc54b92b840daac9018b1abe", "allowed_box": [[1410, 258, 1520, 338]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch04_jiuyang_valley_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T00:55:05-07:00"}
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/cg_ch04_jiuyang_valley_fixed.png
+    before_sha256: 7090cb1a9404707bcb52c6695e98feba50ffa55fbc54b92b840daac9018b1abe
+    allowed_box:
+    - - 1410
+      - 258
+      - 1520
+      - 338
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/cg_ch04_jiuyang_valley_pixel_checks.json
+    method: w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留
+    created: '2026-10-04T00:55:05-07:00'
 - id: cg_ch04_vajra_circle
   file: cg_ch04_vajra_circle.png
   category: scene
