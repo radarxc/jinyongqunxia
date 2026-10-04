@@ -180,15 +180,18 @@
   - path: assets/default/scene/ch03/cg_ch03_tomb_acceptance.png
     sha256: 7c9dca7003b947a34819571abf07deed95d0208592ebfd97a4a500c84353d05d
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.7c9dca70.png
-  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把孙婆婆头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
-  model: gpt-6-astra
-  created: 2026-10-03T19:29:37-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_tomb_acceptance.k1.png
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:51:34.423487-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_37_52_r2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: adf95134900125711b60f8ce94b5bd7d01f40179dd9b1653bbbce78a6bb74628
+  sha256: d90935fca7fedf48d8b71265608f1b7b8b819a1081a0f6966c15e4b7e42d206a
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「古墓相依」，实际字形「古墓相依」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_sunpopo__ch03_elder_gumu_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「古墓相依」，实际字形「古墓相依」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_sunpopo__ch03_elder_gumu_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须是身份参考定稿的刘亦菲脸：同一眉眼、鼻头、唇弓及下颌。保留待改图低头侧转、关切视线，灯笼暖光与月光方向；禁止照搬平光、转为正脸、换耳坠或旧脸。；质检：实际打开base与返修前后：小龙女眉眼鼻唇颌骨采用恢复base，低头关切视线、原灯笼暖光与月光方向保留，耳坠发式不改，脸颈接缝自然；杨过孙婆婆及题字均蒙版外零变化
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.7c9dca70.png
     sha256: 7c9dca7003b947a34819571abf07deed95d0208592ebfd97a4a500c84353d05d
@@ -201,6 +204,16 @@
     - exec-7ab61136-c14e-4fc0-9d63-f89a6e902c03.png
   runner_success_count: 1
   effort: ultra
+  ar84_alignment:
+    job: ar84_calign_37_52_r2
+    before_sha256: adf95134900125711b60f8ce94b5bd7d01f40179dd9b1653bbbce78a6bb74628
+    box:
+    - 900
+    - 110
+    - 984
+    - 219
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_37_52_r2.png
+    outside_changed_pixels: 0
 - id: cg_ch03_sword_tomb_training
   file: cg_ch03_sword_tomb_training.png
   category: scene
