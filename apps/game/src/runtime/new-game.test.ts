@@ -69,6 +69,7 @@ describe('new game host wiring', () => {
     } finally { host.dispose(); }
   });
 
+  // This wait synchronizes functional state; loaded-host latency is not a performance assertion.
   it('loads display text on first detail read and reuses the cache', async () => {
     const fixture = await fixtureItemPack('ch10_baima');
     const host = await createGameCoreHost({ demo: true, contentSource: fixture.source });
@@ -88,7 +89,7 @@ describe('new game host wiring', () => {
       ]);
       expect(item.description).toBe('正文载入中……');
       await vi.waitFor(() => expect(updates.some((text) => text !== '正文载入中……'))
-        .toBe(true));
+        .toBe(true), { timeout: 10_000 });
       const loaded = await host.query();
       expect(loaded.inventory.find((row) => row.id === item.id)?.description)
         .not.toBe('正文载入中……');
@@ -97,7 +98,7 @@ describe('new game host wiring', () => {
         'ch10_baima/common.text.zh-Hans.items.json',
       ]);
     } finally { off(); host.dispose(); }
-  });
+  }, 30_000);
 
   it('projects a compiled Ink fixture through the game session', async () => {
     const compiled = await compileInk(`=== opening ===

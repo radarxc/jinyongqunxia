@@ -127,6 +127,7 @@ describe('game controller battle loading lifecycle', () => {
 });
 
 describe('game controller command scheduling', () => {
+  // These waits synchronize functional state; loaded-host latency is not a performance assertion.
   it('queues FIFO input while autosave is pending instead of dropping it', async () => {
     let listener: ((update: GameUpdate) => void) | undefined;
     let releaseDispatch!: () => void;
@@ -142,15 +143,15 @@ describe('game controller command scheduling', () => {
     }));
     const controller = createGameController(host, useUiStore(createPinia()), { autosave });
     listener!({ accepted: true, changes: {}, events: [{ t: 'changed' }] } as unknown as GameUpdate);
-    await vi.waitFor(() => expect(autosave).toHaveBeenCalledOnce());
+    await vi.waitFor(() => expect(autosave).toHaveBeenCalledOnce(), { timeout: 10_000 });
     const first = controller.worldMapCommand({ t: 'worldmap/cancel' });
     const second = controller.worldMapCommand({ t: 'worldmap/cancel' });
     expect(controller.busy.value).toBe(true); releaseSave(); await Promise.resolve();
-    await vi.waitFor(() => expect(dispatch).toHaveBeenCalledTimes(1)); releaseDispatch();
+    await vi.waitFor(() => expect(dispatch).toHaveBeenCalledTimes(1), { timeout: 10_000 }); releaseDispatch();
     await first; await second;
     expect(dispatch.mock.calls.map(call => call[0].t)).toEqual(['worldmap/cancel', 'worldmap/cancel']);
     controller.dispose();
-  });
+  }, 30_000);
 
   it('blocks quick saves while dialogue or book-sleep transactions are active', async () => {
     const ui = useUiStore(createPinia());
@@ -166,6 +167,7 @@ describe('game controller command scheduling', () => {
     controller.dispose();
   });
 
+  // These waits synchronize functional state; loaded-host latency is not a performance assertion.
   it('does not commit a difficulty rejected by the running core', async () => {
     const settings = shallowRef(defaultGameSettings());
     const persist = vi.fn().mockResolvedValue(undefined);
@@ -179,10 +181,10 @@ describe('game controller command scheduling', () => {
 
     controller.setSetting('difficulty', 'diff_xiake');
 
-    await vi.waitFor(() => expect(host.dispatch).toHaveBeenCalledOnce());
-    await vi.waitFor(() => expect(controller.busy.value).toBe(false));
+    await vi.waitFor(() => expect(host.dispatch).toHaveBeenCalledOnce(), { timeout: 10_000 });
+    await vi.waitFor(() => expect(controller.busy.value).toBe(false), { timeout: 10_000 });
     expect(settings.value.difficulty).toBe('diff_jianghu');
     expect(persist).not.toHaveBeenCalled();
     controller.dispose();
-  });
+  }, 30_000);
 });

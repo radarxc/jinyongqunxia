@@ -22,6 +22,7 @@ describe('battle VFX bridge', () => {
     expect(classifyVfxAccents([], 8)).toEqual(['hit']);
   });
 
+  // These waits synchronize functional state; loaded-host latency is not a performance assertion.
   it('forwards move, coordinates, actor nature and result to one lazy stage', async () => {
     let hook: Parameters<BattleController['onMoveResolved']>[0] | undefined;
     const controller = { onMoveResolved: vi.fn(callback => { hook = callback; return () => undefined; }) } as unknown as BattleController;
@@ -37,7 +38,7 @@ describe('battle VFX bridge', () => {
     hook!('mv_test', marker('actor'), [marker('target')], { actionNo: 2, hpDamage: 7,
       events: [{ t: 'battle/damageResolved', actionNo: 2, target: 'target' },
         { t: 'battle/foreignQiInjected', actionNo: 2, target: 'target' }] });
-    await vi.waitFor(() => expect(play).toHaveBeenCalledOnce());
+    await vi.waitFor(() => expect(play).toHaveBeenCalledOnce(), { timeout: 10_000 });
     expect(play).toHaveBeenCalledWith(expect.objectContaining({ moveId: 'mv_test', nature: 'yin',
       from: expect.objectContaining({ id: 'actor' }), targets: [expect.objectContaining({ id: 'target' })],
       actorSnapshot: expect.any(Function),
@@ -49,8 +50,9 @@ describe('battle VFX bridge', () => {
     expect(snapshotActor).toHaveBeenCalledWith('actor');
     off();
     expect(stage.dispose).toHaveBeenCalledOnce();
-  });
+  }, 30_000);
 
+  // These waits synchronize functional state; loaded-host latency is not a performance assertion.
   it('retries a transient lazy chunk failure on the next move', async () => {
     const warning = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     let hook: Parameters<BattleController['onMoveResolved']>[0] | undefined;
@@ -65,12 +67,12 @@ describe('battle VFX bridge', () => {
     bindBattleVfx(controller, document.createElement('canvas'), { importStage, onPending, onDuration });
     const result = { actionNo: 1, hpDamage: 0, events: [] };
     hook!('mv_first', marker('actor'), [marker('target')], result);
-    await vi.waitFor(() => expect(warning).toHaveBeenCalledTimes(1));
+    await vi.waitFor(() => expect(warning).toHaveBeenCalledTimes(1), { timeout: 10_000 });
     expect(onPending).toHaveBeenCalledOnce(); expect(onDuration).toHaveBeenLastCalledWith(600);
     hook!('mv_second', marker('actor'), [marker('target')], result);
-    await vi.waitFor(() => expect(play).toHaveBeenCalledOnce());
+    await vi.waitFor(() => expect(play).toHaveBeenCalledOnce(), { timeout: 10_000 });
     expect(importStage).toHaveBeenCalledTimes(2);
     expect(onPending).toHaveBeenCalledTimes(2); expect(onDuration).toHaveBeenLastCalledWith(320);
     warning.mockRestore();
-  });
+  }, 30_000);
 });

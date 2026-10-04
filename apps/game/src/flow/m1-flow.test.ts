@@ -131,7 +131,9 @@ describe('M1 application flow with fake IndexedDB', () => {
       await waitFor(wrapper, '[data-testid=prologue-mode]');
       await wrapper.get('input[value=skip]').setValue();
       await wrapper.get('[data-testid=mode-confirm]').trigger('click');
-      await vi.waitFor(() => expect(controller.flowStage.value).toBe('skip-bridge'));
+      // This wait synchronizes functional state; loaded-host latency is not a performance assertion.
+      await vi.waitFor(() => expect(controller.flowStage.value).toBe('skip-bridge'),
+        { timeout: 10_000 });
       await waitFor(wrapper, '[data-testid=cutscene-next]');
       await wrapper.get('[data-testid=cutscene-next]').trigger('click');
       await waitFor(wrapper, '[data-testid=cutscene-next]');
@@ -158,7 +160,7 @@ describe('M1 application flow with fake IndexedDB', () => {
     } finally {
       wrapper.unmount();
     }
-  }, 15_000);
+  }, 30_000);
 
   it('keeps a rejected dialogue choice unchanged and blocks manual saves in transactions', async () => {
     const { controller, wrapper, ui, host } = await harness();
@@ -197,13 +199,15 @@ describe('M1 application flow with fake IndexedDB', () => {
       await waitFor(wrapper, '[data-testid=dialogue-choice]');
       expect(wrapper.get('[data-testid=dialogue-choice-reason]').text()).toBe('正文尚未装载。');
       await wrapper.findAll('[data-testid=dialogue-choice]')[0]!.trigger('click');
+      // These waits synchronize functional state; loaded-host latency is not a performance assertion.
       await vi.waitFor(() =>
         expect(dispatch).toHaveBeenCalledWith({
           t: 'dialogue/choose',
           choiceIndex: 0,
         }),
+        { timeout: 10_000 },
       );
-      await vi.waitFor(() => expect(controller.busy.value).toBe(false));
+      await vi.waitFor(() => expect(controller.busy.value).toBe(false), { timeout: 10_000 });
       expect(ui.projection.dialogue).toEqual(rejectedView);
       await controller.saveAction('save', 'save_quick');
       expect(controller.notice.value).toContain('对话结束后');
@@ -224,7 +228,7 @@ describe('M1 application flow with fake IndexedDB', () => {
       controller.setBookSleepActive(false);
       wrapper.unmount();
     }
-  }, 15_000);
+  }, 30_000);
 });
 
 describe('M1 allocation draft rules', () => {

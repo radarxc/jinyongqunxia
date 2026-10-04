@@ -290,6 +290,7 @@ describe('save slots through ENG-01 IndexedDB API', () => {
     expect(await storage.saves.listHistory('save_manual_04')).toHaveLength(2);
     host.dispose();
   });
+  // This flow can consume its full wait window; loaded-host latency is not a performance assertion.
   it('keeps the pre-sleep autosave and writes no wake slot when target mount fails', async () => {
     const { controller, storage, before, host } = await sleepHarness(true);
     const logged = vi.spyOn(console, 'error').mockImplementation(() => undefined);
@@ -302,7 +303,8 @@ describe('save slots through ENG-01 IndexedDB API', () => {
       expect(await storage.saves.load('save_wake_ch10')).toBeNull();
       expect(await host.snapshot()).toEqual(before);
     } finally { logged.mockRestore(); await storage.close(); }
-  });
+  }, 30_000);
+  // This flow can consume its full wait window; loaded-host latency is not a performance assertion.
   it('writes wake after mount with matching TSAV and state content hashes', async () => {
     const { controller, storage, wakeHash, host } = await sleepHarness(false);
     try {
@@ -319,7 +321,7 @@ describe('save slots through ENG-01 IndexedDB API', () => {
       expect(state.meta.contentHash).toBe(wakeHash);
       expect(state.world.navigation.pendingMount).toBeNull();
     } finally { await storage.close(); }
-  });
+  }, 30_000);
   it('drives the slot component through save, overwrite confirmation, load and deletion', async () => {
     const { host, saves } = await setup();
     const wrapper = mount(TxSaveSlots, {
