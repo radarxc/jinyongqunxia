@@ -2021,4 +2021,8 @@
     - **ENG-bench-perf-split**（c73e52b9）：core/bench 的 BattleSession 线性断言挪到 `pnpm check:perf`，按 AR-33 rig 先例，断言与阈值不改。
       - 写集：bench、根 package.json 的 test / test:perf、vitest.config.ts、tools/perf/README.md、CLAUDE.md 性能规则那一句。
       - 名单排在 base-diet 之后，已起跑排队。
-
+  - **10-03 19:25–19:40 协调者**：
+    - 作者 AR-63：黛绮丝易容按原著，认不出就对；能从原著确定的事不再问作者，交代给各子代理和 GUIDE。AR-64：第一次加载可以久一些，但尽量拆包；计时断言挪 check:perf，作者已确认「挪出去」，由 ENG-bench-perf-split（c73e52b9）落实，名单排在 base-diet 之后。
+    - 面部总审：主角的明显和轻微不一致都已清零。11 号 ch04–ch06 轻微 5 张和返修 2 张，复核全部一致。10 号 ch02–ch03 15 人次已提交（897fa82d、5995f7c5、99a54d1b、adc8fd30），等复核。12 号在做 ch08。
+    - AR-58 神态推到各书配角：11 号做 ch02–ch05（射雕 22 人，神雕 18 人，在跑）；10 号做 ch06–ch14；九难、何惕守跳过，归 12 号。各书计划报协调者，10 分钟内没回音就照计划做。
+    - Tripo：阿青按 b 版新脸重做（0ac4882a / 406dd99a / 43656bbf），85 点，余额 21535。新旧对比已发作者。Tripo 子代理收尾。
