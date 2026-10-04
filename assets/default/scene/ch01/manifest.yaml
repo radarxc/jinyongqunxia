@@ -81,41 +81,54 @@
   category: scene
   style: default
   subject: 小镜湖青石桥（ch01_tianlong）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是阿朱的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中阿朱的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】重新绘制一张1536×1024、3:2横幅的《天龙八部》小镜湖青石桥剧情插画，写实手绘古风，与参考立绘同一画风。不是原图微调，重新设计动作与伤情。
 
-    【画里谁是谁】这张插图画的是：小镜湖青石桥上夜雨将至，乔峰（萧峰，缠头巾、络腮短须）单膝半跪，双臂抱着中了掌伤、脸色苍白的阿朱（淡红衣裙的少女），远处桥上一位锦袍中年男子（段正淳）正赶来。
+    【参考身份】第1张和第2张是同一位萧峰：作者认可的现行base与同图脸部。第3张和第4张是同一位阿朱：作者AR-61选定B并自然放大眼睛后的现行base与同图脸部。Use exactly these two identities. Keep their facial identity and bone structure, do not invent similar-looking faces. 萧峰只用1、2，阿朱只用3、4，严禁串脸。第5张旧插图只提供画幅、青石桥与右上题字的绘画惯例；旧图的人脸和精神状态不作参考。
 
-    【要对齐的部分】阿朱各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【原著瞬间】雷雨夜，小镜湖青石桥上。阿朱之前易容成段正淳，替生父挨了萧峰一掌；此刻已经恢复自己的女子本来面目，清楚是第3、4张阿朱本人，绝对不是段正淳的中年男性脸。她胸腹受严重内伤，生命垂危。只画萧峰与阿朱两人，无第三人。北宋古代青石桥、湖面、柳枝、倾盆斜雨、深夜乌云和一道远处闪电清楚可见，湿石缝和青石栏杆使桥一眼可辨。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「镜湖回生」和小朱印必须原样保留，一笔不改、不增不减。
+    【动作与关系】萧峰在桥中央单膝跪下，以双臂紧抱阿朱，宽大的手一只托住她的上背与后颈、一只托住腰和膝弯，靠近她的脸，低头看她，眉头痛苦紧锁、眼眶泛红、眼神破碎而悔恨，嘴唇颤抖，明确是误伤爱人后的悲恸与保护。不要英雄冷峻摆拍，不要平静合影。阿朱身体完全失去支撑，斜躺倒在他怀里，头颈无力后仰但由他托住，一只手自然垂落，另一只轻贴他的胸襟但无力抓握。两人紧密拥抱但姿态沉痛。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【伤重垂死】阿朱面色和嘴唇苍白失血，脸色与立绘不同但五官骨相必须同一个人；眼睛疲惫半睁，目光虚弱地望向萧峰，无笑容，嘴角一条清楚可见的暗红血迹并沾湿下唇，延到下巴一小段，衣领可有一小片血痕。克制、非血腥，仅表现重伤内出血；无开放伤口。不是皮肤健康的美人，也不是睡着或主动依偎的人。阿朱仍穿现行base的淡粉宋代衣裙、素色内襟、珍珠粉玉耳坠与原发饰，雨水打湿头发、垂落碎发和衣料，保留衣服纹理。萧峰穿base的粗布裹巾、灰褐右衽袍与深色外衣，粗犷脸、胡茬与base一致。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【光线与画风】真正深夜，冷灰青雨夜环境，湖边远处极少暖灯；雷光与弱环境光自然照出两人的脸，人物面部和血迹有足够可读性但不用舞台聚光。真实手绘笔触、皮肤细纹与自然不对称、布料经纬和雨水重量，低饱和；不磨皮、无塑料油亮、无3D光、无照片贴脸。
 
-    【本张另外要求】（作者选定阿朱新脸后统一对齐）被乔峰抱着、中了掌伤的淡红衣少女是阿朱：阿朱的脸要像基线（作者选定的新版）：鹅蛋脸、两颊柔润、下巴小巧圆润，一双明亮灵动的大眼睛、双眼皮清楚、眼尾微扬，眉毛弯而秀长，鼻梁秀挺、鼻头小巧，唇形饱满、嘴角上扬；约二十岁的成年年轻女子。表情按原图的情绪（悲伤、惊讶、虚弱时就照原图的情绪，只是换成她这张脸）。她此刻虚弱、脸色苍白、半睁着眼，保留这个情绪。乔峰和远处段正淳的脸不要动，构图与题字不变。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【题字】右上角留空，照旧图位置和样式，单列竖排毛笔楷书从上到下准确写「镜湖诀别」四字，淡米白墨色，占画宽约6%、高度约28%，下方一枚无可读文字的小朱印，不遮脸。不要沿用旧题字「镜湖回生」，剧情此刻并未回生。题字在出图时原生绘制。
+
+    【不要】不要第三人、不要站立的阿朱、不要健康红润脸、不要笑、不要没有血迹、不要段正淳的脸、不要把阿朱画成另一位美女；不要串脸、磨皮、网红脸、镜像右衽、现代物件、发光武功、夸张血腥、错误手指或多余肢体；除指定四字与无字朱印外不加任何文字或水印。
+
+    【B构图】中景，萧峰跪在桥面中左位置，把几乎平躺的阿朱紧紧护在怀里；她的肩与头由手臂支撑，脸朝镜头约四分之三角度，眼睛虚弱半开。萧峰眼含泪看着她，额头将近相触。湿青石桥从前景向湖雾纵深延伸；桥、夜雨、闪电与人物紧密关系都能读出来。'
+  negative: 不要第三人、不要站立的阿朱、不要健康红润脸、不要笑、不要没有血迹、不要段正淳的脸、不要把阿朱画成另一位美女；不要串脸、磨皮、网红脸、镜像右衽、现代物件、发光武功、夸张血腥、错误手指或多余肢体；除指定四字与无字朱印外不加任何文字或水印。
   references:
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f
+    use: 作者认可现行xiaofeng base；保持本人面部身份、衣饰发式；上传参考第1张
+  - path: .agents/coord/_handoff/gem/codex_w30/staging/cg_ch01_xiaojinghu_azhu.ar75.redraw_b__ref2.jpg
+    sha256: ab36d947458b3675738a1ec81a84724575aadb7d11c71ddb420aca77e37e3c9f
+    use: 上一个base的等比例脸部裁图；仅加强同人五官身份；上传参考第2张
   - path: assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
     sha256: aa37f35be809f8d93fbf509f4f581dc6e8c9e3204a92f50a8b2c50ee66d4b8c8
-    use: 对脸基线：作者审核通过的 por_npc_azhu__ch01_youth_alive_base（阿朱），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+    use: 作者认可现行azhu base；保持本人面部身份、衣饰发式；上传参考第3张
+  - path: .agents/coord/_handoff/gem/codex_w30/staging/cg_ch01_xiaojinghu_azhu.ar75.redraw_b__ref4.jpg
+    sha256: 50e216e675d65c14ace756ed3c231a766e0b13ee014a8b5ea9c193c69495a5a1
+    use: 上一个base的等比例脸部裁图；仅加强同人五官身份；上传参考第4张
   - path: assets/default/scene/ch01/cg_ch01_xiaojinghu_azhu.png
-    sha256: 1e758ae3faed4d46eb455b599788d14c0a73ab966b0d23492f0ee11768c3c22f
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xiaojinghu_azhu.1e758ae3.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T17:53:55-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_xiaojinghu_azhu.s3.png
+    sha256: c5641e2de9675606f68689f7f93da2d33a3d71a34e5e27a7d9994f4c6db19d52
+    use: 重画前插图，仅供青石桥场景与题字位置样式参考；不沿用原人物状态；旧图备份 .agents/coord/_handoff/gem/codex_w30/replaced/cg_ch01_xiaojinghu_azhu.c5641e2d.png
+  tool: codex exec · image_gen（AR-75 整张剧情重画；现行双人base及脸部特写+旧图构图题字惯例，共5张参考）
+  model: gpt-6.1-sol
+  created: 2026-10-03T23:17:45-0700
+  source_path: .agents/coord/_handoff/gem/codex_w30/out/cg_ch01_xiaojinghu_azhu.ar75.redraw_b.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: c5641e2de9675606f68689f7f93da2d33a3d71a34e5e27a7d9994f4c6db19d52
+  sha256: 7f4749f26b7b4f07087619888ea90ebb47c8ed4b6bfa8a1cb1360f75ea4cd499
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「镜湖回生」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_azhu__ch01_youth_alive_base（作者返工「乔峰抱着阿朱」：按小镜湖青石桥情节重绘构图，乔峰半跪抱着中掌的阿朱，题字「镜湖回生」与夜雨石桥原样）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「镜湖回生」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_azhu__ch01_youth_alive_base（作者返工「乔峰抱着阿朱」：按小镜湖青石桥情节重绘构图，乔峰半跪抱着中掌的阿朱，题字「镜湖回生」与夜雨石桥原样）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-75 小镜湖按原著重画；场景、动作、伤情、关系齐备；萧峰与阿朱对齐现行base，阿朱以AR-61 B修眼稿为准（作者AR-75要求按原著：雷雨夜青石桥；阿朱易容段正淳受掌后恢复本人，苍白失力、嘴角带血、伤重垂死；萧峰悲恸护抱。双人base与脸部对照已打开，阿朱基准为AR-61 B修眼稿。两候选视觉比较后选择B；题字按现图右上竖排毛笔与朱印惯例，内容改为镜湖诀别。）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xiaojinghu_azhu.1e758ae3.png
-    sha256: 1e758ae3faed4d46eb455b599788d14c0a73ab966b0d23492f0ee11768c3c22f
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xiaojinghu_azhu.1e758ae3.entry.yaml
-  effort: ultra
+    png: .agents/coord/_handoff/gem/codex_w30/replaced/cg_ch01_xiaojinghu_azhu.c5641e2d.png
+    sha256: c5641e2de9675606f68689f7f93da2d33a3d71a34e5e27a7d9994f4c6db19d52
+    entry: .agents/coord/_handoff/gem/codex_w30/replaced/cg_ch01_xiaojinghu_azhu.c5641e2d.entry.yaml
+  effort: xhigh
 - id: cg_ch01_shaoshi_three_brothers
   file: cg_ch01_shaoshi_three_brothers.png
   category: scene
