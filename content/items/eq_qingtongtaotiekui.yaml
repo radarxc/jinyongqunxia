@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_qingtongtaotiekui
+name: 青铜饕餮盔
+kind: armor
+sub: headwear
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 春秋；（原创扩展）；纹饰据国博《礼和万方——商周青铜鼎特展》，兽面纹只作纹饰依据 https://m.chnmuseum.cn/portals/0/web/zt/202109lhwf/home/；铜胄比较据河南博物院《素面铜胄》（战国，不能直接证明春秋饕餮盔） https://www.chnmus.net/sitesources/hnsbwy/page_pc/dzjp/zpjc/qtq/article79e875a775994dbf99b02d0e099250b1.html；春秋同型饕餮铜盔实物（待考），不能以战国素胄倒证
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingtongtaotiekui
+text:
+  desc: 外观：春秋通用款，主色青铜褐。 待运行时投影：defOutK=0.05; hpMaxK=0.01。
+  lore: （原创扩展）将商周青铜兽面纹移作低圆顶盔的浅饰纹，配内帛衬、护颊与缨带。穿用时须系稳，精工只表现于铸纹与接缝；春秋同型实物仍（待考），不以战国素胄倒证，也不附加身体重甲固有项。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 10

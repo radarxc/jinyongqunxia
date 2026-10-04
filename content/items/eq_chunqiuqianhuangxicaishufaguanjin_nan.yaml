@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_chunqiuqianhuangxicaishufaguanjin_nan
+name: 春秋浅黄细裁束发冠巾·男
+kind: armor
+sub: headwear
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 春秋；（原创扩展）；形制／色系依据：《周礼·天官·染人／内司服／追师／屦人》 https://zh.wikisource.org/zh-hans/周禮/天官冢宰；《礼记·玉藻》 https://zh.wikisource.org/zh-hans/禮記/玉藻；越地具体制式与女性纁红主色（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/chunqiuqianhuangxicaishufaguanjin_nan
+text:
+  desc: 外观：春秋男款，主色浅黄。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: （原创扩展）据冠笄语汇演成春秋浅黄束发冠巾，小冠以横笄和缨带固定。细织缘与密缝只缀束帛与冠缘，行路前须理顺系结；越地具体制式仍（待考），冠巾不附赠身份，也不与衣物重复加防。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 7
