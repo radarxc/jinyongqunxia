@@ -128,6 +128,7 @@ python3 tools/model3d/ingest.py npc_xxx__chNN_youth --project <pid> --gen-op <�
 - 主角加 `--anim idle,walk,run --anim-ops idle=<op>,walk=<op>,run=<op>`；多视图加 `--gen-kind multiview_to_model --input "multiview：Front + Left"`，`--ref` 按槽位顺序给多次。
 - 重做已入库的角色加 `--replace`：旧文件先备份到 `.agents/coord/ART-3d-tripo-web/replaced/<npc>__<时间>/`，manifest 里记 `replaces`。
 - 先想看看会做什么：加 `--dry-run`。
+- 只换预览、模型不动：`python3 tools/model3d/ingest.py <npc_id> --preview-only [--commit]`，读 `tripo__<npc>.png`，只改 manifest 末尾的 preview 条目。
 - 点数不是 65 / 20（比如重绑过）：`--credits generate=65,rig=40`。
 
 **2.9 记录**：在本任务 `done.txt` 记 npc_id、project、op、提交号、点数；做完一批写报告。
