@@ -48341,7 +48341,7 @@
      [
       "{python}",
       "-c",
-      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==1}; g=lambda *a: subprocess.run(['git',*a],capture_output=True,text=True).stdout.split(); mod=g('diff','--name-only','HEAD','--','assets/default/prompts/items'); new=g('ls-files','--others','--exclude-standard','--','assets/default/prompts/items'); extra=[f for f in new if not (f.endswith('.md') and f.rsplit('/',1)[-1][:-3] in ids)]; print('modified',len(mod),mod[:5],'new',len(new),'extra',extra[:5]); sys.exit(1 if mod or extra else 0)"
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==1}; g=lambda *a: subprocess.run(['git',*a],capture_output=True,text=True).stdout.split(); mod=[f for f in g('diff','--name-only','HEAD','--','assets/default/prompts/items') if f!='assets/default/prompts/items/GUIDE.md']; new=g('ls-files','--others','--exclude-standard','--','assets/default/prompts/items'); extra=[f for f in new if not (f.endswith('.md') and f.rsplit('/',1)[-1][:-3] in ids)]; print('modified',len(mod),mod[:5],'new',len(new),'extra',extra[:5]); sys.exit(1 if mod or extra else 0)"
      ],
      [
       "{python}",

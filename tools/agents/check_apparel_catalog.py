@@ -10,7 +10,9 @@
 - 六档品阶映射单调、地上 ≤ 9；
 - 八个朝代：男装每档 ≥ 3 色且含白、玄；女装每档 ≥ 2 色；头饰 / 腰带 / 鞋分男女六档齐；披风三档齐；
 - 作者点名的铠甲与特殊衣物都在（新条目或 existing 引用）；槽位、名录与子类一致。
---landed N：第 N 批每件已落进名录、content/items/<id>.yaml 与 assets/default/prompts/items/*/<id>.md。
+--landed N：第 N 批每件已落进名录、content/items/<id>.yaml 与 assets/default/prompts/items/*/<id>.md；
+  男装 / 女装按「同朝代、同性别、同档」成组：每组恰一件底图（提示词无 edit_from），其余换色件 edit_from 指向本组底图，
+  且第一张参考图是底图（协调者 10-03 23:4x：同款换色上传底图只改主色）。
 """
 import argparse
 import re
@@ -49,6 +51,44 @@ def existing_catalog():
                 ids[m.group(1)] = p.name
                 names[re.sub(r"[`*]", "", m.group(2)).strip()] = m.group(1)
     return ids, names
+
+
+def prompt_frontmatter(item_id):
+    fs = sorted((ROOT / "assets/default/prompts/items").glob(f"*/{item_id}.md"))
+    if not fs:
+        return None
+    m = re.match(r"^---\n(.*?)\n---\n", fs[0].read_text(encoding="utf-8"), re.S)
+    return (yaml.safe_load(m.group(1)) or {}) if m else {}
+
+
+def recolor_problems(new, batch_no):
+    """同款换色：每组恰一件底图，其余 edit_from 指向它、第一张参考图是底图。"""
+    key = lambda i: (i.get("category"), i.get("dynasty"), i.get("gender"), i.get("tier"))
+    groups = defaultdict(list)
+    for i in new:
+        if i.get("category") in ("男装", "女装"):
+            groups[key(i)].append(i)
+    bad = []
+    for k, members in groups.items():
+        if not any(i.get("batch") == batch_no for i in members):
+            continue
+        present = [(i, prompt_frontmatter(i["id"])) for i in members]
+        present = [(i, fm) for i, fm in present if fm is not None]
+        bases = [i["id"] for i, fm in present if not fm.get("edit_from")]
+        if len(bases) != 1:
+            bad.append(f"{'·'.join(map(str, k))} 应恰有一件底图（无 edit_from），现在 {bases}")
+            continue
+        base = next(i for i in members if i["id"] == bases[0])
+        for i, fm in present:
+            if i["id"] == base["id"]:
+                continue
+            if fm.get("edit_from") != base["id"]:
+                bad.append(f"{i['id']} edit_from={fm.get('edit_from')}，应为本组底图 {base['id']}")
+            refs = fm.get("references") or []
+            first = str(refs[0].get("path", "")) if refs and isinstance(refs[0], dict) else ""
+            if base["id"] not in first:
+                bad.append(f"{i['id']} 第一张参考图应是底图 {base['id']}，现在 {first or '无'}")
+    return bad
 
 
 def main() -> int:
@@ -165,6 +205,7 @@ def main() -> int:
                 bad.append(f"{i['id']} 缺 content/items/{i['id']}.yaml")
             if not list((ROOT / "assets/default/prompts/items").glob(f"*/{i['id']}.md")):
                 bad.append(f"{i['id']} 缺出图提示词 assets/default/prompts/items/*/{i['id']}.md")
+        bad += recolor_problems(new, a.landed)
     cnt = defaultdict(int)
     for i in new:
         cnt[i.get("category")] += 1
