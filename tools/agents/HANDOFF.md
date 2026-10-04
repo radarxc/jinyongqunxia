@@ -1970,3 +1970,15 @@
       - 已提议小修 ENG-battle-lazy-dispose，等协调者批。
 
     - 仓库维护（待低负载时做，先别动）：`.git/logs/refs/remotes/origin/` 下有 3 个 10-02 22:13–23:05 留下的 root 属主空锁（HEAD.lock、claude/jinyong-online-game-design-jko1v9.lock、claude/vigilant-wright-2unuk1.lock），所以每次提交触发的自动 gc 都在 reflog 一步失败。提交本身不受影响，返回 0。松散对象 21,413 个、3.42 GiB。现在删锁会让自动 gc 在随便哪次提交后后台全量打包，跟计时测试抢负载，所以等全部驱动和出图员停下的空档再删锁、手动 `git gc`。
+  - **10-03 19:10–19:16 开发监督**：
+    - **ENG-battle-lazy-dispose**（5defec29，协调者 19:10 批），驱动 55260，名单第 3 位。
+      - 修在产品代码：import 完成后确认宿主仍是当前那个、没被销毁，否则丢弃这次加载、清掉 battleLoading；调用方接住 promise。
+      - 回归测试要确定性复现：用可控的 deferred import 卡住加载，中途替换并销毁宿主，再放行；不许重试、加长超时或跳过。
+      - 合入后跑全量 prod_check 报协调者。
+    - **ENG-26、ENG-23a 卡死**：18:42–18:44 各自做完最后一次工具调用后，25 分钟没有模型输出，19:07 / 19:09 被停滞检测重起，现在排队。
+      - 不是技能流程，也不是上下文压缩，像是 Trae 服务端拥堵。
+      - 再有执行器这样挂住，就建议池上限降到 2，或错开起跑。
+    - 代码池（上限 3）：
+      - 占用：content-plugin-timeout、gates-data、base-diet；
+      - 排队：lazy-dispose → event-source-trigger → ink-intents → 26 → 23a → 18c → 16e → rig-parts-f → std-parts → cropframe。
+
