@@ -113,6 +113,8 @@ def main():
                            untracked="、".join(untracked) or "无", images_note=images_note, checks=checks)
     argv = [a.bin, "exec", "-m", a.model, "-c", f'model_reasoning_effort="{a.effort}"',
             "-s", "read-only", "--skip-git-repo-check", "-C", str(wt), "-o", str(out)]
+    if any(k in Path(str(a.bin)).name.lower() for k in ("traex", "traecli")):
+        argv += ["-c", "skills.include_instructions=false"]  # 同 step.py TRAEX_NO_SKILLS：不把作者本机 Trae 技能清单放进审核提示
     for f in attach:
         argv += ["-i", str(wt / f)]
     argv.append("-")  # 提示词经标准输入传入
