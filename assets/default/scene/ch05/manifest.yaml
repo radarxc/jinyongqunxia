@@ -7,7 +7,7 @@
 
     【画里谁是谁】这张插图画的是：西湖梅庄湿冷的地下囚室，难辨日夜。令狐冲独自在铁床上苏醒，双腕和双踝均扣有铁圈并连着铁链，粗布旧衫凌乱但完整，微微抬头环顾，神情困惑而虚弱。低机位中全景，以铁床边沿、链条和有送饭小孔的厚铁门切割幽闭空间。室内没有长明灯，仅用极微弱的绘画轮廓光表现人物；只画令狐冲一人，不把任我行、向问天同时画成他清醒目送的离牢队伍。
 
-    【要对齐的部分】令狐冲的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：刚在地牢里醒来，微微抬头环顾，神情困惑而虚弱（此刻不笑）；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】令狐冲的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：刚在地牢里醒来，微微抬头环顾，困惑而警觉（此刻不笑，紧张神情保留）；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【令狐冲的基线脸】基线里的令狐冲二十三四岁，是年轻俊朗的浪子：脸型是饱满的鹅蛋脸、两颊圆润不凹陷、颧骨不突出、下颌圆润、下巴干净；浓黑的剑眉平直舒展、眉尾略扬；一双笑眼——双眼皮、眼尾弯弯、下眼睑微微上提，眼神明亮洒脱、带三分狡黠；鼻梁挺直、鼻头圆润；嘴唇适中，笑时嘴角一侧上扬、露出一点牙齿的爽朗坏笑；完全无须——唇上、下巴和两腮都干干净净，没有八字须、没有山羊胡、没有短髯、没有胡茬；肤色是健康的浅麦色，皮肤紧致年轻。整体比原图年轻四五岁、脸更圆更饱满。
 
@@ -17,28 +17,28 @@
 
     【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【本张另外要求】画里只有令狐冲一人，他躺在铁床上、头部在画面左上方；保持地牢的昏暗光线与色调。'
+    【本张另外要求】画里只有令狐冲一人，他躺在铁床上、头部在画面左上方；保持地牢的昏暗光线与色调。这张图里他的脸已经去掉了胡须，这次只再往基线靠：脸型收成基线那种饱满圆润的鹅蛋脸（现在的脸偏宽、偏方），眼睛改成基线那种明亮的双眼皮笑眼的眼型、黑眼珠清楚（现在偏细、偏眯），整体更年轻、更有二十三四岁的少年感，不要显老、不要皱纹和法令纹。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
     sha256: c3beaa49ca2c1d989d067e968ea3e812185123858f43f4106a95221aac72d55f
     use: 对脸基线：作者 AR-56 定下的 por_npc_linghuchong__ch05_youth_huashan_base（令狐冲），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch05/cg_ch05_meizhuang_prison.png
-    sha256: c1ddc422fa1d7a7390f31f5101b09f06904cfc6e6693ae1e9680ea4563fc2619
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_meizhuang_prison.c1ddc422.png
+    sha256: 1a4e7c60897209aae0e8737f8a22544bc0f5f2462383cca57d3f8d1d5bb41796
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_meizhuang_prison.1a4e7c60.png
   tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T17:56:28-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch05_meizhuang_prison.s1.png
+  created: 2026-10-03T18:13:44-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch05_meizhuang_prison.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 1a4e7c60897209aae0e8737f8a22544bc0f5f2462383cca57d3f8d1d5bb41796
+  sha256: cafcfeeaa6b1080cfa03c4a1da089241c74359d2a1fe014817caa1a99ffd226c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「梅庄换囚」，实际字形「梅庄换囚」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「梅庄换囚」，实际字形「梅庄换囚」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（面部总审复核 s1 轻微不一致（脸偏宽、眼偏细、显老）后重做；编辑底稿为 s1 版，只取令狐冲头部区域羽化合成，其余像素保持；原始编辑结果 out/<job>.raw.png）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_meizhuang_prison.c1ddc422.png
-    sha256: c1ddc422fa1d7a7390f31f5101b09f06904cfc6e6693ae1e9680ea4563fc2619
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_meizhuang_prison.c1ddc422.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_meizhuang_prison.1a4e7c60.png
+    sha256: 1a4e7c60897209aae0e8737f8a22544bc0f5f2462383cca57d3f8d1d5bb41796
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_meizhuang_prison.1a4e7c60.entry.yaml
   runner_job_records:
   - - cg_ch05_meizhuang_prison.resume3
     - ok
