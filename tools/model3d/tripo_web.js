@@ -282,12 +282,12 @@ window.__t = {
     return { ...sv, op: s.op, rigged: s.rigged, src: this.short(s.url) };
   },
   // ── 存盘方式（localStorage.claudeTSaveMode）──
-  // 'direct'：作者已在 Chrome 里允许 studio.tripo3d.ai「自动下载多个文件」，直接存。
-  // 'reload'（默认）：Chrome 每次整页载入后只放行一个由脚本发起的下载，之后的静默丢弃（2026-10-04 实测）。
+  // 'direct'（默认）：作者已在 Chrome 里允许 studio.tripo3d.ai「自动下载多个文件」（10-04 作者点了「允许」，实测连续两个脚本下载都落盘），直接存。
+  // 'reload'（备用）：没有这个权限时，Chrome 每次整页载入后只放行一个由脚本发起的下载，之后的静默丢弃（10-04 实测）。
   //   这时 exportGlb / preview 只把 {url, 文件名} 排进本标签页的 sessionStorage.claudeTSave；
   //   每存一个：navigate 整页刷新 → 重新 eval 驱动 → await __t.flushSave()（存队首一个）。签名地址约两天内有效。
   //   站点若被设成「阻止」，同站刷新也不放行，只能请作者改设置。
-  saveMode() { return localStorage.getItem('claudeTSaveMode') || 'reload'; },
+  saveMode() { return localStorage.getItem('claudeTSaveMode') || 'direct'; },
   setSaveMode(m) { if (!/^(direct|reload)$/.test(m)) throw new Error('mode: direct | reload'); localStorage.setItem('claudeTSaveMode', m); return m; },
   saveQueue() { return JSON.parse(sessionStorage.getItem('claudeTSave') || '[]'); },
   async save(url, filename) {
@@ -310,8 +310,8 @@ window.__t = {
   clearSaveQueue() { sessionStorage.removeItem('claudeTSave'); sessionStorage.removeItem('claudeTSaveLast'); return 0; },
   // 下载地址是 CDN 签名 URL，不带 cookie；存盘用 <a download>，落到 ~/Downloads/<filename>（重名时 Chrome 会加 (1)，入库脚本会报错）。
   // filename 以 .auto 结尾时按文件头定扩展名（Tripo 的 studio_mesh.webp 实际是 PNG）。
-  // 前提：Chrome 允许 studio.tripo3d.ai「自动下载多个文件」（作者在地址栏点过「允许」）；否则页面每次整页载入后只放行第一个下载，
-  // 后面的静默丢弃——这里返回 ok:true 只说明页面已发起下载，是否落盘以 ~/Downloads 为准（入库脚本会等文件出现）。
+  // 前提：Chrome 允许 studio.tripo3d.ai「自动下载多个文件」（作者 10-04 已点「允许」）；权限被收回时页面每次整页载入后只放行第一个下载，
+  // 后面的静默丢弃——这里返回 ok:true 只说明页面已发起下载，是否落盘以 ~/Downloads 为准（入库脚本会等文件出现），落不了盘就改 reload。
   extOf(h) { return h[0] === 0x89 && h[1] === 0x50 ? 'png' : h[0] === 0xff && h[1] === 0xd8 ? 'jpg' : h[0] === 0x52 && h[1] === 0x49 && h[8] === 0x57 ? 'webp' : h[0] === 0x67 && h[1] === 0x6c && h[2] === 0x54 && h[3] === 0x46 ? 'glb' : 'bin'; },
   async saveUrl(url, filename) {
     const r = await fetch(url); if (!r.ok) return { ok: false, why: 'http ' + r.status, file: filename };
