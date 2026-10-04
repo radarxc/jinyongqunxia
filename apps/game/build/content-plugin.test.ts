@@ -3,7 +3,37 @@ import { join } from 'node:path';
 import { InkJsDialogueBridge } from '@tianshu/core';
 import { compileInk } from '@tianshu/data/build';
 import { describe, expect, it } from 'vitest';
-import { gameContentPlugin } from './content-plugin';
+import { battleModelLazyChunk, configureBattleModelChunks, gameContentPlugin } from './content-plugin';
+
+describe('battle model chunk isolation', () => {
+  it('keeps runtime GLTF loading and skeleton cloning behind one lazy chunk', () => {
+    expect(battleModelLazyChunk('/repo/packages/render/src/battle/model-stage.ts'))
+      .toBe('battle-model3d');
+    expect(battleModelLazyChunk('/repo/packages/render/src/gltf/load.ts')).toBe('battle-model3d');
+    expect(battleModelLazyChunk('/repo/node_modules/three/examples/jsm/loaders/GLTFLoader.js'))
+      .toBe('battle-model3d');
+    expect(battleModelLazyChunk('/repo/node_modules/three/build/three.module.js')).toBeUndefined();
+  });
+
+  it('uses an explicit lazy group without recursively capturing Three dependencies', () => {
+    const fallback = (id: string) => id.includes('/three/') ? 'render' : undefined;
+    const output = { manualChunks: fallback };
+    const wrapped = configureBattleModelChunks(output) as unknown as {
+      manualChunks?: unknown; codeSplitting: { groups: Array<{
+        name: (id: string, context: { getModuleInfo: () => null }) => string | undefined;
+        includeDependenciesRecursively: boolean;
+      }> };
+    };
+    const group = wrapped.codeSplitting.groups[0]!;
+    const context = { getModuleInfo: () => null };
+    expect(wrapped.manualChunks).toBeUndefined();
+    expect(group.includeDependenciesRecursively).toBe(false);
+    expect(group.name('/repo/packages/render/src/battle/model-stage.ts', context))
+      .toBe('battle-model3d');
+    expect(group.name('/repo/node_modules/three/build/three.module.js', context))
+      .toBe('render');
+  });
+});
 
 describe('game content plugin town integration', () => {
   // This integration builds the full authored content; its timeout is not a performance assertion.

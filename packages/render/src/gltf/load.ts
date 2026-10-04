@@ -57,7 +57,7 @@ export function normalizePilotScene(scene: Group, heightM = 1.7): { sourceHeight
   return { sourceHeightM: size.y, scale };
 }
 
-export function preparePilotModel(gltf: GLTF): PilotModel {
+export function preparePilotModel(gltf: GLTF, heightM = 1.7): PilotModel {
   const scene = gltf.scene; const meshes: Mesh[] = [];
   let skinnedMeshes = 0;
   scene.traverse((node: Object3D) => {
@@ -65,7 +65,7 @@ export function preparePilotModel(gltf: GLTF): PilotModel {
     node.castShadow = true; node.receiveShadow = true;
   });
   if (meshes.length === 0) throw new Error('PILOT_GLTF_NO_MESH');
-  const normalized = normalizePilotScene(scene);
+  const normalized = normalizePilotScene(scene, heightM);
   const joints = new Set<Object3D>(); for (const mesh of meshes) if (mesh instanceof SkinnedMesh) for (const bone of mesh.skeleton.bones) joints.add(bone);
   const textures = collectTextures(meshes); const materials = createPilotMaterials(meshes);
   const materialSlots = meshes.reduce((sum, mesh) => sum + slotsFor(mesh), 0);
@@ -90,8 +90,8 @@ export function preparePilotModel(gltf: GLTF): PilotModel {
   };
 }
 
-export async function loadPilotModel(url: string): Promise<PilotModel> {
+export async function loadPilotModel(url: string, heightM = 1.7): Promise<PilotModel> {
   if (!url) throw new TypeError('PILOT_GLTF_URL');
   const loader = new GLTFLoader();
-  return preparePilotModel(await loader.loadAsync(url));
+  return preparePilotModel(await loader.loadAsync(url), heightM);
 }

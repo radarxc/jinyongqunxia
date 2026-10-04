@@ -10,6 +10,7 @@ const fake = vi.hoisted(() => ({
   context: { isContextLost: vi.fn(() => false) },
   forceContextLoss: vi.fn(),
   coreMeshDispose: vi.fn(),
+  modelStageDispose: vi.fn(),
 }));
 
 vi.mock('three', async (importOriginal) => {
@@ -70,12 +71,15 @@ vi.mock('../rig/batch', () => ({
   RigBatch: class {
     readonly coreMesh = { dispose: fake.coreMeshDispose };
     readonly stats = { characters: 0, activeInstances: 0 };
+    private readonly members = new Set<unknown>();
     addTo() {}
-    add() {
+    add(character: unknown) {
+      if (this.members.has(character)) return; this.members.add(character);
       this.stats.characters += 1;
       this.stats.activeInstances += 16;
     }
-    remove() {
+    remove(character: unknown) {
+      if (!this.members.delete(character)) return;
       this.stats.characters -= 1;
       this.stats.activeInstances -= 16;
     }
@@ -183,6 +187,38 @@ describe('battle camera', () => {
     renderer.dispose();
     expect(fake.coreMeshDispose).toHaveBeenCalledOnce();
     expect(fake.forceContextLoss).toHaveBeenCalledOnce();
+  });
+
+  it('keeps the 2D rig visible when lazy 3D loading fails', async () => {
+    const renderer = await createBattleRenderer(document.createElement('canvas'), cells, {
+      loadModelStage: async () => { throw new Error('offline'); },
+    });
+    renderer.updateUnits([{ ...marker, model: { key: 'fixture', kind: 'generic', gender: 'male',
+      heightM: 1.7, modelUrl: '/missing.glb' } }]);
+    renderer.render(100);
+    expect(renderer.stats).toMatchObject({ characters: 1, modelCharacters: 0, modelFailures: 0 });
+    renderer.dispose();
+  });
+
+  it('hides only successfully loaded models and disposes their lazy stage', async () => {
+    let changed: (() => void) | undefined;
+    const modeled = new Set<string>();
+    const renderer = await createBattleRenderer(document.createElement('canvas'), cells, {
+      loadModelStage: async () => ({ createBattleModelStage: (_scene, options) => {
+        changed = options?.changed;
+        return { stats: { characters: 0, drawCalls: 0, failures: 0, moving: 0 },
+          updateUnits: vi.fn(), update: vi.fn(), hasModel: (id: string) => modeled.has(id),
+          position: vi.fn(() => false), restore: vi.fn(), dispose: fake.modelStageDispose };
+      } }),
+    });
+    renderer.updateUnits([{ ...marker, model: { key: 'fixture', kind: 'generic', gender: 'male',
+      heightM: 1.7, modelUrl: '/fixture.glb' } }]);
+    await vi.waitFor(() => expect(changed).toBeTypeOf('function'));
+    renderer.render(100);
+    expect(renderer.stats.characters).toBe(1);
+    modeled.add(marker.id); changed!(); renderer.render(100);
+    expect(renderer.stats.characters).toBe(0);
+    renderer.dispose(); expect(fake.modelStageDispose).toHaveBeenCalledOnce();
   });
 
   it('retains incoming unit projections while lost and keeps the night tint on recovery', async () => {

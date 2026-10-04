@@ -14,6 +14,7 @@ import type { projectDialogue as ProjectDialogue } from '@tianshu/core/dialogue-
 import type { createBattleDemo as CreateBattleDemo } from '../battle/demo';
 import type { BattleRuntime as BattleRuntimeClass } from '../battle/runtime';
 import { projectBattleUnit } from '../battle/presentation';
+import { withBattleModels } from '../battle/model-selection';
 import { createPreviewSession } from './bootstrap';
 import { equipmentRules, type ChapterAssetLoader, type GameContent, type StaticGameContent,
   type TownLoader } from './content';
@@ -181,7 +182,13 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     subsystem?.dialogueProjection ?? loadDialogueProjection);
   async function prepareBattle(launch: BattleLaunch): Promise<BattleRuntimeInstance> {
     const BattleRuntime = await battleRuntime();
-    return new BattleRuntime(launch);
+    const protagonistId = state.profile.protagonist?.characterId;
+    const protagonistGender = state.profile.identity?.gender;
+    const projected = withBattleModels(launch, content, {
+      ...(protagonistId ? { protagonistId } : {}),
+      ...(protagonistGender ? { protagonistGender } : {}),
+    });
+    return new BattleRuntime(projected);
   }
   function recoveredLaunch(session: BattleSessionState, candidateContent = content): BattleLaunch {
     const authored = candidateContent.meditationEncounters?.find((row) =>

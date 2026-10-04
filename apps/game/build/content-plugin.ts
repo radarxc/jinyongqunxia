@@ -3,10 +3,11 @@ import { join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { buildContent, splitContentEntry } from '@tianshu/data/build';
 import { parseContentFile } from '@tianshu/data/tooling';
-import type { MartialArtDef, NpcDef, TownRuntimeDefinition } from '@tianshu/data/schemas';
+import type { CharacterTemplate, MartialArtDef, NpcDef, TownRuntimeDefinition } from '@tianshu/data/schemas';
 import { filesIn, publishVfxRuntime, readAssetManifest } from './asset-manifest';
 import { writeCopiedAssetManifest, type CopiedAssetReferenceMap } from './copied-assets';
 import { buildOfflineClosures } from './offline-closure';
+import { buildBattleModelCatalog, publishBattleModels, readBattleModelDirectories } from './battle-model-assets';
 
 const root = resolve(import.meta.dirname, '../../..');
 const virtualId = 'virtual:tianshu-content';
@@ -14,6 +15,7 @@ const chapterPrefix = 'virtual:tianshu-chapter/';
 const townIndexId = 'virtual:tianshu-towns';
 const townPrefix = 'virtual:tianshu-town/';
 let siteContentPromise: ReturnType<typeof buildContent> | undefined;
+let battleModelDirectories: ReturnType<typeof readBattleModelDirectories> | undefined;
 async function readDefinitions<T>(directory: string): Promise<T[]> {
   const paths = (await filesIn(join(root, directory))).filter((path) => path.endsWith('.yaml'));
   return Promise.all(paths.map(async (path) => parseContentFile({ path, text: await readFile(path, 'utf8') }).value as T));
@@ -44,6 +46,32 @@ const chaptersByToken = {
 const chapterIds = Object.values(chaptersByToken);
 const chapterIdFromToken = (token: string): string | undefined =>
   chaptersByToken[token as keyof typeof chaptersByToken];
+export function battleModelLazyChunk(id: string): string | undefined {
+  return id.includes('/packages/render/src/battle/model-stage.') ||
+    id.includes('/packages/render/src/gltf/load.') ||
+    id.includes('/packages/render/src/gltf/materials.') ||
+    id.includes('/three/examples/jsm/loaders/GLTFLoader.js') ||
+    id.includes('/three/examples/jsm/utils/SkeletonUtils.js') ||
+    id.includes('/three/examples/jsm/utils/BufferGeometryUtils.js')
+    ? 'battle-model3d' : undefined;
+}
+export function configureBattleModelChunks(outputOptions: {
+  manualChunks?: (id: string, context: { getModuleInfo: (id: string) => unknown }) =>
+    string | null | undefined;
+  codeSplitting?: unknown;
+}): typeof outputOptions {
+  const configured = outputOptions.manualChunks;
+  if (typeof configured !== 'function') return outputOptions;
+  // Rolldown's Rollup-compatible manualChunks recursively captures dependencies. That would
+  // pull Three core into this lazy group and make the ordinary render chunk import it eagerly.
+  delete outputOptions.manualChunks;
+  outputOptions.codeSplitting = { groups: [{
+    name: (id: string, context: { getModuleInfo: (id: string) => unknown }) =>
+      battleModelLazyChunk(id) ?? configured(id, { getModuleInfo: context.getModuleInfo }),
+    includeDependenciesRecursively: false,
+  }] };
+  return outputOptions;
+}
 function chapterForAsset(id: string, value: { portrait?: string; map?: string }): string | undefined {
   const path = value.portrait ?? value.map ?? '';
   const token = path.match(/(?:^|[/_])(ch(?:0[0-9]|1[0-4]))(?:[/_]|$)/u)?.[1] ??
@@ -77,6 +105,7 @@ export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugi
   let townsPromise: Promise<TownRuntimeDefinition[]> | undefined;
   let assetManifest: ReturnType<typeof readAssetManifest> | undefined;
   let assetGroups: Promise<ReturnType<typeof chapterAssetGroups>> | undefined;
+  let modelCatalogs: Promise<Record<string, ReturnType<typeof buildBattleModelCatalog>>> | undefined;
   let vfxRuntime: ReturnType<typeof publishVfxRuntime> | undefined;
   const towns = () => townsPromise ??= readTowns();
   const assets = async () => assetManifest ??= readAssetManifest(root,
@@ -85,12 +114,23 @@ export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugi
     assets(), readDefinitions<{ id: string; chapters: 'any' | readonly string[] }>('content/items'),
     readNpcs(),
   ]).then(([manifest, items, npcs]) => chapterAssetGroups(manifest, items, npcs));
+  const models = () => modelCatalogs ??= Promise.all([
+    battleModelDirectories ??= readBattleModelDirectories(root), readNpcs(),
+    readDefinitions<CharacterTemplate>('content/chapters/ch00_yuenv/roles/templates'),
+  ]).then(([directories, npcs, templates]) => Object.fromEntries(chapterIds.map(chapter =>
+    [chapter, buildBattleModelCatalog(directories, chapter, npcs.flatMap(npc =>
+      npc.appearances.map(appearance => ({ id: npc.id, chapterId: appearance.chapterId,
+        species: npc.identity.species, gender: npc.identity.gender,
+        combatEligible: appearance.combatEligible }))), templates)])));
   const vfx = () => vfxRuntime ??= publishVfxRuntime(root,
     options.copyAssets !== false, copied, assetReferences);
   const content = () => siteContentPromise ??= buildContent({ rootDir: root,
     outputDir: 'apps/game/public/content', cacheDir: '.cache/content-build/vite' });
   return {
     name: 'tianshu-ui-content',
+    outputOptions(outputOptions) {
+      return configureBattleModelChunks(outputOptions);
+    },
     resolveId(id) {
       if (id === virtualId || id.startsWith(chapterPrefix) ||
           id === townIndexId || id.startsWith(townPrefix)) return '\0' + id;
@@ -105,7 +145,10 @@ export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugi
         if (!chapterAssets) throw new Error(`CHAPTER_ASSET_VIRTUAL_UNKNOWN:${chapter}`);
         const mapText = chapter === 'shared' || chapter === '__shared__'
           ? {} : await readWorldMapText(chapter);
-        return 'export default ' + JSON.stringify({ assets: chapterAssets, mapText }) + ';';
+        const catalog = chapter === 'shared' || chapter === '__shared__'
+          ? undefined : (await models())[chapter];
+        return 'export default ' + JSON.stringify({ assets: chapterAssets, mapText,
+          ...(catalog ? { battleModels: catalog } : {}) }) + ';';
       }
       if (id === '\0' + townIndexId) {
         const definitions = await towns();
@@ -159,7 +202,8 @@ export async function loadTown(id){switch(id){${definitions.map((town) =>
       const built = await content();
       const failed = built.diagnostics.find((entry) => entry.severity === 'error');
       if (failed) throw new Error(`${failed.code}:${failed.message}`);
-      await Promise.all([groupedAssets(), vfx()]);
+      const [, , catalogs] = await Promise.all([groupedAssets(), vfx(), models()]);
+      await publishBattleModels(root, options.copyAssets !== false, catalogs, copied, assetReferences);
     },
     async closeBundle() {
       if (options.copyAssets !== false) {

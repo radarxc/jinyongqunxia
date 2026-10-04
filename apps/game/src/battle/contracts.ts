@@ -3,6 +3,12 @@ import type {
   HexPrimitiveShape, RngState, BattleResult, SideId, BattleRewards as CoreBattleRewards,
 } from '@tianshu/core';
 import type { BattleCell, BattleMarker } from '@tianshu/render/battle';
+export type BattleModelSource =
+  | { readonly kind: 'npc'; readonly npcId: string }
+  | { readonly kind: 'template'; readonly templateId: string }
+  | { readonly kind: 'protagonist' };
+export type BattleLaunchMarker = BattleMarker & { readonly name: string;
+  readonly appearance?: BattleModelSource; readonly portraitUrl?: string };
 
 export interface MovePresentation {
   readonly id: string; readonly name: string; readonly skillId: string; readonly skillName: string;
@@ -10,7 +16,7 @@ export interface MovePresentation {
 }
 export interface BattleLaunch {
   readonly setup: BattleSetup; readonly seeds: readonly BattleUnitSeed[];
-  readonly cells: readonly BattleCell[]; readonly markers: readonly (BattleMarker & { readonly name: string })[];
+  readonly cells: readonly BattleCell[]; readonly markers: readonly BattleLaunchMarker[];
   readonly moves: readonly MovePresentation[]; readonly title: string; readonly preview: boolean;
 }
 export interface BattleCapability { readonly enabled: boolean; readonly reason: string }
@@ -34,6 +40,7 @@ export interface BattleMoveView extends MovePresentation {
 }
 export interface BattleUnitView extends BattleMarker {
   readonly name: string; readonly side: SideId; readonly control: 'player' | 'ai';
+  readonly portraitUrl?: string;
   readonly hp: number; readonly hpMax: number; readonly mp: number; readonly mpMax: number;
   readonly ct: number; readonly spd: number; readonly state: string;
   readonly statuses: readonly { readonly id: string; readonly label: string; readonly detail: string }[];

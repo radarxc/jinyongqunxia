@@ -13,6 +13,7 @@ import { createPlaceholderRigManifest } from '../rig/placeholder';
 import type { Dir8 } from '../rig/types';
 import { HexLayer, hexWorld } from './hex-layer';
 import type { BattleCell, BattleMarker, BattleRenderer, BattleRendererOptions } from './types';
+import type { BattleModelStage } from './model-stage';
 
 export interface BattlePickCandidate {
   readonly instanceId: number;
@@ -67,6 +68,9 @@ export async function createBattleRenderer(
   const batch = new RigBatch(rigSet, 100);
   batch.addTo(scene);
   const characters = new Map<string, { character: RigInstance; marker: BattleMarker; dir: Dir8 }>();
+  let modelStage: BattleModelStage | undefined;
+  let latestUnits: readonly BattleMarker[] = [];
+  let modelStageLoading = false;
   const point = new Vector3();
   const mouse = new Vector2();
   const raycaster = new Raycaster();
@@ -125,6 +129,7 @@ export async function createBattleRenderer(
     onRestore: () => {
       terrain.restore();
       rigSet.texture.needsUpdate = true;
+      modelStage?.restore();
       tintPass.setTime(timeFrame);
     },
     requestFrame: () => {
@@ -141,7 +146,31 @@ export async function createBattleRenderer(
     cpuMs: 0,
     frameMs: 0,
     placeholders: rigSet.placeholderCount,
+    modelCharacters: 0,
+    modelDrawCalls: 0,
+    modelFailures: 0,
+    modelMoving: 0,
   };
+  function syncModelVisibility(): void {
+    for (const [id, entry] of characters) {
+      const shouldShow = entry.marker.active && !modelStage?.hasModel(id);
+      if (shouldShow) batch.add(entry.character);
+      else batch.remove(entry.character);
+    }
+  }
+  function ensureModelStage(units: readonly BattleMarker[]): void {
+    if (modelStage || modelStageLoading || !units.some(unit => unit.active && unit.model)) return;
+    modelStageLoading = true;
+    const load = options.loadModelStage ?? (() => import('./model-stage'));
+    void load().then(module => {
+      if (disposed) return;
+      modelStage = module.createBattleModelStage(scene, {
+        ...(options.requestFrame ? { requestFrame: options.requestFrame } : {}),
+        changed: syncModelVisibility,
+      });
+      modelStage.updateUnits(latestUnits);
+    }).catch(() => undefined).finally(() => { modelStageLoading = false; });
+  }
   const cameraControl = {
     get yawDeg() {
       return rotation.yawDeg;
@@ -175,6 +204,7 @@ export async function createBattleRenderer(
     get contextState() { return contextGuard.state; },
     updateUnits(units) {
       if (disposed) return;
+      latestUnits = units; ensureModelStage(units); modelStage?.updateUnits(units);
       quality.invalidateSamples?.(performance.now());
       for (const unit of units) {
         let entry = characters.get(unit.id);
@@ -183,7 +213,7 @@ export async function createBattleRenderer(
           const dir = hexDirToRig(unit.facing, rotation.yawDeg);
           entry = { character, marker: unit, dir };
           characters.set(unit.id, entry);
-          if (unit.active) batch.add(character);
+          if (unit.active && !modelStage?.hasModel(unit.id)) batch.add(character);
           hexWorld(unit.q, unit.r, unit.height, point);
           character.setPosition(point.x, point.y + 0.02, point.z);
           character.setMotion(dir, 0, weightClassForEquipment(unit.equipment));
@@ -192,7 +222,7 @@ export async function createBattleRenderer(
           const equipmentChanged = !equipmentEquals(previous.equipment, unit.equipment);
           if (equipmentChanged) void entry.character.setEquipment(unit.equipment);
           if (unit.active !== entry.marker.active) {
-            if (unit.active) batch.add(entry.character);
+            if (unit.active && !modelStage?.hasModel(unit.id)) batch.add(entry.character);
             else batch.remove(entry.character);
           }
           if (unit.q !== previous.q || unit.r !== previous.r || unit.height !== previous.height) {
@@ -206,6 +236,7 @@ export async function createBattleRenderer(
           entry.marker = unit;
         }
       }
+      syncModelVisibility();
     },
     setHighlights: (value) => terrain.setHighlights(value),
     render(timeMs, reducedMotion = false) {
@@ -227,6 +258,7 @@ export async function createBattleRenderer(
       const start = performance.now();
       for (const entry of characters.values())
         if (entry.marker.active) entry.character.update(reducedMotion ? 0 : dt);
+      modelStage?.update(dt, reducedMotion);
       batch.sync();
       renderer.info.reset();
       renderer.clear();
@@ -244,6 +276,10 @@ export async function createBattleRenderer(
       stats.drawCalls = renderer.info.render.calls;
       stats.characters = batch.stats.characters;
       stats.instances = batch.stats.activeInstances;
+      stats.modelCharacters = modelStage?.stats.characters ?? 0;
+      stats.modelDrawCalls = modelStage?.stats.drawCalls ?? 0;
+      stats.modelFailures = modelStage?.stats.failures ?? 0;
+      stats.modelMoving = modelStage?.stats.moving ?? 0;
     },
     resize(nextWidth, nextHeight, pixelRatio = 1) {
       if (disposed) return;
@@ -267,12 +303,20 @@ export async function createBattleRenderer(
       out.visible =
         point.z >= -1 && point.z <= 1 && Math.abs(point.x) <= 1 && Math.abs(point.y) <= 1;
     },
+    projectUnit(id, q, r, elevation, out) {
+      if (!modelStage?.position(id, point)) hexWorld(q, r, elevation, point);
+      point.project(camera);
+      out.x = ((point.x + 1) * width) / 2; out.y = ((1 - point.y) * height) / 2;
+      out.visible = point.z >= -1 && point.z <= 1 && Math.abs(point.x) <= 1 && Math.abs(point.y) <= 1;
+    },
     snapshot(id) {
       const entry = characters.get(id);
       const snapshot = entry?.character.snapshot();
       if (!entry || !snapshot) return undefined;
-      hexWorld(entry.marker.q, entry.marker.r, entry.marker.height, snapshotAnchor);
-      snapshotAnchor.y += 0.02;
+      if (!modelStage?.position(id, snapshotAnchor)) {
+        hexWorld(entry.marker.q, entry.marker.r, entry.marker.height, snapshotAnchor);
+        snapshotAnchor.y += 0.02;
+      }
       point.copy(snapshotAnchor).project(camera);
       const anchorX = ((point.x + 1) * width) / 2;
       const anchorY = ((1 - point.y) * height) / 2;
@@ -322,6 +366,7 @@ export async function createBattleRenderer(
       contextGuard.dispose();
       for (const entry of characters.values()) entry.character.dispose();
       characters.clear();
+      modelStage?.dispose(); modelStage = undefined; latestUnits = [];
       batch.coreMesh.dispose();
       batch.dispose();
       rigSet.dispose();
