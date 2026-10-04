@@ -310,6 +310,18 @@ def register_waiting(root: Path, tid: str, pool: str, since: float) -> None:
     (d / f"{tid}.json").write_text(json.dumps({"pid": os.getpid(), "since": since, "pool": pool}), encoding="utf-8")
 
 
+def live_cap(pool: str, fallback: int) -> int:
+    """排队时每轮重读池上限（环境变量优先，其次 tasks.json defaults.max_parallel），改上限对正在排队的 start 也立即生效。"""
+    env = os.environ.get(f"TIANSHU_MAX_PARALLEL_{pool.upper()}")
+    if env:
+        return int(env)
+    try:
+        caps = json.loads(R.TASKS_FILE.read_text(encoding="utf-8")).get("defaults", {}).get("max_parallel") or {}
+        return int(caps.get(pool, fallback))
+    except (OSError, ValueError, TypeError):
+        return fallback
+
+
 def unregister_waiting(root: Path, tid: str) -> None:
     f = root / WAITING_DIR / f"{tid}.json"
     try:
@@ -501,6 +513,7 @@ def cmd_start(a) -> int:
             with open(lockf, "w") as lf:
                 fcntl.flock(lf, fcntl.LOCK_EX)
                 busy = running_in_pool(root, pool, exclude=t.id)
+                cap = live_cap(pool, cap)
                 free = cap - len(busy)
                 prio = read_priority(root) if free > 0 else None
                 waiting = live_waiters(root, pool) if prio is not None else {}
