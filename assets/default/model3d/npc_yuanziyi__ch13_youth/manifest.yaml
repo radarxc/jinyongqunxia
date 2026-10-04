@@ -1,0 +1,76 @@
+- id: npc_yuanziyi__ch13_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 袁紫衣（飞狐外传 ch13 · 紫衣青年）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: e7ea308a-baf5-4534-9025-d16e37dcb201
+    url: https://studio.tripo3d.ai/workspace/generate/e7ea308a-baf5-4534-9025-d16e37dcb201
+    generate_op: 4eaee06d-84c2-4493-9bdb-e6d1327f9dc8（image_to_model）
+    rig_op: ebf3ac1b-49d2-4c3b-ba7a-28bb79148ac3
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch13/threeview/por_npc_yuanziyi__ch13_youth_ziyi_apose_slim.png
+    sha256: acc4be2bd257d45eb6be319b0c5392d1cb020841f3d65bc6170a3f92e027d71d
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 3d1ce6748a15d53649c0b22707982842f3c729e9feddbaf55eb73f7fc1efcca0
+  size_bytes: 5618192
+  joints: 65
+  triangles: 94282
+  vertices: 54717
+  animations: []
+  textures:
+  - image/jpeg 379149 B
+  - image/jpeg 1158092 B
+  - image/jpeg 646720 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T19:01:42-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，紫袍 + 白毛领 + 垂珠宽檐帽，头发深色。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 5c1b3a6e。
+- id: npc_yuanziyi__ch13_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 袁紫衣（飞狐外传 ch13 · 紫衣青年）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: e7ea308a-baf5-4534-9025-d16e37dcb201
+    url: https://studio.tripo3d.ai/workspace/generate/e7ea308a-baf5-4534-9025-d16e37dcb201
+    generate_op: 4eaee06d-84c2-4493-9bdb-e6d1327f9dc8（image_to_model）
+    rig_op: ebf3ac1b-49d2-4c3b-ba7a-28bb79148ac3
+  size: 369x594
+  sha256: 3eebd44cad52c8ee420b8efb72581dbae5d5c21e8f4ad46faab8f00d756b3bfb
+  size_bytes: 152808
+  created: '2026-10-03T19:01:42-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
