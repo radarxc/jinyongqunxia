@@ -200,7 +200,7 @@
   file: por_npc_xiaozhonghui__ch11_youth_scene_pine_cut_rope.png
   category: character/female
   style: default
-  subject: 萧中慧·松林断索（ch11_yuanyang）
+  subject: 萧中慧·松林断索之后（ch11_yuanyang）
   prompt: 'Use case: precise-object-edit
 
     这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
@@ -228,7 +228,7 @@
   size: 1024x1536
   sha256: 975868054f5d8a6bbff160c727867a29b85c0b3bebfcfe3dcd34c94b2873f536
   status: candidate
-  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：右短左长并明确松林割索之后取样；依据：- AR-82 返修依据：《鸳鸯刀》转载第四节：“右手短刀”“左手长刀”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50466.html；执行：萧中慧自己的普通双刀：本人右手短刀、左手长刀，刀刃长度显著不同；尚未取得鸳鸯刀，不标神兵。 / - AR-82 返修依据：《鸳鸯刀》转载第二节：“俯身右手一刀割断了绊马索”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50464.html；执行：若此图用于松林割索事件，改为骑马俯身挥右手短刀、切开横拉绊索；如保留割索后站立的概念取样，标签明确“割索之后”，用刀势与断索方向加强事件提示。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：右短左长并明确松林割索之后取样；依据：- AR-82 返修依据：《鸳鸯刀》转载第四节：“右手短刀”“左手长刀”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50466.html；执行：萧中慧自己的普通双刀：本人右手短刀、左手长刀，刀刃长度显著不同；尚未取得鸳鸯刀，不标神兵。 / - AR-82 返修依据：《鸳鸯刀》转载第二节：“俯身右手一刀割断了绊马索”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50464.html；执行：若此图用于松林割索事件，改为骑马俯身挥右手短刀、切开横拉绊索；如保留割索后站立的概念取样，标签明确“割索之后”，用刀势与断索方向加强事件提示。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）；AR-82 原著核对返修：场景标签明确为“松林断索之后”，沿用核对表允许的割索后站立取样'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_xiaozhonghui__ch11_youth_scene_pine_cut_rope.retry3.r1
   quality_retries: 0
