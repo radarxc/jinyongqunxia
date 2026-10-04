@@ -400,9 +400,9 @@
   source_path: .agents/coord/_lines/cg-retirement/after.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 1f23d0a6e0c6afd25d6a20085a4cb837cbedc5ed64969d70ce49b1389bd3c62c
+  sha256: 9829a947c1234664aae1a6ad05356dbfdef019a0601103f7779f0c02935fd524
   status: candidate
-  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「江湖归去」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：韦小宝窄长脸改成新基准的宽圆脸；局部合成——codex 整图编辑后只取韦小宝头部、羽化贴回原图，其余像素不变（原输出 codex_w17/out/cg_ch08_retirement_choice.s1.raw.png））；AR-75 韦小宝与七位夫人八人渡口登船远行重画；原著《鹿鼎记》第五十回结尾，扬州接母后隐姓埋名赴云南（渡口、时辰与站位为取景扩展，母亲与孩子在舱内）；AR-53 / AR-84 八人逐一对齐现行base，阿珂使用作者A版ff0e4020；只局部合成八人头部，其余像素变化0，题字与朱印原生正确；Executed-By: Codex gpt-6.1-sol（AR-75）'
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「江湖归去」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：韦小宝窄长脸改成新基准的宽圆脸；局部合成——codex 整图编辑后只取韦小宝头部、羽化贴回原图，其余像素不变（原输出 codex_w17/out/cg_ch08_retirement_choice.s1.raw.png））；AR-75 韦小宝与七位夫人八人渡口登船远行重画；原著《鹿鼎记》第五十回结尾，扬州接母后隐姓埋名赴云南（渡口、时辰与站位为取景扩展，母亲与孩子在舱内）；AR-53 / AR-84 八人逐一对齐现行base，阿珂使用作者A版ff0e4020；只局部合成八人头部，其余像素变化0，题字与朱印原生正确；Executed-By: Codex gpt-6.1-sol（AR-75）；题字帰→归；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   redo_reason: AR-75 作者要求韦小宝与七位夫人同框，场景、动作、状态、关系贴原著；AR-53 / AR-84现行base校脸
   generation_job: cg_ch08_retirement_choice.ar75_full1
   quality_retries: 0
@@ -499,3 +499,4 @@
     changed_outside_eight_heads: 0
     pixel_checks: .agents/coord/_lines/cg-retirement/pixel_checks.json
   title_verified: 已打开确认江／湖／归／去四字竖排毛笔与朱印正确；对脸后题字区域逐像素一致
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/retirement_fixed.png", "before_sha256": "1f23d0a6e0c6afd25d6a20085a4cb837cbedc5ed64969d70ce49b1389bd3c62c", "allowed_box": [1447, 125, 1505, 186], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/retirement_pixel_checks.json", "method": "旧版归字按明暗提取墨迹，错误字笔迹蒙版内补景，缩放归字贴回；其余三字及朱印原像素保留", "created": "2026-10-04T00:19:40-07:00"}
