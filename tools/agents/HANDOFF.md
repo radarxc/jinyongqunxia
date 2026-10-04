@@ -2147,3 +2147,6 @@
     - **大地图（AR-68）**：TOOL-map-terrain、CONTENT-map-poi、ART-map-inkkit 已登记（91b0ff6b）。ART-map-inkkit 小样 22 件已合入（6b93d92c），对照表已发作者，**待作者**定笔墨能否照此补齐、城镇与寺庙标记用小景还是简化符号。CONTENT-map-poi 审核中；map-terrain 排在 base-diet 之后；TOOL-map-compose 等前三项合入后再起。Gemini 数据交接 `gemini_qa/maps/HANDOFF_CODEX.md` 已写进两项说明。
     - **Tripo**：JS 驱动 `tools/model3d/tripo_web.js`（71587827）、ingest.py（899e2655）、SKILL.md（2791603c / f270845c）；6 套 manifest 时区更正（b71ab68e）。**待作者**在 Tripo 标签页地址栏处理「下载多个文件」：允许则直接用 JS 存盘，否则每次存盘前刷新页面；之后统一 38 套预览为白底封面。
     - **其他**：TOOL-assets-logs-cleanup 已登记（c92c81ed）。CITY 批说明加「过程文件不进 assets/」（540b6400）。supervise 审核 FAIL 后立即改状态（663b0a0c）。base-diet 闭包已降到 73.52，但 r1 FAIL（ch10 包读不出 NPC 与地图），返修排在 ops-dispatch 之后。
+  - **10-03 21:40 开发监督**：代码池上限 3 → 4。回调条件都满足：event-executor 已合入；占用不超；负载稳在 25 以下；18:48 之后近 3 小时没有执行器挂住。已先告知协调者。
+    - CONTENT-map-poi 合入（21:31，30 条：高 6 / 中 14 / 低 10）。TOOL-map-compose 说明补了按置信度区分画法（840bbfd0）。
+
