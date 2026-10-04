@@ -1357,48 +1357,30 @@
   category: character/female
   style: default
   subject: 黄衫女子（npc_huangshannvzi，ch04_yitian，youth；年代与阶段见提示词）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '图1是待编辑黄衫女子现有立绘，图2是刚按 AR-84 恢复的作者认可小龙女刘亦菲版 base，图3是图2脸部特写。只改图1面部：黄衫女子为杨过与小龙女的后人，要有图2清冷秀丽、古墓气质和家族相似（眉眼、鼻唇、骨相），但明确是另一个成年女子，不能把小龙女整张脸原样复制。神态清冷平静不笑，眼神沉静从容。保持图1头部位置、大小、朝向、发型发簪、长发、耳饰、淡黄衣服所有细节褶皱、双手和身体姿势、身材、背景、光照、构图完全不变。只改脸部身份与神态，融进现有手绘写实武侠插画，不照片贴脸，不大眼网红V脸，不塑料磨皮，无现代浓妆。输出单人完整纵向立绘1024×1536，无文字、水印、拼版、其他人。
 
-    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
-
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
-
-    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-
-    【人物】《倚天屠龙记》黄衫女子，古墓传人，丐帮与屠狮大会相关阶段；约二十五岁成年女性，清冷从容。本图为1336–1363；楔子约1262书界的选定阶段；全部使用成年骨相与成人身体比例。
-
-    【面容】清瘦长椭圆脸，修长平眉，细长杏眼，直鼻，清楚下颌和薄唇；保留皮肤细纹、自然不对称和真实年龄，不照搬基线人物的脸。
-
-    【衣饰】低饱和淡黄色右衽长衣、米白内领与深黄细腰带，长发半绾成人髻，素玉簪，软鞋。汉式交领为右衽，穿着者左襟压右襟；所有头发、头饰、双手与鞋底完整入画。
-
-    【阶段边界】不加女童、侍从或乐队；黄衣不是亮金仙女装。
-
-    【考据边界】身份与出场沿design/18 §13.6；以上具体五官、配色、衣料和静态姿势为原创扩展，精确原著外貌、服制和年龄仍待三联/广州修订版逐字核对。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。禁止未成年外观、裸露、舞台戏服、现代用品；背景不画具体建筑。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+    B：同样有家族相似与清冷秀丽，更有自身辨识度，采用略窄长沉静的眼裂、略平直眉形与轻微不同的唇峰，保持自然脸部宽度，不要尖下巴，不能回到原图泛化AI脸。'
   negative: 【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。禁止未成年外观、裸露、舞台戏服、现代用品；背景不画具体建筑。
   references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 仅画风、设色、光照与纸底，不继承人物身份；本任务指定同性别基线
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
-    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 仅画风、设色、光照与纸底，不继承人物身份；本任务指定同性别基线
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
-    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
-  tool: codex exec · image_gen（文字 + 两张同性别基线）
-  model: gpt-6-astra
-  effort: xhigh
+  - path: .agents/coord/_lines/final-4/variants/huangshannvzi_B.png
+    use: AR-87 作者选 B
+    sha256: 4dd1536d60608218c36835216bc6b44f01af3ac46ed4f4bc82bb523316368694
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    use: AR-84 恢复的刘亦菲版小龙女家族相似基准
+    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
+  tool: codex exec · image_gen（AR-84 final-4 B 作者选版；AR-87 原样入库，面部局部合成）
+  model: gpt-6.1-sol
+  effort: ultra
   tier: A
-  created: '2026-10-03T21:48:57.352400+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w22/out/por_npc_huangshannvzi__ch04_youth_gumu_base.r1.png
+  created: '2026-10-04T07:25:12.690496+00:00'
+  source_path: .agents/coord/_lines/final-4/variants/huangshannvzi_B.png
   source_size: 1024x1536
-  source_sha256: 171926e4fd99526e6ef224a819e8befaa1718a2032875d982a9b8c6f4eca0523
+  source_sha256: 4dd1536d60608218c36835216bc6b44f01af3ac46ed4f4bc82bb523316368694
   size: 1024x1536
-  sha256: 32df0d6e329133b2cd42da2218047fe1ccc2b63378b6df0acdf618def64ff9a6
+  sha256: 4dd1536d60608218c36835216bc6b44f01af3ac46ed4f4bc82bb523316368694
   status: candidate
-  notes: ART-cast-fill-c / worker 22；文字；batch05联系表通过：身份年龄及阶段、完整轮廓、手物可辨、无字、纸底与基线画风；细部和美术终审待作者；原图模式RGB，入库RGB重编码，未裁切或缩放；1024×1536不透明底，非2048×3072 RGBA正式母版。created取原图mtime UTC。提示词：assets/default/prompts/characters/ch04-yitian/npc_huangshannvzi.md；本次入选1张，重出次数见done与报告；美术补足为原创扩展，原著外貌仍待考。实际上传顺序：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  notes: AR-84 / AR-87 参考刘亦菲版小龙女家族相似，作者选 B；选定源作业 ar84_final4_huangshannvzi_B_r1；面部合成框外逐像素一致。
+  previous_revision:
+    png: .agents/coord/_lines/final-6/before/huangshannvzi.png
+    sha256: 32df0d6e329133b2cd42da2218047fe1ccc2b63378b6df0acdf618def64ff9a6
+    entry: .agents/coord/_lines/final-6/before/huangshannvzi.entry.yaml
