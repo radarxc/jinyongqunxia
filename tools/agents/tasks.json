@@ -36556,6 +36556,73 @@
   },
   {
    "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "content/chapters/ch00_yuenv/encounters/enc_00_zhulin.yaml"
+    ],
+    "shrink_exempt": [
+     "content/chapters/ch00_yuenv/encounters/_drafts/**"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-ch00-encounter-wiring",
+   "title": "游戏工程 · 序章三战接线（M1）：ch00 三场遭遇转生产；game 会话消费 world/battleRequested → 参战者解析 → buildEncounter 开战，打完回原场景；救场 / 提示 / 示范、连败计数（fl_00_zhulin_loss_streak3）、结果旗标；确定性流程测试",
+   "prompt": "ENG-ch00-encounter-wiring.md",
+   "deps": [
+    "CONTENT-ch00c-encounters",
+    "ENG-26-encounter-builder",
+    "ENG-ink-intents",
+    "ENG-npc-species-roleslot",
+    "ENG-16c-battle-session"
+   ],
+   "writes": [
+    "packages/core/src/**",
+    "packages/data/src/**",
+    "apps/game/src/**",
+    "content/chapters/ch00_yuenv/encounters/**",
+    "content/chapters/ch00_yuenv/quests/**"
+   ]
+  },
+  {
+   "phase": "PROD",
    "wave": 18,
    "kind": "draft",
    "review": false,
