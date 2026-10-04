@@ -1,6 +1,7 @@
 import type { JsonValue } from '@tianshu/shared';
 import type { CoreContent, CoreTransaction, RejectReason, StatePath } from './index';
 import type { PendingDomainEvent } from '../event';
+import { executeSourceEventDefs, isEventDefSourceEvent } from '../event/event-executor';
 import { createRng, RNG_STREAMS, type Rng, type RngState, type RngStreamName } from '../rng';
 import type { GameState } from '../state';
 import { invalidateAppendValidation } from '../state/immutable-json';
@@ -14,6 +15,7 @@ interface JournalEntry {
   readonly target: Record<PropertyKey, unknown>; readonly key: string | number;
   readonly existed: boolean; readonly oldValue: unknown;
 }
+type SourceEventDispatcher = (tx: CoreTransaction, event: PendingDomainEvent) => void;
 function mutable(value: unknown): Record<PropertyKey, unknown> {
   if (value === null || typeof value !== 'object') throw new TypeError('TRANSACTION_PATH');
   return value as Record<PropertyKey, unknown>;
@@ -32,8 +34,12 @@ export class MutableCoreTransaction implements CoreTransaction {
   readonly state: Readonly<GameState>; readonly #mutableState: GameState;
   readonly #journal: JournalEntry[] = []; readonly #seen = new WeakMap<object, Set<string | number>>();
   readonly #events: PendingDomainEvent[] = []; readonly #rng = new Map<RngStreamName, Rng>();
-  public constructor(state: GameState, readonly content: CoreContent) {
+  readonly #sourceEventDispatcher: SourceEventDispatcher;
+  #sourceEventDepth = 0;
+  public constructor(state: GameState, readonly content: CoreContent,
+    sourceEventDispatcher: SourceEventDispatcher = executeSourceEventDefs) {
     this.state = state; this.#mutableState = state;
+    this.#sourceEventDispatcher = sourceEventDispatcher;
   }
   set(path: StatePath, value: unknown): void {
     const { target, key } = resolveParent(this.#mutableState, path);
@@ -63,7 +69,12 @@ export class MutableCoreTransaction implements CoreTransaction {
     if (!local) { local = createRng(this.#mutableState.meta.rng[stream]); this.#rng.set(stream, local); }
     return local;
   }
-  emit(event: PendingDomainEvent): void { this.#events.push(event); }
+  emit(event: PendingDomainEvent): void {
+    this.#events.push(event);
+    if (this.#sourceEventDepth !== 0 || !isEventDefSourceEvent(event.t)) return;
+    this.#sourceEventDepth = 1;
+    try { this.#sourceEventDispatcher(this, event); } finally { this.#sourceEventDepth = 0; }
+  }
   abort(reason: RejectReason, at?: string): never { throw new CommandAbort(reason, at); }
   pendingEvents(): readonly PendingDomainEvent[] { return this.#events; }
   commitRng(): void {

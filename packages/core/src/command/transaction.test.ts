@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { createCore } from '../api';
 import type { CommandHandler } from '.';
 import { dispatchCommand } from './bus';
+import { MutableCoreTransaction } from './transaction';
 
 describe('core command transaction journal', () => {
   it('rolls back state, all RNG streams, version and event sequence after an internal failure', () => {
@@ -76,5 +77,16 @@ describe('core command transaction journal', () => {
     ] });
     expect(state.meta).toMatchObject({ stateVersion: 1, nextEventSeq: 3,
       nextRuntimeOrdinal: 2 });
+  });
+
+  it('limits a registered source-event dispatcher to depth one', () => {
+    const state = createCore(7).snapshot(); let calls = 0;
+    const transaction = new MutableCoreTransaction(state, {}, (current) => {
+      calls += 1; current.emit({ t: 'chapter/woke', payload: null });
+    });
+    transaction.emit({ t: 'chapter/woke', payload: null });
+    expect(calls).toBe(1);
+    expect(transaction.pendingEvents().map((event) => event.t))
+      .toEqual(['chapter/woke', 'chapter/woke']);
   });
 });
