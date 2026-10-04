@@ -11,12 +11,12 @@
   - 驱动、运维守护进程、城图调度都还在自己跑，这些不耗 Claude 额度。
 - **主干**：全绿。首次会话 94.9 KiB，目标 ≤ 92；render 179.42 KiB，门值 180，余量只剩 0.58 KiB。
 
-## 1. 等作者
-1. 霍青桐选 C / D / E，建议 D：`.agents/coord/_lines/huoqingtong-r2/CDE_huoqingtong.jpg`。
-2. 历史人物第二批 21 人：`.agents/coord/_lines/hist-batch2/overview_{1,2,3}.jpg`。
-   - 建议徐达、常遇春穿戎装：原著阶段他们还在义军，没封王。
-   - 批了再入库，并对齐他们的立绘和插图；ch00–ch04 原著返修里这几人的问题一并处理。
-3. 过目这些新交付：
+## 1. 等作者 / 进行中（AR-91，10-04 09:10）
+1. **已定，正在执行**：两个 GPT 会话 09:10 起跑，进度看各自收件箱，完成时会写「【完成】」。
+   - 霍青桐用 E：会话 `huoqingtong-final`，出图器 w31，收件箱 `.agents/coord/_inbox/huoqingtong-final.md`；
+   - 历史人物第二批 21 人原样入库并对齐：会话 `hist-ingest2`，出图器 w34，收件箱 `.agents/coord/_inbox/hist-ingest2.md`。
+2. **已定，不用 Next.js**：AR-21 作废，沿用 Vite + Vue。
+3. **待作者过目**：
    - 小镜湖 r5「遗憾的笑」；
    - 绿柳庄照剧照重画；
    - 江湖归去远景；
@@ -25,8 +25,6 @@
    - 四位女主；
    - 索菲娅身材；
    - 张无忌 F。
-4. AR-21 是否还要改用 Next.js：现架构是 Vite + Vue，DES-tech-nextjs 已取消。
-5. 衣物 565 件出图要用作者 Chrome 里的 Gemini，窗口得在前台。作者方便时开两个标签页，先出一组样图看。
 
 ## 2. 工程
 - **HOLD-RUNS**：`ENG-ch00-encounter-wiring`（M1），再起一轮返修，见 §5。
@@ -50,7 +48,7 @@
   - 按 `devsup_note_style.md` 的 7 条返修完了，停在 HOLD-REVIEWS，等协调者看 `assets/default/map/composed/sample/*_vs_approved*` 对照图，看过才进审核。
 - **城图**：202 / 1172，city_scheduler 自己在推；`CITY-layouts-ch01-b` 审核没过，正在返修。
 - **插图**：26 份提示词还没出图，清单在 `.agents/coord/_lines/title-audit/missing_plates.tsv`。
-- **衣物与护甲**（AR-77）：数据 8 批已合入，565 张图待 Gemini 出。换色件带 `edit_from`。
+- **衣物与护甲出图**（AR-77 / AR-91 记入 TODO）：数据 8 批已合入，565 件待 Gemini 出图。作者方便时，先开两个 Gemini 标签页（窗口要在前台），出一组样图给作者看，再批量出。同款先出底图，其他颜色上传底图只改主色（换色件带 `edit_from`），入口见 AGENTS.md §3。
 - **礼品**：还差 `it_yuanqinshufang`（七弦琴），要配参考照。
 - **人物立绘派生**：base 改过一大批，`portrait_stage_runner` 派生和素材审核页（artifact 7H7nYXyBSRJJSNFBwsDGjM）还没重跑。
 
