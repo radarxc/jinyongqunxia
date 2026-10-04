@@ -2529,3 +2529,6 @@
       - 起完整返修（devsup_note_style.md，以已审 `map/regions/rg_dali_cangshan.png` 为基准，出 `_vs_approved` 对照）；sparse_include 补 map/regions；
       - `--max-reviews 0`，跑完停在审核前，先把对照图给协调者看。
     - **ENG-battle-modules-lazy** 第二次合入冲突（× 18c content-registry）。Codex 短会话 bml-conflict-0655 中途发【请判断】，协调者选 A：保留已审的 EncounterDefSchema 直接导入，冲突只取并集。解完 `--from validate`。
+  - **10-04 07:00–07:20 开发监督**：
+    - **AR-77 衣物与护甲 8 批全部合入**（第 8 批 07:04）。新条目 565 件，`--landed 1–8` 全过，件数快照用例跟上终值。出图总索引重建（270cb522），565 件进待出图队列，交 Gemini。
+    - **TOOL-check-semaphore 合入**（07:12），守护进程已重启用上新代码。
