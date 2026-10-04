@@ -3,36 +3,37 @@
   category: character/male/tripo_ref
   style: default
   subject: 袁承志 窄轮廓空手 A 字姿势全身参考（与 por_npc_yuanchengzhi__ch07_youth_jinshe_base 同脸，束袖、窄下摆、去兵器道具）
-  prompt: '【任务】这是一张供 3D 建模自动绑骨使用的「窄轮廓」A 字姿势全身参考图。第 1 张参考图是本项目已定稿的袁承志立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同样的发式与头饰；衣服的颜色、面料、层次和衣缘纹样沿用第 1 张，但剪裁改成便于绑骨的窄轮廓。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
-    【服饰（窄轮廓）】上衣合体、交领右衽照第 1 张；袖子改成束袖：袖口在手腕处收紧或用护腕扎住，整条手臂轮廓清楚，袖子不下垂成大片、不外扩；腰带照第 1 张；长袍下摆收窄成直筒、宽度不超过肩宽、两侧开衩，长到膝下即可，露出裤腿和靴子；去掉披风、斗篷和外飘的布条；没有飘带、披帛、长拖尾或任何外飘的布条。整个人的外轮廓肩宽、脚窄，或上下差不多宽，绝不能是下摆外扩的三角形。手里拿的兵器、乐器、工具和其他器物一律不画（它们是单独的道具）。
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前。
+    本次是原图局部放大裁图，输出同样的正方形裁图；不要生成全身，不要扩大场景。
 
-    【头发】发髻、发辫与头饰照第 1 张；长发或辫子甩到背后，不搭在肩前，不盖住手臂。
+    只在人物自身左眉上方（画面右侧眉毛上方）皮肤加一处小而淡的已愈旧刀疤，几毫米尺度、清晰可见但不夸张，不是新鲜血口。现有双眉形、眉毛、眼睛、鼻、嘴、脸型和其余五官绝不改变。不改发丝、头饰、服装和其他内容。
 
-    【本人另外要求】去掉垂地的金蛇剑，双手空着；长衫下摆收窄。
+    【原著依据】《碧血剑》三《经年亲剑铗，长日对楸枰》：“小小疤痕”（https://xuges.com/WUXIA/jinyong/bxj/013.htm）
 
-    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
 
-    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
-  negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/character/male/ch07/por_npc_yuanchengzhi__ch07_youth_jinshe_base.png
-    sha256: c5c953ca8e0a2732fa880a3eecc7ad8a724ddf2b1547fa22b673eee0bb15685f
-    use: 底图：AR-56 定稿 base（上传 1536 长边 JPEG）
-  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_yuanchengzhi__ch07_youth_jinshe_base.jpg
-    sha256: 267839e7be1105df3501c26ff8865640dfc9e0ff8062fa6ae033fcbd9867e979
-    use: 同一 base 的脸部特写
-  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
-  model: gpt-6-astra
-  effort: ultra
-  created: 2026-10-03T17:50:54-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.a1.png
+  - path: assets/default/character/male/ch07/threeview/por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.png
+    sha256: d96bad5e8ef67bace5c1c7c18f61c438a6956bb24d693a9053010eafb5a4cbbc
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.d96bad5e.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-04T02:45:55-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_28_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: d96bad5e8ef67bace5c1c7c18f61c438a6956bb24d693a9053010eafb5a4cbbc
+  sha256: 1e5dc86565b9bb8d007d60f77159efe19f710260b408bd17cef71ade57636718
   status: candidate
-  notes: 绑骨用的窄轮廓空手 A 字参考（AR-56：作者 17:02 定基线后 Tripo 要求兵器道具全去掉、双臂离身约 30°、宽袖收窄）；依据 por_npc_yuanchengzhi__ch07_youth_jinshe_base（同脸同服色）
+  notes: 绑骨用的窄轮廓空手 A 字参考（AR-56：作者 17:02 定基线后 Tripo 要求兵器道具全去掉、双臂离身约 30°、宽袖收窄）；依据 por_npc_yuanchengzhi__ch07_youth_jinshe_base（同脸同服色）；AR-82 原著核对返修：袁承志自身左眉补小旧刀疤
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.d96bad5e.png
+    sha256: d96bad5e8ef67bace5c1c7c18f61c438a6956bb24d693a9053010eafb5a4cbbc
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.d96bad5e.entry.yaml
