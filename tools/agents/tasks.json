@@ -47606,6 +47606,56 @@
    "review": false,
    "web": false,
    "vars": {},
+   "agent_args": [],
+   "validate": {
+    "exists": [
+     "tools/agents/ops_dispatch.py",
+     "tools/agents/test_ops_dispatch.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools.agents.test_ops_dispatch",
+      "tools.agents.test_supervise_rebase",
+      "tools.agents.test_step_pool_priority",
+      "tools.agents.test_step_traex_args",
+      "tools.agents.test_run_sparse_baseline"
+     ],
+     [
+      "{python}",
+      "tools/agents/ops_dispatch.py",
+      "--once",
+      "--dry-run"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-ops-dispatch",
+   "title": "工具 · 运维自动化：supervise 返修前先挪基点重校验；ops_dispatch 守护进程按 OPS_RUNBOOK 处置可脚本化事件（判断不了写收件箱）；决策逻辑单测（AR-65）",
+   "prompt": "TOOL-ops-dispatch.md",
+   "deps": [],
+   "writes": [
+    "tools/agents/supervise.py",
+    "tools/agents/ops_dispatch.py",
+    "tools/agents/test_ops_dispatch.py",
+    "tools/agents/test_supervise_rebase.py",
+    "tools/agents/fixtures/ops/**",
+    "tools/agents/OPS_RUNBOOK.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
    "agent_args": [
     "-c",
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
