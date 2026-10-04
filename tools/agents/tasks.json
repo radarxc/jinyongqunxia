@@ -48221,6 +48221,72 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\",\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_asset_logs\"]"
+   ],
+   "validate": {
+    "exists": [],
+    "shrink_exempt": [
+     "assets/default/vfx/**",
+     "assets/default/map/kit/**"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/agents/check_assets.py",
+      "assets/default/map/kit",
+      "--min",
+      "20",
+      "--max",
+      "60",
+      "--min-side",
+      "512"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import sys,re; from pathlib import Path; fs=[str(p) for d in ('assets/default/vfx','assets/default/map/kit') for p in Path(d).rglob('*') if p.is_file()]; bad=[f for f in fs if re.search(r'(\\.py|\\.jsonl|\\.log)$|/checks/', f)]; print('left',len(bad),bad[:10]); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-assets-logs-cleanup",
+   "title": "工具 · 小修：执行器留在 assets/default 的过程文件挪出（特效目录生成脚本与检查日志、map/kit 过程文件；脚本挪 tools/，日志挪 .agents/；引用一并改，manifest 不动）",
+   "prompt": "TOOL-assets-logs-cleanup.md",
+   "deps": [],
+   "writes": [
+    "assets/default/vfx/**",
+    "assets/default/map/kit/**",
+    "tools/vfx/**",
+    "tools/map/kit/**",
+    "apps/game/build/**"
+   ],
+   "sparse_include": [
+    "assets/default/vfx",
+    "assets/default/map/kit"
+   ]
   }
  ]
 }
