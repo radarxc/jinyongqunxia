@@ -108,39 +108,42 @@
   category: scene
   style: default
   subject: 大胜关英雄大会（ch03_shendiao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是金轮法王的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中金轮法王的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
+  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
 
-    【要改成】（AR-53 配角对齐）照基线：光头、长方脸、颧骨高、眼窝深、鼻梁高；没有胡须（去掉八字髭和山羊须，嘴周与下巴是干净的皮肤）；皱纹适中，不要比基线更多更重。
+    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
 
-    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
+    【身份与年龄】以第1张新中年郭靖定稿为身份参考，保持原场景的中年郭靖年龄、短髭须和威严神情。
 
-    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
 
-    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
-  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
+    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+
+    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
+
+
+
+    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
   references:
-  - path: assets/default/character/male/ch03/por_npc_jinlunfawang__ch03_elder_base.png
-    sha256: 6905a0639bb012b0e7de96f7b83b248c610da3abdfebba1ee7b8759861157148
-    use: 对脸基线：作者审核通过的 por_npc_jinlunfawang__ch03_elder_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch03/por_npc_guojing__ch03_prime_base.png
+    sha256: bdf0c389f59047dbacc0a7d4512656bc887608865191e4132d301506b33e6cd4
+    use: AR-87 身份基线，青年B或B年长化定稿
   - path: assets/default/scene/ch03/cg_ch03_dashengguan_heroes.png
-    sha256: 7c0123739a34d62819219905c56497766ca169a7b2eba439c1d46a6ef9f74eae
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.7c012373.png
-  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
-    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+    sha256: 12fd3edfa4f8a0c1c8c716c3e1b37c2b828cd888f297694bfffc831d1829f78a
+    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/cg_ch03_dashengguan_heroes.12fd3edf.png
+  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
   model: gpt-6.1-sol
-  created: '2026-10-04T01:48:33.942164-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_35_52_r2.png
+  created: '2026-10-04T02:08:10-07:00'
+  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch03_dashengguan_heroes_v1_composite.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 12fd3edfa4f8a0c1c8c716c3e1b37c2b828cd888f297694bfffc831d1829f78a
+  sha256: 5165ad05cac1f9cb7af0d74a3f0378294bdddd13b3085131ac16f4c138ce85c8
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须是身份图定稿的刘亦菲本人脸：精确眉眼间距、眼形、鼻头、上唇弓及下颌；禁止复原待改图旧脸或变泛化漂亮脸。待改图原冷静目光、头向、远景人物尺度和光向照原，耳坠白衣发式不变。；质检：已实际打开base与返修前后：小龙女同人眉眼鼻唇颌骨明确采用恢复base，原冷静神态、头向视线及远景尺度保留，原光向自然无接缝；其余群雄杨过与题字逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须是身份图定稿的刘亦菲本人脸：精确眉眼间距、眼形、鼻头、上唇弓及下颌；禁止复原待改图旧脸或变泛化漂亮脸。待改图原冷静目光、头向、远景人物尺度和光向照原，耳坠白衣发式不变。；质检：已实际打开base与返修前后：小龙女同人眉眼鼻唇颌骨明确采用恢复base，原冷静神态、头向视线及远景尺度保留，原光向自然无接缝；其余群雄杨过与题字逐像素不变；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.7c012373.png
-    sha256: 7c0123739a34d62819219905c56497766ca169a7b2eba439c1d46a6ef9f74eae
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.7c012373.entry.yaml
+    png: .agents/coord/_lines/guojing-final/replaced/cg_ch03_dashengguan_heroes.12fd3edf.png
+    sha256: 12fd3edfa4f8a0c1c8c716c3e1b37c2b828cd888f297694bfffc831d1829f78a
+    entry: .agents/coord/_lines/guojing-final/replaced/cg_ch03_dashengguan_heroes.12fd3edf.entry.yaml
   runner_job_records:
   - - cg_ch03_dashengguan_heroes.resume3
     - ok
@@ -148,7 +151,7 @@
     - '134'
     - exec-4745b2d2-0619-44d4-b569-12eeaaa1aba3.png
   runner_success_count: 1
-  effort: ultra
+  effort: xhigh
   ar84_alignment:
     job: ar84_calign_35_52_r2
     before_sha256: 8f1ac58c72c354ecfefea666b989f254af3b7b7b9383dca59f512d3a0df11f26
