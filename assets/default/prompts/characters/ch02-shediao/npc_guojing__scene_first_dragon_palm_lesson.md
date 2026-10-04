@@ -101,3 +101,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_guojing__ch02_youth_scene_first_dragon_palm_lesson.prepared.json`。
+
+## 原著依据
+
+- 《射雕英雄传》第十二回 亢龙有悔：“右掌划了个圆圈”；https://www.xuges.com/wuxia/jinyong/sdyxz/085.htm
+- AR-82 返修约束（本节优先于历史提示词）：仅修改四肢的亢龙有悔动作：穿着者左腿微屈，穿着者右臂内弯，右掌划圆向外推出；必须是人物自己的右手而不是画面右边。把原画的左手前推调整为右手前推，保持本人头部原位置、大小、朝向、面容和神情，衣服、背景及脚下场地不变。
