@@ -299,81 +299,93 @@
   category: character/female
   style: default
   subject: 霍青桐·翠羽追经（ch12_shujian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的霍青桐立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中霍青桐的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: compositing
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的霍青桐二十岁上下，英气的回部少女首领（成年）：鹅蛋脸、颧骨略高但线条柔和、下颌利落；浓眉平直、眉峰清楚；一双细长有神的眼睛、眼神英气沉着；鼻梁挺直；嘴唇端正、嘴角平；皮肤紧致年轻、健康的浅麦色；没有法令纹、没有风霜皱纹，比原图年轻五到十岁。
+    【任务】AR-91 霍青桐 E 版身份对齐。这是图像编辑，只输出一张与图2完全相同取景的1024×1024面部局部PNG，不重新创作整幅画。
 
-    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。【神态】翠羽黄衫追回经书：英气果决，目光锐利。
+    【输入】图1是作者已选定并入库的霍青桐 E 版脸部，唯一身份基准；图2是待改原图的头部方形裁块，是实际编辑目标。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【只改脸】把图2霍青桐的面部五官、骨相轮廓与肤色改为图1同一人：秀窄年轻的椭圆脸、柔润下巴；清亮杏眼略大、略拱英气眉线；秀直挺拔鼻梁与柔秀鼻尖；自然含蓄唇峰和柔润下唇；十八九岁的白皙回部女侠，适度西域立体轮廓。参考关咏荷神韵已经化在 E 版，不再用照片。去掉法令纹与老化痕迹，身份与 E 一致但保持图2的现场光色。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+    【保留神态】原图正面，神情沉着警觉、眉眼略有戒备、双唇闭合，保留原来的严肃与视线，不加笑容。
+
+    【保持】图2头的位置、大小、倾斜、朝向和透视绝对不变。保持头发、发际、帽子、翠羽、耳饰、辫子、颈部、衣领、衣物、背景及露出的所有其他人和物。不要重画上述部分。脸与头不能整体缩放。原图的光源方向、自然色温和阴影强度不变，保持原图柔和手绘笔触，面部边缘融入周围。
+
+    【画风】写实手绘古风插画，薄层淡彩、自然柔和线条；不要照片式打光与毛孔，不要塑料磨皮、3D或动漫，不要网红模板脸。
+
+    【不要】无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。'
+  negative: 无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。
   references:
   - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
-    sha256: 2488b4c4ea0ba3345583c22385ad55d2d68c642145c4310b859e43bac00e8b8b
-    use: 对脸基线：作者 AR-56 定下的 por_npc_huoqingtong__ch12_youth_early_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+    sha256: 93f02e773f8dfb82139215b87166b855b3611100ee611af18664ecfe7ca3bcbb
+    use: 对脸基线：作者审核通过的 por_npc_huoqingtong__ch12_youth_early_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.png
-    sha256: e91e0534258c90092c09029f8522299dd25a57fb2d7ab9324b40435f80eba0d0
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.e91e0534.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:41:42-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.e1.png
+    sha256: dcb236a1abd8049a48f196ed0d5a21d143dd21081a4eb508430b78cbf307b3af
+    use: 待对齐原图；保留原神态与一切非面部像素；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.dcb236a1.png
+  tool: codex exec · image_gen（AR-91 E 定脸；头部裁块编辑 + 原位置面部蒙版局部合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T09:22:19-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.ar91e_face1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: dcb236a1abd8049a48f196ed0d5a21d143dd21081a4eb508430b78cbf307b3af
+  sha256: 993c0dd0b2071a7528fb0879a48a5e0515865c6dd2dba2962acfd52d5b8aca2b
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_huoqingtong__ch12_youth_early_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_huoqingtong__ch12_youth_early_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-86 / AR-91 参考关咏荷，作者选 E；AR-53 / AR-84 仅合成霍青桐面部，保留原神态，其他人物、服饰、场景与题字逐像素不变
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.e91e0534.png
-    sha256: e91e0534258c90092c09029f8522299dd25a57fb2d7ab9324b40435f80eba0d0
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.e91e0534.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.dcb236a1.png
+    sha256: dcb236a1abd8049a48f196ed0d5a21d143dd21081a4eb508430b78cbf307b3af
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.dcb236a1.entry.yaml
 - id: por_npc_huoqingtong__ch12_youth_scene_blackwater_command
   file: por_npc_huoqingtong__ch12_youth_scene_blackwater_command.png
   category: character/female
   style: default
   subject: 霍青桐·黑水军略（ch12_shujian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的霍青桐立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中霍青桐的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: compositing
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的霍青桐二十岁上下，英气的回部少女首领（成年）：鹅蛋脸、颧骨略高但线条柔和、下颌利落；浓眉平直、眉峰清楚；一双细长有神的眼睛、眼神英气沉着；鼻梁挺直；嘴唇端正、嘴角平；皮肤紧致年轻、健康的浅麦色；没有法令纹、没有风霜皱纹，比原图年轻五到十岁。
+    【任务】AR-91 霍青桐 E 版身份对齐。这是图像编辑，只输出一张与图2完全相同取景的1024×1024面部局部PNG，不重新创作整幅画。
 
-    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。【神态】黑水河畔调兵：沉着冷静、胸有成竹，嘴角带一点自信。
+    【输入】图1是作者已选定并入库的霍青桐 E 版脸部，唯一身份基准；图2是待改原图的头部方形裁块，是实际编辑目标。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【只改脸】把图2霍青桐的面部五官、骨相轮廓与肤色改为图1同一人：秀窄年轻的椭圆脸、柔润下巴；清亮杏眼略大、略拱英气眉线；秀直挺拔鼻梁与柔秀鼻尖；自然含蓄唇峰和柔润下唇；十八九岁的白皙回部女侠，适度西域立体轮廓。参考关咏荷神韵已经化在 E 版，不再用照片。去掉法令纹与老化痕迹，身份与 E 一致但保持图2的现场光色。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+    【保留神态】原图正面，沉着坚定而谨慎的指挥者，眉眼有英气、目光清醒，双唇闭合，不加笑容。
+
+    【保持】图2头的位置、大小、倾斜、朝向和透视绝对不变。保持头发、发际、帽子、翠羽、耳饰、辫子、颈部、衣领、衣物、背景及露出的所有其他人和物。不要重画上述部分。脸与头不能整体缩放。原图的光源方向、自然色温和阴影强度不变，保持原图柔和手绘笔触，面部边缘融入周围。
+
+    【画风】写实手绘古风插画，薄层淡彩、自然柔和线条；不要照片式打光与毛孔，不要塑料磨皮、3D或动漫，不要网红模板脸。
+
+    【不要】无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。'
+  negative: 无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。
   references:
   - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
-    sha256: 2488b4c4ea0ba3345583c22385ad55d2d68c642145c4310b859e43bac00e8b8b
-    use: 对脸基线：作者 AR-56 定下的 por_npc_huoqingtong__ch12_youth_early_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+    sha256: 93f02e773f8dfb82139215b87166b855b3611100ee611af18664ecfe7ca3bcbb
+    use: 对脸基线：作者审核通过的 por_npc_huoqingtong__ch12_youth_early_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.png
-    sha256: cef3fc06a944ae84acc4713af73be0c775cf2f16d95ba636ba422fce8e63a174
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.cef3fc06.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:42:40-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.e1.png
+    sha256: baa4a338f8606fb85471763f3ad917a2bee9b8eb3f539959d5173460389a6304
+    use: 待对齐原图；保留原神态与一切非面部像素；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.baa4a338.png
+  tool: codex exec · image_gen（AR-91 E 定脸；头部裁块编辑 + 原位置面部蒙版局部合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T09:22:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.ar91e_face1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: baa4a338f8606fb85471763f3ad917a2bee9b8eb3f539959d5173460389a6304
+  sha256: b407d5a7534ee4c10cc5b109e57be974da37d557e8550072c5408a0b6ee88290
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_huoqingtong__ch12_youth_early_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_huoqingtong__ch12_youth_early_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-86 / AR-91 参考关咏荷，作者选 E；AR-53 / AR-84 仅合成霍青桐面部，保留原神态，其他人物、服饰、场景与题字逐像素不变
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_huoqingtong__ch12_youth_scene_blackwater_command.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.cef3fc06.png
-    sha256: cef3fc06a944ae84acc4713af73be0c775cf2f16d95ba636ba422fce8e63a174
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.cef3fc06.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.baa4a338.png
+    sha256: baa4a338f8606fb85471763f3ad917a2bee9b8eb3f539959d5173460389a6304
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.baa4a338.entry.yaml
 - id: por_npc_kasili__ch12_youth_scene_oasis_first_meeting
   file: por_npc_kasili__ch12_youth_scene_oasis_first_meeting.png
   category: character/female

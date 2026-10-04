@@ -95,47 +95,47 @@
   category: scene
   style: default
   subject: 黑水奇谋（ch12_shujian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是霍青桐的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中霍青桐的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: compositing
 
-    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+    【任务】AR-91 霍青桐 E 版身份对齐。这是图像编辑，只输出一张与图2完全相同取景的1024×1024面部局部PNG，不重新创作整幅画。
 
-    【要对齐的部分】霍青桐的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：指挥破阵，英气果决、目光锐利；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【输入】图1是作者已选定并入库的霍青桐 E 版脸部，唯一身份基准；图2是待改原图的头部方形裁块，是实际编辑目标。
 
-    【霍青桐的基线脸】基线里的霍青桐二十岁上下，英气的回部少女首领（成年）：鹅蛋脸、颧骨略高但线条柔和、下颌利落；浓眉平直、眉峰清楚；一双细长有神的眼睛、眼神英气沉着；鼻梁挺直；嘴唇端正、嘴角平；皮肤紧致年轻、健康的浅麦色；没有法令纹、没有风霜皱纹，比原图年轻五到十岁。
+    【只改脸】把图2霍青桐的面部五官、骨相轮廓与肤色改为图1同一人：秀窄年轻的椭圆脸、柔润下巴；清亮杏眼略大、略拱英气眉线；秀直挺拔鼻梁与柔秀鼻尖；自然含蓄唇峰和柔润下唇；十八九岁的白皙回部女侠，适度西域立体轮廓。参考关咏荷神韵已经化在 E 版，不再用照片。去掉法令纹与老化痕迹，身份与 E 一致但保持图2的现场光色。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「黑水奇谋」和小朱印必须原样保留，一笔不改、不增不减。
+    【保留神态】原图侧转约四分之三、朝画面右方注视战局：严肃凝神、英气沉着、有决断，眉眼略收紧、双唇闭合。严格保留原有侧转角度、朝右的视线、眉眼张力和指挥战斗时的严肃神态，不照抄基线正面神态，不添加微笑，不改为正面脸。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【保持】图2头的位置、大小、倾斜、朝向和透视绝对不变。保持头发、发际、帽子、翠羽、耳饰、辫子、颈部、衣领、衣物、背景及露出的所有其他人和物。不要重画上述部分。脸与头不能整体缩放。原图的光源方向、自然色温和阴影强度不变，保持原图柔和手绘笔触，面部边缘融入周围。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【画风】写实手绘古风插画，薄层淡彩、自然柔和线条；不要照片式打光与毛孔，不要塑料磨皮、3D或动漫，不要网红模板脸。
 
-    【本张另外要求】画面中只有霍青桐一个主要人物（戴翠羽帽、穿黄衫、伸手指向远方）；远处的骑兵很小，不改。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。'
+  negative: 无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。
   references:
   - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
-    sha256: 2488b4c4ea0ba3345583c22385ad55d2d68c642145c4310b859e43bac00e8b8b
-    use: 对脸基线：作者 AR-56 定下的 por_npc_huoqingtong__ch12_youth_early_base（霍青桐），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+    sha256: 93f02e773f8dfb82139215b87166b855b3611100ee611af18664ecfe7ca3bcbb
+    use: 对脸基线：作者审核通过的 por_npc_huoqingtong__ch12_youth_early_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch12/cg_ch12_qingtong_breaks_formation.png
-    sha256: b4af397cb6e2196aa3a5d6a9f055b150e0660020fd0c3b13d32e1dd319bc6ead
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch12_qingtong_breaks_formation.b4af397c.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:54:35-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch12_qingtong_breaks_formation.s1.png
+    sha256: 3e21b379f93928c1f833aab273e8d37998bc59119251ef53cac3a23c42369c02
+    use: 待对齐原图；保留原神态与一切非面部像素；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch12_qingtong_breaks_formation.3e21b379.png
+  tool: codex exec · image_gen（AR-91 E 定脸；头部裁块编辑 + 原位置面部蒙版局部合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T09:22:21-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/cg_ch12_qingtong_breaks_formation.ar91e_face1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 3e21b379f93928c1f833aab273e8d37998bc59119251ef53cac3a23c42369c02
+  sha256: a620d1f17c1a3499909b574a68d32ba9c2545e298cea216549a221cd61649ed8
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「黑水奇谋」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_huoqingtong__ch12_youth_early_base（编辑结果只取霍青桐头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「黑水奇谋」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_huoqingtong__ch12_youth_early_base（编辑结果只取霍青桐头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-86 / AR-91 参考关咏荷，作者选 E；AR-53 / AR-84 仅合成霍青桐面部，保留原神态，其他人物、服饰、场景与题字逐像素不变
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch12_qingtong_breaks_formation.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch12_qingtong_breaks_formation.b4af397c.png
-    sha256: b4af397cb6e2196aa3a5d6a9f055b150e0660020fd0c3b13d32e1dd319bc6ead
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch12_qingtong_breaks_formation.b4af397c.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch12_qingtong_breaks_formation.3e21b379.png
+    sha256: 3e21b379f93928c1f833aab273e8d37998bc59119251ef53cac3a23c42369c02
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch12_qingtong_breaks_formation.3e21b379.entry.yaml
 - id: cg_ch12_kasili_enters_palace
   file: cg_ch12_kasili_enters_palace.png
   category: scene
