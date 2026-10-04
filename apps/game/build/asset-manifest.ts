@@ -13,7 +13,7 @@ export async function filesIn(directory: string): Promise<string[]> {
 
 /** Manifest availability is included in the DTO, avoiding known-missing image requests. */
 async function copyTownAssets(root: string, source: string, copy: boolean,
-  towns: readonly TownRuntimeDefinition[], copied?: Set<string>): Promise<void> {
+  towns: readonly TownRuntimeDefinition[]): Promise<void> {
   if (!copy) return;
   const files = new Set<string>();
   for (const town of towns) for (const atlas of [town.assets.tile, town.assets.building]) {
@@ -26,12 +26,11 @@ async function copyTownAssets(root: string, source: string, copy: boolean,
     await access(absolute);
     const output = join(root, 'apps/game/public/assets/default', relative(source, absolute));
     await mkdir(dirname(output), { recursive: true }); await copyFile(absolute, output);
-    copied?.add('assets/default/' + relative(source, absolute));
   }
 }
 
 export async function readAssetManifest(root: string, copy: boolean,
-  towns: readonly TownRuntimeDefinition[] = [], copied?: Set<string>): Promise<NonNullable<GameContent['assets']>> {
+  towns: readonly TownRuntimeDefinition[] = []): Promise<NonNullable<GameContent['assets']>> {
   const source = join(root, 'assets/default');
   const result: Record<string, { icon?: string; portrait?: string; map?: string }> = {};
   const consumed = ['/item/', '/character/', '/portrait/', '/baseline/map/'];
@@ -56,11 +55,10 @@ export async function readAssetManifest(root: string, copy: boolean,
         if (!copy) continue;
         const output = join(root, 'apps/game/public', assetPath);
         await mkdir(dirname(output), { recursive: true }); await copyFile(absolute, output);
-        copied?.add(assetPath);
       }
     }
   }
-  await copyTownAssets(root, source, copy, towns, copied);
+  await copyTownAssets(root, source, copy, towns);
   return result;
 }
 
@@ -71,7 +69,7 @@ interface VfxRuntimeDocument {
 }
 
 /** Copy only exporter-approved VFX runtime files; source YAML and demo HTML stay outside public. */
-export async function publishVfxRuntime(root: string, copy: boolean, copied?: Set<string>): Promise<number> {
+export async function publishVfxRuntime(root: string, copy: boolean): Promise<number> {
   const manifestPath = join(root, 'content/vfx/runtime-files.json');
   const document = JSON.parse(await readFile(manifestPath, 'utf8')) as VfxRuntimeDocument;
   const value = document.actions[0]?.payload;
@@ -89,7 +87,6 @@ export async function publishVfxRuntime(root: string, copy: boolean, copied?: Se
     if (!copy) continue;
     const output = join(root, 'apps/game/public', relativePath);
     await mkdir(dirname(output), { recursive: true }); await copyFile(source, output);
-    copied?.add(relativePath);
   }
   return count;
 }

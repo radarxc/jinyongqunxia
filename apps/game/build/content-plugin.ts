@@ -6,8 +6,6 @@ import { parseContentFile } from '@tianshu/data/tooling';
 import { mapFromRegistration, type MartialArtDef,
   type NpcDef, type TownRuntimeDefinition } from '@tianshu/data/schemas';
 import { filesIn, publishVfxRuntime, readAssetManifest } from './asset-manifest';
-import { writeCopiedAssetManifest } from './copied-assets';
-import { buildOfflineClosures } from './offline-closure';
 
 const root = resolve(import.meta.dirname, '../../..');
 const virtualId = 'virtual:tianshu-content';
@@ -26,14 +24,13 @@ async function readTowns(): Promise<TownRuntimeDefinition[]> {
 
 /** Build-time YAML and documentation projection: neither parser enters the browser. */
 export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugin {
-  const copied = new Set<string>();
   let townsPromise: Promise<TownRuntimeDefinition[]> | undefined;
   let assetManifest: ReturnType<typeof readAssetManifest> | undefined;
   let vfxRuntime: ReturnType<typeof publishVfxRuntime> | undefined;
   const towns = () => townsPromise ??= readTowns();
   const assets = async () => assetManifest ??= readAssetManifest(root,
-    options.copyAssets !== false, await towns(), copied);
-  const vfx = () => vfxRuntime ??= publishVfxRuntime(root, options.copyAssets !== false, copied);
+    options.copyAssets !== false, await towns());
+  const vfx = () => vfxRuntime ??= publishVfxRuntime(root, options.copyAssets !== false);
   const content = () => siteContentPromise ??= buildContent({ rootDir: root,
     outputDir: 'apps/game/public/content', cacheDir: '.cache/content-build/vite' });
   return {
@@ -101,13 +98,6 @@ export async function loadTown(id){switch(id){${definitions.map((town) =>
       const failed = built.diagnostics.find((entry) => entry.severity === 'error');
       if (failed) throw new Error(`${failed.code}:${failed.message}`);
       await Promise.all([assets(), vfx()]);
-    },
-    async closeBundle() {
-      if (options.copyAssets !== false) {
-        await writeCopiedAssetManifest(root, [...copied]);
-        await buildOfflineClosures({ publicDir: resolve(root, 'apps/game/public'),
-          outDir: resolve(root, 'apps/game/dist'), warn: message => console.warn(message) });
-      }
     },
   };
 }

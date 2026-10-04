@@ -26,8 +26,6 @@
     "vite": "catalog:",
     "vite-plugin-pwa": "catalog:",
     "workbox-build": "catalog:",
-    "workbox-precaching": "catalog:",
-    "workbox-routing": "catalog:",
     "workbox-window": "catalog:"
   }
 }

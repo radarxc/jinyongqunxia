@@ -5,9 +5,7 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./host": "./src/host/index.ts",
-    "./offline": "./src/offline/index.ts",
-    "./pwa": "./src/pwa/index.ts"
+    "./host": "./src/host/index.ts"
   },
   "scripts": {
     "test": "vitest run src",
