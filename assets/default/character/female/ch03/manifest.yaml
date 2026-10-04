@@ -3,45 +3,65 @@
   category: character/female
   style: default
   subject: 完颜萍 npc_wanyanping ch03_shendiao · 成年青年金国遗民，复仇刺耶律家未遂、开始面对旧仇的早期阶段
-  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（完颜萍的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改完颜萍的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+  prompt: '【任务】对第1张完颜萍完整立绘进行一次真正的整脸重画，输出1024×1536、2:3竖幅完整单人立绘。只重新画整个脸部身份、五官结构与神态，其他造型照第1张。前3轮微调未去掉AI脸，这次不要沿用第1张的模板五官，不是稍微改嘴角。
 
-    【人物】完颜萍：金国贵族之后，约二十岁，娇柔温婉，身负家仇而略带哀愁。
+    【身份参考】第2张是1995年TVB《神雕侠侣》何洁珊饰完颜萍的上半张剧照，第3张是同一张剧照的脸部裁图。这两张定义新脸的身份：Use the woman in reference images 2 and 3 as the facial identity. Redraw her entire face in the existing hand-painted illustration style. Preserve the reference identity, not the original portrait''s influencer face. 眉眼关系、眼型、眼距、鼻型、唇形、颊部和下颌都应明显采用剧照这个人的结构；允许五官位置与骨相相较原立绘有明显改变。不照搬模糊像素、电视色偏、浓妆或照片光线，不复制剧照刘海，头发仍按第1张。
 
-    【新神态（按年龄与性格定，不要千篇一律的平静脸）】温柔的浅笑：目光柔和，嘴角一丝浅笑，眼底带一点哀愁。
+    【神态】成年人，不露齿的自然浅笑：唇轻合，嘴角有细小、左右不完全对称的弧度，眼神有温柔笑意，颊部随笑意自然牵动。人脸有活人感和细微不完美，没有网红模板和塑料皮肤，不要尖V下巴、过大杏眼、过窄鼻头、强行对称、粉白磨皮和丰唇。脸的气质清秀朴素，有她这个人的辨识度。
 
-    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+    【保持】第1张的完整全身构图、头部方向和大小、发式、头饰、灰白米色右衽服装、棕色腰带与系带、刀及刀鞘、持刀手势、身体姿势、左右方向、脚与鞋、背景山水纸底、留白与整体写实手绘画风。脸部换完要和原有颈部色温、光照、画笔自然接合。严格仅单人。
 
-    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+    【画风】细腻写实手绘古风人物插画；自然细纹、轻微不对称与有层次的肤色，柔和真实皮肤，保留适度笔触。不是照片、不是3D、不是偶像海报精修。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【不要】不要只是改笑容而保留原AI五官、不要露齿、夸张笑、尖V脸、磨皮塑料皮肤、镜像、改衣饰发型姿势或背景，不要增加第二人；不要剧照上的文字、TVB标识、字幕或水印，成图无任何字。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+    【A版取舍】尽量贴剧照的真实五官身份，明确摆脱现版的脸型与眉眼模板；浅笑清楚但轻，不露齿，左右嘴角高度略不相等。优先让熟悉这版的人看脸认出完颜萍。
+
+
+    【后续发际线校正】
+
+    【任务】输出1024×1536、2:3完整单人立绘。这是一次局部发际线校正。第1张是完颜萍A候选：整张脸已经按何洁珊剧照重画，保留这张的新五官和不露齿浅笑；这张唯一不合格的是把剧照的细刘海带过来了。第2张是原有完颜萍全身立绘，第3张是原图头部放大：只用2、3定义必须恢复的发式，不用它们的旧网红五官。
+
+    【只改发际与刘海】删除第1张额头上的所有新增短刘海和碎刘海，恢复第2、3张的中分、露额额头和原有清楚发际线，眉毛以上没有任何垂落短发。刘海不能遮额头、不能遮眉。发顶盘髻、灰褐发饰、两侧长发、脸侧原有两缕长碎发，严格按第2、3张原发式。额头皮肤顺着第1张新脸的自然光照重画接合，不贴白块。
+
+    【严格保留】第1张的新脸身份与骨相：眼型、眉形、眼距、鼻型、颊部、唇形、自然不对称且不露齿的浅笑都完全保持，不改回第2张旧AI脸。发式修正以外的头部方向、脸大小、耳朵、脖颈、衣服、腰带、刀与刀鞘、持刀手、姿势、全身构图、脚鞋、纸底山水与笔触全部保持第1张，不作重新设计。保留手绘自然皮肤，不磨皮。
+
+    【不要】不要刘海、额头短发、遮额、厚齐刘海、空气刘海；不要改新脸、不要露齿、不要镜像、改衣饰姿势或背景、第二人、任何文字水印。
+
+
+    【饰物同原版】原版耳部没有新增的垂坠耳环，不能增添耳坠；发式和发饰均以原版为准。'
+  negative: 不要露齿、张嘴大笑、AI模板脸、照片贴脸；不要新增刘海、耳坠、文字水印；发式服饰构图姿势照旧。
   references:
   - path: assets/default/character/female/ch03/por_npc_wanyanping__ch03_youth_base.png
-    sha256: ec615931836aa3d12560fb1e5040b2668277dade4b1a144c7f4c9bee2f1f6c05
-    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_wanyanping__ch03_youth_base.ec615931.png
-  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
-  model: gpt-6-astra
-  effort: ultra
-  created: 2026-10-03T20:15:31-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/por_npc_wanyanping__ch03_youth_base.x1.png
+    sha256: be8ed46ec2afd8206b6f3dabf8f84c936605997314653ca0fbeeb74b7d0eff54
+    use: 原立绘，保留服饰、发式、姿势、构图；旧图备份见previous_revision
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261002/ch03/wanyanping_tvb1995_hejieshan_sohu.jpg
+    sha256: bf7ceff4630a579723898cb543cf1a45c314dd6bf2dce26fcf11d120ca66af80
+    use: 1995 TVB《神雕侠侣》何洁珊饰完颜萍，整脸身份依据
+  - path: .agents/coord/_lines/fix-batch-1/wanyanping_A.png
+    sha256: 8b0ef82ceaba21027a64888de4189d67ade3e793f59fff024d8eaa126db52792
+    use: 作者AR-81选A，使用原候选完整PNG
+  tool: codex exec · image_gen（AR-69 整脸重画 + 发际线校正；AR-81作者选A原图入库）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-03T23:34:57-0700
+  source_path: .agents/coord/_lines/fix-batch-1/wanyanping_A.png
   size: 1024x1536
   mode: RGB
-  sha256: be8ed46ec2afd8206b6f3dabf8f84c936605997314653ca0fbeeb74b7d0eff54
+  sha256: 8b0ef82ceaba21027a64888de4189d67ade3e793f59fff024d8eaa126db52792
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_wanyanping__ch03_youth_base.ec615931.png
-    sha256: ec615931836aa3d12560fb1e5040b2668277dade4b1a144c7f4c9bee2f1f6c05
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_wanyanping__ch03_youth_base.ec615931.entry.yaml
+    png: .agents/coord/_lines/final-3/replaced/por_npc_wanyanping__ch03_youth_base.png
+    sha256: be8ed46ec2afd8206b6f3dabf8f84c936605997314653ca0fbeeb74b7d0eff54
+    entry: .agents/coord/_lines/final-3/replaced/por_npc_wanyanping__ch03_youth_base.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_wanyanping__ch03_youth_base.requests.json
   notes: '实际查看唯一候选1：完颜萍为清瘦青年女子、素色行旅衣装、黑发后束、本人左腰一把完整入鞘短兵器，左手扶鞘右手垂下，正面头直双手双足可见，无明显多肢或重大结构问题，宽松自查可用。偏差：五官美化且较通用、颧骨与警惕悲意较弱；窄袖被画成宽袖、裙层较多，刀鞘金属饰件偏繁，后足部分被裙掩；短兵刃藏鞘不能从成品证实单刃。背景淡亭阁花枝多于要求。不因细节追加，不冒称1995演员本人或严格脸型通过。原生1024×1536不透明PNG原始字节保存，candidate待审核。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，11 号出图员）：温柔略带哀愁的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，11 号出图员）：温柔略带哀愁的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变；AR-69 / AR-81 整脸重画，参考 1995 TVB 何洁珊，作者选 A'
   source_size: 1024x1536
 - id: por_npc_yelvyan__ch03_youth_base
   file: por_npc_yelvyan__ch03_youth_base.png
