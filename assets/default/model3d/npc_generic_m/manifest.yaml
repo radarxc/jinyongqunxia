@@ -1,0 +1,160 @@
+- id: npc_generic_m__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 通用江湖男子（AR-85：无专属 3D 模型的人物在战斗中使用）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 2195529e-5123-45c2-90eb-a36eba1a6e89
+    url: https://studio.tripo3d.ai/workspace/generate/2195529e-5123-45c2-90eb-a36eba1a6e89
+    generate_op: a9b8f664-9d20-40fc-81fc-c32a49a9b2c5（image_to_model）
+    rig_op: f261129c-07d1-43bc-bbeb-83965fce30ad
+    animation_ops:
+      idle: d64d2ef0-a311-4947-87c8-fd1a012ce032
+      walk: 3390d23f-4ea8-4871-8cff-e71b51907ab6
+      run: 9a0a82f2-af24-461e-abee-b5773f0ccf41
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（AR-85 通用男 A 字图原图，未拉长）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/generic/threeview/por_npc_generic_m_apose.png
+    sha256: 10ca7b5768fba35c95c224e081d5e0de064d618eb19c694b538641f7c65d2fa5
+    use: 单图生成输入：AR-85 通用江湖男子 A 字图原图（6e571182，未拉长）
+  sha256: 29a0513471da9551585609e4aa6882f0f6f7d2a21fa3eef96814d686de4950c3
+  size_bytes: 5769308
+  joints: 65
+  triangles: 94932
+  vertices: 51808
+  animations: []
+  textures:
+  - image/jpeg 416963 B
+  - image/jpeg 1518712 B
+  - image/jpeg 546632 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-04T00:50:11-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。通用战斗人物（男）。输入是 AR-85 通用男 A 字图原图：协调者要求先拉长输入图的消息到达前已提交生成，所以没拉长。成品头身比 7.66（头顶骨到下巴，不含发髻；含发髻 6.72），2D 原图是 7.99 / 7.03，Tripo 把头放大约 4–5%；离 8 头身目标差 4%，在 5% 以内，所以没重出。肩宽 / 身高 0.203，髋高 / 身高 0.514。看图验收：正、背、侧都完整，没有破洞和色块；瞳色偏浅（灰蓝），是
+    Tripo 五官西化的通病。自动绑骨一次成功；关节体检（ingest.py）：髋 y0.522、头 y0.863、头顶骨端 y0.972、双手 y0.576/0.578 外展 0.285/0.282、脚 y0.063/0.063。
+- id: npc_generic_m__anim_idle_walk_run
+  file: anim_idle_walk_run.glb
+  category: model3d
+  style: default
+  subject: 通用江湖男子（AR-85：无专属 3D 模型的人物在战斗中使用）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 2195529e-5123-45c2-90eb-a36eba1a6e89
+    url: https://studio.tripo3d.ai/workspace/generate/2195529e-5123-45c2-90eb-a36eba1a6e89
+    generate_op: a9b8f664-9d20-40fc-81fc-c32a49a9b2c5（image_to_model）
+    rig_op: f261129c-07d1-43bc-bbeb-83965fce30ad
+    animation_ops:
+      idle: d64d2ef0-a311-4947-87c8-fd1a012ce032
+      walk: 3390d23f-4ea8-4871-8cff-e71b51907ab6
+      run: 9a0a82f2-af24-461e-abee-b5773f0ccf41
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（AR-85 通用男 A 字图原图，未拉长）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - walk
+      - run
+      - idle
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/male/generic/threeview/por_npc_generic_m_apose.png
+    sha256: 10ca7b5768fba35c95c224e081d5e0de064d618eb19c694b538641f7c65d2fa5
+    use: 单图生成输入：AR-85 通用江湖男子 A 字图原图（6e571182，未拉长）
+  sha256: 180fff913db8f570a9566d9cff266a0c2e8bf0472d2677528c16af369798ae40
+  size_bytes: 6248128
+  joints: 65
+  triangles: 94932
+  vertices: 51808
+  animations:
+  - walk (2.333s)
+  - run (1.25s)
+  - idle (15.333s)
+  textures:
+  - image/jpeg 416963 B
+  - image/jpeg 1518712 B
+  - image/jpeg 546632 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-04T00:50:11-07:00'
+  status: candidate
+  notes: 动作单文件：一个 GLB 内含 walk / run / idle，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。 导出后用 tools/model3d/fix_anim_offset.py 修过一处：Tripo 的跑步片段即使「原地」也整段偏离原点（Hips 水平偏移 x/z -0.030 / +0.533，约半个身高），切换动作会跳位，已平移回原点，只改
+    Hips 平移通道的水平分量。零点数离线渲染体检（idle / walk / run 各 6 个相位，正面 + 侧面）：没看到穿模；着地时脚骨最低 y 0.051（绑定姿势 0.06），鞋底约下沉 1 cm（模型单位）；待机着地时脚几乎不动（平均 0.03），中段有一次抬脚换重心；走、跑是原地动作，支撑脚后移速度分别约 0.61 / 2.07 模型单位/秒（模型高约 0.98），引擎按这个速度（乘以身高缩放）移动角色才不会脚滑。
+- id: npc_generic_m__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 通用江湖男子（AR-85：无专属 3D 模型的人物在战斗中使用） · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 2195529e-5123-45c2-90eb-a36eba1a6e89
+    url: https://studio.tripo3d.ai/workspace/generate/2195529e-5123-45c2-90eb-a36eba1a6e89
+    generate_op: a9b8f664-9d20-40fc-81fc-c32a49a9b2c5（image_to_model）
+    rig_op: f261129c-07d1-43bc-bbeb-83965fce30ad
+    animation_ops:
+      idle: d64d2ef0-a311-4947-87c8-fd1a012ce032
+      walk: 3390d23f-4ea8-4871-8cff-e71b51907ab6
+      run: 9a0a82f2-af24-461e-abee-b5773f0ccf41
+  size: 600x778
+  sha256: b019897a87b90d6f05fff53658071d643bfc37c3ecba4904c14c32d5b129fe15
+  size_bytes: 156028
+  created: '2026-10-04T00:50:11-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。
