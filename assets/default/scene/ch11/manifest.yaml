@@ -3,137 +3,140 @@
   category: scene
   style: default
   subject: 笔墨退敌（ch11_yuanyang）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是萧中慧的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中萧中慧的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: precise-object-edit
 
-    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样画幅比例构图、同样人物位置尺度的一张完整编辑图，画布 1536×1024 原图比例。必须在原画上修改，不要重画成另一幅画。
 
-    【要对齐的部分】萧中慧的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【只改】只改目标局部：袁冠南腰侧翡翠小狮子去掉腰挂布绳，移到颈下胸前，以细金链挂颈，狮子大小不变；不要腰颈重复挂两只。萧中慧背后髻上的旧珍珠金钗去掉，换素簪；她坐着衣服和手脸不改。她在画面中央石旁的两把普通刀须一短一长，把画面左边地上那把刀刃缩短到原来约一半，画面右边地上的长刀完全不动。所有人物脸、双手、身体姿势、衣服、伤腿状态、笔墨与卓天雄、背景、题字笔墨退敌和印逐像素不变。
 
-    【萧中慧的基线脸】基线里的萧中慧二十岁上下，爽朗大方：脸型较宽、颧骨宽而柔和、下颌圆润，不是窄 V 形脸、下巴不尖；眉毛自然平直；一双明亮的杏眼、双眼皮、眼神温和带笑；鼻子较宽、鼻头圆润（不是细窄的小鼻子）；嘴唇饱满，带温和的笑；两颊和鼻梁上有淡淡的雀斑；健康自然的肤色；成年女子的五官，不要少女化。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「笔墨退敌」和小朱印必须原样保留，一笔不改、不增不减。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_31_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
 
-    【本张另外要求】萧中慧是画面中间枣树下坐着的年轻女子（从左数第 2 个人，脸较小）；左边挥笔的书生袁冠南、右边持棍的大汉，脸一律不改。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_departure_base.png
-    sha256: f777496232730ab8e985beb91b684ec466e026d56264d1a237e169e2606ec664
-    use: 对脸基线：作者 AR-56 定下的 por_npc_xiaozhonghui__ch11_youth_departure_base（萧中慧），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch11/cg_ch11_jujube_rescue.png
-    sha256: 82157c228fc65c2f26de157a47e118aba687be806674c5c058febc52f25eeed4
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_jujube_rescue.82157c22.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:47:39-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch11_jujube_rescue.s1.png
+    sha256: e05ee1edd17b0d5ddfef1bc6fcecd1adb717b46b8c98bb5d72f5c061519b21bc
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch11_jujube_rescue.e05ee1ed.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:33:43-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_31_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: e05ee1edd17b0d5ddfef1bc6fcecd1adb717b46b8c98bb5d72f5c061519b21bc
+  sha256: 7a7e1eb9afc5fb6c95732d77ac3a798560ee1fff7dc96e330da65846ee5525eb
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「笔墨退敌」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取萧中慧头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「笔墨退敌」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取萧中慧头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：笔墨退敌同步翡翠狮子金链挂颈、去珠钗、地上普通刀一短一长；依据：；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch11_jujube_rescue.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_jujube_rescue.82157c22.png
-    sha256: 82157c228fc65c2f26de157a47e118aba687be806674c5c058febc52f25eeed4
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_jujube_rescue.82157c22.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch11_jujube_rescue.e05ee1ed.png
+    sha256: e05ee1edd17b0d5ddfef1bc6fcecd1adb717b46b8c98bb5d72f5c061519b21bc
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch11_jujube_rescue.e05ee1ed.entry.yaml
 - id: cg_ch11_together_repulse_zhuo
   file: cg_ch11_together_repulse_zhuo.png
   category: scene
   style: default
   subject: 双刀同心（ch11_yuanyang）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是萧中慧的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中萧中慧的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: precise-object-edit
 
-    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样画幅比例构图、同样人物位置尺度的一张完整编辑图，画布 1536×1024 原图比例。必须在原画上修改，不要重画成另一幅画。
 
-    【要对齐的部分】萧中慧的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：并肩迎敌，神情果断专注；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【只改】只把画面中央萧中慧原灰白上衣与两袖改成蓝衫：上衣主体和左右袖为与当前深蓝披片协调的柔和中蓝布色，保留月白领缘和腰带、褐裙、灰裤、原短刀刀势。她的素簪已正确，完全保留。她的脸、头发、手与身体姿势，袁冠南、卓天雄、两个背景人物全部逐像素不变；题字双刀同心和红印逐像素不变。
 
-    【萧中慧的基线脸】基线里的萧中慧二十岁上下，爽朗大方：脸型较宽、颧骨宽而柔和、下颌圆润，不是窄 V 形脸、下巴不尖；眉毛自然平直；一双明亮的杏眼、双眼皮、眼神温和带笑；鼻子较宽、鼻头圆润（不是细窄的小鼻子）；嘴唇饱满，带温和的笑；两颊和鼻梁上有淡淡的雀斑；健康自然的肤色；成年女子的五官，不要少女化。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「双刀同心」和小朱印必须原样保留，一笔不改、不增不减。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_32_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
 
-    【本张另外要求】萧中慧是画面中间偏左持刀、头顶束发髻的年轻女子（从左数第 2 个人）；她左边挥刀的男子袁冠南、右边背对的持链大汉，以及背景里的人，脸一律不改。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_departure_base.png
-    sha256: f777496232730ab8e985beb91b684ec466e026d56264d1a237e169e2606ec664
-    use: 对脸基线：作者 AR-56 定下的 por_npc_xiaozhonghui__ch11_youth_departure_base（萧中慧），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch11/cg_ch11_together_repulse_zhuo.png
-    sha256: f24b915208e133da8c8af20dfe2976810b5c2c052a47bc42627377634ff3048e
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_together_repulse_zhuo.f24b9152.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:48:58-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch11_together_repulse_zhuo.s1.png
+    sha256: 0d4f17cb7c6462cba94d0803f022dca06d32c12a759e74fd2320e7006b3f0bf8
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch11_together_repulse_zhuo.0d4f17cb.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:33:43-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_32_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 0d4f17cb7c6462cba94d0803f022dca06d32c12a759e74fd2320e7006b3f0bf8
+  sha256: f35a621235d0e838e20ea48ffe730a3e4cf38a6070b13ea67f3b27560ac7d066
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「双刀同心」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取萧中慧头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「双刀同心」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取萧中慧头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：双刀同心萧中慧灰白上衣及双袖同步蓝衫；依据：；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch11_together_repulse_zhuo.retry3.r2
   quality_retries: 1
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_together_repulse_zhuo.f24b9152.png
-    sha256: f24b915208e133da8c8af20dfe2976810b5c2c052a47bc42627377634ff3048e
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_together_repulse_zhuo.f24b9152.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch11_together_repulse_zhuo.0d4f17cb.png
+    sha256: 0d4f17cb7c6462cba94d0803f022dca06d32c12a759e74fd2320e7006b3f0bf8
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch11_together_repulse_zhuo.0d4f17cb.entry.yaml
 - id: cg_ch11_benevolence_inscription
   file: cg_ch11_benevolence_inscription.png
   category: scene
   style: default
   subject: 仁者无敌（ch11_yuanyang）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是萧中慧的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中萧中慧的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: precise-object-edit
 
-    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样画幅比例构图、同样人物位置尺度的一张完整编辑图，画布 1536×1024 原图比例。必须在原画上修改，不要重画成另一幅画。
 
-    【要对齐的部分】萧中慧的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：托腮沉思，神情温和、嘴角带一点笑意；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【只改】只改两位目标人物的这些局部：袁冠南胸前现翡翠小狮子保持大小，以一条细金链挂颈，去掉腰侧另一只重复的狮子和布绳；不能留两只狮子。萧中慧灰白上衣与两袖变为明确蓝衫，原深蓝披片不变，去掉发髻右上金钗和珍珠（已经赠出），换普通素簪固定原发髻。其他三个人、所有人的脸和手、三把刀、题字仁者无敌、红印、背景逐像素不变，姿势构图毫不改动。
 
-    【萧中慧的基线脸】基线里的萧中慧二十岁上下，爽朗大方：脸型较宽、颧骨宽而柔和、下颌圆润，不是窄 V 形脸、下巴不尖；眉毛自然平直；一双明亮的杏眼、双眼皮、眼神温和带笑；鼻子较宽、鼻头圆润（不是细窄的小鼻子）；嘴唇饱满，带温和的笑；两颊和鼻梁上有淡淡的雀斑；健康自然的肤色；成年女子的五官，不要少女化。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「仁者无敌」和小朱印必须原样保留，一笔不改、不增不减。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_30_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
 
-    【本张另外要求】萧中慧是画面最右边一手托腮、穿深灰蓝外衣的年轻女子（从左数第 5 个人）；她左边抱臂托腮的男子袁冠南、持刀的中年妇人和后面山洞边的几个人，脸一律不改。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_departure_base.png
-    sha256: f777496232730ab8e985beb91b684ec466e026d56264d1a237e169e2606ec664
-    use: 对脸基线：作者 AR-56 定下的 por_npc_xiaozhonghui__ch11_youth_departure_base（萧中慧），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch11/cg_ch11_benevolence_inscription.png
-    sha256: 1f71532a113a26ad966690d7b9b70f0a700c241fc3eca099597a4be85b2d0643
-    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_benevolence_inscription.1f71532a.png
-  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T18:46:21-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch11_benevolence_inscription.s1.png
+    sha256: c25f28d97554ae64da1e79767696a559cdcb12d2a22c29db314fa018175fbe7d
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch11_benevolence_inscription.c25f28d9.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:33:43-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_30_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: c25f28d97554ae64da1e79767696a559cdcb12d2a22c29db314fa018175fbe7d
+  sha256: 623642528c39633ead12af93de84ce4b9558d534a0c20fd7d3a7c32401c7784b
   status: candidate
-  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；画面原生繁体题字「仁者無敵」逐字放大正确，规范题名保留简体「仁者无敌」；未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取萧中慧头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；题字無敵→无敌；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；画面原生繁体题字「仁者無敵」逐字放大正确，规范题名保留简体「仁者无敌」；未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取萧中慧头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；题字無敵→无敌；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）；AR-82 原著核对返修：仁者无敌同步金链挂狮、去重复腰佩、蓝衫及已赠珠钗；依据：；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch11_benevolence_inscription.retry3.r2
   quality_retries: 1
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_benevolence_inscription.1f71532a.png
-    sha256: 1f71532a113a26ad966690d7b9b70f0a700c241fc3eca099597a4be85b2d0643
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_benevolence_inscription.1f71532a.entry.yaml
-  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch11_benevolence_inscription_fixed.png", "before_sha256": "60799518254bda5f8e571b1363aeb8c719072e9ebb76b9177df9ef61d1650f01", "allowed_box": [[1410, 141, 1520, 202], [1410, 203, 1520, 262]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch11_benevolence_inscription_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T01:07:41-07:00"}
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch11_benevolence_inscription.c25f28d9.png
+    sha256: c25f28d97554ae64da1e79767696a559cdcb12d2a22c29db314fa018175fbe7d
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch11_benevolence_inscription.c25f28d9.entry.yaml
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/cg_ch11_benevolence_inscription_fixed.png
+    before_sha256: 60799518254bda5f8e571b1363aeb8c719072e9ebb76b9177df9ef61d1650f01
+    allowed_box:
+    - - 1410
+      - 141
+      - 1520
+      - 202
+    - - 1410
+      - 203
+      - 1520
+      - 262
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/cg_ch11_benevolence_inscription_pixel_checks.json
+    method: w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留
+    created: '2026-10-04T01:07:41-07:00'
