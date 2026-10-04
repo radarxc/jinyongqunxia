@@ -2416,3 +2416,10 @@
       - 挪基点后带说明重起。
     - **登记 TOOL-ops-dispatch-dedupe**（0eb4ea41）：守护进程同一 HOLD 反复报，事件键含 HEAD 与 updated 时间戳；已起跑。
     - TOOL-assets-logs-cleanup 合入（01:21）。TOOL-rig-parts-f 合入（e04d5c58）。TOOL-ingest-cropframe 状态更正为 MERGED。
+  - **10-04 01:48–02:00 开发监督**：
+    - **CONTENT-ch00b-maps 合入**（6fb2b3fd，01:48，再审 PASS）→ CONTENT-ch00c-encounters 起跑（驱动 94081，文档池）。
+    - **ENG-storage-perf-split 合入**（f94676ae）；prod_check 全绿。
+    - **首次会话 96.02 KiB**（ink-intents 合入后 +4.96，过 95 报警线）。
+      - 来源：Worker 的 event-executor 块 4.38 → 20.96 kB，对话意图执行并进了首屏共用执行器。
+      - 登记并起跑 **ENG-dialogue-runtime-lazy**（79ad43ab）：拆执行器，对话意图专用部分随对话子系统懒加载，验收会话 < 92；名单上与 ENG-battle-modules-lazy 并列，排在 M1 之后，两件都已起。
+    - **CONTENT-apparel-data 第 1 批**：r1 只在报告上 FAIL，按协调者裁定只补报告重起；2–8 批说明补了报告要求（b7ad472e）。
