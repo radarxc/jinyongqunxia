@@ -243,6 +243,7 @@ def running_in_pool(root: Path, pool: str, exclude: str | None = None) -> list:
 # 名单内的按名单顺序，名单外的排在名单之后、按开始等的时间先来先得。登记的 pid 已死就当作没在等（顺手清掉）。
 PRIORITY_FILE = Path(".agents") / "coord" / "pool_priority.txt"
 WAITING_DIR = Path(".agents") / "slots" / "waiting"
+SETTLE_SEC = 15  # 有名单时，登记满 15 秒才拿空位：同一批起的任务先都登记上，再按名单比先后
 
 
 def parse_priority(text: str) -> list:
@@ -467,6 +468,10 @@ def cmd_start(a) -> int:
     for f in (exitf, lastf):
         if f.exists():
             f.unlink()
+    # 池位优先级：探测模型之前就登记「在等」，同一批起的任务都先登记好再比先后，免得探测快的低优先任务先抢到空位
+    # （进程异常退出时登记随 pid 失效，别的 start 判定时会顺手清掉）
+    since = time.time()
+    register_waiting(root, t.id, pool_of(t.id), since)
     model = a.model or os.environ.get("TRAEX_MODEL") or g.defaults.get("model") or DEFAULT_MODEL
     effort = a.effort if a.effort is not None else (os.environ.get("TRAEX_EFFORT") or g.defaults.get("effort") or DEFAULT_EFFORT)
     binary = find_bin(a.bin, g.defaults)
@@ -491,8 +496,6 @@ def cmd_start(a) -> int:
     deadline = time.time() + a.slot_wait_min * 60
     announced = False
     deferred_to = None
-    since = time.time()
-    register_waiting(root, t.id, pool, since)
     try:
         while True:
             with open(lockf, "w") as lf:
@@ -501,7 +504,8 @@ def cmd_start(a) -> int:
                 free = cap - len(busy)
                 prio = read_priority(root) if free > 0 else None
                 waiting = live_waiters(root, pool) if prio is not None else {}
-                if may_take_slot(t.id, free, waiting, prio, since):
+                settled = prio is None or time.time() - since >= SETTLE_SEC
+                if settled and may_take_slot(t.id, free, waiting, prio, since):
                     st.update(t.id, attempts=attempt)  # 探针通过、确定启动后才计入运行次数
                     argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
                     logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
