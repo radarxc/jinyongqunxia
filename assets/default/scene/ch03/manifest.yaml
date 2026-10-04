@@ -124,15 +124,18 @@
   - path: assets/default/scene/ch03/cg_ch03_dashengguan_heroes.png
     sha256: 7c0123739a34d62819219905c56497766ca169a7b2eba439c1d46a6ef9f74eae
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.7c012373.png
-  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把金轮法王头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
-  model: gpt-6-astra
-  created: 2026-10-03T19:29:36-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_dashengguan_heroes.k1.png
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:48:33.942164-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_35_52_r2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 8f1ac58c72c354ecfefea666b989f254af3b7b7b9383dca59f512d3a0df11f26
+  sha256: 12fd3edfa4f8a0c1c8c716c3e1b37c2b828cd888f297694bfffc831d1829f78a
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须是身份图定稿的刘亦菲本人脸：精确眉眼间距、眼形、鼻头、上唇弓及下颌；禁止复原待改图旧脸或变泛化漂亮脸。待改图原冷静目光、头向、远景人物尺度和光向照原，耳坠白衣发式不变。；质检：已实际打开base与返修前后：小龙女同人眉眼鼻唇颌骨明确采用恢复base，原冷静神态、头向视线及远景尺度保留，原光向自然无接缝；其余群雄杨过与题字逐像素不变
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_dashengguan_heroes.7c012373.png
     sha256: 7c0123739a34d62819219905c56497766ca169a7b2eba439c1d46a6ef9f74eae
@@ -145,6 +148,16 @@
     - exec-4745b2d2-0619-44d4-b569-12eeaaa1aba3.png
   runner_success_count: 1
   effort: ultra
+  ar84_alignment:
+    job: ar84_calign_35_52_r2
+    before_sha256: 8f1ac58c72c354ecfefea666b989f254af3b7b7b9383dca59f512d3a0df11f26
+    box:
+    - 803
+    - 139
+    - 892
+    - 271
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_35_52_r2.png
+    outside_changed_pixels: 0
 - id: cg_ch03_tomb_acceptance
   file: cg_ch03_tomb_acceptance.png
   category: scene
