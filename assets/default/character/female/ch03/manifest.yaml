@@ -355,15 +355,18 @@
   - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
     use: 项目同性别基线；只取画风
     sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
-  tool: codex exec · image_gen
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: AR-53 程序局部合成：从作者刘亦菲版base直接取五官，人工双眼/唇关键点仿射适配原角度，低频RGB照明融合；蒙版外原像素不变，未调用生成器
   model: gpt-6-astra
-  created: 2026-10-03T00:23:07-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message.1791012186667149000/archive/por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message.png
+  created: '2026-10-04T00:43:12.213135-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_16_52_direct.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 478d5baee2f31de5d436d902ee1b95fcf001f7b1447bc34d914b6952c279b5fd
+  sha256: 2bc6ca3c7fecaa9a1dc48e04e04ba0dabab5902fe4b936efde409f3a0cff57d7
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；年龄相近，直接base头部局部合成；原神态与光向保留；质检：实看通过：眉眼鼻唇与刘亦菲base同人，沉静不笑，原头部朝向和光向保留，脸缘与颈部衔接自然；头部外0像素变化
   previous_revision:
     prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message.1791012186667149000/archive/previous-prompt.md
     png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message.1791012186667149000/archive/previous.png
@@ -379,6 +382,17 @@
   runner_success_count: 1
   ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
   composite_job: por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message.resume3
+  effort: ''
+  ar84_alignment:
+    job: ar84_calign_16_52_direct
+    before_sha256: 478d5baee2f31de5d436d902ee1b95fcf001f7b1447bc34d914b6952c279b5fd
+    box:
+    - 439
+    - 108
+    - 567
+    - 259
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_16_52_direct.png
+    outside_changed_pixels: 0
 - id: por_npc_zhujue__ch03_f_base
   file: por_npc_zhujue__ch03_f_base.png
   category: character/female
