@@ -2026,3 +2026,14 @@
     - 面部总审：主角的明显和轻微不一致都已清零。11 号 ch04–ch06 轻微 5 张和返修 2 张，复核全部一致。10 号 ch02–ch03 15 人次已提交（897fa82d、5995f7c5、99a54d1b、adc8fd30），等复核。12 号在做 ch08。
     - AR-58 神态推到各书配角：11 号做 ch02–ch05（射雕 22 人，神雕 18 人，在跑）；10 号做 ch06–ch14；九难、何惕守跳过，归 12 号。各书计划报协调者，10 分钟内没回音就照计划做。
     - Tripo：阿青按 b 版新脸重做（0ac4882a / 406dd99a / 43656bbf），85 点，余额 21535。新旧对比已发作者。Tripo 子代理收尾。
+  - **10-03 19:49–19:54 开发监督**：
+    - **ENG-region-gates-data** 审核 PASS，但自动合入 cherry-pick 冲突，停在 READY。
+      - `git merge-tree` 预演：唯一冲突是 `apps/game/src/runtime/item-content.ts` 文件头的 import，对面是 event-executor eb8de5bb。
+      - rebase_task：基点 7038f0a6 → 7e057b20，备份引用 `refs/agents-backup/ENG-region-gates-data-pre-rebase-10031950`。
+      - import 取两边并集，机械合并；报告 §7 补了说明，coord 里有 `devsup_note_rebase.md`。
+      - `--from validate` 重起，驱动 71629。
+    - ch00b 返修说明草稿在 `scratchpad/pending/ch00b_note_r3.md`，按 gates-data 报告第 3、7 节写了 binding 字段。gates-data 合入后挪基点重起。
+  - **10-03 19:40–19:57 协调者**：
+    - 面部总审 19:56 收尾：明显 0、轻微 0（最后 3 张：丘处机 7e057b20、万圭 6623fdf6、平阿四 0eb265db；平阿四的疤只画到眉间，按细节判一致）。
+    - AR-58 神态分工：11 号做 ch02–ch05（射雕 22 人，第 1 批已入库；神雕 18 人、倚天 19 人、笑傲 16 人已批）；10 号做 ch06–ch11（ch06–ch08 改 58 人已批）；12 号做 ch12–ch14（待报计划）。
+    - 代码：event-source-trigger 校验栽在 content-plugin 5 秒超时（基点 c95f6371 早于修复 d0c0c1fa），协调者挪基点到 33f3e73c，--from validate 后 19:55 通过。gates-data 挪基点、合并 import 后，19:54 校验只栽在 core/bench 计时断言（负载 33–38，212 > 205 ms），已置 HOLD-VALIDATE；等待器 `after_merge_revalidate.py` 等 ENG-bench-perf-split 合入后自动挪基点、--from validate。supervise.py 改为合入遇 cherry-pick 冲突直接停（33f3e73c）。
