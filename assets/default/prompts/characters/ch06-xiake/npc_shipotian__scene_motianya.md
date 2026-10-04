@@ -123,3 +123,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_shipotian__ch06_youth_scene_motianya.prepared.json`。
+
+## 原著依据
+
+- 《侠客行》三《摩天崖》：“泥人身上那些红线黑点”（https://xuges.com/WUXIA/jinyong/xkx/016.htm）
+- AR-82 返修约束：只在手中和右下石台上各泥偶的现有泥衣表面添加清晰红色经络线与黑色穴位小点，线点沿四肢和躯干走向。保留泥偶粗粝棕灰陶土外壳、体型、每一只的位置；不改人手，不露木芯，不添加经文或可读文字。
