@@ -1528,20 +1528,33 @@
   - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_xiaoyao_inheritance.png
     sha256: 7c80b4987ea70a9b640af33f72af67f1f07d9fb138b91d03b019bffea362c728
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xuzhu__ch01_youth_scene_xiaoyao_inheritance.7c80b498.png
-  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T14:00:01-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xuzhu__ch01_youth_scene_xiaoyao_inheritance.e1.png
+  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png
+    sha256: cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:26:42.330615-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_10_46_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 95d9a360e6d38792b31852d116100821ad4c61261ed7f334d0e6f78b72726387
+  sha256: 135d1d9eb15ba9ebedb17cd2a415bda7ab47b6137d279ab9be23f5f2d38c70bf
   status: candidate
-  notes: 立绘重审重出（AR-30）；虚竹基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion
+  notes: 立绘重审重出（AR-30）；虚竹基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：base眉形眼型与鼻口身份一致；传承时低头凝视手中指环、不笑、原顺光保留；边缘自然
   effort: ultra
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xuzhu__ch01_youth_scene_xiaoyao_inheritance.7c80b498.png
     sha256: 7c80b4987ea70a9b640af33f72af67f1f07d9fb138b91d03b019bffea362c728
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xuzhu__ch01_youth_scene_xiaoyao_inheritance.7c80b498.entry.yaml
+  ar84_alignment:
+    job: ar84_calign_10_46_r1
+    before_sha256: 95d9a360e6d38792b31852d116100821ad4c61261ed7f334d0e6f78b72726387
+    box:
+    - 430
+    - 77
+    - 565
+    - 260
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_10_46_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move
   file: por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.png
   category: character/male
