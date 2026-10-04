@@ -26,9 +26,9 @@
   source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch14_cliff_raised_blade.r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 2f01e9498827161dd7feeffe3402c5592797af3c50c7714e941d89ec084723a0
+  sha256: 6e5e0be37e50f65e3ce34169aeb7d9aa584baa0031b181cfea0c8df048b040b8
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「雪崖悬刀」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。 实际题字「雪崖懸刀」，繁简同字，规范题名「雪崖悬刀」；原生生成，未字体叠加。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：胡斐只改眼睛眉毛；局部合成——codex 编辑后只取胡斐头部、羽化贴回原图，其余像素不变；虬髯与年长按设定保留）；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 总审复核返修：胡斐放开改眼周（双眼皮笑眼、眉形略弯、眉骨不压），虬髯与年纪保留；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「雪崖悬刀」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。 实际题字「雪崖懸刀」，繁简同字，规范题名「雪崖悬刀」；原生生成，未字体叠加。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：胡斐只改眼睛眉毛；局部合成——codex 编辑后只取胡斐头部、羽化贴回原图，其余像素不变；虬髯与年长按设定保留）；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 总审复核返修：胡斐放开改眼周（双眼皮笑眼、眉形略弯、眉骨不压），虬髯与年纪保留；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；题字懸→悬；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch14_cliff_raised_blade.retry3.r1
   quality_retries: 0
@@ -39,6 +39,7 @@
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.d29a3744.png
     sha256: d29a37447e61d601ea29dff0890cc3c79d312bd39846b6848b6a69b4ffc84ccb
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch14_cliff_raised_blade.d29a3744.entry.yaml
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch14_cliff_raised_blade_fixed.png", "before_sha256": "2f01e9498827161dd7feeffe3402c5592797af3c50c7714e941d89ec084723a0", "allowed_box": [[1410, 191, 1520, 273]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch14_cliff_raised_blade_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T01:00:45-07:00"}
 - id: cg_ch14_manor_poison_reveal
   file: cg_ch14_manor_poison_reveal.png
   category: scene
