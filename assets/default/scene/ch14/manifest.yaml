@@ -44,47 +44,43 @@
   category: scene
   style: default
   subject: 雪庄辨伪（ch14_xueshan）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是平阿四的身份基线（本人基础立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中平阿四的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的苗若兰新 base 脸部特写（参考佘诗曼，作者选A）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
 
-    【画里谁是谁】这张插图画的是：雪夜山庄木厅，成年苗若兰淡绿皮袄鹅黄裙侧坐凝神，独臂平阿四穿粗布旧衣立堂前讲述，宝树僧衣在对面紧绷；一只旧布包在桌边作旧案象征。炉火将熄、窗外雪影，全景压抑而清晰；苗用新阶段，宝树可现有S图，平阿四ch14为A只能文字。不要现代法庭或证物陈列台。平阿四苍老，仅缺右臂，右空袖折掖腰带，左手完整；宝树剃光僧头，灰赭厚僧袍暗褐袈裟。
+    【身份】明确成为第1张的同一位苗若兰：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
 
-    【要对齐的部分】平阿四的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：揭穿毒计，沉痛而坚定；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【剧情神态与造型】只改最左侧坐着的苗若兰；保留她侧面看向父亲、忧虑关切和凝重闭唇神态，完整侧脸角度保持；原图左后冷窗光与下方炉火暖光保持；苗人凤、宝树和所有器物题字完全不变。
 
-    【平阿四的基线脸】基线里的平阿四（雪山飞狐时期）五十多岁：瘦削的长方脸、颧骨突出、两颊略凹；眉毛浓而紧皱；眼睛不大、眼神沉毅忠厚；鼻梁挺直；唇上稀疏的八字须、下巴一小撮花白山羊须；花白头发。脸上有一道斜贯全脸的旧刀疤（他的标志）：从额头（画面左侧那边）斜向下穿过两眼之间的鼻梁，一直划到另一侧（画面右侧那边）脸颊靠近嘴角处，是一道细长的暗红色已愈合疤痕，必须清楚看得见。
+    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「雪庄辨伪」和小朱印必须原样保留，一笔不改、不增不减。
+    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】平阿四是画面中间站着、穿灰褐长袍、伸手说话的老者（从左数第 2 个人）。在他脸上补上基线那道斜贯全脸的暗红色旧刀疤（这是他的标志，要清楚看得见），皱纹比原图稍浅一些（与基线一致）。左边的苗若兰和右边坐着的胖和尚宝树，脸一律不改。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
+  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
   references:
-  - path: assets/default/character/male/ch14/por_npc_pingasi__ch14_elder_onearm_base.png
-    sha256: 068de3685a9bf3181d25e1e15aadd3812e9aa60d9affa3b7026f14d21cb83000
-    use: 对脸基线：AR-53 总审默认基准 por_npc_pingasi__ch14_elder_onearm_base（平阿四），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_base.png
+    sha256: 93d0c601bc0ef6bb96b824c3b662a83ea3c70387190c528cf437198dd806127a
+    use: 对脸基线：作者审核通过的 por_npc_miaoruolan__ch14_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch14/cg_ch14_manor_poison_reveal.png
-    sha256: f8311034a0e318036b0e85960ea35ab39638b0983f5c2c407a197c6c0361187f
-    use: 待改原图（AR-53 配角对齐 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch14_manor_poison_reveal.f8311034.png
-  tool: codex exec · image_gen（AR-53 配角对齐 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线；编辑结果只取目标人物头部合成回原图）
-  model: gpt-6-astra
-  created: 2026-10-03T19:48:21-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch14_manor_poison_reveal.s1.png
+    sha256: 34f7bcd7cedce7520690d939c6d0c57dc0b68ef539c7b5b2e3def665f04b4fac
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch14_manor_poison_reveal.34f7bcd7.png
+  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T00:30:11-0700
+  source_path: .agents/coord/_handoff/gem/codex_w32/out/cg_ch14_manor_poison_reveal.ar86_miaoruolan1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 34f7bcd7cedce7520690d939c6d0c57dc0b68ef539c7b5b2e3def665f04b4fac
+  sha256: 54296ff6411dadcec1c27849a405a69f128950d09855c1e09214e3da3e8dcb42
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「雪庄辨伪」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-53 配角对齐（12 号出图员），基线 = por_npc_pingasi__ch14_elder_onearm_base（对齐同时期的 ch14 elder_onearm_base（总审表列的是 ch13 prime base，本图是雪山飞狐时期，取同书 base；两张 base 同一张脸、同一道疤）；补上刀疤（额头斜到眉间一段），花白头发随 base；3 次出图（s1–s3）都没能把疤续画过鼻梁到另一侧脸颊，取疤痕最长、神态最贴剧情的 s1；只取平阿四（#2）头部区域羽化合成回原图，苗若兰、宝树与题字像素不动；原始编辑结果 out/<job>.raw.png）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「雪庄辨伪」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-53 配角对齐（12 号出图员），基线 = por_npc_pingasi__ch14_elder_onearm_base（对齐同时期的 ch14 elder_onearm_base（总审表列的是 ch13 prime base，本图是雪山飞狐时期，取同书 base；两张 base 同一张脸、同一道疤）；补上刀疤（额头斜到眉间一段），花白头发随 base；3 次出图（s1–s3）都没能把疤续画过鼻梁到另一侧脸颊，取疤痕最长、神态最贴剧情的 s1；只取平阿四（#2）头部区域羽化合成回原图，苗若兰、宝树与题字像素不动；原始编辑结果 out/<job>.raw.png）；AR-53 / AR-75 / AR-86：苗若兰头部局部合成，对齐作者新 base（AR-73 参考佘诗曼，AR-86 选A）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch14_manor_poison_reveal.retry3.r1
   quality_retries: 0
   history: []
-  effort: ultra
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch14_manor_poison_reveal.f8311034.png
-    sha256: f8311034a0e318036b0e85960ea35ab39638b0983f5c2c407a197c6c0361187f
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch14_manor_poison_reveal.f8311034.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch14_manor_poison_reveal.34f7bcd7.png
+    sha256: 34f7bcd7cedce7520690d939c6d0c57dc0b68ef539c7b5b2e3def665f04b4fac
+    entry: .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch14_manor_poison_reveal.34f7bcd7.entry.yaml
 - id: cg_ch14_snow_first_meet
   file: cg_ch14_snow_first_meet.png
   category: scene
