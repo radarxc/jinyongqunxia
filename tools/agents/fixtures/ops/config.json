@@ -1,0 +1,27 @@
+{
+  "stall_window_seconds": 300,
+  "supervise_args": {},
+  "fixes": [
+    {
+      "name": "content-plugin 5 秒功能用例超时",
+      "patterns": ["content[-_]plugin", "(?:timed out in 5000ms|Test timed out.*5(?:000| seconds))"],
+      "commit": "d0c0c1fa",
+      "task": "ENG-content-plugin-timeout"
+    },
+    {
+      "name": "HOST_DISPOSED rejection",
+      "patterns": ["HOST_DISPOSED"],
+      "task": "ENG-battle-lazy-dispose"
+    },
+    {
+      "name": "BattleSession 线性计时断言挪出",
+      "patterns": ["(?:BattleSession|core/bench|combat\\.test)", "(?:expected .* to be|linear|线性)"],
+      "task": "ENG-bench-perf-split"
+    },
+    {
+      "name": "首次会话体积瘦身",
+      "patterns": ["session total\\s+[0-9.]+\\s+110\\s+FAIL"],
+      "task": "ENG-session-base-diet"
+    }
+  ]
+}
