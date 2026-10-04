@@ -96,3 +96,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.prepared.json`。
+
+## 原著依据
+
+- 《天龙八部》第十五回 杏子林中 商略平生义：“立时便将他肩上四柄法刀拔了下来”；“创口中如喷泉般的鲜血立时便止”；https://www.xuges.com/wuxia/jinyong/tlbb/114.htm
+- AR-82 返修约束（本节优先于历史提示词）：只在双肩上各补两处法刀拔出后的衣料破口，总共四处。破口处少量止血后的暗红血迹和敷药痕，脸和衣服其余处不动。刀已拔下，不画刀插肩，不画喷血。
