@@ -41,11 +41,11 @@
   category: scene
   style: default
   subject: 桃花岛三道试题（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄药师的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄药师的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】这张插图画的是：桃花岛求亲三试的第三场默记经文（具体站位为原创扩展构图）。桃竹庭院与竹亭海雾；郭靖居中站定，双手自然下垂、空手，专注地背诵刚才看过的经文，不拿任何器物。清瘦中年黄药师青袍、黑发夹灰与三缕短须，手持无可读字的纸本经卷听其背诵；黄蓉在一旁关切，白衣成年贵公子欧阳克右侧沮丧。远处洪七公长方脸、花白发、颏下极短稀疏微须、朱红葫芦；欧阳锋五十余岁、高大、高鼻深目、棕黄络腮短须、灰黑束发、白衣，绝不是白发白须老仙。明确禁止鲁班锁、木机关方块、魔方、机关盒、棋盘、石块试题或猜谜游戏；三试不是木工解谜，郭靖始终空手。场中不画黄蓉手持打狗棒。
 
-    【要对齐的部分】黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】黄药师各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「桃岛三试」和小朱印必须原样保留，一笔不改、不增不减。
 
@@ -53,28 +53,28 @@
 
     【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【本张另外要求】（作者 AR-53 总审返修）鹅黄浅碧衣裙的少女是黄蓉：黄蓉的脸要像基线（作者选定的新版）：圆润饱满的鹅蛋脸、两颊有肉、下巴小巧圆润不尖，一双又大又亮的杏眼（不要细长眼、不要上挑的丹凤眼），眉毛细长柔和，小巧挺直的鼻子，嘴角带甜笑或按原图情绪，十九岁的少女感（成年），不要长脸、高颧骨和成熟感。其他人的脸不要动。'
+    【本张另外要求】黄药师是手持纸本经卷、听郭靖背诵的青袍清瘦中年人；只改他的脸，让他与基线是同一个人：清癯长脸、斜飞上挑的浓眉、细长冷峻的眼、唇上髭须与颏下山羊须、黑发鬓角夹几缕银丝。郭靖、黄蓉、欧阳克、洪七公、欧阳锋一概不动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
-    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
-    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch02/por_npc_huangyaoshi__ch02_elder_base.png
+    sha256: 510f72616833913c2000045c9b9eff31062064156d3afb2bbf0f3d21b6249263
+    use: 对脸基线：作者审核通过的 por_npc_huangyaoshi__ch02_elder_base（黄药师），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_peach_island_trials.png
-    sha256: 3137f5cede5f202d2d780333a327fc63d188491d2afd28701201a644656a0e98
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.3137f5ce.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: 683961e1c15d49696d7b02795f465a7b6301ef920f054b76240e9698b6a47a85
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_peach_island_trials.683961e1.png
+  tool: codex exec · image_gen（AR-58 剧情插图对脸：图像编辑，上传黄药师新 base 脸部特写 + 待改插图，只改黄药师，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T17:13:44-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_peach_island_trials.s2.png
+  created: 2026-10-03T18:17:45-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch02_peach_island_trials.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 683961e1c15d49696d7b02795f465a7b6301ef920f054b76240e9698b6a47a85
+  sha256: 338628ecadfedcdeb3ec30272e5a8b12cdaa03bf7adff425969a8267bb971e19
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-58 插图对脸（11 号出图员）：黄药师按作者 10-03 18:02 选定的新 base 对脸（郭靖、黄蓉（主角）与欧阳克、洪七公、欧阳锋不动，题字保留）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.3137f5ce.png
-    sha256: 3137f5cede5f202d2d780333a327fc63d188491d2afd28701201a644656a0e98
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_peach_island_trials.3137f5ce.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_peach_island_trials.683961e1.png
+    sha256: 683961e1c15d49696d7b02795f465a7b6301ef920f054b76240e9698b6a47a85
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_peach_island_trials.683961e1.entry.yaml
   runner_job_records:
   - - cg_ch02_peach_island_trials.resume3r3
     - ok
