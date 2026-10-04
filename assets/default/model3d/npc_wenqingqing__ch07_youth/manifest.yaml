@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 温青青（碧血剑 ch07 · 男装青年）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 17a95a55-9172-4065-83ec-2cab898115e8
     url: https://studio.tripo3d.ai/workspace/generate/17a95a55-9172-4065-83ec-2cab898115e8
     generate_op: 5c51b2a7-7e8f-4249-be11-e62c7c281c1f（image_to_model） → Free Retry 159bc56b-e1d5-4371-8198-1cf283e60ce3（选用）
     rig_op: 33e864a9-7da6-41a0-81d2-c285e8f97284
-  size: 369x594
-  sha256: e81ec96138024ca5e26a252179dc79515448da36a4d044eb4adfb633658ef03d
-  size_bytes: 160559
-  created: '2026-10-03T18:53:48-07:00'
+  size: 600x778
+  sha256: 0f18e23cfbaf577617265e4efc1a4693f9edb8dd784d81485ed8c4b902ca06e0
+  size_bytes: 157269
+  created: '2026-10-03T22:34:24-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

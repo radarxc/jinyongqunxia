@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 陈家洛（书剑恩仇录 ch12 · 后期青年）· 空手 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 3d52b7b9-e961-43c6-8551-b5d75e49f9e2
     url: https://studio.tripo3d.ai/workspace/generate/3d52b7b9-e961-43c6-8551-b5d75e49f9e2
     generate_op: d9a1f51f-dede-4e3d-bae8-6c1b9ebc2cfd（image_to_model）
     rig_op: af5a6f01-e0db-419f-b200-3b11206383a7
-  size: 369x594
-  sha256: 5cbcfd335de9603c0de4ea93833f8a7f37fdea4587efff5e783d32f25c05ad3a
-  size_bytes: 152105
-  created: '2026-10-03T19:07:15-07:00'
+  size: 600x778
+  sha256: b3080a1dcba91f78e4edb41a22594ab7159ca53d943ebbf54c904a626e43559e
+  size_bytes: 153404
+  created: '2026-10-03T22:34:21-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

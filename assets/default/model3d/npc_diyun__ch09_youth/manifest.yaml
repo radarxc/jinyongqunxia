@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 狄云（连城诀 ch09 · 乡下青年）· 空手 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 5e02e099-ffe3-4b61-95cf-4b8f8978ed1b
     url: https://studio.tripo3d.ai/workspace/generate/5e02e099-ffe3-4b61-95cf-4b8f8978ed1b
     generate_op: d0ed02ed-bfa6-48e8-88fd-9ed5b439c6c8（image_to_model）
     rig_op: 05d200a5-dc66-48df-8cab-d9ba52251f23
-  size: 369x594
-  sha256: 60de47e3ad2f13af6dd12f465a32ffac80182197d992287c22aa25bb3a1e6107
-  size_bytes: 179019
-  created: '2026-10-03T19:10:09-07:00'
+  size: 600x778
+  sha256: eb7c9e853b8a7f6cd24a8bd66af881de5777ae3d248fb2349e5a20c5e5ccb515
+  size_bytes: 187365
+  created: '2026-10-03T22:34:21-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

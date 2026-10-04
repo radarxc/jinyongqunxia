@@ -157,7 +157,7 @@
   category: model3d
   style: default
   subject: 主角（女）· 高魅力形象（白衣飘飘，AR-45 作者选 B 版）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 51dec492-a4b8-4bc1-9762-c74d9eeeb723
     url: https://studio.tripo3d.ai/workspace/generate/51dec492-a4b8-4bc1-9762-c74d9eeeb723
@@ -167,9 +167,9 @@
       idle: 3d82fa76-e7c5-45b8-ae9b-e987b39b4112
       walk: 49c4592b-5d2b-460e-9de8-27d7d634193d
       run: 53171017-b3d8-492a-b381-52d6176576e2
-  size: 369x594
-  sha256: 9abe58b7f7956211405292c7988d8e3af65655cf017b5148dde24e40278c0ef6
-  size_bytes: 116892
-  created: '2026-10-03T17:28:00-07:00'
+  size: 600x778
+  sha256: 6d875f81b2ae5f3f80b040d596e119823bcfde157ea828f2e1efcf723d8d01dd
+  size_bytes: 105325
+  created: '2026-10-03T22:34:26-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

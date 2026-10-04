@@ -65,15 +65,15 @@
   category: model3d
   style: default
   subject: 段誉（天龙八部 ch01 · 大理世子青年，B 版基线）· A 字参考版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 0a99ae9d-c2ee-4cfc-bff6-92c965bdcd29
     url: https://studio.tripo3d.ai/workspace/generate/0a99ae9d-c2ee-4cfc-bff6-92c965bdcd29
     generate_op: 8be5ca1b-d685-44b0-9643-632d06d22c26（image_to_model）
     rig_op: c961b960-1204-4a76-b416-40febcb93e90
-  size: 369x594
-  sha256: dfba0be77eb008ef65142c6038e741506354b10fb1329ae27355ea2656400f9b
-  size_bytes: 132723
-  created: '2026-10-03T15:57:37-07:00'
+  size: 600x778
+  sha256: 81e849a3e60b073d2dc62a37abe2bae213617ded06c26767ffbaba3f4989b435
+  size_bytes: 130052
+  created: '2026-10-03T22:34:21-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

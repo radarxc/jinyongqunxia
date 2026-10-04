@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 袁承志（碧血剑 ch07 · 金蛇郎君传人青年）· 空手 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 0f64c57b-4d87-4f57-bb2f-ceb0f40dc9d7
     url: https://studio.tripo3d.ai/workspace/generate/0f64c57b-4d87-4f57-bb2f-ceb0f40dc9d7
     generate_op: 9f049fb0-aab8-4427-8803-000138fd6909（image_to_model）
     rig_op: baa202a3-88dc-4164-901e-803d083f9cc3
-  size: 369x594
-  sha256: 08c631f5bd0539b09c14ec536b12852ebb3587dbab26a98a65a7723c0fb6c50e
-  size_bytes: 137266
-  created: '2026-10-03T19:05:21-07:00'
+  size: 600x778
+  sha256: 92796132d660b2fbf111a4b964763c841aabe76e8cdb5079216a90710db1285d
+  size_bytes: 131402
+  created: '2026-10-03T22:34:25-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

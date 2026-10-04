@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 萧峰（天龙八部 ch01 · 丐帮帮主盛年）· A 字参考版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: f0afb746-797c-4245-b022-e00bbe43fb8a
     url: https://studio.tripo3d.ai/workspace/generate/f0afb746-797c-4245-b022-e00bbe43fb8a
     generate_op: c06f4620-de14-4a72-bfe8-a3735fce2316（image_to_model）
     rig_op: e53ec3fa-6ed0-4133-831b-15ee339d3a17
-  size: 369x594
-  sha256: 662b56497c8c45f2d37cb08d8b1e0f4d3acff60026496c47ecf02f88fd29286b
-  size_bytes: 200960
-  created: '2026-10-03T14:37:05-07:00'
+  size: 600x778
+  sha256: c2f8b8710aba71594b171a60af5c1d30a8f7d359537b7c9e6e9e3285cc2b947e
+  size_bytes: 218233
+  created: '2026-10-03T22:34:24-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

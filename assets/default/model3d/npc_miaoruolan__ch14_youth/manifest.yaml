@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 苗若兰（雪山飞狐 ch14 · 青年）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 1c8464e3-14b9-4b95-93e7-e3e8bcac288b
     url: https://studio.tripo3d.ai/workspace/generate/1c8464e3-14b9-4b95-93e7-e3e8bcac288b
     generate_op: fbb95aa6-6ee0-42e0-abc6-e5df77684245（image_to_model）
     rig_op: 33ed7a54-16b2-48a8-bd0c-ce94399b4710
-  size: 369x594
-  sha256: fce5f1c8afcb9339382e37320c43498f0ad97fb23279265adc02da0a44778faa
-  size_bytes: 121435
-  created: '2026-10-03T19:02:42-07:00'
+  size: 600x778
+  sha256: 21fe8d87b53f9f3564949c75ac8cb51269d40553e96384d724d390bf40def64e
+  size_bytes: 108597
+  created: '2026-10-03T22:34:23-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

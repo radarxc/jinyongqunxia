@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 胡斐（飞狐外传 ch13 · 青年）· 空手 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 283cd5b3-bd1a-4bb8-add0-0e372644acb3
     url: https://studio.tripo3d.ai/workspace/generate/283cd5b3-bd1a-4bb8-add0-0e372644acb3
     generate_op: 3ed85ec6-d13c-4cbf-b7be-276ef811c096（image_to_model）
     rig_op: 64afd17f-978f-4afe-875c-5e05a98a1200
-  size: 369x594
-  sha256: 103a6490d1cd82973e61b9a304054d2d334a03243be64319e487f44067ca083e
-  size_bytes: 165502
-  created: '2026-10-03T19:09:06-07:00'
+  size: 600x778
+  sha256: 6b5ebbc16b0596f5ebccd31971d946ae2a6b1b66742901c24122ff61f407a92f
+  size_bytes: 172605
+  created: '2026-10-03T22:34:22-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

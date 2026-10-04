@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 阿朱（天龙八部 ch01 · 青年，刘涛版新脸）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 625326d3-f224-4cf2-926b-e443f53568d3
     url: https://studio.tripo3d.ai/workspace/generate/625326d3-f224-4cf2-926b-e443f53568d3
     generate_op: 471ef0a3-ad42-444d-892e-b375c49f60cf（image_to_model）
     rig_op: a3696927-c4c9-4904-b393-54806c46fd7d
-  size: 369x594
-  sha256: e7c95804cd3b790ac1c4f4229a471c4ba1edaa3fb0f65e7c959aa44f34c77c08
-  size_bytes: 125064
-  created: '2026-10-03T19:11:07-07:00'
+  size: 600x778
+  sha256: 9965e1c2625d810dc3d1f2a39fe9a09b7cee0e7e3256c35af19848a0427e3c3d
+  size_bytes: 111573
+  created: '2026-10-03T22:34:21-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

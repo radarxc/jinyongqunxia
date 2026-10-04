@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 杨过（神雕侠侣 ch03 · 独臂青年）· A 字参考版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 69bc599d-6988-411f-bdab-d6f99de29f9b
     url: https://studio.tripo3d.ai/workspace/generate/69bc599d-6988-411f-bdab-d6f99de29f9b
     generate_op: 4fe27889-b10c-45b6-8b6c-72d9f1345ff4（image_to_model）
     rig_op: 1e4b1003-6f60-44d3-a6e2-139cfdb83f70
-  size: 369x594
-  sha256: 71dc22e3bab8d19c4b0316787faa4ca0f38059c6ffd0c7cd79945d72a43d5609
-  size_bytes: 196968
-  created: '2026-10-03T14:52:08-07:00'
+  size: 600x778
+  sha256: 4ef9ba374a50c9ad09ca4a781e539830238d0f9c41006da9348930e24afb309b
+  size_bytes: 211776
+  created: '2026-10-03T22:34:25-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

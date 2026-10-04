@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 袁冠南（鸳鸯刀 ch11 · 书生青年）· 空手 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 323ad70c-fcfa-4249-848f-0f3a27b1f513
     url: https://studio.tripo3d.ai/workspace/generate/323ad70c-fcfa-4249-848f-0f3a27b1f513
     generate_op: bf1272be-5aed-49db-916c-bc64053950cb（image_to_model）
     rig_op: ac0ecdd1-1382-49fb-967e-71022c91c226
-  size: 369x594
-  sha256: 60d634899482561334b00e0ec97e56ac0bd197d88f73f30caaa49156f6a39124
-  size_bytes: 153787
-  created: '2026-10-03T19:06:18-07:00'
+  size: 600x778
+  sha256: d5ccb2d5a7655a68dfe7ffc23efd0ecc0c45e002dd0e0706d444b444ce1f79e1
+  size_bytes: 151061
+  created: '2026-10-03T22:34:25-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

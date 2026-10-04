@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 王语嫣（天龙八部 ch01 · 曼陀山庄青年，刘亦菲版新脸）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 15ec351f-64ce-4f8f-b219-7c99a27e47f8
     url: https://studio.tripo3d.ai/workspace/generate/15ec351f-64ce-4f8f-b219-7c99a27e47f8
     generate_op: c36f915a-1cff-44db-9f48-3f66571c5f15（image_to_model）
     rig_op: 52773239-cc46-4238-8581-243acfcc31d7
-  size: 369x594
-  sha256: 60cd5bad77972e08618473b9c0fc598f0880021252e2bf856841b22c16e3ab06
-  size_bytes: 133227
-  created: '2026-10-03T19:03:39-07:00'
+  size: 600x778
+  sha256: d13fd615febe4073eeacc197a4034b71b5977da742dd40637ed5117145fbf7f6
+  size_bytes: 120592
+  created: '2026-10-03T22:34:24-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 水笙（连城诀 ch09 · 行旅青年）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: ec747681-44ea-4dad-aa95-c2aad8215023
     url: https://studio.tripo3d.ai/workspace/generate/ec747681-44ea-4dad-aa95-c2aad8215023
     generate_op: 6ca6e0ae-e248-4ff4-91b9-4d8e5e198cbd（image_to_model） → Free Retry 04422ef5-12e6-44fd-a20d-3097eb1b5390（选用）
     rig_op: 5d45599e-821e-45b2-80f7-7b5305a1fea0
-  size: 369x594
-  sha256: ace0ddf8c1925d54bbfd36c0298f9e1b497fe6a153131daa69320f06dacbad66
-  size_bytes: 114589
-  created: '2026-10-03T18:54:47-07:00'
+  size: 600x778
+  sha256: 02a6522a7154efaea42550fc90fff778c5e136e64b93067b51fa6bf9fc0611d5
+  size_bytes: 101296
+  created: '2026-10-03T22:34:24-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。
