@@ -2193,3 +2193,15 @@
       - 第 4 轮校验只栽在防截断：`apps/game/src/battle/demo.ts` 55 → 27 行。原因是改走 `buildEncounter(COMBAT_DEMO_ENCOUNTER, …)`，属有意缩短。
       - 已加这一个文件的 shrink_exempt，用原参数加 `--from validate` 重起，驱动 11819。
       - 新驱动的执行次数从 0 计；审核 FAIL 会照常起返修。
+  - **10-03 22:45–23:10 开发监督**：
+    - **ENG-bench-perf-split-2 合入**（ee50a78f）。prod_check 全绿（HEAD 921bbd34）：1100 个测试；entry 38.79 / render 168.86 / webgl 207.65 / 会话 108.91。check:perf 等负载降到 8 以下再跑（脱离进程）。
+    - **ENG-26 合入后撤回**：
+      - ENG-26 合入（a60c8074）后，集成分支首次会话 110.67 > 110，红。来源：`content-registry.ts` 的 `SCHEMAS` 静态引入 `EncounterDefSchema`，worker 的 item-content 共享块 159.74 → 164.38 kB；builder 本身在懒加载的 encounter 块。
+      - 按 23a 先例撤回（18ddf3f2），撤回后 prod_check 全绿：会话 108.91，1100 个测试。协调者同意。
+      - 26 状态：HOLD-RUNS「已撤回待重合」。base-diet 合入后，对 18ddf3f2 做 git revert 原样重合，再跑 prod_check。
+      - ENG-move-onhit-effects 依赖 26：驱动已停（排队中，未起执行器），空工作区已删，状态改回 PENDING，等 26 重合后再起。
+    - **登记 ENG-battle-modules-lazy**（bcbd0f80，协调者 23:0x）：
+      - 遭遇 schema、builder 等战斗专用模块移出首次会话，改走战斗懒加载块。
+      - 校验：Worker 壳与首次会话静态块里不得出现 `regionArena`、`ENCOUNTER_TEMPLATE_UNSUPPORTED`，builder 仍要在产物里。
+      - 依赖 26 重合与 base-diet；名单排在 26 之后（M1 链之后）。
+    - 旁注：主仓 `.git/logs/refs/remotes/origin/` 下有 3 个 root 所有的锁文件，10-02 22:13–23:05 留下，每次提交后的自动 gc 都报 reflog 失败。提交本身不受影响，没去动。
