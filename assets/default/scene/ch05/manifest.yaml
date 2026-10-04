@@ -54,43 +54,42 @@
   category: scene
   style: default
   subject: 衡阳金盆洗手前后，曲刘托谱（回目待考）（ch05_xiaoao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是令狐冲的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中令狐冲的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    衡阳城外荒山月夜，冷月映着山石。苍老琴者曲洋与儒雅中年箫客刘正风完成最后合奏；刘正风略矮胖、面颊饱满、腹部微隆，绝非瘦长文士，成年令狐冲坐在近旁凝神承接托付；古琴、竖持洞箫与一册无可读字迹的曲谱组成视觉中心。令狐冲穿旧灰蓝长衫，佩长剑与酒葫芦。刘曲只按文字塑造，不借主角面孔。三人中全景，苍凉知音气氛，伤势仅由疲惫姿态表现。
+    【画里谁是谁】这张插图画的是：衡阳城外荒山月夜，冷月映着山石。苍老琴者曲洋与儒雅中年箫客刘正风完成最后合奏；刘正风略矮胖、面颊饱满、腹部微隆，绝非瘦长文士，成年令狐冲坐在近旁凝神承接托付；古琴、竖持洞箫与一册无可读字迹的曲谱组成视觉中心。令狐冲穿旧灰蓝长衫，佩长剑与酒葫芦。刘曲只按文字塑造，不借主角面孔。三人中全景，苍凉知音气氛，伤势仅由疲惫姿态表现。
 
-    原著为月夜而非日落；合奏与稍后的托谱压缩为三人编辑性构图（原创扩展），省略其他在场者；不画血腥。
+    【要对齐的部分】令狐冲的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：低头凝神看着曲谱、承接托付，神情肃穆动容（此刻不笑）；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【令狐冲的基线脸】基线里的令狐冲二十三四岁，是年轻俊朗的浪子：脸型是饱满的鹅蛋脸、两颊圆润不凹陷、颧骨不突出、下颌圆润、下巴干净；浓黑的剑眉平直舒展、眉尾略扬；一双笑眼——双眼皮、眼尾弯弯、下眼睑微微上提，眼神明亮洒脱、带三分狡黠；鼻梁挺直、鼻头圆润；嘴唇适中，笑时嘴角一侧上扬、露出一点牙齿的爽朗坏笑；完全无须——唇上、下巴和两腮都干干净净，没有八字须、没有山羊胡、没有短髯、没有胡茬；肤色是健康的浅麦色，皮肤紧致年轻。整体比原图年轻四五岁、脸更圆更饱满。
 
-    第1张为npc_linghuchong的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「琴箫托谱」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「琴箫托谱」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】令狐冲是画面右侧坐着、穿蓝灰长衫、头系黑布头带、低头看曲谱的青年（从左数第 3 个人）；左边白发抚琴老者曲洋和中间吹箫的胖汉刘正风的脸一律不改。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_huashan_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
+    sha256: c3beaa49ca2c1d989d067e968ea3e812185123858f43f4106a95221aac72d55f
+    use: 对脸基线：作者 AR-56 定下的 por_npc_linghuchong__ch05_youth_huashan_base（令狐冲），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch05/cg_ch05_hengyang_score.png
+    sha256: b39f44cd8a4be2eb4d54c4d7d1fdb199e0f51b608c6c9b1f749ea486e1b69e63
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_hengyang_score.b39f44cd.png
+  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:19:51-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_hengyang_score.1791015590813309000/archive/cg_ch05_hengyang_score.png
+  created: 2026-10-03T17:50:21-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch05_hengyang_score.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: b39f44cd8a4be2eb4d54c4d7d1fdb199e0f51b608c6c9b1f749ea486e1b69e63
+  sha256: 6bfcadf9cb42e8cbec49c683fbdf4fa5307904a35ced8d07ca90927ebdfffc5c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「琴箫托谱」，实际字形「琴箫托谱」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「琴箫托谱」，实际字形「琴箫托谱」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_hengyang_score.1791015590813309000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_hengyang_score.resume3.png
-  repair_runner_source_sha256: 04628b7af3dd27d4bfc3e11807a6a0ae78edb0862c451a138e937e6c9e2540cc
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_hengyang_score.b39f44cd.png
+    sha256: b39f44cd8a4be2eb4d54c4d7d1fdb199e0f51b608c6c9b1f749ea486e1b69e63
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_hengyang_score.b39f44cd.entry.yaml
   runner_job_records:
   - - cg_ch05_hengyang_score.resume3
     - ok
@@ -98,8 +97,7 @@
     - '182'
     - exec-0ec7ec49-1c0b-4ec2-91c1-d744675684d9.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch05_hengyang_score.resume3
+  effort: ultra
 - id: cg_ch05_shaolin_three_bouts
   file: cg_ch05_shaolin_three_bouts.png
   category: scene
@@ -268,46 +266,42 @@
   category: scene
   style: default
   subject: 洛阳绿竹巷琴音相识（回目待考）（ch05_xiaoao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是令狐冲的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中令狐冲的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    春雨午后洛阳绿竹巷，任盈盈坐在竹帘内抚琴，面容可辨且为成年年轻女子；令狐冲一身落拓灰褐行旅衣站在帘外柱边听琴，酒葫芦轻放在身侧，长剑佩腰。琴案与湿竹影贯穿内外，双人中远景，衣料完全不透明，表情含蓄而治愈。
+    【画里谁是谁】这张插图画的是：春雨午后洛阳绿竹巷，任盈盈坐在竹帘内抚琴，面容可辨且为成年年轻女子；令狐冲一身落拓灰褐行旅衣站在帘外柱边听琴，酒葫芦轻放在身侧，长剑佩腰。琴案与湿竹影贯穿内外，双人中远景，衣料完全不透明，表情含蓄而治愈。
 
-    婆婆只是误称，不画成老年；令狐冲引用新base，按文字换为行旅服。
+    【要对齐的部分】令狐冲的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：倚着柱子抱臂听琴，神情放松，嘴角带温和的笑意；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【令狐冲的基线脸】基线里的令狐冲二十三四岁，是年轻俊朗的浪子：脸型是饱满的鹅蛋脸、两颊圆润不凹陷、颧骨不突出、下颌圆润、下巴干净；浓黑的剑眉平直舒展、眉尾略扬；一双笑眼——双眼皮、眼尾弯弯、下眼睑微微上提，眼神明亮洒脱、带三分狡黠；鼻梁挺直、鼻头圆润；嘴唇适中，笑时嘴角一侧上扬、露出一点牙齿的爽朗坏笑；完全无须——唇上、下巴和两腮都干干净净，没有八字须、没有山羊胡、没有短髯、没有胡茬；肤色是健康的浅麦色，皮肤紧致年轻。整体比原图年轻四五岁、脸更圆更饱满。
 
-    第1张为npc_linghuchong的本轮立绘；第2张为npc_renyingying的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「绿竹知音」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「绿竹知音」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】令狐冲是画面右侧倚着柱子抱臂站立、穿灰褐行旅衣、头系黑布头带的青年（从左数第 2 个人）；左边抚琴的女子任盈盈的脸一律不改。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_huashan_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_renyingying__ch05_youth_scene_zhuxiang.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 122773724ffb4ad47173a4038be900eb34fd49a2d76d65dd85a59271aa7f2e59
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
+    sha256: c3beaa49ca2c1d989d067e968ea3e812185123858f43f4106a95221aac72d55f
+    use: 对脸基线：作者 AR-56 定下的 por_npc_linghuchong__ch05_youth_huashan_base（令狐冲），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch05/cg_ch05_luoyang_qinxiao.png
+    sha256: edaef32c21b2f92eb052ae0606e7b052717662255c488e36642d29fac5b7f199
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_luoyang_qinxiao.edaef32c.png
+  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:32:26-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_luoyang_qinxiao.1791016346142651000/archive/cg_ch05_luoyang_qinxiao.png
+  created: 2026-10-03T17:51:59-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch05_luoyang_qinxiao.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: edaef32c21b2f92eb052ae0606e7b052717662255c488e36642d29fac5b7f199
+  sha256: 1f0e0efe4db532588ba330df83750bb862eeedb3a0806c8d18f49ce7f4d272bc
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「绿竹知音」，实际字形「绿竹知音」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「绿竹知音」，实际字形「绿竹知音」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch05_luoyang_qinxiao.1791016346142651000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch05_luoyang_qinxiao.resume3.png
-  repair_runner_source_sha256: 449630275b7149548404cc0a93ef637838c10935b78414d88e4bec4bab5c2cec
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_luoyang_qinxiao.edaef32c.png
+    sha256: edaef32c21b2f92eb052ae0606e7b052717662255c488e36642d29fac5b7f199
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch05_luoyang_qinxiao.edaef32c.entry.yaml
   runner_job_records:
   - - cg_ch05_luoyang_qinxiao.resume3
     - ok
@@ -315,8 +309,7 @@
     - '121'
     - exec-476e2bd9-093e-4c32-be31-93ffe4f204e8.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch05_luoyang_qinxiao.resume3
+  effort: ultra
 - id: cg_ch05_meizhuang_duet
   file: cg_ch05_meizhuang_duet.png
   category: scene
