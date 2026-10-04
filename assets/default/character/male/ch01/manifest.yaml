@@ -932,15 +932,18 @@
   - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
     use: 项目男基线；只取画风
     sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  created: 2026-10-02T23:09:20-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/repair_archive/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.1791007759373714000/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:14:03.111133-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_01_45_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
+  sha256: cba7d540d5ef7e717d1ad5749e5f11b5f97e9339d85a1db0ee12398210440a8d
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；续作聚贤庄CG的必要阶段依赖；新基础同脸，护人姿态、空酒碗与庄门背景；不持竹棒；联系表核验单人完整全身、成年、右衽、五指；背景保留，视觉重出0次。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；续作聚贤庄CG的必要阶段依赖；新基础同脸，护人姿态、空酒碗与庄门背景；不持竹棒；联系表核验单人完整全身、成年、右衽、五指；背景保留，视觉重出0次。；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：浓眉、眼型、鼻梁、唇形与恢复base一致；严肃不笑，原左上光与胡须衔接自然，无可见接缝
   previous_revision:
     prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/repair_archive/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.1791007759373714000/previous-prompt.md
     png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/repair_archive/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.1791007759373714000/previous.png
@@ -948,6 +951,17 @@
   repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.repair1.png
   repair_runner_source_sha256: 7b948a779b64976021e76ce8568ae09e8397b8aef04100c84f356e2f4417aba2
   ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_01_45_r1
+    before_sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
+    box:
+    - 431
+    - 146
+    - 558
+    - 283
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_01_45_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt
   file: por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.png
   category: character/male
