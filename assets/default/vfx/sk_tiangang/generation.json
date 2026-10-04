@@ -1,0 +1,92 @@
+[
+  {
+    "effect": "family",
+    "tool": "image_gen",
+    "model": "未回传",
+    "effort": "未回传",
+    "candidate_count": 2,
+    "selected_candidate": 2,
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-4dc1f67c-216b-49ea-9fb4-ffd9a9f0dfbb.png",
+    "prompt_file": "effect/family/prompt.txt",
+    "edit_prompt_file": "effect/family/prompt_edit.txt",
+    "request": {
+      "transparent_background": false,
+      "referenced_image_paths": [
+        "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-0af94637-7906-47a3-bccc-277a31bbdceb.png"
+      ]
+    },
+    "candidates": [
+      {
+        "candidate": 1,
+        "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-0af94637-7906-47a3-bccc-277a31bbdceb.png",
+        "selected": false,
+        "reason": "近白星心去白后出现小孔，第二候选改为赤色墨结"
+      },
+      {
+        "candidate": 2,
+        "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-4dc1f67c-216b-49ea-9fb4-ffd9a9f0dfbb.png",
+        "selected": true
+      }
+    ]
+  },
+  {
+    "effect": "mv_tiangang_guiyi",
+    "tool": "image_gen",
+    "model": "未回传",
+    "effort": "未回传",
+    "candidate_count": 2,
+    "selected_candidate": 2,
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-68cebab2-cf19-4fb9-8746-393764264aa8.png",
+    "prompt_file": "effect/mv_tiangang_guiyi/prompt.txt",
+    "edit_prompt_file": "effect/mv_tiangang_guiyi/prompt_edit.txt",
+    "request": {
+      "transparent_background": false,
+      "referenced_image_paths": [
+        "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-40f4b9ee-3e05-4a5c-9fe4-572e10bc4f74.png"
+      ]
+    },
+    "candidates": [
+      {
+        "candidate": 1,
+        "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-40f4b9ee-3e05-4a5c-9fe4-572e10bc4f74.png",
+        "selected": false,
+        "reason": "近白星心去白后出现小孔，第二候选改为赤色墨结"
+      },
+      {
+        "candidate": 2,
+        "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-68cebab2-cf19-4fb9-8746-393764264aa8.png",
+        "selected": true
+      }
+    ]
+  },
+  {
+    "effect": "mv_tiangang_hewei",
+    "tool": "image_gen",
+    "model": "未回传",
+    "effort": "未回传",
+    "candidate_count": 2,
+    "selected_candidate": 2,
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-b40a9e87-c6a5-4269-9fb8-7c2603e4be68.png",
+    "prompt_file": "effect/mv_tiangang_hewei/prompt.txt",
+    "edit_prompt_file": "effect/mv_tiangang_hewei/prompt_edit.txt",
+    "request": {
+      "transparent_background": false,
+      "referenced_image_paths": [
+        "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-311b9a74-e88a-42c1-a747-26d34e9e3093.png"
+      ]
+    },
+    "candidates": [
+      {
+        "candidate": 1,
+        "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-311b9a74-e88a-42c1-a747-26d34e9e3093.png",
+        "selected": false,
+        "reason": "近白星心去白后出现小孔，第二候选改为赤色墨结"
+      },
+      {
+        "candidate": 2,
+        "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-b40a9e87-c6a5-4269-9fb8-7c2603e4be68.png",
+        "selected": true
+      }
+    ]
+  }
+]

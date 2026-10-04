@@ -1,0 +1,20 @@
+ID consistency report
+scanned: 172 files (168 Markdown, 4 data), 72111 occurrences, 15046 definitions
+prefixes: ach_ af_ ai_ aoe_ ap_ arch_ bf_ biz_ bs_ bsc_ cache_ ch city_ cmb_ dc_ diff_ dxl_ ea_ echo_ enc_ end_ eq_ ev_ exg_ fam_ fin_ frag_ gate_ gauge_ ins_ it_ job_ lg_ lgs_ mer_ mfr_ mv_ npc_ offmap_ origin_ pers_ poi_ port_ post_ ps_ q_ qnl_ rc_ res_ rg_ route_ rp_ rs_ rule_ rx_ save_ sc_ sect_ set_ sh_ sk_ slp_ sqj_ sv_ tal_ tg_ tj_ tmpl_ tr_ tsp_ tst_ ttl_ txp_ ue_ vid_ vow_ wk_ yy_ zt_ (Canon section 12)
+
+1. referenced but undefined: 1
+  docs/README.md:185:184  sk_babuganchan (2 refs)
+
+2. conflicting duplicate definitions: 0
+
+3. near-match ID pairs: 1
+  it_miji_longzhaoshou <> it_miji_yingzhaoshou  distance=2 [docs/design/05-martial-arts-system.md:2849:51, docs/design/catalog/items-manuals.md:105:4]
+
+4. deprecated IDs in active text: 0
+
+5. set/member asymmetry: 0
+
+set check: checked: 44 SetDef entries
+near-match allowlist: loaded; 4 reviewed pairs (tools/lint/check_ids_near_allowlist.json)
+baseline: loaded; known undefined/deprecated=1/0; new=0
+strict failure count (new categories 1 + 4, all categories 2 + 5): 0
