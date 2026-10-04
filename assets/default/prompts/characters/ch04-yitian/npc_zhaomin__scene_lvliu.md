@@ -122,3 +122,10 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_zhaomin__ch04_youth_scene_lvliu.prepared.json`。
+
+## 原著依据
+
+- 《倚天屠龙记》二十三 灵芙醉客绿柳庄：“身穿宝蓝绸衫”；https://www.xuges.com/wuxia/jinyong/yttlj/168.htm
+- 《倚天屠龙记》二十三 灵芙醉客绿柳庄：“黄金为钩、宝带为束，悬着一柄长剑”；https://www.xuges.com/wuxia/jinyong/yttlj/168.htm
+- 《倚天屠龙记》二十三 灵芙醉客绿柳庄：“头巾上两粒龙眼般大的明珠莹然生光”；https://www.xuges.com/wuxia/jinyong/yttlj/168.htm
+- AR-82 返修约束（本节优先于历史提示词）：只修改赵敏本人三处：白色袍改成初见阶段宝蓝绸衫，保留原款式褶皱；发冠换成男装头巾，上有两粒龙眼大的明珠；腰间黄金钩宝带悬完整倚天长剑鞘，向腿旁斜垂。原脸、眼神、表情、手及手里折扇、所有背景完全不动。
