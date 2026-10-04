@@ -175,20 +175,6 @@
   journal 覆写 / 回滚使缓存失效；投影依赖单位 revision，不依赖整单位 JSON 比较。
   原地路径直接返回零步结果且保留占格 / 越界拒绝；无可用路线或招式时 AI 不做无用视线查询。
 
-### 遭遇构建与脚本（ENG-26）
-
-- 内容先以 `EncounterDefSchema` 校验 `encounter.v1`，宿主再调用纯函数
-  `buildEncounter(definition, context)`；其 `BattleSetup + BattleUnitSeed[]` 是
-  `battle/enter` 的唯一入参，应用层不得另行拼参与者或规则。
-- 战场可内联六角格，也可用 `regionId + sceneId + arenaId` 引用 RegionMap 的
-  `BattleArena`；ENG-20a 只发开战意图，宿主负责提供内容快照、世界流 seed 与锚点。
-- `tmpl_*` 先展开模板生命、攻防、内力、评级与速度；梦境 D 倍率
-  `8500 + 500D` 和模式倍率仅乘敌方生命、内外攻击，均用 bp 整数向下取整。
-- `hitCount` 进度与一次性脚本标记是 `BattleUnit` 运行态，不属于 `BattleUnitSeed`。
-  `evaluateBattleEnd()` 执行气血阈值 / 连败节拍；动作可发事件、提供演示或切换控制。
-- `resolveBattleConcede()` 解析认输；`encounterRetryAllowed()` 只回答遭遇策略。重试
-  seed、计数与双 RNG 重置仍由 ENG-16c `retryBattleSession()` / `deriveRetrySeed()` 负责。
-
 ### 战斗事件与下游约定
 
 - 结算事件：`battle/damageResolved`、`combat.qiRepel`（携带规范事实名
@@ -211,8 +197,6 @@
 
 ## 变更记录
 
-- 2026-10-03：ENG-26 新增 `encounter.v1` 纯构建器、内联 / RegionMap 战场、模板与难度展开、
-  命中次数、认输策略和确定性脚本节拍；应用演示改由内容夹具开战。
 - 2026-10-03：ENG-16c 收回战斗会话、六命令事务、世界流种子、幂等奖励回执与实战 / 回放对拍；
   移除历史整树克隆，抽象战斗改为调用方传 RNG。旧 schema 3 不补空 receipts，保留原 golden。
 - 2026-10-03：ENG-20a 接入 RegionMap 挂载、确定性场景行走与跨沟、交互锚、门禁、

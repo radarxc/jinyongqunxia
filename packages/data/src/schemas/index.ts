@@ -2,7 +2,6 @@ export * from './character';
 export * from './chapter';
 export * from './event-actions';
 export * from './content-pack';
-export * from './encounter';
 export * from './item';
 export * from './martial-art';
 export * from './meridian';
