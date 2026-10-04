@@ -8,22 +8,25 @@ age_variant: youth
 tier: S
 output: assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png
 manifest: assets/default/character/female/ch01/manifest.yaml
+status: redo
 references:
 - path: .agents/coord/imagegen-reference/hero-20261001/classic_wangyuyan_2003.png
-  use: 已实际下载并view_image查看。经典影视第一人物设计参考：年轻清丽的真实骨相、专注而端雅的眼神与笃定气质。人物设计启发，不锁定演员五官；保留项目淡藕长褙子、素玉簪、空手见闻者身份，不继承芦苇、复杂发饰、山水场景或摄影画风。 SHA-256 24df8a91a374ed5e1cbc1438776ee2f2f2dab5cae460f1a3d3c81931e98f2c15；来源见同目录sources.json。
-- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-  use: 已实际查看。仅参考项目细墨线、柔光、暖浅灰纸底和淡雅设色，不锁定脸、年龄体型、发饰、服装与姿态；基线原approved状态不作任何修改。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际查看的用户水墨风参考，仅取精细国风人物、淡墨层染、纸面透色和衣料笔触；不复制其脸、青白衣装、发饰、披帛或山水背景。
-status: redo
-redo_reason: "面容源自剧集剧照，有真人肖像风险，按原著“神仙姐姐”的清雅书卷气用文字原创重做，连同五幅场景"
+  use: 身份参考：2003《天龙八部》 剧照（作者 10-03 指定版本）；只借造型、气质与五官神韵，按项目画风重画，不照搬照片
+  sha256: 24df8a91a374ed5e1cbc1438776ee2f2f2dab5cae460f1a3d3c81931e98f2c15
+- path: .agents/coord/_handoff/gem/codex_w17/staging/stillface__wangyuyan.jpg
+  use: 剧照脸部特写：由上面这张剧照裁出放大（512×512），只为看清五官；同样只借神韵，按项目画风重画
+  sha256: 18a4e80064a5ccd5890ae0163451fe1c81b4d3c137f6face5daa0acaade1ad26
+- path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_wangyuyan__ch01_youth_mantuo_base.b2.png
+  use: 底稿：上一轮候选图（服装、姿势、构图来源），本轮只重画头部
+  sha256: 2739ed1d016d998b5582ed6f1b425355e148ee481ea753eb4ccbe0e47651dab6
+redo_reason: "作者 10-03 AR-44：参考2003《天龙八部》造型重画 base，不要和照片一样"
 reference_upload:
-- .agents/coord/imagegen-reference/hero-20261001/classic_wangyuyan_2003.png
-- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-- assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-codex_prompt_rev: 2026-10-02
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/still__wyy_2003.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/staging/stillface__wangyuyan.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w17/out/por_npc_wangyuyan__ch01_youth_mantuo_base.b2.png
+codex_prompt_rev: 2026-10-03
 classic_ref:
-  version: 2003 央视《天龙八部》
+  version: 2003《天龙八部》
   stills:
   - .agents/coord/imagegen-reference/hero-20261001/classic_wangyuyan_2003.png
 ---
@@ -31,6 +34,19 @@ classic_ref:
 # 王语嫣 · 《天龙八部》（ch01）
 
 ## Gemini 提示词
+
+> 2026-10-03 AR-44 王语嫣新 base（10 号出图员，codex exec · image_gen）：作者 16:55「王语嫣按刘亦菲版本修正一下」、17:15「参考刘亦菲但是不要婴儿肥」、17:24「王语嫣选b」。第 1 轮前置 2003 版剧照与剧照脸部特写重画（画风基线只用小龙女一张）；第 2 轮以第 1 轮 B 为底稿只重画头部：去婴儿肥、下颌线清楚、沉静带浅笑。上一版保留在下一节作历史。
+
+```text
+【任务】重画第 3 张这幅王语嫣全身立绘的头部：服装、姿势、构图、背景不变，只把脸按作者的新意见改好，输出完整的 2:3 竖幅全身立绘。
+【参考】第 1 张是该角色经典影视造型的剧照，第 2 张是剧照的脸部特写：五官（眉形、眼型、鼻子、嘴型）照这一版的神仙姐姐来画，让看过这一版的人一眼认出；但按项目画风重画，不要照片质感、不要照片贴脸。第 3 张是要重画头部的立绘底稿。
+【作者意见：参考这一版，但不要婴儿肥】脸型改清瘦：两颊不要鼓、不要圆嘟嘟，颧骨下方略收，下颌线清楚流畅、下巴秀气但不尖；是二十岁上下的成年女子，不是少女。眉毛平而细长，杏眼清澈、眼尾平而略长，鼻梁细直，嘴唇小而饱满。神态沉静、略带愁思，嘴角可以带一点浅浅的笑意。
+【保留】发式与发饰（头顶挽起、素白玉簪、长发垂在胸前与背后、小银耳坠）、藕荷色长褙子与浅藕灰长裙、双手交叠的姿势、背景、光线、笔触与画风全部照第 3 张。
+【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+【不要】不要婴儿肥、圆脸、娃娃脸；不要网红尖下巴；不要照片质感、磨皮、浓妆；不要文字、水印；不要第二个人；不要水平镜像，衣襟保持右衽。
+```
+
+## 上一版 Gemini 提示词（AR-44 刘亦菲版重画之前，历史，不再用于出图）
 
 > 2026-10-02 AR-32 重出（5 号出图员，codex exec · image_gen）：主要角色改为参考经典影视版剧照加项目基线生成。上传顺序：2003 央视《天龙八部》 剧照 1 张（classic_wangyuyan_2003.png），最后两张为同性别画风基线（缩小版 JPEG）。剧照只借造型、气质与面部特征，画面按项目画风重绘、不复制照片。上一版（AR-31 文字版）保留在下一节作历史。
 
