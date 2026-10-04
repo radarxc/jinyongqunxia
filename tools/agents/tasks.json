@@ -36660,6 +36660,52 @@
   },
   {
    "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/runtime/item-content.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-ch10-test-timeout",
+   "title": "游戏工程 · 小修：item-content 的 ch10 真产物集成用例写固定超时 60 秒（低负载单跑 3 次 2.6–3.1 s 全过，负载 35–40 下超 15 s；照 waitfor / role-slot 先例，断言不动）",
+   "prompt": "ENG-ch10-test-timeout.md",
+   "deps": [],
+   "writes": [
+    "apps/game/src/runtime/item-content.test.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
    "wave": 17,
    "kind": "draft",
    "review": false,
