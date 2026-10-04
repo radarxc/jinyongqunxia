@@ -2439,3 +2439,48 @@
     - M1 已合入：ink-intents 87071d10、ch00b 6fb2b3fd、npc-species 58669ad2；singleton c427b147、storage-perf-split f94676ae 也已合入。
       - ink-intents 合入后首次会话涨到 96.02，原因是对话意图进了首屏执行器，已登记 ENG-dialogue-runtime-lazy，目标 92 以下。
     - 待作者：霍青桐 C/D/E；历史第二批 21 人。
+  - **10-04 02:12–02:35 开发监督**：
+    - **登记 ENG-ch00-encounter-wiring**（340964bb，M1，排在 19e 之后，依赖 ch00c）。
+      - 核实：core 会发 `world/battleRequested`，game 只消费 `town/battleRequested`；连败只在 builder 里作入参。所以序章三战此前没有任何任务能接上。
+      - 范围：草案转生产、开战接线、参战者解析、救场 / 提示 / 示范、连败持久化、结果旗标、builder 两处补强、三场确定性流程测试。
+      - 报告附「序章三战手动实走步骤」，合入后由开发监督转进 HANDOFF（46c8ae60）。
+    - **CONTENT-ch00c-encounters**：r1 只在报告上 FAIL。按协调者裁定只补报告；停掉自动返修，带任务 ID 清单（wiring / 26 / 16e / npc-species / generic-model）重起。
+    - **TOOL-map-terrain**：
+      - r2 FAIL 后按协调者裁定再返修，校验加回填覆盖率硬指标：`--check` 打 `COVERAGE` 行，每类 ≥ 0.95（ca0bb060）；
+      - 第 3 轮空转：只回一句计划，20 秒退出，不算数；
+      - 原参数重起，说明开头加「直接动手改代码并重建产物」，驱动 78444。
+      - 近 6 小时内其他任务没有空转；`_common` 第 9 条已有同义规定。
+    - **CONTENT-apparel-data 第 1 批合入**（8f9f5340）。全量检出里重建出图总索引，73 件进待出图（80d588e0）；第 2 批起跑。
+    - 16e 若在 03:11 碰到 200 分钟上限：照 ink-intents 先例在原工作区续作，说明写清已完成与剩余项。
+  - **10-04 02:48 开发监督 · 节点：ENG-19e-m1-order 合入**（2070b36a，白马冷入口页面流）；同时 **CONTENT-ch00c-encounters 合入**（b2718159，三场遭遇仍在 `_drafts/`，转生产归 wiring）。
+    - ENG-ch00-encounter-wiring 随即起跑（驱动 10898）。为给它腾代码池位，停了非 M1 的 TOOL-ops-dispatch-dedupe 第 2 轮返修（约 15 分钟进度，工作区保留，状态记 PENDING），代码池有位再续作。
+    - 坑：zsh 里 `kill $pids` 不分词，多个 pid 会静默失败，要用 `xargs kill` 或 `${=pids}`。
+    - 02:46 那次合入被拦：城图调度 city_consolidate.py 留下 docs/design/town/ 下的未提交改动，协调者已补提交（e9244aef）。以后再见「主检出有未提交的改动」，先 git status；是 docs/design/town/ 的就告诉协调者。
+  - **10-04 02:50–03:20 开发监督**：
+    - CONTENT-apparel-data-2 合入（9e829944），重建出图总索引（99942561），第 3 批起跑。
+    - **ENG-16e** 第 1 轮跑满 200 分钟上限，supervise 已自动续作。开发监督停掉这轮自动续作（只跑了 4 分钟），挪基点 5adbe42c → fd450096（0 冲突），带「已完成 / 剩余项」说明（devsup_note_resume.md）在原工作区续作，03:19 执行器起跑。
+      - 坑：停 M1 任务的执行器重起时，它腾出的池位会被别的等位任务马上拿走。这次是非 M1 的 move-onhit 返修。已停 move-onhit 的返修让位（刚起约 2 分钟，工作区保留，返修说明存 devsup_resume_r2.md，状态记 PENDING），代码池有位再续作。
+    - 非 M1、暂停待续：TOOL-ops-dispatch-dedupe（PENDING）、ENG-move-onhit-effects（PENDING）、ENG-dialogue-runtime-lazy（PENDING，工作区已撤）。
+    - 代码池（03:20）：16e、generic-model、battle-modules-lazy、ch00-encounter-wiring；18c 在等。
+  - **10-04 03:20–03:40 开发监督**：
+    - **check:perf**（03:31，负载约 9–11）全绿，8 个用例：rig 程序步态最小 P95 0.372 ms（< 0.80），片段模式 0.299 ms（< 1.0），挪进来的 bench 与存储计时断言都过。00:23 那次因为等不到低负载、在负载 34 下跑，rig 门报 0.905，属负载失真，作废。
+    - **TOOL-map-terrain 合入**（03:35，第 4 轮返修过 COVERAGE 门与审核）。ART-map-inkkit-tiles 00:58 已合入，至此 TOOL-map-compose 的依赖齐了，起跑（素材池）。
+    - CONTENT-apparel-data-3 合入，重建出图总索引（c505833c），第 4 批起跑。
+  - **10-04 02:10–04:28 协调者**：
+    - **AR-82 原著核对返修全部完成**，作者无需定的项：
+      - novel-fix-1（ch00–ch04）：40 条，56 张图；
+      - novel-fix-2（ch05–ch09）：42 条，41 张图；另有 1 条剑鞘误判，已撤销；
+      - novel-fix-3（ch10–ch14）：29 条，29 张图。
+      - 历史人物的 base 等作者审完 hist-batch2 再一起换。
+    - **title-audit 完成**：82 张插图里 15 张题字有问题，全部修好；26 份提示词还没出图，清单在 `_lines/title-audit/missing_plates.tsv`。
+    - **已交付并发作者**：
+      - guojing-final：郭靖 B，含立绘和插图共 15 张；
+      - xiaojinghu-r5：阿朱「遗憾的笑」（362cda69）；
+      - lvliu-redo：绿柳庄照剧照重画（30224ef9）；
+      - hist-align：索菲娅身材（8de5d65a）。
+    - **M1 合入**：19e（2070b36a）、ch00c（b2718159）。
+      - 发现序章三战没有任何引擎任务接线，已登记 ENG-ch00-encounter-wiring（340964bb），正在跑。
+      - 02:46 合入被城图进度文件挡住：city_consolidate 撞 index.lock 没提交上。已补提交（e9244aef），并给它加了重试。
+    - **其他合入**：terrain（95acd873）、apparel 2–4 批；compose 已起。
+    - **M1 还剩**：16e（原工作区续作）、wiring、generic-model。
+    - **待作者**：霍青桐 C/D/E；历史第二批 21 人（建议徐达、常遇春穿戎装）。
