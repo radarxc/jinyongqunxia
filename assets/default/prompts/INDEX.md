@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 990、已通过（作者） 132、待出图 38。**待出图队列 38 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 991、已通过（作者） 132、待出图 37。**待出图队列 37 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -50,7 +50,6 @@
 | items | `it_yuemubaitie` | 越地木牍拜简 | `assets/default/item/collectibles/it_yuemubaitie.png` | 待出图 | [it_yuemubaitie.md](items/collectibles/it_yuemubaitie.md) |
 | items | `it_yuetongjian` | 越地素面铜鉴 | `assets/default/item/collectibles/it_yuetongjian.png` | 待出图 | [it_yuetongjian.md](items/collectibles/it_yuetongjian.md) |
 | items | `it_yuewuseqin` | 越地乌漆礼琴 | `assets/default/item/collectibles/it_yuewuseqin.png` | 待出图 | [it_yuewuseqin.md](items/collectibles/it_yuewuseqin.md) |
-| items | `it_yueyouqin` | 越地幽弦琴 | `assets/default/item/collectibles/it_yueyouqin.png` | 待出图 | [it_yueyouqin.md](items/collectibles/it_yueyouqin.md) |
 | items | `it_yueyushiwen` | 越地玉石盟辞摹片 | `assets/default/item/collectibles/it_yueyushiwen.png` | 待出图 | [it_yueyushiwen.md](items/collectibles/it_yueyushiwen.md) |
 | items | `it_yuezhuganhaobi` | 越地竹管毫笔 | `assets/default/item/collectibles/it_yuezhuganhaobi.png` | 待出图 | [it_yuezhuganhaobi.md](items/collectibles/it_yuezhuganhaobi.md) |
 | items | `it_yuezhukeqingci` | 越地竹刻请辞 | `assets/default/item/collectibles/it_yuezhukeqingci.png` | 待出图 | [it_yuezhukeqingci.md](items/collectibles/it_yuezhukeqingci.md) |
