@@ -47807,6 +47807,44 @@
    "review": false,
    "web": false,
    "vars": {},
+   "agent_args": [],
+   "validate": {
+    "exists": [
+     "tools/agents/test_supervise_singleton.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools.agents.test_supervise_singleton",
+      "tools.agents.test_supervise_rebase",
+      "tools.agents.test_ops_dispatch",
+      "tools.agents.test_step_pool_priority"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-supervise-singleton",
+   "title": "工具 · 小修：supervise.py 单例锁（同一任务已有活着的驱动时新起的直接退出、记一行，退出码 3；--worker 模式也生效）；单测",
+   "prompt": "TOOL-supervise-singleton.md",
+   "deps": [],
+   "writes": [
+    "tools/agents/supervise.py",
+    "tools/agents/test_supervise_singleton.py"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
    "agent_args": [
     "-c",
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
