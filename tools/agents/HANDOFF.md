@@ -2037,3 +2037,64 @@
     - 面部总审 19:56 收尾：明显 0、轻微 0（最后 3 张：丘处机 7e057b20、万圭 6623fdf6、平阿四 0eb265db；平阿四的疤只画到眉间，按细节判一致）。
     - AR-58 神态分工：11 号做 ch02–ch05（射雕 22 人，第 1 批已入库；神雕 18 人、倚天 19 人、笑傲 16 人已批）；10 号做 ch06–ch11（ch06–ch08 改 58 人已批）；12 号做 ch12–ch14（待报计划）。
     - 代码：event-source-trigger 校验栽在 content-plugin 5 秒超时（基点 c95f6371 早于修复 d0c0c1fa），协调者挪基点到 33f3e73c，--from validate 后 19:55 通过。gates-data 挪基点、合并 import 后，19:54 校验只栽在 core/bench 计时断言（负载 33–38，212 > 205 ms），已置 HOLD-VALIDATE；等待器 `after_merge_revalidate.py` 等 ENG-bench-perf-split 合入后自动挪基点、--from validate。supervise.py 改为合入遇 cherry-pick 冲突直接停（33f3e73c）。
+  - **10-03 19:52–20:03 开发监督**：
+    - **ENG-region-gates-data** 挪基点后的校验只栽在 core/bench 线性断言上（负载 33–38 下 212 > 205 ms）。
+      - 协调者置 HOLD-VALIDATE，并挂等待器 `_handoff/after_merge_revalidate.py`：bench-perf-split 合入后自动挪基点、`--from validate`。
+      - 协调者裁定：bench-perf-split 合入前，别的任务若也只栽在这条断言上，照此办：置 HOLD-VALIDATE、停驱动、挂等待器，不让执行器为它重跑，更不改断言。
+      - 判定脚本 `scratchpad/perfgate_check.py <ID>`，输出 ONLY-LINEARITY / OTHER，并列出驱动参数。
+    - **event-source-trigger** 校验栽在 5 秒超时上：它的基点早于超时修复。协调者挪基点到 33f3e73c 后 `--from validate`，已进审核。
+    - 协调者改了 supervise.py（33f3e73c）：合入遇到 cherry-pick 冲突就直接停在 READY，交人工挪基点。
+      - 以后：基点早于某个已合入的修复、校验栽在那个已修的问题上时，挪基点加 `--from validate`，不让执行器重跑。
+    - **ENG-bench-perf-split** 第 1 轮校验只栽在收缩门：combat.test.ts 42 → 27 行，是按任务要求把用例挪出去了，登记时漏了豁免。
+      - 补 shrink_exempt（f4d04a28）。
+      - 停掉自己起的驱动 65316 和返修 start 45330，`--from validate` 重起，驱动 50931。
+  - **10-03 20:02–20:08 开发监督**：
+    - **ENG-battle-lazy-dispose 合入**（20:02）、**ENG-event-source-trigger 合入 bd4a5aa7**（20:04）。
+    - prod_check（bd4a5aa7）全绿：149 个测试文件 / 1103 个测试，没有未处理错误；main-flow 连跑 3 次干净。
+      - 20:03 那次红是 prod_check 正撞上 source-trigger 合入中途，build 读到半套文件（MISSING_EXPORT），不是真问题。
+    - **首次会话闭包 108.91 / 110**：session static 69.28 → 78.17。
+      - 原因：source-trigger 让 `core/command/transaction.ts` 静态 import `event-executor`（默认参数 `sourceEventDispatcher = executeSourceEventDefs`），连带拉进 `region-runtime`、`hex`，「区域」块 44.19 → 37.52。
+      - 会话静态里最大的块是 `item-content`，44.09 KiB，主要是 data 的 zod schema。
+    - 建议已报协调者：
+      - base-diet 最先合入；
+      - 合入前任务校验若只栽在 110 上，照计时断言的办法挂等待器，依赖改为 base-diet；
+      - 事件执行器算不算首屏必需（AR-64），等 base-diet 合入后看余量再定。
+  - **10-03 20:10 开发监督**（协调者 20:09 裁定）：
+    - base-diet 最先合，名单不动。
+    - base-diet 合入前，任务校验若只栽在 session 110：置 HOLD-VALIDATE，挂 `after_merge_revalidate.py ENG-session-base-diet <ID> -- <原参数>`；多个依赖用逗号分隔；不让执行器重跑，也不放宽。
+      - gates-data 已由协调者改为同时等 bench-perf-split 与 base-diet。
+      - 判定脚本 `scratchpad/perfgate_check.py <ID>`，输出 ONLY-LINEARITY / ONLY-SESSION110 / OTHER。
+    - base-diet 合入后报两个数：合入后的闭包；gates-data、ink-intents、26 都进来后的估算。
+      - 估算 ≤ 95：不动，序章本来就用区域运行时。
+      - 超过：登记注入式小修，source event 在分发器接上前不能丢（先排队，或保证第一个事务前已接好），要有确定性测试。
+  - **10-03 20:13–20:30 开发监督**（作者 AR-65：除 Gemini 画图、Tripo 驱动外，任务都交 GPT 6.1 Sol，Claude 只给目标、判结果）：
+    - 协调者已落实：
+      - 执行器与审核走 `.agents/coord/executor_override.json`（Codex gpt-6.1-sol xhigh，回退 gpt-6-astra），优先于 `--model`；
+      - GPT 长会话用 `_handoff/codex_session.py`。
+    - **ENG-bench-perf-split 合入**（20:24）：线性断言挪到 `battle-session.performance.test.ts`，只在 check:perf 跑。
+      - 之前栽在 HOST_DISPOSED 上，是因为基点早于 lazy-dispose，挪基点后 `--from validate` 通过。
+      - 合入后 prod_check 全绿：1102 个测试，会话闭包 108.90。
+    - **OPS_RUNBOOK.md**（bd6e6fb0）：开发监督的处置规则，写给 GPT。
+    - **TOOL-ops-dispatch**（a2114018，名单第 1，驱动 1497）：
+      - supervise 返修前先挪基点重校验；
+      - `ops_dispatch.py` 守护进程按 RUNBOOK 处置；
+      - 决策逻辑有单测。
+    - 收尾条件：它合入、守护进程跑稳一小时后，开发监督把未了的事写进 HANDOFF，然后退场。
+  - **10-03 20:13–20:40 协调者 · AR-65 / 66 / 67 切换**：
+    - **执行器分流**：`.agents/coord/executor_override.json`，step.py 起跑和 gpt_review.py 审核时现读（e82758fd、bfaa657f）。
+      - ENG / TOOL / LINT / CITY / VFX 的执行走 traex：GPT-6-Astra max，不应答回退 GPT-5.6-Sol。
+      - 其余任务的执行走 Codex gpt-6.1-sol xhigh，回退 gpt-6-astra。
+      - 审核一律走 Codex gpt-6.1-sol。
+      - traex 没有 6.1 Sol（metadata could not be resolved）。
+      - 要恢复旧行为，把 enabled 改成 false 即可。
+    - **GPT 长会话**：`.agents/coord/_handoff/codex_session.py`。
+      - 运行环境：沙箱 workspace-write，主检出 .git 可写，会话目录在 `.agents/coord/_lines/<名>/`。
+      - 汇报：会话往 `.agents/coord/_inbox/<名>.md` 追加，watch_drivers 会转给协调者。
+      - 沙箱里不能嵌套起 codex exec（workspace routing discovery failed）。所以出图 runner 由协调者在沙箱外起，会话只往队列加作业。
+    - **人物出图线**：
+      - 10 号、12 号已交接退场。portrait-w17（ch08–ch11 共 48 人，runner pid 13306）和 portrait-w25（ch12–ch14 共 17 人，runner pid 19748）由 gpt-6.1-sol 会话接手，说明在 `.agents/coord/_lines/briefs/`。
+      - 11 号做完神雕第 2 批后交接；倚天、笑傲待开 portrait-w24。
+    - **区域图（AR-67）**：停用 Gemini，改 Codex 出。画风对齐 baseline/map 两张作者已审基线，地势沿用 v4 底图。Gemini 出图员在写 `gemini_qa/maps/HANDOFF_CODEX.md`，写好后开 Codex 区域图会话。已入库的 20 张 Gemini 版等 Codex 版逐张通过后再覆盖。
+    - **开发监督**：OPS_RUNBOOK 已写（bd6e6fb0），TOOL-ops-dispatch 已登记（a2114018）。它合入并跑稳一小时后，开发监督交接退场。
+    - **素材线追踪**：补位器脚本化，进度写进 `_inbox/artw3.md`，然后交接退场。
+    - **Tripo**：子代理在写 `tools/model3d/tripo_web.js` 和 `.claude/skills/tripo-web/SKILL.md`。
