@@ -106,3 +106,15 @@ Use case: stylized-concept。Asset type: tianshu default 风格包人物立绘�
 本轮实际图像输入顺序：1 assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png（仅取画法、纸底、柔光、笔触和设色，不继承参考角色面容、年龄体型、发式、衣装或道具。实际manifest状态candidate；作者本轮明确指定男女现有基线用于生产，审批状态保留不变。SHA-256 c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89）。
 
 作者授权见 `.agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md`；采用宽松自查，轻微占高、比例和鞋遮挡等仅记录偏差。成图始终candidate，不更改任何基线审批状态。本文历史关于未approved而暂缓/空参考的生产说明在本轮由此覆盖。
+
+
+## 原著依据
+
+- AR-82 返修依据：“头发卷曲”——《白马啸西风》第03章（三联版转载分章，李文秀初见华辉）；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E7%99%BD%E9%A9%AC%E5%95%B8%E8%A5%BF%E9%A3%8E/%E7%AC%AC03%E7%AB%A0.md；执行：保留原有面容和成年中老年骨架，只把露出的头发改为自然卷曲；发髻、鬓边都应可辨卷发。
+
+
+## AR-82 当前返修约束
+
+只把华辉/瓦耳拉齐的全部露出灰发改为可辨自然卷发：顶部小髻、两鬓与散发均呈曲卷；不要直发小髻。原五官、眉眼鼻唇、胡须、年纪、发色及表情逐像素保持，头部整体大小位置不变。
+
+以本节及原著依据为当前要求，历史提示词与本节冲突时按本节执行；保留作者选定脸、原画质感与对应剧情阶段。

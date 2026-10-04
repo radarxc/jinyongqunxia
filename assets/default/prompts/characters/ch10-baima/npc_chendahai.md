@@ -105,3 +105,15 @@ Use case: stylized-concept。Asset type: tianshu default 风格包人物立绘�
 本轮实际图像输入顺序：1 assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png（仅取画法、纸底、柔光、笔触和设色，不继承参考角色面容、年龄体型、发式、衣装或道具。实际manifest状态candidate；作者本轮明确指定男女现有基线用于生产，审批状态保留不变。SHA-256 c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89）。
 
 作者授权见 `.agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md`；采用宽松自查，轻微占高、比例和鞋遮挡等仅记录偏差。成图始终candidate，不更改任何基线审批状态。本文历史关于未approved而暂缓/空参考的生产说明在本轮由此覆盖。
+
+
+## 原著依据
+
+- AR-82 返修依据：“左右各插着一柄精光闪亮的短剑”——《白马啸西风》风雪投宿、金银双剑段；第05章（三联版转载分章）；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E7%99%BD%E9%A9%AC%E5%95%B8%E8%A5%BF%E9%A3%8E/%E7%AC%AC05%E7%AB%A0.md；执行：腰间左右各插一柄匕首尺度短剑，剑柄一金一银，另保留长剑；这是李文秀夺剑前陈达海本人所携物。
+
+
+## AR-82 当前返修约束
+
+只在陈达海腰带左右各补一柄匕首尺度的小短剑，柄各自一金一银，短剑已插入腰侧鞘中，剑柄清楚露出；两侧各一，别堆在同侧。保留他两手原有长剑与长鞘、长剑长度和原手势。
+
+以本节及原著依据为当前要求，历史提示词与本节冲突时按本节执行；保留作者选定脸、原画质感与对应剧情阶段。
