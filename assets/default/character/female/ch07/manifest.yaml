@@ -342,46 +342,29 @@
   category: character/female
   style: default
   subject: 陈圆圆（ch07_bixue）
-  prompt: '生成一张 2:3 竖幅全身人物立绘。
-
-
-    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
-
-
-    人物：陈圆圆，《碧血剑》时代名满江南的绝色名伶，在明末动乱中辗转于权贵之间的时期。
-
-    年龄与体态：约二十二岁的成年女子，身段窈窕、成人比例，举止柔婉。
-
-    面容：绝色的鹅蛋脸，下颌线柔美；肌肤白皙细腻（有真实质感，不磨皮）；眉如远山、细长舒展；一双眼尾微垂的美目；鼻梁秀挺、鼻头小巧；樱唇丰润、唇色淡红；眼波温柔，带着淡淡的哀愁。温婉、柔美、楚楚动人，有歌伎的风雅。（她的女儿阿珂日后长得与她极为相像。）
-
-    发式：乌发挽成精致的发髻，插一支珠钗和一朵小绒花，饰物克制。
-
-    服饰：明末江南女子的浅藕荷色交领长袄（右衽）、月白马面裙，外罩一件淡紫色长比甲，衣缘有细致的绣花。
-
-    道具与姿态：怀抱一把琵琶，右手指尖轻按琴弦；安静站立。
-
-
-    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
-
-
-    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要和其他女子共用一张网红脸；不要浓妆；不要暴露。汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
-
-    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
-
-    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  prompt: 图1是待编辑的陈圆圆 ch07 年轻时期立绘，图2是作者选定的陈圆圆 ch08 B（宁静参考），图3是图2脸部特写。只将图1面部对齐图2的同一个人：眼形、鼻梁鼻翼、嘴唇唇峰、颧骨与下颌比例均同脸；再表现为图2更年轻的成年时期，减轻眼周岁月痕迹和成熟感，但不能换成另一张偶像脸。保持图1原有头向、头部位置尺寸、发式发饰、耳饰、紫粉服饰所有纹饰与褶皱、琵琶及双手、身体、站姿、背景、光照和构图完全不变；仅改脸部五官，不改发型。沉静温柔的神态，闭嘴，浅浅的笑意，不露齿。手绘写实武侠画风，融入原图笔触，不照片贴脸，不磨皮，不玻璃大眼、尖V脸、现代浓妆。单人完整纵向立绘1024×1536，无字标签、水印、拼版。
   negative: ''
   references:
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  tool: codex exec · image_gen（基线画风参考 2 张）
-  model: gpt-6-astra
-  created: 2026-10-02T02:32:51-0700
-  source_path: .agents/coord/gemini_originals/por_npc_chenyuanyuan__ch07_youth_base.png
+  - path: assets/default/character/female/ch08/por_npc_chenyuanyuan__ch08_prime_recluse_base.png
+    sha256: 9ca769ddb384214059621e46b30ef255451e78d3b815c569154afa557bda852b
+    use: 对脸基线：AR-73 / AR-84 作者选定 ch08 B（宁静参考） por_npc_chenyuanyuan__ch08_prime_recluse_base（陈圆圆 ch08 作者选 B），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch07/por_npc_chenyuanyuan__ch07_youth_base.png
+    sha256: 1ac3120138460b702a955da0131ccd0ae785035ab2c6a2b0e19938f163e41633
+    use: 待改原图（AR-73 / AR-84 参考 宁静，作者选 B 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenyuanyuan__ch07_youth_base.1ac31201.png
+  tool: codex exec · image_gen（AR-84 参考图编辑，局部合成）
+  model: gpt-6.1-sol
+  created: 2026-10-03T23:51:50-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/ar84_final4_chenyuanyuan_ch07_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 1ac3120138460b702a955da0131ccd0ae785035ab2c6a2b0e19938f163e41633
+  sha256: cddabe3298442b767792b504d5f1e66af6e62ca0de7f8bc40250f0d212977471
   status: candidate
-  notes: 立绘重审重出（AR-30）；现图与焦宛儿、安小慧、孙仲君是同一张磨皮网红脸，撑不起“天下第一美人”，也与鹿鼎记中年陈圆圆不像同一人；按与女儿阿珂相同的五官文字重画。
+  notes: 立绘重审重出（AR-30）；现图与焦宛儿、安小慧、孙仲君是同一张磨皮网红脸，撑不起“天下第一美人”，也与鹿鼎记中年陈圆圆不像同一人；按与女儿阿珂相同的五官文字重画。；AR-73 / AR-84 参考 宁静，作者选 B（Codex gpt-6.1-sol（AR-84）），基线 = por_npc_chenyuanyuan__ch08_prime_recluse_base（ch07 年轻时期同脸对齐 ch08 B，仅年轻化面容；紫粉服饰、发式、构图、琵琶与手部逐像素不变）
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenyuanyuan__ch07_youth_base.1ac31201.png
+    sha256: 1ac3120138460b702a955da0131ccd0ae785035ab2c6a2b0e19938f163e41633
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenyuanyuan__ch07_youth_base.1ac31201.entry.yaml
 - id: por_npc_wenqingqing__ch07_youth_scene_yuexiao
   file: por_npc_wenqingqing__ch07_youth_scene_yuexiao.png
   category: character/female
