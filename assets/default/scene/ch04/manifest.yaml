@@ -219,15 +219,18 @@
   - path: assets/default/scene/ch04/cg_ch04_guangming_peak.png
     sha256: 8e563a9e786a60ff0caac8ae0c348df4b7b16dc688a24401d8f1ab2956765b43
     use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_guangming_peak.png
-  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  - path: assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png
+    sha256: d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
   model: gpt-6.1-sol
-  created: '2026-10-04T00:14:06.407607-07:00'
-  source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_guangming_peak.png
+  created: '2026-10-04T01:35:04.922369-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_43_57_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 293a3e4097ec3978cd474491009a2e01011f81ddcea9278909d102ec572aad84
+  sha256: bfb7594ca0cd91f846ff6ac141d11a36aa8de65f4f65adcd02f67696b5d9efca
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「光明止戈」，实际字形「光明止戈」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：灭绝师太、杨逍按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「光明止戈」，实际字形「光明止戈」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：灭绝师太、杨逍按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：周芷若五官对齐 por_npc_zhouzhiruo__ch04_youth_zhangmen_base；AR-53 仅头部，AR-75 神态与光向保留；保留光明顶峨眉弟子周芷若的担忧侧视与紧张嘴形，不照搬base冷峻正视。；质检：已打开对照：周芷若同人眉眼鼻唇，对齐恢复base同时保留原关切蹙眉与转头视线，光向与接缝自然；张无忌等其他人、手与题字均原像素保留
   previous_revision:
     png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_guangming_peak.png
     sha256: 8e563a9e786a60ff0caac8ae0c348df4b7b16dc688a24401d8f1ab2956765b43
@@ -239,8 +242,18 @@
     - '153'
     - exec-9c595752-1ea3-4bbb-950d-54fdcd9f2265.png
   runner_success_count: 1
-  effort: not applicable (deterministic composition)
+  effort: ultra
   executed_by: Codex gpt-6.1-sol（AR-86）
+  ar84_alignment:
+    job: ar84_calign_43_57_r1
+    before_sha256: 293a3e4097ec3978cd474491009a2e01011f81ddcea9278909d102ec572aad84
+    box:
+    - 326
+    - 187
+    - 425
+    - 307
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_43_57_r1.png
+    outside_changed_pixels: 0
 - id: cg_ch04_haozhou_wedding
   file: cg_ch04_haozhou_wedding.png
   category: scene
