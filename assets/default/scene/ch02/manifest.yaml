@@ -88,80 +88,77 @@
   category: scene
   style: default
   subject: 比武招亲（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是穆念慈定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里穆念慈头部一带的放大方图（插图局部）。请以最后一张为底稿，只把穆念慈改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
 
-    【画里谁是谁】这张插图画的是：燕京街市比武招亲。擂台上年轻成年贵公子杨康手持红绣鞋、神情轻佻，成年女侠穆念慈红衣劲装、收势怒视；台下郭靖已经向前迈步、义愤难平，仍着乞儿乔装的黄蓉在侧观察。郭黄面容使用本轮身份图；杨康俊美华服、穆念慈坚韧朴素仅文字。热闹围观人群压成低细节背景，擂台无可读字，鞋的取得方式和站位待考，不定格夸张踢鞋动作。
+    【画里是谁】比武招亲擂台上，右侧侧脸看向画面左边的红衣习武女子（穆念慈，约二十岁）。
 
-    【要对齐的部分】黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要改成什么】把她的脸改成基线这张脸：圆润柔和的鹅蛋脸、下巴不尖，额前一排齐刘海，眼睛大而温柔，鼻子秀气、不要高挺，嘴唇自然的淡红色（不要大红唇），轮廓柔和。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「比武招亲」和小朱印必须原样保留，一笔不改、不增不减。
+    【原图保持】保留她侧脸看向左边的角度、凝神而略带倔强的神情，以及高马尾与红发带。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】（作者 AR-53 总审返修）左侧穿乞丐装、脸上抹灰的少年模样就是女扮男装的黄蓉：保留她的乞丐装、乱发和脸上的灰，但黄蓉的脸要像基线（作者选定的新版）：圆润饱满的鹅蛋脸、两颊有肉、下巴小巧圆润不尖，一双又大又亮的杏眼（不要细长眼、不要上挑的丹凤眼），眉毛细长柔和，小巧挺直的鼻子，嘴角带甜笑或按原图情绪，十九岁的少女感（成年），不要长脸、高颧骨和成熟感。其他人的脸不要动。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
   references:
-  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
-    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
-    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch02/por_npc_munianci__ch02_youth_base.png
+    sha256: 688b024703bc1b4310e7b84e9b3d0369daff8b4b130bfa61c544547e47e83bd1
+    use: 对脸基准：穆念慈的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_munianci__ch02_youth_base.jpg）
   - path: assets/default/scene/ch02/cg_ch02_beiwuzhaoqin.png
-    sha256: e9578dc5f238714c88aab5d88c6953e14256b1077f75715e9d4f224ce45c6d15
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.e9578dc5.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: b3fd950ad288a576b84e283c2556c010d56fd81950c6277603fbaec4257ac575
+    use: 待改插图：只把穆念慈头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_beiwuzhaoqin.b3fd950a.png
+  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把穆念慈头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T17:13:42-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_beiwuzhaoqin.s2.png
+  created: 2026-10-03T18:58:02-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch02_beiwuzhaoqin.p1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: b3fd950ad288a576b84e283c2556c010d56fd81950c6277603fbaec4257ac575
+  sha256: 485df8245db44be4f0619f07c4d0c9d9cfb099b9c91b1c8490ffadb4e266350e
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「比武招亲」，实际字形「比武招亲」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「比武招亲」，实际字形「比武招亲」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：穆念慈按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.e9578dc5.png
-    sha256: e9578dc5f238714c88aab5d88c6953e14256b1077f75715e9d4f224ce45c6d15
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_beiwuzhaoqin.e9578dc5.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_beiwuzhaoqin.b3fd950a.png
+    sha256: b3fd950ad288a576b84e283c2556c010d56fd81950c6277603fbaec4257ac575
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_beiwuzhaoqin.b3fd950a.entry.yaml
   effort: ultra
 - id: cg_ch02_niujia_snow
   file: cg_ch02_niujia_snow.png
   category: scene
   style: default
   subject: 牛家村风雪与十八年之约（ch02_shediao）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是丘处机定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里丘处机头部一带的放大方图（插图局部）。请以最后一张为底稿，只把丘处机改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
 
-    牛家村风雪开篇的编辑性概括构图（原创扩展构图；具体交手先后待考）。冬夜酒肆外，三十上下的壮年道者丘处机收剑回身，黑发束髻、黑眉斜扬、黑须整齐，方正宽脸、气色红润、目光锐利，绝不是白眉白发的老道，朴实成年武人杨铁心护住温婉成年妇人包惜弱，三人形成稳固三角；冷雪与暖灯对照，门外追兵仅作远景剪影。三人均只按文字造型，不能错用郭靖黄蓉身份；不画十八年后主角参与开篇。
+    【画里是谁】牛家村雪夜，右侧回头侧视的持剑道人（丘处机，此时约四十岁，比基线年轻十余岁，属剧情设定）。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【要改成什么】把他的脸改成基线这张脸年轻十余岁的样子：长脸、下巴长，颧骨与下颌的骨相、眉形、眼型、鼻子、嘴与基线一致；胡须改成基线那样唇上髭须加颏下一绺长须（颜色以黑为主、夹少许灰），不要满脸短胡茬。
 
-    两张上传图均只作项目男性画风基线，不复制其中人物身份。丘处机约三十岁，黑发黑眉，禁止白发白眉老者。
+    【原图保持】保留头上的布带与发髻、回头侧视的角度、锐利警觉的眼神和雪夜光影。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「牛家风雪」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch02/por_npc_qiuchuji__ch02_elder_base.png
+    sha256: f10d0d9b2d5914d2aff9937fa463aaecdc3504af36c7a2bcadb43039d71e1914
+    use: 对脸基准：丘处机的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_qiuchuji__ch02_elder_base.jpg）
+  - path: assets/default/scene/ch02/cg_ch02_niujia_snow.png
+    sha256: c1519834a98be110de6067e57d5159dc130e9dab3b605370f19907c33e885c9f
+    use: 待改插图：只把丘处机头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_niujia_snow.c1519834.png
+  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把丘处机头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T00:00:00-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch02_niujia_snow.1791010799845742000/archive/cg_ch02_niujia_snow.png
+  created: 2026-10-03T18:58:03-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch02_niujia_snow.p1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: c1519834a98be110de6067e57d5159dc130e9dab3b605370f19907c33e885c9f
+  sha256: 09c40f6c43d92bbb0bf7fde119349d5feb69e9bea4d32b0471536ef30ae32cd1
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「牛家风雪」，实际字形「牛家风雪」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「牛家风雪」，实际字形「牛家风雪」逐字核验，原生题字，未叠加。；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：丘处机按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch02_niujia_snow.1791010799845742000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch02_niujia_snow.resume3r2.png
-  repair_runner_source_sha256: 1858b9073a4ab8fc1ef4ac8b50d3921c992f07d6c0bffa327634d9a89a625585
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch02_niujia_snow.resume3r2
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_niujia_snow.c1519834.png
+    sha256: c1519834a98be110de6067e57d5159dc130e9dab3b605370f19907c33e885c9f
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_niujia_snow.c1519834.entry.yaml
+  effort: ultra
 - id: cg_ch02_guorong_first_meet
   file: cg_ch02_guorong_first_meet.png
   category: scene
