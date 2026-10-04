@@ -1662,52 +1662,46 @@
   category: character/male
   style: default
   subject: 郭靖（ch02_shediao）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: 'Use case: identity-preserve
 
-    输出1024×1536，完全成年，禁止童颜或少年身材。
+    【任务】编辑第1张郭靖现版全身立绘，只换装与佩刀，输出一张同样1024×1536的2:3竖幅全身图。第1张是唯一底稿与人物身份/位置/姿态/画风参考；第2张是成吉思汗金刀 eq_jindao 的器物参考，只借刀柄、鞘、装具的形制，绝不照搬该图尺度或背景。
 
-    【复合参考】第1张是该角色经典影视造型剧照：只借发型、服饰、配色、标志道具、气质和大致脸型，五官不要照搬演员本人，要往经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像这个演员。第2张是经典武侠游戏绘画参考：借其古典武侠插画的气质、线条与造型感，不保留像素块，不复刻头像角度。最后两张是项目画风基线，只取画风，不取人物五官。
+    【硬性不变】头、全部头发与发髻、脸、五官、肤色、严肃闭嘴不笑的神情，头部原位置与大小、身高、肩宽、体格、双手手势、双脚站位、人物轮廓布局、镜头、纸底远山与柔和左上光都沿用第1张。不增帽、不重新设计脸、不挪动头部，不左右镜像。仍是约二十岁的青年郭靖，方圆敦厚、浓眉诚实、朴实憨厚而有担当；贵重衣料应当合身实用，不能像骄矜公子或帝王。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原著与时代】表现成吉思汗赐金刀、许婚华筝的金刀驸马身份：十三世纪初蒙古贵族骑行袍服，宽合襟向穿着者右侧合拢，骑行开衩与完整下摆、腰带收束、收窄袖口、皮靴。毛皮只作领缘/襟缘/袖口的镶边，细密柔和；用上好丝毛面料、暗金织纹、绣带和少量鎏金扣件呈现富贵，低饱和沉稳、金色有分寸、仍能骑射，不穿沉重王公大裘。
 
-    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+    【金刀位置强制】只佩一把成吉思汗金刀在本人右腰：正面画面观者左侧、空着的右手那一侧；与持弓侧相反。原图持弓侧/观者右侧腰部那根小刀或鞘形物应去掉，该处不能出现第二把刀。金刀刀身全部入鞘，短中等尺度，不是长剑；参照第2张的棕皮柄、短横镡、暗金装具、棕皮浅弧刀鞘、鞘端。刀柄、鞘口、整段鞘和鞘端清楚，短皮挂带真实接到绣腰带，鞘向本人右后方斜垂，在观者左侧外轮廓完整可见，避开空手，绝不藏入衣摆。刀的唯一挂点在观者左侧，绝对不要佩在持弓那侧。金刀与双手、弓、衣摆分离，不手持不拔刀不发光。
 
-    成年青年郭靖，方正结实的脸、浓眉与诚实沉静的眼神，体格健壮而不健美夸张，朴实木讷里有坚定担当。深褐交领右衽布袍、灰蓝腰带，北地行旅的轻皮护腕，头发朴素束起。左手自然握一张木胎长弓，背后箭囊露出数支箭羽；弓弦真实完整、不搭箭瞄准观者。浅暖灰纸底，远处一抹草原与江南山影。人物辨识点：朴实、沉稳、坚毅；标志道具：弓箭。
+    【弓箭布局】本人左手（画面观者右侧）仍以原手势低垂握同一张完整木胎反曲弓，原位置、完整上下弓梢与单根弓弦都保留，不搭箭。原背部箭囊与胸前皮带保留，结构与系挂关系清楚，不换成另一武器。
 
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+    【质感与构图】保持第1张精细写实数字手绘武侠插画的自然笔触、柔和光与低饱和色，不变照片/3D/游戏CG，完整全身与净空、背景纸纹水墨停在人物外。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。'
+    【禁止】文字、题款、印章、标签、水印、分格、第二个人、马、冠冕、甲胄、帝王龙纹、明清官服补子、清式盘扣立领马蹄袖、清辫、现代民族舞台服、欧式奇幻铠甲、满身宝石、通体金色大刀、第二把刀、刀佩持弓侧、脸部重绘或微笑、改变站姿/头大小、多肢多指、衣襟反向、碎裂衣料、破烂下摆。
+
+
+    【B版服装】汉蒙兼有：米白汉式交领右衽内衫清楚露出胸口、领口和窄袖口，穿着者左襟压住右襟，向本人右侧合拢；外罩苍青/深蓝灰蒙古贵族外袍，完整长袖与骑行袍摆，外袍宽斜襟收至本人右侧，领口稍宽让汉式内衫一眼可读。蒙古外袍领缘与袖口有适量浅灰棕毛皮镶边，暗金织花重点放在襟边、肩部和下摆的窄边，不满身闪亮大花。配深赭红绣花腰带（蓝绿与暗金几何花叶刺绣、小鎏金扣、短垂带）与结实深棕皮靴。外袍面料细腻厚实，内衫干净柔韧，贵重外袍与朴实汉衫形成合理层次。保持郭靖的汉人束髻与诚厚气质，不是普通灰青布袍，也不是舞台混搭。'
   negative: ''
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/guojing_still1.jpg
-    use: 经典影视造型；只借服饰发型配色气质，不照搬演员五官
-    sha256: 6eb21593fb0a88340d362a808514e038ee973f4ad9ce359db7ad40b851f2c4e1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/guojing_game.jpg
-    use: 经典武侠游戏插画风格；只借绘画气质、线条、造型感
-    sha256: 53d97dac73b4293e621038994f819ec933b4e21e7cb131b13042d0674c7bbb11
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  created: 2026-10-02T23:52:05-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_guojing__ch02_youth_base.1791010324950099000/archive/por_npc_guojing__ch02_youth_base.png
+  - path: .agents/coord/_lines/portrait-guojing/guojing_B.png
+    sha256: 4124a2a87d57b22db99bd93b5deea0b29b00433288743a3b745bad303c75cb68
+    use: 作者 AR-74 选定 B；原头部逐像素保留，蒙古贵族苍青袍、金线纹饰、毛皮边、绣带、右腰金刀
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
+    sha256: 57054e6be892aafd819bb5de7b3aa1d497c6fa60c9931795a3cac4040a002f66
+    use: AR-74 编辑前原图；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_guojing__ch02_youth_base.57054e6b.png
+  tool: AR-71 选定候选 B 入库；w17 共享 runner image_gen 换装后原头部按原坐标合成
+  model: gpt-6.1-sol
+  created: 2026-10-03T23:04:32-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/ar74_guojing_B_ingest.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 57054e6be892aafd819bb5de7b3aa1d497c6fa60c9931795a3cac4040a002f66
+  sha256: 636f873c525354e6329f1f7693cc585352fbd3b0f12764f8fb8c5ae9189034f6
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-71 / AR-74 金刀驸马装，作者取 B
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_guojing__ch02_youth_base.1791010324950099000/archive/previous-prompt.md
-    png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_guojing__ch02_youth_base.1791010324950099000/archive/previous.png
-    manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_guojing__ch02_youth_base.1791010324950099000/archive/previous-entry.yaml
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_guojing__ch02_youth_base.resume3.png
-  repair_runner_source_sha256: 6dda0912ffe20515e847cf54dc77e7bd83e9ce977a205805effd6f7baf759a44
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: por_npc_guojing__ch02_youth_base.resume3
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_guojing__ch02_youth_base.57054e6b.png
+    sha256: 57054e6be892aafd819bb5de7b3aa1d497c6fa60c9931795a3cac4040a002f66
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_guojing__ch02_youth_base.57054e6b.entry.yaml
+  effort: xhigh
 - id: por_npc_huangyaoshi__ch02_elder_base
   file: por_npc_huangyaoshi__ch02_elder_base.png
   category: character/male
