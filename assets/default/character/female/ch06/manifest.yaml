@@ -41,7 +41,7 @@
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_meifanggu__ch06_prime_disfigured_base.requests.json
   notes: '宽松自查：成年女子的拘谨表情、两颊可见旧痕、灰褐素衣与暗青裙、空手合放，符合梅芳姑已毁容仍在世、抚育者但不裁定血缘的阶段。正面全身、双鞋露出，无明显多肢或重大结构问题。年龄表现偏年轻、黄肿和矮身不强，灰发少且发髻偏高，袖形较宽，旧痕偏红而非浅色；如实登记为候选待审，不伪称旧严格体貌全通过。原始不透明PNG保存，candidate。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，10 号出图员）：幽怨阴冷——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角）·10 号出图员：幽怨阴冷——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
   source_size: 1024x1536
 - id: por_npc_minrou__ch06_prime_xunzi_base
   file: por_npc_minrou__ch06_prime_xunzi_base.png
@@ -86,7 +86,7 @@
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_minrou__ch06_prime_xunzi_base.requests.json
   notes: '实际对比初始1与年龄补2：第2张在眼下、鼻唇沟、口侧和面颊体积已有自然成熟感，神态比第1张明显更沉静，按最新宽松尺度中年女性辨识可用；仍偏保养良好的年轻中年，不能声称精确45岁或完全脱离基线脸部影响。素白完整衣裙、一柄白剑入鞘、正面全身与自然双手清楚，无明显多肢或重大结构问题。长发仍有披落、银簪偏装饰、裙摆略遮一鞋、马面结构不明显、剑装较繁，这些细节登记，不再追加。选补2，保留原1失败年龄评审与全部原始字节，1024×1536 RGB不透明PNG，candidate待用户最终审核。
 
-    本轮依作者先1张、重大问题才补画的指示，实际候选数：2；初始候选经独立自查判定存在重大问题，按明确补画请求生成候选2，实际查看后选用候选2；原候选1、失败证据及原始先1张政策均保留。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，10 号出图员）：温柔慈和的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+    本轮依作者先1张、重大问题才补画的指示，实际候选数：2；初始候选经独立自查判定存在重大问题，按明确补画请求生成候选2，实际查看后选用候选2；原候选1、失败证据及原始先1张政策均保留。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角）·10 号出图员：温柔慈和的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
   source_size: 1024x1536
 - id: por_npc_shixiaocui__ch06_elder_jinwu_base
   file: por_npc_shixiaocui__ch06_elder_jinwu_base.png
@@ -131,7 +131,7 @@
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_shixiaocui__ch06_elder_jinwu_base.requests.json
   notes: '宽松自查：灰白发、成熟老年面颈纹与坚定目光，深褐紫衣、空手讲解及腰侧入鞘兵器，史小翠独立女宗师形象可用；正面全身、两鞋可辨，无明显多肢或重大结构问题。发髻偏高、袖较宽且滚边纹饰比素服繁，鞘身近直而非明显微弯刀、器型偏剑，列装备细节待审，不冒称严格刀形通过。按出齐优先不追加，原始PNG保存，candidate。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，10 号出图员）：爽利倔强的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角）·10 号出图员：爽利倔强的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
   source_size: 1024x1536
 - id: por_npc_shijian__ch06_youth_alive_base
   file: por_npc_shijian__ch06_youth_alive_base.png
@@ -164,7 +164,7 @@
   size: 1024x1536
   sha256: 2032c077da86cb33ef033016d9852d0659fc75d188aacc7aba20532e97faa7e7
   status: candidate
-  notes: 立绘重审重出（AR-30）；现图双鬟小髻配娃娃脸，像孩子，违反禁止幼态；改为约二十岁、做惯活计的成年侍女。；AR-58 神态（各书配角，10 号出图员）：乖巧甜美的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  notes: 立绘重审重出（AR-30）；现图双鬟小髻配娃娃脸，像孩子，违反禁止幼态；改为约二十岁、做惯活计的成年侍女。；AR-58 神态（各书配角）·10 号出图员：乖巧甜美的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
   effort: ultra
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shijian__ch06_youth_alive_base.5244eb99.png
@@ -512,7 +512,7 @@
   size: 1024x1536
   sha256: ebc301e2da57a9b3617ee49070a18ae02d7f433c97fd16a2a4bb44d38f597513
   status: candidate
-  notes: AR-32 补记修改 A（9 号出图员）：作者 10-02（AR-32 补记第 6 条）：复查判定上一版有明显 AI 感（磨皮瓷肌、过度对称的网红模板脸、略显稚气）；沿用文字做法，只加强成年骨相与去 AI 化描写。文字 + 两张同性别基线；只用文字；r2；r1 去 AI 感不明显（几乎同旧图），r2 把要点提前、年龄上调后合格；AR-58 神态（各书配角，10 号出图员）：腼腆温柔的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  notes: AR-32 补记修改 A（9 号出图员）：作者 10-02（AR-32 补记第 6 条）：复查判定上一版有明显 AI 感（磨皮瓷肌、过度对称的网红模板脸、略显稚气）；沿用文字做法，只加强成年骨相与去 AI 化描写。文字 + 两张同性别基线；只用文字；r2；r1 去 AI 感不明显（几乎同旧图），r2 把要点提前、年龄上调后合格；AR-58 神态（各书配角）·10 号出图员：腼腆温柔的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
   effort: ultra
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_axiu__ch06_youth_ziyan_base.e85c1ed8.png
@@ -552,7 +552,7 @@
   size: 1024x1536
   sha256: d6c11a29b347ffbc724d1c855944b041c7bea8d59aa3030b1ced927ee3ab45c3
   status: candidate
-  notes: ART-cast-fill-c / worker 22；文字；batch08联系表通过：身份年龄及阶段、完整轮廓、手物可辨、无字、纸底与基线画风；细部和美术终审待作者；原图模式RGB，入库RGB重编码，未裁切或缩放；1024×1536不透明底，非2048×3072 RGBA正式母版。created取原图mtime UTC。提示词：assets/default/prompts/characters/ch06-xiake/npc_gaosanniangzi.md；本次入选1张，重出次数见done与报告；美术补足为原创扩展，原著外貌仍待考。实际上传顺序：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg；AR-58 神态（各书配角，10 号出图员）：豪爽泼辣的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  notes: ART-cast-fill-c / worker 22；文字；batch08联系表通过：身份年龄及阶段、完整轮廓、手物可辨、无字、纸底与基线画风；细部和美术终审待作者；原图模式RGB，入库RGB重编码，未裁切或缩放；1024×1536不透明底，非2048×3072 RGBA正式母版。created取原图mtime UTC。提示词：assets/default/prompts/characters/ch06-xiake/npc_gaosanniangzi.md；本次入选1张，重出次数见done与报告；美术补足为原创扩展，原著外貌仍待考。实际上传顺序：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg；AR-58 神态（各书配角）·10 号出图员：豪爽泼辣的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_gaosanniangzi__ch06_prime_wanmazhuang_base.613e9834.png
     sha256: 613e983437ece7043baaeb0bae2e1e702e99fa5ed42ab4ed6809b485ceb95897
