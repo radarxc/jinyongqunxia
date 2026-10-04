@@ -25,7 +25,7 @@ import type {
 } from './runtime/contracts';
 import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
 import type { ContentSource } from '@tianshu/data';
-import type { BattleController } from './battle/controller';
+import type { BattleController, createBattleController } from './battle/controller';
 import type { createSaveService } from './storage/save-service';
 import { slotViews } from './storage/slot-views';
 import {
@@ -49,6 +49,10 @@ export interface GameControllerOptions {
   readonly onFatal?: (error: unknown) => void;
   readonly autosave?: (trigger: string, force: boolean) => Promise<'saved' | 'throttled'>;
   readonly flowTextSource?: ContentSource;
+  /** Test seam for holding the dynamic import at a deterministic lifecycle boundary. */
+  readonly loadBattleController?: () => Promise<
+    { readonly createBattleController: typeof createBattleController }
+  >;
 }
 class GameplayRejection extends Error {
   public constructor(code?: string) {
@@ -63,15 +67,39 @@ export function createGameController(
 ) {
   const battle = shallowRef<BattleController | null>(null);
   const battleActive = shallowRef(false);
-  let battleLoading: Promise<BattleController> | undefined;
-  async function ensureBattle(): Promise<BattleController> {
-    if (battle.value) return battle.value;
-    battleLoading ??= import('./battle/controller').then(({ createBattleController }) => {
-      const controller = createBattleController(host);
-      battle.value = markRaw(controller);
-      return controller;
-    });
-    return battleLoading;
+  let disposed = false;
+  let hostGeneration = 0;
+  let battleLoading: Promise<BattleController | null> | undefined;
+  function recoverBattleLoad(): null {
+    if (!disposed) notice.value = '战斗界面加载失败，请重新进入战斗重试。';
+    return null;
+  }
+  /** Fulfilled-only: fire-and-forget UI callers cannot leak an import rejection. */
+  function ensureBattle(): Promise<BattleController | null> {
+    if (disposed) return Promise.resolve(null);
+    if (battle.value) return Promise.resolve(battle.value);
+    if (battleLoading) return battleLoading;
+    const generation = hostGeneration;
+    const load = options.loadBattleController ?? (() => import('./battle/controller'));
+    const loading: Promise<BattleController | null> = Promise.resolve()
+      .then(load)
+      .then(({ createBattleController }) => {
+        if (disposed || generation !== hostGeneration) return null;
+        const controller = createBattleController(host);
+        if (disposed || generation !== hostGeneration) {
+          controller.dispose();
+          return null;
+        }
+        battle.value = markRaw(controller);
+        return controller;
+      })
+      .catch((_error: unknown) =>
+        disposed || generation !== hostGeneration ? null : recoverBattleLoad())
+      .finally(() => {
+        if (battleLoading === loading) battleLoading = undefined;
+      });
+    battleLoading = loading;
+    return loading;
   }
   const busy = shallowRef(false);
   const loading = shallowRef(true);
@@ -99,7 +127,6 @@ export function createGameController(
   const town = shallowRef<TownProjection | null>(null);
   let storage: TianshuStorage | undefined = options.storage;
   let saves: ReturnType<typeof createSaveService> | undefined;
-  let disposed = false;
   let pendingAutosave: { trigger: string; force: boolean } | undefined;
   let autosaveTask: Promise<void> | undefined;
   let bookSleepActive = false;
@@ -231,7 +258,9 @@ export function createGameController(
       battleActive.value = update.changes.battle !== null;
       if (!battle.value) {
         const packet = update.changes.battle ?? null;
-        void ensureBattle().then((controller) => controller.apply(packet));
+        void ensureBattle()
+          .then((controller) => controller?.apply(packet))
+          .catch(() => recoverBattleLoad());
       }
     }
     if (update.events.length) {
@@ -344,7 +373,7 @@ export function createGameController(
     ui.replaceProjection(projection);
     if (projection.battle) {
       battleActive.value = true;
-      (await ensureBattle()).apply(projection.battle);
+      (await ensureBattle())?.apply(projection.battle);
     }
     try {
       if (!storage)
@@ -654,6 +683,8 @@ export function createGameController(
     townCommand,
     dispose() {
       disposed = true;
+      hostGeneration += 1;
+      battleLoading = undefined;
       battle.value?.dispose();
       offHost();
       offBus();
