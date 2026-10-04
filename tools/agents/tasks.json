@@ -49994,7 +49994,8 @@
    "sparse_include": [
     "assets/default/map/kit",
     "assets/default/baseline/map",
-    "assets/default/map/tiles"
+    "assets/default/map/tiles",
+    "assets/default/map/regions"
    ],
    "validate": {
     "exists": [
