@@ -96,20 +96,38 @@ function extractStoryText(storyJson: string, storyId: string):
   const walk = (value: JsonValue): JsonValue => {
     if (Array.isArray(value)) {
       let inTag = false; let stringDepth = 0;
-      const isChoiceText = (index: number): boolean => {
-        const close = value.indexOf('/str', index + 1);
-        if (close < 0) return false;
-        const end = value.indexOf('/ev', close + 1);
-        return end >= 0 && value.slice(end + 1).some((item) =>
-          typeof item === 'object' && item !== null && !Array.isArray(item) && '*' in item);
-      };
+      const choiceText = new Set<number>(); const evaluationStarts: number[] = [];
+      for (let index = 0; index < value.length; index += 1) {
+        const item = value[index];
+        if (item === 'ev') { evaluationStarts.push(index); continue; }
+        if (item !== '/ev') continue;
+        const start = evaluationStarts.pop(); const choice = value[index + 1];
+        if (start === undefined || value[start + 1] !== 'str' || typeof choice !== 'object' ||
+            choice === null || Array.isArray(choice) || !('*' in choice)) continue;
+        let choiceStringDepth = 0; let nestedEvaluationDepth = 0;
+        for (let cursor = start + 1; cursor < index; cursor += 1) {
+          const token = value[cursor];
+          if (token === 'str') { choiceStringDepth += 1; continue; }
+          if (token === '/str') {
+            choiceStringDepth = Math.max(0, choiceStringDepth - 1);
+            if (choiceStringDepth === 0) break;
+            continue;
+          }
+          if (token === 'ev') { nestedEvaluationDepth += 1; continue; }
+          if (token === '/ev') { nestedEvaluationDepth = Math.max(0, nestedEvaluationDepth - 1); continue; }
+          if (choiceStringDepth === 1 && nestedEvaluationDepth === 0 &&
+              typeof token === 'string' && token.startsWith('^')) choiceText.add(cursor);
+        }
+      }
       return value.map((item, index) => {
         if (item === '#') { inTag = true; return item; }
         if (item === '/#') { inTag = false; return item; }
         if (item === 'str') { stringDepth += 1; return item; }
         if (item === '/str') { stringDepth = Math.max(0, stringDepth - 1); return item; }
+        // Ink wraps both runtime string values and choice labels in str.../str. Only the
+        // outer literal segments of an evaluation immediately feeding a choice are visible text.
         if (!inTag && typeof item === 'string' && item.startsWith('^') &&
-            (stringDepth === 0 || isChoiceText(index))) {
+            (stringDepth === 0 || choiceText.has(index))) {
           const display = item.slice(1);
           if (/<\/?[A-Za-z][^>]*>/u.test(display)) throw new TypeError(`INK_TEXT_HTML:${storyId}`);
           const key = `ink.${storyId}.text.${String(ordinal).padStart(4, '0')}`;
