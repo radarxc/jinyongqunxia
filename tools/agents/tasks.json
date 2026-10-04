@@ -47725,6 +47725,9 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
+    ],
+    "shrink_exempt": [
+     "packages/core/bench/combat.test.ts"
     ]
    },
    "id": "ENG-bench-perf-split",
