@@ -162,3 +162,8 @@ FINAL POSE CHECK: one FRONT-FACING figure, forehead–nose–chin centreline VER
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_dongfangbubai__ch05_prime_heimuya_base.prepared.json`。
+
+## 原著依据
+
+- 《笑傲江湖》三十一《绣花》：“身穿粉红衣衫”（https://xuges.com/WUXIA/jinyong/xajh/237.htm）
+- AR-82 返修约束：只将当前深红色外袍主体布料及腰绦改为娇艳粉红色，所有衣服轮廓、衣褶、刺绣花纹的位置尺寸保持，原有粉红内衫保持。粉红而非深红、暗红或紫红。头脸发冠、拿针的手、针、绣花绷架和鞋全不动。
