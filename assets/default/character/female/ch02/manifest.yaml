@@ -3,81 +3,46 @@
   category: character/female
   style: default
   subject: 韩小莹 npc_hanxiaoying ch02_shediao
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（韩小莹的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改韩小莹的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
 
+    【人物】韩小莹：越女剑，江南七怪之七，约四十岁，温婉和气、对郭靖如长姐。
 
-    Create a REALISTIC Chinese wuxia full-body portrait of 韩小莹. This is the ONE necessary AGE CORRECTION after candidate 1 failed independent visual review. Image 1 is her own original project-generated candidate, NOT a TV actor or original-game portrait. Preserve her own facial proportions and recognizable identity, but make her unmistakably a MATURE WOMAN AROUND FORTY, an experienced teacher who has raised and trained Guo Jing for many years. Reconstruct age in eyelids, cheek volume, mouth corners, jaw and neck; do not merely draw wrinkles onto the same twenty-year-old face. Image 2 supplies ONLY pale ink-wash background and ZERO identity. The younger age and high hair bun in image 1 must NOT be copied. This is candidate 2, not another initial request.
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】温婉浅笑：目光柔和，抿嘴浅浅一笑，温和可亲。
 
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
 
-    身份与阶段：韩小莹（npc_hanxiaoying），《射雕英雄传》ch02_shediao。越女剑韩小莹，江南七怪之一，成年师父随郭靖南归、桃花岛事变前
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
 
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    年龄与体型：壮年女性，本次在原定三十至四十余岁范围内选择约四十岁视觉设计，不冒称原著确岁。必须明显呈现成熟师父而非二十岁青年女侠：自然较厚上眼睑、轻微眼下软组织、眼角和鼻唇处浅年龄折痕，面颊成熟的重量与略下移的圆润体积，口角沉静有岁月感、自然下颌和颈部细纹。整体皮肤仍完整健康美观，绝不用污点裂纹或夸张衰老；黑发为主，不靠染白头发冒充年龄。修长结实肩臂与实际成年腰胯，目光温和坚毅、阅历清楚。
-
-
-    本人面容保留第一图原创骨相、眼鼻唇相对位置并作整体年龄成熟：独立较长鹅蛋脸，颧骨柔和而有骨点，颊面有适龄体积、圆而不尖的下巴；清楚细长的眉形外端略收，平静细长杏眼、水平眼线，眼尾与颊口保留轻细年龄纹。鼻梁中等长且自然挺直，鼻头较窄圆润，唇形薄厚适中、下唇略丰满，闭唇温和坚毅。额部和颈部也保留成年师者年龄关系，不复制女性基线的少女脸、肤色滤镜或服饰。
-
-
-    服制与发式：宋代汉式湖青交领右衽窄袖长衫，穿着者左襟压右襟；内穿遮蔽胸颈的中衣，灰白齐腰长裙与实用布腰带、平底布鞋，行走开量自然无露腿高衩。黑发整齐收于后脑髻，用一支素木簪固定，发丝和整幅衣料连续完整、不透明，不飘散碎带。
-
-
-    正面姿态与器物：正面全身、肩颈自然舒展、头竖直、双眼水平，温和坚毅直视前方，双足稳站。本人左手低位握住一柄完整入鞘的普通中式长剑鞘口下方，使整剑垂在本人左身体外侧，右手自然垂落。小型横剑格、直柄、足长青灰鞘同轴；不露刃，鞘尾、双手及鞋履完整入画。只此一剑一鞘，不是春秋阿青，不附竹棒白猿或青铜古剑。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。初始候选1已实际完成且独立判定重大年龄阶段错误，本次仅补这一张必要候选2；保留两张原始记录。仍按快速宽松尺度，只纠正成熟年龄，不为细手指、微装备或轻微角度再追加。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实边界：本图身份与阶段依当前本地角色稿、名录、story 和 chapter；项目主线1217–1227、楔子1199为玩法推定，回溯人物依其专门阶段。所有具体五官、服色选款、器物形制细部和静立展示都是原创美术落实；原稿待考照留，不冒称已逐字终校小说或精确历史复原。当前已下载原版 game 语料与本机1983射雕影视参考没有可靠本人图，按本轮明确配角授权采用文字原创脸，不冒充1983演员本人、不拿别人头像代替，也不声称该角色在所有游戏版本从无头像。第一输入现为本次本人初始候选，仅用于同人骨相和构图连续性，其青年年龄已被独立判失败；第二输入仍仅背景。原项目基线candidate/approved状态不改。 南归成年师父阶段与名录壮年一致，三十至四十余岁为美术观感而非确岁；不把首次登场年龄套到十八年后。 脸形细部、湖青配色、剑鞘和持剑左手方案属原创；不画桃花岛自尽伤口，不预先宣称改命成功。
-
-
-    参考边界：第一输入为本次韩小莹本人初始候选1的原始PNG，只保留已建立的原创五官骨相与整体身份；该图已被独立实际审查判定严重年轻化，必须明显成熟至约四十岁师父，不能保持青年皮肤和眼睑颊口颈部年龄。不是游戏或影视本人，不证明原著确貌。 第二输入已实际查看，只取暖浅灰纸底、极淡水墨远山和留白，不取参考中的女性人物、脸、身体、发型、衣裙、飘带、装饰或倾头姿势。背景墨迹不得侵入本人的皮肤、衣料和器物。
-
-
-    完整排除项：不要画面文字、汉字、伪字、题款、书法、标签、印章、签名、logo或装饰水印。 不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件、现代塑料配件。 不要冒充1983翁美玲版演员本人，不借其他演员、其他游戏角色或第二输入参考的脸与身体；第一图为本人初始原创候选，只保留骨相而必须纠正青年年龄。不要剧照拼贴、具体画作复制或画师姓名风格词。 不要动漫大眼、统一网红脸、偶像磨皮、丰唇滤镜、浓重眼妆、照片写真、三维模型或塑料皮肤。 不要日式服制、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻铠甲、夸张前结宽腰带、赛博或蒸汽朋克。 不要时代与族群混搭、明代网巾和官服补子、清式剃发长辫、马蹄袖、旗装、大拉翅、唐代齐胸裙、明式马面裙；汉式交领不要左衽，不要水平镜像。 不要多余人物、分身、拼贴、分格、多视图、清晰场景建筑、前景花枝、悬浮道具或失重衣带。 不要非设定的缺指断肢、多手多脚、多指、粘连手指、错接手腕、手物融合、兵器穿身、弯折断裂器物、短鞘或无挂点装备。 不要血腥特写、裸露、透明衣料、色情化、恶搞丑化、畸形健美肌肉、大片撕裂破衣；保留有依据的年龄、伤残与自然体型。 不要发光兵器、龙形能量、光翼、法阵、粒子光效、强烈泛光、硬舞台轮廓光；不要裁断头顶、足部、兵器或鞘端。 不要画成少女、幼态弟子或春秋越女阿青；不要竹棒、白猿、青铜古剑、露腿高开衩、轻纱透体，也不画桃花岛自尽伤口。 不要 head tilt、Dutch angle、头歪向肩、倾斜眼线、低头藏眼、抬下巴、侧脸回眸或倾斜镜头。不要人物飞白缺块、墨斑侵蚀、纸纹透肤透衣、破洞撕裂、碎布条、密集噪点或过密细皱。水墨仅在背景，人物皮肤、衣料、毛发与器物完整连续。
-
-
-    FINAL POSE CHECK: FRONT-FACING, head facing forward, both eyes HORIZONTALLY LEVEL, camera level, NO head tilt, NO Dutch angle. Respect the described age, face, body and narrative stage; ignore reference poses.
-
-
-    FINAL AGE CHECK: Han Xiaoying must read clearly as a mature woman around forty, NOT the young woman in candidate 1. Mature eyelids, eye-under-cheek transitions, cheek and mouth weight, jaw and neck must agree. Healthy beautiful skin with natural mature structure, not wrinkle stickers. Frontal upright head and complete full body, one sheathed sword. Only this single necessary supplement 2.'
-  negative: 不要画面文字、汉字、伪字、题款、书法、标签、印章、签名、logo或装饰水印。 不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件、现代塑料配件。 不要冒充1983翁美玲版演员本人，不借其他演员、其他游戏角色或第二输入参考的脸与身体；第一图为本人初始原创候选，只保留骨相而必须纠正青年年龄。不要剧照拼贴、具体画作复制或画师姓名风格词。 不要动漫大眼、统一网红脸、偶像磨皮、丰唇滤镜、浓重眼妆、照片写真、三维模型或塑料皮肤。 不要日式服制、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻铠甲、夸张前结宽腰带、赛博或蒸汽朋克。 不要时代与族群混搭、明代网巾和官服补子、清式剃发长辫、马蹄袖、旗装、大拉翅、唐代齐胸裙、明式马面裙；汉式交领不要左衽，不要水平镜像。 不要多余人物、分身、拼贴、分格、多视图、清晰场景建筑、前景花枝、悬浮道具或失重衣带。 不要非设定的缺指断肢、多手多脚、多指、粘连手指、错接手腕、手物融合、兵器穿身、弯折断裂器物、短鞘或无挂点装备。 不要血腥特写、裸露、透明衣料、色情化、恶搞丑化、畸形健美肌肉、大片撕裂破衣；保留有依据的年龄、伤残与自然体型。 不要发光兵器、龙形能量、光翼、法阵、粒子光效、强烈泛光、硬舞台轮廓光；不要裁断头顶、足部、兵器或鞘端。 不要画成少女、幼态弟子或春秋越女阿青；不要竹棒、白猿、青铜古剑、露腿高开衩、轻纱透体，也不画桃花岛自尽伤口。 不要 head tilt、Dutch angle、头歪向肩、倾斜眼线、低头藏眼、抬下巴、侧脸回眸或倾斜镜头。不要人物飞白缺块、墨斑侵蚀、纸纹透肤透衣、破洞撕裂、碎布条、密集噪点或过密细皱。水墨仅在背景，人物皮肤、衣料、毛发与器物完整连续。
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
   references:
-  - path: generated_images/exec-65c020e0-9394-454f-a8ff-40986369a3f6.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-65c020e0-9394-454f-a8ff-40986369a3f6.png
-    use: 第一输入为本次韩小莹本人初始候选1的原始PNG，只保留已建立的原创五官骨相与整体身份；该图已被独立实际审查判定严重年轻化，必须明显成熟至约四十岁师父，不能保持青年皮肤和眼睑颊口颈部年龄。不是游戏或影视本人，不证明原著确貌。
-    sha256: d68a8ce39022531db0421f7a228b48329e9dc23eddf8abb719fb9be679e8ad63
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/d68a8ce39022531db0421f7a228b48329e9dc23eddf8abb719fb9be679e8ad63.png
-    status_at_input: null
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二输入已实际查看，只取暖浅灰纸底、极淡水墨远山和留白，不取参考中的女性人物、脸、身体、发型、衣裙、飘带、装饰或倾头姿势。背景墨迹不得侵入本人的皮肤、衣料和器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T02:55:19.972422+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-04483505-ffef-4ca1-a0f5-845325c82d58.png
+  - path: assets/default/character/female/ch02/por_npc_hanxiaoying__ch02_prime_base.png
+    sha256: cb3b8d93b73017a5c2eae8b44c47b4074f2775ee0ac0299469d73a8e16ee9e2f
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_hanxiaoying__ch02_prime_base.cb3b8d93.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T19:43:22-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/por_npc_hanxiaoying__ch02_prime_base.x1.png
   size: 1024x1536
   mode: RGB
-  sha256: cb3b8d93b73017a5c2eae8b44c47b4074f2775ee0ac0299469d73a8e16ee9e2f
+  sha256: a6ca8ecc7b11130354e059354ca7bc33657e7b0339b04dc97b2198ac32eabedd
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_hanxiaoying__ch02_prime_base/prompt-66c3db18bbb91f9fe5d4db521384ac27bbc26bedd177545226e16a2793bbf48a.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_hanxiaoying__ch02_prime_base/manifest-25073886df1e5e4420136d041ef9b4d860f2f4978375d89731dbe81c86ae54ce.yaml
-    png: null
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_hanxiaoying__ch02_prime_base.cb3b8d93.png
+    sha256: cb3b8d93b73017a5c2eae8b44c47b4074f2775ee0ac0299469d73a8e16ee9e2f
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_hanxiaoying__ch02_prime_base.cb3b8d93.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_hanxiaoying__ch02_prime_base.requests.json
   notes: '实际查看两张原图并参考独立审查：候选1明显青年女侠观感，未呈现已教养郭靖多年的壮年师父，故不选；唯一必要年龄补正候选2保留本人原创五官关系，眼睑/眼下略成熟、口角沉静、颊颌较稳，按原定30–40余岁宽范围低端成年师父可用。root与独立复核一致选2，但残留理想化和年龄偏年轻，不能声称明确达到约40或旧严格标准。主要正面头颈基本端正、湖青右衽衣裙、单柄完整入鞘长剑、双手双鞋及整体完整可读，无重大结构问题。发髻偏高、衣鞘纹饰偏多且左手握柄而非鞘口、背景花枝小亭较具体，记录待细修，不再第3张。两张原始PNG均保留，选2原生1024×1536 RGB不透明原始字节保存；候选1失败证据和初始单候选政策不改，实际候选数2，全部candidate待审核非approved。
 
-    本轮依作者先1张、重大问题才补画的指示，实际候选数：2；初始候选经独立自查判定存在重大问题，按明确补画请求生成候选2，实际查看后选用候选2；原候选1、失败证据及原始先1张政策均保留。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
+    本轮依作者先1张、重大问题才补画的指示，实际候选数：2；初始候选经独立自查判定存在重大问题，按明确补画请求生成候选2，实际查看后选用候选2；原候选1、失败证据及原始先1张政策均保留。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，11 号出图员）：温婉浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+  source_size: 1024x1536
 - id: por_npc_yangmiaozhen__ch02_prime_base
   file: por_npc_yangmiaozhen__ch02_prime_base.png
   category: character/female
@@ -441,87 +406,75 @@
   category: character/female
   style: default
   subject: 包惜弱（ch02_shediao）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（包惜弱的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改包惜弱的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【人物】包惜弱：杨铁心之妻、杨康之母，约四十岁，温柔善良、心软，心底藏着对亡夫的思念。
 
-    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】温柔含愁：眉眼柔和，嘴角一丝温柔的浅笑，眼底仍带着淡淡的愁思。
 
-    【人物】包惜弱，《射雕英雄传》杨铁心之妻、杨康之母，被完颜洪烈骗娶为金国王妃，在王府里仍住着仿造的旧农舍；身世揭露之前的中年时期。温柔善良、心软怜物。
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
 
-    【年龄与体态】约三十八九岁的中年妇人，身形纤柔。成年女性的五官骨相与身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
 
-    【面容】温婉秀美的鹅蛋脸、下颌柔和；眉毛细长、眉梢带一点愁；眼神温柔而哀婉；鼻梁秀直；唇色淡；肌肤白皙，眼角有浅浅细纹。风韵犹存的美丽妇人（原创扩展）。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【发式】乌发挽成低髻，插一支素银簪。
-
-    【服饰】朴素的灰藕色褙子、暖白交领右衽内衫、灰青长裙，素色布带，平底鞋；虽是王妃，却穿得像农家妇人一样朴素。
-
-    【道具】双手轻捏一方无字素帕。
-
-    【姿态与神情】安静站立，神情温柔、带着说不出的愁思。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要像任何真实演员或明星；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要王妃华服、凤冠珠翠；不要浓妆；不要兵器。
-
-    【画风基线】随提示词上传的两张参考图是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
   references:
-  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
-    use: 画风基线（只取画风、光线、质感与背景，AR-31）
-  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
-    use: 画风基线（只取画风、光线、质感与背景，AR-31）
-  tool: codex exec · image_gen（同性别两张基线立绘作画风参考，无身份参考）
+  - path: assets/default/character/female/ch02/por_npc_baoxiruo__ch02_prime_base.png
+    sha256: ed71795800a0306a11fd60bb3707b51e644b444abe5cf31adedff472f34cb535
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_baoxiruo__ch02_prime_base.ed717958.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T03:57:42-0700
-  source_path: .agents/coord/gemini_originals/por_npc_baoxiruo__ch02_prime_base.png
+  created: 2026-10-03T19:43:21-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/por_npc_baoxiruo__ch02_prime_base.x1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: ed71795800a0306a11fd60bb3707b51e644b444abe5cf31adedff472f34cb535
+  sha256: 0088217614e0d5c2eca0f73584e55a51eb732ae590b724f6372b9ebbaf2934d5
   status: candidate
-  notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做
+  notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做；AR-58 神态（各书配角，11 号出图员）：温柔含愁的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_baoxiruo__ch02_prime_base.ed717958.png
+    sha256: ed71795800a0306a11fd60bb3707b51e644b444abe5cf31adedff472f34cb535
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_baoxiruo__ch02_prime_base.ed717958.entry.yaml
 - id: por_npc_huazheng__ch02_youth_base
   file: por_npc_huazheng__ch02_youth_base.png
   category: character/female
   style: default
   subject: 华筝（ch02_shediao）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（华筝的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改华筝的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【人物】华筝：成吉思汗之女、蒙古公主，约二十岁，爽朗骄傲。
 
-    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】爽朗骄傲的笑：下巴微扬一点但头部端正，眼睛明亮，嘴角上扬笑得爽朗，带着公主的骄傲。
 
-    【人物】华筝，《射雕英雄传》成吉思汗的女儿、蒙古公主，与郭靖青梅竹马；大漠草原生活的阶段。爽朗、骄傲、深情。
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
 
-    【年龄与体态】约二十岁的成年蒙古女子，身材健美匀称、常年骑马。成年女性的五官骨相与身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
 
-    【面容】草原女子的面庞：鹅蛋脸、颧骨略高、两颊被风吹出自然的红晕；眉毛浓而英气；一双明亮的眼睛、眼神爽朗；鼻梁挺直；唇形饱满、笑容明朗；肤色健康的浅麦色。英气勃勃、明朗美丽（原创扩展）。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【发式】乌发编成多股发辫，缀着珊瑚和绿松石珠饰，戴一顶镶白毛边的小圆帽。
-
-    【服饰】蒙古贵族女子的长袍：深红与赭色织锦、窄袖、长及脚踝，左衽（蒙古服制，族群例外），宽腰带上挂小刀鞘与火镰，软皮长靴。
-
-    【道具】右手握一根皮制马鞭。
-
-    【姿态与神情】挺拔站立，神情爽朗中带着骄傲。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要像任何真实演员或明星；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要汉式交领女装；不要元代以后的清式服饰；不要暴露；不要老鹰或马匹入画。
-
-    【画风基线】随提示词上传的两张参考图是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
   references:
-  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
-    use: 画风基线（只取画风、光线、质感与背景，AR-31）
-  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
-    use: 画风基线（只取画风、光线、质感与背景，AR-31）
-  tool: codex exec · image_gen（同性别两张基线立绘作画风参考，无身份参考）
+  - path: assets/default/character/female/ch02/por_npc_huazheng__ch02_youth_base.png
+    sha256: 229cfa4802b6ddb1722a6590149cb479edfd11022a9f6695bc38ffd0b4526d84
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_huazheng__ch02_youth_base.229cfa48.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T03:57:50-0700
-  source_path: .agents/coord/gemini_originals/por_npc_huazheng__ch02_youth_base.png
+  created: 2026-10-03T19:43:23-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/por_npc_huazheng__ch02_youth_base.x1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 229cfa4802b6ddb1722a6590149cb479edfd11022a9f6695bc38ffd0b4526d84
+  sha256: 439371aea2d00aca319c530b1c00a9d17ad3185921531261c27736452d7a1f28
   status: candidate
-  notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做
+  notes: 立绘重审重出（AR-30）；旧图以剧照为第一身份参考生成（A 级肖像风险；REVIEW-portraits-A 待作者裁定项，按默认重出），按原著外貌用文字原创重做；AR-58 神态（各书配角，11 号出图员）：爽朗骄傲的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_huazheng__ch02_youth_base.229cfa48.png
+    sha256: 229cfa4802b6ddb1722a6590149cb479edfd11022a9f6695bc38ffd0b4526d84
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_huazheng__ch02_youth_base.229cfa48.entry.yaml
 - id: por_npc_munianci__ch02_youth_base
   file: por_npc_munianci__ch02_youth_base.png
   category: character/female
