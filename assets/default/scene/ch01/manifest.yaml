@@ -145,9 +145,9 @@
   source_path: .agents/coord/_lines/xiaojinghu-r5/candidates/r5_composite.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 319cb81a0ea0a6965555afdb9d4c447efba3a9678e3ca80a3ca46f4843073dcb
+  sha256: ba7a8acde560acc29265490b1cb1909139ff52bb86527f9cb1b76109c74dd137
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「镜湖回生」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_azhu__ch01_youth_alive_base（作者返工「乔峰抱着阿朱」：按小镜湖青石桥情节重绘构图，乔峰半跪抱着中掌的阿朱，题字「镜湖回生」与夜雨石桥原样）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-75 小镜湖按原著重画；场景、动作、伤情、关系齐备；萧峰与阿朱对齐现行base，阿朱以AR-61 B修眼稿为准（作者AR-75要求按原著：雷雨夜青石桥；阿朱易容段正淳受掌后恢复本人，苍白失力、嘴角带血、伤重垂死；萧峰悲恸护抱。双人base与脸部对照已打开，阿朱基准为AR-61 B修眼稿。两候选视觉比较后选择B；题字按现图右上竖排毛笔与朱印惯例，内容改为镜湖诀别。）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；只改萧峰：保留俯头、湿发、泪痕、悲恸、急切关心阿朱的神态，鼻尖朝图右下，不抬头转正面；阿朱整个头部、苍白伤情、嘴角血与题字绝对不动。；质检：已实际打开base前后及接触边界蒙版：萧峰五官对齐恢复base，保留悲恸低头视线、泪痕、湿发冷光，无笑无接缝；多边形仅覆盖萧峰脸，阿朱头脸泪血耳坠及题字逐像素保留。以final-3c停止后最新git为底；AR-81 / AR-90 小镜湖：整张重出（r4）后阿朱改为不舍、遗憾、担心；作者01:41补充为“遗憾的笑”：临终凄然一笑，带歉意、不舍，哀伤泪眼、眉头微蹙带忧、双唇轻合、嘴角仅微牵，上唇偏薄、苍白与嘴角血保留。旧“不笑”r1-r3作废；新凄笑r4-r6逐张实际打开放大后选r5；下颌、脖子、湿发接缝自然，阿朱脸部蒙版外0像素变化。萧峰r4与AR-84现行base并排核对通过，照协调者01:41指示保留r4，不搬旧构图脸；已等canon-align本人有效结束行后入库。
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「镜湖回生」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_azhu__ch01_youth_alive_base（作者返工「乔峰抱着阿朱」：按小镜湖青石桥情节重绘构图，乔峰半跪抱着中掌的阿朱，题字「镜湖回生」与夜雨石桥原样）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-75 小镜湖按原著重画；场景、动作、伤情、关系齐备；萧峰与阿朱对齐现行base，阿朱以AR-61 B修眼稿为准（作者AR-75要求按原著：雷雨夜青石桥；阿朱易容段正淳受掌后恢复本人，苍白失力、嘴角带血、伤重垂死；萧峰悲恸护抱。双人base与脸部对照已打开，阿朱基准为AR-61 B修眼稿。两候选视觉比较后选择B；题字按现图右上竖排毛笔与朱印惯例，内容改为镜湖诀别。）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；只改萧峰：保留俯头、湿发、泪痕、悲恸、急切关心阿朱的神态，鼻尖朝图右下，不抬头转正面；阿朱整个头部、苍白伤情、嘴角血与题字绝对不动。；质检：已实际打开base前后及接触边界蒙版：萧峰五官对齐恢复base，保留悲恸低头视线、泪痕、湿发冷光，无笑无接缝；多边形仅覆盖萧峰脸，阿朱头脸泪血耳坠及题字逐像素保留。以final-3c停止后最新git为底；AR-81 / AR-90 小镜湖：整张重出（r4）后阿朱改为不舍、遗憾、担心；作者01:41补充为“遗憾的笑”：临终凄然一笑，带歉意、不舍，哀伤泪眼、眉头微蹙带忧、双唇轻合、嘴角仅微牵，上唇偏薄、苍白与嘴角血保留。旧“不笑”r1-r3作废；新凄笑r4-r6逐张实际打开放大后选r5；下颌、脖子、湿发接缝自然，阿朱脸部蒙版外0像素变化。萧峰r4与AR-84现行base并排核对通过，照协调者01:41指示保留r4，不搬旧构图脸；已等canon-align本人有效结束行后入库。；题字诀别→回生；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   previous_revision:
     png: .agents/coord/_lines/xiaojinghu-r5/backups/before_ingest_413f12d64518.png
     sha256: 413f12d64518523caf7e16446cc8b2d2b5dc736d74f721865db4c876c5a8e8aa
@@ -177,6 +177,7 @@
     canon_terminal_line: '[2026-10-04 01:57:04] 会话结束 rc=0：已完成并提交52张PNG、56处头部修改，含跨书10人统一。重叠文件6张已后补；2张背影保留，8张3D按AR-85搁置。  逐图质检及56次提交校验通过，蒙版外像素零变化。收件箱已追加【完成】，无未提交资产改动，未push。最后提交：`b6121d2d`。  [报告及15张逐人对照表](/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/canon-align/REPORT.md)'
     previous_git_commit: 6353ea26f372d6edb0b1c428992ed8557fecb42b
     comparison: .agents/coord/_lines/xiaojinghu-r5/xiaojinghu_r5.jpg
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch01_xiaojinghu_azhu_fixed.png", "before_sha256": "319cb81a0ea0a6965555afdb9d4c447efba3a9678e3ca80a3ca46f4843073dcb", "allowed_box": [[1388, 211, 1482, 291], [1388, 291, 1482, 375]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch01_xiaojinghu_azhu_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T02:04:39-07:00"}
 - id: cg_ch01_shaoshi_three_brothers
   file: cg_ch01_shaoshi_three_brothers.png
   category: scene
