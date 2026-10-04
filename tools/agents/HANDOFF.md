@@ -2013,4 +2013,12 @@
     - HEAD 99a41639，负载约 23；149 个测试文件 / 1093 个测试。
     - entry 38.79；render 168.86。
     - **首次会话闭包 100.02 / 110**：session static 69.28，比上次 +1.07，是 event-executor 的 core 改动带进来的。余量剩约 10 KiB，base-diet 已在排队。
+  - **10-03 19:31–19:35 开发监督**（协调者转 AR-64、AR-63）：
+    - **AR-64**：首屏用不到的子系统一律懒加载，后续章节的内容与素材也一样。base-diet 目标 ≤ 80 KiB。
+      - budgets.json 的 session 110 不改。
+      - 哪个任务确实要把首屏必需模块放进首次会话、因而超限，写明模块报协调者，按 AR-64 批准适度放宽。首屏用不到的模块不能借这条塞进来。
+    - **AR-63**：能从原著定的问题不问作者；工程问题有先例的，直接按先例提方案，由协调者定。
+    - **ENG-bench-perf-split**（c73e52b9）：core/bench 的 BattleSession 线性断言挪到 `pnpm check:perf`，按 AR-33 rig 先例，断言与阈值不改。
+      - 写集：bench、根 package.json 的 test / test:perf、vitest.config.ts、tools/perf/README.md、CLAUDE.md 性能规则那一句。
+      - 名单排在 base-diet 之后，已起跑排队。
 
