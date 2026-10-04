@@ -152,15 +152,18 @@
   - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
     use: 项目同性别基线；只取画风
     sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
-  tool: codex exec · image_gen
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: AR-53 程序局部合成：从作者刘亦菲版base直接取五官，人工双眼/唇关键点仿射适配原角度，低频RGB照明融合；蒙版外原像素不变，未调用生成器
   model: gpt-6-astra
-  created: 2026-10-03T00:20:19-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.1791012018790597000/archive/por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.png
+  created: '2026-10-04T00:39:16.749456-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_12_52_direct.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 4d6ece7d4b5a9cd964d341c6d78f3a419b1264fc757d9df53b2034eefb9e056f
+  sha256: 539246231a82ae9f2ff7db994d2b959f4232bef558c2b73fc336015038e64420
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；年龄相近的直接头部合成，base细节取现有像素；本图神态与原光向保留；质检：实看通过：五官像base；原俯视/侧倾角度、冷静神态与柔和光向保留，肤色和脸缘融合自然，头部外0像素改变
   previous_revision:
     prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.1791012018790597000/archive/previous-prompt.md
     png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.1791012018790597000/archive/previous.png
@@ -176,6 +179,17 @@
   runner_success_count: 1
   ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
   composite_job: por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.resume3
+  effort: ''
+  ar84_alignment:
+    job: ar84_calign_12_52_direct
+    before_sha256: 4d6ece7d4b5a9cd964d341c6d78f3a419b1264fc757d9df53b2034eefb9e056f
+    box:
+    - 440
+    - 118
+    - 562
+    - 265
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_12_52_direct.png
+    outside_changed_pixels: 0
 - id: por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat
   file: por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.png
   category: character/female
