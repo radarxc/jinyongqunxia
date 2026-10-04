@@ -57,69 +57,44 @@
   category: scene
   style: default
   subject: 铁狱同心（ch09_liancheng）
-  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
-    第1张参考：狄云本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    第2张参考：狄云·荆州铁狱阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+    输出和原图同样比例的完整画面。
 
-    第3张参考：丁典本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+    只改两位主角的指定范围：画面左侧丁典的胡须浓密蓬乱覆盖两颊下部和下颌，原骨相眼鼻嘴及神情不变；丁典和右侧狄云两人各从双肩衣缝垂下两条铁链，连到双腕铐与双踝镣链，因坐姿被石桌遮挡处自然遮挡，不能把墙边铁链当身上束缚，不画血肉穿刺。右侧狄云向碗伸出的自身右手（画面左侧）五指全部已失，包括拇指，旧布包扎为残掌与手腕，不出现任何指头；仍可以残掌轻触碗沿，另一只手保留正常手指。原汤碗、石桌、背景、题字和两人的其他部位保持原样。
 
-    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+    【原著依据】《连城诀》二《牢狱》：“琵琶骨中也穿着两条铁链”（https://xuges.com/WUXIA/jinyong/lcj/009.htm）；《连城诀》二《牢狱》：“满脸虬髯”（https://xuges.com/WUXIA/jinyong/lcj/009.htm）；《连城诀》二《牢狱》：“两条铁链从自己双肩垂了下来”（https://xuges.com/WUXIA/jinyong/lcj/009.htm）；《连城诀》二《牢狱》：“右手的五根手指已被人削落”（https://xuges.com/WUXIA/jinyong/lcj/008.htm）
 
-    【场面】荆州牢中两人平坐相对，丁典将水碗推向狄云，冷狱窗透入一束天光；狄云右手旧布包残，温和坚韧；不展示刑具穿骨或自伤过程。
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    【剧情边界】lc2；推碗动作是原创扩展构图，关系转折原著。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
-
-    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
-
-    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「铁」「狱」「同」「心」，合成「铁狱同心」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
-
-    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
-
-    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
-  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
-    sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
-    uploaded_sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_jingzhou_prison.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_jingzhou_prison.png
-    sha256: be3e92d94fd73d5934cf75ef8bdfa4f86bd347da609c3bb619a42527706ef437
-    uploaded_sha256: be3e92d94fd73d5934cf75ef8bdfa4f86bd347da609c3bb619a42527706ef437
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: assets/default/character/male/ch09/por_npc_dingdian__ch09_prime_prison_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_dingdian__ch09_prime_prison_base.png
-    sha256: 06ababa67dadfb708d26fa051a9354643299a78aa1c26e9c181bca57b66df54a
-    uploaded_sha256: 06ababa67dadfb708d26fa051a9354643299a78aa1c26e9c181bca57b66df54a
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  created: 2026-10-03T00:13:46-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_prison_bond.png
+  - path: assets/default/scene/ch09/cg_ch09_prison_bond.png
+    sha256: a1f63e31379cd064f66f7a9547f585c8f68fc8f32563155bfcdb8a3fde5ef0fb
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_prison_bond.a1f63e31.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T03:10:44-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_39_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: a1f63e31379cd064f66f7a9547f585c8f68fc8f32563155bfcdb8a3fde5ef0fb
+  sha256: 9e7b766cf3035ddbab15ba797440f7b6be5b444c0a9554ccd3581a1e2a2cecbb
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「铁狱同心」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「铁狱同心」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-82 原著核对返修：铁狱同心同步丁典虬髯、两人肩链与狄云断指
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch09_prison_bond.retry3.r1
   quality_retries: 0
   history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_prison_bond.a1f63e31.png
+    sha256: a1f63e31379cd064f66f7a9547f585c8f68fc8f32563155bfcdb8a3fde5ef0fb
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_prison_bond.a1f63e31.entry.yaml
 - id: cg_ch09_snow_valley
   file: cg_ch09_snow_valley.png
   category: scene
