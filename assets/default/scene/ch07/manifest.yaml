@@ -49,45 +49,39 @@
   category: scene
   style: default
   subject: 泰山群雄会盟（ch07_bixue）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是红娘子的身份基线（本人基础立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中红娘子的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
-    【画里谁是谁】这张插图画的是：泰山群雄聚义与志向相应的编辑性双时层群像：主层袁承志深青侠士装立于峰台中央，金蛇剑归鞘，手扶无字盟旗；程青竹在侧同望群山，远处群雄压为低细节轮廓。画幅侧缘用清楚分隔的暖色军帐记忆层呈现李岩与红娘子同向望远，二人不站在泰山盟台、不与主层人物触碰。劲风吹动旗角，天光宽阔，青年神色体现责任而非帝王威仪。
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    【要对齐的部分】红娘子的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：与李岩同向远望，神情坚毅；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    本次是原图局部放大裁图，输出同样的正方形裁图；不要生成全身，不要扩大场景。
 
-    【红娘子的基线脸】基线里的红娘子二十五六岁，英气而秀丽：鹅蛋脸、下颌线利落但脸不宽；眉毛细长平直、清楚但不粗浓；一双明亮的杏眼、双眼皮、眼神坚毅；鼻梁挺直；嘴唇适中；肤色白净健康；英气里带着秀美，不粗犷。
+    本次局部裁图只给袁承志人物自身左眉上方（观众画面右侧眉毛上方）添一处淡小旧刀疤。双眉、双眼、鼻嘴、骨相、表情、头发一律保持原样。确实画一条旧疤，不能用皱纹或眉毛代替，无血。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「泰山聚义」和小朱印必须原样保留，一笔不改、不增不减。
+    【原著依据】《碧血剑》三《经年亲剑铗，长日对楸枰》：“小小疤痕”（https://xuges.com/WUXIA/jinyong/bxj/013.htm）；《碧血剑》十《不传传百变，无敌敌千招》：“须眉皆白的老者”（https://xuges.com/WUXIA/jinyong/bxj/066.htm）；《碧血剑》四《矫矫金蛇剑，翩翩美少年》：“身穿书生服色”（https://xuges.com/WUXIA/jinyong/bxj/021.htm）
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
 
-    【本张另外要求】红娘子是画面最右边暖色军帐记忆层里、穿红衣的女子（从左数第 4 个人）。她左边的李岩、画面左半边的袁承志和程青竹，脸一律不改。把她偏宽、眉偏浓、显粗犷的脸改成基线那样英气而秀丽的鹅蛋脸，眉毛细一些。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/character/female/ch07/por_npc_hongniangzi__ch07_base.png
-    sha256: 1e613302b5a43d17f09b1ffb7f889fdd9c8be50652cfe679cb8152d269baa52e
-    use: 对脸基线：AR-53 总审默认基准 por_npc_hongniangzi__ch07_base（红娘子），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch07/cg_ch07_taishan_alliance.png
-    sha256: 5afcb0f83ea190bf0d1c01130a1cfbaf9c7a3b80f8429c7546ba14af0e73ea05
-    use: 待改原图（AR-53 配角对齐 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_taishan_alliance.5afcb0f8.png
-  - path: assets/default/character/male/ch07/por_npc_yuanchengzhi__ch07_youth_jinshe_base.png
-    sha256: c5c953ca8e0a2732fa880a3eecc7ad8a724ddf2b1547fa22b673eee0bb15685f
-    use: 对脸基线：作者 AR-56 定下的 por_npc_yuanchengzhi__ch07_youth_jinshe_base（袁承志），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写（前次对脸已改入此图，本次未动，保留引用）
-  tool: codex exec · image_gen（AR-53 配角对齐 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线；编辑结果只取目标人物头部合成回原图）
-  model: gpt-6-astra
-  created: 2026-10-03T19:34:57-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch07_taishan_alliance.s2.png
+    sha256: d377a60404bcc4b20bcd8f4576c9e0b926253558768e77b931bebcbc097507b4
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_taishan_alliance.d377a604.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T03:18:35-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_38_r2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: d377a60404bcc4b20bcd8f4576c9e0b926253558768e77b931bebcbc097507b4
+  sha256: f54aeabb14f94d1e4bb1943038464c234559dedfb9b626f5c887e458b983b40f
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「泰山聚义」，实际字形「泰山聚义」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；发髻上原本的浅色发带随基线略加宽；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（12 号出图员），基线 = por_npc_hongniangzi__ch07_base（编辑结果只取红娘子（#4）头部区域羽化合成回原图，其余像素保持原图（袁承志、程青竹、李岩不动）；原始编辑结果 out/<job>.raw.png）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「泰山聚义」，实际字形「泰山聚义」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；发髻上原本的浅色发带随基线略加宽；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（12 号出图员），基线 = por_npc_hongniangzi__ch07_base（编辑结果只取红娘子（#4）头部区域羽化合成回原图，其余像素保持原图（袁承志、程青竹、李岩不动）；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：泰山聚义袁承志旧疤、程青竹白须眉及李岩书生服
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_taishan_alliance.5afcb0f8.png
-    sha256: 5afcb0f83ea190bf0d1c01130a1cfbaf9c7a3b80f8429c7546ba14af0e73ea05
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_taishan_alliance.5afcb0f8.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_taishan_alliance.d377a604.png
+    sha256: d377a60404bcc4b20bcd8f4576c9e0b926253558768e77b931bebcbc097507b4
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_taishan_alliance.d377a604.entry.yaml
   runner_job_records:
   - - cg_ch07_taishan_alliance.resume3
     - ok
@@ -95,7 +89,7 @@
     - '180'
     - exec-58dc3291-114f-4924-a91a-716eb4c06774.png
   runner_success_count: 1
-  effort: ultra
+  effort: xhigh
 - id: cg_ch07_golden_serpent_cave
   file: cg_ch07_golden_serpent_cave.png
   category: scene
