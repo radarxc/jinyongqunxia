@@ -1,0 +1,42 @@
+{
+  "skill": "sk_luohanfumo",
+  "created": "2026-10-03",
+  "requests": [
+    {
+      "key": "family",
+      "prompt": "Use case: stylized-concept. Asset type: 2D wuxia game VFX source sprite sheet, original visual expansion for Luohan Fumo inner cultivation from Xia Ke Xing. Create ONE landscape 1536x1024 image with exactly FOUR equally sized 768x512 cells in a 2 columns by 2 rows arrangement, read left to right then top to bottom. Background must be perfectly plain pure white #FFFFFF. No visible grid, no labels, no writing, no border, no paper texture, no shadows, no hands, no characters, no props. Each cell contains only ONE isolated golden ink-wash qi effect, center at the same relative pixel position (384,256); all mist and flecks stay at least 48 pixels away from EVERY cell boundary. Harmonious gold ochre and amber with dark bronze strokes, delicately translucent watercolor wisps and broken dry-brush edges, substantial colored pigment so white-keying preserves it. All light cores must be yellow-ochre, NEVER white, cream or near-white solid paint. No neon, no fire, no realistic smoke, no metal objects, no 3D render. Four animation keyframes are weak formation, full clear peak, gentle loosening, thin residual form; preserve center and main silhouette, do not change viewpoint or position. Subject: a long horizontally oval, flowing recirculating breath of golden qi. An open double-loop ribbon, two connected curling streams that merge into a softly rounded front on the RIGHT, with a visible broad misty root near local (115,256) on the LEFT. Main peak silhouette stays between local x=90..676 and y=125..387. This is a quiet internal circulating current that can also be stretched toward the right as a cohesive emitted force. Hollow white breathing room between brush ribbons, amber root visibly connected to all loops. No pointed blade, no arrow, no ray, no symbolic glyphs. Distinct but coherent four temporal states.",
+      "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_luohanfumo/codex-home/generated_images/01a10422-411b-77d1-91e8-905f6c438fe2/exec-699dddff-5c8f-4e27-aa25-35c8dc5e1a6a.png",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "tool": "image_gen (built-in)",
+      "model": "工具未返回底层图像模型",
+      "effort": "工具默认（未返回）",
+      "references": [],
+      "negative": "No text, grid, frame, paper texture, shadow, hand, character, prop, white solid core, neon, fire or metallic object."
+    },
+    {
+      "key": "mv_luohanfumo_huti",
+      "prompt": "Use case: stylized-concept. Asset type: 2D wuxia game VFX source sprite sheet, original visual expansion for Luohan Fumo inner cultivation from Xia Ke Xing. Create ONE landscape 1536x1024 image with exactly FOUR equally sized 768x512 cells in a 2 columns by 2 rows arrangement, read left to right then top to bottom. Background must be perfectly plain pure white #FFFFFF. No visible grid, no labels, no writing, no border, no paper texture, no shadows, no hands, no characters, no props. Each cell contains only ONE isolated golden ink-wash qi effect, center at the same relative pixel position (384,256); all mist and flecks stay at least 48 pixels away from EVERY cell boundary. Harmonious gold ochre and amber with dark bronze strokes, delicately translucent watercolor wisps and broken dry-brush edges, substantial colored pigment so white-keying preserves it. All light cores must be yellow-ochre, NEVER white, cream or near-white solid paint. No neon, no fire, no realistic smoke, no metal objects, no 3D render. Four animation keyframes are weak formation, full clear peak, gentle loosening, thin residual form; preserve center and main silhouette, do not change viewpoint or position. Subject: a protective aura, a rounded oval envelope made of THREE nested broken golden calligraphic arches around an airy empty center. A low, broad amber knot at local (180,256) on the LEFT connects the curved layers into an enclosing cocoon bulging toward the RIGHT. Main silhouette stays between local x=145..660 and y=74..438. The three layers are soft brush strokes, inward-returning ends, subtle vapor, protective and calm. No solid shield, no statue, no deity, no lotus, no glyph. Peak should clearly read as a translucent enclosing shell rather than a projectile. Four coherent temporal states of this same oval enclosure.",
+      "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_luohanfumo/codex-home/generated_images/01a10422-411b-77d1-91e8-905f6c438fe2/exec-5dd39024-d1cd-4123-94b7-f540db329d2d.png",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "tool": "image_gen (built-in)",
+      "model": "工具未返回底层图像模型",
+      "effort": "工具默认（未返回）",
+      "references": [],
+      "negative": "No text, grid, frame, paper texture, shadow, hand, character, prop, white solid core, neon, fire or metallic object."
+    },
+    {
+      "key": "mv_luohanfumo_zhuxiang",
+      "prompt": "Use case: stylized-concept. Asset type: 2D wuxia game VFX source sprite sheet, original visual expansion for Luohan Fumo inner cultivation from Xia Ke Xing. Create ONE landscape 1536x1024 image with exactly FOUR equally sized 768x512 cells in a 2 columns by 2 rows arrangement, read left to right then top to bottom. Background must be perfectly plain pure white #FFFFFF. No visible grid, no labels, no writing, no border, no paper texture, no shadows, no hands, no characters, no props. Each cell contains only ONE isolated golden ink-wash qi effect, center at the same relative pixel position (384,256); all mist and flecks stay at least 48 pixels away from EVERY cell boundary. Harmonious gold ochre and amber with dark bronze strokes, delicately translucent watercolor wisps and broken dry-brush edges, substantial colored pigment so white-keying preserves it. All light cores must be yellow-ochre, NEVER white, cream or near-white solid paint. No neon, no fire, no realistic smoke, no metal objects, no 3D render. Four animation keyframes are weak formation, full clear peak, gentle loosening, thin residual form; preserve center and main silhouette, do not change viewpoint or position. Subject: a LOCAL circular shock aura expanding around its center at local (384,256). Six broad overlapping gold crescent brush petals form one broken circular wreath around a modest colored amber center knot, inner curling threads connect the center to the wreath so it never floats disconnected. Circular silhouette stays between local x=198..570 and y=70..442. Suggest many aspects of one force through layered curved strokes, without depicting actual human forms. Peak is round and broad, fully surrounding its root, other frames preserve center and circular identity. No halo rays, no straight laser, no faces, no arms, no gods, no statue, no lotus, no mandala or glyphs. Fine gold ink specks stay well inside cell boundaries.",
+      "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_luohanfumo/codex-home/generated_images/01a10422-411b-77d1-91e8-905f6c438fe2/exec-714d6a47-6a0c-4fc0-a778-c7e8bd3f0090.png",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "tool": "image_gen (built-in)",
+      "model": "工具未返回底层图像模型",
+      "effort": "工具默认（未返回）",
+      "references": [],
+      "negative": "No text, grid, frame, paper texture, shadow, hand, character, prop, white solid core, neon, fire or metallic object."
+    }
+  ]
+}
