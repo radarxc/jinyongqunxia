@@ -1,0 +1,395 @@
+# 3 张原料 + 4 招；全部 candidate。created 为任务日期，工具未返回生成时刻。
+- id: vfx_sk_luohanfumo__family_base01
+  file: effect/family/source_sheet.png
+  category: vfx
+  style: default
+  subject: 《侠客行》罗汉伏魔神功 · family 白底四帧原料（原创扩展）
+  prompt: 'Use case: stylized-concept. Asset type: 2D wuxia game VFX source sprite sheet, original visual expansion for Luohan
+    Fumo inner cultivation from Xia Ke Xing. Create ONE landscape 1536x1024 image with exactly FOUR equally sized 768x512
+    cells in a 2 columns by 2 rows arrangement, read left to right then top to bottom. Background must be perfectly plain
+    pure white #FFFFFF. No visible grid, no labels, no writing, no border, no paper texture, no shadows, no hands, no characters,
+    no props. Each cell contains only ONE isolated golden ink-wash qi effect, center at the same relative pixel position (384,256);
+    all mist and flecks stay at least 48 pixels away from EVERY cell boundary. Harmonious gold ochre and amber with dark bronze
+    strokes, delicately translucent watercolor wisps and broken dry-brush edges, substantial colored pigment so white-keying
+    preserves it. All light cores must be yellow-ochre, NEVER white, cream or near-white solid paint. No neon, no fire, no
+    realistic smoke, no metal objects, no 3D render. Four animation keyframes are weak formation, full clear peak, gentle
+    loosening, thin residual form; preserve center and main silhouette, do not change viewpoint or position. Subject: a long
+    horizontally oval, flowing recirculating breath of golden qi. An open double-loop ribbon, two connected curling streams
+    that merge into a softly rounded front on the RIGHT, with a visible broad misty root near local (115,256) on the LEFT.
+    Main peak silhouette stays between local x=90..676 and y=125..387. This is a quiet internal circulating current that can
+    also be stretched toward the right as a cohesive emitted force. Hollow white breathing room between brush ribbons, amber
+    root visibly connected to all loops. No pointed blade, no arrow, no ray, no symbolic glyphs. Distinct but coherent four
+    temporal states.'
+  negative: No text, grid, frame, paper texture, shadow, hand, character, prop, white solid core, neon, fire or metallic object.
+  references: []
+  tool: image_gen (built-in)
+  model: 工具未返回底层图像模型
+  effort: 工具默认（未返回）
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_luohanfumo/codex-home/generated_images/01a10422-411b-77d1-91e8-905f6c438fe2/exec-699dddff-5c8f-4e27-aa25-35c8dc5e1a6a.png
+  size: 1536x1024
+  sha256: 5e0a67fc0b61101ea334e94868477f90405bbc4059406dd124cb9d1d90343b9b
+  status: candidate
+  notes: harmony 金色底色倾向；非原著显色描写。每套仅生成1个候选并入选；三底已目检，源图原字节保留。
+  candidate_count: 1
+  selected_candidate: 1
+  effect_set: effect/family/effect-set.yaml
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 1007
+    sha256: dc70084b87ec40d33db38436bbc5462f8f0bfb59897b14f6f4dcdacbce14b813
+  - file: effect/family/frame_000.png
+    bytes: 312470
+    sha256: 303615cab2eaf3d36daad94971644f641b877e15b75522e404ea9d2e3f2d5385
+  - file: effect/family/frame_001.png
+    bytes: 377305
+    sha256: 9890aa0b747e6c861168d887d4ab642cf6df8e9ed0ca9cd2b135eca635427563
+  - file: effect/family/frame_002.png
+    bytes: 333226
+    sha256: db4c57130e3ed3ad49520736d3d73ff3c8183cdb601892d0d021eefdef54849c
+  - file: effect/family/frame_003.png
+    bytes: 257804
+    sha256: 2975e5316c8a3c025de3b3e6f80c30f61c930aa1355b2d4cce615e52fba9c8e9
+  - file: effect/family/quality.json
+    bytes: 1033
+    sha256: 28224b86e9e534cbcb17befdc94ed79415c89db9134cb3f6858f198d33412ac8
+  - file: effect/family/source_sheet.png
+    bytes: 1660748
+    sha256: 5e0a67fc0b61101ea334e94868477f90405bbc4059406dd124cb9d1d90343b9b
+  - file: README.md
+    bytes: 6277
+    sha256: 6d0a1e7920f5a63499348f5a743b7082657f3460ff9178a5024c00071cf482ed
+  - file: source_requests.json
+    bytes: 7586
+    sha256: c9f3a008ea777a774b852d98fb10c91d022146397665e6108dc0a61c23e5c9fc
+  - file: measurements.json
+    bytes: 2657
+    sha256: d78b69e6ee30ddb9af4289e11d064e5a5897a806e7d838616cc2488cda8963cf
+  - file: verification.json
+    bytes: 3144
+    sha256: 323ef0fe8f2a25b80203688a19d106e5ee6e3ccab9e1eb3116012eef9326641c
+- id: vfx_sk_luohanfumo__huti_base01
+  file: effect/mv_luohanfumo_huti/source_sheet.png
+  category: vfx
+  style: default
+  subject: 《侠客行》罗汉伏魔神功 · mv_luohanfumo_huti 白底四帧原料（原创扩展）
+  prompt: 'Use case: stylized-concept. Asset type: 2D wuxia game VFX source sprite sheet, original visual expansion for Luohan
+    Fumo inner cultivation from Xia Ke Xing. Create ONE landscape 1536x1024 image with exactly FOUR equally sized 768x512
+    cells in a 2 columns by 2 rows arrangement, read left to right then top to bottom. Background must be perfectly plain
+    pure white #FFFFFF. No visible grid, no labels, no writing, no border, no paper texture, no shadows, no hands, no characters,
+    no props. Each cell contains only ONE isolated golden ink-wash qi effect, center at the same relative pixel position (384,256);
+    all mist and flecks stay at least 48 pixels away from EVERY cell boundary. Harmonious gold ochre and amber with dark bronze
+    strokes, delicately translucent watercolor wisps and broken dry-brush edges, substantial colored pigment so white-keying
+    preserves it. All light cores must be yellow-ochre, NEVER white, cream or near-white solid paint. No neon, no fire, no
+    realistic smoke, no metal objects, no 3D render. Four animation keyframes are weak formation, full clear peak, gentle
+    loosening, thin residual form; preserve center and main silhouette, do not change viewpoint or position. Subject: a protective
+    aura, a rounded oval envelope made of THREE nested broken golden calligraphic arches around an airy empty center. A low,
+    broad amber knot at local (180,256) on the LEFT connects the curved layers into an enclosing cocoon bulging toward the
+    RIGHT. Main silhouette stays between local x=145..660 and y=74..438. The three layers are soft brush strokes, inward-returning
+    ends, subtle vapor, protective and calm. No solid shield, no statue, no deity, no lotus, no glyph. Peak should clearly
+    read as a translucent enclosing shell rather than a projectile. Four coherent temporal states of this same oval enclosure.'
+  negative: No text, grid, frame, paper texture, shadow, hand, character, prop, white solid core, neon, fire or metallic object.
+  references: []
+  tool: image_gen (built-in)
+  model: 工具未返回底层图像模型
+  effort: 工具默认（未返回）
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_luohanfumo/codex-home/generated_images/01a10422-411b-77d1-91e8-905f6c438fe2/exec-5dd39024-d1cd-4123-94b7-f540db329d2d.png
+  size: 1536x1024
+  sha256: 39848f545fbb8330006e3109fe2da2d88dafc37f35a1ed9196530e5764360b0f
+  status: candidate
+  notes: harmony 金色底色倾向；非原著显色描写。每套仅生成1个候选并入选；三底已目检，源图原字节保留。
+  candidate_count: 1
+  selected_candidate: 1
+  effect_set: effect/mv_luohanfumo_huti/effect-set.yaml
+  file_integrity:
+  - file: effect/mv_luohanfumo_huti/effect-set.yaml
+    bytes: 1005
+    sha256: cb760dbae08dacdada00268971805ecaf684f2bcaf8d62f031e2f22d2b482f28
+  - file: effect/mv_luohanfumo_huti/frame_000.png
+    bytes: 285493
+    sha256: a066fd4de8b5ac8e785e8803bb6a46619400efb73601d54e45c0a352077313b3
+  - file: effect/mv_luohanfumo_huti/frame_001.png
+    bytes: 493861
+    sha256: 71addbe6d6a1d65ce62de7b64e26ce59f558c3b3be0795840b8a6680923c3d43
+  - file: effect/mv_luohanfumo_huti/frame_002.png
+    bytes: 374172
+    sha256: c1f1b04ab822c74b71e9ec6521f7e934e7690bc9fdad53e97aecda500aba703b
+  - file: effect/mv_luohanfumo_huti/frame_003.png
+    bytes: 229913
+    sha256: f200638022e5c391b7c128d52e36d5a1276623f86ea25b0e6e974b1f9d69ceac
+  - file: effect/mv_luohanfumo_huti/quality.json
+    bytes: 1035
+    sha256: 41c883e164759fc929dc917ed05ac6d3b5414847b71b68fa8a288ba67ca34965
+  - file: effect/mv_luohanfumo_huti/source_sheet.png
+    bytes: 1671337
+    sha256: 39848f545fbb8330006e3109fe2da2d88dafc37f35a1ed9196530e5764360b0f
+- id: vfx_sk_luohanfumo__zhuxiang_base01
+  file: effect/mv_luohanfumo_zhuxiang/source_sheet.png
+  category: vfx
+  style: default
+  subject: 《侠客行》罗汉伏魔神功 · mv_luohanfumo_zhuxiang 白底四帧原料（原创扩展）
+  prompt: 'Use case: stylized-concept. Asset type: 2D wuxia game VFX source sprite sheet, original visual expansion for Luohan
+    Fumo inner cultivation from Xia Ke Xing. Create ONE landscape 1536x1024 image with exactly FOUR equally sized 768x512
+    cells in a 2 columns by 2 rows arrangement, read left to right then top to bottom. Background must be perfectly plain
+    pure white #FFFFFF. No visible grid, no labels, no writing, no border, no paper texture, no shadows, no hands, no characters,
+    no props. Each cell contains only ONE isolated golden ink-wash qi effect, center at the same relative pixel position (384,256);
+    all mist and flecks stay at least 48 pixels away from EVERY cell boundary. Harmonious gold ochre and amber with dark bronze
+    strokes, delicately translucent watercolor wisps and broken dry-brush edges, substantial colored pigment so white-keying
+    preserves it. All light cores must be yellow-ochre, NEVER white, cream or near-white solid paint. No neon, no fire, no
+    realistic smoke, no metal objects, no 3D render. Four animation keyframes are weak formation, full clear peak, gentle
+    loosening, thin residual form; preserve center and main silhouette, do not change viewpoint or position. Subject: a LOCAL
+    circular shock aura expanding around its center at local (384,256). Six broad overlapping gold crescent brush petals form
+    one broken circular wreath around a modest colored amber center knot, inner curling threads connect the center to the
+    wreath so it never floats disconnected. Circular silhouette stays between local x=198..570 and y=70..442. Suggest many
+    aspects of one force through layered curved strokes, without depicting actual human forms. Peak is round and broad, fully
+    surrounding its root, other frames preserve center and circular identity. No halo rays, no straight laser, no faces, no
+    arms, no gods, no statue, no lotus, no mandala or glyphs. Fine gold ink specks stay well inside cell boundaries.'
+  negative: No text, grid, frame, paper texture, shadow, hand, character, prop, white solid core, neon, fire or metallic object.
+  references: []
+  tool: image_gen (built-in)
+  model: 工具未返回底层图像模型
+  effort: 工具默认（未返回）
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_luohanfumo/codex-home/generated_images/01a10422-411b-77d1-91e8-905f6c438fe2/exec-714d6a47-6a0c-4fc0-a778-c7e8bd3f0090.png
+  size: 1536x1024
+  sha256: f70e7131f7c5510637ebb11304bea9d91a674049062675bc9161018f48217520
+  status: candidate
+  notes: harmony 金色底色倾向；非原著显色描写。每套仅生成1个候选并入选；三底已目检，源图原字节保留。
+  candidate_count: 1
+  selected_candidate: 1
+  effect_set: effect/mv_luohanfumo_zhuxiang/effect-set.yaml
+  file_integrity:
+  - file: effect/mv_luohanfumo_zhuxiang/effect-set.yaml
+    bytes: 1009
+    sha256: 1219e15ddb3efc854a3ad7b3292060ae506dd6ac6c93aee26616b82bc14c9675
+  - file: effect/mv_luohanfumo_zhuxiang/frame_000.png
+    bytes: 206652
+    sha256: a8ffe08b931bdd0347c0899d83f4d4db37958b5c80b3c77dd60372b46b4bfa59
+  - file: effect/mv_luohanfumo_zhuxiang/frame_001.png
+    bytes: 408203
+    sha256: 8eec1391c3e22f2d692783dd37863b492ecb885b9803ac20c82430f9f298f6c9
+  - file: effect/mv_luohanfumo_zhuxiang/frame_002.png
+    bytes: 313306
+    sha256: 5c1a71ae9538c4e89b40b8272550d72856e68357e80dcd1681c1fb2ce22ea245
+  - file: effect/mv_luohanfumo_zhuxiang/frame_003.png
+    bytes: 255378
+    sha256: 68a4170a208876644b88e008277d621b698b56f447fd03b4f1af0f40bcfce37f
+  - file: effect/mv_luohanfumo_zhuxiang/quality.json
+    bytes: 1032
+    sha256: 7a5a684cd0a56b15b32db1f48192b5c9d42dd88beb2fba25559f41b0d2b35471
+  - file: effect/mv_luohanfumo_zhuxiang/source_sheet.png
+    bytes: 1669556
+    sha256: f70e7131f7c5510637ebb11304bea9d91a674049062675bc9161018f48217520
+- id: vfx_mv_luohanfumo_huti__base01
+  file: moves/mv_luohanfumo_huti/peak.png
+  category: vfx
+  style: default
+  subject: 《侠客行》罗汉伏魔神功 · 罗汉护体（原创扩展）
+  prompt: 确定性合成：读取 ../../effect/mv_luohanfumo_huti/effect-set.yaml 的四帧与共用 palm，按同目录 composition.yaml 的锚点、长度、缩放、节奏、预乘线性插值和
+    screen 混合出图；compose.py 取精确 peak_phase；build_demo.py 内嵌同一原料并用 Three.js 实时播放。完整原料生成提示词见本 manifest 原料条目及 source_requests.json。
+  negative: 不添加人物、文字、硬阴影、白芯或玩法判定；原料排除项见实发提示词。
+  references:
+  - assets/default/vfx/sk_luohanfumo/effect/mv_luohanfumo_huti/effect-set.yaml
+  - assets/default/vfx/emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py · Three.js r186
+  model: 不适用（确定性合成；原料模型未返回）
+  effort: 不适用
+  created: '2026-10-03'
+  source_path: assets/default/vfx/sk_luohanfumo/moves/mv_luohanfumo_huti/composition.yaml
+  size: 1536x1024
+  sha256: bf2610a2871367bb36c89024b5cb57b208b7fb458733df3cc0a09d2002bbbbea
+  status: candidate
+  notes: 静态/网页由同一Composition导出；发出方仅作独立示意，inner玩法不改为palm。网页唯一显式外链为指定three importmap；浏览器与真机待实测。
+  code: moves/mv_luohanfumo_huti/demo.html
+  pipeline: two-part
+  skill_ref: sk_luohanfumo
+  move_ref: mv_luohanfumo_huti
+  nature: harmony
+  delivery: inner
+  ultimate: true
+  projection: false
+  effect_set: ../../effect/mv_luohanfumo_huti/effect-set.yaml
+  length_px: 384
+  duration_s: 0.9
+  shared_dependencies:
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    head_byte_identical: true
+    bytes: 626765
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    head_byte_identical: true
+    bytes: 195
+  file_integrity:
+  - file: moves/mv_luohanfumo_huti/composition.json
+    bytes: 3354
+    sha256: 78ddfc07df155be76794ee832755cf6281d649fd2d6cf9ef3dd1a361297ae129
+  - file: moves/mv_luohanfumo_huti/composition.yaml
+    bytes: 996
+    sha256: e7b2bd8fcc7567acc1735fed1ca6db47a1cc3d7e877fd630f8d6d3aec630c232
+  - file: moves/mv_luohanfumo_huti/demo.html
+    bytes: 2339477
+    sha256: 4ca8fadafdba165ed957ce8895f814356e93aa86447741dd79707db9061944fb
+  - file: moves/mv_luohanfumo_huti/peak.png
+    bytes: 441810
+    sha256: bf2610a2871367bb36c89024b5cb57b208b7fb458733df3cc0a09d2002bbbbea
+- id: vfx_mv_luohanfumo_zhenqi__base01
+  file: moves/mv_luohanfumo_zhenqi/peak.png
+  category: vfx
+  style: default
+  subject: 《侠客行》罗汉伏魔神功 · 伏魔真气（原创扩展）
+  prompt: 确定性合成：读取 ../../effect/family/effect-set.yaml 的四帧与共用 palm，按同目录 composition.yaml 的锚点、长度、缩放、节奏、预乘线性插值和 screen 混合出图；compose.py
+    取精确 peak_phase；build_demo.py 内嵌同一原料并用 Three.js 实时播放。完整原料生成提示词见本 manifest 原料条目及 source_requests.json。
+  negative: 不添加人物、文字、硬阴影、白芯或玩法判定；原料排除项见实发提示词。
+  references:
+  - assets/default/vfx/sk_luohanfumo/effect/family/effect-set.yaml
+  - assets/default/vfx/emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py · Three.js r186
+  model: 不适用（确定性合成；原料模型未返回）
+  effort: 不适用
+  created: '2026-10-03'
+  source_path: assets/default/vfx/sk_luohanfumo/moves/mv_luohanfumo_zhenqi/composition.yaml
+  size: 1536x1024
+  sha256: d02b693c020f37113aa8b429f801e935a8e7e44ab2438729e21c60579baed4f3
+  status: candidate
+  notes: 静态/网页由同一Composition导出；发出方仅作独立示意，inner玩法不改为palm。网页唯一显式外链为指定three importmap；浏览器与真机待实测。
+  code: moves/mv_luohanfumo_zhenqi/demo.html
+  pipeline: two-part
+  skill_ref: sk_luohanfumo
+  move_ref: mv_luohanfumo_zhenqi
+  nature: harmony
+  delivery: inner
+  ultimate: false
+  projection: true
+  effect_set: ../../effect/family/effect-set.yaml
+  length_px: 768
+  duration_s: 0.6
+  shared_dependencies:
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    head_byte_identical: true
+    bytes: 626765
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    head_byte_identical: true
+    bytes: 195
+  file_integrity:
+  - file: moves/mv_luohanfumo_zhenqi/composition.json
+    bytes: 3346
+    sha256: 7f6adfd717d0d163949cff1847cde0b7f2d82edfd8fc040e3a4d5ec1fcf970d1
+  - file: moves/mv_luohanfumo_zhenqi/composition.yaml
+    bytes: 971
+    sha256: e23d905628d67356fae21f2417e5936879cfb947dd8caf6115e40825cd9203ec
+  - file: moves/mv_luohanfumo_zhenqi/demo.html
+    bytes: 2260985
+    sha256: 70db68a1a270393c41a871afed1b371b5257953b53a145d1f42c15d1e1bad646
+  - file: moves/mv_luohanfumo_zhenqi/peak.png
+    bytes: 487308
+    sha256: d02b693c020f37113aa8b429f801e935a8e7e44ab2438729e21c60579baed4f3
+- id: vfx_mv_luohanfumo_zhouliu__base01
+  file: moves/mv_luohanfumo_zhouliu/peak.png
+  category: vfx
+  style: default
+  subject: 《侠客行》罗汉伏魔神功 · 泥人周流（原创扩展）
+  prompt: 确定性合成：读取 ../../effect/family/effect-set.yaml 的四帧与共用 palm，按同目录 composition.yaml 的锚点、长度、缩放、节奏、预乘线性插值和 screen 混合出图；compose.py
+    取精确 peak_phase；build_demo.py 内嵌同一原料并用 Three.js 实时播放。完整原料生成提示词见本 manifest 原料条目及 source_requests.json。
+  negative: 不添加人物、文字、硬阴影、白芯或玩法判定；原料排除项见实发提示词。
+  references:
+  - assets/default/vfx/sk_luohanfumo/effect/family/effect-set.yaml
+  - assets/default/vfx/emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py · Three.js r186
+  model: 不适用（确定性合成；原料模型未返回）
+  effort: 不适用
+  created: '2026-10-03'
+  source_path: assets/default/vfx/sk_luohanfumo/moves/mv_luohanfumo_zhouliu/composition.yaml
+  size: 1536x1024
+  sha256: ad6169b620032fdb749d942776551a2c3d38bc2b1cc9c5b66cdd690c34b95861
+  status: candidate
+  notes: 静态/网页由同一Composition导出；发出方仅作独立示意，inner玩法不改为palm。网页唯一显式外链为指定three importmap；浏览器与真机待实测。
+  code: moves/mv_luohanfumo_zhouliu/demo.html
+  pipeline: two-part
+  skill_ref: sk_luohanfumo
+  move_ref: mv_luohanfumo_zhouliu
+  nature: harmony
+  delivery: inner
+  ultimate: false
+  projection: false
+  effect_set: ../../effect/family/effect-set.yaml
+  length_px: 192
+  duration_s: 0.6
+  shared_dependencies:
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    head_byte_identical: true
+    bytes: 626765
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    head_byte_identical: true
+    bytes: 195
+  file_integrity:
+  - file: moves/mv_luohanfumo_zhouliu/composition.json
+    bytes: 3348
+    sha256: ba571d9a332f851cad5ee550094b576c956c9f6035192d87ea91d8109e30a50f
+  - file: moves/mv_luohanfumo_zhouliu/composition.yaml
+    bytes: 988
+    sha256: f4613f8b371c1be409a46b2c5393647685e71aea6eea1826573a8d5ec62a417f
+  - file: moves/mv_luohanfumo_zhouliu/demo.html
+    bytes: 2086237
+    sha256: 26d62650b8e46d53f65cbad9420191394761fc86c29e40d07934a9fded7c148e
+  - file: moves/mv_luohanfumo_zhouliu/peak.png
+    bytes: 294686
+    sha256: ad6169b620032fdb749d942776551a2c3d38bc2b1cc9c5b66cdd690c34b95861
+- id: vfx_mv_luohanfumo_zhuxiang__base01
+  file: moves/mv_luohanfumo_zhuxiang/peak.png
+  category: vfx
+  style: default
+  subject: 《侠客行》罗汉伏魔神功 · 诸相伏魔（原创扩展）
+  prompt: 确定性合成：读取 ../../effect/mv_luohanfumo_zhuxiang/effect-set.yaml 的四帧与共用 palm，按同目录 composition.yaml 的锚点、长度、缩放、节奏、预乘线性插值和
+    screen 混合出图；compose.py 取精确 peak_phase；build_demo.py 内嵌同一原料并用 Three.js 实时播放。完整原料生成提示词见本 manifest 原料条目及 source_requests.json。
+  negative: 不添加人物、文字、硬阴影、白芯或玩法判定；原料排除项见实发提示词。
+  references:
+  - assets/default/vfx/sk_luohanfumo/effect/mv_luohanfumo_zhuxiang/effect-set.yaml
+  - assets/default/vfx/emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + build_demo.py · Three.js r186
+  model: 不适用（确定性合成；原料模型未返回）
+  effort: 不适用
+  created: '2026-10-03'
+  source_path: assets/default/vfx/sk_luohanfumo/moves/mv_luohanfumo_zhuxiang/composition.yaml
+  size: 1536x1024
+  sha256: d07472b4ee4f14bcea681f52e5728cdbfb58cf28d8a920373c758928d8125e9d
+  status: candidate
+  notes: 静态/网页由同一Composition导出；发出方仅作独立示意，inner玩法不改为palm。网页唯一显式外链为指定three importmap；浏览器与真机待实测。
+  code: moves/mv_luohanfumo_zhuxiang/demo.html
+  pipeline: two-part
+  skill_ref: sk_luohanfumo
+  move_ref: mv_luohanfumo_zhuxiang
+  nature: harmony
+  delivery: inner
+  ultimate: true
+  projection: false
+  effect_set: ../../effect/mv_luohanfumo_zhuxiang/effect-set.yaml
+  length_px: 256
+  duration_s: 0.9
+  shared_dependencies:
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    head_byte_identical: true
+    bytes: 626765
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    head_byte_identical: true
+    bytes: 195
+  file_integrity:
+  - file: moves/mv_luohanfumo_zhuxiang/composition.json
+    bytes: 3386
+    sha256: f9e9b9d21487c6dcb9462bf39b3eee4eda591bd317e69eea29be48e5991e91c2
+  - file: moves/mv_luohanfumo_zhuxiang/composition.yaml
+    bytes: 1024
+    sha256: 82eb86e3a694d816517a60cc3c9cd2a7aa3c427bec00e48fa924084b94584f1e
+  - file: moves/mv_luohanfumo_zhuxiang/demo.html
+    bytes: 2129349
+    sha256: 90f3f71ffbf55c05b8b749b8156708e6449891bbd1ba2cccf43972c11832acbe
+  - file: moves/mv_luohanfumo_zhuxiang/peak.png
+    bytes: 477574
+    sha256: d07472b4ee4f14bcea681f52e5728cdbfb58cf28d8a920373c758928d8125e9d
