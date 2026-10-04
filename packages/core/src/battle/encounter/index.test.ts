@@ -195,9 +195,9 @@ describe('BattleSetup and encounter state', () => {
 
   it('rejects malformed, oversized-span, unstandable and occupied placement grids', () => {
     const placements = [{ unitRef: 'hero', pos: { q: 0, r: 0 }, facing: 0 as const },
-      { unitRef: 'enemy', pos: { q: 21, r: 0 }, facing: 3 as const }];
+      { unitRef: 'enemy', pos: { q: 20, r: 0 }, facing: 3 as const }];
     expect(() => createBattleSetup({ ...base, entryKind: 'story', initialUnits: placements, grid: [
-      { q: 0, r: 0, height: 0, moveCost: 1 }, { q: 21, r: 0, height: 0, moveCost: 1 },
+      { q: 0, r: 0, height: 0, moveCost: 1 }, { q: 20, r: 0, height: 0, moveCost: 1 },
     ] })).toThrow('BATTLE_SETUP_GRID');
     expect(() => createBattleSetup({ ...base, entryKind: 'story', grid: [
       { q: 0, r: 0, height: 0, moveCost: 0 }, { q: 1, r: 0, height: 0, moveCost: 1 },
