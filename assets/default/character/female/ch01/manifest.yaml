@@ -166,9 +166,11 @@
   subject: 王语嫣（ch01_tianlong）
   prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的王语嫣立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中王语嫣的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的王语嫣十八九岁，清丽绝俗：鹅蛋脸、下巴秀气，细长柔和的眉，一双温柔明亮的杏眼、双眼皮，鼻梁秀挺，小巧的嘴、唇色淡红，肤色白皙，神情温婉娴静、略带书卷气。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的王语嫣二十岁上下（作者选定的新版）：清瘦的鹅蛋脸、两颊不鼓、下颌线清楚流畅、下巴秀气不尖；眉毛平而细长；一双清澈的杏眼、眼尾平而略长；鼻梁细直、鼻头小巧；嘴唇小而饱满、唇色淡红；肤色白皙；神情沉静、略带愁思，嘴角可带一点浅笑。成年女子，不要婴儿肥、不要娃娃脸。
 
     【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+
+    【本张另外要求】（作者 17:24 选定新 base 后统一对脸；AR-53 总审也标过这批眼偏大偏圆、下巴偏尖）脸型、五官、年龄感都照基线；表情按原图的情绪，性格温婉的她可以带一点浅笑。
 
     【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
@@ -176,25 +178,25 @@
   negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png
-    sha256: dd84f729ca81814f3269d44c3f576635972277e3c5fc2463792cceabe183aa60
+    sha256: 2c8ca9f70a35d3067b52ade4f615107b055f738249078fd9503fb49d9a13645c
     use: 对脸基线：作者审核通过的 por_npc_wangyuyan__ch01_youth_mantuo_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.png
-    sha256: beec16b2e126a253aef4a464d04dffcab72f30a2508ab33d5f5a8fc7227d1fcd
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.beec16b2.png
+    sha256: 2712f85aed5d3e5e637092690babe9cdcfda4d351c8658955d40b2a538c2b5ae
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.2712f85a.png
   tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T15:29:51-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.e1.png
+  created: 2026-10-03T17:34:26-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.e2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 2712f85aed5d3e5e637092690babe9cdcfda4d351c8658955d40b2a538c2b5ae
+  sha256: 85c7725cd5dbb210e501424c03bbfc5cdf2eced37b792587a59d4edca8fe71f2
   status: candidate
-  notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base
+  notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base（作者 17:24 选定新 base 后对齐）
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.beec16b2.png
-    sha256: beec16b2e126a253aef4a464d04dffcab72f30a2508ab33d5f5a8fc7227d1fcd
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.beec16b2.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.2712f85a.png
+    sha256: 2712f85aed5d3e5e637092690babe9cdcfda4d351c8658955d40b2a538c2b5ae
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.2712f85a.entry.yaml
 - id: por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange
   file: por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.png
   category: character/female
