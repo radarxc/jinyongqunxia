@@ -135,13 +135,13 @@
     use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T03:27:23.448954-07:00'
+  created: '2026-10-04T04:18:07.173499-07:00'
   source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_48_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 7c9a583e1a765fb3c7475c71dff347bb6fdc397d28c9b1bde0120e5d06603580
+  sha256: e9f47fc65a8dd86bbe6029b7a6833010b1477d801270d573e14e86e1150140e3
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须是身份图定稿的刘亦菲本人脸：精确眉眼间距、眼形、鼻头、上唇弓及下颌；禁止复原待改图旧脸或变泛化漂亮脸。待改图原冷静目光、头向、远景人物尺度和光向照原，耳坠白衣发式不变。；质检：已实际打开base与返修前后：小龙女同人眉眼鼻唇颌骨明确采用恢复base，原冷静神态、头向视线及远景尺度保留，原光向自然无接缝；其余群雄杨过与题字逐像素不变；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变；AR-82 原著核对返修：大胜关插图同步断铁桨柄及实战大轮
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须是身份图定稿的刘亦菲本人脸：精确眉眼间距、眼形、鼻头、上唇弓及下颌；禁止复原待改图旧脸或变泛化漂亮脸。待改图原冷静目光、头向、远景人物尺度和光向照原，耳坠白衣发式不变。；质检：已实际打开base与返修前后：小龙女同人眉眼鼻唇颌骨明确采用恢复base，原冷静神态、头向视线及远景尺度保留，原光向自然无接缝；其余群雄杨过与题字逐像素不变；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变；AR-82 原著核对返修：大胜关插图同步断铁桨柄及实战大轮；AR-82 原著核对返修：大胜关插图同步断铁桨柄及实战大轮
   previous_revision:
     png: .agents/coord/_lines/novel-fix-1/before/48_cg_ch03_dashengguan_heroes.png
     sha256: 5165ad05cac1f9cb7af0d74a3f0378294bdddd13b3085131ac16f4c138ce85c8
