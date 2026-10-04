@@ -1,0 +1,76 @@
+- id: npc_azhu__ch01_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 阿朱（天龙八部 ch01 · 青年，刘涛版新脸）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 625326d3-f224-4cf2-926b-e443f53568d3
+    url: https://studio.tripo3d.ai/workspace/generate/625326d3-f224-4cf2-926b-e443f53568d3
+    generate_op: 471ef0a3-ad42-444d-892e-b375c49f60cf（image_to_model）
+    rig_op: a3696927-c4c9-4904-b393-54806c46fd7d
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch01/threeview/por_npc_azhu__ch01_youth_alive_apose_slim.png
+    sha256: e7c7f5d5ff329c44f8d5797b618d03cbbcb5237296915c9aa7a57c8c2b87e6cd
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 17d8b17ad06fa65e8a75516531bba2d127e40eb96021bd3a0b212767bf5ad8b7
+  size_bytes: 5641940
+  joints: 65
+  triangles: 95104
+  vertices: 55383
+  animations: []
+  textures:
+  - image/jpeg 314277 B
+  - image/jpeg 1201693 B
+  - image/jpeg 652102 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T19:11:07-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，粉襦 + 米白长裙，及腰长发深褐。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 7b86f248。
+- id: npc_azhu__ch01_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 阿朱（天龙八部 ch01 · 青年，刘涛版新脸）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 625326d3-f224-4cf2-926b-e443f53568d3
+    url: https://studio.tripo3d.ai/workspace/generate/625326d3-f224-4cf2-926b-e443f53568d3
+    generate_op: 471ef0a3-ad42-444d-892e-b375c49f60cf（image_to_model）
+    rig_op: a3696927-c4c9-4904-b393-54806c46fd7d
+  size: 369x594
+  sha256: e7c95804cd3b790ac1c4f4229a471c4ba1edaa3fb0f65e7c959aa44f34c77c08
+  size_bytes: 125064
+  created: '2026-10-03T19:11:07-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
