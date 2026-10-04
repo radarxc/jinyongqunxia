@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_yuanqianhelingwenpixingxue_nan
+name: 元浅褐绫纹皮行靴·男
+kind: armor
+sub: shoes
+grade: 6
+stack: 1
+chapters:
+- ch04_yitian
+origin: canonExpanded
+canonRef: 元；出现书界 ch04；（原创扩展）；形制／色系依据：《元史》卷78《舆服一·质孙》 https://zh.wikisource.org/zh-hans/元史/卷078；故宫《蒙元时期的罟罟冠》 https://www.dpm.org.cn/explode/others/210566.html；《钦定续文献通考》后妃命妇以下首饰服章制度，元史不载后妃服色 https://www.shidianguji.com/book/SK1150/chapter/1lbe49p795btn；女性绛红袍色从首服借色，袍面偏好（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanqianhelingwenpixingxue_nan
+text:
+  desc: 外观：元男款，主色浅褐。 待运行时投影：defOutK=0.05; hpMaxK=0.01; qinggong=2.5xgUse; wearer=male。
+  lore: （原创扩展）据元代行靴语汇演成浅褐男式皮行靴，柔皮高靿、圆头侧缝与平皮底合为一双。克制绫纹暗织缘用于从属靴缘，行前检查皮底缝线；具体裁形为原创，不鎏金，轻功按品阶，身法不重复加成。
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9
+      agi: 0
