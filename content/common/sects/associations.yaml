@@ -1,0 +1,71 @@
+schemaVersion: sect-catalog.v1
+id: ev_common_sects_associations
+event: content/sectCatalog
+group: associations
+sects:
+  - id: sect_gaibang
+    name: 丐帮
+  - id: sect_tiezhangbang
+    name: 铁掌帮
+  - id: sect_changlebang
+    name: 长乐帮
+  - id: sect_honghuahui
+    name: 红花会
+  - id: sect_tiandihui
+    name: 天地会
+  - id: sect_wangwu
+    name: 王屋派
+  - id: sect_haisha
+    name: 海沙派
+  - id: sect_jujing
+    name: 巨鲸帮
+  - id: sect_shenquan
+    name: 神拳门
+  - id: sect_weixinbiaoju
+    name: 威信镖局
+  - id: sect_jinlongbang
+    name: 金龙帮
+  - id: sect_xiaoyao
+    name: 逍遥派
+  - id: sect_lingjiu
+    name: 灵鹫宫
+  - id: sect_xingxiu
+    name: 星宿派
+  - id: sect_mingjiao
+    name: 明教
+  - id: sect_tianyingjiao
+    name: 天鹰教
+  - id: sect_riyue
+    name: 日月神教
+  - id: sect_wudu
+    name: 五毒教
+  - id: sect_wuxian
+    name: 五仙教
+  - id: sect_shenlongjiao
+    name: 神龙教
+  - id: sect_xuedaomen
+    name: 血刀门
+  - id: sect_shennong
+    name: 神农帮
+  - id: sect_mizong
+    name: 吐蕃密宗
+  - id: sect_xiakedao
+    name: 侠客岛
+  - id: sect_yipintang
+    name: 西夏一品堂
+  - id: sect_qidan
+    name: 契丹（辽）
+  - id: sect_menggu
+    name: 蒙古诸部 / 幕府
+  - id: sect_ruyangwangfu
+    name: 汝阳王府
+  - id: sect_qinggong
+    name: 清宫
+  - id: sect_muwangfu
+    name: 沐王府
+  - id: sect_chuangwangjun
+    name: 闯王军
+  - id: sect_sidaeren
+    name: 四大恶人
+  - id: sect_juxianzhuang
+    name: 聚贤庄

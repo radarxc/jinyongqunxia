@@ -91,6 +91,32 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
     (entry.value as { schemaVersion?: string }).schemaVersion === 'encounter.v1');
   const encounterRegistryActive = encounterEntries.length > 0;
   const storyKnots = new Set<string>();
+  const topologyCatalogs = entries.filter((entry) => entry.kind === 'event' &&
+    (entry.value as { event?: string }).event === 'content/meridianTopologyCatalog')
+    .map((entry) => entry.value as Extract<ContentValues['events'][number],
+      { event: 'content/meridianTopologyCatalog' }>);
+  if (topologyCatalogs.length > 0) {
+    const meridians = topologyCatalogs.flatMap((catalog) => catalog.meridians);
+    const points = meridians.flatMap((meridian) => meridian.points);
+    const groups = new Set(topologyCatalogs.map((catalog) => catalog.group));
+    if (topologyCatalogs.length !== 2 || meridians.length !== 20 || points.length !== 180 ||
+        groups.size !== 2 || !groups.has('regular12') || !groups.has('extra8') ||
+        new Set(meridians.map((entry) => entry.id)).size !== 20 ||
+        new Set(points.map((entry) => entry.id)).size !== 180)
+      throw new TypeError('CONTENT_MERIDIAN_TOPOLOGY_COUNTS');
+  }
+  const sectCatalogs = entries.filter((entry) => entry.kind === 'event' &&
+    (entry.value as { event?: string }).event === 'content/sectCatalog')
+    .map((entry) => entry.value as Extract<ContentValues['events'][number],
+      { event: 'content/sectCatalog' }>);
+  if (sectCatalogs.length > 0) {
+    const sects = sectCatalogs.flatMap((catalog) => catalog.sects);
+    const groups = new Set(sectCatalogs.map((catalog) => catalog.group));
+    if (sectCatalogs.length !== 4 || sects.length !== 99 ||
+        groups.size !== 4 ||
+        new Set(sects.map((entry) => entry.id)).size !== 99)
+      throw new TypeError('CONTENT_SECT_CATALOG_COUNTS');
+  }
   for (const entry of entries) if (entry.kind === 'story') {
     const story = entry.value as ContentValues['stories'][number];
     for (const node of story.nodes) if (node.type === 'dialogue' && 'ink' in node.payload)

@@ -18,8 +18,10 @@
     "check:perf": "node -e \"const o=require('os');console.log('loadavg',o.loadavg().map(n=>n.toFixed(2)).join(' '),'cpus',o.cpus().length)\" && pnpm test:perf",
     "content:validate": "tsx packages/data/scripts/validate-content.ts",
     "content:build": "tsx packages/data/scripts/build-content.ts",
+    "content:compile-story": "tsx tools/content/compile_story.ts",
+    "content:test-compile-story": "tsx tools/content/test_compile_story.ts",
     "size": "pnpm build && node tools/perf/check_size.mjs && node apps/game/scripts/check-dev-chunks.mjs",
-    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm content:validate && pnpm size",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm content:validate && pnpm content:test-compile-story && pnpm content:compile-story && pnpm size",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

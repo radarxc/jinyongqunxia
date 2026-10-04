@@ -1,9 +1,11 @@
 import { z } from 'zod';
 import { ChapterIdSchema, EraLayerSchema, JsonValueSchema, NpcIdSchema, QuestIdSchema, SceneIdSchema } from './primitives';
+import { QuestEffectSchema } from './quest';
 
 const NodeIdSchema = z.string().regex(/^n_[a-z0-9_]+$/);
 const LineIdSchema = z.string().regex(/^(?:main|side_[a-z0-9_]+)$/);
-const ConditionExprRefSchema = z.record(z.string(), JsonValueSchema).refine((value) => Object.keys(value).length > 0, 'condition cannot be empty');
+export const StoryConditionExpressionSchema = z.record(z.string(), JsonValueSchema)
+  .refine((value) => Object.keys(value).length > 0, 'condition cannot be empty');
 const OnMissSchema = z.discriminatedUnion('policy', [
   z.strictObject({ policy: z.literal('expire') }),
   z.strictObject({ policy: z.literal('defer'), deferByMinutes: z.number().int().positive(), maxDefers: z.number().int().min(1).max(9) }),
@@ -30,12 +32,11 @@ const CommonNodeSchema = z.strictObject({
   timeWindow: TimeWindowSchema.optional(), once: z.boolean().optional(), sourceRef: z.string().min(1),
 });
 const ActorPayloadSchema = z.strictObject({ npcId: NpcIdSchema, sceneId: SceneIdSchema, anchor: z.string().regex(/^[a-z][a-z0-9_]*$/), eraLayer: EraLayerSchema });
-const ActionRefSchema = z.record(z.string(), JsonValueSchema).refine((value) => typeof value['id'] === 'string' && typeof value['op'] === 'string', 'action needs id and op');
 const ChoicePayloadSchema = z.strictObject({
   decisionId: z.string().regex(/^dc_[a-z0-9_]+$/),
   options: z.array(z.strictObject({
     key: z.string().regex(/^[a-z][a-z0-9_]*$/), textKey: z.string().min(1),
-    when: ConditionExprRefSchema.optional(),
+    when: StoryConditionExpressionSchema.optional(),
   })).min(2),
 }).refine((value) => new Set(value.options.map((option) => option.key)).size === value.options.length, {
   path: ['options'], message: 'choice option keys must be unique',
@@ -44,9 +45,9 @@ export const StoryNodeSchema = z.discriminatedUnion('type', [
   CommonNodeSchema.extend({ type: z.literal('spawn'), payload: ActorPayloadSchema }),
   CommonNodeSchema.extend({ type: z.literal('despawn'), payload: ActorPayloadSchema.extend({ reason: z.string().min(1) }) }),
   CommonNodeSchema.extend({ type: z.literal('dialogue'), payload: z.union([z.strictObject({ ink: z.strictObject({ storyId: z.string().min(1), knot: z.string().min(1) }) }), z.strictObject({ inlineLines: z.array(z.strictObject({ speakerId: z.string().regex(/^(?:npc_[a-z0-9_]+|player|narrator)$/), textKey: z.string().min(1) })).min(1) })]) }),
-  CommonNodeSchema.extend({ type: z.literal('quest'), payload: z.union([z.strictObject({ questId: QuestIdSchema }), z.strictObject({ inlineEvent: z.strictObject({ eventKey: z.string().regex(/^[a-z][a-z0-9_]*$/), actions: z.array(ActionRefSchema).min(1) }) })]) }),
+  CommonNodeSchema.extend({ type: z.literal('quest'), payload: z.union([z.strictObject({ questId: QuestIdSchema }), z.strictObject({ inlineEvent: z.strictObject({ eventKey: z.string().regex(/^[a-z][a-z0-9_]*$/), actions: z.array(QuestEffectSchema).min(1) }) })]) }),
   CommonNodeSchema.extend({ type: z.literal('choice'), payload: ChoicePayloadSchema }),
-  CommonNodeSchema.extend({ type: z.literal('condition'), payload: z.strictObject({ expression: ConditionExprRefSchema }) }),
+  CommonNodeSchema.extend({ type: z.literal('condition'), payload: z.strictObject({ expression: StoryConditionExpressionSchema }) }),
   CommonNodeSchema.extend({ type: z.literal('merge'), payload: z.strictObject({ mergeKey: z.string().regex(/^[a-z][a-z0-9_]*$/) }) }),
   CommonNodeSchema.extend({ type: z.literal('end'), payload: z.strictObject({ endingTags: z.array(z.string()).min(1) }) }),
 ]);
@@ -54,16 +55,16 @@ export const StoryNodeSchema = z.discriminatedUnion('type', [
 const CommonEdgeSchema = z.strictObject({ id: z.string().regex(/^e_[a-z0-9_]+$/), from: NodeIdSchema, to: NodeIdSchema, priority: z.number().int().min(0).max(1000) });
 export const StoryEdgeSchema = z.discriminatedUnion('trigger', [
   CommonEdgeSchema.extend({ trigger: z.literal('auto') }),
-  CommonEdgeSchema.extend({ trigger: z.literal('condition'), condition: ConditionExprRefSchema }),
+  CommonEdgeSchema.extend({ trigger: z.literal('condition'), condition: StoryConditionExpressionSchema }),
   CommonEdgeSchema.extend({ trigger: z.literal('choice'), choiceKey: z.string().regex(/^[a-z][a-z0-9_]*$/) }),
   CommonEdgeSchema.extend({ trigger: z.literal('timeout') }),
 ]);
 
 export const StoryLineShapeSchema = z.strictObject({
   schemaVersion: z.literal('story.v1'), chapterId: ChapterIdSchema, lineId: LineIdSchema, kind: z.enum(['main', 'side']), titleKey: z.string().min(1), eraLayer: EraLayerSchema, startNodeId: NodeIdSchema,
-  trigger: z.strictObject({ condition: ConditionExprRefSchema.optional(), timeWindow: TimeWindowSchema.optional() })
+  trigger: z.strictObject({ condition: StoryConditionExpressionSchema.optional(), timeWindow: TimeWindowSchema.optional() })
     .refine((value) => value.condition !== undefined || value.timeWindow !== undefined, 'trigger cannot be empty').optional(),
-  sideHooks: z.array(z.strictObject({ lineId: z.string().regex(/^side_[a-z0-9_]+$/), atNodeId: NodeIdSchema, when: ConditionExprRefSchema, optional: z.boolean().optional() })),
+  sideHooks: z.array(z.strictObject({ lineId: z.string().regex(/^side_[a-z0-9_]+$/), atNodeId: NodeIdSchema, when: StoryConditionExpressionSchema, optional: z.boolean().optional() })),
   nodes: z.array(StoryNodeSchema).min(1), edges: z.array(StoryEdgeSchema),
   source: z.strictObject({ document: z.string().min(1), anchors: z.array(z.string()).min(1), note: z.string().optional() }),
 });
