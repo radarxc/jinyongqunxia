@@ -2138,4 +2138,12 @@
     - **CITY-layouts-batch.md** 加「过程文件不进 assets/」（540b6400）：日志写工作区内 `.agents/coord/_asset_logs/<任务ID>/`。城图沙箱只放开 /private/tmp 和工作区。
       - 未起跑的 32 批生效；补位器没动。
       - 218 个存量等城图全部做完再一次清。
-
+  - **10-03 20:40–21:20 协调者**：
+    - **GPT 会话沙箱**：Codex 会把可写根下的 `.agents` 设成只读（实测 _prod 作根时写不进 .agents/coord）。codex_session.py 已改：根放在 `_prod/.agents/coord`，另加可写 `_prod/assets` 和主检出 `.git`；默认收件箱汇报，说明末尾自动附路径约定。
+    - **人物神态（AR-58）**：
+      - portrait-w25（ch12–ch14 共 17 人）、portrait-w17（ch08–ch11 共 48 人）已由 gpt-6.1-sol 全部做完，0 跳过，协调者抽看对照表认可；两线 runner 已 STOP。胡夫人跨书笑幅差异判 A（保持）。
+      - portrait-w24（倚天 19、笑傲 16）在跑。
+      - 至此 10 / 11 / 12 号 Opus 出图员全部退场。
+    - **大地图（AR-68）**：TOOL-map-terrain、CONTENT-map-poi、ART-map-inkkit 已登记（91b0ff6b）。ART-map-inkkit 小样 22 件已合入（6b93d92c），对照表已发作者，**待作者**定笔墨能否照此补齐、城镇与寺庙标记用小景还是简化符号。CONTENT-map-poi 审核中；map-terrain 排在 base-diet 之后；TOOL-map-compose 等前三项合入后再起。Gemini 数据交接 `gemini_qa/maps/HANDOFF_CODEX.md` 已写进两项说明。
+    - **Tripo**：JS 驱动 `tools/model3d/tripo_web.js`（71587827）、ingest.py（899e2655）、SKILL.md（2791603c / f270845c）；6 套 manifest 时区更正（b71ab68e）。**待作者**在 Tripo 标签页地址栏处理「下载多个文件」：允许则直接用 JS 存盘，否则每次存盘前刷新页面；之后统一 38 套预览为白底封面。
+    - **其他**：TOOL-assets-logs-cleanup 已登记（c92c81ed）。CITY 批说明加「过程文件不进 assets/」（540b6400）。supervise 审核 FAIL 后立即改状态（663b0a0c）。base-diet 闭包已降到 73.52，但 r1 FAIL（ch10 包读不出 NPC 与地图），返修排在 ops-dispatch 之后。
