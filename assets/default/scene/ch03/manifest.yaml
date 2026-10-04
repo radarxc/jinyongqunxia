@@ -246,11 +246,11 @@
   category: scene
   style: default
   subject: 绝情谷底十六年重逢（ch03_shendiao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是杨过的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是小龙女的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中杨过、小龙女的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是小龙女的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中小龙女的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】这张插图画的是：十六年后绝情谷底重逢，中年杨过从水潭边停下，只有左手微抬、空右袖清楚；小龙女穿整洁修补的浅色谷底衣装，从简陋住处前回望。两人同一轮立绘身份，面貌自然成熟，距离一步，眼含泪光而含笑，深情克制。谷底绿意、水面、清晨薄雾柔和；不拥吻、不少年恋爱糖水照，不在杨过右侧凭空增加手掌。
 
-    【要对齐的部分】杨过、小龙女各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】小龙女各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「谷底重逢」和小朱印必须原样保留，一笔不改、不增不减。
 
@@ -258,31 +258,28 @@
 
     【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【本张另外要求】这是十六年后的重逢：杨过约四十岁、小龙女约三十五六岁。两人的年龄感保持原图（杨过眼角细纹、两颊略瘦、淡淡胡茬与风霜，小龙女仍清丽但更成熟），只让五官骨相分别与各自的基线是同一个人，不要画成二十出头。'
+    【本张另外要求】（作者 AR-53 总审返修）白衣女子是小龙女：原著写她十六年后容貌如昔，所以她的脸要和基线一模一样年轻——清丽的鹅蛋脸、轮廓柔和不宽、肤色极白、神情清冷淡然，不要显年长、不要脸变宽。杨过的脸不要动（他保持四十岁上下的样子）。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
-    sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
-    use: 对脸基线：作者审核通过的 por_npc_yangguo__ch03_youth_onearm_base（杨过），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
     sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
     use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch03/cg_ch03_valley_reunion.png
-    sha256: bd0c82165eae7de7f1e746933121cc9dfc1b9320ae77c9a89698a0278c238f53
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.bd0c8216.png
+    sha256: 5799300656ab620251a2c3ec90a18f4cacb7e66cdf8c3f3807b4c37a78e0f66c
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.57993006.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T14:51:35-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_valley_reunion.s2.png
+  created: 2026-10-03T17:31:47-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_valley_reunion.s3.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 5799300656ab620251a2c3ec90a18f4cacb7e66cdf8c3f3807b4c37a78e0f66c
+  sha256: 961dd4d83319b9b6d89a049a69801b628c560bc958fce3665fa78fa7ec3da10e
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「谷底重逢」，实际字形「谷底重逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base（十六年后重逢，保留两人原图的年龄感）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「谷底重逢」，实际字形「谷底重逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base（十六年后重逢，保留两人原图的年龄感）；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base（AR-53 总审返修：小龙女十六年后容貌如昔，对齐 jueqing_base）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.bd0c8216.png
-    sha256: bd0c82165eae7de7f1e746933121cc9dfc1b9320ae77c9a89698a0278c238f53
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.bd0c8216.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.57993006.png
+    sha256: 5799300656ab620251a2c3ec90a18f4cacb7e66cdf8c3f3807b4c37a78e0f66c
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.57993006.entry.yaml
   runner_job_records:
   - - cg_ch03_valley_reunion.resume3
     - ok

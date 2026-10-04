@@ -197,44 +197,40 @@
   category: scene
   style: default
   subject: 濠州婚礼被打断（ch04_yitian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是张无忌的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是赵敏的身份基线（作者审核通过的立绘，脸部特写）；第 3 张是周芷若的身份基线（作者审核通过的立绘，脸部特写）；第 4 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中张无忌、赵敏、周芷若的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是张无忌的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中张无忌的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】这张插图画的是：濠州婚礼被赵敏打断。赵敏身穿青色旅装站在左侧，右手掌摊开一小束淡黄色头发向张无忌示意，这是谢逊的头发；不画布包、信函、金锁或其他替代线索；张无忌已换暗红礼袍，从礼案前骤然回身。右前周芷若换大红锦袍与小型珠饰凤冠霞帔，红盖巾边缘略揭、面色清冷而受伤，不拿长鞭；凤冠避免夸张仙侠头饰。三人关系由红绸和视线连接，烛光暖而不通红，喜堂所有装饰无可读字；取赵敏出示信物、尚未受伤离堂的瞬间，目光与手势机位属原创扩展；服饰细节待三联纸本复核。
 
-    【要对齐的部分】张无忌、赵敏、周芷若各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】张无忌各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「濠州惊变」和小朱印必须原样保留，一笔不改、不增不减。
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（作者 AR-53 总审返修）穿红色喜服的新郎是张无忌：现在脸偏瘦削、颧骨和下颌偏硬——改回基线的样子：端正圆润的鹅蛋脸、下巴圆润、两颊不凹、双眼皮大眼睛、眼神温和，清秀俊朗。赵敏和周芷若的脸不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
     sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
     use: 对脸基线：作者审核通过的 por_npc_zhangwuji__ch04_youth_jiaozhu_base（张无忌），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png
-    sha256: ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188
-    use: 对脸基线：作者审核通过的 por_npc_zhaomin__ch04_youth_scene_lvliu（赵敏），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_guangmingding.png
-    sha256: 69203f7e2f361107f2c638f22513937262dffef6151d09c4718466e3ac00a69e
-    use: 对脸基线：作者审核通过的 por_npc_zhouzhiruo__ch04_youth_scene_guangmingding（周芷若），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch04/cg_ch04_haozhou_wedding.png
-    sha256: 095e6bf8262a4439b09cb619433a686e2768bb7226abff8e26542bca9102d3f7
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_haozhou_wedding.095e6bf8.png
+    sha256: b9ce51aebdeb1bf05f1b43a9a30d83a68f97bb78e6179c84a3396b3cfa0cb324
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_haozhou_wedding.b9ce51ae.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T14:39:47-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch04_haozhou_wedding.s1.png
+  created: 2026-10-03T17:31:48-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch04_haozhou_wedding.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: b9ce51aebdeb1bf05f1b43a9a30d83a68f97bb78e6179c84a3396b3cfa0cb324
+  sha256: 348a7545a263831983f50e345a67867c2f3005fc5030ba2faeecd09f255b361c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「濠州惊变」，实际字形「濠州惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「濠州惊变」，实际字形「濠州惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base（AR-53 总审返修：张无忌新郎脸改回 A 版 base 的圆润温和）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_haozhou_wedding.095e6bf8.png
-    sha256: 095e6bf8262a4439b09cb619433a686e2768bb7226abff8e26542bca9102d3f7
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_haozhou_wedding.095e6bf8.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_haozhou_wedding.b9ce51ae.png
+    sha256: b9ce51aebdeb1bf05f1b43a9a30d83a68f97bb78e6179c84a3396b3cfa0cb324
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_haozhou_wedding.b9ce51ae.entry.yaml
   runner_job_records:
   - - cg_ch04_haozhou_wedding.resume3
     - ok
