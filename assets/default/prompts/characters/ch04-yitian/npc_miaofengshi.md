@@ -73,3 +73,8 @@ FINAL POSE CHECK: FRONT-FACING 妙风使. Forehead–nose–chin centreline VERT
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_miaofengshi__ch04_prime_base.prepared.json`。
+
+## 原著依据
+
+- 《倚天屠龙记》二十九 四女同舟何所望：“每只手中各拿着一条两尺来长的黑牌”；https://www.xuges.com/wuxia/jinyong/yttlj/216.htm
+- AR-82 返修约束（本节优先于历史提示词）：只将两手中短小金色饰牌改成两尺来长的黑色圣火令，每只手一条，长度各约60厘米，长条厚实而非黄金挂牌，非金非玉的黑色材质，浅刻波斯纹且微弱折光。保持原手抓握位置与手指，黑牌长度向手上下延伸、需完整可见，不改变人物脸、衣服或火焰标记。
