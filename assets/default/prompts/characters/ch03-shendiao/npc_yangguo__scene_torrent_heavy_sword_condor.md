@@ -102,3 +102,9 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_yangguo__ch03_youth_scene_torrent_heavy_sword_condor.prepared.json`。
+
+## 原著依据
+
+- 《神雕侠侣》第二十六回 神雕重剑：“剑尖更圆圆的似是个半球”；https://www.xuges.com/wuxia/jinyong/sdxl/187.htm
+- 《神雕侠侣》第二十三回 手足情仇：“头顶生着个血红的大肉瘤”；https://www.xuges.com/wuxia/jinyong/sdxl/162.htm
+- AR-82 返修约束（本节优先于历史提示词）：只修改两处：左手重剑的菱形锐尖改半球圆钝、厚重不开刃；右上神雕头顶褐羽冠改为清楚血红大肉瘤，头部不画羽冠。神雕羽毛黄黑稀疏、粗壮双腿和短翅，不画普通丰满大鹰；保留同一只神雕站位和身体朝向。杨过本人、脸、手、衣服、河水与其余背景完全不动。 神雕必须很丑：躯干可见明显大片裸露灰皮，黄黑羽毛疏疏落落而非密羽，翅膀缩短贴躯干，腿脚比普通鹰粗壮数倍，腿的上段露皮；保留血红大肉瘤。
