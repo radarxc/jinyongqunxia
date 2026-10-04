@@ -76,3 +76,9 @@ FINAL POSE CHECK: FRONT-FACING, head and neck naturally UPRIGHT, eyes HORIZONTAL
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_lanfenghuang__ch05_youth_base.prepared.json`。
+
+## 原著依据
+
+- 《笑傲江湖》十六《注血》：“蓝布印白花衫裤，自胸至膝围一条绣花围裙”（https://xuges.com/WUXIA/jinyong/xajh/119.htm）
+- 《笑傲江湖》十六《注血》：“足有酒杯口大小”（https://xuges.com/WUXIA/jinyong/xajh/119.htm）
+- AR-82 返修约束：只换服饰并放大两侧金耳环：蓝布印白色花纹的上衫与长裤（清楚的两条裤腿，不是裙装），从胸口至膝盖单独系一条彩绣围裙，上缘在胸部，围裙不能只是腰带；保持原图头发蓝彩带、酒罐、双手和赤足原样。两耳金环放大到酒杯口大小，耳垂处悬挂大圆金环。不能改变脸部身份。
