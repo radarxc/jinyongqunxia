@@ -319,37 +319,40 @@
   category: character/female
   style: default
   subject: 阿珂（ch08_luding）
-  prompt: '任务：以图1现有阿珂立绘为底，重新编辑面部五官与神态。图2/3是同一演员年轻宁静的早期《红河谷》剧照与《阳光灿烂的日子》片场照片的面部裁图，作为五官主要来源。图4是宁静在2008年《鹿鼎记》饰陈圆圆的脸部，仅辅助母女家族骨相。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
-    首轮返修：首轮脸太贴原图、年轻宁静辨识度和浅笑均不够。这次图1只锁定服装、头发、头颈角度、身形、站姿、手和剑；面部骨相从图2/3年轻宁静来。重点明确采用年轻宁静的眼睑眼形、鼻梁鼻翼、较丰润唇形与饱满面颊，眼睛自然明亮，不画狐狸尖眼，不削尖下巴；她是明艳的少女阿珂，与参考宁静的母亲陈圆圆有家族骨相但明显年轻，另一个小说人物，不照抄演员照片。
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    神态必须是清楚可辨认的闭唇浅笑，两侧嘴角轻轻抬起、唇线有含蓄笑弧，不露齿；眼神有笑意，也保留少女的骄傲和一点倔强，避免冷脸、平直下压嘴角、深法令纹、谄媚或甜腻笑。
+    输出和原图同样比例的完整画面。
 
-    严格保留图1的米白花纹外衣、灰蓝裙、腰带、衣服褶皱、发式发饰与辫子外轮廓、头部原有大小位置和角度、头身比例、身体姿势、双手、剑及其细节、背景与构图。仅脸部编辑，输出1024×1536完整单人立绘。匹配图1写实手绘纸感，不贴照片，自然细小不对称，有真实皮肤纹理和眼睑；不磨皮，不塑料高光，不网红V脸、不夸大眼睛、不完美对称，不加浓妆。没有文字、水印、第二个人或拼版。
+    阿珂初遇江湖阶段：只把米白上衣与灰蓝长裙主色换为淡绿衣衫，衣褶、廓形、腰带和原脸神情发式保持。手中现直双刃长剑连鞘改为一柄柳叶式单刀及相应略弯刀鞘，单刃刀而非直双刃剑；佩握的位置与手姿不变，不额外加第二把兵器。原头脸、辫子、鞋与双手不变。
 
-    A版：较明显贴近年轻宁静的脸，眼鼻唇骨相辨认度较高；浅笑清楚，明艳有朝气。'
-  negative: ''
+    【原著依据】《鹿鼎记》二十二《老衲山中移漏处，佳人世外改妆时》：“身穿淡绿衣衫”（https://xuges.com/WUXIA/jinyong/ldj/164.htm）；《鹿鼎记》二十三《天生才士定多癖，君与此图皆可传》：“二女双刀挥舞”（https://xuges.com/WUXIA/jinyong/ldj/170.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261002/luding/ningjing_young_honghegu_sina2012.jpg
-    sha256: 6dd75a8f0ea9458905ac1c0702a585bedd4417bcd0e616a2140113d2ed9f9fcb
-    use: 对脸基线：AR-73 / AR-84 作者点名参考 actor_reference_ake（年轻宁静），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch08/por_npc_ake__ch08_youth_base.png
-    sha256: 76d92377fe36f8b8285e3bae58a4527dcaebeaf94a2f7180e1bdae77dc1ba2d7
-    use: 待改原图（AR-73 / AR-84 参考 年轻宁静，作者选 A 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_ake__ch08_youth_base.76d92377.png
-  tool: codex exec · image_gen（AR-73 A/B 作者选版；AR-84 入库，面部局部合成）
+    sha256: b268298f30a8c9776fd1bf3612a98afc13c4dda6e95558ed53a0bd6d986cf142
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_ake__ch08_youth_base.b268298f.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
   model: gpt-6.1-sol
-  created: 2026-10-03T23:47:26-0700
-  source_path: .agents/coord/_handoff/gem/codex_w25/out/ar84_final4_accept_ake_A.png
+  created: 2026-10-04T02:36:33-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_18_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: b268298f30a8c9776fd1bf3612a98afc13c4dda6e95558ed53a0bd6d986cf142
+  sha256: 5d2fd5df31c8e29da6615f7a3f5228cf447130d566eea3c682cb9598f8707d07
   status: candidate
-  notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：1998 年 TVB《鹿鼎记》；job por_npc_ake__ch08_youth_base__t1；AR-73 / AR-84 参考 年轻宁静，作者选 A（Codex gpt-6.1-sol（AR-84）），基线 = actor_reference_ake（选定源作业 ar73_support_ake_A_r2_20261003；面部框外逐像素一致）
-  effort: ultra
+  notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：1998 年 TVB《鹿鼎记》；job por_npc_ake__ch08_youth_base__t1；AR-73 / AR-84 参考 年轻宁静，作者选 A（Codex gpt-6.1-sol（AR-84）），基线 = actor_reference_ake（选定源作业 ar73_support_ake_A_r2_20261003；面部框外逐像素一致）；AR-82 原著核对返修：阿珂初遇淡绿衣与柳叶单刀
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_ake__ch08_youth_base.76d92377.png
-    sha256: 76d92377fe36f8b8285e3bae58a4527dcaebeaf94a2f7180e1bdae77dc1ba2d7
-    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_ake__ch08_youth_base.76d92377.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_ake__ch08_youth_base.b268298f.png
+    sha256: b268298f30a8c9776fd1bf3612a98afc13c4dda6e95558ed53a0bd6d986cf142
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_ake__ch08_youth_base.b268298f.entry.yaml
 - id: por_npc_suquan__ch08_youth_base
   file: por_npc_suquan__ch08_youth_base.png
   category: character/female
