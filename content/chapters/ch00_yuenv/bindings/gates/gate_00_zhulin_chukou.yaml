@@ -1,0 +1,7 @@
+schemaVersion: region-gate.v1
+gateId: gate_00_zhulin_chukou
+chapter: ch00_yuenv
+expression:
+  flag: fl_00_staff_accepted
+lockedTextKey: quest.q_00_main_c_01.objective.accept_staff
+note: C01 接棒完成后开放竹林东北口；锁定提示暂复用既有任务目标文本，专用文案交 ch00a。

@@ -1,0 +1,11 @@
+schemaVersion: region-dialogue.v1
+chapter: ch00_yuenv
+sceneId: sc_00_changbai_cave
+anchorId: first_sleep_allocation
+storyId: story_ch00_main
+entryKey: first_sleep_allocation
+condition:
+  all:
+    - {flag: fl_00_first_layer_committed}
+    - {flag: fl_00_avalanche_survived}
+    - {not: {flag: fl_00_first_sleep_committed}}
