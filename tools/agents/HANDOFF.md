@@ -2516,3 +2516,9 @@
       - ch10 那条：脚本等负载 < 15 时单跑三次（scratchpad ch10_test_idle.out），全过就照先例固定 60 秒，低负载也挂就按退化查。
     - 登记并起跑 **TOOL-check-semaphore**（652bbd24，M1 之后第一位）：finish 校验与 prod_check 走信号量，最多 2 个；vitest 固定 maxWorkers。
     - **wiring 优先**：池位名单把 ENG-ch00-encounter-wiring 置顶。它进校验时，暂不起别的 `--from validate` / 重校验（等待器到点也先停），等它一次跑过再一个个放。
+  - **10-04 06:00–06:40 开发监督**：
+    - 合入：ENG-18c（2c110997）、ENG-ch10-test-timeout（edc3843d）、TOOL-items-count-sync（80b0577a）。之后 rig-std-parts 的等待器到点，`--from validate`。
+    - ch10 真产物用例：负载 13–15 时单跑三次 3.1 / 2.6 / 2.8 秒全过，判为负载超时，按先例固定 60 秒（已合入）。
+    - **wiring**：06:12 自动续作第 2 轮；开发监督 06:33 停下，挪基点 17415fd6 → 80b0577a，7 个冲突，涉及 16e / generic-model / 18c / ch10 的改动；带解冲突与剩余项说明续作，本轮上限 300 分钟，06:34 拿回池位。
+    - 第 8 批 apparel 在 count-sync 合入后起跑（会把件数快照同步到终值）。
+    - 负载降到 10 以下，wiring 仍在执行器阶段，恢复三件：size-render-measure `--from validate`、move-onhit 续作返修、dialogue-runtime-lazy 起跑。
