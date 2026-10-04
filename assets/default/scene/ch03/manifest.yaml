@@ -305,28 +305,28 @@
 
     【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【本张另外要求】（作者 AR-53 总审返修，优先）城头上的女子是黄蓉：现在她的脸窄长下垂、眼小，看着像五十多岁——改成她神雕时期的基线：三十七八岁、圆润的鹅蛋脸、明亮的大杏眼、成熟端庄、风韵犹存，眼角只有很淡的细纹。杨过和郭靖的脸不要动。'
+    【本张另外要求】（作者 AR-53 总审复核：上次已不显老，但脸仍偏窄、颧骨显）城头上的黄蓉：脸型改成她神雕时期基线那样圆润饱满的鹅蛋脸、颧骨不突出、两颊柔和，眼睛是带笑意的明亮杏眼（笑眼），三十七八岁、成熟端庄而温和；杨过和郭靖的脸不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/female/ch03/por_npc_huangrong__ch03_prime_base.png
     sha256: 072a75f7267230b7533e6ee783c3783f1ebddc8f7df11a65a073c9e1aa47bd24
     use: 对脸基线：作者审核通过的 por_npc_huangrong__ch03_prime_base（黄蓉（神雕时期，三十七八岁）），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch03/cg_ch03_xiangyang_flying_stone.png
-    sha256: 1d48e648f9eb86aa6735cfc80f03875b05b84845727a391d22815f44f1c9df39
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_flying_stone.1d48e648.png
+    sha256: 361680663098ae3e63ba35fb04b7499b76ed04514971edf8cf63b063f17c062e
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_flying_stone.36168066.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T17:24:07-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_xiangyang_flying_stone.s2.png
+  created: 2026-10-03T17:57:02-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_xiangyang_flying_stone.s3.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 361680663098ae3e63ba35fb04b7499b76ed04514971edf8cf63b063f17c062e
+  sha256: 22d0ad972da50355fe8994927b8844cb3fab1926e29bc213e8430a3580fe916c
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「飞石靖难」，实际字形「飞石靖难」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch03_prime_base（AR-53 总审返修：黄蓉改回三十七八岁的壮年 base）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「飞石靖难」，实际字形「飞石靖难」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch03_prime_base（AR-53 总审返修：黄蓉改回三十七八岁的壮年 base）；AR-44 对脸精修，基线 = por_npc_huangrong__ch03_prime_base（AR-53 总审复核返修：黄蓉改圆脸笑眼）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_flying_stone.1d48e648.png
-    sha256: 1d48e648f9eb86aa6735cfc80f03875b05b84845727a391d22815f44f1c9df39
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_flying_stone.1d48e648.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_flying_stone.36168066.png
+    sha256: 361680663098ae3e63ba35fb04b7499b76ed04514971edf8cf63b063f17c062e
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_flying_stone.36168066.entry.yaml
   runner_job_records:
   - - cg_ch03_xiangyang_flying_stone.resume3r2
     - ok
