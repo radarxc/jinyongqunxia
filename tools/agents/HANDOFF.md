@@ -2498,3 +2498,9 @@
       - 真正的 render 块仍约 164–170 KiB，在 180 门内；新出现的 3D 懒加载块 battle-model3d 约 17 KiB，没有预算。
       - 登记并起跑 **ENG-size-render-measure**（02841fe4）：按清单定位、量静态闭包；新增 render-model3d 预算 24 KiB；原门值不动。
     - TOOL-ops-dispatch-dedupe 已在空位续作。CONTENT-apparel-data-6 合入（47d018e3）。
+  - **10-04 05:08–05:20 开发监督**：
+    - **集成分支红**：16e（ecc68454）合入后 prod_check 确定性失败：BattleField 高亮用例 setHighlights 0 次。疑为 generic-model 新加的 `projectUnit` 不在 16e 用例的 mock 里，`project()` 抛错，中断了 `sync()`。
+      - 登记并起跑 **ENG-fix-battlefield-highlights**（e91314ac，代码池第一，`--max-runs 1 --max-reviews 1`）：mock 补全接口、断言不删；生产代码隔离单个投影失败；2D / 3D 两路都验证。
+      - 为保它拿到池位，先停了排队中的 ENG-size-render-measure，修复起跑后再排回去。
+    - **ENG-18c**：再审 PASS，合入冲突 3 个文件（schemas/index、content-registry、content-plugin）。content-plugin 是语义冲突，挪基点后起只解冲突的返修（devsup_note_conflict.md）。
+    - CONTENT-apparel-data-6 合入；重建索引；第 7 批起跑。
