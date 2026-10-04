@@ -716,80 +716,50 @@
   category: character/male
   style: default
   subject: 茅十八 npc_maoshiba ch08_luding
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: ONE FRONT-FACING full-body standing figure. Head and neck naturally UPRIGHT; forehead–nose–chin centreline VERTICAL, both eyes on a HORIZONTAL line. Camera level, chin neutral, gaze forward, head centered over the torso, shoulders naturally relaxed. NO head tilt and NO Dutch angle. These requirements override every reference pose. Preserve natural facial asymmetry without tilting the head.
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    Create a REALISTIC Chinese wuxia full-body portrait of 茅十八. THIS IS AN ORIGINAL TEXT-DEFINED FACE for this supporting character. There is NO identity image of this person among the inputs. Image 1 supplies ONLY the corresponding gender palette and soft painting quality; image 2 supplies ONLY pale ink-wash background. Do not copy, blend or average either reference face, age, anatomy, hairstyle, clothes, props or pose. Do not claim this original face is a verified original-game portrait or actor likeness.
+    本次是原图局部放大裁图，输出同样的正方形裁图；不要生成全身，不要扩大场景。
 
+    只将当前稀薄短髭小山羊须加密为粗乱虬髯：上唇浓髭、两颊下部鬓须、两侧下颌及下巴密实蓬乱黑须，仍是同一位原图茅十八，眼鼻嘴部位置不变，不改脸型骨相与剃发辫子，不加头部绷带。
 
-    身份与阶段：茅十八（npc_maoshiba），《鹿鼎记》ch08_luding。扬州结识韦小宝、伤势恢复后准备北上的江洋好汉
+    【原著依据】《鹿鼎记》二《绝世奇事传闻里，最好交情见面初》：“一名虬髯大汉”（https://xuges.com/WUXIA/jinyong/ldj/008.htm）
 
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    年龄与体型：壮年男性，主稿视觉三四十岁而确切年龄待考。矮壮厚肩、结实前臂与稳健腰腹，真实劳动型体重，不用极端肥胖或夸张健美。取伤愈可北上的常态，无夸张跛姿与开放伤口。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
 
-
-    原创本人面容：独立原创短宽方脸，宽厚下颌、略扁宽鼻、浓而不整齐的平眉，双眼深浅自然且坦直；面颊日晒粗糙，短硬胡茬围住嘴角和下巴。嘴唇厚实但不戏谑夸张，神色直爽急躁而非凶残；不借秦煌其他角色或男基线脸，非已验证1998演员面貌。
-
-
-    服制与发式：清初汉人江湖短打：剃额、脑后细辫扎稳，土褐右衽短衫、灰黑无袖夹衣、束脚深色裤与旧布鞋；腰间一个普通布囊。衣料朴旧但完整不撕裂，没有刑枷、囚服、官服或现代装备。
-
-
-    正面姿态与器物：头直眼水平的完整正面站姿，双足稳立，肩膀自然打开。仅一柄普通略弯单刃腰刀完全收进对应弧度的足长刀鞘，右手握鞘上段、放于身体侧方低处，左手自然张开垂下；手、刀柄、刀鞘与腰带互不穿透。刀为真实朴素铁木器，不把五虎断门刀变成五柄刀或虎形特效。
-
-
-    人物画法：美观、精细而可信的写实国风人物插画。面部、双手、身体、衣料和器物都是完整坚实连续的体积，眼睛大小自然，皮肤具有适龄柔和明暗与自然纹理，不塑料磨皮、不复刻像素块。成熟和老年人物保留眼角、颊口、颈部的真实年龄关系；皱纹是完整皮肤的起伏，不是裂缝、污渍或飞白。衣服是可穿的完整不透明织物，剪裁与缝线清楚，只保留少量宽缓受力褶皱，不用密集噪点、碎布条或破损表现真实。脸手头发衣摆轮廓清楚，柔和左上漫射主光，连贯明暗与克制低饱和设色。手绘笔触细腻，不是照片、电视剧截图、3D模型或换头拼贴。水墨只在背景，墨痕与纸纹绝不侵入人物本体。
-
-
-    背景与交付：单人单视图、水平平视镜头、原生竖幅2:3、完整全身，头顶、发饰、双手、两足、衣摆和全部实际道具端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节及元数据，不裁切、放大、旋转或重新编码。暖浅灰不透明纸底，人物之外只有极浅低对比水墨远山、薄雾和留白，脚下少量接触阴影；不画具体剧情场景、建筑、其他人或文字。按最新用户提速指示先生成1张候选，每张仅一人；基本清晰、正面、人物可辨即保存，只有严重身份错误、重大结构问题或不可读才补图，不因细手指、微装备或轻微角度反复追加。所有输出仍为candidate待用户最终审核，不自动approved。
-
-
-    事实边界：本图身份与阶段依当前本地角色稿、名录、story 和 chapter；项目处于清初语境；官军与内地汉人剃额细辫、郑氏归清前明式全发例外、藏传僧人光头各依本人的完整主稿，不通用禁辫或统一服制。人物阶段依本稿专门边界。所有具体五官、服色选款、器物形制细部和静立展示都是原创美术落实；原稿待考照留，不冒称已逐字终校小说或精确历史复原。作者指定1998《鹿鼎记》本人参考优先；当前尚无本机已验证本人图可输入，游戏审计只记录缺口、不能用game替代指定TV。按本轮明确配角授权采用文字原创脸，不冒充原版游戏或演员本人、不拿别人头像代替，也不声称该角色在所有游戏版本从无头像。两张输入都不是本人身份参考，保留原项目基线 candidate/approved 状态。 取扬州结识韦小宝后、伤愈能够北上的壮年阶段；不是后期法场囚徒或已救回终局的立绘。确岁、确貌与服饰细节仍为视觉设计。 吴六奇与茅十八旧识关系及死亡／获救结论依剧情稿待考，不由本图新增。本地有1998角色演员图注但没有已验证本机本人图，此版明确文字原创面容。
-
-
-    参考边界：第一输入只为同性别项目色卡、柔和光线及精细手绘品质，已实际查看；不是本人照片或身份图，不取五官骨相、年龄、身体、发式、衣装、道具与倾头姿势。本人面孔仅由文字独立建立。参考原candidate/approved不转给新图。 第二输入已实际查看，只取暖浅灰纸底、极淡水墨远山和留白，不取参考中的女性人物、脸、身体、发型、衣裙、飘带、装饰或倾头姿势。背景墨迹不得侵入本人的皮肤、衣料和器物。
-
-
-    完整排除项：不要文字、汉字、伪字、题款、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件；本配角没有可靠本人身份图输入，明确文字原创面孔；不要冒充原版游戏脸或演员本人，不借其他游戏角色、演员或基线脸；不复制具体画作或剧照，不使用画师姓名作风格词；不要动漫大眼、低幼化滤镜、统一网红锥子脸、丰唇浓妆、偶像磨皮、摄影写真、塑料皮肤或三维模型渲染感；不要日式服制、前结宽腰带、日本刀、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要时代与族群混搭、错误衣襟、水平镜像、无依据的冠服与兵器；不要额外人物、多视图、分格、面部特写框、多肢多指、粘连手指、错接手腕、手物融合、失重衣料、悬空装备、弯折断裂兵器或容不下剑刃的短鞘；不要无依据的破衣碎布、畸形健美肌肉、血腥特写、裸露、透明衣料、色情化、恶搞或丑化；不要发光兵器、法阵、仙法、龙形能量、粒子特效、强逆光、浓雾遮挡或具体剧情场景、清晰建筑；不要晚清大拉翅、民国旗袍、中山装与近现代军装；不要裁断头足、衣摆、发饰和兵器端点。不要虎头魔刀、五只老虎、巨剑、法场囚服枷锁、血绷带、官帽、飞鱼服、凌乱长发或醉态丑角。。不要 head tilt、Dutch angle、头向肩侧歪、倾斜眼线、低头藏眼、侧脸回眸或倾斜镜头。不要人物飞白缺块、墨斑侵蚀、纸纹透肤透衣、破洞撕裂、碎布条、密集噪点或过密细皱。水墨仅背景，人物皮肤、衣料、毛发和器物完整连续。
-
-
-    FINAL POSE CHECK: FRONT-FACING, head facing forward, both eyes HORIZONTALLY LEVEL, camera level, NO head tilt, NO Dutch angle. Respect the described age, face, body, impairment and narrative stage; do not straighten a described hunchback; ignore reference poses.'
-  negative: 不要文字、汉字、伪字、题款、签名、印章、logo或装饰水印；不要现代服饰、拉链、腕表、运动鞋、高跟鞋、数码物件；本配角没有可靠本人身份图输入，明确文字原创面孔；不要冒充原版游戏脸或演员本人，不借其他游戏角色、演员或基线脸；不复制具体画作或剧照，不使用画师姓名作风格词；不要动漫大眼、低幼化滤镜、统一网红锥子脸、丰唇浓妆、偶像磨皮、摄影写真、塑料皮肤或三维模型渲染感；不要日式服制、前结宽腰带、日本刀、圆盘镡、菱形缠柄、欧式奇幻铠甲、赛博或蒸汽朋克；不要时代与族群混搭、错误衣襟、水平镜像、无依据的冠服与兵器；不要额外人物、多视图、分格、面部特写框、多肢多指、粘连手指、错接手腕、手物融合、失重衣料、悬空装备、弯折断裂兵器或容不下剑刃的短鞘；不要无依据的破衣碎布、畸形健美肌肉、血腥特写、裸露、透明衣料、色情化、恶搞或丑化；不要发光兵器、法阵、仙法、龙形能量、粒子特效、强逆光、浓雾遮挡或具体剧情场景、清晰建筑；不要晚清大拉翅、民国旗袍、中山装与近现代军装；不要裁断头足、衣摆、发饰和兵器端点。不要虎头魔刀、五只老虎、巨剑、法场囚服枷锁、血绷带、官帽、飞鱼服、凌乱长发或醉态丑角。。不要 head tilt、Dutch angle、头向肩侧歪、倾斜眼线、低头藏眼、侧脸回眸或倾斜镜头。不要人物飞白缺块、墨斑侵蚀、纸纹透肤透衣、破洞撕裂、碎布条、密集噪点或过密细皱。水墨仅背景，人物皮肤、衣料、毛发和器物完整连续。
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 第一输入只为同性别项目色卡、柔和光线及精细手绘品质，已实际查看；不是本人照片或身份图，不取五官骨相、年龄、身体、发式、衣装、道具与倾头姿势。本人面孔仅由文字独立建立。参考原candidate/approved不转给新图。
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202.png
-    status_at_input: candidate
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-    use: 第二输入已实际查看，只取暖浅灰纸底、极淡水墨远山和留白，不取参考中的女性人物、脸、身体、发型、衣裙、飘带、装饰或倾头姿势。背景墨迹不得侵入本人的皮肤、衣料和器物。
-    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T02:08:27.852499+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-b797090e-f2d5-4329-8adf-81258aead879.png
+  - path: assets/default/character/male/ch08/por_npc_maoshiba__ch08_prime_base.png
+    sha256: 08d6760239ccdf6932b64df14492c9223a415ef35fa47866a0fb7b9f88356569
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_maoshiba__ch08_prime_base.08d67602.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-04T02:36:40-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_20_r1.png
   size: 1024x1536
   mode: RGB
-  sha256: 08d6760239ccdf6932b64df14492c9223a415ef35fa47866a0fb7b9f88356569
+  sha256: 72f700c5d025599b8b4e416c817afd1aa4f24f61e4093d15037176204a6604cf
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_maoshiba__ch08_prime_base/prompt-0b9a2b242f796e313e80a191946070322f3e3c74b3c49aaeb98f771eb6c83de2.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_maoshiba__ch08_prime_base/manifest-0cac01fe4a3aa4d7d8c51551412f0d3afa6b47039df0f968101e8bd306896352.yaml
-    png: null
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_maoshiba__ch08_prime_base.08d67602.png
+    sha256: 08d6760239ccdf6932b64df14492c9223a415ef35fa47866a0fb7b9f88356569
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_maoshiba__ch08_prime_base.08d67602.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_maoshiba__ch08_prime_base.requests.json
   notes: '实际查看候选1：茅十八壮年方阔脸短硬胡茬，粗壮肩臂、剃额后辫，土褐短衫灰黑夹衣与束脚裤靴；单柄略弯刀完整收鞘，左手空垂，腰布囊。头颈正直、双眼基本水平、人物手足和器物端点完整，无明显多肢或重大结构问题，按用户快速宽松自查可用。体型比矮壮设定略高长，夹衣边缘磨损偏多，右手实际握刀柄而非鞘上段，圆护手与刀鞘偏装饰化，背景花枝小亭超出极简远山；据实登记待细修，不再为这些偏差机械追加。原生1024×1536 RGB不透明PNG原始字节保存，文字原创本人脸，不冒称1998演员面貌；candidate待用户审核，非approved。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 
-    AR-69：作者定男性默认不笑，改回 AR-58 前版本（23d2ee68）'
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（23d2ee68）；AR-82 原著核对返修：茅十八加密粗乱虬髯'
+  source_size: 1024x1536
 - id: por_npc_mujiansheng__ch08_youth_base
   file: por_npc_mujiansheng__ch08_youth_base.png
   category: character/male
