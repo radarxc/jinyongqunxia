@@ -47708,6 +47708,50 @@
    ],
    "validate": {
     "exists": [
+     "packages/core/bench/combat.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-bench-perf-split",
+   "title": "游戏工程 · 小修：core/bench 的 BattleSession 线性断言挪到 pnpm check:perf（AR-33 先例；断言与阈值不改，不加高负载跳过）",
+   "prompt": "ENG-bench-perf-split.md",
+   "deps": [],
+   "writes": [
+    "packages/core/bench/**",
+    "package.json",
+    "vitest.config.ts",
+    "tools/perf/README.md",
+    "CLAUDE.md"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
      "packages/core/src/event/index.ts"
     ],
     "cmd": [
