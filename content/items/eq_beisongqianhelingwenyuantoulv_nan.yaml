@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_beisongqianhelingwenyuantoulv_nan
+name: 北宋浅褐绫纹圆头履·男
+kind: armor
+sub: shoes
+grade: 6
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 北宋；出现书界 ch01；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；河南博物院《宋代彩绘袖手抱印石女俑》，北宋范通直墓 https://www.chnmus.net/ch/collection/appraise/details.html?id=512158796610969072；元丰以后公服取色不等于庶民流行排序，女俑色彩残损不得补作白内衣证据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/beisongqianhelingwenyuantoulv_nan
+text:
+  desc: 外观：北宋男款，低帮圆头、纳缝麻底与布面。 待运行时投影：defOutK=0.05; hpMaxK=0.01; qinggong=2.5xgUse; wearer=male。
+  lore: （原创扩展）依北宋行履语汇演成浅褐男式圆头履，低帮布面与纳缝麻底合为一双，圆头便于行走。克制绫织暗纹缘落鞋缘，穿前检查底缝；不用官用高靿靴，轻功按品阶，身法不重复加成。
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9
+      agi: 0

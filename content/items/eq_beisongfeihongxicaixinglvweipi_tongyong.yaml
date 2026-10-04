@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_beisongfeihongxicaixinglvweipi_tongyong
+name: 北宋绯红细裁行旅围披
+kind: armor
+sub: cape
+grade: 5
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 北宋；出现书界 ch01；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；河南博物院《宋代彩绘袖手抱印石女俑》，北宋范通直墓 https://www.chnmus.net/ch/collection/appraise/details.html?id=512158796610969072；元丰以后公服取色不等于庶民流行排序，女俑色彩残损不得补作白内衣证据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/beisongfeihongxicaixinglvweipi_tongyong
+text:
+  desc: 外观：北宋通用款，直领前系结。 待运行时投影：defOutK=0.025; hpMaxK=0.005。
+  lore: （原创扩展）把北宋行旅披覆语汇演成绯红通用行旅围披，直领前结与无袖矩形披幅便于围护。细织密缝缘落披缘，穿前收紧前结；具体裁片属原创，不套旧鹤氅袖型，只占披风槽，不增加轻功。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 4
