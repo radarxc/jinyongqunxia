@@ -3,39 +3,37 @@
   category: scene
   style: default
   subject: 重阳宫并肩与婚誓（ch03_shendiao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是金轮法王的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中金轮法王的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【要改成】（AR-53 配角对齐）照基线：光头、长方脸、颧骨高、眼窝深、鼻梁高；没有胡须（去掉八字髭和山羊须，嘴周与下巴是干净的皮肤）；皱纹适中，不要比基线更多更重。（原图脸偏宽、皱纹偏重，收成长方脸、皱纹减少到基线的程度）
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；低头的角度与被遮挡的部分照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
+    【只改】只将杨过左手玄铁重剑的三角尖端改成半球形圆钝厚铁尖，两边不开刃；保持重剑的长度、角度、重量感和原左手。杨过、小龙女、金轮法王全部人物与剑柄、衣服、背景、题字印章保持。
 
-    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+    【原著依据】《神雕侠侣》第二十六回 神雕重剑：“剑尖更圆圆的似是个半球”；https://www.xuges.com/wuxia/jinyong/sdxl/187.htm
 
-    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/49_cg_ch03_chongyang_swords.png
+    sha256: f1a0efff7097a61807a6f8595c2a55020d7f138834ed9fd088ee7f7a67ade42a
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/male/ch03/por_npc_jinlunfawang__ch03_elder_base.png
     sha256: 6905a0639bb012b0e7de96f7b83b248c610da3abdfebba1ee7b8759861157148
     use: 对脸基线：作者审核通过的 por_npc_jinlunfawang__ch03_elder_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch03/cg_ch03_chongyang_swords.png
-    sha256: 4cc101b0b142a66d29433464cb182a82775fec461733a5af337eee7565f7846b
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.4cc101b0.png
-  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
-    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T01:46:38.616135-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_34_52_r2.png
+  created: '2026-10-04T03:28:54.535064-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_49_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: f1a0efff7097a61807a6f8595c2a55020d7f138834ed9fd088ee7f7a67ade42a
+  sha256: 67617577b7d1cecd5cc23789929dceb7aa6a3565b52566e3ed087d2f28bc4679
   status: candidate
-  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「重阳同心」，实际字形「重阳同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女须明确为身份图的刘亦菲定稿五官：同样眉眼间距、杏眼、鼻梁鼻头、唇形与颌骨。允许画出base身份特征，禁止复原旧脸。保留待改图三分之四侧转头向、警惕关切视线和柔侧光，别变正脸，别改变耳坠发式。；质检：实际打开base与返修前后：小龙女眉眼鼻唇骨相明确采用恢复base，保持原侧转头向和警惕关切神态，柔侧光和接缝自然，耳坠发式尺度不变；杨过等其他人衣饰与题字蒙版外零变化；题字陽→阳；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「重阳同心」，实际字形「重阳同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女须明确为身份图的刘亦菲定稿五官：同样眉眼间距、杏眼、鼻梁鼻头、唇形与颌骨。允许画出base身份特征，禁止复原旧脸。保留待改图三分之四侧转头向、警惕关切视线和柔侧光，别变正脸，别改变耳坠发式。；质检：实际打开base与返修前后：小龙女眉眼鼻唇骨相明确采用恢复base，保持原侧转头向和警惕关切神态，柔侧光和接缝自然，耳坠发式尺度不变；杨过等其他人衣饰与题字蒙版外零变化；题字陽→阳；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）；AR-82 原著核对返修：重阳同心插图同步玄铁重剑圆钝尖'
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.4cc101b0.png
-    sha256: 4cc101b0b142a66d29433464cb182a82775fec461733a5af337eee7565f7846b
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_chongyang_swords.4cc101b0.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/49_cg_ch03_chongyang_swords.png
+    sha256: f1a0efff7097a61807a6f8595c2a55020d7f138834ed9fd088ee7f7a67ade42a
   runner_job_records:
   - - cg_ch03_chongyang_swords.resume3
     - ok
@@ -54,7 +52,18 @@
     - 310
     mask: .agents/coord/_lines/canon-align/masks/ar84_calign_34_52_r2.png
     outside_changed_pixels: 0
-  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch03_chongyang_swords_fixed.png", "before_sha256": "87d3c8c1fe7d45d13d0efc7607352d1492643ca4b16b0e2aaf7b2e4d8f6b9fba", "allowed_box": [[1410, 120, 1530, 205]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch03_chongyang_swords_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T02:01:27-07:00"}
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/cg_ch03_chongyang_swords_fixed.png
+    before_sha256: 87d3c8c1fe7d45d13d0efc7607352d1492643ca4b16b0e2aaf7b2e4d8f6b9fba
+    allowed_box:
+    - - 1410
+      - 120
+      - 1530
+      - 205
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/cg_ch03_chongyang_swords_pixel_checks.json
+    method: w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留
+    created: '2026-10-04T02:01:27-07:00'
 - id: cg_ch03_heartbreak_message
   file: cg_ch03_heartbreak_message.png
   category: scene
