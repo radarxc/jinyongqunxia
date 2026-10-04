@@ -159,40 +159,41 @@
   category: scene
   style: default
   subject: 毁红夷大炮后潜入崇政殿（ch07_bixue）
-  prompt: '这是一次剧情插图中单个人物的局部编辑。第1张是作者已认可的皇太极头部，第2张是同一人的定稿全身立绘，第3张是待编辑的场景裁块。只能修改第3张中坐在龙椅上的皇太极，输出与第3张完全相同取景的1024×1024方图。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
-    皇太极的头部必须为前两张参考图中的同一个人，沿用饱满面颊、宽厚下颌、眼眉鼻口、短八字须和红缨朝冠，不能换成消瘦长胡须的人。沿第3张的头部位置、大小和三分之四朝向，把基线人物自然转到这个角度，严肃不笑、威严沉着。保留场景暖烛光、远景柔和度与手绘笔触。
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    这是宫中崇政殿帝位的皇帝，衣服应按第2张的明黄帝王龙袍重画，深蓝金绣缘边和团龙纹样相同，去掉原第3张的黑色外袍与毛皮披肩；此刻没有出征或微服设定。身体与第2张同样壮硕丰厚：颈肩宽稳、胸腹丰满，坐姿躯干厚实，不能显瘦。保留坐在龙椅上的姿势、双手所在位置、脚的位置、人物整体高度，衣袍随丰满身体自然铺在膝上，体态可信。
+    本次是原图局部放大裁图，输出同样的正方形裁图；不要生成全身，不要扩大场景。
 
-    不得改第3张任何其他区域：龙椅、龙纹屏、烛台、柱子、地砖、角落里其他人的头部或衣物、兵器拂尘都保持原样。不要复制立绘的正面站姿或纸底。不要重新构图、不要增加人物、文字、水印；不要摄影与3D塑料感；保持原裁块的朦胧绘画质感。'
-  negative: 不改变皇太极以外人物、题字、背景；不串脸、不改构图、不笑、不穿黑袍、不画消瘦长须。
+    本次局部裁图只给袁承志人物自身左眉上方（观众画面右侧眉毛上方）添一处淡小旧刀疤。眉毛上方皮肤上确实画出一条小疤；不能当眉毛或额头皱纹。双眉、双眼、鼻嘴、脸型、表情和发丝一律保持原样。无流血，已愈小疤。
+
+    【原著依据】《碧血剑》三《经年亲剑铗，长日对楸枰》：“小小疤痕”（https://xuges.com/WUXIA/jinyong/bxj/013.htm）；《碧血剑》十《不传传百变，无敌敌千招》：“须眉皆白的老者”（https://xuges.com/WUXIA/jinyong/bxj/066.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: .agents/coord/_lines/hist-align/refs/huangtaiji_head.png
-    sha256: 25355630015a91f79b563912713b71439dc49eba0925c93d2742ea8e57d43ab6
-  - path: assets/default/character/male/ch07/por_npc_huangtaiji__ch07_elder_predeath_base.png
-    sha256: 4ef50c0020952da204d4fe468a5d720e07a3c8a699b473b990db119ee1c9f77b
-  - path: .agents/coord/_lines/hist-align/refs/huangtaiji_scene.png
-    sha256: 303fefc235a5e685100cb2cd21785a29c5c35c4ad0d5dbc0a6673c6c8166668e
-  - path: .agents/coord/_lines/hist-align/before/cg_ch07_chongzheng_cannon.png
-    sha256: aea2a10aaece120fa3aff0222f55c912eb47d5cb2848678b888a0f6446152c1a
-    use: AR-53 局部合成的原始插图，其余人物与题字逐像素保持
-  tool: codex exec · image_gen（AR-90；codex_w34队列；指定区域局部合成）
+  - path: assets/default/scene/ch07/cg_ch07_chongzheng_cannon.png
+    sha256: 43a9d1bb881403b73353f39eb82132c1c7b8e29298edc29a3fcf510ef3fdce70
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_chongzheng_cannon.43a9d1bb.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T01:52:49-07:00'
-  source_path: .agents/coord/_lines/hist-align/candidates/scene.png
-  source_size: 1254x1254
+  created: 2026-10-04T03:18:32-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_37_r3.png
+  source_size: 1536x1024
   size: 1536x1024
-  sha256: 43a9d1bb881403b73353f39eb82132c1c7b8e29298edc29a3fcf510ef3fdce70
+  sha256: 526abb586f472010c25bc48c95e195267ddd24bcfe696ad4bfd702fc1a9979e0
   status: candidate
   notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；第5次续作接收外部runner结果，视觉重出0次。题字“剑动盛京”，实际字形“劍動盛京”逐字放大核验正确，原生题字，未叠加。毁炮回忆与崇政殿双时层明确分隔；袁承志、温青青为本轮新身份，程青竹与玉真子为既有S级身份，皇太极仅文字。金蛇剑弯折与分叉尖不显著，记录美术偏差供终审，保持candidate。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base、por_npc_wenqingqing__ch07_youth_disguise_base（编辑结果只取袁承志（#3）与温青青（#1）头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
 
-    AR-90 / AR-53 皇太极头部、丰满体态和宫中明黄龙袍对齐新base。皇太极的饱满面颊、宽厚下颌、眉眼鼻口与短八字须对齐作者认可base，严肃不笑；红缨朝冠、明黄帝王龙袍及深蓝金绣边与新base一致，坐姿胸腹肩颈丰满。只把皇太极局部裁块缩回原位置，沿本人轮廓羽化；前景玉真子及拂尘、左侧三人、题字逐像素保留，保护区变化0；保留原1536×1024、坐姿与双时层构图。已实际打开整图、独立头部、躯干及前后对照，细修拂尘遮挡边缘后无黑袍残片；原图、生成候选与最终合成均已实际打开。像素核对记录：.agents/coord/_lines/hist-align/qa/scene.json。对照表：.agents/coord/_lines/hist-align/huangtaiji_scene.jpg。A字图与3D依AR-85暂缓，见todo_3d.md。'
+    AR-90 / AR-53 皇太极头部、丰满体态和宫中明黄龙袍对齐新base。皇太极的饱满面颊、宽厚下颌、眉眼鼻口与短八字须对齐作者认可base，严肃不笑；红缨朝冠、明黄帝王龙袍及深蓝金绣边与新base一致，坐姿胸腹肩颈丰满。只把皇太极局部裁块缩回原位置，沿本人轮廓羽化；前景玉真子及拂尘、左侧三人、题字逐像素保留，保护区变化0；保留原1536×1024、坐姿与双时层构图。已实际打开整图、独立头部、躯干及前后对照，细修拂尘遮挡边缘后无黑袍残片；原图、生成候选与最终合成均已实际打开。像素核对记录：.agents/coord/_lines/hist-align/qa/scene.json。对照表：.agents/coord/_lines/hist-align/huangtaiji_scene.jpg。A字图与3D依AR-85暂缓，见todo_3d.md。；AR-82 原著核对返修：剑动盛京袁承志左眉旧疤与程青竹白须眉'
   previous_revision:
-    png: .agents/coord/_lines/hist-align/before/cg_ch07_chongzheng_cannon.png
-    sha256: aea2a10aaece120fa3aff0222f55c912eb47d5cb2848678b888a0f6446152c1a
-    entry: .agents/coord/_lines/hist-align/before/cg_ch07_chongzheng_cannon.manifest.json
-    commit: 11ada85fe9412c4e1826fe0e18ffd246fa56ed67
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_chongzheng_cannon.43a9d1bb.png
+    sha256: 43a9d1bb881403b73353f39eb82132c1c7b8e29298edc29a3fcf510ef3fdce70
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_chongzheng_cannon.43a9d1bb.entry.yaml
   runner_job_records:
   - - cg_ch07_chongzheng_cannon.resume3
     - ok
@@ -203,10 +204,6 @@
   effort: xhigh
   mode: RGB
   request_log: .agents/coord/_handoff/gem/codex_w34/prompts/ar90_histalign_huangtaiji_scene_r1.json
-  repair_runner_source: .agents/coord/_handoff/gem/codex_w34/out/ar90_histalign_huangtaiji_scene_r1.png
-  repair_runner_source_sha256: 1a7e9dab34c094f5228ed8ae5552638e55c5525ec0bec8f92d86f44d4c2c5772
-  ingest_source_sha256: 43a9d1bb881403b73353f39eb82132c1c7b8e29298edc29a3fcf510ef3fdce70
-  composite_job: ar90_histalign_huangtaiji_scene_r1
 - id: cg_ch07_xueyi_wenyi_memory
   file: cg_ch07_xueyi_wenyi_memory.png
   category: scene
