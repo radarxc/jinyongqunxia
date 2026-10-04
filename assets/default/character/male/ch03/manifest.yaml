@@ -959,24 +959,35 @@
     【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
   negative: ''
   references:
-  - path: assets/default/character/male/ch02/por_npc_qiuqianren__ch02_elder_tiezhang_base.png
-    sha256: 0eb2139da6ec3831c8afc39fe9ef3282abd309575f0c9fe2653f2f045c234616
-    use: 身份参考：本轮新出的裘千仞（por_npc_qiuqianren__ch02_elder_tiezhang_base，上传 codex 原图）
   - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
     sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
     use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
   - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
     sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
     use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
-  model: gpt-6-astra
-  created: 2026-10-02T03:31:51-0700
-  source_path: .agents/coord/gemini_originals/por_npc_qiuqianren__ch03_elder_cien_base.png
+  - path: assets/default/character/male/ch02/por_npc_qiuqianren__ch02_elder_tiezhang_base.png
+    sha256: 1c2aa048c63b6e8cf1a8c97b93c8e26c71cb22e2bd11a32012b35029a19e6115
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:54:20.970483-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_51_48_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 03bd8aa1b71045f5ad026a9942ba8be100f59f5c5fa78f87f05f5a900e804f71
+  sha256: 035acaa4c0ebe5e43b2f0b6d440bdd5744bf6c0224682e718bc0c35a9e208cf1
   status: candidate
-  notes: 立绘重审重出（AR-30）；裘千仞出家后的慈恩尚无立绘；上传本轮新出的射雕裘千仞作身份参考，同一人剃度为僧；codex 出图（1 号出图员，AR-31）；沿用审核组提示词，补去 AI 味一句
+  notes: 立绘重审重出（AR-30）；裘千仞出家后的慈恩尚无立绘；上传本轮新出的射雕裘千仞作身份参考，同一人剃度为僧；codex 出图（1 号出图员，AR-31）；沿用审核组提示词，补去 AI 味一句；AR-84 第二轮：裘千仞五官对齐 por_npc_qiuqianren__ch02_elder_tiezhang_base；AR-53 仅头部，AR-75 神态与光向保留；慈恩是裘千仞出家后的老年，保留完全剃发、僧袍、白眉白须和悔悟沉静；五官与裘千仞相同，不能拿参考发髻覆盖光头。；质检：实看通过：裘千仞眉骨、眼型、鼻口同人；慈恩老年光头、白眉白须、僧袍与沉静不笑保留，原光向和胡须根部衔接自然
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_51_48_r1
+    before_sha256: 03bd8aa1b71045f5ad026a9942ba8be100f59f5c5fa78f87f05f5a900e804f71
+    box:
+    - 444
+    - 75
+    - 578
+    - 253
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_51_48_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_zhoubotong__ch03_elder_base
   file: por_npc_zhoubotong__ch03_elder_base.png
   category: character/male
