@@ -399,43 +399,44 @@
   category: character/female
   style: default
   subject: 喀丝丽·绿洲初见（ch12_shujian）
-  prompt: '【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的喀丝丽新 base 脸部特写（参考古力娜扎，作者选B）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
+  prompt: 'Use case: precise-object-edit
 
-    【身份】明确成为第1张的同一位喀丝丽：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
 
-    【剧情神态与造型】保留绿洲初遇的纯净柔和、平静含蓄神态；原图左上自然日光。
+    【只改】喀丝丽湖畔初见：保留作者选定面容、原头部位置与角度、白衣和原画笔触。改为坐在湖边红花树下的大石上（坐姿使原头部保持画内相同高度，不移脸），刚从水中出来，两只脚明确赤足、脚趾自然可见，鞋子在画外。原整齐两根长辫和头巾去掉，湿润长发自然散垂两肩后背，脸与发有少许水珠；一手持素色梳子慢慢梳理湿长发，另一手轻拢发束，不再扶头巾。白衣完全不透明，双足与下摆少量水珠，仍端庄保暖不裸露身体。
 
-    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
 
-    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
-  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_17_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
-    sha256: fbf08c4442a5b7dde945e9ea2473aaa26e7904e5a5a583346221e1f7d58eb60f
-    use: 对脸基线：作者审核通过的 por_npc_kasili__ch12_youth_prepalace_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.png
-    sha256: 66e046f48591ba6fb5cc9dabd0e2a98ad5c89a4b91757833158a13c8ec024fe6
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.66e046f4.png
-  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+    sha256: a8afd321257221179cdfb65ebf6273258d3b5bb27dfef7b5714b974ab744fedd
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.a8afd321.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
   model: gpt-6.1-sol
-  created: 2026-10-04T00:12:26-0700
-  source_path: .agents/coord/_handoff/gem/codex_w32/out/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.ar86_kasili1.png
+  created: '2026-10-04T02:07:27-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_17_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: a8afd321257221179cdfb65ebf6273258d3b5bb27dfef7b5714b974ab744fedd
+  sha256: 2d479af045f730a64ed896e9ef7b10154565e1c52d6bfe97ac8211743dfeec26
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 / AR-75 / AR-86：喀丝丽头部局部合成，对齐作者新 base（AR-73 参考古力娜扎，AR-86 选B）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 / AR-75 / AR-86：喀丝丽头部局部合成，对齐作者新 base（AR-73 参考古力娜扎，AR-86 选B）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变；AR-82 原著核对返修：喀丝丽湖畔初见改坐梳湿发、明确赤足；依据：- AR-82 返修依据：《书剑恩仇录》第十三回“吐气扬眉雷掌疾，惊才绝艳雪莲馨”：“她赤了双脚”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E4%B9%A6%E5%89%91%E6%81%A9%E4%BB%87%E5%BD%95/%E7%AC%AC13%E7%AB%A0%E3%80%80%E5%90%90%E6%B0%94%E6%89%AC%E7%9C%89%E9%9B%B7%E6%8E%8C%E7%96%BE%EF%BC%8C%E6%83%8A%E6%89%8D%E7%BB%9D%E8%89%B3%E9%9B%AA%E8%8E%B2%E9%A6%A8.md；执行：湖畔初见保留白衣，双脚明确赤足、鞋放画面外；脚与衣摆沾少许水珠，表现刚从水中上来。 / - AR-82 返修依据：《书剑恩仇录》第十三回“吐气扬眉雷掌疾，惊才绝艳雪莲馨”：“坐着”“长发垂肩”“拿着一把梳子慢慢梳理”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E4%B9%A6%E5%89%91%E6%81%A9%E4%BB%87%E5%BD%95/%E7%AC%AC13%E7%AB%A0%E3%80%80%E5%90%90%E6%B0%94%E6%89%AC%E7%9C%89%E9%9B%B7%E6%8E%8C%E7%96%BE%EF%BC%8C%E6%83%8A%E6%89%8D%E7%BB%9D%E8%89%B3%E9%9B%AA%E8%8E%B2%E9%A6%A8.md；执行：坐在湖边红花树下，湿长发散垂肩背，手持梳子理发；脸与发留水珠。保留作者选定面容，不以整理头巾动作代替梳发。；局部合成范围外变化0；Executed-By:
+    Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_kasili__ch12_youth_scene_oasis_first_meeting.retry3.r1
   quality_retries: 0
   history: []
   effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.66e046f4.png
-    sha256: 66e046f48591ba6fb5cc9dabd0e2a98ad5c89a4b91757833158a13c8ec024fe6
-    entry: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.66e046f4.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.a8afd321.png
+    sha256: a8afd321257221179cdfb65ebf6273258d3b5bb27dfef7b5714b974ab744fedd
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.a8afd321.entry.yaml
 - id: por_npc_kasili__ch12_youth_scene_palace_warning_letter
   file: por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
   category: character/female
