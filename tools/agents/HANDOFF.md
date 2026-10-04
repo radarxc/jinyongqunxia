@@ -2067,4 +2067,17 @@
     - base-diet 合入后报两个数：合入后的闭包；gates-data、ink-intents、26 都进来后的估算。
       - 估算 ≤ 95：不动，序章本来就用区域运行时。
       - 超过：登记注入式小修，source event 在分发器接上前不能丢（先排队，或保证第一个事务前已接好），要有确定性测试。
+  - **10-03 20:13–20:30 开发监督**（作者 AR-65：除 Gemini 画图、Tripo 驱动外，任务都交 GPT 6.1 Sol，Claude 只给目标、判结果）：
+    - 协调者已落实：
+      - 执行器与审核走 `.agents/coord/executor_override.json`（Codex gpt-6.1-sol xhigh，回退 gpt-6-astra），优先于 `--model`；
+      - GPT 长会话用 `_handoff/codex_session.py`。
+    - **ENG-bench-perf-split 合入**（20:24）：线性断言挪到 `battle-session.performance.test.ts`，只在 check:perf 跑。
+      - 之前栽在 HOST_DISPOSED 上，是因为基点早于 lazy-dispose，挪基点后 `--from validate` 通过。
+      - 合入后 prod_check 全绿：1102 个测试，会话闭包 108.90。
+    - **OPS_RUNBOOK.md**（bd6e6fb0）：开发监督的处置规则，写给 GPT。
+    - **TOOL-ops-dispatch**（a2114018，名单第 1，驱动 1497）：
+      - supervise 返修前先挪基点重校验；
+      - `ops_dispatch.py` 守护进程按 RUNBOOK 处置；
+      - 决策逻辑有单测。
+    - 收尾条件：它合入、守护进程跑稳一小时后，开发监督把未了的事写进 HANDOFF，然后退场。
 
