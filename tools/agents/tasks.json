@@ -47938,6 +47938,44 @@
    "review": false,
    "web": false,
    "vars": {},
+   "agent_args": [],
+   "validate": {
+    "exists": [
+     "tools/agents/test_step_lazy_worktree.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools.agents.test_step_lazy_worktree",
+      "tools.agents.test_step_pool_priority",
+      "tools.agents.test_step_traex_args",
+      "tools.agents.test_run_sparse_baseline"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-step-lazy-worktree",
+   "title": "工具 · 小修：step.py start 先排到池位再建工作区（排队中的任务不占磁盘；建失败释放池位）；单测",
+   "prompt": "TOOL-step-lazy-worktree.md",
+   "deps": [],
+   "writes": [
+    "tools/agents/step.py",
+    "tools/agents/test_step_lazy_worktree.py"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
    "agent_args": [
     "-c",
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
