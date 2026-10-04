@@ -138,38 +138,52 @@
   category: scene
   style: default
   subject: 牛家村风雪与十八年之约（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是丘处机的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中丘处机的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
+  prompt: '【AR-53 / AR-91 图像编辑】第1张是作者批准的新base脸部身份参考，第2张是待改图局部头部裁块。以第2张为底只改指定人物的脸与必要须式，不重新构图。只输出修改后的1:1方图1024×1024，保留第2张全部取景、头部位置、大小、角度与方向。
 
-    【要改成】（作者 AR-53 总审复核：上次脸部几乎没变，这次放开改五官与脸型）脸改成基线那样的长脸：脸型拉长、颧骨略高、两腮收窄、下颌不方阔；眉毛改得较平、较细，眉毛与眼睛之间留出明显的距离（眉不压眼），眼睛睁开、眼神清正沉稳。
+    【具体人物与阶段】画面右侧持剑的丘处机。牛家村开篇约三十岁，照新base相同的窄长方骨相和眼鼻唇比例年轻化；保留黑发黑眉、黑色八字髭与短须、锐利严肃神态。不可画成白眉白须老道，不戴base的道帽；原头部朝向、发髻、蓝灰道袍和剑不变。
 
-    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；道髻、头巾、黑发（剧情时间比基线年轻）、胡须的形状与颜色保留。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
+    【保留】仅将目标头部内的五官与须式对齐第1张，年龄按上述阶段；头颈位置大小、发式头饰（上述有明确要求时遵照）、光源方向色温和柔和手绘笔触全部保持。衣领、衣服、体态、手势、道具、背景、画面里其他人的脸和身体、题字不可改变。不要把第1张的姿勢光照直接贴进去。
 
-    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
-
-    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+    【不要】照片质感、塑料皮肤、模板偶像脸、镜像、文字、水印、新增人物、改变头部位置大小、改变衣物或帽子。'
   negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/male/ch02/por_npc_qiuchuji__ch02_elder_base.png
-    sha256: f10d0d9b2d5914d2aff9937fa463aaecdc3504af36c7a2bcadb43039d71e1914
-    use: 对脸基线：作者审核通过的 por_npc_qiuchuji__ch02_elder_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch02/cg_ch02_niujia_snow.png
-    sha256: d007d1aef234b4fb8d0565392286084192ed18d36d68aeb62fbd5ed285eeb514
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_niujia_snow.d007d1ae.png
-  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把丘处机头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
-  model: gpt-6-astra
-  created: 2026-10-03T19:48:51-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_niujia_snow.q1.png
+    sha256: 25b9e544da1f6f50d9d658857be5141966cef965320e8b516cea8a59c9f82369
+    use: AR-91作者批准新base，只取本人脸；年龄服饰按场景
+  - path: .agents/coord/_lines/hist-ingest2/originals/cg_ch02_niujia_snow.png
+    sha256: 48821ebcc5aca20d761367827eaae8269949173cf80f42c42d6897dc65187424
+    use: 入库前原图；非目标头部区域逐像素保留
+  tool: codex exec · image_gen（AR-53 / AR-91 头部裁块编辑；限定蒙版局部合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T09:37:20-07:00'
+  source_path: .agents/coord/_lines/hist-ingest2/aligned/cg_ch02_niujia_snow.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 48821ebcc5aca20d761367827eaae8269949173cf80f42c42d6897dc65187424
+  sha256: cc0e6779ce04ea00eac81d0a316cbeb0e7cc719347dc9956e6abf1a435351b95
   status: candidate
-  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「牛家风雪」，实际字形「牛家风雪」逐字核验，原生题字，未叠加。；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：丘处机按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐：包惜弱（眉细淡、眼适中、下巴圆）、杨铁心（深眼窝细长眼）、丘处机（长脸细眉，须形保留）对齐各自基准；局部合成——三人头部方块分别交 codex 改，再依次对齐、羽化贴回原图，其余像素不变（编辑 k1/k2/k3））；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐（总审复核返修）：丘处机按基线改为长脸、颧骨高、眉平不压眼；头巾黑发与须形保留；局部合成，只改丘处机头部，其余像素不变）；题字風→风；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「牛家风雪」，实际字形「牛家风雪」逐字核验，原生题字，未叠加。；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：丘处机按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐：包惜弱（眉细淡、眼适中、下巴圆）、杨铁心（深眼窝细长眼）、丘处机（长脸细眉，须形保留）对齐各自基准；局部合成——三人头部方块分别交 codex 改，再依次对齐、羽化贴回原图，其余像素不变（编辑 k1/k2/k3））；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐（总审复核返修）：丘处机按基线改为长脸、颧骨高、眉平不压眼；头巾黑发与须形保留；局部合成，只改丘处机头部，其余像素不变）；题字風→风；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）；AR-73 / AR-89 / AR-91 照历史画像，作者批准入库；AR-53 只合成丘处机头部，原服饰体态和其他人物及题字逐像素不变'
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_niujia_snow.d007d1ae.png
-    sha256: d007d1aef234b4fb8d0565392286084192ed18d36d68aeb62fbd5ed285eeb514
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_niujia_snow.d007d1ae.entry.yaml
-  effort: ultra
-  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch02_niujia_snow_fixed.png", "before_sha256": "fbf199dc9b6ec3503f6e3ae03533022f430770f6462fc300dc047fc5056d6fb9", "allowed_box": [[1420, 190, 1520, 261]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch02_niujia_snow_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T00:55:02-07:00"}
+    png: .agents/coord/_lines/hist-ingest2/originals/cg_ch02_niujia_snow.png
+    sha256: 48821ebcc5aca20d761367827eaae8269949173cf80f42c42d6897dc65187424
+  effort: xhigh
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/cg_ch02_niujia_snow_fixed.png
+    before_sha256: fbf199dc9b6ec3503f6e3ae03533022f430770f6462fc300dc047fc5056d6fb9
+    allowed_box:
+    - - 1420
+      - 190
+      - 1520
+      - 261
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/cg_ch02_niujia_snow_pixel_checks.json
+    method: w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留
+    created: '2026-10-04T00:55:02-07:00'
+  head_composite_jobs:
+  - ar91_hist2_cg_ch02_niujia_snow_npc_qiuchuji_r1
+  head_composite_validation:
+    changed_pixels: 18190
+    outside_head_masks_changed: 0
+    evidence: .agents/coord/_lines/hist-ingest2/ar91_hist2_cg_ch02_niujia_snow_npc_qiuchuji_r1.merge.json
 - id: cg_ch02_guorong_first_meet
   file: cg_ch02_guorong_first_meet.png
   category: scene
