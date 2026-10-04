@@ -47802,6 +47802,50 @@
   },
   {
    "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/platform/src/storage/storage.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-storage-perf-split",
+   "title": "游戏工程 · 小修：存储层两条「1 MiB 快照 50 ms 内」计时断言挪到 check:perf（照 bench-perf-split 先例；断言与阈值不改，功能断言留在日常 check）",
+   "prompt": "ENG-storage-perf-split.md",
+   "deps": [],
+   "writes": [
+    "packages/platform/src/storage/storage.test.ts",
+    "packages/platform/src/storage/*.performance.test.ts",
+    "package.json",
+    "tools/perf/README.md",
+    "CLAUDE.md"
+   ]
+  },
+  {
+   "phase": "PROD",
    "wave": 19,
    "kind": "draft",
    "review": false,
