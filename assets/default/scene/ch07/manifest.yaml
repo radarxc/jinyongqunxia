@@ -133,9 +133,9 @@
   source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch07_golden_serpent_cave.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: f2425407467a28c872f879c9b0f56a3c784d7b668a3c088effe376539e98868c
+  sha256: 9bbdf3687467f8e20394377af6e31dbff3bcf4d8669ba384fd16b9f45d6b3227
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「金蛇遗藏」，实际字形「金蛇遺藏」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「金蛇遗藏」，实际字形「金蛇遺藏」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；题字遺→遗；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_golden_serpent_cave.abfd344d.png
     sha256: abfd344d6c0b40225ec16017d5b50998d1b32afc8a6384f9f5b499baf116b5eb
@@ -148,6 +148,7 @@
     - exec-0d4cb963-6731-42e5-92ef-ee58af72d0c0.png
   runner_success_count: 1
   effort: ultra
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch07_golden_serpent_cave_fixed.png", "before_sha256": "f2425407467a28c872f879c9b0f56a3c784d7b668a3c088effe376539e98868c", "allowed_box": [[1410, 201, 1520, 282]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch07_golden_serpent_cave_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T00:55:08-07:00"}
 - id: cg_ch07_chongzheng_cannon
   file: cg_ch07_chongzheng_cannon.png
   category: scene
