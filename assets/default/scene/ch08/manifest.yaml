@@ -83,9 +83,9 @@
   source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch08_yangzhou_departure.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: cd9faeae382a4f77f1d410d068f2212ca0fdafd952fd089c77e23f25664a7405
+  sha256: d2351dc6b0007cb4005476ad93de2ac36dc8d56cb01b771e5a590e9485c129b7
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「扬州初行」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：韦小宝窄长脸改成新基准的宽圆脸；局部合成——codex 整图编辑后只取韦小宝头部、羽化贴回原图，其余像素不变（原输出 codex_w17/out/cg_ch08_yangzhou_departure.s1.raw.png））
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「扬州初行」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：韦小宝窄长脸改成新基准的宽圆脸；局部合成——codex 整图编辑后只取韦小宝头部、羽化贴回原图，其余像素不变（原输出 codex_w17/out/cg_ch08_yangzhou_departure.s1.raw.png））；题字揚→扬；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch08_yangzhou_departure.retry3.r1
   quality_retries: 0
@@ -95,6 +95,7 @@
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch08_yangzhou_departure.f78bd3e4.png
     sha256: f78bd3e4ff5ac80c96b2d239c1e16f0cd53af31ecc02895cbf0fcfb493d98d9d
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch08_yangzhou_departure.f78bd3e4.entry.yaml
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch08_yangzhou_departure_fixed.png", "before_sha256": "cd9faeae382a4f77f1d410d068f2212ca0fdafd952fd089c77e23f25664a7405", "allowed_box": [[1410, 22, 1520, 75]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch08_yangzhou_departure_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T01:00:43-07:00"}
 - id: cg_ch08_xiao_xuanzi_wrestle
   file: cg_ch08_xiao_xuanzi_wrestle.png
   category: scene
