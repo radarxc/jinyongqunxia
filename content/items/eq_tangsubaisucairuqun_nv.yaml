@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_tangsubaisucairuqun_nv
+name: 唐素白素裁襦裙·女
+kind: armor
+sub: clothing
+grade: 2
+stack: 1
+chapters:
+- ch10_baima
+origin: canonExpanded
+canonRef: 唐；出现书界 ch10；（原创扩展）；形制／色系依据：国博赵永《长安水边多丽人》，唐三彩釉陶女俑 https://www.chnmuseum.cn/yj/xscg/xslw/201812/t20181224_33161.shtml；702年款式细节（待考），初唐轮廓原创转换；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangsubaisucairuqun_nv
+text:
+  desc: 外观：唐女款，主色素白。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=female。
+  lore: （原创扩展）据唐代女俑衣型演成素白女式襦裙，小袖襦、半臂与高腰长裙合为一件装备。素面实用缝边用于衣缘，穿前须收整裙腰；702年组合与女服素白通用（待考），默认初唐轮廓，同档换色同值。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

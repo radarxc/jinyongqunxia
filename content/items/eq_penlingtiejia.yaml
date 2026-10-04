@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_penlingtiejia
+name: 盆领铁甲
+kind: armor
+sub: officialArmor
+grade: 6
+stack: 1
+chapters:
+- ch10_baima
+origin: canonExpanded
+canonRef: 唐；出现书界 ch10；（原创扩展）；盆领形制据国博赵永《铁甲征衣》，隋青瓷武士俑 https://www.chnmuseum.cn/yj/xscg/xslw/201812/t20181224_33154.shtml的隋武士俑；盆领是结构而非独立朝代甲式，唐存用（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/penlingtiejia
+text:
+  desc: 外观：唐代通用款，主色铁灰。 待运行时投影：Q_load=10; defInK=0.07; defOutK=0.28; mov=-1; resCCPp=2xG; tough=2xG。
+  lore: （原创扩展）盆领铁甲取隋武士俑护颈结构，演成唐代铁灰札甲与暗褐内衬，盆形领连躯干披膊。穿脱随整甲收束，重甲负重照旧；唐代存用（待考），盆领不另占头肩槽，也不冒充独立朝代甲式。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 60

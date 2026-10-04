@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_tongxiukai
+name: 筒袖铠
+kind: armor
+sub: officialArmor
+grade: 4
+stack: 1
+chapters:
+- ch10_baima
+origin: canonExpanded
+canonRef: 唐；出现书界 ch10；（原创扩展）；形式据国博赵永《铁甲征衣》，隋青瓷武士俑 https://www.chnmuseum.cn/yj/xscg/xslw/201812/t20181224_33154.shtml所述西晋甲式，东晋仍用而南北朝衰落；唐为复古留存落位，702年存用（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tongxiukai
+text:
+  desc: 外观：唐代通用款，主色铁灰。 待运行时投影：Q_load=10; defInK=0.07; defOutK=0.28; mov=-1; resCCPp=2xG; tough=2xG。
+  lore: （原创扩展）筒袖铠借国博所述晋代甲式，演成唐代复古留存款，铁灰胸背札甲连短筒袖，内铺褐衬。披挂先查革绳，重甲负重照旧；702年存用（待考），不宣称唐代首创或小说中出现。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 49
