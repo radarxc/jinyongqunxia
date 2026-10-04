@@ -19,6 +19,12 @@ realism_revision: user_identity_pose_20261001
 
 # 李岩 · 人物写实修正
 
+## AR-82 当前定稿要求
+
+只去掉上身棕色整片胸甲和两肩甲片，以现有青布书生长衫布料自然补齐胸前与肩部，书生服色、右衽交领，保留腰带、儒巾、头脸发须、手持卷轴、腰剑、手脚、下半衣袍以及原站姿。是闯营日常接待，不穿披甲将官服。
+
+以上为当前原著核对后的要求，覆盖下文旧版中与之冲突的服饰、器物、伤残、光线和体态描述。
+
 ## 人物与阶段
 
 - subject_id：npc_liyan
@@ -74,3 +80,8 @@ FINAL POSE CHECK: FRONT-FACING, head facing forward, both eyes HORIZONTALLY LEVE
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_liyan__ch07_base.prepared.json`。
+
+## 原著依据
+
+- 《碧血剑》四《矫矫金蛇剑，翩翩美少年》：“身穿书生服色”（https://xuges.com/WUXIA/jinyong/bxj/021.htm）
+- AR-82 返修约束：只去掉上身棕色整片胸甲和两肩甲片，以现有青布书生长衫布料自然补齐胸前与肩部，书生服色、右衽交领，保留腰带、儒巾、头脸发须、手持卷轴、腰剑、手脚、下半衣袍以及原站姿。是闯营日常接待，不穿披甲将官服。
