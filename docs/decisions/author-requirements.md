@@ -1374,7 +1374,7 @@
 
 ## AR-73 · 一批人物参考：黄衫女子、张无忌体格、陈友谅、岳灵珊、陈圆圆与阿珂、历史人物、霍青桐、喀丝丽、程灵素、袁紫衣、苗若兰（2026-10-03 约 22:55）
 
-作者原文（2026-10-03 约 22:55 PDT，逐字照录；附一张截图，是 1996 年 TVB《笑傲江湖》苗乙乙饰岳灵珊，已存到主检出 `imagegen-reference/identity-20261002/xiaoao/author_screenshot_yuelingshan_expression_20261003.png`）：
+作者原文（2026-10-03 约 22:55 PDT，逐字照录；附一张截图，是苗乙乙饰岳灵珊（2001 年央视版《笑傲江湖》；协调者起初误记为 1996 年 TVB 版，执行器核实后更正），已存到主检出 `imagegen-reference/identity-20261002/xiaoao/author_screenshot_yuelingshan_expression_20261003.png`）：
 
 > 黄衫女子参考小龙女
 > 张无忌再搞大一些，现在头显得太大，肩膀窄，不像是武林高手 - 更新所有张无忌的立绘和情景图
