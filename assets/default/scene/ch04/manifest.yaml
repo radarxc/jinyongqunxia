@@ -514,15 +514,18 @@
   - path: assets/default/scene/ch04/cg_ch04_wudang_taiji.png
     sha256: c365c2cb8d8c0f86f27cfc518888c95a2b60642e1378a376fd4b87dff12affcf
     use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wudang_taiji.png
-  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
   model: gpt-6.1-sol
-  created: '2026-10-04T00:14:15.301600-07:00'
-  source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_wudang_taiji.png
+  created: '2026-10-04T01:34:53.308003-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_42_56_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 44096a61aa74e3dc98627479d28673eb0db8531345d8cfb968770ce33fa95071
+  sha256: aea6b043777b51c4ca60732acdbd4c4d84b60c38d194bed8fc8a09b1cf343625
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「太极初传」，实际字形「太极初传」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「太极初传」，实际字形「太极初传」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；保留远处院门边赵敏观察太极的神态，头巾与耳环不动，其他人逐像素不动。；质检：已打开对照：远景赵敏眉眼鼻唇对齐恢复base，保留观察太极的原神态、视线和尺度，原柔侧光自然；张三丰张无忌与题字头外像素一致，无接缝
   previous_revision:
     png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wudang_taiji.png
     sha256: c365c2cb8d8c0f86f27cfc518888c95a2b60642e1378a376fd4b87dff12affcf
@@ -534,5 +537,15 @@
     - '194'
     - exec-ed93386e-cf20-4e8f-9c1f-a4332833db0d.png
   runner_success_count: 1
-  effort: not applicable (deterministic composition)
+  effort: ultra
   executed_by: Codex gpt-6.1-sol（AR-86）
+  ar84_alignment:
+    job: ar84_calign_42_56_r1
+    before_sha256: 44096a61aa74e3dc98627479d28673eb0db8531345d8cfb968770ce33fa95071
+    box:
+    - 1310
+    - 296
+    - 1365
+    - 372
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_42_56_r1.png
+    outside_changed_pixels: 0
