@@ -3,46 +3,41 @@
   category: scene
   style: default
   subject: 侯监集玄铁令交付（ch06_xiake）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是石清定稿立绘的脸部特写（身份基线）；第 2 张是闵柔定稿立绘的脸部特写（身份基线）；第 3 张（最后一张）是待改剧情插图里石清、闵柔头部一带的放大方图（插图局部）。请以最后一张为底稿，只把石清、闵柔改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
 
-    侯监集街头冬日黄昏，成年化的石破天穿朴素粗布短袍，双手递出一枚暗色玄铁令；谢烟客约五十岁、灰黑短须、高瘦挺拔、背脊笔直，沉郁地站在对面凝目，不能画成白须衰老仙翁。石清和闵柔为后景成年剑客夫妻，只依文字。令牌居中、不发光，街市灰瓦与行人远影拉开空间，突出赤诚与命运偶遇。
+    【画里是谁】雪天街市后景并肩站着的一对中年夫妇：左边的男子是石清，右边的女子是闵柔（都约四十余岁）。
 
-    原著早期按项目成年化；不加大悲老人、十八泥人或烧饼夹物；具体递令姿态原创。
+    【要改成什么】石清：把他的脸改成第 1 张基线——清秀的中年脸、脸型略窄，没有络腮胡（下巴与两腮干净），头上是基线那样的黑色网巾；闵柔：把她的脸改成第 2 张基线——四十余岁的成熟妇人，脸型圆润些、下巴不尖，眼角有细纹，神情温婉。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持】保留两人的头部角度、站位、发式（石清改戴黑网巾除外）、衣服和雪天街景光影。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
 
-    第1张为npc_shipotian的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
-
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「玄铁奇缘」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_shipotian__ch06_youth_jinwu_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: dab161c89134e3366a31b9d05a127ce3be6b0e095ee79d7245e73aca89e336eb
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch06/por_npc_xieyanke__ch06_elder_motian_base.png
-    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
-    sha256: 5f0f02c18856b04bd9421777af7dcbe5f21b2ad2db49d7ec95192c89e792c18e
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch06/por_npc_shiqing__ch06_prime_xunzi_base.png
+    sha256: f45a0d0016be06de4c80af723b9f1331a5aece94321e4309baed14c288c43ad4
+    use: 对脸基准：石清的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_shiqing__ch06_prime_xunzi_base.jpg）
+  - path: assets/default/character/female/ch06/por_npc_minrou__ch06_prime_xunzi_base.png
+    sha256: a2ee69ed516483efb334e3cb3c90b8e33d9d8ae4ade90e96dcd7e4155b02a707
+    use: 对脸基准：闵柔的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_minrou__ch06_prime_xunzi_base.jpg）
+  - path: assets/default/scene/ch06/cg_ch06_xuantie_token.png
+    sha256: 81a68c41f487a87b6414ce525cfa3d09485f0f87464607c335b1122bfc001d32
+    use: 待改插图：只把石清、闵柔头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch06_xuantie_token.81a68c41.png
+  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把石清、闵柔头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T01:42:56-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_xuantie_token.1791016976379716000/archive/cg_ch06_xuantie_token.png
+  created: 2026-10-03T18:58:17-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch06_xuantie_token.p1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 81a68c41f487a87b6414ce525cfa3d09485f0f87464607c335b1122bfc001d32
+  sha256: a643831bd1afd8c03efda41e69242f205c6a1ec3fd04069a5092657f0e12ca44
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「玄铁奇缘」，实际字形「玄铁奇缘」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「玄铁奇缘」，实际字形「玄铁奇缘」逐字核验，原生题字，未叠加。；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：石清、闵柔按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch06_xuantie_token.1791016976379716000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch06_xuantie_token.resume3.png
-  repair_runner_source_sha256: 0f270ec3f5fe2d348b94a644b6168eaac9000ce65a0e3330cf44a0ef488378c0
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch06_xuantie_token.81a68c41.png
+    sha256: 81a68c41f487a87b6414ce525cfa3d09485f0f87464607c335b1122bfc001d32
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch06_xuantie_token.81a68c41.entry.yaml
   runner_job_records:
   - - cg_ch06_xuantie_token.resume3
     - ok
@@ -50,8 +45,7 @@
     - '175'
     - exec-669247a3-0dd3-478f-8496-306ff7e5d160.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch06_xuantie_token.resume3
+  effort: ultra
 - id: cg_ch06_laba_porridge
   file: cg_ch06_laba_porridge.png
   category: scene
