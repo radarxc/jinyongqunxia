@@ -103,7 +103,9 @@ window.__t = {
   VIEWS: ['front', 'left', 'back', 'right'],
   async toGenerate(mode = 'imageToModel') {
     if (location.pathname !== '/workspace/generate') await this.router().push('/workspace/generate');
-    if (!(await this.waitFor(() => this.gst() && this.inputs().length, 15000))) return { ok: false, why: 'generate panel not ready', ...this.where() };
+    // 已经挂着图时上传框不渲染，所以「有上传框或已挂图」都算面板就绪
+    const ready = () => { const st = this.gst(); return st && (this.inputs().length || st.imageToModel || (st.multiViewImages || []).some(Boolean)); };
+    if (!(await this.waitFor(ready, 15000))) return { ok: false, why: 'generate panel not ready', ...this.where() };
     const st = this.gst();
     if (st.tab !== 'high_detail') return { ok: false, why: 'tab is ' + st.tab + '（先在面板上切到 HD Model）', ...this.where() };
     if (st.mode !== mode) { st.mode = mode; await this.waitFor(() => this.gst().mode === mode, 3000); await this.sleep(600); }
@@ -229,17 +231,23 @@ window.__t = {
       Hips: H, Head: hd, HeadTop_End: tp, LeftHand: lh, RightHand: rh, handOut: [hz(lh), hz(rh)], LeftFoot: lf, RightFoot: rf,
       meshY: ys.length ? [Math.min(...ys), Math.max(...ys)].map((v) => Math.round(v * 1000) / 1000) : null, bytes: buf.byteLength, file: this.short(url) };
   },
-  // ── 预设动作（主角用，0 点，但会给项目加动作）：一次一个预设，和页面一样；默认 dry ──
-  async retarget(pid, names = ['idle', 'walk', 'run'], { go = false } = {}) {
-    const bodies = names.map((n) => ({ animations: [/^preset:/.test(n) ? n : `preset:biped:${n}`], model_version: 'default', project_id: pid, rig_type: 'biped' }));
+  // ── 预设动作（主角用，0 点，但会给项目加动作）：页面一次只做一个预设——前一个没跑完就提交下一个，会报 406 12003「Failed to acquire lock」
+  // （2026-10-04 第一次真跑踩到）。所以一次调用最多提交一个并等它跑完（≤ 25 秒）；已成功的跳过，没做完的返回 pending，再调一次接着做。默认 dry。 ──
+  async retarget(pid, names = ['idle', 'walk', 'run'], { go = false, ms = 25000 } = {}) {
+    const want = names.map((n) => (/^preset:/.test(n) ? n : `preset:biped:${n}`));
+    const bodies = want.map((n) => ({ animations: [n], model_version: 'default', project_id: pid, rig_type: 'biped' }));
     if (!go) return { ok: true, dry: true, bodies };
     const o = (await this.detail(pid)).operator || {}; if (!o.is_rigged) return { ok: false, why: 'not rigged' };
-    const have = new Set((o.retarget || []).filter((r) => r.status === 'success').map((r) => r.name)); const out = [];
-    for (const b of bodies) {
-      const n = b.animations[0]; if (have.has(n)) { out.push({ name: n, skipped: 'exists' }); continue; }
-      try { const r = await this.req('/v2/studio/operation/retarget_model', { method: 'POST', body: b }); this.log('retarget', { pid, name: n, op: r.operator_id }); out.push({ name: n, op: r.operator_id }); } catch (e) { out.push({ name: n, why: this.err(e) }); }
-    }
-    return { ok: out.every((x) => x.op || x.skipped), out };
+    const have = {}; for (const r of o.retarget || []) have[r.name] = r;
+    const done = want.filter((n) => have[n] && have[n].status === 'success');
+    const busy = want.find((n) => have[n] && this.RUNNING.test(have[n].status || ''));
+    if (busy) { const w = await this.waitOp(have[busy].operator_id, ms); return { ok: false, pending: true, running: busy, status: w.status, done }; }
+    const next = want.find((n) => !have[n] || !/^success$/.test(have[n].status || ''));
+    if (!next) return { ok: true, done, ops: Object.fromEntries(want.map((n) => [n.split(':').pop(), have[n].operator_id])) };
+    let r; try { r = await this.req('/v2/studio/operation/retarget_model', { method: 'POST', body: bodies[want.indexOf(next)] }); } catch (e) { return { ok: false, why: this.err(e), next, done }; }
+    this.log('retarget', { pid, name: next, op: r.operator_id });
+    const w = await this.waitOp(r.operator_id, ms);
+    return { ok: false, pending: true, submitted: next, op: r.operator_id, status: w.status, done: w.status === 'success' ? done.concat(next) : done, left: want.length - done.length - (w.status === 'success' ? 1 : 0) };
   },
   // ── 导出（0 点）：参数照导出面板——GLB、2K 贴图、Export Skeleton 开（with_animation）、原地动作（animate_in_place）。
   // anims 给预设名（['idle','walk','run']）就把这些动作一起导进一个 GLB；不给就是不带动作的 model_rig。 ──
