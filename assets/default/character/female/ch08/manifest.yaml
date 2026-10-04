@@ -125,38 +125,37 @@
   category: character/female
   style: default
   subject: 陈圆圆（ch08_luding）
-  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（陈圆圆的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改陈圆圆的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+  prompt: '任务：编辑图1现有陈圆圆立绘，仅换面部五官与神态。图2为核实的2008年黄晓明版《鹿鼎记》宁静饰陈圆圆黑斗篷剧照，图3为图2的清楚面部裁图，两图同一身份，是主要五官骨相参考。图4为年轻宁静的脸部，只作母女骨相的一致辅助。
 
-    【人物】陈圆圆：隐居三圣庵，约四十岁，温婉淡泊、心有旧伤。
+    首轮返修：首轮保留原图脸太多、宁静的辨识度不足，这次重新以图2/3宁静的骨相和面部比例定义五官。图1只锁定头颈角度、发式、服装、身形、站姿、道具与构图。服装发型绝不取照片，黑斗篷也不加进立绘。眼睑形态、大而有神的眼睛、立体鼻型、自然丰润唇形、较饱满的面颊骨相都要能看出参考宁静。仍是另一个小说角色，不做照片贴脸。
 
-    【新神态（按年龄与性格定，不要千篇一律的平静脸）】温婉淡泊：目光柔和，嘴角一丝淡淡的浅笑，眼底带着哀愁。
+    保留图1陈圆圆原有中年阶段，是阿珂的母亲，眼角与面部有自然轻微年龄纹理，成熟、沉静、有阅历、温婉，嘴角极轻上扬，闭唇浅笑不露齿；不少女化、不凶怒、不浓妆。与女儿阿珂（年轻宁静参考）有眼睑、鼻型、唇形和面颊骨相的家族相似，但年龄明显不同。
 
-    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+    严格保留图1灰衣白裙、腰带、衣服褶皱、发式发饰与发丝外轮廓、头的原有大小位置与三分之二角度、头身比例、身体姿势、双手、琵琶及其细节、背景和画面比例。仅脸部编辑；输出一张1024×1536完整单人纵向立绘。匹配图1写实手绘质感和纸感笔触，自然细小不对称、有真实皮肤纹理，不磨皮，不塑料，不网红V脸，不过大眼睛，不完美对称。没有文字、水印、第二个人或拼版。
 
-    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
-
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
-
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+    B版：相似更含蓄但仍有宁静辨识特征，减轻眼鼻的锐利感，原著的明澈凤眼、温婉风韵和阅历更优先；不能回到首轮几乎只有原图浅笑的脸。'
+  negative: ''
   references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261002/luding/chenyuanyuan_2008_ningjing_black_sohu2021.jpg
+    sha256: 45b54fce89f6820147d77d00f0c475e0005937af036a8a9a27a80f1ca1a7226a
+    use: 对脸基线：AR-73 / AR-84 作者点名参考 actor_reference_chenyuanyuan（宁静），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch08/por_npc_chenyuanyuan__ch08_prime_recluse_base.png
-    sha256: 1987f2956f8d91b1654f49535ef35a0b0d0eb62c541d4fa3250ac8300bd16bc6
-    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_chenyuanyuan__ch08_prime_recluse_base.1987f295.png
-  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T20:40:22-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_chenyuanyuan__ch08_prime_recluse_base.x1.png
+    sha256: 3e635ba7441c59d2ca1530ca0864012d29bea9d3dce8a87455cdb22df0c16cc7
+    use: 待改原图（AR-73 / AR-84 参考 宁静，作者选 B 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenyuanyuan__ch08_prime_recluse_base.3e635ba7.png
+  tool: codex exec · image_gen（AR-73 A/B 作者选版；AR-84 入库，面部局部合成）
+  model: gpt-6.1-sol
+  created: 2026-10-03T23:47:22-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/ar84_final4_accept_chenyuanyuan_B.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 3e635ba7441c59d2ca1530ca0864012d29bea9d3dce8a87455cdb22df0c16cc7
+  sha256: 9ca769ddb384214059621e46b30ef255451e78d3b815c569154afa557bda852b
   status: candidate
-  notes: 立绘重审重出（AR-30）；现图是平淡的中年妇人，看不出“天下第一美人”的余韵，也与碧血剑陈圆圆、女儿阿珂都不像；按与阿珂相同的五官文字画中年版。；AR-58 神态（各书配角）·10 号出图员：温婉淡泊的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  notes: 立绘重审重出（AR-30）；现图是平淡的中年妇人，看不出“天下第一美人”的余韵，也与碧血剑陈圆圆、女儿阿珂都不像；按与阿珂相同的五官文字画中年版。；AR-58 神态（各书配角）·10 号出图员：温婉淡泊的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变；AR-73 / AR-84 参考 宁静，作者选 B（Codex gpt-6.1-sol（AR-84）），基线 = actor_reference_chenyuanyuan（选定源作业 ar73_support_chenyuanyuan_B_r2_20261003；面部框外逐像素一致）
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_chenyuanyuan__ch08_prime_recluse_base.1987f295.png
-    sha256: 1987f2956f8d91b1654f49535ef35a0b0d0eb62c541d4fa3250ac8300bd16bc6
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_chenyuanyuan__ch08_prime_recluse_base.1987f295.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenyuanyuan__ch08_prime_recluse_base.3e635ba7.png
+    sha256: 3e635ba7441c59d2ca1530ca0864012d29bea9d3dce8a87455cdb22df0c16cc7
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenyuanyuan__ch08_prime_recluse_base.3e635ba7.entry.yaml
 - id: por_npc_ajiu__ch08_prime_onearm_base
   file: por_npc_ajiu__ch08_prime_onearm_base.png
   category: character/female
