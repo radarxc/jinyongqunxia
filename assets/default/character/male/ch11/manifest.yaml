@@ -994,61 +994,43 @@
   category: character/male
   style: default
   subject: 袁冠南·笔墨退强敌（ch11_yuanyang）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: 'Use case: precise-object-edit
 
-    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【只改】袁冠南紫竹庵笔墨诈毒：左腿（画面右腿）刚遭铁棒打伤，明显卸力微屈，重心支在右腿，不画流血重伤。右手笔举向画面右边界卓天雄伸入的左手/前臂，在敌人的手背与前臂接触处抹一大条浓黑墨痕；只加入敌人左手和一小段铁杖，敌脸不入画。左手继续托原墨盒。墨不在袁自己的袖口，去掉现袖口黑墨。原翡翠小狮子改为细金链挂在颈下胸前，去腰側布绳挂法，狮子大小保持。脸、头部位置大小、原长袍配色与背景仍保持，不再平稳双腿承重地静态展示笔墨。
 
-    【主角】袁冠南；机智风趣、书卷气中有侠义、临敌从容。原创新脸设计：成年二十四岁视觉，偏长方脸、略高颧骨、斜眉但眉峰不对称、细长俊目、鼻梁挺而鼻头有肉、偏薄上唇带含蓄笑意，浅麦色晒痕；不做偶像模板。；影视参考图只取左前男性，忽略右上女性局部。
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
 
-    【本期】笔墨退强敌；同一成年青年脸，浅灰布长衫、靛蓝束带，清代剃额长辫；右手粗毛笔，左手托小墨盒，袖侧有少许黑墨； 【毛笔质量修正】右手只握一支普通单头毛笔：仅上端有一簇黑色笔毫，下端是短粗圆钝的完整木杆尾，没有笔毫、没有尖刺、没有刀刃；绝不能画双头毛笔。
 
-    【阶段背景】枣林官道、薄雾林隙、自然散光，保留完整场景。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
 
-    【考据边界】《鸳鸯刀》同一故事的前后阶段，非数十年成长；服色剪裁与站位（原创扩展）；先上传本轮新 base 锁脸。；配色、镜头、成人化、具体站姿是（原创扩展）。
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_11_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
 
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
-  negative: ''
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
   references:
-  - path: assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scholar_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scholar_base.png
-    sha256: 4bce7f1ecbadffd7d7a6ef9094fc4fb809ea90e740fdf26b21cec34c853c4b57
-    uploaded_sha256: 4bce7f1ecbadffd7d7a6ef9094fc4fb809ea90e740fdf26b21cec34c853c4b57
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: .agents/coord/imagegen-reference/identity-20261002/yuanyang/yuanguannan_1982_mengyuanwen_ok_static.jpg
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanguannan__ch11_youth_scholar_base_still0.jpg
-    sha256: d814ee6f5c8b6402676a2126a63a01fd69fbf7c5b60f40424b9b73debfb6bc4e
-    uploaded_sha256: 8068ae648b5da91dcaba0ce7bac260185aabce3c2e8de6bbadb59fb5c4050953
-    use: 影视造型、衣饰与气质；不复制演员五官
-  - path: .agents/coord/imagegen-reference/author-20261002/linghuchong_game_cover_wuyuejianpai.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_yuanguannan__ch11_youth_scholar_base_game.jpg
-    sha256: c81b4af6e1db5d5be88098a15842a4874f8bdebc87477a7bdf4c41da84b4415f
-    uploaded_sha256: 1dbcee0ba1079c3a943da69b67439cb10c627585bb67f755514f52a2a073bb23
-    use: 经典游戏绘画风格
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  created: 2026-10-03T00:46:52-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_yuanguannan__ch11_youth_scene_ink_bluff_zhuo.png
+  - path: assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scene_ink_bluff_zhuo.png
+    sha256: cae665b452a048bf4dc37b5410497482672ca40acf39aab7a01b77b2482336ce
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_yuanguannan__ch11_youth_scene_ink_bluff_zhuo.cae665b4.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:04:06-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_11_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: cae665b452a048bf4dc37b5410497482672ca40acf39aab7a01b77b2482336ce
+  sha256: edf1c8e5a8aa35e698ab74ea75a329c3f26a2da220b4b0219885a7e8cb2fdb38
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-82 原著核对返修：袁冠南伤左腿笔墨抹敌人左手诈毒，翡翠狮子改金链挂颈；依据：- AR-82 返修依据：《鸳鸯刀》转载第六节：“打中了袁冠南左腿”“抹了一大条墨痕”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50468.html；执行：左腿刚受铁棒击伤，重心偏右、左腿不敢着力；持笔朝卓天雄左手方向抹浓墨，以假毒药逼退敌人。墨痕不画在袁自己袖上。原文转载有手背/手臂字句差异，不编成两条黑水痕。 / - AR-82 返修依据：《鸳鸯刀》转载第八节：“细金链上的翡翠狮子”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50470.html；执行：将翡翠小狮子以细金链挂在颈下，胸前可辨；保留小狮子的大小，去掉腰侧布绳挂法。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_yuanguannan__ch11_youth_scene_ink_bluff_zhuo.retry3.r1
   quality_retries: 0
   history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_yuanguannan__ch11_youth_scene_ink_bluff_zhuo.cae665b4.png
+    sha256: cae665b452a048bf4dc37b5410497482672ca40acf39aab7a01b77b2482336ce
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_yuanguannan__ch11_youth_scene_ink_bluff_zhuo.cae665b4.entry.yaml
 - id: por_npc_yuanguannan__ch11_youth_scene_zizhu_first_twelve
   file: por_npc_yuanguannan__ch11_youth_scene_zizhu_first_twelve.png
   category: character/male
