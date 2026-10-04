@@ -1937,3 +1937,36 @@
 
 - **10-03 18:20–18:47 工程线调度**：查明几乎所有 traex 执行器都被作者本机 Trae 技能 bits-unit-test-gen 带偏（走「Step1–7 生成单测」并跑 prepare_test.sh），开发监督在 step.py / gpt_review.py 加 `-c skills.include_instructions=false`（9efa29fa）；协调者停掉旧参数的 gates-data、event-executor、23a、26 并带 no-skill note 重起。池位优先级名单上线（f6813854，名单 `.agents/coord/pool_priority.txt`，探测前登记 1c608177，排队时每轮重读上限 c3dbfa63），wait_attempt 守候全部撤掉；高负载（31–50）下计时测试与 content-plugin 5 秒超时不稳，代码池上限临时 4→3，登记 ENG-content-plugin-timeout（a9a155e1，只加显式超时）；core/bench 计时断言是否比照 AR-33 挪出 pnpm check 待作者定。合入：ENG-16c（f47d2bcd）、TOOL-city-generic（05eecb28，merge_when_clean）、ENG-ink-external-args（08fe39a0，merge_when_clean）；event-executor --from validate 18:44 通过、审核中。
 - **人物（18:00–18:47）**：11 号做完全部任务（钟灵 / 马夫人 / 黄药师 B 入库与插图对齐、天龙配角神态 26 人、四个提示词 md 写回），追加 ch01–ch06 配角插图对脸；10 号做完 ch08–ch10（20 张），转做 ch13–ch14；12 号做完 ch05–ch07（30 张），在做 ch11–ch12。插图返修统一「只合成目标人物头部」（10 号 patch.py、12 号同法）。
+  - **10-03 18:44–18:50 开发监督**：
+    - 协调者用新上限 3 和名单重起了 16e、18c、std-parts、cropframe 的排队（驱动 63682 / 63687 / 63700 / 63713）。
+      - `step.py pool` 显示的排队顺序：content-plugin-timeout → 18c → 16e → std-parts → cropframe，与名单一致。
+    - event-executor 由协调者用 `--from validate` 重起（驱动 53180），18:44 校验通过，进入审核。
+    - **低负载下重跑 prod_check 全绿**（HEAD 86b38de9，负载 13–22）：149 个测试文件 / 1075 个测试；entry 38.80；render 168.86；会话闭包 98.94。
+    - **ENG-ink-external-args 合入 08fe39a0**。content:build 产物里序章 Ink 的三处调用已是原始 ID：
+      - `get_flag("fl_00_zhulin_loss_streak3")`；
+      - `has_item("it_tao")`；
+      - `not has_item("it_tao")`。
+      - ch00a r4 指出的编译器问题，验收通过。
+    - 池上限回 4 的建议：等 event-executor 合入、占用降到 3 以内、负载稳定在 25 以下再回调。
+  - **10-03 18:58–19:10 协调者**：
+    - 面部总审（AR-53）审完：139 人 454 张，一致 381、轻微 35（主角 9）、明显 13（全是配角）；表在 `.agents/coord/face_audit/`。
+    - 12 号 ch05–ch07、ch11–ch12 主角对脸共 45 个文件完成，总审复核全部一致，12 号 runner 已退。11 号交 ch01–ch06 配角明显不一致 9 人（8f8e5e48、87b3627a、9eee06fe、d80cd2e7、83b725e5、99aba106）；10 号交 ch13–ch14 胡斐 11 张、袁紫衣 3 张（4b165e29、b03d1bde、7aad979c、a8101bd7、caad1a22、4f335071）。这两批已交总审复核。
+    - 余下分派：12 号做 ch08 明显 4 张，加 ch07–ch09、ch14 轻微 6 张；10 号做 ch02–ch03 轻微 15 张；11 号做 ch04–ch06 轻微 5 张。复核由出图员直接找总审。
+    - 黛绮丝金花婆婆立绘问作者：A 保持易容后的另一张老妪脸，B 同一副骨相加老妆。袁承志 child_scene_huashan 按作者「全体禁止幼态」保持成年青年，ID 不改（提示词 redo_reason 已注明）。
+    - ENG-event-executor 19:04 合入 eb8de5bb，开发监督接着登记 ENG-event-source-trigger。VFX-sk_tiezhangyunqigong 18:58 合入（13/35）。城图第一批 CITY-layouts-ch10-a 18:59 起跑（白马 36 城，估 6–7 小时），城图优先，特效填空档。
+  - **10-03 18:58–19:10 开发监督**：
+    - **ENG-event-executor 合入 eb8de5bb**（19:04）。
+      - ink.ts 两边改动合得干净：共源 OPCODE 登记与求值上下文判别都在，没有冲突标记。
+      - ch10 的 op 改名与 Ink `entranceId` 已进集成分支。
+    - **ENG-event-source-trigger**（c95f6371，协调者 18:58 批）：
+      - 起因：`ev_10_cold_entry_arrival`（sourceEvent chapter/woke）没有执行路径，Trigger 执行器遇到 sourceEvent 直接返回 false；
+      - 内容：core 发出领域事件时，在同一事务里匹配 sourceEvent 并执行，不改 Trigger 路径；
+      - 19e 已加依赖它。驱动 44400，名单在 19e 前。
+    - **ENG-ink-intents** 已起跑排队（驱动 44439）。
+    - **prod_check（eb8de5bb）红**：1093 个测试全过，但有 1 个未处理的 rejection `HOST_DISPOSED`，退出码 1。
+      - 位置：main-flow.test「replaces a failed host」用例。
+      - 原因：`game-controller.ts` 的 `ensureBattle()` 懒加载 battle controller，import 完成时宿主已被销毁，再去订阅就抛错，没人接住。
+      - 单独跑 3 次复现 1 次，是偶发；这两个文件最后改于 19b / ENG-17，是老问题。
+      - 已提议小修 ENG-battle-lazy-dispose，等协调者批。
+
+    - 仓库维护（待低负载时做，先别动）：`.git/logs/refs/remotes/origin/` 下有 3 个 10-02 22:13–23:05 留下的 root 属主空锁（HEAD.lock、claude/jinyong-online-game-design-jko1v9.lock、claude/vigilant-wright-2unuk1.lock），所以每次提交触发的自动 gc 都在 reflog 一步失败。提交本身不受影响，返回 0。松散对象 21,413 个、3.42 GiB。现在删锁会让自动 gc 在随便哪次提交后后台全量打包，跟计时测试抢负载，所以等全部驱动和出图员停下的空档再删锁、手动 `git gc`。
