@@ -1081,69 +1081,40 @@
   category: character/female
   style: default
   subject: 赵敏（ch04_yitian）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏
-    CG，也不是油画（没有厚涂笔触和画布纹理）。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+    【只改】只改两处：腰间以黄金钩和宝带悬一柄完整长剑鞘（倚天剑），连续直长剑鞘从腰侧斜垂到腿旁，完整可见，不仅玉佩；原头顶小白玉冠与横簪改为男装头巾，头巾上两粒龙眼般大的明珠并列清楚。宝蓝绸衫、脸、头脸尺寸、表情、折扇、手和背景其余处全不动。
 
-    【剧照参考】随提示词上传的第 1、2 张参考图是这个角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征（脸型、眉眼、鼻唇的比例与神态），让人一眼认出是这个角色；但必须重新绘制成本项目画风的手绘写实插画，不要照片质感，不要照搬剧照的构图、取景、光影、背景和姿势，也不要做成照片修图或磨皮美颜；剧照里的影楼柔光、浓妆、字幕和水印都不要。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
+    【原著依据】《倚天屠龙记》二十三 灵芙醉客绿柳庄：“黄金为钩、宝带为束，悬着一柄长剑”；https://www.xuges.com/wuxia/jinyong/yttlj/168.htm；《倚天屠龙记》二十三 灵芙醉客绿柳庄：“头巾上两粒龙眼般大的明珠莹然生光”；https://www.xuges.com/wuxia/jinyong/yttlj/168.htm
 
-    【人物】赵敏，《倚天屠龙记》元朝汝阳王府的郡主（蒙古贵族），本名敏敏特穆尔；绿柳山庄与张无忌等人初见时，女扮男装成一位「赵公子」。聪明绝顶、骄傲大胆、敢爱敢恨。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    重出要求（上一版的问题，这次必须改正）：上一版的脸太窄太像通用美人，不像剧照里的赵敏：脸要更圆润饱满（圆鹅蛋脸、两颊有肉），眉毛更浓更黑、平直粗一些，眼睛更大更圆、双眼皮宽，笑容更开朗——嘴角大大上扬、露出一点上排牙齿，眼睛笑得弯起来；神情俏皮自信。冠饰小而简单（一顶素白玉小冠，不要高耸的银冠）。
-
-    【年龄与体态】约二十岁的成年女子，身材修长利落，扮男装也看得出是女子。成年女性的五官骨相与身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
-
-    【经典造型】照剧照里这一版深入人心的赵敏来画：明艳灵动、顾盼生辉，一双大眼睛又亮又有神，笑起来甜美又带几分狡黠和骄傲；扮成翩翩公子也掩不住明艳的美貌。剧照里的女装、珠网头饰和粉白衣裙只借长相与气质，本图是绿柳山庄的男装公子打扮，衣装以下文为准。
-
-    【面容】照剧照的脸型和五官来画：饱满柔和的鹅蛋脸、下巴小巧；眉毛浓黑、平直略扬，英气十足；一双黑白分明、炯炯有神的大眼睛，双眼皮清楚、眼波灵动；鼻梁秀挺、鼻头小巧；唇形饱满、嘴角上扬含笑；肌肤白皙。原著写这位「少年公子」相貌俊美异常、握扇柄的手白得和白玉扇柄没有分别。明艳照人的美人。
-
-    【发式】乌发束成男子式的整洁发髻，用一顶小巧的白玉冠固定，鬓边垂下一两缕碎发。
-
-    【服饰】原著写她身穿宝蓝绸衫：宝蓝色绸缎长衫（汉式交领右衽的男装长袍），玉白内领，窄腰带上系一块玉佩，深色短靴；雍容华贵。
-
-    【道具】右手执一柄折扇，扇柄是白玉的，扇面素净无字，半合在胸前。
-
-    【姿态与神情】潇洒站立，一手执扇、一手负后；眼神自信而狡黠，嘴角带笑，雍容中透着挑衅。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、照片修图感、三维渲染或动漫大眼；不要直接复制剧照的画面；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要女装裙子、珠网头饰或花朵胸饰（本图是男装公子）；不要贵妇高冠、蒙古袍；不要倚天剑；不要与周芷若、小昭撞脸。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: ''
   references:
-  - path: .agents/coord/imagegen-reference/identity-20261002/yitian/zhaomin_2003_jiajingwen_sohu2024a.jpg
-    sha256: ba057b93d17a1c091de824861dc7253074f5937043e865f8b063e78ddf74d0c8
-    use: 经典剧照参考（AR-32：2003 年苏有朋、贾静雯版《倚天屠龙记》（作者 AR-32 指定），取发型、服饰、配色、气质与面部特征，重新绘制成项目画风；不入库；实际上传缩到长边 1024 的 JPEG）
-    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w7/staging/zhaomin_2003_jiajingwen_sohu2024a.jpg
-  - path: .agents/coord/imagegen-reference/identity-20261002/yitian/zhaomin_2003_jiajingwen_tvsou.jpg
-    sha256: 2db600bad2641b89a4e6728f64432373644c58425a97a238e31d5cc460cdc167
-    use: 经典剧照参考（AR-32：2003 年苏有朋、贾静雯版《倚天屠龙记》（作者 AR-32 指定），取发型、服饰、配色、气质与面部特征，重新绘制成项目画风；不入库；实际上传缩到长边 1024 的 JPEG）
-    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w7/staging/zhaomin_2003_jiajingwen_tvsou.jpg
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风基线（只取画风、光线、质感与背景，AR-31；实际上传缩小版 JPEG）
-    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风基线（只取画风、光线、质感与背景，AR-31；实际上传缩小版 JPEG）
-    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
-  tool: codex exec · image_gen（AR-32：前置经典剧照 2 张 + 两张同性别缩小版基线作画风参考）
-  model: gpt-6-astra
-  created: 2026-10-02T11:18:02-0700
-  source_path: .agents/coord/gemini_originals/por_npc_zhaomin__ch04_youth_lvliu_base.png
+  - path: .agents/coord/_lines/novel-fix-1/before/35_por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:58:05.154356-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_35_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+  sha256: 282f529b5f8b24fe959a14d5d81286ab9869419f4b7cd2d00e7808d25aeeaba1
   status: candidate
-  notes: 立绘重审重出（AR-30）；AR-32：主要角色参考经典影视版剧照（2003 年版）加基线重出（10-02，7 号出图员）；codex 出图（7 号出图员，AR-32 经典版重出）；AR-84 恢复为作者说的版本（f75998e2）：AR-32
-    / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 f75998e2
+  notes: 立绘重审重出（AR-30）；AR-32：主要角色参考经典影视版剧照（2003 年版）加基线重出（10-02，7 号出图员）；codex 出图（7 号出图员，AR-32 经典版重出）；AR-84 恢复为作者说的版本（f75998e2）：AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 f75998e2；AR-82 原著核对返修：赵敏初见补腰佩倚天及双珠头巾
   classic_ref:
     version: 2003 年苏有朋、贾静雯版《倚天屠龙记》（作者 AR-32 指定）
     stills:
     - .agents/coord/imagegen-reference/identity-20261002/yitian/zhaomin_2003_jiajingwen_sohu2024a.jpg
     - .agents/coord/imagegen-reference/identity-20261002/yitian/zhaomin_2003_jiajingwen_tvsou.jpg
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/35_por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
 - id: por_npc_miejueshitai__ch04_elder_yitian_base
   file: por_npc_miejueshitai__ch04_elder_yitian_base.png
   category: character/female
