@@ -31465,6 +31465,9 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
+    ],
+    "shrink_exempt": [
+     "apps/game/src/battle/runtime.ts"
     ]
    },
    "id": "ENG-16c-battle-session",
