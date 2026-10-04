@@ -1835,3 +1835,18 @@
     - 协调者 17:00：ink-external-args 置 HOLD-RUNS，让 gates-data 第 2 轮先拿池位，wait_attempt 在 gates-data 拿到池位后再起 ink-external-args。
 
 - **10-03 16:54–17:02 协调者**：ENG-region-gates-data 第 1 轮在 traex 上下文压缩后挂住 25 分钟，supervise 自动起第 2 轮；按开发监督建议让它先拿池位：ink-external-args 置 HOLD-RUNS，新守候 73598 等 gates-data attempt≥2 再起它（23a 守候 59788 不变）。CONTENT-ch00a r5 PASS。高魅力男女主角 B 版入库 1364006e，三视图与女主角窄轮廓 A 字 69828239，已转 Tripo；黄蓉 9 张插图全部对完（2af3a634）。AR-55：主角基线以 AR-32 剧照结合版为准（19 人新旧对照 `hero_bases_page/ar32_vs_now_*.jpg` 待作者确认），王语嫣按刘亦菲版重出，阿青定第 2 轮 B。
+  - **10-03 16:58–17:03 开发监督**：**CONTENT-ch00a 合入 2213b64d**（r5 PASS，第 9 次运行只改报告）。
+    - prod_check 全绿（HEAD 96d56c12，`_handoff/prod_check_post-ch00a_1658.log`）：
+      - 1028 个测试；content:validate 1176 文件 / 1110 对象 / 2 个 Ink / 62 张地图；
+      - entry 38.80；render 168.86；
+      - 首次会话闭包 96.11 / 110：基础内容 25.69 → 28.40，是序章进了首局内容。
+    - **TOOL-items-regen-2 CANCELLED**（协调者 15:02）：
+      - 理由：由 CONTENT-ch00a 合入时生成，151 件收藏品；
+      - 工作区干净，已 `git worktree remove`；
+      - 集成分支 `items_from_catalog --check` 通过，1045 行。
+    - **CONTENT-ch00b-maps** 改为等 gates-data 合入后再起（1defed17）：
+      - 依赖加 ch00a、ENG-region-gates-data，写集加 `content/chapters/ch00_yuenv/bindings/**`；
+      - 原因：gates-data 第 2 轮基点 7038f0a6 早于 ch00b。ch00b 先合入的话，C01 / C03 门没有 binding 文件，lockedBy 校验会让集成分支变红。
+      - 返修 note 要合并四样：r3 意见、协调者 13:06 的口径、gates-data 报告第 7 节的 binding 写法，以及 NpcSpawn 的 dialogue binding 或「无对话」标注。
+    - 等 gates-data 合入后接着起：ENG-npc-species-roleslot、ch00b 返修；ENG-19e 还要等 event-executor。前两件里进代码池的，起之前先报协调者，定放行链怎么挂。
+
