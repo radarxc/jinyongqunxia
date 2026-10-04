@@ -33,6 +33,12 @@ composite_job: por_npc_yuanchengzhi__ch07_youth_scene_shengjing.resume3
 
 # 袁承志 · 人物写实修正
 
+## AR-82 当前定稿要求
+
+只在人物自身左眉上方（画面右边眉毛上方）加淡小旧刀疤，其他五官不变。原金蛇剑剑尖有两叉：若画面显示的是黑色纹饰剑鞘而非出鞘剑身，则保持剑鞘并不要在鞘尖添叉；若是出鞘金色蛇形剑身，末端才加双叉蛇舌尖。不得把剑鞘尖误作剑尖。
+
+以上为当前原著核对后的要求，覆盖下文旧版中与之冲突的服饰、器物、伤残、光线和体态描述。
+
 ## Gemini 提示词
 
 > 作者10-02晚复合精修；任务 `por_npc_yuanchengzhi__ch07_youth_scene_shengjing.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
@@ -122,3 +128,9 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_yuanchengzhi__ch07_youth_scene_shengjing.prepared.json`。
+
+## 原著依据
+
+- 《碧血剑》三《经年亲剑铗，长日对楸枰》：“小小疤痕”（https://xuges.com/WUXIA/jinyong/bxj/013.htm）
+- 《碧血剑》四《矫矫金蛇剑，翩翩美少年》：“剑尖竟有两叉”（https://xuges.com/WUXIA/jinyong/bxj/020.htm）
+- AR-82 返修约束：只在人物自身左眉上方（画面右边眉毛上方）加淡小旧刀疤，其他五官不变。原金蛇剑剑尖有两叉：若画面显示的是黑色纹饰剑鞘而非出鞘剑身，则保持剑鞘并不要在鞘尖添叉；若是出鞘金色蛇形剑身，末端才加双叉蛇舌尖。不得把剑鞘尖误作剑尖。
