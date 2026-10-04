@@ -1875,3 +1875,65 @@
       - 1d85ff7a：supervise 自动合入撞上未提交窗口时，改为每 2 秒重试；遇到 READY「auto-merge 未成功」，用 `_handoff/merge_when_clean.py` 补合入。
 
 - **10-03 18:05–18:12 协调者**：ENG-event-executor 到 18:05 未退出，协调者按约定停执行器（1.exit=143）；开发监督挪基点到 f24cbc6b、机械改 ch10 op 名与 Ink 参数（写集补 962f7db1），--from validate 因退出码 143 未过（step.py finish 把非 0 退出码记为问题，被停过的任务都要再走一轮短返修），已排到 18c 前（18c 守候 47226）。ENG-16c 改 --from validate 后审核 PASS。supervise.py 合入重试改为每 2 秒探工作树（1d85ff7a）；VFX-sk_tiangang 用 merge_when_clean 合入。面部总审主角全部审完：一致 207、轻微 43、明显 22（集中在 ch05、ch07–ch14，分给 12 号与 10 号）；下一步审配角。Gemini 出图员 17:33 在 Wikidata 请求 UA 里误带作者邮箱前缀 3 次（只读搜索），已改通用 UA 并如实告知作者；各联网代理已收到「不带作者个人信息」规矩。
+  - **10-03 18:10–18:16 开发监督**：
+    - **ENG-event-executor** 用 `--from validate` 没过：finish 看到 `1.exit = 143`（协调者按约定停的）就直接判失败，校验命令没跑。
+      - 被停过执行器的任务都会这样，以后只能走一轮返修。
+      - 驱动自动起了第 2 轮续作（通用模板：核对已有产物、重跑检查、更新报告），协调者同意让它跑，不改 .exit。
+    - **ENG-16c 合入**（18:12，HEAD 5adbe42c）。prod_check 全绿：
+      - 149 个测试文件 / 1074 个测试；
+      - entry 38.80；render 168.86；
+      - 首次会话闭包 **98.94 / 110**：session static 65.37 → 68.21，core 战斗会话进了 Worker 闭包；
+      - 战斗子系统块 33.77 → 71.86（只报告）。
+    - eng3 随即放出 ENG-26、ENG-16e，与 M1 抢池位。协调者 18:15 重排代码池放行链：
+      - 顺序：event-executor 返修 → 26 → 18c → 16e → base-diet → std-parts → cropframe；
+      - 守候进程：56785、56800、56807、56809、83195、96192。
+    - 协调者想给 step.py 加池位优先级文件（`pool_priority.txt` 加等待登记），开发监督评估：约 60–80 行加测试，风险可控，已回报。
+  - **10-03 18:16–18:42 开发监督**：
+    - **池位优先级名单上线**（f6813854；协调者 18:20 交办）。
+      - 机制：
+        - `.agents/coord/pool_priority.txt` 每行一个任务 ID，越靠前越先拿空位，不在名单的排在后面、先来先得；没有这个文件就是原行为。
+        - 排队的 start 在 `.agents/slots/waiting/<ID>.json` 登记 pid 与开始等的时间，进程死了自动清掉。
+        - `python3 tools/agents/step.py pool [--pool code] [--file 草稿]` 是只读预演，不改状态。
+        - 单测 `test_step_pool_priority.py`，10 例。
+      - 初始名单（代码池）：
+        - M1：event-executor → gates-data → ink-external-args → 19e → npc-species → ink-intents → 26；
+        - 预算：base-diet，排在 18c / 16e 前，因为首次会话闭包 98.94 / 110；
+        - 其余：23a → 18c → 16e → move-onhit → city-generic → rig-parts-f → std-parts → cropframe → 27a…。
+      - 协调者的 wait_attempt 在 18:15 起 ENG-26 时参数拼错（supervise 报 unrecognized arguments），没起成，后面的链也卡住了。
+        - 开发监督 18:21 用 launch_std 重起 26（驱动 99087），新代码已登记排队，名单第 7 位。
+    - **Trae 技能跑偏**（协调者 18:20）：
+      - gates-data 第 2 轮跟着作者本机的 bits-unit-test-gen 技能走「生成单测」流程，跑 prepare_test.sh 后卡死。
+      - 查到 `traex exec -c skills.include_instructions=false` 只去掉提示里的技能清单（58 → 33 KB）。
+      - 已写进 step.py `build_argv`（只对 traex）和 gpt_review.py（9efa29fa，单测 `test_step_traex_args.py`），不动 `~/.trae`。
+      - 今天 11 份 traex 执行日志都跑过 prepare_test.sh。
+      - gates-data 第 3 轮又在走技能流程，建议协调者停掉，开发监督用 `--from start --note devsup_note_noskill.md` 重起。
+      - 另提议在 `_common.md` 加第 13 条「不调用 Trae 技能」。
+  - **10-03 18:27–18:42 开发监督**：
+    - **池位优先级修正**（1c608177）。
+      - 问题：18:29 协调者批量重起时，18c、std-parts 探测模型快，先进了等位循环，抢在没登记的 26、base-diet、23a 前面拿到空位。
+      - 改法：探测模型前就登记；有名单时登记满 15 秒才拿空位。
+      - 协调者已让 18c、std-parts 退回重排；现在排队顺序与名单一致。
+    - **协调者 18:29 用新参数重起**：
+      - gates-data 第 3 轮，带 `devsup_note_noskill.md`；
+      - event-executor、23a、26，带 `coord_note_noskill.md`；
+      - 直接起 18c、16e、base-diet、std-parts、cropframe 排队。
+    - **ENG-26 第 2 轮**秒退：Trae 服务报「request queue size is exceed」code=4050。
+      - 目前全部日志里只这 1 次，按服务端临时拥堵处理；每轮轮询用 `scratchpad/q4050.py` 盯着，再出现就报协调者，考虑代码池 4 → 3。
+    - **TOOL-city-generic 合入**（协调者 merge_when_clean，HEAD b6c90dd2），之后 prod_check 两次都红，都是计时类测试：
+      - 负载 31–37 那次：`core/bench/combat.test.ts` 的 BattleSession 线性比 3.57 > 3（ENG-16c 加的门）；
+      - 负载 50 那次：content-plugin 的 town integration 和 combat bench 的 transaction bus 两条 5 秒超时；
+      - 单独重跑 combat bench 3 次都过。
+      - 已报协调者，建议：降代码池上限、低负载时重跑 prod_check；`core/bench` 是否比照 AR-33 挪到 check:perf，交协调者 / 作者定。
+  - **10-03 18:40–18:52 开发监督**（协调者 18:45 四点）：
+    - 代码池上限临时 4 → 3（c3dbfa63）。step.py 排队时每轮重读上限。
+      - 负载降到 25 以下、prod_check 转绿后再回 4，回调前先告诉协调者。
+      - 排队中的旧代码 start 启动时已把上限定成 4，要重起才按 3 走，已请协调者处理。
+    - **ENG-content-plugin-timeout**（a9a155e1）：town integration 集成用例显式超时 60 秒。
+      - 协调者裁定：它断言的是功能不是速度，不算放宽。
+      - 驱动 56701，名单第 2 位。
+    - **ENG-event-executor** 第 3 轮执行器退出码 0，校验只栽在 content-plugin 那条 5 秒超时上。建议停返修，改 `--from validate`，等协调者点头。
+    - **ENG-ink-external-args** 已合入（协调者 merge_when_clean）。合入后的 prod_check 等负载降下来再跑，届时一并核对 ink.ts 两边改动合得干不干净。
+    - `core/bench` 计时断言要不要挪到 check:perf：协调者去问作者，在答复前不动。
+
+- **10-03 18:20–18:47 工程线调度**：查明几乎所有 traex 执行器都被作者本机 Trae 技能 bits-unit-test-gen 带偏（走「Step1–7 生成单测」并跑 prepare_test.sh），开发监督在 step.py / gpt_review.py 加 `-c skills.include_instructions=false`（9efa29fa）；协调者停掉旧参数的 gates-data、event-executor、23a、26 并带 no-skill note 重起。池位优先级名单上线（f6813854，名单 `.agents/coord/pool_priority.txt`，探测前登记 1c608177，排队时每轮重读上限 c3dbfa63），wait_attempt 守候全部撤掉；高负载（31–50）下计时测试与 content-plugin 5 秒超时不稳，代码池上限临时 4→3，登记 ENG-content-plugin-timeout（a9a155e1，只加显式超时）；core/bench 计时断言是否比照 AR-33 挪出 pnpm check 待作者定。合入：ENG-16c（f47d2bcd）、TOOL-city-generic（05eecb28，merge_when_clean）、ENG-ink-external-args（08fe39a0，merge_when_clean）；event-executor --from validate 18:44 通过、审核中。
+- **人物（18:00–18:47）**：11 号做完全部任务（钟灵 / 马夫人 / 黄药师 B 入库与插图对齐、天龙配角神态 26 人、四个提示词 md 写回），追加 ch01–ch06 配角插图对脸；10 号做完 ch08–ch10（20 张），转做 ch13–ch14；12 号做完 ch05–ch07（30 张），在做 ch11–ch12。插图返修统一「只合成目标人物头部」（10 号 patch.py、12 号同法）。
