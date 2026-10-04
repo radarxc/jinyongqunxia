@@ -1112,40 +1112,38 @@
   category: character/male
   style: default
   subject: 萧峰（ch01_tianlong）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的萧峰立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中萧峰的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感，以及发式与头饰（深褐色粗布宽头巾在头上缠绕数圈（厚实、盖住额顶），头顶露出一个小发髻，两鬓和脑后垂下散乱的长黑发到胸前）。要让人一眼看出两张图里是同一个人。基线里的萧峰三十出头，脸型瘦削硬朗、下颌方正，高颧骨，浓黑剑眉压眼、眉头微蹙，眼型细长、目光锐利，鼻梁挺直，唇上一抹八字髭连着下巴一撮短须、两腮带青色胡茬，古铜肤色，神情刚毅沉郁。
+    图1是唯一待编辑原图。必须以这张图为底编辑。本图为局部正方形裁图，输出同样正方形裁图，不画全身，不扩图。
 
-    【原图保持不变】除脸、发式与头饰以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+    【只改】只在双肩上各补两处法刀拔出后的衣料破口，总共四处。破口处少量止血后的暗红血迹和敷药痕，脸和衣服其余处不动。刀已拔下，不画刀插肩，不画喷血。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【原著依据】《天龙八部》第十五回 杏子林中 商略平生义：“立时便将他肩上四柄法刀拔了下来”；“创口中如喷泉般的鲜血立时便止”；https://www.xuges.com/wuxia/jinyong/tlbb/114.htm
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/05_por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.png
+    sha256: 09f6592075db9629a187e48094ed514f6b1700b9f6a848662dc5a212a11d568e
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
     sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
     use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.png
-    sha256: 4e588ccee85038a2350b0028a94387039a314704a56519672ad278099c732a64
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.4e588cce.png
-  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
-    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T00:22:47.419308-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_05_45_r1.png
+  created: '2026-10-04T02:24:40.023321-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_05_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 09f6592075db9629a187e48094ed514f6b1700b9f6a848662dc5a212a11d568e
+  sha256: 88ba14b2c86822cf191f9789e0f031d649a20c7ceee446172e8c710f4ebb1538
   status: candidate
-  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：眉眼、鼻梁、唇形与base同人；杏子林严肃神态、原光向与头巾衔接自然
+  notes: 立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：眉眼、鼻梁、唇形与base同人；杏子林严肃神态、原光向与头巾衔接自然；AR-82 原著核对返修：萧峰杏林离去补四处已止血肩伤
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.4e588cce.png
-    sha256: 4e588ccee85038a2350b0028a94387039a314704a56519672ad278099c732a64
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.4e588cce.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/05_por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.png
+    sha256: 09f6592075db9629a187e48094ed514f6b1700b9f6a848662dc5a212a11d568e
   ar84_alignment:
     job: ar84_calign_05_45_r1
     before_sha256: 2e77c13c7aa69a1c1849b9a5037edbc8893d3a1473da4760b639197d3003a41b
