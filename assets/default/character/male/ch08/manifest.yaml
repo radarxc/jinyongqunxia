@@ -1452,7 +1452,6 @@
   status: candidate
   notes: 立绘重审重出（AR-30）；随男主 ch00 新锚点统一重出（加左眉断疤与朱红发绳、去 AI 味），服饰沿用本时代设定；codex 出图（1 号出图员，AR-31）；主角时代图：上传本轮新出的 ch00 锚点作唯一身份参考；沿用审核组提示词，补去 AI 味一句
 - id: por_npc_weixiaobao__ch08_youth_bishou_base
-  # 10-03 AR-55：作者选定剧照结合版为基线，图与本条记录恢复自 42916cd4（凌晨主角精修版见 git 历史）
   file: por_npc_weixiaobao__ch08_youth_bishou_base.png
   category: character/male
   style: default
@@ -1505,7 +1504,6 @@
   sha256: 8713f92abd849f5d45ea77a4350d02a26d753eb4961eb0243b42786fafb92714
   status: candidate
   notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：1998 年 TVB《鹿鼎记》；job por_npc_weixiaobao__ch08_youth_bishou_base__t1
-
 - id: por_npc_kangxi__ch08_youth_xiaoxuanzi_base
   file: por_npc_kangxi__ch08_youth_xiaoxuanzi_base.png
   category: character/male
@@ -1670,181 +1668,127 @@
   category: character/male
   style: default
   subject: 韦小宝·扬州市井（ch08_luding）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的韦小宝立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中韦小宝的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的韦小宝二十岁上下：宽圆脸、两颊饱满有肉、下巴圆，不是窄长脸；浓眉弯弯，一双灵活的眼睛、眼神机灵狡黠，嘴角挂着一抹坏笑；鼻头略圆；肤色健康；油滑机灵的扬州小混混。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【主角】韦小宝；市井机灵；眼睛小而明亮，嘴角不对称坏笑；精瘦灵活，擅察言观色，不画成武功盖世；标志道具短匕首与两颗骰子。
+    【本张另外要求】（AR-53 / AR-56 总审轻微：眉眼和坏笑都对，但脸是窄长脸）脸型改成基线的宽圆脸：两颊饱满有肉、颧骨不高、下巴圆而不尖；浓眉、机灵的眼睛和嘴角的坏笑保持。
 
-    【本期】扬州市井；成年化早期，健康圆短脸、狡黠；褪色褐短袄、青布裤、布鞋，剃额长辫，旧布帽；捏骰子、布钱袋；无抄鳌府所得宝匕首宝衣。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【阶段背景】扬州茶棚街巷与河埠淡晨雾，保留背景。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
-
-    【考据边界】story/08 §1 早期市井；服饰配色与道具组合原创扩展。；配色、镜头、成人化、具体站姿是（原创扩展）。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
-    sha256: a780fc55cdb9f467da536040efed795f0e2d8c6cf52bd5d135aa5f619f28445c
-    uploaded_sha256: a780fc55cdb9f467da536040efed795f0e2d8c6cf52bd5d135aa5f619f28445c
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/weixiaobao_1998_chenxiaochun.jpg
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/weixiaobao_ref1.jpg
-    sha256: 5699066e40cbab0bc40619fa9449464f327c2082f5b0a61e60b3b0b61fea6659
-    uploaded_sha256: 8e091f427664f44c79fea74924b59e48957ae6bbb6d4af7b8d0b776f194f6873
-    use: 影视造型参考：1998版，借衣饰气质，不复制演员五官
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_112-1.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/weixiaobao_ref2.jpg
-    sha256: b65e81fb0700983468bed108645a163615f82710f0dceb1b966cdd9808131d69
-    uploaded_sha256: d6051501c0b7d34f37350d74a2084203586ec8572ffb034575ed540a6ea4d288
-    use: 经典游戏韦小宝头像：绘画气质与理想化造型参考
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
+    sha256: 8713f92abd849f5d45ea77a4350d02a26d753eb4961eb0243b42786fafb92714
+    use: 对脸基线：作者审核通过的 por_npc_weixiaobao__ch08_youth_bishou_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_scene_yangzhou_gambler.png
+    sha256: ece9f60bce2ab55043aec8c472fcf540aace4a4aaf0b12bcedb2bb882c4b4326
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_weixiaobao__ch08_youth_scene_yangzhou_gambler.ece9f60b.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T23:34:25-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_weixiaobao__ch08_youth_scene_yangzhou_gambler.png
+  created: 2026-10-03T18:32:42-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_weixiaobao__ch08_youth_scene_yangzhou_gambler.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: ece9f60bce2ab55043aec8c472fcf540aace4a4aaf0b12bcedb2bb882c4b4326
+  sha256: 4cd7d618091a1964c28fba0d209c6e30d3174995c975a1f62138ce89e0a33cf5
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：窄长脸改成新基准的宽圆脸）
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_weixiaobao__ch08_youth_scene_yangzhou_gambler.retry3.r1
   quality_retries: 0
   history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_weixiaobao__ch08_youth_scene_yangzhou_gambler.ece9f60b.png
+    sha256: ece9f60bce2ab55043aec8c472fcf540aace4a4aaf0b12bcedb2bb882c4b4326
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_weixiaobao__ch08_youth_scene_yangzhou_gambler.ece9f60b.entry.yaml
 - id: por_npc_weixiaobao__ch08_youth_scene_qingmu_incense
   file: por_npc_weixiaobao__ch08_youth_scene_qingmu_incense.png
   category: character/male
   style: default
   subject: 韦小宝·宫廷与青木堂双重身份（ch08_luding）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的韦小宝立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中韦小宝的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的韦小宝二十岁上下：宽圆脸、两颊饱满有肉、下巴圆，不是窄长脸；浓眉弯弯，一双灵活的眼睛、眼神机灵狡黠，嘴角挂着一抹坏笑；鼻头略圆；肤色健康；油滑机灵的扬州小混混。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【主角】韦小宝；市井机灵；眼睛小而明亮，嘴角不对称坏笑；精瘦灵活，擅察言观色，不画成武功盖世；标志道具短匕首与两颗骰子。
+    【本张另外要求】（AR-53 / AR-56 总审轻微：眉眼和坏笑都对，但脸是窄长脸）脸型改成基线的宽圆脸：两颊饱满有肉、颧骨不高、下巴圆而不尖；浓眉、机灵的眼睛和嘴角的坏笑保持。
 
-    【本期】宫廷与青木堂双重身份；成年青年，同脸；宝蓝圆领大襟袍外暗赭坎肩，黑瓜皮帽，长辫；手拈未点燃线香，腰藏黑鞘短匕首，不做英雄亮剑姿。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【阶段背景】烛光密室与香案、窄门外一线京城夜色，不写堂匾文字。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
-
-    【考据边界】第八至九回/ld8；香案站位原创扩展。；配色、镜头、成人化、具体站姿是（原创扩展）。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
-    sha256: a780fc55cdb9f467da536040efed795f0e2d8c6cf52bd5d135aa5f619f28445c
-    uploaded_sha256: a780fc55cdb9f467da536040efed795f0e2d8c6cf52bd5d135aa5f619f28445c
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/weixiaobao_1998_chenxiaochun.jpg
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/weixiaobao_ref1.jpg
-    sha256: 5699066e40cbab0bc40619fa9449464f327c2082f5b0a61e60b3b0b61fea6659
-    uploaded_sha256: 8e091f427664f44c79fea74924b59e48957ae6bbb6d4af7b8d0b776f194f6873
-    use: 影视造型参考：1998版，借衣饰气质，不复制演员五官
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_112-1.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/weixiaobao_ref2.jpg
-    sha256: b65e81fb0700983468bed108645a163615f82710f0dceb1b966cdd9808131d69
-    uploaded_sha256: d6051501c0b7d34f37350d74a2084203586ec8572ffb034575ed540a6ea4d288
-    use: 经典游戏韦小宝头像：绘画气质与理想化造型参考
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
+    sha256: 8713f92abd849f5d45ea77a4350d02a26d753eb4961eb0243b42786fafb92714
+    use: 对脸基线：作者审核通过的 por_npc_weixiaobao__ch08_youth_bishou_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_scene_qingmu_incense.png
+    sha256: bcf94dcffdf73b5afded110ee8cb3d0ed369870083ac3353bf342588eadab30e
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_weixiaobao__ch08_youth_scene_qingmu_incense.bcf94dcf.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T23:34:27-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_weixiaobao__ch08_youth_scene_qingmu_incense.png
+  created: 2026-10-03T18:32:43-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_weixiaobao__ch08_youth_scene_qingmu_incense.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: bcf94dcffdf73b5afded110ee8cb3d0ed369870083ac3353bf342588eadab30e
+  sha256: b863ca59c1e01730a37cabb8e1ea56905d58951d84e12d7d56d37aba32cedbb0
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：窄长脸改成新基准的宽圆脸）
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_weixiaobao__ch08_youth_scene_qingmu_incense.retry3.r1
   quality_retries: 0
   history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_weixiaobao__ch08_youth_scene_qingmu_incense.bcf94dcf.png
+    sha256: bcf94dcffdf73b5afded110ee8cb3d0ed369870083ac3353bf342588eadab30e
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_weixiaobao__ch08_youth_scene_qingmu_incense.bcf94dcf.entry.yaml
 - id: por_npc_weixiaobao__ch08_prime_scene_retirement
   file: por_npc_weixiaobao__ch08_prime_scene_retirement.png
   category: character/male
   style: default
   subject: 韦小宝·割舍名利退隐（ch08_luding）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的韦小宝立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中韦小宝的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+    【要对齐基线的部分】脸型与骨相、眉形与眉眼间距、眼型、鼻梁与鼻头、颧骨、嘴型、下颌与下巴。要让人一眼看出是同一个人。基线里的韦小宝二十岁上下：宽圆脸、两颊饱满有肉、下巴圆，不是窄长脸；浓眉弯弯，一双灵活的眼睛、眼神机灵狡黠，嘴角挂着一抹坏笑；鼻头略圆；肤色健康；油滑机灵的扬州小混混。【年龄】原图是归隐时三十岁上下的韦小宝（成熟一些但仍是宽圆脸）：保持原图人物的年龄感、皱纹、胡须与风霜，不要画年轻；只是五官骨相与基线是同一个人（年长后的他）。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【主角】韦小宝；市井机灵；眼睛小而明亮，嘴角不对称坏笑；精瘦灵活，擅察言观色，不画成武功盖世；标志道具短匕首与两颗骰子。
+    【本张另外要求】（AR-53 / AR-56 总审轻微：眉眼和坏笑都对，但脸是窄长脸）脸型改成基线的宽圆脸：两颊饱满有肉、颧骨不高、下巴圆而不尖；浓眉、机灵的眼睛和嘴角的坏笑保持。
 
-    【本期】割舍名利退隐；同脸略成熟，机敏仍在而笑容松弛；灰青大襟布长衫、深褐马甲、软布帽，长辫；肩背朴素行囊，手握缰绳，腰藏短匕首。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【阶段背景】河岸秋风、小舟与远山；孤身全身像，不出现家眷第二人。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
-
-    【考据边界】第五十回/ld50，具体目的地不定；配色构图原创扩展。；配色、镜头、成人化、具体站姿是（原创扩展）。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png
-    sha256: a780fc55cdb9f467da536040efed795f0e2d8c6cf52bd5d135aa5f619f28445c
-    uploaded_sha256: a780fc55cdb9f467da536040efed795f0e2d8c6cf52bd5d135aa5f619f28445c
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: .agents/coord/imagegen-reference/identity-20261001/luding/weixiaobao_1998_chenxiaochun.jpg
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/weixiaobao_ref1.jpg
-    sha256: 5699066e40cbab0bc40619fa9449464f327c2082f5b0a61e60b3b0b61fea6659
-    uploaded_sha256: 8e091f427664f44c79fea74924b59e48957ae6bbb6d4af7b8d0b776f194f6873
-    use: 影视造型参考：1998版，借衣饰气质，不复制演员五官
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_112-1.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/weixiaobao_ref2.jpg
-    sha256: b65e81fb0700983468bed108645a163615f82710f0dceb1b966cdd9808131d69
-    uploaded_sha256: d6051501c0b7d34f37350d74a2084203586ec8572ffb034575ed540a6ea4d288
-    use: 经典游戏韦小宝头像：绘画气质与理想化造型参考
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
+    sha256: 8713f92abd849f5d45ea77a4350d02a26d753eb4961eb0243b42786fafb92714
+    use: 对脸基线：作者审核通过的 por_npc_weixiaobao__ch08_youth_bishou_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch08/por_npc_weixiaobao__ch08_prime_scene_retirement.png
+    sha256: 6dffe3210150a20560a4f395a5d0ab43cbd0c81e301cabe23a5bf004cb679d41
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_weixiaobao__ch08_prime_scene_retirement.6dffe321.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-02T23:34:28-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_weixiaobao__ch08_prime_scene_retirement.png
+  created: 2026-10-03T18:32:45-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_weixiaobao__ch08_prime_scene_retirement.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 6dffe3210150a20560a4f395a5d0ab43cbd0c81e301cabe23a5bf004cb679d41
+  sha256: 0a7d6272085292a3c2be0545c540592e7b938f8d35a9eeaca1a44110621e0fea
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_weixiaobao__ch08_youth_bishou_base（AR-53 / AR-56 总审返修：窄长脸改成新基准的宽圆脸）
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_weixiaobao__ch08_prime_scene_retirement.retry3.r1
   quality_retries: 0
   history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_weixiaobao__ch08_prime_scene_retirement.6dffe321.png
+    sha256: 6dffe3210150a20560a4f395a5d0ab43cbd0c81e301cabe23a5bf004cb679d41
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_weixiaobao__ch08_prime_scene_retirement.6dffe321.entry.yaml
 - id: por_npc_duolong__ch08_prime_guard_base
   file: por_npc_duolong__ch08_prime_guard_base.png
   category: character/male
