@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 石破天（侠客行 ch06 · 金乌刀法青年）· base 直出版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 0ce10722-4306-4cf0-8c9d-9ff90bb585ab
     url: https://studio.tripo3d.ai/workspace/generate/0ce10722-4306-4cf0-8c9d-9ff90bb585ab
     generate_op: 963bb597-14db-4851-a7b1-b51e98950117（image_to_model）
     rig_op: 8c9da3d4-1f81-464d-8542-84984cc6bc84
-  size: 369x594
-  sha256: 49814dedcfd3c15588dd59d4988d13d379359239afa979dc8ef2e1400262404e
-  size_bytes: 188527
-  created: '2026-10-03T18:50:21-07:00'
+  size: 600x778
+  sha256: b4b93b6fdcf9acaf942a64c6ebc8a04b5c6d4b9f16d95c1aa07af58b15b64f56
+  size_bytes: 202715
+  created: '2026-10-03T22:34:24-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

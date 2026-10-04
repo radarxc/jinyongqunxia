@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 任盈盈（笑傲江湖 ch05 · 日月神教圣姑青年）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 441bf372-15e0-40ed-8389-769225bc54e2
     url: https://studio.tripo3d.ai/workspace/generate/441bf372-15e0-40ed-8389-769225bc54e2
     generate_op: 749abee0-80a2-42b1-90cf-66cc59cb0678（image_to_model）
     rig_op: b7463ee9-7402-424b-8fa3-2390089ad264
-  size: 369x594
-  sha256: e300ba8025fe10743abbb174a4feb89d04867d09cb7cc16122b9a7c9442aa9d9
-  size_bytes: 150487
-  created: '2026-10-03T18:52:13-07:00'
+  size: 600x778
+  sha256: dbaade7629d17b1a8f8996b88ff31d3af17ffee6992e75bd0bd682ea4bed12fa
+  size_bytes: 144331
+  created: '2026-10-03T22:34:23-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

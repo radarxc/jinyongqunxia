@@ -375,7 +375,7 @@
   category: model3d
   style: default
   subject: 主角（男）· 普通魅力（越女剑 ch00 基线服饰） · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 5223c172-cb00-4bd3-ba60-758c2caf97a7
     url: https://studio.tripo3d.ai/workspace/generate/5223c172-cb00-4bd3-ba60-758c2caf97a7
@@ -386,9 +386,9 @@
       walk: 7fec6b96-0e8b-43a1-8fa8-bcca97980f53
       run: 5c09c84e-6754-44ea-a7ae-a4d265bc4fd7
     comparison_single_image_project: aafbded0-9015-426a-906f-9e3a8b3d1166（单图对比版，未选用、未绑骨、未导出）
-  size: 530x1024
-  sha256: 72274cc993085542f3eff954c6772614ce55bac1f50528e64864362e0d58af04
-  size_bytes: 500192
-  created: '2026-10-03T12:21:00-07:00'
+  size: 600x778
+  sha256: 245f02c0c2fe774259597d5bc3fd4050e2fe156c8d1073a73cbf1b49220dac15
+  size_bytes: 160568
+  created: '2026-10-03T22:34:27-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘后缩到长边 1024。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

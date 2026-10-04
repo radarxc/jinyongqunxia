@@ -66,16 +66,16 @@
   category: model3d
   style: default
   subject: 黄蓉（射雕英雄传 ch02 · 丐帮帮主青年，A 版新基线）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: a2ae3f7b-b146-4cb3-969c-6d76b1b3fdcd
     url: https://studio.tripo3d.ai/workspace/generate/a2ae3f7b-b146-4cb3-969c-6d76b1b3fdcd
     generate_op: 2b065ca5-4b89-413c-948e-69960418fd8c（image_to_model）
     rig_op: d7bd9256-8d1f-4add-9168-e869952fd153
     voided_old_project: 685acbce-0d81-48bf-bb9a-f2ed1fdc3cec（旧基线，生成 65 + 绑骨 20，作废）
-  size: 369x594
-  sha256: 68fe9f242005bb31343ff852525e5e88de7f94c6a404c0c488bcaf44b5089a68
-  size_bytes: 124161
-  created: '2026-10-03T16:29:35-07:00'
+  size: 600x778
+  sha256: e9e50a0dcf6fd5fbae050975989e4e02fee9cda084cc83d20189a7aa8458c521
+  size_bytes: 111365
+  created: '2026-10-03T22:34:22-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

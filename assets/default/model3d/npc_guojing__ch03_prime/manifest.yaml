@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 郭靖（神雕侠侣 ch03 · 壮年，约四十岁）· 基线直出版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 81fb5440-4161-485c-9c57-1eb30a4e129e
     url: https://studio.tripo3d.ai/workspace/generate/81fb5440-4161-485c-9c57-1eb30a4e129e
     generate_op: a47789a5-97a5-4e4b-ab43-3c94c428f580（image_to_model）
     rig_op: 022e957e-bc48-4b70-a9c3-29702df9560b
-  size: 369x594
-  sha256: a4c4cfbfb7e366daa1dd57e1fa4f42960e27d4a046499855063c23ba5242bdf1
-  size_bytes: 183702
-  created: '2026-10-03T16:34:09-07:00'
+  size: 600x778
+  sha256: 1b50f06cbb4673ffb6bd8c16d23a92f9bfcc341a3d69079214fbf52ac17dfcec
+  size_bytes: 196030
+  created: '2026-10-03T22:34:22-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

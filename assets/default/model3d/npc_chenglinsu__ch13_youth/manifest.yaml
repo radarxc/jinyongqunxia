@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 程灵素（飞狐外传 ch13 · 青年）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: bb8a4f76-e08c-42ef-a1c3-d4f2477c6dd9
     url: https://studio.tripo3d.ai/workspace/generate/bb8a4f76-e08c-42ef-a1c3-d4f2477c6dd9
     generate_op: d28bab72-7e8a-4d7d-86e1-aee4cd09bdd4（image_to_model）
     rig_op: f81e2766-4154-4938-9aa7-80273fcbe617
-  size: 369x594
-  sha256: 9ca5b21f2231b3225e8d73eb210abbd771251cced818e3fe40c33b230707aa5d
-  size_bytes: 147077
-  created: '2026-10-03T19:00:43-07:00'
+  size: 600x778
+  sha256: 4592b46b990bccbd819f2bb77da4ac3e08d193b22bd2023ecc4233288c94634c
+  size_bytes: 138369
+  created: '2026-10-03T22:34:21-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 韦小宝（鹿鼎记 ch08 · 青年）· 空手 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: bf3d1396-c4ba-4937-a6ae-6799f948cc95
     url: https://studio.tripo3d.ai/workspace/generate/bf3d1396-c4ba-4937-a6ae-6799f948cc95
     generate_op: fdcb1022-168d-460e-b4e2-12a75bde33cd（image_to_model）
     rig_op: d0c4a68e-303b-49e1-8184-d0bb05fcec4b
-  size: 369x594
-  sha256: 656121fa8692a44fdb9e303537b4570970d4a80913c8caaf2bfa7334975d4d2c
-  size_bytes: 160644
-  created: '2026-10-03T19:08:07-07:00'
+  size: 600x778
+  sha256: 8efd7e0c00c2fc63b596a52ef5d355dad2a673aa3f160037cbadd69f0740537d
+  size_bytes: 160241
+  created: '2026-10-03T22:34:24-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

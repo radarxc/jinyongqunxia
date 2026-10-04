@@ -71,7 +71,7 @@
   category: model3d
   style: default
   subject: 阿青（越女剑 ch00 · 少女，第 2 轮 B 版新脸 · c813207d 剑眉版）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 1ab2acee-c0e3-460a-8762-25f41fff9eca
     url: https://studio.tripo3d.ai/workspace/generate/1ab2acee-c0e3-460a-8762-25f41fff9eca
@@ -82,9 +82,9 @@
       commit: 4cf94b5e
       reference_commit: 3bc052d0
       backup: .agents/coord/ART-3d-tripo-web/replaced/npc_aqing__ch00_youth__4cf94b5e/
-  size: 369x594
-  sha256: e6e873562aec9b5a9b60871fb91791ef2a4f7ed0bb29413bd194a338436eb8bb
-  size_bytes: 129705
-  created: '2026-10-03T19:31:00-07:00'
+  size: 600x778
+  sha256: 05ad88e7943c80e8d0289c61acfc7b2d77a6afa62860ea795b1f396faa398ed8
+  size_bytes: 117771
+  created: '2026-10-03T22:34:20-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

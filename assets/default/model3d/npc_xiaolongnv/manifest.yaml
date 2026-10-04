@@ -70,7 +70,7 @@
   category: model3d
   style: default
   subject: 小龙女（神雕侠侣 ch03 · 绝情谷）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 1f087cd3-c70e-438a-8a1d-19cccb66866e
     url: https://studio.tripo3d.ai/workspace/generate/1f087cd3-c70e-438a-8a1d-19cccb66866e
@@ -79,9 +79,9 @@
     failed_attempts:
       83ecd9b8-d9d8-49cf-a27b-c5eff8ccb3a8: 原 base 宽袖+飘带：生成 65 + 绑骨 3×20，全部错位
       96b40b34-09db-42bd-a828-9d0374cd2c58: A 字宽裙：生成 65 + 绑骨 20，骨架颠倒
-  size: 369x594
-  sha256: 631bab93e8839fee791caf32cb788eecae6b6f5e06977c056dc187624ff962c9
-  size_bytes: 118065
-  created: '2026-10-03T14:31:00-07:00'
+  size: 600x778
+  sha256: 006030184b8c6d839b28b46cb90ec82fa0401eeffd4774f0ebc5f35cf10ac1a2
+  size_bytes: 103583
+  created: '2026-10-03T22:34:25-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

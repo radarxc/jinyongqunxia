@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 令狐冲（笑傲江湖 ch05 · 华山弟子青年）· 空手 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 0e608a8a-c831-4d1a-90fb-19c1257be8ee
     url: https://studio.tripo3d.ai/workspace/generate/0e608a8a-c831-4d1a-90fb-19c1257be8ee
     generate_op: d1a0aa6d-7deb-4b7b-add0-b942ca68732e（image_to_model）
     rig_op: f489c678-1277-45a4-abec-21e31b7f0c07
-  size: 369x594
-  sha256: 41194e37fc7ffca6008ad45b8a5d81714bc0ef5597a72c37fbe359b1bfdba0b5
-  size_bytes: 162922
-  created: '2026-10-03T19:04:30-07:00'
+  size: 600x778
+  sha256: ed9fca421a659333ecc2d679ef4506881759d2326c2496d55636f4f9485dc163
+  size_bytes: 163949
+  created: '2026-10-03T22:34:23-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

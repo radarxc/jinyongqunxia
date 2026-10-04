@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 虚竹（天龙八部 ch01 · 灵鹫宫主人青年）· A 字参考版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 1995ecb7-ef0d-44d7-86fa-f218163a97b3
     url: https://studio.tripo3d.ai/workspace/generate/1995ecb7-ef0d-44d7-86fa-f218163a97b3
     generate_op: 25d45772-7abb-4f20-b996-36d62c9d5d85（image_to_model）
     rig_op: eb25bf93-d9ad-4130-a7de-836e050a682a
-  size: 369x594
-  sha256: 30aa752f6d6669bf3fa6222c482d44301b201d7d0de0153889d9383b28e5583b
-  size_bytes: 191629
-  created: '2026-10-03T14:41:52-07:00'
+  size: 600x778
+  sha256: c0831e127a53df20b322f03fd402b90065ea1c5c0dc248fa50fe90e269d94004
+  size_bytes: 208461
+  created: '2026-10-03T22:34:25-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

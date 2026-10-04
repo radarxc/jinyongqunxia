@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 袁紫衣（飞狐外传 ch13 · 紫衣青年）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: e7ea308a-baf5-4534-9025-d16e37dcb201
     url: https://studio.tripo3d.ai/workspace/generate/e7ea308a-baf5-4534-9025-d16e37dcb201
     generate_op: 4eaee06d-84c2-4493-9bdb-e6d1327f9dc8（image_to_model）
     rig_op: ebf3ac1b-49d2-4c3b-ba7a-28bb79148ac3
-  size: 369x594
-  sha256: 3eebd44cad52c8ee420b8efb72581dbae5d5c21e8f4ad46faab8f00d756b3bfb
-  size_bytes: 152808
-  created: '2026-10-03T19:01:42-07:00'
+  size: 600x778
+  sha256: a1d0d1e10fb3cf1385daa290fc79d055379bbd855af49ba97ef87c9418a61c68
+  size_bytes: 145661
+  created: '2026-10-03T22:34:26-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 张无忌（倚天屠龙记 ch04 · 明教教主青年）· A 字参考版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 829f322f-9a6f-4d4b-8e8b-a48b2382f7e5
     url: https://studio.tripo3d.ai/workspace/generate/829f322f-9a6f-4d4b-8e8b-a48b2382f7e5
     generate_op: e3339c0b-35a7-4759-b431-9028750c5804（image_to_model）
     rig_op: 940d71ad-183d-4ed2-be18-e278b18b0e86
-  size: 369x594
-  sha256: bc027f3ae0417c3daa07babce252d1a2c9b89edabaf000142c0e712e452a55f0
-  size_bytes: 146065
-  created: '2026-10-03T14:56:21-07:00'
+  size: 600x778
+  sha256: c9c813005371623b1174c16cda78ab7ccb8033ca15671c3235b5e7b94cd5c4c4
+  size_bytes: 148310
+  created: '2026-10-03T22:34:26-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

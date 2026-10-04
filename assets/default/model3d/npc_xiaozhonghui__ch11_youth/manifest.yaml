@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 萧中慧（鸳鸯刀 ch11 · 离家青年）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: 8933d59c-c8ae-4f60-bc02-88d27bebe5ce
     url: https://studio.tripo3d.ai/workspace/generate/8933d59c-c8ae-4f60-bc02-88d27bebe5ce
     generate_op: 6c833f9f-bd44-4145-bd07-a78f1693efd3（image_to_model）
     rig_op: 8738566d-8db9-4495-b9c9-d722af6ba4fb
-  size: 369x594
-  sha256: 0bd30e8d210c3dd47267e619023cdca03558eff821011c44cdae11204dae067e
-  size_bytes: 152014
-  created: '2026-10-03T18:57:41-07:00'
+  size: 600x778
+  sha256: 445d733db067de29397b1ee93bbc95aea5ff37e6b32664516afcc9636c1a1a60
+  size_bytes: 143570
+  created: '2026-10-03T22:34:25-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

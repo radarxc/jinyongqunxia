@@ -62,15 +62,15 @@
   category: model3d
   style: default
   subject: 戚芳（连城诀 ch09 · 为人母青年）· 窄轮廓 A 字版 · 3D 预览
-  tool: tripo-studio-web（Claude in Chrome 截图）
+  tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
     project_id: c8644f98-32b1-498d-8b1d-746f33edd94a
     url: https://studio.tripo3d.ai/workspace/generate/c8644f98-32b1-498d-8b1d-746f33edd94a
     generate_op: bf8cadb8-c1d7-4304-a222-91901d497376（image_to_model）
     rig_op: a32d9600-d561-482d-ad47-e671a36a2adf
-  size: 369x594
-  sha256: 0f13eca0defe5b8b43212efe462c93aedbdb34c95922d7eef1430c27583b0a26
-  size_bytes: 127663
-  created: '2026-10-03T18:55:41-07:00'
+  size: 600x778
+  sha256: 9ad46ff4a339fae6dd8ae609b3abbef9fe71c85ddfe89244f4e4663bd66a3261
+  size_bytes: 114280
+  created: '2026-10-03T22:34:23-07:00'
   status: candidate
-  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。
