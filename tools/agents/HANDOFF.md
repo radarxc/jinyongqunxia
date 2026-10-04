@@ -1989,4 +1989,8 @@
     - 另：18:30 ENG-26 第 2 轮报 Trae 4050「请求队列超限」，也是 GPT-6-Astra。
     - 小结：最近两次挂住和那次 4050 都在 GPT-6-Astra 上。eng3 风格起跑不带 `--model`，默认就用 Astra；开发监督起的都显式用 Sol。
     - 每轮轮询加了挂住扫描（`scratchpad/stallwatch.py`）。
+  - **10-03 19:13 开发监督 · 又一次挂住，池上限 3 → 2**（按协调者 19:13 的授权，降了再告知）：
+    - 19:13:06：ENG-session-base-diet，**GPT-5.6-Sol**。最后一行是代码补丁里的一行 `...leaves.map((leaf): [string, unknown] => ...`，之后 25 分钟没有模型输出，被停滞检测重起。
+    - 这次在 Sol 上，说明挂住不只出在 Astra，更像是服务端整体拥堵。
+    - tasks.json `defaults.max_parallel.code` = 2。排队中的新代码 start 每轮重读上限，立即生效。
 
