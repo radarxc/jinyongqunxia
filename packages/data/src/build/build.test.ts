@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { canonicalBytes, hashValue } from './hash';
@@ -27,6 +28,64 @@ const leaf = (name: string, kind: 'rules' | 'text', value: BuildLeaf['value']): 
   ({ logicalName: name, kind, load: 'chapter', value, ...(kind === 'text' ? { locale: 'zh-Hans' } : {}) });
 
 describe('content build hashing and Ink', () => {
+  it('preserves evaluation strings while extracting visible and choice text', async () => {
+    const fixture = resolve(import.meta.dirname, '__fixtures__/ink-external-args/story_external_args');
+    const [source, fixtureMeta] = await Promise.all([
+      readFile(`${fixture}.ink`, 'utf8'),
+      readFile(`${fixture}.inkmeta.yaml`, 'utf8'),
+    ]);
+    const compiled = await compileInk(source, fixtureMeta, `${fixture}.ink`);
+    const calls: Array<{ name: string; argument: string; negated: boolean }> = [];
+    const stringLiterals: string[] = [];
+    const visit = (value: JsonValue): void => {
+      if (Array.isArray(value)) {
+        value.forEach((item, index) => {
+          if (item === 'str' && typeof value[index + 1] === 'string' &&
+              value[index + 1]!.startsWith('^') && value[index + 2] === '/str') {
+            stringLiterals.push(value[index + 1]!.slice(1));
+          }
+          if (typeof item === 'object' && item !== null && !Array.isArray(item)) {
+            const name = item['x()'];
+            const encodedArgument = value[index - 2];
+            if (typeof name === 'string' && value[index - 3] === 'str' &&
+                typeof encodedArgument === 'string' && encodedArgument.startsWith('^') &&
+                value[index - 1] === '/str') {
+              calls.push({ name, argument: encodedArgument.slice(1), negated: value[index + 1] === '!' });
+            }
+          }
+          visit(item);
+        });
+      } else if (typeof value === 'object' && value !== null) {
+        Object.values(value).forEach(visit);
+      }
+    };
+    visit(JSON.parse(compiled.storyJson) as JsonValue);
+
+    expect(calls).toEqual([
+      { name: 'get_flag', argument: 'fl_fixture_shared', negated: false },
+      { name: 'has_item', argument: 'it_fixture_tao', negated: false },
+      { name: 'has_item', argument: 'it_fixture_tao', negated: true },
+      { name: 'quest_stage', argument: 'q_fixture_main', negated: false },
+      { name: 'affinity', argument: 'npc_fixture_friend', negated: false },
+    ]);
+    expect(stringLiterals).toContain('initial_value');
+    expect(stringLiterals.filter((value) => value === 'state_original')).toHaveLength(2);
+    expect(compiled.storyJson).toContain('^ink.story_external_args.text.0000');
+    expect(compiled.storyJson).toContain('^ink.story_external_args.text.0007');
+    expect(compiled.storyJson).not.toContain('^Visible introduction.');
+    expect(compiled.storyJson).not.toContain('^Continue.');
+    expect(compiled.text).toEqual({
+      'ink.story_external_args.text.0000': 'Visible introduction.',
+      'ink.story_external_args.text.0001': 'fl_fixture_shared',
+      'ink.story_external_args.text.0002': 'Has peach.',
+      'ink.story_external_args.text.0003': 'No peach.',
+      'ink.story_external_args.text.0004': 'Quest ready.',
+      'ink.story_external_args.text.0005': 'Friendly.',
+      'ink.story_external_args.text.0006': 'Comparison kept.',
+      'ink.story_external_args.text.0007': 'Continue.',
+    });
+  });
+
   it('isolates rule, text, and Ink structure hashes', async () => {
     const first = await compileInk(ink('done'), meta, 'story_fixture.ink');
     const changed = await compileInk(ink('other'), meta, 'story_fixture.ink');
