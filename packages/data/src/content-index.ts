@@ -3,7 +3,17 @@ import type { ContentEntry, ContentFile, ContentValues, RegisteredContentKind } 
 import { contentKindOrder, parseContentFile } from './content-registry';
 
 type Identified = { readonly id?: string; readonly key?: string; readonly chapterId?: string;
-  readonly lineId?: string; readonly cityId?: string };
+  readonly lineId?: string; readonly cityId?: string; readonly chapter?: string;
+  readonly gateId?: string; readonly sceneId?: string; readonly anchorId?: string;
+  readonly lootRef?: string };
+export interface ContentReferenceContext {
+  readonly inks?: readonly { readonly storyId: string; readonly structure: {
+    readonly chapter: string; readonly entryKnots: readonly string[];
+    readonly readFlags: readonly string[]; readonly tags: readonly {
+      readonly opcode: string; readonly args: Readonly<Record<string, string>>;
+    }[];
+  } }[];
+}
 export interface ContentRegistry extends ContentValues {
   readonly entries: readonly ContentEntry[];
   get<T = unknown>(kind: RegisteredContentKind, id: string): T | undefined;
@@ -11,6 +21,11 @@ export interface ContentRegistry extends ContentValues {
 }
 
 function identity(kind: RegisteredContentKind, value: Identified): string {
+  if (kind === 'regionGate' && typeof value.gateId === 'string') return value.gateId;
+  if (kind === 'regionDialogue' && typeof value.chapter === 'string' &&
+      typeof value.sceneId === 'string' && typeof value.anchorId === 'string')
+    return `${value.chapter}/${value.sceneId}/${value.anchorId}`;
+  if (kind === 'regionLoot' && typeof value.lootRef === 'string') return value.lootRef;
   if (kind === 'town' && typeof value.cityId === 'string' && typeof value.chapterId === 'string')
     return value.chapterId + '/' + value.cityId;
   if (kind === 'shop') return `${value.chapterId}/${value.key}`;
@@ -26,7 +41,32 @@ function deepFreeze<T>(value: T, seen = new Set<object>()): T {
   return Object.freeze(value);
 }
 
-function validateReferences(entries: readonly ContentEntry[], lookup: Map<string, unknown>): void {
+function bindingPath(entry: ContentEntry): { chapter: string; folder: string } | undefined {
+  if (!entry.kind.startsWith('region')) return undefined;
+  const match = entry.path.match(
+    /^content\/chapters\/(ch(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*)\/bindings\/(gates|dialogues|loot)\/[^/]+\.yaml$/u,
+  );
+  if (match === null) throw new TypeError(`CONTENT_BINDING_PATH:${entry.path}`);
+  return { chapter: match[1]!, folder: match[2]! };
+}
+
+function validateBindingOwnership(entries: readonly ContentEntry[]): void {
+  const folderByKind: Partial<Record<RegisteredContentKind, string>> = {
+    regionGate: 'gates', regionDialogue: 'dialogues', regionLoot: 'loot',
+  };
+  for (const entry of entries) {
+    const path = bindingPath(entry);
+    if (path === undefined) continue;
+    const value = entry.value as { readonly chapter?: string };
+    if (path.folder !== folderByKind[entry.kind])
+      throw new TypeError(`CONTENT_BINDING_KIND:${entry.path}:${entry.kind}`);
+    if (path.chapter !== value.chapter)
+      throw new TypeError(`CONTENT_BINDING_CHAPTER:${entry.path}:${String(value.chapter)}`);
+  }
+}
+
+function validateReferences(entries: readonly ContentEntry[], lookup: Map<string, unknown>,
+  context: ContentReferenceContext): void {
   const has = (kind: RegisteredContentKind, id: string): boolean => lookup.has(`${kind}:${id}`);
   const moveRegistryActive = entries.some((entry) => entry.kind === 'move');
   const encounterEntries = entries.filter((entry) =>
@@ -38,7 +78,51 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
     for (const node of story.nodes) if (node.type === 'dialogue' && 'ink' in node.payload)
       storyKnots.add(`${node.payload.ink.storyId}:${node.payload.ink.knot}`);
   }
+  const inkStories = new Map((context.inks ?? []).map((ink) => [ink.storyId, ink.structure]));
+  const flags = new Set<string>();
+  for (const entry of entries) if (entry.kind === 'quest')
+    for (const flag of (entry.value as ContentValues['quests'][number]).flagIds) flags.add(flag);
+  for (const ink of context.inks ?? []) {
+    ink.structure.readFlags.forEach((flag) => flags.add(flag));
+    ink.structure.tags.filter((tag) => tag.opcode === 'flag/set').forEach((tag) => {
+      const flag = tag.args['flagId'];
+      if (flag !== undefined) flags.add(flag);
+    });
+  }
+  const checkGateExpr = (expression: unknown, path: string): void => {
+    if (typeof expression !== 'object' || expression === null) return;
+    const value = expression as Record<string, unknown>;
+    if (typeof value['quest'] === 'string' && !has('quest', value['quest']))
+      throw new TypeError(`CONTENT_REF:${path}:quest:${value['quest']}`);
+    if (typeof value['flag'] === 'string' && !flags.has(value['flag']))
+      throw new TypeError(`CONTENT_REF:${path}:flag:${value['flag']}`);
+    if (typeof value['item'] === 'string' && !has('item', value['item']))
+      throw new TypeError(`CONTENT_REF:${path}:item:${value['item']}`);
+    for (const child of Object.values(value))
+      if (Array.isArray(child)) child.forEach((item) => checkGateExpr(item, path));
+      else checkGateExpr(child, path);
+  };
   for (const entry of entries) {
+    if (entry.kind === 'regionGate')
+      checkGateExpr((entry.value as ContentValues['regionGates'][number]).expression, entry.path);
+    if (entry.kind === 'regionDialogue') {
+      const binding = entry.value as ContentValues['regionDialogues'][number];
+      if (binding.condition !== undefined) checkGateExpr(binding.condition, entry.path);
+      if (binding.noDialogue !== true) {
+        const story = inkStories.get(binding.storyId!);
+        if (story === undefined)
+          throw new TypeError(`CONTENT_REF:${entry.path}:inkStory:${binding.storyId!}`);
+        if (story.chapter !== binding.chapter)
+          throw new TypeError(`CONTENT_REF:${entry.path}:inkChapter:${binding.storyId!}:${binding.chapter}`);
+        if (!story.entryKnots.includes(binding.entryKey!))
+          throw new TypeError(`CONTENT_REF:${entry.path}:inkKnot:${binding.storyId!}:${binding.entryKey!}`);
+      }
+    }
+    if (entry.kind === 'regionLoot') {
+      const binding = entry.value as ContentValues['regionLoot'][number];
+      for (const item of binding.items) if (!has('item', item.itemId))
+        throw new TypeError(`CONTENT_REF:${entry.path}:item:${item.itemId}`);
+    }
     if (entry.kind === 'martialArt') {
       const skill = entry.value as ContentValues['martialArts'][number];
       for (const moveId of skill.moveIds) if (moveRegistryActive && !has('move', moveId))
@@ -156,22 +240,24 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
   }
 }
 
-export function loadContent(files: readonly ContentFile[]): ContentRegistry {
+export function loadContent(files: readonly ContentFile[], context: ContentReferenceContext = {}): ContentRegistry {
   const entries = [...files].sort((left, right) => compareCodePoints(left.path, right.path)).map(parseContentFile);
+  validateBindingOwnership(entries);
   const lookup = new Map<string, unknown>();
   const globalIds = new Map<string, RegisteredContentKind>();
   for (const entry of entries) {
     const id = identity(entry.kind, entry.value as Identified);
     const key = `${entry.kind}:${id}`;
     if (lookup.has(key)) throw new TypeError(`CONTENT_DUPLICATE:${key}`);
-    if (entry.kind !== 'shop' && entry.kind !== 'story' && entry.kind !== 'town') {
+    if (entry.kind !== 'shop' && entry.kind !== 'story' && entry.kind !== 'town' &&
+        entry.kind !== 'regionDialogue') {
       const previous = globalIds.get(id);
       if (previous !== undefined) throw new TypeError(`CONTENT_GLOBAL_DUPLICATE:${id}:${previous}:${entry.kind}`);
       globalIds.set(id, entry.kind);
     }
     lookup.set(key, entry.value);
   }
-  validateReferences(entries, lookup);
+  validateReferences(entries, lookup, context);
   entries.sort((left, right) => contentKindOrder(left.kind) - contentKindOrder(right.kind) || compareCodePoints(identity(left.kind, left.value as Identified), identity(right.kind, right.value as Identified)));
   const values = (kind: RegisteredContentKind): readonly unknown[] => entries.filter((entry) => entry.kind === kind).map((entry) => entry.value);
   const registry: ContentRegistry = {
@@ -184,6 +270,9 @@ export function loadContent(files: readonly ContentFile[]): ContentRegistry {
     events: values('event') as ContentValues['events'], bookWorlds: values('bookWorld') as ContentValues['bookWorlds'],
     chapters: values('bookWorld') as ContentValues['chapters'],
     towns: values('town') as ContentValues['towns'],
+    regionGates: values('regionGate') as ContentValues['regionGates'],
+    regionDialogues: values('regionDialogue') as ContentValues['regionDialogues'],
+    regionLoot: values('regionLoot') as ContentValues['regionLoot'],
     get: <T>(kind: RegisteredContentKind, id: string) => lookup.get(`${kind}:${id}`) as T | undefined,
     require: <T>(kind: RegisteredContentKind, id: string) => {
       const value = lookup.get(`${kind}:${id}`);

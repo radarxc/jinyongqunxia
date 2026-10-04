@@ -100,6 +100,16 @@ export const CONTENT_FIELD_REGISTRY: Readonly<Record<ContentKind, readonly Field
   acupoint: [...common, { pattern: 'sourceRef', class: 'authoring' },
     { pattern: 'gameMeridian', class: 'contentRef' },
     { pattern: 'standardMeridian', class: 'contentRef' }, { pattern: '*', class: 'rule' }],
+  regionGate: [{ pattern: 'expression.quest', class: 'contentRef' },
+    { pattern: 'expression.item', class: 'contentRef' },
+    { pattern: 'lockedTextKey', class: 'contentRef' },
+    { pattern: 'note', class: 'authoring' }, { pattern: '*', class: 'rule' }],
+  regionDialogue: [{ pattern: 'storyId', class: 'contentRef' },
+    { pattern: 'entryKey', class: 'contentRef' },
+    { pattern: 'condition.quest', class: 'contentRef' },
+    { pattern: 'condition.item', class: 'contentRef' }, { pattern: '*', class: 'rule' }],
+  regionLoot: [{ pattern: 'items.*.itemId', class: 'contentRef' },
+    { pattern: '*', class: 'rule' }],
 };
 
 function matches(pattern: string, path: readonly string[]): boolean {

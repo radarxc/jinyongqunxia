@@ -1,0 +1,6 @@
+schemaVersion: region-gate.v1
+gateId: gate_10_fengshi_dongmen
+chapter: ch10_baima
+expression:
+  flag: fl_10_cold_entry_talked
+lockedTextKey: ch10.coldEntry.interact.eastGateLocked

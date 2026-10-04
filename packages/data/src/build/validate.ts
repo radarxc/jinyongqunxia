@@ -4,7 +4,8 @@ import type { ContentFile } from '../content-registry';
 import { discoverContent } from './discover';
 import { parseInkMeta } from './ink';
 import { parseInkSources } from './pipeline';
-import { validateTiledMaps } from './tiled';
+import { validateRegionBindingMaps } from './region-bindings';
+import { compileTiledMap, validateCompiledTiledMaps } from './tiled';
 import type { Diagnostic } from './types';
 
 export interface ContentValidationResult {
@@ -31,7 +32,6 @@ export async function validateContent(rootDir: string): Promise<ContentValidatio
   const content = sources
     .filter((source) => source.kind === 'content')
     .map(({ path, text }): ContentFile => ({ path, text }));
-  const registry = loadContent(content);
   const inkPaths = new Set(
     sources.filter((source) => source.kind === 'ink').map((source) => source.path),
   );
@@ -40,12 +40,17 @@ export async function validateContent(rootDir: string): Promise<ContentValidatio
     if (!inkPaths.has(inkPath)) parseInkMeta(source.text, source.path);
   }
   const inks = await parseInkSources(sources);
-  const maps = sources
+  const registry = loadContent(content, { inks });
+  const mapSources = sources
     .filter((source) => source.kind === 'tiled')
     .map(({ path, absolutePath, text }) => ({ path, absolutePath, text }));
+  const maps = [];
+  for (const source of mapSources) maps.push(await compileTiledMap(source));
   const diagnostics = [
     ...inks.flatMap((ink) => ink.diagnostics),
-    ...(await validateTiledMaps(maps)),
+    ...maps.flatMap((map) => map.diagnostics),
+    ...validateCompiledTiledMaps(maps),
+    ...validateRegionBindingMaps(maps, registry),
   ];
 
   return {
@@ -53,7 +58,7 @@ export async function validateContent(rootDir: string): Promise<ContentValidatio
     fileCount: validatedSources.length,
     objectCount: registry.entries.length,
     inkStoryCount: inks.length,
-    mapCount: maps.length,
+    mapCount: mapSources.length,
     diagnostics,
   };
 }

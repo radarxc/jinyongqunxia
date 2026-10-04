@@ -8,3 +8,10 @@ M1 Ink 动作使用 `quest/advance`、`battle/start`、`flag/set`、`party/giveI
 `ui/openAllocation`、`ui/showTitleCard`、`save/autosave`、`dialogue/speaker`。
 参数必须是 `key=value` 标量；未知、重复、多余、缺失或值域错误均阻断构建。
 发布前运行 `pnpm content:build`，不得手改 `.cache/content-build/` 或 `dist/content/`。
+
+区域 binding 按章节放在
+`content/chapters/<ch>/bindings/{gates,dialogues,loot}/*.yaml`。三类文件分别使用
+`region-gate.v1`、`region-dialogue.v1`、`region-loot.v1`，并随对应章节、区域按需装载。
+Door 的 `lockedBy`、Chest 的 `lootRef` 必须有同章登记；NpcSpawn 必须有
+`sceneId + anchorId` 对话登记，明确无对话时也须写同一 `region-dialogue.v1`，以
+`noDialogue: true` 取代 `storyId + entryKey`。不要在 `.tmj` 中另造无对话标志。

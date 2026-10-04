@@ -4,6 +4,7 @@ export * from './ink';
 export * from './leaves';
 export * from './manifest';
 export * from './pipeline';
+export * from './region-bindings';
 export * from './remaps';
 export * from './split-fields';
 export * from './tiled';

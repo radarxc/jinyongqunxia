@@ -10,6 +10,7 @@ import { compileInk, type CompiledInk } from './ink';
 import { emitLeaves, packSizeDiagnostics } from './leaves';
 import { createManifest, manifestBytes } from './manifest';
 import { applyPathRemaps, parseIdRemaps, validatePathRemaps } from './remaps';
+import { regionBindingsForMaps, validateRegionBindingMaps } from './region-bindings';
 import { splitContentEntry } from './split-fields';
 import { compileTiledMap, validateCompiledTiledMaps } from './tiled';
 import type { CompiledRegionMap } from './tiled-types';
@@ -21,7 +22,10 @@ interface BuildEntry extends ContentEntry {
 const chapterToken = (chapter: string): string => chapter.slice(0, 4);
 const identity = (entry: ContentEntry): string => {
   const value = entry.value as Record<string, unknown>;
-  return String(value['id'] ?? value['key'] ?? value['lineId'] ?? value['cityId']);
+  return String(value['id'] ?? value['gateId'] ?? value['lootRef'] ??
+    (entry.kind === 'regionDialogue'
+      ? `${String(value['sceneId'])}/${String(value['anchorId'])}`
+      : value['key'] ?? value['lineId'] ?? value['cityId']));
 };
 function owner(entry: ContentEntry): string {
   const value = entry.value as Record<string, unknown>;
@@ -142,6 +146,9 @@ export function regionRulesLogicalName(scope: `ch${number}` | 'world', regionId:
   const token = regionId.replaceAll('_', '-');
   return scope === 'world' ? `world.rules.region.${token}.json` : `${scope}.rules.${token}.json`;
 }
+export function regionBindingsLogicalName(scope: `ch${number}`, regionId: string): string {
+  return regionRulesLogicalName(scope, regionId).replace(/\.json$/u, '.bindings.json');
+}
 async function parseTiledSources(
   sources: readonly DiscoveredSource[],
 ): Promise<readonly CompiledRegionMap[]> {
@@ -187,6 +194,7 @@ function partitions(
   inks: readonly CompiledInk[],
   locale: string,
   maps: readonly CompiledRegionMap[],
+  registry: ReturnType<typeof loadContent>,
 ): readonly BuildLeaf[] {
   const leaves: BuildLeaf[] = [];
   const split = entries.map((entry) => ({ entry, value: splitContentEntry(entry) }));
@@ -236,19 +244,16 @@ function partitions(
     const regionMaps = maps
       .filter((entry) => entry.regionId === regionId && entry.chapterScopes.includes('all'))
       .sort((left, right) => compareCodePoints(left.sceneId, right.sceneId));
-    if (regionMaps.length > 0)
-      leaves.push({
-        logicalName: regionRulesLogicalName('world', regionId),
-        kind: 'rules',
-        load: 'region',
-        region: regionId,
-        value: regionMaps.map((map) => map.map),
-      });
+    if (regionMaps.length > 0) leaves.push({
+      logicalName: regionRulesLogicalName('world', regionId), kind: 'rules', load: 'region',
+      region: regionId, value: regionMaps.map((map) => map.map),
+    });
   }
   for (const chapter of chapterIds(entries, inks, maps)) {
     const token = chapterToken(chapter);
     const chapterEntries = split.filter(
-      ({ entry }) => entry.owner === chapter || entry.owner === token,
+      ({ entry }) => (entry.owner === chapter || entry.owner === token) &&
+        !entry.kind.startsWith('region'),
     );
     const chapterInks = inks.filter((ink) => ink.structure.chapter === chapter);
     const entryRules = makeRules(chapterEntries) as JsonValue[];
@@ -281,6 +286,10 @@ function partitions(
       const regionMaps = maps
         .filter((entry) => entry.regionId === regionId && entry.chapterScopes.includes(chapter))
         .sort((left, right) => compareCodePoints(left.sceneId, right.sceneId));
+      const visibleRegionMaps = maps
+        .filter((entry) => entry.regionId === regionId &&
+          (entry.chapterScopes.includes('all') || entry.chapterScopes.includes(chapter)))
+        .sort((left, right) => compareCodePoints(left.sceneId, right.sceneId));
       if (regionMaps.length > 0)
         leaves.push({
           logicalName: regionRulesLogicalName(token as `ch${number}`, regionId),
@@ -289,6 +298,19 @@ function partitions(
           region: regionId,
           value: regionMaps.map((map) => map.map),
         });
+      if (visibleRegionMaps.length > 0) {
+        const bindings = regionBindingsForMaps(visibleRegionMaps, registry, chapter, regionId);
+        const rows = [
+          ...bindings.gates.map((value) => ({ kind: 'regionGate', id: value.gateId, value })),
+          ...bindings.dialogues.map((value) => ({ kind: 'regionDialogue',
+            id: `${value.sceneId}/${value.anchorId}`, value })),
+          ...bindings.loot.map((value) => ({ kind: 'regionLoot', id: value.lootRef, value })),
+        ] as unknown as JsonValue;
+        leaves.push({ logicalName: regionBindingsLogicalName(token as `ch${number}`, regionId),
+          kind: 'rules', load: 'region', region: regionId, value: {
+            schemaVersion: 'region-bindings-leaf.v1', chapter, regionId, entries: rows,
+          } as JsonValue });
+      }
     }
   }
   return leaves;
@@ -375,15 +397,16 @@ export async function buildContent(options: BuildOptions = {}): Promise<ContentB
             source.path.startsWith(`content/world/${chapterTokenFilter}/`)),
       )
       .map(({ path, text }): ContentFile => ({ path, text }));
-    const registry = loadContent(contentSources);
+    const inks = await parseInkSources(sources);
+    diagnostics.push(...inks.flatMap((ink) => ink.diagnostics));
+    const registry = loadContent(contentSources, { inks });
     const entries = registry.entries.map((entry): BuildEntry => ({
       ...entry,
       owner: owner(entry),
     }));
-    const inks = await parseInkSources(sources);
-    diagnostics.push(...inks.flatMap((ink) => ink.diagnostics));
     const maps = await parseTiledSources(sources);
-    diagnostics.push(...maps.flatMap((map) => map.diagnostics), ...validateCompiledTiledMaps(maps));
+    diagnostics.push(...maps.flatMap((map) => map.diagnostics), ...validateCompiledTiledMaps(maps),
+      ...validateRegionBindingMaps(maps, registry));
     if (diagnostics.some((entry) => entry.severity === 'error'))
       return {
         chapters: [],
@@ -399,7 +422,7 @@ export async function buildContent(options: BuildOptions = {}): Promise<ContentB
     const localeEntries = sources
       .filter((source) => source.kind === 'locale' && source.path.includes(`/locales/${locale}/`))
       .reduce<Record<string, string>>((all, source) => ({ ...all, ...parseLocale(source) }), {});
-    const baseLeaves = partitions(entries, inks, locale, maps);
+    const baseLeaves = partitions(entries, inks, locale, maps, registry);
     diagnostics.push(...localeDiagnostics(locale, baseLeaves, localeEntries));
     const leaves = baseLeaves.map((leaf) =>
       leaf.kind !== 'text' || Object.keys(localeEntries).length === 0
