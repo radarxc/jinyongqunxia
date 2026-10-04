@@ -303,20 +303,33 @@
   - path: assets/default/scene/ch01/cg_ch01_songhe_wine_oath.png
     sha256: edd7ef2e6576b33a142c567a5b8e7af59f2807fd24376c78878e85023cf5e98d
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_songhe_wine_oath.edd7ef2e.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T15:47:40-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_songhe_wine_oath.s1.png
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:11:24.489822-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_29_45_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: d20de21958d21fa8966d918f397297a3c7e8c1427cdfc9386da36fa6b5d9ddef
+  sha256: 21e05e34910564eaef5c944a004fa56380516057205742f02f0615415a1488f9
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「松鹤豪饮」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「松鹤豪饮」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留原画侧向结义神态与暗室暖光，鼻尖朝图右。；质检：已打开base与改前后：侧转头向下五官仍为基准同人，严肃举杯神态、原光向与胡须自然无接缝；段誉酒器题字等头外逐像素保留
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_songhe_wine_oath.edd7ef2e.png
     sha256: edd7ef2e6576b33a142c567a5b8e7af59f2807fd24376c78878e85023cf5e98d
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_songhe_wine_oath.edd7ef2e.entry.yaml
   effort: ultra
+  ar84_alignment:
+    job: ar84_calign_29_45_r1
+    before_sha256: d20de21958d21fa8966d918f397297a3c7e8c1427cdfc9386da36fa6b5d9ddef
+    box:
+    - 276
+    - 207
+    - 446
+    - 381
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_29_45_r1.png
+    outside_changed_pixels: 0
 - id: cg_ch01_yanmen_life_for_life
   file: cg_ch01_yanmen_life_for_life.png
   category: scene
