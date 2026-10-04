@@ -255,56 +255,41 @@
   category: character/female
   style: default
   subject: 李文秀·白马向东（ch10_baima）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次极小的局部修图。第 1 张是李文秀定稿立绘的脸部特写（基线，脸上没有斑）；第 2 张是待修原图的脸部放大，红圈圈出了要去掉的那块斑（红圈只是标记，结果里不要出现红圈）；第 3 张是待修的完整原图。请以第 3 张为底稿，只做下面这一处修改，输出修改后的完整图片：2:3 竖幅，构图与第 3 张完全一致。
 
-    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+    【只改这一处】她右脸颊（画面左侧）眼睛下方、颧骨上那一颗圆形的深褐色斑点（像一颗大痣，直径约有眼睛宽度的一半）必须完全去掉，那里换成和周围一样干净的皮肤，只保留一点自然的风吹日晒红晕；改完后脸上任何地方都不能再有褐色圆斑。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【其余一律不动】五官、脸型、表情、头巾、头发、衣服、姿势、其他人物和马、背景、光线、题字与印章、笔触与画风都和第 3 张一致；不要重画、不要美化、不要改构图。
 
-    【主角】李文秀；沉静坚韧、善良而不强求爱情、草原风霜中清丽而温柔。原创新脸设计：成年二十四五岁视觉，长椭圆脸、平直舒眉、自然大小杏眼、略宽鼻翼和薄唇，左颊两点极淡晒斑、嘴角微微不对称；骨相成熟，避免婴儿肥和圆眼，不复制基线脸。
+    【画风】项目的写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。修过的皮肤与周围的质感、光影自然衔接。
 
-    【本期】白马向东；同一成年骨相，朴素灰白唐式行旅袍、沙褐短披风，高束发露出女性面貌；手挽老白马缰绳，腰畔小行囊，不持剑；出发前保持人物正面全身。
-
-    【阶段背景】东归沙路与风中枯草、辽阔晨光，老白马半身位于人物侧后，保留背景。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
-
-    【考据边界】第八回结尾，已接受苏普与阿曼相爱，独自东归。；服色剪裁与站位（原创扩展）；先上传本轮新 base 锁脸。；配色、镜头、成人化、具体站姿是（原创扩展）。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
-  negative: ''
+    【不要】不要红圈或任何标记；不要新增东西；不要文字水印；不要水平镜像。'
+  negative: 不要红圈或任何标记；不要新增东西；不要文字水印；不要水平镜像。
   references:
   - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png
-    sha256: cd8225f8762b31a6f9ea314590cadc82d0d2f17f07dd4f4e327f863c891057da
-    uploaded_sha256: cd8225f8762b31a6f9ea314590cadc82d0d2f17f07dd4f4e327f863c891057da
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: .agents/coord/imagegen-reference/author-20261002/linghuchong_game_cover_wuyuejianpai.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_liwenxiu__ch10_youth_astuo_base_game.jpg
-    sha256: c81b4af6e1db5d5be88098a15842a4874f8bdebc87477a7bdf4c41da84b4415f
-    uploaded_sha256: 1dbcee0ba1079c3a943da69b67439cb10c627585bb67f755514f52a2a073bb23
-    use: 经典游戏绘画风格
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
+    sha256: f310c81427c1eb88f90bb9a47125e11f40b8365169b2336cbce38175b1b16adf
+    use: 对脸基线：作者审核通过的 por_npc_liwenxiu__ch10_youth_astuo_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.png
+    sha256: 73fe79cacf42db89ed19fee0d0f087783179f61f1876f52d52966c8905d3c002
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.73fe79ca.png
+  tool: codex exec · image_gen（AR-53 局部小修：去掉右颊褐斑；上传基线脸部特写、标了红圈的原图脸部放大、原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T00:20:30-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.png
+  created: 2026-10-03T18:20:13-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.x2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 73fe79cacf42db89ed19fee0d0f087783179f61f1876f52d52966c8905d3c002
+  sha256: a7787c1c41d0263143251d87453eed6557c02b5585d63a0981c641591cb67a5b
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_liwenxiu__ch10_youth_astuo_base（AR-53 / AR-56 总审：去掉右颊褐斑，其余不动（第 2 次，加红圈标记参考））
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.retry3.r1
   quality_retries: 0
   history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.73fe79ca.png
+    sha256: 73fe79cacf42db89ed19fee0d0f087783179f61f1876f52d52966c8905d3c002
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.73fe79ca.entry.yaml
 - id: por_npc_yalixian__ch10_youth_memory_base
   file: por_npc_yalixian__ch10_youth_memory_base.png
   category: character/female
