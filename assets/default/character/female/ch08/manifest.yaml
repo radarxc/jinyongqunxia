@@ -80,45 +80,62 @@
   category: character/female
   style: default
   subject: 索菲娅 npc_suofeiya ch08_luding
-  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（索菲娅的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改索菲娅的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+  prompt: '【任务】AR-73 / AR-89：以图1 hist-batch1索菲娅B为改定目标，图2是B脸部特写；图3为索菲娅晚年追绘画像，只提供族群与王室身份方向，不能照搬厚颊胖颈；图4现base只锁构图、站姿、双手、文书和背景。
 
-    【人物】索菲娅：罗刹国公主，约二十五岁，大胆热情、妩媚。
+    【作者意见】「B，瘦一些，美一些，历史图是发福以后的，画一下少女时期的美感」。画二十出头的成年年轻俄罗斯公主，健康匀称纤秀，明显收瘦B的颊部、下颌、颈部、肩胸与腰身；保留B辨识度：深栗色卷发、东欧眉眼、鼻形和唇形关系，去掉中年厚颊和双下巴。五官清秀秀美，眉眼明亮自然、下颌柔和，不用夸张锥子脸、过高鼻、大眼丰唇或磨皮模板。神情年轻自信而端雅，可闭唇极浅微笑，绝不露齿。
 
-    【新神态（按年龄与性格定，不要千篇一律的平静脸）】大胆妩媚的笑：眼神热情带笑，嘴角上扬，大方自信。
+    【服饰与动作】仍是B的十七世纪俄罗斯公主装束：软头巾与珠绣饰、深栗卷发、灰蓝高领内裙、暗酒红外长袍、窄毛边与金色绣饰，厚实不透明织物；不能换成现代晚礼服或欧洲十八世纪蓬裙。收腰自然随匀称体态，不紧身、不袒露，人物高度和裙摆长度不变。右手折叠外交文书、左手低位指挥，头颈端正，全身自然站姿照现base。
 
-    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+    【共同约束】单人单视图、完整全身，1024×1536、2:3竖幅、不透明PNG。人物站姿、双手动作、视角、头部方向、位置、占画面尺度、头顶与足底留白、背景底色及水墨景物严格照现base，不能改变或新增场景。项目精细写实数字手绘：真实骨肉和织物体积、自然五官不对称、柔和左上光、细腻笔触，纸纹水墨只在背景，不能画成平涂古画、照片、油画厚涂或3D。允许指定的脸、体态、冠服改定；人物高度不变。完整双手与双足、入鞘兵器，不增器物。只输出一张定稿，不做拼图。
 
-    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+    【不要】不要文字、题字、画框、印章、水印、第二人、脸部特写框、多视图、现代衣饰、网红脸、动漫大眼、塑料磨皮、古画平涂、多肢、断手断足、裁掉帽或脚；不镜像现base。历史画像上的文字与边框绝不画入新图。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
-
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+    '
+  negative: 不要文字、题字、画框、印章、水印、第二人、脸部特写框、多视图、现代衣饰、网红脸、动漫大眼、塑料磨皮、古画平涂、多肢、断手断足、裁掉帽或脚；不镜像现base。历史画像上的文字与边框绝不画入新图。
   references:
-  - path: assets/default/character/female/ch08/por_npc_suofeiya__ch08_youth_regent_base.png
-    sha256: d4ecb450609e6183483fc5820fc0a6a192227361c4e5ca2dfe959f4553b3fa5e
-    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_suofeiya__ch08_youth_regent_base.d4ecb450.png
-  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
-  model: gpt-6-astra
-  effort: ultra
-  created: 2026-10-03T20:40:28-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_suofeiya__ch08_youth_regent_base.x1.png
+  - path: .agents/coord/_lines/hist-batch1/npc_suofeiya_B.png
+    sha256: 4886afe8b8a56ccc0a178bcd1bf50286eb85ed09e4ee9bad7d2db04839b83067
+    use: 作者选定的B候选；面容、指定体态与冠饰基准
+    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_suofeiya.r1__ref1.jpg
+    uploaded_sha256: df0591c2c9b83997b1182ecbffa3ec6b4be92070d32c5277437839ce564687e8
+  - path: .agents/coord/_lines/hist-batch1/qa/npc_suofeiya_B_face.png
+    sha256: 4a088018e503b0653fffc01a3a8a3af4243485df21426ab96a8443dff419d793
+    use: 作者选定候选的脸部特写
+    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_suofeiya.r1__ref2.jpg
+    uploaded_sha256: 3092798b0b136515be1f8b0aad1e29d9ae8e8019d17bfc15be174fe12545c004
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/historical/npc_suofeiya/historical_original_full.jpg
+    sha256: 829c168882bd5daed81235ac3d563605c87b9977e45136da0d85aa218d9f031b
+    use: 历史画像；仅指定冠服及身份参考
+    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_suofeiya.r1__ref3.jpg
+    uploaded_sha256: b1140dffa00f67f21b58e7e80eec7f451e64d92962c3ab65b157239aa5d079c7
+  - path: .agents/coord/_lines/hist-r2/before/npc_suofeiya.png
+    sha256: 84379885c8c0c2006db802cdf31a8fe4dba83f9da559d2379f19669d10856c65
+    use: 改前base；站姿、構图、尺寸、底色和器物基准
+    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_suofeiya.r1__ref4.jpg
+    uploaded_sha256: 5b3ad318a68d6455641553a63798c5de0e6a5b3ba9294ade131312cace5c11c5
+  tool: codex exec · image_gen（AR-73 / AR-89 历史画像与作者意见改定；codex_w34队列）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: '2026-10-04T00:57:20-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w34/out/hist89_npc_suofeiya.r1.png
   size: 1024x1536
   mode: RGB
-  sha256: 84379885c8c0c2006db802cdf31a8fe4dba83f9da559d2379f19669d10856c65
+  sha256: 1f7303778fb1a56df00b55e9753951c52d0158194a3aeb958519bd7012806f91
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_suofeiya__ch08_youth_regent_base.d4ecb450.png
-    sha256: d4ecb450609e6183483fc5820fc0a6a192227361c4e5ca2dfe959f4553b3fa5e
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_suofeiya__ch08_youth_regent_base.d4ecb450.entry.yaml
+    png: .agents/coord/_lines/hist-r2/before/npc_suofeiya.png
+    sha256: 84379885c8c0c2006db802cdf31a8fe4dba83f9da559d2379f19669d10856c65
+    entry: .agents/coord/_lines/hist-r2/before/npc_suofeiya.manifest.json
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_suofeiya__ch08_youth_regent_base.requests.json
   notes: '实际查看候选1：索菲娅为成年青年东欧面容、金棕卷发蓝灰眸，软头巾、灰蓝高领内衣及暗酒红前开长袍、窄毛边，右手折叠外交书左手低位指挥；非东亚基线脸，非童年阶段。头颈正直眼线水平，单人整体衣装完整可读，无明显多肢重大结构问题，按用户快速宽松自查保留可用。体态与脸明显比设定高大丰满更纤细、造型更理想化；衣饰花纹金属件偏多，左脚被裙摆覆盖而右鞋清楚，背景花枝小亭偏具体。以上据实登记为待细修偏差，不宣称严格符合体量和两足展示，不为小比例或鞋遮挡重做。原生1024×1536 RGB不透明PNG原始字节保存，candidate待审核，不冒称历史肖像或approved。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角）·10 号出图员：大胆妩媚的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角）·10 号出图员：大胆妩媚的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+
+    AR-73 / AR-89 照历史画像，作者意见：B，瘦一些，美一些，历史图是发福以后的，画一下少女时期的美感；取hist-batch1 B，二十出头、健康匀称，收瘦颊颈腰身、五官秀美，仍为俄罗斯公主服饰。 实际打开全身和独立脸部特写检查通过；站姿、构图、尺寸、底色沿现base。生成PNG原始字节入库。场景立绘、插图、A字图待作者看过后对齐，见 .agents/coord/_lines/hist-r2/align_todo.tsv。'
   source_size: 1024x1536
 - id: por_npc_chenyuanyuan__ch08_prime_recluse_base
   file: por_npc_chenyuanyuan__ch08_prime_recluse_base.png
