@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_nansongzihexicailuoshanqun_nv
+name: 南宋紫褐细裁罗衫裙·女
+kind: armor
+sub: clothing
+grade: 4
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongzihexicailuoshanqun_nv
+text:
+  desc: 外观：南宋女款，合领对襟罗衫。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=female。
+  lore: （原创扩展）据南宋黄昇墓衣物裁形演成紫褐女式罗衫裙，合领对襟无纽袢，内层与细褶长裙完整。细织缘与密缝落衫裙缘；墓中包袱衣仅作裁形依据，不复刻殓服层数，整套只计一件。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 39

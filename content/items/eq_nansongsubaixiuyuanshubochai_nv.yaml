@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_nansongsubaixiuyuanshubochai_nv
+name: 南宋素白绣缘束帛钗·女
+kind: armor
+sub: headwear
+grade: 8
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 南宋；出现书界 ch02/ch03；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；中国丝绸博物馆，南宋黄昇墓紫褐色罗印金彩绘花边单衣 https://www.chinasilkmuseum.com/gskt/info_319.aspx?itemid=31584；黄昇墓包袱随葬衣物仅作实物裁形依据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongsubaixiuyuanshubochai_nv
+text:
+  desc: 外观：南宋女款，束帛、双股小钗。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: （原创扩展）据南宋首饰语汇演成素白女式束帛钗，束帛与双股小钗合为一组，簪首花叶小而克制。细密花缘绣只用于束帛和簪首织缘；穿戴先理钗股，金属不涂白漆，组合仅占头槽。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11

@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_nansongfeihongxiuyuansuyuanweipi_tongyong
+name: 南宋绯红绣缘素缘围披
+kind: armor
+sub: cape
+grade: 8
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 南宋；出现书界 ch02/ch03；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；中国丝绸博物馆，南宋黄昇墓紫褐色罗印金彩绘花边单衣 https://www.chinasilkmuseum.com/gskt/info_319.aspx?itemid=31584；黄昇墓包袱随葬衣物仅作实物裁形依据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongfeihongxiuyuansuyuanweipi_tongyong
+text:
+  desc: 外观：南宋通用款，无袖宽幅前开披。 待运行时投影：defOutK=0.025; hpMaxK=0.005。
+  lore: （原创扩展）据南宋披覆语汇演成绯红通用素缘围披，无袖宽幅前开，领口系绦，便于整幅收拢。细密花缘绣用于披缘；行旅先系稳领绦，裁片为原创，不从墓衣虚构披风，也不复制鹤氅或油绢雨披。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6
