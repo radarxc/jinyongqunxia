@@ -2098,3 +2098,4 @@
     - **开发监督**：OPS_RUNBOOK 已写（bd6e6fb0），TOOL-ops-dispatch 已登记（a2114018）。它合入并跑稳一小时后，开发监督交接退场。
     - **素材线追踪**：补位器脚本化，进度写进 `_inbox/artw3.md`，然后交接退场。
     - **Tripo**：子代理在写 `tools/model3d/tripo_web.js` 和 `.claude/skills/tripo-web/SKILL.md`。
+  - **10-03 20:40 素材线第三波追踪（Claude 子代理）退场，按 AR-65 交接**：已合入 ART-ui-icons 7aafb177、ART-rig-std-refs eed4b372、ART-rig-sheet-f 8d9793b2、ART-ruins-tiles 6ae1edcd、ART-cast-fill-c 88ad459e / -d 5b2b8753、TOOL-city-generic 05eecb28、城图第 1 批 CITY-layouts-ch10-a d60f1a5c（汇总 0ba14fa5）、特效 13 门（共 23/45）。基础设施：step.py 稀疏检出 fba964f5 / 579862b7 / eb1fa142、run.py 防截断跳过 skip-worktree 54fc1e6c。在跑：城图补位器与特效补位器（脱离进程，LINE_CAP=1，每批合入自动写 `.agents/coord/_inbox/artw3.md`）；TOOL-rig-parts-f r1 FAIL 自动返修中；TOOL-rig-std-parts 由协调者 wait_attempt.py 放行。接手说明 `.agents/coord/_handoff/artw3/HANDOFF_GPT.md`（.agents 不入库）。
