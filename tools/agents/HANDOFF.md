@@ -1924,4 +1924,14 @@
       - 负载 50 那次：content-plugin 的 town integration 和 combat bench 的 transaction bus 两条 5 秒超时；
       - 单独重跑 combat bench 3 次都过。
       - 已报协调者，建议：降代码池上限、低负载时重跑 prod_check；`core/bench` 是否比照 AR-33 挪到 check:perf，交协调者 / 作者定。
+  - **10-03 18:40–18:52 开发监督**（协调者 18:45 四点）：
+    - 代码池上限临时 4 → 3（c3dbfa63）。step.py 排队时每轮重读上限。
+      - 负载降到 25 以下、prod_check 转绿后再回 4，回调前先告诉协调者。
+      - 排队中的旧代码 start 启动时已把上限定成 4，要重起才按 3 走，已请协调者处理。
+    - **ENG-content-plugin-timeout**（a9a155e1）：town integration 集成用例显式超时 60 秒。
+      - 协调者裁定：它断言的是功能不是速度，不算放宽。
+      - 驱动 56701，名单第 2 位。
+    - **ENG-event-executor** 第 3 轮执行器退出码 0，校验只栽在 content-plugin 那条 5 秒超时上。建议停返修，改 `--from validate`，等协调者点头。
+    - **ENG-ink-external-args** 已合入（协调者 merge_when_clean）。合入后的 prod_check 等负载降下来再跑，届时一并核对 ink.ts 两边改动合得干不干净。
+    - `core/bench` 计时断言要不要挪到 check:perf：协调者去问作者，在答复前不动。
 
