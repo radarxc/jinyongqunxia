@@ -1,0 +1,13 @@
+{
+  "tool": "built-in image_gen",
+  "model": "undisclosed image backend",
+  "effort": "not exposed by tool",
+  "created": "2026-10-04T00:01:46.686194+00:00",
+  "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_taixuan/codex-home/generated_images/01a10435-5249-7ca2-ae43-5b501a771799/exec-4f51fcf7-40c4-45ed-a0a9-1660aba45f0f.png",
+  "sha256": "45f551df9984d443eb73074e996e75afb8d156d7c0ca2c5e66c36c0d97019edb",
+  "prompt": "Use case: stylized-concept. Asset type: 2D wuxia game VFX raw animation sprite sheet for Taixuan Jing family, harmony nature, original visual interpretation of stone-wall diagram insight. Generate one 1536x1024 landscape image on perfectly pure white #FFFFFF. Exactly FOUR frames in an invisible 2 columns x 2 rows grid; each cell 768x512. No grid lines, borders, labels or text. In EVERY cell place a rightward continuous, translucent golden qi current: broad soft root near local (112,256), width about 130 px, connected to an elegant interweaving rolling wave reaching (680,256). Twisting open golden ribbons and small cloudlike bends recall abstract hand-drawn flow diagrams, absolutely no readable glyphs. Airy Chinese ink-wash spirit with dry-brush gaps, delicate amber-gold contours and diluted pale gold wisps; not metallic solid, not flames, not neon laser. Four closely related temporal states in reading order: gathering, fuller unfurling, full sustained flow, thinning echo. Keep root and axis fixed; first/last still visibly nonempty. Vary only intensity and ribbon curl slightly; keep same identity. All painted material including tiny particles stays INSIDE local x=64..700,y=80..432, with fully blank white margins at least 50px from every cell boundary. A broad soft root must remain visibly connected to the current; no detached projectile. No palm, no person, no weapons, no stones, no scenery, no circles of text, no stars, no interface, no black background, no checkerboard. No pure white highlights inside the qi: brightness via ochre gold color and translucent wash. This is a reusable effect material, not a composed attack scene.",
+  "references": [],
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "inspection": "view_image: selected source, keyed black and gray contact sheets; original bytes preserved"
+}
