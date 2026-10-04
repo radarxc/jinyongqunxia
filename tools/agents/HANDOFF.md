@@ -2423,3 +2423,19 @@
       - 来源：Worker 的 event-executor 块 4.38 → 20.96 kB，对话意图执行并进了首屏共用执行器。
       - 登记并起跑 **ENG-dialogue-runtime-lazy**（79ad43ab）：拆执行器，对话意图专用部分随对话子系统懒加载，验收会话 < 92；名单上与 ENG-battle-modules-lazy 并列，排在 M1 之后，两件都已起。
     - **CONTENT-apparel-data 第 1 批**：r1 只在报告上 FAIL，按协调者裁定只补报告重起；2–8 批说明补了报告要求（b7ad472e）。
+  - **10-04 02:00–02:12 开发监督**：
+    - **ENG-npc-species-roleslot 合入**（02:09）→ **ENG-battle-generic-model 起跑**（驱动 80941，M1 链最后一件，排队中）。
+    - **TOOL-supervise-singleton 合入**（c427b147）：此后新起的 supervise 都带单例锁；正在跑的老驱动不受影响。
+    - TOOL-map-terrain r1 FAIL：大陆外环丢失，内陆城市被判成海；`--check` 会写临时文件。r2 返修后校验过，按协调者裁定只再审一轮，驱动 36436。
+    - 磁盘：协调者清过一次，现在约 12 GiB。ENG-dialogue-runtime-lazy 的工作区已撤，状态记 PENDING，等代码池有位再起。TOOL-step-lazy-worktree 等 M1 之后、磁盘 ≥ 8 GiB 再起。
+  - **10-04 01:41–02:10 协调者**：
+    - AR-90 补充（0f15c65d）：阿朱是「遗憾的笑」，不是眉目含情。xiaojinghu-r5 先杀掉、再带更正续作，做出 r5 入库（362cda69），已发作者。
+    - lvliu-redo 按作者剧照重画绿柳庄，入库 30224ef9，已发作者。赵敏按原著改穿嫩绿女装，地牢是纯钢深井。
+    - hist-align：索菲娅脸用 A、身材改丰满（8de5d65a）；皇太极插图对齐（e898f5c7）。
+    - hist-batch2：21 人候选与三张总览已发作者，没入库。我建议徐达、常遇春穿戎装，不穿封王的红袍。图源已从 _prod 暂存目录同步到主检出 imagegen-reference/historical/。
+    - canon-align 完成，最后提交 b6121d2d：52 张图、56 处头部，含跨书 10 人。
+    - novel-audit 1/2/3 都完成，分别派了 novel-fix-1（w25）、novel-fix-2（w31）、novel-fix-3（w36）。hist-batch2 涉及的历史人物 base 这轮不改，等作者审完一起换。
+    - 清磁盘：删掉已结束 GPT 会话的 codex-home/sessions，以及出图器 home 下 90 分钟前的会话，腾出约 1.8 GiB，余量从 7.6 到 9.3 GiB。待作者决定的 huoqingtong-r2、hist-batch2 保留，正在跑的会话不碰。
+    - M1 已合入：ink-intents 87071d10、ch00b 6fb2b3fd、npc-species 58669ad2；singleton c427b147、storage-perf-split f94676ae 也已合入。
+      - ink-intents 合入后首次会话涨到 96.02，原因是对话意图进了首屏执行器，已登记 ENG-dialogue-runtime-lazy，目标 92 以下。
+    - 待作者：霍青桐 C/D/E；历史第二批 21 人。
