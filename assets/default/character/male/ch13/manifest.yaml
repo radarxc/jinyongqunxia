@@ -1232,15 +1232,29 @@
     use: 身份参考（作者 AR-29：只上传主角与 S 级）
   - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
     use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  tool: codex exec · image_gen（基线画风参考 2 张＋身份参考 1 张）
-  model: gpt-6-astra
-  created: 2026-10-02T02:42:07-0700
-  source_path: .agents/coord/gemini_originals/por_npc_pingasi__ch13_prime_onearm_base.png
+  - path: assets/default/character/male/ch14/por_npc_pingasi__ch14_elder_onearm_base.png
+    sha256: 068de3685a9bf3181d25e1e15aadd3812e9aa60d9affa3b7026f14d21cb83000
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:04:44.596318-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_65_68_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: d0080fe681524ed6abb59391c1f80632d4c2a4864d5cb377622a3a37acab7bf3
+  sha256: 0a123252abb00aecacef217894741ac024e5fd47b23808b77345a69635f676e7
   status: candidate
-  notes: 立绘重审重出（AR-30）；脸和缺右臂都对，但只有眉边一小道疤，原著是「一条粗大的刀疤从右眉起斜过鼻子，一直延到左边嘴角」；保留脸，补全刀疤。
+  notes: 立绘重审重出（AR-30）；脸和缺右臂都对，但只有眉边一小道疤，原著是「一条粗大的刀疤从右眉起斜过鼻子，一直延到左边嘴角」；保留脸，补全刀疤。；AR-84 第二轮：平阿四五官对齐 por_npc_pingasi__ch14_elder_onearm_base；AR-53 仅头部，AR-75 神态与光向保留；平阿四以雪山飞狐戏份最重的晚年独臂版本为身份基准；本图飞狐外传壮年时期，画成约三四十岁的同一个人，保留图1年轻些的发式、肤色，独臂与衣袖、行囊逐像素保持，闭口不笑。；质检：已打开对照：以ch14平阿四基准逆龄为壮年，眉眼宽鼻方颌同人，衣着残臂与阶段原像素保留；不笑、光向自然、接缝不可见
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_65_68_r1
+    before_sha256: d0080fe681524ed6abb59391c1f80632d4c2a4864d5cb377622a3a37acab7bf3
+    box:
+    - 431
+    - 102
+    - 570
+    - 264
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_65_68_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_tianguinong__ch13_prime_base
   file: por_npc_tianguinong__ch13_prime_base.png
   category: character/male
