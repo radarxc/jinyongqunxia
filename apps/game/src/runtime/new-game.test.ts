@@ -8,7 +8,7 @@ import { fixtureContent, fixtureItemPack } from './test-fixture';
 
 vi.mock('virtual:tianshu-content', async () => {
   const { fixtureContent: fixture } = await import('./test-fixture');
-  return { default: fixture() };
+  return { default: fixture(), loadChapterAssets: async () => ({}) };
 });
 vi.mock('virtual:tianshu-towns', () => ({ loadTown: async () => null }));
 
@@ -32,7 +32,7 @@ describe('new game host wiring', () => {
     expect((await production.snapshot()).chapter.chapterId).toBe('ch00_yuenv');
     const preview = createGameSession(content, undefined, undefined, { demo: true });
     expect((await preview.snapshot()).meta.debugTainted).toBe(true);
-    expect((await preview.snapshot()).chapter.chapterId).toBe('ch01_tianlong');
+    expect((await preview.snapshot()).chapter.chapterId).toBe('ch10_baima');
     const created = await production.createNewGame({ identity, difficulty: 'diff_zongshi' });
     expect(created).toMatchObject({ accepted: true, events: [{ t: 'run/created', payload: {
       chapterId: 'ch00_yuenv', difficulty: 'diff_zongshi',
@@ -70,7 +70,7 @@ describe('new game host wiring', () => {
   });
 
   it('loads display text on first detail read and reuses the cache', async () => {
-    const fixture = await fixtureItemPack();
+    const fixture = await fixtureItemPack('ch10_baima');
     const host = await createGameCoreHost({ demo: true, contentSource: fixture.source });
     const updates: string[] = [];
     const off = host.subscribe((update) => {
@@ -82,7 +82,10 @@ describe('new game host wiring', () => {
       const initial = await host.query();
       const item = initial.inventory.find((row) => row.id === 'it_jinchuangyao')!;
       expect(item.name).toBe('金创药');
-      expect(fixture.reads.filter((path) => path.includes('.text.'))).toEqual([]);
+      expect(initial.characters.some((row) => row.name === '李文秀')).toBe(true);
+      expect(fixture.reads.filter((path) => path.includes('.text.'))).toEqual([
+        'ch10_baima/ch10.text.zh-Hans.base.json',
+      ]);
       expect(item.description).toBe('正文载入中……');
       await vi.waitFor(() => expect(updates.some((text) => text !== '正文载入中……'))
         .toBe(true));
@@ -90,7 +93,8 @@ describe('new game host wiring', () => {
       expect(loaded.inventory.find((row) => row.id === item.id)?.description)
         .not.toBe('正文载入中……');
       expect(fixture.reads.filter((path) => path.includes('.text.'))).toEqual([
-        'ch01_tianlong/common.text.zh-Hans.items.json',
+        'ch10_baima/ch10.text.zh-Hans.base.json',
+        'ch10_baima/common.text.zh-Hans.items.json',
       ]);
     } finally { off(); host.dispose(); }
   });

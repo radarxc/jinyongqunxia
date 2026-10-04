@@ -1,16 +1,16 @@
 import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
-import { buildContent } from '@tianshu/data/build';
+import { buildContent, splitContentEntry } from '@tianshu/data/build';
 import { parseContentFile } from '@tianshu/data/tooling';
-import { mapFromRegistration, type MartialArtDef,
-  type NpcDef, type TownRuntimeDefinition } from '@tianshu/data/schemas';
+import type { MartialArtDef, NpcDef, TownRuntimeDefinition } from '@tianshu/data/schemas';
 import { filesIn, publishVfxRuntime, readAssetManifest } from './asset-manifest';
 import { writeCopiedAssetManifest, type CopiedAssetReferenceMap } from './copied-assets';
 import { buildOfflineClosures } from './offline-closure';
 
 const root = resolve(import.meta.dirname, '../../..');
 const virtualId = 'virtual:tianshu-content';
+const chapterPrefix = 'virtual:tianshu-chapter/';
 const townIndexId = 'virtual:tianshu-towns';
 const townPrefix = 'virtual:tianshu-town/';
 let siteContentPromise: ReturnType<typeof buildContent> | undefined;
@@ -23,6 +23,52 @@ async function readTowns(): Promise<TownRuntimeDefinition[]> {
   return Promise.all(paths.map(async (path) =>
     parseContentFile({ path, text: await readFile(path, 'utf8') }).value as TownRuntimeDefinition));
 }
+async function readNpcs(): Promise<NpcDef[]> {
+  const paths = (await filesIn(join(root, 'content/chapters'))).filter((path) =>
+    path.endsWith('.yaml') && path.includes('/npcs/') && !path.includes('/_drafts/'));
+  return Promise.all(paths.map(async (path) =>
+    parseContentFile({ path, text: await readFile(path, 'utf8') }).value as NpcDef));
+}
+async function readWorldMapText(chapter: string): Promise<Readonly<Record<string, string>>> {
+  if (chapter === 'ch00_yuenv') return {};
+  const path = `content/world/${chapter.slice(0, 4)}/map.yaml`;
+  const entry = parseContentFile({ path, text: await readFile(join(root, path), 'utf8') });
+  return splitContentEntry(entry).text;
+}
+const chaptersByToken = {
+  ch00: 'ch00_yuenv', ch01: 'ch01_tianlong', ch02: 'ch02_shediao', ch03: 'ch03_shendiao',
+  ch04: 'ch04_yitian', ch05: 'ch05_xiaoao', ch06: 'ch06_xiake', ch07: 'ch07_bixue',
+  ch08: 'ch08_luding', ch09: 'ch09_liancheng', ch10: 'ch10_baima', ch11: 'ch11_yuanyang',
+  ch12: 'ch12_shujian', ch13: 'ch13_feihu', ch14: 'ch14_xueshan',
+} as const;
+const chapterIds = Object.values(chaptersByToken);
+const chapterIdFromToken = (token: string): string | undefined =>
+  chaptersByToken[token as keyof typeof chaptersByToken];
+function chapterForAsset(id: string, value: { portrait?: string; map?: string }): string | undefined {
+  const path = value.portrait ?? value.map ?? '';
+  const token = path.match(/(?:^|[/_])(ch(?:0[0-9]|1[0-4]))(?:[/_]|$)/u)?.[1] ??
+    id.match(/__(ch(?:0[0-9]|1[0-4]))(?:_|$)/u)?.[1];
+  return token ? chapterIdFromToken(token) : undefined;
+}
+function chapterAssetGroups(assetMap: Awaited<ReturnType<typeof readAssetManifest>>,
+  items: readonly { id: string; chapters: 'any' | readonly string[] }[],
+  npcs: readonly NpcDef[]) {
+  const shared: typeof assetMap = {};
+  const chapters: Record<string, typeof assetMap> = Object.fromEntries(
+    chapterIds.map((chapter) => [chapter, {}]));
+  const itemScopes = new Map(items.map((item) => [item.id, item.chapters]));
+  const npcScopes = new Map(npcs.map((npc) => [npc.id,
+    [...new Set(npc.appearances.map((appearance) => appearance.chapterId))]]));
+  for (const [id, value] of Object.entries(assetMap)) {
+    const inferred = chapterForAsset(id, value);
+    const scopes = value.icon
+      ? itemScopes.get(id) ?? 'any'
+      : npcScopes.get(id) ?? (inferred ? [inferred] : undefined);
+    if (scopes === undefined || scopes === 'any') { shared[id] = value; continue; }
+    for (const chapter of scopes) (chapters[chapter] ??= {})[id] = value;
+  }
+  return { shared, chapters };
+}
 
 /** Build-time YAML and documentation projection: neither parser enters the browser. */
 export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugin {
@@ -30,20 +76,37 @@ export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugi
   const assetReferences: CopiedAssetReferenceMap = new Map();
   let townsPromise: Promise<TownRuntimeDefinition[]> | undefined;
   let assetManifest: ReturnType<typeof readAssetManifest> | undefined;
+  let assetGroups: Promise<ReturnType<typeof chapterAssetGroups>> | undefined;
   let vfxRuntime: ReturnType<typeof publishVfxRuntime> | undefined;
   const towns = () => townsPromise ??= readTowns();
   const assets = async () => assetManifest ??= readAssetManifest(root,
     options.copyAssets !== false, await towns(), copied, assetReferences);
-  const vfx = () => vfxRuntime ??= publishVfxRuntime(root, options.copyAssets !== false, copied, assetReferences);
+  const groupedAssets = () => assetGroups ??= Promise.all([
+    assets(), readDefinitions<{ id: string; chapters: 'any' | readonly string[] }>('content/items'),
+    readNpcs(),
+  ]).then(([manifest, items, npcs]) => chapterAssetGroups(manifest, items, npcs));
+  const vfx = () => vfxRuntime ??= publishVfxRuntime(root,
+    options.copyAssets !== false, copied, assetReferences);
   const content = () => siteContentPromise ??= buildContent({ rootDir: root,
     outputDir: 'apps/game/public/content', cacheDir: '.cache/content-build/vite' });
   return {
     name: 'tianshu-ui-content',
     resolveId(id) {
-      if (id === virtualId || id === townIndexId || id.startsWith(townPrefix)) return '\0' + id;
+      if (id === virtualId || id.startsWith(chapterPrefix) ||
+          id === townIndexId || id.startsWith(townPrefix)) return '\0' + id;
       return null;
     },
     async load(id) {
+      if (id.startsWith('\0' + chapterPrefix)) {
+        const chapter = id.slice(('\0' + chapterPrefix).length);
+        const groups = await groupedAssets();
+        const chapterAssets = chapter === 'shared' || chapter === '__shared__'
+          ? groups.shared : groups.chapters[chapter];
+        if (!chapterAssets) throw new Error(`CHAPTER_ASSET_VIRTUAL_UNKNOWN:${chapter}`);
+        const mapText = chapter === 'shared' || chapter === '__shared__'
+          ? {} : await readWorldMapText(chapter);
+        return 'export default ' + JSON.stringify({ assets: chapterAssets, mapText }) + ';';
+      }
       if (id === '\0' + townIndexId) {
         const definitions = await towns();
         return `export const townIds=${JSON.stringify(definitions.map((town) => town.sceneId))};
@@ -58,13 +121,10 @@ export async function loadTown(id){switch(id){${definitions.map((town) =>
         return 'export default ' + JSON.stringify(definition) + ';';
       }
       if (id !== '\0' + virtualId) return null;
-      const [npcs, skills, maps, meridianText, sectText, assetMap] = await Promise.all([
-        readDefinitions<NpcDef>('content/chapters/ch01_tianlong/npcs'),
+      const [skills, meridianText, sectText] = await Promise.all([
         readDefinitions<MartialArtDef>('content/common/skills'),
-        readDefinitions<unknown>('content/world/ch01'),
         readFile(join(root, 'docs/design/15-meridians-and-acupoints.md'), 'utf8'),
         readFile(join(root, 'docs/design/17-sects-compendium.md'), 'utf8'),
-        assets(),
       ]);
       const topology: { id: string; name: string; points: { id: string; name: string }[] }[] = [];
       const meridianCatalog = meridianText.slice(meridianText.indexOf('## 2.'), meridianText.indexOf('## 3.'));
@@ -86,22 +146,20 @@ export async function loadTown(id){switch(id){${definitions.map((town) =>
       const factions: Record<string, string> = {};
       for (const match of sectText.matchAll(/^\| `(sect_[a-z0-9_]+)` \| ([一-鿿][^|]+) \|/gm))
         factions[match[1]!] ??= match[2]!.trim().replace(/\*|`/g, '');
-      const worldMaps = maps.map(mapFromRegistration).map((map) => ({ ...map, sources: [],
-        travel: { liPerHour: map.travel.liPerHour, stepLi: map.travel.stepLi, note: '' },
-        grid: { width: map.grid.width, height: map.grid.height },
-        nodes: map.nodes.map(({ coordinateNote: _coordinateNote, ...node }) => node),
-        roads: map.roads.map(({ note: _note, ...road }) => road),
-      }));
-      return 'export default ' + JSON.stringify({ npcs, skills, topology,
-        factions, assets: assetMap, worldMaps,
-        townEventAnchors: [], townNpcWorld: { presences: [], relationships: [] },
-        townNpcPlacements: [] }) + ';';
+      const base = JSON.stringify({ npcs: [], skills, topology, factions, townEventAnchors: [],
+        townNpcWorld: { presences: [], relationships: [] }, townNpcPlacements: [] });
+      const loaders = chapterIds.map((chapter) =>
+        `case ${JSON.stringify(chapter)}:return (await import(${JSON.stringify(
+          chapterPrefix + chapter)})).default;`).join('');
+      return `export default ${base};export async function loadChapterAssets(id){switch(id){${loaders}` +
+        `case "__shared__":return (await import(${JSON.stringify(chapterPrefix + 'shared')})).default;` +
+        `default:throw new Error("CHAPTER_ASSET_VIRTUAL_UNKNOWN:"+id);}}`;
     },
     async buildStart() {
       const built = await content();
       const failed = built.diagnostics.find((entry) => entry.severity === 'error');
       if (failed) throw new Error(`${failed.code}:${failed.message}`);
-      await Promise.all([assets(), vfx()]);
+      await Promise.all([groupedAssets(), vfx()]);
     },
     async closeBundle() {
       if (options.copyAssets !== false) {

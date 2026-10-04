@@ -25,17 +25,19 @@ function character(id: string, content: GameContent, learning: readonly { skillI
 }
 
 /** Interaction fixture only; never claims to be a story reward or canonical opening. */
-export function createPreviewSession(content: GameContent): SessionSnapshot {
+export function createPreviewSession(content: GameContent,
+  chapterId: 'ch01_tianlong' | 'ch10_baima' = 'ch01_tianlong'): SessionSnapshot {
+  const tianlong = chapterId === 'ch01_tianlong';
   const rng = Object.fromEntries(RNG_STREAMS.map((stream) =>
     [stream, seedStream(1, stream)])) as Record<RngStreamName, ReturnType<typeof seedStream>>;
   const state = createInitialGameState({ coreVersion: CORE_VERSION,
-    coreBuild: CORE_BUILD, chapterId: 'ch01_tianlong', epochId: 'epoch_ch01',
-    epochYear: 1093, rngProtocol: RNG_PROTOCOL, masterSeed: 1, rng });
+    coreBuild: CORE_BUILD, chapterId, epochId: tianlong ? 'epoch_ch01' : 'epoch_ch10',
+    epochYear: tianlong ? 1093 : 702, rngProtocol: RNG_PROTOCOL, masterSeed: 1, rng });
   const versioned = content.contentHash ? { ...state, meta: { ...state.meta,
     contentHash: content.contentHash } } : state;
   const protagonist = character('npc_zhujue', content, [{ skillId: 'sk_taizuchangquan', trueLayer: 1 }]);
-  const duanyu = content.npcs.find((npc) => npc.id === 'npc_duanyu');
-  const build = duanyu?.appearances[0]?.build;
+  const featuredId = tianlong ? 'npc_duanyu' : 'npc_liwenxiu';
+  const build = content.npcs.find((npc) => npc.id === featuredId)?.appearances[0]?.build;
   const inventory = new InventoryRuntime({ stacks: content.items.map((item) => ({
     itemId: item.id, count: item.extension.type === 'equipment' ? 1 : Math.min(3, item.stack),
   })) }, content.items).snapshot();
@@ -44,11 +46,13 @@ export function createPreviewSession(content: GameContent): SessionSnapshot {
   return { ...versioned, meta: { ...versioned.meta, debugTainted: true },
     profile: { ...versioned.profile, protagonist, companions: [] }, party: { ...state.party, inventory },
     world: { ...versioned.world, navigation: { ...versioned.world.navigation,
-      locationId: worldMap?.position.kind === 'node' ? worldMap.position.nodeId : 'city_dali' } },
+      locationId: worldMap?.position.kind === 'node' ? worldMap.position.nodeId :
+        tianlong ? 'city_dali' : 'sc_10_fengshi_feiyi' } },
     chapter: { ...versioned.chapter, worldMap, town: null, npcs: [
-      { npcId: 'npc_duanyu', relationship: 'befriended', affinity: 0,
-        character: build?.pipeline === 'full' ? character('npc_duanyu', content, build.skills) : null },
-      { npcId: 'npc_zhongling', relationship: 'met', affinity: 0, character: null },
+      { npcId: featuredId, relationship: 'befriended', affinity: 0,
+        character: build?.pipeline === 'full' ? character(featuredId, content, build.skills) : null },
+      { npcId: tianlong ? 'npc_zhongling' : 'npc_postman_tang_xiyu',
+        relationship: 'met', affinity: 0, character: null },
     ], itemChapterUses: {} },
   };
 }

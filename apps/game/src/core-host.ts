@@ -3,6 +3,7 @@ import type { ContentSource } from '@tianshu/data';
 import type { JsonValue } from '@tianshu/shared';
 import type { GameHost, GameProjection, NewGameRequest,
   NewGameHost, SessionSnapshot } from './runtime/contracts';
+import type { ChapterAssetLoader } from './runtime/content';
 import { applyItemText } from './selectors/items';
 import { FetchContentSource, ItemTextCache, itemContentChapter } from './runtime/item-content';
 import { createLazyGameSession } from './runtime/lazy-session';
@@ -77,11 +78,13 @@ export async function createGameCoreHost(options: { readonly demo?: boolean;
 Promise<GameHost & NewGameHost> {
   const source = options.contentSource ?? new FetchContentSource();
   const localFixup: NonNullable<GameHost['fixupContentRefs']> = async (snapshot, fromHash) => {
-    const [loadGameContent, { fixupContentRefs }, { default: base }] = await Promise.all([
+    const [loadGameContent, { fixupContentRefs }, content] = await Promise.all([
       import('./runtime/item-content').then(({ loadGameContent }) => loadGameContent),
       import('@tianshu/data'), import('virtual:tianshu-content'),
     ]);
-    const target = await loadGameContent(base, source, snapshot.chapter.chapterId);
+    const chapterAssets = content as typeof content & { loadChapterAssets?: ChapterAssetLoader };
+    const target = await loadGameContent(content.default, source, snapshot.chapter.chapterId,
+      chapterAssets.loadChapterAssets);
     if (fromHash === target.contentHash) return structuredClone(snapshot);
     const fixed = fixupContentRefs(
       snapshot as unknown as JsonValue, target.idRemaps ?? [],

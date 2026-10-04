@@ -113,8 +113,10 @@ export function validateSession(value: SessionSnapshot, content: GameContent,
   validateParty(state, content);
   validateChapterRuntime(state, content);
   validateRegion(state, content);
-  const map = content.worldMaps?.find((entry) => entry.chapterId === state.chapter.chapterId);
-  if ((state.chapter.worldMap === null) !== (map === undefined)) throw new Error('SAVE_WORLDMAP_INVALID');
+  const maps = content.worldMaps?.filter((entry) => entry.chapterId === state.chapter.chapterId) ?? [];
+  if (maps.length > 1) throw new Error('SAVE_WORLDMAP_INVALID');
+  const map = maps[0];
+  if (state.chapter.worldMap && !map) throw new Error('SAVE_WORLDMAP_INVALID');
   if (state.chapter.worldMap && map) validateWorldMapState(state.chapter.worldMap, map);
   const town = state.chapter.town;
   if (town) {
