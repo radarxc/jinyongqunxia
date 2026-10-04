@@ -205,7 +205,7 @@
 
     【画里是谁】珍珑棋局旁，右下方俯身、抬头向上看的老者（苏星河，聪辩先生，约六十岁）。
 
-    【要改成什么】按基线把他收拾得整齐一点（只是收一点，不要变成另一个人）：头发灰白相间（不是全白），在头顶束成整齐的发髻，只留少量碎发，不要满头凌乱披散的长白发；胡须改成基线那样修整过的中长灰须（到胸口以上），不要又长又乱的白须；脸的五官骨相与基线一致（原图已经相近，只微调）。
+    【要改成什么】这是第二次收拾，要比现在更接近基线：两鬓垂下、遮在脸颊和眼角旁的散发全部拢到耳后、收进头顶的发髻，脸的两侧露出来，不要有头发遮脸；胡须再修短、修整齐——到锁骨以上的中长灰须（黑白相间，不是全白），须形整齐不乱；头发灰白相间、梳理整齐。脸的五官骨相保持与基线一致。
 
     【原图保持】保留抬头向上看的角度、目光与神情，衣服与姿势不变。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
 
@@ -218,21 +218,21 @@
     sha256: f776ad1273144857ac0445a991bdfbe3336050b537890f1e34158287fa68b36e
     use: 对脸基准：苏星河的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_suxinghe__ch01_elder_zhenlong_base.jpg）
   - path: assets/default/scene/ch01/cg_ch01_zhenlong_break.png
-    sha256: c1bf0d6ef0e732a02dcf9d07a64f7be2d99c123dfb5db195fab941d9d055bdc0
-    use: 上一版：同一 codex 输出的第一次贴回（7656d132 → c1bf0d6e），方块下沿留有细接缝；本次底图仍取改前原图 7656d132；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.c1bf0d6e.png
+    sha256: 1352acfd1a0e1e865bcbd21b31236a67ab492a81d308793445b17f1bdd3ee694
+    use: 待改插图：只把苏星河头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.1352acfd.png
   tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把苏星河头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T19:03:01-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch01_zhenlong_break.p1r.png
+  created: 2026-10-03T19:21:34-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch01_zhenlong_break.p2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 1352acfd1a0e1e865bcbd21b31236a67ab492a81d308793445b17f1bdd3ee694
+  sha256: ab247b0e3af789a375a20cd28c0db0d46b0d7eb3415fd4c4c1f634f2a7fe8632
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：苏星河按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员）：苏星河重新贴回——同一 codex 输出，贴回区在方块边缘前渐隐，去掉上一版方块下沿的细接缝，其他人物与题字逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：苏星河按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员）：苏星河重新贴回——同一 codex 输出，贴回区在方块边缘前渐隐，去掉上一版方块下沿的细接缝，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员，总审 10-03 复核后第二次收拾）：苏星河两鬓散发拢到耳后、不再遮脸，胡须再修短成灰须，向本人默认基础立绘再靠一步；只合成目标人物头部，其他人物与题字逐像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.c1bf0d6e.png
-    sha256: c1bf0d6ef0e732a02dcf9d07a64f7be2d99c123dfb5db195fab941d9d055bdc0
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.c1bf0d6e.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.1352acfd.png
+    sha256: 1352acfd1a0e1e865bcbd21b31236a67ab492a81d308793445b17f1bdd3ee694
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_zhenlong_break.1352acfd.entry.yaml
   effort: ultra
 - id: cg_ch01_songhe_wine_oath
   file: cg_ch01_songhe_wine_oath.png
