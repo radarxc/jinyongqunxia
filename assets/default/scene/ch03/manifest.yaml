@@ -224,38 +224,37 @@
   category: scene
   style: default
   subject: 重剑无锋（ch03_shendiao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是杨过的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中杨过的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【画里谁是谁】这张插图画的是：断右臂后、十六年等待以前的杨过随神雕练重剑。年轻成年杨过在山洪岩面上，只用左手稳持乌黑宽钝玄铁剑抗衡水势，肩背发力真实；人物自身右臂缺失，空右袖收在右腰，衣装苍灰青练功袍完整、被水打湿但不透肤。一只身高超过成年人的褐黑巨大神雕站在旁边岩石，神雕必须有明确可见的血红色大肉冠：头顶秃而长着天然红色大肉瘤，不是伤口、无血迹；颈长、喙钝、毛羽疏落、丑拙雄壮，双翼短小有力，不可飞翔。头顶红色肉冠在画面上占有足够像素一眼可辨，绝不能画成普通鹰、金雕、白雕或华丽凤凰。山岩与水势形成斜线，无剑气光效、无伤口；具体机位属原创扩展美术设计。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【要对齐的部分】杨过各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【只改】只编辑左侧神雕躯干翅膀腿脚：全身黄黑羽毛疏疏落落，显出明显大块裸露灰皮，翅膀缩短紧贴躯干，腿脚比普通鹰粗壮数倍且腿上部露皮。神雕很丑，不能是普通密羽大鹰。保留原头部血红大肉瘤、脸和朝向、身体站位及整体身高。杨过、玄铁剑、河水、岩石、题字朱印逐像素不动。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「重剑无锋」和小朱印必须原样保留，一笔不改、不增不减。
+    【原著依据】《神雕侠侣》第二十三回 手足情仇：“头顶生着个血红的大肉瘤”；https://www.xuges.com/wuxia/jinyong/sdxl/162.htm
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/55_cg_ch03_sword_tomb_training.png
+    sha256: f35a0230c64515301d7b88926e4fb5b80a0deddc9d3ade59dad54ebdeea9b6dc
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
     sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
     use: 对脸基线：作者审核通过的 por_npc_yangguo__ch03_youth_onearm_base（杨过），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch03/cg_ch03_sword_tomb_training.png
-    sha256: b606fd97ae958ae96604824effdc2fb69a16a7f0c0d26acbefb2429a5a0a3b2e
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_sword_tomb_training.b606fd97.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T14:30:46-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_sword_tomb_training.s1.png
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:39:05.353019-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_55_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: f35a0230c64515301d7b88926e4fb5b80a0deddc9d3ade59dad54ebdeea9b6dc
+  sha256: 2cc8773575182f24e697e9bee188d7cbdfbb7779c56978a09b103f0ca67891ed
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「重剑无锋」，实际字形「重剑无锋」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「重剑无锋」，实际字形「重剑无锋」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base；AR-82 原著核对返修：剑冢插图同步神雕疏羽短翅粗腿
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_sword_tomb_training.b606fd97.png
-    sha256: b606fd97ae958ae96604824effdc2fb69a16a7f0c0d26acbefb2429a5a0a3b2e
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_sword_tomb_training.b606fd97.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/55_cg_ch03_sword_tomb_training.png
+    sha256: f35a0230c64515301d7b88926e4fb5b80a0deddc9d3ade59dad54ebdeea9b6dc
   runner_job_records:
   - - cg_ch03_sword_tomb_training.resume3r2
     - ok
