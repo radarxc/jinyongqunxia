@@ -445,15 +445,18 @@
   - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
     use: 项目同性别基线；只取画风
     sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  created: 2026-10-03T00:52:03-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_zhaomin__ch04_youth_scene_lvliu.1791013922835628000/archive/por_npc_zhaomin__ch04_youth_scene_lvliu.png
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:44:00.052266-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_19_56_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188
+  sha256: 5ebea6e50a37ce0c34da294ff40f464c78fe4e38e1858400cf67c90c947a695f
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：眉形、眼型眼尾、鼻口符合恢复base；绿柳男装的机敏含蓄神态与柔光保留，衔接自然
   previous_revision:
     prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_zhaomin__ch04_youth_scene_lvliu.1791013922835628000/archive/previous-prompt.md
     png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_zhaomin__ch04_youth_scene_lvliu.1791013922835628000/archive/previous.png
@@ -469,6 +472,17 @@
   runner_success_count: 1
   ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
   composite_job: por_npc_zhaomin__ch04_youth_scene_lvliu.resume3r2
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_19_56_r1
+    before_sha256: ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188
+    box:
+    - 439
+    - 141
+    - 563
+    - 279
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_19_56_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_zhaomin__ch04_youth_scene_wanansi
   file: por_npc_zhaomin__ch04_youth_scene_wanansi.png
   category: character/female
