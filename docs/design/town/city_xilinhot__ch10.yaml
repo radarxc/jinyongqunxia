@@ -1,0 +1,44 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_xilinhot"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "锡林草原·季节营地（702年推定）"
+historical_year: 702
+era_kit: "tang"
+seed: 3917562714
+design_intent: {"prosperity": "tang_major_study_candidate", "notes": ["唐时北部属突厥/草原部众活动区，现有可定位城址多属辽以后；702不强造城。", "不使用辽代仪坤州争议城址。", "复原依据：history/city_xilinhot__tang_702.md；AR-47要求702年代带全量。", "major/capital是资源画幅档，不等于702年行政等级；全部坐标与建筑配额为游戏缩景。", "era_kit=tang；唐贴片目录缺失，墙门与地表由工具回退；建筑显式借用song_southern，不作为唐式考据。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls: "none"
+gates: []
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 80, "z": 22}, {"x": 80, "z": 138}], "surface": "dirt_road", "priority": 100, "basis": "图名：聚落纵路；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "cross_s", "class": "secondary", "width_cells": 5, "points": [{"x": 26, "z": 64}, {"x": 134, "z": 64}], "surface": "dirt_road", "priority": 75, "basis": "图名：聚落南横路；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "cross_n", "class": "secondary", "width_cells": 5, "points": [{"x": 26, "z": 100}, {"x": 134, "z": 100}], "surface": "dirt_road", "priority": 70, "basis": "图名：聚落北横路；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+rivers: []
+lakes: []
+bridges: []
+water_gates: []
+zones:
+  - {"id": "zone_1", "kind": "residential", "geometry": {"rect": {"min": {"x": 32, "z": 30}, "max": {"x": 74, "z": 59}}}, "priority": 100, "density": 0.56, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_shop_1f", "bld_kit_song_southern_warehouse", "bld_kit_song_southern_stable"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民院落；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "zone_2", "kind": "residential", "geometry": {"rect": {"min": {"x": 86, "z": 30}, "max": {"x": 128, "z": 59}}}, "priority": 99, "density": 0.56, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_shop_1f"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民院落；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "zone_3", "kind": "market", "geometry": {"rect": {"min": {"x": 32, "z": 68}, "max": {"x": 74, "z": 95}}}, "priority": 98, "density": 0.56, "allowed_building_types": ["bld_kit_song_southern_shop_1f", "bld_kit_song_southern_market_stall", "bld_kit_song_southern_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：沿街市肆；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "zone_4", "kind": "residential", "geometry": {"rect": {"min": {"x": 86, "z": 68}, "max": {"x": 128, "z": 95}}}, "priority": 97, "density": 0.56, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_shop_1f"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民院落；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "zone_5", "kind": "religious", "geometry": {"rect": {"min": {"x": 32, "z": 104}, "max": {"x": 74, "z": 130}}}, "priority": 96, "density": 0.56, "allowed_building_types": ["bld_kit_song_southern_temple_hall", "bld_kit_song_southern_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：宗教院落；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "zone_6", "kind": "administrative", "geometry": {"rect": {"min": {"x": 86, "z": 104}, "max": {"x": 128, "z": 130}}}, "priority": 95, "density": 0.56, "allowed_building_types": ["bld_kit_song_southern_yamen", "bld_kit_song_southern_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：管理院落；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_southern_house", "zone_refs": ["zone_1", "zone_2", "zone_4", "zone_5"], "count": {"min": 9, "max": 18}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_song_southern_shop_1f", "zone_refs": ["zone_1", "zone_2", "zone_3", "zone_4"], "count": {"min": 4, "max": 7}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_song_southern_market_stall", "zone_refs": ["zone_3"], "count": {"min": 3, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_song_southern_inn", "zone_refs": ["zone_3"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_song_southern_temple_hall", "zone_refs": ["zone_5"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_song_southern_yamen", "zone_refs": ["zone_6"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_song_southern_courtyard", "zone_refs": ["zone_6"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_song_southern_warehouse", "zone_refs": ["zone_1"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_song_southern_stable", "zone_refs": ["zone_1"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+vegetation: {"palette": ["prp_song_broadleaf", "prp_song_dali_grass"], "density": 0.014, "avoid_road_cells": 2, "cluster_rule": "空地少量草木；不以植被伪装山体或证明702年物候", "basis": "图名：空地植被；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+sources:
+  - {"key": "src_history", "kind": "official_web", "title": "锡林郭勒盟建置沿革", "url": "https://nmgqq.com.cn/quqinggailan/jianzhiyange/xlglm/2022-09-29/24892.html", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "仅文字；可信度B；只支撑所列年代与拓扑，不支撑游戏坐标。"}

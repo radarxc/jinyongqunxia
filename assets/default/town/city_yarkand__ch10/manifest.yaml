@@ -1,0 +1,91 @@
+assets:
+- id: town_city_yarkand__ch10
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 莎车绿洲·早期聚落（702年推定）
+  prompt: python3 tools/town/render_town.py assets/default/town/city_yarkand__ch10/layout.yaml -o assets/default/town/city_yarkand__ch10/preview.jpg --scale 0.25 --report /private/tmp/CITY-layouts-ch10-c-logs/city_yarkand.render.json
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-03'
+  size: 2560x1280
+  sha256: 302146fb562197cc7762e9fea888421cfd5637468ee0587e1aa03b03e0aa8780
+  status: candidate
+  references:
+  - docs/design/town/city_yarkand__ch10.yaml
+  - docs/design/town/history/city_yarkand__tang_702.md
+  - assets/default/tile/xiyu/
+  - assets/default/building-map/xiyu/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes:
+  - 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染
+  - era_kit=xiyu；回退：era-kit-fallback:tex_town_xiyu_dirt_road->tex_town_song_dali_dirt_road; era-kit-fallback:tex_town_xiyu_rammed_earth->tex_town_song_dali_rammed_earth; era-kit-fallback:tex_town_xiyu_riverbank->tex_town_song_dali_riverbank; era-kit-fallback:tex_town_xiyu_road_edge->tex_town_song_southern_road_edge; era-kit-fallback:tex_town_xiyu_water->tex_town_song_dali_water
+  - 地域套件建筑已使用；共通地表或缺门向按回退记录处理。
+  asset_substitutions:
+  - requested_id: tex_town_xiyu_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v01
+    reason: era-kit-fallback:tex_town_xiyu_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_xiyu_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v02
+    reason: era-kit-fallback:tex_town_xiyu_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_xiyu_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v03
+    reason: era-kit-fallback:tex_town_xiyu_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_xiyu_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v04
+    reason: era-kit-fallback:tex_town_xiyu_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_xiyu_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v01
+    reason: era-kit-fallback:tex_town_xiyu_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_xiyu_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v02
+    reason: era-kit-fallback:tex_town_xiyu_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_xiyu_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v03
+    reason: era-kit-fallback:tex_town_xiyu_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_xiyu_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v04
+    reason: era-kit-fallback:tex_town_xiyu_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_xiyu_riverbank
+    actual_id: tex_town_song_dali_riverbank__n
+    reason: era-kit-fallback:tex_town_xiyu_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_xiyu_riverbank
+    actual_id: tex_town_song_dali_riverbank__s
+    reason: era-kit-fallback:tex_town_xiyu_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_xiyu_road_edge
+    actual_id: tex_town_song_southern_road_edge__e
+    reason: era-kit-fallback:tex_town_xiyu_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_xiyu_road_edge
+    actual_id: tex_town_song_southern_road_edge__n
+    reason: era-kit-fallback:tex_town_xiyu_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_xiyu_road_edge
+    actual_id: tex_town_song_southern_road_edge__ne
+    reason: era-kit-fallback:tex_town_xiyu_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_xiyu_road_edge
+    actual_id: tex_town_song_southern_road_edge__nw
+    reason: era-kit-fallback:tex_town_xiyu_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_xiyu_road_edge
+    actual_id: tex_town_song_southern_road_edge__s
+    reason: era-kit-fallback:tex_town_xiyu_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_xiyu_road_edge
+    actual_id: tex_town_song_southern_road_edge__se
+    reason: era-kit-fallback:tex_town_xiyu_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_xiyu_road_edge
+    actual_id: tex_town_song_southern_road_edge__sw
+    reason: era-kit-fallback:tex_town_xiyu_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_xiyu_road_edge
+    actual_id: tex_town_song_southern_road_edge__w
+    reason: era-kit-fallback:tex_town_xiyu_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_xiyu_water
+    actual_id: tex_town_song_dali_water__v01
+    reason: era-kit-fallback:tex_town_xiyu_water->tex_town_song_dali_water
+  - requested_id: tex_town_xiyu_water
+    actual_id: tex_town_song_dali_water__v02
+    reason: era-kit-fallback:tex_town_xiyu_water->tex_town_song_dali_water
+  - requested_id: tex_town_xiyu_water
+    actual_id: tex_town_song_dali_water__v03
+    reason: era-kit-fallback:tex_town_xiyu_water->tex_town_song_dali_water
+  - requested_id: tex_town_xiyu_water
+    actual_id: tex_town_song_dali_water__v04
+    reason: era-kit-fallback:tex_town_xiyu_water->tex_town_song_dali_water
