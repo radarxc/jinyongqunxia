@@ -75,37 +75,37 @@
   category: character/female/tripo_ref
   style: default
   subject: 赵敏（ch04_yitian）窄轮廓 A 字姿势全身参考：与 por_npc_zhaomin__ch04_youth_lvliu_base 同脸，束袖、直筒窄裙、露鞋尖
-  prompt: '【任务】这是一张供 3D 建模自动绑骨使用的「窄轮廓」A 字姿势全身参考图。第 1 张参考图是本项目已定稿的赵敏立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同样的发髻和发饰，衣服的颜色、面料和衣缘纹样沿用第 1 张，但剪裁改成便于绑骨的窄轮廓。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【服饰（窄轮廓）】米白色交领右衽上衣（衣缘是灰蓝色宽边），衣身合体；袖子改成束袖：袖口在手腕处收紧（或挽到小臂），整条手臂的轮廓清楚，袖子不下垂成大片、不外扩；腰间系深色腰带；下身米白色长裙改成收窄的直筒长裙，裙摆宽度不超过肩宽，长到脚踝上方，露出两只鞋的鞋尖，裙内可以露出一点白色裤腿；没有飘带、披帛、长拖尾或任何外飘的布条。整个人的外轮廓肩宽、脚窄，或上下差不多宽，绝不能是下摆外扩的三角形。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前。
+    【只改】只将白袍改为初见绿柳庄阶段的宝蓝绸衫，衣料质地是丝绸，原袖口腰带、手、脸、身材、衣袍款式、褶皱和所有其他像素原样不动；不要改成武当白袍，不增加武器。
 
-    【头发】长发全部收到身后，从背后垂下，不搭在肩前，不盖住手臂和手。
+    【补充同步】同初见阶段，头冠改男装头巾，头巾两粒龙眼大的明珠；脸保持。
 
-    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+    【原著依据】《倚天屠龙记》二十三 灵芙醉客绿柳庄：“身穿宝蓝绸衫”；https://www.xuges.com/wuxia/jinyong/yttlj/168.htm
 
-    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
   references:
-  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
-    sha256: 84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c
-    use: 底图：已定稿的赵敏 base（上传 1536 长边 JPEG）
-  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_zhaomin__ch04_youth_lvliu_base.jpg
-    sha256: 79573884eeb4f4467107a777212f89ee97cc344bbb1462cc194b9c8f942c01d6
-    use: 同一 base 的脸部特写（看清五官）
-  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
-  model: gpt-6-astra
+  - path: .agents/coord/_lines/novel-fix-1/before/32_por_npc_zhaomin__ch04_youth_lvliu_apose_slim.png
+    sha256: c3841b2c2e3a1842eb69fe88904bd55ca139f2d2d609358c6fc59d14b564f283
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
   effort: ultra
-  created: 2026-10-03T14:22:00-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhaomin__ch04_youth_lvliu_apose_slim.a1.png
+  created: '2026-10-04T02:53:06.222158-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_32_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: c3841b2c2e3a1842eb69fe88904bd55ca139f2d2d609358c6fc59d14b564f283
+  sha256: 92bce3972c3ba0cfa88e162464ab5b14de53559882aad18e7d9b5ebe63c059c9
   status: candidate
-  notes: 绑骨用的窄轮廓版 A 字姿势参考（协调者 14:22 口径：宽裙女角改束袖、裙摆不超过肩宽、露鞋尖）；依据已定稿的 por_npc_zhaomin__ch04_youth_lvliu_base（同脸）；AR-44
+  notes: 绑骨用的窄轮廓版 A 字姿势参考（协调者 14:22 口径：宽裙女角改束袖、裙摆不超过肩宽、露鞋尖）；依据已定稿的 por_npc_zhaomin__ch04_youth_lvliu_base（同脸）；AR-44；AR-82 原著核对返修：赵敏初见A字衣袍改宝蓝绸衫
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/32_por_npc_zhaomin__ch04_youth_lvliu_apose_slim.png
+    sha256: c3841b2c2e3a1842eb69fe88904bd55ca139f2d2d609358c6fc59d14b564f283
 - id: por_npc_zhouzhiruo__ch04_youth_zhangmen_apose_slim
   file: por_npc_zhouzhiruo__ch04_youth_zhangmen_apose_slim.png
   category: character/female/tripo_ref
