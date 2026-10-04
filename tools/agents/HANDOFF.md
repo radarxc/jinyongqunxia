@@ -1954,3 +1954,18 @@
     - 余下分派：12 号做 ch08 明显 4 张，加 ch07–ch09、ch14 轻微 6 张；10 号做 ch02–ch03 轻微 15 张；11 号做 ch04–ch06 轻微 5 张。复核由出图员直接找总审。
     - 黛绮丝金花婆婆立绘问作者：A 保持易容后的另一张老妪脸，B 同一副骨相加老妆。袁承志 child_scene_huashan 按作者「全体禁止幼态」保持成年青年，ID 不改（提示词 redo_reason 已注明）。
     - ENG-event-executor 19:04 合入 eb8de5bb，开发监督接着登记 ENG-event-source-trigger。VFX-sk_tiezhangyunqigong 18:58 合入（13/35）。城图第一批 CITY-layouts-ch10-a 18:59 起跑（白马 36 城，估 6–7 小时），城图优先，特效填空档。
+  - **10-03 18:58–19:10 开发监督**：
+    - **ENG-event-executor 合入 eb8de5bb**（19:04）。
+      - ink.ts 两边改动合得干净：共源 OPCODE 登记与求值上下文判别都在，没有冲突标记。
+      - ch10 的 op 改名与 Ink `entranceId` 已进集成分支。
+    - **ENG-event-source-trigger**（c95f6371，协调者 18:58 批）：
+      - 起因：`ev_10_cold_entry_arrival`（sourceEvent chapter/woke）没有执行路径，Trigger 执行器遇到 sourceEvent 直接返回 false；
+      - 内容：core 发出领域事件时，在同一事务里匹配 sourceEvent 并执行，不改 Trigger 路径；
+      - 19e 已加依赖它。驱动 44400，名单在 19e 前。
+    - **ENG-ink-intents** 已起跑排队（驱动 44439）。
+    - **prod_check（eb8de5bb）红**：1093 个测试全过，但有 1 个未处理的 rejection `HOST_DISPOSED`，退出码 1。
+      - 位置：main-flow.test「replaces a failed host」用例。
+      - 原因：`game-controller.ts` 的 `ensureBattle()` 懒加载 battle controller，import 完成时宿主已被销毁，再去订阅就抛错，没人接住。
+      - 单独跑 3 次复现 1 次，是偶发；这两个文件最后改于 19b / ENG-17，是老问题。
+      - 已提议小修 ENG-battle-lazy-dispose，等协调者批。
+
