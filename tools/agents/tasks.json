@@ -48211,6 +48211,52 @@
   },
   {
    "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/perf/check_size.mjs"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "node",
+      "--test",
+      "tools/perf/check_size.test.mjs"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-size-render-measure",
+   "title": "工具 · 小修：check_size 按清单定位 render 块并量静态闭包（修 render-host 前缀误配，generic-model 后 render 误量为 2.36）；新增战斗 3D 懒加载块预算 render-model3d 24 KiB；原有门值不放宽",
+   "prompt": "ENG-size-render-measure.md",
+   "deps": [],
+   "writes": [
+    "tools/perf/**",
+    "apps/game/build/size-groups-plugin.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
    "wave": 17,
    "kind": "draft",
    "review": false,
