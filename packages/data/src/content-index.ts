@@ -1,16 +1,16 @@
 import { compareCodePoints } from '@tianshu/shared';
-import type { ContentEntry, ContentFile, ContentValues, RegisteredContentKind } from './content-registry';
+import type { ContentEntry, ContentFile, ContentKind, ContentValues } from './content-registry';
 import { contentKindOrder, parseContentFile } from './content-registry';
 
 type Identified = { readonly id?: string; readonly key?: string; readonly chapterId?: string;
   readonly lineId?: string; readonly cityId?: string };
 export interface ContentRegistry extends ContentValues {
   readonly entries: readonly ContentEntry[];
-  get<T = unknown>(kind: RegisteredContentKind, id: string): T | undefined;
-  require<T = unknown>(kind: RegisteredContentKind, id: string): T;
+  get<T = unknown>(kind: ContentKind, id: string): T | undefined;
+  require<T = unknown>(kind: ContentKind, id: string): T;
 }
 
-function identity(kind: RegisteredContentKind, value: Identified): string {
+function identity(kind: ContentKind, value: Identified): string {
   if (kind === 'town' && typeof value.cityId === 'string' && typeof value.chapterId === 'string')
     return value.chapterId + '/' + value.cityId;
   if (kind === 'shop') return `${value.chapterId}/${value.key}`;
@@ -27,11 +27,8 @@ function deepFreeze<T>(value: T, seen = new Set<object>()): T {
 }
 
 function validateReferences(entries: readonly ContentEntry[], lookup: Map<string, unknown>): void {
-  const has = (kind: RegisteredContentKind, id: string): boolean => lookup.has(`${kind}:${id}`);
+  const has = (kind: ContentKind, id: string): boolean => lookup.has(`${kind}:${id}`);
   const moveRegistryActive = entries.some((entry) => entry.kind === 'move');
-  const encounterEntries = entries.filter((entry) =>
-    (entry.value as { schemaVersion?: string }).schemaVersion === 'encounter.v1');
-  const encounterRegistryActive = encounterEntries.length > 0;
   const storyKnots = new Set<string>();
   for (const entry of entries) if (entry.kind === 'story') {
     const story = entry.value as ContentValues['stories'][number];
@@ -74,9 +71,6 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
           if (Array.isArray(child)) child.forEach(checkCondition); else checkCondition(child);
         }
       };
-      if (encounterRegistryActive) for (const encounterId of encounters)
-        if (!has('encounter', encounterId))
-          throw new TypeError(`CONTENT_REF:${entry.path}:encounter:${encounterId}`);
       if (quest.offerWhen !== undefined) checkCondition(quest.offerWhen);
       if (quest.showWhen !== undefined) checkCondition(quest.showWhen);
       for (const stage of quest.stages) {
@@ -107,16 +101,6 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
           if ('storyId' in effect && !storyKnots.has(`${effect.storyId}:${effect.knot}`))
             throw new TypeError(`CONTENT_REF:${entry.path}:storyKnot:${effect.storyId}:${effect.knot}`);
         }
-      }
-    }
-    if ((entry.value as { schemaVersion?: string }).schemaVersion === 'encounter.v1') {
-      const encounter = entry.value as ContentValues['encounters'][number];
-      for (const participant of encounter.participants) {
-        if (participant.source.kind === 'npc' && !has('npc', participant.source.npcId))
-          throw new TypeError(`CONTENT_REF:${entry.path}:npc:${participant.source.npcId}`);
-        if (participant.source.kind === 'template'
-          && !has('characterTemplate', participant.source.templateId))
-          throw new TypeError(`CONTENT_REF:${entry.path}:characterTemplate:${participant.source.templateId}`);
       }
     }
     if (entry.kind === 'shop') {
@@ -159,7 +143,7 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
 export function loadContent(files: readonly ContentFile[]): ContentRegistry {
   const entries = [...files].sort((left, right) => compareCodePoints(left.path, right.path)).map(parseContentFile);
   const lookup = new Map<string, unknown>();
-  const globalIds = new Map<string, RegisteredContentKind>();
+  const globalIds = new Map<string, ContentKind>();
   for (const entry of entries) {
     const id = identity(entry.kind, entry.value as Identified);
     const key = `${entry.kind}:${id}`;
@@ -173,19 +157,18 @@ export function loadContent(files: readonly ContentFile[]): ContentRegistry {
   }
   validateReferences(entries, lookup);
   entries.sort((left, right) => contentKindOrder(left.kind) - contentKindOrder(right.kind) || compareCodePoints(identity(left.kind, left.value as Identified), identity(right.kind, right.value as Identified)));
-  const values = (kind: RegisteredContentKind): readonly unknown[] => entries.filter((entry) => entry.kind === kind).map((entry) => entry.value);
+  const values = (kind: ContentKind): readonly unknown[] => entries.filter((entry) => entry.kind === kind).map((entry) => entry.value);
   const registry: ContentRegistry = {
     entries, npcs: values('npc') as ContentValues['npcs'], characterTemplates: values('characterTemplate') as ContentValues['characterTemplates'],
     martialArts: values('martialArt') as ContentValues['martialArts'], meridians: values('meridian') as ContentValues['meridians'],
-    moves: values('move') as ContentValues['moves'], encounters: values('encounter') as ContentValues['encounters'],
-    quests: values('quest') as ContentValues['quests'],
+    moves: values('move') as ContentValues['moves'], quests: values('quest') as ContentValues['quests'],
     acupoints: values('acupoint') as ContentValues['acupoints'], items: values('item') as ContentValues['items'],
     shops: values('shop') as ContentValues['shops'], stories: values('story') as ContentValues['stories'],
     events: values('event') as ContentValues['events'], bookWorlds: values('bookWorld') as ContentValues['bookWorlds'],
     chapters: values('bookWorld') as ContentValues['chapters'],
     towns: values('town') as ContentValues['towns'],
-    get: <T>(kind: RegisteredContentKind, id: string) => lookup.get(`${kind}:${id}`) as T | undefined,
-    require: <T>(kind: RegisteredContentKind, id: string) => {
+    get: <T>(kind: ContentKind, id: string) => lookup.get(`${kind}:${id}`) as T | undefined,
+    require: <T>(kind: ContentKind, id: string) => {
       const value = lookup.get(`${kind}:${id}`);
       if (value === undefined) throw new TypeError(`CONTENT_MISSING:${kind}:${id}`);
       return value as T;

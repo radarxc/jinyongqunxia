@@ -6,8 +6,6 @@ import type {
   BattleCondition, BattleGridCell, BattleParticipant, BattleResult, BattleSetup, BattleState, BattleUnit,
   EntryKind, SideId,
 } from '../types';
-import { executeBattleScript } from '../script';
-export * from './builder';
 
 const SIDE_RANK: Readonly<Record<SideId, number>> =
   { player: 0, ally: 1, enemy: 2, neutral: 3 };
@@ -46,10 +44,6 @@ export interface BattleSetupInput {
   readonly friendlyFire?: boolean; readonly roundLimit?: number; readonly boss?: boolean;
   readonly winCond?: readonly BattleCondition[]; readonly loseCond?: readonly BattleCondition[];
   readonly drawCond?: readonly BattleCondition[]; readonly meditationUnitRefs?: readonly string[];
-  readonly onDefeat?: BattleSetup['end']['onDefeat'];
-  readonly concede?: BattleSetup['end']['concede']; readonly retryAllowed?: boolean;
-  readonly skippable?: boolean; readonly scriptBeats?: BattleSetup['scriptBeats'];
-  readonly lossStreak?: number;
   readonly meridianInputs?: BattleSetup['meridianInputs'];
   readonly inventory?: BattleSetup['inventory']; readonly itemDefs?: BattleSetup['itemDefs'];
   readonly rewards?: Partial<BattleSetup['rewards']>;
@@ -157,8 +151,8 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
             : { sourceDirs: [...cell.cover.sourceDirs].sort((left, right) => left - right) }) } }));
   const qValues = grid.map((cell) => cell.q); const rValues = grid.map((cell) => cell.r);
   if (grid.length === 0 || grid.length > 400 || grid.some((cell) => !validGridCell(cell))
-    || Math.max(...qValues) - Math.min(...qValues) + 1 > 20
-    || Math.max(...rValues) - Math.min(...rValues) + 1 > 20
+    || Math.max(...qValues) - Math.min(...qValues) > 20
+    || Math.max(...rValues) - Math.min(...rValues) > 20
     || new Set(grid.map(hexKey)).size !== grid.length
     || placements.some((entry) => {
       const cell = grid.find((candidate) => hexKey(candidate) === hexKey(entry.pos));
@@ -190,17 +184,12 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
     end: { winCond: cloneConditions(input.winCond ?? [{ kind: 'allHostileDown', side: 'player' }]),
       loseCond: cloneConditions(input.loseCond ?? [{ kind: 'unitDown', unitRef: participants.find(
         (entry) => entry.side === 'player' && entry.required)?.unitRef ?? participants[0]!.unitRef }]),
-      drawCond: cloneConditions(input.drawCond ?? []), onDefeat: input.onDefeat ?? 'retry',
-      ...(input.concede === undefined ? {} : { concede: input.concede }) },
+      drawCond: cloneConditions(input.drawCond ?? []), onDefeat: 'retry' },
     rules: { mode: input.mode ?? 'normal',
       noAuto: input.noAuto ?? false, noRetreat: input.noRetreat ?? false, noItems: input.noItems ?? false,
       mercyAllowed: input.mercyAllowed ?? true, lethalIntent: input.lethalIntent ?? false,
       roundLimit: input.roundLimit ?? (input.boss === true ? 60 : 30),
-      friendlyFire: input.friendlyFire ?? false, boss: input.boss ?? false,
-      ...(input.retryAllowed === undefined ? {} : { retryAllowed: input.retryAllowed }),
-      ...(input.skippable === undefined ? {} : { skippable: input.skippable }) },
-    ...(input.scriptBeats === undefined ? {} : { scriptBeats: cloneSetupValue(input.scriptBeats),
-      scriptContext: { lossStreak: input.lossStreak ?? 0 } }), waves: [],
+      friendlyFire: input.friendlyFire ?? false, boss: input.boss ?? false }, waves: [],
     returnContext: { sceneRef: input.sceneRef, anchorRef: input.anchorRef, recovery: input.mode === 'spar'
       ? 'sparRestore' : 'preserve' }, meridianInputs,
     inventory: { stacks: (input.inventory?.stacks ?? []).map((stack) => ({ ...stack })) },
@@ -219,10 +208,8 @@ type DefaultedBattleUnitField = 'meridianDefenseBp' | 'qiProductionPerTick' | 'r
   | 'redirectedQiExpiresAtOwnAction'
   | 'medical' | 'innerGrade' | 'stamina' | 'staminaMax' | 'healingReceivedBp'
   | 'itemEffects' | 'itemState';
-type RuntimeBattleUnitField = 'hitProgress' | 'hitProgressThroughAction' | 'triggeredScriptBeats';
 export type BattleUnitSeed = Omit<BattleUnit, 'unitIndex' | 'side' | 'control' | 'state' | 'active' | 'ct'
-  | 'revision' | 'pos' | 'facing' | 'move' | 'jump' | 'waitStreak' | DefaultedBattleUnitField
-  | RuntimeBattleUnitField>
+  | 'revision' | 'pos' | 'facing' | 'move' | 'jump' | 'waitStreak' | DefaultedBattleUnitField>
   & Partial<Pick<BattleUnit, DefaultedBattleUnitField | 'move' | 'jump' | 'waitStreak'>>;
 function cloneUnitSeed(seed: BattleUnitSeed, participant: BattleParticipant, ct: number,
   initialBuffs: BattleUnit['buffs']): BattleUnit {
@@ -292,54 +279,16 @@ function conditionMet(condition: BattleCondition, state: BattleState): boolean {
   if (condition.kind === 'unitDown') return state.units.find((unit) => unit.id === condition.unitRef)?.active === false;
   if (condition.kind === 'surviveRounds') return state.round >= condition.rounds;
   if (condition.kind === 'actionLimit') return state.actionNo >= condition.actions;
-  if (condition.kind === 'hitCount') return state.units.filter((unit) =>
-    unit.side === condition.actorSide).reduce((total, unit) =>
-      total + (unit.hitProgress?.[condition.targetSide] ?? 0), 0) >= condition.hits;
   return state.units.filter((unit) => unit.active && unit.side !== condition.side)
     .every((unit) => state.setup.relations[condition.side][unit.side] !== 'hostile');
 }
 
 export function evaluateBattleEnd(state: BattleState): BattleResult | null {
-  commitEncounterActionFacts(state);
-  executeBattleScript(state, state.setup.scriptContext?.lossStreak ?? 0);
   if (state.setup.end.loseCond.some((condition) => conditionMet(condition, state))) return 'lose';
   if (state.setup.end.winCond.some((condition) => conditionMet(condition, state))) return 'win';
   if (state.setup.end.drawCond.some((condition) => conditionMet(condition, state))) return 'draw';
   if (state.round >= state.setup.rules.roundLimit) return state.setup.rules.boss ? 'draw' : 'win';
   return null;
-}
-
-/** Persists transient action facts before an append-buffer candidate is committed. */
-export function commitEncounterActionFacts(state: BattleState): void {
-  const conditions = [...state.setup.end.winCond, ...state.setup.end.loseCond,
-    ...state.setup.end.drawCond];
-  if (!conditions.some((condition) => condition.kind === 'hitCount')) return;
-  let eventStart = 0;
-  for (let index = state.events.length - 1; index >= 0; index -= 1)
-    if (state.events[index]?.t === 'battle/retried') { eventStart = index + 1; break; }
-  for (const actor of state.units) {
-    const through = actor.hitProgressThroughAction ?? 0;
-    const next = { ...(actor.hitProgress ?? {}) };
-    let latest = through;
-    for (const event of state.events.slice(eventStart)) {
-      if (event.actionNo <= through || event.t !== 'battle/damageResolved' || event.actor !== actor.id
-        || event.target === undefined) continue;
-      const target = state.units.find((unit) => unit.id === event.target);
-      if (target === undefined) continue;
-      next[target.side] = (next[target.side] ?? 0) + 1; latest = Math.max(latest, event.actionNo);
-    }
-    if (latest > through) { actor.hitProgress = next; actor.hitProgressThroughAction = latest; }
-  }
-}
-
-export function resolveBattleConcede(state: BattleState): BattleResult {
-  if (state.setup.end.concede === undefined || state.setup.end.concede === 'forbidden')
-    throw new RangeError('BATTLE_CONCEDE_FORBIDDEN');
-  return state.setup.end.concede === 'advance' ? 'win' : 'lose';
-}
-
-export function encounterRetryAllowed(setup: BattleSetup): boolean {
-  return setup.rules.retryAllowed ?? setup.end.onDefeat === 'retry';
 }
 
 export function finishBattle(state: BattleState, result: BattleResult): void {
