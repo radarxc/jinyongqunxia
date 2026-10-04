@@ -124,9 +124,9 @@
   source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch11_benevolence_inscription.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 60799518254bda5f8e571b1363aeb8c719072e9ebb76b9177df9ef61d1650f01
+  sha256: c25f28d97554ae64da1e79767696a559cdcb12d2a22c29db314fa018175fbe7d
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；画面原生繁体题字「仁者無敵」逐字放大正确，规范题名保留简体「仁者无敌」；未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取萧中慧头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；画面原生繁体题字「仁者無敵」逐字放大正确，规范题名保留简体「仁者无敌」；未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取萧中慧头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；题字無敵→无敌；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch11_benevolence_inscription.retry3.r2
   quality_retries: 1
@@ -136,3 +136,4 @@
     png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_benevolence_inscription.1f71532a.png
     sha256: 1f71532a113a26ad966690d7b9b70f0a700c241fc3eca099597a4be85b2d0643
     entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch11_benevolence_inscription.1f71532a.entry.yaml
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch11_benevolence_inscription_fixed.png", "before_sha256": "60799518254bda5f8e571b1363aeb8c719072e9ebb76b9177df9ef61d1650f01", "allowed_box": [[1410, 141, 1520, 202], [1410, 203, 1520, 262]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch11_benevolence_inscription_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T01:07:41-07:00"}
