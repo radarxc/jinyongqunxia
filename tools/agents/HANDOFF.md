@@ -2363,3 +2363,19 @@
       - TODO §3.6 补记 763e56cd；
       - 交接在 `_prod/.agents/coord/ART-3d-tripo-web/progress.md`。
     - **收件箱标记误判**：canon-align 的收件箱正文里提到「final-3c 已【停止】」，等它的会话可能误以为它结束了。已把那处改成〔停止〕，字节长度不变，监视读位置不受影响。今后说明里写成「该会话本人的【完成】/【停止】行」。
+  - **10-04 00:55–01:17 开发监督**：
+    - **ENG-ink-intents** r1 审核 FAIL：core 的对话运行时经 `@tianshu/data/build` 总入口带进了 Node 构建模块，越界。
+      - 停掉自动返修（未起执行器），挪基点到 962290ec，只剩 1 处 import 冲突；
+      - 带 r1 返修与解冲突说明（devsup_note_r2.md）重起：`--max-runs 1 --max-reviews 1`。
+    - **登记并起跑**：
+      - TOOL-supervise-singleton（81f3b0fd）：根因是 supervise 的防重只在非 `--worker` 模式生效；
+      - ENG-storage-perf-split（f4155dfc）：platform 存储的 50 ms 计时断言挪 check:perf，00:42 prod_check 在负载 40 下实测 133 ms 误红。
+    - ENG-battle-generic-model 说明补：通用模型已入库（男 bef08e9b / 女 3b6ab305）；原地走跑按 0.6 / 2.1 单位每秒随身高缩放；男女身高按书中设定（2894903a）。
+    - **状态更正**：ENG-01-storage 改为 MERGED（10-01 已合入 3da8cbb9），DES-tech-nextjs 置 CANCELLED（从无提示词、不在 tasks.json），守护进程不再重复报。
+    - **TOOL-assets-logs-cleanup**：r1 指出说明与 tasks.json 的上限不一致（60 / 120），是开发监督只改了一边，说明已同步。按协调者裁定只再审一轮（`--from review --max-reviews 1 --max-runs 0`），驱动 54851；01:11 误起的返修在起执行器前已停。
+    - **守护进程一小时小结（00:17–01:17）**：
+      - 只做了 4 次 prod_check，无越权（没改状态、没挪基点、没起合入 / 等待器 / Codex 会话、没停进程）；
+      - 报对的：停滞 2、语义冲突 1、等待器失败 1、红检查 1、HOLD 1；
+      - 噪声：首启回放 39 条，旧日志算出的 stall-repeat 1 条，重启重报 2 条（已更正状态）；
+      - 漏报未见。不降级，继续跑（pid 36606；为加配置重启过两次）。
+    - **首次会话**：gates-data 合入后 91.06 KiB，不过 95。
