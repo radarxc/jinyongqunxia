@@ -159,9 +159,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_beihaishi__ch06_elder_changle_base.requests.json
   notes: '宽松自查：瘦长脸、稀疏短髭与眼下纹理，中老年医者的灰褐衣、方巾、素帕、医囊及闭合针具布卷齐全，正面全身和双足完整，无明显多肢或重大结构错误。灰发与低血色病容表现较弱、年龄偏中年，面部独特性仍待用户确认，布帕未折整齐；这些实际差异登记，不冒称逐条严格通过。原始不透明PNG保存，candidate待用户最终审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（2d270661）'
 - id: por_npc_dabeilaoren__ch06_elder_alive_base
   file: por_npc_dabeilaoren__ch06_elder_alive_base.png
@@ -241,9 +241,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_dabeilaoren__ch06_elder_alive_base.requests.json
   notes: '宽松自查：红润宽面、长白发垂胸与短白须，高大厚实老者，完整灰褐衣；双手托木盒，盒内白垩泥偶带细红线可见，符合遇袭前大悲老人身份与阶段。正面全身、双足完整，未见明显多肢或重大结构问题。盒盖开角较大，不能从遮挡画面核数十八泥人，人物衣纹较密、背景亭花作为细节记录。原始PNG保存，candidate待用户审核，不声称严格数量或旧比例标准通过。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（57666cbd）'
 - id: por_npc_dingbusan__ch06_elder_zhouhang_base
   file: por_npc_dingbusan__ch06_elder_zhouhang_base.png
@@ -323,9 +323,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_dingbusan__ch06_elder_zhouhang_base.requests.json
   notes: '宽松自查：圆方老年面、白眉白须带笑、结实躯干，暗褐常服、白袜与低饱和紫色双梁鞋、腰侧带塞瓷酒瓶清楚，丁不三本版文字辨识可用。正面完整全身，手与物分开，未见明显多肢或重大结构问题。矮壮主要由宽厚体格表达、少量布褶较密，酒瓶内部内容不能验证，均不冒称严格通过。原始PNG保存，candidate待用户审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（57666cbd）'
 - id: por_npc_dingbusi__ch06_elder_jinlongbian_base
   file: por_npc_dingbusi__ch06_elder_jinlongbian_base.png
@@ -405,9 +405,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_dingbusi__ch06_elder_jinlongbian_base.requests.json
   notes: '宽松自查：灰白发短须、长脸瘦硬老者、暗褐灰常服，端正全身与完整双足，一条金色分节金龙软鞭可辨，和丁不三圆厚笑面及瓷瓶有区别；未见明显多肢或重大人体问题。鞭节数不能确认九节、盘圈连接局部像分叉且总长偏短，列装备待审，未冒称严格鞭结构通过；根据最新出齐优先尺度保存，不机械追加。原始PNG保存，candidate待用户审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（57666cbd）'
 - id: por_npc_lisi06__ch06_prime_yaojiu_base
   file: por_npc_lisi06__ch06_prime_yaojiu_base.png
@@ -573,9 +573,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_longdaozhu__ch06_elder_alive_base.requests.json
   notes: '宽松自查：高额与较长鼻梁、白眉白发白须、红润老年面容，土黄色完整世俗长袍，空手迎请，龙岛主身份和在世阶段可辨。正面全身、双足完整，无明显多肢或重大结构问题。game清瘦颊颌被柔化、鼻部辨识不如原侧像强，袍袖较宽且背景亭花明显；如实登记待用户复核，不宣称严格身份完全一致。原始PNG保存，candidate待最终审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（0b7f0477）'
 - id: por_npc_miaodi__ch06_elder_island_base
   file: por_npc_miaodi__ch06_elder_island_base.png
@@ -655,9 +655,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_miaodi__ch06_elder_island_base.requests.json
   notes: '宽松自查：清瘦老年剃发僧人、淡白眉短灰须、温厚眼神，灰褐僧衣和暗赭田相袈裟，空手讨论姿势，妙谛大师文字身份与岛上旧客阶段可用。正面全身、双鞋与双手完整，无明显多肢或重大结构问题。袈裟固定点不明显，衣纹较密、肤纹略强，细节留待用户审阅，不宣称旧严格标准全部满足。保存原始PNG，candidate待最终审核。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（0b7f0477）'
 - id: por_npc_mihengye__ch06_prime_changle_base
   file: por_npc_mihengye__ch06_prime_changle_base.png
@@ -897,9 +897,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_shiqing__ch06_prime_xunzi_base.requests.json
   notes: '宽松自查：成熟长方面、端直鼻梁与克制神态、炭黑常服网巾、一柄黑剑入黑鞘，石清寻子且未失剑阶段可辨；正面完整全身、双足清楚，无明显多肢或重大结构问题。灰鬓及眼角年龄纹较弱、面貌偏俊整，剑格鞘饰比朴素设定繁，背景有亭，实际差异记录待用户审阅。独立文字原创脸，原始PNG保存，candidate。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（0b7f0477）'
 - id: por_npc_yucha__ch06_elder_island_base
   file: por_npc_yucha__ch06_elder_island_base.png
@@ -976,9 +976,9 @@
     png: null
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_yucha__ch06_elder_island_base.requests.json
   notes: '宽松自查：瘦长老年面、灰白长须和发、青灰道袍与小道冠，空手论理，愚茶道长岛上旧客身份清楚；正面全身、双手双足完整，无明显多肢或重大结构问题。眉毛较短、少量散发偏多、小冠有金纹、背景有亭花，列细节待用户审核，不为其追加。原始PNG保存，candidate，不宣称原著或旧严格规范逐项终校通过。
-  
+
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（2cefff31）'
 - id: por_npc_zhanfei__ch06_prime_injured_base
   file: por_npc_zhanfei__ch06_prime_injured_base.png
@@ -1183,43 +1183,40 @@
   category: character/male
   style: default
   subject: 石破天（ch06_xiake）
-  prompt: '生成一张 2:3 竖幅单人全身剧情场景图。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    上传的第 1 张图是石破天本人的基础立绘，作为身份参考：保持同一张脸（脸型、眉眼、鼻子、嘴、肤色、发际线）和同样的成年年龄、体型，让人一眼认出是同一个人；不要照搬参考图的站姿、构图和背景，服饰、动作和场景按下文。
+    本次是原图局部放大裁图，输出同样的正方形裁图；不要生成全身，不要扩大场景。
 
+    只修改碗内粥液和勺上那一点粥：米白红豆粥改成深绿色草药浓粥，粥内少量树根碎粒、药片。碗的材质轮廓、碗沿、勺子、手指、衣服及背景全部原样保持。
 
-    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+    【原著依据】《侠客行》十九《腊八粥》：“一碗粥尽作深绿之色”（https://xuges.com/WUXIA/jinyong/xkx/106.htm）
 
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
 
-    人物：石破天，《侠客行》男主角，约二十岁的成年青年男子，身材结实匀称、肩背宽厚，日晒肤色，浓眉、眼睛明亮，神情忠厚、坦诚、好奇。
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
 
-    场景「侠客岛一碗粥」：代表长乐帮自愿去侠客岛赴宴、石壁大成之前。人物独自坐在低席上，一手托粥碗、一手拿汤匙，坦然好奇地看着碗里的腊八粥。衣装：整洁朴实的浅褐交领袍、深灰束腰、布裤布鞋，带质朴的乡野气。背景：海岛石厅、宽阔的拱口与远处海雾；不要骷髅、毒雾或现代餐具。
-
-
-    构图：竖幅 2:3，单人全身剧情场景图，人物是画面主体，从头顶到双脚完整入画（坐姿也要看得见头、身体、双手、双腿和双脚）；场景用浅淡的写实水墨笔法画出，留白充足，背景不能压过人物、不能侵入人物轮廓。画面里只有这一个人物。
-
-
-    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要少年或孩子的脸和身材；不要偶像化的俊美脸；不要换成另一张脸。汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
-
-    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
-
-    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
-  negative: ''
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_jinwu_base.png
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  tool: codex exec · image_gen（基线画风参考 2 张＋身份参考 1 张）
-  model: gpt-6-astra
-  created: 2026-10-02T02:32:13-0700
-  source_path: .agents/coord/gemini_originals/por_npc_shipotian__ch06_youth_scene_labazhou.png
+  - path: assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_scene_labazhou.png
+    sha256: 5b7dd20017e21777f5245b292d6d2861a4ec178fb14c10c3d1b391e2a25fa149
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_shipotian__ch06_youth_scene_labazhou.5b7dd200.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T02:05:14-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_06_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 5b7dd20017e21777f5245b292d6d2861a4ec178fb14c10c3d1b391e2a25fa149
+  sha256: ec598d9de5144955ad13f7a649bcabce1d8fce759cfa87c61ecaa2713dcad5c3
   status: candidate
-  notes: 立绘重审重出（AR-30）；基础立绘通过；本场景图的脸是少年模样（石壁会意一张又是另一张偶像脸），与基础立绘不一致、违反禁止幼态；以基础立绘为身份参考重画。
+  notes: 立绘重审重出（AR-30）；基础立绘通过；本场景图的脸是少年模样（石壁会意一张又是另一张偶像脸），与基础立绘不一致、违反禁止幼态；以基础立绘为身份参考重画。；AR-82 原著核对返修：石破天腊八药粥改深绿
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_shipotian__ch06_youth_scene_labazhou.5b7dd200.png
+    sha256: 5b7dd20017e21777f5245b292d6d2861a4ec178fb14c10c3d1b391e2a25fa149
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_shipotian__ch06_youth_scene_labazhou.5b7dd200.entry.yaml
 - id: por_npc_shipotian__ch06_youth_scene_motianya
   file: por_npc_shipotian__ch06_youth_scene_motianya.png
   category: character/male
@@ -1630,7 +1627,7 @@
   sha256: 2f1a7a77dcae768b8d95b02fd519411ba90791459df950376a12fc2117dbdda6
   status: candidate
   notes: 'AR-32 主要角色经典版重出（8 号出图员）：文字 + 两张同性别基线；本人无可用剧照或可靠游戏头像，只用文字
-  
+
     AR-69：作者定男性默认不笑，改回 AR-58 前版本（2d270661）'
 - id: por_npc_shizhongyu__ch06_youth_bangzhu_base
   file: por_npc_shizhongyu__ch06_youth_bangzhu_base.png

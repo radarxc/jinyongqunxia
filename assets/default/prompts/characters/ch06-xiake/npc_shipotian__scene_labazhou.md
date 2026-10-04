@@ -109,3 +109,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_shipotian__ch06_youth_scene_labazhou.prepared.json`。
+
+## 原著依据
+
+- 《侠客行》十九《腊八粥》：“一碗粥尽作深绿之色”（https://xuges.com/WUXIA/jinyong/xkx/106.htm）
+- AR-82 返修约束：只修改碗内粥液和勺上那一点粥：米白红豆粥改成深绿色草药浓粥，粥内少量树根碎粒、药片。碗的材质轮廓、碗沿、勺子、手指、衣服及背景全部原样保持。
