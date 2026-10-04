@@ -75,9 +75,9 @@
   source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch02_peach_island_trials_v1_composite.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 7dda3daf955f16c43060cd674c2f258dcb3e2c2604d5c6d3cbe62f8db21ad503
+  sha256: 253015a9ce39c1c64540d1ec873e482eec2b17fe4a49fffdfaf26ed94abf6c9b
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-58 插图对脸（11 号出图员）：黄药师按作者 10-03 18:02 选定的新 base 对脸（郭靖、黄蓉（主角）与欧阳克、洪七公、欧阳锋不动，题字保留）；AR-44 对脸精修，基线 = por_npc_ouyangfeng__ch02_elder_sane_base（AR-53 配角对齐：洪七公（白浓眉、灰白须发）、欧阳锋（灰白须发、年长）对齐各自基准；局部合成——两人头部方块分别交 codex 改，再依次贴回，其余像素不变（编辑 k1/k2））；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-58 插图对脸（11 号出图员）：黄药师按作者 10-03 18:02 选定的新 base 对脸（郭靖、黄蓉（主角）与欧阳克、洪七公、欧阳锋不动，题字保留）；AR-44 对脸精修，基线 = por_npc_ouyangfeng__ch02_elder_sane_base（AR-53 配角对齐：洪七公（白浓眉、灰白须发）、欧阳锋（灰白须发、年长）对齐各自基准；局部合成——两人头部方块分别交 codex 改，再依次贴回，其余像素不变（编辑 k1/k2））；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变；题字島試→岛试；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   previous_revision:
     png: .agents/coord/_lines/guojing-final/replaced/cg_ch02_peach_island_trials.6a2983a1.png
     sha256: 6a2983a1cf275c60982c801414dc9632b87483525bfc91ff7eb3f8bd545e06dc
@@ -90,6 +90,7 @@
     - exec-e0d046cf-0951-49e4-b495-64c1d43a9f55.png
   runner_success_count: 1
   effort: xhigh
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch02_peach_island_trials_fixed.png", "before_sha256": "7dda3daf955f16c43060cd674c2f258dcb3e2c2604d5c6d3cbe62f8db21ad503", "allowed_box": [[1410, 93, 1530, 174], [1410, 224, 1530, 302]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch02_peach_island_trials_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T02:17:00-07:00"}
 - id: cg_ch02_beiwuzhaoqin
   file: cg_ch02_beiwuzhaoqin.png
   category: scene
