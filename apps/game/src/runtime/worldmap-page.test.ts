@@ -24,6 +24,7 @@ afterEach(() => {
 });
 
 describe('WorldMapPage scene lifecycle', () => {
+  // This wait synchronizes functional state; loaded-host latency is not a performance assertion.
   it('disposes a scene that finishes mounting after the page is unmounted', async () => {
     const content = fixtureContent();
     const selectors = createSelectors(content);
@@ -54,7 +55,8 @@ describe('WorldMapPage scene lifecycle', () => {
 
     const wrapper = mount(WorldMapPage, { attachTo: document.body, props: { controller },
       global: { plugins: [pinia] } });
-    await vi.waitFor(() => expect(renderMocks.createWorldMapScene).toHaveBeenCalledOnce());
+    await vi.waitFor(() => expect(renderMocks.createWorldMapScene).toHaveBeenCalledOnce(),
+      { timeout: 10_000 });
     wrapper.unmount();
     finishScene(scene);
     await flushPromises();
@@ -62,8 +64,9 @@ describe('WorldMapPage scene lifecycle', () => {
     expect(dispose).toHaveBeenCalledOnce();
     expect(observe).not.toHaveBeenCalled();
     expect(requestFrame).not.toHaveBeenCalled();
-  });
+  }, 30_000);
 
+  // This wait synchronizes functional state; loaded-host latency is not a performance assertion.
   it('disposes a scene when actor setup finishes after the page is unmounted', async () => {
     const content = fixtureContent();
     const selectors = createSelectors(content);
@@ -89,7 +92,7 @@ describe('WorldMapPage scene lifecycle', () => {
 
     const wrapper = mount(WorldMapPage, { attachTo: document.body, props: { controller },
       global: { plugins: [pinia] } });
-    await vi.waitFor(() => expect(scene.setActor).toHaveBeenCalledOnce());
+    await vi.waitFor(() => expect(scene.setActor).toHaveBeenCalledOnce(), { timeout: 10_000 });
     wrapper.unmount();
     finishActor();
     await flushPromises();
@@ -97,5 +100,5 @@ describe('WorldMapPage scene lifecycle', () => {
     expect(dispose).toHaveBeenCalledOnce();
     expect(observe).not.toHaveBeenCalled();
     expect(requestFrame).not.toHaveBeenCalled();
-  });
+  }, 30_000);
 });

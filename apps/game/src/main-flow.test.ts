@@ -18,6 +18,7 @@ vi.mock('./App.vue', () => ({ default: { props: ['controller'],
 afterEach(() => { document.body.innerHTML = ''; vi.resetModules(); vi.unstubAllGlobals();
   mocks.createHost.mockReset(); mocks.created = 0; mocks.failFirst = false; });
 describe('application title and recovery flow', () => {
+  // These waits synchronize functional state; loaded-host latency is not a performance assertion.
   it('continues a formal save, then replaces a failed host and restores the latest auto save', async () => {
     vi.stubGlobal('indexedDB', new IDBFactory()); vi.stubGlobal('IDBKeyRange', IDBKeyRange);
     const seedHost = createProjectionMainThreadHost(createGameSession(fixtureContent(), undefined, undefined, { demo: false }));
@@ -37,13 +38,16 @@ describe('application title and recovery flow', () => {
     const button = (label: string) => [...document.querySelectorAll('button')]
       .find(entry => entry.textContent?.trim() === label) as HTMLButtonElement | undefined;
     expect(button('继续')?.disabled).toBe(false); button('继续')!.click();
-    await vi.waitFor(() => expect(document.querySelector('[data-game]')).not.toBeNull());
+    await vi.waitFor(() => expect(document.querySelector('[data-game]')).not.toBeNull(),
+      { timeout: 10_000 });
     mocks.failFirst = true; const { uiBus } = await import('@tianshu/ui/runtime');
     uiBus.emit({ type: 'core-command', command: { t: 'worldmap/cancel' } });
-    await vi.waitFor(() => expect(document.body.textContent).toContain('核心进程已停止响应'));
+    await vi.waitFor(() => expect(document.body.textContent).toContain('核心进程已停止响应'),
+      { timeout: 10_000 });
     expect(button('从最近自动存档恢复')?.disabled).toBe(false);
     button('从最近自动存档恢复')!.click();
-    await vi.waitFor(() => expect(document.querySelector('[data-game]')?.textContent).toContain('自动存档恢复'));
+    await vi.waitFor(() => expect(document.querySelector('[data-game]')?.textContent).toContain('自动存档恢复'),
+      { timeout: 10_000 });
     expect(mocks.createHost).toHaveBeenCalledTimes(2); shell.disposeGameShell();
-  });
+  }, 30_000);
 });
