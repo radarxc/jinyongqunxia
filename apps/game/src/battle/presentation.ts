@@ -1,4 +1,4 @@
-import type { BattleEvent, BattleUnit } from '@tianshu/core';
+import type { BattleEvent, BattleState, BattleUnit } from '@tianshu/core';
 import type { BattleLaunch, BattleUnitView, MeridianPointView } from './contracts';
 
 const STATUS: Readonly<Record<string, string>> = {
@@ -9,7 +9,8 @@ const POINTS: Readonly<Record<string, string>> = {
   ap_renmai_danzhong: '膻中', ap_shouyangming_hegu: '合谷', ap_zuyangming_zusanli: '足三里',
 };
 const ZONES = { body: '全身', hand: '手部', leg: '腿部' } as const;
-export function projectBattleUnit(unit: BattleUnit, launch: BattleLaunch): BattleUnitView {
+export function projectBattleUnit(unit: BattleUnit, launch: BattleLaunch,
+  state?: BattleState): BattleUnitView {
   const marker = launch.markers.find(row => row.id === unit.id)!;
   const cell = launch.cells.find(row => row.q === unit.pos.q && row.r === unit.pos.r);
   const points = new Map<string, MeridianPointView>();
@@ -22,7 +23,10 @@ export function projectBattleUnit(unit: BattleUnit, launch: BattleLaunch): Battl
     qi: occupied.occupyingQi, state: 'occupied',
   });
   const dantian = unit.buffs.find(buff => buff.def === 'bf_dantianshousun')?.stacks ?? 0;
-  return { ...marker, q: unit.pos.q, r: unit.pos.r, height: cell?.height ?? marker.height,
+  const activeRoute = state?.meridianByUnit.find(row => row.unitId === unit.id)?.flow.activeRouteId ?? null;
+  // Core has no qiNature field yet: omit it instead of leaking the static launch marker into live VFX.
+  return { id: marker.id, index: marker.index, name: marker.name, equipment: marker.equipment,
+    q: unit.pos.q, r: unit.pos.r, height: cell?.height ?? marker.height,
     facing: unit.facing, active: unit.active, side: unit.side, control: unit.control,
     hp: unit.hp, hpMax: unit.hpMax, mp: unit.mp, mpMax: unit.mpMax, ct: unit.ct, spd: unit.spd,
     state: unit.state, statuses: unit.buffs.map(buff => ({ id: String(buff.iid),
@@ -31,9 +35,10 @@ export function projectBattleUnit(unit: BattleUnit, launch: BattleLaunch): Battl
       const visual = launch.moves.find(row => row.id === move.id);
       return visual ? [{ ...visual, mpCost: move.mpCost, recovery: move.recovery,
         hitZone: ZONES[move.hitZone], available: unit.mp >= move.mpCost,
+        reason: unit.mp >= move.mpCost ? '' : 'MP_NOT_ENOUGH',
         completionBp: null, attackBp: move.meridianAttackBp ?? null }] : [];
     }),
-    meridian: { routeId: null, completionBp: null, inFlight: null, capacity: null, attackBp: null,
+    meridian: { routeId: activeRoute, completionBp: null, inFlight: null, capacity: null, attackBp: null,
       dantianDamage: dantian, points: [...points.values()] },
   };
 }

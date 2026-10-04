@@ -5,7 +5,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 ## 六角战场 API（ENG-10）
 
 - 从 `@tianshu/render/battle` 动态导入 `createBattleRenderer(canvas,cells)`；战场采用 Three WebGL 2.5D 层，不另建 DOM 六角几何。
-- `HexLayer` 用一个 `InstancedMesh` 绘制最多 400 格；选中 / 就绪 / 可达 / 招式范围写入 400×1 RGBA8 `DataTexture`，不得改回大数组 fragment uniform。地形颜色是实例属性。
+- `HexLayer` 用一个 `InstancedMesh` 绘制最多 400 格；选中 / 幽灵、就绪、可达 / 路径、招式范围复用 400×1 RGBA8 `DataTexture` 的打包通道，不增加 draw call，也不得改回大数组 fragment uniform。地形颜色是实例属性。
 - `updateUnits()` 只消费 `BattleMarker[]`，以 ENG-12 `RigBatch` 呈现分层身体与装备；位置、朝向或装备不变时不重复写角色状态，每帧只做一次 `batch.sync()`。
 - 六向 `HexDir` 必须经 `hexDirToRig()` 映射为 `Dir8`。共享边拾取先按投影中心距，再按 `(r,q)`，与 design/09 §10 一致。
 - `project()` 给 Vue 标签提供屏幕坐标；应用层按单位位置缓存，只在单位移动或 resize 时重投影。renderer 不计算可达、敌我或命中。

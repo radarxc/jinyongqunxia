@@ -64,6 +64,8 @@ let floatTimer: ReturnType<typeof setTimeout> | undefined;
 const area = computed(
   () => new Set(props.battle.preview?.cells.map((cell) => `${cell.q},${cell.r}`) ?? []),
 );
+const destination = computed(() => props.battle.capabilities.move.selected);
+const movement = props.controller.movement;
 const directionLabels = ['东', '东北', '西北', '西', '西南', '东南'];
 function project(force = false): void {
   if (!renderer) return;
@@ -99,7 +101,10 @@ function highlights(): void {
   renderer?.setHighlights({
     selected: selected ? `${selected.q},${selected.r}` : null,
     ready: actor ? `${actor.q},${actor.r}` : null,
-    reachable: [],
+    reachable: movement.value
+      ? props.battle.capabilities.move.reachable.map(cell => `${cell.q},${cell.r}`) : [],
+    path: destination.value?.path.map(cell => `${cell.q},${cell.r}`) ?? [],
+    ghost: destination.value ? `${destination.value.q},${destination.value.r}` : null,
     area: [...area.value],
   });
 }
@@ -195,14 +200,23 @@ function pointer(event: PointerEvent, commit: boolean): void {
   const cell = renderer.pick(event.clientX - bounds.left, event.clientY - bounds.top);
   if (!cell) return;
   const key = `${cell.q},${cell.r}`;
-  if (commit) emit('cell', cell);
+  if (commit && movement.value) chooseDestination(cell);
+  else if (commit) emit('cell', cell);
   else if (key !== hovered) {
     hovered = key;
     emit('hover', cell);
   }
 }
+function chooseDestination(cell: BattleCell): void {
+  const reachable = props.battle.capabilities.move.reachable.some(row =>
+    row.q === cell.q && row.r === cell.r);
+  if (!reachable || !props.battle.actorId) return;
+  props.controller.preview({ kind: 'move', revision: props.battle.revision,
+    actor: props.battle.actorId, destination: { q: cell.q, r: cell.r } });
+  props.controller.setMovement(false);
+}
 watch(() => props.battle.units, sync);
-watch(() => [props.battle.preview, props.selected], highlights);
+watch(() => [props.battle.preview, props.selected, movement.value, destination.value], highlights);
 watch(
   () => props.floating,
   () => {
@@ -380,6 +394,7 @@ onBeforeUnmount(() => {
         @click="pointer($event as PointerEvent, true)"
       />
       <canvas v-show="!failed" :key="'effects-' + canvasGeneration" ref="vfxCanvas" class="battle-vfx" aria-hidden="true" />
+      <p v-if="movement" class="field-mode" role="status">{{ t('battleChooseDestination') }}</p>
       <section v-if="contextState !== 'ok'" class="render-recovery" role="status" aria-live="assertive" :aria-busy="recovering">
         <h3>{{ contextState === 'lost' ? t('renderRestoring') : restoreFailedText }}</h3>
         <p v-if="contextState === 'failed'">{{ recoveryNotice || t('renderRecoveryPreserved') }}</p>
@@ -504,9 +519,9 @@ onBeforeUnmount(() => {
           v-for="cell in battle.info.cells"
           :key="`${cell.q},${cell.r}`"
           type="button"
-          :class="{ hit: area.has(`${cell.q},${cell.r}`) }"
+          :class="{ hit: area.has(`${cell.q},${cell.r}`), reachable: movement && battle.capabilities.move.reachable.some(row => row.q === cell.q && row.r === cell.r), path: destination?.path.some(row => row.q === cell.q && row.r === cell.r) }"
           @focus="emit('hover', cell)"
-          @click="emit('cell', cell)"
+          @click="movement ? chooseDestination(cell) : emit('cell', cell)"
         >
           {{ cell.q }},{{ cell.r }} · {{ cell.label }} · 高 {{ cell.height }}
         </button>

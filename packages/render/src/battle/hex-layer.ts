@@ -22,7 +22,7 @@ function geometry(): BufferGeometry {
   result.computeBoundingSphere(); return result;
 }
 
-/** Four highlight flags per tile live in one retained 400 x 1 RGBA8 data texture. */
+/** Packed highlight values per tile live in one retained 400 x 1 RGBA8 data texture. */
 export class HexLayer {
   readonly mesh: InstancedMesh;
   readonly material: ShaderMaterial;
@@ -58,10 +58,12 @@ export class HexLayer {
           float edge=max(abs(local.x), max(abs(dot(local,vec2(.5,.8660254))),abs(dot(local,vec2(.5,-.8660254)))));
           float border=smoothstep(.550,.574,edge);
           vec3 ink=mix(baseColor,vec3(.22,.24,.22),border*.55);
-          ink=mix(ink,vec3(.24,.61,.65),flags.r*.42);
+          ink=mix(ink,vec3(.24,.61,.65),step(.2,flags.r)*.42);
+          ink=mix(ink,vec3(.95,.67,.20),step(.65,flags.r)*.38);
           ink=mix(ink,vec3(.83,.39,.26),flags.g*.55);
           if(flags.b>.5) ink=mix(ink,vec3(.95,.78,.34),.4);
-          if(flags.a>.5) ink=mix(ink,vec3(1.,.87,.5),max(border,.3));
+          if(flags.a>.75) ink=mix(ink,vec3(1.,.87,.5),max(border,.3));
+          else if(flags.a>.25) ink=mix(ink,vec3(.88,.78,.51),.48);
           gl_FragColor=vec4(ink,1.0); }`,
     });
     this.mesh = new InstancedMesh(shape, this.material, cells.length);
@@ -73,11 +75,14 @@ export class HexLayer {
   }
   setHighlights(value: BattleHighlights): void {
     this.highlightBytes.fill(0);
-    for (const key of value.reachable) { const index = this.indices.get(key); if (index !== undefined) this.highlightBytes[index * 4] = 255; }
+    for (const key of value.reachable) { const index = this.indices.get(key); if (index !== undefined) this.highlightBytes[index * 4] = 160; }
+    for (const key of value.path) { const index = this.indices.get(key); if (index !== undefined) this.highlightBytes[index * 4] = 255; }
     for (const key of value.area) { const index = this.indices.get(key); if (index !== undefined) this.highlightBytes[index * 4 + 1] = 255; }
     const ready = value.ready === null ? undefined : this.indices.get(value.ready);
     const selected = value.selected === null ? undefined : this.indices.get(value.selected);
+    const ghost = value.ghost === null ? undefined : this.indices.get(value.ghost);
     if (ready !== undefined) this.highlightBytes[ready * 4 + 2] = 255;
+    if (ghost !== undefined) this.highlightBytes[ghost * 4 + 3] = 128;
     if (selected !== undefined) this.highlightBytes[selected * 4 + 3] = 255;
     this.highlights.needsUpdate = true;
   }

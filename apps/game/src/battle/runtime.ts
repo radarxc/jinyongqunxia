@@ -3,23 +3,26 @@ import { createBattleSession, peekReadyUnitId, projectBattleRewards, type Battle
 import type { BattleBusActCommand, BattleSetAutoBusCommand } from '@tianshu/core';
 import type { BattleLaunch, BattlePacket, BattleUiCommand, BattleUnitView, MovePlayback } from './contracts';
 import { projectBattleUnit } from './presentation';
-import { queryArea, queryTimeline } from './queries';
-
-const unavailable = (reason: string) => ({ enabled: false, reason });
-const CAPABILITIES = { move: { enabled: true, reason: '' }, item: unavailable('当前战斗暂不可使用物品'),
-  defend: unavailable('当前战斗暂不可防御'), gather: unavailable('当前战斗尚未接通急性聚气') };
+import { queryActions, queryArea, queryTimeline } from './queries';
 
 /** Read-only host adapter. Battle rules, RNG and command history live in core's BattleSession. */
 export class BattleRuntime {
   private readonly views = new Map<string, BattleUnitView>();
   private readonly unitRevisions = new Map<string, number>();
   private preview: BattlePacket['preview'] = null;
+  private destination: BattlePacket['capabilities']['move']['selected'] = null;
   private session: BattleSessionState | null;
+  private authorityBattleId: string;
+  private authorityRevision: number;
+  private authorityRetryCount: number;
   readonly launch: BattleLaunch;
 
   constructor(input: BattleLaunch, session?: BattleSessionState) {
     this.launch = structuredClone(input);
     this.session = session ?? createBattleSession(this.launch.setup, this.launch.seeds);
+    this.authorityBattleId = this.session.battleId;
+    this.authorityRevision = this.session.revision;
+    this.authorityRetryCount = this.session.retryCount;
     const { setup, cells, markers, moves } = this.launch;
     if (setup.schema !== 'battle-setup.v1' ||
       cells.length === 0 || cells.length > 400 || markers.length > 100 ||
@@ -34,16 +37,18 @@ export class BattleRuntime {
   }
 
   update(session: BattleSessionState): void {
-    if (this.session !== null && session.battleId !== this.session.battleId
+    if (this.session !== null && session.battleId !== this.authorityBattleId
       && session.opening.setup.encounterId !== this.launch.setup.encounterId)
       throw new Error('BATTLE_SESSION_MISMATCH');
-    if (this.session?.retryCount !== session.retryCount) { this.unitRevisions.clear(); this.views.clear(); }
-    this.session = session; this.preview = null;
+    if (this.authorityRetryCount !== session.retryCount) { this.unitRevisions.clear(); this.views.clear(); }
+    const authorityChanged = this.authorityBattleId !== session.battleId
+      || this.authorityRevision !== session.revision || this.authorityRetryCount !== session.retryCount;
+    this.session = session;
+    this.authorityBattleId = session.battleId; this.authorityRevision = session.revision;
+    this.authorityRetryCount = session.retryCount;
+    if (authorityChanged) { this.preview = null; this.destination = null; }
   }
   id(): string | null { return this.session?.battleId ?? null; }
-
-  setPreview(preview: BattlePacket['preview']): void { this.preview = preview; }
-  clearPreview(): void { this.preview = null; }
 
   state(): BattleState {
     if (this.session === null) throw new Error('BATTLE_NOT_ACTIVE');
@@ -56,15 +61,16 @@ export class BattleRuntime {
     const rewards = projectBattleRewards(this.session);
     for (const unit of battle.units) {
       if (full || this.unitRevisions.get(unit.id) !== unit.revision) {
-        const view = projectBattleUnit(unit, this.launch);
+        const view = projectBattleUnit(unit, this.launch, battle);
         this.views.set(unit.id, view); this.unitRevisions.set(unit.id, unit.revision); changed.push(view);
       }
     }
-    return { id: this.session.battleId, revision: this.session.revision,
+    const actorId = battle.result ? null : peekReadyUnitId(battle);
+    const capabilities = queryActions(battle, actorId, [...this.views.values()], this.destination ?? undefined);
+    return { id: this.session.battleId, revision: this.session.revision, capabilities,
       ...(full ? { info: { title: this.launch.title, preview: this.launch.preview, setup: battle.setup,
-        cells: this.launch.cells, capabilities: { ...CAPABILITIES,
-          item: unavailable(battle.setup.rules.noItems ? '本场禁止使用物品' : CAPABILITIES.item.reason) } } } : {}),
-      units: full ? [...this.views.values()] : changed, actorId: battle.result ? null : peekReadyUnitId(battle),
+        cells: this.launch.cells, capabilities } } : {}),
+      units: full ? [...this.views.values()] : changed, actorId,
       tick: battle.tick, round: battle.round, actionNo: battle.actionNo,
       timeline: queryTimeline(battle), auto: this.session.auto, preview: this.preview, result: battle.result,
       rewards: rewards === null ? null : { ...rewards, martial: null,
@@ -80,11 +86,24 @@ export class BattleRuntime {
       events: this.session.battle.events, rng: this.session.battleRng });
   }
 
-  previewArea(input: Parameters<typeof queryArea>[2]): BattlePacket {
+  previewArea(input: Extract<BattleUiCommand, { t: 'battle/preview' }>): BattlePacket {
     if (this.session === null) throw new Error('BATTLE_NOT_ACTIVE');
     if (input.revision !== this.session.revision) throw new Error('BATTLE_STALE_PREVIEW');
     if (this.session.auto) throw new Error('BATTLE_AUTO_ACTIVE');
-    this.preview = queryArea(this.session.battle, this.launch, input); return this.packet();
+    if (input.kind === 'cancel') { this.destination = null; this.preview = null; return this.packet(); }
+    if (input.kind === 'move') {
+      const actorId = peekReadyUnitId(this.session.battle);
+      if (actorId !== input.actor) throw new Error('BATTLE_STALE_PREVIEW');
+      const queried = queryActions(this.session.battle, actorId, [...this.views.values()], input.destination);
+      if (queried.move.selected === null) throw new Error('PATH_BLOCKED');
+      this.destination = queried.move.selected.cost === 0 ? null : queried.move.selected;
+      this.preview = null; return this.packet();
+    }
+    const selectedWalkTo = this.destination === null ? undefined
+      : { q: this.destination.q, r: this.destination.r };
+    const walkTo = input.walkTo ?? selectedWalkTo;
+    this.preview = queryArea(this.session.battle, this.launch, { ...input,
+      ...(walkTo === undefined ? {} : { walkTo }) }); return this.packet();
   }
 
   coreCommand(input: Exclude<BattleUiCommand, { t: 'battle/enter' | 'battle/demo' |
@@ -95,13 +114,16 @@ export class BattleRuntime {
     if (input.t === 'battle/step') return { t: 'battle/act', automatic: true,
       expectedRevision: input.revision };
     if (input.t === 'battle/wait') return { t: 'battle/act', actor: input.actor,
-      action: { t: 'wait' }, expectedRevision: input.revision };
+      action: { t: 'wait' }, ...(input.walkTo === undefined ? {} : { walkTo: input.walkTo }),
+      expectedRevision: input.revision };
     if (input.t === 'battle/move') return { t: 'battle/act', actor: input.actor,
       walkTo: input.destination, action: { t: 'wait' }, expectedRevision: input.revision };
     if (input.t === 'battle/item') return { t: 'battle/act', actor: input.actor,
-      action: { t: 'item', item: input.itemId, target: input.targetId }, expectedRevision: input.revision };
+      action: { t: 'item', item: input.itemId, target: input.targetId },
+      ...(input.walkTo === undefined ? {} : { walkTo: input.walkTo }), expectedRevision: input.revision };
     if (input.t === 'battle/defend') return { t: 'battle/act', actor: input.actor,
-      action: { t: 'guard' }, expectedRevision: input.revision };
+      action: { t: 'guard' }, ...(input.walkTo === undefined ? {} : { walkTo: input.walkTo }),
+      expectedRevision: input.revision };
     if (input.t === 'battle/gather') return { t: 'battle/act', actor: input.actor,
       action: { t: 'acuteQiGather', routeRef: input.routeId }, expectedRevision: input.revision };
     const preview = input.preview;
@@ -117,7 +139,8 @@ export class BattleRuntime {
       ? actor?.id : anchorUnit?.id;
     if (actor === undefined || move === undefined || target === undefined)
       throw new Error('BATTLE_TARGET_INVALID');
-    return { t: 'battle/act', actor: actor.id, action: { t: 'skill', move: move.id,
-      target, aim: area.aim }, expectedRevision: preview.revision };
+    return { t: 'battle/act', actor: actor.id,
+      ...(preview.walkTo === undefined ? {} : { walkTo: preview.walkTo }),
+      action: { t: 'skill', move: move.id, target, aim: area.aim }, expectedRevision: preview.revision };
   }
 }

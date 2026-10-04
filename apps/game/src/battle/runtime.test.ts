@@ -83,13 +83,84 @@ describe('battle projection adapter', () => {
     expect(runtime.packet().units).toEqual([]);
     expect(runtime.coreCommand({ t: 'battle/wait', actor: 'hero', revision: 0 }))
       .toEqual({ t: 'battle/act', actor: 'hero', action: { t: 'wait' }, expectedRevision: 0 });
+    expect(runtime.coreCommand({ t: 'battle/wait', actor: 'hero', revision: 0,
+      walkTo: { q: -1, r: 0 } })).toEqual({ t: 'battle/act', actor: 'hero',
+      walkTo: { q: -1, r: 0 }, action: { t: 'wait' }, expectedRevision: 0 });
     expect(runtime.transcript()).toEqual(before);
     setBattleAuto(session, true); stepBattleSession(session); runtime.update(session);
     const changed = runtime.packet().units;
     expect(changed.map((unit) => unit.id)).toContain('hero');
     expect(runtime.packet().units).toEqual([]);
-    expect(() => runtime.previewArea({ revision: -1, actor: 'hero',
+    expect(() => runtime.previewArea({ t: 'battle/preview', revision: -1, actor: 'hero',
       moveId: 'mv_basic_strike', anchor: { q: 1, r: 0 },
       aim: { dirCount: 6, dir: 0 }, requestId: 1 })).toThrow('BATTLE_STALE_PREVIEW');
+  });
+  it('projects core-owned reachability, item rejection, guard, wait, and qi routes', () => {
+    const { runtime } = harness(); const packet = runtime.packet(true);
+    expect(packet.capabilities.move.reachable.some(cell => cell.cost > 0 && cell.path.length > 1)).toBe(true);
+    expect(packet.capabilities.wait.enabled).toBe(true);
+    expect(packet.capabilities.defend.enabled).toBe(true);
+    expect(packet.capabilities.item).toEqual({ enabled: false, reason: '当前状态禁止此行动' });
+    expect(packet.capabilities.items[0]).toMatchObject({ id: 'it_jinchuangyao', count: 2 });
+    expect(packet.capabilities.items[0]?.targets[0]).toMatchObject({ id: 'hero',
+      capability: { enabled: false, reason: '当前状态禁止此行动' } });
+    expect(packet.capabilities.routes[0]).toMatchObject({ routeId: 'mfr_fixture_basic',
+      capability: { enabled: true }, inFlight: 0, capacity: 16 });
+    expect(packet.units[0]).not.toHaveProperty('qiNature');
+  });
+  it('stores and clears a core-queried movement preview without mutating the transcript', () => {
+    const { runtime, session } = harness(); const before = runtime.transcript();
+    const moved = runtime.previewArea({ t: 'battle/preview', kind: 'move', revision: 0,
+      requestId: 1, actor: 'hero', destination: { q: -1, r: 0 } });
+    expect(moved.capabilities.move.selected).toMatchObject({ q: -1, r: 0, cost: 2 });
+    expect(runtime.transcript()).toEqual(before);
+    runtime.update(session);
+    expect(runtime.packet().capabilities.move.selected).toMatchObject({ q: -1, r: 0 });
+    const original = runtime.previewArea({ t: 'battle/preview', kind: 'move', revision: 0,
+      requestId: 2, actor: 'hero', destination: { q: 0, r: 0 } });
+    expect(original.capabilities.move.selected).toBeNull();
+    runtime.previewArea({ t: 'battle/preview', kind: 'move', revision: 0,
+      requestId: 3, actor: 'hero', destination: { q: -1, r: 0 } });
+    const cleared = runtime.previewArea({ t: 'battle/preview', kind: 'cancel',
+      revision: 0, requestId: 4 });
+    expect(cleared.capabilities.move.selected).toBeNull();
+    expect(runtime.transcript()).toEqual(before);
+  });
+  it('clears an uncommitted movement preview when the authoritative revision changes', () => {
+    const { runtime, session } = harness();
+    runtime.previewArea({ t: 'battle/preview', kind: 'move', revision: 0,
+      requestId: 1, actor: 'hero', destination: { q: -1, r: 0 } });
+    setBattleAuto(session, true); runtime.update(session);
+    expect(runtime.packet().capabilities.move.selected).toBeNull();
+  });
+  it('keeps walkTo in a queried skill plan while acute gather never carries movement', () => {
+    const { runtime, session } = harness(); runtime.packet(true);
+    runtime.previewArea({ t: 'battle/preview', kind: 'move', revision: 0, requestId: 1,
+      actor: 'hero', destination: { q: 0, r: 1 } });
+    runtime.update(session);
+    expect(runtime.packet().capabilities.gather).toEqual({ enabled: true, reason: '' });
+    const area = runtime.previewArea({ t: 'battle/preview', revision: 0, requestId: 2,
+      actor: 'hero', moveId: 'mv_basic_strike', anchor: { q: 1, r: 0 },
+      aim: { dirCount: 6, dir: 0 } }).preview!;
+    expect(area).toMatchObject({ valid: true, walkTo: { q: 0, r: 1 } });
+    expect(runtime.coreCommand({ t: 'battle/act-at', preview: area })).toMatchObject({
+      t: 'battle/act', actor: 'hero', walkTo: { q: 0, r: 1 },
+      action: { t: 'skill', move: 'mv_basic_strike', target: 'enemy_0' },
+    });
+    expect(runtime.coreCommand({ t: 'battle/gather', actor: 'hero', revision: 0,
+      routeId: 'mfr_fixture_basic' })).toEqual({ t: 'battle/act', actor: 'hero',
+      action: { t: 'acuteQiGather', routeRef: 'mfr_fixture_basic' }, expectedRevision: 0 });
+  });
+  it('enables a battle item only when core approves its target', () => {
+    const { launch, session } = harness();
+    const setup = { ...launch.setup, rules: { ...launch.setup.rules, mode: 'normal' as const, noItems: false } };
+    const runtime = new BattleRuntime({ ...launch, setup }, createBattleSession(setup, launch.seeds));
+    const packet = runtime.packet(true); const medicine = packet.capabilities.items[0]!;
+    expect(packet.capabilities.item).toEqual({ enabled: true, reason: '' });
+    expect(medicine.targets.find(target => target.id === 'hero')?.capability).toEqual({ enabled: true, reason: '' });
+    expect(medicine.targets.find(target => target.id === 'enemy_0')?.capability.enabled).toBe(false);
+    expect(runtime.coreCommand({ t: 'battle/item', actor: 'hero', itemId: medicine.id,
+      targetId: 'hero', revision: session.revision })).toEqual({ t: 'battle/act', actor: 'hero',
+      action: { t: 'item', item: medicine.id, target: 'hero' }, expectedRevision: session.revision });
   });
 });

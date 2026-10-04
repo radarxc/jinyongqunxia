@@ -103,6 +103,32 @@ const zhHans = {
   town: '城镇',
   battle: '战斗',
   battleCamera: '战场视角',
+  battleMove: '移动',
+  battleItem: '物品',
+  battleDefend: '防御',
+  battleWait: '待机',
+  battleGather: '急性聚气',
+  battleConfirmAction: '确认行动',
+  battleCancelPlan: '撤销预览',
+  battleChooseDestination: '请选择高亮的可达格',
+  battleChoosePlaceholder: '请选择',
+  battleChooseItem: '选择战斗物品',
+  battleChooseTarget: '选择物品目标',
+  battleChooseRoute: '选择聚气路线',
+  battleMoveReady: '路径已预览；再选择招式或待机，然后确认。',
+  battleItemLimit: '本场物品次数',
+  battleGatherHelp: '跳过本回合，继续积攒经脉中的气；不能同时移动。',
+  battleItemPicker: '战斗物品',
+  battleRoutePicker: '聚气路线',
+  battleCoreTraining: '核心训练记录',
+  battleWaitingActor: '等待下一位行动者',
+  battleNoReachable: '没有可达的移动格',
+  battleNoItemTarget: '没有合法目标',
+  battleNoItems: '战斗背包中没有可用物品',
+  battleNoAttackRoute: '没有可用的进攻经脉路线',
+  battleActionRejected: '行动已被战斗核心拒绝，请按当前提示重新选择。',
+  battleNoDrops: '本次没有掉落。',
+  battleNoTraining: '本次没有武学或身法训练记录。',
   rotateCameraLeft: '左转视角',
   rotateCameraRight: '右转视角',
   renderRestoring: '画卷重展中…',
@@ -151,6 +177,43 @@ const zhHans = {
 export type TextKey = keyof typeof zhHans;
 export function t(key: TextKey): string {
   return zhHans[key];
+}
+const battleReasons: Readonly<Record<string, string>> = {
+  BATTLE_ENDED: '战斗已经结束', INVALID_ACTOR: '当前人物不能行动',
+  NOT_YOUR_TURN: '尚未轮到此人行动', PATH_BLOCKED: '无法到达所选格',
+  QI_ROUTE_UNAVAILABLE: '没有可用的进攻经脉路线', MERIDIAN_ROUTE_BLOCKED: '经脉路线受阻',
+  DISABLED_BY_STATUS: '当前状态禁止此行动', QI_CARRY_FULL: '真气已满载且周天已完成',
+  ILLEGAL_TARGET: '该物品不能用于此目标', NO_LOS: '视线受阻',
+  LIMIT_REACHED: '已达本场或此物品使用上限', ON_COOLDOWN: '同名物品冷却中',
+  UNKNOWN_MOVE: '招式不可用', MP_NOT_ENOUGH: '内力不足', INVALID_TARGET: '目标无效',
+  OUT_OF_RANGE: '目标超出范围', HEIGHT_BLOCKED: '高差阻挡', TARGET_NOT_VISIBLE: '目标不可见',
+};
+export function battleReason(code: string): string { return battleReasons[code] ?? code; }
+export function battleMovePlan(cost: number, steps: number, danger: number): string {
+  return `移动 ${cost} 点 · ${steps} 格${danger > 0 ? ` · ${danger} 个危险格` : ''}`;
+}
+export function battleItemChoice(name: string, count: number, reason: string): string {
+  return `${name} × ${count}${reason ? ` · ${reason}` : ''}`;
+}
+export function battleTargetChoice(name: string, reason: string): string {
+  return `${name}${reason ? ` · ${reason}` : ''}`;
+}
+export function battleRouteChoice(routeId: string, completionBp: number, inFlight: number,
+  capacity: number, reason: string): string {
+  return `${routeId} · 周天 ${(completionBp / 100).toFixed(0)}% · ${inFlight}/${capacity}${reason ? ` · ${reason}` : ''}`;
+}
+export function battleQiSummary(dantian: number, qualityBp: number): string {
+  return `丹田 ${dantian} · 路线质量 ${(qualityBp / 100).toFixed(0)}%`;
+}
+export function battleTargetPreview(count: number): string {
+  return `命中 ${count} 人，确认后执行完整行动。`;
+}
+export function battleMartialUse(name: string, skillId: string, uses: number): string {
+  return `${name} · ${skillId} 使用 ${uses} 次`;
+}
+export function battleMovementTraining(name: string): string { return `${name} · 身法训练达标`; }
+export function battleFullCirculation(name: string, count: number): string {
+  return `${name} · 完整周天 ${count} 次`;
 }
 export const menuLabels: Readonly<Record<MenuPage, string>> = {
   journey: '江湖',
