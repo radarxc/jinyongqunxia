@@ -79,7 +79,7 @@
   size: 1536x1024
   sha256: 29155535f3d373ecd4cd6b063a020113a570e8247d9297fc59076fea85bf6bb6
   status: candidate
-  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「琴箫托谱」，实际字形「琴箫托谱」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：曲洋按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：刘正风按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；朱印去可读笑形；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「琴箫托谱」，实际字形「琴箫托谱」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：曲洋按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：刘正风按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；朱印去可读笑形；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）'
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_hengyang_score.2b59e8c4.png
     sha256: 2b59e8c40f50df08ce6b1653534f2472414c13d5e6c18d4c08c5dc61e75b1b63
@@ -92,7 +92,18 @@
     - exec-0ec7ec49-1c0b-4ec2-91c1-d744675684d9.png
   runner_success_count: 1
   effort: ultra
-  title_revision: {"source_path": ".agents/coord/_lines/title-audit/hengyang_fixed.png", "before_sha256": "0a29962ad4925423871fa8e0c859ed13857ace04a642df9e3fd567a4dfb1283e", "allowed_box": [1443, 337, 1461, 358], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/hengyang_pixel_checks.json", "method": "只将朱印内可辨笑形填为同色朱砂印泥纹理，外框、题字四字及画面原像素保留", "created": "2026-10-04T00:41:12-07:00"}
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/hengyang_fixed.png
+    before_sha256: 0a29962ad4925423871fa8e0c859ed13857ace04a642df9e3fd567a4dfb1283e
+    allowed_box:
+    - 1443
+    - 337
+    - 1461
+    - 358
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/hengyang_pixel_checks.json
+    method: 只将朱印内可辨笑形填为同色朱砂印泥纹理，外框、题字四字及画面原像素保留
+    created: '2026-10-04T00:41:12-07:00'
 - id: cg_ch05_shaolin_three_bouts
   file: cg_ch05_shaolin_three_bouts.png
   category: scene
@@ -143,38 +154,39 @@
   category: scene
   style: default
   subject: 黑木崖决战（回目待考）（ch05_xiaoao）
-  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是东方不败定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里东方不败头部一带的放大方图（插图局部）。请以最后一张为底稿，只把东方不败改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
+  prompt: 'Use case: identity-preserve / precise-object-edit.
 
-    【画里是谁】黑木崖绣房里，右侧穿红衣、手捻绣花针的东方不败（日月神教教主，男子，扮相阴柔）。
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
 
-    【要改成什么】把他的脸改成基线这张脸：男子的骨相——脸型略长、下颌与颧骨的线条比现在硬朗，浓眉斜挑、凤眼，红唇保留；眉心额头上一道竖直的红色细痕（基线那样）；不要女性化的柔和脸。
+    输出和原图同样比例的完整画面。
 
-    【原图保持】保留发髻与发簪头饰、头部角度、妖异冷傲的神情、红衣和手里的针线。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
+    只改画面最右侧东方不败的深红外袍布料主色为娇艳粉红，与其返修后的基础立绘一致。保留内衫、脸与发冠、绣花针、手、针线与绷架；其他四人的全部像素和整幅题字完全保留，特别是前景黑袍任我行的衣服不改，本场并非出狱一刻。保持原画衣褶、刺绣位置、机位与动作。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
+    【原著依据】《笑傲江湖》三十一《绣花》：“身穿粉红衣衫”（https://xuges.com/WUXIA/jinyong/xajh/237.htm）
 
-    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
-  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
-  - path: assets/default/character/male/ch05/por_npc_dongfangbubai__ch05_prime_heimuya_base.png
-    sha256: 58236c9e6af70eeabc3d8a69e3f16e49be6a5cfedf5e4ea4d2d8f99b03b92466
-    use: 对脸基准：东方不败的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_dongfangbubai__ch05_prime_heimuya_base.jpg）
   - path: assets/default/scene/ch05/cg_ch05_blackwood_showdown.png
-    sha256: e4820ba178f459e747a0c0f4e0653d18428bc7b5ea1cc5cd635ed46b860bb3c9
-    use: 待改插图：只把东方不败头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_blackwood_showdown.e4820ba1.png
-  tool: codex exec · image_gen（AR-53 配角对齐：局部合成——只把东方不败头部方块交 codex 按本人默认基础立绘改脸，按原位置对齐、羽化贴回，其他人物与题字逐像素不变）
-  model: gpt-6-astra
-  created: 2026-10-03T19:15:52-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch05_blackwood_showdown.p1.png
+    sha256: 94c9b317e7415de0bfbf327d1cf83aec32c01b6a894467af50be765f29c1b958
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch05_blackwood_showdown.94c9b317.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T02:51:03-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_32_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 94c9b317e7415de0bfbf327d1cf83aec32c01b6a894467af50be765f29c1b958
+  sha256: 40d8638dd91a96c78ec6705f7907b391e9d1048e323f661f2f5c2fae9ba0ee9a
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「黑木决战」，实际字形「黑木决战」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：东方不败按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「黑木决战」，实际字形「黑木决战」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base（编辑结果只取令狐冲头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：东方不败按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-82 原著核对返修：黑木崖东方不败外袍同步粉红
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_blackwood_showdown.e4820ba1.png
-    sha256: e4820ba178f459e747a0c0f4e0653d18428bc7b5ea1cc5cd635ed46b860bb3c9
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch05_blackwood_showdown.e4820ba1.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch05_blackwood_showdown.94c9b317.png
+    sha256: 94c9b317e7415de0bfbf327d1cf83aec32c01b6a894467af50be765f29c1b958
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch05_blackwood_showdown.94c9b317.entry.yaml
   runner_job_records:
   - - cg_ch05_blackwood_showdown.resume3
     - ok
@@ -182,7 +194,7 @@
     - '200'
     - exec-3d45ea15-0ce9-4e5b-a73a-cafb2032ef9a.png
   runner_success_count: 1
-  effort: ultra
+  effort: xhigh
 - id: cg_ch05_hengshan_succession
   file: cg_ch05_hengshan_succession.png
   category: scene
