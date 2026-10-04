@@ -49,6 +49,9 @@ TINTABLE = {"hair_or_headgear": "hair", "torso": "clothPrimary",
 BONE_LENGTHS_M = {"torso": 0.52, "head": 0.24, "upper_arm": 0.30,
     "forearm": 0.26, "hand": 0.19, "thigh": 0.44,
     "shin": 0.40, "foot": 0.25}
+FEMALE_BONE_LENGTHS_M = {"torso": 0.50, "head": 0.23, "upper_arm": 0.28,
+    "forearm": 0.245, "hand": 0.18, "thigh": 0.42,
+    "shin": 0.38, "foot": 0.235}
 SUPPORTED_SKELETONS = {"tianshu_humanoid.v1"}
 ATTACHMENT_PARENTS = {
     "head", "hair_or_headgear", "torso", "pelvis_skirt",
@@ -66,6 +69,12 @@ def _identity_from_set(set_dir: Path) -> dict[str, str] | None:
     return {"npcId": match.group(1), "variant": match.group(2),
             "portrait": f"por_{match.group(1)}__{match.group(2)}_base",
             "sheetSha256": sha256_file(sheet_l)}
+
+
+def _female_profile(set_id: str, identity: dict[str, str] | None) -> bool:
+    if set_id.startswith("female"):
+        return True
+    return bool(identity and re.search(r"(?:^|_)f(?:_|$)", identity["variant"]))
 
 
 def normalize_part(path: Path, points: dict[str, list[int]] | None = None
@@ -252,15 +261,20 @@ def _base_manifest(set_dir: Path, existing: dict[str, Any] | None, *, placeholde
         "views": list(VIEWS), "mirrorPolicy": {"dir8": {0: "front34", 1: "front34",
             2: "side", 3: "back34", 4: "back34", 5: "back34", 6: "side", 7: "front34"},
             "mirrored": [5, 6, 7]}})
-    manifest.setdefault("heightM", 1.62 if set_id.startswith("female") else 1.70)
+    identity = _identity_from_set(set_dir)
+    female = _female_profile(set_id, identity)
+    if identity is not None:
+        manifest.setdefault("heightM", 1.62 if female else 1.70)
+    else:
+        manifest.setdefault("heightM", 1.62 if female else 1.70)
     manifest.setdefault("palette", {"clothPrimary": "#6B5141", "clothSecondary": "#394C53",
         "skin": "#E9CFB4", "footwear": "#332B27", "hair": "#211C1A"})
-    identity = _identity_from_set(set_dir)
     if identity is not None:
         manifest["kind"] = "identity"
         manifest["identity"] = identity
         manifest["skeleton"] = "tianshu_humanoid.v1"
-        manifest["boneLengthsM"] = dict(BONE_LENGTHS_M)
+        manifest["boneLengthsM"] = dict(
+            FEMALE_BONE_LENGTHS_M if female else BONE_LENGTHS_M)
         manifest.setdefault("attachments", [])
     if not placeholder:
         manifest.pop("placeholder", None)
@@ -418,7 +432,7 @@ def build_manifest(set_dir: Path, *, check: bool = False, placeholder: bool | No
                         raise BuildError(f"{joint_source_path}: inpaintedPct outside 0..100")
                     record["source"] = {"keypoints": [str(item) for item in keys],
                                           "inpaintedPct": percent}
-                    for key in ("reconstruction", "sourceRect"):
+                    for key in ("reconstruction", "sourceRect", "sourceLimitation"):
                         if key in source_note:
                             record["source"][key] = source_note[key]
                     if source_note.get("standardFallback"):

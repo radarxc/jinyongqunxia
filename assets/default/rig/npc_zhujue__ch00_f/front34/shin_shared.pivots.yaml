@@ -1,0 +1,20 @@
+coordinates: source
+keypoints:
+  knee_L:
+  - 45
+  - 17
+  ankle_L:
+  - 45
+  - 114
+source:
+  keypoints:
+  - knee_L
+  - ankle_L
+  inpaintedPct: 0.797
+  rejectedInpaintedPct: 0.0
+  jointCaps: true
+  standardFallback: false
+  lowConfidence:
+  - knee_L
+  sourceLimitation: garmentHidden
+  reconstruction: sourceRobeTexture

@@ -2,7 +2,7 @@
 """Detect rig joints with Apple Vision and deterministic silhouette priors.
 
 Vision is advisory: garment-hidden hips/knees are always regularised against
-the 1.70 m humanoid proportions.  When the requested SDK/helper is unavailable
+the selected humanoid body profile.  When the requested SDK/helper is unavailable
 the same YAML contract is produced with explicit ``source: manual-prior``.
 """
 from __future__ import annotations
@@ -40,6 +40,12 @@ VISION_ALIASES = {
 }
 VISION_COMPILE_TIMEOUT_S = 60
 VISION_RUN_TIMEOUT_S = 15
+BODY_PROFILES = {
+    "male": {"height": 1.70, "sole_to_ankle": .10, "shin": .40,
+             "thigh": .44, "torso": .52, "head": .24},
+    "female": {"height": 1.62, "sole_to_ankle": .09, "shin": .38,
+               "thigh": .42, "torso": .50, "head": .23},
+}
 
 
 def _bounds(alpha: np.ndarray) -> tuple[int, int, int, int]:
@@ -77,16 +83,25 @@ def _snap_inside(alpha: np.ndarray, point: Sequence[float],
     return float(xs[index]), float(ys[index])
 
 
-def geometric_keypoints(image: Image.Image, view: str, facing: str = "L") -> dict[str, dict[str, Any]]:
+def geometric_keypoints(image: Image.Image, view: str, facing: str = "L", *,
+                        body_profile: str = "male",
+                        garment_profile: str = "short") -> dict[str, dict[str, Any]]:
+    if body_profile not in BODY_PROFILES:
+        raise ValueError(f"unknown body profile: {body_profile}")
+    if garment_profile not in {"short", "ankle-robe"}:
+        raise ValueError(f"unknown garment profile: {garment_profile}")
     alpha = np.asarray(image.convert("RGBA").getchannel("A"))
     x0, y0, x1, y1 = _bounds(alpha); height = y1 - y0
     y = lambda fraction: y0 + height * fraction
-    ppm = height / 1.70
-    ankle_y = y1 - .10 * ppm
-    knee_y = ankle_y - .40 * ppm
-    hip_y = knee_y - .44 * ppm
-    neck_y = hip_y - .52 * ppm
-    crown_y = max(float(y0), neck_y - .24 * ppm)
+    profile = BODY_PROFILES[body_profile]
+    ppm = height / profile["height"]
+    ankle_y = y1 - profile["sole_to_ankle"] * ppm
+    knee_y = ankle_y - profile["shin"] * ppm
+    hip_y = knee_y - profile["thigh"] * ppm
+    neck_y = hip_y - profile["torso"] * ppm
+    crown_y = max(float(y0), neck_y - profile["head"] * ppm)
+    hem_y = (min(ankle_y - .02 * ppm, y(.93))
+             if garment_profile == "ankle-robe" else y(.68))
     crown_centre = _row_span(alpha, crown_y, 5)[2]
     neck = _row_span(alpha, neck_y, 3)[2]
     pelvis = _row_span(alpha, hip_y, 5)[2]
@@ -127,7 +142,7 @@ def geometric_keypoints(image: Image.Image, view: str, facing: str = "L") -> dic
                                  y(.965)), height * .06)
     values = {
         "crown": (crown_centre, crown_y), "neck": (neck, neck_y),
-        "pelvis": (pelvis, hip_y), "hem": (pelvis, y(.68)),
+        "pelvis": (pelvis, hip_y), "hem": (pelvis, hem_y),
         "shoulder_L": (shoulder_l, y(.235)), "shoulder_R": (shoulder_r, y(.235)),
         "elbow_L": (elbow_l, y(.405)), "elbow_R": (elbow_r, y(.405)),
         "wrist_L": wrist_l, "wrist_R": wrist_r,
@@ -163,7 +178,10 @@ def compile_vision(helper: Path, output: Path, sdk: Path | None = None) -> tuple
 
 
 def run_vision(image: Path, helper: Path, sdk: Path | None = None) -> tuple[dict[str, Any] | None, str]:
-    with tempfile.TemporaryDirectory(prefix="tianshu-vision-") as temporary:
+    # swiftc can release module-cache files just after process exit on macOS;
+    # a cleanup race must not discard the detector result or its fallback note.
+    with tempfile.TemporaryDirectory(prefix="tianshu-vision-",
+                                     ignore_cleanup_errors=True) as temporary:
         executable = Path(temporary) / "vision_pose"
         ok, note = compile_vision(helper, executable, sdk)
         if not ok:
@@ -238,10 +256,12 @@ def merge_vision(priors: dict[str, dict[str, Any]], observation: Mapping[str, An
 
 def write_keypoints(image_path: Path, output: Path, *, view: str, facing: str = "L",
                     helper: Path | None = None, sdk: Path | None = None,
-                    no_vision: bool = False) -> dict[str, Any]:
+                    no_vision: bool = False, body_profile: str = "male",
+                    garment_profile: str = "short") -> dict[str, Any]:
     with Image.open(image_path) as opened:
         image = opened.convert("RGBA")
-    priors = geometric_keypoints(image, view, facing)
+    priors = geometric_keypoints(image, view, facing, body_profile=body_profile,
+                                 garment_profile=garment_profile)
     observation = None; note = "disabled"
     if not no_vision:
         helper = helper or Path(__file__).with_name("vision_pose.swift")
@@ -250,6 +270,7 @@ def write_keypoints(image_path: Path, output: Path, *, view: str, facing: str = 
     payload: dict[str, Any] = {
         "schema": "tianshu-rig-keypoints.v1", "coordinates": "source",
         "view": view, "facing": facing, "imageSize": list(image.size),
+        "bodyProfile": body_profile, "garmentProfile": garment_profile,
         "detector": "apple-vision" if observation else "manual-prior",
         "detectorNote": note, "keypoints": points,
     }
@@ -268,6 +289,9 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--out", type=Path, required=True)
     result.add_argument("--view", choices=("front34", "side", "back34"), required=True)
     result.add_argument("--facing", choices=("L", "R"), default="L")
+    result.add_argument("--body-profile", choices=tuple(BODY_PROFILES), default="male")
+    result.add_argument("--garment-profile", choices=("short", "ankle-robe"),
+                        default="short")
     result.add_argument("--helper", type=Path)
     result.add_argument("--sdk", type=Path, help="Swift SDK (contract default: MacOSX15.5.sdk)")
     result.add_argument("--no-vision", action="store_true")
@@ -279,7 +303,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         payload = write_keypoints(args.image.resolve(), args.out.resolve(), view=args.view,
                                   facing=args.facing, helper=args.helper, sdk=args.sdk,
-                                  no_vision=args.no_vision)
+                                  no_vision=args.no_vision, body_profile=args.body_profile,
+                                  garment_profile=args.garment_profile)
     except (OSError, ValueError, yaml.YAMLError) as exc:
         print(f"keypoints: {exc}", file=sys.stderr)
         return 1

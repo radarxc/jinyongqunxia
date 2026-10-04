@@ -1,0 +1,132 @@
+schema: tianshu-rig-keypoints.v1
+coordinates: source
+view: side
+facing: R
+imageSize:
+- 256
+- 480
+bodyProfile: female
+garmentProfile: ankle-robe
+detector: manual-prior
+detectorNote: 'compile failed: compile timed out after 60s'
+keypoints:
+  crown:
+    xy:
+    - 111
+    - 45
+    confidence: 0.55
+    source: silhouette-prior
+  neck:
+    xy:
+    - 121
+    - 104
+    confidence: 0.55
+    source: silhouette-prior
+  pelvis:
+    xy:
+    - 124
+    - 232
+    confidence: 0.55
+    source: silhouette-prior
+  hem:
+    xy:
+    - 124
+    - 431
+    confidence: 0.55
+    source: silhouette-prior
+  shoulder_L:
+    xy:
+    - 121
+    - 143
+    confidence: 0.55
+    source: silhouette-prior
+  shoulder_R:
+    xy:
+    - 117
+    - 143
+    confidence: 0.55
+    source: silhouette-prior
+  elbow_L:
+    xy:
+    - 126
+    - 213
+    confidence: 0.55
+    source: silhouette-prior
+  elbow_R:
+    xy:
+    - 122
+    - 213
+    confidence: 0.55
+    source: silhouette-prior
+  wrist_L:
+    xy:
+    - 123
+    - 267
+    confidence: 0.55
+    source: silhouette-prior
+  wrist_R:
+    xy:
+    - 119
+    - 267
+    confidence: 0.55
+    source: silhouette-prior
+  grip_L:
+    xy:
+    - 123
+    - 286
+    confidence: 0.55
+    source: silhouette-prior
+  grip_R:
+    xy:
+    - 119
+    - 286
+    confidence: 0.55
+    source: silhouette-prior
+  hip_L:
+    xy:
+    - 126
+    - 232
+    confidence: 0.42
+    source: bone-prior
+  hip_R:
+    xy:
+    - 122
+    - 232
+    confidence: 0.42
+    source: bone-prior
+  knee_L:
+    xy:
+    - 123
+    - 340
+    confidence: 0.42
+    source: bone-prior
+  knee_R:
+    xy:
+    - 119
+    - 340
+    confidence: 0.42
+    source: bone-prior
+  ankle_L:
+    xy:
+    - 131
+    - 437
+    confidence: 0.55
+    source: silhouette-prior
+  ankle_R:
+    xy:
+    - 124
+    - 431
+    confidence: 0.55
+    source: silhouette-prior
+  toe_L:
+    xy:
+    - 154
+    - 445
+    confidence: 0.55
+    source: silhouette-prior
+  toe_R:
+    xy:
+    - 147
+    - 445
+    confidence: 0.55
+    source: silhouette-prior

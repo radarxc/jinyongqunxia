@@ -1,0 +1,27 @@
+coordinates: source
+keypoints:
+  pelvis:
+  - 98
+  - 35
+  hem:
+  - 98
+  - 234
+  hip_L:
+  - 78
+  - 35
+  hip_R:
+  - 119
+  - 35
+source:
+  keypoints:
+  - pelvis
+  - hem
+  - hip_L
+  - hip_R
+  inpaintedPct: 0.094
+  rejectedInpaintedPct: 0.0
+  jointCaps: true
+  standardFallback: false
+  lowConfidence:
+  - hip_L
+  - hip_R

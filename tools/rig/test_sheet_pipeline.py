@@ -161,6 +161,21 @@ class SheetPipelineTests(unittest.TestCase):
         self.assertEqual("bone-prior", front["knee_L"]["source"])
         self.assertLess(front["knee_L"]["confidence"], 0.5)
 
+    def test_female_ankle_robe_uses_canonical_hidden_bone_lengths(self) -> None:
+        image = Image.new("RGBA", (256, 480))
+        ImageDraw.Draw(image).rectangle((80, 45, 176, 459), fill=(80, 90, 70, 255))
+        points = keypoints.geometric_keypoints(
+            image, "front34", body_profile="female", garment_profile="ankle-robe")
+        self.assertEqual(415, 460 - 45)
+        self.assertAlmostEqual(0.38 * 256,
+                               points["ankle_L"]["xy"][1] - points["knee_L"]["xy"][1],
+                               delta=1)
+        self.assertAlmostEqual(0.42 * 256,
+                               points["knee_L"]["xy"][1] - points["hip_L"]["xy"][1],
+                               delta=1)
+        self.assertGreater(points["hem"]["xy"][1], points["knee_L"]["xy"][1])
+        self.assertLess(points["hem"]["xy"][1], points["ankle_L"]["xy"][1])
+
     def test_vision_merge_keeps_low_confidence_and_regularises_knees(self) -> None:
         image = Image.new("RGBA", (120, 200), (0, 0, 0, 0))
         ImageDraw.Draw(image).rectangle((35, 5, 85, 195), fill=(80, 90, 70, 255))
@@ -187,6 +202,30 @@ class SheetPipelineTests(unittest.TestCase):
         self.assertIn("CLANG_MODULE_CACHE_PATH", environment)
         self.assertIn("SWIFT_MODULECACHE_PATH", environment)
         self.assertEqual(60, runner.call_args.kwargs["timeout"])
+
+    def test_vision_temporary_directory_ignores_swift_cache_cleanup_race(self) -> None:
+        class FakeTemporaryDirectory:
+            def __init__(self, *args, **kwargs):
+                self.kwargs = kwargs
+                self.name = str(self_root / "vision-temp")
+
+            def __enter__(self):
+                Path(self.name).mkdir()
+                return self.name
+
+            def __exit__(self, *_):
+                return False
+
+        self_root = self.root
+        fake = FakeTemporaryDirectory()
+        failed = subprocess.CompletedProcess([], 1, stdout="", stderr="Code=9")
+        with patch.object(keypoints.tempfile, "TemporaryDirectory",
+                          return_value=fake) as temporary, \
+             patch.object(keypoints, "compile_vision", return_value=(True, "ok")), \
+             patch.object(keypoints.subprocess, "run", return_value=failed):
+            value, note = keypoints.run_vision(self.sheet, self.root / "helper.swift")
+        self.assertIsNone(value); self.assertIn("Code=9", note)
+        self.assertTrue(temporary.call_args.kwargs["ignore_cleanup_errors"])
 
     def test_vision_timeout_falls_back_to_manual_prior(self) -> None:
         expired = subprocess.TimeoutExpired(["vision_pose"], 15)
@@ -243,6 +282,22 @@ class SheetPipelineTests(unittest.TestCase):
         segment_view(image_path, kp_path, side, view="side")
         self.assertEqual((side / "upper_arm_L.png").read_bytes(),
                          (side / "upper_arm_R.png").read_bytes())
+
+    def test_ankle_robe_marks_hidden_leg_reconstruction(self) -> None:
+        image_path, kp_path = self.root / "view.png", self.root / "keypoints.yaml"
+        synthetic_view(image_path, kp_path)
+        out = self.root / "robe-parts"
+        segment_view(image_path, kp_path, out, view="front34",
+                     garment_profile="ankle-robe")
+        for part in ("thigh_shared", "shin_shared"):
+            source = yaml.safe_load((out / f"{part}.pivots.yaml").read_text())["source"]
+            self.assertEqual("garmentHidden", source["sourceLimitation"])
+            self.assertEqual("sourceRobeTexture", source["reconstruction"])
+        foot_note = yaml.safe_load((out / "foot_shared.pivots.yaml").read_text())
+        ankle_y = foot_note["keypoints"]["ankle_L"][1]
+        foot_alpha = np.asarray(Image.open(out / "foot_shared.png").getchannel("A"))
+        self.assertFalse(np.any(foot_alpha[:max(0, ankle_y - 3)] >= 8))
+        self.assertGreater(int((foot_alpha >= 8).sum()), 0)
 
     def test_joint_caps_cover_both_segment_endpoints(self) -> None:
         points = {"shoulder_L": (20, 20), "elbow_L": (60, 75)}
@@ -397,6 +452,38 @@ class SheetPipelineTests(unittest.TestCase):
         self.assertEqual(["upper_arm_R", "upper_arm_L"],
                          [item.part for item in ordered])
 
+    def test_garment_hidden_leg_sources_render_behind_skirt(self) -> None:
+        opaque = Image.new("RGBA", (4, 4), (1, 2, 3, 255))
+        skirt = preview.Placement(opaque.copy(), (0, 0),
+                                  (0, 0), 0, 7, "pelvis_skirt", {"hem": [0, 30]})
+        placement = preview.Placement(opaque.copy(), (0, 0),
+                                      (0, 0), 0, 10, "thigh_L", {})
+        near_foot = preview.Placement(opaque.copy(), (0, 0),
+                                     (0, 32), 0, 12, "foot_L", {"toe": [10, 0]})
+        far_foot = preview.Placement(opaque.copy(), (0, 0),
+                                    (100, 100), 0, 12, "foot_R", {"toe": [10, 0]})
+        source = {"thigh_shared": {"source": {
+            "sourceLimitation": "garmentHidden"}}}
+        preview._place_legs_behind_skirt(source,
+                                         [skirt, placement, near_foot, far_foot])
+        self.assertLess(placement.z, skirt.z)
+        self.assertIsNone(placement.image.getchannel("A").getbbox())
+        self.assertIsNotNone(near_foot.image.getchannel("A").getbbox())
+        self.assertIsNone(far_foot.image.getchannel("A").getbbox())
+        long_shoe = preview.Placement(opaque.copy(), (0, 0),
+                                      (38, 0), 0, 12, "foot_L", {"toe": [30, 0]})
+        preview._place_legs_behind_skirt(source, [skirt, long_shoe])
+        self.assertIsNone(long_shoe.image.getchannel("A").getbbox())
+        depths = {"pelvis_skirt": .2, "thigh_L": .8}
+        preview._place_legs_behind_skirt(source, [skirt, placement], depths)
+        self.assertLess(depths["thigh_L"], depths["pelvis_skirt"])
+        source["thigh_shared"]["source"] = {}
+        short_leg = preview.Placement(opaque.copy(), (0, 0),
+                                      (0, 0), 0, 10, "thigh_L", {})
+        preview._place_legs_behind_skirt(source, [skirt, short_leg])
+        self.assertEqual(10, short_leg.z)
+        self.assertIsNotNone(short_leg.image.getchannel("A").getbbox())
+
     def test_scaled_part_preserves_anchor_and_scales_child_from_pivot(self) -> None:
         item = preview.Placement(Image.new("RGBA", (20, 100)), (10, 20),
                                  (77, 88), 0, 3, "shin_L", {"ankle": [10, 80]})
@@ -477,7 +564,7 @@ class SheetPipelineTests(unittest.TestCase):
             preview.BACKGROUND = old_background
 
     def test_identity_parts_have_no_isolated_joint_caps_or_side_skin_in_legs(self) -> None:
-        fixture = ROOT / "assets/default/rig/npc_zhujue__ch00_m"
+        fixture = ROOT / "assets/default/rig/npc_zhujue__ch00_f"
         for view in ("front34", "side", "back34"):
             for part in SOURCE_PARTS:
                 alpha = np.asarray(Image.open(fixture / view / f"{part}.png").getchannel("A"))
@@ -488,6 +575,19 @@ class SheetPipelineTests(unittest.TestCase):
             red, green, blue = (rgba[..., index].astype(int) for index in range(3))
             skin = opaque & (red - green > 25) & (green - blue > 4) & (red > 140)
             self.assertLess(float(skin.sum()) / max(int(opaque.sum()), 1), .01, part)
+        torso = np.asarray(Image.open(fixture / "side/torso.png").getchannel("A"))
+        torso_note = yaml.safe_load((fixture / "side/torso.pivots.yaml").read_text())
+        for name in ("neck", "shoulder_L", "shoulder_R"):
+            x, y = torso_note["keypoints"][name]
+            self.assertGreater(int(torso[max(0, y-3):y+4, max(0, x-3):x+4].max()),
+                               0, name)
+        foot = np.asarray(Image.open(fixture / "front34/foot_shared.png").getchannel("A"))
+        self.assertLess(int((foot >= 24).sum(axis=1).max()), 40)
+        for part in ("upper_arm_L", "forearm_L", "hand_L"):
+            rgba = np.asarray(Image.open(fixture / "side" / f"{part}.png").convert("RGBA"))
+            pure_black = ((rgba[..., 3] >= 200) &
+                          (rgba[..., :3].max(axis=2) == 0))
+            self.assertEqual(0, int(pure_black.sum()), part)
 
     def test_identity_arm_skin_is_split_at_the_wrist(self) -> None:
         fixture = ROOT / "assets/default/rig/npc_zhujue__ch00_m"

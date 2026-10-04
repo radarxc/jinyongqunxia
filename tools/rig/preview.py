@@ -153,6 +153,45 @@ def _part(source: dict[str, dict[str, Any]], name: str, anchor: tuple[float, flo
                      float(record["zOrder"] if z is None else z), name, child)
 
 
+def _garment_occludes_legs(source: dict[str, dict[str, Any]]) -> bool:
+    """Long-robed identities keep reconstructed legs behind the skirt."""
+    return any(source.get(part, {}).get("source", {}).get("sourceLimitation")
+               == "garmentHidden" for part in ("thigh_shared", "shin_shared"))
+
+
+def _place_legs_behind_skirt(source: dict[str, dict[str, Any]],
+                             pieces: list[Placement],
+                             depths: dict[str, float] | None = None) -> None:
+    if not _garment_occludes_legs(source):
+        return
+    skirt = next(item for item in pieces if item.part == "pelvis_skirt")
+    hem = _child(skirt, "hem")
+    for item in pieces:
+        if item.part.startswith(("thigh_", "shin_")):
+            # These source-textured pieces preserve the hidden FK chain only;
+            # drawing them outside a rigid skirt looks like rectangular cloth.
+            item.image = Image.new("RGBA", item.image.size)
+        elif item.part.startswith("foot_"):
+            child = next(iter(item.child.values()))
+            shoe_length = math.dist(item.pivot, child)
+            # A rigid ankle-length skirt cannot reveal a shoe whose ankle has
+            # travelled well beyond its hem.  Keep a small seam allowance,
+            # rather than scaling the threshold to a long source shoe.
+            if math.dist(item.anchor, hem) > max(18.0, shoe_length * .82):
+                item.image = Image.new("RGBA", item.image.size)
+    leg_parts = ("thigh_", "shin_", "foot_")
+    if depths is None:
+        skirt_z = skirt.z
+        for item in pieces:
+            if item.part.startswith(leg_parts):
+                item.z = min(item.z, skirt_z - 1.0)
+        return
+    behind = depths.get("pelvis_skirt", 0.0) - 1.0
+    for item in pieces:
+        if item.part.startswith(leg_parts):
+            depths[item.part] = behind
+
+
 def compose_pose(set_dir: Path, manifest: dict[str, Any], view: str,
                  values: dict[str, Any], equipment: list[tuple[dict[str, Any], Image.Image]] | None = None) -> Image.Image:
     source = _source_map(set_dir, manifest, view)
@@ -213,6 +252,7 @@ def compose_pose(set_dir: Path, manifest: dict[str, Any], view: str,
             continue
         pieces.append(Placement(layer_image, tuple(record["pivot"]), anchor, angle,
                                 float(record["zOrder"]), f"equipment:{slot}", {}))
+    _place_legs_behind_skirt(source, pieces)
     for placement in sorted(pieces, key=lambda item: (item.z, item.part)):
         _draw_rotated(canvas, placement)
     return _downsample(canvas)
@@ -343,6 +383,7 @@ def compose_clip_pose(set_dir: Path, manifest: dict[str, Any],
             other = name[:-1] + ("R" if name.endswith("L") else "L") if name.endswith(("L", "R")) else name
             renamed[other] = depth
         depths = renamed
+    _place_legs_behind_skirt(source, pieces, depths)
     if weapon is not None:
         record, weapon_image, axis = weapon
         hand = pieces[[item.part for item in pieces].index("hand_R")]
