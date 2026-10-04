@@ -5676,101 +5676,91 @@ decorations:
     x: 77
     z: 149
   id: dec_0843
-- asset_id: prp_song_willow
-  at:
-    x: 106
-    z: 149
-  id: dec_0844
-- asset_id: prp_song_willow
-  at:
-    x: 107
-    z: 149
-  id: dec_0845
 - asset_id: prp_song_bamboo
   at:
     x: 109
     z: 149
-  id: dec_0846
+  id: dec_0844
 - asset_id: prp_song_bamboo
   at:
     x: 110
     z: 149
-  id: dec_0847
+  id: dec_0845
+- asset_id: prp_song_willow
+  at:
+    x: 111
+    z: 149
+  id: dec_0846
 - asset_id: prp_song_bamboo
   at:
     x: 121
     z: 149
-  id: dec_0848
+  id: dec_0847
 - asset_id: prp_song_bamboo
   at:
     x: 49
     z: 150
-  id: dec_0849
+  id: dec_0848
 - asset_id: prp_song_bamboo
   at:
     x: 50
     z: 150
-  id: dec_0850
+  id: dec_0849
 - asset_id: prp_song_broadleaf
   at:
     x: 53
     z: 150
-  id: dec_0851
+  id: dec_0850
 - asset_id: prp_song_broadleaf
   at:
     x: 54
     z: 150
-  id: dec_0852
+  id: dec_0851
 - asset_id: prp_song_bamboo
   at:
     x: 55
     z: 150
-  id: dec_0853
+  id: dec_0852
 - asset_id: prp_song_bamboo
   at:
     x: 56
     z: 150
-  id: dec_0854
+  id: dec_0853
 - asset_id: prp_song_broadleaf
   at:
     x: 63
     z: 150
-  id: dec_0855
+  id: dec_0854
 - asset_id: prp_song_broadleaf
   at:
     x: 64
     z: 150
-  id: dec_0856
+  id: dec_0855
 - asset_id: prp_song_broadleaf
   at:
     x: 76
     z: 150
-  id: dec_0857
+  id: dec_0856
 - asset_id: prp_song_broadleaf
   at:
     x: 77
     z: 150
+  id: dec_0857
+- asset_id: prp_song_willow
+  at:
+    x: 109
+    z: 150
   id: dec_0858
 - asset_id: prp_song_willow
   at:
-    x: 106
+    x: 110
     z: 150
   id: dec_0859
 - asset_id: prp_song_willow
   at:
-    x: 107
+    x: 111
     z: 150
   id: dec_0860
-- asset_id: prp_song_willow
-  at:
-    x: 121
-    z: 150
-  id: dec_0861
-- asset_id: prp_song_willow
-  at:
-    x: 122
-    z: 150
-  id: dec_0862
 generated_connectors:
 - cells:
   - x: 52
@@ -6009,11 +5999,11 @@ generated_connectors:
   width_cells: 2
   zone_ref: zone_residential_west
 generator:
-  algorithm_revision: 6
+  algorithm_revision: 7
   name: town-gen
   rng: pcg32-xsh-rr-64-32
   root_seed_u64: '0x49d57b755b6ef814'
-  version: 1.4.0
+  version: 1.5.0
 grid:
   cell_m: 1
   chunk_cells: 32
@@ -36609,11 +36599,17 @@ ground_cells:
     overlay: null
     walkable: false
 - - 24096
-  - 5
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: true
+- - 24099
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
 - - 24101
   - 4
   - elevation_m: 0
@@ -36621,7 +36617,13 @@ ground_cells:
     overlay: null
     walkable: false
 - - 24105
-  - 18
+  - 2
+  - elevation_m: 0
+    ground: rammed_earth
+    overlay: null
+    walkable: false
+- - 24107
+  - 16
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -43913,7 +43915,7 @@ source_spec:
   city_id: city_hangzhou
   path: docs/design/town/city_hangzhou__ch02.yaml
   seed: 122302
-  sha256: 24c04bd7459592c6e7fb96dd7ce078e4920ebd68bf6540f854da02bc9ed4802e
+  sha256: ca9036ac8cc525954c7a43523ec5119aa4545acf748dd4e8a4389b7062921a78
 validation:
   checks_run:
   - schema
@@ -58592,14 +58594,6 @@ walk_layer:
     z: 150
   - x: 98
     z: 150
-  - x: 99
-    z: 150
-  - x: 100
-    z: 150
-  - x: 105
-    z: 150
-  - x: 106
-    z: 150
   - x: 107
     z: 150
   - x: 108
@@ -61260,6 +61254,10 @@ walk_layer:
   - q: 85
     r: 10
   - q: 86
+    r: 10
+  - q: 87
+    r: 10
+  - q: 88
     r: 10
   - q: 102
     r: 10
@@ -92775,10 +92773,6 @@ walk_layer:
   - q: 74
     r: 10
   - q: 75
-    r: 10
-  - q: 87
-    r: 10
-  - q: 88
     r: 10
   - q: 89
     r: 10

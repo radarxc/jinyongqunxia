@@ -4404,7 +4404,7 @@ decorations:
   id: dec_0747
 - asset_id: prp_song_dali_grass
   at:
-    x: 14
+    x: 16
     z: 60
   id: dec_0748
 - asset_id: prp_song_dali_grass
@@ -4434,814 +4434,794 @@ decorations:
   id: dec_0753
 - asset_id: prp_song_dali_grass
   at:
-    x: 13
+    x: 15
     z: 61
   id: dec_0754
 - asset_id: prp_song_dali_grass
   at:
-    x: 14
+    x: 16
     z: 61
   id: dec_0755
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 16
+    x: 18
     z: 61
   id: dec_0756
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 17
+    x: 19
     z: 61
   id: dec_0757
-- asset_id: prp_song_dali_broadleaf
+- asset_id: prp_song_dali_bamboo
   at:
-    x: 22
+    x: 26
     z: 61
   id: dec_0758
-- asset_id: prp_song_dali_broadleaf
+- asset_id: prp_song_dali_bamboo
   at:
-    x: 23
+    x: 27
     z: 61
   id: dec_0759
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 24
+    x: 28
     z: 61
   id: dec_0760
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_broadleaf
   at:
-    x: 25
+    x: 31
     z: 61
   id: dec_0761
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_broadleaf
   at:
-    x: 26
+    x: 32
     z: 61
   id: dec_0762
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 32
+    x: 34
     z: 61
   id: dec_0763
 - asset_id: prp_song_dali_camellia
   at:
-    x: 34
+    x: 40
     z: 61
   id: dec_0764
 - asset_id: prp_song_dali_camellia
   at:
-    x: 35
+    x: 41
     z: 61
   id: dec_0765
 - asset_id: prp_song_dali_grass
   at:
-    x: 13
+    x: 15
     z: 62
   id: dec_0766
 - asset_id: prp_song_dali_grass
   at:
-    x: 14
+    x: 16
     z: 62
   id: dec_0767
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 16
+    x: 18
     z: 62
   id: dec_0768
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 17
+    x: 19
     z: 62
   id: dec_0769
-- asset_id: prp_song_dali_broadleaf
+- asset_id: prp_song_dali_bamboo
   at:
-    x: 23
+    x: 27
     z: 62
   id: dec_0770
-- asset_id: prp_song_dali_broadleaf
+- asset_id: prp_song_dali_bamboo
   at:
-    x: 24
+    x: 28
     z: 62
   id: dec_0771
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_broadleaf
   at:
-    x: 25
+    x: 31
     z: 62
   id: dec_0772
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_broadleaf
   at:
-    x: 26
+    x: 32
     z: 62
   id: dec_0773
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 32
+    x: 34
     z: 62
   id: dec_0774
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 33
+    x: 35
     z: 62
   id: dec_0775
 - asset_id: prp_song_dali_camellia
   at:
-    x: 34
+    x: 40
     z: 62
   id: dec_0776
 - asset_id: prp_song_dali_camellia
   at:
-    x: 35
+    x: 41
     z: 62
   id: dec_0777
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 11
+    x: 19
     z: 66
   id: dec_0778
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 12
+    x: 20
     z: 66
   id: dec_0779
-- asset_id: prp_song_dali_grass
+- asset_id: prp_song_dali_broadleaf
   at:
-    x: 20
+    x: 21
     z: 66
   id: dec_0780
 - asset_id: prp_song_dali_grass
   at:
-    x: 21
+    x: 29
     z: 66
   id: dec_0781
 - asset_id: prp_song_dali_grass
   at:
-    x: 22
+    x: 30
     z: 66
   id: dec_0782
 - asset_id: prp_song_dali_grass
   at:
-    x: 30
+    x: 31
     z: 66
   id: dec_0783
 - asset_id: prp_song_dali_grass
   at:
-    x: 31
-    z: 66
+    x: 9
+    z: 67
   id: dec_0784
 - asset_id: prp_song_dali_grass
   at:
-    x: 32
-    z: 66
+    x: 10
+    z: 67
   id: dec_0785
-- asset_id: prp_song_dali_grass
-  at:
-    x: 33
-    z: 66
-  id: dec_0786
 - asset_id: prp_song_dali_broadleaf
   at:
     x: 40
-    z: 66
-  id: dec_0787
-- asset_id: prp_song_dali_broadleaf
-  at:
-    x: 11
     z: 67
+  id: dec_0786
+- asset_id: prp_song_dali_grass
+  at:
+    x: 9
+    z: 68
+  id: dec_0787
+- asset_id: prp_song_dali_grass
+  at:
+    x: 10
+    z: 68
   id: dec_0788
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 12
-    z: 67
+    x: 40
+    z: 68
   id: dec_0789
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 40
-    z: 67
-  id: dec_0790
-- asset_id: prp_song_dali_broadleaf
-  at:
     x: 41
-    z: 67
-  id: dec_0791
-- asset_id: prp_song_dali_broadleaf
-  at:
-    x: 42
-    z: 67
-  id: dec_0792
+    z: 68
+  id: dec_0790
 - asset_id: prp_song_dali_grass
   at:
+    x: 8
+    z: 69
+  id: dec_0791
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 10
+    z: 69
+  id: dec_0792
+- asset_id: prp_song_dali_broadleaf
+  at:
     x: 7
-    z: 68
+    z: 70
   id: dec_0793
+- asset_id: prp_song_dali_grass
+  at:
+    x: 8
+    z: 70
+  id: dec_0794
 - asset_id: prp_song_dali_bamboo
   at:
     x: 9
-    z: 68
-  id: dec_0794
-- asset_id: prp_song_dali_broadleaf
-  at:
-    x: 39
-    z: 68
+    z: 70
   id: dec_0795
-- asset_id: prp_song_dali_broadleaf
+- asset_id: prp_song_dali_bamboo
   at:
-    x: 40
-    z: 68
+    x: 10
+    z: 70
   id: dec_0796
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 42
-    z: 68
-  id: dec_0797
-- asset_id: prp_song_dali_grass
-  at:
-    x: 7
-    z: 69
-  id: dec_0798
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 8
-    z: 69
-  id: dec_0799
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 9
-    z: 69
-  id: dec_0800
-- asset_id: prp_song_dali_broadleaf
-  at:
-    x: 39
-    z: 69
-  id: dec_0801
-- asset_id: prp_song_dali_broadleaf
-  at:
-    x: 40
-    z: 69
-  id: dec_0802
-- asset_id: prp_song_dali_broadleaf
-  at:
-    x: 42
-    z: 69
-  id: dec_0803
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 8
-    z: 70
-  id: dec_0804
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 9
-    z: 70
-  id: dec_0805
-- asset_id: prp_song_dali_bamboo
-  at:
     x: 16
     z: 70
-  id: dec_0806
-- asset_id: prp_song_dali_bamboo
+  id: dec_0797
+- asset_id: prp_song_dali_broadleaf
   at:
     x: 17
     z: 70
-  id: dec_0807
+  id: dec_0798
+- asset_id: prp_song_dali_broadleaf
+  at:
+    x: 18
+    z: 70
+  id: dec_0799
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 35
+    x: 19
     z: 70
-  id: dec_0808
-- asset_id: prp_song_dali_broadleaf
+  id: dec_0800
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 20
+    z: 70
+  id: dec_0801
+- asset_id: prp_song_dali_bamboo
   at:
     x: 40
     z: 70
-  id: dec_0809
+  id: dec_0802
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 41
+    z: 70
+  id: dec_0803
+- asset_id: prp_song_dali_broadleaf
+  at:
+    x: 7
+    z: 71
+  id: dec_0804
+- asset_id: prp_song_dali_broadleaf
+  at:
+    x: 8
+    z: 71
+  id: dec_0805
 - asset_id: prp_song_dali_bamboo
   at:
     x: 9
+    z: 71
+  id: dec_0806
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 10
+    z: 71
+  id: dec_0807
+- asset_id: prp_song_dali_broadleaf
+  at:
+    x: 17
+    z: 71
+  id: dec_0808
+- asset_id: prp_song_dali_broadleaf
+  at:
+    x: 18
+    z: 71
+  id: dec_0809
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 19
     z: 71
   id: dec_0810
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 16
+    x: 20
     z: 71
   id: dec_0811
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 17
+    x: 40
     z: 71
   id: dec_0812
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 35
+    x: 41
     z: 71
   id: dec_0813
-- asset_id: prp_song_dali_camellia
-  at:
-    x: 7
-    z: 72
-  id: dec_0814
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 8
+    x: 20
+    z: 72
+  id: dec_0814
+- asset_id: prp_song_dali_camellia
+  at:
+    x: 35
     z: 72
   id: dec_0815
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 9
+    x: 40
     z: 72
   id: dec_0816
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 12
+    x: 41
     z: 72
   id: dec_0817
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 19
+    x: 42
     z: 72
   id: dec_0818
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_camellia
   at:
-    x: 20
-    z: 72
+    x: 35
+    z: 73
   id: dec_0819
 - asset_id: prp_song_dali_camellia
   at:
-    x: 7
+    x: 36
     z: 73
   id: dec_0820
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 8
+    x: 37
     z: 73
   id: dec_0821
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 9
+    x: 38
     z: 73
   id: dec_0822
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 12
+    x: 39
     z: 73
   id: dec_0823
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 20
-    z: 73
-  id: dec_0824
-- asset_id: prp_song_dali_grass
-  at:
-    x: 35
-    z: 73
-  id: dec_0825
-- asset_id: prp_song_dali_grass
-  at:
-    x: 36
-    z: 73
-  id: dec_0826
-- asset_id: prp_song_dali_grass
-  at:
-    x: 37
-    z: 73
-  id: dec_0827
-- asset_id: prp_song_dali_bamboo
-  at:
     x: 40
     z: 73
-  id: dec_0828
+  id: dec_0824
 - asset_id: prp_song_dali_bamboo
   at:
     x: 41
     z: 73
-  id: dec_0829
-- asset_id: prp_song_dali_camellia
+  id: dec_0825
+- asset_id: prp_song_dali_bamboo
   at:
-    x: 7
+    x: 42
+    z: 73
+  id: dec_0826
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 11
+    z: 74
+  id: dec_0827
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 12
+    z: 74
+  id: dec_0828
+- asset_id: prp_song_dali_grass
+  at:
+    x: 19
+    z: 74
+  id: dec_0829
+- asset_id: prp_song_dali_grass
+  at:
+    x: 20
     z: 74
   id: dec_0830
 - asset_id: prp_song_dali_camellia
   at:
-    x: 8
+    x: 35
     z: 74
   id: dec_0831
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 12
-    z: 74
-  id: dec_0832
 - asset_id: prp_song_dali_camellia
   at:
-    x: 16
+    x: 36
+    z: 74
+  id: dec_0832
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 37
     z: 74
   id: dec_0833
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 20
+    x: 38
     z: 74
   id: dec_0834
-- asset_id: prp_song_dali_grass
+- asset_id: prp_song_dali_bamboo
   at:
-    x: 36
+    x: 42
     z: 74
   id: dec_0835
-- asset_id: prp_song_dali_grass
+- asset_id: prp_song_dali_camellia
   at:
-    x: 37
-    z: 74
+    x: 8
+    z: 75
   id: dec_0836
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 40
-    z: 74
+    x: 11
+    z: 75
   id: dec_0837
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 41
-    z: 74
+    x: 12
+    z: 75
   id: dec_0838
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_grass
   at:
-    x: 8
+    x: 19
     z: 75
   id: dec_0839
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_grass
   at:
-    x: 9
+    x: 20
     z: 75
   id: dec_0840
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 10
-    z: 75
-  id: dec_0841
 - asset_id: prp_song_dali_camellia
   at:
-    x: 16
-    z: 75
+    x: 8
+    z: 76
+  id: dec_0841
+- asset_id: prp_song_dali_grass
+  at:
+    x: 20
+    z: 76
   id: dec_0842
 - asset_id: prp_song_dali_grass
   at:
-    x: 17
-    z: 75
+    x: 21
+    z: 77
   id: dec_0843
-- asset_id: prp_song_dali_grass
+- asset_id: prp_song_dali_bamboo
   at:
-    x: 18
-    z: 75
+    x: 22
+    z: 77
   id: dec_0844
-- asset_id: prp_song_dali_grass
+- asset_id: prp_song_dali_bamboo
   at:
-    x: 19
-    z: 75
+    x: 23
+    z: 77
   id: dec_0845
 - asset_id: prp_song_dali_grass
   at:
-    x: 7
-    z: 76
+    x: 21
+    z: 78
   id: dec_0846
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_grass
   at:
-    x: 9
-    z: 76
+    x: 22
+    z: 78
   id: dec_0847
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 10
-    z: 76
+    x: 23
+    z: 78
   id: dec_0848
 - asset_id: prp_song_dali_grass
   at:
-    x: 18
-    z: 76
+    x: 26
+    z: 78
   id: dec_0849
 - asset_id: prp_song_dali_grass
   at:
-    x: 19
-    z: 76
+    x: 27
+    z: 78
   id: dec_0850
 - asset_id: prp_song_dali_grass
   at:
-    x: 7
-    z: 77
+    x: 26
+    z: 79
   id: dec_0851
 - asset_id: prp_song_dali_grass
   at:
-    x: 8
-    z: 77
+    x: 27
+    z: 79
   id: dec_0852
 - asset_id: prp_song_dali_bamboo
   at:
     x: 7
-    z: 78
+    z: 81
   id: dec_0853
 - asset_id: prp_song_dali_bamboo
   at:
     x: 8
-    z: 78
+    z: 81
   id: dec_0854
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_camellia
   at:
-    x: 8
-    z: 79
+    x: 41
+    z: 81
   id: dec_0855
 - asset_id: prp_song_dali_camellia
   at:
-    x: 22
-    z: 79
+    x: 42
+    z: 81
   id: dec_0856
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 8
-    z: 80
+    x: 7
+    z: 82
   id: dec_0857
-- asset_id: prp_song_dali_camellia
+- asset_id: prp_song_dali_bamboo
   at:
-    x: 21
-    z: 80
+    x: 8
+    z: 82
   id: dec_0858
 - asset_id: prp_song_dali_camellia
   at:
-    x: 22
-    z: 80
+    x: 41
+    z: 82
   id: dec_0859
 - asset_id: prp_song_dali_camellia
   at:
-    x: 26
-    z: 80
+    x: 42
+    z: 82
   id: dec_0860
 - asset_id: prp_song_dali_camellia
   at:
-    x: 27
-    z: 80
+    x: 42
+    z: 83
   id: dec_0861
 - asset_id: prp_song_dali_grass
   at:
-    x: 7
-    z: 81
+    x: 41
+    z: 84
   id: dec_0862
 - asset_id: prp_song_dali_camellia
   at:
-    x: 21
-    z: 81
+    x: 8
+    z: 85
   id: dec_0863
-- asset_id: prp_song_dali_camellia
+- asset_id: prp_song_dali_grass
   at:
-    x: 22
-    z: 81
+    x: 41
+    z: 85
   id: dec_0864
-- asset_id: prp_song_dali_camellia
+- asset_id: prp_song_dali_grass
   at:
-    x: 26
-    z: 81
+    x: 42
+    z: 85
   id: dec_0865
 - asset_id: prp_song_dali_camellia
   at:
-    x: 27
-    z: 81
-  id: dec_0866
-- asset_id: prp_song_dali_grass
-  at:
     x: 7
-    z: 82
-  id: dec_0867
-- asset_id: prp_song_dali_grass
+    z: 86
+  id: dec_0866
+- asset_id: prp_song_dali_camellia
   at:
     x: 8
-    z: 82
-  id: dec_0868
+    z: 86
+  id: dec_0867
 - asset_id: prp_song_dali_broadleaf
   at:
     x: 42
-    z: 84
-  id: dec_0869
-- asset_id: prp_song_dali_broadleaf
+    z: 86
+  id: dec_0868
+- asset_id: prp_song_dali_camellia
   at:
-    x: 41
-    z: 85
+    x: 7
+    z: 87
+  id: dec_0869
+- asset_id: prp_song_dali_camellia
+  at:
+    x: 8
+    z: 87
   id: dec_0870
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 42
-    z: 85
+    x: 41
+    z: 87
   id: dec_0871
 - asset_id: prp_song_dali_broadleaf
   at:
-    x: 41
-    z: 86
-  id: dec_0872
-- asset_id: prp_song_dali_broadleaf
-  at:
     x: 42
-    z: 86
-  id: dec_0873
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 9
     z: 87
+  id: dec_0872
+- asset_id: prp_song_dali_camellia
+  at:
+    x: 11
+    z: 88
+  id: dec_0873
+- asset_id: prp_song_dali_camellia
+  at:
+    x: 12
+    z: 88
   id: dec_0874
 - asset_id: prp_song_dali_grass
   at:
-    x: 11
-    z: 87
+    x: 13
+    z: 88
   id: dec_0875
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 18
-    z: 87
+    x: 31
+    z: 88
   id: dec_0876
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 19
-    z: 87
+    x: 32
+    z: 88
   id: dec_0877
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 20
-    z: 87
-  id: dec_0878
 - asset_id: prp_song_dali_grass
   at:
-    x: 7
+    x: 35
+    z: 88
+  id: dec_0878
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 36
     z: 88
   id: dec_0879
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 8
+    x: 37
     z: 88
   id: dec_0880
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_broadleaf
   at:
-    x: 9
+    x: 41
     z: 88
   id: dec_0881
-- asset_id: prp_song_dali_grass
+- asset_id: prp_song_dali_broadleaf
   at:
-    x: 11
+    x: 42
     z: 88
   id: dec_0882
-- asset_id: prp_song_dali_grass
-  at:
-    x: 12
-    z: 88
-  id: dec_0883
 - asset_id: prp_song_dali_bamboo
-  at:
-    x: 16
-    z: 88
-  id: dec_0884
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 19
-    z: 88
-  id: dec_0885
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 20
-    z: 88
-  id: dec_0886
-- asset_id: prp_song_dali_camellia
-  at:
-    x: 31
-    z: 88
-  id: dec_0887
-- asset_id: prp_song_dali_camellia
-  at:
-    x: 32
-    z: 88
-  id: dec_0888
-- asset_id: prp_song_dali_camellia
-  at:
-    x: 33
-    z: 88
-  id: dec_0889
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 35
-    z: 88
-  id: dec_0890
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 36
-    z: 88
-  id: dec_0891
-- asset_id: prp_song_dali_grass
   at:
     x: 7
     z: 89
-  id: dec_0892
+  id: dec_0883
 - asset_id: prp_song_dali_bamboo
   at:
     x: 8
+    z: 89
+  id: dec_0884
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 9
+    z: 89
+  id: dec_0885
+- asset_id: prp_song_dali_camellia
+  at:
+    x: 12
+    z: 89
+  id: dec_0886
+- asset_id: prp_song_dali_grass
+  at:
+    x: 13
+    z: 89
+  id: dec_0887
+- asset_id: prp_song_dali_grass
+  at:
+    x: 14
+    z: 89
+  id: dec_0888
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 16
+    z: 89
+  id: dec_0889
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 17
+    z: 89
+  id: dec_0890
+- asset_id: prp_song_dali_broadleaf
+  at:
+    x: 18
+    z: 89
+  id: dec_0891
+- asset_id: prp_song_dali_broadleaf
+  at:
+    x: 19
+    z: 89
+  id: dec_0892
+- asset_id: prp_song_dali_grass
+  at:
+    x: 20
     z: 89
   id: dec_0893
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 9
+    x: 31
     z: 89
   id: dec_0894
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 15
+    x: 32
     z: 89
   id: dec_0895
-- asset_id: prp_song_dali_bamboo
+- asset_id: prp_song_dali_grass
   at:
-    x: 16
+    x: 35
     z: 89
   id: dec_0896
 - asset_id: prp_song_dali_bamboo
   at:
-    x: 17
-    z: 89
-  id: dec_0897
-- asset_id: prp_song_dali_broadleaf
-  at:
-    x: 19
-    z: 89
-  id: dec_0898
-- asset_id: prp_song_dali_broadleaf
-  at:
-    x: 20
-    z: 89
-  id: dec_0899
-- asset_id: prp_song_dali_grass
-  at:
-    x: 31
-    z: 89
-  id: dec_0900
-- asset_id: prp_song_dali_camellia
-  at:
-    x: 32
-    z: 89
-  id: dec_0901
-- asset_id: prp_song_dali_camellia
-  at:
-    x: 33
-    z: 89
-  id: dec_0902
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 35
-    z: 89
-  id: dec_0903
-- asset_id: prp_song_dali_bamboo
-  at:
     x: 36
     z: 89
-  id: dec_0904
-- asset_id: prp_song_dali_grass
+  id: dec_0897
+- asset_id: prp_song_dali_bamboo
   at:
     x: 37
     z: 89
-  id: dec_0905
-- asset_id: prp_song_dali_broadleaf
+  id: dec_0898
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 8
+    z: 90
+  id: dec_0899
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 9
+    z: 90
+  id: dec_0900
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 10
+    z: 90
+  id: dec_0901
+- asset_id: prp_song_dali_bamboo
+  at:
+    x: 11
+    z: 90
+  id: dec_0902
+- asset_id: prp_song_dali_camellia
+  at:
+    x: 12
+    z: 90
+  id: dec_0903
+- asset_id: prp_song_dali_camellia
   at:
     x: 13
     z: 90
-  id: dec_0906
-- asset_id: prp_song_dali_broadleaf
-  at:
-    x: 14
-    z: 90
-  id: dec_0907
-- asset_id: prp_song_dali_bamboo
-  at:
-    x: 15
-    z: 90
-  id: dec_0908
+  id: dec_0904
 - asset_id: prp_song_dali_bamboo
   at:
     x: 16
     z: 90
-  id: dec_0909
+  id: dec_0905
 - asset_id: prp_song_dali_bamboo
   at:
     x: 17
     z: 90
-  id: dec_0910
+  id: dec_0906
+- asset_id: prp_song_dali_broadleaf
+  at:
+    x: 18
+    z: 90
+  id: dec_0907
 - asset_id: prp_song_dali_broadleaf
   at:
     x: 19
     z: 90
-  id: dec_0911
-- asset_id: prp_song_dali_broadleaf
+  id: dec_0908
+- asset_id: prp_song_dali_grass
   at:
     x: 20
     z: 90
-  id: dec_0912
-- asset_id: prp_song_dali_grass
-  at:
-    x: 31
-    z: 90
-  id: dec_0913
+  id: dec_0909
 - asset_id: prp_song_dali_grass
   at:
     x: 32
     z: 90
-  id: dec_0914
+  id: dec_0910
 - asset_id: prp_song_dali_grass
   at:
-    x: 37
+    x: 33
     z: 90
-  id: dec_0915
+  id: dec_0911
 generated_connectors:
 - cells:
   - x: 34
@@ -5390,11 +5370,11 @@ generated_connectors:
   width_cells: 2
   zone_ref: zone_residential_west
 generator:
-  algorithm_revision: 6
+  algorithm_revision: 7
   name: town-gen
   rng: pcg32-xsh-rr-64-32
   root_seed_u64: '0x6a461730c6982b98'
-  version: 1.4.0
+  version: 1.5.0
 grid:
   cell_m: 1
   chunk_cells: 32
@@ -17600,13 +17580,13 @@ ground_cells:
     overlay: null
     walkable: false
 - - 5856
-  - 7
+  - 9
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: false
-- - 5863
-  - 29
+- - 5865
+  - 27
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -17618,13 +17598,13 @@ ground_cells:
     overlay: null
     walkable: true
 - - 5895
-  - 4
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: true
-- - 5899
-  - 11
+- - 5898
+  - 12
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -17648,13 +17628,13 @@ ground_cells:
     overlay: null
     walkable: false
 - - 5952
-  - 7
+  - 9
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: false
-- - 5959
-  - 29
+- - 5961
+  - 27
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -17666,13 +17646,13 @@ ground_cells:
     overlay: null
     walkable: true
 - - 5991
-  - 4
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: true
-- - 5995
-  - 11
+- - 5994
+  - 12
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -17780,13 +17760,13 @@ ground_cells:
     overlay: null
     walkable: false
 - - 6336
-  - 7
+  - 9
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: false
-- - 6343
-  - 29
+- - 6345
+  - 27
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -17798,13 +17778,13 @@ ground_cells:
     overlay: null
     walkable: true
 - - 6375
-  - 4
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: true
-- - 6379
-  - 12
+- - 6378
+  - 13
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -17816,13 +17796,13 @@ ground_cells:
     overlay: null
     walkable: false
 - - 6432
-  - 7
+  - 9
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: false
-- - 6439
-  - 6
+- - 6441
+  - 4
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -17834,13 +17814,13 @@ ground_cells:
     overlay: null
     walkable: true
 - - 6471
-  - 4
+  - 3
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
     walkable: true
-- - 6475
-  - 49
+- - 6474
+  - 50
   - elevation_m: 0
     ground: rammed_earth
     overlay: null
@@ -23730,7 +23710,7 @@ source_spec:
   city_id: city_dali
   path: docs/design/town/city_dali__ch01.yaml
   seed: 109301
-  sha256: 8c2963729c57fcbf2f21665acc8505aae5c57df05b31f57ff415e1d8c1c91b10
+  sha256: 394d300065070143502c0a22e2e8717481229e60867253445ead328c7fd30738
 validation:
   checks_run:
   - schema
@@ -29292,10 +29272,6 @@ walk_layer:
     z: 60
   - x: 58
     z: 60
-  - x: 7
-    z: 61
-  - x: 8
-    z: 61
   - x: 9
     z: 61
   - x: 10
@@ -29361,8 +29337,6 @@ walk_layer:
   - x: 40
     z: 61
   - x: 41
-    z: 61
-  - x: 42
     z: 61
   - x: 54
     z: 61
@@ -29374,10 +29348,6 @@ walk_layer:
     z: 61
   - x: 58
     z: 61
-  - x: 7
-    z: 62
-  - x: 8
-    z: 62
   - x: 9
     z: 62
   - x: 10
@@ -29443,8 +29413,6 @@ walk_layer:
   - x: 40
     z: 62
   - x: 41
-    z: 62
-  - x: 42
     z: 62
   - x: 54
     z: 62
@@ -29474,10 +29442,6 @@ walk_layer:
     z: 65
   - x: 38
     z: 65
-  - x: 7
-    z: 66
-  - x: 8
-    z: 66
   - x: 9
     z: 66
   - x: 10
@@ -29544,12 +29508,6 @@ walk_layer:
     z: 66
   - x: 41
     z: 66
-  - x: 42
-    z: 66
-  - x: 7
-    z: 67
-  - x: 8
-    z: 67
   - x: 9
     z: 67
   - x: 10
@@ -29615,8 +29573,6 @@ walk_layer:
   - x: 40
     z: 67
   - x: 41
-    z: 67
-  - x: 42
     z: 67
   - x: 7
     z: 68
@@ -34543,6 +34499,12 @@ walk_layer:
     r: 28
   - q: -8
     r: 28
+  - q: -7
+    r: 28
+  - q: -6
+    r: 28
+  - q: 22
+    r: 28
   - q: 23
     r: 28
   - q: 24
@@ -34650,6 +34612,10 @@ walk_layer:
   - q: -9
     r: 29
   - q: -8
+    r: 29
+  - q: -7
+    r: 29
+  - q: 22
     r: 29
   - q: 23
     r: 29
@@ -35413,6 +35379,12 @@ walk_layer:
     r: 34
   - q: -11
     r: 34
+  - q: -10
+    r: 34
+  - q: -9
+    r: 34
+  - q: 19
+    r: 34
   - q: 20
     r: 34
   - q: 21
@@ -35514,6 +35486,10 @@ walk_layer:
   - q: -12
     r: 35
   - q: -11
+    r: 35
+  - q: -10
+    r: 35
+  - q: 19
     r: 35
   - q: 20
     r: 35
@@ -42660,10 +42636,6 @@ walk_layer:
     r: 27
   - q: 23
     r: 27
-  - q: -7
-    r: 28
-  - q: -6
-    r: 28
   - q: -5
     r: 28
   - q: -4
@@ -42718,10 +42690,6 @@ walk_layer:
     r: 28
   - q: 21
     r: 28
-  - q: 22
-    r: 28
-  - q: -7
-    r: 29
   - q: -6
     r: 29
   - q: -5
@@ -42777,8 +42745,6 @@ walk_layer:
   - q: 20
     r: 29
   - q: 21
-    r: 29
-  - q: 22
     r: 29
   - q: 17
     r: 30
@@ -42792,10 +42758,6 @@ walk_layer:
     r: 32
   - q: 16
     r: 33
-  - q: -10
-    r: 34
-  - q: -9
-    r: 34
   - q: -8
     r: 34
   - q: -7
@@ -42849,8 +42811,6 @@ walk_layer:
   - q: 17
     r: 34
   - q: 18
-    r: 34
-  - q: 19
     r: 34
   - q: 31
     r: 34
@@ -42858,8 +42818,6 @@ walk_layer:
     r: 34
   - q: 33
     r: 34
-  - q: -10
-    r: 35
   - q: -9
     r: 35
   - q: -8
@@ -42915,8 +42873,6 @@ walk_layer:
   - q: 17
     r: 35
   - q: 18
-    r: 35
-  - q: 19
     r: 35
   - q: 30
     r: 35

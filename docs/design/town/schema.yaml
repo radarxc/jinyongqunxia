@@ -46,7 +46,7 @@ geometry_contract:
   road_connectivity: "stage B requires primary gate at in union(main_axis cells) only; multiple main-axis components are allowed; stage C lays secondary/alley roads then joins non-primary components before rebuilding buildable masks; 4-neighbor components over union(roads.values) only, with bridge road cells included; repeat after zone and entrance connectors and at final validation; walkable empty ground never substitutes for a road"
   primary_target_reachability: "check at end of stage C, after all component and zone connectors; among palace/princely/commercial/market zones select maximum priority; primary road component must intersect or 4-neighbor-touch a winning-cell boundary of at least one tied zone; missing or unreachable target raises TOWN_ROAD_PRIMARY_DISCONNECTED; component-repair failure raises TOWN_ROAD_COMPONENT_DISCONNECTED first"
 enums:
-  era_kit: [tang, song_dali, song_southern, yuan, ming, qing_early, xiyu, tubo]
+  era_kit: [tang, song_dali, song_southern, yuan, ming, qing_early, song_north, liao_jin_north, yuan_north, yuan_south, ming_north, ming_south, qing_north, qing_south, xiyu, tubo, mongol]
   zone_kind: [palace, princely, administrative, commercial, market, residential, religious, escort, waterfront, gate_service, garden]
   ground_type: [rammed_earth, grey_brick, stone_slab, dirt_road, grass, water, bridge_deck]
   street_class: [main_axis, secondary, alley]

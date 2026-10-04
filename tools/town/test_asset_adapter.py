@@ -8,7 +8,7 @@ from unittest.mock import patch
 from PIL import Image
 import yaml
 
-from assets import AssetLibrary
+from assets import AssetLibrary, manifest_stack
 from render_town import normalize_mask
 
 
@@ -52,6 +52,61 @@ class AssetAdapterTests(unittest.TestCase):
         self.assertEqual(len(lib.substitutions), 4)
         self.assertIsNone(lib.resolve("tex_town_song_southern_unknown"))
         self.assertFalse(lib.warnings)
+
+    def test_overlay_manifest_wins_before_baseline(self):
+        overlay = self.root / "overlay/manifest.yaml"
+        baseline = self.root / "baseline/manifest.yaml"
+        for folder, color in ((overlay.parent, (180, 20, 20, 255)),
+                              (baseline.parent, (20, 20, 180, 255))):
+            folder.mkdir(parents=True)
+            image = Image.new("RGBA", (64, 32), color)
+            image.save(folder / "tile.png")
+            (folder / "manifest.yaml").write_text(yaml.safe_dump([
+                {"id": "tex_town_ming_north_wall", "file": "tile.png",
+                 "status": "candidate", "tile": {"kind": "wall",
+                 "footprint": [1, 1], "variant": "r000"}}]))
+        lib = AssetLibrary([overlay, baseline], era_kit="ming_north")
+        image, meta = lib.resolve("tex_town_ming_north_wall", rotation_deg=0)
+        self.assertEqual(image.getpixel((32, 16)), (180, 20, 20, 255))
+        self.assertEqual(meta["_base"], overlay.parent)
+
+    def test_new_kit_missing_ground_falls_back_and_is_auditable(self):
+        self.png("earth.png")
+        self.write([{"id": "tex_town_song_dali_rammed_earth",
+                     "file": "earth.png", "status": "candidate",
+                     "anchor_px": [32, 16], "tile": {"kind": "rammed_earth",
+                     "footprint": [1, 1], "variant": "v01"}}])
+        found = AssetLibrary(self.manifest, era_kit="ming_north").resolve(
+            "tex_town_ming_north_rammed_earth")
+        self.assertIsNotNone(found)
+        self.assertIn(
+            "era-kit-fallback:tex_town_ming_north_rammed_earth->"
+            "tex_town_song_dali_rammed_earth", found[1]["adaptations"]
+        )
+        self.assertEqual(len(found[1]["adaptations"]), 1)
+
+    def test_rotated_fallback_reports_only_the_asset_actually_used(self):
+        rows = [self.tile("bridge_deck", "w3_l5_r000_v01",
+                          footprint=(3, 5)),
+                self.tile("bridge_deck", "w5_l10_r090_v01",
+                          era="song_southern", footprint=(5, 10))]
+        self.write(rows)
+        found = AssetLibrary(self.manifest, era_kit="qing_south").resolve(
+            "tex_town_qing_south_bridge_deck", rotation_deg=90)
+        self.assertIsNotNone(found)
+        self.assertEqual(found[1]["id"], rows[1]["id"])
+        self.assertEqual(found[1]["adaptations"], [
+            "era-kit-fallback:tex_town_qing_south_bridge_deck->"
+            "tex_town_song_southern_bridge_deck",
+        ])
+
+    def test_manifest_stack_uses_overlay_only_when_not_explicit(self):
+        explicit = self.root / "fixture.yaml"
+        self.assertEqual(manifest_stack("tile", "ming_north", explicit), [explicit])
+        paths = manifest_stack("tile", "ming_north")
+        self.assertEqual(paths[-1].name, "manifest.yaml")
+        self.assertIn("baseline/tile", paths[-1].as_posix())
+        self.assertIn("tile/ming_north", paths[0].as_posix())
 
     def test_building_list_views_require_exact_rotation_and_meta_file_base(self):
         original = self.png("house.png")
@@ -153,6 +208,45 @@ class AssetAdapterTests(unittest.TestCase):
         self.assertEqual(bridge["length_cells"], 5)
         self.assertEqual(bridge["source_ids"], ["tex_town_song_dali_bridge_deck__w3_l5_r000_v01"])
         self.assertTrue(lib.resolve("tex_town_song_dali_wall", rotation_deg=90)[1]["adaptations"])
+
+    def test_baseline_gate_missing_view_uses_other_baseline_kit(self):
+        rows = [self.tile("city_gate", "k6_r000_v01", footprint=(10, 4)),
+                self.tile("city_gate", "k5_r090_v01", era="song_southern",
+                          footprint=(9, 4))]
+        self.write(rows)
+        found = AssetLibrary(self.manifest, era_kit="song_dali").resolve(
+            "tex_town_song_dali_city_gate", rotation_deg=90, width_cells=3)
+        self.assertIsNotNone(found)
+        self.assertEqual(found[1]["requested_rotation_deg"], 90)
+        self.assertEqual(found[1]["width_cells"], 5)
+        self.assertEqual(found[1]["adaptations"], [
+            "shared-gate-view:tex_town_song_dali_city_gate->"
+            "tex_town_song_southern_city_gate",
+            "gate-width:requested=3,source=5",
+        ])
+
+    def test_uncalibrated_kit_bridge_falls_back_to_calibrated_baseline(self):
+        rows = [self.tile("bridge_deck", "w4_l6_r090_v01", era="qing_north",
+                          footprint=(4, 6)),
+                self.tile("bridge_deck", "w5_l10_r090_v01", era="song_southern",
+                          footprint=(5, 10))]
+        rows[0]["sha256"] = "uncalibrated"
+        rows[1]["sha256"] = "approved-sha"
+        self.write(rows)
+        lib = AssetLibrary(self.manifest, era_kit="qing_north")
+        found = lib.calibrated_bridge(
+            "tex_town_qing_north_bridge_deck", 90, "approved-sha")
+        self.assertIsNotNone(found)
+        self.assertEqual(found[1]["sha256"], "approved-sha")
+        self.assertEqual(found[1]["adaptations"], [
+            "uncalibrated-bridge-fallback:tex_town_qing_north_bridge_deck->"
+            "tex_town_song_southern_bridge_deck",
+        ])
+        self.assertEqual(lib.used_ids, {rows[1]["id"]})
+        self.assertEqual(lib.substitutions, {(
+            "tex_town_qing_north_bridge_deck", rows[1]["id"],
+            found[1]["adaptations"][0],
+        )})
 
     def test_all_47_masks_compose_but_missing_edge_is_not_invented(self):
         masks = dict(n=124, e=241, s=199, w=31, ne=112, se=193, sw=7, nw=28)

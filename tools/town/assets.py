@@ -7,7 +7,7 @@ from io import BytesIO
 from pathlib import Path
 import re
 import subprocess
-from typing import Any
+from typing import Any, Iterable
 
 import yaml
 from PIL import Image
@@ -15,6 +15,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_TILES = ROOT / "assets/default/baseline/tile/manifest.yaml"
 DEFAULT_BUILDINGS = ROOT / "assets/default/baseline/building-map/manifest.yaml"
+BASELINE_KITS = {"song_dali", "song_southern"}
 
 # The 60-piece delivery shares these materials between the two town kits.
 # This finite map is deliberate: an unknown suffix remains a missing asset.
@@ -23,6 +24,29 @@ SHARED_TILE_OWNER = {"rammed_earth": "song_dali", "dirt_road": "song_dali",
                      "stone_slab": "song_southern", "water": "song_southern",
                      "riverbank": "song_dali", "road_edge": "song_southern",
                      "shadow_soft": "song_dali"}
+BASELINE_TILE_OWNER = {
+    **SHARED_TILE_OWNER,
+    "bridge_deck": "song_dali",
+    "bridge_rail": "song_dali",
+}
+KNOWN_TILE_SUFFIXES = set(BASELINE_TILE_OWNER) | {"city_gate", "wall", "wall_corner"}
+
+
+def manifest_stack(kind: str, era_kit: str, explicit: str | Path | None = None) -> list[Path]:
+    """Return overlay-first manifests while preserving explicit fixture semantics."""
+    if explicit is not None:
+        return [Path(explicit)]
+    if kind not in {"tile", "building-map"}:
+        raise ValueError(f"未知素材类别：{kind}")
+    baseline = DEFAULT_TILES if kind == "tile" else DEFAULT_BUILDINGS
+    overlay = ROOT / "assets/default" / kind / era_kit / "manifest.yaml"
+    return ([overlay] if era_kit not in BASELINE_KITS and _available(overlay) else []) + [baseline]
+
+
+def asset_library(kind: str, era_kit: str, explicit: str | Path | None = None,
+                  placeholders_only: bool = False) -> "AssetLibrary":
+    return AssetLibrary(manifest_stack(kind, era_kit, explicit), placeholders_only,
+                        None if explicit is not None else era_kit)
 
 
 @lru_cache(maxsize=None)
@@ -73,6 +97,7 @@ def _normalize(record: dict) -> dict:
         record.setdefault("footprint_m", list(footprint))
         record.setdefault("footprint_width_px", 32 * sum(footprint))
     contract = record.get("projection_contract", {})
+    contract = contract if isinstance(contract, dict) else {}
     record.setdefault("tile_px", contract.get("tile_px", [64, 32]))
     if "ground_width_px" in contract:
         record["footprint_width_px"] = contract["ground_width_px"]
@@ -121,8 +146,15 @@ def _file(base: Path, value: str) -> Path:
 class AssetLibrary:
     """Load provenance records, per-asset metadata and explicit manifest aliases."""
 
-    def __init__(self, manifest: str | Path, placeholders_only: bool = False):
-        self.path = Path(manifest)
+    def __init__(self, manifest: str | Path | Iterable[str | Path],
+                 placeholders_only: bool = False, era_kit: str | None = None):
+        manifests = ([Path(manifest)] if isinstance(manifest, (str, Path))
+                     else [Path(path) for path in manifest])
+        if not manifests:
+            raise ValueError("至少需要一份 manifest")
+        self.path = manifests[0]
+        self.paths = tuple(manifests)
+        self.era_kit = era_kit
         self.records: dict[str, list[dict]] = {}
         self.missing: set[str] = set()
         self.warnings: set[str] = set()
@@ -131,10 +163,11 @@ class AssetLibrary:
         self.placeholders_only = placeholders_only
         self._images: dict[Path, Image.Image] = {}
         self._composites: dict[tuple[str, int], tuple[Image.Image, dict]] = {}
-        self._load(self.path)
-        props = self.path.parent / "props/manifest.yaml"
-        if _available(props):
-            self._load(props)
+        for path in self.paths:
+            self._load(path)
+            props = path.parent / "props/manifest.yaml"
+            if _available(props):
+                self._load(props)
 
     def _load(self, path: Path) -> None:
         if not _available(path):
@@ -181,6 +214,42 @@ class AssetLibrary:
             except (OSError, ValueError, TypeError, yaml.YAMLError) as exc:
                 self.warnings.add(f"manifest 记录[{index}]读取失败：{path}：{exc}")
 
+    def _kit_fallback(self, asset_id: str) -> tuple[list[dict], list[str]]:
+        """Resolve a missing kit ID by its semantic suffix in baseline manifests."""
+        prefix = f"bld_kit_{self.era_kit}_"
+        if not self.era_kit or self.era_kit in BASELINE_KITS or not asset_id.startswith(prefix):
+            return [], []
+        suffix = asset_id.removeprefix(prefix)
+        aliases = {"house_small": "house", "house_large": "courtyard",
+                   "market": "market_stall", "shop": "shop_1f",
+                   "shop_two_storey": "shop_2f", "tavern": "restaurant",
+                   "stupa": "pagoda", "palace": "palace_hall",
+                   "wangfu": "palace_hall"}
+        suffix = aliases.get(suffix, suffix)
+        for owner in ("song_southern", "song_dali"):
+            candidates = [suffix]
+            if suffix == "house":
+                candidates += ["courtyard"]
+            if suffix == "pagoda":
+                candidates += ["temple_hall"]
+            for candidate in candidates:
+                target = f"bld_kit_{owner}_{candidate}"
+                if found := self._candidates(target):
+                    return found, [f"era-kit-fallback:{asset_id}->{target}"]
+        return [], []
+
+    def _baseline_rotation(self, asset_id: str, rotation: int) -> tuple[list[dict], list[str]]:
+        parts = self._tile_parts(asset_id)
+        if not parts or parts[0] in BASELINE_KITS:
+            return [], []
+        for owner in ("song_dali", "song_southern"):
+            target = f"tex_town_{owner}_{parts[1]}"
+            found = [row for row in self._candidates(target)
+                     if row.get("rotation_deg", 0) == rotation and row.get("status") != "rejected"]
+            if found:
+                return found, [f"era-kit-fallback:{asset_id}->{target}"]
+        return [], []
+
     def _candidates(self, asset_id: str, seen: frozenset[str] = frozenset()) -> list[dict]:
         if asset_id in seen:
             self.warnings.add(f"manifest alias 成环：{asset_id}")
@@ -213,20 +282,42 @@ class AssetLibrary:
                 candidates.append(record)
         return candidates
 
+    @staticmethod
+    def _tile_parts(asset_id: str) -> tuple[str, str] | None:
+        if not asset_id.startswith("tex_town_"):
+            return None
+        stem = asset_id.removeprefix("tex_town_")
+        for suffix in sorted(KNOWN_TILE_SUFFIXES, key=len, reverse=True):
+            marker = "_" + suffix
+            if stem.endswith(marker):
+                return stem[:-len(marker)], suffix
+        return None
+
     def _shared(self, asset_id: str) -> tuple[list[dict], list[str]]:
         candidates = self._candidates(asset_id)
         if candidates:
             return candidates, []
-        fallback = {"tang": "song_southern", "xiyu": "song_dali", "tubo": "song_dali"}
-        requested = re.fullmatch(r"tex_town_(tang|xiyu|tubo)_(.+)", asset_id)
+        legacy = {"tang": "song_southern", "xiyu": "song_dali",
+                  "tubo": "song_dali"}
+        old_request = re.fullmatch(r"tex_town_(tang|xiyu|tubo)_(.+)", asset_id)
+        if old_request:
+            target = f"tex_town_{legacy[old_request[1]]}_{old_request[2]}"
+            if found := self._candidates(target):
+                return found, [f"era-kit-fallback:{asset_id}->{target}"]
+        if fallback := self._kit_fallback(asset_id):
+            if fallback[0]:
+                return fallback
         adaptations = []
-        if requested:
-            target = f"tex_town_{fallback[requested[1]]}_{requested[2]}"
+        requested = self._tile_parts(asset_id)
+        if requested and requested[0] not in BASELINE_KITS:
+            original = asset_id
+            owner = BASELINE_TILE_OWNER.get(requested[1], "song_dali")
+            target = f"tex_town_{owner}_{requested[1]}"
             candidates = self._candidates(target)
             if candidates:
                 return candidates, [f"era-kit-fallback:{asset_id}->{target}"]
             asset_id = target
-            adaptations.append(f"era-kit-fallback:{requested[0]}->{target}")
+            adaptations.append(f"era-kit-fallback:{original}->{target}")
         match = re.fullmatch(r"tex_town_(song_dali|song_southern)_(.+)", asset_id)
         if match and match[2] in SHARED_TILE_OWNER:
             owner = SHARED_TILE_OWNER[match[2]]
@@ -266,6 +357,33 @@ class AssetLibrary:
             for source in meta["source_ids"]:
                 self.substitutions.add((asset_id, source, reason))
         return image, meta
+
+    def calibrated_bridge(self, asset_id: str, rotation: int, expected_sha: str
+                          ) -> tuple[Image.Image, dict] | None:
+        """Use the requested bridge only when calibrated; otherwise use baseline."""
+        used_before = set(self.used_ids)
+        substitutions_before = set(self.substitutions)
+        found = self.resolve(asset_id, rotation_deg=rotation)
+        if found is not None and found[1].get("sha256") == expected_sha:
+            return found
+        parts = self._tile_parts(asset_id)
+        if (not self.era_kit or self.era_kit in BASELINE_KITS or not parts
+                or parts[1] not in {"bridge_deck", "bridge_rail"}):
+            return found
+        for owner in ("song_dali", "song_southern"):
+            target = f"tex_town_{owner}_{parts[1]}"
+            candidates = [row for row in self._candidates(target)
+                          if row.get("rotation_deg", 0) == rotation
+                          and row.get("sha256") == expected_sha
+                          and row.get("status") != "rejected"]
+            if candidates:
+                reason = f"uncalibrated-bridge-fallback:{asset_id}->{target}"
+                image = self._read(candidates[0], f"{asset_id}/rotation_deg={rotation}")
+                if image is not None:
+                    self.used_ids = used_before
+                    self.substitutions = substitutions_before
+                    return self._finish(image, candidates[0], asset_id, [reason], rotation)
+        return found
 
     def _compose_edges(self, asset_id: str, mask: int, candidates: list[dict]
                        ) -> tuple[Image.Image, dict] | None:
@@ -339,25 +457,43 @@ class AssetLibrary:
         candidates = [c for c in candidates if c.get("status") != "rejected"]
         if mask is not None:
             exact = [c for c in candidates if c.get("mask") == mask]
-            if not exact and re.fullmatch(r"tex_town_(?:song_(?:dali|southern)|tang|xiyu|tubo)_(riverbank|road_edge)", asset_id):
+            parts = self._tile_parts(asset_id)
+            if not exact and parts and parts[1] in {"riverbank", "road_edge"}:
                 if composed := self._compose_edges(asset_id, mask, candidates):
                     return self._finish(*composed, asset_id, adaptations, rotation_deg)
             candidates = exact
         if rotation_deg is not None:
             exact = [c for c in candidates if c.get("rotation_deg", 0) == rotation_deg]
-            bridge = re.fullmatch(
-                r"tex_town_(song_dali|song_southern|tang|xiyu|tubo)_(bridge_deck|bridge_rail)",
-                asset_id,
-            )
+            parts = self._tile_parts(asset_id)
+            bridge = parts if parts and parts[1] in {"bridge_deck", "bridge_rail"} else None
+            if (not exact and self.era_kit and parts
+                    and parts[1] in {"city_gate", "bridge_deck", "bridge_rail"}):
+                exact, fallback_notes = self._baseline_rotation(asset_id, rotation_deg)
+                if exact:
+                    adaptations = [note for note in adaptations
+                                   if not note.startswith("era-kit-fallback:")]
+                    adaptations.extend(fallback_notes)
+            if (not exact and self.era_kit and parts
+                    and parts[1] == "city_gate"
+                    and parts[0] in BASELINE_KITS):
+                owner = next(name for name in ("song_dali", "song_southern")
+                             if name != parts[0])
+                target = f"tex_town_{owner}_city_gate"
+                exact = [c for c in self._candidates(target)
+                         if c.get("rotation_deg", 0) == rotation_deg
+                         and c.get("status") != "rejected"]
+                if exact:
+                    adaptations.append(f"shared-gate-view:{asset_id}->{target}")
             if not exact and bridge and rotation_deg in (0, 90):
                 owner = "song_dali" if rotation_deg == 0 else "song_southern"
-                target = f"tex_town_{owner}_{bridge[2]}"
+                target = f"tex_town_{owner}_{bridge[1]}"
                 exact = [c for c in self._candidates(target)
                          if c.get("rotation_deg", 0) == rotation_deg and c.get("status") != "rejected"]
                 if exact:
                     source_era = {"tang": "song_southern", "xiyu": "song_dali",
-                                  "tubo": "song_dali"}.get(bridge[1], bridge[1])
-                    source = f"tex_town_{source_era}_{bridge[2]}"
+                                  "tubo": "song_dali"}.get(
+                                      bridge[0], BASELINE_TILE_OWNER.get(bridge[1], bridge[0]))
+                    source = f"tex_town_{source_era}_{bridge[1]}"
                     if source != target:
                         adaptations.append(f"shared-bridge-view:{source}->{target}")
             if not exact and rotation_deg in (0, 90, 180, 270):

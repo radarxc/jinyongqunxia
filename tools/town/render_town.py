@@ -16,11 +16,11 @@ import yaml
 from PIL import Image, ImageChops, ImageDraw, ImageFont, ImageStat
 
 try:
-    from .assets import AssetLibrary, DEFAULT_BUILDINGS, DEFAULT_TILES, ROOT
+    from .assets import AssetLibrary, DEFAULT_BUILDINGS, DEFAULT_TILES, ROOT, asset_library
     from .edge_assembly import shore_bank_masks, water_fringe_mask
     from .water_material import WaterMaterial
 except ImportError:
-    from assets import AssetLibrary, DEFAULT_BUILDINGS, DEFAULT_TILES, ROOT
+    from assets import AssetLibrary, DEFAULT_BUILDINGS, DEFAULT_TILES, ROOT, asset_library
     from edge_assembly import shore_bank_masks, water_fringe_mask
     from water_material import WaterMaterial
 
@@ -150,7 +150,7 @@ def _source(layout: dict, spec: dict | None) -> dict:
 
 class Painter:
     def __init__(self, layout: dict, spec: dict, tiles: AssetLibrary,
-                 buildings: AssetLibrary, scale: float):
+                 buildings: AssetLibrary, scale: float, background: str = "#ede8d9"):
         self.layout, self.spec, self.tiles, self.buildings = layout, spec, tiles, buildings
         self.scale = scale
         self.height = layout["grid"]["height"]
@@ -174,7 +174,7 @@ class Painter:
         self.top_padding = math.ceil(-min_y + 32) if min_y < 0 else 0
         self.height += self.top_padding / 16
         self.canvas = Image.new("RGBA", (round(span * 32 * scale), round((span * 16 + self.top_padding) * scale)),
-                                "#ede8d9")
+                                background)
         self.draw = ImageDraw.Draw(self.canvas)
         self.era = spec["era_kit"]
         root = layout.get("generator", {}).get("root_seed_u64", "0")
@@ -561,10 +561,10 @@ def incomplete_watermark(canvas: Image.Image, validation: dict) -> str | None:
 
 
 def render_layout(layout: dict, output: str | Path, *, spec: dict | None = None,
-                  tile_manifest: str | Path = DEFAULT_TILES,
-                  building_manifest: str | Path = DEFAULT_BUILDINGS,
+                  tile_manifest: str | Path | None = None,
+                  building_manifest: str | Path | None = None,
                   scale: float = 1.0, overlay: str | Path | None = None,
-                  placeholders_only: bool = False) -> dict:
+                  placeholders_only: bool = False, jpeg_quality: int = 85) -> dict:
     """Render a deterministic image; return metrics and every missing asset key."""
     started = time.perf_counter()
     if not isinstance(scale, (float, int)) or not math.isfinite(scale) or scale <= 0:
@@ -577,18 +577,27 @@ def render_layout(layout: dict, output: str | Path, *, spec: dict | None = None,
         raise ValueError("scale 太小：输出高度不足 1 像素")
     if span * span * 512 * scale * scale > 200_000_000:
         raise ValueError("输出超过 200 MP；请调低 --scale")
-    tiles = AssetLibrary(tile_manifest, placeholders_only)
-    buildings = AssetLibrary(building_manifest, placeholders_only)
-    painter = Painter(layout, spec, tiles, buildings, scale)
+    if type(jpeg_quality) is not int or not 1 <= jpeg_quality <= 100:
+        raise ValueError("jpeg_quality 须为 1..100 的整数")
+    output = Path(output)
+    is_jpeg = output.suffix.lower() in {".jpg", ".jpeg"}
+    tiles = asset_library("tile", spec["era_kit"], tile_manifest, placeholders_only)
+    buildings = asset_library("building-map", spec["era_kit"], building_manifest, placeholders_only)
+    painter = Painter(layout, spec, tiles, buildings, scale,
+                      background="#faf8ef" if is_jpeg else "#ede8d9")
     painter.terrain()
     painter.objects()
     incomplete = incomplete_watermark(painter.canvas, layout.get("validation", {}))
     warnings = tiles.warnings | buildings.warnings
     if incomplete:
         warnings.add(incomplete)
-    output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    painter.canvas.save(output, format="PNG")
+    if is_jpeg:
+        flattened = Image.new("RGB", painter.canvas.size, "#faf8ef")
+        flattened.paste(painter.canvas, mask=painter.canvas.getchannel("A"))
+        flattened.save(output, format="JPEG", quality=jpeg_quality, optimize=True)
+    else:
+        painter.canvas.save(output, format="PNG")
     missing = sorted(tiles.missing | buildings.missing)
     if overlay is not None:
         write_overlay(layout, spec, Path(overlay), output, painter.canvas.size, missing,
@@ -609,13 +618,14 @@ def render_layout(layout: dict, output: str | Path, *, spec: dict | None = None,
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("layout", type=Path, help="TownLayout YAML")
-    parser.add_argument("-o", "--output", type=Path, required=True, help="输出 PNG")
+    parser.add_argument("-o", "--output", type=Path, required=True, help="输出 PNG 或 JPEG")
     parser.add_argument("--spec", type=Path, help="覆盖 source_spec.path")
-    parser.add_argument("--tile-manifest", type=Path, default=DEFAULT_TILES)
-    parser.add_argument("--building-manifest", type=Path, default=DEFAULT_BUILDINGS)
+    parser.add_argument("--tile-manifest", type=Path)
+    parser.add_argument("--building-manifest", type=Path)
     parser.add_argument("--scale", type=float, default=1.0, help="相对 64×32 母版比例")
     parser.add_argument("--overlay", type=Path, help="输出独立 SVG；walk 组默认隐藏")
     parser.add_argument("--placeholders-only", action="store_true", help="强制占位，仍报告缺失键")
+    parser.add_argument("--jpeg-quality", type=int, default=85, help="JPEG 质量，默认 85")
     parser.add_argument("--report", type=Path, help="保存渲染 JSON（stdout 也始终打印）")
     args = parser.parse_args(argv)
     try:
@@ -623,7 +633,8 @@ def main(argv: list[str] | None = None) -> int:
         spec = yaml.safe_load(args.spec.read_text(encoding="utf-8")) if args.spec else None
         report = render_layout(layout, args.output, spec=spec, tile_manifest=args.tile_manifest,
                                building_manifest=args.building_manifest, scale=args.scale,
-                               overlay=args.overlay, placeholders_only=args.placeholders_only)
+                               overlay=args.overlay, placeholders_only=args.placeholders_only,
+                               jpeg_quality=args.jpeg_quality)
         serialized = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
         if args.report:
             args.report.parent.mkdir(parents=True, exist_ok=True)

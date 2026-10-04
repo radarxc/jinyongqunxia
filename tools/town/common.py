@@ -6,6 +6,7 @@ import hashlib
 import heapq
 import math
 import re
+import subprocess
 from collections import deque
 from functools import lru_cache
 from pathlib import Path
@@ -328,7 +329,11 @@ def geometry_masks(spec: dict) -> dict:
     wall_interiors = {row["id"]: polygon_cells(row["polygon"]["points"], width, height)
                       for row in definitions}
     wall_raw = set().union(*walls.values())
-    interior = set().union(*wall_interiors.values()) if definitions else set(bounds)
+    enclosing = [row for row in definitions if row.get("role") in {"outer", "inner"}]
+    # A lone division wall is a ruin/partition, not a city boundary.  Once an
+    # enclosing wall exists, however, division polygons may describe a joined
+    # city compartment (for example ch10 Taiyuan) and retain their old area.
+    interior = (set().union(*wall_interiors.values()) if enclosing else set(bounds))
     normal_gates = spec.get("gates", [])
     water_gates = spec.get("water_gates", [])
     gate_passages = set().union(*(gate_cells(gate, True) for gate in normal_gates)) & bounds
@@ -368,7 +373,7 @@ def geometry_masks(spec: dict) -> dict:
     margins = {row["id"]: wall_margin_cells(row["polygon"]["points"], width, height,
                                             row["inside_margin_cells"])
                for row in definitions}
-    margin = set().union(*margins.values()) if definitions else set(bounds)
+    margin = set().union(*margins.values()) if enclosing else set(bounds)
     return dict(bounds=bounds, interior=interior, wall=wall, wall_raw=wall_raw,
                 walls=walls, wall_interiors=wall_interiors, wall_margins=margins,
                 passages=passages, gate_passages=gate_passages,
@@ -426,6 +431,41 @@ def catalog() -> dict[str, dict]:
                                min_per_zone=numbers[0], max_per_zone=numbers[-1])
     if not result:
         raise TownError(f"{source}：未能读到建筑目录")
+    # Era packages are intentionally sparse checkouts.  Their manifests are
+    # the source of truth for the newer kit IDs, while the design/22 table
+    # remains authoritative for every legacy ID above.
+    from assets import _entries, _read_bytes
+    tracked = subprocess.run(
+        ["git", "ls-files", "assets/default/building-map/*/manifest.yaml"],
+        cwd=ROOT, check=False, capture_output=True, text=True,
+    )
+    for relative in sorted(tracked.stdout.splitlines() if tracked.returncode == 0 else []):
+        path = ROOT / relative
+        try:
+            rows = _entries(yaml.safe_load(_read_bytes(path)))
+        except (OSError, ValueError, TypeError, yaml.YAMLError):
+            continue
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            type_id = row.get("id", row.get("asset_id"))
+            if not isinstance(type_id, str) or type_id in result or not type_id.startswith("bld_kit_"):
+                continue
+            try:
+                shape = row.get("building", {})
+                size = shape.get("footprint", row.get("footprint_m"))
+                if not isinstance(size, (list, tuple)) or len(size) != 2:
+                    raise ValueError("missing footprint")
+                w, h = size
+            except (KeyError, TypeError, ValueError):
+                continue
+            entrance = row.get("entrance", {})
+            edge = entrance.get("edge", "S") if isinstance(entrance, dict) else "S"
+            suffix = type_id.rsplit("_", 1)[-1]
+            maximum = 32 if suffix in {"house", "small", "large", "stall", "market"} else 8
+            result[type_id] = dict(w=w, h=h, rotations=[0],
+                                   entrance_edges=[edge] if edge in "NESW" else ["S"],
+                                   min_per_zone=0, max_per_zone=maximum)
     return result
 
 

@@ -5,7 +5,7 @@
 | 归属 | `design/22` 城镇布局契约的离线 Python 实现 |
 | 上游 | `docs/design/town/schema.yaml`、两城 `CitySpec`、`docs/design/22-town-layout-and-generation.md`、`docs/tech/02-rendering.md` |
 | 环境 | Python 3.11；标准库、Pillow、NumPy、PyYAML |
-| 输出 | `TownLayout` YAML、统计 JSON、北向上平面 SVG / PNG、45° 整城 PNG、可开关调试层 SVG |
+| 输出 | `CitySpec` YAML、`TownLayout` YAML、统计 JSON、北向上平面 SVG / PNG、45° 整城 PNG / JPEG、可开关调试层 SVG |
 | 范围 | 默认45°静态预览和真素材总装；运行时GLB、分片与压缩交后续运行时任务 |
 
 ## 结论先行（TL;DR）
@@ -25,6 +25,7 @@ python3 tools/town/gen_layout.py docs/design/town/city_dali__ch01.yaml -o /tmp/t
 python3 tools/town/check_town.py docs/design/town/city_dali__ch01.yaml /tmp/tianshu_town_dali.yaml
 python3 tools/town/plan_view.py docs/design/town/city_dali__ch01.yaml /tmp/tianshu_town_dali.yaml -o docs/design/town/history/dali_plan.svg
 python3 tools/town/render_town.py /tmp/tianshu_town_dali.yaml -o /tmp/tianshu_town_dali.png --scale 0.25 --overlay /tmp/tianshu_town_dali.overlay.svg --placeholders-only --report /tmp/tianshu_town_dali.render.json
+python3 tools/town/make_generic_city.py --all --importance secondary,site --check
 python3 -m unittest discover -s tools/town -p "test_*.py"
 python3 tools/lint/check_ids.py --strict
 ```
@@ -37,6 +38,9 @@ python3 tools/lint/check_ids.py --strict
 
 | 脚本 | 参数 | 含义 |
 |---|---|---|
+| `make_generic_city.py` | `--city <id> --band <band>` | 为指定小城 / 遗址的年代带逐章写 `CitySpec` |
+| 同上 | `--all --importance secondary,site` | 批量处理名录中的指定重要度；可加 `--band` / `--primary-chapter` 筛选 |
+| 同上 | `--check` | 逐份运行规格检查并输出按带 / 套件统计，绝不写文件 |
 | `gen_layout.py` | `<spec> -o <layout>` | 读取城市规格，原子替换布局文件 |
 | 同上 | `--stats <json>` | 保存格数、配额、连通性、耗时及布局 SHA-256；统计不参与布局字节 |
 | `check_town.py` | `<spec> [layout]` | 只给规格检查输入；同时给布局检查空间、道路、两种行走层和素材 |
@@ -46,14 +50,15 @@ python3 tools/lint/check_ids.py --strict
 | `plan_view.py` | `<spec> <layout> -o <svg>` | 输出北向上平面 SVG 和同名 PNG；拒绝源 SHA-256 不一致、网格不一致或含 validation error 的布局 |
 | 同上 | `--cell-px <n>` | 每游戏格像素，默认地图长边 960 px；允许 2–24，整图最多 20 MP |
 | 同上 | `--font <ttf/otf/ttc>` | 指定本地中文字体；自动查找黑体、苹方、Noto CJK、文泉驿、微软雅黑，找不到则明确失败 |
-| `render_town.py` | `<layout> -o <png>` | 合成完整城镇预览 |
+| `render_town.py` | `<layout> -o <png/jpg/jpeg>` | 按扩展名合成完整城镇预览 |
 | 同上 | `--scale <n>` | 相对 64×32 母版缩放，直接按目标比例绘制 |
+| 同上 | `--jpeg-quality <1..100>` | JPEG 质量，默认 85；PNG 输出忽略此参数 |
 | 同上 | `--overlay <svg>` | 输出调试图层；与 PNG 同目录时自动引用该 PNG |
 | 同上 | `--report <json>` | 保存尺寸、耗时、缺失素材、警告与建筑绘制次序；stdout 同步输出 |
 | 同上 | `--placeholders-only` | 强制占位，报告仍列明替代键 |
 | 校验 / 渲染 | `--tile-manifest`、`--building-manifest` | 覆盖默认两份素材清单路径 |
 
-默认清单为 `assets/default/baseline/tile/manifest.yaml` 与 `assets/default/baseline/building-map/manifest.yaml`。校验器另支持 `--assets <风格包根目录>`。`--release` 是静态门禁；斜率、光向、接缝与真机表现仍须分别验收，首批单视图预览锁定相机。
+默认始终加载 `assets/default/baseline/tile/manifest.yaml` 与 `assets/default/baseline/building-map/manifest.yaml`；非基线 `era_kit` 再把同类 `<kit>/manifest.yaml` 置于其前。校验器另支持 `--assets <风格包根目录>`。`--release` 是静态门禁；斜率、光向、接缝与真机表现仍须分别验收，首批单视图预览锁定相机。
 
 ### 2.1 北向上布局图
 
@@ -62,6 +67,20 @@ python3 tools/lint/check_ids.py --strict
 schema v1 不增加名称字段。在既有 `basis` 说明开头写 `图名：和宁门；后续依据文字` 即可标注规范汉字；其他五类要素同理。未提供图名时按城门方位、道路级别、分区用途给中文通名，并把未知名称标为待考。城门 / 街道 / 水系 / 桥 / 分区 / 固定地标依次编号 G / R / W / B / Z / L，右栏列全名；密集处只移动编号并保留引线，几何坐标不移动。SVG 节点标题与 `desc` 保留局部 ID、坐标和依据原文。
 
 灰褐矩形是建筑底面，红褐矩形是固定地标；分区按优先级着色，显示游戏用途，不代表史料可信度。`basis` 含“游戏包络”时边界用虚线，其他城垣按实际阻挡格显示。页眉先从 `design_intent.notes` 的 `history/<文件>.md` 引用取真实路径；没有显式引用时按 `city_id`、`era_kit`、`historical_year` 推导，旧大理/临安文件名保持兼容。图上的“据 / 推 / 创 / 综 / 待”仅从依据说明归纳为来源引用、推定、原创、混合、待考提示，不能认证坐标精度。比例尺只标游戏格，不把压缩城市误读为历史实尺。
+
+### 2.2 推定格局生成器
+
+`make_generic_city.py` 只面向 `cities.yaml` 中 `importance: secondary/site` 的开放年代。secondary 固定 96×96、有四面城墙和南北门；site 固定 64×64、仅留一段残墙；蒙古草原营地可为 `walls: none`。模板提供十字主街、官署、市场、商业、住宅与寺观五区；湿润地域及港口业务增加一河一桥，各业务只增加一座对应功能建筑。所有依据统一标为“推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）”。
+
+种子由 `city_id + band` 派生；同城同年代带先生成锚点规格，再深拷贝到各章，所以除 `chapter_id` / `book_world` 外逐字段一致。`era_kit` 直接复用 `tools/agents/prod_plan.py` 的 `kit_for(region, band)`；建筑 ID 只从该套件 manifest 目录登记项选择。写入默认目录是 `docs/design/town/`，也可用 `--out` 覆盖；批量验收必须带 `--check`。
+
+### 2.3 年代套件
+
+可自动叠加的套件键为 `song_north`、`liao_jin_north`、`yuan_north`、`yuan_south`、`ming_north`、`ming_south`、`qing_north`、`qing_south`、`xiyu`、`tubo`、`mongol`；旧 `tang/song_dali/song_southern/yuan/ming/qing_early` 仍可读取。每类素材先查 `assets/default/{tile,building-map}/<kit>/manifest.yaml`，缺种类再查 baseline。回退写进渲染报告 `asset_substitutions`；`--strict-assets` 允许但发 warning，`--release` 将每项替代提升为 error。显式传 `--tile-manifest` / `--building-manifest` 时只使用指定清单，便于夹具和隔离诊断。
+
+### 2.4 JPEG 预览
+
+输出名为 `.jpg` 或 `.jpeg` 时，渲染器将 RGBA 结果铺到与 `plan_view` 一致的浅底色 `#faf8ef`，转为 RGB，并以默认质量 85 保存；可用 `--jpeg-quality` 调整。城图磁盘规则 v2 的 manifest 预览建议使用 `--scale 0.25 --jpeg-quality 85`，并确保成品短边至少 512 px。PNG 仍保留既有背景与编码路径。
 
 ## 3. 数据流与确定性
 
@@ -107,7 +126,7 @@ variants:
 
 `AssetLibrary` 自动读取建筑目录的 `props/manifest.yaml`，保留14张植物的逐图ID、原生尺寸和两变体；支持元数据 `views` 列表及 `building.footprint/anchor`。顶层 `file` 优先相对 manifest，元数据里的相对文件也可从元数据目录寻找。若 sparse-checkout 仅跳过了 Git 索引中仍受跟踪的元数据、子清单或 PNG，则读取同一索引 blob；真正未登记或未跟踪的缺件仍照常报错。透明画布宽不参与占地缩放。
 
-有限共享表允许大理土草与南宋石砖水在两城复用。新增套件在缺少专用基线图时显式回退：`tang -> song_southern`、`xiyu -> song_dali`、`tubo -> song_dali`；每次都写入 `asset_substitutions`，严格素材模式允许并警告，`--release` 仍报错。水门没有专用贴片时同样以该年代回退后的城门贴片叠在连续水面上，不伪造新基线图。门宽缺图时选同方向最近宽度；已解决柱脚配准：`gate_assembly.py` 以六张原图各五个实测脚点对齐完整占地与通行孔，分段仿射保持柱线垂直，门墩对应3m墙高。校准绑定源SHA，换图须重测，不改源PNG。桥按0°木桥、90°石桥复用；`bridge_assembly.py` 对同河、同向且交叠并集恰为矩形的桥共享桥面，只放两侧外栏，分别按双轴纹理与栏杆足点配准，不补均色底。`roads.planning_bridge_groups` 在生成阶段合并并拒绝剩余重叠；临安12条源桥记录对应11个独立桥面。桥像素校准绑定当前四张素材的登记SHA，换图须重新校准。
+有限共享表允许大理土草与南宋石砖水在两城复用。旧 `tang` 以及 11 个年代套件缺少某一素材种类时，按语义后缀显式回退到 `song_dali` / `song_southern` 基线；每次都写入 `asset_substitutions`，严格素材模式允许并警告，`--release` 仍报错。水门没有专用贴片时同样以该年代回退后的城门贴片叠在连续水面上，不伪造新基线图。门宽缺图时选同方向最近宽度；已解决柱脚配准：`gate_assembly.py` 以六张原图各五个实测脚点对齐完整占地与通行孔，分段仿射保持柱线垂直，门墩对应3m墙高。校准绑定源SHA，换图须重测，不改源PNG。桥按0°木桥、90°石桥复用；年代套件桥仅在源 SHA 已校准时直用，否则整座回退到对应方向的基线桥面 / 栏杆并留痕。`bridge_assembly.py` 对同河、同向且交叠并集恰为矩形的桥共享桥面，只放两侧外栏，分别按双轴纹理与栏杆足点配准，不补均色底。`roads.planning_bridge_groups` 在生成阶段合并并拒绝剩余重叠；临安12条源桥记录对应11个独立桥面。桥像素校准绑定当前四张素材的登记SHA，换图须重新校准。
 
 `seam_assembly.py` 从原墙图内侧提取面材质，按墙格并集重组同高顶面和外露侧面，不再逐格叠墙角或重复内部端面。建筑缺视图直接报缺失；不旋转、镜像或借0°图冒充其他朝向。匹配视图的 `footprint_cells` 也必须与对应实例 `size` 一致；元数据一致不能替代门向目检。
 
