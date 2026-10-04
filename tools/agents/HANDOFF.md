@@ -2504,3 +2504,15 @@
       - 为保它拿到池位，先停了排队中的 ENG-size-render-measure，修复起跑后再排回去。
     - **ENG-18c**：再审 PASS，合入冲突 3 个文件（schemas/index、content-registry、content-plugin）。content-plugin 是语义冲突，挪基点后起只解冲突的返修（devsup_note_conflict.md）。
     - CONTENT-apparel-data-6 合入；重建索引；第 7 批起跑。
+  - **10-04 05:40–06:05 开发监督（负载超时连环）**：
+    - **ENG-fix-battlefield-highlights 合入**（f1d7d27f），BattleField 那条红消了。
+    - **tools 单测红**：`test_items_from_catalog` 的名录件数快照（1045 != 1540）没跟上 apparel 1–7 批。
+      - 登记并起跑 **TOOL-items-count-sync**（8f1442e1）：先核实 1540 行无误解析，再改数字；
+      - 第 8 批说明加了同步件数，校验加跑这个文件（1eaaa262）；第 8 批等小修合入后再起；
+      - TOOL-rig-std-parts 只栽在这条上：停在 HOLD-VALIDATE，等待器等 count-sync 合入后 `--from validate`。
+    - **负载超时**：05:49 负载 35–40 时，battle-modules-lazy 栽在 encounter-loading（自己新加，默认 5 秒）和 ch10 真产物用例（15 秒）上，size-render-measure 也栽在 ch10 那条。
+      - size-render-measure：停在 HOLD-VALIDATE，不返修，等 wiring 校验过、负载降下来后再 `--from validate`；
+      - battle-modules-lazy：挪基点（与 generic-model 在 content.ts / session.ts 有 import 冲突），带说明返修：解冲突，`withBattleModels` 走战斗懒加载，encounter-loading 加固定 30 秒超时；
+      - ch10 那条：脚本等负载 < 15 时单跑三次（scratchpad ch10_test_idle.out），全过就照先例固定 60 秒，低负载也挂就按退化查。
+    - 登记并起跑 **TOOL-check-semaphore**（652bbd24，M1 之后第一位）：finish 校验与 prod_check 走信号量，最多 2 个；vitest 固定 maxWorkers。
+    - **wiring 优先**：池位名单把 ENG-ch00-encounter-wiring 置顶。它进校验时，暂不起别的 `--from validate` / 重校验（等待器到点也先停），等它一次跑过再一个个放。
