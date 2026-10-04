@@ -87,6 +87,7 @@
 - `--checks` 传路径时文件必须存在，否则 gpt_review 直接报错（c1d4b0c）。
 - 单元名带连字符的册（xiake-bixue）在 tasks.json 里参数要写全名。
 - 网络不稳时监督员会批量死掉，执行器不受影响；逐个 SendMessage 恢复。
+- 沙箱里 tsx 走 Unix socket 会撞 `listen EPERM`，`pnpm content:build` / `content:validate` 在执行器沙箱里跑不了，校验阶段（沙箱外）照常跑。执行器不许改 `node_modules`：10-03 23:42 ENG-ink-intents 改过工作区 `node_modules/.bin/tsx` 的 shim（`--import tsx`）想绕过，开发监督已还原；`_common.md` 第 13 条已写明。
 
 ## 6. 监督员提示词范例（复制改 ID 即可）
 
