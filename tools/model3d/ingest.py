@@ -14,6 +14,10 @@
 检查：GLB 文件头、65 个 mixamorig 关节（另允许 neutral_bone，共 66）、基础模型不带动画、关节体检（髋 / 头 / 头顶 / 手 / 脚的高度）。
 写 manifest.yaml（字段同已入库的 38 套），--commit 时只按目录路径提交（撞上 index.lock 自动重试）。
 用掉的下载文件会删掉（--keep-src 保留）。--dry-run 只检查不搬文件。
+
+只换预览（模型不动）：python3 tools/model3d/ingest.py <npc_id> --preview-only [--commit]
+  读 tripo__<npc>.png / .webp / .jpg → preview.png，只改 manifest 末尾 preview 条目（tool / size / sha256 / size_bytes / created / notes），
+  其余条目逐字不动。
 """
 import argparse, datetime, glob, hashlib, json, math, os, shutil, struct, subprocess, sys, time
 
@@ -137,15 +141,58 @@ def commit(path, msg, npc):
     die('提交失败（10 次重试后仍有未提交改动），看 git status')
 
 
+def find_preview(src, npc, secs):
+    cands = [os.path.join(src, f'tripo__{npc}.{e}') for e in ('png', 'webp', 'jpg')]
+    p = next((c for c in cands if os.path.exists(c)), None)
+    if not p and wait_file(cands[0], secs):
+        p = cands[0]
+    return p
+
+
+def refresh_preview(a):
+    import yaml
+    npc = a.npc; d = os.path.join(a.out_root, npc); mf = os.path.join(d, 'manifest.yaml')
+    if not os.path.exists(mf):
+        die(f'{mf} 不存在')
+    prev = find_preview(a.src, npc, a.wait)
+    if not prev:
+        die(f'找不到预览 tripo__{npc}.png / .webp / .jpg')
+    entries = yaml.safe_load(open(mf, encoding='utf-8')); pe = entries[-1]
+    text = open(mf, encoding='utf-8').read(); head = f'- id: {npc}__preview\n'
+    if pe.get('file') != 'preview.png' or text.count(head) != 1:
+        die('manifest 末尾不是 preview 条目，手工处理')
+    if a.dry_run:
+        print(json.dumps({'npc': npc, 'preview': os.path.basename(prev)}, ensure_ascii=False)); return
+    psize = preview_png(prev, os.path.join(d, 'preview.png')); pv = os.path.join(d, 'preview.png')
+    pe.update(tool='tripo-studio-web（Tripo 封面渲染）', size=f'{psize[0]}x{psize[1]}', sha256=sha(pv), size_bytes=os.path.getsize(pv),
+              created=datetime.datetime.now().astimezone().isoformat(timespec='seconds'), notes=a.preview_notes)
+
+    class NoAlias(yaml.SafeDumper):
+        def ignore_aliases(self, data):
+            return True
+    block = yaml.dump([pe], Dumper=NoAlias, allow_unicode=True, sort_keys=False, width=200)
+    with open(mf, 'w', encoding='utf-8') as fh:
+        fh.write(text[:text.index(head)] + block)
+    if not a.keep_src:
+        for p in [prev] + glob.glob(os.path.join(a.src, f'tripo__{npc}__rig.*')):
+            if os.path.exists(p):
+                os.remove(p)
+    out = {'npc': npc, 'preview': f'{psize[0]}x{psize[1]}', 'bytes': os.path.getsize(pv)}
+    if a.commit:
+        out['commit'] = commit(d, a.msg or f'assets(model3d): {npc} 预览换成 Tripo 封面渲染（AR-65）', npc)
+    print(json.dumps(out, ensure_ascii=False))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('npc'); ap.add_argument('--project', required=True); ap.add_argument('--gen-op', required=True); ap.add_argument('--rig-op', required=True)
+    ap.add_argument('npc'); ap.add_argument('--project'); ap.add_argument('--gen-op'); ap.add_argument('--rig-op')
     ap.add_argument('--gen-kind', default='image_to_model', choices=['image_to_model', 'multiview_to_model'])
-    ap.add_argument('--ref', required=True, action='append', help='生成输入图（仓库相对路径，可多次：多视图按 Front/Left/Back/Right 顺序给）')
+    ap.add_argument('--ref', action='append', default=[], help='生成输入图（仓库相对路径，可多次：多视图按 Front/Left/Back/Right 顺序给）')
     ap.add_argument('--ref-use', action='append', default=[], help='与 --ref 一一对应的用途说明')
     ap.add_argument('--ref2', action='append', default=[], help='额外登记的参考：<path>=<用途>（不是生成输入）')
     ap.add_argument('--input', default=None, help='生成输入说明（写进 options.generate.input）')
-    ap.add_argument('--subject', required=True); ap.add_argument('--notes', required=True)
+    ap.add_argument('--subject'); ap.add_argument('--notes')
+    ap.add_argument('--preview-only', action='store_true', help='只换预览图和 manifest 的 preview 条目')
     ap.add_argument('--anim', default='', help='动作单文件的预设名，逗号分隔，如 idle,walk,run')
     ap.add_argument('--anim-ops', default='', help='idle=<op>,walk=<op>,run=<op>')
     ap.add_argument('--credits', default='generate=65,rig=20')
@@ -158,6 +205,11 @@ def main():
     a = ap.parse_args()
     os.chdir(REPO)
     npc, src = a.npc, a.src
+    if a.preview_only:
+        return refresh_preview(a)
+    miss = [k for k in ('project', 'gen_op', 'rig_op', 'subject', 'notes') if not getattr(a, k)] + ([] if a.ref else ['ref'])
+    if miss:
+        die('缺参数：' + ', '.join('--' + k.replace('_', '-') for k in miss))
     anims = [x for x in a.anim.split(',') if x]
     dup = glob.glob(os.path.join(src, f'tripo__{npc}* (*)*'))
     if dup:
@@ -165,9 +217,7 @@ def main():
     base = os.path.join(src, f'tripo__{npc}.glb')
     if not wait_file(base, a.wait):
         die(f'等不到 {base}（reload 存盘方式要每个文件整页刷新一次再 flushSave）')
-    prev = next((p for p in (os.path.join(src, f'tripo__{npc}.{e}') for e in ('png', 'webp', 'jpg')) if os.path.exists(p)), None)
-    if not prev and wait_file(os.path.join(src, f'tripo__{npc}.png'), a.wait):
-        prev = os.path.join(src, f'tripo__{npc}.png')
+    prev = find_preview(src, npc, a.wait)
     if not prev:
         die(f'找不到预览 tripo__{npc}.png / .webp / .jpg')
     anim_src = os.path.join(src, f"tripo__{npc}__anim_{'_'.join(anims)}.glb") if anims else None
