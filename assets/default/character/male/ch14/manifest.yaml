@@ -54,66 +54,34 @@
   category: character/male
   style: default
   subject: 胡斐（ch14_xueshan）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次图像编辑（只改眼睛和眉毛），不是重新创作。第 1 张参考图是作者审核通过的胡斐立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中胡斐的眼睛和眉毛改成与身份基线一样，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【复合参考】第1张是本轮新出的同一胡斐，继承同脸骨相自然长到成熟豪侠时期，不改成另一人。
+    【要对齐基线的部分】只改眼睛和眉毛：眼型、双眼皮、眼睛大小、眼神，眉形、眉毛粗细与高低、眉眼间距，都要和身份基线一样。基线的胡斐是一双明亮的大眼睛、双眼皮清楚、眼神爽朗带笑，不是小而深陷的眼；眉毛浓黑但舒展，眉形平直略扬、眉尾上挑，不压着眼睛，眉眼间距比原图宽一些。脸型、颧骨、鼻子、嘴、胡须、头发、皱纹与年龄感都保持原图不变。改完要让人一眼看出与基线是同一个人。【年龄】原图是《雪山飞狐》时期三十出头、满脸虬髯的胡斐：保持原图人物的年龄感、皱纹、胡须与风霜，不要画年轻。
 
-    第2张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+    【原图保持不变】除眼睛和眉毛以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向。
 
-    第3张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+    【本张另外要求】（AR-53 / AR-56 总审轻微：还是凌晨精修那张脸，眉粗压、眼小深陷、显老）只把眼睛改成基线那样明亮的大眼、双眼皮清楚、眼神爽朗，眉毛改成浓黑但舒展、不压眼。 虬髯与年长是本书设定，保留。
 
-    最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入。
 
-    五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
-
-
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
-
-    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
-
-    【人物辨识与原创面孔】胡斐；成熟豪迈、机警克制、满腮虬髯；必须以本轮 por_npc_hufei__ch13_youth_base 同一张新脸成熟化：保留宽颧方颌、浓眉眼角、鼻唇比例，仅加风霜与虬髯，不能另造演员脸。
-
-    【造型道具】浓发不剃额不结辫、横生倒竖；灰白厚右衽袍、旧毛皮领、深灰护腕与腰带、厚靴；腰侧普通无字鞘单刀，不将鞘上装饰当藏宝钥匙；剧照仅借衣饰气质，勿照搬辫发。
-
-    【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
-    sha256: 4abeeeb2e8b1877b8b5778c4552fad709f9c4ece17ee7feabb1be027e01dd750
-    uploaded_sha256: 4abeeeb2e8b1877b8b5778c4552fad709f9c4ece17ee7feabb1be027e01dd750
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: .agents/coord/imagegen-reference/identity-20261002/feihu/hufei_1991_mengfei_sohu2022.jpg
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_hufei__ch14_prime_base_still0.jpg
-    sha256: ac2d5fe603d7b602e938f0c1e7d48e92a4bbab3ed22e40f772b5ad89ee79dcfa
-    uploaded_sha256: f283101ba7dd1d5a8dfc75103a47981ce1e26be7b3a2027ae5c69152442da7ad
-    use: 影视造型、衣饰与气质；不复制演员五官
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_2-1.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_hufei__ch14_prime_base_game.jpg
-    sha256: be098ac7be9cd45f8b80d399d7e114f2e2817d7cfb4015db16cdf1439cad3040
-    uploaded_sha256: 43f36daf1c035c93f44f6f35810af3a9dfaeb580bb862ff813dbb5f019f4b04b
-    use: 经典游戏绘画风格
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
+    sha256: ba5eb4786147e34a6d51cdd7513b12bfefcef4941d93d8726f650aff8e3a059f
+    use: 对脸基线：作者审核通过的 por_npc_hufei__ch13_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch14/por_npc_hufei__ch14_prime_base.png
+    sha256: 88d3ad3b43f192a8ae5e63a58efcfddc372156926b9c3c27ff2a88e662513f91
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_base.88d3ad3b.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:50:02-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_hufei__ch14_prime_base.png
+  created: 2026-10-03T18:51:50-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_hufei__ch14_prime_base.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 88d3ad3b43f192a8ae5e63a58efcfddc372156926b9c3c27ff2a88e662513f91
+  sha256: 1016db73b7596a24bf5caed3c860cd5cb7ddb8aec4bdb73cc2b8d2e01c212c52
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：只改眼睛眉毛，虬髯与年长按设定保留）
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_hufei__ch14_prime_base.retry3.r1
   quality_retries: 0
@@ -126,6 +94,11 @@
     created: 2026-10-02T03:00:10-0700
     archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/por_npc_hufei__ch14_prime_base/7fba17181fe5a7d74725b17b84c43bfb6a30d38cc454aa8e89ce5ab0547ae892.png
     archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/por_npc_hufei__ch14_prime_base/7fba17181fe5a7d74725b17b84c43bfb6a30d38cc454aa8e89ce5ab0547ae892.yaml
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_base.88d3ad3b.png
+    sha256: 88d3ad3b43f192a8ae5e63a58efcfddc372156926b9c3c27ff2a88e662513f91
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_base.88d3ad3b.entry.yaml
 - id: por_npc_pingasi__ch14_elder_onearm_base
   file: por_npc_pingasi__ch14_elder_onearm_base.png
   category: character/male
@@ -987,121 +960,85 @@
   category: character/male
   style: default
   subject: 胡斐·飞狐登峰（ch14_xueshan）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次图像编辑（只改眼睛和眉毛），不是重新创作。第 1 张参考图是作者审核通过的胡斐立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中胡斐的眼睛和眉毛改成与身份基线一样，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+    【要对齐基线的部分】只改眼睛和眉毛：眼型、双眼皮、眼睛大小、眼神，眉形、眉毛粗细与高低、眉眼间距，都要和身份基线一样。基线的胡斐是一双明亮的大眼睛、双眼皮清楚、眼神爽朗带笑，不是小而深陷的眼；眉毛浓黑但舒展，眉形平直略扬、眉尾上挑，不压着眼睛，眉眼间距比原图宽一些。脸型、颧骨、鼻子、嘴、胡须、头发、皱纹与年龄感都保持原图不变。改完要让人一眼看出与基线是同一个人。【年龄】原图是《雪山飞狐》时期三十出头、满脸虬髯的胡斐：保持原图人物的年龄感、皱纹、胡须与风霜，不要画年轻。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除眼睛和眉毛以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向。
 
-    【主角】胡斐；成熟豪迈、机警克制、满腮虬髯；必须以本轮 por_npc_hufei__ch13_youth_base 同一张新脸成熟化：保留宽颧方颌、浓眉眼角、鼻唇比例，仅加风霜与虬髯，不能另造演员脸。
+    【本张另外要求】（AR-53 / AR-56 总审轻微：还是凌晨精修那张脸，眉粗压、眼小深陷、显老）只把眼睛改成基线那样明亮的大眼、双眼皮清楚、眼神爽朗，眉毛改成浓黑但舒展、不压眼。 虬髯与年长是本书设定，保留。
 
-    【本期】飞狐登峰；成熟成年，灰白厚袍旧毛领、虬髯散发，腰刀完全在鞘、一手扶粗绳，救援后站稳。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入。
 
-    【阶段背景】玉笔峰绳路雪崖与远处寒峰。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
-
-    【考据边界】第六回登峰救曹云奇之后的单人概念立绘；精确站位原创扩展构图。 联网来源及目标版待考边界见 research_12_14_retry3.md。；配色、镜头、成人化、具体站姿是（原创扩展）；所引章回仅作情节定位，三联／广州修订版对应回目与字句待纸本终校（待考）。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
-  - path: assets/default/character/male/ch14/por_npc_hufei__ch14_prime_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch14/por_npc_hufei__ch14_prime_base.png
-    sha256: 88d3ad3b43f192a8ae5e63a58efcfddc372156926b9c3c27ff2a88e662513f91
-    uploaded_sha256: 88d3ad3b43f192a8ae5e63a58efcfddc372156926b9c3c27ff2a88e662513f91
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: .agents/coord/imagegen-reference/identity-20261002/feihu/hufei_1991_mengfei_sohu2022.jpg
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_hufei__ch14_prime_base_still0.jpg
-    sha256: ac2d5fe603d7b602e938f0c1e7d48e92a4bbab3ed22e40f772b5ad89ee79dcfa
-    uploaded_sha256: f283101ba7dd1d5a8dfc75103a47981ce1e26be7b3a2027ae5c69152442da7ad
-    use: 影视造型、衣饰与气质；不复制演员五官
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_2-1.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_hufei__ch14_prime_base_game.jpg
-    sha256: be098ac7be9cd45f8b80d399d7e114f2e2817d7cfb4015db16cdf1439cad3040
-    uploaded_sha256: 43f36daf1c035c93f44f6f35810af3a9dfaeb580bb862ff813dbb5f019f4b04b
-    use: 经典游戏绘画风格
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
+    sha256: ba5eb4786147e34a6d51cdd7513b12bfefcef4941d93d8726f650aff8e3a059f
+    use: 对脸基线：作者审核通过的 por_npc_hufei__ch13_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch14/por_npc_hufei__ch14_prime_scene_yubi_rescue.png
+    sha256: 30ef7a014306faf289b668c793e954e3351753a569359642008ddf15c2030d89
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_scene_yubi_rescue.30ef7a01.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:53:00-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_hufei__ch14_prime_scene_yubi_rescue.png
+  created: 2026-10-03T18:51:52-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_hufei__ch14_prime_scene_yubi_rescue.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 30ef7a014306faf289b668c793e954e3351753a569359642008ddf15c2030d89
+  sha256: 6133f400244eee4bc0c50ff60069676e4395b160ce82585753f3cb9a2d87a3a0
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：只改眼睛眉毛，虬髯与年长按设定保留）
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_hufei__ch14_prime_scene_yubi_rescue.retry3.r1
   quality_retries: 0
   history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_scene_yubi_rescue.30ef7a01.png
+    sha256: 30ef7a014306faf289b668c793e954e3351753a569359642008ddf15c2030d89
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_scene_yubi_rescue.30ef7a01.entry.yaml
 - id: por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade
   file: por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.png
   category: character/male
   style: default
   subject: 胡斐·雪崖悬刀（ch14_xueshan）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次图像编辑（只改眼睛和眉毛），不是重新创作。第 1 张参考图是作者审核通过的胡斐立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中胡斐的眼睛和眉毛改成与身份基线一样，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+    【要对齐基线的部分】只改眼睛和眉毛：眼型、双眼皮、眼睛大小、眼神，眉形、眉毛粗细与高低、眉眼间距，都要和身份基线一样。基线的胡斐是一双明亮的大眼睛、双眼皮清楚、眼神爽朗带笑，不是小而深陷的眼；眉毛浓黑但舒展，眉形平直略扬、眉尾上挑，不压着眼睛，眉眼间距比原图宽一些。脸型、颧骨、鼻子、嘴、胡须、头发、皱纹与年龄感都保持原图不变。改完要让人一眼看出与基线是同一个人。【年龄】原图是《雪山飞狐》时期三十出头、满脸虬髯的胡斐：保持原图人物的年龄感、皱纹、胡须与风霜，不要画年轻。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【原图保持不变】除眼睛和眉毛以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向。
 
-    【主角】胡斐；成熟豪迈、机警克制、满腮虬髯；必须以本轮 por_npc_hufei__ch13_youth_base 同一张新脸成熟化：保留宽颧方颌、浓眉眼角、鼻唇比例，仅加风霜与虬髯，不能另造演员脸。
+    【本张另外要求】（AR-53 / AR-56 总审轻微：还是凌晨精修那张脸，眉粗压、眼小深陷、显老）只把眼睛改成基线那样明亮的大眼、双眼皮清楚、眼神爽朗，眉毛改成浓黑但舒展、不压眼。 虬髯与年长是本书设定，保留。
 
-    【本期】雪崖悬刀；成熟成年，脱去厚披层后的深灰劲装、虬髯散发，右手高举一根粗木枝代刀，左手平衡，木枝无金属刃。全身以深灰劲装为主，明确脱去灰白厚袍和毛皮领，与登峰厚装不同。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入。
 
-    【阶段背景】月夜狭窄冰崖台、镜状凝冰壁。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
-
-    【考据边界】第十回末树刀树剑决斗，结局留白；不画冷月刀，不画落刀胜利。 联网来源及目标版待考边界见 research_12_14_retry3.md。；配色、镜头、成人化、具体站姿是（原创扩展）；所引章回仅作情节定位，三联／广州修订版对应回目与字句待纸本终校（待考）。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
-  - path: assets/default/character/male/ch14/por_npc_hufei__ch14_prime_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch14/por_npc_hufei__ch14_prime_base.png
-    sha256: 88d3ad3b43f192a8ae5e63a58efcfddc372156926b9c3c27ff2a88e662513f91
-    uploaded_sha256: 88d3ad3b43f192a8ae5e63a58efcfddc372156926b9c3c27ff2a88e662513f91
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: .agents/coord/imagegen-reference/identity-20261002/feihu/hufei_1991_mengfei_sohu2022.jpg
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_hufei__ch14_prime_base_still0.jpg
-    sha256: ac2d5fe603d7b602e938f0c1e7d48e92a4bbab3ed22e40f772b5ad89ee79dcfa
-    uploaded_sha256: f283101ba7dd1d5a8dfc75103a47981ce1e26be7b3a2027ae5c69152442da7ad
-    use: 影视造型、衣饰与气质；不复制演员五官
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_2-1.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_hufei__ch14_prime_base_game.jpg
-    sha256: be098ac7be9cd45f8b80d399d7e114f2e2817d7cfb4015db16cdf1439cad3040
-    uploaded_sha256: 43f36daf1c035c93f44f6f35810af3a9dfaeb580bb862ff813dbb5f019f4b04b
-    use: 经典游戏绘画风格
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
+    sha256: ba5eb4786147e34a6d51cdd7513b12bfefcef4941d93d8726f650aff8e3a059f
+    use: 对脸基线：作者审核通过的 por_npc_hufei__ch13_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch14/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.png
+    sha256: 44c108a4bff8d256a5658690c8597b880909bb596fc61a8cb16a84d96653da2e
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.44c108a4.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:53:01-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.png
+  created: 2026-10-03T18:51:51-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 44c108a4bff8d256a5658690c8597b880909bb596fc61a8cb16a84d96653da2e
+  sha256: f79474ae0bf8ca80df0bbbb835e32007cc5450c1ce65f51484acf971ab68d915
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：只改眼睛眉毛，虬髯与年长按设定保留）
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.retry3.r1
   quality_retries: 0
   history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.44c108a4.png
+    sha256: 44c108a4bff8d256a5658690c8597b880909bb596fc61a8cb16a84d96653da2e
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_hufei__ch14_prime_scene_snow_cliff_suspended_blade.44c108a4.entry.yaml
 - id: por_npc_lizicheng__ch14_prime_memory_base
   file: por_npc_lizicheng__ch14_prime_memory_base.png
   category: character/male
