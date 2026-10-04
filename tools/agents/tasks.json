@@ -48130,6 +48130,8 @@
       "assets/default/map/kit",
       "--min",
       "20",
+      "--max",
+      "60",
       "--min-side",
       "512"
      ],
