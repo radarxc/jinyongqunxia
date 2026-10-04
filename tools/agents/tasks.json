@@ -49547,6 +49547,12 @@
      ],
      [
       "{python}",
+      "-m",
+      "unittest",
+      "tools.content.test_items_from_catalog"
+     ],
+     [
+      "{python}",
       "tools/lint/check_item_catalog.py",
       "docs/design/catalog/items-innerarmor.md"
      ],
@@ -49612,7 +49618,8 @@
     "docs/design/catalog/items-shoes.md",
     "content/items/**",
     "assets/default/prompts/items/**",
-    "docs/design/10-items-and-equipment.md"
+    "docs/design/10-items-and-equipment.md",
+    "tools/content/test_items_from_catalog.py"
    ]
   },
   {
