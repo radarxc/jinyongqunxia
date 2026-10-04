@@ -2009,4 +2009,8 @@
     - 男女主角各带 `anim_idle_walk_run.glb`。
     - ENG-12e-gltf-pilot 已于 08:17 合入（81ca591b），这几条写进下一个 3D 接入任务的说明。
     - **ENG-content-plugin-timeout 合入**（19:20）。
+  - **10-03 19:24 开发监督**：content-plugin-timeout 合入后 prod_check 全绿。
+    - HEAD 99a41639，负载约 23；149 个测试文件 / 1093 个测试。
+    - entry 38.79；render 168.86。
+    - **首次会话闭包 100.02 / 110**：session static 69.28，比上次 +1.07，是 event-executor 的 core 改动带进来的。余量剩约 10 KiB，base-diet 已在排队。
 
