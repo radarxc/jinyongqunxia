@@ -88,62 +88,65 @@
   category: character/female
   style: default
   subject: 索菲娅 npc_suofeiya ch08_luding
-  prompt: '【任务】AR-73 / AR-89：以图1 hist-batch1索菲娅B为改定目标，图2是B脸部特写；图3为索菲娅晚年追绘画像，只提供族群与王室身份方向，不能照搬厚颊胖颈；图4现base只锁构图、站姿、双手、文书和背景。
+  prompt: '【任务：大幅改定，不是微调】编辑图1中的《鹿鼎记》苏菲亚/索菲娅俄罗斯公主。图1是8a3ff9d3现版，只锁定服饰款式配色、软头巾、手势文书、站姿、构图和背景；图2是作者选的B，只补充同一角色的衣饰颜色与王室身份。两图的圆胖脸、宽肩、厚腰和臃肿袍子是本轮必须明显改掉的部分，绝不能当作必须保留的脸型或身体参考。要画成同一俄罗斯公主的二十岁上下成年少女时期，第一眼就是美丽、纤细、聪明、娇媚、自信的年轻公主；与输入图一眼可见的明显差别。
 
-    【作者意见】「B，瘦一些，美一些，历史图是发福以后的，画一下少女时期的美感」。画二十出头的成年年轻俄罗斯公主，健康匀称纤秀，明显收瘦B的颊部、下颌、颈部、肩胸与腰身；保留B辨识度：深栗色卷发、东欧眉眼、鼻形和唇形关系，去掉中年厚颊和双下巴。五官清秀秀美，眉眼明亮自然、下颌柔和，不用夸张锥子脸、过高鼻、大眼丰唇或磨皮模板。神情年轻自信而端雅，可闭唇极浅微笑，绝不露齿。
 
-    【服饰与动作】仍是B的十七世纪俄罗斯公主装束：软头巾与珠绣饰、深栗卷发、灰蓝高领内裙、暗酒红外长袍、窄毛边与金色绣饰，厚实不透明织物；不能换成现代晚礼服或欧洲十八世纪蓬裙。收腰自然随匀称体态，不紧身、不袒露，人物高度和裙摆长度不变。右手折叠外交文书、左手低位指挥，头颈端正，全身自然站姿照现base。
+    【原著依据】已核《鹿鼎记》第三十六回（https://www.kanunu8.com/wuxia/201102/1624/36982.html），并以旧版第一〇三回（https://xuoda.com/wuxia/jinyong/015/298.htm）交叉核对：外观约二十来岁，眼珠碧绿而灵动，皮肤雪白，容貌很美，鼻梁较高，身量比韦小宝高；她常笑吟吟、娇笑，和韦小宝有过短暂情缘。画出明亮灵动、聪慧自信的成年俄罗斯少女气质。原著发色写金色；本轮按作者明确指示改用深栗棕色长发，不把栗发误写成原著事实。作者要求的纤瘦脸型和收腰身形优先于晚年历史肖像的发福形象。本图仅单人静立，不画情缘场景。
 
-    【共同约束】单人单视图、完整全身，1024×1536、2:3竖幅、不透明PNG。人物站姿、双手动作、视角、头部方向、位置、占画面尺度、头顶与足底留白、背景底色及水墨景物严格照现base，不能改变或新增场景。项目精细写实数字手绘：真实骨肉和织物体积、自然五官不对称、柔和左上光、细腻笔触，纸纹水墨只在背景，不能画成平涂古画、照片、油画厚涂或3D。允许指定的脸、体态、冠服改定；人物高度不变。完整双手与双足、入鞘兵器，不增器物。只输出一张定稿，不做拼图。
 
-    【不要】不要文字、题字、画框、印章、水印、第二人、脸部特写框、多视图、现代衣饰、网红脸、动漫大眼、塑料磨皮、古画平涂、多肢、断手断足、裁掉帽或脚；不镜像现base。历史画像上的文字与边框绝不画入新图。
+    【脸：必须重新画，改幅大】脸颊完全收平，没有鼓颊、双下巴、胖颈；秀美鹅蛋或柔和瓜子脸，颧骨有斯拉夫骨相的精致起伏、下颌线干净明确、下巴轻巧圆润，绝非宽圆脸。相比图1面宽显著收窄约20%，下颌显著收窄约25%，颈部修长。额头、颧骨、鼻唇比例自然协调。眼睛比原图明显更大、更清澈有神但是真实人眼，浅绿色/灰绿色虹膜，眼眶有欧罗巴立体深度；秀气眉弓和自然精细弯眉；挺直而纤巧的鼻梁与鼻尖；唇峰清楚、饱满但不厚的自然唇形。白皙细腻的年轻皮肤，柔软颊部明暗，轻微自然不对称，有生机。闭唇浅笑不露齿，眼底笑意清楚，娇俏又自信。明确保留东欧斯拉夫人面部特征、较深眼眶和高鼻梁，不能变成东方古装女子。重新设计美丽少女的面孔，不要在旧圆胖脸上仅磨皮或改嘴角。
+
+
+    【身材和衣服：必须明显收瘦】健康匀称、修长纤细，窄而自然放松的肩、细手臂、收紧的腰、修长颈项；接近九头身的优雅全身比例，头部高度略减以配长身，整体人物在画面内的站立总高度和头顶足底留白照图1。肩部与上躯干外轮廓比输入明显窄约20%，腰身比输入明显窄约25%，纤细骨架能从服装外轮廓看出来。全身重新按这副纤细骨架裁衣：保留图1的暗酒红及地长外袍、窄棕毛边、金色绣边和扣饰、蓝灰色高领长袖长裙、软头巾和珍珠耳饰、腰带、鞋。外袍肩腰贴合、腰线清楚、袖子显著减少蓬松体积，袍子沿纤细身形自然垂落，裙摆也收束成修长的A形，不能仍是宽大的披风三角或厚宽桶状身形。厚实不透明织物，端雅得体，衣服花纹保持俄罗斯公主风格。深棕/栗色长发柔软地垂到肩胸，可有细辫，但软头巾的颜色花纹和佩戴方向保持。
+
+
+    【姿态构图必须照现base】完整单人全身，正面自然站立，头颈竖直双眼水平，视角镜头平视；右手低持折叠外交文书、左手在腰侧掌心向下指挥，左右不能镜像，手势和道具位置照图1。人物中心、头顶、鞋底坐标、全身总高度照图1，收瘦的衣服外轮廓允许改变。1024×1536像素、2:3竖幅、不透明PNG。图1暖白灰纸底、浅灰蓝水墨远山、左侧淡花枝、右侧小亭与山水、柔和左上光照、足下淡阴影全部保持位置和浓淡。只输出一张完整立绘，禁止拼版和脸部特写框。
+
+
+    【画风和排除】项目精细写实数字手绘，漂亮且可信的年轻皮肤、面部体积、细腻五官和衣料；背景纸纹水墨不侵入人物。不是摄影、3D、动漫或油画厚涂。不要宽圆胖脸、鼓颊、双下巴、粗脖、宽肩、厚腰、臃肿外袍、中年女人感、普通沉闷无神的面孔；不要东方人脸、假大眼、僵硬网红模板、浓妆磨皮、病态纸片身材；不要文字、水印、印章、边框、其他人物、现代衣服、裸露、头倾斜、手指多肢错接、裁断头脚。优先验收：一眼就是美丽的成年少女公主，且明显比输入瘦、美。
+
+
+    【A版差异】清丽娇媚的鹅蛋脸，脸长与脸宽约1.45:1，平顺纤细的下颌；灰绿色大眼、秀挺鼻梁、自然玫瑰唇，清澈目光带一点狡黠，闭唇浅笑略扬双唇角。栗色松卷长发，端雅公主的青春美感。
 
     '
-  negative: 不要文字、题字、画框、印章、水印、第二人、脸部特写框、多视图、现代衣饰、网红脸、动漫大眼、塑料磨皮、古画平涂、多肢、断手断足、裁掉帽或脚；不镜像现base。历史画像上的文字与边框绝不画入新图。
+  negative: 不要宽圆胖脸、鼓颊、双下巴、粗脖、宽肩、厚腰、臃肿外袍、中年女人感、普通沉闷无神的面孔；不要东方人脸、假大眼、僵硬网红模板、浓妆磨皮、病态纸片身材；不要文字、水印、印章、边框、其他人物、现代衣服、裸露、头倾斜、手指多肢错接、裁断头脚。
   references:
+  - path: .agents/coord/_lines/sofia-r3/before/8a3ff9d3.png
+    sha256: 1f7303778fb1a56df00b55e9753951c52d0158194a3aeb958519bd7012806f91
+    use: 8a3ff9d3只锁服饰站姿构图底色，不锁脸型体态
+    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/sofia89_r3_A_20261004__ref1.jpg
+    uploaded_sha256: 0f47bcb146c5552003dffeb4e24d679a9835ea1f4829f0badf14aaa1a3a108f4
   - path: .agents/coord/_lines/hist-batch1/npc_suofeiya_B.png
     sha256: 4886afe8b8a56ccc0a178bcd1bf50286eb85ed09e4ee9bad7d2db04839b83067
-    use: 作者选定的B候选；面容、指定体态与冠饰基准
-    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_suofeiya.r1__ref1.jpg
-    uploaded_sha256: df0591c2c9b83997b1182ecbffa3ec6b4be92070d32c5277437839ce564687e8
-  - path: .agents/coord/_lines/hist-batch1/qa/npc_suofeiya_B_face.png
-    sha256: 4a088018e503b0653fffc01a3a8a3af4243485df21426ab96a8443dff419d793
-    use: 作者选定候选的脸部特写
-    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_suofeiya.r1__ref2.jpg
-    uploaded_sha256: 3092798b0b136515be1f8b0aad1e29d9ae8e8019d17bfc15be174fe12545c004
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/historical/npc_suofeiya/historical_original_full.jpg
-    sha256: 829c168882bd5daed81235ac3d563605c87b9977e45136da0d85aa218d9f031b
-    use: 历史画像；仅指定冠服及身份参考
-    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_suofeiya.r1__ref3.jpg
-    uploaded_sha256: b1140dffa00f67f21b58e7e80eec7f451e64d92962c3ab65b157239aa5d079c7
-  - path: .agents/coord/_lines/hist-r2/before/npc_suofeiya.png
-    sha256: 84379885c8c0c2006db802cdf31a8fe4dba83f9da559d2379f19669d10856c65
-    use: 改前base；站姿、構图、尺寸、底色和器物基准
-    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/hist89_npc_suofeiya.r1__ref4.jpg
-    uploaded_sha256: 5b3ad318a68d6455641553a63798c5de0e6a5b3ba9294ade131312cace5c11c5
-  tool: codex exec · image_gen（AR-73 / AR-89 历史画像与作者意见改定；codex_w34队列）
+    use: 作者选B的服饰配色身份，重新设计纤瘦少女的脸和身材
+    uploaded_path: .agents/coord/_handoff/gem/codex_w34/staging/sofia89_r3_A_20261004__ref2.jpg
+    uploaded_sha256: 6ace478c9a04fdf62544e8bea6c783a2a13ef4966292b48d5f8d2aecc9dae214
+  tool: codex exec · image_gen（AR-89 索菲娅少女时期三版选优；codex_w34队列）
   model: gpt-6.1-sol
   effort: xhigh
-  created: '2026-10-04T00:57:20-07:00'
-  source_path: .agents/coord/_handoff/gem/codex_w34/out/hist89_npc_suofeiya.r1.png
+  created: '2026-10-04T01:18:43-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w34/out/sofia89_r3_A_20261004.png
   size: 1024x1536
   mode: RGB
-  sha256: 1f7303778fb1a56df00b55e9753951c52d0158194a3aeb958519bd7012806f91
+  sha256: 5ec895ba4034d031a51dac798b49228dadf27fe8450fa6cecdca23df58401b35
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    png: .agents/coord/_lines/hist-r2/before/npc_suofeiya.png
-    sha256: 84379885c8c0c2006db802cdf31a8fe4dba83f9da559d2379f19669d10856c65
-    entry: .agents/coord/_lines/hist-r2/before/npc_suofeiya.manifest.json
-  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_suofeiya__ch08_youth_regent_base.requests.json
+    png: .agents/coord/_lines/sofia-r3/before/8a3ff9d3.png
+    sha256: 1f7303778fb1a56df00b55e9753951c52d0158194a3aeb958519bd7012806f91
+    entry: .agents/coord/_lines/sofia-r3/before/8a3ff9d3.manifest.json
+    commit: 8a3ff9d3
+  request_log: .agents/coord/_handoff/gem/codex_w34/prompts/sofia89_r3_A_20261004.json
   notes: '实际查看候选1：索菲娅为成年青年东欧面容、金棕卷发蓝灰眸，软头巾、灰蓝高领内衣及暗酒红前开长袍、窄毛边，右手折叠外交书左手低位指挥；非东亚基线脸，非童年阶段。头颈正直眼线水平，单人整体衣装完整可读，无明显多肢重大结构问题，按用户快速宽松自查保留可用。体态与脸明显比设定高大丰满更纤细、造型更理想化；衣饰花纹金属件偏多，左脚被裙摆覆盖而右鞋清楚，背景花枝小亭偏具体。以上据实登记为待细修偏差，不宣称严格符合体量和两足展示，不为小比例或鞋遮挡重做。原生1024×1536 RGB不透明PNG原始字节保存，candidate待审核，不冒称历史肖像或approved。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角）·10 号出图员：大胆妩媚的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
 
-    AR-73 / AR-89 照历史画像，作者意见：B，瘦一些，美一些，历史图是发福以后的，画一下少女时期的美感；取hist-batch1 B，二十出头、健康匀称，收瘦颊颈腰身、五官秀美，仍为俄罗斯公主服饰。 实际打开全身和独立脸部特写检查通过；站姿、构图、尺寸、底色沿现base。生成PNG原始字节入库。场景立绘、插图、A字图待作者看过后对齐，见 .agents/coord/_lines/hist-r2/align_todo.tsv。'
+    AR-73 / AR-89 照历史画像，作者意见：B，瘦一些，美一些，历史图是发福以后的，画一下少女时期的美感；取hist-batch1 B，二十出头、健康匀称，收瘦颊颈腰身、五官秀美，仍为俄罗斯公主服饰。 实际打开全身和独立脸部特写检查通过；站姿、构图、尺寸、底色沿现base。生成PNG原始字节入库。场景立绘、插图、A字图待作者看过后对齐，见 .agents/coord/_lines/hist-r2/align_todo.tsv。
+
+    AR-89 索菲娅少女时期，瘦、美。三版均实际打开全身和独立脸部特写，选A版；是。面颊和下颌明显收瘦、颈项修长、浅绿眼睛清澈，闭唇浅笑秀美；肩腰与外袍明显收窄，有年轻斯拉夫少女美感。 原著依据：《鹿鼎记》第三十六回描写二十来岁外观、碧绿眼珠、雪白皮肤、美丽面容、高鼻梁与活泼笑意；原著金发，本轮依作者明确指示保留栗色。纤瘦脸型、近九头身与衣袍收腰按本轮美术要求。红毛边长外袍、蓝灰裙、软头巾、站姿手势、文书和纸底山水沿现base；1024×1536生成PNG原字节入库。选版对照表：.agents/coord/_lines/sofia-r3/sofia_r3.jpg。'
   source_size: 1024x1536
 - id: por_npc_chenyuanyuan__ch08_prime_recluse_base
   file: por_npc_chenyuanyuan__ch08_prime_recluse_base.png
