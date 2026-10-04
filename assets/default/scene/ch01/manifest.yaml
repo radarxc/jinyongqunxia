@@ -15,28 +15,28 @@
 
     【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【本张另外要求】（作者 AR-53 总审返修）坐着的淡红衣少女是阿朱：阿朱的脸要像基线：圆润的脸颊、下巴圆、一双明亮的大眼睛、灵动甜美（表情按原图的情绪，但脸型与五官照基线），年轻成年女子；不要窄长脸、细长眼和成熟感。萧峰和其他人的脸不要动。'
+    【本张另外要求】（作者 17:45 选定阿朱新脸后统一对齐）坐着的淡红衣少女是阿朱：阿朱的脸要像基线（作者选定的新版）：鹅蛋脸、两颊柔润、下巴小巧圆润，一双明亮灵动的大眼睛、双眼皮清楚、眼尾微扬，眉毛弯而秀长，鼻梁秀挺、鼻头小巧，唇形饱满、嘴角上扬；约二十岁的成年年轻女子。表情按原图的情绪（悲伤、惊讶、虚弱时就照原图的情绪，只是换成她这张脸）。萧峰和其他人的脸不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
-    sha256: d80304aabc32f6b945696496a5d70d02076549c38fd6460e022e3f919d07e39d
+    sha256: aa37f35be809f8d93fbf509f4f581dc6e8c9e3204a92f50a8b2c50ee66d4b8c8
     use: 对脸基线：作者审核通过的 por_npc_azhu__ch01_youth_alive_base（阿朱），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch01/cg_ch01_juxianzhuang_wine.png
-    sha256: d1b388a7497ee78c894c870fc7708cfc1542603dfb56371f6cd17d7bdb29d5c4
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_juxianzhuang_wine.d1b388a7.png
+    sha256: 781c76251daf511596b7ce0eb3fbfe525ca5704579c8b1bb0a197711b58b7423
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_juxianzhuang_wine.781c7625.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T17:16:37-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_juxianzhuang_wine.s2.png
+  created: 2026-10-03T17:51:58-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_juxianzhuang_wine.s3.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 781c76251daf511596b7ce0eb3fbfe525ca5704579c8b1bb0a197711b58b7423
+  sha256: c00c8c61267444dd304deb34041b9e7cdad149b0f1159580d40acebd3af45464
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「聚贤绝交」，右上角竖排毛笔楷书；原生生成，已2倍放大逐字核对聚/贤/绝/交，无错字多字；未字体叠加、无朱印；视觉重出0次。使用本轮萧峰基础与聚贤庄阶段新图及既有S级阿朱；主角与S级以外均文字塑造；开战前护人与举酒为原创扩展构图，具体站位与修订版字句待考。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「聚贤绝交」，右上角竖排毛笔楷书；原生生成，已2倍放大逐字核对聚/贤/绝/交，无错字多字；未字体叠加、无朱印；视觉重出0次。使用本轮萧峰基础与聚贤庄阶段新图及既有S级阿朱；主角与S级以外均文字塑造；开战前护人与举酒为原创扩展构图，具体站位与修订版字句待考。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_juxianzhuang_wine.d1b388a7.png
-    sha256: d1b388a7497ee78c894c870fc7708cfc1542603dfb56371f6cd17d7bdb29d5c4
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_juxianzhuang_wine.d1b388a7.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_juxianzhuang_wine.781c7625.png
+    sha256: 781c76251daf511596b7ce0eb3fbfe525ca5704579c8b1bb0a197711b58b7423
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_juxianzhuang_wine.781c7625.entry.yaml
   effort: ultra
 - id: cg_ch01_xingzilin_reveal
   file: cg_ch01_xingzilin_reveal.png
@@ -55,28 +55,28 @@
 
     【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【本张另外要求】（作者 AR-53 总审返修）右侧淡红衣少女是阿朱：阿朱的脸要像基线：圆润的脸颊、下巴圆、一双明亮的大眼睛、灵动甜美（表情按原图的情绪，但脸型与五官照基线），年轻成年女子；不要窄长脸、细长眼和成熟感。萧峰和群丐的脸不要动。'
+    【本张另外要求】（作者选定阿朱新脸后统一对齐）右侧淡红衣少女是阿朱：阿朱的脸要像基线（作者选定的新版）：鹅蛋脸、两颊柔润、下巴小巧圆润，一双明亮灵动的大眼睛、双眼皮清楚、眼尾微扬，眉毛弯而秀长，鼻梁秀挺、鼻头小巧，唇形饱满、嘴角上扬；约二十岁的成年年轻女子。表情按原图的情绪（悲伤、惊讶、虚弱时就照原图的情绪，只是换成她这张脸）。萧峰和群丐的脸不要动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
-    sha256: d80304aabc32f6b945696496a5d70d02076549c38fd6460e022e3f919d07e39d
+    sha256: aa37f35be809f8d93fbf509f4f581dc6e8c9e3204a92f50a8b2c50ee66d4b8c8
     use: 对脸基线：作者审核通过的 por_npc_azhu__ch01_youth_alive_base（阿朱），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch01/cg_ch01_xingzilin_reveal.png
-    sha256: 122bb3abd4050498ed1911ecefebc1bd78ed1cc1b1b9e6b772b4c81f4d742a60
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.122bb3ab.png
+    sha256: fc7fbe9e3a4f3ed687b638cfa595e00ecda498816cb559d15facd2d965ebd33f
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.fc7fbe9e.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T17:16:38-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_xingzilin_reveal.s2.png
+  created: 2026-10-03T17:52:00-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_xingzilin_reveal.s3.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: fc7fbe9e3a4f3ed687b638cfa595e00ecda498816cb559d15facd2d965ebd33f
+  sha256: dddbedb6c4772a0f4844f8156d548536c66a3f23570ac1397a4fdf22a9714772
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「杏林惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「杏林惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.122bb3ab.png
-    sha256: 122bb3abd4050498ed1911ecefebc1bd78ed1cc1b1b9e6b772b4c81f4d742a60
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.122bb3ab.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.fc7fbe9e.png
+    sha256: fc7fbe9e3a4f3ed687b638cfa595e00ecda498816cb559d15facd2d965ebd33f
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.fc7fbe9e.entry.yaml
   effort: ultra
 - id: cg_ch01_xiaojinghu_azhu
   file: cg_ch01_xiaojinghu_azhu.png
