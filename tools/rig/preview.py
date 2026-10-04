@@ -159,36 +159,46 @@ def _garment_occludes_legs(source: dict[str, dict[str, Any]]) -> bool:
                == "garmentHidden" for part in ("thigh_shared", "shin_shared"))
 
 
+def _garment_occludes_thigh_hip(source: dict[str, dict[str, Any]]) -> bool:
+    """Whether a completed thigh begins under a short tunic or skirt."""
+    return (source.get("thigh_shared", {}).get("source", {})
+            .get("sourceLimitation") == "garmentOccludedHip")
+
+
 def _place_legs_behind_skirt(source: dict[str, dict[str, Any]],
                              pieces: list[Placement],
                              depths: dict[str, float] | None = None) -> None:
-    if not _garment_occludes_legs(source):
+    long_garment = _garment_occludes_legs(source)
+    hidden_hip = _garment_occludes_thigh_hip(source)
+    if not long_garment and not hidden_hip:
         return
     skirt = next(item for item in pieces if item.part == "pelvis_skirt")
     hem = _child(skirt, "hem")
-    for item in pieces:
-        if item.part.startswith(("thigh_", "shin_")):
-            # These source-textured pieces preserve the hidden FK chain only;
-            # drawing them outside a rigid skirt looks like rectangular cloth.
-            item.image = Image.new("RGBA", item.image.size)
-        elif item.part.startswith("foot_"):
-            child = next(iter(item.child.values()))
-            shoe_length = math.dist(item.pivot, child)
-            # A rigid ankle-length skirt cannot reveal a shoe whose ankle has
-            # travelled well beyond its hem.  Keep a small seam allowance,
-            # rather than scaling the threshold to a long source shoe.
-            if math.dist(item.anchor, hem) > max(18.0, shoe_length * .82):
+    if long_garment:
+        for item in pieces:
+            if item.part.startswith(("thigh_", "shin_")):
+                # These source-textured pieces preserve the hidden FK chain only;
+                # drawing them outside a rigid skirt looks like rectangular cloth.
                 item.image = Image.new("RGBA", item.image.size)
-    leg_parts = ("thigh_", "shin_", "foot_")
+            elif item.part.startswith("foot_"):
+                child = next(iter(item.child.values()))
+                shoe_length = math.dist(item.pivot, child)
+                # A rigid ankle-length skirt cannot reveal a shoe whose ankle has
+                # travelled well beyond its hem.  Keep a small seam allowance,
+                # rather than scaling the threshold to a long source shoe.
+                if math.dist(item.anchor, hem) > max(18.0, shoe_length * .82):
+                    item.image = Image.new("RGBA", item.image.size)
+    affected = (("thigh_",) if hidden_hip and not long_garment
+                else ("thigh_", "shin_", "foot_"))
     if depths is None:
         skirt_z = skirt.z
         for item in pieces:
-            if item.part.startswith(leg_parts):
+            if item.part.startswith(affected):
                 item.z = min(item.z, skirt_z - 1.0)
         return
     behind = depths.get("pelvis_skirt", 0.0) - 1.0
     for item in pieces:
-        if item.part.startswith(leg_parts):
+        if item.part.startswith(affected):
             depths[item.part] = behind
 
 

@@ -1,5 +1,6 @@
 schema: tianshu-rig.v1
 set: male_std
+kind: standard
 ppm: 256
 nearSide: L
 views:
@@ -27,705 +28,1544 @@ palette:
   skin: '#E9CFB4'
   footwear: '#332B27'
   hair: '#211C1A'
-placeholder: true
-notes: 程序占位，不是正式美术；三视图切件入库后由 make_parts.py 覆盖。
 parts:
 - id: head
   file: front34/head.png
   view: front34
   pivot:
-  - 40
-  - 79
+  - 26
+  - 65
   childJoint:
     crown:
     - 40
     - 4
   size:
+  - 58
   - 80
-  - 84
   restAngle: 0.0
   zOrder: 8
   tintable: false
-  sha256: 05e72f5929f43b8c8689cc55671d1084e4cd2867044c1d34878e4544993bbab9
+  sha256: 697c4a4a09d4e32f15ec880bf5dd10c310f0098037414f876a6c724fc8efe76e
+  source:
+    keypoints:
+    - neck
+    - crown
+    inpaintedPct: 0.156
+  jointSource: front34/head.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: hair_or_headgear
   file: front34/hair_or_headgear.png
   view: front34
   pivot:
-  - 40
-  - 79
+  - 22
+  - 65
   childJoint:
     crown:
-    - 40
+    - 36
     - 4
   size:
-  - 80
-  - 84
+  - 54
+  - 70
   restAngle: 0.0
   zOrder: 9
   tintable: hair
-  sha256: aed4acd863361c4eca6b6cf98eede16e29f09e84eb2f646afdf1ed5d55498098
+  sha256: fc6b793a6d62f836ba35305de701f92f1861948432eb4d0218503b1dd5af86ca
+  source:
+    keypoints:
+    - neck
+    - crown
+    inpaintedPct: 0.0
+  jointSource: front34/hair_or_headgear.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: torso
   file: front34/torso.png
   view: front34
   pivot:
-  - 72
-  - 158
+  - 54
+  - 148
   childJoint:
     neck:
-    - 72
-    - 7
-    shoulder_R:
-    - 20
-    - 33
+    - 49
+    - 15
     shoulder_L:
-    - 124
-    - 33
+    - 105
+    - 56
+    shoulder_R:
+    - 7
+    - 56
   size:
-  - 144
-  - 166
+  - 114
+  - 178
   restAngle: 0.0
   zOrder: 6
   tintable: clothPrimary
-  sha256: 1b4e4f47239a71e216eb7d2f6e572649da6a72d74e74ace46031b98bc797cf34
+  sha256: 70c61c8d53aa37aa51d0c17c5ef6de1e31435820deb0ee1e8a80d8a396f988cc
+  source:
+    keypoints:
+    - pelvis
+    - neck
+    - shoulder_L
+    - shoulder_R
+    inpaintedPct: 0.185
+  jointSource: front34/torso.pivots.yaml
+  sourceOrigin:
+  - 6
+  - 6
 - id: pelvis_skirt
   file: front34/pelvis_skirt.png
   view: front34
   pivot:
-  - 78
-  - 6
+  - 62
+  - 42
   childJoint:
-    hip_R:
-    - 50
-    - 6
-    hip_L:
-    - 106
-    - 6
     hem:
-    - 78
-    - 95
+    - 62
+    - 144
+    hip_L:
+    - 84
+    - 42
+    hip_R:
+    - 40
+    - 42
   size:
-  - 156
-  - 102
+  - 124
+  - 152
   restAngle: 0.0
   zOrder: 7
   tintable: clothSecondary
-  sha256: c75e9766b36076124efa0bdb536e329946648b90eda366bafc8d14bbfa11c8ee
+  sha256: 02b9e0af0c99ce3af817e9784bab4f3ec68ce4feab174b36e7b9099324dd20b9
+  source:
+    keypoints:
+    - pelvis
+    - hem
+    - hip_L
+    - hip_R
+    inpaintedPct: 0.006
+  jointSource: front34/pelvis_skirt.pivots.yaml
+  sourceOrigin:
+  - 3
+  - 3
 - id: upper_arm_L
   file: front34/upper_arm_L.png
   view: front34
   pivot:
-  - 24
-  - 4
+  - 38
+  - 12
   childJoint:
     elbow_L:
-    - 24
-    - 93
+    - 38
+    - 90
   size:
-  - 48
-  - 98
+  - 52
+  - 104
   restAngle: 0.0
   zOrder: 13
   tintable: clothPrimary
-  sha256: 00e6170edb081113d4515805bd7fc8479832bf46425842bfbb637251f85ea50d
+  sha256: e33887c60e56429f908d94b43612ce27ac7e380f2b72581edb1295a6b3ceefe1
+  source:
+    keypoints:
+    - shoulder_L
+    - elbow_L
+    inpaintedPct: 0.568
+  jointSource: front34/upper_arm_L.pivots.yaml
+  sourceOrigin:
+  - 4
+  - 4
 - id: upper_arm_R
   file: front34/upper_arm_R.png
   view: front34
   pivot:
-  - 24
-  - 4
+  - 13
+  - 12
   childJoint:
     elbow_R:
-    - 24
-    - 93
+    - 13
+    - 91
   size:
-  - 48
-  - 98
+  - 52
+  - 104
   restAngle: 0.0
   zOrder: 0
   tintable: clothPrimary
-  sha256: 00e6170edb081113d4515805bd7fc8479832bf46425842bfbb637251f85ea50d
+  sha256: c69ff82cc19e02c563b0dd311adab7e73d70bae7a1d62604930f263133588849
+  source:
+    keypoints:
+    - shoulder_R
+    - elbow_R
+    inpaintedPct: 0.776
+  jointSource: front34/upper_arm_R.pivots.yaml
+  sourceOrigin:
+  - 4
+  - 4
 - id: forearm_L
   file: front34/forearm_L.png
   view: front34
   pivot:
-  - 22
-  - 4
+  - 60
+  - 25
   childJoint:
     wrist_L:
-    - 22
-    - 83
+    - 14
+    - 25
   size:
-  - 44
-  - 88
+  - 72
+  - 42
   restAngle: -90.0
   zOrder: 14
   tintable: clothSecondary
-  sha256: f5ad668a367f78d748929c20117d0fc0d7704f97dbee0c9eb2e7665533c177fb
+  sha256: b16e484dc61449d93f3ed45e22d18b4c55fba49504469bb21f9146233c3e5b94
+  source:
+    keypoints:
+    - elbow_L
+    - wrist_L
+    inpaintedPct: 2.712
+  jointSource: front34/forearm_L.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: forearm_R
   file: front34/forearm_R.png
   view: front34
   pivot:
-  - 22
-  - 4
+  - 60
+  - 16
   childJoint:
     wrist_R:
-    - 22
-    - 83
+    - 13
+    - 16
   size:
+  - 72
   - 44
-  - 88
   restAngle: -90.0
   zOrder: 1
   tintable: clothSecondary
-  sha256: f5ad668a367f78d748929c20117d0fc0d7704f97dbee0c9eb2e7665533c177fb
+  sha256: 67fd92c4c6c470e23b64324ae11a5b33b81094e19dfbae1ffcb947d43c0116f5
+  source:
+    keypoints:
+    - elbow_R
+    - wrist_R
+    inpaintedPct: 2.931
+  jointSource: front34/forearm_R.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: hand_L
   file: front34/hand_L.png
   view: front34
   pivot:
-  - 18
-  - 4
+  - 16
+  - 13
   childJoint:
     grip_L:
-    - 18
-    - 37
+    - 16
+    - 44
   size:
-  - 38
-  - 68
+  - 32
+  - 54
   restAngle: 0.0
   zOrder: 15
   tintable: false
-  sha256: eb9a3b3cea3ce32e699f37994701216088756ba84d34af642f8e29f457c96ea7
+  sha256: fa7711f08f0452261cb4d61336aa6a5a8cde4fa02a2fc22e013af1a17fdd68d1
+  source:
+    keypoints:
+    - wrist_L
+    - grip_L
+    inpaintedPct: 5.192
+  jointSource: front34/hand_L.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: hand_R
   file: front34/hand_R.png
   view: front34
   pivot:
-  - 18
-  - 4
+  - 14
+  - 13
   childJoint:
     grip_R:
-    - 18
-    - 37
+    - 14
+    - 44
   size:
-  - 38
-  - 68
+  - 28
+  - 52
   restAngle: 0.0
   zOrder: 2
   tintable: false
-  sha256: 057b63525072591dbaa167736857284f872870504152b87efa6aabbfd0ce2fbe
+  sha256: d191ad9b45593dcaad3d03db2a8f2705e2dd43c3a7c084b59f15f0575d9cd94e
+  source:
+    keypoints:
+    - wrist_R
+    - grip_R
+    inpaintedPct: 4.38
+  jointSource: front34/hand_R.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: thigh_shared
   file: front34/thigh_shared.png
   view: front34
   pivot:
-  - 28
-  - 6
+  - 29
+  - 13
   childJoint:
     knee:
-    - 28
-    - 131
+    - 29
+    - 126
   size:
-  - 56
-  - 138
+  - 68
+  - 142
   restAngle: 0.0
   zOrder: 3
   tintable: clothSecondary
-  sha256: 22b131bb861c8405dfc8514fc7a2bcad79c23d8cfd6ee876376e3123a2d2feea
+  sha256: 73b1b9c9e8cef3bcc854d1734b8414e7201cdbb3d4ad1d68390268f809353931
+  source:
+    keypoints:
+    - hip_L
+    - knee_L
+    inpaintedPct: 51.831
+    reconstruction: sourceTrouserContinuation
+    sourceLimitation: garmentOccludedHip
+    reconstructedPixels: 2871
+  jointSource: front34/thigh_shared.pivots.yaml
+  sourceOrigin:
+  - 4
+  - 4
 - id: shin_shared
   file: front34/shin_shared.png
   view: front34
   pivot:
-  - 24
-  - 5
+  - 25
+  - 13
   childJoint:
     ankle:
-    - 24
-    - 118
+    - 25
+    - 120
   size:
-  - 50
-  - 124
+  - 64
+  - 134
   restAngle: 0.0
   zOrder: 4
   tintable: clothSecondary
-  sha256: 50760767c794d5e033305c8abcd3d5a4f762306fb819339310af0f728d906f91
+  sha256: 1a973798e368cdfcbce443418b4080904ce470b22261dd45c5f4c5263cde3188
+  source:
+    keypoints:
+    - knee_L
+    - ankle_L
+    inpaintedPct: 2.129
+  jointSource: front34/shin_shared.pivots.yaml
+  sourceOrigin:
+  - 5
+  - 5
 - id: foot_shared
   file: front34/foot_shared.png
   view: front34
   pivot:
-  - 36
-  - 4
+  - 25
+  - 21
   childJoint:
     toe:
-    - 69
-    - 69
+    - 40
+    - 40
   size:
-  - 74
-  - 74
+  - 52
+  - 54
   restAngle: 0.0
   zOrder: 5
   tintable: footwear
-  sha256: f0cae6620659056ab4194e9834ed1b753a91d6544cd9d65e1ff589c7ce2d5767
+  sha256: befd443d0ed16b00560b583d6ccaf15dc6c163933ba30d80bd23883dece51d51
+  source:
+    keypoints:
+    - ankle_L
+    - toe_L
+    inpaintedPct: 12.974
+  jointSource: front34/foot_shared.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: head
   file: back34/head.png
   view: back34
   pivot:
-  - 40
-  - 79
+  - 27
+  - 65
   childJoint:
     crown:
-    - 40
+    - 41
     - 4
   size:
+  - 60
   - 80
-  - 84
   restAngle: 0.0
   zOrder: 8
   tintable: false
-  sha256: 05e72f5929f43b8c8689cc55671d1084e4cd2867044c1d34878e4544993bbab9
+  sha256: 6ebc9462703a63d7f46969d96d210a27a5913d68163ce8a90abd58b806c376ab
+  source:
+    keypoints:
+    - neck
+    - crown
+    inpaintedPct: 0.175
+  jointSource: back34/head.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: hair_or_headgear
   file: back34/hair_or_headgear.png
   view: back34
   pivot:
-  - 40
-  - 79
+  - 23
+  - 65
   childJoint:
     crown:
-    - 40
+    - 37
     - 4
   size:
-  - 80
-  - 84
+  - 56
+  - 70
   restAngle: 0.0
   zOrder: 12
   tintable: hair
-  sha256: aed4acd863361c4eca6b6cf98eede16e29f09e84eb2f646afdf1ed5d55498098
+  sha256: 3ba135f06bc5500de50163e1cd3b212e0710bec39505a91c59880bc7431e8552
+  source:
+    keypoints:
+    - neck
+    - crown
+    inpaintedPct: 0.0
+  jointSource: back34/hair_or_headgear.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: torso
   file: back34/torso.png
   view: back34
   pivot:
-  - 72
-  - 158
+  - 52
+  - 148
   childJoint:
     neck:
-    - 72
-    - 7
-    shoulder_R:
-    - 124
-    - 33
+    - 48
+    - 15
     shoulder_L:
-    - 20
-    - 33
+    - 8
+    - 56
+    shoulder_R:
+    - 100
+    - 56
   size:
-  - 144
-  - 166
+  - 108
+  - 178
   restAngle: 0.0
   zOrder: 7
   tintable: clothPrimary
-  sha256: 1b4e4f47239a71e216eb7d2f6e572649da6a72d74e74ace46031b98bc797cf34
+  sha256: bfedf5959e3dc1ac1ab578c0b2efee6edab6ac41845bbc45363f49f78c666d63
+  source:
+    keypoints:
+    - pelvis
+    - neck
+    - shoulder_L
+    - shoulder_R
+    inpaintedPct: 0.322
+  jointSource: back34/torso.pivots.yaml
+  sourceOrigin:
+  - 6
+  - 6
 - id: pelvis_skirt
   file: back34/pelvis_skirt.png
   view: back34
   pivot:
-  - 78
-  - 6
+  - 55
+  - 42
   childJoint:
-    hip_R:
-    - 106
-    - 6
-    hip_L:
-    - 50
-    - 6
     hem:
-    - 78
-    - 95
+    - 55
+    - 144
+    hip_L:
+    - 34
+    - 42
+    hip_R:
+    - 76
+    - 42
   size:
-  - 156
-  - 102
+  - 118
+  - 152
   restAngle: 0.0
   zOrder: 6
   tintable: clothSecondary
-  sha256: c75e9766b36076124efa0bdb536e329946648b90eda366bafc8d14bbfa11c8ee
+  sha256: 34f0b0cb8dce24c11eaffe7ecb470870f5250fd8caa7b78437d0cc950feb0e17
+  source:
+    keypoints:
+    - pelvis
+    - hem
+    - hip_L
+    - hip_R
+    inpaintedPct: 0.025
+  jointSource: back34/pelvis_skirt.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: upper_arm_L
   file: back34/upper_arm_L.png
   view: back34
   pivot:
-  - 24
-  - 4
+  - 13
+  - 12
   childJoint:
     elbow_L:
-    - 24
-    - 93
+    - 13
+    - 91
   size:
-  - 48
-  - 98
+  - 52
+  - 104
   restAngle: 0.0
   zOrder: 13
   tintable: clothPrimary
-  sha256: 00e6170edb081113d4515805bd7fc8479832bf46425842bfbb637251f85ea50d
+  sha256: 4dfeadd376285083056ab99e0102571b82a159fbe8449ef0a1411ef39999e647
+  source:
+    keypoints:
+    - shoulder_L
+    - elbow_L
+    inpaintedPct: 0.776
+  jointSource: back34/upper_arm_L.pivots.yaml
+  sourceOrigin:
+  - 4
+  - 4
 - id: upper_arm_R
   file: back34/upper_arm_R.png
   view: back34
   pivot:
-  - 24
-  - 4
+  - 38
+  - 12
   childJoint:
     elbow_R:
-    - 24
-    - 93
+    - 38
+    - 90
   size:
-  - 48
-  - 98
+  - 52
+  - 104
   restAngle: 0.0
   zOrder: 1
   tintable: clothPrimary
-  sha256: 00e6170edb081113d4515805bd7fc8479832bf46425842bfbb637251f85ea50d
+  sha256: 844dfbe158c5b44315cd6d8fa4dd95d9d68e98920d2eb2682f36217ebfabd557
+  source:
+    keypoints:
+    - shoulder_R
+    - elbow_R
+    inpaintedPct: 0.835
+  jointSource: back34/upper_arm_R.pivots.yaml
+  sourceOrigin:
+  - 4
+  - 4
 - id: forearm_L
   file: back34/forearm_L.png
   view: back34
   pivot:
-  - 22
-  - 4
+  - 60
+  - 16
   childJoint:
     wrist_L:
-    - 22
-    - 83
+    - 13
+    - 16
   size:
-  - 44
-  - 88
+  - 72
+  - 46
   restAngle: -90.0
   zOrder: 14
   tintable: clothSecondary
-  sha256: f5ad668a367f78d748929c20117d0fc0d7704f97dbee0c9eb2e7665533c177fb
+  sha256: 58093549593805540e7126d17d831b51bf5880d08ee3ec7e41a978f73031a71c
+  source:
+    keypoints:
+    - elbow_L
+    - wrist_L
+    inpaintedPct: 2.59
+  jointSource: back34/forearm_L.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: forearm_R
   file: back34/forearm_R.png
   view: back34
   pivot:
-  - 22
-  - 4
+  - 60
+  - 26
   childJoint:
     wrist_R:
-    - 22
-    - 83
+    - 14
+    - 26
   size:
-  - 44
-  - 88
+  - 72
+  - 42
   restAngle: -90.0
   zOrder: 0
   tintable: clothSecondary
-  sha256: f5ad668a367f78d748929c20117d0fc0d7704f97dbee0c9eb2e7665533c177fb
+  sha256: c9f907fc86a6b99dc3f5d46a666244abdc0e70306fd73a8b06ff560c35c43b10
+  source:
+    keypoints:
+    - elbow_R
+    - wrist_R
+    inpaintedPct: 2.386
+  jointSource: back34/forearm_R.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: hand_L
   file: back34/hand_L.png
   view: back34
   pivot:
-  - 18
-  - 4
+  - 16
+  - 13
   childJoint:
     grip_L:
-    - 18
-    - 37
+    - 16
+    - 44
   size:
-  - 38
-  - 68
+  - 30
+  - 54
   restAngle: 0.0
   zOrder: 15
   tintable: false
-  sha256: eb9a3b3cea3ce32e699f37994701216088756ba84d34af642f8e29f457c96ea7
+  sha256: 098274e13c63e841b369f04d55dc440a9945a4ed1ec5647908483c8e4ffb636a
+  source:
+    keypoints:
+    - wrist_L
+    - grip_L
+    inpaintedPct: 5.9
+  jointSource: back34/hand_L.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: hand_R
   file: back34/hand_R.png
   view: back34
   pivot:
-  - 18
-  - 4
+  - 15
+  - 13
   childJoint:
     grip_R:
-    - 18
-    - 37
+    - 15
+    - 44
   size:
-  - 38
-  - 68
+  - 30
+  - 54
   restAngle: 0.0
   zOrder: 2
   tintable: false
-  sha256: 057b63525072591dbaa167736857284f872870504152b87efa6aabbfd0ce2fbe
+  sha256: 881b846de810d6b6e1937c6ed31402a1857e129393e17ba7c5f8017c06f5c03d
+  source:
+    keypoints:
+    - wrist_R
+    - grip_R
+    inpaintedPct: 7.888
+  jointSource: back34/hand_R.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: thigh_shared
   file: back34/thigh_shared.png
   view: back34
   pivot:
-  - 28
-  - 6
+  - 37
+  - 13
   childJoint:
     knee:
-    - 28
-    - 131
+    - 37
+    - 126
   size:
-  - 56
-  - 138
+  - 68
+  - 142
   restAngle: 0.0
   zOrder: 3
   tintable: clothSecondary
-  sha256: 22b131bb861c8405dfc8514fc7a2bcad79c23d8cfd6ee876376e3123a2d2feea
+  sha256: 31893288111b87c645651ff2968b040074437e75c697839890ac61cac0f3a26f
+  source:
+    keypoints:
+    - hip_L
+    - knee_L
+    inpaintedPct: 53.921
+    reconstruction: sourceTrouserContinuation
+    sourceLimitation: garmentOccludedHip
+    reconstructedPixels: 3025
+  jointSource: back34/thigh_shared.pivots.yaml
+  sourceOrigin:
+  - 4
+  - 4
 - id: shin_shared
   file: back34/shin_shared.png
   view: back34
   pivot:
-  - 24
-  - 5
+  - 36
+  - 13
   childJoint:
     ankle:
-    - 24
-    - 118
+    - 36
+    - 117
   size:
-  - 50
-  - 124
+  - 52
+  - 132
   restAngle: 0.0
   zOrder: 4
   tintable: clothSecondary
-  sha256: 50760767c794d5e033305c8abcd3d5a4f762306fb819339310af0f728d906f91
+  sha256: 2732f59a30b6cfea30704b3f58729210f305c6bdddb925a4b69e4df63b411d05
+  source:
+    keypoints:
+    - knee_L
+    - ankle_L
+    inpaintedPct: 1.324
+  jointSource: back34/shin_shared.pivots.yaml
+  sourceOrigin:
+  - 5
+  - 5
 - id: foot_shared
   file: back34/foot_shared.png
   view: back34
   pivot:
-  - 36
-  - 4
+  - 51
+  - 39
   childJoint:
     toe:
-    - 69
-    - 69
+    - 27
+    - 50
   size:
-  - 74
-  - 74
+  - 64
+  - 68
   restAngle: 0.0
   zOrder: 5
   tintable: footwear
-  sha256: f0cae6620659056ab4194e9834ed1b753a91d6544cd9d65e1ff589c7ce2d5767
+  sha256: 2fe6efecae4a0cd19955ecb0dadb2bff9b2c1e9c2dd3985198295f74f95c5138
+  source:
+    keypoints:
+    - ankle_L
+    - toe_L
+    inpaintedPct: 3.978
+  jointSource: back34/foot_shared.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: head
   file: side/head.png
   view: side
   pivot:
-  - 30
-  - 77
+  - 26
+  - 65
   childJoint:
     crown:
-    - 30
+    - 42
     - 4
   size:
-  - 62
-  - 82
+  - 60
+  - 80
   restAngle: 0.0
   zOrder: 8
   tintable: false
-  sha256: 8c3c645122ce52e399eb9ae43b0cf9ec4953f44973354331142e25e15c52102b
+  sha256: 3faada9c47535fc25d298878e4a84d4963ba6924e91a5e8df717cee01f5639eb
+  source:
+    keypoints:
+    - neck
+    - crown
+    inpaintedPct: 0.156
+  jointSource: side/head.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: hair_or_headgear
   file: side/hair_or_headgear.png
   view: side
   pivot:
-  - 30
-  - 77
+  - 21
+  - 65
   childJoint:
     crown:
-    - 30
+    - 37
     - 4
   size:
-  - 62
-  - 82
+  - 54
+  - 70
   restAngle: 0.0
   zOrder: 9
   tintable: hair
-  sha256: 08ccbfeb61596debcb3c214fb0521d599f36c9733bdf129811c4185fc88662c0
+  sha256: c9851a1641dce7396998d7304243cec83f12b29eedffc5aa5721b8197161e0b1
+  source:
+    keypoints:
+    - neck
+    - crown
+    inpaintedPct: 0.0
+  jointSource: side/hair_or_headgear.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: torso
   file: side/torso.png
   view: side
   pivot:
-  - 54
-  - 158
+  - 41
+  - 148
   childJoint:
     neck:
-    - 54
-    - 7
-    shoulder_R:
-    - 54
-    - 33
+    - 35
+    - 15
     shoulder_L:
-    - 54
-    - 33
+    - 25
+    - 56
+    shoulder_R:
+    - 63
+    - 56
   size:
-  - 110
-  - 166
+  - 80
+  - 178
   restAngle: 0.0
   zOrder: 7
   tintable: clothPrimary
-  sha256: 72f4ac5fe4bffa8888d1ebb9bc5b16c3e2f1bb10e339286872459f28f7c35756
+  sha256: 108d47cca3a49b52f37ceb9dd1010973140e2cb0b20986032d6da6f563aee965
+  source:
+    keypoints:
+    - pelvis
+    - neck
+    - shoulder_L
+    - shoulder_R
+    inpaintedPct: 0.402
+  jointSource: side/torso.pivots.yaml
+  sourceOrigin:
+  - 6
+  - 6
 - id: pelvis_skirt
   file: side/pelvis_skirt.png
   view: side
   pivot:
-  - 58
-  - 5
+  - 48
+  - 42
   childJoint:
-    hip_R:
-    - 58
-    - 5
-    hip_L:
-    - 58
-    - 5
     hem:
-    - 58
-    - 94
+    - 48
+    - 144
+    hip_L:
+    - 32
+    - 42
+    hip_R:
+    - 65
+    - 42
   size:
-  - 116
-  - 100
+  - 94
+  - 152
   restAngle: 0.0
   zOrder: 6
   tintable: clothSecondary
-  sha256: 7f982e015ee2e2c13a04943a99e9dbbb833a090b79432a81412e6c2a0b09b59c
+  sha256: 6aa58eb5ac277b1965a5bc8f5064e8fd7a5e05bc9f2497b678e6c0e0d1b8c90c
+  source:
+    keypoints:
+    - pelvis
+    - hem
+    - hip_L
+    - hip_R
+    inpaintedPct: 0.217
+  jointSource: side/pelvis_skirt.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: upper_arm_L
   file: side/upper_arm_L.png
   view: side
   pivot:
-  - 18
-  - 4
+  - 13
+  - 12
   childJoint:
     elbow_L:
-    - 18
-    - 93
+    - 13
+    - 92
   size:
-  - 38
-  - 98
+  - 40
+  - 106
   restAngle: 0.0
   zOrder: 13
   tintable: clothPrimary
-  sha256: 4248eb9e5227b2e41c4752feedff09e5987e6fb503a616f9853f95cafbfdb4a1
+  sha256: 5d121d93a6c24f1a6d7241c9cd9f929b33be3635fa12682407f7fa27405b84bf
+  source:
+    keypoints:
+    - shoulder_L
+    - elbow_L
+    inpaintedPct: 1.115
+  jointSource: side/upper_arm_L.pivots.yaml
+  sourceOrigin:
+  - 4
+  - 4
 - id: upper_arm_R
   file: side/upper_arm_R.png
   view: side
   pivot:
-  - 18
-  - 4
+  - 13
+  - 12
   childJoint:
     elbow_R:
-    - 18
-    - 93
+    - 13
+    - 92
   size:
-  - 38
-  - 98
+  - 40
+  - 106
   restAngle: 0.0
   zOrder: 0
   tintable: clothPrimary
-  sha256: 4248eb9e5227b2e41c4752feedff09e5987e6fb503a616f9853f95cafbfdb4a1
+  sha256: 5d121d93a6c24f1a6d7241c9cd9f929b33be3635fa12682407f7fa27405b84bf
+  source:
+    keypoints:
+    - shoulder_L
+    - elbow_L
+    inpaintedPct: 1.115
+  jointSource: side/upper_arm_R.pivots.yaml
+  sourceOrigin:
+  - 4
+  - 4
 - id: forearm_L
   file: side/forearm_L.png
   view: side
   pivot:
-  - 18
-  - 4
+  - 61
+  - 13
   childJoint:
     wrist_L:
-    - 18
-    - 83
+    - 14
+    - 13
   size:
-  - 36
-  - 88
+  - 74
+  - 38
   restAngle: -90.0
   zOrder: 14
   tintable: clothSecondary
-  sha256: 23c34bb43d87ffae7b2add7f222e8c85aa61b74cf137d5a2b3b39b181f7a9312
+  sha256: 27615e29546b82e5305c43a9b0bd84b7c1da9e9f23b15265acb4f35e3bedd538
+  source:
+    keypoints:
+    - elbow_L
+    - wrist_L
+    inpaintedPct: 5.425
+  jointSource: side/forearm_L.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: forearm_R
   file: side/forearm_R.png
   view: side
   pivot:
-  - 18
-  - 4
+  - 61
+  - 13
   childJoint:
     wrist_R:
-    - 18
-    - 83
+    - 14
+    - 13
   size:
-  - 36
-  - 88
+  - 74
+  - 38
   restAngle: -90.0
   zOrder: 1
   tintable: clothSecondary
-  sha256: 4155eb0297a041ddead1047c61429a43b51adb0f3565143b4558a8ca21fdd845
+  sha256: 27615e29546b82e5305c43a9b0bd84b7c1da9e9f23b15265acb4f35e3bedd538
+  source:
+    keypoints:
+    - elbow_L
+    - wrist_L
+    inpaintedPct: 5.425
+  jointSource: side/forearm_R.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: hand_L
   file: side/hand_L.png
   view: side
   pivot:
-  - 14
-  - 4
+  - 15
+  - 12
   childJoint:
     grip_L:
-    - 14
-    - 37
+    - 15
+    - 43
   size:
   - 30
-  - 68
+  - 52
   restAngle: 0.0
   zOrder: 15
   tintable: false
-  sha256: f0f1f5482c0e30dbe69c60902a40c1a7cfec7002ac8177b5eb057b4ea2549b03
+  sha256: 5dfe0e4b5500c7d09458e0c59bb9eb07b8230a51b6c78870f89c6db274c43d2c
+  source:
+    keypoints:
+    - wrist_L
+    - grip_L
+    inpaintedPct: 5.227
+  jointSource: side/hand_L.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: hand_R
   file: side/hand_R.png
   view: side
   pivot:
-  - 14
-  - 4
+  - 15
+  - 12
   childJoint:
     grip_R:
-    - 14
-    - 37
+    - 15
+    - 43
   size:
   - 30
-  - 68
+  - 52
   restAngle: 0.0
   zOrder: 2
   tintable: false
-  sha256: 40f534e24ed4320f263a25b320657326f5b116c6bd51ede85ba99e6ef10ac700
+  sha256: 5dfe0e4b5500c7d09458e0c59bb9eb07b8230a51b6c78870f89c6db274c43d2c
+  source:
+    keypoints:
+    - wrist_L
+    - grip_L
+    inpaintedPct: 5.227
+  jointSource: side/hand_R.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
 - id: thigh_shared
   file: side/thigh_shared.png
   view: side
   pivot:
-  - 22
-  - 6
+  - 26
+  - 13
   childJoint:
     knee:
-    - 22
-    - 131
+    - 26
+    - 127
   size:
-  - 44
-  - 138
+  - 58
+  - 142
   restAngle: 0.0
   zOrder: 3
   tintable: clothSecondary
-  sha256: a0f60eab73a1b689d6c9ef3369984d66c7bf7c81fd72a02bbc4dd6baa35e5cfe
+  sha256: b569cd024ab54857880c09c8dad845cbb3021324a131225915e30ea0902980a8
+  source:
+    keypoints:
+    - hip_L
+    - knee_L
+    inpaintedPct: 51.195
+    reconstruction: sourceTrouserContinuation
+    sourceLimitation: garmentOccludedHip
+    reconstructedPixels: 2519
+  jointSource: side/thigh_shared.pivots.yaml
+  sourceOrigin:
+  - 4
+  - 4
 - id: shin_shared
   file: side/shin_shared.png
   view: side
   pivot:
-  - 20
-  - 5
+  - 25
+  - 13
   childJoint:
     ankle:
-    - 20
-    - 118
+    - 25
+    - 116
   size:
-  - 40
-  - 124
+  - 48
+  - 132
   restAngle: 0.0
   zOrder: 4
   tintable: clothSecondary
-  sha256: a70afa3ca880437a7baf2207650bbae27a7fa9537cdca3c85f21e3a7ef1d3121
+  sha256: 3ff6d36215f0b049387e73ba3c88d7c94ace3f7708158aceab8430c199754224
+  source:
+    keypoints:
+    - knee_L
+    - ankle_L
+    inpaintedPct: 3.352
+  jointSource: side/shin_shared.pivots.yaml
+  sourceOrigin:
+  - 5
+  - 5
 - id: foot_shared
   file: side/foot_shared.png
   view: side
   pivot:
-  - 28
-  - 4
+  - 56
+  - 39
   childJoint:
     toe:
-    - 51
-    - 69
+    - 26
+    - 50
   size:
-  - 56
-  - 74
+  - 70
+  - 64
   restAngle: 0.0
   zOrder: 5
   tintable: footwear
-  sha256: 72028c79a26608d2d60a609809a6df2cf11cd38fe29323d84ca074472d846a56
+  sha256: fbb7dfbe4566b1441ce3f3798075d8e21fd94134acfb11b8d076625eed953bb4
+  source:
+    keypoints:
+    - ankle_L
+    - toe_L
+    inpaintedPct: 3.696
+  jointSource: side/foot_shared.pivots.yaml
+  sourceOrigin:
+  - 2
+  - 2
+assets:
+- id: male_std__front34__head
+  file: front34/head.png
+  category: rig/part
+  style: default
+  subject: male_std front34 head segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 58x80
+  sha256: 697c4a4a09d4e32f15ec880bf5dd10c310f0098037414f876a6c724fc8efe76e
+  status: candidate
+- id: male_std__front34__hair_or_headgear
+  file: front34/hair_or_headgear.png
+  category: rig/part
+  style: default
+  subject: male_std front34 hair_or_headgear segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 54x70
+  sha256: fc6b793a6d62f836ba35305de701f92f1861948432eb4d0218503b1dd5af86ca
+  status: candidate
+- id: male_std__front34__torso
+  file: front34/torso.png
+  category: rig/part
+  style: default
+  subject: male_std front34 torso segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 114x178
+  sha256: 70c61c8d53aa37aa51d0c17c5ef6de1e31435820deb0ee1e8a80d8a396f988cc
+  status: candidate
+- id: male_std__front34__pelvis_skirt
+  file: front34/pelvis_skirt.png
+  category: rig/part
+  style: default
+  subject: male_std front34 pelvis_skirt segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 124x152
+  sha256: 02b9e0af0c99ce3af817e9784bab4f3ec68ce4feab174b36e7b9099324dd20b9
+  status: candidate
+- id: male_std__front34__upper_arm_L
+  file: front34/upper_arm_L.png
+  category: rig/part
+  style: default
+  subject: male_std front34 upper_arm_L segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 52x104
+  sha256: e33887c60e56429f908d94b43612ce27ac7e380f2b72581edb1295a6b3ceefe1
+  status: candidate
+- id: male_std__front34__upper_arm_R
+  file: front34/upper_arm_R.png
+  category: rig/part
+  style: default
+  subject: male_std front34 upper_arm_R segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 52x104
+  sha256: c69ff82cc19e02c563b0dd311adab7e73d70bae7a1d62604930f263133588849
+  status: candidate
+- id: male_std__front34__forearm_L
+  file: front34/forearm_L.png
+  category: rig/part
+  style: default
+  subject: male_std front34 forearm_L segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 72x42
+  sha256: b16e484dc61449d93f3ed45e22d18b4c55fba49504469bb21f9146233c3e5b94
+  status: candidate
+- id: male_std__front34__forearm_R
+  file: front34/forearm_R.png
+  category: rig/part
+  style: default
+  subject: male_std front34 forearm_R segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 72x44
+  sha256: 67fd92c4c6c470e23b64324ae11a5b33b81094e19dfbae1ffcb947d43c0116f5
+  status: candidate
+- id: male_std__front34__hand_L
+  file: front34/hand_L.png
+  category: rig/part
+  style: default
+  subject: male_std front34 hand_L segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 32x54
+  sha256: fa7711f08f0452261cb4d61336aa6a5a8cde4fa02a2fc22e013af1a17fdd68d1
+  status: candidate
+- id: male_std__front34__hand_R
+  file: front34/hand_R.png
+  category: rig/part
+  style: default
+  subject: male_std front34 hand_R segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 28x52
+  sha256: d191ad9b45593dcaad3d03db2a8f2705e2dd43c3a7c084b59f15f0575d9cd94e
+  status: candidate
+- id: male_std__front34__thigh_shared
+  file: front34/thigh_shared.png
+  category: rig/part
+  style: default
+  subject: male_std front34 thigh_shared segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 68x142
+  sha256: 73b1b9c9e8cef3bcc854d1734b8414e7201cdbb3d4ad1d68390268f809353931
+  status: candidate
+- id: male_std__front34__shin_shared
+  file: front34/shin_shared.png
+  category: rig/part
+  style: default
+  subject: male_std front34 shin_shared segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 64x134
+  sha256: 1a973798e368cdfcbce443418b4080904ce470b22261dd45c5f4c5263cde3188
+  status: candidate
+- id: male_std__front34__foot_shared
+  file: front34/foot_shared.png
+  category: rig/part
+  style: default
+  subject: male_std front34 foot_shared segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 52x54
+  sha256: befd443d0ed16b00560b583d6ccaf15dc6c163933ba30d80bd23883dece51d51
+  status: candidate
+- id: male_std__back34__head
+  file: back34/head.png
+  category: rig/part
+  style: default
+  subject: male_std back34 head segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 60x80
+  sha256: 6ebc9462703a63d7f46969d96d210a27a5913d68163ce8a90abd58b806c376ab
+  status: candidate
+- id: male_std__back34__hair_or_headgear
+  file: back34/hair_or_headgear.png
+  category: rig/part
+  style: default
+  subject: male_std back34 hair_or_headgear segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 56x70
+  sha256: 3ba135f06bc5500de50163e1cd3b212e0710bec39505a91c59880bc7431e8552
+  status: candidate
+- id: male_std__back34__torso
+  file: back34/torso.png
+  category: rig/part
+  style: default
+  subject: male_std back34 torso segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 108x178
+  sha256: bfedf5959e3dc1ac1ab578c0b2efee6edab6ac41845bbc45363f49f78c666d63
+  status: candidate
+- id: male_std__back34__pelvis_skirt
+  file: back34/pelvis_skirt.png
+  category: rig/part
+  style: default
+  subject: male_std back34 pelvis_skirt segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 118x152
+  sha256: 34f0b0cb8dce24c11eaffe7ecb470870f5250fd8caa7b78437d0cc950feb0e17
+  status: candidate
+- id: male_std__back34__upper_arm_L
+  file: back34/upper_arm_L.png
+  category: rig/part
+  style: default
+  subject: male_std back34 upper_arm_L segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 52x104
+  sha256: 4dfeadd376285083056ab99e0102571b82a159fbe8449ef0a1411ef39999e647
+  status: candidate
+- id: male_std__back34__upper_arm_R
+  file: back34/upper_arm_R.png
+  category: rig/part
+  style: default
+  subject: male_std back34 upper_arm_R segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 52x104
+  sha256: 844dfbe158c5b44315cd6d8fa4dd95d9d68e98920d2eb2682f36217ebfabd557
+  status: candidate
+- id: male_std__back34__forearm_L
+  file: back34/forearm_L.png
+  category: rig/part
+  style: default
+  subject: male_std back34 forearm_L segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 72x46
+  sha256: 58093549593805540e7126d17d831b51bf5880d08ee3ec7e41a978f73031a71c
+  status: candidate
+- id: male_std__back34__forearm_R
+  file: back34/forearm_R.png
+  category: rig/part
+  style: default
+  subject: male_std back34 forearm_R segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 72x42
+  sha256: c9f907fc86a6b99dc3f5d46a666244abdc0e70306fd73a8b06ff560c35c43b10
+  status: candidate
+- id: male_std__back34__hand_L
+  file: back34/hand_L.png
+  category: rig/part
+  style: default
+  subject: male_std back34 hand_L segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 30x54
+  sha256: 098274e13c63e841b369f04d55dc440a9945a4ed1ec5647908483c8e4ffb636a
+  status: candidate
+- id: male_std__back34__hand_R
+  file: back34/hand_R.png
+  category: rig/part
+  style: default
+  subject: male_std back34 hand_R segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 30x54
+  sha256: 881b846de810d6b6e1937c6ed31402a1857e129393e17ba7c5f8017c06f5c03d
+  status: candidate
+- id: male_std__back34__thigh_shared
+  file: back34/thigh_shared.png
+  category: rig/part
+  style: default
+  subject: male_std back34 thigh_shared segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 68x142
+  sha256: 31893288111b87c645651ff2968b040074437e75c697839890ac61cac0f3a26f
+  status: candidate
+- id: male_std__back34__shin_shared
+  file: back34/shin_shared.png
+  category: rig/part
+  style: default
+  subject: male_std back34 shin_shared segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 52x132
+  sha256: 2732f59a30b6cfea30704b3f58729210f305c6bdddb925a4b69e4df63b411d05
+  status: candidate
+- id: male_std__back34__foot_shared
+  file: back34/foot_shared.png
+  category: rig/part
+  style: default
+  subject: male_std back34 foot_shared segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 64x68
+  sha256: 2fe6efecae4a0cd19955ecb0dadb2bff9b2c1e9c2dd3985198295f74f95c5138
+  status: candidate
+- id: male_std__side__head
+  file: side/head.png
+  category: rig/part
+  style: default
+  subject: male_std side head segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 60x80
+  sha256: 3faada9c47535fc25d298878e4a84d4963ba6924e91a5e8df717cee01f5639eb
+  status: candidate
+- id: male_std__side__hair_or_headgear
+  file: side/hair_or_headgear.png
+  category: rig/part
+  style: default
+  subject: male_std side hair_or_headgear segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 54x70
+  sha256: c9851a1641dce7396998d7304243cec83f12b29eedffc5aa5721b8197161e0b1
+  status: candidate
+- id: male_std__side__torso
+  file: side/torso.png
+  category: rig/part
+  style: default
+  subject: male_std side torso segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 80x178
+  sha256: 108d47cca3a49b52f37ceb9dd1010973140e2cb0b20986032d6da6f563aee965
+  status: candidate
+- id: male_std__side__pelvis_skirt
+  file: side/pelvis_skirt.png
+  category: rig/part
+  style: default
+  subject: male_std side pelvis_skirt segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 94x152
+  sha256: 6aa58eb5ac277b1965a5bc8f5064e8fd7a5e05bc9f2497b678e6c0e0d1b8c90c
+  status: candidate
+- id: male_std__side__upper_arm_L
+  file: side/upper_arm_L.png
+  category: rig/part
+  style: default
+  subject: male_std side upper_arm_L segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 40x106
+  sha256: 5d121d93a6c24f1a6d7241c9cd9f929b33be3635fa12682407f7fa27405b84bf
+  status: candidate
+- id: male_std__side__upper_arm_R
+  file: side/upper_arm_R.png
+  category: rig/part
+  style: default
+  subject: male_std side upper_arm_R segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 40x106
+  sha256: 5d121d93a6c24f1a6d7241c9cd9f929b33be3635fa12682407f7fa27405b84bf
+  status: candidate
+- id: male_std__side__forearm_L
+  file: side/forearm_L.png
+  category: rig/part
+  style: default
+  subject: male_std side forearm_L segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 74x38
+  sha256: 27615e29546b82e5305c43a9b0bd84b7c1da9e9f23b15265acb4f35e3bedd538
+  status: candidate
+- id: male_std__side__forearm_R
+  file: side/forearm_R.png
+  category: rig/part
+  style: default
+  subject: male_std side forearm_R segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 74x38
+  sha256: 27615e29546b82e5305c43a9b0bd84b7c1da9e9f23b15265acb4f35e3bedd538
+  status: candidate
+- id: male_std__side__hand_L
+  file: side/hand_L.png
+  category: rig/part
+  style: default
+  subject: male_std side hand_L segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 30x52
+  sha256: 5dfe0e4b5500c7d09458e0c59bb9eb07b8230a51b6c78870f89c6db274c43d2c
+  status: candidate
+- id: male_std__side__hand_R
+  file: side/hand_R.png
+  category: rig/part
+  style: default
+  subject: male_std side hand_R segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 30x52
+  sha256: 5dfe0e4b5500c7d09458e0c59bb9eb07b8230a51b6c78870f89c6db274c43d2c
+  status: candidate
+- id: male_std__side__thigh_shared
+  file: side/thigh_shared.png
+  category: rig/part
+  style: default
+  subject: male_std side thigh_shared segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 58x142
+  sha256: b569cd024ab54857880c09c8dad845cbb3021324a131225915e30ea0902980a8
+  status: candidate
+- id: male_std__side__shin_shared
+  file: side/shin_shared.png
+  category: rig/part
+  style: default
+  subject: male_std side shin_shared segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 48x132
+  sha256: 3ff6d36215f0b049387e73ba3c88d7c94ace3f7708158aceab8430c199754224
+  status: candidate
+- id: male_std__side__foot_shared
+  file: side/foot_shared.png
+  category: rig/part
+  style: default
+  subject: male_std side foot_shared segmented rig part
+  prompt: Deterministic capsule segmentation from the registered three-view sheet; no generated pixels except recorded inpainting.
+  tool: tools/rig/segment_parts.py + tools/rig/make_parts.py
+  model: none
+  created: '2026-10-04'
+  size: 70x64
+  sha256: fbb7dfbe4566b1441ce3f3798075d8e21fd94134acfb11b8d076625eed953bb4
+  status: candidate

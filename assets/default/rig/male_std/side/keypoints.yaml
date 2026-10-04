@@ -1,0 +1,130 @@
+schema: tianshu-rig-keypoints.v1
+coordinates: source
+view: side
+facing: L
+imageSize:
+- 256
+- 480
+detector: manual-prior
+detectorNote: manual-prior; profile L arm and left-pointing near foot corrected against source
+keypoints:
+  crown:
+    xy:
+    - 134
+    - 25
+    confidence: 0.55
+    source: silhouette-prior
+  neck:
+    xy:
+    - 118
+    - 86
+    confidence: 0.55
+    source: silhouette-prior
+  pelvis:
+    xy:
+    - 124
+    - 219
+    confidence: 0.55
+    source: silhouette-prior
+  hem:
+    xy:
+    - 124
+    - 321
+    confidence: 0.55
+    source: silhouette-prior
+  shoulder_L:
+    xy:
+    - 108
+    - 127
+    confidence: 0.85
+    source: manual-correction
+  shoulder_R:
+    xy:
+    - 146
+    - 127
+    confidence: 0.8
+    source: manual-correction
+  elbow_L:
+    xy:
+    - 77
+    - 201
+    confidence: 0.9
+    source: manual-correction
+  elbow_R:
+    xy:
+    - 174
+    - 201
+    confidence: 0.85
+    source: manual-correction
+  wrist_L:
+    xy:
+    - 61
+    - 251
+    confidence: 0.9
+    source: manual-correction
+  wrist_R:
+    xy:
+    - 190
+    - 254
+    confidence: 0.85
+    source: manual-correction
+  grip_L:
+    xy:
+    - 53
+    - 276
+    confidence: 0.9
+    source: manual-correction
+  grip_R:
+    xy:
+    - 194
+    - 277
+    confidence: 0.85
+    source: manual-correction
+  hip_L:
+    xy:
+    - 108
+    - 219
+    confidence: 0.72
+    source: manual-correction
+  hip_R:
+    xy:
+    - 141
+    - 219
+    confidence: 0.65
+    source: manual-correction
+  knee_L:
+    xy:
+    - 94
+    - 332
+    confidence: 0.78
+    source: manual-correction
+  knee_R:
+    xy:
+    - 166
+    - 332
+    confidence: 0.72
+    source: manual-correction
+  ankle_L:
+    xy:
+    - 77
+    - 434
+    confidence: 0.9
+    source: manual-correction
+  ankle_R:
+    xy:
+    - 198
+    - 434
+    confidence: 0.85
+    source: manual-correction
+  toe_L:
+    xy:
+    - 47
+    - 445
+    confidence: 0.9
+    source: manual-correction
+  toe_R:
+    xy:
+    - 220
+    - 445
+    confidence: 0.8
+    source: manual-correction

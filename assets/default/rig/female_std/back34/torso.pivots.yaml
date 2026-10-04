@@ -1,0 +1,25 @@
+coordinates: source
+keypoints:
+  pelvis:
+  - 57
+  - 148
+  neck:
+  - 55
+  - 21
+  shoulder_L:
+  - 20
+  - 60
+  shoulder_R:
+  - 97
+  - 60
+source:
+  keypoints:
+  - pelvis
+  - neck
+  - shoulder_L
+  - shoulder_R
+  inpaintedPct: 0.573
+  rejectedInpaintedPct: 0.0
+  jointCaps: true
+  standardFallback: false
+  lowConfidence: []

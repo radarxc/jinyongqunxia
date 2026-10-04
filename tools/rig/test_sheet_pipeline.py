@@ -15,8 +15,9 @@ from PIL import Image, ImageDraw
 from tools.rig import keypoints, make_placeholder_parts, preview, sheet_split
 from tools.rig.clips.clip_metrics import DIR8, LIMB_BONES, analyze_clip, decode_clip
 from tools.rig.segment_parts import (core_joint_caps, enforce_joint_disks,
+                                     complete_hidden_thigh,
                                      isolation_mask, joint_caps,
-                                     hair_mask, keep_primary_component, repair_region,
+                                     hair_mask, inpaint_occlusion, keep_primary_component, part_mask, repair_region,
                                      segment_view)
 from tools.rig.templates import SOURCE_PARTS
 from scipy import ndimage
@@ -306,6 +307,20 @@ class SheetPipelineTests(unittest.TestCase):
         self.assertTrue(mask[75, 60])
         self.assertGreater(int(mask.sum()), 60)
 
+    def test_strict_foot_keeps_seven_pixel_joint_caps(self) -> None:
+        image_path, kp_path = self.root / "view.png", self.root / "keypoints.yaml"
+        synthetic_view(image_path, kp_path)
+        out = self.root / "parts"
+        segment_view(image_path, kp_path, out, view="front34",
+                     strict_ownership=True, edge_safe_fill=True,
+                     only_parts={"foot_shared"})
+        note = yaml.safe_load((out / "foot_shared.pivots.yaml").read_text())
+        alpha = np.asarray(Image.open(out / "foot_shared.png").getchannel("A"))
+        yy, xx = np.ogrid[:alpha.shape[0], :alpha.shape[1]]
+        for point in note["keypoints"].values():
+            disk = (xx - point[0]) ** 2 + (yy - point[1]) ** 2 <= 7 ** 2
+            self.assertTrue(np.all(alpha[disk] > 0))
+
     def test_hand_joint_cap_stops_at_wrist(self) -> None:
         points = {"wrist_L": (20, 20), "grip_L": (60, 75)}
         mask = joint_caps("hand_L", (100, 100), points)
@@ -328,6 +343,23 @@ class SheetPipelineTests(unittest.TestCase):
         exposed = desired.copy(); exposed[18:22, 18:22] = False
         repaired = repair_region(desired, exposed, np.zeros_like(desired))
         self.assertTrue(repaired[19, 19])
+
+    def test_hidden_thigh_completion_reaches_hip_with_source_texture(self) -> None:
+        rgba = np.zeros((120, 64, 4), dtype=np.uint8)
+        for y in range(48, 111):
+            rgba[y, 15:49] = (58 + y % 7, 68 + y % 5, 72 + y % 9, 255)
+        rgba[20:48, 47:49] = (62, 71, 76, 255)
+        image, added = complete_hidden_thigh(
+            Image.fromarray(rgba, "RGBA"),
+            {"hip_L": [32, 8], "knee_L": [32, 110]})
+        alpha = np.asarray(image.getchannel("A"))
+        self.assertGreater(added, 1000)
+        self.assertGreaterEqual(int((alpha[8] >= 128).sum()), 30)
+        self.assertTrue(np.all(alpha[8:49, 32] >= 128))
+        red, green, blue = image.getpixel((32, 8))[:3]
+        self.assertIn(red, range(58, 65))
+        self.assertIn(green, range(68, 73))
+        self.assertIn(blue, range(72, 81))
 
     def test_hair_mask_rejects_skin_and_collar(self) -> None:
         rgba = np.zeros((100, 100, 4), dtype=np.uint8)
@@ -353,6 +385,50 @@ class SheetPipelineTests(unittest.TestCase):
         self.assertTrue(torso[40, 45])
         self.assertFalse(core_joint_caps("pelvis_skirt", (100, 100), points)[60, 20])
 
+    def test_strict_core_masks_do_not_own_sleeves_or_trouser_legs(self) -> None:
+        points = {"neck": (50, 12), "pelvis": (50, 55), "hem": (50, 72),
+                  "shoulder_L": (30, 24), "elbow_L": (22, 55),
+                  "shoulder_R": (70, 24), "elbow_R": (78, 55)}
+        torso = part_mask("torso", (100, 100), points,
+                          strict_ownership=True)
+        skirt = part_mask("pelvis_skirt", (100, 100), points,
+                          strict_ownership=True)
+        self.assertFalse(torso[24, 20])
+        self.assertTrue(torso[24, 31])
+        self.assertTrue(skirt[74, 50])
+        self.assertFalse(skirt[80, 50])
+
+    def test_strict_side_upper_arm_keeps_a_shoulder_overlap_cap(self) -> None:
+        points = {"shoulder_L": (40, 20), "elbow_L": (30, 75),
+                  "pelvis": (70, 80)}
+        mask = part_mask("upper_arm_L", (100, 100), points, "side",
+                         strict_ownership=True)
+        self.assertTrue(mask[45, 32])
+        self.assertTrue(mask[45, 39])
+        self.assertTrue(mask[20, 40])
+
+    def test_strict_head_does_not_fill_outside_crown_silhouette(self) -> None:
+        image_path, kp_path = self.root / "view.png", self.root / "keypoints.yaml"
+        synthetic_view(image_path, kp_path)
+        out = self.root / "parts"
+        segment_view(image_path, kp_path, out, view="front34",
+                     strict_ownership=True, edge_safe_fill=True,
+                     only_parts={"head"})
+        note = yaml.safe_load((out / "head.pivots.yaml").read_text())
+        alpha = np.asarray(Image.open(out / "head.png").getchannel("A"))
+        crown_x, crown_y = note["keypoints"]["crown"]
+        self.assertEqual("neckOnly", note["source"]["jointCaps"])
+        source_alpha = np.asarray(Image.open(image_path).getchannel("A"))
+        origin_x, origin_y = 128 - crown_x, 24 - crown_y
+        yy, xx = np.indices(alpha.shape)
+        source_x, source_y = xx + origin_x, yy + origin_y
+        mapped = ((source_x >= 0) & (source_x < source_alpha.shape[1]) &
+                  (source_y >= 0) & (source_y < source_alpha.shape[0]))
+        authored = np.zeros(alpha.shape, dtype=bool)
+        authored[mapped] = source_alpha[source_y[mapped], source_x[mapped]] >= 8
+        near_crown = (xx-crown_x)**2 + (yy-crown_y)**2 <= 8**2
+        self.assertFalse(np.any((alpha >= 8) & ~authored & near_crown))
+
     def test_component_filter_drops_disconnected_neighbour(self) -> None:
         mask = np.zeros((40, 40), dtype=bool)
         mask[4:24, 4:12] = True
@@ -369,6 +445,17 @@ class SheetPipelineTests(unittest.TestCase):
         disk = (xx - 16) ** 2 + (yy - 16) ** 2 <= 9
         self.assertTrue(np.all(filled[..., 3][disk] == 255))
         self.assertGreater(int(added.sum()), 0)
+
+    def test_inpaint_ignores_transparent_black_edge_colours(self) -> None:
+        rgba = np.zeros((12, 12, 4), dtype=np.uint8)
+        rgba[4:8, 2:4] = (70, 80, 60, 255)
+        rgba[4:8, 4] = (0, 0, 0, 8)
+        visible = rgba[..., 3] >= 8
+        missing = np.zeros(visible.shape, dtype=bool); missing[5:7, 5:7] = True
+        filled, _ = inpaint_occlusion(
+            rgba, missing | visible, visible, edge_safe_fill=True)
+        self.assertTrue(np.all(filled[..., :3][missing] == (70, 80, 60)))
+        self.assertTrue(np.all(filled[..., 3][missing] == 255))
 
     def test_joint_disk_fill_does_not_create_isolated_caps(self) -> None:
         rgba = np.zeros((48, 48, 4), dtype=np.uint8)
@@ -483,6 +570,17 @@ class SheetPipelineTests(unittest.TestCase):
         preview._place_legs_behind_skirt(source, [skirt, short_leg])
         self.assertEqual(10, short_leg.z)
         self.assertIsNotNone(short_leg.image.getchannel("A").getbbox())
+        source["thigh_shared"]["source"] = {
+            "sourceLimitation": "garmentOccludedHip"}
+        completed_thigh = preview.Placement(opaque.copy(), (0, 0),
+                                            (0, 0), 0, 10, "thigh_L", {})
+        shin = preview.Placement(opaque.copy(), (0, 0),
+                                 (0, 0), 0, 11, "shin_L", {})
+        preview._place_legs_behind_skirt(
+            source, [skirt, completed_thigh, shin])
+        self.assertLess(completed_thigh.z, skirt.z)
+        self.assertEqual(11, shin.z)
+        self.assertIsNotNone(completed_thigh.image.getchannel("A").getbbox())
 
     def test_scaled_part_preserves_anchor_and_scales_child_from_pivot(self) -> None:
         item = preview.Placement(Image.new("RGBA", (20, 100)), (10, 20),
