@@ -2019,7 +2019,7 @@
   size: 1024x1536
   sha256: 300e6f3bbde4fe2290859e90aee1f1c7726c81a7716937942bdd18a7a7d46e35
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：袁承志盛京左眉旧疤与金蛇剑双叉尖
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：袁承志盛京左眉补旧疤，剑鞘复核保留
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_yuanchengzhi__ch07_youth_scene_shengjing.b9314d08.png
     sha256: b9314d08b0c2b84afcbc544ecd8358b76e706978fe3fe1a279684c63affd1990
