@@ -409,7 +409,10 @@
 
     【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+
+    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_cg_ch04_wudang_taiji.json'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
@@ -421,19 +424,22 @@
   - path: assets/default/scene/ch04/cg_ch04_wudang_taiji.png
     sha256: 779dfa070a5bdf18400c9681b083e54a0f9b26c3cb7e2bb639497d51f9bdbbad
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_wudang_taiji.779dfa07.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T14:50:12-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch04_wudang_taiji.s1.png
+  - path: assets/default/scene/ch04/cg_ch04_wudang_taiji.png
+    sha256: c365c2cb8d8c0f86f27cfc518888c95a2b60642e1378a376fd4b87dff12affcf
+    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wudang_taiji.png
+  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:14:15.301600-07:00'
+  source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_wudang_taiji.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: c365c2cb8d8c0f86f27cfc518888c95a2b60642e1378a376fd4b87dff12affcf
+  sha256: 44096a61aa74e3dc98627479d28673eb0db8531345d8cfb968770ce33fa95071
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「太极初传」，实际字形「太极初传」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「太极初传」，实际字形「太极初传」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_wudang_taiji.779dfa07.png
-    sha256: 779dfa070a5bdf18400c9681b083e54a0f9b26c3cb7e2bb639497d51f9bdbbad
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_wudang_taiji.779dfa07.entry.yaml
+    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wudang_taiji.png
+    sha256: c365c2cb8d8c0f86f27cfc518888c95a2b60642e1378a376fd4b87dff12affcf
+    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wudang_taiji.entry.yaml
   runner_job_records:
   - - cg_ch04_wudang_taiji.resume3r2
     - ok
@@ -441,4 +447,5 @@
     - '194'
     - exec-ed93386e-cf20-4e8f-9c1f-a4332833db0d.png
   runner_success_count: 1
-  effort: ultra
+  effort: not applicable (deterministic composition)
+  executed_by: Codex gpt-6.1-sol（AR-86）
