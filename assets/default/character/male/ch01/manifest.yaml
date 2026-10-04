@@ -1592,15 +1592,18 @@
   - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
     use: 项目同性别基线；只取画风
     sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
-  model: gpt-6-astra
-  created: 2026-10-02T23:37:31-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.1791009451334549000/archive/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.png
+  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png
+    sha256: cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:26:46.925487-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_11_46_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 73f67bf945f3ba5adfa606c1e6a4c82dfda8c6a42edcbae0ce43a4cd20b48ea8
+  sha256: 5b10d2a2adb24e1fce1306f2561b33d6273fb5b72b908815d13e65516ac28915
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：眉眼、鼻、唇形对齐base，沉静不笑，珍珑场景的器物与光向保留，无可见接缝
   previous_revision:
     prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.1791009451334549000/archive/previous-prompt.md
     png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.1791009451334549000/archive/previous.png
@@ -1609,6 +1612,17 @@
   repair_runner_source_sha256: 884c583d99520684715b1eae73060ee48cfa26ae5ad7fd0b1d8fcc7773719403
   ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
   composite_job: por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.resume3
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_11_46_r1
+    before_sha256: 73f67bf945f3ba5adfa606c1e6a4c82dfda8c6a42edcbae0ce43a4cd20b48ea8
+    box:
+    - 437
+    - 81
+    - 568
+    - 242
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_11_46_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_zhujue__ch01_m_base
   file: por_npc_zhujue__ch01_m_base.png
   category: character/male
