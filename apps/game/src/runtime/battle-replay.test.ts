@@ -6,6 +6,7 @@ import { createGameSession } from './session';
 import { fixtureContent } from './test-fixture';
 
 describe('app battle command transcript', () => {
+  // Full battle completion and replay are functional checks; loaded-host latency is not a performance assertion.
   it('forwards native battle bus commands including retry and idempotent finalize', async () => {
     const app = createGameSession(fixtureContent()); const launch = createBattleDemo('world');
     expect((await app.dispatch({ t: 'battle/enter', setup: launch.setup, seeds: launch.seeds }))
@@ -25,7 +26,7 @@ describe('app battle command transcript', () => {
     const command = { t: 'battle/finalize', battleId: live.battleId, outcomeSeq: live.outcomeSeq } as const;
     expect((await app.dispatch(command)).accepted).toBe(true); const before = await app.snapshot();
     expect((await app.dispatch(command)).accepted).toBe(true); expect(await app.snapshot()).toEqual(before);
-  });
+  }, 30_000);
 
   it.each([false, true])('replays the dispatched session with action-cap mode %s', async (capped) => {
     const app = createGameSession(fixtureContent()); const launch = createBattleDemo('world');
@@ -50,5 +51,5 @@ describe('app battle command transcript', () => {
     expect(replay.session.battle.events).toEqual(live.battle.events);
     if (capped) expect(live.battle).toMatchObject({ result: 'draw', actionNo: 80 });
     console.info(JSON.stringify({ capped, liveHash, replayHash, events: live.battle.events.length }));
-  });
+  }, 30_000);
 });

@@ -9,6 +9,7 @@ export interface SplitEntry {
 export interface AssetRefUse { readonly asset: string; readonly pointer: string; }
 
 function entryIdentity(kind: ContentKind, value: Record<string, unknown>): string {
+  if (kind === 'roleSlot') return String(value['slotId']);
   if (kind === 'regionGate') return String(value['gateId']);
   if (kind === 'regionDialogue')
     return `${String(value['chapter'])}.${String(value['sceneId'])}.${String(value['anchorId'])}`;

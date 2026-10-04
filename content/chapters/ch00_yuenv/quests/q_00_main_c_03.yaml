@@ -3,7 +3,7 @@ id: q_00_main_c_03
 kind: main
 chapterId: ch00_yuenv
 titleKey: quest.q_00_main_c_03.title
-subjectNpcIds: []
+subjectNpcIds: [npc_aqing, npc_fanli]
 routeTone: neutral
 startStageId: st_meet_fanli
 flagIds:

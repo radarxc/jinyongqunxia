@@ -118,6 +118,11 @@ describe('M1 content schemas', () => {
       { path: 'skill.yaml', text: yaml(skill) }, { path: 'move.yaml', text: yaml(move) },
       { path: 'quest.yaml', text: yaml(quest) },
     ])).toThrow('CONTENT_REF:quest.yaml:item:prop_bamboo_staff');
+    expect(() => loadContent([
+      { path: 'skill.yaml', text: yaml(skill) }, { path: 'move.yaml', text: yaml(move) },
+      { path: 'prop.yaml', text: yaml(prop) },
+      { path: 'quest.yaml', text: yaml({ ...quest, subjectNpcIds: ['npc_missing'] }) },
+    ])).toThrow('CONTENT_REF:quest.yaml:npc:npc_missing');
     const dialogueQuest = { ...quest, stages: [{ ...quest.stages[0],
       objectives: [{ type: 'dialogue', storyId: 'story_ch00_main', knot: 'opening' }] },
     quest.stages[1]] };

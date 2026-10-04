@@ -5,6 +5,7 @@ import {
 } from './primitives';
 
 export const AgeBandSchema = z.enum(['child', 'youth', 'young_adult', 'prime', 'mature', 'elder', 'venerable']);
+export const SpeciesSchema = z.enum(['human', 'animal', 'spirit', 'projection']);
 const YearValueSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('exact'), year: z.number().int(), basis: z.enum(['historical', 'textual']), ref: z.string().min(1) }),
   z.strictObject({ kind: z.literal('range'), from: z.number().int(), to: z.number().int(), basis: z.literal('inferred'), note: z.string().min(1) }),
@@ -26,31 +27,65 @@ const FullBuildSchema = z.strictObject({
   skills: z.array(SkillBuildSchema),
   unregisteredSkills: z.array(z.strictObject({ name: z.string().min(1), note: z.literal('待对应图鉴收录（不预建 ID）') })),
 });
-const TemplateBuildSchema = z.strictObject({ pipeline: z.literal('template'), templateId: CharacterTemplateIdSchema, ageBand: AgeBandSchema, archetype: z.string().optional(), seedPolicy: z.literal('stable_per_save') });
+const TemplateBuildSchema = z.strictObject({
+  pipeline: z.literal('template'), templateId: CharacterTemplateIdSchema,
+  ageBand: AgeBandSchema.nullable(), archetype: z.string().optional(),
+  seedPolicy: z.literal('stable_per_save'),
+});
 
 export const NpcAppearanceSchema = z
   .strictObject({
     key: z.string().regex(/^[a-z][a-z0-9_]*$/), chapterId: ChapterIdSchema,
     years: z.strictObject({ from: z.number().int(), to: z.number().int(), approx: z.boolean() }),
     displayName: z.string().min(1), presenceMode: z.enum(['living', 'reference']),
-    combatEligible: z.boolean(), ageBand: AgeBandSchema,
+    combatEligible: z.boolean(), ageBand: AgeBandSchema.nullable(),
     sects: z.array(z.strictObject({ sectId: SectIdSchema, rank: z.enum(['L1', 'L2', 'L3', 'L4', 'L5']).nullable(), relation: z.string().min(1) })),
     location: z.strictObject({ cityId: CityIdSchema.nullable(), placeKey: z.string().nullable() }),
     contentLayer: z.enum(['mainline', 'sect', 'facility', 'commoner']),
-    recruitment: RecruitmentSchema, build: z.union([FullBuildSchema, TemplateBuildSchema]),
+    recruitment: RecruitmentSchema.nullable(),
+    build: z.union([FullBuildSchema, TemplateBuildSchema]),
     ai: z.strictObject({ tier: z.enum(['ai_basic', 'ai_adept', 'ai_expert', 'ai_master']), personality: z.string().regex(/^pers_[a-z0-9_]+$/) }),
   })
   .refine((value) => !(value.combatEligible && (value.presenceMode === 'reference' || value.ageBand === 'child')), { path: ['combatEligible'], message: 'reference and child appearances cannot fight' });
 
 export const NpcDefSchema = z.strictObject({
   schemaVersion: z.literal('npc.v1'), id: NpcIdSchema,
-  identity: z.strictObject({ name: z.string().min(1), aliases: z.array(z.string()), origin: z.enum(['fictional', 'historical_fictionalized', 'expanded', 'generated']), sourceWorks: z.array(z.string()).min(1) }),
+  identity: z.strictObject({
+    name: z.string().min(1), aliases: z.array(z.string()),
+    origin: z.enum(['fictional', 'historical_fictionalized', 'expanded', 'generated']),
+    species: SpeciesSchema.default('human'), sourceWorks: z.array(z.string()).min(1),
+  }),
   lifespan: z.strictObject({ born: YearValueSchema, died: YearValueSchema.nullable(), explicitAliveAt: z.array(z.strictObject({ chapterId: ChapterIdSchema, from: z.number().int(), to: z.number().int(), source: z.string().min(1) })).optional(), canonicalDied: YearValueSchema.optional() }),
   appearances: z.array(NpcAppearanceSchema).min(1),
   recruitment: z.strictObject({ everRecruitable: z.boolean(), allianceOnly: z.boolean(), hardConflictWith: z.array(NpcIdSchema), softConflictWith: z.array(NpcIdSchema) }),
   bonds: z.strictObject({ tags: z.array(z.string()), comboCandidateRefs: z.array(z.string()) }),
   crossBook: z.strictObject({ enabled: z.boolean(), reunionQuestByChapter: z.record(ChapterIdSchema, QuestIdSchema), legacy: z.strictObject({ skillRefs: z.array(SkillIdSchema), itemRefs: z.array(z.string().regex(/^(?:it|eq)_[a-z0-9_]+$/)), heirNpcRefs: z.array(NpcIdSchema) }) }),
+  productionTier: z.enum(['S', 'A', 'B']).optional(),
   sources: z.array(SourceRefSchema).min(1),
+}).superRefine((value, context) => {
+  const human = value.identity.species === 'human';
+  value.appearances.forEach((appearance, index) => {
+    if (human && appearance.ageBand === null) context.addIssue({
+      code: 'custom', path: ['appearances', index, 'ageBand'],
+      message: 'NPC_HUMAN_AGE_BAND_REQUIRED: human appearances require an ageBand',
+    });
+    if (!human && appearance.ageBand !== null) context.addIssue({
+      code: 'custom', path: ['appearances', index, 'ageBand'],
+      message: 'NPC_NON_HUMAN_AGE_BAND_NULL: non-human appearances require ageBand null',
+    });
+    if (appearance.build.pipeline === 'template' &&
+        appearance.build.ageBand !== appearance.ageBand) context.addIssue({
+      code: 'custom', path: ['appearances', index, 'build', 'ageBand'],
+      message: 'NPC_TEMPLATE_AGE_BAND_MISMATCH: template ageBand must match the appearance',
+    });
+  });
+  if (!human) for (const [key, year] of [
+    ['born', value.lifespan.born], ['died', value.lifespan.died],
+    ['canonicalDied', value.lifespan.canonicalDied],
+  ] as const) if (year?.kind === 'unknown' && year.ageBand !== undefined) context.addIssue({
+    code: 'custom', path: ['lifespan', key, 'ageBand'],
+    message: 'NPC_NON_HUMAN_AGE_PIPELINE: non-human lifespan cannot use human ageBand',
+  });
 });
 
 export const CharacterTemplateSchema = z.strictObject({
@@ -65,3 +100,4 @@ export const CharacterTemplateSchema = z.strictObject({
 
 export type NpcDef = z.output<typeof NpcDefSchema>;
 export type CharacterTemplate = z.output<typeof CharacterTemplateSchema>;
+export type Species = z.output<typeof SpeciesSchema>;

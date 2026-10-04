@@ -1,0 +1,6 @@
+schemaVersion: character-template.v1
+id: tmpl_normal
+role: normal
+innate: {con: 50, str: 50, agi: 50, wis: 50, wil: 50, luk: 50, cha: 50}
+cultivationBand: {min: 1, max: 20, derived: true}
+skillSeeds: []

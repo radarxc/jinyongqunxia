@@ -12,6 +12,7 @@ export * from './primitives';
 export * from './quest';
 export * from './region-binding';
 export * from './region-map';
+export * from './role-slot';
 export * from './story';
 export * from './story-graph';
 export * from './world';

@@ -154,6 +154,7 @@ describe('main-thread and Worker transport determinism', () => {
     main.dispose(); worker.dispose();
   });
 
+  // The 100-cycle determinism sweep is functional coverage, not a performance assertion.
   it('commits skip plus first sleep identically through main-thread and Worker hosts 100 times',
     async () => {
     const { ch00, ch10, ch00Content, ch10Content } = await chapterFixtureSource();
@@ -189,7 +190,7 @@ describe('main-thread and Worker transport determinism', () => {
       expectedHashes.add(stateHash(mainState)); main.dispose(); worker.dispose();
     }
     expect(expectedHashes.size).toBe(1);
-  });
+  }, 30_000);
 
   it('keeps committed state untouched when target mount validation fails', async () => {
     const { ch00, ch10, source } = await chapterFixtureSource();

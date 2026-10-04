@@ -5,7 +5,7 @@ import { contentKindOrder, parseContentFile } from './content-registry';
 type Identified = { readonly id?: string; readonly key?: string; readonly chapterId?: string;
   readonly lineId?: string; readonly cityId?: string; readonly chapter?: string;
   readonly gateId?: string; readonly sceneId?: string; readonly anchorId?: string;
-  readonly lootRef?: string };
+  readonly lootRef?: string; readonly slotId?: string };
 export interface ContentReferenceContext {
   readonly inks?: readonly { readonly storyId: string; readonly structure: {
     readonly chapter: string; readonly entryKnots: readonly string[];
@@ -18,9 +18,12 @@ export interface ContentRegistry extends ContentValues {
   readonly entries: readonly ContentEntry[];
   get<T = unknown>(kind: RegisteredContentKind, id: string): T | undefined;
   require<T = unknown>(kind: RegisteredContentKind, id: string): T;
+  /** Pre-indexed O(1) chapter lookup; returns an immutable empty list when absent. */
+  roleSlotsForChapter(chapter: string): ContentValues['roleSlots'];
 }
 
 function identity(kind: RegisteredContentKind, value: Identified): string {
+  if (kind === 'roleSlot' && typeof value.slotId === 'string') return value.slotId;
   if (kind === 'regionGate' && typeof value.gateId === 'string') return value.gateId;
   if (kind === 'regionDialogue' && typeof value.chapter === 'string' &&
       typeof value.sceneId === 'string' && typeof value.anchorId === 'string')
@@ -48,6 +51,21 @@ function bindingPath(entry: ContentEntry): { chapter: string; folder: string } |
   );
   if (match === null) throw new TypeError(`CONTENT_BINDING_PATH:${entry.path}`);
   return { chapter: match[1]!, folder: match[2]! };
+}
+
+function validateRoleSlotOwnership(entries: readonly ContentEntry[]): void {
+  for (const entry of entries) {
+    if (entry.kind !== 'roleSlot') continue;
+    const match = entry.path.match(
+      /^content\/chapters\/(ch(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*)\/roles\/[^/]+\.yaml$/u,
+    );
+    if (match === null) throw new TypeError(`CONTENT_ROLE_SLOT_PATH:${entry.path}`);
+    const value = entry.value as ContentValues['roleSlots'][number];
+    if (match[1] !== value.chapter)
+      throw new TypeError(`CONTENT_ROLE_SLOT_CHAPTER:${entry.path}:${value.chapter}`);
+    if (!entry.path.endsWith(`/${value.slotId}.yaml`))
+      throw new TypeError(`CONTENT_ROLE_SLOT_FILENAME:${entry.path}:${value.slotId}`);
+  }
 }
 
 function validateBindingOwnership(entries: readonly ContentEntry[]): void {
@@ -103,6 +121,17 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
       else checkGateExpr(child, path);
   };
   for (const entry of entries) {
+    if (entry.kind === 'roleSlot') {
+      const slot = entry.value as ContentValues['roleSlots'][number];
+      if (!has('characterTemplate', slot.templateId))
+        throw new TypeError(`CONTENT_REF:${entry.path}:characterTemplate:${slot.templateId}`);
+      for (const ref of slot.consumerRefs) {
+        if (encounterRegistryActive && ref.startsWith('enc_') && !has('encounter', ref))
+          throw new TypeError(`CONTENT_REF:${entry.path}:encounter:${ref}`);
+        if (ref.startsWith('q_') && !has('quest', ref))
+          throw new TypeError(`CONTENT_REF:${entry.path}:quest:${ref}`);
+      }
+    }
     if (entry.kind === 'regionGate')
       checkGateExpr((entry.value as ContentValues['regionGates'][number]).expression, entry.path);
     if (entry.kind === 'regionDialogue') {
@@ -136,6 +165,8 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
     if (entry.kind === 'quest') {
       const quest = entry.value as ContentValues['quests'][number];
       const flags = new Set(quest.flagIds); const encounters = new Set(quest.encounterIds);
+      for (const npcId of quest.subjectNpcIds) if (!has('npc', npcId))
+        throw new TypeError(`CONTENT_REF:${entry.path}:npc:${npcId}`);
       const checkCondition = (condition: unknown): void => {
         if (typeof condition !== 'object' || condition === null) return;
         const record = condition as Record<string, unknown>;
@@ -243,6 +274,7 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
 export function loadContent(files: readonly ContentFile[], context: ContentReferenceContext = {}): ContentRegistry {
   const entries = [...files].sort((left, right) => compareCodePoints(left.path, right.path)).map(parseContentFile);
   validateBindingOwnership(entries);
+  validateRoleSlotOwnership(entries);
   const lookup = new Map<string, unknown>();
   const globalIds = new Map<string, RegisteredContentKind>();
   for (const entry of entries) {
@@ -260,10 +292,18 @@ export function loadContent(files: readonly ContentFile[], context: ContentRefer
   validateReferences(entries, lookup, context);
   entries.sort((left, right) => contentKindOrder(left.kind) - contentKindOrder(right.kind) || compareCodePoints(identity(left.kind, left.value as Identified), identity(right.kind, right.value as Identified)));
   const values = (kind: RegisteredContentKind): readonly unknown[] => entries.filter((entry) => entry.kind === kind).map((entry) => entry.value);
+  const roleSlots = values('roleSlot') as ContentValues['roleSlots'];
+  const roleSlotsByChapter: Record<string, ContentValues['roleSlots']> = {};
+  for (const slot of roleSlots)
+    roleSlotsByChapter[slot.chapter] = deepFreeze([
+      ...(roleSlotsByChapter[slot.chapter] ?? []), slot,
+    ]);
+  const emptyRoleSlots = Object.freeze([]) as ContentValues['roleSlots'];
   const registry: ContentRegistry = {
     entries, npcs: values('npc') as ContentValues['npcs'], characterTemplates: values('characterTemplate') as ContentValues['characterTemplates'],
     martialArts: values('martialArt') as ContentValues['martialArts'], meridians: values('meridian') as ContentValues['meridians'],
     moves: values('move') as ContentValues['moves'], encounters: values('encounter') as ContentValues['encounters'],
+    roleSlots,
     quests: values('quest') as ContentValues['quests'],
     acupoints: values('acupoint') as ContentValues['acupoints'], items: values('item') as ContentValues['items'],
     shops: values('shop') as ContentValues['shops'], stories: values('story') as ContentValues['stories'],
@@ -279,6 +319,7 @@ export function loadContent(files: readonly ContentFile[], context: ContentRefer
       if (value === undefined) throw new TypeError(`CONTENT_MISSING:${kind}:${id}`);
       return value as T;
     },
+    roleSlotsForChapter: (chapter: string) => roleSlotsByChapter[chapter] ?? emptyRoleSlots,
   };
   return deepFreeze(registry);
 }
