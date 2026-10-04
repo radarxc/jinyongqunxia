@@ -1283,24 +1283,35 @@
     【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
   negative: ''
   references:
-  - path: assets/default/character/male/ch04/por_npc_zhangsanfeng__ch04_elder_taiji_base.png
-    sha256: c737ad257f1544ebc2c45032a1950c689b86bf5458dbe987df2e85b9f0d3f19a
-    use: 身份参考：本轮新出的张三丰（por_npc_zhangsanfeng__ch04_elder_taiji_base，上传 codex 原图）（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
   - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
     sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
     use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
   - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
     sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
     use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相（磁盘规则：实际上传的是缩小到长边 1024 的 JPEG）
-  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
-  model: gpt-6-astra
-  created: 2026-10-02T03:37:40-0700
-  source_path: .agents/coord/gemini_originals/por_npc_zhangsanfeng__ch03_youth_base.png
+  - path: assets/default/character/male/ch04/por_npc_zhangsanfeng__ch04_elder_taiji_base.png
+    sha256: eba39608c142aae79f9250898e0b3c1ad21d3a43ed080036e92ce8872911d80c
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:59:06.203152-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_53_55_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: c8677b64b6611eaced2e864b8a141e45761028e140e6a4ca48a24971ef5d6f2a
+  sha256: 12a1ef7148d57f13b0637413fa3b7f5b4a1a3d49e9ad47986684a8d00a9ac021
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者点名张三丰跨书一致：神雕少年张君宝尚无立绘，上传本轮新出的倚天百岁张三丰作身份参考，按同一组五官锚点画回约二十岁；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）
+  notes: 立绘重审重出（AR-30）；作者点名张三丰跨书一致：神雕少年张君宝尚无立绘，上传本轮新出的倚天百岁张三丰作身份参考，按同一组五官锚点画回约二十岁；codex 出图（1 号出图员，AR-31）；AR-31：重要人物加经典造型文字描写（原创面孔，不写演员名、不传剧照）；AR-84 第二轮：张三丰五官对齐 por_npc_zhangsanfeng__ch04_elder_taiji_base；AR-53 仅头部，AR-75 神态与光向保留；身份是少年张君宝（约十六岁）与百岁张三丰：依据图2老年五官神韵逆向画出十六岁本人，宽厚鼻骨、眉眼间距和下颌轮廓相通；少年无白发无胡须无皱纹，保留图1束发、粗布服饰，闭口认真，不笑。；质检：实看通过：张三丰宽厚鼻骨与眉眼神韵逆龄对应少年张君宝，少年黑发、无须无老年皱纹，闭口认真不笑；原粗布衣饰、光向和头部角度不变，衔接自然
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_53_55_r1
+    before_sha256: c8677b64b6611eaced2e864b8a141e45761028e140e6a4ca48a24971ef5d6f2a
+    box:
+    - 443
+    - 119
+    - 578
+    - 282
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_53_55_r1.png
+    outside_changed_pixels: 0
 - id: por_npc_zhujue__ch03_m_base
   file: por_npc_zhujue__ch03_m_base.png
   category: character/male
