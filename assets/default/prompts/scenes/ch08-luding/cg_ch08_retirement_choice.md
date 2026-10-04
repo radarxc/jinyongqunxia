@@ -46,7 +46,15 @@ generation_reference_boards: 4
 generation_method: 全新整张生成，仅四张双人base资料板；不上传现CG，不局部改脸
 title_text: 江湖归去
 title_method: generated
-generation_attempts: 0
+generation_attempts: 2
+generation_job: cg_ch08_retirement_choice.ar89_full2
+selected_candidate: B
+candidates_reviewed:
+- cg_ch08_retirement_choice.ar89_full1
+- cg_ch08_retirement_choice.ar89_full2
+title_verified: 已真实打开每张候选及放大图，选定图逐字确认竖排楷书简体江／湖／归／去；归非帰
+review_record: .agents/coord/_lines/retire-regen/selection.json
+composition_variant: 【候选B构图】稍高一些的远景视点，船从画面下部偏左斜向右上驶去，右前方江面与层山敞开；一面小布帆位于后舱侧，不遮任何头部。人物保持小尺度，八人在前甲板自然错落，尾波向左下延伸。
 ---
 
 ## 原著依据
@@ -208,3 +216,11 @@ title_verified: 已打开整图逐字确认江／湖／归／去与朱印；局�
 - 场景、动作、健康状态、亲密家庭关系及各人不同神态均已目检；母亲与孩子安排于遮篷舱内，不另外露脸。
 - 完整对照表：`.agents/coord/_lines/cg-retirement/retirement.jpg`；像素验证：同目录`pixel_checks.json`。
 ````
+
+## AR-89 实际验收记录
+
+- 共整张生成并真实打开 2 张；选定 B（`cg_ch08_retirement_choice.ar89_full2`）。仅base资料板参考，没有上传或修改旧CG。
+- 逐个核对8人、1男7女、服色和发型；八人聚于同一条已经离岸的船上，航向一致，岸上无送行者。人物小、山水远景，不逐人贴回五官。
+- 题字逐字放大确认为竖排楷书简体「江湖归去」，没有日文字形「帰」。最终1536×1024，直接采用runner整张原生输出。
+- 原著去向为扬州接母后全家赴云南大理；具体乘船、山水渡口和晨雾为画面取景扩展。
+- 对照表：`.agents/coord/_lines/retire-regen/retire_new.jpg`；八人位置图：同目录`position_map.jpg`；逐张验收：同目录`selection.json`。
