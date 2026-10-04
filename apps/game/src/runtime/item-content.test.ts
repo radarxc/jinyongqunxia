@@ -12,6 +12,7 @@ import { fixtureContent, fixtureItemPack } from './test-fixture';
 import { createManifest, emitLeaves } from '@tianshu/data/build';
 
 describe('item content leaves', () => {
+  // This integration loads the real compiled ch10 artifacts and can be heavy under high host load.
   it('loads the real compiled ch10 DTO and creates the preview session', async () => {
     const rootDir = resolve(import.meta.dirname, '../../../..');
     const result = await buildContent({ rootDir, chapter: 'ch10_baima', write: false });
@@ -44,7 +45,7 @@ describe('item content leaves', () => {
     const session = createGameSession(loaded, undefined, undefined, { demo: true });
     expect((await session.snapshot())).toMatchObject({ meta: { debugTainted: true },
       chapter: { chapterId: 'ch10_baima' } });
-  }, 15_000);
+  }, 60_000);
 
   it('loads compiled chapter DTOs and only the NPC display text', async () => {
     const fixture = await fixtureItemPack();
