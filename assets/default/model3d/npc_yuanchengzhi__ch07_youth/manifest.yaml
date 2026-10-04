@@ -1,0 +1,76 @@
+- id: npc_yuanchengzhi__ch07_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 袁承志（碧血剑 ch07 · 金蛇郎君传人青年）· 空手 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 0f64c57b-4d87-4f57-bb2f-ceb0f40dc9d7
+    url: https://studio.tripo3d.ai/workspace/generate/0f64c57b-4d87-4f57-bb2f-ceb0f40dc9d7
+    generate_op: 9f049fb0-aab8-4427-8803-000138fd6909（image_to_model）
+    rig_op: baa202a3-88dc-4164-901e-803d083f9cc3
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch07/threeview/por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.png
+    sha256: d96bad5e8ef67bace5c1c7c18f61c438a6956bb24d693a9053010eafb5a4cbbc
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: dae1e9dadcc5c851cbf6063151a534abe3b934cc592738446d01ae3bdee15fdb
+  size_bytes: 5692672
+  joints: 65
+  triangles: 96259
+  vertices: 53401
+  animations: []
+  textures:
+  - image/jpeg 369473 B
+  - image/jpeg 1367167 B
+  - image/jpeg 578479 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T19:05:21-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，浅蓝白长袍 + 深蓝领襟腰带，束发；金蛇剑已去掉。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 ed968bdb。
+- id: npc_yuanchengzhi__ch07_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 袁承志（碧血剑 ch07 · 金蛇郎君传人青年）· 空手 A 字版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 0f64c57b-4d87-4f57-bb2f-ceb0f40dc9d7
+    url: https://studio.tripo3d.ai/workspace/generate/0f64c57b-4d87-4f57-bb2f-ceb0f40dc9d7
+    generate_op: 9f049fb0-aab8-4427-8803-000138fd6909（image_to_model）
+    rig_op: baa202a3-88dc-4164-901e-803d083f9cc3
+  size: 369x594
+  sha256: 08c631f5bd0539b09c14ec536b12852ebb3587dbab26a98a65a7723c0fb6c50e
+  size_bytes: 137266
+  created: '2026-10-03T19:05:21-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
