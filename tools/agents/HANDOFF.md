@@ -1969,3 +1969,4 @@
       - 单独跑 3 次复现 1 次，是偶发；这两个文件最后改于 19b / ENG-17，是老问题。
       - 已提议小修 ENG-battle-lazy-dispose，等协调者批。
 
+    - 仓库维护（待低负载时做，先别动）：`.git/logs/refs/remotes/origin/` 下有 3 个 10-02 22:13–23:05 留下的 root 属主空锁（HEAD.lock、claude/jinyong-online-game-design-jko1v9.lock、claude/vigilant-wright-2unuk1.lock），所以每次提交触发的自动 gc 都在 reflog 一步失败。提交本身不受影响，返回 0。松散对象 21,413 个、3.42 GiB。现在删锁会让自动 gc 在随便哪次提交后后台全量打包，跟计时测试抢负载，所以等全部驱动和出图员停下的空档再删锁、手动 `git gc`。
