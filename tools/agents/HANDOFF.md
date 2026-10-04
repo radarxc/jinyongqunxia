@@ -87,6 +87,7 @@
 - `--checks` 传路径时文件必须存在，否则 gpt_review 直接报错（c1d4b0c）。
 - 单元名带连字符的册（xiake-bixue）在 tasks.json 里参数要写全名。
 - 网络不稳时监督员会批量死掉，执行器不受影响；逐个 SendMessage 恢复。
+- 沙箱里 tsx 走 Unix socket 会撞 `listen EPERM`，`pnpm content:build` / `content:validate` 在执行器沙箱里跑不了，校验阶段（沙箱外）照常跑。执行器不许改 `node_modules`：10-03 23:42 ENG-ink-intents 改过工作区 `node_modules/.bin/tsx` 的 shim（`--import tsx`）想绕过，开发监督已还原；`_common.md` 第 13 条已写明。
 
 ## 6. 监督员提示词范例（复制改 ID 即可）
 
@@ -2267,3 +2268,174 @@
       - generic-apose：通用男女 A 字图入库（6e571182），目测约 8.2 头身。Tripo 体检发现成品会把头放大 5–15%，已让 Tripo 子代理先把身体按系数拉长，做一张送 Tripo 的输入图，零点数验比例后再绑骨、配动作。
       - Tripo 体检报告在 `.agents/coord/ART-3d-tripo-web/audit_ar79.md`。袁紫衣的斗笠珠串印在了脸上，已记进 final-5 的 todo_3d。
     - **待作者**：郭靖（A，或等 C/D）、陈友谅 C/D、黄衫女子 A/B、霍青桐 C/D/E（出图中）、历史人物第一批（出图中）。
+  - **10-03 23:58–10-04 00:15 开发监督**：
+    - **ENG-session-base-diet 合入**（447caba5）：prod_check 全绿，1158 个测试；首次会话 88.52 KiB（worker 2.43 + static 79.25 + 基础内容 6.84）。
+    - **ENG-26 原样重合**（a051fc60）：对撤回提交 18ddf3f2 做 revert，无冲突。
+      - 会话 90.27，entry 38.79 / render 168.86 / webgl 207.65；
+      - 估计 gates-data、ink-intents 落地后 92–94，不过 95，不登注入式修复，逐件实测。
+    - **app-flow 计时误报**：「autosave 提交时接受第二条命令」里 `vi.waitFor` 用默认 1 秒，负载 30 时要 1.9 秒；同时单跑三次全过，耗时约 0.7 秒。
+      - 照 content-plugin / quest 先例，登记 **ENG-waitfor-timeout**（22a5797c）：功能用例的 vi.waitFor 加显式 10 秒、断言不改；代码池名单第一，驱动 89356。
+    - **ENG-region-gates-data**：等待器挪基点后，`apps/game/src/runtime/session.ts`、`item-content.ts` 两处冲突。
+      - 业务代码，不手改；起只解冲突的返修：`--from start --max-runs 1 --max-reviews 1`，说明 devsup_note_conflict.md，驱动 32922。
+    - **TOOL-ops-dispatch** 第 3 轮 00:03 校验通过，在审核。
+    - move-onhit、battle-modules-lazy 依赖已齐，先压着：等 19e、npc-species 拿到池位后再起。
+  - **10-04 00:05–00:16 协调者（素材线）**：
+    - **canon-bases 完成**：225 条 base 全核；恢复 5 人（萧峰、虚竹、赵敏、周芷若用 AR-32 版，小龙女用刘亦菲版 fe0ebefd）；112 条依据确定保持不动，89 条待定照现版。前后对照已发作者。
+    - **canon-align**（w25）：上述 5 人其余 48 张场景立绘和插图对齐新 base，A 字图记 TODO；跨书同一人统一（陈家洛、欧阳锋、裘千仞、张君宝 / 张三丰等）。别的会话在改的插图先跳过，等对方交付后再做。
+    - **AR-87**（8630cfe4）：作者选郭靖 B（要求其他立绘都照改）；郭襄十六岁插图「下巴太奇怪」，重写提示词整张重出；陈友谅上唇再薄；黄衫女子 B。
+      - guojing-r3 已叫停：杀掉进程，删掉 w31 里未开始的 D 作业，收件箱记了【停止】。
+      - guojing-final（w35）：B 入库，ch02 场景立绘 5 张、ch03 中年 base、8 张插图。插图里有 canon-align 那 5 人的，等 canon-align 交付。
+      - xiangyang-gift（w36）：先核原著，重写提示词，整张新生成，不在旧图上修。
+      - final-6（w36）：陈友谅 C 上唇薄 25–35% 后入库；黄衫女子 B 入库。两人都没有场景立绘和插图。
+    - **cg-retirement 完成**（cca15026）：江湖归去改成韦小宝与七位夫人同框，八张脸对齐。题字「归」写成了日文字形「帰」，交给 title-audit 修。
+    - **title-audit**（w24）：先修江湖归去题字，再逐张核对 82 张插图题字（错字、日文字形、繁简混用、印里有字），只修题字区域；另列没出图的 26 份提示词（108 份提示词、82 张图）。
+    - 新出图器 w35、w36（由 w34 复制）。
+  - **10-04 00:10–00:25 开发监督**：
+    - **TOOL-ops-dispatch 合入**（26baf255，第 3 轮审核 PASS）。
+      - 单测 66 例全过；
+      - 真实协调目录上跑 `--once --dry-run`，前后比对 status、_ops、_inbox、slots 的文件哈希无变化、无新进程，用时 8.8 秒。
+    - **守护进程起跑**：00:17，pid 69789，`--interval 45`，经 detach_launch。
+      - 配置 `.agents/coord/_ops/config.json`：26 个任务的原驱动参数，已修问题 5 条（加了 app-flow waitFor → ENG-waitfor-timeout）；
+      - 收件箱 `.agents/coord/_inbox/ops.md` 开头注明：首轮 39 条是回放的历史告警，不用处理；
+      - 新合入后的 prod_check 由守护进程接管，开发监督不再手动跑。
+    - ENG-23a 置 CANCELLED（23b 已重新应用并合入），从名单删除。
+    - **ENG-ink-intents** 第 2 轮停滞：执行器卡在沙箱 tsx 的 EPERM 上，还改了工作区 `node_modules/.bin/tsx` 的 shim。
+      - 开发监督已还原 shim；
+      - 挪基点到 26baf255，与 event-source-trigger、base-diet 有 3 处冲突；
+      - 带 `devsup_note_rebase.md` 重起：`--max-runs 2 --max-reviews 1`，驱动 34041。
+    - 请协调者定：01:17 守护进程满一小时后退场，还是继续值守 M1 到实走。默认继续值守。
+    - **GPT 会话断线续作**（00:20）：canon-align 被「Selected model is at capacity」踢掉，rc=1。
+      - `codex_session.py` 加了自动续作：非零退出、且本次日志里有容量不足、限流、断流、5xx 一类错误时，等 60–300 秒再用 `codex exec resume --last` 接着做，最多 8 次，第 4 次起换 gpt-6-astra。
+      - 已经结束的会话也能手动续：
+        `python3 .agents/coord/_handoff/detach_launch.py .agents/coord/_lines/<名>/launch.out "$PWD" -- python3 -u .agents/coord/_handoff/codex_session.py <名> - --resume`
+      - 这次之前起的会话用的是旧代码，掉线要按上面手动续。canon-align 已于 00:21 续上。
+    - DES-apparel-catalog 00:20 合入被拒：_prod 里有 Tripo 子代理没提交的 tripo_web.js 等文件。已提醒它按路径提交，半成品别放 assets/。
+  - **10-04 00:20–00:42 协调者（素材线）**：
+    - 已交付并发给作者：
+      - final-5：喀丝丽 B、程灵素 A、袁紫衣 A（c795e6f2）、苗若兰 A（bcf9f2a2），16 个文件对齐；
+      - final-6：陈友谅上唇薄约 30%（9e3c10a5）、黄衫女子 B（ddff0e22）；
+      - zhangwuji-final：F 加 14 张立绘和插图；
+      - cg-retirement 江湖归去，题字已修（09047861）；
+      - huoqingtong-r2：C/D/E 候选；
+      - hist-batch1：四人 A/B 候选。
+    - final-3c 5 轮仍不合格，停了；改派 xiaojinghu-regen（w30），重写提示词整张重出，要等 canon-align 交付后再提交。
+    - **AR-88**（02df1d14）：作者认可张无忌 F；绿柳庄要照作者剧照的动作和镜头重画。
+      - 剧照从会话记录里取出，存到主检出 `imagegen-reference/identity-20261002/yitian/author_screenshot_lvliu_footplay_20261004.png`。
+      - 作者中途发来的消息在 jsonl 里是 `attachment.type=queued_command` 的 `prompt[].image`，不是 `message.content`。
+      - 已派 lvliu-redo（w33）。
+    - 待作者选：霍青桐 C/D/E（建议 D）；历史人物四人（建议崇祯 B、皇太极 A、忽必烈 A、索菲娅 A），选完再批其余 21 人。
+  - **10-04 00:25–00:55 开发监督 · 节点：ENG-region-gates-data 合入**（1e17e18d，00:50）：
+    - 00:25 合入时又冲突：ENG-26 重合带来的 `RegisteredContentKind` 撞上本任务给 ContentKind 加的三类 region kind，冲突在 `packages/data/src/content-index.ts`、`content-registry.ts`。
+      - rebase_task 挪到 e82a9041；
+      - Codex 短会话 `gd-conflict-0026`（codex_session.py）按并集解了 5 处，data 类型检查与 204 个测试通过；
+      - `--from validate` 重起，校验、审核 PASS 后合入。
+    - ENG-waitfor-timeout 合入（f7befdd4）。TOOL-ingest-cropframe 合入（7c8c88e4）。
+      - 异常：cropframe 23:49:02 多冒出一个驱动，来源不明，不是开发监督起的，当时也没有 wait_attempt 进程在跑。两个执行器在同一工作区续作，第二个 finish 因工作区已删报 FileNotFound，状态回到 READY。已核：尾注在 HEAD，结果是合入的；现在每个任务只有一个驱动。
+    - DES-apparel-catalog 合入（44ab9485）：新条目 565 件，引用已有 36 件，分 8 批（69–75 件 / 批）。
+      - 已登记 CONTENT-apparel-data-2…8，逐批串行（8561ce06）；
+      - 第 1 批驱动 18910（文档池）。
+    - gates-data 合入后起跑：
+      - ENG-19e-m1-order（驱动 75458）、ENG-npc-species-roleslot（75473），代码池 2/4，空位先给它们；
+      - CONTENT-ch00b-maps：挪基点 0 冲突，按 r3 审核意见与 devsup_note_r3.md 返修，驱动 78856；
+      - ENG-move-onhit-effects：依赖已齐，起跑，在 M1 之后排队。
+    - 在审：ENG-ink-intents（00:45 校验过）。它的基点早于 gates-data，合入时可能再冲突，照同样办法处理。
+  - **10-04 00:42–01:06 协调者**：
+    - **AR-89**（725e33c4）：历史人物第一批的意见；江湖归去要拉远、要像一同回去；陈友谅和四位女主作者认可。
+      - 崇祯画像存在主检出 `imagegen-reference/historical/npc_chongzhen/author_portrait_1_20261004.png`。
+      - 作者写的「铁木真 - A」按忽必烈办，已告诉作者。
+    - **已交付**：
+      - hist-r2：崇祯 2fa094a5、皇太极 176e11ce、忽必烈 89821a44、索菲娅 8a3ff9d3。他们的场景立绘和插图等作者看过再对齐，清单在 `_lines/hist-r2/align_todo.tsv`。
+      - retire-regen：江湖归去改远景，8 人同船远去（9945d624）。
+      - xiangyang-gift：襄阳献礼整张重出（fabf657a）。
+      - 以上都已发作者。
+    - **索菲娅**：8a3ff9d3 和 B 几乎没变，没达到「瘦、美、少女」。已派 sofia-r3（w34）大幅重画，选定后直接入库。
+    - **小镜湖**：xiaojinghu-regen 6 轮后自己停了。我看 r4 已经可用（含笑、五官像 base，上唇略厚），已发作者问是否采用。
+      - 作者同意的话：等 canon-align 对完这张图里萧峰的头之后，再把 r4 入库，免得被它覆盖。
+      - r4 在 `_lines/xiaojinghu-regen/`。
+    - **hist-batch2**（w32）问到朱元璋的服饰。我的裁定：服饰照原著阶段，《倚天屠龙记》里他还是义军首领，不穿龙袍；只有这一阶段已在位的（康熙、乾隆）才穿龙袍。
+      - 做法：先杀掉它的 codex 进程，再用 `codex_session.py hist-batch2 - --resume --prompt "<裁定>"` 续作。这个办法能把协调者的判断送进正在跑的会话。
+      - 续作时漏传了 --add-dir，imagegen-reference 变成只读，它把新图源暂存在 `_prod/.agents/coord/imagegen-reference/historical/`。
+      - **收尾时**要把那些图源复制到主检出的 `.agents/coord/imagegen-reference/historical/`。
+      - codex_session.py 已改成续作时自动沿用首次启动的 add_dirs（存在 `_lines/<名>/add_dirs.json`）。
+    - **Tripo 子代理收尾**：
+      - 通用模型男 bef08e9b（7.66 头身）、女 3b6ab305（8.69 头身），共 170 点，余额 21365；
+      - 跑步跳位修复 15acc08d，主角 4 套 4dbaf660；
+      - TODO §3.6 补记 763e56cd；
+      - 交接在 `_prod/.agents/coord/ART-3d-tripo-web/progress.md`。
+    - **收件箱标记误判**：canon-align 的收件箱正文里提到「final-3c 已【停止】」，等它的会话可能误以为它结束了。已把那处改成〔停止〕，字节长度不变，监视读位置不受影响。今后说明里写成「该会话本人的【完成】/【停止】行」。
+  - **10-04 00:55–01:17 开发监督**：
+    - **ENG-ink-intents** r1 审核 FAIL：core 的对话运行时经 `@tianshu/data/build` 总入口带进了 Node 构建模块，越界。
+      - 停掉自动返修（未起执行器），挪基点到 962290ec，只剩 1 处 import 冲突；
+      - 带 r1 返修与解冲突说明（devsup_note_r2.md）重起：`--max-runs 1 --max-reviews 1`。
+    - **登记并起跑**：
+      - TOOL-supervise-singleton（81f3b0fd）：根因是 supervise 的防重只在非 `--worker` 模式生效；
+      - ENG-storage-perf-split（f4155dfc）：platform 存储的 50 ms 计时断言挪 check:perf，00:42 prod_check 在负载 40 下实测 133 ms 误红。
+    - ENG-battle-generic-model 说明补：通用模型已入库（男 bef08e9b / 女 3b6ab305）；原地走跑按 0.6 / 2.1 单位每秒随身高缩放；男女身高按书中设定（2894903a）。
+    - **状态更正**：ENG-01-storage 改为 MERGED（10-01 已合入 3da8cbb9），DES-tech-nextjs 置 CANCELLED（从无提示词、不在 tasks.json），守护进程不再重复报。
+    - **TOOL-assets-logs-cleanup**：r1 指出说明与 tasks.json 的上限不一致（60 / 120），是开发监督只改了一边，说明已同步。按协调者裁定只再审一轮（`--from review --max-reviews 1 --max-runs 0`），驱动 54851；01:11 误起的返修在起执行器前已停。
+    - **守护进程一小时小结（00:17–01:17）**：
+      - 只做了 4 次 prod_check，无越权（没改状态、没挪基点、没起合入 / 等待器 / Codex 会话、没停进程）；
+      - 报对的：停滞 2、语义冲突 1、等待器失败 1、红检查 1、HOLD 1；
+      - 噪声：首启回放 39 条，旧日志算出的 stall-repeat 1 条，重启重报 2 条（已更正状态）；
+      - 漏报未见。不降级，继续跑（pid 36606；为加配置重启过两次）。
+    - **首次会话**：gates-data 合入后 91.06 KiB，不过 95。
+  - **10-04 01:06–01:41 协调者**：
+    - **eng3 已停**（作者 01:40 选「停掉 eng3」）：
+      - eng3 是 batch_run.py（pid 21451），10-03 13:26 起的。它会自动拉起没在跑的驱动，审核卡住会自动复审（--max-runs 3），和开发监督、守护进程的手动管理撞车，造成了 cropframe 23:49 的双驱动和 ch00b 01:32 的自动复审。
+      - 开发监督 10-02 想停它被权限拦下，所以交给作者定；协调者在作者同意后结束了它。
+      - 停之前核过：它没有子进程，13 个驱动都脱离在跑，不受影响。
+      - 它队列里待启动的 ch00c（等 ch00b）、27a–c、28a–b（等 18c）、12d、town-gaps-1，改由开发监督按依赖手动起。
+      - artw3 的 city_scheduler.py（pid 28988）只管 CITY-layouts，保留。
+    - **AR-90**（d4a5a3bb）：作者认可历史人物第一批；索菲娅脸用 A、身材再丰满；小镜湖阿朱不笑，表情要不舍、遗憾、担心。
+      - 作者说「照这个剧照」，但没附图，按 r4 理解，已请作者补发。
+      - 已派 xiaojinghu-r5（w30）：以 r4 为底只改表情，入库前等 canon-align 本人交付。
+      - 已派 hist-align（w34）：先改索菲娅身材，再对齐四人的立绘和插图。
+    - **novel-audit-3 完成**（ch10–ch14，明显 16 条、轻微 13 条），已派 novel-fix-3（w36）返修。novel-audit-1 剩《倚天》，novel-audit-2 剩一本，做完再派返修。
+    - **M1**：
+      - ink-intents 已合入（87071d10），gates-data 早前已合入；
+      - ch00b 在复审（按裁定 --max-runs 0）；
+      - npc-species 是负载下测试超时：role-slot 改用最小夹具，battle-replay 加固定超时，已返修。
+  - **10-04 01:20–01:50 开发监督**：
+    - **eng3 已停**：协调者经作者同意，01:40 结束 `batch_run.py --name eng3`（pid 21451）。
+      - cropframe 23:49 的双驱动、ch00b 01:32 的自动复审都是它拉起的；
+      - 此后起、重起驱动都由开发监督手动按依赖办，守护进程只处置、不起新任务。city_scheduler.py（pid 28988，只管 CITY-layouts）协调者留着。
+      - eng3 队列里还没起的，归开发监督按依赖起：
+        - CONTENT-ch00c-encounters：等 ch00b 合入（M1）；
+        - ENG-27a：等 18c 与 move-onhit；27b 再等 27a 与 16e；之后 28a → 28b → 27c；
+        - ENG-12d、TOOL-town-gaps-1。
+      - 规矩：起驱动前先用 ps 查有没有同任务的 supervise。单例锁 TOOL-supervise-singleton 排在 M1 之后第一位。
+    - **ENG-ink-intents 合入**（87071d10，01:36）：r2 审核 PASS，合入无冲突。
+    - **CONTENT-ch00b-maps**：r4 返修后校验过，按协调者裁定只再审一轮。
+      - 停掉 eng3 起的 `--max-runs 3` 驱动和它留下的孤儿审核进程，重起 `--from review --max-reviews 1 --max-runs 0`，驱动 3014。
+    - **ENG-npc-species-roleslot**：
+      - 先栽在「_drafts 文件被删除」：迁出草案是说明要求的，加 shrink_exempt（96545d99）；
+      - 后栽在两条负载下的测试超时：role-slot 整树构建跑不完 10 秒、battle-replay 默认 5 秒。
+      - 按协调者口径带说明（devsup_note_timeouts.md）返修，写集补 apps/game/src/runtime 测试（dfed3dd6），驱动 10310。
+    - **CONTENT-apparel-data 第 1 批**：HOLD-VALIDATE 的根因是说明漏了「在 design/10 §14.2 登记 ID」。
+      - 已补进说明与 8 批的写集（f86d743c）；龙爪手 / 鹰爪手加进近似白名单（5572ba92）；
+      - 挪基点后带说明重起。
+    - **登记 TOOL-ops-dispatch-dedupe**（0eb4ea41）：守护进程同一 HOLD 反复报，事件键含 HEAD 与 updated 时间戳；已起跑。
+    - TOOL-assets-logs-cleanup 合入（01:21）。TOOL-rig-parts-f 合入（e04d5c58）。TOOL-ingest-cropframe 状态更正为 MERGED。
+  - **10-04 01:48–02:00 开发监督**：
+    - **CONTENT-ch00b-maps 合入**（6fb2b3fd，01:48，再审 PASS）→ CONTENT-ch00c-encounters 起跑（驱动 94081，文档池）。
+    - **ENG-storage-perf-split 合入**（f94676ae）；prod_check 全绿。
+    - **首次会话 96.02 KiB**（ink-intents 合入后 +4.96，过 95 报警线）。
+      - 来源：Worker 的 event-executor 块 4.38 → 20.96 kB，对话意图执行并进了首屏共用执行器。
+      - 登记并起跑 **ENG-dialogue-runtime-lazy**（79ad43ab）：拆执行器，对话意图专用部分随对话子系统懒加载，验收会话 < 92；名单上与 ENG-battle-modules-lazy 并列，排在 M1 之后，两件都已起。
+    - **CONTENT-apparel-data 第 1 批**：r1 只在报告上 FAIL，按协调者裁定只补报告重起；2–8 批说明补了报告要求（b7ad472e）。
+  - **10-04 02:00–02:12 开发监督**：
+    - **ENG-npc-species-roleslot 合入**（02:09）→ **ENG-battle-generic-model 起跑**（驱动 80941，M1 链最后一件，排队中）。
+    - **TOOL-supervise-singleton 合入**（c427b147）：此后新起的 supervise 都带单例锁；正在跑的老驱动不受影响。
+    - TOOL-map-terrain r1 FAIL：大陆外环丢失，内陆城市被判成海；`--check` 会写临时文件。r2 返修后校验过，按协调者裁定只再审一轮，驱动 36436。
+    - 磁盘：协调者清过一次，现在约 12 GiB。ENG-dialogue-runtime-lazy 的工作区已撤，状态记 PENDING，等代码池有位再起。TOOL-step-lazy-worktree 等 M1 之后、磁盘 ≥ 8 GiB 再起。
+  - **10-04 01:41–02:10 协调者**：
+    - AR-90 补充（0f15c65d）：阿朱是「遗憾的笑」，不是眉目含情。xiaojinghu-r5 先杀掉、再带更正续作，做出 r5 入库（362cda69），已发作者。
+    - lvliu-redo 按作者剧照重画绿柳庄，入库 30224ef9，已发作者。赵敏按原著改穿嫩绿女装，地牢是纯钢深井。
+    - hist-align：索菲娅脸用 A、身材改丰满（8de5d65a）；皇太极插图对齐（e898f5c7）。
+    - hist-batch2：21 人候选与三张总览已发作者，没入库。我建议徐达、常遇春穿戎装，不穿封王的红袍。图源已从 _prod 暂存目录同步到主检出 imagegen-reference/historical/。
+    - canon-align 完成，最后提交 b6121d2d：52 张图、56 处头部，含跨书 10 人。
+    - novel-audit 1/2/3 都完成，分别派了 novel-fix-1（w25）、novel-fix-2（w31）、novel-fix-3（w36）。hist-batch2 涉及的历史人物 base 这轮不改，等作者审完一起换。
+    - 清磁盘：删掉已结束 GPT 会话的 codex-home/sessions，以及出图器 home 下 90 分钟前的会话，腾出约 1.8 GiB，余量从 7.6 到 9.3 GiB。待作者决定的 huoqingtong-r2、hist-batch2 保留，正在跑的会话不碰。
+    - M1 已合入：ink-intents 87071d10、ch00b 6fb2b3fd、npc-species 58669ad2；singleton c427b147、storage-perf-split f94676ae 也已合入。
+      - ink-intents 合入后首次会话涨到 96.02，原因是对话意图进了首屏执行器，已登记 ENG-dialogue-runtime-lazy，目标 92 以下。
+    - 待作者：霍青桐 C/D/E；历史第二批 21 人。
