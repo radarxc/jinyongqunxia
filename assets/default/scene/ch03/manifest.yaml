@@ -319,40 +319,36 @@
   category: scene
   style: default
   subject: 郭襄生辰与神雕侠现身（ch03_shendiao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄蓉（神雕时期，三十七八岁）的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄蓉（神雕时期，三十七八岁）的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是郭襄的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中郭襄的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】这张插图画的是：郭襄生辰、群豪祝贺与神雕侠相认的编辑性概括构图（原创扩展构图，礼物明细和揭面地点动作待考）。中年杨过空右袖清楚，左手拿下朴素面具，目光温柔；成年化郭襄眉目清秀灵动，淡绿外衣、颈挂一串明珠，保持她本人的青春成年脸、不可复制黄蓉脸，惊喜看向杨过，双手自然合握、不捧虚构普通礼盒；后景黄蓉必须以本轮骨相清楚增龄到四十末至五十岁的母亲观感：眼尾与眼下细纹、自然鼻唇纹、脸颊略收，素雅盘起的已婚发髻，没有少女发饰，不磨皮。她与前景约二十岁观感的成年化郭襄必须有一代人的年龄差，绝不能读成同龄姐妹，保持两人独立骨相。黄蓉辨认故人。襄阳城门与温和灯火，无现代烟花大片、无纸盒礼物。
+    【要改成】与第1张定稿郭襄是同一个人：李绮红参考的五官、减淡法令纹、较瘦脸型、略大的笑眼、弯眼扬嘴的明亮笑容。保留第2张朝画面左上看杨过的头部姿态、露齿笑方向和夕阳光照，只改郭襄脸。
 
-    【要对齐的部分】黄蓉（神雕时期，三十七八岁）各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；同图杨过、黄蓉、围观众人完全不变；郭襄花饰、发式、耳饰、珍珠项链、衣服和手保持不变。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「襄阳献礼」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】（作者 AR-53 总审返修）中间淡黄衣的中年女子是黄蓉：圆脸和笑容保留，但现在显老十岁以上、眼偏小——改成三十七八岁的样子：皮肤更紧致、细纹很淡，眼睛像基线一样大而明亮。杨过、郭襄和其他人的脸不要动。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/female/ch03/por_npc_huangrong__ch03_prime_base.png
-    sha256: 072a75f7267230b7533e6ee783c3783f1ebddc8f7df11a65a073c9e1aa47bd24
-    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch03_prime_base（黄蓉（神雕时期，三十七八岁）），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_guoxiang__ch03_youth_base.png
+    sha256: 4d647735f95da9ef1058192aceec9922fd74d07fa515de5e19cee7af169c2169
+    use: 对脸基线：作者审核通过的 por_npc_guoxiang__ch03_youth_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch03/cg_ch03_xiangyang_gift.png
-    sha256: 89948903a0c4f2dba0a310eb19f98757c051762e499117a2ad5ef042e6b60444
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_gift.89948903.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T17:24:07-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_xiangyang_gift.s2.png
+    sha256: 34699a22df0904deec5f16dd9aecc30b87c6698999a69c019f925e68e71f1027
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch03_xiangyang_gift.34699a22.png
+  tool: w17 mkpatch.py / patch.py 本线副本重定向共享 w24 runner；显式郭襄框、对齐羽化、限制头部蒙版，其他人物像素完全保留
+  model: gpt-6.1-sol
+  created: 2026-10-03T23:16:13-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch03_xiangyang_gift.ar74gx1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 34699a22df0904deec5f16dd9aecc30b87c6698999a69c019f925e68e71f1027
+  sha256: ac30bfa994a5d72d90a08bc5ba385084cfd47b2c9448ed8ae309cdecd82c1936
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「襄阳献礼」，实际字形「襄陽献礼」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_guoxiang__ch03_youth_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch03_prime_base（AR-53 总审返修：黄蓉年龄与眼睛对齐壮年 base）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「襄阳献礼」，实际字形「襄陽献礼」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_guoxiang__ch03_youth_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch03_prime_base（AR-53 总审返修：黄蓉年龄与眼睛对齐壮年 base）；AR-53 / AR-72 / AR-74 郭襄定稿脸同步襄阳贺礼，仅局部合成郭襄头部，同图其他人逐像素不变
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_gift.89948903.png
-    sha256: 89948903a0c4f2dba0a310eb19f98757c051762e499117a2ad5ef042e6b60444
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_xiangyang_gift.89948903.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch03_xiangyang_gift.34699a22.png
+    sha256: 34699a22df0904deec5f16dd9aecc30b87c6698999a69c019f925e68e71f1027
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch03_xiangyang_gift.34699a22.entry.yaml
   runner_job_records:
   - - cg_ch03_xiangyang_gift.resume3r2
     - ok
@@ -360,4 +356,4 @@
     - '191'
     - exec-47c6e2f5-9f0f-4668-9873-b217a584040e.png
   runner_success_count: 1
-  effort: ultra
+  effort: xhigh
