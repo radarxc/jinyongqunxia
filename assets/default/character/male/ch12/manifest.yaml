@@ -869,83 +869,45 @@
   category: character/male
   style: default
   subject: 陈正德 npc_chenzhengde ch12_shujian
-  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes lie on a HORIZONTAL line. Keep the head centered over the torso, neck aligned with the body, chin neutral, gaze directly forward and camera level. NO head tilt, NO Dutch angle, no head leaning toward a shoulder, no rolled camera and no coquettish angled face. Ignore every reference image’s head angle, side-glance and body turn. Preserve natural facial asymmetry without tilting the head.
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是这张立绘的脸部特写（看清本人五官用）；第 2 张参考图是待改原图。请以第 2 张原图为底稿，只改人物的表情、眼神和嘴角，让神态变成：倔强好胜的老脾气：眉头微锁、眼神不服气，嘴角向下一撇，带一点赌气似的执拗（不笑）。然后输出修改后的完整图片：2:3 竖幅，构图、取景与原图一致。
 
+    【必须还是同一个人】脸型与骨相、眉形与眉眼间距、眼型、鼻子、嘴型与唇厚、胡须、皱纹、痣与疤、肤色、年龄感、发式与头饰都保持原图不变——只是同一张脸换了一个表情。表情要自然，面部肌肉随表情合理变化（笑时眼角、苹果肌、法令纹随之变化），但不要变年轻或变老、不要变胖或变瘦、不要换成另一张更好看的脸。
 
-    Create a refined REALISTIC hand-painted Chinese wuxia character illustration: a clear and individually designed face, believable natural age, continuous skin and anatomy, readable eyes and hands, soft connected lighting, complete opaque tailored garments, intact seams and a clean silhouette. Clothing has a few broad weight-bearing folds, fine restrained material variation and real gravity. Ink wash and paper texture belong only to the pale background, never inside the figure. This is a newly composed illustration, not a photograph, movie screenshot, 3D model or collage. Natural age lines are continuous skin anatomy, not dirt, cracks or dry-brush flecks.
+    【原图保持不变】除面部表情以外，原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景、光线方向与色调、纸底与水墨处理、笔触与画风。
 
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    THIS IS THE FIRST ORIGINAL IDENTITY IMAGE FOR THIS SUBJECT. No input supplies an identity, face, person, body, costume, prop or pose. Image 1 is the ONLY input: a person-free background derived from the user background, used ONLY for pale warm paper, extremely faint distant ink-wash mountains and open space. Establish this person solely from the specific written age, facial structure, expression, body, costume and stage below. Do not invent an identity-source claim or import another person’s face. The person remains fully realistic, intact and opaque; ink wash is confined to the background.
-
-
-    CHARACTER AND STAGE: 陈正德 / npc_chenzhengde, por_npc_chenzhengde__ch12_elder_alive_base.
-
-    《书剑恩仇录》ch12，天山双鹰之一的世俗老侠陈正德。取玉峰前辈相会、京师第20回终局死亡之前的在世阶段；本图不改写命定死亡，不暗示终局后普通复活。 本项目书界主线年代为1753–1759年、清乾隆；前史人物严格以其生前回忆阶段为准，不把回忆像当作现时活体。
-
-
-    AGE AND ORIGINAL FACE IDENTITY:
-
-    高瘦劲健的老年男性elder；明显秃顶、周边稀疏灰发、灰须，真实皱纹及清瘦老骨架并存。 独立高瘦长脸，额头突出且顶部明显光秃，眉骨挺立，灰白眉较浓但不飞扬长眉；眼裂中等偏窄、目光平视有倔强自尊。颧骨高而下颊瘦，鼻根高、鼻梁直长略有自然骨节，鼻尖有棱但不尖钩；嘴唇薄而紧闭，下颌较窄、下巴略长，短灰须呈整洁楔形保留下颌线。老年额纹、眼袋与口周纹连续真实，身躯劲瘦不干枯。秃顶不能被帽子、黑发高髻或画面裁边藏住；头颈依然竖直不仰头，神态不靠歪脸。
-
-
-    CLOTHING AND HAIR:
-
-    乾隆天山世俗老侠的深灰青完整长袍、褐色短外衣、窄布腰带、厚长裤与平底软靴。长袍侧襟向穿着者右方合拢，汉式交领如可见则左襟压右襟。头顶明显光秃，周边仅稀疏灰发、后部余发成短辫，此为当前主稿清代发式美术落实；不戴遮秃帽、道冠或僧人袈裟。衣料利落厚实不透明、连续缝边和宽缓褶，不碎墨破布化。
-
-
-    POSE, EQUIPMENT AND STRUCTURE:
-
-    正面头直、双眼水平，下巴中性，躯干正对观者，两脚稍错开而稳立。穿着者左腰只有一柄普通中式直身双刃剑，完整藏在足长朴素剑鞘中，剑柄—小横剑格—鞘口—鞘尾连续同轴。两条短挂带从布腰带承托剑鞘，尾端离地，所有端点入画；左手在低位轻扶鞘口附近不挡挂点，右手空着自然垂在身旁。无鹰鸟、鹰爪手套、羽翼、飞天姿态、伴侣或终局死伤。
-
-
-    ORIGINAL CHARACTER COLOR AND LIGHT:
-
-    深灰青袍与褐色短衣保持低饱和冷暖层次；柔和左上漫射光表现突额、挺立眉骨、高颧、劲瘦长脸、整洁楔形短灰须和明显秃顶，倔强自尊仅由水平目光与闭口体现。
-
-
-    COMPOSITION AND DELIVERY: one person, one view, full body from head to both shoes, both hands, entire hem and all specified prop endpoints comfortably inside the frame. Upright frontal head and body, relaxed level shoulders, believable grounded weight, neutral eye-level perspective. Vertical native 2:3 PNG, target 2048×3072, with natural margins; accept the tool’s actual native 2:3 size and record it truthfully. Preserve original PNG bytes, metadata and tool provenance; no upscaling, cropping or re-encoding to pretend compliance. Opaque warm pale-grey background with only extremely light distant ink-wash mountain/mist suggestions, generous empty space and a modest soft contact shadow. Background never erodes skin, clothes, shoes or equipment. No narrative scene, recognizable temple, building, other person or action effect. Soft upper-left diffuse light makes the face, hand joints, cloth and materials continuous and clearly readable. FAST1 production: first generate ONE candidate. Request
-    another only for a serious identity, structural or readability failure. Every result remains candidate for user review, never automatically approved.
-
-
-    FACT BOUNDARIES: 本图人物身份、年龄与剧情阶段沿当前本地角色稿、名录及故事事件。所选配角在当前已下载原版游戏语料中没有可靠本人头像配对，不等于断言所有版本从无头像。唯一输入为不含人物的派生纯背景参考；独立脸型五官、服色裁制与具体静态展示是原创美术，原稿待考照留，不冒称已逐字核对小说或实际观察到本人图片。项目基线原candidate/approved状态不变。
-
-
-    完整排除项：不要 head tilt、Dutch angle、头歪向肩、头部中线偏斜、双眼高低倾斜、倾斜镜头、仰头、俯首藏眼、明显侧脸、侧身回眸、斜脸卖萌或高耸单肩。不要复制任何参考人物的脸、年龄、体型、发型、服装、姿势或身份，不要统一年轻模板脸、网红尖下巴、动漫大眼、丰唇滤镜、浓妆、塑料磨皮、摄影写真、三维模型、截图或拼贴。不要将老人和中年人年轻化，真实年龄纹理不能变成龟裂或污渍。不要人物本体碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、断裂衣摆、破洞、毛边、碎布条、无依据尘污和过密细碎褶；不要用雾或墨迹藏住人体轮廓。不要现代服饰、拉链、腕表、运动鞋、数码物件、塑料饰品、高跟鞋、时代族群混搭、晚清大拉翅、唐式齐胸裙、无依据官服补子或飞鱼服。汉式交领不要左衽，不水平镜像。不要和服、日式前结宽腰带、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻甲、赛博或蒸汽朋克。不要新增无依据兵器、发光武器、光翼、龙形能量、法阵、粒子特效、强逆光或泛光。不要多人物、多视角、分格、头像插框、额外肢体、多指、粘手、错接手腕、手物融合、悬空装备、失重衣带、重复武器、断裂器物、过短刀剑鞘或裁断头足器物端点。不要裸露、透衣、性感化、夸张健美肌肉、血腥特写、恶搞或丑化。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书信字符或新增装饰水印；保留工具原有溯源信息。 清代发式依本角色文字，回部民间及女性易装不机械套汉地男子剃额留辫。 不要浓密黑发、全头高髻、道冠遮秃、和尚戒疤或袈裟；不要鹰头、翅膀、鹰鸟同框、飞天姿态；不要终局死伤、夫妻合照或青年脸。
-
-
-    FINAL POSE CHECK: 陈正德 is FRONT-FACING. Keep forehead–nose–chin vertically aligned, both eyes horizontally level, neck naturally upright and centered above the torso, shoulders relaxed and camera level. NO head tilt. NO Dutch angle. Ignore all input head angles. Preserve this person''s own written age and face anchors; No input supplies a face.'
-  negative: 不要 head tilt、Dutch angle、头歪向肩、头部中线偏斜、双眼高低倾斜、倾斜镜头、仰头、俯首藏眼、明显侧脸、侧身回眸、斜脸卖萌或高耸单肩。不要复制任何参考人物的脸、年龄、体型、发型、服装、姿势或身份，不要统一年轻模板脸、网红尖下巴、动漫大眼、丰唇滤镜、浓妆、塑料磨皮、摄影写真、三维模型、截图或拼贴。不要将老人和中年人年轻化，真实年龄纹理不能变成龟裂或污渍。不要人物本体碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、断裂衣摆、破洞、毛边、碎布条、无依据尘污和过密细碎褶；不要用雾或墨迹藏住人体轮廓。不要现代服饰、拉链、腕表、运动鞋、数码物件、塑料饰品、高跟鞋、时代族群混搭、晚清大拉翅、唐式齐胸裙、无依据官服补子或飞鱼服。汉式交领不要左衽，不水平镜像。不要和服、日式前结宽腰带、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻甲、赛博或蒸汽朋克。不要新增无依据兵器、发光武器、光翼、龙形能量、法阵、粒子特效、强逆光或泛光。不要多人物、多视角、分格、头像插框、额外肢体、多指、粘手、错接手腕、手物融合、悬空装备、失重衣带、重复武器、断裂器物、过短刀剑鞘或裁断头足器物端点。不要裸露、透衣、性感化、夸张健美肌肉、血腥特写、恶搞或丑化。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书信字符或新增装饰水印；保留工具原有溯源信息。 清代发式依本角色文字，回部民间及女性易装不机械套汉地男子剃额留辫。 不要浓密黑发、全头高髻、道冠遮秃、和尚戒疤或袈裟；不要鹰头、翅膀、鹰鸟同框、飞天姿态；不要终局死伤、夫妻合照或青年脸。
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。
   references:
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_background_only_20261002.png
-    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_background_only_20261002.png
-    use: 唯一图片输入，已实际view_image：root由用户原背景派生的不含人物纯背景，仅取暖浅灰纸底、极淡远山与宽阔留白。没有面孔、人体、衣服或道具可供身份借用；人物颜色、柔和光线、年龄和具体骨相全部依本稿文字。派生内部参考不是用户原图、不是approved；背景水墨不得侵入写实人物或器物。
-    sha256: a857748bb106bab0001e3c3a32a5bad5050d2488ca502cd1b773f3d1710ef195
-    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/a857748bb106bab0001e3c3a32a5bad5050d2488ca502cd1b773f3d1710ef195.png
-    status_at_input: null
-  tool: codex exec · image_gen
-  model: 会话执行模型待核实；不冒称底层成像模型
-  effort: 待核实
-  created: '2026-10-02T07:25:54.099494+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-fbf0573d-392d-4dd6-92ae-78772aec2ca1.png
+  - path: assets/default/character/male/ch12/por_npc_chenzhengde__ch12_elder_alive_base.png
+    sha256: 2c3348b5bb912f69c17095f41e05b6021881ffdd120aa7c37d147497712f8946
+    use: 待改原图（AR-58 神态（各书配角） 图像编辑只改表情，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenzhengde__ch12_elder_alive_base.2c3348b5.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角） · 12 号出图员：图像编辑只改表情、眼神、嘴角，上传本图脸部特写 + 原图，不加画风基线；编辑结果只取头部合成回原图）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T20:05:58-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_chenzhengde__ch12_elder_alive_base.x1.png
   size: 1024x1536
   mode: RGB
-  sha256: 2c3348b5bb912f69c17095f41e05b6021881ffdd120aa7c37d147497712f8946
+  sha256: 80e17d531954557f053690dfa182cb71681595f391a056d42fc284de0c5cfbca
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_chenzhengde__ch12_elder_alive_base/prompt-9ebe7e6fb5afa802f2e4e3b72327ee0955467cef3f5490027296ac745bb28af4.md
-    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_chenzhengde__ch12_elder_alive_base/manifest-7e83b52565afa28ab850f9c4093c0d82da206a67a8295825a7b28df1bc2f9990.yaml
-    png: null
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenzhengde__ch12_elder_alive_base.2c3348b5.png
+    sha256: 2c3348b5bb912f69c17095f41e05b6021881ffdd120aa7c37d147497712f8946
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_chenzhengde__ch12_elder_alive_base.2c3348b5.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_chenzhengde__ch12_elder_alive_base.requests.json
   notes: '实际目视首张：陈正德清瘦高颧长脸、明显秃顶及稀疏灰发、短楔形灰须，老年纹理与倔强严肃神态成立，无帽子遮秃、不像僧人。正面头直眼平，灰青袍褐色短外衣，左手腰侧仅一柄入鞘长剑、右手空垂，双手双足完整，无多肢/重大结构问题。剑鞘稍弯且铜纹/流苏偏多、衣袍细褶偏多，后部辫子只见侧缘不能全核，按FAST记录不追加。符合玉峰在世阶段，不呈死亡/复活或双人形象。保存原生PNG原字节为candidate，不称approved或严格装备完全通过。
 
     本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
 
-    ART-cast-fill-b：从主检出原字节补入缺失候选，联系表复核；历史参考方式与轻微偏差原样保留，不冒称本轮新生成。'
+    ART-cast-fill-b：从主检出原字节补入缺失候选，联系表复核；历史参考方式与轻微偏差原样保留，不冒称本轮新生成。；AR-58 神态（各书配角）（12 号出图员）：只改表情、眼神、嘴角 → 倔强好胜的老脾气：眉头微锁、眼神不服气，嘴角向下一撇，带一点赌气似的执拗（不笑）（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）'
   tier: A
+  source_size: 1024x1536
 - id: por_npc_huoayi__ch12_prime_alive_base
   file: por_npc_huoayi__ch12_prime_alive_base.png
   category: character/male
