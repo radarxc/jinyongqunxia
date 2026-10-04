@@ -2106,4 +2106,12 @@
       - **CONTENT-map-poi**（驱动 49253）：新文件 `docs/design/map/pois.yaml`，带来源、置信度、书界；通用 UA。审核要点 `review_checks_map_poi.md`。
       - **TOOL-map-compose**：依赖前三件，本轮出样区；前三件合入后由开发监督或 ops-dispatch 起。
     - AR-67 整张 Codex 区域图暂停；已入库的 20 张 Gemini 区域图留作占位。
+  - **10-03 20:45–20:48 开发监督**：
+    - TOOL-map-terrain / compose 的说明补了 Gemini 出图员的数据侧交接（fda2eb07）：
+      - 参考文件：`.agents/coord/gemini_qa/maps/HANDOFF_CODEX.md` 与 `region_frames.json`；复用投影、NE 读取、起伏度实现，用 overlay2 质检；
+      - compose 要先核对各区取景框（漠北、辽东、东海诸岛、南海诸岛几处可疑），异常交协调者，不改 regions.yaml。
+      - terrain 没起过执行器，停掉自己起的驱动、删掉干净工作区后用新说明重起，驱动 75811。
+    - **ENG-session-base-diet r1 FAIL**，是真 bug：闭包已降到 73.52，但 `item-content.ts` 用原始 schema 解析编译后的叶片，ch10 包加载不了。
+      - 返修已排队。协调者同意名单改为 ops-dispatch → base-diet → map-terrain，M1 链优先。
+      - base-diet 合入后，等待器会自动给 gates-data 挪基点、重新校验，要留意它能不能过。
 
