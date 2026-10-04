@@ -1,0 +1,537 @@
+- category: vfx
+  style: default
+  negative: 无人物、兵器、场景、地面、硬阴影、文字、编号、水印、格线；不以代码补画轮廓。
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-0af94637-7906-47a3-bccc-277a31bbdceb.png
+  model: 未回传（内置 image_gen 未披露后端型号）
+  effort: 未回传
+  created: '2026-10-03'
+  status: candidate
+  id: vfx_sk_tiangang__family_base01
+  file: effect/family/source_sheet.png
+  size: 1536x1024
+  sha256: e59c844485f7445810305e4426e8137909ad109aedaa7f05dac02e6ab84ae8ec
+  subject: 天罡北斗阵 · 斗柄星链与掌面聚气区；射雕 / 神雕全真阵法意象（原创扩展）
+  prompt: 'Initial generation request:
+
+    Use case: stylized-concept.
+
+    Asset type: production VFX sprite sheet for Chinese wuxia game, Tiangang Beidou formation family (天罡北斗阵); original visual adaptation, not an illustration of a quoted novel passage.
+
+    Generate one white-background image, landscape 1536x1024, exactly FOUR animation frames in a precise 2-column by 2-row grid, cells 768x512, no drawn borders or labels. All 4 cells show the SAME rightward-facing short formation
+    aura, growing gently from gathering, established form, peak, fading. Preserve the same silhouette and root.
+
+    In EACH cell the root is a broad soft vermilion mist crescent at local (120,256), visible root height about 140 pixels. Connected translucent cinnabar-red ink ribbons flow from that root toward the right into a low oblique
+    oval arrangement. Seven restrained luminous reddish star knots connected by delicate curved red brushstroke lines suggest the Big Dipper: four form a crooked bowl on the right and three form its bent handle connecting
+    back toward the root. This is an atmospheric martial formation aura, NOT an astronomical diagram. Keep all seven knots readable in the middle two frames. Open airy negative space between threads, ragged dry-brush detail,
+    diluted red ink haze, darker red inner accents, tiny pale warm red highlights. Main hue yang red #D9483B; no dominating gold, blue or black. Elegant Chinese ink-wash, intangible flowing qi, no neon hard outlines, no solid
+    objects, no huge explosion. Every cell must have pure white background RGB 255,255,255 and generous margins: all art inside local x=72..688, y=96..416; no pixels touching cell borders. Root at left, motion strictly left
+    to right, none of the four images reversed or rotated. Fully isolated effect only: no hand, no person, no weapon, no scenery, no ground, no stars outside the effect, no shadow, no text, numbers, watermarks, arrows, dividers
+    or decorative frame.
+
+
+    Selected candidate 2 edit request:
+
+    Use case: precise-object-edit. Edit this existing wuxia VFX four-frame sprite sheet. Keep its exact 1536x1024 canvas, 2x2 cell layout, all four silhouettes, root positions, palette, ink texture and direction unchanged.
+    Change ONLY the small star-knot centers: replace ALL white, near-white or pale shining cores with solid saturated dark cinnabar-red cores, approximately #CC392D, softer salmon-red surroundings. No white painted highlights
+    inside any star, no pale starburst crosses; stars should be red ink knots, not white light sources. Transparent negative spaces between ink threads remain pure white background, but the knot centers must be colored red
+    and never holes. Keep the pure white background and cell margins unchanged. No new shapes, hand, text, labels or borders.'
+  tool: codex · image_gen（内置工具）
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-4dc1f67c-216b-49ea-9fb4-ffd9a9f0dfbb.png
+  candidate_count: 2
+  selected_candidate: 2
+  frame_count: 4
+  effect_set: effect/family/effect-set.yaml
+  notes: 每套两候选选二；已解决首次近白星心抠空，改为赤色墨结。阳赤依据图鉴 yang，颜色与轮廓均为原创扩展；原料留白与逐帧根部偏移见 README，原件逐字节保存。
+  files:
+  - effect/family/effect-set.yaml
+  - effect/family/frame_000.png
+  - effect/family/frame_001.png
+  - effect/family/frame_002.png
+  - effect/family/frame_003.png
+  - effect/family/preview_black.png
+  - effect/family/preview_gray.png
+  - effect/family/preview_white.png
+  - effect/family/prompt.txt
+  - effect/family/prompt_edit.txt
+  - effect/family/quality.json
+  - effect/family/source_sheet.png
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 981
+    sha256: eb3a4831e14efb21be492e28de1e160b677f01ff27751de4dc2d742f8d6aa7f7
+  - file: effect/family/frame_000.png
+    bytes: 178416
+    sha256: 87a2653092b6f564460ec3bc116c6ed6e86bae239e2cbfb038be7db9c85f196a
+  - file: effect/family/frame_001.png
+    bytes: 206424
+    sha256: 614eb78fbd3af1b5d7a133bfe6d8c081371414989c09ce92b020b6bfbaa95337
+  - file: effect/family/frame_002.png
+    bytes: 288039
+    sha256: b285db0fc88e4e08afb5401edf73edbdc5380fb5ddc22ebb535e64c5de1dfa3e
+  - file: effect/family/frame_003.png
+    bytes: 195850
+    sha256: 4555151f8343a1a5f7f5bdd2444cef03ae0c96719cf0799612e74adfa99d1549
+  - file: effect/family/preview_black.png
+    bytes: 648950
+    sha256: 41094207d3dbe4aa2cc501d2ac5d8bfc489ff1c66c7d156b8054f72037e6e747
+  - file: effect/family/preview_gray.png
+    bytes: 634400
+    sha256: 0ddb66625bad5b5b181e77eb55bfd9d7d03a30de68bdfb69e78275cfd6d8ab66
+  - file: effect/family/preview_white.png
+    bytes: 632285
+    sha256: c45b6c2c05f245b3a890408496c731c905e51d4e8173889be545383e25630f36
+  - file: effect/family/prompt.txt
+    bytes: 1903
+    sha256: c7d7212c8676b60c02b2da8bcdcac2a31eda8981b5f40a5e775906b1bbc6184a
+  - file: effect/family/prompt_edit.txt
+    bytes: 782
+    sha256: 6395199ab80950cda06824aadf2349c95fd4ccef9d17a1797fcec66c016db34f
+  - file: effect/family/quality.json
+    bytes: 1032
+    sha256: fb9ebbcfb72e9fd96735306c398042f7fd2db2fa8c237d30e3f776b020b88262
+  - file: effect/family/source_sheet.png
+    bytes: 1732191
+    sha256: e59c844485f7445810305e4426e8137909ad109aedaa7f05dac02e6ab84ae8ec
+  candidates:
+  - candidate: 1
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-0af94637-7906-47a3-bccc-277a31bbdceb.png
+    selected: false
+    reason: 近白星心去白后出现小孔，第二候选改为赤色墨结
+  - candidate: 2
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-4dc1f67c-216b-49ea-9fb4-ffd9a9f0dfbb.png
+    selected: true
+- category: vfx
+  style: default
+  negative: 无人物、兵器、场景、地面、硬阴影、文字、编号、水印、格线；不以代码补画轮廓。
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-40f4b9ee-3e05-4a5c-9fe4-572e10bc4f74.png
+  model: 未回传（内置 image_gen 未披露后端型号）
+  effort: 未回传
+  created: '2026-10-03'
+  status: candidate
+  id: vfx_sk_tiangang__mv_tiangang_guiyi_base01
+  file: effect/mv_tiangang_guiyi/source_sheet.png
+  size: 1536x1024
+  sha256: f419c891a55123cb424ace130b36a290f0acce2509259a2312cdfa5dcff4d5c7
+  subject: 天罡北斗阵 · 多股星流归于一处；射雕 / 神雕全真阵法意象（原创扩展）
+  prompt: 'Initial generation request:
+
+    Use case: stylized-concept.
+
+    Asset type: production VFX sprite sheet for Chinese wuxia game, 天罡归一 ultimate of Tiangang Beidou formation. An original visual metaphor of seven forces uniting, not a claimed novel illustration.
+
+    Generate ONE 1536x1024 white-background image with FOUR equal 768x512 animation cells in a strict 2 by 2 grid, no drawn grid. Read order top left, top right, bottom left, bottom right: gathering, stable, peak, fading.
+    All frames keep the same root, silhouette, direction and size, just subtly change wisps and density.
+
+    Each frame: a broad translucent vermilion qi root at local x=128, y=256, about 170 pixels high. Seven elegant distinct cinnabar ink currents leave the broad root, sweep RIGHT as seven bowed threads, and converge at local
+    (624,256) into ONE compact red star knot, suggesting a sevenfold formation combining its force. The paths fan only moderately vertically and stay linked to the root in every frame. Red star knots on the paths, refined
+    ink filaments around the center, open transparent voids, smoky tapering fringes, bright but visibly colored warm-red core. A compact horizontal converging spindle, NOT a fireball, not a sword, no continuous laser and no
+    explosion. Soft ink wash with dry brush edges and translucent red layers. Primary hue yang vermilion #D9483B, darker red structure, a trace of warm pale red, no dominant yellow/gold/blue. Frame 1 faint, frame 2 established,
+    frame 3 strongest, frame 4 thin but still connected. Keep every pixel of art within x=64..704 and y=72..440 of each cell, with pure white #FFFFFF blank background all around. No hand, person, weapon, background scenery,
+    floor, shadows, numbers, labels, text, watermark, dividing lines or borders.
+
+
+    Selected candidate 2 edit request:
+
+    Use case: precise-object-edit. Edit this existing four-frame Tiangang Guiyi red ink VFX sheet. Keep exactly the same 1536x1024 canvas, four 768x512 cells in 2x2, roots, curves, colors, texture, direction and anatomy of
+    the effect. Change ONLY ALL bright star-knot centers and the final converging point in EACH cell: replace white or near-white glowing cores and white starburst crosses with saturated cinnabar-red solid ink cores approximately
+    #CC392D, surrounded by softer red ink. No painted white highlights, no pale glowing starbursts, no hollow centers. Every knot must have colored red pigment at its center. Preserve white background and all white negative
+    space between strands. Do not add, remove or reposition strands or knots. No text, labels, new objects, person, hand, grid or border.'
+  tool: codex · image_gen（内置工具）
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-68cebab2-cf19-4fb9-8746-393764264aa8.png
+  candidate_count: 2
+  selected_candidate: 2
+  frame_count: 4
+  effect_set: effect/mv_tiangang_guiyi/effect-set.yaml
+  notes: 每套两候选选二；已解决首次近白星心抠空，改为赤色墨结。阳赤依据图鉴 yang，颜色与轮廓均为原创扩展；原料留白与逐帧根部偏移见 README，原件逐字节保存。
+  files:
+  - effect/mv_tiangang_guiyi/effect-set.yaml
+  - effect/mv_tiangang_guiyi/frame_000.png
+  - effect/mv_tiangang_guiyi/frame_001.png
+  - effect/mv_tiangang_guiyi/frame_002.png
+  - effect/mv_tiangang_guiyi/frame_003.png
+  - effect/mv_tiangang_guiyi/preview_black.png
+  - effect/mv_tiangang_guiyi/preview_gray.png
+  - effect/mv_tiangang_guiyi/preview_white.png
+  - effect/mv_tiangang_guiyi/prompt.txt
+  - effect/mv_tiangang_guiyi/prompt_edit.txt
+  - effect/mv_tiangang_guiyi/quality.json
+  - effect/mv_tiangang_guiyi/source_sheet.png
+  file_integrity:
+  - file: effect/mv_tiangang_guiyi/effect-set.yaml
+    bytes: 992
+    sha256: d59f0726ac8a0621fed9468d3518d099e8725e05f5547397ff933ac5755fac82
+  - file: effect/mv_tiangang_guiyi/frame_000.png
+    bytes: 268121
+    sha256: 70109a0fc8e422f246694fa59f0d68a91526f4ad41c980c8ed7924b50164f697
+  - file: effect/mv_tiangang_guiyi/frame_001.png
+    bytes: 282869
+    sha256: ca4d383d86b07ff8332150b13cca28aae8eb5b4de639b753643f9bb7b44eb57a
+  - file: effect/mv_tiangang_guiyi/frame_002.png
+    bytes: 355452
+    sha256: 6c6776987d97f7e1414983d7fcb9dd07c885d546c0978cb935138ced07a684b2
+  - file: effect/mv_tiangang_guiyi/frame_003.png
+    bytes: 246728
+    sha256: d4f18d27a61a6fde94646126ca2cf7138c37e665d7aceb4de05ce04046dcdca5
+  - file: effect/mv_tiangang_guiyi/preview_black.png
+    bytes: 866188
+    sha256: f2b5db04f8a347132cd8529d9321b1ac7e637e464de7518dff4f107abdb679a6
+  - file: effect/mv_tiangang_guiyi/preview_gray.png
+    bytes: 850270
+    sha256: cd8c27b4a6d3a9f9eac990ea241904679f84344d89da795ea739941d3d933620
+  - file: effect/mv_tiangang_guiyi/preview_white.png
+    bytes: 854341
+    sha256: e96b754777f4d1872326de1623ef23ed079ae0d1610a64b47016679e2fc611af
+  - file: effect/mv_tiangang_guiyi/prompt.txt
+    bytes: 1730
+    sha256: fb049ac49883173cb85785058d5b0b6b530da5766329883a4869f433b94bd094
+  - file: effect/mv_tiangang_guiyi/prompt_edit.txt
+    bytes: 799
+    sha256: a0fdca831103aa471f9a2910df8ff27098fe25f525f3bd8190cc78865ffdc95a
+  - file: effect/mv_tiangang_guiyi/quality.json
+    bytes: 1033
+    sha256: 135aa2b5e7fc5c95c9eadb59db13ae04c1277e0b4634518649073e695eb4ae3a
+  - file: effect/mv_tiangang_guiyi/source_sheet.png
+    bytes: 1771116
+    sha256: f419c891a55123cb424ace130b36a290f0acce2509259a2312cdfa5dcff4d5c7
+  candidates:
+  - candidate: 1
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-40f4b9ee-3e05-4a5c-9fe4-572e10bc4f74.png
+    selected: false
+    reason: 近白星心去白后出现小孔，第二候选改为赤色墨结
+  - candidate: 2
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-68cebab2-cf19-4fb9-8746-393764264aa8.png
+    selected: true
+- category: vfx
+  style: default
+  negative: 无人物、兵器、场景、地面、硬阴影、文字、编号、水印、格线；不以代码补画轮廓。
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-311b9a74-e88a-42c1-a747-26d34e9e3093.png
+  model: 未回传（内置 image_gen 未披露后端型号）
+  effort: 未回传
+  created: '2026-10-03'
+  status: candidate
+  id: vfx_sk_tiangang__mv_tiangang_hewei_base01
+  file: effect/mv_tiangang_hewei/source_sheet.png
+  size: 1536x1024
+  sha256: dd77da2d1e6697167d6efe9a4118214c1e7723bd8a2cd279d89fe179ff0d6d57
+  subject: 天罡北斗阵 · 七个主要星结内收合围；射雕 / 神雕全真阵法意象（原创扩展）
+  prompt: 'Initial generation request:
+
+    Use case: stylized-concept.
+
+    Asset type: production VFX sprite sheet for Chinese wuxia game, 七星合围 ultimate of Tiangang Beidou formation, original adaptation of sevenfold encirclement imagery.
+
+    Create ONE 1536x1024 white background image divided invisibly into exactly FOUR equal 768x512 cells (2 columns, 2 rows). No drawn cell borders. The four cells show coherent successive phases of the same compact red formation:
+    light gathering, established enclosure, stronger peak, soft fading; same size, camera, position, connected root and shape in all four.
+
+    Each cell has a broad translucent red qi root centered at local (128,256), root height about 160px. From it, two elegant rightward vermilion ink ribbons sweep apart then curl back toward one another into a compact oblique
+    oval enclosing empty white space. SEVEN small reddish star knots distributed along these circling curved ribbons evoke seven formation positions closing around a center. Rightmost curling edge at about local (650,256);
+    center around (430,256); whole aura inside local x=64..704 y=80..432. Top and lower arcs turn inward at the right edge, visibly encircling rather than shooting straight. Delicate fragmented inner threads imply coordinated
+    movement, spacious open center, broad soft root remains attached at left. Ink painting with translucent cinnabar layers, subtle ink bleed, dry brush edges and red smoke, refined martial energy. Primary yang red #D9483B
+    with darker vermilion structure and very small pale warm red highlights; no gold-dominant aura, no blue, no black mass, no laser, no hard geometric magic circle, no runes. Pure RGB 255 white background, wide blank margins
+    on all sides in every cell. Isolated effect only: no hand, person, weapon, landscape, ground, shadow, text, labels, numbers, grid, border, arrows, watermark.
+
+
+    Selected candidate 2 edit request:
+
+    Use case: precise-object-edit. Edit this existing four-frame Tiangang Hewei seven-node red ink encirclement VFX sheet. Keep exactly the same 1536x1024 canvas, 2x2 four cells, oval rings, seven major knots in each frame,
+    roots, direction, ink texture and red color. Change ONLY ALL bright star-knot centers: replace white or near-white shining cores, pale starbursts and light crosses with solid saturated cinnabar-red cores approximately
+    #CC392D. They should be colored red ink knots with softly shaded red surroundings, not white lights or hollow beads. No white painted highlights inside any knot. White background and negative space between strands remain
+    pure white. Do not add, remove or reposition any node, ring or root. No text, labels, new objects, person, hand, grid or border.'
+  tool: codex · image_gen（内置工具）
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-b40a9e87-c6a5-4269-9fb8-7c2603e4be68.png
+  candidate_count: 2
+  selected_candidate: 2
+  frame_count: 4
+  effect_set: effect/mv_tiangang_hewei/effect-set.yaml
+  notes: 每套两候选选二；已解决首次近白星心抠空，改为赤色墨结。阳赤依据图鉴 yang，颜色与轮廓均为原创扩展；原料留白与逐帧根部偏移见 README，原件逐字节保存。
+  files:
+  - effect/mv_tiangang_hewei/effect-set.yaml
+  - effect/mv_tiangang_hewei/frame_000.png
+  - effect/mv_tiangang_hewei/frame_001.png
+  - effect/mv_tiangang_hewei/frame_002.png
+  - effect/mv_tiangang_hewei/frame_003.png
+  - effect/mv_tiangang_hewei/preview_black.png
+  - effect/mv_tiangang_hewei/preview_gray.png
+  - effect/mv_tiangang_hewei/preview_white.png
+  - effect/mv_tiangang_hewei/prompt.txt
+  - effect/mv_tiangang_hewei/prompt_edit.txt
+  - effect/mv_tiangang_hewei/quality.json
+  - effect/mv_tiangang_hewei/source_sheet.png
+  file_integrity:
+  - file: effect/mv_tiangang_hewei/effect-set.yaml
+    bytes: 992
+    sha256: 7bcc59f3fda155b655fca2724a40aa8b49c06931786af29dc6eb5450673ae514
+  - file: effect/mv_tiangang_hewei/frame_000.png
+    bytes: 253664
+    sha256: ff4b2e822d31219d3bbcbf92a73b3c5c245eb41f1afff16f2d7ee09e6297ef19
+  - file: effect/mv_tiangang_hewei/frame_001.png
+    bytes: 295733
+    sha256: 4343186eca1b1da45c9f526e1dfc23306bd803abfa92c702a7216acfe96ecbcf
+  - file: effect/mv_tiangang_hewei/frame_002.png
+    bytes: 347248
+    sha256: 0a115b2641baeec8f2847f3874507cb27d403564dd99673e74fe71870b1127ad
+  - file: effect/mv_tiangang_hewei/frame_003.png
+    bytes: 269614
+    sha256: d1ccd2c5e1b910b064f5ef3a7cf8cd17ea506c51bcc3d203b895948f86b0e11f
+  - file: effect/mv_tiangang_hewei/preview_black.png
+    bytes: 874553
+    sha256: 22cc41b4412311db79a3c8d02605b292c17bb239e3c239cd02d13f4ba7cc1599
+  - file: effect/mv_tiangang_hewei/preview_gray.png
+    bytes: 856172
+    sha256: add1ed06ceb67ce6c5db5979a801169fa1a3e5067c6aec279e6b2fe9e9fea8c1
+  - file: effect/mv_tiangang_hewei/preview_white.png
+    bytes: 839242
+    sha256: b075770922f0818318d9c476bb6f90d9d5a761d46fff9fe5dff1fa49521d078d
+  - file: effect/mv_tiangang_hewei/prompt.txt
+    bytes: 1822
+    sha256: aca210ca69435828788a5ad6212ab0a9bba7f80b15ee186c1c67340bfc224c6d
+  - file: effect/mv_tiangang_hewei/prompt_edit.txt
+    bytes: 788
+    sha256: c35871939fddac8c7700ef8d2784134b80243036a52b5206a5a27abbfc4bbc06
+  - file: effect/mv_tiangang_hewei/quality.json
+    bytes: 1032
+    sha256: 40dbe6f4d481390ecdd6dd4733f6a20b8d95754544437566480e7a83d3ead127
+  - file: effect/mv_tiangang_hewei/source_sheet.png
+    bytes: 1814292
+    sha256: dd77da2d1e6697167d6efe9a4118214c1e7723bd8a2cd279d89fe179ff0d6d57
+  candidates:
+  - candidate: 1
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-311b9a74-e88a-42c1-a747-26d34e9e3093.png
+    selected: false
+    reason: 近白星心去白后出现小孔，第二候选改为赤色墨结
+  - candidate: 2
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiangang/codex-home/generated_images/01a10454-e4a6-7953-a4f1-26c411142ab1/exec-b40a9e87-c6a5-4269-9fb8-7c2603e4be68.png
+    selected: true
+- category: vfx
+  style: default
+  negative: 无人物、兵器、场景、地面、硬阴影、文字、编号、水印、格线；不以代码补画轮廓。
+  references:
+  - effect/family/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  model: 不适用（确定性合成；原料由 image_gen 生成）
+  effort: 不适用（确定性合成）
+  created: '2026-10-03'
+  status: candidate
+  id: vfx_mv_tiangang_buzhen__base01
+  file: moves/mv_tiangang_buzhen/peak.png
+  size: 1536x1024
+  sha256: 943aaad01dff16e250a949b9af8bfaefcaa6dbf16437f52287ed6d07a15f371e
+  subject: 天罡北斗阵 · 布阵；射雕 / 神雕全真阵法，视觉为原创扩展
+  prompt: 由 moves/mv_tiangang_buzhen/composition.yaml 指定共享 palm 与 effect/family 原料，按 design/23 §4–6 合成静态峰值及 Three.js 演示；完整生成提示词见 effect/family/prompt.txt。
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  source_path: assets/default/vfx/sk_tiangang/moves/mv_tiangang_buzhen/composition.yaml
+  pipeline: two-part
+  code: moves/mv_tiangang_buzhen/demo.html
+  skill_ref: sk_tiangang
+  move_ref: mv_tiangang_buzhen
+  ultimate: false
+  projection: false
+  nature: yang
+  delivery: inner
+  effect_set: effect/family/effect-set.yaml
+  notes: length=320 px；range_hex=0；节奏pulse 0.60 s（建议值）。未声明外放，不扩命中范围；共享掌图只引用。
+  files:
+  - moves/mv_tiangang_buzhen/composition.json
+  - moves/mv_tiangang_buzhen/composition.yaml
+  - moves/mv_tiangang_buzhen/demo.html
+  - moves/mv_tiangang_buzhen/peak.png
+  file_integrity:
+  - file: moves/mv_tiangang_buzhen/composition.json
+    bytes: 3352
+    sha256: 42682d086ee7cdea2e4706446cdef06cf102276d3c7776dbf7b426b65a1714a7
+  - file: moves/mv_tiangang_buzhen/composition.yaml
+    bytes: 849
+    sha256: aafbdf0875f7aaea1b5d5bbd3e5e5b9cc25c7075bced44a9699d040ede052deb
+  - file: moves/mv_tiangang_buzhen/demo.html
+    bytes: 1694751
+    sha256: b48b837596862f7080676118919cbd26f87349edb0f4481b5735caa8b1b8356f
+  - file: moves/mv_tiangang_buzhen/peak.png
+    bytes: 328923
+    sha256: 943aaad01dff16e250a949b9af8bfaefcaa6dbf16437f52287ed6d07a15f371e
+- category: vfx
+  style: default
+  negative: 无人物、兵器、场景、地面、硬阴影、文字、编号、水印、格线；不以代码补画轮廓。
+  references:
+  - effect/family/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  model: 不适用（确定性合成；原料由 image_gen 生成）
+  effort: 不适用（确定性合成）
+  created: '2026-10-03'
+  status: candidate
+  id: vfx_mv_tiangang_doubing__base01
+  file: moves/mv_tiangang_doubing/peak.png
+  size: 1536x1024
+  sha256: dc0410807bc444510e363b84e04d3f3ddb590feeb6b43e539c90777c7a627aa7
+  subject: 天罡北斗阵 · 斗柄回旋；射雕 / 神雕全真阵法，视觉为原创扩展
+  prompt: 由 moves/mv_tiangang_doubing/composition.yaml 指定共享 palm 与 effect/family 原料，按 design/23 §4–6 合成静态峰值及 Three.js 演示；完整生成提示词见 effect/family/prompt.txt。
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  source_path: assets/default/vfx/sk_tiangang/moves/mv_tiangang_doubing/composition.yaml
+  pipeline: two-part
+  code: moves/mv_tiangang_doubing/demo.html
+  skill_ref: sk_tiangang
+  move_ref: mv_tiangang_doubing
+  ultimate: false
+  projection: false
+  nature: yang
+  delivery: inner
+  effect_set: effect/family/effect-set.yaml
+  notes: length=360 px；range_hex=0；节奏pulse 0.60 s（建议值）。未声明外放，不扩命中范围；共享掌图只引用。
+  files:
+  - moves/mv_tiangang_doubing/composition.json
+  - moves/mv_tiangang_doubing/composition.yaml
+  - moves/mv_tiangang_doubing/demo.html
+  - moves/mv_tiangang_doubing/peak.png
+  file_integrity:
+  - file: moves/mv_tiangang_doubing/composition.json
+    bytes: 3355
+    sha256: d5f5e680fb4041b9508e3a52aaa836bebd7ec05ef6cb17cecf1b517bb49c6433
+  - file: moves/mv_tiangang_doubing/composition.yaml
+    bytes: 852
+    sha256: ba6ce996945afb9537d27a2d0fed1c2491e2addb5dc141336957c85d34a2aa5d
+  - file: moves/mv_tiangang_doubing/demo.html
+    bytes: 1705636
+    sha256: 138df0b6b40e7f9142b6f37afce55423bff477d5265b3406ca8b5779b1ef690d
+  - file: moves/mv_tiangang_doubing/peak.png
+    bytes: 340569
+    sha256: dc0410807bc444510e363b84e04d3f3ddb590feeb6b43e539c90777c7a627aa7
+- category: vfx
+  style: default
+  negative: 无人物、兵器、场景、地面、硬阴影、文字、编号、水印、格线；不以代码补画轮廓。
+  references:
+  - effect/mv_tiangang_guiyi/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  model: 不适用（确定性合成；原料由 image_gen 生成）
+  effort: 不适用（确定性合成）
+  created: '2026-10-03'
+  status: candidate
+  id: vfx_mv_tiangang_guiyi__base01
+  file: moves/mv_tiangang_guiyi/peak.png
+  size: 1536x1024
+  sha256: a4259973d4e2aa48464e6314f9ca9c743f939c4789e3162b7a37c2f75140c813
+  subject: 天罡北斗阵 · 天罡归一；射雕 / 神雕全真阵法，视觉为原创扩展
+  prompt: 由 moves/mv_tiangang_guiyi/composition.yaml 指定共享 palm 与 effect/mv_tiangang_guiyi 原料，按 design/23 §4–6 合成静态峰值及 Three.js 演示；完整生成提示词见 effect/mv_tiangang_guiyi/prompt.txt。
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  source_path: assets/default/vfx/sk_tiangang/moves/mv_tiangang_guiyi/composition.yaml
+  pipeline: two-part
+  code: moves/mv_tiangang_guiyi/demo.html
+  skill_ref: sk_tiangang
+  move_ref: mv_tiangang_guiyi
+  ultimate: true
+  projection: false
+  nature: yang
+  delivery: inner
+  effect_set: effect/mv_tiangang_guiyi/effect-set.yaml
+  notes: length=640 px；range_hex=2；节奏wave 0.90 s（建议值）。未声明外放，不扩命中范围；共享掌图只引用。
+  files:
+  - moves/mv_tiangang_guiyi/composition.json
+  - moves/mv_tiangang_guiyi/composition.yaml
+  - moves/mv_tiangang_guiyi/demo.html
+  - moves/mv_tiangang_guiyi/peak.png
+  file_integrity:
+  - file: moves/mv_tiangang_guiyi/composition.json
+    bytes: 3371
+    sha256: ee076bf5f3dae0fe8e5e1e6770630ecb7dfca88c6f0214926c19d65277c061a5
+  - file: moves/mv_tiangang_guiyi/composition.yaml
+    bytes: 857
+    sha256: 3139cb293c0095adaadad6989f39c83c698ed46f948c1fdc103db4e0ec13ec0c
+  - file: moves/mv_tiangang_guiyi/demo.html
+    bytes: 2118064
+    sha256: 561b636877f89c91a476267f5807d23b355d2fef32e2e5b6af0e2749d41c84e3
+  - file: moves/mv_tiangang_guiyi/peak.png
+    bytes: 415918
+    sha256: a4259973d4e2aa48464e6314f9ca9c743f939c4789e3162b7a37c2f75140c813
+- category: vfx
+  style: default
+  negative: 无人物、兵器、场景、地面、硬阴影、文字、编号、水印、格线；不以代码补画轮廓。
+  references:
+  - effect/mv_tiangang_hewei/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  model: 不适用（确定性合成；原料由 image_gen 生成）
+  effort: 不适用（确定性合成）
+  created: '2026-10-03'
+  status: candidate
+  id: vfx_mv_tiangang_hewei__base01
+  file: moves/mv_tiangang_hewei/peak.png
+  size: 1536x1024
+  sha256: 6df464fa3298be33800a91cf144974ed751c45a02b884f8f4fa62d018b3b8f08
+  subject: 天罡北斗阵 · 七星合围；射雕 / 神雕全真阵法，视觉为原创扩展
+  prompt: 由 moves/mv_tiangang_hewei/composition.yaml 指定共享 palm 与 effect/mv_tiangang_hewei 原料，按 design/23 §4–6 合成静态峰值及 Three.js 演示；完整生成提示词见 effect/mv_tiangang_hewei/prompt.txt。
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  source_path: assets/default/vfx/sk_tiangang/moves/mv_tiangang_hewei/composition.yaml
+  pipeline: two-part
+  code: moves/mv_tiangang_hewei/demo.html
+  skill_ref: sk_tiangang
+  move_ref: mv_tiangang_hewei
+  ultimate: true
+  projection: false
+  nature: yang
+  delivery: inner
+  effect_set: effect/mv_tiangang_hewei/effect-set.yaml
+  notes: length=320 px；range_hex=1；节奏wave 0.90 s（建议值）。未声明外放，不扩命中范围；共享掌图只引用。
+  files:
+  - moves/mv_tiangang_hewei/composition.json
+  - moves/mv_tiangang_hewei/composition.yaml
+  - moves/mv_tiangang_hewei/demo.html
+  - moves/mv_tiangang_hewei/peak.png
+  file_integrity:
+  - file: moves/mv_tiangang_hewei/composition.json
+    bytes: 3371
+    sha256: dca9cc729df3cf1d6a8b584b4d40eb8f86b4be1ac44915fccf7fd2c76bbbcb5a
+  - file: moves/mv_tiangang_hewei/composition.yaml
+    bytes: 857
+    sha256: 5c50b1c4d1b0ca23640090cacd06127a98888a7f18465356dac41e66c442881c
+  - file: moves/mv_tiangang_hewei/demo.html
+    bytes: 1986620
+    sha256: 11f086dba0b6422dfb5cfcd805a0aa9cfb7665e93d80871f570d7d286c72da9b
+  - file: moves/mv_tiangang_hewei/peak.png
+    bytes: 324482
+    sha256: 6df464fa3298be33800a91cf144974ed751c45a02b884f8f4fa62d018b3b8f08
+- category: vfx
+  style: default
+  negative: 无人物、兵器、场景、地面、硬阴影、文字、编号、水印、格线；不以代码补画轮廓。
+  references:
+  - effect/family/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  model: 不适用（确定性合成；原料由 image_gen 生成）
+  effort: 不适用（确定性合成）
+  created: '2026-10-03'
+  status: candidate
+  id: vfx_mv_tiangang_tianshu__base01
+  file: moves/mv_tiangang_tianshu/peak.png
+  size: 1536x1024
+  sha256: c57c2cbe91dd613dcbf3bb5aead743b04dabed529693d683657e94ab548fcf26
+  subject: 天罡北斗阵 · 天枢镇守；射雕 / 神雕全真阵法，视觉为原创扩展
+  prompt: 由 moves/mv_tiangang_tianshu/composition.yaml 指定共享 palm 与 effect/family 原料，按 design/23 §4–6 合成静态峰值及 Three.js 演示；完整生成提示词见 effect/family/prompt.txt。
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  source_path: assets/default/vfx/sk_tiangang/moves/mv_tiangang_tianshu/composition.yaml
+  pipeline: two-part
+  code: moves/mv_tiangang_tianshu/demo.html
+  skill_ref: sk_tiangang
+  move_ref: mv_tiangang_tianshu
+  ultimate: false
+  projection: false
+  nature: yang
+  delivery: inner
+  effect_set: effect/family/effect-set.yaml
+  notes: length=280 px；range_hex=0；节奏pulse 0.60 s（建议值）。未声明外放，不扩命中范围；共享掌图只引用。
+  files:
+  - moves/mv_tiangang_tianshu/composition.json
+  - moves/mv_tiangang_tianshu/composition.yaml
+  - moves/mv_tiangang_tianshu/demo.html
+  - moves/mv_tiangang_tianshu/peak.png
+  file_integrity:
+  - file: moves/mv_tiangang_tianshu/composition.json
+    bytes: 3355
+    sha256: b987816951e661375fd38ec623f221c6e37faf6c3077b50f1ca1d5e76a10d341
+  - file: moves/mv_tiangang_tianshu/composition.yaml
+    bytes: 852
+    sha256: 640af3f82b41075524de042c542cf66989e6a8a08ceba69f4832feaa78ca163b
+  - file: moves/mv_tiangang_tianshu/demo.html
+    bytes: 1684328
+    sha256: ca7618700f94d5df33e91551107d084bee71c544293b871be1cc1c1569cacc71
+  - file: moves/mv_tiangang_tianshu/peak.png
+    bytes: 315858
+    sha256: c57c2cbe91dd613dcbf3bb5aead743b04dabed529693d683657e94ab548fcf26
