@@ -453,40 +453,38 @@
   category: character/female
   style: default
   subject: 赵敏（ch04_yitian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的赵敏立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中赵敏的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的赵敏二十岁上下，鹅蛋脸、下巴圆润，眉形秀丽微挑，一双明亮聪慧的大眼睛、眼尾微扬、带着自信和一点狡黠，鼻梁挺直，唇形饱满、嘴角含笑，肤色白里透红，明艳爽朗、神采飞扬。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+    【只改】只将脚下高筒黑靴换为一对鹅黄色缎鞋，每只鞋头各缀一颗圆明珠，珠数总共两颗。鞋从衣摆下自然露出，原脚的位置、足部大小不变。腿和裙摆、脸、衣服其余部分、手、背景完全不动。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【原著依据】《倚天屠龙记》二十六 俊貌玉面甘毁伤：“穿一对鹅黄缎鞋，鞋头上各缀一颗明珠”；https://www.xuges.com/wuxia/jinyong/yttlj/189.htm
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
+  - path: .agents/coord/_lines/novel-fix-1/before/34_por_npc_zhaomin__ch04_youth_scene_wanansi.png
+    sha256: 7f42590a344f4d7f99aaf4fc0ed9f88822841f1483a5178285cac73943bae5f6
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
   - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png
     sha256: ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188
     use: 对脸基线：作者审核通过的 por_npc_zhaomin__ch04_youth_scene_lvliu，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_wanansi.png
-    sha256: 438d53cfc30ba735c3f05d0e378098afa3073fb492cca1033380e0ba68f68a72
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhaomin__ch04_youth_scene_wanansi.438d53cf.png
-  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
-    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
-    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
-  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T00:44:02.498301-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_20_56_r1.png
+  created: '2026-10-04T02:54:55.436340-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_34_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 7f42590a344f4d7f99aaf4fc0ed9f88822841f1483a5178285cac73943bae5f6
+  sha256: e6073d0f8a9275c713c9464c15056a8274f63b3071bb70e7b70b01b0b6f5f815
   status: candidate
-  notes: 立绘重审重出（AR-30）；赵敏基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_zhaomin__ch04_youth_scene_lvliu；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：恢复base眉眼鼻唇一致；万安寺观察神态与原光向保留；发饰、衣领边缘自然
+  notes: 立绘重审重出（AR-30）；赵敏基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_zhaomin__ch04_youth_scene_lvliu；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：实看通过：恢复base眉眼鼻唇一致；万安寺观察神态与原光向保留；发饰、衣领边缘自然；AR-82 原著核对返修：赵敏万安寺换鹅黄缎鞋鞋头明珠
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhaomin__ch04_youth_scene_wanansi.438d53cf.png
-    sha256: 438d53cfc30ba735c3f05d0e378098afa3073fb492cca1033380e0ba68f68a72
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhaomin__ch04_youth_scene_wanansi.438d53cf.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/34_por_npc_zhaomin__ch04_youth_scene_wanansi.png
+    sha256: 7f42590a344f4d7f99aaf4fc0ed9f88822841f1483a5178285cac73943bae5f6
   ar84_alignment:
     job: ar84_calign_20_56_r1
     before_sha256: 4f4eef81db1f155de50195d3881f8053db321c6e16cc9d79188a06c729776e3d
