@@ -88,7 +88,8 @@ export async function fixtureItemPack(chapter = 'ch01_tianlong',
   const worldRules = splitWorld === undefined ? [] : [{ kind: 'event',
     id: `ev_${token.slice(2)}_ditu`, value: splitWorld.rules }] as unknown as JsonValue;
   const chapterText = Object.assign({}, ...splitNpcs.map(({ split }) => split.text),
-    splitWorld?.text ?? {});
+    splitWorld?.text ?? {}, chapter === 'ch10_baima'
+      ? { 'ch10.coldEntry.eraTitle': '长安二年（702）·西州以北' } : {});
   const leaves = await emitLeaves([{ logicalName: 'common.rules.items.json',
     kind: 'rules', load: 'resident', value: rules },
   { logicalName: 'common.text.zh-Hans.items.json', kind: 'text', load: 'resident',

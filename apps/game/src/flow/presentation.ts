@@ -8,7 +8,7 @@ import type {
 } from '@tianshu/ui';
 
 export type TextCatalog = Readonly<Record<string, string>>;
-const SPEAKERS: Readonly<Record<string, string>> = {
+const SYSTEM_SPEAKERS: Readonly<Record<string, string>> = {
   narrator: '旁白',
   player: '你',
   npc_shuling: '书灵',
@@ -30,12 +30,15 @@ function text(key: string | null, catalog: TextCatalog): string {
   if (key === null) return '';
   return catalog[key] ?? (/^(?:ink|story|quest)./u.test(key) ? '正文尚未装载。' : key);
 }
-function speaker(id: string): string {
-  return SPEAKERS[id] ?? '江湖人物';
+function speaker(id: string, catalog: TextCatalog): string {
+  const system = SYSTEM_SPEAKERS[id];
+  if (system) return system;
+  const key = `npc.${id}.identity.name`;
+  return catalog[key] ?? `缺少文本：${key}`;
 }
 export function presentDialogue(view: DialogueView, catalog: TextCatalog = {}): DialoguePanelView {
   return {
-    speaker: speaker(view.speakerId),
+    speaker: speaker(view.speakerId, catalog),
     text: text(view.textKey, catalog),
     choices: view.choices.map((choice) => ({
       id: String(choice.choiceIndex),
@@ -45,7 +48,7 @@ export function presentDialogue(view: DialogueView, catalog: TextCatalog = {}): 
         : {}),
     })),
     history: view.history.map((line) => ({
-      speaker: speaker(line.speakerId),
+      speaker: speaker(line.speakerId, catalog),
       text: text(line.textKey, catalog),
     })),
     canContinue: view.choices.length === 0,

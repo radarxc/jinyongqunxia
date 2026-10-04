@@ -55,6 +55,22 @@ function defaultCatalog(chapterId: string): Promise<TextCatalog> {
   return pending;
 }
 
+export function chapterTextCatalog(
+  chapterId: string,
+  source?: ContentSource,
+): Promise<TextCatalog> {
+  return source ? loadChapterTextCatalog(source, chapterId) : defaultCatalog(chapterId);
+}
+
+export async function presentationText(
+  chapterId: string,
+  key: string,
+  source?: ContentSource,
+): Promise<string> {
+  const catalog = await chapterTextCatalog(chapterId, source);
+  return catalog[key] ?? `缺少文本：${key}`;
+}
+
 export function useChapterTextCatalog(
   chapter: string | Readonly<Ref<string>>,
   source?: ContentSource,
@@ -64,7 +80,7 @@ export function useChapterTextCatalog(
   const load = (chapterId: string): void => {
     const current = ++generation;
     catalog.value = EMPTY_CATALOG;
-    void (source ? loadChapterTextCatalog(source, chapterId) : defaultCatalog(chapterId))
+    void chapterTextCatalog(chapterId, source)
       .then((value) => {
         if (generation === current) catalog.value = value;
       })
