@@ -3,34 +3,29 @@
   category: character/male/tripo_ref
   style: default
   subject: 郭靖 A 字姿势全身参考（与 por_npc_guojing__ch02_youth_base 同脸同服饰，去掉手持道具）
-  prompt: '【任务】这是一张供 3D 建模与自动绑骨使用的 A 字姿势全身参考图。第 1 张参考图是本项目已定稿的郭靖立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同一身服饰（款式、颜色、层次、衣缘、腰带、鞋都与第 1 张一致）、同样的发式，只改姿势和背景，并去掉长弓和背上的箭囊。
+  prompt: '【任务】第1张是作者取B的郭靖金刀驸马装，第2张是现有3D用A字站姿规格，第3张是B脸特写。同一个郭靖，保留第1张的黄日华参考脸、发式、严肃神情与B新装。
 
-    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前，两只鞋完整可见。
+    【姿势规格】照第2张的正面全身A字姿势；窄轮廓，肩宽自然、衣袍贴身不过度蓬大，双臂与身体成约25度外展，双手放松空手、五指可辨，手和腰身之间留清楚空隙，两腿自然分开，双足着地。头顶、双手、完整衣摆、双靴全部入画。
 
-    【服饰处理】袖子、衣摆、腰带垂坠自然，不飘动；袖口不遮住手；不要任何向外飘的布条或飘带。长弓和背上的箭囊不要出现在画面里（它是单独的道具）。
+    【衣装】第1张的苍青汉蒙合式长袍、金线纹饰、毛皮镶边、白色汉式内衫、红棕绣带、皮护臂、蒙古皮靴；右腰（画面左侧）佩金刀刀鞘，不能拿在手中。去掉弓、箭和箭囊。
 
-    【头发】长发收在身后或按原发式束好，不搭在肩前，不盖住手臂和手。
-
-    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
-
-    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
-
-    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
-  negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+    【背景】照第2张单一浅暖灰纯色背景，无山水、纸纹、文字、台座。写实手绘材质，正面中性均匀光。竖幅2:3，1024×1536 PNG。保持脸部骨相和五官，禁止笑、盔甲、斗篷、宽大裙摆、半身或多视图拼图。'
+  negative: ''
   references:
-  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
-    sha256: 57054e6be892aafd819bb5de7b3aa1d497c6fa60c9931795a3cac4040a002f66
-    use: 底图：已定稿的 郭靖 base（上传 1536 长边 JPEG）
-  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_guojing__ch02_youth_base.jpg
-    sha256: 1cd86337afa725e7470f9a6def2dab2ee8c033ae9c0fbcef18576640b126d4b3
-    use: 同一 base 的脸部特写（看清五官）
-  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
-  model: gpt-6-astra
-  effort: ultra
-  created: 2026-10-03T14:10:17-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_guojing__ch02_youth_apose.a1.png
+  - path: assets/default/character/male/ch02/threeview/por_npc_guojing__ch02_youth_apose.png
+    sha256: b6ef56dbbde8c4ddfd940f89f6ff063bf022f71a94a7bbff8d43a9e9ba12b3af
+    use: AR-74 编辑前原图；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_guojing__ch02_youth_apose.b6ef56db.png
+  tool: 共享 w24 runner · codex exec / image_gen；AR-74 局部编辑与合成
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-03T23:07:16-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/ar74_guojing_apose_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: b6ef56dbbde8c4ddfd940f89f6ff063bf022f71a94a7bbff8d43a9e9ba12b3af
+  sha256: 87d308b83325237a7be26f4d781b805418c251910ed89c68d0a09cc4e76708f4
   status: candidate
-  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_guojing__ch02_youth_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_guojing__ch02_youth_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44；AR-71 / AR-74 金刀驸马 B 装，3D 窄轮廓空手 A 字全身参考，交 Tripo 重做
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_guojing__ch02_youth_apose.b6ef56db.png
+    sha256: b6ef56dbbde8c4ddfd940f89f6ff063bf022f71a94a7bbff8d43a9e9ba12b3af
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_guojing__ch02_youth_apose.b6ef56db.entry.yaml
