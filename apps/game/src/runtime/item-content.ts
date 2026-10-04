@@ -1,10 +1,11 @@
 import type { ContentSource } from '@tianshu/data';
+import type { JsonValue } from '@tianshu/shared';
 import { ChapterDefSchema, EventDefSchema, NpcAppearanceSchema, NpcIdSchema,
   QuestDefSchema, RegionBindingLeafSchema, RegionMapSchema, WorldMapDefinitionSchema,
   type ChapterDef, type EventDef, type QuestDef, type RegionMap,
   type WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { RegionDialogueBinding, RegionGateBinding, RegionLootBinding } from '@tianshu/core';
-import type { AssetMap, ChapterAssetLoader, ChapterRuntimeLeaf, GameContent, GameNpcDef,
+import type { AssetMap, ChapterAssetLoader, ChapterRuntimeLeaf, GameContent, GameEncounterDef, GameNpcDef,
   StaticGameContent } from './content';
 
 export const ITEM_CONTENT_CHAPTER = 'ch00_yuenv';
@@ -164,6 +165,29 @@ function questDefs(leaves: Readonly<Record<string, unknown>>): readonly QuestDef
   return ruleRows(leaves).flatMap((entry) =>
     entry.kind === 'quest' ? [QuestDefSchema.parse(entry.value)] : []);
 }
+function encounterDefs(leaves: Readonly<Record<string, unknown>>, chapter: string):
+readonly GameEncounterDef[] {
+  const encounters: GameEncounterDef[] = []; const ids = new Set<string>();
+  for (const entry of ruleRows(leaves)) {
+    if (entry.kind !== 'encounter') continue;
+    const value = record(entry.value, 'CONTENT_ENCOUNTER_ENVELOPE_INVALID');
+    const id = value['id']; const chapterId = value['chapterId'];
+    if (value['schemaVersion'] !== 'encounter.v1' || typeof id !== 'string' ||
+        !/^enc_[a-z0-9]+(?:_[a-z0-9]+)*$/u.test(id) || chapterId !== chapter || ids.has(id))
+      throw new TypeError(`CONTENT_ENCOUNTER_ENVELOPE_INVALID:${String(id)}`);
+    ids.add(id); encounters.push({ id: id as `enc_${string}`, chapterId,
+      value: value as JsonValue });
+  }
+  return encounters;
+}
+function validateEncounterReferences(quests: readonly QuestDef[],
+  encounters: readonly GameEncounterDef[]): void {
+  if (encounters.length === 0) return;
+  const ids = new Set(encounters.map((entry) => entry.id));
+  for (const quest of quests) for (const id of quest.encounterIds)
+    if (!ids.has(id as `enc_${string}`))
+      throw new TypeError(`CONTENT_ENCOUNTER_REF_MISSING:${quest.id}:${id}`);
+}
 function inkStories(leaves: Readonly<Record<string, unknown>>): NonNullable<GameContent['inkStories']> {
   return ruleRows(leaves).flatMap((entry) => {
     if (entry.kind !== 'dialogueStructure') return [];
@@ -218,6 +242,8 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
     const chapters = chapterDefs(pack.leaves);
     const events = eventDefs(pack.leaves);
     const quests = questDefs(pack.leaves);
+    const encounters = encounterDefs(pack.leaves, chapter);
+    validateEncounterReferences(quests, encounters);
     const stories = inkStories(pack.leaves);
     if (chapters.length !== 1 || chapters[0]?.id !== chapter)
       throw new TypeError('CONTENT_CHAPTER_DEF_MISSING');
@@ -239,6 +265,7 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
     return { ...base, ...runtime, ...(assets ? { assets } : {}),
       ...(battleModels ? { battleModels } : {}),
       items: items as GameContent['items'], chapters, events, quests,
+      ...(encounters.length === 0 ? {} : { encounters }),
       ...(stories.length === 0 ? {} : { inkStories: stories }),
       idRemaps: pack.manifest.idRemaps, contentHash: pack.manifest.contentHash };
   } catch (error) {

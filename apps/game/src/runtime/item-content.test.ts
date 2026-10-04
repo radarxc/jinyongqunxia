@@ -130,6 +130,26 @@ describe('item content leaves', () => {
     expect(loaded.inkStories).toEqual([{ storyId: 'story_fixture', storyHash, storyJson: page1['ink.story_fixture'] }]);
   });
 
+  it('registers authored encounters without running their battle-only schema', async () => {
+    const fixture = await fixtureItemPack();
+    const chapter = 'ch01_tianlong'; const baseName = 'ch01.rules.base.json';
+    const encounter = { schemaVersion: 'encounter.v1', id: 'enc_01_lazy_fixture', chapterId: chapter,
+      kind: 'story' };
+    const leaves = await emitLeaves(fixture.manifest.leaves.map((leaf) => ({
+      logicalName: leaf.logicalName, kind: leaf.kind, load: leaf.load,
+      ...(leaf.locale ? { locale: leaf.locale } : {}), ...(leaf.region ? { region: leaf.region } : {}),
+      value: (leaf.logicalName === baseName
+        ? [...fixture.values.get(`${chapter}/${baseName}`) as readonly JsonValue[],
+          { kind: 'encounter', id: encounter.id, value: encounter }]
+        : fixture.values.get(`${chapter}/${leaf.logicalName}`)) as JsonValue,
+    })));
+    const manifest = await createManifest(chapter, 'a'.repeat(64), leaves, []);
+    const values = new Map<string, unknown>([[`${chapter}/manifest.json`, manifest],
+      ...leaves.map((leaf): [string, unknown] => [`${chapter}/${leaf.logicalName}`, leaf.value])]);
+    const loaded = await loadGameContent(fixtureContent(), { readJson: async (path) => values.get(path) }, chapter);
+    expect(loaded.encounters).toEqual([{ id: encounter.id, chapterId: chapter, value: encounter }]);
+  });
+
   it('loads item text once, caches it, and replaces only display fields', async () => {
     const fixture = await fixtureItemPack();
     const cache = new ItemTextCache(fixture.source, 'ch01_tianlong');

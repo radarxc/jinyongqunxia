@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createBattleDemo } from '../battle/demo';
+import { BattleRuntime } from '../battle/runtime';
 import { createGameSession } from './session';
 import { createPreviewSession } from './bootstrap';
 import { fixtureContent } from './test-fixture';
@@ -267,6 +268,28 @@ describe('Worker session command adapter', () => {
       subsystemLoaders: { dialogueProjection: async () => { throw new Error('network'); } } });
     await expect(dialogue.query()).rejects.toThrow('DIALOGUE_SUBSYSTEM_UNAVAILABLE');
     expect(await dialogue.snapshot()).toEqual(before);
+  });
+
+  it('rejects an invalid authored encounter without poisoning the battle entry retry', async () => {
+    const initial = createNewGameState({ masterSeed: 7,
+      identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',
+        originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake' });
+    let attempts = 0;
+    class RetryableEncounterRuntime extends BattleRuntime {
+      constructor(...args: ConstructorParameters<typeof BattleRuntime>) {
+        attempts += 1;
+        if (attempts === 1) throw new Error('BATTLE_ENCOUNTER_INVALID');
+        super(...args);
+      }
+    }
+    const core = createGameSession(content, initial, undefined, { demo: false,
+      subsystemLoaders: { battle: async () => RetryableEncounterRuntime } });
+    const before = await core.snapshot(); const command = { t: 'battle/enter' as const,
+      launch: createBattleDemo('world') };
+    await expect(core.dispatch(command)).resolves.toMatchObject({ accepted: false,
+      error: 'BATTLE_ENCOUNTER_INVALID', changes: {}, events: [] });
+    expect(await core.snapshot()).toEqual(before);
+    await expect(core.dispatch(command)).resolves.toMatchObject({ accepted: true });
   });
 
   it('preloads mounted RegionMap content before restoring a save and preserves state on failure', async () => {

@@ -1,8 +1,12 @@
 import { createHash } from 'node:crypto';
-import { acceptedCommandPrefix, createBattleSession, hashBattleReplay, replaySessionProjection,
-  runBattleReplay, setBattleAuto, stepBattleSession } from '@tianshu/core';
+import { acceptedCommandPrefix, buildEncounter, createBattleSession, hashBattleReplay,
+  replaySessionProjection, runBattleReplay, setBattleAuto, stepBattleSession } from '@tianshu/core';
+import { canonicalJson } from '@tianshu/shared';
+import { EncounterDefSchema } from '@tianshu/data/tooling';
 import { describe, expect, it } from 'vitest';
 import { createBattleDemo } from './demo';
+import { parseBattleEncounter } from './encounter';
+import { COMBAT_DEMO_ENCOUNTER, combatDemoSources } from './demo-seed';
 import { BattleRuntime } from './runtime';
 
 function harness() {
@@ -14,6 +18,31 @@ function harness() {
 }
 
 describe('battle projection adapter', () => {
+  it('parses and builds authored encounters at the battle boundary without changing bytes', async () => {
+    const definition = COMBAT_DEMO_ENCOUNTER;
+    const context = { setupId: 'setup-lazy', seed: 0x1234_5678,
+      sourceSnapshotHash: '0'.repeat(64), sourceId: 'fixture', triggerId: 'fixture',
+      worldTick: 7, difficulty: 'diff_xiake' as const, units: combatDemoSources(), templates: [] };
+    expect(canonicalJson(parseBattleEncounter(structuredClone(definition)) as never))
+      .toBe(canonicalJson(EncounterDefSchema.parse(definition) as never));
+    const expected = buildEncounter(definition, context);
+    const actual = BattleRuntime.buildEncounter(structuredClone(definition), context);
+    expect(canonicalJson(actual as never)).toBe(canonicalJson(expected as never));
+  });
+
+  it('normalizes invalid authored encounters and permits a later retry', async () => {
+    const definition = COMBAT_DEMO_ENCOUNTER;
+    const context = { setupId: 'setup-retry', seed: 1, sourceSnapshotHash: '0'.repeat(64),
+      sourceId: 'fixture', triggerId: 'fixture', worldTick: 0,
+      difficulty: 'diff_xiake' as const, units: combatDemoSources(), templates: [] };
+    const invalid = structuredClone(definition);
+    invalid.difficulty.enemyStatBp += 1;
+    expect(() => BattleRuntime.buildEncounter(invalid, context))
+      .toThrow('BATTLE_ENCOUNTER_INVALID');
+    expect(BattleRuntime.buildEncounter(definition, context))
+      .toEqual(buildEncounter(definition, context));
+  });
+
   it('projects a core-owned automatic session without changing its transcript', () => {
     const { runtime, session } = harness();
     setBattleAuto(session, true); runtime.update(session);

@@ -1,7 +1,10 @@
 import { createBattleSession, peekReadyUnitId, projectBattleRewards, type BattleEvent, type BattleSessionState,
-  type BattleState } from '@tianshu/core/battle';
+  type BattleState, type EncounterBuildContext, type EncounterBuildResult } from '@tianshu/core/battle';
 import type { BattleBusActCommand, BattleSetAutoBusCommand } from '@tianshu/core';
 import type { BattleLaunch, BattlePacket, BattleUiCommand, BattleUnitView, MovePlayback } from './contracts';
+import type { GameContent } from '../runtime/content';
+import { buildBattleEncounter } from './encounter';
+import { withBattleModels } from './model-selection';
 import { projectBattleUnit } from './presentation';
 import { queryActions, queryArea, queryTimeline } from './queries';
 
@@ -16,6 +19,18 @@ export class BattleRuntime {
   private authorityRevision: number;
   private authorityRetryCount: number;
   readonly launch: BattleLaunch;
+
+  /** Battle-only content boundary. Session startup never parses authored encounters. */
+  static buildEncounter(value: unknown, context: EncounterBuildContext): EncounterBuildResult {
+    return buildBattleEncounter(value, context);
+  }
+
+  /** Applies battle-only model presentation after the runtime chunk is available. */
+  static withModels(launch: BattleLaunch, content: GameContent, options: {
+    readonly protagonistId?: string; readonly protagonistGender?: string;
+  } = {}): BattleLaunch {
+    return withBattleModels(launch, content, options);
+  }
 
   constructor(input: BattleLaunch, session?: BattleSessionState) {
     this.launch = structuredClone(input);
@@ -76,6 +91,25 @@ export class BattleRuntime {
       rewards: rewards === null ? null : { ...rewards, martial: null,
         cycles: rewards.fullCirculations.reduce((sum, entry) => sum + entry.count, 0) },
       ...(resolved ? { resolved } : {}) };
+  }
+
+  /** Build the incremental packet after a core action without leaking battle presentation into session startup. */
+  actionPacket(eventOffset: number): BattlePacket {
+    if (this.session === null) throw new Error('BATTLE_NOT_ACTIVE');
+    const action = this.session.commandLog.at(-1);
+    const move = action?.t === 'battle/act' && action.action.t === 'skill' ? action.action : null;
+    const localEvents = this.session.battle.events.slice(eventOffset);
+    const actor = move && action?.t === 'battle/act'
+      ? this.session.battle.units.find(unit => unit.id === action.actor) : undefined;
+    const targets = move ? localEvents.filter(event =>
+      event.t === 'battle/damageResolved' && event.target).flatMap(event =>
+      this.session!.battle.units.filter(unit => unit.id === event.target)) : [];
+    const resolved = move && actor ? { moveId: move.move, from: projectBattleUnit(actor, this.launch),
+      to: targets.map(unit => projectBattleUnit(unit, this.launch)), result: {
+        actionNo: this.session.battle.actionNo, hpDamage: localEvents.filter(event =>
+          event.t === 'battle/damageResolved').reduce((sum, event) => sum + (event.amount ?? 0), 0),
+        events: localEvents } } : undefined;
+    return this.packet(false, resolved);
   }
 
   transcript(): { readonly launch: BattleLaunch; readonly commands: BattleSessionState['commandLog'];

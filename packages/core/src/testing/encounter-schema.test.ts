@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { EncounterDefSchema } from '@tianshu/data/schemas';
-import { loadContent } from '@tianshu/data/tooling';
+import { EncounterDefSchema, loadContent } from '@tianshu/data/tooling';
 import { PROLOGUE_ENCOUNTERS, PROLOGUE_TEMPLATE } from './prologue-encounters';
 
 const encounterFile = (value: unknown) => ({ path: 'content/chapters/ch00_yuenv/encounter.yaml',
