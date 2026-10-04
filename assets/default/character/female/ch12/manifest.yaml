@@ -255,65 +255,45 @@
     sha256: 2934aecf9b53126a54857f03bbb888dcfc6fd2c9a65c8d5a67101168beaca787
     entry: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_prepalace_base.2934aecf.entry.yaml
 - id: por_npc_huoqingtong__ch12_youth_early_base
-  # 10-03 AR-55：作者选定剧照结合版为基线，图与本条记录恢复自 0cd59a8e（凌晨主角精修版见 git 历史）
   file: por_npc_huoqingtong__ch12_youth_early_base.png
   category: character/female
   style: default
   subject: 霍青桐（ch12_shujian）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '只输出一张1024×1024 PNG面部局部插画。图1是E版的面部编辑目标，图2是C版用于同人神韵和程度对照；图3/4是同一影视角色的不笑和浅笑参考照片，只取五官神情。所有四张图都要实际用于image_gen输入。
 
-    【参考图】第 1–2 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
+    任务：把图1的E版进一步画成理想化、十九岁的秀美回部女侠，变化程度要明显高于图2的C版。沿用图1/2/3的同一人眉眼鼻唇神韵：略拱眉线、眉尾和杏眼走向、柔秀鼻尖鼻翼、自然含蓄的唇峰、柔润下唇。神情还是英气沉着、清醒有主见、略带温婉，双唇闭合、嘴角极浅柔和，不露齿、不笑眯眼、不愁苦、不妩媚。
 
-    【剧照借鉴要点】取剧照里的「翠羽黄衫」造型：黑底绣青白卷草纹的小圆帽、帽边一簇白绒和一根翠绿长羽、鹅黄衫子、多条长辫、圆耳环；脸型和英气沉着的神情也照剧照。
+    本张必须达到的明显递进：脸的颧颌区域再收小约8%，下颌更秀窄而下巴仍柔润，脸是小巧秀长的椭圆形；杏眼比图2自然增大约12%，眼裂更舒展、眼神清亮有神，保持写实成人比例；鼻根与鼻梁更高挺秀直，鼻尖小巧柔秀；肤色更白皙光洁但保留很浅的自然暖色。眼窝和眉骨带更鲜明一点的西域立体轮廓，用浅而干净的淡彩笔触表现；眉眼清晰、有英气。整体是十八九岁的秀美成年少女，不是娃娃脸、儿童、欧美面容或尖下巴模板脸。理想化仍要让人认出与C及参考是同一人物。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    完全去掉法令纹、鼻翼到嘴角暗沟、眼袋、眼下暗圈、颧骨凹影、细纹和疲倦老化痕迹；眼窝不画黑圈，不靠深暗阴影塑造骨相。
 
-    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+    脸必须是项目的写实手绘古风插画：细腻的手绘五官线条、薄层淡彩、柔和浅明暗和绘画边缘。肤色光洁通过淡彩笔触呈现，左上柔光融入衣饰；不能照片换头、照片式强立体打光、摄影鼻尖高光、镜头反光、皮肤毛孔、景深虚化、塑料磨皮、3D或动漫。只取照片五官神情，不带入照片年纪、皮肤纹路和光影。
 
-    【人物】霍青桐，金庸《书剑恩仇录》的女主角，回部首领木卓伦之女，人称「翠羽黄衫」，能统兵打仗的回疆女侠，在追回经书、赠剑之前。
+    只改面部五官、脸的秀窄轮廓、肤色与神情。图1的帽子、羽毛、发际和整套发型、耳饰、辫子、衣领、头部外轮廓、头像位置、头朝向及纸底全部不变；不要缩放帽子或头发，不借照片的额饰、白纱、丝带和服装。无文字、水印、印章、边框、多格、第二个人。只交单张PNG。
 
-    【年龄与体态】约二十二岁的成年女子，身材高挑苗条，肩背挺拔，骑马练剑的结实身体，约七个半头身。
-
-    【经典造型】要一眼认出是「翠羽黄衫」霍青桐——绣花小圆帽插翠绿长羽、鹅黄长衫、多条长辫、腰佩一长一短两剑；英姿飒爽、明艳照人的回部女将。
-
-    【面容】照剧照的脸型和五官，带一点西域风情：鹅蛋偏长的脸，颧骨略高；眉毛浓黑修长、眉尾微扬；眼睛明亮有神、眼神冷静自信；鼻梁挺直秀气；嘴唇饱满，嘴角坚定；肤色白里透红，两颊天然红晕，看得见真实的肤理。美而有英气，有统兵的沉着；是成年女子，不是少女。
-
-    【发式】乌黑浓密的长发编成好几条长辫，垂在肩前和背后；头顶戴一顶黑底绣青白卷草纹的回部小圆帽（贴着头顶，不是大头巾），帽边插一簇白绒和一根长长的翠绿色羽毛，羽毛向后上方翘起；耳垂挂一对金色圆耳环。
-
-    【服饰】一身鹅黄色长衫，窄袖，长及小腿，前襟和袖口有墨绿与黑色的窄边和细小刺绣，立领处一枚深色盘扣；腰系一条深褐皮带；里面是宽松长裤，脚穿深褐色软皮长靴。回疆样式，衣料完整不透，可以骑马。
-
-    【道具与姿态】腰带右侧斜插一柄带鞘短剑（父亲所赐，匕首长短，古铜色剑鞘），左侧佩一柄完全入鞘的长剑；两柄剑都不出鞘。挺拔站立，右手按在腰带上，左手轻扶长剑剑鞘，目光直视前方，英姿飒爽。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要浓妆、性感化或暴露的衣着；不要缠成大包的头巾；不要汉族发髻或清宫旗头；不要舞台化的民族服装、面纱、露腰；不要网红脸；不要出鞘的剑；不要日式服饰。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+    【入库】AR-91 作者原话「霍青桐选E」：上述面部输出已在 huoqingtong-r2 按原位置局部合成；本次使用作者选定 E 候选原图，不重新生成。'
   negative: ''
   references:
-  - path: .agents/coord/imagegen-reference/identity-20261002/shujian/huoqingtong_1976_wangmingquan_sohu2024.jpg
-    sha256: 2f554a54fd4d08cf5f93200e6645ce2cbf9f01c6c2aea958c92bfa4a915d6950
-    use: 经典影视剧照（AR-32 补记修改 B）：借鉴发型、服饰、配色、标志道具、气质和面部特征；不取构图、光影、背景、姿势与照片质感（1976 TVB《书剑恩仇录》霍青桐，汪明荃饰）
-    uploaded: 缩到长边 ≤1024 的 JPEG（codex_w9/staging/huoqingtong_1976_wangmingquan_sohu2024.jpg，原图 1080×1131）
-  - path: .agents/coord/imagegen-reference/identity-20261002/shujian/huoqingtong_1976_wangmingquan_sinablog.jpg
-    sha256: 977487a97faec1f70f933a1d3bc06ddf4c9cb8fc6bc176623ff5820cbe927291
-    use: 经典影视剧照（AR-32 补记修改 B）：借鉴发型、服饰、配色、标志道具、气质和面部特征；不取构图、光影、背景、姿势与照片质感（1976 TVB《书剑恩仇录》霍青桐，汪明荃饰）
-    uploaded: 裁切 [0, 0, 320, 398] 后缩到长边 ≤1024 的 JPEG（codex_w9/staging/huoqingtong_1976_wangmingquan_sinablog_crop.jpg，原图 320×420）
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相
-    uploaded: 缩小版 JPEG（gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg）
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相
-    uploaded: 缩小版 JPEG（gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg）
-  tool: codex exec · image_gen（AR-32 补记：前置 1976 年 TVB《书剑恩仇录》（霍青桐由汪明荃饰演） 剧照 2 张，后接两张同性别基线立绘作画风参考）
-  model: gpt-6-astra
-  created: 2026-10-02T16:47:19-0700
-  source_path: .agents/coord/gemini_originals/por_npc_huoqingtong__ch12_youth_early_base.png
+  - path: .agents/coord/_lines/huoqingtong-r2/candidates/huoqingtong_E.png
+    sha256: 9a35b24c032463a80cb6c40016ee9ccb0d27a6b7974a466f6c091cc76088bdf3
+    use: AR-91 作者选 E；AR-86 参考关咏荷、写实手绘；直接采用已审候选整图
+  - path: .agents/coord/_lines/huoqingtong-r2/raw/huoqingtong_E_face_raw.png
+    sha256: 9278a85d088fb5814a2d063eda8b9d1afd1eb1fdf678d20e563c83304ecc612c
+    use: 实际 image_gen 面部原始输出，源作业 por_npc_huoqingtong__ch12_youth_early_base.ar86r2_e3
+  tool: codex exec · image_gen + AR-86 面部蒙版局部合成（AR-91 作者选 E；候选原样入库）
+  model: gpt-6.1-sol
+  created: 2026-10-04T09:15:11-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/por_npc_huoqingtong__ch12_youth_early_base.ar91_selected_e.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 2488b4c4ea0ba3345583c22385ad55d2d68c642145c4310b859e43bac00e8b8b
+  sha256: 93f02e773f8dfb82139215b87166b855b3611100ee611af18664ecfe7ca3bcbb
   status: candidate
-  notes: AR-32 补记修改 B（9 号出图员）：作者 10-02（AR-32 补记）：书剑取 1976 TVB 版，下载剧照后重出；上一版本机无剧照，只用文字。1976 年 TVB《书剑恩仇录》（霍青桐由汪明荃饰演） 剧照 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘；r1
+  notes: AR-32 补记修改 B（9 号出图员）：作者 10-02（AR-32 补记）：书剑取 1976 TVB 版，下载剧照后重出；上一版本机无剧照，只用文字。1976 年 TVB《书剑恩仇录》（霍青桐由汪明荃饰演） 剧照 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘；r1；AR-86 / AR-91 参考关咏荷，作者选 E
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_early_base.2488b4c4.png
+    sha256: 2488b4c4ea0ba3345583c22385ad55d2d68c642145c4310b859e43bac00e8b8b
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_early_base.2488b4c4.entry.yaml
 - id: por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit
   file: por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.png
   category: character/female
