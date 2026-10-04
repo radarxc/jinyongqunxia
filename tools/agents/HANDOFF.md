@@ -2121,4 +2121,9 @@
       - 协调者已停掉第 3 轮执行器；开发监督用 `--from validate` 重起，驱动 23975，校验通过，进入审核。
       - 本轮只合小样，对照表协调者已转给作者。
     - 教训：登记出图任务时，check_assets 的 `--min` / `--max` 都要写；manifest 的 status 用 candidate。
+  - **10-03 21:18 开发监督 · 记入「素材目录统一清理」**（协调者 21:17）：ART-map-inkkit 的过程文件不单独卡合入，审核没提就照常合，留给统一清理处理：
+    - `assets/default/map/kit/build_review.py` 挪到 `tools/map/kit/`；
+    - 日志类 `generation.jsonl`、`validation.jsonl`、`prompts.json`、`check_assets.log` 挪到 `.agents/`；
+    - 和特效构建日志一起处理。
+    - 审核若因别的原因返修，就顺手在那一轮挪走。
 
