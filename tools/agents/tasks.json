@@ -36595,6 +36595,71 @@
   },
   {
    "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "tools/agents/check_semaphore.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools.agents.test_check_semaphore",
+      "tools.agents.test_step_pool_priority",
+      "tools.agents.test_step_traex_args",
+      "tools.agents.test_run_sparse_baseline",
+      "tools.agents.test_ops_dispatch",
+      "tools.agents.test_supervise_rebase",
+      "tools.agents.test_supervise_singleton"
+     ],
+     [
+      "{python}",
+      "tools/agents/ops_dispatch.py",
+      "--once",
+      "--dry-run"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "TOOL-check-semaphore",
+   "title": "工具 · 校验并发闸：step finish 校验与守护进程 prod_check 走文件锁信号量（最多 2 个），校验里 vitest 固定 maxWorkers（核数一半）；单测；写进 OPS_RUNBOOK",
+   "prompt": "TOOL-check-semaphore.md",
+   "deps": [],
+   "writes": [
+    "tools/agents/check_semaphore.py",
+    "tools/agents/test_check_semaphore.py",
+    "tools/agents/step.py",
+    "tools/agents/run.py",
+    "tools/agents/ops_dispatch.py",
+    "tools/agents/OPS_RUNBOOK.md",
+    "vitest.config.ts",
+    "vitest.workspace.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
    "wave": 17,
    "kind": "draft",
    "review": false,
