@@ -2098,3 +2098,52 @@
     - **开发监督**：OPS_RUNBOOK 已写（bd6e6fb0），TOOL-ops-dispatch 已登记（a2114018）。它合入并跑稳一小时后，开发监督交接退场。
     - **素材线追踪**：补位器脚本化，进度写进 `_inbox/artw3.md`，然后交接退场。
     - **Tripo**：子代理在写 `tools/model3d/tripo_web.js` 和 `.claude/skills/tripo-web/SKILL.md`。
+  - **10-03 20:40 素材线第三波追踪（Claude 子代理）退场，按 AR-65 交接**：已合入 ART-ui-icons 7aafb177、ART-rig-std-refs eed4b372、ART-rig-sheet-f 8d9793b2、ART-ruins-tiles 6ae1edcd、ART-cast-fill-c 88ad459e / -d 5b2b8753、TOOL-city-generic 05eecb28、城图第 1 批 CITY-layouts-ch10-a d60f1a5c（汇总 0ba14fa5）、特效 13 门（共 23/45）。基础设施：step.py 稀疏检出 fba964f5 / 579862b7 / eb1fa142、run.py 防截断跳过 skip-worktree 54fc1e6c。在跑：城图补位器与特效补位器（脱离进程，LINE_CAP=1，每批合入自动写 `.agents/coord/_inbox/artw3.md`）；TOOL-rig-parts-f r1 FAIL 自动返修中；TOOL-rig-std-parts 由协调者 wait_attempt.py 放行。接手说明 `.agents/coord/_handoff/artw3/HANDOFF_GPT.md`（.agents 不入库）。
+  - **10-03 20:37–20:42 开发监督**（作者 AR-68：大地图改为「GIS 地形 + 水墨贴图集 + 历史坐标」拼合生成；协调者交办）：
+    - 登记四件（91b0ff6b），名单排在 ops-dispatch 之后，执行器按 override 分流（AR-66：ENG / TOOL 走 traex Astra，其余走 codex gpt-6.1-sol）：
+      - **TOOL-map-terrain**（驱动 49221，代码池排队）：DEM 放 `.agents/coord/geodata/`，不入库；产出 `tools/map/terrain/**` 下的五类图层、`--check`、预览。
+      - **ART-map-inkkit**（驱动 49237）：透明底水墨小样加对照表，本轮只出小样。审核要点 `.agents/coord/PROD/review_checks_map_kit.md`。
+      - **CONTENT-map-poi**（驱动 49253）：新文件 `docs/design/map/pois.yaml`，带来源、置信度、书界；通用 UA。审核要点 `review_checks_map_poi.md`。
+      - **TOOL-map-compose**：依赖前三件，本轮出样区；前三件合入后由开发监督或 ops-dispatch 起。
+    - AR-67 整张 Codex 区域图暂停；已入库的 20 张 Gemini 区域图留作占位。
+  - **10-03 20:45–20:48 开发监督**：
+    - TOOL-map-terrain / compose 的说明补了 Gemini 出图员的数据侧交接（fda2eb07）：
+      - 参考文件：`.agents/coord/gemini_qa/maps/HANDOFF_CODEX.md` 与 `region_frames.json`；复用投影、NE 读取、起伏度实现，用 overlay2 质检；
+      - compose 要先核对各区取景框（漠北、辽东、东海诸岛、南海诸岛几处可疑），异常交协调者，不改 regions.yaml。
+      - terrain 没起过执行器，停掉自己起的驱动、删掉干净工作区后用新说明重起，驱动 75811。
+    - **ENG-session-base-diet r1 FAIL**，是真 bug：闭包已降到 73.52，但 `item-content.ts` 用原始 schema 解析编译后的叶片，ch10 包加载不了。
+      - 返修已排队。协调者同意名单改为 ops-dispatch → base-diet → map-terrain，M1 链优先。
+      - base-diet 合入后，等待器会自动给 gates-data 挪基点、重新校验，要留意它能不能过。
+  - **10-03 21:06–21:16 开发监督**：
+    - **ART-map-inkkit** 两次校验失败都怪开发监督写的说明：
+      - manifest 的 status 写成了 draft，check_assets 只认 approved / candidate / rejected，改为 candidate（30280ae1）；
+      - 校验没加 `--max`，check_assets 默认上限是 2，补成 `--max 60`（a3f4f6bd）。
+      - 协调者已停掉第 3 轮执行器；开发监督用 `--from validate` 重起，驱动 23975，校验通过，进入审核。
+      - 本轮只合小样，对照表协调者已转给作者。
+    - 教训：登记出图任务时，check_assets 的 `--min` / `--max` 都要写；manifest 的 status 用 candidate。
+  - **10-03 21:18 开发监督 · 记入「素材目录统一清理」**（协调者 21:17）：ART-map-inkkit 的过程文件不单独卡合入，审核没提就照常合，留给统一清理处理：
+    - `assets/default/map/kit/build_review.py` 挪到 `tools/map/kit/`；
+    - 日志类 `generation.jsonl`、`validation.jsonl`、`prompts.json`、`check_assets.log` 挪到 `.agents/`；
+    - 和特效构建日志一起处理。
+    - 审核若因别的原因返修，就顺手在那一轮挪走。
+  - **10-03 21:20–21:26 开发监督**：
+    - **TOOL-assets-logs-cleanup**（c92c81ed，驱动 39067，名单在大地图之后）：
+      - 特效目录与 map/kit 的过程文件挪出：脚本挪到 `tools/vfx/skills/<sk>/`、`tools/map/kit/`；日志挪到 `.agents/coord/_asset_logs/`。
+      - 其余目录（town / building-map / tile / baseline，全仓共 218 个过程文件）只盘点，交协调者定。
+    - OPS_RUNBOOK §2.10 补两条（2bff6d87、61d3d79d）：
+      - 出图任务的 check_assets 要写全 `--min` / `--max`，status 用 candidate；
+      - 「过程文件不进 assets/」。
+  - **10-03 21:18–21:28 开发监督**：
+    - **ART-map-inkkit 合入**（21:18，只合小样）。prod_check 全绿：1102 个测试，会话闭包 108.90。
+    - **CITY-layouts-batch.md** 加「过程文件不进 assets/」（540b6400）：日志写工作区内 `.agents/coord/_asset_logs/<任务ID>/`。城图沙箱只放开 /private/tmp 和工作区。
+      - 未起跑的 32 批生效；补位器没动。
+      - 218 个存量等城图全部做完再一次清。
+  - **10-03 20:40–21:20 协调者**：
+    - **GPT 会话沙箱**：Codex 会把可写根下的 `.agents` 设成只读（实测 _prod 作根时写不进 .agents/coord）。codex_session.py 已改：根放在 `_prod/.agents/coord`，另加可写 `_prod/assets` 和主检出 `.git`；默认收件箱汇报，说明末尾自动附路径约定。
+    - **人物神态（AR-58）**：
+      - portrait-w25（ch12–ch14 共 17 人）、portrait-w17（ch08–ch11 共 48 人）已由 gpt-6.1-sol 全部做完，0 跳过，协调者抽看对照表认可；两线 runner 已 STOP。胡夫人跨书笑幅差异判 A（保持）。
+      - portrait-w24（倚天 19、笑傲 16）在跑。
+      - 至此 10 / 11 / 12 号 Opus 出图员全部退场。
+    - **大地图（AR-68）**：TOOL-map-terrain、CONTENT-map-poi、ART-map-inkkit 已登记（91b0ff6b）。ART-map-inkkit 小样 22 件已合入（6b93d92c），对照表已发作者，**待作者**定笔墨能否照此补齐、城镇与寺庙标记用小景还是简化符号。CONTENT-map-poi 审核中；map-terrain 排在 base-diet 之后；TOOL-map-compose 等前三项合入后再起。Gemini 数据交接 `gemini_qa/maps/HANDOFF_CODEX.md` 已写进两项说明。
+    - **Tripo**：JS 驱动 `tools/model3d/tripo_web.js`（71587827）、ingest.py（899e2655）、SKILL.md（2791603c / f270845c）；6 套 manifest 时区更正（b71ab68e）。**待作者**在 Tripo 标签页地址栏处理「下载多个文件」：允许则直接用 JS 存盘，否则每次存盘前刷新页面；之后统一 38 套预览为白底封面。
+    - **其他**：TOOL-assets-logs-cleanup 已登记（c92c81ed）。CITY 批说明加「过程文件不进 assets/」（540b6400）。supervise 审核 FAIL 后立即改状态（663b0a0c）。base-diet 闭包已降到 73.52，但 r1 FAIL（ch10 包读不出 NPC 与地图），返修排在 ops-dispatch 之后。
