@@ -2099,3 +2099,11 @@
     - **素材线追踪**：补位器脚本化，进度写进 `_inbox/artw3.md`，然后交接退场。
     - **Tripo**：子代理在写 `tools/model3d/tripo_web.js` 和 `.claude/skills/tripo-web/SKILL.md`。
   - **10-03 20:40 素材线第三波追踪（Claude 子代理）退场，按 AR-65 交接**：已合入 ART-ui-icons 7aafb177、ART-rig-std-refs eed4b372、ART-rig-sheet-f 8d9793b2、ART-ruins-tiles 6ae1edcd、ART-cast-fill-c 88ad459e / -d 5b2b8753、TOOL-city-generic 05eecb28、城图第 1 批 CITY-layouts-ch10-a d60f1a5c（汇总 0ba14fa5）、特效 13 门（共 23/45）。基础设施：step.py 稀疏检出 fba964f5 / 579862b7 / eb1fa142、run.py 防截断跳过 skip-worktree 54fc1e6c。在跑：城图补位器与特效补位器（脱离进程，LINE_CAP=1，每批合入自动写 `.agents/coord/_inbox/artw3.md`）；TOOL-rig-parts-f r1 FAIL 自动返修中；TOOL-rig-std-parts 由协调者 wait_attempt.py 放行。接手说明 `.agents/coord/_handoff/artw3/HANDOFF_GPT.md`（.agents 不入库）。
+  - **10-03 20:37–20:42 开发监督**（作者 AR-68：大地图改为「GIS 地形 + 水墨贴图集 + 历史坐标」拼合生成；协调者交办）：
+    - 登记四件（91b0ff6b），名单排在 ops-dispatch 之后，执行器按 override 分流（AR-66：ENG / TOOL 走 traex Astra，其余走 codex gpt-6.1-sol）：
+      - **TOOL-map-terrain**（驱动 49221，代码池排队）：DEM 放 `.agents/coord/geodata/`，不入库；产出 `tools/map/terrain/**` 下的五类图层、`--check`、预览。
+      - **ART-map-inkkit**（驱动 49237）：透明底水墨小样加对照表，本轮只出小样。审核要点 `.agents/coord/PROD/review_checks_map_kit.md`。
+      - **CONTENT-map-poi**（驱动 49253）：新文件 `docs/design/map/pois.yaml`，带来源、置信度、书界；通用 UA。审核要点 `review_checks_map_poi.md`。
+      - **TOOL-map-compose**：依赖前三件，本轮出样区；前三件合入后由开发监督或 ops-dispatch 起。
+    - AR-67 整张 Codex 区域图暂停；已入库的 20 张 Gemini 区域图留作占位。
+
