@@ -1,0 +1,420 @@
+- id: vfx_sk_taohuaguiyuanjue__family_base01
+  file: effect/family/source_sheet.png
+  bytes: 1380504
+  sha256: cc0cf20ddff9d847746c3922941edab102912251b507edf989c8df0d88c4a859
+  size: 1254x1254
+  category: vfx/effect
+  style: default
+  subject: 桃花归元诀（天中11 / 阴 / 内功）；射雕、神雕桃花岛语境；青碧回环与花瓣形内息；同门三普通招共用（原创扩展）
+  prompt: 'Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet, four animation frames, 2 columns by 2 rows on an exactly 1024x1024 pure white (#FFFFFF) canvas, each invisible cell 512x512. Subject: Taohua Guiyuan Jue shared inner-breath protective aura, an original game interpretation, yin nature in celadon jade and deep blue-green ink. A compact curled oval tide of translucent qi, two gently returning C-shaped flowing ribbons with a few tiny pale celadon peach-petal silhouettes carried inside the curl. It is a local breathing/guard aura, calm, supple and inward-gathering, NOT a projectile, beam, ocean scene or sound wave. Handmade Chinese ink-wash brush texture, translucent feathered washes, saturated teal filaments, airy empty center and substantial negative space. Within EACH 512x512 cell root stays at local (96,256): a visible broad soft vertical ribbon attachment about 130 pixels tall at x=96, joined to the coiling aura to its RIGHT; whole aura fits x=64..446
+    and y=88..424. Main loop center around (275,256). Four chronological states reading left-to-right top-to-bottom: faint gather, fully formed peak, sustained gentle curl, delicate dissolving residue, preserving the same root, scale, camera and loop silhouette. Full effect never leaves local bounds, at least 48px completely blank white all around each cell. No grid lines, text, numbers, borders, calligraphy, paper grain, scenery, shadows, hands, human, weapon, dragon, gold, pink flowers, neon glare, opaque white highlights or white paint inside effect. White is only background and negative space. Output exactly one sheet, no labels.'
+  negative: 无人物、手、兵器、文字、编号、网格、纸纹、硬阴影、实体花、金粉、粉红、霓虹或纯白高光；不表达离体攻击或音波
+  references: []
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-10-04T00:08:07.649607+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_taohuaguiyuanjue/codex-home/generated_images/01a1043a-bbe8-7281-a998-b361be5ccf22/exec-045fae24-344e-4a05-82c3-be0a1204496e.png
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  effect_set: effect/family/effect-set.yaml
+  notes:
+  - 完整请求见 source_requests.json；底层模型与推理强度未由工具返回。
+  - 白底原件逐字节保留；请求1024方图，实际1254方图；2×2切成627方形RGBA。
+  - white_key:250/163，normal混合；同一峰值实测根点用于四帧。
+  - 原著未有该固定功名；全部造型、招名意象和阴青显色为原创扩展。
+  - 已 view_image 查原件和黑/灰/白底；全部候选待作者审美确认。
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 973
+    sha256: 0b4e2a37151a2a82f464e6334420aad0301ca1ef83ba95bad2a1dceb00244de9
+  - file: effect/family/frame_000.png
+    bytes: 215160
+    sha256: b4aa17b4070a7444c65220e6b7fdfa4324ce24e70d61768581fa27dcd16e0c53
+  - file: effect/family/frame_001.png
+    bytes: 323861
+    sha256: 7b3066b249dd376118455a67c3a274453a8ed961c3ebcc7e9be25bd5f2d4d01f
+  - file: effect/family/frame_002.png
+    bytes: 308076
+    sha256: 8f57b7b947cd51c979c0f68e09b93f33dc42ea475d03a3fa0e503fc9dc5c8b36
+  - file: effect/family/frame_003.png
+    bytes: 203521
+    sha256: c605e7d6c2d725292a8c214f1222c8a831a93019627189050d1cd7d2f02e4c7b
+  - file: effect/family/quality.json
+    bytes: 1034
+    sha256: 50c5dcc0e40a8fee3cc266d71bd7864b5df70719822eb5a5ce4f2579be1dafc2
+  - file: README.md
+    bytes: 6850
+    sha256: dbe1063366c6b40449cd0ce4b15aeb2f807506c1587c7b2de9ffe940b237b96d
+  - file: source_requests.json
+    bytes: 8121
+    sha256: 05e84f17421dbf8e723edbf44f35e911bb02cf8c989f98d8b1f5cd4c96682c90
+  - file: validation.json
+    bytes: 4140
+    sha256: 9ef39e333b71c8ed9f5d0ab9625bc0d76fe18b2ce24ab2784bfa726c23e3a252
+  - file: vfx-check.jsonl
+    bytes: 7927
+    sha256: 12883b8908a559d600f658f8ed200162afc08d5779e969fbf797345a7f623f73
+- id: vfx_sk_taohuaguiyuanjue__bihui_base01
+  file: effect/mv_taohuaguiyuanjue_bihui/source_sheet.png
+  bytes: 1481957
+  sha256: 67954c67c49ea783cd97f4d096bc2f8e9be8c91fe2067b941a34ce213a300496
+  size: 1254x1254
+  category: vfx/effect
+  style: default
+  subject: 桃花归元诀（天中11 / 阴 / 内功）；射雕、神雕桃花岛语境；碧回归一；瓣状青碧气流归拢（原创扩展）
+  prompt: 'Use case: stylized-concept. Asset type: four-frame wuxia game VFX source sheet on pure white, 2 by 2 invisible equal square cells, single square 1024x1024 image. Subject: Bihui Guiyi, original ultimate inner-energy guarding technique of Taohua Guiyuan Jue. Yin-colored celadon, jade, deep blue-green translucent Chinese ink-wash qi. Unique silhouette: a compact FIVE-LOBED peach-blossom-shaped vortex made entirely of curling tide ribbons, five open petal-shaped translucent loops folding inward toward a small clear central eye. This is a symbolic breath-and-guard aura, NOT a real flower, lotus, projectile, sound wave, shield object or landscape. A broad soft vertical teal attachment at the LEFT of the aura is connected organically to its lowest and uppermost curls. In each 512x512 cell keep root at (96,256), root visible height roughly 120px; main vortex centered at (275,256); entire visible shape within x=64..448 y=64..448. Main direction from left root toward local compact vortex
+    to the right. Four consistent animation frames: top left quietly gathering five lobes, top right fullest peak with five readable overlapping lobes, bottom left sustained swirling folds, bottom right faint coherent afterglow. Preserve silhouette position, root and scale; only strength and internal flow vary subtly. All four cells have at least 48px entirely pure white padding; keep cell center seam completely blank. Exquisite feathered ink edges, fluid brush striations, translucent washes, airy negative space, restrained dark-teal accents; no solid white paint, no white glow core, no modern neon. No person, hands, weapons, scenery, paper texture, shadows, gold, pink, dragon, text, numbers, calligraphy, labels, grid or border. Exactly four individual effects and nothing else.'
+  negative: 无人物、手、兵器、文字、编号、网格、纸纹、硬阴影、实体花、金粉、粉红、霓虹或纯白高光；不表达离体攻击或音波
+  references: []
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-10-04T00:09:21.346613+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_taohuaguiyuanjue/codex-home/generated_images/01a1043a-bbe8-7281-a998-b361be5ccf22/exec-678170ec-c992-4731-a139-26b666cb6638.png
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  effect_set: effect/mv_taohuaguiyuanjue_bihui/effect-set.yaml
+  notes:
+  - 完整请求见 source_requests.json；底层模型与推理强度未由工具返回。
+  - 白底原件逐字节保留；请求1024方图，实际1254方图；2×2切成627方形RGBA。
+  - white_key:250/163，normal混合；同一峰值实测根点用于四帧。
+  - 原著未有该固定功名；全部造型、招名意象和阴青显色为原创扩展。
+  - 已 view_image 查原件和黑/灰/白底；全部候选待作者审美确认。
+  file_integrity:
+  - file: effect/mv_taohuaguiyuanjue_bihui/effect-set.yaml
+    bytes: 974
+    sha256: fda6aeb38d9701ec816af08351ac1d5138d98bd678de180cc87355f66dfc59a8
+  - file: effect/mv_taohuaguiyuanjue_bihui/frame_000.png
+    bytes: 314854
+    sha256: cce4ae338d65d1d25cd53b657f4861a03e16dd633d9db92d8b232176f16dc470
+  - file: effect/mv_taohuaguiyuanjue_bihui/frame_001.png
+    bytes: 401452
+    sha256: 5bbd4d660932fb62664d5d4218fefb3b8983a18b683b1055d806d8cb6a43b539
+  - file: effect/mv_taohuaguiyuanjue_bihui/frame_002.png
+    bytes: 342256
+    sha256: 07ee75df300cb62c4935cca30da0b9b25fafdfb9942b9694c4e8c470cbaf93aa
+  - file: effect/mv_taohuaguiyuanjue_bihui/frame_003.png
+    bytes: 295052
+    sha256: 78b1471775905c8afe2c4921cdb8bdce0e632b6edc5ae1f32f9db64bb8b4bfc6
+  - file: effect/mv_taohuaguiyuanjue_bihui/quality.json
+    bytes: 1035
+    sha256: d0c6eb1aa7dffcd3d1e954d23f5254ec2c80e2b91fa676589a28de5f044142c9
+- id: vfx_sk_taohuaguiyuanjue__guanchao_base01
+  file: effect/mv_taohuaguiyuanjue_guanchao/source_sheet.png
+  bytes: 1534294
+  sha256: 8d83f3750edfa3bc753dfd2fa6ade38287fe27310333a0381e71c84b8f1d37c8
+  size: 1254x1254
+  category: vfx/effect
+  style: default
+  subject: 桃花归元诀（天中11 / 阴 / 内功）；射雕、神雕桃花岛语境；观潮归元；层叠青碧潮环回收（原创扩展）
+  prompt: 'Use case: stylized-concept. Asset type: four chronological frames of one Chinese wuxia inner-energy VFX on a perfectly pure white square sheet. Exactly 2 columns by 2 rows, invisible equal square cells, requested image 1024x1024. Subject: Guanchao Guiyuan, original ultimate recovery technique of Taohua Guiyuan Jue. A serene compact tidal shell-shaped aura built of THREE nested oval crescent currents curling back inward toward their origin, with small delicate peach-petal silhouettes caught between currents. Celadon and deep cyan-jade ink, yin nature. Clearly distinguish the nested shell-like curved tide from a flower rosette. NOT literal ocean water, not a beam, not a travelling projectile, not musical sound rings. Translucent Chinese ink-wash atmosphere with elegant long fine teal brush filaments, fluid feathered transparent edges, open clear negative space, no opaque white highlights. For every 512x512 cell root remains at local (96,256), a broad visibly connected vertical soft
+    ribbon about 140px high on the left, with nested curved oval currents extending to its right and folding back; aura center about (270,256); ALL marks contained inside x=64..448 and y=80..432 with at least 48px pure white safe margin. Four animation states read left-to-right then top-to-bottom: faint gathering tide, full coherent nested-tide peak, sustained inward-returning tide, faint dissolving tide. Maintain the same shape footprint, root and camera across frames, use subtle inner flow variation. Keep pure white empty cross-shaped separation between all cells; absolutely no lines dividing cells, no labels, numbers, text, border, paper texture, shadows, ground, scenery, human, hands, weapons, dragons, lotus, pink or gold, sparks or neon glow. Exactly one sheet of four related VFX frames.'
+  negative: 无人物、手、兵器、文字、编号、网格、纸纹、硬阴影、实体花、金粉、粉红、霓虹或纯白高光；不表达离体攻击或音波
+  references: []
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-10-04T00:10:09.097464+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_taohuaguiyuanjue/codex-home/generated_images/01a1043a-bbe8-7281-a998-b361be5ccf22/exec-2c141e88-54ef-457f-bffa-5cde3741e925.png
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  effect_set: effect/mv_taohuaguiyuanjue_guanchao/effect-set.yaml
+  notes:
+  - 完整请求见 source_requests.json；底层模型与推理强度未由工具返回。
+  - 白底原件逐字节保留；请求1024方图，实际1254方图；2×2切成627方形RGBA。
+  - white_key:250/163，normal混合；同一峰值实测根点用于四帧。
+  - 原著未有该固定功名；全部造型、招名意象和阴青显色为原创扩展。
+  - 已 view_image 查原件和黑/灰/白底；全部候选待作者审美确认。
+  file_integrity:
+  - file: effect/mv_taohuaguiyuanjue_guanchao/effect-set.yaml
+    bytes: 975
+    sha256: ce980f6a7428104d17bf81ec6be9f09037f1e55a7630f1eadebb1cd95b5bbbfd
+  - file: effect/mv_taohuaguiyuanjue_guanchao/frame_000.png
+    bytes: 351672
+    sha256: bc2ef50721e6c49f8f3f499c195ad4f680da94b47d1f2506638796aed7441f85
+  - file: effect/mv_taohuaguiyuanjue_guanchao/frame_001.png
+    bytes: 426808
+    sha256: dac20bb99d370cd7a5e0ccddbb1cc61edf1a638914a03841f79e7a99b3edfc82
+  - file: effect/mv_taohuaguiyuanjue_guanchao/frame_002.png
+    bytes: 390777
+    sha256: 535c19fc63db7983b63d0bd3af00ed6f7013ba4cadd68222dec115292c4b1194
+  - file: effect/mv_taohuaguiyuanjue_guanchao/frame_003.png
+    bytes: 291912
+    sha256: 0a6903af0bb478144e2166144e8280777f2bb890c9fb4c185814e03160bfa641
+  - file: effect/mv_taohuaguiyuanjue_guanchao/quality.json
+    bytes: 1037
+    sha256: 942924b51de730399a322d2625bcbc530511d722f30f5ab39c30ec059428323e
+- id: vfx_mv_taohuaguiyuanjue_bihui__base01
+  file: moves/mv_taohuaguiyuanjue_bihui/peak.png
+  bytes: 379529
+  sha256: 4fde5602dba1cc565a7a974dc00cbb54ff966fbdab8178d8299545fe473944a4
+  size: 1536x1024
+  category: vfx
+  style: default
+  subject: 桃花归元诀 / mv_taohuaguiyuanjue_bihui；射雕、神雕语境；自身支援绝招（原创扩展）
+  prompt: 使用 ../../effect/mv_taohuaguiyuanjue_bihui/effect-set.yaml 及共享 palm，按本目录 composition.yaml 以 compose.py 输出静态峰值，build_demo.py 输出 Composition JSON 与 Three.js 演示；只变换、采样和叠化原料。length_px=384；scale=[1, 1.5]；0度；range_hex=0；wave=0.90s
+  negative: 不新增原料、不烘焙整图动画、不重绘掌形、不把自身气场当作外放或音波、不扩展玩法射程
+  references:
+  - vfx_sk_taohuaguiyuanjue__bihui_base01
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: deterministic-composition
+  effort: not-applicable
+  created: '2026-10-04T00:14:05.368765+00:00'
+  source_path: moves/mv_taohuaguiyuanjue_bihui/composition.yaml
+  status: candidate
+  code: moves/mv_taohuaguiyuanjue_bihui/demo.html
+  pipeline: two-part
+  skill_ref: sk_taohuaguiyuanjue
+  move_ref: mv_taohuaguiyuanjue_bihui
+  ultimate: true
+  projection: false
+  delivery: inner
+  nature: yin
+  effect_set: effect/mv_taohuaguiyuanjue_bihui/effect-set.yaml
+  emitter_plate: ../emitters/palm/emitter-plate.yaml
+  notes:
+  - 示意长度为掌宽192px的美术倍率，range_hex=0；非攻击距离。
+  - 每HTML内嵌4帧与发出方，原尺度无损WebP；唯一显式外链为指定three r186 importmap。
+  - 静态/几何/脚本检查通过；WebGL、CDN模块依赖及真机待实测。
+  external_inputs:
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    unchanged_from_HEAD: true
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    unchanged_from_HEAD: true
+  file_integrity:
+  - file: moves/mv_taohuaguiyuanjue_bihui/composition.json
+    bytes: 3377
+    sha256: 80c548f58ff2c43e8297117b653719e93909dc36a0ebd2b4b627d7dc7d3dd040
+  - file: moves/mv_taohuaguiyuanjue_bihui/composition.yaml
+    bytes: 931
+    sha256: 36d567926b7efe75d15b83522271b25c805f2f8b234df6a87284eb4fbb89aeb6
+  - file: moves/mv_taohuaguiyuanjue_bihui/demo.html
+    bytes: 2128458
+    sha256: 39ea71047dd13a0cc229bd81e85ff069635686449ffac3e3a0614fdd61cc8493
+  - file: moves/mv_taohuaguiyuanjue_bihui/peak.png
+    bytes: 379529
+    sha256: 4fde5602dba1cc565a7a974dc00cbb54ff966fbdab8178d8299545fe473944a4
+- id: vfx_mv_taohuaguiyuanjue_guanchao__base01
+  file: moves/mv_taohuaguiyuanjue_guanchao/peak.png
+  bytes: 425536
+  sha256: 1420e722bd3dda78fcc6132be85213a189d41a29a73dab4ba7d9b0457c841fbd
+  size: 1536x1024
+  category: vfx
+  style: default
+  subject: 桃花归元诀 / mv_taohuaguiyuanjue_guanchao；射雕、神雕语境；自身支援绝招（原创扩展）
+  prompt: 使用 ../../effect/mv_taohuaguiyuanjue_guanchao/effect-set.yaml 及共享 palm，按本目录 composition.yaml 以 compose.py 输出静态峰值，build_demo.py 输出 Composition JSON 与 Three.js 演示；只变换、采样和叠化原料。length_px=432；scale=[1, 1.8]；0度；range_hex=0；wave=0.90s
+  negative: 不新增原料、不烘焙整图动画、不重绘掌形、不把自身气场当作外放或音波、不扩展玩法射程
+  references:
+  - vfx_sk_taohuaguiyuanjue__guanchao_base01
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: deterministic-composition
+  effort: not-applicable
+  created: '2026-10-04T00:14:19.364318+00:00'
+  source_path: moves/mv_taohuaguiyuanjue_guanchao/composition.yaml
+  status: candidate
+  code: moves/mv_taohuaguiyuanjue_guanchao/demo.html
+  pipeline: two-part
+  skill_ref: sk_taohuaguiyuanjue
+  move_ref: mv_taohuaguiyuanjue_guanchao
+  ultimate: true
+  projection: false
+  delivery: inner
+  nature: yin
+  effect_set: effect/mv_taohuaguiyuanjue_guanchao/effect-set.yaml
+  emitter_plate: ../emitters/palm/emitter-plate.yaml
+  notes:
+  - 示意长度为掌宽192px的美术倍率，range_hex=0；非攻击距离。
+  - 每HTML内嵌4帧与发出方，原尺度无损WebP；唯一显式外链为指定three r186 importmap。
+  - 静态/几何/脚本检查通过；WebGL、CDN模块依赖及真机待实测。
+  external_inputs:
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    unchanged_from_HEAD: true
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    unchanged_from_HEAD: true
+  file_integrity:
+  - file: moves/mv_taohuaguiyuanjue_guanchao/composition.json
+    bytes: 3381
+    sha256: 04927b97e2afdc16a6ef4d7365c9e67c0615ab696434e3f367cff43cb428aa47
+  - file: moves/mv_taohuaguiyuanjue_guanchao/composition.yaml
+    bytes: 940
+    sha256: 441655fe90c50bfcdf142fd9b53d1a6ceeba71ab96317f95fc70bc5cbb784755
+  - file: moves/mv_taohuaguiyuanjue_guanchao/demo.html
+    bytes: 2265684
+    sha256: 7542e65303ae74c40db2c167caaa3b2d0d93583805010d11b4272b1e252797ed
+  - file: moves/mv_taohuaguiyuanjue_guanchao/peak.png
+    bytes: 425536
+    sha256: 1420e722bd3dda78fcc6132be85213a189d41a29a73dab4ba7d9b0457c841fbd
+- id: vfx_mv_taohuaguiyuanjue_huti__base01
+  file: moves/mv_taohuaguiyuanjue_huti/peak.png
+  bytes: 363421
+  sha256: 9fc45d24305d676657a7801d89088e552588c89b5df3e030e4e62d0be03cadb9
+  size: 1536x1024
+  category: vfx
+  style: default
+  subject: 桃花归元诀 / mv_taohuaguiyuanjue_huti；射雕、神雕语境；自身支援普通招（原创扩展）
+  prompt: 使用 ../../effect/family/effect-set.yaml 及共享 palm，按本目录 composition.yaml 以 compose.py 输出静态峰值，build_demo.py 输出 Composition JSON 与 Three.js 演示；只变换、采样和叠化原料。length_px=336；scale=[1, 1.1]；0度；range_hex=0；pulse=0.60s
+  negative: 不新增原料、不烘焙整图动画、不重绘掌形、不把自身气场当作外放或音波、不扩展玩法射程
+  references:
+  - vfx_sk_taohuaguiyuanjue__family_base01
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: deterministic-composition
+  effort: not-applicable
+  created: '2026-10-04T00:14:33.647186+00:00'
+  source_path: moves/mv_taohuaguiyuanjue_huti/composition.yaml
+  status: candidate
+  code: moves/mv_taohuaguiyuanjue_huti/demo.html
+  pipeline: two-part
+  skill_ref: sk_taohuaguiyuanjue
+  move_ref: mv_taohuaguiyuanjue_huti
+  ultimate: false
+  projection: false
+  delivery: inner
+  nature: yin
+  effect_set: effect/family/effect-set.yaml
+  emitter_plate: ../emitters/palm/emitter-plate.yaml
+  notes:
+  - 示意长度为掌宽192px的美术倍率，range_hex=0；非攻击距离。
+  - 每HTML内嵌4帧与发出方，原尺度无损WebP；唯一显式外链为指定three r186 importmap。
+  - 静态/几何/脚本检查通过；WebGL、CDN模块依赖及真机待实测。
+  external_inputs:
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    unchanged_from_HEAD: true
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    unchanged_from_HEAD: true
+  file_integrity:
+  - file: moves/mv_taohuaguiyuanjue_huti/composition.json
+    bytes: 3349
+    sha256: 32620d0b044a72ca721488f64a5ff21493e7c0a0796cd856a1525bfb7b21d1e6
+  - file: moves/mv_taohuaguiyuanjue_huti/composition.yaml
+    bytes: 910
+    sha256: 15f49adbc786f97a89eb948a38ae66afd0de494b107750873f0f9bf01e03363e
+  - file: moves/mv_taohuaguiyuanjue_huti/demo.html
+    bytes: 1845084
+    sha256: e71d763e8b597ac34215d649510b3cadbd60a0ba9e5218e73b86e6dbf6e32458
+  - file: moves/mv_taohuaguiyuanjue_huti/peak.png
+    bytes: 363421
+    sha256: 9fc45d24305d676657a7801d89088e552588c89b5df3e030e4e62d0be03cadb9
+- id: vfx_mv_taohuaguiyuanjue_lixi__base01
+  file: moves/mv_taohuaguiyuanjue_lixi/peak.png
+  bytes: 337684
+  sha256: 95cf3be8af4e3aeb74ebf676a2152a8eee376a8ef7bfb2496b46d0e8552bf358
+  size: 1536x1024
+  category: vfx
+  style: default
+  subject: 桃花归元诀 / mv_taohuaguiyuanjue_lixi；射雕、神雕语境；自身支援普通招（原创扩展）
+  prompt: 使用 ../../effect/family/effect-set.yaml 及共享 palm，按本目录 composition.yaml 以 compose.py 输出静态峰值，build_demo.py 输出 Composition JSON 与 Three.js 演示；只变换、采样和叠化原料。length_px=288；scale=[1, 1]；0度；range_hex=0；pulse=0.60s
+  negative: 不新增原料、不烘焙整图动画、不重绘掌形、不把自身气场当作外放或音波、不扩展玩法射程
+  references:
+  - vfx_sk_taohuaguiyuanjue__family_base01
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: deterministic-composition
+  effort: not-applicable
+  created: '2026-10-04T00:14:47.300116+00:00'
+  source_path: moves/mv_taohuaguiyuanjue_lixi/composition.yaml
+  status: candidate
+  code: moves/mv_taohuaguiyuanjue_lixi/demo.html
+  pipeline: two-part
+  skill_ref: sk_taohuaguiyuanjue
+  move_ref: mv_taohuaguiyuanjue_lixi
+  ultimate: false
+  projection: false
+  delivery: inner
+  nature: yin
+  effect_set: effect/family/effect-set.yaml
+  emitter_plate: ../emitters/palm/emitter-plate.yaml
+  notes:
+  - 示意长度为掌宽192px的美术倍率，range_hex=0；非攻击距离。
+  - 每HTML内嵌4帧与发出方，原尺度无损WebP；唯一显式外链为指定three r186 importmap。
+  - 静态/几何/脚本检查通过；WebGL、CDN模块依赖及真机待实测。
+  external_inputs:
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    unchanged_from_HEAD: true
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    unchanged_from_HEAD: true
+  file_integrity:
+  - file: moves/mv_taohuaguiyuanjue_lixi/composition.json
+    bytes: 3347
+    sha256: af39b93ba3e4a287b8057a320557d36dd525fd0dfd6699ab1485ed4e822c42f6
+  - file: moves/mv_taohuaguiyuanjue_lixi/composition.yaml
+    bytes: 908
+    sha256: bd1f53e4a7e602f0c73028c53433ac984e375249479e17f1ff4f78fb7f5805d3
+  - file: moves/mv_taohuaguiyuanjue_lixi/demo.html
+    bytes: 1824090
+    sha256: fe7987ff8020eace92cf01b26045b42e720cde474066dd513ee83a69d1908508
+  - file: moves/mv_taohuaguiyuanjue_lixi/peak.png
+    bytes: 337684
+    sha256: 95cf3be8af4e3aeb74ebf676a2152a8eee376a8ef7bfb2496b46d0e8552bf358
+- id: vfx_mv_taohuaguiyuanjue_tingchao__base01
+  file: moves/mv_taohuaguiyuanjue_tingchao/peak.png
+  bytes: 312049
+  sha256: 000291c7b66f525daf01f1d80186ffaa811ad7021911917b2e8e391b66addaa0
+  size: 1536x1024
+  category: vfx
+  style: default
+  subject: 桃花归元诀 / mv_taohuaguiyuanjue_tingchao；射雕、神雕语境；自身支援普通招（原创扩展）
+  prompt: 使用 ../../effect/family/effect-set.yaml 及共享 palm，按本目录 composition.yaml 以 compose.py 输出静态峰值，build_demo.py 输出 Composition JSON 与 Three.js 演示；只变换、采样和叠化原料。length_px=240；scale=[1, 0.9]；0度；range_hex=0；pulse=0.60s
+  negative: 不新增原料、不烘焙整图动画、不重绘掌形、不把自身气场当作外放或音波、不扩展玩法射程
+  references:
+  - vfx_sk_taohuaguiyuanjue__family_base01
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: deterministic-composition
+  effort: not-applicable
+  created: '2026-10-04T00:15:00.870810+00:00'
+  source_path: moves/mv_taohuaguiyuanjue_tingchao/composition.yaml
+  status: candidate
+  code: moves/mv_taohuaguiyuanjue_tingchao/demo.html
+  pipeline: two-part
+  skill_ref: sk_taohuaguiyuanjue
+  move_ref: mv_taohuaguiyuanjue_tingchao
+  ultimate: false
+  projection: false
+  delivery: inner
+  nature: yin
+  effect_set: effect/family/effect-set.yaml
+  emitter_plate: ../emitters/palm/emitter-plate.yaml
+  notes:
+  - 示意长度为掌宽192px的美术倍率，range_hex=0；非攻击距离。
+  - 每HTML内嵌4帧与发出方，原尺度无损WebP；唯一显式外链为指定three r186 importmap。
+  - 静态/几何/脚本检查通过；WebGL、CDN模块依赖及真机待实测。
+  external_inputs:
+  - file: assets/default/vfx/emitters/palm/emitter-plate.yaml
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+    unchanged_from_HEAD: true
+  - file: assets/default/vfx/emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    unchanged_from_HEAD: true
+  file_integrity:
+  - file: moves/mv_taohuaguiyuanjue_tingchao/composition.json
+    bytes: 3357
+    sha256: c551cea97279e1f594f0623850f910ae46a07ed24f3f6c5355707234d5243f14
+  - file: moves/mv_taohuaguiyuanjue_tingchao/composition.yaml
+    bytes: 918
+    sha256: c8c09f606710f09c08b8f7f5323082d2f66aab3a662baf238e4d3cca44540d57
+  - file: moves/mv_taohuaguiyuanjue_tingchao/demo.html
+    bytes: 1804136
+    sha256: 57cb048f69a97800e89a2d437f19e111578892f80f0f07000fe88bb9043d7a37
+  - file: moves/mv_taohuaguiyuanjue_tingchao/peak.png
+    bytes: 312049
+    sha256: 000291c7b66f525daf01f1d80186ffaa811ad7021911917b2e8e391b66addaa0

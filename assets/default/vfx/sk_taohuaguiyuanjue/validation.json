@@ -1,0 +1,157 @@
+{
+  "visual_review": {
+    "source_sheets": [
+      "family",
+      "mv_taohuaguiyuanjue_bihui",
+      "mv_taohuaguiyuanjue_guanchao"
+    ],
+    "backgrounds": [
+      "black",
+      "gray",
+      "white"
+    ],
+    "peak_moves": [
+      "mv_taohuaguiyuanjue_bihui",
+      "mv_taohuaguiyuanjue_guanchao",
+      "mv_taohuaguiyuanjue_huti"
+    ],
+    "method": "view_image; corrected returned application/octet-stream MIME to image/png without altering files",
+    "observations": "青碧水墨边缘与花瓣/回潮语汇清晰；掌面连接可辨；未见白边、裁断；WebGL/真机待实测"
+  },
+  "effects": {
+    "family": {
+      "frames": 4,
+      "size_px": [
+        627,
+        627
+      ],
+      "min_source_margin_px": 52,
+      "border_alpha_ratio_max": 0.0,
+      "residual_white_edge_ratio_max": 0.0,
+      "white_rebuild_max_8bit": 1.0145339965820312
+    },
+    "mv_taohuaguiyuanjue_bihui": {
+      "frames": 4,
+      "size_px": [
+        627,
+        627
+      ],
+      "min_source_margin_px": 34,
+      "border_alpha_ratio_max": 0.0,
+      "residual_white_edge_ratio_max": 0.0,
+      "white_rebuild_max_8bit": 1.0145339965820312
+    },
+    "mv_taohuaguiyuanjue_guanchao": {
+      "frames": 4,
+      "size_px": [
+        627,
+        627
+      ],
+      "min_source_margin_px": 45,
+      "border_alpha_ratio_max": 0.0,
+      "residual_white_edge_ratio_max": 0.0,
+      "white_rebuild_max_8bit": 1.0145339965820312
+    }
+  },
+  "moves": {
+    "mv_taohuaguiyuanjue_bihui": {
+      "length_px": 384,
+      "matrix_scale": [
+        0.8196371398078975,
+        0.7441860465116279
+      ],
+      "duration_s": 0.9,
+      "html_bytes": 2128458,
+      "visible_bounds_px": [
+        114.60000000000001,
+        150.20000000000002,
+        984.4098185699039,
+        856.4
+      ],
+      "safe_margin_px": 114.60000000000001,
+      "blank_fraction_lower_bound": 0.6094642042324918
+    },
+    "mv_taohuaguiyuanjue_guanchao": {
+      "length_px": 432,
+      "matrix_scale": [
+        1.0498177399756987,
+        0.7513043478260869
+      ],
+      "duration_s": 0.9,
+      "html_bytes": 2265684,
+      "visible_bounds_px": [
+        114.60000000000001,
+        150.20000000000002,
+        1032.5498177399757,
+        856.4
+      ],
+      "safe_margin_px": 114.60000000000001,
+      "blank_fraction_lower_bound": 0.5878498323517032
+    },
+    "mv_taohuaguiyuanjue_huti": {
+      "length_px": 336,
+      "matrix_scale": [
+        0.7376509330406147,
+        0.8250000000000001
+      ],
+      "duration_s": 0.6,
+      "html_bytes": 1845084,
+      "visible_bounds_px": [
+        114.60000000000001,
+        150.20000000000002,
+        941.5323819978046,
+        856.4
+      ],
+      "safe_margin_px": 114.60000000000001,
+      "blank_fraction_lower_bound": 0.6287157388262117
+    },
+    "mv_taohuaguiyuanjue_lixi": {
+      "length_px": 288,
+      "matrix_scale": [
+        0.6322722283205269,
+        0.75
+      ],
+      "duration_s": 0.6,
+      "html_bytes": 1824090,
+      "visible_bounds_px": [
+        114.60000000000001,
+        150.20000000000002,
+        892.742041712404,
+        856.4
+      ],
+      "safe_margin_px": 114.60000000000001,
+      "blank_fraction_lower_bound": 0.6506221072786333
+    },
+    "mv_taohuaguiyuanjue_tingchao": {
+      "length_px": 240,
+      "matrix_scale": [
+        0.5268935236004391,
+        0.675
+      ],
+      "duration_s": 0.6,
+      "html_bytes": 1804136,
+      "visible_bounds_px": [
+        114.60000000000001,
+        150.20000000000002,
+        843.9517014270032,
+        856.4
+      ],
+      "safe_margin_px": 114.60000000000001,
+      "blank_fraction_lower_bound": 0.6725284757310552
+    }
+  },
+  "shared_emitter": [
+    {
+      "file": "assets/default/vfx/emitters/palm/emitter-plate.yaml",
+      "sha256": "049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "file": "assets/default/vfx/emitters/palm/source_palm.png",
+      "sha256": "f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c",
+      "unchanged_from_HEAD": true
+    }
+  ],
+  "browser_runtime_tested": false,
+  "native_device_tested": false
+}
