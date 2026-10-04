@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1160** 份：已入库 993、已通过（作者） 132、待出图 35。**待出图队列 35 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1160** 份：已入库 994、已通过（作者） 132、待出图 34。**待出图队列 34 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -51,7 +51,6 @@
 | items | `it_yuetongjian` | 越地素面铜鉴 | `assets/default/item/collectibles/it_yuetongjian.png` | 待出图 | [it_yuetongjian.md](items/collectibles/it_yuetongjian.md) |
 | items | `it_yuewuseqin` | 越地乌漆礼琴 | `assets/default/item/collectibles/it_yuewuseqin.png` | 待出图 | [it_yuewuseqin.md](items/collectibles/it_yuewuseqin.md) |
 | items | `it_yueyushiwen` | 越地玉石盟辞摹片 | `assets/default/item/collectibles/it_yueyushiwen.png` | 待出图 | [it_yueyushiwen.md](items/collectibles/it_yueyushiwen.md) |
-| items | `it_zhaominjinhe` | 赵敏修补金盒 | `assets/default/item/collectibles/it_zhaominjinhe.png` | 待出图 | [it_zhaominjinhe.md](items/collectibles/it_zhaominjinhe.md) |
 | items | `it_zhenlongqiju` | 珍珑棋局图 | `assets/default/item/collectibles/it_zhenlongqiju.png` | 待出图 | [it_zhenlongqiju.md](items/collectibles/it_zhenlongqiju.md) |
 | items | `it_zunjuantielinben` | 尊眷帖临本 | `assets/default/item/collectibles/it_zunjuantielinben.png` | 待出图 | [it_zunjuantielinben.md](items/collectibles/it_zunjuantielinben.md) |
 | items | `it_zuqianqiujiubei` | 祖千秋酒杯组 | `assets/default/item/collectibles/it_zuqianqiujiubei.png` | 待出图 | [it_zuqianqiujiubei.md](items/collectibles/it_zuqianqiujiubei.md) |
