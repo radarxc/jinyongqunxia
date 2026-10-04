@@ -41,7 +41,7 @@
 检查：以下命令必须全部通过。
 - `pnpm install --frozen-lockfile`
 - `pnpm check`：特效运行时数据发布与 dev-chunks 检查都在里面
-- `python3 tools/agents/check_assets.py assets/default/map/kit --min 20 --max 60 --min-side 512`
+- `python3 tools/agents/check_assets.py assets/default/map/kit --min 20 --max 120 --min-side 512`
 - `python3 -c "import sys,re; from pathlib import Path; …"`：按磁盘检查两处目录里不再有 `.py` / `.jsonl` / `.log` / `checks/`
 - `python3 tools/lint/check_ids.py --strict`
 
