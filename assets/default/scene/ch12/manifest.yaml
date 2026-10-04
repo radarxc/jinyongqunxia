@@ -141,62 +141,47 @@
   category: scene
   style: default
   subject: 孤影入宫（ch12_shujian）
-  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是喀丝丽的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中喀丝丽的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    第1张参考：喀丝丽本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
 
-    第2张参考：喀丝丽·宫中急信阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+    【要对齐的部分】喀丝丽的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：孤身入宫却仍天真温柔：眼睛睁开、眼神纯净明亮地看向前下方，嘴角带一点温柔恬静的浅笑（基线那种甜美，只是收敛一些）；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+    【喀丝丽的基线脸】基线里的喀丝丽十八九岁（成年），天真甜美：圆润的鹅蛋脸、两颊饱满、下巴圆润；细长柔和的眉；一双又大又亮的眼睛、双眼皮、眼神纯真；鼻子小巧挺直；嘴唇红润、带甜甜的微笑；肤色白皙。不要长脸、窄眼、冷淡的神情。
 
-    【场面】高大宫门与深廊投下冷影，成年喀丝丽白衣小头巾独自停在明暗分界，双手收在身前、无信件无兵器；表情悲伤却清醒，远处侍卫为模糊成年文字人物。强调被俘后的孤立与自主意志，不加入陈家洛或霍青桐送行，不画舞女艳情。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「孤影入宫」和小朱印必须原样保留，一笔不改、不增不减。
 
-    【剧情边界】第19–20回被俘送京入宫；画面时间压缩与建筑空间为原创扩展构图，入门的精确瞬间待考。story/12第220–223行；https://www.hetubook.com/book2/33/695.html 目标三联/广州修订版逐字校勘仍待考。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
-
-    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「孤」「影」「入」「宫」，合成「孤影入宫」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
-
-    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
-
-    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
-  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+    【本张另外要求】喀丝丽是画面中间穿白衣、披头纱的女子；远处走廊里的侍卫很小，不改。上一次只改了一点点，这次要明显改：把她偏长偏窄的脸改成基线那种圆润饱满的鹅蛋脸（两颊更饱满、下巴更圆、脸更短），把细长下垂的眼睛改成基线那种又大又圆的明亮双眼皮眼睛，嘴改成基线那种红润带笑的嘴。头纱、发辫、耳饰保持原图。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
   - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
-    sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
-    uploaded_sha256: 14b7bfecaacb2376f848c9923802fb8f00d18e70a9133a2475c7cb33cd225a77
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
-    sha256: bc0cf71da5e53ad149ae342b5262d824ae170669e15127a06f230fa1ce37ae2d
-    uploaded_sha256: bc0cf71da5e53ad149ae342b5262d824ae170669e15127a06f230fa1ce37ae2d
-    use: 身份参考（作者 AR-29：只上传主角与 S 级）
-  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
-    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
-    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
-    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
-    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
-    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
-  tool: codex exec · image_gen
+    sha256: 2934aecf9b53126a54857f03bbb888dcfc6fd2c9a65c8d5a67101168beaca787
+    use: 对脸基线：作者 AR-56 定下的 por_npc_kasili__ch12_youth_prepalace_base（喀丝丽），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch12/cg_ch12_kasili_enters_palace.png
+    sha256: 4bcafd961f86501923c95f704bb918f7e9108f2c57b32648d5d9385c0631c903
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch12_kasili_enters_palace.4bcafd96.png
+  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:29:20-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch12_kasili_enters_palace.png
+  created: 2026-10-03T19:00:53-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch12_kasili_enters_palace.s2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 4bcafd961f86501923c95f704bb918f7e9108f2c57b32648d5d9385c0631c903
+  sha256: 8d8147285bb75aeded08baf4097801e916d0467a4db0f01f590cca0d6428387b
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「孤影入宫」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「孤影入宫」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（第 1 次（s1）改动太小、仍是长脸窄眼，加重提示重出 s2 入选；编辑结果只取喀丝丽头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: cg_ch12_kasili_enters_palace.retry3.r1
   quality_retries: 0
   history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch12_kasili_enters_palace.4bcafd96.png
+    sha256: 4bcafd961f86501923c95f704bb918f7e9108f2c57b32648d5d9385c0631c903
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch12_kasili_enters_palace.4bcafd96.entry.yaml
 - id: cg_ch12_palace_warning
   file: cg_ch12_palace_warning.png
   category: scene
