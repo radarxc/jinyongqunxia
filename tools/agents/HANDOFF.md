@@ -2304,3 +2304,9 @@
       - 挪基点到 26baf255，与 event-source-trigger、base-diet 有 3 处冲突；
       - 带 `devsup_note_rebase.md` 重起：`--max-runs 2 --max-reviews 1`，驱动 34041。
     - 请协调者定：01:17 守护进程满一小时后退场，还是继续值守 M1 到实走。默认继续值守。
+    - **GPT 会话断线续作**（00:20）：canon-align 被「Selected model is at capacity」踢掉，rc=1。
+      - `codex_session.py` 加了自动续作：非零退出、且本次日志里有容量不足、限流、断流、5xx 一类错误时，等 60–300 秒再用 `codex exec resume --last` 接着做，最多 8 次，第 4 次起换 gpt-6-astra。
+      - 已经结束的会话也能手动续：
+        `python3 .agents/coord/_handoff/detach_launch.py .agents/coord/_lines/<名>/launch.out "$PWD" -- python3 -u .agents/coord/_handoff/codex_session.py <名> - --resume`
+      - 这次之前起的会话用的是旧代码，掉线要按上面手动续。canon-align 已于 00:21 续上。
+    - DES-apparel-catalog 00:20 合入被拒：_prod 里有 Tripo 子代理没提交的 tripo_web.js 等文件。已提醒它按路径提交，半成品别放 assets/。
