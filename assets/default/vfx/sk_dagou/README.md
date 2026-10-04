@@ -17,12 +17,12 @@
 ## 查看与复现
 
 每个 `moves/<mv>/` 含 Composition YAML / JSON、`peak.png` 与自包含 Three.js `demo.html`。
-原料由 `make_sources.py` 生成白底四帧图，再由 `cut_frames.py` 转 straight RGBA。
+原料由 `tools/vfx/skills/sk_dagou/make_sources.py` 生成白底四帧图，再由 `cut_frames.py` 转 straight RGBA。
 本次曾调用指定 CLI 的 `image_gen`：首轮约 9 分钟无回执或文件，单图重试又在工具调用前报 app-server `Operation not permitted`；因此按仓库既有降级口径采用确定性 Pillow 原料，详见 `source_requests.json`。
 
 ```sh
-python3 assets/default/vfx/sk_dagou/make_sources.py
-python3 assets/default/vfx/sk_dagou/make_compositions.py
+python3 tools/vfx/skills/sk_dagou/make_sources.py
+python3 tools/vfx/skills/sk_dagou/make_compositions.py
 python3 tools/vfx/check_skill_suite.py assets/default/vfx/sk_dagou --catalog docs/design/catalog/skills-wujue.md
 ```
 

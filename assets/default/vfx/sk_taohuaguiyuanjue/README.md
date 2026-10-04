@@ -73,7 +73,7 @@ done
 ```
 
 共享发出方要求 root 为 `assets/default/vfx`；单门检查再约束 effect 只能在本套、emitter 只能在共用池。
-`validation.json` 保存几何、尺寸、视觉检查与共享原件 SHA-256；`vfx-check.jsonl` 保存五招 schema / HTML 检查。
+`validation.json` 保存几何、尺寸、视觉检查与共享原件 SHA-256；五招 schema / HTML 检查记录归档在 `.agents/coord/_asset_logs/assets/default/vfx/sk_taohuaguiyuanjue/vfx-check.jsonl`。
 已查看碧回归一、观潮归元、潮回护体的峰值，掌面接续、方向、留白合格，未见白边；其余普通招复用同一原料与锚点。
 
 ## 参考资料

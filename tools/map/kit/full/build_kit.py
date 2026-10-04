@@ -13,7 +13,9 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[4]
 KIT = ROOT / "assets/default/map/kit"
-DEFAULT_LOGS = ROOT.parents[1] / "coord/_asset_logs/assets/default/map/kit/full"
+COORD_ROOT = next((parent for parent in ROOT.parents if parent.name == "_prod"), ROOT)
+ARCHIVE_LOGS = COORD_ROOT / ".agents/coord/_asset_logs/assets/default/map/kit"
+DEFAULT_LOGS = ARCHIVE_LOGS / "full"
 BASELINES = [
     "assets/default/baseline/map/ref_map_jianghu__ch01_base01.png",
     "assets/default/baseline/map/ref_map_dali__ch01_base01.png",
@@ -235,8 +237,7 @@ def check(logs):
     assert len({e["id"] for e in data}) == len(data)
     assert len({e["sha256"] for e in data}) == len(data)
     assert {e["file"] for e in data} == {p.name for p in KIT.glob("*.png")}
-    allowed = {"manifest.yaml", "README.md", "build_review.py", "prompts.json",
-               "generation.jsonl", "validation.jsonl", "check_assets.log", "check_assets_explicit_max.log"}
+    allowed = {"manifest.yaml", "README.md"}
     assert {p.name for p in KIT.iterdir()} <= allowed | {e["file"] for e in data}
     metrics = []
     required = "id file category style subject prompt negative references tool model effort created source_path size sha256 status notes kit".split()
@@ -276,10 +277,28 @@ def check(logs):
         for old in snapshot["entries"]:
             if old.get("role") == "sample":
                 assert {k: v for k, v in now[old["id"]].items() if k != "kit"} == old, old["id"]
+        moved_logs = {"prompts.json", "generation.jsonl", "validation.jsonl",
+                      "check_assets.log", "check_assets_explicit_max.log"}
         for path, digest in snapshot["files"].items():
-            if Path(path).name not in {"manifest.yaml", "README.md", "_contact_sheet.png"}:
-                assert sha(ROOT / path) == digest, path
-        assert (KIT / "README.md").read_text().startswith(snapshot["readme"])
+            name = Path(path).name
+            if name in {"manifest.yaml", "README.md", "_contact_sheet.png"}:
+                continue
+            if name == "build_review.py":
+                # AR-68 脚本已迁移且调整资源/日志根，不能继续与旧源码散列比较。
+                assert (ROOT / "tools/map/kit/build_review.py").is_file()
+                continue
+            current = ARCHIVE_LOGS / name if name in moved_logs else ROOT / path
+            assert sha(current) == digest, path
+        # README 只允许在旧记录后追加说明，或把已外置的过程文件引用改到 tools/.agents。
+        expected = snapshot["readme"].replace(
+            "`prompts.json`为实际提示词集合，`generation.jsonl`为生成来源记录，`validation.jsonl`为逐图数值校验。",
+            "AR-68 的实际提示词、生成来源与逐图数值校验已归档到`.agents/coord/_asset_logs/assets/default/map/kit/`下的`prompts.json`、`generation.jsonl`与`validation.jsonl`。")
+        expected = expected.replace("assets/default/map/kit/build_review.py", "tools/map/kit/build_review.py")
+        expected = expected.replace("最新日志见`check_assets.log`",
+                                    "历史日志归档为`.agents/coord/_asset_logs/assets/default/map/kit/check_assets.log`")
+        expected = expected.replace("结果见`check_assets_explicit_max.log`",
+                                    "历史日志归档为`.agents/coord/_asset_logs/assets/default/map/kit/check_assets_explicit_max.log`")
+        assert (KIT / "README.md").read_text().startswith(expected)
     logs.mkdir(parents=True, exist_ok=True)
     (logs / "validation.jsonl").write_text("")
     for m in metrics:
