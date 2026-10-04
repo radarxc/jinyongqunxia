@@ -372,27 +372,30 @@
   - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
     sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
     use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png
+    sha256: cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
   tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
   model: gpt-6.1-sol
-  created: '2026-10-04T01:14:36.833650-07:00'
-  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_32_45_r1.png
+  created: '2026-10-04T01:15:48.458505-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_32_46_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: bca4f4dbdf6962c60aa39fcbf297d31f5e9aedd8c0201f7d204b021f2fac40b6
+  sha256: 296c28eb71a5925ed06ef0e7253f39b7ab18e6738e21a83107664857e8841b47
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「雁门换命」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚，段誉对齐基线）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留图1怒目、绷紧嘴唇、身体前倾与原有伤情，不新增血痕或伤势；周围少女的手和其他人物不得改变。；质检：已打开对照：萧峰眉眼鼻唇下颌为恢复base同人，保留受伤仰望、眉间紧张及夕照，闭口不笑；邻人的手脸衣饰及题字原像素不变，无可见接缝
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「雁门换命」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚，段誉对齐基线）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留图1怒目、绷紧嘴唇、身体前倾与原有伤情，不新增血痕或伤势；周围少女的手和其他人物不得改变。；质检：已打开对照：萧峰眉眼鼻唇下颌为恢复base同人，保留受伤仰望、眉间紧张及夕照，闭口不笑；邻人的手脸衣饰及题字原像素不变，无可见接缝；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；右后方和尚虚竹，保留焦急关切的神态；旁人不得改变。；质检：已打开对照：虚竹base同人眉眼鼻唇，保留俯身伸手的焦急眉目与侧上夕照；不笑、头颈接缝自然；只合成本头，保留已改萧峰以及其余人和题字
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.21609c65.png
     sha256: 21609c651bea2d463b3342c448bbc0491ba9ed204a5d7b4ae62f1d350007861e
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_yanmen_life_for_life.21609c65.entry.yaml
   effort: ultra
   ar84_alignment:
-    job: ar84_calign_32_45_r1
-    before_sha256: 0f878e7afd649d1d4163b59dd566f83b8f5a91d04e23de0a5fbd7dad76618516
+    job: ar84_calign_32_46_r1
+    before_sha256: bca4f4dbdf6962c60aa39fcbf297d31f5e9aedd8c0201f7d204b021f2fac40b6
     box:
-    - 720
-    - 245
-    - 803
-    - 371
-    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_32_45_r1.png
+    - 1197
+    - 139
+    - 1292
+    - 267
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_32_46_r1.png
     outside_changed_pixels: 0
