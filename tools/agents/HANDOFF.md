@@ -2026,3 +2026,11 @@
     - 面部总审：主角的明显和轻微不一致都已清零。11 号 ch04–ch06 轻微 5 张和返修 2 张，复核全部一致。10 号 ch02–ch03 15 人次已提交（897fa82d、5995f7c5、99a54d1b、adc8fd30），等复核。12 号在做 ch08。
     - AR-58 神态推到各书配角：11 号做 ch02–ch05（射雕 22 人，神雕 18 人，在跑）；10 号做 ch06–ch14；九难、何惕守跳过，归 12 号。各书计划报协调者，10 分钟内没回音就照计划做。
     - Tripo：阿青按 b 版新脸重做（0ac4882a / 406dd99a / 43656bbf），85 点，余额 21535。新旧对比已发作者。Tripo 子代理收尾。
+  - **10-03 19:49–19:54 开发监督**：
+    - **ENG-region-gates-data** 审核 PASS，但自动合入 cherry-pick 冲突，停在 READY。
+      - `git merge-tree` 预演：唯一冲突是 `apps/game/src/runtime/item-content.ts` 文件头的 import，对面是 event-executor eb8de5bb。
+      - rebase_task：基点 7038f0a6 → 7e057b20，备份引用 `refs/agents-backup/ENG-region-gates-data-pre-rebase-10031950`。
+      - import 取两边并集，机械合并；报告 §7 补了说明，coord 里有 `devsup_note_rebase.md`。
+      - `--from validate` 重起，驱动 71629。
+    - ch00b 返修说明草稿在 `scratchpad/pending/ch00b_note_r3.md`，按 gates-data 报告第 3、7 节写了 binding 字段。gates-data 合入后挪基点重起。
+
