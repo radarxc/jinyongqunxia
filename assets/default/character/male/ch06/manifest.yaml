@@ -124,7 +124,7 @@
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_beihaishi__ch06_elder_changle_base.requests.json
   notes: '宽松自查：瘦长脸、稀疏短髭与眼下纹理，中老年医者的灰褐衣、方巾、素帕、医囊及闭合针具布卷齐全，正面全身和双足完整，无明显多肢或重大结构错误。灰发与低血色病容表现较弱、年龄偏中年，面部独特性仍待用户确认，布帕未折整齐；这些实际差异登记，不冒称逐条严格通过。原始不透明PNG保存，candidate待用户最终审核。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，10 号出图员）：笑面多谋——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角）·10 号出图员：笑面多谋——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
   source_size: 1024x1536
 - id: por_npc_dabeilaoren__ch06_elder_alive_base
   file: por_npc_dabeilaoren__ch06_elder_alive_base.png
@@ -1559,7 +1559,7 @@
   size: 1024x1536
   sha256: 4e442bb12d9630587f183126c2e0f9c126561f6b8086dff111d27ad64ced943f
   status: candidate
-  notes: AR-32 主要角色经典版重出（8 号出图员）：文字 + 两张同性别基线；本人无可用剧照或可靠游戏头像，只用文字；AR-58 神态（各书配角，10 号出图员）：睥睨自负的冷笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  notes: AR-32 主要角色经典版重出（8 号出图员）：文字 + 两张同性别基线；本人无可用剧照或可靠游戏头像，只用文字；AR-58 神态（各书配角）·10 号出图员：睥睨自负的冷笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
   effort: ultra
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_baizizai__ch06_elder_lingxiao_base.2f1a7a77.png
