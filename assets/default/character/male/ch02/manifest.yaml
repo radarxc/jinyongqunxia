@@ -1265,37 +1265,43 @@
   category: character/male
   style: default
   subject: 郭靖（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的郭靖立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中郭靖的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
 
-    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的郭靖二十岁上下，长方脸、颧骨略高、下颌结实，浓黑平直的粗眉微微压着眼，眼睛不大、目光质朴坚毅，鼻梁挺直、鼻头略宽，嘴唇厚实、嘴角紧抿，几乎无须、只有淡淡胡茬，晒黑的健康肤色，憨厚而刚毅。
+    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
 
-    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+    【身份与年龄】以第1张作者选定的B脸为身份参考，青年郭靖：方正脸、浓眉大眼、厚实端正的鼻唇、憨厚坚毅，不画成另一张偶像脸。
 
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+
+    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
+
+
+
+    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
   references:
-  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.png
-    sha256: 9795e3af012aaa8a3c3540b1636fb19869663435e3ea0e6bd85ab6162711f940
-    use: 对脸基线：作者审核通过的 por_npc_guojing__ch02_youth_scene_peach_island_square_circle，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
+    sha256: 8c7112d12f754f37c81443618a6a2d3b5218d654206f9a4791be496c2331b528
+    use: AR-87 身份基线，青年B或B年长化定稿
   - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_scene_first_dragon_palm_lesson.png
-    sha256: 22dc9b4c4c274c023bfca3956fe9c652a9b7035e092729d70c8ac385197093e2
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_guojing__ch02_youth_scene_first_dragon_palm_lesson.22dc9b4c.png
-  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T13:59:18-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_guojing__ch02_youth_scene_first_dragon_palm_lesson.e1.png
+    sha256: fb5fe8910e15a8ecd7857ce5026f7acaf534a1f2f2a0d41ecd307fbcd5f78005
+    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/por_npc_guojing__ch02_youth_scene_first_dragon_palm_lesson.fb5fe891.png
+  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:24:44-07:00'
+  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_por_npc_guojing__ch02_youth_scene_first_dragon_palm_lesson_v1_composite.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: fb5fe8910e15a8ecd7857ce5026f7acaf534a1f2f2a0d41ecd307fbcd5f78005
+  sha256: 17dffb9613c31afeb187a4c92c5d1ed5e14259918bea6ce0b7ffd8d1ba0429c1
   status: candidate
-  notes: 立绘重审重出（AR-30）；郭靖基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle
-  effort: ultra
+  notes: 立绘重审重出（AR-30）；郭靖基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
+  effort: xhigh
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_guojing__ch02_youth_scene_first_dragon_palm_lesson.22dc9b4c.png
-    sha256: 22dc9b4c4c274c023bfca3956fe9c652a9b7035e092729d70c8ac385197093e2
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_guojing__ch02_youth_scene_first_dragon_palm_lesson.22dc9b4c.entry.yaml
+    png: .agents/coord/_lines/guojing-final/replaced/por_npc_guojing__ch02_youth_scene_first_dragon_palm_lesson.fb5fe891.png
+    sha256: fb5fe8910e15a8ecd7857ce5026f7acaf534a1f2f2a0d41ecd307fbcd5f78005
+    entry: .agents/coord/_lines/guojing-final/replaced/por_npc_guojing__ch02_youth_scene_first_dragon_palm_lesson.fb5fe891.entry.yaml
 - id: por_npc_guojing__ch02_youth_scene_grassland_double_eagle
   file: por_npc_guojing__ch02_youth_scene_grassland_double_eagle.png
   category: character/male
