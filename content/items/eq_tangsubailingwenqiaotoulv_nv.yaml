@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_tangsubailingwenqiaotoulv_nv
+name: 唐素白绫纹翘头履·女
+kind: armor
+sub: shoes
+grade: 6
+stack: 1
+chapters:
+- ch10_baima
+origin: canonExpanded
+canonRef: 唐；出现书界 ch10；（原创扩展）；形制／色系依据：《新唐书》卷24《车服志》 https://zh.wikisource.org/zh-hans/新唐書/卷024；国博赵永《长安水边多丽人》，唐三彩釉陶女俑 https://www.chnmuseum.cn/yj/xscg/xslw/201812/t20181224_33161.shtml；702年款式细节（待考），初唐轮廓原创转换；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangsubailingwenqiaotoulv_nv
+text:
+  desc: 外观：唐女款，主色素白。 待运行时投影：defOutK=0.05; hpMaxK=0.01; qinggong=2.5xgUse; wearer=female。
+  lore: （原创扩展）依唐代女俑鞋形语汇演成素白女式翘头履，短墙软面与微翘鞋头保持成人足长。克制绫纹暗织缘用于织缘，行路先整好鞋口；702年细部（待考），默认天足平底，轻功按品阶，身法不重复加成。
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9
+      agi: 0

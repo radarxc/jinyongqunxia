@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_tangqianhuangxicairuanjiaojin_nan
+name: 唐浅黄细裁软脚巾·男
+kind: armor
+sub: headwear
+grade: 4
+stack: 1
+chapters:
+- ch10_baima
+origin: canonExpanded
+canonRef: 唐；出现书界 ch10；（原创扩展）；形制／色系依据：《新唐书》卷24《车服志》 https://zh.wikisource.org/zh-hans/新唐書/卷024；国博赵永《长安水边多丽人》，唐三彩釉陶女俑 https://www.chnmuseum.cn/yj/xscg/xslw/201812/t20181224_33161.shtml；702年款式细节（待考），初唐轮廓原创转换；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangqianhuangxicairuanjiaojin_nan
+text:
+  desc: 外观：唐男款，主色浅黄。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: （原创扩展）据唐代包巾轮廓演成浅黄男式软脚巾，软帛包束发髻，两脚柔软下垂。细织密缝缘仅示工艺，行路先整齐巾结；702年细节（待考），默认低包软脚，不移用宋代硬直长脚，也不授官身。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 7
