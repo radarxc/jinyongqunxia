@@ -1234,3 +1234,18 @@
 > 计时测试挪出去
 
 协调者口径：确认第 3 条，由 ENG-bench-perf-split（c73e52b9，名单排在 base-diet 之后）落实。
+
+
+## AR-65 · 除 Gemini 画图和 Tripo 驱动外，其他任务换成 GPT 6.1 Sol；Claude 只给目标、判最终结果；Tripo 驱动改成 JS 调用（2026-10-03 约 20:13）
+
+作者原文（2026-10-03 约 20:13 PDT，逐字照录）：
+
+> 除了gemini画图和tripo驱动，其他任务换成调用GPT 6.1 Sol，你只负责给目标和最终结果判断
+>
+> tripo3d的browser use驱动也写成js调用，避免每次都用昂贵的browser use。
+
+协调者口径：
+1. **执行器与审核**：代码、设计、内容、城图、特效、人物出图的执行与审核，一律改走 Codex `gpt-6.1-sol`（xhigh）。实测 traex 没有这个模型（报「metadata could not be resolved」），只有 Codex 能调。实现方式：`.agents/coord/executor_override.json` 统一覆盖 `step.py` 与 `gpt_review.py`（e82758fd），每次起跑和审核时现读。探测不应答时回退 `gpt-6-astra`。在跑的这一轮跑完为止，之后的轮次和审核都用新模型。
+2. **分工**：Claude 只负责给目标和判断最终结果，这里的 Claude 包括协调者和各 Opus 子代理。现在由 Opus 子代理做的执行性工作，逐条交给 Codex `gpt-6.1-sol` 会话，包括人物出图线（10 / 11 / 12 号）、开发监督和素材线追踪。Claude 写目标说明，看最终对照表和报告。Opus 子代理先把手上这一批收尾，写好交接，再退场。
+3. **例外**：Gemini 画图（作者 Chrome）和 Tripo 驱动，仍由 Claude 子代理操作浏览器。
+4. **Tripo**：把网页版操作写成页面内 JS 调用的驱动，和 Gemini 的 `gemini_g.js` 同一做法。以后建模用 JS 调用，代替逐步截图点击的 browser use。
