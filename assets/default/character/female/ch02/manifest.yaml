@@ -359,7 +359,7 @@
 
     【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
-    【本张另外要求】原图是她女扮男装的小叫化子：保留脸上的灰土、乱发和男装打扮，只让五官与基线是同一个人。
+    【本张另外要求】（作者 AR-53 总审返修）保留脸上的灰土和男装；脸型改回基线的圆润鹅蛋脸、下巴不尖、两颊不瘦、杏眼大而亮。
 
     【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
@@ -370,21 +370,21 @@
     sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
     use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.png
-    sha256: 952d08c33f0f48303b1dc7655b81d2970658d59bde980253ccacd2490bcb42ec
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.952d08c3.png
+    sha256: 73b6d248e712a6b20fa7459985fb89328cd11d304d7f23099c0b83a780621d80
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.73b6d248.png
   tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T16:13:30-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.e2.png
+  created: 2026-10-03T17:20:51-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.e3.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 73b6d248e712a6b20fa7459985fb89328cd11d304d7f23099c0b83a780621d80
+  sha256: fb4af38249f094f9d2238e2261219b00f91c23118641686911cd15391896c67f
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：脸改回圆润、下巴不尖）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.952d08c3.png
-    sha256: 952d08c33f0f48303b1dc7655b81d2970658d59bde980253ccacd2490bcb42ec
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.952d08c3.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.73b6d248.png
+    sha256: 73b6d248e712a6b20fa7459985fb89328cd11d304d7f23099c0b83a780621d80
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.73b6d248.entry.yaml
   effort: ultra
 - id: por_npc_zhujue__ch02_f_base
   file: por_npc_zhujue__ch02_f_base.png
