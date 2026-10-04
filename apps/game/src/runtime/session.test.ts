@@ -78,7 +78,16 @@ describe('Worker session command adapter', () => {
       levelCap: 20, layerCap: 8, foreignSuppression: 4, startTick: 0, countsRealLevel: true,
       wake: { regionId: 'rg_xiyu_beijiang', sceneId: 'sc_10_fengshi_feiyi',
         spawnId: 'cold_open' },
-    }] };
+    }], events: [{ schemaVersion: 'event.v1' as const, id: 'ev_10_cold_entry_arrival',
+      chapterId: 'ch10_baima', event: 'story/coldEntryArrival', once: true,
+      condition: { sourceEvent: 'chapter/woke', chapterId: 'ch10_baima' }, actions: [
+        { op: 'dialogue/start' as const, storyId: 'story_ch10_cold_entry',
+          knot: 'westward_journey', presentation: 'text_stills', skippable: true,
+          durationSeconds: 54 },
+        { op: 'ui/revealText' as const, textKey: 'ch10.coldEntry.eraTitle' },
+        { op: 'world/loadScene' as const, regionId: 'rg_xiyu_beijiang',
+          sceneId: 'sc_10_fengshi_feiyi', spawnId: 'cold_open' },
+      ] }] };
     const state = createNewGameState({ masterSeed: 7, contentHash: source.contentHash,
       identity: { name: '沈砚', gender: 'female', appearance: 'hero_f01', pronoun: '她',
         originId: 'origin_wenshiguan' }, difficulty: 'diff_xiake', chapter: source.chapters[0]! });
@@ -92,6 +101,10 @@ describe('Worker session command adapter', () => {
       ruleVersion: 'first-sleep.v1', requiredTotal: 300, lockedKeys: ['luk', 'cha'] });
     const woke = await core.dispatch({ t: 'chapter/bookSleep', plan: sleepPlan });
     expect(woke.accepted).toBe(true); expect(woke.changes.firstSleepAllocation).toBeNull();
+    expect(woke.events.find((event) => event.t === 'world/eventPresented')?.payload)
+      .toMatchObject({ eventId: 'ev_10_cold_entry_arrival', steps: [
+        { op: 'dialogue/start' }, { op: 'ui/revealText' }, { op: 'world/loadScene' },
+      ] });
     expect((await core.snapshot()).world.navigation.pendingMount).toEqual(target.chapters[0]!.wake);
   });
   it('does not create battle-use counters when a field item has no chapter cap', async () => {

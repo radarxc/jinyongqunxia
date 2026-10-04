@@ -1,12 +1,13 @@
 /// <reference types="node" />
 // eslint-disable-next-line no-restricted-imports -- test-only SHA-256 oracle.
 import { createHash } from 'node:crypto';
-import type { ChapterDef, SkillInstance } from '@tianshu/data/schemas';
+import type { ChapterDef, EventDef, SkillInstance } from '@tianshu/data/schemas';
 import { canonicalJson, floorDivInt, type JsonValue } from '@tianshu/shared';
 import { describe, expect, it } from 'vitest';
 import { createCoreFromState, createGameClock, createNewGameState, FIRST_SLEEP_RULE,
   migrateBookSleepV2, type BookSleepPlan, type Core, type CoreContent,
-  type GameState, type PrologueMode, type SleepAllocation } from '..';
+  dispatchCommand, type CommandHandler, type GameState, type PrologueMode,
+  type SleepAllocation } from '..';
 import golden from './book-sleep.golden.json';
 
 const SOURCE_HASH = 'a'.repeat(64);
@@ -21,6 +22,20 @@ const CH10: ChapterDef = { schemaVersion: 'book-world.v1', id: 'ch10_baima',
   worldTier: 'LOW', levelCap: 20, layerCap: 8, foreignSuppression: 4, startTick: 0,
   countsRealLevel: true, wake: { regionId: 'rg_xiyu_beijiang',
     sceneId: 'sc_10_fengshi_feiyi', spawnId: 'cold_open' } };
+const ARRIVAL: EventDef = { schemaVersion: 'event.v1', id: 'ev_10_cold_entry_arrival',
+  chapterId: CH10.id, event: 'story/coldEntryArrival', once: true,
+  condition: { sourceEvent: 'chapter/woke', chapterId: CH10.id }, actions: [
+    { op: 'dialogue/start', storyId: 'story_ch10_cold_entry', knot: 'westward_journey',
+      presentation: 'text_stills', skippable: true, durationSeconds: 54 },
+    { op: 'ui/revealText', textKey: 'ch10.coldEntry.eraTitle' },
+    { op: 'world/loadScene', regionId: 'rg_xiyu_beijiang',
+      sceneId: 'sc_10_fengshi_feiyi', spawnId: 'cold_open' },
+  ] };
+function sourceEvent(id: string, actions: EventDef['actions'],
+  condition: NonNullable<EventDef['condition']> = { sourceEvent: 'chapter/woke' }): EventDef {
+  return { schemaVersion: 'event.v1', id, chapterId: CH10.id, event: 'story/sourceFixture',
+    once: true, condition, actions };
+}
 const identity = { name: '沈砚', gender: 'female', appearance: 'hero_f01',
   pronoun: '她', originId: 'origin_wenshiguan' };
 const balanced = Object.fromEntries(FIRST_SLEEP_RULE.keys.map((key) =>
@@ -35,8 +50,10 @@ const plan = (overrides: Partial<BookSleepPlan> = {}): BookSleepPlan => ({
 });
 const completion = { full: 'n_full_complete', summary: 'n_summary_complete',
   skip: 'n_skip_complete' } as const;
-const content = (target: ChapterDef = CH10): CoreContent => ({
+const content = (target: ChapterDef = CH10, events?: readonly EventDef[]): CoreContent => ({
   chapters: [target], targetContentHash: TARGET_HASH,
+  items: [{ id: 'it_fixture', kind: 'material', grade: 1, stack: 99 } as never],
+  ...(events ? { events } : {}),
 });
 function initial(): GameState {
   const state = createNewGameState({ masterSeed: 271828, identity,
@@ -62,8 +79,10 @@ function tutorialSkill(): SkillInstance {
     sxp: 0, learnedIn: CH00.id, nativeTo: CH00.id, attunedGrade: null, attunedIn: null,
     latentExp: 0, movesEquipped: [], insight: 0, pages: [], flags: ['tutorial'] };
 }
-function ready(mode: PrologueMode = 'skip', target: ChapterDef = CH10): Core {
-  const settled = settle(mode, content(target)).snapshot();
+function ready(mode: PrologueMode = 'skip', target: ChapterDef = CH10,
+  events?: readonly EventDef[]): Core {
+  const supplied = content(target, events);
+  const settled = settle(mode, supplied).snapshot();
   const protagonist = settled.profile.protagonist!;
   const companion = { ...protagonist, characterId: 'npc_tutorial_companion', skills: [] };
   const state = { ...settled, profile: { ...settled.profile,
@@ -74,7 +93,7 @@ function ready(mode: PrologueMode = 'skip', target: ChapterDef = CH10): Core {
       stock: [{ itemId: 'it_tutorial', count: 3, lastRestockDay: 0 }] }],
       npcs: [{ npcId: companion.characterId, relationship: 'met' as const, affinity: 1,
         character: companion }], itemChapterUses: { it_tutorial: 1 } } };
-  return createCoreFromState(state, content(target));
+  return createCoreFromState(state, supplied);
 }
 function hash(state: GameState): string {
   return createHash('sha256').update(canonicalJson(state as unknown as JsonValue)).digest('hex');
@@ -193,6 +212,96 @@ describe('ch00 to ch10 book-sleep transaction', () => {
       ok: false, reason: 'BOOK_SLEEP_PLAN_CONFLICT',
     });
     expect(runtime.canonicalStateJson()).toBe(before);
+  });
+});
+
+describe('source-event EventDef dispatch', () => {
+  it('presents the ch10 arrival steps in authored order after chapter/woke', () => {
+    const runtime = ready('skip', CH10, [ARRIVAL]);
+    const result = runtime.dispatch({ t: 'chapter/bookSleep', plan: plan() });
+    expect(result.ok && result.events.map((event) => event.t)).toEqual([
+      'chapter/bookSleepCommitted', 'world/eraChanged', 'chapter/woke', 'world/eventPresented',
+    ]);
+    expect(result.ok).toBe(true);
+    if (!result.ok) throw new TypeError('ARRIVAL_REJECTED');
+    const presented = result.events.find((event) => event.t === 'world/eventPresented');
+    expect(presented?.payload).toEqual({ eventId: ARRIVAL.id, steps: ARRIVAL.actions });
+    expect((presented?.payload as { steps: EventDef['actions'] }).steps.map((step) => step.op))
+      .toEqual(['dialogue/start', 'ui/revealText', 'world/loadScene']);
+    expect(runtime.snapshot().profile.replayRules?.switches[ARRIVAL.id]).toBe(true);
+  });
+
+  it('sorts multiple matches by EventDef ID independently of content order', () => {
+    const eventZ = sourceEvent('ev_fixture_z',
+      [{ op: 'ui/showText', textKey: 'fixture.z' }]);
+    const eventA = sourceEvent('ev_fixture_a',
+      [{ op: 'ui/showText', textKey: 'fixture.a' }]);
+    const result = ready('skip', CH10, [eventZ, eventA])
+      .dispatch({ t: 'chapter/bookSleep', plan: plan() });
+    expect(result.ok && result.events.filter((event) => event.t === 'world/eventPresented')
+      .map((event) => (event.payload as { eventId: string }).eventId))
+      .toEqual(['ev_fixture_a', 'ev_fixture_z']);
+  });
+
+  it('keeps an EventDef once receipt across save restore and a repeated source fact', () => {
+    const first = ready('skip', CH10, [ARRIVAL]);
+    expect(first.dispatch({ t: 'chapter/bookSleep', plan: plan() }).ok).toBe(true);
+    const restored = JSON.parse(first.canonicalStateJson()) as GameState;
+    const emitWoke: CommandHandler = { validate: () => null, apply(tx) {
+      tx.emit({ t: 'chapter/woke', payload: { chapterId: CH10.id, ...CH10.wake } });
+    } };
+    const replayed = dispatchCommand(restored, { t: 'world/tick' }, content(CH10, [ARRIVAL]),
+      { 'world/tick': emitWoke });
+    expect(replayed.ok && replayed.events.map((event) => event.t)).toEqual(['chapter/woke']);
+    expect(restored.profile.replayRules?.switches[ARRIVAL.id]).toBe(true);
+  });
+
+  it('skips a source match whose current scene condition is false', () => {
+    const conditional = sourceEvent('ev_fixture_conditional',
+      [{ op: 'flag/set', flagId: 'fl_never', value: true }],
+      { sourceEvent: 'chapter/woke', sceneId: 'sc_wrong' });
+    const runtime = ready('skip', CH10, [conditional]);
+    const result = runtime.dispatch({ t: 'chapter/bookSleep', plan: plan() });
+    expect(result.ok).toBe(true);
+    expect(runtime.snapshot().profile.replayRules?.switches).not.toHaveProperty(conditional.id);
+    expect(runtime.snapshot().profile.replayRules?.switches).not.toHaveProperty('fl_never');
+  });
+
+  it('rolls the whole book-sleep transaction back when a source action fails', () => {
+    const failing = sourceEvent('ev_fixture_failing', [
+      { op: 'flag/set', flagId: 'fl_rolled_back', value: true },
+      { op: 'party/takeItem', item: 'it_fixture', count: 1 },
+    ]);
+    const runtime = ready('skip', CH10, [failing]); const before = runtime.canonicalStateJson();
+    expect(runtime.dispatch({ t: 'chapter/bookSleep', plan: plan() }))
+      .toEqual({ ok: false, reason: 'SOURCE_EVENT_INVENTORY' });
+    expect(runtime.canonicalStateJson()).toBe(before);
+    expect(runtime.snapshot().chapter.chapterId).toBe(CH00.id);
+  });
+
+  it('does not chain a domain event emitted by a source-matched EventDef', () => {
+    const first = sourceEvent('ev_fixture_first',
+      [{ op: 'world/openEntrance', entranceId: 'ent_fixture' }]);
+    const nested = sourceEvent('ev_fixture_nested',
+      [{ op: 'flag/set', flagId: 'fl_nested', value: true }],
+      { sourceEvent: 'world/entranceOpened' });
+    const runtime = ready('skip', CH10, [nested, first]);
+    const result = runtime.dispatch({ t: 'chapter/bookSleep', plan: plan() });
+    expect(result.ok && result.events.map((event) => event.t)).toContain('world/entranceOpened');
+    expect(runtime.snapshot().profile.replayRules?.switches).toMatchObject({
+      ent_fixture: true, ev_fixture_first: true,
+    });
+    expect(runtime.snapshot().profile.replayRules?.switches).not.toHaveProperty(nested.id);
+    expect(runtime.snapshot().profile.replayRules?.switches).not.toHaveProperty('fl_nested');
+  });
+
+  it('produces one canonical state hash across 100 identical arrival runs', () => {
+    const hashes = Array.from({ length: 100 }, () => {
+      const runtime = ready('skip', CH10, [ARRIVAL]);
+      expect(runtime.dispatch({ t: 'chapter/bookSleep', plan: plan() }).ok).toBe(true);
+      return hash(runtime.snapshot());
+    });
+    expect(new Set(hashes)).toHaveLength(1);
   });
 });
 
