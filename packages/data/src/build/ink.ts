@@ -3,7 +3,7 @@ import { canonicalJson, compareCodePoints, type JsonValue } from '@tianshu/share
 import { parseYamlFile } from '../content-registry';
 import type { Diagnostic, SourceSpan } from './types';
 import { hashValue } from './hash';
-import { INK_OPCODE_REGISTRY } from '../schemas/event-actions';
+import { EventActionSchema, INK_OPCODE_REGISTRY, type EventAction } from '../schemas/event-actions';
 
 export interface InkMeta { readonly schemaVersion: 'inkmeta.v1'; readonly storyId: string;
   readonly chapter: string; readonly region?: string; readonly entryKnots: readonly string[];
@@ -18,7 +18,8 @@ export interface CompiledInk { readonly storyId: string; readonly storyJson: str
   readonly text: Readonly<Record<string, string>>;
   readonly structure: DialogueStructureDef; readonly diagnostics: readonly Diagnostic[]; }
 
-const OPCODES = INK_OPCODE_REGISTRY;
+/** Shared by authoring validation and the deterministic core runtime decoder. */
+export const OPCODES = INK_OPCODE_REGISTRY;
 export const INK_OPCODE_NAMES: readonly string[] = Object.freeze(Object.keys(OPCODES));
 const EXTERNALS = new Set(['get_flag', 'quest_stage', 'has_item', 'affinity']);
 const META_ID = /^(?:story|ink)_[a-z0-9_]+$/u;
@@ -49,6 +50,25 @@ export function decodeInkTag(raw: string, file = '<ink>', line = 1): DecodedTag 
   if (Object.keys(spec.required).some((key) => args[key] === undefined))
     throw new TypeError(`INK_TAG_MISSING:${file}:${line}`);
   return { opcode: opcode!, args };
+}
+
+function inkScalar(value: string): string | number | boolean {
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+  if (/^[1-9][0-9]*$/u.test(value)) {
+    const parsed = Number(value);
+    if (!Number.isSafeInteger(parsed)) throw new TypeError('INK_TAG_INTEGER');
+    return parsed;
+  }
+  return value;
+}
+
+/** Decode with the Ink registry, then materialize the canonical EventAction value. */
+export function decodeInkAction(raw: string, file = '<ink>', line = 1): EventAction {
+  const decoded = decodeInkTag(raw, file, line);
+  const args = Object.fromEntries(Object.entries(decoded.args).map(([key, value]) =>
+    [key, inkScalar(value)]));
+  return EventActionSchema.parse({ op: decoded.opcode, ...args });
 }
 
 export function parseInkMeta(text: string, file: string): InkMeta {

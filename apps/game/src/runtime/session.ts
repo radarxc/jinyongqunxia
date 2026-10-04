@@ -94,6 +94,7 @@ function coreContent(content: GameContent, towns: GameContent['towns'], chapterI
       ? { meditationEncounters: content.meditationEncounters }
       : {}),
     ...(content.inkStories ? { inkStories: content.inkStories } : {}),
+    ...(content.quests ? { quests: content.quests } : {}),
     ...((target?.events ?? content.events) ? { events: target?.events ?? content.events } : {}),
     ...((target?.chapters ?? content.chapters)
       ? { chapters: target?.chapters ?? content.chapters } : {}),
@@ -118,7 +119,8 @@ function mergeRegionContent(content: GameContent, loaded: RegionContentSlice): G
 }
 function dirtyViews(command: Command): readonly DirtyView[] {
   if (command.t === 'world/tick') return ['hud'];
-  if (command.t.startsWith('dialogue/')) return ['dialogue'];
+  if (command.t.startsWith('dialogue/'))
+    return ['hud', 'characters', 'inventory', 'quests', 'dialogue', 'region'];
   if (command.t === 'quest/choose') return ['quests'];
   if (command.t === 'rules/setDifficulty') return ['hud'];
   if (command.t.startsWith('worldmap/')) return ['hud', 'worldmap', 'townRuntime', 'town'];

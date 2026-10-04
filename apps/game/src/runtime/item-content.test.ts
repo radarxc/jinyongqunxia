@@ -4,10 +4,12 @@ import { buildContent, splitContentEntry } from '@tianshu/data/build';
 import { parseContentFile } from '@tianshu/data/tooling';
 import { mapFromRegistration } from '@tianshu/data/schemas';
 import { describe, expect, it } from 'vitest';
+import type { JsonValue } from '@tianshu/shared';
 import { applyItemText, projectItem } from '../selectors/items';
 import { ItemTextCache, ITEM_TEXT_PLACEHOLDER, loadGameContent } from './item-content';
 import { createGameSession } from './session';
 import { fixtureContent, fixtureItemPack } from './test-fixture';
+import { createManifest, emitLeaves } from '@tianshu/data/build';
 
 describe('item content leaves', () => {
   it('loads the real compiled ch10 DTO and creates the preview session', async () => {
@@ -76,6 +78,43 @@ describe('item content leaves', () => {
     fixture.values.set('ch01_tianlong/common.rules.items.json', []);
     await expect(loadGameContent(fixtureContent(), fixture.source, 'ch01_tianlong'))
       .rejects.toThrow('ITEM_RULES_UNAVAILABLE:CHAPTER_PACK_LEAF_HASH_MISMATCH');
+  });
+
+  it('loads chapter rules and compiled Ink when base leaves are paged', async () => {
+    const fixture = await fixtureItemPack();
+    const chapter = 'ch01_tianlong';
+    const baseName = 'ch01.rules.base.json';
+    const baseValue = fixture.values.get(`${chapter}/${baseName}`) as readonly unknown[];
+    const storyHash = 'a'.repeat(64);
+    const quest = { schemaVersion: 'quest.v1', fixture: true, id: 'q_01_main_c_99',
+      kind: 'main', chapterId: chapter, titleKey: 'quest.fixture', subjectNpcIds: [],
+      routeTone: 'neutral', startStageId: 'st_done', flagIds: [], encounterIds: [], stages: [
+        { id: 'st_done', objectiveKeys: [], objectives: [], transitions: [], effects: [],
+          terminal: 'completed', endingKey: 'done' },
+      ], tracking: { defaultTracked: false, revealPolicy: 'known_only' },
+      source: { origin: 'expanded', note: 'fixture' } };
+    const page0 = [...baseValue, { kind: 'quest', id: quest.id, value: quest },
+      { kind: 'dialogueStructure', storyId: 'story_fixture', storyHash }];
+    const page1 = { 'ink.story_fixture': { inkVersion: 21, root: [['done', null], 'done'] } };
+    const retained = fixture.manifest.leaves.filter((leaf) => leaf.logicalName !== baseName)
+      .map((leaf) => ({ logicalName: leaf.logicalName, kind: leaf.kind, load: leaf.load,
+        ...(leaf.locale ? { locale: leaf.locale } : {}), ...(leaf.region ? { region: leaf.region } : {}),
+        value: fixture.values.get(`${chapter}/${leaf.logicalName}`) as JsonValue }));
+    const leaves = await emitLeaves([...retained,
+      { logicalName: 'ch01.rules.base.p000.json', kind: 'rules', load: 'chapter',
+        value: page0 as JsonValue },
+      { logicalName: 'ch01.text.zh-Hans.base.p000.json', kind: 'text', load: 'chapter',
+        locale: 'zh-Hans', value: page1 },
+    ]);
+    const manifest = await createManifest(chapter, 'a'.repeat(64), leaves, []);
+    const values = new Map(fixture.values); values.delete(`${chapter}/${baseName}`);
+    for (const leaf of leaves) values.set(`${chapter}/${leaf.logicalName}`, leaf.value);
+    values.set(`${chapter}/manifest.json`, manifest);
+    const loaded = await loadGameContent(fixtureContent(), { readJson: async (path) => values.get(path) }, chapter);
+    expect(loaded.chapters?.[0]?.id).toBe(chapter);
+    expect(loaded.events?.[0]?.id).toBe('ev_ch01_fixture');
+    expect(loaded.quests?.map((entry) => entry.id)).toEqual([quest.id]);
+    expect(loaded.inkStories).toEqual([{ storyId: 'story_fixture', storyHash, storyJson: page1['ink.story_fixture'] }]);
   });
 
   it('loads item text once, caches it, and replaces only display fields', async () => {
