@@ -48,45 +48,45 @@
   category: character/female
   style: default
   subject: 耶律燕 npc_yelvyan ch03_shendiao · 成年青年辽裔女子、耶律齐之妹，十六年书页以前初入中原同行阶段
-  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（耶律燕的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改耶律燕的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+  prompt: '【任务】Use case: identity-preserve。这是图像编辑，不是重画。第1张为待改原图（耶律燕），第2张为该原图的脸部特写。以第1张完整图为底，只修改面部，然后输出完整1024×1536的2:3竖幅图片。
 
-    【人物】耶律燕：耶律齐之妹，约二十岁，契丹姑娘，爽朗大方。
+    【作者AR-69目标】作者认为现图太AI脸。第3张是经核实的1995年TVB《神鵰俠侶》中蔡雲霞饰演耶律燕的剧照，只参考演员五官的自然气质和不完美，绝不照抄照片、发式、服饰或背景。保持这个人物的身份、年龄和基本脸型，适度修正眉眼鼻唇的通用网红感：眼睛少一点过大亮晶晶感，眼睑、鼻头、唇形有真人的细微自然不对称；肤色和光照仍和原画一致。不要换成照片演员本人、不要人脸贴图。神态为爽朗大方，目光明亮但笑意克制的不露齿浅笑，嘴唇自然闭合，唇角只有轻微上扬。
 
-    【新神态（按年龄与性格定，不要千篇一律的平静脸）】爽朗的笑：眉眼明亮，嘴角上扬笑得大方，契丹姑娘的爽快。
+    【必须保留】是原图的同一个人物，年龄、基本骨相、脸的大小位置、头部朝向和身体姿势保留；只在脸部完成要求。发式与头饰、发丝轮廓、服装款式颜色纹理和每处褶皱、右衽方向、腰带、佩饰、刀剑刀鞘、手和器物、鞋子、人物站位、构图取景、背景山水花枝纸底、光线色调与画风保持原图不变。不要裁切、镜像或重排。
 
-    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+    【画风】与原图一致的写实手绘古风人物插画。面部自然，有轻微不对称和细腻的手绘肤质；不要皮肤磨皮、塑料高光、照片质感、完美对称五官、网红尖下巴和玻璃大眼。面部的新光影色温笔触与其余部分一致。
 
-    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
-
-    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
-
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
-  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+    【不要】不要露齿、张嘴、夸张大笑；不要文字、字幕、题款、印章、水印、电视台logo；不要第二个人；不要复制剧照的镜头拼接或场景；不要改变衣饰、发式、构图、手、兵器、背景和画风。'
+  negative: 不要露齿、张嘴、夸张大笑；不要文字、字幕、题款、印章、水印、电视台logo；不要第二个人；不要复制剧照的镜头拼接或场景；不要改变衣饰、发式、构图、手、兵器、背景和画风。
   references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261002/ch03/yelvyan_tvb1995_caiyunxia_sohu.jpg
+    sha256: ae84744870a61768ab87a650058dd0f154a8b72d7cf58f5fad06d36fa7423028
+    use: 1995TVB 蔡雲霞饰耶律燕剧照：仅参考自然五官气质，不照抄演员、不借服饰发式构图；非资产库素材
+    source_url: https://www.sohu.com/a/422277326_100085007
   - path: assets/default/character/female/ch03/por_npc_yelvyan__ch03_youth_base.png
-    sha256: 4a58d9ffdc6c3b9e5cc64d67a45675dd8b6bdf346cb235608d25038a6332404f
-    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_yelvyan__ch03_youth_base.4a58d9ff.png
-  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
-  model: gpt-6-astra
-  effort: ultra
-  created: 2026-10-03T20:15:32-0700
-  source_path: .agents/coord/_handoff/gem/codex_w24/out/por_npc_yelvyan__ch03_youth_base.x1.png
+    sha256: eb325178361da3c79e667b452cd1fc2c1977c2e088ea6fc5529dae728126565e
+    use: AR-69待改原图（全图+本图脸部特写）；原图的衣饰发式构图姿势保留；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_yelvyan__ch03_youth_base.eb325178.png
+  tool: codex exec · image_gen（AR-69作者逐人定稿；w24既有单槽runner图像编辑）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-03T22:51:00-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/por_npc_yelvyan__ch03_youth_base.ar69.1.png
   size: 1024x1536
   mode: RGB
-  sha256: eb325178361da3c79e667b452cd1fc2c1977c2e088ea6fc5529dae728126565e
+  sha256: 42c212b33ad2660f5ebcecb807baa0439fb5644362c3c2f26b6a20fd63e88ac4
   status: candidate
   qc_status: relaxed_self_check_passed
   quality_standard: user_identity_pose_20261001
   realism_revision: user_identity_pose_20261001
   counts_as_complete: true
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_yelvyan__ch03_youth_base.4a58d9ff.png
-    sha256: 4a58d9ffdc6c3b9e5cc64d67a45675dd8b6bdf346cb235608d25038a6332404f
-    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_yelvyan__ch03_youth_base.4a58d9ff.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_yelvyan__ch03_youth_base.eb325178.png
+    sha256: eb325178361da3c79e667b452cd1fc2c1977c2e088ea6fc5529dae728126565e
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_yelvyan__ch03_youth_base.eb325178.entry.yaml
   request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_yelvyan__ch03_youth_base.requests.json
   notes: '实际查看唯一候选1：耶律燕成年青年、灰蓝行旅长衣暗青裙裤层、革带护腕软靴、双编发、一把左腰完整入鞘中式短直剑，正面头直双手双足完整，无明显多肢或重大结构问题，宽松自查可用。偏差：脸型仍偏纤小美化、方鹅蛋与健朗肩臂表达较弱，与完颜萍面貌相似但五官眼口更开阔；双辫垂到胸前未收脑后，左手靠剑柄而非只扶腰带，裙摆较多不够骑行便利，金属剑饰与背景亭阁花枝偏多。按出齐尺度登记而不因细节追加；文字原创非1995演员像。原生1024×1536不透明PNG原始字节保存，candidate待审核，不宣称严格脸型体型或服制通过。
 
-    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，11 号出图员）：爽朗的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角，11 号出图员）：爽朗的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变；AR-69：耶律燕结合1995TVB 蔡雲霞剧照去AI脸，自然不对称、不露齿浅笑；作者逐人定稿，服饰、发式、构图、姿势保持；已实际打开改前改后质检，仍为candidate待协调者判断'
   source_size: 1024x1536
 - id: por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson
   file: por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.png
