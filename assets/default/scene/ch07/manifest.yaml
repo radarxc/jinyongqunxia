@@ -67,21 +67,21 @@
   negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
   references:
   - path: assets/default/scene/ch07/cg_ch07_taishan_alliance.png
-    sha256: d377a60404bcc4b20bcd8f4576c9e0b926253558768e77b931bebcbc097507b4
-    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_taishan_alliance.d377a604.png
+    sha256: f54aeabb14f94d1e4bb1943038464c234559dedfb9b626f5c887e458b983b40f
+    use: AR-82 已返修图的蒙版边界复核；同批生成素材重合成，恢复背景及剑柄，仅清除残留甲片；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_taishan_alliance.f54aeabb.png
   tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
-  model: gpt-6.1-sol
-  created: 2026-10-04T03:18:35-0700
-  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_38_r2.png
+  model: gpt-6-astra
+  created: 2026-10-04T03:30:01-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_38_r3.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: f54aeabb14f94d1e4bb1943038464c234559dedfb9b626f5c887e458b983b40f
+  sha256: e81e833c7053a79923cb3759ea1637ac781668e5cacffc2eb6c1dae59ceda9ca
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「泰山聚义」，实际字形「泰山聚义」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；发髻上原本的浅色发带随基线略加宽；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（12 号出图员），基线 = por_npc_hongniangzi__ch07_base（编辑结果只取红娘子（#4）头部区域羽化合成回原图，其余像素保持原图（袁承志、程青竹、李岩不动）；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：泰山聚义袁承志旧疤、程青竹白须眉及李岩书生服
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「泰山聚义」，实际字形「泰山聚义」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；发髻上原本的浅色发带随基线略加宽；原始编辑结果 out/<job>.raw.png）；AR-53 配角对齐（12 号出图员），基线 = por_npc_hongniangzi__ch07_base（编辑结果只取红娘子（#4）头部区域羽化合成回原图，其余像素保持原图（袁承志、程青竹、李岩不动）；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：泰山聚义袁承志旧疤、程青竹白须眉及李岩书生服；AR-82 原著核对返修：泰山聚义袁承志旧疤、程青竹白须眉及李岩书生服
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_taishan_alliance.d377a604.png
-    sha256: d377a60404bcc4b20bcd8f4576c9e0b926253558768e77b931bebcbc097507b4
-    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_taishan_alliance.d377a604.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_taishan_alliance.f54aeabb.png
+    sha256: f54aeabb14f94d1e4bb1943038464c234559dedfb9b626f5c887e458b983b40f
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch07_taishan_alliance.f54aeabb.entry.yaml
   runner_job_records:
   - - cg_ch07_taishan_alliance.resume3
     - ok
@@ -89,7 +89,7 @@
     - '180'
     - exec-58dc3291-114f-4924-a91a-716eb4c06774.png
   runner_success_count: 1
-  effort: xhigh
+  effort: ultra
 - id: cg_ch07_golden_serpent_cave
   file: cg_ch07_golden_serpent_cave.png
   category: scene
