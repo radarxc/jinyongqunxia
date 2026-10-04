@@ -31,6 +31,12 @@ composite_job: por_npc_shipotian__ch06_youth_scene_motianya.resume3
 
 # 石破天 · 人物写实修正
 
+## AR-82 当前定稿要求
+
+只在手中和右下石台上各泥偶的现有泥衣表面添加清晰红色经络线与黑色穴位小点，线点沿四肢和躯干走向。保留泥偶粗粝棕灰陶土外壳、体型、每一只的位置；不改人手，不露木芯，不添加经文或可读文字。
+
+以上为当前原著核对后的要求，覆盖下文旧版中与之冲突的服饰、器物、伤残、光线和体态描述。
+
 ## Gemini 提示词
 
 > 作者10-02晚复合精修；任务 `por_npc_shipotian__ch06_youth_scene_motianya.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
