@@ -1,0 +1,21 @@
+- id: town_city_cangzhou__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 沧州1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_cangzhou__ch01/layout.yaml -o assets/default/town/city_cangzhou__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2048x1024
+  sha256: 86596b55b7788eefdfcbe650acb227bbaabaa3515190b6e112048e8203769437
+  status: candidate
+  references:
+  - docs/design/town/city_cangzhou__ch01.yaml
+  - docs/design/town/history/city_cangzhou__northern_song.md
+  - assets/default/tile/liao_jin_north/
+  - assets/default/building-map/liao_jin_north/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；套件回退 18 项（按素材变体计）：地面、道路、路缘、城门使用 song_dali / song_southern 共享或替代贴片

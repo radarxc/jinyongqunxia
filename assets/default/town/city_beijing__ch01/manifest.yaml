@@ -1,0 +1,21 @@
+- id: town_city_beijing__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 南京析津府（燕京）1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_beijing__ch01/layout.yaml -o assets/default/town/city_beijing__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2560x1280
+  sha256: edbe2177a7af44a08cab7f52b09966afbaa0ddc6fcc73115b24366cc3f7f1578
+  status: candidate
+  references:
+  - docs/design/town/city_beijing__ch01.yaml
+  - docs/design/town/history/city_beijing__northern_song.md
+  - assets/default/tile/liao_jin_north/
+  - assets/default/building-map/liao_jin_north/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；含全尺寸 town.png 与 overlay.svg；运行时按 layout + 贴片渲染；套件回退 18 项（按素材变体计）：地面、道路、路缘、城门使用 song_dali / song_southern 共享或替代贴片

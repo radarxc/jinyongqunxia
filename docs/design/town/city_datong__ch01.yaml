@@ -1,0 +1,335 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_datong
+chapter_id: ch01
+book_world: ch01_tianlong
+display_name: 西京大同府
+historical_year: 1093
+era_kit: song_north
+seed: 2800647416
+design_intent:
+  prosperity: capital_candidate
+  notes:
+  - 复原依据：history/city_datong__northern_song.md；1093年历史拓扑缩景。
+  - 辽西京利用北魏、唐城改扩，考古推断为凸字形、四门，宫殿主体在西南；精确边界仍受后世叠压。
+  - 未获同期地籍控制点的坐标均标推定；正式场景与营生绑定不在本任务定义。
+grid:
+  width: 160
+  height: 160
+  cell_m: 1
+  chunk_cells: 32
+runtime_partition:
+  q_min: -80
+  r_min: 1
+  q_slot_count: 219
+  r_slot_count: 160
+  q_band_slots:
+  - 96
+  - 96
+  - 27
+  r_band_slots:
+  - 96
+  - 64
+  formal_scene_refs: null
+projection:
+  tile_px:
+  - 64
+  - 32
+  pitch_deg: 30
+  yaw_deg: 45
+walls:
+- id: outer
+  role: outer
+  polygon:
+    points:
+    - x: 26
+      z: 14
+    - x: 134
+      z: 14
+    - x: 134
+      z: 36
+    - x: 146
+      z: 36
+    - x: 146
+      z: 146
+    - x: 14
+      z: 146
+    - x: 14
+      z: 36
+    - x: 26
+      z: 36
+  inside_margin_cells: 2
+  basis: 图名：西京大同府外垣；凸字城、四门与宫殿西南关系据src_city；坐标为非等比拓扑缩景（推定）。
+gates:
+- id: south_gate
+  side: south
+  at:
+    x: 80
+    z: 14
+  width_cells: 4
+  asset_type: tex_town_song_north_city_gate
+  rotation_deg: 0
+  footprint_cells:
+    w: 8
+    h: 4
+  passage_cells:
+    w: 4
+    h: 4
+  road_ref: axis
+  primary: true
+  wall_ref: outer
+  basis: 图名：方位门；来源只约束城形，门名、门数与坐标均（推定）（原创扩展）。
+- id: north_gate
+  side: north
+  at:
+    x: 80
+    z: 146
+  width_cells: 4
+  asset_type: tex_town_song_north_city_gate
+  rotation_deg: 180
+  footprint_cells:
+    w: 8
+    h: 4
+  passage_cells:
+    w: 4
+    h: 4
+  road_ref: axis
+  primary: false
+  wall_ref: outer
+  basis: 图名：方位门；来源只约束城形，门名、门数与坐标均（推定）（原创扩展）。
+streets:
+- id: axis
+  class: main_axis
+  width_cells: 5
+  points:
+  - x: 80
+    z: 14
+  - x: 80
+    z: 146
+  surface: dirt_road
+  priority: 100
+  basis: 图名：南北主街；凸字城、四门与宫殿西南关系据src_city，线位与5格宽（推定）。
+- id: cross
+  class: secondary
+  width_cells: 5
+  points:
+  - x: 14
+    z: 80
+  - x: 146
+    z: 80
+  surface: dirt_road
+  priority: 90
+  basis: 图名：东西横街；线位与宽度（推定）（原创扩展）。
+- id: market_lane
+  class: secondary
+  width_cells: 3
+  points:
+  - x: 22
+    z: 50
+  - x: 138
+    z: 50
+  surface: dirt_road
+  priority: 70
+  basis: 图名：市肆横巷；可玩街区补线（推定）（原创扩展）。
+rivers: []
+bridges: []
+zones:
+- id: zone_office
+  kind: administrative
+  geometry:
+    rect:
+      min:
+        x: 28
+        z: 40
+      max:
+        x: 72
+        z: 72
+  priority: 100
+  density: 0.48
+  allowed_building_types:
+  - bld_kit_song_north_courtyard
+  - bld_kit_song_north_house_large
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：行政区；凸字城、四门与宫殿西南关系仅约束关系，边界（推定）。
+- id: zone_market
+  kind: market
+  geometry:
+    rect:
+      min:
+        x: 88
+        z: 40
+      max:
+        x: 138
+        z: 72
+  priority: 90
+  density: 0.58
+  allowed_building_types:
+  - bld_kit_song_north_shop_1f
+  - bld_kit_song_north_shop_2f
+  - bld_kit_song_north_market_stall
+  - bld_kit_song_north_inn
+  - bld_kit_song_north_house_large
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：市肆区；功能与边界（推定）（原创扩展）。
+- id: zone_residential
+  kind: residential
+  geometry:
+    rect:
+      min:
+        x: 28
+        z: 88
+      max:
+        x: 72
+        z: 138
+  priority: 50
+  density: 0.56
+  allowed_building_types:
+  - bld_kit_song_north_house_small
+  - bld_kit_song_north_house_large
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：坊居；边界和密度（推定）（原创扩展）。
+- id: zone_temple
+  kind: religious
+  geometry:
+    rect:
+      min:
+        x: 88
+        z: 88
+      max:
+        x: 138
+        z: 114
+  priority: 75
+  density: 0.48
+  allowed_building_types:
+  - bld_kit_song_north_courtyard
+  - bld_kit_song_north_house_large
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：寺观区；位置与范围（推定）（原创扩展）。
+- id: zone_service
+  kind: gate_service
+  geometry:
+    rect:
+      min:
+        x: 88
+        z: 118
+      max:
+        x: 138
+        z: 138
+  priority: 80
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_song_north_house_small
+  - bld_kit_song_north_house_large
+  - bld_kit_song_north_stable
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：军驿仓储区；位置与范围（推定）（原创扩展）。
+landmarks: []
+building_quotas:
+- type: bld_kit_song_north_courtyard
+  zone_refs:
+  - zone_office
+  - zone_temple
+  count:
+    min: 2
+    max: 3
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_north_house_large
+  zone_refs:
+  - zone_office
+  - zone_residential
+  - zone_temple
+  - zone_market
+  - zone_service
+  count:
+    min: 3
+    max: 7
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_north_shop_1f
+  zone_refs:
+  - zone_market
+  count:
+    min: 4
+    max: 8
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_north_shop_2f
+  zone_refs:
+  - zone_market
+  count:
+    min: 2
+    max: 4
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_north_market_stall
+  zone_refs:
+  - zone_market
+  count:
+    min: 4
+    max: 10
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_north_inn
+  zone_refs:
+  - zone_market
+  count:
+    min: 1
+    max: 2
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_north_house_small
+  zone_refs:
+  - zone_residential
+  - zone_service
+  count:
+    min: 13
+    max: 25
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+- type: bld_kit_song_north_stable
+  zone_refs:
+  - zone_service
+  count:
+    min: 0
+    max: 1
+  required: false
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。
+vegetation:
+  palette:
+  - prp_song_dali_grass
+  density: 0.012
+  avoid_road_cells: 2
+  cluster_rule: 院落空地少量草簇；植物种类不作1093年物候证据
+  basis: 图名：空地植被；密度与落点（原创扩展）【建议值】。
+sources:
+- key: src_city
+  kind: academic
+  title: 大同晚报：《古城影记 解码大同》
+  url: http://epaper.dtnews.cn/dtwb/resfile/2024-02-23/14/dtwb2024022314.pdf
+  accessed: '2026-10-04'
+  confidence: verified_summary
+  supports:
+  - historical_topology
+  note: 已看图；已打开正文；辽西京利用北魏、唐城改扩，考古推断为凸字形、四门，宫殿主体在西南；精确边界仍受后世叠压。
