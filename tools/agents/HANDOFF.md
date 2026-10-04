@@ -2114,4 +2114,11 @@
     - **ENG-session-base-diet r1 FAIL**，是真 bug：闭包已降到 73.52，但 `item-content.ts` 用原始 schema 解析编译后的叶片，ch10 包加载不了。
       - 返修已排队。协调者同意名单改为 ops-dispatch → base-diet → map-terrain，M1 链优先。
       - base-diet 合入后，等待器会自动给 gates-data 挪基点、重新校验，要留意它能不能过。
+  - **10-03 21:06–21:16 开发监督**：
+    - **ART-map-inkkit** 两次校验失败都怪开发监督写的说明：
+      - manifest 的 status 写成了 draft，check_assets 只认 approved / candidate / rejected，改为 candidate（30280ae1）；
+      - 校验没加 `--max`，check_assets 默认上限是 2，补成 `--max 60`（a3f4f6bd）。
+      - 协调者已停掉第 3 轮执行器；开发监督用 `--from validate` 重起，驱动 23975，校验通过，进入审核。
+      - 本轮只合小样，对照表协调者已转给作者。
+    - 教训：登记出图任务时，check_assets 的 `--min` / `--max` 都要写；manifest 的 status 用 candidate。
 
