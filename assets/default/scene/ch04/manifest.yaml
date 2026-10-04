@@ -299,41 +299,88 @@
   category: scene
   style: default
   subject: 绿柳庄地牢足心制穴（ch04_yitian）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是张无忌的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是赵敏的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中张无忌、赵敏的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: 'Use case: identity-preserve / historical-scene
 
-    【画里谁是谁】这张插图画的是：绿柳庄地牢斗智，张无忌和赵敏均为明确成年人。双人中景，张无忌半跪在下方以手指轻触赵敏左足足心，迫其叫外面守卫打开翻板；赵敏被点穴后靠暗钢壁坐着，笑恼交加；叙事重点是两人目光和表情的交锋。赵敏仍是完整宽松男装长袍，仅左鞋左袜置于身侧，右脚仍穿鞋袜，左足只在画面下缘小比例出现，不特写、不性化、不暴露大腿。狭小封闭钢牢、暗沉金属壁与上方紧闭铁翻板，不放蜡烛、不画可自行开启的机关；微弱轮廓照明为叙事可读性的原创扩展，细节待三联纸本复核；无他人。
+    生成 1536×1024 横幅写实手绘古风剧情插画。《倚天屠龙记》绿柳庄地牢足心制穴；这是 AR-75 作者明确要求的整张重画。
 
-    【要对齐的部分】张无忌、赵敏各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    参考图1：唯一构图、钢牢环境、人物站位、动作、视线关系与题字参考（旧插图）。参考图2：张无忌最新 F 定稿全身，面容、发型、头部和肩胸比例以它为准。参考图3：F 头肩特写，锁定张无忌原面容，不能换脸、不能添笑。参考图4：赵敏作者认可的最新 base 全身（恢复版 f1cd1652），唯一赵敏身份与服饰参考。参考图5：该 base 头肩特写，锁定赵敏眉眼鼻口脸型与发髻。不得从参考图1旧脸取身份。全员明确成年人。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「绿柳初逢」和小朱印必须原样保留，一笔不改、不增不减。
+    场景与构图：狭窄封闭的暗钢地牢，暗钢壁、铆钉、上方紧闭铁翻板；没有第三人，没有烛台，没有可自行打开的机关。张无忌在画面左下坐蹲/半跪，赵敏靠右侧钢壁坐着，双人中景和原画类似。保持原图俩人朝对方看的视线与完整人体重心；柔和微光使面容可读，低饱和沉稳画风，布料有自然笔触与褶皱，不要照片质感或三维CG。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+    张无忌：严格照参考2/3 F 的五官与发式，青年成年、沉稳认真，原F头身约7.43，肩胸只略宽，绝非健美身材。穿 F 白色交领深边浅色长袍、深布腰带。侧身逼问赵敏如何命守卫打开地牢翻板，眼神坚定且克制，嘴角不笑，不能画成调情、玩弄、轻薄。
 
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+    赵敏：严格照参考4/5 base 的五官身份，成年年轻的聪慧郡主，长袍男装、蓝色完整宽松交领衣，头发束髻和原base一致。状态是被制住后又羞又恼、抿唇蹙眉，带难堪的倔强，与张无忌对视；保持骨相五官，不复制 base 的开心笑容。
+
+    核心动作：赵敏一腿抬起屈膝，脚向画面下方的张无忌；这只脚已脱掉鞋袜，要从踝到五个脚趾完整清楚地露出，必须是赤足，不能还裹袜子、不能隐藏在袍摆里。张无忌一手稳稳握住该只裸足的后跟/踝部，另一手食指轻触其足心穴道，手与脚解剖自然、手脚不能融合，明确可读的足心制穴动作。鞋与袜整齐放在赵敏身旁，另一脚仍穿鞋袜。长袍遮住大腿，裸足在下缘占适当小比例，不特写；重点是俩人目光交锋与逼问关系。
+
+    题字：右上角保留原画竖排毛笔楷书「绿柳初逢」，严格四字从上到下，无其他可读文字；小朱印可沿用旧图气质。
+
+    必须通过：俩人一眼是 F 张无忌与最新base赵敏；两脸不能沿用旧插图；赤足脚趾清楚、足心点穴与另一手握足同时可读；赵敏羞恼、张无忌严肃逼问；同原图封闭钢牢与构图关系；人物手绘质感自然、无拼接和错肢。
+
+    【不要】不要旧图张无忌或旧图赵敏的脸、陌生脸、串脸、开心大笑、色情或恋物特写、裸露大腿、现代物、第三人、发光武功、浓妆塑料皮肤、真人照片质感、过强轮廓光、错手错足、多余手指、足趾融合、鞋袜还穿在被握的脚上、脚被衣摆遮住、文字错漏。
+
+
+
+    # 最终头脸补丁（v3；v1/v2张无忌旧脸未通过，不采用）
+
+    Use case: identity-preserve
+
+    Draw a 1024x1024 hand-painted Chinese wuxia head-and-shoulders patch.
+
+    Image 1 is the ONLY facial identity source: the AUTHOR-APPROVED final F portrait of Zhang Wuji. Copy this man''s actual facial structure, eye shape, eyebrow shape, modest straight nose, lip shape, youthful jaw and chin. Image 2 is the full portrait of the SAME man, for costume and hair. Image 3 is a local COMPOSITION GUIDE with the obsolete wrong face and crown deliberately blanked out. Reconstruct the blank area as the man from image 1, NOT a generic side-profile actor. There is no face in image 3 to copy. Do NOT copy the contour of the blank area''s edge as the head outline.
+
+    Output has exactly the framing and neck/collar/steel-cell backdrop of image 3. Face centre approximately (520,460) within a 1024x1024 image; main hair crown at approximately y=180, chin approximately y=700. He is an adult young man, eyes looking towards someone off frame to the RIGHT, yaw about 35 degrees to the right so BOTH eyes are clearly visible, not a near side-profile. Keep the camera orientation and seated body direction from image 3. Natural neck connection, not a pasted frontal face. Serious restrained interrogation, closed mouth, level lips, no smile and no flirtation. Keep image 1''s face recognizable in this slight three-quarter turn. Avoid a long projecting nose or broad hard jaw; the soft youthful face must look like image 1.
+
+    Hair tied in the same half-up dark topknot as F; retain characteristic dark side locks and beads, softly matched to the cellar lighting. The head should be six percent smaller than the missing old head: use F''s comfortable head-to-shoulder proportions. Clothing in image 3 stays white with dark crossing edge and embroidered trim. Steel wall and muted paint texture, warm subtle skin shadows, same hand-drawn style as F. No photorealistic actor snapshot, no plastic skin.
+
+    Paint a complete finished image, fill the empty grey silhouette with the proper head, natural face edges and adjoining neck/hair, no grey holes remaining. Do not change the crop borders, shoulders or clothes, because the result will be merged into an existing illustration. No text, no arrows, no labels.
+
+    最重要：图1是唯一正确身份。画成该张F的张无忌，不能又画旧插图那张宽鼻侧脸！图3的空白头只是遮掉的错误脸，必须从F重新建立自然三分之二侧转的人脸，两眼都清晰可见。严肃逼问，不笑。
+
+
+
+    合成：原生1254×1254头肩补丁缩至384×384，合回body v1的[384,172,768,556]，外缘5px过渡；赵敏、赤足、两只手与题字沿用已检查body v1，头肩补丁外逐像素不变。参数与蒙版见 .agents/coord/_lines/zhangwuji-final/composition_lvliu_final.json。
+
+    '
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
+  - path: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_lvliu_footplay.png
+    sha256: e71838f74dc4729e5778640074485c2adc06d0cb2803645cc4179fdca6a88c9f
+    use: 旧图只取构图和动作
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
-    sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
-    use: 对脸基线：作者审核通过的 por_npc_zhangwuji__ch04_youth_jiaozhu_base（张无忌），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png
-    sha256: ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188
-    use: 对脸基线：作者审核通过的 por_npc_zhaomin__ch04_youth_scene_lvliu（赵敏），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
-  - path: assets/default/scene/ch04/cg_ch04_lvliu_footplay.png
-    sha256: 34b67370b15d1a2aa1dfba9456326146feef1a5036271b8a7a7ef2561abb6df3
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_lvliu_footplay.34b67370.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T14:45:10-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch04_lvliu_footplay.s1.png
-  source_size: 1536x1024
+    sha256: 3320846559f71c5013f03eba4e872004b787141b59e774cba57b33d37bbe7103
+    use: 张无忌F定稿全身
+  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+    sha256: 3320846559f71c5013f03eba4e872004b787141b59e774cba57b33d37bbe7103
+    use: F头肩裁图：身份与比例
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+    use: 赵敏f1cd1652最新base全身
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+    use: 赵敏最新base头肩裁图：身份
+  - path: .agents/coord/_handoff/gem/codex_w33/out/ar86_lvliu_footplay_F_v1.png
+    sha256: c455ec743e8d5f2bfc48260e58470e2e4feeebc856895af1803332b556360c05
+    use: 已质检的绿柳庄全图身体、赵敏、赤足、握足点穴与题字
+  - path: .agents/coord/_handoff/gem/codex_w33/staging/ar86_lvliu_head_F_v3_layout.jpg
+    sha256: 6224c6b205625065dc3a9cb4347aecf799a1ac56dd1467eedd718de84728a13c
+    use: 头肩构图参考：原错误头脸已遮掉，F为唯一身份
+  - path: .agents/coord/_handoff/gem/codex_w33/out/ar86_lvliu_head_F_v3.png
+    sha256: 4a2dce8f2958e93f3c6ea8292a7c1a08ad826419f0b35320b6a45143f7defc4c
+    use: 实际采用的F头肩补丁；原生1254×1254，局部合成
+  tool: codex exec · image_gen（codex_w33：全图v1 + F头肩补丁v3；Pillow局部合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:20:58.347816-07:00'
+  source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_lvliu_footplay.png
+  source_size: 1536x1024; head patch native 1254x1254
   size: 1536x1024
-  sha256: e71838f74dc4729e5778640074485c2adc06d0cb2803645cc4179fdca6a88c9f
+  sha256: 86dfa97d91b1b65a43f8273c493363a85c6378d8959e9d6fb04c4d8c40ee51bc
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「绿柳初逢」，实际字形「绿柳初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「绿柳初逢」，实际字形「绿柳初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu；AR-86 肩胸略加宽、头部 94%；AR-75 绿柳庄整图重画，张无忌对齐 F、赵敏对齐 f1cd1652 现行 base，握赤足点足心，羞恼与逼问
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_lvliu_footplay.34b67370.png
-    sha256: 34b67370b15d1a2aa1dfba9456326146feef1a5036271b8a7a7ef2561abb6df3
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_lvliu_footplay.34b67370.entry.yaml
+    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_lvliu_footplay.png
+    sha256: e71838f74dc4729e5778640074485c2adc06d0cb2803645cc4179fdca6a88c9f
+    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_lvliu_footplay.entry.yaml
   runner_job_records:
   - - cg_ch04_lvliu_footplay.resume3
     - ok
@@ -341,7 +388,10 @@
     - '166'
     - exec-0145ccc4-1f2e-4e82-a6be-ffce47570082.png
   runner_success_count: 1
-  effort: ultra
+  effort: xhigh
+  executed_by: Codex gpt-6.1-sol（AR-86）
+  composite_job: ar86_lvliu_footplay_F_v1 + ar86_lvliu_head_F_v3
+  composition_parameters: .agents/coord/_lines/zhangwuji-final/composition_lvliu_final.json
 - id: cg_ch04_wanan_fire_rescue
   file: cg_ch04_wanan_fire_rescue.png
   category: scene
