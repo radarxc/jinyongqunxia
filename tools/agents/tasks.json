@@ -48433,14 +48433,86 @@
    "kind": "draft",
    "review": false,
    "vars": {},
+   "id": "ART-map-inkkit-tiles",
+   "title": "大地图 · 水墨贴片（AR-83）：无缝可平铺的填充贴片（水面 / 湖面 / 平原 / 草原 / 沙漠 / 高原各 2–3）+ 首尾可衔接的边界笔触条（海岸线 / 湖岸 / 河流 / 道路 / 区域边界，粗细各 2–3 档）；画风对齐贴图集与基线；无缝与衔接脚本检验",
+   "prompt": "ART-map-inkkit-tiles.md",
+   "deps": [
+    "ART-map-inkkit"
+   ],
+   "web": false,
+   "writes": [
+    "assets/default/map/tiles/**",
+    "tools/map/tiles/**"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\",\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_asset_logs\"]"
+   ],
+   "sparse_include": [
+    "assets/default/baseline/map",
+    "assets/default/map/kit",
+    "assets/default/map/tiles"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/map/tiles/manifest.yaml",
+     "assets/default/map/tiles/_contact_sheet.png",
+     "tools/map/tiles/check_tiles.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_assets.py",
+      "assets/default/map/tiles",
+      "--min",
+      "23",
+      "--max",
+      "60",
+      "--min-side",
+      "128"
+     ],
+     [
+      "{python}",
+      "tools/map/tiles/check_tiles.py"
+     ],
+     [
+      "{python}",
+      "tools/map/tiles/check_tiles.py",
+      "--self-test"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import sys,yaml,collections; m=yaml.safe_load(open('assets/default/map/tiles/manifest.yaml',encoding='utf-8')); es=m if isinstance(m,list) else m.get('assets',[]); t=collections.Counter(e['tile'].get('kind') for e in es if isinstance(e.get('tile'),dict)); s=collections.defaultdict(set); [s[e['strip'].get('kind')].add(e['strip'].get('width_px')) for e in es if isinstance(e.get('strip'),dict)]; short=[k for k in ('water','lake','plain','grassland','desert','plateau') if t[k]<2]+[k for k in ('coast','lakeshore','river','road','region') if len(s[k])<2]; print('tiles',dict(t),'strips',{k:sorted(v) for k,v in s.items()},'short',short); sys.exit(1 if short else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import sys,yaml,numpy as np; from PIL import Image; from pathlib import Path; d=Path('assets/default/map/tiles'); m=yaml.safe_load(open(d/'manifest.yaml',encoding='utf-8')); es=m if isinstance(m,list) else m.get('assets',[]); ch=lambda f: (lambda a: ((a[...,:3]*(a[...,3:4]/255.0)).mean(-1), a[...,3]))(np.asarray(Image.open(f).convert('RGBA'),dtype=np.float64)); rh=lambda x: np.abs(x[:,0]-x[:,-1]).mean()/max(float(np.median(np.abs(np.diff(x,axis=1)).mean(0))),0.5); rv=lambda x: rh(x.T); bad=[]; n={'tile':0,'strip':0}\nfor e in es:\n    f=d/str(e.get('file',''))\n    if isinstance(e.get('tile'),dict):\n        n['tile']+=1; L,A=ch(f); r=max(rh(L),rv(L),rh(A),rv(A))\n        if r>2.5: bad.append((e.get('id'),'tile',round(r,2)))\n    elif isinstance(e.get('strip'),dict):\n        n['strip']+=1; L,A=ch(f); r=max(rh(L),rh(A)); edge=float(max(A[:2].max(),A[-2:].max()))\n        if r>2.5 or edge>0: bad.append((e.get('id'),'strip',round(r,2),edge))\nprint(n,'seam_bad',bad[:10]); sys.exit(1 if bad or not n['tile'] or not n['strip'] else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import sys,yaml; from pathlib import Path; d=Path('assets/default/map/tiles'); m=yaml.safe_load(open(d/'manifest.yaml',encoding='utf-8')); reg={e['file'] for e in (m if isinstance(m,list) else m.get('assets',[]))}; bad=[str(p) for p in d.rglob('*') if p.is_file() and not (p.parent==d and (p.name in reg or p.name in ('manifest.yaml','README.md')))]; print('extra',len(bad),bad[:10]); sys.exit(1 if bad else 0)"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "vars": {},
    "id": "TOOL-map-compose",
-   "title": "大地图 · 拼合生成器：按地形图层与历史坐标摆水墨贴图（固定种子、密度与避让、design/19 §8 时代图层），输出地图与标记坐标 JSON；本轮先出样区（AR-68 第 4 步）",
+   "title": "大地图 · 拼合生成器（AR-68 第 4 步，按 AR-83 定稿）：程序按 GIS 与 DEM 确定地画——边界笔触条沿边界铺、填充贴片平铺、河流按阈值取舍、DEM 山势图换水墨边、城镇标记贴入后消融；随机与融合并入（山峰贴图只作高山点缀）；固定种子；本轮先出样区（附河流阈值两档、无扰动 / 有扰动两组对比）",
    "prompt": "TOOL-map-compose.md",
    "deps": [
     "TOOL-map-terrain",
     "ART-map-inkkit",
     "CONTENT-map-poi",
-    "ART-map-inkkit-full"
+    "ART-map-inkkit-full",
+    "ART-map-inkkit-tiles"
    ],
    "web": false,
    "writes": [
@@ -48453,7 +48525,8 @@
    ],
    "sparse_include": [
     "assets/default/map/kit",
-    "assets/default/baseline/map"
+    "assets/default/baseline/map",
+    "assets/default/map/tiles"
    ],
    "validate": {
     "exists": [
@@ -48479,7 +48552,7 @@
      [
       "{python}",
       "-c",
-      "import glob,sys; fs=sorted(glob.glob('assets/default/map/composed/sample/*_compare*.png')); print('compare',fs); sys.exit(0 if fs else 1)"
+      "import glob,sys; r=sorted(glob.glob('assets/default/map/composed/sample/*_rivers_compare*.png')); j=sorted(glob.glob('assets/default/map/composed/sample/*_jitter_compare*.png')); print('rivers',r,'jitter',j); sys.exit(0 if r and j else 1)"
      ]
     ]
    }
