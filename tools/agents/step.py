@@ -332,11 +332,24 @@ def find_bin(explicit: str | None, defaults: dict) -> str:
     raise R.Fatal("找不到 traex / traecli（或 Codex），请确认 TraeX CLI 已安装并在 PATH 中（或用 --bin / 环境变量 TRAEX_BIN 指定）")
 
 
+# 2026-10-03 协调者：traex 会把作者本机 ~/.trae/skills 的技能清单放进提示词。ENG-region-gates-data 的执行器曾自行调起
+# bits-unit-test-gen 走它那套生成单测流程，卡死无输出。按次关闭技能说明，不改作者 ~/.trae 下的配置：
+# 实测 `traex debug prompt-input -c skills.include_instructions=false` 只去掉 <skills_instructions> 段，其余提示不变。
+TRAEX_NO_SKILLS = ["-c", "skills.include_instructions=false"]
+
+
+def is_traex(binary: str) -> bool:
+    name = Path(str(binary)).name.lower()
+    return "traex" in name or "traecli" in name
+
+
 def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, search: bool, extra: list | None = None) -> list:
     argv = [binary, "exec", "-m", model, "-s", "workspace-write", "--skip-git-repo-check",
             "-C", str(wt), "-o", str(last)]
     if effort:
         argv += ["-c", f'model_reasoning_effort="{effort}"']
+    if is_traex(binary):
+        argv += TRAEX_NO_SKILLS
     # 注：`--search` 只是交互式 CLI 的参数，`exec` 不接受；exec 下模型自带 web_search 工具，无需开关。
     # web 任务同时放开沙箱网络：作者 2026-09-30「建筑套件和城市在生成时搜一下历史图片作为参考」——要能把搜到的图下载到工作区看。
     if search:
