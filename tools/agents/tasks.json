@@ -47525,6 +47525,10 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
+    ],
+    "shrink_exempt": [
+     "content/chapters/ch00_yuenv/npcs/_drafts/**",
+     "content/chapters/ch00_yuenv/roles/_drafts/**"
     ]
    },
    "id": "ENG-npc-species-roleslot",
