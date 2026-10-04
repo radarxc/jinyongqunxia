@@ -75,20 +75,33 @@
   - path: assets/default/scene/ch01/cg_ch01_xingzilin_reveal.png
     sha256: fc7fbe9e3a4f3ed687b638cfa595e00ecda498816cb559d15facd2d965ebd33f
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.fc7fbe9e.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T17:52:00-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch01_xingzilin_reveal.s3.png
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:13:21.330742-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_31_45_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: dddbedb6c4772a0f4844f8156d548536c66a3f23570ac1397a4fdf22a9714772
+  sha256: 1c348745fe0ed1d2f6a5a6c5b41f0d291f9ea3c4a718c7e34eb6832fd5b2ea79
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「杏林惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「杏林惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留低头悲愤与眼神下视，不抬头、不微笑。；质检：已打开对照：萧峰基准眉眼鼻颌已对齐，保留杏林低垂视线及沉重神态；不笑，光线接缝自然；周围众人与题字蒙版外零变化
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.fc7fbe9e.png
     sha256: fc7fbe9e3a4f3ed687b638cfa595e00ecda498816cb559d15facd2d965ebd33f
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_xingzilin_reveal.fc7fbe9e.entry.yaml
   effort: ultra
+  ar84_alignment:
+    job: ar84_calign_31_45_r1
+    before_sha256: dddbedb6c4772a0f4844f8156d548536c66a3f23570ac1397a4fdf22a9714772
+    box:
+    - 636
+    - 117
+    - 754
+    - 292
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_31_45_r1.png
+    outside_changed_pixels: 0
 - id: cg_ch01_xiaojinghu_azhu
   file: cg_ch01_xiaojinghu_azhu.png
   category: scene
