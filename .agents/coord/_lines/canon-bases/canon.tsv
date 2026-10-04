@@ -1,0 +1,226 @@
+人物	npc_id	base 路径	作者说的版本（依据 AR + 提交号）	改前提交	改后提交	baseline 是否同步
+阿青	npc_aqing	assets/default/character/female/ch00/por_npc_aqing__ch00_youth_base.png	【已一致】AR-51 / AR-55：阿青第2轮 B（林青霞参考）；来源 08a2a3fb	08a2a3fb	08a2a3fb	无对应独立 ref
+阿朱	npc_azhu	assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png	【已一致】AR-59 / AR-61：刘涛参考 B，眼睛略放大；来源 4e36407e	4e36407e	4e36407e	无对应独立 ref
+阿紫	npc_azi	assets/default/character/female/ch01/por_npc_azi__ch01_youth_sighted_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 0d143f1d	0d143f1d	0d143f1d	无对应独立 ref
+丁春秋	npc_dingchunqiu	assets/default/character/male/ch01/por_npc_dingchunqiu__ch01_elder_free_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 5bd82ec0	5bd82ec0	5bd82ec0	无对应独立 ref
+段延庆	npc_duanyanqing	assets/default/character/male/ch01/por_npc_duanyanqing__ch01_elder_disabled_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+段誉	npc_duanyu	assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png	【已一致】AR-44 / AR-49 / AR-50：段誉 B（林志颖参考）；来源 ee442606	ee442606	ee442606	无对应独立 ref
+鸠摩智	npc_jiumozhi	assets/default/character/male/ch01/por_npc_jiumozhi__ch01_prime_guoshi_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+康敏	npc_kangmin	assets/default/character/female/ch01/por_npc_kangmin__ch01_prime_xingzilin_base.png	【已一致】AR-57 / AR-58 / AR-62：马夫人 B（1997 TVB 雪梨参考）；来源 3c3472f8	3c3472f8	3c3472f8	无对应独立 ref
+李秋水	npc_liqiushui	assets/default/character/female/ch01/por_npc_liqiushui__ch01_elder_veiled_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+慕容博	npc_murongbo	assets/default/character/male/ch01/por_npc_murongbo__ch01_elder_revealed_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+慕容复	npc_murongfu	assets/default/character/male/ch01/por_npc_murongfu__ch01_prime_jiazhu_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 aab8ef2b	aab8ef2b	aab8ef2b	无对应独立 ref
+天山童姥	npc_tonglao	assets/default/character/female/ch01/por_npc_tonglao__ch01_elder_rejuvenating_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 eb8d5773	eb8d5773	eb8d5773	无对应独立 ref
+王语嫣	npc_wangyuyan	assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png	【已一致】AR-55 / AR-58 / AR-59：王语嫣第2轮 B，刘亦菲参考、去婴儿肥；来源 260175cf	260175cf	260175cf	已同步：ref_npc_wangyuyan__ch01_base01.png；45b43b96
+萧峰	npc_xiaofeng	assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png	【已恢复】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 3f35f9ed	d11b33a0	c614a167	已同步：ref_npc_xiaofeng__ch01_base01.png；c614a167
+萧远山	npc_xiaoyuanshan	assets/default/character/male/ch01/por_npc_xiaoyuanshan__ch01_elder_revealed_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+玄慈	npc_xuanci	assets/default/character/male/ch01/por_npc_xuanci__ch01_elder_fangzhang_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 2e2da1cd	2e2da1cd	2e2da1cd	无对应独立 ref
+虚竹	npc_xuzhu	assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png	【已恢复】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 feb01046	d11b33a0	f1cd1652	无对应独立 ref
+游坦之	npc_youtanzhi	assets/default/character/male/ch01/por_npc_youtanzhi__ch01_youth_ironmask_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+钟灵	npc_zhongling	assets/default/character/female/ch01/por_npc_zhongling__ch01_youth_diaoalive_base.png	【已一致】AR-57 / AR-58 / AR-62：钟灵 B（1997 TVB 何美钿参考）；来源 3c3472f8	3c3472f8	3c3472f8	无对应独立 ref
+陈玄风	npc_chenxuanfeng	assets/default/character/male/ch02/por_npc_chenxuanfeng__ch02_prime_flashback_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 84173085	84173085	84173085	无对应独立 ref
+郭靖	npc_guojing	assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 03e385b3	03e385b3	03e385b3	无对应独立 ref
+洪七公	npc_hongqigong	assets/default/character/male/ch02/por_npc_hongqigong__ch02_elder_bangzhu_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记），颏下微须；来源 7b2dd69c	7b2dd69c	7b2dd69c	无对应独立 ref
+黄蓉	npc_huangrong	assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png	【已一致】AR-49 / AR-51：黄蓉 A（李一桐参考）；神雕版按此脸年长化；来源 bc87bc91	bc87bc91	bc87bc91	无对应独立 ref
+黄药师	npc_huangyaoshi	assets/default/character/male/ch02/por_npc_huangyaoshi__ch02_elder_base.png	【已一致】AR-58 / AR-62：黄药师 B（曾江参考），神雕版按同脸年长化；来源 2e9e9976	2e9e9976	2e9e9976	无对应独立 ref
+梅超风	npc_meichaofeng	assets/default/character/female/ch02/por_npc_meichaofeng__ch02_prime_blind_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 24847b03	24847b03	24847b03	无对应独立 ref
+欧阳锋	npc_ouyangfeng	assets/default/character/male/ch02/por_npc_ouyangfeng__ch02_elder_sane_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 15ac26d7	15ac26d7	15ac26d7	无对应独立 ref
+裘千仞	npc_qiuqianren	assets/default/character/male/ch02/por_npc_qiuqianren__ch02_elder_tiezhang_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 4eed73a5	4eed73a5	4eed73a5	无对应独立 ref
+杨康	npc_yangkang	assets/default/character/male/ch02/por_npc_yangkang__ch02_youth_wangfu_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 9a9aff44	9a9aff44	9a9aff44	无对应独立 ref
+一灯大师	npc_yideng	assets/default/character/male/ch02/por_npc_yideng__ch02_elder_monk_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 32aa78fa	32aa78fa	32aa78fa	无对应独立 ref
+周伯通	npc_zhoubotong	assets/default/character/male/ch02/por_npc_zhoubotong__ch02_elder_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 8ca672d0	8ca672d0	8ca672d0	无对应独立 ref
+公孙止	npc_gongsunzhi	assets/default/character/male/ch03/por_npc_gongsunzhi__ch03_prime_twoeyes_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 5ed7a0fc	5ed7a0fc	5ed7a0fc	无对应独立 ref
+郭靖	npc_guojing	assets/default/character/male/ch03/por_npc_guojing__ch03_prime_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 96f0865c	96f0865c	96f0865c	无对应独立 ref
+郭襄	npc_guoxiang	assets/default/character/female/ch03/por_npc_guoxiang__ch03_youth_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 ab39b09c	ab39b09c	ab39b09c	无对应独立 ref
+洪七公	npc_hongqigong	assets/default/character/male/ch03/por_npc_hongqigong__ch03_elder_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记），颏下微须；来源 04cd3717	04cd3717	04cd3717	无对应独立 ref
+黄蓉	npc_huangrong	assets/default/character/female/ch03/por_npc_huangrong__ch03_prime_base.png	【已一致】AR-49 / AR-51：黄蓉 A（李一桐参考）；神雕版按此脸年长化；来源 1e61e6f2	1e61e6f2	1e61e6f2	无对应独立 ref
+黄药师	npc_huangyaoshi	assets/default/character/male/ch03/por_npc_huangyaoshi__ch03_elder_base.png	【已一致】AR-58 / AR-62：黄药师 B（曾江参考），神雕版按同脸年长化；来源 877621d4	877621d4	877621d4	无对应独立 ref
+金轮法王	npc_jinlunfawang	assets/default/character/male/ch03/por_npc_jinlunfawang__ch03_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 2d889543	2d889543	2d889543	无对应独立 ref
+李莫愁	npc_limochou	assets/default/character/female/ch03/por_npc_limochou__ch03_prime_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 e45beb15	e45beb15	e45beb15	无对应独立 ref
+欧阳锋	npc_ouyangfeng	assets/default/character/male/ch03/por_npc_ouyangfeng__ch03_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 e4323737	e4323737	e4323737	无对应独立 ref
+慈恩（裘千仞）	npc_qiuqianren	assets/default/character/male/ch03/por_npc_qiuqianren__ch03_elder_cien_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 1371b2b0	1371b2b0	1371b2b0	无对应独立 ref
+小龙女	npc_xiaolongnv	assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png	【已恢复】AR-84：作者明确指定刘亦菲版（AR-32 剧照结合版 ff996ec2；历史条目剧名标签原样保留）；来源 ff996ec2	d11b33a0	fe0ebefd	已同步：ref_npc_xiaolongnv__ch03_base01.png；82fb1390
+杨过	npc_yangguo	assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png	【已一致】AR-44 / AR-49：作者选第2轮 A，古天乐参考；逐人定稿优先；来源 3e7c8f9f	3e7c8f9f	3e7c8f9f	无对应独立 ref
+一灯大师	npc_yideng	assets/default/character/male/ch03/por_npc_yideng__ch03_elder_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 f12eec33	f12eec33	f12eec33	无对应独立 ref
+张君宝	npc_zhangsanfeng	assets/default/character/male/ch03/por_npc_zhangsanfeng__ch03_youth_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 7112b930	7112b930	7112b930	无对应独立 ref
+周伯通	npc_zhoubotong	assets/default/character/male/ch03/por_npc_zhoubotong__ch03_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 c3e46ee3	c3e46ee3	c3e46ee3	无对应独立 ref
+成昆	npc_chengkun	assets/default/character/male/ch04/por_npc_chengkun__ch04_elder_yuanzhen_base.png	【已一致】AR-32 补记：作者指定保留经典版重出之前的原版（恢复提交 bba3c50b）；来源 bba3c50b	bba3c50b	bba3c50b	无对应独立 ref
+黛绮丝	npc_daiqisi	assets/default/character/female/ch04/por_npc_daiqisi__ch04_prime_jinhua_base.png	【已一致】AR-63：金花婆婆易容成另一张老妪脸，作者明确保持现状，免同脸；来源 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+黛绮丝（紫衫龙王真容）	npc_daiqisi	assets/default/character/female/ch04/por_npc_daiqisi__ch04_prime_longwang_base.png	【已一致】AR-32 补记：作者指定保留经典版重出之前的原版（恢复提交 bba3c50b）；来源 bba3c50b	bba3c50b	bba3c50b	无对应独立 ref
+渡厄	npc_duee	assets/default/character/male/ch04/por_npc_duee__ch04_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+渡劫	npc_dujie	assets/default/character/male/ch04/por_npc_dujie__ch04_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+渡难	npc_dunan	assets/default/character/male/ch04/por_npc_dunan__ch04_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+鹤笔翁	npc_hebiweng	assets/default/character/male/ch04/por_npc_hebiweng__ch04_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+辉月使	npc_huiyueshi	assets/default/character/female/ch04/por_npc_huiyueshi__ch04_prime_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+流云使	npc_liuyunshi	assets/default/character/male/ch04/por_npc_liuyunshi__ch04_prime_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+鹿杖客	npc_luzhangke	assets/default/character/male/ch04/por_npc_luzhangke__ch04_elder_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 1fc6f892	1fc6f892	1fc6f892	无对应独立 ref
+妙风使	npc_miaofengshi	assets/default/character/male/ch04/por_npc_miaofengshi__ch04_prime_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+灭绝师太	npc_miejueshitai	assets/default/character/female/ch04/por_npc_miejueshitai__ch04_elder_yitian_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 f0336043	f0336043	f0336043	无对应独立 ref
+王保保	npc_wangbaobao	assets/default/character/male/ch04/por_npc_wangbaobao__ch04_prime_commander_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+小昭	npc_xiaozhao	assets/default/character/female/ch04/por_npc_xiaozhao__ch04_youth_chained_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 efc9b9a1	efc9b9a1	efc9b9a1	无对应独立 ref
+谢逊	npc_xiexun	assets/default/character/male/ch04/por_npc_xiexun__ch04_elder_blind_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 f2d21b40	f2d21b40	f2d21b40	无对应独立 ref
+杨逍	npc_yangxiao	assets/default/character/male/ch04/por_npc_yangxiao__ch04_prime_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；AR-34：1994 孙兴版；来源 5acd191f	5acd191f	5acd191f	无对应独立 ref
+殷离	npc_yinli	assets/default/character/female/ch04/por_npc_yinli__ch04_youth_disfigured_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 b6b2196a	b6b2196a	b6b2196a	无对应独立 ref
+殷素素	npc_yinsusu	assets/default/character/female/ch04/por_npc_yinsusu__ch04_prime_ziwei_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 b7978591	b7978591	b7978591	无对应独立 ref
+张翠山	npc_zhangcuishan	assets/default/character/male/ch04/por_npc_zhangcuishan__ch04_prime_wangpanshan_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 ae78b390	ae78b390	ae78b390	无对应独立 ref
+张三丰	npc_zhangsanfeng	assets/default/character/male/ch04/por_npc_zhangsanfeng__ch04_elder_taiji_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 37793575	37793575	37793575	无对应独立 ref
+张无忌	npc_zhangwuji	assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 ed5deba9	ed5deba9	ed5deba9	无对应独立 ref
+赵敏	npc_zhaomin	assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png	【已恢复】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 f75998e2	d11b33a0	f1cd1652	无对应独立 ref
+周芷若	npc_zhouzhiruo	assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png	【已恢复】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 b75caf22	d11b33a0	f1cd1652	无对应独立 ref
+东方不败	npc_dongfangbubai	assets/default/character/male/ch05/por_npc_dongfangbubai__ch05_prime_heimuya_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 dad48fc6	dad48fc6	dad48fc6	无对应独立 ref
+蓝凤凰	npc_lanfenghuang	assets/default/character/female/ch05/por_npc_lanfenghuang__ch05_youth_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+令狐冲	npc_linghuchong	assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；AR-56：255f2a5e 已恢复；来源 12cd7ff1	255f2a5e	255f2a5e	已同步：ref_npc_linghuchong__ch05_base01.png；45b43b96
+林平之	npc_linpingzhi	assets/default/character/male/ch05/por_npc_linpingzhi__ch05_youth_fuwei_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 8c869bc5	8c869bc5	8c869bc5	无对应独立 ref
+莫大先生	npc_moda	assets/default/character/male/ch05/por_npc_moda__ch05_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+宁中则	npc_ningzhongze	assets/default/character/female/ch05/por_npc_ningzhongze__ch05_prime_huashan_base.png	【已一致】AR-58 / AR-69：作者保留女性的笑版，保留原身份与衣饰；来源 70534b59	70534b59	70534b59	无对应独立 ref
+任我行	npc_renwoxing	assets/default/character/male/ch05/por_npc_renwoxing__ch05_elder_released_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 afd3355f	afd3355f	afd3355f	无对应独立 ref
+任盈盈	npc_renyingying	assets/default/character/female/ch05/por_npc_renyingying__ch05_youth_shenggu_base.png	【已一致】AR-56：作者明确保留凌晨精修版；本次不动；来源 d11b33a0	d11b33a0	d11b33a0	无对应独立 ref
+向问天	npc_xiangwentian	assets/default/character/male/ch05/por_npc_xiangwentian__ch05_prime_rescue_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 468ffc5b	468ffc5b	468ffc5b	无对应独立 ref
+仪琳	npc_yilin	assets/default/character/female/ch05/por_npc_yilin__ch05_youth_base.png	【已一致】AR-58 / AR-69：作者保留女性的笑版，保留原身份与衣饰；来源 99620f3c	99620f3c	99620f3c	无对应独立 ref
+岳不群	npc_yuebuqun	assets/default/character/male/ch05/por_npc_yuebuqun__ch05_prime_huashan_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 468ffc5b	468ffc5b	468ffc5b	无对应独立 ref
+岳灵珊	npc_yuelingshan	assets/default/character/female/ch05/por_npc_yuelingshan__ch05_youth_huashan_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 6401f296	c639d373	6401f296	无对应独立 ref
+左冷禅	npc_zuolengchan	assets/default/character/male/ch05/por_npc_zuolengchan__ch05_prime_sighted_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+白阿绣	npc_axiu	assets/default/character/female/ch06/por_npc_axiu__ch06_youth_ziyan_base.png	【已一致】AR-58 / AR-69：作者保留女性的笑版，保留原身份与衣饰；来源 e59d43fb	e59d43fb	e59d43fb	无对应独立 ref
+白自在	npc_baizizai	assets/default/character/male/ch06/por_npc_baizizai__ch06_elder_lingxiao_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 456897c4	456897c4	456897c4	无对应独立 ref
+丁不四	npc_dingbusi	assets/default/character/male/ch06/por_npc_dingbusi__ch06_elder_jinlongbian_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 2679ce0c	2679ce0c	2679ce0c	无对应独立 ref
+丁珰	npc_dingdang	assets/default/character/female/ch06/por_npc_dingdang__ch06_youth_changle_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 8ff81fde	8ff81fde	8ff81fde	无对应独立 ref
+李四	npc_lisi06	assets/default/character/male/ch06/por_npc_lisi06__ch06_prime_yaojiu_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+龙岛主	npc_longdaozhu	assets/default/character/male/ch06/por_npc_longdaozhu__ch06_elder_alive_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 2679ce0c	2679ce0c	2679ce0c	无对应独立 ref
+木岛主	npc_mudaozhu	assets/default/character/male/ch06/por_npc_mudaozhu__ch06_elder_alive_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+石破天	npc_shipotian	assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_jinwu_base.png	【已一致】AR-56：作者明确保留凌晨精修版；本次不动；来源 d11b33a0	d11b33a0	d11b33a0	无对应独立 ref
+石中玉	npc_shizhongyu	assets/default/character/male/ch06/por_npc_shizhongyu__ch06_youth_bangzhu_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 82617eda	82617eda	82617eda	无对应独立 ref
+谢烟客	npc_xieyanke	assets/default/character/male/ch06/por_npc_xieyanke__ch06_elder_motian_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 3a0b8d68	3a0b8d68	3a0b8d68	无对应独立 ref
+张三	npc_zhangsan06	assets/default/character/male/ch06/por_npc_zhangsan06__ch06_prime_yaojiu_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+阿九	npc_ajiu	assets/default/character/female/ch07/por_npc_ajiu__ch07_youth_preinjury_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 9adfc265	9adfc265	9adfc265	无对应独立 ref
+程青竹	npc_chengqingzhu	assets/default/character/male/ch07/por_npc_chengqingzhu__ch07_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 2dffcebe	2dffcebe	2dffcebe	无对应独立 ref
+归二娘	npc_guierniang	assets/default/character/female/ch07/por_npc_guierniang__ch07_prime_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+归辛树	npc_guixinshu	assets/default/character/male/ch07/por_npc_guixinshu__ch07_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+何铁手	npc_hetieshou	assets/default/character/female/ch07/por_npc_hetieshou__ch07_youth_leader_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 7181d239	7181d239	7181d239	无对应独立 ref
+红娘子	npc_hongniangzi	assets/default/character/female/ch07/por_npc_hongniangzi__ch07_base.png	【已一致】AR-58 / AR-69：作者保留女性的笑版，保留原身份与衣饰；来源 a319d886	a319d886	a319d886	无对应独立 ref
+黄真	npc_huangzhen	assets/default/character/male/ch07/por_npc_huangzhen__ch07_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 9c792597	9c792597	9c792597	无对应独立 ref
+李岩	npc_liyan	assets/default/character/male/ch07/por_npc_liyan__ch07_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 4e1a12a7	4e1a12a7	4e1a12a7	无对应独立 ref
+木桑道人	npc_musang	assets/default/character/male/ch07/por_npc_musang__ch07_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 b56c96fc	b56c96fc	b56c96fc	无对应独立 ref
+温青青	npc_wenqingqing	assets/default/character/female/ch07/por_npc_wenqingqing__ch07_youth_disguise_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；AR-56：255f2a5e 已恢复；来源 3dad585a	255f2a5e	255f2a5e	无对应独立 ref
+夏雪宜	npc_xiaxueyi	assets/default/character/male/ch07/por_npc_xiaxueyi__ch07_prime_memory_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 9ad7cc06	9ad7cc06	9ad7cc06	无对应独立 ref
+袁承志	npc_yuanchengzhi	assets/default/character/male/ch07/por_npc_yuanchengzhi__ch07_youth_jinshe_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；AR-56：255f2a5e 已恢复；来源 d8f3431e	255f2a5e	255f2a5e	无对应独立 ref
+玉真子	npc_yuzhenzi	assets/default/character/male/ch07/por_npc_yuzhenzi__ch07_elder_huashan_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 02e6669a	02e6669a	02e6669a	无对应独立 ref
+九难	npc_ajiu	assets/default/character/female/ch08/por_npc_ajiu__ch08_prime_onearm_base.png	【已一致】AR-32 / AR-53：按本人经典剧照结合版 ch07 锚点对齐的跨书后期版，保留年龄 / 伤残；来源 32fa8f2a	32fa8f2a	32fa8f2a	无对应独立 ref
+阿珂	npc_ake	assets/default/character/female/ch08/por_npc_ake__ch08_youth_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 ff0e4020	39b35d55	ff0e4020	无对应独立 ref
+鳌拜	npc_aobai	assets/default/character/male/ch08/por_npc_aobai__ch08_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 6fdab4fc	6fdab4fc	6fdab4fc	无对应独立 ref
+陈近南	npc_chenjinnan	assets/default/character/male/ch08/por_npc_chenjinnan__ch08_prime_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 2e29ecac	2e29ecac	2e29ecac	无对应独立 ref
+方怡	npc_fangyi	assets/default/character/female/ch08/por_npc_fangyi__ch08_youth_base.png	【已一致】AR-58 / AR-69：作者保留女性的笑版，保留原身份与衣饰；来源 c379cd26	c379cd26	c379cd26	无对应独立 ref
+归二娘	npc_guierniang	assets/default/character/female/ch08/por_npc_guierniang__ch08_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+归辛树	npc_guixinshu	assets/default/character/male/ch08/por_npc_guixinshu__ch08_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+何惕守（何铁手）	npc_hetieshou	assets/default/character/female/ch08/por_npc_hetieshou__ch08_prime_mentor_base.png	【已一致】AR-32 / AR-53：按本人经典剧照结合版 ch07 锚点对齐的跨书后期版，保留年龄 / 伤残；来源 9b9c5ec1	9b9c5ec1	9b9c5ec1	无对应独立 ref
+洪安通	npc_hongantong	assets/default/character/male/ch08/por_npc_hongantong__ch08_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 1200c7d0	1200c7d0	1200c7d0	无对应独立 ref
+建宁公主	npc_jianning	assets/default/character/female/ch08/por_npc_jianning__ch08_child_palace_base.png	【已一致】AR-58 / AR-69：作者保留女性的笑版，保留原身份与衣饰；来源 c379cd26	c379cd26	c379cd26	无对应独立 ref
+康熙	npc_kangxi	assets/default/character/male/ch08/por_npc_kangxi__ch08_youth_xiaoxuanzi_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 b2771ad0	b2771ad0	b2771ad0	无对应独立 ref
+茅十八	npc_maoshiba	assets/default/character/male/ch08/por_npc_maoshiba__ch08_prime_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 f0dd6f19	f0dd6f19	f0dd6f19	无对应独立 ref
+沐剑屏	npc_mujianping	assets/default/character/female/ch08/por_npc_mujianping__ch08_youth_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 b28d8853	b28d8853	b28d8853	无对应独立 ref
+双儿	npc_shuanger	assets/default/character/female/ch08/por_npc_shuanger__ch08_youth_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 3809aacf	3809aacf	3809aacf	无对应独立 ref
+苏荃	npc_suquan	assets/default/character/female/ch08/por_npc_suquan__ch08_youth_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 dfb27303	dfb27303	dfb27303	无对应独立 ref
+韦小宝	npc_weixiaobao	assets/default/character/male/ch08/por_npc_weixiaobao__ch08_youth_bishou_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；AR-56：255f2a5e 已恢复；来源 42916cd4	255f2a5e	255f2a5e	无对应独立 ref
+吴六奇	npc_wuliuqi	assets/default/character/male/ch08/por_npc_wuliuqi__ch08_prime_general_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 d0e1a76b	d0e1a76b	d0e1a76b	无对应独立 ref
+曾柔	npc_zengrou	assets/default/character/female/ch08/por_npc_zengrou__ch08_youth_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 c772c19a	c772c19a	c772c19a	无对应独立 ref
+宝象	npc_baoxiang	assets/default/character/male/ch09/por_npc_baoxiang__ch09_prime_pursuit_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 b064e8a1	b064e8a1	b064e8a1	无对应独立 ref
+丁典	npc_dingdian	assets/default/character/male/ch09/por_npc_dingdian__ch09_prime_prison_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 5544c29d	5544c29d	5544c29d	无对应独立 ref
+狄云	npc_diyun	assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png	【已一致】AR-56：作者明确保留凌晨精修版；本次不动；来源 2533a8fd	2533a8fd	2533a8fd	无对应独立 ref
+狄云（湘西乡下常装）	npc_diyun	assets/default/character/male/ch09/por_npc_diyun__ch09_youth_rural_base.png	【已一致】AR-56：作者明确保留凌晨精修版；本次不动；来源 2533a8fd	2533a8fd	2533a8fd	无对应独立 ref
+凌霜华	npc_lingshuanghua	assets/default/character/female/ch09/por_npc_lingshuanghua__ch09_youth_scarred_base.png	【已一致】AR-58 / AR-69：作者保留女性的笑版，保留原身份与衣饰；来源 10843fde	10843fde	10843fde	无对应独立 ref
+凌退思	npc_lingtusi	assets/default/character/male/ch09/por_npc_lingtusi__ch09_prime_magistrate_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 b064e8a1	b064e8a1	b064e8a1	无对应独立 ref
+刘乘风	npc_liurenfeng	assets/default/character/male/ch09/por_npc_liurenfeng__ch09_prime_pursuit_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 5544c29d	5544c29d	5544c29d	无对应独立 ref
+陆天抒	npc_lutianshu	assets/default/character/male/ch09/por_npc_lutianshu__ch09_prime_pursuit_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 5544c29d	5544c29d	5544c29d	无对应独立 ref
+戚长发	npc_qichangfa	assets/default/character/male/ch09/por_npc_qichangfa__ch09_prime_rural_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 f56a0593	f56a0593	f56a0593	无对应独立 ref
+戚芳	npc_qifang	assets/default/character/female/ch09/por_npc_qifang__ch09_youth_mother_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；AR-56：255f2a5e 已恢复；来源 66b1a624	255f2a5e	255f2a5e	无对应独立 ref
+水笙	npc_shuisheng	assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_travel_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；AR-56：255f2a5e 已恢复；来源 05cd5194	255f2a5e	255f2a5e	无对应独立 ref
+万圭	npc_wangui	assets/default/character/male/ch09/por_npc_wangui__ch09_youth_wanfu_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 dcd58dcf	dcd58dcf	dcd58dcf	无对应独立 ref
+万震山	npc_wanzhenshan	assets/default/character/male/ch09/por_npc_wanzhenshan__ch09_prime_host_base.png	【已一致】AR-58 / AR-69：作者点名用笑的版本；来源 20c6f2c9	20c6f2c9	20c6f2c9	无对应独立 ref
+血刀老祖	npc_xuedaolaozu	assets/default/character/male/ch09/por_npc_xuedaolaozu__ch09_elder_snow_base.png	【已一致】AR-58 / AR-69：作者点名用笑的版本；来源 10843fde	10843fde	10843fde	无对应独立 ref
+言达平	npc_yandaping	assets/default/character/male/ch09/por_npc_yandaping__ch09_prime_beggar_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 aa99c168	aa99c168	aa99c168	无对应独立 ref
+阿曼	npc_aman	assets/default/character/female/ch10/por_npc_aman__ch10_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 1bf60147	1bf60147	1bf60147	无对应独立 ref
+陈达海	npc_chendahai	assets/default/character/male/ch10/por_npc_chendahai__ch10_prime_snownight_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 1b65078b	1b65078b	1b65078b	无对应独立 ref
+霍元龙	npc_huoyuanlong	assets/default/character/male/ch10/por_npc_huoyuanlong__ch10_prime_prologue_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 4fe2d2f1	4fe2d2f1	4fe2d2f1	无对应独立 ref
+李文秀	npc_liwenxiu	assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；AR-56：255f2a5e 已恢复；来源 ab9fb231	255f2a5e	255f2a5e	无对应独立 ref
+马家骏	npc_majiajun	assets/default/character/male/ch10/por_npc_majiajun__ch10_elder_disguised_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 bce3722c	bce3722c	bce3722c	无对应独立 ref
+苏普	npc_supu	assets/default/character/male/ch10/por_npc_supu__ch10_youth_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 197c722f	197c722f	197c722f	无对应独立 ref
+瓦耳拉齐	npc_walazi	assets/default/character/male/ch10/por_npc_walazi__ch10_elder_unmasked_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 1493ea81	1493ea81	1493ea81	无对应独立 ref
+萧半和	npc_xiaobanhe	assets/default/character/male/ch11/por_npc_xiaobanhe__ch11_elder_birthday_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 5a2ad0f5	5a2ad0f5	5a2ad0f5	无对应独立 ref
+萧中慧	npc_xiaozhonghui	assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_departure_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；AR-56：255f2a5e 已恢复；来源 cb1e1be9	255f2a5e	255f2a5e	无对应独立 ref
+袁冠南	npc_yuanguannan	assets/default/character/male/ch11/por_npc_yuanguannan__ch11_youth_scholar_base.png	【已一致】AR-56：作者明确保留凌晨精修版；本次不动；来源 2533a8fd	2533a8fd	2533a8fd	无对应独立 ref
+卓天雄	npc_zhuotianxiong	assets/default/character/male/ch11/por_npc_zhuotianxiong__ch11_elder_feignedblind_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 22ad6a0a	22ad6a0a	22ad6a0a	无对应独立 ref
+陈家洛	npc_chenjialuo	assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_late_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；AR-56：255f2a5e 已恢复；来源 6563d68d	255f2a5e	255f2a5e	无对应独立 ref
+霍青桐	npc_huoqingtong	assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 255f2a5e	255f2a5e	255f2a5e	无对应独立 ref
+喀丝丽	npc_kasili	assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 255f2a5e	255f2a5e	255f2a5e	无对应独立 ref
+李沅芷	npc_liyuanzhi	assets/default/character/female/ch12/por_npc_liyuanzhi__ch12_youth_disguised_base.png	【已一致】AR-58 / AR-69：作者保留女性的笑版，保留原身份与衣饰；来源 a5b89d20	a5b89d20	a5b89d20	无对应独立 ref
+骆冰	npc_luobing	assets/default/character/female/ch12/por_npc_luobing__ch12_youth_recovered_base.png	【已一致】AR-69：作者指定不露齿浅笑，ch12 / ch13 同神态；来源 37966499	37966499	37966499	无对应独立 ref
+乾隆	npc_qianlong	assets/default/character/male/ch12/por_npc_qianlong__ch12_prime_palace_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 ff1cfdc8	ff1cfdc8	ff1cfdc8	无对应独立 ref
+文泰来	npc_wentailai	assets/default/character/male/ch12/por_npc_wentailai__ch12_prime_recovered_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 96277988	96277988	96277988	无对应独立 ref
+徐天宏	npc_xutianhong	assets/default/character/male/ch12/por_npc_xutianhong__ch12_youth_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 ec801cbc	ec801cbc	ec801cbc	无对应独立 ref
+余鱼同	npc_yuyutong	assets/default/character/male/ch12/por_npc_yuyutong__ch12_youth_scarred_monk_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 2dfc9941	2dfc9941	2dfc9941	无对应独立 ref
+张召重	npc_zhangzhaozhong	assets/default/character/male/ch12/por_npc_zhangzhaozhong__ch12_prime_pursuit_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 2f1e97b7	2f1e97b7	2f1e97b7	无对应独立 ref
+赵半山	npc_zhaobanshan	assets/default/character/male/ch12/por_npc_zhaobanshan__ch12_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 fe4765ef	fe4765ef	fe4765ef	无对应独立 ref
+兆惠	npc_zhaohui	assets/default/character/male/ch12/por_npc_zhaohui__ch12_prime_campaign_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 8df39086	8df39086	8df39086	无对应独立 ref
+周绮	npc_zhouqi12	assets/default/character/female/ch12/por_npc_zhouqi12__ch12_youth_base.png	【已一致】AR-58 / AR-69：作者保留女性的笑版，保留原身份与衣饰；来源 ff1d1cce	ff1d1cce	ff1d1cce	无对应独立 ref
+程灵素	npc_chenglinsu	assets/default/character/female/ch13/por_npc_chenglinsu__ch13_youth_alive_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 255f2a5e	255f2a5e	255f2a5e	无对应独立 ref
+陈家洛	npc_chenjialuo	assets/default/character/male/ch13/por_npc_chenjialuo__ch13_youth_afterassembly_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 fe4765ef	fe4765ef	fe4765ef	无对应独立 ref
+凤天南	npc_fengtianan	assets/default/character/male/ch13/por_npc_fengtianan__ch13_prime_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+福康安	npc_fukangan	assets/default/character/male/ch13/por_npc_fukangan__ch13_prime_base.png	【已一致】AR-58 / AR-69：作者点名用笑的版本；来源 30992b92	30992b92	30992b92	无对应独立 ref
+胡斐	npc_hufei	assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png	【已一致】AR-32 / AR-55 / AR-56：作者定豪侠版 fa32ca33；255f2a5e 已恢复；来源 255f2a5e	255f2a5e	255f2a5e	无对应独立 ref
+胡一刀	npc_huyidao	assets/default/character/male/ch13/por_npc_huyidao__ch13_prime_memory_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 f04e02ff	f04e02ff	f04e02ff	无对应独立 ref
+骆冰	npc_luobing	assets/default/character/female/ch13/por_npc_luobing__ch13_prime_honghua_base.png	【已一致】AR-69：作者指定不露齿浅笑，ch12 / ch13 同神态；来源 26bc72e0	26bc72e0	26bc72e0	无对应独立 ref
+苗人凤	npc_miaorenfeng	assets/default/character/male/ch13/por_npc_miaorenfeng__ch13_prime_recovered_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 ab821bb7	ab821bb7	ab821bb7	无对应独立 ref
+苗若兰	npc_miaoruolan	assets/default/character/female/ch13/por_npc_miaoruolan__ch13_child_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 	无文件	无文件	无对应独立 ref
+平阿四	npc_pingasi	assets/default/character/male/ch13/por_npc_pingasi__ch13_prime_onearm_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 d5b8015c	d5b8015c	d5b8015c	无对应独立 ref
+商老太	npc_shanglaotai	assets/default/character/female/ch13/por_npc_shanglaotai__ch13_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9f00e6dd	9f00e6dd	9f00e6dd	无对应独立 ref
+石万嗔	npc_shiwuchen	assets/default/character/male/ch13/por_npc_shiwuchen__ch13_elder_sighted_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 d368be86	d368be86	d368be86	无对应独立 ref
+田归农	npc_tianguinong	assets/default/character/male/ch13/por_npc_tianguinong__ch13_prime_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 76c60091	76c60091	76c60091	无对应独立 ref
+袁紫衣	npc_yuanziyi	assets/default/character/female/ch13/por_npc_yuanziyi__ch13_youth_ziyi_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 255f2a5e	255f2a5e	255f2a5e	无对应独立 ref
+赵半山	npc_zhaobanshan	assets/default/character/male/ch13/por_npc_zhaobanshan__ch13_elder_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 fe4765ef	fe4765ef	fe4765ef	无对应独立 ref
+宝树	npc_baoshu	assets/default/character/male/ch14/por_npc_baoshu__ch14_elder_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 02d32a88	02d32a88	02d32a88	无对应独立 ref
+胡斐	npc_hufei	assets/default/character/male/ch14/por_npc_hufei__ch14_prime_base.png	【已一致】AR-32 / AR-53 / AR-56：雪山时期以作者定豪侠版 ch13 base 对脸，保留虬髯与年长；b03d1bde 已对齐；来源 b03d1bde	b03d1bde	b03d1bde	无对应独立 ref
+胡一刀	npc_huyidao	assets/default/character/male/ch14/por_npc_huyidao__ch14_prime_memory_base.png	【已一致】AR-58 / AR-69：作者明确各书男性配角恢复神态调整前不笑版；来源 02d32a88	02d32a88	02d32a88	无对应独立 ref
+苗人凤	npc_miaorenfeng	assets/default/character/male/ch14/por_npc_miaorenfeng__ch14_elder_base.png	【已一致】AR-32 / AR-55 / AR-84：经典剧照结合版（文字 / 头像例外沿用 AR-32 补记）；来源 533e3c54	533e3c54	533e3c54	无对应独立 ref
+苗若兰	npc_miaoruolan	assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 255f2a5e	255f2a5e	255f2a5e	无对应独立 ref
+平阿四	npc_pingasi	assets/default/character/male/ch14/por_npc_pingasi__ch14_elder_onearm_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 b527babd	b527babd	b527babd	无对应独立 ref
+赛总管	npc_saizongguan	assets/default/character/male/ch14/por_npc_saizongguan__ch14_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 49445c52	49445c52	49445c52	无对应独立 ref
+田归农	npc_tianguinong	assets/default/character/male/ch14/por_npc_tianguinong__ch14_prime_memory_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 e5a8d278	e5a8d278	e5a8d278	无对应独立 ref
+书灵·抽象墨影	npc_shuling	assets/default/character/other/ch00/por_npc_shuling__ch00_base.png	【待定】待定：索引登记但 PNG 缺失，未恢复	无文件	无文件	无对应独立 ref
+主角（女）· 春秋末·越国	npc_zhujue	assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 1a9161c9	1a9161c9	1a9161c9	无对应独立 ref
+主角（女）· 北宋	npc_zhujue	assets/default/character/female/ch01/por_npc_zhujue__ch01_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 0bd2155c	0bd2155c	0bd2155c	无对应独立 ref
+主角（女）· 南宋	npc_zhujue	assets/default/character/female/ch02/por_npc_zhujue__ch02_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 802af708	802af708	802af708	无对应独立 ref
+主角（女）· 南宋	npc_zhujue	assets/default/character/female/ch03/por_npc_zhujue__ch03_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 7fcb3949	7fcb3949	7fcb3949	无对应独立 ref
+主角（女）· 元末	npc_zhujue	assets/default/character/female/ch04/por_npc_zhujue__ch04_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 66449121	66449121	66449121	无对应独立 ref
+主角（女）· 明中叶	npc_zhujue	assets/default/character/female/ch05/por_npc_zhujue__ch05_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 4bdee877	4bdee877	4bdee877	无对应独立 ref
+主角（女）· 明代	npc_zhujue	assets/default/character/female/ch06/por_npc_zhujue__ch06_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 996deb34	996deb34	996deb34	无对应独立 ref
+主角（女）· 明末	npc_zhujue	assets/default/character/female/ch07/por_npc_zhujue__ch07_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 022ac68c	022ac68c	022ac68c	无对应独立 ref
+主角（女）· 清初·康熙	npc_zhujue	assets/default/character/female/ch08/por_npc_zhujue__ch08_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 47acbe0b	47acbe0b	47acbe0b	无对应独立 ref
+主角（女）· 本作清初·康熙	npc_zhujue	assets/default/character/female/ch09/por_npc_zhujue__ch09_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 b2b06769	b2b06769	b2b06769	无对应独立 ref
+主角（女）· 唐·西州以北（白马，AR-26 唐代化）	npc_zhujue	assets/default/character/female/ch10/por_npc_zhujue__ch10_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 faa292f3	faa292f3	faa292f3	无对应独立 ref
+主角（女）· 清乾隆初	npc_zhujue	assets/default/character/female/ch11/por_npc_zhujue__ch11_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 813fbdb3	813fbdb3	813fbdb3	无对应独立 ref
+主角（女）· 清乾隆	npc_zhujue	assets/default/character/female/ch12/por_npc_zhujue__ch12_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 d0f5a93c	d0f5a93c	d0f5a93c	无对应独立 ref
+主角（女）· 清乾隆	npc_zhujue	assets/default/character/female/ch13/por_npc_zhujue__ch13_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 108cb6f9	108cb6f9	108cb6f9	无对应独立 ref
+主角（女）· 清乾隆·雪地	npc_zhujue	assets/default/character/female/ch14/por_npc_zhujue__ch14_f_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9ae7d9fa	9ae7d9fa	9ae7d9fa	无对应独立 ref
+主角（男）· 春秋末·越国	npc_zhujue	assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 5fc0a1f9	5fc0a1f9	5fc0a1f9	无对应独立 ref
+主角（男）· 北宋	npc_zhujue	assets/default/character/male/ch01/por_npc_zhujue__ch01_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 62f1bc04	62f1bc04	62f1bc04	无对应独立 ref
+主角（男）· 南宋	npc_zhujue	assets/default/character/male/ch02/por_npc_zhujue__ch02_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 be018c6b	be018c6b	be018c6b	无对应独立 ref
+主角（男）· 南宋	npc_zhujue	assets/default/character/male/ch03/por_npc_zhujue__ch03_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 a9cb5862	a9cb5862	a9cb5862	无对应独立 ref
+主角（男）· 元末	npc_zhujue	assets/default/character/male/ch04/por_npc_zhujue__ch04_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 1e079eff	1e079eff	1e079eff	无对应独立 ref
+主角（男）· 明中叶	npc_zhujue	assets/default/character/male/ch05/por_npc_zhujue__ch05_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 580f0708	580f0708	580f0708	无对应独立 ref
+主角（男）· 明代	npc_zhujue	assets/default/character/male/ch06/por_npc_zhujue__ch06_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 7e677004	7e677004	7e677004	无对应独立 ref
+主角（男）· 明末	npc_zhujue	assets/default/character/male/ch07/por_npc_zhujue__ch07_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 4ef4d319	4ef4d319	4ef4d319	无对应独立 ref
+主角（男）· 清初·康熙	npc_zhujue	assets/default/character/male/ch08/por_npc_zhujue__ch08_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 0a3fabfd	0a3fabfd	0a3fabfd	无对应独立 ref
+主角（男）· 本作清初·康熙	npc_zhujue	assets/default/character/male/ch09/por_npc_zhujue__ch09_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 7d68fdcf	7d68fdcf	7d68fdcf	无对应独立 ref
+主角（男）· 唐·西州以北（白马，AR-26 唐代化）	npc_zhujue	assets/default/character/male/ch10/por_npc_zhujue__ch10_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 ca6e4639	ca6e4639	ca6e4639	无对应独立 ref
+主角（男）· 清乾隆初	npc_zhujue	assets/default/character/male/ch11/por_npc_zhujue__ch11_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 3bfe982f	3bfe982f	3bfe982f	无对应独立 ref
+主角（男）· 清乾隆	npc_zhujue	assets/default/character/male/ch12/por_npc_zhujue__ch12_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 9b16fa9a	9b16fa9a	9b16fa9a	无对应独立 ref
+主角（男）· 清乾隆	npc_zhujue	assets/default/character/male/ch13/por_npc_zhujue__ch13_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 383fafd8	383fafd8	383fafd8	无对应独立 ref
+主角（男）· 清乾隆·雪地	npc_zhujue	assets/default/character/male/ch14/por_npc_zhujue__ch14_m_base.png	【待定】待定：逐张 git log / 历史 manifest 未找到 AR-32 版或逐人选定版本；保留现版 b89ab4d5	b89ab4d5	b89ab4d5	无对应独立 ref
+主角（女）·高魅力	npc_zhujue	assets/default/character/female/ch00/por_npc_zhujue__ch00_f_charmhigh_base.png	【已一致】AR-45 / AR-50 / AR-51 / AR-54：高魅力男女主角均选照片参考新版 B；普通服装 base 另列；来源 1364006e	1364006e	1364006e	无对应独立 ref
+主角（男）·高魅力	npc_zhujue	assets/default/character/male/ch00/por_npc_zhujue__ch00_m_charmhigh_base.png	【已一致】AR-45 / AR-50 / AR-51 / AR-54：高魅力男女主角均选照片参考新版 B；普通服装 base 另列；来源 1364006e	1364006e	1364006e	无对应独立 ref
+穆念慈	npc_munianci	assets/default/character/female/ch02/por_npc_munianci__ch02_youth_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 a2dbd452	a2dbd452	a2dbd452	无对应独立 ref
+完颜萍	npc_wanyanping	assets/default/character/female/ch03/por_npc_wanyanping__ch03_youth_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 0ba59c8d	0ba59c8d	0ba59c8d	无对应独立 ref
+耶律燕	npc_yelvyan	assets/default/character/female/ch03/por_npc_yelvyan__ch03_youth_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 0fce0f90	0fce0f90	0fce0f90	无对应独立 ref
+陈友谅	npc_chenyouliang	assets/default/character/male/ch04/por_npc_chenyouliang__ch04_prime_gaibang_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 4c51814e	4c51814e	4c51814e	无对应独立 ref
+黄衫女子	npc_huangshannvzi	assets/default/character/female/ch04/por_npc_huangshannvzi__ch04_youth_gumu_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 88ad459e	88ad459e	88ad459e	无对应独立 ref
+陈圆圆	npc_chenyuanyuan	assets/default/character/female/ch07/por_npc_chenyuanyuan__ch07_youth_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 314aa22c	c3cf72c0	314aa22c	无对应独立 ref
+陈圆圆	npc_chenyuanyuan	assets/default/character/female/ch08/por_npc_chenyuanyuan__ch08_prime_recluse_base.png	【跳过】跳过：用户指定其他会话处理 / 等作者选版；现版 f8a2afb7	f8a2afb7	f8a2afb7	无对应独立 ref
