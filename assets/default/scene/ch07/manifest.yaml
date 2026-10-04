@@ -3,49 +3,42 @@
   category: scene
   style: default
   subject: 李岩、红娘子死局（ch07_bixue）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是袁承志的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中袁承志的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    黎明冷雨中的军帐，AR-20原创改命瞬间：李岩低头坐于案前，男玩家主角轻按其手臂制止绝望行动，红娘子在一侧扶住他的肩，袁承志掀帐赶到形成明亮出口。四人中景，匕首收在桌面边缘且不接触身体，衣着完整无血腥，表情由绝望转为被唤回。
+    【画里谁是谁】这张插图画的是：黎明冷雨中的军帐，AR-20原创改命瞬间：李岩低头坐于案前，男玩家主角轻按其手臂制止绝望行动，红娘子在一侧扶住他的肩，袁承志掀帐赶到形成明亮出口。四人中景，匕首收在桌面边缘且不接触身体，衣着完整无血腥，表情由绝望转为被唤回。
 
-    原创扩展改命；二人获救不是原著结局，营地具体地名待考所以不指定；玩家沿用旧S身份图不纳入本轮精修。
+    【要对齐的部分】袁承志的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：掀帐赶到，神情关切而坚定；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【袁承志的基线脸】基线里的袁承志二十三四岁，端正俊朗、一身正气：脸型端正饱满、两颊丰润不凹陷、下颌方正而圆润；肤色白净（只是健康的浅肤色，不是晒黑的黝黑皮肤）；浓黑平直的剑眉；眼睛有神、双眼皮、眼神端正沉稳；鼻梁挺直；嘴唇端正、唇形清楚；完全无须、没有胡茬；没有深法令纹和风霜皱纹，皮肤紧致年轻。不要瘦削凹颊、高颧骨、晒黑、带胡茬的风霜脸。
 
-    第1张为npc_yuanchengzhi的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。 第3张是身份联系图，从左到右依次为liyan、hongniangzi；每一格只锁定该人的身份，不把格数画进成品。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「碧血留人」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「碧血留人」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】袁承志是画面最左边掀开帐门走进来的青年（从左数第 1 个人）；中间按住李岩手臂的男子、低头坐着的李岩、右边扶肩的红娘子，脸一律不改。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yuanchengzhi__ch07_youth_jinshe_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 2ebb49847a1bbbdd4cfc1b7c788a4574b1a7c39e54a9ce648906d65c5c1f9f7a
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch07/por_npc_zhujue__ch07_m_base.png
-    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
-    sha256: bee96ce4e5a9f78bb0f63a7b376cf703f84e6b8d75fabfc594d66e199bdc1dc8
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch07_liyan_rescue_identity_board.jpg
-    use: 本轮主角身份联系图；源立绘与左右顺序见同名JSON
-    sha256: 89b344aee1841a3a46faad21d4f5605b457bd01cca4c19f62814edcae220072c
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch07/por_npc_yuanchengzhi__ch07_youth_jinshe_base.png
+    sha256: c5c953ca8e0a2732fa880a3eecc7ad8a724ddf2b1547fa22b673eee0bb15685f
+    use: 对脸基线：作者 AR-56 定下的 por_npc_yuanchengzhi__ch07_youth_jinshe_base（袁承志），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch07/cg_ch07_liyan_rescue.png
+    sha256: 1335cca13fc7caa0e09ca920495a9959c22b6348388c42439274563b4d4e4060
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_liyan_rescue.1335cca1.png
+  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:59:15-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch07_liyan_rescue.1791017955489171000/archive/cg_ch07_liyan_rescue.png
+  created: 2026-10-03T18:26:14-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch07_liyan_rescue.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 1335cca13fc7caa0e09ca920495a9959c22b6348388c42439274563b4d4e4060
+  sha256: 604d09516b35fd029e16840861f4e62a3f485e36f07be64b8dd404b1efec2490
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「碧血留人」，实际字形「碧血留人」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「碧血留人」，实际字形「碧血留人」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch07_liyan_rescue.1791017955489171000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch07_liyan_rescue.resume3.png
-  repair_runner_source_sha256: 733cac30b9083fc09339916ea0f7fab29f6c373a2a0e0b0f797ab38435c05ac4
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_liyan_rescue.1335cca1.png
+    sha256: 1335cca13fc7caa0e09ca920495a9959c22b6348388c42439274563b4d4e4060
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_liyan_rescue.1335cca1.entry.yaml
   runner_job_records:
   - - cg_ch07_liyan_rescue.resume3
     - ok
@@ -53,56 +46,48 @@
     - '198'
     - exec-cf5a70ea-be44-4d7f-90c1-15fe68e5e3b6.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch07_liyan_rescue.resume3
+  effort: ultra
 - id: cg_ch07_taishan_alliance
   file: cg_ch07_taishan_alliance.png
   category: scene
   style: default
   subject: 泰山群雄会盟（ch07_bixue）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是袁承志的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中袁承志的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    泰山群雄聚义与志向相应的编辑性双时层群像：主层袁承志深青侠士装立于峰台中央，金蛇剑归鞘，手扶无字盟旗；程青竹在侧同望群山，远处群雄压为低细节轮廓。画幅侧缘用清楚分隔的暖色军帐记忆层呈现李岩与红娘子同向望远，二人不站在泰山盟台、不与主层人物触碰。劲风吹动旗角，天光宽阔，青年神色体现责任而非帝王威仪。
+    【画里谁是谁】这张插图画的是：泰山群雄聚义与志向相应的编辑性双时层群像：主层袁承志深青侠士装立于峰台中央，金蛇剑归鞘，手扶无字盟旗；程青竹在侧同望群山，远处群雄压为低细节轮廓。画幅侧缘用清楚分隔的暖色军帐记忆层呈现李岩与红娘子同向望远，二人不站在泰山盟台、不与主层人物触碰。劲风吹动旗角，天光宽阔，青年神色体现责任而非帝王威仪。
 
-    原创扩展双时层构图；原著泰山列出的到会人物未列李岩、红娘子，故不把二人作为已核实与会者。保持既定四人但将夫妇分入军营主题记忆层；扶旗动作仍为美术设计。
+    【要对齐的部分】袁承志的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：神情肃穆、有担当，嘴角带一点温和的笑意；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【袁承志的基线脸】基线里的袁承志二十三四岁，端正俊朗、一身正气：脸型端正饱满、两颊丰润不凹陷、下颌方正而圆润；肤色白净（只是健康的浅肤色，不是晒黑的黝黑皮肤）；浓黑平直的剑眉；眼睛有神、双眼皮、眼神端正沉稳；鼻梁挺直；嘴唇端正、唇形清楚；完全无须、没有胡茬；没有深法令纹和风霜皱纹，皮肤紧致年轻。不要瘦削凹颊、高颧骨、晒黑、带胡茬的风霜脸。
 
-    第1张为npc_yuanchengzhi的本轮立绘。按各自骨相保持身份，严格禁止串脸、串服装；同一人多张图只代表一个人，人物动作和背景按剧情重绘。 第3张是身份联系图，从左到右依次为liyan、hongniangzi；每一格只锁定该人的身份，不把格数画进成品。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「泰山聚义」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「泰山聚义」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】袁承志是画面左半边手扶旗杆、穿深青长袍、头顶束发髻的青年（从左数第 2 个人）；他左边拄杖的程青竹，右侧军帐记忆层里的李岩与红娘子，脸一律不改。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yuanchengzhi__ch07_youth_jinshe_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 2ebb49847a1bbbdd4cfc1b7c788a4574b1a7c39e54a9ce648906d65c5c1f9f7a
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch07/por_npc_chengqingzhu__ch07_base.png
-    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
-    sha256: e09286591f8804de8382697d05a93443a2eeb78cb42669d8b2f6a11e07070fec
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/cg_ch07_taishan_alliance_identity_board.jpg
-    use: 本轮主角身份联系图；源立绘与左右顺序见同名JSON
-    sha256: 89b344aee1841a3a46faad21d4f5605b457bd01cca4c19f62814edcae220072c
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch07/por_npc_yuanchengzhi__ch07_youth_jinshe_base.png
+    sha256: c5c953ca8e0a2732fa880a3eecc7ad8a724ddf2b1547fa22b673eee0bb15685f
+    use: 对脸基线：作者 AR-56 定下的 por_npc_yuanchengzhi__ch07_youth_jinshe_base（袁承志），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch07/cg_ch07_taishan_alliance.png
+    sha256: 6c320a3546c687c64a1ac7d98e5866f7f9eeb137118292c9ed78c5db8ee91279
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_taishan_alliance.6c320a35.png
+  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:59:17-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch07_taishan_alliance.1791017957176646000/archive/cg_ch07_taishan_alliance.png
+  created: 2026-10-03T18:30:26-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch07_taishan_alliance.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 6c320a3546c687c64a1ac7d98e5866f7f9eeb137118292c9ed78c5db8ee91279
+  sha256: 5afcb0f83ea190bf0d1c01130a1cfbaf9c7a3b80f8429c7546ba14af0e73ea05
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「泰山聚义」，实际字形「泰山聚义」逐字核验，原生题字，未叠加。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；续作第4次运行补全；视觉核验合格，视觉重出0。题字「泰山聚义」，实际字形「泰山聚义」逐字核验，原生题字，未叠加。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_yuanchengzhi__ch07_youth_jinshe_base（编辑结果只取袁承志头部区域羽化合成回原图，其余像素保持原图；发髻上原本的浅色发带随基线略加宽；原始编辑结果 out/<job>.raw.png）
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch07_taishan_alliance.1791017957176646000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch07_taishan_alliance.resume3.png
-  repair_runner_source_sha256: 4ba562c94c0c79d8cdcc9c9fc4170e2ece47995616534b736b2f6feb1342e9aa
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_taishan_alliance.6c320a35.png
+    sha256: 6c320a3546c687c64a1ac7d98e5866f7f9eeb137118292c9ed78c5db8ee91279
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_taishan_alliance.6c320a35.entry.yaml
   runner_job_records:
   - - cg_ch07_taishan_alliance.resume3
     - ok
@@ -110,8 +95,7 @@
     - '180'
     - exec-58dc3291-114f-4924-a91a-716eb4c06774.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch07_taishan_alliance.resume3
+  effort: ultra
 - id: cg_ch07_golden_serpent_cave
   file: cg_ch07_golden_serpent_cave.png
   category: scene
@@ -220,46 +204,42 @@
   category: scene
   style: default
   subject: 夏雪宜与温仪旧事揭晓（ch07_bixue）
-  prompt: '生成1536×1024横幅写实手绘古风剧情插画。所有人物均为成年人；经典武侠游戏绘画气质。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是温青青的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中温青青的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
-    石梁温家旧园的双时层记忆画：前景成年温青青穿与新版石梁阶段相同的米白色右衽短襦、深灰蓝长裙与素布鞋握紧素帕，神情迟悟悲愤；中景以更柔暖的画中追忆层表现夏雪宜放下金蛇剑、与温仪静静相对，温仪为端庄成年女子、素色襦裙，只文字。梨花与旧木窗衔接冷暖两层，人物之间不作跨时间触碰。
+    【画里谁是谁】这张插图画的是：石梁温家旧园的双时层记忆画：前景成年温青青穿与新版石梁阶段相同的米白色右衽短襦、深灰蓝长裙与素布鞋握紧素帕，神情迟悟悲愤；中景以更柔暖的画中追忆层表现夏雪宜放下金蛇剑、与温仪静静相对，温仪为端庄成年女子、素色襦裙，只文字。梨花与旧木窗衔接冷暖两层，人物之间不作跨时间触碰。
 
-    原创扩展叙事构图；温仪与夏雪宜属旧事追忆而非同一时点生还，具体动作待考。
+    【要对齐的部分】温青青的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：迟悟往事，悲愤伤心，此刻不笑；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【温青青的基线脸】基线里的温青青二十岁上下，俊俏而带英气：脸型是颧骨略宽、下颌有力的鹅蛋脸，不是瓜子脸、下巴不尖；眉毛浓黑平直、眉形清楚有力（不是细弯眉）；一双明亮的大杏眼、双眼皮，眼神倔强、带一点小性子；鼻梁挺直；嘴唇饱满、唇形略厚；肤色白皙健康；成年女子的五官比例。
 
-    第1张为本轮已核验入库的温青青石梁阶段，保持该人的成年面容和本阶段衣装；第2张为夏雪宜既有S级人物立绘，保持其壮年面容与金蛇剑特征。温仪仅依据文字塑造，端庄成年女性，母女需有年龄差，不能复制青青同一张脸。最后两张只参考画风，不画入其中人物。
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「金蛇旧梦」和小朱印必须原样保留，一笔不改、不增不减。
 
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
 
-    【题字】画面右上角竖排一列毛笔楷书，严格从上到下仅写「金蛇旧梦」，每个字独立清晰准确，不可增字减字。题字占画宽约6%、高度约28%，不挡脸，可附一枚无可读文字的小朱印。除了指定题字，禁止其他文字、水印。禁止现代物品、CG塑料光、幼态、裸露、血腥、错肢、串脸、发光武功。'
-  negative: ''
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】温青青是画面左侧前景、手握素帕的女子（从左数第 1 个人）；中景回忆层里的夏雪宜和温仪，脸一律不改。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_wenqingqing__ch07_youth_scene_shiliang.resume3r2.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: f941abe1427d5801f74bae9637b8c56c7571697416c13c8e66bf8a829263c1ed
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch07/por_npc_xiaxueyi__ch07_prime_memory_base.png
-    use: 既有S级角色立绘；仅保持该角色身份，与其他人物身份隔离
-    sha256: d0bd3e22d2cb4146920ad76c938cfd528549653b3c6119057fab723ce715db02
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
-  tool: codex exec · image_gen
+  - path: assets/default/character/female/ch07/por_npc_wenqingqing__ch07_youth_disguise_base.png
+    sha256: 14a82d81a125ab4208e204a723dfb6b23fd8f671155d2be4a2722ee5e193324a
+    use: 对脸基线：作者 AR-56 定下的 por_npc_wenqingqing__ch07_youth_disguise_base（温青青），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch07/cg_ch07_xueyi_wenyi_memory.png
+    sha256: 8a84b16ae8d544198e04e7a98c8e56d7e3ada743aec0079723af9058306c87ac
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_xueyi_wenyi_memory.8a84b16a.png
+  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T02:33:27-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch07_xueyi_wenyi_memory.1791020007206155000/archive/cg_ch07_xueyi_wenyi_memory.png
+  created: 2026-10-03T18:31:21-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch07_xueyi_wenyi_memory.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 8a84b16ae8d544198e04e7a98c8e56d7e3ada743aec0079723af9058306c87ac
+  sha256: f01e433cf3e645ddc332bfd7861f7c8a66410def4a9e3176ad4a0e3e82010783
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；第5次续作首次生成成功，视觉重出0次。题字“金蛇旧梦”逐字放大核验正确，原生题字，未叠加。第1张身份参考为已核验入库的新版温青青石梁r2，第2张为既有S级夏雪宜，其后两张为女性项目基线；温仪只文字。前景青青悲愤、后景父母旧事追忆，双时层为原创扩展构图，不宣称父母生还；具体动作待纸本终校。
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；第5次续作首次生成成功，视觉重出0次。题字“金蛇旧梦”逐字放大核验正确，原生题字，未叠加。第1张身份参考为已核验入库的新版温青青石梁r2，第2张为既有S级夏雪宜，其后两张为女性项目基线；温仪只文字。前景青青悲愤、后景父母旧事追忆，双时层为原创扩展构图，不宣称父母生还；具体动作待纸本终校。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_wenqingqing__ch07_youth_disguise_base（编辑结果只取温青青头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/cg_ch07_xueyi_wenyi_memory.1791020007206155000/archive/previous-prompt.md
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch07_xueyi_wenyi_memory.resume3.png
-  repair_runner_source_sha256: 1f8b869bcdd6729ba0ee5fcee57018b134e512ed7b6b8070099d2b0490ee1bbd
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_xueyi_wenyi_memory.8a84b16a.png
+    sha256: 8a84b16ae8d544198e04e7a98c8e56d7e3ada743aec0079723af9058306c87ac
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch07_xueyi_wenyi_memory.8a84b16a.entry.yaml
   runner_job_records:
   - - cg_ch07_xueyi_wenyi_memory.resume3
     - ok
@@ -267,5 +247,4 @@
     - '120'
     - exec-c0fd0b11-1a72-4719-9c9d-6b5695715a99.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: cg_ch07_xueyi_wenyi_memory.resume3
+  effort: ultra
