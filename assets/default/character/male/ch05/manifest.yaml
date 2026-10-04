@@ -1105,53 +1105,36 @@
   category: character/male
   style: default
   subject: 令狐冲（ch05_xiaoao）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的令狐冲立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中令狐冲的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
 
-    输出1024×1536，完全成年，禁止童颜或少年身材。
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的令狐冲二十三四岁，是年轻俊朗的浪子：脸型是饱满的鹅蛋脸、两颊圆润不凹陷、颧骨不突出、下颌圆润、下巴干净；浓黑的剑眉平直舒展、眉尾略扬；一双笑眼——双眼皮、眼尾弯弯、下眼睑微微上提，眼神明亮洒脱、带三分狡黠；鼻梁挺直、鼻头圆润；嘴唇适中，笑时嘴角一侧上扬、露出一点牙齿的爽朗坏笑；完全无须——唇上、下巴和两腮都干干净净，没有八字须、没有山羊胡、没有短髯、没有胡茬；肤色是健康的浅麦色，皮肤紧致年轻。整体比原图年轻四五岁、脸更圆更饱满。
 
-    【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。【神态】接任恒山掌门、向众人拱手的郑重时刻：神情郑重而温和，眼神清亮有担当，嘴角带一点含蓄的浅笑（不冷峻）。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
-
-    成为恒山俗家掌门时期；同一成年脸略沉稳，仍有旷达侠气。低饱和墨绿完整长袍、暖白右衽内衫、宽布腰带，发髻整齐、长剑归鞘、酒葫芦束在腰侧；双手自然拱手，不剃度。背景为北岳恒山山门、深冬松雪与层叠殿檐，和思过崖的独处明确区分。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
-
-    最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。'
-  negative: ''
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_huashan_base.resume3.png
-    use: 本轮新立绘；锁定人物身份、年龄与对应阶段造型
-    sha256: 5e7fec4c65b579cc47c70954e9ba5242a001d8063a1c1d700a2b1853834c6bc0
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/linghuchong_still1.jpg
-    use: 经典影视造型；只借服饰发型配色气质，不照搬演员五官
-    sha256: aa15448343e3dc797c060e52cc5218b7feded2e177e8a179621b38dcc969ee8c
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/linghuchong_game.jpg
-    use: 经典武侠游戏插画风格；只借绘画气质、线条、造型感
-    sha256: daa70caa7125430bccdc2efad45b77ccddc97bc11660158a4f36d0bf2ce279e8
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    use: 项目同性别基线；只取画风
-    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen
+  - path: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_huashan_base.png
+    sha256: c3beaa49ca2c1d989d067e968ea3e812185123858f43f4106a95221aac72d55f
+    use: 对脸基线：作者 AR-56 定下的 por_npc_linghuchong__ch05_youth_huashan_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch05/por_npc_linghuchong__ch05_youth_scene_hengshan.png
+    sha256: 69e934cd7ba51e312ae293f7485f715df19d4ad1ee043de7ec6b8db8a8449131
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_linghuchong__ch05_youth_scene_hengshan.69e934cd.png
+  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T01:14:01-0700
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_linghuchong__ch05_youth_scene_hengshan.1791015241033077000/archive/por_npc_linghuchong__ch05_youth_scene_hengshan.png
+  created: 2026-10-03T17:36:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_linghuchong__ch05_youth_scene_hengshan.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 69e934cd7ba51e312ae293f7485f715df19d4ad1ee043de7ec6b8db8a8449131
+  sha256: 3a670fb8167c0ed4995b5b71a1ad01b435b84fa6073f60e619f420e16bec8ffb
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_linghuchong__ch05_youth_huashan_base
   previous_revision:
-    prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_linghuchong__ch05_youth_scene_hengshan.1791015241033077000/archive/previous-prompt.md
-    png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_linghuchong__ch05_youth_scene_hengshan.1791015241033077000/archive/previous.png
-    manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_linghuchong__ch05_youth_scene_hengshan.1791015241033077000/archive/previous-entry.yaml
-  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_linghuchong__ch05_youth_scene_hengshan.resume3.png
-  repair_runner_source_sha256: 58067bc107786f7ef283104e67d4d1d003e2b63302f308105836a2a4a5f03d41
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_linghuchong__ch05_youth_scene_hengshan.69e934cd.png
+    sha256: 69e934cd7ba51e312ae293f7485f715df19d4ad1ee043de7ec6b8db8a8449131
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_linghuchong__ch05_youth_scene_hengshan.69e934cd.entry.yaml
   runner_job_records:
   - - por_npc_linghuchong__ch05_youth_scene_hengshan.resume3
     - ok
@@ -1159,8 +1142,7 @@
     - '124'
     - exec-e35ab9df-dc63-40f2-baa4-97d7a10f6a57.png
   runner_success_count: 1
-  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
-  composite_job: por_npc_linghuchong__ch05_youth_scene_hengshan.resume3
+  effort: ultra
 - id: por_npc_linghuchong__ch05_youth_scene_luoyang
   file: por_npc_linghuchong__ch05_youth_scene_luoyang.png
   category: character/male
@@ -1460,7 +1442,6 @@
   sha256: c3beaa49ca2c1d989d067e968ea3e812185123858f43f4106a95221aac72d55f
   status: candidate
   notes: AR-32 主要角色经典版重出（8 号出图员）：1996 TVB《笑傲江湖》 剧照 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘
-
 - id: por_npc_yuebuqun__ch05_prime_huashan_base
   file: por_npc_yuebuqun__ch05_prime_huashan_base.png
   category: character/male
