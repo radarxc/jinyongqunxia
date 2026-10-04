@@ -1,0 +1,59 @@
+# 猿跃试手（原创扩展编排）；归属：docs/design/chapters/00-yuenv.md §5.3。
+# 灰盒依赖（mockRef）：ENG-npc-species-roleslot、ENG-26 的内容字段表 / 宿主接线。
+# O05 投桃由既有 Ink 在战前原子扣 it_tao ×1；此定义不重复扣物，见 ../README.md。
+schemaVersion: encounter.v1
+id: enc_00_baiyuan
+chapterId: ch00_yuenv
+kind: spar
+arena:
+  kind: regionArena
+  regionId: rg_jiangnan_taihu
+  sceneId: sc_00_shanjing
+  arenaId: arena_00_baiyuan
+participants:
+  - unitRef: hero
+    source: {kind: character, characterRef: protagonist}
+    side: player
+    control: player
+    spawnId: spawn_hero
+    state: active
+    required: true
+    placement: {pos: {q: 12, r: 7}, facing: 0}
+  - unitRef: baiyuan
+    source: {kind: npc, npcId: npc_baiyuan}
+    side: enemy
+    control: ai
+    spawnId: spawn_baiyuan
+    state: active
+    required: true
+    placement: {pos: {q: 14, r: 7}, facing: 3}
+outcome:
+  # 两项为 OR：任一命中计数达 1 或 round 达 2 即胜；不是击倒白猿。
+  win:
+    - {kind: hitCount, actorSide: player, targetSide: enemy, hits: 1}
+    - {kind: surviveRounds, rounds: 2}
+  lose: [{kind: unitDown, unitRef: hero}]
+  draw: []
+  onDefeat: continue
+  concede: advance
+rules:
+  mode: spar
+  noAuto: true
+  noRetreat: true
+  noItems: true
+  mercyAllowed: true
+  lethalIntent: false
+  friendlyFire: false
+  roundLimit: 30
+  boss: false
+  retry: false
+  skippable: true
+beats: []
+difficulty:
+  localDifficulty: 1
+  # 8500 + 500 × 1 = 9000 bp；白猿走人物 full 管线，不冒充模板杂兵。
+  enemyStatBp: 9000
+  modes:
+    diff_jianghu: {hpBp: 8000, attackBp: 8000}
+    diff_xiake: {hpBp: 10000, attackBp: 10000}
+    diff_zongshi: {hpBp: 12000, attackBp: 11200}
