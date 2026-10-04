@@ -102,3 +102,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.prepared.json`。
+
+## 原著依据
+
+- 《天龙八部》第十回 剑气碧烟横：“悬在壁上，卷轴舒开”；https://www.xuges.com/wuxia/jinyong/tlbb/073.htm
+- AR-82 返修约束（本节优先于历史提示词）：移除段誉手中装订厚书，保留两手现有指力初悟手势，把剑气路线画在右上墙面展开的焦黄帛轴上，两端木轴清楚，薄帛自然垂挂。仅把背景寺院廊柱场地改为天龙寺室内素墙，不改坐姿、蒲团和衣服。段誉仍在参悟，眼神朝剑图方向，脸及头部完全保持原图。
