@@ -12,6 +12,18 @@ export async function filesIn(directory: string): Promise<string[]> {
   return nested.flat().sort();
 }
 
+async function copyAvailableAsset(root: string, source: string, absolute: string,
+  assetPath: string): Promise<boolean> {
+  try { await access(absolute); } catch {
+    console.warn(`ASSET_SOURCE_MISSING:${relative(source, absolute)}`);
+    return false;
+  }
+  const output = join(root, 'apps/game/public', assetPath);
+  await mkdir(dirname(output), { recursive: true });
+  await copyFile(absolute, output);
+  return true;
+}
+
 /** Manifest availability is included in the DTO, avoiding known-missing image requests. */
 async function copyTownAssets(root: string, source: string, copy: boolean,
   towns: readonly TownRuntimeDefinition[], copied?: Set<string>,
@@ -25,10 +37,9 @@ async function copyTownAssets(root: string, source: string, copy: boolean,
   }
   for (const absolute of [...files].sort()) {
     if (!absolute.startsWith(source + '/')) throw new Error('ASSET_OUTSIDE_ROOT');
-    await access(absolute);
-    const output = join(root, 'apps/game/public/assets/default', relative(source, absolute));
-    await mkdir(dirname(output), { recursive: true }); await copyFile(absolute, output);
-    const assetPath = 'assets/default/' + relative(source, absolute); copied?.add(assetPath);
+    const assetPath = 'assets/default/' + relative(source, absolute);
+    if (!await copyAvailableAsset(root, source, absolute, assetPath)) continue;
+    copied?.add(assetPath);
     recordCopiedAssetReference(references, assetPath, assetPath);
     recordCopiedAssetReference(references, `/${assetPath}`, assetPath);
   }
@@ -61,12 +72,10 @@ export async function readAssetManifest(root: string, copy: boolean,
       for (const image of [...images, ...portrait, ...maps]) {
         const absolute = resolve(dirname(path), image.file);
         if (!absolute.startsWith(source + '/')) throw new Error('ASSET_OUTSIDE_ROOT');
-        try { await access(absolute); } catch { continue; }
         const assetPath = 'assets/default/' + relative(source, absolute);
         result[row['id']] = { ...result[row['id']], [image.key]: assetPath };
         if (!copy) continue;
-        const output = join(root, 'apps/game/public', assetPath);
-        await mkdir(dirname(output), { recursive: true }); await copyFile(absolute, output);
+        if (!await copyAvailableAsset(root, source, absolute, assetPath)) continue;
         copied?.add(assetPath);
         recordCopiedAssetReference(references, row['id'], assetPath);
         recordCopiedAssetReference(references, image.file, assetPath);

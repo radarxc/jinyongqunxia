@@ -15,7 +15,8 @@ import type { createBattleDemo as CreateBattleDemo } from '../battle/demo';
 import type { BattleRuntime as BattleRuntimeClass } from '../battle/runtime';
 import { projectBattleUnit } from '../battle/presentation';
 import { createPreviewSession } from './bootstrap';
-import { equipmentRules, type GameContent, type StaticGameContent, type TownLoader } from './content';
+import { equipmentRules, type ChapterAssetLoader, type GameContent, type StaticGameContent,
+  type TownLoader } from './content';
 import { ALL_VIEWS, type DirtyView, type GameCommand, type GameRemote, type GameUpdate,
   type GameProjection, type NewGameRequest, type SessionSnapshot } from './contracts';
 import { createNewGameSessionState, type MasterSeedSource } from './new-game';
@@ -123,7 +124,7 @@ function dirtyViews(command: Command): readonly DirtyView[] {
 
 /** Worker composition of core functions. This adapter defines no stat or combat formulas. */
 function defaultSession(content: GameContent, demo: boolean): SessionSnapshot {
-  if (demo) return createPreviewSession(content);
+  if (demo) return createPreviewSession(content, 'ch01_tianlong');
   const state = createNewGameState({ masterSeed: 1, coreVersion: CORE_VERSION,
     coreBuild: CORE_BUILD, identity: { name: '无名侠客', gender: 'unspecified',
       appearance: 'appearance_default', pronoun: '你', originId: 'origin_wenshiguan' },
@@ -146,7 +147,9 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
   loadTown?: TownLoader, options: GameSessionOptions = {}): GameRemote & {
     createNewGame(input: NewGameRequest): Promise<GameUpdate> } {
   // Bare calls retain the legacy test fixture; product hosts always pass an explicit mode.
-  const opening = initial ?? defaultSession(content, options.demo !== false);
+  const opening = initial ?? (options.demo === true
+    ? createPreviewSession(content, 'ch10_baima')
+    : defaultSession(content, options.demo !== false));
   const loadedTowns = [...(content.towns ?? [])];
   let townDefinition = opening.chapter.town
     ? loadedTowns.find((entry) => entry.sceneId === opening.chapter.town?.sceneId) : undefined;
@@ -499,14 +502,15 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
 }
 
 export async function createLoadedGameSession(base: StaticGameContent, source: ContentSource,
-  initial?: SessionSnapshot, loadTown?: TownLoader, options: GameSessionOptions = {}) {
+  initial?: SessionSnapshot, loadTown?: TownLoader, options: GameSessionOptions = {},
+  loadAssets?: ChapterAssetLoader) {
   const { itemContentChapter, loadGameContent, loadRegionMaps } =
     await import('./content-loader').then(({ createContentLoader }) => createContentLoader());
   const loaded = new Map<string, Promise<GameContent>>();
   const contentFor = (chapter: string): Promise<GameContent> => {
     const existing = loaded.get(chapter);
     if (existing) return existing;
-    const pending = loadGameContent(base, source, chapter).catch((error: unknown) => {
+    const pending = loadGameContent(base, source, chapter, loadAssets).catch((error: unknown) => {
       loaded.delete(chapter);
       throw error;
     });

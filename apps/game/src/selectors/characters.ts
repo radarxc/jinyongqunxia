@@ -39,8 +39,11 @@ export function projectCharacters(session: SessionSnapshot, content: GameContent
     const faction = appearance?.sects.map((entry) => content.factions[entry.sectId] ?? '门派待录').join(' · ') || '江湖人士';
     const companion = session.profile.companions.find((entry) => entry.characterId === npc.id);
     const character = companion ?? encounter.character;
+    const works = npc.identity.sourceWorks ?? []; const sources = npc.sources ?? [];
     return { key: npc.id, name: npc.identity.name, faction, relation: encounter.relationship, affinity: encounter.affinity,
-      biography: `见于《${npc.identity.sourceWorks.join('》《')}》。${npc.sources.map((entry) => entry.locator).join('；')}`,
+      biography: works.length > 0 || sources.length > 0
+        ? `${works.length > 0 ? `见于《${works.join('》《')}》。` : ''}${sources.map((entry) => entry.locator).join('；')}`
+        : '人物来历随章节正文逐步解锁。',
       portrait: content.assets?.[npc.id]?.portrait ?? null,
       detail: character ? projectCharacter(character, content) : null };
   })];

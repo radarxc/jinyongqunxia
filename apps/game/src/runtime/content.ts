@@ -11,11 +11,18 @@ export interface MeridianTopology {
   readonly points: readonly { readonly id: string; readonly name: string }[];
 }
 export type GameItemDef = Omit<ItemDef, 'text'> & { readonly text?: ItemDef['text'] };
+export interface GameNpcDef {
+  readonly id: NpcDef['id'];
+  readonly identity: { readonly name: string; readonly aliases: readonly string[];
+    readonly sourceWorks?: readonly string[] };
+  readonly appearances: NpcDef['appearances'];
+  readonly sources?: readonly { readonly locator: string }[];
+}
 export interface GameContent {
   readonly items: readonly GameItemDef[]; readonly contentHash?: string;
   readonly chapters?: readonly ChapterDef[]; readonly idRemaps?: readonly ContentIdRemap[];
   readonly events?: readonly EventDef[];
-  readonly npcs: readonly NpcDef[];
+  readonly npcs: readonly GameNpcDef[];
   readonly skills: readonly MartialArtDef[]; readonly topology: readonly MeridianTopology[];
   readonly factions: Readonly<Record<string, string>>;
   readonly identityTags?: readonly string[];
@@ -37,6 +44,13 @@ export interface GameContent {
   readonly regionLoot?: readonly RegionLootBinding[];
 }
 export type StaticGameContent = Omit<GameContent, 'items' | 'contentHash'>;
+export type AssetMap = NonNullable<GameContent['assets']>;
+export interface ChapterRuntimeLeaf {
+  readonly assets: AssetMap;
+  readonly mapText: Readonly<Record<string, string>>;
+}
+export type ChapterAssetLoader = (chapterId: string) =>
+  Promise<AssetMap | ChapterRuntimeLeaf>;
 export type TownLoader = (sceneId: string) => Promise<TownRuntimeDefinition | null>;
 export interface TownNpcPlacement {
   readonly npcId: string; readonly sceneId: string; readonly eraLayer: string;

@@ -18,6 +18,32 @@ describe('game content plugin town integration', () => {
     expect(loaded).toEqual(expect.stringContaining('townNpcPlacements'));
     expect(loaded).not.toEqual(expect.stringContaining('towns:'));
     expect(loaded).not.toEqual(expect.stringContaining('"items"'));
+    expect(loaded).not.toEqual(expect.stringContaining('"worldMaps"'));
+    expect(loaded).not.toEqual(expect.stringContaining('"assets"'));
+    expect(loaded).toEqual(expect.stringContaining('"npcs":[]'));
+    expect(loaded).toEqual(expect.stringContaining('virtual:tianshu-chapter/ch10_baima'));
+    expect(loaded).toEqual(expect.stringContaining('loadChapterAssets'));
+    const chapterId = await plugin.resolveId?.call({} as never,
+      'virtual:tianshu-chapter/ch10_baima', undefined, {} as never);
+    const chapter = await plugin.load?.call({} as never, chapterId as string);
+    const leaf = JSON.parse((chapter as string).slice('export default '.length, -1));
+    expect(chapter).toEqual(expect.stringContaining('npc_liwenxiu'));
+    expect(chapter).not.toEqual(expect.stringContaining('npc_duanyu'));
+    expect(leaf.mapText).toMatchObject({
+      'event.ev_10_ditu.actions.0.map.name': '白马啸西风',
+      'event.ev_10_ditu.actions.0.map.nodes.26.name': '大理府',
+      'event.ev_10_ditu.actions.0.map.nodes.26.levelNote': '尚无区域强度配置',
+      'event.ev_10_ditu.actions.0.map.nodes.26.entry.accessNote':
+        '城门进入；内部场景由 ENG-09 装配',
+    });
+    const ch12Id = await plugin.resolveId?.call({} as never,
+      'virtual:tianshu-chapter/ch12_shujian', undefined, {} as never);
+    const ch12 = await plugin.load?.call({} as never, ch12Id as string);
+    expect(ch12).toEqual(expect.stringContaining('npc_afanti'));
+    const ch01Id = await plugin.resolveId?.call({} as never,
+      'virtual:tianshu-chapter/ch01_tianlong', undefined, {} as never);
+    const ch01 = await plugin.load?.call({} as never, ch01Id as string);
+    expect(ch01).toEqual(expect.stringContaining('ref_map_jianghu__ch01_base01'));
     const indexId = await plugin.resolveId?.call({} as never, 'virtual:tianshu-towns',
       undefined, {} as never);
     const index = await plugin.load?.call({} as never, indexId as string);
