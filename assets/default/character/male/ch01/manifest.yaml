@@ -1189,6 +1189,8 @@
 
     【原图保持不变】除脸、发式与头饰以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
 
+    【本张另外要求】（作者 AR-53 总审返修）现在的脸比基线长而瘦、下巴尖、眼睑下垂显得老；改成基线里清秀而圆润的少年感：脸不长、两颊不瘦、下巴不尖，眼睛明亮、眼睑不下垂，像二十岁。
+
     【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
     【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
@@ -1198,22 +1200,22 @@
     sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
     use: 对脸基线：作者审核通过的 por_npc_duanyu__ch01_youth_shizi_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.png
-    sha256: 409318ff80f37e2413f62e4230db6feae2ff693200fa82685d3aa1bac8a35fc8
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.409318ff.png
+    sha256: 4196c97ab4f65038b257d98348077e4c16a58e601f1878b27e443481888ffb6b
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.4196c97a.png
   tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T15:41:05-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.e1.png
+  created: 2026-10-03T17:01:42-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.e2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 4196c97ab4f65038b257d98348077e4c16a58e601f1878b27e443481888ffb6b
+  sha256: 26a7f21b369186254e06fb016da673fca855d36331629c7d2ee7edacd096f0a1
   status: candidate
-  notes: 立绘重审重出（AR-30）；段誉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base
+  notes: 立绘重审重出（AR-30）；段誉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base（AR-53 总审返修：脸改回圆润少年感）
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.409318ff.png
-    sha256: 409318ff80f37e2413f62e4230db6feae2ff693200fa82685d3aa1bac8a35fc8
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.409318ff.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.4196c97a.png
+    sha256: 4196c97ab4f65038b257d98348077e4c16a58e601f1878b27e443481888ffb6b
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.4196c97a.entry.yaml
 - id: por_npc_duanyu__ch01_youth_scene_wuliang_fan
   file: por_npc_duanyu__ch01_youth_scene_wuliang_fan.png
   category: character/male
