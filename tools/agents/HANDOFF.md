@@ -2456,3 +2456,9 @@
     - ENG-ch00-encounter-wiring 随即起跑（驱动 10898）。为给它腾代码池位，停了非 M1 的 TOOL-ops-dispatch-dedupe 第 2 轮返修（约 15 分钟进度，工作区保留，状态记 PENDING），代码池有位再续作。
     - 坑：zsh 里 `kill $pids` 不分词，多个 pid 会静默失败，要用 `xargs kill` 或 `${=pids}`。
     - 02:46 那次合入被拦：城图调度 city_consolidate.py 留下 docs/design/town/ 下的未提交改动，协调者已补提交（e9244aef）。以后再见「主检出有未提交的改动」，先 git status；是 docs/design/town/ 的就告诉协调者。
+  - **10-04 02:50–03:20 开发监督**：
+    - CONTENT-apparel-data-2 合入（9e829944），重建出图总索引（99942561），第 3 批起跑。
+    - **ENG-16e** 第 1 轮跑满 200 分钟上限，supervise 已自动续作。开发监督停掉这轮自动续作（只跑了 4 分钟），挪基点 5adbe42c → fd450096（0 冲突），带「已完成 / 剩余项」说明（devsup_note_resume.md）在原工作区续作，03:19 执行器起跑。
+      - 坑：停 M1 任务的执行器重起时，它腾出的池位会被别的等位任务马上拿走。这次是非 M1 的 move-onhit 返修。已停 move-onhit 的返修让位（刚起约 2 分钟，工作区保留，返修说明存 devsup_resume_r2.md，状态记 PENDING），代码池有位再续作。
+    - 非 M1、暂停待续：TOOL-ops-dispatch-dedupe（PENDING）、ENG-move-onhit-effects（PENDING）、ENG-dialogue-runtime-lazy（PENDING，工作区已撤）。
+    - 代码池（03:20）：16e、generic-model、battle-modules-lazy、ch00-encounter-wiring；18c 在等。
