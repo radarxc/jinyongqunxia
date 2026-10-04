@@ -2059,4 +2059,12 @@
       - base-diet 最先合入；
       - 合入前任务校验若只栽在 110 上，照计时断言的办法挂等待器，依赖改为 base-diet；
       - 事件执行器算不算首屏必需（AR-64），等 base-diet 合入后看余量再定。
+  - **10-03 20:10 开发监督**（协调者 20:09 裁定）：
+    - base-diet 最先合，名单不动。
+    - base-diet 合入前，任务校验若只栽在 session 110：置 HOLD-VALIDATE，挂 `after_merge_revalidate.py ENG-session-base-diet <ID> -- <原参数>`；多个依赖用逗号分隔；不让执行器重跑，也不放宽。
+      - gates-data 已由协调者改为同时等 bench-perf-split 与 base-diet。
+      - 判定脚本 `scratchpad/perfgate_check.py <ID>`，输出 ONLY-LINEARITY / ONLY-SESSION110 / OTHER。
+    - base-diet 合入后报两个数：合入后的闭包；gates-data、ink-intents、26 都进来后的估算。
+      - 估算 ≤ 95：不动，序章本来就用区域运行时。
+      - 超过：登记注入式小修，source event 在分发器接上前不能丢（先排队，或保证第一个事务前已接好），要有确定性测试。
 
