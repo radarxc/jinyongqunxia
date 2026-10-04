@@ -2335,7 +2335,10 @@
 
     【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+
+
+    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_por_npc_zhangwuji__ch04_youth_scene_taiji.json'
   negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
@@ -2344,20 +2347,24 @@
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_scene_taiji.png
     sha256: 3b201ad9bf8072c50617691f23b265a0188d075fa108c1c4b9d1f093f9f53f6b
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_scene_taiji.3b201ad9.png
-  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T14:01:57-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhangwuji__ch04_youth_scene_taiji.e1.png
+  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_scene_taiji.png
+    sha256: e9f4308cc302d24efe69c1113b91d924cbd9f923783dd592dfcfe92507fb0fba
+    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_scene_taiji.png
+  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:06:50.233843-07:00'
+  source_path: .agents/coord/_lines/zhangwuji-final/out/por_npc_zhangwuji__ch04_youth_scene_taiji.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: e9f4308cc302d24efe69c1113b91d924cbd9f923783dd592dfcfe92507fb0fba
+  sha256: af246f213d1650a5e07ee0ba723c26493baff21bd83f0a50e119baf049408db7
   status: candidate
-  notes: 立绘重审重出（AR-30）；AR-32：张无忌基础立绘按 2003 苏有朋版剧照重出，本场景随新脸重出（作者：5 幅场景按新脸重出）（10-02，7 号出图员）；codex 出图（7 号出图员，AR-32 经典版重出）；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base
-  effort: ultra
+  notes: 立绘重审重出（AR-30）；AR-32：张无忌基础立绘按 2003 苏有朋版剧照重出，本场景随新脸重出（作者：5 幅场景按新脸重出）（10-02，7 号出图员）；codex 出图（7 号出图员，AR-32 经典版重出）；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留
+  effort: not applicable (deterministic composition)
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_scene_taiji.3b201ad9.png
-    sha256: 3b201ad9bf8072c50617691f23b265a0188d075fa108c1c4b9d1f093f9f53f6b
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_scene_taiji.3b201ad9.entry.yaml
+    png: .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_scene_taiji.png
+    sha256: e9f4308cc302d24efe69c1113b91d924cbd9f923783dd592dfcfe92507fb0fba
+    entry: .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_scene_taiji.entry.yaml
+  executed_by: Codex gpt-6.1-sol（AR-86）
 - id: por_npc_zhangwuji__ch04_youth_scene_wanansi
   file: por_npc_zhangwuji__ch04_youth_scene_wanansi.png
   category: character/male
@@ -2373,7 +2380,10 @@
 
     【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
 
-    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+
+
+    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_por_npc_zhangwuji__ch04_youth_scene_wanansi.json'
   negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
   references:
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
@@ -2382,20 +2392,24 @@
   - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_scene_wanansi.png
     sha256: af2faf3a9cfcfa49d13690f4e30613c4ce5845e14ce92eef6ca36650401dcf42
     use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_scene_wanansi.af2faf3a.png
-  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
-  model: gpt-6-astra
-  created: 2026-10-03T14:01:58-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhangwuji__ch04_youth_scene_wanansi.e1.png
+  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_scene_wanansi.png
+    sha256: a0ca992dd04d0403960f404c9d21fc114e5347d4f042a0960fab39bac894f4b0
+    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_scene_wanansi.png
+  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:06:50.261113-07:00'
+  source_path: .agents/coord/_lines/zhangwuji-final/out/por_npc_zhangwuji__ch04_youth_scene_wanansi.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: a0ca992dd04d0403960f404c9d21fc114e5347d4f042a0960fab39bac894f4b0
+  sha256: 74d5220236a23cd0d13085235ece74f825dcd09a797cc94ffae9454a4a0bd01c
   status: candidate
-  notes: 立绘重审重出（AR-30）；AR-32：张无忌基础立绘按 2003 苏有朋版剧照重出，本场景随新脸重出（作者：5 幅场景按新脸重出）（10-02，7 号出图员）；codex 出图（7 号出图员，AR-32 经典版重出）；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base（并修作者返工「手朝上」：双手放低，右手前伸作卸力之势）
-  effort: ultra
+  notes: 立绘重审重出（AR-30）；AR-32：张无忌基础立绘按 2003 苏有朋版剧照重出，本场景随新脸重出（作者：5 幅场景按新脸重出）（10-02，7 号出图员）；codex 出图（7 号出图员，AR-32 经典版重出）；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base（并修作者返工「手朝上」：双手放低，右手前伸作卸力之势）；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留
+  effort: not applicable (deterministic composition)
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_scene_wanansi.af2faf3a.png
-    sha256: af2faf3a9cfcfa49d13690f4e30613c4ce5845e14ce92eef6ca36650401dcf42
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhangwuji__ch04_youth_scene_wanansi.af2faf3a.entry.yaml
+    png: .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_scene_wanansi.png
+    sha256: a0ca992dd04d0403960f404c9d21fc114e5347d4f042a0960fab39bac894f4b0
+    entry: .agents/coord/_lines/zhangwuji-final/originals/por_npc_zhangwuji__ch04_youth_scene_wanansi.entry.yaml
+  executed_by: Codex gpt-6.1-sol（AR-86）
 - id: por_npc_xiexun__ch04_elder_blind_base
   file: por_npc_xiexun__ch04_elder_blind_base.png
   category: character/male
