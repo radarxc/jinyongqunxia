@@ -108,42 +108,34 @@
   category: scene
   style: default
   subject: 大胜关英雄大会（ch03_shendiao）
-  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
+  prompt: 'Use case: precise-object-edit / identity-preserve.
 
-    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
 
-    【身份与年龄】以第1张新中年郭靖定稿为身份参考，保持原场景的中年郭靖年龄、短髭须和威严神情。
+    【只改】只把正中杨过握的长竹杖改为断裂铁桨的黑色金属桨柄，顶部有断口、不画竹节，手与完整双臂不动。另将右侧金轮法王手中小金轮改成径长尺半的可实战大金轮，腰间小饰轮去掉、其余四轮收到袍下不露。杨过和法王的脸、衣服、手，郭靖黄蓉小龙女及其他人、题字朱印与背景完全不动。
 
-    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
+    【原著依据】《神雕侠侣》第十三回 武林盟主：“这金轮径长尺半”；https://www.xuges.com/wuxia/jinyong/sdxl/092.htm；《神雕侠侣》第十三回 武林盟主：“杨过却用铁桨柄去打他后臀”；https://www.xuges.com/wuxia/jinyong/sdxl/088.htm
 
-    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
 
-    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
-
-
-
-    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
   negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
   references:
-  - path: assets/default/character/male/ch03/por_npc_guojing__ch03_prime_base.png
-    sha256: bdf0c389f59047dbacc0a7d4512656bc887608865191e4132d301506b33e6cd4
-    use: AR-87 身份基线，青年B或B年长化定稿
-  - path: assets/default/scene/ch03/cg_ch03_dashengguan_heroes.png
-    sha256: 12fd3edfa4f8a0c1c8c716c3e1b37c2b828cd888f297694bfffc831d1829f78a
-    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/cg_ch03_dashengguan_heroes.12fd3edf.png
-  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
+  - path: .agents/coord/_lines/novel-fix-1/before/48_cg_ch03_dashengguan_heroes.png
+    sha256: 5165ad05cac1f9cb7af0d74a3f0378294bdddd13b3085131ac16f4c138ce85c8
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T02:08:10-07:00'
-  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch03_dashengguan_heroes_v1_composite.png
+  created: '2026-10-04T03:27:23.448954-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_48_r1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 5165ad05cac1f9cb7af0d74a3f0378294bdddd13b3085131ac16f4c138ce85c8
+  sha256: 7c9a583e1a765fb3c7475c71dff347bb6fdc397d28c9b1bde0120e5d06603580
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须是身份图定稿的刘亦菲本人脸：精确眉眼间距、眼形、鼻头、上唇弓及下颌；禁止复原待改图旧脸或变泛化漂亮脸。待改图原冷静目光、头向、远景人物尺度和光向照原，耳坠白衣发式不变。；质检：已实际打开base与返修前后：小龙女同人眉眼鼻唇颌骨明确采用恢复base，原冷静神态、头向视线及远景尺度保留，原光向自然无接缝；其余群雄杨过与题字逐像素不变；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须是身份图定稿的刘亦菲本人脸：精确眉眼间距、眼形、鼻头、上唇弓及下颌；禁止复原待改图旧脸或变泛化漂亮脸。待改图原冷静目光、头向、远景人物尺度和光向照原，耳坠白衣发式不变。；质检：已实际打开base与返修前后：小龙女同人眉眼鼻唇颌骨明确采用恢复base，原冷静神态、头向视线及远景尺度保留，原光向自然无接缝；其余群雄杨过与题字逐像素不变；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变；AR-82 原著核对返修：大胜关插图同步断铁桨柄及实战大轮
   previous_revision:
-    png: .agents/coord/_lines/guojing-final/replaced/cg_ch03_dashengguan_heroes.12fd3edf.png
-    sha256: 12fd3edfa4f8a0c1c8c716c3e1b37c2b828cd888f297694bfffc831d1829f78a
-    entry: .agents/coord/_lines/guojing-final/replaced/cg_ch03_dashengguan_heroes.12fd3edf.entry.yaml
+    png: .agents/coord/_lines/novel-fix-1/before/48_cg_ch03_dashengguan_heroes.png
+    sha256: 5165ad05cac1f9cb7af0d74a3f0378294bdddd13b3085131ac16f4c138ce85c8
   runner_job_records:
   - - cg_ch03_dashengguan_heroes.resume3
     - ok
@@ -151,7 +143,7 @@
     - '134'
     - exec-4745b2d2-0619-44d4-b569-12eeaaa1aba3.png
   runner_success_count: 1
-  effort: xhigh
+  effort: ultra
   ar84_alignment:
     job: ar84_calign_35_52_r2
     before_sha256: 8f1ac58c72c354ecfefea666b989f254af3b7b7b9383dca59f512d3a0df11f26
