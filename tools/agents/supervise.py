@@ -318,6 +318,8 @@ def worker(a) -> int:
                 break
             rf = latest_review(tid)
             note = compose_rework(tid, rf, reviews, a)
+            # 2026-10-03 协调者：审核 FAIL 后立刻改状态，免得一直挂着 reviewing，被出图线的 busy.sh 误当成在审
+            set_status(tid, "RUNNING", runs=runs, reviews=reviews, detail="审核 FAIL，返修排队中")
             phase = "start"
             continue
     # 校验通过 + 审核 PASS（或 --no-review）
