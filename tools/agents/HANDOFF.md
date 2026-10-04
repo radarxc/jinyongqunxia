@@ -2484,3 +2484,51 @@
     - **其他合入**：terrain（95acd873）、apparel 2–4 批；compose 已起。
     - **M1 还剩**：16e（原工作区续作）、wiring、generic-model。
     - **待作者**：霍青桐 C/D/E；历史第二批 21 人（建议徐达、常遇春穿戎装）。
+  - **10-04 04:00–04:35 开发监督**：
+    - CONTENT-apparel-data-4、-5 合入，各自重建出图总索引（fd7efe04、30bcd3f1）；第 6 批起跑。
+    - **TOOL-rig-std-parts**：
+      - r2 后第 4 轮返修 04:15 校验过，按协调者裁定只再审一轮（r3）。r2 那批问题（裤腿、袖片、肩缝）都修好了，r3 只剩一处：6 张 head.png 被补绘多加了头顶 crown 圆帽，对照图 `.agents/coord/TOOL-rig-std-parts/review_frames_r3.png`；
+      - 按协调者裁定定点返修：取消 crown 补绘、重出 6 张头、重建条带与 GIF；manifest 的 model 写 none 或源图模型，created 写实际日期；其余不动。`--max-runs 1 --max-reviews 1`。
+    - **ENG-16e** 04:05 起停滞（GPT-5.6-Sol，25 分钟无输出），supervise 04:32 在原工作区自动续作第 2 轮，池位没被别人拿走。
+  - **10-04 04:50–05:15 开发监督 · M1 进展**：
+    - **ENG-battle-generic-model 合入**（af1873a1，05:05）；**ENG-16e-battle-ui-actions 合入**（ecc68454，05:08）。M1 只剩 ENG-ch00-encounter-wiring。
+    - **ENG-battle-modules-lazy**：04:25 审核 PASS，但合入冲突在 content-registry：npc-species 的 roleSlot 撞上它把 encounter 并进 ContentKind。rebase_task 后，Codex 短会话 bml-conflict-0451 按并集解开，`--from validate` 重起。
+    - **ENG-18c**：第 4 轮按 r1 返修后校验过，按协调者裁定只再审一轮。
+    - **体积测量 bug**：generic-model 合入后 check_size 报 render 2.36、webgl 41.63，是按文件名前缀找 render，哈希字母序变了，误量成 render-host。
+      - 真正的 render 块仍约 164–170 KiB，在 180 门内；新出现的 3D 懒加载块 battle-model3d 约 17 KiB，没有预算。
+      - 登记并起跑 **ENG-size-render-measure**（02841fe4）：按清单定位、量静态闭包；新增 render-model3d 预算 24 KiB；原门值不动。
+    - TOOL-ops-dispatch-dedupe 已在空位续作。CONTENT-apparel-data-6 合入（47d018e3）。
+  - **10-04 05:08–05:20 开发监督**：
+    - **集成分支红**：16e（ecc68454）合入后 prod_check 确定性失败：BattleField 高亮用例 setHighlights 0 次。疑为 generic-model 新加的 `projectUnit` 不在 16e 用例的 mock 里，`project()` 抛错，中断了 `sync()`。
+      - 登记并起跑 **ENG-fix-battlefield-highlights**（e91314ac，代码池第一，`--max-runs 1 --max-reviews 1`）：mock 补全接口、断言不删；生产代码隔离单个投影失败；2D / 3D 两路都验证。
+      - 为保它拿到池位，先停了排队中的 ENG-size-render-measure，修复起跑后再排回去。
+    - **ENG-18c**：再审 PASS，合入冲突 3 个文件（schemas/index、content-registry、content-plugin）。content-plugin 是语义冲突，挪基点后起只解冲突的返修（devsup_note_conflict.md）。
+    - CONTENT-apparel-data-6 合入；重建索引；第 7 批起跑。
+  - **10-04 05:40–06:05 开发监督（负载超时连环）**：
+    - **ENG-fix-battlefield-highlights 合入**（f1d7d27f），BattleField 那条红消了。
+    - **tools 单测红**：`test_items_from_catalog` 的名录件数快照（1045 != 1540）没跟上 apparel 1–7 批。
+      - 登记并起跑 **TOOL-items-count-sync**（8f1442e1）：先核实 1540 行无误解析，再改数字；
+      - 第 8 批说明加了同步件数，校验加跑这个文件（1eaaa262）；第 8 批等小修合入后再起；
+      - TOOL-rig-std-parts 只栽在这条上：停在 HOLD-VALIDATE，等待器等 count-sync 合入后 `--from validate`。
+    - **负载超时**：05:49 负载 35–40 时，battle-modules-lazy 栽在 encounter-loading（自己新加，默认 5 秒）和 ch10 真产物用例（15 秒）上，size-render-measure 也栽在 ch10 那条。
+      - size-render-measure：停在 HOLD-VALIDATE，不返修，等 wiring 校验过、负载降下来后再 `--from validate`；
+      - battle-modules-lazy：挪基点（与 generic-model 在 content.ts / session.ts 有 import 冲突），带说明返修：解冲突，`withBattleModels` 走战斗懒加载，encounter-loading 加固定 30 秒超时；
+      - ch10 那条：脚本等负载 < 15 时单跑三次（scratchpad ch10_test_idle.out），全过就照先例固定 60 秒，低负载也挂就按退化查。
+    - 登记并起跑 **TOOL-check-semaphore**（652bbd24，M1 之后第一位）：finish 校验与 prod_check 走信号量，最多 2 个；vitest 固定 maxWorkers。
+    - **wiring 优先**：池位名单把 ENG-ch00-encounter-wiring 置顶。它进校验时，暂不起别的 `--from validate` / 重校验（等待器到点也先停），等它一次跑过再一个个放。
+  - **10-04 06:00–06:40 开发监督**：
+    - 合入：ENG-18c（2c110997）、ENG-ch10-test-timeout（edc3843d）、TOOL-items-count-sync（80b0577a）。之后 rig-std-parts 的等待器到点，`--from validate`。
+    - ch10 真产物用例：负载 13–15 时单跑三次 3.1 / 2.6 / 2.8 秒全过，判为负载超时，按先例固定 60 秒（已合入）。
+    - **wiring**：06:12 自动续作第 2 轮；开发监督 06:33 停下，挪基点 17415fd6 → 80b0577a，7 个冲突，涉及 16e / generic-model / 18c / ch10 的改动；带解冲突与剩余项说明续作，本轮上限 300 分钟，06:34 拿回池位。
+    - 第 8 批 apparel 在 count-sync 合入后起跑（会把件数快照同步到终值）。
+    - 负载降到 10 以下，wiring 仍在执行器阶段，恢复三件：size-render-measure `--from validate`、move-onhit 续作返修、dialogue-runtime-lazy 起跑。
+  - **10-04 06:40–07:02 开发监督**：
+    - **ENG-size-render-measure 合入**（811aeb40）：口径改对后 render 实测 179.41 / 180。登记 **ENG-render-diet**（14da9edf）：降到 < 170，挪出的块都要有预算；与 dialogue-runtime-lazy 并列，排在 M1 之后。
+    - **TOOL-rig-std-parts** r5 FAIL（大腿上段楔形缺口）：停掉自动返修，按协调者要求加全量自查与清单后重起。这轮再 FAIL 就停下报协调者。
+    - **TOOL-map-compose**：协调者目检判样区画风完全不合格。审核中途停下，置 HOLD，不合入。
+      - 起完整返修（devsup_note_style.md，以已审 `map/regions/rg_dali_cangshan.png` 为基准，出 `_vs_approved` 对照）；sparse_include 补 map/regions；
+      - `--max-reviews 0`，跑完停在审核前，先把对照图给协调者看。
+    - **ENG-battle-modules-lazy** 第二次合入冲突（× 18c content-registry）。Codex 短会话 bml-conflict-0655 中途发【请判断】，协调者选 A：保留已审的 EncounterDefSchema 直接导入，冲突只取并集。解完 `--from validate`。
+  - **10-04 07:00–07:20 开发监督**：
+    - **AR-77 衣物与护甲 8 批全部合入**（第 8 批 07:04）。新条目 565 件，`--landed 1–8` 全过，件数快照用例跟上终值。出图总索引重建（270cb522），565 件进待出图队列，交 Gemini。
+    - **TOOL-check-semaphore 合入**（07:12），守护进程已重启用上新代码。
