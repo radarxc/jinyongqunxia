@@ -36534,7 +36534,8 @@
    "prompt": "ENG-19e-m1-order.md",
    "deps": [
     "ENG-region-gates-data",
-    "ENG-event-executor"
+    "ENG-event-executor",
+    "ENG-event-source-trigger"
    ],
    "writes": [
     "apps/game/src/flow/**",
@@ -47644,6 +47645,72 @@
    "deps": [],
    "writes": [
     "apps/game/build/content-plugin.test.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/event/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-event-source-trigger",
+   "title": "游戏工程 · 领域事件触发的 EventDef：core 发出领域事件（先接 chapter/woke）时在同一事务里按 condition.sourceEvent 匹配执行，复用 event-executor 执行器，演出发 world/eventPresented；不改 Trigger 路径语义",
+   "prompt": "ENG-event-source-trigger.md",
+   "deps": [
+    "ENG-event-executor"
+   ],
+   "writes": [
+    "packages/core/src/event/**",
+    "packages/core/src/command/**",
+    "packages/core/src/api/**",
+    "packages/core/src/**/*.test.ts",
+    "apps/game/src/runtime/**"
    ]
   },
   {
