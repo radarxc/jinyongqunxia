@@ -48490,6 +48490,734 @@
    "wave": 19,
    "kind": "draft",
    "review": false,
+   "web": false,
+   "vars": {
+    "batch": "2"
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/catalog/apparel-master.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_apparel_catalog.py",
+      "docs/design/catalog/apparel-master.yaml",
+      "--landed",
+      "2"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-clothing.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-armor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-innerarmor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-accessories.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-belts.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-shoes.md"
+     ],
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==2}; o=subprocess.run([sys.executable,'tools/agents/build_image_index.py','--check'],capture_output=True,text=True); bad=[l for l in (o.stdout+o.stderr).splitlines() if '✘' in l and any('/'+i+'.md' in l for i in ids)]; print('batch',len(ids),'index_problems',len(bad),bad[:5]); sys.exit(1 if bad or not ids else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==2}; g=lambda *a: subprocess.run(['git',*a],capture_output=True,text=True).stdout.split(); mod=[f for f in g('diff','--name-only','HEAD','--','assets/default/prompts/items') if f!='assets/default/prompts/items/GUIDE.md']; new=g('ls-files','--others','--exclude-standard','--','assets/default/prompts/items'); extra=[f for f in new if not (f.endswith('.md') and f.rsplit('/',1)[-1][:-3] in ids)]; print('modified',len(mod),mod[:5],'new',len(new),'extra',extra[:5]); sys.exit(1 if mod or extra else 0)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-apparel-data-2",
+   "title": "内容 · 衣物与护甲扩充落数据（AR-77）第 2 批：总表第 2 批进物品名录，生成 content/items，逐件写出图提示词（供 Gemini 出图）；过程文件不进 assets/",
+   "prompt": "CONTENT-apparel-data.md",
+   "deps": [
+    "DES-apparel-catalog",
+    "CONTENT-apparel-data"
+   ],
+   "writes": [
+    "docs/design/catalog/items-clothing.md",
+    "docs/design/catalog/items-armor.md",
+    "docs/design/catalog/items-innerarmor.md",
+    "docs/design/catalog/items-accessories.md",
+    "docs/design/catalog/items-belts.md",
+    "docs/design/catalog/items-shoes.md",
+    "content/items/**",
+    "assets/default/prompts/items/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {
+    "batch": "3"
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/catalog/apparel-master.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_apparel_catalog.py",
+      "docs/design/catalog/apparel-master.yaml",
+      "--landed",
+      "3"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-clothing.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-armor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-innerarmor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-accessories.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-belts.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-shoes.md"
+     ],
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==3}; o=subprocess.run([sys.executable,'tools/agents/build_image_index.py','--check'],capture_output=True,text=True); bad=[l for l in (o.stdout+o.stderr).splitlines() if '✘' in l and any('/'+i+'.md' in l for i in ids)]; print('batch',len(ids),'index_problems',len(bad),bad[:5]); sys.exit(1 if bad or not ids else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==3}; g=lambda *a: subprocess.run(['git',*a],capture_output=True,text=True).stdout.split(); mod=[f for f in g('diff','--name-only','HEAD','--','assets/default/prompts/items') if f!='assets/default/prompts/items/GUIDE.md']; new=g('ls-files','--others','--exclude-standard','--','assets/default/prompts/items'); extra=[f for f in new if not (f.endswith('.md') and f.rsplit('/',1)[-1][:-3] in ids)]; print('modified',len(mod),mod[:5],'new',len(new),'extra',extra[:5]); sys.exit(1 if mod or extra else 0)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-apparel-data-3",
+   "title": "内容 · 衣物与护甲扩充落数据（AR-77）第 3 批：总表第 3 批进物品名录，生成 content/items，逐件写出图提示词（供 Gemini 出图）；过程文件不进 assets/",
+   "prompt": "CONTENT-apparel-data.md",
+   "deps": [
+    "DES-apparel-catalog",
+    "CONTENT-apparel-data-2"
+   ],
+   "writes": [
+    "docs/design/catalog/items-clothing.md",
+    "docs/design/catalog/items-armor.md",
+    "docs/design/catalog/items-innerarmor.md",
+    "docs/design/catalog/items-accessories.md",
+    "docs/design/catalog/items-belts.md",
+    "docs/design/catalog/items-shoes.md",
+    "content/items/**",
+    "assets/default/prompts/items/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {
+    "batch": "4"
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/catalog/apparel-master.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_apparel_catalog.py",
+      "docs/design/catalog/apparel-master.yaml",
+      "--landed",
+      "4"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-clothing.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-armor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-innerarmor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-accessories.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-belts.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-shoes.md"
+     ],
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==4}; o=subprocess.run([sys.executable,'tools/agents/build_image_index.py','--check'],capture_output=True,text=True); bad=[l for l in (o.stdout+o.stderr).splitlines() if '✘' in l and any('/'+i+'.md' in l for i in ids)]; print('batch',len(ids),'index_problems',len(bad),bad[:5]); sys.exit(1 if bad or not ids else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==4}; g=lambda *a: subprocess.run(['git',*a],capture_output=True,text=True).stdout.split(); mod=[f for f in g('diff','--name-only','HEAD','--','assets/default/prompts/items') if f!='assets/default/prompts/items/GUIDE.md']; new=g('ls-files','--others','--exclude-standard','--','assets/default/prompts/items'); extra=[f for f in new if not (f.endswith('.md') and f.rsplit('/',1)[-1][:-3] in ids)]; print('modified',len(mod),mod[:5],'new',len(new),'extra',extra[:5]); sys.exit(1 if mod or extra else 0)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-apparel-data-4",
+   "title": "内容 · 衣物与护甲扩充落数据（AR-77）第 4 批：总表第 4 批进物品名录，生成 content/items，逐件写出图提示词（供 Gemini 出图）；过程文件不进 assets/",
+   "prompt": "CONTENT-apparel-data.md",
+   "deps": [
+    "DES-apparel-catalog",
+    "CONTENT-apparel-data-3"
+   ],
+   "writes": [
+    "docs/design/catalog/items-clothing.md",
+    "docs/design/catalog/items-armor.md",
+    "docs/design/catalog/items-innerarmor.md",
+    "docs/design/catalog/items-accessories.md",
+    "docs/design/catalog/items-belts.md",
+    "docs/design/catalog/items-shoes.md",
+    "content/items/**",
+    "assets/default/prompts/items/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {
+    "batch": "5"
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/catalog/apparel-master.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_apparel_catalog.py",
+      "docs/design/catalog/apparel-master.yaml",
+      "--landed",
+      "5"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-clothing.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-armor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-innerarmor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-accessories.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-belts.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-shoes.md"
+     ],
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==5}; o=subprocess.run([sys.executable,'tools/agents/build_image_index.py','--check'],capture_output=True,text=True); bad=[l for l in (o.stdout+o.stderr).splitlines() if '✘' in l and any('/'+i+'.md' in l for i in ids)]; print('batch',len(ids),'index_problems',len(bad),bad[:5]); sys.exit(1 if bad or not ids else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==5}; g=lambda *a: subprocess.run(['git',*a],capture_output=True,text=True).stdout.split(); mod=[f for f in g('diff','--name-only','HEAD','--','assets/default/prompts/items') if f!='assets/default/prompts/items/GUIDE.md']; new=g('ls-files','--others','--exclude-standard','--','assets/default/prompts/items'); extra=[f for f in new if not (f.endswith('.md') and f.rsplit('/',1)[-1][:-3] in ids)]; print('modified',len(mod),mod[:5],'new',len(new),'extra',extra[:5]); sys.exit(1 if mod or extra else 0)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-apparel-data-5",
+   "title": "内容 · 衣物与护甲扩充落数据（AR-77）第 5 批：总表第 5 批进物品名录，生成 content/items，逐件写出图提示词（供 Gemini 出图）；过程文件不进 assets/",
+   "prompt": "CONTENT-apparel-data.md",
+   "deps": [
+    "DES-apparel-catalog",
+    "CONTENT-apparel-data-4"
+   ],
+   "writes": [
+    "docs/design/catalog/items-clothing.md",
+    "docs/design/catalog/items-armor.md",
+    "docs/design/catalog/items-innerarmor.md",
+    "docs/design/catalog/items-accessories.md",
+    "docs/design/catalog/items-belts.md",
+    "docs/design/catalog/items-shoes.md",
+    "content/items/**",
+    "assets/default/prompts/items/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {
+    "batch": "6"
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/catalog/apparel-master.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_apparel_catalog.py",
+      "docs/design/catalog/apparel-master.yaml",
+      "--landed",
+      "6"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-clothing.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-armor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-innerarmor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-accessories.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-belts.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-shoes.md"
+     ],
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==6}; o=subprocess.run([sys.executable,'tools/agents/build_image_index.py','--check'],capture_output=True,text=True); bad=[l for l in (o.stdout+o.stderr).splitlines() if '✘' in l and any('/'+i+'.md' in l for i in ids)]; print('batch',len(ids),'index_problems',len(bad),bad[:5]); sys.exit(1 if bad or not ids else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==6}; g=lambda *a: subprocess.run(['git',*a],capture_output=True,text=True).stdout.split(); mod=[f for f in g('diff','--name-only','HEAD','--','assets/default/prompts/items') if f!='assets/default/prompts/items/GUIDE.md']; new=g('ls-files','--others','--exclude-standard','--','assets/default/prompts/items'); extra=[f for f in new if not (f.endswith('.md') and f.rsplit('/',1)[-1][:-3] in ids)]; print('modified',len(mod),mod[:5],'new',len(new),'extra',extra[:5]); sys.exit(1 if mod or extra else 0)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-apparel-data-6",
+   "title": "内容 · 衣物与护甲扩充落数据（AR-77）第 6 批：总表第 6 批进物品名录，生成 content/items，逐件写出图提示词（供 Gemini 出图）；过程文件不进 assets/",
+   "prompt": "CONTENT-apparel-data.md",
+   "deps": [
+    "DES-apparel-catalog",
+    "CONTENT-apparel-data-5"
+   ],
+   "writes": [
+    "docs/design/catalog/items-clothing.md",
+    "docs/design/catalog/items-armor.md",
+    "docs/design/catalog/items-innerarmor.md",
+    "docs/design/catalog/items-accessories.md",
+    "docs/design/catalog/items-belts.md",
+    "docs/design/catalog/items-shoes.md",
+    "content/items/**",
+    "assets/default/prompts/items/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {
+    "batch": "7"
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/catalog/apparel-master.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_apparel_catalog.py",
+      "docs/design/catalog/apparel-master.yaml",
+      "--landed",
+      "7"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-clothing.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-armor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-innerarmor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-accessories.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-belts.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-shoes.md"
+     ],
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==7}; o=subprocess.run([sys.executable,'tools/agents/build_image_index.py','--check'],capture_output=True,text=True); bad=[l for l in (o.stdout+o.stderr).splitlines() if '✘' in l and any('/'+i+'.md' in l for i in ids)]; print('batch',len(ids),'index_problems',len(bad),bad[:5]); sys.exit(1 if bad or not ids else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==7}; g=lambda *a: subprocess.run(['git',*a],capture_output=True,text=True).stdout.split(); mod=[f for f in g('diff','--name-only','HEAD','--','assets/default/prompts/items') if f!='assets/default/prompts/items/GUIDE.md']; new=g('ls-files','--others','--exclude-standard','--','assets/default/prompts/items'); extra=[f for f in new if not (f.endswith('.md') and f.rsplit('/',1)[-1][:-3] in ids)]; print('modified',len(mod),mod[:5],'new',len(new),'extra',extra[:5]); sys.exit(1 if mod or extra else 0)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-apparel-data-7",
+   "title": "内容 · 衣物与护甲扩充落数据（AR-77）第 7 批：总表第 7 批进物品名录，生成 content/items，逐件写出图提示词（供 Gemini 出图）；过程文件不进 assets/",
+   "prompt": "CONTENT-apparel-data.md",
+   "deps": [
+    "DES-apparel-catalog",
+    "CONTENT-apparel-data-6"
+   ],
+   "writes": [
+    "docs/design/catalog/items-clothing.md",
+    "docs/design/catalog/items-armor.md",
+    "docs/design/catalog/items-innerarmor.md",
+    "docs/design/catalog/items-accessories.md",
+    "docs/design/catalog/items-belts.md",
+    "docs/design/catalog/items-shoes.md",
+    "content/items/**",
+    "assets/default/prompts/items/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {
+    "batch": "8"
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/catalog/apparel-master.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_apparel_catalog.py",
+      "docs/design/catalog/apparel-master.yaml",
+      "--landed",
+      "8"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-clothing.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-armor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-innerarmor.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-accessories.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-belts.md"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_item_catalog.py",
+      "docs/design/catalog/items-shoes.md"
+     ],
+     [
+      "{python}",
+      "tools/content/items_from_catalog.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==8}; o=subprocess.run([sys.executable,'tools/agents/build_image_index.py','--check'],capture_output=True,text=True); bad=[l for l in (o.stdout+o.stderr).splitlines() if '✘' in l and any('/'+i+'.md' in l for i in ids)]; print('batch',len(ids),'index_problems',len(bad),bad[:5]); sys.exit(1 if bad or not ids else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,yaml; m=yaml.safe_load(open('docs/design/catalog/apparel-master.yaml',encoding='utf-8')); ids={i['id'] for i in m['items'] if 'existing' not in i and i.get('batch')==8}; g=lambda *a: subprocess.run(['git',*a],capture_output=True,text=True).stdout.split(); mod=[f for f in g('diff','--name-only','HEAD','--','assets/default/prompts/items') if f!='assets/default/prompts/items/GUIDE.md']; new=g('ls-files','--others','--exclude-standard','--','assets/default/prompts/items'); extra=[f for f in new if not (f.endswith('.md') and f.rsplit('/',1)[-1][:-3] in ids)]; print('modified',len(mod),mod[:5],'new',len(new),'extra',extra[:5]); sys.exit(1 if mod or extra else 0)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "CONTENT-apparel-data-8",
+   "title": "内容 · 衣物与护甲扩充落数据（AR-77）第 8 批：总表第 8 批进物品名录，生成 content/items，逐件写出图提示词（供 Gemini 出图）；过程文件不进 assets/",
+   "prompt": "CONTENT-apparel-data.md",
+   "deps": [
+    "DES-apparel-catalog",
+    "CONTENT-apparel-data-7"
+   ],
+   "writes": [
+    "docs/design/catalog/items-clothing.md",
+    "docs/design/catalog/items-armor.md",
+    "docs/design/catalog/items-innerarmor.md",
+    "docs/design/catalog/items-accessories.md",
+    "docs/design/catalog/items-belts.md",
+    "docs/design/catalog/items-shoes.md",
+    "content/items/**",
+    "assets/default/prompts/items/**"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
    "vars": {},
    "id": "ART-map-inkkit-full",
    "title": "大地图 · 水墨贴图集补齐变体（AR-69：小样画法通过，城镇与标记照小景画法；山峰、山脉各 6–8，雪山另出，丘陵 / 湖泊 / 海面 / 平原底纹各 4–6，聚落每级 3–4，标记每种 2–3，关隘 3；透明底；manifest 加 kit 机读字段；过程文件不进 assets/）",
