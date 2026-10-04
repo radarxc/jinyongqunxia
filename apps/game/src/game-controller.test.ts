@@ -3,6 +3,7 @@ import { shallowRef } from 'vue';
 import { describe, expect, it, vi } from 'vitest';
 import type { TianshuStorage } from '@tianshu/platform';
 import { useUiStore } from '@tianshu/ui/runtime';
+import { createBattleController } from './battle/controller';
 import type { GameHost, GameUpdate } from './runtime/contracts';
 import { createGameController } from './game-controller';
 import { defaultGameSettings } from './settings';
@@ -11,6 +12,30 @@ function failingHost(): GameHost {
   return { mode: 'main-thread', dispatch: vi.fn().mockRejectedValue(new TypeError('INT_OVERFLOW')),
     query: vi.fn(), snapshot: vi.fn(), validate: vi.fn(), restore: vi.fn(),
     subscribe: () => () => undefined, dispose: vi.fn() } as unknown as GameHost;
+}
+
+function trackedHost() {
+  let disposed = false;
+  const listeners = new Set<(update: GameUpdate) => void>();
+  const subscribe = vi.fn((listener: (update: GameUpdate) => void) => {
+    if (disposed) throw new Error('HOST_DISPOSED');
+    listeners.add(listener);
+    return () => { listeners.delete(listener); };
+  });
+  const host = { ...failingHost(), subscribe, dispose: vi.fn(() => {
+    disposed = true;
+    listeners.clear();
+  })
+  } as unknown as GameHost;
+  return { host, subscribe, publish(update: GameUpdate) {
+    for (const listener of listeners) listener(update);
+  } };
+}
+
+function deferred<T>() {
+  let resolve!: (value: T) => void;
+  const promise = new Promise<T>((done) => { resolve = done; });
+  return { promise, resolve };
 }
 
 describe('game controller engine failure boundary', () => {
@@ -28,6 +53,76 @@ describe('game controller engine failure boundary', () => {
       expect(host.dispatch).toHaveBeenCalledTimes(1);
       expect(host.dispose).not.toHaveBeenCalled();
     } finally { logged.mockRestore(); controller.dispose(); }
+  });
+});
+
+describe('game controller battle loading lifecycle', () => {
+  it('discards a late load and lets the replacement host create the battle controller', async () => {
+    const create = vi.fn((host: GameHost) => createBattleController(host, {
+      request: () => 1, cancel: vi.fn(),
+    }));
+    const module = {
+      createBattleController: create,
+    };
+    const held = deferred<typeof module>();
+    const unhandled: unknown[] = [];
+    const onUnhandled = (error: unknown) => { unhandled.push(error); };
+    process.on('unhandledRejection', onUnhandled);
+    try {
+      const oldHost = trackedHost();
+      const loadBattleController = vi.fn(() => held.promise);
+      const oldController = createGameController(oldHost.host, useUiStore(createPinia()), {
+        loadBattleController,
+      });
+      oldHost.publish({ accepted: true, changes: { battle: null }, events: [] });
+      await Promise.resolve();
+      expect(loadBattleController).toHaveBeenCalledOnce();
+      expect(oldHost.subscribe).toHaveBeenCalledOnce();
+
+      oldController.dispose();
+      const newHost = trackedHost();
+      const newController = createGameController(newHost.host, useUiStore(createPinia()), {
+        loadBattleController: async () => module,
+      });
+      held.resolve(module);
+
+      await new Promise<void>((resolve) => setImmediate(resolve));
+      await expect(oldController.ensureBattle()).resolves.toBeNull();
+      expect(oldHost.subscribe).toHaveBeenCalledOnce();
+      const replacementBattle = await newController.ensureBattle();
+      expect(replacementBattle).toBe(newController.battle.value);
+      expect(replacementBattle).not.toBeNull();
+      expect(create).toHaveBeenCalledOnce();
+      expect(create).toHaveBeenCalledWith(newHost.host);
+      expect(newHost.subscribe).toHaveBeenCalledTimes(2);
+      await new Promise<void>((resolve) => setImmediate(resolve));
+      expect(unhandled).toEqual([]);
+      newController.dispose();
+    } finally {
+      process.off('unhandledRejection', onUnhandled);
+    }
+  });
+
+  it('turns a loader failure into retryable UI state', async () => {
+    const host = trackedHost();
+    const module = {
+      createBattleController: (current: GameHost) => createBattleController(current, {
+        request: () => 1, cancel: vi.fn(),
+      }),
+    };
+    const loadBattleController = vi.fn(async () => module);
+    loadBattleController.mockRejectedValueOnce(new Error('chunk unavailable'));
+    const controller = createGameController(host.host, useUiStore(createPinia()), {
+      loadBattleController,
+    });
+
+    await expect(controller.ensureBattle()).resolves.toBeNull();
+    expect(controller.notice.value).toContain('重新进入战斗重试');
+    expect(host.subscribe).toHaveBeenCalledOnce();
+    expect(await controller.ensureBattle()).not.toBeNull();
+    expect(loadBattleController).toHaveBeenCalledTimes(2);
+    expect(host.subscribe).toHaveBeenCalledTimes(2);
+    controller.dispose();
   });
 });
 
