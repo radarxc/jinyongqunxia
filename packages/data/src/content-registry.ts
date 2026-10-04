@@ -2,29 +2,32 @@ import { parseAllDocuments, visit } from 'yaml';
 import type { ZodType } from 'zod';
 import {
   AcupointDefSchema, ChapterDefSchema, CharacterTemplateSchema, EventDefSchema,
+  EncounterDefSchema,
   ItemDefSchema, MartialArtDefSchema, MeridianDefSchema, NpcDefSchema, ShopDefSchema,
   MoveDefSchema, QuestDefSchema, StoryLineSchema, TownRuntimeSchema, WorldMapRegistrationSchema,
   type AcupointDef, type ChapterDef, type CharacterTemplate,
+  type EncounterDef,
   type EventDef, type ItemDef, type MartialArtDef, type MeridianDef, type NpcDef,
   type MoveDef, type QuestDef, type ShopDef, type StoryLine, type TownRuntimeDefinition,
 } from './schemas';
 
 export type ContentKind = 'npc' | 'characterTemplate' | 'martialArt' | 'move' | 'quest' |
   'meridian' | 'acupoint' | 'item' | 'shop' | 'story' | 'event' | 'bookWorld' | 'town';
+export type RegisteredContentKind = ContentKind | 'encounter';
 export interface ContentFile { readonly path: string; readonly text: string; }
 export interface ContentEntry { readonly path: string; readonly kind: ContentKind; readonly value: unknown; }
 
-const SCHEMAS: Readonly<Record<ContentKind, ZodType>> = {
+const SCHEMAS: Readonly<Record<RegisteredContentKind, ZodType>> = {
   npc: NpcDefSchema, characterTemplate: CharacterTemplateSchema, martialArt: MartialArtDefSchema,
-  move: MoveDefSchema, quest: QuestDefSchema,
+  move: MoveDefSchema, quest: QuestDefSchema, encounter: EncounterDefSchema,
   meridian: MeridianDefSchema, acupoint: AcupointDefSchema, item: ItemDefSchema, shop: ShopDefSchema,
   story: StoryLineSchema, event: EventDefSchema, bookWorld: ChapterDefSchema, town: TownRuntimeSchema,
 };
-const KIND_ORDER: readonly ContentKind[] = [
-  'npc', 'characterTemplate', 'martialArt', 'move', 'quest', 'meridian', 'acupoint', 'item',
+const KIND_ORDER: readonly RegisteredContentKind[] = [
+  'npc', 'characterTemplate', 'martialArt', 'move', 'encounter', 'quest', 'meridian', 'acupoint', 'item',
   'shop', 'story', 'event', 'bookWorld', 'town',
 ];
-function schemaFor(kind: ContentKind, value: unknown): ZodType {
+function schemaFor(kind: RegisteredContentKind, value: unknown): ZodType {
   if (kind === 'event' && typeof value === 'object' && value !== null &&
       (value as Record<string, unknown>)['event'] === 'world/mapRegistered')
     return WorldMapRegistrationSchema;
@@ -55,13 +58,14 @@ function assertJsonValue(value: unknown, path: string): void {
   for (const entry of Object.values(value)) assertJsonValue(entry, path);
 }
 
-export function identifyContentKind(value: unknown, path: string): ContentKind {
+export function identifyContentKind(value: unknown, path: string): RegisteredContentKind {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) throw new TypeError(`CONTENT_ROOT:${path}`);
   const version = (value as Record<string, unknown>)['schemaVersion'];
-  const kinds: Readonly<Record<string, ContentKind>> = {
+  const kinds: Readonly<Record<string, RegisteredContentKind>> = {
     'npc.v1': 'npc', 'character-template.v1': 'characterTemplate',
     'martial-art.v1': 'martialArt', 'meridian.v1': 'meridian', 'acupoint.v2': 'acupoint',
     'move.v1': 'move', 'quest.v1': 'quest',
+    'encounter.v1': 'encounter',
     'item.v1': 'item', 'shop.v1': 'shop', 'story.v1': 'story', 'event.v1': 'event',
     'book-world.v1': 'bookWorld', 'town-runtime.v1': 'town',
   };
@@ -73,7 +77,7 @@ export function identifyContentKind(value: unknown, path: string): ContentKind {
 export function parseContentFile(file: ContentFile): ContentEntry {
   const value = parseYamlFile(file);
   const kind = identifyContentKind(value, file.path);
-  return { path: file.path, kind, value: schemaFor(kind, value).parse(value) };
+  return { path: file.path, kind: kind as ContentKind, value: schemaFor(kind, value).parse(value) };
 }
 
 export function serializeContentEntry(entry: ContentEntry): string {
@@ -81,12 +85,12 @@ export function serializeContentEntry(entry: ContentEntry): string {
   return JSON.stringify(reparsed);
 }
 
-export function parseSerializedContent(kind: ContentKind, text: string, path = '<serialized>'): ContentEntry {
+export function parseSerializedContent(kind: RegisteredContentKind, text: string, path = '<serialized>'): ContentEntry {
   const value: unknown = JSON.parse(text);
-  return { path, kind, value: schemaFor(kind, value).parse(value) };
+  return { path, kind: kind as ContentKind, value: schemaFor(kind, value).parse(value) };
 }
 
-export function contentKindOrder(kind: ContentKind): number {
+export function contentKindOrder(kind: RegisteredContentKind): number {
   return KIND_ORDER.indexOf(kind);
 }
 
@@ -94,6 +98,7 @@ export interface ContentValues {
   readonly npcs: readonly NpcDef[]; readonly characterTemplates: readonly CharacterTemplate[];
   readonly martialArts: readonly MartialArtDef[]; readonly meridians: readonly MeridianDef[];
   readonly moves: readonly MoveDef[]; readonly quests: readonly QuestDef[];
+  readonly encounters: readonly EncounterDef[];
   readonly acupoints: readonly AcupointDef[]; readonly items: readonly ItemDef[];
   readonly shops: readonly ShopDef[]; readonly stories: readonly StoryLine[];
   readonly events: readonly EventDef[]; readonly bookWorlds: readonly ChapterDef[];

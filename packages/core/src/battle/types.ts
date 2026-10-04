@@ -1,5 +1,5 @@
 import type { BuffInstance } from '../buff';
-import type { ItemDef } from '@tianshu/data/schemas';
+import type { EncounterBeat, ItemDef } from '@tianshu/data/schemas';
 import type { AppliedItemEffect } from '../economy';
 import type { Inventory } from '../state';
 import type { ForeignQiInstance, AcupointOccupancy, HitZone } from './damage';
@@ -52,7 +52,10 @@ export type BattleCondition =
   | { readonly kind: 'allHostileDown'; readonly side: SideId }
   | { readonly kind: 'unitDown'; readonly unitRef: string }
   | { readonly kind: 'surviveRounds'; readonly rounds: number }
-  | { readonly kind: 'actionLimit'; readonly actions: number };
+  | { readonly kind: 'actionLimit'; readonly actions: number }
+  | { readonly kind: 'hitCount'; readonly actorSide: SideId; readonly targetSide: SideId;
+      readonly hits: number; readonly actions?: never };
+export type BattleScriptBeat = EncounterBeat;
 export interface BattleSetup {
   readonly schema: 'battle-setup.v1'; readonly encounterId: `enc_${string}`;
   readonly setupId: string; readonly seed: number; readonly sourceSnapshotHash: string;
@@ -66,11 +69,15 @@ export interface BattleSetup {
     readonly initialByUnit: readonly BattleInitialUnit[];
     readonly initialEffects: readonly BattleInitialEffect[] };
   readonly end: { readonly winCond: readonly BattleCondition[]; readonly loseCond: readonly BattleCondition[];
-    readonly drawCond: readonly BattleCondition[]; readonly onDefeat: 'retry' | `branch:${string}` | 'continue' };
+    readonly drawCond: readonly BattleCondition[]; readonly onDefeat: 'retry' | `branch:${string}` | 'continue';
+    readonly concede?: 'forbidden' | 'lose' | 'advance' };
   readonly rules: { readonly mode: 'normal' | 'spar' | 'deathmatch' | 'guard';
     readonly noAuto: boolean; readonly noRetreat: boolean; readonly noItems: boolean;
     readonly mercyAllowed: boolean; readonly lethalIntent: boolean; readonly roundLimit: number;
-    readonly friendlyFire: boolean; readonly boss: boolean };
+    readonly friendlyFire: boolean; readonly boss: boolean; readonly retryAllowed?: boolean;
+    readonly skippable?: boolean };
+  readonly scriptBeats?: readonly BattleScriptBeat[];
+  readonly scriptContext?: { readonly lossStreak: number };
   readonly waves: readonly string[]; readonly returnContext: { readonly sceneRef: string;
     readonly anchorRef: string; readonly recovery: 'preserve' | 'sparRestore' | 'checkpoint';
     readonly storyBranchRef?: string };
@@ -123,6 +130,8 @@ export interface BattleUnit {
   itemEffects: AppliedItemEffect[];
   itemState: { uses: number; readonly maxUses: number; battleUses: Record<string, number>;
     lastBattleUseTurns: Record<string, number> };
+  hitProgress?: Readonly<Partial<Record<SideId, number>>>; hitProgressThroughAction?: number;
+  triggeredScriptBeats?: readonly string[];
 }
 export interface BattleEvent { readonly t: string; readonly actionNo: number; readonly actor?: string;
   readonly target?: string; readonly amount?: number; readonly shieldSpent?: number;

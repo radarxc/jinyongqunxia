@@ -7,6 +7,7 @@ export * from './meridian-flow';
 export * from './reaction';
 export * from './rewards';
 export * from './session';
+export * from './script';
 export * from './rewards/settlement';
 export { battleHandler } from '../command/battle-handler';
 export * from './timeline';
