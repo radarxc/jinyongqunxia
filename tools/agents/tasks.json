@@ -48053,6 +48053,59 @@
   },
   {
    "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/event/event-executor.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import subprocess,sys,re; o=subprocess.run(['node','tools/perf/check_size.mjs'],capture_output=True,text=True); m=re.search(r'session total\\s+([0-9.]+)',o.stdout+o.stderr); v=float(m.group(1)) if m else None; print('session total',v); sys.exit(0 if v is not None and v<92 else 1)"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-dialogue-runtime-lazy",
+   "title": "游戏工程 · 小修：对话 / Ink 意图执行移出首次会话静态闭包，改走对话懒加载块（AR-64 第 1 条；ink-intents 后 event-executor 块 4.38 → 20.96 kB，会话 96.02）；首次会话回到 92 KiB 以下",
+   "prompt": "ENG-dialogue-runtime-lazy.md",
+   "deps": [
+    "ENG-ink-intents"
+   ],
+   "writes": [
+    "packages/core/src/**",
+    "apps/game/src/**",
+    "packages/data/src/**"
+   ]
+  },
+  {
+   "phase": "PROD",
    "wave": 17,
    "kind": "draft",
    "review": false,
