@@ -135,7 +135,7 @@
   visibility: private
   created: '2026-10-03T12:29:00+08:00'
   status: candidate
-  notes: 预设动作 idle（retarget op e0dd157a-4dd3-42d7-8c17-2fe351646f90），含网格+骨架+1 条动画；原地（Animation stay in Place 开）。
+  notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 idle（retarget op e0dd157a-4dd3-42d7-8c17-2fe351646f90），含网格+骨架+1 条动画；原地（Animation stay in Place 开）。
 - id: npc_zhujue__ch00_f__anim_walk
   file: anim_walk.glb
   category: model3d
@@ -205,7 +205,7 @@
   visibility: private
   created: '2026-10-03T12:29:00+08:00'
   status: candidate
-  notes: 预设动作 walk（retarget op d935df2c-5be9-4259-88da-65253e816db2），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
+  notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 walk（retarget op d935df2c-5be9-4259-88da-65253e816db2），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
 - id: npc_zhujue__ch00_f__anim_run
   file: anim_run.glb
   category: model3d
@@ -275,7 +275,81 @@
   visibility: private
   created: '2026-10-03T12:29:00+08:00'
   status: candidate
-  notes: 预设动作 run（retarget op 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
+  notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 run（retarget op 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
+- id: npc_zhujue__ch00_f__anim_idle_walk_run
+  file: anim_idle_walk_run.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 普通魅力（越女剑 ch00 基线服饰）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 39a2305f-b0f2-442a-8218-8882e4e0c830
+    url: https://studio.tripo3d.ai/workspace/generate/39a2305f-b0f2-442a-8218-8882e4e0c830
+    generate_op: a20e927e-60f0-43cb-8b3d-42fbc03f5828（image_to_model）
+    rig_op: 631ed57d-c4b0-49a6-902d-8accb9829a28
+    animation_ops:
+      idle: e0dd157a-4dd3-42d7-8c17-2fe351646f90
+      walk: d935df2c-5be9-4259-88da-65253e816db2
+      run: 461e3bf0-fa39-4da8-91f5-9d013f9a6d6e
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
+    use: 单图生成输入（正面立绘原图；无三视图）
+  visibility: private
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（正面立绘）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - run
+      - walk
+      - idle
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  sha256: f6be7ef3f4f2f0991ec3c1f43541cb54da08ea30ec4fee5c2355a42792514bff
+  size_bytes: 6799224
+  joints: 65
+  triangles: 96389
+  vertices: 56080
+  animations:
+  - run (1.25s)
+  - walk (2.333s)
+  - idle (15.333s)
+  textures:
+  - image/jpeg 454054 B
+  - image/jpeg 1785194 B
+  - image/jpeg 562644 B
+  preview: preview.png
+  created: '2026-10-03T19:15:00+08:00'
+  status: candidate
+  notes: 正式使用的动作文件：一个 GLB 内含 run / walk / idle 三段动画（同一套网格 + 65 关节骨架），原地（Animation stay in Place 开）。协调者 2026-10-03 口径：动作统一单文件；同目录 anim_idle.glb / anim_walk.glb / anim_run.glb 三个分文件仅作备份。
 - id: npc_zhujue__ch00_f__preview
   file: preview.png
   category: model3d
