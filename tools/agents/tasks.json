@@ -32359,6 +32359,9 @@
       "tools/lint/check_ids.py",
       "--strict"
      ]
+    ],
+    "shrink_exempt": [
+     "apps/game/src/battle/demo.ts"
     ]
    },
    "id": "ENG-26-encounter-builder",
@@ -48177,13 +48180,74 @@
    "kind": "draft",
    "review": false,
    "vars": {},
+   "id": "ART-map-inkkit-full",
+   "title": "大地图 · 水墨贴图集补齐变体（AR-69：小样画法通过，城镇与标记照小景画法；山峰、山脉各 6–8，雪山另出，丘陵 / 湖泊 / 海面 / 平原底纹各 4–6，聚落每级 3–4，标记每种 2–3，关隘 3；透明底；manifest 加 kit 机读字段；过程文件不进 assets/）",
+   "prompt": "ART-map-inkkit-full.md",
+   "deps": [
+    "ART-map-inkkit"
+   ],
+   "web": false,
+   "writes": [
+    "assets/default/map/kit/**",
+    "tools/map/kit/full/**"
+   ],
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/private/tmp\",\"/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_asset_logs\"]"
+   ],
+   "sparse_include": [
+    "assets/default/baseline/map",
+    "assets/default/map/kit"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/map/kit/manifest.yaml",
+     "assets/default/map/kit/_contact_sheet.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/agents/check_assets.py",
+      "assets/default/map/kit",
+      "--min",
+      "64",
+      "--max",
+      "120",
+      "--min-side",
+      "512"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import glob,sys; from PIL import Image; fs=[f for f in sorted(glob.glob('assets/default/map/kit/*.png')) if not f.endswith('_contact_sheet.png')]; bad=[f for f in fs if (lambda im: im.mode!='RGBA' or max(im.getchannel('A').crop(b).getextrema()[1] for b in ((0,0,8,8),(im.width-8,0,im.width,8),(0,im.height-8,8,im.height),(im.width-8,im.height-8,im.width,im.height)))>0)(Image.open(f))]; print('pngs',len(fs),'bad',bad); sys.exit(1 if bad or not fs else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import sys,yaml,collections; m=yaml.safe_load(open('assets/default/map/kit/manifest.yaml',encoding='utf-8')); es=[e for e in (m if isinstance(m,list) else m.get('assets',[])) if e.get('role')!='contact_sheet']; tok=lambda i: i.split('_')[3] if i.startswith('ico_') else i.split('_')[2]; k=collections.Counter(tok(e['id']) for e in es); k['pingyuan+pendi']=k['pingyuan']+k['pendi']; need={'shanfeng':6,'shanmai':6,'xueshan':4,'qiuling':4,'hupo':4,'haimian':4,'pingyuan+pendi':4,'dacheng':3,'zhoufu':3,'xianzhen':3,'cunluo':3,'simiao':2,'daoguan':2,'menpai':2,'yizhan':2,'matou':2,'yiji':2,'guanai':3}; short={n:(k[n],v) for n,v in need.items() if k[n]<v}; nokit=[e['id'] for e in es if not isinstance(e.get('kit'),dict) or any(f not in e['kit'] for f in ('kind','volume','orient','anchor')) or e['kit'].get('kind')!=tok(e['id'])]; shas=[e.get('sha256') for e in es]; dup=len(shas)-len(set(shas)); print('count',dict(k),'short',short,'nokit',nokit[:10],'dupsha',dup); sys.exit(1 if short or nokit or dup else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import sys,yaml; from pathlib import Path; d=Path('assets/default/map/kit'); m=yaml.safe_load(open(d/'manifest.yaml',encoding='utf-8')); reg={e['file'] for e in (m if isinstance(m,list) else m.get('assets',[]))}; legacy={'build_review.py','check_assets.log','check_assets_explicit_max.log','generation.jsonl','prompts.json','validation.jsonl'}; bad=[str(p) for p in d.rglob('*') if p.is_file() and not (p.parent==d and (p.name in reg or p.name in ('manifest.yaml','README.md') or p.name in legacy))]; print('extra',len(bad),bad[:10]); sys.exit(1 if bad else 0)"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 19,
+   "kind": "draft",
+   "review": false,
+   "vars": {},
    "id": "TOOL-map-compose",
    "title": "大地图 · 拼合生成器：按地形图层与历史坐标摆水墨贴图（固定种子、密度与避让、design/19 §8 时代图层），输出地图与标记坐标 JSON；本轮先出样区（AR-68 第 4 步）",
    "prompt": "TOOL-map-compose.md",
    "deps": [
     "TOOL-map-terrain",
     "ART-map-inkkit",
-    "CONTENT-map-poi"
+    "CONTENT-map-poi",
+    "ART-map-inkkit-full"
    ],
    "web": false,
    "writes": [
@@ -48218,6 +48282,11 @@
       "tools/map/compose/compose_map.py",
       "--sample",
       "--check"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import glob,sys; fs=sorted(glob.glob('assets/default/map/composed/sample/*_compare*.png')); print('compare',fs); sys.exit(0 if fs else 1)"
      ]
     ]
    }
@@ -48256,7 +48325,7 @@
       "--min",
       "20",
       "--max",
-      "60",
+      "120",
       "--min-side",
       "512"
      ],
