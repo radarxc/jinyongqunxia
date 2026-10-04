@@ -48287,6 +48287,184 @@
     "assets/default/vfx",
     "assets/default/map/kit"
    ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 15,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/sw/sw.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/platform",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ],
+     [
+      "node",
+      "apps/game/scripts/check-offline.mjs"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-23b-offline-reland",
+   "title": "游戏工程 · ENG-23a 重新合入（撤回 ffd8e505 后重新应用 9262b0a1）并修进入闭包：只算进入该章所需文件，60 MiB 门不放宽、ch00 也在门内；全量素材下校验（full_checkout）",
+   "prompt": "ENG-23b-offline-reland.md",
+   "deps": [],
+   "writes": [
+    "apps/game/vite.config.ts",
+    "apps/game/build/**",
+    "apps/game/src/sw/**",
+    "apps/game/src/pwa/**",
+    "apps/game/src/pwa.ts",
+    "apps/game/src/main.ts",
+    "apps/game/src/App.vue",
+    "apps/game/scripts/**",
+    "apps/game/index.html",
+    "apps/game/package.json",
+    "apps/game/tsconfig*.json",
+    "pnpm-workspace.yaml",
+    "pnpm-lock.yaml",
+    "packages/platform/src/offline/**",
+    "packages/platform/src/pwa/**",
+    "packages/platform/package.json",
+    "packages/ui/src/components/TxUpdatePrompt*",
+    "packages/ui/src/components/TxOfflineBadge*",
+    "packages/ui/src/components/TxDownloadPanel*",
+    "packages/ui/src/i18n.ts",
+    "tools/agents/reports/ENG-23a-pwa-offline.md"
+   ],
+   "full_checkout": true
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/quest/runtime-regression.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-quest-test-timeout",
+   "title": "游戏工程 · 小修：quest runtime-regression 功能用例加显式超时（照 content-plugin 先例；负载高时 5 秒误报）",
+   "prompt": "ENG-quest-test-timeout.md",
+   "deps": [],
+   "writes": [
+    "packages/core/src/quest/runtime-regression.test.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/bench/battle-session.performance.test.ts"
+    ],
+    "shrink_exempt": [
+     "packages/core/bench/combat.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-bench-perf-split-2",
+   "title": "游戏工程 · 小修：core/bench 剩余两条计时用例（事务总线 2000 步 ≤ 2000 ms、单次 ≤ 20 ms）挪到 check:perf（AR-64 / AR-33；断言不改）",
+   "prompt": "ENG-bench-perf-split-2.md",
+   "deps": [
+    "ENG-bench-perf-split"
+   ],
+   "writes": [
+    "packages/core/bench/**",
+    "package.json",
+    "vitest.config.ts",
+    "tools/perf/README.md",
+    "CLAUDE.md"
+   ]
   }
  ]
 }
