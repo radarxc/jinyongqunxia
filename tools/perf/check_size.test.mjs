@@ -15,7 +15,7 @@ async function fixture(options = {}) {
   await mkdir(join(root, 'apps/game/dist/.vite'), { recursive: true });
   await mkdir(join(root, 'apps/game/dist/assets'), { recursive: true });
   await mkdir(join(root, 'tools/perf'), { recursive: true });
-  const manifest = {
+  const manifest = options.manifest ?? {
     'src/main.ts': {
       file: 'assets/entry.js',
       isEntry: true,
@@ -66,7 +66,8 @@ async function fixture(options = {}) {
       chunks: {
         entry: options.entryBudget ?? 170,
         session: options.sessionBudget ?? 110,
-        render: 180,
+        render: options.renderBudget ?? 180,
+        'render-model3d': options.model3dBudget ?? 24,
         'render-webgpu': 300,
         basis: 255,
         devtools: 130,
@@ -91,6 +92,7 @@ describe('three-level size gate', () => {
     const result = run(root);
     expect(result.status, result.stdout + result.stderr).toBe(0);
     expect(result.stdout).toContain('标题页 entry 闭包（预算 170 KiB gzip）');
+    expect(result.stdout).toMatch(/render-model3d\s+—\s+24\s+not emitted/);
     expect(result.stdout).toContain('首次会话闭包（预算 110 KiB gzip）');
     expect(result.stdout).toMatch(
       /worker shell[\s\S]*session static[\s\S]*base content[\s\S]*session total/,
@@ -160,4 +162,78 @@ describe('three-level size gate', () => {
     expect(result.status, result.stdout + result.stderr).toBe(1);
     expect(result.stdout).toMatch(/entry\s+\d+\.\d+\s+0\.1\s+FAIL/);
   });
+
+  it.each([
+    ['render-aaa.js', 'render-host-zzz.js'],
+    ['render-zzz.js', 'render-host-aaa.js'],
+  ])('locates the manifest render chunk regardless of hash order (%s)', async (render, host) => {
+    const root = await fixture({
+      manifest: renderFixtureManifest(render, host),
+      renderBudget: 0.1,
+      files: {
+        [render.slice(0, -3)]: noisy(2_000),
+        [host.slice(0, -3)]: 'export{};',
+        rig: 'export{};',
+      },
+    });
+    const result = run(root);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stdout).toMatch(/render\s+\d+\.\d+\s+0\.1\s+FAIL/);
+  });
+
+  it('counts the render static closure after removing the entry closure', async () => {
+    const root = await fixture({
+      manifest: renderFixtureManifest('render.js', 'render-host.js'),
+      renderBudget: 0.1,
+      files: { render: 'export{};', 'render-host': 'export{};', rig: noisy(2_000) },
+    });
+    const result = run(root);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stdout).toMatch(/render\s+\d+\.\d+\s+0\.1\s+FAIL/);
+  });
+
+  it('fails when the battle 3D lazy chunk exceeds its budget', async () => {
+    const manifest = renderFixtureManifest('render.js', 'render-host.js');
+    manifest['_battle-model3d.js'] = {
+      file: 'assets/battle-model3d.js',
+      name: 'battle-model3d',
+      imports: ['_render.js'],
+    };
+    const root = await fixture({
+      manifest,
+      model3dBudget: 0.1,
+      files: {
+        render: 'export{};',
+        'render-host': 'export{};',
+        rig: 'export{};',
+        'battle-model3d': noisy(2_000),
+      },
+    });
+    const result = run(root);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stdout).toMatch(/render-model3d\s+\d+\.\d+\s+0\.1\s+FAIL/);
+  });
 });
+
+function noisy(lines) {
+  return Array.from({ length: lines }, (_, i) => `${i}-${Math.imul(i, 2_654_435_761)}`).join();
+}
+
+function renderFixtureManifest(renderFile, hostFile) {
+  return {
+    'src/main.ts': { file: 'assets/entry.js', isEntry: true, imports: ['_shell.js'] },
+    '_shell.js': { file: 'assets/shell.js' },
+    '_render-host.js': {
+      file: `assets/${hostFile}`,
+      name: 'render-host',
+      imports: ['src/main.ts'],
+      dynamicImports: ['_render.js'],
+    },
+    '_render.js': {
+      file: `assets/${renderFile}`,
+      name: 'engine',
+      imports: ['src/main.ts', '_rig.js'],
+    },
+    '_rig.js': { file: 'assets/rig.js', name: 'rig', imports: ['_render.js'] },
+  };
+}
