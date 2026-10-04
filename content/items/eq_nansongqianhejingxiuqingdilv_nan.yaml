@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_nansongqianhejingxiuqingdilv_nan
+name: 南宋浅褐精绣轻底履·男
+kind: armor
+sub: shoes
+grade: 9
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 南宋；出现书界 ch02/ch03；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；中国丝绸博物馆，南宋黄昇墓紫褐色罗印金彩绘花边单衣 https://www.chinasilkmuseum.com/gskt/info_319.aspx?itemid=31584；黄昇墓包袱随葬衣物仅作实物裁形依据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongqianhejingxiuqingdilv_nan
+text:
+  desc: 外观：南宋男款，浅墙圆头布履。 待运行时投影：defOutK=0.05; hpMaxK=0.01; qinggong=2.5xgUse; wearer=male。
+  lore: （原创扩展）据南宋男履语汇演成浅褐男式轻底履，浅墙圆头布面与薄而完整的麻底合为一双。精织双丝细绣缘落鞋面与包边，行前整好鞋口；具体裁形为原创，轻功按品阶，身法不重复加成。
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12
+      agi: 0
