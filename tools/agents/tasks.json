@@ -47611,6 +47611,54 @@
    ],
    "validate": {
     "exists": [
+     "apps/game/build/content-plugin.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "typecheck"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "test"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "id": "ENG-content-plugin-timeout",
+   "title": "游戏工程 · 小修：content-plugin「town integration」集成用例加显式超时 60 秒（断言功能不是速度；高负载下默认 5 秒超时误报）",
+   "prompt": "ENG-content-plugin-timeout.md",
+   "deps": [],
+   "writes": [
+    "apps/game/build/content-plugin.test.ts"
+   ]
+  },
+  {
+   "phase": "PROD",
+   "wave": 17,
+   "kind": "draft",
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "validate": {
+    "exists": [
      "packages/core/src/dialogue/index.ts"
     ],
     "cmd": [
