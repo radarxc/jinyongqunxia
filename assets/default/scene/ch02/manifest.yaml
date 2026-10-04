@@ -160,14 +160,15 @@
   source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_niujia_snow.q1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: fbf199dc9b6ec3503f6e3ae03533022f430770f6462fc300dc047fc5056d6fb9
+  sha256: 48821ebcc5aca20d761367827eaae8269949173cf80f42c42d6897dc65187424
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「牛家风雪」，实际字形「牛家风雪」逐字核验，原生题字，未叠加。；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：丘处机按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐：包惜弱（眉细淡、眼适中、下巴圆）、杨铁心（深眼窝细长眼）、丘处机（长脸细眉，须形保留）对齐各自基准；局部合成——三人头部方块分别交 codex 改，再依次对齐、羽化贴回原图，其余像素不变（编辑 k1/k2/k3））；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐（总审复核返修）：丘处机按基线改为长脸、颧骨高、眉平不压眼；头巾黑发与须形保留；局部合成，只改丘处机头部，其余像素不变）
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「牛家风雪」，实际字形「牛家风雪」逐字核验，原生题字，未叠加。；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：丘处机按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐：包惜弱（眉细淡、眼适中、下巴圆）、杨铁心（深眼窝细长眼）、丘处机（长脸细眉，须形保留）对齐各自基准；局部合成——三人头部方块分别交 codex 改，再依次对齐、羽化贴回原图，其余像素不变（编辑 k1/k2/k3））；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐（总审复核返修）：丘处机按基线改为长脸、颧骨高、眉平不压眼；头巾黑发与须形保留；局部合成，只改丘处机头部，其余像素不变）；题字風→风；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_niujia_snow.d007d1ae.png
     sha256: d007d1aef234b4fb8d0565392286084192ed18d36d68aeb62fbd5ed285eeb514
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_niujia_snow.d007d1ae.entry.yaml
   effort: ultra
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch02_niujia_snow_fixed.png", "before_sha256": "fbf199dc9b6ec3503f6e3ae03533022f430770f6462fc300dc047fc5056d6fb9", "allowed_box": [[1420, 190, 1520, 261]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch02_niujia_snow_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T00:55:02-07:00"}
 - id: cg_ch02_guorong_first_meet
   file: cg_ch02_guorong_first_meet.png
   category: scene
