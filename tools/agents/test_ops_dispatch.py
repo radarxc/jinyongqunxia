@@ -82,6 +82,59 @@ class DecisionsTest(unittest.TestCase):
         self.assertIsNone(red["numbers"]["entry"])
         self.assertIsNone(O.parse_prod("build interrupted")["rc"])
 
+    def test_stable_status_event_key_fields(self):
+        hold = O.Event("HOLD-RUNS", "ENG-a", state="HOLD-RUNS")
+        self.assertEqual(O.status_event_key(hold, "runs reached"),
+                         O.digest(["ENG-a", "HOLD-RUNS", "runs reached"]))
+        ready = ("[2026-10-04 01:20:00] cherry-pick 失败：could not apply\n"
+                 "CONFLICT (content): Merge conflict in b.ts\n"
+                 "CONFLICT (content): Merge conflict in a.ts\n")
+        self.assertEqual(O.ready_summary(ready), ["a.ts", "b.ts"])
+        self.assertEqual(O.ready_summary("[2026-10-04 01:20:00] could not apply ENG-a"),
+                         "could not apply ENG-a")
+
+    def test_ready_summary_uses_only_latest_failed_attempt(self):
+        conflicts = (
+            "[2026-10-04 01:20:00] merge rc=1: cherry-pick \u5931\u8d25\uff1acould not apply\n"
+            "CONFLICT (content): Merge conflict in a.ts\n"
+            "CONFLICT (content): Merge conflict in b.ts\n"
+            "[2026-10-04 01:21:00] merge rc=1: cherry-pick \u5931\u8d25\uff1acould not apply\n"
+            "CONFLICT (content): Merge conflict in b.ts\n")
+        self.assertEqual(O.ready_summary(conflicts), ["b.ts"])
+        dirty = conflicts + (
+            "[2026-10-04 01:22:00] merge rc=1: "
+            "\u4e3b\u68c0\u51fa\u6709\u672a\u63d0\u4ea4\u7684\u6539\u52a8\n")
+        self.assertEqual(O.ready_summary(dirty),
+                         "merge rc=1: \u4e3b\u68c0\u51fa\u6709\u672a\u63d0\u4ea4\u7684\u6539\u52a8")
+        first = O.ready_summary("[2026-10-04 01:23:00] finish rc=1: report missing")
+        second = O.ready_summary("[2026-10-04 01:24:00] finish rc=1: tests failed")
+        self.assertEqual(first, "finish rc=1: report missing")
+        self.assertEqual(second, "finish rc=1: tests failed")
+        self.assertNotEqual(first, second)
+
+    def test_ready_summary_handles_duplicate_logs_and_embedded_error(self):
+        log = (
+            "[2026-10-04 01:20:00] merge rc=1: cherry-pick \u5931\u8d25"
+            "\uff1aerror: could not apply abc\n"
+            "error: could not apply abc\n"
+            "CONFLICT (content): Merge conflict in a.ts\n"
+            "[2026-10-04 01:21:00] merge rc=1: cherry-pick \u5931\u8d25"
+            "\uff1aerror: could not apply def\n"
+            "error: could not apply def\n"
+            "CONFLICT (content): Merge conflict in b.ts\n")
+        self.assertEqual(O.ready_summary(log), ["b.ts"])
+
+    def test_ready_summary_uses_timestamp_across_log_order(self):
+        newer = "[2026-10-04 01:24:00] finish rc=1: tests failed\n"
+        older = "[2026-10-04 01:23:00] finish rc=1: report missing\n"
+        self.assertEqual(O.ready_summary(newer + older), "finish rc=1: tests failed")
+
+    def test_ready_summary_does_not_attach_conflict_after_newer_success(self):
+        text = ("[2026-10-04 01:20:00] merge rc=1: cherry-pick \u5931\u8d25\n"
+                "[2026-10-04 01:21:00] merge rc=0: merged\n"
+                "CONFLICT (content): Merge conflict in stale.ts\n")
+        self.assertEqual(O.ready_summary(text), "merge rc=1: cherry-pick \u5931\u8d25")
+
     def test_do_not_touch_art_lines_even_with_low_disk(self):
         for prefix in O.PROTECTED:
             for kind in ("ready", "validate", "stall", "merge"):
@@ -145,6 +198,129 @@ class CollectorTest(unittest.TestCase):
         merges = [e for e in self.driver.state["pending"].values() if e["kind"] == "merge"]
         self.assertEqual(len(merges), 1)
         self.assertEqual(merges[0]["task"], "ENG-new")
+
+    def write_status(self, state, detail, updated):
+        directory = self.driver.coord / "ENG-a"
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / "supervise.status.json").write_text(json.dumps(
+            {"state": state, "detail": detail, "updated": updated}))
+
+    def write_failure(self, text):
+        folder = self.root / ".agents/logs/ENG-a"
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / "last_failure.md").write_text(text)
+
+    def consume_pending(self):
+        keys = list(self.driver.state["pending"])
+        self.driver.state["seen"].extend(keys)
+        self.driver.state["pending"].clear()
+        return keys
+
+    def reload_driver(self):
+        self.driver.ops.mkdir(parents=True, exist_ok=True)
+        (self.driver.ops / "state.json").write_text(json.dumps(self.driver.state))
+        self.driver = O.Dispatcher(self.root, self.driver.config, dry=True)
+
+    def test_hold_validate_dedupe_ignores_head_and_updated(self):
+        self.write_failure("- 校验命令失败：same\n")
+        self.write_status("HOLD-VALIDATE", "same failure", "01:20")
+        self.driver.collect()
+        first = self.consume_pending()
+        self.reload_driver()
+        (self.root / "base.txt").write_text("head advanced\n")
+        git(self.root, "add", "base.txt")
+        git(self.root, "commit", "-qm", "advance")
+        self.write_status("HOLD-VALIDATE", "same failure", "01:21")
+        self.driver.collect()
+        self.assertEqual(first, list(self.driver.state["seen"]))
+        self.assertFalse(self.driver.state["pending"])
+
+    def test_hold_validate_changed_summary_reports_again(self):
+        self.write_failure("- 校验命令失败：first\n")
+        self.write_status("HOLD-VALIDATE", "same detail", "01:20")
+        self.driver.collect()
+        first = self.consume_pending()
+        self.write_failure("- 校验命令失败：second\n")
+        self.write_status("HOLD-VALIDATE", "same detail", "01:21")
+        self.driver.collect()
+        self.assertEqual(len(self.driver.state["pending"]), 1)
+        self.assertNotIn(next(iter(self.driver.state["pending"])), first)
+
+    def test_hold_validate_reports_after_state_leaves_and_returns(self):
+        self.write_failure("- 校验命令失败：same\n")
+        self.write_status("HOLD-VALIDATE", "same failure", "01:20")
+        self.driver.collect()
+        first = self.consume_pending()
+        self.write_status("RUNNING", "validating", "01:21")
+        self.driver.collect()
+        self.write_status("HOLD-VALIDATE", "same failure", "01:22")
+        self.driver.collect()
+        self.assertEqual(list(self.driver.state["pending"]), first)
+
+    def test_state_leave_cancels_unreported_status_event(self):
+        self.write_failure("- 校验命令失败：same\n")
+        self.write_status("HOLD-VALIDATE", "same failure", "01:20")
+        self.driver.collect()
+        self.assertTrue(self.driver.state["pending"])
+        self.write_status("RUNNING", "validating", "01:21")
+        self.driver.collect()
+        self.assertFalse(self.driver.state["pending"])
+
+    def test_changed_summary_replaces_unreported_status_event(self):
+        self.write_failure("- 校验命令失败：first\n")
+        self.write_status("HOLD-VALIDATE", "same detail", "01:20")
+        self.driver.collect()
+        first = list(self.driver.state["pending"])
+        self.write_failure("- 校验命令失败：second\n")
+        self.driver.collect()
+        self.assertEqual(len(self.driver.state["pending"]), 1)
+        self.assertNotEqual(list(self.driver.state["pending"]), first)
+
+    def test_same_summary_refreshes_pending_validate_text(self):
+        suffix = "x" * 1700 + "\n- \u6821\u9a8c\u547d\u4ee4\u5931\u8d25\uff1asame\n"
+        self.write_failure("old prefix\n" + suffix)
+        self.write_status("HOLD-VALIDATE", "same detail", "01:20")
+        self.driver.collect()
+        key = next(iter(self.driver.state["pending"]))
+        refreshed = "new prefix\n" + suffix + "\n"
+        self.write_failure(refreshed)
+        self.driver.collect()
+        self.assertEqual(list(self.driver.state["pending"]), [key])
+        self.assertEqual(self.driver.state["pending"][key]["text"], refreshed)
+        with patch.object(self.driver, "context", side_effect=lambda event: event), \
+                patch.object(self.driver, "note") as note:
+            self.driver.tick()
+        self.assertNotIn(key, self.driver.state["pending"])
+        self.assertEqual(self.driver.state["seen"].count(key), 1)
+        self.assertTrue(any(call.kwargs.get("inbox") for call in note.call_args_list))
+
+    def test_ready_changed_latest_failure_reports_again(self):
+        self.write_status("READY", "auto-merge 未成功，待手动处理", "01:20")
+        folder = self.driver.coord / "ENG-a"
+        history = ("[2026-10-04 01:20:00] merge rc=1: cherry-pick \u5931\u8d25\n"
+                   "CONFLICT (content): Merge conflict in a.ts\n"
+                   "CONFLICT (content): Merge conflict in b.ts\n")
+        (folder / "supervise.log").write_text(history)
+        self.driver.collect()
+        keys = self.consume_pending()
+
+        history += ("[2026-10-04 01:21:00] merge rc=1: cherry-pick \u5931\u8d25\n"
+                    "CONFLICT (content): Merge conflict in b.ts\n")
+        (folder / "supervise.log").write_text(history)
+        self.driver.collect()
+        keys += self.consume_pending()
+        history += "[2026-10-04 01:22:00] merge rc=1: \u4e3b\u68c0\u51fa\u6709\u672a\u63d0\u4ea4\u7684\u6539\u52a8\n"
+        (folder / "supervise.log").write_text(history)
+        self.driver.collect()
+        keys += self.consume_pending()
+
+        for stamp, reason in (("01:23:00", "report missing"), ("01:24:00", "tests failed")):
+            history += f"[2026-10-04 {stamp}] finish rc=1: {reason}\n"
+            (folder / "supervise.log").write_text(history)
+            self.driver.collect()
+            keys += self.consume_pending()
+        self.assertEqual(len(keys), 5)
+        self.assertEqual(len(set(keys)), 5)
 
     def test_stall_uses_old_attempt_mtime_when_current_is_already_resumed(self):
         folder = self.root / ".agents/logs/ENG-a"

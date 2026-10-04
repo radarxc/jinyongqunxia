@@ -252,6 +252,43 @@ def digest(value) -> str:
     return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:20]
 
 
+def failure_summary(text: str) -> str:
+    """取失败尾段，忽略末尾空白，供事件去重；原文仍保留给分类与报告。"""
+    return text.rstrip()[-1600:]
+
+
+def ready_summary(text: str) -> list[str] | str:
+    """READY 只用最新失败尝试的冲突集；无冲突则用其首行。"""
+    attempts = []
+    current = None
+    for order, raw in enumerate(text.splitlines()):
+        line = ANSI.sub("", raw).strip()
+        stamped = re.match(r"^\[(\d{4}-\d\d-\d\d \d\d:\d\d:\d\d)\]\s*", line)
+        stamp = stamped[1] if stamped else ""
+        clean = line[stamped.end():] if stamped else line
+        rc = re.search(r"\b(?:finish|merge) rc=(\d+)", clean)
+        if rc or stamped:
+            current = None
+        fallback = current is None and re.search(
+            r"主检出有未提交的改动|cherry-pick 失败|could not apply", clean)
+        if (rc and int(rc[1]) != 0) or (not rc and fallback):
+            current = {"stamp": stamp, "order": order, "first": clean, "files": set()}
+            attempts.append(current)
+        match = re.search(r"CONFLICT \([^)]*\): Merge conflict in (.+)$", clean)
+        if match and current is not None:
+            current["files"].add(match[1].strip())
+    if not attempts:
+        return "auto-merge 未成功"
+    stamped_attempts = [attempt for attempt in attempts if attempt["stamp"]]
+    latest = max(stamped_attempts, key=lambda attempt: (attempt["stamp"], attempt["order"])) \
+        if stamped_attempts else attempts[-1]
+    return sorted(latest["files"]) if latest["files"] else latest["first"]
+
+
+def status_event_key(event: Event, summary) -> str:
+    return digest([event.task, event.state, summary])
+
+
 def task_commit(root: Path, task: str) -> str | None:
     lines = git(root, "log", "--format=%H", "-1", "--extended-regexp", "--grep",
                 rf"^Agent-Task:[[:space:]]*{re.escape(task)}[[:space:]]*$").stdout.splitlines()
@@ -296,7 +333,8 @@ class Dispatcher:
         self.ops = self.coord / "_ops"
         self.state = read_json(self.ops / "state.json")
         self.offsets = read_json(self.ops / "offsets.json")
-        for name, default in (("seen", []), ("pending", {}), ("jobs", {}), ("stalls", [])):
+        for name, default in (("seen", []), ("pending", {}), ("jobs", {}), ("stalls", []),
+                              ("status_events", {})):
             self.state.setdefault(name, default)
         if "numbers" not in self.state:
             logs = sorted((self.coord / "_handoff").glob("prod_check_post-*.log"), key=lambda p: p.stat().st_mtime)
@@ -320,6 +358,25 @@ class Dispatcher:
         key = key or digest(asdict(event))
         if key not in self.state["seen"]:
             self.state["pending"].setdefault(key, asdict(event))
+
+    def enqueue_status(self, event: Event, summary):
+        """同一任务当前状态摘要只报一次；离开后清槽，回来即视为新一次。"""
+        key = status_event_key(event, summary)
+        previous = self.state["status_events"].get(event.task)
+        if previous == key:
+            if key in self.state["pending"]:
+                self.state["pending"][key] = asdict(event)
+            return
+        if previous:
+            self.state["pending"].pop(previous, None)
+        self.state["status_events"][event.task] = key
+        # seen 保留已报键；状态槽发生切换时允许同一个历史键重新入队。
+        self.state["pending"].setdefault(key, asdict(event))
+
+    def clear_status_event(self, task: str):
+        key = self.state["status_events"].pop(task, None)
+        if key:
+            self.state["pending"].pop(key, None)
 
     def collect(self):
         free = shutil.disk_usage(self.root).free / 2**30
@@ -361,16 +418,19 @@ class Dispatcher:
                 elif "等待器" in line and re.search("放弃|未干净|停在", line):
                     self.enqueue(Event("waiter-failed", tid, line))
             state = status.get("state", "")
-            key = digest([tid, status, self.config])
             if state == "READY" and "auto-merge 未成功" in status.get("detail", ""):
-                lines = (tail(path.parent / "supervise.log") + "\n" + tail(path.parent / "supervise.out")).splitlines()
+                raw = tail(path.parent / "supervise.log") + "\n" + tail(path.parent / "supervise.out")
+                lines = raw.splitlines()
                 text = "\n".join(sorted(lines, key=lambda line: line[:21] if line.startswith("[20") else ""))
-                self.enqueue(Event("ready", tid, text, state), key)
+                self.enqueue_status(Event("ready", tid, text, state), ready_summary(raw))
             elif state == "HOLD-VALIDATE":
                 text = tail(self.root / ".agents/logs" / tid / "last_failure.md")
-                self.enqueue(Event("validate", tid, text, state), digest([key, text, head]))
+                self.enqueue_status(Event("validate", tid, text, state), failure_summary(text))
             elif state.startswith("HOLD") or state == "ERROR":
-                self.enqueue(Event(state, tid, status.get("detail", ""), state), key)
+                detail = status.get("detail", "")
+                self.enqueue_status(Event(state, tid, detail, state), detail)
+            else:
+                self.clear_status_event(tid)
 
     def collect_stall(self, tid: str, line: str, current: dict):
         match = re.search(r"\[(\d{4}-\d\d-\d\d \d\d:\d\d:\d\d)\]", line)
