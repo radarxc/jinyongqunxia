@@ -75,13 +75,13 @@
     use: 对脸基线：作者审核通过的 por_npc_azhu__ch01_youth_alive_base（阿朱），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
   model: gpt-6.1-sol
-  created: '2026-10-04T03:59:14.427343-07:00'
+  created: '2026-10-04T04:14:06.038919-07:00'
   source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_44_r2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 2634e77535a401aac15835c2e74573361bbbea9fd0fd5a81b45fa5dde656785c
+  sha256: 4626fcc6b02ff5b467ed9365e9174f97c94610359ccb367a162cd00bb16e7aab
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「杏林惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留低头悲愤与眼神下视，不抬头、不微笑。；质检：已打开对照：萧峰基准眉眼鼻颌已对齐，保留杏林低垂视线及沉重神态；不笑，光线接缝自然；周围众人与题字蒙版外零变化；AR-82 原著核对返修：杏林插图同步萧峰肩伤及王语嫣银带
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「杏林惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留低头悲愤与眼神下视，不抬头、不微笑。；质检：已打开对照：萧峰基准眉眼鼻颌已对齐，保留杏林低垂视线及沉重神态；不笑，光线接缝自然；周围众人与题字蒙版外零变化；AR-82 原著核对返修：杏林插图同步萧峰肩伤及王语嫣银带；AR-82 原著核对返修：杏林插图同步萧峰肩伤及王语嫣银带
   previous_revision:
     png: .agents/coord/_lines/novel-fix-1/before/44_cg_ch01_xingzilin_reveal.png
     sha256: 1c348745fe0ed1d2f6a5a6c5b41f0d291f9ea3c4a718c7e34eb6832fd5b2ea79
