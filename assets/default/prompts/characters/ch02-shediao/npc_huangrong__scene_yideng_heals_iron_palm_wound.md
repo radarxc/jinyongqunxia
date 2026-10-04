@@ -106,3 +106,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_huangrong__ch02_youth_scene_yideng_heals_iron_palm_wound.prepared.json`。
+
+## 原著依据
+
+- 《射雕英雄传》第三十回 一灯大师：“一灯命黄蓉在中间一个蒲团上坐了”；https://www.xuges.com/wuxia/jinyong/sdyxz/213.htm
+- AR-82 返修约束（本节优先于历史提示词）：黄蓉疗伤必须坐在地面低矮蒲团上，双腿屈拢/盘坐在身前，裙摆横向铺在地面，不得保留椅子垂脚的高坐姿。去掉大木榻，身旁一张竹几；仅改变腰以下裙褶和坐姿以及榻所在环境，黄蓉头部位置、大小、头脸和上身衣服、双手位置全部原样。圆蒲团应水平贴地、在臀部下方，不能竖在背后像椅背。不要增加一灯或郭靖。
