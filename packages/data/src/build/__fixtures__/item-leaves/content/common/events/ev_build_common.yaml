@@ -4,5 +4,4 @@ chapterId: ch01_tianlong
 event: fixture/common
 once: true
 actions:
-  - map:
-      name: 公共夹具
+  - {op: ui/showText, text: 公共夹具}

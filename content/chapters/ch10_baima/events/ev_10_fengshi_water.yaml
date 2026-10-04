@@ -4,4 +4,4 @@ chapterId: ch10_baima
 event: world/examineColdEntryProp
 once: true
 condition: {sceneId: sc_10_fengshi_feiyi, anchorId: water_skin}
-actions: [{op: showText, textKey: ch10.coldEntry.interact.waterSkin}]
+actions: [{op: ui/showText, textKey: ch10.coldEntry.interact.waterSkin}]

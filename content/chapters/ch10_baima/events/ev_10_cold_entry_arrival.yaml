@@ -7,6 +7,6 @@ condition:
   sourceEvent: chapter/woke
   chapterId: ch10_baima
 actions:
-  - {op: startStory, storyId: story_ch10_cold_entry, knot: westward_journey, presentation: text_stills, skippable: true, durationSeconds: 54}
-  - {op: revealText, textKey: ch10.coldEntry.eraTitle}
-  - {op: loadScene, regionId: rg_xiyu_beijiang, sceneId: sc_10_fengshi_feiyi, spawnId: cold_open}
+  - {op: dialogue/start, storyId: story_ch10_cold_entry, knot: westward_journey, presentation: text_stills, skippable: true, durationSeconds: 54}
+  - {op: ui/revealText, textKey: ch10.coldEntry.eraTitle}
+  - {op: world/loadScene, regionId: rg_xiyu_beijiang, sceneId: sc_10_fengshi_feiyi, spawnId: cold_open}

@@ -6,7 +6,7 @@ import { createManifest, emitLeaves } from '@tianshu/data/build';
 import type { ContentSource } from '@tianshu/data';
 import type { JsonValue } from '@tianshu/shared';
 import { mapFromRegistration, type ChapterDef, type ItemDef, type MartialArtDef,
-  type IdRemap, type NpcDef, type TownRuntimeDefinition } from '@tianshu/data/schemas';
+  type EventDef, type IdRemap, type NpcDef, type TownRuntimeDefinition } from '@tianshu/data/schemas';
 import type { GameContent } from './content';
 
 function read<T>(path: string): T {
@@ -45,6 +45,11 @@ function fixtureChapter(chapter: string): ChapterDef {
       sceneId: chapter === 'ch10_baima' ? 'sc_10_fengshi_feiyi' : `sc_${token.slice(2)}_fixture`,
       spawnId: 'fixture' } };
 }
+function fixtureEvent(chapter: string): EventDef {
+  return { schemaVersion: 'event.v1', id: `ev_${chapter.slice(0, 4)}_fixture`, chapterId: chapter,
+    event: 'fixture/chapterLoaded', once: true,
+    actions: [{ op: 'ui/showText', textKey: `fixture.${chapter}.event` }] };
+}
 
 export async function fixtureItemPack(chapter = 'ch01_tianlong',
   idRemaps: readonly IdRemap[] = []): Promise<{
@@ -68,7 +73,9 @@ export async function fixtureItemPack(chapter = 'ch01_tianlong',
   { logicalName: 'common.text.zh-Hans.items.json', kind: 'text', load: 'resident',
     locale: 'zh-Hans', value: text },
   { logicalName: `${chapter.slice(0, 4)}.rules.base.json`, kind: 'rules', load: 'chapter',
-    value: [{ kind: 'bookWorld', id: chapter, value: fixtureChapter(chapter) }] }]);
+    value: [{ kind: 'bookWorld', id: chapter, value: fixtureChapter(chapter) },
+      { kind: 'event', id: fixtureEvent(chapter).id,
+        value: fixtureEvent(chapter) } as unknown as JsonValue] }]);
   const manifest = await createManifest(chapter, 'a'.repeat(64), leaves, idRemaps);
   const values = new Map<string, unknown>([[`${chapter}/manifest.json`, manifest],
     ...leaves.map((leaf): [string, unknown] => [`${chapter}/${leaf.logicalName}`, leaf.value])]);

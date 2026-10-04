@@ -1,5 +1,7 @@
 import { z } from 'zod';
-import { ChapterIdSchema, EventIdSchema, ItemIdSchema, JsonValueSchema, LocalKeySchema, NpcIdSchema } from './primitives';
+import { ChapterIdSchema, EventIdSchema, FlagIdSchema, ItemIdSchema, JsonValueSchema, LocalKeySchema, NpcIdSchema } from './primitives';
+import { EventActionSchema } from './event-actions';
+import { GateExprSchema, type GateExpr } from './region-map';
 import { TimeWindowSchema } from './story';
 
 export const ShopDefSchema = z.strictObject({
@@ -13,12 +15,26 @@ export const ShopDefSchema = z.strictObject({
   })),
 });
 
+export type EventGateExpr = GateExpr | { flag: z.output<typeof FlagIdSchema> } |
+  { all: EventGateExpr[] } | { any: EventGateExpr[] } | { not: EventGateExpr };
+export const EventGateExprSchema: z.ZodType<EventGateExpr> = z.lazy(() => z.union([
+  GateExprSchema,
+  z.strictObject({ flag: FlagIdSchema }),
+  z.strictObject({ all: z.array(EventGateExprSchema).min(1) }),
+  z.strictObject({ any: z.array(EventGateExprSchema).min(1) }),
+  z.strictObject({ not: EventGateExprSchema }),
+]));
+
 export const EventDefSchema = z.strictObject({
   schemaVersion: z.literal('event.v1'), id: EventIdSchema, chapterId: ChapterIdSchema,
   event: z.string().regex(new RegExp('^[a-z][a-zA-Z0-9]*(?:/[a-z][a-zA-Z0-9]*)+$')),
   once: z.boolean(), timeWindow: TimeWindowSchema.optional(),
-  condition: z.record(z.string(), JsonValueSchema).optional(),
-  actions: z.array(z.record(z.string(), JsonValueSchema)),
+  condition: z.strictObject({
+    sceneId: z.string().min(1).optional(), anchorId: z.string().min(1).optional(),
+    sourceEvent: z.string().regex(/^[a-z][a-zA-Z0-9]*(?:\/[a-z][a-zA-Z0-9]*)+$/).optional(),
+    chapterId: ChapterIdSchema.optional(), gate: EventGateExprSchema.optional(),
+  }).refine((value) => Object.keys(value).length > 0, 'condition cannot be empty').optional(),
+  actions: z.array(EventActionSchema).min(1),
 });
 
 const WorldItemSchema = z.strictObject({

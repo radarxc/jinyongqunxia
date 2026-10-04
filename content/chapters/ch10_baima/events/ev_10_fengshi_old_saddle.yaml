@@ -5,5 +5,5 @@ event: world/examineColdEntryProp
 once: true
 condition: {sceneId: sc_10_fengshi_feiyi, anchorId: old_saddle}
 actions:
-  - {op: showText, textKey: ch10.coldEntry.interact.oldSaddle}
-  - {op: observeOnly, startsQuest: false, givesItem: false}
+  - {op: ui/showText, textKey: ch10.coldEntry.interact.oldSaddle}
+  - {op: ui/observeOnly, startsQuest: false, givesItem: false}

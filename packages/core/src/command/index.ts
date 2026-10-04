@@ -1,4 +1,4 @@
-import type { ChapterDef, ItemDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import type { ChapterDef, EventDef, ItemDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { JsonValue } from '@tianshu/shared';
 import type { EquipmentRule } from '../economy';
 import type { PendingDomainEvent } from '../event';
@@ -72,6 +72,8 @@ export type RejectReason =
   | 'REGION_ANCHOR_CONSUMED' | 'REGION_INTERACTION_UNSUPPORTED'
   | 'REGION_LOOT_UNKNOWN' | 'REGION_LOOT_CAPACITY' | 'REGION_EXIT_PENDING'
   | 'REGION_INTERACTION_BUSY'
+  | 'REGION_EVENT_UNKNOWN' | 'REGION_EVENT_CHAPTER' | 'REGION_EVENT_CONDITION'
+  | 'REGION_EVENT_ACTION' | 'REGION_EVENT_REFERENCE' | 'REGION_EVENT_INVENTORY'
   | 'REGION_GATE_QINGGONG' | 'REGION_GATE_ITEM' | 'REGION_GATE_QUEST'
   | 'REGION_GATE_FLAG' | 'REGION_GATE_CAPABILITY' | 'REGION_GATE_LOCKED'
   | 'BATTLE_ALREADY_ACTIVE' | 'BATTLE_NOT_ACTIVE' | 'BATTLE_NOT_ENDED'
@@ -94,6 +96,7 @@ export interface CoreContent {
   readonly meditationEncounters?: readonly TownMeditationEncounter[];
   readonly inkStories?: readonly InkStoryContent[];
   readonly chapters?: readonly ChapterDef[]; readonly targetContentHash?: string;
+  readonly events?: readonly EventDef[];
   readonly region?: RegionRuntimeContent;
 }
 export type StatePath = readonly (string | number)[];

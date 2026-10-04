@@ -37,7 +37,7 @@
 #ts:dialogue/speaker speaker=narrator
 东边的木栅在风里轻响，路标上的旧布被吹得笔直。
 #ts:flag/set flagId=fl_10_cold_entry_talked value=true
-#ts:world/openEntrance entrance=ent_10_fengshi_east
+#ts:world/openEntrance entranceId=ent_10_fengshi_east
 #ts:save/autosave reason=ch10_cold_entry_complete
 -> title_card
 

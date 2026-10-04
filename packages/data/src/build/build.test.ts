@@ -6,6 +6,7 @@ import { compileInk, decodeInkTag } from './ink';
 import { emitLeaves, MAX_LEAF_BYTES, packSizeDiagnostics, splitLeaf } from './leaves';
 import { createManifest, manifestBytes } from './manifest';
 import { buildContent } from './pipeline';
+import { EventDefSchema } from '../schemas/world';
 import type { BuildLeaf } from './types';
 import type { JsonValue } from '@tianshu/shared';
 
@@ -215,11 +216,17 @@ describe('content build hashing and Ink', () => {
       'item.it_fixture_pearl.text.desc',
     ]);
     expect(chapter.manifest.contentHash).toBe(
-      'f8117e53e4dffeac4dff614caff4c1bd47f93e5b2fa3678be7ff4768ccbc3322',
+      'edd528005973a69e20a367902559ad22e26fb332c71af75345c25885cc250b79',
     );
     expect(chapter.manifest.textHashes['zh-Hans']).toBe(
-      '495e4b26265461024bdc52368b27884bd94c70ca4d089b4f3d97ac8f8874fe76',
+      '29f248a985287776d0bd96097fc071752173ae78d51bf5642a3fd743de2dc776',
     );
+    const ruleRows = chapter.leaves.filter((row) => row.kind === 'rules')
+      .flatMap((row) => row.value as JsonValue[])
+      .filter((row) => (row as Record<string, JsonValue>)['kind'] === 'event');
+    expect(ruleRows).toHaveLength(3);
+    for (const row of ruleRows)
+      expect(() => EventDefSchema.parse((row as Record<string, JsonValue>)['value'])).not.toThrow();
     expect(rebuilt.chapters[0]!.manifest).toEqual(chapter.manifest);
   });
 
@@ -287,7 +294,7 @@ describe('content build hashing and Ink', () => {
     ['party/takeItem item=it_tao count=1', 'party/takeItem item=it_tao count=many'],
     ['battle/start encounter=enc_00_zhulin', 'battle/start encounter=battle_00'],
     ['flag/set flagId=fl_00_ready value=true', 'flag/set flagId=fl_00_ready value=yes'],
-    ['world/openEntrance entrance=ent_00_east', 'world/openEntrance entrance=east'],
+    ['world/openEntrance entranceId=ent_00_east', 'world/openEntrance entranceId=east'],
     ['tutorial/mark tutorial=initial_battle state=completed', 'tutorial/mark tutorial=initial_battle state=done'],
     ['story/requestTransmission skill=sk_changshengjue source=aqing', 'story/requestTransmission skill=bad source=aqing'],
     ['ui/openAllocation mode=manual', 'ui/openAllocation mode=random'],

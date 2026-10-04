@@ -1,4 +1,4 @@
-import type { ChapterDef, ItemDef, MartialArtDef, NpcDef,
+import type { ChapterDef, EventDef, ItemDef, MartialArtDef, NpcDef,
   RegionMap, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { ContentIdRemap } from '@tianshu/data';
 import type { EquipmentRule, EventAnchor, NpcWorldState, TownMeditationEncounter,
@@ -14,6 +14,7 @@ export type GameItemDef = Omit<ItemDef, 'text'> & { readonly text?: ItemDef['tex
 export interface GameContent {
   readonly items: readonly GameItemDef[]; readonly contentHash?: string;
   readonly chapters?: readonly ChapterDef[]; readonly idRemaps?: readonly ContentIdRemap[];
+  readonly events?: readonly EventDef[];
   readonly npcs: readonly NpcDef[];
   readonly skills: readonly MartialArtDef[]; readonly topology: readonly MeridianTopology[];
   readonly factions: Readonly<Record<string, string>>;

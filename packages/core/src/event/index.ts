@@ -1,4 +1,13 @@
 import { compareCodePoints, type JsonValue } from '@tianshu/shared';
+import type { EventPresentationAction } from '@tianshu/data/schemas';
+export { executeEvent } from './event-executor';
+export type { EventPresentationAction };
+
+/** Presentation boundary consumed by the game UI; core never performs these steps. */
+export interface EventPresentedPayload {
+  readonly eventId: string;
+  readonly steps: readonly EventPresentationAction[];
+}
 
 /** Committed core facts share one causal envelope; localized text never enters it. */
 export interface CommittedDomainEvent<T extends string = string, P extends JsonValue = JsonValue> {

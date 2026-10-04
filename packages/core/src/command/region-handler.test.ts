@@ -7,7 +7,7 @@ import { Compiler } from 'inkjs/full';
 import { describe, expect, it } from 'vitest';
 import { createCoreFromState, createNewGameState, evaluateGate, previewRegionPath,
   projectRegionDynamic, projectRegionStatic, type Core, type CoreContent,
-  type RegionMap, type RegionObject, type RegionRuntimeContent } from '..';
+  type EventPresentedPayload, type RegionMap, type RegionObject, type RegionRuntimeContent } from '..';
 
 const identity = { name: '沈砚', gender: 'female', appearance: 'hero_f01',
   pronoun: '她', originId: 'origin_wenshiguan' };
@@ -43,7 +43,7 @@ function scene(id: string, cells: readonly { q: number; r: number; terrain?: num
 
 const SCENE_A_OBJECTS: readonly RegionObject[] = [
   spawn('bookfall', 0, 0, true),
-  { ...base('checkpoint', 1, 0), class: 'Trigger', eventId: 'fx_checkpoint',
+  { ...base('checkpoint', 1, 0), class: 'Trigger', eventId: 'ev_fixture_checkpoint',
     once: true, autosave: true, safe: true },
   { ...base('door_to_shanjing', 2, 0), class: 'Door', mode: 'door',
     pairId: 'door_to_zhulin', oneWay: false, targetRegionId: 'rg_fixture',
@@ -85,6 +85,10 @@ function content(maps: readonly RegionMap[] = [MAP_A, MAP_B]): CoreContent {
       storyId: 'story_region', entryKey: 'opening' }],
     loot: [{ lootRef: 'loot_supplies', items: [{ itemId: 'it_fixture', count: 1 }] }] };
   return { region, items: [{ id: 'it_fixture', kind: 'material', grade: 1, stack: 1 } as never],
+    events: [{ schemaVersion: 'event.v1', id: 'ev_fixture_checkpoint',
+      chapterId: 'ch00_yuenv', event: 'world/checkpoint', once: true,
+      condition: { sceneId: 'sc_00_zhulin', anchorId: 'checkpoint' },
+      actions: [{ op: 'flag/set', flagId: 'fl_fixture_checkpoint', value: true }] }],
     inkStories: [{ storyId: 'story_region', storyHash: 'a'.repeat(64), storyJson: storyJson() }] };
 }
 function runtime(supplied = content()): Core {
@@ -116,6 +120,181 @@ describe('region exploration command pipeline', () => {
       return hash(core);
     };
     expect(run()).toBe(run());
+  });
+
+  it('executes a referenced once event and presents only its UI steps', () => {
+    const supplied = { ...content(), events: [{ schemaVersion: 'event.v1', id: 'ev_fixture_checkpoint',
+      chapterId: 'ch00_yuenv', event: 'world/checkpoint', once: true,
+      condition: { sceneId: 'sc_00_zhulin', anchorId: 'checkpoint' }, actions: [
+        { op: 'flag/set', flagId: 'fl_fixture', value: true },
+        { op: 'party/giveItem', item: 'it_fixture', count: 1 },
+        { op: 'ui/showText', textKey: 'fixture.event.text' },
+      ] }] } as CoreContent;
+    const core = runtime(supplied);
+    core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    const result = core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } });
+    const presentation: EventPresentedPayload = { eventId: 'ev_fixture_checkpoint',
+      steps: [{ op: 'ui/showText', textKey: 'fixture.event.text' }] };
+    expect(result.ok && result.events.find((event) => event.t === 'world/eventPresented'))
+      .toMatchObject({ payload: presentation });
+    expect(core.snapshot().party.inventory.stacks).toEqual([{ itemId: 'it_fixture', count: 1 }]);
+    expect(core.snapshot().profile.replayRules?.switches).toMatchObject({
+      fl_fixture: true, ev_fixture_checkpoint: true,
+    });
+  });
+
+  it('persists EventDef once receipts across restore while a repeatable Trigger still fires', () => {
+    const repeatingMap = { ...MAP_A, chunks: MAP_A.chunks.map((chunk) => ({ ...chunk,
+      objects: chunk.objects.map((object) => object.id === 'checkpoint'
+        ? { ...object, once: false, autosave: false, safe: false } : object) })) };
+    const supplied = { ...content([repeatingMap, MAP_B]), events: [{ schemaVersion: 'event.v1',
+      id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint', once: true,
+      actions: [{ op: 'party/giveItem', item: 'it_fixture', count: 1 },
+        { op: 'ui/showText', textKey: 'fixture.event.once' }] }] } as CoreContent;
+    const first = runtime(supplied); first.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    const initial = first.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } });
+    expect(initial.ok && initial.events.map((event) => event.t)).toEqual([
+      'world/walked', 'world/triggered', 'world/eventPresented']);
+    const saved = JSON.parse(first.canonicalStateJson()) as ReturnType<Core['snapshot']>;
+    const restored = createCoreFromState(saved, supplied);
+    const repeated = restored.dispatch({ t: 'world/interact', anchorId: 'checkpoint' });
+    expect(repeated.ok && repeated.events.map((event) => event.t)).toEqual(['world/triggered']);
+    expect(restored.snapshot().party.inventory.stacks).toEqual([{ itemId: 'it_fixture', count: 1 }]);
+    expect(restored.snapshot().profile.replayRules?.switches['ev_fixture_checkpoint']).toBe(true);
+  });
+
+  it('produces one deterministic hash in 100 runs', () => {
+    const run = () => {
+      const core = runtime(); core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+        sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+      expect(core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } }).ok).toBe(true);
+      return hash(core);
+    };
+    expect(new Set(Array.from({ length: 100 }, run))).toHaveLength(1);
+  });
+
+  it('rejects a false condition and rolls the walk back completely', () => {
+    const supplied = { ...content(), events: [{ schemaVersion: 'event.v1',
+      id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint',
+      once: true, condition: { sceneId: 'sc_wrong' },
+      actions: [{ op: 'flag/set', flagId: 'fl_never', value: true }] }] } as CoreContent;
+    const core = runtime(supplied); core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' }); const before = hash(core);
+    expect(core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } }))
+      .toEqual({ ok: false, reason: 'REGION_EVENT_CONDITION' });
+    expect(hash(core)).toBe(before);
+  });
+
+  it('evaluates recursive EventDef gates from persistent flags and rolls back a denied gate', () => {
+    const supplied = { ...content(), events: [{ schemaVersion: 'event.v1',
+      id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint',
+      once: true, condition: { gate: { all: [
+        { flag: 'fl_required' }, { not: { flag: 'fl_blocked' } },
+      ] } }, actions: [{ op: 'flag/set', flagId: 'fl_gate_passed', value: true }] }] } as CoreContent;
+    const initial = createNewGameState({ masterSeed: 17, identity, difficulty: 'diff_xiake' });
+    const rules = initial.profile.replayRules!;
+    const allowed = createCoreFromState({ ...initial, profile: { ...initial.profile,
+      replayRules: { ...rules, switches: { ...rules.switches, fl_required: true } } } }, supplied);
+    allowed.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    expect(allowed.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } }).ok).toBe(true);
+    expect(allowed.snapshot().profile.replayRules?.switches['fl_gate_passed']).toBe(true);
+
+    const denied = runtime(supplied); denied.dispatch({ t: 'world/mountRegion',
+      regionId: 'rg_fixture', sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    const before = hash(denied);
+    expect(denied.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } }))
+      .toEqual({ ok: false, reason: 'REGION_EVENT_CONDITION' });
+    expect(hash(denied)).toBe(before);
+  });
+
+  it('rolls back earlier actions, movement, events, and receipt when a later action fails', () => {
+    const supplied = { ...content(), events: [{ schemaVersion: 'event.v1',
+      id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint',
+      once: true, actions: [
+        { op: 'flag/set', flagId: 'fl_rolled_back', value: true },
+        { op: 'party/takeItem', item: 'it_fixture', count: 1 },
+      ] }] } as CoreContent;
+    const core = runtime(supplied); core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' }); const before = hash(core);
+    expect(core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } }))
+      .toEqual({ ok: false, reason: 'REGION_EVENT_INVENTORY' });
+    expect(hash(core)).toBe(before);
+  });
+
+  it('classifies unknown item actions as reference failures without mutation', () => {
+    const supplied = { ...content(), events: [{ schemaVersion: 'event.v1',
+      id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint', once: true,
+      actions: [{ op: 'flag/set', flagId: 'fl_rolled_back', value: true },
+        { op: 'party/takeItem', item: 'it_missing', count: 1 }] }] } as CoreContent;
+    const core = runtime(supplied); core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' }); const before = hash(core);
+    expect(core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } }))
+      .toEqual({ ok: false, reason: 'REGION_EVENT_REFERENCE' });
+    expect(hash(core)).toBe(before);
+  });
+
+  it('restores active party resources, opens an entrance, and requests one autosave', () => {
+    const baseState = createNewGameState({ masterSeed: 17, identity, difficulty: 'diff_xiake' });
+    const hero = { characterId: 'player', status: 'active' as const,
+      innate: { con: 1, str: 1, bre: 1, agi: 1, wis: 1, wil: 1, luk: 1, cha: 1 },
+      skills: [], meridians: { schemaVersion: 2 as const, opened: [], meridianStats: {},
+        acupointStats: {}, targets: {}, turnCompleted: 0, lastAppliedMigration: 0 },
+      legacyHpCredit: 0, legacyMpCredit: 0,
+      stats: { hpMax: 30, mpMax: 20, strength: 1, speed: 1, tenacity: 1, coordination: 1 },
+      resources: { hp: 3, mp: 2 }, consumable: { stamina: 1, staminaMax: 10, ailments: [],
+        temporaryEffects: [], permanentBonuses: { stats: {}, hpMaxBp: 0, mpMaxBp: 0 },
+        meridianAids: [] },
+    };
+    const state = { ...baseState, profile: { ...baseState.profile, protagonist: hero } };
+    const baseContent = content();
+    const supplied = { ...baseContent, region: { ...baseContent.region!, gates: [
+      ...(baseContent.region?.gates ?? []),
+      { gateId: 'gate_opened_entrance', expression: { flag: 'ent_fixture' } },
+    ], maps: baseContent.region!.maps.map((map) => map.id !== 'sc_00_zhulin' ? map : { ...map,
+      chunks: map.chunks.map((chunk) => ({ ...chunk, objects: chunk.objects.map((object) =>
+        object.id === 'door_to_shanjing' ? { ...object, lockedBy: 'gate_opened_entrance' } : object) }))
+    }) }, events: [{ schemaVersion: 'event.v1',
+      id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint',
+      once: true, actions: [
+        { op: 'party/restore', mode: 'full_once' },
+        { op: 'world/openEntrance', entranceId: 'ent_fixture' },
+        { op: 'save/autosave', reason: 'event_complete' },
+      ] }] } as CoreContent;
+    const core = createCoreFromState(state, supplied); core.dispatch({ t: 'world/mountRegion',
+      regionId: 'rg_fixture', sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    const result = core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } });
+    expect(core.snapshot().profile.protagonist).toMatchObject({
+      resources: { hp: 30, mp: 20 }, consumable: { stamina: 10 } });
+    expect(core.snapshot().profile.replayRules?.switches['ent_fixture']).toBe(true);
+    expect(projectRegionDynamic(core.snapshot(), supplied.region!)?.doors
+      .find((door) => door.anchorId === 'door_to_shanjing')).toMatchObject({
+        open: true, locked: false, reason: null });
+    expect(result.ok && result.events.map((event) => event.t)).toEqual([
+      'world/walked', 'world/triggered', 'world/entranceOpened', 'world/autosaveRequested',
+      'world/safeAnchorReached', 'world/autosaveRequested',
+    ]);
+  });
+
+  it('rejects infrastructure-only and unsupported state actions atomically', () => {
+    const base = content();
+    for (const [action, reason] of [
+      [{ op: 'rig/loadClipMap', payload: { schema: 'tianshu-clip-map.v1', clips: {} } },
+        'REGION_EVENT_ACTION'],
+      [{ op: 'quest/advance', quest: 'q_00_main_c_01', stage: 'st_next' },
+        'REGION_EVENT_ACTION'],
+    ] as const) {
+      const supplied = { ...base, events: [{ schemaVersion: 'event.v1',
+        id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint',
+        once: true, actions: [action] }] } as CoreContent;
+      const core = runtime(supplied); core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+        sceneId: 'sc_00_zhulin', spawnId: 'bookfall' }); const before = hash(core);
+      expect(core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } }))
+        .toEqual({ ok: false, reason });
+      expect(hash(core)).toBe(before);
+    }
   });
 
   it('rejects invalid mount, terrain, height, qinggong, and occupied paths without mutation', () => {
