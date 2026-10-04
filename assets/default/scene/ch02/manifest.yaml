@@ -255,11 +255,11 @@
   category: scene
   style: default
   subject: 华山论剑与英雄之问（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄药师的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄药师的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
 
     【画里谁是谁】按人物的服饰、性别、位置和动作判断。
 
-    【要对齐的部分】黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【要对齐的部分】黄药师各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
 
     【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「华山论剑」和小朱印必须原样保留，一笔不改、不增不减。
 
@@ -267,28 +267,28 @@
 
     【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
 
-    【本张另外要求】（作者 AR-53 总审返修）黄蓉的脸要像基线（作者选定的新版）：圆润饱满的鹅蛋脸、两颊有肉、下巴小巧圆润不尖，一双又大又亮的杏眼（不要细长眼、不要上挑的丹凤眼），眉毛细长柔和，小巧挺直的鼻子，嘴角带甜笑或按原图情绪，十九岁的少女感（成年），不要长脸、高颧骨和成熟感。郭靖和其他人的脸不要动。'
+    【本张另外要求】黄药师是远处岩台上的青袍清瘦者，脸在画面里很小：只需把他画成与基线是同一个人——黑发鬓角几缕银丝、斜飞上挑的浓眉、唇上髭须与颏下山羊须、冷傲神情；不要放大他、不要挪动他。郭靖、黄蓉、洪七公、欧阳锋一概不动。'
   negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
-    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
-    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch02/por_npc_huangyaoshi__ch02_elder_base.png
+    sha256: 510f72616833913c2000045c9b9eff31062064156d3afb2bbf0f3d21b6249263
+    use: 对脸基线：作者审核通过的 por_npc_huangyaoshi__ch02_elder_base（黄药师），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_huashan_discourse.png
-    sha256: 34bac69975a5148b1dd44d703b967f389c4eaad9875d2afeb7eb77ad8efc139c
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.34bac699.png
+    sha256: 7fbbc761f59caa65293d0fdb014277bf5b02f22628df843c3ce019afbde8f4e6
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_huashan_discourse.7fbbc761.png
   tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
   model: gpt-6-astra
-  created: 2026-10-03T17:20:52-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_huashan_discourse.s2.png
+  created: 2026-10-03T18:15:09-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch02_huashan_discourse.s1.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 7fbbc761f59caa65293d0fdb014277bf5b02f22628df843c3ce019afbde8f4e6
+  sha256: 3aa9c8c0d859e4f441ebe04d84e5c0c5e06c310fba8955cbc92ae7f5f420b0ef
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「华山论剑」，实际字形「华山论剑」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「华山论剑」，实际字形「华山论剑」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）；AR-44 对脸精修，基线 = por_npc_huangyaoshi__ch02_elder_base（AR-58：黄药师按作者 10-03 18:02 选定的新 base 对脸（中景小脸）；郭靖、黄蓉、洪七公、欧阳锋不动）
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.34bac699.png
-    sha256: 34bac69975a5148b1dd44d703b967f389c4eaad9875d2afeb7eb77ad8efc139c
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_huashan_discourse.34bac699.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_huashan_discourse.7fbbc761.png
+    sha256: 7fbbc761f59caa65293d0fdb014277bf5b02f22628df843c3ce019afbde8f4e6
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch02_huashan_discourse.7fbbc761.entry.yaml
   runner_job_records:
   - - cg_ch02_huashan_discourse.resume3r2
     - ok
