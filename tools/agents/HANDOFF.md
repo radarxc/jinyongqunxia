@@ -2339,3 +2339,27 @@
       - CONTENT-ch00b-maps：挪基点 0 冲突，按 r3 审核意见与 devsup_note_r3.md 返修，驱动 78856；
       - ENG-move-onhit-effects：依赖已齐，起跑，在 M1 之后排队。
     - 在审：ENG-ink-intents（00:45 校验过）。它的基点早于 gates-data，合入时可能再冲突，照同样办法处理。
+  - **10-04 00:42–01:06 协调者**：
+    - **AR-89**（725e33c4）：历史人物第一批的意见；江湖归去要拉远、要像一同回去；陈友谅和四位女主作者认可。
+      - 崇祯画像存在主检出 `imagegen-reference/historical/npc_chongzhen/author_portrait_1_20261004.png`。
+      - 作者写的「铁木真 - A」按忽必烈办，已告诉作者。
+    - **已交付**：
+      - hist-r2：崇祯 2fa094a5、皇太极 176e11ce、忽必烈 89821a44、索菲娅 8a3ff9d3。他们的场景立绘和插图等作者看过再对齐，清单在 `_lines/hist-r2/align_todo.tsv`。
+      - retire-regen：江湖归去改远景，8 人同船远去（9945d624）。
+      - xiangyang-gift：襄阳献礼整张重出（fabf657a）。
+      - 以上都已发作者。
+    - **索菲娅**：8a3ff9d3 和 B 几乎没变，没达到「瘦、美、少女」。已派 sofia-r3（w34）大幅重画，选定后直接入库。
+    - **小镜湖**：xiaojinghu-regen 6 轮后自己停了。我看 r4 已经可用（含笑、五官像 base，上唇略厚），已发作者问是否采用。
+      - 作者同意的话：等 canon-align 对完这张图里萧峰的头之后，再把 r4 入库，免得被它覆盖。
+      - r4 在 `_lines/xiaojinghu-regen/`。
+    - **hist-batch2**（w32）问到朱元璋的服饰。我的裁定：服饰照原著阶段，《倚天屠龙记》里他还是义军首领，不穿龙袍；只有这一阶段已在位的（康熙、乾隆）才穿龙袍。
+      - 做法：先杀掉它的 codex 进程，再用 `codex_session.py hist-batch2 - --resume --prompt "<裁定>"` 续作。这个办法能把协调者的判断送进正在跑的会话。
+      - 续作时漏传了 --add-dir，imagegen-reference 变成只读，它把新图源暂存在 `_prod/.agents/coord/imagegen-reference/historical/`。
+      - **收尾时**要把那些图源复制到主检出的 `.agents/coord/imagegen-reference/historical/`。
+      - codex_session.py 已改成续作时自动沿用首次启动的 add_dirs（存在 `_lines/<名>/add_dirs.json`）。
+    - **Tripo 子代理收尾**：
+      - 通用模型男 bef08e9b（7.66 头身）、女 3b6ab305（8.69 头身），共 170 点，余额 21365；
+      - 跑步跳位修复 15acc08d，主角 4 套 4dbaf660；
+      - TODO §3.6 补记 763e56cd；
+      - 交接在 `_prod/.agents/coord/ART-3d-tripo-web/progress.md`。
+    - **收件箱标记误判**：canon-align 的收件箱正文里提到「final-3c 已【停止】」，等它的会话可能误以为它结束了。已把那处改成〔停止〕，字节长度不变，监视读位置不受影响。今后说明里写成「该会话本人的【完成】/【停止】行」。
