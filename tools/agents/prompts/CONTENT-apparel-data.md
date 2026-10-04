@@ -20,6 +20,7 @@
    - 说明、外观要点写清朝代形制与颜色，外观要点要能直接用来出图；
    - 头饰、披风进 `items-accessories.md`，子类分别以「头饰·」「披风·」开头，生成器按子类定槽位。
 2. **生成内容数据**：跑 `python3 tools/content/items_from_catalog.py` 生成 `content/items/<ID>.yaml`。不手写、不手改生成结果。
+   - 同步 `tools/content/test_items_from_catalog.py` 里 `test_repository_catalog_counts_match_expanded_sources` 的各名录件数，改成落完本批后的实际件数（协调者 10-04 05:5x：前几批落数据后这条仓库快照用例没跟着改，集成分支 `unittest discover -s tools` 红了）。只改那几个数字，不改用例逻辑。
 3. **登记 ID**：本批新 ID 要在 `docs/design/10-items-and-equipment.md` §14.2「ID 清单」表里登记，`check_ids --strict` 才认它们是已定义的物品 ID（`eq_` / `it_` 的归属文档是 design/10）。
    - 在表末加一行：类别写「AR-77 衣物与护甲扩充 · 第 {{batch}} 批（件数）」，ID 列按名录顺序列出本批全部新 ID，格式同「AR-25 衣物扩张（18）」那一行；
    - 只加这一行，design/10 其余内容不动。
@@ -43,6 +44,7 @@
 - 写集：
   - `docs/design/catalog/` 下的 `items-clothing.md`、`items-armor.md`、`items-innerarmor.md`、`items-accessories.md`、`items-belts.md`、`items-shoes.md`：只追加本批的行；
   - `content/items/**`：只由生成器写；
+  - `tools/content/test_items_from_catalog.py`：只改名录件数快照；
   - `docs/design/10-items-and-equipment.md`：只在 §14.2 ID 清单表末加本批一行；
   - `assets/default/prompts/items/**`：只新增本批提示词，`GUIDE.md` 只在末尾追加「同款换色」一节；
   - 写集外的改动在提交时会被丢弃。
