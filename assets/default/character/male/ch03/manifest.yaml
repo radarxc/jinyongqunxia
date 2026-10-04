@@ -1847,51 +1847,50 @@
   category: character/male
   style: default
   subject: 蒙哥（npc_mengge，ch03_shendiao，prime；年代与阶段见提示词）
-  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+  prompt: 'Use case: historical-scene. 为写实手绘武侠项目编辑一张定稿候选，不是古画复刻。
 
-    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+    输入1现base锁定站姿、手势、道具、左右方向、构图、人物占高、背景底色和画风；衣服与体态按以下要求修改。输入2是此人公有领域画像（多人画只裁本人），输入3是画像脸部，取本人五官骨肉、须式、服饰可见资料，古像年龄须转译成指定小说阶段。不复制坐姿、画框、旁人、建筑、题字、印章、摄影日期或水印。
 
-    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+    原尺寸1024×1536，不透明2:3单人完整全身PNG；头端正、眼线水平、平视，手脚和器物完整入画，保持base顶底留白。保持现base姿势与手中器物，不用历史像的姿勢替换。背景照base暖浅灰纸底和淡水墨。
 
-    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+    写实数字手绘、自然皮肤和衣料经纬、柔和左上光、真实立体骨肉、细腻笔触和轻微自然不对称；不要古画平涂、木刻线条、摄影、油画厚涂、3D、动漫、磨皮网红脸或塑料皮肤。衣冠按角色朝代与身份，不混朝代。汉式交领右衽，不左右镜像；清制男子剃额留辫，蒙古人不用清辫。
 
-    【人物】《神雕侠侣》蒙哥，蒙古大汗，襄阳战前成年统帅形象，约五十岁，厚重威严。本图为1237–1259书界的选定阶段；全部使用成年骨相与成人身体比例。
+    体态从历史像的脸颊、颈、肩胸与可见腰腹转译；丰满者是自然脂肉重量和受力，束带随体围，不画细腰偶像或健美肌肉；清瘦者保持清瘦，不把宽袍、甲胄或半身像当肥胖证明，不机械加胖。按指定年龄，不能照搬画像晚年发福、白须、深皱和病老。
 
-    【面容】宽短脸，浓眉稍垂，深眼，宽鼻，浓黑夹灰髭须；保留皮肤细纹、自然不对称和真实年龄，不照搬基线人物的脸。
+    除福康安外男性一律不笑，嘴自然闭合，不扬嘴角、不露齿。无文字、印章、水印、边框、分格、第二个人、额外道具或发光特效。只输出一张全身候选。
 
-    【衣饰】暗棕蒙古长袍，朴素札甲胸身外罩，毛边皮帽与骑靴，皮带挂入鞘弯刀。汉式交领为右衽，穿着者左襟压右襟；所有头发、头饰、双手与鞋底完整入画。
 
-    【阶段边界】以小说襄阳战事为阶段，不宣称史实死亡地点；不画龙袍或清装。
+    人物：蒙哥。本轮原著阶段：襄阳战前大汗；视觉年龄：约50岁，不是画像年龄。
 
-    【考据边界】身份与出场沿design/18 §13.6；以上具体五官、配色、衣料和静态姿势为原创扩展，精确原著外貌、服制和年龄仍待三联/广州修订版逐字核对。
-
-    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。禁止未成年外观、裸露、舞台戏服、现代用品；背景不画具体建筑。
-
-    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
-  negative: 【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。禁止未成年外观、裸露、舞台戏服、现代用品；背景不画具体建筑。
+    历史像宝座上戴小金褐冠的男子为蒙哥，不取前方蓝衣侍臣。按画像宽额、圆阔略饱满颊、平直眉、长眼、实在鼻唇，约50岁蒙古大汗，面须按可见稀疏细髭与短颏须而不是base浓密长黑须。换画像淡土黄/灰金蒙古斜襟长袍、暗红内袖、克制金色领缘和金褐低矮冠帽轮廓，骑靴与皮带，勿用base札甲与皮毛帽。真实厚颈、宽肩厚胸和自然腰腹，威严平静不笑；原双手、站姿、入鞘弯刀不变。'
+  negative: ''
   references:
-  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
-    use: 仅画风、设色、光照与纸底，不继承人物身份；本任务指定同性别基线
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
-    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
-  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
-    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
-    use: 仅画风、设色、光照与纸底，不继承人物身份；本任务指定同性别基线
-    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
-    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
-  tool: codex exec · image_gen（文字 + 两张同性别基线）
-  model: gpt-6-astra
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_mengge.r1__ref1.jpg
+    sha256: c8700067010abc18fc3eb88d47690ba1de71bbb71cac35db55eb71961fa4f385
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_mengge.r1__ref2.jpg
+    sha256: 4be98f35fc9e0696ffd487fabe067f4a5f1e85a8b63aed86b847a10c54312c78
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_mengge.r1__ref3.jpg
+    sha256: bde0f861a2b1ba66a07805ac208bdc9ef7ca608edf8c568ae00a87646761cdd9
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  tool: codex exec · image_gen（AR-73 / AR-89 历史画像；AR-91 批准候选原样入库）
+  model: gpt-6.1-sol
   effort: xhigh
   tier: A
-  created: '2026-10-03T21:44:30.290252+00:00'
-  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w22/out/por_npc_mengge__ch03_prime_xiangyang_base.r1.png
+  created: '2026-10-04T09:15:10-07:00'
+  source_path: .agents/coord/_lines/hist-batch2/candidates/npc_mengge.png
   source_size: 1024x1536
   source_sha256: 92eea11d83451a70052649aba63eb2b74544476427496b4b3c1739cc3c26c55b
   size: 1024x1536
-  sha256: f11a37ab1909af971815791a370937b4834dbea2a999e527ff9fb54a400bb8fa
+  sha256: 2d1778b54b23557004fb2c6f3d195566b13b80592cb6c16352e5e1162715e3ba
   status: candidate
-  notes: ART-cast-fill-c / worker 22；文字；batch04联系表通过：身份年龄及阶段、完整轮廓、手物可辨、无字、纸底与基线画风；细部和美术终审待作者；原图模式RGB，入库RGB重编码，未裁切或缩放；1024×1536不透明底，非2048×3072 RGBA正式母版。created取原图mtime UTC。提示词：assets/default/prompts/characters/ch03-shendiao/npc_mengge.md；本次入选1张，重出次数见done与报告；美术补足为原创扩展，原著外貌仍待考。实际上传顺序：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+  notes: ART-cast-fill-c / worker 22；文字；batch04联系表通过：身份年龄及阶段、完整轮廓、手物可辨、无字、纸底与基线画风；细部和美术终审待作者；原图模式RGB，入库RGB重编码，未裁切或缩放；1024×1536不透明底，非2048×3072 RGBA正式母版。created取原图mtime UTC。提示词：assets/default/prompts/characters/ch03-shendiao/npc_mengge.md；本次入选1张，重出次数见done与报告；美术补足为原创扩展，原著外貌仍待考。实际上传顺序：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg, /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg；AR-73 / AR-89 / AR-91 照历史画像，作者批准入库
+  historical_source_page: https://commons.wikimedia.org/wiki/File:Audience_de_Möngke.jpeg
+  previous_revision:
+    png: .agents/coord/_lines/hist-ingest2/replaced/por_npc_mengge__ch03_prime_xiangyang_base.png
+    sha256: f11a37ab1909af971815791a370937b4834dbea2a999e527ff9fb54a400bb8fa
+    entry: .agents/coord/_lines/hist-ingest2/replaced/por_npc_mengge__ch03_prime_xiangyang_base.entry.yaml
 - id: por_npc_qiuchuji__ch03_elder_zhongnan_base
   file: por_npc_qiuchuji__ch03_elder_zhongnan_base.png
   category: character/male
