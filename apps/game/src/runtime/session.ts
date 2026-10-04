@@ -2,6 +2,8 @@ import type { Command, CoreContent } from '@tianshu/core/session';
 import { cloneGameState, firstSleepQueryForState } from '@tianshu/core/session';
 import type { GameState } from '@tianshu/core/state';
 import { createNewGameState } from '@tianshu/core/state';
+import type { BattleSessionState } from '@tianshu/core/battle';
+import type { BattleBusCommand } from '@tianshu/core';
 import type { RegionRuntimeContent } from '@tianshu/core/region';
 import type { JsonValue } from '@tianshu/shared';
 import type { ContentSource } from '@tianshu/data';
@@ -11,6 +13,7 @@ import type * as RegionSubsystem from '@tianshu/core/region-runtime';
 import type { projectDialogue as ProjectDialogue } from '@tianshu/core/dialogue-projection';
 import type { createBattleDemo as CreateBattleDemo } from '../battle/demo';
 import type { BattleRuntime as BattleRuntimeClass } from '../battle/runtime';
+import { projectBattleUnit } from '../battle/presentation';
 import { createPreviewSession } from './bootstrap';
 import { equipmentRules, type GameContent, type StaticGameContent, type TownLoader } from './content';
 import { ALL_VIEWS, type DirtyView, type GameCommand, type GameRemote, type GameUpdate,
@@ -34,7 +37,10 @@ function rejected(error: unknown): GameUpdate | null {
     ? { accepted: false, changes: {}, events: [], error: error.message } : null;
 }
 function isBattleCommand(command: GameCommand): command is BattleUiCommand {
-  return command.t.startsWith('battle/');
+  if (command.t === 'battle/enter') return 'launch' in command;
+  if (command.t === 'battle/leave') return !('battleId' in command);
+  return ['battle/demo', 'battle/auto', 'battle/step', 'battle/preview', 'battle/act-at',
+    'battle/wait', 'battle/move', 'battle/item', 'battle/defend', 'battle/gather'].includes(command.t);
 }
 function unavailable(code: string, cause: unknown): Error {
   return cause instanceof Error && cause.message === code
@@ -158,48 +164,97 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     subsystem?.region ?? loadRegionSubsystem);
   const dialogueProjection = retryableSubsystem('DIALOGUE_SUBSYSTEM_UNAVAILABLE',
     subsystem?.dialogueProjection ?? loadDialogueProjection);
-  async function prepareBattle(launch: BattleLaunch): Promise<{
-    runtime: BattleRuntimeInstance; update: GameUpdate }> {
+  async function prepareBattle(launch: BattleLaunch): Promise<BattleRuntimeInstance> {
     const BattleRuntime = await battleRuntime();
-    const candidate = new BattleRuntime(launch);
-    const packet = candidate.packet(true);
-    const setup = candidate.launch.setup;
-    const update: GameUpdate = {
-      accepted: true,
-      changes: { battle: packet },
-      events: [{
-        t: 'battle/setupResolved',
-        payload: {
-          setupId: setup.setupId,
-          encounterId: setup.encounterId,
-          participants: setup.participants.map(row => row.unitRef),
-          winCond: setup.end.winCond,
-          loseCond: setup.end.loseCond,
-          drawCond: setup.end.drawCond,
-        } as JsonValue,
-      }],
+    return new BattleRuntime(launch);
+  }
+  function recoveredLaunch(session: BattleSessionState, candidateContent = content): BattleLaunch {
+    const authored = candidateContent.meditationEncounters?.find((row) =>
+      row.setup.encounterId === session.opening.setup.encounterId);
+    if (authored) return { ...authored.launch, setup: session.opening.setup };
+    const setup = session.opening.setup;
+    const seeds = session.opening.seeds;
+    return { setup, seeds, title: setup.encounterId, preview: false,
+      cells: setup.grid.cells.map((cell) => ({ q: cell.q, r: cell.r, height: cell.height,
+        terrain: 'tr_pingdi', label: '战场', color: 0xc8b994 })),
+      markers: setup.start.initialByUnit.map((placement, index) => ({ id: placement.unitRef, index,
+        name: placement.unitRef, q: placement.pos.q, r: placement.pos.r,
+        height: setup.grid.cells.find((cell) => cell.q === placement.pos.q
+          && cell.r === placement.pos.r)?.height ?? 0, facing: placement.facing, active: true,
+        equipment: {} })),
+      moves: seeds.flatMap((seed) => seed.moves).filter((move, index, all) =>
+        all.findIndex((candidate) => candidate.id === move.id) === index).map((move) => ({
+        id: move.id, name: move.id, skillId: move.skillId ?? 'sk_unknown',
+        skillName: move.skillId ?? '未登记武学', shape: move.shape, range: move.range.max })),
     };
-    return { runtime: candidate, update };
+  }
+  async function projectActiveBattle(candidate = state, candidateContent = content):
+  Promise<BattleRuntimeInstance | null> {
+    if (candidate.battle === null) return null;
+    if (battle?.id() === candidate.battle.battleId) {
+      battle.update(candidate.battle); return battle;
+    }
+    const runtime = await prepareBattle(recoveredLaunch(candidate.battle, candidateContent));
+    runtime.update(candidate.battle); return runtime;
+  }
+  function acceptedUpdate(result: Awaited<ReturnType<AsyncCore['dispatch']>>,
+    changes: GameUpdate['changes']): GameUpdate {
+    return result.ok ? { accepted: true, changes, events: result.events }
+      : { accepted: false, changes: {}, events: [], error: result.reason };
+  }
+  async function nativeBattleCommand(command: BattleBusCommand): Promise<GameUpdate> {
+    const result = await core.dispatch(command);
+    if (!result.ok) return acceptedUpdate(result, {});
+    state = core.read(); battle = await projectActiveBattle();
+    const full = command.t === 'battle/enter' || command.t === 'battle/retry';
+    return acceptedUpdate(result, { ...(state.battle === null
+      ? selectors.update(state, ['hud', 'characters', 'inventory']) : {}),
+    battle: battle?.packet(full) ?? null });
   }
   async function battleCommand(command: BattleUiCommand): Promise<GameUpdate> {
     if (command.t === 'battle/enter' || command.t === 'battle/demo') {
-      if (battle) throw new Error('BATTLE_ALREADY_ACTIVE');
+      if (state.battle) throw new Error('BATTLE_ALREADY_ACTIVE');
       if (command.t === 'battle/demo' && !state.meta.debugTainted) throw new Error('BATTLE_DEMO_FORBIDDEN');
       const launch = command.t === 'battle/demo'
         ? (await battleDemo())(command.source) : command.launch;
-      const prepared = await prepareBattle(launch); battle = prepared.runtime;
-      return prepared.update;
+      const candidate = await prepareBattle(launch);
+      const result = await core.dispatch({ t: 'battle/enter', setup: launch.setup, seeds: launch.seeds });
+      if (!result.ok) return acceptedUpdate(result, {});
+      state = core.read(); candidate.update(state.battle!); battle = candidate;
+      return acceptedUpdate(result, { battle: candidate.packet(true) });
     }
-    if (!battle) throw new Error('BATTLE_NOT_ACTIVE');
+    battle = await projectActiveBattle();
+    if (!battle || !state.battle) throw new Error('BATTLE_NOT_ACTIVE');
     if (command.t === 'battle/leave') {
       const packet = battle.packet();
       if (!packet.result) throw new Error('BATTLE_NOT_ENDED');
-      const context = battle.launch.setup.returnContext; battle = null;
-      return { accepted: true, changes: { battle: null }, events: [{ t: 'battle/returned', payload: { ...context } }] };
+      const active = state.battle; const context = battle.launch.setup.returnContext;
+      const result = await core.dispatch({ t: 'battle/finalize', battleId: active.battleId,
+        outcomeSeq: active.outcomeSeq });
+      if (!result.ok) return acceptedUpdate(result, {});
+      state = core.read(); battle = null;
+      return { ...acceptedUpdate(result, { ...selectors.update(state, ['hud', 'characters', 'inventory']),
+        battle: null }), events: [...result.events, { t: 'battle/returned', payload: { ...context } }] };
     }
-    const result = battle.execute(command);
-    return { accepted: true, changes: { battle: result.packet },
-      events: result.events.map(event => ({ t: event.t, payload: { ...event } as JsonValue })) };
+    if (command.t === 'battle/preview') return { accepted: true,
+      changes: { battle: battle.previewArea(command) }, events: [] };
+    const coreCommand = battle.coreCommand(command); const before = state.battle.battle.events.length;
+    const result = await core.dispatch(coreCommand);
+    if (!result.ok) return acceptedUpdate(result, {});
+    state = core.read(); battle.update(state.battle!);
+    const action = state.battle!.commandLog.at(-1);
+    const move = action?.t === 'battle/act' && action.action.t === 'skill' ? action.action : null;
+    const localEvents = state.battle!.battle.events.slice(before);
+    const actor = move && action?.t === 'battle/act'
+      ? state.battle!.battle.units.find(unit => unit.id === action.actor) : undefined;
+    const targets = move ? localEvents.filter(event => event.t === 'battle/damageResolved' && event.target)
+      .flatMap(event => state.battle!.battle.units.filter(unit => unit.id === event.target)) : [];
+    const resolved = move && actor ? { moveId: move.move, from: projectBattleUnit(actor, battle.launch),
+      to: targets.map(unit => projectBattleUnit(unit, battle!.launch)), result: {
+        actionNo: state.battle!.battle.actionNo, hpDamage: localEvents.filter(event =>
+          event.t === 'battle/damageResolved').reduce((sum, event) => sum + (event.amount ?? 0), 0),
+        events: localEvents } } : undefined;
+    return acceptedUpdate(result, { battle: battle.packet(false, resolved) });
   }
   async function townFor(candidate: GameState) {
     const sceneId = candidate.chapter.town?.sceneId;
@@ -289,10 +344,10 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
   selectors.update(state, ALL_VIEWS);
   return {
     async query() { const projectDialogue = await dialogueProjection();
+      battle = await projectActiveBattle();
       return { ...selectors.query(), dialogue: projectDialogue(state), ...await regionChanges(),
         firstSleepAllocation: firstSleepQueryForState(state), battle: battle?.packet(true) ?? null }; },
     snapshot: () => {
-      if (battle) throw new Error('BATTLE_SAVE_UNAVAILABLE');
       if (state.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
       return cloneGameState(state);
     },
@@ -302,26 +357,29 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       validated(candidate, loaded, candidateContent);
     },
     async restore(candidate): Promise<GameUpdate> {
-      if (battle) throw new Error('BATTLE_SAVE_UNAVAILABLE');
       const loaded = await townFor(candidate);
       const candidateContent = await contentForRegionState(candidate);
       const next = validated(candidate, loaded, candidateContent);
       if (regionContent(candidateContent)) await regionSubsystem();
+      const nextBattle = next.battle === null ? null
+        : await prepareBattle(recoveredLaunch(next.battle, candidateContent));
+      nextBattle?.update(next.battle!);
       const changes = selectors.update(next, ALL_VIEWS, '已读取存档');
       state = next; townDefinition = loaded; content = candidateContent;
-      regionStaticSentFor = null;
+      battle = nextBattle; regionStaticSentFor = null;
       core = createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
       return { accepted: true, changes: { ...changes, ...await regionChanges(true, true),
-        firstSleepAllocation: firstSleepQueryForState(state) }, events: [] };
+        firstSleepAllocation: firstSleepQueryForState(state),
+        battle: battle?.packet(true) ?? null }, events: [] };
     },
     async createNewGame(input): Promise<GameUpdate> {
-      if (battle) throw new Error('BATTLE_BUSY');
+      if (state.battle) throw new Error('BATTLE_BUSY');
       const next = createNewGameSessionState(content, input, options.seedSource);
       const projectDialogue = await dialogueProjection();
       const changes = { ...selectors.update(next, ALL_VIEWS, '新篇已启'),
         firstSleepAllocation: firstSleepQueryForState(next),
         dialogue: projectDialogue(next), battle: null };
-      state = next; townDefinition = undefined; regionStaticSentFor = null;
+      state = next; battle = null; townDefinition = undefined; regionStaticSentFor = null;
       core = createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
       Object.assign(changes, await regionChanges(true, true));
       return { accepted: true, changes, events: [{ t: 'run/created', payload: {
@@ -332,7 +390,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     async dispatch(command: GameCommand): Promise<GameUpdate> {
       if (command.t === 'run/create') return this.createNewGame(command);
       if (command.t === 'world/previewRegionPath') {
-        if (battle) return { accepted: true, changes: { regionPathPreview: {
+        if (state.battle) return { accepted: true, changes: { regionPathPreview: {
           ok: false, reason: 'REGION_INTERACTION_BUSY',
         } }, events: [] };
         const runtime = regionContent(content);
@@ -345,7 +403,9 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
           const result = rejected(error); if (result) return result; throw error;
         }
       }
-      if (battle) return { accepted: false, changes: {}, events: [], error: 'BATTLE_BUSY' };
+      if (command.t.startsWith('battle/')) return nativeBattleCommand(command as BattleBusCommand);
+      if (state.battle && command.t !== 'world/tick')
+        return { accepted: false, changes: {}, events: [], error: 'BATTLE_BUSY' };
       if (import.meta.env.MODE === 'test' && typeof document !== 'undefined')
         await (await import('./flow-preload')).preloadFlowForCommand(command);
       if (command.t.startsWith('dialogue/') || command.t === 'world/interact')
@@ -381,10 +441,19 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       const commandCore = targetContent ? createAsyncCore(state,
         coreContent(content, loadedTowns, state.chapter.chapterId, targetContent))
         : mountContent ? createAsyncCore(state,
-          coreContent(mountContent, loadedTowns, state.chapter.chapterId)) : core;
-      const result = await commandCore.dispatch(command);
+          coreContent(mountContent, loadedTowns, state.chapter.chapterId))
+          : candidate ?? core;
+      const result = candidateResult ?? await commandCore.dispatch(command);
       if (!result.ok) return { accepted: false, changes: {}, events: [], error: result.reason };
-      const committed = commandCore.snapshot();
+      let committed = commandCore.snapshot();
+      let battleEvents: GameUpdate['events'] = [];
+      if (prepared) {
+        const setup = (battleEvent!.payload as unknown as { setup: BattleLaunch['setup'] }).setup;
+        const entry = await commandCore.dispatch({ t: 'battle/enter', setup,
+          seeds: prepared.launch.seeds });
+        if (!entry.ok) throw new TypeError('BATTLE_REQUEST_REJECTED');
+        committed = commandCore.snapshot(); prepared.update(committed.battle!); battleEvents = entry.events;
+      }
       if (targetContent) {
         const mounted = validateSession(committed, targetContent);
         const legacyWithoutRegions = options.preloadRegion === undefined &&
@@ -396,7 +465,8 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         core = createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
       } else {
         state = committed;
-        if (mountContent) { content = mountContent; core = commandCore; }
+        if (mountContent) content = mountContent;
+        if (mountContent || candidate) core = commandCore;
       }
       townDefinition = state.chapter.town
         ? loadedTowns.find((entry) => entry.sceneId === state.chapter.town?.sceneId) : undefined;
@@ -420,9 +490,9 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         ? (moved.payload as { path?: readonly (readonly [number, number])[] }).path : undefined;
       if (path && changes.town) changes = { ...changes, town: { ...changes.town, movementPath: path } };
       if (!prepared) return { accepted: true, changes, events: result.events };
-      battle = prepared.runtime;
-      return { accepted: true, changes: { ...changes, ...prepared.update.changes },
-        events: [...result.events, ...prepared.update.events] };
+      battle = prepared;
+      return { accepted: true, changes: { ...changes, battle: prepared.packet(true) },
+        events: [...result.events, ...battleEvents] };
     },
   };
 }

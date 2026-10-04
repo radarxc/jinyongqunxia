@@ -3,6 +3,8 @@
 import { createHash } from 'node:crypto';
 import { Compiler } from 'inkjs/full';
 import { describe, expect, it } from 'vitest';
+import { createBattleSession } from '../battle';
+import { battleSeed, combatFixture } from '../testing/combat-fixture';
 import { createCore, createNewGameState, projectDialogue, type CoreContent,
   type DifficultyId, type NewGameInput } from '..';
 
@@ -72,7 +74,9 @@ describe('new run and story command contracts', () => {
         { difficulty: 'diff_zongshi', worldTick: 0, revision: 2 },
       ] });
     const state = runtime.snapshot();
-    const battle = { setup: {} } as typeof state.battle & {};
+    const fixture = combatFixture();
+    const battle = createBattleSession(fixture.setup, fixture.units.map((unit) =>
+      battleSeed(unit.id, unit.moves)));
     const fighting = createCore(271828, { state: { ...state, battle } });
     const before = fighting.canonicalStateJson();
     expect(fighting.dispatch({ t: 'rules/setDifficulty', difficulty: 'diff_jianghu' }))

@@ -13,7 +13,7 @@ export type KnownCharacter = KnownCharacterState;
 /** The transport snapshot is the canonical rule state, without an app sidecar. */
 export type SessionSnapshot = GameState;
 
-/** Battle remains app-owned until ENG-16; every other command is core-owned. */
+/** UI-only commands are adapted to the core command bus; GameState owns every rule mutation. */
 export type NewGameRequest = Pick<NewGameInput, 'identity' | 'difficulty'>;
 export type NewGameCommand = NewGameRequest & { readonly t: 'run/create' };
 export type RegionPathPreviewCommand = { readonly t: 'world/previewRegionPath';

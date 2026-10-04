@@ -2,8 +2,11 @@ import { describe, expect, it } from 'vitest';
 import type { MeridianFlowInput } from '../battle';
 import { BASIC_MOVE, combatFixture } from '../testing/combat-fixture';
 import { chooseAcuteGatherAction, chooseAutoCommand, defaultMaxActions, simulateAbstractBattle } from './index';
+import { createRng, seedStream } from '../rng';
 
 const aggressive = { style: 'aggressive', reserveMpBp: 0, allowUltimate: true, allowItems: false } as const;
+const simulate = (state: ReturnType<typeof combatFixture>, max?: number) => simulateAbstractBattle(
+  state, {}, createRng(seedStream(state.setup.seed, 'battle')), max);
 
 function meridians(): MeridianFlowInput[] {
   return ['hero', 'enemy_0'].map((unitId) => ({ unitId, productionPerTick: 8,
@@ -22,17 +25,27 @@ describe('abstract automatic combat', () => {
   });
 
   it('is deterministic for identical setup, seed and policy', () => {
-    const first = simulateAbstractBattle(combatFixture({ seed: 19, hp: 300 }), {});
-    const second = simulateAbstractBattle(combatFixture({ seed: 19, hp: 300 }), {});
+    const first = simulate(combatFixture({ seed: 19, hp: 300 }));
+    const second = simulate(combatFixture({ seed: 19, hp: 300 }));
     expect(second.result).toBe(first.result); expect(second.commandLog).toEqual(first.commandLog);
     expect(second.eventLog).toEqual(first.eventLog); expect(second.stateHash).toBe(first.stateHash);
     expect(first.eventLog.filter((event) => event.t === 'battle/autoExchangeResolved'))
       .toHaveLength(first.state.actionNo);
   });
 
+  it('continues from the caller RNG instead of replaying the opening rolls', () => {
+    const first = combatFixture({ seed: 19, hp: 300 });
+    const second = combatFixture({ seed: 19, hp: 300 });
+    const firstRng = createRng(seedStream(19, 'battle'));
+    const secondRng = createRng(seedStream(19, 'battle')); secondRng.nextU32();
+    const a = simulateAbstractBattle(first, {}, firstRng);
+    const b = simulateAbstractBattle(second, {}, secondRng);
+    expect(b.stateHash).not.toBe(a.stateHash);
+  });
+
   it('terminates no-op combat after five active-unit rounds', () => {
     const state = combatFixture({ playerMoves: [], enemyMoves: [] });
-    const result = simulateAbstractBattle(state, {});
+    const result = simulate(state);
     expect(result.result).toBe('draw'); expect(result.state.actionNo).toBe(10);
     expect(result.commandLog.every((command) => command.t === 'battle/wait')).toBe(true);
   });
@@ -41,7 +54,7 @@ describe('abstract automatic combat', () => {
     const state = combatFixture({ playerMoves: [], enemyMoves: [] });
     state.units[0]!.buffs.push({ iid: 1, def: 'bf_chaqi', holder: 'hero', source: null,
       grade: 1, stacks: 1, turnsLeft: 2, fresh: false });
-    const result = simulateAbstractBattle(state, {});
+    const result = simulate(state);
     expect(result.result).toBe('draw');
     expect(result.state.actionNo).toBeGreaterThan(10);
     expect(result.state.units[0]!.buffs).toEqual([]);
@@ -49,7 +62,7 @@ describe('abstract automatic combat', () => {
 
   it('honours noAuto and documented action caps', () => {
     expect(defaultMaxActions(1)).toBe(60); expect(defaultMaxActions(100)).toBe(2000);
-    expect(() => simulateAbstractBattle(combatFixture({ noAuto: true }), {}))
+    expect(() => simulate(combatFixture({ noAuto: true })))
       .toThrow('BATTLE_AUTO_FORBIDDEN');
   });
 
@@ -69,7 +82,7 @@ describe('abstract automatic combat', () => {
     healthy.units[0]!.hp = 100;
     expect(chooseAcuteGatherAction(healthy, healthy.units[0]!)).toBeNull();
 
-    const simulated = simulateAbstractBattle(combatFixture({ meridianInputs: meridians(), hp: 300 }), {});
+    const simulated = simulate(combatFixture({ meridianInputs: meridians(), hp: 300 }));
     expect(simulated.commandLog.some((command) => command.t === 'battle/act'
       && command.action.t === 'acuteQiGather')).toBe(false);
     expect(simulated.commandLog.every((command) => command.t !== 'battle/act'
@@ -110,7 +123,7 @@ describe('abstract automatic combat', () => {
 
   it('terminates 200 deterministic random seeds with safe resources and no post-down action', () => {
     for (let seed = 0; seed < 200; seed += 1) {
-      const result = simulateAbstractBattle(combatFixture({ seed, hp: 240 }), {});
+      const result = simulate(combatFixture({ seed, hp: 240 }));
       expect(result.state.phase, `seed=${seed}`).toBe('ended');
       expect(result.state.actionNo, `seed=${seed}`).toBeLessThanOrEqual(defaultMaxActions(2));
       for (const unit of result.state.units) {

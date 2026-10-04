@@ -2,7 +2,7 @@ import type { MeridianProgress, SkillInstance } from '@tianshu/data/schemas';
 import type { JsonValue } from '@tianshu/shared';
 import type { RngState, RngStreamName } from '../rng';
 import type { ConsumableTargetState } from '../economy/types';
-import type { BattleState } from '../battle/types';
+import type { BattleSessionState, BattleRewardStats } from '../battle/types';
 import type { WorldMapState } from '../world/worldmap-types';
 import type { TownSessionState } from '../world/town-runtime';
 import type { MountedRegionState, PendingRegionMount } from '../world/region-types';
@@ -57,6 +57,8 @@ export interface ProfileState {
   readonly progression?: PersistentProgressionState;
   /** Optional only for schema-2 saves created before ENG-17a; factories always populate both. */
   readonly identity?: ProtagonistIdentity | null; readonly replayRules?: RuleSwitchState;
+  /** Settled training facts; conversion uses the progression module's authored coefficients. */
+  readonly battleTraining?: BattleRewardStats;
 }
 export type SleepAllocationSource = 'manual' | 'balanced' | 'default';
 export interface BookSleepLogEntry {
@@ -97,6 +99,8 @@ export interface WorldNavigationState {
 export interface WorldState {
   readonly navigation: WorldNavigationState;
   readonly pendingTimeAdvance: { readonly remainingTicks: number; readonly reason: 'rest' | 'story' } | null;
+  /** Idempotency receipts survive clearing the active session. */
+  readonly battleReceipts?: readonly { readonly battleId: string; readonly outcomeSeq: number }[];
 }
 export interface DialogueState {
   readonly storyId: string; readonly storyHash: string; readonly entryKey: string;
@@ -121,5 +125,5 @@ export interface PrologueState {
 export interface GameState {
   readonly meta: MetaState; readonly profile: ProfileState; readonly chapter: ChapterState;
   readonly party: PartyState; readonly world: WorldState;
-  readonly battle: BattleState | null; readonly dialogue: DialogueState | null;
+  readonly battle: BattleSessionState | null; readonly dialogue: DialogueState | null;
 }

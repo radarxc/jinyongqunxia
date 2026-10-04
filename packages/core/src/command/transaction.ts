@@ -3,6 +3,7 @@ import type { CoreContent, CoreTransaction, RejectReason, StatePath } from './in
 import type { PendingDomainEvent } from '../event';
 import { createRng, RNG_STREAMS, type Rng, type RngState, type RngStreamName } from '../rng';
 import type { GameState } from '../state';
+import { invalidateAppendValidation } from '../state/immutable-json';
 
 export class CommandAbort extends Error {
   public constructor(readonly reason: RejectReason, readonly at?: string) {
@@ -36,6 +37,7 @@ export class MutableCoreTransaction implements CoreTransaction {
   }
   set(path: StatePath, value: unknown): void {
     const { target, key } = resolveParent(this.#mutableState, path);
+    invalidateAppendValidation(target);
     this.remember(target, key); target[key] = value;
   }
   splice(path: StatePath, start: number, deleteCount: number, values: readonly unknown[]): void {
@@ -45,8 +47,15 @@ export class MutableCoreTransaction implements CoreTransaction {
     if (!Number.isSafeInteger(start) || !Number.isSafeInteger(deleteCount) ||
         start < 0 || deleteCount < 0 || start > cursor.length) throw new RangeError('TRANSACTION_SPLICE');
     const target = cursor as unknown as Record<PropertyKey, unknown>;
+    if (start < cursor.length || deleteCount > 0) invalidateAppendValidation(cursor);
     for (let index = start; index < cursor.length; index += 1) this.remember(target, index);
-    this.remember(target, 'length'); cursor.splice(start, deleteCount, ...values);
+    this.remember(target, 'length');
+    if (start === cursor.length && deleteCount === 0) {
+      for (const value of values) cursor.push(value);
+    } else {
+      cursor.splice(start, deleteCount);
+      for (let index = 0; index < values.length; index += 1) cursor.splice(start + index, 0, values[index]);
+    }
   }
   rng(stream: RngStreamName): Rng {
     if (!RNG_STREAMS.includes(stream)) throw new TypeError('RNG_STREAM');
@@ -66,6 +75,7 @@ export class MutableCoreTransaction implements CoreTransaction {
   rollback(): void {
     for (let index = this.#journal.length - 1; index >= 0; index -= 1) {
       const entry = this.#journal[index]!;
+      invalidateAppendValidation(entry.target);
       if (entry.existed) entry.target[entry.key] = entry.oldValue;
       else delete entry.target[entry.key];
     }

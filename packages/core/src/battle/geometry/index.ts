@@ -38,6 +38,13 @@ export function queryReachable(state: BattleState, actorId: string) {
 
 export function queryPath(state: BattleState, actorId: string, destination: HexCoord) {
   const actor = state.units.find((unit) => unit.id === actorId && unit.active);
+  if (actor !== undefined && actor.pos.q === destination.q && actor.pos.r === destination.r) {
+    if (state.units.some((unit) => unit.active && unit.id !== actor.id
+      && unit.pos.q === destination.q && unit.pos.r === destination.r)) return null;
+    if (!state.grid.cells.some((cell) => cell.q === destination.q && cell.r === destination.r))
+      throw new RangeError('PATH_START_OUTSIDE_GRID');
+    return { path: [{ ...actor.pos }], cost: 0, actionCount: 0, dangerCount: 0 };
+  }
   return actor === undefined ? null
     : findHexPath({ ...pathQuery(state, actor), goal: destination, maxCost: actor.move });
 }

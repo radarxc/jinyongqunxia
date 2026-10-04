@@ -8,6 +8,8 @@ import type { MeridianFlowSnapshot } from './meridian-flow/runtime';
 import type { AttackDirection } from './damage';
 import type { HexAim, HexCoord, HexDelivery, HexDir, HexLosKind } from '../hex';
 import type { HexPrimitiveShape } from './formation';
+import type { RngState } from '../rng';
+import type { BattleUnitSeed } from './encounter';
 
 export type SideId = 'player' | 'ally' | 'enemy' | 'neutral';
 export type UnitState = 'active' | 'hidden' | 'offgrid' | 'held' | 'downed'
@@ -74,6 +76,7 @@ export interface BattleSetup {
     readonly storyBranchRef?: string };
   readonly meridianInputs: readonly MeridianFlowInput[];
   readonly inventory: Inventory; readonly itemDefs: readonly ItemDef[];
+  readonly itemChapterUses?: Readonly<Record<string, number>>;
   readonly rewards: BattleRewardSetup;
 }
 
@@ -102,6 +105,8 @@ export interface ZoneGuardState { qi: number; readonly carryCapacity: number;
   readonly strengthBp: number; readonly flowRatioBp: number; readonly breakGuardBp: number }
 export interface BattleUnit {
   readonly id: string; readonly unitIndex: number; readonly side: SideId; readonly control: 'player' | 'ai';
+  /** Monotonic projection token; hosts compare this instead of serializing the whole unit. */
+  revision: number;
   state: UnitState; active: boolean; hp: number; readonly hpMax: number; mp: number; readonly mpMax: number;
   shield: number; ct: number; ctFrozen: boolean; pendingShift: number; readonly spd: number;
   readonly qinggong: number; readonly openingQinggong: number; readonly openingPriority: number;
@@ -132,10 +137,14 @@ export type BattleAction =
   | { readonly t: 'wait' };
 export interface BattleActCommand {
   readonly t: 'battle/act'; readonly actor: string; readonly walkTo?: HexCoord;
-  readonly action: BattleAction; readonly facing?: HexDir;
+  readonly action: BattleAction; readonly facing?: HexDir; readonly automatic?: true; readonly aiSeed?: number;
 }
-export interface BattleWaitCommand { readonly t: 'battle/wait'; readonly actor: string }
+export interface BattleWaitCommand { readonly t: 'battle/wait'; readonly actor: string;
+  readonly automatic?: true; readonly aiSeed?: number }
 export type BattleCommand = BattleActCommand | BattleWaitCommand;
+export interface BattleSetAutoCommand { readonly t: 'battle/setAuto'; readonly mode: 'manual' | 'auto' }
+export interface BattleRetryCommand { readonly t: 'battle/retry'; readonly option: 'restart' }
+export type BattleRecordedCommand = BattleCommand | BattleSetAutoCommand | BattleRetryCommand;
 export interface BattleMeridianUnitState {
   readonly unitId: string; readonly unitIndex: number; flow: MeridianFlowSnapshot;
   activeDefense: { readonly routeId: string; readonly qualityBp: number;
@@ -163,6 +172,16 @@ export interface BattleState {
   tick: number; round: number; actionNo: number;
   phase: 'opening' | 'running' | 'ended'; result: BattleResult | null; openingOrder: string[];
   readonly meridianByUnit: BattleMeridianUnitState[]; inventory: Inventory;
+  itemChapterUses?: Readonly<Record<string, number>>;
   readonly rewardStats: BattleRewardStats;
   readonly events: BattleEvent[]; readonly acceptedCommands: BattleCommand[];
+}
+export interface BattleOpeningState {
+  readonly setup: BattleSetup; readonly seeds: readonly BattleUnitSeed[];
+}
+export interface BattleSessionState {
+  readonly schema: 'battle-session.v1'; readonly battleId: string; battle: BattleState;
+  battleRng: RngState; aiRng: RngState; readonly opening: BattleOpeningState;
+  acceptedOrdinal: number; decisionOrdinal: number; revision: number; retryCount: number;
+  auto: boolean; outcomeSeq: number; readonly commandLog: BattleRecordedCommand[];
 }
