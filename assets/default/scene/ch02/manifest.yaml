@@ -3,38 +3,36 @@
   category: scene
   style: default
   subject: 大漠成长与弯弓射雕（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是郭靖的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中郭靖的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是哲别的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中哲别的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】这张插图画的是：大漠长风中的弯弓射雕，早年事件统一成年化追忆。郭靖身着骑装在前景弯弓，视线指向高空两只雕，人物占画面下方，草原与天空辽阔。华筝为英健成年草原女子，后方勒马仰望；哲别为沉静的成年草原射手，在更远处观察。华筝与哲别只按文字，无演员脸；不画命中血腥，具体同场站位属原创扩展构图。
+    【要改成】（AR-53 配角对齐）胡须改成基线那样：唇上八字髭、下巴一小撮短须，两颊只有短胡茬，不要浓密的络腮胡；脸型与五官照基线。
 
-    【要对齐的部分】郭靖各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；头巾与发型照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「弯弓射雕」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_scene_peach_island_square_circle.png
-    sha256: 9795e3af012aaa8a3c3540b1636fb19869663435e3ea0e6bd85ab6162711f940
-    use: 对脸基线：作者审核通过的 por_npc_guojing__ch02_youth_scene_peach_island_square_circle（郭靖），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch02/por_npc_zhebie__ch02_prime_base.png
+    sha256: 6807b2c87c23a28bb043ccaed2df5dc170b86faa162535f7c75c65f387e225a3
+    use: 对脸基线：作者审核通过的 por_npc_zhebie__ch02_prime_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_grassland_eagles.png
-    sha256: 9bd6ac4cccb94cfff28327f2fc6791844c792dd1de96ab32a54cea842b2f92d8
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_grassland_eagles.9bd6ac4c.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: 28298758b264d09c20e386343f82530873265d3563d394273c4dd954e6d17bcb
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_grassland_eagles.28298758.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把哲别头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T14:26:03-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_grassland_eagles.s1.png
+  created: 2026-10-03T19:26:56-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_grassland_eagles.k2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 28298758b264d09c20e386343f82530873265d3563d394273c4dd954e6d17bcb
+  sha256: 26951b44a30c0e4adb9f1992146a06bf08d7b5d841dad8d25a122fa9bdc80034
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「弯弓射雕」，实际字形「弯弓射雕」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「弯弓射雕」，实际字形「弯弓射雕」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle；AR-44 对脸精修，基线 = por_npc_zhebie__ch02_prime_base（AR-53 配角对齐：华筝（脸型收窄、下颌柔和）、哲别（络腮胡改成八字髭加下巴短须）对齐各自基准；局部合成——两人头部方块分别交 codex 改，再依次贴回，其余像素不变（编辑 k1/k2））
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_grassland_eagles.9bd6ac4c.png
-    sha256: 9bd6ac4cccb94cfff28327f2fc6791844c792dd1de96ab32a54cea842b2f92d8
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_grassland_eagles.9bd6ac4c.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_grassland_eagles.28298758.png
+    sha256: 28298758b264d09c20e386343f82530873265d3563d394273c4dd954e6d17bcb
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_grassland_eagles.28298758.entry.yaml
   effort: ultra
 - id: cg_ch02_peach_island_trials
   file: cg_ch02_peach_island_trials.png
@@ -294,40 +292,36 @@
   category: scene
   style: default
   subject: 铁枪庙真相（ch02_shediao）
-  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是黄蓉的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中黄蓉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是柯镇恶的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中柯镇恶的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
 
-    【画里谁是谁】这张插图画的是：铁枪庙夜间揭示桃花岛旧案真相，黃蓉成年、冷静锐利地开口指向杨康，打狗棒立在身侧。杨康在破神龛前失去镇定，欧阳锋站在门侧暗处，白袍、高鼻深目、棕黄色络腮短须、灰黑头发后束，绝非白须老仙；柯镇恶为瘦削精悍的中老年盲侠，尖嘴削腮、灰暗风霜脸、稀疏花白短须，双目失明而不戴眼罩，持粗铁杖藏在后景梁影附近倾听。闪电只照亮面容，不画发光招式；不捏造特定证物、不画中毒伤口，具体动作时序待考。
+    【要改成】（AR-53 配角对齐）照基线：他是盲人——双眼是灰白色的盲眼（看不到黑眼珠）；额头缠一条深色头巾（布带绕额一圈）；头巾下露出灰白乱发；脸瘦削多皱纹、短须。
 
-    【要对齐的部分】黄蓉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；暗处的光线照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
 
-    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「铁枪辨冤」和小朱印必须原样保留，一笔不改、不增不减。
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
 
-    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
-
-    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
-
-    【本张另外要求】（作者 AR-53 总审返修）黄蓉的脸要像基线（作者选定的新版）：圆润饱满的鹅蛋脸、两颊有肉、下巴小巧圆润不尖，一双又大又亮的杏眼（不要细长眼、不要上挑的丹凤眼），眉毛细长柔和，小巧挺直的鼻子，嘴角带甜笑或按原图情绪，十九岁的少女感（成年），不要长脸、高颧骨和成熟感。其他人的脸不要动。'
-  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
   references:
-  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
-    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
-    use: 对脸基线：作者审核通过的 por_npc_huangrong__ch02_youth_bangzhu_base（黄蓉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch02/por_npc_kezhene__ch02_elder_blind_base.png
+    sha256: 743c066d7eec1414966cec9351add6312fd8a8a2ead2d941e6f4ec0ff09a4ffa
+    use: 对脸基线：作者审核通过的 por_npc_kezhene__ch02_elder_blind_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
   - path: assets/default/scene/ch02/cg_ch02_ironspear_truth.png
-    sha256: c466628f2a15c983e84a5a45dc9cf627591b30b29856f921c54cbffc36998e88
-    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.c466628f.png
-  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+    sha256: 1faab80c5ca90c980abdca1386a2202aacd5075ab59e95a23cf6151c0c8c039d
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.1faab80c.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把柯镇恶头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
   model: gpt-6-astra
-  created: 2026-10-03T17:21:51-0700
-  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_ironspear_truth.s2.png
+  created: 2026-10-03T19:26:57-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_ironspear_truth.k2.png
   source_size: 1536x1024
   size: 1536x1024
-  sha256: 1faab80c5ca90c980abdca1386a2202aacd5075ab59e95a23cf6151c0c8c039d
+  sha256: 83be163b97cd6701503940c9509ebfb7a1a3761222014a3db18e34e8ab05cc11
   status: candidate
-  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「铁枪辨冤」，实际字形「铁枪辨冤」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「铁枪辨冤」，实际字形「铁枪辨冤」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）；AR-44 对脸精修，基线 = por_npc_kezhene__ch02_elder_blind_base（AR-53 配角对齐：欧阳锋（灰白须发、年长）、柯镇恶（灰白盲眼、深色头巾）对齐各自基准；局部合成——两人头部方块分别交 codex 改，再依次贴回，其余像素不变（编辑 k1/k2））
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.c466628f.png
-    sha256: c466628f2a15c983e84a5a45dc9cf627591b30b29856f921c54cbffc36998e88
-    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.c466628f.entry.yaml
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.1faab80c.png
+    sha256: 1faab80c5ca90c980abdca1386a2202aacd5075ab59e95a23cf6151c0c8c039d
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.1faab80c.entry.yaml
   runner_job_records:
   - - cg_ch02_ironspear_truth.resume3r2
     - ok
