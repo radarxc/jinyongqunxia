@@ -1,0 +1,76 @@
+- id: npc_shipotian__ch06_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 石破天（侠客行 ch06 · 金乌刀法青年）· base 直出版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 0ce10722-4306-4cf0-8c9d-9ff90bb585ab
+    url: https://studio.tripo3d.ai/workspace/generate/0ce10722-4306-4cf0-8c9d-9ff90bb585ab
+    generate_op: 963bb597-14db-4851-a7b1-b51e98950117（image_to_model）
+    rig_op: 8c9da3d4-1f81-464d-8542-84984cc6bc84
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（base 立绘直出，窄袖短褐不需 A 字参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch06/por_npc_shipotian__ch06_youth_jinwu_base.png
+    sha256: 4975d0e673eaebc5d31b45a0476ca5844fbc6942fc903b27487713e238e88b69
+    use: 单图生成输入（作者已定的 base 立绘，双臂自然下垂）
+  sha256: 9c3a597559e86e83cc1f7d94643aef63e79a90131ef773d8d44ecf24286e0261
+  size_bytes: 6529304
+  joints: 65
+  triangles: 99774
+  vertices: 57078
+  animations: []
+  textures:
+  - image/jpeg 556201 B
+  - image/jpeg 1758070 B
+  - image/jpeg 624797 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T18:50:21-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，窄袖短褐直接用 base 立绘生成（双臂自然下垂）。腰间佩刀与网格是一体的。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 d11b33a0。
+- id: npc_shipotian__ch06_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 石破天（侠客行 ch06 · 金乌刀法青年）· base 直出版 · 3D 预览
+  tool: tripo-studio-web（Claude in Chrome 截图）
+  tripo_model:
+    project_id: 0ce10722-4306-4cf0-8c9d-9ff90bb585ab
+    url: https://studio.tripo3d.ai/workspace/generate/0ce10722-4306-4cf0-8c9d-9ff90bb585ab
+    generate_op: 963bb597-14db-4851-a7b1-b51e98950117（image_to_model）
+    rig_op: 8c9da3d4-1f81-464d-8542-84984cc6bc84
+  size: 369x594
+  sha256: 49814dedcfd3c15588dd59d4988d13d379359239afa979dc8ef2e1400262404e
+  size_bytes: 188527
+  created: '2026-10-03T18:50:21-07:00'
+  status: candidate
+  notes: Tripo Studio 绑骨页正视图（复位相机、不显示骨架）截图，Claude in Chrome zoom 存盘（长边 ≤ 1024）。
