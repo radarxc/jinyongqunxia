@@ -1,0 +1,60 @@
+id: tex_town_qing_south_city_gate__k6_r000_v01
+status: candidate
+selected_candidate: 2
+candidate_count: 2
+prompt: 'Use image_gen for the SECOND AND LAST candidate of this larger Qing Jiangnan city gate. Image 1 is the exact geometry guide; image 2 is the successful historical-detail candidate needing one geometry correction; image 3 is Panmen masonry evidence. Preserve image 2 materials, roof, depth, light and weathering, but make the central arch passage dramatically wider. Exact outside ground frontage is 10 equal cells and the clear passage must occupy exactly 6 of them, with each masonry pier exactly 2 cells: visually 2:6:2 across the same lower front baseline. Keep ground depth exactly 4 cells. The arch must be broad and shallow enough to meet the guide spring points, not a narrow pedestrian opening. Preserve deep tunnel masonry sidewall, while the whole visible passage under the arch is genuine alpha-0 transparency all the way to its bottom edge: no black fill, floor, fog, shadow sheet or scenery. One modest low grey-tile gatehouse, blue-grey brick, stone arch ring, low crenellations.
+  Exact orthographic yaw45 pitch30 2:1 dimetric, screen axes +0.5/-0.5, no perspective. Complete centered object with transparent margins; no text, people, flags, yellow tile or background.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/tile/qing_south/review3/gate_k6_guide.png
+  sha256: a2df9eee3e8e0c98288b1addd8037da608062605886d7feb6ee082a3cac49674
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- file: assets/default/tile/qing_south/history/selected-sources/gate_k6_candidate1.png
+  sha256: 9d5dfccfdb326c7d741782de4387b5e5b2996bba2cd3f50b1f7a42653ab6864c
+  role: 本轮第2候选直接输入：第1候选的历史材质、门楼、进深与光照；第2候选仅要求放宽通行孔
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5933.jpg?width=1600
+  sha256: aff1a916076e3955b14f7c2dbc594280df405fbc4f9a36a774271f281d6e123f
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5941.jpg?width=1600
+  sha256: 14a8ce8eac475a8ad072ee35ec1877324cbccc3d527eae080af81d492b56f67e
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:32:50.256477+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_archive: history/selected-sources/gate_k6.png
+source_sha256: 5714c0894180981f36f58694cac279eda1078dde3b3c0a6c284668e86e4d82ff
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1254
+  - 1254
+  crop_box:
+  - 82
+  - 195
+  - 1194
+  - 1177
+  isotropic_scale: 0.4352517985611511
+  resized_size:
+  - 484
+  - 427
+  paste_offset:
+  - 16
+  - 68
+  - 500
+  - 495
+  final_size:
+  - 516
+  - 511
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/gate_k6.png
+  source_sha256: 5714c0894180981f36f58694cac279eda1078dde3b3c0a6c284668e86e4d82ff
+  forbidden_transforms_used: false
+notes: 盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+record_path: history/records/gate_k6.yaml

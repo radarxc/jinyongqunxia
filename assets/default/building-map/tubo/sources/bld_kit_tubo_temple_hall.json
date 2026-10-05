@@ -1,0 +1,288 @@
+{
+  "id": "bld_kit_tubo_temple_hall",
+  "w": 14,
+  "h": 11,
+  "subject": "藏式金顶佛殿（原创地域同功能替换）",
+  "prompt": "Use case: precise-object-edit. Preserve this Tibetan Buddhist hall sprite: white stone and ochre band, black timber windows, column porch, flat terraces and ONE central modest gilded copper roof, short plain colored prayer cloths with no writing. Change ONLY the projection to proper strict 2:1 dimetric: camera yaw45,pitch30, no perspective. Front-left edge currently too shallow; make it descend at EXACTLY0.5 pixels per1 horizontal pixel. The other ground edge rises at EXACTLY0.5 pixels per1 pixel. For1536x1024 canvas thin foundation corner positions LEFT(208,550), FRONT(835,863.5), RIGHT(1328,617), BACK(701,303.5). Nearly-square14:11 footprint, front corner835 close to image centre768. All corresponding wall and terrace and roof axes parallel to those two edges. Redraw geometry to match, don't merely alter canvas. Maintain left-upper light and natural texture density. Complete roof finials and foundation inside with64px transparent margin. Genuine RGBA alpha0 background, no ambient glow, no fog, no large shadow, no text, guides, labels, people, watermark.",
+  "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+  "references": [
+    {
+      "id": "bld_kit_tubo_temple_hall_attempt01",
+      "file": "sources/rejected/bld_kit_tubo_temple_hall_attempt01.png",
+      "role": "编辑目标；同次首次生成候选",
+      "sha256": "2872dc549249c89ffb8c80250a7744c77cc69ee4fc4f986e345482011419facd",
+      "status": "candidate"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-8e7587ab-9d04-4c49-aeb3-c8adcafc286a.png",
+  "created": "2026-09-30T22:22:10.072Z",
+  "candidate_count": 2,
+  "tool": "functions.exec · image_gen",
+  "model": "image_gen（工具未公开底层模型版本）",
+  "effort": "未公开",
+  "status": "candidate",
+  "source_corners_px": {
+    "left": [
+      116,
+      596
+    ],
+    "front": [
+      861,
+      975
+    ],
+    "right": [
+      1493,
+      651
+    ]
+  },
+  "visual_review": "原图已 view_image；无文字、人物、现代物件；真实RGBA alpha保持。二候选底面角点可读，轴斜率约+0.509/-0.513，金顶和白赭石墙、柱廊入口清楚。金顶具体样式为原创组合，非所有年代复原。",
+  "rejected": [
+    {
+      "id": "bld_kit_tubo_temple_hall",
+      "prompt": "Use case: historical-scene. Asset type: one realistic historical Tibetan plateau city-map building sprite, original regional functional adaptation for a Chinese wuxia game. Input image 1 is a STYLE REFERENCE ONLY: match its restrained natural material detail, visual density and age, NOT its Chinese tiled roof style or building shape. Build NEW Tibetan stone architecture. Clear rugged stone courses, lightly weathered white or ochre plaster, thick gently battered walls, flat earthen parapet roof, small dark timber windows with black trapezoidal surrounds and modest red-brown timber cornices. Natural warm-neutral light from SCREEN UPPER LEFT and only a small soft contact shadow to lower right. TRUE TRANSPARENT RGBA background. Not a complete city scene. Camera strict orthographic 2:1 dimetric, yaw 45 degrees, pitch 30 degrees, all verticals vertical, all parallel edges stay parallel, both ground axes slope EXACTLY +0.5 and -0.5. Clear thin rectangular stone contact perimeter with no thick plinth, unobscured left/front/right ground corners. Generous transparent margins all around. No people, text, pseudo-writing, painted script, readable signs, modern objects, landscape, sky, distant buildings, grid, labels, watermark, checkerboard, white background, tourism replicas, floating island, toy diorama, perspective convergence, long shadows. No named real temple or Potala Palace copy and no claim of exact reconstruction of any century. Single complete 1536x1024 image.  Absolute no external ambient halo or glow. Outside silhouette fully transparent alpha=0. One Tibetan Buddhist assembly hall. A substantial white-and-ochre stone square hall with flat roof terraces, red ochre upper frieze, dark timber colonnaded entrance porch. ONE modest gilded copper hipped canopy rises on the central rooftop as the religious rank cue, with subtle finial and dark timber brackets, no huge stacked pagoda. Black framed windows, a few short plain colored prayer cloths with NO WRITING. No named monastery copy, no giant statue, no surrounding monastery or landscape. Ground plan 14 by11 metres, NEARLY SQUARE rectangle with frontage only1.273 times depth. Do NOT make a shallow long strip. Ground contact corners on1536x1024 canvas: LEFT(208,570), FRONT(835.2,883.6), RIGHT(1328,637.2), BACK(700.8,323.6). All horizontal ground axes +0.5/-0.5 exactly, equal magnitude. A thin rectangular stone apron, front-right corner near horizontal centre, NOT far right. Keep entire roof golden canopy and all finials inside with64px margin. Main entry on front-left face.",
+      "created": "2026-09-30T22:20:52.641Z",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-e1ac8338-cab9-4123-ad13-64fa3cf4f02d.png",
+      "reason": "第一张前轴偏浅；二图较符合2:1投影。",
+      "source_archive": "sources/rejected/bld_kit_tubo_temple_hall_attempt01.png",
+      "source_sha256": "2872dc549249c89ffb8c80250a7744c77cc69ee4fc4f986e345482011419facd",
+      "references": [
+        {
+          "id": "bld_kit_song_dali_yamen",
+          "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+          "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef",
+          "role": "宋候选仅作材质和细节密度参考；非藏地形制",
+          "status": "candidate"
+        }
+      ]
+    }
+  ],
+  "source_archive": "sources/bld_kit_tubo_temple_hall.png",
+  "source_sha256": "357d1d09b6d07ab1b8b614402f90392dfa69339e21238ddacddbbce18d306ad2",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "size": [
+      1536,
+      1024
+    ],
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "alpha_zero_pixels": 851006,
+    "alpha_partial_pixels": 721858,
+    "alpha_near_opaque_pixels": 704930,
+    "alpha_opaque_pixels": 0,
+    "alpha_nonzero_bbox": [
+      0,
+      67,
+      1510,
+      986
+    ],
+    "transparent_margins_px": [
+      0,
+      67,
+      26,
+      38
+    ],
+    "border_alpha_max": 1
+  },
+  "processing": {
+    "source_archive": "sources/bld_kit_tubo_temple_hall.png",
+    "source_sha256": "357d1d09b6d07ab1b8b614402f90392dfa69339e21238ddacddbbce18d306ad2",
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box": [
+      0,
+      67,
+      1510,
+      986
+    ],
+    "uniform_scale_requested": 0.5809731299927379,
+    "resized_size": [
+      877,
+      534
+    ],
+    "rounded_effective_scale": [
+      0.580794701986755,
+      0.5810663764961915
+    ],
+    "paste_offset": [
+      32,
+      32,
+      909,
+      566
+    ],
+    "target_canvas": [
+      941,
+      598
+    ],
+    "final_file": "bld_kit_tubo_temple_hall.png",
+    "steps": [
+      "crop alpha>0 bounding box",
+      "uniform LANCZOS resize, nearest-integer dimensions",
+      "paste without mask onto transparent RGBA; no repaint, warp, alpha threshold, flip or rotation"
+    ]
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        116,
+        596
+      ],
+      "front": [
+        861,
+        975
+      ],
+      "right": [
+        1493,
+        651
+      ]
+    },
+    "source_axis_slopes": [
+      0.508724832214765,
+      -0.5126582278481012
+    ],
+    "axis_tolerance": 0.03,
+    "axis_pass": true,
+    "source_width_depth_ratio": 1.1787974683544304,
+    "expected_width_depth_ratio": 1.2727272727272727,
+    "ratio_relative_error": 0.0738019891500904,
+    "ratio_tolerance_suggestion": 0.1,
+    "ratio_pass": true,
+    "measurement_uncertainty_source_px": 3,
+    "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      941,
+      598
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 319279,
+    "alpha_partial_pixels": 242385,
+    "alpha_near_opaque_pixels": 237662,
+    "alpha_opaque_pixels": 1054,
+    "alpha_nonzero_bbox": [
+      32,
+      33,
+      909,
+      566
+    ],
+    "transparent_margins_px": [
+      32,
+      33,
+      32,
+      32
+    ],
+    "border_alpha_max": 0
+  },
+  "manifest_entry": {
+    "id": "bld_kit_tubo_temple_hall",
+    "subject": "藏式金顶佛殿（原创地域同功能替换）",
+    "prompt": "Use case: precise-object-edit. Preserve this Tibetan Buddhist hall sprite: white stone and ochre band, black timber windows, column porch, flat terraces and ONE central modest gilded copper roof, short plain colored prayer cloths with no writing. Change ONLY the projection to proper strict 2:1 dimetric: camera yaw45,pitch30, no perspective. Front-left edge currently too shallow; make it descend at EXACTLY0.5 pixels per1 horizontal pixel. The other ground edge rises at EXACTLY0.5 pixels per1 pixel. For1536x1024 canvas thin foundation corner positions LEFT(208,550), FRONT(835,863.5), RIGHT(1328,617), BACK(701,303.5). Nearly-square14:11 footprint, front corner835 close to image centre768. All corresponding wall and terrace and roof axes parallel to those two edges. Redraw geometry to match, don't merely alter canvas. Maintain left-upper light and natural texture density. Complete roof finials and foundation inside with64px transparent margin. Genuine RGBA alpha0 background, no ambient glow, no fog, no large shadow, no text, guides, labels, people, watermark.",
+    "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+    "references": [
+      {
+        "id": "bld_kit_tubo_temple_hall_attempt01",
+        "file": "sources/rejected/bld_kit_tubo_temple_hall_attempt01.png",
+        "role": "编辑目标；同次首次生成候选",
+        "sha256": "2872dc549249c89ffb8c80250a7744c77cc69ee4fc4f986e345482011419facd",
+        "status": "candidate"
+      }
+    ],
+    "tool": "functions.exec · image_gen",
+    "model": "image_gen（工具未公开底层模型版本）",
+    "effort": "未公开",
+    "created": "2026-09-30T22:22:10.072Z",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-8e7587ab-9d04-4c49-aeb3-c8adcafc286a.png",
+    "status": "candidate",
+    "file": "bld_kit_tubo_temple_hall.png",
+    "category": "building-map",
+    "style": "default",
+    "size": "941x598",
+    "sha256": "f021542cdfdef2506815d446b87686116e4d75e5752f13c013e4396dc524d8ff",
+    "notes": "原图已 view_image；无文字、人物、现代物件；真实RGBA alpha保持。二候选底面角点可读，轴斜率约+0.509/-0.513，金顶和白赭石墙、柱廊入口清楚。金顶具体样式为原创组合，非所有年代复原。 单45°视图；未通过城市拼接和作者审批。",
+    "building": {
+      "type": "bld_kit_tubo_temple_hall",
+      "footprint": [
+        14,
+        11
+      ],
+      "anchor": [
+        499.2493,
+        355.3634
+      ],
+      "era": "tubo"
+    },
+    "footprint_m": [
+      14,
+      11
+    ],
+    "entrance": {
+      "edge": "S",
+      "offset_cells": 7.0
+    },
+    "projection_contract": {
+      "tile_px": [
+        64,
+        32
+      ],
+      "ground_bbox_px": [
+        800,
+        400
+      ],
+      "ground_width_px": 800,
+      "light": "screen_upper_left",
+      "shadow": "screen_lower_right_contact_only"
+    },
+    "meta": "meta/bld_kit_tubo_temple_hall.yaml",
+    "anchor_px": [
+      499.2493,
+      355.3634
+    ],
+    "source_copy": "sources/bld_kit_tubo_temple_hall.png",
+    "source_sha256": "357d1d09b6d07ab1b8b614402f90392dfa69339e21238ddacddbbce18d306ad2",
+    "candidate_count": 2,
+    "geometry_qa": {
+      "source_corners_px": {
+        "left": [
+          116,
+          596
+        ],
+        "front": [
+          861,
+          975
+        ],
+        "right": [
+          1493,
+          651
+        ]
+      },
+      "source_axis_slopes": [
+        0.508724832214765,
+        -0.5126582278481012
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": true,
+      "source_width_depth_ratio": 1.1787974683544304,
+      "expected_width_depth_ratio": 1.2727272727272727,
+      "ratio_relative_error": 0.0738019891500904,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": true,
+      "measurement_uncertainty_source_px": 3,
+      "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+    },
+    "metadata": "meta/bld_kit_tubo_temple_hall.yaml"
+  },
+  "final_visual_review": "已逐张view_image成品透明PNG及临时灰底alpha合成；主体完整、无实际外围棕色光晕；源alpha保持，未阈值抠图。"
+}

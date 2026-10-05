@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_jinleisiwannianruyi
+name: 金累丝万年如意
+kind: collectible
+sub: bronze
+grade: 12
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H52](#src-h52)；准入：仅雪山1780；六十寿礼之后架空授权旧藏，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jinleisiwannianruyi
+text:
+  desc: 外观：淡金累丝长柄如意，钱纹镂空头。 待运行时投影：eraRange=[qing]; giftTo={preferred:[noble,collector]}; giftValue=4; provenance=history。
+  lore: 金累丝万年如意有乾隆六十寿辰进献背景，可据馆藏确定较晚投放下限。适合权贵藏家，默认仅雪山阶段可见；授权流出为（原创扩展），不把宫廷寿礼放回鹿鼎或书剑。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 92

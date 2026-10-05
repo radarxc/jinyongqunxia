@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_suozijia
+name: 锁子甲
+kind: armor
+sub: officialArmor
+grade: 6
+stack: 1
+chapters:
+- ch10_baima
+origin: canonExpanded
+canonRef: 唐；出现书界 ch10；（原创扩展）；名称据《唐六典》卷16《卫尉寺·武库》 https://www.shidianguji.com/book/SK1116/chapter/1jzwu02dg5y5i；702年环式与裁片细节（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/suozijia
+text:
+  desc: 外观：唐代通用款，主色铁灰。 待运行时投影：defInK=0.1; defOutK=0.2。
+  lore: （原创扩展）锁子甲据《唐六典》甲名演成唐代环网短甲，铁灰小环联缀，前襟系结与软衬便于穿脱。按中甲防护，不额外抵消暗器；702年环式与裁片（待考），默认保留织缘，不编原著持有者。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: medium
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 51

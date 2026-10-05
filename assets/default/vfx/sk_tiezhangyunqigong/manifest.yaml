@@ -1,0 +1,463 @@
+assets:
+- id: vfx_sk_tiezhangyunqigong__family_base01
+  file: effect/family/source_sheet.png
+  category: vfx
+  style: default
+  subject: 射雕 / 神雕·铁掌运气功·家族·圆转回气（原创扩展）
+  prompt: 'Use case: stylized-concept
+
+    Asset type: four-frame VFX raw sprite sheet for the Chinese wuxia game tianshu.
+
+    Primary request: the shared family visual vocabulary of 铁掌运气功 (Iron Palm breath cultivation), an original fictional
+    yang internal-defense practice. Depict a compact protective breath aura, like warm vermilion ink mist folded
+    around a palm-width source, not an attacking projectile.
+
+    Layout: square pure white RGB background, exactly 2 columns x 2 rows of equal square cells, four separate aligned
+    animation keyframes in reading order. No visible grid lines. Each effect wholly inside its cell with at least
+    8 percent completely white margin.
+
+    In EVERY cell: broad softly translucent root at local normalized (0.23,0.52), root width about 0.22 of cell
+    height; energy extends a short distance to the RIGHT, ending before x=0.86. Keep the same root, orientation,
+    compact oval silhouette and camera across all four frames. Two or three low rounded folds of condensed breath
+    curl back inward toward the root, with a small open center. No narrow beam or pointed thrust.
+
+    Frames: gentle gathering; formed rounded protective aura; steady slightly fuller breath; soft fading residual
+    wisps. Similar silhouettes for smooth crossfade, nonempty last frame.
+
+    Style: refined Chinese ink-wash VFX, translucent washes, soft feathered edges and restrained dry-brush texture,
+    warm cinnabar red #D9483B with rust-red midtones and very sparse dark iron-gray ink accents. Sparse, airy, strong
+    negative space. No physical metal.
+
+    Text: none.
+
+    Constraints: strict flat #FFFFFF background, no off-white paper, shadows or background textures. No opaque white
+    highlights inside effect. No hand, arm, person, weapon, landscape, mountain, dragon, animal, letters, numbers,
+    captions, borders, checkerboard, neon lightning, fireballs, sparks, glossy 3D surfaces. This is self-buff breath,
+    never a traveling missile.'
+  negative: 无文字、脸、额外发出方、实体山峰、兵器、龙、棋盘格或白底残边；不表现离体远程攻击。
+  references: []
+  tool: Codex · 内置 image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiezhangyunqigong/codex-home/generated_images/01a10484-ec03-7423-8f5f-9ef1347eb185/exec-bb4bf487-47b5-4dad-b360-407836626220.png
+  size: 1254x1254
+  sha256: 7ef41c6f7e366e505ac5ebd7cc653989799000d02853948e2d5a6e79048ada73
+  status: candidate
+  effect_set: effect/family/effect-set.yaml
+  skill_ref: sk_tiezhangyunqigong
+  nature: yang
+  delivery: inner
+  candidate_count: 1
+  selected_candidate: 1
+  notes:
+  - 原件逐字节保存；1254×1254 白底 2×2 格，4 帧各 627×627。
+  - 白底转透明：white_key / cutoff 250 / key_full 64；normal 混合。
+  - 造型、赤色与铁灰全为原创；未声称小说有可见颜色描写。
+  - 模型后端和 effort 未由工具返回；完整请求与候选链见 source_requests.json。
+  - 最小原料边距 29 px，略低于 32 px 建议；8 px 边框残留为 0，保留薄雾。
+  file_integrity:
+  - file: vfx-check.jsonl
+    bytes: 7960
+    sha256: 3196c2965bde952e1ec244c40f641e7ee29b03643266bb8d9d9ec58e3894e527
+  - file: effect/family/effect-set.yaml
+    bytes: 1012
+    sha256: e031657ad23b31af346ab8a91211a9a80289f756b78e35676f23edf449729a08
+  - file: effect/family/quality.json
+    bytes: 1031
+    sha256: 746c8515a3150b3c3f5ed109f1bbaa4f3c46268bb0bd30adc451153ea5926524
+  - file: effect/family/frame_000.png
+    bytes: 287824
+    sha256: 8fee99eaf98fbd0ddcc171e2019af81607ca66ac17f32ad0c2d4fc0b68874707
+  - file: effect/family/frame_001.png
+    bytes: 323769
+    sha256: 4a325324dcf920af7a46f1c690613a4ef6c1b6a97ad36703d045a64893c48f26
+  - file: effect/family/frame_002.png
+    bytes: 350636
+    sha256: b67bfaa53d8e1106d63be711b05a5629b0b524c7d1dc8c658841a77420ad3b4c
+  - file: effect/family/frame_003.png
+    bytes: 296354
+    sha256: f1e0f860708e9931eaa227491d3e8705b290a9a0366647d224d89325d553a3ec
+  - file: README.md
+    bytes: 8266
+    sha256: fd480ce8aeb3bebb248a8deb42249dd0b480f90c91b83a06e6b0a2b596613c78
+  - file: source_requests.json
+    bytes: 10080
+    sha256: ad140dd60e387345a98e7dede70ede2bd7541f46c32c705881d5ecbbf4f26884
+  - file: validation.json
+    bytes: 3440
+    sha256: faddae8a596ac93bfd72696d5822c3fce82b72ecee8616f94238ee288a7b895d
+  - file: build-log.jsonl
+    bytes: 2809
+    sha256: 3bf59f4139e2afc3918edd32d84c4e1668ed1c43e0f04a9cc55fab44242738f1
+- id: vfx_sk_tiezhangyunqigong__lianbi_base01
+  file: effect/mv_tiezhangyunqigong_lianbi/source_sheet.png
+  category: vfx
+  style: default
+  subject: 射雕 / 神雕·铁掌运气功·连臂归气·双带回环（原创扩展）
+  prompt: 'Use case: stylized-concept
+
+    Asset type: four-frame VFX raw sprite sheet, Chinese wuxia game tianshu.
+
+    Primary request: 连臂归气 (linked arms, returning breath), an original defensive ultimate of 铁掌运气功 / Iron Palm internal
+    cultivation. Only magical breath, no physical arms. Two broad cinnabar ink ribbons fold around each other into
+    one compact interlocked protective cuff, returning toward a common palm-width source at the LEFT. Airy loops,
+    open negative-space center, iron-gray inner brush accents. Warm yang internal energy, not a projectile or literal
+    flame.
+
+    Layout: square pure white RGB background; exactly 2 by 2 evenly spaced equal square cells. Four consistent animation
+    keyframes, reading order. No drawn dividers or labels. At least 8 percent completely white safety margin on
+    each side inside EACH cell.
+
+    Geometry: the same broad softly translucent root at local normalized (0.23,0.52), 0.22 cell-height root width.
+    Source feeds two overlapping rounded breath ribbons which unfold to the RIGHT and fold back, entirely before
+    x=0.86. Keep root and overall cuff silhouette stable in all cells. Small and local, no long horizontal beam.
+
+    Frames: gentle gathering linked arcs; clearly formed linked cuff; slightly denser held guard; softer thinning
+    linked arcs. Final frame still visible. Keep both bands connected to the broad root throughout.
+
+    Style: fine Chinese ink-wash VFX on digital pure white, semi-transparent feathered washes, vermilion #D9483B,
+    darker rust red, very restrained charcoal. Lightness and negative space, no opaque outline, polished game sprite
+    artwork.
+
+    Constraints: pure #FFFFFF background without paper grain, gray wash, shadow or checkerboard. No pure-white painted
+    highlights. No text, numbers, characters, symbols, hands, arms, people, weapons, metal rings, jewelry, armor,
+    chains, dragons, animals, landscape, neon, lightning, explosions or detached projectiles. Entire form must fit
+    its own cell.'
+  negative: 无文字、脸、额外发出方、实体山峰、兵器、龙、棋盘格或白底残边；不表现离体远程攻击。
+  references: []
+  tool: Codex · 内置 image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiezhangyunqigong/codex-home/generated_images/01a10484-ec03-7423-8f5f-9ef1347eb185/exec-bd6d5e71-a04d-4c0d-9195-c674b6e46338.png
+  size: 1254x1254
+  sha256: 0f85bb3b6291e5fc7b5d8b463ce7fe464d4541e5178fdae30fc5da497d7b140e
+  status: candidate
+  effect_set: effect/mv_tiezhangyunqigong_lianbi/effect-set.yaml
+  skill_ref: sk_tiezhangyunqigong
+  nature: yang
+  delivery: inner
+  candidate_count: 1
+  selected_candidate: 1
+  notes:
+  - 原件逐字节保存；1254×1254 白底 2×2 格，4 帧各 627×627。
+  - 白底转透明：white_key / cutoff 250 / key_full 64；normal 混合。
+  - 造型、赤色与铁灰全为原创；未声称小说有可见颜色描写。
+  - 模型后端和 effort 未由工具返回；完整请求与候选链见 source_requests.json。
+  file_integrity:
+  - file: effect/mv_tiezhangyunqigong_lianbi/effect-set.yaml
+    bytes: 1006
+    sha256: b92255612218e5663e598282439e7bc0dd2810b2cb2d9f9474be2f5812849515
+  - file: effect/mv_tiezhangyunqigong_lianbi/quality.json
+    bytes: 1028
+    sha256: c6a0ef6e12a00898e24510e2370aac84afc03215d65c0374123d223ee099396d
+  - file: effect/mv_tiezhangyunqigong_lianbi/frame_000.png
+    bytes: 295442
+    sha256: 647ed78522671c89b1fcadf56763c883803fe4d50f1493f13f8b5de26412f926
+  - file: effect/mv_tiezhangyunqigong_lianbi/frame_001.png
+    bytes: 306524
+    sha256: e8c5b4617b5ca111420f7722ebccbaf8da6c8cb8aca97b67a5becb4320382b54
+  - file: effect/mv_tiezhangyunqigong_lianbi/frame_002.png
+    bytes: 348513
+    sha256: 71416d84e2da32938c8d950fe7b3ca25e4549823e479077eafc4ec67e88a05bb
+  - file: effect/mv_tiezhangyunqigong_lianbi/frame_003.png
+    bytes: 283078
+    sha256: 17fb923084da79e85b1915ce051773e249e2ac6d651f4cf40e36dca15ff426ac
+- id: vfx_sk_tiezhangyunqigong__shoufeng_base01
+  file: effect/mv_tiezhangyunqigong_shoufeng/source_sheet.png
+  category: vfx
+  style: default
+  subject: 射雕 / 神雕·铁掌运气功·守峰定息·三叠护息（原创扩展）
+  prompt: 'Use case: precise-object-edit
+
+    Asset type: four-keyframe white-background VFX sprite sheet.
+
+    Input image: edit target, the existing 2x2 守峰定息 defensive breath sheet.
+
+    Change only the composition spacing: make each of the FOUR isolated qi shapes about 78 percent of its current
+    width and height, centered within its OWN equal square cell. Preserve all four shapes, their sequence, translucent
+    vermilion and iron-gray ink washes, three blunt upright protective folds, softly broad left root, and the pure
+    white background. Do NOT combine the frames. Final sheet remains exactly 2 columns by 2 rows of equal cells,
+    no visible grid.
+
+    Every speck and soft fringe must stay inside local x=0.13..0.87 and y=0.13..0.87 in its cell. This means at
+    least 13 percent blank white margin on each of all four sides of EACH frame, including internal cell boundaries.
+    The left root should be around local (0.28,0.51), consistent across frames, direction to the right. Keep all
+    source root details and soft wisps uncut.
+
+    No new objects, no text, no labels, no borders, no hand or arm, no mountain scenery, no paper texture, no checkerboard,
+    no shadows. White background must be flat #FFFFFF. Preserve the same defensive breath art and frame order; only
+    reduce their occupied area and recenter.'
+  negative: 无文字、脸、额外发出方、实体山峰、兵器、龙、棋盘格或白底残边；不表现离体远程攻击。
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiezhangyunqigong/codex-home/generated_images/01a10484-ec03-7423-8f5f-9ef1347eb185/exec-d740010a-2a23-4e02-be2d-3b218f88f6cd.png
+  tool: Codex · 内置 image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiezhangyunqigong/codex-home/generated_images/01a10484-ec03-7423-8f5f-9ef1347eb185/exec-b3941da7-0877-49bc-b6a6-30dcb6ccebce.png
+  size: 1254x1254
+  sha256: b595bb0413a6ccecd1f162e94a70362e33992091d0f73a63cba184adbe9dabbf
+  status: candidate
+  effect_set: effect/mv_tiezhangyunqigong_shoufeng/effect-set.yaml
+  skill_ref: sk_tiezhangyunqigong
+  nature: yang
+  delivery: inner
+  candidate_count: 2
+  selected_candidate: 2
+  notes:
+  - 原件逐字节保存；1254×1254 白底 2×2 格，4 帧各 627×627。
+  - 白底转透明：white_key / cutoff 250 / key_full 64；normal 混合。
+  - 造型、赤色与铁灰全为原创；未声称小说有可见颜色描写。
+  - 模型后端和 effort 未由工具返回；完整请求与候选链见 source_requests.json。
+  - 第一候选左侧留白不足；第二候选编辑缩小入选。首稿路径与参考哈希见 source_requests.json。
+  file_integrity:
+  - file: effect/mv_tiezhangyunqigong_shoufeng/effect-set.yaml
+    bytes: 1010
+    sha256: 299a89696dc1c1585ec95b132eea7581b83029a79825e9006d90e9553feed345
+  - file: effect/mv_tiezhangyunqigong_shoufeng/quality.json
+    bytes: 1034
+    sha256: 84c6da3c282d6c1d33540db30bc1e48b6b91edc8de069f4a1d11d9b382afe34b
+  - file: effect/mv_tiezhangyunqigong_shoufeng/frame_000.png
+    bytes: 201443
+    sha256: ceb310d12f0dee06bee483f3044b26490d8acdaa5bded3058fb3f16dbec144bd
+  - file: effect/mv_tiezhangyunqigong_shoufeng/frame_001.png
+    bytes: 220569
+    sha256: b6c09729744af9b2b0c964e77e8d0fb7ddc0442f4712e35ffe4ee99bdfebfc8f
+  - file: effect/mv_tiezhangyunqigong_shoufeng/frame_002.png
+    bytes: 227641
+    sha256: 2e3084e035c54e53a0c27bfa8a6f82c180919d0cb18ee0b29e59ee74db987da0
+  - file: effect/mv_tiezhangyunqigong_shoufeng/frame_003.png
+    bytes: 221024
+    sha256: 1ccc32a282d79d1d810f98e75cf5c9d50d463d1b28ec9f57e42b4852c61f3190
+- id: vfx_mv_tiezhangyunqigong_lianbi__base01
+  file: moves/mv_tiezhangyunqigong_lianbi/peak.png
+  category: vfx
+  style: default
+  subject: 射雕 / 神雕·铁掌运气功·连臂归气（原创扩展）
+  prompt: '确定性合成（非新生图）：连臂归气，effect_set=effect/mv_tiezhangyunqigong_lianbi/effect-set.yaml；共享 palm 原字节；E=[600,560]，angle=0，emitter_scale=0.6，range_hex=0，length_px=384，scale=[1,1]；{''charge_s'':
+    0.15, ''release_s'': 0.2, ''sustain_s'': 0.4, ''dissipate_s'': 0.15}；crossfade，scale_from=0.95，drift=0，directional_mask=false，normal，background=#EFE6D2，1536×1024；peak_phase=0.3888888888888889；HTML
+    内嵌素材与 Three.js 播放器。'
+  negative: 无文字、脸、额外发出方、实体山峰、兵器、龙、棋盘格或白底残边；不表现离体远程攻击。
+  references:
+  - effect/mv_tiezhangyunqigong_lianbi/effect-set.yaml
+  - assets/default/vfx/emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not-applicable (deterministic composition)
+  effort: not-applicable
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-sk_tiezhangyunqigong/assets/default/vfx/sk_tiezhangyunqigong/moves/mv_tiezhangyunqigong_lianbi/composition.yaml
+  size: 1536x1024
+  sha256: 92df6f1d54636e3124d03de82a2ca61fe307d2126f159d1d3e7fdc730da23881
+  status: candidate
+  code: moves/mv_tiezhangyunqigong_lianbi/demo.html
+  pipeline: two-part
+  skill_ref: sk_tiezhangyunqigong
+  move_ref: mv_tiezhangyunqigong_lianbi
+  ultimate: true
+  projection: false
+  nature: yang
+  delivery: inner
+  effect_set: effect/mv_tiezhangyunqigong_lianbi/effect-set.yaml
+  emitter_plate: assets/default/vfx/emitters/palm/emitter-plate.yaml
+  length_px: 384
+  rhythm_template: wave
+  notes:
+  - 图鉴 §1.1 为自身运功 / 防守，range 未填数值；range_hex=0 仅表达自身基线。
+  - 局部长度来自展示掌宽 320×0.6=192 px，不是射程、CT 或护体容量。
+  - 唯一显式外链沿用工具 Three.js r186 importmap；浏览器 / 真机待实测。
+  file_integrity:
+  - file: moves/mv_tiezhangyunqigong_lianbi/composition.yaml
+    bytes: 961
+    sha256: 5bc70be2275a51df8b3e0e97a441c989621255a7fcc72bddfbbe4cb794a25c6d
+  - file: moves/mv_tiezhangyunqigong_lianbi/composition.json
+    bytes: 3426
+    sha256: 1c550197086aed25c29c9b015a172ab31e6cb029297aef508af6660643fc595c
+  - file: moves/mv_tiezhangyunqigong_lianbi/demo.html
+    bytes: 2026279
+    sha256: eb533a81555cc3a038207826ca9c9f2dd2209b3ca5d7c4cec52f42753502d29c
+- id: vfx_mv_tiezhangyunqigong_ningxi__base01
+  file: moves/mv_tiezhangyunqigong_ningxi/peak.png
+  category: vfx
+  style: default
+  subject: 射雕 / 神雕·铁掌运气功·凝息稳臂（原创扩展）
+  prompt: '确定性合成（非新生图）：凝息稳臂，effect_set=effect/family/effect-set.yaml；共享 palm 原字节；E=[600,560]，angle=0，emitter_scale=0.6，range_hex=0，length_px=336，scale=[1,1]；{''charge_s'':
+    0.1, ''release_s'': 0.15, ''sustain_s'': 0.25, ''dissipate_s'': 0.1}；crossfade，scale_from=0.95，drift=0，directional_mask=false，normal，background=#EFE6D2，1536×1024；peak_phase=0.4166666666666667；HTML
+    内嵌素材与 Three.js 播放器。'
+  negative: 无文字、脸、额外发出方、实体山峰、兵器、龙、棋盘格或白底残边；不表现离体远程攻击。
+  references:
+  - effect/family/effect-set.yaml
+  - assets/default/vfx/emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not-applicable (deterministic composition)
+  effort: not-applicable
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-sk_tiezhangyunqigong/assets/default/vfx/sk_tiezhangyunqigong/moves/mv_tiezhangyunqigong_ningxi/composition.yaml
+  size: 1536x1024
+  sha256: b7c74909deb65646a615b24fc4c709fa78197b7ccf48a17177f8af1c2622cd80
+  status: candidate
+  code: moves/mv_tiezhangyunqigong_ningxi/demo.html
+  pipeline: two-part
+  skill_ref: sk_tiezhangyunqigong
+  move_ref: mv_tiezhangyunqigong_ningxi
+  ultimate: false
+  projection: false
+  nature: yang
+  delivery: inner
+  effect_set: effect/family/effect-set.yaml
+  emitter_plate: assets/default/vfx/emitters/palm/emitter-plate.yaml
+  length_px: 336
+  rhythm_template: pulse
+  notes:
+  - 图鉴 §1.1 为自身运功 / 防守，range 未填数值；range_hex=0 仅表达自身基线。
+  - 局部长度来自展示掌宽 320×0.6=192 px，不是射程、CT 或护体容量。
+  - 唯一显式外链沿用工具 Three.js r186 importmap；浏览器 / 真机待实测。
+  file_integrity:
+  - file: moves/mv_tiezhangyunqigong_ningxi/composition.yaml
+    bytes: 940
+    sha256: 024b39994b70d4fa7a01ba7b24aeee8e2b3fa76d8d7e8d5f249f3a6aded8f344
+  - file: moves/mv_tiezhangyunqigong_ningxi/composition.json
+    bytes: 3411
+    sha256: 0f28d6c38b81afb33e98b16e64f29f53b3be24047a0f5cef7853c1a28fbccde7
+  - file: moves/mv_tiezhangyunqigong_ningxi/demo.html
+    bytes: 2026264
+    sha256: f39963e26e152eb2ab4c694e5a32e93b8633fa4412aacb3c76966ef93ffff48c
+- id: vfx_mv_tiezhangyunqigong_shoufeng__base01
+  file: moves/mv_tiezhangyunqigong_shoufeng/peak.png
+  category: vfx
+  style: default
+  subject: 射雕 / 神雕·铁掌运气功·守峰定息（原创扩展）
+  prompt: '确定性合成（非新生图）：守峰定息，effect_set=effect/mv_tiezhangyunqigong_shoufeng/effect-set.yaml；共享 palm 原字节；E=[600,560]，angle=0，emitter_scale=0.6，range_hex=0，length_px=432，scale=[1,1]；{''charge_s'':
+    0.15, ''release_s'': 0.2, ''sustain_s'': 0.4, ''dissipate_s'': 0.15}；crossfade，scale_from=0.95，drift=0，directional_mask=false，normal，background=#EFE6D2，1536×1024；peak_phase=0.3888888888888889；HTML
+    内嵌素材与 Three.js 播放器。'
+  negative: 无文字、脸、额外发出方、实体山峰、兵器、龙、棋盘格或白底残边；不表现离体远程攻击。
+  references:
+  - effect/mv_tiezhangyunqigong_shoufeng/effect-set.yaml
+  - assets/default/vfx/emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not-applicable (deterministic composition)
+  effort: not-applicable
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-sk_tiezhangyunqigong/assets/default/vfx/sk_tiezhangyunqigong/moves/mv_tiezhangyunqigong_shoufeng/composition.yaml
+  size: 1536x1024
+  sha256: 5e02c8295ee0151ee5015dfc486a3f2ed513d8a77a378a0392b3341c41df3af6
+  status: candidate
+  code: moves/mv_tiezhangyunqigong_shoufeng/demo.html
+  pipeline: two-part
+  skill_ref: sk_tiezhangyunqigong
+  move_ref: mv_tiezhangyunqigong_shoufeng
+  ultimate: true
+  projection: false
+  nature: yang
+  delivery: inner
+  effect_set: effect/mv_tiezhangyunqigong_shoufeng/effect-set.yaml
+  emitter_plate: assets/default/vfx/emitters/palm/emitter-plate.yaml
+  length_px: 432
+  rhythm_template: wave
+  notes:
+  - 图鉴 §1.1 为自身运功 / 防守，range 未填数值；range_hex=0 仅表达自身基线。
+  - 局部长度来自展示掌宽 320×0.6=192 px，不是射程、CT 或护体容量。
+  - 唯一显式外链沿用工具 Three.js r186 importmap；浏览器 / 真机待实测。
+  file_integrity:
+  - file: moves/mv_tiezhangyunqigong_shoufeng/composition.yaml
+    bytes: 969
+    sha256: b3461b9753c504920971f37bb1c44674886835e8005499d6b8d44d6d23de9145
+  - file: moves/mv_tiezhangyunqigong_shoufeng/composition.json
+    bytes: 3438
+    sha256: 92935e9aeb315958b5591cd020a132ff7bf8a7e22579d83c26403bdd75699481
+  - file: moves/mv_tiezhangyunqigong_shoufeng/demo.html
+    bytes: 1623095
+    sha256: 907641ee42d68cc918bfdfa7c784da8ec10dd2217d3b6e85df990a6791b01cc0
+- id: vfx_mv_tiezhangyunqigong_tuna__base01
+  file: moves/mv_tiezhangyunqigong_tuna/peak.png
+  category: vfx
+  style: default
+  subject: 射雕 / 神雕·铁掌运气功·铁掌吐纳（原创扩展）
+  prompt: '确定性合成（非新生图）：铁掌吐纳，effect_set=effect/family/effect-set.yaml；共享 palm 原字节；E=[600,560]，angle=0，emitter_scale=0.6，range_hex=0，length_px=240，scale=[1,1]；{''charge_s'':
+    0.1, ''release_s'': 0.15, ''sustain_s'': 0.25, ''dissipate_s'': 0.1}；crossfade，scale_from=0.95，drift=0，directional_mask=false，normal，background=#EFE6D2，1536×1024；peak_phase=0.4166666666666667；HTML
+    内嵌素材与 Three.js 播放器。'
+  negative: 无文字、脸、额外发出方、实体山峰、兵器、龙、棋盘格或白底残边；不表现离体远程攻击。
+  references:
+  - effect/family/effect-set.yaml
+  - assets/default/vfx/emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not-applicable (deterministic composition)
+  effort: not-applicable
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-sk_tiezhangyunqigong/assets/default/vfx/sk_tiezhangyunqigong/moves/mv_tiezhangyunqigong_tuna/composition.yaml
+  size: 1536x1024
+  sha256: 656316880c21ee3d7e7f322361fd1c432e7ef9dfca892680c7a84f95a754f76e
+  status: candidate
+  code: moves/mv_tiezhangyunqigong_tuna/demo.html
+  pipeline: two-part
+  skill_ref: sk_tiezhangyunqigong
+  move_ref: mv_tiezhangyunqigong_tuna
+  ultimate: false
+  projection: false
+  nature: yang
+  delivery: inner
+  effect_set: effect/family/effect-set.yaml
+  emitter_plate: assets/default/vfx/emitters/palm/emitter-plate.yaml
+  length_px: 240
+  rhythm_template: pulse
+  notes:
+  - 图鉴 §1.1 为自身运功 / 防守，range 未填数值；range_hex=0 仅表达自身基线。
+  - 局部长度来自展示掌宽 320×0.6=192 px，不是射程、CT 或护体容量。
+  - 唯一显式外链沿用工具 Three.js r186 importmap；浏览器 / 真机待实测。
+  file_integrity:
+  - file: moves/mv_tiezhangyunqigong_tuna/composition.yaml
+    bytes: 934
+    sha256: 48b886f4126bf0f382507ba81b2f4b41530b7c6a21804877877a52d9225e8ed2
+  - file: moves/mv_tiezhangyunqigong_tuna/composition.json
+    bytes: 3405
+    sha256: 4c0c1ab97c377d9f1ff3c54faa6e43e5f71cc4e86d8d1203617af37da8fefadf
+  - file: moves/mv_tiezhangyunqigong_tuna/demo.html
+    bytes: 1992598
+    sha256: 20db78042055051969e11fc0c868d4e48bd0250e0d60f1bc108461c0ba372658
+- id: vfx_mv_tiezhangyunqigong_yunzhang__base01
+  file: moves/mv_tiezhangyunqigong_yunzhang/peak.png
+  category: vfx
+  style: default
+  subject: 射雕 / 神雕·铁掌运气功·运掌凝劲（原创扩展）
+  prompt: '确定性合成（非新生图）：运掌凝劲，effect_set=effect/family/effect-set.yaml；共享 palm 原字节；E=[600,560]，angle=0，emitter_scale=0.6，range_hex=0，length_px=288，scale=[1,1]；{''charge_s'':
+    0.1, ''release_s'': 0.15, ''sustain_s'': 0.25, ''dissipate_s'': 0.1}；crossfade，scale_from=0.95，drift=0，directional_mask=false，normal，background=#EFE6D2，1536×1024；peak_phase=0.4166666666666667；HTML
+    内嵌素材与 Three.js 播放器。'
+  negative: 无文字、脸、额外发出方、实体山峰、兵器、龙、棋盘格或白底残边；不表现离体远程攻击。
+  references:
+  - effect/family/effect-set.yaml
+  - assets/default/vfx/emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not-applicable (deterministic composition)
+  effort: not-applicable
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-sk_tiezhangyunqigong/assets/default/vfx/sk_tiezhangyunqigong/moves/mv_tiezhangyunqigong_yunzhang/composition.yaml
+  size: 1536x1024
+  sha256: 473afeea658964045b17de201981bda16b74933fc1b459e3c5fa661538174981
+  status: candidate
+  code: moves/mv_tiezhangyunqigong_yunzhang/demo.html
+  pipeline: two-part
+  skill_ref: sk_tiezhangyunqigong
+  move_ref: mv_tiezhangyunqigong_yunzhang
+  ultimate: false
+  projection: false
+  nature: yang
+  delivery: inner
+  effect_set: effect/family/effect-set.yaml
+  emitter_plate: assets/default/vfx/emitters/palm/emitter-plate.yaml
+  length_px: 288
+  rhythm_template: pulse
+  notes:
+  - 图鉴 §1.1 为自身运功 / 防守，range 未填数值；range_hex=0 仅表达自身基线。
+  - 局部长度来自展示掌宽 320×0.6=192 px，不是射程、CT 或护体容量。
+  - 唯一显式外链沿用工具 Three.js r186 importmap；浏览器 / 真机待实测。
+  file_integrity:
+  - file: moves/mv_tiezhangyunqigong_yunzhang/composition.yaml
+    bytes: 946
+    sha256: 4d686689f00e7e60cfd504c1f2b13256ace6e1c6a6db8fef984e098437c02d21
+  - file: moves/mv_tiezhangyunqigong_yunzhang/composition.json
+    bytes: 3417
+    sha256: b3651ff966b1a5e37dfced46eb79fbcddab8b219ff0f796a3b1d03ecd2e750b1
+  - file: moves/mv_tiezhangyunqigong_yunzhang/demo.html
+    bytes: 2009582
+    sha256: 8f8a257618a560188550fa5a300d7be5cd78163ace0ebb98f69d02bd11b000fa

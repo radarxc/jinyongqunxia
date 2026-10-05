@@ -1,0 +1,41 @@
+{
+  "id": "bld_kit_liao_jin_north_biaoju",
+  "footprint": [
+    14,
+    11
+  ],
+  "corners": [
+    [
+      144,
+      546
+    ],
+    [
+      830,
+      909
+    ],
+    [
+      1368,
+      626
+    ]
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-71b77123-4f56-4039-8faa-ace93c0c6891.png",
+  "subject": "辽金北方护运货栈院落（原创扩展；不宣称时代存在具名镖局）",
+  "prompt": "Edit the supplied Song cargo courtyard sprite into one NEW Liao-Jin northern freight-protection courtyard for tianshu/default, id bld_kit_liao_jin_north_biaoju. Preserve its restrained realistic art style, detail density, exact orthographic camera, thin footprint, compact one-courtyard layout and transparent background. Replace the southern vegetation with bare compacted-earth court; use buff earth-plaster walls and gray stone footings, dark unpainted timber, simple unglazed gray roof tiles with restrained early-medieval eaves, no Ming-Qing ornament. Rear single-story reception hall, open side storehouse containing packed bales and crates, a small two-wheel wooden freight handcart inside the courtyard, modest entry gate facing screen lower left. It represents an unnamed game cargo-protection business (original extension), not a claim that a historical branded escort agency existed. No plaque or banner. Footprint14m east-west by11m north-south,14:11 ratio; strict 2:1 dimetric ground plane yaw45 elevation30, ground axis slopes +0.5 and -0.5, parallel edges do not converge. Keep all three left/front/right floor contact corners clearly readable; do not thicken the base. Light upper-left, short soft contact shadow lower-right. Complete isolated image with true RGBA transparency and ample margins. No people, animals, text, symbols, flags, background, halo, vignette, roads, landscape, gold roofs, modern objects, watermark or checkerboard.",
+  "negative": "人物、文字、徽记、现代物、明清旅游风、厚地台、裁切、景观背景、伪透明棋盘格、非等比拉伸",
+  "references": [
+    {
+      "id": "bld_kit_song_southern_biaoju",
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png",
+      "role": "image_gen输入；既有宋候选时代适配参考，不表示新图获作者批准"
+    }
+  ],
+  "candidate_count": 1,
+  "candidate_records": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-71b77123-4f56-4039-8faa-ace93c0c6891.png",
+      "prompt": "Edit the supplied Song cargo courtyard sprite into one NEW Liao-Jin northern freight-protection courtyard for tianshu/default, id bld_kit_liao_jin_north_biaoju. Preserve its restrained realistic art style, detail density, exact orthographic camera, thin footprint, compact one-courtyard layout and transparent background. Replace the southern vegetation with bare compacted-earth court; use buff earth-plaster walls and gray stone footings, dark unpainted timber, simple unglazed gray roof tiles with restrained early-medieval eaves, no Ming-Qing ornament. Rear single-story reception hall, open side storehouse containing packed bales and crates, a small two-wheel wooden freight handcart inside the courtyard, modest entry gate facing screen lower left. It represents an unnamed game cargo-protection business (original extension), not a claim that a historical branded escort agency existed. No plaque or banner. Footprint14m east-west by11m north-south,14:11 ratio; strict 2:1 dimetric ground plane yaw45 elevation30, ground axis slopes +0.5 and -0.5, parallel edges do not converge. Keep all three left/front/right floor contact corners clearly readable; do not thicken the base. Light upper-left, short soft contact shadow lower-right. Complete isolated image with true RGBA transparency and ample margins. No people, animals, text, symbols, flags, background, halo, vignette, roads, landscape, gold roofs, modern objects, watermark or checkerboard.",
+      "selected": true
+    }
+  ],
+  "notes": "原图已view_image。以宋护运行作年代适配，灰瓦木构、土院、货包手车、无字大门，保持基线细节密度。无人物、无景观、无厚底台。底面人工测点在建议斜率与占地比阈值内（±3px读数不确定性）。"
+}

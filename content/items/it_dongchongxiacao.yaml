@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_dongchongxiacao
+name: 冬虫夏草
+kind: material
+sub: herb
+grade: 8
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/dongchongxiacao
+text:
+  desc: 外观：药用虫体与棕色子座相连、干燥成黄褐细条，绢衬木匣平码。
+  lore: 青藏、河西陇右、巴蜀与云滇黔高寒草甸夏季五至七月可见子座，按清代文献保守投放。黄褐细条须静服调息，本作增加内功修为。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di6
+    materialGrade: 8
+    rare: false
+    herbFamily: dongChongXiaCao
+    ageYears: 0
+    attributes:
+      version: 2
+      qiCultivation: 3000

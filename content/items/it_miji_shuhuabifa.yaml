@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_shuhuabifa
+name: 书画笔法抄本
+kind: manual
+sub: copy
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shuhuabifa
+text:
+  desc: 外观：北宋月白蝴蝶装小册，青丝缝缀。
+  lore: 函谷一脉把书画运腕与笔锋变化转抄成月白小册，具体谱本与传授属 （原创扩展）。研读须以笔墨反复临写，再体会腕力如何化入招式；墨点和笔毫压痕皆为练习所留，抄本止于八层。
+extension:
+  type: manual
+  value:
+    skill: sk_shuhuabifa
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_shuhuabifa
+      readWis: 20
+      maxLayer: 8
+      cultivation: 400

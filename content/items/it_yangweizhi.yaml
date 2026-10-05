@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_yangweizhi
+name: 羊尾脂
+kind: material
+sub: ingredient
+grade: 5
+stack: 999
+chapters: any
+origin: canon
+canonRef: 北方与清代京师羊馔常用；《鹿鼎记》有炸羊尾场景
+price: auto
+flags: []
+assets:
+  icon: item/yangweizhi
+text:
+  desc: 外观：乳白羊尾脂一块带淡粉边置锡盘，拳头尺度 （原创扩展）。
+  lore: 北方及清代京师羊馔常用羊尾脂，《鹿鼎记》亦有炸羊尾菜名。本件只是一块生脂，须配肉或面食熟制；酒楼把洁白细腻者留作上等料。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_xuan6
+    materialGrade: 5
+    rare: false
+    ingredientKind: meat
+    attributes:
+      version: 2

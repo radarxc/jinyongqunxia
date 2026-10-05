@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_mingqingyesa_nan
+name: 明青曳撒·男
+kind: armor
+sub: clothing
+grade: 6
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 曳撒 · 明（《酌中志》、故宫明代宫廷服饰研究）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingqingyesa_nan
+text:
+  desc: 外观：男款深青交领右衽曳撒单件平展，窄袖。 待运行时投影：agi=1; wearer=male。
+  lore: 据明代曳撒形制演成，窄袖与腰下密褶适合骑射，行动前应收紧右衽系带。军伍与内廷各有规制，本件无飞鱼纹，也不据此授予官差身份。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 48
+      agi: 1

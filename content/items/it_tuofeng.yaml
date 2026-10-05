@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_tuofeng
+name: 驼峰
+kind: material
+sub: ingredient
+grade: 8
+stack: 999
+chapters: any
+origin: canon
+canonRef: 元《饮膳正要》所见蒙元珍馔语境；西北固定货源
+price: auto
+flags: []
+assets:
+  icon: item/tuofeng
+text:
+  desc: 外观：淡红驼峰肉一块带厚白脂置银盘，约双掌宽 （原创扩展）。
+  lore: 元《饮膳正要》所见蒙元珍馔语境中的驼峰，脂厚而供应极少。本件只随西北固定货源出现，宜由名厨慢煨；不可从普通牧场反复取得。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di6
+    materialGrade: 8
+    rare: false
+    ingredientKind: rare
+    attributes:
+      version: 2

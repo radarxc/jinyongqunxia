@@ -1,0 +1,133 @@
+id: bld_kit_qing_south_biaoju
+status: candidate
+building:
+  type: bld_kit_qing_south_biaoju
+  footprint:
+  - 15
+  - 12
+  anchor:
+  - 568.6144
+  - 485.0214
+  era: qing_south
+anchor_px:
+- 568.6144
+- 485.0214
+anchor_basis: 原图底面左右角中点经同一裁切和缩放映射；不是PNG底边中心。
+footprint_m:
+- 15
+- 12
+footprint_source: design/22 §3.4 bld_kit_qing_early_biaoju
+logical_footprint_polygon_px:
+- - 136.61440000000005
+  - 461.0214
+- - 616.6144
+  - 701.0214000000001
+- - 1000.6144
+  - 509.0214
+- - 520.6144
+  - 269.0214
+collision_polygon_m:
+- - 0
+  - 0
+- - 15
+  - 0
+- - 15
+  - 12
+- - 0
+  - 12
+collision_note: 全占地代理，非实测墙体；院内通行需后续细化。
+occluder_proxy_px:
+- 137
+- 158
+- 1001
+- 698
+occluder_note: alpha>=192包围框，仅测量代理，不修改原alpha。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+entrance:
+  edge: S
+  offset_cells: 7.5
+entrance_note: 目录南边中点代理；门洞实际位置待总装校准。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_biaoju.png
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 864
+  - 432
+  ground_width_px: 864
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 1088
+  - 832
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 631058
+  alpha_partial_pixels: 273431
+  alpha_opaque_pixels: 727
+  alpha_nonzero_bbox:
+  - 154
+  - 155
+  - 982
+  - 701
+  transparent_margins_px:
+  - 154
+  - 155
+  - 106
+  - 131
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 99
+  - 78
+  - 1455
+  - 972
+  isotropic_scale: 0.610738255033557
+  resized_size:
+  - 828
+  - 546
+  paste_offset:
+  - 154
+  - 155
+  - 982
+  - 701
+  final_size:
+  - 1088
+  - 832
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/biaoju.png
+  source_sha256: efc7162e4e28e3cfc05f6ed4a351dead92e50192590dd79517a997858ba6c9d9
+  forbidden_transforms_used: false
+release_ready: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
+source_request: history/records/biaoju.yaml

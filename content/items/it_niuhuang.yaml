@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_niuhuang
+name: 牛黄
+kind: material
+sub: herb
+grade: 8
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/niuhuang
+text:
+  desc: 外观：药用结石呈金黄至黄褐轻脆小块，断面层纹可见。
+  lore: 燕京直隶、中原、齐鲁、江淮与漠南城镇旧库四季可见，不作野采。金黄轻脆小块须辨断面层纹，本作归入较强疏内伤辅材。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di6
+    materialGrade: 8
+    rare: false
+    herbFamily: niuHuang
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 5

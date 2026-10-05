@@ -1,0 +1,346 @@
+- id: por_npc_hufuren__ch14_youth_memory_base
+  file: por_npc_hufuren__ch14_youth_memory_base.png
+  category: character/female
+  style: default
+  subject: 胡夫人（ch14_xueshan）
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是这张立绘的脸部特写（看清本人五官用）；第 2 张参考图是待改原图。请以第 2 张原图为底稿，只改人物的表情、眼神和嘴角，让神态变成：温柔明朗：眼神清亮，嘴角带一点温柔的浅笑。然后输出修改后的完整图片：2:3 竖幅，构图、取景与原图一致。
+
+    【必须还是同一个人】脸型与骨相、眉形与眉眼间距、眼型、鼻子、嘴型与唇厚、胡须、皱纹、痣与疤、肤色、年龄感、发式与头饰都保持原图不变——只是同一张脸换了一个表情。表情要自然，面部肌肉随表情合理变化（笑时眼角、苹果肌、法令纹随之变化），但不要变年轻或变老、不要变胖或变瘦、不要换成另一张更好看的脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景、光线方向与色调、纸底与水墨处理、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch14/por_npc_hufuren__ch14_youth_memory_base.png
+    sha256: 74930b145e0d1db95b27b70266190e300a1e58104fa544d10291893082648259
+    use: 待改原图（AR-58 神态（各书配角） 图像编辑只改表情，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_hufuren__ch14_youth_memory_base.74930b14.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角） · 12 号出图员：图像编辑只改表情、眼神、嘴角，上传本图脸部特写 + 原图，不加画风基线；编辑结果只取头部合成回原图）
+  model: gpt-6.1-sol
+  created: 2026-10-03T21:10:09-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_hufuren__ch14_youth_memory_base.x1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 096cddd0e4ab2e525071560d7fa9fd998afbe416cc9c8c595d6b6887f2b2f3bd
+  status: candidate
+  notes: 立绘重审重出（AR-30）；主检出现图与飞狐胡夫人、南兰同一张通用美女脸；按与飞狐版逐字相同的五官文字重画，保留「全身裹在皮裘中只露出脸蛋」的原著标志。；AR-58 神态（各书配角）（12 号线（gpt-6.1-sol））：只改表情、眼神、嘴角 → 温柔明朗：眼神清亮，嘴角带一点温柔的浅笑（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png；已用看图工具与ch13参照并排核对，均为含蓄闭口温柔神态；本张温柔浅笑可辨；AR-63：依交接既定青年回忆阶段与温柔明朗性格，保留年龄骨相；目视面部有界羽化合成，发式/头饰/颈部/服装/背景像素不动，面部框外像素差=0）
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_hufuren__ch14_youth_memory_base.74930b14.png
+    sha256: 74930b145e0d1db95b27b70266190e300a1e58104fa544d10291893082648259
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_hufuren__ch14_youth_memory_base.74930b14.entry.yaml
+- id: por_npc_nanlan__ch14_youth_memory_base
+  file: por_npc_nanlan__ch14_youth_memory_base.png
+  category: character/female
+  style: default
+  subject: 南兰（ch14_xueshan）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+    人物：南兰，金庸《雪山飞狐》回忆中苗若兰的母亲、苗人凤的前妻，官家小姐出身，生前的日常模样。
+
+    经典形象：要一眼认出是南兰——圆整低髻、素金簪、藕荷绸袄、手握素帕，含愁带怯、美得精致而忧郁的官家小姐。
+
+    年龄与体态：二十五岁左右的少妇，体态纤弱娇柔，约七头身。
+
+    脸与五官：小巧的鹅蛋脸，下巴圆润；细细弯弯的柳叶眉；一双含愁带怯的杏眼，眼尾微微下垂，眼神飘忽不定；鼻子小巧；嘴唇小而红润（天然的红，不是浓妆）；肤色白如凝脂。美得精致，却带着忧郁和不安分。
+
+    发式：绾成圆整的低髻，插一支小小的素金簪。
+
+    服饰：浅藕荷色右衽绸面夹袄（穿着者左襟压右襟），领缘深梅色，米灰色百褶长裙，厚度适合寒地；平底绣鞋。
+
+    兵器与道具：手中轻握一方素白手帕。
+
+    姿态与神情：侧身静立，目光微微移向远处，惆怅而克制。
+
+    画风：写实手绘古风人物插画，画风与上传的最后两张画风基线图一致：精细写实的数字手绘插画，笔触细腻柔和、边缘干净；不是油画，没有厚涂笔触和画布纹理；不是照片，不是三维渲染，不是动漫或游戏 CG。人物要像真实存在的人：皮肤看得见毛孔、细纹、晒痕和轻微色斑，五官与脸型有自然的左右不对称，不磨皮；衣料看得出织物的经纬、自然的褶皱和穿用后的轻微旧化，但衣服完整，没有破洞碎布。整体低饱和、沉稳的设色；柔和自然的漫射光从左上方照来，不用舞台光和强轮廓光。
+
+    背景：暖浅灰色纸底，远处只有极淡的水墨远山和薄雾，大面积留白；人物轮廓清楚、与背景明显分开（便于后期抠图），墨色不压到人物身上，脚下只有很淡的接触阴影。
+
+    构图：2:3 竖幅，单人全身，自然站姿，平视镜头，头部端正不歪；从头顶到鞋底完整入画，四周留出余白；双手完整，兵器和道具的两端都在画面内。
+
+    不要：任何文字、字母、签名、印章、水印、边框；第二个人物、活的动物、分格、多视角、头像特写；幼态、童颜、娃娃脸、大头小身、儿童身材；网红脸、锥子脸、大眼滤镜、过度对称、塑料皮肤、蜡像感、过度精修、偶像化打光；任何真实演员或明星的长相；现代服饰和物品；日式服饰、日本刀；汉服交领左衽、整幅画面左右镜像；多余或缺失的手指、手与器物粘连；发光特效、血迹；浓妆、性感化或暴露的衣着；和胡夫人、马春花同一张脸；和苗若兰同龄的少女脸；浓妆；性感化；珠钗。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:40:26-0700
+  source_path: .agents/coord/gemini_originals/por_npc_nanlan__ch14_youth_memory_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 03d1aeac9cf04b07c370dde6a2a9bed08be3e3157147de76a0c517ea11377f27
+  status: candidate
+  notes: 立绘重审重出（AR-30）；主检出现图与胡夫人同一张通用美女脸；按与飞狐版逐字相同的五官文字重画，与胡夫人、苗若兰区分。
+- id: por_npc_zhujue__ch14_f_base
+  file: por_npc_zhujue__ch14_f_base.png
+  category: character/female
+  style: default
+  subject: 主角（女）· 清乾隆·雪地（ch14_xueshan）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】主角（女）：本作原创的穿越者，此刻身处《雪山飞狐》清乾隆·雪地（约 1780 年，项目年表）；长白山雪地旅途的普通江湖人。本图是她在这一时代的基础立绘，不代表特定门派或结局。
+
+    【身份参考】随提示词上传的第 1 张图是主角本人（序章 ch00 新版定稿）：保持同一个人——脸型、眉形、眼睛、鼻子、嘴、右眼下的小痣、肤色、体型和年龄都不变；只把服饰、发式和道具换成下文的本时代版本。不要照搬图中的衣服、姿势和背景。
+
+    【本人面容（十五个时代统一，不能变）】约二十八岁的现代中国女青年，原创面孔，不像任何演员或书中其他人物。略长的鹅蛋脸，颧骨清楚，下颌利落而不尖；眉毛偏浓、平直，眉尾微微上扬（不是细柳眉、不是挑眉）；深棕色细长杏眼、内双，眼神清醒专注；鼻梁秀直、鼻头略圆；唇形清楚、上唇略薄，嘴角平；右眼外下方一颗清楚可见的浅褐色小痣（全书标志）；暖中性肤色带一点日晒，皮肤有真实纹理，素面不施浓妆。中等偏高的个子，肩背舒展、腰背挺直，四肢有行动的力量（约 7 头身）；乌黑直发、发量浓密。是成熟有主见的成年女子：沉静、可靠、带一点好奇，既不柔弱也不妩媚。
+
+    【主角标志】发髻上系一根褪色的朱红细绳，露出短短的绳头——每个时代都保留这根红绳。
+
+    【服饰】雪灰色汉族右衽窄袖厚夹袄，深青厚裙，暖褐窄布带、素面短毛领（不遮脸）与平底保暖软皮靴；黑发收成紧实低髻，素布带固定，髻根系朱红细绳。
+
+    【道具】左腰用两根短系带挂一柄普通的中国腰刀，完整入微弯的窄木鞘，朴素小护手与木柄，无纹饰；刀不出鞘。
+
+    【姿态与神情】双脚坚定落地、肩背舒展，目光沉静，厚冬衣下仍看得出同一个人的挺拔体态，不因寒冷显得疲惫衰老。成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要明星脸或模特式五官；不要与书中男女主角撞脸；不要具名神兵、门派徽记、官服；不要年龄变小或变老。不要跨时代混搭的发式和服饰；不要像赵敏、王语嫣、黄蓉、小龙女等书中女角。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 5f491550d73ea5daf2a29eb618568c208d226d296da1e5d7fc3a37774c7f85e5
+    use: 身份参考（本轮新出的主角（女）· 春秋末·越国 por_npc_zhujue__ch00_f_base）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w1/staging/por_npc_zhujue__ch00_f_base.jpg
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:59:14-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zhujue__ch14_f_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 561d6a86800089e17d1242394e37e427c98f3052eb0fbee53aba4f17f06dfe4b
+  status: candidate
+  notes: 立绘重审重出（AR-30）；随女主 ch00 新锚点统一重出：现图的脸与 ch00 不一致，改为同一张原创脸，服饰沿用本时代设定；codex 出图（1 号出图员，AR-31）；主角时代图：上传本轮新出的 ch00 锚点作唯一身份参考；沿用审核组提示词，补去 AI 味一句
+- id: por_npc_miaoruolan__ch14_youth_base
+  file: por_npc_miaoruolan__ch14_youth_base.png
+  category: character/female
+  style: default
+  subject: 苗若兰（ch14_xueshan）
+  prompt: 'Edit the attached full-body artwork, output exactly one image. Image 1 is the full-body artwork to edit. Image 2 and image 3 are the ONLY target facial identity reference.
+
+    FACE REPLACEMENT, NOT EXPRESSION RETOUCH: Replace the existing woman''s face in image 1 with a recognizable hand-painted likeness of Charmaine Sheh (佘诗曼) playing Miao Ruolan in the 1999 TVB series, based closely on the actor reference photo(s). The previous attempt barely changed the face and failed. The old face in image 1 is NOT an identity to preserve. Preserve the body and styling, but deliberately replace facial identity: face shape, eyebrow shapes, eyelid and eye shapes, nose structure, nose-to-mouth ratio, lips, cheeks and jaw. Allow necessary facial contour changes inside the hairline. Do not leave the old generic face intact. Do not produce a generic pretty face loosely inspired by the actress.
+
+    五官执行：按青年佘诗曼剧照独特的稍长椭圆脸、自然眼裂与眼睑比例、真实鼻翼和鼻尖、鼻口距离和柔和唇线、颊颌转折重新画，不能继续是图1原先的另一个漂亮女人。闭口浅笑、端庄清秀、不露齿。。人物气质：温雅端庄、有书卷清气的苗若兰，A版五官尽量贴演员本人，但自然化成古风人物。
+
+    Paint the new face into the exact illustration style of image 1: natural subtle asymmetry, real anatomy, visible delicate brushwork, soft matte skin, no photo-pasting, beauty filter, plastic skin, waxy gloss or enlarged doll eyes. Remove modern makeup. This remains a realistic hand-painted historical character, not a photograph.
+
+    Keep everything outside the face design unchanged from image 1: hairstyle, hat/head ornaments, earrings, neck, total head size and angle, clothing design and colors, body shape, pose, hands, props, framing, background and light. Full-body 2:3 portrait, same positions and complete feet/hands/accessories. One woman only. No text, subtitles, seals, watermark, extra people, panels or border. Closed lips, no visible teeth. Output one PNG.'
+  negative: ''
+  references:
+  - path: .agents/coord/_lines/ref-ab-heroines/candidates/miaoruolan_A.png
+    sha256: a0bc6f7c331c9bdf5408aa88d6bfbea01125bb59394fec748515a315649f6965
+    use: AR-73 / AR-86 参考 佘诗曼，作者选 A；候选原始文件
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/por_npc_miaoruolan__ch14_youth_base.ar73refab_a2__ref1.jpg
+    sha256: c788f3a8350840620c2ddb32ff31e461e5cedd356672ec8c2bbe0e77ed8eee74
+    use: 原候选生成参考，见 ref-ab-heroines/DELIVERY.csv 与 SOURCES.md
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/por_npc_miaoruolan__ch14_youth_base.ar73refab_a2__ref2.jpg
+    sha256: d374fec6bfd13a73b739300f1afadc10d37a72ae532b3a576ae75f74f2a061b7
+    use: 原候选生成参考，见 ref-ab-heroines/DELIVERY.csv 与 SOURCES.md
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/por_npc_miaoruolan__ch14_youth_base.ar73refab_a2__ref3.jpg
+    sha256: 839d996ff852ab4f43759a5a23272a63bf0bd9754f5473904294c15a459f2f59
+    use: 原候选生成参考，见 ref-ab-heroines/DELIVERY.csv 与 SOURCES.md
+  - path: assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_base.png
+    sha256: 873fcfd7ad19d160a72bd4881b1295a4234229783d7a88541955c61c4279be09
+    use: 作者选定的新 base 替换前原图；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_miaoruolan__ch14_youth_base.873fcfd7.png
+  tool: codex exec · image_gen（AR-73 候选；AR-86 作者选版，经项目 ingest17.py 入库）
+  model: gpt-6.1-sol
+  created: 2026-10-04T00:02:02-0700
+  source_path: .agents/coord/_handoff/gem/codex_w32/out/por_npc_miaoruolan__ch14_youth_base.ar86selected.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 93d0c601bc0ef6bb96b824c3b662a83ea3c70387190c528cf437198dd806127a
+  status: candidate
+  notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：1991 年台视《雪山飞狐》（含飞狐外传情节）；第 2 次出图：第 1 次脸偏通用美女模板、不像剧照，改写脸型描写后重出；job por_npc_miaoruolan__ch14_youth_base__t2；AR-73 / AR-86 参考 佘诗曼，作者选 A
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_miaoruolan__ch14_youth_base.873fcfd7.png
+    sha256: 873fcfd7ad19d160a72bd4881b1295a4234229783d7a88541955c61c4279be09
+    entry: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_miaoruolan__ch14_youth_base.873fcfd7.entry.yaml
+- id: por_npc_tianqingwen__ch14_base
+  file: por_npc_tianqingwen__ch14_base.png
+  category: character/female
+  style: default
+  subject: 田青文（ch14_xueshan）
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是这张立绘的脸部特写（看清本人五官用）；第 2 张参考图是待改原图。请以第 2 张原图为底稿，只改人物的表情、眼神和嘴角，让神态变成：妩媚而有心机：眼波流转，嘴角一丝含蓄的浅笑。然后输出修改后的完整图片：2:3 竖幅，构图、取景与原图一致。
+
+    【必须还是同一个人】脸型与骨相、眉形与眉眼间距、眼型、鼻子、嘴型与唇厚、胡须、皱纹、痣与疤、肤色、年龄感、发式与头饰都保持原图不变——只是同一张脸换了一个表情。表情要自然，面部肌肉随表情合理变化（笑时眼角、苹果肌、法令纹随之变化），但不要变年轻或变老、不要变胖或变瘦、不要换成另一张更好看的脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景、光线方向与色调、纸底与水墨处理、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch14/por_npc_tianqingwen__ch14_base.png
+    sha256: fd57aa99d103297f1c5694e8bdd0253e90ce051e9390b7da849a23c589eca241
+    use: 待改原图（AR-58 神态（各书配角） 图像编辑只改表情，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_tianqingwen__ch14_base.fd57aa99.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角） · 12 号出图员：图像编辑只改表情、眼神、嘴角，上传本图脸部特写 + 原图，不加画风基线；编辑结果只取头部合成回原图）
+  model: gpt-6.1-sol
+  created: 2026-10-03T21:10:52-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_tianqingwen__ch14_base.x1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 34998d399fd32a13bc1097a3e7b702897e04c5b983f85b16c0396c8be5cd4572
+  status: candidate
+  notes: ART-cast-fill-b：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；本轮1张候选，选por_npc_tianqingwen__ch14_base.r1；未获作者批准。；AR-58 神态（各书配角）（12 号线（gpt-6.1-sol））：只改表情、眼神、嘴角 → 妩媚而有心机：眼波流转，嘴角一丝含蓄的浅笑（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png；AR-63：依交接既定妩媚而有心机性格；眼波含蓄、嘴角浅笑可辨，保留本人青年骨相与年龄，逐张看图通过；目视面部有界羽化合成，发式/头饰/颈部/服装/背景像素不动，面部框外像素差=0）
+  tier: A
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_tianqingwen__ch14_base.fd57aa99.png
+    sha256: fd57aa99d103297f1c5694e8bdd0253e90ce051e9390b7da849a23c589eca241
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_tianqingwen__ch14_base.fd57aa99.entry.yaml
+- id: por_npc_zhengsanniang__ch14_base
+  file: por_npc_zhengsanniang__ch14_base.png
+  category: character/female
+  style: default
+  subject: 郑三娘（ch14_xueshan）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】《雪山飞狐》郑三娘。1780 年峰下寻仇与争盒中的平通镖局关系人物，取双刀在手、尚未负伤的基础形象。
+
+    【面容与体型】名录中年；按三十多岁成年女侠表现，不年轻化为少女；略方的椭圆脸、清楚眉骨、坚定眼神，嘴角自然收紧，眼尾有细纹；肩背、前臂与腿部有实际锻炼感，成熟美感不掩盖年龄。具体骨相、服色与衣饰细部为原创扩展设计。
+
+    【衣装】清乾隆汉族女侠灰蓝厚夹袄、右衽领、深褐及踝短于鞋面的长裙与内层长裤，窄布腰带、利落收口、软皮靴；黑发稳绾，素白布巾包住发髻，贴服不作长飘带。
+
+    【器物】双手各执一柄普通中式短腰刀，两刀均微弧单刃，刀尖低垂朝身外，两只空刀鞘分别固定腰带两侧，鞘长足以容刃；不是鸳鸯神刀，不新增具名武器 ID。
+
+    【动作】稳健低重心、双脚分开，双肘略弯，两刀低位守住身侧，表情坚决、不哭号，衣裙允许迈步但不暴露大腿。头正、目光向前、不仰头不歪头，成年男性7.5头身、女性7头身。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要幼态，不要裁断武器或衣摆，不要怪兽、额外动物。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: '画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要幼态，不要裁断武器或衣摆，不要怪兽、额外动物。
+
+    '
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+  tool: codex exec · image_gen（AR-36；ref=text；两张同性别基线）
+  model: gpt-6-astra
+  created: '2026-10-02T23:30:51.545802-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w14/out/por_npc_zhengsanniang__ch14_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: e4a3aac56787f98a40bfd28546d6cc954923ea64c7025287334d60e5a889fe6d
+  status: candidate
+  notes: ART-cast-fill-b：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；本轮1张候选，选por_npc_zhengsanniang__ch14_base.r1；未获作者批准。
+  tier: A
+- id: por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight
+  file: por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.png
+  category: character/female
+  style: default
+  subject: 苗若兰·山庄止争（ch14_xueshan）
+  prompt: 'Use case: precise-object-edit
+
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
+
+    【只改】苗若兰本图是首次站门口笑吟吟柔声止争的时刻：只将主体上衣和左右袖的淡绿长皮袄改为黄色衣装，颜色明确柔和鹅黄色，原白色毛缘、裙子、头饰、发式、手势和面容不变。上衣胸前、背侧、两袖所有原淡绿面料均变黄色，不再混用随后讲述故事换上的淡绿皮袄。
+
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
+
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_24_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+  references:
+  - path: assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.png
+    sha256: 7f557dde965de55e88c0eb9843a67eecca2dcabde9a23c34268e1d88fdd1ff42
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.7f557dde.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:59:05-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_24_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 678560428831980ae277e7595938c190b959812b369ebb342a241ad254f8e7ff
+  status: candidate
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-53 / AR-75 / AR-86：苗若兰头部局部合成，对齐作者新 base（AR-73 参考佘诗曼，AR-86 选A）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变；AR-82 原著核对返修：苗若兰门口止争阶段主体上衣改黄衣；依据：- AR-82 返修依据：《雪山飞狐》第三章（本书数字章，无回目标题）：“别打架！别打架！”；“只见一个黄衣少女笑吟吟的站在门口”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E9%9B%AA%E5%B1%B1%E9%A3%9E%E7%8B%90/%E7%AC%AC03%E7%AB%A0.md；执行：将山庄止争的主体上衣改为黄色，仍站门口柔声止争；淡绿皮袄与鹅黄百褶裙留给换衣后讲述、辨伪阶段。不要把两段服装混成同一时刻。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.7f557dde.png
+    sha256: 7f557dde965de55e88c0eb9843a67eecca2dcabde9a23c34268e1d88fdd1ff42
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.7f557dde.entry.yaml
+- id: por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy
+  file: por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.png
+  category: character/female
+  style: default
+  subject: 苗若兰·洞前劝留生路（ch14_xueshan）
+  prompt: 'Use case: precise-object-edit
+
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
+
+    【只改】苗若兰藏宝洞劝饶宝树阶段已被夺外裳，胡斐给她披上自己的宽大男式长袍。将现在米白披被及下面可见的淡绿绣边外袄、鹅黄外裙整体换为宽大灰褐男式长袍，从肩颈到脚踝完全裹住保暖，领内仅露一点素色贴身小衣。两手拢紧宽袍，手姿不变，衣服完全不透明且充分覆盖，不需裸露。绝不可保留绿皮袄和鹅黄百褶外裙。保留火堆、洞壁、鞋、人物位置、原面容和关切表情。
+
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
+
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_25_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+  references:
+  - path: assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.png
+    sha256: 25d48f1e24a82e3a3336907ca28d3ef780c04c666c7a65998cbbed514aa992fd
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.25d48f1e.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:59:05-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_25_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: d1cd8e25175df83681a0b5b150f149908e17ac2074a4bd8b41eec6d3e9acb95b
+  status: candidate
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-53 / AR-75 / AR-86：苗若兰头部局部合成，对齐作者新 base（AR-73 参考佘诗曼，AR-86 选A）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变；AR-82 原著核对返修：苗若兰洞中披胡斐长袍，不保留被夺绿袄黄裙；依据：- AR-82 返修依据：《雪山飞狐》第九章：“除去苗若兰的外裳，尚留下贴身小衣”；第十章：“早已除下自己长袍，披在苗若兰身上”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E9%9B%AA%E5%B1%B1%E9%A3%9E%E7%8B%90/%E7%AC%AC09%E7%AB%A0.md；https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E9%9B%AA%E5%B1%B1%E9%A3%9E%E7%8B%90/%E7%AC%AC10%E7%AB%A0.md；执行：藏宝洞劝饶宝树阶段改为披胡斐的宽大长袍，袍内素色贴身衣，用袍或厚被完全包覆保暖；不保留被夺的绿皮袄、鹅黄外裙，不需裸露。火堆可以保留。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.25d48f1e.png
+    sha256: 25d48f1e24a82e3a3336907ca28d3ef780c04c666c7a65998cbbed514aa992fd
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_miaoruolan__ch14_youth_scene_cave_plea_mercy.25d48f1e.entry.yaml

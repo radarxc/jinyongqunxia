@@ -1,0 +1,62 @@
+id: bld_kit_yuan_south_warehouse
+status: candidate
+building:
+  type: bld_kit_yuan_south_warehouse
+  footprint:
+  - 10
+  - 8
+  anchor: &id001
+  - 371.9155
+  - 344.6531
+  era: yuan
+anchor_px: *id001
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】沿用design/22 §3.3南宋warehouse10×8，同构功能扩展
+entrance:
+  edge: S
+  offset_cells: 5
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+historical_details:
+- 滨水仓屋体量
+- 重柱、深檐、低石基
+generation_id: bd36f738-214b-467a-a2cd-1680487dd577
+source_record: sources/hist_warehouse_selected.json
+source_archive: sources/hist_warehouse_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+pixel_qa:
+  mode: RGBA
+  size:
+  - 736
+  - 544
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 261216
+  alpha_partial_pixels: 138130
+  alpha_opaque_pixels: 1038
+  alpha_nonzero_bbox:
+  - 93
+  - 70
+  - 683
+  - 502
+  transparent_margins_px:
+  - 93
+  - 70
+  - 53
+  - 42
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 滨水仓屋体量；重柱、深檐、低石基；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

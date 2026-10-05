@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_songyaxiangqiang
+name: 宋鸦项枪
+kind: weapon
+sub: spear
+grade: 3
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·北宋；天龙起宋境军伍节点可得（《武经总要》卷十三“鸦项枪”）
+price: auto
+flags: []
+assets:
+  icon: item/songyaxiangqiang
+text:
+  desc: 外观：全长约二点二米，窄柳叶铁锋带中脊。
+  lore: 名目取自《武经总要》卷十三所列鸦项枪，本作以窄柳叶锋和覆锡枪裤表现其识别点。军士双手持杆，以直刺、拦拿为主；长度、麻缠握段和尾鐏为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 45
+      qiAffinity: 100

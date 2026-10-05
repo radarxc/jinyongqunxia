@@ -1,0 +1,38 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_taohuadao
+chapter_id: ch10
+book_world: ch10_baima
+display_name: 桃花岛（小说）
+historical_year: 702
+era_kit: tang
+seed: 206306721
+design_intent: {prosperity: generic_site, notes: [推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）, 依据：src_generic_layout, 复原依据：docs/design/town/history/city_taohuadao__tang_702.md, region=rg_donghai_islands; band=tang_702；按同区域海岛节点舟山与澎湖候选作一般格局参照。, tang建筑目录缺失；建筑显式使用song_southern基线，墙门与共通贴片由渲染器审计回退。]}
+grid: {width: 64, height: 64, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -32, r_min: 1, q_slot_count: 87, r_slot_count: 64, q_band_slots: [87], r_band_slots: [64], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls: [{id: ruin_wall, role: division, polygon: {points: [{x: 2, z: 62}, {x: 20, z: 62}, {x: 20, z: 63}, {x: 2, z: 63}]}, inside_margin_cells: 0, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}]
+gates: []
+streets:
+  - {id: main_north_south, class: main_axis, width_cells: 4, points: [{x: 32, z: 8}, {x: 32, z: 56}], surface: dirt_road, priority: 100, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: market_cross_street, class: secondary, width_cells: 4, points: [{x: 10, z: 32}, {x: 54, z: 32}], surface: dirt_road, priority: 80, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+rivers:
+  - {id: generic_canal, width_cells: 4, points: [{x: 52, z: 11}, {x: 52, z: 53}], flow: south, navigable: true, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+bridges:
+  - {id: market_bridge, at: {x: 53, z: 32}, river_ref: generic_canal, road_ref: market_cross_street, length_cells: 6, width_cells: 4, rotation_deg: 90, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+zones:
+  - {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 6, z: 6}, max: {x: 17, z: 31}}}, priority: 100, density: 0.35, allowed_building_types: [bld_kit_song_southern_courtyard], ground_mix: {rammed_earth: 100}, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: zone_market, kind: market, geometry: {rect: {min: {x: 35, z: 6}, max: {x: 58, z: 31}}}, priority: 90, density: 0.35, allowed_building_types: [bld_kit_song_southern_market_stall, bld_kit_song_southern_shop_1f], ground_mix: {rammed_earth: 100}, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: zone_commercial, kind: commercial, geometry: {rect: {min: {x: 35, z: 35}, max: {x: 58, z: 58}}}, priority: 85, density: 0.35, allowed_building_types: [bld_kit_song_southern_shop_1f], ground_mix: {rammed_earth: 100}, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 17, z: 6}, max: {x: 31, z: 31}}}, priority: 80, density: 0.35, allowed_building_types: [bld_kit_song_southern_temple_hall], ground_mix: {rammed_earth: 100}, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 6, z: 35}, max: {x: 31, z: 58}}}, priority: 50, density: 0.35, allowed_building_types: [bld_kit_song_southern_house], ground_mix: {rammed_earth: 100}, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+landmarks: []
+building_quotas:
+  - {type: bld_kit_song_southern_courtyard, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_market_stall, zone_refs: [zone_market], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_shop_1f, zone_refs: [zone_commercial], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+  - {type: bld_kit_song_southern_house, zone_refs: [zone_residential], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+vegetation: {palette: [prp_song_dali_grass], density: 0.025, avoid_road_cells: 1, cluster_rule: 2至5株成组, basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}
+sources:
+  - {key: src_generic_layout, kind: design_interpretation, title: 小城与遗址推定格局规则, url: null, accessed: null, confidence: original_extension, supports: [layout], note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）}

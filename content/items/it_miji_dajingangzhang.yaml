@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_dajingangzhang
+name: 大金刚掌秘籍
+kind: manual
+sub: full
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_dajingangzhang
+text:
+  desc: 外观：明末深赭线装册，四眼褐线、金泥窄边。
+  lore: 少林刚猛掌法在此辑为传习册，实体载体属 （原创扩展）；“大金刚掌／大力金刚掌”的基线用名仍 （待考：核相关作品人物与情节）。研读讲沉肩贯掌，强催掌力反易伤腕。
+extension:
+  type: manual
+  value:
+    skill: sk_dajingangzhang
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_dajingangzhang
+      readWis: 45
+      maxLayer: 10
+      cultivation: 2500

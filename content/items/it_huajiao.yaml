@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_huajiao
+name: 花胶
+kind: material
+sub: ingredient
+grade: 7
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/huajiao
+text:
+  desc: 外观：琥珀色干鱼鳔三片置竹匣，半透明皱褶。
+  lore: 明清海味贸易中的干制鱼鳔，琥珀色片身须先验无霉损，再交宴席厨师发制。本作不投放北宋书界，只随沿海商路或固定海味仓出现。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di9
+    materialGrade: 7
+    rare: false
+    ingredientKind: rare
+    attributes:
+      version: 2

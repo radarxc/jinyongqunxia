@@ -1,0 +1,25 @@
+{
+  "schema": "tianshu.terrain-config.v1",
+  "canvas": {"width": 4096, "height": 3072, "margin": 150},
+  "extent_wgs84": [73.0, 18.0, 135.0, 54.0],
+  "analysis": {
+    "width": 1536,
+    "height": 1152,
+    "smooth_radius_cells": 3,
+    "rugged_radius_cells": 2,
+    "polygon_stride_cells": 1,
+    "minimum_component_cells": 12
+  },
+  "classes": {
+    "highland_plateau": {"min_elevation_m": 2500, "max_ruggedness_m": 210},
+    "hill": {"min_elevation_m": 200, "max_elevation_m": 2500, "min_ruggedness_m": 55},
+    "basin_plain": {"max_elevation_m": 2500, "max_ruggedness_m": 55},
+    "ridge": {"min_elevation_m": 500, "min_prominence_m": 75, "min_length_cells": 6}
+  },
+  "water": {"river_max_scalerank": 9, "exclude_reservoirs": true},
+  "preview": {
+    "full": {"width": 1536, "height": 1152, "canvas_bbox": [0, 0, 4096, 3072]},
+    "dali": {"width": 1536, "height": 1024, "region_id": "rg_dali_cangshan"},
+    "guanzhong": {"width": 1536, "height": 1024, "region_id": "rg_guanzhong"}
+  }
+}

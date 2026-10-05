@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_lianhuanjian
+name: 连环剑谱全本
+kind: manual
+sub: full
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_lianhuanjian
+text:
+  desc: 外观：明代月白线装册，四眼青线。
+  lore: 武馆将连续出剑与换步收势绘成齐整折页，剑法和册本均属 （原创扩展）。研读须一气看完整组剑势，再拆段练习；若只求出手快而忘记收剑护身，便失去“连环”的章法。
+extension:
+  type: manual
+  value:
+    skill: sk_lianhuanjian
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_lianhuanjian
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1200

@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_qingtongtiedi
+name: 青铜竖笛
+kind: weapon
+sub: exotic
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingtongtiedi
+text:
+  desc: 外观：青铜竖笛约五十五厘米，六孔、厚壁圆管与封闭底端清楚。 待运行时投影：exoticKind=flute。
+  lore: 铸工以厚壁青铜管制成竖笛，六孔可奏简曲，封闭底端也能点打腕穴或横格轻兵。铜身耐碰却音色沉涩，须常清理孔道；器名、弦纹、制作与江湖流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 45
+      qiAffinity: 100

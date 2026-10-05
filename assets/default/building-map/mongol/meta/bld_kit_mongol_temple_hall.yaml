@@ -1,0 +1,53 @@
+id: bld_kit_mongol_temple_hall
+building:
+  type: bld_kit_mongol_temple_hall
+  footprint: [13, 10]
+  anchor: &id001 [422.2028, 419.4592]
+  era: mongol
+anchor_px: *id001
+geometry_qa:
+  source_corners_LFR_px:
+  - [30, 708]
+  - [780, 1050]
+  - [1403, 744]
+  source_axis_slopes: [0.456, -0.4911717495987159]
+  axis_tolerance: 0.03
+  axis_pass: false
+  width_depth_ratio: 1.203852327447833
+  expected_ratio: 1.3
+  ratio_relative_error: 0.07395974811705153
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  note: 人工读取可见底面L/F/R；隐藏后角由平行边推算。几何残差未warp修正。
+processing:
+  source_archive: sources/bld_kit_mongol_temple_hall__raw.png
+  source_sha256: e1518e1e06d4ce0c835a84c0b015baf2aa729584589ab835427b155375303fbe
+  source_size: [1430, 1100]
+  crop_box: [0, 9, 1408, 1100]
+  uniform_scale_requested: 0.5360524399126001
+  resized_size: [755, 585]
+  actual_scale_xy: [0.5362215909090909, 0.536205316223648]
+  paste_offset: [38, 35, 793, 620]
+  anchor_source_px: [716.5, 726.0]
+  alpha_edits: none
+  note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+views:
+- {rotation_deg: 0, file: bld_kit_mongol_temple_hall.png}
+allowRotation: false
+glb: null
+release_ready: false
+pixel_qa:
+  mode: RGBA
+  size: [832, 656]
+  alpha_extrema: [0, 255]
+  alpha_bbox: [52, 35, 793, 620]
+  transparent_pixels: 320332
+collision_polygon_m:
+- [0, 0]
+- [13, 0]
+- [13, 10]
+- [0, 10]
+collision_note: 候选逻辑矩形，非实墙测绘；河埠仅装饰，不创建port或旅行服务。
+historical_note: 仅地域母题有文字参考；具体屋面/门窗/彩画/塔式为原创设计，待考。
+repair_round_2: {tool: built-in image_gen, candidate_count: 2, attempt_records: sources/bld_kit_mongol_temple_hall__repair2_calls.json, selected_candidate: 0, geometry_pass: false, result: 两新候选未优于原图整体几何；保留原成品字节，审核问题未解决}

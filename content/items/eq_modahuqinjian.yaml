@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_modahuqinjian
+name: 莫大胡琴藏剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《笑傲江湖》·莫大“琴中藏剑，剑发琴音”；具体藏置结构 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/modahuqinjian
+text:
+  desc: 外观：旧胡琴与抽出的又薄又窄长剑并列为同一器物，剑刃约六十厘米、琴筒乌木蒙皮、琴弓完整。 待运行时投影：sect=sect_hengshan_nan。
+  lore: 《笑傲江湖》中莫大以胡琴藏剑，出剑时有“剑发琴音”之称。薄窄剑身适合猝然抽出、近身快刺；具体藏置结构仍 （待考：核原著描述），机括为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 70
+      qiAffinity: 100

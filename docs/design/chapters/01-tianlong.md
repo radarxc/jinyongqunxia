@@ -1,10 +1,10 @@
 # 01 · 天龙八部书界 DLC
 
 > 归属（基准 §18）：`ch01_tianlong` 的时代图层、开局投放、主线索引、锚点落地、支线、门派实例、人物投放、Boss、产出、特色系统、前代传承及前后书界衔接。
-> 上游：`00-canon.md` v1.2；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/01-tianlong.md`。
-> 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05` 与四份指定图鉴；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、余韵与结局 → `design/13`；经脉 → `design/15`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`。
+> 上游：`00-canon.md` v1.10；作者新增需求与决定见 `decisions/author-requirements.md`、`decisions/author-decisions.md`；跨文档裁定见 `decisions/rulings-v1.md`；主线唯一事实源为 `design/story/01-tianlong.md`。
+> 引用而不重定义：书眠与压制 → `design/02`；属性与敌人模板 → `design/03`；伤害 → `design/04`；武学 → `design/05`、四份既有指定图鉴与 `catalog/skills-bulu-01-tianlong.md`；地形与轻功 → `design/08`；战斗、Boss、合击 → `design/09`；装备 → `design/10`；大地图 → `design/11`；任务、门派、羁绊 → `design/12`；天书、余韵与结局 → `design/13`；静态经脉成长 → `design/15`；战斗经脉运行、招式路线、绝招、擒拿 / 点穴与调息 → `design/21`；资源与营生 → `design/16`；时代门派 → `design/17`；人物与跨书重逢 → `design/18`；前代传承 → `design/20`；《长生诀》层数 → `design/25`；休眠事件 / 长生支线定义 → `design/story/sleep-events.md` / `design/story/changsheng-sidelines.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需按三联 / 广州修订版逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.1（D01；审校 D01.R，2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.4（AR-26 休眠事件与第三层支线登记，2026-10-02）；v1.3（AR-20 五条主要悲剧线制作索引，2026-10-01）；v1.2（经脉落地终审，2026-09-29）；v1.1（D01；审校 D01.R，2026-09-26）；全局审计（2026-09-26）；经脉系统落地 NCh1（2026-09-27）；首领 / Boss 配装补全（2026-09-27）；首领配装按统一口径修正（2026-09-27）；首领武学补录与替补替换（2026-09-28）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
 
 ---
 
@@ -12,16 +12,16 @@
 
 ### 0.1 一句话结论
 
-《天龙八部》是十四书界的首个完整垂直切片：玩家以无籍行脚人身份从无量山进入“大理—宋—辽—西夏—吐蕃—天山”的多国江湖，在不替代段誉、萧峰、虚竹的前提下，用救人、取证、结盟与主动舍弃独占利益来回答“众生是否值得同渡”。
+《天龙八部》是白马之后的第二本正式书、也是首个高武完整垂直切片：玩家以无籍行脚人身份从无量山进入“大理—宋—辽—西夏—吐蕃—天山”的多国江湖，在不替代段誉、萧峰、虚竹的前提下，用救人、取证、结盟与主动舍弃独占利益来回答“众生是否值得同渡”。
 
 ### 0.2 制作边界
 
 | 本文负责 | 本文只引用 | 本文明确不做 |
 |---|---|---|
-| 9 区、22 城、36 个场景键的时代投放 | 30 区全局坐标、城市底表与旅行规则 | 新建按书界编号分叉的私有区域或第二套可行走大地图 |
+| 9 区、22 城、38 个场景键的时代投放 | 30 区全局坐标、城市底表与旅行规则 | 新建按书界编号分叉的私有区域或第二套可行走大地图 |
 | 45 道轻功门禁实例、36 个奇遇触点 | `design/08` 的阈值、动作与地形行为 | 在章节里另定轻功公式 |
 | 24 个主线任务和 9 个选择节点的制作索引 | `design/story/01-tianlong.md` 的剧情正文 | 缩写、复述或改写已审校正邪线 |
-| 32 条支线、12 个完整门派内容位、12 名重点同伴、10 场 Boss | `design/12`、`17`、`18` 的通用状态机和权威名录 | 为目录缺失人物擅造 `npc_*` 或生卒年 |
+| 33 条支线、12 个完整门派内容位、12 名重点同伴、10 个 Boss 内容位（9 份实际遭遇预算） | `design/12`、`17`、`18` 的通用状态机和权威名录；长生诀支线定义见 `story/changsheng-sidelines.md` | 为目录缺失人物擅造 `npc_*` 或生卒年 |
 | 22 个资源点、28 个营生场所的时代实例 | `design/16` 的所有权、收益、职位与结算 | 把任务资产伪装成可周期采集资源 |
 | 珍珑棋局、八部众、带头大哥谜案三套实例规则 | 战斗、任务、成长、UI 与数据管线的通用定义 | 重定义天书、套装或经脉系统 |
 | 阿青剑源在本时代的残本、信物与合成机会 | `design/20` 的传承源目录及合成事务 | 让前代同伴本人长生重逢 |
@@ -31,11 +31,11 @@
 | 项 | 本章落地 | 预算来源 / 核算 |
 |---|---:|---|
 | 开放区域 / 城市 | 9 / 22 | `design/11` §10.2、§11 |
-| 场景键 | 36 | 每区 4 个；均使用 `sc_01_*` |
+| 场景键 | 38 | 原九区骨架 `9×4=36`，另有达摩洞、若耶溪墓藏 2 个具名遗迹专线；均使用 `sc_01_*` |
 | 轻功门禁 | 45 | qg1/2/3/4/5 = `12/17/12/3/1` |
 | 主线任务 | 24 | story 的 4 共有 + 正 10 + 邪 10；单路线 14 幕 |
 | 选择节点 / 锚点 | 9 / 5 | `dc_01_01`–`09`；A1–A5 |
-| 支线任务 | 32 | 普通 4 + 门派 6 + 羁绊 4 + 奇遇 18 |
+| 支线任务 | 33 | 既有 `4+6+4+18=32`，另加长生诀支线 1 |
 | 奇遇触点 | 36 | `floor(1 + 85 / 25) = 4` 个 / 区，`9 × 4 = 36` |
 | 完整门派内容位 | 12 | `design/11` §11.13；其余开放势力作支线实例 |
 | 重点可招募队友 / Boss | 12 / 10 | `design/11` §10.2；其余具名 NPC 仍按 `design/18` 判定 |
@@ -52,18 +52,18 @@
 
 | 项 | 内容 | 口径 |
 |---|---|---|
-| 书界 | 《天龙八部》 | 第 1 部天书书界 |
+| 书界 | 《天龙八部》 | 第 2 本正式书；稳定编号仍为 01 |
 | 书界 ID | `ch01_tianlong` | 不另建别名 |
 | 年代 | 北宋哲宗约 1093–1094 **（待考）** | 见基准 §2、`design/02` |
 | 境界 | 高武 | 见基准 §2 |
 | 武运 W | 85 | 奇遇密度与资源预算使用该固定值 |
 | 难度 D | 4 | `enemyStatMul = 0.85 + 0.05 × 4 = 1.05` |
 | 等级上限 | 35 | 标准规则；本文不启用越级豁免 |
-| 入场携带 | 无 | 序章武学、装备与物品均不直接带入 |
-| 外来压制 | 0 | 本界是第一部正式书界 |
+| 入场携带 | 3 武功 + 3 内功、装备至多 6 件 | 从白马书眠选择；《长生诀》不占 3+3 |
+| 外来压制 | 0 | 本界为高武；白马带入实例仍保留 `nativeTo` |
 | 主题 | 身份、公义与个体选择在多族群江湖中的冲突 | 叙事主题，不是数值标签 |
 | 天书关键词 | 众生 | 效果只见 `design/13` |
-| 前一书界 | `ch00_yuenv`《越女剑》 | 可跳过序章；仅以传承源回响 |
+| 前一书界 | `ch10_baima`《白马啸西风》 | 702 年转场锚 → 1093 年，`1093−702=391` 年 |
 | 后一书界 | `ch02_shediao`《射雕英雄传》 | 1094 → 1217，书眠约 123 年 |
 | 预估时长 | 15 小时 | 满足 8–15 小时上限 |
 
@@ -73,7 +73,7 @@
 |---|---|---|---|
 | 众生同局 | 大理、宋、辽、西夏、吐蕃、天山人物各有立场，不以单一阵营概括善恶 | 九区旅行、八部众网、跨势力救援 | 不把族属直接映射正邪 |
 | 身份与证言 | 从杏子林到少室山，事实、证人、封缄与公开方式都可追溯 | 带头大哥谜案、`dc_01_03`–`08` | 不让主角代萧峰回答身份问题 |
-| 高武初见 | 低阶生存逐步接触顶级绝学，先理解门槛再选择传承 | 十四门原生天级、互斥取得、师承与解谜 | 单周目完整天级仍最多 6 门 |
+| 高武初见 | 低阶生存逐步接触顶级绝学，先理解门槛再选择传承 | 十七门原生天级、互斥取得、师承与解谜 | 单周目完整天级仍最多 6 门 |
 | 三兄弟并行 | 玩家可同行、救援、结盟，却不夺段誉、萧峰、虚竹各自的决定 | 12 名重点同伴、合击、主线介入点 | 不替代原著主角取得核心机缘 |
 | 改命有价 | 救萧峰不是赢一场 Boss，而是跨势力救援、活证、羁绊与舍弃独占利益的合取 | A5 四项硬条件 | 不改变射雕时代历史起点 |
 
@@ -93,14 +93,14 @@
 | 内容 | 比例 | 核算 | 首轮目标 |
 |---|---:|---:|---|
 | 主线 | 45% | `15 × 0.45 = 6.75 h` | 完成一条 14 幕路线及五锚点 |
-| 开放内容 | 35% | `15 × 0.35 = 5.25 h` | 32 条支线中完成约 17–21 条 |
+| 开放内容 | 35% | `15 × 0.35 = 5.25 h` | 33 条支线含长生诀线；首轮按路线取舍完成约 17–21 条 |
 | 成长整备 | 15% | `15 × 0.15 = 2.25 h` | 门派、冲穴、资源、秘籍与装备 |
 | 余韵 | 5% | `15 × 0.05 = 0.75 h` | 回访、同伴去向、传承匣与书眠 |
 | 合计 | 100% | `6.75+5.25+2.25+0.75=15 h` | 首轮较完整体验 |
 
 ### 1.5 入界与离界状态
 
-- 入界固定清空正式书界携带栏；序章《越女剑》的本人、物品和完整武学不随主角直接落地。
+- 入界读取白马书眠选定的 3 武功 + 3 内功与至多 6 件装备；未选武学可留记录、遗忘或散功，具体结算只见 `design/02` / `design/13`。
 - 开局只开放 `sc_01_wuliangyidao`；完成 `q_01_main_c_01` 前段后开放 `rg_dali_cangshan`。
 - 九区按剧情许可、路引、商队或门派引荐开放，不以等级单独解锁，也不因天气永久关闭。
 - 五个锚点闭合并完成正线 `q_01_main_z_10` 或邪线 `q_01_main_x_10` 后，才进入天书结算。
@@ -112,9 +112,9 @@
 
 ### 2.1 固定身份与苏醒地点
 
-玩家承接序章书眠，在约 1093 年醒于 `rg_dali_cangshan` 的无量山外围驿路 `sc_01_wuliangyidao`。真实身份固定为“失籍行脚人”**（原创扩展）**：没有宋、大理、辽任何一方正式户籍，由途经茶商为“路上救起者”作临时保结。此设定逐项引用 `design/story/01-tianlong.md` §2：无籍、无阵营、不替代段誉，男女主角两版均可使用。
+玩家承接白马书眠，在约 1093 年醒于 `rg_dali_cangshan` 的无量山外围驿路 `sc_01_wuliangyidao`。白马显示年代为 702–703 年，但协调者指定转场锚为 702 年，故本次书眠 `1093−702=391` 年；越女序章只通过白马存下的传承 / 回响间接读入。真实身份固定为“失籍行脚人”**（原创扩展）**：没有宋、大理、辽任何一方正式户籍，由途经茶商为“路上救起者”作临时保结。此设定逐项引用 `design/story/01-tianlong.md` §2：无籍、无阵营、不替代段誉，男女主角两版均可使用。
 
-书灵仅留下“此卷以众生为题”的墨影，不剧透萧峰结局。起始等级为 1、正式携带为空、区域声望为 0；`morality` 是否承接序章只按 `design/03` 的全局规则读取，本文不另定。
+书灵仅留下“此卷以众生为题”的墨影，不剧透萧峰结局。真实等级承接白马、正式携带按 3+3 选择、区域声望为 0；`morality` 按 `design/03` 的跨书规则读取，本文不另定。
 
 ### 2.2 三种自述身份
 
@@ -130,7 +130,7 @@
 
 ### 2.3 开局流程与第一选择
 
-1. **书眠苏醒**：确认无携带，播放书灵墨影，取得茶商临时保结。
+1. **书眠苏醒**：确认白马书眠选定的 3 武功 + 3 内功与至多 6 件装备，播放书灵墨影，取得茶商临时保结。
 2. **自述落位**：选择一项谋生自述，加载对应短入口与任务线索。
 3. **山道教学**：在 `tr_pingdi`、`tr_zhulin`、`tr_huacong`、`tr_suishi` 间完成寻路、救治和非致死制服。
 4. **冲突入场**：发现无量剑派 / 神农帮争斗与钟灵求援，不默认任何一方为善。
@@ -153,7 +153,10 @@ chapterStart:
   trueRole: stateless_wayfarer
   coverHistory: scribe  # scribe | healer | pathfinder
   firstMainQuest: q_01_main_c_01
-  carriedCaps: {inner: 0, unarmed: 0, weapon: 0}
+  carriedCaps:
+    martial: 3
+    inner: 3
+    equipment: 6
   foreignGradePenalty: 0
   storyLocks:
     replaceDuanYu: false
@@ -161,7 +164,7 @@ chapterStart:
     startingFaction: null
 ```
 
-`trueRole`、`coverHistory` 是本章叙事字段示例**（原创扩展）**；最终 schema 归 `tech/04` / `tech/05`，本文不另建第二套任务语言。
+`trueRole`、`coverHistory`、`carriedCaps` 是本章叙事字段示例**（原创扩展）**；其中 `martial` 是拳脚、兵器、轻功、暗器与武艺型杂学的合计上限，不再拆成旧分类槽。最终 schema 归 `tech/04` / `tech/05`，本文不另建第二套任务语言。
 
 ---
 
@@ -169,7 +172,7 @@ chapterStart:
 
 ### 3.1 本时代图层与入口原则
 
-本界使用全局江湖地图的 `ch01` 时代图层，视觉底图为 [`jianghu-ch01.svg`](../map/jianghu-ch01.svg)。区域沿用 `design/11` 定稿的全局 `rg_*`；本界专有山谷、庄院、洞窟、追逐段与副本只用 `sc_01_*`。城市显示名以 `cities.yaml.eras.ch01` 为底，再按 `design/11` §11 的 22 城制作范围取交集；底表仍存旧区域 ID 的问题只登记同步，不在本文回退。
+本界使用全局江湖地图的 `ch01` 时代图层，视觉底图为 [`jianghu-ch01.svg`](../map/jianghu-ch01.svg)。区域沿用 `design/11` 定稿的全局 `rg_*`；本界专有山谷、庄院、洞窟、追逐段与副本只用 `sc_01_*`。城市显示名以 `cities.yaml.eras.ch01` 为底，再按 `design/11` §11 的 22 城制作范围取交集；已解决：底表已迁移为 30 区，本文 22 城所属区域与当前 `cities.yaml.region` 全部相符（见 `design/19` 的地图数据归属）。
 
 | 图层规则 | 本界落地 |
 |---|---|
@@ -185,21 +188,21 @@ chapterStart:
 
 ### 3.2 九个开放区域总表
 
-地块布置与秘境串联属于**（原创扩展）**；原著事件锚点另按 §13 集中考据。表中武学均存在于指定四份图鉴，学习条件仍以图鉴为准。
+地块布置与秘境串联属于**（原创扩展）**；原著事件锚点另按 §13 集中考据。表中武学均存在于四份既有指定图鉴或本书补录图鉴，学习条件仍以图鉴为准。
 
 | 区域 | 本时代状态、地貌与地形 | 入口与轻功门禁 | 主要 NPC / 势力 | 可学武功（已有 ID） | 敌人等级 | 秘境 / 奇遇 |
 |---|---|---|---|---|---:|---|
-| `rg_dali_cangshan` | 大理国、段氏、天龙寺；苍洱高原、`tr_zhulin`、`tr_huacong`、`tr_qiaobi`、`tr_qianshui`、`tr_dongku` | 开局；主 qg1，寺墙 qg2；玉璧支 qg3，回访藏点 qg4 | `npc_duanyu`、`npc_duanzhengchun`、`npc_daobaifeng`、`npc_duanyanqing`、`npc_muwanqing`、`npc_zhongling`、`npc_kurong`；无量 / 神农 / 四恶 | `sk_caoshangfei`、`sk_wuliangxinfa`、`sk_wuliangjian`、`sk_beiming`、`sk_lingbo`、`sk_yiyangzhi`、`sk_liumai` | 1–10 | 琅嬛福地、无量玉璧、万劫谷药径；`q_01_qiyu_71` |
+| `rg_dali_cangshan` | 大理国、段氏、天龙寺；苍洱高原、`tr_zhulin`、`tr_huacong`、`tr_qiaobi`、`tr_qianshui`、`tr_dongku` | 开局；主 qg1，寺墙 qg2；玉璧支 qg3，回访藏点 qg4 | `npc_duanyu`、`npc_duanzhengchun`、`npc_daobaifeng`、`npc_duanyanqing`、`npc_muwanqing`、`npc_zhongling`、`npc_kurong`；无量 / 神农 / 四恶 | `sk_caoshangfei`、`sk_wuliangxinfa`、`sk_wuliangjian`、`sk_beiming`、`sk_lingbo`、`sk_yiyangzhi`、`sk_liumai`、`sk_duanshiyangjue` | 1–10 | 琅嬛福地、无量玉璧、万劫谷药径；`q_01_qiyu_71` |
 | `rg_zhongyuan` | 北宋东京 / 西京与河洛；`tr_pingdi`、`tr_taijie`、`tr_shinei`、`tr_wuding`、`tr_chengqiang` | C03 后；庄墙主 qg2 有请柬；藏经阁支 qg3；达摩洞后壁 qg4 | `npc_xiaofeng`、`npc_xuzhu`、`npc_murongfu`、`npc_murongbo`、`npc_suxinghe`、`npc_wuyazi`、`npc_xuemuhua`、`npc_xuanci`、`npc_saodiseng`；少林 / 丐帮 / 聚贤庄 | `sk_taizuchangquan`、`sk_shaolinxinfa`、`sk_luohanquan`、`sk_yiweidujiang`、`sk_xianglong18`、`sk_dagou` | 8–25 | 珍珑、聚贤伤者分流、藏经阁夜影、达摩洞面壁 |
 | `rg_jiangnan_taihu` | 北宋江南水网、姑苏慕容；`tr_qianshui`、`tr_shenshui`、`tr_chuanjiaban`、`tr_huacong`、`tr_shinei` | C03 后；主线乘船；短水面 qg2 有小舟；孤岛 qg3；封闭书库 qg4 | `npc_wangyuyan`、`npc_azhu`、`npc_abi`、`npc_murongfu`、`npc_xiaofeng`；慕容 / 丐帮流动分舵 | `sk_yanzisanchaoshui`、`sk_murongjian`、`sk_canhezhi`、`sk_douzhuan`、`sk_yirongshu` | 8–20 | 杏子林证词、燕子坞迷航、还施水阁残页、曼陀花圃 |
 | `rg_hexilongyou` | 鄯州 / 青唐边地**（待考）**、河西商路、星宿活动；`tr_shadi`、`tr_liusha`、`tr_duzhao`、`tr_suishi` | 中盘商队开；主 qg1 有向导；毒沼孤台 qg3，失败可等向导 | `npc_dingchunqiu`、`npc_azi`；`sect_xingxiu` | `sk_xingxiudugong`、`sk_fushidu`、`sk_sanxiaoxiaoyaosan`、`sk_huagong` | 18–28 | 星宿海毒材、排行之争、失踪商队**（原创扩展）** |
-| `rg_hedong_jinzhong` | 辽西京 / 宋辽边关分治；石岭、`tr_suishi`、`tr_chengqiang`、`tr_xuanya`、`tr_xuedi` | 中盘开；关道 qg0；崖侧主 qg2 有绳索；石刻 qg3；旧烽道无独立门禁 | `npc_xiaofeng`、`npc_murongfu`、`npc_xiaoyuanshan`；秦家寨 | `sk_junwuduandao`、`sk_junzhongdao`、`sk_taizuchangquan`、`sk_qinlonggong`、`sk_yanmengqishe` | 18–32 | 雁门旧痕、秦家寨断刀谱、冰蚕旅途节点 |
+| `rg_hedong_jinzhong` | 辽西京 / 宋辽边关分治；石岭、`tr_suishi`、`tr_chengqiang`、`tr_xuanya`、`tr_xuedi` | 中盘开；关道 qg0；崖侧主 qg2 有绳索；石刻 qg3；旧烽道无独立门禁 | `npc_xiaofeng`、`npc_murongfu`、`npc_xiaoyuanshan`；秦家寨 | `sk_junwuduandao`、`sk_junzhongdao`、`sk_taizuchangquan`、`sk_qinlonggong`、`sk_xianglongxinggong`、`sk_yanmengqishe` | 18–32 | 雁门旧痕、秦家寨断刀谱、冰蚕旅途节点 |
 | `rg_xixia_helan` | 兴庆府与贺兰绿洲、一品堂；`tr_shadi`、`tr_liusha`、`tr_chengqiang`、`tr_bingku` | 中后期开；宫墙主 qg2 有使团身份；崖道 qg3；冰窖井有剧情扶梯 | `npc_tonglao`、`npc_liqiushui`、`npc_murongfu`、`npc_jiumozhi`；`sect_yipintang` | `sk_helanxinfa`、`sk_tieyaozidao`、`sk_xiaowuxiang`、`sk_baihongzhang` | 20–31 | 冰窖密道、沙暴商队、鸠摩智醒悟后续 |
-| `rg_qingzang` | 吐蕃高原与雪岭；`tr_xuedi`、`tr_shenxue`、`tr_bingmian`、`tr_qiaobi` | 吐蕃使团 / 商旅开；主 qg1 有向导；雪岭捷径 qg3；寺后冰谷可绕行 | `npc_jiumozhi`；`sect_mizong` | `sk_dashouyin`、`sk_jingangjue`、`sk_jingangxiangmochu`、`sk_huoyandao` | 20–31 | 大轮寺辩经**（原创扩展，确址待考）**、药谷、雪岭驿队 |
-| `rg_xiyu_beijiang` | 高昌故地、伊犁河谷部落**（待考）**、天山灵鹫宫；`tr_shenxue`、`tr_tiesuoqiao`、`tr_yunhaizhandao`、`tr_bingku` | 逍遥 / 灵鹫线开；主路 qg0；断崖 / 无痕境 qg3；唯一云海 qg5 | `npc_xuzhu`、`npc_tonglao`、`npc_liqiushui`；`sect_lingjiu` | `sk_lingjiuxinfa`、`sk_piaomiaobu`、`sk_bahuang`、`sk_liuyangzhang`、`sk_zhemei`、`sk_shengsifu` | 23–33 | 石壁图谱、九天九部、雪崩与洞岛群豪 |
+| `rg_qingzang` | 吐蕃高原与雪岭；`tr_xuedi`、`tr_shenxue`、`tr_bingmian`、`tr_qiaobi` | 吐蕃使团 / 商旅开；主 qg1 有向导；雪岭捷径 qg3；寺后冰谷可绕行 | `npc_jiumozhi`；`sect_mizong` | `sk_dashouyin`、`sk_jingangjue`、`sk_mizonghufashen`、`sk_huoyandao` | 20–31 | 大轮寺辩经**（原创扩展，确址待考）**、药谷、雪岭驿队 |
+| `rg_xiyu_beijiang` | 高昌故地、伊犁河谷部落**（待考）**、天山灵鹫宫；`tr_shenxue`、`tr_tiesuoqiao`、`tr_yunhaizhandao`、`tr_bingku` | 逍遥 / 灵鹫线开；主路 qg0；断崖 / 无痕境 qg3；唯一云海 qg5 | `npc_xuzhu`、`npc_tonglao`、`npc_liqiushui`；`sect_lingjiu` | `sk_lingjiuxinfa`、`sk_piaomiaobu`、`sk_bahuang`、`sk_liuyangzhang`、`sk_tianshanliuyangxinfa`、`sk_zhemei`、`sk_shengsifu` | 23–33 | 石壁图谱、九天九部、雪崩与洞岛群豪 |
 | `rg_monan` | 辽上京、漠南行营；草原、`tr_pingdi`、`tr_shadi`、`tr_xuedi`、`tr_chengqiang` | 辽国线开；主线无轻功硬门；营寨 qg2 有军职；风蚀山口 qg3 | `npc_xiaofeng`、`npc_azi`；`sect_qidan`；耶律洪基中文名出场但 ID 待补 | `sk_qidanlianzhujian`、`sk_jingedangkouqiang`、`sk_qinlonggong` | 26–35 | 辽国骑猎、上京旧档、译语支线**（原创扩展）** |
 
-### 3.3 三十六个本界场景键
+### 3.3 三十八个本界场景键
 
 | 区域 | 场景键 1 | 场景键 2 | 场景键 3 | 场景键 4 |
 |---|---|---|---|---|
@@ -212,6 +215,17 @@ chapterStart:
 | `rg_qingzang` | `sc_01_dalunsi` 大轮寺**（待考）** | `sc_01_xuelingyidao` 雪岭驿道 | `sc_01_gaoyuanyaogu` 高原药谷 | `sc_01_sihoubinggu` 寺后冰谷 |
 | `rg_xiyu_beijiang` | `sc_01_piaomiaofeng` 缥缈峰 | `sc_01_lingjiugong` 灵鹫宫 | `sc_01_jiutianying` 九天九部营 | `sc_01_yunhaizhandao` 云海栈道 |
 | `rg_monan` | `sc_01_liaoshangjing` 辽上京街区 | `sc_01_nanyuanxingying` 南院行营 | `sc_01_caoyuanyingdi` 草原营地 | `sc_01_fengshiya` 风蚀崖 |
+
+原九区每区四键的 `9×4=36` 是开放区骨架；下列两个具名遗迹作为既有奇遇的专线子场景追加，不改变区域数、城市数或奇遇数。二者均遵循 `design/11` §4.4.1 的“入口—外围—核心—奖励—回返出口”闭环，房间数按可独立装载空间计。
+
+| ID | 名称 | 类型 | 尺寸档 | 房间数 | 入口条件 | 年代 | 所属区域 | 关联任务 / 奇遇 |
+|---|---|---|---|---:|---|---|---|---|
+| `sc_01_damodong` | 达摩洞 | 山洞 / 岩窟 | 微型（≤64×64，≤2×2 chunks） | 3 | `q_01_qiyu_82` 为 `active`；入口从 `sc_01_shaoshishan` 接入 | 约 1093–1094 | `rg_zhongyuan` | `q_01_qiyu_82`；后壁 qg4 只通额外观察位 |
+| `sc_01_ruoye_muzang` | 若耶溪墓藏 | 古墓 / 墓道 | 微型（≤64×64，≤2×2 chunks） | 4 | `q_01_qiyu_75` 为 `active` 且取得可靠题签；由越州 / 若耶溪专线接入 | 约 1093–1094 | `rg_jiangnan_taihu` | `q_01_qiyu_75`、`cache_yuenv_ruoye`、`it_xinwu_aqingshoujuan` |
+
+达摩洞确有文化地名母题，但本章静修试炼和三房布局均为**（原创扩展）**。若耶溪墓藏的墓址与阿青地理关联仍**（待考）**，墓道、机关、手卷藏法及全部玩法均为**（原创扩展）**；它是越州专线局部点，不把越州增列为第 23 座开放城市。
+
+AR-26 接口复用上表四处既有场景：`sc_01_langhuanfudi`、`sc_01_juxianzhuang`、`sc_01_leigushan`、`sc_01_yanmenguan`。它们依次承载 `q_01_changsheng_01` 的残图初问、医者问、逍遥问与第三层结算 **（原创扩展）**；对应生产挂点依次为 `n_c02_merge`、`n_juxian_merge`、`n_z06` 与 `n_x06` 两条独立记录，以及 `n_z09` 与 `n_x09` 两条独立记录，均只引用 story §7.5。最终两条须在激活 Z/X10 前消费；Z/X10 激活或完成后，`sc_01_yanmenguan` 只承载上游 §3.3 的余韵补证，不再承载常规 `dc_01_10`。局部选择、节点 DAG 与后果只见 `design/story/changsheng-sidelines.md` §3；同一场景另承载保底书眠首镜，但支线完成不决定休眠事件。
 
 ### 3.4 二十二座开放城市
 
@@ -369,6 +383,8 @@ chapterStart:
 
 单路线为 `4 个共有幕 + 10 个路线幕 = 14 幕`；正邪共享五个历史锚点但不重复运行同一锚点。制作上归并为 10 个资产包，不删任务：
 
+**已解决：**下表 P1–P10 是章节资产包编号，不是 `tech/09` 的实施阶段。技术 P1 切片只含大理苍山 1 区域、4 个局部场景切片、C01 1 幕；万劫谷只开放外围药径，谷内救援与天龙寺 C02 属技术 P2（见 `tech/09` §3.2；E3.R §6）。
+
 | 资产包 | 正式任务 | 生产主题 | 主要区域 / 场景 | 关键接口 |
 |---:|---|---|---|---|
 | P1 | `q_01_main_c_01`–`q_01_main_c_02` | 无量入卷、大理救援与护经 | 大理苍山；无量、万劫谷、天龙寺 | 开局三自述、A1、`dc_01_01`–`dc_01_02`、段氏 / 天龙寺 |
@@ -437,7 +453,7 @@ chapterStart:
 | `dc_01_06` 珍珑之后谁执局 | Z06 / X06 | 护传承、分筹码或全交虚竹 | 可切线或保持 | 珍珑、逍遥 / 星宿关系、虚竹羁绊 |
 | `dc_01_07` 生死符与宫众 | Z07 / X07 | 全解、限用或交虚竹 | 可切线或保持 | 八部众、灵鹫关系、跨势力救援 |
 | `dc_01_08` 两案真相的归处 | Z09 / X09 | 公开盟约、密封托管或焚毁 | 决定终幕组织方式 | 谜案、段氏证据、改命证据支柱 |
-| `dc_01_09` 舍弃还是舍己 | Z10 / X10 | 舍弃独占利益、尊重原著或据为己有 | 原著 / 改命最终分流 | 萧峰生命轴、天书变体、书契 |
+| `dc_01_09` 独利还是众生 | Z10 / X10 | 舍弃独占利益、尊重原著、据为己有，或以 `dc_01_09.D`“一命换一命”立即离界 **（原创扩展）** | 原著 / 改命最终分流；D 先结算改命结局，再预选特殊休眠事件 | 萧峰生命轴、天书变体、书契、`slp_01_yiminghuanyiming` |
 
 ### 4.6 主线与章节内容接口
 
@@ -494,9 +510,19 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 条件齐备时，跨方约束无需再以萧峰之死作押，他选择存活并承担宋辽两侧敌意**（原创扩展）**；写 `lifeState=fate_rescued`，授予 `tsp_01_fate`。改命只改变结局文本、天书变体、人物生命事实与后世彩蛋，不改变 `ch02_shediao` 的 1217 年起点。
 
-### 5.4 次级救援与天书边界
+### 5.4 AR-20 主要悲剧线制作索引与天书边界
 
-阿朱、游骥、游驹、岳老三、叶二娘、玄慈、童姥、李秋水、段正淳、刀白凤、游坦之等均可按 story §6.3 获得独立救援窗口**（原创扩展）**。这些救援写各自生命轴、羁绊与后日谈，但：
+剧情事实、隐藏条件、三层提示、关键行动、代价与失败分支只见 story §6.3；本节仅登记章节内容消费者，不复制定义。
+
+| 主要悲剧线 | 生产入口 / 可复用资产 | 章节侧必须验收 | 天书边界 |
+|---|---|---|---|
+| 萧峰雁门止战 | `q_01_bond_71`、Z/X10、`dc_01_09`；南京脱狱 / 雁门军阵目标遭遇 | 四项逻辑“且”、独占利益不可找回、萧峰离队 | 唯一主改命；且仅授 `tsp_01_fate` |
+| 阿朱小镜湖误死 | `q_01_bond_72`、Z/X04、`dc_01_05` | 三证来源独立、一次长休窗、当事人知情选择 | 局部生命轴；可提供 A5 活证但不包办 A5 |
+| 游坦之—阿紫相互毁灭 | Z/X05、`q_01_qiyu_72`、`enc_01_shaoshiyoutanzhi`、Z/X10 | `removeControl` 余额守恒；两人分别求值，不强配 | 不增天书；同一事件救多人改命费只收一次 |
+| 慕容复复国执念 | `q_01_faction_02`、Z/X06、`enc_01_mantuomurongfu` | `breakFunding` 余额守恒；王语嫣 / 阿碧不是奖励 | 不增天书；只改本界结局事实 |
+| 玄慈—叶二娘认亲赴死 | `q_01_side_73`、`enc_01_shaoshixuanci`、Z/X08 | `preserveEvidence` 非致死结算；两人生命轴、追责分别保存 | 不增天书；不把少室活证变成 A5 必需数 |
+
+游骥、游驹、岳老三、童姥、李秋水、段正淳、刀白凤等其他窗口只索引 story §6.4。这些救援与上表四条局部主要悲剧线都写各自生命轴、羁绊与后日谈，但：
 
 - 不产生第三个天书变体；
 - 不自动满足 A5 的全部条件；
@@ -520,7 +546,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 ### 6.1 总量、编号与奖励口径
 
-本章登记 32 条正式支线：普通 4、门派 6、羁绊 4、奇遇 18。所有玩法扩写均标**（原创扩展）**；“原著关联”只说明所借人物 / 母题，不把任务过程冒充原著。
+本章登记 33 条正式支线：既有普通 4、门派 6、羁绊 4、奇遇 18，另登记《长生诀》第三层支线 1 条；算式为 `4+6+4+18+1=33`。所有玩法扩写均标**（原创扩展）**；“原著关联”只说明所借人物 / 母题，不把任务过程冒充原著。
 
 | 类别 | 数量 | 编号分段 | 主要作用 |
 |---|---:|---|---|
@@ -528,6 +554,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | 门派 | 6 | 01–03、71、72、91；完整 ID 见 §6.3 | 12 个内容位的关键晋升 / 传功节点 |
 | 羁绊 | 4 | 01、02、71、72；完整 ID 见 §6.4 | 三兄弟与阿朱重点关系线 |
 | 奇遇 | 18 | 01–10、71–75、81、82、91；完整 ID 见 §6.5–§6.6 | 九区探索、固定图鉴来源、前代传承 |
+| 长生诀 | 1 | `q_01_changsheng_01`；选择 `dc_01_10` | 第三层「三问众生」；内容唯一见 `story/changsheng-sidelines.md` §3 |
 
 经济奖励使用本界标准收入 `I(ch01)=2×9.5×1=19 两/h` 推导：小 / 中 / 大支线的现金或可售物总值建议分别为 `0.05h×19=0.95`、`0.10h×19=1.90`、`0.15h×19=2.85` 两。秘籍、唯一物、天材、关系与贡献不按商店价额外套银两；每份资产只记一个 `economySource`。全界收入预算为 `B=19×15=285 两`，任务桶 40% 即 114 两，主线与下表共同受此上限。
 
@@ -536,7 +563,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | ID / 名称 | 区域 | 触发 | 简述 | 奖励 | 原著关联 |
 |---|---|---|---|---|---|
 | `q_01_side_71` 玉璧剑影 | 大理苍山 | 夜间检查玉璧月影；非无量门人也可触发 | 对齐光线、石痕与剑招次序；可从山道、绳索或 qg3 三路抵观察位 | `sk_yubijian` 最多 7 重；中型探索值 1.90 两 | 无量玉璧母题；玩家解谜过程**（原创扩展）** |
-| `q_01_side_72` 灵鹫宫石壁 | 西域北疆 | 完成灵鹫善后且石室许可开放 | 将圆图、人兽图与残文按招式系谱归档；错配只损时间，不毁唯一图谱 | 按图鉴解锁 `sk_liuyangzhang` / `sk_zhemei` / `sk_piaomiaojian` 的受限来源；门派贡献 | 宫中石壁母题；玩家校图**（原创扩展）** |
+| `q_01_side_72` 灵鹫宫石壁 | 西域北疆 | 完成灵鹫善后且石室许可开放 | 将圆图、人兽图与残文按招式系谱归档；错配只损时间，不毁唯一图谱 | 按图鉴解锁 `sk_liuyangzhang` / `sk_zhemei` / `sk_piaomiaojian` 的受限来源；`sk_tianshanliuyangxinfa` 至 8 重的石壁行功图来源；门派贡献 | 宫中石壁母题；玩家校图**（原创扩展）** |
 | `q_01_side_73` 藏经阁夜影 | 中原 | 少室前取得一份夜行线索；少林非敌对或可潜入 | 跟踪两道身影、保护经架与巡僧，区分“见招”与“学会”；证据交还或密封 | 开 `npc_xiaoyuanshan` / `npc_murongbo` 后续指点资格；小型值 0.95 两 | 藏经阁萧慕容旧事；玩家追踪**（原创扩展）** |
 | `q_01_side_74` 生死符之困 | 大理苍山 → 西域北疆 | 开局见司空玄受制线索；灵鹫线后回访 | 找药只是缓解，真正解符须虚竹 / 宫中许可；玩家决定公开受害名单或私下解救 | 神农帮关系、药材配给、跨势力救援候选 | 神农帮受制母题；跨区救援链**（原创扩展）** |
 
@@ -544,7 +571,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 | ID / 名称 | 区域 | 触发 | 简述 | 奖励 | 原著关联 |
 |---|---|---|---|---|---|
-| `q_01_faction_01` 六脉护谱 | 大理苍山 | 天龙寺 L2 或 C02 护经有功 | 在经谱、僧众与段誉撤离间分配护卫；不得复制、售卖或强学六脉 | 天龙寺 L3 资格；`sk_kurongchangong` 访学；大支线值 2.85 两 | 天龙寺护经；支线分岗**（原创扩展）** |
+| `q_01_faction_01` 六脉护谱 | 大理苍山 | 天龙寺 L2 或 C02 护经有功 | 在经谱、僧众与段誉撤离间分配护卫；不得复制、售卖或强学六脉 | 天龙寺 L3 资格；`sk_kurongchangong` 访学；`sk_duanshiyangjue` 至 8 重的护谱参详来源；大支线值 2.85 两 | 天龙寺护经；支线分岗**（原创扩展）** |
 | `q_01_faction_02` 还施辨源 | 太湖江南 | 慕容 L2 或交回一份误归慕容的招式证据 | 以王语嫣见闻核对百家来源，归还被冒名的谱页；选择保家声或公开纠错 | 慕容 L3 资格；`sk_canhezhi` / `sk_murongjian` 进阶来源 | 以彼之道与水阁藏书母题；归谱任务**（原创扩展）** |
 | `q_01_faction_03` 雪岭辩经 | 青藏 | 密宗 L2、鸠摩智关系或商旅引荐 | 先护送译经残页，再以见闻 / 战斗任选一途过试；不能把现实法阶当武阶 | `sk_jingangjue` / `sk_dashouyin` 访学；密宗贡献；1.90 两 | 鸠摩智佛学与武学争胜母题；任务**（原创扩展）** |
 | `q_01_faction_71` 无量比剑 | 大理苍山 | 脚程探路自述或无量 L1；C01 后 | 东西宗比剑中保护旁观者、识别玉璧误读；胜负与救人分别结算 | `sk_yubijian` 全本来源（最多 10 重）；无量 L2 / L3 资格 | 无量剑派争斗；赛制与救援**（原创扩展）** |
@@ -557,7 +584,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 |---|---|---|---|---|---|
 | `q_01_bond_01` 三弟各途 | 大理 / 中原 / 西域 | 分别与段誉、虚竹同行至少一次 | 三段短章分别让二人自行处理“不愿练武 / 戒律与责任”，玩家只能陪同、作证或救人 | 段誉、虚竹羁绊；解锁三兄弟同场合击候选；无银钱 | 三兄弟结义与各自责任；玩家陪行**（原创扩展）** |
 | `q_01_bond_02` 无相不夺 | 中原 → 西域 | 珍珑后虚竹羁绊达中档 | 保护虚竹处理突然获得的传承，不要求他向玩家复制全部绝学；完成一项宫众解厄 | 虚竹高羁绊通道；云海 qg5 临时 `qinggong +12` 合法来源一次 | 虚竹继承逍遥 / 灵鹫；同行试炼**（原创扩展）** |
-| `q_01_bond_71` 塞上论心 | 河东晋中 / 漠南 | A3 后交还一份原证或替萧峰救过伤者 | 结义不是必选；以饮酒、守夜、救民三段检验玩家是否尊重他的身份与决定 | `sk_qinlonggong` 师承资格；萧峰羁绊与合击 | 萧峰豪气、塞上同行母题；玩家关系线**（原创扩展）** |
+| `q_01_bond_71` 塞上论心 | 河东晋中 / 漠南 | A3 后交还一份原证或替萧峰救过伤者 | 结义不是必选；以饮酒、守夜、救民三段检验玩家是否尊重他的身份与决定 | `sk_qinlonggong`、`sk_xianglongxinggong` 师承资格；后者仍须图鉴中的九袋行功 6 重与 `sk_xianglong18` 7 重前置；萧峰羁绊与合击 | 萧峰豪气、塞上同行母题；玩家关系线**（原创扩展）** |
 | `q_01_bond_72` 易容之后 | 太湖江南 / 中原 | 阿朱羁绊中档且小镜湖前 | 协助易容调查，却由阿朱决定风险与身份；三份线索齐时开放知情选择 | `sk_yirongshu` 访学；阿朱关键证人候选；无银钱 | 阿朱易容与寻根；知情权机制**（原创扩展）** |
 
 ### 6.5 区域奇遇（10）
@@ -588,13 +615,31 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | `q_01_qiyu_82` 达摩洞面壁 | 中原 | A4 后、`wil≥60` | 连续静修与心魔检定；可中止并保留进度 | `sk_yiweidujiang` 最多 10 重来源 | 达摩洞文化母题；具体试炼**（原创扩展）** |
 | `q_01_qiyu_91` 经外无经 | 中原 | 从未主动求取 `sk_yijinjing` 且 `wil≥70` | 不偷经、不逼师；经救人、归卷与持戒三段后获得受限印证 | `sk_yijinjing` 最多 8 重；占天级预算 | 易筋经奇缘母题；玩家路径**（原创扩展）** |
 
-### 6.7 任务链与防死档
+### 6.7 长生诀支线（1）
+
+| ID / 名称 | 常规时间窗 | 场景挂点（至少三处） | 选择 / 奖励 / 边界 |
+|---|---|---|---|
+| `q_01_changsheng_01` 三问众生 **（原创扩展）** | C02 护经结束后开放；最终常规入口为 Z/X09 完成后的独立 `SideHook`，须在激活 Z/X10 前完成；激活或完成 Z/X10 后至书眠提交前仅余韵补证 | `sc_01_langhuanfudi` (`n_c02_merge`) → `sc_01_juxianzhuang` (`n_juxian_merge`) → `sc_01_leigushan` (`n_z06` / `n_x06` 各一条) → `sc_01_yanmenguan` (`n_z09` / `n_x09` 各一条) | 选择 `dc_01_10`；完成由上游原子授第三层，效果只见 `design/25` §2。六条生产 `SideHook` 只见 story §7.5；失败、错过、补证和不得跨书重开只见 `story/changsheng-sidelines.md` §1.4、§3 |
+
+生产挂点逐条登记如下；`lineId` 均为 `side_changsheng_01`，`when` 原文只见 story §7.5：
+
+| # | 单值 `atNodeId` | 对应主线完成态 | 场景 / 阶段 |
+|---:|---|---|---|
+| 1 | `n_c02_merge` | C02 | `sc_01_langhuanfudi` / 残图初问 |
+| 2 | `n_juxian_merge` | Z03 或 X03 | `sc_01_juxianzhuang` / 医者问 |
+| 3 | `n_z06` | Z06 | `sc_01_leigushan` / 正线逍遥问 |
+| 4 | `n_x06` | X06 | `sc_01_leigushan` / 邪线逍遥问 |
+| 5 | `n_z09` | Z09；激活 Z10 前 | `sc_01_yanmenguan` / 正线常规结算 |
+| 6 | `n_x09` | X09；激活 X10 前 | `sc_01_yanmenguan` / 邪线常规结算 |
+
+### 6.8 任务链与防死档
 
 - 四条开局支线中的任一失败都只损失关系 / 附加奖励，不关闭 C02。
 - `q_01_side_74` 的开局线索、`q_01_qiyu_72` 的冰蚕足迹、`q_01_qiyu_75` 的越州题签均可跨区保留，不被区域重载清除。
-- 图鉴来源互斥须在接受完整传承前预览：`q_01_faction_91` 的打狗棒法与完整降龙路径二选一；逍遥七门最多取三。
+- 图鉴来源互斥须在接受完整传承前预览：`q_01_faction_91` 的打狗棒法与完整降龙路径二选一；逍遥 / 灵鹫八门最多取三。
 - 所有需特定 NPC 的任务，在其命定死亡前提供一次明确“即将错过”提示；命定死亡后只允许符合上游的遗物 / 证言替代，不让死者复活发任务。
-- 32 个任务必须各有 `economySource`、失败恢复、区域入口和完成事件；18 条奇遇任务至少消费 36 个触点中的一个，触点不可靠存读档重抽。
+- 既有 32 个任务必须各有 `economySource`、失败恢复、区域入口和完成事件；长生诀支线另按其上游任务卡结算，不重复占既有经济桶。18 条奇遇任务至少消费 36 个触点中的一个，触点不可靠存读档重抽。
+- `q_01_changsheng_01` 只读主线状态，不写正邪、A1–A5 生死或天书轴；常规失败回安全检查点，跨书提交后不得在射雕补做。
 
 ---
 
@@ -632,16 +677,16 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | 门派 | 五级称谓 | 入门与门规 | 各级武学目录实例 | 配给 / 晋升特例 |
 |---|---|---|---|---|
 | `sect_shaolin` | L1 俗家 / 沙弥；L2 入室僧；L3 亲传 / 闭关僧；L4 院堂首座 / 长老；L5 方丈 | `morality≥10`、`fame≥100` 或护寺豁免；不得滥杀、偷经、私传。剃度修炼效率与情缘限制引用 P32 | L1 `sk_shaolinchangquan`、`sk_luohanquan`；L2 `sk_shaolinxinfa`、`sk_shaolingunfa`；L3 `sk_weituozhang`、`sk_dajingangquan`；L4 `sk_xumishanzhang`、`sk_yiweidujiang` 任务线；L5 `sk_yijinjing` 仅合法来源 | 粮食 / 药材 / 香火物资；玄慈在位，常规 L5 锁；A4 后可走 `q_01_qiyu_81/82/91` |
-| `sect_tianlongsi` | L1 护法居士 / 沙弥；L2 入室僧；L3 亲传 / 护法国师；L4 牟尼堂首座 / 长老；L5 住持 | 护经、尊重段氏与寺规；不以王族身份跳过武学门槛 | L1 `sk_luohanquan`；L2 `sk_tiannanxinfa`、`sk_duanjiajianfa`；L3 `sk_kurongchangong`；L4 `sk_yiyangzhi`；L5 `sk_liumai` 只开任务目录 | 偏药材、粮食；枯荣 / 本因体系在位，L5 锁；护经失败不逐出，改走赎卷链 |
-| `sect_dali` | L1 王府护卫 / 门客；L2 段氏子弟 / 外姓供奉；L3 亲传 / 护国供奉；L4 宗室家老；L5 家主 | 可由救援、供奉或宗室身份进入；守民、守密，不把亲缘秘密作交易伤害无辜 | L1 `sk_duanjiajianfa`；L2 `sk_tiannanxinfa`、`sk_wuluoqingyanzhang`；L3 `sk_yiyangzhi`；L4 强化一阳指支脉；L5 六脉仍须天龙寺来源 | 偏粮食、药材、丝茶；帝位不是 L6，段氏在位使玩家 L5 常规锁 |
+| `sect_tianlongsi` | L1 护法居士 / 沙弥；L2 入室僧；L3 亲传 / 护法国师；L4 牟尼堂首座 / 长老；L5 住持 | 护经、尊重段氏与寺规；不以王族身份跳过武学门槛 | L1 `sk_luohanquan`；L2 `sk_tiannanxinfa`，可预览 `sk_duanjiajianfa`（习得仍须段氏 `rank 3` 与段正淳来源）；L3 `sk_kurongchangong`；L4 `sk_yiyangzhi`；L5 `sk_liumai` 只开任务目录 | 偏药材、粮食；枯荣 / 本因体系在位，L5 锁；护经失败不逐出，改走赎卷链 |
+| `sect_dali` | L1 王府护卫 / 门客；L2 段氏子弟 / 外姓供奉；L3 亲传 / 护国供奉；L4 宗室家老；L5 家主 | 可由救援、供奉或宗室身份进入；守民、守密，不把亲缘秘密作交易伤害无辜 | L1 仅预览 `sk_duanjiajianfa`（习得仍须 `rank 3` 与段正淳来源）；L2 `sk_tiannanxinfa`、`sk_wuluoqingyanzhang`；L3 `sk_yiyangzhi`；L4 强化一阳指支脉；L5 六脉仍须天龙寺来源 | 偏粮食、药材、丝茶；帝位不是 L6，段氏在位使玩家 L5 常规锁 |
 
 ### 7.4 姑苏慕容、丐帮与逍遥派
 
 | 门派 | 五级称谓 | 入门与门规 | 各级武学目录实例 | 配给 / 晋升特例 |
 |---|---|---|---|---|
 | `sect_murong` | L1 庄客；L2 家臣；L3 四大家臣级 / 亲传；L4 总管 / 族老；L5 家主 | 引荐、保密、完成归谱；不得把百家武学误记为本家原创 | L1 `sk_yanzisanchaoshui`；L2 `sk_murongjian`；L3 `sk_canhezhi`；L4 `sk_longchengxinfa`；L5 `sk_douzhuan` 任务线 | 偏丝茶、珍宝 / 修缮料；慕容复在位，L5 锁；公开纠错可升贡献但降家主关系 |
-| `sect_gaibang` | L1 一二袋；L2 三四袋；L3 五六袋头目；L4 七至九袋长老 / 龙头；L5 帮主 | `morality≥10` 或济困豁免；帮规、消息网、救难；袋数另存 `bagCount` | L1 `sk_qiongjiaquan`；L2 `sk_gangougunfa`、`sk_lianhualuo`；L3 `sk_xiaoyaoyou`；L4 `sk_dagou` / `sk_xianglong18` 任务候选；L5 只开镇帮目录 | 偏粮食、木材、铁器；A2 后帮主位空缺不等于玩家可直接继位；单周目完整打狗 / 降龙路径互斥 |
-| `sect_xiaoyao` | L1 记名；L2 入门；L3 亲传；L4 护法 / 大师兄；L5 掌门 | 珍珑、师承和心性；掌门指环只作凭证，不绕过传功条件 | L1 `sk_zuowangxinfa`、`sk_xiaoyaobu`；L2 `sk_langhuanjian`；L3 `sk_zhemei` 候选；L4 `sk_xiaowuxiang` / `sk_beiming` 候选；L5 仍逐项校验 | 偏药材、珍宝与文房；虚竹继承为主线事实，玩家最多 L4 / 结盟；七门天级单周目最多 3 |
+| `sect_gaibang` | L1 一二袋；L2 三四袋；L3 五六袋头目；L4 七至九袋长老 / 龙头；L5 帮主 | `morality≥10` 或济困豁免；帮规、消息网、救难；袋数另存 `bagCount` | L1 `sk_qiongjiaquan`；L2 `sk_gangougunfa`、`sk_lianhualuo`；L3 `sk_suohouqinnashou`（五袋，合法遗谱 / 白世镜事败前师承）；L4 `sk_dagou` / `sk_xianglong18` 任务候选；L5 只开镇帮目录 | 偏粮食、木材、铁器；A2 后帮主位空缺不等于玩家可直接继位；单周目完整打狗 / 降龙路径互斥 |
+| `sect_xiaoyao` | L1 记名；L2 入门；L3 亲传；L4 护法 / 大师兄；L5 掌门 | 珍珑、师承和心性；掌门指环只作凭证，不绕过传功条件 | L1 `sk_zuowangxinfa`、`sk_xiaoyaobu`；L2 `sk_langhuanjian`；L3 `sk_zhemei` 候选；L4 `sk_xiaowuxiang` / `sk_beiming` 候选；L5 仍逐项校验 | 偏药材、珍宝与文房；虚竹继承为主线事实，玩家最多 L4 / 结盟；八门天级单周目最多 3 |
 
 ### 7.5 灵鹫宫、星宿派与无量剑派
 
@@ -655,7 +700,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 | 门派 | 五级称谓 | 入门与门规 | 各级武学目录实例 | 配给 / 晋升特例 |
 |---|---|---|---|---|
-| `sect_mizong` | L1 行脚僧；L2 入寺弟子；L3 上师亲传；L4 护法 / 堪布；L5 国师 / 寺主 | 引荐、礼俗与辩经；宗教称谓需教史校审，不把现实法阶等同游戏等级 | L1 `sk_dashouyin`；L2 `sk_jingangjue`；L3 `sk_jingangxiangmochu`；L4 `sk_huoyandao` 仅鸠摩智师承；L5 寺主目录 | 偏粮食、药材、丝茶；大轮寺确址与称谓**（待考）**；鸠摩智不是可被玩家自动取代的 L5 |
+| `sect_mizong` | L1 行脚僧；L2 入寺弟子；L3 上师亲传；L4 护法 / 堪布；L5 国师 / 寺主 | 引荐、礼俗与辩经；宗教称谓需教史校审，不把现实法阶等同游戏等级 | L1 `sk_jingangjue` / `sk_zhuohuogong`；L2 `sk_dashouyin`；L3 `sk_mizonghufashen`；L4 `sk_huoyandao` 仅鸠摩智师承；L5 寺主目录 | 偏粮食、药材、丝茶；大轮寺确址与称谓**（待考）**；鸠摩智不是可被玩家自动取代的 L5 |
 | `sect_yipintang` | L1 军士；L2 队正；L3 供奉 / 亲随；L4 将军 / 堂主；L5 统领 | 身份审查、军功、宫禁职责；不得毒害无辜或借军职无限通关 | L1 `sk_dangxiangshuaijiao`；L2 `sk_helanxinfa`；L3 `sk_tieyaozidao`；L4 `sk_beisuqingfeng` 仅受控任务来源；L5 秘库目录 | 偏粮食、铁器、马匹；皇帝不入 L5；正线可作短期供奉，非永久邪派锁 |
 | `sect_qidan` | L1 军士；L2 队正；L3 亲军 / 教头；L4 将军 / 供奉；L5 南院大王级统帅 | 萧峰引荐、骑猎救援或军功；不得侵民，军职与丐帮主身份不能双领月钱 | L1 `sk_qidanlianzhujian`；L2 `sk_yanmengqishe`；L3 `sk_jingedangkouqiang`；L4 `sk_qinlonggong` 仍需萧峰羁绊；L5 军阵目录 | 偏马匹、铁器、粮食；帝位不在等级；南院大王已有剧情人选，玩家常规止于 L4 |
 
@@ -688,7 +733,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 人物稳定 ID、D1–D5 招募难度、生卒、能力与跨书资格以 `design/18` 及 `design/catalog/npcs-ch01-tianlong.md` 为准；本文只安排制作窗口、任务门槛、战术位置和 Boss 内容位。所有具名同伴 / Boss 使用 `full` 管线，设施与路人才使用 `template`。活动战斗编组固定为主角加最多 5 名队友；剧情同行、临时友军、可招募是三种状态，不得互相替代。
 
-`design/18` 的原则是具名 NPC 默认进入招募求值，而非只有下表 12 人可招募。12 人是 `design/11` 为本界预留的重点制作位；其余 18 名稳定人物仍可在本人窗口满足统一门槛后同行、留守或结盟。D4 至少经过专属任务链、品德 / 声望与时机窗口；D5 还须跨幕或锚点主线、命运与补救路径，送礼不能跳过硬门槛。
+`design/18` 的原则是具名 NPC 默认进入招募求值，而非只有下表 12 人可招募。12 人是 `design/11` 为本界预留的重点制作位；现有 40 人名录中的其余 28 名仍可在本人窗口满足统一门槛后同行、留守或结盟。D4 至少经过专属任务链、品德 / 声望与时机窗口；D5 还须跨幕或锚点主线、命运与补救路径，送礼不能跳过硬门槛。
 
 ### 8.2 十二个重点同伴制作位
 
@@ -704,12 +749,12 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | `npc_jiumozhi` 鸠摩智 / D5 | 天龙寺阶段不可招；枯井散功醒悟且玩家救援后开放短窗 | 争胜、贪求与醒悟；完成自省后按本人归途离开 | 内攻、远程刀气、少林观摩招；`sk_huoyandao`、`sk_xiaowuxiang`；不因入队获得被冒用秘籍 |
 | `npc_duanzhengchun` 段正淳 / D5 | 大理政务、诸段关系线完成；小镜湖 / 曼陀危机后有限同行 | 亲缘责任与王府职责；命定节点或政务强制离队 | 指法与中距掌法；`sk_yiyangzhi`、`sk_wuluoqingyanzhang`；与段誉为保护型搭档 |
 | `npc_xuemuhua` 薛慕华 / D4 | Z/X03；完成聚贤庄救治抉择、药库与敌我伤者目标 | 医者责任；重大伤情时可选择留守而非出战 | 医疗、解穴与伤势管理；`pers_yizhe`；与任一护卫型角色形成战术搭档 |
-| `npc_muwanqing` 木婉清 / D4 | C01 后；完成大理身世与誓言冲突专属链，不按主角性别自动开情缘 | 信诺与自主；曼陀家眷危机时暂离 | 机动、暗器 / 兵器画像待图鉴合法项补齐；与钟灵作姐妹救援搭档 |
+| `npc_muwanqing` 木婉清 / D4 | C01 后；完成大理身世与誓言冲突专属链，不按主角性别自动开情缘 | 信诺与自主；曼陀家眷危机时暂离 | 防身武学只引用人物名录的现有图鉴默认；原著箭术不擅造技能 ID；与钟灵作姐妹救援搭档 |
 | `npc_zhongling` 钟灵 / D4 | C01 后；完成 `q_01_qiyu_02`、万劫谷及父母关系链 | 亲情、驭兽与冒险；伤害其家人触发最后通牒 | 驭兽、毒抗、机动辅助；闪电貂只按 `it_shandiandiao` 召唤接口；与木婉清搭档 |
 
 重点制作验收：每人至少 1 个招募门槛面板、1 个拒绝理由、1 个临时离队状态、3 档营地对话和 1 个终局后日谈；D5 另需 1 个跨幕状态恢复测试。羁绊 80–89 为“生死”档；除 A5 明定的萧峰 `bond≥80` 外，不在本章私设第二套羁绊阈值。
 
-### 8.3 三十名稳定人物生命轴索引
+### 8.3 四十名稳定人物生命轴索引
 
 精确年份缺证者沿名录只写年龄段；“推算”也不升级为确定史年。所有命定死亡必须由任务动作落盘，战斗倒地不等于死亡。
 
@@ -745,12 +790,22 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | `npc_muwanqing` | 青年；生卒待考 | 修罗刀传人；C01 与大理身世链 |
 | `npc_zhongling` | 少女；生卒待考 | 万劫谷少女；C01 与闪电貂线 |
 | `npc_kurong` | 老年；生卒待考 | 天龙寺高僧；护经、指点与传承 |
+| `npc_duanzhengming` | 中年；生卒待考 | 保定帝；大理救援与护经，国事许可时短邀 |
+| `npc_xiaoyuanshan` | 老年；卒年待考 | 萧峰生父；A4 对质与藏经阁止斗 |
+| `npc_baobutong` | 中年；卒年待考 | 慕容家臣；江南同行与曼陀危机 |
+| `npc_fengboe` | 中年；卒年待考 | 慕容家臣；江南支援与护送 |
+| `npc_dengbaichuan` | 中年；卒年待考 | 慕容家臣；燕子坞与复国线 |
+| `npc_zuozimu` | 中年；生卒待考 | 无量剑东宗；C01 两宗调停与门人救援 |
+| `npc_xinshuangqing` | 中年；生卒待考 | 无量剑西宗；C01 两宗停战 |
+| `npc_baishijing` | 中年；命定结局待考 | 丐帮执法长老；杏子林至马大元旧案窗口 |
+| `npc_wuchangfeng` | 中老年；生卒待考 | 丐帮长老；杏子林、帮务与少室山 |
+| `npc_sikongxuan` | 中年；命定结局待考 | 神农帮主；C01 毒伤 / 生死符危机 |
 
-主线另需康敏、全冠清、耶律洪基等人物，但稳定名录尚无对应 `npc_*`；萧远山已登记为 `npc_xiaoyuanshan`。其余三人在上游补录前只能用带阻断告警的临时角色槽，不能把中文名当稳定外键。
+**已解决：**原 30 人索引已补齐到现有名录的 40 人，包含萧远山与游氏双雄；见 `catalog/npcs-ch01-tianlong.md`、story §8.2。主线另需康敏、全冠清、耶律洪基等未登记人物，剩余缺档清单见 story §8.3；上游补录前只能用带阻断告警的角色槽，不能把中文名当稳定外键。
 
 ### 8.4 前代重逢与跨书能力重设
 
-- `ch00_yuenv` 至本界相隔约 1,575 年；现有前代同伴没有任何可核生命证据。因此“前一书界可能健在并可重逢的同伴”集合为 **0 人**，不得以书眠、内功或传说虚构长生。
+- 直接前书是 `ch10_baima`，按 702 年转场锚至本界相隔 391 年；白马及更早越女人物均没有可核的跨期生命证据。因此“前代书界可能健在并可重逢的同伴”集合为 **0 人**，不得以书眠、内功或传说虚构长生。
 - 阿青只通过 `lgs_yuenv_aqing` 的守传者、遗迹、残本与手卷进入 §9.7，不以本人或虚构血脉重逢。
 - 本界新出现且以后再用的同一 NPC 必须复用稳定 ID；旧离队快照的七项先天、技艺、武学层数与永久成长逐项作为下限，新画像只增不减，再应用目标书界等级 / 品阶压制。
 - 来源状态不能简单取最大值：`learnedIn` 保留首次值，`sxp` / `latentExp` / `insight` 取不丢进度的较高值，残页 / 旗标作并集，`nativeTo` 只按 `design/02` 的完整印证规则更新。
@@ -766,18 +821,18 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 10 个内容位均使用稳定人物和 `full` 画像。`enc_01_*` 是本章遭遇 ID；只有聚贤庄复用 `design/09` 已登记的全局 Boss 脚本，其余九项先用章节局部 `scriptKey` 表示内容需求，待 `design/09` 接纳后才能获得正式 `bsc_*` ID。D4 的 Boss 通常 2 阶段；止斗、护送和非致死目标可以完成内容位，不把所有角色做成可击杀对象。
 
-| 遭遇 / Boss 脚本或局部 `scriptKey` | Boss / Lv | 武学（图鉴 ID） | 阶段与胜负机制 |
+| 遭遇 / Boss 脚本或局部 `scriptKey` | Boss / Lv | 代表武学（数字为有效层数；完整配装见 §12.8） | 阶段与胜负机制 |
 |---|---:|---|---|
-| `enc_01_wanjiangu` / `scriptKey:duanyanqing_wanjiangu` | `npc_duanyanqing` / 16 | `sk_yiyangzhi` 6、`sk_yanqingzhang` 6 | P1 杖行点穴；50% 后以腹语诱导并封路。救出人质或迫其退让即胜，不要求击杀 |
-| `enc_01_tianlonghujing` / `scriptKey:jiumozhi_tianlongsi` | `npc_jiumozhi` / 25 | `sk_huoyandao` 7、`sk_xiaowuxiang` 7、`sk_wuxiangjiezhi` 6 | P1 刀气压阵；60% 后以小无相催少林绝技。守住经卷 8 回合或迫退为胜 |
-| `enc_01_juxianzhuang` / `bsc_xiaofeng_juxianzhuang` | `npc_xiaofeng` / 35 | `sk_xianglong18` 有效 8、`sk_taizuchangquan`、`sk_qinlonggong` 8 | 完整复用 `design/09` §8.10：力竭 / 40% 锁血，黑衣人必救走；不可真正击败 |
-| `enc_01_xingxiuhai` / `scriptKey:dingchunqiu_xingxiuhai` | `npc_dingchunqiu` / 29 | `sk_huagong` 8、`sk_sanxiaoxiaoyaosan` 7、`sk_fushidu` 7 | P1 门徒颂扬蓄毒；55% 后化功圈扩大。毁毒鼎或迫退；邪线可改为制约交易 |
-| `enc_01_bingjiaotonglao` / `scriptKey:tonglao_bingjiao` | `npc_tonglao` / 31 | `sk_bahuang` 8、`sk_liuyangzhang` 8、`sk_shengsifu` 7 | 返老窗口使属性按回合恢复；低血触发解符抉择。保护 / 制止均走非致死结算 |
-| `enc_01_bingjiaoliqiushui` / `scriptKey:liqiushui_bingjiao` | `npc_liqiushui` / 31 | `sk_xiaowuxiang` 8、`sk_baihongzhang` 8 | 白虹变向标记；50% 后镜面残影。双 Boss 同场时共享止斗槽，不允许先杀一人刷简单结局 |
-| `enc_01_shaoshiyoutanzhi` / `scriptKey:youtanzhi_shaoshishan` | `npc_youtanzhi` / 32 | `sk_bingcanduzhang` 8、`sk_yijinjing` 6 | 寒毒地块逐轮扩散；摘除控制物 / 唤醒本人可提前结束。击倒不自动写命定死亡 |
-| `enc_01_shaoshixuanci` / `scriptKey:xuanci_shaoshishan` | `npc_xuanci` / 33 | `sk_dajingangquan` 8、`sk_boruozhang` 8、`sk_shaolinxinfa` 8 | 证据对质 / 戒律承压双槽；战斗仅为护证或试招，真相与认亲由原著人物完成 |
+| `enc_01_wanjiangu` / `scriptKey:duanyanqing_wanjiangu` | `npc_duanyanqing` / 16 | 主运 `sk_duanshiyangjue` 9；`sk_yiyangzhi` 6、`sk_yanqingzhang` 6 | P1 杖行点穴；50% 后以腹语诱导并封路。救出人质或迫其退让即胜，不要求击杀 |
+| `enc_01_tianlonghujing` / `scriptKey:jiumozhi_tianlongsi` | `npc_jiumozhi` / 25 | 主运 `sk_xiaowuxiang` 9；`sk_huoyandao` 7、`sk_wuxiangjiezhi` 6 | P1 刀气压阵；60% 后以小无相催少林绝技。守住经卷 8 回合或迫退为胜 |
+| `enc_01_juxianzhuang` / `bsc_xiaofeng_juxianzhuang` | `npc_xiaofeng` / 35 | 主运 `sk_xianglongxinggong` 9；`sk_xianglong18` 8、`sk_taizuchangquan`、`sk_qinlonggong` 8 | 完整复用 `design/09` §8.10：力竭 / 40% 锁血，黑衣人必救走；不可真正击败 |
+| `enc_01_xingxiuhai` / `scriptKey:dingchunqiu_xingxiuhai` | `npc_dingchunqiu` / 29 | 主运 `sk_huagong` 9；`sk_sanxiaoxiaoyaosan` 7、`sk_fushidu` 7 | P1 门徒颂扬蓄毒；55% 后化功圈扩大。毁毒鼎或迫退；邪线可改为制约交易 |
+| `enc_01_bingjiaotonglao` / `scriptKey:tonglao_bingjiao` | `npc_tonglao` / 31 | 主运 `sk_tianshanliuyangxinfa` 9；`sk_liuyangzhang` 8、`sk_shengsifu` 7 | 返老窗口只恢复属性、不回复 HP；低血触发解符抉择。保护 / 制止均走非致死结算 |
+| `enc_01_bingjiaoliqiushui` / `scriptKey:liqiushui_bingjiao` | `npc_liqiushui` / 31 | 主运 `sk_xiaowuxiang` 9；`sk_baihongzhang` 8 | 白虹变向标记；50% 后镜面残影。双 Boss 同场时共享止斗槽，不允许先杀一人刷简单结局 |
+| `enc_01_shaoshiyoutanzhi` / `scriptKey:youtanzhi_shaoshishan` | `npc_youtanzhi` / 32 | 主运 `sk_yijinjing` 9；`sk_bingcanduzhang` 8 | 寒毒地块逐轮扩散；摘除控制物 / 唤醒本人可提前结束。击倒不自动写命定死亡 |
+| `enc_01_shaoshixuanci` / `scriptKey:xuanci_shaoshishan` | `npc_xuanci` / 33 | 主运 `sk_jinzhongzhao` 9；`sk_dajingangquan` 8、`sk_boruozhang` 8；辅运 `sk_shaolinxinfa` 8 | 证据对质 / 戒律承压双槽；战斗仅为护证或试招，真相与认亲由原著人物完成 |
 | `enc_01_mantuomurongfu` / `scriptKey:murongfu_mantuoshan` | `npc_murongfu` / 34 | `sk_douzhuan` 9、`sk_murongjian` 8、`sk_canhezhi` 7 | P1 借力反击；50% 后切换复国死士。销毁资金链、劝退或击倒均可结算，王语嫣非奖励 |
-| `enc_01_cangjinggemurongbo` / `scriptKey:murongbo_cangjingge` | `npc_murongbo` / 35 | `sk_douzhuan` 10、`sk_wuxiangjiezhi` 8、`sk_ranmudaofa` 8 | 与萧远山对峙的存活 / 止斗战；扫地僧为不可攻击裁定者，绝不作为常规击杀 Boss |
+| `enc_01_cangjinggemurongbo` / `scriptKey:murongbo_cangjingge` | `npc_murongbo` / 35 | 主运 `sk_douzhuan` 10；`sk_wuxiangjiezhi` 8、`sk_ranmudaofa` 8 | 与萧远山对峙的存活 / 止斗战；扫地僧为不可攻击裁定者，绝不作为常规击杀 Boss |
 
 ### 8.7 `full` 数值核算与验收值
 
@@ -789,7 +844,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | 鸠摩智 / 25 | `19,049/4,576/683/601/519/464` | `19,049×0.95=18,096→18,100` | 103 / `ai_expert` | 内攻倾向；护卷计时使耐久不必到上限 |
 | 萧峰 / 35 | `41,103/9,078/1,301/1,192/997/926` | `41,103×1.20=49,323.6→49,300` | 118 / `ai_expert` | 上游固定建议；真实天上武学已体现攻击，禁止再乘 1.25 |
 | 丁春秋 / 29 | `24,557/5,884/879/772/667/596` | `24,557×1.00=24,557→24,600` | 106 / `ai_expert` | 毒与化功是主威胁，抗性 / 命中由 `full` 画像配置 |
-| 天山童姥 / 31 | `30,357/6,604/986/867/749/669` | `30,357×0.90=27,321→27,300` | 116 / `ai_expert` | 返老恢复与阶段门补足耐久，不另叠模板攻击 |
+| 天山童姥 / 31 | `30,357/6,604/986/867/749/669` | `30,357×0.90=27,321→27,300` | 116 / `ai_expert` | 返老只恢复属性，阶段门改变行为；HP 不回复，不另叠模板攻击 |
 | 李秋水 / 31 | 同上 | `30,357×0.90=27,321→27,300` | 114 / `ai_expert` | 与童姥对称制作；镜像机制不能重复增血 |
 | 游坦之 / 32 | `32,615/7,146/1,044/938/793/722` | `32,615×0.80=26,092→26,100` | 105 / `ai_adept` | 高毒抗与寒毒场弥补较低 HP；保留唤醒出口 |
 | 玄慈 / 33 | `34,447/7,544/1,102/990/837/763` | `34,447×0.80=27,558→27,600` | 102 / `ai_expert` | 目标是护证 / 承担，不是长时间削血 |
@@ -812,7 +867,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 ### 9.1 天级原生池与单周目闸门
 
-本界 14 门原生天级严格来自基准 §13；品阶、招式、前置和层数上限只认对应图鉴。这里仅给固定来源与互斥账本。天龙单周目天级取得上限为 6，任何随机掉落、Boss 天材骰或套装都不能绕过。
+本界完整原生天级池固定为 **17 门**，与 Canon v1.7 §3、§13（V16-01～02）一致；段氏一阳诀、降龙行功、天山六阳心法三门由 `skills-bulu-01-tianlong.md` 补录，17 门均见下表。全局普通天阶名录现为 `59=天上9+天中18+天下32`；品阶、招式、前置和层数上限只认对应图鉴。这里仅给固定来源与互斥账本。天龙单周目天级取得上限仍为 6，任何随机掉落、Boss 天材骰或套装都不能绕过。
 
 | 体系 | 武学 / 品阶 | 本界固定来源 | 投放时点与互斥 |
 |---|---|---|---|
@@ -824,14 +879,17 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | 灵鹫 / 逍遥 | `sk_zhemei` 10 天下 | 童姥 / 虚竹师承；石壁至 8 重 | 灵鹫线；计逍遥系名额 |
 | 灵鹫 | `sk_bahuang` 10 天下 | 童姥 / 虚竹 rank 4；石壁至 7 重 | 冰窖前后；计逍遥系名额 |
 | 灵鹫 | `sk_shengsifu` 10 天下 | 童姥 / 虚竹 rank 3 | 须六阳掌或八荒 4 重；计逍遥系名额 |
+| 灵鹫 / 逍遥 | `sk_tianshanliuyangxinfa` 11 天中 **（原创扩展）** | 童姥 / 虚竹师承；`q_01_side_72` 石壁至 8 重 | 灵鹫线；须六阳掌 7 重；计逍遥系名额 |
 | 大理 | `sk_liumai` 12 天上 | `q_01_faction_01` 护谱后观谱 / 段誉羁绊 | C02 后；大理 / 丐帮门户总名额计数 |
 | 大理 | `sk_yiyangzhi` 11 天中 | 段氏特许、天龙寺护法 | C02 后；与六脉可同系深入 |
+| 大理 | `sk_duanshiyangjue` 11 天中 **（原创扩展）** | 段正明师承；`q_01_faction_01` 护谱参详至 8 重 | C02 后；段氏 L4 可完整师承；计大理 / 丐帮门户名额 |
 | 丐帮 | `sk_xianglong18` 12 天上 | `q_01_bond_71` 后萧峰羁绊 | A3 后；与完整打狗路线二选一 |
 | 丐帮 | `sk_dagou` 11 天中 | `q_01_faction_91` 护帮存棒至 8 重 | A2 后；与完整降龙路线二选一 |
+| 丐帮 | `sk_xianglongxinggong` 12 天上 **（原创扩展）** | `q_01_bond_71` 后萧峰师承 | A3 后；须九袋行功 6 重、降龙十八掌 7 重；计大理 / 丐帮门户名额 |
 | 姑苏慕容 | `sk_douzhuan` 10 天下 | 慕容复至 8 重 / 慕容博至 10 重；水阁偷阅至 6 重 | Z/X09 或 A4 后；少林 / 慕容 / 吐蕃终盘组最多 1 |
 | 吐蕃 | `sk_huoyandao` 10 天下 | 鸠摩智交易至 8 重；醒悟后 10 重 | 枯井后；少林 / 慕容 / 吐蕃终盘组最多 1 |
 
-互斥求值按“逍遥七门最多 3 + 大理 / 丐帮门户最多 2 + 少林 / 慕容 / 吐蕃终盘最多 1”，但三组相加仍受全界 `≤6` 的总闸门；丐帮内部完整降龙 / 打狗另二选一。来源预览必须同时显示：将消耗的体系名额、当前已取数、层数上限、是否关闭另一来源。拒绝来源不销毁任务和剧情，只关闭该次完整传承。
+互斥求值按“逍遥 / 灵鹫八门最多 3 + 大理 / 丐帮门户六门最多 2 + 少林 / 慕容 / 吐蕃终盘最多 1”，但三组相加仍受全界 `≤6` 的总闸门；丐帮内部完整降龙 / 打狗另二选一。来源预览必须同时显示：将消耗的体系名额、当前已取数、层数上限、是否关闭另一来源。拒绝来源不销毁任务和剧情，只关闭该次完整传承。
 
 ### 9.2 地阶代表与成长桥
 
@@ -845,7 +903,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 | 兵器 · 少林 | `sk_ranmudaofa` | 9 地上 | 少林 L5 / 观摩鸠摩智；绝技来源受寺规 |
 | 拳脚 · 聚贤 | `sk_bingcanduzhang` | 8 地中 | `q_01_qiyu_72` 至 10 重或游坦之观察至 8 重 |
 | 拳脚 · 慕容 | `sk_canhezhi` | 8 地中 | 慕容 L3 / 还施水阁至 7 重 |
-| 兵器 · 大理 | `sk_duanjiajianfa` | 7 地下 | 段氏特许 / 渔樵耕读师承 |
+| 兵器 · 大理 | `sk_duanjiajianfa` | 7 地下 | 段正淳客卿 `rank 3` 特许；见 `skills-wujue` §5.4，不引用后世师承 |
 | 兵器 · 灵鹫 | `sk_piaomiaojian` | 7 地下 | 灵鹫 L2 / 石壁至 7 重 |
 | 拳脚 · 少林 | `sk_dajingangquan` | 7 地下 | 少林 L4 / 合法残页 |
 | 杂学 · 丐帮 | `sk_dagouzhen` | 7 地下 | 六袋以上阵法目录；与 09 阵法接口 |
@@ -854,7 +912,7 @@ fateReady = size(crossFactionRescueFactions) >= 2
 
 ### 9.3 玄黄阶本土装配保底
 
-天龙为高武，但仍必须让不拜大派、错过高阶来源的玩家填满 3 内功 / 3 拳脚 / 3 兵器装配栏。以下均为四份指定图鉴已有 ID，三路互不排斥。
+天龙为高武，但仍须按本地学习 / 装配规则提供至少 3 内功、3 拳脚、3 兵器的成套来源；这证明不拜大派、错过高阶来源仍能成长，不代表跨书可携带 9 门。以下均为四份既有指定图鉴已有 ID，三路互不排斥。
 
 | 装配类 | 低阶（黄） | 中阶（玄） | 较高阶 / 来源 |
 |---|---|---|---|
@@ -1125,43 +1183,49 @@ source: canonExpanded
 
 ## 11. 与前后书界衔接
 
-### 11.1 前界书眠：越女 → 天龙
+### 11.1 前界书眠：白马 → 天龙
 
-序章《越女剑》约前 482 年结束，本界于 1093 年苏醒，叙事跨度为 `1093−(−482)=1,575` 年。该段使用序章专属 intro，不占正式书眠视频 `vid_sleep_01_02`–`vid_sleep_13_14`；完整流程、跳过补发与零槽位规则只见 `design/01` §8、`design/02` §1.2 与 §4.7。
+第一本正式书《白马啸西风》采用 702–703 年、武周长安年间；协调者裁定白马转场锚专取 702 年，故本界于 1093 年苏醒前沉睡 `1093−702=391` 年。本章服从 Canon §2 与 `design/02` §1.5 的现行值；白马 `story/10`、`chapters/10` 仍留以 703 离界核算的旧口径，须另行同步。休眠事件、3+3 取舍与转换规则只见 `design/story/sleep-events.md`、`design/02`、`design/25`。
 
 | 步骤 | 本界读入 | 数据边界 |
 |---|---|---|
-| 回望 | 阿青、白猿、范蠡、西施与越国剑士的序章摘要 **（待考）** | 只读已完成节点；不生成存活到北宋的人物 |
-| 零槽位 | 核心武学 0 / 0 / 0，装备 0 | `sk_yuenvjian` 不得以完整可装配实例落地 |
-| 残篇 | 完整序章保存最高 3 重；跳过时保存最高 1 重 | 均为 `it_canye_yuenvjian`；跳过不发感悟 |
-| 感悟 | 完整序章：`2.0×clamp(3/10,0.3,1.0)=0.6`，即 `apSword +0.6` | 只由 `design/02` §5.5 结算；跳过为 0 |
-| 同源 | 激活 `lg_jianyuan`“剑源” | 有残篇时剑法经验 ×1.05；总倍率上限仍见 `design/02` |
+| 前界事件 | 白马休眠事件已提交、天书与结局事实已归档 | 不把白马人物结局重算为天龙前置 |
+| 3+3 | 白马选定的 3 武功 + 3 内功；装备至多 6 件 | 《长生诀》栏外固定；外来实例保留 `nativeTo` |
+| 支线层数 | 正常应读第二层收据；缺失则天龙第三层支线保持锁定 | 不因进入天龙自动补第二层 |
+| 前代回响 | 白马的“放下”、高昌见闻、史匣 / 传承状态，以及更早的越女剑源 | 只读事实；不复制唯一物或唐代人物 |
 | 苏醒 | `sc_01_wuliangyidao`，再选 §2 的自述身份 | 切换北宋时代图层后才初始化区域、门派与营生 |
 
-前界没有可重逢的活体同伴。阿青只通过 §9.7 的传承源、残本、宝藏与信物被后世认识；任何“阿青后人”或本人长生到北宋的内容均不生成。
+相隔 391 年，白马常规人物不得无生命证据直接加载为健在本体；可重逢性仍逐人读取 `design/18`，没有合法证据时只用记载、遗物、书影或后人线索。
 
 ### 11.2 本界读入的五类前代回响
 
-本界是第一部正式书界，仍按 `design/02` §6.3 的配额读取至少五类前代状态；这些读入只影响对白、图鉴、教学和传承，不改变 C01 或 A1。
+本界是第二本正式书界，按 `design/02` §6.3 的配额读取至少五类前代状态；这些读入只影响对白、图鉴、教学和传承，不改变 C01 或 A1。
 
 | 前代状态 | 类型 | 本界表现 | 数值 / 剧情边界 |
 |---|---|---|---|
-| 完整游玩序章 | `dialog/codex` | 首位评剑 NPC 说剑意古拙，书灵补述“剑源” | 不给第二份武学或物品；原著人物措辞不得伪造 |
-| 跳过序章 | `tutorial` | 首次开战、开武学页、过 qg1 时分别弹情境补课卡 | 只补知识；已有 1 重残篇不重复发 |
-| `it_canye_yuenvjian.maxLayer` | `codex` | 1 重仅显示听闻，3 重显示已学招式与完整序章回想 | 不把教学演示的高阶招式记为掌握 |
-| `lg_jianyuan` 已激活 | `progression` | 北宋剑法获得剑源经验提示；若耶题签可显影 | 只用既定 ×1.05 与总上限，不增加品阶 |
-| 轮回“白猿剑意” | `codex/dialog` | 无量玉璧与若耶校合增加一条精确观察提示 | 只在《越女剑·全本》合法完成时读；不跳过残本 / 信物条件 |
-| 序章零槽位提交记录 | `tutorial` | 首次打开书眠帮助可重看“为何不能带来”的回放 | 不再次执行清理，不改变本界背包 |
+| 白马任一天书变体 | `dialog/codex` | 首次宝物 / 救人冲突出现“放下”主题回顾 | 不替玩家作选择，不直接加属性 |
+| `liwenxiu_departed=true` | `dialog` | 书灵回看她自行东归 / 告别的选择 | 不编造婚恋、寿命或 1093 年本人出场 |
+| `anchor_03=changed` | `codex` | 旧针匣或书影记录“曾有人活着离开” | 不据此让其跨 391 年成为活体 |
+| 高昌 / 护商归档事实 | `codex/quest` | 辨出旧式残字、行旗或史匣记录 | 不把唐代制度误写成北宋组织传承 |
+| 第二层收据 | `progression` | 解锁 `q_01_changsheng_01` 的层数前置 | 缺收据只锁支线，不锁天龙主线 |
+| `lg_jianyuan` / 越女残篇 | `progression/codex` | 作为更早前代状态继续支持若耶校合 | 不越过 `design/20` 的来源、残本与信物门槛 |
 
 ### 11.3 本界余韵与书眠之所
 
-取得任一天书变体后进入无时限余韵。默认书眠之所为 `sc_01_yanmenguan` 的关外石台 **（原创扩展）**，与 `design/02` §4 的“天龙·雁门关”建议一致；玩家也可从书灵菜单发起，地点只改变过场首镜，不改变数值。提交顺序固定如下：
+取得任一天书变体后进入无时限余韵。书眠节点固定为 story §7.4 的 `n_01_booksleep` **（原创扩展）**，其事件选择登记如下；逐事件情节、条件真值与演出只见 `design/story/sleep-events.md` §3.2。
+
+| 休眠事件 | 入眠地点 | 苏醒入口 | 优先级 / 回退 |
+|---|---|---|---|
+| `slp_01_yanmenxiexin` 保底 **（原创扩展）** | `sc_01_yanmenguan` 关外石台 | `sc_02_linan_yilu` | 10 / `null` |
+| `slp_01_yiminghuanyiming` 特殊候选 **（原创扩展·改命）** | `sc_01_guanwaijuya` 的绝壁侧洞；由大风卷入镜头衔接 | 先在同一洞中醒转，再落 `sc_02_linan_yilu`，不改射雕主线起点 | 30 / `slp_01_yanmenxiexin` |
+
+默认书眠之所为 `sc_01_yanmenguan` 的关外石台；“一命换一命”改用已登记的 `sc_01_guanwaijuya` 承载侧洞镜头。玩家从书灵菜单发起保底时，地点只改变过场首镜，不改变数值。`q_01_changsheng_01` 若错过常规窗，提交前还可在 `sc_01_juxianzhuang`、`sc_01_leigushan`、`sc_01_yanmenguan` 完成一次余韵补证；提交后不得跨书重开。提交顺序固定如下：
 
 1. 结算借还：任务绑定、借用、`anchorLocked` 与 `noCarry` 物品先归还；打狗棒只有玩家合法获得所有权时才进入装备选择。
 2. 保存十二名重点同伴及其余曾招募人物的招募历史、关系、生死、去向和离队能力快照，再清空活动编组；无人因高羁绊直接随眠。
 3. 保存穴道、经脉、周天 / 九转及永久增益；清除本时代门派身份与职级、月钱、资源点所有权、家丁、营生职位和普通资源库存。
 4. `morality` 完整保留；当代 `fame` 清零并累计到 `fameTotal`；天书实物、图鉴、学识、史匣和合法永久状态保留，均引用 `design/13`。
-5. 目标仍为高武：内功 / 拳脚 / 兵器各选最多 3 门；装备最多 6 件。轻功、暗器、杂学与未选核心武学转残篇。
+5. 固定选择 3 门武功 + 3 门内功，装备最多 6 件；武功名额合计覆盖拳脚、兵器、轻功、暗器与武艺型杂学。其余武功可保留未携带记录或按规则遗忘，内功可散去；不再按旧 3 / 3 / 3 分类槽处理。
 6. 射雕外来压制仍为 0、层数上限仍为 10；真实等级预计 33–35，显示等级为 `min(realLevel,50)`，没有降级。
 7. 在 `BS_PREVIEW` 明列所有遗留、残篇、史印和未完支线；长按 1.5 秒后才原子提交。
 
@@ -1181,7 +1245,7 @@ sleepYears = next.gameYear.start − current.gameYear.end
 |---|---|---|---|
 | 境界 | 高武 | 高武 | H→H |
 | 等级上限 | 35 | 50 | 真实 Lv33–35 原样保留，显示不截断 |
-| 核心携带 | 首界无入场携带 | 3 / 3 / 3 | 取目标书界规则；每类可少选、不可超选 |
+| 武学携带 | 白马入场已选 3 武功 + 3 内功 | 固定 3 武功 + 3 内功 | 武功跨类别合计 3；每列可少选、不可超选 |
 | 装备 | 本界正常持有 | 至多 6 件 | 本界已藏史件数同时占 6 件总配额 |
 | 外来压制 | 0 | 0 | 品阶不降；来源上限、门槛和真实层数仍保留 |
 | 层数上限 | 10 | 10 | 不因同属高武额外升层 |
@@ -1211,7 +1275,7 @@ sleepYears = next.gameYear.start − current.gameYear.end
 
 ### 11.6 跨书人物与传承连续性
 
-- `1217−1094=123` 年后，本章 30 名稳定人物均没有被 `design/18` 证明本人仍健在，因此活体重逢候选为 0；高羁绊只生成传闻、器物、门派记忆或后人 / 传承，不生成“百岁故人”。
+- `1217−1094=123` 年后，本章 40 名稳定人物均没有被 `design/18` 证明本人仍健在，因此活体重逢候选为 0；高羁绊只生成传闻、器物、门派记忆或后人 / 传承，不生成“百岁故人”。
 - 萧峰原著 / 改命状态只写入回响。即使改命，若没有 `explicitAliveAt:1217`，射雕也不能让其本人出现。
 - 段誉、虚竹、王语嫣等只通过大理、灵鹫、少林的门规、旧卷和传说留痕；不得凭空建立血缘后人。
 - `sk_dagou`、`eq_dagoubang`、少林藏经阁与大理天龙寺按 `design/02` 的 C2 / C5 / C6 连续；具体原生实例仍由射雕章节创建。
@@ -1273,9 +1337,9 @@ eliteLayer  = min(normalLayer + 1, 10)
 namedLayer  ≤ 10
 ```
 
-例：Lv1 普通约 `round(2+5/35)=2` 重；Lv18 普通约 `round(2+90/35)=5` 重；Lv35 普通为 7 重、精英为 8 重。普通 / 精英随机池的本界上限分别为地上 9 / 地上 9；概率表偶尔掷到地阶不等于掉落该武学全本，更不能越过 §9 的十四门天级来源和单周目六门上限。具名人物可使用本界原生天级，但必须由 `full` 画像、图鉴来源与真实层数共同证明。
+例：Lv1 普通约 `round(2+5/35)=2` 重；Lv18 普通约 `round(2+90/35)=5` 重；Lv35 普通为 7 重、精英为 8 重。普通 / 精英随机池的本界上限分别为地上 9 / 地上 9；概率表偶尔掷到地阶不等于掉落该武学全本，更不能越过 §9 的十七门天级来源和单周目六门上限。具名人物可使用本界原生天级，但必须由 `full` 画像、图鉴来源与真实层数共同证明。
 
-### 12.4 十场 Boss 数值复核
+### 12.4 十个 Boss 内容位数值复核
 
 §8.7 是关卡排期的单一建议值表。本节只补核算链与发布边界，不复制另一份人物面板。模板列统一为：
 
@@ -1290,20 +1354,20 @@ ATK:  STD_E.atk × 1.25 × 1.05
 DEF:  STD_E.def × 1.20                       # 不乘 1.05
 ```
 
-| Boss / Lv | 模板 HP / MP | `full` 建议 HP | AI / 阶段 | 发布时必须验证 |
+| Boss / Lv | 模板 HP / MP | `full` 单体锚 / 遭遇锚 | AI / 阶段 | 发布时必须验证 |
 |---|---:|---:|---|---|
 | 段延庆 / 16 | 7,991 / 2,118 | 6,800（`×0.85`） | `ai_adept` / 2 | 人质脱离可结束；杖法点穴有清楚预警 |
 | 鸠摩智 / 25 | 19,049 / 4,576 | 18,100（`×0.95`） | `ai_expert` / 2 | 守卷 8 回合为合法胜利；火焰刀不穿墙 |
 | 萧峰 / 35 | 41,103 / 9,078 | 49,300（`×1.20`） | `ai_expert` / 2 | 完整复用 `design/09` §8.10；40% 锁血 / 力竭止战 |
 | 丁春秋 / 29 | 24,557 / 5,884 | 24,600（`×1.00`） | `ai_expert` / 2 | 毒鼎可拆；毒圈不覆盖全部安全格 |
-| 天山童姥 / 31 | 30,357 / 6,604 | 27,300（`×0.90`） | `ai_expert` / 2 | 返老恢复计入总耐久，不能重置整条 HP |
-| 李秋水 / 31 | 30,357 / 6,604 | 27,300（`×0.90`） | `ai_expert` / 2 | 与童姥同场共享止斗槽，不能各复制模板耐久 |
+| 天山童姥 / 31 | 30,357 / 6,604 | 27,300（`×0.90`，仅 `full` 单体画像锚） | `ai_expert` / 2 | 冰窖运行时初始 HP 只读 §12.4.1 的 18,214；返老不重置 HP |
+| 李秋水 / 31 | 30,357 / 6,604 | 27,300（`×0.90`，仅 `full` 单体画像锚） | `ai_expert` / 2 | 冰窖运行时初始 HP 只读 §12.4.1 的 18,214；不得复制单体锚 |
 | 游坦之 / 32 | 32,615 / 7,146 | 26,100（`×0.80`） | `ai_adept` / 2 | 控制物移除 / 唤醒可结束；寒毒有可达安全格 |
 | 玄慈 / 33 | 34,447 / 7,544 | 27,600（`×0.80`） | `ai_expert` / 2 | 对质与护证优先；不以击杀承担者推进故事 |
-| 慕容复 / 34 | 36,333 / 7,954 | 32,700（`×0.90`） | `ai_expert` / 2 | 斗转反击不反射不可反射事件；资金链可破局 |
+| 慕容复 / 34 | 36,333 / 7,954 | 32,700（`×0.90`，多人阶段为整场锚） | `ai_expert` / 2 | 斗转反击不反射不可反射事件；资金链可破局 |
 | 慕容博 / 35 | 41,103 / 9,078 | 34,900（`×0.85`） | `ai_expert` / 2 | 扫地僧裁定止斗；不能击杀刷另一结局 |
 
-MP 采用 `design/03` §10.3 的 Boss `×2.0` 权威口径；例如 Lv35 精英基底 MP 为 4,539，同级 Boss 为 `4,539×2=9,078`。仓库当前平衡脚本若仍输出 4,539，只能登记为工具同步缺口，不得反向覆盖文档公式。
+MP 采用 `design/03` §10.3 的 Boss `×2.0` 权威口径；例如 Lv35 精英基底 MP 为 4,539，同级 Boss 为 `4,539×2=9,078`。2026-09-30 实查 `damage_sim.enemy_std(35,35,85,'HIGH','boss',4).mp_max` 仍为 4,539，已登记工具同步缺口；不得反向覆盖文档公式。
 
 10 人 HP 系数均在 0.6–1.2 内，最高等级为 35，故：
 
@@ -1312,6 +1376,70 @@ maxBossLevel = 35 ≤ chapterCap 35
 capExemptCount = 0 ≤ 2
 maxHpFactor = 1.20
 ```
+
+#### 12.4.1 十个内容位、九份多人 / 多阶段整场耐久
+
+依 `design/09` §8.8.11，以下每场、每条可达终局分支只声明一次遭遇级 `totalHp` **【建议值】**。表中 `d` 是结算前已对该分支必需单位造成的有效伤害；“转余额”表示目标达成时只把尚未消费的 `totalHp-d` 记为目标等价进度，不再新增血条。所有阶段回复 / 复起 / 新血条均为 0；可绕过的门徒、演出单位和友军不消费预算。
+
+| 遭遇 | 唯一 `totalHp` 与核算 | 稳定分配 / 分支守恒 |
+|---|---:|---|
+| `enc_01_wanjiangu` | 6,800 | 强退：段延庆 `unitIndex=00` 初始 6,800；救人：有效伤害 `d` + `rescueHostage=6800-d`；两支均为 6,800 |
+| `enc_01_tianlonghujing` | 18,100 | 迫退：鸠摩智 `00` 初始 18,100；守卷：`d + protectSutra=(18100-d)`；8 回合不是第二份耐久 |
+| `enc_01_juxianzhuang` | 49,300 | 三分支见下表；萧峰 40% 锁血 / 力竭只转余额，黑衣人救场不回血 |
+| `enc_01_xingxiuhai` | 24,600 | 迫退：丁春秋 `00` 初始 24,600；破鼎：`d + destroyPoisonCauldron=(24600-d)`；门徒可散退，分配 0 |
+| `enc_01_bingjiaotonglao`、`enc_01_bingjiaoliqiushui` | `floor(30357×1.20)=36428` | 两 ID 只是同场入口；童姥 `00` 18,214、李秋水 `10` 18,214；`18214+18214=36428`，共享止斗结算 |
+| `enc_01_shaoshiyoutanzhi` | 26,100 | 制服：游坦之 `00` 初始 26,100；唤醒：`d + removeControl=(26100-d)` |
+| `enc_01_shaoshixuanci` | 27,600 | 试招：玄慈 `00` 初始 27,600；护证 / 对质：`d + preserveEvidence=(27600-d)` |
+| `enc_01_mantuomurongfu` | `22890+4905+4905=32700` | 慕容复 `00` 22,890；P2 死士 `10/20` 各 4,905；断资金链时以 `d + breakFunding=(32700-d)` 转余额 |
+| `enc_01_cangjinggemurongbo` | `24430+10470=34900` | 慕容博 `00` 24,430；`objectiveKey=deescalate` 10,470；萧远山是对峙者、扫地僧是裁定者，均不复制血池 |
+
+聚贤庄按 `unitIndex → phaseIndex → objectiveKey` 固定顺序；立场翻转不重建单位或动态经脉态：
+
+| 分支 | 逐单位初始 HP / 目标等价进度 | 守恒 |
+|---|---|---:|
+| 助群雄 | 萧峰 `00` 初始 49,300；到力竭 / 40% 时为 `d + exhaustXiaofeng=(49300-d)` | 49,300 |
+| 助萧峰 | 游骥 `00` 7,395；游驹 `10` 7,395；两名少林头目 `20/30` 各 4,930；六个群雄战阵 `40/50/60/70/80/90` 依次 4,109、4,109、4,108、4,108、4,108、4,108 | `2×7395+2×4930+2×4109+4×4108=49300` |
+| 救治 | `stabilizeAzhu / protectWoundedEast / protectWoundedWest / surviveUntilRescue` 按 `objectiveKey` 字典序各 12,325；战场单位可交战但不是必击破项，伤害从下一未完成目标余额扣除 | `4×12325=49300` |
+
+冰窖 27,300 只供童姥 / 李秋水各自的 `full` 单体画像校准；运行时改从一份整场预算分配，每人初始 HP 恰为模板的 `floor(30357×0.60)=18214`，不得各启动一份单体锚。任一方先触发低血时只消费余额并进入共享止斗，不能击杀后再加载另一人。曼陀死士只在 P2 各生成一次，未生成者的配额在劝退 / 断账时转为目标进度。藏经阁的 10,470 是止斗进度，不是扫地僧或萧远山的 HP。
+
+整场静态轮数按各场 Boss 核心行动者 §12.8 原始轮数 `R0×totalHp÷同级模板 HP` 复算：万劫谷 16.95、护经 18.92、聚贤庄助群雄分支（萧峰）24.76、星宿海 18.65、冰窖 23.90、游坦之 16.52、玄慈 14.65、曼陀 17.39、藏经阁 16.58，均在 Boss 12–25 窗内。聚贤庄助萧峰分支是精英组，救治分支是纯目标，二者整场时长只由 `BattleReplayV1` 固定种子回放验收 **（待实测）**。以上九份实际遭遇预算都须通过 `BattleReplayV1` 的低 / 中 / 高配与四难度中配固定种子矩阵 **（待实测）**；静态 `boss_pacing.py` 不替代回放。
+
+#### 12.4.2 主线外围、军阵与目标遭遇补齐
+
+**（原创扩展）【建议值】** 本节补齐 story 24 幕的外围多人战；§12.4.1 的九份是十个具名 Boss 内容位的预算配方，不代表全剧情只有九场战斗。以现有任务 ID 加幕内局部遭遇键保存实例，不新增全局 `enc_*` / `bsc_*`。正邪同编号的外围战互斥取一份；同场追兵、援军、换相和减波共享该份余额。跨场景若仍属于同一连续追逐，保存余额而不重置；若制作时另拆独立遭遇，须另列预算与回放，不可暗中复制本表血池。
+
+下表 `E(L)` 只引用 `design/03` §10 的 D4 高武 W85 精英 HP 模板（等级上限 35），按当前 `damage_sim.enemy_std(L,35,85,'HIGH','elite',4).hp_max` 核算。两方默认各 1 个无名战阵单位，按稳定 `unitIndex=00/10` 等分；三方用 `00/10/20`。分配为 `floor(totalHp/N)` 后按索引递增补余数，不能给阵内每人复制一份。具名人物不因出现在同幕就自动变成模板敌人。
+
+| 对应幕 | 外围敌组 / 连续战范围 | 唯一 `totalHp` | 单位初始 HP 分配与守恒 |
+|---|---|---:|---|
+| C01 | 无量 / 神农追兵、山道拦截 | `E(5)=694` | `347+347=694` |
+| C03 | 水道伏击、曼陀脱困、鸠摩智外围追兵 | `E(12)=1569` | `785+784=1569`；高手施压不另生必击破血池 |
+| C04 | 一品堂 / 叛帮夹击 | `E(14)=1915` | `958+957=1915` |
+| Z01 / X01 | 掳证小队 / 两拨买家 | `E(16)=2308` | `1154+1154=2308` |
+| Z02 / X02 | 档房灭口 / 伪经追兵 | `E(18)=2786` | `1393+1393=2786` |
+| Z04 / X04 | 旧崖灭证 / 小镜湖灭口者 | `E(22)=3819` | `1910+1909=3819`；不将阿朱悲剧变为强制决斗 |
+| Z05 / X05 | 乱军侧翼 / 军需侧战 | `E(30)=6774` | `3387+3387=6774`；与下表护旗撤民是独立实例 |
+| Z06 / X06 | 星宿毒阵 / 抢夺秘室的两方外围 | `E(26)=5292` | `2646+2646=5292` |
+| Z07 / X07 | 洞岛误战 / 缥缈峰三方混战 | `E(28)=6008` | `2003+2003+2002=6008` |
+| Z08 / X08 | 少室救伤与星宿 / 慕容外围 | `E(28)=6008` | `2003+2003+2002=6008`；原著高手对决不复制此池 |
+| Z09 / X09 | 求亲外围 / 醉人蜂脱困 | `E(30)=6774` | `3387+3387=6774` |
+
+每行可击破、撤离、救人或谈判出口只消费该行一次预算。设已消费有效伤害为 `d`，目标出口只接 `totalHp-d`；提前劝退、策反或免除某波也只迁移对应未消费槽值。所有阶段回复、新血条与复起预算均为 0。独立随机普通遭遇沿通用生成器；同场混入的普通追兵必须从本表槽内细分，不另加耐久。
+
+三场军阵 / 目标战使用 `B(L)=design/03` 同级 Boss HP 模板作整场量级锚，`floor(B(L)×0.80)`；0.80 在既有 0.6–1.2 耐久搜索区间内。这里只借 HP 预算，不生成额外具名 Boss，也不以模板 MP 代替人物 MP。默认两个军阵单位 `00/10` 与两个目标槽各占四分之一；余数仍按单位、阶段、目标稳定顺序分配。
+
+| 对应幕 / 局部遭遇 | 唯一 `totalHp` 与算式 | 单位与目标分配 |
+|---|---:|---|
+| Z05 / X05 · 护旗撤民 | `floor(26053×0.80)=20842` | 两个乱军 / 追击战阵各 5,211；`evacuateCivilians`、`secureFlag` 各 5,210；`5211×2+5210×2=20842` |
+| Z10 / X10 · 南京营救 | `floor(41103×0.80)=32882` | 军府、城门两战阵各 8,221；`evacuateCaptives`、`rescueXiaofeng` 各 8,220；`8221×2+8220×2=32882` |
+| Z10 / X10 · 雁门止战 | `floor(41103×0.80)=32882` | 两方追击军阵各 8,221；`protectWitnesses`、`secureWithdrawal` 各 8,220；`8221×2+8220×2=32882` |
+
+目标达成、劝退或策反只迁该槽剩余耐久；例如南京免去城门波后，城门 8,221（若已受伤则取余数）转入撤离目标，不扣完血条再记同额进度。同一目标首次终态才入账。保护对象、耶律洪基、萧峰迫帝折箭演出与友军不作为必击破血池；未登记人物仍守 story §8.3 生产外键阻断。南京与雁门是两场独立实例，跨场不复用已消费进度。
+
+24 幕其余具名战引用关系：C02 分别使用万劫谷 / 护经；Z03 / X03 用聚贤庄；Z06 / X06 若实际阻击丁春秋，则以星宿海 24,600 配方建立擂鼓山独立实例；Z07 / X07 用冰窖；Z08 / X08 用游坦之、玄慈、藏经阁各自独立实例。Z09 / X09 的慕容复分支用曼陀 32,700；X09 若选段延庆阻拦，复用万劫谷 6,800 配方与既有 Lv16 画像建立本幕独立实例，两种阻拦互斥，不把段延庆塞进慕容复血池。配方复用不表示跨地点共用运行时余额；上述人物七参均只读 §12.8。
+
+本节 11 组外围、3 场目标战与具名配方的新地点实例全部须跑 `BattleReplayV1` 固定种子矩阵 **（待实测）**。外围整场按精英 6–10 次主角行动验收，三场关键目标战按 Boss 级整场 12–25 次主角行动验收；不能以单个精英的轮数乘 Boss 模板血量比例宣称通过，也不能以等分表证明目标战时长达标。失败先调总耐久、阶段或目标，不降经脉。
 
 ### 12.5 关键战以机制而非越级制造压力
 
@@ -1328,7 +1456,7 @@ maxHpFactor = 1.20
 | 南京营救 | 多目标撤离、军民分流 | 跨势力救援、开路线、放弃独占奖励 | 达到 story 的救援目标即可；损失改变 A5 条件，不毁存档 |
 | 雁门终局 | 谜案、军阵、羁绊、证据合取 | 五锚点、证据 / 活证、萧峰羁绊、主动舍弃独占利益 | 原著线始终可结；改命缺项时明确显示差哪一项 |
 
-所有 Boss 在侠客难度的目标仍引用 `design/09`：12–25 次主角行动、约 8–15 分钟；聚贤庄等群战可到 10–15 轮，但需支持轮界续玩。这里是验收目标，不以手填 HP 保证结果，必须用最终 `full` 画像和合法队伍实跑 **（待实测）**。
+所有 Boss 在侠客难度的目标仍引用 `design/09`：整场 12–25 次主角行动、约 8–15 分钟；聚贤庄各分支分别验收，不再沿用旧稿另列的 10–15 轮群战窗口，并支持轮界续玩。这里是验收目标，不以手填 HP 保证结果，必须用最终 `full` 画像和合法队伍实跑 **（待实测）**。
 
 ### 12.6 成长、冲穴与经济节奏
 
@@ -1368,13 +1496,112 @@ B = I × H = 19 × 15 = 285 两
 - 九区生成等级不得越过 §12.2 的普通区间；独立 Boss 不回写区域生态等级。
 - W85 全域品阶抽样 100,000 次后，各显示档相对 §12.3 的理论分布偏差建议 ≤0.5 个百分点 **【建议值】**；运行时使用未舍入权重。
 - D4 侠客难度生成 Lv35 模板必须精确命中 `design/03` §10.7：普通 HP 3,970 / 攻 947、精英 HP 9,715 / 攻 1,145、Boss HP 41,103 / MP 9,078；防御不乘 1.05。
-- 10 个具名 Boss 都使用 `full`，攻击不得再乘 Boss `×1.25`；HP 必须在同级模板 `0.6–1.2` 内并记录机制耐久。
+- 10 个具名 Boss 都使用 `full`，攻击不得再乘 Boss `×1.25`；§8.7 单体画像搜索锚的 HP 在同级模板 `0.6–1.2` 内；运行时 HP 按 §12.4 整场预算分配并记录机制耐久，不对分配后的每单位重复套该区间。
 - D4 常规敌人为 `ai_adept`、Boss 2 阶段、精英 1 词条；具名 `ai_expert` 覆写须逐遭遇登记，禁止出现非法枚举。
 - 普通 / 精英 / Boss 在侠客难度目标分别为 3–5 / 6–10 / 12–25 次主角行动；普通 ≤3 分钟、精英 ≤6 分钟、Boss 8–15 分钟 **（待实测）**。
 - 聚贤庄必须在萧峰 40% HP 或力竭时停止伤害并演出救走；任何伤害溢出都不能把 `npc_xiaofeng` 写死。
 - 经济七桶未舍入合计必须为 285 两，单事件只有一个来源；封顶经验必须转余韵，不能生成 Lv36。
 - 18 穴 / 2 通脉是内容投放上限与建议目标，不是通关条件；同一开穴事务不得重复发通脉奖励。
 - 四档难度、单人 / 满编、最低合法三联和无天级武学各跑一遍主线关键战；天书结算不得要求随机掉落或单一互斥秘籍 **（待实测）**。
+
+### 12.8 首领 / Boss 武学配装与经脉接线
+
+本节只给章节实例参数；经脉河流、攻防路线、护体内劲、速度、绝招、擒拿 / 点穴与调息的定义均见 `design/21`，永久开穴与里程碑见 `design/15`。`routeRefs` 不在本章手填，必须取该单位行动表中已解析 `MoveDef.meridianRouteRef` 的去重并集；若任一正式招式仍无路线，构建失败，不以章节自造 `mfr_*` 补洞。以下均为 **【建议值】**：
+
+| 单位 | 门派 / 来源 | 主运内功 | 辅运内功 | 外功（逐门品阶） | 经脉七项参数 | 血量 / 防御倍率 | 逐单位估算轮数（调倍率前→后） | 节奏复核 / 说明 |
+|---|---|---|---|---|---|---|---|---|
+| 本界精英默认（未逐个列出的普通精英） | 按单位门派 / 来源解析 | 按单位主武学解析 | 按单位来源的基础内功解析 | 按单位行动表解析 | `elite; 7/8; 10500; 7500; 10500; 由主武学解析; schoolCore; M0` | `1.000 / 1.000` | `9.77→9.77` | 在精英 6–10 窗口 |
+| `npc_youji` | 聚贤庄；A3 助萧峰 / 救治线的具名实战精英 | `sk_juxianyijue`（玄中5，阳） | `sk_dantianyangqi`（黄中2，阳，通行）、`sk_huxixingqi`（黄下1，阴，通行） | `sk_youshishuangqiang`（玄上6）、`sk_shuangxiongdundao`（玄中5）、`sk_youjiaduanqiang`（黄上3）、`sk_zhuangkequan`（黄中2） | `elite; 5/8; 10500; 7500; 10500; yang; schoolCore; M0` | `1.000 / 1.000` | `9.058095315975462→9.058095315975462` | 手配精英目标 `G−1=6`，真实同源主运仅 5 品；离线结果 `estimateOnly=true`，生产以 `TS-CONTENT-BOSS-021` 阻断；四门均为实体兵器 / 近身拳脚，图鉴未标 `projection:true`，外放 0；AR-18 新增内息相冲，默认保留配装，代价见 §12.8.2 |
+| `npc_youju` | 聚贤庄；A3 助萧峰 / 救治线的具名实战精英 | `sk_juxianyijue`（玄中5，阳） | `sk_dantianyangqi`（黄中2，阳，通行）、`sk_huxixingqi`（黄下1，阴，通行） | `sk_shuangxiongdundao`（玄中5）、`sk_youjiadao`（黄中2）、`sk_hengdaorumenzhao`（黄上3，通行）、`sk_zhuangkequan`（黄中2） | `elite; 5/8; 10500; 7500; 10500; yang; schoolCore; M0` | `1.000 / 1.000` | `9.058095315975462→9.058095315975462` | 同上；不得把 6 品地位目标直接写成主运事实；四门均为实体兵器 / 近身拳脚，图鉴未标 `projection:true`，外放 0；AR-18 相冲代价见 §12.8.2 |
+| `npc_duanyanqing` | 大理段氏 / 四大恶人 | `sk_duanshiyangjue`（天中11，调和；**原创扩展**） | `sk_duanshiyangshenggong`（玄上6，阴）、`sk_tiannanxinfa`（黄上3，阳） | `sk_yiyangzhi`（天中11）、`sk_yanqingzhang`（地上9）、`sk_duanjiajianfa`（地下7）、`sk_egangshou`（黄中2） | `boss; 11/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | `1.000 / 1.000` | `19.92→19.92` | 地位下限 11；段氏 L4 / 护谱参详可学，不是人物私有；养生功辅运比例改为 0.40，无相冲，见 §12.8.2 |
+| `npc_jiumozhi` | 吐蕃密宗 / 少林旁学 | `sk_xiaowuxiang`（天中11，调和） | `sk_mizonghufashen`（玄上6）、`sk_zhuohuogong`（玄下4） | `sk_huoyandao`（天下10）、`sk_wuxiangjiezhi`（地上9）、`sk_ranmudaofa`（地上9）、`sk_duoluoyezhi`（地下7）、`sk_dashouyin`（玄上6） | `boss; 11/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | `1.000 / 1.000` | `19.92→19.92` | 地位下限 11，合法主运已达标 |
+| `npc_xiaofeng` | 丐帮 / 契丹军旅 | `sk_xianglongxinggong`（天上12，阳；**原创扩展**） | `sk_jiudaixingong`（玄上6）、`sk_saibeixinfa`（玄中5） | `sk_xianglong18`（天上12）、`sk_qinlonggong`（地上9）、`sk_jingedangkouqiang`（玄上6）、`sk_tuxiongbohuquan`（玄中5）、`sk_taizuchangquan`（黄上3） | `boss; 12/9; 13000; 9000; 13000; yang; fullTemplate; M0` | `1.000 / 1.000` | `20.65→20.65` | 地位下限 12；丐帮帮主传承 / 合格师承可学，不是人物私有 |
+| `npc_dingchunqiu` | 星宿派 | `sk_huagong`（地上9，阴） | `sk_xingxiudugong`（黄上3，阴）、`sk_huxixingqi`（黄下1，阴，通行） | `sk_chousuizhang`（地中8）、`sk_sanxiaoxiaoyaosan`（地下7）、`sk_fushidu`（玄上6）、`sk_huoduozhang`（玄上6）、`sk_bilinzhang`（玄下4） | `boss; 9/9; 13000; 9000; 13000; yin; fullTemplate; M0` | `1.000 / 1.000` | `18.62→18.62` | 主运 ≥ 本界 `G=7`；呼吸行气辅运比例改为 0.50，新增三运同阴，见 §12.8.2 |
+| `npc_tonglao` | 逍遥派 / 灵鹫宫 | `sk_tianshanliuyangxinfa`（天中11，阳；**原创扩展**） | `sk_zuowangxinfa`（玄中5）、`sk_lingjiuxinfa`（黄上3） | `sk_liuyangzhang`（天中11）、`sk_zhemei`（天下10）、`sk_shengsifu`（天下10）、`sk_piaomiaojian`（地下7） | `boss; 11/9; 13000; 9000; 13000; yang; fullTemplate; M0` | `1.000 / 1.000` | `19.92→19.92` | 地位下限 11；灵鹫 / 逍遥师承或石壁受限来源可学，不是人物私有 |
+| `npc_liqiushui` | 逍遥派 / 西夏 | `sk_xiaowuxiang`（天中11，调和） | `sk_zuowangxinfa`（玄中5）、`sk_yunyougong`（玄下4） | `sk_baihongzhang`（地上9）、`sk_langhuanjian`（地下7）、`sk_chuanyinsouhun`（玄上6）、`sk_tianfengzhang`（黄上3） | `boss; 11/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | `1.000 / 1.000` | `19.92→19.92` | 地位下限 11，合法主运已达标 |
+| `npc_youtanzhi` | 聚贤庄 / 冰蚕奇遇 | `sk_yijinjing`（天上12，调和） | `sk_juxianyijue`（玄中5）、`sk_dantianyangqi`（黄中2，通行） | `sk_bingcanduzhang`（地中8）、`sk_youshishuangqiang`（玄上6）、`sk_shuangxiongdundao`（玄中5）、`sk_zhuangkequan`（黄中2） | `boss; 12/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | `1.000 / 1.000` | `20.65→20.65` | 地位下限 12，合法主运已达标 |
+| `npc_xuanci` | 少林 L5 | `sk_jinzhongzhao`（地中8，阳） | `sk_tongrenhenglian`（玄上6）、`sk_shaolinxinfa`（黄中2） | `sk_nianhuazhi`（地上9）、`sk_boruozhang`（地中8）、`sk_dajingangquan`（地下7）、`sk_longzhaoshou`（地中8）、`sk_luohanquan`（黄下1） | `boss; 8/9; 13000; 9000; 13000; yang; fullTemplate; M0` | `1.000 / 1.000` | `18.28→18.28` | 主运 ≥ 本界 `G=7` |
+| `npc_murongfu` | 姑苏慕容 | `sk_douzhuan`（天下10，调和） | `sk_canheqigong`（玄上6）、`sk_longchengxinfa`（玄中5） | `sk_canhezhi`（地中8）、`sk_murongjian`（玄上6）、`sk_baijiadao`（玄上6）、`sk_yanmenzhang`（黄上3） | `boss; 10/9; 13000; 9000; 13000; harmony; fullTemplate; M0` | `1.000 / 1.000` | `19.32→19.32` | 主运 ≥ 本界 `G=7` |
+| `npc_murongbo` | 姑苏慕容 / 少林旁学 | `sk_douzhuan`（天下10，调和） | `sk_canheqigong`（玄上6）、`sk_longchengxinfa`（玄中5） | `sk_canhezhi`（地中8）、`sk_nianhuazhi`（地上9）、`sk_wuxiangjiezhi`（地上9）、`sk_ranmudaofa`（地上9）、`sk_murongjian`（玄上6） | `boss; 10/10; 13000; 9000; 13000; harmony; fullTemplate; M0` | `1.000 / 1.000` | `19.53→19.53` | 主运 ≥ 本界 `G=7`；按 `design/21` §11.9.1 保留 §8.6 既有合法 10 重，不降为默认 9 重 |
+
+表内先写 `kind`，随后七项参数固定为 `effGrade/effLayer; mpRatioBp; practiceBp; capacityScaleBp; innerNature; openPolicy; milestones`；`M0` 展开为 `{meridianComplete:true,smallCycle:false,greatCycle:false,twelveCycle:false,turns:0}`。每名具名 Boss 均为 1 主运 + 2 辅运、4–5 门外功；辅运不抬 `effGrade`。段延庆、萧峰、童姥按 `design/21` §11.9.1 的地位下限分别取 `11/12/11`；全库先复用审计未找到同源且达标的既有主运，现由 `skills-bulu-01-tianlong.md` 补录门派 / 传承可学内功。替换前后的有效品阶、层数、性质、血量与防御倍率均相同，因此七参和静态轮数不变。
+
+本节所有浮点轮数是对应工具版本的离线审计快照，不是生产数值金标准。复核使用当前 `boss_pacing.py` 同输入输出及目标窗；两位显示值只检查与当次输出的差不超过 0.005 轮，不对历史小数串逐字符相等。遭遇整数耐久、分配守恒与合法主运仍须精确校验。
+
+**鸠摩智抽查默认（原创扩展配置）：**本遭遇轻功槽为空，不新增无原著 / 图鉴依据的所学；基础轻功与建议 `spd=103` 须由其正式 `full` 画像按 `design/03` 重算。经脉速度及普通移动仍走 `design/21`，空轻功槽不豁免每单位经脉实例；10 / 6 段代表路线只服务离线估算，不冒充实际移动路线或首轮速度验证。小无相主运 9 重与两门阳辅运各 0.40 见 §12.8.2；外功层数各自读取 §8.6 / 图鉴，不能全部套用主运的 9 重。
+
+`meridianComplete:true` 仅表示行动路线涉及之脉均通，不表示 20 脉全开。每个可独立行动的精英、Boss、召唤物各初始化一个 `MeridianFlowModule`；童姥 / 李秋水同场也不得共享节点、点穴、迟滞等动态态，纯场景毒雾、镜面残影不建实例。模块不持有 RNG；Core 仅在成功命令事务中注入唯一全局 `battle` 流，按既定提交顺序消费并与状态原子提交，不派生单位子流。表中 `effGrade/effLayer` 仅作建议基底，传入实例的必须是 `design/13` 完成外来压制、难度与规则开关后的最终有效值；阶段切换不得重置动态伤势。
+
+结算接口固定读取 `design/21` §4、§8–§11：防守路线在 Z4 后生成 `meridianDefenseBp`，攻击路线在 Z5 后生成 `meridianAttackBp`，两处各向下取整一次；护体内劲在既有护盾后、`mpGuard` 前结算；`meridianSpeedBp` 先修正首轮 / CT / 移动，再乘擒拿移动倍率，纯经脉 `evadeRatingDelta` 与擒拿 `evadeBp` 各只应用一次。段延庆等点穴遭遇按天龙前 / 中 / 后段只开放 1–3 / 1–3 / 4–6 级，7–9 级仅作带解法的剧情预告；萧峰擒龙、绝招和所有防守招式只消费图鉴挂接的路线，不在本章另写控制或绝招效果。
+
+逐单位静态复核统一以 `python3 tools/balance/boss_pacing.py`、攻击 / 防守代表路线 10 / 6 段计算：精英锚 9.77 轮；十名 Boss 为 18.28–20.65 轮，均在目标窗，故 HP / 防御均保持 1.000。游骥、游驹按真实 5 品主运的离线估算均为 `9.058095315975462` 轮，但低于手配精英 `G−1=6`；在补到可共享、同源且至少 6 品的正式主运前，只能输出 `estimateOnly=true`，不得生成生产 IR 或 `BattleReplayV1`。其余具名 `full` 行动表和路线数据齐备后须逐战复跑 **（待实测）**；越界先查重复乘区、路线长度与阶段耐久，不加隐藏减伤，更不得下调经脉。
+
+**外放标记后复核（2026-09-29）。** 本轮不把外放 Z5M 另乘进 `boss_pacing.py`：按 `design/21` §11.9.2，该工具估的是七参形成的静态攻防拖拽与耐久窗口，外放仍属于具名行动选择，须在固定 RNG 回放中结算；工具输出必须保留 `estimateOnly:true`，不得进入发布 IR。选择能覆盖本界顶尖与两类已确认外放锚点的三名 Boss 复跑，输入均为表列七参、攻击 / 防守代表路线 10 / 6 段：
+
+| Boss | 已确认外放手段 | 七参摘要 | 10 段普通→外放 Z5M | 终审前→终审后 | HP / 防御 | 结论 |
+|---|---|---|---:|---:|---:|---|
+| `npc_xiaofeng` | `sk_xianglong18`：18 个伤人动作外放，纯蓄力“潜龙勿用”除外 | `12/9;13000;9000;13000;yang;fullTemplate;M0` | `13110→15969 bp` | `20.65→20.65`（精确 `20.646077095909167`） | `1.000 / 1.000` | 12–25 窗内；不降经脉、不调耐久 |
+| `npc_jiumozhi` | `sk_huoyandao`：7 个伤害招外放；`sk_dashouyin` 仅跃击落点掌风伤害段外放 | `11/9;13000;9000;13000;harmony;fullTemplate;M0` | `12741→15124 bp` | `19.92→19.92`（精确 `19.915153794538362`） | `1.000 / 1.000` | 12–25 窗内；不降经脉、不调耐久 |
+| `npc_xuanci` | `sk_nianhuazhi`：4 个伤害招外放，纯支援“微笑”除外 | `8/9;13000;9000;13000;yang;fullTemplate;M0` | `11717→12977 bp` | `18.28→18.28`（精确 `18.278135045474787`） | `1.000 / 1.000` | 12–25 窗内；不降经脉、不调耐久 |
+
+本书界 `M0` 下外放扩张档上限为 0，射程 / 范围取基础值、额外耗内 0，只替换 Z5M 曲线；七参与静态耐久估值不变。萧峰等高经脉敌人的实际出手频率与玩家承伤仍须按 `design/09` 固定 RNG 的具名行动回放验证 **（待实测）**；若实测超窗，只按 `design/21` §11.9.2 调 HP / 防御倍率、阶段或非击杀目标，不压经脉。
+
+#### 12.8.1 图鉴缺口
+
+| 人物 | 原缺口 | 处理结果 |
+|---|---|---|
+| `npc_youji`、`npc_youju` | 现有同源主运 `sk_juxianyijue` 仅 5 品，低于手配精英 `G−1=6` | 未闭合：保留真实 `5/8/yang` 供离线节奏复核；须由图鉴补可共享、同源、至少 6 品的正式主运，生产暂以 `TS-CONTENT-BOSS-021` 阻断 |
+| `npc_duanyanqing` | 同源且可承载地位下限 11 的真实主运 | **已补：**`sk_duanshiyangjue`（天中11，调和），见 `skills-bulu-01-tianlong.md` §1；七参保持 `11/9/harmony` |
+| `npc_xiaofeng` | 同源且可承载地位下限 12 的真实主运 | **已补：**`sk_xianglongxinggong`（天上12，阳），见 `skills-bulu-01-tianlong.md` §2；七参保持 `12/9/yang` |
+| `npc_tonglao` | 同源且可承载地位下限 11 的真实主运 | **已补：**`sk_tianshanliuyangxinfa`（天中11，阳），见 `skills-bulu-01-tianlong.md` §3；七参保持 `11/9/yang` |
+
+本书原三项 Boss 缺口与来源登记均已闭合；本轮新识别的游氏双雄精英主运缺口尚未闭合，不能以低档主运发布。已补三门 Boss 内功均按正常门派、师承或图谱途径开放给符合条件的玩家与其他人物，不以击败首领掉落，也不设 `enemyOnly`。
+
+#### 12.8.2 AR-18 性质、辅运与节奏复核（2026-09-30）
+
+NR4S-01 当轮对本章及人物名录的 34 门内功引用已逐门核对五份正式图鉴；本轮名录新增能力引用只读当前图鉴，34 是前轮快照而非现行合计；完整引用表见 `tools/agents/reports/NR4S-01.md` §7.1。性质与主辅相性只引用 `design/05` §5.2–§5.5，路线与调息只引用 `design/21` §2.4、§10；以下是本章配装的计算结果，属于**（原创扩展）**。12 名具名行动者的主运性质均未改变，不能因辅运改阴而改写 `innerNature`。
+
+| 单位 | 主运性质 | 两门辅运性质 / 基础比例（按 §12.8 顺序） | 相冲与外功相性处理 |
+|---|---|---|---|
+| 游骥、游驹 | 阳 | 丹田养气：阳 / 0.50；呼吸行气：阴 / **0.40→0.25** | 新增内息相冲，无桥接；默认保持配装并接受下述代价；外功无阴招 |
+| 段延庆 | 调和 | 段氏养生功：阴 / **0.50→0.40**；天南心法：阳 / 0.40 | 无相冲；主运符合桥接条件；无外功负相性 |
+| 鸠摩智 | 调和 | 密宗护法身：阳 / 0.40；拙火功：阳 / 0.40 | 无相冲、无外功负相性 |
+| 萧峰 | 阳 | 九袋行功：阳 / 0.50；塞北心法：阳 / 0.50 | 既有三运同阳，阳招 Z5 相性项合计 +16%；无负相性 |
+| 丁春秋 | 阴 | 星宿毒功：阴 / 0.50；呼吸行气：阴 / **0.40→0.50** | 无相冲；新增三运同阴，阴招 Z5 相性项 **+12%→+16%** |
+| 童姥 | 阳 | 坐忘心法：调和 / 0.40；灵鹫心法：阳 / 0.50 | 内功无相冲；阴性生死符有既存负相性，见下文 |
+| 李秋水 | 调和 | 坐忘心法：调和 / 0.50；云游功：调和 / 0.50 | 无相冲、无外功负相性；三调和不算三运同阴 / 阳 |
+| 游坦之 | 调和 | 聚贤义诀：阳 / 0.40；丹田养气：阳 / 0.40 | 无相冲、无外功负相性；主运 9 重未触发易筋经 10 重辅运增益 |
+| 玄慈 | 阳 | 铜人横练：阳 / 0.50；少林心法：阳 / 0.50 | 既有三运同阳，阳招 Z5 相性项合计 +16%；无负相性 |
+| 慕容复、慕容博 | 调和 | 参合气功：调和 / 0.50；龙城心法：调和 / 0.50 | 无相冲、无外功负相性；斗转取最高品辅运参合气功的运行时性质，仍为调和 |
+
+表中是性质矩阵的基础比例；辅运自身层数与被动仍从 `full` 画像读取。例如坐忘心法若达到其 10 重条件，再按图鉴应用辅运比例 +0.05，不把主运七参层数当作辅运层数。所有未改性条目的既有被动保持。
+
+游氏兄弟装配中没有 ≥7 品调和内功，也没有 `inner.bridge:true`。按 `design/05` §5.4，各自每场开战以本人的 `wil` 计算 `p=0.08×(1−wil/150)`；命中施加 5 品 `bf_neixiwenluan`，闭关修炼该相冲组合中任一门的心魔概率 ×2。此默认保留配装的选择列入文末开放问题；未取得人物 `wil` 前不虚报固定百分比。原有 5 品主运低于精英目标的生产阻断仍见 §12.8.1。
+
+童姥的阳主运与阴性生死符按 `design/05` §5.3 为伤害 Z5 −12%，不属于主辅内功相冲；若该异性路线可合法运行，还须按 `design/21` §2.4 结算 `affinityBp=8800`。但逍遥图鉴的生死符普通 / 绝招路线仍声明 `requiredNature:[yin,harmony]`，运行时准入含义须由图鉴与 `design/21` 明确，不能在本章擅加阳性许可，也不能把 −12% 当作通过路线校验的凭证。默认保留配装与负相性，未澄清前不将此组合签出为已验证的生产行动；其他招式仍按各自许可选择。此为既存接口问题，非本次内功改性所新生。
+
+**辅运贡献核算。** 下表取 `design/05` §5.5 的 10 重主运贡献作为单位基数，逐项乘旧 / 新辅运比例；实际贡献还须乘该辅运自己的 `innerScale(n)`。这里只比较系数，不新增人物层数、最终 MP 或 HP 默认值。
+
+| 受影响配置 | 贡献系数（任意相同有效层数 n） | 10 重单位基数下的旧→新贡献 |
+|---|---|---|
+| 游骥 / 游驹的呼吸行气 | `0.40×innerScale(n)→0.25×innerScale(n)` | `mpMaxPct:6×0.40=2.40→6×0.25=1.50`；`hpMaxPct:1.60→1.00`；属性总点 `0.80→0.50`；回内百分点 `0.40→0.25` |
+| 丁春秋的呼吸行气 | `0.40×innerScale(n)→0.50×innerScale(n)` | `mpMaxPct:2.40→3.00`；`hpMaxPct:1.60→2.00`；属性总点 `0.80→1.00`；回内百分点 `0.40→0.50` |
+| 段延庆的段氏养生功 | `0.50×innerScale(n)→0.40×innerScale(n)` | `mpMaxPct:20×0.50=10.00→20×0.40=8.00`；`hpMaxPct:6.00→4.80`；`con/wis` 各 `1.50→1.20`、`wil:1.00→0.80`；回内百分点 `0.90→0.72`；`resInjury/resSeal` 各 `2.50→2.00` |
+
+**调息与护体投影。** 本次引用到的四门改性内功，其 `nature` 与 `BreathProfile.nature` 均为阴，防守路线 `requiredNature` 均按对应图鉴取 `[yin,harmony]`。以图鉴静态 `layer=10` 核对 `reliefBp / repairUnits`：
+
+| 内功 / 调息档案 | 调和旧档→阴性现档 | 当前值算式（见 `design/21` §10.2） | 护体显示档 |
+|---|---|---|---|
+| `sk_huxixingqi` / `txp_huxixingqi` | `1470/340→1400/324` | `500+100+800=1400`；`120+24+180=324` | I，不变 |
+| `sk_duanshiyangshenggong` / `txp_duanshiyangshenggong` | `1995/466→1900/444` | `500+600+800=1900`；`120+144+180=444` | II，不变 |
+| `sk_tunaqianjue` / `txp_tunaqianjue`（§9.3 技能池） | `1680/390→1600/372` | `500+300+800=1600`；`120+72+180=372` | I，不变 |
+| `sk_wuguanxinfa` / `txp_wuguanxinfa`（§9.3 技能池） | `1785/415→1700/396` | `500+400+800=1700`；`120+96+180=396` | II，不变 |
+
+上述改性辅运没有 `auxYunjin` / `auxUsableMoves` 的额外授权，不能把档案数值按辅运比例加进当前主运调息，也不能据此开放辅运招式。游氏、段延庆、丁春秋的当前主运调息分别按 `5/8/yang`、`11/9/harmony`、`9/9/yin` 投影为 `1640/384`、`2436/573`、`2120/498`，本次均不变；各自主运护体显示档仍为 II / IV / III。
+
+**七参与静态节奏重算。** NR4S-01 的 AR-18 性质同步本身不改变七参与静态轮数；本轮另纠正慕容博旧七参漏读 §8.6 既有合法 10 重的差异，按 `design/21` §11.9.1 保留高层数。使用当前 `python3 tools/balance/boss_pacing.py`、代表路线 10 / 6 段、HP / 防御倍率各 1.000：游氏各 `9.058095315975462`；段延庆 / 鸠摩智 / 童姥 / 李秋水各 `19.915153794538362`；萧峰 / 游坦之各 `20.646077095909167`；丁春秋 `18.619743906154447`；玄慈 `18.278135045474787`；慕容复 `19.317323191551935`；慕容博由旧表 9 重快照 `19.317323191551935` 校正为 10 重 `19.528568796306626`。慕容博攻防保留率为 8998 / 9171 bp，藏经阁 `19.528568796306626×34900/41103≈16.581443`，仍在 12–25 窗内，耐久倍率不变；斗转 10 重被动及真实行动仍由图鉴与完整回放结算 **（待实测）**。
+
+该工具不消费辅运贡献、开战相冲、三运同源 Z5 或调息行动，以上只是 `estimateOnly:true` 静态复算，不等于具名实战不变。实际 `full` 面板须按各辅运层数重新合成，再用固定 RNG 回放核对游氏相冲、丁春秋增伤、段延庆辅运下降及童姥路线准入；仍遵守 §12.4.1 的整场总耐久，不给每人复制一份预算。此项 **（待实测）** 并沿用文末 TL-O05 / TL-O13。
 
 ---
 
@@ -1398,11 +1625,11 @@ B = I × H = 19 × 15 = 285 两
 | TL-X01 | 玩家以“失籍行脚人”在无量外驿苏醒，茶商作临时保结 | §2.1 | 不替代段誉，不虚构宋 / 大理正式身份 |
 | TL-X02 | 识字抄录、草药急救、脚程探路三种可核自述 | §2.2 | 只改入口、引荐与首支线，不直接加属性 / 职级 |
 | TL-X03 | 九个全局区域在 1093–1094 的势力、入口、地貌与等级实例 | §3.1–§3.2 | 区域坐标与通行仍归 `design/11`，不另建章节私有区域 |
-| TL-X04 | 三十六个 `sc_01_*` 场景及每区四个奇遇触点 | §3.3、§3.6 | 场景是玩法地块，不宣称小说逐一出现 |
+| TL-X04 | 三十八个 `sc_01_*` 场景：九区 36 个骨架场景，加达摩洞与若耶溪墓藏 2 个遗迹专线；每区四个奇遇触点 | §3.3、§3.6 | 场景是玩法地块；两个遗迹的关卡布局为原创，不宣称小说逐一出现 |
 | TL-X05 | 四十五道轻功门禁及绳索、船、路引等替代路 | §3.5 | 阈值 / 动作归 `design/08`；qg5 不阻断任务 |
 | TL-X06 | 二十二个资源点的时代状态、控制者与双取得路径 | §3.7 | 产出、所有权与经济只见 `design/16`；不把军库当周期矿点 |
 | TL-X07 | 二十八个镖局 / 山庄 / 赌场实例与职位组合 | §3.8 | 仅使用既有三职位；同一事件不可跨桶重复结算 |
-| TL-X08 | 六条代表性走镖 / 护院内容接口 | §3.9 | 作为本界任务实例，不宣称原著产业史 |
+| TL-X08 | 八条代表性走镖 / 护院内容接口 | §3.9 | 作为本界任务实例，不宣称原著产业史 |
 | TL-X09 | 青唐边市、高原药谷、云海栈道、辽上京旧档等探索内容 | §3 | 历史称谓保持时代校验；图外点只经专线 |
 | TL-X10 | 雁门关外石台作为书眠之所 | §11.3 | 只改过场首镜；书眠规则与携带不变 |
 
@@ -1416,8 +1643,8 @@ B = I × H = 19 × 15 = 285 两
 | TL-X14 | 十二个完整门派内容位的职责、入门例外、晋升关卡与配给偏好 | §7 | 五级称谓 / 开放矩阵引用 `design/17`；月钱引用 `design/16` |
 | TL-X15 | 无量默认 L5 候选、灵鹫男性客卿、辽军军职等章节实例 | §7.5–§7.8 | 不改变每界最多一个 L5、主身份唯一和性别入口裁定 |
 | TL-X16 | 十二名重点同伴的招募任务门槛、暂离点与战术搭档 | §8.2 | 生命轴 / 能力来源以 `design/18` 与名录为准 |
-| TL-X17 | 阿朱、游氏兄弟、岳老三、叶二娘等次级救援窗口 | §5.4、§8 | 救援为改命扩展；不把原著结果标为失败态 |
-| TL-X18 | 十场 Boss 的阶段、地形、目标式胜利与恢复机制 | §8.6、§12.4–§12.5 | 原著人物只作骨架；数值与脚本为本作制作内容 |
+| TL-X17 | AR-20 五条主要悲剧线的章节制作接口，以及游氏兄弟、岳老三等其他救援窗口 | §5.4、§8 | 剧情定义只见 story §6.3–§6.4；仅萧峰决定天书，成对人物生命轴独立 |
+| TL-X18 | 十个 Boss 内容位（冰窖双入口共享一场）的阶段、地形、目标式胜利与恢复机制 | §8.6、§12.4–§12.5 | 原著人物只作骨架；数值与脚本为本作制作内容 |
 | TL-X19 | 聚贤庄 40% 锁血 / 力竭、冰窖共享止斗槽、藏经阁裁定态 | §8.6、§12.5 | 不允许玩家击杀萧峰、童姥 / 李秋水或扫地僧刷结局 |
 | TL-X20 | 康敏、全冠清、耶律洪基的阻断式临时角色槽 | §8.3 | 萧远山已转正式 `npc_xiaoyuanshan`；其余三人补稳定 `npc_*` 前不可落生产数据 |
 
@@ -1425,8 +1652,8 @@ B = I × H = 19 × 15 = 285 两
 
 | 编号 | 原创扩展 | 对应位置 | 约束 |
 |---|---|---|---|
-| TL-X21 | 十四门天级的本章任务投放、三组互斥与单周目六门总闸 | §9.1 | 武学本体 / 品阶 / 前置以图鉴和基准为准 |
-| TL-X22 | 玄黄阶基础三联与军伍刀路的场景投放 | §9.3 | 只使用指定四图鉴已有 ID，不创造武学 |
+| TL-X21 | 十七门天级的本章任务投放、三组互斥与单周目六门总闸 | §9.1 | Canon v1.7 固定本界完整原生池 17 门；武学本体 / 品阶 / 前置以对应图鉴为准 |
+| TL-X22 | 玄黄阶基础三联与军伍刀路的场景投放 | §9.3 | 只使用四份既有指定图鉴已有 ID，不创造武学 |
 | TL-X23 | `eq_tayunlv` 的 qg5 隐藏投放及临时 `qinggong +12` 路径 | §9.4、§6.4 | 装备本体来自 `design/10`；数值仍是建议值 |
 | TL-X24 | 薛慕华、枯荣、少林高僧的冲穴指点实例 | §9.6 | 速率、失败和加成只由 `design/15` 计算 |
 | TL-X25 | 阿青剑源在北宋的三卷、墓藏、手卷、题签与校合流程 | §9.7 | 源 / ID / 合成条件引用 `design/20`；地点与载体属于扩展 |
@@ -1437,6 +1664,7 @@ B = I × H = 19 × 15 = 285 两
 | TL-X30 | 汴京匿名校书官触点与 `echo_01_huangshang` 文气回响 | §11.5 | 不授九阴、不在天龙时代确证姓名；史实细节待考 |
 | TL-X31 | 降龙、六脉、打狗棒跨书携带时的射雕识别对白 / 支线钩子 | §11.5 | 不自动加好感，不跳过射雕原生来源 |
 | TL-X32 | 书眠折箭落雪至临安驿路的镜头编排与静帧兜底 | §11.4 | 固定 123 年和射雕苏醒点不变 |
+| TL-X33 | `sk_duanshiyangjue`、`sk_xianglongxinggong`、`sk_tianshanliuyangxinfa` 三门门派 / 传承内功及其任务投放 | §6、§9.1、§12.8 | 名称、整套招式与机制均为**（原创扩展）**；合格玩家 / NPC 可正常习得，不设首领私有或掉落来源 |
 
 ### 13.5 原著与历史考据清单
 
@@ -1455,11 +1683,14 @@ B = I × H = 19 × 15 = 285 两
 | TL-K11 | 少室山 | 虚竹戒律、鸠摩智挑战、玄慈 / 叶二娘认亲与身亡、萧慕容旧案、扫地僧止斗顺序 | A4 必现世；命定生命状态以名录 / story 为准 |
 | TL-K12 | 西夏与曼陀 | 招亲、枯井醒悟、三问辨缘、曼陀夺位交易、段氏身世和人物结局顺序 | 不替本人决定婚配 / 王位；先后沿 story |
 | TL-K13 | 雁门终局 | 萧峰迫辽帝折箭、止战、自尽及阿紫结局的准确动作与在场人物 | 原著线只写剧情大意；不伪造引文 |
-| TL-K14 | 人物生命轴 | 30 名稳定人物的生卒年、1093–1094 年准确年龄与命定死亡时点 | 沿名录年龄段 / 待考，不从影视版本补数 |
+| TL-K14 | 人物生命轴 | 40 名稳定人物的生卒年、1093–1094 年准确年龄与命定死亡时点 | 沿名录年龄段 / 待考，不从影视版本补数 |
 | TL-K15 | 八部众映射 | 作者后记或研究资料是否给出人物与天龙八部众的稳定对应 | 只称“本作主题位”，不称官方映射 |
-| TL-K16 | 阿青传承地望 | 阿青与若耶溪 / 会稽墓址是否有文本依据 | 三卷、墓藏和手卷均标原创，越州只经专线 |
+| TL-K16 | 阿青传承地望 | 阿青与若耶溪 / 会稽墓址是否有文本依据，以及墓藏精确位置 | 三卷、墓藏和手卷均标原创；`sc_01_ruoye_muzang` 暂挂绍兴锚，越州只经专线 |
 | TL-K17 | 黄裳触点 | 北宋徽宗朝校刊道藏的时间、官职、地点是否与本界余韵相容 | 匿名校书官、不确证身份、不授武学 |
 | TL-K18 | 武功与器物 | 太祖长拳在聚贤庄的招式细节、打狗棒 / 神木王鼎 / 冰蚕 / 闪电貂等流转与所有权 | 只引用图鉴 / 物品目录；不编招名或重复唯一物 |
+| TL-K19 | 段延庆内功 | 原著所显露的内功底子及是否有段氏心法专名 | 只认段氏 / 一阳指传承；不宣称“一阳诀”为原著名 |
+| TL-K20 | 萧峰内功 | 内力与降龙掌行功是否有明确专名 | 只认刚猛掌力表现；不宣称“降龙行功”为原著秘籍 |
+| TL-K21 | 童姥内功 | 六阳掌、八荒功与生死符之间的行功关系 | 三者继续作为既有独立武学；“天山六阳心法”为原创配套 |
 
 ### 13.6 技术与制作核对清单
 
@@ -1467,7 +1698,8 @@ B = I × H = 19 × 15 = 285 两
 - 康敏、全冠清、耶律洪基进入生产前仍须由 `design/18` / 天龙人物名录补稳定 ID、生卒与能力；萧远山已补为 `npc_xiaoyuanshan`。中文名不得成为持久化外键。
 - `featureKey:zhenlong / babuzhong / daitoudage` 的 YAML 是章节局部内容接口示例；字段归属 schema 接纳前由章节适配器读取，不得自行扩充任务 opcode。
 - **已解决：**`design/07-set-system.md` 已定稿；§9.4 只引用其正式套装，件数、效果与成员均由 07 提供，本章不重定义。
-- `tools/balance/damage_sim.py` 若仍把 Boss MP 输出成 `×1`，须同步为 `design/03` 的 `×2` 后再用于本章回归；当前 §8 / §12 采用权威文档值。
+- **已解决：**三名首领所缺主运已由 `catalog/skills-bulu-01-tianlong.md` 补录；15 招显式路线、3 份调息档案、逐招外放判定与公共学习来源均由该册唯一拥有。
+- `tools/balance/damage_sim.py` 已确认仍把 Boss MP 输出成 `×1`（2026-09-30），须由工具归属任务同步为 `design/03` 的 `×2` 后再用于本章回归；当前 §8 / §12 采用权威文档值。
 - 射雕回响的本地真值读取 story 已登记的 `flags.yanmen_fate_saved`；旧存档缺失按原著线处理，书眠适配器再按 `design/02` §6.3 派生标准 `echo_NN_fate` 投影，剧情任务不双写。
 - `echo_01_huangshang` 是 `design/02` 已有连续性键；本章只增加触发内容，不把它重声明成新全局 schema。
 - 三十二条支线、三十六触点、二十二资源点、二十八营生、三特色系统和十 Boss 均须有唯一来源、幂等完成事件和失败恢复；断线 / 掉电回滚不得重复发唯一物。
@@ -1494,14 +1726,15 @@ B = I × H = 19 × 15 = 285 两
 | `sourceRoot` / `seal` / `credibility` | 谜案 YAML 字段 | 证据同源去重、封缄与可信状态 | 仅是本章接口示例，不能私增任务 opcode |
 | `exclusiveGainRef` | 终局事务引用 | 被永久公托、焚毁或放弃的独占利益对象 | 具体所有权事务归任务、物品与存档系统 |
 | `flags.yanmen_fate_saved` | 跨书剧情事实单写者 | A5 改命成功为 `true`；`false` 或旧存档缺失表示原著线 | 复用 story 与射雕章节已有键；标准 `echo_NN_fate` 仅由书眠适配器派生 |
+| 幕内局部遭遇 / 目标键 | `questRef` 作用域 | §12.4.2 的外围组及护旗、南京、雁门实例；目标键为各场分配表所列 camelCase | 复用 `design/09` §8.8.11 的 `totalHp / unitIndex / phaseIndex / objectiveKey`，不新增全局 ID |
 
-### 本章正式登记的场景 `sc_01_*`（36）
+### 本章正式登记的场景 `sc_01_*`（38）
 
 | 区域 | 正式场景 ID |
 |---|---|
 | 大理苍山 | `sc_01_wuliangyidao`、`sc_01_jianhugong`、`sc_01_langhuanfudi`、`sc_01_wanjiangu` |
-| 中原 | `sc_01_juxianzhuang`、`sc_01_leigushan`、`sc_01_shaoshishan`、`sc_01_cangjingge` |
-| 太湖江南 | `sc_01_xingzilin`、`sc_01_yanziwu`、`sc_01_qinyunxiaozhu`、`sc_01_mantuoshan` |
+| 中原 | `sc_01_juxianzhuang`、`sc_01_leigushan`、`sc_01_shaoshishan`、`sc_01_cangjingge`、`sc_01_damodong` |
+| 太湖江南 | `sc_01_xingzilin`、`sc_01_yanziwu`、`sc_01_qinyunxiaozhu`、`sc_01_mantuoshan`、`sc_01_ruoye_muzang` |
 | 河西陇右 | `sc_01_qingtangbianshi`、`sc_01_hexishangdao`、`sc_01_xingxiuhaize`、`sc_01_duzhaogutai` |
 | 河东晋中 | `sc_01_qinjiazhai`、`sc_01_yanmenguan`、`sc_01_guanwaijuya`、`sc_01_jiufengsui` |
 | 西夏贺兰 | `sc_01_xingqinggong`、`sc_01_yipintang`、`sc_01_bingjiao`、`sc_01_helanshangdao` |
@@ -1513,7 +1746,7 @@ B = I × H = 19 × 15 = 285 两
 
 §3.5 的 45 个 `gateKey` 逐项绑定区域与 qg 阶，数量为 qg1/2/3/4/5=`12/17/12/3/1`、合计 45。它们随所属 `sc_01_*` 场景配置持久化，不是全局 ID；需要跨场景引用的条目必须先由唯一归属 `design/08` 登记为正式 `gate_*`，本章不越权定义。
 
-### 本章正式登记的支线任务（32）
+### 本章正式登记的支线任务（33）
 
 | 类别 | 正式 ID | 数量 |
 |---|---|---:|
@@ -1521,6 +1754,9 @@ B = I × H = 19 × 15 = 285 两
 | 门派 / 势力 | `q_01_faction_01`、`q_01_faction_02`、`q_01_faction_03`、`q_01_faction_71`、`q_01_faction_72`、`q_01_faction_91` | 6 |
 | 人物羁绊 | `q_01_bond_01`、`q_01_bond_02`、`q_01_bond_71`、`q_01_bond_72` | 4 |
 | 奇遇 | `q_01_qiyu_01`、`q_01_qiyu_02`、`q_01_qiyu_03`、`q_01_qiyu_04`、`q_01_qiyu_05`、`q_01_qiyu_06`、`q_01_qiyu_07`、`q_01_qiyu_08`、`q_01_qiyu_09`、`q_01_qiyu_10`、`q_01_qiyu_71`、`q_01_qiyu_72`、`q_01_qiyu_73`、`q_01_qiyu_74`、`q_01_qiyu_75`、`q_01_qiyu_81`、`q_01_qiyu_82`、`q_01_qiyu_91` | 18 |
+| 长生诀 | `q_01_changsheng_01`；选择 `dc_01_10`；局部线 / 起点 `side_changsheng_01` / `n_tl_trace` | 1 |
+
+两条正式休眠事件 `slp_01_yanmenxiexin`、`slp_01_yiminghuanyiming` 只引用 `design/story/sleep-events.md` §3.2；本章登记地点与出入口，不复制事件定义。
 
 ### 本章正式登记的资源点 `rp_*`（22）
 
@@ -1567,10 +1803,11 @@ B = I × H = 19 × 15 = 285 两
 | 集合 | 处理 |
 |---|---|
 | 主线 `q_01_main_c_01`–`c_04`、`q_01_main_z_01`–`z_10`、`q_01_main_x_01`–`x_10` | 复用 story 的 24 个正式任务；本文 §4 只做索引 |
-| `dc_01_01`–`dc_01_09` | 复用 story 定义的稳定选择节点；生产时映射为任务内部阶段 / `branchKey`，不创建 `DecisionDef` |
+| `dc_01_01`–`dc_01_09` | 复用 story 定义的稳定选择节点；生产时映射为任务内部阶段 / `branchKey`，不创建 `DecisionDef`；其中 `dc_01_09.D` 是“一命换一命”分支键 **（原创扩展）** |
 | `tsp_01_canon`、`tsp_01_fate` | 复用基准 / `design/13`；本文只给取得条件与叙事 |
 | 9 个 `rg_*`、22 个 `city_*` | 复用 `design/11` 与 `cities.yaml` 的全局对象；禁止按书界序号另建区域 |
-| 所有 `npc_*`、`sk_*`、`eq_*`、`it_*`、`set_*`、`sect_*`、`tr_*` | 复用归属文档 / 图鉴；本文不重定义本体 |
+| `sk_duanshiyangjue`、`sk_xianglongxinggong`、`sk_tianshanliuyangxinfa` | 由 `catalog/skills-bulu-01-tianlong.md` 唯一定义；本文只投放来源并引用配装 |
+| 其余 `npc_*`、`sk_*`、`eq_*`、`it_*`、`set_*`、`sect_*`、`tr_*` | 复用归属文档 / 既有图鉴；本文不重定义本体 |
 | `cmb_longbang` | 复用 `design/09` 已登记合击；其他搭档只作候选，不新建 `cmb_*` |
 | `lgs_yuenv_aqing`、`cache_yuenv_ruoye`、三个 `frag_yuenv_*`、`it_xinwu_aqingshoujuan` | 复用 `design/20` 的传承目录与合成条件 |
 | `vid_sleep_01_02`、`it_shijian_xiaofeng`、`echo_01_huangshang` | 复用 `design/02` 的过场、史笺与连续性键 |
@@ -1586,25 +1823,25 @@ B = I × H = 19 × 15 = 285 两
 
 | ID | 检查 | 精确通过条件 | 失败级别 |
 |---|---|---|---|
-| TL-V01 | 固定参数 | `ch01_tianlong`；约 1093–1094；高武；W=85；D=4；cap=35；入场 0/0/0、装备 0；压制 0；关键词“众生” | error |
+| TL-V01 | 固定参数 | `ch01_tianlong`；约 1093–1094；高武；W=85；D=4；cap=35；入场 3 武功 + 3 内功、装备至多 6；压制 0；关键词“众生” | error |
 | TL-V02 | 一级结构 | `## 1`–`## 13` 各出现一次且升序；可有 `## 0`；文末三章严格按本文新增术语→数据校验→待决事项排列 | error |
 | TL-V03 | 地图引用 | 使用 `design/map/jianghu-ch01.svg`；22 个城市 ID 均可在 `cities.yaml` 解析，显示名使用 `ch01` 时代名 | error |
 | TL-V04 | 区域与城市量 | 开放区域恰为 9 个全局 `rg_*`，不存在章节私有区域 ID；开放城市恰 22 个 | error |
-| TL-V05 | 场景格式 | 本界专有场景恰 36 个 `sc_01_*`；每区 4 个；专线点不得写成相邻可步行区域 | error |
+| TL-V05 | 场景格式 | 本界专有场景恰 38 个 `sc_01_*`：九区骨架各 4 个，另有 `sc_01_damodong`、`sc_01_ruoye_muzang` 两个遗迹专线；专线点不得写成相邻可步行区域 | error |
 | TL-V06 | 地形与轻功 | 所有 `tr_*` 可在 `design/08` 解析；45 门禁的 qg1/2/3/4/5=`12/17/12/3/1`；qg4+ 占比 8.89%；主线有非轻功替代 | error |
 | TL-V07 | 主线只索引 | §4 的 24 个 `q_01_main_*` 与 story 集合相等；共有 / 正 / 邪=`4/10/10`，没有第二套剧情正文 | error |
 | TL-V08 | 选择节点 | `dc_01_01`–`09` 均在索引；只作任务 `branchKey`，含义与 story §5 一致 | error |
 | TL-V09 | 锚点闭合 | A1–A5 各出现一次且与 story §6 同名；A5 只有 canon / fate 两种完成路径 | error |
 | TL-V10 | 天书互斥 | 五锚点闭合后仅授 `tsp_01_canon` 或 `tsp_01_fate` 之一；四项改命条件缺一不能授 fate | error |
-| TL-V11 | 支线数量与字段 | 4 普通 + 6 门派 + 4 羁绊 + 18 奇遇 = 32 个唯一任务；每条均含区域、触发、简述、奖励、原著关联 | error |
+| TL-V11 | 支线数量与字段 | `4+6+4+18+1=33` 个唯一任务；既有 32 条各含区域、触发、简述、奖励、原著关联，长生诀 1 条只引用上游任务卡并登记时间窗 / 场景 / 奖励接口 | error |
 | TL-V12 | 奇遇预算 | 18 条完整奇遇消费 36 个触点；每区恰 4 点，`9×4=36`；触点不是任务 | error |
 | TL-V13 | 门派内容 | 12 个完整内容位均为 TL 时代 `O`；逐派有五级称谓、入门 / 门规、各级武学、月钱引用与配给特例 | error |
 | TL-V14 | 人物与招募 | 重点队友恰 12 且至少 6；每人有 D4 / D5、任务门槛、本人同意、窗口与离队边界 | error |
 | TL-V15 | NPC 生产性 | 正式 `npc_*` 均能在天龙名录 / 跨书名录解析；康敏等未入名录角色只能使用阻断槽 | error |
 | TL-V16 | Boss 管线 | 10 个唯一遭遇 / 脚本，全部具名 `full`，等级 ≤35，`capExempt=0`；攻击不得再乘 Boss `×1.25` | error |
-| TL-V17 | Boss MP 与 HP | MP 使用 Boss `×2`；建议 HP 系数均在 `0.6–1.2`；萧峰 49,300 且 40% 锁血 / 力竭止战 | error |
-| TL-V18 | 武学引用 | 所有可学 / 奖励 `sk_*` 必须在指定四份图鉴解析；旧 ID 与章节自造招名不得进入生产 | error |
-| TL-V19 | 装配保底 | 非互斥路径可取得内功 ≥3、拳脚 ≥3、兵器 ≥3；单周目天级 ≤6，逍遥七门 ≤3 | error |
+| TL-V17 | Boss MP 与 HP | MP 使用 Boss `×2`；§8.7 单体搜索锚 HP 系数在 `0.6–1.2`，运行时另按 §12.4 分配守恒；萧峰 49,300 且 40% 锁血 / 力竭止战 | error |
+| TL-V18 | 武学引用 | 所有可学 / 奖励 `sk_*` 必须在四份既有指定图鉴或 `skills-bulu-01-tianlong.md` 解析；旧 ID 与章节自造招名不得进入生产 | error |
+| TL-V19 | 装配保底 | 非互斥路径可取得内功 ≥3、拳脚 ≥3、兵器 ≥3；单周目天级 ≤6，逍遥 / 灵鹫八门 ≤3 | error |
 | TL-V20 | 唯一物与学习分离 | 神兵、天材、秘籍和传承信物各有唯一权威持有人；持有 `eq_*` / `it_*` 不自动授 `sk_*` | error |
 | TL-V21 | 资源与营生 | 22 个 `rp_*`、28 个 `biz_*` 唯一；每资源点有双取得路径；收入仅一个 `economySource` | error |
 | TL-V22 | 冲穴边界 | 本界只投放肺经 + 大肠经 18 穴 / 2 通脉、6,480 H；不作为主线 / A5 / 天书硬条件 | error |
@@ -1613,6 +1850,21 @@ B = I × H = 19 × 15 = 285 两
 | TL-V25 | 书眠衔接 | 离界 / 入场年份为 1094 / 1217，差 123 年；视频为 `vid_sleep_01_02`，20–30 秒、目标 24 秒 | error |
 | TL-V26 | 回响语义 | 本地真值只读 `flags.yanmen_fate_saved`；标准 `echo_NN_fate` 投影与之等价；`false` 或旧存档缺失代表 canon；射雕历史起点与锚点不变 | error |
 | TL-V27 | Markdown 完整 | 表格列数一致；围栏成对；链接目标存在；无截断句和占位语 | error |
+| TL-V28 | 经脉实例与模板 | 每个独立武学行动者恰有一个 `MeridianFlowModule`；10 Boss 与精英七参数齐全；`routeRefs` 等于行动表路线并集，环境效果不误建实例 | error |
+| TL-V29 | 经脉结算顺序 | Z4M / Z5M 各取整一次；护体内劲位于护盾后、`mpGuard` 前；经脉速度先于擒拿，两个闪避修正各一次 | error |
+| TL-V30 | 首领主运补录 | 段延庆 / 萧峰 / 童姥依次主运 `sk_duanshiyangjue` / `sk_xianglongxinggong` / `sk_tianshanliuyangxinfa`；不存在无合法 `sk_*` 的主运槽，七参仍为 `11/9/harmony`、`12/9/yang`、`11/9/yang` | error |
+| TL-V31 | 生产主运与离线估算隔离 | 10 名具名 Boss 主运均解析到合法 `sk_*`；章节不得用非正式替代槽或纯数值画像虚拟填参；`boss_pacing.py` 结果必须为 `estimateOnly:true`，不得进入发布 IR | error |
+| TL-V32 | 外放后节奏复核 | 以 §12.8 七参及 10 / 6 段代表路线读取当前 `boss_pacing.py` 输出，断言 `estimateOnly:true` 且三名 Boss 各在 12–25 轮；不把正文历史浮点小数串作相等断言。外放只替换 Z5M，按 `design/21` §4.4.1 核对，禁止重复乘；HP / 防御保持 `1.000 / 1.000`，`M0` 下扩张档为 0、额外耗内为 0 | error |
+| TL-V33 | 整场耐久唯一性 | §12.4.1 十个内容位只生成九份遭遇预算；每条终局分支恰有一份 `totalHp`，冰窖两入口共享 36,428，聚贤庄各分支均为 49,300；各场 Boss 核心分支静态轮数均在 12–25，聚贤庄精英组 / 纯目标分支交 `BattleReplayV1` 回放验收；阶段回复 / 复起 / 新血条均为 0 | error |
+| TL-V34 | 完整对手首领表 | 聚贤庄实际出战的游骥 / 游驹均有 1 主 + 2 辅、4 外功、完整七参和静态轮数；现有 5 品主运低于 `G−1=6` 时必须报 `TS-CONTENT-BOSS-021`，不得生成生产 IR | error |
+| TL-V35 | 全幕多人遭遇闭合 | story 24 幕关键战分别映射 §12.4.1 / §12.4.2；11 组外围与 3 场目标战分配各等于各自 `totalHp`，新地点只复用配方、不复用运行时余额；减波 / 劝退只迁未消费余额，阶段回复为 0 | error |
+| TL-V36 | AR-20 索引闭合 | §5.4 恰有五条主要悲剧线且均反向引用 story §6.3；章节只登记资产 / 测试，不复制隐藏条件或剧情后果 | error |
+| TL-V37 | 局部改命天书隔离 | 阿朱、游坦之—阿紫、慕容复、玄慈—叶二娘成功均不得直接写 `flags.yanmen_fate_saved`、授 `tsp_01_fate` 或增加本界主改命计数 | error |
+| TL-V38 | AR-20 生命轴独立 | 游坦之 / 阿紫、玄慈 / 叶二娘分别持久化；单人条件不足只关闭该人窗口，不连带改写另一人 | error |
+| TL-V39 | 长生支线生产挂点 | story §7.5 的六条 `SideHook` 均为 `lineId: side_changsheng_01`、单值 `atNodeId`、合法 `when`；本章四场景映射与之逐条一致，最终两条只能分别是 `n_z09`、`n_x09` | error |
+| TL-V40 | 长生支线常规封窗 | 激活 `n_z10` 或 `n_x10` 后不得再开放常规护伤、`dc_01_10` 或常规奖励；取得天书后至书眠提交前只可进入 §3.3 余韵补证 | error |
+
+AR-18 追加校验：§12.8.2 的性质与调息引用须跟随正式图鉴；游氏呼吸行气辅运比例应为 0.25，段延庆养生功为 0.40，丁春秋呼吸行气为 0.50 且阴招三运同源加成生效。反例包括：把改阴辅运仍按调和计算、由辅运覆盖主运 `innerNature`、用相性扣伤豁免 `requiredNature`、把无许可的辅运档案叠进主运调息，均不得签出。人物真实辅运层数未登记时，贡献系数算例不能冒充最终 `full` 面板。
 
 ### 数值金标准
 
@@ -1633,7 +1885,12 @@ B = I × H = 19 × 15 = 285 两
 | TL-T13 | 萧峰建议耐久 | `41,103×1.20=49,323.6→49,300`，系数不得超过 1.2 |
 | TL-T14 | Boss 等级 / 豁免 | `maxBossLevel=35≤cap 35`；`capExemptCount=0` |
 | TL-T15 | 书眠年份 | `1217−1094=123` 年 |
-| TL-T16 | 正式携带 | 天龙→射雕最多内功 / 拳脚 / 兵器=`3/3/3`，装备最多 6，外来压制 0 |
+| TL-T16 | 正式携带 | 天龙→射雕最多 3 武功 + 3 内功，装备至多 6 件，《长生诀》栏外固定，外来压制 0 |
+| TL-T16A | 经脉中性节奏 | Z4M / Z5M / 速度=`10000/10000/10000 bp`；普通 / 精英 / Boss `4.5/9.6/16.1` 行动不漂移 |
+| TL-T16B | 经脉强档隔离 | 强一档 `Z5M=12053`、`9→7`；强两档 `Z5M=14456`、`22→15`；仍在 6–10 / 12–25 |
+| TL-T16C | 冰窖 / 曼陀 / 藏经阁整场耐久 | `floor(30357×1.20)=36428=18214+18214`，静态 `R_tool×36428÷30357`，`R_tool` 读取当前工具的童姥七参输出；历史显示约 23.90 轮；`22890+4905+4905=32700`；`24430+10470=34900` |
+| TL-T16D | 聚贤庄三分支守恒 | 助群雄 `d+(49300-d)`；助萧峰 `2×7395+2×4930+2×4109+4×4108=49300`；救治 `4×12325=49300` |
+| TL-T16E | 游氏双雄离线节奏 | 两人各 `5/8;10500;7500;10500;yang;schoolCore;M0`，当前工具输出须在精英 6–10 窗内（本次显示约 9.06 轮），不比较浮点字符串；只可 `estimateOnly=true` |
 
 ### 剧情、系统、恢复与跨书测试
 
@@ -1661,18 +1918,31 @@ B = I × H = 19 × 15 = 285 两
 | TL-T36 | A5 改命后进入射雕 | 只读存活传说；没有 `explicitAliveAt:1217` 时不生成萧峰本人 |
 | TL-T37 | 读取旧存档没有 `flags.yanmen_fate_saved` | 按原著回响显示，不要求补写 `false` |
 | TL-T38 | 任一支线失败后重新进入区域 | 主线入口仍在；唯一物未销毁、完成事件未重复、可走明示补救路径 |
+| TL-T39 | 冰窖从任一入口加载后再触发另一入口 | 只复用同一 36,428 预算及两个初始 HP 18,214 的单位实例；不得再生第二场、回复或复制 27,300 单体画像锚 |
+| TL-T40 | 聚贤庄从三种立场分别完成并回放 | 每支有效伤害 + 目标等价进度恰为 49,300；同一贡献不双计，阵营翻转不重建经脉态 |
+| TL-T41 | 游骥 / 游驹以当前 5 品主运进入生产构建 | 以 `TS-CONTENT-BOSS-021` 阻断；离线工具可给 9.058095315975462 轮但须标 `estimateOnly=true` |
+| TL-T42 | 阿朱三证齐、羁绊 / 口才均 60 且未超一次长休 | `dc_01_05.A` 可进入 story §6.3.3；写独立生命轴，不把成功直接置为 A5 fate |
+| TL-T43 | 游坦之条件齐、阿紫独立退路缺失 | `removeControl` 结算后只救游坦之；阿紫仍走原著结果，两人不得共享存活布尔值 |
+| TL-T44 | 慕容复三证齐且 P2 前完成断资 | `d + breakFunding = 32700`；扣声望用 `max(0,fame−800)`；不把王语嫣 / 阿碧设为奖励 |
+| TL-T45 | 少室公共条件齐、仅叶二娘羁绊达 60 | `d + preserveEvidence = 27600`；叶二娘可救、玄慈按原著，单救声望不低于 0 |
+| TL-T46 | 已在本界为阿朱支付同伴改命费，随后又救两名曾入队者 | 后续生命轴照常写入，`design/13` §6.6 的 2 点余韵不得重复扣 |
+| TL-T47 | 任一局部主要悲剧线成功后结算 A5 | 除阿朱可作活证外，不自动补齐 A5 四项；只萧峰成功可写 `flags.yanmen_fate_saved` / 授 `tsp_01_fate` |
+| TL-T48 | 第二层有效，依次消费 C02、Z/X03、Z/X06、Z/X09 对应钩子，并在激活 Z/X10 前完成 | 可提交 `dc_01_10`，原子获得第三层；正线和邪线各只命中自己的单值挂点 |
+| TL-T49 | 未完成支线便激活或完成 Z/X10，随后取得天书 | 常规 `dc_01_10` 关闭；仅可按上游 §3.3 在三处取证补层，不追发常规收益；书眠提交后永久关闭 |
 
 ### 人工验收与工具边界
 
-1. 逐行对照 `design/story/01-tianlong.md` §2–§6：三种开局、24 个任务标题 / 地点 / 线别、9 个选择与 5 个锚点必须同源，§4 不得出现第二份剧情后果。
-2. 对照 `design/11` 与 `design/map/cities.yaml`：九区、22 城、时代名称与地图引用一致；`regions.yaml` / `cities.yaml` 的旧区域映射作为上游同步项，不回写本章。
+1. 逐行对照 `design/story/01-tianlong.md` §2–§6：三种开局、24 个任务标题 / 地点 / 线别、9 个选择、5 个锚点与 5 条 AR-20 主要悲剧线必须同源，章节文档不得出现第二份剧情条件 / 后果。
+2. 对照 `design/11` 与 `design/map/cities.yaml`：九区、22 城、时代名称与地图引用一致；已解决：当前 30 区底表及本文 22 城所属区域一致，不再保留旧迁移任务。
 3. 对照 `design/17` 的 TL 列：12 个完整门派内容位均为本时代开放，称谓与武学目录不越过图鉴；隐世 / 前身不按后世名称实装。
-4. 对照 `design/18` 与天龙人物名录：12 名重点队友、30 名稳定人物及前代重逢 0 人一致；未入名录人物不能作为持久化外键。
+4. 对照 `design/18` 与天龙人物名录：12 名重点队友、40 名稳定人物及前代重逢 0 人一致；未入名录人物不能作为持久化外键。
 5. 在 360×800、390×844、430×932 视口 **（待实测）** 检查珍珑三槽、八瓣众生录、谜案证据图、A5 四项缺口和门派五级表；颜色必须同时有形状 / 文本。
-6. 对 10 场 Boss 用合法低配、中配、高配和固定 RNG 种子实跑四档难度 **（待实测）**；侠客难度 Boss 目标 12–25 次主角行动、8–15 分钟，非致死脚本均可恢复。
+6. 对十个 Boss 内容位（九份实际遭遇预算）用合法低配、中配、高配和固定 RNG 种子实跑四档难度 **（待实测）**；侠客难度 Boss 目标 12–25 次主角行动、8–15 分钟，非致死脚本均可恢复。
 7. 运行 `python3 tools/lint/check_ids.py --strict`；若全仓遗留失败，须区分本文新增错误与其他文档旧错。
-8. 当前 `tools/balance/damage_sim.py` 的 Boss MP 若仍输出 `×1`，不可作为本文金标准；先同步为 `design/03` 的 `×2`，再运行其正式检查。
+8. 当前 `tools/balance/damage_sim.py` 的 Boss MP 已确认仍输出 `×1`，不可作为本文金标准；其现有 `--check` 通过不覆盖该缺口，须由工具归属任务同步为 `design/03` 的 `×2` 并补回归。
 9. 按三联 / 广州修订版逐项核 §13.5；无法确认的事实继续保留 **（待考）**，不得自动补回目号、原句、精确生卒或史地。
+10. 运行 `python3 tools/balance/meridian_flow_sim.py --check`；并以固定种子对十个内容位、九份实际遭遇预算的 `full` 行动表验证实例隔离、Z4M / Z5M、护体内劲、速度、点穴 / 擒拿与调息事件 **（待实测）**。
+11. 按 `design/09` §8.8.11 为 §12.4.1 九份具名预算配方及 §12.4.2 全部外围 / 目标战提交低 / 中 / 高配及四难度中配的 `BattleReplayV1`，核对 `totalHp`、稳定分配、阶段事件、终局原因与终态 hash **（待实测）**；冰窖两入口必须复用同一场回放，游氏主运缺口闭合前不得验收其生产夹具。
 
 ---
 
@@ -1690,21 +1960,27 @@ B = I × H = 19 × 15 = 285 两
 | TL-D04 | `design/09` / 装备 | `eq_tayunlv` 隐藏链配合法临时 `qinggong +12`；装备自身数值不改 | 正式装备、轻功和门禁数据联调后回填 |
 | TL-D05 | `design/13` / UI | 八部众完成 5 位开放众生录，8 位全成只给无数值称号候选与书眠镜头 | 成就 / 后日谈目录接纳后回填 |
 | TL-D06 | QA / W85 采样 | 100,000 次抽样后各显示档与理论分布偏差 ≤0.5 个百分点 | 随机生成器、种子与统计闸门定稿后回填 |
+| TL-D07 | `design/09` / 遭遇数据 | 十个内容位对应九份整场 `totalHp` 与 §12.4.1 稳定分配；所有阶段回复 / 新血条为 0 | 正式编组、目标换算与 `BattleReplayV1` 全矩阵通过后回填 |
+| TL-D08 | `design/09` / 主线遭遇与 QA | §12.4.2 的 11 组外围取 E(L)，3 场目标战取 `floor(B(L)×0.80)`；稳定等分 / 余额迁移及鸠摩智空轻功槽默认 | 完整行动表与 `BattleReplayV1` 矩阵通过后回填；不得用离线轮数冒充群战实测 |
+| TL-D09 | `design/12` / AR-20 内容落盘 | 局部线默认 `bond>=60`、技艺门槛 60；慕容复与少室双救 / 单救声望代价 800 / 300，均不低于 0 | 可达性、声望预算与四档难度回放后转正式值；叙事定义仍只读 story §6.3 |
 
 ### 本文依赖的上游事实
 
 | 上游 | 状态与本文采用 |
 |---|---|
 | `docs/00-canon.md` §2–§5、§9、§12–§18 | **已解决：**采用天龙固定参数、数值公式、ID、天级池、改编边界与 13 节模板；作者需求 AR-04 等冲突时优先 |
-| `design/story/01-tianlong.md` | **已解决：**§2 / §4 / §5 逐项引用其开局、24 主线、9 选择、5 锚点与 A5 条件，不另写剧情 |
+| `design/story/01-tianlong.md` | **已解决：**§2 / §4 / §5–§6 逐项引用其开局、24 主线、9 选择、5 锚点、A5 条件与五条 AR-20 主要悲剧线，不另写剧情 |
+| `design/story/sleep-events.md` / `changsheng-sidelines.md` / `design/25` | **已解决：**本章只登记两条正式休眠事件的地点 / 出入口，以及第三层支线的时间窗 / 四场景挂点；事件、DAG、奖励和跨书封窗仍由上游唯一解释 |
 | `design/01` / `02` / `13` | **已解决：**核心循环、年代 / 书眠 / 压制、天书变体、余韵和跨书回响只引用上游 |
 | `design/03` / `04` / `09` | **部分解决：**D4 模板、伤害、Boss / 合击规则可用；具名角色仍须正式 `full` 数据与实跑 |
-| `design/08` / `11` 与 `design/map/*` | **已解决：**使用 9 个全局区域、22 城、36 场景、45 门禁和 `jianghu-ch01.svg`；底表旧区域映射另列同步 |
+| `design/08` / `11` 与 `design/map/*` | **已解决：**使用 9 个全局区域、22 城、38 场景（36 个区域骨架 + 2 个遗迹专线）、45 门禁和 `jianghu-ch01.svg`；已核当前 30 区底表和本章 22 城所属区域，无旧迁移残留 |
 | `design/12` / `16` / `17` | **已解决：**任务、L1–L5、资源营生和 TL 时代门派矩阵已有通则；本文只登记天龙实例 |
-| `design/18` 与 `catalog/npcs-ch01-tianlong.md` | **部分解决：**12 名重点队友和 30 名稳定人物可用；萧远山已补 `npc_xiaoyuanshan`，康敏、全冠清、耶律洪基仍缺稳定 ID |
-| 四份指定武学图鉴 | **已解决：**本章可学武学只取 `skills-shaolin`、`skills-xiaoyao`、`skills-wujue`、`skills-general` 已有 ID |
+| `design/18` 与 `catalog/npcs-ch01-tianlong.md` | **部分解决：**12 名重点队友和 40 名稳定人物可用；萧远山已补 `npc_xiaoyuanshan`，康敏、全冠清、耶律洪基仍缺稳定 ID |
+| 四份既有指定武学图鉴与 `catalog/skills-bulu-01-tianlong.md` | **已解决：**既有武学只取 `skills-shaolin`、`skills-xiaoyao`、`skills-wujue`、`skills-general` 已有 ID；三门所缺主运由本书补录册唯一新增 |
+| AR-18；`design/05` §5.2–§5.5；五份正式图鉴 | **已解决：**NR4S-01 当轮 34 门内功引用已核对，四门改性内功的调息及三组配装影响见 §12.8.2；所有主运七参保持。辅运层数 / 人物 `wil` 及完整回放仍依赖 `full` 画像，不从离线锚点推造 |
 | `design/20-legacy-inheritance.md` | **已解决：**阿青剑源、墓藏、三卷、信物与本界可完成校合均直接引用权威目录 |
 | `design/07-set-system.md` | **已解决：**§9.4 已按 07 正式目录收口；本章仅安排来源，不定义效果、掉率或 Buff |
+| `design/21-meridian-flow-and-moves.md` | **部分解决：**§12.8 已接敌方七参数、逐单位实例、攻防 / 护体 / 速度 / 控制接口；三门补录的 15 条主动路线及调息档案已落地，十个内容位对应的九份具名 `full` 战局仍待实测 |
 | `tech/04` / `tech/05` | **待对接：**三个章节 `featureKey`、证据字段、原子提交、`flags.yanmen_fate_saved` 的旧存档缺失语义及其向 `echo_NN_fate` 的派生映射须纳入 schema / 章节适配器 |
 
 ### 对基准的修改提案
@@ -1718,6 +1994,8 @@ B = I × H = 19 × 15 = 285 两
 | TL-P03 | **已解决：**Canon v1.2 §17 已同步时代图层、主线只索引 story、门派 / 人物读 17 / 18、前代传承读 20 | 章节模板已具备防重复边界 |
 | TL-P04 | **已解决：**Canon v1.2 §18 已增列 story、地图、经脉、资源、门派、人物、传承与章节特色系统接口的唯一归属 | 章节交叉引用边界已显式化 |
 | TL-P05 | 基准 / 存档规则明确布尔剧情旗标可采用“旧存档缺失按 false”的兼容语义 | `flags.yanmen_fate_saved` 若要求所有旧存档显式补 false，会造成不必要迁移 |
+| TL-P06 | **已解决：**Canon v1.6 V16-01～02 已将普通天阶名录扩为 `59=天上9+天中18+天下32`，并将天龙完整原生天阶池定为 17 | 作者已决定扩容；三名首领的公共可学同源主运已进入补录册与 Canon §13，不再保留旧 `51→54` 提案 |
+| TL-P07 | `design/01` 天龙锚点行补一句：“五条主要悲剧线与具体改命条件、代价见 `design/story/01` §6.3；仅雁门 A5 决定 `tsp_01_canon/fate`，其余为局部生命轴。” | 十四书界并行编辑总览易冲突，本任务只登记、由协调者统一回填 |
 
 ### 原著考据待办
 
@@ -1736,11 +2014,14 @@ B = I × H = 19 × 15 = 285 两
 | TL-K11 | 核少室山虚竹戒律、玄慈 / 叶二娘认亲、萧慕容旧案与扫地僧止斗顺序 | A4 必发生；生命事实按名录 / story |
 | TL-K12 | 核西夏招亲、枯井、三问、曼陀危局、段氏身世与诸人结局顺序 | 不替本人决定婚配或王位；先后沿 story |
 | TL-K13 | 核雁门折箭、止战、自尽、阿紫结局的准确动作与在场人物 | canon 只写剧情大意，不伪造引文 |
-| TL-K14 | 核 30 名稳定人物的生卒、1093–1094 年年龄与命定死亡窗口 | 沿名录年龄段 / 推算，不从影视版本补数 |
+| TL-K14 | 核 40 名稳定人物的生卒、1093–1094 年年龄与命定死亡窗口 | 沿名录年龄段 / 推算，不从影视版本补数 |
 | TL-K15 | 核作者后记或可靠研究中八部众与人物是否存在稳定对应 | 只称“本作主题位”，不称官方映射 |
 | TL-K16 | 核阿青与若耶溪 / 会稽墓址的文本依据 | 墓藏、三卷、手卷和守传者均标原创；越州仅专线 |
 | TL-K17 | 核黄裳校刊道藏的年代、官职、地点是否与本界余韵相容 | 只出现匿名校书官，不确证身份、不授九阴 |
 | TL-K18 | 核太祖长拳、打狗棒、神木王鼎、冰蚕、闪电貂等招式 / 器物的文本流转与所有权 | 只按正式图鉴 / 物品目录，不编招名、不复制唯一物 |
+| TL-K19 | 核段延庆原著所显露的内功底子及是否存在段氏心法专名 | 只认段氏 / 一阳指传承；“段氏一阳诀”整体标原创 |
+| TL-K20 | 核萧峰内力与降龙掌行功是否存在明确专名 | 只认刚猛掌力表现；“降龙行功”整体标原创 |
+| TL-K21 | 核六阳掌、八荒功与生死符之间的行功关系 | 三者沿既有图鉴独立；“天山六阳心法”整体标原创 |
 
 ### 开放问题（附默认值）
 
@@ -1749,15 +2030,21 @@ B = I × H = 19 × 15 = 285 两
 | TL-O01 | 三个章节 `featureKey` 是否需要升级为全局正式资产 | 默认不升级；由 `chapterRef: ch01_tianlong` 限定并经章节适配器读取，不生成自定义 opcode |
 | TL-O02 | 45 个局部 `gateKey` 中哪些需要跨场景共享 | 默认全部留在场景配置；仅确有跨场景引用者再由 `design/08` 登记正式 `gate_*` |
 | TL-O03 | **已解决：**正式套装是否可启用 | 仅启用 `design/07` 已收录套装；旧候选不显示、不计件，见 §9.4 |
-| TL-O04 | 康敏、全冠清、萧远山、耶律洪基等能否直接生成生产角色 | 默认不可；可出现在审校剧情文本，进入存档 / 战斗前必须补稳定 ID、生命轴和能力画像 |
+| TL-O04 | 康敏、全冠清、萧远山、耶律洪基等能否直接生成生产角色 | 部分解决：萧远山已登记，见 §8.3；其余未登记人物默认不可；可出现在审校剧情文本，进入存档 / 战斗前必须补稳定 ID、生命轴和能力画像 |
 | TL-O05 | 10 名具名 Boss 的最终 `full` 面板 | 默认采用 TL-D03 HP 搜索锚、表列速度与 AI；攻击、防御、抗性须用人物合法画像重算并实跑 |
 | TL-O06 | qg5 云海栈道奖励是否绑定 `eq_tayunlv` | 默认只作隐藏候选，任务提供一次 `qinggong +12`；若装备归属调整，门禁仍不得阻主线 |
 | TL-O07 | 八部众主题位的最终人物映射和全成奖励 | 默认沿 §10.2 的本作映射；全成只给无数值称号候选与镜头，不影响 A5 |
 | TL-O08 | `flags.yanmen_fate_saved` 的旧存档布尔语义 | 默认 `true` 表示改命，`false` 或缺失表示 canon；旧存档无需补写 |
-| TL-O09 | `cities.yaml` / `regions.yaml` 与 `design/11` 区域映射冲突时采用哪一方 | 默认 `design/11` 为区域 / 城市制作权威，YAML 只取 ch01 时代显示名，待底表同步 |
+| TL-O09 | `cities.yaml` / `regions.yaml` 与 `design/11` 区域映射冲突时采用哪一方 | 已解决：当前 30 区底表与本文 22 城所属区域一致；今后制作范围仍读 `design/11`，坐标 / 时代显示名读地图数据，见 §3.1 / §3.4 |
 | TL-O10 | 黄裳匿名触点是否保留到最终发布 | 默认只作余韵文气彩蛋；考据未闭合时不具名、不授武学、不写硬年代 |
 | TL-O11 | A5 改命后的萧峰是否可在天龙余韵继续入队 | 默认不可；写 `fate_rescued` 后离开活动编组，只开放回访与跨书传说 |
 | TL-O12 | 天龙垂直切片的 15 小时目标是否需要下调 | 默认保留 15 小时上限值；主线 6.75 小时、开放内容 5.25 小时，其余成长 / 余韵 3 小时 |
+| TL-O13 | 10 名具名 Boss 经脉建议值何时转正式值 | 默认沿 §12.8；待 `MoveDef.meridianRouteRef` 与人物 `full` 行动表齐备后，以固定 RNG 逐战复跑再回填，不用模板结论冒充实测 |
+| TL-O14 | **已解决：**是否接受段氏一阳诀、降龙行功、天山六阳心法三门天阶及天龙 17 门完整池 | Canon v1.6 V16-01～02 已采纳；全局普通天阶为 `59=天上9+天中18+天下32`，三门均为可共享的正常传承，不恢复无合法 `sk_*` 的主运槽 |
+| TL-O15 | 需作者确认：是否在天龙补录册新增一门可共享、同源且至少 6 品的聚贤庄 / 中原内功 | 默认暂不新增，保留 `sk_juxianyijue` 的真实 `5/8/yang` 仅供离线估算，并以 `TS-CONTENT-BOSS-021` 阻断生产；作者接受后交图鉴补卡，再替换与复算，不借人物专属武学、不伪造品阶 |
+| TL-O16 | 本轮补齐的幕内多人预算与鸠摩智轻功槽是否调整 | 默认采用 §12.4.2 共享耐久、三场目标战 0.80 模板倍率与 §12.8 空轻功槽；均为原创配置建议，待完整回放验证；不新增人物、武学或私有机制 |
+| TL-O17 | AR-20 局部阈值与声望代价是否转正式值 | 默认采用 TL-D09；只在内容落盘前做可达性 / 经济回放后调整数值，不删五条线、埋线或独立生命轴 |
+| —（AR-18 配装） | 需作者确认：游氏兄弟是否保留呼吸行气改阴后的相冲配装 | 默认保持原主辅运；接受呼吸行气比例 0.25、按本人 `wil` 的开战相冲判定与闭关心魔 ×2，见 §12.8.2。作者若要求消除相冲，再由配装任务选择既有同来源辅运；不改图鉴性质来回避代价 |
+| —（AR-18 路线接口） | 需作者 / 归属系统确认：童姥阳主运与阴性生死符路线的准入 | 默认保留配装、记录伤害 Z5 −12% 和异性行气匹配 8800 bp；`requiredNature:[yin,harmony]` 不由本章扩宽。图鉴 / `design/21` 澄清前不签出为已验证的生产行动，不能把相性扣伤等同路线许可 |
 
 至此，全部建议值、上游缺口、考据与作者选择均有保守默认。默认不得覆盖 story 因果、图鉴事实、全局地图、人物生命轴或唯一归属文档。
-

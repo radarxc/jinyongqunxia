@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_mingmianbupifeng_nan
+name: 明棉布披风·男
+kind: armor
+sub: cape
+grade: 3
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 民间披风 · 明（明代人物画）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingmianbupifeng_nan
+text:
+  desc: 外观：男款靛青棉布披风单件完整铺展，小圆领、前系带、两侧开衩、及膝直摆。 待运行时投影：defOutK=0.025; hpMaxK=0.005; wearer=male。
+  lore: （原创扩展）据明代民间行旅衣着意象裁成靛青棉布披风，小圆领系带，侧开衩便于迈步。及膝素面耐脏，客栈里常有人错拿，主人只好认针脚。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 3

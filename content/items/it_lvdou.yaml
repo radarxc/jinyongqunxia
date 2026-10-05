@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_lvdou
+name: 绿豆
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 历代粥食与点心原料
+price: auto
+flags: []
+assets:
+  icon: item/lvdou
+text:
+  desc: 外观：青绿小豆盛白瓷碗，颗粒干净。
+  lore: 历代粥食与点心常用的小豆，夏末成熟后晒存。本件颗粒青绿干净，可熬粥、磨粉或作馅；茶棚常在暑月多备，却不赋予药物疗效。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_liangshi_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: grain
+    attributes:
+      version: 2

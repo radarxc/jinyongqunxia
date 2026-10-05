@@ -1,0 +1,78 @@
+id: bld_kit_qing_south_courtyard
+file: bld_kit_qing_south_courtyard.png
+category: building-map
+style: default
+subject: 清初至清中江南·院落（匿名原创组合，细部待考）
+prompt: Paint a realistic Qing Jiangnan courtyard residence ON this exact ground mesh. Keep the full diamond outline at its existing exact four corners and slopes.
+  This is a 10 by8 rectangular plot viewed in orthographic 2:1 dimetric projection, slopes +0.5 and -0.5. The mesh divisions are 1m each. Replace the mesh with thin
+  stone paving, and build perimeter white walls directly following outer boundary. Add three modest one-storey grey-tiled wooden residential halls around small open
+  stone-paved court; front small gate in lower-left-facing wall. White limewashed masonry, grey plain clay tiles, dark weathered wood lattice, restrained higher fire
+  walls, detailed realistic old matte textures, no thick platform. MATCH the mesh geometry in the input exactly; do not draw a new plot with different shape. All
+  ground corners and edges visible. Warm light from upper left, soft short shadow right. Transparent outside plot. No text or outline or grid marks remain. Full complete
+  building sprite, no people, no scenery, no logos. Building walls and roof opaque, genuine RGBA backdrop.
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、强透视、金黄屋顶泛化
+references:
+- file: assets/default/building-map/qing_south/review2/courtyard_gridguide.png
+  sha256: bf6ab9db1dc74e01075bd6985b8bf0294b7d7036c47ec2fbb1726cfc3d4622d9
+  role: 本轮生成输入：正交几何引导图；不参与成品合成
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:04:45.845713+00:00'
+created_time_basis: copy2保留源PNG mtime，非服务端生成时间回执
+source_path: /Users/bytedance/.codex/generated_images/01a0f450-2399-77a1-9948-02b42503786e/exec-54dd5052-a39e-49cf-832a-bbfd0e0604e8.png
+source_sha256: 88c77afc3194ec95ee9e32764f9533300bcd83222c0e9e68ade29259f678b60a
+size: 800x640
+sha256: 5cf65c0c8e880be839d7427c4a27926560b6995e127a6a8697a0340f8da6020f
+status: candidate
+building:
+  type: bld_kit_qing_south_courtyard
+  footprint:
+  - 10
+  - 8
+  anchor:
+  - 380.4797
+  - 351.3438
+  era: qing_south
+footprint_m:
+- 10
+- 8
+entrance:
+  edge: S
+  offset_cells: 4
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 576
+  - 288
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_courtyard.yaml
+source_record: review2/courtyard.selected.request.json
+candidate_count: 2
+geometry_qa:
+  source_corners_px:
+    left:
+    - 136
+    - 563
+    front:
+    - 807
+    - 928
+    right:
+    - 1405
+    - 640
+  source_axis_slopes:
+  - 0.5439642324888226
+  - -0.4816053511705686
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.1220735785953178
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.10234113712374582
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 3
+  precision_note: 原尺寸及6倍局部view_image人工读取可见石基角；±3源px；隐藏后角未实测。guide理论点不参与实测。
+notes: 第2轮返修：第二候选右轴改善；左轴及宽深比仍超容差，未解决。新源图及RGBA浅底预览已view_image；灰瓦粉墙深木、左上光和短右下影完整，无文字人物水印。单视图candidate，非release。

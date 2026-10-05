@@ -1,0 +1,871 @@
+- id: bld_kit_ming_north_biaoju
+  subject: 明代北方府城：护运货栈（原创扩展）；具体构件断代（待考）。
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 灰砖院墙、木栅货门、三开间后厅、短货棚、箱包与石铺院。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Aerial_view_of_Qiao_Family_Courtyard.jpg
+    role: 北方轴线合院、正厢房等级、硬山屋面、灰砖围墙与石铺院心
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    role: 北方轴线合院、正厢房等级、硬山屋面、灰砖围墙与石铺院心
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/biaoju-c1.png
+  file: bld_kit_ming_north_biaoju.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 928x608
+  sha256: 1ec3351de3ad2c30bc7a6c63dcc1ee4dfd70cb3c514368b150bdbe42dce4bc2a
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_biaoju
+    footprint:
+    - 15
+    - 12
+    anchor:
+    - 462.858
+    - 360.4558
+    era: ming_north
+  footprint_m:
+  - 15
+  - 12
+  entrance:
+    edge: S
+    offset_cells: 7.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_biaoju.png
+  source_sha256: c9d4a7498dc85ae1facb3eadc4695db460b3ac273be5ea940efb2ff7f11a23b5
+  meta: meta/bld_kit_ming_north_biaoju.yaml
+  notes: 历史细节：灰砖院墙、木栅货门、三开间后厅、短货棚、箱包与石铺院；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_casino
+  subject: 明代北方府城·赌场（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 三开间敞厅、灰砖硬山、筒板瓦、板门与两张朴木桌。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/casino-c1.png
+  file: bld_kit_ming_north_casino.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 640x512
+  sha256: 8f94674ac547df4648ec2481c13ee1dd31cf5bffa4bbe718b04cc055feb244c3
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_casino
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 319.4917
+    - 340.1193
+    era: ming_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 5.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_casino.png
+  source_sha256: 58d98657a62c4cd3844547c49a53bb78120796915c1e35e7da607206c3370832
+  meta: meta/bld_kit_ming_north_casino.yaml
+  notes: 历史细节：三开间敞厅、灰砖硬山、筒板瓦、板门与两张朴木桌；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_courtyard
+  subject: 明代北方府城：北方合院（原创扩展）；具体构件断代（待考）。
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 正房与两厢围院、轴线门、影壁、灰砖硬山与院心铺石。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Aerial_view_of_Qiao_Family_Courtyard.jpg
+    role: 北方轴线合院、正厢房等级、硬山屋面、灰砖围墙与石铺院心
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    role: 北方轴线合院、正厢房等级、硬山屋面、灰砖围墙与石铺院心
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/courtyard-c1.png
+  file: bld_kit_ming_north_courtyard.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 640x512
+  sha256: c32df68fb56b949ad364be7bff9d913daaa1e818913524ac28be73574ba11b94
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_courtyard
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 320.0
+    - 294.9137
+    era: ming_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 5.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_courtyard.png
+  source_sha256: b3964fc620d7082f2239da2011012b77412e60b801cace1d843fb3055c3e9c90
+  meta: meta/bld_kit_ming_north_courtyard.yaml
+  notes: 历史细节：正房与两厢围院、轴线门、影壁、灰砖硬山与院心铺石；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_guardhouse
+  subject: 明代北方府城·城门守舍（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 三开间守舍、中央板门、两侧格窗、齐山墙、无斗拱。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    role: 硬山齐山墙、青灰筒板瓦、砖缝、石脚、格扇/板门与朴素檐下木作
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Inside_the_courtyards_of_pingyao.jpg
+    role: 硬山齐山墙、青灰筒板瓦、砖缝、石脚、格扇/板门与朴素檐下木作
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/guardhouse-c1.png
+  file: bld_kit_ming_north_guardhouse.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 416x320
+  sha256: 5b366a626b0fd0f36c8342063bd17440e262d424e00223966613ecd17d009356
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_guardhouse
+    footprint:
+    - 6
+    - 5
+    anchor:
+    - 206.6293
+    - 203.8484
+    era: ming_north
+  footprint_m:
+  - 6
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 3.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_guardhouse.png
+  source_sha256: a155c95420f216664a2ed5e7334262a74576ff6ccd56544064c9c116c7b4a141
+  meta: meta/bld_kit_ming_north_guardhouse.yaml
+  notes: 历史细节：三开间守舍、中央板门、两侧格窗、齐山墙、无斗拱；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_house_large
+  subject: 明代北方大民居，10×8格，五开间灰砖硬山住宅（原创扩展；细部待考）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 五等开间、六柱、中央板门、四格窗、灰砖石脚、硬山筒板瓦。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    role: 硬山齐山墙、青灰筒板瓦、砖缝、石脚、格扇/板门与朴素檐下木作
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Inside_the_courtyards_of_pingyao.jpg
+    role: 硬山齐山墙、青灰筒板瓦、砖缝、石脚、格扇/板门与朴素檐下木作
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/house_large-c1.png
+  file: bld_kit_ming_north_house_large.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 640x512
+  sha256: 22944ac03a4a57ffd9031650739b867be5bd0e7acee207bc2983ecbed0e061b8
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_house_large
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 319.7384
+    - 332.3927
+    era: ming_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 5.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_house_large.png
+  source_sha256: e7199f850716164e34f3f39d59a795ac393a2bb2d7af1ec86765b05573b6bc69
+  meta: meta/bld_kit_ming_north_house_large.yaml
+  notes: 历史细节：五等开间、六柱、中央板门、四格窗、灰砖石脚、硬山筒板瓦；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  revision: historical-20260930
+  selected_candidate: 1
+- id: bld_kit_ming_north_house_small
+  subject: 明代北方小民居，7×6格，青灰砖硬山灰瓦（原创扩展；细部待考）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 三等开间、四柱、中央板门、两格窗、灰砖石脚、硬山筒板瓦。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    role: 硬山齐山墙、青灰筒板瓦、砖缝、石脚、格扇/板门与朴素檐下木作
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Inside_the_courtyards_of_pingyao.jpg
+    role: 硬山齐山墙、青灰筒板瓦、砖缝、石脚、格扇/板门与朴素檐下木作
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/house-small-c3.png
+  file: bld_kit_ming_north_house_small.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 480x384
+  sha256: 6c4147245ffa2e7d02a5dae68b590d1f6a688da6ccee33678517e02acb77ad35
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_house_small
+    footprint:
+    - 7
+    - 6
+    anchor:
+    - 239.1127
+    - 244.7754
+    era: ming_north
+  footprint_m:
+  - 7
+  - 6
+  entrance:
+    edge: S
+    offset_cells: 3.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_house_small.png
+  source_sha256: 520a8edbf72eaa61a18a3cccd5bcc2718a1a491f6f458d4a8cb0a3856d3e4b4d
+  meta: meta/bld_kit_ming_north_house_small.yaml
+  notes: 历史细节：三等开间、四柱、中央板门、两格窗、灰砖石脚、硬山筒板瓦；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 3
+  revision: historical-20260930
+  selected_candidate: 3
+- id: bld_kit_ming_north_inn
+  subject: 明代北方客栈，12×9格，灰砖硬山二层客舍附小院（原创扩展；细部待考）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 二层客舍、直棂栏杆、下层敞廊、侧翼小院、灰砖防火山墙。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/inn-c1.png
+  file: bld_kit_ming_north_inn.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 736x512
+  sha256: a5c93329e902e01d65a01ee69e0cd38609685e87654a713add987c09fd10a81b
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_inn
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 367.6798
+    - 301.8085
+    era: ming_north
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    offset_cells: 6.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_inn.png
+  source_sha256: 68ee4169a2defdd356e88c4f1f0e61c809bd78c7a763d53a26fca54c985dee1e
+  meta: meta/bld_kit_ming_north_inn.yaml
+  notes: 历史细节：二层客舍、直棂栏杆、下层敞廊、侧翼小院、灰砖防火山墙；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  revision: historical-20260930
+  selected_candidate: 1
+- id: bld_kit_ming_north_manor
+  subject: 明代北方府城：山庄大院（原创扩展）；具体构件断代（待考）。
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 轴线门、影壁、五间正厅、厢房、灰砖院墙与台基等级。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Aerial_view_of_Qiao_Family_Courtyard.jpg
+    role: 北方轴线合院、正厢房等级、硬山屋面、灰砖围墙与石铺院心
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    role: 北方轴线合院、正厢房等级、硬山屋面、灰砖围墙与石铺院心
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/manor-c1.png
+  file: bld_kit_ming_north_manor.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 992x768
+  sha256: 0cc85179c1c7f3ee49a2898d9cba44a00b5215d0d4999b950aae28a9009a88d7
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_manor
+    footprint:
+    - 16
+    - 13
+    anchor:
+    - 494.7195
+    - 483.7726
+    era: ming_north
+  footprint_m:
+  - 16
+  - 13
+  entrance:
+    edge: S
+    offset_cells: 8.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_manor.png
+  source_sha256: e0779d0af6d64d9939e8d6cb60d35a3cfe3c75ae2e74c340dd704dfcffc5825c
+  meta: meta/bld_kit_ming_north_manor.yaml
+  notes: 历史细节：轴线门、影壁、五间正厅、厢房、灰砖院墙与台基等级；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_market_stall
+  subject: 明代北方府城·市场棚（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 四柱榫接、素布篷、板柜、竹簸箕与筐，无砖墙和招牌。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/market_stall-c1.png
+  file: bld_kit_ming_north_market_stall.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 256x256
+  sha256: 9815fa5d89b8007b72bd0320a82c96eda4f4a043d76a7713511b20cf85e6823a
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_market_stall
+    footprint:
+    - 3
+    - 2
+    anchor:
+    - 127.1883
+    - 150.0518
+    era: ming_north
+  footprint_m:
+  - 3
+  - 2
+  entrance:
+    edge: S
+    offset_cells: 1.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_market_stall.png
+  source_sha256: 5f306d934f9e47d7954150fb0e9f5063ff18dd778ff4bd6a61de8cb19d9fe820
+  meta: meta/bld_kit_ming_north_market_stall.yaml
+  notes: 历史细节：四柱榫接、素布篷、板柜、竹簸箕与筐，无砖墙和招牌；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_pagoda
+  subject: 明代北方府城：北方密檐砖塔（原创扩展）；具体构件断代（待考）。
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 八角砖身、层层仿木砖檐、券龛、莲瓣/金刚带与金属刹。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Ci_Shou_Temple_Pagoda-20240612.jpg
+    role: 慈寿寺八角砖塔、仿木密檐、砖雕龛与束腰层次
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Cishou_Temple_Pagoda.JPG
+    role: 慈寿寺八角砖塔、仿木密檐、砖雕龛与束腰层次
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/pagoda-c1.png
+  file: bld_kit_ming_north_pagoda.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 512x864
+  sha256: 51ae4c17673999d323837c0c4086db135b2aaf3055fd485292145c6d943249b2
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_pagoda
+    footprint:
+    - 7
+    - 7
+    anchor:
+    - 255.7175
+    - 719.7658
+    era: ming_north
+  footprint_m:
+  - 7
+  - 7
+  entrance:
+    edge: S
+    offset_cells: 3.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_pagoda.png
+  source_sha256: cc37419040d5db1a8eb180c2bef9c42b9aba249aeaf4014ce8f7a857fd6d2287
+  meta: meta/bld_kit_ming_north_pagoda.yaml
+  notes: 历史细节：八角砖身、层层仿木砖檐、券龛、莲瓣/金刚带与金属刹；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_restaurant
+  subject: 明代北方酒楼茶肆，12×9格，灰砖硬山三开间二层楼（原创扩展；细部待考）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 二层五间铺面、折叠格扇、直栏浅廊、硬山灰瓦与砖防火墙。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/restaurant-c1.png
+  file: bld_kit_ming_north_restaurant.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 736x672
+  sha256: 04d115e7427f9ea178d40a6c2ea6bc3bd3cc1d73bee23c9a7601c45d3722304d
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_restaurant
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 356.5469
+    - 472.9797
+    era: ming_north
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    offset_cells: 6.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_restaurant.png
+  source_sha256: 11aca0ada9bf655dea7e30d2ec5eaa41d7b8e13b4963edfd1e4ee9dad2b743d0
+  meta: meta/bld_kit_ming_north_restaurant.yaml
+  notes: 历史细节：二层五间铺面、折叠格扇、直栏浅廊、硬山灰瓦与砖防火墙；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_shop_1f
+  subject: 明代北方单层商铺，7×5格，灰砖硬山瓦顶杂货铺（原创扩展；细部待考）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 五间铺面、可卸板门、格扇、深直檐、灰砖硬山。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/shop_1f-c1.png
+  file: bld_kit_ming_north_shop_1f.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 448x384
+  sha256: 4dbc0a900d67cc775bd3ac5221190d7f65cb145276a03534aa89ae02c092fbed
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_shop_1f
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 223.1451
+    - 248.7607
+    era: ming_north
+  footprint_m:
+  - 7
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 3.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_shop_1f.png
+  source_sha256: b86036975489d8b6812516db20d9fb67fa225abc9960465e21c5e1d81fbaf33c
+  meta: meta/bld_kit_ming_north_shop_1f.yaml
+  notes: 历史细节：五间铺面、可卸板门、格扇、深直檐、灰砖硬山；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_shop_2f
+  subject: 明代北方两层商铺，7×5格，灰砖硬山布货铺（原创扩展；细部待考）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 三间下铺、上层格窗浅廊、砖防火山墙、硬山筒板瓦。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:%E4%BB%87%E8%8B%B1%E3%80%8A%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E3%80%8B%E5%B1%80%E9%83%A8.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8D%97%E9%83%BD%E7%B9%81%E4%BC%9A%E5%9B%BE%E5%B1%80%E9%83%A8%EF%BC%88%E6%98%8E_%E4%BB%87%E8%8B%B1%EF%BC%89.jpg
+    role: 《南都繁会图》沿街开敞铺面、板门格窗、深檐与紧凑木构；北方化为灰砖硬山
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/shop_2f-c1.png
+  file: bld_kit_ming_north_shop_2f.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 448x416
+  sha256: 2e30f528b9d3c825c94f5f1e169e378d36a9232acc57362f896573ebc8e8b89c
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_shop_2f
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 223.868
+    - 286.7726
+    era: ming_north
+  footprint_m:
+  - 7
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 3.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_shop_2f.png
+  source_sha256: 63b98769b67360ac736c189859e8c92888d86acb89407ad9b3abca0351c2735c
+  meta: meta/bld_kit_ming_north_shop_2f.yaml
+  notes: 历史细节：三间下铺、上层格窗浅廊、砖防火山墙、硬山筒板瓦；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_stable
+  subject: 明代北方府城·马厩（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 五间低棚、三敞厩、半高木栏、土砖填墙、石铺前场。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Aerial_view_of_Qiao_Family_Courtyard.jpg
+    role: 北方轴线合院、正厢房等级、硬山屋面、灰砖围墙与石铺院心
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Ming_courtyard_(6238830623).jpg
+    role: 北方轴线合院、正厢房等级、硬山屋面、灰砖围墙与石铺院心
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/stable-c1.png
+  file: bld_kit_ming_north_stable.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 512x352
+  sha256: 2783ac8231398bf6fdefc13323e8887541ea9140d0f9f1046095ca4d7a99b9da
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_stable
+    footprint:
+    - 8
+    - 6
+    anchor:
+    - 255.3438
+    - 200.7894
+    era: ming_north
+  footprint_m:
+  - 8
+  - 6
+  entrance:
+    edge: S
+    offset_cells: 4.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_stable.png
+  source_sha256: d9161ecf244df175a321f381256156d9502a5d68e5416fac6cbae9ee711fc4b3
+  meta: meta/bld_kit_ming_north_stable.yaml
+  notes: 历史细节：五间低棚、三敞厩、半高木栏、土砖填墙、石铺前场；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_temple_hall
+  subject: 明代北方府城：佛寺殿堂（原创扩展）；具体构件断代（待考）。
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 五开间朱木、黑灰歇山瓦、五踩意象斗拱（具体做法待考）、格扇与石台。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8C%97%E4%BA%AC%E6%99%BA%E5%8C%96%E5%AF%BA%E6%99%BA%E5%8C%96%E6%AE%BF2021_(1).jpg
+    role: 智化寺殿堂黑灰瓦歇山、朱木柱网、格扇、斗拱与石台基
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8C%97%E4%BA%AC%E6%99%BA%E5%8C%96%E5%AF%BA%E6%99%BA%E5%8C%96%E6%AE%BF2021_(2).jpg
+    role: 智化寺殿堂黑灰瓦歇山、朱木柱网、格扇、斗拱与石台基
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/temple_hall-c1.png
+  file: bld_kit_ming_north_temple_hall.png
+  category: building-map
+  style: default
+  negative: No text, modern objects, people, scenery, opaque background, clipped roofs.
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 864x608
+  sha256: 0661c632837c4bd1e386ea77d2bd8619cda52562dbddd341eff2f8898b4bbf80
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_temple_hall
+    footprint:
+    - 14
+    - 11
+    anchor:
+    - 431.2054
+    - 368.3704
+    era: ming_north
+  footprint_m:
+  - 14
+  - 11
+  entrance:
+    edge: S
+    offset_cells: 7.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_temple_hall.png
+  source_sha256: 29588b94922207ae89bc992ccf713937109cd16e37e297483bdec7bd803cfe28
+  meta: meta/bld_kit_ming_north_temple_hall.yaml
+  notes: 历史细节：五开间朱木、黑灰歇山瓦、五踩意象斗拱（具体做法待考）、格扇与石台；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_wangfu
+  subject: 明代北方府城：王府殿院模块（原创扩展）；具体构件断代（待考）。
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 轴线门院、五间正殿、朱木、深绿琉璃主屋面、灰瓦配房、石台。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Beijing_2006_3-64.jpg
+    role: 明长陵殿堂柱网、台基、克制斗拱、深绿瓦与朱木等级
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Exterior_architectural_detail_at_Changling_tomb,_Beijing.jpg
+    role: 明长陵殿堂柱网、台基、克制斗拱、深绿瓦与朱木等级
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/wangfu-c1.png
+  file: bld_kit_ming_north_wangfu.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 1344x992
+  sha256: 3f36b59e25f76121b17e33d0dbe7485943d122ec467d9c4910edbd9535d49fc2
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_wangfu
+    footprint:
+    - 22
+    - 18
+    anchor:
+    - 670.9408
+    - 636.0356
+    era: ming_north
+  footprint_m:
+  - 22
+  - 18
+  entrance:
+    edge: S
+    offset_cells: 11.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_wangfu.png
+  source_sha256: c59456b03ab8cde8cca933c70845e0d19af8c6e92bd1c966bde8791fd9f5932d
+  meta: meta/bld_kit_ming_north_wangfu.yaml
+  notes: 历史细节：轴线门院、五间正殿、朱木、深绿琉璃主屋面、灰瓦配房、石台；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_warehouse
+  subject: 明代北方府城·仓屋（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 厚灰砖、双板门、高位气孔、防潮石脚、宽厚硬山灰瓦。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Former_granaries_at_Nanxincang_(20200814171113).jpg
+    role: 南新仓仓廒厚砖墙、小高窗、宽厚灰瓦硬山与防潮石脚
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:%E5%8C%97%E4%BA%AC%E5%8D%97%E6%96%B0%E4%BB%93.jpg
+    role: 南新仓仓廒厚砖墙、小高窗、宽厚灰瓦硬山与防潮石脚
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/warehouse-c1.png
+  file: bld_kit_ming_north_warehouse.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 576x512
+  sha256: 60cf1eda1be6185d31461812bac19bf0ea10179dfd308d19b2ea3af8ae26cffa
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_warehouse
+    footprint:
+    - 9
+    - 7
+    anchor:
+    - 287.9465
+    - 341.1691
+    era: ming_north
+  footprint_m:
+  - 9
+  - 7
+  entrance:
+    edge: S
+    offset_cells: 4.5
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_warehouse.png
+  source_sha256: 1fd73ee1d9bb1bf72137476dbe36989205e1258cebdb2ac5de1d5e0b20e167ba
+  meta: meta/bld_kit_ming_north_warehouse.yaml
+  notes: 历史细节：厚灰砖、双板门、高位气孔、防潮石脚、宽厚硬山灰瓦；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_wharf
+  subject: 明代北方府城·河埠（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 木排桩护岸、夯土石铺作业面、花岗岩踏步、系缆柱与绳圈。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://peking.bjd.com.cn/content/s643cbf80e4b0017157a4cca5.html
+    role: 无合格历史图片；据北京日报所载明嘉靖通州土坝木排桩挡土夯筑及石坝条石文字
+    status: 文字史料；无合格历史图片
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/wharf-c1.png
+  file: bld_kit_ming_north_wharf.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 448x256
+  sha256: 5f5b60a1ff2879d8e7a7ab57af443f1e578334fa415f401c33178cbbfe0cdf6a
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_wharf
+    footprint:
+    - 8
+    - 4
+    anchor:
+    - 223.3402
+    - 135.8072
+    era: ming_north
+  footprint_m:
+  - 8
+  - 4
+  entrance:
+    edge: S
+    offset_cells: 4.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_wharf.png
+  source_sha256: f510e0da04f10ee7cd9d1413096a33a214dfe8ba2ebc595080fd947049eedb29
+  meta: meta/bld_kit_ming_north_wharf.yaml
+  notes: 历史细节：木排桩护岸、夯土石铺作业面、花岗岩踏步、系缆柱与绳圈；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: bld_kit_ming_north_yamen
+  subject: 明代北方府城：府县衙门（原创扩展）；具体构件断代（待考）。
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 轴线门、五间大堂、深前廊、柱网、灰瓦、石台与两侧公房。排除人物、文字、现代物、影视游戏构图、厚台座与不透明背景。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Huozhou_Prefectural_Hall_03_2012-09.JPG
+    role: 衙署厅堂开间、深前廊、柱网、灰瓦与台基层级
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Huozhou_Prefectural_Hall_04_2012-09.JPG
+    role: 衙署厅堂开间、深前廊、柱网、灰瓦与台基层级
+    status: 已下载并view_image审阅
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/yamen-c1.png
+  file: bld_kit_ming_north_yamen.png
+  category: building-map
+  style: default
+  negative: 排除项完整内嵌于prompt；工具无独立negative参数。
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  size: 992x640
+  sha256: 90dd1d39ff85bcf4af571d0126ecdda1076f01af453de859a714b5f770b04fd8
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_ming_north_yamen
+    footprint:
+    - 16
+    - 13
+    anchor:
+    - 495.6154
+    - 363.428
+    era: ming_north
+  footprint_m:
+  - 16
+  - 13
+  entrance:
+    edge: S
+    offset_cells: 8.0
+  projection_contract: yaw45_pitch30_dimetric_2to1_target
+  source_copy: sources/historical-20260930/bld_kit_ming_north_yamen.png
+  source_sha256: a4f3da40e52dfbc1024a37c86f2136edd5a582eed16e3e8a317d6004182f63b7
+  meta: meta/bld_kit_ming_north_yamen.yaml
+  notes: 历史细节：轴线门、五间大堂、深前廊、柱网、灰瓦、石台与两侧公房；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；静态拼接（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930

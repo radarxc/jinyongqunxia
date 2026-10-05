@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_qingjiaoyeqin
+name: 清式蕉叶琴
+kind: collectible
+sub: qin
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingjiaoyeqin
+text:
+  desc: 外观：深栗漆七弦琴，琴缘舒展为蕉叶式弧线。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,musician,collector]}; giftValue=3; provenance=expanded。
+  lore: 以蕉叶式琴为造型方向设计清代精制乐器，具体时期的同型资料仍待核。宜赠乐人藏家，默认只放清中期固定支线；形制和名称为（原创扩展），不伪署古代斫琴名家。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

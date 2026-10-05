@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_wuguanxinfa
+name: 武馆心法抄本
+kind: manual
+sub: copy
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuguanxinfa
+text:
+  desc: 外观：清代青灰线装小册，四眼白线。
+  lore: 市镇武馆把强身调息的实用法门抄成青灰小册，心法、载体与传授均属 （原创扩展）。研读须配合站桩缓息，不可把呼喝当作运功；页角磨圆见其常年借阅，抄本仅到八层。
+extension:
+  type: manual
+  value:
+    skill: sk_wuguanxinfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_wuguanxinfa
+      readBre: 30
+      maxLayer: 8
+      cultivation: 960

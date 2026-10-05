@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yuegaobingdou
+name: 越地原始瓷豆
+kind: collectible
+sub: porcelain
+grade: 5
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H02](#src-h02)；准入：越女序章；所有权结算后
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuegaobingdou
+text:
+  desc: 外观：青褐釉浅盘与高柄连为一体，喇叭状圈足。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=2; provenance=history。
+  lore: 据春秋原始瓷豆的馆藏形制选入，豆是盛食器，不能画成茶杯配托。设为越地宴享后的酬礼，宜赠重礼仪的权贵与藏家；具体所有人及取得情节为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 36

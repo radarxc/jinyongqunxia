@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_shunvjian
+name: 淑女剑
+kind: weapon
+sub: sword
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·绝情谷
+price: auto
+flags:
+- unique
+assets:
+  icon: item/shunvjian
+text:
+  desc: 外观：银白纤细直剑，浅青柄缠。
+  lore: 《神雕侠侣》中淑女剑与君子剑同藏绝情谷，杨过、小龙女取出后可合使玉女素心剑法。剑身宜走轻灵精细一路；银白装具及内力亲和为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 78
+      qiAffinity: 100

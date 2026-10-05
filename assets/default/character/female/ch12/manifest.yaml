@@ -1,0 +1,509 @@
+- id: por_npc_guanmingmei__ch12_elder_alive_base
+  file: por_npc_guanmingmei__ch12_elder_alive_base.png
+  category: character/female
+  style: default
+  subject: 关明梅（ch12_shujian）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+    人物：关明梅，金庸《书剑恩仇录》中「天山双鹰」之一，外号「雪雕」，霍青桐的师父，性子刚强好胜。
+
+    年龄与体态：五十多岁的女侠，个子较矮但利落挺拔，约六个半头身。
+
+    脸与五官：较短的椭圆脸，高颧骨；细而有力的嘴唇抿着；眼角和额头有明显的皱纹；眼神锐利、不肯服输；年轻时的美貌依稀可见；皮肤有天山风霜。
+
+    发式：一头银白的头发，挽成低髻，用素木簪和深色布带束紧。
+
+    服饰：灰紫色右衽窄袖长袄（穿着者左襟压右襟），深灰长裙配厚长裤，平底软靴；天山行旅的厚实衣装。
+
+    兵器与道具：一柄普通中式长剑完全入鞘，一手握在鞘口，另一手轻按腰带。
+
+    姿态与神情：双足错开站稳，下颌微抬，眉眼间透着傲气。
+
+    画风：写实手绘古风人物插画，画风与上传的最后两张画风基线图一致：精细写实的数字手绘插画，笔触细腻柔和、边缘干净；不是油画，没有厚涂笔触和画布纹理；不是照片，不是三维渲染，不是动漫或游戏 CG。人物要像真实存在的人：皮肤看得见毛孔、细纹、晒痕和轻微色斑，五官与脸型有自然的左右不对称，不磨皮；衣料看得出织物的经纬、自然的褶皱和穿用后的轻微旧化，但衣服完整，没有破洞碎布。整体低饱和、沉稳的设色；柔和自然的漫射光从左上方照来，不用舞台光和强轮廓光。
+
+    背景：暖浅灰色纸底，远处只有极淡的水墨远山和薄雾，大面积留白；人物轮廓清楚、与背景明显分开（便于后期抠图），墨色不压到人物身上，脚下只有很淡的接触阴影。
+
+    构图：2:3 竖幅，单人全身，自然站姿，平视镜头，头部端正不歪；从头顶到鞋底完整入画，四周留出余白；双手完整，兵器和道具的两端都在画面内。
+
+    不要：任何文字、字母、签名、印章、水印、边框；第二个人物、活的动物、分格、多视角、头像特写；幼态、童颜、娃娃脸、大头小身、儿童身材；网红脸、锥子脸、大眼滤镜、过度对称、塑料皮肤、蜡像感、过度精修、偶像化打光；任何真实演员或明星的长相；现代服饰和物品；日式服饰、日本刀；汉服交领左衽、整幅画面左右镜像；多余或缺失的手指、手与器物粘连；发光特效、血迹；浓妆、性感化或暴露的衣着；白发少女、光滑年轻的脸；道姑拂尘；凶相丑化。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:11:44-0700
+  source_path: .agents/coord/gemini_originals/por_npc_guanmingmei__ch12_elder_alive_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: b372fe092ce5b1d5a04c75f1aa5e132d4cf78eb096cb600352a0123efb0dab23
+  status: candidate
+  notes: 立绘重审重出（AR-30）；霍青桐之师尚无立绘；补出银发「雪雕」，保留老年真实面貌与好强的锋芒。
+- id: por_npc_luobing__ch12_youth_recovered_base
+  file: por_npc_luobing__ch12_youth_recovered_base.png
+  category: character/female
+  style: default
+  subject: 骆冰（ch12_shujian）
+  prompt: '【任务】Use case: identity-preserve。这是图像编辑，不是重画。第1张为待改原图（骆冰），第2张为该原图的脸部特写。以第1张完整图为底，只修改面部，然后输出完整1024×1536的2:3竖幅图片。
+
+    【作者AR-69目标】作者要求骆冰不要露齿。只编辑面部表情，把露齿的笑改为不露齿的浅笑：上下嘴唇自然合拢、牙齿完全不可见，嘴角轻微上扬，眉眼轻松，温婉而爽朗。不要抿嘴用力，不要变成板脸或大笑。ch12与ch13两张的笑意强度、闭唇状态、眼角放松程度要一致。
+
+    【必须保留】是原图的同一个人物，年龄、基本骨相、脸的大小位置、头部朝向和身体姿势保留；只在脸部完成要求。发式与头饰、发丝轮廓、服装款式颜色纹理和每处褶皱、右衽方向、腰带、佩饰、刀剑刀鞘、手和器物、鞋子、人物站位、构图取景、背景山水花枝纸底、光线色调与画风保持原图不变。不要裁切、镜像或重排。
+
+    【画风】与原图一致的写实手绘古风人物插画。面部自然，有轻微不对称和细腻的手绘肤质；不要皮肤磨皮、塑料高光、照片质感、完美对称五官、网红尖下巴和玻璃大眼。面部的新光影色温笔触与其余部分一致。
+
+    【不要】不要露齿、张嘴、夸张大笑；不要文字、字幕、题款、印章、水印、电视台logo；不要第二个人；不要复制剧照的镜头拼接或场景；不要改变衣饰、发式、构图、手、兵器、背景和画风。'
+  negative: 不要露齿、张嘴、夸张大笑；不要文字、字幕、题款、印章、水印、电视台logo；不要第二个人；不要复制剧照的镜头拼接或场景；不要改变衣饰、发式、构图、手、兵器、背景和画风。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_luobing__ch12_youth_recovered_base.png
+    sha256: 2c208562f3a25511d3d1a3b56d9cd8c09ed18367a63c043e68846bea60703012
+    use: AR-69待改原图（全图+本图脸部特写）；原图的衣饰发式构图姿势保留；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_luobing__ch12_youth_recovered_base.2c208562.png
+  tool: codex exec · image_gen（AR-69作者逐人定稿；w24既有单槽runner图像编辑）
+  model: gpt-6.1-sol
+  created: 2026-10-03T22:51:43-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/por_npc_luobing__ch12_youth_recovered_base.ar69.1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: cdbc8864814e26dbee39095832c9f0a3cbe5918da9126c47f4300cb1b0c281b0
+  status: candidate
+  notes: 立绘重审重出（AR-30）；红花会十一当家尚无立绘；按原著「肤色白腻、星眼流波、明艳爽朗、一长一短双刀加飞刀」补出。；AR-69：骆冰不露齿浅笑、温婉爽朗，ch12/ch13表情一致；作者逐人定稿，服饰、发式、构图、姿势保持；已实际打开改前改后质检，仍为candidate待协调者判断
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_luobing__ch12_youth_recovered_base.2c208562.png
+    sha256: 2c208562f3a25511d3d1a3b56d9cd8c09ed18367a63c043e68846bea60703012
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/por_npc_luobing__ch12_youth_recovered_base.2c208562.entry.yaml
+- id: por_npc_liyuanzhi__ch12_youth_disguised_base
+  file: por_npc_liyuanzhi__ch12_youth_disguised_base.png
+  category: character/female
+  style: default
+  subject: 李沅芷（ch12_shujian）
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是这张立绘的脸部特写（看清本人五官用）；第 2 张参考图是待改原图。请以第 2 张原图为底稿，只改人物的表情、眼神和嘴角，让神态变成：女扮男装的俏皮狡黠：眼神灵动带笑，嘴角翘起，得意又调皮。然后输出修改后的完整图片：2:3 竖幅，构图、取景与原图一致。
+
+    【必须还是同一个人】脸型与骨相、眉形与眉眼间距、眼型、鼻子、嘴型与唇厚、胡须、皱纹、痣与疤、肤色、年龄感、发式与头饰都保持原图不变——只是同一张脸换了一个表情。表情要自然，面部肌肉随表情合理变化（笑时眼角、苹果肌、法令纹随之变化），但不要变年轻或变老、不要变胖或变瘦、不要换成另一张更好看的脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景、光线方向与色调、纸底与水墨处理、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_liyuanzhi__ch12_youth_disguised_base.png
+    sha256: 6bdb5db066774222abf78ee6e90b6f074ea19a39091414d85b992a3ebd5dcc22
+    use: 待改原图（AR-58 神态（各书配角） 图像编辑只改表情，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_liyuanzhi__ch12_youth_disguised_base.6bdb5db0.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角） · 12 号出图员：图像编辑只改表情、眼神、嘴角，上传本图脸部特写 + 原图，不加画风基线；编辑结果只取头部合成回原图）
+  model: gpt-6.1-sol
+  created: 2026-10-03T20:44:05-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_liyuanzhi__ch12_youth_disguised_base.x1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: eac6bb7501f5854bc68e9fcab5758967c80bbb718b2172165db803039596395d
+  status: candidate
+  notes: 立绘重审重出（AR-30）；书剑重要女角尚无立绘；补出女扮男装的俊俏小公子，原设计「保守年轻外观」改为明确成年。；AR-58 神态（各书配角）（12 号线（gpt-6.1-sol））：只改表情、眼神、嘴角 → 女扮男装的俏皮狡黠：眼神灵动带笑，嘴角翘起，得意又调皮（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png；AR-63：依交接既定女扮男装阶段与俏皮狡黠性格，只改神态，不改乔装服饰；目视面部有界羽化合成，发式/头饰/颈部/服装/背景像素不动，面部框外像素差=0）
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_liyuanzhi__ch12_youth_disguised_base.6bdb5db0.png
+    sha256: 6bdb5db066774222abf78ee6e90b6f074ea19a39091414d85b992a3ebd5dcc22
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_liyuanzhi__ch12_youth_disguised_base.6bdb5db0.entry.yaml
+- id: por_npc_zhouqi12__ch12_youth_base
+  file: por_npc_zhouqi12__ch12_youth_base.png
+  category: character/female
+  style: default
+  subject: 周绮（ch12_shujian）
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是这张立绘的脸部特写（看清本人五官用）；第 2 张参考图是待改原图。请以第 2 张原图为底稿，只改人物的表情、眼神和嘴角，让神态变成：俏李逵的爽朗泼辣：眉毛明显一扬，眼睛有直率的笑意，嘴角两边明显上扬，爽快而有英气的笑（闭口，不露齿）。然后输出修改后的完整图片：2:3 竖幅，构图、取景与原图一致。
+
+    【必须还是同一个人】脸型与骨相、眉形与眉眼间距、眼型、鼻子、嘴型与唇厚、胡须、皱纹、痣与疤、肤色、年龄感、发式与头饰都保持原图不变——只是同一张脸换了一个表情。表情要自然，面部肌肉随表情合理变化（笑时眼角、苹果肌、法令纹随之变化），但不要变年轻或变老、不要变胖或变瘦、不要换成另一张更好看的脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景、光线方向与色调、纸底与水墨处理、笔触与画风。
+
+    【本张另外要求】第1次只是很淡的含蓄浅笑，不够直率爽朗。让眉毛有明显挑起，嘴角上扬更清楚，笑得坦率泼辣；仍然是原图那张脸，不变秀气不变骨相。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_zhouqi12__ch12_youth_base.png
+    sha256: b1d8e68e812497c2cdde38ce83f0d0595e64d65eee1044727f50d42c850f2853
+    use: 待改原图（AR-58 神态（各书配角） 图像编辑只改表情，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_zhouqi12__ch12_youth_base.b1d8e68e.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角） · 12 号出图员：图像编辑只改表情、眼神、嘴角，上传本图脸部特写 + 原图，不加画风基线；编辑结果只取头部合成回原图）
+  model: gpt-6.1-sol
+  created: 2026-10-03T20:46:32-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_zhouqi12__ch12_youth_base.x2.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 32a40f3cc0687996666a7cdd31b4f0565c99c28d14fab6df7dae7482107e3e30
+  status: candidate
+  notes: 立绘重审重出（AR-30）；书剑重要女角尚无立绘；按「俏李逵」、个子高、肤色微黑、大眼小嘴补出，与徐天宏一高一矮。；AR-58 神态（各书配角）（12 号线（gpt-6.1-sol））：只改表情、眼神、嘴角 → 俏李逵的爽朗泼辣：眉毛明显一扬，眼睛有直率的笑意，嘴角两边明显上扬，爽快而有英气的笑（闭口，不露齿）（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png；第1次笑偏含蓄，第2次眉毛挑起和嘴角上扬更清楚，逐张看图通过；AR-63：依交接既定俏李逵的直率泼辣性格；目视面部有界羽化合成，发式/头饰/颈部/服装/背景像素不动，面部框外像素差=0）
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_zhouqi12__ch12_youth_base.b1d8e68e.png
+    sha256: b1d8e68e812497c2cdde38ce83f0d0595e64d65eee1044727f50d42c850f2853
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_zhouqi12__ch12_youth_base.b1d8e68e.entry.yaml
+- id: por_npc_zhujue__ch12_f_base
+  file: por_npc_zhujue__ch12_f_base.png
+  category: character/female
+  style: default
+  subject: 主角（女）· 清乾隆（ch12_shujian）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】主角（女）：本作原创的穿越者，此刻身处《书剑恩仇录》清乾隆（约 1753–1759 年，项目推定）；江南行旅的汉地普通江湖人，不是回部装束。本图是她在这一时代的基础立绘，不代表特定门派或结局。
+
+    【身份参考】随提示词上传的第 1 张图是主角本人（序章 ch00 新版定稿）：保持同一个人——脸型、眉形、眼睛、鼻子、嘴、右眼下的小痣、肤色、体型和年龄都不变；只把服饰、发式和道具换成下文的本时代版本。不要照搬图中的衣服、姿势和背景。
+
+    【本人面容（十五个时代统一，不能变）】约二十八岁的现代中国女青年，原创面孔，不像任何演员或书中其他人物。略长的鹅蛋脸，颧骨清楚，下颌利落而不尖；眉毛偏浓、平直，眉尾微微上扬（不是细柳眉、不是挑眉）；深棕色细长杏眼、内双，眼神清醒专注；鼻梁秀直、鼻头略圆；唇形清楚、上唇略薄，嘴角平；右眼外下方一颗清楚可见的浅褐色小痣（全书标志）；暖中性肤色带一点日晒，皮肤有真实纹理，素面不施浓妆。中等偏高的个子，肩背舒展、腰背挺直，四肢有行动的力量（约 7 头身）；乌黑直发、发量浓密。是成熟有主见的成年女子：沉静、可靠、带一点好奇，既不柔弱也不妩媚。
+
+    【主角标志】发髻上系一根褪色的朱红细绳，露出短短的绳头——每个时代都保留这根红绳。
+
+    【服饰】潮青色汉族右衽窄袖衫袄，浅灰素裙，墨灰窄布带、平底布鞋；黑发盘成简洁低髻，素木簪固定，髻根系朱红细绳。
+
+    【道具】左腰用两根短系带挂一柄普通的中国直身双刃剑，完整入朴素木鞘，小型中式剑格，无纹饰无宝石；剑柄、鞘口、鞘尾都清楚，剑不出鞘；没有红花会标识。
+
+    【姿态与神情】身形挺拔、双肩平展，目光清醒而郑重，像经过多次选择后仍愿承担。成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要明星脸或模特式五官；不要与书中男女主角撞脸；不要具名神兵、门派徽记、官服；不要年龄变小或变老。不要跨时代混搭的发式和服饰；不要像赵敏、王语嫣、黄蓉、小龙女等书中女角。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 5f491550d73ea5daf2a29eb618568c208d226d296da1e5d7fc3a37774c7f85e5
+    use: 身份参考（本轮新出的主角（女）· 春秋末·越国 por_npc_zhujue__ch00_f_base）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w1/staging/por_npc_zhujue__ch00_f_base.jpg
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:59:04-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zhujue__ch12_f_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 458b73675f7c7ea2b77288c33160ce6774ed5311bfa8db85dba95d7eb51dd3ff
+  status: candidate
+  notes: 立绘重审重出（AR-30）；随女主 ch00 新锚点统一重出：现图的脸与 ch00 不一致，改为同一张原创脸，服饰沿用本时代设定；codex 出图（1 号出图员，AR-31）；主角时代图：上传本轮新出的 ch00 锚点作唯一身份参考；沿用审核组提示词，补去 AI 味一句
+- id: por_npc_kasili__ch12_youth_prepalace_base
+  file: por_npc_kasili__ch12_youth_prepalace_base.png
+  category: character/female
+  style: default
+  subject: 喀丝丽（ch12_shujian）
+  prompt: 'Use case: identity-preserve（局部改脸）。Asset type: AR-73 作者选版的单人全身立绘候选，不入库。
+
+    编辑所附图像，为喀丝丽出一张B版，不要做对照表或多格图。
+
+    输入角色：图1是本次唯一编辑目标：已质检 A版全身。图2是A版同一人的脸部特写，B必须沿用这张演员身份脸。图3是最初旧base，只检查其服饰、发式、体型、姿势、构图、道具、背景；绝不取图3旧脸。图4起为演员参考，校对演员身份。
+
+    主要请求：B 版：在已给 A 版同一张身份脸的基础上，五官与气质更含蓄、更贴原著；要看得出与 A 是同一人，只在克制程度、妆感与细微神态上变化。
+
+    脸部要求：B 延续 A 的娜扎身份脸，收敛红毯式艳丽和妆感，嘴角只轻轻弯，目光纯净柔和，清新自然、天真善良，既有绝世美貌又有原著喀丝丽的素净和纯真。不要磨平她的自然鼻眼骨相或变成另一人。
+
+    画法：整张仍是图1的项目写实手绘古风插画，细腻笔触、自然肤理、微妙左右不对称和少量真实不完美；肤色与柔和光线融入原画。拒绝磨皮、塑料高光、蜡像、浓妆、网红脸、尖下巴大眼高鼻的统一模板、偶像美颜与摄影感；不要过度对称。
+
+    锁定：只编辑面部内的五官、骨相与细微神态，年龄阶段、头的大小、朝向、身体、肩颈、身形、服饰、发式、头饰、手、道具、姿势、构图、全身位置、画幅、纸底与极淡水墨远山全部照图1不变。红绿小宝石冠、白头巾细珠链、许多黑辫、雪白厚实刺绣衣裙与红细滚边、白鞋，原位一手拢头巾完全保持。不要重设计任何衣饰，不从演员照片借头饰或衣服，不改衣襟方向、不镜像、不放大头部。
+
+    完整输出：与图1相同2:3竖幅完整全身，头顶、双手、双脚、羽毛和道具两端留在画内。只有一个人，无第二个人，无文字、字幕、题款、印章、logo、签名、水印或边框，神态不露齿。请输出一张最终PNG。'
+  negative: ''
+  references:
+  - path: .agents/coord/_lines/ref-ab-heroines/candidates/kasili_B.png
+    sha256: d51247d9566e83aa6d4103371374364be4e75d9712f764902ccdbb5354e35cc6
+    use: AR-73 / AR-86 参考 古力娜扎，作者选 B；候选原始文件
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/por_npc_kasili__ch12_youth_prepalace_base.ar73refab_b1__ref1.jpg
+    sha256: 6211a88e631fc89a420a8452ddc9aa57d2ed6c213a6e90e1c2a46825ee41a875
+    use: 原候选生成参考，见 ref-ab-heroines/DELIVERY.csv 与 SOURCES.md
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/por_npc_kasili__ch12_youth_prepalace_base.ar73refab_b1__ref2.jpg
+    sha256: 29b144f6059259a0e6f95c2ecebfe2651c926b712430a91e5a17493bd1973a07
+    use: 原候选生成参考，见 ref-ab-heroines/DELIVERY.csv 与 SOURCES.md
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/por_npc_kasili__ch12_youth_prepalace_base.ar73refab_b1__ref3.jpg
+    sha256: 4074fc5e2a8a4f7da158ae0143c8cd9a003fbe4ad2564cf06e71f180b8a526ee
+    use: 原候选生成参考，见 ref-ab-heroines/DELIVERY.csv 与 SOURCES.md
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/por_npc_kasili__ch12_youth_prepalace_base.ar73refab_b1__ref4.jpg
+    sha256: c2ac119484a87b71866d6ac7d9ef46c9889118b1ee63176c37b5cc13778e95fe
+    use: 原候选生成参考，见 ref-ab-heroines/DELIVERY.csv 与 SOURCES.md
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/por_npc_kasili__ch12_youth_prepalace_base.ar73refab_b1__ref5.jpg
+    sha256: 2db13d6a1d935b10b06c6eb44b39a1175c461861873ee1e5ab9aed585ee22576
+    use: 原候选生成参考，见 ref-ab-heroines/DELIVERY.csv 与 SOURCES.md
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    sha256: 2934aecf9b53126a54857f03bbb888dcfc6fd2c9a65c8d5a67101168beaca787
+    use: 作者选定的新 base 替换前原图；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_prepalace_base.2934aecf.png
+  tool: codex exec · image_gen（AR-73 候选；AR-86 作者选版，经项目 ingest17.py 入库）
+  model: gpt-6.1-sol
+  created: 2026-10-04T00:01:55-0700
+  source_path: .agents/coord/_handoff/gem/codex_w32/out/por_npc_kasili__ch12_youth_prepalace_base.ar86selected.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: fbf08c4442a5b7dde945e9ea2473aaa26e7904e5a5a583346221e1f7d58eb60f
+  status: candidate
+  notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：1976 年 TVB《书剑恩仇录》；第 2 次出图：第 1 次脸偏通用美女模板、不像剧照，改写脸型描写后重出；job por_npc_kasili__ch12_youth_prepalace_base__t2；AR-73 / AR-86 参考 古力娜扎，作者选 B
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_prepalace_base.2934aecf.png
+    sha256: 2934aecf9b53126a54857f03bbb888dcfc6fd2c9a65c8d5a67101168beaca787
+    entry: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_prepalace_base.2934aecf.entry.yaml
+- id: por_npc_huoqingtong__ch12_youth_early_base
+  file: por_npc_huoqingtong__ch12_youth_early_base.png
+  category: character/female
+  style: default
+  subject: 霍青桐（ch12_shujian）
+  prompt: '只输出一张1024×1024 PNG面部局部插画。图1是E版的面部编辑目标，图2是C版用于同人神韵和程度对照；图3/4是同一影视角色的不笑和浅笑参考照片，只取五官神情。所有四张图都要实际用于image_gen输入。
+
+    任务：把图1的E版进一步画成理想化、十九岁的秀美回部女侠，变化程度要明显高于图2的C版。沿用图1/2/3的同一人眉眼鼻唇神韵：略拱眉线、眉尾和杏眼走向、柔秀鼻尖鼻翼、自然含蓄的唇峰、柔润下唇。神情还是英气沉着、清醒有主见、略带温婉，双唇闭合、嘴角极浅柔和，不露齿、不笑眯眼、不愁苦、不妩媚。
+
+    本张必须达到的明显递进：脸的颧颌区域再收小约8%，下颌更秀窄而下巴仍柔润，脸是小巧秀长的椭圆形；杏眼比图2自然增大约12%，眼裂更舒展、眼神清亮有神，保持写实成人比例；鼻根与鼻梁更高挺秀直，鼻尖小巧柔秀；肤色更白皙光洁但保留很浅的自然暖色。眼窝和眉骨带更鲜明一点的西域立体轮廓，用浅而干净的淡彩笔触表现；眉眼清晰、有英气。整体是十八九岁的秀美成年少女，不是娃娃脸、儿童、欧美面容或尖下巴模板脸。理想化仍要让人认出与C及参考是同一人物。
+
+    完全去掉法令纹、鼻翼到嘴角暗沟、眼袋、眼下暗圈、颧骨凹影、细纹和疲倦老化痕迹；眼窝不画黑圈，不靠深暗阴影塑造骨相。
+
+    脸必须是项目的写实手绘古风插画：细腻的手绘五官线条、薄层淡彩、柔和浅明暗和绘画边缘。肤色光洁通过淡彩笔触呈现，左上柔光融入衣饰；不能照片换头、照片式强立体打光、摄影鼻尖高光、镜头反光、皮肤毛孔、景深虚化、塑料磨皮、3D或动漫。只取照片五官神情，不带入照片年纪、皮肤纹路和光影。
+
+    只改面部五官、脸的秀窄轮廓、肤色与神情。图1的帽子、羽毛、发际和整套发型、耳饰、辫子、衣领、头部外轮廓、头像位置、头朝向及纸底全部不变；不要缩放帽子或头发，不借照片的额饰、白纱、丝带和服装。无文字、水印、印章、边框、多格、第二个人。只交单张PNG。
+
+    【入库】AR-91 作者原话「霍青桐选E」：上述面部输出已在 huoqingtong-r2 按原位置局部合成；本次使用作者选定 E 候选原图，不重新生成。'
+  negative: ''
+  references:
+  - path: .agents/coord/_lines/huoqingtong-r2/candidates/huoqingtong_E.png
+    sha256: 9a35b24c032463a80cb6c40016ee9ccb0d27a6b7974a466f6c091cc76088bdf3
+    use: AR-91 作者选 E；AR-86 参考关咏荷、写实手绘；直接采用已审候选整图
+  - path: .agents/coord/_lines/huoqingtong-r2/raw/huoqingtong_E_face_raw.png
+    sha256: 9278a85d088fb5814a2d063eda8b9d1afd1eb1fdf678d20e563c83304ecc612c
+    use: 实际 image_gen 面部原始输出，源作业 por_npc_huoqingtong__ch12_youth_early_base.ar86r2_e3
+  tool: codex exec · image_gen + AR-86 面部蒙版局部合成（AR-91 作者选 E；候选原样入库）
+  model: gpt-6.1-sol
+  created: 2026-10-04T09:15:11-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/por_npc_huoqingtong__ch12_youth_early_base.ar91_selected_e.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 93f02e773f8dfb82139215b87166b855b3611100ee611af18664ecfe7ca3bcbb
+  status: candidate
+  notes: AR-32 补记修改 B（9 号出图员）：作者 10-02（AR-32 补记）：书剑取 1976 TVB 版，下载剧照后重出；上一版本机无剧照，只用文字。1976 年 TVB《书剑恩仇录》（霍青桐由汪明荃饰演） 剧照 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘；r1；AR-86 / AR-91 参考关咏荷，作者选 E
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_early_base.2488b4c4.png
+    sha256: 2488b4c4ea0ba3345583c22385ad55d2d68c642145c4310b859e43bac00e8b8b
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_early_base.2488b4c4.entry.yaml
+- id: por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit
+  file: por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.png
+  category: character/female
+  style: default
+  subject: 霍青桐·翠羽追经（ch12_shujian）
+  prompt: 'Use case: compositing
+
+    【任务】AR-91 霍青桐 E 版身份对齐。这是图像编辑，只输出一张与图2完全相同取景的1024×1024面部局部PNG，不重新创作整幅画。
+
+    【输入】图1是作者已选定并入库的霍青桐 E 版脸部，唯一身份基准；图2是待改原图的头部方形裁块，是实际编辑目标。
+
+    【只改脸】把图2霍青桐的面部五官、骨相轮廓与肤色改为图1同一人：秀窄年轻的椭圆脸、柔润下巴；清亮杏眼略大、略拱英气眉线；秀直挺拔鼻梁与柔秀鼻尖；自然含蓄唇峰和柔润下唇；十八九岁的白皙回部女侠，适度西域立体轮廓。参考关咏荷神韵已经化在 E 版，不再用照片。去掉法令纹与老化痕迹，身份与 E 一致但保持图2的现场光色。
+
+    【保留神态】原图正面，神情沉着警觉、眉眼略有戒备、双唇闭合，保留原来的严肃与视线，不加笑容。
+
+    【保持】图2头的位置、大小、倾斜、朝向和透视绝对不变。保持头发、发际、帽子、翠羽、耳饰、辫子、颈部、衣领、衣物、背景及露出的所有其他人和物。不要重画上述部分。脸与头不能整体缩放。原图的光源方向、自然色温和阴影强度不变，保持原图柔和手绘笔触，面部边缘融入周围。
+
+    【画风】写实手绘古风插画，薄层淡彩、自然柔和线条；不要照片式打光与毛孔，不要塑料磨皮、3D或动漫，不要网红模板脸。
+
+    【不要】无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。'
+  negative: 无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
+    sha256: 93f02e773f8dfb82139215b87166b855b3611100ee611af18664ecfe7ca3bcbb
+    use: 对脸基线：作者审核通过的 por_npc_huoqingtong__ch12_youth_early_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.png
+    sha256: dcb236a1abd8049a48f196ed0d5a21d143dd21081a4eb508430b78cbf307b3af
+    use: 待对齐原图；保留原神态与一切非面部像素；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.dcb236a1.png
+  tool: codex exec · image_gen（AR-91 E 定脸；头部裁块编辑 + 原位置面部蒙版局部合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T09:22:19-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.ar91e_face1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 993c0dd0b2071a7528fb0879a48a5e0515865c6dd2dba2962acfd52d5b8aca2b
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_huoqingtong__ch12_youth_early_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-86 / AR-91 参考关咏荷，作者选 E；AR-53 / AR-84 仅合成霍青桐面部，保留原神态，其他人物、服饰、场景与题字逐像素不变
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.dcb236a1.png
+    sha256: dcb236a1abd8049a48f196ed0d5a21d143dd21081a4eb508430b78cbf307b3af
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_yellow_robe_quran_pursuit.dcb236a1.entry.yaml
+- id: por_npc_huoqingtong__ch12_youth_scene_blackwater_command
+  file: por_npc_huoqingtong__ch12_youth_scene_blackwater_command.png
+  category: character/female
+  style: default
+  subject: 霍青桐·黑水军略（ch12_shujian）
+  prompt: 'Use case: compositing
+
+    【任务】AR-91 霍青桐 E 版身份对齐。这是图像编辑，只输出一张与图2完全相同取景的1024×1024面部局部PNG，不重新创作整幅画。
+
+    【输入】图1是作者已选定并入库的霍青桐 E 版脸部，唯一身份基准；图2是待改原图的头部方形裁块，是实际编辑目标。
+
+    【只改脸】把图2霍青桐的面部五官、骨相轮廓与肤色改为图1同一人：秀窄年轻的椭圆脸、柔润下巴；清亮杏眼略大、略拱英气眉线；秀直挺拔鼻梁与柔秀鼻尖；自然含蓄唇峰和柔润下唇；十八九岁的白皙回部女侠，适度西域立体轮廓。参考关咏荷神韵已经化在 E 版，不再用照片。去掉法令纹与老化痕迹，身份与 E 一致但保持图2的现场光色。
+
+    【保留神态】原图正面，沉着坚定而谨慎的指挥者，眉眼有英气、目光清醒，双唇闭合，不加笑容。
+
+    【保持】图2头的位置、大小、倾斜、朝向和透视绝对不变。保持头发、发际、帽子、翠羽、耳饰、辫子、颈部、衣领、衣物、背景及露出的所有其他人和物。不要重画上述部分。脸与头不能整体缩放。原图的光源方向、自然色温和阴影强度不变，保持原图柔和手绘笔触，面部边缘融入周围。
+
+    【画风】写实手绘古风插画，薄层淡彩、自然柔和线条；不要照片式打光与毛孔，不要塑料磨皮、3D或动漫，不要网红模板脸。
+
+    【不要】无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。'
+  negative: 无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
+    sha256: 93f02e773f8dfb82139215b87166b855b3611100ee611af18664ecfe7ca3bcbb
+    use: 对脸基线：作者审核通过的 por_npc_huoqingtong__ch12_youth_early_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.png
+    sha256: baa4a338f8606fb85471763f3ad917a2bee9b8eb3f539959d5173460389a6304
+    use: 待对齐原图；保留原神态与一切非面部像素；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.baa4a338.png
+  tool: codex exec · image_gen（AR-91 E 定脸；头部裁块编辑 + 原位置面部蒙版局部合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T09:22:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.ar91e_face1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: b407d5a7534ee4c10cc5b109e57be974da37d557e8550072c5408a0b6ee88290
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_huoqingtong__ch12_youth_early_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-86 / AR-91 参考关咏荷，作者选 E；AR-53 / AR-84 仅合成霍青桐面部，保留原神态，其他人物、服饰、场景与题字逐像素不变
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_huoqingtong__ch12_youth_scene_blackwater_command.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.baa4a338.png
+    sha256: baa4a338f8606fb85471763f3ad917a2bee9b8eb3f539959d5173460389a6304
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_huoqingtong__ch12_youth_scene_blackwater_command.baa4a338.entry.yaml
+- id: por_npc_kasili__ch12_youth_scene_oasis_first_meeting
+  file: por_npc_kasili__ch12_youth_scene_oasis_first_meeting.png
+  category: character/female
+  style: default
+  subject: 喀丝丽·绿洲初见（ch12_shujian）
+  prompt: 'Use case: precise-object-edit
+
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
+
+    【只改】喀丝丽湖畔初见：保留作者选定面容、原头部位置与角度、白衣和原画笔触。改为坐在湖边红花树下的大石上（坐姿使原头部保持画内相同高度，不移脸），刚从水中出来，两只脚明确赤足、脚趾自然可见，鞋子在画外。原整齐两根长辫和头巾去掉，湿润长发自然散垂两肩后背，脸与发有少许水珠；一手持素色梳子慢慢梳理湿长发，另一手轻拢发束，不再扶头巾。白衣完全不透明，双足与下摆少量水珠，仍端庄保暖不裸露身体。
+
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
+
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_17_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.png
+    sha256: a8afd321257221179cdfb65ebf6273258d3b5bb27dfef7b5714b974ab744fedd
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.a8afd321.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:07:27-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_17_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 2d479af045f730a64ed896e9ef7b10154565e1c52d6bfe97ac8211743dfeec26
+  status: candidate
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 / AR-75 / AR-86：喀丝丽头部局部合成，对齐作者新 base（AR-73 参考古力娜扎，AR-86 选B）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变；AR-82 原著核对返修：喀丝丽湖畔初见改坐梳湿发、明确赤足；依据：- AR-82 返修依据：《书剑恩仇录》第十三回“吐气扬眉雷掌疾，惊才绝艳雪莲馨”：“她赤了双脚”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E4%B9%A6%E5%89%91%E6%81%A9%E4%BB%87%E5%BD%95/%E7%AC%AC13%E7%AB%A0%E3%80%80%E5%90%90%E6%B0%94%E6%89%AC%E7%9C%89%E9%9B%B7%E6%8E%8C%E7%96%BE%EF%BC%8C%E6%83%8A%E6%89%8D%E7%BB%9D%E8%89%B3%E9%9B%AA%E8%8E%B2%E9%A6%A8.md；执行：湖畔初见保留白衣，双脚明确赤足、鞋放画面外；脚与衣摆沾少许水珠，表现刚从水中上来。 / - AR-82 返修依据：《书剑恩仇录》第十三回“吐气扬眉雷掌疾，惊才绝艳雪莲馨”：“坐着”“长发垂肩”“拿着一把梳子慢慢梳理”。；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E4%B9%A6%E5%89%91%E6%81%A9%E4%BB%87%E5%BD%95/%E7%AC%AC13%E7%AB%A0%E3%80%80%E5%90%90%E6%B0%94%E6%89%AC%E7%9C%89%E9%9B%B7%E6%8E%8C%E7%96%BE%EF%BC%8C%E6%83%8A%E6%89%8D%E7%BB%9D%E8%89%B3%E9%9B%AA%E8%8E%B2%E9%A6%A8.md；执行：坐在湖边红花树下，湿长发散垂肩背，手持梳子理发；脸与发留水珠。保留作者选定面容，不以整理头巾动作代替梳发。；局部合成范围外变化0；Executed-By:
+    Codex gpt-6.1-sol（AR-82）'
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_kasili__ch12_youth_scene_oasis_first_meeting.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.a8afd321.png
+    sha256: a8afd321257221179cdfb65ebf6273258d3b5bb27dfef7b5714b974ab744fedd
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_kasili__ch12_youth_scene_oasis_first_meeting.a8afd321.entry.yaml
+- id: por_npc_kasili__ch12_youth_scene_palace_warning_letter
+  file: por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
+  category: character/female
+  style: default
+  subject: 喀丝丽·宫中急信（ch12_shujian）
+  prompt: '【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的喀丝丽新 base 脸部特写（参考古力娜扎，作者选B）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
+
+    【身份】明确成为第1张的同一位喀丝丽：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
+
+    【剧情神态与造型】保留宫中护信时侧望、警觉与忧虑，不改成微笑；原图冷窗漫射光。
+
+    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
+
+    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
+
+    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
+  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    sha256: fbf08c4442a5b7dde945e9ea2473aaa26e7904e5a5a583346221e1f7d58eb60f
+    use: 对脸基线：作者审核通过的 por_npc_kasili__ch12_youth_prepalace_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_scene_palace_warning_letter.png
+    sha256: 7e8116f5d1ff5ac0f79a0827627e7aea650fc80a56edf42a03c90904d2541303
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_palace_warning_letter.7e8116f5.png
+  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T00:12:27-0700
+  source_path: .agents/coord/_handoff/gem/codex_w32/out/por_npc_kasili__ch12_youth_scene_palace_warning_letter.ar86_kasili1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 338de7e3e4bef5b25b9807d7e0b7cbc1b45e33d5cbdeda7a768f9df7582d7678
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 / AR-75 / AR-86：喀丝丽头部局部合成，对齐作者新 base（AR-73 参考古力娜扎，AR-86 选B）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_kasili__ch12_youth_scene_palace_warning_letter.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_palace_warning_letter.7e8116f5.png
+    sha256: 7e8116f5d1ff5ac0f79a0827627e7aea650fc80a56edf42a03c90904d2541303
+    entry: .agents/coord/_handoff/gem/codex_w32/replaced/por_npc_kasili__ch12_youth_scene_palace_warning_letter.7e8116f5.entry.yaml
+- id: por_npc_zhoudanainai__ch12_elder_household_base
+  file: por_npc_zhoudanainai__ch12_elder_household_base.png
+  category: character/female
+  style: default
+  subject: 周大奶奶（ch12_shujian）
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是这张立绘的脸部特写（看清本人五官用）；第 2 张参考图是待改原图。请以第 2 张原图为底稿，只改人物的表情、眼神和嘴角，让神态变成：慈祥温厚的庄主夫人：眼角带笑纹，嘴角坚毅中透着慈和的笑意。然后输出修改后的完整图片：2:3 竖幅，构图、取景与原图一致。
+
+    【必须还是同一个人】脸型与骨相、眉形与眉眼间距、眼型、鼻子、嘴型与唇厚、胡须、皱纹、痣与疤、肤色、年龄感、发式与头饰都保持原图不变——只是同一张脸换了一个表情。表情要自然，面部肌肉随表情合理变化（笑时眼角、苹果肌、法令纹随之变化），但不要变年轻或变老、不要变胖或变瘦、不要换成另一张更好看的脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景、光线方向与色调、纸底与水墨处理、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改动部分的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张做作的表情和露出整排牙齿的咧嘴（除非神态里写了大笑）；衣襟保持原图的右衽或民族服制，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_zhoudanainai__ch12_elder_household_base.png
+    sha256: f830afecb69fa5e26ae74e2a04b5d6cdc022d29dd4013e36ce0b099b0b92de75
+    use: 待改原图（AR-58 神态（各书配角） 图像编辑只改表情，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_zhoudanainai__ch12_elder_household_base.f830afec.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角） · 12 号出图员：图像编辑只改表情、眼神、嘴角，上传本图脸部特写 + 原图，不加画风基线；编辑结果只取头部合成回原图）
+  model: gpt-6.1-sol
+  created: 2026-10-03T20:44:11-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/por_npc_zhoudanainai__ch12_elder_household_base.x1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: e90365a849131d40b34bdcae83bd8f3d55f89870c8b8bf05d286ed431fc5ea25
+  status: candidate
+  notes: 'ART-cast-fill-d：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；本轮1张候选，选por_npc_zhoudanainai__ch12_elder_household_base.r1；未获作者批准。 QA: batch_03.jpg 联系表可辨结构通过；未发现必须重出的缺陷；细微指节不冒称像素级穷检。原始 PNG 保存在 source_path；本次未裁切。；AR-58 神态（各书配角）（12 号线（gpt-6.1-sol））：只改表情、眼神、嘴角 → 慈祥温厚的庄主夫人：眼角带笑纹，嘴角坚毅中透着慈和的笑意（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png；AR-63：依交接既定庄主夫人年长慈厚性格，保留皱纹与年龄感；目视面部有界羽化合成，发式/头饰/颈部/服装/背景像素不动，面部框外像素差=0）'
+  tier: A
+  effort: ultra
+  mode: RGB
+  source_sha256: f830afecb69fa5e26ae74e2a04b5d6cdc022d29dd4013e36ce0b099b0b92de75
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_zhoudanainai__ch12_elder_household_base.f830afec.png
+    sha256: f830afecb69fa5e26ae74e2a04b5d6cdc022d29dd4013e36ce0b099b0b92de75
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/por_npc_zhoudanainai__ch12_elder_household_base.f830afec.entry.yaml

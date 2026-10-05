@@ -1,0 +1,133 @@
+{
+  "type": "map",
+  "version": "1.12",
+  "tiledversion": "1.12.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "width": 18,
+  "height": 14,
+  "tilewidth": 48,
+  "tileheight": 48,
+  "nextlayerid": 5,
+  "nextobjectid": 18,
+  "backgroundcolor": "#18372a",
+  "properties": [
+    {"name": "schemaVersion", "type": "string", "value": "region-map.v1"},
+    {"name": "regionId", "type": "string", "value": "rg_jiangnan_taihu"},
+    {"name": "sceneId", "type": "string", "value": "sc_00_zhulin"},
+    {"name": "chapterScope", "type": "string", "value": "ch00_yuenv"},
+    {"name": "eraLayer", "type": "string", "value": "ch00"}
+  ],
+  "tilesets": [
+    {"firstgid": 1, "source": "../../../tiled/tilesets/terrain.tsj"},
+    {"firstgid": 49, "source": "../../../tiled/tilesets/height.tsj"}
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "type": "tilelayer",
+      "name": "terrain",
+      "x": 0,
+      "y": 0,
+      "width": 18,
+      "height": 14,
+      "opacity": 1.0,
+      "visible": true,
+      "data": [
+        0,0,0,0,0,4,4,4,4,4,4,4,0,0,0,0,0,0,
+        0,0,0,0,4,4,4,4,4,4,4,4,4,0,0,0,0,0,
+        0,0,0,4,4,4,4,4,4,4,4,4,4,1,0,0,0,0,
+        0,0,4,2,2,2,2,2,2,2,2,2,2,1,1,0,0,0,
+        0,4,2,2,2,2,2,2,2,2,2,2,2,1,1,4,0,0,
+        0,4,2,2,2,2,2,2,2,2,2,2,2,2,2,4,0,0,
+        0,4,2,2,2,2,2,2,14,14,2,2,2,2,2,4,0,0,
+        0,4,2,2,2,2,2,2,14,14,2,2,2,2,2,4,0,0,
+        0,4,2,2,2,2,2,2,14,31,2,2,2,2,2,4,0,0,
+        0,4,2,2,2,2,2,2,14,14,2,2,2,2,2,4,0,0,
+        0,0,4,2,2,2,2,2,14,14,2,2,2,2,4,0,0,0,
+        0,0,0,4,2,2,2,2,2,2,2,2,2,4,0,0,0,0,
+        0,0,0,0,4,4,4,4,4,4,4,4,4,0,0,0,0,0,
+        0,0,0,0,0,4,4,4,4,4,4,4,0,0,0,0,0,0
+      ]
+    },
+    {
+      "id": 2,
+      "type": "tilelayer",
+      "name": "height",
+      "x": 0,
+      "y": 0,
+      "width": 18,
+      "height": 14,
+      "opacity": 0.0,
+      "visible": false,
+      "data": [
+        0,0,0,0,0,50,50,50,50,50,50,50,0,0,0,0,0,0,
+        0,0,0,0,50,50,50,50,50,50,50,50,50,0,0,0,0,0,
+        0,0,0,50,50,50,50,50,50,50,50,50,50,49,0,0,0,0,
+        0,0,50,49,49,49,49,49,49,49,49,49,49,49,49,0,0,0,
+        0,50,49,49,49,49,49,49,49,49,49,49,49,49,49,50,0,0,
+        0,50,49,49,49,49,49,49,49,49,49,49,49,49,49,50,0,0,
+        0,50,49,49,49,49,49,49,49,49,49,49,49,49,49,50,0,0,
+        0,50,49,49,49,49,49,49,49,49,49,49,49,49,49,50,0,0,
+        0,50,49,49,49,49,49,49,49,49,49,49,49,49,49,50,0,0,
+        0,50,49,49,49,49,49,49,49,49,49,49,49,49,49,50,0,0,
+        0,0,50,49,49,49,49,49,49,49,49,49,49,49,50,0,0,0,
+        0,0,0,50,49,49,49,49,49,49,49,49,49,50,0,0,0,0,
+        0,0,0,0,50,50,50,50,50,50,50,50,50,0,0,0,0,0,
+        0,0,0,0,0,50,50,50,50,50,50,50,0,0,0,0,0,0
+      ]
+    },
+    {
+      "id": 3,
+      "type": "tilelayer",
+      "name": "deco",
+      "x": 0,
+      "y": 0,
+      "width": 18,
+      "height": 14,
+      "opacity": 1.0,
+      "visible": true,
+      "data": [
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+      ]
+    },
+    {
+      "id": 4,
+      "type": "objectgroup",
+      "name": "objects",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "draworder": "topdown",
+      "objects": [
+        {"id": 1, "name": "bookfall", "type": "PlayerSpawn", "x": 192, "y": 528, "width": 0, "height": 0, "rotation": 0, "visible": true, "properties": [{"name": "safe", "type": "bool", "value": true}, {"name": "entry", "type": "bool", "value": true}, {"name": "facing", "type": "int", "value": 1}], "point": true},
+        {"id": 2, "name": "from_shanjing", "type": "PlayerSpawn", "x": 624, "y": 96, "width": 0, "height": 0, "rotation": 0, "visible": true, "properties": [{"name": "safe", "type": "bool", "value": false}, {"name": "entry", "type": "bool", "value": false}, {"name": "facing", "type": "int", "value": 4}], "point": true},
+        {"id":3,"name":"to_shanjing","type":"Door","x":624,"y":96,"width":0,"height":0,"rotation":0,"visible":true,"properties":[{"name":"mode","type":"string","value":"portal"},{"name":"pairId","type":"string","value":"to_zhulin"},{"name":"oneWay","type":"bool","value":false},{"name":"targetRegionId","type":"string","value":"rg_jiangnan_taihu"},{"name":"targetSceneId","type":"string","value":"sc_00_shanjing"},{"name":"targetSpawnId","type":"string","value":"from_zhulin"},{"name":"lockedBy","type":"string","value":"gate_00_zhulin_chukou"},{"name":"textKey","type":"string","value":"scene.sc_00_shanjing.name"}],"point":true},
+        {"id":4,"name":"safe_bookfall","type":"Trigger","x":192,"y":480,"width":96,"height":96,"rotation":0,"visible":true,"properties":[{"name":"action","type":"string","value":"save/autosave"},{"name":"once","type":"bool","value":false},{"name":"autosave","type":"bool","value":true},{"name":"safe","type":"bool","value":true}]},
+        {"id": 5, "name": "npc_aqing_zhulin", "type": "NpcSpawn", "x": 432, "y": 432, "width": 0, "height": 0, "rotation": 0, "visible": true, "properties": [{"name": "npcId", "type": "string", "value": "npc_aqing"}, {"name": "facing", "type": "int", "value": 3}, {"name": "textKey", "type": "string", "value": "npc.npc_aqing.name"}], "point": true},
+        {"id":6,"name":"pickup_bamboo_staff","type":"Trigger","x":480,"y":432,"width":0,"height":0,"rotation":0,"visible":true,"properties":[{"name":"action","type":"string","value":"dialogue/start"},{"name":"textKey","type":"string","value":"prop.prop_bamboo_staff.name"},{"name":"once","type":"bool","value":false},{"name":"autosave","type":"bool","value":true},{"name":"safe","type":"bool","value":false}],"point":true},
+        {"id":7,"name":"pickup_tao","type":"Trigger","x":336,"y":480,"width":0,"height":0,"rotation":0,"visible":true,"properties":[{"name":"action","type":"string","value":"dialogue/start"},{"name":"textKey","type":"string","value":"quest.q_00_main_c_01.objective.accept_staff"},{"name":"once","type":"bool","value":false},{"name":"autosave","type":"bool","value":true},{"name":"safe","type":"bool","value":false}],"point":true},
+        {"id": 8, "name": "arena_00_zhulin", "type": "BattleArena", "x": 192, "y": 192, "width": 0, "height": 0, "rotation": 0, "visible": true, "polygon": [{"x":0,"y":0},{"x":48,"y":0},{"x":96,"y":0},{"x":144,"y":0},{"x":192,"y":0},{"x":240,"y":0},{"x":288,"y":0},{"x":0,"y":48},{"x":48,"y":48},{"x":96,"y":48},{"x":144,"y":48},{"x":192,"y":48},{"x":240,"y":48},{"x":288,"y":48},{"x":336,"y":48},{"x":0,"y":96},{"x":48,"y":96},{"x":96,"y":96},{"x":144,"y":96},{"x":192,"y":96},{"x":240,"y":96},{"x":288,"y":96},{"x":336,"y":96},{"x":0,"y":144},{"x":48,"y":144},{"x":96,"y":144},{"x":144,"y":144},{"x":192,"y":144},{"x":240,"y":144},{"x":288,"y":144},{"x":336,"y":144},{"x":0,"y":192},{"x":48,"y":192},{"x":96,"y":192},{"x":144,"y":192},{"x":192,"y":192},{"x":240,"y":192},{"x":288,"y":192},{"x":336,"y":192},{"x":0,"y":240},{"x":48,"y":240},{"x":96,"y":240},{"x":144,"y":240},{"x":192,"y":240},{"x":240,"y":240},{"x":288,"y":240},{"x":336,"y":240},{"x":0,"y":288},{"x":48,"y":288},{"x":96,"y":288},{"x":144,"y":288},{"x":192,"y":288},{"x":240,"y":288},{"x":288,"y":288},{"x":336,"y":288},{"x":48,"y":336},{"x":96,"y":336},{"x":144,"y":336},{"x":192,"y":336},{"x":240,"y":336},{"x":288,"y":336}], "properties": [{"name": "encounterId", "type": "string", "value": "enc_00_zhulin"}, {"name": "playerCapacity", "type": "int", "value": 1}, {"name": "enemyCapacity", "type": "int", "value": 2}, {"name": "narrow", "type": "bool", "value": true}]},
+        {"id": 9, "name": "zone_00_zhulin", "type": "EnemyZone", "x": 432, "y": 336, "width": 96, "height": 48, "rotation": 0, "visible": true, "properties": [{"name": "encounterId", "type": "string", "value": "enc_00_zhulin"}, {"name": "spawnPointId", "type": "string", "value": "arena_00_zhulin"}]},
+        {"id":10,"name":"autosave_zhulin_battle","type":"Trigger","x":336,"y":528,"width":96,"height":48,"rotation":0,"visible":true,"properties":[{"name":"action","type":"string","value":"save/autosave"},{"name":"once","type":"bool","value":true},{"name":"autosave","type":"bool","value":true},{"name":"safe","type":"bool","value":false}]},
+        {"id": 11, "name": "gate_00_zhulin_bridge", "type": "QinggongGate", "x": 384, "y": 384, "width": 0, "height": 0, "rotation": 0, "visible": true, "properties": [{"name": "kind", "type": "string", "value": "gap"}, {"name": "tier", "type": "int", "value": 1}, {"name": "fromQ", "type": "int", "value": 8}, {"name": "fromR", "type": "int", "value": 8}, {"name": "toRegion", "type": "string", "value": "rg_jiangnan_taihu"}, {"name": "toScene", "type": "string", "value": "sc_00_zhulin"}, {"name": "toQ", "type": "int", "value": 10}, {"name": "toR", "type": "int", "value": 8}, {"name": "height", "type": "int", "value": 0}, {"name": "width", "type": "int", "value": 1}, {"name": "run", "type": "int", "value": 0}, {"name": "stages", "type": "int", "value": 1}, {"name": "intent", "type": "string", "value": "side"}, {"name": "reveal", "type": "string", "value": "always"}, {"name": "alt", "type": "string", "value": "[]"}, {"name": "earliest", "type": "float", "value": 0.0}, {"name": "oneWay", "type": "bool", "value": false}, {"name": "hintTextKey", "type": "string", "value": "tutorial.ch00.09.body"}], "point": true},
+        {"id": 12, "name": "camera_zhulin", "type": "CameraHint", "x": 192, "y": 528, "width": 0, "height": 0, "rotation": 0, "visible": true, "properties": [{"name": "yawDeg", "type": "int", "value": 45}, {"name": "zoom", "type": "float", "value": 1.0}, {"name": "allowRotation", "type": "bool", "value": true}, {"name": "boundsQ", "type": "int", "value": 0}, {"name": "boundsR", "type": "int", "value": 0}, {"name": "boundsWidth", "type": "int", "value": 18}, {"name": "boundsHeight", "type": "int", "value": 14}], "point": true}
+      ]
+    }
+  ]
+}

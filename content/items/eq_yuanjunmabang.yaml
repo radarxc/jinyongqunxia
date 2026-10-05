@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_yuanjunmabang
+name: 元军铁箍马棒
+kind: weapon
+sub: staff
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·元；倚天起可得，具体军伍名目 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/yuanjunmabang
+text:
+  desc: 外观：榆木短棒约九十五厘米，前粗后细、三道铁箍与圆钝包头。
+  lore: 元代骑军节点使用的短马棒，榆木前端加三道铁箍，单手在马上挥击后可借腕环防脱。它以钝击制敌，不设尖刺；具体军伍名目仍 （待考：核元代骑兵器械），形制和投放为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 56
+      qiAffinity: 100

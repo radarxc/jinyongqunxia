@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_yarou
+name: 鸭肉
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 江南水乡家禽通用；《东京梦华录》列鸭馔
+price: auto
+flags: []
+assets:
+  icon: item/yarou
+text:
+  desc: 外观：处理净的生鸭一只置浅木盘，灰白皮与扁喙可辨 （原创扩展）。
+  lore: 江南水乡常养鸭，《东京梦华录》所录市食亦见鸭馔。本件取处理净的生鸭，秋季膘足，适合煨煮或腌藏；水镇肉铺最易购得。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: meat
+    attributes:
+      version: 2

@@ -1,0 +1,26 @@
+{
+  "selected": 2,
+  "files": [
+    "exec-867a3c6c-5e49-419f-beaf-49b914278b17.png",
+    "exec-50ed3a13-4ebd-4f03-9fa9-66a0f98c5a15.png"
+  ],
+  "corners": [
+    [
+      51,
+      581
+    ],
+    [
+      826,
+      949
+    ],
+    [
+      1466,
+      638
+    ]
+  ],
+  "prompts": [
+    "Use case sketch-to-render. Render the provided exact orthographic blockout as a Qing Jiangnan private manor courtyard, same footprint16m by13m. Keep the exact same camera and ground edges and their screen angles. The original cuboids become realistic white plaster houses with gray clay tiled pitched roofs, fine dark timber columns and lattice windows. Rear main residence, smaller side galleries, front enclosing white wall and stone-framed central wood gate. Place small Taihu ornamental rock and two tiny potted shrubs only inside the courtyard. No official royal/gilded decorations. Realistic matte muted stone, fired clay tiles, aged wood, historical game-sprite detail. CRITICAL preserve the guide's ground outline, each front edge slopes exactly ±0.5, not ±0.577. Do not change camera to common isometric. Do not enlarge/rotate/shift the ground pad. Thin clear rim, all three corners visible, foot of walls stays in guide. Let roof grow upward while retaining base geometry. Transparent RGBA background all around, entire outline and roofs inside frame, upper-left warm neutral daylight, only small lower-right contact shadow. No giant base, no text, people, animals, modern objects, labels or watermark. Replace entire colored blockout with realistically rendered architecture, not a flat diagram.",
+    "Render this low orthographic blockout as a realistic early Qing Jiangnan private manor courtyard, footprint16 by13 metres. Keep the LOW camera, do not steepen toward standard 30-degree isometric. Final ground axes must be slopes plus0.5 and minus0.5 (2:1); width-axis edge16:depth-axis13. White limewashed enclosing walls and houses, dark brown fine carved timber lattice windows, realistic weathered matte gray clay roof tiles, rear private hall and small side galleries, stone-framed center front gate. One small Taihu rock with low shrubs and two modest potted plants inside court. No royal red columns, no imperial imagery. Exact footprint boundary represented by an extremely thin gray stone rim, three front corners all clear, no protruding stairs. Keep block mass positioning and verticals; add detailed tiled pitched roofs and authentic small eave curves, fine ancient sprite texture density. All horizontal architectural lines parallel to guide axes. No perspective. Full roof and outline entirely inside frame. Real RGBA transparency outside, warm upper-left neutral daylight with small lower-right contact shadow. No thick base, ground outside pad, modern things, people, text, signs, labels, logos or watermark. Render architecture instead of colored blocks."
+  ],
+  "generated_dir": "/Users/bytedance/.codex/generated_images/01a0f450-5169-7ad2-87a6-dab5c8b3cb31"
+}

@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_zhudu
+name: 猪肚
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/zhudu
+text:
+  desc: 外观：洗净乳白猪肚一只盘成椭圆置陶盆，表面湿润。
+  lore: 宋以后市井肉案常见的杂碎食材，本件已洗净盘成椭圆，但仍须熟制。宜炖汤或切条烹炒；讲究的厨子会反复验净异味再下锅。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shoucai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: meat
+    attributes:
+      version: 2

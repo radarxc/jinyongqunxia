@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_tianfengpifeng
+name: 天风披风
+kind: armor
+sub: cape
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tianfengpifeng
+text:
+  desc: 外观：月白轻绢长披风，风纹暗织。 待运行时投影：eva=6; mov=1。
+  lore: （原创扩展）月白轻绢织入暗风纹，裁成无多余坠饰的长披，展开时几乎不滞身法。高手借转身收放衣摆以扰乱视线；“随风不落尘”只是江湖夸称。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 7

@@ -1,0 +1,23 @@
+{
+  "name": "@tianshu/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./runtime": "./src/runtime.ts",
+    "./components/*": "./src/components/*"
+  },
+  "scripts": {
+    "test": "vitest run src",
+    "typecheck": "vue-tsc -b"
+  },
+  "dependencies": {
+    "@tianshu/core": "workspace:*",
+    "pinia": "catalog:",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "catalog:"
+  }
+}

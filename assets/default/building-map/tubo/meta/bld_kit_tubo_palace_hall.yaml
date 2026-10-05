@@ -1,0 +1,74 @@
+id: bld_kit_tubo_palace_hall
+status: candidate
+building:
+  type: bld_kit_tubo_palace_hall
+  footprint: [20, 16]
+  anchor: &id001 [611.2864, 524.2912]
+  era: tubo
+anchor_px: *id001
+footprint_m: [20, 16]
+entrance: {edge: S, offset_cells: 10.0}
+entrance_note: S边中点为规划默认，非实际门洞像素；运行时待实测。
+collision_polygon_m:
+- [0, 0]
+- [20, 0]
+- [20, 16]
+- [0, 16]
+collision_note: 规划整占地代理，不含阴影；院内行走细化待实测。
+actual_height_m: null
+height_note: 未做三维量测；不可把PNG轮廓当作精确高度。
+occluder_proxy_px: [32, 32, 1193, 803]
+occluder_note: alpha非零包围框仅作离线保守代理。
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_tubo_palace_hall.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [1152, 576]
+  ground_width_px: 1152
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [83, 628]
+    front: [930, 991]
+    right: [1507, 683]
+  source_axis_slopes: [0.42857142857142855, -0.5337954939341422]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.4679376083188909
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.17435008665511265
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+pixel_qa:
+  mode: RGBA
+  size: [1225, 835]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 531690
+  alpha_partial_pixels: 490324
+  alpha_near_opaque_pixels: 481344
+  alpha_opaque_pixels: 861
+  alpha_nonzero_bbox: [32, 32, 1193, 803]
+  transparent_margins_px: [32, 32, 32, 32]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_tubo_palace_hall.png
+  source_sha256: 52a3cd3bb77416ab814de81f68d88ac62d3be3bf4f75dc11dc5ee1a2c53811a8
+  source_size: [1536, 1024]
+  crop_box: [79, 47, 1514, 1000]
+  uniform_scale_requested: 0.8089887640449438
+  resized_size: [1161, 771]
+  rounded_effective_scale: [0.8090592334494774, 0.8090241343126967]
+  paste_offset: [32, 32, 1193, 803]
+  target_canvas: [1225, 835]
+  final_file: bld_kit_tubo_palace_hall.png
+  steps: [crop alpha>0 bounding box, 'uniform LANCZOS resize, nearest-integer dimensions', 'paste without mask onto transparent RGBA; no repaint, warp, alpha threshold,
+      flip or rotation']
+release_ready: false
+visual_review: 原图已 view_image；无文字、人物、现代物件；真实RGBA alpha保持。二候选较首张近方，但长宽比残差约17.4%，两轴约+0.429/-0.534，超过±0.03；按最多两候选限制保留较好图，非严格拼接就绪。
+historical_note: 原创地域功能组合；非任何具名实物或全年代复原。

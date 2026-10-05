@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_tanghaishouputaojing
+name: 海兽葡萄铜镜
+kind: collectible
+sub: bronze
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H09](#src-h09)；准入：白马702—703；早期镜式核准前不投放
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tanghaishouputaojing
+text:
+  desc: 外观：圆形铜镜背朝外，伏兽钮。 待运行时投影：eraRange=[tang]; giftTo={preferred:[merchant,collector]}; giftValue=3; provenance=history。
+  lore: 参照唐代海兽葡萄镜的典型图案，宜馈赠喜铜镜的藏家。馆方断代到唐不足以证明这件镜式在武周已流通，故早期类型仍（待考）；通过后才由西行商队合法交割。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

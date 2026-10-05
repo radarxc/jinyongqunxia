@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_restaurant",
+  "generated_at": "2026-10-01T10:15:57.257656+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_restaurant__candidate01.png",
+  "sha256": "ae6457184462dc4e228d1eb51772e9031dc5fb885b0a2a6f76457506de92ba63",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_restaurant__geometry-lock.png",
+      "sha256": "50dc5974eb42a296eb37bc9e12b22431e721246e188da33043b78b872ed84f6e",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/caravanserai_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg",
+      "detail": "1915年深檐遮阴廊、简素木柱和圆木椽条。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/houses_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Kashgar_-_old_town_houses.jpg",
+      "detail": "只取高台民居悬挑木廊和平顶叠置；现代窗、电线和水泥修补排除。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg — 1915年深檐遮阴廊、简素木柱和圆木椽条。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Kashgar_-_old_town_houses.jpg — 只取高台民居悬挑木廊和平顶叠置；现代窗、电线和水泥修补排除。\n\nAsset-specific production prompt:\nUse case: precise-object-edit. Correct only projection geometry of this teahouse, preserve its architecture, two-storey balcony, earthen flat roof, every furnishing and full transparency. Current south foundation diagonal is too steep: slope +0.547 instead of +0.500. Current right foundation edge slope -0.531 must become -0.500. Redraw the entire building with both parallel sets of horizontal ground/roof/beams precisely +0.500/-0.500, verticals upright, orthographic no convergence. Footprint front edge12 units, side9 units: projected front run is exactly4/3 of right run. Target three foundation ground corners approximately left(208,580), front(848,900), right(1328,660) in1536x1024 canvas. Those three points and exact two slopes are REQUIRED; no guide marks or numbers. Keep same detailed realistic ochre adobe and timber craft, upper-left illumination, short soft right-lower contact shadow, no added ground beyond footprint. All outside the physical teahouse must be transparent RGBA. No horizon, background, words, people, modern objects, thick slab.\n\nRequired historical detail summary: 茶肆以遮阴木廊、粗木栏和土墙表达，不做中式重檐酒楼。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

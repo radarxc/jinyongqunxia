@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_luzhang
+name: 鹿杖
+kind: weapon
+sub: staff
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·鹿杖客；具体装具 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/luzhang
+text:
+  desc: 外观：深木杖约一百五十厘米，杖首作克制鹿角分叉、铁箍和尾鐏。
+  lore: 《倚天屠龙记》中玄冥二老之鹿杖客以鹿角杖为兵，长杖便于压架、挑拨，并可配玄冥神掌送出寒劲。具体杖首装具仍 （待考：核原著形制），数值为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 70
+      qiAffinity: 115
+      qiEffect: bf_hanqi

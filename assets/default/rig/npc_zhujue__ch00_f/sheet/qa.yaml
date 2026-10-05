@@ -1,0 +1,480 @@
+task: ART-rig-sheet-f
+date: '2026-10-03'
+status: candidates_produced_repair_completed_per_tracker_ruling
+measurement_method: 原始 1536×1024 RGB；四边 8 px 众数作背景；RGB 欧氏色距 >30 得前景，用 scipy.ndimage.label 默认四邻域取面积最大的三个人物主连通域，按 x 排序。包围框含端点；h=ymax−ymin+1，差=(max−min)/max。身高量的是发髻最高点至最低鞋底，非解剖学身高；浅色边缘/零散手指可能不在主连通域，故该框仅作身高与分人提示。PNG 未裁缩。
+threshold_height_spread_percent: 3
+anchor_source: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+limitations:
+- 已解决：背景不以逐像素等于 #E6E1D8 为门禁，采用追踪者 2026-10-03 14:35 补充裁定 2；保留模型原始颗粒，不程序涂平。色彩锚仍为人工目检，未做 ΔE 门禁。
+- 右衽和腰带结的遮挡项不能算确认通过。
+- 侧图第三栏只补平举姿势；按既有补充裁定，躯干略偏转记报告，不作分腿依据。
+- 长袍完整覆盖髋膝，膝角约 100° 尚未以真实骨点证实，切件与补遮挡待下游实测。
+- 第三栏 T 默认解释为画面内前后平举，并足栏允许双鞋重叠。
+review_basis:
+  source: .agents/coord/PROD/review_checks_rig_sheet.md
+  ruling: 2026-10-03 14:35 女主专用补充裁定 2；取代 r1 审核中的背景返修说明。
+  protected_assets: sheet_L.png 与 sheet_R.png 原图及 manifest 前两条完整保留；r1 其余规格及身份已通过。
+  repair_scope: 只重出两张 sheet_side；第①栏前腿膝部轮廓或斜向衣褶可读，第①②栏纯侧视并可见两鞋。
+  old_manifest_notes: A 字两条旧 notes 中严格单色未过的历史判断已解决，以本 QA 的追踪者裁定为准；未为此重写旧条目。
+runner_block:
+  reason: runner 于 2026-10-03 13:54:50 PDT 检测可用磁盘 <3 GB 后 STOP，13:54:53 退出；侧图尚未启动。
+  log: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/runner.log
+  stop_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/STOP
+  free_bytes_after_recovery: 4686884864
+  restart_policy: 按 _codex_worker.md 仅追踪者在沙箱外启动；本任务未重启 runner、未移除 STOP、未直接调用 image_gen。
+  status: resolved
+  resolved_at: '2026-10-03T13:57:34-07:00'
+  resolution: 外部将 runner 重启为单槽位，沿原队列完成侧图；本执行器未启动 runner。
+assets:
+- id: npc_zhujue__ch00_f__sheet_L
+  file: sheet_L.png
+  selected_job: zhujue_f_sheet_L_r3
+  generations: 3
+  regenerations: 2
+  status: candidate
+  visual_gate: pass_per_tracker_ruling
+  measurements:
+    file: sheet_L.png
+    size:
+    - 1536
+    - 1024
+    background_rgb:
+    - 227
+    - 221
+    - 212
+    edge_modal_fraction: 0.1753173828125
+    boxes_xyxy_inclusive:
+    - - 66
+      - 28
+      - 493
+      - 985
+    - - 575
+      - 26
+      - 938
+      - 979
+    - - 1025
+      - 26
+      - 1461
+      - 982
+    heights_px:
+    - 958
+    - 954
+    - 957
+    spread_percent: 0.418
+    foreground_threshold: 30
+  view_order:
+  - front34
+  - side
+  - back34
+  facing: left
+  three_figures: true
+  height_spread_le_3_percent: true
+  empty_hands: true
+  adult_female_proportions: true
+  no_text_grid_swatches: true
+  ankle_length_robe: true
+  identity_anchors:
+  - 匹配：黑褐高髻、旧红褐发带与鬓边散发；无冠饰。
+  - 匹配：灰鼠尾草绿及踝麻袍、米白交领与下摆细缝线，未改短袍。
+  - 匹配可见项：浅灰褐多折腰带、左前结与两条长垂带；背面结位受遮挡。
+  - 匹配：灰绿宽外袖、米白内袖口、双手露出。
+  - 匹配：灰绿低帮布鞋、浅米底与米白袜，无靴或绑腿。
+  armpit_gaps:
+  - 前栏双侧袖身背景缝可见。
+  - 侧栏臂身间隙可见，宽袖根部仍遮挡腋窝，不能从此定位肩关节。
+  - 后栏双侧袖身背景缝可见。
+  feet:
+  - 两鞋分开可见。
+  - 两鞋前后错开可见，袍下腿体被衣料遮挡。
+  - 两鞋分开可见。
+  right_lapped: 前栏交领叠压方向与立绘一致；侧栏/背栏受遮挡，未逐栏证明右衽。
+  background: '已解决：r1 严格单色判断由 14:35 追踪者裁定取代，原图保留。肉眼浅暖灰平底、无明显地面投影；众数 RGB(227,221,212)，非精确 #E6E1D8，不做程序涂平。'
+  pose_limit: 三视图顺序与朝向正确；侧栏呈窄侧身，袖根与前襟仍有遮挡。
+  ground_line_spread_px: 6
+- id: npc_zhujue__ch00_f__sheet_R
+  file: sheet_R.png
+  selected_job: zhujue_f_sheet_R_r2
+  generations: 3
+  regenerations: 2
+  status: candidate
+  visual_gate: pass_per_tracker_ruling
+  measurements:
+    file: sheet_R.png
+    size:
+    - 1536
+    - 1024
+    background_rgb:
+    - 227
+    - 221
+    - 212
+    edge_modal_fraction: 0.2390869140625
+    boxes_xyxy_inclusive:
+    - - 52
+      - 21
+      - 523
+      - 993
+    - - 593
+      - 21
+      - 959
+      - 993
+    - - 1026
+      - 21
+      - 1487
+      - 990
+    heights_px:
+    - 973
+    - 973
+    - 970
+    spread_percent: 0.308
+    foreground_threshold: 30
+  view_order:
+  - front34
+  - side
+  - back34
+  facing: right
+  three_figures: true
+  height_spread_le_3_percent: true
+  empty_hands: true
+  adult_female_proportions: true
+  no_text_grid_swatches: true
+  ankle_length_robe: true
+  identity_anchors:
+  - 匹配：黑褐高髻、旧红褐发带与鬓边散发；无冠饰。
+  - 匹配：灰鼠尾草绿及踝麻袍、米白交领与下摆细缝线，未改短袍。
+  - 匹配配色与长垂带；前栏结位在本人左前，侧/后栏结位被遮挡，不能判逐栏完全匹配。
+  - 匹配：灰绿宽外袖、米白内袖口、双手露出。
+  - 匹配：灰绿低帮布鞋、浅米底与米白袜，无靴或绑腿。
+  armpit_gaps:
+  - 前栏双侧袖身背景缝可见。
+  - 侧栏臂身间隙可见，宽袖根部仍遮挡腋窝，不能从此定位肩关节。
+  - 后栏双侧袖身背景缝可见。
+  feet:
+  - 两鞋分开可见。
+  - 两鞋前后错开可见，袍下腿体被衣料遮挡。
+  - 两鞋分开可见。
+  right_lapped: 前栏交领叠压方向与立绘一致；侧栏/背栏受遮挡，未逐栏证明右衽。
+  background: '已解决：r1 严格单色判断由 14:35 追踪者裁定取代，原图保留。肉眼浅暖灰平底、无明显地面投影；众数 RGB(227,221,212)，非精确 #E6E1D8，不做程序涂平。'
+  pose_limit: 已解决：r1 审核已通过三视图顺序与朝向，追踪者要求保留原图；早先的侧栏躯干疑点留作下游关节复核提示。
+  ground_line_spread_px: 3
+- id: npc_zhujue__ch00_f__sheet_side_L
+  file: sheet_side_L.png
+  selected_job: zhujue_f_sheet_side_L_r4
+  generations: 4
+  regenerations: 3
+  status: candidate
+  visual_gate: pass_with_nonblocking_observations
+  measurements:
+    file: sheet_side_L.png
+    size:
+    - 1536
+    - 1024
+    background_rgb:
+    - 227
+    - 220
+    - 210
+    edge_modal_fraction: 0.260107421875
+    boxes_xyxy_inclusive:
+    - - 56
+      - 31
+      - 433
+      - 957
+    - - 476
+      - 31
+      - 923
+      - 955
+    - - 886
+      - 31
+      - 1524
+      - 960
+    heights_px:
+    - 927
+    - 925
+    - 930
+    spread_percent: 0.538
+    foreground_threshold: 30
+  view_order:
+  - staggered_stand
+  - raised_front_knee
+  - profile_T
+  facing: left
+  three_figures: true
+  height_spread_le_3_percent: true
+  empty_hands: true
+  adult_female_proportions: true
+  no_text_grid_swatches: true
+  ankle_length_robe: true
+  identity_anchors:
+  - 匹配：黑褐高髻、旧红褐发带与鬓边散发；无冠饰。
+  - 匹配：灰鼠尾草绿及踝麻袍、米白交领与下摆细缝线，未改短袍。
+  - 匹配可见项：浅灰褐多折腰带与两条长垂带；本人左前结在 L 图可见，在 R 图远侧受遮挡，结合 A 字前栏联核，不臆测隐藏附着点。
+  - 匹配：灰绿宽外袖、米白内袖口、双手露出。
+  - 匹配：灰绿低帮布鞋、浅米底与米白袜，无靴或绑腿。
+  armpit_gaps:
+  - 第①栏前后袖身楔形背景缝可见，两手未贴袍；肩关节仍被宽袖遮挡。
+  - 第②栏两臂与袍身间有背景，前摆袖下与抬腿袍面之间留白较窄。
+  - 第③栏两条平举宽袖下均有背景，恰好两袖两手。
+  feet:
+  - 第①栏两鞋前后分离，前膝弯曲但鞋跟仍着地；未露独立裤腿。
+  - 第②栏抬起鞋和支撑鞋清楚分离；髋膝小腿被袍面覆盖。
+  - 第③栏并足，近鞋完整、远鞋仅局部可见；不要求并足鞋间留白。
+  right_lapped: 左前垂带可见且未换侧；前襟呈窄侧面，无法直接验证叠压，需与 sheet_L 前栏联核。
+  pure_side_first_two: 目检通过：脸、胸腹外轮廓和足尖均向左，单眼与侧鼻可见，未出现正面或背面大块躯干。
+  pose_limit: 第③栏为画面内前后平举 T 轮廓；肩根由衣褶遮挡，不当成两个独立可见肩关节。
+  front_knee_angle:
+    target_degrees: 100
+    measured_degrees: null
+    conclusion: 第②栏抬膝/小腿转折可读，提示词目标约 100°；髋膝踝被衣料遮挡，未将衣褶拐点冒充真实骨点，交切件人工复核。
+  background: 按肉眼标准浅暖灰平底，无可辨纹理、渐变或地面投影；四角 50×50 px 样本的最大逐通道极差为 7，来自右下蓝通道，未宣称处处 ≤6；原样保存、不程序涂平。
+  ground_line_spread_px: 5
+  layout_limit: 人物完整；第三栏右端距画布 11 px，低于提示词 6% 留白。第二/第三人物横向包围盒交叠 38 px，像素未相接；须先按人物连通域隔离再裁，不固定三等分。
+  repair_run_regenerations: 1
+  front_knee_readable_pose_1: 通过：约 x=118–182、y=600–690 的袍面出现前膝隆起和向后下方折褶；斜向前大腿衣面可从髋侧追至膝部。该区域仅为目检指引，不是实测骨点。
+  background_sample_ranges:
+    0,0,50,50:
+    - 4
+    - 2
+    - 5
+    1486,0,50,50:
+    - 4
+    - 4
+    - 6
+    0,974,50,50:
+    - 4
+    - 5
+    - 4
+    1486,974,50,50:
+    - 6
+    - 4
+    - 7
+- id: npc_zhujue__ch00_f__sheet_side_R
+  file: sheet_side_R.png
+  selected_job: zhujue_f_sheet_side_R_r4
+  generations: 4
+  regenerations: 3
+  status: candidate
+  visual_gate: pass_with_nonblocking_observations
+  measurements:
+    file: sheet_side_R.png
+    size:
+    - 1536
+    - 1024
+    background_rgb:
+    - 226
+    - 219
+    - 209
+    edge_modal_fraction: 0.1996826171875
+    boxes_xyxy_inclusive:
+    - - 53
+      - 32
+      - 447
+      - 970
+    - - 502
+      - 33
+      - 959
+      - 968
+    - - 908
+      - 33
+      - 1524
+      - 973
+    heights_px:
+    - 939
+    - 936
+    - 941
+    spread_percent: 0.531
+    foreground_threshold: 30
+  view_order:
+  - staggered_stand
+  - raised_front_knee
+  - profile_T
+  facing: right
+  three_figures: true
+  height_spread_le_3_percent: true
+  empty_hands: true
+  adult_female_proportions: true
+  no_text_grid_swatches: true
+  ankle_length_robe: true
+  identity_anchors:
+  - 匹配：黑褐高髻、旧红褐发带与鬓边散发；无冠饰。
+  - 匹配：灰鼠尾草绿及踝麻袍、米白交领与下摆细缝线，未改短袍。
+  - 匹配可见项：浅灰褐多折腰带与两条长垂带；本人左前结在 L 图可见，在 R 图远侧受遮挡，结合 A 字前栏联核，不臆测隐藏附着点。
+  - 匹配：灰绿宽外袖、米白内袖口、双手露出。
+  - 匹配：灰绿低帮布鞋、浅米底与米白袜，无靴或绑腿。
+  armpit_gaps:
+  - 第①栏两袖与袍身间可见背景缝，近臂一侧较窄；双手未贴袍。
+  - 第②栏摆臂与袍身之间有留白，前摆袖下与抬腿袍面分开；肩点仍被宽袖遮挡。
+  - 第③栏双平举袖下均有背景，恰好两袖两手。
+  feet:
+  - 第①栏前后两鞋清楚分离；鞋底有数像素高差，不宣称逐像素同地平线。
+  - 第②栏抬起鞋和支撑鞋分离，抬脚朝右；长袍随抬起的大腿和膝部弯折。
+  - 第③栏并足，仅近鞋完整可见；不把并足栏用于拆两腿。
+  right_lapped: 右图单独生成；左前垂带在前缘/远侧，未明显迁到可见右髋；结本体和交领叠压被遮挡，不能逐栏确认。
+  pure_side_first_two: 目检通过：单眼侧鼻、侧胸腹外轮廓与足尖均向右，未出现正面/背面整块躯干。
+  pose_limit: 第③栏背侧衣面偏多、躯干略偏背；按补充裁定不阻断，但不作严格侧躯干或分腿源。
+  front_knee_angle:
+    target_degrees: 100
+    measured_degrees: null
+    conclusion: 第②栏抬膝/小腿转折可读，提示词目标约 100°；髋膝踝被衣料遮挡，未将衣褶拐点冒充真实骨点，交切件人工复核。
+  background: 按肉眼标准浅暖灰平底，无可辨纹理、渐变或地面投影；四角 50×50 px 样本的最大逐通道极差为 7，来自右下蓝通道，未宣称处处 ≤6；原样保存、不程序涂平。
+  ground_line_spread_px: 5
+  layout_limit: 人物完整；第三栏右端距画布 11 px，低于提示词 6% 留白。第二/第三人物横向包围盒交叠 52 px，像素未相接；须先按人物连通域隔离再裁，不固定三等分。
+  repair_run_regenerations: 1
+  front_knee_readable_pose_1: 通过：约 x=289–360、y=610–715 的袍面出现圆弧前膝隆起和斜向折褶，前大腿方向可从腰下追至膝部。该区域仅为目检指引，不是实测骨点。
+  background_sample_ranges:
+    0,0,50,50:
+    - 4
+    - 4
+    - 4
+    1486,0,50,50:
+    - 4
+    - 4
+    - 6
+    0,974,50,50:
+    - 4
+    - 5
+    - 4
+    1486,974,50,50:
+    - 4
+    - 4
+    - 7
+generation_history:
+- job: zhujue_f_sheet_L_r1
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_L_r1.png
+  sha256: 48c5b5a00af731d3154f23fcd82c5a564184fa17ab43dc35431b329f690c67fa
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_L_r1.txt
+  heights_px:
+  - 955
+  - 956
+  - 957
+  reason: 首栏朝向偏右；侧栏手臂貼身、双鞋重叠。
+- job: zhujue_f_sheet_R_r1
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_R_r1.png
+  sha256: a2d6fc311b0f6bd8806fe8eee6ae23fa0cabf1917cf674cfa33ca9500056bbb5
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_R_r1.txt
+  heights_px:
+  - 972
+  - 968
+  - 967
+  reason: A 字张角不足；侧栏臂身无背景缝。
+- job: zhujue_f_sheet_L_r2
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_L_r2.png
+  sha256: 8225610064889207369307bdf33de3bd5ec1b97763d1bf3bf1a2d852afc4b025
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_L_r2.txt
+  heights_px:
+  - 951
+  - 937
+  - 946
+  reason: 朝向和臂身缝改善；侧躯干略偏转，同地平线较差。
+- job: zhujue_f_sheet_R_r2
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_R_r2.png
+  sha256: f45a51c90d9c5b0fe272535b7557d31e3381c6ea546fed7437a230d4593a0091
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_R_r2.txt
+  heights_px:
+  - 973
+  - 973
+  - 970
+  reason: 保留选版；原侧躯干疑点经 r1 规格审核通过，原背景单色疑点由 14:35 补充裁定解决，PNG 不改。
+- job: zhujue_f_sheet_L_r3
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_L_r3.png
+  sha256: 5630bf5a9d5804074af4e15b4f27572b4221c1200d269efc3a22f10f297b4114
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_L_r3.txt
+  heights_px:
+  - 958
+  - 954
+  - 957
+  reason: 保留选版；侧身更窄、鞋底更齐，原严格单色疑点由 14:35 补充裁定解决，PNG 不改。
+- job: zhujue_f_sheet_R_r3
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_R_r3.png
+  sha256: 6ca6a2e29474ff6ccd6622e827a6646a80f7e807a1707d13308c06577355c38c
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_R_r3.txt
+  heights_px:
+  - 971
+  - 969
+  - 971
+  reason: 侧栏手臂重新贴身，拒选。
+- job: zhujue_f_sheet_side_L_r1
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_side_L_r1.png
+  sha256: 2f8a177e92ae8fe2b226c5165bcdc7d603d9108ab7a2e6e2923598583f7b60c4
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_side_L_r1.txt
+  heights_px:
+  - 924
+  - 926
+  - 930
+  reason: 拒选：第三栏多出下垂空袖，首栏后跟抬起。
+- job: zhujue_f_sheet_side_R_r1
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_side_R_r1.png
+  sha256: ea52bffb733f8613e18de6824c8a41344ae2b669e3e8bb6824a1a403c355b28c
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_side_R_r1.txt
+  heights_px:
+  - 926
+  - 919
+  - 926
+  reason: 拒选：第三栏躯干偏背三分之四，首栏后跟抬起。
+- job: zhujue_f_sheet_side_L_r2
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_side_L_r2.png
+  sha256: 86103114fb7f9f4055e702a5b46fb6d06332c514ba9178b6a3822804b825a0ad
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_side_L_r2.txt
+  heights_px:
+  - 919
+  - 917
+  - 918
+  reason: 拒选：多袖已修正、两鞋平放，但首栏手臂贴身。
+- job: zhujue_f_sheet_side_R_r2
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_side_R_r2.png
+  sha256: 057a0d3860461ced1e23f2a0137b5be6c5071abb4afef4effab8a6cdf5f0d398
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_side_R_r2.txt
+  heights_px:
+  - 934
+  - 921
+  - 934
+  reason: 拒选：第三栏右端疑似重复手、躯干偏背。
+- job: zhujue_f_sheet_side_L_r3
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_side_L_r3.png
+  sha256: b5e34ce55ee69a3878a961591d30ede0d0336f5cebe32d6932fd3080743b81bf
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_side_L_r3.txt
+  heights_px:
+  - 907
+  - 909
+  - 909
+  reason: 原选版；r1 指出第①栏前膝衣褶不可读，本轮已由 r4 修正替换；衣下真实骨点仍交下游复核。
+- job: zhujue_f_sheet_side_R_r3
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_side_R_r3.png
+  sha256: f8de9e3f19eca0f013953439fc926f680b4d0096a9239b9867364e4c474af9d9
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_side_R_r3.txt
+  heights_px:
+  - 943
+  - 935
+  - 941
+  reason: 原选版；r1 指出第①栏前膝衣褶不可读，本轮已由 r4 修正替换；T 躯干偏背按裁定只作记录，骨点交下游复核。
+- job: zhujue_f_sheet_side_L_r4
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_side_L_r4.png
+  sha256: 5ba7f507ec0f1ee615e794fb1e2fc593424f7355f9f4a5afe2bd239d0e3048da
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_side_L_r4.txt
+  heights_px: [927, 925, 930]
+  reason: 本轮选版；第①栏前膝隆起与斜向衣褶已可读，①②纯侧视、双鞋分离；第③栏并足平举。背景原始颗粒如实记录，不修绘。
+- job: zhujue_f_sheet_side_R_r4
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_side_R_r4.png
+  sha256: 881d5078e98e16b8a96da1726a659a7628440d19de069d0704786eaeef02d6f4
+  prompt_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/prompts/zhujue_f_sheet_side_R_r4.txt
+  heights_px: [939, 936, 941]
+  reason: 本轮选版；第①栏前膝轮廓与斜向折褶已可读，①②纯侧视、双鞋分离；第③栏偏背按裁定记录，不作分腿源。
+repair_run_3:
+  requested_by: 追踪者 2026-10-03 14:35 返修说明，取代 r1 返修说明。
+  jobs: [zhujue_f_sheet_side_L_r4, zhujue_f_sheet_side_R_r4]
+  current_run_regenerations: {sheet_L: 0, sheet_R: 0, sheet_side_L: 1, sheet_side_R: 1}
+  cumulative_regenerations: {sheet_L: 2, sheet_R: 2, sheet_side_L: 3, sheet_side_R: 3}
+  total_generations: 14
+  runner_slots: 1
+  model: gpt-6-astra
+  reasoning_effort: xhigh
+  upload_mode: none
+  uploaded_order: [zhujue_f_portrait_1024.jpg, zhujue_f_sheet_L_1024.jpg]
+  r5_used: false
+  png_processing: 只逐字节复制 runner 原件；四张均不裁、不缩、不翻转、不涂背景。
+  retained_A_pose_hashes: [5630bf5a9d5804074af4e15b4f27572b4221c1200d269efc3a22f10f297b4114, f45a51c90d9c5b0fe272535b7557d31e3381c6ea546fed7437a230d4593a0091]
+  background_observation: 肉眼无可辨纹理/渐变/地面投影；新两张四角样本的右下蓝通道极差为 7，其余逐通道 ≤6。仅以裁定的肉眼标准判平底，未冒称数值全部 ≤6。
+  background_outlier_count: 两张右下 50×50 样本均仅 1/2500 像素的蓝通道为 205，其余 2499 像素均在 209–212；极差 7 来自孤立低值，非可见纹理或渐变。
+validation:
+  check_assets: {exit_code: 0, images: 4, entries: 4, issues: 0}
+  check_ids_strict: {exit_code: 0, new_failures: 0, baseline_undefined: 1}
+  git_diff_check: {exit_code: 0}
+contact_sheet: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/sheets/ART-rig-sheet-f.jpg

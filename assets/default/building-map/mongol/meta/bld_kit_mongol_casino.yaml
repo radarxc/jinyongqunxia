@@ -1,0 +1,47 @@
+id: bld_kit_mongol_casino
+status: candidate
+building: {"type": "bld_kit_mongol_casino", "footprint": [9, 7], "anchor": &id001 [310.4436, 293.125], "era": "mongol"}
+anchor_px: [310.4436, 293.125]
+footprint_m:
+- 9
+- 7
+collision_polygon_m:
+- - 0
+  - 0
+- - 9
+  - 0
+- - 9
+  - 7
+- - 0
+  - 7
+collision_note: 基线全footprint代理；院内行走与纯阴影须下游区分。
+entrance:
+  edge: S
+  offset_cells: 4
+entrance_note: 目录代理，非门洞实测。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+height_m: null
+height_note: 没有真实高度/GLB，不从图高杜撰。
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_mongol_casino.png
+  angles_note: 提示词请求值；实际轴偏差见geometry_qa
+projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [512, 256], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "camera_requested": {"yaw_deg": 45, "pitch_deg": 30}, "measured_geometry_pass": false, "ground_bbox_semantics": "64×32网格目标包围框，非实际底面测量"}
+geometry_qa: {"source_corners_px": {"left": [94, 591], "front": [815, 959], "right": [1459, 627]}, "source_anchor_px": [776.5, 609.0], "hidden_back_corner_method": "back = left + right - front；后角推算，前方三角人工读点。", "source_axis_slopes": [0.5104022191400832, -0.515527950310559], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.1195652173913044, "expected_width_depth_ratio": 1.2857142857142858, "ratio_relative_error": 0.12922705314009664, "ratio_tolerance_suggestion": 0.1, "ratio_pass": false, "measurement_uncertainty_source_px": 4, "precision_note": "人工逐张view_image读取源PNG真实可见底角，约±4px；未用目标坐标代填。", "final_measured_corners_px": {"left": [54.281, 286.375], "front": [324.8938, 424.375], "right": [566.6062, 299.875]}, "observed_ground_height_px": 262.5}
+pixel_qa: {"mode": "RGBA", "size": [608, 512], "alpha_extrema": [0, 255], "alpha_zero_pixels": 222239, "alpha_partial_pixels": 88187, "alpha_opaque_pixels": 870, "alpha_near_opaque_pixels": 86608, "alpha_nonzero_bbox": [19, 111, 588, 428], "transparent_margins_px": [19, 111, 20, 84], "border_alpha_max": 0}
+processing: {"source_archive": "sources/bld_kit_mongol_casino__r2_c01.png", "source_size": [1536, 1024], "source_sha256": "253b75899858f0e1a23c79bd10d7eb6087af703e0e213aace082b5c4dd53be7c", "crop_box": [0, 38, 1516, 982], "uniform_scale_requested": 0.3750915750915751, "resized_size": [569, 354], "rounded_effective_scale": [0.37532981530343007, 0.375], "paste_offset": [19, 79], "steps": ["只裁alpha>0包围框外透明空白", "一次等比LANCZOS；整数宽高量化误差单列", "无mask粘贴至透明RGBA画布；不改颜色/alpha、不warp、不补画"], "anchor_formula": "(source_anchor-crop_origin)*rounded_effective_scale+paste_offset"}
+source_pixel_qa: {"alpha_extrema": [0, 254], "border_note": "源图低alpha晕完整保留，未阈值去除；成品透明pad；不得把隐藏RGB晕判作不透明背景。"}
+candidate_count: 2
+selected_candidate: "run2-c1"
+release_ready: false
+notes: "第2轮返修采用候选1；轴率0.51040/-0.51553；宽深比1.11957，目标1.28571；轴率/比例检查分别True/False。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。"

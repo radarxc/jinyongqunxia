@@ -1,0 +1,10 @@
+schemaVersion: event.v1
+id: ev_10_fengshi_brazier
+chapterId: ch10_baima
+event: world/brazierReached
+once: true
+condition:
+  sceneId: sc_10_fengshi_feiyi
+  anchorId: brazier_rest
+actions:
+  - {op: party/restore, mode: full_once}

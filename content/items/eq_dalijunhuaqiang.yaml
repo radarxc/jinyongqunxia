@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_dalijunhuaqiang
+name: 大理军花枪
+kind: weapon
+sub: spear
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·大理；仅天龙大理节点原生可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/dalijunhuaqiang
+text:
+  desc: 外观：柳叶钢枪头配白蜡杆，通长约二点三米。
+  lore: 大理军伍节点配置的花枪，柳叶钢锋配白蜡杆，枪缨可扰目并阻血顺杆。操练讲究拦、拿、扎连贯，银色枪箍只作地方装具；器名、配发、纹样和具体尺寸均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 42
+      qiAffinity: 100

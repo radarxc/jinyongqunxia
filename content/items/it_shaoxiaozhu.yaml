@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_shaoxiaozhu
+name: 烧小猪
+kind: dish
+sub: dish
+grade: 9
+stack: 20
+chapters: any
+origin: canon
+canonRef: 清《随园食单》《调鼎集》均见烧小猪，满席重烧猪
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2400
+  - op: meal
+    params:
+      value: bf_shichen,bf_jiangu:3battle
+assets:
+  icon: item/shaoxiaozhu
+text:
+  desc: 外观：金红脆皮乳猪一只置银边大盘，完整宴席四人份 （原创扩展）。 待运行时投影：party=4。
+  lore: 清《随园食单》《调鼎集》皆见烧小猪，满席也重烧猪。本件整只烤至金红脆皮，须宴席分切；四人供餐、食辰与坚固效果属于原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 24

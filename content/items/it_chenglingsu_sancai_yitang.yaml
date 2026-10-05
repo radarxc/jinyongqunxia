@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: it_chenglingsu_sancai_yitang
+name: 程灵素三菜一汤
+kind: dish
+sub: dish
+grade: 8
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《飞狐外传》·程灵素备煎豆腐、笋炒豆芽、草菇白菜、咸菜豆瓣汤
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2200
+  - op: meal
+    params:
+      value: bf_bidu,bf_huichun:3battle
+assets:
+  icon: item/chenglingsu_sancai_yitang
+text:
+  desc: 外观：三盘素菜与一碗豆瓣汤配白米饭，青瓷家常四人份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《飞狐外传》中程灵素备煎豆腐、笋炒豆芽、草菇白菜与咸菜豆瓣汤。本件连白饭作四人家常席；避毒、回春与份量均属原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healOuter: 7
+      stamina: 22

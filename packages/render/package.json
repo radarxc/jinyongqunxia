@@ -1,0 +1,26 @@
+{
+  "name": "@tianshu/render",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./rig": "./src/rig/index.ts",
+    "./battle": "./src/battle/index.ts",
+    "./worldmap": "./src/worldmap/index.ts",
+    "./vfx": "./src/vfx/index.ts",
+    "./town": "./src/town/index.ts",
+    "./region": "./src/region/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run src",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "@tianshu/shared": "workspace:*",
+    "three": "catalog:"
+  },
+  "devDependencies": {
+    "@types/three": "catalog:"
+  }
+}

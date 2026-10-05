@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_jiujiegangbian
+name: 九节钢鞭
+kind: weapon
+sub: exotic
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jiujiegangbian
+text:
+  desc: 外观：通长约八十厘米，一体乌钢杆分九道竹节棱、圆钝鞭首、盘形护手与皮缠柄。 待运行时投影：exoticKind=misc。
+  lore: 乌钢一体锻成的硬鞭分作九道竹节棱，圆钝鞭首用于劈砸，盘形护手可承受滑来的刃口。它与软鞭不同，不可卷收，胜在坚实；器名、锻法、江湖来历和尺寸均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 60
+      qiAffinity: 100

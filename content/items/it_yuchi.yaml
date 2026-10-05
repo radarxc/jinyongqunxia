@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_yuchi
+name: 鱼翅
+kind: material
+sub: ingredient
+grade: 9
+stack: 999
+chapters: any
+origin: canon
+canonRef: 明清宴席海味盛行；北宋至元末书界禁投
+price: auto
+flags: []
+assets:
+  icon: item/yuchi
+text:
+  desc: 外观：淡金干鱼翅一片置竹匣，扇形纤维可辨。
+  lore: 明清宴席海味语境中的干货，本作硬禁北宋至元末书界投放。只作固定海商仓或宫宴食材，不给采捕流程；入菜须由名厨验货发制。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di3
+    materialGrade: 9
+    rare: false
+    ingredientKind: rare
+    attributes:
+      version: 2

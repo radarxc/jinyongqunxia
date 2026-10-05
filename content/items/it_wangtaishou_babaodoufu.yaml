@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_wangtaishou_babaodoufu
+name: 王太守八宝豆腐
+kind: dish
+sub: dish
+grade: 8
+stack: 20
+chapters: any
+origin: canon
+canonRef: 清《随园食单》载嫩豆腐配蕈、蘑菇、松瓜仁、鸡与火腿屑
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2200
+  - op: meal
+    params:
+      value: bf_huixin,bf_ningshen:2battle
+assets:
+  icon: item/wangtaishou_babaodoufu
+text:
+  desc: 外观：雪白碎嫩豆腐羹盛青花大碗，菌菇仁屑与火腿丁可辨。 待运行时投影：party=4。
+  lore: 清《随园食单》载嫩豆腐配蕈、蘑菇、松瓜仁、鸡与火腿屑。本件作四人羹席，须轻搅温食；会心、宁神与供餐数值均为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 22

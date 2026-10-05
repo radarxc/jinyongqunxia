@@ -1,0 +1,76 @@
+- id: npc_diyun__ch09_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 狄云（连城诀 ch09 · 乡下青年）· 空手 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 5e02e099-ffe3-4b61-95cf-4b8f8978ed1b
+    url: https://studio.tripo3d.ai/workspace/generate/5e02e099-ffe3-4b61-95cf-4b8f8978ed1b
+    generate_op: d0ed02ed-bfa6-48e8-88fd-9ed5b439c6c8（image_to_model）
+    rig_op: 05d200a5-dc66-48df-8cab-d9ba52251f23
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch09/threeview/por_npc_diyun__ch09_youth_rural_apose_slim.png
+    sha256: 25fd35e42fca5808bbeb1f27451063683a2a46b9adb47e8fe520d2dcf1c59376
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 9f69c6d5ef5d23ae42724e09c68ea2997f9853d21a2c5b601d9090df0c91a899
+  size_bytes: 6454112
+  joints: 65
+  triangles: 96201
+  vertices: 53115
+  animations: []
+  textures:
+  - image/jpeg 579527 B
+  - image/jpeg 1860512 B
+  - image/jpeg 651428 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T19:10:09-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，蓝布短褂 + 黑灯笼裤 + 草鞋，背后辫子；长棍和斗笠已去掉。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 df81296c。
+- id: npc_diyun__ch09_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 狄云（连城诀 ch09 · 乡下青年）· 空手 A 字版 · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 5e02e099-ffe3-4b61-95cf-4b8f8978ed1b
+    url: https://studio.tripo3d.ai/workspace/generate/5e02e099-ffe3-4b61-95cf-4b8f8978ed1b
+    generate_op: d0ed02ed-bfa6-48e8-88fd-9ed5b439c6c8（image_to_model）
+    rig_op: 05d200a5-dc66-48df-8cab-d9ba52251f23
+  size: 600x778
+  sha256: eb7c9e853b8a7f6cd24a8bd66af881de5777ae3d248fb2349e5a20c5e5ccb515
+  size_bytes: 187365
+  created: '2026-10-03T22:34:21-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

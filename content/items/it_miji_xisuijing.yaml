@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_xisuijing
+name: 洗髓经藏本
+kind: manual
+sub: partial
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_xisuijing
+text:
+  desc: 外观：清代米白经折藏本，灰布护套。
+  lore: 取民间“洗髓经”传说名目扩写成清代残藏本，篇章、载体与流传均属 （原创扩展）。残文教人以缓息温养筋骨，必须逐段验明经路；求速者常把温养误作强冲。
+extension:
+  type: manual
+  value:
+    skill: sk_xisuijing
+    maxLayer: 8
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_xisuijing
+      readBre: 55
+      maxLayer: 8
+      cultivation: 2800

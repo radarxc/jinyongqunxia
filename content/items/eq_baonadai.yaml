@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_baonadai
+name: 百纳腰封
+kind: armor
+sub: belt
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/baonadai
+text:
+  desc: 外观：多色旧布条细密拼缝的宽腰封，低饱和、无文字 （原创扩展）。 待运行时投影：hpMaxPct=2%。
+  lore: 百纳腰封由多色旧布细密拼缝，宽幅包住腰腹，长途行走时可分担行囊勒压。丐帮行旅间相传每块补布都有来处，具体故事均 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9

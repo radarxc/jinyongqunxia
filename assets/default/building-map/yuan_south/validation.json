@@ -1,0 +1,421 @@
+{
+  "asset_count": 26,
+  "entries": [
+    {
+      "id": "bld_kit_yuan_south_house_small",
+      "size": [
+        480,
+        480
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": false
+    },
+    {
+      "id": "bld_kit_yuan_south_house_large",
+      "size": [
+        656,
+        656
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": true
+    },
+    {
+      "id": "bld_kit_yuan_south_courtyard",
+      "size": [
+        656,
+        480
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": false
+    },
+    {
+      "id": "bld_kit_yuan_south_shop_1f",
+      "size": [
+        448,
+        432
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": false
+    },
+    {
+      "id": "bld_kit_yuan_south_shop_2f",
+      "size": [
+        544,
+        496
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": false
+    },
+    {
+      "id": "bld_kit_yuan_south_inn",
+      "size": [
+        752,
+        720
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": false
+    },
+    {
+      "id": "bld_kit_yuan_south_restaurant",
+      "size": [
+        768,
+        688
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": true
+    },
+    {
+      "id": "bld_kit_yuan_south_yamen",
+      "size": [
+        1120,
+        832
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": true
+    },
+    {
+      "id": "bld_kit_yuan_south_biaoju",
+      "size": [
+        992,
+        672
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": false
+    },
+    {
+      "id": "bld_kit_yuan_south_casino",
+      "size": [
+        704,
+        640
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": true
+    },
+    {
+      "id": "bld_kit_yuan_south_manor",
+      "size": [
+        1152,
+        800
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": true
+    },
+    {
+      "id": "bld_kit_yuan_south_wangfu",
+      "size": [
+        1312,
+        1024
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": false
+    },
+    {
+      "id": "bld_kit_yuan_south_temple_hall",
+      "size": [
+        928,
+        736
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": true
+    },
+    {
+      "id": "bld_kit_yuan_south_market_stall",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": true
+    },
+    {
+      "id": "bld_kit_yuan_south_stable",
+      "size": [
+        736,
+        544
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": false
+    },
+    {
+      "id": "bld_kit_yuan_south_warehouse",
+      "size": [
+        736,
+        544
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": false
+    },
+    {
+      "id": "bld_kit_yuan_south_pagoda",
+      "size": [
+        832,
+        1024
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": true
+    },
+    {
+      "id": "bld_kit_yuan_south_guardhouse",
+      "size": [
+        672,
+        512
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": true
+    },
+    {
+      "id": "bld_kit_yuan_south_wharf",
+      "size": [
+        640,
+        512
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": true,
+      "ratio_pass": false
+    },
+    {
+      "id": "tex_town_yuan_south_city_gate__k4_r000_v01",
+      "size": [
+        618,
+        433
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": null,
+      "ratio_pass": null
+    },
+    {
+      "id": "tex_town_yuan_south_city_gate__k6_r000_v01",
+      "size": [
+        568,
+        382
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": null,
+      "ratio_pass": null
+    },
+    {
+      "id": "tex_town_yuan_south_wall__brick_r000_v01",
+      "size": [
+        161,
+        228
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": null,
+      "ratio_pass": null
+    },
+    {
+      "id": "tex_town_yuan_south_wall_corner__outer_ne_v01",
+      "size": [
+        151,
+        209
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": null,
+      "ratio_pass": null
+    },
+    {
+      "id": "tex_town_yuan_south_bridge_deck__w4_l8_r000_v01",
+      "size": [
+        414,
+        264
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": null,
+      "ratio_pass": null
+    },
+    {
+      "id": "tex_town_yuan_south_tree_cluster__willow_v01",
+      "size": [
+        301,
+        272
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": null,
+      "ratio_pass": null
+    },
+    {
+      "id": "tex_town_yuan_south_reed__canal_v01",
+      "size": [
+        137,
+        130
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "transparent_border": true,
+      "sha_pass": true,
+      "source_sha_pass": true,
+      "axis_pass": null,
+      "ratio_pass": null
+    }
+  ]
+}

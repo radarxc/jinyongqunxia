@@ -1,0 +1,66 @@
+id: bld_kit_qing_south_guardhouse
+file: bld_kit_qing_south_guardhouse.png
+category: building-map
+style: default
+subject: 清初至清中江南城门守舍（原创扩展）
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a compact 7 by 5 cell urban guardhouse inside a Jiangnan gate precinct. One-storey three-bay blue-grey brick and dark timber building on rough dressed-stone footings, low hard-gable grey-tile roof with plain ridge and almost no upturn. Deep central plank door, narrow lattice side windows, simple exposed beam ends and one-step eave supports, no formal dougong, no battlements on the building. Weathered defensive utility, no weapons, guards, banners or text.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/building-map/qing_south/review2/c/guardhouse.guide.png
+  sha256: 334338eae56b8b31d7d1d2dd18d95b63e5a64b100ec32820517b33fcf9ceff20
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5933.jpg?width=1600
+  sha256: aff1a916076e3955b14f7c2dbc594280df405fbc4f9a36a774271f281d6e123f
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5941.jpg?width=1600
+  sha256: 14a8ce8eac475a8ad072ee35ec1877324cbccc3d527eae080af81d492b56f67e
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:03.062927+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_path: history/selected-sources/guardhouse.png
+size: 576x512
+sha256: 5f9756bd348ed26fce840b826fd36811fd4e465e3ea0c2e9910d3c3922a153a6
+status: candidate
+building:
+  type: bld_kit_qing_south_guardhouse
+  footprint:
+  - 7
+  - 5
+  anchor:
+  - 296.5115
+  - 293.6497
+  era: qing_south
+footprint_m:
+- 7
+- 5
+footprint_source: design/22 §3.3 bld_kit_song_southern_guardhouse同构占地
+entrance:
+  edge: S
+  offset_cells: 3.5
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 384
+  - 192
+  ground_width_px: 384
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_guardhouse.yaml
+source_record: history/records/guardhouse.yaml
+source_sha256: 5d14601bb1c1e9858c635c1fe4e7a58642462593454e83ec569ef7775c0e8558
+candidate_count: 1
+selected_candidate: 1
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+notes: 2026-10-01 历史图片输入重出：盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。

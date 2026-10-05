@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_liaoying_yangrou
+name: 辽营羊肉
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·萧峰辽地军旅宴饮，羊肉细节 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_shichen:2battle
+assets:
+  icon: item/liaoying_yangrou
+text:
+  desc: 外观：焦褐熟羊肋四根置大木盘，粗盐与刀痕可辨。
+  lore: 取《天龙八部》萧峰辽地军旅宴饮语境投影的熟羊肋，具体羊肉细节待核。（待考：核宴饮食物） 秋冬军营趁热分切，摆盘与食辰增益属原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 20

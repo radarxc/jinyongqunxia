@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_songjiuyubi
+name: 北宋旧藏玉璧
+kind: collectible
+sub: jade
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/songjiuyubi
+text:
+  desc: 外观：旧青玉大璧，圆孔与宽边。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[noble,collector]}; giftValue=4; provenance=expanded。
+  lore: 以北宋藏古风尚为背景设计前代礼玉旧藏，不能单凭沁色断成汉代真品。宜赠文士大藏家，固定支线须交代原主授权；器名、纹样与流传谱系为（原创扩展）并待鉴定。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

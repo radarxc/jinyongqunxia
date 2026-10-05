@@ -1,0 +1,206 @@
+- id: ref_mer_renmai_dumai__base01
+  file: ref_mer_renmai_dumai__base01.png
+  category: meridian
+  style: default
+  subject: "任督二脉全身图：正面任脉六穴、背面督脉七穴；ch01 天龙北宋 1093–1094 至 ch14 雪山清乾隆 1780 跨书界通用图谱（原创扩展），无特定城市或人物。"
+  prompt: |
+    Use case: precise-object-edit.
+    Asset type: existing tianshu default-pack anatomical meridian bitmap, revision 2.
+    Input images: Image 1 is the ONLY edit target, the existing 1254 x 1254 front/back whole-body plate. Image 2 is ONLY a color reference: the existing pericardium arm plate; do not insert its arm or modify that second image.
+    Primary request: edit Image 1 by changing ONLY the colors of the two existing meridian lines and their existing circular point fills. Do not regenerate or redesign the drawing.
+    Change the LEFT/front Ren vessel line and ALL SIX of its red markers to the muted deep indigo-blue used by the pericardium line in Image 2 (approximately #315b82). Ren is yin, therefore blue.
+    Change the RIGHT/back Du vessel line and ALL SEVEN of its blue markers to cinnabar red in the same family as the Laogong red center in Image 2 (approximately #b83926). Du is yang, therefore red.
+    Recolor each existing line and dot completely, including antialiased edges: leave no red residue on the front route and no blue residue on the back route. Preserve the narrow pale point outlines. Keep exactly 13 markers, with 6 on front and 7 on back, and no others.
+    The existing point centers must stay fixed: front (402,177), (402,331), (402,419), (402,485), (402,533), (402,567); back (850,68), (852,281), (852,329), (852,372), (852,412), (852,477), (852,529). These pixel coordinates are preservation targets, not text to draw.
+    Invariants: preserve every anatomical contour, face, body proportion, posture, hand, foot, linen pelvis drape, exact composition, warm ivory paper, brown ink linework, pale ochre washes, upper-left soft lighting, blank margins, 1254 x 1254 canvas, and every line path and marker position. Do not alter any other image region. Keep the original square aspect ratio and resolution.
+    Era/world remains the same anonymous cultural game plate shared across Northern Song through Qing; no added setting, costume or character. No text in the image.
+    Avoid: text, labels, names, IDs, coordinates, numbers, arrows, watermarks, signatures; altered anatomy, pose, faces, limbs, drapes, lighting, paper color or texture; moved, missing or extra points; red remnants on the anterior Ren route or blue remnants on the posterior Du route; glow, modern elements, actor likeness, imitation of a living artist. Do not remove or counterfeit tool provenance metadata.
+  negative: |
+    text, labels, names, IDs, coordinates, numbers, arrows, watermarks, signatures; altered anatomy, pose, faces, limbs, drapes, lighting, paper color or texture; moved, missing or extra points; red remnants on the anterior Ren route or blue remnants on the posterior Du route; glow, modern elements, actor likeness, imitation of a living artist. Do not remove or counterfeit tool provenance metadata.
+  references: []
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-09-29T21:34:47Z"
+  source_path: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-cff2ca6d-938a-45ee-8225-c57d832d5cbc.png
+  size: 1254x1254
+  sha256: 75878d76bcb02cd09e392e6e26a84e72f93214ad1e1c6406c2b6bc3e74aa1299
+  status: approved
+  notes: |
+    同尺寸透明标注层：ref_mer_renmai_dumai__base01.labels.svg；名称与 ap_* / mer_* ID 依据 design/15 §3.14–3.15；SVG 不嵌入位图，叠在 PNG 上方同原点、同尺寸显示。
+    任脉六穴：承浆、膻中、中脘、神阙、气海、关元；督脉七穴：百会、身柱、神道、至阳、脊中、命门、腰阳关；全身构图不等于全部穴位或完整循行。
+    骨盆布遮，未示会阴、曲骨、中极、长强、腰俞；未示其余任脉子集穴；督脉上星、水沟、龈交属正面头部而未移画到后脑。不得将截取的可见线段解读为经脉起讫。
+    累计三次内置工具调用：文本生成、督脉点位修正、本轮配色编辑。references 为空表示没有外部或已审定风格参考；真实编辑输入及心包原图配色参考见 generation_history。
+    首稿因颈部错点淘汰；上一轮入选图因红任蓝督错误被替换。prompt / negative 是本轮实际配色编辑全文；之前两次全文保存在 generation_history。
+    design/15 §2.1、§10.4：阴经青、阳经赤、调和金；本图为青任赤督，无调和经。SVG .ren / .du 描边已同步；13 点实测坐标见 SVG 与报告 §3，微小漂移按新图对齐。
+    位图按原文件逐字节复制，保留工具元数据；实测尺寸未达到初始提示目标 1536x1536，按真实 1254x1254 登记，不插值放大。
+    当前仅风格候选。督脉胸腰分段点距、任脉下腹点距和百会后视投影仍需具资质审校；SVG 只对齐图中点，不将其认定为精确医学定位。
+    model / effort 按任务要求登记执行配置；工具未返回独立的图像后端模型版本、seed 或服务条款核验结果，不将此记成已实测。created 为本轮入库登记 UTC 时间。
+  generation_history:
+    - stage: initial_generation_rejected
+      source_path: /Users/bytedance/.codex/generated_images/01a0eef6-2712-7263-97f5-11b688c581ed/exec-016662ed-644d-4223-97e4-fc260a6cf6b8.png
+      references: []
+      prompt: |
+        Use case: scientific-educational.
+        Asset type: original bitmap style-reference candidate for the Chinese wuxia game tianshu, default pack, meridian atlas.
+        Primary request: a realistic anatomical line-and-pale-wash illustration showing the Ren vessel on a full-body anterior view at left and the Du vessel on a full-body posterior view at right. Two views of the same anonymous ADULT anatomical teaching figure, natural human bone and muscle proportions, calm neutral stance. This is an original game cultural diagram, not a replica of a historical medical illustration.
+        Era and world: shared visual reference for ch01 Tianlong (Northern Song, game years 1093–1094), ch02–03 Southern Song, ch04 late Yuan, ch05–07 Ming, ch08–14 Qing. A restrained traditional Chinese paper atlas sensibility, without any era-specific portrait or modern objects. Not a named fictional character.
+        Composition: square canvas, target 1536 x 1536. Full body from crown to toes in each view, equal scale, clear gap between them, left figure centered near 32% width, right figure near 69% width. Both occupy about 78% canvas height from 12% to 90%. Arms relaxed a little away from torso, all hands and feet visible. Keep outer margins and top/bottom empty for later SVG labels. Front head straight; posterior head straight, crown visible enough for its single top marker.
+        Anatomy and modesty: realistic surface anatomy with fine warm brown contour lines, subtle clavicle, sternum, ribs, navel, scapula, spine and limb muscle landmarks. Anonymous simplified face, close-fitting scalp contour without styled hair. Matte warm ivory anatomical-study finish; no nipples, pubic hair, genitalia, exposed buttocks, incisions or exposed organs. A plain opaque off-white linen drape covers the pelvis of each figure from below the lower-abdomen Guanyuan region down to upper thighs, leaving abdomen and lumbar spine visible. No modern underwear.
+        Routes: on the FRONT figure only, a thin muted cinnabar red continuous Ren line along the anterior midline, beginning just above the covered pubic region, through navel and sternum, ending in the midline mentolabial groove under the lower lip. Exactly SIX small clear circular red markers on that line: from top to bottom Chengjiang CV24 under lower lip; Danzhong CV17 at central sternum at the fourth intercostal level; Zhongwan CV12 midway between navel and sternocostal angle; Shenque CV8 exactly at navel; Qihai CV6 below navel; Guanyuan CV4 lower than Qihai and above the drape. Keep the lower two dots distinct.
+        On the BACK figure only, a thin muted indigo-blue Du line centered over the spine, ascending from lower lumbar area up the back, neck and posterior scalp to crown. Exactly SEVEN circular blue markers: from bottom upward Yaoyangguan GV3 at lower lumbar midline L4; Mingmen GV4 at L2; Jizhong GV6 at T11; Zhiyang GV9 at T7; Shendao GV11 at T5; Shenzhu GV12 at T3; Baihui GV20 at crown. The line is a simple cultural meridian guide, not a blood vessel or a glowing anatomical organ. The lumbar markers must be above the drape. No extra dots, no unlabeled small subsidiary meridians. No points on the limbs. Do not place anterior head Du points on the back of the head. Partial visible paths are intentional, do not invent hidden perineal points or a closing circuit.
+        Style and light: anatomical realism expressed by precise thin ink linework and restrained translucent beige/ochre washes, soft diffuse upper-left light, clean light warm ivory paper with extremely subtle grain, no heavy aging, no ornamental frame. Red and indigo pathways crisp and more salient than anatomy, all circles legible.
+        Text: none whatsoever. Point names and IDs above are instructions only; they must NOT appear in the bitmap.
+        Avoid: any text, letters, numbers, Chinese characters, calligraphy, pseudo-writing, arrows, captions, legend, logo, signature, watermark; modern elements, medical equipment, needles, modern clothing, jewelry; identifiable real person or actor face; imitation of any living or modern artist, copied artwork or film/game designs; anime, chibi, exaggerated bodybuilding, plastic 3D render, oversaturated color, glowing qi, fantasy effects; malformed hands, extra fingers or limbs, asymmetry, cropped heads or feet; nudity details, sexualized posing, gore. Do not remove or counterfeit any tool provenance metadata.
+      negative: |
+        any text, letters, numbers, Chinese characters, calligraphy, pseudo-writing, arrows, captions, legend, logo, signature, watermark; modern elements, medical equipment, needles, modern clothing, jewelry; identifiable real person or actor face; imitation of any living or modern artist, copied artwork or film/game designs; anime, chibi, exaggerated bodybuilding, plastic 3D render, oversaturated color, glowing qi, fantasy effects; malformed hands, extra fingers or limbs, asymmetry, cropped heads or feet; nudity details, sexualized posing, gore. Do not remove or counterfeit any tool provenance metadata.
+    - stage: local_correction_replaced
+      edit_target: /Users/bytedance/.codex/generated_images/01a0eef6-2712-7263-97f5-11b688c581ed/exec-016662ed-644d-4223-97e4-fc260a6cf6b8.png
+      source_path: /Users/bytedance/.codex/generated_images/01a0eef6-2712-7263-97f5-11b688c581ed/exec-2476813d-61b8-44c7-8bf8-92fba3f1f36e.png
+      outcome: replaced
+      reason: "上一轮入选图；红任蓝督与 design/15 §2.1、§10.4 的阴青阳赤相反，本轮替换。"
+      prompt: |
+        Edit the attached self-generated anatomical meridian plate. Use case: scientific-educational. This is an original tianshu game cultural atlas reference, shared across Northern Song through Qing book worlds, not a medical treatment chart.
+        Preserve the two full-body adult figures, exact positions, natural proportions, draped pelvis coverage, warm ivory paper, delicate brown anatomical linework, pale ochre washes, soft diffuse upper-left lighting, all six red anterior Ren points and front Ren line, blank margins, and square 1254 x 1254 composition. Do not redesign anything.
+        Correct ONLY the blue posterior Du point placement on the right figure. The current dot at the neck is WRONG for the selected back-point set and must disappear with no residual spot. Keep exactly seven blue markers total. Place them at these image pixel positions, relative to the original 1254 x 1254 canvas, directly on the spine midline:
+        Baihui crown at (850,68).
+        Shenzhu under T3 at (852,291), between the upper shoulder blades, NOT at neck.
+        Shendao under T5 at (852,329).
+        Zhiyang under T7 at (852,367), around the inferior scapular-tip level.
+        Jizhong under T11 at (852,435).
+        Mingmen under L2 at (852,484).
+        Yaoyangguan under L4 at (853,526), clearly above the linen drape.
+        Remove every old back dot that does not coincide with these seven target positions. Keep the blue line continuous along the same posterior midline from crown to lower back, and keep the blue markers equally sized, discrete, with narrow white edges. These coordinates are art-layout targets, not needle-placement instructions.
+        Also soften the tiny nipple details of the front teaching mannequin into its pale surface wash, without changing pectoral structure or adding clothing.
+        No text at all; the point names and coordinates in this instruction must not be drawn. Preserve metadata supplied by the tool.
+        Avoid: text, characters, labels, numbers, calligraphy, captions, arrows, watermark, logo, signature; extra colored dots, displaced anatomy, extra limbs or digits, modern elements, identifiable real person or actor face, living/modern artist imitation, copied artwork, glowing qi, plastic 3D rendering, gore, genital detail, exposed buttocks or sexualization.
+      negative: |
+        text, characters, labels, numbers, calligraphy, captions, arrows, watermark, logo, signature; extra colored dots, displaced anatomy, extra limbs or digits, modern elements, identifiable real person or actor face, living/modern artist imitation, copied artwork, glowing qi, plastic 3D rendering, gore, genital detail, exposed buttocks or sexualization.
+    - stage: revision_2_color_edit_selected
+      edit_target: /Users/bytedance/.codex/generated_images/01a0eef6-2712-7263-97f5-11b688c581ed/exec-2476813d-61b8-44c7-8bf8-92fba3f1f36e.png
+      color_reference: /Users/bytedance/.codex/generated_images/01a0eef6-2712-7263-97f5-11b688c581ed/exec-8d898c01-72f9-4301-ab1a-c52a5fd5031e.png
+      source_path: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-cff2ca6d-938a-45ee-8225-c57d832d5cbc.png
+      outcome: selected
+      created: "2026-09-29T21:34:47Z"
+      prompt_source: "本条顶层 prompt 与 negative，均为本次配色编辑实际全文"
+      result: "任脉靛青 6 点、督脉朱赤 7 点；同尺寸；13 点重新实测并对齐 SVG。生成编辑有亚像素边缘差异，不声称非编辑区域逐像素相同。"
+- id: ref_mer_shoujueyin__base01
+  file: ref_mer_shoujueyin__base01.png
+  category: meridian
+  style: default
+  subject: "手厥阴心包经左上肢掌侧图：胸侧至中指端九穴，突出内关与劳宫；ch01 天龙北宋 1093–1094 至 ch14 雪山清乾隆 1780 跨书界通用（原创扩展）。"
+  prompt: |
+    Use case: precise-object-edit. This exact existing pericardium arm image is the edit target. Only adjust one small blue marker; preserve the rest of the image.
+    There are three blue dots clustered on the inner forearm before the wrist dot. Move ONLY the rightmost of those three forearm dots very slightly to the LEFT along the existing line, closer to its middle neighbor. Reduce that small gap by about one quarter. After the move, the gap from the middle forearm dot to the moved dot should be exactly HALF the gap from the moved dot to the wrist dot. The middle dot and wrist dot must not move.
+    For precise placement on this 1536 x 1024 canvas, the moved dot should be centered at x=1023, y=527. Its current center is x=1034, y=528. This is an eleven-pixel adjustment only. Preserve its circle radius and pale outline. Restore only its old rim area.
+    Leave all other dots absolutely fixed, especially the middle forearm dot and the leftmost forearm dot. Preserve all nine dots, the same meridian curve and color, red palm center and double ring, hand and five fingers, all original anatomical contours, brown ink and pale washes, linen drape, warm ivory paper and canvas size. Do not redraw the entire forearm. No other changes. No text. Same Northern Song-through-Qing anonymous cultural game diagram.
+    Avoid: text, labels, coordinates, numbers, arrows, watermark; moving the middle or left forearm point, extra points, missing points, changed line path or colors, altered anatomy, paper or lighting, modern objects, actor likeness, living-artist style. Preserve tool provenance metadata.
+  negative: |
+    text, labels, coordinates, numbers, arrows, watermark; moving the middle or left forearm point, extra points, missing points, changed line path or colors, altered anatomy, paper or lighting, modern objects, actor likeness, living-artist style. Preserve tool provenance metadata.
+  references: []
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-09-29T21:34:47Z"
+  source_path: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-0ec8110a-a0f0-49e6-93a9-8cc61c8f7117.png
+  size: 1536x1024
+  sha256: 03f8e5918be1ebe77ada432cc9252e1acbd0556006ae7eaa67ee4c6f1f51c9f9
+  status: approved
+  notes: |
+    同尺寸透明标注层：ref_mer_shoujueyin__base01.labels.svg；名称与 ap_* / mer_shoujueyin ID 依据 design/15 §3.10；SVG 不嵌入位图，叠在 PNG 上方同原点、同尺寸显示。
+    九穴：天池、天泉、曲泽、郄门、间使、内关、大陵、劳宫、中冲。原图内关为腕上点，劳宫红心双环；标准经脉线继续至中冲，不以劳宫冒充全经终点。
+    依本任务所述 AR-18 表现阳掌气过阴门的劳宫出口（原创扩展）；本副本 author-requirements 仅到 AR-17，未查到 AR-18 正文。现有 design/21 §4.3.1 / §12.1 已有掌法内关至劳宫的路线依据。
+    累计五次内置工具调用：上一轮文本生成一次、本轮定向编辑四次，第四次编辑入选。没有外部图片输入；真实自生成编辑输入与淘汰原因见 generation_history。位图逐字节复制工具原文件，尺寸与哈希均实测。
+    返修实测：曲泽 (615,482)、大陵 (1104,520)，腕肘横向 489 px ≈12 寸；郄门 (898,524)、间使 (988,529)、内关 (1022,528)。以未取整色心计算，从腕起分别 5.05、2.83、2.00 寸；间使仍比目标 3 寸少约 0.17 寸（约 7 px），保留 candidate 待审。
+    旧 (787,505) 点及白圈已去除；全图仍为 9 点，劳宫红心双环与至中冲线路保留。构图、人体轮廓、纸底色调保持，生成编辑使局部线描/淡彩与纸纹轻微软化，未达到非编辑区域逐像素不变；不隐瞒此限制。
+    当前仅风格候选；胸侧天池、肘窝曲泽、腕前比例、掌心劳宫需专业定位复核，未完成医学审校。左右同名穴按 design/15 §1.1 使用同一游戏 ID，本图不另造左侧 ap ID。
+    model / effort 按任务要求登记执行配置；工具未返回独立图像后端模型版本、seed 或服务条款核验结果。created 为本轮入库登记 UTC 时间。
+  generation_history:
+    - stage: initial_generation_replaced
+      source_path: /Users/bytedance/.codex/generated_images/01a0eef6-2712-7263-97f5-11b688c581ed/exec-8d898c01-72f9-4301-ab1a-c52a5fd5031e.png
+      references: []
+      outcome: replaced
+      reason: "上一轮入选图；腕前郄门、间使、内关偏向肘部且近似等距，约 7.8、5.0、2.9 寸，未满足 5、3、2 寸要求。"
+      prompt: |
+        Use case: scientific-educational.
+        Asset type: original bitmap style-reference candidate for tianshu, default pack, meridian atlas.
+        Primary request: a realistic anatomical ink-line and pale-wash atlas of the pericardium meridian of the hand, with a complete single ADULT left upper limb in anterior palmar view. Show lateral chest origin, upper arm, elbow, inner forearm, wrist, open palm and all five fingers in one continuous view. Anonymous adult teaching figure; no portrait. Highlight the palm center Laogong as a game palm-strike outlet, while the anatomical guide visibly CONTINUES to the tip of the middle finger.
+        Era and world: common reference for ch01 Tianlong Northern Song 1093–1094 through ch14 Xueshan Qing 1780, including Southern Song, late Yuan and Ming book worlds. Traditional Chinese paper-atlas atmosphere with realistic anatomy; no claim to reproduce an ancient artifact. It is a cultural game illustration; not medical treatment guidance.
+        Composition: landscape 3:2, target 1536 x 1024. A single left-side partial torso, cropped above the neck and below the ribs at the left edge; the subject's LEFT arm extends horizontally towards the RIGHT side of the page, elbow nearly straight, palm facing the viewer, thumb on the upper edge, fingers pointing right. The full arm must connect naturally to the torso with correct shoulder and elbow. Leave generous blank bands above and below for a separate text overlay. Arm and hand occupy the middle 50% of height; fingers and chest point are inside the canvas. Do not include an inset, second hand or duplicated arm.
+        Anatomy: fine clear contours of pectoral/rib surface, deltoid, biceps, elbow crease, forearm flexor tendons, transverse wrist crease and palmar creases. Accurate adult proportions; natural thumb and five distinct fingers, no extreme foreshortening. Warm ivory surface anatomy with muted ochre shading, a plain linen fold at the far-left edge of the torso, no nipple detail, no organs or anatomical dissection. No costume, modern tools or accessory.
+        Route: one thin muted indigo line from the lateral fourth-intercostal chest region through the inner upper arm, inner elbow, central palmar forearm between flexor tendons, wrist, palm, then middle fingertip. The line turns naturally from chest to arm, not like a vein. Place exactly NINE small clear circular markers following this order and these anatomical landmarks:
+        1 Tianchi PC1, lateral chest at fourth intercostal level, outside the central pectoral region, NOT clavicle or shoulder.
+        2 Tianquan PC2, anterior upper arm, a little below the anterior axillary fold.
+        3 Quze PC3, inner elbow crease at ulnar side of biceps tendon.
+        4 Ximen PC4, palmar forearm, approximately five proportional body inches proximal to wrist.
+        5 Jianshi PC5, palmar forearm, three proportional inches proximal to wrist.
+        6 Neiguan PC6, palmar forearm, two proportional inches proximal to wrist. Distinct from Jianshi, and clearly above wrist rather than on the palm.
+        7 Daling PC7, center of transverse palmar wrist crease.
+        8 Laogong PC8, palm between second and third metacarpals, near third metacarpal; emphasize this one only with a small cinnabar red center and a crisp additional fine ring, no glow.
+        9 Zhongchong PC9, very distal tip of the middle finger. The indigo meridian MUST continue past the Laogong dot along the middle finger to this tip. No stopping at Laogong, no line going to thumb or index finger instead.
+        All points except Laogong use restrained dark blue filled dots with light narrow edge; do not space points evenly, use the relative landmarks above. Do not introduce extra dots or branches, no extra meridians.
+        Style and lighting: realistic anatomy, precise warm brown ink linework, translucent pale beige/ochre washes, soft diffuse upper-left light, clean warm ivory paper with subtle grain, calm restrained study plate. No decorative border or dramatic shadow.
+        Text: no text at all. Point names/codes above are instructions only and must not be printed.
+        Avoid: text, Chinese characters, Latin labels, digits, calligraphy, pseudo-writing, title, captions, legend, arrows, logo, signature, watermark; modern objects, watches, needles, medical equipment, modern clothing; any real actor or person's likeness, any living or modern artist style imitation, copied artwork or film/game design; anime, chibi, glowing qi, fantasy effects, plastic rendering; extra or fused fingers, wrong palm orientation, severed-looking arm, duplicated anatomy, incorrectly linked meridians, gore, exposed intimate anatomy or sexualization. Do not remove or counterfeit tool provenance metadata.
+      negative: |
+        text, Chinese characters, Latin labels, digits, calligraphy, pseudo-writing, title, captions, legend, arrows, logo, signature, watermark; modern objects, watches, needles, medical equipment, modern clothing; any real actor or person's likeness, any living or modern artist style imitation, copied artwork or film/game design; anime, chibi, glowing qi, fantasy effects, plastic rendering; extra or fused fingers, wrong palm orientation, severed-looking arm, duplicated anatomy, incorrectly linked meridians, gore, exposed intimate anatomy or sexualization. Do not remove or counterfeit tool provenance metadata.
+    - stage: revision_2_forearm_edit_1_rejected
+      edit_target: /Users/bytedance/.codex/generated_images/01a0eef6-2712-7263-97f5-11b688c581ed/exec-8d898c01-72f9-4301-ab1a-c52a5fd5031e.png
+      source_path: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-c3db9677-609d-4e10-b18b-88edb5ac5bfc.png
+      outcome: rejected
+      reason: "三点仍偏向肘侧，实测约 6.44、4.15、2.53 寸；未达到 5、3、2 寸。"
+      prompt: |
+        Use case: precise-object-edit.
+        Asset type: existing tianshu default-pack pericardium anatomical bitmap, revision 2.
+        Input image: the existing 1536 x 1024 pericardium arm plate is the edit target.
+        Primary request: make a minimal local edit ONLY to the THREE circular markers on the palmar forearm between the elbow and wrist. Preserve the entire drawing and the original continuous indigo meridian line exactly.
+        There must be EXACTLY THREE forearm points, on the existing indigo line, at these centers measured on the original 1536 x 1024 canvas:
+        Ximen PC4 at approximately (901,524).
+        Jianshi PC5 at approximately (983,529).
+        Neiguan PC6 at approximately (1023,527).
+        Erase the old point at (787,505) COMPLETELY, including its dark fill and pale border, restoring the underlying skin drawing and the thin continuous indigo line with no trace. The old points near (899,524) and (985,529) become the first two points near (901,524) and (983,529); add the third at (1023,527). Do not leave an additional marker at any old location.
+        These are three distinctly nonuniformly spaced points approaching the wrist: 82 pixels between Ximen and Jianshi, 40 pixels between Jianshi and Neiguan, then about 82 pixels from Neiguan to Daling at the wrist. The wrist-to-elbow interval is approximately 489 pixels = 12 proportional units. From the wrist the points should be about 5/12, 3/12 and 2/12 of that interval. Do not space the three points evenly.
+        Use the SAME small deep indigo filled circles and thin pale outline as existing points. Do not thicken, straighten, reroute or recolor the line; put the moved circles directly on it.
+        Keep EXACTLY NINE total point markers in the whole plate. Preserve unchanged: Tianchi (140,428), Tianquan (358,398), Quze (616,483), Daling (1105,520), Laogong (1238,506) with its existing red center and double ring, and Zhongchong (1486,493). The route still continues along the middle finger to Zhongchong.
+        Invariants: no changes to chest, shoulder, elbow, wrist, hand, five fingers, linen, body contours, skin shading, brown anatomical ink work, ivory paper color or grain, soft lighting, composition, blank margins, or the 1536 x 1024 landscape canvas. No cropping, resizing, adding objects or redrawing anatomy. Era/world stays the same anonymous Northern Song-through-Qing cultural game study, with no portrait or modern objects.
+        No text whatsoever: the names and coordinates are instructions only.
+        Avoid: text, labels, point names, coordinates, numbers, arrows, watermarks, signatures; old dot or white halo at (787,505), ghost dots, extra dots, equal point spacing; shifted line, changed chest or hand points, changed Laogong red center or rings, changed fingers or anatomy, paper recoloring, crop or rescale, glow, modern elements, actor likeness, imitation of a living artist. Do not remove or counterfeit tool provenance metadata.
+      negative: |
+        text, labels, point names, coordinates, numbers, arrows, watermarks, signatures; old dot or white halo at (787,505), ghost dots, extra dots, equal point spacing; shifted line, changed chest or hand points, changed Laogong red center or rings, changed fingers or anatomy, paper recoloring, crop or rescale, glow, modern elements, actor likeness, imitation of a living artist. Do not remove or counterfeit tool provenance metadata.
+    - stage: revision_2_forearm_edit_2_superseded
+      edit_target: /Users/bytedance/.codex/generated_images/01a0eef6-2712-7263-97f5-11b688c581ed/exec-8d898c01-72f9-4301-ab1a-c52a5fd5031e.png
+      source_path: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-3cc57867-d12d-4157-a1b0-5bef9a272e84.png
+      outcome: rejected
+      reason: "旧点已消失；约 5.04、2.94、1.72 寸，内关距目标仍偏约 11.5 px。作为后续两次单点编辑输入，未入库。"
+      prompt: |
+        Use case: precise-object-edit.
+        Edit target: this existing 1536 x 1024 pericardium arm bitmap. Make ONLY TWO tiny local changes. This is not a redraw.
+        1. ERASE the circular blue marker centered at (787,505), the first forearm dot to the right of the elbow. Remove its pale outline too. Restore only the thin continuous blue line and surrounding skin there, without any spot.
+        2. ADD one same-size blue circular marker with the same thin pale outline centered at (1023,527), directly ON the existing blue line. This is in the gap between the existing dot at (985,529) and the wrist dot at (1105,520): put the new dot 38 pixels to the right of the former, 82 pixels to the left of the wrist dot. Do NOT put it at the midpoint of that gap.
+        DO NOT MOVE ANY OTHER POINT. In particular, keep the existing two forearm dots at (899,524) and (985,529) exactly where they are. With the new dot they form the intended nonuniform trio at x=899,985,1023. Their distances from wrist x=1105 are 206,120,82 pixels, approximately 5,3,2 units of the 489-pixel wrist-to-elbow span divided into 12 units.
+        Keep the other six markers exactly unchanged at (140,428), (358,398), (616,483), (1105,520), (1238,506), (1486,493). The red center and double ring at the palm stay completely unchanged. Final total is exactly NINE markers: the original nine minus one at 787 plus one at 1023.
+        Preserve EVERYTHING ELSE, especially the original continuous indigo line, its curve, skin contours, torso, hand and fingers, brown ink linework, pale wash, warm paper color and texture, drape, framing, and original 1536 x 1024 dimensions. No text. No change in color or style. This remains the same Northern Song-through-Qing anonymous cultural game diagram.
+        Avoid: text, labels, coordinates, numbers, arrows, watermark; moving any of the eight retained existing points; shifting the original line; ghost dot or pale halo at (787,505); more or fewer than nine total markers; anatomy, finger, cloth, paper, color, lighting or composition changes; modern elements, actor likeness, living-artist imitation. Do not remove or counterfeit tool provenance metadata.
+      negative: |
+        text, labels, coordinates, numbers, arrows, watermark; moving any of the eight retained existing points; shifting the original line; ghost dot or pale halo at (787,505); more or fewer than nine total markers; anatomy, finger, cloth, paper, color, lighting or composition changes; modern elements, actor likeness, living-artist imitation. Do not remove or counterfeit tool provenance metadata.
+    - stage: revision_2_forearm_edit_3_rejected
+      edit_target: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-3cc57867-d12d-4157-a1b0-5bef9a272e84.png
+      source_path: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-21abb671-cf1f-4aee-b4b5-dafab248e94a.png
+      outcome: rejected
+      reason: "单点微调误移了间使等点，约 5.05、3.73、2.72 寸，且线描淡彩肌理改变；淘汰。"
+      prompt: |
+        Use case: precise-object-edit.
+        Edit target: the supplied 1536 x 1024 pericardium arm plate, already corrected except one point.
+        Make ONE very small local correction: move the blue dot at approximately (1034,528) LEFT by 11 pixels, to center (1023,527), still on the existing thin blue line. This is the dot just left of the wrist dot, i.e. the RIGHTMOST of the three blue dots on the forearm. Move its pale circular border with it. Restore the narrow line and skin where its old right edge was, with no residual ring or spot.
+        The distance from the retained dot at x=984 to this moved dot must become about 39 pixels (not the current 50 pixels). The distance from this moved dot to the retained wrist dot at x=1104 must become about 81 pixels. Keep the dot at x=899 unchanged. The x-order is elbow 615; forearm dots 899,984,1023; wrist 1104. Only the point currently at 1034 moves.
+        Preserve every other point and every other pixel region as closely as possible, including the original line curve, all anatomy and five fingers, chest, wrist, Laogong red center and double ring, Zhongchong, skin shading, brown ink, warm ivory paper texture, linen and composition. Total markers stays NINE. Do not add a dot where the removed old point at x=787 used to be. Keep 1536 x 1024 and the exact same original style. No text or annotations; coordinate values are instructions only. Same Northern Song-through-Qing anonymous cultural game diagram.
+        Avoid: text, names, coordinates, numbers, arrows, watermark; any marker remaining at the old (1034,528) center; extra markers, moved or resized other markers, line or color changes, changed anatomy or fingers, changed paper, crop or rescale, modern elements, actor likeness, living-artist imitation. Do not remove or counterfeit tool provenance metadata.
+      negative: |
+        text, names, coordinates, numbers, arrows, watermark; any marker remaining at the old (1034,528) center; extra markers, moved or resized other markers, line or color changes, changed anatomy or fingers, changed paper, crop or rescale, modern elements, actor likeness, living-artist imitation. Do not remove or counterfeit tool provenance metadata.
+    - stage: revision_2_forearm_edit_4_selected
+      edit_target: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-3cc57867-d12d-4157-a1b0-5bef9a272e84.png
+      source_path: /Users/bytedance/.codex/generated_images/01a0ef0e-f293-7083-9599-8f699d08a910/exec-0ec8110a-a0f0-49e6-93a9-8cc61c8f7117.png
+      outcome: selected
+      created: "2026-09-29T21:34:47Z"
+      prompt_source: "本条顶层 prompt 与 negative，均为本次单点编辑实际全文"
+      result: "三穴实测约 5.05、2.83、2.00 寸；全图 9 点，旧 x=787 点消失；间使约 7 px 偏差及局部肌理软化如实保留待审，SVG 按实际新点位对齐。"

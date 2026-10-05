@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_yuanjianghongjinwenkuanxiupao_nv
+name: 元绛红锦纹宽袖袍·女
+kind: armor
+sub: clothing
+grade: 7
+stack: 1
+chapters:
+- ch04_yitian
+origin: canonExpanded
+canonRef: 元；出现书界 ch04；（原创扩展）；形制／色系依据：故宫《蒙元时期的罟罟冠》 https://www.dpm.org.cn/explode/others/210566.html；女性绛红袍色从首服借色，袍面偏好（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanjianghongjinwenkuanxiupao_nv
+text:
+  desc: 外观：元女款，主色绛红。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=female。
+  lore: （原创扩展）依蒙元贵妇袍形语汇演成绛红女式宽袖袍，大襟右衽、长摆侧衩与完整内层相合。窄锦纹织缘落袍缘，收存前理顺宽袖；贵妇廓形推广为原创，绛红袍面与素白常服实证待考，同档换色同值。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 56

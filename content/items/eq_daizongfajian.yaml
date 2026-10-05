@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_daizongfajian
+name: 岱宗法剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 泰山 · design/17 §6.6；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/daizongfajian
+text:
+  desc: 外观：厚脊直剑约七十五厘米，护手取层岩折线、深褐柄缠与旧青鞘。 待运行时投影：sect=sect_taishan。
+  lore: 泰山门人为镇守山门而制的厚脊法剑，剑势讲究沉稳取位，再沿破绽直入。层岩式护手只作门派视觉提示；器名、来历、装具和传闻均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 78
+      qiAffinity: 100

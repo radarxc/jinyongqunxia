@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_honghuahuichangjian
+name: 红花会长剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 红花会 · design/17 §8.4；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/honghuahuichangjian
+text:
+  desc: 外观：清代直剑约七十五厘米，红褐丝缠柄、花瓣形小铜镡与黑漆鞘。 待运行时投影：sect=sect_honghuahui。
+  lore: 红花会行旅好手共用的清式长剑，刃身平直，宜在马上携行、下马后刺削。鞘口浅花只供同道辨认，不书会号；器名、传承、装具与江湖流言均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 78
+      qiAffinity: 100

@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_zimuwuyanglun
+name: 子母五阳轮
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/zimuwuyanglun
+text:
+  desc: 外观：一大四小共五枚厚铜轮按同心错位平置，大轮直径约四十厘米。 待运行时投影：exoticKind=wheel。
+  lore: 一大四小五枚厚铜轮合称子母轮，大轮用于架压，小轮可换手扰敌，真正难处在收纳与逐件清点。外缘只留圆棱，不作飞掷暗器；器名、数量、配套练法与江湖流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 60
+      qiAffinity: 100

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_jindingjiushi
+name: 金顶九式剑谱
+kind: manual
+sub: full
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_jindingjiushi
+text:
+  desc: 外观：元代经折图册，淡黄硬纸护面。
+  lore: 峨眉金顶九式在本作绘成九寸经折剑谱，具体招路编排和载体属 （原创扩展）。首尾九式须连贯研读，持剑校准转折与收势；折口轻磨正是门人频繁展开整套图页所留。
+extension:
+  type: manual
+  value:
+    skill: sk_jindingjiushi
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jindingjiushi
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

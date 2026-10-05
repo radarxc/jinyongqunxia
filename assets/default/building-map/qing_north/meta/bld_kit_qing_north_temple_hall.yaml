@@ -1,0 +1,167 @@
+id: bld_kit_qing_north_temple_hall
+status: candidate
+building:
+  type: bld_kit_qing_north_temple_hall
+  footprint:
+  - 14
+  - 11
+  anchor: &id001
+  - 517.6018
+  - 552.7421
+  era: qing_north
+anchor_px: *id001
+footprint_m:
+- 14
+- 11
+footprint_note: 14×11借design/22 §3.4明代寺观同构骨架，为清北建议占地；组合原创，彩画细部待考。
+logical_footprint_polygon_px:
+- - 117.6018
+  - 432.9376
+- - 565.6018
+  - 656.9376
+- - 917.6018
+  - 480.9376
+- - 469.6018
+  - 256.9376
+collision_polygon_m:
+- - 0
+  - 0
+- - 14
+  - 0
+- - 14
+  - 11
+- - 0
+  - 11
+collision_note: 全footprint硬碰撞代理；非实测墙体，院内走区另行细化。
+occluder_proxy_px:
+- - 88
+  - 52
+- - 934
+  - 52
+- - 934
+  - 612
+- - 88
+  - 612
+occluder_note: alpha>=192包围框仅用于离线代理统计，未修改输出alpha。
+actual_height_m: null
+height_note: 单图不能推出可靠实高，待实测/建模。
+entrance:
+  edge: S
+  offset_cells: 6
+entrance_note: S边中点代理，非门洞精确实测。
+planning_rotations_allowed:
+- 0
+- 180
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_north_temple_hall.png
+  view_note: 目标视角；实际误差见geometry_qa
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 800
+  - 400
+  ground_width_px: 800
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
+geometry_qa:
+  final_corners_px:
+    left:
+    - 117.7544704264099
+    - 517.4243707702575
+    front:
+    - 588.2372764786794
+    - 752.6657737963922
+    right:
+    - 917.449105914718
+    - 588.0598590783729
+  final_axis_slopes:
+  - 0.49999999999999983
+  - -0.49999999999999983
+  accepted_slope_range:
+  - 0.4
+  - 0.62
+  axis_pass: true
+  final_width_depth_ratio: 1.4291187739463596
+  expected_width_depth_ratio: 1.2727272727272727
+  ratio_relative_error: 0.12287903667213973
+  ratio_tolerance: 0.3
+  ratio_pass: true
+  measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 957
+  - 777
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 383237
+  alpha_partial_pixels: 358424
+  alpha_opaque_pixels: 1928
+  alpha_nonzero_bbox:
+  - 20
+  - 20
+  - 937
+  - 757
+  transparent_margins_px:
+  - 20
+  - 20
+  - 20
+  - 20
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_temple_hall.png
+  source_sha256: 1c9ac01647ed175284880a6d4c707676b48a726b84c575b4373a25ec56210d64
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 0
+  - 21
+  - 1454
+  - 998
+  uniform_scale_requested: 0.6309148264984227
+  resized_size:
+  - 917
+  - 616
+  rounded_effective_scale:
+  - 0.6306740027510316
+  - 0.6305015353121801
+  paste_offset:
+  - 20
+  - 20
+  final_file: bld_kit_qing_north_temple_hall.png
+  steps:
+  - crop to alpha>0 bounding box
+  - uniform LANCZOS resize; dimensions rounded to nearest px
+  - paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding
+  - review-10 PIL affine y'=a*x+b*y+c
+  - crop alpha>0 bbox and restore transparent padding
+  anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
+release_ready: false
+affine_qa:
+  input_archive: sources/bld_kit_qing_north_temple_hall__before_affine_r10.png
+  input_sha256: 106a99e76cecc9779047e99ac6d0f2579b77961dfc56211375d60489fa721ce3
+  forward_xy:
+  - 1
+  - 0
+  - 0.04004140406965312
+  - 1.2759218294724606
+  - 0
+  - 0
+  work_alpha_bbox:
+  - 20
+  - 71
+  - 937
+  - 808
+  padding_px: 20

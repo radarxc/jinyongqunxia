@@ -1,0 +1,29 @@
+{
+  "key": "biaoju_v2",
+  "id": "bld_kit_yuan_south_biaoju",
+  "prompt": "Use case: precise-object-edit. Make a late Yuan Jiangnan escort-cargo courtyard sprite from this Song Jiangnan cargo depot reference. Keep the EXACT foundation outline14x11, ground slopes+0.5/-0.5, camera yaw45 elevation30, building heights, gate position, walls and roofs. Do not remodel the geometry. Only replace the front loaded cart with one simple empty wooden handcart plus two tied canvas bundles, make doors slightly more weathered, and reduce courtyard vegetation. Neutral subdued brown timber, charcoal grey clay tiles and cream lime plaster, thin stone footing, historical realistic game art same density as source. Anonymous functional cargo yard, original game extension; no written business label. Entire asset with all roof tips visible and ample clear margins, TRUE RGBA transparent background, no surrounding grey halo or glow, no scenery. Light screen upper left, short faint contact shadow to lower right. No people, lettering, signs, flags, grids, modern items, imperial yellow tile, Qing rank insignia or late-Huizhou horse-head gables.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-e26944d8-2250-41af-9116-51ed85243886.png",
+  "source_archive": "sources/bld_kit_yuan_south_biaoju_candidate2.png",
+  "source_sha256": "26d59be2fc1bb948d87702d502dd2d59f27fd0db1134090c7bc4f350699f1e61",
+  "source_size": [
+    1502,
+    1047
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T22:37:08.718876+00:00",
+  "created_time_basis": "生成后归档记录时间，非服务端生成开始时间",
+  "negative": "No text, people, modern objects, opaque background, checkerboard, Qing rank decoration, late-Huizhou horse-head gables, cartoon, thick diorama plinth or cropped eaves.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png",
+      "sha256": "d0d40ee51f57b354316add817e10429bb8aca6b107102892f04851c0bc458042",
+      "status": "candidate",
+      "role": "已view_image；材质、密度与受控编辑参考，不代表严格几何已通过"
+    }
+  ],
+  "selection_status": "selected_candidate",
+  "selection_reason": "第1张有大范围灰晕与投影偏差；第2张无明显灰晕，货栈题材明确，几何告警仍登记。",
+  "view_image_reviewed": true
+}

@@ -1,0 +1,76 @@
+- id: npc_miaoruolan__ch14_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 苗若兰（雪山飞狐 ch14 · 青年）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 1c8464e3-14b9-4b95-93e7-e3e8bcac288b
+    url: https://studio.tripo3d.ai/workspace/generate/1c8464e3-14b9-4b95-93e7-e3e8bcac288b
+    generate_op: fbb95aa6-6ee0-42e0-abc6-e5df77684245（image_to_model）
+    rig_op: 33ed7a54-16b2-48a8-bd0c-ce94399b4710
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch14/threeview/por_npc_miaoruolan__ch14_youth_apose_slim.png
+    sha256: 6bc9ddb3d1ce01c00076848fd64944edd7951b5c59239f01df956d189d510da6
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 035a5b836969a119f6121df78677f2a2d2bf5b2ade082ccb6e309090ca6d6e55
+  size_bytes: 5955824
+  joints: 65
+  triangles: 89296
+  vertices: 57582
+  animations: []
+  textures:
+  - image/jpeg 276963 B
+  - image/jpeg 1256114 B
+  - image/jpeg 869686 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T19:02:42-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，淡绿袄 + 米黄长裙 + 金钗，长发深褐。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 5c1b3a6e。
+- id: npc_miaoruolan__ch14_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 苗若兰（雪山飞狐 ch14 · 青年）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 1c8464e3-14b9-4b95-93e7-e3e8bcac288b
+    url: https://studio.tripo3d.ai/workspace/generate/1c8464e3-14b9-4b95-93e7-e3e8bcac288b
+    generate_op: fbb95aa6-6ee0-42e0-abc6-e5df77684245（image_to_model）
+    rig_op: 33ed7a54-16b2-48a8-bd0c-ce94399b4710
+  size: 600x778
+  sha256: 21fe8d87b53f9f3564949c75ac8cb51269d40553e96384d724d390bf40def64e
+  size_bytes: 108597
+  created: '2026-10-03T22:34:23-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

@@ -1,0 +1,59 @@
+schemaVersion: quest.v1
+id: q_00_main_c_03
+kind: main
+chapterId: ch00_yuenv
+titleKey: quest.q_00_main_c_03.title
+subjectNpcIds: [npc_aqing, npc_fanli]
+routeTone: neutral
+startStageId: st_meet_fanli
+flagIds:
+  - fl_00_fanli_request_done
+  - fl_00_drill_done
+  - fl_00_biandao_done
+  - fl_00_sword_demo_seen
+  - fl_00_nine_preview_seen
+encounterIds: [enc_00_biandao]
+offerWhen: {quest: {id: q_00_main_c_02, state: completed}}
+stages:
+  - id: st_meet_fanli
+    objectiveKeys: [quest.q_00_main_c_03.objective.meet_fanli]
+    objectives: [{type: confirmFlag, flagId: fl_00_fanli_request_done, is: true}]
+    transitions:
+      - {id: edge_fanli_drill, priority: 10, when: {flag: {id: fl_00_fanli_request_done, is: true}}, to: st_drill, branchKey: aqing_decides}
+    effects: []
+  - id: st_drill
+    objectiveKeys: [quest.q_00_main_c_03.objective.drill]
+    objectives: [{type: confirmFlag, flagId: fl_00_drill_done, is: true}]
+    transitions:
+      - {id: edge_drill_biandao, priority: 10, when: {flag: {id: fl_00_drill_done, is: true}}, to: st_biandao, branchKey: drill_completed}
+    effects:
+      - {id: fx_qingcha, op: reward/item, itemId: it_aqing_qingcha, count: 1}
+  - id: st_biandao
+    objectiveKeys: [quest.q_00_main_c_03.objective.biandao]
+    objectives: [{type: battle, encounterId: enc_00_biandao}]
+    transitions:
+      - {id: edge_biandao_demo, priority: 10, when: {flag: {id: fl_00_biandao_done, is: true}}, to: st_sword_demo, branchKey: conflict_restrained}
+    effects: []
+  - id: st_sword_demo
+    objectiveKeys: [quest.q_00_main_c_03.objective.sword_demo]
+    objectives: [{type: confirmFlag, flagId: fl_00_sword_demo_seen, is: true}]
+    transitions:
+      - {id: edge_demo_preview, priority: 10, when: {flag: {id: fl_00_sword_demo_seen, is: true}}, to: st_nine_preview, branchKey: sword_demo_seen}
+    effects: []
+  - id: st_nine_preview
+    objectiveKeys: [quest.q_00_main_c_03.objective.nine_preview]
+    objectives: [{type: confirmFlag, flagId: fl_00_nine_preview_seen, is: true}]
+    transitions:
+      - {id: edge_preview_close, priority: 10, when: {flag: {id: fl_00_nine_preview_seen, is: true}}, to: st_close, branchKey: nine_preview_seen}
+    effects:
+      - {id: fx_sword_demo_seen, op: flag/set, flagId: fl_00_sword_demo_seen}
+  - id: st_close
+    objectiveKeys: []
+    objectives: []
+    transitions: []
+    effects:
+      - {id: fx_nine_preview_seen, op: flag/set, flagId: fl_00_nine_preview_seen}
+    terminal: completed
+    endingKey: teaching_witnessed
+tracking: {defaultTracked: true, targetRef: sc_00_yueying, revealPolicy: known_only}
+source: {origin: canonExpanded, note: 范蠡请阿青助越军习剑取待考大意；试阵、边道与双投影为原创扩展}

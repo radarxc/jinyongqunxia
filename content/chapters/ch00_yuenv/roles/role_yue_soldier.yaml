@@ -1,0 +1,9 @@
+schemaVersion: role-slot.v1
+slotId: role_yue_soldier
+chapter: ch00_yuenv
+templateId: tmpl_normal
+count: 2
+dreamTier: 2
+seed: {strategy: stable_per_save, tuple: [runId, chapterId, templateId, spawnKey, spawnOrdinal]}
+displayRoleKey: role.role_yue_soldier.name
+consumerRefs: [q_00_main_c_03, enc_00_biandao]

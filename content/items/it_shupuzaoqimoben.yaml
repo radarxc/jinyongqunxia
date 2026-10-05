@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_shupuzaoqimoben
+name: 书谱早期摹本
+kind: collectible
+sub: calligraphy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/shupuzaoqimoben
+text:
+  desc: 外观：薄黄麻纸手卷，卷起大半。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,collector]}; giftValue=2; provenance=expanded。
+  lore: 孙过庭《书谱》作于六八七年，可作为武周求帖方向的年代依据。本件是书坊所作摹本而非墨迹原件，宜赠习书文士；摹本流传、题签与求得过程为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

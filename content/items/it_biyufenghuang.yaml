@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_biyufenghuang
+name: 碧玉凤凰
+kind: collectible
+sub: jade
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B10](#src-b10)；准入：仅飞狐；原主授权且纪念用途解除
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/biyufenghuang
+text:
+  desc: 外观：深绿碧玉凤形圆雕，收翼回首。 待运行时投影：eraRange=[qing]; giftTo={preferred:[collector]}; giftValue=3; provenance=book。
+  lore: 《飞狐外传》袁紫衣赠胡斐碧玉凤凰的物名与流转须核修订版。合法持有者准许后可赠藏家，不能复制人物原有纪念物；凤形细部与玩家取得为（原创扩展），不作装备。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

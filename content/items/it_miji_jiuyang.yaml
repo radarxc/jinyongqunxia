@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_jiuyang
+name: 九阳真经夹注原本
+kind: manual
+sub: original
+grade: 12
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·写在《楞伽经》夹缝中的经文
+price: null
+flags: []
+assets:
+  icon: item/miji_jiuyang
+text:
+  desc: 外观：四册元代经折本置蓝布函套，旧麻纸泛黄。
+  lore: 《倚天屠龙记》中九阳经文写在《楞伽经》夹缝。研读要在四册经文间连续校读，先明行气次序再运功；蓝布函套和题签为 （原创扩展），虫蛀缺字不得凭江湖口诀擅补。
+extension:
+  type: manual
+  value:
+    skill: sk_jiuyang
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jiuyang
+      readBre: 70
+      maxLayer: 10
+      cultivation: 5000

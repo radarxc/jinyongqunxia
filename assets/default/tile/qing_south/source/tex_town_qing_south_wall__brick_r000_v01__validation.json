@@ -1,0 +1,26 @@
+{
+  "id": "tex_town_qing_south_wall__brick_r000_v01",
+  "mode": "RGBA",
+  "size": [
+    231,
+    163
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "transparent_ratio": 0.6858,
+  "anchor_px": [
+    105,
+    105
+  ],
+  "source_bbox": [
+    57,
+    21,
+    1522,
+    1024
+  ],
+  "attempts": 2,
+  "selected_attempt": 1,
+  "reference_sha256": "d4b1a8a9974d5e9e79a0d60a9e502cdf5b44d69569925ad4a72015f2ed99ac14"
+}

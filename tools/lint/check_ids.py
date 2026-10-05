@@ -44,6 +44,7 @@ DEFAULT_PREFIXES: Tuple[str, ...] = (
     "sv_", "biz_", "job_", "city_", "sc_", "poi_",
     "offmap_", "post_", "port_", "route_", "dc_", "lgs_",
     "frag_", "cache_", "vid_",
+    "mfr_", "qnl_", "dxl_", "txp_",
 )
 
 # Configurable ownership map derived from Canon section 18 and the concrete
@@ -98,6 +99,7 @@ OWNERSHIP: Mapping[str, Tuple[str, ...]] = {
              "docs/design/18-npc-and-companions.md"),
     "q_": ("docs/design/story/*.md", "docs/design/chapters/*.md",
            "docs/design/11-open-world.md", "docs/design/12-quests-npc-factions.md"),
+    "slp_": ("docs/design/story/sleep-events.md",),
     # AR-04 assigns the finalized global RegionDef table to design/11.  The
     # map YAML is its structured source; design/19's 19-region table is an
     # explicitly labelled draft, and chapters only consume era-layer state.
@@ -138,6 +140,12 @@ OWNERSHIP: Mapping[str, Tuple[str, ...]] = {
     "cache_": ("docs/design/20-legacy-inheritance.md",),
     "vid_": ("docs/design/02-timeline-and-world-tiers.md",
               "docs/tech/07-asset-generation.md"),
+    "mfr_": ("docs/design/21-meridian-flow-and-moves.md",
+             "docs/design/catalog/skills-*.md"),
+    "qnl_": ("docs/design/21-meridian-flow-and-moves.md",),
+    "dxl_": ("docs/design/21-meridian-flow-and-moves.md",),
+    "txp_": ("docs/design/21-meridian-flow-and-moves.md",
+             "docs/design/catalog/skills-*.md"),
 }
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
@@ -879,6 +887,20 @@ def table_definition(
             id_columns.append(index)
         elif family == "ps_" and "被动" in normalized:
             id_columns.append(index)
+        elif family == "mfr_" and normalized in {
+            "路线 id", "movementrouteref",
+        }:
+            id_columns.append(index)
+        elif family == "txp_" and normalized in {
+            "breathprofileref", "breathprofile.id",
+        }:
+            id_columns.append(index)
+        elif (
+            family == "txp_"
+            and fnmatch.fnmatchcase(doc.rel, "docs/design/catalog/skills-*.md")
+            and normalized == "内功 → 调息档案"
+        ):
+            id_columns.append(index)
         elif family == "rg_" and normalized in {"区域 id / 名称", "区域 id/名称"}:
             id_columns.append(index)
         elif family == "sc_" and re.fullmatch(r"场景键(?:\s*\d+)?", normalized):
@@ -922,6 +944,17 @@ def table_definition(
             and doc.rel == "docs/design/06-buff-system.md"
             and clean_markdown(row.headers[index]).lower() == "族 id"
         )
+        catalog_breath_mapping_header = (
+            family == "txp_"
+            and fnmatch.fnmatchcase(doc.rel, "docs/design/catalog/skills-*.md")
+            and clean_markdown(row.headers[index]).lower() == "内功 → 调息档案"
+        )
+        catalog_breath_mapping_cell = (
+            catalog_breath_mapping_header
+            and len(ids) == 2
+            and ids[0].startswith("sk_")
+            and ids[1] == identifier
+        )
         multi_id_columns = (
             (family == "sc_" and re.fullmatch(r"场景键(?:\s*\d+)?", clean_markdown(row.headers[index]).lower()))
             or (family == "frag_" and "三卷" in clean_markdown(row.headers[index]))
@@ -946,8 +979,15 @@ def table_definition(
                 and "本文生产 ID" in clean_markdown(row.cells[0])
             )
         )
-        if identifier not in ids or (
-            not family_registry_cell and not multi_id_columns and len(ids) != 1
+        if (
+            identifier not in ids
+            or (catalog_breath_mapping_header and not catalog_breath_mapping_cell)
+            or (
+                not family_registry_cell
+                and not catalog_breath_mapping_cell
+                and not multi_id_columns
+                and len(ids) != 1
+            )
         ):
             continue
         # Provisional wording in the ID cell itself is meaningful.  Wording in
@@ -1655,6 +1695,36 @@ def duplicate_issues(definitions: Sequence[Definition]) -> List[Dict[str, object
         sites = {(entry.location.file, entry.location.line) for entry in entries}
         if len(sites) < 2:
             continue
+        # design/21 owns shared meridian schemas/templates, while skill
+        # catalogs own concrete per-skill route and breath-profile instances.
+        # An ID appearing in both layers is an ownership collision even when
+        # one side has no display name or both names happen to match.
+        if identifier.startswith(("mfr_", "txp_")):
+            owner_layers = {
+                "system"
+                if entry.location.file == "docs/design/21-meridian-flow-and-moves.md"
+                else "catalog"
+                if fnmatch.fnmatchcase(
+                    entry.location.file, "docs/design/catalog/skills-*.md"
+                )
+                else "other"
+                for entry in entries
+            }
+            if {"system", "catalog"} <= owner_layers:
+                result.append({
+                    "id": identifier,
+                    "field": "owner",
+                    "values": ["design/21", "skill catalog"],
+                    "definitions": [
+                        {
+                            **location_dict(entry.location),
+                            "name": entry.name,
+                            "shape": entry.shape,
+                        }
+                        for entry in entries
+                    ],
+                })
+                continue
         names_by_normalized: Dict[str, str] = {}
         for entry in entries:
             if entry.name:

@@ -1,0 +1,24 @@
+schemaVersion: martial-art.v1
+id: sk_xijiantoubu
+name: 溪涧投步
+aliases: []
+category: movement
+subType: movement
+grade: 1
+origin: expanded
+sect: null
+lineage: 苎萝山山民的涉溪步法
+sourceChapters: [ch00_yuenv]
+nature: neutral
+wOutBp: 8000
+wInBp: 2000
+requirements: {attrs: {agi: 20}, aptitude: {apLight: 0}}
+maxLayer: 10
+layers:
+  - {n: 1, unlock: []}
+moveIds: []
+learnSources:
+  - {type: observe, chapter: ch00_yuenv, ref: 山径浅沟教学, maxLayer: 7}
+  - {type: manual, chapter: ch00_yuenv, ref: it_miji_xijiantoubu_can, maxLayer: 7}
+tags: [movement, common, prologue_role]
+description: 山行者跨石、投步和湿地收身的入门步法。（原创扩展）

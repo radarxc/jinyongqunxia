@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuanqinshufang
+name: 元代书房琴
+kind: collectible
+sub: qin
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanqinshufang
+text:
+  desc: 外观：黑褐漆七弦琴，肩部圆缓、腰部微收。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,musician,collector]}; giftValue=1; provenance=expanded。
+  lore: 元琴形制不能靠单一轮廓判定，本件依斫琴研究设计普通书房琴。适合赠文士乐人，名称、细部和获赠属于（原创扩展）；不用后世琴铭伪造年代，也不增加战斗音功。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

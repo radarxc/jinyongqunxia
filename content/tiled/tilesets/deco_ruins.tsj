@@ -1,0 +1,48 @@
+{
+  "columns": 0,
+  "grid": {
+    "orientation": "orthogonal",
+    "width": 48,
+    "height": 48
+  },
+  "name": "tianshu-deco-ruins",
+  "objectalignment": "bottom",
+  "tilewidth": 144,
+  "tileheight": 182,
+  "tilecount": 22,
+  "margin": 0,
+  "spacing": 0,
+  "type": "tileset",
+  "version": "1.10",
+  "tilerendersize": "tile",
+  "transformations": {
+    "hflip": false,
+    "vflip": false,
+    "rotate": false,
+    "preferuntransformed": true
+  },
+  "tiles": [
+    {"id": 0, "image": "../../../assets/default/tile/ruins/deco_ruins_cave_wall_straight_v01.png", "imagewidth": 112, "imageheight": 97, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_cave_wall_straight_v01"}]},
+    {"id": 1, "image": "../../../assets/default/tile/ruins/deco_ruins_cave_wall_corner_v01.png", "imagewidth": 144, "imageheight": 107, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_cave_wall_corner_v01"}]},
+    {"id": 2, "image": "../../../assets/default/tile/ruins/deco_ruins_tomb_passage_arch_v01.png", "imagewidth": 112, "imageheight": 117, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_tomb_passage_arch_v01"}]},
+    {"id": 3, "image": "../../../assets/default/tile/ruins/deco_ruins_tomb_passage_wall_v01.png", "imagewidth": 112, "imageheight": 115, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_tomb_passage_wall_v01"}]},
+    {"id": 4, "image": "../../../assets/default/tile/ruins/deco_ruins_adobe_wall_brick_v01.png", "imagewidth": 120, "imageheight": 103, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_adobe_wall_brick_v01"}]},
+    {"id": 5, "image": "../../../assets/default/tile/ruins/deco_ruins_adobe_wall_rammed_v01.png", "imagewidth": 112, "imageheight": 96, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_adobe_wall_rammed_v01"}]},
+    {"id": 6, "image": "../../../assets/default/tile/ruins/deco_ruins_stone_carving_stele_v01.png", "imagewidth": 80, "imageheight": 182, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_stone_carving_stele_v01"}]},
+    {"id": 7, "image": "../../../assets/default/tile/ruins/deco_ruins_stone_carving_niche_v01.png", "imagewidth": 80, "imageheight": 144, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_stone_carving_niche_v01"}]},
+    {"id": 8, "image": "../../../assets/default/tile/ruins/deco_ruins_mine_prop_v01.png", "imagewidth": 119, "imageheight": 127, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_mine_prop_v01"}]},
+    {"id": 9, "image": "../../../assets/default/tile/ruins/deco_ruins_felt_tent_v01.png", "imagewidth": 144, "imageheight": 116, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_felt_tent_v01"}]},
+    {"id": 10, "image": "../../../assets/default/tile/ruins/deco_ruins_herb_rack_v01.png", "imagewidth": 80, "imageheight": 141, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_herb_rack_v01"}]},
+    {"id": 11, "image": "../../../assets/default/tile/ruins/deco_ruins_lamp_oil_v01.png", "imagewidth": 85, "imageheight": 141, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_lamp_oil_v01"}]},
+    {"id": 12, "image": "../../../assets/default/tile/ruins/deco_ruins_lamp_stone_v01.png", "imagewidth": 80, "imageheight": 155, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_lamp_stone_v01"}]},
+    {"id": 13, "image": "../../../assets/default/tile/ruins/deco_ruins_chest_closed_v01.png", "imagewidth": 80, "imageheight": 76, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_chest_closed_v01"}]},
+    {"id": 14, "image": "../../../assets/default/tile/ruins/deco_ruins_chest_open_v01.png", "imagewidth": 87, "imageheight": 96, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_chest_open_v01"}]},
+    {"id": 15, "image": "../../../assets/default/tile/ruins/deco_ruins_stalactite_v01.png", "imagewidth": 80, "imageheight": 147, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_stalactite_v01"}]},
+    {"id": 16, "image": "../../../assets/default/tile/ruins/deco_ruins_stalagmite_v01.png", "imagewidth": 81, "imageheight": 154, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_stalagmite_v01"}]},
+    {"id": 17, "image": "../../../assets/default/tile/ruins/deco_ruins_wet_wall_v01.png", "imagewidth": 117, "imageheight": 103, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_wet_wall_v01"}]},
+    {"id": 18, "image": "../../../assets/default/tile/ruins/deco_ruins_rammed_earth_section_v01.png", "imagewidth": 116, "imageheight": 92, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_rammed_earth_section_v01"}]},
+    {"id": 19, "image": "../../../assets/default/tile/ruins/deco_ruins_silt_edge_v01.png", "imagewidth": 115, "imageheight": 67, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_silt_edge_v01"}]},
+    {"id": 20, "image": "../../../assets/default/tile/ruins/deco_ruins_collapse_v01.png", "imagewidth": 144, "imageheight": 107, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_collapse_v01"}]},
+    {"id": 21, "image": "../../../assets/default/tile/ruins/deco_ruins_robber_hole_v01.png", "imagewidth": 112, "imageheight": 115, "properties": [{"name": "decoId", "type": "string", "value": "deco_ruins_robber_hole_v01"}]}
+  ]
+}

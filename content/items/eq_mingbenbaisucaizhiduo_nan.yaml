@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_mingbenbaisucaizhiduo_nan
+name: 明本白素裁直裰·男
+kind: armor
+sub: clothing
+grade: 2
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+origin: canonExpanded
+canonRef: 明；出现书界 ch05/ch06；（原创扩展）；形制／色系依据：故宫《明代官员服饰研究》 https://www.dpm.org.cn/Uploads/File/2019/11/25/u5ddbb3f9e989e.pdf；官仪服色不直接等同江湖常服；八朝素白通用为原创设计，女服逐朝实证（待考）；公服／女服用色并参《明史》卷67《舆服三·公服／士庶妻冠服》 https://zh.wikisource.org/zh-hans/明史/卷67
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingbenbaisucaizhiduo_nan
+text:
+  desc: 外观：明男款，主色本白。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=male。
+  lore: （原创扩展）据明代服饰语汇演成本白男式直裰，交领右衽长衣保留后身中缝和两侧开衩。素面实用缝边落衣缘，行旅先理好系结；同档换色同值，不作曳撒腰褶，不以绯红授予官阶。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

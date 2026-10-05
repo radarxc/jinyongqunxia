@@ -1,0 +1,16 @@
+{
+  "key": "restaurant2",
+  "prompt": "Use case: precise-object-edit. Correct ONLY the ground geometry of this Southern Song restaurant sprite. Keep exact visual quality, realistic gray tile, warm timber, ivory plaster, open dining balconies and wine jars. Current front facade is TOO LONG relative to the side. SHORTEN its long lower-left-facing frontage by 18 percent, keeping short lower-right side depth unchanged, and make the two axes slopes exactly +0.500 and -0.500. The foundation is a 12 by 9 metre rectangle: horizontal distance LEFT to FRONT divided by FRONT to RIGHT is 1.333333. Adjust actual roof/walls/floor proportions together, not canvas. Camera is orthographic 2:1 no convergence. All horizontal lines parallel these axes and vertical posts vertical. Preserve upper-left sunlight. Output true transparent RGBA with NO halo or diffuse background, short contact shadow only. All roof and floor corners uncut with 10% empty margin. No text, no characters, no grid or dimensions, no people or modern objects. Geometry correction must be clearly visible.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-27e4236b-5c46-49d3-bc84-17d6e06952d2.png",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try1.png",
+      "sha256": "2b3251579a11c864b02de693409c24edca0b6ff1ad10676ae8d0187b844b73f5",
+      "role": "image_gen candidate: geometry/style reference or edit target; not author approved"
+    }
+  ],
+  "source_sha256": "fc9e7ac8624628d8b0821a8a996fe0702173254ec23f88d38b32fd826df43b2d",
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try2.png",
+  "selection": "unselected",
+  "reason": "缩短前立面编辑未可靠修正，门前地坪出现凸出/阶梯轮廓且仍过长，alpha最大254，淘汰。"
+}

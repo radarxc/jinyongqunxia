@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_xueshanxiaoyuma
+name: 雪山小玉马
+kind: collectible
+sub: jade
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B11](#src-b11)；准入：仅雪山；1780山庄赠礼后，实例数量按原文
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xueshanxiaoyuma
+text:
+  desc: 外观：单只白玉小马，四足贴近小腹作收拢姿。 待运行时投影：eraRange=[qing]; giftTo={preferred:[collector]}; giftValue=3; provenance=book。
+  lore: 《雪山飞狐》山庄少女分赠侍童小玉马，人物称谓与分赠次序待核修订版。每次只图示一匹，最多按原文分配两实例；宜赠藏家，具体马姿与玩家取得为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 52

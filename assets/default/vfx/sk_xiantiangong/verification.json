@@ -1,0 +1,119 @@
+{
+  "scope": "sk_xiantiangong candidate only",
+  "backend_model": "not exposed by image_gen",
+  "generated_source_count": 3,
+  "generated_candidate_count": 3,
+  "rgba_frame_count": 12,
+  "browser_tested": false,
+  "device_tested": false,
+  "moves": {
+    "mv_xiantiangong_gangqi": {
+      "valid": true,
+      "geometry": {
+        "visible_bounds_px": [
+          74.14999999999999,
+          96.04999999999997,
+          870.6081081081081,
+          861.1
+        ],
+        "safe_margin_px": 74.14999999999999,
+        "blank_fraction_lower_bound": 0.612598243962537
+      },
+      "quality": {
+        "border_alpha_ratio": 0.0,
+        "residual_white_edge_ratio": 0.0,
+        "reconstruction_max_error_8bit": 0.5372006929769952
+      },
+      "html": {
+        "bytes": 2047886,
+        "embedded_images": 6,
+        "unique_images": 6,
+        "inline_scripts_checked": 1,
+        "only_external_dependency": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js",
+        "browser_verified": false
+      },
+      "peak_viewed_with_view_image": true
+    },
+    "mv_xiantiangong_wuqi": {
+      "valid": true,
+      "geometry": {
+        "visible_bounds_px": [
+          74.14999999999999,
+          96.04999999999997,
+          926.1176470588234,
+          861.1
+        ],
+        "safe_margin_px": 74.14999999999999,
+        "blank_fraction_lower_bound": 0.5855980883392633
+      },
+      "quality": {
+        "border_alpha_ratio": 0.0,
+        "residual_white_edge_ratio": 0.0,
+        "reconstruction_max_error_8bit": 0.5372006929769952
+      },
+      "html": {
+        "bytes": 1947932,
+        "embedded_images": 6,
+        "unique_images": 6,
+        "inline_scripts_checked": 1,
+        "only_external_dependency": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js",
+        "browser_verified": false
+      },
+      "peak_viewed_with_view_image": true
+    },
+    "mv_xiantiangong_yiqi": {
+      "valid": true,
+      "geometry": {
+        "visible_bounds_px": [
+          74.14999999999999,
+          96.04999999999997,
+          1140.857142857143,
+          861.1
+        ],
+        "safe_margin_px": 74.14999999999999,
+        "blank_fraction_lower_bound": 0.48114757560548327
+      },
+      "quality": {
+        "border_alpha_ratio": 0.0,
+        "residual_white_edge_ratio": 0.0,
+        "reconstruction_max_error_8bit": 0.5266352576479392
+      },
+      "html": {
+        "bytes": 1488781,
+        "embedded_images": 6,
+        "unique_images": 6,
+        "inline_scripts_checked": 1,
+        "only_external_dependency": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js",
+        "browser_verified": false
+      },
+      "peak_viewed_with_view_image": true
+    }
+  },
+  "sources": {
+    "vfx_sk_xiantiangong__family_base01": {
+      "sha256": "4128551ce0bbf9e3b34bfb850849c9250d879dc8e2081cb918f2c306562d0cc8",
+      "matches_original_bytes": true,
+      "candidates": 1
+    },
+    "vfx_sk_xiantiangong__gangqi_base01": {
+      "sha256": "0292f8df1da1e3dc39ade6b668887699516e7d1b2bbe03699d6144b4d8fb9c3a",
+      "matches_original_bytes": true,
+      "candidates": 1
+    },
+    "vfx_sk_xiantiangong__wuqi_base01": {
+      "sha256": "83cb75a52eb78955ccfa91d9fd76a8304930f138012c866591486e65249ff429",
+      "matches_original_bytes": true,
+      "candidates": 1
+    }
+  },
+  "shared_emitter": {
+    "emitter-plate.yaml": {
+      "sha256": "049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13",
+      "matches_git_HEAD": true
+    },
+    "source_palm.png": {
+      "sha256": "f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c",
+      "matches_git_HEAD": true
+    }
+  }
+}

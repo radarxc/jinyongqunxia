@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_yuezu_duanjian
+name: 越卒短剑简谱
+kind: manual
+sub: full
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_yuezu_duanjian
+text:
+  desc: 外观：春秋青竹简十八枚，麻绳双编。
+  lore: 越军教习把短剑的拔刺、护身与列中换步刻在十八枚竹简上，武学与简谱属 （原创扩展）。研读须按编绳次序逐势演练，以木剑先校距离；错换一简便会打乱整套进退。
+extension:
+  type: manual
+  value:
+    skill: sk_yuezu_duanjian
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_yuezu_duanjian
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

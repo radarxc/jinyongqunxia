@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_emeijiejian
+name: 峨眉戒剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 峨眉 · design/17 §6.2；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/emeijiejian
+text:
+  desc: 外观：纤直双刃剑约七十厘米，莲瓣形小护手、素木柄灰白丝缠、深青漆鞘。 待运行时投影：sect=sect_emei。
+  lore: 峨眉门人用于持戒护身的轻直剑，纤刃便于点、挑和迅速收势，莲瓣小镡提醒用剑克制。它不对应原著具名镇物，传承、命名与装具皆为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 78
+      qiAffinity: 100

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_zhuangxingong
+name: 壮行功抄本
+kind: manual
+sub: copy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_zhuangxingong
+text:
+  desc: 外观：清代靛青布面线装册，四眼白线。
+  lore: 镖师将远行前后调息养力的方法抄成靛青布面册，心法和载体属 （原创扩展）。研读须配合作息缓练，以稳住长途消耗，不可当作临阵暴发；雨斑汗渍见其随队携带，来源止于八层。
+extension:
+  type: manual
+  value:
+    skill: sk_zhuangxingong
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_zhuangxingong
+      readBre: 25
+      maxLayer: 8
+      cultivation: 600

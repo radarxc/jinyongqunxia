@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_jinyinxiaojian
+name: 金银小剑
+kind: weapon
+sub: exotic
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《白马啸西风》·上官虹，金柄与银柄的一对短剑
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jinyinxiaojian
+text:
+  desc: 外观：两柄掌长直身短剑成对并置，一柄金色柄、一柄银色柄。 待运行时投影：exoticKind=dagger。
+  lore: 《白马啸西风》中上官虹使用一金柄、一银柄的成对短剑。两刃宜左右互补，以一柄牵架、一柄贴身突刺；成对占位规则、护口和短鞘细节为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 76
+      qiAffinity: 100

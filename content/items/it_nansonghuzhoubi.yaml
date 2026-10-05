@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansonghuzhoubi
+name: 南宋湖州书笔
+kind: collectible
+sub: stationery
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansonghuzhoubi
+text:
+  desc: 外观：素竹笔管一支，黑褐毫锋细长。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 湖州制笔在唐宋已有发展，本件取当时普通书笔方向，不套用后世商标。宜赠文士与书吏，可由笔工酬谢取得；管材、配毫和制作者为（原创扩展），不保证特定名工谱系。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

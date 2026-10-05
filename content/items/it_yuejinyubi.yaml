@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yuejinyubi
+name: 越地缀金礼璧
+kind: collectible
+sub: jade
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yuejinyubi
+text:
+  desc: 外观：淡青玉璧，宽缘圆孔。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[noble,collector]}; giftValue=4; provenance=expanded。
+  lore: 以春秋礼玉的等级感设计一件贵族旧藏，金片修缀是本作造型设定。仅在终段礼仪支线由原主正式授予，宜赠权贵或大藏家；不声称出自越王实物，整体为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

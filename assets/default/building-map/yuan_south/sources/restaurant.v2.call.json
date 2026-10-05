@@ -1,0 +1,15 @@
+{
+  "id": "restaurant",
+  "prompt": "Use case: precise-object-edit. Edit target is the supplied new late Yuan Jiangnan restaurant building sprite. Keep its identity, layout, muted grey tile roofs, warm wood, lime plaster, fine realistic Song-reference textures, doors, upper-left lighting and short lower-right contact shadow. Correct only footprint proportions and camera to exact 2:1 dimetric orthographic, not perspective, no vanishing points. ALL ground edges left-to-front slope +0.500 and front-to-right -0.500; vertical walls stay vertical. Rebuild the underlying whole parcel to 12m EAST-WEST frontage and 9m NORTH-SOUTH depth, horizontal spans ratio 1.3333. For example ground LEFT corner(120,720), FRONT corner(600,960), RIGHT corner(960,780) gives correct shape; scale composition to fit these ratios rather than literal pixels. The front facade faces lower left along the LONGER ground edge. Keep complete thin ground interface with clear corner edges. Full building uncropped with 12 percent true transparent empty margin; solid building should be opaque. Remove any haze, large ground shadow, glow, fake background. No words or people. ONE sprite with true transparent RGBA background.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-8ea6c3c7-1424-4102-a91c-8bdb5ddd758b.png",
+  "reference": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-b8a29269-8f97-48b5-82fe-b2e8890938ad.png",
+  "source_archive": "sources/bld_kit_yuan_south_restaurant.v2.png",
+  "source_sha256": "9c02c225c913379ad851d724a02dedd62aef2e1a520e89f2e70b2d225385105f",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "created": "2026-09-30T22:37:35.283242+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "reference_sha256": "0c85e63ce8db3d19f6c88acbcc2568ba6091fac8b78a8b66570615b0f1d55b9a"
+}

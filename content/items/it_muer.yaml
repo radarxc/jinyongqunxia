@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_muer
+name: 木耳
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 山林菌蔬，宋元食谱可见菌类
+price: auto
+flags: []
+assets:
+  icon: item/muer
+text:
+  desc: 外观：黑褐木耳一小簇置竹筛，薄卷耳状。
+  lore: 宋元食谱已有菌类，本件为雨后山林腐木所得黑褐木耳，可鲜用亦可晒干。泡发后宜入汤或炒食；采菌必须由熟悉山场者辨认。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: vegetable
+    attributes:
+      version: 2

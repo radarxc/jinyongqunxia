@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_tongxingfeishi
+name: 通行飞石图谱
+kind: manual
+sub: full
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tongxingfeishi
+text:
+  desc: 外观：唐代粗麻纸卷轴，竹轴、草绳束缚。
+  lore: 牧童猎户把选石、藏石与近距投掷画成粗麻纸卷，技法和载体属 （原创扩展）。研读须用钝石对树靶校准腕力，确认四周无人再试；石粉灰斑是长期夹放样石留下的痕迹。
+extension:
+  type: manual
+  value:
+    skill: sk_tongxingfeishi
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tongxingfeishi
+      readWis: 20
+      maxLayer: 10
+      cultivation: 500

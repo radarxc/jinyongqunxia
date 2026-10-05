@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_qingheiqiqin
+name: 清黑漆琴
+kind: collectible
+sub: qin
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingheiqiqin
+text:
+  desc: 外观：乌黑漆七弦琴，肩腰平顺。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,musician,collector]}; giftValue=2; provenance=expanded。
+  lore: 为清代书斋陈设设计普通七弦琴，以修复状态和整齐工艺体现玄阶。宜赠文士与乐人，具体琴式和获赠为（原创扩展）；不以一层旧漆冒称唐琴，也不获得额外研读加点。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

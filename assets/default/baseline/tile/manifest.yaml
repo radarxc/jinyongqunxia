@@ -1,0 +1,1801 @@
+- id: tex_town_song_dali_rammed_earth__v01
+  file: tex_town_song_dali_rammed_earth__v01.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 夯土地 v01；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: historical-scene. Generate ONE replacement ground tile for Dali kingdom circa 1093, realistic ancient Chinese town game. Single flat rammed earth paving surface with fine even grey-tan mineral grain, low saturation, no distinctive markings. Orthographic isometric yaw 45°, elevation 30°, EXACTLY 2:1 diamond top plane with no thickness, bevel or side walls; centered with transparent margins on all sides. This must tile seamlessly under translations (+32,+16) and (+32,-16) when resized to 64x32 pixels. Opposite diamond edges must have matching uniform color and identical fine material scale, no brightness gradient across the surface, no rim shading, no vignette, no repeating diagonal stripes, no cracks or large speckles. Reference palette muted earthy #9c896c, fluctuations only a few RGB values. Uniform diffuse light from upper left, without cast shadow. The entire solid diamond interior MUST BE FULLY OPAQUE alpha=255; outside diamond MUST be genuine alpha=0 transparent. The transparency is only outside the diamond, never over its interior. No text, labels, watermark, modern elements, checkerboard painted into pixels, vegetation, objects. Fine quiet surface intended as a repeated background. Single asset only, not a grid or sheet.'
+  negative: No text, watermarks, labels, UI, checkerboard painted into image, modern objects, loose rocks, vegetation, cracks, footprints, directional patterns or cast shadow.
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T09:52:12.494262+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-d67a9b06-e469-41c4-b883-14faf4f1a454.png
+  size: 64x32
+  sha256: 331aa94b8a20989786937cc052adad793f576b776f7230303912148a58edf463
+  status: candidate
+  tile:
+    kind: rammed_earth
+    footprint:
+    - 1
+    - 1
+    variant: v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_rammed_earth__v01__rev3_raw.png
+  source_sha256: 1c3097d9a56ae339ff7b9a1c7cf69abd59ea766267193157c04bdf8672bea9f7
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_rammed_earth__v02
+  file: tex_town_song_dali_rammed_earth__v02.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 夯土地 v02；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: precise-object-edit. Asset type: seamless 64x32 isometric Dali circa 1093 rammed-earth ground tile. Input image is reference for exact geometry, palette, scale, contrast and brightness. Make an independently generated subtle grain variant of THIS EXACT diamond, preserve boundaries and color distribution. Change only tiny mineral grain positions. Keep uniform even #9c896c grey-tan earth, no coherent stripes, no directional pattern, no dark/light patches, no shading gradient, no thickness. Quiet realistic material, orthographic yaw45 pitch30 2:1 diamond. Entire diamond interior opaque alpha255; outside true RGBA alpha0. Diffuse upper-left light without cast shadow. Equal fine texture right to every edge, opposite edges seamlessly match, no edge darkening. No objects, plants, lines, cracks, text, watermarks, modern elements or checkerboard. ONE standalone tile on generous transparent margins. Variant 2.'
+  negative: No text, watermarks, labels, UI, checkerboard painted into image, modern objects, loose rocks, vegetation, cracks, footprints, directional patterns or cast shadow.
+  references:
+  - source/tex_town_song_dali_rammed_earth__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T09:54:47.691370+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-02b4281a-b920-44df-ad7d-32ce4c03e4d1.png
+  size: 64x32
+  sha256: af7ccbc4e5fb6f7a7e976f253766ad13065b6a6a522b0dfb49610c6c7fe38a88
+  status: candidate
+  tile:
+    kind: rammed_earth
+    footprint:
+    - 1
+    - 1
+    variant: v02
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_rammed_earth__v02__rev3_raw.png
+  source_sha256: be1e744109e1d3f7e70796733f343926ad86379f647002749f69708408c64e87
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_rammed_earth__v03
+  file: tex_town_song_dali_rammed_earth__v03.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 夯土地 v03；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: precise-object-edit. Asset type: seamless 64x32 isometric Dali circa 1093 rammed-earth ground tile. Input image is reference for exact geometry, palette, scale, contrast and brightness. Make an independently generated subtle grain variant of THIS EXACT diamond, preserve boundaries and color distribution. Change only tiny mineral grain positions. Keep uniform even #9c896c grey-tan earth, no coherent stripes, no directional pattern, no dark/light patches, no shading gradient, no thickness. Quiet realistic material, orthographic yaw45 pitch30 2:1 diamond. Entire diamond interior opaque alpha255; outside true RGBA alpha0. Diffuse upper-left light without cast shadow. Equal fine texture right to every edge, opposite edges seamlessly match, no edge darkening. No objects, plants, lines, cracks, text, watermarks, modern elements or checkerboard. ONE standalone tile on generous transparent margins. Variant 3.'
+  negative: No text, watermarks, labels, UI, checkerboard painted into image, modern objects, loose rocks, vegetation, cracks, footprints, directional patterns or cast shadow.
+  references:
+  - source/tex_town_song_dali_rammed_earth__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T09:54:13.656154+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-79943dd9-6ba3-41ac-ae33-0622c834768e.png
+  size: 64x32
+  sha256: 7b4b1e21528dcef471e7f179aedc6da1d1b6a0b794b9dd21448db18ab3682b3a
+  status: candidate
+  tile:
+    kind: rammed_earth
+    footprint:
+    - 1
+    - 1
+    variant: v03
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_rammed_earth__v03__rev3_raw.png
+  source_sha256: 8cf16afd5323a12b834d9fbb4657133d1fee6e2dfcfb8c914799d8369a92e55a
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_rammed_earth__v04
+  file: tex_town_song_dali_rammed_earth__v04.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 夯土地 v04；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: precise-object-edit. Asset type: seamless 64x32 isometric Dali circa 1093 rammed-earth ground tile. Input image is reference for exact geometry, palette, scale, contrast and brightness. Make an independently generated subtle grain variant of THIS EXACT diamond, preserve boundaries and color distribution. Change only tiny mineral grain positions. Keep uniform even #9c896c grey-tan earth, no coherent stripes, no directional pattern, no dark/light patches, no shading gradient, no thickness. Quiet realistic material, orthographic yaw45 pitch30 2:1 diamond. Entire diamond interior opaque alpha255; outside true RGBA alpha0. Diffuse upper-left light without cast shadow. Equal fine texture right to every edge, opposite edges seamlessly match, no edge darkening. No objects, plants, lines, cracks, text, watermarks, modern elements or checkerboard. ONE standalone tile on generous transparent margins. Variant 4.'
+  negative: No text, watermarks, labels, UI, checkerboard painted into image, modern objects, loose rocks, vegetation, cracks, footprints, directional patterns or cast shadow.
+  references:
+  - source/tex_town_song_dali_rammed_earth__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T09:55:22.460605+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-e2c61889-803d-4ca7-bc7d-22befeb24697.png
+  size: 64x32
+  sha256: 20614c64f4c6ed585e4d0755fed8dcc4deb9b31791d3e4a5a7d71d1ab4017a36
+  status: candidate
+  tile:
+    kind: rammed_earth
+    footprint:
+    - 1
+    - 1
+    variant: v04
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_rammed_earth__v04__rev3_raw.png
+  source_sha256: 28e36ad76f5f497799f8c83b852f009ebe0afa8bd65f2652ac6f6643d8e975ff
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_dirt_road__v01
+  file: tex_town_song_dali_dirt_road__v01.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 土路中心 v01；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: historical-scene. Generate ONE reusable game ground tile. Perfect flat 2:1 rhombus, isometric orthographic camera yaw45 elevation30. No thickness, side faces, rim, bevel, cast shadow or perspective vanishing point. Large clear transparent margins, complete diamond uncropped. The whole surface is fully opaque alpha255, outside genuine RGBA alpha0. Intended downsample 64x32px. Seamlessly tile under translations (+32,+16) and (+32,-16); surface brightness and color exactly uniform across all four edges, no global shading gradient or vignette. Upper-left diffuse light. Realistic historical low-saturation material, very fine low-contrast surface. No text, watermark, UI, checkerboard, people, objects, rubble, cracks, footprints, modern objects. One tile ONLY. Dali kingdom circa1093 worn compacted dirt road CENTER. Even warm grey-brown dusty soil, tiny subdued mineral grain. No ruts, no directional marks, no bands, no grass. Uniform RGB approx (159,144,119), brightness range extremely small. No patches. One quiet continuous surface. Variant01.'
+  negative: any text watermark labels numbers checkerboards UI, buildings, plant tufts, loose large rocks, footprints, cracks, roads painted as a stripe, horizon, modern items, ink style, cartoon, baked cast shadow. One tile only. Texture variant 01. Same muted taupe color and grain size.
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T09:57:06.825845+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-7523d48d-fd02-468a-83d4-687ace0c354b.png
+  size: 64x32
+  sha256: c65f6ac7b647089b8604507b3e4510866c8cf55753243ef4287bc3a3d05e009a
+  status: candidate
+  tile:
+    kind: dirt_road
+    footprint:
+    - 1
+    - 1
+    variant: v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_dirt_road__v01__rev3_raw.png
+  source_sha256: edb0f2f0dd87c4127f82e5eae10227b96d01a8cf22ff274a40360ae73cd7d670
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_dirt_road__v02
+  file: tex_town_song_dali_dirt_road__v02.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 土路中心 v02；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: precise-object-edit. Input image is a STYLE, SCALE AND EXACT LAYOUT reference for a reusable isometric historical ground tile. Generate a standalone material variation numbered02. KEEP exact color palette, mean brightness, diamond geometry, texture scale and any masonry joint layout from the reference. Change only small fine grain within surfaces. Remove all coherent directional striping and mottled large shapes. Seamlessly repeating with other variants, equal edges and center color. Solid interior alpha255 opaque, outside true alpha0 transparency, generous clear margins, no shadows, no border, no edge lightening, no vignette. Flat 2:1 isometric diamond, yaw45 elevation30, soft diffuse upper-left light. No text, watermark, objects, plants (except grass blades if grass), modern elements, checkerboard. Dali kingdom circa1093 worn compacted dirt road CENTER. Even warm grey-brown dusty soil, tiny subdued mineral grain. No ruts, no directional marks, no bands, no grass. Uniform RGB approx (159,144,119), brightness range extremely small. No patches. One quiet continuous surface.'
+  negative: any text watermark labels numbers checkerboards UI, buildings, plant tufts, loose large rocks, footprints, cracks, roads painted as a stripe, horizon, modern items, ink style, cartoon, baked cast shadow. One tile only. Texture variant 02. Same muted taupe color and grain size.
+  references:
+  - source/tex_town_song_dali_dirt_road__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T10:02:55.440647+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-2559ce2c-d973-4b99-9702-77a6e53d762a.png
+  size: 64x32
+  sha256: 8f3c2b4b10e18cbe9e4396bebbcc0b6ab945c824690caaf237f7c3da6d620ada
+  status: candidate
+  tile:
+    kind: dirt_road
+    footprint:
+    - 1
+    - 1
+    variant: v02
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_dirt_road__v02__rev3_raw.png
+  source_sha256: 40a5d9fbbf027972c948fd962844d5c50ad7a6dc6c8b7281b91a69aa093e98da
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_dirt_road__v03
+  file: tex_town_song_dali_dirt_road__v03.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 土路中心 v03；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: precise-object-edit. Input reference specifies exact shape, material scale, color and brightness of an isometric game ground tile. Create independently generated material variant3. KEEP all large-scale color, lighting, masonry joint layout, scale and boundaries EXACTLY THE SAME. Only redistribute faint fine surface grain; variation should be nearly invisible at thumbnail size. All four opposite edges tile seamlessly with this reference. Do NOT add patches, directional bands, highlights, edge rim, gradient, large speckles or objects. Full solid diamond interior MUST alpha255 opaque, outside true alpha0 RGBA transparency. Flat 2:1 diamond yaw45 elevation30 with clear margins, zero thickness; upper-left soft diffuse light. No text, watermark, checkerboard, modern objects or decorations. Dali kingdom circa1093 worn compacted dirt road CENTER. Even warm grey-brown dusty soil, tiny subdued mineral grain. No ruts, no directional marks, no bands, no grass. Uniform RGB approx (159,144,119), brightness range extremely small. No patches. One quiet continuous surface.'
+  negative: any text watermark labels numbers checkerboards UI, buildings, plant tufts, loose large rocks, footprints, cracks, roads painted as a stripe, horizon, modern items, ink style, cartoon, baked cast shadow. One tile only. Texture variant 03. Same muted taupe color and grain size.
+  references:
+  - source/tex_town_song_dali_dirt_road__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T10:06:45.780327+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-7898088c-0628-48ff-83a8-335d055da2e7.png
+  size: 64x32
+  sha256: a3536ac8046e6193906390db08a5163bc290933903657235e1935c73e1bdedc1
+  status: candidate
+  tile:
+    kind: dirt_road
+    footprint:
+    - 1
+    - 1
+    variant: v03
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_dirt_road__v03__rev3_raw.png
+  source_sha256: 29b0e0f7e4ea4f6e0e22f546bd25d313f7d7ba05f704d98b9cdf93fd01f9cac3
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_dirt_road__v04
+  file: tex_town_song_dali_dirt_road__v04.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 土路中心 v04；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: precise-object-edit. Input reference specifies exact shape, material scale, color and brightness of an isometric game ground tile. Create independently generated material variant4. KEEP all large-scale color, lighting, masonry joint layout, scale and boundaries EXACTLY THE SAME. Only redistribute faint fine surface grain; variation should be nearly invisible at thumbnail size. All four opposite edges tile seamlessly with this reference. Do NOT add patches, directional bands, highlights, edge rim, gradient, large speckles or objects. Full solid diamond interior MUST alpha255 opaque, outside true alpha0 RGBA transparency. Flat 2:1 diamond yaw45 elevation30 with clear margins, zero thickness; upper-left soft diffuse light. No text, watermark, checkerboard, modern objects or decorations. Dali kingdom circa1093 worn compacted dirt road CENTER. Even warm grey-brown dusty soil, tiny subdued mineral grain. No ruts, no directional marks, no bands, no grass. Uniform RGB approx (159,144,119), brightness range extremely small. No patches. One quiet continuous surface.'
+  negative: any text watermark labels numbers checkerboards UI, buildings, plant tufts, loose large rocks, footprints, cracks, roads painted as a stripe, horizon, modern items, ink style, cartoon, baked cast shadow. One tile only. Texture variant 04. Same muted taupe color and grain size.
+  references:
+  - source/tex_town_song_dali_dirt_road__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T10:07:08.947529+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-92e26acc-f7aa-459c-a82d-6415e4e16887.png
+  size: 64x32
+  sha256: 67439c8b1bc3aba2018b15889e8b65b41bbc6126d4d09729e4f482c05f2f8955
+  status: candidate
+  tile:
+    kind: dirt_road
+    footprint:
+    - 1
+    - 1
+    variant: v04
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_dirt_road__v04__rev3_raw.png
+  source_sha256: 2742c18b9761bcef5ca5a6f95d716a561875cd2d707c96f9e40bdc4fb2171739
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_grass__v01
+  file: tex_town_song_dali_grass__v01.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 草地 v01；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: historical-scene. Generate ONE reusable game ground tile. Perfect flat 2:1 rhombus, isometric orthographic camera yaw45 elevation30. No thickness, side faces, rim, bevel, cast shadow or perspective vanishing point. Large clear transparent margins, complete diamond uncropped. The whole surface is fully opaque alpha255, outside genuine RGBA alpha0. Intended downsample 64x32px. Seamlessly tile under translations (+32,+16) and (+32,-16); surface brightness and color exactly uniform across all four edges, no global shading gradient or vignette. Upper-left diffuse light. Realistic historical low-saturation material, very fine low-contrast surface. No text, watermark, UI, checkerboard, people, objects, rubble, cracks, footprints, modern objects. One tile ONLY. Dali kingdom circa1093 indigenous low-growing GRASS ground. Extremely short, dense small olive-grey-green blades, subtle fine texture of uniform scale. Base RGB approx (115,121,87). No large tufts, no weeds, no flowers, no distinct objects, no brown patches, no mowing stripes, no diagonal bands. Neutral uniform surface brightness. Variant01.'
+  negative: ', watermark, label, checkerboard painting, UI, modern objects, flowers, leaves as large isolated objects, branches, rocks, person, buildings, ink painting, cartoon or sculpted miniature pedestal. Texture variant 01, keep same muted olive-green palette.'
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T09:57:40.638114+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-f416ae21-0925-42dc-94d5-a4e7ab5dd143.png
+  size: 64x32
+  sha256: f8994e2c4a0a13d4739526366fdb1f4e1e5519ffb5bc6834355c4d003a6a8ed3
+  status: candidate
+  tile:
+    kind: grass
+    footprint:
+    - 1
+    - 1
+    variant: v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_grass__v01__rev3_raw.png
+  source_sha256: 88d6ca9c7506ff338530cf52e3ebb3cd19fe4ccd8bd6d7b5d451132156450090
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_grass__v02
+  file: tex_town_song_dali_grass__v02.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 草地 v02；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: precise-object-edit. Input image is a STYLE, SCALE AND EXACT LAYOUT reference for a reusable isometric historical ground tile. Generate a standalone material variation numbered02. KEEP exact color palette, mean brightness, diamond geometry, texture scale and any masonry joint layout from the reference. Change only small fine grain within surfaces. Remove all coherent directional striping and mottled large shapes. Seamlessly repeating with other variants, equal edges and center color. Solid interior alpha255 opaque, outside true alpha0 transparency, generous clear margins, no shadows, no border, no edge lightening, no vignette. Flat 2:1 isometric diamond, yaw45 elevation30, soft diffuse upper-left light. No text, watermark, objects, plants (except grass blades if grass), modern elements, checkerboard. Dali kingdom circa1093 indigenous low-growing GRASS ground. Extremely short, dense small olive-grey-green blades, subtle fine texture of uniform scale. Base RGB approx (115,121,87). No large tufts, no weeds, no flowers, no distinct objects, no brown patches, no mowing stripes, no diagonal bands. Neutral uniform surface brightness.'
+  negative: ', watermark, label, checkerboard painting, UI, modern objects, flowers, leaves as large isolated objects, branches, rocks, person, buildings, ink painting, cartoon or sculpted miniature pedestal. Texture variant 02, keep same muted olive-green palette.'
+  references:
+  - source/tex_town_song_dali_grass__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T10:03:27.709239+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-310d7c3f-cdc0-434e-9728-8242bfb484fc.png
+  size: 64x32
+  sha256: 101275e946df1bc7cc07588213eedb1e0642f210df7d207f794833f36559bd62
+  status: candidate
+  tile:
+    kind: grass
+    footprint:
+    - 1
+    - 1
+    variant: v02
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_grass__v02__rev3_raw.png
+  source_sha256: 51b72672af277eec9f1ca9036d801a0372f6fc184c137a5eace981f0e3fcfa6d
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_grass__v03
+  file: tex_town_song_dali_grass__v03.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 草地 v03；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: precise-object-edit. Input reference specifies exact shape, material scale, color and brightness of an isometric game ground tile. Create independently generated material variant3. KEEP all large-scale color, lighting, masonry joint layout, scale and boundaries EXACTLY THE SAME. Only redistribute faint fine surface grain; variation should be nearly invisible at thumbnail size. All four opposite edges tile seamlessly with this reference. Do NOT add patches, directional bands, highlights, edge rim, gradient, large speckles or objects. Full solid diamond interior MUST alpha255 opaque, outside true alpha0 RGBA transparency. Flat 2:1 diamond yaw45 elevation30 with clear margins, zero thickness; upper-left soft diffuse light. No text, watermark, checkerboard, modern objects or decorations. Dali kingdom circa1093 indigenous low-growing GRASS ground. Extremely short, dense small olive-grey-green blades, subtle fine texture of uniform scale. Base RGB approx (115,121,87). No large tufts, no weeds, no flowers, no distinct objects, no brown patches, no mowing stripes, no diagonal bands. Neutral uniform surface brightness.'
+  negative: ', watermark, label, checkerboard painting, UI, modern objects, flowers, leaves as large isolated objects, branches, rocks, person, buildings, ink painting, cartoon or sculpted miniature pedestal. Texture variant 03, keep same muted olive-green palette.'
+  references:
+  - source/tex_town_song_dali_grass__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T10:07:42.254980+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-f871518c-37a7-43a3-b43c-1ef1f5516d68.png
+  size: 64x32
+  sha256: 01415ff58a18ff7e531ea990ee5b31da30d1f978b2e861f5ecb281a0b4f82c90
+  status: candidate
+  tile:
+    kind: grass
+    footprint:
+    - 1
+    - 1
+    variant: v03
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_grass__v03__rev3_raw.png
+  source_sha256: 155737089554494135f819c0f77367485bfd7bb464f55fbe06c97065fe8e450c
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_dali_grass__v04
+  file: tex_town_song_dali_grass__v04.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年 草地 v04；年代意象（原创扩展），并非历史铺装测绘。
+  prompt: 'Use case: precise-object-edit. Input reference specifies exact shape, material scale, color and brightness of an isometric game ground tile. Create independently generated material variant4. KEEP all large-scale color, lighting, masonry joint layout, scale and boundaries EXACTLY THE SAME. Only redistribute faint fine surface grain; variation should be nearly invisible at thumbnail size. All four opposite edges tile seamlessly with this reference. Do NOT add patches, directional bands, highlights, edge rim, gradient, large speckles or objects. Full solid diamond interior MUST alpha255 opaque, outside true alpha0 RGBA transparency. Flat 2:1 diamond yaw45 elevation30 with clear margins, zero thickness; upper-left soft diffuse light. No text, watermark, checkerboard, modern objects or decorations. Dali kingdom circa1093 indigenous low-growing GRASS ground. Extremely short, dense small olive-grey-green blades, subtle fine texture of uniform scale. Base RGB approx (115,121,87). No large tufts, no weeds, no flowers, no distinct objects, no brown patches, no mowing stripes, no diagonal bands. Neutral uniform surface brightness.'
+  negative: ', watermark, label, checkerboard painting, UI, modern objects, flowers, leaves as large isolated objects, branches, rocks, person, buildings, ink painting, cartoon or sculpted miniature pedestal. Texture variant 04, keep same muted olive-green palette.'
+  references:
+  - source/tex_town_song_dali_grass__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T10:08:13.875776+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-bb9d8685-b37e-499f-8391-c21e2dbf14a8.png
+  size: 64x32
+  sha256: c23053a770810b6f5566728c43ba92bc7a87f866527f4aa40a39414efb180479
+  status: candidate
+  tile:
+    kind: grass
+    footprint:
+    - 1
+    - 1
+    variant: v04
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_grass__v04__rev3_raw.png
+  source_sha256: 92b6622e66ffca35ed5c0108b752f42d7f9e79ddce52bf8ad75c43ec8e2d0afb
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_southern_grey_brick__v01
+  file: tex_town_song_southern_grey_brick__v01.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年通用意象；青灰砖地 / 御街通用铺装（原创扩展；非考古复原）
+  prompt: 'Use case: historical-scene. Generate ONE reusable game ground tile. Perfect flat 2:1 rhombus, isometric orthographic camera yaw45 elevation30. No thickness, side faces, rim, bevel, cast shadow or perspective vanishing point. Large clear transparent margins, complete diamond uncropped. The whole surface is fully opaque alpha255, outside genuine RGBA alpha0. Intended downsample 64x32px. Seamlessly tile under translations (+32,+16) and (+32,-16); surface brightness and color exactly uniform across all four edges, no global shading gradient or vignette. Upper-left diffuse light. Realistic historical low-saturation material, very fine low-contrast surface. No text, watermark, UI, checkerboard, people, objects, rubble, cracks, footprints, modern objects. One tile ONLY. Southern Song Lin''an circa1223 blue-grey BRICK paving. Four exact regular courses of small rectangular bricks along EACH local axis of the square before isometric projection. Running bond. Brick dimensions and mortar offset repeat exactly at opposite sides, adjacent tile copies must have precisely continuing mortar lines. Half bricks at edges continue as their other halves at opposite edges. Very fine dark-grey mortar, neutral cool blue grey brick faces RGB approx (120,128,128); no yellow, no warm beige, no strong dark lines. No border. Ancient fired clay surface. Variant01.'
+  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen 内置模型；工具未返回具体图像模型版本
+  effort: tool default; no image effort field exposed
+  created: '2026-09-30T09:58:14.919629+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-ba219c53-095c-4b4d-89bc-12141e2a21ed.png
+  size: 64x32
+  sha256: 2e645720ef819981e5fc479e0056f12bf0bc0258d9c979950ac90e18769de5cf
+  status: candidate
+  tile:
+    kind: grey_brick
+    footprint:
+    - 1
+    - 1
+    variant: v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_grey_brick__v01__rev3_raw.png
+  source_sha256: a11a2e2a7d6974ebee71088840e72e9df9461cf26a5cb29ee128090e1d75fe81
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_southern_grey_brick__v02
+  file: tex_town_song_southern_grey_brick__v02.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年通用意象；青灰砖地 / 御街通用铺装（原创扩展；非考古复原）
+  prompt: 'Use case: precise-object-edit. Input image is a STYLE, SCALE AND EXACT LAYOUT reference for a reusable isometric historical ground tile. Generate a standalone material variation numbered02. KEEP exact color palette, mean brightness, diamond geometry, texture scale and any masonry joint layout from the reference. Change only small fine grain within surfaces. Remove all coherent directional striping and mottled large shapes. Seamlessly repeating with other variants, equal edges and center color. Solid interior alpha255 opaque, outside true alpha0 transparency, generous clear margins, no shadows, no border, no edge lightening, no vignette. Flat 2:1 isometric diamond, yaw45 elevation30, soft diffuse upper-left light. No text, watermark, objects, plants (except grass blades if grass), modern elements, checkerboard. Southern Song Lin''an circa1223 blue-grey BRICK paving. Four exact regular courses of small rectangular bricks along EACH local axis of the square before isometric projection. Running bond. Brick dimensions and mortar offset repeat exactly at opposite sides, adjacent tile copies must have precisely continuing mortar lines. Half bricks at edges continue as their other halves at opposite edges. Very fine dark-grey mortar, neutral cool blue grey brick faces RGB approx (120,128,128); no yellow, no warm beige, no strong dark lines. No border. Ancient fired clay surface.'
+  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
+  references:
+  - source/tex_town_song_southern_grey_brick__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen 内置模型；工具未返回具体图像模型版本
+  effort: tool default; no image effort field exposed
+  created: '2026-09-30T10:03:53.878019+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-da571c9f-8cde-4729-9978-12aee853e6c7.png
+  size: 64x32
+  sha256: 6f32e3ca96267f8f09f47f3b76a099faf5796ca9d6a08471133d0a8528f26be6
+  status: candidate
+  tile:
+    kind: grey_brick
+    footprint:
+    - 1
+    - 1
+    variant: v02
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_grey_brick__v02__rev3_raw.png
+  source_sha256: 697b14df7ea8a0da39fcf8a27ff97c0d021827fdb0db28612d236504ff61c64c
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_southern_grey_brick__v03
+  file: tex_town_song_southern_grey_brick__v03.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年通用意象；青灰砖地 / 御街通用铺装（原创扩展；非考古复原）
+  prompt: 'Use case: precise-object-edit. Input reference specifies exact shape, material scale, color and brightness of an isometric game ground tile. Create independently generated material variant3. KEEP all large-scale color, lighting, masonry joint layout, scale and boundaries EXACTLY THE SAME. Only redistribute faint fine surface grain; variation should be nearly invisible at thumbnail size. All four opposite edges tile seamlessly with this reference. Do NOT add patches, directional bands, highlights, edge rim, gradient, large speckles or objects. Full solid diamond interior MUST alpha255 opaque, outside true alpha0 RGBA transparency. Flat 2:1 diamond yaw45 elevation30 with clear margins, zero thickness; upper-left soft diffuse light. No text, watermark, checkerboard, modern objects or decorations. Southern Song Lin''an circa1223 blue-grey BRICK paving. Four exact regular courses of small rectangular bricks along EACH local axis of the square before isometric projection. Running bond. Brick dimensions and mortar offset repeat exactly at opposite sides, adjacent tile copies must have precisely continuing mortar lines. Half bricks at edges continue as their other halves at opposite edges. Very fine dark-grey mortar, neutral cool blue grey brick faces RGB approx (120,128,128); no yellow, no warm beige, no strong dark lines. No border. Ancient fired clay surface.'
+  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
+  references:
+  - source/tex_town_song_southern_grey_brick__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen 内置模型；工具未返回具体图像模型版本
+  effort: tool default; no image effort field exposed
+  created: '2026-09-30T10:08:41.001640+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-26c70853-7997-4aa2-9d35-ac54d7361cfa.png
+  size: 64x32
+  sha256: 9ed672e1dca330763e6d6ad2fb57e50e8ee991f9c17162ebd3852997d5a1a06c
+  status: candidate
+  tile:
+    kind: grey_brick
+    footprint:
+    - 1
+    - 1
+    variant: v03
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_grey_brick__v03__rev3_raw.png
+  source_sha256: 60f1acdaf4dceb8bed2b91c9914de8424c9163ca1b5ab268ed4ec21c5d99a03b
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_southern_grey_brick__v04
+  file: tex_town_song_southern_grey_brick__v04.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年通用意象；青灰砖地 / 御街通用铺装（原创扩展；非考古复原）
+  prompt: 'Use case: precise-object-edit. Input reference specifies exact shape, material scale, color and brightness of an isometric game ground tile. Create independently generated material variant4. KEEP all large-scale color, lighting, masonry joint layout, scale and boundaries EXACTLY THE SAME. Only redistribute faint fine surface grain; variation should be nearly invisible at thumbnail size. All four opposite edges tile seamlessly with this reference. Do NOT add patches, directional bands, highlights, edge rim, gradient, large speckles or objects. Full solid diamond interior MUST alpha255 opaque, outside true alpha0 RGBA transparency. Flat 2:1 diamond yaw45 elevation30 with clear margins, zero thickness; upper-left soft diffuse light. No text, watermark, checkerboard, modern objects or decorations. Southern Song Lin''an circa1223 blue-grey BRICK paving. Four exact regular courses of small rectangular bricks along EACH local axis of the square before isometric projection. Running bond. Brick dimensions and mortar offset repeat exactly at opposite sides, adjacent tile copies must have precisely continuing mortar lines. Half bricks at edges continue as their other halves at opposite edges. Very fine dark-grey mortar, neutral cool blue grey brick faces RGB approx (120,128,128); no yellow, no warm beige, no strong dark lines. No border. Ancient fired clay surface.'
+  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
+  references:
+  - source/tex_town_song_southern_grey_brick__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen 内置模型；工具未返回具体图像模型版本
+  effort: tool default; no image effort field exposed
+  created: '2026-09-30T10:09:10.002261+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-3dbd58fa-373a-40bf-81e3-d75876194dff.png
+  size: 64x32
+  sha256: 26bdae4e18f2c6471a9e767fcb2490dbb2a88c81382f2fccc17c439046543d11
+  status: candidate
+  tile:
+    kind: grey_brick
+    footprint:
+    - 1
+    - 1
+    variant: v04
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_grey_brick__v04__rev3_raw.png
+  source_sha256: 08fab582c189134056a0d115fff94238473da0dff9f4b12c83f6684f5c6c81f5
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_southern_stone_slab__v01
+  file: tex_town_song_southern_stone_slab__v01.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年通用意象；石板道路中心层（原创扩展；非考古复原）
+  prompt: 'Use case: historical-scene. Generate ONE reusable game ground tile. Perfect flat 2:1 rhombus, isometric orthographic camera yaw45 elevation30. No thickness, side faces, rim, bevel, cast shadow or perspective vanishing point. Large clear transparent margins, complete diamond uncropped. The whole surface is fully opaque alpha255, outside genuine RGBA alpha0. Intended downsample 64x32px. Seamlessly tile under translations (+32,+16) and (+32,-16); surface brightness and color exactly uniform across all four edges, no global shading gradient or vignette. Upper-left diffuse light. Realistic historical low-saturation material, very fine low-contrast surface. No text, watermark, UI, checkerboard, people, objects, rubble, cracks, footprints, modern objects. One tile ONLY. Southern Song Lin''an circa1223 STONE SLAB paving. Four by four EXACT regular quadrilateral slab modules in local square coordinates before isometric projection. Thin very subtle grey joints, joint layout crosses opposite tile edges at exactly matching positions; seamlessly repeated mathematical periodic arrangement. Equal module sizes, no perspective scaling. Neutral weathered stone grey approx (133,135,130). Surface has quiet fine mineral texture, all slabs near-equal brightness. No conspicuous black grid, no cracks, no dark/light patches. Variant01.'
+  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen 内置模型；工具未返回具体图像模型版本
+  effort: tool default; no image effort field exposed
+  created: '2026-09-30T09:58:49.548873+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-5fe54641-8daf-4d6f-bb9e-93254d32d4b9.png
+  size: 64x32
+  sha256: b742cb67657ddeb8a091b8c74d027734633b4150759e6f74be8505957c49ff68
+  status: candidate
+  tile:
+    kind: stone_slab
+    footprint:
+    - 1
+    - 1
+    variant: v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_stone_slab__v01__rev3_raw.png
+  source_sha256: e70a847088008e55066af344acc6ec55a2dc13a2a137a397ad2ac6b5a6d6fbe4
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_southern_stone_slab__v02
+  file: tex_town_song_southern_stone_slab__v02.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年通用意象；石板道路中心层（原创扩展；非考古复原）
+  prompt: 'Use case: precise-object-edit. Input image is a STYLE, SCALE AND EXACT LAYOUT reference for a reusable isometric historical ground tile. Generate a standalone material variation numbered02. KEEP exact color palette, mean brightness, diamond geometry, texture scale and any masonry joint layout from the reference. Change only small fine grain within surfaces. Remove all coherent directional striping and mottled large shapes. Seamlessly repeating with other variants, equal edges and center color. Solid interior alpha255 opaque, outside true alpha0 transparency, generous clear margins, no shadows, no border, no edge lightening, no vignette. Flat 2:1 isometric diamond, yaw45 elevation30, soft diffuse upper-left light. No text, watermark, objects, plants (except grass blades if grass), modern elements, checkerboard. Southern Song Lin''an circa1223 STONE SLAB paving. Four by four EXACT regular quadrilateral slab modules in local square coordinates before isometric projection. Thin very subtle grey joints, joint layout crosses opposite tile edges at exactly matching positions; seamlessly repeated mathematical periodic arrangement. Equal module sizes, no perspective scaling. Neutral weathered stone grey approx (133,135,130). Surface has quiet fine mineral texture, all slabs near-equal brightness. No conspicuous black grid, no cracks, no dark/light patches.'
+  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
+  references:
+  - source/tex_town_song_southern_stone_slab__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen 内置模型；工具未返回具体图像模型版本
+  effort: tool default; no image effort field exposed
+  created: '2026-09-30T10:04:30.409921+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-dbc78742-8ca9-4ad7-8614-8f7b1e161716.png
+  size: 64x32
+  sha256: 346cd9e00900f8f92135118ec611115673d327298623f405ad4d9e893b8c658d
+  status: candidate
+  tile:
+    kind: stone_slab
+    footprint:
+    - 1
+    - 1
+    variant: v02
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_stone_slab__v02__rev3_raw.png
+  source_sha256: ebf868753980774768b4b06a26837546a0edc230e6a0e3b4f737e3628cb68532
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_southern_stone_slab__v03
+  file: tex_town_song_southern_stone_slab__v03.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年通用意象；石板道路中心层（原创扩展；非考古复原）
+  prompt: 'Use case: precise-object-edit. Input reference specifies exact shape, material scale, color and brightness of an isometric game ground tile. Create independently generated material variant3. KEEP all large-scale color, lighting, masonry joint layout, scale and boundaries EXACTLY THE SAME. Only redistribute faint fine surface grain; variation should be nearly invisible at thumbnail size. All four opposite edges tile seamlessly with this reference. Do NOT add patches, directional bands, highlights, edge rim, gradient, large speckles or objects. Full solid diamond interior MUST alpha255 opaque, outside true alpha0 RGBA transparency. Flat 2:1 diamond yaw45 elevation30 with clear margins, zero thickness; upper-left soft diffuse light. No text, watermark, checkerboard, modern objects or decorations. Southern Song Lin''an circa1223 STONE SLAB paving. Four by four EXACT regular quadrilateral slab modules in local square coordinates before isometric projection. Thin very subtle grey joints, joint layout crosses opposite tile edges at exactly matching positions; seamlessly repeated mathematical periodic arrangement. Equal module sizes, no perspective scaling. Neutral weathered stone grey approx (133,135,130). Surface has quiet fine mineral texture, all slabs near-equal brightness. No conspicuous black grid, no cracks, no dark/light patches.'
+  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
+  references:
+  - source/tex_town_song_southern_stone_slab__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen 内置模型；工具未返回具体图像模型版本
+  effort: tool default; no image effort field exposed
+  created: '2026-09-30T10:09:43.075138+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-e1e615cd-491e-4993-8a26-1f6bc552dce2.png
+  size: 64x32
+  sha256: c523c4e57e0c2fc04471d2d5101cf2dd35939e999be3561e907fa814e5c61d58
+  status: candidate
+  tile:
+    kind: stone_slab
+    footprint:
+    - 1
+    - 1
+    variant: v03
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_stone_slab__v03__rev3_raw.png
+  source_sha256: f3992acdc6c524950442e2a92f658bd3a47c59fbd2aaeff1a645bf2be55afefd
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_southern_stone_slab__v04
+  file: tex_town_song_southern_stone_slab__v04.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年通用意象；石板道路中心层（原创扩展；非考古复原）
+  prompt: 'Use case: precise-object-edit. Input reference specifies exact shape, material scale, color and brightness of an isometric game ground tile. Create independently generated material variant4. KEEP all large-scale color, lighting, masonry joint layout, scale and boundaries EXACTLY THE SAME. Only redistribute faint fine surface grain; variation should be nearly invisible at thumbnail size. All four opposite edges tile seamlessly with this reference. Do NOT add patches, directional bands, highlights, edge rim, gradient, large speckles or objects. Full solid diamond interior MUST alpha255 opaque, outside true alpha0 RGBA transparency. Flat 2:1 diamond yaw45 elevation30 with clear margins, zero thickness; upper-left soft diffuse light. No text, watermark, checkerboard, modern objects or decorations. Southern Song Lin''an circa1223 STONE SLAB paving. Four by four EXACT regular quadrilateral slab modules in local square coordinates before isometric projection. Thin very subtle grey joints, joint layout crosses opposite tile edges at exactly matching positions; seamlessly repeated mathematical periodic arrangement. Equal module sizes, no perspective scaling. Neutral weathered stone grey approx (133,135,130). Surface has quiet fine mineral texture, all slabs near-equal brightness. No conspicuous black grid, no cracks, no dark/light patches.'
+  negative: 文字、水印、现代物、侧壁、台座、边框、外投影、草木、固定岸、船与倒影、棋盘假透明
+  references:
+  - source/tex_town_song_southern_stone_slab__v01__rev3_raw.png
+  tool: codex exec · image_gen
+  model: image_gen 内置模型；工具未返回具体图像模型版本
+  effort: tool default; no image effort field exposed
+  created: '2026-09-30T10:10:15.313669+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-8adb-7231-8073-85d82ae7923d/exec-9166350e-5f0e-4034-92aa-4e9b7e2315bc.png
+  size: 64x32
+  sha256: f34ae8ef568efaaeeee569aca69662b52504d2f7d16b4017f325e2e4bdac2259
+  status: candidate
+  tile:
+    kind: stone_slab
+    footprint:
+    - 1
+    - 1
+    variant: v04
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_stone_slab__v04__rev3_raw.png
+  source_sha256: f0b91479455840cda3584722bdc17b37d9a86c3caf618792eb0dee4d6da6e464
+  notes: 64×32原生地面；alpha≥250置255、≤5置0，RGB不变；保留6–249半透明边缘。
+- id: tex_town_song_southern_water__v01
+  file: tex_town_song_southern_water__v01.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年，运河/西湖灰绿细波纹静态水面 v01（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Jiangnan Southern Song canal and West Lake water, subdued natural green-grey jade palette, mean color near RGB(104,128,117), slightly green, gentle soft greenish glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:04:31.762614+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-d3b5125c-9531-44d2-a530-5bfa6a542640.png
+  size: 64x32
+  sha256: 44b0adb9ab695364f75ea28aa9d9569c9e25a7f08c1cf6f49c6c6e3f753e6ea5
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_water__texture_c01.png
+  source_sha256: 4b5edcaa75b5b192ef0a141069d41ecd321916258ebe1c312466494758465124
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[0,176,512,688)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_southern_water__v02
+  file: tex_town_song_southern_water__v02.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年，运河/西湖灰绿细波纹静态水面 v02（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Jiangnan Southern Song canal and West Lake water, subdued natural green-grey jade palette, mean color near RGB(104,128,117), slightly green, gentle soft greenish glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:04:31.762614+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-d3b5125c-9531-44d2-a530-5bfa6a542640.png
+  size: 64x32
+  sha256: ae1ff21e9635b74f82d1fa1fe5356f1a1cde8cf37949dee7955dfc65618df9a9
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v02
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_water__texture_c01.png
+  source_sha256: 4b5edcaa75b5b192ef0a141069d41ecd321916258ebe1c312466494758465124
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[176,224,688,736)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_southern_water__v03
+  file: tex_town_song_southern_water__v03.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年，运河/西湖灰绿细波纹静态水面 v03（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Jiangnan Southern Song canal and West Lake water, subdued natural green-grey jade palette, mean color near RGB(104,128,117), slightly green, gentle soft greenish glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:04:31.762614+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-d3b5125c-9531-44d2-a530-5bfa6a542640.png
+  size: 64x32
+  sha256: 274f9b6a65148da499740e5b4a68f7b65f08c63ba09732abfa105bdb0d60faaf
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v03
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_water__texture_c01.png
+  source_sha256: 4b5edcaa75b5b192ef0a141069d41ecd321916258ebe1c312466494758465124
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[352,240,864,752)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_southern_water__v04
+  file: tex_town_song_southern_water__v04.png
+  category: tile
+  style: default
+  subject: 南宋江南临安约1223年，运河/西湖灰绿细波纹静态水面 v04（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Jiangnan Southern Song canal and West Lake water, subdued natural green-grey jade palette, mean color near RGB(104,128,117), slightly green, gentle soft greenish glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:04:31.762614+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-d3b5125c-9531-44d2-a530-5bfa6a542640.png
+  size: 64x32
+  sha256: 723476f5e759c2192a5aecf5faf9a02e1f0561d2ec71bd6e008a8f6aa8d9c6da
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v04
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_water__texture_c01.png
+  source_sha256: 4b5edcaa75b5b192ef0a141069d41ecd321916258ebe1c312466494758465124
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[512,368,1024,880)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_dali_water__v01
+  file: tex_town_song_dali_water__v01.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年，桃溪/洱海蓝绿细波纹静态水面 v01（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Dali Taoxi stream and Erhai lake water, subdued natural blue-green grey palette, mean color near RGB(96,126,126), slightly cooler and bluer than Jiangnan water, gentle soft turquoise-grey glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:05:15.629633+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-0d1de382-520f-418c-9515-70e55d5ad2b9.png
+  size: 64x32
+  sha256: c48aa22558b817e8a754caec013f660f11367d3e92a5954b586d143a4cefe9ba
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_water__texture_c01.png
+  source_sha256: 57d92d81c435790b10760c80245e864da22c1b7a279991a1bdff171529ae16d9
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[0,112,512,624)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_dali_water__v02
+  file: tex_town_song_dali_water__v02.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年，桃溪/洱海蓝绿细波纹静态水面 v02（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Dali Taoxi stream and Erhai lake water, subdued natural blue-green grey palette, mean color near RGB(96,126,126), slightly cooler and bluer than Jiangnan water, gentle soft turquoise-grey glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:05:15.629633+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-0d1de382-520f-418c-9515-70e55d5ad2b9.png
+  size: 64x32
+  sha256: b5d600f8a7eeaa3f360561d1dfd336ec6f91ca213f4b422a767492f793e04a1b
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v02
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_water__texture_c01.png
+  source_sha256: 57d92d81c435790b10760c80245e864da22c1b7a279991a1bdff171529ae16d9
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[176,144,688,656)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_dali_water__v03
+  file: tex_town_song_dali_water__v03.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年，桃溪/洱海蓝绿细波纹静态水面 v03（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Dali Taoxi stream and Erhai lake water, subdued natural blue-green grey palette, mean color near RGB(96,126,126), slightly cooler and bluer than Jiangnan water, gentle soft turquoise-grey glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:05:15.629633+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-0d1de382-520f-418c-9515-70e55d5ad2b9.png
+  size: 64x32
+  sha256: 4461ae0cd4355f954377b5e722715f487685e0d319346d593d20d5a4444321ac
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v03
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_water__texture_c01.png
+  source_sha256: 57d92d81c435790b10760c80245e864da22c1b7a279991a1bdff171529ae16d9
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[352,208,864,720)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_dali_water__v04
+  file: tex_town_song_dali_water__v04.png
+  category: tile
+  style: default
+  subject: 大理国都约1093年，桃溪/洱海蓝绿细波纹静态水面 v04（原创扩展；非历史水色复原）
+  prompt: 'Use case: photorealistic-natural. Asset type: seamless water albedo texture source for an ancient Chinese realistic town game. Produce exactly ONE 1024x1024 pixel SQUARE image, opaque, full-bleed water only. Strict orthographic TOP-DOWN 90 degree view, no horizon and no perspective. Truly seamless tileable texture: continuous natural small ripples across left/right AND top/bottom wrap boundaries, all four corners compatible, no border. Calm water with clearly visible delicate short irregular wind ripples and restrained soft specular shimmer. Fine sinuous wavelets, approximately 15-45 pixels apart in this 1024px source, not speckled noise; readable texture when a 256px patch is reduced to a 64x32 isometric tile. Very uniform overall luminance and ripple density everywhere, soft overcast diffuse light, no broad color patches, no bright center, no vignette. Realistic quiet water, not a flat color swatch, not a painting, not a geometric pattern. Moderate LOCAL ripple contrast, gentle highlights remain colored and never white. NO foam, whitecaps, white waves, object reflections, sky/cloud reflections, trees, buildings, shores, boats, rocks, leaves, fish, caustics, underwater objects, text, symbols, labels, logos, watermark or grid. Dali Taoxi stream and Erhai lake water, subdued natural blue-green grey palette, mean color near RGB(96,126,126), slightly cooler and bluer than Jiangnan water, gentle soft turquoise-grey glints.'
+  negative: 白浪、泡沫、倒影对象、岸、船、植物、水下物、文字、水印、网格、暗角、大块明暗渐变
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T22:05:15.629633+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f457-711e-76b0-ba97-100ede4d2563/exec-0d1de382-520f-418c-9515-70e55d5ad2b9.png
+  size: 64x32
+  sha256: c2807c6fa9e394cf7a08089bd3f25919b857f3f81fa10b22eb5c6167fa4fcdfc
+  status: candidate
+  tile:
+    kind: water
+    footprint: [1, 1]
+    variant: v04
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_water__texture_c01.png
+  source_sha256: 57d92d81c435790b10760c80245e864da22c1b7a279991a1bdff171529ae16d9
+  notes: 工具原图1254×1254以Lanczos等比缩至1024×1024源副本；取样[512,272,1024,784)，512²经4×超采样2:1仿射投影缩至64×32；仅几何重采样，菱形内255/外0，各1024像素；静态错位变体，非动画。
+- id: tex_town_song_dali_riverbank__n
+  file: tex_town_song_dali_riverbank__n.png
+  category: tile
+  style: default
+  subject: song_dali riverbank N 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Song-era Dali isometric riverbank terrain asset. Keep the small ochre soil-and-pebble bank strip on the upper-right sloping boundary exactly in its current position, perspective, color, lighting, size and shape. Remove ALL blue/green water completely to real transparent RGBA, including the entire rhombus center and lower-left area. This is an overlay bank only, never a full ground tile. Keep the outside fully transparent too. Preserve source image canvas dimensions and bank pixel placement. No objects added. Retain subtle upper-left light on pebbles; no shadow backdrop, checkerboard, labels, text or watermark. ONLY existing upper-right soil/pebble strip remains visible, all former water transparent, crisp detailed edge with clean alpha.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_dali_riverbank_n__raw.png
+    sha256: 47b21c972df654fdbc21ce88dd2d0ebdb43da86ce53242b4fb4189b86a05c267
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:45.988169+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-a0716417-e491-45a0-846e-f401f40f42d7.png
+  size: 64x32
+  sha256: d4f4ede663bad8ce2c4c6a4c8c2ee9d08426813e7114b4df1686088de9003ada
+  status: candidate
+  tile:
+    kind: riverbank
+    footprint:
+    - 1
+    - 1
+    variant: n
+    autotile_mask: 124
+  source_copy: source/tex_town_song_dali_riverbank__n__rev3_raw.png
+  source_sha256: 241cd4ac4f421792e93386fb57bb3eaf9a9d09dbfdbc9048cb0da48bb4486d72
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_dali_riverbank__e
+  file: tex_town_song_dali_riverbank__e.png
+  category: tile
+  style: default
+  subject: song_dali riverbank E 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Song-era Dali isometric riverbank terrain asset. Keep the narrow ochre soil-and-pebble bank strip on the LOWER-RIGHT sloping boundary exactly in its current position, perspective, color, lighting, size and shape. Remove ALL blue/green water completely to real transparent RGBA, including the entire rhombus center, leaving only dry solid soil and bank pebbles. All solid soil and pebbles must be fully opaque alpha255, and cleared water/outside must be exactly alpha0; only cutout boundaries may antialias. This is an overlay bank only, never a full ground tile. Preserve source canvas dimensions and bank pixel placement. No objects added. Retain subtle upper-left light on pebbles. No shadow backdrop, checkerboard, labels, text or watermark. ONLY existing lower-right soil/pebble strip remains visible, all former water transparent, crisp detailed edge with clean alpha.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_dali_riverbank_e__raw.png
+    sha256: cab34449bd01751c93cdac11eb8e75bb6f97bfb5f5211da5fe2305d35f45375b
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:11:41.469835+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-2279e140-4004-4e70-8ecc-b905eced52e2.png
+  size: 64x32
+  sha256: a24241c3b65138c7b8889ccb8d2190287ee0cfa8d78fa365a3f57a79ae3c5257
+  status: candidate
+  tile:
+    kind: riverbank
+    footprint:
+    - 1
+    - 1
+    variant: e
+    autotile_mask: 241
+  source_copy: source/tex_town_song_dali_riverbank__e__rev3_raw.png
+  source_sha256: f4cc1ec5f56b12712ba2d43e319efd9391300c834546caa04c0e318bf8729764
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_dali_riverbank__s
+  file: tex_town_song_dali_riverbank__s.png
+  category: tile
+  style: default
+  subject: song_dali riverbank S 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Song-era Dali isometric riverbank terrain asset. Keep ONLY the narrow ochre soil-and-pebble bank strip on the LOWER-LEFT sloping boundary exactly in its current position, perspective, color, lighting, size and shape. Remove ALL blue/green water completely to real transparent RGBA, including the entire rhombus center. Only dry solid soil and bank pebbles remain. All solid soil and pebbles must be fully opaque alpha255; cleared water/outside must be exactly alpha0; only cutout boundaries may antialias. This is an overlay bank only, never a full ground tile. Preserve source canvas dimensions and bank pixel placement exactly; do not zoom, recenter or rotate. No objects added. Retain subtle upper-left light on pebbles. No shadow backdrop, checkerboard, labels, text or watermark. ONLY existing lower-left soil/pebble strip remains visible, all former water transparent.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_dali_riverbank_s__raw.png
+    sha256: f526e818bc5155e5849b899c389cf8f2bc24c29f66059e098e26fc8488b7cf4e
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.125093+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-41038a35-277f-4ecf-8582-0348dff1409c.png
+  size: 64x32
+  sha256: 8bec076c0f91b194ce5100b35331a76f163df2a971ea55945491dd5ad3fee8af
+  status: candidate
+  tile:
+    kind: riverbank
+    footprint:
+    - 1
+    - 1
+    variant: s
+    autotile_mask: 199
+  source_copy: source/tex_town_song_dali_riverbank__s__rev3_raw.png
+  source_sha256: 6c8023979772cf7d53e7390ac3f42912eb7798ed28888d63fafa688d62e3d4a9
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_dali_riverbank__w
+  file: tex_town_song_dali_riverbank__w.png
+  category: tile
+  style: default
+  subject: song_dali riverbank W 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Song-era Dali isometric riverbank terrain asset. Keep ONLY the narrow ochre soil-and-pebble bank strip on the UPPER-LEFT sloping boundary, from the left vertex to the top vertex exactly in its current position, perspective, color, lighting, size and shape. Remove ALL blue/green water completely to real transparent RGBA, including entire rhombus center. Only dry solid soil and bank pebbles remain. All solid soil/pebbles fully opaque alpha255; cleared water/outside exactly alpha0; only cutout boundaries antialias. This is an overlay bank only, never a full ground tile. Preserve source canvas dimensions and bank pixel placement exactly; do not zoom, recenter or rotate. No added objects. Retain subtle upper-left light on pebbles. No shadow backdrop, checkerboard, labels, text or watermark.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_dali_riverbank_w__raw.png
+    sha256: b0434411c4dcd5bd861bd5d723e389a3e96b53bbcfc6b13787f70589e084f02a
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.275239+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-255d9d64-c918-432e-b13a-c6753ee2a97e.png
+  size: 64x32
+  sha256: 521505e7dd3a309f40e7384fbf2e9744253f2407a8e0bbf00d1695b562703900
+  status: candidate
+  tile:
+    kind: riverbank
+    footprint:
+    - 1
+    - 1
+    variant: w
+    autotile_mask: 31
+  source_copy: source/tex_town_song_dali_riverbank__w__rev3_raw.png
+  source_sha256: df13981b22a090d81073e6de1d4095e173457087651000eabf1275d48884da77
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_dali_riverbank__ne
+  file: tex_town_song_dali_riverbank__ne.png
+  category: tile
+  style: default
+  subject: song_dali riverbank NE 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Song-era Dali isometric riverbank terrain asset. Keep ONLY the narrow ochre soil-and-pebble bank strips on the TWO RIGHT sloping boundaries, the upper-right and lower-right edges joining at the rightmost vertex exactly in their current position, perspective, color, lighting, size and shape. Remove ALL blue/green water completely to real transparent RGBA, including entire rhombus center. Only dry solid soil and bank pebbles remain. All solid soil/pebbles fully opaque alpha255; cleared water/outside exactly alpha0; only cutout boundaries antialias. This is an overlay bank only, never a full ground tile. Preserve source canvas dimensions and bank pixel placement exactly; do not zoom, recenter or rotate. No added objects. Retain subtle upper-left light on pebbles. No shadow backdrop, checkerboard, labels, text or watermark.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_dali_riverbank_ne__raw.png
+    sha256: 560835fc2d6d38980456253afbd5cd03fdd87a1d599bd1dd10b74f912b26a372
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.018335+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-4123cf27-5ede-4433-95ed-e5dd1c3b472b.png
+  size: 64x32
+  sha256: bdfdb85a25ca12f260caa598281876cbf6e84574878402c9b911ab5e86c2d938
+  status: candidate
+  tile:
+    kind: riverbank
+    footprint:
+    - 1
+    - 1
+    variant: ne
+    autotile_mask: 112
+  source_copy: source/tex_town_song_dali_riverbank__ne__rev3_raw.png
+  source_sha256: 85d0467a7bc8db180bf9f8b12ff713d03464bd336b3eab8815619f67e4e2651d
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_dali_riverbank__se
+  file: tex_town_song_dali_riverbank__se.png
+  category: tile
+  style: default
+  subject: song_dali riverbank SE 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Song-era Dali isometric riverbank terrain asset. Keep ONLY the narrow ochre soil-and-pebble bank strips on the TWO LOWER sloping boundaries, the lower-left and lower-right edges joining at the bottom vertex exactly in their current position, perspective, color, lighting, size and shape. Remove ALL blue/green water completely to real transparent RGBA, including entire rhombus center. Only dry solid soil and bank pebbles remain. All solid soil/pebbles fully opaque alpha255; cleared water/outside exactly alpha0; only cutout boundaries antialias. This is an overlay bank only, never a full ground tile. Preserve source canvas dimensions and bank pixel placement exactly; do not zoom, recenter or rotate. No added objects. Retain subtle upper-left light on pebbles. No shadow backdrop, checkerboard, labels, text or watermark.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_dali_riverbank_se__raw.png
+    sha256: 6aaf0100d88f0449a51d0c093c863301df53c4d61e9f32ed27f3d29bea27b2f9
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.174041+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-a2a00e7d-bc42-4498-9111-6c1c99cab267.png
+  size: 64x32
+  sha256: 14308cb384ced2a5b9030838007293b555a061530a86ee95c48f005e9a6f331e
+  status: candidate
+  tile:
+    kind: riverbank
+    footprint:
+    - 1
+    - 1
+    variant: se
+    autotile_mask: 193
+  source_copy: source/tex_town_song_dali_riverbank__se__rev3_raw.png
+  source_sha256: 7a5e15871cbeade61a191ab68302f16211bd02c083b9b5c8da0b001aea2440ca
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_dali_riverbank__sw
+  file: tex_town_song_dali_riverbank__sw.png
+  category: tile
+  style: default
+  subject: song_dali riverbank SW 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Song-era Dali isometric riverbank terrain asset. Keep ONLY the narrow ochre soil-and-pebble bank strips on the TWO LEFT sloping boundaries, the upper-left and lower-left edges joining at the leftmost vertex exactly in their current position, perspective, color, lighting, size and shape. Remove ALL blue/green water completely to real transparent RGBA, including entire rhombus center. Only dry solid soil and bank pebbles remain. All solid soil/pebbles fully opaque alpha255; cleared water/outside exactly alpha0; only cutout boundaries antialias. This is an overlay bank only, never a full ground tile. Preserve source canvas dimensions and bank pixel placement exactly; do not zoom, recenter or rotate. No added objects. Retain subtle upper-left light on pebbles. No shadow backdrop, checkerboard, labels, text or watermark.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_dali_riverbank_sw__raw.png
+    sha256: af3c259c50640b5cd3dd6e41ef0349a0994d6122a9cbcfb41c9b31a4e1991d48
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.220352+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-b935acb8-81f8-4e49-b547-7462079bb53c.png
+  size: 64x32
+  sha256: 4070f9135bdb85c993613ac06d19c3c1aa7353e2904fcef36bc5e9a1ea648f49
+  status: candidate
+  tile:
+    kind: riverbank
+    footprint:
+    - 1
+    - 1
+    variant: sw
+    autotile_mask: 7
+  source_copy: source/tex_town_song_dali_riverbank__sw__rev3_raw.png
+  source_sha256: da5c57ec4e7a6bf73b131c63eb519a5d72aa242f0977f901a3a60d6f17de5859
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_dali_riverbank__nw
+  file: tex_town_song_dali_riverbank__nw.png
+  category: tile
+  style: default
+  subject: song_dali riverbank NW 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: precise-object-edit. Image1 is a geometry reference and edit target: preserve exactly its entire canvas, alpha silhouette, transparent interior, position, upper-left lighting and chevron line slopes. Image2 is a material reference only for the narrow warm-grey pebbles on an earthen riverbank. In Image1, change ONLY the sandy dirt texture into that subdued grey pebble and brown-soil bank material. Maintain identical geometry, pixel size, canvas dimensions and near-flat isometric projection. DO NOT add water, paved bricks, grass or other objects. Keep solid bank fully opaque, all cleared background/interior truly transparent. Do not thicken, sharpen or change slope of either arm. No text, watermark or backdrop.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - source/tex_town_song_southern_road_edge__nw__rev3_raw.png
+  - source/tex_town_song_dali_riverbank__n__rev3_raw.png
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.070662+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-bd605785-c958-4987-b1e9-2ab8a77e435c.png
+  size: 64x32
+  sha256: d394593403a35f46d808f51a18dadba665b8cee662e0387da46bab8554fe68de
+  status: candidate
+  tile:
+    kind: riverbank
+    footprint:
+    - 1
+    - 1
+    variant: nw
+    autotile_mask: 28
+  source_copy: source/tex_town_song_dali_riverbank__nw__rev3_raw.png
+  source_sha256: 0342497993d41562d49649864f5ab6b1e4763cb3bcda43d178f6c46a834c7269
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_southern_road_edge__n
+  file: tex_town_song_southern_road_edge__n.png
+  category: tile
+  style: default
+  subject: song_southern road_edge N 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Southern Song isometric road-edge terrain asset. Keep ONLY the narrow sandy soil and tiny pebble transition strip on the UPPER-RIGHT sloping boundary, from top vertex to right vertex exactly in its current position, isometric perspective, color, upper-left lighting and size. REMOVE EVERY BRICK, STONE SLAB AND MORTAR LINE completely to transparent RGBA, leaving ONLY narrow soil margin. Entire former paved rhombus interior must be alpha0. No retained brick faces, NO grey paved region. Solid soil fully opaque alpha255, background exactly alpha0 with fine antialiasing only at boundaries. This is an overlay edge, underlying separate road supplies all bricks. Preserve canvas dimensions and strip pixel placement; do not zoom, rotate or recenter. No text, watermark, checkerboard or backdrop.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_southern_road_edge_n__raw.png
+    sha256: c0c8a2ac92acfd44b978f4800d4f096a2724926c91ecc6930fc0b6fbb007230e
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.345222+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-492d1929-ea6e-4bdc-81ad-8d42ecbbccb5.png
+  size: 64x32
+  sha256: 8028dec96d5be76fa83e6a55122cb80b2a22b0f4706a0c924c22bf64ba2a2df4
+  status: candidate
+  tile:
+    kind: road_edge
+    footprint:
+    - 1
+    - 1
+    variant: n
+    autotile_mask: 124
+  source_copy: source/tex_town_song_southern_road_edge__n__rev3_raw.png
+  source_sha256: 4810725c52a51a6d6d448f422d9eaa1b46470fb981cc922f512f32848c13c346
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_southern_road_edge__e
+  file: tex_town_song_southern_road_edge__e.png
+  category: tile
+  style: default
+  subject: song_southern road_edge E 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Southern Song isometric road-edge terrain asset. Keep ONLY the narrow sandy soil and tiny pebble transition strip on the LOWER-RIGHT sloping boundary, from right vertex to bottom vertex exactly in its current position, isometric perspective, color, upper-left lighting and size. REMOVE EVERY BRICK, STONE SLAB AND MORTAR LINE completely to transparent RGBA, leaving ONLY narrow soil margin. Entire former paved rhombus interior must be alpha0. No retained brick faces, NO grey paved region. Solid soil fully opaque alpha255, background exactly alpha0 with fine antialiasing only at boundaries. This is an overlay edge, underlying separate road supplies all bricks. Preserve canvas dimensions and strip pixel placement; do not zoom, rotate or recenter. No text, watermark, checkerboard or backdrop.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_southern_road_edge_e__raw.png
+    sha256: 03d203189836467672553e87089b3f64be5dff0d80038833fd4ec7344a7ad0fb
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.314844+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-485fbd0f-cb4a-46ff-a0e4-289643b2e0e3.png
+  size: 64x32
+  sha256: e670238989ba51d30fce3b4368baed714e261628134c9cb287b34a0b5de80eef
+  status: candidate
+  tile:
+    kind: road_edge
+    footprint:
+    - 1
+    - 1
+    variant: e
+    autotile_mask: 241
+  source_copy: source/tex_town_song_southern_road_edge__e__rev3_raw.png
+  source_sha256: ffff5f8a555a279b5ff5bae1a2cd585384b6a19db57ffe8c7021ef77f09399a6
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_southern_road_edge__s
+  file: tex_town_song_southern_road_edge__s.png
+  category: tile
+  style: default
+  subject: song_southern road_edge S 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Southern Song isometric road-edge terrain asset. Keep ONLY the narrow sandy soil and tiny pebble transition strip on the LOWER-LEFT sloping boundary, from left vertex to bottom vertex exactly in its current position, isometric perspective, color, upper-left lighting and size. REMOVE EVERY BRICK, STONE SLAB AND MORTAR LINE completely to transparent RGBA, leaving ONLY narrow soil margin. Entire former paved rhombus interior must be alpha0. No retained brick faces, NO grey paved region. Solid soil fully opaque alpha255, background exactly alpha0 with fine antialiasing only at boundaries. This is an overlay edge, underlying separate road supplies all bricks. Preserve canvas dimensions and strip pixel placement; do not zoom, rotate or recenter. No text, watermark, checkerboard or backdrop.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_southern_road_edge_s__raw.png
+    sha256: ea56eeb99e1730ce13cf6b83ba187c70d283178eadb60f8a43909289ca913953
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.445882+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-d6335cac-13a3-4db4-8ab3-a819841abb8c.png
+  size: 64x32
+  sha256: 63ed3e310200cf6f8dd205a74c6575e5c15476f5d8a431e0ea8bad5396a5178a
+  status: candidate
+  tile:
+    kind: road_edge
+    footprint:
+    - 1
+    - 1
+    variant: s
+    autotile_mask: 199
+  source_copy: source/tex_town_song_southern_road_edge__s__rev3_raw.png
+  source_sha256: d849f1531fcc4261f1be6b3b3f40f6c529d015603bd94f1ece58d182f7bfd982
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_southern_road_edge__w
+  file: tex_town_song_southern_road_edge__w.png
+  category: tile
+  style: default
+  subject: song_southern road_edge W 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Southern Song isometric road-edge terrain asset. Keep ONLY the narrow sandy soil and tiny pebble transition strips on the UPPER-LEFT boundary, left vertex to top vertex exactly in their current positions, isometric perspective, color, upper-left lighting and size. REMOVE EVERY BRICK, STONE SLAB AND MORTAR LINE completely to transparent RGBA, leaving ONLY narrow soil margins. Entire former paved rhombus interior must be alpha0. No retained brick faces, NO grey paved region. Solid soil fully opaque alpha255, background exactly alpha0 with fine antialiasing only at boundaries. This is an overlay edge, underlying separate road supplies all bricks. Preserve canvas dimensions and strip pixel placement; do not zoom, rotate or recenter. No text, watermark, checkerboard or backdrop.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_southern_road_edge_w__raw.png
+    sha256: d4447ec4c401bb646c747c844a5479931c6e3ddf14e6fcdae323bd830a77fc9a
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.537340+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-eec00ba0-bc77-4312-9ddb-2a0447acf8b2.png
+  size: 64x32
+  sha256: eb15f71fb48d764c30149359024aede7f4a1d751853d566e8320e4f352251ae6
+  status: candidate
+  tile:
+    kind: road_edge
+    footprint:
+    - 1
+    - 1
+    variant: w
+    autotile_mask: 31
+  source_copy: source/tex_town_song_southern_road_edge__w__rev3_raw.png
+  source_sha256: 93975db2b75d59e8eea1ae1acd5a643f22a1990907a5e5f52c0f4c4de9274711
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_southern_road_edge__ne
+  file: tex_town_song_southern_road_edge__ne.png
+  category: tile
+  style: default
+  subject: song_southern road_edge NE 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Southern Song isometric road-edge terrain asset. Keep ONLY the narrow sandy soil and tiny pebble transition strips on the TWO RIGHT boundaries, upper-right and lower-right meeting at right vertex exactly in their current positions, isometric perspective, color, upper-left lighting and size. REMOVE EVERY BRICK, STONE SLAB AND MORTAR LINE completely to transparent RGBA, leaving ONLY narrow soil margins. Entire former paved rhombus interior must be alpha0. No retained brick faces, NO grey paved region. Solid soil fully opaque alpha255, background exactly alpha0 with fine antialiasing only at boundaries. This is an overlay edge, underlying separate road supplies all bricks. Preserve canvas dimensions and strip pixel placement; do not zoom, rotate or recenter. No text, watermark, checkerboard or backdrop.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_southern_road_edge_ne__raw.png
+    sha256: a2b0cf8c49010e33f2e9fd9928f32cf829b79ecfc33807fc44c55f872cb5a38c
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.377350+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-c03adaef-a543-4ad7-8fab-c524093c1a5b.png
+  size: 64x32
+  sha256: 2d64b2d58b8a9212726c9331106bbef99ec7e0f227e697d017eee18f0834165d
+  status: candidate
+  tile:
+    kind: road_edge
+    footprint:
+    - 1
+    - 1
+    variant: ne
+    autotile_mask: 112
+  source_copy: source/tex_town_song_southern_road_edge__ne__rev3_raw.png
+  source_sha256: 6292f9eef29ac23d6d7bbd5d0619dcede67ff851f19f58262f09cee1abc75019
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_southern_road_edge__se
+  file: tex_town_song_southern_road_edge__se.png
+  category: tile
+  style: default
+  subject: song_southern road_edge SE 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Southern Song isometric road-edge terrain asset. Keep ONLY the narrow sandy soil and tiny pebble transition strips on the TWO LOWER boundaries, lower-left and lower-right meeting at bottom vertex exactly in their current positions, isometric perspective, color, upper-left lighting and size. REMOVE EVERY BRICK, STONE SLAB AND MORTAR LINE completely to transparent RGBA, leaving ONLY narrow soil margins. Entire former paved rhombus interior must be alpha0. No retained brick faces, NO grey paved region. Solid soil fully opaque alpha255, background exactly alpha0 with fine antialiasing only at boundaries. This is an overlay edge, underlying separate road supplies all bricks. Preserve canvas dimensions and strip pixel placement; do not zoom, rotate or recenter. No text, watermark, checkerboard or backdrop.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_southern_road_edge_se__raw.png
+    sha256: c9e84a99b99d129f1764976c4bc707971d62d565d60c4225bf45a41903e6c313
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.475127+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-a687455f-b40b-44a9-9f59-ffc8631e3155.png
+  size: 64x32
+  sha256: 3fedfbfd4f0f13b78cba8392930d8af9bb4c3d8fdb79ab68a82ec11a9effd576
+  status: candidate
+  tile:
+    kind: road_edge
+    footprint:
+    - 1
+    - 1
+    variant: se
+    autotile_mask: 193
+  source_copy: source/tex_town_song_southern_road_edge__se__rev3_raw.png
+  source_sha256: ef035b56202dbfc52e758164c3e939d41aab8c73af4e4bba71e7c52d4654c4e2
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_southern_road_edge__sw
+  file: tex_town_song_southern_road_edge__sw.png
+  category: tile
+  style: default
+  subject: song_southern road_edge SW 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: background-extraction. Edit the provided Southern Song isometric road-edge terrain asset. Keep ONLY the narrow sandy soil and tiny pebble transition strips on the TWO LEFT boundaries, upper-left and lower-left meeting at left vertex exactly in their current positions, isometric perspective, color, upper-left lighting and size. REMOVE EVERY BRICK, STONE SLAB AND MORTAR LINE completely to transparent RGBA, leaving ONLY narrow soil margins. Entire former paved rhombus interior must be alpha0. No retained brick faces, NO grey paved region. Solid soil fully opaque alpha255, background exactly alpha0 with fine antialiasing only at boundaries. This is an overlay edge, underlying separate road supplies all bricks. Preserve canvas dimensions and strip pixel placement; do not zoom, rotate or recenter. No text, watermark, checkerboard or backdrop.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_southern_road_edge_sw__raw.png
+    sha256: f017f6d8b061cc75f733c39d2ac39ef010c0da5b9161cce607c0dbc65e4efc05
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.506754+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-ce1b6903-ede6-42b4-bded-853e03989f68.png
+  size: 64x32
+  sha256: 5feaeda8a070d306e63074ba1f18dbe0c838a868a00bd980a55d6ffa54e2ad15
+  status: candidate
+  tile:
+    kind: road_edge
+    footprint:
+    - 1
+    - 1
+    variant: sw
+    autotile_mask: 7
+  source_copy: source/tex_town_song_southern_road_edge__sw__rev3_raw.png
+  source_sha256: 2f36a73b97475484ee66926527cf7ee1828ac24e661e3cb313460b9261fd5c0f
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_southern_road_edge__nw
+  file: tex_town_song_southern_road_edge__nw.png
+  category: tile
+  style: default
+  subject: song_southern road_edge NW 干燥邻边过渡；历史材质概化（原创扩展）
+  prompt: 'Use case: precise-object-edit. Repair ONLY the geometry of this transparent sandy dirt road margin overlay. It must follow the FULL TWO UPPER EDGES of an exact flat 2:1 diamond. On this 1774x887 canvas, the outer top vertex is (887,46); full outer left endpoint is (59,460); full outer right endpoint is (1715,460). Extend BOTH existing arms until these endpoints; DO NOT TAPER OFF BEFORE reaching the endpoints. Narrow bank band 65 pixels wide inward from these two edges, uniform width to the endpoints. Two outer lines have exact slope minus0.5 and plus0.5. Entire remainder inside the virtual diamond and outside all strips is truly transparent alpha0. Solid bank alpha255. Upper-left light only. Keep earthy texture and tiny pebbles, low saturation. No water, no bricks, no background, no black content, no text or guides, no labels, no new objects. Do not center or zoom the chevron: keep its top near y46 and both ends near y460. This is a production game edge overlay, not an arrow icon.'
+  negative: 文字、水印、现代物、建筑、船、人、白底、假透明、厚地台、方向强纹样、独立醒目物件
+  references:
+  - file: source/tex_town_song_southern_road_edge__nw__rev3_rejected01.png
+    sha256: 56242f1b82eebe09c1fe71201915a4a71a157a5b67726e4d354624829fe9a73a
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: image_gen
+  model: image_gen（工具未返回底层模型）
+  effort: 工具默认（未暴露）
+  created: '2026-09-30T10:10:46.403180+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-bd3a-7ac2-9cc7-830e9fbfb011/exec-074df20e-b0b8-45ea-ae97-be14911dc8c2.png
+  size: 64x32
+  sha256: 73ceac25b6889f1642a3e537a6b08d9c7f7fad02f546dfa85e876da7a067520f
+  status: candidate
+  tile:
+    kind: road_edge
+    footprint:
+    - 1
+    - 1
+    variant: nw
+    autotile_mask: 28
+  source_copy: source/tex_town_song_southern_road_edge__nw__rev3_raw.png
+  source_sha256: 03d0e4eebe516fe3d29d8101781aef27fe1ccb400c856af4db1fb057c6185684
+  notes: 64×32透明边件；variant为干边方向，缺失形状由渲染器叠加8向边件。
+- id: tex_town_song_dali_city_gate__k6_r000_v01
+  file: tex_town_song_dali_city_gate__k6_r000_v01.png
+  category: tile
+  style: default
+  subject: 大理国1093/ch01·完整外城门楼；年代意象（原创扩展/待考）
+  prompt: 'Production asset revision: edit the supplied Dali1093 gatehouse into an EXACT proportionally dimensioned modular town gate. Retain realistic muted rammed-earth piers, narrow grey stone edges, timber upper hall and complete grey-tiled roof, low saturation historic Southern Chinese architecture; no inscriptions. Replace its geometry: entire gate footprint10m wide by4m deep; left solid pier is EXACTLY2m wide and4m deep, right solid pier EXACTLY2m wide and4m deep. Central CLEAR OPEN PASSAGE is6m wide and4m deep. The visible front wall must have width distribution 20% solid pier / 60% open gap / 20% solid pier along its front ground edge. Make much slimmer piers and a much broader transparent open passage than reference. ALL ground axes mathematically2:1 dimetric, screen x-axis slope+0.5 and depth slope-0.5, no vanishing point, verticals vertical. Camera yaw45 pitch30 orthographic; view shows south front and east side. Piers walls3m tall; upper timber hall and tiled roof total maximum height6m. Gate opening should remain fully transparent through entire tunnel; no doors no floor no flat ground no stone platform. Two feet share same ground plane, no steps. Consistent light from image upper left: front left-oriented surfaces illuminated, right-oriented side visibly shaded. Keep low roof projection and leave ample transparent margin on all sides, full roof intact. Actual RGBA transparent background, no fake checkerboard, no gradients, no halo, no broad cast shadow, no people, no text, no labels, no measurements, no background. Exactly ONE isolated gate sprite.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - file: source/tex_town_song_dali_city_gate__k6_r000_v01__source.png
+    sha256: 10f8e323b349f090451022c1d48af116c534466d7ccebb1cb650175f0b3035a6
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T09:53:12.640242+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-9b2deaa4-0c48-4ec3-99ac-805735808ea2.png
+  size: 467x333
+  sha256: e9b506106cb9990538b516b27e1526bbc5262841c9737f41a20c4058ee8073d5
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 10
+    - 4
+    variant: k6_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_city_gate__k6_r000_v01__rev3_a1.png
+  source_sha256: c0463acca88d3b3fc948227430830c9ebccf02e423735bc90cd88eecd05daafd
+  anchor_px:
+  - 233.749
+  - 258.526
+  notes: 原生精灵；anchor_px为底面中心，门洞宽度与网格未严格对齐。
+- id: tex_town_song_dali_tree_cluster__broadleaf_v01
+  file: tex_town_song_dali_tree_cluster__broadleaf_v01.png
+  category: tile
+  style: default
+  subject: 大理国1093/ch01·树丛；年代意象（原创扩展/待考）
+  prompt: 'Use case: historical-scene. Create exactly ONE production-quality game sprite, realistic ancient Chinese town environment, fine restrained natural materials, no cartoon, no ink painting. True orthographic dimetric projection: ground east axis screen(+32,+16), north axis(+32,-16) for each1m; pitch30,yaw45; no vanishing point. Light from image upper-left, subdued shadows to lower-right. Isolated object on genuine RGBA transparency, ample transparent margins on all sides, no clipping. No text, watermark, checkerboard, landscape, modern things, people or logos. Do not draw any ground platform, soil chunk or base underneath. A small compact cluster of two evergreen broadleaf trees suitable to Dali Yunnan1093, deep muted green asymmetrical leaves, simple natural branching and thin brown trunks terminating at ground. One modest secondary sapling; grouped canopy only, no flowers, no fruit, no paving.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T08:29:35.578890+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-a5fa-7492-9519-b568056336ed/exec-e89c2dd2-3f09-4cd7-904c-91042db6290b.png
+  size: 311x220
+  sha256: 3963e0b07a4cbb91b5472d8c2470dc4da5b6c7dab9dbdf3580ff5b8fa39d3f56
+  status: candidate
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 3
+    - 3
+    variant: broadleaf_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_tree_cluster__broadleaf_v01__source.png
+  source_sha256: 1d102a46998ee8101c18e81fe3e61d9025eeb4e8c6887729006e9ced310138d9
+  anchor_px:
+  - 173.857
+  - 202.165
+  notes: 原生植物精灵；anchor_px为根部落点，物种与栽植位置为年代意象（待考）。
+- id: tex_town_song_southern_tree_cluster__willow_v01
+  file: tex_town_song_southern_tree_cluster__willow_v01.png
+  category: tile
+  style: default
+  subject: 南宋临安1223/ch02·树丛；年代意象（原创扩展/待考）
+  prompt: 'Use case: historical-scene. Create exactly ONE production-quality game sprite, realistic ancient Chinese town environment, fine restrained natural materials, no cartoon, no ink painting. True orthographic dimetric projection: ground east axis screen(+32,+16), north axis(+32,-16) for each1m; pitch30,yaw45; no vanishing point. Light from image upper-left, subdued shadows to lower-right. Isolated object on genuine RGBA transparency, ample transparent margins on all sides, no clipping. No text, watermark, checkerboard, landscape, modern things, people or logos. Do not draw any ground platform, soil chunk or base underneath. Two modest willows for Southern Song Linan canal bank1223. Soft drooping narrow muted olive-green leaves, open spaces in canopy and fine branched brown trunks. Compact cluster, thin branches gracefully hang; trunks end at ground with no soil patch.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T08:30:07.202675+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-a5fa-7492-9519-b568056336ed/exec-77cbaef9-b799-4e20-be38-6b19aa18f7f9.png
+  size: 327x224
+  sha256: 6a5c425cadf4f8641331c57aa9fb39138fa9989e890152b0ea10a234e5c8913b
+  status: candidate
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 3
+    - 3
+    variant: willow_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_tree_cluster__willow_v01__source.png
+  source_sha256: 0c662e4e6e72256d73e46917eeb8202fa3e8d78fc8a256895439e9a78b0a01ac
+  anchor_px:
+  - 170.548
+  - 200.884
+  notes: 原生植物精灵；anchor_px为根部落点，物种与栽植位置为年代意象（待考）。
+- id: tex_town_song_dali_shrub__camellia_v01
+  file: tex_town_song_dali_shrub__camellia_v01.png
+  category: tile
+  style: default
+  subject: 大理国1093/ch01·山茶灌木；年代意象（原创扩展/待考）
+  prompt: 'Use case: historical-scene. Create exactly ONE production-quality game sprite, realistic ancient Chinese town environment, fine restrained natural materials, no cartoon, no ink painting. True orthographic dimetric projection: ground east axis screen(+32,+16), north axis(+32,-16) for each1m; pitch30,yaw45; no vanishing point. Light from image upper-left, subdued shadows to lower-right. Isolated object on genuine RGBA transparency, ample transparent margins on all sides, no clipping. No text, watermark, checkerboard, landscape, modern things, people or logos. Do not draw any ground platform, soil chunk or base underneath. A modest low cluster of Yunnan camellia shrubs for Dali1093, evergreen oval dark green leaves, very few small muted dusty-red blossoms. Dense low irregular silhouette, no conspicuous hero flower, no bright centerpiece. Root ends only, without ground.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T08:30:53.179088+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-a5fa-7492-9519-b568056336ed/exec-00356e97-a01c-4ca1-9743-8c467c2f38b4.png
+  size: 147x103
+  sha256: 3f9d44be8051fb39f605daed9b7caf5f7ab6c48d2f9425ed15261a3eea953069
+  status: candidate
+  tile:
+    kind: shrub
+    footprint:
+    - 2
+    - 2
+    variant: camellia_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_shrub__camellia_v01__source.png
+  source_sha256: 561341c7492d620b834a10b928507b7276dc01f71dc4e285d1ae471363c42a86
+  anchor_px:
+  - 74.648
+  - 75.354
+  notes: 原生植物精灵；anchor_px为根部落点，物种与栽植位置为年代意象（待考）。
+- id: tex_town_song_southern_reed__canal_v01
+  file: tex_town_song_southern_reed__canal_v01.png
+  category: tile
+  style: default
+  subject: 南宋临安1223/ch02·河岸芦苇；年代意象（原创扩展/待考）
+  prompt: 'Use case: historical-scene. Create exactly ONE production-quality game sprite, realistic ancient Chinese town environment, fine restrained natural materials, no cartoon, no ink painting. True orthographic dimetric projection: ground east axis screen(+32,+16), north axis(+32,-16) for each1m; pitch30,yaw45; no vanishing point. Light from image upper-left, subdued shadows to lower-right. Isolated object on genuine RGBA transparency, ample transparent margins on all sides, no clipping. No text, watermark, checkerboard, landscape, modern things, people or logos. Do not draw any ground platform, soil chunk or base underneath. A compact irregular natural clump of slender reeds with 3 subdued ochre seedheads and thin muted olive blades for a Southern Song Linan1223 canal bank. No water, no rocks, no soil, no pot. Small thin rhizome ends at bottom.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T08:31:35.374418+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-a5fa-7492-9519-b568056336ed/exec-64ba7a5c-4ab9-4530-9f58-c4e2a5adbddd.png
+  size: 88x68
+  sha256: e293d701626d80c9d429e706535b2bf20557f297c7bf25fde0ec8165845d6841
+  status: candidate
+  tile:
+    kind: reed
+    footprint:
+    - 1
+    - 1
+    variant: canal_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_reed__canal_v01__source.png
+  source_sha256: 3d82d85d951b31e79c2bebe02bee1e4d3e2cc591bd18919429ba841dcea15415
+  anchor_px:
+  - 44.882
+  - 57.466
+  notes: 原生植物精灵；anchor_px为根部落点，物种与栽植位置为年代意象（待考）。
+- id: tex_town_song_dali_city_gate__k5_r180_v01
+  file: tex_town_song_dali_city_gate__k5_r180_v01.png
+  category: tile
+  style: default
+  subject: 大理国1093/ch01·完整外城门楼；年代意象（原创扩展/待考）
+  prompt: Precise geometric correction of supplied modular historical game sprite. Current passage occupies only51percent of front width. Increase it to55.56percent, both piers equal22.22percent. Keep entire exterior width unchanged; move left inside edge4percent of totalwidth left and rightinside edge1percent totalwidth right. Strict orthographic2:1 ground projection, slopes +/-0.5; verticals vertical. Preserve materials, full roof if any, orientation and UPPER LEFT illumination, leftplaneslight/rightplanesdark. Absolutely opaque materials on true RGBA transparent background. No floor no pedestals no new decoration no external glow/shadow no labels, no lettering, no modern items; generous transparent margin allaround. Exactly one sprite.
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - file: source/tex_town_song_dali_city_gate__k5_r180_v01__rev3_a1.png
+    sha256: 1feb7635bed03415d8964ea4c679c1149cb1a3cfde5522aae13aa1dbe94cb088
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T10:12:06.749459+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-af4a30cd-e4eb-4f38-80cb-9f6f0f7cbe15.png
+  size: 408x306
+  sha256: 4e468b8a3eabe66541b0f8b38258e03d0ab92b89a913eddb0fc97aca5907dee5
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 9
+    - 4
+    variant: k5_r180_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_city_gate__k5_r180_v01__rev3_a2.png
+  source_sha256: 595603e80ac7abe169c8032c67c76453e8dcab7d8fb242d9c2fc4e83f88e2caf
+  anchor_px:
+  - 203.388
+  - 235.308
+  notes: 原生精灵；anchor_px为底面中心，门洞宽度与网格未严格对齐。
+- id: tex_town_song_southern_city_gate__k8_r000_v01
+  file: tex_town_song_southern_city_gate__k8_r000_v01.png
+  category: tile
+  style: default
+  subject: 南宋临安1223/ch02·完整外城门楼；年代意象（原创扩展/待考）
+  prompt: 'Precise geometric correction of supplied modular historical game sprite. Current passage only59percent but must be66.667percent of frontwidth. Thin BOTH piers: each16.667percent. Move leftinside corner furtherleft and rightinside corner furtherright; keep external ground outline fixed. Strict orthographic2:1 ground projection, slopes +/-0.5; verticals vertical. Preserve materials, full roof if any, orientation and UPPER LEFT illumination, leftplaneslight/rightplanesdark. Absolutely opaque materials on true RGBA transparent background. No floor no pedestals no new decoration no external glow/shadow no labels, no lettering, no modern items; generous transparent margin allaround. Exactly one sprite.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - file: source/tex_town_song_southern_city_gate__k8_r000_v01__rev3_a1.png
+    sha256: f85f5bfc67724ccec84aacf5a6f445bd28f153bd4c8d47a77b75df08598b14d2
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T10:12:52.371571+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-363a19d9-4a42-49ca-ba76-8e445bc843f8.png
+  size: 557x377
+  sha256: 71b7989460b8b1308da88e710b001309f36b7fd647d64a59529fcbe6534b6786
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 12
+    - 4
+    variant: k8_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_city_gate__k8_r000_v01__rev3_a2.png
+  source_sha256: be324c266b25447b3aa72958fc55758821b82e8ce63ac1d19a3a1d48d1cb879c
+  anchor_px:
+  - 281.231
+  - 298.882
+  notes: 原生精灵；anchor_px为底面中心，门洞宽度与网格未严格对齐。
+- id: tex_town_song_dali_city_gate__k4_r270_v01
+  file: tex_town_song_dali_city_gate__k4_r270_v01.png
+  category: tile
+  style: default
+  subject: 大理国1093/ch01·完整外城门楼；年代意象（原创扩展/待考）
+  prompt: Precise geometric correction of supplied modular historical game sprite. Current open passage is too broad at62percent. Narrow it to50percent of frontwidth. Make both piers each25percent of entire front span. Widen LEFT pier strongly; upper hall stays fixed. Full front span currently from bottomleftnear corner to upperrightfar corner. Strict orthographic2:1 ground projection, slopes +/-0.5; verticals vertical. Preserve materials, full roof if any, orientation and UPPER LEFT illumination, leftplaneslight/rightplanesdark. Absolutely opaque materials on true RGBA transparent background. No floor no pedestals no new decoration no external glow/shadow no labels, no lettering, no modern items; generous transparent margin allaround. Exactly one sprite.
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - file: source/tex_town_song_dali_city_gate__k4_r270_v01__rev3_a1.png
+    sha256: f9d6cf525c99886aec1c2bb1561cc8814a4996ef16a821c28c21e4a30f2721c5
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T10:14:11.612912+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-dfdfb0a7-a2d3-4a08-aa4d-9ceb78b5f8aa.png
+  size: 453x298
+  sha256: 250a651ac8471787d1fd59f77cca5159f5e9ade169d1e4286db80ceeaf4f993e
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 8
+    - 4
+    variant: k4_r270_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_city_gate__k4_r270_v01__rev3_a2.png
+  source_sha256: c4400b3f577fc27dcbea875f96199203d69afcfb99197ac96c255cb9c1568085
+  anchor_px:
+  - 233.379
+  - 242.667
+  notes: 原生精灵；anchor_px为底面中心，门洞宽度与网格未严格对齐。
+- id: tex_town_song_southern_city_gate__k7_r180_v01
+  file: tex_town_song_southern_city_gate__k7_r180_v01.png
+  category: tile
+  style: default
+  subject: 南宋临安1223/ch02·完整外城门楼；年代意象（原创扩展/待考）
+  prompt: 'Revise supplied gatehouse geometry, preserve its historic materials, upper hall, intact grey tiled roof, and view side/orientation. Southern Song1259 with muted blue-grey small brick and dark restrained reddish timber. MAIN FIX: narrow both overly thick piers, broaden transparent passage! Front ground-edge width distribution must be EXACTLY2m solid left pier / 7m fully transparent open passage /2m solid right pier; exterior span11m and full footprint depth4m. Actual passage must occupy63.64% of entire front span, measured horizontally between inside feet, piers only18.18% each. DO NOT include visible depth-side face in these front-width ratios. Feet end flush on one ground plane, no projecting plinth stones or stairs. Large rectangular wide through-opening without doors, floor, masonry or dark infill. Upper hall bridges across opening. Exact2:1 dimetric ground axes slopes+0.5 and-0.5, yaw45 elevation30 orthographic no perspective; front/rear long facade runs downhill toward screen-right, sidewall opposite direction. Wall piers3m tall total building height6m. One light from image UPPER LEFT; faces oriented to image-left are BRIGHTER; faces oriented to image-right are DARKER. Opaque gatehouse with real RGBA transparency around and through passage, generous blank margins, no halo/glow/atmosphere, no ground platform, no background, no external shadow. No text, banners, logos, watermark, people, modern elements. Keep full roof visible. Exactly one object.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - file: source/tex_town_song_southern_city_gate__k7_r180_v01__source.png
+    sha256: 179810b65c8e8fdf8a52a7fb142b58f36a0bda962ca2c25d8e81745122d4a67e
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T10:07:56.777560+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-4189b275-7f64-4a2f-be3c-742cc07781b7.png
+  size: 534x357
+  sha256: 7ff9687c6708ce491a0cbdfdf5ca7e70e8a9b4c23452928829f91595fd4eb2af
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 11
+    - 4
+    variant: k7_r180_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_city_gate__k7_r180_v01__rev3_a1.png
+  source_sha256: d51abffa8a35b06490f39d6068a67b8147cf47e2a288bd96dc54e6a0437c4a74
+  anchor_px:
+  - 277.156
+  - 294.688
+  notes: 原生精灵；anchor_px为底面中心，门洞宽度与网格未严格对齐。
+- id: tex_town_song_southern_city_gate__k6_r270_v01
+  file: tex_town_song_southern_city_gate__k6_r270_v01.png
+  category: tile
+  style: default
+  subject: 南宋临安1223/ch02·完整外城门楼；年代意象（原创扩展/待考）
+  prompt: Precise geometric correction of supplied modular historical game sprite. Current opening too wide at70percent. Narrow it to60percent of frontwidth, each pier exactly20percent. Mainly widen very thin LEFT pier from9percent to20percent of frontspan; leave right pier near20percent; preserve external ground outline. Strict orthographic2:1 ground projection, slopes +/-0.5; verticals vertical. Preserve materials, full roof if any, orientation and UPPER LEFT illumination, leftplaneslight/rightplanesdark. Absolutely opaque materials on true RGBA transparent background. No floor no pedestals no new decoration no external glow/shadow no labels, no lettering, no modern items; generous transparent margin allaround. Exactly one sprite.
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - file: source/tex_town_song_southern_city_gate__k6_r270_v01__rev3_a1.png
+    sha256: ea638d0015f9a27f33ed547fdbfeb8fbd6c97256c876c47e15f24dba882ddcea
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T10:13:35.459897+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-bd52cfb9-3505-4d7b-aec9-90e675e524e3.png
+  size: 549x370
+  sha256: 57f4428ec34f3f7932ac4b6cd203a33a23a5627d6879477f6b473ab96e14d0d8
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 10
+    - 4
+    variant: k6_r270_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_city_gate__k6_r270_v01__rev3_a2.png
+  source_sha256: d1f260982bda76a46e898c18a0241528ab9b874452b7b9362318065f38e4c215
+  anchor_px:
+  - 273.818
+  - 299.455
+  notes: 原生精灵；anchor_px为底面中心，门洞宽度与网格未严格对齐。
+- id: tex_town_song_southern_city_gate__k5_r090_v01
+  file: tex_town_song_southern_city_gate__k5_r090_v01.png
+  category: tile
+  style: default
+  subject: 南宋临安1223/ch02·完整外城门楼；年代意象（原创扩展/待考）
+  prompt: 'Revise supplied gatehouse geometry, preserve its historic materials, upper hall, intact grey tiled roof, and view side/orientation. Southern Song1259 with muted blue-grey small brick and dark restrained reddish timber. MAIN FIX: narrow both overly thick piers, broaden transparent passage! Front ground-edge width distribution must be EXACTLY2m solid left pier / 5m fully transparent open passage /2m solid right pier; exterior span9m and full footprint depth4m. Actual passage must occupy55.56% of entire front span, measured horizontally between inside feet, piers only22.22% each. DO NOT include visible depth-side face in these front-width ratios. Feet end flush on one ground plane, no projecting plinth stones or stairs. Large rectangular wide through-opening without doors, floor, masonry or dark infill. Upper hall bridges across opening. Exact2:1 dimetric ground axes slopes+0.5 and-0.5, yaw45 elevation30 orthographic no perspective; front/rear long facade runs uphill toward screen-right, sidewall opposite direction. Wall piers3m tall total building height6m. One light from image UPPER LEFT; faces oriented to image-left are BRIGHTER; faces oriented to image-right are DARKER. CRITICAL reverse reference lighting: triangular gable and short end face at image-left MUST BE visibly brighter than the long facade facing image-right. No light from right.Opaque gatehouse with real RGBA transparency around and through passage, generous blank margins, no halo/glow/atmosphere, no ground platform, no background, no external shadow. No text, banners, logos, watermark, people, modern elements. Keep full roof visible. Exactly one object.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - file: source/tex_town_song_southern_city_gate__k5_r090_v01__source.png
+    sha256: 5d71718719c3b646552a9735db5910947b9aa3a9a285badba9cb39a94f4200b8
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T10:09:31.879373+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-4594cb1d-86e8-4f07-8ff9-9e88519186fd.png
+  size: 458x308
+  sha256: cf496605ee82c8a3acac02fa162e6a6ff80c7004da6f1bad51ed665aa99d07db
+  status: candidate
+  tile:
+    kind: city_gate
+    footprint:
+    - 9
+    - 4
+    variant: k5_r090_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_city_gate__k5_r090_v01__rev3_a1.png
+  source_sha256: 0253aea842c8db3b888c54f00610de06452dd748ceb02439bd1cdf3747407599
+  anchor_px:
+  - 246.519
+  - 254.074
+  notes: 原生精灵；anchor_px为底面中心，门洞宽度与网格未严格对齐。
+- id: tex_town_song_dali_bridge_deck__w3_l5_r000_v01
+  file: tex_town_song_dali_bridge_deck__w3_l5_r000_v01.png
+  category: tile
+  style: default
+  subject: 大理国1093/ch01·独立桥面；年代意象（原创扩展/待考）
+  prompt: 'Use case: historical-scene. Create exactly ONE production-quality game sprite, realistic ancient Chinese town environment, fine restrained natural materials, no cartoon, no ink painting. True orthographic dimetric projection: ground east axis screen(+32,+16), north axis(+32,-16) for each1m; pitch30,yaw45; no vanishing point. Light from image upper-left, subdued shadows to lower-right. Isolated object on genuine RGBA transparency, ample transparent margins on all sides, no clipping. No text, watermark, checkerboard, landscape, modern things, people or logos. Do not draw any ground platform, soil chunk or base underneath. ONLY the flat bridge DECK of a modest timber footbridge for Dali1093. Rectangular walking surface width east-west3m, length north-south5m. Long axis runs bottom-left to upper-right at slope minus0.5. Footprint projected bbox256wide×128high at32px/axis metre. Weathered pale-brown unpainted wood planks on low timber edge beams. No railings, no handrails, no columns, no arch, no abutments, no water and no ground. Exactly rectangular deck, thin solid edge below deck.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T08:35:44.612717+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-a5fa-7492-9519-b568056336ed/exec-22810243-d3ff-4300-9b5d-5d7e2953ba75.png
+  size: 328x181
+  sha256: d08816357ef2fcd590ca4b43dcb1348440762e347fc6dbab2072b7e7e7311855
+  status: candidate
+  tile:
+    kind: bridge_deck
+    footprint:
+    - 3
+    - 5
+    variant: w3_l5_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_bridge_deck__w3_l5_r000_v01__source.png
+  source_sha256: 04d67e4a0441dde94b10bb6e17f407f6d583bbdb1f6f527ff9d617b37531c232
+  anchor_px:
+  - 161.521
+  - 94.516
+  notes: 原生整跨精灵；anchor_px为底面中心，桥面与栏杆配准需在成图复核。
+- id: tex_town_song_southern_bridge_deck__w5_l10_r090_v01
+  file: tex_town_song_southern_bridge_deck__w5_l10_r090_v01.png
+  category: tile
+  style: default
+  subject: 南宋临安1223/ch02·独立桥面；年代意象（原创扩展/待考）
+  prompt: 'Use case: historical-scene. Create exactly ONE production-quality game sprite, realistic ancient Chinese town environment, fine restrained natural materials, no cartoon, no ink painting. True orthographic dimetric projection: ground east axis screen(+32,+16), north axis(+32,-16) for each1m; pitch30,yaw45; no vanishing point. Light from image upper-left, subdued shadows to lower-right. Isolated object on genuine RGBA transparency, ample transparent margins on all sides, no clipping. No text, watermark, checkerboard, landscape, modern things, people or logos. Do not draw any ground platform, soil chunk or base underneath. ONLY a low flat grey stone bridge DECK for Southern Song Linan1223. Original width5m length10m; rotated plan footprint east-west10m and north-south5m. Long axis runs upper-left to lower-right with slope plus0.5. Projected ground bbox480wide×240high at32px/axis metre. Subtle rectangular slabs, thin sturdy stone beams, shallow visible edge, NO railings, NO handrails, no arch, no columns, no stairs, no abutments, no water and no ground. Exactly rectangular deck.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T08:36:19.416220+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-a5fa-7492-9519-b568056336ed/exec-100d4803-1722-4925-b6ae-04d8d8179e2a.png
+  size: 498x270
+  sha256: a6b67d2d25a18ec58c549d2d5c2537ec60dbd6d3c952070ae8f7112efbf20065
+  status: candidate
+  tile:
+    kind: bridge_deck
+    footprint:
+    - 5
+    - 10
+    variant: w5_l10_r090_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_bridge_deck__w5_l10_r090_v01__source.png
+  source_sha256: 754fb80632f6992d083c4f5f267bfde5ed0c8c19868beb751b09674aaa50b53d
+  anchor_px:
+  - 248.794
+  - 142.057
+  notes: 原生整跨精灵；anchor_px为底面中心，桥面与栏杆配准需在成图复核。
+- id: tex_town_song_dali_bridge_rail__w3_l5_r000_v01
+  file: tex_town_song_dali_bridge_rail__w3_l5_r000_v01.png
+  category: tile
+  style: default
+  subject: 大理国1093/ch01·独立桥栏；年代意象（原创扩展/待考）
+  prompt: 'Use case: historical-scene. Create exactly ONE production-quality game sprite, realistic ancient Chinese town environment, fine restrained natural materials, no cartoon, no ink painting. True orthographic dimetric projection: ground east axis screen(+32,+16), north axis(+32,-16) for each1m; pitch30,yaw45; no vanishing point. Light from image upper-left, subdued shadows to lower-right. Isolated object on genuine RGBA transparency, ample transparent margins on all sides, no clipping. No text, watermark, checkerboard, landscape, modern things, people or logos. Do not draw any ground platform, soil chunk or base underneath. ONLY the TWO long-side wooden RAILS of a Dali1093 bridge. NO bridge deck or floor, center completely see-through TRANSPARENT. Two parallel low wood post-and-two-beam railings each5m long, separated by exactly3m across. Long axis runs bottom-left to upper-right with slope minus0.5. Rectangle footprint east-west3m bynorth-south5m. Rail height0.9m. Near railing plus far railing rendered as one object, include only railings/posts, NO connecting crossbar or end closure, no water, no abutments, no stairs.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T08:36:58.097824+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-a5fa-7492-9519-b568056336ed/exec-5f0257b2-186c-4188-b089-1878572f78aa.png
+  size: 302x214
+  sha256: 1d30003b295213bd05a222fb25652643acd1ae54815a34b8e2203a178f710632
+  status: candidate
+  tile:
+    kind: bridge_rail
+    footprint:
+    - 3
+    - 5
+    variant: w3_l5_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_bridge_rail__w3_l5_r000_v01__source.png
+  source_sha256: f10d9dab6987f07af2f0e054e441c6108fb5c8a3f38dc397ea4de7f2762bc7a3
+  anchor_px:
+  - 165.49
+  - 127.425
+  notes: 原生整跨精灵；anchor_px为底面中心，桥面与栏杆配准需在成图复核。
+- id: tex_town_song_southern_bridge_rail__w5_l10_r090_v01
+  file: tex_town_song_southern_bridge_rail__w5_l10_r090_v01.png
+  category: tile
+  style: default
+  subject: 南宋临安1223/ch02·独立桥栏；年代意象（原创扩展/待考）
+  prompt: 'Use case: historical-scene. Create exactly ONE production-quality game sprite, realistic ancient Chinese town environment, fine restrained natural materials, no cartoon, no ink painting. True orthographic dimetric projection: ground east axis screen(+32,+16), north axis(+32,-16) for each1m; pitch30,yaw45; no vanishing point. Light from image upper-left, subdued shadows to lower-right. Isolated object on genuine RGBA transparency, ample transparent margins on all sides, no clipping. No text, watermark, checkerboard, landscape, modern things, people or logos. Do not draw any ground platform, soil chunk or base underneath. ONLY the TWO long-side plain low GREY STONE RAILINGS of a Southern Song Linan1223 bridge. NO bridge deck or floor; large center entirely see-through TRANSPARENT. Two parallel low grey stone post-and-two-horizontal-beam rails each10m long separated5m, overall rotated footprint east-west10m north-south5m. Long axes run upper-left to lower-right at slope plus0.5. Plain squared posts, no elaborate animals or ornament. Rails height1m. NO joining end fence, no water, no abutments, no stairs.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T08:37:27.536283+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-a5fa-7492-9519-b568056336ed/exec-3cb34b74-f701-4bdd-a3bf-b809cfc57ddc.png
+  size: 533x362
+  sha256: 29a31c125c0c815fb3a8519467b62983e6c1f8bd1d8b0688b92d508978180840
+  status: candidate
+  tile:
+    kind: bridge_rail
+    footprint:
+    - 5
+    - 10
+    variant: w5_l10_r090_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_bridge_rail__w5_l10_r090_v01__source.png
+  source_sha256: 3e93398746565c7e61f8310a4e1b5f82bda0e1f20ab60bfe6ffa43b78fe77849
+  anchor_px:
+  - 281.151
+  - 204.835
+  notes: 原生整跨精灵；anchor_px为底面中心，桥面与栏杆配准需在成图复核。
+- id: tex_town_song_dali_wall__earth_r000_v01
+  file: tex_town_song_dali_wall__earth_r000_v01.png
+  category: tile
+  style: default
+  subject: 大理国1093/ch01·直墙一格段；年代意象（原创扩展/待考）
+  prompt: Precise geometric correction of supplied modular historical game sprite. KEEP footprint width and depth unchanged. REDUCE entire wall vertical height by12percent, keeping top diamond shape and foot corners unchanged in shape but closer vertically. Target world proportions1m width1m depth3m tall; screen vertical height must be1.8371times totaldiamond width, NOT2.08times. Slopes of top diamond edges0.5, NOT0.58. No separate cap. Strict orthographic2:1 ground projection, slopes +/-0.5; verticals vertical. Preserve materials, full roof if any, orientation and UPPER LEFT illumination, leftplaneslight/rightplanesdark. Absolutely opaque materials on true RGBA transparent background. No floor no pedestals no new decoration no external glow/shadow no labels, no lettering, no modern items; generous transparent margin allaround. Exactly one sprite.
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - file: source/tex_town_song_dali_wall__earth_r000_v01__rev3_a1.png
+    sha256: b2cc964ee4e1a6e8cabebdd63e426245c0f812dc79e53319ee8b7f6b05a490d9
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T10:14:54.807799+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-9bc20764-88fa-4415-9252-93ae40c5ed91.png
+  size: 103x187
+  sha256: 755d578dea3dfa959f44642f37a7d0a1e6ecfb1e9a3c5bc4f9d6446b3aaabfcf
+  status: candidate
+  tile:
+    kind: wall
+    footprint:
+    - 1
+    - 1
+    variant: earth_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_wall__earth_r000_v01__rev3_a2.png
+  source_sha256: ea02c96340d111a5f18336df4f4044466c7a01b72d6d390bf0e795c3112d4d4b
+  anchor_px:
+  - 42.418
+  - 147.117
+  notes: 原生精灵；anchor_px为底面中心，墙件接缝留待成图按需处理。
+- id: tex_town_song_southern_wall__brick_r000_v01
+  file: tex_town_song_southern_wall__brick_r000_v01.png
+  category: tile
+  style: default
+  subject: 南宋临安1223/ch02·直墙一格段；年代意象（原创扩展/待考）
+  prompt: Precise geometric correction of supplied modular historical game sprite. KEEP footprint width and depth unchanged. REDUCE entire wall vertical height by13percent. Target world proportions1m width1m depth3m tall; screen vertical height must be1.8371times totaldiamond width, NOT2.1times. Topdiamond edges must slope0.5, not0.58. No separate cap. Strict orthographic2:1 ground projection, slopes +/-0.5; verticals vertical. Preserve materials, full roof if any, orientation and UPPER LEFT illumination, leftplaneslight/rightplanesdark. Absolutely opaque materials on true RGBA transparent background. No floor no pedestals no new decoration no external glow/shadow no labels, no lettering, no modern items; generous transparent margin allaround. Exactly one sprite.
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - file: source/tex_town_song_southern_wall__brick_r000_v01__rev3_a1.png
+    sha256: ed646adcc9461785dbfc526ac8b20c9f2b9b944d17d2b0b6057868c3dbe09ba6
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T10:15:22.716577+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-f16a371d-afb7-4208-bf6a-c777dc9547c6.png
+  size: 97x171
+  sha256: d4b1a8a9974d5e9e79a0d60a9e502cdf5b44d69569925ad4a72015f2ed99ac14
+  status: candidate
+  tile:
+    kind: wall
+    footprint:
+    - 1
+    - 1
+    variant: brick_r000_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_wall__brick_r000_v01__rev3_a2.png
+  source_sha256: ef6be941e66442ef5b50463e2bbb422c2cd9c05213db6587d4ccd30040279db4
+  anchor_px:
+  - 40.526
+  - 144.18
+  notes: 原生精灵；anchor_px为底面中心，墙件接缝留待成图按需处理。
+- id: tex_town_song_dali_wall_corner__outer_ne_v01
+  file: tex_town_song_dali_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 大理国1093/ch01·墙角；年代意象（原创扩展/待考）
+  prompt: 'Edit this ONE wall corner by changing only its material to muted buff ochre RAMMED EARTH for Dali kingdom1093. Keep exact corner orientation, identical tall wall height, identical outline and90degree plan arrangement. Remove all brick joints; add extremely subtle horizontal compressed-earth layers and restrained earth texture. Reference geometry stays: upper rear corner at image topcenter, arms extend toward lowerleft and lowerright, open transparent hollow facing bottomcenter.3m high,2m by2m footprint. Upper-left light, image-left outer plane light, right outer plane shaded. Preserve transparent background and opaque wall, fully intact shape plus transparent padding. No shadow beyond shape, no aura/halo, no ground plane or base or steps, no text or symbols or vegetation or modern elements.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - source/tex_town_song_southern_wall_corner__outer_ne_v01__rev3_a1.png
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T10:01:06.824259+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-0166d017-9b5f-4705-84f6-69a893b3f605.png
+  size: 151x208
+  sha256: e3b2a9a2e7ffe32619c939955a089baf46c08f745e058364a96f24f7af1961b5
+  status: candidate
+  tile:
+    kind: wall_corner
+    footprint:
+    - 2
+    - 2
+    variant: outer_ne_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_wall_corner__outer_ne_v01__rev3_a2.png
+  source_sha256: a527ac214812e644e3afe3fad1f23a68fd577298cd9b6da02c09c786cf02ccce
+  anchor_px:
+  - 78.358
+  - 146.041
+  notes: 原生精灵；anchor_px为底面中心，墙件接缝留待成图按需处理。
+- id: tex_town_song_southern_wall_corner__outer_ne_v01
+  file: tex_town_song_southern_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 南宋临安1223/ch02·墙角；年代意象（原创扩展/待考）
+  prompt: 'Edit this exact Southern Song grey brick wall90degree corner retaining its orientation: far back corner at top image center, two arms extend toward image lower-left and lower-right, hollow inner corner opens toward bottom center. Main fix: wall height must be3m, each arm2m length and1m thickness. So increase vertical height to THREE TIMES each wall thickness and1.5times arm length. Much taller and thicker, squat horizontal extents, top cut surfaces broad, no thin long garden wall. Strict orthographic2:1 projection, ground slopes +/-0.5 and verticals vertical. Target final silhouette128px wide by182px tall (ground64px plus vertical118px), render high resolution same proportions. Single muted blue grey small brick masonry flat top, no wide separate coping stones, no foot platform. Set upper-left light so image-left outer plane light and image-right outer plane shaded. Opaque walls and TRUE transparent background, generous clean margin at every edge, no broad hazy glow, no floor or ground shadow. No text or labels or modern things.'
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references:
+  - file: source/tex_town_song_southern_wall_corner__outer_ne_v01__source.png
+    sha256: 09f4c0b0a374fca44c71b9395af47a38b5cef452f458ce1dd8437a7a12e327f8
+    note: 历史生成参考；按目录精简要求未随包保留。
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T09:59:56.200245+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f1b9-ec63-7453-a01d-c8ed6bc9236d/exec-718c9e4d-1d6d-4aa0-90d3-f73cd340181b.png
+  size: 153x209
+  sha256: 0db360a5da3ca17323634808ea231191099578b9d32df7aa130d2720c72577e7
+  status: candidate
+  tile:
+    kind: wall_corner
+    footprint:
+    - 2
+    - 2
+    variant: outer_ne_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_southern_wall_corner__outer_ne_v01__rev3_a1.png
+  source_sha256: cf4bbb01d75d0921686e7e19ed6a8cd9ec0704f6b7b163ca60dd7c4682f3dffb
+  anchor_px:
+  - 78.951
+  - 145.442
+  notes: 原生精灵；anchor_px为底面中心，墙件接缝留待成图按需处理。
+- id: tex_town_song_dali_shadow_soft__contact_v01
+  file: tex_town_song_dali_shadow_soft__contact_v01.png
+  category: tile
+  style: default
+  subject: 大理国1093/ch01·柔接触阴影；年代意象（原创扩展/待考）
+  prompt: Generate ONLY a shadow opacity-mask image on TRANSPARENT background. ONE soft-edged semi-transparent neutral-dark-grey ellipse. Horizontal ellipse aspect exactly2:1, very soft diffuse feathered edges, center opacity35 percent fading smoothly to alpha zero. The surrounding area is fully transparent. No object of any kind, no building, no ground, no texture, no color other than dark neutral grey, no highlights, no text, no watermark, no white or black backdrop. This is solely the shadow itself for a game compositing layer. Centered ellipse with broad empty transparent margins.
+  negative: 无文字、标牌、水印、现代物件、人物、棋盘假透明、背景场景；对象不带地台、土块；地面轴不使用透视。
+  references: []
+  tool: codex exec · image_gen (built-in)
+  model: image_gen (backend undisclosed)
+  effort: inherited agent configuration
+  created: '2026-09-30T08:40:57.704390+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-a5fa-7492-9519-b568056336ed/exec-1842ecd5-089d-4256-9ce6-9c5c0b54a32b.png
+  size: 166x88
+  sha256: 9d9868af8ded7bbb40a13545ebac5d6110b65476ad3f3fa0265e53f279094133
+  status: candidate
+  tile:
+    kind: shadow_soft
+    footprint:
+    - 2
+    - 2
+    variant: contact_v01
+    autotile_mask: null
+  source_copy: source/tex_town_song_dali_shadow_soft__contact_v01__source.png
+  source_sha256: ad39f1c3049cb4599a4831a561fa7ec12b8f9b87f1550de89f60af65a92f0634
+  anchor_px:
+  - 85.156
+  - 45.956
+  notes: 原生半透明接触影，alpha范围0–140；anchor_px为落点，不作不透明地面。

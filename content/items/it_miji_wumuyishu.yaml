@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_wumuyishu
+name: 武穆遗书原本
+kind: manual
+sub: original
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·岳飞兵书，属阵法杂学
+price: auto
+flags: []
+assets:
+  icon: item/miji_wumuyishu
+text:
+  desc: 外观：南宋包背装厚册，栗壳色书衣、蓝布函套。
+  lore: 《射雕英雄传》中的《武穆遗书》为岳飞兵书，本作归入阵法杂学。研读须结合地势、军阵与调度推演，并非翻阅即得战力；栗壳书衣与蓝布函套为 （原创扩展），江湖争夺看重其用兵之学。
+extension:
+  type: manual
+  value:
+    skill: sk_wumuyishu
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_wumuyishu
+      readWis: 50
+      maxLayer: 10
+      cultivation: 3000

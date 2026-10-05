@@ -1,0 +1,76 @@
+- id: npc_wangyuyan__ch01_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 王语嫣（天龙八部 ch01 · 曼陀山庄青年，刘亦菲版新脸）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 15ec351f-64ce-4f8f-b219-7c99a27e47f8
+    url: https://studio.tripo3d.ai/workspace/generate/15ec351f-64ce-4f8f-b219-7c99a27e47f8
+    generate_op: c36f915a-1cff-44db-9f48-3f66571c5f15（image_to_model）
+    rig_op: 52773239-cc46-4238-8581-243acfcc31d7
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch01/threeview/por_npc_wangyuyan__ch01_youth_mantuo_apose_slim.png
+    sha256: f0a56daf42884fc13fc13ca7cebfd4f23d4f4a61e39d7b619d2207070413b8ff
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 49564deee01cf91eff25f18fbb207d471e4b44256712c411e4b770270782c9cf
+  size_bytes: 5924400
+  joints: 65
+  triangles: 91630
+  vertices: 60322
+  animations: []
+  textures:
+  - image/jpeg 306427 B
+  - image/jpeg 1340586 B
+  - image/jpeg 567057 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T19:03:39-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，淡粉褙子 + 浅粉长裙，长发深褐。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 7d9d4e52。
+- id: npc_wangyuyan__ch01_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 王语嫣（天龙八部 ch01 · 曼陀山庄青年，刘亦菲版新脸）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 15ec351f-64ce-4f8f-b219-7c99a27e47f8
+    url: https://studio.tripo3d.ai/workspace/generate/15ec351f-64ce-4f8f-b219-7c99a27e47f8
+    generate_op: c36f915a-1cff-44db-9f48-3f66571c5f15（image_to_model）
+    rig_op: 52773239-cc46-4238-8581-243acfcc31d7
+  size: 600x778
+  sha256: d13fd615febe4073eeacc197a4034b71b5977da742dd40637ed5117145fbf7f6
+  size_bytes: 120592
+  created: '2026-10-03T22:34:24-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

@@ -1,0 +1,41 @@
+schemaVersion: quest.v1
+id: q_00_main_c_01
+kind: main
+chapterId: ch00_yuenv
+titleKey: quest.q_00_main_c_01.title
+subjectNpcIds: [npc_aqing]
+routeTone: neutral
+startStageId: st_wake
+flagIds: [fl_00_awake, fl_00_aqing_found, fl_00_staff_accepted]
+encounterIds: []
+stages:
+  - id: st_wake
+    objectiveKeys: [quest.q_00_main_c_01.objective.wake]
+    objectives: [{type: confirmFlag, flagId: fl_00_awake, is: true}]
+    transitions:
+      - {id: edge_find_aqing, priority: 10, when: {flag: {id: fl_00_awake, is: true}}, to: st_find_aqing, branchKey: entered_bamboo_grove}
+    effects: []
+  - id: st_find_aqing
+    objectiveKeys: [quest.q_00_main_c_01.objective.find_aqing]
+    objectives: [{type: confirmFlag, flagId: fl_00_aqing_found, is: true}]
+    transitions:
+      - {id: edge_accept_staff, priority: 10, when: {flag: {id: fl_00_aqing_found, is: true}}, to: st_accept_staff, branchKey: found_aqing}
+    effects: []
+  - id: st_accept_staff
+    objectiveKeys: [quest.q_00_main_c_01.objective.accept_staff]
+    objectives: [{type: collectItem, itemId: prop_bamboo_staff, count: 1}]
+    transitions:
+      - {id: edge_staff_close, priority: 10, when: {flag: {id: fl_00_staff_accepted, is: true}}, to: st_close, branchKey: staff_accepted}
+    effects:
+      - {id: fx_staff, op: reward/item, itemId: prop_bamboo_staff, count: 1}
+      - {id: fx_jinchuangyao, op: reward/item, itemId: it_jinchuangyao, count: 2}
+      - {id: fx_tao, op: reward/item, itemId: it_tao, count: 1}
+  - id: st_close
+    objectiveKeys: []
+    objectives: []
+    transitions: []
+    effects: []
+    terminal: completed
+    endingKey: found_aqing
+tracking: {defaultTracked: true, targetRef: sc_00_zhulin, revealPolicy: known_only}
+source: {origin: expanded, note: 序章入书、寻青与竹棒教学为原创扩展}

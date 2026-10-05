@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_jiebiaodaofa
+name: 解镖刀法原本
+kind: manual
+sub: original
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_jiebiaodaofa
+text:
+  desc: 外观：明代靛青线装册，四眼白线、黑布包角。
+  lore: 镖师把护镖途中解围开路的刀法写成靛青原稿，武学与载体均属 （原创扩展）。研读须辨车队方位、敌我距离和收刀余地，再在狭道模拟；只学猛劈，反会把货队暴露在刀路中。
+extension:
+  type: manual
+  value:
+    skill: sk_jiebiaodaofa
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jiebiaodaofa
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

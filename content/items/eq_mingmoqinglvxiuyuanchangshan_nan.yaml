@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_mingmoqinglvxiuyuanchangshan_nan
+name: 明末青绿绣缘长衫·男
+kind: armor
+sub: clothing
+grade: 8
+stack: 1
+chapters:
+- ch07_bixue
+origin: canonExpanded
+canonRef: 明末；出现书界 ch07；（原创扩展）；形制／色系依据：故宫《明代帝后与宗室服饰述论》，引刘若愚《酌中志》卷20《饮食好尚纪略》 https://img.dpm.org.cn/Uploads/File/2019/12/15/u5df5edcb36fd7.pdf；崇祯阶段主色排行和低立领细节（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingmoqinglvxiuyuanchangshan_nan
+text:
+  desc: 外观：明末男款，主色青绿。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=male。
+  lore: （原创扩展）依明末长衫语汇演成青绿男式长衫，交领右衽宽身、侧衩与后中缝保留。细密花缘绣用于领袖及摆缘，行前理顺衣襟；不施官服补子，同档换色同值，青绿偏好仍（待考），不凭衣色授身份。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 62

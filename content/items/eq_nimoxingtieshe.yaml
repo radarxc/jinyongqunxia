@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_nimoxingtieshe
+name: 尼摩星铁蛇
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《神雕侠侣》·尼摩星兵器形如铁蛇；具体用法 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/nimoxingtieshe
+text:
+  desc: 外观：乌铁曲杖约一米，杆身作连续浅波、前端扁平蛇首仅留轮廓不画活蛇。 待运行时投影：exoticKind=misc。
+  lore: 《神雕侠侣》中尼摩星兵器形如铁蛇，曲折铁身可从偏角点打，也能借弯处勾压来兵。原著对具体用法与尺寸仍 （待考：核尼摩星交战情节）；扁平蛇首、皮缠柄和定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 60
+      qiAffinity: 100

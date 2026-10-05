@@ -1,0 +1,9 @@
+schemaVersion: role-slot.v1
+slotId: role_road_swordsman
+chapter: ch00_yuenv
+templateId: tmpl_normal
+count: 2
+dreamTier: 1
+seed: {strategy: stable_per_save, tuple: [runId, chapterId, templateId, spawnKey, spawnOrdinal]}
+displayRoleKey: role.role_road_swordsman.name
+consumerRefs: [enc_00_zhulin]

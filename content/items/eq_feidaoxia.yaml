@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_feidaoxia
+name: 飞刀匣
+kind: hidden
+sub: dart
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/feidaoxia
+text:
+  desc: 外观：黑漆木扁匣开启展示八柄柳叶飞刀，刀刃掌长、无护手、短木柄。 待运行时投影：ammoMul=1.055; hiddenHit=4.65。
+  lore: （原创扩展）黑漆木扁匣分槽收纳八柄掌长柳叶飞刀，刀尖同向，开匣后可依次抽取。刀身无护手，适合旋腕投掷而不宜近战格挡；回收前须逐柄验刃。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 45
+      qiAffinity: 100

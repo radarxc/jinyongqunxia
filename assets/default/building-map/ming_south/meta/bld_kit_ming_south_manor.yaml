@@ -1,0 +1,109 @@
+id: bld_kit_ming_south_manor
+footprint_m:
+- 16
+- 13
+footprint_origin: 【建议值】本任务功能补齐；沿用近类宋套件比例，待design/22登记
+skeleton_type: null
+anchor_px:
+- 484.521
+- 329.526
+entrance:
+  side: S
+  offset_m: 8.0
+  status: 【建议值】门位由图像识别；待拼接实测
+projection_contract:
+  target: orthographic yaw45 pitch30; 64x32 px/m
+  provided_views:
+  - southwest_single_view
+  allowRotation: false
+  geometry_release_ready: false
+measurement:
+  method: 人工读取地面左/前/右角；后角被遮挡时由平行四边形推定，不使用alpha bbox猜锚点
+  uncertainty_source_px: 4
+  ground_lfr_source_px:
+  - - 68
+    - 570
+  - - 866
+    - 964
+  - - 1490
+    - 612
+  ground_lfr_final_px:
+  - - 20.568
+    - 315.809
+  - - 541.292
+    - 573.162
+  - - 948.475
+    - 343.243
+  ground_center_source_px:
+  - 779.0
+  - 591.0
+  source_slopes:
+  - 0.49373433583959897
+  - -0.5641025641025641
+  slope_abs_errors:
+  - 0.00626566416040103
+  - 0.0641025641025641
+  slope_tolerance_suggestion: 0.03
+  slope_check: false
+  observed_w_h_ratio: 1.2788461538461537
+  target_w_h_ratio: 1.2307692307692308
+  width_scale_target_px: 928
+  width_scale_actual_px: 927.9068797776233
+  depth_scale_target_px: 464
+  depth_observed_px: 487.271676300578
+processing:
+  source_file: sources/bld_kit_ming_south_manor_c2.png
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-b404db41-47b2-4447-8e08-6ad4a241dd4a.png
+  source_sha256: 6825fc6f8178d24c519bd9e67df9e790d7a1a0258e679b2c564773529f2ee533
+  source_size_px:
+  - 1536
+  - 1024
+  crop_box:
+  - 61
+  - 111
+  - 1500
+  - 976
+  crop_rule: alpha>=3 bbox expanded4 source px; retained pixels alpha unmodified
+  discarded_alpha_max: 0
+  requested_uniform_scale: 0.6526019690576652
+  rounded_effective_scale_xy:
+  - 0.6525364836692147
+  - 0.653179190751445
+  resized_px:
+  - 939
+  - 565
+  canvas_px:
+  - 971
+  - 597
+  paste_offset_px:
+  - 16
+  - 16
+  final_sha256: 841d58636096c1a2de26fbd1d4bcff3cceedb0c5d9f941b91d5c4fa8d423c781
+verification:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  zero_alpha_pixels: 290959
+  partial_alpha_pixels: 287819
+  opaque_pixels: 909
+  nonzero_alpha_bbox:
+  - 17
+  - 17
+  - 954
+  - 581
+  margins_px:
+  - 17
+  - 17
+  - 17
+  - 16
+  source_viewed: true
+  final_viewed: true
+  runtime_assembly_tested: false
+limitations:
+- 单视图candidate，不提供GLB、四向模型或经实测的碰撞/遮挡多边形
+- 底面宽度已标定；残余斜率、宽深比例和深度误差保留，不能声称严格2:1拼接已验收
+- 建筑为原创扩展；年代细部待考；门位/高度及遮挡待实测
+candidate_count: 2
+selected_candidate: 2
+selection_note: 2选1：第二候选两轴偏差收敛，右轴仍超建议容差；庭院与山石为原创组合

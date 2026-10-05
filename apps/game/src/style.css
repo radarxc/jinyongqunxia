@@ -1,0 +1,412 @@
+@import '../../../packages/ui/src/theme.css';
+
+:root {
+  color-scheme: light;
+  font-family: var(--font-body);
+  color: var(--ink-text);
+  background: #d3c3a1;
+  font-size: 18px;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: radial-gradient(ellipse at 45% 15%, #faf2df, #e3d3b1 75%);
+}
+.game-shell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  height: 100dvh;
+  padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right))
+    max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+}
+.game-shell.text-scale-125 { font-size: 125%; }
+.game-shell.text-scale-150 { font-size: 150%; }
+.flow-root { min-height: 100%; }
+.flow-root.text-scale-125 { font-size: 125%; }
+.flow-root.text-scale-150 { font-size: 150%; }
+.game-shell.text-scale-125 .shell-body,
+.game-shell.text-scale-150 .shell-body { grid-template-columns: minmax(120px, auto) minmax(0, 1fr); }
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after { scroll-behavior: auto !important; transition-duration: 1ms !important; animation-duration: 1ms !important; }
+.shell-body {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  min-height: 0;
+  gap: 20px;
+}
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow: auto;
+  padding: 4px;
+}
+.menu-brand {
+  font: 25px var(--font-title);
+  color: var(--vermilion);
+  text-align: center;
+  padding: 16px 0 22px;
+  letter-spacing: 0.1em;
+}
+.main-menu button {
+  flex-shrink: 0;
+  font-family: var(--font-title);
+  font-size: 20px;
+}
+.page-surface {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  border-top: 2px solid var(--ink-medium);
+  padding: 12px 14px 6px;
+}
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 18px;
+  gap: 16px;
+}
+.page-heading h2 {
+  font-size: 32px;
+  margin: 6px 0 0;
+}
+.page-heading small {
+  letter-spacing: 0.12em;
+}
+.preview-badge {
+  border: 1px solid var(--vermilion);
+  color: var(--vermilion);
+  padding: 6px 12px;
+  font-size: 16px;
+}
+.page-surface > section {
+  flex: 1;
+  min-height: 0;
+}
+.journey-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.journey-page .scene-placeholder {
+  flex: 1;
+}
+.worldmap-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  gap: 14px;
+  min-height: 360px;
+}
+.worldmap-stage {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #d9ccb0;
+}
+.worldmap-stage canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+.map-legend, .map-zoom, .map-error {
+  position: absolute;
+  padding: 6px 9px;
+  background: #efe6d2dc;
+}
+.map-legend { left: 10px; bottom: 10px; }
+.map-legend i { display: inline-block; width: 10px; height: 10px; margin: 0 5px; background: #7e3228; }
+.map-legend i.ruin { background: #3d4b43; transform: rotate(45deg); }
+.map-zoom { right: 10px; bottom: 10px; display: flex; gap: 8px; align-items: center; }
+.map-error { inset: 45% auto auto 50%; transform: translate(-50%, -50%); }
+.worldmap-panel { padding: 16px; overflow: auto; }
+.worldmap-panel h3, .worldmap-panel h4 { margin: 7px 0; }
+.worldmap-panel progress { width: 100%; accent-color: var(--vermilion); }
+.map-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.town-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  gap: 14px;
+  min-height: 360px;
+}
+.town-stage {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #d9ccb0;
+}
+.town-stage canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+.town-help {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  margin: 0;
+  padding: 6px 9px;
+  background: #efe6d2dc;
+}
+.town-panel { padding: 16px; overflow: auto; }
+.town-panel h3 { margin: 7px 0; }
+.town-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+}
+.bottom-bar output {
+  flex: 1;
+  text-align: right;
+  font-size: 16px;
+}
+.quickbar {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+.quickbar button {
+  white-space: nowrap;
+}
+kbd {
+  font-family: inherit;
+  border-right: 1px solid var(--line);
+  padding-right: 8px;
+  margin-right: 4px;
+  color: var(--ink-medium);
+}
+.reading-panel {
+  padding: 24px;
+  overflow: auto;
+}
+.setting-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  min-height: var(--hit);
+  cursor: pointer;
+}
+.setting-row input {
+  width: 24px;
+  height: 24px;
+  accent-color: var(--blue);
+}
+#scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+#rig-demo {
+  position: fixed;
+  top: max(1rem, env(safe-area-inset-top));
+  left: max(1rem, env(safe-area-inset-left));
+  z-index: 20;
+  display: grid;
+  gap: 0.65rem;
+  width: min(21rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0.9rem;
+  overflow: auto;
+  color: #f6ead4;
+  background: #1c1612ed;
+  border: 1px solid #aa8b5f;
+}
+#rig-demo.has-pilot {
+  width: min(23rem, calc(100vw - 2rem));
+}
+#rig-demo h1 {
+  margin: 0;
+  font-size: 1rem;
+}
+#rig-demo h2 {
+  margin: 0.35rem 0 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid #aa8b5f;
+  font-size: 0.9rem;
+}
+#rig-demo label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+}
+#rig-demo select,
+#rig-demo input,
+#rig-demo button {
+  width: 100%;
+  accent-color: #b86c42;
+}
+#rig-demo select {
+  min-height: 2.2rem;
+  color: inherit;
+  background: #49372b;
+  border: 1px solid #8e7357;
+}
+#rig-demo button {
+  min-height: 2.4rem;
+  color: #fff4df;
+  background: #7b3f28;
+  border: 1px solid #c89563;
+  cursor: pointer;
+}
+#rig-demo button:hover { background: #985438; }
+#rig-demo fieldset {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.35rem;
+  margin: 0;
+  border: 1px solid #705b45;
+}
+#rig-demo .pilot-yaws {
+  grid-template-columns: repeat(4, 1fr);
+}
+#rig-demo .pilot-yaws button {
+  min-height: 2rem;
+  padding: 0.25rem;
+}
+#rig-demo fieldset label {
+  display: block;
+}
+#rig-demo .pilot-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+#rig-demo .pilot-check input {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+#rig-demo .pilot-note {
+  margin: 0;
+  color: #dec8a7;
+  font-size: 0.75rem;
+}
+#rig-demo .pilot-status {
+  padding: 0.45rem;
+  color: #f6ead4;
+  background: #100c09;
+  border: 1px solid #705b45;
+}
+#rig-demo output {
+  white-space: pre-line;
+  font:
+    0.72rem/1.5 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+}
+#rig-demo .rig-event-log {
+  min-height: 4.5rem;
+  padding: 0.45rem;
+  color: #dec8a7;
+  background: #100c09;
+  border: 1px solid #705b45;
+}
+@media (max-width: 900px) {
+  .game-shell {
+    gap: 8px;
+    padding: 8px;
+  }
+  .shell-body {
+    grid-template-columns: 78px minmax(0, 1fr);
+    gap: 8px;
+  }
+  .main-menu button {
+    padding: 8px;
+  }
+  .menu-brand {
+    font-size: 20px;
+  }
+  .bottom-bar {
+    gap: 8px;
+    padding: 8px;
+    flex-wrap: wrap;
+  }
+  .bottom-bar output {
+    flex-basis: 35%;
+  }
+  .page-heading {
+    margin-bottom: 12px;
+  }
+}
+@media (max-height: 650px) and (min-width: 781px) {
+  .game-shell {
+    gap: 6px;
+    padding: 6px;
+  }
+  .page-surface {
+    overflow: auto;
+  }
+  .page-surface > section {
+    min-height: 400px;
+  }
+  .menu-brand {
+    display: none;
+  }
+  .page-heading small {
+    display: none;
+  }
+  .page-heading h2 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 780px) {
+  html,
+  body,
+  #app {
+    height: auto;
+    min-height: 100%;
+  }
+  .game-shell {
+    height: auto;
+    min-height: 100dvh;
+  }
+  .shell-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .main-menu {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--paper-silk);
+  }
+  .menu-brand {
+    display: none;
+  }
+  .main-menu button {
+    min-width: 72px;
+  }
+  .page-surface {
+    overflow: visible;
+    padding-inline: 5px;
+  }
+  .bottom-bar {
+    position: sticky;
+    bottom: 0;
+    z-index: 4;
+  }
+  .quickbar {
+    width: 100%;
+  }
+  .bottom-bar output {
+    text-align: left;
+  }
+  .worldmap-page { grid-template-columns: 1fr; }
+  .worldmap-stage { min-height: 58vw; }
+  .worldmap-panel { max-height: 260px; }
+}
+@media (orientation: portrait) {
+  .game-shell .worldmap-page,
+  .game-shell .town-page { grid-template-columns: 1fr; }
+}

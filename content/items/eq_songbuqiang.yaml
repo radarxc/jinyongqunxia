@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_songbuqiang
+name: 宋步枪
+kind: weapon
+sub: spear
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·北宋（《武经总要》卷十三“枪九色”） （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/songbuqiang
+text:
+  desc: 外观：短柳叶铁枪头配硬木长杆，通长约二点二米。
+  lore: 名称依据《武经总要》“枪九色”一类资料，本文复原为硬木长杆配短柳叶锋的步战枪。持枪须两手前后相随，以拦拿后直刺；长度、无缨装具与品阶为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 40
+      qiAffinity: 100

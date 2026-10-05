@@ -1,0 +1,26 @@
+{
+  "id": "bld_kit_ming_north_pagoda",
+  "subject": "明代北方府城：北方密檐砖塔（原创扩展）；具体构件断代（待考）。",
+  "footprint": [
+    7,
+    7
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44d-7517-7262-be86-045e8b9601cd/exec-3291c04d-27dd-465a-bbca-6e614964bda6.png",
+  "prompt": "Use case: precise-object-edit. Change ONLY the projecting roof ledges of this octagonal masonry Buddhist tower. Replace all tiled pavilion roof surfaces with plain shallow stacked BRICK corbel courses, with flat octagonal rim profiles, so this becomes a northern Ming masonry brick-eaves pagoda. Remove ceramic curved roof tiles and curled corners, keep weathered grey-tan masonry and all original brick facade, niches, finial, octagonal cross-section. CRITICAL retain EXACT tower location, dimensions and all the existing square flagstone base without any rescaling, reorientation or camera change. Preserve ground diamond corners(184,1253),(512,1420),(840,1253); base slopes exactly±0.5. Keep the entire square base geometry unchanged, full tower uncropped and fine photorealistic material detail. Keep original left-upper natural lighting, very short right contact shadow, true transparent RGBA background, emptyalpha0margins, no halo, no scenery or writing.",
+  "references": [{"file": "assets/default/building-map/ming_north/sources/revision2/bld_kit_ming_north_pagoda__r2_c1.png", "role": "本轮第一候选编辑目标；仅替换檐材质", "sha256": "389f19dbed93373b2d1dc1fc831111608812af835451f859ed09f634eb204677"}],
+  "created": "2026-09-30T22:05:01.665618+00:00",
+  "created_basis": "生成结果接收后的入库登记时间；服务端生成时刻未公开。",
+  "points": {"L": [184, 1262.9897803950432], "F": [512.0950318892566, 1436.6736539196352], "R": [840, 1262.7448234987157]},
+  "footprint_basis": "【建议值】design/22 §3.2 千寻塔占地7×7；不继承地标身份。",
+  "visual_review": "本轮已view_image原图及灰底合成；完整轮廓、左上光、北方灰砖/木石细节保留；源底边拟合斜率[0.52937, -0.53042]，宽深比例相对误差0.058%；不以目标值冒充实测。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selection_reason": "本轮第二候选以第一候选为编辑目标，将瓦檐改回砖石叠涩；方形底面比例接近1，负轴斜率略超容差，诚实保留告警。",
+  "original_size": [1024, 1536],
+  "source_sha256": "09eac0274235aad36bbb43e676a76b6cf6a6fa6982260d66e552bccb49044eaf",
+  "final_visual_review": "已逐张view_image成品：全轮廓与透明留边完整；底面、屋檐及缩放后细节可读；几何与形制限制仍见visual_review/meta。",
+  "revision": 2,
+  "previous_source_sha256": "c451319662c56ac5953c0a06fbfe0546870b9fc429f4f027aa92f38e897528cf",
+  "measurement_uncertainty_source_px": 2,
+  "final_view_image_review": "本轮成品已逐张view_image：完整轮廓、透明留白及灰砖木石纹理保留；几何残差以meta实测为准，未用非等比缩放。"
+}

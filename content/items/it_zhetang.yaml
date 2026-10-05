@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_zhetang
+name: 蔗糖
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 唐宋制糖渐精，明清点心与蜜饯广用
+price: auto
+flags: []
+assets:
+  icon: item/zhetang
+text:
+  desc: 外观：淡褐砂糖结晶盛白瓷盏，木匙小巧。
+  lore: 唐宋制糖渐精，明清点心与蜜饯用量更广。本件淡褐结晶须避潮密藏，可入糕、蜜煎与甜羹；糖坊成色匀净者才列作玄阶。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: spice
+    attributes:
+      version: 2

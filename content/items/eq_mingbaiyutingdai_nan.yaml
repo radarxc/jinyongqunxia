@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_mingbaiyutingdai_nan
+name: 明白玉鞓带·男
+kind: armor
+sub: belt
+grade: 8
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 一品玉带 · 明（《大明会典·舆服》）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingbaiyutingdai_nan
+text:
+  desc: 外观：男款青革鞓带盘成一圈，素白玉方銙均匀排列、铜鎏金扣与铊尾完整。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: 据《大明会典·舆服》的一品玉带语汇演成，青革鞓带上均列素白玉方銙，配鎏金扣与铊尾。礼服须按序束系，旧带离职后不再证明品秩。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: jade
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11

@@ -1,0 +1,35 @@
+schemaVersion: npc.v1
+id: npc_zhongling
+identity: {name: 钟灵, aliases: [], origin: fictional, sourceWorks: [天龙八部]}
+lifespan:
+  born: {kind: unknown, ageBand: youth, note: 生年待考}
+  died: null
+appearances:
+  - key: tianlong_main
+    chapterId: ch01_tianlong
+    years: {from: 1093, to: 1094, approx: true}
+    displayName: 钟灵
+    presenceMode: living
+    combatEligible: true
+    ageBand: youth
+    sects: []
+    location: {cityId: city_dali, placeKey: wanjiegu}
+    contentLayer: mainline
+    recruitment:
+      difficulty: D4
+      questRef: q_01_qiyu_02
+      gateRef: q_01_qiyu_02#recruit_gate
+      valueGateRefs: [q_01_qiyu_02#family_safe]
+      windowKeys: [c01_after]
+    build:
+      pipeline: full
+      templateRole: tmpl_elite
+      cultivationBand: 28
+      portrayal: beast_friend
+      skills: [{skillId: sk_taizuchangquan, trueLayer: 2}]
+      unregisteredSkills: []
+    ai: {tier: ai_adept, personality: pers_jinshen}
+recruitment: {everRecruitable: true, allianceOnly: false, hardConflictWith: [], softConflictWith: []}
+bonds: {tags: [beastFriend, poisonSupport], comboCandidateRefs: []}
+crossBook: {enabled: false, reunionQuestByChapter: {}, legacy: {skillRefs: [], itemRefs: [], heirNpcRefs: []}}
+sources: [{kind: novel, work: 天龙八部, locator: 无量山与万劫谷；回目待考}]

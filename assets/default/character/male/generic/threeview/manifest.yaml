@@ -1,0 +1,39 @@
+- id: por_npc_generic_m_apose
+  file: por_npc_generic_m_apose.png
+  category: character/male/tripo_ref
+  style: default
+  subject: 通用江湖男子 窄轮廓空手 A 字全身正面参考（约八头身、肩宽、中等体型，约45°双臂，素色短衣窄裤布靴）
+  prompt: '【任务】修正第 1 张参考图这位通用江湖男子的双臂姿势，制作 Tripo 建模绑骨用的全身正面 A 字图。保留第 1 张同一张大众化男子面孔、平和不笑神情、小头八头身、肩宽中等身材、朴素束发、灰青素色布短衣、布腰带、窄裤和布靴。第
+    2、3 张仅参考手绘画风，不照搬人物或服饰。
+
+    【核心修改：双臂必须外展 45°】第 1 张的手臂角度过小，只有约 30°，必须从肩关节向两侧再抬高展开，双臂基本伸直，沿左右向下的 45° 对角线放置。肩关节到腕部的水平外移距离与竖直下移距离近似相等；左右手腕抬到腰带附近高度、至多比腰带低一点，不要仍垂到大腿侧。左手腕应在画面约
+    (125,590)，右手腕约 (900,590)，这些坐标仅供构图参考，绝不能画成标记、文字或标尺。肩膀自然放松，不耸肩。手臂和腰侧之间有宽阔背景间隙。双手空手，手掌略向前，每手五指自然轻轻分开，拇指单独向外，手指结构正确可数。
+
+    【服装】整条袖子贴合胳膊形体，袖口紧收腕部，去掉肘部垂挂的蓬松多余布料。衣服素色无纹样；下摆短而窄、不超过肩宽；双裤腿和靴子完整分开，腰带没有长飘带。男约八头身，适度宽肩，不改成矮胖或大头。腿脚姿势、脸、束发、配色与第
+    1 张一致。
+
+    【画面】完整全身正面，单人居中，头顶、左右手指和两脚底均不裁切，留边。1024×1536 PNG，2:3 竖幅，平视近正交视角。背景统一浅暖灰纯色 #E6E1D8，无渐变、纹理、投影或地面。柔和均匀光，写实手绘古风插画、棉麻布衣材质自然。
+
+    【禁止】无文字、数字、标尺、坐标、标签、水印、边框、拼图、第二个人、兵器、道具、披风、宽袖、长袍、裙装、长飘带；不能变成 T 字，也不能仍保持 20°到30°的低垂手臂。'
+  negative: 不要兵器、道具、文字、数字、水印、标尺、网格、拼图、第二个人、宽袖、宽下摆、长袍、长裙、披风、盔甲、长飘带、头大幼态、全身裁切或腿部连成一块
+  references:
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/por_npc_generic_m_apose.ar85_posefix1__ref1.jpg
+    sha256: 6d33c8b2f6043ac27e3a309ea2fb5160eb90ed1e70560edd1a8b7ac38637df17
+    use: 姿势修正底图：本次通用人物 B 初稿（上传 JPEG）；保留大众化新脸、衣服与头身比
+  - path: .agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: runner 自动附加的同性别画风参考；仅参考手绘笔触与材质，不采用人物身份、脸或服装
+  - path: .agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: runner 自动附加的同性别画风参考；仅参考手绘笔触与材质，不采用人物身份、脸或服装
+  tool: 共享 w17 runner · codex exec / image_gen（male/female 模式，自动附加同性别画风基线）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: '2026-10-03T23:51:08-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_generic_m_apose.ar85_posefix1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 10ca7b5768fba35c95c224e081d5e0de064d618eb19c694b538641f7c65d2fa5
+  status: candidate
+  notes: AR-85 通用战斗人物的 Tripo 建模、绑骨输入参考；AR-79 比例：约八头身、肩宽、中等体型。先生成 A/B 两张并逐张打开，选较合适的 B，因双臂角度不足补一次姿势修正后复查通过。素色布衣束腰、束袖、短而窄的下摆、分离窄裤腿、布靴；空手、五指可辨、全身正面、双臂约45°、纯色浅暖灰背景；朴素发式、普通新脸、平和不笑、无兵器无文字。最终
+    PNG 原尺寸原像素入库；尚未执行 Tripo 建模绑骨。

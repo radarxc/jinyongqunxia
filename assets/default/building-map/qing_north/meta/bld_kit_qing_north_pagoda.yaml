@@ -1,0 +1,83 @@
+id: bld_kit_qing_north_pagoda
+status: candidate
+building:
+  type: bld_kit_qing_north_pagoda
+  footprint: [7, 7]
+  anchor: &id001 [245.4185, 712.1429]
+  era: qing_north
+anchor_px: *id001
+footprint_m: [7, 7]
+footprint_note: 7×7为同构功能件建议占地；六层八角汉地佛塔原创意象，不指认具体名塔或始建年代。 提示词五层、成图六层，审校沿用六层候选。
+logical_footprint_polygon_px:
+- [21.4185, 712.1429]
+- [245.4185, 824.1429]
+- [469.4185, 712.1429]
+- [245.4185, 600.1429]
+collision_polygon_m:
+- [0, 0]
+- [7, 0]
+- [7, 7]
+- [0, 7]
+collision_note: 全footprint硬碰撞代理；非实测墙体，院内走区另行细化。
+occluder_proxy_px:
+- [23, 23]
+- [470, 23]
+- [470, 827]
+- [23, 827]
+occluder_note: alpha>=192包围框仅用于离线代理统计，未修改输出alpha。
+actual_height_m: null
+height_note: 单图不能推出可靠实高，待实测/建模。
+entrance: {edge: S, offset_cells: 3}
+entrance_note: S边中点代理，非门洞精确实测。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_north_pagoda.png, view_note: 目标视角；实际误差见geometry_qa}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [448, 224]
+  ground_width_px: 448
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
+geometry_qa:
+  source_corners_px:
+    left: [340, 1004]
+    front: [649, 1162]
+    right: [955, 1004]
+  source_axis_slopes: [0.511326860841424, -0.5163398692810458]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.0098039215686274
+  expected_width_depth_ratio: 1.0
+  ratio_relative_error: 0.009803921568627416
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面三角点，±3px不确定性；底面中心取(L+R)/2。后角为L+R−F推算，非3D测绘；未以变形纠偏。
+pixel_qa:
+  mode: RGBA
+  size: [603, 856]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 317816
+  alpha_partial_pixels: 197844
+  alpha_opaque_pixels: 508
+  alpha_near_opaque_pixels: 189954
+  alpha_nonzero_bbox: [20, 20, 583, 836]
+  transparent_margins_px: [20, 20, 20, 20]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_pagoda.png
+  source_sha256: edb9af96ecfbd37618fb6392d0fd8a9bbb85ba645fb784288d8d8b60ba9537a6
+  source_size: [1295, 1214]
+  crop_box: [338, 54, 1111, 1174]
+  uniform_scale_requested: 0.7284552845528456
+  resized_size: [563, 816]
+  rounded_effective_scale: [0.7283311772315654, 0.7285714285714285]
+  paste_offset: [20, 20]
+  final_file: bld_kit_qing_north_pagoda.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+  anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
+release_ready: false

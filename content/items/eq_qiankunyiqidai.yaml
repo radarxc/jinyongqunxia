@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_qiankunyiqidai
+name: 乾坤一气袋
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·布袋和尚说不得；作为战斗器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/qiankunyiqidai
+text:
+  desc: 外观：厚韧灰白布袋收束平铺，约可容一人但画面按折叠尺度。 待运行时投影：exoticKind=misc; sect=sect_mingjiao。
+  lore: 《倚天屠龙记》中说不得以乾坤一气袋装住张无忌，后被九阳真气撑裂。本作将收束、罩人演为战斗用法 （原创扩展）；布袋不靠锋刃，重在缠困与隔绝视线。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 50
+      qiAffinity: 100

@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_huibubaotiebang
+name: 回部包铁棒
+kind: weapon
+sub: staff
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·回疆；书剑至雪山清代节点可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/huibubaotiebang
+text:
+  desc: 外观：深色硬木短棒约一百一十厘米，前半包素铁皮并以圆铆钉固定。
+  lore: 回疆商队护卫的包铁短棒，前半覆素铁皮以承受刀剑磕击，后段角片与皮条让单手握持更稳。它以拦砸开路，不靠锐刃伤人；器名、工艺、流通节点和装具均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 60
+      qiAffinity: 100

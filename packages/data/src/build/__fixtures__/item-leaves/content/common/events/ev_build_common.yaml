@@ -1,0 +1,7 @@
+schemaVersion: event.v1
+id: ev_build_common
+chapterId: ch01_tianlong
+event: fixture/common
+once: true
+actions:
+  - {op: ui/showText, text: 公共夹具}

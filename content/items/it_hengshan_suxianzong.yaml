@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_hengshan_suxianzong
+name: 恒山素馅粽
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《笑傲江湖》·岳灵珊送令狐冲草菇、莲子、蚕豆等素馅粽 （待考）
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_dingxin,bf_yangsheng:2battle
+assets:
+  icon: item/hengshan_suxianzong
+text:
+  desc: 外观：剥开竹叶的素粽四只，糯米中露草菇莲子蚕豆。 待运行时投影：party=4。
+  lore: 《笑傲江湖》中岳灵珊送令狐冲素馅粽，草菇、莲子、蚕豆等配料仍待终校。（待考：核配料） 粽子宜端午前后食，四人份与效果为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 20

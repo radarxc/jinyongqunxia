@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_furu
+name: 腐乳
+kind: food
+sub: food
+grade: 3
+stack: 20
+chapters: any
+origin: canon
+canonRef: 发酵豆制品；明清食用记录较明确
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: meal
+    params:
+      value: bf_yangsheng:1battle
+assets:
+  icon: item/furu
+text:
+  desc: 外观：红褐腐乳六小方盛黑陶罐，汁液油润。
+  lore: 明清食用记录较明确的发酵豆制品，六小方浸在红褐汁中，可四季随作坊出坛。每次只取少量佐粥下饭；黑陶罐开后须封严。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 12

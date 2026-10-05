@@ -1,0 +1,24 @@
+{
+  "key": "gate6",
+  "id": "tex_town_qing_south_city_gate__k6_r000_v01",
+  "kind": "city_gate",
+  "variant": "k6_r000_v01",
+  "footprint": [
+    10,
+    4
+  ],
+  "subject": "清初至清中江南城门，净宽6格（原创扩展）",
+  "ref": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_south/assets/default/tile/qing_south/source/tex_town_qing_south_city_gate__k6_r000_v01__input.png",
+  "source_anchor": [
+    778,
+    766
+  ],
+  "source_ground_width": 942,
+  "height_m": 6,
+  "passage": 6,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-5fcdc81f-3499-4fb4-81e9-c521ff82a7ec.png",
+  "prompt": "Use case: precise-object-edit. Input is a candidate Qing Jiangnan grey-brick and grey-tile city gate. Keep its historical style, materials, detail density, single grey-tile gatehouse, brick piers and large transparent stone arch. Correct ONLY THE CAMERA / PROJECTION: make an exact 2:1 isometric orthographic view, yaw exactly45 elevation30, so long horizontal ridge and wall front base run diagonally DOWN RIGHT with screen slope +0.5 (26.565 degrees), short depth edges run diagonally UP RIGHT with screen slope -0.5, verticals perfectly vertical. The present ridge is too nearly horizontal; substantially steepen it to +0.5. No perspective convergence. Gate footprint is 10 cells wide and 4 cells deep, passage6 cells wide, piers2 cells each. The front base projected line must be exactly 2.5 times as long as depth base line. Preserve a completely transparent open arch and transparent backdrop, no ground platform. Ground anchor bottom-plane center, fully visible footprint corners and eaves. Soft upper-left light, right side darker, tiny lower-right contact shadow. Clear RGBA cutout, one object, no labels/text/plaque/people/grid/background. Make exact projected ground geometry the highest priority.",
+  "created": "2026-09-30",
+  "attempts": 2,
+  "selected_attempt": 2
+}

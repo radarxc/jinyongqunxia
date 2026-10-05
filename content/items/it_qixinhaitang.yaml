@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_qixinhaitang
+name: 七心海棠
+kind: material
+sub: herb
+grade: 8
+stack: 999
+chapters: any
+origin: canon
+canonRef: 《飞狐外传》·程灵素所种毒花；现实原型未定 （待核实）
+price: auto
+flags: []
+assets:
+  icon: item/qixinhaitang
+text:
+  desc: 外观：深绿叶与淡红小花连枝置封闭陶盘，形态 （原创扩展）。
+  lore: 《飞狐外传》中程灵素所种毒花，本作只在药王谷固定剧情点取得，不设自然采期。深绿叶与淡红小花连枝封存，用于下药或淬毒；形态与现实原型仍待核实。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di6
+    materialGrade: 8
+    rare: false
+    herbFamily: qiXinHaiTang
+    ageYears: 0
+    attributes:
+      version: 2

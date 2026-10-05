@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yongleyashoubei
+name: 永乐青花压手杯
+kind: collectible
+sub: porcelain
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H47](#src-h47)；准入：笑傲、侠客、碧血；永乐以后旧藏
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yongleyashoubei
+text:
+  desc: 外观：白地浓蓝缠枝莲纹杯，口薄底厚。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=history。
+  lore: 永乐青花压手杯有馆藏及明代文献互证，其下厚上薄的胎体便于辨识。宜赠文士藏家，明中晚期作为前代旧藏合法流转；具体所有权和获赠为（原创扩展），不展示年款。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

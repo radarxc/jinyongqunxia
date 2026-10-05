@@ -1,22 +1,29 @@
 # 04 · 伤害与判定公式（Damage Formula）
 
 > **归属**（基准 §18）：伤害、治疗、护盾、命中、招架、暴击、效果命中公式；Z0–Z10 的精确定义、取整点与伤害后结算。
-> **上游**：`00-canon.md`（§3 境界、§4 品阶、§5 节奏、§6 属性 ID、§8 战斗模型、§9 乘区）；`decisions/author-requirements.md`（AR-02 阴阳相性、AR-12 六角格）；`decisions/rulings-v1.md`（C01、C02、C03、C11）；`design/02`（书界、压制、等级带）；`design/03`（属性、`STD`、敌人模板）；`design/05`（武学威力与招式字段）；`design/06`（Buff 时序与 DOT/HOT）；`design/08`（地形、高差、坠落）；`design/09`（行动、反应、合击）；`design/15`（经脉静态总账与触发边界）。
-> **引用而不重定义**：属性成长与敌人生成 → `design/03-attributes.md`；武学层数、绝招、代价、招式与范围模板 → `design/05-martial-arts-system.md`；Buff 目录、叠加、品阶对抗与时序 → `design/06-buff-system.md`；六角格距、方向枚举、范围格集合与战斗时序 → `design/09-combat-system.md`；地形目录、坠落与火势 → `design/08-terrain-and-qinggong.md`。
+> **上游**：`00-canon.md`（§3 境界、§4 品阶、§5 节奏、§6 属性 ID、§8 战斗模型、§9 乘区）；`decisions/author-requirements.md`（AR-02、AR-12、AR-14、AR-16、AR-19、AR-26、AR-27）；`decisions/rulings-v1.md`（C01、C02、C03、C11）；`design/02`（书界、压制、等级带）；`design/03`（属性、`STD`、敌人模板）；`design/05`（武学威力与招式字段）；`design/06`（Buff 时序与 DOT/HOT）；`design/08`（地形、高差、坠落）；`design/09`（行动、攻击位置、反应、合击）；`design/15`（经脉静态总账与触发边界）；`design/21`（战斗经脉路线、外放抵消、异种气与模拟接口）；`design/25`（《长生诀》螺旋内力）。
+> **引用而不重定义**：属性成长与敌人生成 → `design/03-attributes.md`；武学层数、绝招、代价、招式与范围模板 → `design/05-martial-arts-system.md`；Buff 目录、叠加、品阶对抗与时序 → `design/06-buff-system.md`；六角格距、方向枚举、攻击位置与战斗时序 → `design/09-combat-system.md`；经脉运行、路线曲线、外放抵消、异种气 / 打穴实例状态 → `design/21-meridian-flow-and-moves.md`。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需以三联/广州修订版逐字核对；**（待核实）** = 技术事实尚未确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖他文档、本文先给可用数值并在 §13 登记。
-> **版本**：v1.2（跨文档同步，2026-09-26）。
+> **版本**：v1.7（《长生诀》`Z0-CS` 与螺旋经脉伤害，2026-10-02）；v1.6（AR-27 rules protocol 4，2026-10-02）；v1.5（AR-19 攻击位置与外放抵消接入，2026-10-01）。
 > **变更记录**：v1.2 落实 CN-09：玩家普通武器/装备由错误沿用内功 10–12 品改为最高 9 品，`STD(70).hpMax` 由 41,314 改为 40,409（`mpMax` 仍为 28,887）；重校 §9 遭遇系数和 42 行金标准，并新增 `design/15` 经脉三档回归。同步补齐调和相性、同时结算共享资源、天书修饰与内部守恒边界。
+> **变更记录**：v1.3 按 AR-14 与 `design/21` v2.0 接入 Z4M / Z5M、经脉闪避评级与护体内劲；新增五档 TTK、标准档零漂移及击穿守恒回归。
+> **变更记录**：v1.4 按 AR-16 令外放招式在既有 Z5M 位置改用 21 的外放专用曲线；不新增乘区，标准档和既有 42 行节奏零漂移。
+> **变更记录**：经脉落地终审按 Canon V13-02～04、V15-03、V16-03 接入音功 0 档运行时分支、掌风伤害段边界与多人战整场耐久口径（2026-09-29）。
+> **变更记录：经脉落地终审（2026-09-30）**：补 AR-18 的内功 / 路线性质消费边界，明确音功标签到快照字段的投影；复核独立乘区、护体顺序与 42 行节奏表，不更改伤害公式。
+> **变更记录（2026-10-01，AR-19）**：Z4 接入由 09 计算的命中区抗性；settle 以 21 `OutwardQiResult` 取代 AR-14f 四类适用率、耗 MP 与击穿迟滞，并明确真气加成影子 trace、内劲全抵 / 外劲半抵、透劲与打穴的后效时点。
+> **变更记录（2026-10-02，AR-27）**：rules protocol 4 令普通 / 外放路线曲线与完整 / 不完整周天合成最终 `operationBp`，只在 Z1 外放支消费；Z5M 固定 10000。旧非中性 `meridianAttackBp` 仅供 protocol≤3 回放。
 
 ---
 
 ## 0. 结论先行与阅读顺序
 
-1. 一次直接伤害严格按 `Z0 → Z1 → … → Z10 → settle`。Z0 只确定命中、招架、暴击与开关；伤害只在 Z1–Z10 计算一次。
+1. 一次直接伤害严格按 `Z0 → Z0-CS → Z1…Z4 → Z4M → Z5 → Z5M → Z6…Z10 → settle`；未解锁螺旋内力时 `Z0-CS` 为恒等边界。protocol 4 的攻击运转只在 Z1 外放支消费，Z5M 固定 10000；Z4M 仍消费防守经脉倍率。
 2. C01 定稿：Z1 的实际武学威力只除一次攻方 `P_ref(Ld, tier)`。这样品阶和层数仍有收益，又不会因全程 `G × L(n)` 增长约 6.5 倍而让后期同级战缩成约 1.5 击。
 3. 数值核心使用整数万分点：`BP = 10000 = 100%`；每个乘区结束向下取整。概率以整数 bp 比较，资源消耗按 `MPREF` 四舍五入。
 4. Z2 是比值型减伤；Z3、Z4 各自先加法合并，Z4 正向减伤上限 75%；Z5 由资质独立乘子与相性/破 X 加算池组成。
-5. 直接伤害先扣护体、再扣气血；完全被护体吸收时，不施加 `injury` / `bleed`。DOT 是否绕盾由其 `bypassShield` 决定。
-6. 随附模拟器采用解析期望而非蒙特卡洛；十四书界全部节奏检查通过，无已知偏差。
+5. 直接伤害先扣护体真气，再按 AR-19 结算命中区外放抵消、`mpGuard`，最后扣气血；完全没有气血伤害时，不施加 `injury` / `bleed`。旧 AR-14f 护体适用率只供协议 2 回放。
+6. 既有模拟器采用解析期望而非蒙特卡洛；`damage_sim.py` / `projection_sim.py` 仍是 protocol≤3 回归。protocol 4 另以 §8.8–§8.10、§9.4.1 与 T41–T44 锁定 Z1 运转值及中性 Z5M。
+7. 《长生诀》九层的 1:20 化解在整次伤害事件只执行一次；螺旋新增的实际伤害按 CS-O02 默认仅复制该新增部分到经脉伤害，不复制整招。见 `design/25` §3。
 
 ---
 
@@ -40,9 +47,11 @@
 | `P_hit` / `P_parry` / `P_crit` / `P_eff` | 命中 / 招架 / 暴击 / 效果施加概率 | §3 |
 | `apFactor` / `A_ap` / `artFactor` | 资质 / 技艺强度系数 | `design/03` §7.4；0.80–1.20 |
 | `res_eff` | 经品阶对抗后的有效抗性 | `design/03` §6.3；−50%–75% |
-| `Dk` | 完成 Zk 后的非负整数伤害 | `D1`…`D10` |
+| `Dk` / `D4M` / `D5M` | 完成既有区 / 经脉边界后的非负整数伤害 | `D1`…`D10`；protocol 4 的 D5M 恒等于 D5 |
 | `D_hit` | 触发位移的单段 `D10`，尚未扣护体 | C11 撞击基数 |
 | `BP` | 万分点 | 10000 bp = 100%，1% = 100 bp |
+| `spiralSpent` / `opponentMpCommitted` | 本事件锁定的螺旋投入 / 对方承诺内力 | 非负整数；见 `design/25` §3.1 |
+| `SPIRAL_CANCEL_BP` | 每 1 点螺旋内力的化解率 | `200000 bp = 20.0000` 倍 |
 
 ### 1.2 百分比到 bp
 
@@ -57,7 +66,7 @@
 
 1. `design/03` 面板属性在属性表的最终边界四舍五入为整数；`MPREF`、招式内力消耗也按非负数四舍五入；正成本最低 1，显式零成本保持 0。
 2. `ATK_mix`、穿透后的 `DEF_out/DEF_in`、`DEF_mix` 均向下取整。
-3. `D1` 至 `D10` 每个乘区结束各向下取整；一个区内部先合并其加法项。禁止只在结算末尾取整。
+3. `D1` 至 `D10` 每个既有区结束各向下取整；Z4M 另取整一次。protocol 4 的 Z5M 固定 10000，故 `D5M=D5`、不产生新取整差；protocol≤3 才在 Z5M 乘旧 `meridianAttackBp` 后取整。
 4. 护体吸收、气血伤害、吸取、反震、DOT/HOT、环境伤害分别在各自公式末向下取整。
 5. 概率运算保留整数 bp；最终乘法后向下取整并钳制 `[0,10000]`。若使用随机数，统一判定 `rng.nextInt(10000) < chanceBp`。
 
@@ -65,7 +74,7 @@
 
 ### 1.4 快照与顺序
 
-一次攻击开始时快照攻方面板、招式有效品阶/层数和攻方乘区；每段命中前读取守方仍有效的闪避、招架、防御、减伤、抗性和护体。多段导致破盾或触发 Buff 后，后段按最新守方状态结算。完整 P1–P8 事件顺序见 `design/06` §5.3，反应队列见 `design/09` §6.1。
+一次攻击开始时快照攻方面板、招式有效品阶/层数和攻方乘区；攻防路线须先按 `design/21` §11.4 提交并形成双方 Profile。若事件声明螺旋内力，命令事务先原子锁定双方承诺资源，Z0 完成合法性 / 判定后再按 §3.5 执行一次 `Z0-CS`。每段命中前读取守方仍有效的闪避、招架、防御、减伤、抗性、护体与防守路线；同一整招共享攻方路线提交和 `Z0-CS` 结果，但每个目标分别求相对强度、`operationBp` 与 Z4M。多段导致破盾或触发 Buff 后，后段按最新守方状态结算。完整 P1–P8 事件顺序见 `design/06` §5.3，反应队列见 `design/09` §6.1。
 
 ---
 
@@ -74,12 +83,18 @@
 对一段直接伤害，先做 Z0，再以命中的分支运行：
 
 ```text
-D1  = floor(ATK_mix × 1.24 × P_actual / P_ref(Ld_attacker,tier))
-D2  = floor(D1 × F_def)
+D1h = floor(hardAttack × 1.24 × P_actual / P_ref(Ce_attacker,tier))
+D1o = floor(outwardAttack × 1.24 × P_actual / P_ref(Ce_attacker,tier))
+D1  = D1h + D1o
+D2h = floor(D1h × F_hardDef)
+D2o = floor(D1o × F_innerDef)
+D2  = D2h + D2o
 D3  = floor(D2 × clamp(1 + sumZ3, 0.50, 2.00))
 D4  = floor(D3 × (1 - clamp(sumZ4, -0.50, 0.75)))
-D5  = floor(D4 × A_ap × (1 + clamp(affinity + breakX + synergy, -0.30, 0.50)))
-D6  = crit ? floor(D5 × critDmg/100) : D5
+D4M = floor(D4 × meridianDefenseBp/10000)
+D5  = floor(D4M × A_ap × (1 + clamp(affinity + breakX + synergy, -0.30, 0.50)))
+D5M = D5 // protocol 4：meridianAttackBp 固定 10000
+D6  = crit ? floor(D5M × critDmg/100) : D5M
 F7  = floorBp(F_dir × F_height × F_terrain)
 D7  = floor(D6 × F7)
 D8  = floor(D7 × (1 + clamp(0.015 × (Ld_attacker-Ld_defender), -0.15, 0.15)))
@@ -87,9 +102,9 @@ D9  = parried ? floor(D8 × F_parry) : D8
 D10 = floor(D9 × variance), variance ∈ [0.95,1.05]
 ```
 
-其中 `P_actual = G(g_eff) × L(layer_eff) × move.power × Mod_armed × Mod_special`。`1.24` 是用合法 `STD(L)`、上游敌人模板与基准 §5 节奏校准的全局常数**（原创扩展）**；它不是品阶加成，不因等级或阵营变化。
+其中 `hardAttack/outwardAttack` 按 `design/03` §4.1 由 `str/bre`、`wOut/wIn` 与 21 `operationBp` 求得；`P_actual = G(g_eff) × L(layer_eff) × move.power × Mod_armed × Mod_special`。`1.24` 是用合法 `STD(L)`、上游敌人模板与基准 §5 节奏校准的全局常数**（原创扩展）**；它不是品阶加成，不因修为档或阵营变化。Z0–Z10 区序不变，Z1/Z2 只在区内保留两支整数、区末相加；protocol≤3 仍用旧单支公式回放。
 
-伤害类型只影响所选攻防与机制标签，不改变区序。`direct` 跑完整管线；`dot` 走 §6.5；`true` 与环境伤害只跑其明确列出的区；`reflect`、`redirect`、`mirror`、`counter` 带来源旗标，防循环规则见 `design/06` §5.3.1。
+protocol 4 的 `baseOperationBp/circulationDamageBp/operationBp` 与 `meridianDefenseBp` 由 `design/21` §3.5 / §4.4 给出；前者只进入 Z1 外放支，后者只进入 Z4M，`meridianAttackBp` 固定 10000。普通 / 外放曲线二选一后再合入周天，不能在 Z5M 重复消费。protocol≤3 不输出 `operationBp`，而把同一合成结果作为旧 `meridianAttackBp`。伤害类型只影响所选攻防与机制标签，不改变区序。
 
 ### 2.1 单段输入与输出契约
 
@@ -98,13 +113,14 @@ D10 = floor(D9 × variance), variance ∈ [0.95,1.05]
 | 类别 | 必需输入 | 读取时点 | 说明 |
 |---|---|---|---|
 | 攻方快照 | `Ld`、四项攻防中的攻击侧、资质、判定评级、`critDmg` | 整招 P1 | 后段不因攻方本招自增益追溯改值；明确写“即时读取”的效果例外 |
-| 招式快照 | `g_eff`、`layer_eff`、`powerBp`、`wInBp`、伤害标签、判定开关 | 整招 P1 | 外来压制必须在进入 04 前完成；本文不保存绝对品阶的第二份结果 |
-| 守方即时值 | 防御、闪避、招架、韧性、Z4、抗性、护体、当前气血/内力 | 每段 P3/P5 | 前段破盾、驱散或倒地会影响后段；已经离场的目标不再接收后段 |
+| 招式快照 | `g_eff`、`layer_eff`、`powerBp`、`wInBp`、`hitZone`、`projection`、`sonic`、`projectionStep`、`penetratingQi`、伤害标签、判定开关 | 整招 P1 | 外来压制及 21 外放档预检必须先完成；本文不保存绝对品阶的第二份结果 |
+| 经脉快照 | 双方 `MeridianProfile`、`baseOperationBp/circulationDamageBp/operationBp`、`meridianDefenseBp`；旧协议为 `meridianAttackBp/evadeRatingDelta` | 路线提交后 / 每段 | protocol 4 的 `meridianAttackBp=10000`、闪避差 0；普通 / 外放曲线与周天合成归 21；无防守路线传 10000 |
+| 守方即时值 | 03 已结算的静态 `hardDefense/innerDefense`、闪避、招架、韧性、Z4、抗性、护体、当前气血/内力 | 每段 P3/P5 | 两项防御均不含 `meridianDefenseBp`；前段破盾、驱散或倒地会影响后段，已经离场的目标不再接收后段 |
 | 几何上下文 | 来源格、目标格、六向朝向、高度差、地形修正 | 每段 P3 | 方位枚举由 09 给出，04 只接受 `front/side/back` 与数值修正 |
 | 已决结果 | `hit`、`parried`、`crit`、`varianceBp` | 对应判定后 | 正式结算由 RNG 产生；查询/预览可枚举，不得消耗 RNG |
 | 来源旗标 | `direct/dot/reflect/counter/...` 与事件链 ID | 创建伤害段时 | 用于阻断同类递归，并让日志能追溯母事件 |
 
-输出至少包含 `DamageTrace`、`Settlement`、四类判定结果和事件链 ID。未命中仍输出 Z0 结果，但不伪造全零的 Z1–Z10 trace；整招被作废则记录作废原因。命中且实际伤害为 0 与未命中是不同结果，前者仍可触发明确允许的 `onHit`。
+输出至少包含带 `z4m/z5m` 的 `DamageTrace`、含 `damageBeforeMpGuard` 的 `Settlement`、四类判定结果和事件链 ID。未命中仍输出 Z0 结果，但不伪造全零的伤害 trace；整招被作废则记录作废原因。命中且实际伤害为 0 与未命中是不同结果，前者仍可触发明确允许的 `onHit`。
 
 ---
 
@@ -122,7 +138,7 @@ P_eff   = clamp(baseChance × clamp(1+(effHit-effRes)/100,0.3,2.0)
                 × (1-res_eff) × extraFactor,          0.00, 1.00)
 ```
 
-`hit_eff = hit + move.hitMod + heightHit + cover.hit + LOS.hitPenalty`。高差命中每级 ±4 点、封顶 ±12；遮蔽、冠层、烟雾值引用 `design/08` §3、§5.5–§5.6。拿穴等专门强度（例如 `seal`）作为 `extraFactor`，不得同时改 `effHit`。
+`hit_eff = hit + move.hitMod + heightHit + cover.hit + LOS.hitPenalty`；protocol 4 的守方 `eva_eff=eva`，因为对应经脉强度已在 03 最终 `spd` 中消费。只有 protocol≤3 回放才取 `eva_eff=eva+evadeRatingDelta`。擒拿的 `evadeBp` 是另一项乘数，只结算一次。高差命中每级 ±4 点、封顶 ±12；遮蔽、冠层、烟雾值引用 `design/08` §3、§5.5–§5.6。拿穴等专门强度（例如 `seal`）作为 `extraFactor`，不得同时改 `effHit`。
 
 `resGrade(tag)` 的来源与下限归 `design/03` §6.3，穿透系数归 `design/06` §3.5.0；进入本文效果命中或 DOT 前，必须完整执行以下衔接，不能把原始 `res_X` 直接当 `res_eff`：
 
@@ -168,7 +184,8 @@ AR-12 六角格下，守方朝向六邻方向之一：攻方位于正后方 1 �
 下式是 §3.1 的 bp 等价写法；评级均为整数，`clampInt` 两端都包含。`resEffBp` 允许为负，负抗会放大效果率。
 
 ```text
-hitBp   = clampInt(8500 + 40×(hitEff-eva),        4000, 9900)
+legacyEvadeDelta = rulesProtocol<=3 ? evadeRatingDelta : 0
+hitBp   = clampInt(8500 + 40×(hitEff-eva-legacyEvadeDelta), 4000, 9900)
 parryBp = clampInt(1200 + 40×(parry-pierce),         0, 6000)
 parryBp = floor(parryBp × dirParryBp × targetParryMultBp / 10000²)
 critBp  = clampInt(1000 + 40×(crit-tough),         200, 7500)
@@ -181,11 +198,43 @@ effBp   = clampInt(floor(baseBp × ratingBp × (10000-resEffBp)
 
 随机比较统一使用半开区间：产生 `roll∈[0,9999]`，当且仅当 `roll<chanceBp` 成功。0 bp 永不成功，10000 bp 必定成功；这也是录像重放和测试夹具的边界定义。
 
+`evadeRatingDelta=clamp(floor((meridianSpeedBp-10000)/100),-35,+35)` 仅供 rulesProtocol≤3 回放；protocol 4 的经脉增幅已在 03 `spd` 中消费，闪避只读最终 `spd/eva`，不得再叠该旧差值。
+
+### 3.5 Z0-CS · 《长生诀》螺旋化解【建议值】
+
+本区只在 `changshengLayer=9` 且 `spiralSpent>0` 时启用**（原创扩展）**，位置固定在 Z0 合法性 / 资源锁定之后、Z1 及任何护体生成 / 抵消之前；效果定义引用 `design/25` §3，不新增伤害乘区。全部使用整数 bp：
+
+```text
+SPIRAL_CANCEL_BP = 200000
+cancelCapacity = floor(spiralSpent × SPIRAL_CANCEL_BP / 10000)
+cancelMp       = min(opponentMpCommitted, cancelCapacity)
+remainMp       = opponentMpCommitted - cancelMp
+```
+
+`opponentMpCommitted` 是该事件已锁定、尚未派生攻击 / 护体结果的内力；纯外功为 0。攻击侧按 `remainMp` 重算内力贡献后才进 Z1；护体真气按剩余承诺生成 `shield`；护体内劲把剩余预算交 `design/21` §4.8。一次事件恰执行一次，多段共享 `cancelMp/remainMp`，不得逐段重置投入或容量；取消预览不扣费、不耗 RNG。
+
+样例：`spiralSpent=19`、`opponentMpCommitted=377`，容量 `floor(19×200000/10000)=380`，故 `cancelMp=min(377,380)=377`、`remainMp=0`。
+
 ---
 
 ## 4. Z1–Z10 逐区定义
 
 ### 4.1 Z1 · 基础伤害 `base`
+
+**AR-27 / protocol 4：**
+
+```text
+Aref = ATK_LV(Ce)
+hardAttack    = floor(Aref×str×wOutBp/(50×10000))
+outwardAttack = floor(Aref×bre×wInBp×operationBp/(50×10000²))
+D1h = floor(hardAttack×12400×P_actual/(10000×P_ref))
+D1o = floor(outwardAttack×12400×P_actual/(10000×P_ref))
+D1 = D1h+D1o
+```
+
+`wOut/wIn` 仍满足和为 10000：前者是武功硬功比例，后者是外放比例。`operationBp` 由 21 §4.4.4 给出，普通/外放曲线二选一；protocol 4 的 `meridianAttackBp=10000`，不得在 Z5M 再乘。模板敌人仍可令 `P_actual=P_ref×tmplPower`，但必须先由模板的八属性与路线档生成两支攻击。
+
+**protocol≤3 旧式：**
 
 ```text
 ATK_mix = floor(((10000-r_in_bp)×atkOut + r_in_bp×atkIn) / 10000)
@@ -200,7 +249,23 @@ D1 = floor(ATK_mix × 1.24 × P_actual/P_ref)
 
 ### 4.2 Z2 · 防御减免 `defense`
 
-先按外/内各自穿透，再合成：
+protocol 4 先分别处理硬功防御与内劲抵抗，再相加：
+
+```text
+hardDefEff  = floor(hardDefense×(10000-clamp(pierceOutBp,0,6000))/10000)
+innerDefEff = floor(innerDefense×(10000-clamp(pierceInBp,0,6000))/10000)
+Kh = max(1,floor(12000×hardAttack/10000))
+Ko = max(1,floor(12000×outwardAttack/10000))
+F_hardDefBp  = floor(Kh×10000/(hardDefEff+Kh))
+F_innerDefBp = floor(Ko×10000/(innerDefEff+Ko))
+D2h=floor(D1h×F_hardDefBp/10000)
+D2o=floor(D1o×F_innerDefBp/10000)
+D2=D2h+D2o
+```
+
+`hardDefense` 由根骨、护甲、横练修炼加成驱动；`innerDefense` 是 03 §4.1 由 `Dref`、内息及内功 / 装备静态 `defIn` 修饰求出的面板值，不读取路线或在途气。防守经脉只由 `meridianDefenseBp` 在 Z4M 消费一次；命中区在途气只进入 Z4 / settle。`ignoreDef` 同时把两项有效防御置 0。分支各自用对应攻击作 K，防止一支极高攻击替另一支穿防。
+
+protocol≤3 先按外/内穿透再合成：
 
 ```text
 DEF_out_eff = floor(defOut × (1-clamp(pierceOut,0,0.60)))
@@ -230,24 +295,54 @@ D4 = floor(D3 × (1-R4))
 
 正值减伤硬上限 75%，负值是易伤，最低 −50% 即最多承受 ×1.50。按伤害标签筛选的减伤只在匹配时进入本池。典型 `R4=0–0.30`。
 
+AR-19 的 `zoneResistanceBp` 是普通 Z4 来源，不是新乘区。它由 `design/09` §5.11 按招式 `hitZone`、守方力量 / 韧性及该区己方在途气计算并钳在 0–1800 bp，再与其他 `dmgDown` 相加后共用 7500 bp 总上限。一次伤害段在 P3 冻结该值；settle 后扣掉的区内气只影响后续段，不回溯本段 Z4。
+
+### 4.4.1 Z4M · 防守经脉独立乘区
+
+`D4M=floor(D4×meridianDefenseBp/10000)`。`meridianDefenseBp` 由 `design/21` §3.5、§4.7 计算并钳于 5000–13000 bp；无合法防守路线时为 10000。它不是 Z4 的 `dmgDown` 来源，也不改变招架率；每个目标分别计算，同一防守提交可按 21 的窗口覆盖同一 `causeId` 的多段。
+
 ### 4.5 Z5 · 资质与相性 `affinity`
 
 ```text
 apFactor(ap) = 0.80 + 0.004×ap
 A_ap = (1-r_in)×apFactor(ap_cat) + r_in×apFactor(apInner)
 F_aff = 1 + clamp(natureAdd + breakAdd + synergyAdd, -0.30, 0.50)
-D5 = floor(D4×A_ap×F_aff)
+D5 = floor(D4M×A_ap×F_aff)
 ```
 
 杂学主动以 `artFactor=0.80+0.004×value` 替代 `A_ap`；音功按 `apInner`，详见 `design/03` §7.4。`A_ap` 范围 0.80–1.20。
 
 内力性质完全采纳 AR-02 与 `design/05` §5.3：阳主运对阳/阴招 `+12%/−12%`，阴主运相反；调和主运对阳/阴 `+6%`、调和 `+12%`、中性 `+2%`；无主运为 0。三运同源的同性质招式另 +4%。
 
+AR-18 下，主运性质只读取当前主运对应 `SkillDef` 的顶层 `nature`；该值由 05 §5.3 按 `SkillDef.inner.meridians` 中的主修经脉审定，不新增第二份性质字段。路线流畅相性只引用 21 §2.4 按体段求得的性质。Z5 仍读取招式自身相性，不从劳宫等末端出口重新推断，也不按正 / 逆周天改性。两类相性各在自己的既有位置结算，“以阳驭阴 / 阴阳交泰”不追加惩罚、奖励或新乘区。
+
 “破 X”匹配、品阶对抗和 `poBonus(g,n)` 取 `design/05` §9.4；只取生效来源中的最高 `breakAdd`，不叠加，加入本区加算池。其破招架效果则在 Z0 乘 `targetParryMult`，不在 Z5 重复。典型 Z5 总倍率 0.70–1.45，硬边界由上式为 0.56–1.80。
+
+### 4.5.1 Z5M · protocol 4 恒等边界 / 旧攻击经脉乘区
+
+protocol 4 固定 `meridianAttackBp=10000`，因此 `D5M=D5`。攻击路线收益已在 Z1 的 `outwardAttack` 唯一消费；本边界保留在 Z0–Z10 序列与 trace 中，但不得再次乘 `baseOperationBp` 或 `operationBp`。
+
+普通 / 外放曲线选择发生在 Z1 之前：非音功 `projection=true` 选外放曲线；音功只有 `projectionStep≥1` 才选外放曲线，0 档选普通曲线。路线基础值再与完整 / 不完整周天系数合成最终 `operationBp`，详式唯一见 21 §4.4.1–§4.4.4：
+
+```text
+sonic = move.tags includes 'sonic'  // 只读标签投影；不是新增 MoveDef.sonic 字段
+projectionBoostActive =
+  move.projection && (!sonic || projectionStep >= 1)
+
+baseOperationBp = projectionBoostActive
+  ? projectedOperationBp(attackerProfile, defenderProfile, routeLength)
+  : normalOperationBp(attackerProfile, defenderProfile, routeLength)
+operationBp = clamp(floor(baseOperationBp×circulationDamageBp/10000),6500,22000)
+D5M = D5
+```
+
+完整周天的 `circulationDamageBp=13500` 只合入上式一次；不完整周天查 21 的整数曲线。范围档与额外耗内不另乘伤害。音功 0 档保留图鉴基础范围、0 额外耗内和静态 `DamageKind='projected'`；1 / 2 档才取得扩张。多目标可共享路线提交，但按各守方 Profile 分别求 `operationBp`。
+
+protocol≤3 才执行 `D5M=floor(D5×meridianAttackBp/10000)`：将同一“路线曲线 × 周天”合成结果钳至 6500–22000 后写入旧字段。旧 runner 不得同时传入非中性 `operationBp`。
 
 ### 4.6 Z6 · 暴击 `crit`
 
-暴击时 `D6=floor(D5×critDmg/100)`，否则 `D6=D5`。`critDmg` 已由 `design/03` 钳制 120–300 pp；`tough` 只抵消 Z0 暴击率，不二次削减暴击伤害。`mustCrit` 仍受 `noCrit` 克制。典型暴击倍率 1.50–1.70。
+暴击时 `D6=floor(D5M×critDmg/100)`，否则 `D6=D5M`。`critDmg` 已由 `design/03` 钳制 120–300 pp；`tough` 只抵消 Z0 暴击率，不二次削减暴击伤害。`mustCrit` 仍受 `noCrit` 克制。典型暴击倍率 1.50–1.70。
 
 ### 4.7 Z7 · 方位与地形 `position`
 
@@ -302,14 +397,15 @@ E[D]       = P_hit × E[D | hit]
 
 一次命中段按 `design/06` §5.3 的 P5–P8：
 
-1. 无敌、挪移、伤害上限等 `onBeforeHurt` 机制；
-2. 护体吸收；
-3. 以气御伤等资源代扣；
-4. 扣气血；
-5. 气血 ≤0 时走锁血、诈死、复活、倒地；
-6. 以**实际气血伤害**触发吸血、伤害型吸内、反震；
-7. 判定附加效果；
-8. 该段结束；一招最后一段后再处理缺省“每招一次”的 `buffs`，全招后才进入连击、位移和反应队列。
+1. 整次事件已在 §3.5 完成唯一一次 `Z0-CS`，本段只能读取其剩余承诺量；
+2. 无敌、挪移、伤害上限等 `onBeforeHurt` 机制；
+3. 护体真气吸收；
+4. 以当前段的 `hitZone`、区内己方气与合法防守 Profile 调 21 `settleOutwardQi`；未达外放阈值则零抵消；
+5. `mpGuard` / 以气御伤等资源代扣；
+6. 扣气血；
+7. 气血 ≤0 时走锁血、诈死、复活、倒地；
+8. 以**实际气血伤害**触发吸血、伤害型吸内及既有反震；
+9. 目标最后一段完成第 8 步后，先从当时的 `hitZoneNodes` 冻结 §6.2 的 `eligibleNodes`；再判定透劲 / 打穴并创建 21 实例、施加每招 Buff；最后只对该冻结集合写入螺旋经脉伤害，再处理连击、位移与反应队列。新实例与 Buff 不得改变本次分配资格。
 
 ### 6.2 护体、气血与附加效果
 
@@ -317,16 +413,22 @@ E[D]       = P_hit × E[D | hit]
 shieldBlocked   = min(shield, D10)
 shieldSpent     = min(shield, floor(D10×shieldDmgMult))
 postShield      = D10-shieldBlocked
-uncappedHpDamage = postShield
+outwardQiResult = settleOutwardQi(postShield,D10,neutralQiD10,wInBp,hitZone,...)
+damageBeforeMpGuard = outwardQiResult.damageBeforeMpGuard
+uncappedHpDamage = damageBeforeMpGuard-guardedHp
 hpDamage        = min(hp, uncappedHpDamage)
 overkill        = uncappedHpDamage-hpDamage
 shield'         = shield-shieldSpent
 hp'             = hp-hpDamage
 ```
 
+若本段另有螺旋内力本身造成且已完成全部防御 / 资源结算的实际新增伤害 `spiralDamageDealt`，按 CS-O02 默认计算 `spiralMeridianDamage=floor(spiralDamageDealt×10000/10000)`，再交 `design/21` §4.8.1 分配；不得以 `D10`、`hpDamage` 或整招最终伤害替代。例：螺旋新增 135、整招最终伤害 900，只追加 `floor(135×10000/10000)=135` 经脉伤害。此默认见 `design/25` §3.3、§13.5，待作者确认。
+
 护体不改变“命中/暴击/招架成功”事件，但若 `hpDamage=0`，本次攻击附带的 `injury`、`bleed` 不施加；其他标签仍按各自规则判定。若仅部分穿盾，伤势/流血可施加且其概率不按穿盾比例缩放。`shieldDmgMult≥1.00` 只放大对护体资源的消耗；`shieldBlocked` 始终只取原 `D10` 能被当前护体挡下的部分，因此破盾倍率不能放大穿透后的气血伤害。普通攻击 `shieldDmgMult=1.00` 时，`shieldBlocked=shieldSpent`。
 
-护体之后若有 `mpGuard{pct,ratio}`，取最高优先级的一项：`guardWant=floor(postShield×clamp(pct,0,1))`，`mpSpent=min(mp,ceil(guardWant/ratio))`，`guardedHp=min(guardWant,floor(mpSpent×ratio))`，`uncappedHpDamage=postShield-guardedHp`，最终 `hpDamage=min(hp,uncappedHpDamage)`、`overkill=uncappedHpDamage-hpDamage`。`ratio` 表示每 1 内力抵消的气血伤害；“以气御伤”固定 `ratio=2`，玄/地/天阶 `pct=25%/30%/35%`，内力不足部分照扣气血（见 `design/06` §8.4）。
+外放门槛、区内气消耗、守方外放量及完整取整唯一引用 `design/21` §4.8；04 接收其 `OutwardQiResult`。Core 用同一已决判定重放影子 trace：protocol 4 只令 `operationBp=10000`，protocol≤3 只令 `meridianAttackBp=10000`，其余输入与逐区取整不变，得到 `neutralQiD10`；不得两者都改或重掷随机。`attackQiBonus=max(0,D10-neutralQiD10)`。守恒必须满足 `postShield=outwardQi.cancelled+damageBeforeMpGuard`。AR-19 的抵消不直接花 `currentMp`，也不产生击穿 CT / 迟滞 / 反震；未达阈值时 `cancelled=zoneQiSpent=0`。旧 `InnerGuardResult` 及四类适用率只由 `rulesProtocol≤2` runner 读取，严禁和本链叠加。
+
+之后若有 `mpGuard{pct,ratio}`，取最高优先级的一项：`guardWant=floor(damageBeforeMpGuard×clamp(pct,0,1))`，`mpSpent=min(currentMp,ceil(guardWant/ratio))`，`guardedHp=min(guardWant,floor(mpSpent×ratio))`，`uncappedHpDamage=damageBeforeMpGuard-guardedHp`。`ratio` 表示每 1 内力抵消的气血伤害；“以气御伤”固定 `ratio=2`，玄/地/天阶 `pct=25%/30%/35%`，不足部分照扣气血（见 `design/06` §8.4）。
 
 ### 6.3 吸血、吸内与反震
 
@@ -369,15 +471,16 @@ bossF   = 比例型伤害：普通 1.00 / 精英 0.50 / Boss 0.25 / 守卷人 0.
 | `incoming` | Z10 后、任何资源吸收前的本段伤害 | 撞击的 `D_hit`、伤害上限前的调试日志 |
 | `shieldBlocked` | 当前护体从 `incoming` 中实际挡住的伤害；不受破盾倍率放大 | 伤害守恒、双色飘字 |
 | `shieldSpent` | 本段实际扣除的护体资源 | 破盾触发、护体条表现 |
-| `guardedHp` | 护体之后由内力等资源抵消的气血伤害 | 以气御伤表现与资源守恒 |
+| `outwardQi.cancelled` | 护体真气之后由命中区外放抵消的伤害等价值 | 真气鼓荡提示、区内气扣除与资源守恒 |
+| `guardedHp` | 外放抵消之后由 `mpGuard` 等资源抵消的气血伤害 | 以气御伤表现与资源守恒 |
 | `uncappedHpDamage` | 资源吸收后、当前气血/锁血/阶段门截断前的伤害 | 伤害守恒、过量伤害计算 |
 | `hpDamage` | 钳制到目标现有气血后的实际损失 | 吸血、伤害型吸内、反震、受伤阈值 |
 | `overkill` | `max(0, postGuard-target.hp)` | 仅统计/演出；不得增加吸血、反震或击杀次数 |
 | `displayDamage` | UI 组合数字，可拆为护体/气血两色 | 纯表现，不得返回核心参与后续结算 |
 
-资源守恒断言为 `incoming = min(incoming,shieldBefore) + guardedHp + uncappedHpDamage`；`shieldDmgMult` 只改变 `shieldSpent`，所以护体资源可能比第一项消耗得更快，但不能改变 `postShield=max(0,incoming-shieldBefore)`。气血锁定、剧情阶段门会再把 `uncappedHpDamage` 截为 `hpDamage`，被截掉的部分视同 `overkill`，不参与 P7。
+资源守恒断言为 `incoming = min(incoming,shieldBefore) + outwardQi.cancelled + guardedHp + uncappedHpDamage`；未满足外放阈值时其抵消项为 0。`shieldDmgMult` 只改变 `shieldSpent`，所以护体资源可能比第一项消耗得更快，但不能改变 `postShield=max(0,incoming-shieldBefore)`。气血锁定、剧情阶段门会再把 `uncappedHpDamage` 截为 `hpDamage`，被截掉的部分视同 `overkill`，不参与 P7。透劲与打穴是“命中后”的经脉效果，不以 `hpDamage>0` 为门槛；只有 `injury/bleed` 受零气血伤害阻断。
 
-无敌、转移和单击伤害上限可能在 Z10 与资源吸收之间先改写本目标待结算量。实现层可把该中间值命名为 `settledIncoming`，并以 `settledIncoming = shieldBlocked + guardedHp + uncappedHpDamage` 做内部守恒；它是 `tech/05` core 内部派生量，**不加入**本文公共 `Settlement`。被归零、转出或截下的份额必须另记 `prevented/redirected/capped` trace，跨包若要公开该字段须先修改本文接口契约。没有这些机制时 `settledIncoming=incoming`，上式退化为前述公共守恒断言。
+无敌、转移和单击伤害上限可能在 Z10 与资源吸收之间先改写本目标待结算量。实现层可把该中间值命名为 `settledIncoming`，并以 `settledIncoming = shieldBlocked + outwardQi.cancelled + guardedHp + uncappedHpDamage` 做内部守恒；它是 `tech/05` core 内部派生量，**不加入**本文公共 `Settlement`。被归零、转出或截下的份额必须另记 `prevented/redirected/capped` trace，跨包若要公开该字段须先修改本文接口契约。没有这些机制时 `settledIncoming=incoming`，上式退化为前述公共守恒断言。
 
 同一段产生的事件按 `DamageResolved → ShieldChanged/MPChanged/HPChanged → Downed/PhaseGate → Drain/Reflect → EffectApplied` 稳定发出；没有变化的资源事件可省略，但 `DamageResolved` 必须保留。事件命名由 tech/05 最终落地，语义顺序不得改变。
 
@@ -389,7 +492,7 @@ bossF   = 比例型伤害：普通 1.00 / 精英 0.50 / Boss 0.25 / 守卷人 0.
 
 | 情形 | 规则 |
 |---|---|
-| 多段 | `hits=N` 时将整数 `powerBp` 商与余数稳定分配：前 `powerBp mod N` 段各多 1 bp；每段独立 Z0、Z1–Z10、护体与 P7；总威力守恒，但总伤因逐段取整可能略低。招式 `buffs` 缺省最后一段后每目标判一次 |
+| 多段 | `hits=N` 时将整数 `powerBp` 商与余数稳定分配：前 `powerBp mod N` 段各多 1 bp；每段独立 Z0、伤害乘区与 settle；攻方路线结果同招共享，守方路线按 21 窗口覆盖；总威力守恒，但总伤因逐段取整可能略低。招式 `buffs` 缺省最后一段后每目标判一次 |
 | 溅射 | 主目标全额；其他格按 `splashMult` 生成独立伤害段，各自读取距离、方位、高差、地形与守方属性 |
 | 连锁 | 每跳是独立目标段；若条目给衰减，第 k 跳把衰减乘入 `Mod_special`；已命中过的单位能否再次命中由招式定义 |
 | 区域持续 | 入格 / 停留触发的 Buff 按 `design/06` DOT；直接爆发区才跑完整管线 |
@@ -436,6 +539,8 @@ bossF   = 比例型伤害：普通 1.00 / 精英 0.50 / Boss 0.25 / 守卷人 0.
 ---
 
 ## 8. 完整算例
+
+> §8.8–§8.10 为 AR-27 protocol 4 新金标准；均设命中、未招架、未暴击，Z3/Z4/Z4M/Z5/Z6–Z10 中性，便于隔离 Z1/Z2。实际战斗仍走完整区序。
 
 以下均使用 10000 bp、各区向下取整；未特别说明时 Z3/Z4/相性/地形为空、Z10 固定 1.00，数据由 `tools/balance/damage_sim.py` 同模型核算。为展示单个分支，例 1–5 均假定已命中，且仅在例 5 强制暴击。
 
@@ -508,6 +613,56 @@ Lv44 主角携天上 10 重外功进入鹿鼎低武：`g_eff=8`、`layer_eff=8`�
 
 例 1 的 `D10=849`，目标护体 1000、`shieldDmgMult=1.00`：`shieldBlocked=shieldSpent=849`、`hpDamage=0`、剩余护体 151。因此本段仍记命中，可触发非伤势类 onHit，但其 `injury`、`bleed` 均跳过；若护体只有 800，则 `hpDamage=49`，二者可按各自 `P_eff` 判定。
 
+### 8.8 金钟罩类高根骨目标
+
+攻击者 `Ce35,Aref=1095,str=65,bre=50,wOut/wIn=7500/2500,operation=10000`；招式 `P_actual/P_ref=1`。守方金钟罩/横练修炼后 `con=90`，`hardDefense=1200`；内息 55，`innerDefense=650`，均无穿透：
+
+```text
+hardAttack=floor(1095×65×7500/500000)=1067
+outwardAttack=floor(1095×50×2500×10000/5e9)=273
+D1h=floor(1067×1.24)=1323; D1o=floor(273×1.24)=338; D1=1661
+Kh=1280; Fh=floor(1280×10000/(1200+1280))=5161
+Ko=327;  Fo=floor(327×10000/(650+327))=3346
+D2h=floor(1323×5161/10000)=682
+D2o=floor(338×3346/10000)=113
+D2=795
+```
+
+若错误先合成防御，根骨硬防会过度抵抗外放；分支式保留外放 113。金钟罩的价值来自修炼永久 `con` 与显式硬防，不凭名称免疫内劲。
+
+### 8.9 外放型内功高手
+
+`Ce60,Aref=2025,str=55,bre=90,wOut/wIn=2000/8000`，12 段外放路线 `operation=15300`，`P_actual/P_ref=1.10`。目标 `hardDefense=1000,innerDefense=1300`，外放穿透 20%：
+
+```text
+hardAttack=floor(2025×55×2000/500000)=445
+outwardAttack=floor(2025×90×8000×15300/5e9)=4461
+D1h=floor(445×1.24×1.10)=606
+D1o=floor(4461×1.24×1.10)=6084
+hardDefEff=1000; innerDefEff=floor(1300×0.8)=1040
+Kh=534,Fh=3481 → D2h=210
+Ko=5353,Fo=8373 → D2o=5094
+D2=5304
+```
+
+高值来自 `bre=90`、80% 外放和 15300 bp 路线共同投入；同攻击在 Z5M 固定 10000。若路线中性，外放降为 2916，完整 D2 显著下降，证明经脉不是免费全局乘区。
+
+### 8.10 轻灵型剑客
+
+`Ce45,Aref=1470,str=48,bre=60,wOut/wIn=6000/4000`，轻灵剑法普通路线 `operation=11200`，`P_actual/P_ref=1.05`；目标 `hardDefense=850,innerDefense=700`：
+
+```text
+hardAttack=floor(1470×48×6000/500000)=846
+outwardAttack=floor(1470×60×4000×11200/5e9)=790
+D1h=floor(846×1.24×1.05)=1101
+D1o=floor(790×1.24×1.05)=1028
+Kh=1015,Fh=5442 → D2h=599
+Ko=948,Fo=5752 → D2o=591
+D2=1190
+```
+
+该剑客的 `agi` 不直接加单击伤害，而通过新速度式获得更多行动机会、命中和闪避；伤害仍需臂力/内息与武学比例。这样身法不会同时免费放大每击和行动频率。
+
 ---
 
 ## 9. 十四书界节奏模拟
@@ -521,7 +676,9 @@ python3 tools/balance/damage_sim.py --report
 python3 tools/balance/damage_sim.py --check
 ```
 
-主角使用 `design/03` §3.5 的 `STD(书界等级上限)`；其中玩家普通武器与装备按其合法品阶上限 `min(grade,9)`，内功仍可取 10–12 品，敌模板也不套用玩家装备截断。锚点为 `STD(35).hpMax=7176`、`MPREF(35)=4697`，`STD(70).hpMax=40409`、`mpMax=28887`。敌人按 03 §10 模板、`design/02` §3.1 的书界等级带、武运和 `enemyStatMul`。Boss 若有明确超限等级则使用该显示等级。报表普通招代表高武天阶 8%、中/低武地阶 7%的 `MPREF` 成本；绝招不在此列。
+§9.2 使用 `design/03` §3.5 的旧 `STD(书界等级上限)`：玩家普通武器与装备按合法品阶上限 `min(grade,9)`，内功仍可取 10–12 品，敌模板不套玩家装备截断。锚点为 `STD(35).hpMax=7176`、`MPREF(35)=4697`，`STD(70).hpMax=40409`、`mpMax=28887`。敌人按 03 §10 模板、`design/02` §3.1 的旧书界等级带、武运和 `enemyStatMul`。Boss 若有明确超限等级则使用该显示等级。报表普通招代表高武天阶 8%、中/低武地阶 7%的 `MPREF` 成本；绝招不在此列。
+
+`damage_sim.py` 尚未读取 `bre/hardAttack/outwardAttack/operationBp`，故 §9.2 **仅是 protocol≤3 兼容快照**，不得用于证明 protocol 4。§9.3.1 另以 protocol 4 整数式重算十四书界校准基线；§9.4.1 只隔离检查路线与完整周天增量。
 
 敌人模板的品阶仍决定效果品阶和招式池，但伤害按 `P_ref×tmplPower` 归一。为使 03 中标为建议值的裸模板覆盖十四书界节奏，遭遇层使用以下校准**（原创扩展）**：
 
@@ -533,11 +690,18 @@ python3 tools/balance/damage_sim.py --check
 
 耐久只乘模板 `hpMax`；敌方普攻预算只乘模板普通招的期望伤害，不改具名 `full` NPC、面板属性或 Z1 常数。Boss 轮数采用 `design/03` §10.8 的四人队 3.1 次标准命中等价。它们应落在遭遇/AI 配置而非角色属性中。鹿鼎 Boss 洪安通另按 `design/02` §3.1 的 `localDifficulty=8` 建模，并采用 `design/03` §10.9 已定的“同级模板 Boss `hpMax ×0.75`”；这是具名角色覆盖，不污染 LOW 境全局参数。相较旧的非法装备基线，限制项曾变为普通战 5.16 轮、精英 10.32 轮、Boss 28.61 轮；上表重校后对应最紧行分别为 4.95、9.94、24.91 轮。LOW 普通敌预算由 1.76 调至 1.79，使满九转防守成长下最紧的白马行仍为 11.96 次命中，不越过 12 次上限。
 
-### 9.2 生成表
+多人 Boss 按 `design/21` §11.9.2 以整场共享总血量、全部阶段有效耐久或非击杀目标总进度计一次轮数；每个单位虽各自行动并独立结算伤害，不得各复制一份完整 Boss 耐久。召唤、转阶段和停手阈值都折进同一总预算。若超出 Boss 12–25 轮 / 精英 6–10 轮，先调有效耐久、阶段或目标机制，并用 `drag=10000²/(A×D)`、`Rraw=R0×drag×H` 复算；Boss / 精英超窗的推荐倍率分别为 `23/Rraw`、`9/Rraw`。禁止为追窗口而压低主运、里程碑或经脉七参。
+
+### 9.2 protocol≤3 兼容快照
 
 <!-- 由 python tools/balance/damage_sim.py --report 生成；勿手改数值。 -->
+> **兼容边界**：下表只回放旧七属性面板与 `atkOut/atkIn` 混合，不是 protocol 4 结果。展示顺序以白马为第一本正式书；数值仍用旧书界参数。白马唐代化后的境界、武运、等级带由 `DES-baima-tang` 定稿后，旧兼容表和 §9.3.1 都必须重跑。
+
 | 书界 | 境 | 类型 | 主/敌 Lv | 主→敌命中 | 主角行动轮 | 敌→主命中 | 敌方行动轮 | 主/敌命中率 | 单招耗内 |
 |---|---:|---|---:|---:|---:|---:|---:|---:|---:|
+| 白马 | 低 | 普通 | 46/46 | 3.4 | 3.4 | 11.7 | 13.7 | 99.0%/85.0% | 7.0% |
+| 白马 | 低 | 精英 | 46/46 | 7.2 | 7.3 | 12.7 | 14.2 | 99.0%/89.4% | 7.0% |
+| 白马 | 低 | Boss | 46/46 | 42.9 | 14.9 | 10.9 | 11.4 | 93.0%/95.4% | 7.0% |
 | 天龙 | 高 | 普通 | 35/35 | 4.4 | 4.5 | 9.7 | 11.1 | 99.0%/87.4% | 8.0% |
 | 天龙 | 高 | 精英 | 35/35 | 9.4 | 9.6 | 8.1 | 8.8 | 97.4%/91.8% | 8.0% |
 | 天龙 | 高 | Boss | 35/35 | 45.7 | 16.1 | 7.0 | 7.1 | 91.4%/97.8% | 8.0% |
@@ -565,9 +729,6 @@ python3 tools/balance/damage_sim.py --check
 | 连城 | 低 | 普通 | 46/46 | 3.5 | 3.6 | 10.9 | 12.8 | 99.0%/85.0% | 7.0% |
 | 连城 | 低 | 精英 | 46/46 | 7.6 | 7.7 | 11.9 | 13.3 | 99.0%/89.4% | 7.0% |
 | 连城 | 低 | Boss | 46/48 | 52.3 | 18.2 | 8.7 | 9.1 | 92.6%/95.8% | 7.0% |
-| 白马 | 低 | 普通 | 46/46 | 3.4 | 3.4 | 11.7 | 13.7 | 99.0%/85.0% | 7.0% |
-| 白马 | 低 | 精英 | 46/46 | 7.2 | 7.3 | 12.7 | 14.2 | 99.0%/89.4% | 7.0% |
-| 白马 | 低 | Boss | 46/46 | 42.9 | 14.9 | 10.9 | 11.4 | 93.0%/95.4% | 7.0% |
 | 鸳鸯 | 低 | 普通 | 48/48 | 3.4 | 3.5 | 11.4 | 13.5 | 99.0%/84.6% | 7.0% |
 | 鸳鸯 | 低 | 精英 | 48/48 | 7.0 | 7.1 | 13.3 | 14.9 | 99.0%/89.0% | 7.0% |
 | 鸳鸯 | 低 | Boss | 48/48 | 41.4 | 14.3 | 11.3 | 11.9 | 93.4%/95.0% | 7.0% |
@@ -583,7 +744,7 @@ python3 tools/balance/damage_sim.py --check
 
 说明：命中数均为命中条件下的期望值；行动轮计入未命中。Boss 的主→敌命中列是整队标准命中等价总数，轮数再按 design/03 §10.8 的每主角行动 3.1 次标准命中折算；敌方行动轮不属于基准 Boss 时长验收，只供危险度比较。
 
-### 9.3 与基准 §5 逐项对比
+### 9.3 protocol≤3 与基准 §5 逐项对比
 
 | 基准 §5 指标 | 目标 | 模拟范围 | 结论 |
 |---|---:|---:|---|
@@ -594,9 +755,84 @@ python3 tools/balance/damage_sim.py --check
 | Boss 战斗（主角行动轮） | 12–25 | 14.31–24.91 | 通过 |
 | 普通招式耗内 / `mpMax` | 5%–15% | 7.00%–8.01% | 通过 |
 
-作为 `design/15` §8.5 的下游验收，脚本另跑“无经脉 / 180 穴第零转 / 满九转”三档，并令玩家招式内劲占比分别为 0% / 50% / 100%，共 `3×3×42=378` 个遭遇组合。65% 外劲 / 35% 内劲代表招仍逐行满足上表硬区间；两个极端用于同内劲比敏感性比较，不冒充已校准代表招。相对同内劲比的无经脉基线，最大主角行动轮下降 6.72%、最大敌方击倒命中增长 2.41%，且无一普通战低于 3 轮。触发回放另覆盖开战集气、每行动首次耗内、强制位移、成功抵抗、招架、30% 气血下穿，以及九转内伤只拒绝首次 `create` 而不拒绝 `stack/refresh`。
+作为 `design/15` §8.5 的旧协议下游验收，脚本另跑“无经脉 / 180 穴第零转 / 满九转”三档，并令玩家招式旧内劲占比分别为 0% / 50% / 100%，共 `3×3×42=378` 个兼容组合。其结果只证明 protocol≤3 回放不漂移，不证明新 Z1/Z2 已校准。
 
-### 9.4 报表解读与敏感性
+### 9.3.1 protocol 4 十四书界校准基线
+
+本表直接跑 §4.1–§4.2 整数式，不调用旧 `damage_sim.py`。玩家代表招保持 `wOut/wIn=6500/3500`、`operationBp=13500`、`P_actual/P_ref=15000 bp`；敌模板招保持 `50/50`、同一比例、中性 `operationBp=10000`。玩家 `str=min(100,round(六项均值)+10)`、`bre=round(六项均值)`；`Aref=round(ATK_LV(Ce))`。表中 `A;H/O` 是 `Aref;hardAttack/outwardAttack`，防御每组为 `hardDefense/innerDefense`；Z0、资质、Z8 与队伍 3.1 仍复用 §9.2 同行。
+
+闭环只调整审核允许的遭遇层旋钮，不改 Z0–Z10 或上述新攻击式。`HP0/oldEnemyRound` 是已应用 §9.1 境界默认预算后的旧值；本节两组 bp 是 protocol 4 逐书修正层，最终预算为“§9.1 默认 × 本节 bp”，不是替换或角色面板值。先算 `R0=HP0/(hitDamage×hitBp/10000×team)`，其中 `team=1/1/3.1`；再取 `targetRound=4.75/9.50/24.00`，令 `durabilityBp=min(10000,floor(targetRound×10000/R0))`、`HP=floor(HP0×durabilityBp/10000)`。这只下调偏慢行，原已在窗口内者保持 10000 bp。敌方按普通 / 精英 / Boss 每书分别取目标命中数 `10/9/8`，以 `attackBudgetBp=ceil(oldEnemyRound×enemyHitBp/targetHits)` 放大模板普攻；未舍入值的命中数误差 ≤0.001，表中行动轮显示两位小数后复核误差 ≤0.005。白马仍用旧 LOW 等级事实作为明确默认，唐代参数定稿后只重跑本算法。
+
+| 书界 | Ce | `str/bre` | `A;H/O` | `HP N/E/B` | `防 N;E;B` | 主攻轮 N/E/B | 敌攻轮 N/E/B |
+|---|---:|---:|---:|---:|---|---:|---:|
+| 白马 | 46 | 60/50 | 1032;804/487 | 5449/8927/54955 | 980/840;1268/1124;1521/1349 | 4.75/9.50/24.00 | 11.76/10.07/8.39 |
+| 天龙 | 35 | 61/51 | 606;480/292 | 2964/4716/28848 | 633/561;831/772;997/926 | 4.75/9.50/24.00 | 11.44/9.80/8.18 |
+| 射雕 | 50 | 62/52 | 1216;980/597 | 6307/10069/53598 | 1319/1178;1745/1641;2350/2209 | 4.75/9.50/24.00 | 11.76/10.07/8.32 |
+| 神雕 | 62 | 64/54 | 1863;1550/950 | 9898/16552/89826 | 2269/2079;2793/2657;3682/3503 | 4.75/9.50/24.00 | 12.05/10.30/8.53 |
+| 倚天 | 70 | 66/56 | 2373;2036/1255 | 13609/22779/140650 | 2890/2647;3557/3383;4268/4060 | 4.75/9.50/24.00 | 12.22/10.44/8.68 |
+| 笑傲 | 60 | 68/58 | 1746;1543/956 | 10910/17596/92391 | 1892/1691;2505/2355;3417/3213 | 4.75/9.50/24.00 | 12.11/10.34/8.53 |
+| 侠客 | 58 | 70/60 | 1632;1485/925 | 10654/17726/93270 | 1769/1581;2237/2077;3065/2846 | 4.75/9.50/24.00 | 11.99/10.25/8.46 |
+| 碧血 | 56 | 72/62 | 1522;1424/891 | 10543/17212/103257 | 1589/1409;2086/1937;2504/2325 | 4.75/9.50/23.33 | 11.99/10.25/8.53 |
+| 鹿鼎 | 44 | 75/65 | 946;922/581 | 5974/10878/56027 | 898/770;1118/982;1793/1589 | 4.00/8.52/24.00 | 11.60/9.93/8.18 |
+| 连城 | 46 | 78/68 | 1032;1046/663 | 6225/11744/66332 | 980/840;1268/1124;1654/1466 | 3.57/8.07/20.13 | 11.76/10.07/8.35 |
+| 鸳鸯 | 48 | 80/70 | 1122;1166/742 | 6698/12166/63173 | 1126/975;1379/1222;1654/1466 | 3.47/7.33/15.34 | 11.82/10.11/8.42 |
+| 书剑 | 52 | 82/72 | 1314;1400/894 | 9047/16493/79376 | 1372/1216;1678/1529;2014/1835 | 3.89/8.25/16.09 | 11.82/10.16/8.46 |
+| 飞狐 | 55 | 86/76 | 1469;1642/1055 | 10573/19275/92760 | 1534/1359;1875/1709;2250/2050 | 3.74/7.92/15.31 | 11.99/10.25/8.53 |
+| 雪山 | 58 | 88/78 | 1632;1867/1202 | 12262/24008/138093 | 1704/1510;2237/2077;3065/2846 | 3.74/8.84/24.00 | 11.99/10.25/8.46 |
+
+为消除复算歧义，下表列出校准后的每书、每类“命中后期望伤害 / 命中率 bp”；顺序均为 N/E/B。玩家轮数为 `HP/(P_hitDamage×P_hitBp/10000×team)`，`team=1/1/3.1`；敌轮数为 `playerHp/(E_hitDamage×E_hitBp/10000)`。玩家 HP / 防御、资质与暴伤按 03 §3.5 的对应 Ce 行；敌方伤害已乘本节逐书 `attackBudgetBp`。
+
+| 书界 | 玩家 `hitDamage/hitBp` N;E;B | 敌方 `hitDamage/hitBp` N;E;B |
+|---|---|---|
+| 白马 | 1158.88/9900;949.28/9900;794.30/9300 | 1434.17/8500;1593.68/8940;1792.77/9540 |
+| 天龙 | 630.38/9900;509.81/9740;424.24/9140 | 717.54/8740;797.22/9180;896.82/9780 |
+| 射雕 | 1341.39/9900;1075.08/9860;784.82/9180 | 1756.05/8500;1951.53/8940;2195.33/9620 |
+| 神雕 | 2105.02/9900;1760.15/9900;1303.85/9260 | 2966.91/8300;3297.59/8740;3709.70/9380 |
+| 倚天 | 2894.52/9900;2422.35/9900;2015.50/9380 | 4041.34/8180;4489.69/8620;5050.08/9220 |
+| 笑傲 | 2320.33/9900;1871.06/9900;1341.08/9260 | 2774.32/8260;3082.17/8700;3468.40/9380 |
+| 侠客 | 2265.99/9900;1885.03/9900;1359.84/9220 | 2498.18/8340;2775.87/8780;3123.14/9460 |
+| 碧血 | 2242.39/9900;1830.13/9900;1535.31/9300 | 2324.85/8340;2583.12/8780;2906.29/9380 |
+| 鹿鼎 | 1507.45/9900;1289.05/9900;823.94/9140 | 1250.41/8620;1389.48/9060;1562.80/9780 |
+| 连城 | 1763.18/9900;1469.97/9900;1148.05/9260 | 1434.22/8500;1593.60/8940;1792.47/9580 |
+| 鸳鸯 | 1949.46/9900;1677.15/9900;1422.42/9340 | 1616.88/8460;1796.40/8900;2020.78/9500 |
+| 书剑 | 2346.43/9900;2019.43/9900;1711.22/9300 | 1902.53/8460;2113.24/8860;2377.27/9460 |
+| 飞狐 | 2852.21/9900;2457.12/9900;2084.15/9380 | 2241.50/8340;2490.52/8780;2801.90/9380 |
+| 雪山 | 3313.78/9900;2744.23/9900;2013.22/9220 | 2498.80/8340;2775.32/8780;3122.44/9460 |
+
+逐书校准 bp 如下，顺序均为 N/E/B；代表招比例保持 `15000/15000/15000`，未借提高武功威力追窗。`durabilityBp` 为 `9193/7982/9462`（白马）、`7778/6744/9748`（天龙）、`6671/5779/5481`（射雕）、`5916/5735/5260`（神雕）、`6148/5965/6840`（倚天）、`8033/6591/5871`（笑傲）、`8757/7705/6849`（侠客）、`9622/8022/10000`（碧血）、`10000/10000/8726`（鹿鼎）、连城至飞狐均 `10000/10000/10000`、雪山 `10000/10000/9718`。
+
+对应 `attackBudgetBp` 为白马 `17255/24943/25317`、天龙 `16231/18350/18595`、射雕 `18556/20880/16655`、神雕 `20651/23336/19194`、倚天 `21710/24453/24825`、笑傲 `20155/25114/19300`、侠客 `20008/25004/19039`、碧血 `20008/24955/25326`、鹿鼎 `14396/20818/11137`、连城 `16422/23761/20286`、鸳鸯 `18080/26166/26541`、书剑 `19154/23903/24242`、飞狐 `20000/25014/25397`、雪山 `19191/23970/18246`。
+
+复算后主攻轮范围为普通 `3.47–4.75`、精英 `7.33–9.50`、Boss `15.31–24.00`，42 格全部落入 `3–5/6–10/12–25`；敌方命中数为普通 `10.000±0.001`、精英 `9.000±0.001`、Boss `8.000±0.001`，也满足普通敌 8–12 次命中击倒主角。示例：射雕 Boss 原 `R0=43.78`，`durabilityBp=floor(24×10000/43.78)=5481`，`HP=floor(97790×5481/10000)=53598`，复算 `53598/(784.82×0.918×3.1)=24.00`。白马参数仍是待替换的旧 LOW 默认，但本默认下已闭环通过。
+
+### 9.4 旧攻击 Z5M 五档对照（protocol≤3 兼容）
+
+下表直接复用 `design/21` §14.9 的 protocol≤3 Profile 与隔离伤害锚点，只验证旧录像 Z5M。它不定义 protocol 4 的攻击落点；旧行动数仍为 `ceil(HP×10000/(damage×teamEquivBp))`。
+
+| 对战档 | `meridianAttackBp` | 算式 | 接入前 → 后 TTK |
+|---|---:|---:|---:|
+| 同等 | 10000 | `floor(849×10000/10000)=849` | 5 → 5 |
+| 强一档 | 12053 | `floor(950×12053/10000)=1145` | 9 → 7 |
+| 强两档 | 14456 | `floor(2574×14456/10000)=3720` | 22 → 15 |
+| 弱一档 | 9157 | `floor(849×9157/10000)=777` | 5 → 6 |
+| 高手对杂兵 | 18265 | `floor(849×18265/10000)=1550` | 3 → 2 |
+
+本表仅保证 protocol≤3 回放不漂移。protocol 4 的防守 Z4M 仍独立取整，但 Z5M 恒等；其攻击差异必须在 Z1 外放支观察，见下节。
+
+### 9.4.1 protocol 4 运转与周天接线回归
+
+隔离标准守方、10 段强一档路线。21 先按普通 / 外放二选一得到 `baseOperationBp=12053/13581`；不完整 `c=9999` 的周天系数为 10000，完整 `c=10000` 跃迁为 13500：
+
+| 路线 | `c` | `baseOperationBp` | 周天 bp | 最终 `operationBp` | Z5M |
+|---|---:|---:|---:|---:|---:|
+| 普通 | 9999 | 12053 | 10000 | 12053 | 10000 |
+| 普通 | 10000 | 12053 | 13500 | `floor(12053×13500/10000)=16271` | 10000 |
+| 外放 | 9999 | 13581 | 10000 | 13581 | 10000 |
+| 外放 | 10000 | 13581 | 13500 | `floor(13581×13500/10000)=18334` | 10000 |
+
+最终值只代入 §4.1 的 `outwardAttack`。以 21 §14.13 的 `Aref=1000,bre=55,wInBp=5500` 为例，外放完整周天得 `floor(1000×55×5500×18334/5e9)=1109`；`c=9999` 得 821。两者的 D5M 都等于 D5。若 trace 同时出现非中性 `operationBp` 和非中性 `meridianAttackBp`，构建失败。旧 `projection_sim.py` 只锁曲线基础值，不能冒充本表的周天 / Z1 接线测试。
+
+### 9.5 报表解读与敏感性
 
 报表中的“命中”是成功命中的标准伤害等价次数，不等于招式施放次数；“主角行动轮”才把未命中计入。Boss 行使用四人队输出折算，例如天龙 Boss 的 45.7 个标准命中与 16.1 次主角行动并不矛盾。敌方行动轮只是假设目标持续用模板普攻的危险度参考，不是团队被团灭所需轮数。
 
@@ -617,25 +853,35 @@ python3 tools/balance/damage_sim.py --check
 | 提供方 / 使用方 | 接口 | 约束 |
 |---|---|---|
 | 02 → 04 | `tier`、`Ld`、`g_eff`、`layer_eff`、书界表 | 先压制再进 Z1；Boss 超限用自身 `Ld` |
-| 03 → 04 | 面板属性、`STD`、`MPREF`、`P_ref`、模板 | 04 不重算属性定义；C02 `MPREF=STD.mpMax` |
+| 03 → 04 | 面板属性、`STD`、`MPREF`、`P_ref`、模板 | `hardDefense/innerDefense` 已是静态终值且均不含经脉路线；04 不重算属性定义；C02 `MPREF=STD.mpMax` |
 | 05 → 04 | `power`、`wIn/wOut`、性质、招式开关、`hits` | 每段 `power/hits`；耗内先验；相性表原样采用 |
 | 06 ↔ 04 | Z0 旗标、`modZone`、P1–P8、`ρ(Δr)` / `res_eff`、DOT/HOT | 开关 OR、`targetParryMult` 取最小；数值族先按 06 合并；效果品阶与 `resGrade` 必须成对传入 |
 | 08 → 04 | 高差、地形 Z7、坠落与环境参数 | 04 只算倍率/伤害，不定义地形内容 |
 | 09 ↔ 04 | 六角方位、范围目标、反应/合击、预测 | 04 返回判定概率、逐区 trace 与结算结果；09 决定调用次数/顺序 |
 | 13 → 04 | 天书/称号的 Z3 filter、Z7 `directionAdd`、书契真实伤害 | filter 只筛来源；方向加值先进 Z7 方位池；`dmgType:true` 不进 Z8 |
 | 15 → 04 | 经脉静态属性与触发边界 | 属性经 03 进入 Z1/Z2/Z5；04 只做三档 TTK 与确定性触发回归，不重定义经脉 |
+| 21 → 04 | protocol 4 的 `baseOperationBp/circulationDamageBp/operationBp`、`meridianDefenseBp`、`OutwardQiResult`；旧回放为 `meridianAttackBp/evadeRatingDelta` | 新协议只在 Z1 外放支消费 `operationBp`，只在 Z4M 消费 `meridianDefenseBp`，Z5M=10000；严禁回写面板后再乘 |
+| 25 → 04 → 21 | `changshengLayer`、`spiralSpent`、`opponentMpCommitted` → `cancelMp/remainMp`；`spiralDamageDealt` | Z0-CS 每事件一次；04 定整数化与实际新增伤害口径，21 只分配经脉伤害 |
 | tech/05 | 整数 bp 实现 | 每区 trace 可记录；查询不得消耗 RNG |
 | UI | 预测值 | 显示命中/招架/暴击、0.95–1.05 区间、护体吸收与效果率 |
 
 建议纯函数接口（字段名不是新内容 ID）：
 
 ```ts
-type DamageTrace = { z1:number; z2:number; z3:number; z4:number; z5:number;
-  z6:number; z7:number; z8:number; z9:number; z10:number };
+type DamageTrace = { rulesProtocol:number; baseOperationBp:number;
+  circulationDamageBp:number; operationBp:number; meridianAttackBp:number;
+  z1:number; z2:number; z3:number; z4:number; z4m:number;
+  z5:number; z5m:number; z6:number; z7:number; z8:number; z9:number; z10:number;
+  neutralQiD10:number; zoneResistanceBp:number };
 type Settlement = { incoming:number; shieldBlocked:number; shieldSpent:number;
-  shieldAfter:number; guardedHp:number; mpGuardSpent:number; mpAfter:number;
-  uncappedHpDamage:number; hpDamage:number; overkill:number; hpAfter:number };
+  shieldAfter:number; outwardQi:OutwardQiResult; damageBeforeMpGuard:number;
+  guardedHp:number; mpGuardSpent:number; mpAfter:number;
+  uncappedHpDamage:number; hpDamage:number; overkill:number; hpAfter:number;
+  spiralDamageDealt:number; spiralMeridianDamage:number };
+type SpiralCancelResult = { spiralSpent:number; opponentMpCommitted:number;
+  cancelCapacity:number; cancelMp:number; remainMp:number };
 resolveJudge(ctx): { hitBp:number; parryBp:number; critBp:number; flags:JudgeFlags };
+resolveSpiralCancel(ctx): SpiralCancelResult;
 calcDamage(ctx, outcomes): DamageTrace;
 settleDamage(ctx, trace): Settlement;
 calcEffectChance(ctx, effect): number;
@@ -650,16 +896,28 @@ calcEffectChance(ctx, effect): number;
 | 术语 / 字段 | 定义 |
 |---|---|
 | `BP` / `mulBp` | 10000 为 100%的整数比例单位 / 乘后向下取整 |
-| `D1`…`D10` | 每个伤害乘区结束时的整数快照 |
+| `D1`…`D10` / `D4M` / `D5M` | 既有区与经脉边界整数快照；protocol 4 的 `D5M=D5` |
+| `baseOperationBp/circulationDamageBp/operationBp` | 21 给出的路线基础值、周天系数与最终攻击运转值；protocol 4 只进 Z1 外放支 |
+| `meridianDefenseBp` / `meridianAttackBp` | Z4M 承伤倍率 / protocol≤3 旧 Z5M 倍率；protocol 4 后者恒 10000 |
+| `projected` / `projection` | 静态伤害类别 / 逐招外放候选字段；选择 21 的运转曲线，不新增伤害区 |
+| `projectionBoostActive` | `projection && (!sonic || projectionStep>=1)`；仅决定普通 / 外放基础曲线 |
+| `evadeRatingDelta` | protocol≤3 的旧经脉闪避评级差；protocol 4 恒按 0 |
+| `hitZone` / `zoneResistanceBp` | 09 给出的招式命中区 / 该区力量、韧性与己方气产生的 Z4 来源 |
+| `neutralQiD10` / `attackQiBonus` | 同一已决 trace 去掉攻击运转优势后的伤害 / `max(0,D10-neutralQiD10)` |
+| `OutwardQiResult` | 21 给出的 AR-19 外放门槛、抵消量、区内气消耗和抵消后伤害 |
+| `damageBeforeMpGuard` | 护体真气与 AR-19 外放抵消后、既有 `mpGuard` 前的剩余伤害 |
+| `Z0-CS` / `SPIRAL_CANCEL_BP` | 长生诀螺旋资源预处理区 / 1:20 的整数常量 `200000 bp`；每个伤害事件至多一次 |
+| `SpiralCancelResult` | 锁定投入、化解容量、`cancelMp` 与 `remainMp` 的纯结果；定义引用 `design/25` §3 |
+| `spiralDamageDealt` / `spiralMeridianDamage` | 螺旋本身的实际新增伤害 / 按 CS-O02 交 21 的等额经脉伤害 |
 | `P_actual` | 有效品阶、层数、招式与特殊倍率合成的实际威力指数 |
 | `F_def` `F_dir` `F_height` `F_terrain` `F_parry` | Z2/Z7/Z9 的乘数 |
-| `DamageTrace` | 只记录 Z1–Z10 的纯计算调试结构；不混入可变资源状态 |
+| `DamageTrace` | 记录 Z1–Z10 及 Z4M / Z5M 的纯计算调试结构；不混入可变资源状态 |
 | `Settlement` | 一段伤害后的护体阻挡/消耗、代扣、气血、过量伤害、吸取与反震结果 |
 | `settledIncoming` | 仅供 core 在无敌/转移/单击上限后做资源守恒的内部派生量；不是公共 `Settlement` 字段 |
 | reservation ledger | `simultaneous` 批次按 `unitIndex`、`segmentIndex` 为共享稀缺资源预留份额的确定性账本 |
 | `shieldBlocked` / `shieldSpent` | 护体挡住的伤害 / 实际扣除的护体资源；破盾倍率 >1 时二者可不同 |
-| `encounterDurability` | 遭遇层有效耐久校准，不改角色 `hpMax` |
-| `templateAttackBudget` | 模板普通招节奏校准，不改面板攻击或具名 NPC |
+| `encounterDurability` / `durabilityBp` | 遭遇层有效耐久校准；protocol 4 按 §9.3.1 逐书 / N-E-B 锁 bp，不改角色 `hpMax` |
+| `templateAttackBudget` / `attackBudgetBp` | 模板普通招节奏校准；protocol 4 按 §9.3.1 逐书 / N-E-B 锁 bp，不改面板攻击或具名 NPC |
 
 ---
 
@@ -671,7 +929,7 @@ calcEffectChance(ctx, effect): number;
 |---|---|---|
 | V1 | `wOut+wIn=10000 bp`；`g_eff` 1–12、`layer_eff` 1–10 | 错误 |
 | V2 | `power>0`；`hits` 1–6；每段精确使用 `power/hits`，余数按段序稳定分配 | 错误 |
-| V3 | 所有百分比进入核心前为整数 bp；Z1–Z10 每区有唯一取整点 | 错误 |
+| V3 | 所有百分比进入核心前为整数 bp；Z1–Z10、Z4M 各有唯一取整点；protocol 4 的恒等 Z5M 不得制造取整差 | 错误 |
 | V4 | 防御穿透 ≤60%，Z3 −50%–+100%，Z4 −50%–+75%，Z5 加算 −30%–+50%，Z10 95%–105% | 错误 |
 | V5 | `mustCrit` 与 `noCrit` 同时存在时警告，运行时 `noCrit` 优先 | 警告 |
 | V6 | `ignoreDef` 不得同时再把穿透作为伤害加成；`skipParry` 时 Z9 不可生效 | 错误 |
@@ -680,11 +938,27 @@ calcEffectChance(ctx, effect): number;
 | V9 | 比例型 DOT 声明目标模板系数；每回合 DOT/HOT 上限 12%/8% | 错误 |
 | V10 | 伤害来源旗标阻断反震/转移/镜返/反击的同类递归 | 错误 |
 | V11 | `MPREF` 读取 `STD(Ld).mpMax`；`mpRegen≤6%` | 错误 |
-| V12 | 十四书界模拟表与脚本 `--report` 完全一致，`--check` 退出 0 | CI 错误 |
+| V12 | §9.2 protocol≤3 兼容表与旧脚本 `--report` 完全一致，`--check` 退出 0；不得据此宣称 protocol 4 通过 | CI 错误 |
+| V12A | protocol 4 runner 须逐格锁定 §9.3.1 的 `str/bre`、`Aref`、两支攻击、`durabilityBp/attackBudgetBp`、三类有效耐久 / 防御与双向行动轮；42 个主攻轮必须全在 `3–5/6–10/12–25` | CI 错误 |
 | V13 | 原始抗性进入效果命中/DOT 时，`effectGrade` 与 `resGrade` 必须成对提供并先计算 `ρ(Δr)`；不得只传其中之一 | 错误 |
 | V14 | 玩家普通武器/装备计算使用 `min(grade,9)`；玩家内功与敌模板不得被该上限误截断 | 错误 |
 | V15 | 经脉回归档位只能为 `none/turn0/turn9`；静态总账引用 15，未知档位与未知 `mer_*` 均失败 | 错误 |
 | V16 | `simultaneous` 共享资源按 `(target.unitIndex,segmentIndex)` 全序预留；同一份资源不得超额消费 | 错误 |
+| V17 | protocol 4 的 `baseOperationBp/operationBp` 为 6500–22000、`circulationDamageBp` 为不完整曲线值或完整 13500、`meridianAttackBp=10000`；`meridianDefenseBp` 为 5000–13000 | 错误 |
+| V18 | `damageBeforeMpGuard=postShield-outwardQi.cancelled`；`postShield` 守恒，`zoneQiSpent` 不越区内己方气，随后 `mpGuardSpent≤currentMp` | 错误 |
+| V19 | protocol 4 的 `evadeRatingDelta` 必须缺省或为 0；protocol≤3 才允许 21 给出 −35…+35；擒拿 `evadeBp` 不得重复折入 | 错误 |
+| V20 | `projectionBoostActive` 为真只选外放基础曲线，否则只选普通基础曲线；周天只合入一次，protocol 4 只进 Z1 且 Z5M=10000 | 错误 |
+| V21 | `sonic && projection && projectionStep=0` 使用普通运转曲线、基础范围、额外耗内 0；1 / 2 档才启用外放曲线与扩张成本 | 错误 |
+| V22 | 大手印跃击只给落点掌风伤害段外放语义；多人 Boss 的轮数按整场共享耐久 / 目标进度计算 | 错误 |
+| V23 | AR-18 内功性质来自 05，路线性质来自 21；不得从周天方向 / 出口穴改写招式 Z5，也不得增加“阴阳交泰”乘区；`sonic` 快照只由 `MoveDef.tags` 投影 | 错误 |
+| V24 | `hitZone` 必须为 09 的三值且 `zoneResistanceBp∈[0,1800]`；只加入 Z4 一次，并与其他来源共用 7500 bp 上限 | 错误 |
+| V25 | 影子 trace 复用同一已决结果与取整；protocol 4 只把 `operationBp` 置 10000，protocol≤3 只把 `meridianAttackBp` 置 10000；不得重掷 | 错误 |
+| V26 | `rulesProtocol≥3` 只跑 `OutwardQiResult`；内劲抵消上限 100%、外劲 50%，负真气差按 50% 抵基础；不得再跑 AR-14f 类别适用率、耗 MP、击穿迟滞或反震 | 错误 |
+| V27 | 透劲 / 打穴只在该目标末段及 settle 后创建 21 实例，不回溯当前 Z4 / Z4M / Z5M / 外放抵消；`injury/bleed` 仍要求实际气血伤害大于 0 | 错误 |
+| V28 | protocol 4 若 `operationBp!=10000`，则 `meridianAttackBp` 必须为 10000；完整周天 13500 只可出现在 `circulationDamageBp` 并合入一次 | 错误 |
+| V29 | `innerDefense` 必须是 03 输出的静态面板值，不含路线或在途气；`meridianDefenseBp` 只允许在 Z4M 出现一次 | 错误 |
+| V30 | `Z0-CS` 只在九层且资源锁定后执行；`spiralSpent/opponentMpCommitted` 非负，`cancelMp≤opponentMpCommitted`；同一事件恰有 0 或 1 条结果 | 错误 |
+| V31 | `spiralMeridianDamage=floor(spiralDamageDealt×10000/10000)`；不得复制 `D10`、`hpDamage` 或整招伤害，多段不得重复登记同一新增量 | 错误 |
 
 ### 12.2 核心测试
 
@@ -703,6 +977,12 @@ calcEffectChance(ctx, effect): number;
 | T11 | 例 5：Lv35 暴击背击、高 2 级 | Z6=1307、Z7=1869 |
 | T12 | 破盾：`D10=800`、护体 500、`shieldDmgMult=2` | 护体消耗 500、气血伤害 300，不把破盾倍率带入气血 |
 | T13 | 以气御伤：盾后 800、`pct=25%`、内力 100、`ratio=2` | 内力 −100、气血伤害 600，不足代扣部分回落气血 |
+| T14 | 标准 Profile 对标准 Profile，2 段攻击且无防守路线 | 两协议 Z4M / Z5M 均 10000；旧 42 行节奏零漂移 |
+| T15 | protocol≤3：21 五档 Profile，10 段攻击路线 | 旧 Z5M 为 10000 / 12053 / 14456 / 9157 / 18265；TTK 为 5 / 7 / 15 / 6 / 2 |
+| T16 | protocol≤3：标准攻方对强一档守方，防守 6 段、攻击 10 段、输入 1000 | Z4M=9361、旧 Z5M=9200；`1000→936→861` |
+| T17 | `postShield=1000,wInBp=6000,D10=1000,neutralQiD10=800`；守方恰达阈值且 `outwardQi=1200` | 真气加成 200 全抵，负差 1000 的 50% 得 500；可抵上限 `600+floor(400×0.5)=800`，故抵 700、剩 300 |
+| T18 | `postShield=1600,wInBp=6250,D10=1600,neutralQiD10=1200,outwardQi=1200` | 真气加成 400 全抵、负差 800 的 50% 抵 400，合计抵 800；可抵上限 `1000+300=1300`，故 `damageBeforeMpGuard=800`，不耗当前 MP / 不延后 CT |
+| T19 | 同输入 `evadeRatingDelta=35`，分别按 protocol 3 / 4 | protocol 3 守方闪避评级加 35、命中率未触底时降 1400 bp；protocol 4 忽略该旧键 |
 | T14 | `powerBp=10001`、`hits=3` | 分为 3334 / 3334 / 3333，总威力守恒 |
 | T15 | `ρ(Δr)`，Δr=0/1/2/3/4/≥5 | 0% / 30% / 45% / 60% / 75% / 90% |
 | T16 | 原抗性 40%，效果品阶 8、`resGrade=5` | `res_eff=16%`；负抗性不削减 |
@@ -713,7 +993,7 @@ calcEffectChance(ctx, effect): number;
 | T21 | 治疗 `base=2`、`healPower=116`、`healRecv=130`；护盾 `base=1`、`healPower=129`、`healRecv=130` | 分别按完整公式末取整为 3 / 2；逐因子提前取整会误得 2 / 1 |
 | T22 | Lv35 普通招式 `costBp=800` | C02：`MPREF=STD(35).mpMax=4697`，`round(4697×8%)=376` |
 | T23 | `STD(L)`，L=1…70；另查 Lv35 | C03：`mpRegen` 最大 6.00%，Lv35 为 4.40% |
-| T24 | `python3 tools/balance/damage_sim.py --check` | 40 项全 PASS、已知偏差 0 |
+| T24 | `python3 tools/balance/damage_sim.py --check` | 既有 protocol≤3 回归全 PASS；不得以此替代 T41–T44 的 protocol 4 检查 |
 | T25 | 向 Z1 传 `movePowerBp=0` | 构建/运行均拒绝，不静默生成 0 伤害招式 |
 | T26 | 已决参数与硬开关矛盾：`noCrit+crit`、`skipParry+parried`、`parryable=false+parried` | `noCrit` 禁暴；后两者均令 Z9 不生效；`mustCrit` 仅在未 `noCrit` 时强制暴击 |
 | T27 | 招架基准 40 bp、侧击 75%、`targetParryMult=66.67%` | 完整公式末取整为 20 bp |
@@ -726,6 +1006,19 @@ calcEffectChance(ctx, effect): number;
 | T34 | Lv70 的 `turn0/turn9` 静态档 | 关键面板逐项匹配 15 §§6.2–7.3；`mpRegen +0.634pp` 在最终战斗值边界换算为整数 bp |
 | T35 | 三经脉档 × 内劲占比 0/50/100% × 42 遭遇 | 378 行；相对同内劲比基线的轮数下降 ≤8%、敌方命中增长 ≤3%，且 65/35 代表招全过硬区间 |
 | T36 | 经脉触发确定性回放 | 开战/每行动限次与 30% 下穿只触发一次；九转仅拒绝首次 `bf_neishang` create，不拒绝 stack/refresh |
+| T37 | protocol 4，10 段强一档、`c=9999`，普通 / 外放 | `baseOperationBp=operationBp=12053/13581`；两者 `meridianAttackBp=10000`、`D5M=D5` |
+| T38 | protocol 4 强一档音功、`c=9999`，分别选 0 / 1 档 | 0 档 `operationBp=12053`、基础范围、0 成本；1 档 13581、射程 +2 / 范围 +1、2% MPREF；Z5M 均 10000 |
+| T39 | `str=50,tough=38,zoneFlowBp=5000`，命中 body / hand / leg | Z4 新来源依 09 §5.11 分别为 728 / 714 / 752 bp，加入后再受 Z4 总上限 |
+| T40 | 同一段结算先满足外放抵消，末段后再成功透劲 / 打穴 | 当前段 trace 与 `OutwardQiResult` 不变；P7 才创建异种气 / 占穴实例，下一段或下一命令读取新状态 |
+| T41 | protocol 4 普通 / 外放强一档，分别 `c=9999/10000` | 最终运转为 12053/16271 与 13581/18334；四例 Z5M 都为 10000 |
+| T42 | `Aref=1000,str=60,bre=55,wOut/wIn=4500/5500`，外放完整 / `c=9999` | 硬功 540；外放 1109 / 821；总攻击 1649 / 1361 |
+| T43 | 同一 protocol 4 已决 trace 计算 `neutralQiD10` | 只把 `operationBp` 置 10000；Z0、Z4M、暴击、方位、浮动及 Z5M 不变 |
+| T44 | protocol 4 同时给 `operationBp=18334`、`meridianAttackBp!=10000` | 构建 / 运行拒绝，防止 Z1 与 Z5M 双乘 |
+| T45 | protocol 4 十四书校准 runner | 逐格等于 §9.3.1；范围为 N `3.47–4.75`、E `7.33–9.50`、B `15.31–24.00`，42 格全通过；当前尚无仓库实现，工程落地后须锁成 golden |
+| T46 | 03 静态 `innerDefense=1100`，同一 `D4=1000` 分别给 `meridianDefenseBp=10000/8000` | 两次 Z2 输入都保持 1100；Z4M 只得 1000 / 800。若先把 1100 乘 8000 再传 Z2，或 Z4M 再乘第二次，构建 / golden 失败 |
+| T47 | 九层；`spiralSpent=19`、对方承诺 377 | 容量 `floor(19×200000/10000)=380`；`cancelMp=377`、`remainMp=0` |
+| T48 | 三段招共用承诺 600、螺旋投入 10 | 全事件容量 / 化解总计 200、剩 400；不是每段各化解 200 |
+| T49 | `spiralDamageDealt=135`、整招最终伤害 900 | `spiralMeridianDamage=135`，交 21 后不得增加 900 |
 
 ---
 
@@ -735,9 +1028,10 @@ calcEffectChance(ctx, effect): number;
 
 | 编号 | 下游 | 本文建议值 | 状态 |
 |---|---|---|---|
-| O4-01 | tech/05 | 10000 bp；Z1–Z10 每区向下取整；资源成本四舍五入 | 待实现 |
+| O4-01 | tech/05 | protocol 4 序列化三段运转值；Z1 外放支消费一次、Z5M=10000；Z4M 与既有区取整，资源成本四舍五入 | 待实现 |
 | O4-02 | design/09 / UI | 预测枚举招架×暴击分支，Z10 区间 0.95–1.05；多段逐段枚举 | 待同步 |
-| O4-03 | chapters / design/09 | §9.1 遭遇有效耐久与模板普攻预算 | 【建议值】，应随具名战实测覆盖 |
+| O4-03 | chapters / design/09 | §9.3.1 的逐书 / N-E-B `durabilityBp` 与 `attackBudgetBp` | 【建议值】，42 格已闭环；具名战仍可按实测覆盖 |
+| O4-04 | design/21 / tech/05 | `Z0-CS` 每事件一次，1:20 用 `200000 bp`；仅 `spiralDamageDealt` 以 10000 bp 转经脉伤害 | 【建议值】，见 `design/25` §3、CS-O02 |
 
 ### 13.2 本文依赖的上游事实
 
@@ -764,6 +1058,9 @@ calcEffectChance(ctx, effect): number;
 | C02 `MPREF=STD.mpMax` | **采纳** | §1、§9；Lv35=4697 |
 | C03 `mpRegen≤6%` | **采纳** | 作为 V11 接口约束，不在伤害区重复定义属性 |
 | C11 撞击 | **采纳** | §7.4；不附赠眩晕 |
+| Canon V13-02～04 / 21 战斗经脉接口 | **由 AR-27 局部覆盖攻击落点** | 防守 Z4M 保留；攻击 Z5M 仅 protocol≤3。protocol 4 运转只进 Z1，闪避只读最终 `spd`；外放抵消见 §6 |
+| Canon V15-02～03 / AR-16 外放接口 | **由 AR-27 修订攻击落点** | `projectionBoostActive` 决定基础曲线，周天再合入 `operationBp`；范围 / 成本仍归 21、05、09 |
+| Canon V16-03 / AR-17 音功与掌风边界 | **已采纳并按 AR-27 映射** | 音功 0 档走普通运转曲线，1 档起外放；大手印只认落点掌风伤害段 |
 
 `STD` 当前仍含 `design/03` 自身登记的装备主属性【建议值】，且其合法装备集合尚需由 `design/10` 复核；模拟结论因此是当前上游基线，不冒充最终内容实测。
 
@@ -771,8 +1068,12 @@ calcEffectChance(ctx, effect): number;
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| P-04-1 | 基准 §9 后补“整数比例统一用 10000 bp，Z1–Z10 每区向下取整” | 固化 `tech/01` D4/P2 的跨平台确定性契约 |
+| P-04-1 | 基准 §9 后补“整数比例统一用 10000 bp；Z1–Z10 与 Z4M 各区按协议取整，protocol 4 的 Z5M 恒等，protocol≤3 才乘旧攻击经脉值” | 固化跨平台确定性并避免恒等边界产生伪取整 |
 | P-04-2 | 基准 §8 的“斜45°等距网格”按 AR-12 改为六角格，并指向 09 | 作者新增需求已高于基准正文，避免旧四/八向继续传播 |
+| M3-P01 | **由 AR27-P01 局部取代**：Canon V13-02 的防守 Z4M 保留；攻击 Z5M 只供 protocol≤3 回放 | AR-27 攻击式已在 Z1 外放支读取经脉运转 |
+| M3-P02 | **历史已采纳、现由 AR-19 修订**：Canon V13-03 的护体内劲顺序仅供 `rulesProtocol≤2` 回放；协议 3 在护体真气后、`mpGuard` 前执行 21 §4.8 外放抵消 | 保留旧协议追溯，同时以命中区阈值、内劲全抵 / 外劲半抵和负差半抵基础伤害作为现行唯一语义 |
+| M6-P02 | **由 AR27-P01 取代攻击落点**：外放招式仍选 21 外放曲线，但其结果与周天合成后只乘 Z1 外放支 | 保留 AR-16 曲线并阻止 Z1 / Z5M 双算 |
+| AR27-P01 | 基准 §6 / §9 登记 protocol 4：`operationBp=clamp(floor(baseOperationBp×circulationDamageBp/10000),6500,22000)`，只乘 Z1 外放支；Z5M=10000，旧 `meridianAttackBp` 仅 protocol≤3 | 保留完整周天 13500 奖励且给攻击公式唯一落点 |
 
 ### 13.4 原著考据待办
 
@@ -783,7 +1084,10 @@ calcEffectChance(ctx, effect): number;
 | # | 问题 | 当前默认 |
 |---|---|---|
 | Q1 | 实战是否让 `tough` 额外降低暴击倍率 | 不降低；只抵消 Z0 暴击率，避免双重收益 |
-| Q2 | 遭遇校准应写入 09、章节还是数据层 | 写入遭遇层：普通/精英按境界默认，具名 Boss 可覆盖 |
+| Q2 | 遭遇校准应写入 09、章节还是数据层 | 写入遭遇层：先载入 §9.3.1 的逐书 / N-E-B 默认，具名 Boss 可覆盖 |
 | Q3 | `hpCost` 是否允许施放者自倒 | 默认不允许，至少留 1；仅显式 `canDownSelf` 例外 |
 | Q4 | `asHigh` 没有给高度级数时按几级 | 默认攻方高 1 级 |
 | Q5 | Z10 是否每段独立掷骰 | 默认每段独立；保持多段有波动但总伤更稳定 |
+| Q6 | **已解决**：基准已正式吸收 M3-P01 / M3-P02 | Canon V13-02 / V13-03 已采纳；本文直接引用，不再保留待吸收状态 |
+| Q7 | AR-16 外放曲线是否维持当前陡度 | 默认按 21 §4.4.1 与 `projection_sim.py`；10 段高 / 顶尖对标准为 13581 / 19046 bp，待作者确认 |
+| Q8 | CS-O02“经脉伤害 100%”是否复制整招伤害 | 默认否：只把螺旋内力本身新增且实际结算的伤害全额计入经脉伤害，见 §6.2 |

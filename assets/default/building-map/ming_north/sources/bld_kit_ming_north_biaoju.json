@@ -1,0 +1,85 @@
+{
+  "id": "bld_kit_ming_north_biaoju",
+  "subject": "明代北方府城：护运货栈（原创扩展）；具体构件断代（待考）。",
+  "footprint": [
+    15,
+    12
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-646e3964-9f09-4d9a-a515-47d1596f03c1.png",
+  "prompt": "Use case: sketch-to-render. Image 1 is an EXACT construction template for a game sprite. Do not change the shape or position of this quadrilateral. It is the thin rectangular stone foundation of a northern Ming escort freight courtyard. Build architecture upright on it, all walls matching this template's +0.5/-0.5 axes. Keep exact left corner(200,610), front(800,910), right(1280,670), back(680,370) on1536x1024 canvas. Do not enlarge or zoom. Projected width/depth=600/480=1.25. Strict parallel 2:1 dimetric camera. Raise low grey-brick boundary walls 120px above base, a simple secure timber double gateway centered on left-front side; rear hard-gable grey-tiled one-storey office and short side freight sheds, few burlap bales/crates inside. Realistic ancient Chinese game painted details, crisp fine clay tiles, masonry, matte dark timber matching approved Song baseline. Northern flush masonry gables, straight ridges, no curled eaves. Base perimeter must be ruler-straight and visible around walls; all construction within base. Lighting upper left with SHORT faint contact shadow only. Absolutely no ambient glow or surrounding fog. True alpha0 transparent background directly outside asset and opaque alpha255 solid architecture. No scenery, people, text, plaques, flags, labels, dots, lines, modern items, halo, thick plinth, checkerboard. A single isolated reusable PNG asset.",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "role": "宋基线材质与细节密度参考；不继承年代",
+      "status": "candidate",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef"
+    },
+    {
+      "path": "assets/default/building-map/ming_north/sources/bld_kit_ming_north_biaoju_r2_guide.png",
+      "sha256": "aab871381aa4442233798a076ce4bbe38f8a613e39630b906785e0b8a8c87271",
+      "role": "精确几何导引，仅作image_gen输入；最终图未经仿射纠偏"
+    }
+  ],
+  "created": "2026-09-30T22:10:19.206114+00:00",
+  "created_basis": "生成结果接收后的入库登记时间；服务端生成时刻未公开。",
+  "points": {
+    "L": [
+      201,
+      610.2544
+    ],
+    "F": [
+      821.7637,
+      926.8111
+    ],
+    "R": [
+      1336,
+      667.3429
+    ]
+  },
+  "footprint_basis": "design/22 §3.4 明代对应骨架；本套件地域命名",
+  "visual_review": "原目标、几何导引及所选原图均逐张view_image；灰砖硬山、灰瓦木窗、左上光、完整轮廓与透明留边。基脚实测+0.50995/-0.50457；比例1.20716，目标1.25000。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selection_reason": "在本轮2候选中选择双轴和宽深整体残差较低者；残差如实保留。",
+  "original_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "ddfd398bdb9f8f92bcf6f4b651549beebe8492e4fb9e3148585e8101c986b25b",
+  "revision": 2,
+  "source_size": [
+    1536,
+    1024
+  ],
+  "created_time_basis": "本轮所选候选接收后登记时间",
+  "revision_history": [
+    {
+      "revision": 1,
+      "source_sha256": "099d5edfc2d52cdc30d67340404be583ccdf21e996d71afd38c4f5e72ab9335c",
+      "final_sha256": "c2bb733ed1b449daed19d77ae4cdc7bdfd635e05aa504f75a721939d86cb69db",
+      "record_sha256": "5a57f10f9873de2ad12b0d15c95e4dbd194bb259f252e67d0a5f6d2d69ced8e6",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82e-74c3-9466-90640f7d6631/exec-1842df7c-adff-4fe2-9a50-522ec5fc8db3.png",
+      "candidate_count": 2
+    }
+  ],
+  "candidate_count_basis": "仅本轮 revision=2；前轮次数见 revision_history",
+  "repair_record": "sources/bld_kit_ming_north_biaoju_r2_candidates.json",
+  "source_point_semantics": "逐图视检定位基脚左右外缘x，alpha>200下缘取x251..699/951..1249线性拟合；F为两可见直边交点；不含透明阴影。",
+  "measurement_uncertainty_source_px": 3,
+  "measurement_fit_ranges_x": [
+    [
+      251,
+      699
+    ],
+    [
+      951,
+      1249
+    ]
+  ],
+  "measurement_fit_slopes": [
+    0.50994710467706,
+    -0.5045700433211371
+  ],
+  "final_view_image_reviewed": true,
+  "final_visual_review": "已逐张view_image成品；屋檐、薄基脚完整，透明留边与灰砖灰瓦细节可读；未修改投影，仅裁切等比缩放补透明边。残差见meta。"
+}

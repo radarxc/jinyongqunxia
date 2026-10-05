@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_riyuexinfa
+name: 日月心法秘本
+kind: manual
+sub: full
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_riyuexinfa
+text:
+  desc: 外观：明代黑漆布面线装册，红丝线。
+  lore: 日月神教内功在本作编为黑漆布面秘本，名称细节、载体与篇次皆属 （原创扩展）。研读须按段调息、收束躁进之气；教中传言封面越显森严，越是在提醒门人不可越阶强练。
+extension:
+  type: manual
+  value:
+    skill: sk_riyuexinfa
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_riyuexinfa
+      readBre: 40
+      maxLayer: 10
+      cultivation: 2000

@@ -1,0 +1,11 @@
+{
+  "id": "tex_town_mongol_city_gate__k6_r000_v01",
+  "round": 3,
+  "candidate_count": 2,
+  "selected_candidate": "r03c2",
+  "candidate_sha256": ["649c409e4ed6ffd3ebf916e2610b0173d6f236205a9ed9e85be6be3ca697bf14", "f557a870ce86ba1531ff6b2c511a6acf698ef7882627e4128803eac2e38ef20b"],
+  "reference": {"file": "source/tex_town_mongol_city_gate__k6_r000_v01__r03_geometry_reference.png", "description": "liao_jin_north k6 gate; geometry only", "sha256": "5ab656dfeed7969b0e51b209bd35dc19e2723aa21e4e80392615b76770dfe8dc"},
+  "geometry_qa": {"source_corners_LFR_px": [[99, 794], [890, 1197], [1211, 1047]], "source_axis_slopes": [0.509482, -0.467290], "width_depth_ratio": 2.464174, "ratio_relative_error": 0.014330, "opening_front_fraction": 0.594185, "opening_equivalent_cells": 5.941846},
+  "processing": {"crop_box": [84, 65, 1220, 1202], "resized_size": [620, 621], "final_size": [652, 653], "method": "crop, uniform LANCZOS, transparent pad; no warp"},
+  "final_sha256": "b10d871c839cf0f3c6986f0610b68496382e61e595dbeb5a092df05d039ea450"
+}

@@ -6,23 +6,30 @@ is a balance/reference implementation, not the production TypeScript engine.
 It intentionally uses only the standard library, integers and basis points.
 """
 
-from __future__ import annotations
-
 import argparse
 import json
+import re
+from collections import Counter
 from dataclasses import asdict, dataclass, replace
 from hashlib import sha256
 from math import isqrt
 from pathlib import Path
 from typing import Iterable, Sequence
-
 BP = 10_000
 MASK32 = 0xFFFF_FFFF
-RULES_PROTOCOL = 1
-RNG_PROTOCOL = 1
+LEGACY_RULES_PROTOCOL = 2
+LEGACY_RNG_PROTOCOL = 1
+RULES_PROTOCOL = 3
+RNG_PROTOCOL = 2
 G_BP = (0, 10_000, 11_000, 12_000, 14_000, 15_500, 17_000,
         20_000, 22_000, 24_000, 28_000, 31_000, 35_000)
 GOLDEN_PATH = Path(__file__).with_name("meridian_flow_golden.json")
+GOLDEN_V3_PATH = Path(__file__).with_name("meridian_flow_golden_v3.json")
+PALM_LAOGONG = "ap_shoujueyin_laogong"
+PALM_NEIGUAN = "ap_shoujueyin_neiguan"
+PALM_HEGU = "ap_shouyangming_hegu"
+PALM_HOUXI = "ap_shoutaiyang_houxi"
+PALM_WAIGUAN = "ap_shoushaoyang_waiguan"
 def clamp(value: int, lo: int, hi: int) -> int:
     return min(hi, max(lo, value))
 def ceil_div(numerator: int, denominator: int) -> int:
@@ -37,11 +44,133 @@ def affinity_bp(inner: str, meridian: str) -> int:
     if meridian == "harmony":
         return BP
     return 11_000 if inner == meridian else 8_800
-def route_cap_bp(length: int) -> int:
-    """Diminishing, strictly increasing ceiling whose limit is 1,200 bp."""
-    if length < 1:
-        raise ValueError("route length must be positive")
-    return 1_200 * length // (length + 6)
+def palm_outlet_candidates(action_context: str) -> frozenset[str]:
+    """AR-18 palm outlets; ambiguous actions retain Laogong only."""
+    outlets = {PALM_LAOGONG}
+    if re.search(r"手刀|掌刃|掌缘|掌侧|劈掌", action_context):
+        outlets.add(PALM_HOUXI)
+    reliable = action_context
+    for token in (
+        "一切", "切磋", "亲切", "切换", "迫切", "切勿",
+        "切记", "密切", "确切", "急切", "恳切", "切实",
+        "劈空",
+    ):
+        reliable = reliable.replace(token, "")
+    if re.search(r"劈|切|抓|虎口", reliable):
+        outlets.add(PALM_HEGU)
+    if re.search(r"格挡|靠打|反背摔掌", action_context):
+        outlets.add(PALM_WAIGUAN)
+    return frozenset(outlets)
+def trailing_palm_outlets(
+    nodes: Sequence[str], action_context: str,
+) -> frozenset[str]:
+    """Find action-matched outlets only within the final 1--3 steps."""
+    tail = set(nodes[-3:])
+    matched = tail & palm_outlet_candidates(action_context)
+    if PALM_LAOGONG in matched and PALM_NEIGUAN in tail:
+        matched.add(PALM_NEIGUAN)
+    return frozenset(matched)
+def route_body_nature(
+    nodes: Sequence[str], acupoint_meridians: dict[str, str],
+    meridian_natures: dict[str, str], outlet_points: Iterable[str] = (),
+) -> str:
+    """Derive route nature from body steps; AR-18 outlets do not vote."""
+    excluded = Counter(outlet_points)
+    body: list[str] = []
+    for point in reversed(nodes):
+        if excluded[point]:
+            excluded[point] -= 1
+        else:
+            body.append(point)
+    votes = Counter(
+        meridian_natures.get(acupoint_meridians.get(point, ""))
+        for point in reversed(body)
+    )
+    if votes["yin"] == votes["yang"]:
+        return "harmony"
+    return "yin" if votes["yin"] > votes["yang"] else "yang"
+def lerp_anchors(value: int, anchors: Sequence[tuple[int, int]]) -> int:
+    """Piecewise-linear integer lookup, clamped to the end anchors."""
+    if value <= anchors[0][0]:
+        return anchors[0][1]
+    for (x0, y0), (x1, y1) in zip(anchors, anchors[1:]):
+        if value <= x1:
+            return y0 + (value - x0) * (y1 - y0) // (x1 - x0)
+    return anchors[-1][1]
+
+def route_reach_bp(length: int) -> int:
+    """How much of a relative-strength edge this route can realise."""
+    if not 1 <= length <= 18:
+        raise ValueError("route length must be 1..18")
+    return min(BP, 3_000 + 7_000 * length // 18)
+ATTACK_CURVE = (
+    (4_000, 6_500), (5_000, 6_500), (6_500, 7_200), (8_000, 8_600),
+    (10_000, 10_000), (12_000, 13_000), (15_000, 16_500),
+    (18_000, 19_000), (22_000, 22_000), (25_000, 22_000),
+)
+DEFENSE_CURVE = (
+    (4_000, 13_000), (5_000, 12_500), (8_000, 11_000),
+    (10_000, 10_000), (12_000, 8_800), (15_000, 7_000),
+    (20_000, 5_500), (22_000, 5_000), (25_000, 5_000),
+)
+SPEED_CURVE = (
+    (4_000, 7_500), (6_000, 8_000), (8_000, 9_000),
+    (10_000, 10_000), (12_000, 11_000), (15_000, 12_250),
+    (18_000, 13_500),
+)
+CIRCULATION_CURVE = (
+    (0, 5_000), (2_500, 6_000), (5_000, 7_500), (7_500, 9_000),
+    (9_999, 10_000),
+)
+@dataclass(frozen=True)
+class MeridianProfile:
+    qi_bp: int
+    capacity_bp: int
+    flow_bp: int
+    completion_bp: int
+def relative_component_bp(value: int, standard: int, lo: int = 4_000) -> int:
+    if standard <= 0:
+        raise ValueError("STD meridian component must be positive")
+    return clamp(value * BP // standard, lo, 18_000)
+
+def normalize_profile(raw: tuple[int, int, int, int],
+                      standard: tuple[int, int, int, int]) -> MeridianProfile:
+    values = [relative_component_bp(v, s) for v, s in zip(raw[:3], standard[:3])]
+    return MeridianProfile(*values, relative_component_bp(raw[3], standard[3], lo=0))
+def meridian_strength_bp(profile: MeridianProfile) -> int:
+    """30% qi, 25% capacity, 25% fluency, 20% route quality."""
+    qi, capacity, flow = (clamp(value, 4_000, 18_000) for value in
+                          (profile.qi_bp, profile.capacity_bp, profile.flow_bp))
+    completion = clamp(profile.completion_bp, 0, 18_000)
+    score = (30 * qi + 25 * capacity + 25 * flow + 20 * completion) // 100
+    return clamp(score, 4_000, 18_000)
+def _blend_from_neutral(target_bp: int, realise_bp: int) -> int:
+    if target_bp >= BP:
+        return BP + (target_bp - BP) * realise_bp // BP
+    return BP - (BP - target_bp) * realise_bp // BP
+def attack_meridian_mult_bp(
+    attacker: MeridianProfile, defender: MeridianProfile, route_length: int,
+) -> int:
+    ratio = clamp(meridian_strength_bp(attacker) * BP
+                  // max(1, meridian_strength_bp(defender)), 4_000, 25_000)
+    target = lerp_anchors(ratio, ATTACK_CURVE)
+    quality_reach = clamp(5_000 + (attacker.completion_bp if ratio >= BP else defender.completion_bp) // 2, 5_000, BP)
+    realise = mul_bp_floor(route_reach_bp(route_length), quality_reach)
+    return clamp(_blend_from_neutral(target, realise), 6_500, 22_000)
+def defense_meridian_mult_bp(
+    defender: MeridianProfile, attacker: MeridianProfile, route_length: int,
+) -> int:
+    ratio = clamp(meridian_strength_bp(defender) * BP
+                  // max(1, meridian_strength_bp(attacker)), 4_000, 25_000)
+    target = lerp_anchors(ratio, DEFENSE_CURVE)
+    quality_reach = clamp(5_000 + (defender.completion_bp if ratio >= BP else attacker.completion_bp) // 2, 5_000, BP)
+    realise = mul_bp_floor(route_reach_bp(route_length), quality_reach)
+    return clamp(_blend_from_neutral(target, realise), 5_000, 13_000)
+
+
+def circulation_damage_bp(circulation_bp: int) -> int:
+    value = clamp(circulation_bp, 0, BP)
+    return 13_500 if value == BP else lerp_anchors(value, CIRCULATION_CURVE)
 def _imul32(a: int, b: int) -> int:
     return (a * b) & MASK32
 def seed_stream(master: int, stream: str) -> list[int]:
@@ -118,6 +247,7 @@ class RouteSpec:
     segment_ct: tuple[int, ...]
     risk_bp: tuple[int, ...]
     ultimate: bool = False
+    purpose: str = "attack"
 
     def __post_init__(self) -> None:
         if not 1 <= len(self.nodes) <= 18 or len(self.nodes) != len(self.segment_ct):
@@ -127,14 +257,18 @@ class RouteSpec:
             raise ValueError("risk length and CT/risk bounds are required")
         if len(set(self.nodes)) != len(self.nodes):
             raise ValueError("a route cannot repeat a node")
+        if self.purpose not in {"attack", "defense", "movement"}:
+            raise ValueError("route purpose must be attack/defense/movement")
+@dataclass(frozen=True)
+class FlowTraceStep:
+    acupoint: str; incoming: int; passed: int; jam_chance_bp: int
 @dataclass(frozen=True)
 class FlowResult:
     unit_id: str
     route_id: str
     completed: int
     attempted: int
-    bonus_cap_bp: int
-    route_z3_bp: int
+    route_quality_bp: int
     flow_ct: int
     blocked_at: int | None
     blocked_node: str | None
@@ -142,6 +276,7 @@ class FlowResult:
     qualities_bp: tuple[int, ...]
     jam_chances_bp: tuple[int, ...]
     arrival_bp: tuple[int, ...]
+    trace: tuple[FlowTraceStep, ...]
     state_version: int
     disabled_reason: str | None = None
 @dataclass(frozen=True)
@@ -255,8 +390,8 @@ class MeridianFlowModule:
             elif node.seal_level >= 9:
                 reason = "point_seal_9"
             if reason:
-                return FlowResult(self.unit_id, route.id, 0, 0, route_cap_bp(len(states)),
-                                  0, 0, index, node.acupoint, states, (), (), (),
+                return FlowResult(self.unit_id, route.id, 0, 0, 0, 0, index, node.acupoint,
+                                  states, (), (), (), (),
                                   self.state_version, reason)
 
         current_qi = initial_qi(self.cultivation)
@@ -265,6 +400,7 @@ class MeridianFlowModule:
         qualities: list[int] = []
         jam_chances: list[int] = []
         arrivals: list[int] = []
+        trace: list[FlowTraceStep] = []
         arrival_bp = BP
         completed = attempted = flow_ct = 0
         blocked_at: int | None = None
@@ -290,6 +426,7 @@ class MeridianFlowModule:
                 raise ValueError("roll must be in 0..9999")
             jammed = roll < chance
             passed = mul_bp_floor(normal_pass, 4_000) if jammed else normal_pass
+            trace.append(FlowTraceStep(node.acupoint, incoming, passed, chance))
             excess = max(0, incoming - passed)
             backlog = node.backlog + excess
             stagnation = clamp(
@@ -315,13 +452,12 @@ class MeridianFlowModule:
             current_qi = passed
             arrival_bp = mul_bp_floor(arrival_bp, BP - chance)
 
-        cap = route_cap_bp(len(states))
-        actual = cap * sum(qualities) // (len(states) * BP)
+        actual = sum(qualities) // len(states)
         blocked_node = route.nodes[blocked_at] if blocked_at is not None else None
         return FlowResult(
-            self.unit_id, route.id, completed, attempted, cap, actual, flow_ct,
+            self.unit_id, route.id, completed, attempted, actual, flow_ct,
             blocked_at, blocked_node, tuple(updated), tuple(qualities),
-            tuple(jam_chances), tuple(arrivals), self.state_version,
+            tuple(jam_chances), tuple(arrivals), tuple(trace), self.state_version,
         )
 
     def preview(self, route: RouteSpec, *, preview_roll_bp: int = 9_999) -> FlowResult:
@@ -460,11 +596,10 @@ class MeridianFlowModule:
             if updated != node:
                 self.nodes[key] = updated
         self.state_version += 1
-
     def snapshot(self) -> dict[str, object]:
         return {
             "schema": "meridian-flow-state.v1",
-            "rulesProtocol": RULES_PROTOCOL,
+            "rulesProtocol": LEGACY_RULES_PROTOCOL,
             "unitId": self.unit_id,
             "unitIndex": self.unit_index,
             "kind": self.kind,
@@ -473,15 +608,14 @@ class MeridianFlowModule:
             "grappleLevel": self.grapple_level,
             "grappleSource": self.grapple_source,
             "grappleRemaining": self.grapple_remaining,
-            "nodes": [asdict(self.nodes[key]) for key in sorted(self.nodes)],
+            "nodes": [contract_value(self.nodes[key]) for key in sorted(self.nodes)],
         }
-
     def restore(self, snapshot: dict[str, object]) -> None:
         if snapshot["unitId"] != self.unit_id:
             raise ValueError("snapshot belongs to another unit")
         if snapshot.get("schema") != "meridian-flow-state.v1":
             raise ValueError("unsupported meridian snapshot schema")
-        if snapshot.get("rulesProtocol") != RULES_PROTOCOL:
+        if snapshot.get("rulesProtocol") != LEGACY_RULES_PROTOCOL:
             raise ValueError("unsupported rules protocol")
         if int(snapshot["unitIndex"]) != self.unit_index:
             raise ValueError("snapshot belongs to another unit index")
@@ -491,8 +625,10 @@ class MeridianFlowModule:
         self.grapple_level = int(snapshot["grappleLevel"])
         self.grapple_source = snapshot["grappleSource"]  # type: ignore[assignment]
         self.grapple_remaining = int(snapshot["grappleRemaining"])
-        rows = snapshot["nodes"]
-        self.nodes = {row["acupoint"]: NodeState(**row) for row in rows}  # type: ignore[arg-type,index]
+        self.nodes = {row["acupointRef"]: NodeState(
+            row["acupointRef"], row["opened"], row["water"], row["capacity"], row["flowBp"],
+            row["stagnationBp"], row["backlog"], row["ruptureDamage"], row["sealLevel"], row["sealSource"], row["sealRemaining"],
+        ) for row in snapshot["nodes"]}  # type: ignore[arg-type,index]
 
 
 @dataclass(frozen=True)
@@ -557,8 +693,90 @@ def point_release_bp(
     return clamp(score, 500, 9_500)
 
 
-def z3_damage(base_damage: int, route_bp: int, other_z3_bp: int = 0) -> int:
-    return mul_bp_floor(base_damage, clamp(BP + route_bp + other_z3_bp, 5_000, 20_000))
+@dataclass(frozen=True)
+class InnerGuardResult:
+    eligible_incoming: int
+    capacity: int
+    cancelled: int
+    damage_before_mp_guard: int
+    mp_spent: int
+    broken: bool
+    delay_ct: int
+    stagnation_bp: int
+    reflect_damage: int
+
+
+def inner_guard(
+    incoming: int, defender: MeridianProfile, attacker: MeridianProfile,
+    *, damage_kind: str = "unarmed", mp: int = 10_000,
+    break_guard_bp: int = 0, reflect_bp: int = 0,
+) -> InnerGuardResult:
+    """Settle-stage meridian force cancellation, after shield, before mpGuard."""
+    eligibility = {"unarmed": BP, "weapon": 2_500, "hidden": 0, "projected": 4_000}
+    if damage_kind not in eligibility:
+        raise ValueError("unknown damage kind")
+    eligible = mul_bp_floor(incoming, eligibility[damage_kind])
+    strength = meridian_strength_bp(defender)
+    flow_ratio_bp = clamp(defender.flow_bp, 4_000, 18_000)
+    raw_capacity = strength * flow_ratio_bp // 100_000
+    capacity = mul_bp_floor(raw_capacity, max(0, BP - clamp(break_guard_bp, 0, 8_000)))
+    cancelled = min(eligible, capacity, mp * 2)
+    spent = ceil_div(cancelled, 2)
+    damage = incoming - cancelled
+    broken = cancelled < eligible
+    overflow = max(0, eligible - cancelled)
+    delay = 150 + min(250, overflow * 250 // max(1, cancelled)) if broken else 0
+    stagnation = 800 + min(2_200, overflow * 2_200 // max(1, cancelled)) if broken else 0
+    reflected = mul_bp_floor(cancelled, clamp(reflect_bp, 0, 2_000))
+    return InnerGuardResult(eligible, capacity, cancelled, damage, spent, broken,
+                            delay, stagnation, reflected)
+
+
+def speed_meridian_mult_bp(
+    self_profile: MeridianProfile, field_reference: MeridianProfile,
+    *, sealed: bool = False, ruptured: bool = False,
+) -> int:
+    ratio = clamp(meridian_strength_bp(self_profile) * BP
+                  // max(1, meridian_strength_bp(field_reference)), 4_000, 18_000)
+    target = lerp_anchors(ratio, SPEED_CURVE)
+    result = target
+    if sealed:
+        result = min(result, 6_500)
+    if ruptured:
+        result = min(result, 8_000)
+    return clamp(result, 6_500, 13_500)
+
+
+def apply_speed(
+    base_spd: int, base_move: int, speed_mult_bp: int, *, grapple_bp: int = BP,
+) -> tuple[int, int]:
+    """21 multiplier, then grapple; 03/09 own base values and final limits."""
+    combined = mul_bp_floor(speed_mult_bp, clamp(grapple_bp, 0, BP))
+    spd = clamp(mul_bp_floor(base_spd, combined), 30, 300)
+    delta = combined - BP
+    move_delta = clamp((1 if delta >= 0 else -1) * (abs(delta) // 1_500), -2, 2)
+    return spd, clamp(base_move + move_delta, 1, 10)
+
+
+def project_opening_qinggong(effective_qinggong: int, combined_speed_bp: int) -> int:
+    """09-only opening-order projection; 08 gates still read the base value."""
+    return max(0, mul_bp_floor(effective_qinggong, combined_speed_bp))
+
+
+def evade_rating_delta(meridian_speed_bp: int) -> int:
+    """Meridian-only correction; grapple evadeBp is applied once by 04/06."""
+    return clamp((meridian_speed_bp - BP) // 100, -35, 35)
+
+
+def resolve_direct_damage(
+    base_damage: int, attacker: MeridianProfile, defender: MeridianProfile,
+    attack_route_length: int, *, defense_route_length: int = 0,
+) -> tuple[int, int, int]:
+    attack_mult = attack_meridian_mult_bp(attacker, defender, attack_route_length)
+    defense_mult = (defense_meridian_mult_bp(defender, attacker, defense_route_length)
+                    if defense_route_length else BP)
+    after_defense = mul_bp_floor(base_damage, defense_mult)
+    return mul_bp_floor(after_defense, attack_mult), attack_mult, defense_mult
 
 
 def ttk_actions(hp: int, damage: int, *, team_equiv_bp: int = BP) -> int:
@@ -585,6 +803,20 @@ NOVICE_ROUTE = RouteSpec(
 FORCED_ROUTE = RouteSpec(
     "mfr_forced_six", "强催六段", LONG_ROUTE.nodes[:6], (85,) * 6, (800,) * 6,
 )
+DEFENSE_ROUTE = RouteSpec(
+    "mfr_guard_release", "卸力护体", LONG_ROUTE.nodes[:6],
+    (70,) * 6, (120,) * 6, False, "defense",
+)
+MOVEMENT_ROUTE = RouteSpec(
+    "mfr_qinggong_cycle", "轻功周流", LONG_ROUTE.nodes[:4],
+    (60,) * 4, (100,) * 4, False, "movement",
+)
+
+STANDARD_PROFILE = MeridianProfile(BP, BP, BP, BP)
+STRONG_PROFILE = MeridianProfile(13_000, 12_500, 12_500, 9_500)
+VERY_STRONG_PROFILE = MeridianProfile(17_000, 16_000, 15_500, BP)
+WEAK_PROFILE = MeridianProfile(8_000, 8_500, 8_500, 8_000)
+MOB_PROFILE = MeridianProfile(5_000, 5_500, 6_000, 6_000)
 
 
 def make_units(master_seed: int = 20260927) -> dict[str, MeridianFlowModule]:
@@ -615,16 +847,502 @@ def result_vector(result: FlowResult, base_damage: int) -> dict[str, object]:
     return {
         "unitId": result.unit_id, "routeId": result.route_id,
         "completed": result.completed, "attempted": result.attempted,
-        "capBp": result.bonus_cap_bp, "z3Bp": result.route_z3_bp,
-        "flowCt": result.flow_ct, "damage": z3_damage(base_damage, result.route_z3_bp),
+        "routeQualityBp": result.route_quality_bp, "flowCt": result.flow_ct,
+        "baseDamage": base_damage,
         "blockedAt": result.blocked_at, "blockedNode": result.blocked_node,
         "disabledReason": result.disabled_reason,
         "jamChancesBp": list(result.jam_chances_bp),
         "arrivalBp": list(result.arrival_bp), "stateVersion": result.state_version,
-        "blockedState": asdict(blocked) if blocked else None,
+        "qualitiesBp": list(result.qualities_bp),
+        "trace": contract_value(result.trace),
+        "blockedState": contract_value(blocked) if blocked else None,
     }
 
 
+def contract_value(value: object) -> object:
+    if hasattr(value, "__dataclass_fields__"):
+        value = asdict(value)
+    if isinstance(value, dict):
+        return {("acupointRef" if key == "acupoint" else key.split("_")[0]
+                + "".join(part.title() for part in key.split("_")[1:])):
+                contract_value(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [contract_value(item) for item in value]
+    return value
+
+
+# Protocol 3 is intentionally modelled independently from the legacy water /
+# capacity implementation above.  Its inputs are the production wire contract:
+# per-tick production, 1..64 flux caps and cumulative travel slots.
+@dataclass(frozen=True)
+class V3NodeSpec:
+    acupoint_ref: str
+    opened: bool
+    flux_cap: int
+    length_unit: int
+    flow_bp: int
+    stagnation_bp: int = 0
+    backlog: int = 0
+    rupture_damage: int = 0
+    seal_level: int = 0
+
+
+@dataclass(frozen=True)
+class V3StepSpec:
+    acupoint_ref: str
+    length_unit: int
+    segment_ct: int
+    risk_bp: int
+
+
+@dataclass(frozen=True)
+class V3RouteSpec:
+    route_id: str
+    purpose: str
+    steps: tuple[V3StepSpec, ...]
+    preview_reference: tuple[int, int, int, int]
+
+
+@dataclass(frozen=True)
+class V3UnitSpec:
+    unit_id: str
+    unit_index: int
+    kind: str
+    production_per_tick: int
+    qi_speed_bp: int
+    practice_bp: int
+    nodes: tuple[V3NodeSpec, ...]
+    routes: tuple[V3RouteSpec, ...]
+    active_route_id: str | None
+    unit_qi_hard_cap: int | None = None
+
+
+@dataclass
+class V3RouteState:
+    spec: V3RouteSpec
+    travel_ticks: list[int]
+    carry_cap: int
+    travel_total: int
+    release_rate: int
+    window_ticks: int
+    total_qi: int
+    pipeline_qi: list[int]
+    slot_flow_nodes: list[str]
+    slot_nodes: list[str | None]
+    slot_steps: list[int]
+
+
+def v3_effective_flow(node: V3NodeSpec) -> int:
+    penalty = POINT_FLOW_PENALTY_BP[clamp(node.seal_level, 0, 9)]
+    return mul_bp_floor(node.flow_bp, max(0, BP - node.stagnation_bp - penalty))
+
+
+def v3_jam_chance(incoming: int, node: V3NodeSpec, practice_bp: int, risk_bp: int) -> int:
+    load_bp = ceil_div(incoming * BP, max(1, node.flux_cap))
+    return clamp(risk_bp + (BP - practice_bp) // 8 + node.stagnation_bp // 4
+                 + max(0, load_bp - 9_000) // 4 + 350 * node.seal_level, 0, 8_500)
+
+
+def v3_segment_ticks(steps: Sequence[V3StepSpec], qi_speed_bp: int) -> list[int]:
+    ticks: list[int] = []
+    cumulative = previous = 0
+    for step in steps:
+        cumulative += step.length_unit
+        arrival = ceil_div(cumulative * BP, qi_speed_bp)
+        ticks.append(arrival - previous)
+        previous = arrival
+    return ticks
+
+
+class MeridianFlowV3:
+    """Protocol-3 reference state machine; no production TS is imported."""
+
+    def __init__(self, spec: V3UnitSpec) -> None:
+        if not 1 <= spec.production_per_tick <= 64:
+            raise ValueError("productionPerTick must be 1..64")
+        self.spec = spec
+        self.nodes = {node.acupoint_ref: node for node in sorted(
+            spec.nodes, key=lambda item: item.acupoint_ref)}
+        self.node_in_flight = {key: 0 for key in self.nodes}
+        self.routes: dict[str, V3RouteState] = {}
+        for route in sorted(spec.routes, key=lambda item: item.route_id):
+            travel = v3_segment_ticks(route.steps, spec.qi_speed_bp)
+            carry = sum(self.nodes[step.acupoint_ref].flux_cap * step.length_unit
+                        for step in route.steps)
+            bottleneck = min(self.nodes[step.acupoint_ref].flux_cap for step in route.steps)
+            speed_throughput = bottleneck * spec.qi_speed_bp // BP
+            slot_flow: list[str] = []
+            slot_nodes: list[str | None] = []
+            slot_steps: list[int] = []
+            for index, (step, ticks) in enumerate(zip(route.steps, travel)):
+                for offset in range(ticks):
+                    slot_flow.append(step.acupoint_ref)
+                    slot_nodes.append(step.acupoint_ref if offset == ticks - 1 else None)
+                    slot_steps.append(index)
+            slot_nodes.append(None)
+            slot_steps.append(len(route.steps))
+            total = sum(travel)
+            self.routes[route.route_id] = V3RouteState(
+                route, travel, carry, total, min(spec.production_per_tick, bottleneck,
+                                                  speed_throughput),
+                0, 0, [0] * (total + 1), slot_flow, slot_nodes, slot_steps,
+            )
+        self.active_route_id = spec.active_route_id
+        self.unit_qi_hard_cap = spec.unit_qi_hard_cap if spec.unit_qi_hard_cap is not None else (
+            max((route.carry_cap for route in self.routes.values()), default=0))
+        self.tick_no = 0
+        self.state_version = 1 if spec.active_route_id is not None else 0
+        self.dantian_qi = 0
+
+    def _total_stored(self) -> int:
+        return self.dantian_qi + sum(route.total_qi for route in self.routes.values())
+
+    def _move_route(self, route: V3RouteState) -> bool:
+        changed = False
+        for slot in range(len(route.pipeline_qi) - 2, -1, -1):
+            amount = route.pipeline_qi[slot]
+            if amount <= 0:
+                continue
+            flow_node = self.nodes[route.slot_flow_nodes[slot]]
+            next_node_ref = route.slot_nodes[slot + 1]
+            current_node_ref = route.slot_nodes[slot]
+            next_room = amount
+            if next_node_ref is not None and next_node_ref != current_node_ref:
+                next_node = self.nodes[next_node_ref]
+                next_room = next_node.flux_cap * next_node.length_unit - self.node_in_flight[next_node_ref]
+            throughput = max(0, min(amount, mul_bp_floor(flow_node.flux_cap,
+                v3_effective_flow(flow_node)), flow_node.flux_cap * self.spec.qi_speed_bp // BP,
+                next_room))
+            if throughput <= 0:
+                continue
+            route.pipeline_qi[slot] -= throughput
+            route.pipeline_qi[slot + 1] += throughput
+            if current_node_ref is not None:
+                self.node_in_flight[current_node_ref] -= throughput
+            if next_node_ref is not None and next_node_ref != current_node_ref:
+                self.node_in_flight[next_node_ref] += throughput
+            changed = True
+        return changed
+
+    def _inject(self) -> bool:
+        if self.active_route_id is None or self.dantian_qi <= 0:
+            return False
+        route = self.routes[self.active_route_id]
+        for step in route.spec.steps:
+            node = self.nodes[step.acupoint_ref]
+            if not node.opened or node.rupture_damage > 0 or node.seal_level >= 9:
+                return False
+        first = self.nodes[route.spec.steps[0].acupoint_ref]
+        resident = route.slot_nodes[0]
+        room = self.unit_qi_hard_cap
+        if resident is not None:
+            node = self.nodes[resident]
+            room = node.flux_cap * node.length_unit - self.node_in_flight[resident]
+        admitted = max(0, min(
+            self.dantian_qi, first.flux_cap, mul_bp_floor(first.flux_cap, v3_effective_flow(first)),
+            first.flux_cap * self.spec.qi_speed_bp // BP, route.release_rate,
+            route.carry_cap - route.total_qi, room,
+        ))
+        if admitted <= 0:
+            return False
+        self.dantian_qi -= admitted
+        route.pipeline_qi[0] += admitted
+        route.total_qi += admitted
+        if resident is not None:
+            self.node_in_flight[resident] += admitted
+        return True
+
+    def tick(self, count: int = 1, production_bp: int = BP) -> None:
+        production = mul_bp_floor(self.spec.production_per_tick, production_bp)
+        for _ in range(count):
+            produced = max(0, min(production, self.unit_qi_hard_cap - self._total_stored()))
+            self.dantian_qi += produced
+            for route in self.routes.values():
+                if route.total_qi > 0 or route.spec.route_id == self.active_route_id:
+                    route.window_ticks += 1
+                self._move_route(route)
+            self._inject()
+            self.nodes = {key: replace(node, backlog=max(0, node.backlog - 1))
+                          for key, node in self.nodes.items()}
+            self.tick_no += 1
+            self.state_version += 1
+
+    def select_route(self, route_id: str) -> None:
+        if route_id not in self.routes:
+            raise ValueError("unknown route")
+        self.active_route_id = route_id
+        self.state_version += 1
+
+    def _release(self, route: V3RouteState, amount: int, blocked_at: int | None) -> int:
+        remaining = amount
+        released = 0
+        for slot in range(len(route.pipeline_qi) - 1, -1, -1):
+            if remaining <= 0:
+                break
+            if blocked_at is not None and route.slot_steps[slot] <= blocked_at:
+                continue
+            removed = min(remaining, route.pipeline_qi[slot])
+            route.pipeline_qi[slot] -= removed
+            route.total_qi -= removed
+            remaining -= removed
+            released += removed
+            resident = route.slot_nodes[slot]
+            if resident is not None:
+                self.node_in_flight[resident] -= removed
+        return released
+
+    def resolve(self, route_id: str, reference: tuple[int, int, int, int],
+                defender: MeridianProfile, rng: Sfc32) -> dict[str, object]:
+        route = self.routes[route_id]
+        if route.spec.purpose != "attack":
+            raise ValueError("QI_ROUTE_NOT_ATTACK")
+        circulation = min(BP, route.window_ticks * BP // route.travel_total)
+        candidate = min(route.total_qi, route.carry_cap, route.release_rate * route.window_ticks)
+        incoming = min(candidate, route.release_rate)
+        attempted = completed = flow_ct = quality_total = 0
+        flux_total = effective_total = 0
+        blocked_at: int | None = None
+        blocked_node: str | None = None
+        trace: list[dict[str, object]] = []
+        for index, step in enumerate(route.spec.steps):
+            node = self.nodes[step.acupoint_ref]
+            if not node.opened or node.rupture_damage > 0 or node.seal_level >= 9:
+                blocked_at, blocked_node = index, step.acupoint_ref
+                break
+            attempted += 1
+            flow_ct += step.segment_ct
+            effective = v3_effective_flow(node)
+            passed = min(incoming, mul_bp_floor(node.flux_cap, effective))
+            chance = v3_jam_chance(incoming, node, self.spec.practice_bp, step.risk_bp)
+            jammed = rng.roll_bp() < chance
+            if jammed:
+                passed = mul_bp_floor(passed, 4_000)
+            excess = incoming - passed
+            stagnation = clamp(node.stagnation_bp
+                + ceil_div(excess * 2_500, max(1, node.flux_cap))
+                + (1_000 if jammed else 0), 0, 9_500)
+            backlog = node.backlog + excess
+            threshold = node.flux_cap * node.length_unit
+            threshold = threshold * (12_000 - min(stagnation, 6_000) // 2) // BP
+            rupture = node.rupture_damage
+            if backlog >= threshold:
+                rupture = max(rupture, node.flux_cap * node.length_unit // 2
+                              + backlog - threshold)
+            self.nodes[step.acupoint_ref] = replace(
+                node, stagnation_bp=stagnation, backlog=backlog, rupture_damage=rupture)
+            trace.append({"acupointRef": step.acupoint_ref, "incoming": incoming,
+                "passed": passed, "fluxCap": node.flux_cap,
+                "effectiveFlowBp": effective, "jamChanceBp": chance, "jammed": jammed})
+            if jammed or rupture > 0:
+                blocked_at, blocked_node = index, step.acupoint_ref
+                break
+            quality_total += mul_bp_floor(min(BP, passed * BP // max(1, node.flux_cap)), effective)
+            flux_total += node.flux_cap
+            effective_total += effective
+            completed += 1
+            incoming = passed
+        quality = quality_total // len(route.spec.steps)
+        released = self._release(route, candidate, blocked_at)
+        raw = (released, flux_total // completed if completed else 1,
+               effective_total // completed if completed else 1, quality)
+        profile = normalize_profile(raw, reference)
+        base_attack = attack_meridian_mult_bp(profile, defender, len(route.spec.steps))
+        cycle_damage = circulation_damage_bp(circulation)
+        route.window_ticks = 0
+        self.state_version += 1
+        return {"unitId": self.spec.unit_id, "routeId": route_id, "attempted": attempted,
+            "completed": completed, "flowCt": flow_ct, "blockedAt": blocked_at,
+            "blockedNode": blocked_node, "releasedQi": released,
+            "routeCarryCap": route.carry_cap, "routeTravelTicks": route.travel_total,
+            "circulationBp": circulation, "routeQualityBp": quality,
+            "profile": v3_profile_vector(profile), "attackerStrengthBp": meridian_strength_bp(profile),
+            "baseMeridianAttackBp": base_attack, "circulationDamageBp": cycle_damage,
+            "meridianAttackBp": clamp(mul_bp_floor(base_attack, cycle_damage), 6_500, 22_000),
+            "trace": trace}
+
+    def snapshot_vector(self) -> dict[str, object]:
+        return {"schema": "meridian-flow-state.v2", "rulesProtocol": 3,
+            "unitId": self.spec.unit_id, "unitIndex": self.spec.unit_index,
+            "kind": self.spec.kind, "tick": self.tick_no, "dantianQi": self.dantian_qi,
+            "activeRouteId": self.active_route_id, "stateVersion": self.state_version,
+            "routes": [{"routeId": route.spec.route_id, "windowTicks": route.window_ticks,
+                "totalQi": route.total_qi, "pipelineQi": route.pipeline_qi}
+                for route in self.routes.values()],
+            "nodes": [{"acupointRef": key, "inFlightQi": self.node_in_flight[key],
+                "opened": node.opened, "fluxCap": node.flux_cap,
+                "lengthUnit": node.length_unit, "flowBp": node.flow_bp,
+                "stagnationBp": node.stagnation_bp, "backlog": node.backlog,
+                "ruptureDamage": node.rupture_damage, "sealLevel": node.seal_level}
+                for key, node in self.nodes.items()],
+            "grappleLevel": 0, "grappleSource": None, "grappleRemaining": 0,
+            "foreignQi": [], "acupointOccupancies": [], "redirectedQi": 0,
+            "redirectedQiExpiresAtOwnAction": None}
+
+
+V3_UNIT_ROWS = (
+    ("hero", 0, "hero", 16, 10_000, 9_000, 16, 10_000),
+    ("enemy_normal", 1, "normal", 8, 8_000, 6_200, 8, 8_000),
+    ("enemy_elite", 2, "elite", 20, 11_000, 7_500, 24, 9_000),
+    ("enemy_boss", 3, "boss", 28, 12_500, 8_600, 32, 9_600),
+)
+V3_NODE_IDS = tuple(f"ap_golden_v3_{index:02d}" for index in range(12))
+V3_ROUTE_ROWS = (
+    ("mfr_golden_v3_attack", "attack", V3_NODE_IDS, 60, 120),
+    ("mfr_golden_v3_defense", "defense", V3_NODE_IDS[:6], 70, 80),
+    ("mfr_golden_v3_movement", "movement", V3_NODE_IDS[:4], 55, 60),
+)
+V3_REFERENCE = (192, 16, 10_000, 10_000)
+V3_TICKS_BEFORE_COMMIT = (12, 15, 11, 10)
+
+
+def make_v3_spec(row: tuple[str, int, str, int, int, int, int, int]) -> V3UnitSpec:
+    unit_id, unit_index, kind, production, speed, practice, flux, flow = row
+    nodes = tuple(V3NodeSpec(node_id, True, flux, 1, flow) for node_id in V3_NODE_IDS)
+    routes = tuple(V3RouteSpec(route_id, purpose, tuple(
+        V3StepSpec(node_id, 1, segment_ct, risk) for node_id in node_ids), V3_REFERENCE)
+        for route_id, purpose, node_ids, segment_ct, risk in V3_ROUTE_ROWS)
+    return V3UnitSpec(unit_id, unit_index, kind, production, speed, practice, nodes, routes,
+                      "mfr_golden_v3_attack")
+
+
+def v3_input_vector(spec: V3UnitSpec) -> dict[str, object]:
+    return {"unitId": spec.unit_id, "unitIndex": spec.unit_index, "kind": spec.kind,
+        "productionPerTick": spec.production_per_tick, "qiSpeedBp": spec.qi_speed_bp,
+        "practiceBp": spec.practice_bp, "nodes": contract_value(spec.nodes),
+        "routes": [{"routeId": route.route_id, "purpose": route.purpose,
+            "previewReference": {"releasedQi": route.preview_reference[0],
+                "meanFluxCap": route.preview_reference[1],
+                "meanFlowBp": route.preview_reference[2],
+                "routeQualityBp": route.preview_reference[3]},
+            "steps": contract_value(route.steps)} for route in spec.routes],
+        "activeRouteId": spec.active_route_id}
+
+
+def v3_settle_outward_qi(post_shield: int, d10: int, neutral_d10: int,
+                         w_in_bp: int, zone_qi: int, capacity: int,
+                         strength_bp: int, flow_ratio_bp: int, break_guard_bp: int = 0) -> dict[str, object]:
+    threshold = ceil_div(capacity * 5_000, BP)
+    ready = capacity > 0 and zone_qi >= threshold
+    fill_bp = clamp(zone_qi * BP // max(1, threshold), BP, 20_000) if ready else 0
+    raw = strength_bp * flow_ratio_bp // 100_000 if ready else 0
+    outward = mul_bp_floor(mul_bp_floor(raw, fill_bp), BP - clamp(break_guard_bp, 0, 8_000))
+    attack_bonus = max(0, d10 - neutral_d10)
+    qi_cancelled = min(attack_bonus, outward)
+    base_cancelled = mul_bp_floor(max(0, outward - attack_bonus), 5_000)
+    inner_part = mul_bp_floor(post_shield, clamp(w_in_bp, 0, BP))
+    eligible = inner_part + mul_bp_floor(post_shield - inner_part, 5_000)
+    cancelled = min(post_shield, eligible, qi_cancelled + base_cancelled)
+    spent = 0 if cancelled == 0 else min(zone_qi, ceil_div(cancelled * zone_qi, max(1, outward)))
+    return {"projectionReady": ready, "zoneQi": zone_qi,
+        "zoneProjectionThreshold": threshold, "attackQiBonus": attack_bonus,
+        "outwardQi": outward, "eligibleIncoming": eligible,
+        "qiBonusCancelled": qi_cancelled, "baseCancelled": base_cancelled,
+        "cancelled": cancelled, "zoneQiSpent": spent,
+        "damageBeforeMpGuard": post_shield - cancelled}
+
+
+def v3_regulate_breath_vector() -> dict[str, object]:
+    nodes = [
+        V3NodeSpec("ap_golden_v3_breath_a", True, 16, 2, 8_000, 6_000, 30, 900, 4),
+        V3NodeSpec("ap_golden_v3_breath_b", True, 12, 1, 9_000, 4_000, 12, 300, 2),
+        V3NodeSpec("ap_golden_v3_breath_c", True, 20, 3, 7_000, 3_000, 9, 1_100, 0),
+    ]
+    grade, layer, scope = 12, 10, 3
+    relief = clamp(mul_bp_floor(500 + 100 * grade + 80 * layer, 10_500), 500, 2_500)
+    repair = mul_bp_floor(120 + 24 * grade + 18 * layer, 10_500)
+    ordered = sorted(nodes, key=lambda node: (-int(node.rupture_damage > 0), -node.seal_level,
+                                               -node.stagnation_bp, -node.backlog, node.acupoint_ref))[:scope]
+    output: list[dict[str, object]] = []
+    for node in ordered:
+        output.append({"acupointRef": node.acupoint_ref,
+            "stagnationBeforeBp": node.stagnation_bp,
+            "stagnationAfterBp": max(0, node.stagnation_bp - relief),
+            "backlogBefore": node.backlog,
+            "backlogAfter": max(0, node.backlog - mul_bp_floor(node.flux_cap * node.length_unit, relief)),
+            "ruptureBefore": node.rupture_damage,
+            "ruptureAfter": max(0, node.rupture_damage - repair),
+            "sealLevel": node.seal_level})
+    return {"supportedByProductionRuntime": False, "grade": grade, "layer": layer,
+        "scope": scope, "reliefBp": relief, "repairUnits": repair,
+        "ct": 1_000, "mpCostBp": 0, "nodes": output}
+
+
+def v3_profile_vector(profile: MeridianProfile) -> dict[str, int]:
+    return {"qiBp": profile.qi_bp, "widthBp": profile.capacity_bp,
+            "flowBp": profile.flow_bp, "completionBp": profile.completion_bp}
+
+
+def v3_golden_payload() -> dict[str, object]:
+    master_seed = 20_260_927
+    units = [make_v3_spec(row) for row in V3_UNIT_ROWS]
+    rng = Sfc32(master_seed, "battle")
+    rng_before = list(rng.snapshot())
+    commits: dict[str, object] = {}
+    snapshots: dict[str, object] = {}
+    rng_segments: list[dict[str, object]] = []
+    for spec, ticks in zip(units, V3_TICKS_BEFORE_COMMIT):
+        runtime = MeridianFlowV3(spec)
+        runtime.tick(ticks)
+        before = list(rng.snapshot())
+        commits[spec.kind] = runtime.resolve(
+            "mfr_golden_v3_attack", V3_REFERENCE, STANDARD_PROFILE, rng)
+        after = list(rng.snapshot())
+        rng_segments.append({"unitId": spec.unit_id, "before": before, "after": after})
+        snapshots[spec.kind] = runtime.snapshot_vector()
+    profiles = {
+        "equal": STANDARD_PROFILE, "strongOneTier": STRONG_PROFILE,
+        "strongTwoTiers": VERY_STRONG_PROFILE, "weakOneTier": WEAK_PROFILE,
+        "masterVsMob": MOB_PROFILE,
+    }
+    matchup_defs = (
+        ("equal", STANDARD_PROFILE, STANDARD_PROFILE, 3_970, 849, BP),
+        ("strongOneTier", STRONG_PROFILE, STANDARD_PROFILE, 8_000, 950, BP),
+        ("strongTwoTiers", VERY_STRONG_PROFILE, STANDARD_PROFILE, 170_773, 2_574, 31_000),
+        ("weakOneTier", WEAK_PROFILE, STANDARD_PROFILE, 3_970, 849, BP),
+        ("masterVsMob", VERY_STRONG_PROFILE, MOB_PROFILE, 2_200, 849, BP),
+    )
+    ttk: dict[str, object] = {}
+    for name, attacker, defender, hp, base, team_bp in matchup_defs:
+        attack = attack_meridian_mult_bp(attacker, defender, 10)
+        damage = mul_bp_floor(base, attack)
+        ttk[name] = {"attackerStrengthBp": meridian_strength_bp(attacker),
+            "defenderStrengthBp": meridian_strength_bp(defender), "attackMultBp": attack,
+            "baseDamage": base, "damage": damage, "targetHp": hp,
+            "teamEquivBp": team_bp, "ttkBeforeActions": ttk_actions(hp, base, team_equiv_bp=team_bp),
+            "ttkActions": ttk_actions(hp, damage, team_equiv_bp=team_bp)}
+    normalised = normalize_profile((144, 12, 8_000, 7_500), V3_REFERENCE)
+    defense = defense_meridian_mult_bp(STRONG_PROFILE, STANDARD_PROFILE, 6)
+    anchor_defender = MeridianProfile(18_000, 18_000, 18_000, 18_000)
+    anchor_attacker = MeridianProfile(8_750, 8_750, 8_750, 10_000)
+    speed = {name: {"profile": v3_profile_vector(profile),
+                    "multBp": speed_meridian_mult_bp(profile, STANDARD_PROFILE)}
+             for name, profile in profiles.items()}
+    payload: dict[str, object] = {"fixtureVersion": 3, "rulesProtocol": RULES_PROTOCOL,
+        "rngProtocol": RNG_PROTOCOL, "masterSeed": master_seed,
+        "inputs": {"reference": {"releasedQi": V3_REFERENCE[0],
+            "meanFluxCap": V3_REFERENCE[1], "meanFlowBp": V3_REFERENCE[2],
+            "routeQualityBp": V3_REFERENCE[3]},
+            "ticksBeforeCommit": list(V3_TICKS_BEFORE_COMMIT),
+            "units": [v3_input_vector(spec) for spec in units]},
+        "outputs": {"commits": commits, "snapshots": snapshots,
+            "battleRng": {"before": rng_before, "segments": rng_segments,
+                "afterAllCommits": list(rng.snapshot())},
+            "normalization": {"raw": [144, 12, 8_000, 7_500],
+                "standard": list(V3_REFERENCE), "profile": v3_profile_vector(normalised),
+                "strengthBp": meridian_strength_bp(normalised)},
+            "defense": {"routeLength": 6, "defender": v3_profile_vector(STRONG_PROFILE),
+                "attacker": v3_profile_vector(STANDARD_PROFILE), "meridianDefenseBp": defense,
+                "damageBefore": 1_000, "damageAfter": mul_bp_floor(1_000, defense),
+                "anchor20000": defense_meridian_mult_bp(anchor_defender, anchor_attacker, 18)},
+            "outwardQi": v3_settle_outward_qi(1_200, 1_600, 1_000, 7_500, 380, 380,
+                                                  meridian_strength_bp(STRONG_PROFILE), 12_500),
+            "speed": speed, "control": {"grapple1": contract_value(grapple_effect(1)),
+                "grapple9": contract_value(grapple_effect(9)),
+                "point1": contract_value(point_effect(1)), "point9": contract_value(point_effect(9))},
+            "breath": v3_regulate_breath_vector(), "ttk": ttk}}
+    canonical = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    payload["vectorSha256"] = sha256(canonical.encode("utf-8")).hexdigest()
+    return payload
 def golden_payload() -> dict[str, object]:
     units = make_units()
     hero = units["hero"]
@@ -657,27 +1375,59 @@ def golden_payload() -> dict[str, object]:
     sealed_unit = make_units()["hero"]
     sealed_unit.apply_acupoint_seal(LONG_ROUTE.nodes[4], 9)
     sealed = sealed_unit.preview(LONG_ROUTE)
+    defense_flow = make_units()["hero"].preview(DEFENSE_ROUTE)
+    movement_flow = make_units()["hero"].preview(MOVEMENT_ROUTE)
 
     base_damage = {"normal": 849, "elite": 950, "boss": 2_574}
-    ttk_before = {
-        "normal": ttk_actions(3_970, base_damage["normal"]),
-        "elite": ttk_actions(8_000, base_damage["elite"]),
-        "boss": ttk_actions(170_773, base_damage["boss"], team_equiv_bp=31_000),
-    }
-    ttk_after = {
-        "normal": ttk_actions(3_970, z3_damage(base_damage["normal"], short.route_z3_bp)),
-        "elite": ttk_actions(8_000, z3_damage(base_damage["elite"], long.route_z3_bp)),
-        "boss": ttk_actions(170_773, z3_damage(base_damage["boss"], long.route_z3_bp), team_equiv_bp=31_000),
-    }
+    matchups = {}
+    for name, attacker, defender, hp, base in (
+        ("equal", STANDARD_PROFILE, STANDARD_PROFILE, 3_970, 849),
+        ("strongOneTier", STRONG_PROFILE, STANDARD_PROFILE, 8_000, 950),
+        ("strongTwoTiers", VERY_STRONG_PROFILE, STANDARD_PROFILE, 170_773, 2_574),
+        ("weakOneTier", WEAK_PROFILE, STANDARD_PROFILE, 3_970, 849),
+        ("masterVsMob", VERY_STRONG_PROFILE, MOB_PROFILE, 2_200, 849),
+    ):
+        damage, attack_mult, defense_mult = resolve_direct_damage(
+            base, attacker, defender, 10
+        )
+        team_equiv = 31_000 if name == "strongTwoTiers" else BP
+        matchups[name] = {
+            "attackerStrengthBp": meridian_strength_bp(attacker),
+            "defenderStrengthBp": meridian_strength_bp(defender),
+            "attackMultBp": attack_mult, "defenseMultBp": defense_mult,
+            "baseDamage": base, "damage": damage, "targetHp": hp,
+            "teamEquivBp": team_equiv,
+            "ttkBeforeActions": ttk_actions(hp, base, team_equiv_bp=team_equiv),
+            "ttkActions": ttk_actions(hp, damage, team_equiv_bp=team_equiv),
+        }
+    defended_damage, defended_attack, defended_mult = resolve_direct_damage(
+        1_000, STANDARD_PROFILE, STRONG_PROFILE, 10, defense_route_length=6
+    )
+    guard_hold = inner_guard(1_000, STRONG_PROFILE, STANDARD_PROFILE, mp=2_000, reflect_bp=1_000)
+    guard_break = inner_guard(1_600, STANDARD_PROFILE, VERY_STRONG_PROFILE, mp=300)
+    guard_capacity_break = inner_guard(1_600, STANDARD_PROFILE, VERY_STRONG_PROFILE, mp=2_000)
+    guard_kinds = {kind: inner_guard(1_000, STANDARD_PROFILE, STANDARD_PROFILE, damage_kind=kind)
+                   for kind in ("unarmed", "weapon", "hidden", "projected")}
+    equal_speed_bp = speed_meridian_mult_bp(STANDARD_PROFILE, STANDARD_PROFILE)
+    strong_speed_bp = speed_meridian_mult_bp(VERY_STRONG_PROFILE, STANDARD_PROFILE)
+    sealed_speed_bp = speed_meridian_mult_bp(VERY_STRONG_PROFILE, STANDARD_PROFILE, sealed=True)
+    equal_speed = apply_speed(106, 6, equal_speed_bp)
+    strong_speed = apply_speed(106, 6, strong_speed_bp)
+    sealed_speed = apply_speed(106, 6, sealed_speed_bp)
+    grappled_strong = apply_speed(106, 6, strong_speed_bp, grapple_bp=6_000)
+    normalized_equal = normalize_profile((320, 1_240, 8_650, 4_230),
+                                         (320, 1_240, 8_650, 4_230))
+    action_cap = ceil_div(300 * 1_000, 500)
     payload: dict[str, object] = {
-        "fixtureVersion": 1, "rulesProtocol": RULES_PROTOCOL, "rngProtocol": RNG_PROTOCOL,
+        "fixtureVersion": 2, "rulesProtocol": LEGACY_RULES_PROTOCOL,
+        "rngProtocol": LEGACY_RNG_PROTOCOL,
         "masterSeed": 20260927,
         "inputs": {
-            "routes": [asdict(r) for r in (SHORT_ROUTE, LONG_ROUTE, NOVICE_ROUTE, FORCED_ROUTE)],
+            "routes": [contract_value(r) for r in (SHORT_ROUTE, LONG_ROUTE, NOVICE_ROUTE, FORCED_ROUTE, DEFENSE_ROUTE, MOVEMENT_ROUTE)],
             "units": {key: {
                 "unitId": value.unit_id, "kind": value.kind,
                 "unitIndex": value.unit_index,
-                "capacityScaleBp": value.capacity_scale_bp, "cultivation": asdict(value.cultivation),
+                "capacityScaleBp": value.capacity_scale_bp, "cultivation": contract_value(value.cultivation),
                 "openedAcupoints": sorted(value.nodes), "completeAcupoints": sorted(value.nodes) if value.cultivation.meridian_complete else [],
             } for key, value in units.items()},
             "explicitRolls": {"clean": 9_999, "forcedJam": 0},
@@ -693,12 +1443,37 @@ def golden_payload() -> dict[str, object]:
             "bossLong": result_vector(boss, base_damage["boss"]),
             "jammed": result_vector(jam, base_damage["normal"]),
             "ruptured": result_vector(rupture, base_damage["normal"]),
-            "breath": asdict(breath), "selfUnseal": asdict(unseal), "selfUnsealLevelAfter": hero.nodes[SHORT_ROUTE.nodes[0]].seal_level,
+            "breath": contract_value(breath), "selfUnseal": contract_value(unseal), "selfUnsealLevelAfter": hero.nodes[SHORT_ROUTE.nodes[0]].seal_level,
             "sealed": result_vector(sealed, base_damage["normal"]),
-            "ttkActionsBefore": ttk_before, "ttkActionsAfter": ttk_after,
-            "grapple1": asdict(grapple_effect(1)), "grapple9": asdict(grapple_effect(9)),
+            "defenseRouteFlow": result_vector(defense_flow, base_damage["normal"]),
+            "movementRouteFlow": result_vector(movement_flow, base_damage["normal"]),
+            "matchups": matchups,
+            "normalization": {"rawAndStandard": [320, 1_240, 8_650, 4_230],
+                              "equalProfile": contract_value(normalized_equal),
+                              "equalStrengthBp": meridian_strength_bp(normalized_equal)},
+            "defenseRoute": {"incoming": 1_000, "attackMultBp": defended_attack,
+                             "defenseMultBp": defended_mult, "damage": defended_damage},
+            "innerGuardHold": contract_value(guard_hold), "innerGuardBreak": contract_value(guard_break),
+            "innerGuardCapacityBreak": contract_value(guard_capacity_break),
+            "innerGuardKinds": {kind: contract_value(result) for kind, result in guard_kinds.items()},
+            "speed": {"equal": {"multBp": equal_speed_bp, "spd": equal_speed[0],
+                                     "move": equal_speed[1], "openingQinggong": project_opening_qinggong(98, equal_speed_bp),
+                                     "evadeRatingDelta": evade_rating_delta(equal_speed_bp)},
+                      "strong": {"multBp": strong_speed_bp, "spd": strong_speed[0],
+                                      "move": strong_speed[1], "openingQinggong": project_opening_qinggong(98, strong_speed_bp),
+                                      "evadeRatingDelta": evade_rating_delta(strong_speed_bp)},
+                      "sealed": {"multBp": sealed_speed_bp, "spd": sealed_speed[0],
+                                      "move": sealed_speed[1], "openingQinggong": project_opening_qinggong(98, sealed_speed_bp),
+                                      "evadeRatingDelta": evade_rating_delta(sealed_speed_bp)},
+                      "grappledStrong": {"multBp": strong_speed_bp, "grappleMoveBp": 6_000,
+                                          "spd": grappled_strong[0], "move": grappled_strong[1],
+                                          "openingQinggong": project_opening_qinggong(
+                                              98, mul_bp_floor(strong_speed_bp, 6_000)),
+                                          "evadeRatingDelta": evade_rating_delta(strong_speed_bp)},
+                      "maxActionsPer1000Ticks": action_cap},
+            "grapple1": contract_value(grapple_effect(1)), "grapple9": contract_value(grapple_effect(9)),
             "escapeLevel6Bp": grapple_escape_bp(6, 70, 65, 75, 70, 8),
-            "point1": asdict(point_effect(1)), "point9": asdict(point_effect(9)),
+            "point1": contract_value(point_effect(1)), "point9": contract_value(point_effect(9)),
         },
     }
     canonical = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
@@ -708,7 +1483,7 @@ def golden_payload() -> dict[str, object]:
 
 def _cycle_sensitivity(
     label: str, *, capacity_scale_bp: int = BP, risk_scale_bp: int = BP,
-    relief_scale_bp: int = BP, cap_scale_bp: int = BP, ct_scale_bp: int = BP,
+    relief_scale_bp: int = BP, strength_scale_bp: int = BP, ct_scale_bp: int = BP,
 ) -> dict[str, int | str]:
     route = replace(
         LONG_ROUTE,
@@ -731,8 +1506,11 @@ def _cycle_sensitivity(
             else:
                 result = unit.commit(route, battle_rng)
                 attacks += 1; total_ct += clamp(1_200 + result.flow_ct, 500, 2_000)
-                route_bp = mul_bp_floor(result.route_z3_bp, cap_scale_bp)
-                total_damage += z3_damage(849, route_bp)
+                route_quality = mul_bp_floor(result.route_quality_bp, strength_scale_bp)
+                attacker = MeridianProfile(
+                    BP, BP, BP, relative_component_bp(route_quality, 6_302, 0))
+                damage, _, _ = resolve_direct_damage(849, attacker, STANDARD_PROFILE, len(route.nodes))
+                total_damage += damage
             unit.tick()
     dpa = max(1, total_damage // attacks)
     return {
@@ -756,9 +1534,9 @@ def sensitivity_rows() -> list[dict[str, int | str]]:
         _cycle_sensitivity("调息强度−20%", relief_scale_bp=8_000),
         _cycle_sensitivity("调息强度基准"),
         _cycle_sensitivity("调息强度+20%", relief_scale_bp=12_000),
-        _cycle_sensitivity("路线上限−20%", cap_scale_bp=8_000),
-        _cycle_sensitivity("路线上限基准"),
-        _cycle_sensitivity("路线上限+20%", cap_scale_bp=12_000),
+        _cycle_sensitivity("路线质量−20%", strength_scale_bp=8_000),
+        _cycle_sensitivity("路线质量基准"),
+        _cycle_sensitivity("路线质量+20%", strength_scale_bp=12_000),
         _cycle_sensitivity("单段CT−20%", ct_scale_bp=8_000),
         _cycle_sensitivity("单段CT基准"),
         _cycle_sensitivity("单段CT+20%", ct_scale_bp=12_000),
@@ -766,10 +1544,88 @@ def sensitivity_rows() -> list[dict[str, int | str]]:
 
 
 def run_checks() -> None:
-    caps = [route_cap_bp(n) for n in range(1, 65)]
-    assert all(a < b for a, b in zip(caps, caps[1:])), caps
-    assert caps[-1] < 1_200 and route_cap_bp(1) == 171
+    nature_by_meridian = {
+        "mer_dumai": "yang", "mer_shouyangming": "yang",
+        "mer_shoutaiyang": "yang", "mer_shoushaoyang": "yang",
+        "mer_renmai": "yin", "mer_shoujueyin": "yin",
+        "mer_chongmai": "harmony", "mer_daimai": "harmony",
+    }
+    owner = {
+        "ap_dumai_mingmen": "mer_dumai",
+        "ap_shoujueyin_neiguan": "mer_shoujueyin",
+        "ap_shoujueyin_laogong": "mer_shoujueyin",
+        "ap_shouyangming_hegu": "mer_shouyangming",
+        "ap_shoutaiyang_houxi": "mer_shoutaiyang",
+        "ap_shoushaoyang_waiguan": "mer_shoushaoyang",
+        "ap_renmai_qihai": "mer_renmai",
+        "ap_chongmai_qixue": "mer_chongmai",
+        # 15 §3 owns gameplay routing: Qichong is standard ST30 but votes as
+        # its unique game owner Chong Mai, whose §2.1 nature is harmony.
+        "ap_chongmai_qichong": "mer_chongmai",
+        "ap_daimai_daimai": "mer_daimai",
+    }
+    inner_gate = (
+        "ap_dumai_mingmen", PALM_NEIGUAN, PALM_LAOGONG,
+    )
+    assert trailing_palm_outlets(inner_gate, "掌心吐力") == {
+        PALM_NEIGUAN, PALM_LAOGONG,
+    }
+    assert route_body_nature(
+        inner_gate, owner, nature_by_meridian,
+        trailing_palm_outlets(inner_gate, "掌心吐力"),
+    ) == "yang"
+    assert route_body_nature(inner_gate, owner, nature_by_meridian) == "yin"
+    assert palm_outlet_candidates("掌刃劈落") == {
+        PALM_LAOGONG, PALM_HOUXI, PALM_HEGU,
+    }
+    assert palm_outlet_candidates("虎口劈掌") == {
+        PALM_LAOGONG, PALM_HOUXI, PALM_HEGU,
+    }
+    assert palm_outlet_candidates("迎面劈掌") == {
+        PALM_LAOGONG, PALM_HOUXI, PALM_HEGU,
+    }
+    assert palm_outlet_candidates("反背摔掌") == {PALM_LAOGONG, PALM_WAIGUAN}
+    assert palm_outlet_candidates("正面掌击") == {PALM_LAOGONG}
+    assert palm_outlet_candidates("一切招理只作切磋") == {PALM_LAOGONG}
+    assert palm_outlet_candidates("劈空掌") == {PALM_LAOGONG}
+    assert route_body_nature(
+        ("ap_renmai_qihai", "ap_dumai_mingmen"),
+        owner, nature_by_meridian,
+    ) == "harmony"
+    assert route_body_nature(
+        ("ap_chongmai_qixue", "ap_daimai_daimai"),
+        owner, nature_by_meridian,
+    ) == "harmony"
+    assert route_body_nature(
+        ("ap_chongmai_qichong",), owner, nature_by_meridian,
+    ) == "harmony"
+    reaches = [route_reach_bp(n) for n in range(1, 19)]
+    assert all(a < b for a, b in zip(reaches, reaches[1:])), reaches
+    assert reaches[0] == 3_388 and reaches[-1] == BP
+    ratios = (5_000, 6_500, 8_000, BP, 12_000, 15_000, 18_000, 22_000)
+    attack_curve = [lerp_anchors(r, ATTACK_CURVE) for r in ratios]
+    defense_curve = [lerp_anchors(r, DEFENSE_CURVE) for r in ratios]
+    assert all(a <= b for a, b in zip(attack_curve, attack_curve[1:]))
+    assert all(a >= b for a, b in zip(defense_curve, defense_curve[1:]))
+    assert attack_curve[0] == 6_500 and attack_curve[-1] == 22_000
+    assert defense_curve[0] == 12_500 and defense_curve[-1] == 5_000
+    raw = (320, 1_240, 8_650, 4_230)
+    normalized = normalize_profile(raw, raw)
+    assert normalized == STANDARD_PROFILE and meridian_strength_bp(normalized) == BP
+    assert normalize_profile((320, 1_240, 8_650, 0), raw).completion_bp == 0
+    assert meridian_strength_bp(MeridianProfile(0, 99_999, 0, 99_999)) == 10_300
+    assert attack_meridian_mult_bp(STANDARD_PROFILE, STANDARD_PROFILE, 10) == BP
+    assert defense_meridian_mult_bp(STANDARD_PROFILE, STANDARD_PROFILE, 6) == BP
+    speed_edge = [speed_meridian_mult_bp(MeridianProfile(4_000, 4_000, 4_000, quality), STANDARD_PROFILE) for quality in (3, 4)]
+    assert speed_edge == [7_500, 7_500], speed_edge  # no raw-quality second blend / 1 bp reversal
+    for component in range(4):
+        profiles = [MeridianProfile(*(v if i == component else BP for i in range(4))) for v in range(0 if component == 3 else 4_000, 18_001, 100)]
+        for length in (1, 6, 10, 18):
+            values = [(attack_meridian_mult_bp(p, STANDARD_PROFILE, length), defense_meridian_mult_bp(p, STANDARD_PROFILE, length), attack_meridian_mult_bp(STANDARD_PROFILE, p, length), defense_meridian_mult_bp(STANDARD_PROFILE, p, length), speed_meridian_mult_bp(p, STANDARD_PROFILE)) for p in profiles]
+            assert all(a[0] <= b[0] and a[1] >= b[1] and a[2] >= b[2] and a[3] <= b[3] and a[4] <= b[4] for a, b in zip(values, values[1:])), (component, length)
 
+    from ultimate_rotation_sim import run_checks as check_ultimate_rotation
+    check_ultimate_rotation()  # MF-T17 / design/05 V9.
     units = make_units()
     hero = units["hero"]
     battle_rng = Sfc32(20260927, "battle")
@@ -832,20 +1688,58 @@ def run_checks() -> None:
     assert duration_unit.grapple_level == 0 and duration_unit.grapple_source is None
     assert duration_unit.nodes[SHORT_ROUTE.nodes[0]].seal_level == 0 and duration_unit.state_version == 3
 
-    # Hero, normal, elite and Boss really own separate state and all calculate attacks.
+    # Hero, normal, elite and Boss really own separate state and all calculate routes.
     vectors = golden_payload()["outputs"]
-    assert vectors["heroLongCommit"]["z3Bp"] > vectors["heroShortPreview"]["z3Bp"]  # type: ignore[index]
+    assert vectors["heroLongCommit"]["routeQualityBp"] > 0  # type: ignore[index]
+    assert vectors["heroShortPreview"]["routeQualityBp"] > 0  # type: ignore[index]
     for key in ("normalShort", "eliteLong", "bossLong"):
-        assert vectors[key]["damage"] > 0  # type: ignore[index]
+        assert vectors[key]["attempted"] > 0  # type: ignore[index]
+    assert vectors["defenseRouteFlow"]["attempted"] == len(DEFENSE_ROUTE.nodes)
+    assert vectors["movementRouteFlow"]["attempted"] == len(MOVEMENT_ROUTE.nodes)
     assert vectors["battleRngAfterHeroCommit"] != vectors["battleRngAfterAllUnitCommits"]
-    assert vectors["selfUnseal"]["seals_reduced"] == 1 and vectors["battleRngAfterAllUnitCommits"] != vectors["battleRngAfterSelfUnseal"]  # type: ignore[index]
+    assert vectors["selfUnseal"]["sealsReduced"] == 1 and vectors["battleRngAfterAllUnitCommits"] != vectors["battleRngAfterSelfUnseal"]  # type: ignore[index]
     assert units["normal"].nodes is not units["elite"].nodes
 
-    # Existing TTK bands use the current design/04 calibration anchors.
-    max_route_bp = route_cap_bp(12)
-    assert 3 <= ttk_actions(3_970, z3_damage(849, max_route_bp)) <= 5
-    assert 6 <= ttk_actions(8_000, z3_damage(950, max_route_bp)) <= 10
-    assert 12 <= ttk_actions(170_773, z3_damage(2_574, max_route_bp), team_equiv_bp=31_000) <= 25
+    # Standard versus standard is neutral; strength gaps are steep and bounded.
+    matchups = vectors["matchups"]  # type: ignore[assignment]
+    assert matchups["equal"]["attackMultBp"] == BP
+    ordered = [matchups[k]["attackMultBp"] for k in
+               ("weakOneTier", "equal", "strongOneTier", "strongTwoTiers", "masterVsMob")]
+    assert all(a < b for a, b in zip(ordered, ordered[1:])), ordered
+    assert all(6_500 <= value <= 22_000 for value in ordered)
+    assert 3 <= matchups["equal"]["ttkActions"] <= 5
+    assert matchups["equal"]["ttkBeforeActions"] == matchups["equal"]["ttkActions"]
+    assert matchups["strongOneTier"]["ttkBeforeActions"] == 9
+    assert matchups["strongTwoTiers"]["ttkBeforeActions"] == 22
+    assert matchups["weakOneTier"]["ttkBeforeActions"] == 5
+    assert matchups["masterVsMob"]["ttkBeforeActions"] == 3
+    assert matchups["masterVsMob"]["ttkActions"] <= 2
+    assert vectors["defenseRoute"]["defenseMultBp"] < BP
+    assert vectors["defenseRoute"]["damage"] == 861  # Z4M before Z5M.
+    assert vectors["innerGuardHold"]["cancelled"] > 0
+    assert vectors["innerGuardBreak"]["broken"]
+    assert vectors["innerGuardCapacityBreak"]["broken"]
+    assert vectors["innerGuardCapacityBreak"]["cancelled"] == 1_000
+    assert vectors["innerGuardBreak"]["delayCt"] > 0
+    assert vectors["innerGuardBreak"]["stagnationBp"] > 0
+    for key in ("innerGuardHold", "innerGuardBreak", "innerGuardCapacityBreak"):
+        guard = vectors[key]
+        assert guard["damageBeforeMpGuard"] + guard["cancelled"] in (1_000, 1_600)
+        assert 0 <= 2 * guard["mpSpent"] - guard["cancelled"] <= 1
+    assert [vectors["innerGuardKinds"][kind]["eligibleIncoming"] for kind in
+            ("unarmed", "weapon", "hidden", "projected")] == [1_000, 250, 0, 400]
+    assert vectors["speed"]["equal"] == {
+        "multBp": BP, "spd": 106, "move": 6, "openingQinggong": 98,
+        "evadeRatingDelta": 0}
+    assert vectors["speed"]["strong"]["spd"] > 106
+    assert vectors["speed"]["strong"]["openingQinggong"] > 98
+    assert vectors["speed"]["strong"]["evadeRatingDelta"] > 0
+    assert vectors["speed"]["sealed"]["spd"] < 106
+    assert vectors["speed"]["sealed"]["openingQinggong"] < 98
+    assert vectors["speed"]["sealed"]["evadeRatingDelta"] < 0
+    assert vectors["speed"]["grappledStrong"]["spd"] < 106
+    assert vectors["speed"]["grappledStrong"]["evadeRatingDelta"] == 22
+    assert vectors["speed"]["maxActionsPer1000Ticks"] <= 600
 
     # Unit snapshot/restore is exact; BattleSession snapshots the shared RNG.
     snap = hero.snapshot()
@@ -858,11 +1752,26 @@ def run_checks() -> None:
     assert battle_rng.snapshot() != rng_snapshot
 
     sensitivity = {row["case"]: row for row in sensitivity_rows()}
-    assert (sensitivity["容量基准"]["ttkCentiActions"], sensitivity["容量基准"]["attackFrequencyBp"], sensitivity["容量基准"]["breathShareBp"], sensitivity["单段CT+20%"]["attackFrequencyBp"]) == (452, 4_925, 1_258, 4_879)
+    assert sensitivity["路线质量−20%"]["averageDamage"] <= sensitivity["路线质量基准"]["averageDamage"]
+    assert sensitivity["路线质量基准"]["averageDamage"] <= sensitivity["路线质量+20%"]["averageDamage"]
+    assert sensitivity["单段CT−20%"]["attackFrequencyBp"] >= sensitivity["单段CT基准"]["attackFrequencyBp"]
     expected = json.loads(json.dumps(golden_payload(), ensure_ascii=False, sort_keys=True))
     assert GOLDEN_PATH.exists(), "run --write-golden once"
     actual = json.loads(GOLDEN_PATH.read_text(encoding="utf-8"))
     assert actual == expected, "golden drift: run --write-golden only after reviewing rules"
+    v3 = v3_golden_payload()
+    assert v3["fixtureVersion"] == 3 and v3["rulesProtocol"] == 3
+    assert v3["rngProtocol"] == 2 and v3["masterSeed"] == 20_260_927
+    v3_outputs = v3["outputs"]
+    assert v3_outputs["commits"]["hero"]["routeQualityBp"] == BP  # type: ignore[index]
+    assert len(v3_outputs["battleRng"]["segments"]) == 4  # type: ignore[index]
+    assert v3_outputs["defense"]["anchor20000"] == 5_500  # type: ignore[index]
+    assert len(v3_outputs["ttk"]) == 5  # type: ignore[arg-type,index]
+    assert v3_outputs["breath"]["supportedByProductionRuntime"] is False  # type: ignore[index]
+    expected_v3 = json.loads(json.dumps(v3, ensure_ascii=False, sort_keys=True))
+    assert GOLDEN_V3_PATH.exists(), "run --write-golden once after reviewing protocol 3"
+    actual_v3 = json.loads(GOLDEN_V3_PATH.read_text(encoding="utf-8"))
+    assert actual_v3 == expected_v3, "v3 golden drift requires protocol review"
 
 
 def print_report() -> None:
@@ -871,6 +1780,7 @@ def print_report() -> None:
     print("sensitivity:")
     print(json.dumps(sensitivity_rows(), ensure_ascii=False, indent=2))
     print("vectorSha256:", payload["vectorSha256"])
+    print("v3VectorSha256:", v3_golden_payload()["vectorSha256"])
 
 
 def main() -> int:
@@ -880,11 +1790,11 @@ def main() -> int:
     parser.add_argument("--write-golden", action="store_true")
     args = parser.parse_args()
     if args.write_golden:
-        GOLDEN_PATH.write_text(
-            json.dumps(golden_payload(), ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        GOLDEN_V3_PATH.write_text(
+            json.dumps(v3_golden_payload(), ensure_ascii=False, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
         )
-        print(f"wrote {GOLDEN_PATH}")
+        print(f"wrote {GOLDEN_V3_PATH}")
     if args.check:
         run_checks()
         print("meridian_flow_sim: all checks passed")

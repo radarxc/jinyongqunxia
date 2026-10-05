@@ -1,0 +1,33 @@
+{
+  "name": "@tianshu/game",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --configLoader runner",
+    "build": "vue-tsc -b --pretty false && vite build --configLoader runner",
+    "test": "vitest run src build --configLoader runner",
+    "typecheck": "vue-tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@tianshu/core": "workspace:*",
+    "@tianshu/platform": "workspace:*",
+    "@tianshu/render": "workspace:*",
+    "@tianshu/shared": "workspace:*",
+    "@tianshu/ui": "workspace:*",
+    "pinia": "catalog:",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@tianshu/data": "workspace:*",
+    "fake-indexeddb": "6.2.5",
+    "@vite-pwa/assets-generator": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-pwa": "catalog:",
+    "workbox-build": "catalog:",
+    "workbox-precaching": "catalog:",
+    "workbox-routing": "catalog:",
+    "workbox-window": "catalog:"
+  }
+}

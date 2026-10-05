@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_dilong
+name: 地龙
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/dilong
+text:
+  desc: 外观：药用体壁干燥成灰棕扁长弯片，腹面色浅。
+  lore: 江淮、江南太湖、浙闽、岭南与广西湿地夏秋五至九月雨后可见。本作只以旧药库中的干燥历史药材表现，归作疏内伤辅材，不设计捕取步骤。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: diLong
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 2

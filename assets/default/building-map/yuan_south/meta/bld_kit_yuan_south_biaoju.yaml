@@ -1,0 +1,62 @@
+id: bld_kit_yuan_south_biaoju
+status: candidate
+building:
+  type: bld_kit_yuan_south_biaoju
+  footprint:
+  - 14
+  - 11
+  anchor: &id001
+  - 497.3721
+  - 352.1977
+  era: yuan
+anchor_px: *id001
+footprint_m:
+- 14
+- 11
+footprint_basis: design/22 §3.4 元代护运行骨架，14×11
+entrance:
+  edge: S
+  offset_cells: 7.0
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+historical_details:
+- 货栈围院与楼屋
+- 深檐木构、石基
+generation_id: 3901410f-1ae3-43a3-960a-f0a44c36f37a
+source_record: sources/hist_biaoju_selected.json
+source_archive: sources/hist_biaoju_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+pixel_qa:
+  mode: RGBA
+  size:
+  - 992
+  - 672
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 420496
+  alpha_partial_pixels: 245313
+  alpha_opaque_pixels: 815
+  alpha_nonzero_bbox:
+  - 61
+  - 40
+  - 931
+  - 631
+  transparent_margins_px:
+  - 61
+  - 40
+  - 61
+  - 41
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 货栈围院与楼屋；深檐木构、石基；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

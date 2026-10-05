@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_tianchanyaodai
+name: 天蚕腰带
+kind: armor
+sub: belt
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tianchanyaodai
+text:
+  desc: 外观：珠灰蚕丝宽带，银线细密经纬、白玉扣。 待运行时投影：poisonResPp=6; tough=6。
+  lore: 天蚕腰带由珠灰蚕丝与银线密织，柔韧贴身，可隔开少量沾染衣表的毒尘。药师提醒它只能增强避毒，不能代替解药；来历与织法均 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 14
+      antiPoison: 6

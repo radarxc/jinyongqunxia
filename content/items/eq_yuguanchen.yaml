@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_yuguanchen
+name: 玉管拂尘
+kind: weapon
+sub: whip
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/yuguanchen
+text:
+  desc: 外观：青白玉色短管柄约四十厘米接一米灰白拂丝，银箍固束、柄端浅云线纹。
+  lore: 道门行脚者以玉管作柄、长丝成束，平日拂尘，遇敌则缠腕、扫目并借硬柄点穴。玉柄怕与重兵正撞，拂丝受潮也须理顺阴干；器名、制作、用法与门中流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags:
+    - soft
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 83
+      hardness: 40
+      qiAffinity: 100

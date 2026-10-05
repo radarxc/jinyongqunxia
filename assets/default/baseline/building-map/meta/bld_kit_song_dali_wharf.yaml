@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_wharf
+status: candidate
+building:
+  type: bld_kit_song_dali_wharf
+  footprint: [8, 4]
+  anchor: &id001 [261.8902, 263.2144]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [8, 4]
+logical_footprint_polygon_px:
+- [69.8902, 231.2144]
+- [325.8902, 359.2144]
+- [453.8902, 295.2144]
+- [197.8902, 167.2144]
+collision_polygon_m:
+- [0, 0]
+- [8, 0]
+- [8, 4]
+- [0, 4]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [70, 158]
+- [454, 158]
+- [454, 364]
+- [70, 364]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 2.68
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 3}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_wharf.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [384, 192]
+  ground_width_px: 384
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [51, 411]
+    front: [1029, 928]
+    right: [1487, 688]
+  source_axis_slopes: [0.5286298568507157, -0.5240174672489083]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 2.1353711790393013
+  expected_width_depth_ratio: 2.0
+  ratio_relative_error: 0.06768558951965065
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [512, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 225134
+  alpha_partial_pixels: 36377
+  alpha_opaque_pixels: 633
+  alpha_near_opaque_pixels: 35475
+  alpha_nonzero_bbox: [67, 155, 456, 367]
+  transparent_margins_px: [67, 155, 56, 145]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_wharf.png
+  source_sha256: 97855d41aec5b6f3659301eb5c80f2708076aa123896f54bfa26e775b634e628
+  source_size: [1536, 1024]
+  crop_box: [0, 21, 1494, 1024]
+  uniform_scale_requested: 0.26740947075208915
+  resized_size: [400, 268]
+  rounded_effective_scale: [0.2677376171352075, 0.26719840478564305]
+  paste_offset: [56, 122]
+  final_file: bld_kit_song_dali_wharf.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

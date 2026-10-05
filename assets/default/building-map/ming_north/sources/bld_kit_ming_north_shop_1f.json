@@ -1,0 +1,39 @@
+{
+  "id": "bld_kit_ming_north_shop_1f",
+  "subject": "明代北方单层商铺，7×5格，灰砖硬山瓦顶杂货铺（原创扩展；细部待考）",
+  "footprint": [
+    7,
+    5
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-e332d6b7-4979-4932-9f28-6df9fb1972d5.png",
+  "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, ONE isolated reusable game building cutout, true RGBA transparent background. Image 1 is a STYLE REFERENCE ONLY: match its realistic historical painted material quality, crisp detailed grey roof tiles, believable aged masonry and wood, natural muted colors and detail density. Do not copy its building or old camera inaccuracies. This is a new Ming-era northern Chinese prefectural-town building, original game design, NOT restoration of a named monument. Camera MUST be orthographic dimetric 2:1 ground projection, yaw 45 degrees elevation 30 degrees: ground edges exact +0.5 and -0.5 slopes, all verticals upright, no vanishing point. Main frontage faces screen lower left. Ground footprint must be a thin flat rectangular apron with clearly visible straight left-to-front and front-to-right edges, front base corner visible, no thick pedestal or surrounding street. Entire eaves, ground edge and short shadow fully inside square frame with 10 percent transparent margins. Sunlight screen upper left, short soft contact shadow screen lower right. Northern Ming hard-gable YINGSHAN roof: restrained straight ridge, grey clay concave and convex roof tiles, low subtle ridge terminals, solid masonry gable ends flush with verge eaves, not overhanging timber gables, EXPOSED GREY BRICK ALL walls, NO white or cream plaster, subdued dark timber lattice doors/windows; no Qing imperial decoration. No written characters, signboards, lettering, symbols, people, background scenery, sky, horizon, mountains, labels, watermark, checkerboard, opaque floor, exaggerated curved eaves, cartoon or toy-like stylization. Generate exactly ONE asset. Subject: ONE single-storey northern Ming street shop, footprint7m by5m. A modest three-bay grey-brick general-goods shop with hard-gable low grey tiled roof, one broad open timber shutter counter, shelves of unlabelled ceramic jars and folded cloth entirely within building, solid grey-brick sidewall and tiny lattice window. A plain beige cloth shade immediately over storefront, no signboards, no words. Ground footprint left-to-front width7 and front-to-right depth5; front door faces lower left. Correct dimetric base edge slopes exactly+.5 and-.5, long-to-short visible horizontal spans7:5. Northern grey masonry and muted wood, no white walls, no southern raised gables. 10 percent transparent margins.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7",
+      "role": "style only; viewed before generation"
+    }
+  ],
+  "created": "2026-09-30T21:19:07Z",
+  "created_time_basis": "接收后登记时间",
+  "points": {
+    "L": [
+      114,
+      779
+    ],
+    "F": [
+      751,
+      1110
+    ],
+    "R": [
+      1196,
+      879
+    ]
+  },
+  "footprint_basis": "design/22 §3.4 bld_kit_ming_shop 7×5；同功能单层地域变体",
+  "visual_review": "已view_image原图：灰砖、木铺面、灰瓦主硬山屋面，边檐仍有轻微翘势；短布檐、无字陶器布货；左上光，无遮挡底边，无人无字无现代物，四周透明余量完整。底面双轴+.520/-.519，宽深误差约2.25%，手工点测通过建议容差。 成品已单独view_image：缩放后材质清楚、屋檐/台基完整、透明留边保留；与原图保持同一比例。",
+  "candidate_count": 1,
+  "final_view_image_reviewed": true,
+  "measurement_uncertainty_source_px": 3,
+  "source_point_semantics": "人工读取薄地面铺装外缘L/F/R，不含投影影子；后角依平行四边形推定，中心为(L+R)/2。"
+}

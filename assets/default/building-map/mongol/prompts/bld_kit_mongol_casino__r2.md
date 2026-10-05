@@ -1,0 +1,12 @@
+# 第2轮投影返修：bld_kit_mongol_casino
+
+## 候选1（采用）
+
+Edit attached sprite of a broad Mongol felt ger with small wooden boardgame tables visible inside open door. Preserve original ancient realistic beige felt texture, ropes, wood frame and minimal muted brown band. Only repair base geometry to exact 2:1 orthographic dimetric yaw45 elevation30. The thin rectangular ground is9 wide by7 deep, width is LEFT-to-FRONT edge; width/depth ratio9/7. ON1536x1024 canvas ideal contact corners LEFT(192,534), FRONT(840,858), RIGHT(1344,606), BACK(696,282); both ground edges slope +/-0.5 exactly. Render a FLAT VERY THIN sharp rectangular patch below the round ger with three clear visible near corners; do not inherit reference perspective or ratio. Keep ger round in real-world space, centered on ground rectangle. Entire roof and floor visible, generous alpha-zero margins. True RGBA transparent background, upper-left light, small lower-right contact shadow. No people, animals, signs, lettering, flags, clouds, mist, vignettes, modern objects, thick pedestal. Restrained weathered tactile realism, matching historical city-map sprites.
+
+## 候选2（未采用）
+
+Keep the attached felt ger and its exact visual style, light, materials, transparent cutout. Targeted correction of rectangular base WIDTH/DEPTH: current first attempt is almost square, but ground footprint must be9 wide7 deep, width/depth9:7. Keep both already-correct ground diagonal angles at+26.565/-26.565deg (slope+/-0.500) and adjust rectangle lengths. WIDTH is screen LEFT-to-FRONT; move frontmost base point RIGHT while shortening screen FRONT-to-RIGHT side. Exact1536x1024 target LEFT(96,572), FRONT(864,956), RIGHT(1462,657), BACK(694,273); width horizontal768 depth598, ratio1.284. This is precise orthographic2:1 dimetric yaw45 elevation30 projection. Thin rough-stone/earth floor rectangle with crisp visible near3 corners, no thick pedestal, no rounded contour. Round Mongolian beige felt ger centered, wood framing ropes and muted brown trim, tiny game table through door; simple Yuan-era anonymous original game design. No new objects or decoration, no text or symbols or people. Upper-left light, tiny lower-right shadow, true alpha-zero backdrop, complete object and generous transparent margins; no haze/glow/vignette.
+
+第2轮返修采用候选1；轴率0.51040/-0.51553；宽深比1.11957，目标1.28571；轴率/比例检查分别True/False。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。
+内置image_gen，transparent_background=true；源图及传入图已按字节归档。

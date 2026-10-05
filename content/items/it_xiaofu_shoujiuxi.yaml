@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_xiaofu_shoujiuxi
+name: 萧府寿酒席
+kind: dish
+sub: dish
+grade: 5
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《鸳鸯刀》·萧半和寿宴，宾客先饮寿酒再饮喜酒；菜品 （待考）
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_juqi:2battle
+assets:
+  icon: item/xiaofu_shoujiuxi
+text:
+  desc: 外观：熟肉、鸡、鱼、蔬四盘围一只空酒盏，清代寿宴四人份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《鸳鸯刀》萧半和寿宴中宾客先饮寿酒再饮喜酒，具体菜品待核。（待考：核席面食物） 本件以鸡鱼肉蔬投影四人席，聚气效果为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 16

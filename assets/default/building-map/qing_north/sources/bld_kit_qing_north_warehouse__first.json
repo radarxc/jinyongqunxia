@@ -1,0 +1,15 @@
+{
+  "id": "bld_kit_qing_north_warehouse",
+  "subject": "仓屋",
+  "footprint": [
+    10,
+    8
+  ],
+  "prompt": "Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Realistic traditional Chinese game sprite with fine natural weathered masonry, small tiled roofs, calm muted palette and believable structure. Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Absolutely NO ambient halo, NO glow, NO gradient floor or background of any kind. Alpha0 everywhere outside the exact object silhouette and its tiny contact shadow. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A utilitarian northern warehouse, long closed grey-brick building, plain hard-gable grey tiled roof, two heavy timber loading doors on south face, a few grain sacks and wooden crates just under a shallow eave, no decorative gate or residential windows. Footprint10m east-west by8m north-south. CRITICAL spacious transparent framing, entire object in central75% of canvas. Clean transparent PNG cutout, no halo.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-a688e213-d285-4446-a99e-018646076816.png",
+  "references": [],
+  "created": "2026-09-30T21:22:01.348Z",
+  "candidate_count": 1,
+  "review": "第1候选轮廓外有明显灰棕halo，定向第2候选去背景",
+  "alpha_review_correction": "初看工具预览有光晕；RGBA采样及浅底合成确认轮廓外光晕RGB所在像素alpha=0，无实际背景污染。"
+}

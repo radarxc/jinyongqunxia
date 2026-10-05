@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_yuansuweiqiejia
+name: 元宿卫怯薛甲
+kind: armor
+sub: officialArmor
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yuansuweiqiejia
+text:
+  desc: 外观：元代精工铁札与鎏金窄边、深蓝织物衬里，宿卫威仪不奇幻 （原创扩展）。 待运行时投影：lawProfile={uniform:true,allowedIdentityTags:[office_yuan_keshig],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。
+  lore: 元宿卫怯薛甲以精工铁札、深蓝衬里和窄鎏金边制成，供近侍宿卫披挂，收存时须逐片拭油。传闻此甲出自旧内府武库，来路显赫也最易招查。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: heavy
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 98

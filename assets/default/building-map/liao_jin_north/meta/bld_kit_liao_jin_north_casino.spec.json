@@ -1,0 +1,48 @@
+{
+  "id": "bld_kit_liao_jin_north_casino",
+  "footprint": [
+    10,
+    8
+  ],
+  "corners": [
+    [
+      54,
+      876
+    ],
+    [
+      718,
+      1163
+    ],
+    [
+      1224,
+      928
+    ]
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-228772f2-36c6-4715-8a8b-36170f202736.png",
+  "subject": "辽金北方两层赌场外观（原创扩展；无名游戏组合，细部待考）",
+  "prompt": "Create a revised version of THIS gaming-house sprite, changing only its camera projection to a shallower STRICT 2:1 dimetric town-map projection. Keep the whole northern Liao-Jin two-story building, warm earth-plaster walls, gray tiled roof, dark timber, open lower gaming table, left-upper light, true RGBA background, detail density and lower-left facing entrance unchanged. IMPORTANT: floor horizontal screen run to vertical drop must be exactly TWO TO ONE on both ground axes, not 1.7:1 true isometric. Ground front-left edge slopes +0.50 and front-right edge -0.50, no perspective convergence. The 10m east-west by8m north-south footprint must be visible as a flat thin parallelogram: normalized left corner(0,0), front corner(10,5), right corner(18,1). Roof and walls should follow this corrected camera. Re-render naturally, no blur or stretched texture. Keep generous transparent margins. No text, people, symbols, halo, background, checkerboard or thick raised block. This is the second candidate for bld_kit_liao_jin_north_casino, original unnamed Liao-Jin game building rather than a named historical monument.",
+  "negative": "人物、文字、徽记、现代物、明清旅游风、厚地台、裁切、景观背景、伪透明棋盘格、非等比拉伸",
+  "references": [
+    {
+      "id": "bld_kit_song_southern_casino",
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_casino.png",
+      "role": "image_gen首候选输入；既有宋候选时代适配参考，不表示新图获作者批准"
+    }
+  ],
+  "candidate_count": 2,
+  "candidate_records": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-d9b51225-0790-44ff-a67d-3cbf8af2bc51.png",
+      "prompt": "Edit the supplied Song gaming-house sprite into a NEW northern Liao-Jin two-story gaming-house building sprite for tianshu/default, asset bld_kit_liao_jin_north_casino. Keep the exact orthographic 2:1 dimetric camera, lower-left entrance, realistic detail density, complete silhouette, ground footprint geometry and transparent RGBA background of the reference. Footprint10m east-west by8m north-south. This is an original unnamed game social venue, not a named historical reconstruction. Northern 10th–12th century Yanjing/Datong materials: thick warm earth-plaster walls, dark weathered exposed timber, sober unglazed gray tile broad simple roof, restrained early-medieval bracket sets, small plain wooden lattice windows. Ground-level open central bay contains one wooden game table and low benches, without readable games, dice marks or signs. Make upper balcony simpler and more enclosed against northern weather, no hanging lanterns or gaudy decorations. Gray stone threshold on a paper-thin clear rectangular ground patch, no thick base. Ground axes exactly +0.5/-0.5, yaw45 elevation30, parallel edges parallel. Natural lighting upper-left, short contact shadow lower-right. Leave generous fully transparent margins and keep all eaves and left/front/right contact corners visible. No people, text, symbols, coins, lettering, signs, flags, logo, watermark, modern items, landscape, sky, gradient, halo, checkerboard, yellow glazed tiles, Ming-Qing tourist ornament or cartoon style.",
+      "selected": false,
+      "reference_input": "assets/default/baseline/building-map/bld_kit_song_southern_casino.png"
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-228772f2-36c6-4715-8a8b-36170f202736.png",
+      "prompt": "Create a revised version of THIS gaming-house sprite, changing only its camera projection to a shallower STRICT 2:1 dimetric town-map projection. Keep the whole northern Liao-Jin two-story building, warm earth-plaster walls, gray tiled roof, dark timber, open lower gaming table, left-upper light, true RGBA background, detail density and lower-left facing entrance unchanged. IMPORTANT: floor horizontal screen run to vertical drop must be exactly TWO TO ONE on both ground axes, not 1.7:1 true isometric. Ground front-left edge slopes +0.50 and front-right edge -0.50, no perspective convergence. The 10m east-west by8m north-south footprint must be visible as a flat thin parallelogram: normalized left corner(0,0), front corner(10,5), right corner(18,1). Roof and walls should follow this corrected camera. Re-render naturally, no blur or stretched texture. Keep generous transparent margins. No text, people, symbols, halo, background, checkerboard or thick raised block. This is the second candidate for bld_kit_liao_jin_north_casino, original unnamed Liao-Jin game building rather than a named historical monument.",
+      "selected": true,
+      "reference_input": "/Users/bytedance/.codex/generated_images/01a0f428-7613-7e70-aac6-08db51d5747d/exec-d9b51225-0790-44ff-a67d-3cbf8af2bc51.png"
+    }
+  ],
+  "notes": "两候选均view_image；第二版底面较第一版接近目标但仍偏浅，选第二版。土墙木构灰瓦、内收楼廊与无字桌凳表达北方公共铺楼。几何误差保留，2候选限额已到，axis_pass=false；不是严格投影合格资产。"
+}

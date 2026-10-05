@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_tianshanlingmi
+name: 天山灵蜜
+kind: material
+sub: ingredient
+grade: 10
+stack: 999
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tianshanlingmi
+text:
+  desc: 外观：淡金蜂蜜盛白玉小罐，木蜡封口。 待运行时投影：uniqueBatch=true。
+  lore: 天山短促花期中收得的淡金稠蜜，只在固定蜂农与奇遇批次出现。以木蜡封入白玉小罐，可调羹点茶；江湖传闻开封香气经久不散。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_tian9
+    materialGrade: 10
+    rare: true
+    ingredientKind: rare
+    attributes:
+      version: 2

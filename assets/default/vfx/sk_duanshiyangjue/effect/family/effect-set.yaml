@@ -1,0 +1,72 @@
+kind: EffectSet
+version: 1
+asset_id: vfx_sk_duanshiyangjue__family_base01
+size_px:
+- 768
+- 512
+color_space: srgb
+alpha_mode: straight
+style: gold_ink
+direction:
+- 1
+- 0
+reference_length_px: 378
+root_width_px: 150
+blend: screen
+source:
+  mode: grid
+  files:
+  - source_sheet.png
+  rects:
+  - file_index: 0
+    rect_px:
+    - 0
+    - 0
+    - 768
+    - 512
+  - file_index: 0
+    rect_px:
+    - 768
+    - 0
+    - 768
+    - 512
+  - file_index: 0
+    rect_px:
+    - 0
+    - 512
+    - 768
+    - 512
+  - file_index: 0
+    rect_px:
+    - 768
+    - 512
+    - 768
+    - 512
+  keying:
+    method: white_key
+    white_cutoff_8bit: 250
+    opaque_luma: 0.2
+    key_full_8bit: 100
+    epsilon: 0.00392156862745098
+    dewhite: true
+frames:
+- file: frame_000.png
+  anchor_px:
+  - 96
+  - 256
+  phase: 0
+- file: frame_001.png
+  anchor_px:
+  - 96
+  - 256
+  phase: 0.25
+- file: frame_002.png
+  anchor_px:
+  - 96
+  - 256
+  phase: 0.5
+- file: frame_003.png
+  anchor_px:
+  - 96
+  - 256
+  phase: 1

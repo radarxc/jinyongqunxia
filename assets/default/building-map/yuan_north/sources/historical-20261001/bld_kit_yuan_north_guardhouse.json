@@ -1,0 +1,41 @@
+{
+  "id": "bld_kit_yuan_north_guardhouse",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source": "/private/tmp/yuan_hist/guardhouse_c1.png",
+  "source_sha256": "13198c17a94e8e419812db5a1fe127f0339bfc156a08702c8767569d3696d2f1",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_guardhouse.png",
+  "final_sha256": "e289f6bc778f2560b7163c1260d401191189baaa2225fa53816cd7f579b03875",
+  "processing": {
+    "source_size": [
+      1254,
+      1254
+    ],
+    "crop_box": [
+      44,
+      180,
+      1217,
+      1114
+    ],
+    "uniform_scale": 0.2890792291220557,
+    "resized_size": [
+      339,
+      270
+    ],
+    "canvas_size": [
+      416,
+      352
+    ],
+    "paste_offset": [
+      38,
+      41
+    ],
+    "alpha_cleanup": "none"
+  },
+  "references": [
+    "wangzhenpeng_07.jpg",
+    "wangzhenpeng_08.jpg"
+  ],
+  "detail": "a small gate watch house: compact three-bay hard-gabled hall astride or beside a passage, low grey tiled roof, heavy squared timber posts and lintels, buff rammed-earth side walls with grey-brick base, paired plank doors, narrow lattice openings, simple exposed rafter ends, no battlements",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}

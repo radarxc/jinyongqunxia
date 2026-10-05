@@ -1,0 +1,14 @@
+{
+  "id": "bld_kit_xiyu_palace",
+  "candidate": 2,
+  "args": {
+    "referenced_image_paths": [
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/sources/bld_kit_xiyu_palace_round2_geometry.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Finish exact 3D blockout as a historical Xinjiang palace module. Ground corners EXACTLY left(168,560),front(823,887),right(1368,615); no zoom/recenter/camera change, no silhouette change. Width24 depth20 ratio1.2. Ground axes both2:1 slopes+0.5,-0.5; every horizontal architecture edge follows these exact directions. Retexture and detail: tan adobe/yellow brick, rear flat-roof main hall with pointed carved wooden entrance, small turquoise dome, restrained geometric turquoise border without writing; low flat-roof side wings, paved front court, low front walls. Detailed realistic ancient strategy-game art, small masonry grain and natural weathering. Upper-left light, tiny lower-right contact shadow. Entire opaque architecture inside frame, true transparent RGBA background. No halo,vignette,scene,text,people,modern elements or thick plinth. Maintain EXACT lower footprint from reference. Right ground edge rises one pixel per two pixels right."
+  },
+  "path": "/Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-09bad853-5df7-4f1c-a766-ac9155ac1b96.png",
+  "tool": "built-in image_gen",
+  "repair_round": 2
+}

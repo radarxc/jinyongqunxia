@@ -1,0 +1,58 @@
+id: bld_kit_qing_south_wharf
+status: candidate
+selected_candidate: 1
+candidate_count: 1
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan asset, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber. Show roof lift and curvature, ridge treatment, tile method, beam bearing, column grid, foundation, openings and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: one 10 by 4 cell Qing Jiangnan canal wharf module, no building roof. Preserve long shoreline footprint and steps. Carefully hand-laid blue-grey brick retaining wall on rough granite foundation courses, a central flight of worn rectangular granite water steps descending through the wall, two plain square mooring stones or bollards integrated into the coping, small drainage opening, patched lime mortar and waterline discoloration. Top surface is narrow large stone slabs only, not a broad ground tile. Clean modular ends, no boat, water, goods, people, railing, pavilion or
+  modern hardware.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/building-map/qing_south/review2/c/wharf.guide.png
+  sha256: 36ba6010390b6f91627738579fae48c8c54159c677a56c4812f71853411ff4c0
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Commerce_on_the_water.jpg?width=1800
+  sha256: b499b90f126ba2bd1033d7d5efad279b6ef7321eadf3163853f9d8d6ab7b356a
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。古画水运取临水驳岸语汇，1984 吴门桥照片取旧花岗石砌块与磨损；生成青砖石基驳岸、石级、系缆石和泄水孔。
+- url: https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Approach_to_Wumen_Bridge_at_Suzhou_1984.jpg/1920px-Approach_to_Wumen_Bridge_at_Suzhou_1984.jpg
+  sha256: 5a39c26da2dfb6f6e9ad3a7b7d1349ddd97de7759f5de783e7798eafaf34f4ea
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。古画水运取临水驳岸语汇，1984 吴门桥照片取旧花岗石砌块与磨损；生成青砖石基驳岸、石级、系缆石和泄水孔。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:03.526038+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_archive: history/selected-sources/wharf.png
+source_sha256: e55d05a0269b8e5796056e7e80c0b1cd2916dbd8af35bd8edee0eaab3d5b3c6c
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 90
+  - 142
+  - 1448
+  - 983
+  isotropic_scale: 0.3328424153166421
+  resized_size:
+  - 452
+  - 280
+  paste_offset:
+  - 155
+  - 127
+  - 607
+  - 407
+  final_size:
+  - 736
+  - 512
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/wharf.png
+  source_sha256: e55d05a0269b8e5796056e7e80c0b1cd2916dbd8af35bd8edee0eaab3d5b3c6c
+  forbidden_transforms_used: false
+notes: 古画水运取临水驳岸语汇，1984 吴门桥照片取旧花岗石砌块与磨损；生成青砖石基驳岸、石级、系缆石和泄水孔。
+record_path: history/records/wharf.yaml

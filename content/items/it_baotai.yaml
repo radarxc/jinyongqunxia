@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_baotai
+name: 豹胎
+kind: material
+sub: ingredient
+grade: 9
+stack: 999
+chapters: any
+origin: canonExpanded
+canonRef: 古代珍馐名目；仅剧情禁猎货，具体食用史 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/baotai
+text:
+  desc: 外观：封蜡小陶罐盛一份暗红珍肉，罐口半开。
+  lore: 古代珍馐名目中的禁猎货，具体食用史与原典仍未核定。（待考：核名目来源与时代） 本作只作查获证物或剧情旧藏，不供商店、采集与烹饪。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di3
+    materialGrade: 9
+    rare: false
+    ingredientKind: rare
+    attributes:
+      version: 2

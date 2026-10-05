@@ -1,0 +1,232 @@
+- id: npc_zhujue__ch00_f__sheet_L
+  file: sheet_L.png
+  category: rig/sheet
+  style: default
+  subject: 主角·女（npc_zhujue，ch00 身份锚）A 字三视图 · front34 | side | back34 · 面向画面左
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. FINAL PRECISION PASS: The middle column must show the LATERAL surface of a narrow torso in exact 90-degree side profile, with shoulders and hips stacked in projection. A profile FACE attached to a broad visible frontal chest is wrong. The collar is viewed EDGE-ON in the middle column; do not display a broad crossed V neckline there. Keep the side-profile arms held diagonally away with clear sleeve-to-torso background wedges and two separated shoes, as requested below. First and third columns remain FRONT-three-quarter and BACK-three-quarter, respectively.
+    Match all three bun-top levels AND planted sole levels, same body height and same scale, including the side figure. Preserve an ankle-length robe and original sash position. Image 1's scenic paper background is NOT a style reference: outside each character silhouette use a perfectly FLAT DIGITAL SOLID FILL #E6E1D8, with every background pixel the same color, including directly underneath shoes. ZERO floor or contact shading. Preserve natural painted cloth and face details only INSIDE each silhouette.
+
+    CRITICAL ACCEPTANCE REQUIREMENTS: This is a RIGGING A-POSE, not a relaxed fashion portrait. In ALL THREE columns, both straight arms must be held away from the torso at 25-30 degrees, creating an UNBROKEN VISIBLE BACKGROUND WEDGE from below the armpit down to each hand. Wide sleeves must not touch the torso or skirt. The side-profile figure also needs visible arm-to-body openings: project its near arm diagonally backward/down and its far arm forward/down, without turning its torso. Do NOT draw the profile arm vertically against the body. Show BOTH shoes separately in the profile column: displace their projected positions a little fore-and-aft while preserving straight standing legs and full ankle-length robe. Never merge the shoes into a single silhouette.
+    The first column is a distinctly ROTATED front three-quarter view with the nose, sternum and feet aimed toward IMAGE LEFT; show a nearer shoulder and a farther shoulder, NOT a front-facing portrait. The center figure is a true profile toward IMAGE LEFT. The last figure shows the back rotated toward IMAGE LEFT. All faces and all toes point toward IMAGE LEFT, no exceptions. All arms and hands are fully inside the canvas.
+    Paint the entire empty background with ONE constant RGB(230,225,216) #E6E1D8. No paper grain, no smooth gradient, no haze, NO contact shadow underneath any shoe. Figure shading is permitted only inside silhouettes.
+
+    Image 1 is the approved base portrait of this character (the female protagonist, a young adult Chinese woman); use it ONLY for identity (face, age, body type), hairstyle and the exact costume (colors, layers, trims, belt knot position, socks, shoes).
+    IDENTITY ANCHORS, copied exactly from image 1 and identical in every view:
+    (a) dark black-brown hair gathered into a high, softly coiled bun, tied around its base with a faded reddish-brown cloth ribbon with short loose tails; wispy loose strands at the temples and beside the ears; no crown or jewelry.
+    (b) a full ANKLE-LENGTH robe of muted grey sage / grey olive-green woven linen, softly flared and pleated from the waist, Han crossed collar right-lapped (wearer's LEFT panel over RIGHT); an oatmeal-cream inner crossed collar visible at the neck; subtle pale double seam lines near the hem; keep the original long robe, never shorten it or turn it into trousers.
+    (c) a wide pale grey-taupe cloth sash, lighter than the robe, wrapped in several folds and tied at the FRONT slightly toward the wearer's own LEFT side; two long flat ends descend over her left front skirt toward the upper-to-middle shin, with unequal tips; never relocate this knot to the other side.
+    (d) long loose wide outer sleeves in the same muted grey sage fabric, pale stitching near the cuffs, with narrow oatmeal-cream inner sleeve cuffs visible and both hands exposed.
+    (e) simple muted grey olive cloth shoes with low pale beige soles, cream-white socks visible at the ankles; no boots, leg wraps, heels, or bare feet.
+    A young ADULT Chinese woman with the same face as image 1, slim adult build and approximately 7.5-head adult proportions; no childlike face or body.
+
+    TASK: a clean CHARACTER TURNAROUND MODEL SHEET of this same person for a 2D cut-out puppet rig. Exactly THREE full-body figures side by side, left to right:
+    (1) FRONT THREE-QUARTER: body turned 45° toward the viewer's LEFT, face and chest visible; the character's LEFT shoulder, arm and leg are nearer to the viewer (they appear on the right side of this figure).
+    (2) LEFT-FACING SIDE PROFILE: the character faces the left edge of the image in a true 90° profile; the character's LEFT side is toward the viewer.
+    (3) BACK THREE-QUARTER: facing away toward the upper-left; back of head and back visible; the character's LEFT side is nearer to the viewer (it appears on the left side of this figure).
+    All three figures face the LEFT side of the image.
+    POSE identical in all three: neutral A-pose, arms straight and held about 20–30° away from the body so the armpits show background; palms toward the thighs, fingers relaxed and slightly apart; legs straight, feet shoulder-width apart, both soles on one common ground line; head level. Hands EMPTY (no weapon or prop). The robe remains ankle-length: cloth between the legs is EXPECTED and correct. Do not demand a gap through the skirt; only require visible flat background between each arm/sleeve and the torso, and TWO separately readable shoes beneath the hem. The wide sleeves must hang clear of the waist rather than merge into the skirt. For the profile A-pose, keep the torso in true profile and slightly separate the arm silhouettes in projection so the near armpit/arm-to-body opening is readable.
+    CONSISTENCY: same height (crown and soles aligned), same scale, same costume details in every view; Han crossed collar right-lapped (wearer's left panel over right) in every view; never mirror a view.
+    STYLE: same refined realistic hand-painted rendering as image 1; soft diffuse light from the upper left; muted colors; crisp dark silhouette outline. Hand-painted illustration texture, not a CG render: no overly smooth skin, no perfectly symmetrical features, no plastic highlights, no over-sharpened hair strands; keep natural brushwork and slight imperfections. Adult proportions, no childlike or chibi proportions, no big head on a small body.
+    LAYOUT: plain flat uniform warm light-grey background (#E6E1D8); no texture, ink wash, ground, shadow, vignette or frame; at least 6% empty margin around and between figures; align all bun tops at about y=65 and the lowest shoe soles at about y=960; three equal-width columns centered near x=256, 768, 1280; orthographic eye-level view, no perspective distortion. Wide landscape 3:2 canvas, 1536×1024 pixels.
+    EXCLUDE: text, labels, arrows, grids, color swatches, extra views, close-ups, duplicate figures, transparent/checkerboard background.
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
+    uploaded_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/staging/zhujue_f_portrait_1024.jpg
+    uploaded_sha256: a10a2f8c16fb21bb2cc7f865f69b4aa67f0fd2cb43e37be2aa0feaf9f1258b42
+    uploaded_size:
+    - 683
+    - 1024
+    use: Image 1：女主 ch00 唯一身份锚；脸、成年体型、发髻发饰、灰绿及踝长袍、左前结浅灰褐腰带、宽袖内袖、鞋袜；画风以立绘为准
+    uploaded: 第 1 张 -i；长边 1024 JPEG；mode=none，仅 identity_refs，不附画风基线
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:53:18-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_L_r3.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 5630bf5a9d5804074af4e15b4f27572b4221c1200d269efc3a22f10f297b4114
+  status: candidate
+  notes: 'front34 | side | back34，均朝画面左，近侧按解剖学 L。首出后重出 2 次，选 r3。三栏高 958/954/957 px，差 (958−954)/958=0.418%；最低鞋底 y=985/979/982。五条识别锚可见项与立绘一致；前栏右衽可辨，侧/背遮挡项未逐栏证实。臂身背景缝与两鞋可见，袍摆保留及踝。背景众数 RGB(227,221,212)，非严格 #E6E1D8 单色；保留 candidate，未宣称全项通过。'
+- id: npc_zhujue__ch00_f__sheet_R
+  file: sheet_R.png
+  category: rig/sheet
+  style: default
+  subject: 主角·女（npc_zhujue，ch00 身份锚）A 字三视图 · front34 | side | back34 · 面向画面右
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. CRITICAL ACCEPTANCE REQUIREMENTS: This is a RIGGING A-POSE, not a relaxed fashion portrait. In ALL THREE columns, both straight arms must be held away from the torso at 25-30 degrees, creating an UNBROKEN VISIBLE BACKGROUND WEDGE from below the armpit down to each hand. Wide sleeves must not touch the torso or skirt. The side-profile figure also needs visible arm-to-body openings: project its near arm diagonally backward/down and its far arm forward/down, without turning its torso. Do NOT draw the profile arm vertically against the body. Show BOTH shoes separately in the profile column: displace their projected positions a little fore-and-aft while preserving straight standing legs and full ankle-length robe. Never merge the shoes into a single silhouette.
+    The first column is a distinctly ROTATED front three-quarter view with the nose, sternum and feet aimed toward IMAGE RIGHT; show a nearer shoulder and a farther shoulder, NOT a front-facing portrait. The center figure is a true profile toward IMAGE RIGHT. The last figure shows the back rotated toward IMAGE RIGHT. All faces and all toes point toward IMAGE RIGHT, no exceptions. All arms and hands are fully inside the canvas.
+    Paint the entire empty background with ONE constant RGB(230,225,216) #E6E1D8. No paper grain, no smooth gradient, no haze, NO contact shadow underneath any shoe. Figure shading is permitted only inside silhouettes.
+
+    Image 1 is the approved base portrait of this character (the female protagonist, a young adult Chinese woman); use it ONLY for identity (face, age, body type), hairstyle and the exact costume (colors, layers, trims, belt knot position, socks, shoes).
+    IDENTITY ANCHORS, copied exactly from image 1 and identical in every view:
+    (a) dark black-brown hair gathered into a high, softly coiled bun, tied around its base with a faded reddish-brown cloth ribbon with short loose tails; wispy loose strands at the temples and beside the ears; no crown or jewelry.
+    (b) a full ANKLE-LENGTH robe of muted grey sage / grey olive-green woven linen, softly flared and pleated from the waist, Han crossed collar right-lapped (wearer's LEFT panel over RIGHT); an oatmeal-cream inner crossed collar visible at the neck; subtle pale double seam lines near the hem; keep the original long robe, never shorten it or turn it into trousers.
+    (c) a wide pale grey-taupe cloth sash, lighter than the robe, wrapped in several folds and tied at the FRONT slightly toward the wearer's own LEFT side; two long flat ends descend over her left front skirt toward the upper-to-middle shin, with unequal tips; never relocate this knot to the other side.
+    (d) long loose wide outer sleeves in the same muted grey sage fabric, pale stitching near the cuffs, with narrow oatmeal-cream inner sleeve cuffs visible and both hands exposed.
+    (e) simple muted grey olive cloth shoes with low pale beige soles, cream-white socks visible at the ankles; no boots, leg wraps, heels, or bare feet.
+    A young ADULT Chinese woman with the same face as image 1, slim adult build and approximately 7.5-head adult proportions; no childlike face or body.
+
+    TASK: a clean CHARACTER TURNAROUND MODEL SHEET of this same person for a 2D cut-out puppet rig. Exactly THREE full-body figures side by side, left to right:
+    (1) FRONT THREE-QUARTER: body turned 45° toward the viewer's RIGHT, face and chest visible; the character's RIGHT shoulder, arm and leg are nearer to the viewer (they appear on the left side of this figure).
+    (2) RIGHT-FACING SIDE PROFILE: the character faces the right edge of the image in a true 90° profile; the character's RIGHT side is toward the viewer.
+    (3) BACK THREE-QUARTER: facing away toward the upper-right; back of head and back visible; the character's RIGHT side is nearer to the viewer (it appears on the right side of this figure).
+    All three figures face the RIGHT side of the image. This is NOT a mirrored copy of a left-facing sheet: the asymmetric costume details stay on the same body side as in image 1 — the collar is still right-lapped (wearer's left panel over right), and the sash knot with its two hanging ends is still at the front on the character's own LEFT side, which is now the far side, so it is partly hidden in the side and back views.
+    POSE identical in all three: neutral A-pose, arms straight and held about 20–30° away from the body so the armpits show background; palms toward the thighs, fingers relaxed and slightly apart; legs straight, feet shoulder-width apart, both soles on one common ground line; head level. Hands EMPTY (no weapon or prop). The robe remains ankle-length: cloth between the legs is EXPECTED and correct. Do not demand a gap through the skirt; only require visible flat background between each arm/sleeve and the torso, and TWO separately readable shoes beneath the hem. The wide sleeves must hang clear of the waist rather than merge into the skirt. For the profile A-pose, keep the torso in true profile and slightly separate the arm silhouettes in projection so the near armpit/arm-to-body opening is readable.
+    CONSISTENCY: same height (crown and soles aligned), same scale, same costume details in every view; Han crossed collar right-lapped (wearer's left panel over right) in every view; never mirror a view.
+    STYLE: same refined realistic hand-painted rendering as image 1; soft diffuse light from the upper left; muted colors; crisp dark silhouette outline. Hand-painted illustration texture, not a CG render: no overly smooth skin, no perfectly symmetrical features, no plastic highlights, no over-sharpened hair strands; keep natural brushwork and slight imperfections. Adult proportions, no childlike or chibi proportions, no big head on a small body.
+    LAYOUT: plain flat uniform warm light-grey background (#E6E1D8); no texture, ink wash, ground, shadow, vignette or frame; at least 6% empty margin around and between figures; align all bun tops at about y=65 and the lowest shoe soles at about y=960; three equal-width columns centered near x=256, 768, 1280; orthographic eye-level view, no perspective distortion. Wide landscape 3:2 canvas, 1536×1024 pixels.
+    EXCLUDE: text, labels, arrows, grids, color swatches, extra views, close-ups, duplicate figures, transparent/checkerboard background.
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
+    uploaded_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/staging/zhujue_f_portrait_1024.jpg
+    uploaded_sha256: a10a2f8c16fb21bb2cc7f865f69b4aa67f0fd2cb43e37be2aa0feaf9f1258b42
+    uploaded_size:
+    - 683
+    - 1024
+    use: Image 1：女主 ch00 唯一身份锚；脸、成年体型、发髻发饰、灰绿及踝长袍、左前结浅灰褐腰带、宽袖内袖、鞋袜；画风以立绘为准
+    uploaded: 第 1 张 -i；长边 1024 JPEG；mode=none，仅 identity_refs，不附画风基线
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:49:32-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_R_r2.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: f45a51c90d9c5b0fe272535b7557d31e3381c6ea546fed7437a230d4593a0091
+  status: candidate
+  notes: front34 | side | back34，均朝画面右，近侧按解剖学 R；独立生成，无翻转。首出后重出 2 次，选 r2（r3 侧栏手臂重新贴身）。三栏高 973/973/970 px，差 (973−970)/973=0.308%；最低鞋底 y=993/993/990。五条识别锚可见项一致，左前结在侧/背面受遮挡。臂身缝与两鞋可见；侧栏躯干略偏转，严格 90° 尚有疑点。背景众数 RGB(227,221,212)，非严格指定单色；保留 candidate，未宣称全项通过。
+- id: npc_zhujue__ch00_f__sheet_side_L
+  file: sheet_side_L.png
+  category: rig/sheet
+  style: default
+  subject: 主角·女（npc_zhujue，ch00 身份锚）纯侧视三姿势补图 · 错步站立 | 抬膝走步 | 平举双臂并足 · 面向画面左
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. VIEW 1 KNEE READABILITY CORRECTION (highest priority): In view 1 the long robe drapes over the slightly bent forward knee, so the knee position and the forward thigh line are clearly readable through the fabric (a visible knee bump and diagonal folds), not a straight vertical hem.
+    In the first figure ONLY, gently bend the forward knee about 15-20 degrees from straight while keeping both heels fully on the floor and the feet half a step apart. The forward knee pushes the opaque cloth outward into a small but unmistakable rounded bulge at actual knee height. Draw a readable diagonal cloth-tension ridge from the front hip down and forward to this knee bump, then let the cloth fall back toward the forward ankle. The viewer must be able to point to the forward knee and trace the forward thigh without guessing. Keep the robe ankle-length and naturally draped, not skin-tight, not open or transparent; no exposed leg, no new slit. Maintain upright shoulders, strict pure side profile and separated fore/aft shoes. The overall standing pose stays mild, not a crouch or lunge. Preserve the existing descriptions for views 2 and 3 below.
+
+    FINAL ARM-CLEARANCE FIX: In pose 1, do NOT let either sleeve lie against the waist or skirt. Both arms must be relaxed and almost straight, but held 25-30 degrees away in opposite fore/aft directions so an actual triangle of flat background is visible between each sleeve and body, continuing below the sleeve cuff. There must be a clear gap at least 20 pixels wide between each empty hand and the robe. Preserve BOTH soles fully planted and the small half-step stagger. Pose 2 also needs the sleeve-to-body gaps and a raised front knee bend of about 100 degrees. Pose 3 must keep exactly TWO horizontal sleeves and no vertical/ghost sleeve. In ALL poses the torso remains narrow, strict 90-degree profile with the far shoulder hidden behind the near shoulder; never widen the chest to show a crossed frontal V collar. The robe remains ankle-length.
+
+    CRITICAL CORRECTION: EXACTLY TWO ARMS AND TWO SLEEVES PER FIGURE. In the third figure, BOTH arms are extended horizontally: the ONLY two sleeves extend left and right, and NO sleeve or arm hangs down. Never add a third sleeve along the torso, no ghost arm, no duplicated limb. Use one arm forward and one backward from the same narrow side-profile shoulder region; the rear arm root is hidden by the near shoulder. Preserve a PURE SIDE TORSO in all three figures: one visible lateral flank, shoulders and hips overlapping in projection, no broad frontal neckline or breastplate-shaped front panel. Do not turn the third torso to expose a broad back. For the first two poses, face, chest center and pelvis must all be aimed exactly at the left edge; avoid a profile face with a front-three-quarter torso.
+    Pose 1: BOTH heels and soles planted, front and back foot only half a step apart; don't raise the rear heel. Pose 2: raised front knee readable under the long robe, interior angle about 100 degrees, both shoes distinct. Pose 3: only the TWO horizontal arms; absolutely no lowered sleeve.
+    Background is a single constant digital fill #E6E1D8; discard reference paper shading and any floor shadow. No annotations.
+
+    CRITICAL PROFILE AND ARM CLEARANCE REQUIREMENTS: All three figures have the SAME strictly edge-on 90-degree body orientation, including the T-pose. Nose, sternum and toes point directly SIDEWAYS. Only the lateral surface of the torso is visible. The T-pose must NOT show a broad frontal chest or broad back; keep the shoulder-to-hip torso as narrow as the other two side profiles. The shoulder joints are almost coincident in projection. The near arm extends horizontally forward from that shared side-profile shoulder region; the far arm extends horizontally backward BEHIND that shoulder, with its root hidden by the torso. This is deliberately a sagittal-plane T silhouette, NOT the frontal anatomical T-pose. Keep the collar as a narrow edge-on collar, never a broad V across a visible chest.
+    In the first standing pose, BOTH arms descend about 15-20 degrees away from vertical in opposite fore/aft directions: near arm a little backward, far arm a little forward. Keep visible warm-grey triangular gaps between BOTH sleeves/forearms and the torso, at least 15 pixels wide below the armpits; hands must NOT touch or cover the robe or thighs. Use relaxed straight arms, not a marching arm pose. Do not hide one arm directly behind the other.
+    COMPOSITION: Make all three figures about 850 pixels high, topknots near y=75, planted soles near y=925. Three figures can have unequal horizontal space but must have exactly the same physical scale. Keep the third figure's outstretched fingers at least 45 pixels from the canvas edges. Avoid overlap even in horizontal bounding boxes. Flat background to the bottom edge, no shadows.
+
+    Use case: stylized-concept. Asset type: supplemental character side-profile pose sheet for a 2D cut-out puppet rig.
+    Image 1 is the approved base portrait of this character; use it ONLY for identity (face, age, body type) and hairstyle. Image 2 is the existing turnaround sheet of the same character; match costume exactly (colors, layers, trims, belt knot position, socks, shoes). Neither image is an edit target: generate one new complete sheet.
+    IDENTITY ANCHORS, copied exactly from image 1 and identical in every view:
+    (a) dark black-brown hair gathered into a high, softly coiled bun, tied around its base with a faded reddish-brown cloth ribbon with short loose tails; wispy loose strands at the temples and beside the ears; no crown or jewelry.
+    (b) a full ANKLE-LENGTH robe of muted grey sage / grey olive-green woven linen, softly flared and pleated from the waist, Han crossed collar right-lapped (wearer's LEFT panel over RIGHT); an oatmeal-cream inner crossed collar visible at the neck; subtle pale double seam lines near the hem; keep the original long robe, never shorten it or turn it into trousers.
+    (c) a wide pale grey-taupe cloth sash, lighter than the robe, wrapped in several folds and tied at the FRONT slightly toward the wearer's own LEFT side; two long flat ends descend over her left front skirt toward the upper-to-middle shin, with unequal tips; never relocate this knot to the other side.
+    (d) long loose wide outer sleeves in the same muted grey sage fabric, pale stitching near the cuffs, with narrow oatmeal-cream inner sleeve cuffs visible and both hands exposed.
+    (e) simple muted grey olive cloth shoes with low pale beige soles, cream-white socks visible at the ankles; no boots, leg wraps, heels, or bare feet.
+    A young ADULT Chinese woman with the same face as image 1, slim adult build and approximately 7.5-head adult proportions; no childlike face or body.
+    TASK: Exactly THREE separate full-body figures of this SAME woman, arranged left to right on a single 1536x1024 landscape canvas. All THREE figures face the LEFT edge of the image in true 90-degree profile. Show only one eye per face, a profile nose, narrow side torso and side-on hips; NO frontal, three-quarter or back views. The character's anatomical LEFT side is nearest the camera.
+    pure side (profile) views only; the robe follows the legs so the front knee position is readable; feet clearly separated. Keep both heads AND torsos at EXACTLY 90 degrees to camera, never a profile head on a three-quarter body. Clothing can cover the legs: do not make a hole through the skirt or expose skin to satisfy a silhouette gap. This separation requirement applies especially to the first TWO poses; pose 3 deliberately has feet together. Every figure has exactly two arms, two hands, two legs and two feet; hands empty. Show each limb as a clear independent silhouette wherever the pose allows it. The ANKLE-LENGTH robe drapes and lifts naturally over the stepping knee; maintain its full original fabric length and layered hem. Use cloth tension and folds over the raised thigh and knee to reveal the leg position. Preserve the original opaque long robe; do not replace it with trousers, a short skirt, or a thigh-high slit. Both shoes must emerge as distinct forms below the draped hem. Sash tails hang on the same left-front hip and follow gravity.
+    POSE 1 (left figure): relaxed upright standing body, feet staggered fore-and-aft by HALF A STEP along the direction she faces, both soles planted at one common baseline, forward knee gently but visibly bent under the fabric. The near leg is in front of her, far leg behind. Let the long robe follow the two leg directions with readable front-knee contour and folds; the two shoes must be clearly separated fore-and-aft with a small wedge of flat background between them beneath the hem. Both arms hang naturally, slightly away from the torso and slightly fore-and-aft so both empty hands and background beneath the armpits are visible. This is a mild staggered stand, not a wide lunge.
+    POSE 2 (middle figure): same upright pure-profile body and scale; a walking high-knee instant. Lift the FRONT / near thigh forward until almost horizontal; the knee's INTERNAL angle between thigh and lower leg is about 100 degrees, with the lower leg hanging downward. Far / back leg remains planted and nearly straight. The raised foot is clearly above the baseline and clear of the planted leg. The long robe drapes over the front thigh and forms a clear knee bend of about 100 degrees in its outer contour; show the raised shoe separately from the planted shoe. The front foot is a little farther FORWARD than its knee, so the internal knee angle is 100 degrees rather than 80 degrees. Do not shorten the robe or turn its folds into separate exposed trouser legs. Swing the two arms forward and backward in opposition to the legs; both arms and empty hands distinct from the torso and legs with open armpits.
+    POSE 3 (right figure): both feet TOGETHER, both knees straight, torso and face STILL IN PURE SIDE PROFILE. Both arms fully straight at shoulder height, one reaching horizontally forward and the other horizontally backward in the image plane: a side-profile T silhouette, with grey background beneath both outstretched arms. Keep the torso narrow and side-on; do not turn the chest toward the viewer to make the T pose. No bent elbows, no lowered arm, no arm pointing at the camera.
+    CONSISTENCY: identical body height, head size, limb proportions and camera height across the three figures. Align the topknots and planted soles on common horizontal levels; pose 2 keeps upright height through its straight supporting leg. Orthographic eye-level view, no perspective or foreshortened torso. Allow more horizontal room for the T silhouette so it never touches the middle figure; keep all fingers, hair and feet inside the image with empty margins. Do not overlap figures. Draw this LEFT-facing sheet anew, preserving the sash knot on the visible anatomical left-front hip.
+    STYLE: match the refined realistic hand-painted rendering and subdued costume colors of the references, crisp silhouette edges, subtle natural brushwork, soft diffuse light from upper left. No plastic skin, no CG gloss, no chibi proportions.
+    BACKGROUND: one flat uniform warm light-grey color (#E6E1D8), untextured from edge to edge. No floor, NO ground shadows or contact shadows, no scenery, gradients, vignette or frame. EXCLUDE text, labels, arrows, grids, color swatches, close-ups, extra views, extra characters, weapons, props, transparent or checkerboard backgrounds.
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
+    uploaded_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/staging/zhujue_f_portrait_1024.jpg
+    uploaded_sha256: a10a2f8c16fb21bb2cc7f865f69b4aa67f0fd2cb43e37be2aa0feaf9f1258b42
+    uploaded_size:
+    - 683
+    - 1024
+    use: Image 1：女主 ch00 唯一身份锚；脸、成年体型、发髻发饰、灰绿及踝长袍、左前结浅灰褐腰带、宽袖内袖、鞋袜；画风以立绘为准
+    uploaded: 第 1 张 -i；长边 1024 JPEG；mode=none，仅 identity_refs，不附画风基线
+  - path: assets/default/rig/npc_zhujue__ch00_f/sheet/sheet_L.png
+    sha256: 5630bf5a9d5804074af4e15b4f27572b4221c1200d269efc3a22f10f297b4114
+    uploaded_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/staging/zhujue_f_sheet_L_1024.jpg
+    uploaded_sha256: 57dfed48fa7d185b0b0dfdc066e6268560269b3c800ca7bd7f5de08213fa681a
+    uploaded_size:
+    - 1024
+    - 683
+    use: Image 2：本任务已出的女主 A 字三视图 L（r3），匹配同一套及踝长袍、配色、层次、左前结位与鞋袜；中央栏仅供侧向外形参考，不继承 A 字姿势
+    uploaded: 第 2 张 -i；长边 1024 JPEG；mode=none，仅 identity_refs，不附画风基线
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T14:33:44-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_side_L_r4.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 5ba7f507ec0f1ee615e794fb1e2fc593424f7355f9f4a5afe2bd239d0e3048da
+  status: candidate
+  notes: 纯侧视三姿势：错步站立 | 抬膝走步 | 并足平举双臂，三栏朝左，近侧 L；独立生成，未翻转。按 2026-10-03 14:35 追踪者返修说明，本轮重出 1 次，选 r4；累计生成 4 次、首出后累计重出 3 次（此前 2 次＋本轮 1 次）。三栏高 927/925/930 px，差 0.538%；最低鞋底 y=957/955/960。第①栏前膝顶出袍面，斜向衣褶可读；第①②栏纯侧视、双鞋分离，袖身背景缝可见。五条识别锚可见项与立绘一致，长袍保留及踝；右衽/远侧结位受遮挡时与 A 字图联核。第三栏为画面内前后平举双臂，不用于分腿。约 100° 膝角未以衣下真实骨点测量。肉眼浅暖灰平底，无明显渐变/地面投影；四角 50×50 px 抽样最大逐通道极差 7（右下蓝通道），如实记入 QA，不宣称所有像素波动 ≤6。PNG 原样保存；candidate，髋膝与补遮挡交下游人工复核。
+- id: npc_zhujue__ch00_f__sheet_side_R
+  file: sheet_side_R.png
+  category: rig/sheet
+  style: default
+  subject: 主角·女（npc_zhujue，ch00 身份锚）纯侧视三姿势补图 · 错步站立 | 抬膝走步 | 平举双臂并足 · 面向画面右
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. VIEW 1 KNEE READABILITY CORRECTION (highest priority): In view 1 the long robe drapes over the slightly bent forward knee, so the knee position and the forward thigh line are clearly readable through the fabric (a visible knee bump and diagonal folds), not a straight vertical hem.
+    In the first figure ONLY, gently bend the forward knee about 15-20 degrees from straight while keeping both heels fully on the floor and the feet half a step apart. The forward knee pushes the opaque cloth outward into a small but unmistakable rounded bulge at actual knee height. Draw a readable diagonal cloth-tension ridge from the front hip down and forward to this knee bump, then let the cloth fall back toward the forward ankle. The viewer must be able to point to the forward knee and trace the forward thigh without guessing. Keep the robe ankle-length and naturally draped, not skin-tight, not open or transparent; no exposed leg, no new slit. Maintain upright shoulders, strict pure side profile and separated fore/aft shoes. The overall standing pose stays mild, not a crouch or lunge. Preserve the existing descriptions for views 2 and 3 below.
+
+    FINAL ANATOMY AND PROFILE CHECK: Exactly TWO hands per figure. In pose 3 one single hand appears at the LEFT end of the horizontal arms and one single hand at the RIGHT end. Never overlap two hands at one end, no ghost fingers, no third arm or third sleeve. Both arms are fully horizontal; neither points toward the camera. Keep the torso edge-on at a true 90-degree right-facing profile, no broad back or three-quarter torso. The near shoulder hides the far shoulder root. Keep poses 1 and 2 in the same strict right-facing PROFILE orientation, with the face and sternum directed to the right edge, not to the camera.
+    In pose 1 both shoes have soles flat on the SAME baseline, no raised rear heel, and sleeve-to-body background openings remain visible. Pose 2 has a 100-degree internal front knee bend under the draped full-length robe: raised foot a little FORWARD of the knee; its supporting leg maintains the same crown height as the other figures. Do not reduce the figure's scale for the raised leg. Preserve original ankle-length fabric. Entire background a single flat #E6E1D8, no shoe shadows.
+
+    CRITICAL CORRECTION: EXACTLY TWO ARMS AND TWO SLEEVES PER FIGURE. In the third figure, BOTH arms are extended horizontally: the ONLY two sleeves extend left and right, and NO sleeve or arm hangs down. Never add a third sleeve along the torso, no ghost arm, no duplicated limb. Use one arm forward and one backward from the same narrow side-profile shoulder region; the rear arm root is hidden by the near shoulder. Preserve a PURE SIDE TORSO in all three figures: one visible lateral flank, shoulders and hips overlapping in projection, no broad frontal neckline or breastplate-shaped front panel. Do not turn the third torso to expose a broad back. For the first two poses, face, chest center and pelvis must all be aimed exactly at the right edge; avoid a profile face with a front-three-quarter torso.
+    Pose 1: BOTH heels and soles planted, front and back foot only half a step apart; don't raise the rear heel. Pose 2: raised front knee readable under the long robe, interior angle about 100 degrees, both shoes distinct. Pose 3: only the TWO horizontal arms; absolutely no lowered sleeve.
+    Background is a single constant digital fill #E6E1D8; discard reference paper shading and any floor shadow. No annotations.
+
+    CRITICAL PROFILE AND ARM CLEARANCE REQUIREMENTS: All three figures have the SAME strictly edge-on 90-degree body orientation, including the T-pose. Nose, sternum and toes point directly SIDEWAYS. Only the lateral surface of the torso is visible. The T-pose must NOT show a broad frontal chest or broad back; keep the shoulder-to-hip torso as narrow as the other two side profiles. The shoulder joints are almost coincident in projection. The near arm extends horizontally forward from that shared side-profile shoulder region; the far arm extends horizontally backward BEHIND that shoulder, with its root hidden by the torso. This is deliberately a sagittal-plane T silhouette, NOT the frontal anatomical T-pose. Keep the collar as a narrow edge-on collar, never a broad V across a visible chest.
+    In the first standing pose, BOTH arms descend about 15-20 degrees away from vertical in opposite fore/aft directions: near arm a little backward, far arm a little forward. Keep visible warm-grey triangular gaps between BOTH sleeves/forearms and the torso, at least 15 pixels wide below the armpits; hands must NOT touch or cover the robe or thighs. Use relaxed straight arms, not a marching arm pose. Do not hide one arm directly behind the other.
+    COMPOSITION: Make all three figures about 850 pixels high, topknots near y=75, planted soles near y=925. Three figures can have unequal horizontal space but must have exactly the same physical scale. Keep the third figure's outstretched fingers at least 45 pixels from the canvas edges. Avoid overlap even in horizontal bounding boxes. Flat background to the bottom edge, no shadows.
+
+    Use case: stylized-concept. Asset type: supplemental character side-profile pose sheet for a 2D cut-out puppet rig.
+    Image 1 is the approved base portrait of this character; use it ONLY for identity (face, age, body type) and hairstyle. Image 2 is the existing turnaround sheet of the same character; match costume exactly (colors, layers, trims, belt knot position, socks, shoes). Neither image is an edit target: generate one new complete sheet.
+    IDENTITY ANCHORS, copied exactly from image 1 and identical in every view:
+    (a) dark black-brown hair gathered into a high, softly coiled bun, tied around its base with a faded reddish-brown cloth ribbon with short loose tails; wispy loose strands at the temples and beside the ears; no crown or jewelry.
+    (b) a full ANKLE-LENGTH robe of muted grey sage / grey olive-green woven linen, softly flared and pleated from the waist, Han crossed collar right-lapped (wearer's LEFT panel over RIGHT); an oatmeal-cream inner crossed collar visible at the neck; subtle pale double seam lines near the hem; keep the original long robe, never shorten it or turn it into trousers.
+    (c) a wide pale grey-taupe cloth sash, lighter than the robe, wrapped in several folds and tied at the FRONT slightly toward the wearer's own LEFT side; two long flat ends descend over her left front skirt toward the upper-to-middle shin, with unequal tips; never relocate this knot to the other side.
+    (d) long loose wide outer sleeves in the same muted grey sage fabric, pale stitching near the cuffs, with narrow oatmeal-cream inner sleeve cuffs visible and both hands exposed.
+    (e) simple muted grey olive cloth shoes with low pale beige soles, cream-white socks visible at the ankles; no boots, leg wraps, heels, or bare feet.
+    A young ADULT Chinese woman with the same face as image 1, slim adult build and approximately 7.5-head adult proportions; no childlike face or body.
+    TASK: Exactly THREE separate full-body figures of this SAME woman, arranged left to right on a single 1536x1024 landscape canvas. All THREE figures face the RIGHT edge of the image in true 90-degree profile. Show only one eye per face, a profile nose, narrow side torso and side-on hips; NO frontal, three-quarter or back views. The character's anatomical RIGHT side is nearest the camera.
+    pure side (profile) views only; the robe follows the legs so the front knee position is readable; feet clearly separated. Keep both heads AND torsos at EXACTLY 90 degrees to camera, never a profile head on a three-quarter body. Clothing can cover the legs: do not make a hole through the skirt or expose skin to satisfy a silhouette gap. This separation requirement applies especially to the first TWO poses; pose 3 deliberately has feet together. Every figure has exactly two arms, two hands, two legs and two feet; hands empty. Show each limb as a clear independent silhouette wherever the pose allows it. The ANKLE-LENGTH robe drapes and lifts naturally over the stepping knee; maintain its full original fabric length and layered hem. Use cloth tension and folds over the raised thigh and knee to reveal the leg position. Preserve the original opaque long robe; do not replace it with trousers, a short skirt, or a thigh-high slit. Both shoes must emerge as distinct forms below the draped hem. Sash tails hang on the same left-front hip and follow gravity.
+    POSE 1 (left figure): relaxed upright standing body, feet staggered fore-and-aft by HALF A STEP along the direction she faces, both soles planted at one common baseline, forward knee gently but visibly bent under the fabric. The near leg is in front of her, far leg behind. Let the long robe follow the two leg directions with readable front-knee contour and folds; the two shoes must be clearly separated fore-and-aft with a small wedge of flat background between them beneath the hem. Both arms hang naturally, slightly away from the torso and slightly fore-and-aft so both empty hands and background beneath the armpits are visible. This is a mild staggered stand, not a wide lunge.
+    POSE 2 (middle figure): same upright pure-profile body and scale; a walking high-knee instant. Lift the FRONT / near thigh forward until almost horizontal; the knee's INTERNAL angle between thigh and lower leg is about 100 degrees, with the lower leg hanging downward. Far / back leg remains planted and nearly straight. The raised foot is clearly above the baseline and clear of the planted leg. The long robe drapes over the front thigh and forms a clear knee bend of about 100 degrees in its outer contour; show the raised shoe separately from the planted shoe. The front foot is a little farther FORWARD than its knee, so the internal knee angle is 100 degrees rather than 80 degrees. Do not shorten the robe or turn its folds into separate exposed trouser legs. Swing the two arms forward and backward in opposition to the legs; both arms and empty hands distinct from the torso and legs with open armpits.
+    POSE 3 (right figure): both feet TOGETHER, both knees straight, torso and face STILL IN PURE SIDE PROFILE. Both arms fully straight at shoulder height, one reaching horizontally forward and the other horizontally backward in the image plane: a side-profile T silhouette, with grey background beneath both outstretched arms. Keep the torso narrow and side-on; do not turn the chest toward the viewer to make the T pose. No bent elbows, no lowered arm, no arm pointing at the camera.
+    CONSISTENCY: identical body height, head size, limb proportions and camera height across the three figures. Align the topknots and planted soles on common horizontal levels; pose 2 keeps upright height through its straight supporting leg. Orthographic eye-level view, no perspective or foreshortened torso. Allow more horizontal room for the T silhouette so it never touches the middle figure; keep all fingers, hair and feet inside the image with empty margins. Do not overlap figures. Draw this RIGHT-facing sheet independently, NOT by flipping the left reference. Keep the same right-lapped closure and sash knot on the anatomical LEFT FRONT hip, now on the far side: the knot can be occluded, its tails may peek around the front edge, but do not relocate it to the visible right hip.
+    STYLE: match the refined realistic hand-painted rendering and subdued costume colors of the references, crisp silhouette edges, subtle natural brushwork, soft diffuse light from upper left. No plastic skin, no CG gloss, no chibi proportions.
+    BACKGROUND: one flat uniform warm light-grey color (#E6E1D8), untextured from edge to edge. No floor, NO ground shadows or contact shadows, no scenery, gradients, vignette or frame. EXCLUDE text, labels, arrows, grids, color swatches, close-ups, extra views, extra characters, weapons, props, transparent or checkerboard backgrounds.
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 44221c43a90971918b3539944528ce86f24f16b90e711f92451c0f7f19ebd490
+    uploaded_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/staging/zhujue_f_portrait_1024.jpg
+    uploaded_sha256: a10a2f8c16fb21bb2cc7f865f69b4aa67f0fd2cb43e37be2aa0feaf9f1258b42
+    uploaded_size:
+    - 683
+    - 1024
+    use: Image 1：女主 ch00 唯一身份锚；脸、成年体型、发髻发饰、灰绿及踝长袍、左前结浅灰褐腰带、宽袖内袖、鞋袜；画风以立绘为准
+    uploaded: 第 1 张 -i；长边 1024 JPEG；mode=none，仅 identity_refs，不附画风基线
+  - path: assets/default/rig/npc_zhujue__ch00_f/sheet/sheet_L.png
+    sha256: 5630bf5a9d5804074af4e15b4f27572b4221c1200d269efc3a22f10f297b4114
+    uploaded_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/staging/zhujue_f_sheet_L_1024.jpg
+    uploaded_sha256: 57dfed48fa7d185b0b0dfdc066e6268560269b3c800ca7bd7f5de08213fa681a
+    uploaded_size:
+    - 1024
+    - 683
+    use: Image 2：本任务已出的女主 A 字三视图 L（r3），匹配同一套及踝长袍、配色、层次、左前结位与鞋袜；中央栏仅供侧向外形参考，不继承 A 字姿势
+    uploaded: 第 2 张 -i；长边 1024 JPEG；mode=none，仅 identity_refs，不附画风基线
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T14:35:51-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w20/out/zhujue_f_sheet_side_R_r4.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 881d5078e98e16b8a96da1726a659a7628440d19de069d0704786eaeef02d6f4
+  status: candidate
+  notes: 纯侧视三姿势：错步站立 | 抬膝走步 | 并足平举双臂，三栏朝右，近侧 R；独立生成，未翻转。按 2026-10-03 14:35 追踪者返修说明，本轮重出 1 次，选 r4；累计生成 4 次、首出后累计重出 3 次（此前 2 次＋本轮 1 次）。三栏高 939/936/941 px，差 0.531%；最低鞋底 y=970/968/973。第①栏前膝顶出袍面，斜向衣褶可读；第①②栏纯侧视、双鞋分离，袖身背景缝可见。五条识别锚可见项与立绘一致，长袍保留及踝；右衽/远侧结位受遮挡时与 A 字图联核。第三栏躯干略偏背，依补充裁定仅记限制，不用作严格侧躯干或分腿源。约 100° 膝角未以衣下真实骨点测量。肉眼浅暖灰平底，无明显渐变/地面投影；四角 50×50 px 抽样最大逐通道极差 7（右下蓝通道），如实记入 QA，不宣称所有像素波动 ≤6。PNG 原样保存；candidate，髋膝与补遮挡交下游人工复核。

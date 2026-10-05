@@ -1,0 +1,46 @@
+id: bld_kit_mongol_shop
+status: candidate
+building: {"type": "bld_kit_mongol_shop", "footprint": [6, 5], "anchor": [261.1267, 282.667], "era": "mongol"}
+anchor_px: [261.1267, 282.667]
+footprint_m:
+- 6
+- 5
+footprint_basis: 【建议值】复用design/22 §3.2 bld_kit_song_dali_shop；形制是功能性原创扩展，非考古复原
+measured_ground_polygon_px: [[85.2319, 273.3666], [277.2728, 369.5525], [437.0214, 291.9674], [244.9806, 195.7815]]
+collision_polygon_m:
+- - 0
+  - 0
+- - 6
+  - 0
+- - 6
+  - 5
+- - 0
+  - 5
+collision_note: 全占地仅规划阻挡代理；毡帐/院落内可行走区域另需细化，不含阴影。
+entrance:
+  edge: S
+  offset_cells: 2
+entrance_note: 规划边中点代理，非门洞实测（待实测）
+height_m: null
+height_note: 未测量；不能由roof顶点与center直接反推整体高度。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+views:
+- rotation_deg: 0
+  yaw_deg_requested: 45
+  pitch_deg_requested: 30
+  file: bld_kit_mongol_shop.png
+glb: null
+projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [352, 176], "ground_width_px": 351.7895, "ground_height_measured_px": 173.771, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": true}
+geometry_qa: {"source_corners_px": {"left": [50, 587], "front": [835, 980], "right": [1488, 663], "rear_inferred": [703, 270]}, "source_anchor_px": [769.0, 625.0], "source_axis_slopes": [0.5006369426751592, -0.48545176110260335], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.2021439509954057, "expected_width_depth_ratio": 1.2, "ratio_relative_error": 0.0017866258295047288, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": ""}
+pixel_qa: {"mode": "RGBA", "size": [512, 512], "alpha_extrema": [0, 255], "alpha_zero_pixels": 219635, "alpha_partial_pixels": 41753, "alpha_opaque_pixels": 756, "alpha_nonzero_bbox": [82, 139, 438, 372], "transparent_margins_px": [82, 139, 74, 140], "border_alpha_max": 0}
+processing: {"source_archive": "sources/bld_kit_mongol_shop__r2_c02.png", "source_sha256": "608ce0627db59400066b9e608597394f0be71a8e84d203435e5de87f0d0df69c", "source_size": [1536, 1024], "crop_box": [0, 38, 1492, 990], "uniform_scale_requested": 0.24478442280945759, "resized_size": [365, 233], "rounded_effective_scale": [0.24463806970509383, 0.24474789915966386], "paste_offset": [73, 139], "final_file": "bld_kit_mongol_shop.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+selected_candidate: "run2-c2"
+visual_review: "第2轮返修采用本轮候选2；轴率0.50064/-0.48545；宽深比1.20214，目标1.20000；轴率/比例检查分别True/True。仍为candidate，非3D/四向及总装验收。"
+release_ready: false

@@ -1,0 +1,341 @@
+{
+  "effects": {
+    "family": {
+      "source_original_identical": true,
+      "frame_count": 4,
+      "reference_length_px": 579,
+      "root_width_px": 222,
+      "anchors_px": [
+        [
+          148,
+          256
+        ],
+        [
+          148,
+          255
+        ],
+        [
+          148,
+          258
+        ],
+        [
+          148,
+          251
+        ]
+      ],
+      "min_source_margin_px": 41,
+      "border_alpha_ratio_max": 0.0,
+      "residual_white_edge_ratio_max": 0.0,
+      "white_rebuild_max_8bit": 0.725494384765625,
+      "frames": [
+        {
+          "file": "frame_000.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            59,
+            63,
+            726,
+            409
+          ]
+        },
+        {
+          "file": "frame_001.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            58,
+            55,
+            727,
+            414
+          ]
+        },
+        {
+          "file": "frame_002.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            58,
+            53,
+            727,
+            412
+          ]
+        },
+        {
+          "file": "frame_003.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            60,
+            68,
+            719,
+            409
+          ]
+        }
+      ]
+    },
+    "mv_yunvxinjing_bingxin": {
+      "source_original_identical": true,
+      "frame_count": 4,
+      "reference_length_px": 535,
+      "root_width_px": 179,
+      "anchors_px": [
+        [
+          180,
+          283
+        ],
+        [
+          180,
+          281
+        ],
+        [
+          180,
+          282
+        ],
+        [
+          180,
+          278
+        ]
+      ],
+      "min_source_margin_px": 35,
+      "border_alpha_ratio_max": 0.0,
+      "residual_white_edge_ratio_max": 0.0,
+      "white_rebuild_max_8bit": 0.725494384765625,
+      "frames": [
+        {
+          "file": "frame_000.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            93,
+            54,
+            732,
+            437
+          ]
+        },
+        {
+          "file": "frame_001.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            88,
+            39,
+            715,
+            436
+          ]
+        },
+        {
+          "file": "frame_002.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            89,
+            35,
+            732,
+            435
+          ]
+        },
+        {
+          "file": "frame_003.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            87,
+            55,
+            708,
+            431
+          ]
+        }
+      ]
+    },
+    "mv_yunvxinjing_hufa": {
+      "source_original_identical": true,
+      "frame_count": 4,
+      "reference_length_px": 549,
+      "root_width_px": 266,
+      "anchors_px": [
+        [
+          160,
+          257
+        ],
+        [
+          160,
+          257
+        ],
+        [
+          160,
+          262
+        ],
+        [
+          160,
+          258
+        ]
+      ],
+      "min_source_margin_px": 38,
+      "border_alpha_ratio_max": 0.0,
+      "residual_white_edge_ratio_max": 0.0,
+      "white_rebuild_max_8bit": 0.725494384765625,
+      "frames": [
+        {
+          "file": "frame_000.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            58,
+            85,
+            695,
+            429
+          ]
+        },
+        {
+          "file": "frame_001.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            42,
+            64,
+            709,
+            448
+          ]
+        },
+        {
+          "file": "frame_002.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            50,
+            59,
+            730,
+            440
+          ]
+        },
+        {
+          "file": "frame_003.png",
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "bbox_px": [
+            43,
+            59,
+            705,
+            439
+          ]
+        }
+      ]
+    }
+  },
+  "moves": {
+    "mv_yunvxinjing_bingxin": {
+      "geometry": {
+        "visible_bounds_px": [
+          294.59999999999997,
+          170.20000000000002,
+          1110.1682242990653,
+          876.4
+        ],
+        "safe_margin_px": 147.60000000000002,
+        "blank_fraction_lower_bound": 0.633818130493164
+      },
+      "html": {
+        "bytes": 1798086,
+        "embedded_images": 6,
+        "unique_images": 6,
+        "inline_scripts_checked": 1,
+        "only_external_dependency": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js",
+        "browser_verified": false
+      },
+      "matrix": [
+        [
+          0.5981308411214953,
+          0.0
+        ],
+        [
+          0.0,
+          1.0726256983240223
+        ]
+      ],
+      "length_px": 320,
+      "duration_s": 0.9
+    },
+    "mv_yunvxinjing_hufa": {
+      "geometry": {
+        "visible_bounds_px": [
+          294.59999999999997,
+          170.20000000000002,
+          1045.792349726776,
+          876.4
+        ],
+        "safe_margin_px": 147.60000000000002,
+        "blank_fraction_lower_bound": 0.6627222459303226
+      },
+      "html": {
+        "bytes": 2001004,
+        "embedded_images": 6,
+        "unique_images": 6,
+        "inline_scripts_checked": 1,
+        "only_external_dependency": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js",
+        "browser_verified": false
+      },
+      "matrix": [
+        [
+          0.4663023679417122,
+          0.0
+        ],
+        [
+          0.0,
+          0.7218045112781954
+        ]
+      ],
+      "length_px": 256,
+      "duration_s": 0.9
+    },
+    "mv_yunvxinjing_sanre": {
+      "geometry": {
+        "visible_bounds_px": [
+          294.59999999999997,
+          170.20000000000002,
+          988.8,
+          876.4
+        ],
+        "safe_margin_px": 147.60000000000002,
+        "blank_fraction_lower_bound": 0.6883112335205078
+      },
+      "html": {
+        "bytes": 1721641,
+        "embedded_images": 6,
+        "unique_images": 6,
+        "inline_scripts_checked": 1,
+        "only_external_dependency": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js",
+        "browser_verified": false
+      },
+      "matrix": [
+        [
+          0.3316062176165803,
+          0.0
+        ],
+        [
+          0.0,
+          0.8648648648648649
+        ]
+      ],
+      "length_px": 192,
+      "duration_s": 0.6
+    }
+  },
+  "shared_emitter": {
+    "source_palm.png": {
+      "sha256": "f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c",
+      "bytes": 626765,
+      "identical_to_HEAD": true
+    },
+    "emitter-plate.yaml": {
+      "sha256": "049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13",
+      "bytes": 195,
+      "identical_to_HEAD": true
+    }
+  },
+  "manual_review": {
+    "source_sheets": 3,
+    "final_peaks": 3,
+    "browser_webgl_executed": false
+  }
+}

@@ -1,0 +1,62 @@
+id: bld_kit_yuan_south_guardhouse
+status: candidate
+building:
+  type: bld_kit_yuan_south_guardhouse
+  footprint:
+  - 7
+  - 5
+  anchor: &id001
+  - 346.3642
+  - 326.3689
+  era: yuan
+anchor_px: *id001
+footprint_m:
+- 7
+- 5
+footprint_basis: 【建议值】沿用design/22 §3.3南宋guardhouse7×5，同构功能扩展
+entrance:
+  edge: S
+  offset_cells: 3
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+historical_reference_urls:
+- http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+historical_details:
+- 盘门厚城体与石基
+- 滨水守舍比例
+generation_id: ef59628e-8292-4428-86b4-494bd4e5a2ef
+source_record: sources/hist_guardhouse_selected.json
+source_archive: sources/hist_guardhouse_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+pixel_qa:
+  mode: RGBA
+  size:
+  - 672
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 270905
+  alpha_partial_pixels: 72326
+  alpha_opaque_pixels: 833
+  alpha_nonzero_bbox:
+  - 112
+  - 31
+  - 553
+  - 481
+  transparent_margins_px:
+  - 112
+  - 31
+  - 119
+  - 31
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 盘门厚城体与石基；滨水守舍比例；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

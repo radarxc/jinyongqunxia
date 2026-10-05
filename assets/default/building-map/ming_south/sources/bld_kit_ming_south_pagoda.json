@@ -1,0 +1,27 @@
+{
+  "source": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-0c5b37a7-4c73-4955-a9bd-e493e75942fb.png",
+  "prompt": "Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: Ming Jiangnan Buddhist landmark: slender five-storey octagonal brick-and-timber pagoda with dark grey gently upturned clay eaves, aged pale lime and grey-brick body, small recessed openings and modest dark timber galleries. Inspired by Jiangnan brick-and-wood pagoda typology, not an exact named monument. One thin square stone footprint 7 by 7 beneath octagonal body, NO thick pedestal. Full finial and base uncut. IMPORTANT GEOMETRY EDIT: change square tower in source to genuinely OCTAGONAL tower, eight sides, visible angled corner facets, eight roof eaves per storey. Reduce to exactly FIVE storeys. Preserve reference's realistic stone/clay/timber material density and isolated vertical sprite composition. Pale plaster brick body, simple chestnut timber galleries, no ornate gold. Generic regional interpretation, not nine-storey glazed Baoensi reconstruction. Ground square7 by7 at axes±0.5, thin paving rather than thick plinth. Final transparent image only.",
+  "ref": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_pagoda.png",
+  "candidate_count": 1,
+  "source_sha256": "c155939e451a6d7604140c62d248a5755a1c535c79235ed8db9edf4a55f690f5",
+  "source_size_px": [
+    1037,
+    1516
+  ],
+  "source_mode": "RGBA",
+  "source_alpha_extrema": [
+    0,
+    255
+  ],
+  "candidate_index": 1,
+  "selected": true,
+  "selection_note": "首候选入选；八角砖木、五层压缩为原创扩展，不复原报恩寺琉璃塔",
+  "tool": "image_gen built-in",
+  "transparent_background": true,
+  "explicit_image_inputs": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_pagoda.png"
+  ],
+  "image_model": "not_exposed_by_tool",
+  "image_effort": "not_exposed_by_tool",
+  "raw_view_image_inspected": true
+}

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_tianwangbuxin
+name: 天王补心针抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tianwangbuxin
+text:
+  desc: 外观：北宋月白蝴蝶装薄册，青绫包角。
+  lore: 蓬莱医武传人把补心针路清抄成细长薄册，针法、载体与流传均属 （原创扩展）。研读须先辨穴位、脉候与下针次序，只可在假人与师授下校验；抄本止于八层，错针不可拿勇气弥补。
+extension:
+  type: manual
+  value:
+    skill: sk_tianwangbuxin
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tianwangbuxin
+      readWis: 40
+      maxLayer: 8
+      cultivation: 1600

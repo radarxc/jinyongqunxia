@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_tianshanxuelian
+name: 天山雪莲
+kind: material
+sub: herb
+grade: 9
+stack: 999
+chapters: any
+origin: canon
+canonRef: 《书剑恩仇录》·雪山采莲情节
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tianshanxuelian
+text:
+  desc: 外观：白瓣雪莲一朵连根，浅青叶、冰霜边缘。 待运行时投影：perm.resColdPp=3。
+  lore: 《书剑恩仇录》有雪山采莲情节，本作置于西域北疆高山，七至九月花果期固定采得。连根雪莲须妥善护送后静服，主要救治外伤；抗寒、解毒与回复数值均属本作玩法。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di1
+    materialGrade: 9
+    rare: false
+    attributes:
+      version: 2
+      healOuter: 12

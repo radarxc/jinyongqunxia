@@ -1,0 +1,13 @@
+{
+  "tool": "built-in image_gen",
+  "model": "undisclosed image backend",
+  "effort": "not exposed by tool",
+  "created": "2026-10-04T00:04:57.423299+00:00",
+  "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_taixuan/codex-home/generated_images/01a10435-5249-7ca2-ae43-5b501a771799/exec-687268de-f7c6-4244-ba69-fc28b6bc0978.png",
+  "sha256": "d71aaf435ee1178855f729dace6bd590c8202a2045931628a3886a04b8e01128",
+  "prompt": "Use case: stylized-concept. Asset type: FOUR-frame raw sprite sheet for Shibu Yisha, Taixuan Jing close-range rushing strike, original interpretation. Landscape image 1536x1024, PERFECTLY PURE WHITE, invisible 2 by 2 cells, 768x512 each. In the EXACT CENTER of EACH cell put a SMALL horizontal effect occupying ONLY x=140..625 and y=150..360. Huge empty WHITE margin all around each cell; never fill a cell to its edges. Four stages left-to-right, top-to-bottom: gathering, forceful thrust, fullest stroke, thinning echo. The root stays local (170,256); one connected golden qi thrust ends near (615,256). Distinctive motif: two sharp interwoven strokes crossing once into a narrow forward-edged crescent, with thin flowing wisps beneath, expressing a swift committed step and single cutting impulse. Broad translucent root about 100px tall at x=170, tapering toward front. Refined Chinese ink-wash watercolor, open brush gaps, pale gold amber, a few deeper ochre contours, ethereal not solid. Keep same shape and scale between all FOUR frames, vary density only slightly. Transparent-looking pigment on plain white, no solid white highlights, no detached projectiles, no literal weapon or footprints. No people, hands, dragons, calligraphy, text, symbols, labels, borders, grid lines, texture, checkerboard, scenery. Do not generate an entire fight: isolated qi material only. Gold is harmony styling, not canonical novel color.",
+  "references": [],
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "inspection": "view_image: selected source, keyed black and gray contact sheets; original bytes preserved"
+}

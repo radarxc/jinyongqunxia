@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_qingbolixiaoping
+name: 清玻璃小瓶
+kind: collectible
+sub: antique
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingbolixiaoping
+text:
+  desc: 外观：浅烟青透明玻璃小瓶，短颈鼓腹。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 依据古代玻璃器传统设计清代普通小瓶，作为文士商贾互赠的小清玩。具体器型、时代内定位与取得为（原创扩展）；不直接套用晚清鼻烟壶，也不带药剂容量或解毒功能。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

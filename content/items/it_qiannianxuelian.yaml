@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_qiannianxuelian
+name: 千年雪莲
+kind: material
+sub: herb
+grade: 10
+stack: 999
+chapters: any
+origin: expanded
+price: null
+flags:
+- unique
+assets:
+  icon: item/qiannianxuelian
+text:
+  desc: 外观：多层银白花瓣与苍青老根，寒玉匣衬旧绢。
+  lore: 西域北疆雪线遗迹密藏的唯一花株，不设循环采期，“千年”仅是武侠年限分级。苍青老根与银白花冠须完整封存，静服可兼理内外伤。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_tian9
+    materialGrade: 10
+    rare: true
+    herbFamily: xueLian
+    ageYears: 1000
+    attributes:
+      version: 2
+      healInner: 8
+      healOuter: 14

@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_haili
+name: 海蛎
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/haili
+text:
+  desc: 外观：粗灰海蛎六枚带壳置竹篓，湿润海味尺度 （原创扩展）。
+  lore: 闽粤沿海常见的带壳海蛎，冷季肉肥，本件六枚正够一餐。须验壳鲜活后熟制，可入汤或煎食；离开海港便只作短期鲜货。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: fish
+    attributes:
+      version: 2

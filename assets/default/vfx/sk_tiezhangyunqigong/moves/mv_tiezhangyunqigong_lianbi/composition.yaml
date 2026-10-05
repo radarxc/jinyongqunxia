@@ -1,0 +1,33 @@
+# 连臂归气（原创扩展）：自身护体，局部画面长度不定义玩法射程。
+kind: Composition
+version: 1
+asset_id: vfx_mv_tiezhangyunqigong_lianbi__base01
+subject_ref: mv_tiezhangyunqigong_lianbi
+move_ref: mv_tiezhangyunqigong_lianbi
+mode: baseline
+effect_set: ../../effect/mv_tiezhangyunqigong_lianbi/effect-set.yaml
+emitter_plate: ../../../emitters/palm/emitter-plate.yaml
+canvas_px: [1536, 1024]
+background: '#EFE6D2'
+emit_at_px: [600, 560]
+angle_deg: 0
+range_hex: 0
+pixels_per_hex: 128
+length_px: 384
+scale: [1, 1]
+emitter_scale: 0.6
+rhythm: {charge_s: 0.15, release_s: 0.2, sustain_s: 0.4, dissipate_s: 0.15}
+transition:
+  interpolation: crossfade
+  scale_from: 0.95
+  drift_fraction: 0
+  brightness: [0.8, 1, 1, 1, 0.8]
+  directional_mask: {enabled: false, softness: 0.08}
+output:
+  fps: 20
+  loop: true
+  loop_gap_s: 0.4
+  peak_phase: 0.3888888888888889
+  preview_size_px: [768, 512]
+  html_max_bytes: 3000000
+  optional_animation: none

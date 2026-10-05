@@ -1,0 +1,170 @@
+- id: npc_zhujue__ch00_m_charmhigh__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 主角（男）· 高魅力形象（男侠客劲装，AR-45 作者选 B 版）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 58935529-62ca-4072-b07e-47850e12021b
+    url: https://studio.tripo3d.ai/workspace/generate/58935529-62ca-4072-b07e-47850e12021b
+    generate_op: 6fc416f5-b284-49a5-837f-04c9b8d2934c（multiview_to_model）
+    rig_op: 29642f85-d072-41c0-ad8e-588eb1bb012d
+    animation_ops:
+      idle: c4c7904b-07bb-49b5-b379-b8c6b0442144
+      walk: 1778ff02-9a80-4b10-a5ca-5ed706bb482d
+      run: 02c2f050-b0b5-4e4a-9ac7-ea68e81ed077
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: multiview：Front + Left + Back（Right 留空）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_charmhigh_threeview.png
+    sha256: 3116792c96381a0a248119a46c87016c348a8bbd04d780d403c195dcd1323bdd
+    use: 多视图输入：三视图按列投影切成三人并去空白边——Front=左图 裁切框 (118,0)-(535,1010) sha256 53ef0ea7…；Left=中图（脸朝画面左＝角色左侧）(636,0)-(898,1008) sha256 03d60fd2…；Back=右图 (992,0)-(1407,1004) sha256 d39542c2…
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_charmhigh_base.png
+    sha256: 887a1a127f88a5cc99dc94e59cff510424ee0f19f1144d85a4cbb2f8a7ab2731
+    use: 作者选定的高魅力 B 版 base 立绘（三视图据此出图；本模型未直接输入）
+  sha256: fefb8be67ae29358355da41053db35f7766c42d4919a59cb82ed7af97e7e25f4
+  size_bytes: 5956500
+  joints: 65
+  triangles: 98304
+  vertices: 55321
+  animations: []
+  textures:
+  - image/jpeg 460420 B
+  - image/jpeg 1441390 B
+  - image/jpeg 564732 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T17:20:00-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画，绑定姿势）。看图验收：正/左/右/背完整，黑灰劲装 + 红腰带 + 护腕 + 绑腿可辨识，头发黑色、无肉色块；骨架叠加与网格吻合（Hips y0.511、头顶骨端 0.982、双手外展 y0.50、脚 0.063）。
+- id: npc_zhujue__ch00_m_charmhigh__anim_idle_walk_run
+  file: anim_idle_walk_run.glb
+  category: model3d
+  style: default
+  subject: 主角（男）· 高魅力形象（男侠客劲装，AR-45 作者选 B 版）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 58935529-62ca-4072-b07e-47850e12021b
+    url: https://studio.tripo3d.ai/workspace/generate/58935529-62ca-4072-b07e-47850e12021b
+    generate_op: 6fc416f5-b284-49a5-837f-04c9b8d2934c（multiview_to_model）
+    rig_op: 29642f85-d072-41c0-ad8e-588eb1bb012d
+    animation_ops:
+      idle: c4c7904b-07bb-49b5-b379-b8c6b0442144
+      walk: 1778ff02-9a80-4b10-a5ca-5ed706bb482d
+      run: 02c2f050-b0b5-4e4a-9ac7-ea68e81ed077
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: multiview：Front + Left + Back（Right 留空）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - run
+      - walk
+      - idle
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_charmhigh_threeview.png
+    sha256: 3116792c96381a0a248119a46c87016c348a8bbd04d780d403c195dcd1323bdd
+    use: 多视图输入：三视图按列投影切成三人并去空白边——Front=左图 裁切框 (118,0)-(535,1010) sha256 53ef0ea7…；Left=中图（脸朝画面左＝角色左侧）(636,0)-(898,1008) sha256 03d60fd2…；Back=右图 (992,0)-(1407,1004) sha256 d39542c2…
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_charmhigh_base.png
+    sha256: 887a1a127f88a5cc99dc94e59cff510424ee0f19f1144d85a4cbb2f8a7ab2731
+    use: 作者选定的高魅力 B 版 base 立绘（三视图据此出图；本模型未直接输入）
+  sha256: 031ca39597ffbc303cd69054a892d5a5f14cbbc92820cc3df84260e7049df744
+  size_bytes: 6435044
+  joints: 65
+  triangles: 98304
+  vertices: 55321
+  animations:
+  - run (1.25s)
+  - walk (2.333s)
+  - idle (15.333s)
+  textures:
+  - image/jpeg 460420 B
+  - image/jpeg 1441390 B
+  - image/jpeg 564732 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T17:20:00-07:00'
+  status: candidate
+  notes: 一个 GLB 内含三段动画（run 1.25 s / walk 2.333 s / idle 15.333 s，各 195 通道），附带网格与骨架；导出面板「Number of Animations」选 3、Animation stay in Place 开（Hips 仅 Y 向起伏）。比普通形象拆成 3 个文件省约 12 MB。 2026-10-04 修跑步跳位（AR-85 同款，零点数）：Tripo
+    的原地 run 片段整段偏离原点（Hips 水平偏移 x -0.030 / z +0.530，约半个身高），切换动作会跳位；用 tools/model3d/fix_anim_offset.py 平移回原点，只改 Hips 平移通道的水平分量，高度起伏和其他片段不动。
+- id: npc_zhujue__ch00_m_charmhigh__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 主角（男）· 高魅力形象（男侠客劲装，AR-45 作者选 B 版） · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 58935529-62ca-4072-b07e-47850e12021b
+    url: https://studio.tripo3d.ai/workspace/generate/58935529-62ca-4072-b07e-47850e12021b
+    generate_op: 6fc416f5-b284-49a5-837f-04c9b8d2934c（multiview_to_model）
+    rig_op: 29642f85-d072-41c0-ad8e-588eb1bb012d
+    animation_ops:
+      idle: c4c7904b-07bb-49b5-b379-b8c6b0442144
+      walk: 1778ff02-9a80-4b10-a5ca-5ed706bb482d
+      run: 02c2f050-b0b5-4e4a-9ac7-ea68e81ed077
+  size: 600x778
+  sha256: b62eaff03c502cf3e038b8b73d042146e857ecfbf8980909e6292b9970491df5
+  size_bytes: 172540
+  created: '2026-10-03T22:34:27-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

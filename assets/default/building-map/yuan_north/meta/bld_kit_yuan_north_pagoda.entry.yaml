@@ -1,0 +1,82 @@
+id: bld_kit_yuan_north_pagoda
+file: bld_kit_yuan_north_pagoda.png
+category: building-map
+style: default
+subject: 元北方覆钵白塔地标（类型意象，原创扩展）
+prompt: 'Use case: precise-object-edit. Keep white Yuan Dadu stupa type and material detail. Correct square ground apron to TRUE2:1 dimetric projection: both visible base edges must be26.565degrees above horizontal, slopes+0.500 and-0.500; equal side lengths8x8. Current bottom square is too shallow vertically; regenerate camera and corresponding base moldings accordingly. Make bowl slightly broader and lower, less bottle-like, keep simple ringed conical spire and small bronze parasol, no added Chinese roof or figurative sculpture. Main light upper left, only short lower-right contact shadow. Entire object and finial uncut with generous transparent margins. True RGBA transparent background, NO glow, NO landscape, no text.'
+negative: 文字、伪字、人物、现代物、天空、地平线、棋盘格、背景建筑、大阴影、厚地台、清式宫廷装饰、透视消失点、裁切。
+references:
+- {path: assets/default/baseline/building-map/bld_kit_song_southern_pagoda.png, role: 宋基线材质参考，第一候选输入, sha256: 25f3abe13173ce40dd3d3bb6e08b31c6dd4a695e3bda22465a099865765c25bf}
+- {path: assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_pagoda.v01.png, role: 第一候选，几何修订输入, sha256: 7898eb7134e42e9cae284e25f2e15b7003a663504e4e51caa3a21cee4426ef56}
+historical_references:
+- {title: 品读 | 永乐宫的建筑——杜仙洲, url: 'https://sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home', accessed: '2026-09-30', used: 元代木构、单檐庑殿/歇山、平缓屋面、土坯墙和砖裙的形制母题；文中明确部分梁架清修，不能整体倒推元貌。}
+- {title: 北京市文物局：白塔寺的故事, url: 'https://wwj.beijing.gov.cn/bjww/wwjzzcslm/1730488/1730490/1730493/1730495/1730953/index.html', accessed: '2026-09-30', used: 元代白塔与后世重建寺院区别；白塔采用覆钵式类型意象，不复原妙应寺现状。}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:31:47.261630+00:00'
+created_time_basis: 生成后归档时间，非工具披露服务端时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f428-0a78-7231-a1a3-a08a593b4c13/exec-9dac6563-6312-4d27-8d35-19b54c883868.png
+size: 608x832
+sha256: 0343a2795a761858bcb1b7db480bce0eb4f8a311ea3f0f2a9b6f6bfd5c620eb3
+status: candidate
+building:
+  type: bld_kit_yuan_north_pagoda
+  footprint: [8, 8]
+  anchor: [305.7807, 658.5314]
+  era: yuan_north
+footprint_m: [8, 8]
+entrance: {edge: S, offset_cells: 3}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [512, 256]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+processing:
+  source_archive: sources/bld_kit_yuan_north_pagoda.png
+  source_size: [1037, 1516]
+  source_sha256: c345d1c43f975e65f1f4771621d27c0a5496505b725dfa24f029eef18970fd71
+  crop_box: [0, 27, 1026, 1506]
+  uniform_scale_requested: 0.5084409136047666
+  resized_size: [522, 752]
+  rounded_effective_scale: [0.5087719298245614, 0.5084516565246788]
+  paste_offset: [43, 40]
+  steps: [crop to alpha>0 bbox, uniform LANCZOS resize; round dimensions to pixels, paste without mask into transparent canvas; no warp/repaint/flip/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [13, 1242]
+    front: [515, 1499]
+    right: [1020, 1245]
+  source_axis_slopes: [0.5119521912350598, -0.502970297029703]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 0.994059405940594
+  expected_width_depth_ratio: 1.0
+  ratio_relative_error: 0.005940594059405946
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  final_corners_px:
+    left: [49.614, 657.7688]
+    front: [305.0175, 788.4408]
+    right: [561.9474, 659.2941]
+  precision_note: 人工读可见底面左/前/右角，±3px；锚取左右角中点；非图片中心，非3D测绘。
+pixel_qa:
+  mode: RGBA
+  size: [608, 832]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 351309
+  alpha_partial_pixels: 153270
+  alpha_opaque_pixels: 1277
+  alpha_near_opaque_pixels: 145837
+  alpha_nonzero_bbox: [48, 41, 565, 792]
+  transparent_margins_px: [48, 41, 43, 40]
+  border_alpha_max: 0
+candidate_count: 2
+source_record: sources/bld_kit_yuan_north_pagoda.json
+notes: 用元大都覆钵白塔取代宋多层楼阁塔功能位；仅类型意象，尺度8×8为游戏占地，塔身塔刹栏杆非妙应寺复原；避免把明改寺名作为元代原名。
+png_rotations_available: [0]
+allowRotation: false
+anchor_px: [305.7807, 658.5314]
+footprint_basis: 【建议值】元北方同功能模块占地；非上游冻结数值、非历史测绘。
+visual_qa: {source_view_image: true, final_view_image: true, status: candidate, note: 逐张目视轮廓/材质/光向；不替代严格几何、历史复原及作者审批。}

@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_guangmingding_suxian_yuanbing
+name: 光明顶素馅圆饼
+kind: food
+sub: food
+grade: 3
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·光明顶明教聚义，执事分食素馅圆饼
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: meal
+    params:
+      value: bf_qingxin:1battle
+assets:
+  icon: item/guangmingding_suxian_yuanbing
+text:
+  desc: 外观：扁圆素馅饼两枚置粗布，切口露菜菇馅。
+  lore: 《倚天屠龙记》光明顶明教聚义时有执事分食素馅圆饼，本作按山上四季干粮投放。本件以菜菇作馅，可冷食充饥；包装与清心效果属于本作投影。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 12

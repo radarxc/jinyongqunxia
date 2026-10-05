@@ -1,0 +1,400 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: 外放招式两段式与统一模板制作数据 v1
+description: >-
+  JSON Schema 的 YAML 表示；约束制作侧 EffectSet、EmitterPlate、Composition、TemplateComposition。
+  Composition 可导出 JSON 供 Three.js 播放器消费，不定义玩法运行时契约。
+  路径相对所属 YAML，默认限制在同一素材套件目录内；单门共享 emitter 例外见 design/23 §7.3。
+  x-unit 是单位注解，default 是建议而非自动补值；required 字段须显式写出。
+$comment: >-
+  不等同 packages/spec/vfx.schema.json；跨字段、文件、玩法外键与图像校验由
+  VFX-tool 按 design/23 实施。禁止 NaN/Infinity、自定义 YAML tag 与重复键。
+oneOf:
+  - {$ref: '#/$defs/EffectSet'}
+  - {$ref: '#/$defs/EmitterPlate'}
+  - {$ref: '#/$defs/Composition'}
+  - {$ref: '#/$defs/TemplateComposition'}
+$defs:
+  Version:
+    type: integer
+    const: 1
+    description: 制作格式版本，非游戏内容版本。
+    x-unit: version
+    examples: [1]
+  Path:
+    type: string
+    minLength: 1
+    description: POSIX 相对路径；解析后仍在允许根内，单门共享emitter例外见design/23 §7.3。
+    x-unit: path
+    examples: [frame_000.png]
+  AssetId:
+    type: string
+    pattern: '^vfx_[a-z0-9_]+$'
+    description: tech/07 §1.4 素材 ID；不注册新的玩法 ID。
+    x-unit: asset-id
+    examples: [vfx_sk_liumai_beam]
+  Point:
+    type: array
+    minItems: 2
+    maxItems: 2
+    items: {type: number, minimum: 0}
+    description: '[x,y]；左上原点，x右y下；须另校验严格小于相应图宽高。'
+    x-unit: px
+    examples: [[96, 256]]
+  Size:
+    type: array
+    minItems: 2
+    maxItems: 2
+    items: {type: integer, minimum: 1}
+    description: '[width,height]；必须等于实际 PNG 像素尺寸。'
+    x-unit: px
+    examples: [[1024, 512]]
+  Direction:
+    type: array
+    minItems: 2
+    maxItems: 2
+    items: {type: number, minimum: -1, maximum: 1}
+    description: '[dx,dy]；非零单位向量，长度误差不超过 1e-6。'
+    x-unit: ratio
+    examples: [[1, 0]]
+  Rect:
+    type: array
+    minItems: 4
+    maxItems: 4
+    prefixItems:
+      - {type: integer, minimum: 0}
+      - {type: integer, minimum: 0}
+      - {type: integer, minimum: 1}
+      - {type: integer, minimum: 1}
+    items: false
+    description: '[x,y,width,height]，右下边不含；必须落在对应 source 图内。'
+    x-unit: px
+    examples: [[0, 0, 1024, 512]]
+  Blend:
+    type: string
+    enum: [normal, multiply, screen, lighter]
+    description: 线性 RGB 合成，公式见 design/23 §4.3；lighter 不是 lighten。
+    x-unit: enum
+    examples: [screen]
+  Source:
+    type: object
+    additionalProperties: false
+    required: [mode, files, rects, keying]
+    examples:
+      - mode: grid
+        files: [source_01.png]
+        rects:
+          - {file_index: 0, rect_px: [0, 0, 1024, 512]}
+          - {file_index: 0, rect_px: [1056, 0, 1024, 512]}
+          - {file_index: 0, rect_px: [2112, 0, 1024, 512]}
+          - {file_index: 0, rect_px: [3168, 0, 1024, 512]}
+        keying:
+          method: white_key
+          white_cutoff_8bit: 250
+          opaque_luma: 0.20
+          key_full_8bit: 25
+          epsilon: 0.00392156862745098
+          dewhite: true
+    properties:
+      mode: {type: string, enum: [grid, singles], description: 长图分格或独立单图。, x-unit: enum, examples: [singles]}
+      files:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items: {$ref: '#/$defs/Path'}
+        description: 原白底 PNG 清单，原件不可覆盖。
+        x-unit: path-list
+        examples: [[source_01.png, source_02.png, source_03.png, source_04.png]]
+      rects:
+        type: array
+        minItems: 2
+        maxItems: 8
+        description: 与 frames 同序同长；grid 一原件多矩形，singles 每原件一整图矩形。
+        x-unit: crop-list
+        examples: [[{file_index: 0, rect_px: [0, 0, 1024, 512]}, {file_index: 1, rect_px: [0, 0, 1024, 512]}, {file_index: 2, rect_px: [0, 0, 1024, 512]}, {file_index: 3, rect_px: [0, 0, 1024, 512]}]]
+        items:
+          type: object
+          additionalProperties: false
+          required: [file_index, rect_px]
+          properties:
+            file_index: {type: integer, minimum: 0, description: files 的零基索引。, x-unit: index, examples: [0]}
+            rect_px: {$ref: '#/$defs/Rect'}
+      keying: {$ref: '#/$defs/Keying'}
+  Keying:
+    type: object
+    additionalProperties: false
+    required: [method, white_cutoff_8bit, opaque_luma, key_full_8bit, epsilon, dewhite]
+    description: 参数均显式记录；sRGB域判阈值、线性域反解去白底，见 design/23 §2.3。
+    examples:
+      - method: white_key
+        white_cutoff_8bit: 250
+        opaque_luma: 0.20
+        key_full_8bit: 25
+        epsilon: 0.00392156862745098
+        dewhite: true
+    properties:
+      method: {type: string, enum: [white_luma, white_key], description: 亮度或白色色键算法。, x-unit: enum, examples: [white_key]}
+      white_cutoff_8bit: {type: integer, minimum: 1, maximum: 255, default: 250, description: 全通道达到此值即透明。, x-unit: '8-bit', examples: [250]}
+      opaque_luma: {type: number, minimum: 0, exclusiveMaximum: 1, default: 0.20, description: white_luma 的 b；必须小于白阈值归一值。, x-unit: ratio, examples: [0.20]}
+      key_full_8bit: {type: integer, minimum: 1, maximum: 255, default: 25, description: white_key 全保留差值；必须大于 255-white_cutoff_8bit。, x-unit: '8-bit', examples: [25]}
+      epsilon: {type: number, exclusiveMinimum: 0, maximum: 0.00392156862745098, default: 0.00392156862745098, description: 去白底除法下限不超过1/255，8-bit保留像素alpha须不小于它。, x-unit: ratio, examples: [0.00392156862745098]}
+      dewhite: {type: boolean, const: true, description: 必须按白底反解去白边。, x-unit: boolean, examples: [true]}
+  EffectSet:
+    type: object
+    additionalProperties: false
+    required: [kind, version, asset_id, size_px, color_space, alpha_mode, style, direction, reference_length_px, root_width_px, blend, source, frames]
+    description: 两段式4–8帧、统一外放4帧、普通招2–3帧；不含手、人物或纸底。
+    properties:
+      kind: {type: string, const: EffectSet, description: 文档类型。, x-unit: enum, examples: [EffectSet]}
+      version: {$ref: '#/$defs/Version'}
+      asset_id: {$ref: '#/$defs/AssetId'}
+      size_px: {$ref: '#/$defs/Size'}
+      color_space: {type: string, const: srgb, description: 母版颜色编码。, x-unit: enum, examples: [srgb]}
+      alpha_mode: {type: string, const: straight, description: 文件存直 alpha，插值改用预乘。, x-unit: enum, examples: [straight]}
+      style: {type: string, enum: [ink, gold_ink, qi_sword, qi_projection, plain_strike], description: 本作视觉分类；不是武功性质。, x-unit: enum, examples: [qi_sword]}
+      direction: {$ref: '#/$defs/Direction'}
+      reference_length_px: {type: number, exclusiveMinimum: 0, description: 参考峰值从根部到前端的纵向距离，全帧共享。, x-unit: px, examples: [800]}
+      root_width_px: {type: number, exclusiveMinimum: 0, description: 根部垂直于主方向的参考宽度。, x-unit: px, examples: [24]}
+      blend: {$ref: '#/$defs/Blend'}
+      source: {$ref: '#/$defs/Source'}
+      frames:
+        type: array
+        minItems: 2
+        maxItems: 8
+        description: 按 phase 排序；首0尾1；路径唯一且尺寸相同。
+        x-unit: frame-list
+        examples: [[{file: frame_000.png, anchor_px: [96, 256], phase: 0}, {file: frame_001.png, anchor_px: [96, 256], phase: 0.3333333333333333}, {file: frame_002.png, anchor_px: [96, 256], phase: 0.6666666666666666}, {file: frame_003.png, anchor_px: [96, 256], phase: 1}]]
+        items:
+          type: object
+          additionalProperties: false
+          required: [file, anchor_px, phase]
+          properties:
+            file: {$ref: '#/$defs/Path', description: 抠图后 RGBA PNG，路径相对 EffectSet YAML。}
+            anchor_px: {$ref: '#/$defs/Point', description: 本帧效果根部，切格后坐标。}
+            phase: {type: number, minimum: 0, maximum: 1, description: 动作总时长的归一采样时刻。, x-unit: ratio, examples: [0.4]}
+    allOf:
+      - if:
+          properties: {style: {const: plain_strike}}
+        then:
+          properties:
+            blend: {const: normal}
+            frames: {minItems: 2, maxItems: 3}
+        else:
+          properties:
+            frames: {minItems: 4}
+      - if:
+          properties: {style: {const: qi_projection}}
+        then:
+          properties:
+            frames: {minItems: 4, maxItems: 4}
+  EmitterPlate:
+    type: object
+    additionalProperties: false
+    required: [kind, version, file, size_px, color_space, alpha_mode, category, emit_point_px, direction, emission_width_px]
+    description: 独立发出方图与视觉锚点；没有独立玩法 ID。
+    properties:
+      kind: {type: string, const: EmitterPlate, description: 文档类型。, x-unit: enum, examples: [EmitterPlate]}
+      version: {$ref: '#/$defs/Version'}
+      file: {$ref: '#/$defs/Path', description: 原生透明 RGBA PNG，不应用效果白底算法。, examples: [plate.png]}
+      size_px: {$ref: '#/$defs/Size', examples: [[512, 512]]}
+      color_space: {type: string, const: srgb, description: 母版颜色编码。, x-unit: enum, examples: [srgb]}
+      alpha_mode: {type: string, const: straight, description: 文件透明度编码。, x-unit: enum, examples: [straight]}
+      category:
+        type: string
+        enum: [palm, finger, sword_hand, blade_hand, weapon_hand, voice, instrument, throw_hand]
+        description: 发出方造型分类，不能据此推导 projection。
+        x-unit: enum
+        examples: [finger]
+      emit_point_px: {$ref: '#/$defs/Point', description: 掌面中心/指尖/剑尖等视觉源点。, examples: [[400, 256]]}
+      direction: {$ref: '#/$defs/Direction'}
+      emission_width_px: {type: number, exclusiveMinimum: 0, description: 垂直于发出方向的源截面宽；掌取完整掌面。, x-unit: px, examples: [24]}
+  Rhythm:
+    type: object
+    additionalProperties: false
+    required: [charge_s, release_s, sustain_s, dissipate_s]
+    description: 秒数只控制表现，不换算 CT、伤害次数或游戏持续时间。
+    examples:
+      - {charge_s: 0.1, release_s: 0.1, sustain_s: 0.3, dissipate_s: 0.1}
+    properties:
+      charge_s: {type: number, minimum: 0, description: 凝聚。, x-unit: s, examples: [0.1]}
+      release_s: {type: number, minimum: 0, description: 发出。, x-unit: s, examples: [0.1]}
+      sustain_s: {type: number, minimum: 0, description: 持续。, x-unit: s, examples: [0.3]}
+      dissipate_s: {type: number, minimum: 0, description: 消散；总时长必须大于0。, x-unit: s, examples: [0.1]}
+  Transition:
+    type: object
+    additionalProperties: false
+    required: [interpolation, scale_from, drift_fraction, brightness]
+    examples:
+      - interpolation: crossfade
+        scale_from: 1
+        drift_fraction: 0
+        brightness: [0.9, 1, 1, 1, 0.9]
+        directional_mask: {enabled: true, softness: 0.045}
+    properties:
+      interpolation: {type: string, enum: [crossfade, hold], description: 预乘线性插值或保持关键帧。, x-unit: enum, default: crossfade, examples: [crossfade]}
+      scale_from: {type: number, exclusiveMinimum: 0, maximum: 1, description: 凝聚阶段根部缩放由此值到1，气剑强制1。, x-unit: ratio, default: 0.95, examples: [1]}
+      drift_fraction: {type: number, minimum: 0, maximum: 0.05, description: 仅消散阶段沿方向移动的 L 比例，气剑强制0。, x-unit: ratio, default: 0, examples: [0]}
+      brightness:
+        type: array
+        minItems: 5
+        maxItems: 5
+        items: {type: number, minimum: 0, maximum: 2}
+        description: 五个阶段边界的线性 RGB 增益，只作用效果；高于1须检查过曝。
+        x-unit: ratio
+        examples: [[0.9, 1, 1, 1, 0.9]]
+      directional_mask: {$ref: '#/$defs/DirectionalMask'}
+  DirectionalMask:
+    type: object
+    additionalProperties: false
+    required: [enabled, softness]
+    description: >-
+      可选沿发出方向的推进遮罩；缺省关闭以兼容既有 Composition。
+      凝聚从根部显现，发出/持续全显，消散从根部向前端擦除；
+      只调制原图 alpha，不生成轮廓，总时长终点必须全退；见 design/23 §6.1。
+    examples:
+      - {enabled: true, softness: 0.08}
+      - {enabled: true, softness: 0.045}
+    properties:
+      enabled: {type: boolean, description: 是否启用方向推进；不影响整体包络。, x-unit: boolean, default: false, examples: [true]}
+      softness: {type: number, exclusiveMinimum: 0, maximum: 0.5, description: 前沿软带全宽占 reference_length_px 的比例；界限为前沿加减 softness/2。, x-unit: ratio, default: 0.08, examples: [0.08, 0.045]}
+  Output:
+    type: object
+    additionalProperties: false
+    required: [fps, loop, loop_gap_s, peak_phase, preview_size_px, html_max_bytes, optional_animation]
+    examples:
+      - fps: 20
+        loop: true
+        loop_gap_s: 0.4
+        peak_phase: 0.3333333333333333
+        preview_size_px: [768, 512]
+        html_max_bytes: 3000000
+        optional_animation: none
+    properties:
+      fps: {type: integer, minimum: 1, maximum: 60, description: 保留的采样参考帧率；Three.js 按真实时间连续求值，不烘焙帧序列。, x-unit: 'frame/s', default: 20, examples: [20]}
+      loop: {type: boolean, description: 只循环观看，不循环玩法事件。, x-unit: boolean, examples: [true]}
+      loop_gap_s: {type: number, minimum: 0, description: 终点帧的循环间隔；不计入战斗节奏。, x-unit: s, default: 0.4, examples: [0.4]}
+      peak_phase: {type: number, minimum: 0, maximum: 1, description: peak.png 的精确相位；默认(c+r)/T，须显式记录。, x-unit: ratio, examples: [0.3333333333333333]}
+      preview_size_px: {$ref: '#/$defs/Size', description: HTML 画布展示尺寸，须与母版等比；纹理仍来自分离的 RGBA 原料帧。, examples: [[768, 512]]}
+      html_max_bytes: {type: integer, const: 3000000, description: HTML 字节硬上限，十进制3 MB；唯一允许外链见 design/23 §5.3。, x-unit: byte, examples: [3000000]}
+      optional_animation: {type: string, enum: [none, apng, webp], description: 保留旧数据枚举；Three.js 打包器只支持 none，非 none 明确拒绝，不再由 Python 烘焙动图。, x-unit: enum, default: none, examples: [none]}
+  Composition:
+    type: object
+    additionalProperties: false
+    required: [kind, version, asset_id, subject_ref, mode, effect_set, emitter_plate, canvas_px, background, emit_at_px, angle_deg, range_hex, pixels_per_hex, scale, emitter_scale, rhythm, transition, output]
+    description: 单个有向效果与一个独立发出方的制作/播放参数，不承载命中或伤害算法；JSON 打包附带 effect/emitter 对象不回写此 YAML。
+    properties:
+      kind: {type: string, const: Composition, description: 文档类型。, x-unit: enum, examples: [Composition]}
+      version: {$ref: '#/$defs/Version'}
+      asset_id: {$ref: '#/$defs/AssetId', description: 套件 manifest 条目素材 ID。, examples: [vfx_sk_liumai__ch01_base01]}
+      subject_ref: {type: string, pattern: '^(sk|mv)_[a-z0-9_]+$', description: 已有武学/招式外键，不在本文定义。, x-unit: gameplay-reference, examples: [sk_liumai]}
+      mode: {type: string, enum: [baseline, resolved_preview], description: 风格基线或消费已解算事件的离线预览；均非玩法状态。, x-unit: enum, examples: [baseline]}
+      move_ref: {type: string, pattern: '^mv_[a-z0-9_]+$', description: resolved_preview 必填，绑定具体已有招式；不得由武学名推断。, x-unit: gameplay-reference, examples: [mv_liumai_shangyang]}
+      effect_set: {$ref: '#/$defs/Path', description: EffectSet YAML，相对 Composition 文件。, examples: [effect/effect-set.yaml]}
+      emitter_plate: {$ref: '#/$defs/Path', description: EmitterPlate YAML，相对 Composition 文件。, examples: [emitter/emitter-plate.yaml]}
+      canvas_px: {$ref: '#/$defs/Size', description: 整图母版画幅。, examples: [[1536, 1024]]}
+      background: {type: string, pattern: '^#[0-9A-Fa-f]{6}$', description: 固定不透明背景，默认引用 tech/07 纸色；不是效果原图白底。, x-unit: srgb-hex, default: '#EFE6D2', examples: ['#EFE6D2']}
+      emit_at_px: {$ref: '#/$defs/Point', description: 两张图对齐的目标发出点 E。, examples: [[480, 512]]}
+      angle_deg: {type: number, minimum: -360, maximum: 360, description: 屏幕绝对角，0右90下，顺时针为正。, x-unit: deg, examples: [0]}
+      range_hex: {type: integer, minimum: 0, description: 示例或本次选中目标距离；不是基础/最大射程；自指为0。, x-unit: hex, examples: [5]}
+      pixels_per_hex: {type: number, exclusiveMinimum: 0, description: 仅独立演示的像素标尺；有length_px时不参与计算。, x-unit: px/hex, default: 128, examples: [128]}
+      length_px: {type: number, exclusiveMinimum: 0, description: 显式覆盖range_hex乘标尺，来自已投影目标或局部效果长度。, x-unit: px, examples: [640]}
+      effective_range_max_hex: {type: integer, minimum: 0, description: design/09最终range.max_eff只读诊断；不直接抄21中间effectiveRange，不强制拉满光束。, x-unit: hex, examples: [5]}
+      projection_step: {type: integer, enum: [0, 1, 2], description: 上游projectionStep只读快照；不能由VFX计算。, x-unit: enum, examples: [0]}
+      projection_boost_active: {type: boolean, description: 上游projectionBoostActive只读快照；音功0档为false。, x-unit: boolean, examples: [true]}
+      scale:
+        type: array
+        minItems: 2
+        maxItems: 2
+        items: {type: number, exclusiveMinimum: 0}
+        description: '[沿向,横向]美术修正；resolved_preview沿向必须1，不能扩射程。'
+        x-unit: ratio
+        default: [1, 1]
+        examples: [[1, 1]]
+      emitter_scale: {type: number, exclusiveMinimum: 0, description: 发出方等比缩放，同步其发出截面宽。, x-unit: ratio, default: 1, examples: [1]}
+      rhythm: {$ref: '#/$defs/Rhythm'}
+      transition: {$ref: '#/$defs/Transition'}
+      output: {$ref: '#/$defs/Output'}
+    allOf:
+      - if:
+          properties: {mode: {const: resolved_preview}}
+          required: [mode]
+        then:
+          required: [move_ref, length_px, effective_range_max_hex, projection_step, projection_boost_active]
+      - if:
+          properties: {range_hex: {const: 0}}
+          required: [range_hex]
+        then:
+          required: [length_px]
+  TemplateParams:
+    type: object
+    additionalProperties: false
+    description: 表现参数，不计算CT、伤害、命中或射程。
+    required: [duration_s]
+    properties:
+      duration_s: {type: number, exclusiveMinimum: 0, description: 总表现时长；plain_strike至多0.4秒。, x-unit: s, examples: [0.32]}
+      copies: {type: integer, minimum: 3, maximum: 5, description: afterimage副本数，不含原发出方。, x-unit: count, examples: [4]}
+      spacing_px: {type: number, exclusiveMinimum: 0, description: 相邻残影沿出招方向的间距。, x-unit: px, examples: [28]}
+      stretch: {type: number, minimum: 0, maximum: 0.1, description: 每级残影沿向拉伸增量。, x-unit: ratio, examples: [0.04]}
+  Template:
+    type: object
+    additionalProperties: false
+    required: [mode, nature, delivery, shape, color, params]
+    properties:
+      mode: {type: string, enum: [qi_projection, afterimage, plain_strike], description: 统一模板，不与Composition.mode或绑定mode混用。, x-unit: enum, examples: [qi_projection]}
+      nature: {type: string, enum: [yin, yang, harmony, neutral], description: 上游内力性质快照，仅qi_projection着色使用。, x-unit: enum, examples: [yin]}
+      delivery: {type: string, description: 图鉴交付动作；sonic是音功表现归一标签。, x-unit: enum, examples: [palm]}
+      shape: {oneOf: [{type: string, enum: [fan, beam, impact, rings, arc, wave]}, {type: 'null'}], description: 原料形态，afterimage为null且无效果原料。, x-unit: enum, examples: [fan]}
+      color: {type: string, pattern: '^#[0-9A-Fa-f]{6}$', description: palette.yaml打包快照；原色板变化后须重建demo。, x-unit: srgb-hex, examples: ['#5FB5B0']}
+      params: {$ref: '#/$defs/TemplateParams'}
+    allOf:
+      - if:
+          properties: {mode: {const: plain_strike}}
+        then:
+          properties:
+            params:
+              properties: {duration_s: {maximum: 0.4}}
+      - if:
+          properties: {mode: {const: afterimage}}
+        then:
+          properties:
+            shape: {type: 'null'}
+            params: {required: [copies, spacing_px, stretch]}
+  TemplateComposition:
+    type: object
+    additionalProperties: false
+    description: CLI直接生成的展开JSON；与两段式Composition并列，无需用户手写Composition。
+    required: [kind, version, template, canvas_px, background, emit_at_px, angle_deg, length_px, scale, emitter_scale, rhythm, transition, output, effect, emitter]
+    properties:
+      kind: {const: TemplateComposition, description: 统一模板演示数据类型。, x-unit: enum, examples: [TemplateComposition]}
+      version: {$ref: '#/$defs/Version'}
+      subject_ref: {type: string, description: 模板演示标签，不是玩法外键。, x-unit: label, examples: ['qi_projection · palm · yin · palm']}
+      template: {$ref: '#/$defs/Template'}
+      canvas_px: {$ref: '#/$defs/Size'}
+      background: {$ref: '#/$defs/Composition/properties/background'}
+      emit_at_px: {$ref: '#/$defs/Point'}
+      angle_deg: {$ref: '#/$defs/Composition/properties/angle_deg'}
+      length_px: {$ref: '#/$defs/Composition/properties/length_px'}
+      range_hex: {$ref: '#/$defs/Composition/properties/range_hex'}
+      pixels_per_hex: {$ref: '#/$defs/Composition/properties/pixels_per_hex'}
+      scale: {$ref: '#/$defs/Composition/properties/scale'}
+      emitter_scale: {$ref: '#/$defs/Composition/properties/emitter_scale'}
+      rhythm: {$ref: '#/$defs/Rhythm'}
+      transition: {$ref: '#/$defs/Transition'}
+      output: {$ref: '#/$defs/Output'}
+      effect:
+        oneOf: [{$ref: '#/$defs/EffectSet'}, {type: 'null'}]
+        description: afterimage为null，其他模式展开透明效果元数据。
+      emitter:
+        oneOf: [{$ref: '#/$defs/EmitterPlate'}, {type: 'null'}]
+        description: inner可无发出方；afterimage必须提供真实发出方图。
+    allOf:
+      - if:
+          properties:
+            template:
+              properties: {mode: {const: afterimage}}
+        then:
+          properties:
+            effect: {type: 'null'}
+            emitter: {$ref: '#/$defs/EmitterPlate'}
+        else:
+          properties:
+            effect: {$ref: '#/$defs/EffectSet'}

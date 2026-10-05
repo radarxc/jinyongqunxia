@@ -1,0 +1,16 @@
+{
+  "key": "restaurant",
+  "prompt": "Use case: historical-scene. Convert this geometric guide into ONE photorealistic Southern Song Lin'an two-storey restaurant sprite. The guide polygon is the exact building's floor footprint and camera axes: preserve the lower-left long frontage and shorter lower-right depth, angle slopes ±0.5, width:depth=12:9. It is NOT square: down-right front facade is 33% longer than up-right side wall. This physical width-depth relation is mandatory. The front bottom corner must be right of center. Keep platform perfectly rectangular in orthographic 2:1 projection. A prosperous Song dynasty restaurant: broad warm dark timber front facade open on both floors, lattice balconies, bamboo blinds, wooden dining tables, ceramic wine jars, ivory plaster on the smaller sidewall, restrained grey ceramic tile roof. Realistic detailed ancient Chinese architecture, not cartoon. Only thin stone paving along perimeter, no tall pedestal. Align all floor and roof horizontal axes to the guide directions and keep posts vertical. Main sunlight comes upper left; contact shadow only lower right. Keep all walls, eaves and ground corners completely inside frame with plenty of empty space on every side. Replace white with genuinely transparent background alpha. No drawn grid lines, diagram, coordinates, text, letters, signboard, watermark, people, modern objects, excessive fantasy roof curls, Ming or Qing ornament, glow or background scenery. The guide is geometry-only: resulting image must be naturally textured historical game art.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-f5396a91-686d-4190-aa4d-fe3c994ab2bd.png",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_restaurant_geometry_guide.png",
+      "sha256": "00fe557db1a270b6d948f0b96dae9814073018384f21ef9b6847ddc1b1403abb",
+      "role": "geometry-only construction guide; no asset pixels drawn by code"
+    }
+  ],
+  "source_sha256": "2b3251579a11c864b02de693409c24edca0b6ff1ad10676ae8d0187b844b73f5",
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try1.png",
+  "selection": "unselected",
+  "reason": "几何引导版前立面过长，初读比例约1.6，相对12/9偏差明显，且alpha最大254，淘汰。"
+}

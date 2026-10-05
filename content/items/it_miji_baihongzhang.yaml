@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_baihongzhang
+name: 白虹掌力藏本
+kind: manual
+sub: partial
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·李秋水武学；藏本 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_baihongzhang
+text:
+  desc: 外观：北宋月白蝴蝶装薄册，淡虹纤维纸衣。
+  lore: 《天龙八部》写白虹掌力为李秋水武学；此藏本与残页次序属 （原创扩展）。图解重在掌力曲折转向，须先通劲路再试变化；传闻只照直线发掌者，越练越偏离本旨。
+extension:
+  type: manual
+  value:
+    skill: sk_baihongzhang
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_baihongzhang
+      readWis: 55
+      maxLayer: 7
+      cultivation: 2450

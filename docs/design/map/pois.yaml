@@ -1,0 +1,927 @@
+{
+  "schema_version": "world-map-pois.v1",
+  "generated_on": "2026-10-03",
+  "coordinate_system": "WGS84 (EPSG:4326)",
+  "coordinate_decimals": 2,
+  "extent": [73, 18, 135, 54],
+  "ownership": "全国地理锚点归 design/19；任务、门禁、场内 PoiDef.kind 与六角坐标见 design/11 和 design/chapters；本文件只登记地图符号类别与时代候选。",
+  "upstream": ["docs/decisions/author-requirements.md#AR-68", "docs/00-canon.md §2/§12/§18", "docs/design/19-world-map.md §1.2–1.4/§2.1/§3.8/§6", "docs/design/02-timeline-and-world-tiers.md §1.5"],
+  "chapter_order": ["ch10", "ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch08", "ch09", "ch11", "ch12", "ch13", "ch14"],
+  "chapters": {
+    "ch10": {"title": "白马啸西风", "year_start": 702, "year_end": 703, "map_year": 702, "approx": true, "era": "武周长安年间（原创扩展）（待考）"},
+    "ch01": {"title": "天龙八部", "year_start": 1093, "year_end": 1094, "map_year": 1093, "approx": true, "era": "北宋·辽·西夏·大理"},
+    "ch02": {"title": "射雕英雄传", "year_start": 1217, "year_end": 1227, "map_year": 1217, "approx": true, "era": "南宋·金·蒙古；楔子1199不另开地图层（待考）"},
+    "ch03": {"title": "神雕侠侣", "year_start": 1237, "year_end": 1259, "map_year": 1259, "approx": true, "era": "南宋·蒙古"},
+    "ch04": {"title": "倚天屠龙记", "year_start": 1336, "year_end": 1363, "map_year": 1360, "approx": true, "era": "元末；楔子约1262不另开地图层"},
+    "ch05": {"title": "笑傲江湖", "year_start": 1523, "year_end": 1525, "map_year": 1523, "approx": true, "era": "明中叶（原创扩展定年）"},
+    "ch06": {"title": "侠客行", "year_start": 1582, "year_end": 1583, "map_year": 1582, "approx": true, "era": "明（原创扩展定年）"},
+    "ch07": {"title": "碧血剑", "year_start": 1630, "year_end": 1645, "map_year": 1644, "approx": true, "era": "明末清初"},
+    "ch08": {"title": "鹿鼎记", "year_start": 1669, "year_end": 1690, "map_year": 1685, "approx": true, "era": "清康熙"},
+    "ch09": {"title": "连城诀", "year_start": 1705, "year_end": 1712, "map_year": 1708, "approx": true, "era": "清初（原创扩展定年）"},
+    "ch11": {"title": "鸳鸯刀", "year_start": 1740, "year_end": 1740, "map_year": 1740, "approx": true, "era": "清乾隆初（原创扩展定年）"},
+    "ch12": {"title": "书剑恩仇录", "year_start": 1753, "year_end": 1759, "map_year": 1755, "approx": true, "era": "清乾隆"},
+    "ch13": {"title": "飞狐外传", "year_start": 1766, "year_end": 1771, "map_year": 1769, "approx": true, "era": "清乾隆"},
+    "ch14": {"title": "雪山飞狐", "year_start": 1780, "year_end": 1780, "map_year": 1780, "approx": false, "era": "清乾隆四十五年"}
+  },
+  "field_contract": {
+    "id": "复用已有 poi_*；新 ID 用 poi_<区域短名>_<拼音>；不另造 city_*、sect_* 或 sc_*。",
+    "kind": "地图符号类别：城镇/遗迹/关隘/村落/寺观/庄园；与 design/11 场内入口、眺望、调查等 PoiDef.kind 分开消费。",
+    "lat_lon": "以 lat/lon 数值投影；extent 和路线 geometry 仍按 [lon,lat]。公开原数用十进制 ROUND_HALF_UP 量化到0.01°；上游锚点原值照录。",
+    "confidence": "高=实址与所选时代用途有依据；中=实址但入口、迁移、坐标交叉证据或年代细节不足；低=城市/山体/小说区域代理点。另见逐项 confidence_reason，数值小数位不等于真实性。",
+    "coordinate_mode": "public_site=公开实址坐标；public_settlement_anchor=聚落代表点；upstream_anchor=完全复用 design/map 或 design/19 已登记坐标。",
+    "chapters_eras": "chapters 是 eras 键按 chapter_order 的投影，仅声明可放置标记的时代，不授予旅行、探索或门派权限；未列时代默认不显示。",
+    "period": "解释历史用途与书界年代；eras 的年份只引用顶层 chapters；地理来源不能证明小说事件。",
+    "eras": "当期显示 name/state；scene_ids 只引用已有 sc_*，空数组表示无已登记独立场景；当期 state 可使关隘采用遗迹符号。",
+    "source": "非空对象数组；role=coordinate/history/design；坐标必须有数值原记录或上游锚点 selector。Wikidata 另存实体、P625 statement、revision 与原始数值。",
+    "anchor_id_route_refs": "anchor_id 是已有城市/门派/分支的邻近或复用锚；route_refs 只说明相关现有路线，不把 POI 自动插入 from/to/via，也不改变权威折线。",
+    "render_with": "非空时沿用该上游点位置并合并符号/点击项，防止重复落点；空值允许独立标记。同坐标的不同实体可列入同一点击列表，不随机改经纬度。",
+    "gap": "registered_poi=已有 POI 首次写入本地图文件；new_map_anchor=现有路线或章节缺独立导航点；scene_anchor=已有场景的保守坐标代理。"
+  },
+  "source_policy": {
+    "user_agent": "Mozilla/5.0",
+    "request_note": "本次脚本直接请求均使用通用UA，不含姓名、邮箱或项目作者标识；只抓条目，不下载全量Wikidata/CHGIS。搜索接口曾返回429，后改为逐条Special:EntityData读取。",
+    "coordinate_priority": "现有四份yaml及design/19 §3.8优先；新增实址优先用Wikidata CC0 Earth/P625。未用GCJ-02/BD-09坐标补WGS84。",
+    "license_scope": "Wikidata许可仅针对结构化字段；政府、文献网页仅作史实核对与链接，不复制全文。上游锚点不自动改标CC0。",
+    "precision_note": "0.01°南北约111.2×0.01=1.11km；35°N东西约111.2×cos(35°)×0.01=0.91km。原条目precision=null表示未声明，不按小数位推测。",
+    "canon_note": "本批未逐字复核三联/广州修订版；小说地望不确定处逐项标（待考），背景标记及代理坐标标（原创扩展）。"
+  },
+  "inventory": {
+    "cities": {"path": "docs/design/map/cities.yaml", "count": 189, "site_count": 9},
+    "sects": {"path": "docs/design/map/sects.yaml", "count": 99, "inmap_branches": 18, "offmap_nodes": 3},
+    "routes": {"path": "docs/design/map/routes.yaml", "posts": 24, "ports": 28, "regular_routes": 48, "offmap_routes": 3},
+    "regions": {"path": "docs/design/map/regions.yaml", "count": 30},
+    "ruins": {"ref": "docs/design/19-world-map.md §3.8", "registered_pois": 5, "chapter_scenes": 6, "tiled_maps_ref": "tools/agents/reports/ART-ruins-maps.md；ART-ruins-maps-2.md", "tiled_maps": 62},
+    "scope": "已核现有四表、十四书界§3及两批遗迹地图；仅补有史实条目或已有锚点可追溯的缺口，非历代全部城镇名录，也非62张Tiled场景的逐张实址测绘。",
+    "deduplicated": ["山海关复用city_shanhaiguan，不再造关隘POI", "少林、重阳宫、武当、桃花岛、侠客岛及其他已有门派/岛屿不复制地理实体", "高昌迷宫与琅嬛入口用render_with关联已有门派/分支，不新定总部坐标", "敦煌地宫单POI对应唐/清两个场景，莫高窟另为独立历史地点"],
+    "upstream_conflicts": ["cities.yaml.chapters.ch10及旧城市eras仍为1725清初旧层；此文件按作者与Canon登记702–703，不覆写上游", "九老洞原来源页有Z码GRS67提示，适用本条CN旧码与否需核实；保留design/19既定WGS84锚"]
+  },
+  "sources": {
+    "wikidata_license": {"title": "Wikidata:Copyright（结构化数据CC0）", "url": "https://www.wikidata.org/wiki/Wikidata:Copyright", "accessed": "2026-10-03"},
+    "wikidata_crs": {"title": "Wikidata:Help:Data type（globe-coordinate/WGS84）", "url": "https://www.wikidata.org/wiki/Help:Data_type#globe-coordinate", "accessed": "2026-10-03"},
+    "beiting_history": {"title": "国家民委：北庭都护府在哪里", "url": "https://www.neac.gov.cn/seac/c103391/202211/1159634.shtml", "accessed": "2026-10-03"},
+    "jiaohe_history": {"title": "新疆政府：交河故城", "url": "https://www.xinjiang.gov.cn/xinjiang/tsxj/201111/47b137e12154437891e4f505ace1061d.shtml", "accessed": "2026-10-03"},
+    "jiayuguan_history": {"title": "嘉峪关文物局：嘉峪关文化遗产", "url": "https://www.jyg.gov.cn/wlj/xwdt/bmdt/gzdt/art/2022/art_62ed11ca1488431e86691c9a57d5fd76.html", "accessed": "2026-10-03"},
+    "yanmen_history": {"title": "国家博物馆：崇祯十年提督雁门等关咨文", "url": "https://www.chnmuseum.cn/zp/zpml/gjwxbt/202008/t20200824_247143.shtml", "accessed": "2026-10-03"},
+    "yumen_migration": {"title": "中国社会科学院：玉门关址今何在", "url": "https://www.cass.cn/xueshuchengguo/xscg_lsyjy/202012/t20201209_5230354.shtml", "accessed": "2026-10-03"},
+    "tang_yumen_research": {"title": "历史地理研究：唐玉门关位置与玄奘偷渡路线的精准复原", "url": "https://www.lsdlyj.com.cn/CN/abstract/abstract52747.shtml", "accessed": "2026-10-03"},
+    "juyong_history": {"title": "北京市园林绿化局：居庸关长城景区", "url": "https://yllhj.beijing.gov.cn/ggfw/bjsggml/zrlgy/zrlgy2/202206/t20220620_2746807.shtml", "accessed": "2026-10-03"},
+    "jianmen_history": {"title": "广元市文旅局：关隘（剑阁县旅游局资料）", "url": "https://swglj.cngy.gov.cn/new/show/49dd8c6b077347e4b25beb0254f4f61d.html", "accessed": "2026-10-03"},
+    "niangzi_history": {"title": "阳泉市政府：娘子关", "url": "https://yq.gov.cn/scfq/rwsc/yqly/201507/t20150722_44198.shtml", "accessed": "2026-10-03"},
+    "tongguan_history": {"title": "陕西省地方志：潼关县志（县城迁建）", "url": "https://dfz.shaanxi.gov.cn/zslm/fzzlk/xbsxsxz/xbsxz/wns_16202/201405/P020240923621802600949.pdf", "accessed": "2026-10-03", "verification": "地方志PDF检索可读；迁建年份以县志原文核对，不引用搜索OCR页码"},
+    "mogao_history": {"title": "UNESCO：Mogao Caves", "url": "https://whc.unesco.org/en/list/440/", "accessed": "2026-10-03"},
+    "liuhe_history": {"title": "杭州市文旅局：Pagoda of Six Harmonies", "url": "https://wgly.hangzhou.gov.cn/art/2013/7/7/art_1229495371_58931730.html", "accessed": "2026-10-03"},
+    "foshan_history": {"title": "央广网：佛山祖庙", "url": "https://www.cnr.cn/gd/zt/whjx/foshan4/20170909/t20170909_523941757.shtml", "accessed": "2026-10-03"},
+    "longquan_history": {"title": "龙泉市政府：一座奔跑中的品质之城", "url": "https://www.longquan.gov.cn/art/2023/12/5/art_1229355672_59147267.html", "accessed": "2026-10-03", "verification": "搜索索引核到759置县；直接页面抓取超时"},
+    "baoying_history": {"title": "识典古籍：宝应县志卷一建置沿革", "url": "https://www.shidianguji.com/book/NA02798/chapter/1m6jlw5n9nxuz", "accessed": "2026-10-03", "verification": "在线文献条目；不虚构刻本版本及页码"},
+    "haining_history": {"title": "海宁市政府：海政办发〔2023〕55号附件（建置沿革）", "url": "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web2780/site/attach/0/ac1de6173f1949c4844966e2709955df.pdf", "accessed": "2026-10-03"},
+    "daizhou_history": {"title": "法鼓文理学院地名规范资料库：代州PL000000005465", "url": "https://authority.dila.edu.tw/place/search.php?code=PL000000005465", "accessed": "2026-10-03", "verification": "只用于1368–1644建置沿革；旧Z码GRS67坐标未采作WGS84"},
+    "jiulao_place": {"title": "法鼓文理学院地名规范资料库：九老洞PL000000036095", "url": "https://authority.dila.edu.tw/place/search.php?code=PL000000036095", "accessed": "2026-10-03", "verification": "坐标原数29.546005/103.35646与上游取整相符；页面Z码GRS67提示适用范围（待核实）"}
+  },
+  "pending_research": [
+    {"name": "唐玉门关", "ref": "sc_10_yumen_jiebie", "default": "不绑定汉玉门关POI；六工古城与小宛城候选未取得足以判定本作所用址的公开WGS84，不编造经纬度。", "sources": ["yumen_migration", "tang_yumen_research"]},
+    {"name": "孟津县旧治与古渡", "ref": "sc_12_mengjin_yidao", "default": "不采用现代县城Q1335956；历史治所1535及1959迁移，待可靠古渡实址坐标。", "url": "https://tgaz.fudan.edu.cn/tgaz/placename/hvd_82957"},
+    {"name": "武胜关石屋", "ref": "sc_13_wushengguan_shiwu", "default": "真实武胜关Q11124846在鄂豫交界，章节暂归中原；石屋及区域挂接先由章节/地图归属同步，本批不把真关口坐标强贴到石屋。", "url": "https://www.wikidata.org/wiki/Q11124846"},
+    {"name": "神雕剑冢与大胜关", "ref": "docs/design/chapters/03-shendiao.md §3", "default": "剑冢暂挂关中、大胜关暂挂中原；精确地望及区域归属（待考），不从同名景区取坐标。"},
+    {"name": "紫竹庵、胡一刀墓、玉笔峰宝藏、牛家村", "ref": "各记录notes", "default": "保留上游城市代理；按三联/广州修订版核对书中方向、距离、府县及情节，默认低置信度，不问作者替代考据。"},
+    {"name": "泛称废驿、矿洞、药窖及地方小寺", "ref": "tools/agents/reports/ART-ruins-maps.md", "default": "没有历史实址或独立导航需求者保留sc_*内部入口，不批量自造poi_*。"},
+    {"name": "已有待决追溯", "ref": "docs/design/19-world-map.md §16.5 W1-O13；§16.1 W1-D07", "default": "已解决：五遗迹写入本文件；敦煌保持单POI双相位。核心门禁、奖励及场内六角坐标仍由原归属文档处理。"}
+  ],
+  "validation_rules": ["JSON与YAML1.2解析结果相同；ID唯一且新ID已全仓查重", "每项必有id/name/kind/lat/lon/chapters/source/confidence及非空理由", "73≤lon≤135、18≤lat≤54且按0.01°量化；region属于既有三十区闭集", "chapters严格等于eras键的chapter_order投影；年份等于顶层章节事实", "公开坐标可由source原数复算；upstream_anchor与selector指向的既有数值相同", "五个design/19遗迹锚及6个场景保持一致；敦煌只有一个POI", "anchor/route/render_with/sc引用可解析；背景POI不自动产生新路线或可进入场景"],
+  "pois": [
+    {
+      "id": "poi_zhongyuan_damodong",
+      "name": "达摩洞",
+      "kind": "遗迹",
+      "lat": 34.51,
+      "lon": 112.94,
+      "region": "rg_zhongyuan",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch01"],
+      "period": "1093–1094天龙书界；玩法采用既有章节相位。",
+      "eras": {
+        "ch01": {"name": "达摩洞", "year_start": 1093, "year_end": 1094, "approx": true, "state": "地理标记", "scene_ids": ["sc_01_damodong"]}
+      },
+      "anchor_id": "sect_shaolin",
+      "route_refs": [],
+      "render_with": null,
+      "gap": "registered_poi",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/sects.yaml", "selector": "sects[id=sect_shaolin]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/19-world-map.md", "selector": "§3.8 poi_zhongyuan_damodong", "accessed": "2026-10-03"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "复用少林山体实址；0.01°不代表真实洞口位置。",
+      "notes": "山体导航锚（原创扩展）；《天龙八部》达摩洞情节及洞口与少林寺关系逐字核对（待考）；不从经纬度推场内cell。"
+    },
+    {
+      "id": "poi_jiangnan_taihu_ruoye_muzang",
+      "name": "若耶溪墓藏",
+      "kind": "遗迹",
+      "lat": 30.0,
+      "lon": 120.58,
+      "region": "rg_jiangnan_taihu",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch01"],
+      "period": "1093–1094天龙书界；当期墓藏状态由章节定义。",
+      "eras": {
+        "ch01": {"name": "若耶溪墓藏", "year_start": 1093, "year_end": 1094, "approx": true, "state": "地理标记", "scene_ids": ["sc_01_ruoye_muzang"]}
+      },
+      "anchor_id": "city_shaoxing",
+      "route_refs": [],
+      "render_with": "city_shaoxing",
+      "gap": "registered_poi",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/cities.yaml", "selector": "cities[id=city_shaoxing]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/19-world-map.md", "selector": "§3.8 poi_jiangnan_taihu_ruoye_muzang", "accessed": "2026-10-03"}
+      ],
+      "confidence": "低",
+      "confidence_reason": "城市代理点；不能证明若耶溪墓址、入口或墓藏年代。",
+      "notes": "若耶溪墓藏及导航代理（原创扩展）；墓址性质、溪流段与年代（待考）；使用越州城市锚，不当作真实墓穴。"
+    },
+    {
+      "id": "poi_bashu_jiulaodong",
+      "name": "九老洞",
+      "kind": "遗迹",
+      "lat": 29.55,
+      "lon": 103.36,
+      "region": "rg_bashu",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch04"],
+      "period": "1336–1363倚天书界；实洞与当期入口状态分开。",
+      "eras": {
+        "ch04": {"name": "九老洞", "year_start": 1336, "year_end": 1363, "approx": true, "state": "地理标记", "scene_ids": ["sc_04_jiulaodong"]}
+      },
+      "anchor_id": "sect_emei",
+      "route_refs": [],
+      "render_with": null,
+      "gap": "registered_poi",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/19-world-map.md", "selector": "§3.8 poi_bashu_jiulaodong", "accessed": "2026-10-03"},
+        {"title": "法鼓文理学院地名规范资料库：九老洞PL000000036095", "url": "https://authority.dila.edu.tw/place/search.php?code=PL000000036095", "accessed": "2026-10-03", "verification": "坐标原数29.546005/103.35646与上游取整相符；页面Z码GRS67提示适用范围（待核实）", "role": "history"},
+        {"role": "design", "path": "docs/design/chapters/04-yitian.md", "selector": "sc_04_jiulaodong", "accessed": "2026-10-03"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "地名库实址原数按0.01°量化与design/19相符；源页GRS67提示是否适用本条旧CN码（待核实）。",
+      "notes": "保留design/19既定WGS84值；法鼓地名库29.546005/103.35646为交叉来源，未进行未经验证的CRS转换。真实地名不证明《倚天屠龙记》到访，关卡玩法（原创扩展）；元末洞名及使用情况（待考）。"
+    },
+    {
+      "id": "poi_guanzhong_huashan_houdong",
+      "name": "华山后洞",
+      "kind": "遗迹",
+      "lat": 34.49,
+      "lon": 110.09,
+      "region": "rg_guanzhong",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch07"],
+      "period": "1630–1645碧血书界；当期可达性依章节。",
+      "eras": {
+        "ch07": {"name": "华山后洞", "year_start": 1630, "year_end": 1645, "approx": true, "state": "地理标记", "scene_ids": ["sc_07_huashan_houdong"]}
+      },
+      "anchor_id": "sect_huashan",
+      "route_refs": [],
+      "render_with": "sect_huashan",
+      "gap": "registered_poi",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/sects.yaml", "selector": "sects[id=sect_huashan]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/19-world-map.md", "selector": "§3.8 poi_guanzhong_huashan_houdong", "accessed": "2026-10-03"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "复用华山山体坐标；未独立测绘小说洞口。",
+      "notes": "山体锚、后洞机关及玩法（原创扩展）；《碧血剑》洞口方位和后洞描述（待考），不可与《笑傲江湖》同名山洞自动合并。"
+    },
+    {
+      "id": "poi_hexilongyou_dunhuang_digong",
+      "name": "敦煌地宫",
+      "kind": "遗迹",
+      "lat": 40.17,
+      "lon": 94.68,
+      "region": "rg_hexilongyou",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch10", "ch12"],
+      "period": "702–703白马书界与1753–1759书剑书界，共享地理ID、分开章节相位。",
+      "eras": {
+        "ch10": {"name": "敦煌地宫", "year_start": 702, "year_end": 703, "approx": true, "state": "地理标记", "scene_ids": ["sc_10_dunhuang_digong"]},
+        "ch12": {"name": "敦煌地宫", "year_start": 1753, "year_end": 1759, "approx": true, "state": "地理标记", "scene_ids": ["sc_12_dunhuang_digong"]}
+      },
+      "anchor_id": "city_dunhuang",
+      "route_refs": ["route_lanzhou_dunhuang", "route_dunhuang_kashgar"],
+      "render_with": "city_dunhuang",
+      "gap": "registered_poi",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/cities.yaml", "selector": "cities[id=city_dunhuang]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/19-world-map.md", "selector": "§3.8 poi_hexilongyou_dunhuang_digong", "accessed": "2026-10-03"}
+      ],
+      "confidence": "低",
+      "confidence_reason": "复用敦煌城市导航锚；未发现可证实此地下结构的历史实址。",
+      "notes": "地宫地下结构与城市代理（原创扩展）；入口、历史性质（待考）；不得解释为莫高窟藏经洞，不沿用上游ch10=1725旧值。"
+    },
+    {
+      "id": "poi_hedong_yanmenguan",
+      "name": "雁门关",
+      "kind": "关隘",
+      "lat": 39.19,
+      "lon": 112.87,
+      "region": "rg_hedong_jinzhong",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch01", "ch07", "ch11", "ch13", "ch14"],
+      "period": "1093–1094天龙与1630–1780所列明清书界；宋层为关山区域，明清层为关隘候选。",
+      "eras": {
+        "ch01": {"name": "雁门关山口一带", "year_start": 1093, "year_end": 1094, "approx": true, "state": "关山区域锚（待考）", "scene_ids": []},
+        "ch07": {"name": "雁门关", "year_start": 1630, "year_end": 1645, "approx": true, "state": "关隘（关门建筑形制待考）", "scene_ids": []},
+        "ch11": {"name": "雁门关", "year_start": 1740, "year_end": 1740, "approx": true, "state": "关隘（关门建筑形制待考）", "scene_ids": []},
+        "ch13": {"name": "雁门关", "year_start": 1766, "year_end": 1771, "approx": true, "state": "关隘（关门建筑形制待考）", "scene_ids": []},
+        "ch14": {"name": "雁门关", "year_start": 1780, "year_end": 1780, "approx": false, "state": "关隘（关门建筑形制待考）", "scene_ids": []}
+      },
+      "anchor_id": "city_datong",
+      "route_refs": ["route_datong_taiyuan"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Yanmen Pass", "url": "https://www.wikidata.org/wiki/Q1275915", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q1275915.json", "entity_id": "Q1275915", "property": "P625", "statement_id": "Q1275915$00E1BDF2-D21A-4057-97CC-12F2646C46D7", "revision_id": 2529532313, "raw_lat": 39.19350278, "raw_lon": 112.87030556, "precision_degrees": 2.77777777778e-06, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 1, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "国家博物馆：崇祯十年提督雁门等关咨文", "url": "https://www.chnmuseum.cn/zp/zpml/gjwxbt/202008/t20200824_247143.shtml", "accessed": "2026-10-03", "role": "history"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "实址P625对应现存关区；明关与宋代关址有迁移，早期只用山口区域锚。",
+      "notes": "《天龙八部》关外雁门情节的具体崖口（待考），不定位为现存明关城门。背景关口与路线导航（原创扩展）；关隘地点不是场内战斗入口。"
+    },
+    {
+      "id": "poi_yanjing_zhili_juyongguan",
+      "name": "居庸关",
+      "kind": "关隘",
+      "lat": 40.29,
+      "lon": 116.07,
+      "region": "rg_yanjing_zhili",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch04", "ch07", "ch08", "ch11", "ch13", "ch14"],
+      "period": "1336–1363元末及所列明清书界；不显示尚未建成的后世设施。",
+      "eras": {
+        "ch04": {"name": "居庸关", "year_start": 1336, "year_end": 1363, "approx": true, "state": "关隘（建筑按当期复原）", "scene_ids": []},
+        "ch07": {"name": "居庸关", "year_start": 1630, "year_end": 1645, "approx": true, "state": "关隘（建筑按当期复原）", "scene_ids": []},
+        "ch08": {"name": "居庸关", "year_start": 1669, "year_end": 1690, "approx": true, "state": "关隘（建筑按当期复原）", "scene_ids": []},
+        "ch11": {"name": "居庸关", "year_start": 1740, "year_end": 1740, "approx": true, "state": "关隘（建筑按当期复原）", "scene_ids": []},
+        "ch13": {"name": "居庸关", "year_start": 1766, "year_end": 1771, "approx": true, "state": "关隘（建筑按当期复原）", "scene_ids": []},
+        "ch14": {"name": "居庸关", "year_start": 1780, "year_end": 1780, "approx": false, "state": "关隘（建筑按当期复原）", "scene_ids": []}
+      },
+      "anchor_id": "city_beijing",
+      "route_refs": ["route_beijing_datong"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Juyongguan", "url": "https://www.wikidata.org/wiki/Q1330063", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q1330063.json", "entity_id": "Q1330063", "property": "P625", "statement_id": "Q1330063$33FEE39E-069C-4499-AEFB-A2DF5153602D", "revision_id": 2529493507, "raw_lat": 40.287777777778, "raw_lon": 116.06861111111, "precision_degrees": 0.00027777777777778, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 1, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "北京市园林绿化局：居庸关长城景区", "url": "https://yllhj.beijing.gov.cn/ggfw/bjsggml/zrlgy/zrlgy2/202206/t20220620_2746807.shtml", "accessed": "2026-10-03", "role": "history"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "公开关隘实址；各时期关门形制与通行制度未逐期复原。",
+      "notes": "为北京—大同路线补关口导航（原创扩展）。云台1342始建，1336–1341阶段不得预置完整云台；路线章节开放规则仍沿用routes.yaml。"
+    },
+    {
+      "id": "poi_hexilongyou_jiayuguan",
+      "name": "嘉峪关",
+      "kind": "关隘",
+      "lat": 39.8,
+      "lon": 98.22,
+      "region": "rg_hexilongyou",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch05", "ch06", "ch07", "ch08", "ch09", "ch11", "ch12", "ch13", "ch14"],
+      "period": "1372建关；只列1523–1780各明清书界，1336–1363倚天层及702唐层不出现本关。",
+      "eras": {
+        "ch05": {"name": "嘉峪关", "year_start": 1523, "year_end": 1525, "approx": true, "state": "关隘", "scene_ids": []},
+        "ch06": {"name": "嘉峪关", "year_start": 1582, "year_end": 1583, "approx": true, "state": "关隘", "scene_ids": []},
+        "ch07": {"name": "嘉峪关", "year_start": 1630, "year_end": 1645, "approx": true, "state": "关隘", "scene_ids": []},
+        "ch08": {"name": "嘉峪关", "year_start": 1669, "year_end": 1690, "approx": true, "state": "关隘", "scene_ids": []},
+        "ch09": {"name": "嘉峪关", "year_start": 1705, "year_end": 1712, "approx": true, "state": "关隘", "scene_ids": []},
+        "ch11": {"name": "嘉峪关", "year_start": 1740, "year_end": 1740, "approx": true, "state": "关隘", "scene_ids": []},
+        "ch12": {"name": "嘉峪关", "year_start": 1753, "year_end": 1759, "approx": true, "state": "关隘", "scene_ids": []},
+        "ch13": {"name": "嘉峪关", "year_start": 1766, "year_end": 1771, "approx": true, "state": "关隘", "scene_ids": []},
+        "ch14": {"name": "嘉峪关", "year_start": 1780, "year_end": 1780, "approx": false, "state": "关隘", "scene_ids": []}
+      },
+      "anchor_id": "city_jiuquan",
+      "route_refs": ["route_lanzhou_dunhuang"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Jiayuguan", "url": "https://www.wikidata.org/wiki/Q1193122", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q1193122.json", "entity_id": "Q1193122", "property": "P625", "statement_id": "Q1193122$1A2DAA97-9E16-48E7-994B-499FCE1C172E", "revision_id": 2551265651, "raw_lat": 39.80146, "raw_lon": 98.21618, "precision_degrees": 0.000001, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 0, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "嘉峪关文物局：嘉峪关文化遗产", "url": "https://www.jyg.gov.cn/wlj/xwdt/bmdt/gzdt/art/2022/art_62ed11ca1488431e86691c9a57d5fd76.html", "accessed": "2026-10-03", "role": "history"}
+      ],
+      "confidence": "高",
+      "confidence_reason": "P625实址与文物局1372始建沿革相符；所选明清时代晚于建关。",
+      "notes": "为河西路线补历史关隘（原创扩展）；高置信度针对地点及时代可用性，守军、票制、通行条件不由坐标推定。"
+    },
+    {
+      "id": "poi_hexilongyou_han_yumenguan",
+      "name": "汉玉门关故址（小方盘城）",
+      "kind": "遗迹",
+      "lat": 40.35,
+      "lon": 93.86,
+      "region": "rg_hexilongyou",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch10", "ch12"],
+      "period": "汉代建置；702–703及1753–1759书界仅作为汉关故址背景，非当期军关。",
+      "eras": {
+        "ch10": {"name": "汉玉门关故址（小方盘城）", "year_start": 702, "year_end": 703, "approx": true, "state": "汉关故址（当期地表保存状况待考）", "scene_ids": []},
+        "ch12": {"name": "汉玉门关故址（小方盘城）", "year_start": 1753, "year_end": 1759, "approx": true, "state": "汉关故址（当期地表保存状况待考）", "scene_ids": []}
+      },
+      "anchor_id": "city_dunhuang",
+      "route_refs": ["route_lanzhou_dunhuang", "route_dunhuang_kashgar"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Yumen Pass", "url": "https://www.wikidata.org/wiki/Q1324562", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q1324562.json", "entity_id": "Q1324562", "property": "P625", "statement_id": "Q1324562$3BFA30FA-3C01-42AE-856D-D84961378BCF", "revision_id": 2549120543, "raw_lat": 40.352172, "raw_lon": 93.863826, "precision_degrees": 2.77777777778e-06, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 1, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "中国社会科学院：玉门关址今何在", "url": "https://www.cass.cn/xueshuchengguo/xscg_lsyjy/202012/t20201209_5230354.shtml", "accessed": "2026-10-03", "role": "history"},
+        {"title": "历史地理研究：唐玉门关位置与玄奘偷渡路线的精准复原", "url": "https://www.lsdlyj.com.cn/CN/abstract/abstract52747.shtml", "accessed": "2026-10-03", "role": "history"}
+      ],
+      "confidence": "高",
+      "confidence_reason": "P625实体为汉关小方盘城；史学来源区分汉唐迁址，记录明确限定为汉址遗存。",
+      "notes": "历史故址导航（原创扩展）；当前断壁形态不可照搬到唐/清层。不得绑定sc_10_yumen_jiebie，也不把这里标成玄奘经过的唐玉门关。"
+    },
+    {
+      "id": "poi_hexilongyou_yangguan",
+      "name": "阳关故址",
+      "kind": "关隘",
+      "lat": 39.93,
+      "lon": 94.06,
+      "region": "rg_hexilongyou",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch10", "ch12"],
+      "period": "汉代关址；702–703白马层只保留历史关址候选，1753–1759书剑层为故址。",
+      "eras": {
+        "ch10": {"name": "阳关故址", "year_start": 702, "year_end": 703, "approx": true, "state": "历史关址（当期功能待考）", "scene_ids": []},
+        "ch12": {"name": "阳关故址", "year_start": 1753, "year_end": 1759, "approx": true, "state": "故址", "scene_ids": [], "display_kind": "遗迹"}
+      },
+      "anchor_id": "city_dunhuang",
+      "route_refs": ["route_dunhuang_kashgar"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Yangguan", "url": "https://www.wikidata.org/wiki/Q909541", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q909541.json", "entity_id": "Q909541", "property": "P625", "statement_id": "q909541$07b661e7-4b6d-af21-3747-1308dbe3e9e0", "revision_id": 2529434705, "raw_lat": 39.92725, "raw_lon": 94.05904, "precision_degrees": 0.00001, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 0, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "中国社会科学院：玉门关址今何在", "url": "https://www.cass.cn/xueshuchengguo/xscg_lsyjy/202012/t20201209_5230354.shtml", "accessed": "2026-10-03", "role": "history"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "公开坐标落在阳关遗址区域，P625无独立参考；唐层军关功能及当期入口待考。",
+      "notes": "为河西—西域路线补历史标记（原创扩展）；不把现代景区门楼作为唐代关门，不凭同名诗句断言702关兵驻防。"
+    },
+    {
+      "id": "poi_bashu_jianmenguan",
+      "name": "剑门关",
+      "kind": "关隘",
+      "lat": 32.22,
+      "lon": 105.56,
+      "region": "rg_bashu",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch08", "ch09", "ch11", "ch12", "ch13", "ch14"],
+      "period": "所列宋元明清书界共用山口区域；关楼式样与军用状态逐期另核。",
+      "eras": {
+        "ch01": {"name": "剑门关", "year_start": 1093, "year_end": 1094, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch02": {"name": "剑门关", "year_start": 1217, "year_end": 1227, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch03": {"name": "剑门关", "year_start": 1237, "year_end": 1259, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch04": {"name": "剑门关", "year_start": 1336, "year_end": 1363, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch05": {"name": "剑门关", "year_start": 1523, "year_end": 1525, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch06": {"name": "剑门关", "year_start": 1582, "year_end": 1583, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch07": {"name": "剑门关", "year_start": 1630, "year_end": 1645, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch08": {"name": "剑门关", "year_start": 1669, "year_end": 1690, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch09": {"name": "剑门关", "year_start": 1705, "year_end": 1712, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch11": {"name": "剑门关", "year_start": 1740, "year_end": 1740, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch12": {"name": "剑门关", "year_start": 1753, "year_end": 1759, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch13": {"name": "剑门关", "year_start": 1766, "year_end": 1771, "approx": true, "state": "关隘山口（当期建筑待考）", "scene_ids": []},
+        "ch14": {"name": "剑门关", "year_start": 1780, "year_end": 1780, "approx": false, "state": "关隘山口（当期建筑待考）", "scene_ids": []}
+      },
+      "anchor_id": "city_chengdu",
+      "route_refs": ["route_xian_chengdu"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Jianmen Pass", "url": "https://www.wikidata.org/wiki/Q6191827", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q6191827.json", "entity_id": "Q6191827", "property": "P625", "statement_id": "Q6191827$23569945-422d-7114-72a2-9640696d304f", "revision_id": 2491511446, "raw_lat": 32.215, "raw_lon": 105.56333333333333, "precision_degrees": 0.0002777777777777778, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 0, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "广元市文旅局：关隘（剑阁县旅游局资料）", "url": "https://swglj.cngy.gov.cn/new/show/49dd8c6b077347e4b25beb0254f4f61d.html", "accessed": "2026-10-03", "role": "history"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "真实关山及公开P625；该坐标无独立P625参考，现存重建关楼不等于历史建筑。",
+      "notes": "为西安—成都金牛道背景补点（原创扩展）；新POI不改变原路线折线，源页古关沿革不用于复刻今天关楼。"
+    },
+    {
+      "id": "poi_guanzhong_tongguan",
+      "name": "潼关古关区",
+      "kind": "关隘",
+      "lat": 34.61,
+      "lon": 110.29,
+      "region": "rg_guanzhong",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch07", "ch11", "ch12"],
+      "period": "1630–1645、1740与1753–1759明清书界；采用古关口范围，不采用20世纪水库迁建后的县城中心。",
+      "eras": {
+        "ch07": {"name": "潼关古关区", "year_start": 1630, "year_end": 1645, "approx": true, "state": "古关区（关门待考）", "scene_ids": []},
+        "ch11": {"name": "潼关古关区", "year_start": 1740, "year_end": 1740, "approx": true, "state": "古关区（关门待考）", "scene_ids": []},
+        "ch12": {"name": "潼关古关区", "year_start": 1753, "year_end": 1759, "approx": true, "state": "古关区（关门待考）", "scene_ids": []}
+      },
+      "anchor_id": "city_huayin",
+      "route_refs": ["route_luoyang_xian"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Tong Pass", "url": "https://www.wikidata.org/wiki/Q6757995", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q6757995.json", "entity_id": "Q6757995", "property": "P625", "statement_id": "Q6757995$9a64e29f-4323-d06f-9d59-a2075542ebb5", "revision_id": 2515949131, "raw_lat": 34.606, "raw_lon": 110.286, "precision_degrees": 0.001, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 1, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "陕西省地方志：潼关县志（县城迁建）", "url": "https://dfz.shaanxi.gov.cn/zslm/fzzlk/xbsxsxz/xbsxz/wns_16202/201405/P020240923621802600949.pdf", "accessed": "2026-10-03", "verification": "地方志PDF检索可读；迁建年份以县志原文核对，不引用搜索OCR页码", "role": "history"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "P625为潼关关口实体，与现代潼关县城分开；历代关门及古城边界仍需细定位。",
+      "notes": "为洛阳—西安入关道路补点（原创扩展）；关址/县治迁移记录见县志，具体城门（待考）。本批不把此点扩投未核定关址的早期时代。"
+    },
+    {
+      "id": "poi_hedong_niangziguan",
+      "name": "娘子关",
+      "kind": "关隘",
+      "lat": 37.97,
+      "lon": 113.88,
+      "region": "rg_hedong_jinzhong",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch06", "ch07", "ch11", "ch13", "ch14"],
+      "period": "所列1582–1780明清书界；现存关城源为明代，本批保守限定于晚明及清。",
+      "eras": {
+        "ch06": {"name": "娘子关", "year_start": 1582, "year_end": 1583, "approx": true, "state": "关隘（当期防御状态待考）", "scene_ids": []},
+        "ch07": {"name": "娘子关", "year_start": 1630, "year_end": 1645, "approx": true, "state": "关隘（当期防御状态待考）", "scene_ids": []},
+        "ch11": {"name": "娘子关", "year_start": 1740, "year_end": 1740, "approx": true, "state": "关隘（当期防御状态待考）", "scene_ids": []},
+        "ch13": {"name": "娘子关", "year_start": 1766, "year_end": 1771, "approx": true, "state": "关隘（当期防御状态待考）", "scene_ids": []},
+        "ch14": {"name": "娘子关", "year_start": 1780, "year_end": 1780, "approx": false, "state": "关隘（当期防御状态待考）", "scene_ids": []}
+      },
+      "anchor_id": "city_taiyuan",
+      "route_refs": [],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Niangzi Pass", "url": "https://www.wikidata.org/wiki/Q1729497", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q1729497.json", "entity_id": "Q1729497", "property": "P625", "statement_id": "Q1729497$8041F344-952D-49A9-BB3B-E883E32494F3", "revision_id": 2529455218, "raw_lat": 37.967039, "raw_lon": 113.877958, "precision_degrees": 2.77777777778e-06, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 1, "accessed": "2026-10-03", "license": "CC0-1.0", "selection_note": "同实体另有37.95/113.86667的粗精度P625；两点相距约1.9km，取具名关址较细记录，不平均。"},
+        {"title": "阳泉市政府：娘子关", "url": "https://yq.gov.cn/scfq/rwsc/yqly/201507/t20150722_44198.shtml", "accessed": "2026-10-03", "role": "history"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "P625有两个正常等级但不一致的坐标；取较细关址记录，仍保留中置信度。",
+      "notes": "晋中东出山口历史背景（原创扩展），不新增晋中—井陉路线，也不附会唐公主传说为原著。1542具体重修年份与明前关址（待考），所选年份均晚于该候选日期。"
+    },
+    {
+      "id": "poi_xiyu_beijiang_beiting",
+      "name": "庭州（北庭故城）",
+      "kind": "城镇",
+      "lat": 44.1,
+      "lon": 89.2,
+      "region": "rg_xiyu_beijiang",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch10"],
+      "period": "702–703武周白马书界，此时为庭州聚落及北庭都护府所在地。",
+      "eras": {
+        "ch10": {"name": "庭州（北庭都护府）", "year_start": 702, "year_end": 703, "approx": true, "state": "城镇", "scene_ids": []}
+      },
+      "anchor_id": "city_turpan",
+      "route_refs": ["route_turpan_yining"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Beiting", "url": "https://www.wikidata.org/wiki/Q814907", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q814907.json", "entity_id": "Q814907", "property": "P625", "statement_id": "Q814907$507d49ba-4dab-38e8-1317-3b52b251bb88", "revision_id": 2545405835, "raw_lat": 44.096333333333334, "raw_lon": 89.20408333333333, "precision_degrees": 2.777777777777778e-05, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 1, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "国家民委：北庭都护府在哪里", "url": "https://www.neac.gov.cn/seac/c103391/202211/1159634.shtml", "accessed": "2026-10-03", "role": "history"}
+      ],
+      "confidence": "高",
+      "confidence_reason": "故城实址P625有UNESCO来源；640置庭州、702设北庭都护府由国家民委沿革印证。",
+      "notes": "当期采用城镇符号，不能将今日断壁遗迹状态反投702；纳入书界的导航支点（原创扩展），不是《白马啸西风》已证情节。此处不新建city_*。"
+    },
+    {
+      "id": "poi_xiyu_beijiang_jiaohe",
+      "name": "交河县城（交河故城）",
+      "kind": "城镇",
+      "lat": 42.95,
+      "lon": 89.06,
+      "region": "rg_xiyu_beijiang",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch10"],
+      "period": "702–703白马书界；唐代西州辖交河县。",
+      "eras": {
+        "ch10": {"name": "交河县城", "year_start": 702, "year_end": 703, "approx": true, "state": "城镇", "scene_ids": []}
+      },
+      "anchor_id": "city_turpan",
+      "route_refs": ["route_turpan_yining"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Yarkhoto", "url": "https://www.wikidata.org/wiki/Q1330939", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q1330939.json", "entity_id": "Q1330939", "property": "P625", "statement_id": "Q1330939$182C91D0-0C0A-4F7A-8478-3419E105893F", "revision_id": 2515901752, "raw_lat": 42.95051742, "raw_lon": 89.06393051, "precision_degrees": 2.77777777778e-06, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 1, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "新疆政府：交河故城", "url": "https://www.xinjiang.gov.cn/xinjiang/tsxj/201111/47b137e12154437891e4f505ace1061d.shtml", "accessed": "2026-10-03", "role": "history"}
+      ],
+      "confidence": "高",
+      "confidence_reason": "故城P625实址与新疆政府唐代交河县沿革相符；702–703按当期聚落而非现代遗址显示。",
+      "notes": "西州附近的历史城镇支点（原创扩展）；与上游高昌门派锚分别显示，不复制city_turpan。具体府县边界与驻军不在本条定义。"
+    },
+    {
+      "id": "poi_hexilongyou_mogaoku",
+      "name": "莫高窟",
+      "kind": "遗迹",
+      "lat": 40.04,
+      "lon": 94.8,
+      "region": "rg_hexilongyou",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch10", "ch12"],
+      "period": "702–703层为使用中的佛教石窟群；1753–1759层为历代石窟遗存，具体供养活动待考。",
+      "eras": {
+        "ch10": {"name": "莫高窟", "year_start": 702, "year_end": 703, "approx": true, "state": "佛教石窟群", "scene_ids": [], "display_kind": "寺观"},
+        "ch12": {"name": "莫高窟", "year_start": 1753, "year_end": 1759, "approx": true, "state": "历代石窟遗存", "scene_ids": []}
+      },
+      "anchor_id": "city_dunhuang",
+      "route_refs": ["route_lanzhou_dunhuang", "route_dunhuang_kashgar"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Mogao Caves", "url": "https://www.wikidata.org/wiki/Q43286", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q43286.json", "entity_id": "Q43286", "property": "P625", "statement_id": "q43286$0322CAED-6B52-4F44-8554-A19A8F2FAAD6", "revision_id": 2541456441, "raw_lat": 40.037222222222, "raw_lon": 94.804166666667, "precision_degrees": null, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 0, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "UNESCO：Mogao Caves", "url": "https://whc.unesco.org/en/list/440/", "accessed": "2026-10-03", "role": "history"}
+      ],
+      "confidence": "高",
+      "confidence_reason": "P625为真实石窟群；UNESCO确认366始建、唐代发展，唐/清两层均晚于始建。",
+      "notes": "历史背景导航（原创扩展）；不绑定敦煌地宫场景。藏经洞发现为1900事件，不能在唐/清书界写成已发现的藏宝副本；各洞开凿时代需单独核对。"
+    },
+    {
+      "id": "poi_zhedong_longquan",
+      "name": "龙泉县城",
+      "kind": "城镇",
+      "lat": 28.07,
+      "lon": 119.13,
+      "region": "rg_zhedong",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_settlement_anchor",
+      "chapters": ["ch05", "ch06"],
+      "period": "1523–1525笑傲与1582–1583侠客书界，以龙泉县级聚落候选显示。",
+      "eras": {
+        "ch05": {"name": "龙泉县城", "year_start": 1523, "year_end": 1525, "approx": true, "state": "县城代表点（旧治待考）", "scene_ids": []},
+        "ch06": {"name": "龙泉县城", "year_start": 1582, "year_end": 1583, "approx": true, "state": "县城代表点（旧治待考）", "scene_ids": []}
+      },
+      "anchor_id": "city_quzhou",
+      "route_refs": ["route_hangzhou_fuzhou"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Longquan", "url": "https://www.wikidata.org/wiki/Q1361355", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q1361355.json", "entity_id": "Q1361355", "property": "P625", "statement_id": "q1361355$AA0349CF-0AE0-4E1B-8BDC-16E61B86C931", "revision_id": 2526582103, "raw_lat": 28.07334, "raw_lon": 119.12771, "precision_degrees": null, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 0, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "龙泉市政府：一座奔跑中的品质之城", "url": "https://www.longquan.gov.cn/art/2023/12/5/art_1229355672_59147267.html", "accessed": "2026-10-03", "verification": "搜索索引核到759置县；直接页面抓取超时", "role": "history"},
+        {"role": "design", "path": "docs/design/chapters/05-xiaoao.md", "selector": "q_05_main_z_04", "accessed": "2026-10-03"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "现代县级聚落代表点，759置县有市政府检索依据；明代旧城边界及历史治所同址未核。",
+      "notes": "补笑傲龙泉情节与浙东县城支点（原创扩展代理）；《笑傲江湖》龙泉情节方向与县城、铸剑地关系（待考）。不把县级中心直接定为古城门；原网页抓取超时已在来源记录。"
+    },
+    {
+      "id": "poi_jianghuai_baoying",
+      "name": "宝应县城",
+      "kind": "城镇",
+      "lat": 33.24,
+      "lon": 119.32,
+      "region": "rg_jianghuai",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_settlement_anchor",
+      "chapters": ["ch08", "ch12", "ch13"],
+      "period": "1669–1690、1753–1759与1766–1771清代书界；保守作县城代表点。",
+      "eras": {
+        "ch08": {"name": "宝应县城", "year_start": 1669, "year_end": 1690, "approx": true, "state": "县城代表点（旧治待考）", "scene_ids": []},
+        "ch12": {"name": "宝应县城", "year_start": 1753, "year_end": 1759, "approx": true, "state": "县城代表点（旧治待考）", "scene_ids": []},
+        "ch13": {"name": "宝应县城", "year_start": 1766, "year_end": 1771, "approx": true, "state": "县城代表点（旧治待考）", "scene_ids": []}
+      },
+      "anchor_id": "city_yangzhou",
+      "route_refs": ["route_grand_canal_north"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Baoying County", "url": "https://www.wikidata.org/wiki/Q807085", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q807085.json", "entity_id": "Q807085", "property": "P625", "statement_id": "q807085$C133D821-D577-4229-9613-ED9260C1AD0D", "revision_id": 2526614861, "raw_lat": 33.24298, "raw_lon": 119.32393, "precision_degrees": null, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 1, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "识典古籍：宝应县志卷一建置沿革", "url": "https://www.shidianguji.com/book/NA02798/chapter/1m6jlw5n9nxuz", "accessed": "2026-10-03", "verification": "在线文献条目；不虚构刻本版本及页码", "role": "history"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "P625为现代宝应县代表点；县志建置可核历史地名，但古城范围和码头未逐点定位。",
+      "notes": "补淮扬—运河北段支点（原创扩展），不是已考定的小说事件地点；不把现代县政府地址当清代县衙。古运河河槽、码头与城门（待考），不改运河权威折线。"
+    },
+    {
+      "id": "poi_hedong_daizhou",
+      "name": "代州城一带",
+      "kind": "城镇",
+      "lat": 39.06,
+      "lon": 112.96,
+      "region": "rg_hedong_jinzhong",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_settlement_anchor",
+      "chapters": ["ch05", "ch06", "ch07", "ch11", "ch13", "ch14"],
+      "period": "1523–1780所列明清书界；采用代州城区域锚，清代府州级别不在本条重定义。",
+      "eras": {
+        "ch05": {"name": "代州城一带", "year_start": 1523, "year_end": 1525, "approx": true, "state": "历史聚落代表点（旧治待考）", "scene_ids": []},
+        "ch06": {"name": "代州城一带", "year_start": 1582, "year_end": 1583, "approx": true, "state": "历史聚落代表点（旧治待考）", "scene_ids": []},
+        "ch07": {"name": "代州城一带", "year_start": 1630, "year_end": 1645, "approx": true, "state": "历史聚落代表点（旧治待考）", "scene_ids": []},
+        "ch11": {"name": "代州城一带", "year_start": 1740, "year_end": 1740, "approx": true, "state": "历史聚落代表点（旧治待考）", "scene_ids": []},
+        "ch13": {"name": "代州城一带", "year_start": 1766, "year_end": 1771, "approx": true, "state": "历史聚落代表点（旧治待考）", "scene_ids": []},
+        "ch14": {"name": "代州城一带", "year_start": 1780, "year_end": 1780, "approx": false, "state": "历史聚落代表点（旧治待考）", "scene_ids": []}
+      },
+      "anchor_id": "city_datong",
+      "route_refs": ["route_datong_taiyuan"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Dai County", "url": "https://www.wikidata.org/wiki/Q1157514", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q1157514.json", "entity_id": "Q1157514", "property": "P625", "statement_id": "q1157514$C4612749-89D5-4C48-8B3D-BC8820A4BBDA", "revision_id": 2526576718, "raw_lat": 39.06477, "raw_lon": 112.9571, "precision_degrees": null, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 0, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "法鼓文理学院地名规范资料库：代州PL000000005465", "url": "https://authority.dila.edu.tw/place/search.php?code=PL000000005465", "accessed": "2026-10-03", "verification": "只用于1368–1644建置沿革；旧Z码GRS67坐标未采作WGS84", "role": "history"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "坐标为现代代县聚落代表点；明代州级治所沿革有规范库条目，旧城门及清代建置细节待考。",
+      "notes": "补大同—太原路线上的聚落支点（原创扩展）；不用DILA旧Z码GRS67坐标冒充WGS84。明清城垣位置、清代直隶州升格时点（待考），不反投现存明城到宋层。"
+    },
+    {
+      "id": "poi_jiangnan_taihu_yanguan",
+      "name": "海宁县城（盐官）",
+      "kind": "城镇",
+      "lat": 30.41,
+      "lon": 120.54,
+      "region": "rg_jiangnan_taihu",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_settlement_anchor",
+      "chapters": ["ch12", "ch13", "ch14"],
+      "period": "1753–1759书剑及1766–1771飞狐层为海宁县城；1773升州，1780雪山层显示海宁州城。",
+      "eras": {
+        "ch12": {"name": "海宁县城（盐官）", "year_start": 1753, "year_end": 1759, "approx": true, "state": "历史城镇代表点", "scene_ids": []},
+        "ch13": {"name": "海宁县城（盐官）", "year_start": 1766, "year_end": 1771, "approx": true, "state": "历史城镇代表点", "scene_ids": []},
+        "ch14": {"name": "海宁州城（盐官）", "year_start": 1780, "year_end": 1780, "approx": false, "state": "历史城镇代表点", "scene_ids": []}
+      },
+      "anchor_id": "city_hangzhou",
+      "route_refs": ["route_grand_canal_south"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Haining Zhou", "url": "https://www.wikidata.org/wiki/Q10387058", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q10387058.json", "entity_id": "Q10387058", "property": "P625", "statement_id": "Q10387058$8597a791-4910-bdfc-9fcc-19cdb6efe52c", "revision_id": 2383491867, "raw_lat": 30.40628, "raw_lon": 120.5375, "precision_degrees": 0.00001, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 1, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "海宁市政府：海政办发〔2023〕55号附件（建置沿革）", "url": "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web2780/site/attach/0/ac1de6173f1949c4844966e2709955df.pdf", "accessed": "2026-10-03", "role": "history"},
+        {"role": "design", "path": "docs/design/chapters/12-shujian.md", "selector": "§3.6 sc_12_haining_guanchao", "accessed": "2026-10-03"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "Wikidata历史海宁州实体P625有CHGIS单条引用；指向盐官历史中心，古城边界及观潮位置仍未细测。",
+      "notes": "补杭州以东历史聚落支点（原创扩展）；不采用现代海宁市中心，也不采用盐官现代行政镇中心Q31854122。只读取Wikidata CC0结构化字段，未下载或复制CHGIS全量库；观潮岸段（待考）不强绑到此中心点。"
+    },
+    {
+      "id": "poi_jiangnan_taihu_liuheta",
+      "name": "六和塔",
+      "kind": "寺观",
+      "lat": 30.2,
+      "lon": 120.13,
+      "region": "rg_jiangnan_taihu",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch12"],
+      "period": "1753–1759书剑书界；宋建塔址在清代的历史相位。",
+      "eras": {
+        "ch12": {"name": "六和塔", "year_start": 1753, "year_end": 1759, "approx": true, "state": "寺塔（当期建筑另核）", "scene_ids": ["sc_12_liuheta"]}
+      },
+      "anchor_id": "city_hangzhou",
+      "route_refs": ["route_grand_canal_south"],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Liuhe Pagoda", "url": "https://www.wikidata.org/wiki/Q1195294", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q1195294.json", "entity_id": "Q1195294", "property": "P625", "statement_id": "Q1195294$2A59C79F-0F8D-4A46-BD7B-AD2887D490C6", "revision_id": 2515896868, "raw_lat": 30.19833333, "raw_lon": 120.12666667, "precision_degrees": 0.00027777777777778, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 1, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "杭州市文旅局：Pagoda of Six Harmonies", "url": "https://wgly.hangzhou.gov.cn/art/2013/7/7/art_1229495371_58931730.html", "accessed": "2026-10-03", "role": "history"},
+        {"role": "design", "path": "docs/design/chapters/12-shujian.md", "selector": "sc_12_liuheta", "accessed": "2026-10-03"}
+      ],
+      "confidence": "高",
+      "confidence_reason": "真实塔址P625与杭州文旅资料相符；始建970，乾隆书界已存在，章节明确登记六和塔场景。",
+      "notes": "实址导航；盟誓、反约及机关救援玩法引用章节（原创扩展）。不照搬晚清增建外檐；来源页将970误写南宋，本条只采用始建年份及地点，朝代由年份对照为北宋。"
+    },
+    {
+      "id": "poi_lingnan_foshan_zumiao",
+      "name": "佛山祖庙（北帝庙候选）",
+      "kind": "寺观",
+      "lat": 23.03,
+      "lon": 113.11,
+      "region": "rg_lingnan",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "public_site",
+      "chapters": ["ch13"],
+      "period": "1766–1771飞狐书界；北宋始建、明1372重建，清代已有庙宇，形制需分期。",
+      "eras": {
+        "ch13": {"name": "佛山祖庙（北帝庙候选）", "year_start": 1766, "year_end": 1771, "approx": true, "state": "寺观（小说同址待考）", "scene_ids": ["sc_13_foshan_beidimiao"]}
+      },
+      "anchor_id": "city_foshan",
+      "route_refs": [],
+      "render_with": null,
+      "gap": "new_map_anchor",
+      "source": [
+        {"role": "coordinate", "title": "Wikidata Foshan Ancestral Temple", "url": "https://www.wikidata.org/wiki/Q3081382", "data_url": "https://www.wikidata.org/wiki/Special:EntityData/Q3081382.json", "entity_id": "Q3081382", "property": "P625", "statement_id": "Q3081382$BED4C74A-4AE0-4BFE-969A-D831B7B06A01", "revision_id": 2515928103, "raw_lat": 23.031836, "raw_lon": 113.108473, "precision_degrees": 0.000001, "globe": "http://www.wikidata.org/entity/Q2", "reference_count": 0, "accessed": "2026-10-03", "license": "CC0-1.0"},
+        {"title": "央广网：佛山祖庙", "url": "https://www.cnr.cn/gd/zt/whjx/foshan4/20170909/t20170909_523941757.shtml", "accessed": "2026-10-03", "role": "history"},
+        {"role": "design", "path": "docs/design/chapters/13-feihu.md", "selector": "sc_13_foshan_beidimiao", "accessed": "2026-10-03"}
+      ],
+      "confidence": "中",
+      "confidence_reason": "真实祖庙P625但坐标无独立参考；庙址及北帝供奉可核，是否对应小说北帝庙仍待考。",
+      "notes": "《飞狐外传》北帝庙与现实佛山祖庙是否同址、叙事方位逐字核对（待考）；选此实寺作导航候选（原创扩展），不把现实坐标当原著定位证据。"
+    },
+    {
+      "id": "poi_jiangnan_taihu_niujiacun",
+      "name": "牛家村（临安区域锚）",
+      "kind": "村落",
+      "lat": 30.29,
+      "lon": 120.16,
+      "region": "rg_jiangnan_taihu",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch02"],
+      "period": "1217–1227射雕主书界；1199楔子不另开地图层。",
+      "eras": {
+        "ch02": {"name": "牛家村（临安区域锚）", "year_start": 1217, "year_end": 1227, "approx": true, "state": "地理标记", "scene_ids": ["sc_02_niujia_jiudian"]}
+      },
+      "anchor_id": "city_hangzhou",
+      "route_refs": [],
+      "render_with": "city_hangzhou",
+      "gap": "scene_anchor",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/cities.yaml", "selector": "cities[id=city_hangzhou]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/chapters/02-shediao.md", "selector": "sc_02_niujia_jiudian", "accessed": "2026-10-03"}
+      ],
+      "confidence": "低",
+      "confidence_reason": "只复用临安城市代表点；没有证明小说牛家村实址的历史坐标。",
+      "notes": "导航代理（原创扩展）；《射雕英雄传》牛家村相对临安的方向、里数及楔子情节逐字核对（待考）。不采用现代同名村或影视基地；年代只表示当期场景相位。"
+    },
+    {
+      "id": "poi_jiangnan_taihu_guiyunzhuang",
+      "name": "归云庄（太湖北部区域锚）",
+      "kind": "庄园",
+      "lat": 31.57,
+      "lon": 120.29,
+      "region": "rg_jiangnan_taihu",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch02"],
+      "period": "1217–1227射雕书界；庄园存毁状态引用章节，不跨时代延续。",
+      "eras": {
+        "ch02": {"name": "归云庄（太湖北部区域锚）", "year_start": 1217, "year_end": 1227, "approx": true, "state": "地理标记", "scene_ids": ["sc_02_guiyunzhuang"]}
+      },
+      "anchor_id": "city_wuxi",
+      "route_refs": [],
+      "render_with": "city_wuxi",
+      "gap": "scene_anchor",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/cities.yaml", "selector": "cities[id=city_wuxi]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/chapters/02-shediao.md", "selector": "sc_02_guiyunzhuang", "accessed": "2026-10-03"}
+      ],
+      "confidence": "低",
+      "confidence_reason": "无可证庄园实址；无锡城市锚只代表太湖北部活动区域。",
+      "notes": "区域代理（原创扩展）；《射雕英雄传》归云庄在太湖的岸段、距陆路与水路入口（待考）；不是现实归云庄景区。不能从此城市点推湖上行程或庄园内部坐标。"
+    },
+    {
+      "id": "poi_jingxiang_tianningsi",
+      "name": "天宁寺（荆州区域锚）",
+      "kind": "寺观",
+      "lat": 30.34,
+      "lon": 112.24,
+      "region": "rg_jingxiang",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch09"],
+      "period": "1705–1712连城书界（原创扩展定年）；单独寺观相位引用章节。",
+      "eras": {
+        "ch09": {"name": "天宁寺（荆州区域锚）", "year_start": 1705, "year_end": 1712, "approx": true, "state": "地理标记", "scene_ids": ["sc_09_tianningsi"]}
+      },
+      "anchor_id": "city_jingzhou",
+      "route_refs": [],
+      "render_with": "city_jingzhou",
+      "gap": "scene_anchor",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/cities.yaml", "selector": "cities[id=city_jingzhou]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/chapters/09-liancheng.md", "selector": "sc_09_tianningsi", "accessed": "2026-10-03"}
+      ],
+      "confidence": "低",
+      "confidence_reason": "只复用荆州城市锚；同名现存寺院不足以证明小说宝藏寺址。",
+      "notes": "城市代理（原创扩展）；《连城诀》天宁寺与荆州城的距离、方位、同名实寺关系（待考）。不把任何现存天宁寺当带毒宝物的史实证据。"
+    },
+    {
+      "id": "poi_hedong_zizhunan",
+      "name": "紫竹庵（晋中区域锚）",
+      "kind": "寺观",
+      "lat": 37.87,
+      "lon": 112.56,
+      "region": "rg_hedong_jinzhong",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch11"],
+      "period": "1740鸳鸯书界（原创扩展定年）；庵的授艺与追踪场景引用章节。",
+      "eras": {
+        "ch11": {"name": "紫竹庵（晋中区域锚）", "year_start": 1740, "year_end": 1740, "approx": true, "state": "地理标记", "scene_ids": ["sc_11_zizhunan"]}
+      },
+      "anchor_id": "city_taiyuan",
+      "route_refs": ["route_datong_taiyuan", "route_taiyuan_luoyang"],
+      "render_with": "city_taiyuan",
+      "gap": "scene_anchor",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/cities.yaml", "selector": "cities[id=city_taiyuan]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/chapters/11-yuanyang.md", "selector": "§3.5 sc_11_zizhunan", "accessed": "2026-10-03"}
+      ],
+      "confidence": "低",
+      "confidence_reason": "晋中官道场景尚无可证实寺址；太原城市坐标仅作区域代理。",
+      "notes": "官道导航代理（原创扩展）；《鸳鸯刀》紫竹庵名字、人物及相对晋中官道的位置逐字核对（待考）。不移用杭州等地同名紫竹庵坐标。"
+    },
+    {
+      "id": "poi_liaodong_huyidaomu",
+      "name": "胡一刀墓（辽东区域锚）",
+      "kind": "遗迹",
+      "lat": 41.79,
+      "lon": 123.43,
+      "region": "rg_liaodong",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch13"],
+      "period": "1766–1771飞狐书界；只声明小说墓地当期场景，不推定墓主史实或现实埋葬年份。",
+      "eras": {
+        "ch13": {"name": "胡一刀墓（辽东区域锚）", "year_start": 1766, "year_end": 1771, "approx": true, "state": "地理标记", "scene_ids": ["sc_13_huyidaomu"]}
+      },
+      "anchor_id": "city_shenyang",
+      "route_refs": [],
+      "render_with": "city_shenyang",
+      "gap": "scene_anchor",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/cities.yaml", "selector": "cities[id=city_shenyang]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/chapters/13-feihu.md", "selector": "sc_13_huyidaomu", "accessed": "2026-10-03"}
+      ],
+      "confidence": "低",
+      "confidence_reason": "仅沿用辽东盛京城市锚；无可证小说墓址的历史坐标。",
+      "notes": "辽东导航代理（原创扩展）；《飞狐外传》胡一刀墓与商家堡、苗人凤住处及旅程方位（待考）；按章节既有区域挂接，不能理解为沈阳城内实墓。"
+    },
+    {
+      "id": "poi_liaodong_chuangwang_baozang",
+      "name": "闯王宝藏入口（玉笔峰区域代理）",
+      "kind": "遗迹",
+      "lat": 41.79,
+      "lon": 123.43,
+      "region": "rg_liaodong",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch14"],
+      "period": "1780雪山书界；藏宝及遗迹状态引用章节，不推出现实闯王藏宝年代。",
+      "eras": {
+        "ch14": {"name": "闯王宝藏入口（玉笔峰区域代理）", "year_start": 1780, "year_end": 1780, "approx": false, "state": "地理标记", "scene_ids": ["sc_14_chuangwang_vault"]}
+      },
+      "anchor_id": "city_shenyang",
+      "route_refs": [],
+      "render_with": "city_shenyang",
+      "gap": "scene_anchor",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/cities.yaml", "selector": "cities[id=city_shenyang]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/chapters/14-xueshan.md", "selector": "sc_14_chuangwang_vault", "accessed": "2026-10-03"}
+      ],
+      "confidence": "低",
+      "confidence_reason": "宝藏与玉笔峰没有可证WGS84；盛京城市锚只承载辽东区域选择，不能表示真实山峰距离。",
+      "notes": "辽东导航代理（原创扩展）；《雪山飞狐》玉笔峰地望、宝藏洞相对山庄及峰的关系（待考）。不会用同名旅游峰移植；地图距离不用于此小说入口的行程计算。"
+    },
+    {
+      "id": "poi_xiyu_beijiang_gaochang_migong",
+      "name": "高昌迷宫入口",
+      "kind": "遗迹",
+      "lat": 42.85,
+      "lon": 89.53,
+      "region": "rg_xiyu_beijiang",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch10"],
+      "period": "702–703武周白马书界；当期高昌为西州区域，门派及机关状态沿用章节与design/17。",
+      "eras": {
+        "ch10": {"name": "高昌迷宫入口", "year_start": 702, "year_end": 703, "approx": true, "state": "地理标记", "scene_ids": ["sc_10_gaochang_migong", "sc_10_gaochang_inner"]}
+      },
+      "anchor_id": "sect_gaochang",
+      "route_refs": [],
+      "render_with": "sect_gaochang",
+      "gap": "scene_anchor",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/sects.yaml", "selector": "sects[id=sect_gaochang]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/chapters/10-baima.md", "selector": "sc_10_gaochang_migong / sc_10_gaochang_inner", "accessed": "2026-10-03"}
+      ],
+      "confidence": "低",
+      "confidence_reason": "复用已登记高昌故城门派锚；真实故城不能证明小说迷宫的地下或地表入口。",
+      "notes": "入口代理与机关玩法（原创扩展）；《白马啸西风》高昌迷宫地望及唐代高昌/西州称谓（待考）。不把现代故城荒废状态套回702，不从sect_gaochang旧层年代推新时间。"
+    },
+    {
+      "id": "poi_dali_langhuan_entrance_01",
+      "name": "琅嬛福地入口眺望点",
+      "kind": "遗迹",
+      "lat": 24.82,
+      "lon": 100.52,
+      "region": "rg_dali_cangshan",
+      "coordinate_precision": "0.01 degree; WGS84",
+      "coordinate_mode": "upstream_anchor",
+      "chapters": ["ch01"],
+      "period": "1093–1094天龙书界；已有PoiDef在剑湖宫场景中的入口眺望相位。",
+      "eras": {
+        "ch01": {"name": "琅嬛福地入口眺望点", "year_start": 1093, "year_end": 1094, "approx": true, "state": "地理标记", "scene_ids": ["sc_01_jianhugong"]}
+      },
+      "anchor_id": "site_xiaoyao_wuliang",
+      "route_refs": [],
+      "render_with": "site_xiaoyao_wuliang",
+      "gap": "registered_poi",
+      "source": [
+        {"role": "coordinate", "path": "docs/design/map/sects.yaml", "selector": "sects[id=sect_xiaoyao].branches[id=site_xiaoyao_wuliang]", "accessed": "2026-10-03"},
+        {"role": "design", "path": "docs/design/11-open-world.md", "selector": "§12.2 poi_dali_langhuan_entrance_01", "accessed": "2026-10-03"}
+      ],
+      "confidence": "低",
+      "confidence_reason": "只复用无量山琅嬛分支的小说坐标；山洞、入口和眺望点均非测绘实址。",
+      "notes": "导航代理及眺望投影（原创扩展）；《天龙八部》琅嬛福地地望（待考）。复用design/11已有ID与sc_01_jianhugong，不将场内vista改成洞口，也不从场内六角cell反推WGS84。"
+    }
+  ]
+}

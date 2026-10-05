@@ -1,0 +1,72 @@
+kind: EffectSet
+version: 1
+asset_id: vfx_sk_tiezhangyunqigong__family_base01
+size_px:
+- 627
+- 627
+color_space: srgb
+alpha_mode: straight
+style: ink
+direction:
+- 1
+- 0
+reference_length_px: 483
+root_width_px: 177
+blend: normal
+source:
+  mode: grid
+  files:
+  - source_sheet.png
+  rects:
+  - file_index: 0
+    rect_px:
+    - 0
+    - 0
+    - 627
+    - 627
+  - file_index: 0
+    rect_px:
+    - 627
+    - 0
+    - 627
+    - 627
+  - file_index: 0
+    rect_px:
+    - 0
+    - 627
+    - 627
+    - 627
+  - file_index: 0
+    rect_px:
+    - 627
+    - 627
+    - 627
+    - 627
+  keying:
+    method: white_key
+    white_cutoff_8bit: 250
+    opaque_luma: 0.2
+    key_full_8bit: 64
+    epsilon: 0.00392156862745098
+    dewhite: true
+frames:
+- file: frame_000.png
+  anchor_px:
+  - 115
+  - 316.5
+  phase: 0
+- file: frame_001.png
+  anchor_px:
+  - 115
+  - 316.5
+  phase: 0.4166666666666667
+- file: frame_002.png
+  anchor_px:
+  - 115
+  - 306.5
+  phase: 0.8333333333333334
+- file: frame_003.png
+  anchor_px:
+  - 115
+  - 315.5
+  phase: 1

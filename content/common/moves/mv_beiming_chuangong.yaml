@@ -1,0 +1,22 @@
+schemaVersion: move.v1
+id: mv_beiming_chuangong
+name: 传功
+skillId: sk_beiming
+unlock: 10
+kind: support
+ultimate: true
+rageCost: 100
+target: ally
+range: {min: 1, max: 1}
+shape: {tpl: aoe_single}
+delivery: melee
+hTol: 2
+powerBp: 0
+referencePowerBp: 10000
+wInBp: 10000
+mpCost: 54
+recovery: 1200
+hitZone: body
+meridianRouteRef: mfr_beiming_chuangong
+autoTargetCap: 1
+friendlyFire: none

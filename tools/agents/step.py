@@ -24,6 +24,7 @@ run.py 是全自动调度器；本脚本把同一套机制拆成可单独调用�
 from __future__ import annotations
 
 import argparse
+import re
 import datetime as _dt
 import fcntl
 import json
@@ -38,10 +39,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import run as R  # noqa: E402  复用 run.py
+from check_semaphore import check_slot  # noqa: E402
 
-DEFAULT_MODEL = "GPT-6-Astra"   # 2026-09-30 作者指定：执行用 GPT-6-Astra；GPT-5.6-Sol 只作探测失败时的备用
-DEFAULT_EFFORT = "ultra"        # 起草 / 代码 / 工具任务；审校任务默认 defaults.review_effort（xhigh）
-PROBE_EFFORT = "low"            # 探测只看模型是否应答，用低强度以免探测本身超时
+DEFAULT_MODEL = "GPT-6-Astra"  # 作者 2026-10-01：「调用 traex-cli（GPT 6 astra max，如果没有就 5.6-sol max）」——默认 Astra，启动探测不应答自动回退 FALLBACK_MODELS
+DEFAULT_EFFORT = "max"  # 执行默认 ultra；审核默认 xhigh（作者 2026-09-30："gpt 6 astra ultra 和 extra high"）
+CODEX_BIN = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex"
 
 
 def now_s() -> str:
@@ -135,17 +137,245 @@ def is_running(root: Path, tid: str) -> bool:
     return bool(cur) and not Path(cur["exit"]).exists() and pid_alive(int(cur["pid"]))
 
 
+# ---------------------------------------------------------------- 并发上限（按池）
+# 文档类任务与素材类任务（ID 以 ART 开头）各自一池；上限可在 tasks.json defaults.max_parallel
+# 或环境变量 TIANSHU_MAX_PARALLEL_<POOL> 中调整。start 在文件锁内计数，满了就排队等空位。
+POOL_CAPS_DEFAULT = {"docs": 8, "assets": 8, "code": 3}
+
+
+ASSET_PREFIXES = ("ART", "TOWN", "VFX", "SKILL", "KIT", "CITY")  # 素材线（作者 2026-09-30：优先把 assets 任务跑完）单独一池，不和文档任务抢位
+
+
+CODE_PREFIXES = ("ENG", "TOOL")  # 游戏工程（作者 2026-09-30 AR-19）：写代码、装依赖，单独一池
+
+
+def pool_of(tid: str) -> str:
+    if tid.upper().startswith("ART-P-"):  # 人物立绘提示词（只写文本，不出图）：单独一池，不挤占出图任务
+        return "prompts"
+    if tid.upper().startswith(CODE_PREFIXES):
+        return "code"
+    return "assets" if tid.upper().startswith(ASSET_PREFIXES) else "docs"
+
+
+# 2026-10-03 开发监督（协调者 AR-85：素材线照常跑，但不占 M1 需要的池位）：并发计数用的「占位池」可按任务改归，
+# 规则在 tasks.json defaults.slot_pool_overrides（[[正则, 池名], ...]，自上而下取第一条命中），只影响排队与占位，
+# 不影响检出方式（needs_build / sparse_checkout_for 仍按 pool_of）。改规则对新起的 start 立即生效。
+_SLOT_OVR: tuple = (None, [])
+
+
+def slot_pool_of(tid: str) -> str:
+    global _SLOT_OVR
+    try:
+        mtime = R.TASKS_FILE.stat().st_mtime
+        if _SLOT_OVR[0] != mtime:
+            rules = json.loads(R.TASKS_FILE.read_text(encoding="utf-8")).get("defaults", {}).get("slot_pool_overrides") or []
+            _SLOT_OVR = (mtime, [(re.compile(str(r[0])), str(r[1])) for r in rules if isinstance(r, (list, tuple)) and len(r) == 2])
+    except (OSError, ValueError, TypeError, re.error):
+        _SLOT_OVR = (None, [])
+    for rx, pool in _SLOT_OVR[1]:
+        if rx.search(tid):
+            return pool
+    return pool_of(tid)
+
+
+# 2026-10-01：任务工作区曾是全量检出（素材图约 2 GB / 个），同时开 20 个就把磁盘写满。文档 / 代码 / 提示词池的任务
+# 不需要图片目录，改为稀疏检出（只排除下面这些图片目录）；素材池任务仍全量。任务可用 "full_checkout": true 强制全量。
+# 2026-10-02（ENG 监督）：ENG-11 起构建期 publishVfxRuntime 逐个 access() vfx/ 与 baseline/vfx/ 的运行时文件，缺了就构建失败，
+# 所以这两处改为检出（vfx 178 MB、baseline 剩余约 40 MB）；物品 / 人物 / 立绘目录变大后（共约 2 GB），只排除图片本体、保留 manifest
+#（构建按 manifest 读取，缺图自动跳过）。写这些目录的任务仍全量检出。
+# 2026-10-02（开发监督）：ENG-09 起构建期 copyTownAssets 逐个 access() content/town/*/*.json 引用的城镇图集，
+# 都是 baseline/tile、baseline/building-map 的顶层文件（共约 19 MB）；这两处改为只排除子目录（sources / review / meta / qa 等约 300 MB）。
+# 2026-10-03（素材线第三波追踪，main 批）：town（城图，AR-47 全量后以 GB 计）与 scene（情景图）构建 / 测试都不读，稀疏检出默认排除
+SPARSE_EXCLUDE_DIRS = ("assets/default/baseline/town", "assets/default/building-map", "assets/default/tile",
+                       "assets/default/town", "assets/default/scene")
+SPARSE_EXCLUDE_SUBDIRS = ("assets/default/baseline/building-map", "assets/default/baseline/tile")
+# 2026-10-03（素材线第三波追踪，main 13:58 批）：vfx（约 180 MB）只有构建要读（apps/game/build 的 publishVfxRuntime）。
+# 代码池任务与校验命令含 pnpm 的任务照旧检出；其余（素材 / 文档）默认排除，要读的用 sparse_include 显式列。
+SPARSE_EXCLUDE_IF_NO_BUILD = ("assets/default/vfx",)
+# 2026-10-03（素材线第三波）：被排除目录里 tools 单测要直接读的少数文件，稀疏检出时总是带上
+# （tools/content/test_town_runtime.py 的 test_compiles_current_town_deterministically 读南京 ch10 的现成布局）。
+SPARSE_ALWAYS_INCLUDE = ("assets/default/town/city_nanjing__ch10/layout.yaml",)
+SPARSE_EXCLUDE_FILES = ("assets/default/item/**/*.png", "assets/default/item/**/*.jpg", "assets/default/item/**/*.pdf",
+                        "assets/default/character/**/*.png", "assets/default/portrait/**/*.webp")
+SPARSE_FULL_IF_WRITES = SPARSE_EXCLUDE_DIRS + SPARSE_EXCLUDE_SUBDIRS + ("assets/default/item", "assets/default/character",
+                                                                        "assets/default/portrait")
+
+
+def needs_build(t) -> bool:
+    cmds = (getattr(t, "validate", None) or {}).get("cmd") or []
+    return pool_of(t.id) == "code" or any("pnpm" in " ".join(map(str, c)) for c in cmds)
+
+
+def exclude_dirs(t) -> tuple:
+    return SPARSE_EXCLUDE_DIRS + (() if needs_build(t) else SPARSE_EXCLUDE_IF_NO_BUILD)
+
+
+def sparse_checkout_for(t) -> list | None:
+    inc = [x.strip("/") for x in getattr(t, "sparse_include", []) if x.strip("/")]
+    dirs = exclude_dirs(t)
+    if inc:  # 2026-10-02 协调者：带 sparse_include 的任务（含素材池）稀疏检出 + 只包含自己要读写的图片目录
+        # 2026-10-03（素材线第三波追踪）：include 落在被排除目录之下时，不再整目录放开，改为只排除其子目录（!/d/*/）
+        # 再逐项包含——git 2.44 实测：/d/sub/ 与 /d/sub/*.png 都能在 !/d/*/ 之后再包含，尚不存在的新目录也能 git add；
+        # include 恰是被排除目录本身（或其上级）时仍整目录放开（!/d/*/ 之后再写 /d/ 包含不回子目录）。
+        def covers(d: str) -> bool:
+            return any(i == d or d.startswith(i + "/") for i in inc)
+
+        def under(d: str) -> bool:
+            return any(i.startswith(d + "/") for i in inc)
+        pats = ["/*"] + [(f"!/{d}/*/" if under(d) else f"!/{d}/") for d in dirs if not covers(d)] \
+            + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS if not covers(d)] \
+            + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES] + [f"/{i}" for i in inc] + [f"/{a}" for a in SPARSE_ALWAYS_INCLUDE]
+        return pats
+    if getattr(t, "full_checkout", False) or pool_of(t.id) == "assets":
+        return None
+    if any(w.startswith(d) for w in t.writes for d in SPARSE_FULL_IF_WRITES):
+        return None
+    return (["/*"] + [f"!/{d}/" for d in dirs] + [f"!/{d}/*/" for d in SPARSE_EXCLUDE_SUBDIRS]
+            + [f"!/{g}" for g in SPARSE_EXCLUDE_FILES] + [f"/{a}" for a in SPARSE_ALWAYS_INCLUDE])
+
+
+def apply_sparse(wt: Path, patterns: list, ref: str) -> None:
+    p = R.git(["sparse-checkout", "set", "--no-cone", *patterns], wt, check=False)
+    if p.returncode != 0:  # 旧版 git 没有 --no-cone：init（默认非 cone）后 set
+        R.git(["sparse-checkout", "init"], wt)
+        R.git(["sparse-checkout", "set", *patterns], wt)
+    R.git(["checkout", "--detach", ref], wt)
+
+
+def pool_cap(g, pool: str) -> int:
+    env = os.environ.get(f"TIANSHU_MAX_PARALLEL_{pool.upper()}")
+    if env:
+        return int(env)
+    caps = g.defaults.get("max_parallel") or {}
+    return int(caps.get(pool, POOL_CAPS_DEFAULT.get(pool, 8)))
+
+
+def running_in_pool(root: Path, pool: str, exclude: str | None = None) -> list:
+    base = root / ".agents" / "logs"
+    if not base.is_dir():
+        return []
+    return sorted(d.name for d in base.iterdir()
+                  if d.is_dir() and d.name != exclude and slot_pool_of(d.name) == pool and is_running(root, d.name))
+
+
+# ---------------------------------------------------------------- 池位优先级（协调者 2026-10-03 18:20）
+# .agents/coord/pool_priority.txt：每行一个任务 ID（# 起注释、空行忽略），越靠前越先拿空位，按 pool_of 自动归池。
+# 文件不存在时行为与原来完全一样：谁先轮询到空位谁拿。只决定「谁先拿空位」，不碰校验、门禁和阈值。
+# 排队中的 start 在 .agents/slots/waiting/<ID>.json 登记 {pid, since, pool}，拿到空位或退出时删掉；
+# 名单内的按名单顺序，名单外的排在名单之后、按开始等的时间先来先得。登记的 pid 已死就当作没在等（顺手清掉）。
+PRIORITY_FILE = Path(".agents") / "coord" / "pool_priority.txt"
+WAITING_DIR = Path(".agents") / "slots" / "waiting"
+SETTLE_SEC = 15  # 有名单时，登记满 15 秒才拿空位：同一批起的任务先都登记上，再按名单比先后
+
+
+def parse_priority(text: str) -> list:
+    """纯函数：名单文本 → 去重后的任务 ID 列表（保持先后）。"""
+    out: list = []
+    for line in text.splitlines():
+        tid = line.split("#", 1)[0].strip()
+        if tid and tid not in out:
+            out.append(tid)
+    return out
+
+
+def read_priority(root: Path):
+    """读名单；文件不存在返回 None（= 原行为）。"""
+    try:
+        return parse_priority((root / PRIORITY_FILE).read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return None
+
+
+def slot_order(waiting: dict, priority: list) -> list:
+    """纯函数：同池正在等位的任务 {ID: 开始等的时间戳} → 拿空位的先后。"""
+    rank = {tid: i for i, tid in enumerate(priority)}
+    return sorted(waiting, key=lambda tid: (rank.get(tid, len(priority)),
+                                            0.0 if tid in rank else float(waiting[tid]), tid))
+
+
+def may_take_slot(me: str, free: int, waiting: dict, priority, me_since: float) -> bool:
+    """纯函数：池里有 free 个空位时，me 现在能不能拿。priority 为 None（没有名单文件）→ 有空位就拿（原行为）。"""
+    if free <= 0:
+        return False
+    if priority is None:
+        return True
+    w = dict(waiting)
+    w.setdefault(me, me_since)
+    return me in slot_order(w, priority)[:free]
+
+
+def live_waiters(root: Path, pool: str) -> dict:
+    """同池里登记在等、且进程还活着的任务 {ID: 开始等的时间戳}；死进程的登记顺手删掉。"""
+    d = root / WAITING_DIR
+    out: dict = {}
+    if not d.is_dir():
+        return out
+    for f in d.glob("*.json"):
+        tid = f.stem
+        try:
+            info = json.loads(f.read_text(encoding="utf-8"))
+            pid = int(info.get("pid", 0))
+        except (OSError, ValueError, TypeError):
+            continue
+        if slot_pool_of(tid) != pool:
+            continue
+        if pid <= 0 or not pid_alive(pid):
+            f.unlink(missing_ok=True)
+            continue
+        out[tid] = float(info.get("since", 0.0))
+    return out
+
+
+def register_waiting(root: Path, tid: str, pool: str, since: float) -> None:
+    d = root / WAITING_DIR
+    d.mkdir(parents=True, exist_ok=True)
+    (d / f"{tid}.json").write_text(json.dumps({"pid": os.getpid(), "since": since, "pool": pool}), encoding="utf-8")
+
+
+def live_cap(pool: str, fallback: int) -> int:
+    """排队时每轮重读池上限（环境变量优先，其次 tasks.json defaults.max_parallel），改上限对正在排队的 start 也立即生效。"""
+    env = os.environ.get(f"TIANSHU_MAX_PARALLEL_{pool.upper()}")
+    if env:
+        return int(env)
+    try:
+        caps = json.loads(R.TASKS_FILE.read_text(encoding="utf-8")).get("defaults", {}).get("max_parallel") or {}
+        return int(caps.get(pool, fallback))
+    except (OSError, ValueError, TypeError):
+        return fallback
+
+
+def unregister_waiting(root: Path, tid: str) -> None:
+    f = root / WAITING_DIR / f"{tid}.json"
+    try:
+        if int(json.loads(f.read_text(encoding="utf-8")).get("pid", 0)) == os.getpid():
+            f.unlink(missing_ok=True)
+    except (OSError, ValueError, TypeError):
+        pass
+
+
 def find_bin(explicit: str | None, defaults: dict) -> str:
+    """执行器：作者 2026-09-30 「gpt额度没有了，用traex cli调用 gpt6 max吧」——默认 traex / traecli；Codex 只作最后备选。"""
     cands = [explicit] if explicit else []
-    cands += [os.environ.get("TRAEX_BIN") or ""]
-    cands += list(defaults.get("bin", ["traex", "traecli"]))
+    cands += [os.environ.get("TRAEX_BIN") or "", os.environ.get("CODEX_BIN") or ""]
+    cands += list(defaults.get("bin", ["traex", "traecli"])) + ["traex", "traecli", CODEX_BIN]
     for c in cands:
         if not c:
             continue
         found = R.shutil.which(c)
         if found:
             return found
-    raise R.Fatal("找不到 traex / traecli，请确认已安装并在 PATH 中（或设置 TRAEX_BIN）")
+    raise R.Fatal("找不到 traex / traecli（或 Codex），请确认 TraeX CLI 已安装并在 PATH 中（或用 --bin / 环境变量 TRAEX_BIN 指定）")
+
+
+# 2026-10-03 协调者：traex 会把作者本机 ~/.trae/skills 的技能清单放进提示词。ENG-region-gates-data 的执行器曾自行调起
+# bits-unit-test-gen 走它那套生成单测流程，卡死无输出。按次关闭技能说明，不改作者 ~/.trae 下的配置：
+# 实测 `traex debug prompt-input -c skills.include_instructions=false` 只去掉 <skills_instructions> 段，其余提示不变。
+TRAEX_NO_SKILLS = ["-c", "skills.include_instructions=false"]
+
+
+def is_traex(binary: str) -> bool:
+    name = Path(str(binary)).name.lower()
+    return "traex" in name or "traecli" in name
 
 
 def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, search: bool, extra: list | None = None) -> list:
@@ -153,13 +383,39 @@ def build_argv(binary: str, model: str, effort: str, wt: Path, last: Path, searc
             "-C", str(wt), "-o", str(last)]
     if effort:
         argv += ["-c", f'model_reasoning_effort="{effort}"']
-    # 注：`--search` 只是交互式 CLI 的参数，`exec` 不接受；exec 下模型自带 web_search 工具，无需开关
+    if is_traex(binary):
+        argv += TRAEX_NO_SKILLS
+    # 注：`--search` 只是交互式 CLI 的参数，`exec` 不接受；exec 下模型自带 web_search 工具，无需开关。
+    # web 任务同时放开沙箱网络：作者 2026-09-30「建筑套件和城市在生成时搜一下历史图片作为参考」——要能把搜到的图下载到工作区看。
+    if search:
+        argv += ["-c", "sandbox_workspace_write.network_access=true"]
     argv += list(extra or [])
     return argv + ["-"]  # 提示词经标准输入传入
 
 
 WRAPPER = '"$@" < "$TS_PROMPT" >> "$TS_LOG" 2>&1; rc=$?; echo "$rc" > "$TS_EXIT"; exit $rc'
-FALLBACK_MODELS = ["GPT-5.6-Sol"]
+FALLBACK_MODELS: list = ["GPT-5.6-Sol"]  # 主模型不应答时回退。作者只许 Astra → Sol（10-02 开发监督去掉 GPT-5.5：高负载下 Sol 探测超时曾落到 5.5）
+
+
+def executor_override(root, tid: str = "") -> dict:
+    """作者 AR-65（10-03 20:13）「除了 gemini 画图和 tripo 驱动，其他任务换成调用 GPT 6.1 Sol」、
+    AR-66（20:33）「代码、城镇布局、特效的执行可以交给traex 的 gpt 6 或者gpt 5.6 max；内容，特效审核交给codex gpt-6.1-sol」：
+    .agents/coord/executor_override.json 存在且 enabled 不为 false 时，按 rules 里第一条 match（正则，对任务 ID）
+    覆盖执行器 bin / model / effort / fallback；没有 rules 就用顶层字段。每次 start 现读，在跑的驱动不用重起；
+    文件不存在、读坏或没有匹配的规则就照旧。"""
+    try:
+        d = json.loads((Path(root) / ".agents/coord/executor_override.json").read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    if not isinstance(d, dict) or not d.get("enabled", True):
+        return {}
+    rules = d.get("rules")
+    if not rules:
+        return d
+    for r in rules:
+        if isinstance(r, dict) and re.search(r.get("match", "^$"), tid or ""):
+            return r
+    return {}
 
 
 def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bool:
@@ -186,6 +442,8 @@ def launch(argv: list, prompt_file: Path, log: Path, exit_file: Path, cwd: Path,
 
 
 def tail(path: Path, n: int = 40, drop_hooks: bool = True) -> str:
+    if n <= 0:
+        return ""  # --tail 0：不打印日志（lines[-0:] 会取全部）
     if not path.exists():
         return "（无）"
     lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
@@ -224,8 +482,33 @@ def cmd_start(a) -> int:
             R.wt_remove(root, wt)
         if not R.main_is_clean(root):
             print("⚠ 主检出有未提交的改动；工作区仍从 HEAD 创建，但 merge 前需要清理")
+        # --base：从另一个任务已 finish（带尾注）的工作区提交上叠着开工（那个任务还没合入主分支时用），
+        # 或直接给一个提交号。基点记进 state，finish 只提交相对该基点的改动，等前一个任务合入后再 cherry-pick 就不冲突。
+        start_ref = "HEAD"
+        if getattr(a, "base", None):
+            other = R.wt_path(root, a.base)
+            if R.wt_exists(other):
+                if not R.head_has_trailer(other, a.base):
+                    raise R.Fatal(f"--base {a.base}：那个工作区还没有带尾注的提交，请先对它 finish")
+                start_ref = R.git(["rev-parse", "HEAD"], other).stdout.strip()
+            else:
+                start_ref = R.git(["rev-parse", "--verify", a.base + "^{commit}"], root).stdout.strip()
+            print(f"  基点取自 --base {a.base}：{start_ref[:12]}")
         wt.parent.mkdir(parents=True, exist_ok=True)
-        R.git(["worktree", "add", "--detach", str(wt), "HEAD"], root)
+        # 批量调度时 merge（cherry-pick）与新建工作区可能撞上 index.lock：失败就等几秒重试
+        sparse = sparse_checkout_for(t)
+        for delay in (0, 3, 6, 12):
+            time.sleep(delay)
+            p = R.git(["worktree", "add", "--detach", *(["--no-checkout"] if sparse else []), str(wt), start_ref], root, check=False)
+            if p.returncode == 0:
+                if sparse:
+                    apply_sparse(wt, sparse, start_ref)
+                break
+            if wt.exists():
+                R.git(["worktree", "remove", "--force", str(wt)], root, check=False)
+            R.git(["worktree", "prune"], root, check=False)
+        else:
+            raise R.Fatal(f"git worktree add 连续失败：{(p.stderr or p.stdout).strip()[:300]}")
         base = R.git(["rev-parse", "HEAD"], wt).stdout.strip()
         st.update(t.id, base=base, attempts=0, last_failure=None)
         failure = note
@@ -240,21 +523,25 @@ def cmd_start(a) -> int:
     for f in (exitf, lastf):
         if f.exists():
             f.unlink()
-    # 优先级：命令行 > 环境变量 > tasks.json 逐任务字段 > defaults（审校用 review_effort）> 脚本默认
-    model = a.model or os.environ.get("TRAEX_MODEL") or t.model or g.defaults.get("model") or DEFAULT_MODEL
-    if a.effort is not None:
-        effort = a.effort
-    elif os.environ.get("TRAEX_EFFORT"):
-        effort = os.environ["TRAEX_EFFORT"]
-    elif t.effort:
-        effort = t.effort
-    elif t.kind == "review" and g.defaults.get("review_effort"):
-        effort = g.defaults["review_effort"]
-    else:
-        effort = g.defaults.get("effort") or DEFAULT_EFFORT
+    # 池位优先级：探测模型之前就登记「在等」，同一批起的任务都先登记好再比先后，免得探测快的低优先任务先抢到空位
+    # （进程异常退出时登记随 pid 失效，别的 start 判定时会顺手清掉）
+    since = time.time()
+    register_waiting(root, t.id, slot_pool_of(t.id), since)
+    model = a.model or os.environ.get("TRAEX_MODEL") or g.defaults.get("model") or DEFAULT_MODEL
+    effort = a.effort if a.effort is not None else (os.environ.get("TRAEX_EFFORT") or g.defaults.get("effort") or DEFAULT_EFFORT)
     binary = find_bin(a.bin, g.defaults)
+    fallback = FALLBACK_MODELS
+    ov = executor_override(root, t.id)  # 作者 AR-65 / AR-66：按任务类型分流执行器
+    if ov:
+        binary, model, effort = ov.get("bin") or binary, ov.get("model") or model, ov.get("effort") or effort
+        fallback = list(ov.get("fallback", []))
+        print(f"… AR-65 执行器覆盖：{Path(str(binary)).name} · {model} · {effort}", flush=True)
+    cands = [model] + [m for m in fallback if m != model]
+    if "codex" in str(binary).lower():  # 2026-10-02 协调者：Codex（ChatGPT 账号）只认小写模型名（gpt-6-astra / gpt-5.6-sol），traex 认大写；按执行器换名
+        cands = [c.lower() for c in cands]
+        model = model.lower()
     if not a.no_probe:
-        for cand in [model] + [m for m in FALLBACK_MODELS if m != model]:
+        for cand in cands:
             print(f"… 探测模型 {cand}（≤ {a.probe_sec:g} 秒）", flush=True)
             if probe_model(binary, cand, PROBE_EFFORT, int(a.probe_sec)):
                 if cand != model:
@@ -262,16 +549,56 @@ def cmd_start(a) -> int:
                 model = cand
                 break
         else:
-            raise R.Fatal("所有候选模型都无响应（探测超时），请稍后再试或用 --no-probe 强制启动")
-    st.update(t.id, attempts=attempt)  # 探针通过、确定启动后才计入运行次数
-    argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
-    logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
-                    f"# 工作区：{wt}\n# 基点：{base}\n\n", encoding="utf-8")
-    pid = launch(argv, pf, logf, exitf, wt, {"TIANSHU_TASK_ID": t.id})
-    (ld / "current.json").write_text(json.dumps({
-        "attempt": attempt, "pid": pid, "model": model, "effort": effort, "started": now_s(),
-        "prompt": str(pf), "log": str(logf), "exit": str(exitf), "last": str(lastf), "wt": str(wt), "base": base,
-    }, ensure_ascii=False, indent=1), encoding="utf-8")
+            # 高负载时探测常超时但执行器本身能跑：不再报错停住，改用第一个回退模型直接启动（作者：没有 Astra 就用 Sol）
+            model = next((m for m in FALLBACK_MODELS if m != model), model)
+            print(f"⚠ 所有候选模型探测都超时（机器负载高），不再探测，直接用 {model} 启动")
+    pool, cap = slot_pool_of(t.id), pool_cap(g, slot_pool_of(t.id))
+    lockf = root / ".agents" / "slots.lock"
+    deadline = time.time() + a.slot_wait_min * 60
+    announced = False
+    deferred_to = None
+    try:
+        while True:
+            with open(lockf, "w") as lf:
+                fcntl.flock(lf, fcntl.LOCK_EX)
+                busy = running_in_pool(root, pool, exclude=t.id)
+                cap = live_cap(pool, cap)
+                free = cap - len(busy)
+                prio = read_priority(root) if free > 0 else None
+                waiting = live_waiters(root, pool) if prio is not None else {}
+                settled = prio is None or time.time() - since >= SETTLE_SEC
+                if settled and may_take_slot(t.id, free, waiting, prio, since):
+                    st.update(t.id, attempts=attempt)  # 探针通过、确定启动后才计入运行次数
+                    argv = build_argv(binary, model, effort, wt, lastf, t.web or a.search, t.agent_args)
+                    logf.write_text(f"# {t.id} · {t.title}\n# 开始：{now_s()}\n# 命令：{shlex.join(argv)} < {pf}\n"
+                                    f"# 工作区：{wt}\n# 基点：{base}\n\n", encoding="utf-8")
+                    extra_env = {"TIANSHU_TASK_ID": t.id}
+                    if "codex" in str(binary).lower():  # 2026-10-03 协调者：Codex 执行器各用自己的 CODEX_HOME（线程历史库曾在 ~/.codex 涨到 4.7 GB）；auth / config 链接到 ~/.codex
+                        home = ld / "codex-home"; home.mkdir(parents=True, exist_ok=True)
+                        for name in ("auth.json", "config.toml"):
+                            link = home / name
+                            if not link.exists() and not link.is_symlink():
+                                link.symlink_to(Path.home() / ".codex" / name)
+                        extra_env["CODEX_HOME"] = str(home)
+                    pid = launch(argv, pf, logf, exitf, wt, extra_env)
+                    (ld / "current.json").write_text(json.dumps({
+                        "attempt": attempt, "pid": pid, "model": model, "effort": effort, "started": now_s(),
+                        "prompt": str(pf), "log": str(logf), "exit": str(exitf), "last": str(lastf), "wt": str(wt), "base": base,
+                    }, ensure_ascii=False, indent=1), encoding="utf-8")
+                    break
+                ahead = [x for x in slot_order({**waiting, t.id: since}, prio) if x != t.id][:free] if prio is not None else []
+            if time.time() >= deadline:
+                raise R.Fatal(f"并行已满（{pool} 池 {len(busy)}/{cap}：{'、'.join(busy)}）。这不是任务失败："
+                              f"请后台运行 `python3 tools/agents/step.py slot {t.id} --max-min 25` 等到空位后再 start")
+            if not announced:
+                print(f"… {pool} 池并行已满（{len(busy)}/{cap}），排队等空位（最多 {a.slot_wait_min:g} 分钟）", flush=True)
+                announced = True
+            if ahead and ahead != deferred_to:
+                print(f"… {pool} 池有空位，按 pool_priority.txt 让给排在前面的：{'、'.join(ahead)}", flush=True)
+                deferred_to = ahead
+            time.sleep(20)
+    finally:
+        unregister_waiting(root, t.id)
     print(f"▶ {t.id} 第 {attempt} 次运行已启动（pid {pid}，模型 {model}，推理强度 {effort or '默认'}，"
           f"联网搜索 {'开' if (t.web or a.search) else '关'}）\n  工作区：{wt}\n  提示词：{pf}\n  日志：{logf}\n"
           f"  下一步：python tools/agents/step.py wait {t.id}")
@@ -353,7 +680,8 @@ def cmd_finish(a) -> int:
         rc = Path(cur["exit"]).read_text().strip()
         if rc != "0":
             problems.append(f"代理进程退出码 {rc}（见 {cur['log']}）")
-    problems += R.validate(t, wt, R.baseline_lines(wt, t, base), cfg)
+    with check_slot(root):
+        problems += R.validate(t, wt, R.baseline_lines(wt, t, base), cfg)
     files = R.changed_files(wt, base)
     allowed = [f for f in files if R.matches_any(f, t.all_writes)]
     discarded = [f for f in files if f not in allowed]
@@ -389,6 +717,28 @@ def cmd_finish(a) -> int:
 
 # ---------------------------------------------------------------- merge
 
+# 多个任务都往同一份"追加型"markdown 文末加小节（各套件往 prompts/*.md 加自己的一节、FOLLOWUPS 追加条目），
+# cherry-pick 时两边都是新增行会报冲突；这类文件按"两边都保留"自动解决，其他文件冲突仍中止。
+UNION_MERGE_GLOBS = ("assets/default/prompts/*.md", "tools/agents/FOLLOWUPS.md", "assets/default/STYLE.md", "packages/*/CLAUDE.md", "apps/*/CLAUDE.md", "CLAUDE.md", "docs/design/10-items-and-equipment.md")  # design/10 文末 ID 登记表：并行的名录扩张任务各加一行
+_CONFLICT = re.compile(r"<<<<<<< [^\n]*\n(.*?)=======\n(.*?)>>>>>>> [^\n]*\n", re.S)
+
+
+def union_resolve(root: Path) -> bool:
+    files = [f for f in R.git(["diff", "--name-only", "--diff-filter=U"], root, check=False).stdout.split("\n") if f]
+    if not files or not all(R.matches_any(f, list(UNION_MERGE_GLOBS)) for f in files):
+        return False
+    for f in files:
+        fp = root / f
+        text = fp.read_text(encoding="utf-8")
+        merged = _CONFLICT.sub(lambda m: m.group(1) + ("" if m.group(1).endswith("\n") or not m.group(1) else "\n") + m.group(2), text)
+        if "<<<<<<<" in merged or ">>>>>>>" in merged:
+            return False
+        fp.write_text(merged, encoding="utf-8")
+        R.git(["add", "--", f], root)
+    print("  冲突按“两边都保留”自动解决：" + "、".join(files))
+    return True
+
+
 def cmd_merge(a) -> int:
     root, g, t, st = load(a.id)
     wt = R.wt_path(root, t.id)
@@ -414,6 +764,8 @@ def cmd_merge(a) -> int:
                 break
             if "index.lock" not in (p.stderr + p.stdout):
                 break
+        if p is not None and p.returncode != 0 and union_resolve(root):
+            p = R.git(["-c", "core.editor=true", "cherry-pick", "--continue"], root, check=False)
         if p is None or p.returncode != 0:
             R.git(["cherry-pick", "--abort"], root, check=False)
             raise R.Fatal(f"cherry-pick 失败：{(p.stderr or p.stdout).strip()[:400] if p else '未知'}")
@@ -422,6 +774,61 @@ def cmd_merge(a) -> int:
     if not a.keep:
         R.wt_remove(root, wt)
         print("  工作区已清理")
+    return 0
+
+
+# ---------------------------------------------------------------- slot
+def cmd_slot(a) -> int:
+    """等到本任务所在池有空位（不占位；随后仍需 start）。"""
+    root = R.repo_root()
+    g = R.Graph()
+    pool = slot_pool_of(a.id)
+    cap = pool_cap(g, pool)
+    deadline = time.time() + a.max_min * 60
+    while True:
+        busy = running_in_pool(root, pool, exclude=a.id)
+        if len(busy) < cap:
+            print(f"SLOT-FREE {pool} {len(busy)}/{cap}")
+            return 0
+        if time.time() >= deadline:
+            print(f"SLOT-BUSY {pool} {len(busy)}/{cap}：{'、'.join(busy)}")
+            return 3
+        time.sleep(30)
+
+
+def cmd_pool(a) -> int:
+    """只读查看（dry-run）：某池现在谁占着、谁在排队、按 pool_priority.txt 下一个空位给谁。不改任何状态。"""
+    root = R.repo_root()
+    g = R.Graph()
+    pool, cap = a.pool, pool_cap(g, a.pool)
+    busy = running_in_pool(root, pool)
+    if a.file:  # 预演：用草稿名单看放行顺序，不影响正在排队的 start
+        prio = parse_priority(Path(a.file).read_text(encoding="utf-8"))
+    else:
+        prio = read_priority(root)
+    waiting = live_waiters(root, pool)
+    print(f"{pool} 池：占用 {len(busy)}/{cap}：{'、'.join(busy) or '无'}")
+    src = a.file or str(root / PRIORITY_FILE)
+    print(f"名单：{'（无 pool_priority.txt，谁先轮询到谁拿）' if prio is None else str(len(prio)) + ' 项，' + src}")
+    order = slot_order(waiting, prio or [])
+    for i, tid in enumerate(order, 1):
+        rank = (prio.index(tid) + 1) if prio and tid in prio else None
+        waited = (time.time() - waiting[tid]) / 60
+        where = f"名单第 {rank} 位" if rank else "不在名单（先来先得）"
+        print(f"  {i}. {tid}  {where}，已等 {waited:.0f} 分钟")
+    ps = subprocess.run(["ps", "-axo", "pid=,command="], capture_output=True, text=True).stdout
+    old = sorted({m.group(1) for m in re.finditer(r"step\.py start (\S+)", ps)
+                  if slot_pool_of(m.group(1)) == pool and m.group(1) not in waiting and m.group(1) not in busy})
+    if old:
+        print(f"  未登记的 start（旧代码或还在探测模型，不参与排序）：{'、'.join(old)}")
+    free = cap - len(busy)
+    nxt = order[:max(free, 0)] if prio is not None else []
+    if free <= 0:
+        print("下一个空位：池满，等占用者结束")
+    elif prio is None:
+        print(f"下一个空位：{free} 个空位，谁先轮询到谁拿")
+    else:
+        print(f"下一个空位给：{'、'.join(nxt) or '（没有登记在等的任务）'}")
     return 0
 
 
@@ -512,9 +919,21 @@ def build_parser():
     p.add_argument("--search", action="store_true", help="开启联网搜索（web 任务自动开启）")
     p.add_argument("--note", help="续作说明：文件路径或直接写文字（附在提示词末尾；默认用上次校验失败原因）")
     p.add_argument("--force", action="store_true", help="任务已在分支历史中完成时仍启动")
+    p.add_argument("--base", help="从另一个任务已 finish 的工作区提交（给任务 ID）或指定提交号上叠着开工；那个任务须先合入")
     p.add_argument("--no-probe", action="store_true", help="启动前不探测模型是否应答（默认探测，无响应时自动换备用模型）")
     p.add_argument("--probe-sec", type=float, default=150, help="探测超时秒数（默认 150）")
+    p.add_argument("--slot-wait-min", type=float, default=8, help="并行已满时排队等空位的分钟数（默认 8；超时报错，可改用 slot 子命令后台等待）")
     p.set_defaults(func=cmd_start)
+
+    p = sub.add_parser("slot", help="等到本任务所在并发池有空位（后台运行，SLOT-FREE 后再 start）")
+    p.add_argument("id")
+    p.add_argument("--max-min", type=float, default=25, help="最多等待分钟数（默认 25；到时打印 SLOT-BUSY，退出码 3）")
+    p.set_defaults(func=cmd_slot)
+
+    p = sub.add_parser("pool", help="只读查看某池的占用、排队与 pool_priority.txt 下的放行顺序（dry-run，不改状态）")
+    p.add_argument("--pool", default="code", choices=["code", "docs", "assets", "prompts"])
+    p.add_argument("--file", help="用这份草稿名单预演（不读 pool_priority.txt，不改任何状态）")
+    p.set_defaults(func=cmd_pool)
 
     p = sub.add_parser("wait", help="等待本次运行结束")
     p.add_argument("id")

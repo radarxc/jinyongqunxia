@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_dagoubang
+name: 打狗棒
+kind: weapon
+sub: staff
+grade: 11
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》《神雕侠侣》《天龙八部》丐帮信物 （待考：核各书流转与形制）
+price: null
+flags:
+- unique
+assets:
+  icon: item/dagoubang
+text:
+  desc: 外观：深碧竹棒，通体细直、天然竹节清楚。
+  lore: 打狗棒是金庸作品中丐帮帮主信物，并与打狗棒法相配；跨《天龙八部》《射雕英雄传》《神雕侠侣》的具体流转仍 （待考）。深碧材质、尺寸与亲和数值为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: true
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 85
+      qiAffinity: 100

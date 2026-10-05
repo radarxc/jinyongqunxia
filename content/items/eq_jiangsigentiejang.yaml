@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: eq_jiangsigentiejang
+name: 蒋四根铁桨
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《书剑恩仇录》·蒋四根以铁桨为兵器；尺寸 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jiangsigentiejang
+text:
+  desc: 外观：乌铁长桨约一百五十厘米，窄长桨叶、圆杆中段皮缠与圆钝尾首。 待运行时投影：exoticKind=misc; sect=sect_honghuahui。
+  lore: 《书剑恩仇录》中红花会蒋四根以铁桨为兵，桨叶可拍击、横拦，长杆也能点压，水上立足时尤其顺手。原著所述尺寸仍 （待考：核蒋四根交战情节）；皮缠握位、外观和定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 80
+      qiAffinity: 100

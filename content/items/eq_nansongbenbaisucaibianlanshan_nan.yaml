@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_nansongbenbaisucaibianlanshan_nan
+name: 南宋本白素裁便襕衫·男
+kind: armor
+sub: clothing
+grade: 2
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 南宋；出现书界 ch02/ch03；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；黄昇墓包袱随葬衣物仅作实物裁形依据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongbenbaisucaibianlanshan_nan
+text:
+  desc: 外观：南宋男款，圆领右侧暗系。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=male。
+  lore: （原创扩展）据南宋舆服语汇演成本白男式便襕衫，圆领右侧暗系，袖口可束，长摆横襕整齐。素面实用缝边落衣缘，行旅先整袖；绯色不授官阶，裁片为原创转换，同档换色同值。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

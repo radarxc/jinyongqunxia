@@ -1,0 +1,437 @@
+- id: bld_kit_ming_south_house_small
+  file: bld_kit_ming_south_house_small.png
+  category: building-map
+  style: default
+  subject: 明代江南小民居（原创扩展）
+  prompt: 'Use case: historical-scene. ONE isolated city-map building sprite for tianshu, Ming dynasty Jiangnan small residence, Suzhou/Hangzhou regional composite, not a named monument. Match the recently viewed Song southern house sprite''s realistic weathered matte materials and fine detail density. Single storey compact 7 metres east-west by 6 metres north-south footprint. White lime plaster walls, dark charcoal small clay roof tiles, simple gable roof with modest eave curvature, brown timber lattice door and shuttered window, grey stone plinth, very little ornament. Door faces screen lower-left. Orthographic yaw45 elevation30 2:1 dimetric map camera: ground east edge slopes +0.5, north edge -0.5, vertical posts vertical, no perspective convergence. A thin rectangular stone ground rim exactly 7:6 proportion makes three bottom corners clearly visible; no thick diorama pedestal. Fully isolated true transparent RGBA background, complete roof and base with generous margin all sides. Upper-left soft light, short subtle lower-right contact shadow only. Low saturation realistic historical game art, not cartoon, watercolor, shiny miniature or photogrammetry. No people, text, signs, labels, watermark, sky, background buildings, lantern garlands, Qing imperial ornament, painted checkerboard or white background. Generate exactly one asset.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references: []
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:01.703713+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-825e7a93-7dd3-4047-8b06-a5331c9a62cf.png
+  source_copy: sources/bld_kit_ming_south_house_small.png
+  source_sha256: 87a6e04775eae9253ec31a5bb722b4a0311fb1783f68cc7ee4858f807679c727
+  size: 512x432
+  sha256: c9fcf14e06898846521296dc497ecbb0e42241be816c3a8645fc67a688d321f6
+  status: candidate
+  building:
+    type: bld_kit_ming_south_house_small
+    footprint:
+    - 7
+    - 6
+    anchor:
+    - 262.1257
+    - 296.7411
+    era: ming_south
+  footprint_basis: design/22 §3.4 明代骨架
+  candidate_count: 2
+  source_record: sources/house_small.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+- id: bld_kit_ming_south_house_large
+  file: bld_kit_ming_south_house_large.png
+  category: building-map
+  style: default
+  subject: 明代江南大民居（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit the supplied Ming large residence into the following Ming Jiangnan variant. Preserve its realistic muted matte material style, fine detail density and general building layout. Larger two-storey merchant family residence, 10m east-west by8m north-south. Broad simple double-slope tiled roof, raised white gable firebreak ends, brown upper lattice windows and simple ground-floor entrance, small side service wing. Not a courtyard compound or palace. Correct ground camera so the two bottom axes are exactly +0.5 and -0.5 slopes and footprint aspect matches listed metres. White lime walls, charcoal dark grey clay tiles, restrained brown straight timber lattices. True RGBA transparent outside object, preserve clean cutout. Remove ALL surrounding beige glow, halo, fog, ambient color smudge and background shadows; outside silhouette alpha must be zero. Keep only tiny contact shadow lower right. Upper-left light. Building smaller within canvas with at least10% transparent margin on every side including highest ridge and lowest corner. Complete base clear and thin, no thick plinth, no people, signs, text, watermark, painted checkerboard, cartoon or plastic. One image one asset.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references:
+  - path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-cbcfbb58-9243-4c45-a948-d37c2cc3d605.png
+    sha256: 7b8bed27bee0db43c1859df43d8baf0ffd87d9a12490ab50b386559f33646f19
+    role: edit_target
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:01.798639+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-a246cbc0-8359-4d5d-a1ff-a9e7a46133f3.png
+  source_copy: sources/bld_kit_ming_south_house_large.png
+  source_sha256: 7318a5423f235175f80a2ae30e733b80d370749a5d35c082fa1f888d814967ea
+  size: 768x544
+  sha256: b7ebaf38d07542a283706d81147e81b71e6b8a0a156182a46295770094d90ba3
+  status: candidate
+  building:
+    type: bld_kit_ming_south_house_large
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 436.4348
+    - 377.739
+    era: ming_south
+  footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
+  candidate_count: 2
+  source_record: sources/house_large.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+- id: bld_kit_ming_south_courtyard
+  file: bld_kit_ming_south_courtyard.png
+  category: building-map
+  style: default
+  subject: 明代江南天井院落（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit the supplied Song southern building sprite into the following Ming Jiangnan variant. Preserve its realistic muted matte material style, fine detail density and general building layout. Compact Tianjing courtyard residence 10m east-west by8m north-south. Two one-storey tiled wings and taller rear hall surround a small open stone-paved skywell. White perimeter walls, plain gate in front lower-left face, visible court and drain, no attached gardens. Correct ground camera so the two bottom axes are exactly +0.5 and -0.5 slopes and footprint aspect matches listed metres. White lime walls, charcoal dark grey clay tiles, restrained brown straight timber lattices. True RGBA transparent outside object, preserve clean cutout. Remove ALL surrounding beige glow, halo, fog, ambient color smudge and background shadows; outside silhouette alpha must be zero. Keep only tiny contact shadow lower right. Upper-left light. Building smaller within canvas with at least10% transparent margin on every side including highest ridge and lowest corner. Complete base clear and thin, no thick plinth, no people, signs, text, watermark, painted checkerboard, cartoon or plastic. One image one asset.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_courtyard.png
+    sha256: 7a6a426489256ee7ddf328420595b9960647932269d27ad4c30b7de935c9ca73
+    role: edit_target
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:01.871630+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-e880aecf-581b-4162-b71c-f5f69dc91aed.png
+  source_copy: sources/bld_kit_ming_south_courtyard.png
+  source_sha256: d87781197f181b798d639853dacef10030aa10a02a5e3af3f54182e4010f02b9
+  size: 768x592
+  sha256: d269fb9c58a3579a3f1087bde4989559fecce356e11b405a6236272eb1b7b93e
+  status: candidate
+  building:
+    type: bld_kit_ming_south_courtyard
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 430.5533
+    - 398.2766
+    era: ming_south
+  footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
+  candidate_count: 2
+  source_record: sources/courtyard.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+- id: bld_kit_ming_south_shop_1f
+  file: bld_kit_ming_south_shop_1f.png
+  category: building-map
+  style: default
+  subject: 明代江南单层商铺（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit the supplied Song southern building sprite into the following Ming Jiangnan variant. Preserve its realistic muted matte material style, fine detail density and general building layout. Single-storey street shop 7m east-west by5m north-south. Three front wooden bays, open central sales counter with folded cloth bolts and a few ceramic jars, one blank plain cloth awning, simple dark tile gable roof, white plaster sidewall. No writing. Correct ground camera so the two bottom axes are exactly +0.5 and -0.5 slopes and footprint aspect matches listed metres. White lime walls, charcoal dark grey clay tiles, restrained brown straight timber lattices. True RGBA transparent outside object, preserve clean cutout. Remove ALL surrounding beige glow, halo, fog, ambient color smudge and background shadows; outside silhouette alpha must be zero. Keep only tiny contact shadow lower right. Upper-left light. Building smaller within canvas with at least10% transparent margin on every side including highest ridge and lowest corner. Complete base clear and thin, no thick plinth, no people, signs, text, watermark, painted checkerboard, cartoon or plastic. One image one asset.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png
+    sha256: 20f82db6ea307c09ef6f7825ed18ba9de6552b9769e13ac8921d839d7f652768
+    role: edit_target
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:01.933862+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-d65afcb9-bc47-4cc6-8535-794ea75981b3.png
+  source_copy: sources/bld_kit_ming_south_shop_1f.png
+  source_sha256: 58be4ca1aa384252ef6fddd5059352002c71ce492dc78ce025597753353cb24d
+  size: 480x528
+  sha256: 51a0dcc5d6a65c76c21994faef1445cc8b978b2cc067230086b8dd9906a5839c
+  status: candidate
+  building:
+    type: bld_kit_ming_south_shop_1f
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 249.668
+    - 332.8013
+    era: ming_south
+  footprint_basis: design/22 §3.4 明代骨架
+  candidate_count: 2
+  source_record: sources/shop_1f.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+- id: bld_kit_ming_south_shop_2f
+  file: bld_kit_ming_south_shop_2f.png
+  category: building-map
+  style: default
+  subject: 明代江南两层商铺兼当铺意象（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit the supplied Song southern building sprite into a Ming Jiangnan regional variant, preserve the layout, transparent cutout, realistic fine material detail and subdued visual density. Two-storey narrow pawn and cloth shop, 7m east-west by5m north-south. High wooden counter in open ground floor, one reinforced door, barred straight timber lattice upper windows, white plaster sidewall, dark clay simple gable roof and shallow lower eave. No money symbols, no names, no signage. Strengthen lime-white plaster gables and charcoal grey clay tiled roofs, replace decorative curved lattices with straight rectangular timber grids, muted chestnut brown wood, reduce bright orange wood and bright red fabric. Camera orthographic yaw45 elevation30, exact2:1 ground axes slope +0.5/-0.5, footprint matching listed metres. Front faces lower left, upper-left light, very short lower-right contact shadow. True transparent RGBA background; outside silhouette alpha zero. NO halo, ambient beige smudge, backdrop, fog, white matte, scenery, text, watermark, people or modern objects. Full roof and ground rim inside canvas with generous10% clear margin, one asset only.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png
+    sha256: bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548
+    role: edit_target
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:02.002757+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-3295b1b3-8810-4e1c-8785-b53542cab28b.png
+  source_copy: sources/bld_kit_ming_south_shop_2f.png
+  source_sha256: 14a8d9a5d156cc480fb22752058e762aa51675e34324f2bab12b12b60abbaa14
+  size: 448x432
+  sha256: a65525f3a543d7c95abdc3023a104f9b0b35c5c8d9cfef2bf37bef68691aef4d
+  status: candidate
+  building:
+    type: bld_kit_ming_south_shop_2f
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 235.5111
+    - 310.5403
+    era: ming_south
+  footprint_basis: design/22 §3.4 明代骨架
+  candidate_count: 1
+  source_record: sources/shop_2f.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+- id: bld_kit_ming_south_inn
+  file: bld_kit_ming_south_inn.png
+  category: building-map
+  style: default
+  subject: 明代江南客栈（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit the supplied Song southern building sprite into a Ming Jiangnan regional variant, preserve the layout, transparent cutout, realistic fine material detail and subdued visual density. Two-storey traveller inn 12m east-west by9m north-south, L-shaped timber gallery building around a small forecourt, grouped guest-room lattice doors, plain broad entrance facing lower-left, white plaster gables, dark grey roof, one small blank fabric hanging. No horses or people. Strengthen lime-white plaster gables and charcoal grey clay tiled roofs, replace decorative curved lattices with straight rectangular timber grids, muted chestnut brown wood, reduce bright orange wood and bright red fabric. Camera orthographic yaw45 elevation30, exact2:1 ground axes slope +0.5/-0.5, footprint matching listed metres. Front faces lower left, upper-left light, very short lower-right contact shadow. True transparent RGBA background; outside silhouette alpha zero. NO halo, ambient beige smudge, backdrop, fog, white matte, scenery, text, watermark, people or modern objects. Full roof and ground rim inside canvas with generous10% clear margin, one asset only.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_inn.png
+    sha256: 48a5f455d052e99af36ce4cd21169cd356b0761ffcbffd863deaf6a091133bbc
+    role: edit_target
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:02.083521+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-f72a95f0-6acb-49aa-8e1a-4a2f86d403bf.png
+  source_copy: sources/bld_kit_ming_south_inn.png
+  source_sha256: a79f3c3c2ee47ecf13955b2f7e093a7e7d1cea176ecf37a0951891b93d4f5c22
+  size: 736x544
+  sha256: 906570d20a1c53935b93d8fdc25d805f01226b582834cfc2e43362c6c73a7f57
+  status: candidate
+  building:
+    type: bld_kit_ming_south_inn
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 377.1569
+    - 346.2841
+    era: ming_south
+  footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
+  candidate_count: 1
+  source_record: sources/inn.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+- id: bld_kit_ming_south_restaurant
+  file: bld_kit_ming_south_restaurant.png
+  category: building-map
+  style: default
+  subject: 明代江南酒楼茶肆（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit the supplied Song southern building sprite into a Ming Jiangnan regional variant, preserve the layout, transparent cutout, realistic fine material detail and subdued visual density. Two-storey restaurant and tea house 12m east-west by9m north-south. Open timber front veranda with tea tables, a few clay wine jars, bamboo blinds, straight lattice upper floor, restrained tiled gable roof; clearly commercial, complete stone footprint. No invented letters. Strengthen lime-white plaster gables and charcoal grey clay tiled roofs, replace decorative curved lattices with straight rectangular timber grids, muted chestnut brown wood, reduce bright orange wood and bright red fabric. Camera orthographic yaw45 elevation30, exact2:1 ground axes slope +0.5/-0.5, footprint matching listed metres. Front faces lower left, upper-left light, very short lower-right contact shadow. True transparent RGBA background; outside silhouette alpha zero. NO halo, ambient beige smudge, backdrop, fog, white matte, scenery, text, watermark, people or modern objects. Full roof and ground rim inside canvas with generous10% clear margin, one asset only.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_restaurant.png
+    sha256: 8c5c9f4f6d426a0f90af43609a14f50d13314665a062d4b25d9364ceb5d0d706
+    role: edit_target
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:02.175350+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-68a134d1-b63b-430a-9661-d73527e1aa1d.png
+  source_copy: sources/bld_kit_ming_south_restaurant.png
+  source_sha256: 00fd0117bfee5727f2dea847d581c2f748d45390ca82294287533f3582c4aac1
+  size: 736x688
+  sha256: 626023657ef8b7568b2fb5e9e4c020140102bad8f9b84fe59e64a55b108889dc
+  status: candidate
+  building:
+    type: bld_kit_ming_south_restaurant
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 378.0124
+    - 482.3295
+    era: ming_south
+  footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
+  candidate_count: 1
+  source_record: sources/restaurant.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+- id: bld_kit_ming_south_market_stall
+  file: bld_kit_ming_south_market_stall.png
+  category: building-map
+  style: default
+  subject: 明代江南市场棚（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit supplied Song southern asset into a Ming Jiangnan variant. Keep exact camera and realistic low-saturation matte material style and fine detail density. ONE simple open market stall 3m east-west by2m north-south, four wooden posts, low neutral canvas awning sloping evenly, waist-high table with folded woven cloth and two baskets, thin stone footing. Tiny practical market furnishing, no tiled house, no oversized crates, no vendors. Preserve complete isolated shape, no environment. Exact2:1 ground axes +0.5/-0.5, yaw45 pitch30 orthographic, target footprint as listed. Upper-left light, short lower-right contact shadow only. True transparent RGBA cutout with ZERO alpha outside silhouette, NO diffuse glow or fog or halo, no white background. At least10% empty margin around all edges. No text, people, watermark, labels, grid or modern objects. One asset only.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_market_stall.png
+    sha256: 08668d277ee87a8738c40f904350d3715ebd5a5afd3fe7c6e9e759990ac53b2e
+    role: edit_target
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:02.230809+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-0eb039b8-6b73-4d4a-84a1-06cbd1e8d966.png
+  source_copy: sources/bld_kit_ming_south_market_stall.png
+  source_sha256: c01b83730fcd31245e57e480c3f79bbe77ac8d522d4b07c0b7763661ea5c9f3d
+  size: 256x272
+  sha256: d86d11260a071f4c7998447b1c8513b79a30699010578ae08303e8491b548a87
+  status: candidate
+  building:
+    type: bld_kit_ming_south_market_stall
+    footprint:
+    - 3
+    - 2
+    anchor:
+    - 126.763
+    - 169.3871
+    era: ming_south
+  footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
+  candidate_count: 1
+  source_record: sources/market_stall.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+- id: bld_kit_ming_south_warehouse
+  file: bld_kit_ming_south_warehouse.png
+  category: building-map
+  style: default
+  subject: 明代江南商帮货栈仓屋（原创扩展）
+  prompt: 'Use case: precise-object-edit. Edit supplied Song southern asset into a Ming Jiangnan variant. Keep exact camera and realistic low-saturation matte material style and fine detail density. Single-storey merchant guild cargo warehouse 10m east-west by8m north-south, long solid whitewashed brick side wall, sturdy brown double wooden loading door, small high straight-lattice vents, dark grey roof, two neatly stacked grain sacks beside entrance. Generic guild cargo storage, not named historic guildhall. Preserve complete isolated shape, no environment. Exact2:1 ground axes +0.5/-0.5, yaw45 pitch30 orthographic, target footprint as listed. Upper-left light, short lower-right contact shadow only. True transparent RGBA cutout with ZERO alpha outside silhouette, NO diffuse glow or fog or halo, no white background. At least10% empty margin around all edges. No text, people, watermark, labels, grid or modern objects. One asset only.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png
+    sha256: 2f500eaee2c24c4e48a8604e495d13803b3cdb50550d3d66eea96e3a8de3875b
+    role: edit_target
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:02.308053+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-03b993be-7892-4112-becd-bd79a3baf93f.png
+  source_copy: sources/bld_kit_ming_south_warehouse.png
+  source_sha256: 9a2d37f1f02bf80b6da12588a3a75a5446b93525d919f10a29db3020428aa864
+  size: 832x608
+  sha256: 1e75aff4ecfa81ad0419c165d155bb04ce2ad0d8c96fec62da66a8fa1c6a09b0
+  status: candidate
+  building:
+    type: bld_kit_ming_south_warehouse
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 432.3519
+    - 384.0662
+    era: ming_south
+  footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
+  candidate_count: 2
+  source_record: sources/warehouse.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。
+- id: bld_kit_ming_south_wharf
+  file: bld_kit_ming_south_wharf.png
+  category: building-map
+  style: default
+  subject: 明代江南河埠码头（原创扩展）
+  prompt: 'Use case: precise-object-edit. Correct ONLY the ground projection and shape of this supplied Ming Jiangnan wharf sprite. Preserve the exact materials, design details, realistic style, transparent background and upper-left light. Target footprint 10 east-west by4 north-south metres. Geometry is crucial: both planar ground axes must have exactly slope +0.5 and -0.5, not steeper. Front projected horizontal span : side projected horizontal span = 10:4. Thin flat rectangular footprint with visible corners, no curved edges. Ground center is halfway between opposite leftmost and rightmost base corners. Keep exactly three modest stone steps along front long edge and two mooring posts. No water, boat or scenery. One complete asset, at least8% transparent margin all sides, no text, labels, measurements, grid, perspective, people, white backdrop, painted checkerboard or soft halo. True RGBA.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references:
+  - path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-04c3357b-f360-40cc-ae71-dc12e52cdd62.png
+    sha256: 27deb15b4d1f42c9ccfa0352ad074b5111d762ec00e6f892c6911f94316090ca
+    role: edit_target
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:02.370755+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-e5534e16-6c01-4cef-824e-4fee1848fc4d.png
+  source_copy: sources/bld_kit_ming_south_wharf.png
+  source_sha256: 70fef63cdc012a144d887996e3951a89c504be58ba2f3bde695c07e982900dc5
+  size: 528x272
+  sha256: 1f71b40224e3408efe2049849bc6768465da4a221ce34a6a09c74a7aaecb8f1c
+  status: candidate
+  building:
+    type: bld_kit_ming_south_wharf
+    footprint:
+    - 10
+    - 4
+    anchor:
+    - 279.2565
+    - 146.15
+    era: ming_south
+  footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
+  candidate_count: 2
+  source_record: sources/wharf.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。

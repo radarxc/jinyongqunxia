@@ -1,0 +1,28 @@
+- id: por_npc_shendiao__ch03_prime_jianzhong_base
+  file: por_npc_shendiao__ch03_prime_jianzhong_base.png
+  category: character/other
+  style: default
+  subject: 神雕（npc_shendiao，ch03_shendiao，prime；剑冢成年非人形）
+  prompt: '生成一张1024×1536、2:3竖幅的单个神雕完整主体立绘，用于《金庸群侠传·天书录》默认风格包。《神雕侠侣》剑冢中与杨过练剑的神雕，非人形、非拟人，成年大型猛禽，身躯魁伟，双足稳稳着地，双翼自然收拢；完整保留头顶、弯喙、双翼轮廓、尾羽与两只足爪，四周留白，视线平稳，不裁边。
+
+    辨识重点：粗重的钩喙、锐利而自然的小型禽眼、头顶暗红肉瘤状轮廓，羽毛以暗灰褐为主，羽缘自然磨损，体态厚重有力量。它不是金色雄鹰、凤凰或机甲，不穿衣服、不握人类兵器，不增加人手、角冠、第二个头或发光眼。具体羽色层次、嘴喙磨损和静立姿态为原创美术设计；原著颜色、翼形、体高细节仍待指定修订版逐字核对。
+
+    写实手绘古风人物同系列的禽鸟插画，细腻自然的羽片层次、克制的低饱和设色、柔和左上自然光。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。此要求对应禽鸟的喙、足爪、眼周与羽毛，绝不能据此加人类皮肤或头发。不是照片，不是动漫，不是油画，不用厚涂或画布纹。
+
+    背景是不透明暖浅灰纸底，极淡的水墨远山和大面积留白，墨色不侵入主体，脚下只有轻微接触阴影；轮廓清楚便于后续抠图。不要任何文字、题字、签名、印章、水印、边框、分格、多人或多只鸟。禁止雏鸟、幼态吉祥物、大头小身、额外肢体、错误足爪、失重翅膀、断裂羽翼。不要杨过或其他人入画，不加巨剑、山洞、树枝或战斗特效。
+
+    本次无参考图上传，仅依以上文字定义非人形与项目画风；不套用人类男性或女性基线。'
+  negative: 背景是不透明暖浅灰纸底，极淡的水墨远山和大面积留白，墨色不侵入主体，脚下只有轻微接触阴影；轮廓清楚便于后续抠图。不要任何文字、题字、签名、印章、水印、边框、分格、多人或多只鸟。禁止雏鸟、幼态吉祥物、大头小身、额外肢体、错误足爪、失重翅膀、断裂羽翼。不要杨过或其他人入画，不加巨剑、山洞、树枝或战斗特效。
+  references: []
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T22:08:40.493096+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w22/other_ingest/.agents/coord/gemini_originals/por_npc_shendiao__ch03_prime_jianzhong_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: d60639893d14f40b93284af21549419f22fbcef5ec2435151fd2300194f698cf
+  status: candidate
+  notes: 非人形缺图补出（AR-47）；；ART-cast-fill-c / worker 22；非人形纯文字，无参考上传；联系表检查完整喙翼尾爪、成年猛禽、无文字及手绘纸底；新建other目录，candidate待审。；源mtime UTC；原图保留out及worker归档；RGB重编码、尺寸未变；1024×1536不透明候选，非运行时RGBA母版。
+  source_sha256: 37e888dd345a1009e2d351252188fe712196e7044b4f68989e4be3e2ff983e5a
+  effort: xhigh
+  tier: A

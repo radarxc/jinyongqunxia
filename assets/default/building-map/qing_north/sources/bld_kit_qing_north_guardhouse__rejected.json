@@ -1,0 +1,23 @@
+{
+  "id": "bld_kit_qing_north_guardhouse",
+  "prompt": "A single a small plain one-story Qing northern gate guard shelter, gray brick rectangular house, gray tile hard-gable roof, unmarked dark timber door, lattice window, one low bench sheltered beneath eave; no people, weapons or flags. Production transparent city-map sprite, realistic gray masonry, small detailed roof tiles, muted ancient Chinese materials matching a historical RPG Song building kit. Footprint 7m east-west x5m north-south. Strict isometric orthographic view yaw45 elevation30, ground vectors (32,16) and (32,-16). Ground outline is a rectangular diamond 7:5 axis ratio, slope +0.5 on front-left edge and -0.5 on front-right edge. Low thin rectangular foundation, clearly visible three ground corners; no high pedestal. Front entrance faces lower-left. Full asset, distant framing and generous empty transparent margins. Light upper-left. No shadow outside the footprint. Every pixel outside the building silhouette is fully transparent alpha0. NO ambient halo, glow, haze, backdrop, background floor or mist. True RGBA transparent cutout, no opaque background, no checkerboard. No text, people, scene, modern objects, visible grid or coordinates. Original early-to-mid Qing northern game interpretation; not a named monument. Asset bld_kit_qing_north_guardhouse.",
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "transparent_background": true,
+  "receipt": {
+    "output_hint": "Generated images are saved to /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b as /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-cbe19684-444e-41db-964c-db9766eb65f7.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_data_note": "原回执image_url为PNG data URL；为避免重复base64，图像字节已原样归档为同名PNG。output_hint原文完整保存。"
+  },
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-cbe19684-444e-41db-964c-db9766eb65f7.png",
+  "references": [],
+  "candidate_number": 1,
+  "selected": false,
+  "candidate_count": 2,
+  "archive_file": "bld_kit_qing_north_guardhouse__rejected.png",
+  "source_sha256": "7358c8a4b3a7d73f2467919e8ba699e49957b972da2d5c1ad95150d9743c57ed",
+  "source_size": [
+    1536,
+    1024
+  ]
+}

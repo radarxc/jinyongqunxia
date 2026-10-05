@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_beisongzhuganbi
+name: 北宋竹管书笔
+kind: collectible
+sub: stationery
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/beisongzhuganbi
+text:
+  desc: 外观：淡竹管一支，黑褐细毫。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 以宋代制笔背景设计普通竹管书笔，适合书吏日用和初次拜访文士。可在纸笔铺购得，制笔者与管毫细节为（原创扩展）；不冒称后世名家遗笔，也不给永久技艺增益。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 12

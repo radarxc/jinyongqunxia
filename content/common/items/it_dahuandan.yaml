@@ -1,0 +1,19 @@
+schemaVersion: item.v1
+id: it_dahuandan
+name: 大还丹
+kind: pill
+sub: heal
+grade: 9
+stack: 10
+chapters: any
+origin: expanded
+price: null
+flags: [rare]
+use:
+  context: both
+  action: consume
+  target: self
+  effects: [{op: healPct, params: {valueBp: 5000}}, {op: applyBuff, params: {buffId: bf_xuming, turns: 3}}]
+assets: {icon: items/it_dahuandan.webp}
+text: {desc: 少林任务投放的高品疗伤丹。}
+extension: {type: generic, value: {}}

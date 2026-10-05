@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_bingcan
+name: 冰蚕
+kind: material
+sub: herb
+grade: 10
+stack: 999
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·游坦之寒毒奇物
+price: null
+flags:
+- unique
+assets:
+  icon: item/bingcan
+text:
+  desc: 外观：雪白蚕体蜷在透气寒玉小匣的深蓝绢垫上，不发光、不画养毒过程。
+  lore: 《天龙八部》中冰蚕与游坦之寒毒经历相关，本作投在河东晋中旅途的唯一隔离节点，不设自然种群或采期。雪白蚕体以寒玉匣暂存，只施加寒毒。（投放与形制为原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_tian9
+    materialGrade: 10
+    rare: true
+    herbFamily: bingCan
+    ageYears: 0
+    attributes:
+      version: 2

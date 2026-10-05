@@ -1,0 +1,283 @@
+- id: tex_town_ming_north_city_gate__k4_r000_v01
+  file: tex_town_ming_north_city_gate__k4_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代北方府城·净宽4格完整城门；游戏化形制（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 四格净孔、青灰砖台、浅券、朱木灰瓦楼、筒板瓦与透明门洞。排除人物、文字、现代物、影视游戏构图、场景底板与假透明。
+  negative: 无文字、水印、人物、现代物件、假棋盘透明、大片土地台；不以单张旋转冒充四向。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Gate_(6234532518).jpg
+    role: 山海关砖台券洞、灰瓦门楼、木构窗槅与克制脊饰
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Greatwall-shanhaiguan-2003-10-s.jpg
+    role: 山海关砖台券洞、灰瓦门楼、木构窗槅与克制脊饰
+    status: 已下载并view_image审阅
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/gate4-c1.png
+  size: 463x416
+  sha256: fc7e87646c11a8411e28d08dfe04988418295c41dbc7d947c6e48745db4a9eb1
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: city_gate
+    footprint:
+    - 8
+    - 4
+    variant: k4_r000_v01
+    autotile_mask: null
+    rotation_deg: 0
+    width_cells: 4
+    passage_cells:
+    - 4
+    - 4
+  source_copy: source/historical-20260930/tex_town_ming_north_city_gate__k4_r000_v01.png
+  source_sha256: 22a07dac41030bff08bbe0e2b3476157f316f2eb25a74e6a57885b76cd9450b7
+  anchor_px:
+  - 233.571
+  - 299.049
+  notes: 历史细节：四格净孔、青灰砖台、浅券、朱木灰瓦楼、筒板瓦与透明门洞；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；接缝/门孔/锚点（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: tex_town_ming_north_city_gate__k6_r000_v01
+  file: tex_town_ming_north_city_gate__k6_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代北方府城·净宽6格完整城门；游戏化形制（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 六格净孔、青灰砖台、浅券、长朱木灰瓦楼、筒板瓦与透明门洞。排除人物、文字、现代物、影视游戏构图、场景底板与假透明。
+  negative: 无文字、水印、人物、现代物件、假棋盘透明、大片土地台；不以单张旋转冒充四向。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Gate_(6234532518).jpg
+    role: 山海关砖台券洞、灰瓦门楼、木构窗槅与克制脊饰
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Greatwall-shanhaiguan-2003-10-s.jpg
+    role: 山海关砖台券洞、灰瓦门楼、木构窗槅与克制脊饰
+    status: 已下载并view_image审阅
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/gate6-c1.png
+  size: 531x467
+  sha256: 6136178bfb9262c5b2fba8fe085374258fb46cf7e742eb8e2de52f6edf602d8a
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: city_gate
+    footprint:
+    - 10
+    - 4
+    variant: k6_r000_v01
+    autotile_mask: null
+    rotation_deg: 0
+    width_cells: 6
+    passage_cells:
+    - 6
+    - 4
+  source_copy: source/historical-20260930/tex_town_ming_north_city_gate__k6_r000_v01.png
+  source_sha256: f3fce98c827553fd79cf9cb51f62b7b1129729ded74bc09a1929c3c0fdbf5434
+  anchor_px:
+  - 258.998
+  - 337.63
+  notes: 历史细节：六格净孔、青灰砖台、浅券、长朱木灰瓦楼、筒板瓦与透明门洞；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；接缝/门孔/锚点（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: tex_town_ming_north_wall__brick_r000_v01
+  file: tex_town_ming_north_wall__brick_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代北方府城·灰砖直墙单格；游戏化形制（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 大青砖错缝、灰白细缝、窑色变化与平顶直墙。排除人物、文字、现代物、影视游戏构图、场景底板与假透明。
+  negative: 无文字、水印、人物、现代物件、假棋盘透明、大片土地台；不以单张旋转冒充四向。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Beijing_Ming_City_Wall_Relics_Park_(20260904130832).jpg
+    role: 北京明城墙大青砖、细灰缝、转角咬砌与墙体尺度
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Beijing_Southeast_Corner_Tower_(20210917085427).jpg
+    role: 北京明城墙大青砖、细灰缝、转角咬砌与墙体尺度
+    status: 已下载并view_image审阅
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/wall-c1.png
+  size: 90x179
+  sha256: 1f431461f14ae9320defcd087e80f48e82d7bddaaba6eb99cd1f216cccc498ae
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: wall
+    footprint:
+    - 1
+    - 1
+    variant: brick_r000_v01
+    autotile_mask: null
+  source_copy: source/historical-20260930/tex_town_ming_north_wall__brick_r000_v01.png
+  source_sha256: 4cadd6767be3abfc26ab356001fcf077cf521c97b3c290a8007165109621eaf4
+  anchor_px:
+  - 44.882
+  - 149.764
+  notes: 历史细节：大青砖错缝、灰白细缝、窑色变化与平顶直墙；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；接缝/门孔/锚点（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: tex_town_ming_north_wall_corner__outer_ne_v01
+  file: tex_town_ming_north_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 明代北方府城·灰砖外转角；游戏化形制（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 大青砖包角咬砌、灰白细缝、平顶L角与空心缺口。排除人物、文字、现代物、影视游戏构图、场景底板与假透明。
+  negative: 无文字、水印、人物、现代物件、假棋盘透明、大片土地台；不以单张旋转冒充四向。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Beijing_Ming_City_Wall_Relics_Park_(20260904130832).jpg
+    role: 北京明城墙大青砖、细灰缝、转角咬砌与墙体尺度
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Beijing_Southeast_Corner_Tower_(20210917085427).jpg
+    role: 北京明城墙大青砖、细灰缝、转角咬砌与墙体尺度
+    status: 已下载并view_image审阅
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/corner-c1.png
+  size: 154x193
+  sha256: 75b5dc025fae1f5984b120e6d38bb59e3434a5842c6d4c9d22dba591f300f1ef
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: wall_corner
+    footprint:
+    - 2
+    - 2
+    variant: outer_ne_v01
+    autotile_mask: null
+  source_copy: source/historical-20260930/tex_town_ming_north_wall_corner__outer_ne_v01.png
+  source_sha256: 0482bc4679bac2b8b07f2f644fb3a7bbde5a9c33c522d1b5e3a5c1a641c2aa02
+  anchor_px:
+  - 77.126
+  - 163.317
+  notes: 历史细节：大青砖包角咬砌、灰白细缝、平顶L角与空心缺口；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；接缝/门孔/锚点（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: tex_town_ming_north_bridge_deck__w3_l5_r000_v01
+  file: tex_town_ming_north_bridge_deck__w3_l5_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代北方府城·小河渠平板石桥面；游戏化功能贴片（原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 横铺花岗岩条石、细缝、凿痕、车辙磨损和浅侧边。排除人物、文字、现代物、影视游戏构图、场景底板与假透明。
+  negative: 无文字、水印、人物、现代物件、假棋盘透明、大片土地台；不以单张旋转冒充四向。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Lugou-Bridge-east-end-relief-3577.jpg
+    role: 卢沟桥花岗岩条石、凿痕、缝列与磨损；贴片仅取平桥面材质
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Lugou_Bridge_10.jpg
+    role: 卢沟桥花岗岩条石、凿痕、缝列与磨损；贴片仅取平桥面材质
+    status: 已下载并view_image审阅
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/bridge-c1.png
+  size: 284x171
+  sha256: ba7a29731ae5a612f6e4f08c878fb1d99cfe00bdd45e21432820608ff36a642e
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: bridge_deck
+    footprint:
+    - 3
+    - 5
+    variant: w3_l5_r000_v01
+    autotile_mask: null
+  source_copy: source/historical-20260930/tex_town_ming_north_bridge_deck__w3_l5_r000_v01.png
+  source_sha256: 1f5bae2e362904f0dd9df347c6264f4a13fbc6149385d82f4410b83c4b77a21c
+  anchor_px:
+  - 142.083
+  - 88.036
+  notes: 历史细节：横铺花岗岩条石、细缝、凿痕、车辙磨损和浅侧边；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；接缝/门孔/锚点（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930
+- id: tex_town_ming_north_tree_cluster__guohuai_v01
+  file: tex_town_ming_north_tree_cluster__guohuai_v01.png
+  category: tile
+  style: default
+  subject: 明代北方府城·国槐意象；具体栽植与树形（待考/原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 灰褐裂皮、低分叉、圆展不对称冠、小羽状复叶与根颈。排除人物、文字、现代物、影视游戏构图、场景底板与假透明。
+  negative: 无文字、水印、人物、现代物件、假棋盘透明、大片土地台；不以单张旋转冒充四向。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Badachu_Wishing_Tree_(20250427094936).jpg
+    role: 只取老树低分叉与圆展姿态；文件页未证明物种，不据此认定为国槐
+    status: 已审阅，现代环境不取
+  - url: https://commons.wikimedia.org/wiki/File:Sophora_japonica_144-8764.jpg
+    role: 植物学图版校正羽状复叶、花序与小叶排列
+    status: 已下载并view_image审阅
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/guohuai-c2.png
+  size: 282x256
+  sha256: dfe9be56b79462704500a8efdd2dee9a60b15bd265b249e40fd988ac06931fbc
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 3
+    - 3
+    variant: guohuai_v01
+    autotile_mask: null
+  source_copy: source/historical-20260930/tex_town_ming_north_tree_cluster__guohuai_v01.png
+  source_sha256: 07cd0727689923af1d508976b220c06f97086fd9992ede10c58327977b5d7774
+  anchor_px:
+  - 159.629
+  - 243.082
+  notes: 历史细节：灰褐裂皮、低分叉、圆展不对称冠、小羽状复叶与根颈；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；接缝/门孔/锚点（待实测）。
+  candidate_count: 2
+  selected_candidate: 2
+  revision: historical-20260930
+- id: tex_town_ming_north_tree_cluster__cebai_v01
+  file: tex_town_ming_north_tree_cluster__cebai_v01.png
+  category: tile
+  style: default
+  subject: 明代北方府城·侧柏意象；具体栽植与树形（待考/原创扩展）
+  prompt: 历史照片/古画仅取形制、比例、材料与构造；保持旧图占地轮廓。严格45度斜视、约30度俯视、2:1正交，地轴±0.5，左上光，真RGBA透明底。 红灰裂皮、直立不规则锥冠、扁平鳞叶小枝与根颈。排除人物、文字、现代物、影视游戏构图、场景底板与假透明。
+  negative: 无文字、水印、人物、现代物件、假棋盘透明、大片土地台；不以单张旋转冒充四向。
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Cypress_tree_in_Bai_Lin_Temple.jpg
+    role: 侧柏红灰裂皮、直立层叠冠与扁平鳞叶小枝
+    status: 已下载并view_image审阅
+  - url: https://commons.wikimedia.org/wiki/File:Interlocked_Han_Cypress,_Dai_Temple.jpg
+    role: 侧柏红灰裂皮、直立层叠冠与扁平鳞叶小枝
+    status: 已下载并view_image审阅
+  tool: Codex image_generation edit
+  model: gpt-image-2 (backend label)
+  effort: not_exposed
+  created: '2026-09-30'
+  source_path: /private/tmp/ming-hist/cebai-c1.png
+  size: 218x293
+  sha256: c307533db279c4d60dcab752ff97284aeba7a151abb165e53aa3261a6b246660
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 3
+    - 3
+    variant: cebai_v01
+    autotile_mask: null
+  source_copy: source/historical-20260930/tex_town_ming_north_tree_cluster__cebai_v01.png
+  source_sha256: d6552707894eec93af187f59cb1597b0c9cbacb64317570bb678cdadcf012153
+  anchor_px:
+  - 120.097
+  - 279.41
+  notes: 历史细节：红灰裂皮、直立不规则锥冠、扁平鳞叶小枝与根颈；原ID/类型/占地/画布不变；仅透明裁边、等比缩放与透明留白；接缝/门孔/锚点（待实测）。
+  candidate_count: 1
+  selected_candidate: 1
+  revision: historical-20260930

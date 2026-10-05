@@ -1,0 +1,16 @@
+{
+  "round": 2,
+  "method": "源图view_image逐张目视量取同层接地轮廓；单位px；geometry_review独立复核；未作仿射或透视变形。",
+  "k4": {
+    "target_footprint": [8, 4],
+    "candidate1": {"file": "tex_town_song_north_city_gate__k4_r000_v01__round2-candidate1.png", "L": [142,692], "F": [1145,1004], "R": [1399,856], "slopes": [0.311067,-0.582677], "width_depth_ratio": 3.948819, "rgba_alpha_extrema": [0,254], "decision": "不选；角度及进深比例未修复。"},
+    "candidate2": {"file": "tex_town_song_north_city_gate__k4_r000_v01__round2-candidate2.png", "L": [202,694], "F": [1110,1042], "R": [1278,958], "slopes": [0.383260,-0.5], "width_depth_ratio": 5.404762, "rgba_alpha_extrema": [0,255], "decision": "不选；角度虽改善，进深更浅；保留旧成品并列为未解决。"}
+  },
+  "k6": {
+    "target_footprint": [10,4],
+    "candidate1": {"file": "tex_town_song_north_city_gate__k6_r000_v01__round2-candidate1.png", "rgba_alpha_extrema": [0,254], "decision": "不选；继续继承浅墩。"},
+    "candidate2": {"file": "tex_town_song_north_city_gate__k6_r000_v01__round2-candidate2.png", "L": [212,620], "F": [911,984], "R": [1154,862], "slopes": [0.520744,-0.502058], "width_depth_ratio": 2.876543, "opening_front": [[351,696],[766,904]], "opening_fraction": 0.593705, "rgba_alpha_extrema": [0,255], "uncertainty_px": 4, "decision": "建议选；geometry_review独立复核，投影角度已明显改善；宽深比仍较2.5偏大15.0617%，不可标为几何完全通过。"}
+  },
+  "candidate_limit": "两件各新出2候选，到达用户上限，未继续生成。",
+  "guide_note": "两张round2-geometry-guide是程序绘制的空间示意，不是历史参考，也未把示意像素贴入成品。"
+}

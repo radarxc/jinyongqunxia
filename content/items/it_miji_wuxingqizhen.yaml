@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_wuxingqizhen
+name: 五行旗阵图谱
+kind: manual
+sub: full
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuxingqizhen
+text:
+  desc: 外观：元代经折阵图，五色页签只作分段。
+  lore: 明教五行旗协同在本作整理为分色页签阵图，具体阵谱与实物皆为 （原创扩展）。研读须由多人分别掌握旗位、口令和轮转，五色只作检索；单看一页无法理解完整阵势。
+extension:
+  type: manual
+  value:
+    skill: sk_wuxingqizhen
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_wuxingqizhen
+      readWis: 50
+      maxLayer: 10
+      cultivation: 3000

@@ -1,0 +1,11 @@
+schemaVersion: region-dialogue.v1
+chapter: ch00_yuenv
+sceneId: sc_00_yueying
+anchorId: npc_aqing_yueying
+storyId: story_ch00_main
+entryKey: aqing_first_layer
+condition:
+  all:
+    - {flag: fl_00_sword_demo_seen}
+    - {flag: fl_00_nine_preview_seen}
+    - {not: {flag: fl_00_first_layer_committed}}

@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_songshoudao
+name: 宋手刀
+kind: weapon
+sub: blade
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·北宋（《武经总要》卷十三“手刀”） （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/songshoudao
+text:
+  desc: 外观：单刃微弧铁刀，一旁开刃、短柄如剑。
+  lore: 名称取自《武经总要》所列手刀，本文复原为短柄微弧单刃，便于步卒近身劈斫。朴素麻缠柄可快速更换，具体长度、装具和品阶为 （原创扩展），不冒充古籍原文。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 42
+      qiAffinity: 100

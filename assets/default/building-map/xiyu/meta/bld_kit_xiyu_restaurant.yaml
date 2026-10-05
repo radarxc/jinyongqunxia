@@ -1,0 +1,91 @@
+id: bld_kit_xiyu_restaurant
+file: bld_kit_xiyu_restaurant.png
+category: building-map
+style: default
+subject: 西域绿洲两层茶肆；平顶与木雕廊台（原创扩展，年代细部待考）
+prompt: 'Use case: precise-object-edit. Correct only projection geometry of this teahouse, preserve its architecture, two-storey balcony, earthen flat roof, every furnishing and full
+  transparency. Current south foundation diagonal is too steep: slope +0.547 instead of +0.500. Current right foundation edge slope -0.531 must become -0.500. Redraw the entire building
+  with both parallel sets of horizontal ground/roof/beams precisely +0.500/-0.500, verticals upright, orthographic no convergence. Footprint front edge12 units, side9 units: projected
+  front run is exactly4/3 of right run. Target three foundation ground corners approximately left(208,580), front(848,900), right(1328,660) in1536x1024 canvas. Those three points and
+  exact two slopes are REQUIRED; no guide marks or numbers. Keep same detailed realistic ochre adobe and timber craft, upper-left illumination, short soft right-lower contact shadow,
+  no added ground beyond footprint. All outside the physical teahouse must be transparent RGBA. No horizon, background, words, people, modern objects, thick slab.'
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references:
+- {file: sources/round2/restaurant_candidate1.png, sha256: c20ea4dd5dfcb858c9d6fcd94193b737d768883497e763255f64522e4eea4f1a, role: 本轮第一候选，作为几何校正编辑目标}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T23:04:40.047961+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f487-1f8f-70e0-a288-c172cd21b383/exec-6c7c1bb8-d314-4336-99af-ce2ac2ea51f8.png
+size: 864x608
+sha256: 50dc5974eb42a296eb37bc9e12b22431e721246e188da33043b78b872ed84f6e
+status: candidate
+notes: 合入前审核第1轮返修：以精确12×9实心灰盒首出，再用第二候选校正相机；选第二张。左轴和宽深比改善，右轴仍约-0.554，独立长直段OLS约-0.546，超过原±0.03容差，明确保留axis_pass:false，不宣称修复完成。原图与灰底合成经view_image复核；仅裁切/等比缩放/扩透明边，未调阈值或变形。
+building:
+  type: bld_kit_xiyu_restaurant
+  footprint: [12, 9]
+  anchor: [420.0688, 387.7913]
+  era: xiyu
+footprint_m: [12, 9]
+footprint_basis: design/22 §3.3 bld_kit_song_southern_restaurant 同功能占地；酒楼外观改茶肆
+entrance:
+  edge: S
+  offset_cells: 5
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 672
+  - 336
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available:
+- 0
+allowRotation: false
+metadata: meta/bld_kit_xiyu_restaurant.yaml
+candidate_count: 2
+source_record: sources/round2/restaurant_record.json
+selected_candidate: 2
+generation_round: 合入前审核第1轮返修
+processing:
+  source_archive: sources/round2/restaurant_candidate2.png
+  source_sha256: 5fd1280bcd7cc8d14e36888e036c3ed24f875acb7fc24c51286992c76c0b09c8
+  source_size: [1536, 1024]
+  crop_box: [65, 15, 1518, 1007]
+  uniform_scale_requested: 0.5423728813559322
+  resized_size: [788, 538]
+  rounded_effective_scale: [0.5423262216104611, 0.5423387096774194]
+  paste_offset: [38, 35]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [150, 630]
+    front: [851, 999]
+    right: [1389, 701]
+  source_anchor_px: [769.5, 665.5]
+  source_axis_slopes: [0.5263908701854494, -0.5539033457249071]
+  axis_tolerance: 0.03
+  axis_pass: false
+  expected_width_depth_ratio: 1.3333333333333333
+  source_width_depth_ratio: 1.3029739776951672
+  ratio_relative_error: 0.022769516728624595
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 人工读取可见底面角点，约±4px；后角遮挡，非3D实测
+  source_axis_ols_slopes: [0.529486216, -0.545584909]
+  source_axis_ols_x_intervals:
+  - [220, 770]
+  - [950, 1300]
+  corner_basis: 可见外包络；局部退台不改变逻辑占地；OLS独立拟合长直底边
+pixel_qa:
+  mode: RGBA
+  size: [864, 608]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 287016
+  alpha_partial_pixels: 237106
+  alpha_near_opaque_pixels: 232084
+  alpha_nonzero_bbox: [81, 35, 826, 573]
+  transparent_margins_px: [81, 35, 38, 35]
+  border_alpha_max: 0

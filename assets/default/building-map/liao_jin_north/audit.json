@@ -1,0 +1,423 @@
+{
+  "asset_count": 26,
+  "generation_calls": 40,
+  "pixel_checks_pass": true,
+  "records": [
+    {
+      "id": "bld_kit_liao_jin_north_biaoju",
+      "footprint": [
+        14,
+        11
+      ],
+      "size": "1056x768",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": true,
+      "ratio_pass": true,
+      "candidate_count": 1
+    },
+    {
+      "id": "bld_kit_liao_jin_north_casino",
+      "footprint": [
+        10,
+        8
+      ],
+      "size": "704x608",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_courtyard",
+      "footprint": [
+        10,
+        8
+      ],
+      "size": "672x512",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": false,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_guardhouse",
+      "footprint": [
+        7,
+        5
+      ],
+      "size": "492x500",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_house_large",
+      "footprint": [
+        7,
+        6
+      ],
+      "size": "496x512",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_house_small",
+      "footprint": [
+        6,
+        5
+      ],
+      "size": "480x496",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_inn",
+      "footprint": [
+        12,
+        9
+      ],
+      "size": "752x560",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": true,
+      "ratio_pass": true,
+      "candidate_count": 1
+    },
+    {
+      "id": "bld_kit_liao_jin_north_manor",
+      "footprint": [
+        16,
+        13
+      ],
+      "size": "1120x768",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_market_stall",
+      "footprint": [
+        5,
+        4
+      ],
+      "size": "512x512",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_pagoda",
+      "footprint": [
+        7,
+        7
+      ],
+      "size": "706x1036",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_restaurant",
+      "footprint": [
+        12,
+        9
+      ],
+      "size": "752x704",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": true,
+      "ratio_pass": false,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_shop_1f",
+      "footprint": [
+        6,
+        5
+      ],
+      "size": "400x400",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": true,
+      "ratio_pass": true,
+      "candidate_count": 1
+    },
+    {
+      "id": "bld_kit_liao_jin_north_shop_2f",
+      "footprint": [
+        8,
+        6
+      ],
+      "size": "512x496",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 1
+    },
+    {
+      "id": "bld_kit_liao_jin_north_stable",
+      "footprint": [
+        9,
+        7
+      ],
+      "size": "625x459",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": true,
+      "ratio_pass": true,
+      "candidate_count": 1
+    },
+    {
+      "id": "bld_kit_liao_jin_north_temple_hall",
+      "footprint": [
+        13,
+        10
+      ],
+      "size": "926x700",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_wangfu",
+      "footprint": [
+        20,
+        16
+      ],
+      "size": "1312x960",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 2
+    },
+    {
+      "id": "bld_kit_liao_jin_north_warehouse",
+      "footprint": [
+        10,
+        8
+      ],
+      "size": "691x538",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": true,
+      "ratio_pass": true,
+      "candidate_count": 1
+    },
+    {
+      "id": "bld_kit_liao_jin_north_wharf",
+      "footprint": [
+        10,
+        4
+      ],
+      "size": "611x357",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 1
+    },
+    {
+      "id": "bld_kit_liao_jin_north_yamen",
+      "footprint": [
+        16,
+        12
+      ],
+      "size": "1120x800",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 2
+    },
+    {
+      "id": "tex_town_liao_jin_north_bridge_deck__w3_l5_r000_v01",
+      "footprint": [
+        3,
+        5
+      ],
+      "size": "291x205",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": false,
+      "candidate_count": 1
+    },
+    {
+      "id": "tex_town_liao_jin_north_city_gate__k4_r000_v01",
+      "footprint": [
+        8,
+        4
+      ],
+      "size": "508x346",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": false,
+      "candidate_count": 2
+    },
+    {
+      "id": "tex_town_liao_jin_north_city_gate__k6_r000_v01",
+      "footprint": [
+        10,
+        4
+      ],
+      "size": "536x391",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": false,
+      "candidate_count": 2
+    },
+    {
+      "id": "tex_town_liao_jin_north_tree_cluster__elm_v01",
+      "footprint": [
+        1,
+        1
+      ],
+      "size": "529x372",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": null,
+      "ratio_pass": null,
+      "candidate_count": 1
+    },
+    {
+      "id": "tex_town_liao_jin_north_tree_cluster__pine_v01",
+      "footprint": [
+        1,
+        1
+      ],
+      "size": "537x368",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": null,
+      "ratio_pass": null,
+      "candidate_count": 1
+    },
+    {
+      "id": "tex_town_liao_jin_north_wall__earth_r000_v01",
+      "footprint": [
+        1,
+        1
+      ],
+      "size": "155x217",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 1
+    },
+    {
+      "id": "tex_town_liao_jin_north_wall_corner__outer_ne_v01",
+      "footprint": [
+        2,
+        2
+      ],
+      "size": "174x179",
+      "alpha": [
+        0,
+        255
+      ],
+      "border_alpha_max": 0,
+      "axis_pass": false,
+      "ratio_pass": true,
+      "candidate_count": 1
+    }
+  ]
+}

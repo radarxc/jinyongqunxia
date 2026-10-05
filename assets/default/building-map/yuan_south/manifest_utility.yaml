@@ -1,0 +1,280 @@
+- id: bld_kit_yuan_south_market_stall
+  file: bld_kit_yuan_south_market_stall.png
+  category: building-map
+  style: default
+  subject: 元末江南约1350年市场铺棚（原创扩展，细部待考）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 5m by4m temporary market stall: rough dark timber posts and pegged cross-bracing, low counter, taut weathered woven reed-and-cloth awning in muted tan, a few plain baskets only, no text, merchant or bright cloth; clearly open-sided and lightweight.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 市井滨水小构
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00005285
+    role: 疏枝、芦荻与轻型棚架氛围
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:31:20+00:00'
+  generation_id: 8d54c184-e006-4e5f-97d8-2dcb0233e19c
+  size: 512x512
+  sha256: f13a2867784b756a2a434ddd8dd1ba9e3120c55bc7aabad131dff5c40dc8cfba
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_market_stall
+    footprint:
+    - 5
+    - 4
+    anchor: &id001
+    - 265.4068
+    - 304.0847
+    era: yuan
+  footprint_m:
+  - 5
+  - 4
+  footprint_basis: design/22 §3.4 bld_kit_yuan_market骨架5×4；地区同构命名
+  entrance:
+    edge: S
+    offset_cells: 2
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_market_stall_selected.json
+  source_archive: sources/hist_market_stall_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 市井滨水小构；疏枝、芦荻与轻型棚架氛围；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id001
+- id: bld_kit_yuan_south_stable
+  file: bld_kit_yuan_south_stable.png
+  category: building-map
+  style: default
+  subject: 元末江南约1350年驿畜马厩（原创扩展，细部待考）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 9m by7m working stable: long low timber shed with three open animal bays, pegged rails, small enclosed tack room, rough stone footings, packed-earth interface and plain grey tiled gable roof with exposed rafters; empty of animals, hay spectacle, carts
+    and people.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 长向敞棚母题
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00005285
+    role: 朴素岸居与植被材料
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:32:36+00:00'
+  generation_id: 6ada5cd5-fa8b-405e-9e50-f18239afe06d
+  size: 736x544
+  sha256: b2be25f0b81b754b6731fca350c59d938ba2da3c781053bd2925bfa386f65bd3
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_stable
+    footprint:
+    - 9
+    - 7
+    anchor: &id002
+    - 365.3409
+    - 329.2725
+    era: yuan
+  footprint_m:
+  - 9
+  - 7
+  footprint_basis: 【建议值】沿用design/22 §3.3南宋stable9×7，同构功能扩展
+  entrance:
+    edge: S
+    offset_cells: 4
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_stable_selected.json
+  source_archive: sources/hist_stable_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 长向敞棚母题；朴素岸居与植被材料；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id002
+- id: bld_kit_yuan_south_warehouse
+  file: bld_kit_yuan_south_warehouse.png
+  category: building-map
+  style: default
+  subject: 元末江南约1350年河仓／货栈（原创扩展，细部待考）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 10m by8m canal-town warehouse: tall single-storey timber frame on blue-grey brick and stone moisture-resistant base, broad double plank doors, tiny high ventilation lattice, plain grey tiled gable roof with deep eaves, heavy columns and sparse bracket
+    support; no goods, signage, crane or people.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 滨水仓屋体量
+  - url: http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+    role: 重柱、深檐、低石基
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:33:11+00:00'
+  generation_id: bd36f738-214b-467a-a2cd-1680487dd577
+  size: 736x544
+  sha256: fc77934b3ac921713ae5f62607181058379d4a608ff98830d810f28486ca889a
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_warehouse
+    footprint:
+    - 10
+    - 8
+    anchor: &id003
+    - 371.9155
+    - 344.6531
+    era: yuan
+  footprint_m:
+  - 10
+  - 8
+  footprint_basis: 【建议值】沿用design/22 §3.3南宋warehouse10×8，同构功能扩展
+  entrance:
+    edge: S
+    offset_cells: 5
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_warehouse_selected.json
+  source_archive: sources/hist_warehouse_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 滨水仓屋体量；重柱、深檐、低石基；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id003
+- id: bld_kit_yuan_south_pagoda
+  file: bld_kit_yuan_south_pagoda.png
+  category: building-map
+  style: default
+  subject: 元末江南约1350年江南匿名佛塔（原创扩展，细部待考）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 7m by7m octagonal seven-storey late-Yuan Jiangnan brick-and-timber pavilion pagoda inspired only by the documented surviving overall form: clear upward taper, blue-grey brick core, each level with shallow grey-tiled waist eaves and restrained timber
+    gallery rails, modest finial, low stone base; do not reproduce modern restoration colors, rail replacements or surroundings. Entire tall tower uncropped.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://www.changshu.gov.cn/zgcs/c100290/202311/54ee18e3bab9460fb467a58d78d8eef5.shtml
+    role: 聚沙塔八角七层、收分与砖木腰檐
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00000900
+    role: 界画建筑层级
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:32:23+00:00'
+  generation_id: 30dd1010-cd4a-4712-8118-0d9d4b4af044
+  size: 832x1024
+  sha256: f78b22e97f8aacf72555837ee36bb74fb76d10986d771c94739ba860b5b1aad2
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_pagoda
+    footprint:
+    - 7
+    - 7
+    anchor: &id004
+    - 411.9628
+    - 804.914
+    era: yuan
+  footprint_m:
+  - 7
+  - 7
+  footprint_basis: 【建议值】沿用design/22 §3.3南宋pagoda7×7，同构功能扩展
+  entrance:
+    edge: S
+    offset_cells: 3
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_pagoda_selected.json
+  source_archive: sources/hist_pagoda_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 聚沙塔八角七层、收分与砖木腰檐；界画建筑层级；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id004
+- id: bld_kit_yuan_south_guardhouse
+  file: bld_kit_yuan_south_guardhouse.png
+  category: building-map
+  style: default
+  subject: 元末江南约1350年城门守舍（原创扩展，细部待考）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A compact 7m by5m city guardhouse: one sturdy single-storey timber-and-blue-grey-brick range, open watch bay, narrow barred lattice, low stone footing and plain grey tiled hip-and-gable roof, minimal bracket arms, no crenellations, weapons, flags or sign
+    text.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml
+    role: 盘门厚城体与石基
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 滨水守舍比例
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:32:04+00:00'
+  generation_id: ef59628e-8292-4428-86b4-494bd4e5a2ef
+  size: 672x512
+  sha256: 4f69d56d7d77b1755f73d509d3aa5b2fa9557aa0abae5bc56c099983a20cf308
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_guardhouse
+    footprint:
+    - 7
+    - 5
+    anchor: &id005
+    - 346.3642
+    - 326.3689
+    era: yuan
+  footprint_m:
+  - 7
+  - 5
+  footprint_basis: 【建议值】沿用design/22 §3.3南宋guardhouse7×5，同构功能扩展
+  entrance:
+    edge: S
+    offset_cells: 3
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_guardhouse_selected.json
+  source_archive: sources/hist_guardhouse_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 盘门厚城体与石基；滨水守舍比例；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id005
+- id: bld_kit_yuan_south_wharf
+  file: bld_kit_yuan_south_wharf.png
+  category: building-map
+  style: default
+  subject: 元末江南约1350年装饰河埠（原创扩展，细部待考）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 10m by4m Jiangnan canal wharf: low rectangular stone quay of tightly laid local grey blocks with visible waterline wear, two short stepped landings, heavy timber mooring posts and a small open grey-tiled loading shelter on posts; no water plane, boats,
+    cargo, crane, people or scenery.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 码头船岸关系
+  - url: http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml
+    role: 盘门水脚石砌与台阶
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:32:54+00:00'
+  generation_id: c9b6602e-d37b-403d-8faa-df8c57614977
+  size: 640x512
+  sha256: 58c17ba7dd143ad2c0cf463142f9dbb316cff10ed47112646d448190788815d7
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_wharf
+    footprint:
+    - 10
+    - 4
+    anchor: &id006
+    - 316.731
+    - 282.2335
+    era: yuan
+  footprint_m:
+  - 10
+  - 4
+  footprint_basis: 【建议值】沿用design/22 §3.3南宋wharf10×4；只交装饰不启用port
+  entrance:
+    edge: S
+    offset_cells: 5
+  candidate_count: 2
+  selected_candidate: 1
+  source_record: sources/hist_wharf_selected.json
+  source_archive: sources/hist_wharf_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 码头船岸关系；盘门水脚石砌与台阶；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id006
+  rejected_candidates:
+  - candidate: 2
+    source: sources/hist_wharf_rejected_c2.png
+    record: sources/hist_wharf_rejected_c2.json
+    reason: 第二候选未改善透明契约且构图无明显收益，保留第一候选

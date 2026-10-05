@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_ming_south_casino",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan anonymous gaming house disguised as an ordinary merchant residence. Strong historical construction detail: three-bay deep shop-house with closed square lattice windows and heavy plank doors; hard-gable grey tiles, white fire gables and stone sill; one plain interior wood table visible, no gambling symbols.\n\nPreserve the guide's logical footprint 10 by 8, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/building-map/ming_south/bld_kit_ming_south_casino.png",
+  "refs": [
+    "market1",
+    "domestic_wu"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/market_nandu_1.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/domestic_wu.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/bld_kit_ming_south_casino-c1/generated_images/01a0f6f5-7121-7ba1-8997-4db1d8f1430f/exec-afb35a50-a102-4aab-8e38-66048b9e819d.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_casino.png",
+  "guide_sha256": "155c7500351e1557d08281e2b38f417ad965ebb8c50fb5a949abb24e8340568d",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_casino.png",
+  "selected_source_sha256": "bd35f966689fece95d99b5418b211f4fe7401d4ae5551d92e0e5ce3db6a0bffc",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      59,
+      47,
+      1234,
+      1188
+    ],
+    "guide_bbox": [
+      22,
+      21,
+      604,
+      558
+    ],
+    "uniform_scale": 0.4706397896581946,
+    "resized_size": [
+      553,
+      537
+    ],
+    "paste_offset": [
+      36,
+      21
+    ],
+    "canvas_size": [
+      624,
+      579
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/building-map/ming_south/bld_kit_ming_south_casino.png",
+  "final_sha256": "1eedc3ccb889b5aaf34049f96e794cfc2b26a99bf57a5c5fa01cb82bb016fba8",
+  "finalized_at": "2026-10-01T10:42:41.413452+00:00"
+}

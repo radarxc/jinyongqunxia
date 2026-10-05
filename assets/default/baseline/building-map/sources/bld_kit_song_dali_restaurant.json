@@ -1,0 +1,88 @@
+{
+  "id": "bld_kit_song_dali_restaurant",
+  "type": "bld_kit_song_dali_restaurant",
+  "w": 10,
+  "h": 8,
+  "subject": "1093年大理国酒楼茶肆（建筑细部待考）",
+  "prompt": "Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation 30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT. Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10% empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop, ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people, no modern objects, no logos, no border, no watermark, no tourism-era decoration. A two-story local wine tavern and tea house, open south timber veranda with simple wooden tables, clay wine jars stored under deep eaves, gray tiled roof and light plaster infill; lively commercial detail but no people, no hanging signs. Footprint 10m east-west by8m north-south.",
+  "negative": "文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_house",
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png",
+      "sha256": "f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d",
+      "role": "本批候选相机与材质参考（非作者approved）"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-1432a1e7-1f01-4e3a-a84f-a2cf830beda8.png",
+  "source_sha256": "0a5cf32ab1ce33e078197d78c38f031fce50ee30e3af289683e01fd5257d66c6",
+  "created": "2026-09-30T08:29:59.760982+00:00",
+  "visual_review": "已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。",
+  "candidate_count": 2,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-af8e17bd-5880-4c7d-87f5-373db1d2040b.png",
+      "prompt": "undefinedA two-story local wine tavern and tea house, open south timber veranda with simple wooden tables, clay wine jars stored under deep eaves, gray tiled roof and light plaster infill; lively commercial detail but no people, no hanging signs. Footprint 10m east-west by8m north-south.",
+      "reason": "公共提示读取失败，生成继承少林参考的山景与低视角；已逐张view_image原图确认淘汰",
+      "source_sha256": "b1291c3768614062069ec049e17b93c1e1af3dc0d1e6cf73644a2c7da4a11f59"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        307,
+        580
+      ],
+      [
+        946,
+        878
+      ]
+    ],
+    [
+      [
+        946,
+        878
+      ],
+      [
+        1475,
+        639
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      307,
+      580
+    ],
+    "front": [
+      946,
+      878
+    ],
+    "right": [
+      1475,
+      639
+    ]
+  },
+  "projection_review": "手动可见底面点±3px估计；两轴斜率0.4664/-0.4518；两轴dx比639/529=1.2079，目录w/h=1.2500。仅裁切/等比缩放不会改变这些残差。",
+  "status": "candidate",
+  "source_size": [
+    1774,
+    887
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 946739,
+    "partial_pixels": 626432,
+    "opaque_pixels": 367,
+    "bbox": [
+      27,
+      0,
+      1687,
+      887
+    ]
+  }
+}

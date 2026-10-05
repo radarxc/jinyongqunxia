@@ -1,0 +1,29 @@
+{
+  "key": "wangfu",
+  "id": "bld_kit_yuan_south_wangfu",
+  "prompt": "Use case: precise-object-edit. Create ONE anonymous late Yuan Jiangnan noble residence hall module bld_kit_yuan_south_wangfu20x16 planning cells by adapting this Song hall. Preserve accurate architectural realism, tile/wood/stone texture density, roof direction and orthographic camera yaw45 elevation30. Use a simple broad SINGLE-EAVE hip-and-gable grey-tile roof with no intersecting front rooflet, dark reddish-brown columns, sparse faded green beam accents without dragons or royal insignia, cream rear infill walls, timber lattice doors and a low plain stone terrace with a modest central stair. Generic noble residence hall original game module, not an emperor palace and not a reconstruction of any named Wangfu. Footprint width-to-depth20:16=1.25; retain rectangular ground plane with equal screen slopes +.5 and -.5, no vanishing point, preserve parallel edges and vertical columns. Thin low stone footing outline readable for measurement, no ornate raised display plinth. Light screen upper-left short subtle shadow screen lower-right, muted grey/brown natural colors matching reference. Whole building isolated on true transparent RGBA with generous transparent margins, full roof tips and base, no outer grey glow. No text, people, banners, Qing decorations, yellow imperial tiles, heavy gilding, modern objects, horse-head gables, scenic background, cartoon or toy.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-7a09ce73-5cbe-4660-83c1-fc7867c46f15.png",
+  "source_archive": "sources/bld_kit_yuan_south_wangfu_candidate1.png",
+  "source_sha256": "86942221cc360da9ba7aae423bb507464c451becefc21686bf146528fae3156a",
+  "source_size": [
+    1402,
+    1122
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T22:37:08.760482+00:00",
+  "created_time_basis": "生成后归档记录时间，非服务端生成开始时间",
+  "negative": "No text, people, modern objects, opaque background, checkerboard, Qing rank decoration, late-Huizhou horse-head gables, cartoon, thick diorama plinth or cropped eaves.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_palace_hall.png",
+      "sha256": "3b8380abd96c1762512fa25efb105fb73a02e5dfa745a1dd183cd23eb15dd51c",
+      "status": "candidate",
+      "role": "已view_image；材质、密度与受控编辑参考，不代表严格几何已通过"
+    }
+  ],
+  "selection_status": "rejected",
+  "selection_reason": "第2张两轴改善；宽深比例仍偏长，保留候选告警。",
+  "view_image_reviewed": true
+}

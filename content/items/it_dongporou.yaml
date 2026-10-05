@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_dongporou
+name: 东坡肉
+kind: dish
+sub: dish
+grade: 8
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 清《调鼎集》载做法；菜名源流更早，宋代定型 （待考）
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2200
+  - op: meal
+    params:
+      value: bf_jiangu,bf_wenzhong:2battle
+assets:
+  icon: item/dongporou
+text:
+  desc: 外观：酱红方肉四块皮朝上码青瓷盘，汁浓不腻。 待运行时投影：party=4。
+  lore: 清《调鼎集》载有相关做法，菜名源流更早，但宋代定型说仍待核。（待考：核菜名沿革） 方肉须慢火收汁，四人份与双增益为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 22

@@ -1,0 +1,2201 @@
+[
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734",
+    "manifest_sha256": "26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xiaofeng__ch01_prime_gaibang_base.r4.png",
+        "use": "本轮萧峰复合基础原图；锁同脸，改阶段服装、道具、背景",
+        "sha256": "455257ac00444c82128b147252ec2304022f25374dc38f76af86aba91d7e0b3d"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；续作聚贤庄CG的必要阶段依赖；新基础同脸，护人姿态、空酒碗与庄门背景；不持竹棒；联系表核验单人完整全身、成年、右衽、五指；背景保留，视觉重出0次。",
+    "old_finding": {},
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；现版 d11b33a0；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "53435b4d27fcd4d864a6edb7329d4ca38866f7eb",
+    "current_sha256": "4957c35094451d7b3cb1bc48ab227a3098a357e90c06102d860331a44036a4ef",
+    "manifest_sha256": "4957c35094451d7b3cb1bc48ab227a3098a357e90c06102d860331a44036a4ef",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png",
+        "sha256": "26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.png",
+        "sha256": "5820c7892455fedad386719d937b8075fa9e20f3a96e2c50c84919106b871276",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.5820c789.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt.png",
+      "提交号": "53435b4d",
+      "判定": "一致",
+      "说明": "长脸高颧、深眼浓眉、八字髭连短须与基准一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_xiaofeng__ch01_prime_scene_northern_forest_hunt；旧总审 一致（旧基准结论待重审）；现版 53435b4d；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "53435b4d27fcd4d864a6edb7329d4ca38866f7eb",
+    "current_sha256": "32c07b4927b3c75409dfdfc1e3da4ff75921e575529198be6dc9d5c8dbd6ab5d",
+    "manifest_sha256": "32c07b4927b3c75409dfdfc1e3da4ff75921e575529198be6dc9d5c8dbd6ab5d",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png",
+        "sha256": "26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png",
+        "sha256": "2786f3e0ce155a3e36ec4aef176186c0a3a5bc822a9107a0f56b56f67513bddc",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.2786f3e0.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png",
+      "提交号": "53435b4d",
+      "判定": "一致",
+      "说明": "五官骨相与基准一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm；旧总审 一致（旧基准结论待重审）；现版 53435b4d；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "53435b4d27fcd4d864a6edb7329d4ca38866f7eb",
+    "current_sha256": "b4ca3a6841660f2200fa485d68e330952dec29190cbb0f7ade325b568920eb55",
+    "manifest_sha256": "b4ca3a6841660f2200fa485d68e330952dec29190cbb0f7ade325b568920eb55",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png",
+        "sha256": "26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.png",
+        "sha256": "abcd451eeef9fa780fb6d6b74a1da6f14f80abefc3d93109e9d9853ebdde8af5",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.abcd451e.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_songhelou_wine.png",
+      "提交号": "53435b4d",
+      "判定": "一致",
+      "说明": "五官骨相与基准一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_xiaofeng__ch01_prime_scene_songhelou_wine；旧总审 一致（旧基准结论待重审）；现版 53435b4d；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "53435b4d27fcd4d864a6edb7329d4ca38866f7eb",
+    "current_sha256": "2e77c13c7aa69a1c1849b9a5037edbc8893d3a1473da4760b639197d3003a41b",
+    "manifest_sha256": "2e77c13c7aa69a1c1849b9a5037edbc8893d3a1473da4760b639197d3003a41b",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png",
+        "sha256": "26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.png",
+        "sha256": "4e588ccee85038a2350b0028a94387039a314704a56519672ad278099c732a64",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.4e588cce.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；萧峰基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure.png",
+      "提交号": "53435b4d",
+      "判定": "一致",
+      "说明": "五官骨相与基准一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_xiaofeng__ch01_prime_scene_xingzilin_departure；旧总审 一致（旧基准结论待重审）；现版 53435b4d；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "5ddeae15d73669603d8e5002f628062601ea88eb7235360d7825d7c2e8f0942f",
+    "manifest_sha256": "5ddeae15d73669603d8e5002f628062601ea88eb7235360d7825d7c2e8f0942f",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-a/assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；雁门关举断箭止战阶段；保留背景，原生无文字。",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_yanmen_raise_broken_arrow.png",
+      "提交号": "d11b33a0",
+      "判定": "一致",
+      "说明": "五官骨相、须形与基准一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 e73c1fd6abb1，新 base 为 acfe990e0d0e；旧总审 一致（旧基准结论待重审）；现版 d11b33a0；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/character/male/ch01/threeview/por_npc_xiaofeng__ch01_prime_gaibang_apose.png",
+    "type": "A 字图",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "e2e84a6394ee30f88a72fd7f3a2c390c4e2903a7",
+    "current_sha256": "0f6cc6258e886b00f241b7cf396e3304085d6c987c66877d4daf1dea280831cc",
+    "manifest_sha256": "0f6cc6258e886b00f241b7cf396e3304085d6c987c66877d4daf1dea280831cc",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+        "sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+        "use": "底图：已定稿的 萧峰 base（上传 1536 长边 JPEG）"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+        "sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+        "use": "底图：已定稿的 萧峰 base（上传 1536 长边 JPEG）"
+      },
+      {
+        "path": ".agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_xiaofeng__ch01_prime_gaibang_base.jpg",
+        "sha256": "2550f0582db53e4e9c8b57d381c7d823c1ea9c83ec3104d08cb50c6c4d4f347b",
+        "use": "同一 base 的脸部特写（看清五官）"
+      }
+    ],
+    "notes": "供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_xiaofeng__ch01_prime_gaibang_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "A字",
+      "图片路径": "assets/default/character/male/ch01/threeview/por_npc_xiaofeng__ch01_prime_gaibang_apose.png",
+      "提交号": "e2e84a63",
+      "判定": "一致",
+      "说明": "A字参考脸与基准一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 e73c1fd6abb1，新 base 为 acfe990e0d0e；旧总审 一致（旧基准结论待重审）；现版 e2e84a63；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/scene/ch01/cg_ch01_juxianzhuang_wine.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch01-tianlong/cg_ch01_juxianzhuang_wine.md",
+    "exists": true,
+    "current_commit": "8f8e5e485483d11f54af8e9828f85f7d72f62ca9",
+    "current_sha256": "0c7140e280898c38b02e84e7f228535b16ac7793589c47a5cd782d375cb2623c",
+    "manifest_sha256": "0c7140e280898c38b02e84e7f228535b16ac7793589c47a5cd782d375cb2623c",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「聚贤绝交」，右上角竖排毛笔楷书；原生生成，已2倍放大逐字核对聚/贤/绝/交，无错字多字；未字体叠加、无朱印；视觉重出0次。使用本轮萧峰基础与聚贤庄阶段新图及既有S级阿朱；主角与S级以外均文字塑造；开战前护人与举酒为原创扩展构图，具体站位与修订版字句待考。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：薛慕华按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch01/cg_ch01_juxianzhuang_wine.png",
+      "提交号": "8f8e5e48",
+      "判定": "一致",
+      "说明": "复看（e676463a 为阿朱重绘整图后）：萧峰仍与基准一致（8f8e5e48 局部合成，此脸像素未动，判定沿用）",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 8f8e5e48；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/scene/ch01/cg_ch01_shaoshi_three_brothers.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch01-tianlong/cg_ch01_shaoshi_three_brothers.md",
+    "exists": true,
+    "current_commit": "12d9ec89b79cb0a8bafffee0dbe2913b371b7add",
+    "current_sha256": "e3da620e7186d3c44d6d6ab8b2e8acf4f7774a69ad0b5e76dcb5c3da1394e78c",
+    "manifest_sha256": "e3da620e7186d3c44d6d6ab8b2e8acf4f7774a69ad0b5e76dcb5c3da1394e78c",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「少室同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch01/cg_ch01_shaoshi_three_brothers.png",
+      "提交号": "12d9ec89",
+      "判定": "一致",
+      "说明": "复核（12d9ec89）：与基准一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 12d9ec89；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/scene/ch01/cg_ch01_songhe_wine_oath.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch01-tianlong/cg_ch01_songhe_wine_oath.md",
+    "exists": true,
+    "current_commit": "fede0977266421c4e90d06cb6aa1aedc6bd90fb4",
+    "current_sha256": "d20de21958d21fa8966d918f397297a3c7e8c1427cdfc9386da36fa6b5d9ddef",
+    "manifest_sha256": "d20de21958d21fa8966d918f397297a3c7e8c1427cdfc9386da36fa6b5d9ddef",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png",
+        "sha256": "26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard（萧峰），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「松鹤豪饮」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch01/cg_ch01_songhe_wine_oath.png",
+      "提交号": "fede0977",
+      "判定": "一致",
+      "说明": "3/4 侧脸，骨相须形一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 fede0977；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/scene/ch01/cg_ch01_xiaojinghu_azhu.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch01-tianlong/cg_ch01_xiaojinghu_azhu.md",
+    "exists": true,
+    "current_commit": "bf137b23968db22fe8b7cec30867c03748798e12",
+    "current_sha256": "7f4749f26b7b4f07087619888ea90ebb47c8ed4b6bfa8a1cb1360f75ea4cd499",
+    "manifest_sha256": "7f4749f26b7b4f07087619888ea90ebb47c8ed4b6bfa8a1cb1360f75ea4cd499",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+        "sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+        "use": "作者认可现行xiaofeng base；保持本人面部身份、衣饰发式；上传参考第1张"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+        "sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+        "use": "作者认可现行xiaofeng base；保持本人面部身份、衣饰发式；上传参考第1张"
+      }
+    ],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「镜湖回生」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_azhu__ch01_youth_alive_base（作者返工「乔峰抱着阿朱」：按小镜湖青石桥情节重绘构图，乔峰半跪抱着中掌的阿朱，题字「镜湖回生」与夜雨石桥原样）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-75 小镜湖按原著重画；场景、动作、伤情、关系齐备；萧峰与阿朱对齐现行base，阿朱以AR-61 B修眼稿为准（作者AR-75要求按原著：雷雨夜青石桥；阿朱易容段正淳受掌后恢复本人，苍白失力、嘴角带血、伤重垂死；萧峰悲恸护抱。双人base与脸部对照已打开，阿朱基准为AR-61 B修眼稿。两候选视觉比较后选择B；题字按现图右上竖排毛笔与朱印惯例，内容改为镜湖诀别。）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch01/cg_ch01_xiaojinghu_azhu.png",
+      "提交号": "08c13fc7",
+      "判定": "一致",
+      "说明": "复看（08c13fc7 重绘整图后）：萧峰仍与基准一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 e73c1fd6abb1，新 base 为 acfe990e0d0e；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 bf137b23；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/scene/ch01/cg_ch01_xingzilin_reveal.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch01-tianlong/cg_ch01_xingzilin_reveal.md",
+    "exists": true,
+    "current_commit": "e676463ab3c076442db7add8a412686f8013562f",
+    "current_sha256": "dddbedb6c4772a0f4844f8156d548536c66a3f23570ac1397a4fdf22a9714772",
+    "manifest_sha256": "dddbedb6c4772a0f4844f8156d548536c66a3f23570ac1397a4fdf22a9714772",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「杏林惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch01/cg_ch01_xingzilin_reveal.png",
+      "提交号": "e676463a",
+      "判定": "一致",
+      "说明": "复看（e676463a 重绘整图后）：萧峰仍与基准一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 e676463a；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "萧峰",
+    "npc_id": "npc_xiaofeng",
+    "file": "assets/default/scene/ch01/cg_ch01_yanmen_life_for_life.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch01-tianlong/cg_ch01_yanmen_life_for_life.md",
+    "exists": true,
+    "current_commit": "08c13fc71f66f4a476d7b690e6064719058b35d2",
+    "current_sha256": "0f878e7afd649d1d4163b59dd566f83b8f5a91d04e23de0a5fbd7dad76618516",
+    "manifest_sha256": "0f878e7afd649d1d4163b59dd566f83b8f5a91d04e23de0a5fbd7dad76618516",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png",
+    "canon_source": "3f35f9ed9da8eaace9af4a4c1d9103e8d4415805",
+    "canon_commit": "c614a16760d05c56d76dc552887309494b9f0edf",
+    "canon_sha256": "acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd",
+    "before_base_sha256": "e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「雁门换命」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚，段誉对齐基线）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xiaofeng",
+      "中文名": "萧峰",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch01/cg_ch01_yanmen_life_for_life.png",
+      "提交号": "08c13fc7",
+      "判定": "一致",
+      "说明": "复看（08c13fc7 重绘整图后）：萧峰仍与基准一致",
+      "基准图": "por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 08c13fc7；新基准 3f35f9ed / c614a167"
+  },
+  {
+    "人物": "虚竹",
+    "npc_id": "npc_xuzhu",
+    "file": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_icecellar_practice.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "3fa52a12f22ef320221e8ddb1c58d34be48ba75c",
+    "current_sha256": "1d0078fd2f5cc4c434965289e059bda64932c1b89116dbefbdd79c003e2522c6",
+    "manifest_sha256": "1d0078fd2f5cc4c434965289e059bda64932c1b89116dbefbdd79c003e2522c6",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+    "canon_source": "feb01046015ce56b733fb38b30993c072e743187",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4",
+    "before_base_sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png",
+        "sha256": "6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c",
+        "use": "对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_icecellar_practice.png",
+        "sha256": "2f73a98aed1e254da360d6680b88cdb4365985780c6cfadd9e9c51870a3b6043",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xuzhu__ch01_youth_scene_icecellar_practice.2f73a98a.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；虚竹基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xuzhu",
+      "中文名": "虚竹",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_icecellar_practice.png",
+      "提交号": "3fa52a12",
+      "判定": "一致",
+      "说明": "宽脸方颌、浓眉小眼、憨厚相与基准一致",
+      "基准图": "por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_xuzhu__ch01_youth_scene_icecellar_practice；旧总审 一致（旧基准结论待重审）；现版 3fa52a12；新基准 feb01046 / f1cd1652"
+  },
+  {
+    "人物": "虚竹",
+    "npc_id": "npc_xuzhu",
+    "file": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c",
+    "manifest_sha256": "6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+    "canon_source": "feb01046015ce56b733fb38b30993c072e743187",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4",
+    "before_base_sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xuzhu__ch01_youth_lingjiu_base.resume3.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "e324ba659cc53440438dba7c1852d654547f4ec2cba20e09f8fc805ef2f601eb"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。",
+    "old_finding": {},
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；现版 d11b33a0；新基准 feb01046 / f1cd1652"
+  },
+  {
+    "人物": "虚竹",
+    "npc_id": "npc_xuzhu",
+    "file": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_shaoshi_thin_ice.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "3fa52a12f22ef320221e8ddb1c58d34be48ba75c",
+    "current_sha256": "859ef2060ea1abe507b6eabc4477926acf0c8ccb8928b275690eeeacd18f1f5b",
+    "manifest_sha256": "859ef2060ea1abe507b6eabc4477926acf0c8ccb8928b275690eeeacd18f1f5b",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+    "canon_source": "feb01046015ce56b733fb38b30993c072e743187",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4",
+    "before_base_sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png",
+        "sha256": "6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c",
+        "use": "对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_shaoshi_thin_ice.png",
+        "sha256": "82f29b03293c467c7e7db7f5c5366c2a43c9d789370d4716fc1d758f3152b82a",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xuzhu__ch01_youth_scene_shaoshi_thin_ice.82f29b03.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；虚竹基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xuzhu",
+      "中文名": "虚竹",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_shaoshi_thin_ice.png",
+      "提交号": "3fa52a12",
+      "判定": "一致",
+      "说明": "脸与基准一致（头顶多了戒疤点，非脸部）",
+      "基准图": "por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_xuzhu__ch01_youth_scene_shaoshi_thin_ice；旧总审 一致（旧基准结论待重审）；现版 3fa52a12；新基准 feb01046 / f1cd1652"
+  },
+  {
+    "人物": "虚竹",
+    "npc_id": "npc_xuzhu",
+    "file": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_xiaoyao_inheritance.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "3fa52a12f22ef320221e8ddb1c58d34be48ba75c",
+    "current_sha256": "95d9a360e6d38792b31852d116100821ad4c61261ed7f334d0e6f78b72726387",
+    "manifest_sha256": "95d9a360e6d38792b31852d116100821ad4c61261ed7f334d0e6f78b72726387",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+    "canon_source": "feb01046015ce56b733fb38b30993c072e743187",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4",
+    "before_base_sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png",
+        "sha256": "6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c",
+        "use": "对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_xiaoyao_inheritance.png",
+        "sha256": "7c80b4987ea70a9b640af33f72af67f1f07d9fb138b91d03b019bffea362c728",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xuzhu__ch01_youth_scene_xiaoyao_inheritance.7c80b498.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；虚竹基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xuzhu",
+      "中文名": "虚竹",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_xiaoyao_inheritance.png",
+      "提交号": "3fa52a12",
+      "判定": "一致",
+      "说明": "低头，与基准一致",
+      "基准图": "por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_xuzhu__ch01_youth_scene_xiaoyao_inheritance；旧总审 一致（旧基准结论待重审）；现版 3fa52a12；新基准 feb01046 / f1cd1652"
+  },
+  {
+    "人物": "虚竹",
+    "npc_id": "npc_xuzhu",
+    "file": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "73f67bf945f3ba5adfa606c1e6a4c82dfda8c6a42edcbae0ce43a4cd20b48ea8",
+    "manifest_sha256": "73f67bf945f3ba5adfa606c1e6a4c82dfda8c6a42edcbae0ce43a4cd20b48ea8",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+    "canon_source": "feb01046015ce56b733fb38b30993c072e743187",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4",
+    "before_base_sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xuzhu__ch01_youth_lingjiu_base.resume3.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "e324ba659cc53440438dba7c1852d654547f4ec2cba20e09f8fc805ef2f601eb"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xuzhu",
+      "中文名": "虚竹",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_zhenlong_unintended_move.png",
+      "提交号": "d11b33a0",
+      "判定": "一致",
+      "说明": "与基准一致",
+      "基准图": "por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；现版 d11b33a0；新基准 feb01046 / f1cd1652"
+  },
+  {
+    "人物": "虚竹",
+    "npc_id": "npc_xuzhu",
+    "file": "assets/default/character/male/ch01/threeview/por_npc_xuzhu__ch01_youth_lingjiu_apose.png",
+    "type": "A 字图",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "f608ab8014cbc78d228b0643abf938803259b6f8",
+    "current_sha256": "268f29f40d9f54f13812fff785b05dba262a398b9a7beb93a40a82df5e25986b",
+    "manifest_sha256": "268f29f40d9f54f13812fff785b05dba262a398b9a7beb93a40a82df5e25986b",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+    "canon_source": "feb01046015ce56b733fb38b30993c072e743187",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4",
+    "before_base_sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+        "sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+        "use": "底图：已定稿的 虚竹 base（上传 1536 长边 JPEG）"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+        "sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+        "use": "底图：已定稿的 虚竹 base（上传 1536 长边 JPEG）"
+      },
+      {
+        "path": ".agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_xuzhu__ch01_youth_lingjiu_base.jpg",
+        "sha256": "aa020c45d2a8a23bd4add9ce2b7c72d03777d0a74547b475ae4c0eed40f41639",
+        "use": "同一 base 的脸部特写（看清五官）"
+      }
+    ],
+    "notes": "供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_xuzhu__ch01_youth_lingjiu_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xuzhu",
+      "中文名": "虚竹",
+      "类型": "A字",
+      "图片路径": "assets/default/character/male/ch01/threeview/por_npc_xuzhu__ch01_youth_lingjiu_apose.png",
+      "提交号": "f608ab80",
+      "判定": "一致",
+      "说明": "A字参考脸与基准一致",
+      "基准图": "por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 6799d52c1d1f，新 base 为 cc0cac3e7059；旧总审 一致（旧基准结论待重审）；现版 f608ab80；新基准 feb01046 / f1cd1652"
+  },
+  {
+    "人物": "虚竹",
+    "npc_id": "npc_xuzhu",
+    "file": "assets/default/scene/ch01/cg_ch01_shaoshi_three_brothers.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch01-tianlong/cg_ch01_shaoshi_three_brothers.md",
+    "exists": true,
+    "current_commit": "12d9ec89b79cb0a8bafffee0dbe2913b371b7add",
+    "current_sha256": "e3da620e7186d3c44d6d6ab8b2e8acf4f7774a69ad0b5e76dcb5c3da1394e78c",
+    "manifest_sha256": "e3da620e7186d3c44d6d6ab8b2e8acf4f7774a69ad0b5e76dcb5c3da1394e78c",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+    "canon_source": "feb01046015ce56b733fb38b30993c072e743187",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4",
+    "before_base_sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png",
+        "sha256": "6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c",
+        "use": "对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（虚竹），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「少室同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xuzhu",
+      "中文名": "虚竹",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch01/cg_ch01_shaoshi_three_brothers.png",
+      "提交号": "12d9ec89",
+      "判定": "一致",
+      "说明": "复核（12d9ec89 返修后）：宽脸方颌、浓眉小眼，与基准一致",
+      "基准图": "por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 12d9ec89；新基准 feb01046 / f1cd1652"
+  },
+  {
+    "人物": "虚竹",
+    "npc_id": "npc_xuzhu",
+    "file": "assets/default/scene/ch01/cg_ch01_yanmen_life_for_life.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch01-tianlong/cg_ch01_yanmen_life_for_life.md",
+    "exists": true,
+    "current_commit": "08c13fc71f66f4a476d7b690e6064719058b35d2",
+    "current_sha256": "0f878e7afd649d1d4163b59dd566f83b8f5a91d04e23de0a5fbd7dad76618516",
+    "manifest_sha256": "0f878e7afd649d1d4163b59dd566f83b8f5a91d04e23de0a5fbd7dad76618516",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+    "canon_source": "feb01046015ce56b733fb38b30993c072e743187",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4",
+    "before_base_sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「雁门换命」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚，段誉对齐基线）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xuzhu",
+      "中文名": "虚竹",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch01/cg_ch01_yanmen_life_for_life.png",
+      "提交号": "08c13fc7",
+      "判定": "一致",
+      "说明": "复看（08c13fc7 重绘整图后）：虚竹宽脸浓眉仍与基准一致",
+      "基准图": "por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 08c13fc7；新基准 feb01046 / f1cd1652"
+  },
+  {
+    "人物": "虚竹",
+    "npc_id": "npc_xuzhu",
+    "file": "assets/default/scene/ch01/cg_ch01_zhenlong_break.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch01-tianlong/cg_ch01_zhenlong_break.md",
+    "exists": true,
+    "current_commit": "7aab55e24ad9173ed224c58a861634dafcfa1e61",
+    "current_sha256": "ab247b0e3af789a375a20cd28c0db0d46b0d7eb3415fd4c4c1f634f2a7fe8632",
+    "manifest_sha256": "ab247b0e3af789a375a20cd28c0db0d46b0d7eb3415fd4c4c1f634f2a7fe8632",
+    "canon_path": "assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png",
+    "canon_source": "feb01046015ce56b733fb38b30993c072e743187",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "cc0cac3e705962d06a89155868bcd5643f946716b3041bb64d6efe9fd4eeffc4",
+    "before_base_sha256": "6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：苏星河按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员）：苏星河重新贴回——同一 codex 输出，贴回区在方块边缘前渐隐，去掉上一版方块下沿的细接缝，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员，总审 10-03 复核后第二次收拾）：苏星河两鬓散发拢到耳后、不再遮脸，胡须再修短成灰须，向本人默认基础立绘再靠一步；只合成目标人物头部，其他人物与题字逐像素不变",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch01",
+      "npc": "npc_xuzhu",
+      "中文名": "虚竹",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch01/cg_ch01_zhenlong_break.png",
+      "提交号": "7aab55e2",
+      "判定": "一致",
+      "说明": "复核（12d9ec89 返修后）：低头，脸型变宽，与基准一致（7aab55e2 局部合成，此脸像素未动，判定沿用）",
+      "基准图": "por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 7aab55e2；新基准 feb01046 / f1cd1652"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "4d6ece7d4b5a9cd964d341c6d78f3a419b1264fc757d9df53b2034eefb9e056f",
+    "manifest_sha256": "4d6ece7d4b5a9cd964d341c6d78f3a419b1264fc757d9df53b2034eefb9e056f",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xiaolongnv__ch03_youth_jueqing_base.resume3.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "a1ec611c1fca7f9fafafd935e164f3fb9233dd2ce20a804fdc86457ae3cdf6e0"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_ancient_tomb_sparrow_lesson.png",
+      "提交号": "d11b33a0",
+      "判定": "一致",
+      "说明": "鹅蛋脸、平眉长眼、小口与基准一致",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；现版 d11b33a0；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "276f2b68dd319814e10d889b95459c5c0de4d5ed",
+    "current_sha256": "46f66ec816ca5a6633db95fe32b688d8d87162ab016da5a3382b3a889e910c93",
+    "manifest_sha256": "46f66ec816ca5a6633db95fe32b688d8d87162ab016da5a3382b3a889e910c93",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.png",
+        "sha256": "00fab6287db15cdbba637fb23b89cffb7da0950fff6144da37be97006f55d388",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.00fab628.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_chongyang_two_sword_combat.png",
+      "提交号": "276f2b68",
+      "判定": "一致",
+      "说明": "与基准一致",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 a6dd6fb0ff60，新 base 为 e37ee9936855；旧总审 一致（旧基准结论待重审）；现版 276f2b68；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "276f2b68dd319814e10d889b95459c5c0de4d5ed",
+    "current_sha256": "1ee4b63077e1b05f375dd67817f453ac1646fc1bc5fed47de5ca19d5ecb26ee4",
+    "manifest_sha256": "1ee4b63077e1b05f375dd67817f453ac1646fc1bc5fed47de5ca19d5ecb26ee4",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.png",
+        "sha256": "b7b17a20ba6c0baafbcd6bf4a6e0197e7693636c0fa99f402bb50d1b75b157bf",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.b7b17a20.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_dashengguan_silk_bells.png",
+      "提交号": "276f2b68",
+      "判定": "一致",
+      "说明": "与基准一致",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 a6dd6fb0ff60，新 base 为 e37ee9936855；旧总审 一致（旧基准结论待重审）；现版 276f2b68；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "276f2b68dd319814e10d889b95459c5c0de4d5ed",
+    "current_sha256": "ca0a8a888b8bb83286a74c531a0e1a1c877926cb9852a2f3b9ad389bc30e5b73",
+    "manifest_sha256": "ca0a8a888b8bb83286a74c531a0e1a1c877926cb9852a2f3b9ad389bc30e5b73",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.png",
+        "sha256": "145ee653575a1d925cdc411be2ba61696b23002e9bb61afb9c13b935dacda699",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.145ee653.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；小龙女基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_heartbreak_cliff_sixteen_year_promise.png",
+      "提交号": "276f2b68",
+      "判定": "一致",
+      "说明": "3/4 侧脸，与基准一致",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 a6dd6fb0ff60，新 base 为 e37ee9936855；旧总审 一致（旧基准结论待重审）；现版 276f2b68；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "478d5baee2f31de5d436d902ee1b95fcf001f7b1447bc34d914b6952c279b5fd",
+    "manifest_sha256": "478d5baee2f31de5d436d902ee1b95fcf001f7b1447bc34d914b6952c279b5fd",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_xiaolongnv__ch03_youth_jueqing_base.resume3.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "a1ec611c1fca7f9fafafd935e164f3fb9233dd2ce20a804fdc86457ae3cdf6e0"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_scene_valley_jade_bee_message.png",
+      "提交号": "d11b33a0",
+      "判定": "作者同意",
+      "说明": "审核页通过；与基准同脸",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 作者同意（旧基准结论待重审）；现版 d11b33a0；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/character/female/ch03/threeview/por_npc_xiaolongnv__ch03_youth_jueqing_apose.png",
+    "type": "A 字图",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "a0f373efa93b82039864ea2ecda4f0ab08b7ce9e",
+    "current_sha256": "39b6d165293b88a5cfc7956ce29b7556e92385f10a8e7bf0f4641a93f729ef03",
+    "manifest_sha256": "39b6d165293b88a5cfc7956ce29b7556e92385f10a8e7bf0f4641a93f729ef03",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "底图：作者已通过的小龙女 base（上传 1536 长边 JPEG）"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "底图：作者已通过的小龙女 base（上传 1536 长边 JPEG）"
+      },
+      {
+        "path": ".agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_xiaolongnv__ch03_youth_jueqing_base.jpg",
+        "sha256": "79c60a2288bbdd26ce345e7cf086b8034b2d9d99dd2280fd830af03d8b2175a6",
+        "use": "同一 base 的脸部特写（看清五官）"
+      }
+    ],
+    "notes": "供 Tripo 绑骨的 A 字姿势参考；依据作者已通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（同脸同服饰）；协调者 14:06 急件，不需作者批；AR-44；绑骨用 _apose_slim，本张仅作造型参考（协调者 14:40）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "A字",
+      "图片路径": "assets/default/character/female/ch03/threeview/por_npc_xiaolongnv__ch03_youth_jueqing_apose.png",
+      "提交号": "a0f373ef",
+      "判定": "一致",
+      "说明": "A字参考脸与基准一致",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 a6dd6fb0ff60，新 base 为 e37ee9936855；旧总审 一致（旧基准结论待重审）；现版 a0f373ef；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/character/female/ch03/threeview/por_npc_xiaolongnv__ch03_youth_jueqing_apose_slim.png",
+    "type": "A 字图",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "a92c5b1822b454a5ad441d64a51abf1e50f6bfb8",
+    "current_sha256": "0a5b8894c8a1de27ab25b6f4aaed84aa8e7dd30b1566014fc8c8e07af0eccd15",
+    "manifest_sha256": "0a5b8894c8a1de27ab25b6f4aaed84aa8e7dd30b1566014fc8c8e07af0eccd15",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "底图：作者已通过的小龙女 base（上传 1536 长边 JPEG）"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "底图：作者已通过的小龙女 base（上传 1536 长边 JPEG）"
+      },
+      {
+        "path": ".agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_xiaolongnv__ch03_youth_jueqing_base.jpg",
+        "sha256": "79c60a2288bbdd26ce345e7cf086b8034b2d9d99dd2280fd830af03d8b2175a6",
+        "use": "同一 base 的脸部特写（看清五官）"
+      }
+    ],
+    "notes": "绑骨用的窄轮廓版 A 字姿势参考（协调者 14:22：宽袖长裙版绑骨骨架上下颠倒，改束袖、裙摆不超过肩宽、露鞋尖与白裤腿）；依据作者已通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（同脸）；AR-44",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "A字",
+      "图片路径": "assets/default/character/female/ch03/threeview/por_npc_xiaolongnv__ch03_youth_jueqing_apose_slim.png",
+      "提交号": "a92c5b18",
+      "判定": "一致",
+      "说明": "A字参考脸与基准一致",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 a6dd6fb0ff60，新 base 为 e37ee9936855；旧总审 一致（旧基准结论待重审）；现版 a92c5b18；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/scene/ch03/cg_ch03_chongyang_swords.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch03-shendiao/cg_ch03_chongyang_swords.md",
+    "exists": true,
+    "current_commit": "adc8fd305284b7a4080fcb60bb10872eecc5502f",
+    "current_sha256": "528aeb2af9536af55a135f691e46b0b090441128fda91534be1c6ded6caaf6c7",
+    "manifest_sha256": "528aeb2af9536af55a135f691e46b0b090441128fda91534be1c6ded6caaf6c7",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「重阳同心」，实际字形「重阳同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch03/cg_ch03_chongyang_swords.png",
+      "提交号": "adc8fd30",
+      "判定": "一致",
+      "说明": "（#1）与基准一致（adc8fd30 局部合成，此脸像素未动，判定沿用）",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 adc8fd30；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/scene/ch03/cg_ch03_dashengguan_heroes.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch03-shendiao/cg_ch03_dashengguan_heroes.md",
+    "exists": true,
+    "current_commit": "adc8fd305284b7a4080fcb60bb10872eecc5502f",
+    "current_sha256": "8f1ac58c72c354ecfefea666b989f254af3b7b7b9383dca59f512d3a0df11f26",
+    "manifest_sha256": "8f1ac58c72c354ecfefea666b989f254af3b7b7b9383dca59f512d3a0df11f26",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch03/cg_ch03_dashengguan_heroes.png",
+      "提交号": "adc8fd30",
+      "判定": "一致",
+      "说明": "白衣者（#4）与基准一致（adc8fd30 局部合成，此脸像素未动，判定沿用）",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 adc8fd30；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/scene/ch03/cg_ch03_heartbreak_message.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch03-shendiao/cg_ch03_heartbreak_message.md",
+    "exists": true,
+    "current_commit": "85fe965927cca242e724f4612fb4940acd326690",
+    "current_sha256": "49ef457d65baaac8b574fe423385bab2441d18119a2f7e62e7681ff0df805952",
+    "manifest_sha256": "49ef457d65baaac8b574fe423385bab2441d18119a2f7e62e7681ff0df805952",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「十六年约」，实际字形「十六年约」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch03/cg_ch03_heartbreak_message.png",
+      "提交号": "85fe9659",
+      "判定": "无法判",
+      "说明": "远景背身，脸不可见",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 a6dd6fb0ff60，新 base 为 e37ee9936855；旧总审 无法判（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 85fe9659；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/scene/ch03/cg_ch03_tomb_acceptance.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch03-shendiao/cg_ch03_tomb_acceptance.md",
+    "exists": true,
+    "current_commit": "adc8fd305284b7a4080fcb60bb10872eecc5502f",
+    "current_sha256": "adf95134900125711b60f8ce94b5bd7d01f40179dd9b1653bbbce78a6bb74628",
+    "manifest_sha256": "adf95134900125711b60f8ce94b5bd7d01f40179dd9b1653bbbce78a6bb74628",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「古墓相依」，实际字形「古墓相依」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_sunpopo__ch03_elder_gumu_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch03/cg_ch03_tomb_acceptance.png",
+      "提交号": "adc8fd30",
+      "判定": "一致",
+      "说明": "提灯者（#2）与基准一致（adc8fd30 局部合成，此脸像素未动，判定沿用）",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 adc8fd30；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "小龙女",
+    "npc_id": "npc_xiaolongnv",
+    "file": "assets/default/scene/ch03/cg_ch03_valley_reunion.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch03-shendiao/cg_ch03_valley_reunion.md",
+    "exists": true,
+    "current_commit": "9a637a06815502e8dc4ee0fbc22c71dda663a0d8",
+    "current_sha256": "961dd4d83319b9b6d89a049a69801b628c560bc958fce3665fa78fa7ec3da10e",
+    "manifest_sha256": "961dd4d83319b9b6d89a049a69801b628c560bc958fce3665fa78fa7ec3da10e",
+    "canon_path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+    "canon_source": "ff996ec2e693b742a18d6ea1091d89775afa1725",
+    "canon_commit": "fe0ebefdb0eb294749bd2a429fff7778ebed4448",
+    "canon_sha256": "e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce",
+    "before_base_sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png",
+        "sha256": "a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2",
+        "use": "对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「谷底重逢」，实际字形「谷底重逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base（十六年后重逢，保留两人原图的年龄感）；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base（AR-53 总审返修：小龙女十六年后容貌如昔，对齐 jueqing_base）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch03",
+      "npc": "npc_xiaolongnv",
+      "中文名": "小龙女",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch03/cg_ch03_valley_reunion.png",
+      "提交号": "9a637a06",
+      "判定": "一致",
+      "说明": "复核（9a637a06 返修后）：3/4 侧脸，平眉长眼小口，与基准一致",
+      "基准图": "por_npc_xiaolongnv__ch03_youth_jueqing_base"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 a6dd6fb0ff60，新 base 为 e37ee9936855；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 9a637a06；新基准 ff996ec2 / fe0ebefd"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_haozhou.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "63e919600da591711b9e3a1e02f4f8ea1ba607b534b66af531bb9d15905672da",
+    "manifest_sha256": "63e919600da591711b9e3a1e02f4f8ea1ba607b534b66af531bb9d15905672da",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_zhaomin__ch04_youth_lvliu_base.resume3r2.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "e21663fe6597618aa327bc0b55817e66f7faacab16d8e6ad69b733ccfe32bda5"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhaomin",
+      "中文名": "赵敏",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_haozhou.png",
+      "提交号": "d11b33a0",
+      "判定": "一致",
+      "说明": "鹅蛋脸、平眉杏眼、浅笑与基准一致",
+      "基准图": "por_npc_zhaomin__ch04_youth_scene_lvliu"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；现版 d11b33a0；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_jiusi.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "ccd18dd49bd219c10afd04f65cdbf13e1b592aad",
+    "current_sha256": "5abc1023b5d814f2f85b679a583f100ce88502d929007acac658ca3ca2a94f3c",
+    "manifest_sha256": "5abc1023b5d814f2f85b679a583f100ce88502d929007acac658ca3ca2a94f3c",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png",
+        "sha256": "ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188",
+        "use": "对脸基线：作者审核通过的 por_npc_zhaomin__ch04_youth_scene_lvliu，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_jiusi.png",
+        "sha256": "714a5a4ab4eb6fadcd30044d9531836b8178b6089b52fc02ef4247ecab07c09f",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhaomin__ch04_youth_scene_jiusi.714a5a4a.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；赵敏基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_zhaomin__ch04_youth_scene_lvliu",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhaomin",
+      "中文名": "赵敏",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_jiusi.png",
+      "提交号": "ccd18dd4",
+      "判定": "一致",
+      "说明": "与基准一致",
+      "基准图": "por_npc_zhaomin__ch04_youth_scene_lvliu"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhaomin__ch04_youth_scene_jiusi；旧总审 一致（旧基准结论待重审）；现版 ccd18dd4；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188",
+    "manifest_sha256": "ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_zhaomin__ch04_youth_lvliu_base.resume3r2.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "e21663fe6597618aa327bc0b55817e66f7faacab16d8e6ad69b733ccfe32bda5"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。",
+    "old_finding": {},
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；现版 d11b33a0；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_wanansi.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "ccd18dd49bd219c10afd04f65cdbf13e1b592aad",
+    "current_sha256": "4f4eef81db1f155de50195d3881f8053db321c6e16cc9d79188a06c729776e3d",
+    "manifest_sha256": "4f4eef81db1f155de50195d3881f8053db321c6e16cc9d79188a06c729776e3d",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png",
+        "sha256": "ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188",
+        "use": "对脸基线：作者审核通过的 por_npc_zhaomin__ch04_youth_scene_lvliu，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_wanansi.png",
+        "sha256": "438d53cfc30ba735c3f05d0e378098afa3073fb492cca1033380e0ba68f68a72",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhaomin__ch04_youth_scene_wanansi.438d53cf.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；赵敏基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_zhaomin__ch04_youth_scene_lvliu",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhaomin",
+      "中文名": "赵敏",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_wanansi.png",
+      "提交号": "ccd18dd4",
+      "判定": "一致",
+      "说明": "与基准一致",
+      "基准图": "por_npc_zhaomin__ch04_youth_scene_lvliu"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhaomin__ch04_youth_scene_wanansi；旧总审 一致（旧基准结论待重审）；现版 ccd18dd4；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_wudang.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "ccd18dd49bd219c10afd04f65cdbf13e1b592aad",
+    "current_sha256": "5b151d75b894dfa048edbb49f87190f26f24cada955e8062755f5739b82f6f9d",
+    "manifest_sha256": "5b151d75b894dfa048edbb49f87190f26f24cada955e8062755f5739b82f6f9d",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png",
+        "sha256": "ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188",
+        "use": "对脸基线：作者审核通过的 por_npc_zhaomin__ch04_youth_scene_lvliu，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_wudang.png",
+        "sha256": "69b8727e98c32cacd82965802352b689489805913184a5d9d5bf48de59153967",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhaomin__ch04_youth_scene_wudang.69b8727e.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；赵敏基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_zhaomin__ch04_youth_scene_lvliu",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhaomin",
+      "中文名": "赵敏",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_wudang.png",
+      "提交号": "ccd18dd4",
+      "判定": "一致",
+      "说明": "与基准一致",
+      "基准图": "por_npc_zhaomin__ch04_youth_scene_lvliu"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhaomin__ch04_youth_scene_wudang；旧总审 一致（旧基准结论待重审）；现版 ccd18dd4；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/character/female/ch04/threeview/por_npc_zhaomin__ch04_youth_lvliu_apose.png",
+    "type": "A 字图",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "f608ab8014cbc78d228b0643abf938803259b6f8",
+    "current_sha256": "6b37e9198821fe4aed7a0b561eb679275dc563f5fa130bb45445374c8ceadc76",
+    "manifest_sha256": "6b37e9198821fe4aed7a0b561eb679275dc563f5fa130bb45445374c8ceadc76",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+        "sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+        "use": "底图：已定稿的 赵敏 base（上传 1536 长边 JPEG）"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+        "sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+        "use": "底图：已定稿的 赵敏 base（上传 1536 长边 JPEG）"
+      },
+      {
+        "path": ".agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_zhaomin__ch04_youth_lvliu_base.jpg",
+        "sha256": "79573884eeb4f4467107a777212f89ee97cc344bbb1462cc194b9c8f942c01d6",
+        "use": "同一 base 的脸部特写（看清五官）"
+      }
+    ],
+    "notes": "供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_zhaomin__ch04_youth_lvliu_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44；绑骨用 _apose_slim，本张仅作造型参考（协调者 14:40）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhaomin",
+      "中文名": "赵敏",
+      "类型": "A字",
+      "图片路径": "assets/default/character/female/ch04/threeview/por_npc_zhaomin__ch04_youth_lvliu_apose.png",
+      "提交号": "f608ab80",
+      "判定": "一致",
+      "说明": "A字参考脸与基准一致",
+      "基准图": "por_npc_zhaomin__ch04_youth_scene_lvliu"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 84a0b35c2506，新 base 为 9f376a0bcf56；旧总审 一致（旧基准结论待重审）；现版 f608ab80；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/character/female/ch04/threeview/por_npc_zhaomin__ch04_youth_lvliu_apose_slim.png",
+    "type": "A 字图",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "4aee374a306c8a7f0f99719c450867a973b141ff",
+    "current_sha256": "c3841b2c2e3a1842eb69fe88904bd55ca139f2d2d609358c6fc59d14b564f283",
+    "manifest_sha256": "c3841b2c2e3a1842eb69fe88904bd55ca139f2d2d609358c6fc59d14b564f283",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+        "sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+        "use": "底图：已定稿的赵敏 base（上传 1536 长边 JPEG）"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+        "sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+        "use": "底图：已定稿的赵敏 base（上传 1536 长边 JPEG）"
+      },
+      {
+        "path": ".agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_zhaomin__ch04_youth_lvliu_base.jpg",
+        "sha256": "79573884eeb4f4467107a777212f89ee97cc344bbb1462cc194b9c8f942c01d6",
+        "use": "同一 base 的脸部特写（看清五官）"
+      }
+    ],
+    "notes": "绑骨用的窄轮廓版 A 字姿势参考（协调者 14:22 口径：宽裙女角改束袖、裙摆不超过肩宽、露鞋尖）；依据已定稿的 por_npc_zhaomin__ch04_youth_lvliu_base（同脸）；AR-44",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhaomin",
+      "中文名": "赵敏",
+      "类型": "A字",
+      "图片路径": "assets/default/character/female/ch04/threeview/por_npc_zhaomin__ch04_youth_lvliu_apose_slim.png",
+      "提交号": "4aee374a",
+      "判定": "一致",
+      "说明": "A字参考脸与基准一致",
+      "基准图": "por_npc_zhaomin__ch04_youth_scene_lvliu"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 84a0b35c2506，新 base 为 9f376a0bcf56；旧总审 一致（旧基准结论待重审）；现版 4aee374a；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/scene/ch04/cg_ch04_haozhou_wedding.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch04-yitian/cg_ch04_haozhou_wedding.md",
+    "exists": true,
+    "current_commit": "9a637a06815502e8dc4ee0fbc22c71dda663a0d8",
+    "current_sha256": "348a7545a263831983f50e345a67867c2f3005fc5030ba2faeecd09f255b361c",
+    "manifest_sha256": "348a7545a263831983f50e345a67867c2f3005fc5030ba2faeecd09f255b361c",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「濠州惊变」，实际字形「濠州惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base（AR-53 总审返修：张无忌新郎脸改回 A 版 base 的圆润温和）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhaomin",
+      "中文名": "赵敏",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch04/cg_ch04_haozhou_wedding.png",
+      "提交号": "9a637a06",
+      "判定": "一致",
+      "说明": "复核（9a637a06）：与基准一致",
+      "基准图": "por_npc_zhaomin__ch04_youth_scene_lvliu"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 9a637a06；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/scene/ch04/cg_ch04_lvliu_footplay.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch04-yitian/cg_ch04_lvliu_footplay.md",
+    "exists": true,
+    "current_commit": "4bc7a3feb925364ff0bff63741142d6304b68b57",
+    "current_sha256": "e71838f74dc4729e5778640074485c2adc06d0cb2803645cc4179fdca6a88c9f",
+    "manifest_sha256": "e71838f74dc4729e5778640074485c2adc06d0cb2803645cc4179fdca6a88c9f",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png",
+        "sha256": "ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188",
+        "use": "对脸基线：作者审核通过的 por_npc_zhaomin__ch04_youth_scene_lvliu（赵敏），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「绿柳初逢」，实际字形「绿柳初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhaomin",
+      "中文名": "赵敏",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch04/cg_ch04_lvliu_footplay.png",
+      "提交号": "4bc7a3fe",
+      "判定": "一致",
+      "说明": "（#2）与基准一致",
+      "基准图": "por_npc_zhaomin__ch04_youth_scene_lvliu"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 4bc7a3fe；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/scene/ch04/cg_ch04_wanan_fire_rescue.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch04-yitian/cg_ch04_wanan_fire_rescue.md",
+    "exists": true,
+    "current_commit": "9eee06fe4d997da77d8d9ce9e2368f7ac8d1473e",
+    "current_sha256": "df9b97a384522f2901772158a1ba34d1f80ac9d2aa3ebc42c300b2bac200a3a3",
+    "manifest_sha256": "df9b97a384522f2901772158a1ba34d1f80ac9d2aa3ebc42c300b2bac200a3a3",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「火塔救群雄」，实际字形「火塔救群雄」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：范遥按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhaomin",
+      "中文名": "赵敏",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch04/cg_ch04_wanan_fire_rescue.png",
+      "提交号": "9eee06fe",
+      "判定": "一致",
+      "说明": "院侧深蓝披肩者（#3）与基准一致（9eee06fe 局部合成，此脸像素未动，判定沿用）",
+      "基准图": "por_npc_zhaomin__ch04_youth_scene_lvliu"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 9eee06fe；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "赵敏",
+    "npc_id": "npc_zhaomin",
+    "file": "assets/default/scene/ch04/cg_ch04_wudang_taiji.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch04-yitian/cg_ch04_wudang_taiji.md",
+    "exists": true,
+    "current_commit": "862fdf95454ebeda4ec643e9cbd85ec5e2597d9c",
+    "current_sha256": "c365c2cb8d8c0f86f27cfc518888c95a2b60642e1378a376fd4b87dff12affcf",
+    "manifest_sha256": "c365c2cb8d8c0f86f27cfc518888c95a2b60642e1378a376fd4b87dff12affcf",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png",
+    "canon_source": "f75998e20f2516b29577c51b91371a1d29822b9f",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8",
+    "before_base_sha256": "84a0b35c2506f93b7343e7060ef4638e116f049630a68a41c6b507ba47e82a9c",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png",
+        "sha256": "ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188",
+        "use": "对脸基线：作者审核通过的 por_npc_zhaomin__ch04_youth_scene_lvliu（赵敏），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      }
+    ],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「太极初传」，实际字形「太极初传」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhaomin",
+      "中文名": "赵敏",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch04/cg_ch04_wudang_taiji.png",
+      "提交号": "862fdf95",
+      "判定": "一致",
+      "说明": "右侧（#3，52px）与基准一致",
+      "基准图": "por_npc_zhaomin__ch04_youth_scene_lvliu"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 862fdf95；新基准 f75998e2 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_child_scene_hanshui.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "9f00e6dd12210a8d0afe435cecb6b57f4d30f27e",
+    "current_sha256": "3fea5fe2e35126a0a3659a6ebc51aede6f3e13d512fefa34380aabe0ddce3a60",
+    "manifest_sha256": "3fea5fe2e35126a0a3659a6ebc51aede6f3e13d512fefa34380aabe0ddce3a60",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "宽松自查选择候选2：约10岁儿童周芷若的圆润面颊与身形，无成人妆容、成熟胸腰或首饰；褐灰完整布小袄、素裙和简单发辫，双手持粗瓷饭碗与两根筷子，碗中米饭可见，双赤足自然立于船板。船舱、汉水与苇岸清楚，无剑、峨眉装束或画内第二人。候选2米饭内容与托碗关系更明确，发辫比候选1编髻朴素。表情带忧虑，皮肤衣料完整，无明显多肢或重大结构问题。实际偏差：船舱与水面背景较具体、远山较浓，衣料做旧纹理略多但未碎裂；小袄下沿略不齐，不称严格平整收边或精确年龄测定。作为本人童年身份首图保留candidate，按宽松自查可用。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhouzhiruo",
+      "中文名": "周芷若",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_child_scene_hanshui.png",
+      "提交号": "9f00e6dd",
+      "判定": "无法判",
+      "说明": "童年期（约十岁）五官比例不可比；注意眉心没有成年诸图都有的朱砂痣",
+      "基准图": "por_npc_zhouzhiruo__ch04_youth_scene_guangmingding"
+    },
+    "status": "待复核 / 对齐：现图没有本轮新 base 的身份引用或核验记录，不能沿用旧基准的通过结论；旧总审 无法判（旧基准结论待重审）；保留该剧情年龄，按同人年龄变化核对；现版 9f00e6dd；新基准 b75caf22 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_guangmingding.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "69203f7e2f361107f2c638f22513937262dffef6151d09c4718466e3ac00a69e",
+    "manifest_sha256": "69203f7e2f361107f2c638f22513937262dffef6151d09c4718466e3ac00a69e",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.resume3.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "46b7b2bbbff2ed4762c6dc551990a46b61526db4f86987919e1ded0f4b11c44e"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。",
+    "old_finding": {},
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；现版 d11b33a0；新基准 b75caf22 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_hongshang.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "ccd18dd49bd219c10afd04f65cdbf13e1b592aad",
+    "current_sha256": "91154951911add48e4d35465d94cafc7b9a448e5272eb55e51dc672ec9442469",
+    "manifest_sha256": "91154951911add48e4d35465d94cafc7b9a448e5272eb55e51dc672ec9442469",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_guangmingding.png",
+        "sha256": "69203f7e2f361107f2c638f22513937262dffef6151d09c4718466e3ac00a69e",
+        "use": "对脸基线：作者审核通过的 por_npc_zhouzhiruo__ch04_youth_scene_guangmingding，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_hongshang.png",
+        "sha256": "1ef73de1b82a4e1c9f9f70893c36fb46ea9f05f63a6e7a468a6f953741748553",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhouzhiruo__ch04_youth_scene_hongshang.1ef73de1.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；周芷若基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_zhouzhiruo__ch04_youth_scene_guangmingding",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhouzhiruo",
+      "中文名": "周芷若",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_hongshang.png",
+      "提交号": "ccd18dd4",
+      "判定": "一致",
+      "说明": "眉心朱砂、蹙眉杏眼、小口与基准一致",
+      "基准图": "por_npc_zhouzhiruo__ch04_youth_scene_guangmingding"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_zhouzhiruo__ch04_youth_scene_guangmingding、por_npc_zhouzhiruo__ch04_youth_scene_hongshang；旧总审 一致（旧基准结论待重审）；现版 ccd18dd4；新基准 b75caf22 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_shaolin.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "c7ed672d1e0ca84e6cc7d48cb924e14e32d679482d1b39500aac6ca84b7e6a41",
+    "manifest_sha256": "c7ed672d1e0ca84e6cc7d48cb924e14e32d679482d1b39500aac6ca84b7e6a41",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.resume3.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "46b7b2bbbff2ed4762c6dc551990a46b61526db4f86987919e1ded0f4b11c44e"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhouzhiruo",
+      "中文名": "周芷若",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_shaolin.png",
+      "提交号": "d11b33a0",
+      "判定": "一致",
+      "说明": "与基准一致",
+      "基准图": "por_npc_zhouzhiruo__ch04_youth_scene_guangmingding"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；现版 d11b33a0；新基准 b75caf22 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_wanansi.png",
+    "type": "场景立绘",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "ccd18dd49bd219c10afd04f65cdbf13e1b592aad",
+    "current_sha256": "bd75fdbea2d8c2b7f1d8b6282e7e42431dcadda10cd1473189913d7c916c7755",
+    "manifest_sha256": "bd75fdbea2d8c2b7f1d8b6282e7e42431dcadda10cd1473189913d7c916c7755",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_guangmingding.png",
+        "sha256": "69203f7e2f361107f2c638f22513937262dffef6151d09c4718466e3ac00a69e",
+        "use": "对脸基线：作者审核通过的 por_npc_zhouzhiruo__ch04_youth_scene_guangmingding，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写"
+      },
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_wanansi.png",
+        "sha256": "ce9225bd42d5802446a56a2517c8e42bb050ad45f51fd941eecc428a639464f1",
+        "use": "待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_zhouzhiruo__ch04_youth_scene_wanansi.ce9225bd.png"
+      }
+    ],
+    "notes": "立绘重审重出（AR-30）；周芷若基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_zhouzhiruo__ch04_youth_scene_guangmingding",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhouzhiruo",
+      "中文名": "周芷若",
+      "类型": "立绘",
+      "图片路径": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_scene_wanansi.png",
+      "提交号": "ccd18dd4",
+      "判定": "一致",
+      "说明": "与基准一致",
+      "基准图": "por_npc_zhouzhiruo__ch04_youth_scene_guangmingding"
+    },
+    "status": "待对齐：此前 AR-44 / AR-53 按旧场景基准对脸，未按本轮新 base 核验；旧锚点 por_npc_zhouzhiruo__ch04_youth_scene_guangmingding、por_npc_zhouzhiruo__ch04_youth_scene_wanansi；旧总审 一致（旧基准结论待重审）；现版 ccd18dd4；新基准 b75caf22 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/character/female/ch04/threeview/por_npc_zhouzhiruo__ch04_youth_zhangmen_apose.png",
+    "type": "A 字图",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "f608ab8014cbc78d228b0643abf938803259b6f8",
+    "current_sha256": "c243a8c5e24c0402c4ae7d17e85d1b7d4126cf7e647913612b66333cf0be638c",
+    "manifest_sha256": "c243a8c5e24c0402c4ae7d17e85d1b7d4126cf7e647913612b66333cf0be638c",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+        "sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+        "use": "底图：已定稿的 周芷若 base（上传 1536 长边 JPEG）"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+        "sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+        "use": "底图：已定稿的 周芷若 base（上传 1536 长边 JPEG）"
+      },
+      {
+        "path": ".agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_zhouzhiruo__ch04_youth_zhangmen_base.jpg",
+        "sha256": "ce8aec32cde35d798d5b4febca46f0c4ea838c71ef94820c185cb2fca40516cd",
+        "use": "同一 base 的脸部特写（看清五官）"
+      }
+    ],
+    "notes": "供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_zhouzhiruo__ch04_youth_zhangmen_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44；绑骨用 _apose_slim，本张仅作造型参考（协调者 14:40）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhouzhiruo",
+      "中文名": "周芷若",
+      "类型": "A字",
+      "图片路径": "assets/default/character/female/ch04/threeview/por_npc_zhouzhiruo__ch04_youth_zhangmen_apose.png",
+      "提交号": "f608ab80",
+      "判定": "一致",
+      "说明": "A字参考脸与基准一致",
+      "基准图": "por_npc_zhouzhiruo__ch04_youth_scene_guangmingding"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 68f0c4016ce6，新 base 为 d66b2f1445ae；旧总审 一致（旧基准结论待重审）；现版 f608ab80；新基准 b75caf22 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/character/female/ch04/threeview/por_npc_zhouzhiruo__ch04_youth_zhangmen_apose_slim.png",
+    "type": "A 字图",
+    "prompt": null,
+    "exists": true,
+    "current_commit": "4aee374a306c8a7f0f99719c450867a973b141ff",
+    "current_sha256": "e34383dc6f89aa391bdb04cacc3fdfff756054d2b47f871e5094802b5537b693",
+    "manifest_sha256": "e34383dc6f89aa391bdb04cacc3fdfff756054d2b47f871e5094802b5537b693",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+        "sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+        "use": "底图：已定稿的周芷若 base（上传 1536 长边 JPEG）"
+      }
+    ],
+    "other_identity_references": [
+      {
+        "path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+        "sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+        "use": "底图：已定稿的周芷若 base（上传 1536 长边 JPEG）"
+      },
+      {
+        "path": ".agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_zhouzhiruo__ch04_youth_zhangmen_base.jpg",
+        "sha256": "ce8aec32cde35d798d5b4febca46f0c4ea838c71ef94820c185cb2fca40516cd",
+        "use": "同一 base 的脸部特写（看清五官）"
+      }
+    ],
+    "notes": "绑骨用的窄轮廓版 A 字姿势参考（协调者 14:22 口径：宽裙女角改束袖、裙摆不超过肩宽、露鞋尖）；依据已定稿的 por_npc_zhouzhiruo__ch04_youth_zhangmen_base（同脸）；AR-44",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhouzhiruo",
+      "中文名": "周芷若",
+      "类型": "A字",
+      "图片路径": "assets/default/character/female/ch04/threeview/por_npc_zhouzhiruo__ch04_youth_zhangmen_apose_slim.png",
+      "提交号": "4aee374a",
+      "判定": "一致",
+      "说明": "A字参考脸与基准一致",
+      "基准图": "por_npc_zhouzhiruo__ch04_youth_scene_guangmingding"
+    },
+    "status": "待对齐：manifest 仍引用旧 base SHA256 68f0c4016ce6，新 base 为 d66b2f1445ae；旧总审 一致（旧基准结论待重审）；现版 4aee374a；新基准 b75caf22 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/scene/ch04/cg_ch04_guangming_peak.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch04-yitian/cg_ch04_guangming_peak.md",
+    "exists": true,
+    "current_commit": "7a076f42c1a93ccecca9ea80e3b75058e136270e",
+    "current_sha256": "8e563a9e786a60ff0caac8ae0c348df4b7b16dc688a24401d8f1ab2956765b43",
+    "manifest_sha256": "8e563a9e786a60ff0caac8ae0c348df4b7b16dc688a24401d8f1ab2956765b43",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「光明止戈」，实际字形「光明止戈」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：灭绝师太、杨逍按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhouzhiruo",
+      "中文名": "周芷若",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch04/cg_ch04_guangming_peak.png",
+      "提交号": "7a076f42",
+      "判定": "一致",
+      "说明": "持剑白衣女（#1）与基准一致（7a076f42 局部合成，此脸像素未动，判定沿用）",
+      "基准图": "por_npc_zhouzhiruo__ch04_youth_scene_guangmingding"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 7a076f42；新基准 b75caf22 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/scene/ch04/cg_ch04_haozhou_wedding.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch04-yitian/cg_ch04_haozhou_wedding.md",
+    "exists": true,
+    "current_commit": "9a637a06815502e8dc4ee0fbc22c71dda663a0d8",
+    "current_sha256": "348a7545a263831983f50e345a67867c2f3005fc5030ba2faeecd09f255b361c",
+    "manifest_sha256": "348a7545a263831983f50e345a67867c2f3005fc5030ba2faeecd09f255b361c",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「濠州惊变」，实际字形「濠州惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base（AR-53 总审返修：张无忌新郎脸改回 A 版 base 的圆润温和）",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhouzhiruo",
+      "中文名": "周芷若",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch04/cg_ch04_haozhou_wedding.png",
+      "提交号": "9a637a06",
+      "判定": "一致",
+      "说明": "复核（9a637a06）：与基准一致",
+      "基准图": "por_npc_zhouzhiruo__ch04_youth_scene_guangmingding"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 9a637a06；新基准 b75caf22 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/scene/ch04/cg_ch04_vajra_circle.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch04-yitian/cg_ch04_vajra_circle.md",
+    "exists": true,
+    "current_commit": "d11b33a0b74403c50e807c2ba3a9e629916d6b8f",
+    "current_sha256": "5cb045b740975c7f4f7610f90b42fa7c189257ea6b3b36bb337a5aa58d8ef279",
+    "manifest_sha256": "5cb045b740975c7f4f7610f90b42fa7c189257ea6b3b36bb337a5aa58d8ef279",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [],
+    "other_identity_references": [
+      {
+        "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_zhouzhiruo__ch04_youth_scene_shaolin.resume3.png",
+        "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型",
+        "sha256": "936ae8e1e268b46675dee01ddfb6b50ee08556d532689fe26812d4c125d84452"
+      }
+    ],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「金刚伏魔」，实际字形「金刚伏魔」逐字核验，原生题字，未叠加。",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhouzhiruo",
+      "中文名": "周芷若",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch04/cg_ch04_vajra_circle.png",
+      "提交号": "d11b33a0",
+      "判定": "无法判",
+      "说明": "背身远景，脸不可见",
+      "基准图": "por_npc_zhouzhiruo__ch04_youth_scene_guangmingding"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 无法判（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 d11b33a0；新基准 b75caf22 / f1cd1652"
+  },
+  {
+    "人物": "周芷若",
+    "npc_id": "npc_zhouzhiruo",
+    "file": "assets/default/scene/ch04/cg_ch04_wanan_fire_rescue.png",
+    "type": "插图",
+    "prompt": "assets/default/prompts/scenes/ch04-yitian/cg_ch04_wanan_fire_rescue.md",
+    "exists": true,
+    "current_commit": "9eee06fe4d997da77d8d9ce9e2368f7ac8d1473e",
+    "current_sha256": "df9b97a384522f2901772158a1ba34d1f80ac9d2aa3ebc42c300b2bac200a3a3",
+    "manifest_sha256": "df9b97a384522f2901772158a1ba34d1f80ac9d2aa3ebc42c300b2bac200a3a3",
+    "canon_path": "assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png",
+    "canon_source": "b75caf22988aa40bbc41b5f50baebf37438e0382",
+    "canon_commit": "f1cd1652beef578235a07ba787600550003161d5",
+    "canon_sha256": "d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642",
+    "before_base_sha256": "68f0c4016ce69fa21f83e5d80793c5f8dfeda9cf31491eca369d8aa44f14d179",
+    "canonical_references": [],
+    "other_identity_references": [],
+    "notes": "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「火塔救群雄」，实际字形「火塔救群雄」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：范遥按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变",
+    "old_finding": {
+      "基准来源": "作者同意",
+      "book": "ch04",
+      "npc": "npc_zhouzhiruo",
+      "中文名": "周芷若",
+      "类型": "插图",
+      "图片路径": "assets/default/scene/ch04/cg_ch04_wanan_fire_rescue.png",
+      "提交号": "9eee06fe",
+      "判定": "一致",
+      "说明": "塔上白衣女（手动框 57px）朱砂痣蹙眉，与基准相符（9eee06fe 局部合成，此脸像素未动，判定沿用）",
+      "基准图": "por_npc_zhouzhiruo__ch04_youth_scene_guangmingding"
+    },
+    "status": "待对齐：AR-36 凌晨复合精修脸，未按本轮恢复的 AR-32 base 对齐；旧总审 一致（旧基准结论待重审）；下一轮按 AR-53 只合成本人的头部，保留场景、动作、伤情与其他人；现版 9eee06fe；新基准 b75caf22 / f1cd1652"
+  }
+]

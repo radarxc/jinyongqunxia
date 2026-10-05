@@ -1,0 +1,38 @@
+schemaVersion: item.v1
+id: eq_qingzhenzhudiantzi_nv
+name: 清珠翠钿子·女
+kind: armor
+sub: headwear
+grade: 8
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch10_baima
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 钿子 · 清（故宫清代钿子工艺研究）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingzhenzhudiantzi_nv
+text:
+  desc: 外观：女款黑绒半环钿子独立陈列，不画人头。 待运行时投影：cha=2; wearer=female。
+  lore: （原创扩展）据清代钿子工艺意象重构，黑绒半环以藤骨丝网成胎，对称缀花叶与小珍珠。贵族女眷逢庆典佩用，成双花饰寓意和合，因而常被当作吉礼传赠。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11
+      luck: 3

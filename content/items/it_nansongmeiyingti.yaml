@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansongmeiyingti
+name: 南宋梅影题字
+kind: collectible
+sub: calligraphy
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongmeiyingti
+text:
+  desc: 外观：小幅绢裱纸本字卷，正文卷藏。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=expanded。
+  lore: 以南宋文士咏梅的题材设计求字奖励，任务由地方书家应请落笔。适合赠文士藏家；本件不是陆游真迹，标题、书家身份、装帧和取得均为（原创扩展），不承诺永久悟性。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

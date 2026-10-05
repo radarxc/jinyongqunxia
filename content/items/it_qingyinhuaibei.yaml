@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_qingyinhuaibei
+name: 清素银小杯
+kind: collectible
+sub: bronze
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingyinhuaibei
+text:
+  desc: 外观：温冷银色薄壁小杯，圆腹矮足。 待运行时投影：eraRange=[qing]; giftTo={preferred:[merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 为清代普通交游设计无款银杯，器形按各书界的同期作法选取。适合赠商贾和器物藏家；具体工艺与取得为（原创扩展），不因银材贵重自动越级，也不把杯子作为钱币兑换。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

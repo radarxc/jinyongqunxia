@@ -1,0 +1,58 @@
+id: bld_kit_qing_south_temple_hall
+status: candidate
+selected_candidate: 1
+candidate_count: 1
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: one 14 by 11 cell Jiangnan temple main hall, an original Qing-period composite rather than a reconstruction of Xuanmiao Guan. Five visible bays, single-eave hip-and-gable grey pan-and-cover tile roof with moderate lift, gently curving eaves, plain ridge and restrained chiwen-like ridge ends plus only a very small sober ridge-figure row. Red-brown columns on individual stone bases and low stone platform, two-step bracket clusters with short projection, dark straight lattice doors. Faded restrained green/red
+  beam painting under eaves only; white-grey side walls, no yellow glazed tiles, giant sculpture, incense or plaque text.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/building-map/qing_south/review3/halls/temple_hall.guide.png
+  sha256: 478866ac4b5f3b549c438f8f4084d195b9cde9ff47bc39c553172e97eee528c0
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- url: https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Suzhou_Xuanmiao_Guan_2015.04.23_17-53-17.jpg/1920px-Suzhou_Xuanmiao_Guan_2015.04.23_17-53-17.jpg
+  sha256: a3fe8d9f58bff0bf3e4f04b4b137286839e1839e42e77d03a2b16e4e7135992e
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。玄妙观照片取五间柱网、灰瓦歇山、缓和翼角、短出斗拱与克制梁枋彩画；北寺塔照片取逐层收分、砖塔心与密檐。
+- url: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Suzhou_Xuanmiao_Guan_2015.04.23_18-02-22.jpg/1920px-Suzhou_Xuanmiao_Guan_2015.04.23_18-02-22.jpg
+  sha256: 42887af954e8aaa0b53686345baa76d8aa2f25dcdc9ec9a3283899acc5948260
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。玄妙观照片取五间柱网、灰瓦歇山、缓和翼角、短出斗拱与克制梁枋彩画；北寺塔照片取逐层收分、砖塔心与密檐。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:02.776139+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_archive: history/selected-sources/temple_hall.png
+source_sha256: 35be31412f81b0bff4e583075882354ea94a7f8fc282f84acb9131588d07c0c7
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 43
+  - 44
+  - 1502
+  - 1014
+  isotropic_scale: 0.5524331734064428
+  resized_size:
+  - 806
+  - 536
+  paste_offset:
+  - 146
+  - 116
+  - 952
+  - 652
+  final_size:
+  - 1024
+  - 736
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/temple_hall.png
+  source_sha256: 35be31412f81b0bff4e583075882354ea94a7f8fc282f84acb9131588d07c0c7
+  forbidden_transforms_used: false
+notes: 玄妙观照片取五间柱网、灰瓦歇山、缓和翼角、短出斗拱与克制梁枋彩画；北寺塔照片取逐层收分、砖塔心与密檐。
+record_path: history/records/temple_hall.yaml

@@ -1,0 +1,15 @@
+{
+  "repair_round": 3,
+  "candidate": "k4_c1",
+  "prompt": "Use case: precise-object-edit. Input 1 is the strict geometry master; input 2 is MATERIAL REFERENCE ONLY. Retexture input 1 into the realistic northern Yuan city gate of input 2. Keep input 1's exact silhouette, base corner pixel coordinates, face boundaries, framing, proportions, and opening. Change MATERIAL ONLY. No camera changes. No perspective. At the feet, left outer corner (300,665), left inner corner (428,729), right inner corner (684,857), near outer corner (812,921), right outer corner (1068,793). These 5 vertices MUST stay fixed. The passage between (428,729) and (684,857) is exactly 4m along vector (64,32) per meter, piers 2m wide, depth 4m. Walls vertical without taper, no added plinth thickness or projections. All horizontal 3D edges parallel to screen vectors (2,1) and (2,-1). This is a precision texture edit: retain the exact 8x4 footprint and rectangular open doorway. Add very fine believable warm pale buff rammed-earth layers and muted gray masonry only flush to lower wall surfaces, timber grain and small latticed wooden windows on the upper hall. Traditional low-pitched single-eaved gray clay-tile hipped roof with restrained ridge decoration, geometry of image 1 preserved. Pixel game asset with photographic ancient material detail, matching image 2 quality and lighting from upper left, darker right surfaces. Keep source sharp contours and entirely opaque solid building. True transparent RGBA alpha=0 everywhere beyond the asset and inside open passage. No cast shadow, floor, haze, glow, sky, environment, people, words or watermarks. Output at SAME 1536x1024 size and framing. Entire asset within frame.",
+  "tool": "built-in image_gen",
+  "transparent_background": true,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f46f-ac3d-7492-8311-f5489c237652/exec-7aa5138c-7e8e-425d-9351-34e51c8a1eb4.png",
+  "model": "not disclosed",
+  "seed": "not disclosed",
+  "references": [
+    "source/gate_k4_repair2_geometry.png",
+    "source/gate_k4_repair3_style.png"
+  ],
+  "note": "精确简模仅作生成参考，成品未用warp、各向异性缩放或重绘。"
+}

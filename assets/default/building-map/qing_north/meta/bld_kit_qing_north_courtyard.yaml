@@ -1,0 +1,152 @@
+id: bld_kit_qing_north_courtyard
+status: candidate
+building:
+  type: bld_kit_qing_north_courtyard
+  footprint:
+  - 10
+  - 8
+  anchor: &id001
+  - 306.5891
+  - 228.452
+  era: qing_north
+anchor_px: *id001
+footprint_m:
+- 10
+- 8
+logical_footprint_polygon_px:
+- - 58.58909999999997
+  - 263.0814
+- - 378.5891
+  - 423.0814
+- - 634.5890999999999
+  - 295.0814
+- - 314.5891
+  - 135.08139999999997
+collision_polygon_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
+collision_note: 全占地代理；非实测墙体，院内行走另需细化。
+entrance:
+  edge: S
+  offset_cells: 4
+entrance_note: 南边中点规划代理，非门洞测量。
+height_actual_m: null
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_north_courtyard.png
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 576
+  - 288
+  ground_width_px: 576
+  camera_yaw_deg: 45
+  camera_elevation_deg: 30
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
+geometry_qa:
+  final_corners_px:
+    left:
+    - 18.641537324464153
+    - 208.88847488484961
+    front:
+    - 345.7161862527716
+    - 372.4257993490033
+    right:
+    - 594.5365853658536
+    - 248.01559979246235
+  final_axis_slopes:
+  - 0.49999999999999983
+  - -0.49999999999999967
+  accepted_slope_range:
+  - 0.4
+  - 0.62
+  axis_pass: true
+  final_width_depth_ratio: 1.3145009416195856
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.0516007532956686
+  ratio_tolerance: 0.3
+  ratio_pass: true
+  measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 625
+  - 391
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 130406
+  alpha_partial_pixels: 113171
+  alpha_opaque_pixels: 798
+  alpha_nonzero_bbox:
+  - 16
+  - 16
+  - 609
+  - 375
+  transparent_margins_px:
+  - 16
+  - 16
+  - 16
+  - 16
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_courtyard.png
+  source_sha256: ff84c7e80d39f6b5678056e878e1d6c3ddfa781061aa0a181efdd99c9f3aa4eb
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 65
+  - 20
+  - 1418
+  - 954
+  uniform_scale_requested: 0.46867371847030104
+  resized_size:
+  - 634
+  - 438
+  rounded_effective_scale:
+  - 0.4685883222468588
+  - 0.4689507494646681
+  paste_offset:
+  - 16
+  - 16
+  final_file: bld_kit_qing_north_courtyard.png
+  steps:
+  - crop alpha>0 bbox
+  - uniform LANCZOS resize rounded to integer dimensions
+  - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
+  - review-10 PIL affine y'=a*x+b*y+c
+  - crop alpha>0 bbox and restore transparent padding
+release_ready: false
+affine_qa:
+  input_archive: sources/bld_kit_qing_north_courtyard__before_affine_r10.png
+  input_sha256: 5f79c5fc4f886f724f27cc60cef127c33b993e346bdad4507442024fbd7886c0
+  forward_xy:
+  - 1
+  - 0
+  - 0.10237820745083831
+  - 0.81327130560653
+  - 0
+  - 0
+  work_alpha_bbox:
+  - 56
+  - 50
+  - 649
+  - 409
+  padding_px: 16

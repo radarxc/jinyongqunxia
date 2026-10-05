@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_yunlongyudai
+name: 云龙玉带
+kind: armor
+sub: belt
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yunlongyudai
+text:
+  desc: 外观：月白锦带嵌和田玉板，云纹浅雕、不画完整龙形 （原创扩展）。 待运行时投影：cha=2; talk=5。
+  lore: 云龙玉带以月白锦带嵌和田玉板，浅雕云气而避用完整龙形，礼见时可显持有者身价。江湖传它出自王府旧藏，出处并无凭据。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: jade
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12

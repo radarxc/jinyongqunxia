@@ -1,0 +1,65 @@
+[
+  {
+    "key": "family",
+    "prompt": "Use case: stylized-concept\nAsset type: four-frame VFX raw sprite sheet for the Chinese wuxia game tianshu.\nPrimary request: the shared family visual vocabulary of 铁掌运气功 (Iron Palm breath cultivation), an original fictional yang internal-defense practice. Depict a compact protective breath aura, like warm vermilion ink mist folded around a palm-width source, not an attacking projectile.\nLayout: square pure white RGB background, exactly 2 columns x 2 rows of equal square cells, four separate aligned animation keyframes in reading order. No visible grid lines. Each effect wholly inside its cell with at least 8 percent completely white margin.\nIn EVERY cell: broad softly translucent root at local normalized (0.23,0.52), root width about 0.22 of cell height; energy extends a short distance to the RIGHT, ending before x=0.86. Keep the same root, orientation, compact oval silhouette and camera across all four frames. Two or three low rounded folds of condensed breath curl back inward toward the root, with a small open center. No narrow beam or pointed thrust.\nFrames: gentle gathering; formed rounded protective aura; steady slightly fuller breath; soft fading residual wisps. Similar silhouettes for smooth crossfade, nonempty last frame.\nStyle: refined Chinese ink-wash VFX, translucent washes, soft feathered edges and restrained dry-brush texture, warm cinnabar red #D9483B with rust-red midtones and very sparse dark iron-gray ink accents. Sparse, airy, strong negative space. No physical metal.\nText: none.\nConstraints: strict flat #FFFFFF background, no off-white paper, shadows or background textures. No opaque white highlights inside effect. No hand, arm, person, weapon, landscape, mountain, dragon, animal, letters, numbers, captions, borders, checkerboard, neon lightning, fireballs, sparks, glossy 3D surfaces. This is self-buff breath, never a traveling missile.",
+    "transparent_background": false,
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiezhangyunqigong/codex-home/generated_images/01a10484-ec03-7423-8f5f-9ef1347eb185/exec-bb4bf487-47b5-4dad-b360-407836626220.png",
+    "file": "effect/family/source_sheet.png",
+    "candidate_count": 1,
+    "selected_candidate": 1,
+    "tool": "image_gen",
+    "model": "not-reported",
+    "effort": "not-exposed",
+    "source_sha256": "7ef41c6f7e366e505ac5ebd7cc653989799000d02853948e2d5a6e79048ada73",
+    "created": "2026-10-03"
+  },
+  {
+    "key": "lianbi",
+    "prompt": "Use case: stylized-concept\nAsset type: four-frame VFX raw sprite sheet, Chinese wuxia game tianshu.\nPrimary request: 连臂归气 (linked arms, returning breath), an original defensive ultimate of 铁掌运气功 / Iron Palm internal cultivation. Only magical breath, no physical arms. Two broad cinnabar ink ribbons fold around each other into one compact interlocked protective cuff, returning toward a common palm-width source at the LEFT. Airy loops, open negative-space center, iron-gray inner brush accents. Warm yang internal energy, not a projectile or literal flame.\nLayout: square pure white RGB background; exactly 2 by 2 evenly spaced equal square cells. Four consistent animation keyframes, reading order. No drawn dividers or labels. At least 8 percent completely white safety margin on each side inside EACH cell.\nGeometry: the same broad softly translucent root at local normalized (0.23,0.52), 0.22 cell-height root width. Source feeds two overlapping rounded breath ribbons which unfold to the RIGHT and fold back, entirely before x=0.86. Keep root and overall cuff silhouette stable in all cells. Small and local, no long horizontal beam.\nFrames: gentle gathering linked arcs; clearly formed linked cuff; slightly denser held guard; softer thinning linked arcs. Final frame still visible. Keep both bands connected to the broad root throughout.\nStyle: fine Chinese ink-wash VFX on digital pure white, semi-transparent feathered washes, vermilion #D9483B, darker rust red, very restrained charcoal. Lightness and negative space, no opaque outline, polished game sprite artwork.\nConstraints: pure #FFFFFF background without paper grain, gray wash, shadow or checkerboard. No pure-white painted highlights. No text, numbers, characters, symbols, hands, arms, people, weapons, metal rings, jewelry, armor, chains, dragons, animals, landscape, neon, lightning, explosions or detached projectiles. Entire form must fit its own cell.",
+    "transparent_background": false,
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiezhangyunqigong/codex-home/generated_images/01a10484-ec03-7423-8f5f-9ef1347eb185/exec-bd6d5e71-a04d-4c0d-9195-c674b6e46338.png",
+    "file": "effect/mv_tiezhangyunqigong_lianbi/source_sheet.png",
+    "candidate_count": 1,
+    "selected_candidate": 1,
+    "tool": "image_gen",
+    "model": "not-reported",
+    "effort": "not-exposed",
+    "source_sha256": "0f85bb3b6291e5fc7b5d8b463ce7fe464d4541e5178fdae30fc5da497d7b140e",
+    "created": "2026-10-03"
+  },
+  {
+    "key": "shoufeng",
+    "prompt": "Use case: stylized-concept\nAsset type: four-frame VFX raw sprite sheet for tianshu Chinese wuxia.\nPrimary request: 守峰定息 (steadfast peak, settled breath), original defensive ultimate of 铁掌运气功 / Iron Palm breath cultivation. Show a compact protective breath crest: three nested upright blunt ridges of warm vermilion mist, gathered from a broad source on the LEFT and folding into a firm rounded wall on the RIGHT. A restrained abstract mountain-like rhythm made only of translucent qi; absolutely no literal mountain scenery, rock, metal shield or flames. Stable, weighty, quiet.\nLayout: square strictly pure-white RGB background, exactly 2 columns and 2 rows of equal square cells. Four aligned animation keyframes, no visible dividers. Every cell has at least 8 percent completely blank white margin.\nIn every cell: identical broad softly translucent root at local normalized (0.23,0.52), width about 0.24 cell-height. Rounded translucent folds extend rightwards only a short distance to x=0.86; tallest blunt crest around x=0.60, an open soft center, no sharp arrowhead, no beam or flying projectile. Root and camera stable.\nFrames reading order: calm gathering folds; formed three-ridge guard; fuller slightly denser held guard; softened fading folds. Last frame nonempty, same silhouette.\nStyle: refined Chinese ink-wash, warm cinnabar #D9483B, red ochre, subtle iron-gray inner accents, airy watercolor transparency with brush grain only in the colored mist. Soft diffuse fringes, open negative space, no heavy opaque fill.\nConstraints: flat #FFFFFF background without paper texture, gray wash, shadows or checkerboard. No pure-white painted highlights inside effect. No people, hand, arm, weapon, armor, real mountain, rock, building, landscape, dragon, animal, calligraphy, text, labels, numbers, borders, neon, sparks, explosion or lightning.",
+    "transparent_background": false,
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiezhangyunqigong/codex-home/generated_images/01a10484-ec03-7423-8f5f-9ef1347eb185/exec-d740010a-2a23-4e02-be2d-3b218f88f6cd.png",
+    "file": null,
+    "candidate_count": 2,
+    "selected_candidate": 2,
+    "tool": "image_gen",
+    "model": "not-reported",
+    "effort": "not-exposed",
+    "status": "rejected",
+    "reason": "首稿左侧留白偏窄，第二候选缩小图形补足安全边距。",
+    "source_sha256": "3005eb26244e622c6c7007a2e5f6c1f963a373b8f503b6ad2aa59c5eb8d19860",
+    "created": "2026-10-03"
+  },
+  {
+    "key": "shoufeng2",
+    "prompt": "Use case: precise-object-edit\nAsset type: four-keyframe white-background VFX sprite sheet.\nInput image: edit target, the existing 2x2 守峰定息 defensive breath sheet.\nChange only the composition spacing: make each of the FOUR isolated qi shapes about 78 percent of its current width and height, centered within its OWN equal square cell. Preserve all four shapes, their sequence, translucent vermilion and iron-gray ink washes, three blunt upright protective folds, softly broad left root, and the pure white background. Do NOT combine the frames. Final sheet remains exactly 2 columns by 2 rows of equal cells, no visible grid.\nEvery speck and soft fringe must stay inside local x=0.13..0.87 and y=0.13..0.87 in its cell. This means at least 13 percent blank white margin on each of all four sides of EACH frame, including internal cell boundaries. The left root should be around local (0.28,0.51), consistent across frames, direction to the right. Keep all source root details and soft wisps uncut.\nNo new objects, no text, no labels, no borders, no hand or arm, no mountain scenery, no paper texture, no checkerboard, no shadows. White background must be flat #FFFFFF. Preserve the same defensive breath art and frame order; only reduce their occupied area and recenter.",
+    "transparent_background": false,
+    "referenced_image_paths": [
+      "assets/default/vfx/sk_tiezhangyunqigong/effect/mv_tiezhangyunqigong_shoufeng/source_sheet.png"
+    ],
+    "reference_source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiezhangyunqigong/codex-home/generated_images/01a10484-ec03-7423-8f5f-9ef1347eb185/exec-d740010a-2a23-4e02-be2d-3b218f88f6cd.png",
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_tiezhangyunqigong/codex-home/generated_images/01a10484-ec03-7423-8f5f-9ef1347eb185/exec-b3941da7-0877-49bc-b6a6-30dcb6ccebce.png",
+    "file": "effect/mv_tiezhangyunqigong_shoufeng/source_sheet.png",
+    "candidate_count": 2,
+    "selected_candidate": 2,
+    "tool": "image_gen",
+    "model": "not-reported",
+    "effort": "not-exposed",
+    "source_sha256": "b595bb0413a6ccecd1f162e94a70362e33992091d0f73a63cba184adbe9dabbf",
+    "created": "2026-10-03",
+    "reference_sha256": "3005eb26244e622c6c7007a2e5f6c1f963a373b8f503b6ad2aa59c5eb8d19860"
+  }
+]

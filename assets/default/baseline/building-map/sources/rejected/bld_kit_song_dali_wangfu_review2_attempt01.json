@@ -1,0 +1,20 @@
+{
+  "short": "wangfu",
+  "round": 1,
+  "prompt": "Use case: precise-object-edit. Repair the attached Dali palace compound sprite for a city-map. Preserve warm cream walls, gray tiles, dark timber, modest grand timber hall, enclosed court, camellia shrubs, upper-left lighting and transparent background. The original is drawn with skewed unequal projection axes. REDRAW the ENTIRE architecture in true ORTHOGRAPHIC 2:1 dimetric with the same +0.5 and -0.5 ground slopes; keep verticals exactly vertical. Its rectangular footprint is 18 by 14 units. At canvas1536x1024 the thin ground contact polygon corners must be LEFT(160,540), FRONT(844,882), RIGHT(1376,616), BACK(692,274). LEFT->FRONT vector(684,342), FRONT->RIGHT vector(532,-266). Thus left-to-front edge is 1.286 times front-to-right, while both have 26.565-degree screen slope. Make these three front ground corners plainly visible with straight stone edging. All walls and roof eaves parallel their correct axes, no perspective convergence and no rotation error. Entrance in left-to-front wall. Restrained Dali kingdom palace of 1093, Song-era visual language, not a vast imperial palace; keep courtyard and vegetation within rectangle. OPAQUE structure with TRUE TRANSPARENT RGBA backdrop, no horizon, no aura, no extra terrain. Whole sprite within margins, not cropped. No text, characters, signs, grid, people, watermark, modern objects. Exactly one repaired sprite.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-a5fb1c68-c688-49c1-8e28-00ba3fcd8bf8.png",
+  "reason": "两轴仍不对称约+0.435/-0.579，淘汰",
+  "ref": "old",
+  "archive": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt01.png",
+  "source_sha256": "4518e10f44ff832afaf09c974c2cec6db667ba4d13e5066106907ea69816af10",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_wangfu_pre_review2",
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_pre_review2.png",
+      "sha256": "2581e87b26bb68b2c62436d70930d2d1f2be320f41ec81f1e94ec210bf752117",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    }
+  ],
+  "status": "rejected",
+  "created": "2026-09-30T10:49:21.045761+00:00"
+}

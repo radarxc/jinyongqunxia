@@ -1,0 +1,152 @@
+id: bld_kit_qing_north_shop_2f
+status: candidate
+building:
+  type: bld_kit_qing_north_shop_2f
+  footprint:
+  - 8
+  - 6
+  anchor: &id001
+  - 246.1632
+  - 423.2556
+  era: qing_north
+anchor_px: *id001
+footprint_m:
+- 8
+- 6
+logical_footprint_polygon_px:
+- - 108.16320000000002
+  - 327.7142
+- - 364.1632
+  - 455.7142
+- - 556.1632
+  - 359.7142
+- - 300.1632
+  - 231.7142
+collision_polygon_m:
+- - 0
+  - 0
+- - 8
+  - 0
+- - 8
+  - 6
+- - 0
+  - 6
+collision_note: 全占地代理；非实测墙体，院内行走另需细化。
+entrance:
+  edge: S
+  offset_cells: 3
+entrance_note: 南边中点规划代理，非门洞测量。
+height_actual_m: null
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_north_shop_2f.png
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 448
+  - 224
+  ground_width_px: 448
+  camera_yaw_deg: 45
+  camera_elevation_deg: 30
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
+geometry_qa:
+  final_corners_px:
+    left:
+    - 22.129707112970706
+    - 408.03591632222293
+    front:
+    - 276.60251046025104
+    - 535.2723179958631
+    right:
+    - 470.1966527196653
+    - 438.47524686615594
+  final_axis_slopes:
+  - 0.5
+  - -0.5000000000000001
+  accepted_slope_range:
+  - 0.4
+  - 0.62
+  axis_pass: true
+  final_width_depth_ratio: 1.3144654088050312
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.014150943396226578
+  ratio_tolerance: 0.3
+  ratio_pass: true
+  measurement_note: 审核人工测点经同一PIL仿射矩阵变换；锚点取校正后L/R底面中点。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 489
+  - 556
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 105512
+  alpha_partial_pixels: 164992
+  alpha_opaque_pixels: 1380
+  alpha_nonzero_bbox:
+  - 16
+  - 16
+  - 473
+  - 540
+  transparent_margins_px:
+  - 16
+  - 16
+  - 16
+  - 16
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_shop_2f.png
+  source_sha256: ddb84530525b6c53ebd4c27070b790ffe455586fba0c9d42af6d97052aa0e91f
+  source_size:
+  - 1448
+  - 1086
+  crop_box:
+  - 0
+  - 24
+  - 1434
+  - 1086
+  uniform_scale_requested: 0.4057971014492754
+  resized_size:
+  - 582
+  - 431
+  rounded_effective_scale:
+  - 0.40585774058577406
+  - 0.4058380414312618
+  paste_offset:
+  - 16
+  - 16
+  final_file: bld_kit_qing_north_shop_2f.png
+  steps:
+  - crop alpha>0 bbox
+  - uniform LANCZOS resize rounded to integer dimensions
+  - paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold
+  - review-10 PIL affine y'=a*x+b*y+c
+  - crop alpha>0 bbox and restore transparent padding
+release_ready: false
+affine_qa:
+  input_archive: sources/bld_kit_qing_north_shop_2f__before_affine_r10.png
+  input_sha256: 659e8a946e8242d7ef7973f44c348caaabfb5caa708a137fd955daf199de8de0
+  forward_xy:
+  - 1
+  - 0
+  - -0.005202168089215586
+  - 1.2422632738544688
+  - 0
+  - 4
+  work_alpha_bbox:
+  - 102
+  - 22
+  - 559
+  - 546
+  padding_px: 16

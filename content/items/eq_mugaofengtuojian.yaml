@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_mugaofengtuojian
+name: 木高峰驼剑
+kind: weapon
+sub: sword
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《笑傲江湖》·木高峰使剑；“驼剑”仅为描述名，形制 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/mugaofengtuojian
+text:
+  desc: 外观：厚脊微弧直剑约七十五厘米，短铁镡、粗木柄旧皮缠与驼峰状圆钝剑首。
+  lore: 《笑傲江湖》中塞北明驼木高峰用剑，本表以“驼剑”作描述名而非原著专名。厚脊剑宜近身刺削，其具体佩剑形制仍 （待考：核木高峰交战情节）；驼峰状剑首、装具和定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 72
+      qiAffinity: 100

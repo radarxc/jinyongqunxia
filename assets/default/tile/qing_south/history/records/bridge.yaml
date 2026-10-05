@@ -1,0 +1,57 @@
+id: tex_town_qing_south_bridge__stone_w3_l6_r000_v01
+status: candidate
+selected_candidate: 1
+candidate_count: 1
+prompt: 'Use image_gen to generate exactly ONE final production tile asset. The first supplied image is the mandatory geometry/camera guide and its registered footprint, axes, openings, modular endpoints and anchor must be preserved. The next two images are historical visual evidence only; borrow form, materials and construction without copying composition. Early-to-mid Qing Jiangnan, circa 1660-1780, realistic detailed historical 2.5D game-map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5/-0.5, verticals upright, no perspective. True transparent RGBA alpha-0 outside object, full silhouette uncropped, generous transparent margins, clear baseline, screen-upper-left soft light, short lower-right contact shadow. No scene, ground plane, water plane, people, animals, text, flags, signs, logos, watermark, checkerboard, white matte, modern objects, fantasy, bright palace colors or yellow glazed tiles. SUBJECT: one modest single-span
+  stone arch footbridge, exact footprint 3 cells wide by 6 cells long. Low semicircular-to-segmental arch rather than exaggerated high moon bridge; carefully radiating dressed granite voussoirs, local rough stone spandrels, narrow worn stepped deck, plain low slab parapets with square posts, no carved imperial ornament. Keep both modular landings level and visible, bridge axis exactly along guide. Historic details draw from Suzhou canal bridges; no water or banks.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/tile/qing_south/history/guides/bridge.png
+  sha256: 4ef4f9780e227f8f23ce93bc08bcb0b6c685b7cbdc8f581f41dba90ec9c379d0
+  role: 本轮生成输入：覆盖前同ID候选，仅作登记几何、相机、尺度和风格引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/A_stone_arch_bridge_in_Pingjiang_Road%2C_Suzhou.jpg?width=1200
+  sha256: 8e4fccf56785f7355933a27b3c0eae416b526c4ede167cd38c22e01a6ec20475
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。平江路石桥与1984年吴门桥照片只取低矢单孔、放射花岗石券、粗石拱腹、磨损台阶、低石板栏和方望柱；不复制整桥构图。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Suzhou_Wumen_Bridge_1984.jpg?width=1600
+  sha256: 8271ad05d176010377bdb6bfe640efd2ca48fd08d1cff84c8e105c5f1d2bc3a0
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。平江路石桥与1984年吴门桥照片只取低矢单孔、放射花岗石券、粗石拱腹、磨损台阶、低石板栏和方望柱；不复制整桥构图。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:27:59.484387+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_archive: history/selected-sources/bridge.png
+source_sha256: 97f5901accd1a804c43d3579bf725d0c87b1081e77e10055bb1ddc6c39029231
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1535
+  - 1025
+  crop_box:
+  - 92
+  - 78
+  - 1478
+  - 973
+  isotropic_scale: 0.20995670995670995
+  resized_size:
+  - 291
+  - 188
+  paste_offset:
+  - 26
+  - 21
+  - 317
+  - 209
+  final_size:
+  - 325
+  - 217
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/bridge.png
+  source_sha256: 97f5901accd1a804c43d3579bf725d0c87b1081e77e10055bb1ddc6c39029231
+  forbidden_transforms_used: false
+notes: 平江路石桥与1984年吴门桥照片只取低矢单孔、放射花岗石券、粗石拱腹、磨损台阶、低石板栏和方望柱；不复制整桥构图。
+record_path: history/records/bridge.yaml

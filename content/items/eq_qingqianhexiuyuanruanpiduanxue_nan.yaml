@@ -1,0 +1,37 @@
+schemaVersion: item.v1
+id: eq_qingqianhexiuyuanruanpiduanxue_nan
+name: 清浅褐绣缘软皮短靴·男
+kind: armor
+sub: shoes
+grade: 8
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 清（康熙至乾隆）；出现书界 ch08/ch09/ch11/ch12/ch13/ch14；（原创扩展）；形制／色系依据：故宫《第四届专题论坛——清代宫廷服饰探讨》 https://www.dpm.org.cn/learing_detail/258734.html；中国丝绸博物馆《清代华服上的红色源头》 https://www.chinasilkmuseum.com/gskt/info_319.aspx?itemid=28395；乾隆红青推广到康熙属原创扩展；本白、浅黄不冒充皇家身份色；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingqianhexiuyuanruanpiduanxue_nan
+text:
+  desc: 外观：清（康熙至乾隆）男款，主色浅褐。 待运行时投影：defOutK=0.05; hpMaxK=0.01; qinggong=2.5xgUse; wearer=male。
+  lore: （原创扩展）清浅褐款采用细密花缘绣，软皮短靴保留圆头、中低靿与平底，出行先检查靿口和鞋底；工艺只落缝线及靿口包缘，成人足长一双，轻功不再折算身法。
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11
+      agi: 0

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_shenghuoling
+name: 圣火令武功原刻
+kind: manual
+sub: original
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·六枚圣火令刻有霍山毕生武功精要；本行登记整组原著刻物，与装备实例 eq_shenghuoling 同源
+price: null
+flags: []
+assets:
+  icon: item/miji_shenghuoling
+text:
+  desc: 外观：元代六枚掌长深黝令牌置黑木匣，弯曲似火焰、表面刻波斯文字与招式线纹。
+  lore: 《倚天屠龙记》六枚圣火令刻载霍山武功精要。必须把六令的波斯文字与线纹互相对照，错排一枚便会误解招路；整组与装备实例同源，黑木匣及汉字题签为 （原创扩展）。
+extension:
+  type: manual
+  value:
+    skill: sk_shenghuoling
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_shenghuoling
+      readWis: 60
+      maxLayer: 10
+      cultivation: 4000

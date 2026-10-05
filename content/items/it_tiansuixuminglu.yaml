@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_tiansuixuminglu
+name: 天髓续命露
+kind: tonic
+sub: tonic
+grade: 10
+stack: 9
+chapters: any
+origin: expanded
+price: null
+flags: []
+use:
+  context: field
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 1400
+  meridianAid:
+    rateBp: 800
+    successBp: 800
+    costReduceBp: 800
+    hours: 12
+assets:
+  icon: item/tiansuixuminglu
+text:
+  desc: 外观：透明微金药露盛细颈玉瓶，金丝软塞。
+  lore: 固定奇遇才得的细颈玉瓶，瓶中微金药露须在安静处缓服。它先救治外伤，再为十二时辰冲穴提供助力；经脉辅助不等同于治疗内伤，金丝软塞只用于辨识。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healOuter: 14

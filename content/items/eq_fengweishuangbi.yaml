@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_fengweishuangbi
+name: 凤尾双笔
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/fengweishuangbi
+text:
+  desc: 外观：两支精钢短笔并置，各约五十厘米。 待运行时投影：exoticKind=brush。
+  lore: 两支精钢判官笔以前端四棱尖认穴，分叉尾端可勾住衣袖或兵刃，成对换手时如笔画顿挫。凤尾只取抽象轮廓，不附神异；器名、形制、练法、持有者传闻均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 60
+      qiAffinity: 100

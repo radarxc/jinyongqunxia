@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_xuantielepipa
+name: 铁琵琶
+kind: weapon
+sub: exotic
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xuantielepipa
+text:
+  desc: 外观：全长约九十厘米，薄铁梨形共鸣体、短颈四弦与木质覆手清楚。 待运行时投影：exoticKind=qin。
+  lore: 江湖乐师以薄铁蒙成梨形琴体，平日仍可拨弦，遇敌则双手抱持，以琴背横撞或护住胸前。铁壳虽耐碰，弦轴仍怕重击；器名、制作缘起、战斗用法和流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 45
+      qiAffinity: 100

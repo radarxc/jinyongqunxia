@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_chidou
+name: 赤豆
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 历代粥羹、馅料常用
+price: auto
+flags: []
+assets:
+  icon: item/chidou
+text:
+  desc: 外观：暗红赤豆盛竹斗，颗粒细小。
+  lore: 历代粥羹与糕点馅料常用的暗红小豆，秋收晒干后耐存。须提前浸泡煮软再食；寺观素厨与城镇糕坊都愿成斗购入日常备用。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_liangshi_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: grain
+    attributes:
+      version: 2

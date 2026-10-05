@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: it_yushan
+name: 御膳
+kind: dish
+sub: dish
+grade: 8
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《鹿鼎记》·御膳房语境；菜品 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: meal
+    params:
+      value: select3buff:3battle
+assets:
+  icon: item/yushan
+text:
+  desc: 外观：龙纹不用文字的黄釉盖碗与三小碟，清代宫膳时代感 （原创扩展）。 待运行时投影：party=4。
+  lore: 借《鹿鼎记》御膳房语境组合的一席清代宫膳，并非原著固定菜名。本作按宫中四季宴席投放，黄釉盖碗与三小碟按次序上桌，效果属本作扩展。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 22

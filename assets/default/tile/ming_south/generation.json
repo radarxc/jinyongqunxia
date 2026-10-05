@@ -1,0 +1,177 @@
+[
+  {
+    "key": "gate4",
+    "id": "tex_town_ming_south_city_gate__k4_r000_v01",
+    "kind": "city_gate",
+    "variant": "k4_r000_v01",
+    "footprint": [
+      8,
+      4
+    ],
+    "subject": "明代江南·净宽4格完整城门（原创扩展）",
+    "anchor_source": [
+      796,
+      841
+    ],
+    "ground_width_source": 1190,
+    "ground_width_target": 384,
+    "prompt": "Use case: precise-object-edit. Edit supplied Ming Jiangnan gate sprite geometry ONLY, preserve grey tiled roof, restrained chestnut timber and white plaster upper hall, grey brick/stone piers, fine realistic game materials, upper-left light and RGBA transparency. Opening needs moderately broadening by about40percent. Exact ground front width proportions are2m left pier /4m fully transparent passage /2m right pier, overall footprint8m wide by4m deep; opening50percent of the long FRONT width, do NOT count exposed side face. Thin each pier front by about25percent. Feet flush on one plane with no stairs, ground or connecting threshold. Passage fully transparent at floor and through tunnel, no doors, backwall or dark infill. Exact2:1 dimetric view yaw45 elevation30, long facade ground edge slopes+0.5 and depth-0.5. Full hall bridges the hole, no clipping. No scene, people, labels, watermark or modern elements.",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-34bcc069-3477-4213-ad12-f454008b5782.png",
+    "references": [
+      {
+        "file": "/Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-dc477bda-380d-4e27-b674-52186ebc0c59.png",
+        "sha256": "a3333afd85993bc12e2a1a3af08a87cc443b144e5b9cc45522054364e1474d53",
+        "prompt": "Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: complete Jiangnan Ming city gate sprite, restrained grey tiled single-storey gate tower over two grey brick piers on flush grey stone foundation, modest timber framing, no excessive flying eaves. South-facing front long facade runs downhill to screen-right; short east face visible. Ground footprint width 8 metres depth 4 metres; left pier 2m wide, central clear open passage 4m wide, right pier 2m wide, all depth 4m. Front ground width proportion 25 percent pier / 50 percent open gap /25 percent pier. Piers 3m high and complete gate total height approximately 6m. Continuous upper timber hall spans passage. Under the upper hall the broad rectangular through-passage is transparent throughout: NO doors, NO opaque dark fill, NO floor, NO rear wall. No projecting steps or plinth. The two piers meet a single ground plane. Generous clear framing. Preserve thin realistic building material detail. Exact one view and one object.",
+        "note": "第一候选，第二候选编辑输入；仅登记路径与哈希，不保留弃选源图。"
+      }
+    ],
+    "selected_candidate": 2,
+    "candidates": 2
+  },
+  {
+    "key": "gate6",
+    "id": "tex_town_ming_south_city_gate__k6_r000_v01",
+    "kind": "city_gate",
+    "variant": "k6_r000_v01",
+    "footprint": [
+      10,
+      4
+    ],
+    "subject": "明代江南·净宽6格完整城门（原创扩展）",
+    "anchor_source": [
+      775,
+      809
+    ],
+    "ground_width_source": 1245,
+    "ground_width_target": 448,
+    "prompt": "Use case: precise-object-edit. Edit this supplied Ming Jiangnan gate sprite geometry ONLY, keep materials, complete grey tiled roof, restrained brown timber/plaster guard hall, upper-left light, intact silhouette, true transparent background. Make both piers visibly far narrower and opening much broader: along the long FRONT facade at ground, exactly2m left pier +6m entirely transparent gap +2m right pier; full width10m and depth4m. The opening must occupy60percent of the FRONT width, without counting the exposed right side-face. Source opening is too small: DOUBLE opening width and make each pier half the present front width. No floor, door, back wall, dark fill or threshold across open gap. Entirely clear alpha through the tunnel, no overlay shadow in the gap. Exact orthographic45degree yaw30degree elevation,2:1 dimetric axes slope+0.5/-0.5. CRITICAL long horizontal facade beams and ground edges must run diagonally downward screen-right at30pixel drop per60pixel run; source is too flat. Keep whole architecture and generous alpha margins, no landscape, ground platform, text, people or watermark.",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-2a749779-8b4f-45a8-b68f-7f1539a90f85.png",
+    "references": [
+      {
+        "file": "/Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-ec503178-cfce-4eed-939b-fa2d29d69bc8.png",
+        "sha256": "c514c6e8d20ae79a68f542064ca489e77b295f3ea24efdab09c5d8d037cdbf70",
+        "prompt": "Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: a complete Jiangnan Ming grey-brick city gate, very broad single rectangular open through-passage under restrained chestnut brown timber guard hall with white plaster infill and dark-grey pitched tile roof. Stone footings flush to wall. Ground footprint width10m depth4m, two exactly2m-wide side piers and6m-wide open central passage: front width distribution20 percent pier/60 percent opening/20 percent pier. Opening is visually broad, with genuine transparent alpha at its ground and middle, no doors, no floor, no back wall, no dark opaque fill. Wall piers3m high, complete gate roughly6m high. Match a modular game library, do not add ornate ridge animals or decorative carving. Front width axis travels diagonally screen down-right at exactly slope +0.5; short depth sides at slope -0.5. This is a visibly isometric diagonal building, NOT a frontal facade with a small tilt. Generous transparent margin and intact tiled roof. No surrounding scene, platform or base.",
+        "note": "第一候选，第二候选编辑输入；仅登记路径与哈希，不保留弃选源图。"
+      }
+    ],
+    "selected_candidate": 2,
+    "candidates": 2
+  },
+  {
+    "key": "wall",
+    "id": "tex_town_ming_south_wall__brick_r000_v01",
+    "kind": "wall",
+    "variant": "brick_r000_v01",
+    "footprint": [
+      1,
+      1
+    ],
+    "subject": "明代江南·青灰砖城墙直段（原创扩展）",
+    "anchor_source": [
+      614,
+      1070
+    ],
+    "ground_width_source": 444,
+    "ground_width_target": 64,
+    "prompt": "Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: ONE plain straight modular Ming Jiangnan grey brick city wall segment. Precisely square footprint1m by1m, height3m, simple flat top of grey brick, no cap roof, no crenellation, no parapet openings. This is one narrow repeatable wall voxel with top parallelogram and two visible vertical faces, realistic many thin blue-grey bricks, pale grey stone bottom course. Ground square must project as an exact2:1 diamond, left and right edges slope0.5. Front screen-left plane lit, screen-right plane shaded. Top unobstructed. Flat no-stairs feet. Do not add pedestal, ground, people, vines, ornaments, text or broad shadow. Whole simple cuboid visible.",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-f938f643-5f38-4c1f-8219-9c5da650733e.png",
+    "references": [],
+    "selected_candidate": 1,
+    "candidates": 1
+  },
+  {
+    "key": "corner",
+    "id": "tex_town_ming_south_wall_corner__outer_ne_v01",
+    "kind": "wall_corner",
+    "variant": "outer_ne_v01",
+    "footprint": [
+      2,
+      2
+    ],
+    "subject": "明代江南·青灰砖城墙外角（原创扩展）",
+    "anchor_source": [
+      650,
+      907
+    ],
+    "ground_width_source": 1090,
+    "ground_width_target": 128,
+    "prompt": "Use case: precise-object-edit. Edit supplied Ming grey-brick wall corner geometry, keep exactly the same brickwork material, visible90degree corner, stone bottom course and light from upper-left. Make the two walls much taller and the plan arms much shorter/thicker, because source shows long low thin walls. EXACT world shape is an L made from THREE1m-square wall voxels, each3m TALL, within2m by2m plan footprint; arms are ONLY2m long and1m THICK each; the missing fourth1m square at front is fully transparent. Thus each arm length2m is LESS than3m wall height. Project as true2:1 dimetric axes+0.5/-0.5, total plan width2m+2m projected128 units, projected vertical height3m=118units, so vertical walls almost equal entire screen footprint width. Whole object very tall robust chunky L, not slender courtyard wall. Simple flat brick top, flush stone feet, no ground, base, steps, roof, ornament or text; true RGBA transparent background, generous margins.",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-91656c0d-9e16-4379-80b7-58306d301f2c.png",
+    "references": [
+      {
+        "file": "/Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-c3f2534d-950b-4c7d-a37a-28608933de58.png",
+        "sha256": "affc5c69cf9fda7abe1b9993d0608dcfb8e2377b16bc4ab508a99bd24cc729d7",
+        "prompt": "Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: ONE L-shaped external corner of a Ming Jiangnan city wall, muted blue-grey brick courses on flush pale grey stone bottom course. Logical total bounding footprint2m by2m; each of two perpendicular arms is2m long and1m thick; wall height3m, plain flat brick top and no separate cap or roof. Back corner at top-centre, the arms extend toward lower-left and lower-right leaving a square transparent inner notch toward viewer at bottom-centre. Right-angle corner is clearly readable; ends are straight repeatable joins. Exact dimetric2:1 plan axes, top edges slope+0.5/-0.5, brick courses parallel to these axes and vertical corners strictly vertical. Upper-left lit outer left face, darker right face. No ground, plants, floors, stairs, signs, battlements or decorative coping.",
+        "note": "第一候选，第二候选编辑输入；仅登记路径与哈希，不保留弃选源图。"
+      }
+    ],
+    "selected_candidate": 2,
+    "candidates": 2
+  },
+  {
+    "key": "bridge",
+    "id": "tex_town_ming_south_bridge__stone_w5_l10_r000_v01",
+    "kind": "bridge",
+    "variant": "stone_w5_l10_r000_v01",
+    "footprint": [
+      5,
+      10
+    ],
+    "subject": "明代江南·单孔花岗石拱桥（原创扩展）",
+    "anchor_source": [
+      914,
+      530
+    ],
+    "ground_width_source": 1467,
+    "ground_width_target": 480,
+    "prompt": "Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: ONE complete Jiangnan Ming single-span low granite stone arched footbridge, historically inspired by Suzhou canal bridges. Restrained light warm-grey stone block voussoirs, broad gently humped stone-paved deck, plain low squared stone post-and-beam side rails, no animals or fancy relief, no roofs. Logical plan width5m across and length10m along bridge, modest1.5m central rise; no outside stairs or abutment banks. Long axis screen bottom-left to upper-right with slope-0.5; width axis slope+0.5. Elliptical shallow single arch completely open and truly transparent below the bridge; NO water, river, landscape, ground slab, cast square base or environmental scenery. Bridge deck connects both ends continuously with unobstructed walkway. Full isolated bridge with broad transparent margins. One object, no split views.",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-3580ae38-1474-46d1-b442-fdb0ace5a18a.png",
+    "references": [],
+    "selected_candidate": 1,
+    "candidates": 1
+  },
+  {
+    "key": "willow",
+    "id": "tex_town_ming_south_tree_cluster__willow_v01",
+    "kind": "tree_cluster",
+    "variant": "willow_v01",
+    "footprint": [
+      3,
+      3
+    ],
+    "subject": "明代江南·垂柳（地域意象，具体种属待考）",
+    "anchor_source": [
+      780,
+      979
+    ],
+    "ground_width_source": 1290,
+    "ground_width_target": 192,
+    "prompt": "Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: ONE mature Jiangnan weeping willow tree with forked grey-brown trunk and airy drooping narrow olive green leaves, realistic individually readable hanging branch sprays, restrained slightly warm green, no saturated neon or fantasy coloring. Ground canopy envelope3m by3m, tree about4m tall. Trunk and its branching woody structure visible among fine leaves; drooping fronds must not become an opaque solid mass. Roots end at a small clean single ground point, no grass tuft, dirt, rock, pot, planter or platform. Root ground point is base anchor. Only the whole willow from root to intact crown on transparency, matching small detailed Song tree game assets. Do not include any second tree or distant scenery.",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-63a3fba5-ece8-4b48-939c-bf1c249bafc2.png",
+    "references": [],
+    "selected_candidate": 1,
+    "candidates": 1
+  },
+  {
+    "key": "bamboo",
+    "id": "tex_town_ming_south_tree_cluster__bamboo_v01",
+    "kind": "tree_cluster",
+    "variant": "bamboo_v01",
+    "footprint": [
+      2,
+      2
+    ],
+    "subject": "明代江南·丛竹（地域意象，具体种属待考）",
+    "anchor_source": [
+      620,
+      1194
+    ],
+    "ground_width_source": 944,
+    "ground_width_target": 128,
+    "prompt": "Use case: historical-scene. Create exactly ONE isolated production game sprite for a Ming dynasty Jiangnan Chinese town, a historically informed composite not a named monument reconstruction. Match approved Song baseline: restrained realistic ancient Chinese game art, detailed small natural material textures, muted slate grey and warm timber colors, crisp silhouette, no painterly ink style, no cartoon. Orthographic yaw 45 degrees elevation 30 degrees, exact 2:1 dimetric ground axes slopes +0.5 and -0.5, verticals vertical, no perspective convergence. Upper-left illumination, short soft shadow toward lower-right confined near object. True RGBA transparent background, transparent margins on all four sides, whole object intact. No landscape, dirt pedestal, surrounding ground, people, labels, readable text, plaques, watermark, checkerboard pattern, modern fittings, neon colors, gilding or Qing imperial dragon decoration. Subject: ONE compact Jiangnan garden bamboo clump, around six to nine slender green bamboo culms with visible joints, delicate thin lanceolate green leaves in natural separated sprays, subtle yellow-green highlights, fine realistic natural texture. Logical ground envelope2m by2m, approximately3m tall, slightly asymmetrical silhouette, moderate visual density so internal alpha gaps show between culms. Lower bare stalks gathered at a small clean root cluster which supplies the base anchor. No soil, dirt chunk, grass carpet, rock, pot, planter, fence, platform or background. Whole object intact from roots to highest leaves on genuine RGBA transparency. Match muted realistic finely textured Song town sprites, not ink painting.",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-033d-7c51-a4c9-cad79982adde/exec-95161769-3162-440a-90b1-45836275295e.png",
+    "references": [],
+    "selected_candidate": 1,
+    "candidates": 1
+  }
+]

@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_liaoyinshupi_nan
+name: 辽银鼠披·男
+kind: armor
+sub: cape
+grade: 7
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 银鼠裘 · 辽（《辽史·仪卫志》）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/liaoyinshupi_nan
+text:
+  desc: 外观：男款银白鼠裘披单件完整铺展，黑绿绢里、左襟皮绳扣、阔肩及膝。 待运行时投影：defOutK=0.025; hpMaxK=0.005; resColdPp=5; wearer=male。
+  lore: （原创扩展）依辽代银鼠裘记载意象合制，银白毛面配黑绿绢里，以皮绳扣住左襟。阔肩及膝，骑猎停歇时可迅速披裹；旧主人身份只凭绢色已难考。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 5

@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_zixiaoyangqidan
+name: 紫霞养气丹
+kind: tonic
+sub: tonic
+grade: 6
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: field
+  action: consume
+  target: self
+  effects:
+  - op: mpPct
+    params:
+      valueBp: 1020
+  - op: sxpBuff
+    params:
+      multiplierBp: 12000
+      durationBattles: 5
+assets:
+  icon: item/zixiaoyangqidan
+text:
+  desc: 外观：紫褐丸药配云纹青瓷瓶，细银圈封口。
+  lore: 云纹青瓷瓶内藏紫褐丸药，供习武者静服后循息运功。它先回补内力，再于五场修炼中温养主运内功；紫色只是药材本色，并非异光。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      restoreQi: 10

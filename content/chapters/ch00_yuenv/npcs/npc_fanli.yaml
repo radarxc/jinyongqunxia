@@ -1,0 +1,33 @@
+schemaVersion: npc.v1
+id: npc_fanli
+identity:
+  name: 范蠡
+  aliases: []
+  origin: historical_fictionalized
+  species: human
+  sourceWorks: [越女剑]
+lifespan:
+  born: {kind: unknown, ageBand: prime, note: 小说生命轴与史实档案须分开考据}
+  died: null
+  explicitAliveAt: [{chapterId: ch00_yuenv, from: -482, to: -482, source: 序章原创扩展定年}]
+appearances:
+  - key: yuenv_prologue
+    chapterId: ch00_yuenv
+    years: {from: -482, to: -482, approx: true}
+    displayName: 范蠡
+    presenceMode: living
+    combatEligible: false
+    ageBand: prime
+    sects: []
+    location: {cityId: null, placeKey: yueying}
+    contentLayer: mainline
+    recruitment: null
+    build: {pipeline: full, templateRole: tmpl_normal, cultivationBand: 1, portrayal: yue_minister_noncombatant, skills: [], unregisteredSkills: []}
+    ai: {tier: ai_basic, personality: pers_zhenfa}
+productionTier: A
+recruitment: {everRecruitable: false, allianceOnly: false, hardConflictWith: [], softConflictWith: []}
+bonds: {tags: [yuenv, yue_minister, witness], comboCandidateRefs: []}
+crossBook: {enabled: false, reunionQuestByChapter: {}, legacy: {skillRefs: [], itemRefs: [], heirNpcRefs: []}}
+sources:
+  - {kind: novel, work: 越女剑, locator: 范蠡请阿青帮助越军习剑之情节大意；官职称谓与顺序待考}
+  - {kind: expanded, locator: 越营试阵与玩家见证均为原创扩展；序章不可招募}

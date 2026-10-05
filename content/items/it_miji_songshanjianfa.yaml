@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_songshanjianfa
+name: 嵩山剑法全本
+kind: manual
+sub: full
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_songshanjianfa
+text:
+  desc: 外观：明代石青布面线装册，黑线四眼订。
+  lore: 嵩山派剑路被辑成厚实方正的全本，载体和篇次属 （原创扩展）。图中着重开阔架势与进退距离，研读须在宽处逐式走位；江湖所称气象森严，靠的是章法而非封面厚重。
+extension:
+  type: manual
+  value:
+    skill: sk_songshanjianfa
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_songshanjianfa
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

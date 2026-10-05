@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: eq_yuxiao
+name: 玉箫
+kind: weapon
+sub: exotic
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·黄药师，吹奏碧海潮生曲并作兵器
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yuxiao
+text:
+  desc: 外观：温润青白玉箫约七十厘米，吹口与音孔清楚、尾端短穗。 待运行时投影：exoticKind=flute; sect=sect_taohuadao。
+  lore: 《射雕英雄传》中黄药师随身携玉箫，能吹碧海潮生曲，也以箫身点穴御敌。玉质利于清音却忌与重兵硬撞，内力送音可乱敌心神；海涛纹样为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 70
+      qiAffinity: 120
+      qiEffect: bf_luanxin

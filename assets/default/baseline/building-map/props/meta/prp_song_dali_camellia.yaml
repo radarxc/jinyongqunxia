@@ -1,0 +1,92 @@
+asset_id: prp_song_dali_camellia
+era: song_dali
+placement_domain: land
+footprint_cells: {w: 1, h: 1}
+visual_bounds_m: {w: 2, d: 2, h: 1.5}
+collision: none
+projection_contract:
+  yaw_deg: 45
+  pitch_deg: 30
+  tile_px: [64, 32]
+  light: screen_upper_left
+  ground_shadow: separate_runtime_layer
+variants:
+- key: v01
+  file: prp_song_dali_camellia__v01.png
+  size_px: [136, 131]
+  anchor_px: [68, 95]
+  status: candidate
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 131]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 11077
+    alpha_partial_pixels: 6063
+    alpha_opaque_pixels: 676
+    alpha_near_opaque_pixels: 4962
+    alpha_bbox: [9, 13, 132, 95]
+    transparent_margins_px: [9, 13, 4, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_camellia__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-02e3fdc8-3e84-49d1-b43c-7184ef262833.png
+    source_sha256: b1f37ae774d438bfceb4a387e955fb38caba7875a75f987b16cb9bccb204bb58
+    source_size: [1536, 1024]
+    crop_box: [174, 16, 1377, 818]
+    source_alpha_bbox: [0, 18, 1530, 1024]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 617
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.10256410256410256
+    rounded_effective_scale: [0.10224438902743142, 0.10224438902743142]
+    resized_size: [123, 82]
+    paste_offset: [9, 13]
+    source_measured_root_px: [753, 812]
+    source_conservative_ground_y: 818
+    transformed_measured_root_px: [68.1995, 94.3865]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [0.1995, -0.6135]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  root_within_one_px: true
+- key: v02
+  file: prp_song_dali_camellia__v02.png
+  size_px: [136, 131]
+  anchor_px: [68, 95]
+  status: candidate
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 131]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 10761
+    alpha_partial_pixels: 6564
+    alpha_opaque_pixels: 491
+    alpha_near_opaque_pixels: 5407
+    alpha_bbox: [8, 4, 128, 95]
+    transparent_margins_px: [8, 4, 8, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_dali_camellia__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-d53378c6-e3f7-4724-93e4-f7de5473ae80.png
+    source_sha256: a9b3dbb1e2807398100b037d3ca6a7326d3e8921ccd1864615c0fbfd3e7cb4f9
+    source_size: [1312, 1199]
+    crop_box: [23, 26, 1283, 974]
+    source_alpha_bbox: [26, 17, 1298, 1199]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 712
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.09599156118143459
+    rounded_effective_scale: [0.09523809523809523, 0.09599156118143459]
+    resized_size: [120, 91]
+    paste_offset: [8, 4]
+    source_measured_root_px: [653, 967]
+    source_conservative_ground_y: 974
+    transformed_measured_root_px: [68.0, 94.3281]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [0.0, -0.6719]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  root_within_one_px: true
+status: candidate
+release_ready: false
+runtime_note: PNG母版，prop/model公告板由TOWN-render构造；本轮未交GLB；植物Y与s为上游建议包络。

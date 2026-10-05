@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_menggugunbang
+name: 蒙古骨箍棒
+kind: weapon
+sub: staff
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·蒙古；射雕起蒙古营地可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/menggugunbang
+text:
+  desc: 外观：硬木短棒约一米，前端外覆浅色骨片并以铁箍铆接。
+  lore: 蒙古营地工匠以骨片覆住硬木棒前端，再用铁箍铆紧，增加钝击分量而不生尖刺。骑手可单手挥击，腕绳防止落马时失兵；器名、制作方式、流通与形制均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags:
+    - blunt
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 58
+      qiAffinity: 100

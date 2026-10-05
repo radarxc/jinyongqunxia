@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_mingyanlingyaodao
+name: 明雁翎腰刀
+kind: weapon
+sub: blade
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明（国家博物馆“万历十年登州戚氏”军刀） （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/mingyanlingyaodao
+text:
+  desc: 外观：前段起翘如雁翎的窄背钢刃，刃约七十五厘米。
+  lore: 参照明代军刀实例整理的雁翎腰刀，前段起翘，窄背利于连续斩削。圆盘铁镡可护住持刀手，营伍中讲究刃口常利、鞘带牢固；定级和装具为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 60
+      qiAffinity: 100

@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: it_shengshengzaohuadan
+name: 生生造化丹
+kind: tonic
+sub: tonic
+grade: 10
+stack: 9
+chapters: any
+origin: canonExpanded
+canonRef: 《飞狐外传》·《药王神篇》所载丹药；改效 （原创扩展）
+price: null
+flags:
+- uniqueUse
+use:
+  context: field
+  action: consume
+  target: self
+  effects:
+  - op: breakCap
+    params:
+      value: 5
+  - op: permStat
+    params:
+      stat: chosenInnate
+      value: 2
+assets:
+  icon: item/shengshengzaohuadan
+text:
+  desc: 外观：翠绿丹丸置银叶形药盒，细腻蜡光。
+  lore: 《飞狐外传》药王一脉丹药在本作改作破限补品，翠绿丹丸须静服一日。每界只容一枚，默认将两点永久药力投向根骨并记入总预算；原著药效与本作规则分开。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      con: 2

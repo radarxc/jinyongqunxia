@@ -1,0 +1,57 @@
+id: tex_town_qing_south_wall_corner__outer_ne_v01
+status: candidate
+selected_candidate: 1
+candidate_count: 1
+prompt: 'Use image_gen to generate exactly ONE final production tile asset. The first supplied image is a scale and style guide; preserve its registered compact footprint, bottom anchor and slightly elevated orthographic camera, but replace the subject according to the request. The next two images are historical or botanical visual evidence only; borrow species morphology and regional appearance without copying composition. Early-to-mid Qing Jiangnan scene vocabulary, realistic detailed historical 2.5D game-map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, no perspective. True transparent RGBA alpha-0 outside object, full silhouette uncropped, generous transparent margins, screen-upper-left soft light, tiny lower-right contact shadow. No scene, ground tile, pot, people, animals, buildings, text, logos, watermark, checkerboard, white matte or modern objects. SUBJECT: one outside northeast right-angle modular city-wall corner, exact 2 by 2 cell footprint.
+  Two equal short blue-grey brick arms meet at a clean 90-degree plan corner, same height and thickness, staggered hand-laid courses over rough dressed granite footing, rammed-earth core visible only on square modular end faces. Continuous narrow wall-walk coping and low plain crenellations turn the corner correctly, with patched pale mortar and damp weathering. No tower or roof. Both ends perfectly straight and tileable; maintain +0.5/-0.5 plan axes.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/tile/qing_south/history/guides/wall_corner.png
+  sha256: 4e66da9dded2d98c62b3931ec9a8d9e5d3cabb1514ff52b3b0b9c06c1fcd8338
+  role: 本轮生成输入：覆盖前同ID候选，仅作登记几何、相机、尺度和风格引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5888.jpg?width=1600
+  sha256: 108441ed5caeba8a8cacbafd607b04edab5b8e74ee031502930154ea8bee38d4
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5941.jpg?width=1600
+  sha256: 14a8ce8eac475a8ad072ee35ec1877324cbccc3d527eae080af81d492b56f67e
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:27:59.760202+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_archive: history/selected-sources/wall_corner.png
+source_sha256: 722bf2a2391c96604dce301f6bfb338d16215dfa86a57accaee3881af1eced39
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1254
+  - 1254
+  crop_box:
+  - 158
+  - 260
+  - 1142
+  - 1076
+  isotropic_scale: 0.13516260162601626
+  resized_size:
+  - 133
+  - 110
+  paste_offset:
+  - 19
+  - 36
+  - 152
+  - 146
+  final_size:
+  - 169
+  - 166
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/wall_corner.png
+  source_sha256: 722bf2a2391c96604dce301f6bfb338d16215dfa86a57accaee3881af1eced39
+  forbidden_transforms_used: false
+notes: 盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+record_path: history/records/wall_corner.yaml

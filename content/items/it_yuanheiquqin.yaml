@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuanheiquqin
+name: 元式黑漆琴
+kind: collectible
+sub: qin
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanheiquqin
+text:
+  desc: 外观：乌黑漆长琴，窄腰与平缓肩线。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,musician,collector]}; giftValue=3; provenance=expanded。
+  lore: 依据宋元琴工艺讨论设计一张精制旧琴，主要以漆层与音材呈现等级。可由修琴支线酬赠乐人，器名与流转为（原创扩展）；具体琴式（待考），不伪署某位名家斫制。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 52

@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_jinwupixue_nan
+name: 金乌皮靴·男
+kind: armor
+sub: shoes
+grade: 3
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 乌皮靴 · 金（《金史·舆服志》）· 出现书界 ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinwupixue_nan
+text:
+  desc: 外观：男款乌黑皮靴一双并置，圆头、高靿、单层皮底与侧缝。 待运行时投影：qinggong=7.5; wearer=male。
+  lore: 据《金史·舆服志》的乌皮靴语汇演成，圆头高靿、单层皮底和结实侧缝供日常骑行。皮面只需勤擦油，不宜饰纹；流入江湖后十分常见。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: leather
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6
+      agi: 1

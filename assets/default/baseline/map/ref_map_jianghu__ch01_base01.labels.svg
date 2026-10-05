@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024" role="img" aria-labelledby="title desc">
+  <title id="title">天龙书界江湖总览 · 地名标注叠加层</title>
+  <desc id="desc">叠加于同名 PNG；北上东右，地名位置按画面估算。约1093至1094年为项目推定。大宋、大辽、西夏、大理与吐蕃为地域题签，不界定疆域；吐蕃为小说地域称谓。六城市标注指向生成图中的概念城郭，并非实测投影。仅供风格审批，不作为导航或历史边界依据。</desc>
+  <style>
+    text { font-family: "STKaiti", "KaiTi", "Noto Serif CJK SC", "Songti SC", serif; fill: #211f1a; paint-order: stroke fill; stroke: #eee4cc; stroke-width: 5; stroke-linejoin: round; }
+    .region { font-size: 38px; letter-spacing: 9px; }
+    .city { font-size: 23px; }
+    .geo { font-size: 27px; letter-spacing: 6px; fill: #435a59; }
+    .small { font-size: 17px; letter-spacing: 1px; }
+    .leader { fill: none; stroke: #554c3e; stroke-width: 1.5; stroke-linecap: round; }
+    .anchor { fill: #211f1a; stroke: #eee4cc; stroke-width: 1.5; }
+  </style>
+  <!-- Transparent canvas: no embedded PNG, fonts, scripts, or full-size background. -->
+  <g id="regional-names" aria-label="地域题签">
+    <text class="region" x="296" y="222" text-anchor="middle">吐蕃</text>
+    <text class="small" x="296" y="248" text-anchor="middle">地域示意</text>
+    <text class="region" x="530" y="117" text-anchor="middle">西夏</text>
+    <text class="region" x="1300" y="89" text-anchor="middle">大辽</text>
+    <text class="region" x="1108" y="567" text-anchor="middle">大宋</text>
+    <text class="region" x="205" y="647" text-anchor="middle">大理</text>
+  </g>
+  <g id="city-names" aria-label="时代城市名">
+    <g data-source-id="city_yinchuan">
+      <path class="leader" d="M673 220 L686 191 L751 191"/>
+      <circle class="anchor" cx="673" cy="220" r="3"/>
+      <text class="city" x="757" y="196">兴庆府</text>
+    </g>
+    <g data-source-id="city_liaoshangjing">
+      <path class="leader" d="M1194 151 L1232 178 L1350 178"/>
+      <circle class="anchor" cx="1194" cy="151" r="3"/>
+      <text class="city" x="1355" y="183">上京临潢府</text>
+    </g>
+    <g data-source-id="city_beijing">
+      <path class="leader" d="M1051 283 L1092 309 L1144 309"/>
+      <circle class="anchor" cx="1051" cy="283" r="3"/>
+      <text class="city" x="1150" y="314">南京析津府</text>
+      <text class="small" x="1150" y="337">燕京</text>
+    </g>
+    <g data-source-id="city_kaifeng">
+      <path class="leader" d="M990 463 L968 496 L918 496"/>
+      <circle class="anchor" cx="990" cy="463" r="3"/>
+      <text class="city" x="911" y="502" text-anchor="end">东京开封府</text>
+      <text class="small" x="911" y="525" text-anchor="end">汴梁</text>
+    </g>
+    <g data-source-id="city_suzhou">
+      <path class="leader" d="M1241 706 L1310 720 L1348 720"/>
+      <circle class="anchor" cx="1241" cy="706" r="3"/>
+      <text class="city" x="1354" y="727">苏州</text>
+    </g>
+    <g data-source-id="city_dali">
+      <path class="leader" d="M182 760 L167 796 L167 806"/>
+      <circle class="anchor" cx="182" cy="760" r="3"/>
+      <text class="city" x="170" y="836" text-anchor="middle">大理国都</text>
+      <text class="small" x="170" y="860" text-anchor="middle">羊苴咩城</text>
+    </g>
+  </g>
+  <g id="river-names" aria-label="概化水系">
+    <text class="geo" x="1180" y="466" text-anchor="middle">黄河</text>
+    <text class="geo" x="959" y="650" text-anchor="middle">长江</text>
+  </g>
+  <g id="caption" aria-label="图名与用途">
+    <text x="55" y="967" font-size="28">天龙书界 · 江湖形胜</text>
+    <text class="small" x="55" y="996">约1093—1094年 · 风格参考，地名位置示意</text>
+    <path class="leader" d="M1458 918 L1458 866 M1450 880 L1458 866 L1466 880"/>
+    <text class="city" x="1458" y="852" text-anchor="middle">北</text>
+  </g>
+</svg>

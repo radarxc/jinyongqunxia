@@ -1,0 +1,288 @@
+{
+  "id": "bld_kit_tubo_casino",
+  "w": 9,
+  "h": 7,
+  "subject": "藏地民间博戏屋（替换赌场，原创扩展）",
+  "prompt": "Use case: precise-object-edit. Preserve the supplied Tibetan flat-roof stone gaming-house sprite, realistic aged white stone, black window surrounds, red-brown wood, porch and small plain game table, upper-left light. Correct the rectangular ground foundation to strict 2:1 dimetric projection: yaw45 pitch30, both perpendicular axes exactly +0.5/-0.5, opposite sides parallel. Both ground slopes are currently a little too shallow. Exact contact corners in 1536x1024 canvas: LEFT(208,570), FRONT(838,885), RIGHT(1328,640), BACK(698,325). Build front porch within these bounds; rear corner hidden by building is okay. Ground length ratio9:7, no convergence. Shrink the building slightly if needed to keep complete roof and foundation at least64px from canvas boundaries. True transparent RGBA background with alpha0 outside silhouette, NO ambient glow or mist or backdrop, no thick slab, no trees/people/text/writing/grid/watermark.",
+  "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+  "references": [
+    {
+      "id": "bld_kit_tubo_casino_attempt01",
+      "file": "sources/rejected/bld_kit_tubo_casino_attempt01.png",
+      "role": "编辑目标；同次首次生成候选",
+      "sha256": "88069e6d6ff1bcc0344fc6bdfea7590f04d5b5a1de07fdb7ccb4424c8473e070",
+      "status": "candidate"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-28f1e10e-9c90-4a91-8481-0fee442fda8f.png",
+  "created": "2026-09-30T22:15:22.798Z",
+  "candidate_count": 2,
+  "tool": "functions.exec · image_gen",
+  "model": "image_gen（工具未公开底层模型版本）",
+  "effort": "未公开",
+  "status": "candidate",
+  "source_corners_px": {
+    "left": [
+      153,
+      614
+    ],
+    "front": [
+      898,
+      977
+    ],
+    "right": [
+      1480,
+      678
+    ]
+  },
+  "visual_review": "原图已 view_image；可见左右前底面角点，石砌白墙平顶、黑框窗、木门和入口完整；无伪字/人物/现代元素；地域功能替换属原创扩展。",
+  "rejected": [
+    {
+      "id": "bld_kit_tubo_casino",
+      "prompt": "Use case: historical-scene. Asset type: one realistic historical Tibetan plateau city-map building sprite, original regional functional adaptation for a Chinese wuxia game. Input image 1 is a STYLE REFERENCE ONLY: match its restrained natural material detail, visual density and age, NOT its Chinese tiled roof style or building shape. Build NEW Tibetan stone architecture. Clear rugged stone courses, lightly weathered white or ochre plaster, thick gently battered walls, flat earthen parapet roof, small dark timber windows with black trapezoidal surrounds and modest red-brown timber cornices. Natural warm-neutral light from SCREEN UPPER LEFT and only a small soft contact shadow to lower right. TRUE TRANSPARENT RGBA background. Not a complete city scene. Camera strict orthographic 2:1 dimetric, yaw 45 degrees, pitch 30 degrees, all verticals vertical, all parallel edges stay parallel, both ground axes slope EXACTLY +0.5 and -0.5. Clear thin rectangular stone contact perimeter with no thick plinth, unobscured left/front/right ground corners. Generous transparent margins all around. No people, text, pseudo-writing, painted script, readable signs, modern objects, landscape, sky, distant buildings, grid, labels, watermark, checkerboard, white background, tourism replicas, floating island, toy diorama, perspective convergence, long shadows. No named real temple or Potala Palace copy and no claim of exact reconstruction of any century. Single complete 1536x1024 image.  Absolute no external ambient halo or glow. Outside silhouette fully transparent alpha=0. One compact secular village gaming-house, a two-storey flat-roofed stone dwelling in ochre-white plaster. Small black timber windows, slightly wider open front doorway, a shallow roofed timber porch with a small low wood game table with round plain counters visibly at the entrance but no people. A few rough seats, modest domestic architecture. No religious gold, no flags, no Chinese curved roofs. Exact footprint 9 by 7 metres. Use minimal thin stone foundation rectangular plan with ground corners LEFT(208,570), FRONT(838,885), RIGHT(1328,640), BACK(698,325). Footprint length ratio 9:7. All corners visible and clear; no thick ground slab. Align both wall and ground edges with +0.5/-0.5 slopes. Front door faces lower-left.",
+      "created": "2026-09-30T22:13:53.421Z",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-27cb1a26-9ff6-4d0e-a759-8b3757f6781d.png",
+      "reason": "第一候选地面两轴偏浅；第二候选较接近2:1投影。",
+      "source_archive": "sources/rejected/bld_kit_tubo_casino_attempt01.png",
+      "source_sha256": "88069e6d6ff1bcc0344fc6bdfea7590f04d5b5a1de07fdb7ccb4424c8473e070",
+      "references": [
+        {
+          "id": "bld_kit_song_dali_yamen",
+          "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+          "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef",
+          "role": "宋候选仅作材质和细节密度参考；非藏地形制",
+          "status": "candidate"
+        }
+      ]
+    }
+  ],
+  "source_archive": "sources/bld_kit_tubo_casino.png",
+  "source_sha256": "977a83448876037fe36da3d26874988e1e03846a2f6612e4a29e07c49de5bf23",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "size": [
+      1536,
+      1024
+    ],
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "alpha_zero_pixels": 829768,
+    "alpha_partial_pixels": 743096,
+    "alpha_near_opaque_pixels": 727770,
+    "alpha_opaque_pixels": 0,
+    "alpha_nonzero_bbox": [
+      0,
+      34,
+      1486,
+      1000
+    ],
+    "transparent_margins_px": [
+      0,
+      34,
+      50,
+      24
+    ],
+    "border_alpha_max": 1
+  },
+  "processing": {
+    "source_archive": "sources/bld_kit_tubo_casino.png",
+    "source_sha256": "977a83448876037fe36da3d26874988e1e03846a2f6612e4a29e07c49de5bf23",
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box": [
+      0,
+      34,
+      1486,
+      1000
+    ],
+    "uniform_scale_requested": 0.3858327053504145,
+    "resized_size": [
+      573,
+      373
+    ],
+    "rounded_effective_scale": [
+      0.3855989232839839,
+      0.386128364389234
+    ],
+    "paste_offset": [
+      32,
+      32,
+      605,
+      405
+    ],
+    "target_canvas": [
+      637,
+      437
+    ],
+    "final_file": "bld_kit_tubo_casino.png",
+    "steps": [
+      "crop alpha>0 bounding box",
+      "uniform LANCZOS resize, nearest-integer dimensions",
+      "paste without mask onto transparent RGBA; no repaint, warp, alpha threshold, flip or rotation"
+    ]
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        153,
+        614
+      ],
+      "front": [
+        898,
+        977
+      ],
+      "right": [
+        1480,
+        678
+      ]
+    },
+    "source_axis_slopes": [
+      0.487248322147651,
+      -0.5137457044673539
+    ],
+    "axis_tolerance": 0.03,
+    "axis_pass": true,
+    "source_width_depth_ratio": 1.2800687285223367,
+    "expected_width_depth_ratio": 1.2857142857142858,
+    "ratio_relative_error": 0.004390988927071571,
+    "ratio_tolerance_suggestion": 0.1,
+    "ratio_pass": true,
+    "measurement_uncertainty_source_px": 3,
+    "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      637,
+      437
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 167369,
+    "alpha_partial_pixels": 110037,
+    "alpha_near_opaque_pixels": 108155,
+    "alpha_opaque_pixels": 963,
+    "alpha_nonzero_bbox": [
+      32,
+      32,
+      605,
+      402
+    ],
+    "transparent_margins_px": [
+      32,
+      32,
+      32,
+      35
+    ],
+    "border_alpha_max": 0
+  },
+  "manifest_entry": {
+    "id": "bld_kit_tubo_casino",
+    "subject": "藏地民间博戏屋（替换赌场，原创扩展）",
+    "prompt": "Use case: precise-object-edit. Preserve the supplied Tibetan flat-roof stone gaming-house sprite, realistic aged white stone, black window surrounds, red-brown wood, porch and small plain game table, upper-left light. Correct the rectangular ground foundation to strict 2:1 dimetric projection: yaw45 pitch30, both perpendicular axes exactly +0.5/-0.5, opposite sides parallel. Both ground slopes are currently a little too shallow. Exact contact corners in 1536x1024 canvas: LEFT(208,570), FRONT(838,885), RIGHT(1328,640), BACK(698,325). Build front porch within these bounds; rear corner hidden by building is okay. Ground length ratio9:7, no convergence. Shrink the building slightly if needed to keep complete roof and foundation at least64px from canvas boundaries. True transparent RGBA background with alpha0 outside silhouette, NO ambient glow or mist or backdrop, no thick slab, no trees/people/text/writing/grid/watermark.",
+    "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+    "references": [
+      {
+        "id": "bld_kit_tubo_casino_attempt01",
+        "file": "sources/rejected/bld_kit_tubo_casino_attempt01.png",
+        "role": "编辑目标；同次首次生成候选",
+        "sha256": "88069e6d6ff1bcc0344fc6bdfea7590f04d5b5a1de07fdb7ccb4424c8473e070",
+        "status": "candidate"
+      }
+    ],
+    "tool": "functions.exec · image_gen",
+    "model": "image_gen（工具未公开底层模型版本）",
+    "effort": "未公开",
+    "created": "2026-09-30T22:15:22.798Z",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-28f1e10e-9c90-4a91-8481-0fee442fda8f.png",
+    "status": "candidate",
+    "file": "bld_kit_tubo_casino.png",
+    "category": "building-map",
+    "style": "default",
+    "size": "637x437",
+    "sha256": "60caefffa6c3e78483b7cae8ed7b73d2febec23f954855fe7051dec4c674c279",
+    "notes": "原图已 view_image；可见左右前底面角点，石砌白墙平顶、黑框窗、木门和入口完整；无伪字/人物/现代元素；地域功能替换属原创扩展。 单45°视图；未通过城市拼接和作者审批。",
+    "building": {
+      "type": "bld_kit_tubo_casino",
+      "footprint": [
+        9,
+        7
+      ],
+      "anchor": [
+        346.8415,
+        268.3106
+      ],
+      "era": "tubo"
+    },
+    "footprint_m": [
+      9,
+      7
+    ],
+    "entrance": {
+      "edge": "S",
+      "offset_cells": 4.5
+    },
+    "projection_contract": {
+      "tile_px": [
+        64,
+        32
+      ],
+      "ground_bbox_px": [
+        512,
+        256
+      ],
+      "ground_width_px": 512,
+      "light": "screen_upper_left",
+      "shadow": "screen_lower_right_contact_only"
+    },
+    "meta": "meta/bld_kit_tubo_casino.yaml",
+    "anchor_px": [
+      346.8415,
+      268.3106
+    ],
+    "source_copy": "sources/bld_kit_tubo_casino.png",
+    "source_sha256": "977a83448876037fe36da3d26874988e1e03846a2f6612e4a29e07c49de5bf23",
+    "candidate_count": 2,
+    "geometry_qa": {
+      "source_corners_px": {
+        "left": [
+          153,
+          614
+        ],
+        "front": [
+          898,
+          977
+        ],
+        "right": [
+          1480,
+          678
+        ]
+      },
+      "source_axis_slopes": [
+        0.487248322147651,
+        -0.5137457044673539
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": true,
+      "source_width_depth_ratio": 1.2800687285223367,
+      "expected_width_depth_ratio": 1.2857142857142858,
+      "ratio_relative_error": 0.004390988927071571,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": true,
+      "measurement_uncertainty_source_px": 3,
+      "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+    },
+    "metadata": "meta/bld_kit_tubo_casino.yaml"
+  },
+  "final_visual_review": "已逐张view_image成品透明PNG及临时灰底alpha合成；主体完整、无实际外围棕色光晕；源alpha保持，未阈值抠图。"
+}

@@ -1,0 +1,132 @@
+schema: tianshu-rig-keypoints.v1
+coordinates: source
+view: back34
+facing: L
+imageSize:
+- 256
+- 480
+bodyProfile: female
+garmentProfile: ankle-robe
+detector: manual-prior
+detectorNote: disabled
+keypoints:
+  crown:
+    xy:
+    - 133
+    - 45
+    confidence: 0.55
+    source: silhouette-prior
+  neck:
+    xy:
+    - 120
+    - 104
+    confidence: 0.55
+    source: silhouette-prior
+  pelvis:
+    xy:
+    - 125
+    - 232
+    confidence: 0.55
+    source: silhouette-prior
+  hem:
+    xy:
+    - 125
+    - 431
+    confidence: 0.55
+    source: silhouette-prior
+  shoulder_L:
+    xy:
+    - 89
+    - 143
+    confidence: 0.55
+    source: silhouette-prior
+  shoulder_R:
+    xy:
+    - 157
+    - 143
+    confidence: 0.55
+    source: silhouette-prior
+  elbow_L:
+    xy:
+    - 57
+    - 213
+    confidence: 0.55
+    source: silhouette-prior
+  elbow_R:
+    xy:
+    - 194
+    - 213
+    confidence: 0.55
+    source: silhouette-prior
+  wrist_L:
+    xy:
+    - 40
+    - 267
+    confidence: 0.55
+    source: silhouette-prior
+  wrist_R:
+    xy:
+    - 214
+    - 265
+    confidence: 0.55
+    source: silhouette-prior
+  grip_L:
+    xy:
+    - 41
+    - 275
+    confidence: 0.55
+    source: silhouette-prior
+  grip_R:
+    xy:
+    - 217
+    - 271
+    confidence: 0.55
+    source: silhouette-prior
+  hip_L:
+    xy:
+    - 105
+    - 232
+    confidence: 0.42
+    source: bone-prior
+  hip_R:
+    xy:
+    - 146
+    - 232
+    confidence: 0.42
+    source: bone-prior
+  knee_L:
+    xy:
+    - 100
+    - 340
+    confidence: 0.42
+    source: bone-prior
+  knee_R:
+    xy:
+    - 157
+    - 340
+    confidence: 0.42
+    source: bone-prior
+  ankle_L:
+    xy:
+    - 95
+    - 437
+    confidence: 0.55
+    source: silhouette-prior
+  ankle_R:
+    xy:
+    - 155
+    - 433
+    confidence: 0.55
+    source: silhouette-prior
+  toe_L:
+    xy:
+    - 74
+    - 447
+    confidence: 0.55
+    source: silhouette-prior
+  toe_R:
+    xy:
+    - 132
+    - 435
+    confidence: 0.55
+    source: silhouette-prior

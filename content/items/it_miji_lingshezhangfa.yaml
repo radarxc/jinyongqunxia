@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_lingshezhangfa
+name: 灵蛇杖法秘本
+kind: manual
+sub: full
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_lingshezhangfa
+text:
+  desc: 外观：南宋西域皮纸册，棕皮软封、绿丝双系。
+  lore: 白驼山灵蛇杖法在本作辑为西域皮纸秘本，具体载体属 （原创扩展）。研读须沿弯折杖路理解缠、点与回收，持直棍照摹容易失真；山庄传人把风沙旧痕视作远行印记。
+extension:
+  type: manual
+  value:
+    skill: sk_lingshezhangfa
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_lingshezhangfa
+      readWis: 55
+      maxLayer: 10
+      cultivation: 3500

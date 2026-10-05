@@ -1,0 +1,1943 @@
+- id: deco_ruins_cave_wall_straight_v01
+  file: deco_ruins_cave_wall_straight_v01.png
+  category: tile
+  style: default
+  subject: 天然洞壁直段（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One straight natural limestone cave-wall segment, footprint 2x1 ground cells, roughly 2.5 cells tall. Main long face follows the screen +0.5 axis. Jagged
+    top, broad fractured planes, thin fissures, sparse dull olive moss confined to lower crevices. Grey-brown rock in restrained warm and cool layers. Both cut ends
+    are visible, whole basal contact clear. No cave room, no arch, no floor and no freestanding square pedestal.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/cave_wall_straight_a1.png
+  source_sha256: d39c309cd7d9b7e06b4a5f8827074b7047f8b2253c3cef20ef8ec0673fa7d6d8
+  size: 112x97
+  sha256: e0767182c908e92e053de86adc905e945977366be9716bef1e7a787df9be22de
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 1
+    variant: straight
+    autotile_mask: null
+  anchor_px:
+  - 56.18
+  - 65.18
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: cave_wall_straight_a1
+    candidate_count: 1
+    reruns: 0
+    selected: cave_wall_straight_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 251
+    - 72
+    - 1310
+    - 966
+    solid_bbox:
+    - 253
+    - 73
+    - 1309
+    - 965
+    scale: 0.09090909
+    ground_span_source_px: 1056
+    target_ground_width_px: 96
+    anchor_source_px:
+    - 781.0
+    - 701.0
+    resampled_trim:
+    - 0
+    - 0
+    - 96
+    - 81
+    padding_px: 8
+- id: deco_ruins_cave_wall_corner_v01
+  file: deco_ruins_cave_wall_corner_v01.png
+  category: tile
+  style: default
+  subject: 天然洞壁转角（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One L-shaped natural limestone cave-wall corner, two connected rough wall arms around a 2x2 cell corner, each arm about 2 cells long and 2.5 cells high.
+    Both faces and empty inside corner clearly visible. Grey-brown fractured limestone, restrained sparse olive moss. No floor between walls and no roof.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/cave_wall_corner_a1.png
+  source_sha256: 958b1c55356ff13cfc3da668cb575b9e9e8f87d6bfde045263c955d9ff77ee21
+  size: 144x107
+  sha256: 27d1a8e24f7a22fad65aeba05a489e6b40cd3c27e203206a967e60e34f15381f
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 2
+    variant: corner
+    autotile_mask: null
+  anchor_px:
+  - 72.14
+  - 66.43
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: cave_wall_corner_a1
+    candidate_count: 1
+    reruns: 0
+    selected: cave_wall_corner_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 308
+    - 170
+    - 1230
+    - 821
+    solid_bbox:
+    - 309
+    - 171
+    - 1229
+    - 820
+    scale: 0.13913043
+    ground_span_source_px: 920
+    target_ground_width_px: 128
+    anchor_source_px:
+    - 769.0
+    - 590.0
+    resampled_trim:
+    - 0
+    - 0
+    - 128
+    - 91
+    padding_px: 8
+- id: deco_ruins_tomb_passage_arch_v01
+  file: deco_ruins_tomb_passage_arch_v01.png
+  category: tile
+  style: default
+  subject: 砖砌券顶墓道口（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One short grey-brick barrel-vaulted tomb entrance, 2x1 ground cells and 2 cells high. Radial wedge-set brick arch courses above a clear open passage,
+    two plain worn brick jambs, staggered brick bonds, faded lime joints, chipped arrises. Opening faces screen lower-left; see transparent background through it,
+    including its floor. No black backing, door leaf, steps, paving or complete tomb.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/tomb_passage_arch_a1.png
+  source_sha256: 0a86e9b1d91670af3938bb43b04e9bad525b3b6a935afd70619a8f492cf88eb2
+  size: 112x117
+  sha256: 25195ff81f48c2d061b9d3105df56e0a945d31b19fe0e2085775cb7ee6e6e912
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 1
+    variant: arch
+    autotile_mask: null
+  anchor_px:
+  - 56.16
+  - 84.52
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: tomb_passage_arch_a1
+    candidate_count: 1
+    reruns: 0
+    selected: tomb_passage_arch_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 474
+    - 178
+    - 1092
+    - 823
+    solid_bbox:
+    - 475
+    - 179
+    - 1091
+    - 823
+    scale: 0.15584416
+    ground_span_source_px: 616
+    target_ground_width_px: 96
+    anchor_source_px:
+    - 783.0
+    - 669.0
+    resampled_trim:
+    - 0
+    - 0
+    - 96
+    - 101
+    padding_px: 8
+- id: deco_ruins_tomb_passage_wall_v01
+  file: deco_ruins_tomb_passage_wall_v01.png
+  category: tile
+  style: default
+  subject: 墓道壁段（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One straight tomb passage side wall, 2x1 cells and 2 cells high, small dark grey fired bricks in staggered courses, thin weathered pale lime joints,
+    irregular lost bricks near the top, darker humidity near its foot. Long wall aligned +0.5 screen axis. No roof or ground tile, no painted murals or writing.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/tomb_passage_wall_a1.png
+  source_sha256: 9898638016a095668b4f4e3e1eea65e8530aeae3fd84f7c8174730c92305baf3
+  size: 112x115
+  sha256: eb675165a0a49b2703c6a497c85ef8db77675ea62a31198539d48897b7fcb68e
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 1
+    variant: wall
+    autotile_mask: null
+  anchor_px:
+  - 56.11
+  - 83.35
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: tomb_passage_wall_a1
+    candidate_count: 1
+    reruns: 0
+    selected: tomb_passage_wall_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 324
+    - 68
+    - 1214
+    - 988
+    solid_bbox:
+    - 325
+    - 69
+    - 1213
+    - 987
+    scale: 0.10810811
+    ground_span_source_px: 888
+    target_ground_width_px: 96
+    anchor_source_px:
+    - 769.0
+    - 765.0
+    resampled_trim:
+    - 0
+    - 0
+    - 96
+    - 99
+    padding_px: 8
+- id: deco_ruins_adobe_wall_brick_v01
+  file: deco_ruins_adobe_wall_brick_v01.png
+  category: tile
+  style: default
+  subject: 西域土坯残墙（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One eroded sun-dried mud-brick wall segment from an anonymous Hexi or eastern Central Asian ruin, 2x1 cells, 1.5 cells tall, stepped broken top. Distinct
+    large rectangular ochre adobe blocks laid in staggered courses with mud joints, exposed straw flecks, crumbly rounded corners. No fired brick facing, cement,
+    tiled cap or ornament.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/adobe_wall_brick_a1.png
+  source_sha256: 4ce0156ead47d31d2495fa76aebab5338a9ffafc7d2ef178a6408e04555e5968
+  size: 120x103
+  sha256: 159a155cdd30fa9c3e308f707a41d40c2a34590c910d1ba995b3c3e3de7f877a
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 1
+    variant: brick
+    autotile_mask: null
+  anchor_px:
+  - 56.1
+  - 70.97
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: adobe_wall_brick_a1
+    candidate_count: 1
+    reruns: 0
+    selected: adobe_wall_brick_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 298
+    - 83
+    - 1342
+    - 960
+    solid_bbox:
+    - 299
+    - 84
+    - 1266
+    - 959
+    scale: 0.09927611
+    ground_span_source_px: 967
+    target_ground_width_px: 96
+    anchor_source_px:
+    - 782.5
+    - 717.25
+    resampled_trim:
+    - 0
+    - 0
+    - 104
+    - 87
+    padding_px: 8
+- id: deco_ruins_adobe_wall_rammed_v01
+  file: deco_ruins_adobe_wall_rammed_v01.png
+  category: tile
+  style: default
+  subject: 河西夯土残墙（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One weather-eroded rammed-earth ruin wall segment in a Hexi dryland palette, 2x1 cells, irregular height 1.8 cells. Monolithic compressed sandy ochre
+    earth with irregular horizontal lifts and rounded erosion gullies, a jagged low end and taller broken end. Not brickwork. Sparse pebbles integral to broken toe,
+    no dirt island.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/adobe_wall_rammed_a1.png
+  source_sha256: a3243265bcfc2266558e4d686f348a8448bf3d60d93d7a11323061363f8967d1
+  size: 112x96
+  sha256: 68cc3db1f0fc9d18c2f3064b8e76ae6094704b6dfdef97a1f564b6a3a1f6c08a
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 1
+    variant: rammed
+    autotile_mask: null
+  anchor_px:
+  - 56.0
+  - 64.19
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: adobe_wall_rammed_a1
+    candidate_count: 1
+    reruns: 0
+    selected: adobe_wall_rammed_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 232
+    - 61
+    - 1320
+    - 970
+    solid_bbox:
+    - 232
+    - 62
+    - 1319
+    - 969
+    scale: 0.08831647
+    ground_span_source_px: 1087
+    target_ground_width_px: 96
+    anchor_source_px:
+    - 775.5
+    - 697.25
+    resampled_trim:
+    - 0
+    - 0
+    - 96
+    - 80
+    padding_px: 8
+- id: deco_ruins_stone_carving_stele_v01
+  file: deco_ruins_stone_carving_stele_v01.png
+  category: tile
+  style: default
+  subject: 无字残碑（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One broken anonymous upright grey stone stele, 1x1 cell, height 1.4 cells. Irregular snapped upper edge, thin weathered recessed border and broad BLANK
+    central face with erosion only, no characters even as illegible pseudo-writing. Simple stone tenon foot, no turtle pedestal, no surrounding paving.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/stone_carving_stele_a1.png
+  source_sha256: 07101fccebff8d1670a2e402905deb971150247b3cd85422bdb52721bd2fb686
+  size: 80x182
+  sha256: 1f63c375faa80cf1dafe6e7876fa11bfec541c7786cb639106444305e196341f
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 1
+    - 1
+    variant: stele
+    autotile_mask: null
+  anchor_px:
+  - 40.33
+  - 157.88
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: stone_carving_stele_a1
+    candidate_count: 1
+    reruns: 0
+    selected: stone_carving_stele_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 255
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1055
+    - 1491
+    source_bbox:
+    - 336
+    - 248
+    - 731
+    - 1265
+    solid_bbox:
+    - 338
+    - 249
+    - 730
+    - 1264
+    scale: 0.16326531
+    ground_span_source_px: 392
+    target_ground_width_px: 64
+    anchor_source_px:
+    - 534.0
+    - 1166.0
+    resampled_trim:
+    - 0
+    - 0
+    - 64
+    - 166
+    padding_px: 8
+- id: deco_ruins_stone_carving_niche_v01
+  file: deco_ruins_stone_carving_niche_v01.png
+  category: tile
+  style: default
+  subject: 摩崖小龛石造像（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One small rock-cut votive niche in a freestanding fragment of weathered sandstone cliff, footprint 1x1 cell, height 1.7 cells. A shallow arched recess
+    with one small worn seated stone devotional sculpture carved integrally from rock, simplified drapery folds, eroded facial detail, no living person. Plain weathered
+    rock outer silhouette, no inscription, gilding, elaborate mandorla, buildings or steps.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/stone_carving_niche_a1.png
+  source_sha256: 650106400e4471130399646e31c25f1cd24f3c75972e923f934e699009668788
+  size: 80x144
+  sha256: d29ba1bd67f8aff7b8e07586f2ea3094ecd451c08f3d0a31e6f2b0640f4a6dab
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 1
+    - 1
+    variant: niche
+    autotile_mask: null
+  anchor_px:
+  - 40.0
+  - 119.45
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: stone_carving_niche_a1
+    candidate_count: 1
+    reruns: 0
+    selected: stone_carving_niche_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1024
+    - 1536
+    source_bbox:
+    - 255
+    - 203
+    - 832
+    - 1353
+    solid_bbox:
+    - 255
+    - 204
+    - 832
+    - 1352
+    scale: 0.11091854
+    ground_span_source_px: 577
+    target_ground_width_px: 64
+    anchor_source_px:
+    - 543.5
+    - 1207.75
+    resampled_trim:
+    - 0
+    - 0
+    - 64
+    - 128
+    padding_px: 8
+- id: deco_ruins_mine_prop_v01
+  file: deco_ruins_mine_prop_v01.png
+  category: tile
+  style: default
+  subject: 木构矿支架（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One mine timber support frame, 2x1 cells and 2.2 cells high: two rough hand-hewn upright posts, one thick crossbeam, two short diagonal knee braces,
+    visible mortise joints and wooden pegs, weathered dark brown timber grain. Open frame interior completely transparent. No mine tunnel, rail, trolley, metal scaffolding
+    or ground slab.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/mine_prop_a1.png
+  source_sha256: bcc5d1c28cd37e4906d469ef0b2b81527070cbcfc5be9aaacdb7e8eb524a40bc
+  size: 119x127
+  sha256: cf6afba7b889d83f98118e294324964132c44222d36678a19b166c9c2d083db1
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 1
+    variant: frame
+    autotile_mask: null
+  anchor_px:
+  - 56.25
+  - 94.99
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: mine_prop_a1
+    candidate_count: 1
+    reruns: 0
+    selected: mine_prop_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 380
+    - 66
+    - 1208
+    - 965
+    solid_bbox:
+    - 382
+    - 68
+    - 1157
+    - 962
+    scale: 0.12387097
+    ground_span_source_px: 775
+    target_ground_width_px: 96
+    anchor_source_px:
+    - 769.5
+    - 768.25
+    resampled_trim:
+    - 0
+    - 0
+    - 103
+    - 111
+    padding_px: 8
+- id: deco_ruins_felt_tent_v01
+  file: deco_ruins_felt_tent_v01.png
+  category: tile
+  style: default
+  subject: 草原毡帐（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Image 2 is an early twentieth-century documentary view of a Mongolian settlement, used ONLY for the squat round felt shelters, shallow conical roofs, subdued
+    off-white covering and dark encircling bands. It is a later material/form comparison, not proof of medieval chronology. Do not copy people, city layout, fences,
+    mountains or photographic composition.
+
+    Subject: One modest round steppe felt ger tent occupying exactly 2x2 ground cells, about 1.5 cells high. Low cylindrical lattice-supported walls and shallow conical
+    radial timber roof under warm off-white wool felt, two dark horizontal rope belts, modest round crown opening, small plain timber doorway toward screen lower-left,
+    closed neutral felt flap. Hand-stitched overlapping felt seams; no bright painted motifs, stove pipe, flags, furniture or display platform.
+
+    Keep at least 60 source pixels of transparent clearance on all sides. Opaque material alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/khuree_1913.jpg
+    sha256: 80f52dbbe6b0074719459a91289717d527e6de266d56b654bb97d2c4e07fced3
+    used_detail: 仅取低圆毡帐、浅锥顶、灰白毡面和横绳；1913年晚期形制类比，不证明唐宋细部。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /private/tmp/KIT-mongol-hist-refs/khuree_overview.jpg
+    source_sha256: 2aa71ec891ed684e4854f3f08383b56d222664ea617a57d1c42a85265aac1e26
+    url: https://commons.wikimedia.org/wiki/File:1913_in_Khuree.jpg
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/felt_tent_a1.png
+  source_sha256: b8a4298020a7eb72d596d8c34b02eeeed2ae6cd281f998fd5fcb828071a09a3c
+  size: 144x116
+  sha256: 29c21a71524c15e41f084a553aaca1cd365b60ea08a4e618788ca3233e57e41a
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 2
+    variant: ger
+    autotile_mask: null
+  anchor_px:
+  - 72.17
+  - 75.42
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: felt_tent_a1
+    candidate_count: 1
+    reruns: 0
+    selected: felt_tent_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 388
+    - 233
+    - 1147
+    - 823
+    solid_bbox:
+    - 389
+    - 234
+    - 1146
+    - 821
+    scale: 0.16908851
+    ground_span_source_px: 757
+    target_ground_width_px: 128
+    anchor_source_px:
+    - 767.5
+    - 631.75
+    resampled_trim:
+    - 0
+    - 0
+    - 128
+    - 100
+    padding_px: 8
+- id: deco_ruins_herb_rack_v01
+  file: deco_ruins_herb_rack_v01.png
+  category: tile
+  style: default
+  subject: 药架陶罐药草（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One narrow freestanding wooden herbal storage rack, 1x1 cell footprint, about 1.6 cells high: two levels of plain rough shelves, four slim posts with
+    pegged joints, six modest unlabelled brown and grey ceramic jars and three small tied bundles of dried stems and leaves. Subdued natural materials, no paper labels,
+    drawers, books, glass bottles or shop surroundings.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/herb_rack_a1.png
+  source_sha256: 10e7695dcace424de32ea6abfd5f09f2ca3fcde3b6a94eac06f557c17b67d4cb
+  size: 80x141
+  sha256: 923e9f1806033443b36c538a32b0c5116f6197db92bf3952a1992746c9ad52ea
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 1
+    - 1
+    variant: rack
+    autotile_mask: null
+  anchor_px:
+  - 40.11
+  - 117.01
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: herb_rack_a1
+    candidate_count: 1
+    reruns: 0
+    selected: herb_rack_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1024
+    - 1536
+    source_bbox:
+    - 233
+    - 156
+    - 834
+    - 1329
+    solid_bbox:
+    - 234
+    - 157
+    - 834
+    - 1328
+    scale: 0.10666667
+    ground_span_source_px: 600
+    target_ground_width_px: 64
+    anchor_source_px:
+    - 534.0
+    - 1178.0
+    resampled_trim:
+    - 0
+    - 0
+    - 64
+    - 125
+    padding_px: 8
+- id: deco_ruins_lamp_oil_v01
+  file: deco_ruins_lamp_oil_v01.png
+  category: tile
+  style: default
+  subject: 石座长明油灯（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One plain stone pedestal oil lamp, footprint within 1x1 cell, height 0.85 cell. Coarse grey stone squat pillar with integral shallow stone oil bowl,
+    dark oil and one tiny warm steady wick flame. Worn functional funerary lamp, no supernatural glow, halo, smoke, chains or floor patch; external lighting remains
+    upper-left.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/lamp_oil_a1.png
+  source_sha256: 321f7cbf8ef4881e4c3446109c7641f90d2b9741a2b57187f3883cbb8b1299b7
+  size: 85x141
+  sha256: 2fe09082e7cc83efdb5e0e16a1fa5a41d503d162b4b45850f387c1d1dc1b0db2
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 1
+    - 1
+    variant: oil
+    autotile_mask: null
+  anchor_px:
+  - 40.54
+  - 117.11
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: lamp_oil_a1
+    candidate_count: 1
+    reruns: 0
+    selected: lamp_oil_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 255
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1149
+    - 1369
+    source_bbox:
+    - 391
+    - 330
+    - 773
+    - 1024
+    solid_bbox:
+    - 394
+    - 331
+    - 748
+    - 1022
+    scale: 0.18079096
+    ground_span_source_px: 354
+    target_ground_width_px: 64
+    anchor_source_px:
+    - 571.0
+    - 933.5
+    resampled_trim:
+    - 0
+    - 0
+    - 69
+    - 125
+    padding_px: 8
+- id: deco_ruins_lamp_stone_v01
+  file: deco_ruins_lamp_stone_v01.png
+  category: tile
+  style: default
+  subject: 石灯笼（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One compact plain Chinese stone lantern, footprint within 1x1 cell, 1.5 cells tall. Square low stone foot, stout square shaft, simple square light chamber
+    with open rectangular apertures and a restrained shallow four-sided stone cap. One dim oil flame inside, chipped grey stone, no calligraphy, ornate Japanese curved
+    roof or extravagant pagoda finial.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/lamp_stone_a1.png
+  source_sha256: cb03479ae3580b06d3c4436c1c88364b0e9d310a4df02be0894f22799bcf05fb
+  size: 80x155
+  sha256: 9e98faeee4e4501355acb59fe2246fd379fed3e9e95eac386f70239fb80a4fe1
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 1
+    - 1
+    variant: stone
+    autotile_mask: null
+  anchor_px:
+  - 40.26
+  - 131.08
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: lamp_stone_a1
+    candidate_count: 1
+    reruns: 0
+    selected: lamp_stone_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1024
+    - 1536
+    source_bbox:
+    - 267
+    - 232
+    - 755
+    - 1287
+    solid_bbox:
+    - 269
+    - 233
+    - 754
+    - 1286
+    scale: 0.13195876
+    ground_span_source_px: 485
+    target_ground_width_px: 64
+    anchor_source_px:
+    - 511.5
+    - 1164.75
+    resampled_trim:
+    - 0
+    - 0
+    - 64
+    - 139
+    padding_px: 8
+- id: deco_ruins_chest_closed_v01
+  file: deco_ruins_chest_closed_v01.png
+  category: tile
+  style: default
+  subject: 同箱关闭（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One CLOSED small rectangular aged walnut-brown plank chest, footprint 1x1 ground cell and height about 0.65 cell. Flat hinged lid, two dull dark iron
+    strap bands wrapping lid and body, a simple central iron hasp on the screen-lower-left-facing front, dovetailed corners, short flush feet. Chest long edge follows
+    +0.5 ground axis. Modest practical storage box, empty exterior, no carvings or gems. Preserve this exact design for an eventual open state.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/chest_closed_a1.png
+  source_sha256: 4666159fe8e508d09cddf85d0800fecebb803ebfd8b4495fde5a10c085b8a1ad
+  size: 80x76
+  sha256: 6999e67c81fc4ec2c1159f44bd6661a3828952d6cf72ebe30fc94bd776101700
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 1
+    - 1
+    variant: closed
+    autotile_mask: null
+  anchor_px:
+  - 40.16
+  - 51.55
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: chest_closed_a1
+    candidate_count: 1
+    reruns: 0
+    selected: chest_closed_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 357
+    - 154
+    - 1166
+    - 905
+    solid_bbox:
+    - 359
+    - 155
+    - 1165
+    - 904
+    scale: 0.07940447
+    ground_span_source_px: 806
+    target_ground_width_px: 64
+    anchor_source_px:
+    - 762.0
+    - 702.5
+    resampled_trim:
+    - 0
+    - 0
+    - 64
+    - 60
+    padding_px: 8
+- id: deco_ruins_chest_open_v01
+  file: deco_ruins_chest_open_v01.png
+  category: tile
+  style: default
+  subject: 同箱打开（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: Image 2 is the exact CLOSED chest to transform. Render this SAME chest at the SAME camera, scale, footprint 1x1 and basal contact position. Preserve
+    its walnut planks, two dull dark iron bands, hasp, dovetail corners, feet and aging marks. Change ONLY its hinged lid to OPEN about 100 degrees, exposing an empty
+    dark wooden interior, no loot. Lid, straps and hinge must remain attached in physically consistent positions; front silhouette and box proportions unchanged.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/chest_closed.jpg
+    sha256: c88d78b40883cda76a1f09a2bde5e08c9fc20d397f39cafcd63c39680100195f
+    used_detail: 同一箱体的板材、铁带、锁扣、脚部和镜头；只打开箱盖。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/chest_closed_a1.png
+    source_sha256: 4666159fe8e508d09cddf85d0800fecebb803ebfd8b4495fde5a10c085b8a1ad
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/chest_open_a1.png
+  source_sha256: 7f192de85fd867272f845d0ae909d15a4cc012a00a6cb323c1de3e6f00a5421c
+  size: 87x96
+  sha256: aa02df6ca1b04f12bc6e69ee3c10e7483d9f25ccf076596aca97d2ca531d26d1
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 1
+    - 1
+    variant: open
+    autotile_mask: null
+  anchor_px:
+  - 40.09
+  - 72.25
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。 开箱按下部箱体 x=374..1083（源图 y>=577）跨度定标，排除箱盖右伸部分；同箱两态的箱体落点已并排目检，运行时切换细微轮廓差异待实测。
+  generation:
+    job_id: chest_open_a1
+    candidate_count: 1
+    reruns: 0
+    selected: chest_open_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 373
+    - 43
+    - 1163
+    - 933
+    solid_bbox:
+    - 374
+    - 44
+    - 1162
+    - 932
+    scale: 0.09026798
+    ground_span_source_px: 709
+    target_ground_width_px: 64
+    anchor_source_px:
+    - 728.5
+    - 754.75
+    resampled_trim:
+    - 0
+    - 0
+    - 71
+    - 80
+    padding_px: 8
+- id: deco_ruins_stalactite_v01
+  file: deco_ruins_stalactite_v01.png
+  category: tile
+  style: default
+  subject: 倒悬钟乳（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One pendant natural limestone stalactite cluster, footprint projection 1x1 cell, about 1.6 cells tall. Small irregular ceiling-root rock cap and one
+    dominant taper pointing DOWN with two smaller drip points, subtle calcite ridges in ivory-grey rock. Not an upright stalagmite. No cave ceiling sheet, ground
+    pedestal, water pool or glowing crystal. No ground contact shadow for this ceiling object.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/stalactite_a1.png
+  source_sha256: 7d7ebc5b72185f84542613bce3bde082da1cc1691469bdfebb5664b95fcf13df
+  size: 80x147
+  sha256: a9d8cb1b42a758132ceeb46ceec740fd74ea7c91646890bcb9f187e5715ffd4f
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 1
+    - 1
+    variant: ceiling
+    autotile_mask: null
+  anchor_px:
+  - 40.14
+  - 122.55
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。 倒悬件anchor表示地面投影定位；须由渲染任务决定洞顶挂载与前景遮挡，不生成地面碰撞。
+  generation:
+    job_id: stalactite_a1
+    candidate_count: 1
+    reruns: 0
+    selected: stalactite_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 255
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 992
+    - 1586
+    source_bbox:
+    - 292
+    - 297
+    - 747
+    - 1220
+    solid_bbox:
+    - 293
+    - 298
+    - 745
+    - 1219
+    scale: 0.14159292
+    ground_span_source_px: 452
+    target_ground_width_px: 64
+    anchor_source_px:
+    - 519.0
+    - 1106.0
+    resampled_trim:
+    - 0
+    - 0
+    - 64
+    - 131
+    padding_px: 8
+- id: deco_ruins_stalagmite_v01
+  file: deco_ruins_stalagmite_v01.png
+  category: tile
+  style: default
+  subject: 地生石笋（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One natural limestone stalagmite cluster on a very compact root, footprint 1x1 cell, 1.4 cells tall. One dominant rounded taper pointing UP with two
+    smaller stumps, wet-looking calcite growth bands in subdued ivory-grey. Bare narrow rock contact, no ground island, crystal facets or surrounding cave.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/stalagmite_a1.png
+  source_sha256: 62f3a76dfcfa0f1cbfc82351cabe9a3835aec1b4b18884ee2a11614cbfb69c16
+  size: 81x154
+  sha256: c602d7d23af7efea6eb93e435227fa9f633b410e99103455a7c2a1eff1607dbe
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 1
+    - 1
+    variant: floor
+    autotile_mask: null
+  anchor_px:
+  - 40.0
+  - 129.32
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: stalagmite_a1
+    candidate_count: 1
+    reruns: 0
+    selected: stalagmite_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1024
+    - 1536
+    source_bbox:
+    - 259
+    - 181
+    - 797
+    - 1319
+    solid_bbox:
+    - 259
+    - 183
+    - 788
+    - 1316
+    scale: 0.12098299
+    ground_span_source_px: 529
+    target_ground_width_px: 64
+    anchor_source_px:
+    - 523.5
+    - 1183.75
+    resampled_trim:
+    - 0
+    - 0
+    - 65
+    - 138
+    padding_px: 8
+- id: deco_ruins_wet_wall_v01
+  file: deco_ruins_wet_wall_v01.png
+  category: tile
+  style: default
+  subject: 湿壁滴水痕（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One damp natural cave-wall segment, 2x1 cells, 2 cells tall. Dark grey-brown fractured limestone with narrow vertical mineral runoff streaks, wet patches,
+    three restrained small hanging droplets, sparse deep olive moss in fissures. Wall is opaque; no waterfall curtain, pool, blue sheen, floor slab or cave room.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/wet_wall_a1.png
+  source_sha256: 6704c6d3ebad862911c938faf90cc2e181e398efa7d85ec2d81e0b3fad7eda6d
+  size: 117x103
+  sha256: a24e47cf6b1f57c7eed3ca684cb6cbcf52925dcb4d56e225a9e3e6a149238517
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 1
+    variant: wet
+    autotile_mask: null
+  anchor_px:
+  - 56.1
+  - 70.94
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: wet_wall_a1
+    candidate_count: 1
+    reruns: 0
+    selected: wet_wall_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 285
+    - 83
+    - 1310
+    - 968
+    solid_bbox:
+    - 286
+    - 84
+    - 1261
+    - 966
+    scale: 0.09846154
+    ground_span_source_px: 975
+    target_ground_width_px: 96
+    anchor_source_px:
+    - 773.5
+    - 722.25
+    resampled_trim:
+    - 0
+    - 0
+    - 101
+    - 87
+    padding_px: 8
+- id: deco_ruins_rammed_earth_section_v01
+  file: deco_ruins_rammed_earth_section_v01.png
+  category: tile
+  style: default
+  subject: 夯土墓壁剖面（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One exposed cross-section of a rammed-earth tomb enclosure wall, 2x1 cells, 1.8 cells high. Broken wedge end clearly displays compact irregular horizontal
+    tan-and-ochre earth lifts, tiny embedded pebbles, hairline cracks, a thin weathered darker outer skin. Hand-rammed earthy material, no ruler, labels, brick courses,
+    concrete rebar or rectangular display base.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/rammed_earth_section_a1.png
+  source_sha256: 479f96ee35af588b04b2e692034699c1b7fac06c5fa49746f7fc4f6c266fc29c
+  size: 116x92
+  sha256: 91711da9231af458229eb3f32de71c18370e4f91f8ba9467515dea3d381b75e0
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 1
+    variant: section
+    autotile_mask: null
+  anchor_px:
+  - 56.09
+  - 59.85
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: rammed_earth_section_a1
+    candidate_count: 1
+    reruns: 0
+    selected: rammed_earth_section_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 225
+    - 81
+    - 1372
+    - 948
+    solid_bbox:
+    - 226
+    - 82
+    - 1322
+    - 947
+    scale: 0.08759124
+    ground_span_source_px: 1096
+    target_ground_width_px: 96
+    anchor_source_px:
+    - 774.0
+    - 673.0
+    resampled_trim:
+    - 0
+    - 0
+    - 100
+    - 76
+    padding_px: 8
+- id: deco_ruins_silt_edge_v01
+  file: deco_ruins_silt_edge_v01.png
+  category: tile
+  style: default
+  subject: 贴地淤沙边缘（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One extremely thin flat irregular crescent of deposited fine silt on the ground plane, footprint 2x1 cells. Zero vertical wall or extrusion. Muted pale
+    beige-brown granular sand with shallow water-made parallel ripples, slightly darker damp inner edge and feathered sparse grain boundary. Orthographic 2:1 ground
+    projection, fully transparent everywhere beyond sand. No rock, raised lip, mound, square tile, island base or water surface.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/silt_edge_a1.png
+  source_sha256: 54a7c06e48b12e1dd78e37d92eee1cd3a60a378bf2e0d4cd6992c10960093c79
+  size: 115x67
+  sha256: 4b17c93bc6d368f8a7c3e9217e7d821769a8ba675c90aa3ffafb51c36aad7b26
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 1
+    variant: flat
+    autotile_mask: null
+  anchor_px:
+  - 57.62
+  - 33.82
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。 薄覆层，默认视觉高度0，不改变terrain/height。
+  generation:
+    job_id: silt_edge_a1
+    candidate_count: 1
+    reruns: 0
+    selected: silt_edge_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 255
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1774
+    - 887
+    source_bbox:
+    - 280
+    - 115
+    - 1500
+    - 740
+    solid_bbox:
+    - 300
+    - 125
+    - 1487
+    - 731
+    scale: 0.08087616
+    ground_span_source_px: 1187
+    target_ground_width_px: 96
+    anchor_source_px:
+    - 893.5
+    - 434.25
+    resampled_trim:
+    - 0
+    - 0
+    - 99
+    - 51
+    padding_px: 8
+- id: deco_ruins_collapse_v01
+  file: deco_ruins_collapse_v01.png
+  category: tile
+  style: default
+  subject: 坍塌乱石断面（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One low irregular collapse pile occupying 2x2 cells, height about 1 cell, angular fractured grey-brown limestone slabs with a few brick fragments, larger
+    stones at rear and smaller chippings at front. Physically settled interlocking rubble, readable broken faces, compact footprint. No intact wall, roof, dirt platform,
+    smoke, dust cloud or cave background.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/collapse_a1.png
+  source_sha256: bd8707b3819ed2d6dc6fa59551a6f802c6f972b69db97e8b82fb9b52878c0901
+  size: 144x107
+  sha256: 980542e5babce6ebf247e07d004641ff4ceaf6f14c2bcc2d48f75bd2b9b7dc0f
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 2
+    variant: rubble
+    autotile_mask: null
+  anchor_px:
+  - 72.11
+  - 66.97
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: collapse_a1
+    candidate_count: 1
+    reruns: 0
+    selected: collapse_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 206
+    - 128
+    - 1334
+    - 930
+    solid_bbox:
+    - 207
+    - 129
+    - 1334
+    - 929
+    scale: 0.11357587
+    ground_span_source_px: 1127
+    target_ground_width_px: 128
+    anchor_source_px:
+    - 770.5
+    - 647.25
+    resampled_trim:
+    - 0
+    - 0
+    - 128
+    - 91
+    padding_px: 8
+- id: deco_ruins_robber_hole_v01
+  file: deco_ruins_robber_hole_v01.png
+  category: tile
+  style: default
+  subject: 墓壁盗洞破口（原创扩展；历史具体年代细部待考）
+  prompt: 'Use case: historical-scene. Asset type: isolated realistic game decoration sprite.
+
+    Projection and transparency contract: orthographic, yaw 45 degrees, elevation approximately 30 degrees, exact 2:1 dimetric ground axes (screen slopes +0.5 and
+    -0.5), upright verticals, no perspective convergence. Soft light from screen upper-left, only a very short soft contact shadow toward lower-right. Genuine transparent
+    RGBA: all empty pixels alpha zero, including holes; set transparent_background true. Full object silhouette with ample transparent margin, no ground tile or display
+    plinth. Image 1 is the approved Song northern wall sprite: use its restrained photoreal material treatment, believable small construction details, muted earth
+    palette, camera and light, not its subject or shape. This is an anonymous original game adaptation, broadly usable in Tang-through-Qing settings, not a reconstruction
+    of a named relic. Render one object only at useful high resolution for later downsampling to a 64x32-pixel grid.
+
+    Subject: One broken grey-brick tomb-wall fragment, 2x1 cells and about 1.4 cells high, with one rough small human-crawl-sized irregular breach punched through
+    its lower middle. Missing jagged brick edges and exposed rough earthen core, a few integral loose bricks at the foot. Hole must be transparent all the way through,
+    not a black painted oval. No person, ladder, tunnel backdrop, floor tile or steps.
+
+    Keep the silhouette at least 60 source pixels clear of every canvas edge. Avoid stray almost-transparent pixels far outside the subject. Interior opaque material
+    must reach alpha 255.
+
+    Avoid: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.'
+  negative: No people, readable writing, letters, numbers, labels, logos, modern objects, modern bolts, neon, gold treasure glow, fantasy ornament, outlines, cartoon,
+    voxel, plastic model, background scenery, sky, ground island, base slab, white fringe, painted checkerboard, mosaic, multiple views, cropped silhouette.
+  references:
+  - file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/staging/song_wall.jpg
+    sha256: 8a1d01dbcc1a020d33255e0edd206c2042e7aa5e9ae6002e31f5749238a914f1
+    used_detail: 宋北已审墙件的写实材质密度、低饱和配色、正交投影与左上光；不移用城墙形状。
+    role: image_gen 实际上传参考
+    accessed: '2026-10-03'
+    source_file: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/assets/default/tile/song_north/tex_town_song_north_wall__earth_r000_v01.png
+    source_sha256: 02aa701daeffa8a2fecfc7e34a972053bc114e5e3d13b9b5c9ab2b019e5895ee
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w21/out/robber_hole_a1.png
+  source_sha256: 189bb1b56f6e2be5625702b51a0b7410db00190112e9618fb2e1d84dba28ae15
+  size: 112x115
+  sha256: df68c916a984f7e018e82c8052b054a28ac78710aac0a59dcbf13a1cb519cd4a
+  status: candidate
+  tile:
+    kind: deco
+    footprint:
+    - 2
+    - 1
+    variant: breach
+    autotile_mask: null
+  anchor_px:
+  - 56.25
+  - 83.04
+  notes: （原创扩展）匿名通用遗迹模块；无具名原著复原或可读文字。仅抠底/alpha清理、裁切、等比缩放；无程序绘制、拼贴、拉伸或重画。占地与锚点为【建议值】，贴图地面轴/接缝/碰撞需地图装配（待实测）。
+  generation:
+    job_id: robber_hole_a1
+    candidate_count: 1
+    reruns: 0
+    selected: robber_hole_a1
+  normalization:
+    background_removed: false
+    source_alpha:
+    - 0
+    - 254
+    alpha_cleanup: source <8 -> 0; >=250 ->255; resampled <2 ->0; no RGB repaint
+    source_size:
+    - 1536
+    - 1024
+    source_bbox:
+    - 389
+    - 120
+    - 1151
+    - 904
+    solid_bbox:
+    - 391
+    - 121
+    - 1150
+    - 903
+    scale: 0.12648221
+    ground_span_source_px: 759
+    target_ground_width_px: 96
+    anchor_source_px:
+    - 770.5
+    - 713.25
+    resampled_trim:
+    - 0
+    - 0
+    - 96
+    - 99
+    padding_px: 8

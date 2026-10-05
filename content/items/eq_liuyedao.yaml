@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_liuyedao
+name: 柳叶刀
+kind: weapon
+sub: blade
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明清柳叶形腰刀 （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/liuyedao
+text:
+  desc: 外观：柳叶状通体缓弧钢刃，刃约七十五厘米。
+  lore: 柳叶状缓弧刃兼顾劈削与回刀，是明清腰刀中利于步战的形制。椭圆镡护手而不碍翻腕，刀口须常以油石养护；具体品阶与江湖流传为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 58
+      qiAffinity: 100

@@ -1,0 +1,95 @@
+id: bld_kit_ming_north_inn
+footprint_m:
+- 12
+- 9
+footprint_basis: 【建议值】design/22 §3.3 宋南方客栈12×9同功能占地；明骨架未列客栈
+anchor_px:
+- 367.6798
+- 301.8085
+entrance:
+  edge: S
+  offset_cells: 6.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 12
+  - 0
+- - 12
+  - 9
+- - 0
+  - 9
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 210
+  - 594.0095403164121
+  F:
+  - 817.4626173943037
+  - 914.6411179411793
+  R:
+  - 1259
+  - 685.0416789862172
+source_anchor_px:
+- 734.5
+- 639.5256096513147
+target_ground_span_px: 672
+geometry:
+  crop_box:
+  - 204
+  - 212
+  - 1266
+  - 924
+  uniform_scale: 0.6406101048617732
+  scaled_size:
+  - 680
+  - 456
+  canvas_size:
+  - 736
+  - 512
+  paste_offset:
+  - 28
+  - 28
+  - 708
+  - 484
+  raster_scales:
+  - 0.64030131826742
+  - 0.6404494382022472
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 192390
+  alpha_partial_pixels: 183654
+  alpha_opaque_pixels: 788
+  alpha_bbox:
+  - 28
+  - 29
+  - 707
+  - 483
+  rectangular_trim_removed_nonzero: 4
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.5278210846950694
+  - -0.52
+  source_ratio_relative_error: 0.03184233316114726
+  geometry_warning: false
+  visual_review: 第3轮逐张view_image原目标、全部候选及成品；成品下缘拟合+0.52766/-0.52013，宽深比误差3.18%。
+  limitation: Visible ground-edge fit alpha>128; ground corners manually located; runtime
+    untested.
+final_view_image_review: 第3轮已逐张view_image规范化成品：主体与屋檐完整、留透明边；实测双轴和宽深比达阈值。仅alpha修掉多余铺地边，墙体未剪裁。
+alpha_edge_trim:
+  reason: 仅移除右前石铺外缘多余像素，不移动或变形建筑；原始工具图逐字节保留。
+  maximum_opaque_trim_source_px: 4.631
+  retained_nonzero_ratio: 0.9936857935884819
+  removed_nonzero_pixels: 2855
+  points_semantics: source_points_px为修边后底边交点；修边前两轴见repair-r3/revision.json。
+source_sha256: e1a3ac58127b347688210c3f3b56bc0c028b6195c699c29cd5237f547d060302
+sha256: 838abad981c2dbd7c2ef8b5d683d7d490ca0115cc35e155bed17a8ac8859831e

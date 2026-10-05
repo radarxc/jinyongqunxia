@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_emeiduan_ci
+name: 峨眉对刺
+kind: weapon
+sub: exotic
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 传统短兵；确切定型年代 （待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/emeiduan_ci
+text:
+  desc: 外观：两支细钢刺平行并置，各约三十五厘米。 待运行时投影：exoticKind=dagger。
+  lore: 成对短刺以中环套指，正反两端皆可点刺，贴身时还能借腕转连续换向。此兵器与峨眉名称相联的确切定型年代仍 （待考：核兵器源流）；尺寸、结构和本作投放为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 40
+      qiAffinity: 100

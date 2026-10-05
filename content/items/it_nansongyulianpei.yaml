@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansongyulianpei
+name: 南宋玉莲小雕
+kind: collectible
+sub: jade
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongyulianpei
+text:
+  desc: 外观：青白玉单朵莲花连卷叶，浅圆雕。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[collector]}; giftValue=1; provenance=expanded。
+  lore: 据宋玉常用花叶题材设计的小件陈设玉，纹样取清楚可辨的莲叶组合。宜赠文士或藏家，玉工酬劳获取属于（原创扩展）；不列装备玉佩，也不以莲花纹推断受赠者宗教。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

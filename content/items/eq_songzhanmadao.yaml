@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_songzhanmadao
+name: 宋斩马刀
+kind: weapon
+sub: blade
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·宋；天龙至神雕宋境可得，名称与器形演变 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/songzhanmadao
+text:
+  desc: 外观：通长约一百四十厘米，厚背长直刃、短十字铁镡、双手木柄麻缠与环形尾首。
+  lore: 宋境军阵配置的双手长刀，以厚背长刃承接进步重斩，短镡帮助收刀时稳住手位。斩马刀名称与器形在宋代的演变仍 （待考：核宋代军器史料）；比例和投放为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 2
+    tags:
+    - long
+    - heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 125
+      hardness: 55
+      qiAffinity: 100

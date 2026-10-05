@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_tiesuanpan
+name: 铁算盘
+kind: weapon
+sub: exotic
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tiesuanpan
+text:
+  desc: 外观：前臂长黑铁算盘，矩形厚框、七档铁珠与两侧握槽完整。 待运行时投影：exoticKind=misc。
+  lore: 行商把厚铁框与铁珠制成可记账的算盘，遇劫时双手握住两侧，以框角格挡、推撞，摇动铁珠亦可扰敌。它沉重便携性差，平日多藏柜下；器名、来历、七档结构和传闻均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 45
+      qiAffinity: 100

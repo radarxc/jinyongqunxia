@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_xiyufengyebiaonang
+name: 西域风叶镖囊
+kind: hidden
+sub: dart
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xiyufengyebiaonang
+text:
+  desc: 外观：红褐皮囊旁列八枚三叶钢镖，单枚掌心大、中央圆孔无字。 待运行时投影：ammoMul=0.985; hiddenHit=3.6。
+  lore: （原创扩展）西域商旅把八枚三叶钢镖收入红褐皮囊，中央圆孔便于串绳清点，白马时代起在西域节点投放。边缘只作浅刃，风沙后须上油；完好镖可回收。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 40
+      qiAffinity: 100

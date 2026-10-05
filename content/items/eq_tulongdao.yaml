@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_tulongdao
+name: 屠龙刀
+kind: weapon
+sub: blade
+grade: 12
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》
+price: null
+flags: []
+assets:
+  icon: item/tulongdao
+text:
+  desc: 外观：宽厚重刀，深铁灰刃、短厚护手、暗褐长柄。
+  lore: 《倚天屠龙记》中屠龙刀与倚天剑并称，围绕“武林至尊”的传言引发多年争夺。持刀须以双手和强臂驾驭沉重刀势；宽厚轮廓、装具与亲和数值为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 2
+    tags:
+    - heavy
+    matFamily: metal
+    divine: true
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 138
+      hardness: 100
+      qiAffinity: 100

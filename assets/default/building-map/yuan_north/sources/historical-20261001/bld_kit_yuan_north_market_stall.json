@@ -1,0 +1,161 @@
+{
+  "id": "bld_kit_yuan_north_market_stall",
+  "repair_round": 6,
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selected_source": "/private/tmp/KIT-yuan_north-hist-repair6/generated/market_stall_c2.png",
+  "source_sha256": "d4212161116e4ed6045dd896f8f810a8f0e2d97374424a8b4f3770e7af0c1ea8",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_market_stall.png",
+  "final_sha256": "4b17a7c870639291f42525414dc559b43c287099f66158aa9e05222980489729",
+  "generation": {
+    "tool": "Codex images/edits via built-in image generation backend",
+    "model": "gpt-image-2",
+    "generation_id": "7b433a56-5700-4f44-b530-8639cb0ff9d3",
+    "turn_id": "2a2bde8d-5e1c-40de-a564-5dee7a9020ff",
+    "created_unix": 1790924509,
+    "settings": {
+      "background": "transparent",
+      "output_format": "png",
+      "quality": "medium",
+      "size": "1402x1122"
+    },
+    "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/market_stall_c2.txt"
+  },
+  "input_files": [
+    "/private/tmp/KIT-yuan_north-hist-repair6/generated/market_stall_c1.png",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/qingming_shop_1f.jpg",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/longchi_06.jpg"
+  ],
+  "input_sha256": [
+    "26ba35f661acde824a52b54d30133ae119bc9fca4d85a1c005c4861a551eabd2",
+    "251937c9b33b6b067ccd6b6606894bc4ad659930b0aab70137f40c27e2a146e8",
+    "06b2c8cf96f7b4c99a2fac3f4369fa719e038ee3597e1826d3fa35deebd572c6"
+  ],
+  "generation_attempts": [
+    {
+      "candidate": 1,
+      "selected": false,
+      "output_file": "/private/tmp/KIT-yuan_north-hist-repair6/generated/market_stall_c1.png",
+      "output_sha256": "26ba35f661acde824a52b54d30133ae119bc9fca4d85a1c005c4861a551eabd2",
+      "generation_id": "b5635c81-7aa3-42bb-b0e2-e1388031199a",
+      "turn_id": "5649e4dc-e44b-47ab-88b4-955ab983ee76",
+      "created_unix": 1790924292,
+      "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/market_stall.txt",
+      "settings": {
+        "background": "transparent",
+        "output_format": "png",
+        "quality": "medium",
+        "size": "1448x1086"
+      },
+      "input_files": [
+        "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_market_stall.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/qingming_shop_1f.jpg",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/longchi_06.jpg"
+      ],
+      "input_sha256": [
+        "b25a1b669f4b22e66c7c3e76cd692d2da8ea2807bacfd6ee758690c5d16ce91c",
+        "251937c9b33b6b067ccd6b6606894bc4ad659930b0aab70137f40c27e2a146e8",
+        "06b2c8cf96f7b4c99a2fac3f4369fa719e038ee3597e1826d3fa35deebd572c6"
+      ]
+    },
+    {
+      "candidate": 2,
+      "selected": true,
+      "output_file": "/private/tmp/KIT-yuan_north-hist-repair6/generated/market_stall_c2.png",
+      "output_sha256": "d4212161116e4ed6045dd896f8f810a8f0e2d97374424a8b4f3770e7af0c1ea8",
+      "generation_id": "7b433a56-5700-4f44-b530-8639cb0ff9d3",
+      "turn_id": "2a2bde8d-5e1c-40de-a564-5dee7a9020ff",
+      "created_unix": 1790924509,
+      "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/market_stall_c2.txt",
+      "settings": {
+        "background": "transparent",
+        "output_format": "png",
+        "quality": "medium",
+        "size": "1402x1122"
+      },
+      "input_files": [
+        "/private/tmp/KIT-yuan_north-hist-repair6/generated/market_stall_c1.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/qingming_shop_1f.jpg",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/longchi_06.jpg"
+      ],
+      "input_sha256": [
+        "26ba35f661acde824a52b54d30133ae119bc9fca4d85a1c005c4861a551eabd2",
+        "251937c9b33b6b067ccd6b6606894bc4ad659930b0aab70137f40c27e2a146e8",
+        "06b2c8cf96f7b4c99a2fac3f4369fa719e038ee3597e1826d3fa35deebd572c6"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "file": "qingming_shop_1f.jpg",
+      "url": "https://img.jiguzuo.com/guohua/changjuan/202511/9cadde09ad1fbfdb0a0a44f4e0679383.jpg",
+      "sha256": "251937c9b33b6b067ccd6b6606894bc4ad659930b0aab70137f40c27e2a146e8",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "《清明上河图》可辨铺面局部：开放柜台、可卸板门、遮棚支撑和街市尺度；不复制人物、文字或构图。"
+    },
+    {
+      "file": "longchi_06.jpg",
+      "url": "https://www.shuge.org/wp-content/uploads/2026/06/long_chi_jing_du_tu_juan06-1500x1133.jpg",
+      "sha256": "06b2c8cf96f7b4c99a2fac3f4369fa719e038ee3597e1826d3fa35deebd572c6",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "王振鹏《龙池竞渡图》06可辨建筑局部：柱网、瓦垄、木构榫接、斗拱层级和石台基；仅取构造语汇。"
+    }
+  ],
+  "historical_detail": "市场棚（原创扩展）：开放式木柱棚、榫接横梁、可读椽头与浅灰瓦篷、木案和筐篮；第二候选去除整块铺地，柱脚直接落透明底。",
+  "processing": {
+    "source_size": [
+      1402,
+      1122
+    ],
+    "crop_box": [
+      264,
+      192,
+      1162,
+      967
+    ],
+    "uniform_scale": 0.3535483870967742,
+    "resized_size": [
+      317,
+      274
+    ],
+    "canvas_size": [
+      384,
+      320
+    ],
+    "paste_offset": [
+      33,
+      23
+    ],
+    "alpha_cleanup": "source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      384,
+      320
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 77808,
+    "alpha_partial_pixels": 43918,
+    "alpha_opaque_pixels": 1154,
+    "alpha_nonzero_bbox": [
+      33,
+      23,
+      350,
+      297
+    ],
+    "transparent_margins_px": [
+      33,
+      23,
+      34,
+      23
+    ],
+    "border_alpha_max": 0
+  },
+  "visual_review": "参考图、入选原图与规格化成品均经 view_image；构造、左上光、透明边通过目检；保留 candidate。"
+}

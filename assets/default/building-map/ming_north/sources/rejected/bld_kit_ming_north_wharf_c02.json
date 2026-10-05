@@ -1,0 +1,15 @@
+{
+  "id": "bld_kit_ming_north_wharf_c02",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-9e6064b3-2d98-462a-83a7-def22c325583.png",
+  "prompt": "Use case: precise-object-edit. Correct this one anonymous Ming northern Chinese quay/river landing SPRITE. Preserve gray stone slab loading apron, one small plain timber loading platform, two mooring posts and coiled ropes. Reduce stone quay thickness to only 1 shallow brick course above ground, retain just one or two shallow front inset steps, not a thick presentation plinth. Absolutely NO water surface, boat, shore scene, roof, people, animals or text. Single rectangular overall footprint 8 metres along left-to-front edge and 4 metres along front-to-right edge: 8:4 axis ratio (do not make it excessively long/thin). Orthographic 2:1 dimetric, yaw45 pitch30, ground edges EXACTLY +0.500/-0.500 slopes (26.565 degrees, NOT 30deg ground-edge isometric). Front and side bases must remain planar and easy to measure. Natural upper-left key light. True transparent RGBA background, completely empty alpha-zero padding 12% on every side. Remove ALL glow, haze, vignette, gradient and shadows beyond footprint, no background. Entire prop and base uncut, realistic detail matching reference. Do not add props or decorative elements.",
+  "created": "2026-09-30T21:25:13.437Z",
+  "references": [
+    {
+      "path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-7b2d5b00-b2ce-424d-a3bb-823629b4b65a.png",
+      "id": "bld_kit_ming_north_wharf_c01",
+      "role": "编辑目标，已view_image"
+    }
+  ],
+  "status": "rejected",
+  "rejected_reason": "前角切成梯形，不能视作完整矩形底面；保留候选1。"
+}

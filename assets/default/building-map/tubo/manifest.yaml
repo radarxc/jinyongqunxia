@@ -1,0 +1,1411 @@
+- id: bld_kit_tubo_biaoju
+  subject: 藏地驮队货栈（替换镖局，原创扩展）
+  prompt: 'Use built-in image generation exactly once. Using all three attached historical images as real form and material references, create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_biaoju, a generic courier and caravan office adapted to a Tibetan town. Compose a low gate court with long one-storey side wings, a sheltered timber loading bay, plain closed storeroom doors, and a few unmarked bundled goods entirely inside the footprint. Thick slightly battered rubble-stone and earth walls, irregular patched off-white limewash, exposed brown-gray masonry at the base, deep openings, dense plain timber lattice, short wood-beam eaves and flat compacted-earth roofs. Sparse dark ochre wood only; no continuous red cornice band, no square ornamental cap blocks, no Chinese tiled roof. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, footprint 14 by 11, front lower-left, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA, at least 8 percent margin. No landscape, people, animals, writing, pseudo-writing, signs, flags, watermark, modern elements, glow, fog, thick base or cropping. Do not copy a whole source composition. Return only the image result.'
+  negative: 人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。
+  references:
+  - {url: 'https://commons.wikimedia.org/wiki/File:The_British_Mission_in_Lhasa,_1936.jpg', download_file: commons_british_mission.jpg, download_sha256: 41339a39c132507824023a756579c1878db53971b71df0670335293b435d004a, accessed: '2026-10-01', used: 院落房翼、平顶石木体量, model_input: true}
+  - {url: 'https://www.asianart.com/lhasa_restoration/report98/ch_05.htm', download_file: asianart_5.1.4photo.jpg, download_sha256: 419df9cee963909174a59892b74056e412722615d85f7054c98756d76d30f4a6, accessed: '2026-10-01', used: 木廊、平顶房翼和院墙层级, model_input: true}
+  - {url: 'https://www.loc.gov/item/2021670610/', download_file: loc_2021670610.jpg, download_sha256: baacfd89d15312e40bc92ac358ef618b9ca1b725b604bbb0edfdcd17373df9eb, accessed: '2026-10-01', used: 约1900年泽当低矮土石聚落尺度, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: sources/historical-rebuild/bld_kit_tubo_biaoju__raw.png
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  file: bld_kit_tubo_biaoju.png
+  category: building-map
+  style: default
+  size: 1043x627
+  sha256: b4ab1ffb11b816fcefaa7e1236fc189436a94edce1a5d29bf7a5dbae278d9772
+  notes: '历史图片已实际输入；低门围院、单层长翼、木构装卸棚、毛石基脚和平压土顶。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  building:
+    type: bld_kit_tubo_biaoju
+    footprint: [14, 11]
+    anchor: [462.9669, 368.0406]
+    era: tubo
+  footprint_m: [14, 11]
+  entrance: {edge: S, offset_cells: 7.0}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [800, 400]
+    ground_width_px: 800
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  meta: meta/bld_kit_tubo_biaoju.yaml
+  anchor_px: [462.9669, 368.0406]
+  source_copy: sources/historical-rebuild/bld_kit_tubo_biaoju__raw.png
+  source_sha256: c54f8023ca9d46568e32e92a8ac3e465e59229374d061506e99f1880f24cb26c
+  candidate_count: 1
+  geometry_qa:
+    source_corners_px:
+      left: [112, 570]
+      front: [878, 970]
+      right: [1475, 668]
+    source_axis_slopes: [0.5221932114882507, -0.5058626465661642]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.2830820770519262
+    expected_width_depth_ratio: 1.2727272727272727
+    ratio_relative_error: 0.008135917683656402
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+  metadata: meta/bld_kit_tubo_biaoju.yaml
+- id: bld_kit_tubo_casino
+  subject: 藏地民间博戏屋（替换赌场，原创扩展）
+  prompt: 'Use built-in image generation exactly once. Using all three attached historical images as real form and material references, create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_casino, a generic modest gambling house whose function is original but whose building fabric is historical. Compact two-storey inward-looking house, thick strongly battered rubble-and-earth walls, patched off-white limewash, visible stone base, deep small windows with dense dark timber lattice, one recessed plain doorway, short stone-slab rain hoods and exposed wood beam ends, flat compacted-earth roof. Restrained faded ochre details only; remove continuous red bands and square roof cap blocks; no Chinese tile roof, gilding or signage. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, footprint 9 by 7, front lower-left, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA, at least 8 percent margin. No landscape, people, animals, dice, cards, writing, pseudo-writing, signs, flags, watermark, modern elements, glow, fog, thick base or cropping. Do not copy a whole source composition. Return only the image result.'
+  negative: 人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。
+  references:
+  - {url: 'https://commons.wikimedia.org/wiki/File:Tsarong%27s_house_in_Lhasa.jpg', download_file: commons_tsarong_house.jpg, download_sha256: 4d143bf9b1bf9b549dd808d458995bbe5b0f8bd8b04b99058361f411925cb803, accessed: '2026-10-01', used: 两层宅第、密木棂与木廊, model_input: true}
+  - {url: 'https://commons.wikimedia.org/wiki/File:Trimon%27s_house.jpg', download_file: commons_trimon_house.jpg, download_sha256: 67c8f7be41901d1a9143345e858097d432266eade9d73f106fac04fe6819c4b2, accessed: '2026-10-01', used: 厚墙、深窗与朴素平顶, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.3.2photo.jpg, download_sha256: 2d05a48ea3e17162c1e8da9684efc9d051dfbbda8cac8f5d292592de3a50978c, accessed: '2026-10-01', used: 深窗、石板雨披与木梁椽, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: sources/historical-rebuild/bld_kit_tubo_casino__raw.png
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  file: bld_kit_tubo_casino.png
+  category: building-map
+  style: default
+  size: 545x437
+  sha256: c651dc74228bfad0a0171e9bb0edba047cb2298144f199c8a226d866967e18b5
+  notes: '历史图片已实际输入；低矮厚墙、深窗洞、密木棂、短木挑檐与修补白灰。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  building:
+    type: bld_kit_tubo_casino
+    footprint: [9, 7]
+    anchor: [346.8415, 268.3106]
+    era: tubo
+  footprint_m: [9, 7]
+  entrance: {edge: S, offset_cells: 4.5}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [512, 256]
+    ground_width_px: 512
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  meta: meta/bld_kit_tubo_casino.yaml
+  anchor_px: [346.8415, 268.3106]
+  source_copy: sources/historical-rebuild/bld_kit_tubo_casino__raw.png
+  source_sha256: fe46da3530d5c28907cbb6b46247b61d3e1de59d12a3eba175c4a9147e4200a4
+  candidate_count: 1
+  geometry_qa:
+    source_corners_px:
+      left: [153, 614]
+      front: [898, 977]
+      right: [1480, 678]
+    source_axis_slopes: [0.487248322147651, -0.5137457044673539]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.2800687285223367
+    expected_width_depth_ratio: 1.2857142857142858
+    ratio_relative_error: 0.004390988927071571
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+  metadata: meta/bld_kit_tubo_casino.yaml
+- id: bld_kit_tubo_courtyard
+  file: bld_kit_tubo_courtyard.png
+  category: building-map
+  style: default
+  subject: 藏地跨年代地域素材：石墙院落、经幡与玛尼堆意象（原创扩展；具体城市年代适用待考）
+  prompt: 'Use built-in image generation exactly once. Using all three attached historical images as real form and material references, create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_courtyard. One coherent walled residence organized as low entrance gate, empty central court and two asymmetrical one-storey side wings, with a short timber gallery visible inside. Thick battered rubble-stone walls with patched off-white limewash, exposed stone base, deep timber-lattice openings, timber beams and flat compacted-earth roofs. Weathered and practical, sparse ochre wood, no continuous red cornice, no square roof cap blocks, no Chinese tiled roof. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, footprint 10 by 8, front lower-left, court visibly open from above, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA, at least 8 percent margin. No landscape, people, animals, writing, pseudo-writing, signs, flags, watermark, modern elements, glow, fog, thick base or cropping. Do not copy a whole source composition. Return only the image result.'
+  negative: 无文字/现代物/人物/景观背景/厚地台；不拉伸、旋转、重绘或抠白底
+  references:
+  - {url: 'https://commons.wikimedia.org/wiki/File:Trimon%27s_house.jpg', download_file: commons_trimon_house.jpg, download_sha256: 67c8f7be41901d1a9143345e858097d432266eade9d73f106fac04fe6819c4b2, accessed: '2026-10-01', used: 厚墙、深窗与朴素平顶, model_input: true}
+  - {url: 'https://commons.wikimedia.org/wiki/File:The_British_Mission_in_Lhasa,_1936.jpg', download_file: commons_british_mission.jpg, download_sha256: 41339a39c132507824023a756579c1878db53971b71df0670335293b435d004a, accessed: '2026-10-01', used: 院落房翼、平顶石木体量, model_input: true}
+  - {url: 'https://www.asianart.com/lhasa_restoration/report98/ch_05.htm', download_file: asianart_5.1.3plan.jpg, download_sha256: bd8a7a10b3bb4f1670631fe9a423808639f270bb4e4a5ccc3f49f1063705c70a, accessed: '2026-10-01', used: 门院、内院与房翼轴线, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 工具PNG本地mtime，非服务端生成时间
+  source_path: sources/historical-rebuild/bld_kit_tubo_courtyard__raw.png
+  source_copy: sources/historical-rebuild/bld_kit_tubo_courtyard__raw.png
+  source_sha256: 047a4f9affd822144e3ab80b12f4ddd3a19c2c38e2b8511f80e730316d71a7a3
+  size: 667x430
+  sha256: 694e97b74f79abd29d0ca2f0bdb28ab2f688daba6c4066a0882246f69638c8ad
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_courtyard
+    footprint: [10, 8]
+    anchor: [304.3568, 267.9096]
+    era: tubo
+  footprint_m: [10, 8]
+  anchor_px: [304.3568, 267.9096]
+  footprint_basis: design/22 §3.2 courtyard；地域转换建议值
+  entrance: {edge: S, offset_cells: 5}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_width_px: 576
+    ground_bbox_px: [576, 288]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+    allowRotation: false
+  geometry_qa:
+    source_corners_px:
+      left: [111, 643]
+      front: [904, 983]
+      right: [1454, 657]
+    final_corners_px:
+      left: [16.4288, 264.9107]
+      front: [356.454, 410.5727]
+      right: [592.2849, 270.9085]
+    source_axis_slopes: [0.428752, -0.592727]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.441818
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.153455
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 6
+    anchor_method: 人工可见墙脚L/F/R，后角按平行边推算；底面中心=(L+R)/2。非alpha底中点。
+  processing:
+    source_size: [1536, 1024]
+    crop_box: [110, 62, 1458, 991]
+    crop_threshold: 1
+    discarded_alpha1_pixels: 38
+    uniform_scale_requested: 0.4288905435591958
+    resized_size: [578, 398]
+    rounded_effective_scale: [0.4287833827893175, 0.4284176533907427]
+    paste_offset: [16, 16]
+    steps: [alpha>1 determines bounding rectangle only; preserved all pixels inside rectangle, uniform LANCZOS resize with integer pixel rounding, paste without alpha mask onto transparent canvas; no repaint or warp]
+  pixel_qa:
+    mode: RGBA
+    size: [610, 430]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 119801
+    alpha_near_opaque_pixels: 136312
+    alpha_nonzero_bbox: [16, 16, 594, 414]
+    transparent_margins_px: [16, 16, 16, 16]
+  candidate_count: 1
+  attempts:
+  - {candidate: 1, prompt: 'Use case: historical-scene. Exactly ONE isolated unnamed Tibetan town building sprite for tianshu default kit. True RGBA transparent background with fully solid opaque building. Song reference is ONLY for restrained realistic weathered stone/wood materials and detail density, never for roof type. Tibetan vernacular: slightly battered whitewashed stone walls, flat earthen roof and low parapets, black trapezoidal door/window borders, muted red lintels and dark matte timber. NO pitched Chinese tile roofs, no tourist facades, no glass, no gold on ordinary houses. Orthographic yaw45 elevation30, STRICT2:1 dimetric ground slopes+0.5/-0.5, NO perspective. Original entrance on screen lower-left. Base is clear wall-foot parallelogram with left/front/right corners visible, NO plinth, NO terrain rectangle, NO outside objects. Left wall plane illuminated by upper-left light, right wall plane darker, very short lower-right contact shadow. Entire shape plus roof inside frame with at least10% transparent margins. No ambient halo or glow, no floor, sky, scenery, characters, symbols, readable text, checkerboard, watermark, toy/plastic look. Asset bld_kit_tubo_courtyard. Footprint10m east-west by8m north-south. a residential courtyard: two modest flat-roof stone wings along back and right, low rough white stone enclosing front walls and one central wooden south gate. Broad open compact-earth courtyard inside, a small wordless prayer-flag line above one roof corner and small plain stone mani pile INSIDE the yard. No inscriptions. One integrated rectangular footprint. Front and right sides nearly equal, left-front edge ratio1.25:1 to front-right edge.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-372b5d0d-28fa-4060-83e0-c71ccf9072dc.png, source_archive: sources/bld_kit_tubo_courtyard__candidate01.png, sha256: e32776958f7b6e9b71557319c13642cd5e7404cda6c1acd647e378372569e491, selected: false}
+  - {candidate: 2, prompt: 'Use case: precise-object-edit. Correct the GEOMETRY of this Tibetan courtyard map sprite while preserving all material, architectural design and detail density. Footprint 10m frontage by8m depth. Both perpendicular GROUND axes slopes EXACTLY +0.5 and -0.5, 2:1 ORTHOGRAPHIC projection, camera45yaw30elevation. Ground foot corners LEFT[180,600], FRONT[820,920], RIGHT[1332,664], BACK[692,344] on1536x1024 frame. These are GROUND FEET, NOT ROOFTOP points. Perimeter walls and roof align with this rectangle. FRONTAGE ONLY 1.25 times depth, do NOT elongate facade. Upper-left illumination, right face darker. All building silhouette inside frame with transparent margin. Fully solid building on TRUE RGBA transparent background, no floor outside its footprint, no halo, no new objects, no text, no modern items. Keep Tibetan flat earthen roof, stone whitewashed walls, black window borders, restrained red/dark wood. One complete sprite.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-1d9aa2c1-2396-4f86-8482-f2536173c11e.png, source_archive: sources/bld_kit_tubo_courtyard__candidate02.png, sha256: e0f2e65be30ba6989e16d577c3ca17eba6bb1f453b8e97dde022dc66e0bb054c, selected: true}
+  release_ready: false
+  notes: '历史图片已实际输入；收分院墙、毛石砌层、门院轴线与平顶房翼。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+- id: bld_kit_tubo_guardhouse
+  suffix: guardhouse
+  subject: 藏地石砌城门守舍（原创扩展；非具名宗堡复原）
+  footprint: [6, 5]
+  source_path: sources/historical-rebuild/bld_kit_tubo_guardhouse__raw.png
+  prompt: 'Use built-in image generation exactly once. Using all three attached historical images as real form and material references, create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_guardhouse. A compact fortified gatehouse with one true open dark passage through the lower storey, thick battered rubble-and-earth walls, exposed coarse stone base, patched limewash, narrow deep slit windows, heavy timber lintel and a small plain upper watch room under a flat compacted-earth roof. The opening must remain transparent and readable. Sparse dark wood and ochre only; no continuous red cornice, no square decorative cap blocks, no Chinese roof, no stupa on top. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, footprint 6 by 5, front lower-left, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA including passage, at least 8 percent margin. No landscape, people, animals, writing, flags, watermark, modern elements, glow, fog, thick base or cropping. Do not copy a whole source composition. Return only the image result.'
+  candidate_count: 1
+  source_corners_px:
+    left: [255, 668]
+    front: [866, 970]
+    right: [1357, 737]
+  reference_path: /Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-571c2cde-4129-4990-bf31-bd4a41e48027.png
+  file: bld_kit_tubo_guardhouse.png
+  category: building-map
+  style: default
+  negative: 人物、动物、文字、现代物、天空、景观、厚展示地台、假透明、透视汇聚、光晕
+  references:
+  - {url: 'https://www.loc.gov/item/2021670602/', download_file: loc_2021670602.jpg, download_sha256: 6154879a11e16cd15dbc4cd4f0c9ea1bfcda591667c0acb454d2e0399ee2213b, accessed: '2026-10-01', used: 山堡收分石墙与防御体量, model_input: true}
+  - {url: 'https://rubinmuseum.org/projecthimalayanart/essays/yumbu-lagang-castle/', download_file: rubin_yumbu_castle.jpg, download_sha256: 349e649c32e6f7c62b5dee5f1c76a92666b8958ce6bb82f91ed2cab0a73a9c12, accessed: '2026-10-01', used: 收分白墙、垂直主楼与厚墙比例, model_input: true}
+  - {url: 'https://www.loc.gov/item/2021670618/', download_file: loc_2021670618.jpg, download_sha256: 80d7d2fc4cd06a3537650a674d8adee27312a07641aa1ba2bbb581a2533bbedd, accessed: '2026-10-01', used: 约1900年 Bar Chorten 覆钵门轮廓, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 源文件mtime；非工具披露服务端时间
+  size: 428x351
+  sha256: 79984134d012a85016ce0e99f5f050f57d2bb789877dadac49755a7f94e6b5d3
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_guardhouse
+    footprint: [6, 5]
+    anchor: [273.4519, 234.323]
+    era: tubo
+  footprint_m: [6, 5]
+  anchor_px: [273.4519, 234.323]
+  entrance: {edge: S, offset_cells: 2}
+  view: {count: 1, allowRotation: false}
+  source_sha256: f9d65ca9c3e7b818aec48e11af9afcbeb5db17b3a586479412c5a367c46888e2
+  processing:
+    source_archive: sources/bld_kit_tubo_guardhouse.png
+    source_size: [1570, 1001]
+    crop_box: [0, 19, 1540, 1001]
+    uniform_scale: 0.3194192377495463
+    resized_size: [492, 314]
+    paste_offset: [16, 16, 508, 330]
+    steps: [crop alpha>0 bounding box, uniform LANCZOS resize with rounding, 'transparent padding only; no alpha threshold, warp, repaint or flip']
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [352, 176]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  geometry_qa:
+    source_corners_px:
+      left: [255, 668]
+      front: [866, 970]
+      right: [1357, 737]
+    source_anchor_px: [806.0, 702.5]
+    source_axis_slopes: [0.49427168576104746, -0.4745417515274949]
+    axis_tolerance: 0.03
+    axis_pass: true
+    expected_width_depth_ratio: 1.2
+    source_width_depth_ratio: 1.244399185336049
+    ratio_relative_error: 0.03699932111337412
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 4
+    precision_note: 人工量取薄底面前侧三角点；后角按平行边推算；锚点为左右对角中点。未声称3D实测或严格正交批准。
+  pixel_qa:
+    mode: RGBA
+    size: [524, 346]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 119197
+    alpha_nonzero_bbox: [32, 20, 461, 323]
+    transparent_margins_px: [32, 20, 63, 23]
+    border_alpha_max: 0
+  notes: '历史图片已实际输入；山堡式收分石墙、窄深窗、粗石基脚与平顶守舍。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  source_record: sources/bld_kit_tubo_guardhouse.json
+  source_copy: sources/historical-rebuild/bld_kit_tubo_guardhouse__raw.png
+- id: bld_kit_tubo_house_large
+  file: bld_kit_tubo_house_large.png
+  category: building-map
+  style: default
+  subject: 藏地跨年代地域素材：两层大碉房（原创扩展；具体城市年代适用待考）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real form and material references, without copying a whole composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_house_large: a substantial two-storey urban house, footprint 7 by 6, thick slightly battered rubble-and-earth walls, irregular repaired off-white limewash, exposed gray-brown stone base, flat compacted-earth roof with low rough parapet, short timber beam ends, deeply recessed dense timber-lattice windows with small stone-slab rain hoods, and one plain recessed timber door. Restrained dark wood and tiny faded ochre accents, no continuous red cornice band and no square decorative roof cap blocks. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground-contact diamond, upper-left light, short lower-right contact shadow, true transparent RGBA with at least 8 percent margin. No Chinese tiled roof, gilding, scenery, people, animals, text, pseudo-writing, signs, flags, watermark, modern elements, glow, fog, thick display base or cropping. Return only the image result.'
+  negative: 无文字/现代物/人物/景观背景/厚地台；不拉伸、旋转、重绘或抠白底
+  references:
+  - {url: 'https://commons.wikimedia.org/wiki/File:Tsarong%27s_house_in_Lhasa.jpg', download_file: commons_tsarong_house.jpg, download_sha256: 4d143bf9b1bf9b549dd808d458995bbe5b0f8bd8b04b99058361f411925cb803, accessed: '2026-10-01', used: 两层宅第、密木棂与木廊, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.3.2photo.jpg, download_sha256: 2d05a48ea3e17162c1e8da9684efc9d051dfbbda8cac8f5d292592de3a50978c, accessed: '2026-10-01', used: 深窗、石板雨披与木梁椽, model_input: true}
+  - {url: 'https://www.loc.gov/item/2021670610/', download_file: loc_2021670610.jpg, download_sha256: baacfd89d15312e40bc92ac358ef618b9ca1b725b604bbb0edfdcd17373df9eb, accessed: '2026-10-01', used: 约1900年泽当低矮土石聚落尺度, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 工具PNG本地mtime，非服务端生成时间
+  source_path: sources/historical-rebuild/bld_kit_tubo_house_large__raw.png
+  source_copy: sources/historical-rebuild/bld_kit_tubo_house_large__raw.png
+  source_sha256: 066e029ab2ef5e24c96f8625f7e8405c2c7fe4faffd8516ca4cdc7e184500488
+  size: 578x432
+  sha256: 62f23d98223ef30e8b05c8ab61f1400d25f83baf0b3b6ca8e11dd623a15843ed
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_house_large
+    footprint: [7, 6]
+    anchor: [226.8777, 326.2378]
+    era: tubo
+  footprint_m: [7, 6]
+  anchor_px: [226.8777, 326.2378]
+  footprint_basis: design/22 §3.4 yuan_house；地域转换建议值
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_width_px: 416
+    ground_bbox_px: [416, 208]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+    allowRotation: false
+  geometry_qa:
+    source_corners_px:
+      left: [177, 824]
+      front: [749, 1058]
+      right: [1182, 874]
+    final_corners_px:
+      left: [18.8972, 315.8966]
+      front: [255.6432, 412.6908]
+      right: [434.8582, 336.5791]
+    source_axis_slopes: [0.409091, -0.424942]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.321016
+    expected_width_depth_ratio: 1.1666666666666667
+    ratio_relative_error: 0.1323
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 6
+    anchor_method: 人工可见墙脚L/F/R，后角按平行边推算；底面中心=(L+R)/2。非alpha底中点。
+  processing:
+    source_size: [1367, 1151]
+    crop_box: [170, 99, 1221, 1066]
+    crop_threshold: 1
+    discarded_alpha1_pixels: 584
+    uniform_scale_requested: 0.41393034825870645
+    resized_size: [435, 400]
+    rounded_effective_scale: [0.4138915318744053, 0.4136504653567735]
+    paste_offset: [16, 16]
+    steps: [alpha>1 determines bounding rectangle only; preserved all pixels inside rectangle, uniform LANCZOS resize with integer pixel rounding, paste without alpha mask onto transparent canvas; no repaint or warp]
+  pixel_qa:
+    mode: RGBA
+    size: [467, 432]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 75272
+    alpha_near_opaque_pixels: 122011
+    alpha_nonzero_bbox: [16, 16, 451, 416]
+    transparent_margins_px: [16, 16, 16, 16]
+  candidate_count: 1
+  attempts:
+  - {candidate: 1, prompt: 'Use case: historical-scene. Exactly ONE isolated unnamed Tibetan town building sprite for tianshu default kit. True RGBA transparent background with fully solid opaque building. Song reference is ONLY for restrained realistic weathered stone/wood materials and detail density, never for roof type. Tibetan vernacular: slightly battered whitewashed stone walls, flat earthen roof and low parapets, black trapezoidal door/window borders, muted red lintels and dark matte timber. NO pitched Chinese tile roofs, no tourist facades, no glass, no gold on ordinary houses. Orthographic yaw45 elevation30, STRICT2:1 dimetric ground slopes+0.5/-0.5, NO perspective. Original entrance on screen lower-left. Base is clear wall-foot parallelogram with left/front/right corners visible, NO plinth, NO terrain rectangle, NO outside objects. Left wall plane illuminated by upper-left light, right wall plane darker, very short lower-right contact shadow. Entire shape plus roof inside frame with at least10% transparent margins. No ambient halo or glow, no floor, sky, scenery, characters, symbols, readable text, checkerboard, watermark, toy/plastic look. Asset bld_kit_tubo_house_large. Footprint7m east-west by6m north-south. a larger TWO-storey flat-roof Tibetan stone dwelling, three upper windows, ground-floor storage door and separate main doorway, a short simple roof ladder entirely against side wall; no balcony extension. Footprint ground edges have ratio7:6, approximate projected bottom vectors(560,280) and(480,-240). Leave the exact flat rectangle of bottom wall foot clearly readable.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-c91b7073-435c-4584-9a50-dc6f59221d6e.png, source_archive: sources/bld_kit_tubo_house_large__candidate01.png, sha256: 91e919563ae7e501d5c77849b802f269db14557d125e3bc5f28722d185c048cf, selected: false}
+  - {candidate: 2, prompt: 'Use case: historical-scene. Exactly ONE isolated unnamed Tibetan town building sprite for tianshu default kit. True RGBA transparent background with fully solid opaque building. Song reference is ONLY for restrained realistic weathered stone/wood materials and detail density, never for roof type. Tibetan vernacular: slightly battered whitewashed stone walls, flat earthen roof and low parapets, black trapezoidal door/window borders, muted red lintels and dark matte timber. NO pitched Chinese tile roofs, no tourist facades, no glass, no gold on ordinary houses. Orthographic yaw45 elevation30, STRICT2:1 dimetric ground slopes+0.5/-0.5, NO perspective. Original entrance on screen lower-left. Base is clear wall-foot parallelogram with left/front/right corners visible, NO plinth, NO terrain rectangle, NO outside objects. Left wall plane illuminated by upper-left light, right wall plane darker, very short lower-right contact shadow. Entire shape plus roof inside frame with at least10% transparent margins. No ambient halo or glow, no floor, sky, scenery, characters, symbols, readable text, checkerboard, watermark, toy/plastic look. Asset bld_kit_tubo_house_large. Footprint7m east-west by6m north-south. Regenerate large two-storey Tibetan house with nearly SQUARE plan, width7 depth6, facade only17 percent wider than side wall. Two windows on each upper face. Keep south door on lower-left face. Do NOT make an elongated rectangle. Make both bottom edge angles26.565degrees from horizontal (+/-0.5 slopes). No stairs beyond footprint. Detailed flat earthen roof. Black-framed windows, no external ladder. Geometric clarity first.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-62cae7a2-b134-415a-9240-bfe6f12ed8d7.png, source_archive: sources/bld_kit_tubo_house_large__candidate02.png, sha256: e8cc77fc4be30c73cfc5dc275c140c167521c8fce266c4a31d395333e8c3ff04, selected: true}
+  release_ready: false
+  notes: '历史图片已实际输入；两层收分碉房、木廊、密木棂、石板雨披与土顶。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+- id: bld_kit_tubo_house_small
+  file: bld_kit_tubo_house_small.png
+  category: building-map
+  style: default
+  subject: 藏地跨年代地域素材：小型平顶碉房（原创扩展；具体城市年代适用待考）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real form and material references, without copying a whole composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_house_small: a humble compact one-storey house, footprint 6 by 5, low thick slightly battered rubble-and-earth walls, irregular patched off-white limewash revealing gray-brown stone at the base and repairs, flat compacted-earth roof with rough low parapet and visible timber beam ends, one plain recessed wood door and two small deep dense-lattice windows under simple stone-slab rain hoods. Very restrained colors, no continuous red cornice, no square decorative cap blocks. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA with at least 8 percent margin. No Chinese tiled roof, gilding, scenery, people, animals, text, signs, watermark, modern elements, glow, fog, thick base or cropping. Return only the image result.'
+  negative: 无文字/现代物/人物/景观背景/厚地台；不拉伸、旋转、重绘或抠白底
+  references:
+  - {url: 'https://commons.wikimedia.org/wiki/File:Trimon%27s_house.jpg', download_file: commons_trimon_house.jpg, download_sha256: 67c8f7be41901d1a9143345e858097d432266eade9d73f106fac04fe6819c4b2, accessed: '2026-10-01', used: 厚墙、深窗与朴素平顶, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.1.1photo.jpg, download_sha256: a5b1d8158870799c33105533ad197b15b2d795cea75b276918fe48b0ed52a7a2, accessed: '2026-10-01', used: 传统收分墙、毛石砌层与白灰修补, model_input: true}
+  - {url: 'https://www.loc.gov/item/2021670610/', download_file: loc_2021670610.jpg, download_sha256: baacfd89d15312e40bc92ac358ef618b9ca1b725b604bbb0edfdcd17373df9eb, accessed: '2026-10-01', used: 约1900年泽当低矮土石聚落尺度, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 工具PNG本地mtime，非服务端生成时间
+  source_path: sources/historical-rebuild/bld_kit_tubo_house_small__raw.png
+  source_copy: sources/historical-rebuild/bld_kit_tubo_house_small__raw.png
+  source_sha256: 4c4a005ef76edff151706b46eaa753e4be5156f7a2ad72329f5870e69d498f62
+  size: 499x352
+  sha256: f3d55fa504e5bbf830cb7161fc18bc763f13eeaa49773e06611ae95fe9a26a36
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_house_small
+    footprint: [6, 5]
+    anchor: [192.9103, 245.8896]
+    era: tubo
+  footprint_m: [6, 5]
+  anchor_px: [192.9103, 245.8896]
+  footprint_basis: design/22 §3.2 house；地域转换建议值
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_width_px: 352
+    ground_bbox_px: [352, 176]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+    allowRotation: false
+  geometry_qa:
+    source_corners_px:
+      left: [362, 653]
+      front: [879, 916]
+      right: [1258, 728]
+    final_corners_px:
+      left: [16.7863, 231.1656]
+      front: [220.0365, 334.4294]
+      right: [369.0343, 260.6135]
+    source_axis_slopes: [0.508704, -0.496042]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.364116
+    expected_width_depth_ratio: 1.2
+    ratio_relative_error: 0.136763
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 6
+    anchor_method: 人工可见墙脚L/F/R，后角按平行边推算；底面中心=(L+R)/2。非alpha底中点。
+  processing:
+    source_size: [1543, 1019]
+    crop_box: [360, 105, 1263, 920]
+    crop_threshold: 1
+    discarded_alpha1_pixels: 556
+    uniform_scale_requested: 0.39285714285714285
+    resized_size: [355, 320]
+    rounded_effective_scale: [0.39313399778516056, 0.39263803680981596]
+    paste_offset: [16, 16, 371, 336]
+    steps: [alpha>1 determines bounding rectangle only; preserved all pixels inside rectangle, uniform LANCZOS resize with integer pixel rounding, paste without alpha mask onto transparent canvas; no repaint or warp]
+  pixel_qa:
+    mode: RGBA
+    size: [387, 352]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 58168
+    alpha_near_opaque_pixels: 74862
+    alpha_nonzero_bbox: [16, 16, 371, 336]
+    transparent_margins_px: [16, 16, 16, 16]
+  candidate_count: 1
+  previous_attempts:
+  - {candidate: 1, prompt: 'Use case: historical-scene. Generate exactly ONE new Tibetan town building map sprite bld_kit_tubo_house_small on TRUE RGBA TRANSPARENT background. Supplied Song house is ONLY reference for realistic restrained weathered material rendering and detail density, do NOT copy its tiled roof or Chinese architecture. Subject: modest single-storey Tibetan stone house, rectangular 6m east-west by 5m north-south footprint, whitewashed thick gently tapering masonry walls with exposed rough stone along lowest courses, FLAT earthen roof behind low flat parapet, dark black trapezoidal window borders, dark timber doorway on south front facing screen lower-left, one narrow muted red lintel, a few roof-edge timber beam ends. No gold, no palace ornament. Preindustrial Tibetan regional motif, unnamed original game extension, not a reconstruction of modern Lhasa. Orthographic yaw 45 degrees, elevation30 degrees EXACT 2:1 ground axes, east edge slope+0.5, north edge slope-0.5. Visible three bottom wall corners form a clear parallelogram; east-west edge 1.2 times north-south edge. No perspective convergence; verticals vertical. No ground slab, no thick plinth; subtle contact at wall foot only. Realistic rough stone and matte weathered wood, muted cream, charcoal, ochre colors. Screen upper-left illumination, short contact shadow toward lower-right. Entire isolated building centered with generous 12% transparent margins all sides. No people, text, lettering, writing on flags, logos, modern objects, vehicles, vegetation outside footprint, scenery, sky, floor, checkerboard, plastic miniature aesthetic. Render one whole intact sprite with true alpha transparency.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-807cb65a-16ac-4f11-8a0f-dca2c31aba75.png, source_archive: sources/bld_kit_tubo_house_small__candidate01.png, sha256: 1a58107b7946523d82145e4d2bdb69e0d961c1bc43508112e28828e454a1481d, selected: false}
+  - {candidate: 2, prompt: 'Use case: historical-scene. Exactly ONE isolated unnamed Tibetan town building sprite for tianshu default kit. True RGBA transparent background with fully solid opaque building. Song reference is ONLY for restrained realistic weathered stone/wood materials and detail density, never for roof type. Tibetan vernacular: slightly battered whitewashed stone walls, flat earthen roof and low parapets, black trapezoidal door/window borders, muted red lintels and dark matte timber. NO pitched Chinese tile roofs, no tourist facades, no glass, no gold on ordinary houses. Orthographic yaw45 elevation30, STRICT2:1 dimetric ground slopes+0.5/-0.5, NO perspective. Original entrance on screen lower-left. Base is clear wall-foot parallelogram with left/front/right corners visible, NO plinth, NO terrain rectangle, NO outside objects. Left wall plane illuminated by upper-left light, right wall plane darker, very short lower-right contact shadow. Entire shape plus roof inside frame with at least10% transparent margins. No ambient halo or glow, no floor, sky, scenery, characters, symbols, readable text, checkerboard, watermark, toy/plastic look. Asset bld_kit_tubo_house_small. Footprint6m east-west by5m north-south. a modest SINGLE-storey small stone dwelling with one wooden door and two small latticed windows. Rebalance proportions: east-west (left-to-front) ground edge only1.2 times front-to-right edge, exact screen vectors(600,300) and(500,-250), uniform scale to fit frame. Roof parapet plain without decorative corner towers. This is a new proportion-correct candidate.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-5be53a01-9573-497b-905f-077d060b1f3e.png, source_archive: sources/bld_kit_tubo_house_small__candidate02.png, sha256: ce226511be15648dc3e49136eddaa1e30fcf2f57568d064afad24afdf870a403, selected: true}
+  release_ready: false
+  notes: '历史图片已实际输入；单层收分土石墙、深窗、木梁椽、低女墙与平土顶。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  generation_round: repair_01
+  previous_candidate_count: 2
+  attempts:
+  - {candidate: 1, prompt: 'Use case: precise-object-edit. Make one corrected Tibetan small stone house map sprite. Image1 is the CORRECT footprint/camera reference: retain its almost-square 6-by-5 footprint and its equally oblique ground axes, but reduce to ONE storey. Image2 supplies the desired small-house details/materials only; its long rectangular proportions are WRONG and must be discarded. Near-square plan, frontage only 20% longer than depth, ratio 6:5. Exactly 2:1 orthographic dimetric, yaw45 elevation30, ground edges slope +0.5/-0.5, verticals vertical, no perspective. Three visible wall-foot corners LEFT(210,650), FRONT(738,914), RIGHT(1178,694) in a 1400x1050 composition, uniformly scale if needed. This means left-to-front edge horizontal span528, front-to-right span440. Roof follows the same footprint. Whitewashed battered stone walls, exposed stone foot, flat earthen roof and simple low parapet without corner towers, dark timber door centered on screen-left-facing front with two small black-bordered lattice windows. Weathered realistic matte stone and wood, restrained ochre/red, same material density as references. Entire intact building with generous transparent margin. TRUE RGBA transparent background, opaque solid object, light upper-left and tiny lower-right contact shadow. No ground plate, landscape, text, watermark, people, gold, pitched roof or modern objects.', references: [{file: assets/default/building-map/tubo/bld_kit_tubo_guardhouse.png, role: 本轮几何/材质参考, sha256: 3d435911ddcf169d75a248901c1d093841bea0fe70b05d2e139636a0636f845c, status: candidate}, {archive: sources/bld_kit_tubo_house_small__pre_repair.png, file: assets/default/building-map/tubo/bld_kit_tubo_house_small.png, role: 本轮几何/材质参考, sha256: afbd36f732fd6d5174278e38e3a44e4aa99475a5e27dafd62ac7d039711362de, status: candidate}], selected: false, sha256: 3681138fc08ef5e0fae46ce3858d35c5d95d04052deef58d5205d088088bd18d, source_archive: sources/bld_kit_tubo_house_small__repair01_candidate01.png, source_path: /Users/bytedance/.codex/generated_images/01a0f482-64bd-7022-b15e-d81207edeae8/exec-0736ceca-4f89-4574-9124-cbefdcec2b37.png}
+  - {candidate: 2, prompt: 'Use case: precise-object-edit. Edit THIS reference guardhouse into a one-storey small Tibetan home. LOCK AND PRESERVE THIS REFERENCE''S NEAR-SQUARE GROUND PLAN AND CAMERA EXACTLY. Do not elongate any side. Existing plan is 6m frontage by5m depth; both visible wall widths nearly equal, ratio1.2. Remove the upper storey, lower the flat roof vertically to one-storey height. Keep the footprint wall corners where they are; same roof plan shape, same stone walls, same amount of short side wall visible, same orthographic 2:1 camera, same upper-left light. Replace awning entry with plain wood door, keep two small ground-floor windows. Remove external paving/vegetation; wall foot is clear, no protruding slab. Keep muted white weathered stone, dark red lintels and dark wood, unadorned flat earthen roof and low parapet. Render exactly one complete building with fully OPAQUE alpha255 interior and crisp silhouette on fully transparent alpha0 background, no semitransparent haze or halo, no shadow glow. Generous transparent margins. No people, text, symbols, modern things. The near-square footprint is the PRIMARY invariant; do not make a long facade.', references: [{file: assets/default/building-map/tubo/bld_kit_tubo_guardhouse.png, role: 本轮几何/材质参考, sha256: 3d435911ddcf169d75a248901c1d093841bea0fe70b05d2e139636a0636f845c, status: candidate}], selected: true, sha256: f22355c165bd28e8222f00ed2ed9e49242e5cfd3671844751ce7efeb3ad022dc, source_archive: sources/bld_kit_tubo_house_small__repair01_candidate02.png, source_path: /Users/bytedance/.codex/generated_images/01a0f482-64bd-7022-b15e-d81207edeae8/exec-d22ed738-c514-4a8f-8270-7142b82c75a8.png}
+- id: bld_kit_tubo_inn
+  file: bld_kit_tubo_inn.png
+  category: building-map
+  style: default
+  subject: 藏地跨年代地域素材：商旅客舍院落（原创扩展；具体城市年代适用待考）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real form and material references, without copying a whole composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_inn: a generic historical travellers inn organized around a small visible inner court, footprint 10 by 8, low gate opening at front, two one-to-two-storey guest wings, short timber gallery, plain recessed doors, thick battered rubble-and-earth walls with patched limewash and exposed stone base, dense timber-lattice windows, visible wood beams and flat earth roofs. Functional identity is original, architecture historical. Reduce red to isolated faded ochre wood; no continuous red bands or square roof caps. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA with at least 8 percent margin. No Chinese tiled roof, scenery, people, animals, text, signs, flags, watermark, modern elements, glow, fog, thick base or cropping. Return only the image result.'
+  negative: 无文字/现代物/人物/景观背景/厚地台；不拉伸、旋转、重绘或抠白底
+  references:
+  - {url: 'https://commons.wikimedia.org/wiki/File:The_British_Mission_in_Lhasa,_1936.jpg', download_file: commons_british_mission.jpg, download_sha256: 41339a39c132507824023a756579c1878db53971b71df0670335293b435d004a, accessed: '2026-10-01', used: 院落房翼、平顶石木体量, model_input: true}
+  - {url: 'https://www.asianart.com/lhasa_restoration/report98/ch_05.htm', download_file: asianart_5.1.4photo.jpg, download_sha256: 419df9cee963909174a59892b74056e412722615d85f7054c98756d76d30f4a6, accessed: '2026-10-01', used: 木廊、平顶房翼和院墙层级, model_input: true}
+  - {url: 'https://www.loc.gov/item/2002698079/', download_file: loc_2002698079.jpg, download_sha256: 1f8bd46b9b5bae3183f17c9b9216f191a7c8d140d429ca3f56a158371e1c6706, accessed: '2026-10-01', used: 1939年拉萨街市低层界面与摊棚尺度, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 工具PNG本地mtime，非服务端生成时间
+  source_path: sources/historical-rebuild/bld_kit_tubo_inn__raw.png
+  source_copy: sources/historical-rebuild/bld_kit_tubo_inn__raw.png
+  source_sha256: 97c24f93baa1e76551d1d70f294db81b920a96f3a57138a1ed39e011d27db984
+  size: 723x521
+  sha256: 2936592df8c2af710545c7c2bd3378bb06c67d36e467ad65af8a2d5c68fd3819
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_inn
+    footprint: [10, 8]
+    anchor: [304.9111, 346.3267]
+    era: tubo
+  footprint_m: [10, 8]
+  anchor_px: [304.9111, 346.3267]
+  footprint_basis: design/22 §3.2 inn；地域转换建议值
+  entrance: {edge: S, offset_cells: 5}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_width_px: 576
+    ground_bbox_px: [576, 288]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+    allowRotation: false
+  geometry_qa:
+    source_corners_px:
+      left: [249, 681]
+      front: [805, 985]
+      right: [1336, 702]
+    final_corners_px:
+      left: [17.0593, 340.7638]
+      front: [311.5314, 501.8212]
+      right: [592.763, 351.8895]
+    source_axis_slopes: [0.546763, -0.532957]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.047081
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.162335
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 6
+    anchor_method: 人工可见墙脚L/F/R，后角按平行边推算；底面中心=(L+R)/2。非alpha底中点。
+  processing:
+    source_size: [1536, 1024]
+    crop_box: [247, 68, 1344, 991]
+    crop_threshold: 1
+    discarded_alpha1_pixels: 72
+    uniform_scale_requested: 0.5298988040478381
+    resized_size: [581, 489]
+    rounded_effective_scale: [0.5296262534184139, 0.5297941495124594]
+    paste_offset: [16, 16]
+    steps: [alpha>1 determines bounding rectangle only; preserved all pixels inside rectangle, uniform LANCZOS resize with integer pixel rounding, paste without alpha mask onto transparent canvas; no repaint or warp]
+  pixel_qa:
+    mode: RGBA
+    size: [613, 521]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 133377
+    alpha_near_opaque_pixels: 180891
+    alpha_nonzero_bbox: [16, 16, 597, 505]
+    transparent_margins_px: [16, 16, 16, 16]
+  candidate_count: 1
+  attempts:
+  - {candidate: 1, prompt: 'Use case: historical-scene. Exactly ONE isolated unnamed Tibetan town building sprite for tianshu default kit. True RGBA transparent background with fully solid opaque building. Song reference is ONLY for restrained realistic weathered stone/wood materials and detail density, never for roof type. Tibetan vernacular: slightly battered whitewashed stone walls, flat earthen roof and low parapets, black trapezoidal door/window borders, muted red lintels and dark matte timber. NO pitched Chinese tile roofs, no tourist facades, no glass, no gold on ordinary houses. Orthographic yaw45 elevation30, STRICT2:1 dimetric ground slopes+0.5/-0.5, NO perspective. Original entrance on screen lower-left. Base is clear wall-foot parallelogram with left/front/right corners visible, NO plinth, NO terrain rectangle, NO outside objects. Left wall plane illuminated by upper-left light, right wall plane darker, very short lower-right contact shadow. Entire shape plus roof inside frame with at least10% transparent margins. No ambient halo or glow, no floor, sky, scenery, characters, symbols, readable text, checkerboard, watermark, toy/plastic look. Asset bld_kit_tubo_inn. Footprint10m east-west by8m north-south. Tibetan caravan inn with an inward-facing square-ish courtyard surrounded by two-storey whitewashed stone rooms and a plain gate at lower-left. Flat roofs, black-bordered windows, one short muted wordless prayer flag line, timber galleries only inside. Three outer bottom corners obvious. Width10 depth8, almost square plan, not a long rectangle.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-1d18c251-e3f8-453e-ab64-efe4cac0606f.png, source_archive: sources/bld_kit_tubo_inn__candidate01.png, sha256: 6dfecd8201a5564fb1b33d982053059a0d16cc0dc0c5e0fac86a78be3f254aa3, selected: false}
+  - {candidate: 2, prompt: 'Use case: precise-object-edit. Correct ONLY geometry of this Tibetan inn. Preserve materials and subject. Ground rectangle width10m depth8m. Reproject fully as orthographic45yaw30elevation 2:1 map sprite. Ground edges exactly+0.5/-0.5 slopes. LEFT[180,580], FRONT[820,900], RIGHT[1332,644], BACK[692,324] on1536x1024 canvas are ground FOOT points, not roof. Long facade edge on left-front has ratio1.25 to right edge; align every wall and perimeter with these axes, no perspective. Keep white stone flat-roof courtyard inn with no extra wings. Leave generous clear alpha margin all sides. True transparent RGBA, solid near-opaque object, upper-left light short lower-right contact shade, NO outside glow/floor, no text, no people, no grid, no labels.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-ad8d2ad9-356e-45d2-8c61-a1c86009778b.png, source_archive: sources/bld_kit_tubo_inn__candidate02.png, sha256: 896679d803b332dc50f5cbf2d4a441550f97d96ea6db21f4c8fdd06da5525ccd, selected: true}
+  release_ready: false
+  notes: '历史图片已实际输入；门院、内院、双层房翼、木廊与遮蔽牲口棚。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+- id: bld_kit_tubo_manor
+  subject: 藏式大院（原创地域同功能替换）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real form and material references, without copying a whole composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_manor: a large dignified but non-royal walled manor, footprint 15 by 12, axial gate court, taller two-storey main house and lower asymmetrical side wings, inner timber gallery, stepped entry, thick battered rubble-and-earth walls, patched off-white limewash, exposed stone base, deep dense timber-lattice windows with short stone-slab hoods, flat compacted-earth roofs and visible beam ends. Sparse dark red-brown wood only, no continuous red cornice or square ornamental cap blocks. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA with at least 8 percent margin. No palace gilding, Chinese tile roof, scenery, people, animals, text, signs, flags, watermark, modern elements, glow, fog, thick base or cropping. Return only the image result.'
+  negative: 人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。
+  references:
+  - {url: 'https://commons.wikimedia.org/wiki/File:The_British_Mission_in_Lhasa,_1936.jpg', download_file: commons_british_mission.jpg, download_sha256: 41339a39c132507824023a756579c1878db53971b71df0670335293b435d004a, accessed: '2026-10-01', used: 院落房翼、平顶石木体量, model_input: true}
+  - {url: 'https://commons.wikimedia.org/wiki/File:Tsarong%27s_house_in_Lhasa.jpg', download_file: commons_tsarong_house.jpg, download_sha256: 4d143bf9b1bf9b549dd808d458995bbe5b0f8bd8b04b99058361f411925cb803, accessed: '2026-10-01', used: 两层宅第、密木棂与木廊, model_input: true}
+  - {url: 'https://www.asianart.com/lhasa_restoration/report98/ch_05.htm', download_file: asianart_5.1.3plan.jpg, download_sha256: bd8a7a10b3bb4f1670631fe9a423808639f270bb4e4a5ccc3f49f1063705c70a, accessed: '2026-10-01', used: 门院、内院与房翼轴线, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: sources/historical-rebuild/bld_kit_tubo_manor__raw.png
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  file: bld_kit_tubo_manor.png
+  category: building-map
+  style: default
+  size: 1066x701
+  sha256: 5e766f34717523cbda48b9b8b0e67c4127a2808f2e5a4d35a217619cf3c19391
+  notes: '历史图片已实际输入；围院轴线、收分主楼、木廊、深窗与粗石墙脚。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  building:
+    type: bld_kit_tubo_manor
+    footprint: [15, 12]
+    anchor: [533.747, 395.4126]
+    era: tubo
+  footprint_m: [15, 12]
+  entrance: {edge: S, offset_cells: 7.5}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [864, 432]
+    ground_width_px: 864
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  meta: meta/bld_kit_tubo_manor.yaml
+  anchor_px: [533.747, 395.4126]
+  source_copy: sources/historical-rebuild/bld_kit_tubo_manor__raw.png
+  source_sha256: 80ebd5813cf89f1aff26870d45980e6af75bc26eb74c99d6c10c72f5e9ead07d
+  candidate_count: 1
+  geometry_qa:
+    source_corners_px:
+      left: [110, 567]
+      front: [857, 931]
+      right: [1476, 616]
+    source_axis_slopes: [0.48728246318607765, -0.5088852988691438]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.2067851373182552
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.034571890145395856
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+  metadata: meta/bld_kit_tubo_manor.yaml
+- id: bld_kit_tubo_market_stall
+  suffix: market_stall
+  subject: 藏地毛织布棚市场摊（原创扩展）
+  footprint: [5, 4]
+  source_path: sources/historical-rebuild/bld_kit_tubo_market_stall__raw.png
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real visual references for form, materials and scale without copying a whole composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_market_stall: one low temporary street market stall, footprint 5 by 4, rough timber posts and rails, short shallow wood-beam canopy with a faded unmarked woven wool cloth awning, plain plank counter, baskets and tied bundles without lettering. Open and lightweight, with stone weights at post feet; no masonry shop building and no decorative red fascia. Functional arrangement may be original but all material details grounded in references. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground contact, upper-left light, short contact shadow, true transparent RGBA with 10 percent margin. No people, animals, text, pseudo-writing, signs, flags, modern goods, scenery, watermark, glow, fog, thick base or cropping. Return only image.'
+  candidate_count: 1
+  source_corners_px:
+    left: [269, 629]
+    front: [876, 947]
+    right: [1281, 722]
+  reference_path: /Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-239babf3-c3c3-496e-a36b-01a9b83f45bc.png
+  prior: {path: /Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-239babf3-c3c3-496e-a36b-01a9b83f45bc.png, prompt: 'Use case: historical-scene. Create exactly ONE isolated city-map sprite for tianshu, historical Tibetan regional kit. Realistic ancient material detail and crisp restrained weathering matching the attached Song reference; reinterpret the subject in Tibetan stone/wood/cloth construction, not Chinese gray-tiled gables. Orthographic 2:1 dimetric projection, yaw45 pitch30, NO perspective convergence. BOTH ground axes MUST form exactly slopes +0.5 and -0.5 in screen space, opposite edges parallel, upright vertical posts. The ground-plane bounding diamond must be twice as wide as high. Thin natural ground contact, clearly visible LEFT, FRONT and RIGHT ground corners; no thick display slab. South/front faces screen lower left. Opaque solid object with real RGBA background transparency; no luminous rim, haze, glow, baked white or checkerboard. Warm-neutral light from screen UPPER LEFT, tiny short soft contact shadow lower right. Entire asset centered with at least10% transparent margins, no cropping. No people, animals, writing, marks resembling lettering, shop signs, watermark, labels, grid, modern elements, background scenery, road, sky, floating island, diorama base, cartoon or toy. Original generic regional adaptation; not a named historical monument. Asset ID bld_kit_tubo_market_stall. One Tibetan market canopy on a 5m east-west by4m north-south rectangle, ground east-west edge exactly1.25 times north-south. Low, stretched coarse tan woolen cloth canopy with a nearly flat roof and slightly sagging edge, supported by four weathered wooden posts and thin crossbeams. A low trestle counter underneath, folded brown and ochre cloth, tied burlap grain sacks and two earthenware jars. Modest gray stone post pads, thin compacted-earth footprint. No walls, flags, prayer text or outside props. Keep the full support feet and thin footprint corners visible. Low structure, do not invent a multi-building market square.', reference_path: assets/default/baseline/building-map/bld_kit_song_dali_stable.png, rejection: 首候选底面宽深比约2.01，相对目标1.25偏大；第二候选约1.50，仍未严格通过, archive: sources/bld_kit_tubo_market_stall_candidate01.png, sha256: 60568c4fc4a0e1367d187b3caad1a56123d4d524293563010943198282841afa}
+  file: bld_kit_tubo_market_stall.png
+  category: building-map
+  style: default
+  negative: 人物、动物、文字、现代物、天空、景观、厚展示地台、假透明、透视汇聚、光晕
+  references:
+  - {url: 'https://www.loc.gov/item/2002698079/', download_file: loc_2002698079.jpg, download_sha256: 1f8bd46b9b5bae3183f17c9b9216f191a7c8d140d429ca3f56a158371e1c6706, accessed: '2026-10-01', used: 1939年拉萨街市低层界面与摊棚尺度, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.2.2photo.jpg, download_sha256: ec9e44db37058eae4f560dc1e15b060a529ab4de13a71aad0a9e6f280ea8b10a, accessed: '2026-10-01', used: 八廓街木构棚架与沿街尺度, model_input: true}
+  - {url: 'https://www.loc.gov/item/2021670610/', download_file: loc_2021670610.jpg, download_sha256: baacfd89d15312e40bc92ac358ef618b9ca1b725b604bbb0edfdcd17373df9eb, accessed: '2026-10-01', used: 约1900年泽当低矮土石聚落尺度, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 源文件mtime；非工具披露服务端时间
+  size: 302x288
+  sha256: c917121e242de8f5fa218ee7a8123d361a2c0b2917e5d7a37380809b2c7bc81c
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_market_stall
+    footprint: [5, 4]
+    anchor: [218.0553, 192.0158]
+    era: tubo
+  footprint_m: [5, 4]
+  anchor_px: [218.0553, 192.0158]
+  entrance: {edge: S, offset_cells: 2}
+  view: {count: 1, allowRotation: false}
+  source_sha256: 035cf12e10dcd02f07fd2fe0bedc261c3e5d78afabd0df20428c8f3af3916d32
+  processing:
+    source_archive: sources/bld_kit_tubo_market_stall.png
+    source_size: [1536, 1024]
+    crop_box: [65, 57, 1285, 958]
+    uniform_scale: 0.2845849802371542
+    resized_size: [347, 256]
+    paste_offset: [16, 16, 363, 272]
+    steps: [crop alpha>0 bounding box, uniform LANCZOS resize with rounding, 'transparent padding only; no alpha threshold, warp, repaint or flip']
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [288, 144]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  geometry_qa:
+    source_corners_px:
+      left: [269, 629]
+      front: [876, 947]
+      right: [1281, 722]
+    source_anchor_px: [775.0, 675.5]
+    source_axis_slopes: [0.5238879736408567, -0.5555555555555556]
+    axis_tolerance: 0.03
+    axis_pass: false
+    expected_width_depth_ratio: 1.25
+    source_width_depth_ratio: 1.4987654320987653
+    ratio_relative_error: 0.19901234567901227
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 4
+    precision_note: 人工量取薄底面前侧三角点；后角按平行边推算；锚点为左右对角中点。未声称3D实测或严格正交批准。
+  pixel_qa:
+    mode: RGBA
+    size: [379, 288]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 67382
+    alpha_nonzero_bbox: [71, 16, 363, 272]
+    transparent_margins_px: [71, 16, 16, 16]
+    border_alpha_max: 0
+  notes: '历史图片已实际输入；低层街市尺度、粗木棚架、素色毛织篷与石压脚。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  source_record: sources/bld_kit_tubo_market_stall.json
+  source_copy: sources/historical-rebuild/bld_kit_tubo_market_stall__raw.png
+- id: bld_kit_tubo_palace_hall
+  subject: 地方宫室模块（原创扩展，不具名布达拉宫）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real visual references without copying a named monument composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_palace_hall: a generic early Tibetan elite audience hall complex, footprint 20 by 16, axial raised main block with strongly battered rubble-and-earth walls, lower gate court and short side wings, broad timber-columned front gallery, deep dense-lattice windows, patched off-white limewash, exposed stone plinth, dark ochre timber, flat compacted-earth terraces and plain parapets. Dignity comes from massing, masonry and axial stairs, not gold; no Potala silhouette, no gilded copper roof, no Chinese tiled eaves, no continuous red cornice ribbon or square roof cap blocks. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA with 8 percent margin. No landscape, people, animals, text, flags, watermark, modern elements, glow, fog, thick base or cropping. Return only image.'
+  negative: 人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。
+  references:
+  - {url: 'https://www.loc.gov/item/2021670617/', download_file: loc_2021670617.jpg, download_sha256: 83fb3003678b5fc8ad7d2dfe70217c3e259a89c21258fb16a973f00f360cbb42, accessed: '2026-10-01', used: 约1900年宫苑门院、乔木尺度与石木层级, model_input: true}
+  - {url: 'https://rubinmuseum.org/projecthimalayanart/essays/yumbu-lagang-castle/', download_file: rubin_yumbu_castle.jpg, download_sha256: 349e649c32e6f7c62b5dee5f1c76a92666b8958ce6bb82f91ed2cab0a73a9c12, accessed: '2026-10-01', used: 收分白墙、垂直主楼与厚墙比例, model_input: true}
+  - {url: 'https://www.asianart.com/lhasa_restoration/report98/ch_05.htm', download_file: asianart_5.1.4photo.jpg, download_sha256: 419df9cee963909174a59892b74056e412722615d85f7054c98756d76d30f4a6, accessed: '2026-10-01', used: 木廊、平顶房翼和院墙层级, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: sources/historical-rebuild/bld_kit_tubo_palace_hall__raw.png
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  file: bld_kit_tubo_palace_hall.png
+  category: building-map
+  style: default
+  size: 1136x835
+  sha256: 4df761abceb28883314411e76e3554891bb62120f0c21bfbbeffbd05529d2277
+  notes: '历史图片已实际输入；高耸收分主楼、层叠白墙、深窗列与厚石墙基。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  building:
+    type: bld_kit_tubo_palace_hall
+    footprint: [20, 16]
+    anchor: [611.2864, 524.2912]
+    era: tubo
+  footprint_m: [20, 16]
+  entrance: {edge: S, offset_cells: 10.0}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [1152, 576]
+    ground_width_px: 1152
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  meta: meta/bld_kit_tubo_palace_hall.yaml
+  anchor_px: [611.2864, 524.2912]
+  source_copy: sources/historical-rebuild/bld_kit_tubo_palace_hall__raw.png
+  source_sha256: 4d19ad855883889f7e4d82dd8fc8eb8e4d250221f789742057d1fb5f35661160
+  candidate_count: 1
+  geometry_qa:
+    source_corners_px:
+      left: [83, 628]
+      front: [930, 991]
+      right: [1507, 683]
+    source_axis_slopes: [0.42857142857142855, -0.5337954939341422]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.4679376083188909
+    expected_width_depth_ratio: 1.25
+    ratio_relative_error: 0.17435008665511265
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+  metadata: meta/bld_kit_tubo_palace_hall.yaml
+- id: bld_kit_tubo_restaurant
+  suffix: restaurant
+  subject: 藏地平顶石砌茶肆（原创扩展；历史细部待考）
+  footprint: [10, 8]
+  source_path: sources/historical-rebuild/bld_kit_tubo_restaurant__raw.png
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real visual references for form and materials without copying a whole composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_restaurant: a generic historical urban eating house, footprint 10 by 8, one-and-a-half storey thick battered stone-earth building with a recessed open-front timber bay under a short beam canopy, a small side court, flat compacted-earth roof, patched off-white limewash, exposed rubble base, deep dense-lattice windows and plain timber shutters. One faded unmarked cloth shade may indicate hospitality; function is original. Avoid continuous red cornice, square roof cap blocks and ornate signboard. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA with 8 percent margin. No food text, symbols, people, animals, Chinese tiled roof, scenery, watermark, modern elements, glow, fog, thick base or cropping. Return only image.'
+  candidate_count: 1
+  source_corners_px:
+    left: [278, 622]
+    front: [888, 957]
+    right: [1340, 736]
+  reference_path: /Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-bcbbe8b1-5bff-4800-ae28-0f44dfbe67f3.png
+  prior: {path: /Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-bcbbe8b1-5bff-4800-ae28-0f44dfbe67f3.png, prompt: 'Use case: historical-scene. Generate exactly ONE realistic ancient Tibetan regional city-map building sprite for tianshu, ID bld_kit_tubo_restaurant. A two-storey Tibetan tea house, broad flat earthen roof with low parapet, slightly battered whitewashed fieldstone walls, exposed brown stone base, dark trapezoid window frames and small dark wood balcony, restrained ochre-red band below parapet. On ground floor an open south-facing tea porch with low wooden benches, a small unmarked copper tea kettle and clay jars. A small plain fabric sunshade, no writing. This is an original generic Tibetan adaptation for premodern Lhasa/Shigatse/Chamdo settings, not a reconstruction of any named monument. Rectangular footprint exactly 10 metres east-west by 8 metres north-south; the two visible ground edges must have length ratio 10:8. Match the attached Song sprite only in naturalistic materials, detail density, restrained weathering and crisp game-map readability, replace its tiled roof and Chinese timber form entirely with Tibetan flat-roofed stone architecture. Strict orthographic 2:1 dimetric camera yaw45 pitch30: ground east axis down-right slope +0.5, north axis up-right slope -0.5, verticals upright, parallel edges. Thin ground-contact rectangle with visible left, front and right corners, no raised display slab. Main entrance faces screen lower left. Warm-neutral key light from screen upper left, very short soft contact shadow screen lower right. Entire building centered with generous >=10% genuinely transparent margin on all sides; actual RGBA alpha, no background, no checkerboard. No people, animals, text, lettering, symbols resembling writing, signs, watermarks, modern details, sky, scenery, outside road, thick diorama plinth, floating island, cartoon, miniature toy, perspective convergence, cropped roof or base. Do not reproduce the baseline''s gray tiled roof. Single-view asset.', reference_path: assets/default/baseline/building-map/bld_kit_song_dali_restaurant.png, rejection: 首候选底面轴斜率约+0.40/-0.43，过浅且宽深比偏大；第二候选改善但仍非严格几何批准, archive: sources/bld_kit_tubo_restaurant_candidate01.png, sha256: b148b22e644aec9f91665a6c4dad4134c1d0ebd990f6b30e925ad71af80b3302}
+  file: bld_kit_tubo_restaurant.png
+  category: building-map
+  style: default
+  negative: 人物、动物、文字、现代物、天空、景观、厚展示地台、假透明、透视汇聚、光晕
+  references:
+  - {url: 'https://www.loc.gov/item/2002698079/', download_file: loc_2002698079.jpg, download_sha256: 1f8bd46b9b5bae3183f17c9b9216f191a7c8d140d429ca3f56a158371e1c6706, accessed: '2026-10-01', used: 1939年拉萨街市低层界面与摊棚尺度, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.3.2photo.jpg, download_sha256: 2d05a48ea3e17162c1e8da9684efc9d051dfbbda8cac8f5d292592de3a50978c, accessed: '2026-10-01', used: 深窗、石板雨披与木梁椽, model_input: true}
+  - {url: 'https://commons.wikimedia.org/wiki/File:Trimon%27s_house.jpg', download_file: commons_trimon_house.jpg, download_sha256: 67c8f7be41901d1a9143345e858097d432266eade9d73f106fac04fe6819c4b2, accessed: '2026-10-01', used: 厚墙、深窗与朴素平顶, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 源文件mtime；非工具披露服务端时间
+  size: 737x543
+  sha256: 8dab3464044e88ce8f448a591854d0c89cd49c6c671ef888114b354e1a1a415b
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_restaurant
+    footprint: [10, 8]
+    anchor: [454.7797, 372.8814]
+    era: tubo
+  footprint_m: [10, 8]
+  anchor_px: [454.7797, 372.8814]
+  entrance: {edge: S, offset_cells: 4}
+  view: {count: 1, allowRotation: false}
+  source_sha256: 6051509361764e06ce05680b411a4fc5b23f5f30e07386ca94160ad7d634a6e4
+  processing:
+    source_archive: sources/bld_kit_tubo_restaurant.png
+    source_size: [1571, 1001]
+    crop_box: [0, 21, 1557, 963]
+    uniform_scale: 0.5423728813559322
+    resized_size: [844, 511]
+    paste_offset: [16, 16, 860, 527]
+    steps: [crop alpha>0 bounding box, uniform LANCZOS resize with rounding, 'transparent padding only; no alpha threshold, warp, repaint or flip']
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [576, 288]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  geometry_qa:
+    source_corners_px:
+      left: [278, 622]
+      front: [888, 957]
+      right: [1340, 736]
+    source_anchor_px: [809.0, 679.0]
+    source_axis_slopes: [0.5491803278688525, -0.4889380530973451]
+    axis_tolerance: 0.03
+    axis_pass: false
+    expected_width_depth_ratio: 1.25
+    source_width_depth_ratio: 1.3495575221238938
+    ratio_relative_error: 0.07964601769911495
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 4
+    precision_note: 人工量取薄底面前侧三角点；后角按平行边推算；锚点为左右对角中点。未声称3D实测或严格正交批准。
+  pixel_qa:
+    mode: RGBA
+    size: [876, 543]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 313438
+    alpha_nonzero_bbox: [16, 21, 860, 527]
+    transparent_margins_px: [16, 21, 16, 16]
+    border_alpha_max: 0
+  notes: '历史图片已实际输入；沿街厚墙、深窗、短木挑檐、石板雨披与平土顶。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  source_record: sources/bld_kit_tubo_restaurant.json
+  source_copy: sources/historical-rebuild/bld_kit_tubo_restaurant__raw.png
+- id: bld_kit_tubo_shop_1f
+  file: bld_kit_tubo_shop_1f.png
+  category: building-map
+  style: default
+  subject: 藏地跨年代地域素材：单层织物商铺（原创扩展；具体城市年代适用待考）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real visual references for form and materials without copying a whole composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_shop_1f: one simple one-storey town shop, footprint 7 by 5, thick slightly battered rubble-and-earth walls, patched limewash and exposed stone base, flat compacted-earth roof with visible wood beam ends, one wide recessed timber shop opening with plain plank shutters and no sign, one deep dense-lattice window under a short stone-slab rain hood. Small short timber canopy only, sparse dark ochre wood; no continuous red fascia, square roof caps or Chinese tiled roof. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA with 8 percent margin. No people, animals, writing, pseudo-writing, signs, flags, modern goods, scenery, watermark, glow, fog, thick base or cropping. Return only image.'
+  negative: 无文字/现代物/人物/景观背景/厚地台；不拉伸、旋转、重绘或抠白底
+  references:
+  - {url: 'https://www.loc.gov/item/2002698079/', download_file: loc_2002698079.jpg, download_sha256: 1f8bd46b9b5bae3183f17c9b9216f191a7c8d140d429ca3f56a158371e1c6706, accessed: '2026-10-01', used: 1939年拉萨街市低层界面与摊棚尺度, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.1.1photo.jpg, download_sha256: a5b1d8158870799c33105533ad197b15b2d795cea75b276918fe48b0ed52a7a2, accessed: '2026-10-01', used: 传统收分墙、毛石砌层与白灰修补, model_input: true}
+  - {url: 'https://commons.wikimedia.org/wiki/File:Trimon%27s_house.jpg', download_file: commons_trimon_house.jpg, download_sha256: 67c8f7be41901d1a9143345e858097d432266eade9d73f106fac04fe6819c4b2, accessed: '2026-10-01', used: 厚墙、深窗与朴素平顶, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 工具PNG本地mtime，非服务端生成时间
+  source_path: sources/historical-rebuild/bld_kit_tubo_shop_1f__raw.png
+  source_copy: sources/historical-rebuild/bld_kit_tubo_shop_1f__raw.png
+  source_sha256: 9c478775b97d51b14a81060e98a446b23c1bdc8932419241e9c93437fdc3d930
+  size: 498x365
+  sha256: bc9900ef1837866014ffa4f87b65128cb4f1367a4028d45057d4b9372b3b5875
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_shop_1f
+    footprint: [7, 5]
+    anchor: [209.1772, 259.5373]
+    era: tubo
+  footprint_m: [7, 5]
+  anchor_px: [209.1772, 259.5373]
+  footprint_basis: design/22 §3.4 ming_shop；地域转换建议值
+  entrance: {edge: S, offset_cells: 3}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_width_px: 384
+    ground_bbox_px: [384, 192]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+    allowRotation: false
+  geometry_qa:
+    source_corners_px:
+      left: [233, 683]
+      front: [880, 976]
+      right: [1315, 775]
+    final_corners_px:
+      left: [17.4178, 243.2068]
+      front: [246.7493, 347.2249]
+      right: [400.9366, 275.8678]
+    source_axis_slopes: [0.452859, -0.462069]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.487356
+    expected_width_depth_ratio: 1.4
+    ratio_relative_error: 0.062397
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 6
+    anchor_method: 人工可见墙脚L/F/R，后角按平行边推算；底面中心=(L+R)/2。非alpha底中点。
+  processing:
+    source_size: [1536, 1024]
+    crop_box: [229, 43, 1318, 981]
+    crop_threshold: 1
+    discarded_alpha1_pixels: 120
+    uniform_scale_requested: 0.35489833641404805
+    resized_size: [386, 333]
+    rounded_effective_scale: [0.3544536271808999, 0.35501066098081024]
+    paste_offset: [16, 16, 402, 349]
+    steps: [alpha>1 determines bounding rectangle only; preserved all pixels inside rectangle, uniform LANCZOS resize with integer pixel rounding, paste without alpha mask onto transparent canvas; no repaint or warp]
+  pixel_qa:
+    mode: RGBA
+    size: [418, 365]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 62427
+    alpha_near_opaque_pixels: 86911
+    alpha_nonzero_bbox: [16, 16, 402, 349]
+    transparent_margins_px: [16, 16, 16, 16]
+  candidate_count: 1
+  previous_attempts:
+  - {candidate: 1, prompt: 'Use case: historical-scene. Exactly ONE isolated unnamed Tibetan town building sprite for tianshu default kit. True RGBA transparent background with fully solid opaque building. Song reference is ONLY for restrained realistic weathered stone/wood materials and detail density, never for roof type. Tibetan vernacular: slightly battered whitewashed stone walls, flat earthen roof and low parapets, black trapezoidal door/window borders, muted red lintels and dark matte timber. NO pitched Chinese tile roofs, no tourist facades, no glass, no gold on ordinary houses. Orthographic yaw45 elevation30, STRICT2:1 dimetric ground slopes+0.5/-0.5, NO perspective. Original entrance on screen lower-left. Base is clear wall-foot parallelogram with left/front/right corners visible, NO plinth, NO terrain rectangle, NO outside objects. Left wall plane illuminated by upper-left light, right wall plane darker, very short lower-right contact shadow. Entire shape plus roof inside frame with at least10% transparent margins. No ambient halo or glow, no floor, sky, scenery, characters, symbols, readable text, checkerboard, watermark, toy/plastic look. Asset bld_kit_tubo_shop_1f. Footprint7m east-west by5m north-south. one single-storey flat-roof stone market shop with an open dark timber front counter, folded wool cloth rolls and unlabeled earthenware jars beneath a short plain cloth awning. Whole bottom rectangle7:5 axis ratio, only small doorway step, no street or outdoor plaza.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-f5a9d8d9-369f-401f-80d5-b445c759847d.png, source_archive: sources/bld_kit_tubo_shop_1f__candidate01.png, sha256: 1f944bef13bdb0dff5b1fc999f4cd10d47517691021e1667c321e3cf6bb7db7e, selected: false}
+  - {candidate: 2, prompt: 'Use case: precise-object-edit. Correct the GEOMETRY of this Tibetan shop_1f map sprite while preserving all material, architectural design and detail density. Footprint 7m frontage by5m depth. Both perpendicular GROUND axes slopes EXACTLY +0.5 and -0.5, 2:1 ORTHOGRAPHIC projection, camera45yaw30elevation. Ground foot corners LEFT[180,580], FRONT[852,916], RIGHT[1332,676], BACK[660,340] on1536x1024 frame. These are GROUND FEET, NOT ROOFTOP points. Perimeter walls and roof align with this rectangle. FRONTAGE ONLY 1.4 times depth, do NOT elongate facade. Upper-left illumination, right face darker. All building silhouette inside frame with transparent margin. Fully solid building on TRUE RGBA transparent background, no floor outside its footprint, no halo, no new objects, no text, no modern items. Keep Tibetan flat earthen roof, stone whitewashed walls, black window borders, restrained red/dark wood. One complete sprite.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-6f2413a3-afa3-4725-ad83-263ea6c608c9.png, source_archive: sources/bld_kit_tubo_shop_1f__candidate02.png, sha256: a641359bc1f5f284279feb0bbd804dd0a544a2e8879b0ff36322b714c3f5c4d9, selected: true}
+  release_ready: false
+  notes: '历史图片已实际输入；单层深门洞、密木棂、短挑檐、修补白灰与毛石基脚。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  generation_round: repair_01
+  previous_candidate_count: 2
+  attempts:
+  - {candidate: 1, prompt: 'Use case: precise-object-edit. Create one corrected Tibetan single-storey shop map sprite. Reference1 supplies the correct 2:1 orthographic ground camera, near-square massing, realistic materials. Reference2 supplies ONLY shop subject/details: open timber counter, folded muted cloth and unmarked earthenware under short awning; reference2 has an excessively elongated footprint that MUST change. The new plan is 7m frontage by5m depth, width/depth 1.4, broad short side wall. Orthographic yaw45 elevation30, edges slope EXACTLY+0.5 and-0.5. Build walls from these ground foot corners in 1400x1050 frame: LEFT(180,570), FRONT(810,885), RIGHT(1260,660), BACK(630,345). Left-front wall width630 horizontal, front-right wall width450 horizontal: ONLY40% difference. Do not copy the old long facade. One storey, flat roof with low parapet, subtly tapering whitewashed stone wall, black window borders, muted red lintel and matte dark timber, no decorative corner towers. Realistic restrained antique painted-game asset matching references. Whole shape and thin contact shadow inside generous alpha margins. TRUE transparent RGBA, solid building, upper-left light and right wall shade. No ground plate, sky, environment, text, symbols, people, watermark or modern objects.', references: [{file: assets/default/building-map/tubo/bld_kit_tubo_guardhouse.png, role: 本轮几何/材质参考, sha256: 3d435911ddcf169d75a248901c1d093841bea0fe70b05d2e139636a0636f845c, status: candidate}, {archive: sources/bld_kit_tubo_shop_1f__pre_repair.png, file: assets/default/building-map/tubo/bld_kit_tubo_shop_1f.png, role: 本轮几何/材质参考, sha256: 9116a21fe1e873e1d94076b967d8e34e83ff4aa2f00af6776807b0a43c668a3b, status: candidate}], selected: false, sha256: 3e0e0924dc41a0aeda41bcfe3c1bfcc0413060e497497eea4cc1ae7b82db6efe, source_archive: sources/bld_kit_tubo_shop_1f__repair01_candidate01.png, source_path: /Users/bytedance/.codex/generated_images/01a0f482-64bd-7022-b15e-d81207edeae8/exec-026a683a-d2c3-475a-b409-731de3c3be7f.png}
+  - {candidate: 2, prompt: 'Use case: precise-object-edit. Convert THIS compact Tibetan guardhouse into a ONE-STOREY shop, preserving its projection and almost-square ground plan. Keep visible right wall BROAD like the reference. Target7m front by5m side, frontage only1.4 times depth, no elongated facade. REMOVE UPPER STOREY and lower flat roof vertically. Replace lower front doorway and windows with one open dark timber shop counter below a small plain cloth awning, few muted folded cloths and unlabelled jars. Keep white battered stone walls, exposed stone foot, dark window trim and restrained red band, flat low parapet, realistic matte stone/wood texture and detail density. Remove paving and vegetation outside wall footprint. BOTH ground directions must be 2:1 slopes+0.5/-0.5, parallel edges, no perspective, left-front horizontal span560 and front-right span400 in the same frame. Avoid the long rectangular shop trope: compact deep shop, enough depth visible. Upper-left light, short right contact shadow only. Whole sprite with generous TRANSPARENT margin, building fully opaque alpha255, outside alpha0, no halo. No people, text, symbols, pitched roof, scenery, watermark or modern objects.', references: [{file: assets/default/building-map/tubo/bld_kit_tubo_guardhouse.png, role: 本轮几何/材质参考, sha256: 3d435911ddcf169d75a248901c1d093841bea0fe70b05d2e139636a0636f845c, status: candidate}], selected: true, sha256: 408eebb6b766793a9975c9e56c4ffc4b5f1a949d637f634e58c5eaeba95e3d2f, source_archive: sources/bld_kit_tubo_shop_1f__repair01_candidate02.png, source_path: /Users/bytedance/.codex/generated_images/01a0f482-64bd-7022-b15e-d81207edeae8/exec-73576694-afb0-4829-bb56-4445100794a7.png}
+- id: bld_kit_tubo_shop_2f
+  file: bld_kit_tubo_shop_2f.png
+  category: building-map
+  style: default
+  subject: 藏地跨年代地域素材：两层商铺（原创扩展；具体城市年代适用待考）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real visual references for form and material without copying a whole composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_shop_2f: a compact two-storey town shop, footprint 8 by 6, thick battered rubble-and-earth walls, patched off-white limewash and exposed stone base, flat compacted-earth roof with rough low parapet and visible timber beam ends, broad recessed plain shuttered shop opening on ground floor, and a shallow upper timber oriel with dense vertical lattice based on historical Lhasa houses. Restrained dark brown wood and tiny faded ochre accents; no continuous red fascia, no square decorative roof caps, no sign. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground-contact diamond, upper-left light, short contact shadow, true transparent RGBA with 8 percent margin. No Chinese tiled roof, people, animals, writing, pseudo-writing, modern goods, scenery, watermark, glow, fog, thick base or cropping. Return only image.'
+  negative: 无文字/现代物/人物/景观背景/厚地台；不拉伸、旋转、重绘或抠白底
+  references:
+  - {url: 'https://commons.wikimedia.org/wiki/File:Tsarong%27s_house_in_Lhasa.jpg', download_file: commons_tsarong_house.jpg, download_sha256: 4d143bf9b1bf9b549dd808d458995bbe5b0f8bd8b04b99058361f411925cb803, accessed: '2026-10-01', used: 两层宅第、密木棂与木廊, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.3.2photo.jpg, download_sha256: 2d05a48ea3e17162c1e8da9684efc9d051dfbbda8cac8f5d292592de3a50978c, accessed: '2026-10-01', used: 深窗、石板雨披与木梁椽, model_input: true}
+  - {url: 'https://www.loc.gov/item/2002698079/', download_file: loc_2002698079.jpg, download_sha256: 1f8bd46b9b5bae3183f17c9b9216f191a7c8d140d429ca3f56a158371e1c6706, accessed: '2026-10-01', used: 1939年拉萨街市低层界面与摊棚尺度, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 工具PNG本地mtime，非服务端生成时间
+  source_path: sources/historical-rebuild/bld_kit_tubo_shop_2f__raw.png
+  source_copy: sources/historical-rebuild/bld_kit_tubo_shop_2f__raw.png
+  source_sha256: 8ac2d4f1291db7e615bda6550031855405d89ab6a60f83d00c31aaa9057a01a6
+  size: 507x437
+  sha256: 6f52744e24bfebaed6cab0af5147c8ea034610b6a6eacdfc49099088182a74d6
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_shop_2f
+    footprint: [8, 6]
+    anchor: [240.1968, 322.3462]
+    era: tubo
+  footprint_m: [8, 6]
+  anchor_px: [240.1968, 322.3462]
+  footprint_basis: design/22 §3.3 shop_2f；地域转换建议值
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_width_px: 448
+    ground_bbox_px: [448, 224]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+    allowRotation: false
+  geometry_qa:
+    source_corners_px:
+      left: [182, 785]
+      front: [864, 1061]
+      right: [1304, 855]
+    final_corners_px:
+      left: [16.3989, 308.3669]
+      front: [288.4669, 418.6036]
+      right: [463.9946, 336.3254]
+    source_axis_slopes: [0.404692, -0.468182]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 1.55
+    expected_width_depth_ratio: 1.3333333333333333
+    ratio_relative_error: 0.1625
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: false
+    measurement_uncertainty_source_px: 6
+    anchor_method: 人工可见墙脚L/F/R，后角按平行边推算；底面中心=(L+R)/2。非alpha底中点。
+  processing:
+    source_size: [1448, 1086]
+    crop_box: [181, 53, 1299, 1067]
+    crop_threshold: 1
+    discarded_alpha1_pixels: 62
+    uniform_scale_requested: 0.39928698752228164
+    resized_size: [446, 405]
+    rounded_effective_scale: [0.39892665474060823, 0.3994082840236686]
+    paste_offset: [16, 16]
+    steps: [alpha>1 determines bounding rectangle only; preserved all pixels inside rectangle, uniform LANCZOS resize with integer pixel rounding, paste without alpha mask onto transparent canvas; no repaint or warp]
+  pixel_qa:
+    mode: RGBA
+    size: [478, 437]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 79737
+    alpha_near_opaque_pixels: 125198
+    alpha_nonzero_bbox: [16, 16, 462, 421]
+    transparent_margins_px: [16, 16, 16, 16]
+  candidate_count: 1
+  attempts:
+  - {candidate: 1, prompt: 'Use case: historical-scene. Exactly ONE isolated unnamed Tibetan town building sprite for tianshu default kit. True RGBA transparent background with fully solid opaque building. Song reference is ONLY for restrained realistic weathered stone/wood materials and detail density, never for roof type. Tibetan vernacular: slightly battered whitewashed stone walls, flat earthen roof and low parapets, black trapezoidal door/window borders, muted red lintels and dark matte timber. NO pitched Chinese tile roofs, no tourist facades, no glass, no gold on ordinary houses. Orthographic yaw45 elevation30, STRICT2:1 dimetric ground slopes+0.5/-0.5, NO perspective. Original entrance on screen lower-left. Base is clear wall-foot parallelogram with left/front/right corners visible, NO plinth, NO terrain rectangle, NO outside objects. Left wall plane illuminated by upper-left light, right wall plane darker, very short lower-right contact shadow. Entire shape plus roof inside frame with at least10% transparent margins. No ambient halo or glow, no floor, sky, scenery, characters, symbols, readable text, checkerboard, watermark, toy/plastic look. Asset bld_kit_tubo_shop_2f. Footprint8m east-west by6m north-south. one two-storey merchant shop: flat earthen roof, small projecting timber upper windows with restrained faded red/yellow trim, open ground-floor shopfront showing cloth bundles and unmarked storage jars. An integrated rectangle8:6 axis ratio. Both ground edges slope exactly one vertical per two horizontal, no overlong facade.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-3ae6dce3-e974-48ae-90ad-8c25393df6e0.png, source_archive: sources/bld_kit_tubo_shop_2f__candidate01.png, sha256: 14235dd170da229ba7aae84c339ce66e29d66a7f7591ac17ef41b094150ebecf, selected: false}
+  - {candidate: 2, prompt: 'Use case: precise-object-edit. Correct the GEOMETRY of this Tibetan shop_2f map sprite while preserving all material, architectural design and detail density. Footprint 8m frontage by6m depth. Both perpendicular GROUND axes slopes EXACTLY +0.5 and -0.5, 2:1 ORTHOGRAPHIC projection, camera45yaw30elevation. Ground foot corners LEFT[208,560], FRONT[848,880], RIGHT[1328,640], BACK[688,320] on1536x1024 frame. These are GROUND FEET, NOT ROOFTOP points. Perimeter walls and roof align with this rectangle. FRONTAGE ONLY 1.3333333333333333 times depth, do NOT elongate facade. Upper-left illumination, right face darker. All building silhouette inside frame with transparent margin. Fully solid building on TRUE RGBA transparent background, no floor outside its footprint, no halo, no new objects, no text, no modern items. Keep Tibetan flat earthen roof, stone whitewashed walls, black window borders, restrained red/dark wood. One complete sprite.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-72c9fdab-4a2b-4a9a-b286-dd7e2316a585.png, source_archive: sources/bld_kit_tubo_shop_2f__candidate02.png, sha256: d8a8a291ae6db1abc70c9b4a028682dfc6b5c6dbfa316dfa90b9de8d9b8578d4, selected: true}
+  release_ready: false
+  notes: '历史图片已实际输入；两层窄面商铺、外挑木廊、密木棂与平土屋面。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+- id: bld_kit_tubo_stable
+  suffix: stable
+  subject: 藏地石木平顶马厩（原创扩展）
+  footprint: [8, 6]
+  source_path: sources/historical-rebuild/bld_kit_tubo_stable__raw.png
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real visual references for form and material without copying a whole composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_stable: a low practical one-storey stable and service shed, footprint 8 by 6, L-shaped thick coarse rubble wall with areas of worn limewash, flat earth roof over enclosed tack room, open timber-post shelter with visible heavy beams, two dark animal-height bays, tiny high ventilation holes, rough timber doors and stone threshold. Functional stable identification is original; no animals or tack labels. No continuous red band, square roof caps, ornate trim or Chinese roof. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground contact, upper-left light, short shadow, true transparent RGBA with 8 percent margin. No people, animals, writing, signs, modern objects, scenery, watermark, glow, fog, thick base or cropping. Return only image.'
+  candidate_count: 1
+  source_corners_px:
+    left: [168, 651]
+    front: [826, 976]
+    right: [1372, 693]
+  reference_path: assets/default/baseline/building-map/bld_kit_song_dali_stable.png
+  file: bld_kit_tubo_stable.png
+  category: building-map
+  style: default
+  negative: 人物、动物、文字、现代物、天空、景观、厚展示地台、假透明、透视汇聚、光晕
+  references:
+  - {url: 'https://commons.wikimedia.org/wiki/File:Trimon%27s_house.jpg', download_file: commons_trimon_house.jpg, download_sha256: 67c8f7be41901d1a9143345e858097d432266eade9d73f106fac04fe6819c4b2, accessed: '2026-10-01', used: 厚墙、深窗与朴素平顶, model_input: true}
+  - {url: 'https://www.loc.gov/item/2021670610/', download_file: loc_2021670610.jpg, download_sha256: baacfd89d15312e40bc92ac358ef618b9ca1b725b604bbb0edfdcd17373df9eb, accessed: '2026-10-01', used: 约1900年泽当低矮土石聚落尺度, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.1.1photo.jpg, download_sha256: a5b1d8158870799c33105533ad197b15b2d795cea75b276918fe48b0ed52a7a2, accessed: '2026-10-01', used: 传统收分墙、毛石砌层与白灰修补, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 源文件mtime；非工具披露服务端时间
+  size: 812x428
+  sha256: 01b7ddf5012a0d1346631e8473eb101c1acd3e49b2ef76aec772404052b0b3a8
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_stable
+    footprint: [8, 6]
+    anchor: [302.5116, 257.4884]
+    era: tubo
+  footprint_m: [8, 6]
+  anchor_px: [302.5116, 257.4884]
+  entrance: {edge: S, offset_cells: 3}
+  view: {count: 1, allowRotation: false}
+  source_sha256: abfa95996c3f6ee56edc765488867398539a9fab6cd3e8c247cd16962e81191e
+  processing:
+    source_archive: sources/bld_kit_tubo_stable.png
+    source_size: [1448, 1086]
+    crop_box: [0, 23, 1434, 1086]
+    uniform_scale: 0.37209302325581395
+    resized_size: [534, 396]
+    paste_offset: [16, 16, 550, 412]
+    steps: [crop alpha>0 bounding box, uniform LANCZOS resize with rounding, 'transparent padding only; no alpha threshold, warp, repaint or flip']
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [448, 224]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  geometry_qa:
+    source_corners_px:
+      left: [168, 651]
+      front: [826, 976]
+      right: [1372, 693]
+    source_anchor_px: [770.0, 672.0]
+    source_axis_slopes: [0.4939209726443769, -0.5183150183150184]
+    axis_tolerance: 0.03
+    axis_pass: true
+    expected_width_depth_ratio: 1.3333333333333333
+    source_width_depth_ratio: 1.205128205128205
+    ratio_relative_error: 0.09615384615384615
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 4
+    precision_note: 人工量取薄底面前侧三角点；后角按平行边推算；锚点为左右对角中点。未声称3D实测或严格正交批准。
+  pixel_qa:
+    mode: RGBA
+    size: [566, 428]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 155318
+    alpha_nonzero_bbox: [37, 20, 548, 398]
+    transparent_margins_px: [37, 20, 18, 30]
+    border_alpha_max: 0
+  notes: '历史图片已实际输入；低矮石木厩房、内院、粗木柱棚、土墙与平顶。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  source_record: sources/bld_kit_tubo_stable.json
+  source_copy: sources/historical-rebuild/bld_kit_tubo_stable__raw.png
+- id: bld_kit_tubo_stupa
+  suffix: stupa
+  subject: 藏式覆钵佛塔与无字经幡、玛尼石堆意象（原创扩展；非具名古建复原）
+  footprint: [7, 7]
+  source_path: sources/historical-rebuild/bld_kit_tubo_stupa__raw.png
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real visual references for component order and architecture, without copying a whole source. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_stupa: a generic stone-and-whitewashed Tibetan chorten on a 7 by 7 footprint, clearly ordered square stepped plinth, battered square base with small plain recessed niche but no figure or text, rounded white dome, square harmika, compact stacked ring spire and small umbrella finial. Architecture-scale proportions informed by Bar Chorten; bronze reliquaries only inform component sequence, not gold material or miniature scale. Weathered limewash, rubble stone at plinth, restrained red-brown coping. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, clear thin ground-contact diamond, upper-left light, short shadow, true transparent RGBA with 10 percent margin. No gateway hole, no people, offerings, writing, symbols, prayer flags, gold coating, Chinese roof, landscape, watermark, modern elements, glow, fog, thick display base or cropping. Return only image.'
+  candidate_count: 1
+  source_corners_px:
+    left: [287, 780]
+    front: [750, 990]
+    right: [1190, 786]
+  reference_path: assets/default/baseline/building-map/bld_kit_song_dali_restaurant.png
+  file: bld_kit_tubo_stupa.png
+  category: building-map
+  style: default
+  negative: 人物、动物、文字、现代物、天空、景观、厚展示地台、假透明、透视汇聚、光晕
+  references:
+  - {url: 'https://collections.lacma.org/object/61926', download_file: lacma_stupa.jpg, download_sha256: 2ffba28643be37fdf074415bae22d402b214a845dd14b02f52e1b6fd01d387c6, accessed: '2026-10-01', used: 覆钵、方台、叠轮与伞盖层次, model_input: true}
+  - {url: 'https://www.metmuseum.org/art/collection/search/39421', download_file: met_stupa_13c.jpg, download_sha256: d62471cf811a32e2f58076a7cb597b1e7c2af28e9091acef99a41fafcf70fe26, accessed: '2026-10-01', used: 西藏13世纪塔的构件顺序, model_input: true}
+  - {url: 'https://www.loc.gov/item/2021670618/', download_file: loc_2021670618.jpg, download_sha256: 80d7d2fc4cd06a3537650a674d8adee27312a07641aa1ba2bbb581a2533bbedd, accessed: '2026-10-01', used: 约1900年 Bar Chorten 覆钵门轮廓, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 源文件mtime；非工具披露服务端时间
+  size: 520x554
+  sha256: a955e746ed39f1d848d8ee94c92036b115143520d09334e660b942b46cf57758
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_stupa
+    footprint: [7, 7]
+    anchor: [366.0155, 388.093]
+    era: tubo
+  footprint_m: [7, 7]
+  anchor_px: [366.0155, 388.093]
+  entrance: {edge: S, offset_cells: 3}
+  view: {count: 1, allowRotation: false}
+  source_sha256: 8243bd6cb475e278c790b072011918d465621cb91d8cd936ed2dc525e9dd69b0
+  processing:
+    source_archive: sources/bld_kit_tubo_stupa.png
+    source_size: [1491, 1055]
+    crop_box: [33, 33, 1441, 1017]
+    uniform_scale: 0.49612403100775193
+    resized_size: [699, 488]
+    paste_offset: [16, 16, 715, 504]
+    steps: [crop alpha>0 bounding box, uniform LANCZOS resize with rounding, 'transparent padding only; no alpha threshold, warp, repaint or flip']
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [448, 224]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  geometry_qa:
+    source_corners_px:
+      left: [287, 780]
+      front: [750, 990]
+      right: [1190, 786]
+    source_anchor_px: [738.5, 783.0]
+    source_axis_slopes: [0.4535637149028078, -0.4636363636363636]
+    axis_tolerance: 0.03
+    axis_pass: false
+    expected_width_depth_ratio: 1.0
+    source_width_depth_ratio: 1.0522727272727272
+    ratio_relative_error: 0.05227272727272725
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 4
+    precision_note: 人工量取薄底面前侧三角点；后角按平行边推算；锚点为左右对角中点。未声称3D实测或严格正交批准。
+  pixel_qa:
+    mode: RGBA
+    size: [731, 520]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 300464
+    alpha_nonzero_bbox: [48, 16, 714, 503]
+    transparent_margins_px: [48, 16, 17, 17]
+    border_alpha_max: 0
+  notes: '历史图片已实际输入；方台、覆钵、叠轮与伞盖层次，排除文字和具名复刻。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  alternatives:
+  - path: /Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-fe27a524-8825-486d-ad7a-009cb51ede41.png
+    prompt: 'Use case: precise-object-edit. First reference image is the EDIT TARGET: preserve exactly one white Tibetan chorten architecture sprite, stepped square stone base, bell dome, red trim, slender gold ringed spire, crescent finial, plain small colored pennants and pile of uninscribed stones. Second reference image is CAMERA GUIDE ONLY, never copy the guardhouse. Re-render the same stupa slightly more top-down, correct ground rectangle into a true 2:1 diamond whose front edges are BOTH at absolute screen slope0.5 and equal length. Current first-image ground slopes approximately0.46 are too shallow. Orthographic yaw45 pitch30, no perspective. Square7m by7m ground. Example layout in normalized canvas: left ground corner(0.20,0.75), front(0.50,0.90), right(0.80,0.75), inferred back(0.50,0.60); all content above the base fully visible. Do not render point labels or grid. Preserve material realism, full finial, restrained texture, illumination upper left with tiny contact shadow lower right. Preserve true RGBA transparency and opaque solid white stone; no glow, white background, checkerboard. Single image, no people, no readable marks or text, no modern details, no surrounding scenery. Preserve architectural stair base but never add display plinth.'
+    references: [/Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-d4798e75-e539-41f8-8170-ad252c60146e.png, /Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-217a38fa-ea7e-4e5f-b512-efc1a608598e.png]
+    rejection: 第二候选地面更陡，人工目测双轴约+0.61/-0.61，比首候选更偏离0.5；保留首候选并如实标几何未通过
+    archive: sources/bld_kit_tubo_stupa_candidate02.png
+    sha256: 9e73cbd5227f04043902c3f75d20f23a34b005cfbc71307d853790b7c91890e4
+    created: '2026-09-30T22:18:51.832179+00:00'
+  source_record: sources/bld_kit_tubo_stupa.json
+  source_copy: sources/historical-rebuild/bld_kit_tubo_stupa__raw.png
+- id: bld_kit_tubo_temple_hall
+  subject: 吐蕃初建佛殿：梯形厚墙主龛与绕行廊（原创概化；具体复原待考）
+  prompt: 'Use the built-in image generation tool exactly once. Create one final game asset image using all three attached historical reference images only for architectural form, proportion, masonry and timber details, without copying any whole composition. Subject: a generic 7th-century Tibetan imperial-period temple hall inspired by the early Katsel/Jokhang reconstruction: one compact trapezoidal thick battered-wall main sanctum about 6-7m tall, encircled by a low circumambulatory gallery, timber columns and beams, flat rammed-earth roof, deep small timber-lattice openings, rubble-stone base, patched off-white limewash and sparse dark ochre timber. Absolutely no later gilded copper roof, no pagoda, no Chinese tiled eaves, no modern restoration. Render as exactly one isolated realistic historical city-map sprite, strict orthographic 2:1 dimetric view (yaw 45 degrees, pitch 30 degrees), no perspective convergence, 14:11 footprint, south/front toward lower-left, clear thin ground-contact diamond, upper-left warm neutral key light, tiny lower-right contact shadow, crisp weathered material detail. True transparent RGBA background with at least 8 percent margin. No landscape, sky, people, animals, text, symbols, prayer writing, signs, watermark, grid, glow, fog, thick display base or cropping. Return only the generated image result.'
+  negative: 人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。
+  references:
+  - {url: 'https://rubinmuseum.org/projecthimalayanart/essays/jokhang-temple-lhasa/', download_file: rubin_katsel_section_diagram.jpg, download_sha256: 766b9079abf122c9b373d2b58a33ed77701b7796352a2f7c9d8ce922520dd930, accessed: '2026-10-01', used: 7世纪主龛剖面、绕行廊与厚墙, model_input: true}
+  - {url: 'https://rubinmuseum.org/projecthimalayanart/essays/jokhang-temple-lhasa/', download_file: rubin_katsel_tower_diagram.jpg, download_sha256: d5db68df5d852cb9840b5b11641f32f87bc848f0a2942ae922df349946f3af7c, accessed: '2026-10-01', used: Katsel 塔形主龛与木柱梁平顶, model_input: true}
+  - {url: 'https://rubinmuseum.org/projecthimalayanart/essays/yumbu-lagang-castle/', download_file: rubin_yumbu_castle.jpg, download_sha256: 349e649c32e6f7c62b5dee5f1c76a92666b8958ce6bb82f91ed2cab0a73a9c12, accessed: '2026-10-01', used: 收分白墙、垂直主楼与厚墙比例, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: sources/historical-rebuild/bld_kit_tubo_temple_hall__raw.png
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  file: bld_kit_tubo_temple_hall.png
+  category: building-map
+  style: default
+  size: 843x630
+  sha256: c000ad7cbf7534fd219ff5a63ea625162917c5bf1a37ac6224654cf88758caa7
+  notes: '历史图片已实际输入；梯形厚墙主龛、绕行廊、木柱梁平顶，无后世大面积金铜顶。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  building:
+    type: bld_kit_tubo_temple_hall
+    footprint: [14, 11]
+    anchor: [499.2493, 355.3634]
+    era: tubo
+  footprint_m: [14, 11]
+  entrance: {edge: S, offset_cells: 7.0}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [800, 400]
+    ground_width_px: 800
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  meta: meta/bld_kit_tubo_temple_hall.yaml
+  anchor_px: [499.2493, 355.3634]
+  source_copy: sources/historical-rebuild/bld_kit_tubo_temple_hall__raw.png
+  source_sha256: 28ff4e36ef509efb83e061c36b3e5434d12984f032136ac8cb17c81108aafa8f
+  candidate_count: 1
+  geometry_qa:
+    source_corners_px:
+      left: [116, 596]
+      front: [861, 975]
+      right: [1493, 651]
+    source_axis_slopes: [0.508724832214765, -0.5126582278481012]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.1787974683544304
+    expected_width_depth_ratio: 1.2727272727272727
+    ratio_relative_error: 0.0738019891500904
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+  metadata: meta/bld_kit_tubo_temple_hall.yaml
+- id: bld_kit_tubo_warehouse
+  suffix: warehouse
+  subject: 藏地平顶石砌仓屋（原创扩展）
+  footprint: [9, 7]
+  source_path: sources/historical-rebuild/bld_kit_tubo_warehouse__raw.png
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real visual references for form and material without copying a whole composition. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_warehouse: a plain low single-storey storeroom, footprint 9 by 7, thick battered rubble-stone and earth walls with irregular patched limewash and large exposed gray-brown masonry areas, flat compacted-earth roof visibly carried by short timber beam ends, modest rough parapet, broad closed double loading doors beneath a heavy wood lintel and only two tiny high deep ventilation windows. A few unmarked bound sacks may sit under the eave within footprint. No continuous red band, square cap blocks, ornament, second storey or Chinese roof. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground-contact diamond, upper-left light, short shadow, true transparent RGBA with 8 percent margin. No people, animals, writing, signs, modern objects, scenery, watermark, glow, fog, thick base or cropping. Return only image.'
+  candidate_count: 1
+  source_corners_px:
+    left: [111, 631]
+    front: [864, 975]
+    right: [1439, 716]
+  reference_path: /Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-217a38fa-ea7e-4e5f-b512-efc1a608598e.png
+  alternatives:
+  - path: /Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-d73cddf6-86c5-41e2-b454-78dcc295433e.png
+    prompt: 'Use case: precise-object-edit. First reference is the EDIT TARGET warehouse: keep the same one-storey Tibetan whitewashed stone storeroom with flat earthen roof, parapet, dark wood double doors, small high dark windows, tiny sacks and barrel at door side. Second reference is ONLY a camera-guide guardhouse; do not add its second floor. Correct only the target camera from the current too-shallow ground slopes about0.45 to true2:1 dimetric slopes+0.5/-0.5, yaw45 pitch30, parallel opposite edges and upright walls. Rectangle9m east-west by7m north-south, ground edge length ratio9:7. Ground vertices may approximately be LEFT(0.14,0.58), FRONT(0.545,0.7825), RIGHT(0.86,0.625), BACK(0.455,0.4225); no labels or grid. Render a complete isolated map sprite with full building and thin natural contact footprint, no raised display base. Realistic neutral earth stone colors, no shiny toy material. Upper-left key light, short lower-right contact shadow. Genuine transparent RGBA, opaque solid architecture and no glow or halo. Generous transparent padding; no cropping, no white backdrop, text, humans, animals, scenery or modern objects.'
+    references: [/Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-4d05e096-7962-41a0-ad1f-1fed8a716a77.png, /Users/bytedance/.codex/generated_images/01a0f45a-5e4e-7620-af72-dfb6d7d055af/exec-217a38fa-ea7e-4e5f-b512-efc1a608598e.png]
+    rejection: 第二候选视角仍约±0.46，宽深比约1.50更偏离9:7；选首候选，保留未通过几何标记
+    archive: sources/bld_kit_tubo_warehouse_candidate02.png
+    sha256: ed80e73d3110a1c56053718a2007c23701380bce0a9336f07f14f92f98f7e255
+    created: '2026-09-30T22:19:58.349509+00:00'
+  file: bld_kit_tubo_warehouse.png
+  category: building-map
+  style: default
+  negative: 人物、动物、文字、现代物、天空、景观、厚展示地台、假透明、透视汇聚、光晕
+  references:
+  - {url: 'https://www.loc.gov/item/2021670610/', download_file: loc_2021670610.jpg, download_sha256: baacfd89d15312e40bc92ac358ef618b9ca1b725b604bbb0edfdcd17373df9eb, accessed: '2026-10-01', used: 约1900年泽当低矮土石聚落尺度, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.1.1photo.jpg, download_sha256: a5b1d8158870799c33105533ad197b15b2d795cea75b276918fe48b0ed52a7a2, accessed: '2026-10-01', used: 传统收分墙、毛石砌层与白灰修补, model_input: true}
+  - {url: 'https://commons.wikimedia.org/wiki/File:Trimon%27s_house.jpg', download_file: commons_trimon_house.jpg, download_sha256: 67c8f7be41901d1a9143345e858097d432266eade9d73f106fac04fe6819c4b2, accessed: '2026-10-01', used: 厚墙、深窗与朴素平顶, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 源文件mtime；非工具披露服务端时间
+  size: 627x414
+  sha256: 9ade4718dedaa13f0755c92f167558acbf6d77d4f8dc201ae3e9b3ee29250135
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_warehouse
+    footprint: [9, 7]
+    anchor: [314.7952, 263.3253]
+    era: tubo
+  footprint_m: [9, 7]
+  anchor_px: [314.7952, 263.3253]
+  entrance: {edge: S, offset_cells: 4}
+  view: {count: 1, allowRotation: false}
+  source_sha256: 836ffecdb3550d76465884e77edd93bb580a9989c6e8658525af7c09d80fc88b
+  processing:
+    source_archive: sources/bld_kit_tubo_warehouse.png
+    source_size: [1536, 1024]
+    crop_box: [0, 32, 1527, 1024]
+    uniform_scale: 0.3855421686746988
+    resized_size: [589, 382]
+    paste_offset: [16, 16, 605, 398]
+    steps: [crop alpha>0 bounding box, uniform LANCZOS resize with rounding, 'transparent padding only; no alpha threshold, warp, repaint or flip']
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [512, 256]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  geometry_qa:
+    source_corners_px:
+      left: [111, 631]
+      front: [864, 975]
+      right: [1439, 716]
+    source_anchor_px: [775.0, 673.5]
+    source_axis_slopes: [0.45683930942895085, -0.4504347826086956]
+    axis_tolerance: 0.03
+    axis_pass: false
+    expected_width_depth_ratio: 1.2857142857142858
+    source_width_depth_ratio: 1.3095652173913044
+    ratio_relative_error: 0.018550724637681038
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 4
+    precision_note: 人工量取薄底面前侧三角点；后角按平行边推算；锚点为左右对角中点。未声称3D实测或严格正交批准。
+  pixel_qa:
+    mode: RGBA
+    size: [621, 414]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 150320
+    alpha_nonzero_bbox: [57, 16, 604, 385]
+    transparent_margins_px: [57, 16, 17, 29]
+    border_alpha_max: 0
+  notes: '历史图片已实际输入；低矮厚墙、少窗深洞、粗木门、毛石基脚和平压土顶。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  source_record: sources/bld_kit_tubo_warehouse.json
+  source_copy: sources/historical-rebuild/bld_kit_tubo_warehouse__raw.png
+- id: bld_kit_tubo_wharf
+  file: bld_kit_tubo_wharf.png
+  category: building-map
+  style: default
+  subject: 藏地跨年代地域素材：河岸装卸小石埠（原创扩展；具体城市年代适用待考）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical bridge images as real visual references for stone abutments, masonry and river-edge scale, without copying a whole composition and without reproducing later iron trusses. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_wharf: an original same-function small river landing, footprint 8 by 4, a low battered rubble-stone embankment and two short stepped stone landings descending at the front edge, a tiny flat-roofed timber-and-stone shelter at one end, plain timber mooring posts and no boat. Construction is coarse dry-laid gray-brown stone, patched earth mortar and dark timber; no modern quay hardware. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear footprint, upper-left light, short contact shadow, true transparent RGBA with 8 percent margin. No water or landscape background, people, animals, text, signs, flags, iron truss, concrete, watermark, glow, fog, thick display base or cropping. Return only image.'
+  negative: 无文字/现代物/人物/景观背景/厚地台；不拉伸、旋转、重绘或抠白底
+  references:
+  - {url: 'https://www.loc.gov/item/2021670619/', download_file: loc_2021670619.jpg, download_sha256: ad57bee7800cc9bcae97676f7d33cd67b48bbaebad239ffd45691e9a4e6654aa, accessed: '2026-10-01', used: 约1900年玉拓桥石桥台与桥屋关系, model_input: true}
+  - {url: 'https://web.prm.ox.ac.uk/tibet/photo_BMH.F.79.1.html', download_file: prm_nyamchu_bridge_1928.jpg, download_sha256: fb1b6bf3debb8214bb8093a49312711e4c513f321c99eb9383e93b37a067cb21, accessed: '2026-10-01', used: 1928年年楚河低跨桥与粗石岸坎, model_input: true}
+  - {url: 'https://web.prm.ox.ac.uk/tibet/photo_2001.35.76.1.html', download_file: prm_iron_bridge_1936.jpg, download_sha256: 04b41aad91bf2efe025f0a14b92be9984d0a76e166d263dc178d3fd61817ee7b, accessed: '2026-10-01', used: 1936年铁桥作为材料反例，排除现代铁构, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  created_time_basis: 工具PNG本地mtime，非服务端生成时间
+  source_path: sources/historical-rebuild/bld_kit_tubo_wharf__raw.png
+  source_copy: sources/historical-rebuild/bld_kit_tubo_wharf__raw.png
+  source_sha256: 12807ec0664f5558d31e380458e8b7243cf2148546b227a5d9eb9c0af2b4508a
+  size: 600x256
+  sha256: 12aca7f86b8e4730727ab4db5d2263ff03b745929264d1314e686f0db79afa79
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_tubo_wharf
+    footprint: [8, 4]
+    anchor: [209.2316, 135.7965]
+    era: tubo
+  footprint_m: [8, 4]
+  anchor_px: [209.2316, 135.7965]
+  footprint_basis: design/22 §3.2 wharf；地域转换建议值
+  entrance: {edge: S, offset_cells: 4}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_width_px: 384
+    ground_bbox_px: [384, 192]
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+    allowRotation: false
+  geometry_qa:
+    source_corners_px:
+      left: [65, 463]
+      front: [1035, 919]
+      right: [1495, 653]
+    final_corners_px:
+      left: [17.3419, 110.2563]
+      front: [277.6678, 232.8492]
+      right: [401.1214, 161.3367]
+    source_axis_slopes: [0.470103, -0.578261]
+    axis_tolerance: 0.03
+    axis_pass: false
+    source_width_depth_ratio: 2.108696
+    expected_width_depth_ratio: 2.0
+    ratio_relative_error: 0.054348
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 6
+    anchor_method: 人工可见墙脚L/F/R，后角按平行边推算；底面中心=(L+R)/2。非alpha底中点。
+  processing:
+    source_size: [1536, 1024]
+    crop_box: [60, 131, 1502, 927]
+    crop_threshold: 1
+    discarded_alpha1_pixels: 812
+    uniform_scale_requested: 0.26853146853146853
+    resized_size: [387, 214]
+    rounded_effective_scale: [0.268377253814147, 0.26884422110552764]
+    paste_offset: [16, 21, 403, 235]
+    steps: [alpha>1 determines bounding rectangle only; preserved all pixels inside rectangle, uniform LANCZOS resize with integer pixel rounding, paste without alpha mask onto transparent canvas; no repaint or warp]
+  pixel_qa:
+    mode: RGBA
+    size: [419, 256]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 64003
+    alpha_near_opaque_pixels: 40828
+    alpha_nonzero_bbox: [16, 21, 403, 235]
+    transparent_margins_px: [16, 21, 16, 21]
+  candidate_count: 1
+  previous_attempts:
+  - {candidate: 1, prompt: 'Use case: historical-scene. Exactly ONE isolated unnamed Tibetan town building sprite for tianshu default kit. True RGBA transparent background with fully solid opaque building. Song reference is ONLY for restrained realistic weathered stone/wood materials and detail density, never for roof type. Tibetan vernacular: slightly battered whitewashed stone walls, flat earthen roof and low parapets, black trapezoidal door/window borders, muted red lintels and dark matte timber. NO pitched Chinese tile roofs, no tourist facades, no glass, no gold on ordinary houses. Orthographic yaw45 elevation30, STRICT2:1 dimetric ground slopes+0.5/-0.5, NO perspective. Original entrance on screen lower-left. Base is clear wall-foot parallelogram with left/front/right corners visible, NO plinth, NO terrain rectangle, NO outside objects. Left wall plane illuminated by upper-left light, right wall plane darker, very short lower-right contact shadow. Entire shape plus roof inside frame with at least10% transparent margins. No ambient halo or glow, no floor, sky, scenery, characters, symbols, readable text, checkerboard, watermark, toy/plastic look. Asset bld_kit_tubo_wharf. Footprint8m east-west by4m north-south. low small riverside landing in Tibetan region: a simple thin rough flat-stone quay eight metres along shore by four metres deep, two shallow stone steps at near edge, a small pile of unmarked goods and one weathered mooring post fully inside the footprint. NO water, NO boat, NO building, NO thick raised stone slab, NO backdrop. Thin contact layer. Long edge on left-to-front of screen and short edge front-to-right, exact2:1 length ratio.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-59629c1a-74b9-4722-b737-5ca7463648dc.png, source_archive: sources/bld_kit_tubo_wharf__candidate01.png, sha256: 0534417c4f2d10eccbed729babfacb01dd8b7c3408ab413a5c5fb162edd4580a, selected: true}
+  - {candidate: 2, prompt: 'Use case: precise-object-edit. Correct ONLY geometry of this Tibetan wharf. Preserve materials and subject. Ground rectangle width8m depth4m. Reproject fully as orthographic45yaw30elevation 2:1 map sprite. Ground edges exactly+0.5/-0.5 slopes. LEFT[180,500], FRONT[948,884], RIGHT[1332,692], BACK[564,308] on1536x1024 canvas are ground FOOT points, not roof. Long facade edge on left-front has ratio2 to right edge; align every wall and perimeter with these axes, no perspective. Make quay block thin and broaden the short depth edge, current quay is too narrow/long. No water or environment. Leave generous clear alpha margin all sides. True transparent RGBA, solid near-opaque object, upper-left light short lower-right contact shade, NO outside glow/floor, no text, no people, no grid, no labels.', source_path: /Users/bytedance/.codex/generated_images/01a0f459-22cd-7db2-920f-851bdfee8db2/exec-0829e883-c461-4afe-8943-eb933a4660e8.png, source_archive: sources/bld_kit_tubo_wharf__candidate02.png, sha256: fbb0a59937a7ff2731fcaf7ab00e6b54d392c8bfa1cbc919f43b1a5581c8ea7b, selected: false}
+  release_ready: false
+  notes: '历史图片已实际输入；年楚河低跨岸坎、粗石码头与短木装卸面，原创同功能概化。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  generation_round: repair_01
+  previous_candidate_count: 2
+  attempts:
+  - {candidate: 1, prompt: 'Use case: precise-object-edit. Correct the proportions of this ONE Tibetan river landing map sprite while preserving its stone materials, detail density, few goods and one mooring post. Original rectangle is much too long/narrow. Replace with BROADER and SHORTER 8m-by4m platform, exact frontage/depth=2.0. Exact 2:1 dimetric orthographic projection, yaw45 elevation30; both ground edge slopes+0.5/-0.5. On1400x1050 composition put LEFT foot(160,500), FRONT foot(880,860), RIGHT foot(1240,680), BACK foot(520,320). Therefore long edge horizontal span720 and short edge horizontal span360, exactly2:1. All perimeter edges strictly parallel, no perspective. Broad flat rough stone slabs, thin masonry edge only two stone courses, small recessed shallow step in the near edge INSIDE the rectangular footprint. Preserve unlabelled sacks/basket/crate at far corner and a weathered short mooring post near opposite corner, all within footprint. No water, boats, walls or extra land. Fully visible four plan corners, generous alpha margin. Same muted weathered stone and wood realistic painting. Light upper-left, short lower-right contact shade. TRUE RGBA transparent background, opaque subject, no checkerboard, no glow, text, watermark, people or modern objects.', references: [{archive: sources/bld_kit_tubo_wharf__pre_repair.png, file: assets/default/building-map/tubo/bld_kit_tubo_wharf.png, role: 本轮几何/材质参考, sha256: 6849753a31eda455e43ca4f0014041ec248621608cb520a47ce9676eb2e338a8, status: candidate}], selected: false, sha256: 281672207d89e61d3b9f8f7992eed76b45b39358dc0a6dcee6a0f1626d48d0f5, source_archive: sources/bld_kit_tubo_wharf__repair01_candidate01.png, source_path: /Users/bytedance/.codex/generated_images/01a0f482-64bd-7022-b15e-d81207edeae8/exec-81d37090-dd2b-4dcc-9254-bb04b1636298.png}
+  - {candidate: 2, prompt: 'Use case: historical-scene. One compact broad stone river landing for a Tibetan old-town strategy game sprite, true transparent RGBA. The whole platform is a rectangular plane of EIGHT by FOUR equally sized roughly square stone slabs: eight slabs along its long edge and four slabs along its short edge. Thus its true plan aspect ratio is exactly2:1, NOT a narrow strip. Orthographic dimetric camera45degrees yaw30degrees elevation, screen ground vectors slope+0.5 and-0.5. Front left edge from LEFT(160,420) to FRONT(960,820), right edge from FRONT(960,820) to RIGHT(1360,620), rear corner(560,220) within1536x1024; keep the complete silhouette inside clear margins. Frontage horizontal span800, depth span400. Low platform only two thin courses of irregular masonry, rough worn flat paving stones, a shallow recessed step at near edge, one short weathered wooden mooring post near right end, two small tied unlabelled sacks and a small timber crate near rear corner. Goods do not obscure perimeter corners. Restrained realistic antique stone/wood rendering, detailed rough textures, muted cream tan and gray weathered materials. Upper-left sunlight, right-side short contact shadow. No water, no boat, no floor or terrain outside rectangular platform, no background, no vegetation, no buildings, no people, no text or markings. Opaque alpha255 object, alpha0 background, no semitransparent ambient halo. Platform must look BROAD and short, with precisely twice as many slabs along long side as short side.', references: [], selected: true, sha256: 25a42b1ff7da4f548c44b7a668b3fbd993d7657d519294a83721014b45e6f5dd, source_archive: sources/bld_kit_tubo_wharf__repair01_candidate02.png, source_path: /Users/bytedance/.codex/generated_images/01a0f482-64bd-7022-b15e-d81207edeae8/exec-a8d47ed3-d27d-4c87-8e0d-85cf041eb03c.png}
+- id: bld_kit_tubo_yamen
+  subject: 藏地官署（原创地域同功能替换）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real visual references for axial plan, gatehouse, long wings, wall masonry and courtyard proportion without copying a named compound. Create one isolated realistic historical Tibetan city-map sprite for bld_kit_tubo_yamen: a generic regional administrative compound, footprint 16 by 12, low axial gatehouse, empty forecourt, long one-storey side offices and a restrained two-storey rear hall. Thick slightly battered rubble-and-earth walls, patched off-white limewash, exposed stone base, deep dense timber-lattice windows, heavy plain timber lintels, short beam eaves and flat compacted-earth roofs. Administrative function is original adaptation. Sparse dark ochre wood; no continuous red cornice, square decorative roof caps, imperial Chinese tiled roofs, plaques or flags. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, front lower-left, clear thin ground-contact diamond, upper-left light, short shadow, true transparent RGBA with 8 percent margin. No people, animals, text, pseudo-writing, signs, modern objects, scenery, watermark, glow, fog, thick base or cropping. Return only image.'
+  negative: 人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。
+  references:
+  - {url: 'https://www.loc.gov/item/2021670596/', download_file: loc_2021670596.jpg, download_sha256: 655ef7fbecbbfbb57d5eddf6b3b3d64c7644399dde9cdb8b15e27d9f8664cccd, accessed: '2026-10-01', used: 围墙尺度、收分墙与粗石基脚, model_input: true}
+  - {url: 'https://www.asianart.com/lhasa_restoration/report98/ch_05.htm', download_file: asianart_5.1.3plan.jpg, download_sha256: bd8a7a10b3bb4f1670631fe9a423808639f270bb4e4a5ccc3f49f1063705c70a, accessed: '2026-10-01', used: 门院、内院与房翼轴线, model_input: true}
+  - {url: 'https://www.loc.gov/item/2021670617/', download_file: loc_2021670617.jpg, download_sha256: 83fb3003678b5fc8ad7d2dfe70217c3e259a89c21258fb16a973f00f360cbb42, accessed: '2026-10-01', used: 约1900年宫苑门院、乔木尺度与石木层级, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: sources/historical-rebuild/bld_kit_tubo_yamen__raw.png
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  file: bld_kit_tubo_yamen.png
+  category: building-map
+  style: default
+  size: 1000x618
+  sha256: fb9e735a2e45c410190ac932a5ef396513be2c65471b38d61a9b61ddb87d7e9d
+  notes: '历史图片已实际输入；围墙门院、轴线内院、收分官署房翼、木廊与平土顶。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  building:
+    type: bld_kit_tubo_yamen
+    footprint: [16, 12]
+    anchor: [483.0, 360.6652]
+    era: tubo
+  footprint_m: [16, 12]
+  entrance: {edge: S, offset_cells: 8.0}
+  projection_contract:
+    tile_px: [64, 32]
+    ground_bbox_px: [896, 448]
+    ground_width_px: 896
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  meta: meta/bld_kit_tubo_yamen.yaml
+  anchor_px: [483.0, 360.6652]
+  source_copy: sources/historical-rebuild/bld_kit_tubo_yamen__raw.png
+  source_sha256: 9e4839a32f6265682af787e885ed82bd42184ffab58dd3a8d434ca7360e2c246
+  candidate_count: 1
+  geometry_qa:
+    source_corners_px:
+      left: [70, 566]
+      front: [861, 958]
+      right: [1510, 636]
+    source_axis_slopes: [0.49557522123893805, -0.49614791987673346]
+    axis_tolerance: 0.03
+    axis_pass: true
+    source_width_depth_ratio: 1.2187981510015409
+    expected_width_depth_ratio: 1.3333333333333333
+    ratio_relative_error: 0.08590138674884429
+    ratio_tolerance_suggestion: 0.1
+    ratio_pass: true
+    measurement_uncertainty_source_px: 3
+    precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+  metadata: meta/bld_kit_tubo_yamen.yaml

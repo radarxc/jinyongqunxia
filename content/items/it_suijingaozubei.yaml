@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_suijingaozubei
+name: 隋式金高足杯
+kind: collectible
+sub: bronze
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H12](#src-h12)；准入：白马702—703；旧藏固定交割
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/suijingaozubei
+text:
+  desc: 外观：淡金色高足杯，深腹微敞口。 待运行时投影：eraRange=[tang]; giftTo={preferred:[noble,collector]}; giftValue=3; provenance=history。
+  lore: 隋代金高足杯有公开文物研究可查，形制适合武周的前朝旧藏支线。宜赠重异域器用的权贵或商贾；游戏器主和流转为（原创扩展），不把贵金属礼器当成补给酒杯。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

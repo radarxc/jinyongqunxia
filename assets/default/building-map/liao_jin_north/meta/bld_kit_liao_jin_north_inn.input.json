@@ -1,0 +1,27 @@
+{
+  "suffix": "inn",
+  "title": "客栈",
+  "fp": [
+    12,
+    9
+  ],
+  "path": "exec-693d20c4-9475-40ac-ab64-1b00c7221c1d",
+  "prompt": "Create a NEW northern Liao-Jin version of the reference Song game map building, retaining its camera, complete very thin diamond footprint, true clean transparency, entrance direction and detailed realistic ancient architectural rendering. This is a CITY MAP SPRITE, not a perspective architectural showcase. Orthographic yaw45 elevation30, 2:1 dimetric projection, ground axes +0.5 and -0.5, upright verticals, parallel lines, no perspective. Entrance screen LOWER LEFT. Both ground axes clearly readable; complete flat rectangular ground perimeter with LEFT, FRONT and RIGHT corners. Entire sprite occupies central 70 percent of canvas. Main light screen UPPER LEFT, short soft contact shadow lower right. Background alpha=0, NO glow, halo or gradient. No thick plinth, text, people, sky, landscape, neighboring structures, symbols, Ming/Qing palace ornaments or modern features. One self-contained building. Historic regional inspiration, original game interpretation rather than monument reconstruction. Subject: one Liao-Jin northern roadside town inn, rectangular footprint12m east-west by9m north-south. Connected two-story main lodging block and low side wing surrounding small open compacted-earth court. Broad gray-tiled gable roofs, restrained gently curved eaves, warm buff plaster, substantial dark timber, simple plank shutters and wood balcony. Clear entrance lower-left with simple low wood gateway; water jars and two covered travel bundles contained under porch, no animals or carts. Northern Yanjing/Datong Han timber construction in Khitan/Jurchen region, original unnamed game inn. Avoid luxurious palace composition. Show front ground edge4/3 of side. Ground edge angles26.565 degrees, slope0.5, flatter than classic isometric30degrees. Keep thin complete footprint perimeter.",
+  "ref": "bld_kit_song_southern_inn",
+  "corners": {
+    "left": [
+      72,
+      635
+    ],
+    "front": [
+      824,
+      1008
+    ],
+    "right": [
+      1417,
+      714
+    ]
+  },
+  "count": 1,
+  "note": "两层客房环院、左下入口、灰瓦木构；与宋客栈参考保持同级细节密度，局部沿用盆栽、素灯和石铺庭院，北方差异主要在温暖土灰墙材色，不宣称全面地域复原。"
+}

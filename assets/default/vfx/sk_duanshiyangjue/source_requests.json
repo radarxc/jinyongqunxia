@@ -1,0 +1,28 @@
+{
+  "skill": "sk_duanshiyangjue",
+  "created": "2026-10-01",
+  "generation_note": "image_gen 在生成前因 app-server Operation not permitted 失败；三套候选由 make_sources.py 以 Pillow 降级生成，未伪称模型生成。",
+  "source_basis": "图鉴 §1.1：原著有大理段氏一阳指传承；段氏一阳诀、五招和视觉均为原创扩展；段延庆具体行功层次待考。",
+  "color_basis": "nature=harmony，依 assets/default/STYLE.md 取淡金；未找到原著固定可见颜色。",
+  "common_brief": "纯白背景；2x2 四帧，单格 768x512；调和淡金水墨、虚实透明；同一宽根向右；无人物、手、兵器、文字、符号或新增判定。",
+  "requests": [
+    {
+      "asset_id": "vfx_sk_duanshiyangjue__family_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "三缕调和气息交织并穿过两层开放护脉弧，表现养气、护脉和回息共通语汇。"
+    },
+    {
+      "asset_id": "vfx_mv_duanshiyangjue_yiyang__effect_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "绝招独有：三层不闭合淡金气轮向一束归拢，表现一阳归元；不画文字或实体太阳。"
+    },
+    {
+      "asset_id": "vfx_mv_duanshiyangjue_zhouliu__effect_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "绝招独有：上下双路长弧与近根周天环相合，表现任督周流与护体；不画经络图。"
+    }
+  ]
+}

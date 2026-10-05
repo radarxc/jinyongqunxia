@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_renshen
+name: 普通人参
+kind: material
+sub: herb
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 中药材通名
+price: auto
+flags: []
+assets:
+  icon: item/renshen
+text:
+  desc: 外观：一支浅黄人参，根须完整。
+  lore: 辽东、关外林下所见的常用参材，秋八至十月地上部渐枯时进入本作采集窗。根须完整者由药铺阴干收存，可作回气主材；直接使用仅给温和回复。（玩法为原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang3
+    materialGrade: 3
+    rare: false
+    herbFamily: renShen
+    ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 7

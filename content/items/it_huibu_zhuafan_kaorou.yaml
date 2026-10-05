@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_huibu_zhuafan_kaorou
+name: 回部抓饭烤肉
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《书剑恩仇录》·回部营地分食抓饭、烤肉、蜜瓜、葡萄干
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_shichen,bf_yuhan:2battle
+assets:
+  icon: item/huibu_zhuafan_kaorou
+text:
+  desc: 外观：金黄抓饭与烤肉盛铜大盘，蜜瓜、葡萄干分置小碟。 待运行时投影：party=4。
+  lore: 《书剑恩仇录》回部营地分食抓饭、烤肉、蜜瓜与葡萄干，本作按营地四季宴席投放。本件以铜盘和小碟组成四人席，应趁热同食；效果为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 20

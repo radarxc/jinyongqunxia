@@ -1,0 +1,17 @@
+{
+  "name": "yamen",
+  "attempt": 1,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-fc9ca441-aabf-423e-89f4-72afccf18a96.png",
+  "prompt": "Use case: historical-scene. Produce ONE finished realistic Southern Song Lin'an magistrate yamen compound game sprite, genuine transparent RGBA background. Reference image only supplies warm grey tiles, weathered brown wood, plaster and stone texture, architectural character; REDESIGN its geometry. CRITICAL technical drawing projection: exact 2:1 orthographic isometric, camera yaw45 pitch30, parallel edges slope +0.5 / -0.5, never perspective. Ground rectangle 16 units wide by12 deep. On a 1536x1024 canvas, the FOUR ground corners MUST be LEFT(180,550), FRONT(852,886), RIGHT(1356,634), BACK(684,298). Front courtyard wall from LEFT to FRONT is distinctly longer (horizontal672) than adjacent right wall FRONT to RIGHT (horizontal504); both axes equal steepness, ratio1.333. Use those exact visible thin stone footprint corners, all walls/buildings follow those axes. A modest single storey red-brown timber government hall in rear, grey tile roofs, one side office, an open paved courtyard, plain front gate within LEFT-FRONT wall, small drum stand, no writing. Low plaster perimeter walls hug footprint and must leave their two front base edges sharply visible. No protruding foreground steps outside rectangle, no thick pedestal, no massive vertical earth slab, keep ground almost paper-thin. Full roofs complete, minimum10% transparent margin. Upper-left sunlight, short right-down contact shadows. Muted grounded realism consistent with reference, no cartoon, no modern item, no Ming/Qing ornate palace, no people, no text/logo/watermark, no numbers/lines/grid in final art. Geometry more important than copying reference layout.",
+  "reason": "旧图材质参考后两轴仍不对称，未选。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_pre_review2.png",
+      "role": "本轮未获审批候选，投影/材质参考",
+      "sha256": "395ee773487b55dfcd3de06492c0433acb9a5d75b7d80ba8b70f870b02b9b779"
+    }
+  ],
+  "id": "bld_kit_song_southern_yamen",
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try1.png",
+  "source_sha256": "865b3ac5c7a74485c2c24f5802e36d19e717c71c04f5bd87f8c7fa04dadd61e9"
+}

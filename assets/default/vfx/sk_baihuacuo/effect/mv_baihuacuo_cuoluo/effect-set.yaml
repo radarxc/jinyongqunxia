@@ -1,0 +1,66 @@
+kind: EffectSet
+version: 1
+asset_id: vfx_mv_baihuacuo_cuoluo__effect_base01
+size_px:
+- 627
+- 627
+color_space: srgb
+alpha_mode: straight
+style: gold_ink
+direction:
+- 1.0
+- 0.0
+reference_length_px: 507.0
+root_width_px: 105.0
+blend: normal
+source:
+  mode: grid
+  files:
+  - source_01.png
+  rects:
+  - file_index: 0
+    rect_px:
+    - 0
+    - 0
+    - 627
+    - 627
+  - file_index: 0
+    rect_px:
+    - 627
+    - 0
+    - 627
+    - 627
+  - file_index: 0
+    rect_px:
+    - 0
+    - 627
+    - 627
+    - 627
+  - file_index: 0
+    rect_px:
+    - 627
+    - 627
+    - 627
+    - 627
+  keying:
+    method: white_key
+    white_cutoff_8bit: 250
+    opaque_luma: 0.2
+    key_full_8bit: 100
+    epsilon: 0.00392156862745098
+    dewhite: true
+frames:
+- file: frame_000.png
+  anchor_px: &id001
+  - 80.0
+  - 295.0
+  phase: 0.0
+- file: frame_001.png
+  anchor_px: *id001
+  phase: 0.25
+- file: frame_002.png
+  anchor_px: *id001
+  phase: 0.5
+- file: frame_003.png
+  anchor_px: *id001
+  phase: 1.0

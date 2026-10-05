@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_huibutieshan
+name: 回部护身铁扇
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域短兵·回疆；书剑至雪山清代节点可得 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huibutieshan
+text:
+  desc: 外观：闭合折扇长约四十厘米，乌钢外骨、深绿素绢与银色扇钉。 待运行时投影：exoticKind=fan。
+  lore: 回疆商旅把乌钢扇骨制成护身短兵，闭扇可点打腕穴，展扇则遮目换势，素绢破损后容易重裱。银色几何嵌线不指特定家派；器名、流传、机括与定级均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 58
+      qiAffinity: 100

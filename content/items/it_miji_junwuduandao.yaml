@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_junwuduandao
+name: 军伍短刀抄本
+kind: manual
+sub: copy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_junwuduandao
+text:
+  desc: 外观：明代土黄线装册，四眼黑线。
+  lore: 军士将近身短刀的拔取、遮护与收刃抄成八寸小谱，技法和载体属 （原创扩展）。研读须贴合甲衣与队列空间演练，不可只求劈砍；油旧书衣便于在营帐中随手翻查，抄本止于八层。
+extension:
+  type: manual
+  value:
+    skill: sk_junwuduandao
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_junwuduandao
+      readWis: 30
+      maxLayer: 8
+      cultivation: 800

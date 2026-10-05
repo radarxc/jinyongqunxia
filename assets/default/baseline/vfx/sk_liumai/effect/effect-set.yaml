@@ -1,0 +1,47 @@
+kind: EffectSet
+version: 1
+asset_id: vfx_sk_liumai_beam
+size_px: [688, 320]
+color_space: srgb
+alpha_mode: straight
+style: qi_sword
+direction: [1, 0]
+reference_length_px: 606
+root_width_px: 46
+blend: screen
+source:
+  mode: grid
+  files: [source_sheet.png]
+  rects:
+  - file_index: 0
+    rect_px: [16, 39, 688, 320]
+  - file_index: 0
+    rect_px: [718, 39, 688, 320]
+  - file_index: 0
+    rect_px: [16, 388, 688, 320]
+  - file_index: 0
+    rect_px: [718, 388, 688, 320]
+  - file_index: 0
+    rect_px: [16, 734, 688, 320]
+  - file_index: 0
+    rect_px: [718, 734, 688, 320]
+  keying: {method: white_key, white_cutoff_8bit: 250, opaque_luma: 0.2, key_full_8bit: 64, epsilon: 0.00392156862745098, dewhite: true}
+frames:
+- file: frame_000.png
+  anchor_px: [48, 160]
+  phase: 0
+- file: frame_001.png
+  anchor_px: [48, 160]
+  phase: 0.16666666666666666
+- file: frame_002.png
+  anchor_px: [48, 160]
+  phase: 0.25
+- file: frame_003.png
+  anchor_px: [48, 161]
+  phase: 0.3333333333333333
+- file: frame_004.png
+  anchor_px: [48, 160]
+  phase: 0.8333333333333334
+- file: frame_005.png
+  anchor_px: [48, 160]
+  phase: 1

@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_longquanjian
+name: 龙泉剑
+kind: weapon
+sub: sword
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/longquanjian
+text:
+  desc: 外观：修长直身双刃，青灰钢、如意小护手、深青缠柄 （原创扩展）。
+  lore: 借龙泉制剑传统设定的一柄精工直剑，青灰刃口匀净，重心靠近护手，适合连续点刺与卸力。江湖人以“龙泉”称其产地声名，本文这件的装具和流传为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 60
+      qiAffinity: 100

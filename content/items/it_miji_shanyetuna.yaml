@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_shanyetuna
+name: 山野吐纳帛本
+kind: manual
+sub: original
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shanyetuna
+text:
+  desc: 外观：春秋米白帛卷，素木细轴、麻带束缚。
+  lore: 山民把跋涉间调匀呼吸的方法写在小幅帛卷上，心法、原本与传承均属 （原创扩展）。研读宜在缓坡静行时配合步息，不可刻意闭气求久；烟熏旧痕说明它曾长期收在火塘近旁。
+extension:
+  type: manual
+  value:
+    skill: sk_shanyetuna
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_shanyetuna
+      readBre: 30
+      maxLayer: 10
+      cultivation: 1000

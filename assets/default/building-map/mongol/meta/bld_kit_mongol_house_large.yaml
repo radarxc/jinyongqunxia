@@ -1,0 +1,151 @@
+id: bld_kit_mongol_house_large
+status: candidate
+building:
+  type: bld_kit_mongol_house_large
+  footprint:
+  - 10
+  - 8
+  anchor:
+  - 311.1215
+  - 297.4735
+  era: mongol
+anchor_px:
+- 311.1215
+- 297.4735
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】复用design/22 §3.2 bld_kit_song_dali_courtyard的10×8大住宅占地；功能外观替换（原创扩展）
+measured_ground_polygon_px:
+- - 23.1215
+  - 294.3316
+- - 319.2902
+  - 443.8822
+- - 599.1215
+  - 300.6153
+- - 302.9527
+  - 151.0647
+collision_polygon_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
+collision_note: 全占地仅规划阻挡代理；毡帐/院落内可行走区域另需细化，不含阴影。
+entrance:
+  edge: S
+  offset_cells: 4
+entrance_note: 规划边中点代理，非门洞实测（待实测）
+height_m: null
+height_note: 未测量；不能由roof顶点与center直接反推整体高度。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+views:
+- rotation_deg: 0
+  yaw_deg_requested: 45
+  pitch_deg_requested: 30
+  file: bld_kit_mongol_house_large.png
+glb: null
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_target_px:
+  - 576
+  - 288
+  ground_width_px: 576
+  ground_height_measured_px: 292.8175
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  projection_verified: false
+geometry_qa:
+  source_corners_px:
+    left:
+    - 17
+    - 640
+    front:
+    - 724
+    - 997
+    right:
+    - 1392
+    - 655
+    rear_inferred:
+    - 685
+    - 298
+  source_anchor_px:
+  - 704.5
+  - 647.5
+  source_axis_slopes:
+  - 0.504950495049505
+  - -0.5119760479041916
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.0583832335329342
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.15329341317365264
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 5
+  precision_note: 人工读取可见土面边界，约±5px；后角按平行四边形推算，锚点为左右角中点。仅宽度标定，未修正投影残差；不是精确3D测量。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 617
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 212049
+  alpha_partial_pixels: 103050
+  alpha_opaque_pixels: 805
+  alpha_nonzero_bbox:
+  - 21
+  - 48
+  - 600
+  - 462
+  transparent_margins_px:
+  - 21
+  - 48
+  - 17
+  - 50
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_mongol_house_large.png
+  source_sha256: 29f9b665d8609a5a762150bed24a9c5fd5136bd9bac71c4c567dd62b89a40268
+  source_size:
+  - 1402
+  - 1122
+  crop_box:
+  - 0
+  - 9
+  - 1396
+  - 1088
+  uniform_scale_requested: 0.4189090909090909
+  resized_size:
+  - 585
+  - 452
+  rounded_effective_scale:
+  - 0.419054441260745
+  - 0.41890639481000924
+  paste_offset:
+  - 16
+  - 30
+  final_file: bld_kit_mongol_house_large.png
+  steps:
+  - crop alpha>0 bbox
+  - uniform LANCZOS resize, dimensions rounded to nearest pixel
+  - paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold
+selected_candidate: 2
+visual_review: 选第二，前两轴斜率合格；可测地面宽深比接近方形而非10:8。
+release_ready: false
+repair_attempts: [{"candidate": 1, "source_archive": "sources/bld_kit_mongol_house_large__r2_c01.png", "source_corners_px": [[6, 568], [934, 916], [1530, 597]], "source_axis_slopes": [0.375, -0.535234899328859], "axis_pass": false, "source_width_depth_ratio": 1.5570469798657718, "ratio_relative_error": 0.24563758389261747, "ratio_pass": false, "measurement_uncertainty_source_px": 5}, {"candidate": 2, "source_archive": "sources/bld_kit_mongol_house_large__r2_c02.png", "source_corners_px": [[48, 549], [911, 930], [1492, 608]], "source_axis_slopes": [0.44148319814600234, -0.5542168674698795], "axis_pass": false, "source_width_depth_ratio": 1.4853700516351118, "ratio_relative_error": 0.1882960413080894, "ratio_pass": false, "measurement_uncertainty_source_px": 5}]
+repair_result: "第2轮已重出2候选，轴率及占地比例综合未优于旧图；保留旧成品字节，投影仍未修复。"

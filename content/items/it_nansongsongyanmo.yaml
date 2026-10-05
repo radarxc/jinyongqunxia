@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_nansongsongyanmo
+name: 南宋精烟墨
+kind: collectible
+sub: stationery
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/nansongsongyanmo
+text:
+  desc: 外观：乌黑细腻长条墨锭，棱边整齐。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,collector]}; giftValue=4; provenance=expanded。
+  lore: 依据古墨研究设计南宋精制烟墨，以制烟细度和胶料匀净表现稀有品相。宜赠书画文士，固定笔墨任务仅授一锭；工艺细节、名称和获得为（原创扩展），不冒称贡墨真品。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

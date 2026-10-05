@@ -1,0 +1,85 @@
+{
+  "id": "bld_kit_ming_north_courtyard",
+  "subject": "明代北方府城：北方合院（原创扩展）；具体构件断代（待考）。",
+  "footprint": [
+    10,
+    8
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-9dc81fa6-843e-4d1a-a7f2-3c72c32c70b7.png",
+  "prompt": "Render ONE small northern Ming Chinese enclosed residential courtyard directly over this exact quadrilateral template. THREE grey-tile hard-gable single-storey wings, grey brick walls, central plain wood gate, restrained realistic ancient Chinese painted game art. Keep the template footprint pixel-perfect, do not zoom or enlarge: L200,610 F800,910 R1280,670 B680,370, canvas1536x1024. Base left-front edge runs600right300down; front-right runs480right240up. Both slopes ±0.5 EXACT. Build roofs and walls parallel to these edges, true orthographic dimetric2:1. This foundation is10x8m. Thin flagstone base, complete clearly visible outside perimeter corners. No step outside footprint. All roofs with flush masonry gable ends and restrained straight ridges. Soft upper-left illumination. True RGBA transparent background, opaque building. Full margins. NO perspective, text, people, guide lines, labels, modern elements, surrounding glow, scenery or thick plinth. Spatial accuracy takes precedence over extra detail. Keep the architecture low enough to avoid changing the template position.",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "role": "宋基线材质与细节密度参考；不继承年代",
+      "status": "candidate",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef"
+    },
+    {
+      "path": "assets/default/building-map/ming_north/sources/bld_kit_ming_north_biaoju_r2_guide.png",
+      "sha256": "aab871381aa4442233798a076ce4bbe38f8a613e39630b906785e0b8a8c87271",
+      "role": "精确几何导引，仅作image_gen输入；最终图未经仿射纠偏"
+    }
+  ],
+  "created": "2026-09-30T22:10:19.277071+00:00",
+  "created_basis": "生成结果接收后的入库登记时间；服务端生成时刻未公开。",
+  "points": {
+    "L": [
+      119,
+      580.3254
+    ],
+    "F": [
+      847.284,
+      921.1527
+    ],
+    "R": [
+      1423,
+      624.7032
+    ]
+  },
+  "footprint_basis": "【建议值】design/22 §3.3 院落10×8。",
+  "visual_review": "原目标、几何导引及所选原图均逐张view_image；灰砖硬山、灰瓦木窗、左上光、完整轮廓与透明留边。基脚实测+0.46799/-0.51492；比例1.26501，目标1.25000。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selection_reason": "在本轮2候选中选择双轴和宽深整体残差较低者；残差如实保留。",
+  "original_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "510c4b143bd77c8d99d50aa02dfe077ab32359b7c4dfc621b5083b000ceda0bc",
+  "revision": 2,
+  "source_size": [
+    1536,
+    1024
+  ],
+  "created_time_basis": "本轮所选候选接收后登记时间",
+  "revision_history": [
+    {
+      "revision": 1,
+      "source_sha256": "9b789971e1ec4d36235b5d72147d5f8f2de4a36ad04167f392ef6f0d7e6822f7",
+      "final_sha256": "e7c2cf008971b05d8aad30c2c23ec6d4f2ecd3f7160f0c47489befcbb58166ad",
+      "record_sha256": "20558973ffe378151d3227d37e6b63f74d456b41abb029063dac4f22aded9ea5",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82e-74c3-9466-90640f7d6631/exec-8e2cbf99-f7ff-44a4-ac4f-9c6aaee3251f.png",
+      "candidate_count": 2
+    }
+  ],
+  "candidate_count_basis": "仅本轮 revision=2；前轮次数见 revision_history",
+  "repair_record": "sources/bld_kit_ming_north_courtyard_r2_candidates.json",
+  "source_point_semantics": "逐图视检定位基脚左右外缘x，alpha>200下缘取x251..699/951..1249线性拟合；F为两可见直边交点；不含透明阴影。",
+  "measurement_uncertainty_source_px": 3,
+  "measurement_fit_ranges_x": [
+    [
+      251,
+      699
+    ],
+    [
+      951,
+      1249
+    ]
+  ],
+  "measurement_fit_slopes": [
+    0.46798679605472443,
+    -0.5149231218154475
+  ],
+  "final_view_image_reviewed": true,
+  "final_visual_review": "已逐张view_image成品；屋檐、薄基脚完整，透明留边与灰砖灰瓦细节可读；未修改投影，仅裁切等比缩放补透明边。残差见meta。"
+}

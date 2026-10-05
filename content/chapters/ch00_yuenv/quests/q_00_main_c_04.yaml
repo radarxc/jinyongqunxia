@@ -1,0 +1,74 @@
+schemaVersion: quest.v1
+id: q_00_main_c_04
+kind: main
+chapterId: ch00_yuenv
+titleKey: quest.q_00_main_c_04.title
+subjectNpcIds: [npc_aqing]
+routeTone: neutral
+startStageId: st_transmission
+flagIds:
+  - fl_00_first_layer_committed
+  - fl_00_save_export_done
+  - fl_00_northbound
+  - fl_00_avalanche_survived
+  - fl_00_allocation_ready
+  - fl_00_first_sleep_snapshot
+  - fl_00_first_sleep_committed
+  - fl_00_wake_baima
+encounterIds: []
+offerWhen: {quest: {id: q_00_main_c_03, state: completed}}
+stages:
+  - id: st_transmission
+    objectiveKeys: [quest.q_00_main_c_04.objective.transmission]
+    objectives: [{type: confirmFlag, flagId: fl_00_first_layer_committed, is: true}]
+    transitions:
+      - {id: edge_transmission_save, priority: 10, when: {flag: {id: fl_00_first_layer_committed, is: true}}, to: st_save_export, branchKey: first_layer_committed}
+    effects: []
+  - id: st_save_export
+    objectiveKeys: [quest.q_00_main_c_04.objective.save_export]
+    objectives: [{type: confirmFlag, flagId: fl_00_save_export_done, is: true}]
+    transitions:
+      - {id: edge_save_northbound, priority: 10, when: {flag: {id: fl_00_save_export_done, is: true}}, to: st_northbound, branchKey: save_export_checked}
+    effects:
+      - {id: fx_first_layer_commit, op: flag/set, flagId: fl_00_first_layer_committed}
+  - id: st_northbound
+    objectiveKeys: [quest.q_00_main_c_04.objective.northbound]
+    objectives: [{type: confirmFlag, flagId: fl_00_northbound, is: true}]
+    transitions:
+      - {id: edge_northbound_avalanche, priority: 10, when: {flag: {id: fl_00_northbound, is: true}}, to: st_avalanche, branchKey: departed_yue}
+    effects: []
+  - id: st_avalanche
+    objectiveKeys: [quest.q_00_main_c_04.objective.avalanche]
+    objectives: [{type: confirmFlag, flagId: fl_00_avalanche_survived, is: true}]
+    transitions:
+      - {id: edge_avalanche_allocation, priority: 10, when: {flag: {id: fl_00_avalanche_survived, is: true}}, to: st_allocation, branchKey: entered_snow_cave}
+    effects: []
+  - id: st_allocation
+    objectiveKeys: [quest.q_00_main_c_04.objective.allocation]
+    objectives: [{type: confirmFlag, flagId: fl_00_allocation_ready, is: true}]
+    transitions:
+      - {id: edge_allocation_commit, priority: 10, when: {flag: {id: fl_00_allocation_ready, is: true}}, to: st_sleep_commit, branchKey: allocation_validated}
+    effects:
+      - {id: fx_first_sleep_snapshot, op: flag/set, flagId: fl_00_first_sleep_snapshot}
+  - id: st_sleep_commit
+    objectiveKeys: [quest.q_00_main_c_04.objective.sleep_commit]
+    objectives: [{type: confirmFlag, flagId: fl_00_first_sleep_committed, is: true}]
+    transitions:
+      - {id: edge_commit_wake, priority: 10, when: {flag: {id: fl_00_first_sleep_committed, is: true}}, to: st_wake, branchKey: slept_1184_years}
+    effects: []
+  - id: st_wake
+    objectiveKeys: [quest.q_00_main_c_04.objective.wake]
+    objectives: [{type: confirmFlag, flagId: fl_00_wake_baima, is: true}]
+    transitions:
+      - {id: edge_wake_close, priority: 10, when: {flag: {id: fl_00_wake_baima, is: true}}, to: st_close, branchKey: wake_to_baima}
+    effects:
+      - {id: fx_first_sleep_commit, op: flag/set, flagId: fl_00_first_sleep_committed}
+  - id: st_close
+    objectiveKeys: []
+    objectives: []
+    transitions: []
+    effects: []
+    terminal: completed
+    endingKey: wake_baima
+tracking: {defaultTracked: true, targetRef: transmission_inkpoint, revealPolicy: known_only}
+source: {origin: expanded, note: 阿青传长生诀第一层、北行雪崩与一梦千年均为原创扩展}

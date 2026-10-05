@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_taotiemianjia
+name: 饕餮面甲
+kind: armor
+sub: headwear
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 春秋；（原创扩展）；纹饰语汇据国博《礼和万方——商周青铜鼎特展》，兽面纹只作纹饰依据 https://m.chnmuseum.cn/portals/0/web/zt/202109lhwf/home/；同名同型春秋护面实物及视孔裁形（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/taotiemianjia
+text:
+  desc: 外观：春秋通用款，主色青铜褐。 待运行时投影：defOutK=0.05; hpMaxK=0.01。
+  lore: （原创扩展）以青铜兽面纹语汇演成薄护面，眼孔与鼻脊留出视线，双侧缨带用于固定。纹样只作浅起伏，不添獠牙尖角；同名春秋实物与视孔裁形仍（待考），与盔竞争同一头槽，不另开脸部装备栏。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9

@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_shanhaidou
+name: 山海兜
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canon
+canonRef: 宋《山家清供》：笋、蕨与鱼虾作馅的蒸兜
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_dongxi,bf_yangsheng:2battle
+assets:
+  icon: item/shanhaidou
+text:
+  desc: 外观：半透明粉皮兜四只露笋蕨鱼虾馅，白瓷盘。 待运行时投影：party=4。
+  lore: 宋《山家清供》以笋、蕨与鱼虾作馅制蒸兜，春季笋蕨齐嫩时最合宜。本件四只同盘，蒸熟后分食；洞悉、养生效果为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 20

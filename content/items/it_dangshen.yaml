@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_dangshen
+name: 党参
+kind: material
+sub: herb
+grade: 4
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/dangshen
+text:
+  desc: 外观：药用长根晒成黄棕皱条，根头环纹清楚。
+  lore: 关中、秦巴、河东晋中与河西陇右山地秋九至十月采根，按清代药名保守投放。黄棕长根宜静服养气，本作提供内力回复，不倒灌早期书界。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan9
+    materialGrade: 4
+    rare: false
+    herbFamily: dangShen
+    ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 8

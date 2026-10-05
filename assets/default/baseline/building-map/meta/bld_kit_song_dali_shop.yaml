@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_shop
+status: candidate
+building:
+  type: bld_kit_song_dali_shop
+  footprint: [6, 5]
+  anchor: &id001 [286.0792, 307.0102]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [6, 5]
+logical_footprint_polygon_px:
+- [110.07920000000001, 299.0102]
+- [302.0792, 395.0102]
+- [462.0792, 315.0102]
+- [270.0792, 219.0102]
+collision_polygon_m:
+- [0, 0]
+- [6, 0]
+- [6, 5]
+- [0, 5]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [110, 128]
+- [463, 128]
+- [463, 385]
+- [110, 385]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 4.57
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 2}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_shop.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [352, 176]
+  ground_width_px: 352
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [298, 583]
+    front: [978, 879]
+    right: [1490, 650]
+  source_axis_slopes: [0.43529411764705883, -0.447265625]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.328125
+  expected_width_depth_ratio: 1.2
+  ratio_relative_error: 0.10677083333333348
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [576, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 237018
+  alpha_partial_pixels: 57168
+  alpha_opaque_pixels: 726
+  alpha_near_opaque_pixels: 55805
+  alpha_nonzero_bbox: [107, 125, 468, 387]
+  transparent_margins_px: [107, 125, 108, 125]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_shop.png
+  source_sha256: 9cb3fbe4b8d509d5e13754b545ffcf2ff6ff93118c1409c7f6a09a06489e9b5b
+  source_size: [1774, 887]
+  crop_box: [156, 1, 1645, 887]
+  uniform_scale_requested: 0.2953020134228188
+  resized_size: [440, 262]
+  rounded_effective_scale: [0.2955003357958361, 0.29571106094808125]
+  paste_offset: [68, 125]
+  final_file: bld_kit_song_dali_shop.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

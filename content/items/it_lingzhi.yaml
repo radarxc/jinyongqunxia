@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_lingzhi
+name: 灵芝
+kind: material
+sub: herb
+grade: 6
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/lingzhi
+text:
+  desc: 外观：药用子实体为红褐肾形菌盖，漆样同心环纹。
+  lore: 秦巴、江南、浙闽、江西、荆湖与巴蜀林下夏秋六至十月菌盖成熟。普通年限灵芝只作养气修炼材料，不因传说获得永久属性。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan3
+    materialGrade: 6
+    rare: false
+    herbFamily: lingZhi
+    ageYears: 0
+    attributes:
+      version: 2
+      qiCultivation: 2000

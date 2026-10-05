@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_xianggu
+name: 山林香菇
+kind: material
+sub: ingredient
+grade: 6
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/xianggu
+text:
+  desc: 外观：褐伞香菇五朵置竹筛，菌褶清楚、根部带少量松针。
+  lore: 春秋雨后采自山林腐木，褐伞厚实、菌褶分明者才列玄阶。鲜菇宜煨汤，晒干可随行；采菌人只认熟悉山场，不凭传闻混采陌生菌种。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan3
+    materialGrade: 6
+    rare: false
+    ingredientKind: vegetable
+    attributes:
+      version: 2

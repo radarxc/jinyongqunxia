@@ -1,0 +1,16 @@
+{
+  "prompt": "Use case: precise-object-edit. Rebuild this Northern Song cargo depot sprite with corrected footprint and camera. Preserve the reference's sober grey ceramic roofs, warm grey earth-plaster enclosing walls, timber warehouses, small side cargo shelter, packed-earth courtyard, fine realistic ancient material detail and top-left illumination. Change the plan geometry and camera: the whole courtyard is a RECTANGLE measuring 14 units along its south/front wall and 11 units deep. View from exact southwest diagonal with ORTHOGRAPHIC dimetric 2:1 camera (yaw45 elevation30); both ground directions make equal 26.565 degree angles to horizontal, no perspective. Front wall runs from left corner to bottom corner at slope +1/2, depth/right wall runs from bottom corner to right corner at slope -1/2. Horizontal spans must have ratio 14:11, so the courtyard looks almost square in plan, NOT a wide shallow strip. The ground-contact rectangle is the governing shape: in a 1536x1024 composition its corners are LEFT(128,510), BOTTOM(845,868), RIGHT(1408,586), BACK(691,228), allowing only shared translation/uniform scale. Building and all boundary wall footings align to those same directions. Keep a thin flat outline of packed earth within the footprint; no thick plinth. Gate at the front wall faces lower left; main warehouse rear, small cargo shed at right with one wooden cart and bundles. No people, no text or signs, no greenery outside, no symbols or colored outline, no surroundings, no perspective convergence. Entire roof and base uncut, at least 6% transparent margin. TRUE RGBA transparent background, no colored haze; short lower-right contact shadow only. This is one northern Song game-map cargo courtyard original module, not an assertion about historical escort agencies.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44c-b43c-7ff1-980b-8ad0bc87cfb7/exec-335feacb-d4a7-4796-9d57-ff43035d901b.png",
+  "references": [
+    "assets/default/building-map/song_north/bld_kit_song_north_biaoju.png"
+  ],
+  "candidate": 1,
+  "round": 2,
+  "source_sha256": "ffd28733d088bdb23a180e44bdc945cf74aa36209c2f51ed14630681fd00557c",
+  "reference_sha256": {
+    "assets/default/building-map/song_north/bld_kit_song_north_biaoju.png": "a8f8aba5ebfd0d1022b6a7895a140ad5d917fd2c78274e62f3f8d4a6a906b407"
+  },
+  "tool": "built-in image_gen",
+  "selected": false,
+  "assessment": "见buildings-round2-review.json；未修复全部几何问题，不替换原成品。"
+}

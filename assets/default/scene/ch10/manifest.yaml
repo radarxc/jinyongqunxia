@@ -1,0 +1,121 @@
+- id: cg_ch10_desert_chase
+  file: cg_ch10_desert_chase.png
+  category: scene
+  style: default
+  subject: 白马风沙（ch10_baima）
+  prompt: '【任务】这是一次极小的局部修图。第 1 张是李文秀定稿立绘的脸部特写（基线，脸上没有斑）；第 2 张是待修图的同一块头部方图，红圈标出了要去掉的斑（红圈只是标记）；第 3 张是待修的头部方图本身。请以第 3 张为底稿，只做下面这一处修改，输出修改后的方图：1:1，取景、大小、位置与第 3 张完全一致。
+
+    【只改这一处】她右脸颊（画面左侧）眼睛下方、颧骨上那一颗圆形的深褐色斑点必须完全去掉，那里换成和周围一样干净的皮肤，可以保留一点自然的风吹日晒红晕；改完后脸上任何地方都不能再有褐色圆斑。
+
+    【其余一律不动】眼睛、眉毛、鼻子、嘴、脸型、表情、头巾、头发、围巾、衣服、背景、光线与画风都和第 3 张一致；不要重画、不要美化、不要移动或缩放任何东西。
+
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。修过的皮肤与周围的质感、光影自然衔接。
+
+    【不要】不要红圈或任何标记；不要文字水印；不要水平镜像。'
+  negative: 不要红圈或任何标记；不要文字水印；不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png
+    sha256: f310c81427c1eb88f90bb9a47125e11f40b8365169b2336cbce38175b1b16adf
+    use: 对脸基线：作者审核通过的 por_npc_liwenxiu__ch10_youth_astuo_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch10/cg_ch10_desert_chase.png
+    sha256: ca22d6078d0a9b35d682797ff4f319801de8c67216a2ebb936133b88ebec5a51
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_desert_chase.ca22d607.png
+  tool: codex exec · image_gen（AR-53 局部合成：只把李文秀头部方块交 codex 去右颊褐斑，再按原位置对齐、羽化贴回斑点一圈，其余像素不变）
+  model: gpt-6-astra
+  created: 2026-10-03T18:30:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch10_desert_chase.p1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 5bb7a478a3652d58247e336f38b1337eb56dd52ee8159a5d67b496b193d74aff
+  status: candidate
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「白马风沙」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_liwenxiu__ch10_youth_astuo_base（AR-53 / AR-56 总审返修：去掉李文秀右颊褐斑；局部合成——只把头部方块交 codex 去斑，对齐后只在斑点一圈羽化贴回（改动约 900 像素），其余像素不变）；题字風→风；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch10_desert_chase.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_desert_chase.ca22d607.png
+    sha256: ca22d6078d0a9b35d682797ff4f319801de8c67216a2ebb936133b88ebec5a51
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_desert_chase.ca22d607.entry.yaml
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch10_desert_chase_fixed.png", "before_sha256": "fb30d0689725b62211f82aca57f36165f337adc6e101fd024476411d0fb2a0a0", "allowed_box": [[1410, 178, 1520, 245]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch10_desert_chase_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T01:07:38-07:00"}
+- id: cg_ch10_ghost_truth
+  file: cg_ch10_ghost_truth.png
+  category: scene
+  style: default
+  subject: 高昌辨鬼（ch10_baima）
+  prompt: '【任务】这是一次极小的局部修图，不是重新创作。第 1 张参考图是李文秀的定稿立绘脸部特写（基线）；第 2 张是待修的原图。请以第 2 张为底稿，只做下面这一处修改，输出修改后的完整图片：3:2 横幅，构图、尺寸比例与第 2 张完全一致。
+
+    【只改这一处】画中戴深色头巾的女子是李文秀：去掉李文秀右脸颊（画面左侧）颧骨下方那一块圆形的褐色斑点，那里换成和周围一样干净的皮肤（可保留一点自然的风吹日晒红晕）；基线里她脸上没有这块斑。
+
+    【其余一律不动】人物的五官、脸型、表情、发式、头巾、衣服、姿势、手、其他人物、背景、光线、色调、题字与印章、笔触与画风都和第 2 张保持一致；不要重画、不要美化、不要改构图。
+
+    【画风】项目的写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。修过的地方要和周围皮肤的质感、光影自然衔接。
+
+    【不要】不要新增任何东西；不要文字、水印；不要水平镜像。'
+  negative: 不要新增任何东西；不要文字、水印；不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png
+    sha256: f310c81427c1eb88f90bb9a47125e11f40b8365169b2336cbce38175b1b16adf
+    use: 对脸基线：作者审核通过的 por_npc_liwenxiu__ch10_youth_astuo_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch10/cg_ch10_ghost_truth.png
+    sha256: afd2e7e8eefd17574aafd4705b9e700a927edb744c4b627deb6b8a4b7babe91b
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_ghost_truth.afd2e7e8.png
+  tool: codex exec · image_gen（AR-53 局部小修：画中戴深色头巾的女子是李文秀：去掉李文秀右脸颊（画面左侧）颧…；上传基线脸部特写 + 原图，不加画风基线）
+  model: gpt-6-astra
+  created: 2026-10-03T18:17:02-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch10_ghost_truth.x1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 31bdb7db7e1faef48496391cf5eacfb1ce485cca801a0d194dc6fa0dc4295b3d
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「高昌辨鬼」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_liwenxiu__ch10_youth_astuo_base（AR-53 / AR-56 总审：去掉李文秀右颊褐斑，其余不动）
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch10_ghost_truth.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_ghost_truth.afd2e7e8.png
+    sha256: afd2e7e8eefd17574aafd4705b9e700a927edb744c4b627deb6b8a4b7babe91b
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_ghost_truth.afd2e7e8.entry.yaml
+- id: cg_ch10_white_horse_return
+  file: cg_ch10_white_horse_return.png
+  category: scene
+  style: default
+  subject: 白马向东（ch10_baima）
+  prompt: '【任务】这是一次极小的局部修图。第 1 张是李文秀定稿立绘的脸部特写（基线，脸上没有斑）；第 2 张是待修图的同一块头部方图，红圈标出了要去掉的斑（红圈只是标记）；第 3 张是待修的头部方图本身。请以第 3 张为底稿，只做下面这一处修改，输出修改后的方图：1:1，取景、大小、位置与第 3 张完全一致。
+
+    【只改这一处】她右脸颊（画面左侧）眼睛下方、颧骨上那一颗圆形的深褐色斑点必须完全去掉，那里换成和周围一样干净的皮肤，可以保留一点自然的风吹日晒红晕；改完后脸上任何地方都不能再有褐色圆斑。
+
+    【其余一律不动】眼睛、眉毛、鼻子、嘴、脸型、表情、头巾、头发、围巾、衣服、背景、光线与画风都和第 3 张一致；不要重画、不要美化、不要移动或缩放任何东西。
+
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。修过的皮肤与周围的质感、光影自然衔接。
+
+    【不要】不要红圈或任何标记；不要文字水印；不要水平镜像。'
+  negative: 不要红圈或任何标记；不要文字水印；不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png
+    sha256: f310c81427c1eb88f90bb9a47125e11f40b8365169b2336cbce38175b1b16adf
+    use: 对脸基线：作者审核通过的 por_npc_liwenxiu__ch10_youth_astuo_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch10/cg_ch10_white_horse_return.png
+    sha256: ec65ccdec70e6678dbd159d5cb123b2ed0e01f930c6274d3bfc005e853c70cba
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_white_horse_return.ec65ccde.png
+  tool: codex exec · image_gen（AR-53 局部合成：只把李文秀头部方块交 codex 去右颊褐斑，再按原位置对齐、羽化贴回斑点一圈，其余像素不变）
+  model: gpt-6-astra
+  created: 2026-10-03T18:30:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch10_white_horse_return.p1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 33aa9ec03c860bb038c41ca83af881d03cf07cb1b17a3fdb2637663a8fcebaa5
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「白马向东」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_liwenxiu__ch10_youth_astuo_base（AR-53 / AR-56 总审返修：去掉李文秀右颊褐斑；局部合成——只把头部方块交 codex 去斑，对齐后只在斑点一圈羽化贴回（改动约 500 像素），其余像素不变）
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch10_white_horse_return.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_white_horse_return.ec65ccde.png
+    sha256: ec65ccdec70e6678dbd159d5cb123b2ed0e01f930c6274d3bfc005e853c70cba
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch10_white_horse_return.ec65ccde.entry.yaml

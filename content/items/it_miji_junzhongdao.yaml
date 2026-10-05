@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_junzhongdao
+name: 军中刀法抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_junzhongdao
+text:
+  desc: 外观：南宋土黄蝴蝶装册，粗麻缝线。
+  lore: 军伍将常用短促刀路抄成便携册页，刀法与传习载体皆属 （原创扩展）。研读重劈斩、护身和队列内收刀，不求繁巧；书衣油旧来自营帐翻练，抄本来源最高八层。
+extension:
+  type: manual
+  value:
+    skill: sk_junzhongdao
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_junzhongdao
+      readWis: 40
+      maxLayer: 8
+      cultivation: 1600

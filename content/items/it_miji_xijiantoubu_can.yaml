@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_xijiantoubu_can
+name: 溪涧投步残卷
+kind: manual
+sub: partial
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_xijiantoubu_can
+text:
+  desc: 外观：春秋灰白残帛卷，无轴、麻带束起。
+  lore: 山行者把跨石、投步和湿地收身画在残帛上，步法、卷本与散佚均属 （原创扩展）。研读须先在浅水与平石间试步，不能照缺图冒险跃涧；水渍毁去后段，来源上限七层。
+extension:
+  type: manual
+  value:
+    skill: sk_xijiantoubu
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_xijiantoubu
+      readWis: 20
+      maxLayer: 7
+      cultivation: 350

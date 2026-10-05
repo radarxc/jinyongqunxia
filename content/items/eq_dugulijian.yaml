@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_dugulijian
+name: 独孤利剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·独孤剑冢第一柄无名利剑；名称为描述名
+price: auto
+flags:
+- unique
+assets:
+  icon: item/dugulijian
+text:
+  desc: 外观：刚直双刃长剑，刃约八十厘米。
+  lore: 《神雕侠侣》剑冢第一柄为无名利剑，石刻述其凌厉刚猛，乃独孤求败弱冠前所用。它重锋线和进势，适合抢先破开门户；现名与装具均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 80
+      qiAffinity: 100

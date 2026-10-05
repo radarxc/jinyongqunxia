@@ -1,0 +1,35 @@
+schemaVersion: sect-catalog.v1
+id: ev_common_sects_gulong
+event: content/sectCatalog
+group: gulong
+sects:
+  - id: sect_yihuagong
+    name: 移花宫
+  - id: sect_erengu
+    name: 恶人谷
+  - id: sect_daqimen
+    name: 大旗门
+  - id: sect_shenshuigong
+    name: 神水宫
+  - id: sect_wuzhengshanzhuang
+    name: 无争山庄
+  - id: sect_qinglonghui
+    name: 青龙会
+  - id: sect_kuaihuowangfu
+    name: 快活王一系
+  - id: sect_xueyumen
+    name: 血雨门
+  - id: sect_tangmen
+    name: 蜀中唐门
+  - id: sect_kongqueshanzhuang
+    name: 孔雀山庄
+  - id: sect_jinqianbang
+    name: 金钱帮
+  - id: sect_shenjianshanzhuang
+    name: 神剑山庄
+  - id: sect_wanmeishanzhuang
+    name: 万梅山庄
+  - id: sect_baiyuncheng
+    name: 白云城
+  - id: sect_renyizhuang
+    name: 仁义庄

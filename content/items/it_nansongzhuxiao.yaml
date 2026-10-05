@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansongzhuxiao
+name: 南宋素竹箫
+kind: collectible
+sub: qin
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongzhuxiao
+text:
+  desc: 外观：一支深棕天然竹箫，吹口和指孔清楚。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,musician,collector]}; giftValue=1; provenance=expanded。
+  lore: 为南宋乐人交游设计的单支竹箫，属可赏玩乐器而非点穴兵器。适合赠乐人，竹制结构与孔位须按同期乐器资料复核；名称和获取为（原创扩展），不冒指人物随身名器。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

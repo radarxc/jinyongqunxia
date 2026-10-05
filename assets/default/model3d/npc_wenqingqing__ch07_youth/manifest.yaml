@@ -1,0 +1,76 @@
+- id: npc_wenqingqing__ch07_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 温青青（碧血剑 ch07 · 男装青年）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 17a95a55-9172-4065-83ec-2cab898115e8
+    url: https://studio.tripo3d.ai/workspace/generate/17a95a55-9172-4065-83ec-2cab898115e8
+    generate_op: 5c51b2a7-7e8f-4249-be11-e62c7c281c1f（image_to_model） → Free Retry 159bc56b-e1d5-4371-8198-1cf283e60ce3（选用）
+    rig_op: 33e864a9-7da6-41a0-81d2-c285e8f97284
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch07/threeview/por_npc_wenqingqing__ch07_youth_disguise_apose_slim.png
+    sha256: 3b80ba9dd5a6136a6a86425cab21a3e84b1f4d76ed3555310f77917b58cf0981
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: cc0d2275cf31f81d2ab1550da19cfbd3f2e45aea0b6dd5e46b680bdc06311a39
+  size_bytes: 5932140
+  joints: 65
+  triangles: 95634
+  vertices: 54801
+  animations: []
+  textures:
+  - image/jpeg 408320 B
+  - image/jpeg 1459965 B
+  - image/jpeg 616791 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T18:53:48-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，墨绿男装窄袍 + 束发；背后灰绿长条是头巾垂带（参考图即如此），不是头发。首版和 Free Retry 版一致，选用 retry 版。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 fd549c1c。
+- id: npc_wenqingqing__ch07_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 温青青（碧血剑 ch07 · 男装青年）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 17a95a55-9172-4065-83ec-2cab898115e8
+    url: https://studio.tripo3d.ai/workspace/generate/17a95a55-9172-4065-83ec-2cab898115e8
+    generate_op: 5c51b2a7-7e8f-4249-be11-e62c7c281c1f（image_to_model） → Free Retry 159bc56b-e1d5-4371-8198-1cf283e60ce3（选用）
+    rig_op: 33e864a9-7da6-41a0-81d2-c285e8f97284
+  size: 600x778
+  sha256: 0f18e23cfbaf577617265e4efc1a4693f9edb8dd784d81485ed8c4b902ca06e0
+  size_bytes: 157269
+  created: '2026-10-03T22:34:24-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

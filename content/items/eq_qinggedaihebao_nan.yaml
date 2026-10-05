@@ -1,0 +1,37 @@
+schemaVersion: item.v1
+id: eq_qinggedaihebao_nan
+name: 清革带荷包·男
+kind: armor
+sub: belt
+grade: 4
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch10_baima
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 常服带、佩囊 · 清（故宫清宫荷包研究）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qinggedaihebao_nan
+text:
+  desc: 外观：男款深蓝软革常服带作松弧陈列，黄铜双环扣与一只扁圆石青绣花荷包。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: 据清宫常服带与荷包实物演成，深蓝软革以双环扣合，扁圆佩囊只装印章、香丸等轻物。士绅常随衣色更换荷包，本件不带身份效力。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 7

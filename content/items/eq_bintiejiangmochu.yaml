@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_bintiejiangmochu
+name: 镔铁降魔杵
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用佛教法器意象·明清；兵器化与定级 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/bintiejiangmochu
+text:
+  desc: 外观：双手镔铁杵约一百二十厘米，中段皮缠握位、两端对称棱瓣钝首。 待运行时投影：exoticKind=pestle。
+  lore: 取佛教降魔杵意象放大为双手钝兵，两端棱瓣用于压砸，中段皮缠便于换手。沉重器身须以肩背带动，不适合轻巧连招；兵器化尺度、礼佛磨痕与定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 125
+      hardness: 60
+      qiAffinity: 100

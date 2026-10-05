@@ -1,0 +1,92 @@
+asset_id: prp_song_bamboo
+era: song_southern
+placement_domain: land
+footprint_cells: {w: 1, h: 1}
+visual_bounds_m: {w: 2, d: 2, h: 3}
+collision: none
+projection_contract:
+  yaw_deg: 45
+  pitch_deg: 30
+  tile_px: [64, 32]
+  light: screen_upper_left
+  ground_shadow: separate_runtime_layer
+variants:
+- key: v01
+  file: prp_song_bamboo__v01.png
+  size_px: [136, 190]
+  anchor_px: [68, 154]
+  status: candidate
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 190]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 20244
+    alpha_partial_pixels: 5280
+    alpha_opaque_pixels: 316
+    alpha_near_opaque_pixels: 1485
+    alpha_bbox: [15, 4, 120, 154]
+    transparent_margins_px: [15, 4, 16, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_bamboo__v01.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-d330ee36-911d-4a57-9fa6-6efd16d65413.png
+    source_sha256: f020177a48f1f41ef2719571ae52c9f7ffb21bb36039ad659ba102377737e9ce
+    source_size: [1061, 1483]
+    crop_box: [18, 15, 1040, 1474]
+    source_alpha_bbox: [15, 16, 1045, 1483]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 43
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.10281014393420151
+    rounded_effective_scale: [0.10273972602739725, 0.10281014393420151]
+    resized_size: [105, 150]
+    paste_offset: [15, 4]
+    source_measured_root_px: [532.5, 1470]
+    source_conservative_ground_y: 1474
+    transformed_measured_root_px: [67.8596, 153.5888]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.1404, -0.4112]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  root_within_one_px: true
+- key: v02
+  file: prp_song_bamboo__v02.png
+  size_px: [136, 190]
+  anchor_px: [68, 154]
+  status: candidate
+  pixel_qa:
+    mode: RGBA
+    size_px: [136, 190]
+    alpha_extrema: [0, 255]
+    alpha_zero_pixels: 16227
+    alpha_partial_pixels: 8790
+    alpha_opaque_pixels: 823
+    alpha_near_opaque_pixels: 5581
+    alpha_bbox: [17, 4, 126, 154]
+    transparent_margins_px: [17, 4, 10, 36]
+    alpha_below_anchor_max: 0
+  processing:
+    source_archive: sources/prp_song_bamboo__v02.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-70e26d01-462d-4b24-bbb4-961efd651ab8.png
+    source_sha256: 9d331090ae053a1bb12686a0858f4eda720d6fbfbb6135503a5f26a40eb8e412
+    source_size: [1062, 1482]
+    crop_box: [20, 32, 1043, 1432]
+    source_alpha_bbox: [17, 7, 1046, 1482]
+    crop_basis: alpha>=3 bbox +4 source px; rectangle only
+    cropped_nonzero_pixels: 159
+    cropped_alpha_max: 1
+    uniform_scale_requested: 0.10714285714285714
+    rounded_effective_scale: [0.10654936461388075, 0.10714285714285714]
+    resized_size: [109, 150]
+    paste_offset: [17, 4]
+    source_measured_root_px: [495.5, 1428]
+    source_conservative_ground_y: 1432
+    transformed_measured_root_px: [67.6642, 153.5714]
+    coordinate_convention: 图像左上外缘为(0,0)的连续边界坐标；crop_box半开，末个非零像素可位于根锚上一行
+    root_offset_px: [-0.3358, -0.4286]
+    steps: [rectangular transparent-edge trim; removed alpha<=2 only, uniform fit; floor integer extents, one LANCZOS resize, paste without mask;
+        transparent native canvas; no repaint/warp/per-pixel alpha edits]
+  root_within_one_px: true
+status: candidate
+release_ready: false
+runtime_note: PNG母版，prop/model公告板由TOWN-render构造；本轮未交GLB；植物Y与s为上游建议包络。

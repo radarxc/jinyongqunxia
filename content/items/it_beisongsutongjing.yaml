@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_beisongsutongjing
+name: 北宋素面铜镜
+kind: collectible
+sub: bronze
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/beisongsutongjing
+text:
+  desc: 外观：素面小圆铜镜，中心桥钮。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 给北宋市井礼物设计素面铜镜，降低华丽度而保留材料与磨制质量。适合赠商贾或实用器藏家；镜式早期分型、名称与取得为（原创扩展），不套用清代玻璃镜或镜架。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

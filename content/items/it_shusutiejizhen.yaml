@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_shusutiejizhen
+name: 蜀素帖
+kind: collectible
+sub: calligraphy
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H38](#src-h38)；准入：天龙终段；1088年后架空授权流转，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/shusutiejizhen
+text:
+  desc: 外观：浅褐蜀素绢手卷，织纹清楚。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,collector]}; giftValue=4; provenance=history。
+  lore: 米芾《蜀素帖》写于一〇八八年，早于天龙窗口，可作北宋名帖方向。游戏中的原主授权与求得路线为（原创扩展），宜赠文士大藏家；不编造真实传承链，也不允许量产。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

@@ -1,0 +1,26 @@
+{
+  "family": {
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_zuoyouhubo/codex-home/generated_images/01a103e7-57a2-76b2-a5df-651797fa0d10/exec-fea473ec-c79c-404c-b127-bde0e57a8f98.png",
+    "file": "effect/family/source_sheet.png",
+    "sha256": "020bfcc111113b0c7c37a7cd3727ef53c6123d3a93c314531b6ff9847e9f8d89",
+    "size": "1536x1024",
+    "candidate_count": 1,
+    "selected_candidate": 1
+  },
+  "mv_zuoyouhubo_fenxin": {
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_zuoyouhubo/codex-home/generated_images/01a103e7-57a2-76b2-a5df-651797fa0d10/exec-ee9aa570-eba0-43f7-8e9b-8e5858f55e9d.png",
+    "file": "effect/mv_zuoyouhubo_fenxin/source_sheet.png",
+    "sha256": "73fb204cc32cbd064f44151cd9ff315324c052581cf3e2d71d39d1144074bbf8",
+    "size": "1536x1024",
+    "candidate_count": 1,
+    "selected_candidate": 1
+  },
+  "mv_zuoyouhubo_quanli": {
+    "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_zuoyouhubo/codex-home/generated_images/01a103e7-57a2-76b2-a5df-651797fa0d10/exec-b2e66dee-7bd5-44d3-8fe2-8b5b2be504e8.png",
+    "file": "effect/mv_zuoyouhubo_quanli/source_sheet.png",
+    "sha256": "593389b08b067f54ecc3d4fcfad737caeed51b94349ea9cd850badfb4c388d20",
+    "size": "1536x1024",
+    "candidate_count": 1,
+    "selected_candidate": 1
+  }
+}

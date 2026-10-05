@@ -1,0 +1,11 @@
+{
+  "id": "bld_kit_xiyu_house_large",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-2242-7611-95dd-273d2ac27850/exec-94b39205-6b68-4ada-8645-a87c437bcbd7.png",
+  "prompt": "Use case: precise-object-edit. Image1 is the building to correct, image2 is the approved STYLE and CAMERA reference. Preserve Image1's specific adobe flat-roof architecture, materials, functional details, door on lower left, and true transparency. Correct its too-shallow camera projection to match Image2, without copying Chinese tiled roofs. Redraw from strict orthographic 2:1 dimetric camera. BOTH visible base edges must have slope magnitude exactly0.5: each200pixels horizontal corresponds100pixels vertical. Front lower-left ground edge descends to right by0.5, right-hand ground edge rises to right by0.5. Front-to-side ground edge length ratio=10:8. Show three complete foundation corners with a thin rectangular footprint matching this ratio. All roof, timber, parapet edges parallel to those footprint axes. Vertical lines upright, no perspective convergence. Preserve all architecture details and muted matte realism. Entire object isolated, ample15% transparent margins all sides, no thick raised platform, no landscape. Light upper left, tiny lower-right contact shadow only. No text, figures, background, gradient, glow, halo or grid. Camera geometry correction is the principal purpose of this edit.",
+  "candidate_count": 2,
+  "previous_source": "/Users/bytedance/.codex/generated_images/01a0f459-2242-7611-95dd-273d2ac27850/exec-a2ec7f63-b4a1-479a-9d1e-e1b419acfa40.png",
+  "references": [
+    "/Users/bytedance/.codex/generated_images/01a0f459-2242-7611-95dd-273d2ac27850/exec-a2ec7f63-b4a1-479a-9d1e-e1b419acfa40.png",
+    "assets/default/baseline/building-map/bld_kit_song_southern_courtyard.png"
+  ]
+}

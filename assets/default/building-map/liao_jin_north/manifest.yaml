@@ -1,0 +1,2117 @@
+- id: bld_kit_liao_jin_north_biaoju
+  file: bld_kit_liao_jin_north_biaoju.png
+  category: building-map
+  style: default
+  subject: 辽金北方护运货栈院落（原创扩展；不宣称时代存在具名镖局）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin freight-protection courtyard, asset bld_kit_liao_jin_north_biaoju, registered logical footprint 14 by 11. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Original anonymous cargo-protection yard, not a named historical escort agency: rear reception hall, side storehouse, simple roofed gate and open packed-earth court; plain low hard-gable grey pan-and-cover roofs, shallow pitch, straight ridges without beasts; no dougong, coarse pine beams and posts on stone pads; buff rammed-earth walls with visible courses and stone foot; wide plank doors, sparse vertical lattice; bales and a small handcart without writing.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 14 by 11 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_Section_1.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Along_the_River_During_the_Qingming_Festival_Section_1.jpg/1920px-Along_the_River_During_the_Qingming_Festival_Section_1.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_1.jpg
+    sha256: 40326e965e9f761821b8c318caff55e676e6056a58c4cfeba97a700b3e5c4386
+    role: 开放铺面、支棚、货栈与朴素木构；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg/1920px-Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    accessed: '2026-10-01'
+    local_ref: shangjing_dashun.jpg
+    sha256: 79430800d8f765bf775b03b39f9143e94851a6b9fa9c2e2254c799974ebe0959
+    role: 辽上京夯土水平层理、灰黄色与风蚀面；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_biaoju.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 50cf0862e3aa62820ae2504c141d02654df7aedaa69a3bf512cd226dda97c939
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:36:59.961734+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_biaoju.png
+  source_sha256: 08864718e21f64cba12b80a8384efaad2969d7620bdd3a477abef047b69a513e
+  size: 974x592
+  sha256: 5aa162b08d0617aa204e350dffe9b9af9852a8ab81516daf87918ccb36cb4564
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_biaoju
+    footprint:
+    - 14
+    - 11
+    anchor:
+    - 484.118
+    - 325.328
+    era: liao_jin_north
+  footprint_m:
+  - 14
+  - 11
+  entrance:
+    edge: S
+    offset_cells: 7
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 800
+    - 400
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1536
+    - 1024
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 73
+    - 106
+    - 1501
+    - 973
+    old_alpha_crop:
+    - 143
+    - 161
+    - 951
+    - 643
+    target_width: 808
+    uniform_scale: 0.5658263305322129
+    resized_size:
+    - 808
+    - 491
+    paste_offset:
+    - 83
+    - 50
+    final_size:
+    - 974
+    - 592
+    mapped_anchor:
+    - 484.118
+    - 325.328
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: '2026-10-01 强历史细节重出：Original anonymous cargo-protection yard, not a named historical escort agency: rear reception hall, side storehouse, simple roofed gate and open packed-earth court; plain low hard-gable grey pan-and-cover roofs, shallow pitch, straight ridges without beasts; no dougong, coarse pine beams and posts on stone pads; buff rammed-earth walls with visible courses and stone foot; wide plank doors, sparse vertical lattice; bales and a small handcart without writing. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。'
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_biaoju.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_casino
+  file: bld_kit_liao_jin_north_casino.png
+  category: building-map
+  style: default
+  subject: 辽金北方两层赌场外观（原创扩展；无名游戏组合，细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin anonymous urban assembly hall, asset bld_kit_liao_jin_north_casino, registered logical footprint 10 by 8. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Original anonymous two-storey urban assembly hall mapped to casino gameplay without gambling symbols; low broad grey pan-and-cover hip-and-gable roof, shallow ju-zhe, plain ridge caps and no beast procession; modest early projecting bracket arms beneath eaves and short timber gallery; regular dark columns on plain stone bases; buff plaster infill and stone foot; more enclosed plank doors and straight lattice windows; no sign, dice, tables, people or bright paint.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 10 by 8 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg/1920px-Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_detail.jpg
+    sha256: 195b20ffcf3a374140dd210a9c272c70067f13d989799a99386725312d8505ee
+    role: 同时期北方城市屋面、铺面与河市尺度；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg/1920px-%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg
+    accessed: '2026-10-01'
+    local_ref: dule_pavilion.jpg
+    sha256: f7762391f6c71b0b7403a76825071c27f6231663599ad9c221dda02d19aeb3ef
+    role: 两层木构平座、檐口和柱网比例；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_casino.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 9cf09280e361214a13d02c1771f090973cd2e06720ff40dea354455b704a7fe5
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:38:14.749121+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_casino.png
+  source_sha256: c8f4602b20d117fee578ad8580ecfe87305d05f001b775224e92994af684c928
+  size: 696x534
+  sha256: 23564a80a5cbcac7816d785eeeb4d2b06cf760e446ac5d143b9e67c5e342d145
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_casino
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 347.585
+    - 361.54
+    era: liao_jin_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 5
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 576
+    - 288
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1536
+    - 1024
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 177
+    - 94
+    - 1375
+    - 1014
+    old_alpha_crop:
+    - 76
+    - 93
+    - 653
+    - 547
+    target_width: 577
+    uniform_scale: 0.48163606010016696
+    resized_size:
+    - 577
+    - 443
+    paste_offset:
+    - 59
+    - 45
+    final_size:
+    - 696
+    - 534
+    mapped_anchor:
+    - 347.585
+    - 361.54
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: 2026-10-01 强历史细节重出：Original anonymous two-storey urban assembly hall mapped to casino gameplay without gambling symbols; low broad grey pan-and-cover hip-and-gable roof, shallow ju-zhe, plain ridge caps and no beast procession; modest early projecting bracket arms beneath eaves and short timber gallery; regular dark columns on plain stone bases; buff plaster infill and stone foot; more enclosed plank doors and straight lattice windows; no sign, dice, tables, people or bright paint. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_casino.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_courtyard
+  file: bld_kit_liao_jin_north_courtyard.png
+  category: building-map
+  style: default
+  subject: 辽金北方·土墙院落（原创扩展；历史细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin modest courtyard dwelling, asset bld_kit_liao_jin_north_courtyard, registered logical footprint 10 by 8. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: One compact northern courtyard: three-bay main house slightly taller than two low side wings and a simple roofed gate; low hard-gable grey pan-and-cover roofs, shallow ju-zhe, plain ridges without beasts; domestic frame with simple bracket blocks, not monumental dougong; dark pine posts on plain stones; buff rammed-earth enclosure with rough stone foot; plank doors, vertical lattice windows, stone threshold; no garden or bright paint.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 10 by 8 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg/1920px-Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_detail.jpg
+    sha256: 195b20ffcf3a374140dd210a9c272c70067f13d989799a99386725312d8505ee
+    role: 同时期北方城市屋面、铺面与河市尺度；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Fengguo_Temple_1.JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Fengguo_Temple_1.JPG/1920px-Fengguo_Temple_1.JPG
+    accessed: '2026-10-01'
+    local_ref: fengguo_full.jpg
+    sha256: 5bf8d162a7a47abc297e5e905a431aa966db89276b803902bd61d4bdb21d5f3c
+    role: 辽殿低缓宽屋面、深檐与厚柱网；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_courtyard.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: a053429fe32147c8576dccbcebf213aacf8ca1c92de431e550b7783c520bbf8b
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:28:36.107708+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_courtyard.png
+  source_sha256: c03e368bdeadae28a4aa603a6cbd73af3107d2a244ab33fc44aacaeafbcd0f19
+  size: 696x502
+  sha256: d4ac180452f418c521a1a3e941862aa6d8b7b92229d61235ad7c62143086988c
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_courtyard
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 347.256
+    - 299.647
+    era: liao_jin_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    screen_direction: lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 576
+    ground_bbox_px:
+    - 576
+    - 288
+    view_count: 1
+    allowRotation: false
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1402
+    - 1122
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 73
+    - 124
+    - 1366
+    - 1056
+    old_alpha_crop:
+    - 73
+    - 57
+    - 650
+    - 472
+    target_width: 577
+    uniform_scale: 0.4462490332559938
+    resized_size:
+    - 577
+    - 416
+    paste_offset:
+    - 59
+    - 43
+    final_size:
+    - 696
+    - 502
+    mapped_anchor:
+    - 347.256
+    - 299.647
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: '2026-10-01 强历史细节重出：One compact northern courtyard: three-bay main house slightly taller than two low side wings and a simple roofed gate; low hard-gable grey pan-and-cover roofs, shallow ju-zhe, plain ridges without beasts; domestic frame with simple bracket blocks, not monumental dougong; dark pine posts on plain stones; buff rammed-earth enclosure with rough stone foot; plank doors, vertical lattice windows, stone threshold; no garden or bright paint. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。'
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_courtyard.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_guardhouse
+  subject: 辽金北方城门守舍（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin small gate guardhouse, asset bld_kit_liao_jin_north_guardhouse, registered logical footprint 7 by 5. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Small single-storey three-bay guard room; low broad hard-gable grey pan-and-cover roof, shallow ju-zhe, plain ridge ends and no beasts; simple projecting rafters and short block supports, no formal dougong; coarse dark pine posts on plain stone pads; buff mud-plaster and rammed-earth walls over rough stone foot; broad open doorway and sparse vertical-lattice window; no weapon display, sign or bright paint.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 7 by 5 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:The_Shan_Gate_of_Dule_Temple.JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/The_Shan_Gate_of_Dule_Temple.JPG/1920px-The_Shan_Gate_of_Dule_Temple.JPG
+    accessed: '2026-10-01'
+    local_ref: dule_gate.jpg
+    sha256: cc9f121311f356768609e82c8a349f098c7d2e7ad6277c8f1aa8a3ad42527a17
+    role: 辽山门低举折灰瓦、门楼比例与鸱尾；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg/1920px-Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    accessed: '2026-10-01'
+    local_ref: shangjing_dashun.jpg
+    sha256: 79430800d8f765bf775b03b39f9143e94851a6b9fa9c2e2254c799974ebe0959
+    role: 辽上京夯土水平层理、灰黄色与风蚀面；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_guardhouse.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 7764372bf8e0888a3b5a464282aaf36d192095100e5ac8c083c2b045a40f6e0e
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_guardhouse.png
+  candidate_count: 1
+  file: bld_kit_liao_jin_north_guardhouse.png
+  category: building-map
+  style: default
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:44:15.900262+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  size: 466x352
+  sha256: b0200ab5a8d013eb0f9eb30310b3b86c5ac2b0885296c9c84ae609f194917d8c
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_guardhouse
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 232.702
+    - 221.414
+    era: liao_jin_north
+  footprint_m:
+  - 7
+  - 5
+  entrance:
+    edge: S
+    facing: screen_lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 384
+    ground_bbox_px:
+    - 384
+    - 192
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1484
+    - 1060
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 125
+    - 97
+    - 1386
+    - 1052
+    old_alpha_crop:
+    - 61
+    - 109
+    - 447
+    - 412
+    target_width: 386
+    uniform_scale: 0.3061062648691515
+    resized_size:
+    - 386
+    - 292
+    paste_offset:
+    - 40
+    - 30
+    final_size:
+    - 466
+    - 352
+    mapped_anchor:
+    - 232.702
+    - 221.414
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: 2026-10-01 强历史细节重出：Small single-storey three-bay guard room; low broad hard-gable grey pan-and-cover roof, shallow ju-zhe, plain ridge ends and no beasts; simple projecting rafters and short block supports, no formal dougong; coarse dark pine posts on plain stone pads; buff mud-plaster and rammed-earth walls over rough stone foot; broad open doorway and sparse vertical-lattice window; no weapon display, sign or bright paint. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  selected_candidate: historical-detail-c1
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_guardhouse.png
+  source_sha256: 2c90af4068de385c361a302335ad919f5ccb832f996ce1e055ab4b953d5f8346
+- id: bld_kit_liao_jin_north_house_large
+  file: bld_kit_liao_jin_north_house_large.png
+  category: building-map
+  style: default
+  subject: 辽金北方·大型民居（原创扩展；历史细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin large commoner''s house, asset bld_kit_liao_jin_north_house_large, registered logical footprint 7 by 6. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Single-storey five-bay northern house; low broad hard-gable roof with shallow ju-zhe, straight plain ridge and no beasts; distinct grey pan-and-cover tile courses; no palace dougong, only simple two-block eave supports; orderly dark pine column grid on plain stone bases; buff earth plaster with stone footing; central plank doors and straight vertical lattice windows; no bright paint.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 7 by 6 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg/1920px-Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_detail.jpg
+    sha256: 195b20ffcf3a374140dd210a9c272c70067f13d989799a99386725312d8505ee
+    role: 同时期北方城市屋面、铺面与河市尺度；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:The_Shan_Gate_of_Dule_Temple.JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/The_Shan_Gate_of_Dule_Temple.JPG/1920px-The_Shan_Gate_of_Dule_Temple.JPG
+    accessed: '2026-10-01'
+    local_ref: dule_gate.jpg
+    sha256: cc9f121311f356768609e82c8a349f098c7d2e7ad6277c8f1aa8a3ad42527a17
+    role: 辽山门低举折灰瓦、门楼比例与鸱尾；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_house_large.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: f8a46d018f6f50359dc6f22ad6506da29a8fb07de91b59d72bfa1320e01be12b
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:27:25.880593+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_house_large.png
+  source_sha256: 14a813ca497f091974dd80ea5367fb610f639d6782366984057083eb1b90aee4
+  size: 505x344
+  sha256: 8cf5f096fb5cfb6fb0ee89f06303537a8c086e36d24756187421f8509976722b
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_house_large
+    footprint:
+    - 7
+    - 6
+    anchor:
+    - 252.132
+    - 210.401
+    era: liao_jin_north
+  footprint_m:
+  - 7
+  - 6
+  entrance:
+    edge: S
+    screen_direction: lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 416
+    ground_bbox_px:
+    - 416
+    - 208
+    view_count: 1
+    allowRotation: false
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1536
+    - 1024
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 129
+    - 99
+    - 1440
+    - 991
+    old_alpha_crop:
+    - 55
+    - 98
+    - 474
+    - 433
+    target_width: 419
+    uniform_scale: 0.31960335621662855
+    resized_size:
+    - 419
+    - 285
+    paste_offset:
+    - 43
+    - 29
+    final_size:
+    - 505
+    - 344
+    mapped_anchor:
+    - 252.132
+    - 210.401
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: 2026-10-01 强历史细节重出：Single-storey five-bay northern house; low broad hard-gable roof with shallow ju-zhe, straight plain ridge and no beasts; distinct grey pan-and-cover tile courses; no palace dougong, only simple two-block eave supports; orderly dark pine column grid on plain stone bases; buff earth plaster with stone footing; central plank doors and straight vertical lattice windows; no bright paint. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_house_large.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_house_small
+  file: bld_kit_liao_jin_north_house_small.png
+  category: building-map
+  style: default
+  subject: 辽金北方·小型民居（原创扩展；历史细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin small commoner''s house, asset bld_kit_liao_jin_north_house_small, registered logical footprint 6 by 5. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Compact single-storey three-bay timber-earth house; low broad hard-gable roof, shallow early-medieval ju-zhe, nearly straight eaves, plain ridge end caps and no beasts; grey clay pan-and-cover tiles; no dougong, only plain purlin ends; dark unpainted pine three-bay columns on undecorated stone bases; grey-yellow mud-plastered infill over rough stone footing; plank door and sparse vertical lattice paper windows; no paint.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 6 by 5 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg/1920px-Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_detail.jpg
+    sha256: 195b20ffcf3a374140dd210a9c272c70067f13d989799a99386725312d8505ee
+    role: 同时期北方城市屋面、铺面与河市尺度；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg/1920px-Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    accessed: '2026-10-01'
+    local_ref: shangjing_dashun.jpg
+    sha256: 79430800d8f765bf775b03b39f9143e94851a6b9fa9c2e2254c799974ebe0959
+    role: 辽上京夯土水平层理、灰黄色与风蚀面；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_house_small.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: d6d2d3645fffa9c59dff126db359bcb1a34f17c5557c5187c52b21a04d05fa79
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:26:18.211751+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_house_small.png
+  source_sha256: 973f993737671e5c9372c60a16d1e826298453e2beccf3d936d493905626a069
+  size: 426x357
+  sha256: 36968b3f1183ac49ace463fbf9d754821bcb62cb1a05e585c8a04436d30f1590
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_house_small
+    footprint:
+    - 6
+    - 5
+    anchor:
+    - 212.774
+    - 226.251
+    era: liao_jin_north
+  footprint_m:
+  - 6
+  - 5
+  entrance:
+    edge: S
+    screen_direction: lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 352
+    ground_bbox_px:
+    - 352
+    - 176
+    view_count: 1
+    allowRotation: false
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1536
+    - 1024
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 263
+    - 80
+    - 1322
+    - 969
+    old_alpha_crop:
+    - 76
+    - 99
+    - 429
+    - 403
+    target_width: 353
+    uniform_scale: 0.3333333333333333
+    resized_size:
+    - 353
+    - 296
+    paste_offset:
+    - 36
+    - 30
+    final_size:
+    - 426
+    - 357
+    mapped_anchor:
+    - 212.774
+    - 226.251
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 2
+  notes: 2026-10-01 强历史细节重出：Compact single-storey three-bay timber-earth house; low broad hard-gable roof, shallow early-medieval ju-zhe, nearly straight eaves, plain ridge end caps and no beasts; grey clay pan-and-cover tiles; no dougong, only plain purlin ends; dark unpainted pine three-bay columns on undecorated stone bases; grey-yellow mud-plastered infill over rough stone footing; plank door and sparse vertical lattice paper windows; no paint. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_house_small.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_inn
+  file: bld_kit_liao_jin_north_inn.png
+  category: building-map
+  style: default
+  subject: 辽金北方·客栈（原创扩展；历史细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin courtyard inn, asset bld_kit_liao_jin_north_inn, registered logical footprint 12 by 9. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Compact two-storey roadside inn around one open court, main timber range and lower side wing; broad shallow grey pan-and-cover roofs with plain ridges and no beasts; modest early projecting bracket arms and pingzuo walkways, no monumental palace set; dark columns on plain stone bases; buff earth-plaster infill and stone foot; open lower bays, plank doors and straight lattice upper windows; no signboard or bright paint.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 12 by 9 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg/1920px-Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_detail.jpg
+    sha256: 195b20ffcf3a374140dd210a9c272c70067f13d989799a99386725312d8505ee
+    role: 同时期北方城市屋面、铺面与河市尺度；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg/1920px-%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg
+    accessed: '2026-10-01'
+    local_ref: dule_pavilion.jpg
+    sha256: f7762391f6c71b0b7403a76825071c27f6231663599ad9c221dda02d19aeb3ef
+    role: 两层木构平座、檐口和柱网比例；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_inn.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 37386768b8ad9aef3ce58492dfc00e52dee3906025a886feaecb0f8c352bb2f5
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:32:25.423050+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_inn.png
+  source_sha256: df1a879fd1a045166dea503e9d7ee23094d9f004df6a2f27fe81d132b3482a6f
+  size: 810x555
+  sha256: 3787e8b16f4e115c415815956f62a30dc98271df9c6a21b916fa191be47121df
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_inn
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 404.726
+    - 333.142
+    era: liao_jin_north
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    screen_direction: lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 672
+    ground_bbox_px:
+    - 672
+    - 336
+    view_count: 1
+    allowRotation: false
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1536
+    - 1024
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 111
+    - 71
+    - 1457
+    - 992
+    old_alpha_crop:
+    - 57
+    - 71
+    - 729
+    - 517
+    target_width: 672
+    uniform_scale: 0.49925705794947994
+    resized_size:
+    - 672
+    - 460
+    paste_offset:
+    - 69
+    - 47
+    final_size:
+    - 810
+    - 555
+    mapped_anchor:
+    - 404.726
+    - 333.142
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: 2026-10-01 强历史细节重出：Compact two-storey roadside inn around one open court, main timber range and lower side wing; broad shallow grey pan-and-cover roofs with plain ridges and no beasts; modest early projecting bracket arms and pingzuo walkways, no monumental palace set; dark columns on plain stone bases; buff earth-plaster infill and stone foot; open lower bays, plank doors and straight lattice upper windows; no signboard or bright paint. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_inn.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_manor
+  file: bld_kit_liao_jin_north_manor.png
+  category: building-map
+  style: default
+  subject: 辽金北方山庄大院（原创扩展；无名游戏组合，细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin gentry manor courtyard, asset bld_kit_liao_jin_north_manor, registered logical footprint 16 by 13. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Orderly one-court gentry compound: five-bay main hall, lower side wings, roofed gate and thick enclosure; main low hip-and-gable grey pan-and-cover roof with shallow ju-zhe, plain chiwen and two tiny beasts, side roofs plain hard-gable; moderate two-stage brackets only on main hall; dark red-brown posts on stone bases and low terrace; buff rammed-earth enclosure with stone foot, plank doors and straight lattice; sparse packed-earth court, no garden display.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 16 by 13 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Fengguo_Temple_1.JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Fengguo_Temple_1.JPG/1920px-Fengguo_Temple_1.JPG
+    accessed: '2026-10-01'
+    local_ref: fengguo_full.jpg
+    sha256: 5bf8d162a7a47abc297e5e905a431aa966db89276b803902bd61d4bdb21d5f3c
+    role: 辽殿低缓宽屋面、深檐与厚柱网；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_Section_4.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Along_the_River_During_the_Qingming_Festival_Section_4.jpg/1920px-Along_the_River_During_the_Qingming_Festival_Section_4.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_4.jpg
+    sha256: 4b3f8edc728f50570acdf7aab3362f9abfaff0dcf8ca1056771c23d1afa3f04c
+    role: 临水市廛、河埠和长低桥面比例；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_manor.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: fd3bf63036c0969f52429b11354d7ea23929b8acdadb11da933603a9e35faf96
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:39:27.588800+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_manor.png
+  source_sha256: be6d2d178869f25793c92fa89441d82a7aa90ef1fa29fbe199a6b807d68f189b
+  size: 1119x716
+  sha256: 79ac7900573d90fae06fd842bed40705dfd1ca6ff3fc05d9b038428adea82e9e
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_manor
+    footprint:
+    - 16
+    - 13
+    anchor:
+    - 559.913
+    - 391.791
+    era: liao_jin_north
+  footprint_m:
+  - 16
+  - 13
+  entrance:
+    edge: S
+    offset_cells: 8
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 928
+    - 464
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1536
+    - 1024
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 64
+    - 79
+    - 1482
+    - 987
+    old_alpha_crop:
+    - 126
+    - 107
+    - 1054
+    - 655
+    target_width: 928
+    uniform_scale: 0.6544428772919605
+    resized_size:
+    - 928
+    - 594
+    paste_offset:
+    - 95
+    - 61
+    final_size:
+    - 1119
+    - 716
+    mapped_anchor:
+    - 559.913
+    - 391.791
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: '2026-10-01 强历史细节重出：Orderly one-court gentry compound: five-bay main hall, lower side wings, roofed gate and thick enclosure; main low hip-and-gable grey pan-and-cover roof with shallow ju-zhe, plain chiwen and two tiny beasts, side roofs plain hard-gable; moderate two-stage brackets only on main hall; dark red-brown posts on stone bases and low terrace; buff rammed-earth enclosure with stone foot, plank doors and straight lattice; sparse packed-earth court, no garden display. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。'
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_manor.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_market_stall
+  file: bld_kit_liao_jin_north_market_stall.png
+  category: building-map
+  style: default
+  subject: 辽金北方市集铺棚（原创扩展；无名游戏组合，细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin market stall, asset bld_kit_liao_jin_north_market_stall, registered logical footprint 5 by 4. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Temporary single-slope timber-and-cloth market shelter: no tiled roof, ridge, beasts or dougong; rough pine posts and simple mortise beams planted on tiny stones; weathered hemp canopy; open wooden counter with baskets, jars and tied bales; no walls except one plank windbreak, no doors or windows, no paint, flags, writing or people.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 5 by 4 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg/1920px-Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_detail.jpg
+    sha256: 195b20ffcf3a374140dd210a9c272c70067f13d989799a99386725312d8505ee
+    role: 同时期北方城市屋面、铺面与河市尺度；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_Section_1.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Along_the_River_During_the_Qingming_Festival_Section_1.jpg/1920px-Along_the_River_During_the_Qingming_Festival_Section_1.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_1.jpg
+    sha256: 40326e965e9f761821b8c318caff55e676e6056a58c4cfeba97a700b3e5c4386
+    role: 开放铺面、支棚、货栈与朴素木构；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_market_stall.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 1f2c0454d0ab85b810d9cf108f1cf18ce6a0132554fe4249dd9cd274facafa73
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:34:40.483927+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_market_stall.png
+  source_sha256: d2653d4c944aef9c7733346a6aacaba327a35e93a1842b313399456c4cb8f366
+  size: 347x294
+  sha256: b6670f664a6a755036d172c8e5370d170b76c1902fcf1dfbe774e52935a837ac
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_market_stall
+    footprint:
+    - 5
+    - 4
+    anchor:
+    - 173.083
+    - 201.21
+    era: liao_jin_north
+  footprint_m:
+  - 5
+  - 4
+  entrance:
+    edge: S
+    offset_cells: 2
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 288
+    - 144
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1402
+    - 1122
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 204
+    - 152
+    - 1261
+    - 1046
+    old_alpha_crop:
+    - 118
+    - 135
+    - 406
+    - 367
+    target_width: 288
+    uniform_scale: 0.27246925260170296
+    resized_size:
+    - 288
+    - 244
+    paste_offset:
+    - 29
+    - 25
+    final_size:
+    - 347
+    - 294
+    mapped_anchor:
+    - 173.083
+    - 201.21
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: '2026-10-01 强历史细节重出：Temporary single-slope timber-and-cloth market shelter: no tiled roof, ridge, beasts or dougong; rough pine posts and simple mortise beams planted on tiny stones; weathered hemp canopy; open wooden counter with baskets, jars and tied bales; no walls except one plank windbreak, no doors or windows, no paint, flags, writing or people. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。'
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_market_stall.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_pagoda
+  subject: 辽金北方匿名八角密檐砖佛塔（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin octagonal brick pagoda, asset bld_kit_liao_jin_north_pagoda, registered logical footprint 7 by 7. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Anonymous Liao-style octagonal multi-eaved brick pagoda; tall tapering solid warm-grey brick body with thirteen short dense projecting eaves, tile-like brick courses and a compact finial; no wooden balcony or external stair; brick-relief niches and geometric bands abstracted without readable sacred text; timber dougong not applicable, only corbelled brick eaves; low octagonal stone base; no bright paint, gold or modern railing.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 7 by 7 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Tianning_Temple_Pagoda.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Tianning_Temple_Pagoda.jpg/1920px-Tianning_Temple_Pagoda.jpg
+    accessed: '2026-10-01'
+    local_ref: tianning.jpg
+    sha256: 0368a4ec596b80674590a9ea7d815ee406297f8eb2e5b9e9121d6f0b0ad4fafd
+    role: 辽代八角密檐砖塔、逐层收分与砖雕；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Fogong_Pagoda_1.jpg
+    download_url: https://upload.wikimedia.org/wikipedia/commons/4/46/Fogong_Pagoda_1.jpg
+    accessed: '2026-10-01'
+    local_ref: fogong_full.jpg
+    sha256: 2925c005f23772a605ae973997c79ab4af64fb8f82f81d0dcb06120618f873cc
+    role: 八角层檐总体收分；仅作木塔反例边界；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_pagoda.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 1518f3412d80791ad79eac938afb1a5fecbc65bd82f23dbb82e61715c9143406
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_pagoda.png
+  candidate_count: 1
+  file: bld_kit_liao_jin_north_pagoda.png
+  category: building-map
+  style: default
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:43:10.708012+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  size: 543x1215
+  sha256: b21623fc26d28f066a223b8d7a7b296af0d9b26cadd1bfd178930c9fd773abf4
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_pagoda
+    footprint:
+    - 7
+    - 7
+    anchor:
+    - 270.359
+    - 998.47
+    era: liao_jin_north
+  footprint_m:
+  - 7
+  - 7
+  entrance:
+    edge: S
+    facing: screen_lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 448
+    ground_bbox_px:
+    - 448
+    - 224
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1024
+    - 1536
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 213
+    - 56
+    - 836
+    - 1451
+    old_alpha_crop:
+    - 158
+    - 34
+    - 608
+    - 962
+    target_width: 450
+    uniform_scale: 0.7223113964686998
+    resized_size:
+    - 450
+    - 1008
+    paste_offset:
+    - 46
+    - 103
+    final_size:
+    - 543
+    - 1215
+    mapped_anchor:
+    - 270.359
+    - 998.47
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: 2026-10-01 强历史细节重出：Anonymous Liao-style octagonal multi-eaved brick pagoda; tall tapering solid warm-grey brick body with thirteen short dense projecting eaves, tile-like brick courses and a compact finial; no wooden balcony or external stair; brick-relief niches and geometric bands abstracted without readable sacred text; timber dougong not applicable, only corbelled brick eaves; low octagonal stone base; no bright paint, gold or modern railing. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  selected_candidate: historical-detail-c1
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_pagoda.png
+  source_sha256: 1f43b505c23bdc230c327bd870dd2b768adf4e04afd232fde5045f57e09419ed
+- id: bld_kit_liao_jin_north_restaurant
+  file: bld_kit_liao_jin_north_restaurant.png
+  category: building-map
+  style: default
+  subject: 辽金北方·酒楼／茶肆（原创扩展；历史细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin two-storey eating house, asset bld_kit_liao_jin_north_restaurant, registered logical footprint 12 by 9. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Anonymous two-storey eating house with open lower hall and upper timber gallery; low broad grey pan-and-cover hip-and-gable roof, shallow ju-zhe, plain chiwen and no rows of ridge beasts; visible but restrained early-medieval two-stage bracket arms; regular dark posts on low stone terrace; buff plaster end walls; straight-lattice screens and plank shutters; muted brown and faded ochre only, no signboard or dining figures.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 12 by 9 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_Section_4.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Along_the_River_During_the_Qingming_Festival_Section_4.jpg/1920px-Along_the_River_During_the_Qingming_Festival_Section_4.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_4.jpg
+    sha256: 4b3f8edc728f50570acdf7aab3362f9abfaff0dcf8ca1056771c23d1afa3f04c
+    role: 临水市廛、河埠和长低桥面比例；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg/1920px-%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg
+    accessed: '2026-10-01'
+    local_ref: dule_pavilion.jpg
+    sha256: f7762391f6c71b0b7403a76825071c27f6231663599ad9c221dda02d19aeb3ef
+    role: 两层木构平座、檐口和柱网比例；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_restaurant.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: b07dc586f2cbdd92983f7fc7b40a936a698bf9a1c08ea988b482c457be45f4a8
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:33:27.791570+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_restaurant.png
+  source_sha256: b56bdcdec605c9295161375052999e3b371cf57690f1629d81016b0900a1495c
+  size: 813x692
+  sha256: 3dfb9206545cb82dfbac215a5ed808b1c70d3470395139cb75ba8ad4d452a1ce
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_restaurant
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 405.772
+    - 470.869
+    era: liao_jin_north
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    screen_direction: lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 672
+    ground_bbox_px:
+    - 672
+    - 336
+    view_count: 1
+    allowRotation: false
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1448
+    - 1086
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 113
+    - 29
+    - 1340
+    - 1074
+    old_alpha_crop:
+    - 105
+    - 85
+    - 779
+    - 700
+    target_width: 674
+    uniform_scale: 0.5493072534637327
+    resized_size:
+    - 674
+    - 574
+    paste_offset:
+    - 69
+    - 59
+    final_size:
+    - 813
+    - 692
+    mapped_anchor:
+    - 405.772
+    - 470.869
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  selected_candidate: historical-detail-c1
+  notes: 2026-10-01 强历史细节重出：Anonymous two-storey eating house with open lower hall and upper timber gallery; low broad grey pan-and-cover hip-and-gable roof, shallow ju-zhe, plain chiwen and no rows of ridge beasts; visible but restrained early-medieval two-stage bracket arms; regular dark posts on low stone terrace; buff plaster end walls; straight-lattice screens and plank shutters; muted brown and faded ochre only, no signboard or dining figures. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_restaurant.png
+- id: bld_kit_liao_jin_north_shop_1f
+  file: bld_kit_liao_jin_north_shop_1f.png
+  category: building-map
+  style: default
+  subject: 辽金北方·单层商铺（原创扩展；历史细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin one-storey market shop, asset bld_kit_liao_jin_north_shop_1f, registered logical footprint 6 by 5. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Three-bay open-front shop from a contemporary northern market comparison; low hard-gable grey pan-and-cover roof, shallow pitch, plain ridge caps and no beasts; no dougong, simple projecting rafters and removable lean-to cloth shade; dark timber posts on low stone bases; earth-plaster side walls and stone foot; open counter, plank shutters and straight-lattice side window; baskets and bales without writing; no bright paint.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 6 by 5 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg/1920px-Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_detail.jpg
+    sha256: 195b20ffcf3a374140dd210a9c272c70067f13d989799a99386725312d8505ee
+    role: 同时期北方城市屋面、铺面与河市尺度；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_Section_1.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Along_the_River_During_the_Qingming_Festival_Section_1.jpg/1920px-Along_the_River_During_the_Qingming_Festival_Section_1.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_1.jpg
+    sha256: 40326e965e9f761821b8c318caff55e676e6056a58c4cfeba97a700b3e5c4386
+    role: 开放铺面、支棚、货栈与朴素木构；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_shop_1f.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 85bd8fec2fe87cb278b52bd256e7361637e25a4a2e713e79863a53da6fa57365
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:29:51.469886+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_shop_1f.png
+  source_sha256: 033e20745b31e85aa8029af23d0372799668c4616836988c6a71f84274c05dd4
+  size: 426x347
+  sha256: 3aa5eda2863c1533ed3091c990de25c59030cd4a8bc538ad76e55010bd401007
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_shop_1f
+    footprint:
+    - 6
+    - 5
+    anchor:
+    - 212.5
+    - 225.26
+    era: liao_jin_north
+  footprint_m:
+  - 6
+  - 5
+  entrance:
+    edge: S
+    screen_direction: lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 352
+    ground_bbox_px:
+    - 352
+    - 176
+    view_count: 1
+    allowRotation: false
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1374
+    - 1145
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 62
+    - 97
+    - 1336
+    - 1138
+    old_alpha_crop:
+    - 23
+    - 64
+    - 376
+    - 350
+    target_width: 353
+    uniform_scale: 0.2770800627943485
+    resized_size:
+    - 353
+    - 288
+    paste_offset:
+    - 36
+    - 29
+    final_size:
+    - 426
+    - 347
+    mapped_anchor:
+    - 212.5
+    - 225.26
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: 2026-10-01 强历史细节重出：Three-bay open-front shop from a contemporary northern market comparison; low hard-gable grey pan-and-cover roof, shallow pitch, plain ridge caps and no beasts; no dougong, simple projecting rafters and removable lean-to cloth shade; dark timber posts on low stone bases; earth-plaster side walls and stone foot; open counter, plank shutters and straight-lattice side window; baskets and bales without writing; no bright paint. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_shop_1f.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_shop_2f
+  file: bld_kit_liao_jin_north_shop_2f.png
+  category: building-map
+  style: default
+  subject: 辽金北方·两层商铺（原创扩展；历史细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin two-storey market shop, asset bld_kit_liao_jin_north_shop_2f, registered logical footprint 8 by 6. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Compact two-storey timber shop with shallow front pingzuo balcony; low broad grey pan-and-cover hard-gable roof, shallow ju-zhe, plain ridge and no beasts; sparse early-medieval projecting bracket arms under eaves and balcony, not a Qing bracket forest; regular dark timber grid on stone bases; buff plaster infill; lower open bays and upper straight-lattice windows; restrained weathered brown, no bright paint.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 8 by 6 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_(detail_of_original).jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg/1920px-Along_the_River_During_the_Qingming_Festival_%28detail_of_original%29.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_detail.jpg
+    sha256: 195b20ffcf3a374140dd210a9c272c70067f13d989799a99386725312d8505ee
+    role: 同时期北方城市屋面、铺面与河市尺度；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg/1920px-%E7%8B%AC%E4%B9%90%E5%AF%BA%E8%BE%BD%E4%BB%A3%E8%A7%82%E9%9F%B3%E9%98%81%E6%AD%A3%E9%9D%A2.jpg
+    accessed: '2026-10-01'
+    local_ref: dule_pavilion.jpg
+    sha256: f7762391f6c71b0b7403a76825071c27f6231663599ad9c221dda02d19aeb3ef
+    role: 两层木构平座、檐口和柱网比例；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_shop_2f.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 49e94c0952dfbbd44c836df5adc2f0d8b76df5fadc32fa6151543a7526d72fc0
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:31:10.727582+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_shop_2f.png
+  source_sha256: 9cad14c8606a4bb36125992750532de397aaa45e3ba9caf97f222273198f851a
+  size: 550x435
+  sha256: 01df052584f3720d488bd710dc624251f2ebf90891992f1aeaf1ed7d42f2eaab
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_shop_2f
+    footprint:
+    - 8
+    - 6
+    anchor:
+    - 271.106
+    - 301.601
+    era: liao_jin_north
+  footprint_m:
+  - 8
+  - 6
+  entrance:
+    edge: S
+    screen_direction: lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 448
+    ground_bbox_px:
+    - 448
+    - 224
+    view_count: 1
+    allowRotation: false
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1448
+    - 1086
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 96
+    - 68
+    - 1382
+    - 1085
+    old_alpha_crop:
+    - 39
+    - 54
+    - 495
+    - 468
+    target_width: 456
+    uniform_scale: 0.3545878693623639
+    resized_size:
+    - 456
+    - 361
+    paste_offset:
+    - 47
+    - 37
+    final_size:
+    - 550
+    - 435
+    mapped_anchor:
+    - 271.106
+    - 301.601
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: 2026-10-01 强历史细节重出：Compact two-storey timber shop with shallow front pingzuo balcony; low broad grey pan-and-cover hard-gable roof, shallow ju-zhe, plain ridge and no beasts; sparse early-medieval projecting bracket arms under eaves and balcony, not a Qing bracket forest; regular dark timber grid on stone bases; buff plaster infill; lower open bays and upper straight-lattice windows; restrained weathered brown, no bright paint. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_shop_2f.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_stable
+  subject: 辽金北方匿名马厩（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin town stable, asset bld_kit_liao_jin_north_stable, registered logical footprint 9 by 7. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Long utilitarian stable with one open aisle and enclosed tack bay; low hard-gable grey pan-and-cover roof, shallow pitch, straight ridge and no beasts; no dougong, exposed coarse pine rafters and beams; rough posts on fieldstone pads; buff rammed-earth rear wall with visible courses and stone foot; wide plank gate, timber rails and feeding trough; no animals, hay landscape, writing or paint.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 9 by 7 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_Section_1.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Along_the_River_During_the_Qingming_Festival_Section_1.jpg/1920px-Along_the_River_During_the_Qingming_Festival_Section_1.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_1.jpg
+    sha256: 40326e965e9f761821b8c318caff55e676e6056a58c4cfeba97a700b3e5c4386
+    role: 开放铺面、支棚、货栈与朴素木构；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg/1920px-Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    accessed: '2026-10-01'
+    local_ref: shangjing_dashun.jpg
+    sha256: 79430800d8f765bf775b03b39f9143e94851a6b9fa9c2e2254c799974ebe0959
+    role: 辽上京夯土水平层理、灰黄色与风蚀面；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_stable.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: ad3a587bc0bfdd354fc41af38b78cb27c9ac3271edcb93519ab3331a727defb2
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_stable.png
+  candidate_count: 1
+  file: bld_kit_liao_jin_north_stable.png
+  category: building-map
+  style: default
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:45:24.228619+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  size: 625x450
+  sha256: 597f028e406db3c659773f8b201691f5f5b96e01ba6063a4bf2e7bfa2a98d366
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_stable
+    footprint:
+    - 9
+    - 7
+    anchor:
+    - 308.957
+    - 290.89
+    era: liao_jin_north
+  footprint_m:
+  - 9
+  - 7
+  entrance:
+    edge: S
+    facing: screen_lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 512
+    ground_bbox_px:
+    - 512
+    - 256
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1536
+    - 1024
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 110
+    - 56
+    - 1425
+    - 1003
+    old_alpha_crop:
+    - 62
+    - 34
+    - 580
+    - 427
+    target_width: 518
+    uniform_scale: 0.39391634980988594
+    resized_size:
+    - 518
+    - 373
+    paste_offset:
+    - 53
+    - 38
+    final_size:
+    - 625
+    - 450
+    mapped_anchor:
+    - 308.957
+    - 290.89
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: 2026-10-01 强历史细节重出：Long utilitarian stable with one open aisle and enclosed tack bay; low hard-gable grey pan-and-cover roof, shallow pitch, straight ridge and no beasts; no dougong, exposed coarse pine rafters and beams; rough posts on fieldstone pads; buff rammed-earth rear wall with visible courses and stone foot; wide plank gate, timber rails and feeding trough; no animals, hay landscape, writing or paint. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_stable.png
+  source_sha256: 3e53f346c7278f6fa33f414983bd2a7cc23cc314b7633e3c3093cf36ae0768e2
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_temple_hall
+  subject: 辽金北方匿名佛寺殿堂（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin Buddhist main hall, asset bld_kit_liao_jin_north_temple_hall, registered logical footprint 13 by 10. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Freestanding five-bay Buddhist main hall inspired by surviving Liao massing without copying the named building; very broad low hip roof, shallow ju-zhe, deep eaves, grey pan-and-cover tiles, large curled chiwen and three tiny beasts; massive sparse multi-layer bracket sets with long projecting arms clearly visible; thick weathered red-brown columns on broad carved stone bases and low terrace; pale infill, straight-lattice doors, only traces of low-saturation mineral color under beams; no outdoor statue or incense.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 13 by 10 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Fengguo_Temple_1.JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Fengguo_Temple_1.JPG/1920px-Fengguo_Temple_1.JPG
+    accessed: '2026-10-01'
+    local_ref: fengguo_full.jpg
+    sha256: 5bf8d162a7a47abc297e5e905a431aa966db89276b803902bd61d4bdb21d5f3c
+    role: 辽殿低缓宽屋面、深檐与厚柱网；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:%E4%B9%89%E5%8E%BF%E5%A5%89%E5%9B%BD%E5%AF%BA%E5%A4%A7%E6%AE%BF%E6%96%97%E6%8B%B1%EF%BC%88%E8%BE%BD%E4%BB%A3%E5%8E%9F%E6%9E%84%EF%BC%89.JPG
+    download_url: https://upload.wikimedia.org/wikipedia/commons/3/33/%E4%B9%89%E5%8E%BF%E5%A5%89%E5%9B%BD%E5%AF%BA%E5%A4%A7%E6%AE%BF%E6%96%97%E6%8B%B1%EF%BC%88%E8%BE%BD%E4%BB%A3%E5%8E%9F%E6%9E%84%EF%BC%89.JPG
+    accessed: '2026-10-01'
+    local_ref: fengguo_dougong.jpg
+    sha256: 03fa65c66940b1a5e6f353556d6ee853fde86be401c2264c984bf25a0359445d
+    role: 疏朗粗大的多层铺作与长出跳；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_temple_hall.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: c0515ba9601a7126f0f1896d85818ad2d4286ab95bc008ba01ca5d91a526a5fd
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_temple_hall.png
+  candidate_count: 1
+  file: bld_kit_liao_jin_north_temple_hall.png
+  category: building-map
+  style: default
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:42:03.366382+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  size: 909x628
+  sha256: aed7b425e59a2cc67ffa44ce3237ee208cf66c761d54d98901bc707b15aaddd2
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_temple_hall
+    footprint:
+    - 13
+    - 10
+    anchor:
+    - 447.235
+    - 420.411
+    era: liao_jin_north
+  footprint_m:
+  - 13
+  - 10
+  entrance:
+    edge: S
+    facing: screen_lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 736
+    ground_bbox_px:
+    - 736
+    - 368
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1443
+    - 1090
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 52
+    - 121
+    - 1416
+    - 1064
+    old_alpha_crop:
+    - 111
+    - 96
+    - 865
+    - 602
+    target_width: 754
+    uniform_scale: 0.5527859237536656
+    resized_size:
+    - 754
+    - 521
+    paste_offset:
+    - 77
+    - 53
+    final_size:
+    - 909
+    - 628
+    mapped_anchor:
+    - 447.235
+    - 420.411
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: 2026-10-01 强历史细节重出：Freestanding five-bay Buddhist main hall inspired by surviving Liao massing without copying the named building; very broad low hip roof, shallow ju-zhe, deep eaves, grey pan-and-cover tiles, large curled chiwen and three tiny beasts; massive sparse multi-layer bracket sets with long projecting arms clearly visible; thick weathered red-brown columns on broad carved stone bases and low terrace; pale infill, straight-lattice doors, only traces of low-saturation mineral color under beams; no outdoor statue or incense. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  selected_candidate: historical-detail-c1
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_temple_hall.png
+  source_sha256: c7d5c9bd2e67323682ea1b471ab42be2769c575426e7efe7f4cde2b22ae9e3f3
+- id: bld_kit_liao_jin_north_wangfu
+  file: bld_kit_liao_jin_north_wangfu.png
+  category: building-map
+  style: default
+  subject: 辽金北方王府院落模块（原创扩展；非具名王府或宫殿复原，细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin princely residence court, asset bld_kit_liao_jin_north_wangfu, registered logical footprint 20 by 16. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Large but restrained princely residence module: broad five-bay main hall, two side halls, formal gate and enclosure; low sweeping hip-and-gable grey pan-and-cover roofs, shallow early-medieval ju-zhe, large curled chiwen and three small ridge beasts, never yellow glaze; main hall has massive sparse multi-layer dougong with long projection; thick muted red-brown columns on substantial plain stone bases and raised terrace; buff walls, straight-lattice doors, faded blue-green beam accents only.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 20 by 16 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Fengguo_Temple_1.JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Fengguo_Temple_1.JPG/1920px-Fengguo_Temple_1.JPG
+    accessed: '2026-10-01'
+    local_ref: fengguo_full.jpg
+    sha256: 5bf8d162a7a47abc297e5e905a431aa966db89276b803902bd61d4bdb21d5f3c
+    role: 辽殿低缓宽屋面、深檐与厚柱网；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Shanhua_Temple_1.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Shanhua_Temple_1.jpg/1920px-Shanhua_Temple_1.jpg
+    accessed: '2026-10-01'
+    local_ref: shanhua_full.jpg
+    sha256: 83b3269c6a5a894d6c7c8b94b2bbc5dd2d56aa4000f8e65465c8c49edababc47
+    role: 金代宽殿、厚灰瓦、深檐与克制赭红；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_wangfu.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 93bd91d446d16ef1571593e17eb6668d8a1919bdfa899bafe7f6e6b43a1bcb77
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:40:48.900775+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_wangfu.png
+  source_sha256: 46ecbc688441f8c071782d7b3ab0d69517c022958ea036019c5b36cef62da79a
+  size: 1388x903
+  sha256: ce5fb088efa9bf041a9aac6252f532b89bdfcf7a3ae1a5a7b8c7d09982a9ad3c
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_wangfu
+    footprint:
+    - 20
+    - 16
+    anchor:
+    - 694.669
+    - 504.604
+    era: liao_jin_north
+  footprint_m:
+  - 20
+  - 16
+  entrance:
+    edge: S
+    offset_cells: 10
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 1152
+    - 576
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1402
+    - 1122
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 24
+    - 163
+    - 1382
+    - 1046
+    old_alpha_crop:
+    - 99
+    - 147
+    - 1251
+    - 861
+    target_width: 1152
+    uniform_scale: 0.8483063328424153
+    resized_size:
+    - 1152
+    - 749
+    paste_offset:
+    - 118
+    - 77
+    final_size:
+    - 1388
+    - 903
+    mapped_anchor:
+    - 694.669
+    - 504.604
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: '2026-10-01 强历史细节重出：Large but restrained princely residence module: broad five-bay main hall, two side halls, formal gate and enclosure; low sweeping hip-and-gable grey pan-and-cover roofs, shallow early-medieval ju-zhe, large curled chiwen and three small ridge beasts, never yellow glaze; main hall has massive sparse multi-layer dougong with long projection; thick muted red-brown columns on substantial plain stone bases and raised terrace; buff walls, straight-lattice doors, faded blue-green beam accents only. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。'
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_wangfu.png
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_warehouse
+  subject: 辽金北方匿名仓屋（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin freight warehouse, asset bld_kit_liao_jin_north_warehouse, registered logical footprint 10 by 8. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Broad utilitarian storehouse with deep rectangular plan; low hard-gable grey pan-and-cover roof, shallow pitch, plain ridge caps and no beasts; no dougong, heavy exposed pine tie beams and short eave blocks; stout posts on rough stone bases; thick buff rammed-earth walls with horizontal courses and mixed stone-brick footing; two wide plank doors, tiny vertical ventilation lattice, tied bales outside without writing.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 10 by 8 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_Section_1.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Along_the_River_During_the_Qingming_Festival_Section_1.jpg/1920px-Along_the_River_During_the_Qingming_Festival_Section_1.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_1.jpg
+    sha256: 40326e965e9f761821b8c318caff55e676e6056a58c4cfeba97a700b3e5c4386
+    role: 开放铺面、支棚、货栈与朴素木构；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg/1920px-Liao_Shangjing_2017_Dashun_Gate_rammed_earth_A.jpg
+    accessed: '2026-10-01'
+    local_ref: shangjing_dashun.jpg
+    sha256: 79430800d8f765bf775b03b39f9143e94851a6b9fa9c2e2254c799974ebe0959
+    role: 辽上京夯土水平层理、灰黄色与风蚀面；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_warehouse.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 382f721eec0b43723f82f699ce564bd60335bb76948726b56f482e37c1459c15
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_warehouse.png
+  candidate_count: 1
+  file: bld_kit_liao_jin_north_warehouse.png
+  category: building-map
+  style: default
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:46:24.513864+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  size: 696x517
+  sha256: f2b7321b4772277965615c4265db5dcc435cf26e94febc1cb8092b0901fabd47
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_warehouse
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 346.837
+    - 320.246
+    era: liao_jin_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    facing: screen_lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 576
+    ground_bbox_px:
+    - 576
+    - 288
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1402
+    - 1122
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 38
+    - 97
+    - 1370
+    - 1087
+    old_alpha_crop:
+    - 81
+    - 77
+    - 658
+    - 493
+    target_width: 577
+    uniform_scale: 0.43318318318318316
+    resized_size:
+    - 577
+    - 429
+    paste_offset:
+    - 59
+    - 44
+    final_size:
+    - 696
+    - 517
+    mapped_anchor:
+    - 346.837
+    - 320.246
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: 2026-10-01 强历史细节重出：Broad utilitarian storehouse with deep rectangular plan; low hard-gable grey pan-and-cover roof, shallow pitch, plain ridge caps and no beasts; no dougong, heavy exposed pine tie beams and short eave blocks; stout posts on rough stone bases; thick buff rammed-earth walls with horizontal courses and mixed stone-brick footing; two wide plank doors, tiny vertical ventilation lattice, tied bales outside without writing. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_warehouse.png
+  source_sha256: 19c141855b0fdc15ceb5470fb88c7040fd5fde960da7345cb0a4c6a2230acbf3
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_wharf
+  subject: 辽金北方匿名石木河埠（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin river wharf deck, asset bld_kit_liao_jin_north_wharf, registered logical footprint 10 by 4. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Long low river landing only: roughly coursed grey stone retaining edge and two broad descending stone steps with weathered pine piles and crossbeams; a very small single-slope hemp shelter may cover one end, with no tiled roof, ridge, beasts or dougong; no formal column grid, doors, windows or paint; low plain timber safety rail at one edge; no water, boat, people, landscape, stone arches or ornate balustrade.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 10 by 4 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Along_the_River_During_the_Qingming_Festival_Section_4.jpg
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Along_the_River_During_the_Qingming_Festival_Section_4.jpg/1920px-Along_the_River_During_the_Qingming_Festival_Section_4.jpg
+    accessed: '2026-10-01'
+    local_ref: qingming_4.jpg
+    sha256: 4b3f8edc728f50570acdf7aab3362f9abfaff0dcf8ca1056771c23d1afa3f04c
+    role: 临水市廛、河埠和长低桥面比例；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:Thomas_Child_-_Marco_Polo_Bridge_(Lugou_Qiao)%2C_Peking%2C_1877_NA01-75.jpg
+    download_url: https://upload.wikimedia.org/wikipedia/commons/7/7f/Thomas_Child_-_Marco_Polo_Bridge_%28Lugou_Qiao%29%2C_Peking%2C_1877_NA01-75.jpg
+    accessed: '2026-10-01'
+    local_ref: lugou_1877.jpg
+    sha256: 77ea6e58a128a6e7032e726189bc7412fbee8c09d858a51e409d52f94e84cc2d
+    role: 历史照片中的长低桥身与低栏比例；不复制石拱材质；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_wharf.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 7bce2294f845d048754d2b63464a73e5940a3b185877fddfa31cbd19bb8614ca
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_wharf.png
+  candidate_count: 1
+  file: bld_kit_liao_jin_north_wharf.png
+  category: building-map
+  style: default
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:47:20.973321+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  size: 541x303
+  sha256: 6bf18c3134115bacd2e76347729730b18e7d4c8e2a80e4bd27466d9e140ae475
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_wharf
+    footprint:
+    - 10
+    - 4
+    anchor:
+    - 271.035
+    - 150.088
+    era: liao_jin_north
+  footprint_m:
+  - 10
+  - 4
+  entrance:
+    edge: S
+    facing: screen_lower_left
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_width_px: 448
+    ground_bbox_px:
+    - 448
+    - 224
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1774
+    - 887
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 227
+    - 101
+    - 1492
+    - 807
+    old_alpha_crop:
+    - 78
+    - 59
+    - 527
+    - 306
+    target_width: 449
+    uniform_scale: 0.3549407114624506
+    resized_size:
+    - 449
+    - 251
+    paste_offset:
+    - 46
+    - 26
+    final_size:
+    - 541
+    - 303
+    mapped_anchor:
+    - 271.035
+    - 150.088
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  notes: '2026-10-01 强历史细节重出：Long low river landing only: roughly coursed grey stone retaining edge and two broad descending stone steps with weathered pine piles and crossbeams; a very small single-slope hemp shelter may cover one end, with no tiled roof, ridge, beasts or dougong; no formal column grid, doors, windows or paint; low plain timber safety rail at one edge; no water, boat, people, landscape, stone arches or ornate balustrade. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。'
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_wharf.png
+  source_sha256: 443c1ac667ed0eb49dde85d7bdaf40fb443048eddf12d8f64af4526470d4027e
+  selected_candidate: historical-detail-c1
+- id: bld_kit_liao_jin_north_yamen
+  file: bld_kit_liao_jin_north_yamen.png
+  category: building-map
+  style: default
+  subject: 辽金北方官署院落（原创扩展；非具名官署复原，细部待考）
+  prompt: 'You are a narrow image-generation tool runner. Do not spawn or delegate. Immediately call the built-in image_gen tool exactly once with transparent_background true and all supplied images as referenced_image_paths. After that single call returns, stop without inspecting, editing, or calling any other tool. Output only the generated image result.
+
+
+    Use case: historical-scene. Create one entirely NEW production game sprite for tianshu: an anonymous northern Liao-Jin provincial administrative courtyard, asset bld_kit_liao_jin_north_yamen, registered logical footprint 16 by 12. Historical images 1 and 2 control visible form, construction, proportion and materials only; never copy their photographic framing or modern surroundings. Image 3 is the previous same-ID sprite and controls ONLY footprint envelope, functional massing, lower-left front, camera, transparent presentation, detail density and approximate scale; rebuild the architecture rather than filtering or recoloring it.
+
+
+    Historical construction: Anonymous walled administrative court with a five-bay main hall, two low side offices and restrained front gate; main low broad hip-and-gable grey pan-and-cover roof with shallow ju-zhe, plain curled chiwen and at most three tiny ridge beasts; clearly readable large early-medieval multi-layer bracket sets with long projecting arms; thick dark red-brown columns on carved-but-plain stone bases and low stone terrace; buff earth enclosure, straight-lattice doors, very faded mineral accents under beams only.
+
+
+    For every applicable architectural field, visibly resolve it: roof form and shallow early-medieval ju-zhe; ridge, chiwen and exact absence or restrained count of beasts; pan-and-cover grey tile work; bracket-set layers and projection or explicit absence; column grid and stone bases; paper-thin terrace/contact boundary; door and window lattice; restrained decoration; wall construction and northern regional material. Do not add a field marked not applicable.
+
+
+    Orthographic yaw 45 degrees, elevation 30 degrees, strict 2:1 dimetric ground axes visually about +0.5 and -0.5, upright verticals, parallel opposite edges, no perspective convergence. Show the complete paper-thin 16 by 12 contact boundary with left, front and right corners readable. Functional front toward screen lower-left. Soft natural daylight from screen upper-left; tiny short contact shadow lower-right only. Match the Song baseline level of realistic, weathered, muted matte rendering and fine detail.
+
+
+    TRUE transparent RGBA outside the object and through every required opening; clean antialiasing and at least eight percent clear margin on all sides. Exactly one coherent isolated sprite. No people, animals, readable writing, symbols, signs, flags, watermark, modern object, vegetation unless this is a tree asset, landscape, sky, backdrop, checkerboard, glow, haze, thick floating diorama base, clipped object or long cast shadow. No generic fantasy architecture, exaggerated upturned eaves, Ming-Qing ornament, bright gold/red or yellow imperial glaze.'
+  negative: 无人物、文字、现代物、景观背景、伪透明、厚地台、透视汇聚、明清装饰、幻想飞檐与黄琉璃
+  references:
+  - url: https://commons.wikimedia.org/wiki/File:Fengguo_Temple_1.JPG
+    download_url: https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Fengguo_Temple_1.JPG/1920px-Fengguo_Temple_1.JPG
+    accessed: '2026-10-01'
+    local_ref: fengguo_full.jpg
+    sha256: 5bf8d162a7a47abc297e5e905a431aa966db89276b803902bd61d4bdb21d5f3c
+    role: 辽殿低缓宽屋面、深檐与厚柱网；仅取形制、比例、材料与构造，不复制构图
+  - url: https://commons.wikimedia.org/wiki/File:%E4%B9%89%E5%8E%BF%E5%A5%89%E5%9B%BD%E5%AF%BA%E5%A4%A7%E6%AE%BF%E6%96%97%E6%8B%B1%EF%BC%88%E8%BE%BD%E4%BB%A3%E5%8E%9F%E6%9E%84%EF%BC%89.JPG
+    download_url: https://upload.wikimedia.org/wikipedia/commons/3/33/%E4%B9%89%E5%8E%BF%E5%A5%89%E5%9B%BD%E5%AF%BA%E5%A4%A7%E6%AE%BF%E6%96%97%E6%8B%B1%EF%BC%88%E8%BE%BD%E4%BB%A3%E5%8E%9F%E6%9E%84%EF%BC%89.JPG
+    accessed: '2026-10-01'
+    local_ref: fengguo_dougong.jpg
+    sha256: 03fa65c66940b1a5e6f353556d6ee853fde86be401c2264c984bf25a0359445d
+    role: 疏朗粗大的多层铺作与长出跳；仅取形制、比例、材料与构造，不复制构图
+  - git_ref: 022a4dea03a54a7849e23b3958b1b525d671b088:assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_yamen.png
+    role: 生成时输入的上一版同 ID 图，仅约束登记占地、功能体量、镜头、透明呈现与细节密度；不保留其时代建筑造型
+    sha256: 3561b5e376ad5d10d3450f7fb2d1772b127b98e5edf97f9ed0d5db3df25a6bbf
+  tool: built-in image_gen
+  model: image_gen (underlying model not disclosed)
+  effort: not exposed by image tool
+  created: '2026-10-01T10:35:50.607765+00:00'
+  created_time_basis: 生成 PNG 文件 mtime；非服务端回执时间
+  source_path: sources/historical-detail/bld_kit_liao_jin_north_yamen.png
+  source_sha256: 08414a5d45e6188a48debb1238eb8e4e7cdb81cff882f5149dd77cb185ae3031
+  size: 1080x705
+  sha256: 0aff3362eb6fbc254e1edef414b65ac85363d82b7dae3a8d755c9ccf28f1ea6d
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_liao_jin_north_yamen
+    footprint:
+    - 16
+    - 12
+    anchor:
+    - 541.289
+    - 372.753
+    era: liao_jin_north
+  footprint_m:
+  - 16
+  - 12
+  entrance:
+    edge: S
+    offset_cells: 8
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 896
+    - 448
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  processing:
+    source_size:
+    - 1448
+    - 1086
+    significant_alpha_threshold: 8
+    alpha_crop:
+    - 82
+    - 144
+    - 1375
+    - 988
+    old_alpha_crop:
+    - 140
+    - 132
+    - 1036
+    - 659
+    target_width: 896
+    uniform_scale: 0.6929621036349575
+    resized_size:
+    - 896
+    - 585
+    paste_offset:
+    - 92
+    - 60
+    final_size:
+    - 1080
+    - 705
+    mapped_anchor:
+    - 541.289
+    - 372.753
+    steps:
+    - alpha>=8 bbox crop
+    - uniform LANCZOS resize to old same-ID alpha width
+    - transparent padding at <=83% occupancy; no warp or painting
+  candidate_count: 1
+  notes: 2026-10-01 强历史细节重出：Anonymous walled administrative court with a five-bay main hall, two low side offices and restrained front gate; main low broad hip-and-gable grey pan-and-cover roof with shallow ju-zhe, plain curled chiwen and at most three tiny ridge beasts; clearly readable large early-medieval multi-layer bracket sets with long projecting arms; thick dark red-brown columns on carved-but-plain stone bases and low stone terrace; buff earth enclosure, straight-lattice doors, very faded mineral accents under beams only. 参考图均已目视；匿名功能组合仍为原创扩展，不宣称具名复原。
+  source_archive: sources/historical-detail/bld_kit_liao_jin_north_yamen.png
+  selected_candidate: historical-detail-c1

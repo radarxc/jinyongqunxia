@@ -1,0 +1,109 @@
+id: bld_kit_ming_south_temple_hall
+footprint_m:
+- 14
+- 11
+footprint_origin: design/22 §3.4 冻结占地的江南同构变体
+skeleton_type: bld_kit_ming_temple_hall
+anchor_px:
+- 420.779
+- 464.398
+entrance:
+  side: S
+  offset_m: 7.0
+  status: 【建议值】门位由图像识别；待拼接实测
+projection_contract:
+  target: orthographic yaw45 pitch30; 64x32 px/m
+  provided_views:
+  - southwest_single_view
+  allowRotation: false
+  geometry_release_ready: false
+measurement:
+  method: 人工读取地面左/前/右角；后角被遮挡时由平行四边形推定，不使用alpha bbox猜锚点
+  uncertainty_source_px: 4
+  ground_lfr_source_px:
+  - - 189
+    - 684
+  - - 800
+    - 993
+  - - 1307
+    - 777
+  ground_lfr_final_px:
+  - - 21.006
+    - 431.117
+  - - 457.967
+    - 652.274
+  - - 820.551
+    - 497.679
+  ground_center_source_px:
+  - 748.0
+  - 730.5
+  source_slopes:
+  - 0.5057283142389526
+  - -0.4260355029585799
+  slope_abs_errors:
+  - 0.005728314238952592
+  - 0.07396449704142011
+  slope_tolerance_suggestion: 0.03
+  slope_check: false
+  observed_w_h_ratio: 1.205128205128205
+  target_w_h_ratio: 1.2727272727272727
+  width_scale_target_px: 800
+  width_scale_actual_px: 799.5452961672473
+  depth_scale_target_px: 400
+  depth_observed_px: 375.752508361204
+processing:
+  source_file: sources/bld_kit_ming_south_temple_hall.png
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-e94bc4f9-c4ef-4e37-bd09-fad64e4aea99.png
+  source_sha256: 459006bf0f2aeeee64ca580dd42a5aa5bc21bdd08d3c5319b5a09fdb56ab36ce
+  source_size_px:
+  - 1441
+  - 1091
+  crop_box:
+  - 182
+  - 104
+  - 1330
+  - 1001
+  crop_rule: alpha>=3 bbox expanded4 source px; retained pixels alpha unmodified
+  discarded_alpha_max: 1
+  requested_uniform_scale: 0.7155635062611807
+  rounded_effective_scale_xy:
+  - 0.7151567944250871
+  - 0.7157190635451505
+  resized_px:
+  - 821
+  - 642
+  canvas_px:
+  - 853
+  - 674
+  paste_offset_px:
+  - 16
+  - 16
+  final_sha256: f781af48de0474247c6e7dc980c0196523e7e60b3b930d3d013f46cb2068c1b7
+verification:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  zero_alpha_pixels: 278127
+  partial_alpha_pixels: 296025
+  opaque_pixels: 770
+  nonzero_alpha_bbox:
+  - 18
+  - 18
+  - 836
+  - 656
+  margins_px:
+  - 18
+  - 18
+  - 17
+  - 18
+  source_viewed: true
+  final_viewed: true
+  runtime_assembly_tested: false
+limitations:
+- 单视图candidate，不提供GLB、四向模型或经实测的碰撞/遮挡多边形
+- 底面宽度已标定；残余斜率、宽深比例和深度误差保留，不能声称严格2:1拼接已验收
+- 建筑为原创扩展；年代细部待考；门位/高度及遮挡待实测
+candidate_count: 2
+selected_candidate: 1
+selection_note: 2选1：选第一候选，第二候选台基距源图下边仅1px且更拥挤；第一候选右轴仍超建议容差

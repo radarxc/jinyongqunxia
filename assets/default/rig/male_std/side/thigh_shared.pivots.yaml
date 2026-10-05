@@ -1,0 +1,20 @@
+coordinates: source
+keypoints:
+  hip_L:
+  - 30
+  - 17
+  knee_L:
+  - 30
+  - 131
+source:
+  keypoints:
+  - hip_L
+  - knee_L
+  inpaintedPct: 51.195
+  rejectedInpaintedPct: 0.0
+  jointCaps: true
+  standardFallback: false
+  lowConfidence: []
+  sourceLimitation: garmentOccludedHip
+  reconstruction: sourceTrouserContinuation
+  reconstructedPixels: 2519

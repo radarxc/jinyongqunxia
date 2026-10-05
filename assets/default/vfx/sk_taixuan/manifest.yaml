@@ -1,0 +1,525 @@
+- id: vfx_sk_taixuan__family_base01
+  file: effect/family/source_sheet.png
+  category: vfx
+  style: default
+  subject: 太玄经；ch06_xiake；石壁图意般的流转金气；普通招共用语汇（原创扩展）。
+  prompt: 'Use case: stylized-concept. Asset type: 2D wuxia game VFX raw animation sprite sheet for Taixuan Jing family, harmony
+    nature, original visual interpretation of stone-wall diagram insight. Generate one 1536x1024 landscape image on perfectly
+    pure white #FFFFFF. Exactly FOUR frames in an invisible 2 columns x 2 rows grid; each cell 768x512. No grid lines, borders,
+    labels or text. In EVERY cell place a rightward continuous, translucent golden qi current: broad soft root near local
+    (112,256), width about 130 px, connected to an elegant interweaving rolling wave reaching (680,256). Twisting open golden
+    ribbons and small cloudlike bends recall abstract hand-drawn flow diagrams, absolutely no readable glyphs. Airy Chinese
+    ink-wash spirit with dry-brush gaps, delicate amber-gold contours and diluted pale gold wisps; not metallic solid, not
+    flames, not neon laser. Four closely related temporal states in reading order: gathering, fuller unfurling, full sustained
+    flow, thinning echo. Keep root and axis fixed; first/last still visibly nonempty. Vary only intensity and ribbon curl
+    slightly; keep same identity. All painted material including tiny particles stays INSIDE local x=64..700,y=80..432, with
+    fully blank white margins at least 50px from every cell boundary. A broad soft root must remain visibly connected to the
+    current; no detached projectile. No palm, no person, no weapons, no stones, no scenery, no circles of text, no stars,
+    no interface, no black background, no checkerboard. No pure white highlights inside the qi: brightness via ochre gold
+    color and translucent wash. This is a reusable effect material, not a composed attack scene.'
+  negative: 无人物、手、武器、文字、网格、边框、纸纹、棋盘格、白色实心高光、现代激光；原料不含发出方。
+  references: []
+  tool: Codex · built-in image_gen
+  model: undisclosed image backend
+  effort: not exposed by tool
+  created: '2026-10-04T00:01:46.686194+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_taixuan/codex-home/generated_images/01a10435-5249-7ca2-ae43-5b501a771799/exec-4f51fcf7-40c4-45ed-a0a9-1660aba45f0f.png
+  size: 1536x1024
+  sha256: 45f551df9984d443eb73074e996e75afb8d156d7c0ca2c5e66c36c0d97019edb
+  status: candidate
+  notes: 石壁图意般的流转金气；普通招共用语汇（原创扩展）。 harmony 金色为表现约定，不是原著显色事实。原件逐字节保存；4 帧、white_key 128；原著逐字考据与动态播放待验。
+  candidate_count: 1
+  selected_candidate: 1
+  files:
+  - effect/family/effect-set.yaml
+  - effect/family/frame_000.png
+  - effect/family/frame_001.png
+  - effect/family/frame_002.png
+  - effect/family/frame_003.png
+  - effect/family/generation.json
+  - effect/family/prompt.txt
+  - effect/family/quality.json
+  - README.md
+  - verification.json
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 1003
+    sha256: 508ee0b92de5ab8ff7cd91d0d58879a1e0d3ba9cbbf4a4c66dfeeb7e388bef0e
+  - file: effect/family/frame_000.png
+    bytes: 208322
+    sha256: 9a4feede1f5be8aa761e0e6d28dab3696b7974c5650cae604b307e438b406a83
+  - file: effect/family/frame_001.png
+    bytes: 273759
+    sha256: 07eecf33c4b3ffb2e758122e66af4ee76175b2924660666ad0342209e1ab4076
+  - file: effect/family/frame_002.png
+    bytes: 304246
+    sha256: fb4610951ccae43448751e4cf3bc5d7f13b544ddb12a4bdfc62e8fc9aa639a54
+  - file: effect/family/frame_003.png
+    bytes: 190667
+    sha256: 900b89fdd631c5dc45b3ac360894241d5b58d95f82339c12d058befbe647b7ad
+  - file: effect/family/generation.json
+    bytes: 2306
+    sha256: a551c0408ace718198701c3a0c945498ae7208b41d68f53828a78d261dca7fd2
+  - file: effect/family/prompt.txt
+    bytes: 1655
+    sha256: 093b3b0361de3cdf0c8ad41fd13ec4a300835ce3c0594722abec22a045aaea9e
+  - file: effect/family/quality.json
+    bytes: 1029
+    sha256: 5bf34cccb6309fd993cf32738f53c7d66c5899bd58029483534953ef89597521
+  - file: README.md
+    bytes: 8037
+    sha256: 35b69671c3ec6444cfd3b1bbf4a88a665bc02700b3574b7b08d0d633a3cf7c6e
+  - file: verification.json
+    bytes: 5535
+    sha256: e2bf00075aa8ecb2ab890170c06933e0e46ea433ccae7ffc9ac3698eb50d10e0
+
+- id: vfx_sk_taixuan__guiyi_base01
+  file: effect/mv_taixuan_guiyi/source_sheet.png
+  category: vfx
+  style: default
+  subject: 太玄经；ch06_xiake；多股归一涡纹；三档均单体，保持单束（原创扩展）。
+  prompt: 'Use case: stylized-concept. Asset type: Taixuan Guiyi ultimate wuxia 2D effect sprite sheet, original invented
+    imagery. Exactly FOUR closely related animation frames on pure WHITE #FFFFFF 1536x1024 canvas, invisible 2x2 grid, each
+    cell 768x512. Every frame is horizontal and moves LEFT TO RIGHT, with a broad rooted entry at local (125,256). Pale amber-gold
+    inner qi forms three interlaced flowing ribbons that converge into ONE cohesive almond-shaped rushing current, a single
+    open spiral knot at local (445,256), then one forward taper ending near (675,256). Motif of many streams returning to
+    one; flowing calligraphic diagram lines but absolutely NO letters, symbols, runes, numbers or literal diagrams. Refined
+    Chinese ink-wash translucence, dry-brush open gaps, feathered edges, limited rich ochre-gold strokes, airy glow implied
+    by diluted pigment, never an opaque luminous white core. First gathering, second coalescing, third fullest peak, fourth
+    fading; root stable, shape highly consistent, subtle temporal changes. Keep broad root 130px across vertically, maintain
+    uninterrupted source connection, do not depict a detached sphere. All marks inside x=64..704 and y=70..442 within each
+    cell, at least 48px completely empty white margin per cell. No person, palm, weapon, dragon, yin-yang emblem, scenery,
+    paper texture, grid border, labels, checkerboard, text, lens flare or laser. The gold is harmony color styling, not a
+    claim about novel descriptions.'
+  negative: 无人物、手、武器、文字、网格、边框、纸纹、棋盘格、白色实心高光、现代激光；原料不含发出方。
+  references: []
+  tool: Codex · built-in image_gen
+  model: undisclosed image backend
+  effort: not exposed by tool
+  created: '2026-10-04T00:02:47.046165+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_taixuan/codex-home/generated_images/01a10435-5249-7ca2-ae43-5b501a771799/exec-72c30537-beb9-41a2-97c3-a3d0a460a09d.png
+  size: 1536x1024
+  sha256: 83a3f80e3f6493ef9b19bf3c4ad1f10a7bb6df9cdfa0f411ddd3d62809b83324
+  status: candidate
+  notes: 多股归一涡纹；三档均单体，保持单束（原创扩展）。 harmony 金色为表现约定，不是原著显色事实。原件逐字节保存；4 帧、white_key 128；原著逐字考据与动态播放待验。
+  candidate_count: 1
+  selected_candidate: 1
+  files:
+  - effect/mv_taixuan_guiyi/effect-set.yaml
+  - effect/mv_taixuan_guiyi/frame_000.png
+  - effect/mv_taixuan_guiyi/frame_001.png
+  - effect/mv_taixuan_guiyi/frame_002.png
+  - effect/mv_taixuan_guiyi/frame_003.png
+  - effect/mv_taixuan_guiyi/generation.json
+  - effect/mv_taixuan_guiyi/prompt.txt
+  - effect/mv_taixuan_guiyi/quality.json
+  file_integrity:
+  - file: effect/mv_taixuan_guiyi/effect-set.yaml
+    bytes: 998
+    sha256: 53d9cfc55c79829bce38dda3df6ec7c1b691f9c733dbd1428528c5b4406d8c0b
+  - file: effect/mv_taixuan_guiyi/frame_000.png
+    bytes: 274307
+    sha256: 8eb24f1270585b8cc2c44506c528485ba7345e1190e173d78797f0af4f45a399
+  - file: effect/mv_taixuan_guiyi/frame_001.png
+    bytes: 314104
+    sha256: 36d4b74f845dfdeb4e60a1dade9cf81684d749fcaf33468f743d13c88ee3439c
+  - file: effect/mv_taixuan_guiyi/frame_002.png
+    bytes: 339766
+    sha256: 69299ff3efda5f606c0ee78c36d78fc93345d08f2fddf70b0362d5f6abc50295
+  - file: effect/mv_taixuan_guiyi/frame_003.png
+    bytes: 287010
+    sha256: 03209f115f4ef790fe7055330a17d7304acdc58ff8d93260889b4966d3ff46ab
+  - file: effect/mv_taixuan_guiyi/generation.json
+    bytes: 2116
+    sha256: 2906631ba075f31a18f04efc568902531dc93f05ccf889624429d42b07422418
+  - file: effect/mv_taixuan_guiyi/prompt.txt
+    bytes: 1465
+    sha256: 3a1c162e18dbd378689590f0c4c86152001d94add3a8422d9bfb57dd7add0bf9
+  - file: effect/mv_taixuan_guiyi/quality.json
+    bytes: 1028
+    sha256: 65bf9f931beb050d26f08cb18a01b8b18764b7f7b053d9603c47764e1a73322d
+
+- id: vfx_sk_taixuan__sada_base01
+  file: effect/mv_taixuan_sada/source_sheet.png
+  category: vfx
+  style: default
+  subject: 太玄经；ch06_xiake；流星状连根扇扫（原创扩展）；首候选贴边，改用第二候选。
+  prompt: 'Use case: stylized-concept. Generate a sparse 2D wuxia VFX SPRITE SHEET, 1536x1024 pure white background, exactly
+    FOUR frames in an invisible 2 columns x 2 rows arrangement. EACH frame is a SMALL centered illustration occupying no more
+    than 500x290 pixels in its 768x512 cell. There must be very large white gutters and at least 110 pixels empty on LEFT
+    and RIGHT of EACH frame. Do not enlarge the drawings to fill cells. Original Taixuan Jing Sada Liuxing ultimate imagery:
+    one short golden qi fan, THREE curved meteor-like brush streaks sharing a connected broad soft root on their left and
+    opening toward their right. Amber-gold ink-wash translucence with airy feathered pigment and dry brush gaps, ochre core,
+    pale gold haze. No hard white highlights or neon. Root near local (185,256), tips at local x=610,y=145,256,370. Temporal
+    phases: gathering, opening, strongest, thinning echo. Very subtle variation, SAME size and placement for all four, including
+    strongest phase. Keep every particle inside local x=130..638,y=100..412. No full-width trails. No people, hand, weapons,
+    stars, rocks, dragon, text, symbols, runes, labels, grid, borders, paper texture, checkerboard, scenery or shadows. Gold
+    pigment on clean WHITE only; source material will be keyed transparent. The three strokes remain connected, not detached
+    bullets. Refined Chinese wuxia painting, not graphic vector, not a physical fan.'
+  negative: 无人物、手、武器、文字、网格、边框、纸纹、棋盘格、白色实心高光、现代激光；原料不含发出方。
+  references: []
+  tool: Codex · built-in image_gen
+  model: undisclosed image backend
+  effort: not exposed by tool
+  created: '2026-10-04T00:05:48.955405+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_taixuan/codex-home/generated_images/01a10435-5249-7ca2-ae43-5b501a771799/exec-66a9b583-1042-4b37-a2e4-b21e1ef0f936.png
+  size: 1536x1024
+  sha256: 62bbc7f7553fadfe35a0bc708116e2b811ca75a3fcfb261cdefabf215e10afc6
+  status: candidate
+  notes: 流星状连根扇扫（原创扩展）；首候选贴边，改用第二候选。 harmony 金色为表现约定，不是原著显色事实。原件逐字节保存；4 帧、white_key 128；原著逐字考据与动态播放待验。
+  candidate_count: 2
+  selected_candidate: 2
+  files:
+  - effect/mv_taixuan_sada/effect-set.yaml
+  - effect/mv_taixuan_sada/frame_000.png
+  - effect/mv_taixuan_sada/frame_001.png
+  - effect/mv_taixuan_sada/frame_002.png
+  - effect/mv_taixuan_sada/frame_003.png
+  - effect/mv_taixuan_sada/generation.json
+  - effect/mv_taixuan_sada/prompt.txt
+  - effect/mv_taixuan_sada/prompt_candidate_01.txt
+  - effect/mv_taixuan_sada/quality.json
+  file_integrity:
+  - file: effect/mv_taixuan_sada/effect-set.yaml
+    bytes: 1005
+    sha256: f200448846e8f96a0726d4561620416cbb97041fce054714e2adf3053536a25c
+  - file: effect/mv_taixuan_sada/frame_000.png
+    bytes: 90682
+    sha256: a7d80341a37c720405c7ed7b1387803c48bff96a34713432bb3611093ed9b9a3
+  - file: effect/mv_taixuan_sada/frame_001.png
+    bytes: 111769
+    sha256: c0affeb43357d5504bfda20b81206819d0efc8494d517b84addd838201a75cc4
+  - file: effect/mv_taixuan_sada/frame_002.png
+    bytes: 140620
+    sha256: 82598c66b95ae9a41841861da641803742576a65fb5434b8e2a6bc061304dee0
+  - file: effect/mv_taixuan_sada/frame_003.png
+    bytes: 95705
+    sha256: 59c5628f78a2b81293c18af9d3b96a0ca68ccaea006a7b5eb577181baa24cea8
+  - file: effect/mv_taixuan_sada/generation.json
+    bytes: 2553
+    sha256: 0af1e1da28fca65f7fb476f989830dc9c7c450c93d7421e4c711b1103d33e1d9
+  - file: effect/mv_taixuan_sada/prompt.txt
+    bytes: 1404
+    sha256: f38f3cfd158a7b3b810723d040f8ec5c470f9a2b3e3cadeda68e9d7eeed89f3e
+  - file: effect/mv_taixuan_sada/prompt_candidate_01.txt
+    bytes: 1546
+    sha256: f6e2193f982dd7b80b7e8dce876c142a41f83d327814d8bac9de231fd931eea0
+  - file: effect/mv_taixuan_sada/quality.json
+    bytes: 1028
+    sha256: 58751fdd18a242143cde91392edc53c4e2c2844e97f367db3d7726b6a61cbdcd
+
+- id: vfx_sk_taixuan__shibu_base01
+  file: effect/mv_taixuan_shibu/source_sheet.png
+  category: vfx
+  style: default
+  subject: 太玄经；ch06_xiake；交叉急劲和短弧（原创扩展）；只画突进后的近身接触阶段。
+  prompt: 'Use case: stylized-concept. Asset type: FOUR-frame raw sprite sheet for Shibu Yisha, Taixuan Jing close-range rushing
+    strike, original interpretation. Landscape image 1536x1024, PERFECTLY PURE WHITE, invisible 2 by 2 cells, 768x512 each.
+    In the EXACT CENTER of EACH cell put a SMALL horizontal effect occupying ONLY x=140..625 and y=150..360. Huge empty WHITE
+    margin all around each cell; never fill a cell to its edges. Four stages left-to-right, top-to-bottom: gathering, forceful
+    thrust, fullest stroke, thinning echo. The root stays local (170,256); one connected golden qi thrust ends near (615,256).
+    Distinctive motif: two sharp interwoven strokes crossing once into a narrow forward-edged crescent, with thin flowing
+    wisps beneath, expressing a swift committed step and single cutting impulse. Broad translucent root about 100px tall at
+    x=170, tapering toward front. Refined Chinese ink-wash watercolor, open brush gaps, pale gold amber, a few deeper ochre
+    contours, ethereal not solid. Keep same shape and scale between all FOUR frames, vary density only slightly. Transparent-looking
+    pigment on plain white, no solid white highlights, no detached projectiles, no literal weapon or footprints. No people,
+    hands, dragons, calligraphy, text, symbols, labels, borders, grid lines, texture, checkerboard, scenery. Do not generate
+    an entire fight: isolated qi material only. Gold is harmony styling, not canonical novel color.'
+  negative: 无人物、手、武器、文字、网格、边框、纸纹、棋盘格、白色实心高光、现代激光；原料不含发出方。
+  references: []
+  tool: Codex · built-in image_gen
+  model: undisclosed image backend
+  effort: not exposed by tool
+  created: '2026-10-04T00:04:57.423299+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_taixuan/codex-home/generated_images/01a10435-5249-7ca2-ae43-5b501a771799/exec-687268de-f7c6-4244-ba69-fc28b6bc0978.png
+  size: 1536x1024
+  sha256: d71aaf435ee1178855f729dace6bd590c8202a2045931628a3886a04b8e01128
+  status: candidate
+  notes: 交叉急劲和短弧（原创扩展）；只画突进后的近身接触阶段。 harmony 金色为表现约定，不是原著显色事实。原件逐字节保存；4 帧、white_key 128；原著逐字考据与动态播放待验。
+  candidate_count: 1
+  selected_candidate: 1
+  files:
+  - effect/mv_taixuan_shibu/effect-set.yaml
+  - effect/mv_taixuan_shibu/frame_000.png
+  - effect/mv_taixuan_shibu/frame_001.png
+  - effect/mv_taixuan_shibu/frame_002.png
+  - effect/mv_taixuan_shibu/frame_003.png
+  - effect/mv_taixuan_shibu/generation.json
+  - effect/mv_taixuan_shibu/prompt.txt
+  - effect/mv_taixuan_shibu/quality.json
+  file_integrity:
+  - file: effect/mv_taixuan_shibu/effect-set.yaml
+    bytes: 1006
+    sha256: 44b542e54522a4d2ff2944ef5c9bd00bd3b4f3150a8ac456f23d6db3b36b39e1
+  - file: effect/mv_taixuan_shibu/frame_000.png
+    bytes: 125907
+    sha256: 0ac84392e448772f1c8126092b19ebf236a08d1932be859c51d09b66fa7ab48e
+  - file: effect/mv_taixuan_shibu/frame_001.png
+    bytes: 156633
+    sha256: 825ee55022cf9b7b4eed0a5c9abe4683f1bb54ce11fc117ce795ebcdedcde79e
+  - file: effect/mv_taixuan_shibu/frame_002.png
+    bytes: 176666
+    sha256: d33c32b5c3cd53b79f2d4eac8a2b420df4a9877105d33a91e59a800b533ed171
+  - file: effect/mv_taixuan_shibu/frame_003.png
+    bytes: 127899
+    sha256: ccd26ecab21c23f126d6434cb88a6d4552e5d347e8ca89277f3ddee4fb10b641
+  - file: effect/mv_taixuan_shibu/generation.json
+    bytes: 2081
+    sha256: b7fe8c7a4aa3d70c400e4e0672b0d4007cfffb25a0941ad6ef2b3db7dd60c242
+  - file: effect/mv_taixuan_shibu/prompt.txt
+    bytes: 1430
+    sha256: 01a4188854cd9e84491d03a5d5c516c0271099c6d975dd15338bf78e42eaa71f
+  - file: effect/mv_taixuan_shibu/quality.json
+    bytes: 1029
+    sha256: 33b8f20030d977310b2b5df7e8c6b21d41f54c94078c6cff611f170beb0dabfe
+
+- id: vfx_mv_taixuan_guiyi__base01
+  file: moves/mv_taixuan_guiyi/peak.png
+  category: vfx
+  style: default
+  subject: 太玄经·mv_taixuan_guiyi；ch06_xiake；harmony / inner；绝招；外放
+  prompt: 'Use case: stylized-concept. Asset type: Taixuan Guiyi ultimate wuxia 2D effect sprite sheet, original invented
+    imagery. Exactly FOUR closely related animation frames on pure WHITE #FFFFFF 1536x1024 canvas, invisible 2x2 grid, each
+    cell 768x512. Every frame is horizontal and moves LEFT TO RIGHT, with a broad rooted entry at local (125,256). Pale amber-gold
+    inner qi forms three interlaced flowing ribbons that converge into ONE cohesive almond-shaped rushing current, a single
+    open spiral knot at local (445,256), then one forward taper ending near (675,256). Motif of many streams returning to
+    one; flowing calligraphic diagram lines but absolutely NO letters, symbols, runes, numbers or literal diagrams. Refined
+    Chinese ink-wash translucence, dry-brush open gaps, feathered edges, limited rich ochre-gold strokes, airy glow implied
+    by diluted pigment, never an opaque luminous white core. First gathering, second coalescing, third fullest peak, fourth
+    fading; root stable, shape highly consistent, subtle temporal changes. Keep broad root 130px across vertically, maintain
+    uninterrupted source connection, do not depict a detached sphere. All marks inside x=64..704 and y=70..442 within each
+    cell, at least 48px completely empty white margin per cell. No person, palm, weapon, dragon, yin-yang emblem, scenery,
+    paper texture, grid border, labels, checkerboard, text, lens flare or laser. The gold is harmony color styling, not a
+    claim about novel descriptions.
+
+    派生合成：读取已生成原料与共用 palm；参数完整见本目录 composition.yaml，按 tools/vfx/compose.py 与 build_demo.py 输出。'
+  negative: 不生成新造型；不改发出方原件；不据图增加命中、伤害段或范围。
+  references:
+  - effect/mv_taixuan_guiyi/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  tool: Python tools/vfx/compose.py + build_demo.py · Three.js
+  model: not applicable to composition; image backend undisclosed
+  effort: not applicable
+  created: '2026-10-04T00:09:43.183408+00:00'
+  source_path: assets/default/vfx/sk_taixuan/moves/mv_taixuan_guiyi/composition.yaml
+  size: 1536x1024
+  sha256: 2c5628c86257bc9e262a2cb579173077e2a9966ec7b15ffb7d311cab68c3cfee
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_taixuan_guiyi/demo.html
+  notes: 造型（原创扩展）；基础独立演示，全部相对引用共享 palm；不修改 inner 语义。原料、锚点与范围核算见 README。HTML 静态检查不代替浏览器 / 真机实跑。
+  files:
+  - moves/mv_taixuan_guiyi/composition.yaml
+  - moves/mv_taixuan_guiyi/composition.json
+  - moves/mv_taixuan_guiyi/demo.html
+  file_integrity:
+  - file: moves/mv_taixuan_guiyi/composition.yaml
+    bytes: 982
+    sha256: 40e306ad5dfaf8a7ad49ab084e1d38ff4f1c9ae9fa5e625b8313dab48fb714b2
+  - file: moves/mv_taixuan_guiyi/composition.json
+    bytes: 3339
+    sha256: 152b9039c35fbc375ae9203387475b1c9138075ee3f994ca9050486aa9d9642f
+  - file: moves/mv_taixuan_guiyi/demo.html
+    bytes: 2085098
+    sha256: d1812075805456819540793b40cd1a78eb005ae8ea3147d13a2b8bc308b305e8
+
+- id: vfx_mv_taixuan_sada__base01
+  file: moves/mv_taixuan_sada/peak.png
+  category: vfx
+  style: default
+  subject: 太玄经·mv_taixuan_sada；ch06_xiake；harmony / inner；绝招；近身
+  prompt: 'Use case: stylized-concept. Generate a sparse 2D wuxia VFX SPRITE SHEET, 1536x1024 pure white background, exactly
+    FOUR frames in an invisible 2 columns x 2 rows arrangement. EACH frame is a SMALL centered illustration occupying no more
+    than 500x290 pixels in its 768x512 cell. There must be very large white gutters and at least 110 pixels empty on LEFT
+    and RIGHT of EACH frame. Do not enlarge the drawings to fill cells. Original Taixuan Jing Sada Liuxing ultimate imagery:
+    one short golden qi fan, THREE curved meteor-like brush streaks sharing a connected broad soft root on their left and
+    opening toward their right. Amber-gold ink-wash translucence with airy feathered pigment and dry brush gaps, ochre core,
+    pale gold haze. No hard white highlights or neon. Root near local (185,256), tips at local x=610,y=145,256,370. Temporal
+    phases: gathering, opening, strongest, thinning echo. Very subtle variation, SAME size and placement for all four, including
+    strongest phase. Keep every particle inside local x=130..638,y=100..412. No full-width trails. No people, hand, weapons,
+    stars, rocks, dragon, text, symbols, runes, labels, grid, borders, paper texture, checkerboard, scenery or shadows. Gold
+    pigment on clean WHITE only; source material will be keyed transparent. The three strokes remain connected, not detached
+    bullets. Refined Chinese wuxia painting, not graphic vector, not a physical fan.
+
+    派生合成：读取已生成原料与共用 palm；参数完整见本目录 composition.yaml，按 tools/vfx/compose.py 与 build_demo.py 输出。'
+  negative: 不生成新造型；不改发出方原件；不据图增加命中、伤害段或范围。
+  references:
+  - effect/mv_taixuan_sada/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  tool: Python tools/vfx/compose.py + build_demo.py · Three.js
+  model: not applicable to composition; image backend undisclosed
+  effort: not applicable
+  created: '2026-10-04T00:09:49.152892+00:00'
+  source_path: assets/default/vfx/sk_taixuan/moves/mv_taixuan_sada/composition.yaml
+  size: 1536x1024
+  sha256: 43351118f52a8a330bcfd10158fe68a43b7a4865564c0422c32ff433fdb1a495
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_taixuan_sada/demo.html
+  notes: 造型（原创扩展）；基础独立演示，全部相对引用共享 palm；不修改 inner 语义。原料、锚点与范围核算见 README。HTML 静态检查不代替浏览器 / 真机实跑。
+  files:
+  - moves/mv_taixuan_sada/composition.yaml
+  - moves/mv_taixuan_sada/composition.json
+  - moves/mv_taixuan_sada/demo.html
+  file_integrity:
+  - file: moves/mv_taixuan_sada/composition.yaml
+    bytes: 998
+    sha256: 4d77c070f45f572e4f58178aa575506be17c295fee8f8c3b54cd61f464796e48
+  - file: moves/mv_taixuan_sada/composition.json
+    bytes: 3343
+    sha256: 95c7c7c01b04714f92a9d7eda28a1c6360b80aa31147905a992c8b5a55ce5de0
+  - file: moves/mv_taixuan_sada/demo.html
+    bytes: 1174972
+    sha256: 903ec7628c2602bbb55607f5c8bcfc3660439ba4b7dbc8cbb462a10876f593af
+
+- id: vfx_mv_taixuan_shibu__base01
+  file: moves/mv_taixuan_shibu/peak.png
+  category: vfx
+  style: default
+  subject: 太玄经·mv_taixuan_shibu；ch06_xiake；harmony / inner；绝招；近身
+  prompt: 'Use case: stylized-concept. Asset type: FOUR-frame raw sprite sheet for Shibu Yisha, Taixuan Jing close-range rushing
+    strike, original interpretation. Landscape image 1536x1024, PERFECTLY PURE WHITE, invisible 2 by 2 cells, 768x512 each.
+    In the EXACT CENTER of EACH cell put a SMALL horizontal effect occupying ONLY x=140..625 and y=150..360. Huge empty WHITE
+    margin all around each cell; never fill a cell to its edges. Four stages left-to-right, top-to-bottom: gathering, forceful
+    thrust, fullest stroke, thinning echo. The root stays local (170,256); one connected golden qi thrust ends near (615,256).
+    Distinctive motif: two sharp interwoven strokes crossing once into a narrow forward-edged crescent, with thin flowing
+    wisps beneath, expressing a swift committed step and single cutting impulse. Broad translucent root about 100px tall at
+    x=170, tapering toward front. Refined Chinese ink-wash watercolor, open brush gaps, pale gold amber, a few deeper ochre
+    contours, ethereal not solid. Keep same shape and scale between all FOUR frames, vary density only slightly. Transparent-looking
+    pigment on plain white, no solid white highlights, no detached projectiles, no literal weapon or footprints. No people,
+    hands, dragons, calligraphy, text, symbols, labels, borders, grid lines, texture, checkerboard, scenery. Do not generate
+    an entire fight: isolated qi material only. Gold is harmony styling, not canonical novel color.
+
+    派生合成：读取已生成原料与共用 palm；参数完整见本目录 composition.yaml，按 tools/vfx/compose.py 与 build_demo.py 输出。'
+  negative: 不生成新造型；不改发出方原件；不据图增加命中、伤害段或范围。
+  references:
+  - effect/mv_taixuan_shibu/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  tool: Python tools/vfx/compose.py + build_demo.py · Three.js
+  model: not applicable to composition; image backend undisclosed
+  effort: not applicable
+  created: '2026-10-04T00:09:56.228646+00:00'
+  source_path: assets/default/vfx/sk_taixuan/moves/mv_taixuan_shibu/composition.yaml
+  size: 1536x1024
+  sha256: 8b9b1bfeb81057dc891a936d33ce0e75e4207a2ad30b69aa07b1c281c8e66ad2
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_taixuan_shibu/demo.html
+  notes: 造型（原创扩展）；基础独立演示，全部相对引用共享 palm；不修改 inner 语义。原料、锚点与范围核算见 README。HTML 静态检查不代替浏览器 / 真机实跑。
+  files:
+  - moves/mv_taixuan_shibu/composition.yaml
+  - moves/mv_taixuan_shibu/composition.json
+  - moves/mv_taixuan_shibu/demo.html
+  file_integrity:
+  - file: moves/mv_taixuan_shibu/composition.yaml
+    bytes: 987
+    sha256: 698112f239412d7d6f3643e32a0dff45f555e8a2a18c8c5d7aa0b597911efbb5
+  - file: moves/mv_taixuan_shibu/composition.json
+    bytes: 3347
+    sha256: d741a97470778be081d1ba626ccaaff921ea3b106a13573e9a87fd86d8605be8
+  - file: moves/mv_taixuan_shibu/demo.html
+    bytes: 1328934
+    sha256: b6b9084ab077ee90368b3739c078da84c623025a241655cfb4baece93294001d
+
+- id: vfx_mv_taixuan_tuyi__base01
+  file: moves/mv_taixuan_tuyi/peak.png
+  category: vfx
+  style: default
+  subject: 太玄经·mv_taixuan_tuyi；ch06_xiake；harmony / inner；普通招；近身
+  prompt: 'Use case: stylized-concept. Asset type: 2D wuxia game VFX raw animation sprite sheet for Taixuan Jing family, harmony
+    nature, original visual interpretation of stone-wall diagram insight. Generate one 1536x1024 landscape image on perfectly
+    pure white #FFFFFF. Exactly FOUR frames in an invisible 2 columns x 2 rows grid; each cell 768x512. No grid lines, borders,
+    labels or text. In EVERY cell place a rightward continuous, translucent golden qi current: broad soft root near local
+    (112,256), width about 130 px, connected to an elegant interweaving rolling wave reaching (680,256). Twisting open golden
+    ribbons and small cloudlike bends recall abstract hand-drawn flow diagrams, absolutely no readable glyphs. Airy Chinese
+    ink-wash spirit with dry-brush gaps, delicate amber-gold contours and diluted pale gold wisps; not metallic solid, not
+    flames, not neon laser. Four closely related temporal states in reading order: gathering, fuller unfurling, full sustained
+    flow, thinning echo. Keep root and axis fixed; first/last still visibly nonempty. Vary only intensity and ribbon curl
+    slightly; keep same identity. All painted material including tiny particles stays INSIDE local x=64..700,y=80..432, with
+    fully blank white margins at least 50px from every cell boundary. A broad soft root must remain visibly connected to the
+    current; no detached projectile. No palm, no person, no weapons, no stones, no scenery, no circles of text, no stars,
+    no interface, no black background, no checkerboard. No pure white highlights inside the qi: brightness via ochre gold
+    color and translucent wash. This is a reusable effect material, not a composed attack scene.
+
+    派生合成：读取已生成原料与共用 palm；参数完整见本目录 composition.yaml，按 tools/vfx/compose.py 与 build_demo.py 输出。'
+  negative: 不生成新造型；不改发出方原件；不据图增加命中、伤害段或范围。
+  references:
+  - effect/family/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  tool: Python tools/vfx/compose.py + build_demo.py · Three.js
+  model: not applicable to composition; image backend undisclosed
+  effort: not applicable
+  created: '2026-10-04T00:10:01.938537+00:00'
+  source_path: assets/default/vfx/sk_taixuan/moves/mv_taixuan_tuyi/composition.yaml
+  size: 1536x1024
+  sha256: 879e6bda81913f27088d3325d980ef740b7be2d35b1f20aca88f2aa3a2ce9fff
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_taixuan_tuyi/demo.html
+  notes: 造型（原创扩展）；基础独立演示，全部相对引用共享 palm；不修改 inner 语义。原料、锚点与范围核算见 README。HTML 静态检查不代替浏览器 / 真机实跑。
+  files:
+  - moves/mv_taixuan_tuyi/composition.yaml
+  - moves/mv_taixuan_tuyi/composition.json
+  - moves/mv_taixuan_tuyi/demo.html
+  file_integrity:
+  - file: moves/mv_taixuan_tuyi/composition.yaml
+    bytes: 890
+    sha256: d15424b6b932f8e2e7ba337beb8117372f427e946d215ccf585fd7a4b47f4a15
+  - file: moves/mv_taixuan_tuyi/composition.json
+    bytes: 3332
+    sha256: 407ccae6ea5d73cb06a1f2915451d7446ed4b65d1a3d089c5edc558775a6ab9f
+  - file: moves/mv_taixuan_tuyi/demo.html
+    bytes: 1719665
+    sha256: c72c363ddd2ccaac71a3fc1c160a648547ed9c72f7f1e6448b909dbcdee6abed
+
+- id: vfx_mv_taixuan_wuyue__base01
+  file: moves/mv_taixuan_wuyue/peak.png
+  category: vfx
+  style: default
+  subject: 太玄经·mv_taixuan_wuyue；ch06_xiake；harmony / inner；普通招；外放
+  prompt: 'Use case: stylized-concept. Asset type: 2D wuxia game VFX raw animation sprite sheet for Taixuan Jing family, harmony
+    nature, original visual interpretation of stone-wall diagram insight. Generate one 1536x1024 landscape image on perfectly
+    pure white #FFFFFF. Exactly FOUR frames in an invisible 2 columns x 2 rows grid; each cell 768x512. No grid lines, borders,
+    labels or text. In EVERY cell place a rightward continuous, translucent golden qi current: broad soft root near local
+    (112,256), width about 130 px, connected to an elegant interweaving rolling wave reaching (680,256). Twisting open golden
+    ribbons and small cloudlike bends recall abstract hand-drawn flow diagrams, absolutely no readable glyphs. Airy Chinese
+    ink-wash spirit with dry-brush gaps, delicate amber-gold contours and diluted pale gold wisps; not metallic solid, not
+    flames, not neon laser. Four closely related temporal states in reading order: gathering, fuller unfurling, full sustained
+    flow, thinning echo. Keep root and axis fixed; first/last still visibly nonempty. Vary only intensity and ribbon curl
+    slightly; keep same identity. All painted material including tiny particles stays INSIDE local x=64..700,y=80..432, with
+    fully blank white margins at least 50px from every cell boundary. A broad soft root must remain visibly connected to the
+    current; no detached projectile. No palm, no person, no weapons, no stones, no scenery, no circles of text, no stars,
+    no interface, no black background, no checkerboard. No pure white highlights inside the qi: brightness via ochre gold
+    color and translucent wash. This is a reusable effect material, not a composed attack scene.
+
+    派生合成：读取已生成原料与共用 palm；参数完整见本目录 composition.yaml，按 tools/vfx/compose.py 与 build_demo.py 输出。'
+  negative: 不生成新造型；不改发出方原件；不据图增加命中、伤害段或范围。
+  references:
+  - effect/family/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  tool: Python tools/vfx/compose.py + build_demo.py · Three.js
+  model: not applicable to composition; image backend undisclosed
+  effort: not applicable
+  created: '2026-10-04T00:10:07.552520+00:00'
+  source_path: assets/default/vfx/sk_taixuan/moves/mv_taixuan_wuyue/composition.yaml
+  size: 1536x1024
+  sha256: 34fcb2f85e57371cb44c1069c2e863465fd441a85f6a56c0a95865dab6a13b71
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_taixuan_wuyue/demo.html
+  notes: 造型（原创扩展）；基础独立演示，全部相对引用共享 palm；不修改 inner 语义。原料、锚点与范围核算见 README。HTML 静态检查不代替浏览器 / 真机实跑。
+  files:
+  - moves/mv_taixuan_wuyue/composition.yaml
+  - moves/mv_taixuan_wuyue/composition.json
+  - moves/mv_taixuan_wuyue/demo.html
+  file_integrity:
+  - file: moves/mv_taixuan_wuyue/composition.yaml
+    bytes: 985
+    sha256: 3850875cb6451a96372e1de29c7a7d0bad5c9dd105ac37a42640d548e55ff115
+  - file: moves/mv_taixuan_wuyue/composition.json
+    bytes: 3334
+    sha256: 0fb8281182b6b216c2298ebfacb7d3065cb4198e25cc734c49869f31d60ac92f
+  - file: moves/mv_taixuan_wuyue/demo.html
+    bytes: 1799925
+    sha256: bccb7f068f764b4e89068bb805c3e32ab0cea7d7624d01f02d38f278ad59043a
+

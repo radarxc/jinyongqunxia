@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_qishangquan_can
+name: 七伤拳残本
+kind: manual
+sub: partial
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_qishangquan_can
+text:
+  desc: 外观：元代土黄包背残册，粗麻补线。
+  lore: 崆峒七伤拳传承被整理成前后缺页的残册，成册与散佚经过为 （原创扩展）。研读仍须以内息根基统摄七股拳劲，不能因残缺而强接；此来源止于七层，自伤风险未因少页而减。
+extension:
+  type: manual
+  value:
+    skill: sk_qishangquan
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_qishangquan
+      readBre: 55
+      maxLayer: 7
+      cultivation: 2450

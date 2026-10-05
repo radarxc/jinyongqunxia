@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_beisongsuqin
+name: 北宋素髹琴
+kind: collectible
+sub: qin
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/beisongsuqin
+text:
+  desc: 外观：黑褐素漆七弦琴，低平弧面。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,musician,collector]}; giftValue=1; provenance=expanded。
+  lore: 参照宋琴工艺讨论设计一张素琴，不以圆扁轮廓单独判断朝代。可作修琴支线的酬谢，适合赠初学乐人；名称、具体结构与流转为（原创扩展），不与兵器琴合并。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

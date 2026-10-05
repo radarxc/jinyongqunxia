@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_beisongbenbaixiuyuantaoqundai_nv
+name: 北宋本白绣缘绦裙带·女
+kind: armor
+sub: belt
+grade: 8
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 北宋；出现书界 ch01；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；河南博物院《宋代彩绘袖手抱印石女俑》，北宋范通直墓 https://www.chnmus.net/ch/collection/appraise/details.html?id=512158796610969072；元丰以后公服取色不等于庶民流行排序，女俑色彩残损不得补作白内衣证据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/beisongbenbaixiuyuantaoqundai_nv
+text:
+  desc: 外观：北宋女款，窄软绦带压裙。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: （原创扩展）依北宋裙装语汇演成本白女式绦裙带，窄软绦带压住裙腰，系结短穗合为一件腰饰。细密花纹绣缘落带缘，行路先检查绦结；无玉环绶主体，不另拆裙装槽位，也不由颜色增加吉运。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11

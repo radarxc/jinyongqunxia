@@ -1,0 +1,88 @@
+id: bld_kit_ming_north_wharf
+footprint_m:
+- 8
+- 4
+footprint_basis: 【建议值】沿宋大理wharf同功能8×4；design/22 §3.4未细分此项。
+anchor_px:
+- 223.3402
+- 135.8072
+entrance:
+  edge: S
+  offset_cells: 4.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 8
+  - 0
+- - 8
+  - 4
+- - 0
+  - 4
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 168
+  - 475.6053982175033
+  F:
+  - 955.3868471338841
+  - 889.891645095529
+  R:
+  - 1370
+  - 686.2858770171301
+source_anchor_px:
+- 769.0
+- 580.9456376173167
+target_ground_span_px: 384
+geometry:
+  crop_box:
+  - 161
+  - 213
+  - 1378
+  - 897
+  uniform_scale: 0.3194675540765391
+  scaled_size:
+  - 389
+  - 219
+  canvas_size:
+  - 448
+  - 256
+  paste_offset:
+  - 29
+  - 18
+  - 418
+  - 237
+  raster_scales:
+  - 0.3196384552177486
+  - 0.3201754385964912
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 76760
+  alpha_partial_pixels: 37284
+  alpha_opaque_pixels: 644
+  alpha_bbox:
+  - 29
+  - 18
+  - 418
+  - 237
+  rectangular_trim_removed_nonzero: 316
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.52615
+  - -0.49107
+  source_ratio_relative_error: 0.05046
+  geometry_warning: false
+  visual_review: 本轮已view_image原图及灰底合成；完整轮廓、左上光、北方灰砖/木石细节保留；源底边拟合斜率[0.52615, -0.49107]，宽深比例相对误差5.046%；不以目标值冒充实测。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: 4b1ba99a39736dbb048d8a9d1b4ad6f11e2ce4c7ac4458e1b07c21280ea90285
+sha256: 05be329eb32d98b5f77aee4635a22beff8a6e5e7240627436a7c2663af019f1b

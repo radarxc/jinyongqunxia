@@ -1,0 +1,27 @@
+{
+  "source": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-653c6ef9-75cf-49b9-a949-357ba031a9f1.png",
+  "prompt": "Use case: precise-object-edit. Edit ONLY projection and framing of this Ming Jiangnan building sprite, preserving architecture, materials, details and true RGBA. STRICT ORTHOGRAPHIC DIMETRIC yaw45 elevation30. Ground edges must slope EXACTLY+0.500 and-0.500 (26.565degree diagonal), same scale on two axes. No perspective convergence. Correct the asymmetry in existing ground axes. Logical rectangular footprint 14 by11. Bottom-centre ground anchor, thin stone base with all four footprint corners visible or inferable. Keep white lime walls, charcoal grey clay tiled roofs, brown timber, upper-left lighting and minimal lower-right contact shadow. No added objects, text, borders or background. Keep complete roofs and generous transparent margins. Final transparent image only.",
+  "ref": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-e94bc4f9-c4ef-4e37-bd09-fad64e4aea99.png",
+  "candidate_count": 2,
+  "source_sha256": "124b07fbbeea916433666523445677e72cefda3a5c737fa842fc7a5290becdaf",
+  "source_size_px": [
+    1441,
+    1091
+  ],
+  "source_mode": "RGBA",
+  "source_alpha_extrema": [
+    0,
+    255
+  ],
+  "candidate_index": 2,
+  "selected": false,
+  "selection_note": "2选1：选第一候选，第二候选台基距源图下边仅1px且更拥挤；第一候选右轴仍超建议容差",
+  "tool": "image_gen built-in",
+  "transparent_background": true,
+  "explicit_image_inputs": [
+    "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-e94bc4f9-c4ef-4e37-bd09-fad64e4aea99.png"
+  ],
+  "image_model": "not_exposed_by_tool",
+  "image_effort": "not_exposed_by_tool",
+  "raw_view_image_inspected": true
+}

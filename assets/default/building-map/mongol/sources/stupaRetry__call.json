@@ -1,0 +1,9 @@
+{
+  "key": "stupaRetry",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-d122d407-5291-4bc0-a3a5-3a40889de4a1.png",
+  "prompt": "Use case: background-extraction. This local image is the edit target. Remove ALL diffuse brown glow, halo, vignette, background, and all cast shadows around the stupa. Keep only the stupa and its small square foundation, fully unchanged materials and proportions. Everywhere outside the crisp physical silhouette must be alpha=0, genuine fully transparent RGBA. No visible backdrop at all, no gradient, no shadow texture, no soft aura, no ground beyond the square footing, no feathered matte. Preserve clean anti-aliasing at the physical edge only, 1 pixel wide. Keep complete silhouette and transparent margins. Also flatten ground projection subtly toward exact 2:1 axes at slopes +0.5/-0.5, keep square footprint. The image should look like an isolated game sprite cutout, no words.",
+  "references": [
+    "/Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-41a22c9f-f5b2-437f-bddd-c177c0f23828.png"
+  ],
+  "selection": "selected"
+}

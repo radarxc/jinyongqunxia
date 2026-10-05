@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_hengshan_qingcaidoufu
+name: 恒山青菜豆腐
+kind: dish
+sub: dish
+grade: 5
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《笑傲江湖》·令狐冲受困时每日食青菜豆腐，恒山持斋语境
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_shouyi:1battle
+assets:
+  icon: item/hengshan_qingcaidoufu
+text:
+  desc: 外观：清煮青菜豆腐盛灰白粗瓷碗，少油清淡。
+  lore: 《笑傲江湖》中令狐冲受困时每日食青菜豆腐，承接恒山四季持斋语境。本件清煮少油，须热食；具体器皿与守一膳食效果为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 16

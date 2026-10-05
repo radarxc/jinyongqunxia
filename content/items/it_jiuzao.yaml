@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_jiuzao
+name: 酒糟
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 酿造副产物，用于糟藏与调味
+price: auto
+flags: []
+assets:
+  icon: item/jiuzao
+text:
+  desc: 外观：米白湿酒糟盛粗陶碗，颗粒松散。
+  lore: 米酒酿造后的湿润副产物，四季随酒坊取得，可用于糟藏鱼肉与调味。本件一斤装粗陶碗，须趁新鲜使用；它本身不按酒类结算醉意。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: spice
+    attributes:
+      version: 2

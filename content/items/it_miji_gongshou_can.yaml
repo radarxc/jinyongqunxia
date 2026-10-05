@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_gongshou_can
+name: 弓手法残本
+kind: manual
+sub: partial
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_gongshou_can
+text:
+  desc: 外观：元代灰褐包背残册，皮条护脊。
+  lore: 军中弓手的站姿、扣弦与估距法仅余灰褐残册，射法与散佚经过属 （原创扩展）。研读须以空弓校姿，再逐步上弦；末叶缺失使远距篇不全，现本最多支持七层修习。
+extension:
+  type: manual
+  value:
+    skill: sk_gongshou
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_gongshou
+      readWis: 25
+      maxLayer: 7
+      cultivation: 525

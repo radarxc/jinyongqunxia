@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_tangtongsanxianglu
+name: 武周素铜香炉
+kind: collectible
+sub: bronze
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangtongsanxianglu
+text:
+  desc: 外观：小型圆腹铜炉，浅盘口。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,monastic,collector]}; giftValue=1; provenance=expanded。
+  lore: 为武周行旅与居室设计的素面熏香器，只取古铜器的材料与朴素比例。适合赠僧道或文士，具体炉制尚（待考）；形制与获取为（原创扩展），不画明式宣德款或清代狮钮。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

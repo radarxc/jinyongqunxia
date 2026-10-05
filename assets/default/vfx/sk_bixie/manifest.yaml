@@ -1,0 +1,271 @@
+assets:
+- id: vfx_sk_bixie__family_base01
+  file: effect/family/source_sheet.png
+  category: vfx
+  style: default
+  subject: 笑傲书界 / 辟邪剑法 / family 白底四帧原料（原创扩展：阴青诡速剑痕）
+  prompt: >-
+    Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet for sk_bixie (Bixie Swordplay), ONLY disembodied sword-energy traces, not a person, hand, sword, or scene.
+    Exactly four sequential frames in a perfectly regular 2-column by 2-row sheet, canvas 1536x1024, each cell exactly 768x512. Pure solid white #FFFFFF background everywhere outside painted energy, no paper texture.
+    Absolutely no grid lines, panel borders, labels, letters, calligraphy, symbols, shadows, landscape, character, anatomy, weapons, flowers, birds, moons, religious figures, or literal objects.
+    Read frames top-left, top-right, bottom-left, bottom-right: gathering, release, full strength, dissipating. In EVERY cell keep one coherent effect rooted at local (96,256), direction right, with all painted marks entirely inside local x=72..680 and y=105..407, leaving broad clean-white gutters between all cells and at every outer edge.
+    The root at x=96 is a narrow continuous 36-pixel-high ribbon that can join a sword tip; it must remain connected to the whole effect in every frame. Keep the same center axis, scale, and silhouette identity; vary only ink density, wisps, and intensity.
+    Palette: muted deep blue-green teal and desaturated cold cyan with a little charcoal, reflecting yin nature. Traditional Chinese ink-wash atmosphere with translucent layered strokes, dry-brush gaps, fine dissolving edges, elegant empty space; no bright neon, no solid 3D object, no white painted highlight.
+    Primary request: reusable family vocabulary for an unnaturally fast, uncanny seventy-two-route sword method: one long razor-thin forward teal ink slash with two faint offset crescent after-traces tightly braided around it, tapering sharply at the right, sparse charcoal flecks trailing behind.
+    It should feel swift and ghostlike yet remain a single connected sword-energy gesture, not a laser beam or projectile. White background must be uniform pure white outside the effect.
+  negative: 无人物、手、兵器、文字、网格、纸纹、场景、具象花鸟月佛、霓虹、白色绘制高光；不新增判定范围或伤害段。
+  references: []
+  tool: Codex CLI · built-in image_gen
+  model: built-in image_gen (underlying image model not disclosed)
+  effort: ultra
+  created: '2026-09-30'
+  source_path: /private/tmp/vfx-codex-home/generated_images/01a0f615-19cc-76f0-8c25-20240c9b33d6/exec-610ae292-2bfb-4625-9050-9794cc659fea.png
+  size: 1536x1024
+  sha256: df8c56c145c004e7f5c0d99f8ec2c0760627201f56985257a0047336670243b3
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 图鉴确定本门为阴性、七十二路快剑以诡速取胜；阴青配色依风格规则，剑痕造型（原创扩展），原著逐字依据（待考）。原图逐字节保存；cut_frames.py 以 white_cutoff_8bit=250 导出 straight-alpha 帧。
+  files:
+  - effect/family/source_sheet.png
+  - effect/family/effect-set.yaml
+  - effect/family/frame_000.png
+  - effect/family/frame_001.png
+  - effect/family/frame_002.png
+  - effect/family/frame_003.png
+  - effect/family/preview_black.png
+  - effect/family/preview_gray.png
+  - effect/family/preview_white.png
+  - effect/family/quality.json
+  - source_requests.json
+  file_integrity:
+  - {file: effect/family/effect-set.yaml, bytes: 959, sha256: fa890f9478e376d74eeb93401626ccbea9e08ff46ca98ad4d6c58e9d569564a1}
+  - {file: effect/family/frame_000.png, bytes: 87492, sha256: 54c7cf44ebe789baef9917b8d7af1c0d1a8382ec79a85d940f26be8e6b58010f}
+  - {file: effect/family/frame_001.png, bytes: 137213, sha256: 5cc5cca516f29e7c885b8fc4b95280ab2601e40556d5c7748beee42fe005ccd2}
+  - {file: effect/family/frame_002.png, bytes: 209220, sha256: acf93b82ee1cf3b8ed126c7724f8e79032469d7af9e3a2a3f68b367dda79f120}
+  - {file: effect/family/frame_003.png, bytes: 133746, sha256: dfc40629131a33d74d1d385b9d14ef2e052d421d8186562a99c71a1d882b6480}
+  - {file: effect/family/preview_black.png, bytes: 447023, sha256: 6a80deb73da1e8459a80b11ac05f0243f4dceb23c362c31591de607da6ed6faf}
+  - {file: effect/family/preview_gray.png, bytes: 402659, sha256: b3f06c987cd897f2b58a60ee922e8b059e1345a3aec0b3b5059617240e2d5844}
+  - {file: effect/family/preview_white.png, bytes: 425789, sha256: 487fcec64749f70221e845030f8b6c7b96e5f04d485546b1f6c140e20f7e7c60}
+  - {file: effect/family/quality.json, bytes: 1034, sha256: 3405d24a4db2d8cab6a477225f2fce386a82c02a6b20ab7e634260db0df3afa7}
+  - {file: source_requests.json, bytes: 8492, sha256: 05fff1c46ba02b730068052eb8be0cb4b6bd0bda3f8a99250f221d6d8815bec8}
+- id: vfx_mv_bixie_feiyanchuanliu__effect_base01
+  file: effect/mv_bixie_feiyanchuanliu/source_sheet.png
+  category: vfx
+  style: default
+  subject: 笑傲书界 / 辟邪剑法·飞燕穿柳绝招 / 白底四帧原料（原创扩展：贯线与交错残迹）
+  prompt: >-
+    Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet for the ultimate move mv_bixie_feiyanchuanliu, ONLY disembodied sword-energy traces, not a person, hand, sword, bird, willow, or scene.
+    Exactly four sequential frames in a perfectly regular 2-column by 2-row sheet, canvas 1536x1024, each cell exactly 768x512. Pure solid white #FFFFFF background everywhere outside painted energy, no paper texture.
+    Absolutely no grid lines, panel borders, labels, letters, calligraphy, symbols, shadows, landscape, character, anatomy, weapons, flowers, birds, trees, leaves, moons, religious figures, or literal objects.
+    Read frames top-left, top-right, bottom-left, bottom-right: gathering, release, full strength, dissipating. In EVERY cell keep one coherent effect rooted near local (96,256), direction right, with all painted marks entirely inside local x=72..680 and y=105..407, leaving broad clean-white gutters between all cells and at every outer edge.
+    The root is a narrow continuous ribbon that can join a sword tip and remains connected to the whole effect in every frame. Keep the same center axis, scale, and silhouette identity; vary only ink density, wisps, and intensity.
+    Palette: muted deep blue-green teal and desaturated cold cyan with a little charcoal, reflecting yin nature. Traditional Chinese ink-wash atmosphere with translucent layered strokes, dry-brush gaps, fine dissolving edges, elegant empty space; no bright neon, no solid 3D object, no white painted highlight.
+    Primary request: an ultimate high-speed piercing gesture inspired only abstractly by the name Flying Swallow Threads the Willows: one needle-thin teal thrust line shoots right through three compact alternating S-curves, like a path weaving through flexible obstacles, with a narrow swallow-tail fork at the root and two tightly crossing crescent wake trails.
+    It must read as a single connected sword-energy thrust, not a bird, tree, laser beam, projectile, spear, or logo. At full strength the intertwined curves tighten around the central piercing line without becoming a closed ring. White background must be uniform pure white outside the effect.
+  negative: 无人物、手、剑、飞燕、柳树、文字、网格、纸纹、场景、实体投射物或霓虹；不新增伤害段。
+  references: []
+  tool: Codex CLI · built-in image_gen
+  model: built-in image_gen (underlying image model not disclosed)
+  effort: ultra
+  created: '2026-09-30'
+  source_path: /private/tmp/vfx-codex-home/generated_images/01a0f618-17be-7c82-ac19-c0bf46657aac/exec-78efe170-a1dc-4530-af4c-460d49f452e7.png
+  size: 1536x1024
+  sha256: eaf50e467ccf7e45d6047cb9a9b7b8ae0869985f78fb2ebe447ccfb8f3e5d426
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 招名与绝招身份来自图鉴；具象被排除，贯线与交错S形残迹均（原创扩展）；原著招名和动作出处（待考）。
+  files:
+  - effect/mv_bixie_feiyanchuanliu/source_sheet.png
+  - effect/mv_bixie_feiyanchuanliu/effect-set.yaml
+  - effect/mv_bixie_feiyanchuanliu/frame_000.png
+  - effect/mv_bixie_feiyanchuanliu/frame_001.png
+  - effect/mv_bixie_feiyanchuanliu/frame_002.png
+  - effect/mv_bixie_feiyanchuanliu/frame_003.png
+  - effect/mv_bixie_feiyanchuanliu/preview_black.png
+  - effect/mv_bixie_feiyanchuanliu/preview_gray.png
+  - effect/mv_bixie_feiyanchuanliu/preview_white.png
+  - effect/mv_bixie_feiyanchuanliu/quality.json
+  file_integrity:
+  - {file: effect/mv_bixie_feiyanchuanliu/effect-set.yaml, bytes: 974, sha256: fe16ecec2de52dc638b46b91f0804f6abe64983da67436f1a6732554f8bec5d4}
+  - {file: effect/mv_bixie_feiyanchuanliu/frame_000.png, bytes: 115450, sha256: 15303ff4e6015a75b7fd99d525073cc684fcea646de9cd69813c6363fbd7d672}
+  - {file: effect/mv_bixie_feiyanchuanliu/frame_001.png, bytes: 165750, sha256: c30bd73d0f998906f3a9ca6b0a11c3f3339cf389ca03cb8c13ee045d79438a76}
+  - {file: effect/mv_bixie_feiyanchuanliu/frame_002.png, bytes: 225001, sha256: 3a35538a240eb0247edae71a979131d9da1106dd8000dd01339eec4de1d2c857}
+  - {file: effect/mv_bixie_feiyanchuanliu/frame_003.png, bytes: 156166, sha256: 489802d31c94769fba6685497f74ee67e73e6e43ba5ef8658fc38dd45555d0c2}
+  - {file: effect/mv_bixie_feiyanchuanliu/preview_black.png, bytes: 531693, sha256: e5a9bf6009a8ce983ad3135674842c402e07f1e6edc54d3cab73bc630ca9819f}
+  - {file: effect/mv_bixie_feiyanchuanliu/preview_gray.png, bytes: 485496, sha256: 4a6ee3d99279930632f99a63fb0c7dd1ba3271341d8c257d189ffe7ef5c373c5}
+  - {file: effect/mv_bixie_feiyanchuanliu/preview_white.png, bytes: 508492, sha256: 27a40e6a805f88e92895ba13b47551f5ef021172acb377f89ae0240213c8489a}
+  - {file: effect/mv_bixie_feiyanchuanliu/quality.json, bytes: 1025, sha256: 57ba99e6b036e5a02615ae2728d71d5a10d1da562eacf15acfd82b7451ce967d}
+- id: vfx_mv_bixie_qunxie__effect_base01
+  file: effect/mv_bixie_qunxie/source_sheet.png
+  category: vfx
+  style: default
+  subject: 笑傲书界 / 辟邪剑法·群邪辟易绝招 / 白底四帧原料（原创扩展：同根六叉剑痕）
+  prompt: >-
+    Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet for the ultimate move mv_bixie_qunxie, ONLY disembodied sword-energy traces, not a person, hand, sword, demon, ghost, or scene.
+    Exactly four sequential frames in a perfectly regular 2-column by 2-row sheet, canvas 1536x1024, each cell exactly 768x512. Pure solid white #FFFFFF background everywhere outside painted energy, no paper texture.
+    Absolutely no grid lines, panel borders, labels, letters, calligraphy, symbols, shadows, landscape, character, anatomy, weapons, faces, skulls, monsters, flowers, birds, moons, religious figures, or literal objects.
+    Read frames top-left, top-right, bottom-left, bottom-right: gathering, release, full strength, dissipating. In EVERY cell keep one coherent effect rooted near local (96,256), direction right, with all painted marks entirely inside local x=72..680 and y=88..424, leaving broad clean-white gutters between all cells and at every outer edge.
+    The root is a narrow continuous ribbon that can join a sword tip and remains connected to the whole effect in every frame. Keep the same center axis, scale, and silhouette identity; vary only ink density, wisps, and intensity.
+    Palette: muted deep blue-green teal and desaturated cold cyan with a little charcoal, reflecting yin nature. Traditional Chinese ink-wash atmosphere with translucent layered strokes, dry-brush gaps, fine dissolving edges, elegant empty space; no bright neon, no solid 3D object, no white painted highlight.
+    Primary request: an ultimate local flurry inspired abstractly by the phrase Qun Xie Bi Yi: one forward teal stem rapidly splits into six uneven razor-thin hooked slash wakes, three above and three below, fanning and crossing within a compact oval attack zone before all tips turn right.
+    All six branches remain visibly connected back to the same root through the central stem. The silhouette feels uncanny, suppressive, and many-sided, but must remain abstract sword-energy ink rather than creatures, claws, tentacles, lightning, a flower, a magic circle, or a logo. Avoid closed symmetry; use lively asymmetric spacing and sparse charcoal flecks. White background must be uniform pure white outside the effect.
+  negative: 无人物、手、剑、妖魔鬼怪、面孔、骷髅、文字、网格、纸纹、场景、触手、雷电、花或法阵；不以六叉定义六次命中。
+  references: []
+  tool: Codex CLI · built-in image_gen
+  model: built-in image_gen (underlying image model not disclosed)
+  effort: ultra
+  created: '2026-09-30'
+  source_path: /private/tmp/vfx-codex-home/generated_images/01a0f619-ed83-7ee1-8938-2c2668fe2855/exec-af82e3ea-f516-4939-bc3d-68d25d8006bf.png
+  size: 1536x1024
+  sha256: 5504c94bca15c1c9073944a1cc4584741b223e6e2070b60250592307deefb4d4
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 招名、绝招身份与乱击6·半径2来自图鉴；同根六叉局部扇面为（原创扩展），原著招名和动作出处（待考）。
+  files:
+  - effect/mv_bixie_qunxie/source_sheet.png
+  - effect/mv_bixie_qunxie/effect-set.yaml
+  - effect/mv_bixie_qunxie/frame_000.png
+  - effect/mv_bixie_qunxie/frame_001.png
+  - effect/mv_bixie_qunxie/frame_002.png
+  - effect/mv_bixie_qunxie/frame_003.png
+  - effect/mv_bixie_qunxie/preview_black.png
+  - effect/mv_bixie_qunxie/preview_gray.png
+  - effect/mv_bixie_qunxie/preview_white.png
+  - effect/mv_bixie_qunxie/quality.json
+  file_integrity:
+  - {file: effect/mv_bixie_qunxie/effect-set.yaml, bytes: 966, sha256: 122a896fc06c480c6e8337d3837a95f2adf9c6d1bdc0ddb051b991d38d8f4f63}
+  - {file: effect/mv_bixie_qunxie/frame_000.png, bytes: 154010, sha256: 32c9736ba157c4749cc7cf6100028a38c850992e780d192696dc4b4b5cc1c844}
+  - {file: effect/mv_bixie_qunxie/frame_001.png, bytes: 227620, sha256: 0d0006208d9289930808c080220702cd7422a457c808af52fd7ad0abc68a4432}
+  - {file: effect/mv_bixie_qunxie/frame_002.png, bytes: 317476, sha256: 52f9b4472a44d88c7d4605f87eb734a7c4d066b5b4a28adab8c98633e9d0208b}
+  - {file: effect/mv_bixie_qunxie/frame_003.png, bytes: 228278, sha256: 91acb0f74b6a151a29f0df7e4ec4d8dc4dd0defb830001fa0ff7a375263c7239}
+  - {file: effect/mv_bixie_qunxie/preview_black.png, bytes: 738602, sha256: 712effbc8d8aededf9372bbecdfeb82b9810515132a5c632c4a324f1f8218f7e}
+  - {file: effect/mv_bixie_qunxie/preview_gray.png, bytes: 670857, sha256: 7ebe5842bfaad599f44826f1fbec50ce2567a444c8f425dd1a7d34341d021e28}
+  - {file: effect/mv_bixie_qunxie/preview_white.png, bytes: 714649, sha256: fe7aae0b862e2fba517c2f0511316751d90a523aa332fb965fadfe30ab476eea}
+  - {file: effect/mv_bixie_qunxie/quality.json, bytes: 1032, sha256: 239a4b1589c2f62149fdf9d352ec6f43e95da4fe459c90759f26a5e08a76e895}
+- id: vfx_mv_bixie_liuxingganyue__base01
+  file: moves/mv_bixie_liuxingganyue/peak.png
+  category: vfx
+  style: default
+  subject: 笑傲书界 / 辟邪剑法·流星赶月 / 共享剑发出方与家族剑痕合成峰值（原创扩展）
+  prompt: >-
+    Deterministic two-part composition for mv_bixie_liuxingganyue: reuse the sk_bixie family EffectSet and the shared sword EmitterPlate byte-for-byte; canvas 1536x1024, emit point (640,512), direction right at -4 degrees, emitter scale 0.48. The catalog move is lunge 3 and melee with projection false, so render only its post-lunge contact segment at L=1 hex x 256 pixels=256 pixels, scale (1,0.90); do not depict the three-hex movement as detached sword energy. Pulse rhythm 0.10+0.15+0.25+0.10=0.60 seconds, crossfade, peak phase 5/12.
+  negative: 不复制发出方、不画角色、不把突进3表现为三格外放、不新增命中段、判定范围或玩法事实。
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/sword/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic offline composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: effect/family/source_sheet.png + assets/default/vfx/emitters/sword/source_sword.png
+  size: 1536x1024
+  sha256: 234fe24d1e8d280fca9203027bafc03c131f7bef527a0781e2bae1d8f47237a5
+  status: candidate
+  code: moves/mv_bixie_liuxingganyue/demo.html
+  pipeline: two-part
+  notes: 普通招复用 family；短促近身效果。突进由 Core 动作表现，四帧只负责视觉节奏。
+  files:
+  - moves/mv_bixie_liuxingganyue/composition.yaml
+  - moves/mv_bixie_liuxingganyue/composition.json
+  - moves/mv_bixie_liuxingganyue/peak.png
+  - moves/mv_bixie_liuxingganyue/demo.html
+  file_integrity:
+  - {file: moves/mv_bixie_liuxingganyue/composition.yaml, bytes: 1016, sha256: f7c73a2f0d937f5d31609e22e303431fa84a1b3ebe545610c986c44f8f71aac5}
+  - {file: moves/mv_bixie_liuxingganyue/composition.json, bytes: 3342, sha256: 8bdbad3254f180a059025091cdf9106c9715e418474be1801d3f37ed29851280}
+  - {file: moves/mv_bixie_liuxingganyue/demo.html, bytes: 923273, sha256: a95990f0588c8d0850839d678041e2b0c97514ad81be045729fa742a686b9595}
+- id: vfx_mv_bixie_huakaijianfo__base01
+  file: moves/mv_bixie_huakaijianfo/peak.png
+  category: vfx
+  style: default
+  subject: 笑傲书界 / 辟邪剑法·花开见佛 / 共享剑发出方与家族剑痕合成峰值（原创扩展）
+  prompt: >-
+    Deterministic two-part composition for mv_bixie_huakaijianfo: reuse the sk_bixie family EffectSet and the shared sword EmitterPlate byte-for-byte; canvas 1536x1024, emit point (640,512), direction right at +4 degrees, emitter scale 0.48. The catalog move is single-target melee range 1 with three damage segments and projection false, so render one compact contact visual at L=1 hex x 256 pixels=256 pixels, scale (1,1.15); damage segments remain Core events rather than sprite-frame count. Pulse rhythm 0.10+0.15+0.25+0.10=0.60 seconds, crossfade, peak phase 5/12.
+  negative: 不复制发出方、不画人物、花朵或佛像，不把三张伤害段解释为四张动画帧，不新增外放或玩法事实。
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/sword/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic offline composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: effect/family/source_sheet.png + assets/default/vfx/emitters/sword/source_sword.png
+  size: 1536x1024
+  sha256: 4f75949c476fb61449f26b2d409aae860e7caf499b7dbb11141d3427b9891164
+  status: candidate
+  code: moves/mv_bixie_huakaijianfo/demo.html
+  pipeline: two-part
+  notes: 普通招复用 family；具体视觉不具象化招名。3段伤害由运行时动作事件驱动。
+  files:
+  - moves/mv_bixie_huakaijianfo/composition.yaml
+  - moves/mv_bixie_huakaijianfo/composition.json
+  - moves/mv_bixie_huakaijianfo/peak.png
+  - moves/mv_bixie_huakaijianfo/demo.html
+  file_integrity:
+  - {file: moves/mv_bixie_huakaijianfo/composition.yaml, bytes: 995, sha256: 821c5a1154c8252d381338bc1669786731fb8d3c0ecf189b3e90118c4272a709}
+  - {file: moves/mv_bixie_huakaijianfo/composition.json, bytes: 3340, sha256: 732cad6ff0d3d4f43fc4756d812d9631110a66f96922e4ab4af4491eb9775f94}
+  - {file: moves/mv_bixie_huakaijianfo/demo.html, bytes: 927079, sha256: 74234827cde001013bcf7396c74bfa34ce1b294a802f54bf15b3bb65e8c12a23}
+- id: vfx_mv_bixie_feiyanchuanliu__base01
+  file: moves/mv_bixie_feiyanchuanliu/peak.png
+  category: vfx
+  style: default
+  subject: 笑傲书界 / 辟邪剑法绝招·飞燕穿柳 / 共享剑发出方与专属贯线剑痕合成峰值（原创扩展）
+  prompt: >-
+    Deterministic two-part composition for ultimate mv_bixie_feiyanchuanliu: reuse its dedicated four-frame EffectSet and the shared sword EmitterPlate byte-for-byte; canvas 1536x1024, emit point (640,512), direction right, emitter scale 0.48. The catalog move is line 3, melee, projection false, so render only the first contact segment at L=1 hex x 256 pixels=256 pixels, scale (1,1.05); traversal through the first target is Core movement, not a detached projection. Ultimate wave rhythm 0.15+0.20+0.40+0.15=0.90 seconds, crossfade, peak phase 7/18.
+  negative: 不复制发出方、不画人物、飞燕或柳树，不把直线3表现为远程外放，不新增命中段或玩法事实。
+  references:
+  - effect/mv_bixie_feiyanchuanliu/effect-set.yaml
+  - ../emitters/sword/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic offline composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: effect/mv_bixie_feiyanchuanliu/source_sheet.png + assets/default/vfx/emitters/sword/source_sword.png
+  size: 1536x1024
+  sha256: 7dbf8ea93cc66204c0b44238c8b7bd5a5a55d263e4438d226c4b6006c768c01b
+  status: candidate
+  code: moves/mv_bixie_feiyanchuanliu/demo.html
+  pipeline: two-part
+  notes: 绝招专属贯线套；原著招名和动作出处（待考），贯线、S形残迹及燕尾根均（原创扩展）。
+  files:
+  - moves/mv_bixie_feiyanchuanliu/composition.yaml
+  - moves/mv_bixie_feiyanchuanliu/composition.json
+  - moves/mv_bixie_feiyanchuanliu/peak.png
+  - moves/mv_bixie_feiyanchuanliu/demo.html
+  file_integrity:
+  - {file: moves/mv_bixie_feiyanchuanliu/composition.yaml, bytes: 1037, sha256: e9a053f4048ddead5ce4618742071cb6b9478db1c2bc44c604d13992e4a6af09}
+  - {file: moves/mv_bixie_feiyanchuanliu/composition.json, bytes: 3376, sha256: 256fdfddc4f68364feaf551c28d15f6a1d45c9e0ac743cbaedf0a7886326fe57}
+  - {file: moves/mv_bixie_feiyanchuanliu/demo.html, bytes: 991331, sha256: 6d888253a69ca9df26967698f8bad5c911c2af011b15fe388c20956c6c73efc3}
+- id: vfx_mv_bixie_qunxie__base01
+  file: moves/mv_bixie_qunxie/peak.png
+  category: vfx
+  style: default
+  subject: 笑傲书界 / 辟邪剑法绝招·群邪辟易 / 共享剑发出方与专属同根六叉剑痕合成峰值（原创扩展）
+  prompt: >-
+    Deterministic two-part composition for ultimate mv_bixie_qunxie: reuse its dedicated four-frame EffectSet and the shared sword EmitterPlate byte-for-byte; canvas 1536x1024, emit point (640,512), direction right, emitter scale 0.48. The catalog move is local random strike 6 in radius 2 with projection false, so render one directional local fan whose visible reach is L=2 hex x 256 pixels=512 pixels, range_hex=0 and scale (1,1.15); the six branches are visual vocabulary only and do not generate damage events. Ultimate wave rhythm 0.15+0.20+0.40+0.15=0.90 seconds, crossfade, peak phase 7/18.
+  negative: 不复制发出方、不画人物或妖魔，不解释成远程外放，不据六叉推导六次命中，不新增判定或玩法事实。
+  references:
+  - effect/mv_bixie_qunxie/effect-set.yaml
+  - ../emitters/sword/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic offline composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: effect/mv_bixie_qunxie/source_sheet.png + assets/default/vfx/emitters/sword/source_sword.png
+  size: 1536x1024
+  sha256: a9c40952f9701b461d123362d0593d18bb45f2ab6e14cebe2970b8752b3e601c
+  status: candidate
+  code: moves/mv_bixie_qunxie/demo.html
+  pipeline: two-part
+  notes: 绝招专属同根六叉套，覆盖半径2局部视觉；六叉与不对称扇面均（原创扩展），原著招名和动作出处（待考）。
+  files:
+  - moves/mv_bixie_qunxie/composition.yaml
+  - moves/mv_bixie_qunxie/composition.json
+  - moves/mv_bixie_qunxie/peak.png
+  - moves/mv_bixie_qunxie/demo.html
+  file_integrity:
+  - {file: moves/mv_bixie_qunxie/composition.yaml, bytes: 1039, sha256: 58422e54c2dc1c99817f8bc91cffd696d0cba602284f1960f6c35f21e1d85cdf}
+  - {file: moves/mv_bixie_qunxie/composition.json, bytes: 3344, sha256: 1716de8bd1f4bb08089329e6afafb2baeb05f222b2d832b19c5eca6549ebc1bd}
+  - {file: moves/mv_bixie_qunxie/demo.html, bytes: 1322999, sha256: 8d5ae19d936d5e5de76309f3ae0256c14e5a0355e673fe54a8391a01ca17b5d9}

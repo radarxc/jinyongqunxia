@@ -1,0 +1,53 @@
+id: bld_kit_mongol_warehouse
+building:
+  type: bld_kit_mongol_warehouse
+  footprint: [9, 7]
+  anchor: &id001 [359.2123, 336.426]
+  era: mongol
+anchor_px: *id001
+geometry_qa:
+  source_corners_LFR_px:
+  - [150, 669]
+  - [782, 974]
+  - [1306, 737]
+  source_axis_slopes: [0.4825949367088608, -0.45229007633587787]
+  axis_tolerance: 0.03
+  axis_pass: false
+  width_depth_ratio: 1.2061068702290076
+  expected_ratio: 1.2857142857142858
+  ratio_relative_error: 0.061916878710771894
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  note: 人工读取可见底面L/F/R；隐藏后角由平行边推算。几何残差未warp修正。
+processing:
+  source_archive: sources/bld_kit_mongol_warehouse__raw.png
+  source_sha256: 86cf257a0e44ecb61d643c89650f9e80b4f25a6e47a58a748296083e25057440
+  source_size: [1437, 1095]
+  crop_box: [0, 20, 1385, 1095]
+  uniform_scale_requested: 0.4429065743944637
+  resized_size: [613, 476]
+  actual_scale_xy: [0.44259927797833937, 0.4427906976744186]
+  paste_offset: [37, 34, 650, 510]
+  anchor_source_px: [728.0, 703.0]
+  alpha_edits: none
+  note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+views:
+- {rotation_deg: 0, file: bld_kit_mongol_warehouse.png}
+allowRotation: false
+glb: null
+release_ready: false
+pixel_qa:
+  mode: RGBA
+  size: [688, 544]
+  alpha_extrema: [0, 255]
+  alpha_bbox: [37, 34, 650, 499]
+  transparent_pixels: 254110
+collision_polygon_m:
+- [0, 0]
+- [9, 0]
+- [9, 7]
+- [0, 7]
+collision_note: 候选逻辑矩形，非实墙测绘；河埠仅装饰，不创建port或旅行服务。
+historical_note: 仅地域母题有文字参考；具体屋面/门窗/彩画/塔式为原创设计，待考。
+repair_round_2: {tool: built-in image_gen, candidate_count: 2, attempt_records: sources/bld_kit_mongol_warehouse__repair2_calls.json, selected_candidate: 0, geometry_pass: false, result: 两新候选未优于原图整体几何；保留原成品字节，审核问题未解决}

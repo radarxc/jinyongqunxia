@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_wuyazihuajuan
+name: 无崖子画卷
+kind: collectible
+sub: antique
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B01](#src-b01)；准入：天龙；寻人任务用途解除并获原主授权
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/wuyazihuajuan
+text:
+  desc: 外观：一轴完全卷拢的旧绢画卷，素木轴端。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=book; tags=[painting]。
+  lore: 《天龙八部》无崖子交画卷命虚竹寻人学艺，画中人称谓待核修订版。沿用既有鉴赏收益，宜赠藏家；寻人用途解除且物权获准后才可转赠，图标卷拢避免擅画人物。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    study:
+      art: art
+      value: 5
+    appraise:
+      art: art
+      dc: 60

@@ -1,0 +1,33 @@
+{
+  "id": "tex_town_xiyu_tree_cluster__huyang_v01",
+  "generated_at": "2026-10-01T10:30:15.883563+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "source/historical-rerender/tex_town_xiyu_tree_cluster__huyang_v01__candidate01.png",
+  "sha256": "d623aad2ec15124edc9f0e80317f3a356588c9dfb50ed60044e66709f6d295dd",
+  "generation_inputs": [
+    {
+      "file": "source/historical-rerender/tex_town_xiyu_tree_cluster__huyang_v01__geometry-lock.png",
+      "sha256": "161d87436f5dec6ed98dd6fb0ee96e3003e9ff6d0e35980e1dbc56b328bd4119",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/huyang_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Tarim_Desert_Highway_-_Desert_poplars,_Xinjiang,_China.jpg",
+      "detail": "塔里木荒漠胡杨的灰褐粗裂树皮、扭曲分叉和稀疏不对称树冠。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/huyang_2.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Xinjiang_Diversifolious_Poplar((HDR)2)_(7070314723).jpg",
+      "detail": "成熟胡杨宽展枝架与疏松叶团；HDR色彩和光晕排除。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/huyang_3.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Xinjiang_Old_and_young_(Populus_diversifolia_%E8%83%A1%E6%9D%A8)_(4973519309).jpg",
+      "detail": "老幼胡杨的多干分叉、树干尺度和不规则冠形；背景不取。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:Tarim_Desert_Highway_-_Desert_poplars,_Xinjiang,_China.jpg — 塔里木荒漠胡杨的灰褐粗裂树皮、扭曲分叉和稀疏不对称树冠。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Xinjiang_Diversifolious_Poplar((HDR)2)_(7070314723).jpg — 成熟胡杨宽展枝架与疏松叶团；HDR色彩和光晕排除。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:Xinjiang_Old_and_young_(Populus_diversifolia_%E8%83%A1%E6%9D%A8)_(4973519309).jpg — 老幼胡杨的多干分叉、树干尺度和不规则冠形；背景不取。\n\nAsset-specific production prompt:\nUse case: historical-scene. ONE isolated production sprite for an ancient Chinese wuxia city-map kit, Western Regions oasis towns inspired by Kashgar, Hotan and Yarkand. Realistic restrained painted architectural illustration, fine natural earthy material grain, same fine realistic detail density and neutral muted palette as the Song town kit. Strict orthographic dimetric view: yaw45 degrees, elevation30 degrees, ground axes (+32,+16) and (+32,-16), exact 2:1 ground projection, verticals vertical, no perspective convergence. Light from upper-left, extremely short soft shadow lower-right. True transparent RGBA background and transparent holes, ample margins, complete object silhouette. ONE object only, no text, watermark, labels, modern objects, people, animals, landscape, checkerboard pattern, white backdrop, ink wash, cartoon, chibi, ground platform or broad floor patch. Subject: ONE compact mature Euphrates poplar tree (Populus euphratica, Huyang), natural riparian tree of Tarim Basin oasis edge. A single gently gnarled grey-brown trunk that forks into irregular branching broad open crown; mixed small rounded and oval leaves in muted olivegreen with modest ochre highlights, no full orange autumn canopy, no flowering. Natural growth, not conical Lombardy poplar, not palm. Footprint canopy3m x3m, roots cluster around one ground registration point; height5m. See foliage top planes from30degrees down, convincing bark and fine restrained leaf texture consistent with Song map plants. No soil patch, roots do not form a floating island, no grass, rock, shrub, buildings, animals or floor. True clear transparency between leaf groups, full trunk and crown intact. No external glow, halo, fog, atmospheric gradient or solid backdrop.\n\nRequired historical detail summary: 单株根点明确，灰褐粗裂扭干、宽而疏的不规则冠、橄榄绿小叶团；不做箭形白杨、棕榈、锥形树或夸张橙色HDR。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
+}

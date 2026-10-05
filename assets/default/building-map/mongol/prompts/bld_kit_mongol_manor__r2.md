@@ -1,0 +1,12 @@
+# 第2轮投影返修：bld_kit_mongol_manor
+
+## 候选1（采用）
+
+Edit Mongol ger manor asset. Preserve exactly subject and material language: three beige felt gers (one large, two small), simple rough timber palisade and wooden front gate, small lean-to wood store, sparse dry grass, neutral realistic antique city-sprite textures. Repair ONLY geometry. Footprint rectangle WIDTH16 DEPTH13. Strict orthographic 2:1 dimetric projection yaw45 pitch30. LEFT-to-FRONT visible ground edge is width16; FRONT-to-RIGHT is depth13, length ratio16/13. Canvas1536x1024 with clean corners LEFT(96,504), FRONT(832,872), RIGHT(1430,573), BACK(694,205). Each ground edge slope exactly +/-0.500 with no perspective convergence; front edge must not become steeper than 26.565 degrees. All four fence-bottom lines track this ground rectangle; fence posts vertical. Thin packed earth surface with explicit clean straight base outline and three visible near corners, no rock border and no thick plinth. Align all architecture to camera. Upper-left light, small lower-right contact shadow, complete object generous transparent borders. True transparent RGBA, outside footprint alpha-zero; no ambient glow/haze, backdrop, grid, labels, lettering, people, animals, flags, modern elements.
+
+## 候选2（未采用）
+
+Targeted correction ONLY of attached three-ger manor's base and consistent camera geometry. Keep detailed historical Mongolian sprite subject, texture, three felt tents, timber palisade with front gateway, small lean-to wood storage, dry grass. Its frontmost floor vertex is currently too far RIGHT and LOW. Move that vertex35 pixels LEFT and15 pixels UP to align both ground diagonals to slope0.500. Floor footprint16 wide by13 deep. Ideal1536x1024 corner positions LEFT(85,520), FRONT(853,904), RIGHT(1477,592), BACK(709,208): ratio768/624=16/13; projected edges26.565deg to horizontal. Exact orthographic2:1 dimetric yaw45 elevation30, no vanishing point. Rebuild fences and internal composition consistently around crisp thin rectangular earthen floor, no random protruding perimeter; no thick pedestal. All three near floor corners clearly observable. Keep vertical posts upright. Upper-left illumination, short lower-right contact shadow. True transparent RGBA background alpha zero and generous complete margins; no glow/haze/vignette, text/grid, people, flags, animals or modern additions.
+
+第2轮返修采用候选1；轴率0.49811/-0.54622；宽深比1.33613，目标1.23077；轴率/比例检查分别False/True。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。
+内置image_gen，transparent_background=true；源图及传入图已按字节归档。

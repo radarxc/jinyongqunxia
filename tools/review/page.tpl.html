@@ -1,0 +1,385 @@
+<title>天书录素材基线审批</title>
+<style>
+/* 版式：审阅台——顶部为说明、总览与筛选，下方两列卡片；朱砂印章表示审批结果。只用系统字体，不依赖外部资源。 */
+:root{
+  --paper:#f3f4f1; --sheet:#fbfbf9; --ink:#1d2124; --muted:#5f6967; --line:#d5d9d5;
+  --seal:#b3261e; --ok:#2f6b4f; --warn:#94650f; --chip:#e7eae6;
+  --f-display:"Songti SC","STSong","Noto Serif CJK SC","Source Han Serif SC",serif;
+  --f-body:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-seal:"Kaiti SC","STKaiti","KaiTi",serif;
+  --f-mono:ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#131615; --sheet:#1b1f1e; --ink:#e6e9e5; --muted:#9aa4a1; --line:#2d3331;
+  --seal:#e0574a; --ok:#6fbf95; --warn:#e0ad4f; --chip:#242a28; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#131615; --sheet:#1b1f1e; --ink:#e6e9e5; --muted:#9aa4a1; --line:#2d3331;
+  --seal:#e0574a; --ok:#6fbf95; --warn:#e0ad4f; --chip:#242a28; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font:15px/1.7 var(--f-body);margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:28px 64px}
+header h1{font:700 clamp(26px,4vw,36px)/1.25 var(--f-display);letter-spacing:.06em;margin:0;text-wrap:balance}
+header .lede{color:var(--muted);max-width:62ch;margin:.6em 0 0}
+.how{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.how div{border-top:1px solid var(--line);padding-top:10px;font-size:14px;color:var(--muted)}
+.how b{display:block;color:var(--ink);font-weight:500;letter-spacing:.04em}
+.bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);
+  margin-top:22px;padding-block:12px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.tally{display:flex;gap:14px;flex-wrap:wrap;font-variant-numeric:tabular-nums;font-size:14px}
+.tally b{font-weight:500}
+.t-ok{color:var(--ok)} .t-warn{color:var(--warn)} .t-bad{color:var(--seal)}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.filters button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);
+  padding:4px 11px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.banner{margin-top:14px;padding:10px 14px;border:1px solid var(--line);background:var(--sheet);font-size:14px;color:var(--muted)}
+.grid{margin-top:22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--sheet);border:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.fig{position:relative;background:var(--chip);cursor:zoom-in;border:0;padding:0;display:block;width:100%}
+.fig img{display:block;width:100%;height:auto;max-height:560px;object-fit:contain;background:var(--chip)}
+.fig.land img{max-height:none}
+.card.wide{grid-column:1/-1}
+.card.wide .fig img{max-height:none}
+.extras{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding:8px;border-top:1px solid var(--line)}
+.extras button{border:1px solid var(--line);background:var(--chip);padding:0;cursor:zoom-in;display:flex;flex-direction:column;min-width:0}
+.extras img{display:block;width:100%;height:150px;object-fit:contain;background:var(--chip)}
+.extras span{font-size:12px;color:var(--muted);padding:4px 6px;text-align:left;background:var(--sheet)}
+.stack{display:grid}
+.stack>img{grid-area:1/1}
+.stack>img.labels{width:100%;height:100%;pointer-events:none;background:transparent}
+.seal{position:absolute;right:14px;bottom:14px;width:64px;height:64px;border:3px solid var(--seal);border-radius:6px;
+  color:var(--seal);font:40px/58px var(--f-seal);text-align:center;transform:rotate(-8deg);opacity:.92;
+  background:color-mix(in srgb,var(--sheet) 70%,transparent)}
+.seal.revise{border-color:var(--warn);color:var(--warn)}
+.pending{min-height:200px;display:flex;align-items:center;justify-content:center;padding:24px;color:var(--muted);
+  font:500 15px/1.6 var(--f-display);letter-spacing:.2em;text-align:center;
+  background:repeating-linear-gradient(135deg,var(--chip) 0 10px,transparent 10px 20px)}
+.body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12.5px;color:var(--muted)}
+.chip{background:var(--chip);border-radius:4px;padding:1px 8px;color:var(--ink);letter-spacing:.04em}
+.chip.rework{color:var(--seal)}
+.id{font-family:var(--f-mono);font-size:12px;color:var(--muted);word-break:break-all}
+.subject{margin:0;font-size:15px}
+.note{margin:0;font-size:13.5px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.ask-h{font-size:12.5px;color:var(--muted);letter-spacing:.06em;margin:0 0 -4px}
+.ask{margin:0;padding:10px 12px 10px 30px;font-size:14px;background:var(--paper);border:1px solid var(--line)}
+.ask li{margin:.2em 0}
+.lbl{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);cursor:pointer}
+details{font-size:13px;color:var(--muted)}
+details summary{cursor:pointer;color:var(--ink)}
+details pre{white-space:pre-wrap;word-break:break-word;font:12.5px/1.65 var(--f-body);background:var(--paper);
+  padding:10px;border:1px solid var(--line);max-height:260px;overflow:auto;margin:.5em 0 0}
+.demo{font-size:14px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.play{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--ink);background:transparent;color:var(--ink);
+  border-radius:4px;cursor:pointer}
+.demo-frame{display:block;width:100%;height:min(80vh,640px);border:1px solid var(--line);background:#efe9dc}
+.card.wide .demo-frame{height:min(80vh,720px)}
+.decide{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.decide button{font:500 14px/1 var(--f-body);padding:11px 6px;border:1px solid var(--line);background:var(--paper);
+  color:var(--ink);cursor:pointer;border-radius:4px}
+.decide button[data-d="approve"][aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:var(--sheet)}
+.decide button[data-d="revise"][aria-pressed="true"]{background:var(--warn);border-color:var(--warn);color:var(--sheet)}
+.decide button[data-d="reject"][aria-pressed="true"]{background:var(--seal);border-color:var(--seal);color:var(--sheet)}
+.decide button:disabled,.save:disabled{opacity:.5;cursor:not-allowed}
+textarea{width:100%;min-height:64px;resize:vertical;font:14px/1.6 var(--f-body);color:var(--ink);background:var(--paper);
+  border:1px solid var(--line);border-radius:4px;padding:8px 10px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.save{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--ink);background:transparent;color:var(--ink);
+  border-radius:4px;cursor:pointer}
+.status{font-size:12.5px;color:var(--muted)}
+.stale{color:var(--warn);font-size:12.5px}
+button:focus-visible,textarea:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+.lb{position:fixed;inset:0;background:rgba(10,12,12,.88);z-index:20;cursor:zoom-out}
+.lb img{position:absolute;left:16px;top:56px;width:calc(100% - 32px);height:calc(100% - 72px);object-fit:contain}
+.lb button{position:absolute;top:12px;right:16px;font:inherit;background:#fbfbf9;color:#1d2124;border:0;border-radius:4px;
+  padding:6px 12px;cursor:pointer}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>天书录素材基线审批</h1>
+    <p class="lede">默认风格包的第一批基线参考图，每类 1–2 张。审批通过的图会在后续批量生成时作为风格参考，连同文字描述一起输入。标“返修中”的是监督复核没通过、正在重出的，新图出来后本页会更新。</p>
+    <div class="how">
+      <div><b>看图</b>点图片放大，点任意处关闭；展开“生成提示词”可看完整提示词与排除项。</div>
+      <div><b>决定</b>选“通过 / 需修改 / 不通过”，决定立即保存。</div>
+      <div><b>意见</b>需修改或不通过时，写清哪里不对、要改成什么样，再点“保存意见”。</div>
+      <div><b>之后</b>协调者读取审批结果：通过的改为 approved，其余按意见返修后重新提交审批。</div>
+    </div>
+  </header>
+
+  <div class="bar" role="region" aria-label="审批概况与筛选">
+    <div class="tally" id="tally" aria-live="polite"></div>
+    <div class="filters" id="filters" aria-label="按类别筛选"></div>
+  </div>
+  <div class="banner" id="banner" hidden></div>
+
+  <main class="grid" id="grid" aria-label="基线图列表"></main>
+</div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="放大查看">
+  <img id="lbImg" alt="">
+  <img id="lbLab" alt="" hidden>
+  <button type="button" id="lbClose">关闭</button>
+</div>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+(() => {
+  "use strict";
+  const ASSETS = JSON.parse(document.getElementById("data").textContent);
+  const LABEL = { approve: "通过", revise: "需修改", reject: "不通过" };
+  const SEAL = { approve: "准", revise: "改", reject: "驳" };
+  const reviews = {};           // id -> {decision, comment, sha, updatedAt}
+  let store = null, canWrite = false, filter = "all";
+  const $ = (s, el = document) => el.querySelector(s);
+  const mk = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+  function currentDecision(a) {
+    const r = reviews[a.id];
+    if (!r || !r.decision) return null;
+    return r.sha === a.sha ? r.decision : "stale";
+  }
+
+  function renderTally() {
+    const c = { pending: 0, approve: 0, revise: 0, reject: 0, rework: 0 };
+    for (const a of ASSETS) {
+      if (a.state !== "ready") { c.rework++; continue; }
+      const d = currentDecision(a);
+      if (d && d !== "stale") c[d]++; else c.pending++;
+    }
+    $("#tally").innerHTML =
+      `<span>可审 <b>${ASSETS.length - c.rework}</b> 张</span><span>待审 <b>${c.pending}</b></span>` +
+      `<span class="t-ok">通过 <b>${c.approve}</b></span><span class="t-warn">需修改 <b>${c.revise}</b></span>` +
+      `<span class="t-bad">不通过 <b>${c.reject}</b></span>` + (c.rework ? `<span>返修中 <b>${c.rework}</b></span>` : "");
+  }
+
+  function renderFilters() {
+    const cats = [["all", "全部"]];
+    for (const a of ASSETS) if (!cats.some(c => c[0] === a.cat)) cats.push([a.cat, a.catLabel]);
+    const box = $("#filters");
+    box.innerHTML = "";
+    for (const [k, v] of cats) {
+      const b = mk("button", null, v);
+      b.type = "button"; b.setAttribute("aria-pressed", String(filter === k));
+      b.addEventListener("click", () => { filter = k; renderFilters(); renderCards(); });
+      box.appendChild(b);
+    }
+  }
+
+  function pendingCard(a) {
+    const el = mk("article", "card"); el.id = "c-" + a.id;
+    const body = mk("div", "body");
+    const meta = mk("div", "meta");
+    meta.append(mk("span", "chip", a.catLabel), mk("span", "chip rework", "返修中，暂不用审"));
+    body.append(meta, mk("p", "subject", a.subject), mk("p", "note", a.review));
+    el.append(mk("div", "pending", "返修中 · 新图出来后显示在这里"), body);
+    return el;
+  }
+
+  function card(a) {
+    if (a.state !== "ready") return pendingCard(a);
+    const el = mk("article", "card" + (a.wide ? " wide" : "")); el.id = "c-" + a.id;
+    const fig = mk("button", "fig" + (a.labels ? " land" : ""));
+    fig.type = "button"; fig.setAttribute("aria-label", "放大查看 " + a.id);
+    const stack = mk("span", "stack");
+    const img = mk("img"); img.src = a.preview; img.alt = a.subject || a.id; img.loading = "lazy"; img.decoding = "async";
+    stack.appendChild(img);
+    let lab = null;
+    if (a.labels) {
+      lab = mk("img", "labels"); lab.src = a.labels; lab.alt = ""; lab.hidden = true;
+      stack.appendChild(lab);
+    }
+    fig.appendChild(stack);
+    fig.addEventListener("click", () => openLb(a, !!lab && !lab.hidden));
+    el.appendChild(fig);
+    if (a.extras && a.extras.length) {
+      const ex = mk("div", "extras");
+      for (const x of a.extras) {
+        const b = mk("button"); b.type = "button"; b.setAttribute("aria-label", "放大查看 " + x.caption);
+        const im = mk("img"); im.src = x.src; im.alt = x.caption; im.loading = "lazy"; im.decoding = "async";
+        b.append(im, mk("span", null, x.caption));
+        b.addEventListener("click", () => openLb({ preview: x.src, subject: x.caption, id: a.id }, false));
+        ex.appendChild(b);
+      }
+      el.appendChild(ex);
+    }
+
+    const body = mk("div", "body");
+    const meta = mk("div", "meta");
+    meta.append(mk("span", "chip", a.catLabel), mk("span", "chip", a.badge || "监督已复核"), mk("span", null, a.size));
+    body.append(meta, mk("div", "id", a.id), mk("p", "subject", a.subject || "（无题材说明）"));
+    if (lab) {
+      const l = mk("label", "lbl"); const cb = mk("input"); cb.type = "checkbox";
+      cb.addEventListener("change", () => { lab.hidden = !cb.checked; });
+      l.append(cb, document.createTextNode((a.cat === "meridian" ? "显示穴位标注层" : "显示地名标注层") + "（独立 SVG，不画在图里）"));
+      body.appendChild(l);
+    }
+    if (a.review) body.appendChild(mk("p", "note", a.review));
+    if (a.ask && a.ask.length) {
+      const ul = mk("ul", "ask");
+      for (const q of a.ask) ul.appendChild(mk("li", null, q));
+      body.append(mk("p", "ask-h", "请你判断"), ul);
+    }
+    if (a.demoHtml) {
+      const d = mk("div", "demo");
+      const btn = mk("button", "play", "▶ 播放可运行的特效演示"); btn.type = "button";
+      btn.addEventListener("click", () => {
+        let f = d.querySelector("iframe");
+        if (f) { f.remove(); btn.textContent = "▶ 播放可运行的特效演示"; return; }
+        f = mk("iframe", "demo-frame");
+        f.setAttribute("sandbox", "allow-scripts"); f.title = "特效演示 " + a.id;
+        f.srcdoc = a.demoHtml;
+        d.appendChild(f); btn.textContent = "■ 收起演示";
+      });
+      d.appendChild(btn); body.appendChild(d);
+    }
+    const det = mk("details"); const pre = mk("pre");
+    pre.textContent = (a.prompt || "（无）") + (a.negative ? "\n\n排除项：" + a.negative : "");
+    det.append(mk("summary", null, "生成提示词"), pre); body.appendChild(det);
+
+    const decide = mk("div", "decide"); decide.setAttribute("role", "group"); decide.setAttribute("aria-label", "审批决定");
+    for (const k of ["approve", "revise", "reject"]) {
+      const b = mk("button", null, LABEL[k]); b.type = "button"; b.dataset.d = k;
+      b.addEventListener("click", () => save(a, { decision: k }));
+      decide.appendChild(b);
+    }
+    const ta = mk("textarea"); ta.placeholder = "意见（需修改 / 不通过时请写清要怎么改）"; ta.setAttribute("aria-label", "意见 " + a.id);
+    const row = mk("div", "row");
+    const sb = mk("button", "save", "保存意见"); sb.type = "button";
+    sb.addEventListener("click", () => save(a, { comment: ta.value.trim() }));
+    row.append(sb, mk("span", "status"));
+    body.append(decide, ta, row);
+    el.appendChild(body);
+    paintCard(el, a);
+    return el;
+  }
+
+  function paintCard(el, a) {
+    const d = currentDecision(a), r = reviews[a.id] || {};
+    const fig = $(".fig", el);
+    const old = $(".seal", fig); if (old) old.remove();
+    if (d && d !== "stale") {
+      const s = mk("div", "seal" + (d === "revise" ? " revise" : ""), SEAL[d]);
+      s.setAttribute("aria-label", LABEL[d]); fig.appendChild(s);
+    }
+    for (const b of el.querySelectorAll(".decide button")) {
+      b.setAttribute("aria-pressed", String(d === b.dataset.d));
+      b.disabled = !canWrite;
+    }
+    $(".save", el).disabled = !canWrite;
+    const ta = $("textarea", el);
+    if (document.activeElement !== ta && typeof r.comment === "string" && ta.value !== r.comment) ta.value = r.comment;
+    ta.disabled = !canWrite;
+    const st = $(".row span", el);
+    if (d === "stale") { st.className = "stale"; st.textContent = "图片已更新，之前的审批作废，请重新审批"; }
+    else if (r.updatedAt && (d || r.comment)) { st.className = "status"; st.textContent = "已保存 · " + new Date(r.updatedAt).toLocaleString("zh-CN"); }
+    else { st.className = "status"; st.textContent = canWrite ? "尚未审批" : ""; }
+  }
+
+  function renderCards() {
+    const grid = $("#grid"); grid.innerHTML = "";
+    for (const a of ASSETS) if (filter === "all" || a.cat === filter) grid.appendChild(card(a));
+  }
+  function repaint() {
+    for (const a of ASSETS) {
+      const el = document.getElementById("c-" + a.id);
+      if (el && a.state === "ready") paintCard(el, a);
+    }
+    renderTally();
+  }
+
+  async function save(a, patch) {
+    if (!store || !canWrite) return;
+    const prev = reviews[a.id] || {};
+    const doc = {
+      decision: patch.decision || prev.decision || null,
+      comment: typeof patch.comment === "string" ? patch.comment : (prev.comment || ""),
+      sha: a.sha, category: a.cat, updatedAt: new Date().toISOString(),
+    };
+    const el = document.getElementById("c-" + a.id);
+    const st = el && $(".row span", el);
+    if (st) { st.className = "status"; st.textContent = "保存中…"; }
+    try {
+      await store.set(a.id, doc);
+    } catch (e) {
+      const denied = e && e.code === "not_granted";
+      if (st) { st.className = "stale"; st.textContent = "没有保存成功：" + (denied ? "你没有写入权限" : "请稍后再试"); }
+      if (denied) { canWrite = false; repaint(); }
+    }
+  }
+
+  function applyAll(all) {
+    for (const k of Object.keys(reviews)) delete reviews[k];
+    Object.assign(reviews, all || {});
+    repaint();
+  }
+
+  // 保存位置：claude.ai 上用 artifact 数据库；在本机打开时用同源的本地审批服务（api/reviews）。
+  async function connect() {
+    const api = window.claude && typeof window.claude.use === "function" ? window.claude : null;
+    const cdb = api ? await api.use("db") : null;
+    if (cdb) {
+      const col = cdb.collection("reviews");
+      return {
+        kind: "db",
+        subscribe(onData, onErr) {
+          col.onSnapshot(snap => {
+            const all = {};
+            for (const d of snap.docs) all[d.id] = d.data() || {};
+            onData(all);
+          }, onErr);
+        },
+        set: (id, doc) => col.doc(id).set(doc),
+      };
+    }
+    if (!/^https?:$/.test(location.protocol)) return null;
+    try {
+      const r = await fetch("api/reviews", { cache: "no-store" });
+      if (!r.ok || !(r.headers.get("content-type") || "").includes("json")) return null;
+      const first = await r.json();
+      let listener = null;
+      return {
+        kind: "local",
+        subscribe(onData) { listener = onData; onData(first); },
+        async set(id, doc) {
+          const res = await fetch("api/reviews/" + encodeURIComponent(id), {
+            method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(doc),
+          });
+          if (!res.ok) throw { code: res.status === 403 ? "not_granted" : "unavailable" };
+          if (listener) listener(await res.json());
+        },
+      };
+    } catch { return null; }
+  }
+
+  function openLb(a, withLabels) {
+    $("#lbImg").src = a.preview; $("#lbImg").alt = a.subject || a.id;
+    const l = $("#lbLab");
+    if (withLabels && a.labels) { l.src = a.labels; l.hidden = false; } else { l.hidden = true; l.removeAttribute("src"); }
+    $("#lb").hidden = false; $("#lbClose").focus();
+  }
+  function closeLb() { $("#lb").hidden = true; }
+  $("#lb").addEventListener("click", closeLb);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#lb").hidden) closeLb(); });
+
+  renderFilters(); renderCards(); renderTally();
+  const banner = $("#banner");
+  banner.hidden = false; banner.textContent = "正在连接审批记录…";
+
+  connect().then(s => {
+    store = s;
+    if (!s) {
+      banner.textContent = "这个视图无法保存审批。图照样可以看；决定请直接在对话里告诉协调者。";
+      canWrite = false; repaint(); return;
+    }
+    canWrite = true;
+    if (s.kind === "local") banner.textContent = "本地审批模式：结果保存在这台电脑上，协调者直接读取。";
+    else banner.hidden = true;
+    s.subscribe(applyAll, () => {
+      banner.hidden = false; banner.textContent = "审批记录暂时无法同步，刷新页面后重试。";
+    });
+    repaint();
+  });
+})();
+</script>

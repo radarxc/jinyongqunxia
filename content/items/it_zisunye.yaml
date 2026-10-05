@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_zisunye
+name: 紫苏叶
+kind: material
+sub: herb
+grade: 1
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/zisunye
+text:
+  desc: 外观：药用叶皱缩成紫褐薄片，背面灰绿。
+  lore: 江淮、江南太湖、浙东、荆襄与湖湘菜圃在夏季六至八月叶盛，本作取紫背薄叶入油纸袋。行旅药包用它稍复内力，老叶则只作普通材料。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang9
+    materialGrade: 1
+    rare: false
+    herbFamily: ziSuYe
+    ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 5

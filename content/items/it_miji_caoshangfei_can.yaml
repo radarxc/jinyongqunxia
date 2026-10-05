@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_caoshangfei_can
+name: 草上飞残本
+kind: manual
+sub: partial
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_caoshangfei_can
+text:
+  desc: 外观：明代草绿色线装残册，粗麻补订。
+  lore: 江湖通行的轻身步法仅余草绿色残册，谱本、缺页与传递均属 （原创扩展）。研读须先在草地辨落足和提步节奏，不可照残图贸然疾奔；草汁斑遮去后段，来源上限七层。
+extension:
+  type: manual
+  value:
+    skill: sk_caoshangfei
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_caoshangfei
+      readWis: 25
+      maxLayer: 7
+      cultivation: 525

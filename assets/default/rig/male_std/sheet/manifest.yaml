@@ -1,0 +1,28 @@
+- id: male_std__sheet_L
+  file: sheet_L.png
+  category: rig/sheet
+  style: default
+  subject: 男性标准体（male_std；原创扩展）A 字三视图 · 面向左
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. Draw one 1536x1024 landscape image: a painted adult male technical turnaround for a 2D puppet. EXACTLY THREE FULL-BODY FIGURES: left = front three-quarter facing left; center = true 90-degree side facing left; right = back three-quarter facing upper-left. Same man, same clothes, same A stance and same height. No image references.
+    FIRST PRIORITY: the CENTER SIDE figure MUST visibly have two arms and two separated legs. Draw his stance as a shallow inverted V IN THE PICTURE PLANE: his FRONT foot is well to the LEFT of his pelvis; his BACK foot is well to the RIGHT. The two feet are at least one shoe-length apart. Both knees straight, both soles flat on y=939. Show a large open triangular region of pale background between his thighs, knees and calves. His short tunic ends just below the pelvis and cannot fill this region. Do not draw the two legs behind each other. This is an intentional spread technical pose, not a relaxed natural side view.
+    CENTER ARMS: draw both arms as a second shallow inverted V, straight elbows, each arm descending 25 degrees away from vertical; the front arm and empty hand reach down toward the LEFT of the torso, the back arm and empty hand reach down toward the RIGHT. Both arms attach at the same narrow side-on shoulder region. Pale background triangles clearly separate both arms from his waist. Both hands fully visible outside the tunic silhouette. Do NOT hide the far arm. Strictly profile head, chest, pelvis and both shoes, nose pointing LEFT, only one eye. Keep torso narrow, do not rotate chest toward camera.
+    LEFT AND RIGHT FIGURES: upright neutral A-pose, both arms straight 25 degrees outward from vertical, palms toward thighs, hands empty, fingers relaxed, straight legs spread shoulder-width with background between. Left figure shows face and chest at three-quarter angle, anatomical LEFT arm/leg nearest on screen-right. Right figure shows back and back of head at three-quarter angle, anatomical LEFT arm/leg nearest on screen-left. Never mirror any view. Both armpits open onto background in all views.
+    SUBJECT: An anonymous ordinary Chinese adult man around 38 years old, 1.70 m standard height, balanced average build, practical adult proportions. Broad oval face, gently rounded jaw, ordinary small eyes and slightly broad nose, clean shaven, calm neutral expression. Black hair pulled neatly into a compact plain topknot secured with a black tie; no red cord, no long flyaway locks. Broad ordinary face, short straight eyebrows and rounded jaw, without heroic styling. Original generic design, not any named character.
+    CLOTHES: identical plain brown #6B5141 Han crossed-collar right-lapped work jacket in all views: wearer's LEFT panel overlaps RIGHT and closes toward his RIGHT. SHORT jacket hem at the TOP THIRD of the thighs, long narrow sleeves with small muted blue-grey #394C53 cuffs. Flat blue-grey waist binding with hidden fastening, no tails. Separate narrow blue-grey ankle-cuffed trouser legs, not baggy, knees and calves visible. Natural #E9CFB4 skin, dark #332B27 cloth shoes, black #211C1A plain topknot. No red tie, leg wraps, armor, jewelry, weapon or accessory. No long robe, no skirt panel joining the legs.
+    CONSISTENCY: all hair tops y=85, all soles y=939, adult about 7.5 heads tall, same neutral face and same scale across three views. Exactly two arms/two hands/two legs/two feet per figure. Three-quarter views wider than the NARROW SIDE PROFILE. Entire bodies inside frame with 6 percent margin. No foreshortening, orthographic eye-level.
+    STYLE: refined realistic hand-painted Chinese historical character illustration with natural brushwork, cloth grain, muted colors, crisp dark outline, soft diffuse light from upper-left. Hand-painted illustration texture, not a CG render: no overly smooth skin, no perfectly symmetrical features, no plastic highlights, no over-sharpened hair strands; keep natural brushwork and slight imperfections.
+    手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+    BACKGROUND: completely uniform flat #E6E1D8 including all limb openings. NO ground shadows or contact shadows. No texture, wash, gradients, vignette, frame, text, labels, grid, arrows, color swatches, props, extra views, transparency or checkerboard. Adult face and body only; no childlike, teenage or chibi proportions.
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:53:18-07:00'
+  size: 1536x1024
+  sha256: 057921c1a8b31a845b89b1a6750c7510b3268a62c36f4872304f7fbea38cf752
+  references: []
+  status: candidate
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w19/out/male_std_sheet_L_r3.png
+  source_size: 1536x1024
+  notes: front34 | side | back34；三栏头与躯干均面向画面左，未镜像，近侧为解剖学 L；A 字站姿，侧视以前后分开四肢保证背景空隙。首出 1 次、重出 2 次，选 r3。BiRefNet alpha≥24 源身高 [881, 874, 875] px，最大差 0.7946%；归一后 435 px、脚底边界
+    y=460。首版曾上传版式/画风参考，但因侧肢遮挡弃用；入库版纯文字出图，未上传任何参考图或人物立绘。原始 PNG 未裁未缩。三人完整、空手、成年；前视可见右衽，侧背保持衣装连续性；无文字/网格/色板/地面阴影。与主角立绘并排目检：脸、衣装可区分，写实手绘画风相符。侧视远足外撇，切件采用朝左的近侧足作共享源并人工复核髋、膝、踝；不可照搬远足方向。量测见
+    qa.yaml；仅参考图，不代表部件或动画已验收。

@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_qingyingyaodao
+name: 清营腰刀
+kind: weapon
+sub: blade
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·清；鹿鼎起可得（故宫清宫腰刀形制参照）
+price: auto
+flags: []
+assets:
+  icon: item/qingyingyaodao
+text:
+  desc: 外观：全长约九十厘米，柳叶状缓弧钢刃、椭圆铁盘镡、鲨鱼皮纹柄。
+  lore: 参照清宫腰刀比例而简化成营伍实用品，柳叶缓弧刃便于马上挥斩，盘镡护手，双吊环固定刀鞘。此件不沿用御制身份与华饰；配发方式、装具细节及定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 60
+      qiAffinity: 100

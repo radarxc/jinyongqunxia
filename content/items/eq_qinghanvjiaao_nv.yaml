@@ -1,0 +1,38 @@
+schemaVersion: item.v1
+id: eq_qinghanvjiaao_nv
+name: 清汉女夹袄·女
+kind: armor
+sub: clothing
+grade: 2
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch10_baima
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 汉女袄裙 · 清（清代“男从女不从”服饰习俗、清宫图像）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qinghanvjiaao_nv
+text:
+  desc: 外观：女款灰蓝交领右衽夹袄与黑色长裙成套折叠，宽袖收口、素棉布、布结系带。 待运行时投影：wearer=female。
+  lore: 据清代汉女袄裙形制演成，交领夹袄配长裙，不采用旗装镶滚，适合寒凉季节日常穿用。旧主人反复翻新袖口，留下两代人不同针脚。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

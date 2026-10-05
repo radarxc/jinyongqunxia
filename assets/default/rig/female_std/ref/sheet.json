@@ -1,0 +1,94 @@
+{
+  "schema": "tianshu-rig-sheet.v1",
+  "source": "sheet_L.png",
+  "sourceSha256": "83671d48caf156868d661bce95834107b3191f55dd329e0ca059bd4c00a12548",
+  "facing": "L",
+  "ppm": 256,
+  "heightM": 1.62,
+  "backgroundRemoval": {
+    "method": "birefnet-general-lite"
+  },
+  "viewOrderBySource": [
+    "front34",
+    "side",
+    "back34"
+  ],
+  "viewRatioCheck": true,
+  "views": {
+    "front34": {
+      "sourceColumn": 0,
+      "sourceBounds": [
+        94,
+        68,
+        521,
+        941
+      ],
+      "shoulderHeightRatio": 0.3498,
+      "normalizedSize": [
+        256,
+        480
+      ],
+      "figureHeightPx": 415,
+      "footY": 460,
+      "armpitClearance": {
+        "pass": true,
+        "requiredGaps": 2,
+        "largestGapsPx": [
+          98,
+          96
+        ]
+      },
+      "file": "ref_front34.png"
+    },
+    "side": {
+      "sourceColumn": 1,
+      "sourceBounds": [
+        610,
+        68,
+        918,
+        941
+      ],
+      "shoulderHeightRatio": 0.1905,
+      "normalizedSize": [
+        256,
+        480
+      ],
+      "figureHeightPx": 415,
+      "footY": 460,
+      "armpitClearance": {
+        "pass": true,
+        "requiredGaps": 1,
+        "largestGapsPx": [
+          82
+        ]
+      },
+      "file": "ref_side.png"
+    },
+    "back34": {
+      "sourceColumn": 2,
+      "sourceBounds": [
+        1025,
+        69,
+        1426,
+        936
+      ],
+      "shoulderHeightRatio": 0.3164,
+      "normalizedSize": [
+        256,
+        480
+      ],
+      "figureHeightPx": 415,
+      "footY": 460,
+      "armpitClearance": {
+        "pass": true,
+        "requiredGaps": 2,
+        "largestGapsPx": [
+          98,
+          95
+        ]
+      },
+      "file": "ref_back34.png"
+    }
+  },
+  "armpitFailures": []
+}

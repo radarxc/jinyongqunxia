@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_jianwenyudie
+name: 建文遗宝玉蝶
+kind: collectible
+sub: jade
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B05](#src-b05)；准入：碧血；遗宝合法分配后，纪念用途解除
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jianwenyudie
+text:
+  desc: 外观：单只白玉蝶，薄翼阴线纹。 待运行时投影：eraRange=[ming]; giftTo={preferred:[noble,collector]}; giftValue=3; provenance=book。
+  lore: 《碧血剑》建文遗宝中玉蝶与青青取宝情节相关，成对数量和纪念用途待核修订版。只在合法分配及原主准许后赠藏家；单蝶图标与玩家取得为（原创扩展），不刷宝箱。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

@@ -1,0 +1,1548 @@
+- id: map_tile_shuimian_01
+  file: map_tile_shuimian_01.png
+  category: map
+  style: default
+  role: tile
+  label: 水面 1
+  subject: 水面 1；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Extremely pale grey-cyan open-water ink grain with tiny irregular horizontal ripple threads
+    distributed evenly over the entire canvas; quiet sparse ripples, no waves with crests.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_haimian_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:45:29.093Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-ba034a43-1efa-427e-82fd-c71fb4b6ebe7.png
+  source_size: 1254x1254
+  source_sha256: 5dc49dc10c045646f2d28d96e652d323d2a7b72e3df8e383a3366bcabef8fc3e
+  size: 512x512
+  sha256: 0566cdd3e1a44f4f79aab914c10efff872fd89d738cde4c71bb14b90e25d0e42
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.32
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: water
+    alpha: opaque
+- id: map_tile_shuimian_02
+  file: map_tile_shuimian_02.png
+  category: map
+  style: default
+  role: tile
+  label: 水面 2
+  subject: 水面 2；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Open-water subtle wet-on-wet grey-cyan mottling with short softly broken horizontal ripple
+    strokes, even microtexture; independently draw a second texture.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_haimian_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:46:20.481Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-c05eb095-b1ea-4c29-931e-c45eac95378a.png
+  source_size: 1254x1254
+  source_sha256: 7f0bad6aae84a51b8cad71096005a9344e30b052dee2b5573dd8d3873a4b4915
+  size: 512x512
+  sha256: 10f4a7842628374483ee15efe2d3886a6d2d8c0dda34395056a36709f2f71f0c
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.32
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: water
+    alpha: opaque
+- id: map_tile_humian_01
+  file: map_tile_humian_01.png
+  category: map
+  style: default
+  role: tile
+  label: 湖面 1
+  subject: 湖面 1；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Still inland lake subtle silvery cyan-grey wash with fine discontinuous capillary ripples;
+    exceptionally quiet uniform all-over texture.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_hupo_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:48:50.767Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-15048c4e-325f-4dd3-9642-27098193a1ce.png
+  source_size: 1254x1254
+  source_sha256: 3aa5a99348628dc30b1a0f6a405938e6e7b28bbb6b9951cbbe29882b6d0bfaef
+  size: 512x512
+  sha256: 800a2a2d6086b969870ca73d9ca3fb70d81157909334f91e7c9509c521873c74
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.22
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: lake
+    alpha: opaque
+- id: map_tile_humian_02
+  file: map_tile_humian_02.png
+  category: map
+  style: default
+  role: tile
+  label: 湖面 2
+  subject: 湖面 2；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Still lake softly feathered grey-green/cyan wash, sparse very fine elongated ripples at varied
+    spacing, even distribution, no shore or reflections.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_hupo_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:49:26.364Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-3fcc8cb2-9c23-45c5-b583-78ed1bb28c1a.png
+  source_size: 1254x1254
+  source_sha256: 35f0e97c7e0f2ee42d4cb472985b146fcc97892d116e60c5250f7f951c0e41ed
+  size: 512x512
+  sha256: f7585898d07ed206d6c89a5367e45f24318bd596d2e77d4a5b5a272933578e46
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.22
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: lake
+    alpha: opaque
+- id: map_tile_pingyuan_01
+  file: map_tile_pingyuan_01.png
+  category: map
+  style: default
+  role: tile
+  label: 平原 1
+  subject: 平原 1；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Warm pale parchment ochre plain texture, faint dry-brush horizontal soil scuffs and extremely
+    sparse grey-green ink flecks, uniform all-over microtexture.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_pingyuan_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:51:45.107Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-f8501e87-e846-4f9f-a86d-9a55fb8110a7.png
+  source_size: 1254x1254
+  source_sha256: a32bc51b2cd50071c34a1f78dfbe05f4ff061adbb3fbfd5b3a61fe5161ed0890
+  size: 512x512
+  sha256: aa11df980bf40f3d27a043fdc346067c4ea77b71156fecfd33351a8b6bf4b13b
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.38
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: plain
+    alpha: opaque
+- id: map_tile_pingyuan_02
+  file: map_tile_pingyuan_02.png
+  category: map
+  style: default
+  role: tile
+  label: 平原 2
+  subject: 平原 2；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Pale warm earth wash, tiny broken diagonal dry-brush scuffs and scattered soft grey-green grass
+    dots, no recognizable field grid, distributed evenly.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_pingyuan_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:52:18.155Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-197b0937-d94d-4f35-97dd-cc0f2bcf09ae.png
+  source_size: 1254x1254
+  source_sha256: 017f5142bd7f9d4ffe5a28a9b7debb49403befaba966d7ac51ae6331d4cf3fb1
+  size: 512x512
+  sha256: 44229bc4226be4f27cc57219fd9c1efad47e0286541fc0e7d4ca820adb47194d
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.38
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: plain
+    alpha: opaque
+- id: map_tile_caoyuan_01
+  file: map_tile_caoyuan_01.png
+  category: map
+  style: default
+  role: tile
+  label: 草原 1
+  subject: 草原 1；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Quiet grey-green steppe microtexture, fine tiny grass-like ink stipples and short broken slanting
+    dry-brush dashes; no individual plants, uniform.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_pingyuan_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:54:44.179Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-ab433880-9c65-4144-aa85-951b0c673832.png
+  source_size: 1254x1254
+  source_sha256: f5635d8b1df905b9392bfa91435f33232d23b9a2b0e3a672233ba96132609b94
+  size: 512x512
+  sha256: 8057a89c2566d81987ac59ef6020128b42268c0cc12eaf6edb0f988a2693587f
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.38
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: grassland
+    alpha: opaque
+- id: map_tile_caoyuan_02
+  file: map_tile_caoyuan_02.png
+  category: map
+  style: default
+  role: tile
+  label: 草原 2
+  subject: 草原 2；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Very pale olive-grey steppe wash with soft scattered low clusters of tiny ink grass dots and
+    short fibrous brush texture, evenly distributed, no landscape.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_pingyuan_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:55:11.132Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-7d8b4b49-114b-4d03-b61c-7747ff369f54.png
+  source_size: 1254x1254
+  source_sha256: 3df9894b433a9a4545f40404d6a43e32fecd6e72c67f0e258e5df13d66f3d8e7
+  size: 512x512
+  sha256: 294277e204dd1565f78b16d98dbdc46543f499b0424641eb4198569f3e8eb956
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.38
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: grassland
+    alpha: opaque
+- id: map_tile_shamo_01
+  file: map_tile_shamo_01.png
+  category: map
+  style: default
+  role: tile
+  label: 沙漠 1
+  subject: 沙漠 1；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Extremely pale ochre sandy texture with fine wind-combed broken ripple lines and sandy xuan-paper
+    grain, uniform density, no dunes as landscape objects.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_pendi_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:59:07.114Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-59277bbc-af93-4145-9be2-16c9e2c295ff.png
+  source_size: 1254x1254
+  source_sha256: 889e7641086ffd59a2e2e48177585023b28334df1c5f5ea0e82dcd897606ef65
+  size: 512x512
+  sha256: 64f76ec1781fc6f630559f772474e3f7c549374f0b8609b1c1a7ad1a62b6c4f0
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.38
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: desert
+    alpha: opaque
+- id: map_tile_shamo_02
+  file: map_tile_shamo_02.png
+  category: map
+  style: default
+  role: tile
+  label: 沙漠 2
+  subject: 沙漠 2；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Pale warm grey-ochre sand rubbings with oblique short wind scratches and quiet scattered granular
+    dots, evenly spread, no hills or dune silhouettes.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_pendi_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:01:20.552Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-4abc7c7c-14f3-4d3a-8b16-6d4a05e2897b.png
+  source_size: 1254x1254
+  source_sha256: f62f12cdb7e37dcff28b12c3e4f6466e093152a1cba8eb5abce10ff0aced1c6f
+  size: 512x512
+  sha256: 6aeb1e92a0a5a931576f0c6a3ee84459d704cbe65ba9705a78ab752ecf942849
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.38
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: desert
+    alpha: opaque
+- id: map_tile_gaoyuan_01
+  file: map_tile_gaoyuan_01.png
+  category: map
+  style: default
+  role: tile
+  label: 高原 1
+  subject: 高原 1；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Pale stony plateau material, fine grey-ochre dry-brush rubbed grain and short broken stone-fibre
+    hatchmarks, no rocks as objects or relief scene.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_qiuling_04.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:02:18.302Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-fecfbfd2-9f71-4ada-ae2d-551b06224fd6.png
+  source_size: 1254x1254
+  source_sha256: 064bb963045b3774142e4432c6dee62bb8f6a89b76e66529c47effe66797d1f1
+  size: 512x512
+  sha256: d3234afc126e0c1e3091c4a2fe19028d88a7d8aa00bb47487e1445c898d2e837
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.38
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: plateau
+    alpha: opaque
+- id: map_tile_gaoyuan_02
+  file: map_tile_gaoyuan_02.png
+  category: map
+  style: default
+  role: tile
+  label: 高原 2
+  subject: 高原 2；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: Quiet pale grey-tan plateau texture, subtle irregular cunfa rubbed scuffs, soft fibrous ink
+    granulation and tiny grey-green flecks, evenly spread.
+
+    Scene/backdrop: opaque full-canvas warm very light paper material; no transparent edges.
+
+    Composition/framing: a square 1024 x 1024 seamless repeating texture, the same density and brightness at edges
+    and centre. Entire image consists only of subtle material, no empty margins, no isolated patch, no focal point.
+    All marks much smaller than the canvas. Continue texture through all four edges for tileability. Very light
+    enough for map labels and towns to remain dominant.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_qiuling_04.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:03:06.532Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-b7a6b091-c0c9-4be7-aa7a-6c4fcbc513f1.png
+  source_size: 1254x1254
+  source_sha256: 58e4da6a607625ba39bdba0782e13c29828323f78716c0e3b1070da1f0113cf0
+  size: 512x512
+  sha256: e2ae1a603aa40be032782f2f07cc1f6348b4672e09378583aed7adfe7549a5e3
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。完整画幅缩至512方图，与宣纸色按记载比例匀混降低对比；两轴64px余弦渐变对边平均，中心384×384未做接缝修补。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    target_size:
+    - 512
+    - 512
+    paper_strength: 0.38
+    wrap_band_px: 64
+    axes:
+    - 1
+    - 0
+  tile:
+    kind: plateau
+    alpha: opaque
+- id: map_strip_haian_xi_01
+  file: map_strip_haian_xi_01.png
+  category: map
+  style: default
+  role: strip
+  label: 海岸线 · 细
+  subject: 海岸线 · 细；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: A continuous thin subtly irregular warm grey dry-brush shoreline running straight horizontally
+    at the middle. ABOVE it only a narrow feathered pale grey-cyan watery wash with tiny ripples; BELOW it dry-brush
+    ochre-grey bank scuff, very restrained. No objects or scenery.
+
+    Scene/backdrop: genuine transparent RGBA background. No full-paper rectangle, no white background, no rendered
+    checkerboard. Preserve natural translucent ink.
+
+    Composition/framing: ONE horizontal strip, ideally 2048 x 256 (8:1). The stroke is straight, nearly constant
+    width and position, extending fully through the left and right canvas edges WITHOUT rounded end caps or tapering.
+    Top and bottom have generous fully transparent margins. Only a thin delicate brush stroke (core roughly 10 pixels
+    when resized to a 1024 x 128 strip). Water halo may extend about twice the core width. Same ink width, hue and
+    y position at both left and right ends for invisible end-to-end repeating joins. Subtle random small brush variation
+    along its length without a large wave or curve. This is one independently hand-painted thin asset, no sheet
+    or collage.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_haimian_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:46:48.204Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-df3c1aaa-470a-4133-b3a3-f3046fac92f3.png
+  source_size: 2172x724
+  source_sha256: 9ebd3fb1adc47922f2635852582333bec5c9bace5c62f253da120f59b82c4665
+  size: 1024x128
+  sha256: 1df8a820ab4817c324915ba4b07a3fbf6c0fbc96f3882dde572dac2a4ca511a2
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。保留生成alpha；按有效墨迹裁掉上下空白与离散边缘噪点，重采样归一粗细、透明补边；alpha<32的边缘RGB通道跨度钳至48，压制重采样杂色；左右128px预乘RGB/alpha余弦渐变平均，上下外缘置零。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    crop_box:
+    - 0
+    - 311
+    - 2172
+    - 415
+    resized_size:
+    - 1024
+    - 32
+    offset_y: 48
+    wrap_band_px: 128
+    target_width_px: 24
+    width_px: 24
+    fringe_alpha_below: 32
+    fringe_chroma_cap: 48
+  strip:
+    kind: coast
+    width_px: 24
+    water_side: top
+- id: map_strip_haian_cu_01
+  file: map_strip_haian_cu_01.png
+  category: map
+  style: default
+  role: strip
+  label: 海岸线 · 粗
+  subject: 海岸线 · 粗；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: A continuous thin subtly irregular warm grey dry-brush shoreline running straight horizontally
+    at the middle. ABOVE it only a narrow feathered pale grey-cyan watery wash with tiny ripples; BELOW it dry-brush
+    ochre-grey bank scuff, very restrained. No objects or scenery.
+
+    Scene/backdrop: genuine transparent RGBA background. No full-paper rectangle, no white background, no rendered
+    checkerboard. Preserve natural translucent ink.
+
+    Composition/framing: ONE horizontal strip, ideally 2048 x 256 (8:1). The stroke is straight, nearly constant
+    width and position, extending fully through the left and right canvas edges WITHOUT rounded end caps or tapering.
+    Top and bottom have generous fully transparent margins. Only a clearly broader brush stroke (core roughly 20
+    pixels when resized to a 1024 x 128 strip). Water halo may extend about twice the core width. Same ink width,
+    hue and y position at both left and right ends for invisible end-to-end repeating joins. Subtle random small
+    brush variation along its length without a large wave or curve. This is one independently hand-painted thick
+    asset, no sheet or collage.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_haimian_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T06:55:51.514Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-86989955-9d45-498e-8901-b38b1cc0cf07.png
+  source_size: 2172x724
+  source_sha256: e19a92077d75ef8ead801eeb5945f97b2707cf8711dd047a8f31935ae7aff534
+  size: 1024x128
+  sha256: 4a136b6a18624c46065ca7969d8caec0cc474f966d68ea53c2ec54a4ca0816f2
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。保留生成alpha；按有效墨迹裁掉上下空白与离散边缘噪点，重采样归一粗细、透明补边；alpha<32的边缘RGB通道跨度钳至48，压制重采样杂色；左右128px预乘RGB/alpha余弦渐变平均，上下外缘置零。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    crop_box:
+    - 0
+    - 320
+    - 2172
+    - 470
+    resized_size:
+    - 1024
+    - 63
+    offset_y: 32
+    wrap_band_px: 128
+    target_width_px: 48
+    width_px: 48
+    fringe_alpha_below: 32
+    fringe_chroma_cap: 48
+  strip:
+    kind: coast
+    width_px: 48
+    water_side: top
+- id: map_strip_huan_xi_01
+  file: map_strip_huan_xi_01.png
+  category: map
+  style: default
+  role: strip
+  label: 湖岸 · 细
+  subject: 湖岸 · 细；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: A continuous delicate grey-brown dry-brush inland-lake bank running straight horizontally at
+    the middle. ABOVE it quiet pale grey-green/cyan wet-on-wet ripple wash; BELOW it pale warm dry bank scuff. No
+    objects or scenery.
+
+    Scene/backdrop: genuine transparent RGBA background. No full-paper rectangle, no white background, no rendered
+    checkerboard. Preserve natural translucent ink.
+
+    Composition/framing: ONE horizontal strip, ideally 2048 x 256 (8:1). The stroke is straight, nearly constant
+    width and position, extending fully through the left and right canvas edges WITHOUT rounded end caps or tapering.
+    Top and bottom have generous fully transparent margins. Only a thin delicate brush stroke (core roughly 8 pixels
+    when resized to a 1024 x 128 strip). Water halo may extend about twice the core width. Same ink width, hue and
+    y position at both left and right ends for invisible end-to-end repeating joins. Subtle random small brush variation
+    along its length without a large wave or curve. This is one independently hand-painted thin asset, no sheet
+    or collage.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_hupo_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:04:24.622Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-ef89b380-20cc-42ae-a2d5-7e8536263501.png
+  source_size: 1774x887
+  source_sha256: 997bb487b5c144e92e04504dc834ef6aa74840f67372073c3fdf39c96ffeab20
+  size: 1024x128
+  sha256: 26232702a4742c53122b261c63c609dcebc6159fc3d635541725959ea6f2fb97
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。保留生成alpha；按有效墨迹裁掉上下空白与离散边缘噪点，重采样归一粗细、透明补边；alpha<32的边缘RGB通道跨度钳至48，压制重采样杂色；左右128px预乘RGB/alpha余弦渐变平均，上下外缘置零。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    crop_box:
+    - 0
+    - 395
+    - 1774
+    - 516
+    resized_size:
+    - 1024
+    - 38
+    offset_y: 45
+    wrap_band_px: 128
+    target_width_px: 20
+    width_px: 20
+    fringe_alpha_below: 32
+    fringe_chroma_cap: 48
+  strip:
+    kind: lakeshore
+    width_px: 20
+    water_side: top
+- id: map_strip_huan_cu_01
+  file: map_strip_huan_cu_01.png
+  category: map
+  style: default
+  role: strip
+  label: 湖岸 · 粗
+  subject: 湖岸 · 粗；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: A continuous delicate grey-brown dry-brush inland-lake bank running straight horizontally at
+    the middle. ABOVE it quiet pale grey-green/cyan wet-on-wet ripple wash; BELOW it pale warm dry bank scuff. No
+    objects or scenery.
+
+    Scene/backdrop: genuine transparent RGBA background. No full-paper rectangle, no white background, no rendered
+    checkerboard. Preserve natural translucent ink.
+
+    Composition/framing: ONE horizontal strip, ideally 2048 x 256 (8:1). The stroke is straight, nearly constant
+    width and position, extending fully through the left and right canvas edges WITHOUT rounded end caps or tapering.
+    Top and bottom have generous fully transparent margins. Only a clearly broader brush stroke (core roughly 16
+    pixels when resized to a 1024 x 128 strip). Water halo may extend about twice the core width. Same ink width,
+    hue and y position at both left and right ends for invisible end-to-end repeating joins. Subtle random small
+    brush variation along its length without a large wave or curve. This is one independently hand-painted thick
+    asset, no sheet or collage.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_hupo_02.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:07:02.916Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-4d78802a-e2ba-42ef-8112-8940ed934918.png
+  source_size: 2172x724
+  source_sha256: 59d77c089dde788cb1a507524925cc01c2048f44248d9b9fc59885fe79dda79c
+  size: 1024x128
+  sha256: 4dbfcd47d4f8478fee74d17ea600e184c8bdd30bad0c63bf8140f79f517e2b84
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。保留生成alpha；按有效墨迹裁掉上下空白与离散边缘噪点，重采样归一粗细、透明补边；alpha<32的边缘RGB通道跨度钳至48，压制重采样杂色；左右128px预乘RGB/alpha余弦渐变平均，上下外缘置零。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    crop_box:
+    - 0
+    - 272
+    - 2172
+    - 475
+    resized_size:
+    - 1024
+    - 56
+    offset_y: 36
+    wrap_band_px: 128
+    target_width_px: 40
+    width_px: 40
+    fringe_alpha_below: 32
+    fringe_chroma_cap: 48
+  strip:
+    kind: lakeshore
+    width_px: 40
+    water_side: top
+- id: map_strip_heliu_xi_01
+  file: map_strip_heliu_xi_01.png
+  category: map
+  style: default
+  role: strip
+  label: 河流 · 细
+  subject: 河流 · 细；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: A narrow continuous grey-cyan ink river ribbon straight horizontally across the middle, with
+    soft watery interior, irregular very thin grey-brown dry-brush banks on both sides and capillary feathering.
+    No scenery, no islands.
+
+    Scene/backdrop: genuine transparent RGBA background. No full-paper rectangle, no white background, no rendered
+    checkerboard. Preserve natural translucent ink.
+
+    Composition/framing: ONE horizontal strip, ideally 2048 x 256 (8:1). The stroke is straight, nearly constant
+    width and position, extending fully through the left and right canvas edges WITHOUT rounded end caps or tapering.
+    Top and bottom have generous fully transparent margins. Only a thin delicate brush stroke (core roughly 18 pixels
+    when resized to a 1024 x 128 strip). Water halo may extend about twice the core width. Same ink width, hue and
+    y position at both left and right ends for invisible end-to-end repeating joins. Subtle random small brush variation
+    along its length without a large wave or curve. This is one independently hand-painted thin asset, no sheet
+    or collage.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_heliu_wanqu_01.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:08:20.658Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-abd6d383-76d7-4dc7-9659-0249e450dd7c.png
+  source_size: 2172x724
+  source_sha256: e62ced2d17f4088f1436e46899cd695bd5a92d8f767aec93d4a40249c854d856
+  size: 1024x128
+  sha256: abe2cf95617b6d15919dd39bf1cd5fb968f93cfc41ecaac24a46e64d5774ebd2
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。保留生成alpha；按有效墨迹裁掉上下空白与离散边缘噪点，重采样归一粗细、透明补边；alpha<32的边缘RGB通道跨度钳至48，压制重采样杂色；左右128px预乘RGB/alpha余弦渐变平均，上下外缘置零。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    crop_box:
+    - 0
+    - 292
+    - 2172
+    - 439
+    resized_size:
+    - 1024
+    - 25
+    offset_y: 51
+    wrap_band_px: 128
+    target_width_px: 18
+    width_px: 18
+    fringe_alpha_below: 32
+    fringe_chroma_cap: 48
+  strip:
+    kind: river
+    width_px: 18
+    water_side: none
+- id: map_strip_heliu_cu_01
+  file: map_strip_heliu_cu_01.png
+  category: map
+  style: default
+  role: strip
+  label: 河流 · 粗
+  subject: 河流 · 粗；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: A narrow continuous grey-cyan ink river ribbon straight horizontally across the middle, with
+    soft watery interior, irregular very thin grey-brown dry-brush banks on both sides and capillary feathering.
+    No scenery, no islands.
+
+    Scene/backdrop: genuine transparent RGBA background. No full-paper rectangle, no white background, no rendered
+    checkerboard. Preserve natural translucent ink.
+
+    Composition/framing: ONE horizontal strip, ideally 2048 x 256 (8:1). The stroke is straight, nearly constant
+    width and position, extending fully through the left and right canvas edges WITHOUT rounded end caps or tapering.
+    Top and bottom have generous fully transparent margins. Only a clearly broader brush stroke (core roughly 36
+    pixels when resized to a 1024 x 128 strip). Water halo may extend about twice the core width. Same ink width,
+    hue and y position at both left and right ends for invisible end-to-end repeating joins. Subtle random small
+    brush variation along its length without a large wave or curve. This is one independently hand-painted thick
+    asset, no sheet or collage.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_heliu_wanqu_01.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:09:28.024Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-4f18066e-1369-4428-a6bd-8c6eb131dfa6.png
+  source_size: 2172x724
+  source_sha256: 1a8ff325db542a6c1b7dbf99a4ce4d568bb55036655d6f5048a7786329ea689f
+  size: 1024x128
+  sha256: 3a9e083cf87200ed85a18ed7893732e5cbe959cebf1d622c07b6033d3d7382f6
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。保留生成alpha；按有效墨迹裁掉上下空白与离散边缘噪点，重采样归一粗细、透明补边；alpha<32的边缘RGB通道跨度钳至48，压制重采样杂色；左右128px预乘RGB/alpha余弦渐变平均，上下外缘置零。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    crop_box:
+    - 0
+    - 277
+    - 2172
+    - 452
+    resized_size:
+    - 1024
+    - 51
+    offset_y: 38
+    wrap_band_px: 128
+    target_width_px: 36
+    width_px: 36
+    fringe_alpha_below: 32
+    fringe_chroma_cap: 48
+  strip:
+    kind: river
+    width_px: 36
+    water_side: none
+- id: map_strip_daolu_xi_01
+  file: map_strip_daolu_xi_01.png
+  category: map
+  style: default
+  role: strip
+  label: 道路 · 细
+  subject: 道路 · 细；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: A continuous subdued warm grey-ochre ancient-path brush ribbon straight horizontally across
+    the middle. Fine dry-brush fibres, irregular fly-white grain, faint soil rubbing; no scenery, ruts or stones
+    as objects.
+
+    Scene/backdrop: genuine transparent RGBA background. No full-paper rectangle, no white background, no rendered
+    checkerboard. Preserve natural translucent ink.
+
+    Composition/framing: ONE horizontal strip, ideally 2048 x 256 (8:1). The stroke is straight, nearly constant
+    width and position, extending fully through the left and right canvas edges WITHOUT rounded end caps or tapering.
+    Top and bottom have generous fully transparent margins. Only a thin delicate brush stroke (core roughly 8 pixels
+    when resized to a 1024 x 128 strip). Water halo may extend about twice the core width. Same ink width, hue and
+    y position at both left and right ends for invisible end-to-end repeating joins. Subtle random small brush variation
+    along its length without a large wave or curve. This is one independently hand-painted thin asset, no sheet
+    or collage.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_daolu_wanqu_01.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:11:58.634Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-1f249416-f498-4710-a6f5-7216bc0534b5.png
+  source_size: 2182x721
+  source_sha256: cbd732b25b78d8ae286615b0ee2cd10b1c2d46be2239c7952cec1f26727613a1
+  size: 1024x128
+  sha256: 9b0069cf5e12dc5fe3147e762c8a0811d2d2e079f3bc6c0a42842b59acf07921
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。保留生成alpha；按有效墨迹裁掉上下空白与离散边缘噪点，重采样归一粗细、透明补边；alpha<32的边缘RGB通道跨度钳至48，压制重采样杂色；左右128px预乘RGB/alpha余弦渐变平均，上下外缘置零。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    crop_box:
+    - 0
+    - 312
+    - 2182
+    - 394
+    resized_size:
+    - 1024
+    - 13
+    offset_y: 57
+    wrap_band_px: 128
+    target_width_px: 8
+    width_px: 8
+    fringe_alpha_below: 32
+    fringe_chroma_cap: 48
+  strip:
+    kind: road
+    width_px: 8
+    water_side: none
+- id: map_strip_daolu_cu_01
+  file: map_strip_daolu_cu_01.png
+  category: map
+  style: default
+  role: strip
+  label: 道路 · 粗
+  subject: 道路 · 粗；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: A continuous subdued warm grey-ochre ancient-path brush ribbon straight horizontally across
+    the middle. Fine dry-brush fibres, irregular fly-white grain, faint soil rubbing; no scenery, ruts or stones
+    as objects.
+
+    Scene/backdrop: genuine transparent RGBA background. No full-paper rectangle, no white background, no rendered
+    checkerboard. Preserve natural translucent ink.
+
+    Composition/framing: ONE horizontal strip, ideally 2048 x 256 (8:1). The stroke is straight, nearly constant
+    width and position, extending fully through the left and right canvas edges WITHOUT rounded end caps or tapering.
+    Top and bottom have generous fully transparent margins. Only a clearly broader brush stroke (core roughly 16
+    pixels when resized to a 1024 x 128 strip). Water halo may extend about twice the core width. Same ink width,
+    hue and y position at both left and right ends for invisible end-to-end repeating joins. Subtle random small
+    brush variation along its length without a large wave or curve. This is one independently hand-painted thick
+    asset, no sheet or collage.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_daolu_wanqu_01.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:13:57.942Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-e3460b3c-f038-40e8-8b74-958ae88911ec.png
+  source_size: 2172x724
+  source_sha256: f93a70704e4cf3de0c78c945c65e94f58bef0aaad7fcb86c148e943007ce502e
+  size: 1024x128
+  sha256: 38e7f4bb69c0a6cd9e0c2027abd7744330e7d580c1ba5fb6a61fbfad5cb905c7
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。保留生成alpha；按有效墨迹裁掉上下空白与离散边缘噪点，重采样归一粗细、透明补边；alpha<32的边缘RGB通道跨度钳至48，压制重采样杂色；左右128px预乘RGB/alpha余弦渐变平均，上下外缘置零。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    crop_box:
+    - 0
+    - 300
+    - 2172
+    - 421
+    resized_size:
+    - 1024
+    - 23
+    offset_y: 52
+    wrap_band_px: 128
+    target_width_px: 16
+    width_px: 16
+    fringe_alpha_below: 32
+    fringe_chroma_cap: 48
+  strip:
+    kind: road
+    width_px: 16
+    water_side: none
+- id: map_strip_quyu_xi_01
+  file: map_strip_quyu_xi_01.png
+  category: map
+  style: default
+  role: strip
+  label: 区域边界 · 细
+  subject: 区域边界 · 细；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: One continuous extremely restrained grey-ochre dry brush ink line running straight horizontally
+    across the middle. It is only a feathery rubbed brush line for an abstract map region edge, sparse fibrous grain;
+    no symbols, geographic outline or scenery.
+
+    Scene/backdrop: genuine transparent RGBA background. No full-paper rectangle, no white background, no rendered
+    checkerboard. Preserve natural translucent ink.
+
+    Composition/framing: ONE horizontal strip, ideally 2048 x 256 (8:1). The stroke is straight, nearly constant
+    width and position, extending fully through the left and right canvas edges WITHOUT rounded end caps or tapering.
+    Top and bottom have generous fully transparent margins. Only a thin delicate brush stroke (core roughly 6 pixels
+    when resized to a 1024 x 128 strip). Water halo may extend about twice the core width. Same ink width, hue and
+    y position at both left and right ends for invisible end-to-end repeating joins. Subtle random small brush variation
+    along its length without a large wave or curve. This is one independently hand-painted thin asset, no sheet
+    or collage.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_qiuling_04.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:22:05.658Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-112b4ae7-2f0a-40bc-a672-102500cd4ff3.png
+  source_size: 2172x724
+  source_sha256: c31ddc849a116a704dd4150e2d6645c850d996405d59c009160010e563e438ab
+  size: 1024x128
+  sha256: aa64106478116a9dcd9cba914ba5a5d1a79be321b0905d39ccef4fe94fa559da
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。保留生成alpha；按有效墨迹裁掉上下空白与离散边缘噪点，重采样归一粗细、透明补边；alpha<32的边缘RGB通道跨度钳至48，压制重采样杂色；左右128px预乘RGB/alpha余弦渐变平均，上下外缘置零。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    crop_box:
+    - 0
+    - 330
+    - 2172
+    - 390
+    resized_size:
+    - 1024
+    - 14
+    offset_y: 57
+    wrap_band_px: 128
+    target_width_px: 6
+    width_px: 6
+    fringe_alpha_below: 32
+    fringe_chroma_cap: 48
+  strip:
+    kind: region
+    width_px: 6
+    water_side: none
+- id: map_strip_quyu_cu_01
+  file: map_strip_quyu_cu_01.png
+  category: map
+  style: default
+  role: strip
+  label: 区域边界 · 粗
+  subject: 区域边界 · 粗；AR-83通用笔墨质感（原创扩展），不绑定地理或书界。
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: tianshu AR-83 map texture, one bitmap material.
+
+    Input images: Image 1 approved Jianghu map and Image 2 approved Dali map are style-only references; Image 3
+    (and 4 if present) approved kit artwork is a brushwork reference only. Do not copy their landscape composition
+    or objects.
+
+    Style/medium: fine traditional Chinese ink on warm xuan-paper texture, delicate dry brush and wet feathered
+    ink, quiet hand-painted realism. Match grey ink #554c3e, pale #8e8065, restrained grey-green and grey-cyan #526d6d;
+    paper #eee4cc. Low saturation, light value. No strong outline.
+
+    Constraints: no text, labels, pseudo writing, seals, frame, border, vignetting, watermark, horizon, people,
+    towns, mountains as objects, trees as objects, islands, flowers, buildings, roads unless explicitly requested;
+    no recognizable geographical layout, 3D, vector art, modern objects. Original extension, style references only.
+
+
+    Primary request: One continuous extremely restrained grey-ochre dry brush ink line running straight horizontally
+    across the middle. It is only a feathery rubbed brush line for an abstract map region edge, sparse fibrous grain;
+    no symbols, geographic outline or scenery.
+
+    Scene/backdrop: genuine transparent RGBA background. No full-paper rectangle, no white background, no rendered
+    checkerboard. Preserve natural translucent ink.
+
+    Composition/framing: ONE horizontal strip, ideally 2048 x 256 (8:1). The stroke is straight, nearly constant
+    width and position, extending fully through the left and right canvas edges WITHOUT rounded end caps or tapering.
+    Top and bottom have generous fully transparent margins. Only a clearly broader brush stroke (core roughly 12
+    pixels when resized to a 1024 x 128 strip). Water halo may extend about twice the core width. Same ink width,
+    hue and y position at both left and right ends for invisible end-to-end repeating joins. Subtle random small
+    brush variation along its length without a large wave or curve. This is one independently hand-painted thick
+    asset, no sheet or collage.
+
+    '
+  negative: 无文字、伪字、印章、水印、边框、中心构图、具体物件、现代元素；不复制参考地理布局。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/kit/map_kit_qiuling_04.png
+  tool: codex exec · image_gen; Pillow/numpy 无缝化后处理
+  model: image_gen（独立图像后端未披露）
+  effort: not_disclosed
+  created: '2026-10-04T07:24:25.359Z'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/ART-map-inkkit-tiles/codex-home/generated_images/01a105a5-6d11-7861-9f1b-6800070383ad/exec-127f1ec9-0269-4614-9246-0cc887af5fca.png
+  source_size: 2172x724
+  source_sha256: db1f67ca1062f2480535d3ee8ea3bd42763801783d02b6ae686289e311059787
+  size: 1024x128
+  sha256: f1e9aeda7bb068a0029d12512b8e5ac613cd871b4979d4d904fbe26e5a8caa1f
+  status: candidate
+  notes: image_gen 独立生成；两张已审基线与同类 kit 作为风格输入。只后处理生成像素，不用代码绘制主体。保留生成alpha；按有效墨迹裁掉上下空白与离散边缘噪点，重采样归一粗细、透明补边；alpha<32的边缘RGB通道跨度钳至48，压制重采样杂色；左右128px预乘RGB/alpha余弦渐变平均，上下外缘置零。recipe记录可复跑参数；status为candidate，后端型号未披露。
+  recipe:
+    crop_box:
+    - 0
+    - 318
+    - 2172
+    - 409
+    resized_size:
+    - 1024
+    - 21
+    offset_y: 53
+    wrap_band_px: 128
+    target_width_px: 12
+    width_px: 12
+    fringe_alpha_below: 32
+    fringe_chroma_cap: 48
+  strip:
+    kind: region
+    width_px: 12
+    water_side: none
+- id: map_tiles_contact_01
+  file: _contact_sheet.png
+  category: map
+  style: default
+  role: contact_sheet
+  subject: AR-83品类对照表与平铺/三连/曲线审样（原创扩展）
+  prompt: 按六类填充、五类笔触分行；两张基线在上；每件展示单图与2×2/三连、曲线和深底alpha预览。
+  negative: 不供运行时取件；底色与审样文字不属于贴片。
+  references:
+  - assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+  - assets/default/baseline/map/ref_map_dali__ch01_base01.png
+  - assets/default/map/tiles/map_tile_shuimian_01.png
+  - assets/default/map/tiles/map_tile_shuimian_02.png
+  - assets/default/map/tiles/map_tile_humian_01.png
+  - assets/default/map/tiles/map_tile_humian_02.png
+  - assets/default/map/tiles/map_tile_pingyuan_01.png
+  - assets/default/map/tiles/map_tile_pingyuan_02.png
+  - assets/default/map/tiles/map_tile_caoyuan_01.png
+  - assets/default/map/tiles/map_tile_caoyuan_02.png
+  - assets/default/map/tiles/map_tile_shamo_01.png
+  - assets/default/map/tiles/map_tile_shamo_02.png
+  - assets/default/map/tiles/map_tile_gaoyuan_01.png
+  - assets/default/map/tiles/map_tile_gaoyuan_02.png
+  - assets/default/map/tiles/map_strip_haian_xi_01.png
+  - assets/default/map/tiles/map_strip_haian_cu_01.png
+  - assets/default/map/tiles/map_strip_huan_xi_01.png
+  - assets/default/map/tiles/map_strip_huan_cu_01.png
+  - assets/default/map/tiles/map_strip_heliu_xi_01.png
+  - assets/default/map/tiles/map_strip_heliu_cu_01.png
+  - assets/default/map/tiles/map_strip_daolu_xi_01.png
+  - assets/default/map/tiles/map_strip_daolu_cu_01.png
+  - assets/default/map/tiles/map_strip_quyu_xi_01.png
+  - assets/default/map/tiles/map_strip_quyu_cu_01.png
+  tool: tools/map/tiles/build_tiles.py contact · Pillow/numpy 组合既有素材
+  model: deterministic bitmap composition (not generation)
+  effort: not_applicable
+  created: '2026-10-04T07:38:45.182226+00:00'
+  source_path: tools/map/tiles/build_tiles.py
+  size: 2400x5980
+  sha256: 7ec6b5b423873686eacdf63e797a08bfa77675554217be2b770598273fc06008
+  status: candidate
+  notes: 曲线路径按弧长和法线双线性重采样原笔触；非GIS落位，不代表拐角、分岔与闭环已验收。

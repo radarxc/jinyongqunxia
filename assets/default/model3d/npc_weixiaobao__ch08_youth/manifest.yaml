@@ -1,0 +1,76 @@
+- id: npc_weixiaobao__ch08_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 韦小宝（鹿鼎记 ch08 · 青年）· 空手 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: bf3d1396-c4ba-4937-a6ae-6799f948cc95
+    url: https://studio.tripo3d.ai/workspace/generate/bf3d1396-c4ba-4937-a6ae-6799f948cc95
+    generate_op: fdcb1022-168d-460e-b4e2-12a75bde33cd（image_to_model）
+    rig_op: d0c4a68e-303b-49e1-8184-d0bb05fcec4b
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch08/threeview/por_npc_weixiaobao__ch08_youth_bishou_apose_slim.png
+    sha256: 7b828380a08c92b3f8e3983c5e21b439ed600e3f5f8216e95e36a96ac9a016cd
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 4a225442452d933e87dd3c0818c4583324a400f5d1a21d13560cb1efdbb7c1bd
+  size_bytes: 5855780
+  joints: 65
+  triangles: 95406
+  vertices: 53317
+  animations: []
+  textures:
+  - image/jpeg 419119 B
+  - image/jpeg 1512688 B
+  - image/jpeg 555582 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T19:08:07-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，蓝长袍 + 红马甲 + 瓜皮帽（保留）；叉腰姿势改成 A 字。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 0db0e26b。
+- id: npc_weixiaobao__ch08_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 韦小宝（鹿鼎记 ch08 · 青年）· 空手 A 字版 · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: bf3d1396-c4ba-4937-a6ae-6799f948cc95
+    url: https://studio.tripo3d.ai/workspace/generate/bf3d1396-c4ba-4937-a6ae-6799f948cc95
+    generate_op: fdcb1022-168d-460e-b4e2-12a75bde33cd（image_to_model）
+    rig_op: d0c4a68e-303b-49e1-8184-d0bb05fcec4b
+  size: 600x778
+  sha256: 8efd7e0c00c2fc63b596a52ef5d355dad2a673aa3f160037cbadd69f0740537d
+  size_bytes: 160241
+  created: '2026-10-03T22:34:24-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

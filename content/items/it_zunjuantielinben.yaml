@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_zunjuantielinben
+name: 尊眷帖临本
+kind: collectible
+sub: calligraphy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/zunjuantielinben
+text:
+  desc: 外观：素纸短卷，细绫包首。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,collector]}; giftValue=2; provenance=expanded。
+  lore: 以陆游《尊眷帖》为临习题材制作书斋临本，作品身份有馆藏可查。宜赠文士，临本流传与题签为（原创扩展）；默认放在陆游身后书界段，不冒称原札，也不推定原件纪年。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

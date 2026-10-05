@@ -1,0 +1,37 @@
+{
+  "endpoint": "codex/images/edits",
+  "model": "gpt-image-2",
+  "turn_id": "361bc5f5-b7db-430d-b5c0-3adcaf6aeadd",
+  "request_id": "45a92805-c8c2-4473-86fe-cee189a2b9f0",
+  "generation_id": "30dd1010-cd4a-4712-8118-0d9d4b4af044",
+  "created_unix": 1790839943,
+  "elapsed_seconds": 30.927,
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 7m by7m octagonal seven-storey late-Yuan Jiangnan brick-and-timber pavilion pagoda inspired only by the documented surviving overall form: clear upward taper, blue-grey brick core, each level with shallow grey-tiled waist eaves and restrained timber gallery rails, modest finial, low stone base; do not reproduce modern restoration colors, rail replacements or surroundings. Entire tall tower uncropped.",
+  "references": [
+    {
+      "kind": "style_geometry_reference",
+      "file": "bld_kit_song_southern_pagoda.png",
+      "note": "宋基线透明精灵，只约束相机、透明裁切与写实密度"
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://www.changshu.gov.cn/zgcs/c100290/202311/54ee18e3bab9460fb467a58d78d8eef5.shtml",
+      "detail_used": "聚沙塔八角七层、收分与砖木腰檐",
+      "downloaded_and_viewed": true
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00000900",
+      "detail_used": "界画建筑层级",
+      "downloaded_and_viewed": true
+    }
+  ],
+  "output_sha256": "e99de5a930cd7c6e27cfe5af6320b967ff8d33e9a34f4986501b17a8cde6b468",
+  "selected_asset_file": "bld_kit_yuan_south_pagoda.png",
+  "selected_asset_sha256": "f78b22e97f8aacf72555837ee36bb74fb76d10986d771c94739ba860b5b1aad2",
+  "normalization": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
+  ]
+}

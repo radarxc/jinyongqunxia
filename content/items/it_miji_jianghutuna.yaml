@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_jianghutuna
+name: 江湖吐纳全本
+kind: manual
+sub: full
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_jianghutuna
+text:
+  desc: 外观：元代灰白包背册，蓝布护脊。
+  lore: 江湖散人把数家基础调息法校成一部灰白全本，心法与谱本属 （原创扩展）。研读须按篇辨清不同呼吸节奏，择一循序练成后再互证；潮斑处应校字，不可凭习惯强接经路。
+extension:
+  type: manual
+  value:
+    skill: sk_jianghutuna
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jianghutuna
+      readBre: 35
+      maxLayer: 10
+      cultivation: 1600

@@ -4,7 +4,7 @@
 > 上游：`docs/decisions/author-requirements.md` AR-04、AR-07、AR-08，`docs/decisions/author-decisions.md`，`docs/00-canon.md` §2、§12–§13、§16、§18，`docs/decisions/rulings-v1.md` §3。
 > 引用而不重定义：加入条件、门规、贡献、晋升机制、叛出、任务链与招募细则 → `design/12`；月钱与资源 → `design/16`；区域/城市正式 ID、坐标与时代地名 → `design/11`、`design/19`；武学条目、数值与招式 → 各 `design/catalog/skills-*.md`；战斗与阵法 → `design/09`。
 > 标注约定：**（史实）** = 有史料或权威机构来源；**（小说）** = 金庸小说设定；**（古龙·书名）** = 古龙小说设定；**（原创扩展）** = 本作为串联时代所加；**（待考）** = 尚须以三联/广州修订版或可靠史料逐字核对；**（待核实）** = 网页可用性或资料版本尚未完全确认；**【建议值】** = 待唯一归属文档定稿。
-> 版本记录：v1.2（跨文档同步，2026-09-26）；初稿 S1（2026-09-26）；审校 S1.R（2026-09-26，修正史实、矩阵状态、裁定品阶与交叉引用，并补史实抽检）；F1b 对齐正式图鉴 ID、品阶、类别、蓬莱六门授艺与 `design/16` 月钱／资源接口；全局审计（2026-09-26）：回填三十区正式落点与图鉴正式 ID。
+> 版本记录：v1.2（跨文档同步，2026-09-26）；初稿 S1（2026-09-26）；审校 S1.R（2026-09-26，修正史实、矩阵状态、裁定品阶与交叉引用，并补史实抽检）；F1b 对齐正式图鉴 ID、品阶、类别、蓬莱六门授艺与 `design/16` 月钱／资源接口；全局审计（2026-09-26）：回填三十区正式落点与图鉴正式 ID；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）：补叠劲拳授艺与无毒隔离，收拢日月 / 五仙旧索引。
 
 ---
 
@@ -13,7 +13,7 @@
 1. 本稿收录 **99 个组织**：沿用裁定的 72 个有效 `sect_*`，补 12 个金庸具名次要组织，加入 15 个古龙经典组织。废弃候选 `sect_huashan04` 与 `sect_jingangmen` 不复活；华山跨书界统一 `sect_huashan`，金刚门只作少林旁支传承。
 2. “同名”不等于“同一历史组织”：少林、武当、丐帮、峨眉、昆仑、崆峒、青城、华山均复用一个游戏 ID，但每个时代的掌门、势力、武学来源与开放状态独立记录；身份仍按基准 §3 随书眠重置。
 3. 时代开放遵循“最早可证存在 ≤ 书界年代 ≤ 可证消亡/衰落”，再以小说是否登场修正。史实与小说冲突时两栏并列；例如天地会在《鹿鼎记》开放是小说事实，18 世纪中叶起源是史学口径，两者不相互冒充。
-4. 每派至少列 3 门武学。已入图鉴者只引用 ID、品阶和图鉴；未入图鉴者标“待收录”，这里只给品阶/类别/效果方向，不定义数值或招式。天级只能引用基准 §13 的 51 门封闭名录。
+4. 每派至少列 3 门武学。已入图鉴者只引用 ID、品阶和图鉴；未入图鉴者标“待收录”，这里只给品阶/类别/效果方向，不定义数值或招式。普通天阶只能引用 Canon v1.6 §13 的 59 门封闭名录（天上 9 / 天中 18 / 天下 32）。
 5. 古龙组织以支线、秘境、传闻和对手势力嵌入，不替换、不改写金庸主线锚点；其模糊年代是玩法投放，不宣称原作年代。
 
 ### 0.1 分类与真实性
@@ -208,6 +208,100 @@
 | 天龙寺 / 天龙门 | `sect_tianlongsi` 与 `sect_tianlongmen` 分立 | 大理佛寺 vs 清代门派 | 不按词根合并 |
 | 吐蕃密宗 / 金刚门 | 密宗统一 `sect_mizong`；金刚门为 `lineage` | 天龙、神雕、倚天、鹿鼎人物与来源不同 | 不启用 `sect_jingangmen` |
 | 衡山 / 恒山 | `sect_hengshan_nan` / `sect_hengshan_bei` | 坐标、掌门与武学完全分开 | 不用无后缀 `sect_hengshan` |
+
+### 2.1 补录图鉴的组织授艺索引（经脉落地终审）
+
+以下是组织资料侧的正式索引；技能字段、层数与完整 `learnSources` 唯一归各 `catalog/skills-bulu-NN-*`，任务节点与教师可用性见 `design/12` §6.7.1。表中“Lx”只表示组织允许发起授艺的最低职级，不能绕过技能卡的属性、资质、前置、品德、试炼或层数上限。个人散承不因人物在某组织任职而变成组织公传。
+
+#### 2.1.1 天阶扩容主运（Canon v1.6）
+
+| 组织 / 传承 | 正常传承 | 正式技能 ID；替代来源 |
+|---|---|---|
+| 大理段氏 `sect_dali` | L4，护谱有功 | `sk_duanshiyangjue`；段正明亲授至 10，天龙寺护谱行功图至 8 |
+| 丐帮 `sect_gaibang` | 帮主级 L5 或高羁绊 | `sk_xianglongxinggong`；萧峰 / 洪七公亲授至 10，不是首领专属 |
+| 灵鹫宫 `sect_lingjiu` | L4 且六阳掌 7 重 | `sk_tianshanliuyangxinfa`；童姥 / 虚竹师授，石壁图至 8 |
+| 铁掌帮 `sect_tiezhangbang` | L4 且完成帮派危机 | `sk_tiezhangyunqigong`；旧寨完整遗谱可授全，裘千尺个人残承仅 9 品 9 重 |
+| 桃花岛 `sect_taohuadao` | L4、碧涛玄功 8 重、听潮试炼 | `sk_taohuaguiyuanjue`；射雕为 10 品 9 重残承，神雕校成完整 11 品，同一 ID |
+| 玄冥一系 `lineage:xuanming` | 师门传承，不是王府通用目录 | `sk_xuanminghanyuangong`；二老授艺至 10，王府密谱至 8 |
+| 波斯总教 `sect_mingjiao` + `jurisdiction:persia` | L4、圣火令武功 7 重、议会考校 | `sk_bosishenghuoxuangong`；三使译谱至 8 |
+| 华山气宗 `sect_huashan` + `branch:qi` | L5、紫霞 9 重 | `sk_huashanziqijue`；掌门 / 密卷至 10，辨义印证至 8 |
+
+#### 2.1.2 天龙至笑傲的其余补录
+
+| 书界 / 组织或传承 | 门派授艺与替代来源 | 正式技能 ID |
+|---|---|---|
+| 射雕·全真 `sect_quanzhen` | L4 + 阵位修复；神雕改为重阳宫解围与门规复核 | `sk_quanzhenzhoutiangong` |
+| 射雕·九阴邪练散承 | 梅超风认可亲授；下卷秘籍误读奇遇仅至 8 且结算邪练代价 | `sk_jiuyinxieliangong` |
+| 射雕·丐帮 `sect_gaibang` | L4、七袋以上、门派任务后由帮主或传功长老授艺 | `sk_gaibangjuyigong` |
+| 神雕·古墓赤练支 | 李莫愁邪线亲授；《五毒秘传》批注或拂尘校谱至 8 | `sk_chiliandugong`、`sk_chilianfuchen` |
+| 神雕·绝情谷 `sect_jueqinggu` | L4 谷主 / 剑室试炼；旧案行气图或刀剑谱校合至 8 | `sk_jueqingbixuejue`、`sk_jindaoheijianjue` |
+| 神雕·吐蕃密宗 `sect_mizong` | L3 护经；达尔巴辨伪 / 批注或霍都扇谱校合 | `sk_jinganghufagong`、`sk_xueshantieshan` |
+| 神雕·蒙古军伍 `sect_menggu` | L4 且通过军令考核；百户阵图经军旅教头校合至 8 | `sk_caoyuanjunzhenxinfa` |
+| 倚天·明教中土 / 灵蛇支 | 明教 L3–L4；黛绮丝演授或灵蛇岛留谱 | `sk_mingjiaohujiaogong`、`sk_jinhuazhangfa`、`sk_jinhuabiaofa` |
+| 倚天·成昆个人支 | 受控同行私授；圆真遗册复核至 8并结算品德代价 | `sk_huanyinxinfa`、`sk_huanyinshou` |
+| 倚天·玄冥个人兵器支 | 二老羁绊 / 换俘授艺；王府残谱至 8，不纳入王府公传 | `sk_lutouzhangfa`、`sk_hezuibifa` |
+| 倚天·昆仑 `sect_kunlun` | L4 或何太冲 / 班淑娴授艺；光明顶观摩仅至 6 | `sk_kunlunliangyixinfa` |
+| 倚天·崆峒 `sect_kongtong` | L4 五老考校；救治走火弟子并归还谱线至 8 | `sk_kongtongwuxingxinfa` |
+| 倚天·华山支 `sect_huashan` | L4 堂主 / 长老考校；险峰护送与两仪考校至 8 | `sk_huashanliangyixinfa04` |
+| 笑傲·华山剑宗 | L4 正常传授；剑宗支线武册至 8 | `sk_jianzongxingqi` |
+| 笑傲·嵩山 `sect_songshan` | L4 正常传授；护山 / 并派大会武册至 8 | `sk_songshanzhenqi`、`sk_songshankaihezhang` |
+| 笑傲·青城 `sect_qingcheng` | L4 正常传授；门派赎罪线秘籍至 8 | `sk_qingchengyunqi` |
+| 笑傲·日月 `sect_riyue` | L4 教务传授；黑木崖武册至 8 | `sk_heimuxuangong` |
+| 笑傲·个人 / 葵花支 | 任我行合法指点或唯一后手录；葵花特殊授艺或秘库针谱，不作击败掉落 | `sk_renwoxingzhang`、`sk_kuihuafeizhen` |
+
+#### 2.1.3 侠客至雪山的补录
+
+| 书界 / 组织或传承 | 门派授艺与替代来源 | 正式技能 ID |
+|---|---|---|
+| 侠客·谢烟客个人支 | 本人指点或玄铁令守诺后的手录；不得击败掉全谱 | `sk_motianyunqi`、`sk_motianzhang` |
+| 侠客·丁氏家传 | 家传认可，或 `q_06_bond_02` 非伤害化解后的授艺 / 校注 | `sk_dingshixinfa`、`sk_dingshiqinnashou` |
+| 侠客·侠客岛 `sect_xiakedao` | L4 护法传授；自愿归返与赏罚复核后岛主授艺 | `sk_xiakedaoqigong` |
+| 侠客·雪山 `sect_xueshan` | L4 气寒堂长老；门规修复与寒地守望后门内抄本 | `sk_lingxiaozhenyuegong` |
+| 碧血·山宗 / 闯军 `sect_chuangwangjun` | L3 师授；军纪整顿、教头认可后的公传抄本至 8 | `sk_shanzongzhengqigong` |
+| 碧血·金龙帮 `sect_jinlongbang` | L3；焦宅止斗且帮争平息后合规秘籍至 8 | `sk_jinlongbangxinfa` |
+| 碧血·石梁温家 `sect_shiliang` | L4；旧案和解、族议认可后公传抄本至 8 | `sk_shiliangwuxinggong` |
+| 碧血·仙都 `sect_xiandu` | L3；错谱争端和解后校正抄本至 8 | `sk_xianduyunqi` |
+| 碧血·华山支 `sect_huashan` | L3 或穆人清 / 归辛树认可授艺 | `sk_huashanqigong07` |
+| 碧血·华山支 `sect_huashan` | L4，或同门较技后穆人清 / 归辛树认可授艺至 10；认可仅覆写门派项，混元掌 / 破玉拳 6 重、属性与拳掌资质仍须满足。禁止击败、尸体或偷窃掉谱，任务挂接见 `design/12` §6.7.1 | `sk_huashandiejinquan07` |
+| 碧血·铁剑门 `sect_tiejian` | L4 或木桑手录奇遇；均保留铁剑心法前置 | `sk_tiejianxuangong` |
+| 碧血·明宫军伍 | 宫禁调查武册至 8；非击杀处置内监亲随后师授至 10 | `sk_minggonghuyuangong` |
+| 鹿鼎·清宫 / 布库 `sect_qinggong` | 清宫 L3–L4、布库教头、鳌拜案武册或校场夺魁 | `sk_aobaihengliangong`、`sk_bukuhengshuai`、`sk_bukuhutiaogong` |
+| 鹿鼎·密宗 `sect_mizong` | L3–L4、桑结 / 门下或五台护经奇遇 | `sk_sangjiehufagong`、`sk_fansenghutigong`、`sk_xueyuhufashou` |
+| 鹿鼎·王屋 `sect_wangwu` | L4–L5；护寨手录或司徒伯雷遗谱 | `sk_wangwuzhenshanxinfa`、`sk_wangwuhushangong`、`sk_wangwudangguanjian` |
+| 鹿鼎·平西军伍 | 校尉 / 护卫岗位，或反三藩、粮台缴获军册 | `sk_pingxizhentaixinfa`、`sk_pingxixingqijue` |
+| 鹿鼎·神龙舰队 `sect_shenlongjiao` | 舰队 L3–L4；救俘 / 夺旗奇遇抄本 | `sk_shenlonghaichaojing`、`sk_shenlongfanzhougong` |
+| 鹿鼎·郑氏海防 | 将领、水师教头 / 护卫岗位；双印或护送支线军册、剑谱 | `sk_yanpinghaifangxinfa`、`sk_yanpingfanchaojue`、`sk_yanpingzhenhaijian` |
+| 鹿鼎·冯锡范个人支 | 本人认可或遗谱；师承细节（待考），不得并入昆仑公传 | `sk_yijianxinfa`、`sk_yijianwuxue` |
+| 鹿鼎·雅克萨守军 | 守军教官或止战交换后的训练札记；不以屠城取谱 | `sk_luochazhenliecao`、`sk_luochabujunhuxi`、`sk_luochaciqiangshu` |
+| 鹿鼎·海大富个人支 | 仅秘密传授或宫中遗谱奇遇 | `sk_haidafuhuagujing` |
+| 连城·万家门 `sect_wanjia` | L3 清白门人 / 护院教习；改组后未涉案门人或门内武册 | `sk_wanjiazhengqi`、`sk_wanjiaanshenquan` |
+| 连城·荆州官府 | 关系 ≥40 或有效官府身份时教头授艺；亦可研读武册 | `sk_jingzhouguanfuqinfa`、`sk_jingzhouyangqigong` |
+| 白马·华辉个人传承 | 瓦耳拉齐 / 马家骏信任线亲授；遗谱须旧案问证、谱与针谱无毒检查、双方安全隔离并经李文秀辨认；`q_10_bond_05` 的三谱原子发放见 `design/12` §6.7.3，禁止尸体掉落 | `sk_huahuixinfa`、`sk_walalizhi`、`sk_majiajunfeizhen` |
+| 白马·哈萨克 `sect_hasake` | 庄园教头职能槽：L3 亲随 + 救援、守诺、演武认可；接纳后可观摩 | `sk_hasakeyunqi` |
+| 鸳鸯·卓天雄个人支 | 存活 + 释放具结 + R3 后师授；只观摩至 6 | `sk_zhentiansanshizhang` |
+| 书剑·铁胆庄 | 误会收束、关系达标后周仲英授艺或周氏谱本 | `sk_tiedanzhuangxinfa`、`sk_tiedanzhuangquan` |
+| 书剑·天池传承 | 袁士霄奇遇亲授；或陈家洛羁绊、天池引见与余韵遗谱许可 | `sk_tianchishengong` |
+| 飞狐·胡苗商三家 | 胡苗互证 / 家谱与家主授艺；商家堡 L4 或幸存者多数认可 | `sk_miaojiaxuangong`、`sk_miaojiazhang`、`sk_hujiaxuangong`、`sk_shangjiabaoqi` |
+| 飞狐·会武 / 南海五虎 | 掌门大会笔记；南海传人、合法移交武馆谱或脱离恶主的护院教习 | `sk_huiwuguixin`、`sk_nanhaiwuhuxinfa`、`sk_wuhudaofa`、`sk_fengjiawuhuquan` |
+| 飞狐·关外天龙门 `sect_tianlongmen` | L4；南北宗清理 / 和解后长老教习合授或剑谱互证 | `sk_tianlongmenxinfa`、`sk_tianlongzhengdao`、`sk_tianlonghezongjian` |
+| 飞狐·药王 / 八极 | 药王 L2–L3、程灵素认可 / 羁绊；八极支系 L2 或守约会武交流 | `sk_yaowangneigong`、`sk_yaowanghushoufa`、`sk_bajixingqi` |
+| 雪山·宝树个人医毒散承 | 受控同行、对质保全旧稿或履约交换；处置线旧稿仅至 8 | `sk_cangfengxingqi`、`sk_cuomaifanzhang` |
+
+#### 2.1.4 既有武学的跨书来源扩展
+
+下表只登记补录册要求的来源扩展，不改写既有武学定义。唯一归属图鉴尚未补齐 `sourceChapters / learnSources` 时，人物预配装可以引用既有 ID，但玩家习得必须失败闭合并提示“来源扩展待登记”；不得把敌人配装、击败掉落或本表本身视为授艺凭据。
+
+| 书界 / 传承 | 既有武学 | 组织侧取得边界 | 唯一归属卡状态 |
+|---|---|---|---|
+| 神雕·铁掌家传 | `sk_tiezhang` | 本次只确认裘千尺家传来源；玩家仍走原卡的铁掌帮 L4 / 裘千仞授艺或中指峰遗谱，不从裘千尺战斗掉落全谱 | `skills-wujue` 待补 `ch03_shendiao` 及合法来源 |
+| 书剑·清军军伍 | `sk_baizhanxinfa` | T08 L4 将领 / 教头授艺，或大型守城线后拼合军书残卷；保留 `sk_jundituna` 6 重前置 | `skills-general` 待补 `ch12_shujian` |
+| 雪山·清宫 / 军伍 | `sk_baizhanxinfa`、`sk_pojunqiangfa` | T08 L4 将领 / 教头授艺或大型守城军功；分别保留吐纳 6 重、断阵枪 5 重前置 | `skills-general` 待补两卡的 `ch14_xueshan` |
+
+### 2.2 未纳入组织矩阵的剧情团体
+
+历史交办涉及晋威镖局、飞马镖局、西岳华拳门、二郎拳、燕青拳、玉笔山庄、饮马川、平通镖局、百会寺、范氏帮会，以及平西王府、台湾郑氏、罗刹国。默认保留对应章节的地点、营生、传承或剧情阵营局部标签，**不自动新建 `sect_*`、第六职级或第二份时代矩阵**；既有 `biz_*` / NPC / 遭遇岗位引用分别由 16 / 18 / 09 解析。此项只裁定数据归属，不据名称断言原著组织结构。
+
+晋威镖局与已登记的威信镖局 `sect_weixinbiaoju` 不合并。需开放正式加入、L1–L5 或组织月钱时，必须先由本文补完整组织记录与十四界矩阵，再经 `design/12/16` 接入；在此之前只能使用既有任务 / 营生入口，不因人物可授艺而反推正式门派身份。保留作者确认入口 `S17-O09`。
 
 ---
 
@@ -1085,13 +1179,13 @@
 - **驻地与位置**：河北黑木崖确址待考，地图暂挂 `rg_hedong_jinzhong` 且不绑定城市；洛阳绿竹巷 `site_riyue_luoyang` 与杭州梅庄 `site_riyue_meizhuang` 分别挂 `rg_zhongyuan`、`rg_jiangnan_taihu`。
 - **时代开放**：XA `O`，其后 `H`；此前 `N`。代表东方不败、任我行、任盈盈、向问天、十长老旧事。
 - **职级**：T06；教众—旗/坛弟子—堂主—长老/左右使—教主；圣姑是身份荣衔，映射 L4，不创 L6。
-- **武学（待 `skills-wuyue` 收录）**：
+- **武学（已收录，唯一数据见 `skills-wuyue`）**：
 
 | `sk_*` | 名称 / 品阶 / 类别 / 效果方向 | 小说出处 | 历史或武术参考 |
 |---|---|---|---|
 | `sk_xixing` | 吸星大法 / 11 天中 / 内 · 吸纳 | 《笑傲》任我行、令狐冲 | 无历史原型；与北冥同源关系按 `design/05`，非史实 |
 | `sk_kuihua` | 葵花宝典 / 11 天中 / 内 · 极速 | 《笑傲》东方不败、宝典残本 | 无历史原型；不将身体伤害设定医学化 |
-| `sk_heimuyaobu` | 黑木崖身法 / 6 玄上 / 轻 · 索道地形 | （原创扩展） | 无历史原型 |
+| `sk_shenjiaobu` | 神教步 / 2 黄中 / 轻功 · 撤退身法 | （原创扩展） | 无历史原型；正式图鉴未收录旧候选“黑木崖身法”，此行改选已存在的日月轻功，不作同物重命名 |
 
 - **人物、关系与招募**：与五岳剑派、少林、武当敌对；梅庄为属下分支。任盈盈/令狐冲 D5，教主线二选一。
 
@@ -1100,7 +1194,7 @@
 | ID / 名称 | 身份、历史与驻地 | 时代 / 职级 | 三门武学与参考 | 人物、关系、招募 |
 |---|---|---|---|---|
 | `sect_wudu` 五毒教 | `CULT · JINYONG`；《碧血剑》云南何铁手一系；云南少数民族与药毒传统不能等同小说邪教；地图挂 `rg_yundian_qianzhong` / `city_kunming` | 仅 BX `O`；T06，教众—毒使—堂主—护法—教主 | 见 `skills-xiake-bixue`：`sk_xieweibian` 蝎尾鞭（8 地中·鞭索）、`sk_wuduxinfa` 五毒心法·碧血（6 玄上·内功）、`sk_ruanhongzhusuo` 软红蛛索（6 玄上·鞭索）；正式名目与细节待考；无历史原型，不给现实毒方 | 与金蛇郎君、华山线先敌后可和；何铁手 D5 |
-| `sect_wuxian` 五仙教 | 又称五毒教仅限笑傲语境；`CULT · JINYONG`；蓝凤凰一系，是否与碧血五毒同源无证据；地图挂 `rg_yundian_qianzhong` / `city_kunming` | XA `O`，后世 `H`；T06 | 待 `skills-wuyue`：`sk_wuxiandu` 五仙毒术（7 地下·毒）、`sk_wuxianbian` 五仙鞭（6 玄上·鞭）、`sk_wuxianbu` 彩云步（4 玄下·轻）；《笑傲》蓝凤凰（招名多为原创扩展）；无历史原型 | 与日月神教/任盈盈友好；蓝凤凰 D4 |
+| `sect_wuxian` 五仙教 | 又称五毒教仅限笑傲语境；`CULT · JINYONG`；蓝凤凰一系，是否与碧血五毒同源无证据；地图挂 `rg_yundian_qianzhong` / `city_kunming` | XA `O`，后世 `H`；T06 | 见 `skills-wuyue` §10：`sk_wuxianbaidugong` 五仙百毒功（7 地下·内功）、`sk_wuxianduzhang` 五仙毒掌（6 玄上·拳脚）、`sk_wuxiandujing` 五仙毒经（5 玄中·杂学／毒）；《笑傲》蓝凤凰取材，名目与机制均**（原创扩展）**；无历史原型 | 与日月神教/任盈盈友好；蓝凤凰 D4 |
 
 > 两派 ID 永不合并；李莫愁的 `sk_wudumichuan` 仍归古墓叛支，也不并入任一教派。
 
@@ -1352,10 +1446,12 @@
 
 ### 11.0 投放原则与取舍
 
+> **经脉落地终审遗留边界（2026-09-30）**：C1g / C1g.R 已完成正式 `skills-gulong`，本节旧三门代表表尚未逐行接收 20 项调阶与 23 项补位，需专项整体回写。组织、时代、驻地与称谓继续以本文为准；武学 ID、品阶、类别、效果与可学目录只消费该图鉴 §0.4–§0.5 及逐门卡，旧代表表不进入生产导出。尤其万梅静境为 `misc/mind`，金钱落地阵不再给旧缴械效果；不得把本文“待收录”解读为图鉴不存在。该遗留登记于 `S17-D05`。
+
 1. **作品边界**：本节只把古龙作品中的具名组织、庄院或稳定势力登记为资料对象；原作没有统一年表，故所有金庸书界投放均标 **（原创扩展）**，不可反推古龙故事发生于某一真实朝代。作品归属以古龙官网作品年表 [H30] 与对应小说复核；未逐字核到版本章节者不编回目号。
 2. **难度曲线**：XA/XK 承接早期与中期古龙作品的完整支线，BX/LD 承接青龙会、孔雀山庄、陆小凤系与血雨门；清代后续的 `H` 只表示彩蛋、残部或传闻，不把同一代人物强行延寿。
 3. **主线隔离**：古龙组织不得占用十四书原著锚点人物、改写胜负或替换金庸门派。入口采用独立委托、异闻副本、来访者或书眠梦境；结算后只改变古龙支线状态。
-4. **数值边界**：本节 45 门候选全部待 `skills-gulong` 收录，最高建议地上 9；即使原作称“天下无敌”，也不突破基准 §13 的 51 门天级封闭名录。毒物、机关与秘宝若最终归装备/消耗品，图鉴应保留同源技能接口而不新增天级装备。
+4. **数值边界**：本节 45 门候选全部待 `skills-gulong` 收录，最高建议地上 9；即使原作称“天下无敌”，也不突破 Canon v1.6 §13 的 59 门普通天阶封闭名录（9 / 18 / 32）。毒物、机关与秘宝若最终归装备/消耗品，图鉴应保留同源技能接口而不新增天级装备。
 5. **取舍理由**：15 个对象覆盖宫谷（移花宫、恶人谷、神水宫）、武门（大旗门、唐门、血雨门）、世家山庄（无争、孔雀、神剑、万梅、白云、仁义）、江湖网络（青龙会、金钱帮）及军府式反派（快活王），并横跨《绝代双骄》《大旗英雄传》《武林外史》《楚留香》《七种武器》《多情剑客无情剑》《三少爷的剑》《陆小凤》《白玉老虎》《剑·花·烟雨江南》。未选“天机楼”等后世常见衍生名，是因为本轮未找到足够明确的古龙原作组织依据。
 
 > **共同历史边界**：下列组织均为小说虚构，未发现可与之等同的真实历史门派；真实地名、兵器与武术只作文化参照，不能证明该组织曾存在。每条的“历史”因此分为古龙原作事实与本作投放，不伪造史实世系。
@@ -1989,6 +2085,7 @@ F1b 已按 CN-02、CN-03 把正文代表武学同步到正式图鉴。下列旧�
 | `sk_songshanjian`、`sk_daiyiruhe`、`sk_huiyanjian`、`sk_baibianqianhuanyunwushijian` | `sk_songshanjianfa`、`sk_daizongruhe`、`sk_huifengluoyan`、`sk_baibianqianhuan` | `skills-wuyue` |
 | `sk_wanwushengmie`、北恒山旧 `sk_hengshanxinfa` / `sk_hengshanzhen` | `sk_wanhuajianfa`、`sk_hengshanbeixinfa`、`sk_hengshanbeijianfa` | `skills-wuyue`；南衡山仍使用正式 `sk_hengshanxinfa` |
 | `sk_qingchengjian`、`sk_songfengjian`、`sk_cuixinzhang_qingcheng` | 正文代表项改引 `sk_qingchengxinfa`、`sk_songfengjianfa`、`sk_qingchengcuixinzhang` | `skills-wuyue`；不是三个 ID 的逐项语义重命名 |
+| `sk_heimuyaobu` 与五仙三项旧候选 `sk_wuxiandu` / `sk_wuxianbian` / `sk_wuxianbu` | 日月轻功代表改选 `sk_shenjiaobu`；五仙代表改选 `sk_wuxianbaidugong` / `sk_wuxianduzhang` / `sk_wuxiandujing` | `skills-wuyue` §7、§10；仅替换资料索引，不建立旧新 ID 的同物 alias |
 | `sk_emeijiufa`、`sk_liangyijian`、`sk_kongtongxinfa` / `sk_feifengshou` | `sk_emeijiuyang`、`sk_zhengliangyi`；崆峒代表项改引 `sk_kongtongyangshenggong` / `sk_kongtongjian` | `skills-yitian` |
 | `sk_tianyingzhua`、`sk_tianyingdao`、`sk_wenxuzhen` | 天鹰代表项改引 `sk_yingzhaoqinna`、`sk_tianyingjian`、`sk_haishangbufa` | `skills-yitian`；不是三项逐字重命名 |
 | 海沙 / 巨鲸 / 神拳 S1 三门候选 | 正文分别改引 `sk_duyanfeisha` / `sk_yanxiaoshou` / `sk_chaoxibu`、`sk_fenshuiemeici` / `sk_langlifenshuici` / `sk_fanzhougong`、`sk_cuijunshenquan` / `sk_sandieshenquan` / `sk_tiequanzhuang` | `skills-yitian` 正式配额与授艺链 |
@@ -2018,7 +2115,7 @@ F1b 已按 CN-02、CN-03 把正文代表武学同步到正式图鉴。下列旧�
 | `S17-V006` | 每派驻地的小说/历史栏均非空；不可考须显式写“待考” | 不允许空串或虚构真实坐标 |
 | `S17-V007` | 每派至少 3 个不同 `sk_*`，每项含小说出处和历史/武术参考 | 无史实原型也必须显式填值 |
 | `S17-V008` | 武学 ID 匹配 `^sk_[a-z0-9_]+$`；正式导出时全仓唯一 | 复用既有 ID；候选冲突交图鉴裁定 |
-| `S17-V009` | 本文新增武学最高品阶 9 | 基准 §13 天级 51 门为闭集，不得由古龙或次要门派扩表 |
+| `S17-V009` | 本文古龙候选武学最高品阶 9 | Canon v1.6 §13 普通天阶 59 门（9 / 18 / 32）为闭集；只有已纳入正式图鉴与 Canon 名录的补录武学可进入天阶 |
 | `S17-V010` | `HIST` 标签至少关联一个已定义 H 编号 | 缺来源则降为“待考”，不得保留史实标签 |
 | `S17-V011` | 所有正文 `[Hxx]` 在 §13 恰有一条定义 | 禁止悬空引用或同号多源 |
 | `S17-V012` | 12 个编号族展开为 13 个具体模板（T01–T04、T05A、T05B、T06–T12），每个恰有 L1–L5 | 共 65 行；职位别名不能创造 L6；月钱仍映射 1–5 |
@@ -2122,7 +2219,7 @@ for sect in data["sects"]:
 | `S17-D02` | `design/12` | T01–T12 模板族（含 T05A/T05B）、特殊席位、古龙组织加入/招募提示 | 定贡献阈值、任务、叛出和 L5 可达性，不改五级骨架 |
 | `S17-D03` | `design/16` | **已解决：**每级只映射 `stipendTier/resourceTier=1..5`，月钱、食宿折算、资源配给与欠发规则均由 `design/16` §10 定义 | 本文保持称谓与档位映射，不复制金额或库存 |
 | `S17-D04` | C1a–f、CXs/w/d/x | 金庸次要门派候选武学：品阶 2–9、类别与方向 | **部分解决：**CN-02 / CN-03 及玄素、石梁、金龙代表项已回填；其余未收录候选仍只作历史快照 |
-| `S17-D05` | C1g `skills-gulong` | 15 派 × 3 = 45 门候选，最高地上 9 | 逐条核原作、定正式 ID/品阶/招式/获取；不得扩天级闭集 |
+| `S17-D05` | C1g `skills-gulong` | 15 派 × 3 = 45 门历史候选，最高地上 9 | **部分解决：**正式图鉴已收录并完成 20 项调阶、23 项补位；本文 §11 旧代表表仍待专项整体回写。当前生产只消费正式图鉴，旧表不导出；逐字原著考据仍保留 |
 | `S17-D06` | `design/10` | 孔雀翎、天一神水等兼具装备/消耗品性质 | 判定实体资产归属；技能只保留操作接口，不重复造天级装备 |
 | `S17-D07` | 数据/技术实现 | `sect-compendium.v1`、99 × 14 矩阵、`catalogStatus` | 实现 Markdown 导出或维护等价 YAML；接入 §15 校验 |
 
@@ -2137,7 +2234,7 @@ for sect in data["sects"]:
 | AR-08 | 金庸门派 + 8–15 个古龙门派，历史/驻地/武学双参考 | 已采用 15 个古龙组织 |
 | 基准 §2 | 十四书界顺序与年代 | 已用于 §0.3 与矩阵 |
 | 基准 §12 | `sect_*` / `sk_*` 命名 | 已采用；新增 ID 已预查重 |
-| 基准 §13 | 51 门天级武学闭集 | 已采用；本文新增候选均 ≤ 9 |
+| Canon v1.6 §13 | 59 门普通天阶闭集（天上 9 / 天中 18 / 天下 32） | 已采用；本文古龙候选均 ≤ 9，NXT 已入册条目按正式图鉴引用 |
 | 基准 §16 | 原著优先、改编标注 | 已采用真实性四标签与待考机制 |
 | A3 裁定 | 图鉴分工、跨书界同名 ID、废弃旧 ID | 已采用；华山/少林/武当/丐帮等统一处理 |
 | `design/02` | 年代锚点；跨作投放不能视作原作年代 | 已采用；古龙投放均属原创 |
@@ -2149,7 +2246,7 @@ for sect in data["sects"]:
 | `S17-P01` | 基准 §18 新增：门派资料唯一归 `design/17`；门派规则归 12、经济归 16、武学定义归图鉴 | AR-08 已形成独立资料域，需阻止各书界重复定义历史与时代矩阵 | 按本文文首边界执行 |
 | `S17-P02` | 基准 §12 增加 `sect-compendium.v1` 的六态开放枚举与跨书界同 ID 原则 | 地图、任务、门派规则都需稳定引用同一矩阵 | `O/H/P/N/D/M`，§3 为规范源 |
 | `S17-P03` | 基准 §12 明示组织标签可覆盖部族、军府、临时集团，但必须有 `organizationKind`，不可都称“师门” | 大理、回部、清宫、四大恶人等并非同构门派 | UI 按 §0.1 分类显示不同入口 |
-| `S17-P04` | 基准 §13 或图鉴总则声明：跨作者新增武学不得自动增加天级闭集 | 避免“原作称绝顶”导致 51 门名单漂移 | 古龙候选最高地上 9 |
+| `S17-P04` | **已解决：**Canon v1.6 §13 已把普通天阶闭集扩为 59 门并固定 9 / 18 / 32；跨作者候选仍不得自动扩表 | 避免“原作称绝顶”导致名单漂移 | 古龙候选最高地上 9 |
 
 ### 16.4 原著考据待办
 
@@ -2178,6 +2275,7 @@ for sect in data["sects"]:
 | `S17-O06` | 历史存在、小说未登场的门派是否开放 | 默认 `H`，只做奇遇/地点；有明确前身用 `P`，不可加入 |
 | `S17-O07` | `D` 是否代表现实寺观消失 | 否；只代表小说组织/当前传承线结束，现实地点仍可访问 |
 | `S17-O08` | 合并条目是否必须拆成 99 个独立长节 | 不拆；正文可压缩，导出必须拆成独立记录且各有 3 门武学 |
+| `S17-O09` | §2.2 的历史交办团体是否新增正式组织 ID | 默认不新增；先保留章节局部标签 / 已登记营生与人物入口，晋威不并入威信。作者要求完整门派玩法后，再补组织记录、时代矩阵与职级，不因本轮首领授艺扩大组织集合 |
 
 ### 16.6 需同步而未在本文修改的文档
 

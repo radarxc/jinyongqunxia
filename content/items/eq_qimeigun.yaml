@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_qimeigun
+name: 齐眉棍
+kind: weapon
+sub: staff
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qimeigun
+text:
+  desc: 外观：深色白蜡木长棍，齐眉长度。 待运行时投影：mainK=1.10。
+  lore: 白蜡木削成齐眉长棍，两端经反复操练磨得发亮。持棍者讲究中段换手、两头并用，既能拦架也能横扫；寺院护院与村寨武师常用，此件设定为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 35
+      qiAffinity: 100

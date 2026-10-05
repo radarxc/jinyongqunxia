@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_tangbenbaisucaidiexiedai_nan
+name: 唐本白素裁蹀躞带·男
+kind: armor
+sub: belt
+grade: 2
+stack: 1
+chapters:
+- ch10_baima
+origin: canonExpanded
+canonRef: 唐；出现书界 ch10；（原创扩展）；形制／色系依据：《新唐书》卷24《车服志》 https://zh.wikisource.org/zh-hans/新唐書/卷024；国博赵永《长安水边多丽人》，唐三彩釉陶女俑 https://www.chnmuseum.cn/yj/xscg/xslw/201812/t20181224_33161.shtml；702年款式细节（待考），初唐轮廓原创转换；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangbenbaisucaidiexiedai_nan
+text:
+  desc: 外观：唐男款，主色本白。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: （原创扩展）据唐代革带语汇演成本白男式蹀躞带，革芯外覆帛，小銙、铊尾与空悬带从属一件腰饰。素面实用缝边用于覆帛，穿前须收紧带结；702年细节（待考），金属保留本色，不挂兵器，也不授官身。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

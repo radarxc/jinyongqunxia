@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_qingjinxiuhuapendixie_nv
+name: 清锦绣花盆底鞋·女
+kind: armor
+sub: shoes
+grade: 8
+stack: 1
+chapters:
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 花盆底旗鞋 · 清中期（故宫清代女鞋研究；存世同类多为晚清）· 出现书界 ch12/ch13/ch14 （待考：核乾隆期流行范围） （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingjinxiuhuapendixie_nv
+text:
+  desc: 外观：女款月白锦缎花盆底鞋一双并置，宽圆鞋头、鞋底中央低矮倒梯形木台、蓝绦包边与折枝菊纹。 待运行时投影：qinggong=20; wearer=female。
+  lore: 清代花盆底鞋的中期流行范围仍 （待考：核乾隆时期实物与图像）；本件以低矮木台、宽圆鞋头演成。穿行须步幅克制，具体纹样和游戏性能均 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11
+      agi: 3

@@ -1,0 +1,131 @@
+id: bld_kit_qing_south_wangfu
+status: candidate
+building:
+  type: bld_kit_qing_south_wangfu
+  footprint:
+  - 22
+  - 18
+  anchor:
+  - 871.3858
+  - 658.1031
+  era: qing_south
+anchor_px:
+- 871.3858
+- 658.1031
+anchor_basis: 原图底面左右角中点经同一裁切和缩放映射；不是PNG底边中心。
+footprint_m:
+- 22
+- 18
+footprint_source: design/22 §3.4 bld_kit_qing_early_wangfu
+logical_footprint_polygon_px:
+- - 231.38580000000002
+  - 626.1031
+- - 935.3858
+  - 978.1031
+- - 1511.3858
+  - 690.1031
+- - 807.3858
+  - 338.10310000000004
+collision_polygon_m:
+- - 0
+  - 0
+- - 22
+  - 0
+- - 22
+  - 18
+- - 0
+  - 18
+collision_note: 全占地代理，非实测墙体；院内通行需后续细化。
+occluder_proxy_px:
+- 231
+- 158
+- 1512
+- 987
+occluder_note: alpha>=192包围框，仅测量代理，不修改原alpha。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+entrance:
+  edge: S
+  offset_cells: 11.0
+entrance_note: 目录南边中点代理；门洞实际位置待总装校准。
+planning_rotations_allowed:
+- 0
+- 180
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_wangfu.png
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 1280
+  - 640
+  ground_width_px: 1280
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 1632
+  - 1216
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 1457860
+  alpha_partial_pixels: 526218
+  alpha_opaque_pixels: 434
+  alpha_nonzero_bbox:
+  - 227
+  - 245
+  - 1515
+  - 990
+  transparent_margins_px:
+  - 227
+  - 245
+  - 117
+  - 226
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 61
+  - 99
+  - 1502
+  - 932
+  isotropic_scale: 0.8938237335183901
+  resized_size:
+  - 1288
+  - 745
+  paste_offset:
+  - 227
+  - 245
+  - 1515
+  - 990
+  final_size:
+  - 1632
+  - 1216
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/wangfu.png
+  source_sha256: 3577a5025e4ef971325b59ea1e3e51449d4c4b8e0e552e6e4c6bf96ce340c4bd
+  forbidden_transforms_used: false
+release_ready: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
+source_request: history/records/wangfu.yaml

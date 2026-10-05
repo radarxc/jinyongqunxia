@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_ruanbian
+name: 软鞭
+kind: weapon
+sub: whip
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/ruanbian
+text:
+  desc: 外观：深褐牛皮编鞭，短铜柄。 待运行时投影：mainK=0.90。
+  lore: 多股牛皮编成的长鞭可缠腕、扫踝或逼开近敌，发力须让鞭梢顺势，不可与硬兵正面相磕。走江湖者看重其收卷便携，但受潮后须及时阴干；此件为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 25
+      qiAffinity: 100

@@ -16,6 +16,20 @@ import sys
 from dataclasses import dataclass, replace
 from typing import Dict, List, Optional, Sequence, Tuple
 
+from meridian_flow_sim import (
+    MOB_PROFILE as FLOW_MOB_PROFILE,
+    STANDARD_PROFILE as FLOW_STANDARD_PROFILE,
+    STRONG_PROFILE as FLOW_STRONG_PROFILE,
+    VERY_STRONG_PROFILE as FLOW_VERY_STRONG_PROFILE,
+    WEAK_PROFILE as FLOW_WEAK_PROFILE,
+    MeridianProfile as FlowMeridianProfile,
+    attack_meridian_mult_bp,
+    defense_meridian_mult_bp,
+    evade_rating_delta,
+    inner_guard,
+)
+from projection_sim import projected_attack_mult_bp
+
 
 BP = 10_000  # design/04 §1.2: 10_000 bp == 100%.
 
@@ -456,6 +470,7 @@ class Attack:
     as_back: bool = False
     as_high: bool = False
     target_parry_mult_bp: int = BP
+    evade_rating_delta: int = 0
     shield_dmg_mult_bp: int = BP
     variance_bp: int = BP
 
@@ -473,7 +488,9 @@ class DamageTrace:
     z2: int
     z3: int
     z4: int
+    z4m: int
     z5: int
+    z5m: int
     z6: int
     z7: int
     z8: int
@@ -489,6 +506,15 @@ class Settlement:
     shield_blocked: int
     shield_spent: int
     shield_after: int
+    inner_guard_eligible: int
+    inner_guard_capacity: int
+    inner_guard_cancelled: int
+    damage_before_mp_guard: int
+    inner_guard_mp_spent: int
+    inner_guard_broken: bool
+    inner_guard_delay_ct: int
+    inner_guard_stagnation_bp: int
+    inner_guard_reflected: int
     guarded_hp: int
     mp_guard_spent: int
     mp_after: int
@@ -803,7 +829,10 @@ def chance_hit_bp(attacker: Combatant, defender: Combatant, attack: Attack) -> i
         attacker.hit + attack.hit_mod + height_hit
         + attack.cover_hit + attack.los_hit_penalty
     )
-    value = HIT_BASE_BP + HIT_PER_RATING_BP * (hit_eff - defender.eva)
+    meridian_evade = int(clamp(attack.evade_rating_delta, -35, 35))
+    value = HIT_BASE_BP + HIT_PER_RATING_BP * (
+        hit_eff - (defender.eva + meridian_evade)
+    )
     return int(clamp(value, *HIT_RANGE_BP))
 
 
@@ -929,6 +958,10 @@ def aptitude_bp(attacker: Combatant, attack: Attack) -> int:
 def damage_pipeline(
     attacker: Combatant, defender: Combatant, attack: Attack, tier: str,
     *, crit: bool = False, parried: bool = False,
+    attacker_meridian: FlowMeridianProfile = FLOW_STANDARD_PROFILE,
+    defender_meridian: FlowMeridianProfile = FLOW_STANDARD_PROFILE,
+    attack_route_length: int = 2, defense_route_length: int = 0,
+    projected: bool = False,
 ) -> DamageTrace:
     """Resolve one already-hit damage segment through Z1..Z10."""
     # Callers may pass pre-rolled outcomes, but attack hard switches remain
@@ -973,16 +1006,30 @@ def damage_pipeline(
     # Z3 and Z4 are each additive internally, then applied as separate zones.
     z3 = mul_bp(z2, int(clamp(BP + attack.dmg_up_bp, *Z3_FACTOR_RANGE_BP)))
     z4 = mul_bp(z3, BP - int(clamp(attack.dmg_down_bp, *Z4_REDUCTION_RANGE_BP)))
+    meridian_defense_bp = (
+        defense_meridian_mult_bp(
+            defender_meridian, attacker_meridian, defense_route_length,
+        ) if defense_route_length else BP
+    )
+    z4m = mul_bp(z4, meridian_defense_bp)
 
     # Z5: aptitude is multiplicative; nature and break-X are one additive pool.
     affinity_add = int(clamp(
         attack.nature_add_bp + attack.break_add_bp + attack.synergy_add_bp,
         *Z5_AFFINITY_ADD_RANGE_BP
     ))
-    z5 = z4 * aptitude_bp(attacker, attack) * (BP + affinity_add) // (BP ** 2)
+    z5 = z4m * aptitude_bp(attacker, attack) * (BP + affinity_add) // (BP ** 2)
+    meridian_attack_bp = (
+        projected_attack_mult_bp(
+            attacker_meridian, defender_meridian, attack_route_length,
+        ) if projected else attack_meridian_mult_bp(
+            attacker_meridian, defender_meridian, attack_route_length,
+        )
+    )
+    z5m = mul_bp(z5, meridian_attack_bp)
 
     # Z6: toughness already opposes crit chance in Z0, so it does not double-dip.
-    z6 = mul_bp(z5, attacker.crit_dmg * 100) if crit else z5
+    z6 = mul_bp(z5m, attacker.crit_dmg * 100) if crit else z5m
     z7 = mul_bp(z6, position_bp(attack))
     gap_add = int(clamp((attacker.level - defender.level) * REALM_PER_LEVEL_BP, -REALM_CAP_BP, REALM_CAP_BP))
     z8 = mul_bp(z7, BP + gap_add)
@@ -994,7 +1041,7 @@ def damage_pipeline(
         z9 = z8
     z10 = mul_bp(z9, int(clamp(attack.variance_bp, *VARIANCE_RANGE_BP)))
 
-    return DamageTrace(z1, z2, z3, z4, z5, z6, z7, z8, z9, z10)
+    return DamageTrace(z1, z2, z3, z4, z4m, z5, z5m, z6, z7, z8, z9, z10)
 
 
 def expected_damage(
@@ -1047,11 +1094,16 @@ def settle_direct(
     reflect_bp: int = 0, attacker_dmg_down_bp: int = 0,
     shield_dmg_mult_bp: int = BP, mp_guard_pct_bp: int = 0,
     mp_guard_ratio_bp: int = DEFAULT_MP_GUARD_RATIO_BP,
+    inner_guard_enabled: bool = False, damage_kind: str = "unarmed",
+    defender_meridian: FlowMeridianProfile = FLOW_STANDARD_PROFILE,
+    attacker_meridian: FlowMeridianProfile = FLOW_STANDARD_PROFILE,
+    break_guard_bp: int = 0, inner_guard_reflect_bp: int = 0,
 ) -> Settlement:
     """Resolve P5/P7 values from a completed direct-damage trace.
 
     ``shield_dmg_mult_bp`` changes shield resource loss, not HP overflow.  Then
-    mpGuard converts a share of post-shield damage to MP at ``ratio`` HP per MP.
+    innerGuard optionally resolves after shield and before mpGuard; mpGuard then
+    converts a share of the remaining damage to MP at ``ratio`` HP per MP.
     Drains and reflection use actual HP loss. Reflection cannot reflect itself;
     that event-flag rule is enforced by the caller.
     """
@@ -1061,22 +1113,30 @@ def settle_direct(
     shield_blocked = min(shield_now, incoming)
     shield_spent = min(shield_now, mul_bp(incoming, shield_mult))
     post_shield = incoming - shield_blocked
+    guard = inner_guard(
+        post_shield, defender_meridian, attacker_meridian, damage_kind=damage_kind,
+        mp=max(0, defender_mp), break_guard_bp=break_guard_bp,
+        reflect_bp=inner_guard_reflect_bp,
+    ) if inner_guard_enabled else None
+    damage_before_mp_guard = (guard.damage_before_mp_guard if guard else post_shield)
+    inner_mp_spent = guard.mp_spent if guard else 0
+    mp_before_guard = max(0, defender_mp - inner_mp_spent)
 
     guard_pct = int(clamp(mp_guard_pct_bp, *MP_GUARD_PCT_RANGE_BP))
     guard_ratio = max(1, mp_guard_ratio_bp)
-    requested_guard = mul_bp(post_shield, guard_pct)
+    requested_guard = mul_bp(damage_before_mp_guard, guard_pct)
     mp_guard_spent = min(
-        max(0, defender_mp),
+        mp_before_guard,
         (requested_guard * BP + guard_ratio - 1) // guard_ratio,
     )
     guarded_hp = min(requested_guard, mp_guard_spent * guard_ratio // BP)
-    uncapped_hp_damage = post_shield - guarded_hp
+    uncapped_hp_damage = damage_before_mp_guard - guarded_hp
     hp_loss = min(max(0, defender_hp), uncapped_hp_damage)
     overkill = uncapped_hp_damage - hp_loss
 
     life_bp = int(clamp(life_steal_bp, *LIFE_STEAL_RANGE_BP))
     life_steal = min(max(0, attacker_missing_hp), mul_bp(hp_loss, life_bp))
-    mp_after_guard = max(0, defender_mp - mp_guard_spent)
+    mp_after_guard = mp_before_guard - mp_guard_spent
     mp_drained = min(
         mp_after_guard,
         mul_bp(hp_loss, int(clamp(mp_drain_bp, *MP_DRAIN_RANGE_BP))),
@@ -1089,6 +1149,15 @@ def settle_direct(
     return Settlement(
         incoming=incoming, shield_blocked=shield_blocked, shield_spent=shield_spent,
         shield_after=max(0, shield_now - shield_spent),
+        inner_guard_eligible=guard.eligible_incoming if guard else 0,
+        inner_guard_capacity=guard.capacity if guard else 0,
+        inner_guard_cancelled=guard.cancelled if guard else 0,
+        damage_before_mp_guard=damage_before_mp_guard,
+        inner_guard_mp_spent=inner_mp_spent,
+        inner_guard_broken=guard.broken if guard else False,
+        inner_guard_delay_ct=guard.delay_ct if guard else 0,
+        inner_guard_stagnation_bp=guard.stagnation_bp if guard else 0,
+        inner_guard_reflected=guard.reflect_damage if guard else 0,
         guarded_hp=guarded_hp, mp_guard_spent=mp_guard_spent,
         mp_after=mp_after_guard - mp_drained,
         uncapped_hp_damage=uncapped_hp_damage, hp_loss=hp_loss, overkill=overkill,
@@ -1105,10 +1174,22 @@ def resolve_direct(
     life_steal_bp: int = 0, mp_drain_bp: int = 0, reflect_bp: int = 0,
     attacker_dmg_down_bp: int = 0, mp_guard_pct_bp: int = 0,
     mp_guard_ratio_bp: int = DEFAULT_MP_GUARD_RATIO_BP,
+    attacker_meridian: FlowMeridianProfile = FLOW_STANDARD_PROFILE,
+    defender_meridian: FlowMeridianProfile = FLOW_STANDARD_PROFILE,
+    attack_route_length: int = 2, defense_route_length: int = 0,
+    inner_guard_enabled: bool = False, damage_kind: str = "unarmed",
+    projection: bool = False,
+    break_guard_bp: int = 0, inner_guard_reflect_bp: int = 0,
 ) -> Tuple[DamageTrace, Settlement]:
     """Run one already-hit direct segment through Z1-Z10 and P5/P7."""
+    if projection and damage_kind != "projected":
+        raise ValueError("projection=True requires damage_kind='projected'")
     trace = damage_pipeline(
         attacker, defender, attack, tier, crit=crit, parried=parried,
+        attacker_meridian=attacker_meridian, defender_meridian=defender_meridian,
+        attack_route_length=attack_route_length,
+        defense_route_length=defense_route_length,
+        projected=projection,
     )
     settlement = settle_direct(
         trace, defender_hp=defender_hp, defender_shield=defender.shield,
@@ -1117,6 +1198,10 @@ def resolve_direct(
         reflect_bp=reflect_bp, attacker_dmg_down_bp=attacker_dmg_down_bp,
         shield_dmg_mult_bp=attack.shield_dmg_mult_bp,
         mp_guard_pct_bp=mp_guard_pct_bp, mp_guard_ratio_bp=mp_guard_ratio_bp,
+        inner_guard_enabled=inner_guard_enabled, damage_kind=damage_kind,
+        defender_meridian=defender_meridian, attacker_meridian=attacker_meridian,
+        break_guard_bp=break_guard_bp,
+        inner_guard_reflect_bp=inner_guard_reflect_bp,
     )
     return trace, settlement
 
@@ -1127,7 +1212,7 @@ def settle_periodic(
 ) -> Settlement:
     """Settle one DOT/environment tick with the design/06 bypass flag."""
     amount = max(0, damage)
-    trace = DamageTrace(0, 0, 0, 0, 0, 0, 0, 0, 0, amount)
+    trace = DamageTrace(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, amount)
     if not bypass_shield:
         return settle_direct(
             trace, defender_hp=defender_hp, defender_shield=defender_shield,
@@ -1360,6 +1445,83 @@ def run_checks(rows: Sequence[ReportRow]) -> Tuple[List[str], List[str]]:
     d = replace(player_std(35), shield=1_000)
     basic = standard_attack(a, "HIGH")
     trace = damage_pipeline(a, d, basic, "HIGH")
+    check(
+        "经脉同档零漂移",
+        trace.z4m == trace.z4 and trace.z5m == trace.z5,
+        "标准 Profile 的 Z4M/Z5M 均为 10000 bp",
+    )
+    projected_neutral = damage_pipeline(
+        a, d, basic, "HIGH", projected=True, attack_route_length=10,
+    )
+    projected_strong = damage_pipeline(
+        a, d, basic, "HIGH", projected=True,
+        attacker_meridian=FLOW_STRONG_PROFILE, attack_route_length=10,
+    )
+    legacy_channel, _ = resolve_direct(
+        a, d, basic, "HIGH", defender_hp=d.hp_max, defender_mp=d.mp_max,
+        damage_kind="projected", attacker_meridian=FLOW_STRONG_PROFILE,
+        attack_route_length=10,
+    )
+    marked_move, _ = resolve_direct(
+        a, d, basic, "HIGH", defender_hp=d.hp_max, defender_mp=d.mp_max,
+        damage_kind="projected", projection=True,
+        attacker_meridian=FLOW_STRONG_PROFILE, attack_route_length=10,
+    )
+    mismatched_projection_rejected = False
+    try:
+        resolve_direct(
+            a, d, basic, "HIGH", defender_hp=d.hp_max, defender_mp=d.mp_max,
+            projection=True, damage_kind="unarmed",
+        )
+    except ValueError:
+        mismatched_projection_rejected = True
+    check(
+        "外放 Z5M 中性与单次取整",
+        projected_neutral.z5m == projected_neutral.z5
+        and projected_strong.z5m == mul_bp(projected_strong.z5, 13_581)
+        and legacy_channel.z5m == mul_bp(legacy_channel.z5, 12_053)
+        and marked_move.z5m == mul_bp(marked_move.z5, 13_581)
+        and mismatched_projection_rejected,
+        "旧 projected 通道不反推新标记；新外放强一档只在 Z5M 乘 13581 bp 一次",
+    )
+    meridian_cases = (
+        ("同等", FLOW_STANDARD_PROFILE, FLOW_STANDARD_PROFILE, 849, 3_970, BP, 10_000, 849, 5),
+        ("强一档", FLOW_STRONG_PROFILE, FLOW_STANDARD_PROFILE, 950, 8_000, BP, 12_053, 1_145, 7),
+        ("强两档", FLOW_VERY_STRONG_PROFILE, FLOW_STANDARD_PROFILE, 2_574, 170_773, 31_000, 14_456, 3_720, 15),
+        ("弱一档", FLOW_WEAK_PROFILE, FLOW_STANDARD_PROFILE, 849, 3_970, BP, 9_157, 777, 6),
+        ("高手对杂兵", FLOW_VERY_STRONG_PROFILE, FLOW_MOB_PROFILE, 849, 2_200, BP, 18_265, 1_550, 2),
+    )
+    meridian_results = []
+    for label, atk_mer, def_mer, base, hp, team_bp, mult, damage, ttk in meridian_cases:
+        actual_mult = attack_meridian_mult_bp(atk_mer, def_mer, 10)
+        actual_damage = mul_bp(base, actual_mult)
+        actual_ttk = math.ceil(hp * BP / (actual_damage * team_bp))
+        meridian_results.append((label, actual_mult, actual_damage, actual_ttk))
+    check(
+        "经脉五档 TTK",
+        [(m, d, t) for _, m, d, t in meridian_results]
+        == [(c[6], c[7], c[8]) for c in meridian_cases],
+        str(meridian_results),
+    )
+    routed_trace = damage_pipeline(
+        a, d, basic, "HIGH", attacker_meridian=FLOW_STANDARD_PROFILE,
+        defender_meridian=FLOW_STRONG_PROFILE, attack_route_length=10,
+        defense_route_length=6,
+    )
+    check(
+        "经脉乘区插入顺序",
+        routed_trace.z4m == mul_bp(routed_trace.z4, 9_361)
+        and routed_trace.z5m == mul_bp(routed_trace.z5, 9_200),
+        "Z4M=floor(D4×9361bp)，Z5M=floor(D5×9200bp)",
+    )
+    check(
+        "经脉闪避仅加评级一次",
+        chance_hit_bp(a, d, replace(
+            basic, evade_rating_delta=evade_rating_delta(13_500),
+        ))
+        == max(HIT_RANGE_BP[0], chance_hit_bp(a, d, basic) - 1_400),
+        "+35 eva rating changes hit chance by -1400 bp",
+    )
     check("Z4 75% 上限", damage_pipeline(a, replace(d, shield=0), replace(basic, dmg_down_bp=9_000), "HIGH").z4 == damage_pipeline(a, replace(d, shield=0), basic, "HIGH").z3 // 4, "75% 后保留 25%（允许整数下取整）")
     check("概率上下限", chance_hit_bp(a, d, replace(basic, must_hit=True)) == BP and chance_crit_bp(a, d, replace(basic, no_crit=True)) == 0, "必中=100%，禁暴=0%")
     check(
@@ -1504,6 +1666,37 @@ def run_checks(rows: Sequence[ReportRow]) -> Tuple[List[str], List[str]]:
         and mp_guard.guarded_hp == 200 and mp_guard.hp_loss == 600
         and mp_guard.mp_after == 0,
         str(mp_guard),
+    )
+    strong_guard = settle_direct(
+        replace(trace, z10=1_000), defender_hp=2_000, defender_shield=0,
+        defender_mp=2_000, inner_guard_enabled=True, damage_kind="unarmed",
+        defender_meridian=FLOW_STRONG_PROFILE,
+        attacker_meridian=FLOW_STANDARD_PROFILE,
+    )
+    check(
+        "护体内劲强守方全抵拳脚",
+        strong_guard.inner_guard_capacity == 1_506
+        and strong_guard.inner_guard_cancelled == 1_000
+        and strong_guard.inner_guard_mp_spent == 500
+        and strong_guard.damage_before_mp_guard == 0
+        and strong_guard.hp_loss == 0,
+        str(strong_guard),
+    )
+    broken_guard = settle_direct(
+        replace(trace, z10=1_600), defender_hp=2_000, defender_shield=0,
+        defender_mp=300, inner_guard_enabled=True, damage_kind="unarmed",
+        defender_meridian=FLOW_STANDARD_PROFILE,
+        attacker_meridian=FLOW_VERY_STRONG_PROFILE,
+    )
+    check(
+        "护体内劲击穿守恒与硬顶",
+        broken_guard.inner_guard_cancelled == 600
+        and broken_guard.damage_before_mp_guard == 1_000
+        and broken_guard.inner_guard_mp_spent == 300
+        and broken_guard.inner_guard_broken
+        and broken_guard.inner_guard_delay_ct == 400
+        and broken_guard.inner_guard_stagnation_bp == 3_000,
+        str(broken_guard),
     )
     check(
         "伤害结算守恒",

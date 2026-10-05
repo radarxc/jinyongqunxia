@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_duanchangcao
+name: 断肠草
+kind: material
+sub: toxin
+grade: 7
+stack: 999
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·杨过以毒攻毒解情花毒
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/duanchangcao
+text:
+  desc: 外观：叶片狭长、根茎暗紫，带断崖湿土。 待运行时投影：reaction=rx_yiduigongdu。
+  lore: 《神雕侠侣》中杨过以断肠草对抗情花毒，绝情谷剧情点不循环；现实原型产于闽赣、湖湘与岭南等地，花期约五月至十一月。本作须隔离携带，只在专属反应中使用。（待核实） （原创扩展）
+extension:
+  type: material
+  value:
+    family: toxin
+    resourceRef: res_ducai_di9
+    materialGrade: 7
+    rare: false
+    attributes:
+      version: 2

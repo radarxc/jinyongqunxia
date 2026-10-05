@@ -1,0 +1,13 @@
+{
+  "repair_round": 2,
+  "candidate": 2,
+  "tool": "image_gen built-in",
+  "prompt": "Use case: precise-object-edit. Make a small geometric correction to this exact image; preserve camera, architectural materials, roof, timber, lighting, all outside bounds and total gate dimensions. The clear passage is slightly too narrow. EXPAND the central empty passage towards the RIGHT PIER by shaving 34 pixels of horizontal projected width off the LEFT SIDE of the right pier along its entire four-meter depth, keeping its OUTER/rightmost corner fixed. Current front base inner right jamb at about(744,904) must move to(778,921). Its inner TOP edge and far inner edge move by same vector (+34,+17), exposing more empty opening. Keep left pier and outer/frontmost right corner(911,992) and rightmost depth corner(1184,856) unchanged. Keep ground front axis slope+0.5 and depth axis-0.5, orthographic verticals. The front feet now need 20% left pier,60% completely empty passage,20% right pier of total10m frontage, and full4m depth. Preserve the single grey tiled roof, delicate brown timber upper hall, pale rammed-earth 3m tall piers and total6m height, realistic subdued fine game asset details. No other architecture redesign. Preserve original image size1536x1024 and framing exactly. GENUINE transparent RGBA: all empty background and gateway is alpha0,solid surfaces opaque. No haze, backdrop, glow, floor, pedestal, people, writing,watermark. Do not flatten the camera or shorten depth.",
+  "transparent_background": true,
+  "referenced_image_paths": [
+    "assets/default/tile/yuan_north/source/gate_k6_repair2_c1.png"
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-87f8-7ce1-b32c-ae55ad02c328/exec-9437a32b-3b08-42e7-82f7-0ca80635a08d.png",
+  "selected": false,
+  "rejection": "门洞扩大过量且底面宽深比增加，保留相机及占地较佳的首候选"
+}

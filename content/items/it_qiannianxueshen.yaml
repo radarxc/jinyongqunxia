@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_qiannianxueshen
+name: 千年雪参
+kind: material
+sub: herb
+grade: 10
+stack: 999
+chapters: any
+origin: expanded
+price: null
+flags:
+- unique
+assets:
+  icon: item/qiannianxueshen
+text:
+  desc: 外观：臂长银灰老参，须根盘绕。
+  lore: 青藏雪山遗迹密藏的唯一根材，不设循环采期；现实原型与千年年龄都无可靠对应。寒玉匣开启后须静服行气，用于内功修为与根骨投影。（待核实） （原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_tian9
+    materialGrade: 10
+    rare: true
+    herbFamily: xueShen
+    ageYears: 1000
+    attributes:
+      version: 2
+      qiCultivation: 5000
+      con: 2

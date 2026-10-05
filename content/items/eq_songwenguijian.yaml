@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_songwenguijian
+name: 松纹古剑
+kind: weapon
+sub: sword
+grade: 3
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·宋明仿古装具 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/songwenguijian
+text:
+  desc: 外观：灰钢直刃带细密锻纹，刃约七十厘米。
+  lore: 灰钢刃上的细密锻纹似松皮，故被行商称作松纹古剑。剑身平衡，宜练基本刺削，旧皮鞘也便于长途携带；所谓古意只指仿古装具，来历与名号为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 45
+      qiAffinity: 100

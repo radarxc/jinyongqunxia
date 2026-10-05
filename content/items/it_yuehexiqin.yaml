@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuehexiqin
+name: 越地合席琴
+kind: collectible
+sub: qin
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuehexiqin
+text:
+  desc: 外观：早期平板木腔弦器，深栗色漆。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,musician,collector]}; giftValue=2; provenance=expanded。
+  lore: 据春秋琴的时代线索构想宴席乐器，宽窄比例取实用小琴尺度。修琴支线完成后由乐工赠予，适宜回赠知音；琴名与外观是（原创扩展），弦轴和结构仍须考古资料复核。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

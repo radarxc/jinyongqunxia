@@ -1,0 +1,36 @@
+- id: por_npc_yangguo__ch03_youth_onearm_apose
+  file: por_npc_yangguo__ch03_youth_onearm_apose.png
+  category: character/male/tripo_ref
+  style: default
+  subject: 杨过 A 字姿势全身参考（与 por_npc_yangguo__ch03_youth_onearm_base 同脸同服饰，去掉手持道具）
+  prompt: '【任务】这是一张供 3D 建模与自动绑骨使用的 A 字姿势全身参考图。第 1 张参考图是本项目已定稿的杨过立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同一身服饰（款式、颜色、层次、衣缘、腰带、鞋都与第 1 张一致）、同样的发式，只改姿势和背景，并去掉玄铁重剑。
+
+    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；他只有左臂：右臂从上臂中段以下缺失，右边衣袖空着、在上臂处打结垂下（与第 1 张一致）；左臂伸直、自然下垂并向身体左侧张开约 30°，腋下与身体之间露出背景，左手手掌朝向大腿、五指自然张开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前，两只鞋完整可见。
+
+    【服饰处理】袖子、衣摆、腰带垂坠自然，不飘动；袖口不遮住手；不要任何向外飘的布条或飘带。玄铁重剑不要出现在画面里（它是单独的道具）。
+
+    【头发】长发收在身后或按原发式束好，不搭在肩前，不盖住手臂和手。
+
+    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+
+    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
+
+    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
+  negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+  references:
+  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
+    sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
+    use: 底图：已定稿的 杨过 base（上传 1536 长边 JPEG）
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_yangguo__ch03_youth_onearm_base.jpg
+    sha256: 784a499b82634e1d976588a99fa2aee923cfc05168e8e221f4d059b94fc4cf9c
+    use: 同一 base 的脸部特写（看清五官）
+  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T14:07:01-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_yangguo__ch03_youth_onearm_apose.a1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: dc7eb0d23f72fba46961b3b846905389b50a1e121df5d0fe39200c051a66d3a1
+  status: candidate
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_yangguo__ch03_youth_onearm_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44

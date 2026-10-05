@@ -1,0 +1,257 @@
+schemaVersion: meridian-topology.v1
+id: ev_common_meridians_regular12
+event: content/meridianTopologyCatalog
+group: regular12
+meridians:
+  - id: mer_shoutaiyin
+    name: 手太阴肺经
+    points:
+      - id: ap_shoutaiyin_zhongfu
+        name: 中府
+      - id: ap_shoutaiyin_yunmen
+        name: 云门
+      - id: ap_shoutaiyin_tianfu
+        name: 天府
+      - id: ap_shoutaiyin_xiabai
+        name: 侠白
+      - id: ap_shoutaiyin_chize
+        name: 尺泽
+      - id: ap_shoutaiyin_kongzui
+        name: 孔最
+      - id: ap_shoutaiyin_taiyuan
+        name: 太渊
+      - id: ap_shoutaiyin_yuji
+        name: 鱼际
+      - id: ap_shoutaiyin_shaoshang
+        name: 少商
+  - id: mer_shouyangming
+    name: 手阳明大肠经
+    points:
+      - id: ap_shouyangming_shangyang
+        name: 商阳
+      - id: ap_shouyangming_erjian
+        name: 二间
+      - id: ap_shouyangming_sanjian
+        name: 三间
+      - id: ap_shouyangming_hegu
+        name: 合谷
+      - id: ap_shouyangming_yangxi
+        name: 阳溪
+      - id: ap_shouyangming_pianli
+        name: 偏历
+      - id: ap_shouyangming_shousanli
+        name: 手三里
+      - id: ap_shouyangming_quchi
+        name: 曲池
+      - id: ap_shouyangming_yingxiang
+        name: 迎香
+  - id: mer_zuyangming
+    name: 足阳明胃经
+    points:
+      - id: ap_zuyangming_chengqi
+        name: 承泣
+      - id: ap_zuyangming_sibai
+        name: 四白
+      - id: ap_zuyangming_jiache
+        name: 颊车
+      - id: ap_zuyangming_renying
+        name: 人迎
+      - id: ap_zuyangming_tianshu
+        name: 天枢
+      - id: ap_zuyangming_liangqiu
+        name: 梁丘
+      - id: ap_zuyangming_zusanli
+        name: 足三里
+      - id: ap_zuyangming_fenglong
+        name: 丰隆
+      - id: ap_zuyangming_lidui
+        name: 厉兑
+  - id: mer_zutaiyin
+    name: 足太阴脾经
+    points:
+      - id: ap_zutaiyin_yinbai
+        name: 隐白
+      - id: ap_zutaiyin_dadu
+        name: 大都
+      - id: ap_zutaiyin_taibai
+        name: 太白
+      - id: ap_zutaiyin_gongsun
+        name: 公孙
+      - id: ap_zutaiyin_shangqiu
+        name: 商丘
+      - id: ap_zutaiyin_diji
+        name: 地机
+      - id: ap_zutaiyin_yinlingquan
+        name: 阴陵泉
+      - id: ap_zutaiyin_xuehai
+        name: 血海
+      - id: ap_zutaiyin_dabao
+        name: 大包
+  - id: mer_shoushaoyin
+    name: 手少阴心经
+    points:
+      - id: ap_shoushaoyin_jiquan
+        name: 极泉
+      - id: ap_shoushaoyin_qingling
+        name: 青灵
+      - id: ap_shoushaoyin_shaohai
+        name: 少海
+      - id: ap_shoushaoyin_lingdao
+        name: 灵道
+      - id: ap_shoushaoyin_tongli
+        name: 通里
+      - id: ap_shoushaoyin_yinxi
+        name: 阴郄
+      - id: ap_shoushaoyin_shenmen
+        name: 神门
+      - id: ap_shoushaoyin_shaofu
+        name: 少府
+      - id: ap_shoushaoyin_shaochong
+        name: 少冲
+  - id: mer_shoutaiyang
+    name: 手太阳小肠经
+    points:
+      - id: ap_shoutaiyang_shaoze
+        name: 少泽
+      - id: ap_shoutaiyang_qiangu
+        name: 前谷
+      - id: ap_shoutaiyang_houxi
+        name: 后溪
+      - id: ap_shoutaiyang_wangu
+        name: 腕骨
+      - id: ap_shoutaiyang_yanggu
+        name: 阳谷
+      - id: ap_shoutaiyang_yanglao
+        name: 养老
+      - id: ap_shoutaiyang_xiaohai
+        name: 小海
+      - id: ap_shoutaiyang_tianzong
+        name: 天宗
+      - id: ap_shoutaiyang_tinggong
+        name: 听宫
+  - id: mer_zutaiyang
+    name: 足太阳膀胱经
+    points:
+      - id: ap_zutaiyang_cuanzhu
+        name: 攒竹
+      - id: ap_zutaiyang_tianzhu
+        name: 天柱
+      - id: ap_zutaiyang_feishu
+        name: 肺俞
+      - id: ap_zutaiyang_xinshu
+        name: 心俞
+      - id: ap_zutaiyang_shenshu
+        name: 肾俞
+      - id: ap_zutaiyang_weizhong
+        name: 委中
+      - id: ap_zutaiyang_chengshan
+        name: 承山
+      - id: ap_zutaiyang_kunlun
+        name: 昆仑
+      - id: ap_zutaiyang_zhiyin
+        name: 至阴
+  - id: mer_zushaoyin
+    name: 足少阴肾经
+    points:
+      - id: ap_zushaoyin_yongquan
+        name: 涌泉
+      - id: ap_zushaoyin_rangu
+        name: 然谷
+      - id: ap_zushaoyin_taixi
+        name: 太溪
+      - id: ap_zushaoyin_dazhong
+        name: 大钟
+      - id: ap_zushaoyin_shuiquan
+        name: 水泉
+      - id: ap_zushaoyin_fuliu
+        name: 复溜
+      - id: ap_zushaoyin_yingu
+        name: 阴谷
+      - id: ap_zushaoyin_lingxu
+        name: 灵墟
+      - id: ap_zushaoyin_shufu
+        name: 俞府
+  - id: mer_shoujueyin
+    name: 手厥阴心包经
+    points:
+      - id: ap_shoujueyin_tianchi
+        name: 天池
+      - id: ap_shoujueyin_tianquan
+        name: 天泉
+      - id: ap_shoujueyin_quze
+        name: 曲泽
+      - id: ap_shoujueyin_ximen
+        name: 郄门
+      - id: ap_shoujueyin_jianshi
+        name: 间使
+      - id: ap_shoujueyin_neiguan
+        name: 内关
+      - id: ap_shoujueyin_daling
+        name: 大陵
+      - id: ap_shoujueyin_laogong
+        name: 劳宫
+      - id: ap_shoujueyin_zhongchong
+        name: 中冲
+  - id: mer_shoushaoyang
+    name: 手少阳三焦经
+    points:
+      - id: ap_shoushaoyang_guanchong
+        name: 关冲
+      - id: ap_shoushaoyang_yemen
+        name: 液门
+      - id: ap_shoushaoyang_zhongzhu
+        name: 中渚
+      - id: ap_shoushaoyang_yangchi
+        name: 阳池
+      - id: ap_shoushaoyang_waiguan
+        name: 外关
+      - id: ap_shoushaoyang_zhigou
+        name: 支沟
+      - id: ap_shoushaoyang_tianjing
+        name: 天井
+      - id: ap_shoushaoyang_yifeng
+        name: 翳风
+      - id: ap_shoushaoyang_sizhukong
+        name: 丝竹空
+  - id: mer_zushaoyang
+    name: 足少阳胆经
+    points:
+      - id: ap_zushaoyang_tongziliao
+        name: 瞳子髎
+      - id: ap_zushaoyang_yangbai
+        name: 阳白
+      - id: ap_zushaoyang_riyue
+        name: 日月
+      - id: ap_zushaoyang_fengshi
+        name: 风市
+      - id: ap_zushaoyang_yanglingquan
+        name: 阳陵泉
+      - id: ap_zushaoyang_waiqiu
+        name: 外丘
+      - id: ap_zushaoyang_guangming
+        name: 光明
+      - id: ap_zushaoyang_xuanzhong
+        name: 悬钟
+      - id: ap_zushaoyang_zuqiaoyin
+        name: 足窍阴
+  - id: mer_zujueyin
+    name: 足厥阴肝经
+    points:
+      - id: ap_zujueyin_dadun
+        name: 大敦
+      - id: ap_zujueyin_xingjian
+        name: 行间
+      - id: ap_zujueyin_taichong
+        name: 太冲
+      - id: ap_zujueyin_zhongfeng
+        name: 中封
+      - id: ap_zujueyin_ligou
+        name: 蠡沟
+      - id: ap_zujueyin_zhongdu
+        name: 中都
+      - id: ap_zujueyin_xiguan
+        name: 膝关
+      - id: ap_zujueyin_ququan
+        name: 曲泉
+      - id: ap_zujueyin_yinlian
+        name: 阴廉

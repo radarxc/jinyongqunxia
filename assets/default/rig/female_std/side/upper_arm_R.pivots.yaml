@@ -1,0 +1,18 @@
+coordinates: source
+keypoints:
+  shoulder_R:
+  - 19
+  - 16
+  elbow_R:
+  - 19
+  - 93
+source:
+  keypoints:
+  - shoulder_L
+  - elbow_L
+  inpaintedPct: 2.825
+  rejectedInpaintedPct: 0.0
+  jointCaps: true
+  standardFallback: false
+  lowConfidence: []
+  reusedFrom: upper_arm_L

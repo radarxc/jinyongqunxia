@@ -1,0 +1,43 @@
+{
+  "key": "casino",
+  "id": "bld_kit_mongol_casino",
+  "footprint": [
+    9,
+    7
+  ],
+  "subject": "娱乐大帐（原创扩展）",
+  "candidates": [
+    {
+      "number": 1,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-24b7d923-b182-4bdb-8ae4-bdb99fa310df.png",
+      "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_casino. Footprint exactly 9m east-west x 7m north-south. In projection the left-to-front ground edge's horizontal run must be 1.2857142857142858 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: One large plain cream felt ger used as a fictional game and leisure hall, broad circular lattice-walled tent, low conical felt roof, animal-hair tie ropes, wooden entrance door and modest low awning, two small wooden stools and a board inside entrance only. Original gameplay fiction, not claimed as a historical Mongolian casino. No playing cards, dice icon, casino lettering or ornamental fantasy. Ground patch is rectangular9:7, planar with both axes exactly26.565 degrees from horizontal. No cloud, glow, gradient or studio backdrop. Isolated clean sprite, calm warm-neutral palette.",
+      "archive": "sources/bld_kit_mongol_casino__c01.png",
+      "sha256": "9e196a0f0d7b7f9e25f09f68d72720126aaa85928c97463ff4a749eb475f15fc",
+      "selected": false,
+      "reference_inputs": []
+    },
+    {
+      "number": 2,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-c2f8551c-4e56-4f33-8073-c2d828f0e3c1.png",
+      "prompt": "Edit this Song casino architectural sprite into ONE Mongolian felt leisure hall, original gameplay fiction. Replace the entire tiled building with a broad round cream-white wool-felt ger on the same thin9x7 rectangular ground patch. Keep the original orthographic 45-degree camera, but ensure exact 2:1 ground-plane slopes+0.5/-0.5 at30-degree elevation, no perspective. Ger low conical roof, wooden circular crown, rope tensioning, restrained brown trim, plain south entrance facing lower-left with tiny felt awning. Inside visible doorway only a small plain board on table and two stools. No playing cards, dice symbol, casino lettering or sign. Match reference's realistic ancient map-sprite level of material detail and upper-left light, only short contact shadow to lower-right. Clean isolated true transparent RGBA, generous empty margins, no glow, gradient, fog, landscape, characters, modern chimney, flag or tourist ornament. Rectangular earth ground, no thick pedestal; clear left-front-right corner geometry with width:depth9:7.",
+      "archive": "sources/bld_kit_mongol_casino__c02.png",
+      "sha256": "b634946b097a054ff135dd0ad9ff907cfeed9907633740408649bce76f9da826",
+      "selected": true,
+      "reference_inputs": [
+        "assets/default/baseline/building-map/bld_kit_song_southern_casino.png"
+      ]
+    }
+  ],
+  "chosen": 2,
+  "ref": "assets/default/baseline/building-map/bld_kit_song_southern_casino.png",
+  "references": [
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_casino.png",
+      "sha256": "19bdfb75a6a17026592fef45f5b2c0fd39fb39c37b4dba7c6919c510fa6084d4",
+      "role": "宋基线地域变体编辑参考；已view_image；不继承宋年代"
+    }
+  ],
+  "source_viewed": true,
+  "final_viewed": true,
+  "view_note": "两张源候选与规格化成品均已逐张view_image；2026-09-30；成品无实物裁切、无棕色背景，几何偏差保留。"
+}

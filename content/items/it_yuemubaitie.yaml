@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuemubaitie
+name: 越地木牍拜简
+kind: collectible
+sub: calligraphy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuemubaitie
+text:
+  desc: 外观：窄长薄木牍一片，打磨端角。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 用木牍承载越地拜访文辞，替代不合时代的纸质书帖。此件为地方书吏应请所写，适合赠重礼的文士；文本、称谓与获得支线均属（原创扩展），具体书体和格式（待考）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 12

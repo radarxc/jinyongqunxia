@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_shizhongyubiyuzhuo
+name: 石中玉赠碧玉镯
+kind: collectible
+sub: jade
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B04](#src-b04)；准入：侠客；原主授权且亲情纪念用途解除
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/shizhongyubiyuzhuo
+text:
+  desc: 外观：一只深绿碧玉圆条手镯，厚润透光。 待运行时投影：eraRange=[ming]; giftTo={preferred:[collector]}; giftValue=3; provenance=book。
+  lore: 《侠客行》石中玉将碧玉镯奉赠闵柔，配对数量及流转须核修订版。图示一对中一只，实例分配由章节限量登记，宜赠藏家；获取与细部为（原创扩展），珠花受赠者另核。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 52

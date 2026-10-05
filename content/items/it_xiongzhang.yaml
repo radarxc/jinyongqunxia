@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_xiongzhang
+name: 熊掌
+kind: material
+sub: ingredient
+grade: 9
+stack: 999
+chapters: any
+origin: canon
+canonRef: 古代八珍意象；仅固定狩猎或贡膳节点，不进常规商店
+price: auto
+flags: []
+assets:
+  icon: item/xiongzhang
+text:
+  desc: 外观：经初步处理的熊掌一只置铜盘，深褐厚皮与掌垫可辨。
+  lore: 古代八珍语境中的罕见贡膳材料，本作只允许历史旧藏或固定剧情收据出现，不设循环猎取。必须交由名厨处理，普通商店与营地不可烹制。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di3
+    materialGrade: 9
+    rare: false
+    ingredientKind: rare
+    attributes:
+      version: 2

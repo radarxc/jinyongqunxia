@@ -1,0 +1,81 @@
+id: bld_kit_yuan_north_wharf
+file: bld_kit_yuan_north_wharf.png
+category: building-map
+style: default
+subject: 元北方河埠货运模块（原创扩展）
+prompt: 'Use case: precise-object-edit. Retain this tiny Yuan stone wharf apron, cargo cloth shelter, crates and TWO mooring posts. CORRECT footprint from long strip to shorter DEEP rectangle10x6. Shorten long front edge by25% while retaining depth; final left-front edge is1.6667 times front-right edge. Both diagonals ground edges slope+0.5 and-0.5 with exact orthographic2:1 projection. Base has thin zero-height apron without block sides; all props stand on it, no waterside drop or extruded earth. Main upper-left light and short lower-right contact shadow. Retain entire object in frame with12% transparent margins, true transparent RGBA, no black matte or glow, no text, people, river, boat.'
+negative: 文字、伪字、人物、现代物、天空、地平线、棋盘格、背景建筑、大阴影、厚地台、清式宫廷装饰、透视消失点、裁切。
+references:
+- {path: assets/default/baseline/building-map/bld_kit_song_southern_wharf.png, role: 宋基线薄地台与材质参考，第一候选输入, sha256: ee6196f46d86785a78c5859e50b60ad9866e246bdb48a9dabcc238f176c79ab1}
+- {path: assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_wharf.v01.png, role: 第一候选，宽深比修订输入, sha256: 0f628f562c1ee32abda14de3e93557e4ed5f6f22f1f48efd1cf1356a8fe84314}
+historical_references:
+- {title: 品读 | 永乐宫的建筑——杜仙洲, url: 'https://sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home', accessed: '2026-09-30', used: 元代木构、单檐庑殿/歇山、平缓屋面、土坯墙和砖裙的形制母题；文中明确部分梁架清修，不能整体倒推元貌。}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:31:47.421560+00:00'
+created_time_basis: 生成后归档时间，非工具披露服务端时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f428-0a78-7231-a1a3-a08a593b4c13/exec-f8f3c4b4-57fb-48e7-906e-595190e7e191.png
+size: 640x512
+sha256: 7d00c70ef322f1b6d28a83e37d946709642b15ed0b284c07209f1b4ede0a450d
+status: candidate
+building:
+  type: bld_kit_yuan_north_wharf
+  footprint: [10, 6]
+  anchor: [324.1849, 297.513]
+  era: yuan_north
+footprint_m: [10, 6]
+entrance: {edge: S, offset_cells: 4}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [512, 256]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+processing:
+  source_archive: sources/bld_kit_yuan_north_wharf.png
+  source_size: [1536, 1024]
+  source_sha256: ffad61f721a89e91796d5c7c3e9dc732a9ad857c64e315d92d0b2b7b463768e9
+  crop_box: [0, 32, 1514, 992]
+  uniform_scale_requested: 0.3803863298662704
+  resized_size: [576, 365]
+  rounded_effective_scale: [0.380449141347424, 0.3802083333333333]
+  paste_offset: [32, 73]
+  steps: [crop to alpha>0 bbox, uniform LANCZOS resize; round dimensions to pixels, paste without mask into transparent canvas; no warp/repaint/flip/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [95, 548]
+    front: [908, 984]
+    right: [1441, 697]
+  source_axis_slopes: [0.5362853628536285, -0.5384615384615384]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.525328330206379
+  expected_width_depth_ratio: 1.6666666666666667
+  ratio_relative_error: 0.08480300187617273
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  final_corners_px:
+    left: [68.1427, 269.1875]
+    front: [377.4478, 434.9583]
+    right: [580.2272, 325.8385]
+  precision_note: 人工读可见底面左/前/右角，±3px；锚取左右角中点；非图片中心，非3D测绘。
+pixel_qa:
+  mode: RGBA
+  size: [640, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 241761
+  alpha_partial_pixels: 84769
+  alpha_opaque_pixels: 1150
+  alpha_near_opaque_pixels: 81122
+  alpha_nonzero_bbox: [65, 74, 584, 438]
+  transparent_margins_px: [65, 74, 56, 74]
+  border_alpha_max: 0
+candidate_count: 2
+source_record: sources/bld_kit_yuan_north_wharf.json
+notes: 北方河运靠岸货运小埠，仅画陆岸薄铺装、系缆柱和货棚；无水船或旅行入口；具体元代大都河埠形制待考，默认原创功能模块。
+png_rotations_available: [0]
+allowRotation: false
+anchor_px: [324.1849, 297.513]
+footprint_basis: 【建议值】元北方同功能模块占地；非上游冻结数值、非历史测绘。
+visual_qa: {source_view_image: true, final_view_image: true, status: candidate, note: 逐张目视轮廓/材质/光向；不替代严格几何、历史复原及作者审批。}

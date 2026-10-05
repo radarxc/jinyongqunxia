@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yuanhuangjingzhi
+name: 元黄色写经纸
+kind: collectible
+sub: stationery
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H29](#src-h29)；准入：倚天主体；同类空白纸料
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanhuangjingzhi
+text:
+  desc: 外观：一卷薄黄色纸，卷端露少许空白纸面。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,monastic,collector]}; giftValue=2; provenance=history。
+  lore: 元黄色写经纸在公开文房目录中有据，可用来表现纸料与染色的礼物价值。适合赠僧道或习书文士；本件用空白同类纸展示，具体归属与交付为（原创扩展），不附经文收益。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

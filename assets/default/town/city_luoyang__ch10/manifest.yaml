@@ -1,0 +1,39 @@
+- id: town_city_luoyang__ch10
+  file: preview.png
+  category: town
+  style: default
+  subject: 神都·洛阳（702年候选）
+  prompt: 'python3 tools/town/gen_layout.py docs/design/town/city_luoyang__ch10.yaml -o assets/default/town/city_luoyang__ch10/layout.yaml --stats /private/tmp/tianshu-town-gaps/luoyang.stats.json
+
+    python3 tools/town/check_town.py docs/design/town/city_luoyang__ch10.yaml assets/default/town/city_luoyang__ch10/layout.yaml --strict-assets
+
+    python3 tools/town/plan_view.py docs/design/town/city_luoyang__ch10.yaml assets/default/town/city_luoyang__ch10/layout.yaml -o /private/tmp/tianshu-town-gaps/luoyang_plan.svg
+
+    python3 tools/town/render_town.py assets/default/town/city_luoyang__ch10/layout.yaml -o assets/default/town/city_luoyang__ch10/preview.png --scale 0.5
+    --report /private/tmp/tianshu-town-gaps/luoyang.preview.render.json --overlay assets/default/town/city_luoyang__ch10/overlay.svg
+
+    python3 tools/town/render_town.py assets/default/town/city_luoyang__ch10/layout.yaml -o assets/default/town/city_luoyang__ch10/town.png --scale 1 --report
+    /private/tmp/tianshu-town-gaps/luoyang.town.render.json'
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-03'
+  size: 5120x2560
+  sha256: a8b67973af28f6a3c2f731b1f7756651d6ee680b25a11ed55d69a7cf09c95056
+  status: candidate
+  references:
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  - docs/design/town/city_luoyang__ch10.yaml
+  - docs/design/town/history/city_luoyang__tang_702.md
+  notes:
+  - 唐代702–703年按AR-26；宋代基线替代墙门及土木建筑；非唐代建筑考古复原。
+  - ch10保留town.png全尺寸；preview按0.5直接总装；运行时按layout与贴片渲染。
+  - 历史（第6次）：平面图内城/宫区只作功能区示意，当时工具仅支持一道外墙；古门名与街址推定。
+  - 严格素材检查允许candidate与已声明共享材质适配；本次目检已完成，未做release验收。
+  - 历史（第6次）：曾发现洛水穿城处实墙封河，水门未实现；当时整城视觉验收未通过。
+  - 历史（第6次）：两水门内存试验被旧校验器拒绝；阻碍快照见docs/design/town/r6-watergate-blocker.json。
+  - 历史全尺寸town.png SHA-256=874707b7c6abaed47899966ba4ab5f83597ef5ff524af75caf4bb6422680ba2c
+  - 协调者 10-03 05:32：水门 / 多重城垣是 tools/town 的工具缺口（审核 r2），本轮按 rejected 落库（文件留作对比，构建不进包）；TOOL-town-gaps-1 合入后由接力任务重做。
+  - TOOL-town-gaps-1：已声明洛水东西水门，墙体仅在所属水门开口；连续水面、门楼与两座桥均已重渲染并目检，未声明墙水相交为0，strict-assets为0 error。
+  - 唐代专用贴片仍缺；本候选显式回退 tang → song_southern，并按有限共享表复用 song_dali 土木素材，不把回退图当唐代考古复原。
+  - 本次全尺寸town.png SHA-256=54703659c5dac9fd52890b5469994860df0899bbbc153f9cab022f877b0639e1；layout SHA-256=d8276670fabf550fdbb6da859541b8ec7df4f8c9f3a2bdd68cb723e24dfc6a72。

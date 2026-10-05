@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_hengshanbeijiejian
+name: 恒山戒剑
+kind: weapon
+sub: sword
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 恒山 · design/17 §6.6；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/hengshanbeijiejian
+text:
+  desc: 外观：窄身直剑约六十八厘米，素铁小镡、灰布缠柄、黑漆鞘配旧铜箍。 待运行时投影：sect=sect_hengshan_bei。
+  lore: 恒山行脚弟子携带的朴素戒剑，窄身利于防身点刺，灰布缠柄即使风雪湿冷也便于重缠。它不对应原著具名兵器，名称、制度和流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 70
+      qiAffinity: 100

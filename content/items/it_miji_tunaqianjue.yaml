@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_tunaqianjue
+name: 吐纳浅诀抄本
+kind: manual
+sub: copy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tunaqianjue
+text:
+  desc: 外观：元代灰白包背小册，蓝布护脊。
+  lore: 江湖散人将最浅近的调息与收功法抄成灰白小册，心法和载体皆属 （原创扩展）。研读须按页次平缓呼吸，不可把浅诀当成速成捷径；潮斑处要先校字，抄本来源最高八层。
+extension:
+  type: manual
+  value:
+    skill: sk_tunaqianjue
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tunaqianjue
+      readBre: 30
+      maxLayer: 8
+      cultivation: 800

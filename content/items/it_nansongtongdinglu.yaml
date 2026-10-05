@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_nansongtongdinglu
+name: 南宋鼎式铜炉
+kind: collectible
+sub: bronze
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongtongdinglu
+text:
+  desc: 外观：褐色铜质鼎式小炉，折沿、双立耳、三矮足。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,monastic,collector]}; giftValue=2; provenance=expanded。
+  lore: 以南宋仿古器用审美设计小型铜炉，可用于书斋陈设与礼赠。宜送文士或僧道，形制与取得为（原创扩展）；不把它叫宣德炉，也不能作为炼药配方的生产工具使用。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

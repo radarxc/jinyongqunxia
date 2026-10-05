@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_quanjinfadacheng
+name: 全金发大秤
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·全金发以大秤为兵器
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/quanjinfadacheng
+text:
+  desc: 外观：硬木大秤杆约一百四十厘米，前端铁钩闭合、铜秤砣与粗绳系在杆侧。 待运行时投影：exoticKind=misc; sect=sect_jiangnanqiguai。
+  lore: 《射雕英雄传》中全金发以大秤为兵，秤杆可作长棍点扫，铁钩用来勾带，秤砣则借绳势牵制，三者须协调收放。具体尺寸、铜砣、无字刻度与玩法定级均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 65
+      qiAffinity: 100

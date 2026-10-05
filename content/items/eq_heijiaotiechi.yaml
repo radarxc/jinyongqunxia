@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_heijiaotiechi
+name: 黑角铁尺
+kind: weapon
+sub: exotic
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/heijiaotiechi
+text:
+  desc: 外观：一对精钢直尺并置，各约五十五厘米。 待运行时投影：exoticKind=misc。
+  lore: 一对精钢铁尺以方脊硬接来刃，外撇护手可卡住剑身，另一尺趁隙点打关节。黑角片夹柄兼顾防滑与更换，适合护院近战；器名、工艺、来历和江湖传闻均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 60
+      qiAffinity: 100

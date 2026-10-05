@@ -1,0 +1,135 @@
+{
+  "id": "bld_kit_yuan_north_wangfu",
+  "repair_round": 6,
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "selected_source": "/private/tmp/KIT-yuan_north-hist-repair6/generated/wangfu_c1.png",
+  "source_sha256": "6d2bd5a1e19fe43b3a05069d911a2cfff2d142be38f488f571a5dc67659ee1f0",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_wangfu.png",
+  "final_sha256": "f3c595d92337176dd0f12e54c616a9045f4dd1d25df0c09c875b53dc52d7d1e1",
+  "generation": {
+    "tool": "Codex images/edits via built-in image generation backend",
+    "model": "gpt-image-2",
+    "generation_id": "3de25e65-5df9-40f1-babf-c1235003ac19",
+    "turn_id": "412dfd79-a281-4ecc-b73c-51bb07799bb7",
+    "created_unix": 1790924302,
+    "settings": {
+      "background": "transparent",
+      "output_format": "png",
+      "quality": "medium",
+      "size": "1507x1044"
+    },
+    "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/wangfu.txt"
+  },
+  "input_files": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_wangfu.png",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/yongle_front.jpg",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/yongle_roof.jpg"
+  ],
+  "input_sha256": [
+    "7104f93e214adca61b4c1d450894a2f52c0429d87a8f23bda2787bb8701f17a7",
+    "6e605f46b260f70d14e9fd629e4f8098ddb8f9cfc107dc715d094c2512037133",
+    "dfe647cd81be17875f720b42808a2b8a206386dacdabbd395a4e95d38c626f6a"
+  ],
+  "generation_attempts": [
+    {
+      "candidate": 1,
+      "selected": true,
+      "output_file": "/private/tmp/KIT-yuan_north-hist-repair6/generated/wangfu_c1.png",
+      "output_sha256": "6d2bd5a1e19fe43b3a05069d911a2cfff2d142be38f488f571a5dc67659ee1f0",
+      "generation_id": "3de25e65-5df9-40f1-babf-c1235003ac19",
+      "turn_id": "412dfd79-a281-4ecc-b73c-51bb07799bb7",
+      "created_unix": 1790924302,
+      "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/wangfu.txt",
+      "settings": {
+        "background": "transparent",
+        "output_format": "png",
+        "quality": "medium",
+        "size": "1507x1044"
+      },
+      "input_files": [
+        "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_wangfu.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/yongle_front.jpg",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/yongle_roof.jpg"
+      ],
+      "input_sha256": [
+        "7104f93e214adca61b4c1d450894a2f52c0429d87a8f23bda2787bb8701f17a7",
+        "6e605f46b260f70d14e9fd629e4f8098ddb8f9cfc107dc715d094c2512037133",
+        "dfe647cd81be17875f720b42808a2b8a206386dacdabbd395a4e95d38c626f6a"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "file": "yongle_front.jpg",
+      "url": "https://www.sxrcylg.cn/uploads/allimg/210901/1-210Z1100033b4.jpg",
+      "sha256": "6e605f46b260f70d14e9fd629e4f8098ddb8f9cfc107dc715d094c2512037133",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "永乐宫现存元构殿堂正立面照片：五间柱网、格扇、单檐宽屋面、斗拱与高砖石台基；现状含后世修缮，不逐件倒推元貌。"
+    },
+    {
+      "file": "yongle_roof.jpg",
+      "url": "https://www.sxrcylg.cn/uploads/allimg/210901/1-210Z1100222V1.jpg",
+      "sha256": "dfe647cd81be17875f720b42808a2b8a206386dacdabbd395a4e95d38c626f6a",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "永乐宫屋面近照：灰筒板瓦、彩色脊瓦与鸱吻轮廓；仅取瓦作和脊饰，不复制后世修缮细节。"
+    }
+  ],
+  "historical_detail": "王府殿院模块（原创扩展，非具名王府复原）：五间主殿、规整柱网与格扇、石台基、灰筒板瓦、克制鸱吻、疏朗斗拱及低饱和蓝绿赭梁枋。",
+  "processing": {
+    "source_size": [
+      1507,
+      1044
+    ],
+    "crop_box": [
+      54,
+      99,
+      1478,
+      982
+    ],
+    "uniform_scale": 0.7528089887640449,
+    "resized_size": [
+      1072,
+      665
+    ],
+    "canvas_size": [
+      1248,
+      864
+    ],
+    "paste_offset": [
+      88,
+      99
+    ],
+    "alpha_cleanup": "source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      1248,
+      864
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 674714,
+    "alpha_partial_pixels": 402546,
+    "alpha_opaque_pixels": 1012,
+    "alpha_nonzero_bbox": [
+      88,
+      99,
+      1160,
+      764
+    ],
+    "transparent_margins_px": [
+      88,
+      99,
+      88,
+      100
+    ],
+    "border_alpha_max": 0
+  },
+  "visual_review": "参考图、入选原图与规格化成品均经 view_image；构造、左上光、透明边通过目检；保留 candidate。"
+}

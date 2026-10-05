@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_xuexingxue
+name: 雪行靴
+kind: armor
+sub: shoes
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xuexingxue
+text:
+  desc: 外观：灰白皮裘长靴，宽软底与毛毡内衬。 待运行时投影：qinggong=22.5; resColdPp=6。
+  lore: 雪行靴以灰白皮裘、毛毡内衬和宽软底制成，穿前须拍净雪粒，免得融水冻伤足趾。塞北向导认底纹而不认名号，磨平便劝人换靴。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: leather
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12
+      agi: 3

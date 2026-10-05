@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_lianqiao
+name: 连翘
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/lianqiao
+text:
+  desc: 外观：药用果实纵裂成黄褐双瓣壳，种子零星可见。
+  lore: 燕京直隶、中原、关中、秦巴与河东晋中山坡秋七至十月果熟。本作按黄褐双瓣壳辨识，封罐后归作疏内伤辅材，不写现实配伍。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: lianQiao
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 2

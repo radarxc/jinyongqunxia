@@ -1,0 +1,32 @@
+schemaVersion: martial-art.v1
+id: sk_changshengjue
+name: 长生诀
+aliases: []
+category: story_art
+subType: mainline
+grade: 1
+origin: expanded
+sect: null
+lineage: 主线功法；序章第一层由阿青传授
+sourceChapters: [ch00_yuenv]
+nature: harmony
+wOutBp: 0
+wInBp: 10000
+requirements: {}
+maxLayer: 9
+layers:
+  - {n: 1, unlock: []}
+  - {n: 2, unlock: []}
+  - {n: 3, unlock: []}
+  - {n: 4, unlock: []}
+  - {n: 5, unlock: []}
+  - {n: 6, unlock: []}
+  - {n: 7, unlock: []}
+  - {n: 8, unlock: []}
+  - {n: 9, unlock: []}
+moveIds: []
+learnSources:
+  - {type: tutorial_projection, chapter: ch00_yuenv, ref: fx_nine_preview_seen, maxLayer: 9, note: 九层远景只供教学预览，不写正式层数}
+  - {type: master, chapter: ch00_yuenv, ref: npc_aqing, maxLayer: 1, note: fx_first_layer_commit 只写主线功法状态}
+tags: [story_art, mainline, no_skill_slot, no_catalog_quota]
+description: 栏外主线功法；九层预览与阿青所授真实第一层分离，不进入普通武学系统。（原创扩展）

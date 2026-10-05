@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_shanwenjia
+name: 山文甲
+kind: armor
+sub: officialArmor
+grade: 7
+stack: 1
+chapters:
+- ch10_baima
+origin: canonExpanded
+canonRef: 唐；出现书界 ch10；（原创扩展）；名称据《唐六典》卷16《卫尉寺·武库》 https://www.shidianguji.com/book/SK1116/chapter/1jzwu02dg5y5i；历史山文甲具体拼接结构（待考），默认纹样转换不冒充确定复原
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/shanwenjia
+text:
+  desc: 外观：唐代通用款，主色铁灰。 待运行时投影：Q_load=10; defInK=0.07; defOutK=0.28; mov=-1; resCCPp=2xG; tough=2xG。
+  lore: （原创扩展）山文甲据《唐六典》甲名演成唐代铁灰重甲，札面山形重复纹作辨识，孔与绳联保留受力逻辑。收存前须检查系片；历史拼接结构（待考），默认纹样转换，不宣称山字甲片无绳自锁。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 70

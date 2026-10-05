@@ -1,0 +1,32 @@
+{
+  "suffix": "courtyard",
+  "title": "土墙院落",
+  "fp": [
+    10,
+    8
+  ],
+  "path": "exec-9dc55be7-437b-4c1b-8454-443ccd3c5f0f",
+  "prompt": "Create a NEW northern Liao-Jin version of the reference Song game map building, retaining its camera, complete very thin diamond footprint, true clean transparency, entrance direction and detailed realistic ancient architectural rendering. This is a CITY MAP SPRITE, not a perspective architectural showcase. Orthographic yaw45 elevation30, 2:1 dimetric projection, ground axes +0.5 and -0.5, upright verticals, parallel lines, no perspective. Entrance screen LOWER LEFT. Both ground axes clearly readable; complete flat rectangular ground perimeter with LEFT, FRONT and RIGHT corners. Entire sprite occupies central 70 percent of canvas. Main light screen UPPER LEFT, short soft contact shadow lower right. Background alpha=0, NO glow, halo or gradient. No thick plinth, text, people, sky, landscape, neighboring structures, symbols, Ming/Qing palace ornaments or modern features. One self-contained building. Historic regional inspiration, original game interpretation rather than monument reconstruction. Subject: one walled residential courtyard of Liao-Jin northern Yanjing/Datong region, footprint 10m east-west by 8m north-south. Broad low three-bay main house at back with gray tile gabled roof, one low side wing, warm buff rammed-earth plaster walls and dark wood framing. The wall enclosure is low and sober, only a narrow stone base; small wood south gate on screen lower-left edge. Compacted yellow-brown earth court with modest flat stone path. No plants, no decorative screen walls, no palace scale or imperial ornaments. Complete visible front ground edges, projected front edge 1.25 times side edge. Reuse reference visual density and view, but northern drier buff-earth material palette, restrained broad eaves.",
+  "ref": "bld_kit_song_dali_courtyard",
+  "corners": {
+    "left": [
+      139,
+      676
+    ],
+    "front": [
+      779,
+      1012
+    ],
+    "right": [
+      1370,
+      674
+    ]
+  },
+  "count": 2,
+  "note": "夯土色院落、灰瓦主屋和侧厢、薄石基；原图去掉宋参考的植被。几何偏差按实测点保留。 已生成2候选对比，选第1候选，原因见rejected_candidate。",
+  "rejected": {
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-333a-7700-b17d-ba49c7363b52/exec-d4bc994f-5771-4e35-8f63-713eb4691e1b.png",
+    "prompt": "Generate a revised NEW northern Liao-Jin town building asset using reference only for realism, textures and type. Correct the ground footprint projection: orthographic dimetric 2:1, ground edges at exactly26.565degrees to horizontal, slopes+0.5 and-0.5. Do NOT copy the reference camera or ground shape. Transparent RGBA, no background, halo, people, writing or markings, no thick plinth. Front entrance faces screen lower-left. Screen-upper-left light, short contact shadow lower-right. All roof and ground perimeter fully contained with margins. Northern Liao/Jin11th–12th century warm buff plaster, dark timber and plain gray tile, modest broad eaves; no Ming/Qing palace decoration. ONE compact residential courtyard on footprint10east-west by8north-south. CRITICAL visible thin ground polygon LEFT to FRONT projected x-distance must be1.25times FRONT to RIGHT x-distance. This means the lower-left/front wall is clearly longer than the lower-right/side wall. Main low gray-tile house at rear, one small side wing, lower-left simple gate, buff earth plaster enclosure walls and packed-earth courtyard, modest stepping stones. No tree, no ornamental screen. Three ground corners readable, broad flat2:1 diamond not a square isometric diamond.",
+    "reason": "第2候选底面宽深比改善，但两轴不对称，约+0.47/-0.60，综合几何残差未优于第1候选；保留第1候选并明示其比例偏差。"
+  }
+}

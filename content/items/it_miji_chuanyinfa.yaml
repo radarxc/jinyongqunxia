@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_chuanyinfa
+name: 传音法抄本
+kind: manual
+sub: copy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_chuanyinfa
+text:
+  desc: 外观：元代灰蓝包背薄册，白麻护脊。
+  lore: 乐工说书人把聚声、换气与定向发音的方法抄成灰蓝薄册，音功和载体属 （原创扩展）。研读须先练绵长呼吸，再对不同距离试声；页边点痕见其常被口授者翻用，来源只到八层。
+extension:
+  type: manual
+  value:
+    skill: sk_chuanyinfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_chuanyinfa
+      readBre: 25
+      maxLayer: 8
+      cultivation: 600

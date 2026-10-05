@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_huibufanqudao
+name: 回部反曲佩刀
+kind: weapon
+sub: blade
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·回疆；书剑至雪山清代节点可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/huibufanqudao
+text:
+  desc: 外观：全长约八十八厘米，前段略反曲的精钢单刃、短铜镡、深色角柄。
+  lore: 回疆节点工匠打造的反曲佩刀，前段刃线利于骑行挥切，角柄和短铜镡兼顾稳握与快速出鞘。商旅护卫常以皮鞘防沙；器名、银片装具、流传及品阶均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 60
+      qiAffinity: 100

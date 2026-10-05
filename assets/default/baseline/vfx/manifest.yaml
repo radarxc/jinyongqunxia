@@ -1,0 +1,481 @@
+- id: ref_mv_xianglong18_kanglong__ch02_base01
+  file: ref_mv_xianglong18_kanglong__ch02_base01.png
+  category: vfx
+  style: default
+  subject: "降龙十八掌·亢龙有悔；ch02_shediao；南宋 1217–1227（游戏推定，待考）；全掌宽面透出金色龙形气劲，水墨虚实、透明回旋。"
+  prompt: |-
+    Use case: stylized-concept
+    用途：原创武侠掌法的审美基线概念图；横幅 1536×1024，单张完整画面，无文字。
+    场景：浅暖白纸本留白，金色设色与水墨虚实结合，背景空旷。主体是一只成年武者完整右手与朴素宋式灰褐麻布袖口，前臂从左下进入，不出现脸或身体。手掌占画面足够大小，约画幅高度的四成，三分之四侧前视角明确露出掌面和指腹。恰好五指，拇指加四个独立分开的手指，五个指尖和指节结构自然，掌纹可辨。
+    动作与发力：金色掌劲同时从整个掌面——掌根、大小鱼际、四指根部下方的宽面——向右透出、化出。手掌前缘形成与掌面等宽的半透明金色气幕，整体向外推出，绝不是中央一点喷出的流束。整掌透光仍能看见掌纹；手指外轮廓不要被金光盖住。离掌后宽阔气幕汇成一条气势磅礴的中国龙形，远处龙首巨大，前冲与回旋同时存在，龙身占中右区域大尺度 S 弯，画面有强烈纵深和力量感。龙的根部宽阔、与掌面整体呼应，不收成细尾巴。
+    风格：龙形为内劲的原创视觉隐喻，不是真实动物；金色为绝对主色，淡金、暖金、赭金相叠。龙首眉骨、须角少量较实，龙腹、身侧、尾迹大面积透明，金色淡染、墨色极少骨架、干笔飞白与湿边消散交错，可以透见纸底。龙头不要画成金属雕塑；鳞片只暗示少量笔势，不要整身硬壳。身体和龙首至少留一圈明确边距，最长龙角与须完整在画内。主龙头位于右上但不贴画缘，回旋与飞白占中下部，留出安静空白约三成。
+    照明：金色内光增强力量但不过曝，半透明气幕中掌纹仍可辨，暖白纸底和灰褐布袖衬金色。手部真实结构、淡设色手绘；画面庄严、开阔、刚猛而轻透。
+    透明性：保留纸底，不要求文件 alpha；透明来自画内透底层次。
+    排除项：不要文字、汉字、题签、书法、印章、签名、水印、标志、边框、分镜格；不要人脸、演员肖像、已有影视或游戏造型、画师风格名、现成作品构图；不要现代物品、现代服装、甲胄、清式马蹄袖、日式服饰；不要多指、缺指、融合指、异常关节、断腕、长指甲、手背替代掌面；不要从掌心一点或腕部喷射的窄管、喷墨口、黑墨球、细尾巴接在掌心；不要实体金属龙、完整硬鳞甲、金属雕塑、带翼西方龙、火焰、霓虹激光、法阵、血腥、裸露；不要过曝遮住掌纹，不要裁掉龙角、龙须、手指。
+  negative: |-
+    不要文字、汉字、题签、书法、印章、签名、水印、标志、边框、分镜格；不要人脸、演员肖像、已有影视或游戏造型、画师风格名、现成作品构图；不要现代物品、现代服装、甲胄、清式马蹄袖、日式服饰；不要多指、缺指、融合指、异常关节、断腕、长指甲、手背替代掌面；不要从掌心一点或腕部喷射的窄管、喷墨口、黑墨球、细尾巴接在掌心；不要实体金属龙、完整硬鳞甲、金属雕塑、带翼西方龙、火焰、霓虹激光、法阵、血腥、裸露；不要过曝遮住掌纹，不要裁掉龙角、龙须、手指。
+  references: []
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-09-29T22:05:23Z"
+  source_path: "/Users/bytedance/.codex/generated_images/01a0ef30-a9d7-77e3-ba0c-ae4aea0aede9/exec-279a6ed3-66d8-460c-be40-7c67aaad7ea9.png"
+  size: "1536x1024"
+  sha256: d822891fac5b6eb1358baf1738239d5c6e15014ee26912c74c9df9f8efe39e81
+  status: candidate
+  code: "ref_mv_xianglong18_kanglong__ch02_base01/index.html"
+  notes: "按作者第 1 轮审批意见返修。作者意见原文：「降龙十八掌应该是金色，龙应该从整个掌面透出，而不是从掌心（现在看起来像在喷墨不好）。要气势磅礴」。本轮共 3 张候选（含续作前 1 张），选第 2 张；全部 view_image 复核。金色为主，整掌宽面透出金色气幕，大尺度回旋龙身、龙首略实，躯干透明、飞白消散；五指独立可数、掌纹可见。最上龙角距顶边很近，外层笔势出画，作为裁切余量局限保留，主龙首与手掌完整。AI 生成原创视觉表现；金龙、光色与手势是（原创扩展），不复原原著动作，不将亢龙改为绝招。年代引用 design/02 §1.3.2 / chapters/02 §1，为游戏推定（待考）；普通招与外放归 catalog/skills-wujue / design/05、21。PNG 原图逐字节复制，RGB，无 alpha；透底只是画内观感。新增自包含 HTML 已做语法与隔离运行检查，浏览器视觉与真机性能（待实测）。created 实测原图文件创建时间并转 UTC。model/effort 沿 assets/README 的指定执行配置登记，工具未披露独立图像后端型号。无外部参考输入；仅为 candidate，待作者审批。"
+
+- id: ref_sk_liumai__ch01_base01
+  file: ref_sk_liumai__ch01_base01.png
+  category: vfx
+  style: default
+  subject: "六脉神剑；ch01_tianlong；1093–1094（游戏推定，待考），北宋同期大理国；离指成形的六路半透明凝缩气剑，近无色刃体与淡青赤刃缘，全画面非水墨。"
+  prompt: |-
+    Use case: precise-object-edit
+    编辑目标：输入图是本项目自己生成的六路气剑候选，只编辑气刃位置和长度，保留现有两只手的形状、五指数量与真实结构、皮肤、飘动灰白袖口、冷灰石庭背景、自然光、1536×1024横幅。绝对保持全画面清晰非水墨风格。
+    必须做出的变化：把六枚气刃全部向右移动，并缩短它们左侧的拖尾，建立宽阔离指空隙。左边所有手指的最右端大约在 x=580；所有气刃、微光、尾迹、折射波纹的最左端必须在 x=760 右侧，整个 x=590 至 x=750 的垂直带只能看见干净石庭背景，任何一枚气剑的尾尖、发光丝线或气流都不能进入这条净空带。即使最下面的小指红气刃也必须遵守。六枚长度缩短后全部尖端保留在 x=1450 左侧，画面右边留出边距。六枚气刃依旧沿原有六个指端朝右射出的各自方向分开，不能交叉或合并。不要在指端添加光点或长指甲。
+    气剑质感：高密度凝缩内力的半透明空气刃，近无色薄刃面、锐利细缘与尖锋、轻微空气折射/一两道震荡纹，向前飞行而非固定在手上。长短略错落、轻微优雅弧度，前端凝实而后端渐隐；绝不是画笔拖曳的痕迹或烟带。去掉多余细丝，以干净清楚的六枚主刃为主。
+    保持色彩：上方手的五枚从上至下，极淡刃缘依次青、赤、青、赤、青；下方小指第六枚为极淡赤。青参考 #2A9D8F，赤参考 #C44536，刃面近无色，背景透过其间。仅为原创经脉识别色，不声称原著规定固定色。上手的指别从上到下为小指、无名指、中指、食指、拇指，各有独立方向；下手小指发第六道。
+    排除项：不要水墨笔触、墨迹、湿墨晕染、飞白、宣纸纹理、泼墨、画笔拖痕；手、衣袖、背景和气剑均不能出现这些质感；不要文字、书法、题签、印章、签名、水印、标志、边框、分镜；不要演员脸、人脸、已有影视游戏造型、画师姓名、现成作品构图；不要现代物品或现代服饰、甲胄、马蹄袖、日式服装；不要长指甲、指甲延伸、气刃接在手指上、贯穿指甲的光束；不要多指、缺指、融合指、异常指节、断腕；不要实体金属剑、剑柄、护手、玻璃实体剑、冰晶、火焰、雷电、霓虹、机械平行激光、能量球、法阵、血腥、裸露；不要第七道主气刃，不要浓烟遮挡手部与指端间隙。
+  negative: |-
+    不要水墨笔触、墨迹、湿墨晕染、飞白、宣纸纹理、泼墨、画笔拖痕；手、衣袖、背景和气剑均不能出现这些质感；不要文字、书法、题签、印章、签名、水印、标志、边框、分镜；不要演员脸、人脸、已有影视游戏造型、画师姓名、现成作品构图；不要现代物品或现代服饰、甲胄、马蹄袖、日式服装；不要长指甲、指甲延伸、气刃接在手指上、贯穿指甲的光束；不要多指、缺指、融合指、异常指节、断腕；不要实体金属剑、剑柄、护手、玻璃实体剑、冰晶、火焰、雷电、霓虹、机械平行激光、能量球、法阵、血腥、裸露；不要第七道主气刃，不要浓烟遮挡手部与指端间隙。
+  references: ["/Users/bytedance/.codex/generated_images/01a0ef30-a9d7-77e3-ba0c-ae4aea0aede9/exec-683623f8-5a58-40c2-a9a2-708bdd3d6b77.png"]
+  tool: "codex exec · image_gen"
+  model: gpt-6-astra
+  effort: ultra
+  created: "2026-09-29T22:10:19Z"
+  source_path: "/Users/bytedance/.codex/generated_images/01a0ef30-a9d7-77e3-ba0c-ae4aea0aede9/exec-83a9b33c-f0b8-4118-b367-b9df960b02aa.png"
+  size: "1536x1024"
+  sha256: 3e1d026bdd1a61c9984b412ee79441cfee42fe5351cab7b009ce4cc5a93b3950
+  status: candidate
+  code: "ref_sk_liumai__ch01_base01/index.html"
+  notes: "按作者第 1 轮审批意见返修。第 1 轮作者意见原文：「六脉神剑需要更飘逸，颜色要符合六脉神剑描述的颜色。现在看起来像长指甲，很丑。」追加作者意见原文（2026-09-29）：「六脉神剑的动画效果不对，不应该是水墨的，六脉神剑类是气剑，应该是一股靠内力凝缩的气剑的效果，而不是一笔画出，然后晕染的水墨效果。」本轮共 4 张候选（含续作前水墨候选 1 张，按新方向淘汰），选第 4 张；全部 view_image 复核。本次为自身第 3 张候选的定向编辑，references 仅记录该编辑输入，非 approved 风格母版；其 SHA-256 为 53fda121ff0328dd2de7c05f92c77af27cdcb81f9c7cd544afd6d08ad8e1d121。六道独立半透明凝缩气刃、锐利薄缘、折射与微弱震荡环，全部离指留出完整石庭背景净空；手、袖、背景、气剑全无水墨。上手五指可数，下手小指独立、其余四指弯曲有遮挡，未见明显增缺指，不作精细解剖母版。石庭冷灰低反差背景服务于透明折射，没有具体作品场景参考。颜色依据：catalog/skills-wujue §5.3 不设气剑固定色；design/15 §2.1、§3 手部端穴与 §10.4 UI 线色，少商/中冲/少冲阴经青，商阳/关冲/少泽阳经赤；#2A9D8F/#C44536 仅极淡刃缘的（原创扩展）转译，剑体近无色，不冒称原著六色，整门 harmony 不推出全金。网络转载比对只作线索，三联/广州修订版的颜色、左右手及剑意逐字核对（待考），详见 ART-R1-vfx 报告 §3。年代引用 design/02 §1.3.1 / chapters/01 §1.1：1093–1094 游戏推定的大理国，非北宋辖地。六路同帧、可见气剑、演示节奏与手势均（原创扩展），不定义玩法招式。PNG 原图逐字节复制，RGB，无 alpha；HTML 全面重写为凝聚→离指成形射出→消散，无水墨。语法/隔离运行通过，浏览器视觉与真机性能（待实测）。created 实测原图创建时间转 UTC；model/effort 沿 assets/README 指定执行配置，图像后端未披露。保持 candidate。"
+
+- id: vfx_mv_xianglong18_kanglong__ch02_base01
+  file: mv_xianglong18_kanglong/peak.png
+  category: vfx
+  style: default
+  subject: 降龙十八掌·亢龙有悔；ch02_shediao；南宋1217–1227（游戏推定，待考）；金色水墨意境的宽根龙形掌劲，从整个有效掌面向右透出。
+  prompt: |-
+    【效果原图实际请求】
+    Use case: stylized-concept
+    Make a technical six-sprite animation contact sheet on a totally flat pure WHITE #FFFFFF background. Landscape 1430x1100, two columns by three rows, six golden Chinese qi dragons only. No hand, text or grid.
+    CRITICAL COMPOSITION: Lots of white space. Each entire dragon is SMALL within its own cell: only 70% of the cell width and 55% of the cell height. At least 80px white padding all around every sprite. The space between two neighboring dragon silhouettes must be at least160px. Do not enlarge to fill the cells. Six identical invisible cells, left to right top to bottom. No particles, wisps or splashes outside this small silhouette.
+    Within each cell a broad vertically OPEN left edge, like a 100px-high translucent gold curtain, is the fixed root of whole-palm force. It is not a thin tail, not a curled closed tail, not a nozzle. From this wide opening a continuous majestic golden S-curved airy dragon body flows RIGHT to a powerful, recognizable Chinese dragon head; keep small fine horns and whiskers within the padded area. The same design and viewpoint in all frames, same fixed broad root and head position. One dragon per cell, no legs necessary, no solid scales.
+    Golden ink-painting spirit: warm ochre-gold and pale gold, semi-transparent airy body, dry-brush gaps inside the silhouette, head slightly more defined. No opaque animal, no metallic statue. Understated internal detail, great force in the poised forward thrust. Retained highlights are gold, never white paint. Empty holes show the white field.
+    Six phases change density much more than shape: faint gathering, forming, release, peak, waning, lingering. Keep all six silhouettes the same size and identity. Broad root is clearly visible throughout.
+    Every pixel outside the six foreground silhouettes must be solid RGB255,255,255 white without any shading or texture. This is a cutout source, not a paper illustration.
+    Avoid text, numbers, labels, watermark, borders, divider lines, hands, arms, people, clothing, scenery, background gradients, paper texture, shadows, checkerboard, grey wash, white paint, thin root, closed tail spiral, random particles beyond silhouette, overlarge dragons, clipped details, metal, solid full-body scales, western wings, neon, flames, lightning or smoke.
+
+    【发出方实际请求】
+    Use case: precise-object-edit.
+    Edit this emitter plate. Preserve exactly one adult five-finger hand, warm natural skin, grey-brown plain Song-style hemp sleeve, pose and native transparent background. Improve TWO compositing requirements:
+    1) Rotate the open palm plane about its upright axis about 35 degrees so its outward normal points diagonally toward the screen RIGHT while still showing palm lines and palm pads clearly. In screen projection the emission direction is horizontal right [1,0]. The hand should read as actively pushing to the right rather than presenting a flat palm directly at the viewer. Keep thumb plus four fingers individually readable and natural.
+    2) Reframe the complete isolated hand, wrist and SHORT sleeve smaller, centered with 100 pixels transparent clearance at every canvas edge on a square image. No part of sleeve, wrist, palm or finger may touch the canvas border. The cuff and sleeve end must both lie fully inside frame. Do not crop the sleeve on the left.
+    Keep the whole active palm wide and visible. No effect is drawn. No arrows or coordinate marks. This is only a pose demonstration, not a claim about original text handedness. Refine any coloured silhouette fringe into clean native-alpha edges; preserve skin and fabric colour.
+    Avoid: missing or extra fingers, fused fingers, abnormal joints, detached wrist, long nails, modern sleeve, weapon, dragon, gold glow, energy, smoke, magic, ground shadow, text, numbers, logo, border, checkerboard artwork, white or paper background.
+  negative: |-
+    【效果】
+    text, numbers, labels, watermark, borders, divider lines, hands, arms, people, clothing, scenery, background gradients, paper texture, shadows, checkerboard, grey wash, white paint, thin root, closed tail spiral, random particles beyond silhouette, overlarge dragons, clipped details, metal, solid full-body scales, western wings, neon, flames, lightning or smoke.
+
+    【发出方】
+    missing or extra fingers, fused fingers, abnormal joints, detached wrist, long nails, modern sleeve, weapon, dragon, gold glow, energy, smoke, magic, ground shadow, text, numbers, logo, border, checkerboard artwork, white or paper background
+  references:
+  - /Users/bytedance/.codex/generated_images/01a0f16a-fdcf-73f2-84e7-87884d97e2e6/exec-c439469c-fae4-4174-90a8-f3d3f14720f5.png
+  tool: built-in image_gen（原图）+ tools/vfx（离线抠图、合成、动效）
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-09-30T09:32:15.806314+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-0a9a0fe0-073c-4e64-86a4-d2ceb9e22b82.png
+  size: 3072x2048
+  sha256: df7fb9dc38747551114bfb6bc21e56f6fc1a6a5bf80eab6a1f085c66f117546e
+  status: candidate
+  code: mv_xianglong18_kanglong/demo.html
+  pipeline: two-part
+  sources:
+  - role: effect
+    file: mv_xianglong18_kanglong/effect/source_sheet.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-0a9a0fe0-073c-4e64-86a4-d2ceb9e22b82.png
+    sha256: 27e4c5cc2102cf8eb56986e130500e76582fb1bbd45ad0b9a40f43076f17485b
+    size: 1429x1100
+    bytes: 1248144
+    generation_history:
+    - index: 1
+      kind: dragon
+      prompt: |-
+        Use case: stylized-concept
+        Asset type: production sprite sheet, exactly six successive isolated golden dragon palm-force EFFECT frames, NO hands. Original wuxia visual metaphor for mv_xianglong18_kanglong.
+        Canvas and layout: 2080x1600 pixels. Exactly TWO columns and THREE rows. Each invisible cell is 1024x512 pixels; 32-pixel pure-white gutters. Cell top-left coordinates (0,0), (1056,0), (0,544), (1056,544), (0,1088), (1056,1088). Do not draw cell lines, labels or numbers. Read left to right, top to bottom.
+        Background: absolutely flat pure #FFFFFF white throughout, no texture, no shadows, no paper.
+        Within EVERY cell: same right-facing Chinese dragon made of golden qi, same fixed camera and identity. All golden matter stays inside x=64..952,y=40..470 relative to its cell. A BROAD vertical root at local x=112, centered y=256, about 150px high, represents force emerging from the WHOLE palm surface (no hand shown). Root is a short broad open gold veil, NEVER a thin pointed tail or nozzle. Same root center in all six frames. The substantial sinuous translucent body unfurls toward the right and converges into one powerful recognizable dragon head facing right, snout about x=860,y=224. Horns and whiskers fully contained with generous white margins. Body S curve, majestic and forceful, head more defined than the airy body. Palette ochre gold, warm gold, translucent pale gold, a few darker gold contours. Rich spatial depth but weightless energy, not a solid animal or a metal statue. Chinese ink-painting spirit expressed in golden drybrush gaps, soft dilute gold, varied density, airy broken edges. Holes are white BACKGROUND seen through the effect, never white painted highlights. All retained detail should be visibly yellow/ochre on white, no white or nearly-white solid glow core.
+        Six animation stages, as variations of the SAME anchored dragon silhouette, not six different designs: top-left initial gathering faint complete outline and broad root, top-right forming slightly stronger, middle-left release reaching definition, middle-right majestic peak strongest head/body, bottom-left weakening softly, bottom-right faint lingering form. Keep head position and silhouette length within 5 percent throughout, movement mostly density and small flowing internal changes. Do not detach the dragon from its broad root, keep its connecting golden qi continuous, root fixed.
+        No text of any language, labels, numbers, borders, grid lines, watermark, stamps, signatures; no hands, people, weapons, clothing, scenery, floor, paper grain, gray background, cast shadows, checkerboard, overexposed white highlights, thin tail root, central jet, solid metal or carved dragon, full hard scales, western wings, flames, electricity, neon, magic circles, blood, cropped horns or whiskers.
+      rejected: 角须与笔势靠近格边，根部更像旋卷，未提供足够安全留白。
+      source_path: /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-afe57a7c-4a51-4a72-b22d-6725ed05b4d1.png
+      references: []
+      negative: No text of any language, labels, numbers, borders, grid lines, watermark, stamps, signatures; no hands, people, weapons, clothing, scenery, floor, paper grain, gray background,
+        cast shadows, checkerboard, overexposed white highlights, thin tail root, central jet, solid metal or carved dragon, full hard scales, western wings, flames, electricity, neon,
+        magic circles, blood, cropped horns or whiskers.
+      sha256: 453135116ec3d0472655fedf355be15a9d677c5d753dc5f8111f03762154d3e9
+      size_px:
+      - 1430
+      - 1100
+      bytes: 1890110
+      generated_file_birthtime_utc: '2026-09-30T08:26:45.398858+00:00'
+    - index: 2
+      kind: dragon
+      prompt: |-
+        Use case: precise-object-edit
+        The input is our own generated six-frame golden qi dragon sprite sheet, edit target only, not an approved style master. Preserve its golden Chinese dragon, watercolor/ink-inspired airy gold form, broad left root, six animation phases, two-column three-row order, rightward movement and no hand.
+        Make ONLY the following production corrections. Keep the canvas exactly the same size as input (1430 by 1100). Place six same-sized invisible crop areas of 699x344 at (0,0),(731,0),(0,378),(731,378),(0,756),(731,756). Within EACH cell fit the ENTIRE dragon including every stray stroke, horn and whisker strictly inside local rectangle x=64..633 and y=64..280. Leave at least 64 pixels of completely blank white on each side. Reduce only vertical extent as needed, keep powerful head. No marks anywhere in the white gaps or frame margins.
+        Keep the left root broad, like a vertically cut open curtain of palm force, local x=88 with center y=186 and width in y of about100px. The broad root center must align in ALL six frames. It must be a clear whole-palm veil, not a curl, thin tail, point or nozzle. Keep the head around local x=550,y=148 with maximum tip x=610; tiny internal changes between frames, same head design and length. Upper-left initial pale; upper-right growing; middle-left strong; middle-right peak; lower-left softer; lower-right faint lingering.
+        Replace every background pixel outside the dragon with perfectly uniform pure RGB(255,255,255) white. No near-white dithering, grey tint, paper texture, gradient or shadow. Within dragon use gold/ochre, not white paint or large near-white highlights; holes remain pure white background. Background is a technical chroma-key field, not paper.
+        Avoid: text, labels, numbers, grid lines, borders, signatures, watermark, hands, people, clothing, extra objects, scenery, paper grain, grey wash, checkerboard, shadows, white highlights, narrow root, closed tail curl, metallic statue, rigid solid scales, flames, neon, electricity, cropped details.
+      references:
+      - /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-afe57a7c-4a51-4a72-b22d-6725ed05b4d1.png
+      rejected: 编辑后左右边距仍偏紧，未按提示缩小到目标留白；改用重新生成候选。
+      source_path: /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-b5daffa1-86a3-4b7b-bb97-ce3e63f92908.png
+      negative: text, labels, numbers, grid lines, borders, signatures, watermark, hands, people, clothing, extra objects, scenery, paper grain, grey wash, checkerboard, shadows, white
+        highlights, narrow root, closed tail curl, metallic statue, rigid solid scales, flames, neon, electricity, cropped details.
+      sha256: e0c798a939a4bf8f221f704bcf79a189f5765172e64a4024dd0b0dff5f9bc053
+      size_px:
+      - 1430
+      - 1100
+      bytes: 1570615
+      generated_file_birthtime_utc: '2026-09-30T08:29:16.974908+00:00'
+    - index: 3
+      kind: dragon
+      prompt: |-
+        Use case: stylized-concept
+        Make a technical six-sprite animation contact sheet on a totally flat pure WHITE #FFFFFF background. Landscape 1430x1100, two columns by three rows, six golden Chinese qi dragons only. No hand, text or grid.
+        CRITICAL COMPOSITION: Lots of white space. Each entire dragon is SMALL within its own cell: only 70% of the cell width and 55% of the cell height. At least 80px white padding all around every sprite. The space between two neighboring dragon silhouettes must be at least160px. Do not enlarge to fill the cells. Six identical invisible cells, left to right top to bottom. No particles, wisps or splashes outside this small silhouette.
+        Within each cell a broad vertically OPEN left edge, like a 100px-high translucent gold curtain, is the fixed root of whole-palm force. It is not a thin tail, not a curled closed tail, not a nozzle. From this wide opening a continuous majestic golden S-curved airy dragon body flows RIGHT to a powerful, recognizable Chinese dragon head; keep small fine horns and whiskers within the padded area. The same design and viewpoint in all frames, same fixed broad root and head position. One dragon per cell, no legs necessary, no solid scales.
+        Golden ink-painting spirit: warm ochre-gold and pale gold, semi-transparent airy body, dry-brush gaps inside the silhouette, head slightly more defined. No opaque animal, no metallic statue. Understated internal detail, great force in the poised forward thrust. Retained highlights are gold, never white paint. Empty holes show the white field.
+        Six phases change density much more than shape: faint gathering, forming, release, peak, waning, lingering. Keep all six silhouettes the same size and identity. Broad root is clearly visible throughout.
+        Every pixel outside the six foreground silhouettes must be solid RGB255,255,255 white without any shading or texture. This is a cutout source, not a paper illustration.
+        Avoid text, numbers, labels, watermark, borders, divider lines, hands, arms, people, clothing, scenery, background gradients, paper texture, shadows, checkerboard, grey wash, white paint, thin root, closed tail spiral, random particles beyond silhouette, overlarge dragons, clipped details, metal, solid full-body scales, western wings, neon, flames, lightning or smoke.
+      selected: true
+      source_path: /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-0a9a0fe0-073c-4e64-86a4-d2ceb9e22b82.png
+      references: []
+      negative: text, numbers, labels, watermark, borders, divider lines, hands, arms, people, clothing, scenery, background gradients, paper texture, shadows, checkerboard, grey wash,
+        white paint, thin root, closed tail spiral, random particles beyond silhouette, overlarge dragons, clipped details, metal, solid full-body scales, western wings, neon, flames,
+        lightning or smoke.
+      sha256: 27e4c5cc2102cf8eb56986e130500e76582fb1bbd45ad0b9a40f43076f17485b
+      size_px:
+      - 1429
+      - 1100
+      bytes: 1248144
+      generated_file_birthtime_utc: '2026-09-30T08:31:31.948677+00:00'
+    limitations:
+    - 'Background is visually white but not pixel-exact #FFFFFF; strict white requirement remains open.'
+    - Generator did not preserve requested dimensions or cell coordinates; rects and anchors were measured on actual source.
+    - Only raw-source threshold statistics; no RGBA edge, dewhite, reconstruction or compositing tests have run.
+  - role: emitter
+    file: mv_xianglong18_kanglong/emitter/source_palm.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f16a-fdcf-73f2-84e7-87884d97e2e6/exec-ce2b6469-7def-4f51-9a8e-3e724081c57f.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    size: 1254x1254
+    bytes: 626765
+    generation_history:
+    - index: 1
+      selected: false
+      generated_source: /Users/bytedance/.codex/generated_images/01a0f16a-fdcf-73f2-84e7-87884d97e2e6/exec-c439469c-fae4-4174-90a8-f3d3f14720f5.png
+      size_px:
+      - 1254
+      - 1254
+      sha256: 775993a845b326c124f4bafd1422e26e76e0d3abe7fee44b9a769403c212bb69
+      bytes: 897681
+      rejection_reason: 左袖主体碰左边，掌面过于正对镜头；不作为交付原图。
+      prompt: "Use case: stylized-concept.\nAsset type: an isolated transparent RGBA emitter plate for a Chinese wuxia game, palm-strike source only.\nPrimary request: one anatomically\
+        \ convincing adult human hand and attached wrist with a short simple grey-brown woven hemp cloth sleeve in restrained Song-era Chinese dress. No visible person, face or weapon.\
+        \ The hand is a forceful open-palm strike pose. Exactly five distinct fingers: four upright gently bent fingers with natural joints, plus a clearly separate relaxed thumb. All\
+        \ fingertip silhouettes fully inside canvas. Show the whole palm heel, thenar and hypothenar pads, and all finger roots, with natural palm creases. Camera sees a three-quarter\
+        \ palm view; palm plane oblique to camera, its outward normal projects HORIZONTALLY TO THE RIGHT, not toward the camera. This is a pose demonstration, not a claim about historical\
+        \ handedness.\nComposition: square 1024 x 1024. Place only the hand/wrist/sleeve around the left-middle of canvas, fully isolated with at least 64 pixels transparent padding\
+        \ on all sides. Wrist joins naturally to palm and sleeve. Palm center approximately (560,520). Extended four fingers point generally upward; the palm surface itself pushes to\
+        \ the right. Entire active palm spans approximately y=410 to y=665, a wide emission source rather than a tiny palm-center nozzle. Leave right side transparent for future effect\
+        \ compositing. Do not draw the source or any anchor marks.\nStyle/medium: polished restrained wuxia game concept painting, readable realistic hand anatomy, warm natural skin,\
+        \ neutral diffuse lighting, subtle brush modeling but no bleeding edges. Sleeve is plain muted grey-brown hemp with soft folds, no elaborate patterns. Clean fine silhouette alpha\
+        \ edges. \nScene/backdrop: genuinely transparent background, native RGBA, no background artwork at all.\nAvoid: extra hands, extra or missing fingers, fused fingers, distorted\
+        \ joints, broken wrist, cropped fingertips, long nails, manicure, tattoo, jewellery, modern cuffs, Qing horse-hoof cuff, Japanese sleeves, armor, text, numbers, arrows, anchor\
+        \ markers, diagram lines, watermark, border, checkerboard painted into the image, white background, paper background, ground shadow, dragon, gold glow, energy, smoke, magic effects,\
+        \ sword or beam."
+      negative: extra hands, extra or missing fingers, fused fingers, distorted joints, broken wrist, cropped fingertips, long nails, manicure, tattoo, jewellery, modern cuffs, Qing
+        horse-hoof cuff, Japanese sleeves, armor, text, numbers, arrows, anchor markers, diagram lines, watermark, border, checkerboard painted into the image, white background, paper
+        background, ground shadow, dragon, gold glow, energy, smoke, magic effects, sword or beam
+    - index: 2
+      selected: true
+      prompt: |-
+        Use case: precise-object-edit.
+        Edit this emitter plate. Preserve exactly one adult five-finger hand, warm natural skin, grey-brown plain Song-style hemp sleeve, pose and native transparent background. Improve TWO compositing requirements:
+        1) Rotate the open palm plane about its upright axis about 35 degrees so its outward normal points diagonally toward the screen RIGHT while still showing palm lines and palm pads clearly. In screen projection the emission direction is horizontal right [1,0]. The hand should read as actively pushing to the right rather than presenting a flat palm directly at the viewer. Keep thumb plus four fingers individually readable and natural.
+        2) Reframe the complete isolated hand, wrist and SHORT sleeve smaller, centered with 100 pixels transparent clearance at every canvas edge on a square image. No part of sleeve, wrist, palm or finger may touch the canvas border. The cuff and sleeve end must both lie fully inside frame. Do not crop the sleeve on the left.
+        Keep the whole active palm wide and visible. No effect is drawn. No arrows or coordinate marks. This is only a pose demonstration, not a claim about original text handedness. Refine any coloured silhouette fringe into clean native-alpha edges; preserve skin and fabric colour.
+        Avoid: missing or extra fingers, fused fingers, abnormal joints, detached wrist, long nails, modern sleeve, weapon, dragon, gold glow, energy, smoke, magic, ground shadow, text, numbers, logo, border, checkerboard artwork, white or paper background.
+      negative: missing or extra fingers, fused fingers, abnormal joints, detached wrist, long nails, modern sleeve, weapon, dragon, gold glow, energy, smoke, magic, ground shadow, text,
+        numbers, logo, border, checkerboard artwork, white or paper background
+      referenced_image: candidate 1
+    limitations:
+    - 存在 alpha=1 的远处极低透明孤立噪点，以及边缘 alpha=1–2 的少量彩色像素；alpha>1 实体边界四周余量至少203px。保留工具原 alpha，本段不修像素。
+    - 真实掌势、左右手与原著关系（待考）；仅姿态示意，不声称精确手势书证或解剖母版。
+    - 尺寸未遵循请求的1024²，按真实1254²登记；第二段不得误写512²或1024²。
+    - 工具 view_image 返回 application/octet-stream MIME 会使直送 image() 的预览几乎全黑；把 data URL MIME 声明改成 image/png（未改PNG字节）即可正常查看。
+  files:
+  - mv_xianglong18_kanglong/composition.json
+  - mv_xianglong18_kanglong/composition.yaml
+  - mv_xianglong18_kanglong/demo.html
+  - mv_xianglong18_kanglong/effect/effect-set.yaml
+  - mv_xianglong18_kanglong/effect/frame_000.png
+  - mv_xianglong18_kanglong/effect/frame_001.png
+  - mv_xianglong18_kanglong/effect/frame_002.png
+  - mv_xianglong18_kanglong/effect/frame_003.png
+  - mv_xianglong18_kanglong/effect/frame_004.png
+  - mv_xianglong18_kanglong/effect/frame_005.png
+  - mv_xianglong18_kanglong/effect/source_sheet.png
+  - mv_xianglong18_kanglong/emitter/emitter-plate.yaml
+  - mv_xianglong18_kanglong/emitter/source_palm.png
+  - mv_xianglong18_kanglong/peak.png
+  notes: Three.js两段式候选；作者第3轮意见落实：素材逐字节不变，只将length_px从850改为1700、scale从[1,1]改为[1,2]，龙长宽各2倍，无双重放大。画幅3072×2048，预览768×512；gold_ink/lighter，源点[850,704]映射[1040,1180]，emitter_scale仍0.6、掌宽仍320×0.6=192px，龙根宽192×2=384px并保持同一掌面锚点；方向0°。节奏0.10/0.15/0.25/0.10s，mask开启、softness0.08，亮度[0.8,1,1,1,0.8]。HTML2000345bytes，全部原料按原尺寸无损WebP内嵌，只有指定Three.js
+    importmap外链；Python仅静态peak/打包。新目录仅14文件，来源编辑链并入sources.generation_history。全6帧及凝聚/消散端点最小安全边距330.97px；已view_image复看峰值，龙相对手明显放大，宽根接掌、未见明显白框/断口或出框。旧白底253–255偏差与手部alpha噪点保留；金龙、光色、姿态均原创扩展，掌面亮度与手势待作者审定。未在浏览器实跑，CDN及其传递依赖待协调者核实。
+  file_integrity:
+  - file: mv_xianglong18_kanglong/composition.json
+    bytes: 3922
+    sha256: 2fa5e177524289db91dbe2178453e41505b9272cbfd80fc67cb28a6ddee567a2
+  - file: mv_xianglong18_kanglong/composition.yaml
+    bytes: 780
+    sha256: 2e541943f26b755ab232736bf3ca739d77c3f2dc4f3718b2194ac12e0d5ad304
+  - file: mv_xianglong18_kanglong/demo.html
+    bytes: 2000345
+    sha256: 010faf1ad6b3535b30e51f24f12db563442f7e166e9c08f2326d663d322e3b8e
+  - file: mv_xianglong18_kanglong/effect/effect-set.yaml
+    bytes: 1138
+    sha256: 94e75ad71a6cc3895d05072b522571c4e2713de12ce9a37edcda52f614f6b9d2
+  - file: mv_xianglong18_kanglong/effect/frame_000.png
+    bytes: 139950
+    sha256: 30cb4da14d5e8749749d4fb35e386c3e13f26a6b4b49baabf914f288f12d85a6
+  - file: mv_xianglong18_kanglong/effect/frame_001.png
+    bytes: 152688
+    sha256: bcbf55a575ca0ac128d182b4d340dfc05d2ed46a4be4a8f7ec8a13947da79df0
+  - file: mv_xianglong18_kanglong/effect/frame_002.png
+    bytes: 160855
+    sha256: 1345ecb21f02f43ae9f1bf5e7f7de9177b8c1aa2e485c3e0773ca3527214cf7f
+  - file: mv_xianglong18_kanglong/effect/frame_003.png
+    bytes: 169198
+    sha256: 058b288aa646bc6004d4b9a5c7518d2b1b02a39d582240781a810c69d5861aa8
+  - file: mv_xianglong18_kanglong/effect/frame_004.png
+    bytes: 150224
+    sha256: f15ca71e29373f02e9e0a18cfe85d31e1a7481ca83a05b57efd6419e65c0fc99
+  - file: mv_xianglong18_kanglong/effect/frame_005.png
+    bytes: 131737
+    sha256: 0a364c0b4b8482b163093bdcedfd10a2e1e1e1873db7b82c93b57a3ef1aced4e
+  - file: mv_xianglong18_kanglong/effect/source_sheet.png
+    bytes: 1248144
+    sha256: 27e4c5cc2102cf8eb56986e130500e76582fb1bbd45ad0b9a40f43076f17485b
+  - file: mv_xianglong18_kanglong/emitter/emitter-plate.yaml
+    bytes: 195
+    sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  - file: mv_xianglong18_kanglong/emitter/source_palm.png
+    bytes: 626765
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+  - file: mv_xianglong18_kanglong/peak.png
+    bytes: 804526
+    sha256: df7fb9dc38747551114bfb6bc21e56f6fc1a6a5bf80eab6a1f085c66f117546e
+  derivation:
+    renderer: tools/vfx/web/vfx_player.js
+    timeline: tools/vfx/web/timeline.js
+    packager: tools/vfx/build_demo.py
+    static_preview: tools/vfx/compose.py
+    three_version: 0.186.1
+    image_scale: 1.0
+    image_encoding: lossless-webp
+    browser_verified: false
+- id: vfx_sk_liumai__ch01_base01
+  file: sk_liumai/peak.png
+  category: vfx
+  style: default
+  subject: 六脉神剑；ch01_tianlong；1093–1094（游戏推定，待考），北宋同期大理国；食指姿态示意的单束连续线性气剑，近无色银灰主体、淡赤缘，全画面非水墨。不绑定具体剑式或左右手。
+  prompt: |-
+    【效果原图实际请求】
+    Use case: precise-object-edit
+    Edit target: our own six-phase qi-stream candidate. Keep its six-frame two-column three-row composition, white background, grey transparent air material and very pale reddish rim, no hand. Correct the shape from tapered blade to a THIN STRAIGHT SUSTAINED STREAM.
+    In each frame the stream must have PARALLEL straight upper and lower contours for 95 percent of its length; no spindle shape and no blade belly. Its width is only ONE THIRD of the current beam width. Left end is a short flat, open cross section (no round energy ball or swollen cloud); right end is very softly dissolved over the final 5 percent, NOT a sharp solid sword point. It looks like an uninterrupted straight shaft of finely compressed internal-force air, approximately 550px long and only 10px thick, visibly translucent and neutral grey with almost invisible dusty-red optical rim. No physical sword, no laser bloom.
+    Every frame is anchored at the left beginning and held continuously to the right, same position and length in all six cells, no disconnected projectile. Tiny subtle internal longitudinal flow and changing density are the ONLY animation changes. Six phases faint gathering, forming, release, strongest sustained, weakening, faint residual. Root about local x=100, midline about y=170; cell arrangement preserved. At least60px completely white around any visible matter in each cell.
+    Make the entire empty background exactly solid #FFFFFF RGB255,255,255, no grey tone or noise. Keep foreground visibly grey (not white) so it can be white-keyed later.
+    Avoid text, numbers, lines, borders, watermark, hands, people, sleeves, scenery, grid, paper, ink, watercolor, brushstrokes, smoke, particles, rings, sparks, isolated blade, sword point, spindle, ice, metal, hilt, colored glowing tube, neon laser, electricity, overexposure, pale grey background, checkerboard.
+
+    【发出方实际请求】
+    Use case: stylized-concept.
+    Asset type: isolated transparent RGBA finger emitter plate for a Chinese wuxia game.
+    Primary request: exactly one anatomically convincing adult human hand with wrist and a short plain light grey-white cloth sleeve, simple historical Dali/Song-era Chinese costume feeling without court decoration. The index finger is extended STRAIGHT HORIZONTALLY TO THE RIGHT, its tip is the only intended future energy source. The middle, ring and little fingers are naturally curled into the lower palm, their three distinct knuckle/finger forms readable. The thumb rests naturally across the upper side of those curled fingers. There must be exactly five digits total: index, middle, ring, little, thumb; no duplicate fingers. Short natural nails. Three-quarter side view shows enough of the palm and curled fingers to understand anatomy. This is a pose demonstration, not a claim about original-text handedness.
+    Composition: square 1024 x 1024. Entire hand, attached wrist and short sleeve fully inside canvas, at least 100 px transparent margin everywhere. Sleeve at lower-left, natural wrist leads into hand in center, fingertip near (800,480), pointing precisely horizontal right [1,0]. Do not label coordinates or paint the source. Index-tip cross-section about 28 px. The sleeve's far end is fully visible inside canvas, not cut at border.
+    Style/medium: polished realistic wuxia game concept painting, natural warm skin tones, physically readable anatomical joints, clean non-ink digital paint and subtle textile texture. All skin, sleeve and contours use controlled realistic shading: absolutely no Chinese ink brushwork, paper texture, watery bleed or calligraphic marks. Neutral diffuse soft illumination, no glow.
+    Scene/backdrop: genuine transparent background, native RGBA with clean fine alpha edges. No painted backdrop or cast ground shadow.
+    Avoid: second hand, six fingers, missing digits, fused digits, dislocated joints, broken or detached wrist, crooked beam direction, claw fingers, long nail, crystal nail, weapon, energy, beam, detached qi blade, halo, gold glow, smoke, watercolor, ink wash, paper, modern clothing, armor, jewellery, court decoration, Qing horse-hoof cuffs, Japanese kimono, text, arrows, anchor marks, watermark, logo, border, checkerboard artwork, white background, grey background, cropped sleeve or fingers.
+  negative: |-
+    【效果】
+    text, numbers, lines, borders, watermark, hands, people, sleeves, scenery, grid, paper, ink, watercolor, brushstrokes, smoke, particles, rings, sparks, isolated blade, sword point, spindle, ice, metal, hilt, colored glowing tube, neon laser, electricity, overexposure, pale grey background, checkerboard.
+
+    【发出方】
+    second hand, six fingers, missing digits, fused digits, dislocated joints, broken or detached wrist, crooked beam direction, claw fingers, long nail, crystal nail, weapon, energy, beam, detached qi blade, halo, gold glow, smoke, watercolor, ink wash, paper, modern clothing, armor, jewellery, court decoration, Qing horse-hoof cuffs, Japanese kimono, text, arrows, anchor marks, watermark, logo, border, checkerboard artwork, white background, grey background, cropped sleeve or fingers
+  references:
+  - /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-a359c2a6-b914-4156-b34e-9a7b13793cf0.png
+  tool: built-in image_gen（原图）+ tools/vfx（离线抠图、合成、动效）
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-09-30T09:32:53.584520+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-0813a41d-e1c7-49a7-84d8-0e30343cd795.png
+  size: 1536x1024
+  sha256: 0f6af6ccbd6e7bffa5ca38eb85cdad033509efd312ef5bc2c86cc53d804e2020
+  status: candidate
+  code: sk_liumai/demo.html
+  pipeline: two-part
+  sources:
+  - role: effect
+    file: sk_liumai/effect/source_sheet.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-0813a41d-e1c7-49a7-84d8-0e30343cd795.png
+    sha256: 4f467a11a77fcb74a13655eebc5546ce6f9d348b01f0457c49523d989e672267
+    size: 1430x1100
+    bytes: 722711
+    generation_history:
+    - index: 1
+      kind: beam
+      prompt: |-
+        Use case: stylized-concept
+        Asset type: six-frame sprite sheet of ONE continuous linear condensed internal-energy qi sword for an original wuxia game; effect only, no hand.
+        Output landscape sheet, 1430x1100 pixels, exactly TWO columns and THREE rows. Each invisible frame area 699x344. Frame top-lefts: (0,0),(731,0),(0,378),(731,378),(0,756),(731,756). Blank 32px central vertical gutter and 34px horizontal gutters. No drawn grid, no frame labels.
+        The background is perfectly flat mathematically pure white #FFFFFF, RGB 255,255,255. No texture, noise, paper, shadow or gradients in background. Keep a pure-white safety border at least 48 pixels inside all four sides of every cell.
+        In every cell show the SAME slender straight horizontal continuous qi stream, extending from local point (88,172) to (603,172), its source is a small broad-enough 16px high cross-section, not a pointed tail. Direction to the RIGHT. Six identical placements, root never moves, the stream remains UNBROKEN all the way from the left source to the right tip in every frame. Do NOT draw a hand or finger. NO isolated blades or projectiles. No gap at root, no long nail, no physical sword. This is compressed air-like internal force, elegant, straight, airy, held continuously rather than flying as a detached missile. Keep axial line horizontal and straight, a lightly tapering far tip, a narrow almost colorless translucent body with subtly denser silver-grey internal refraction and an extremely restrained pale dusty-RED rim. Only red-tinted rims for this single demonstrator, no rainbow and no strong hue. The grey core must be visible on white, such as RGB around 205,210,211 through the peak with soft translucent edges; never paint solid pure-white or near-white core. Color is deliberately restrained for subsequent white-key extraction. Very subtle longitudinal striation, no loops, no rings, no particles, no smoky wisps, no curving wings. Width approximately 14..20px, at most 32px in peak; far tip remains around (603,172). No changes to length or location, change density only.
+        Frame order left-to-right, top-to-bottom: 1 initial gathering faint but fully connected, 2 forming slightly clearer, 3 released stronger, 4 sustained peak, 5 attenuating, 6 residual faint but still connected. The same continuous stream remains visible at each stage, no explosive bolting forward, no brushstroke drawing-on, no ink diffusion. Clear refined semi-realistic fantasy air refraction, zero ink-painting texture.
+        Avoid: text, numbers, labels, borders, grid lines, watermarks, stamps, signatures, hands, people, clothing, weapons, scenery, grey background, checkerboard, paper grain, ambient background shading; pure-white painted core or overexposure; separated flying blade, ice shard, glass sword, sword hilt, nail, metal blade, colored laser rod, neon, sparks, rings, balls, flames, electricity, magical circles, watercolor, ink brush, wet ink bleed, drybrush, smoke cloud, curved blade, six simultaneous beams.
+      rejected: 主体较宽、前端收尖成刃腹，偏气刃而非线性持续气流。
+      source_path: /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-a359c2a6-b914-4156-b34e-9a7b13793cf0.png
+      references: []
+      negative: text, numbers, labels, borders, grid lines, watermarks, stamps, signatures, hands, people, clothing, weapons, scenery, grey background, checkerboard, paper grain, ambient
+        background shading; pure-white painted core or overexposure; separated flying blade, ice shard, glass sword, sword hilt, nail, metal blade, colored laser rod, neon, sparks, rings,
+        balls, flames, electricity, magical circles, watercolor, ink brush, wet ink bleed, drybrush, smoke cloud, curved blade, six simultaneous beams.
+      sha256: 1fc75ba3ba800a4f1550592ba9bdb6bfef8c00291b9dcfc7a3ce1a5a47686b6d
+      size_px:
+      - 1429
+      - 1100
+      bytes: 778265
+      generated_file_birthtime_utc: '2026-09-30T08:28:08.602580+00:00'
+    - index: 2
+      kind: beam
+      prompt: |-
+        Use case: precise-object-edit
+        Edit target: our own six-phase qi-stream candidate. Keep its six-frame two-column three-row composition, white background, grey transparent air material and very pale reddish rim, no hand. Correct the shape from tapered blade to a THIN STRAIGHT SUSTAINED STREAM.
+        In each frame the stream must have PARALLEL straight upper and lower contours for 95 percent of its length; no spindle shape and no blade belly. Its width is only ONE THIRD of the current beam width. Left end is a short flat, open cross section (no round energy ball or swollen cloud); right end is very softly dissolved over the final 5 percent, NOT a sharp solid sword point. It looks like an uninterrupted straight shaft of finely compressed internal-force air, approximately 550px long and only 10px thick, visibly translucent and neutral grey with almost invisible dusty-red optical rim. No physical sword, no laser bloom.
+        Every frame is anchored at the left beginning and held continuously to the right, same position and length in all six cells, no disconnected projectile. Tiny subtle internal longitudinal flow and changing density are the ONLY animation changes. Six phases faint gathering, forming, release, strongest sustained, weakening, faint residual. Root about local x=100, midline about y=170; cell arrangement preserved. At least60px completely white around any visible matter in each cell.
+        Make the entire empty background exactly solid #FFFFFF RGB255,255,255, no grey tone or noise. Keep foreground visibly grey (not white) so it can be white-keyed later.
+        Avoid text, numbers, lines, borders, watermark, hands, people, sleeves, scenery, grid, paper, ink, watercolor, brushstrokes, smoke, particles, rings, sparks, isolated blade, sword point, spindle, ice, metal, hilt, colored glowing tube, neon laser, electricity, overexposure, pale grey background, checkerboard.
+      references:
+      - /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-a359c2a6-b914-4156-b34e-9a7b13793cf0.png
+      selected: true
+      source_path: /Users/bytedance/.codex/generated_images/01a0f169-9200-7cb1-bdf4-f6e36f5ff7b5/exec-0813a41d-e1c7-49a7-84d8-0e30343cd795.png
+      negative: text, numbers, lines, borders, watermark, hands, people, sleeves, scenery, grid, paper, ink, watercolor, brushstrokes, smoke, particles, rings, sparks, isolated blade,
+        sword point, spindle, ice, metal, hilt, colored glowing tube, neon laser, electricity, overexposure, pale grey background, checkerboard.
+      sha256: 4f467a11a77fcb74a13655eebc5546ce6f9d348b01f0457c49523d989e672267
+      size_px:
+      - 1430
+      - 1100
+      bytes: 722711
+      generated_file_birthtime_utc: '2026-09-30T08:30:30.956717+00:00'
+    limitations:
+    - 'Background is visually white but not pixel-exact #FFFFFF; strict white requirement remains open.'
+    - Generator did not preserve requested dimensions or cell coordinates; rects and anchors were measured on actual source.
+    - Only raw-source threshold statistics; no RGBA edge, dewhite, reconstruction or compositing tests have run.
+  - role: emitter
+    file: sk_liumai/emitter/source_finger.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f16a-fdcf-73f2-84e7-87884d97e2e6/exec-359350b9-4d62-4894-a6b3-d45d958f72fc.png
+    sha256: 09b23637489db1342a22f252ef3b209b1afacf4e168c9648ff0e51cf1957cbd9
+    size: 1254x1254
+    bytes: 686558
+    generation_history:
+    - index: 1
+      selected: true
+      prompt: |-
+        Use case: stylized-concept.
+        Asset type: isolated transparent RGBA finger emitter plate for a Chinese wuxia game.
+        Primary request: exactly one anatomically convincing adult human hand with wrist and a short plain light grey-white cloth sleeve, simple historical Dali/Song-era Chinese costume feeling without court decoration. The index finger is extended STRAIGHT HORIZONTALLY TO THE RIGHT, its tip is the only intended future energy source. The middle, ring and little fingers are naturally curled into the lower palm, their three distinct knuckle/finger forms readable. The thumb rests naturally across the upper side of those curled fingers. There must be exactly five digits total: index, middle, ring, little, thumb; no duplicate fingers. Short natural nails. Three-quarter side view shows enough of the palm and curled fingers to understand anatomy. This is a pose demonstration, not a claim about original-text handedness.
+        Composition: square 1024 x 1024. Entire hand, attached wrist and short sleeve fully inside canvas, at least 100 px transparent margin everywhere. Sleeve at lower-left, natural wrist leads into hand in center, fingertip near (800,480), pointing precisely horizontal right [1,0]. Do not label coordinates or paint the source. Index-tip cross-section about 28 px. The sleeve's far end is fully visible inside canvas, not cut at border.
+        Style/medium: polished realistic wuxia game concept painting, natural warm skin tones, physically readable anatomical joints, clean non-ink digital paint and subtle textile texture. All skin, sleeve and contours use controlled realistic shading: absolutely no Chinese ink brushwork, paper texture, watery bleed or calligraphic marks. Neutral diffuse soft illumination, no glow.
+        Scene/backdrop: genuine transparent background, native RGBA with clean fine alpha edges. No painted backdrop or cast ground shadow.
+        Avoid: second hand, six fingers, missing digits, fused digits, dislocated joints, broken or detached wrist, crooked beam direction, claw fingers, long nail, crystal nail, weapon, energy, beam, detached qi blade, halo, gold glow, smoke, watercolor, ink wash, paper, modern clothing, armor, jewellery, court decoration, Qing horse-hoof cuffs, Japanese kimono, text, arrows, anchor marks, watermark, logo, border, checkerboard artwork, white background, grey background, cropped sleeve or fingers.
+      negative: second hand, six fingers, missing digits, fused digits, dislocated joints, broken or detached wrist, crooked beam direction, claw fingers, long nail, crystal nail, weapon,
+        energy, beam, detached qi blade, halo, gold glow, smoke, watercolor, ink wash, paper, modern clothing, armor, jewellery, court decoration, Qing horse-hoof cuffs, Japanese kimono,
+        text, arrows, anchor marks, watermark, logo, border, checkerboard artwork, white background, grey background, cropped sleeve or fingers
+    limitations:
+    - 存在 alpha=1 的远处極低透明孤立噪点（左边框也有）；alpha>1 主体边界四周余量至少52px。边缘有极低透明彩色像素，未程序处理。
+    - 提示要求100px边距未精确遵循，但主轮廓仍满足32px建议；后续缩放/构图以真实边界为准。
+    - 尺寸未遵循请求的1024²，按真实1254²登记。
+    - 原著左右手/指法关系（待考）；仅一指线性束发出方模板，不宣称完成六式或六束并发。
+    - 工具 view_image 返回 application/octet-stream MIME 导致预览几乎全黑；将 data URL MIME 声明为 image/png（不改字节）后已正常检查。
+  files:
+  - sk_liumai/composition.json
+  - sk_liumai/composition.yaml
+  - sk_liumai/demo.html
+  - sk_liumai/effect/effect-set.yaml
+  - sk_liumai/effect/frame_000.png
+  - sk_liumai/effect/frame_001.png
+  - sk_liumai/effect/frame_002.png
+  - sk_liumai/effect/frame_003.png
+  - sk_liumai/effect/frame_004.png
+  - sk_liumai/effect/frame_005.png
+  - sk_liumai/effect/source_sheet.png
+  - sk_liumai/emitter/emitter-plate.yaml
+  - sk_liumai/emitter/source_finger.png
+  - sk_liumai/peak.png
+  notes: Three.js两段式单束候选；保留VFX-plates原图与6张RGBA帧，本轮未生图或重抠。qi_sword/screen，指尖[1178,468]映射[600,500]，46px根对应43×0.4=17.2px；长度820px、方向0°，scale_from1/drift0。节奏0.10/0.10/0.30/0.10s；亮度[0.9,1.65,2,1.8,0.9]，mask开启、softness0.045。HTML917539bytes，原料按原尺寸无损WebP内嵌；新目录14文件、来源历史并入sources.generation_history。峰值指尖相接，无明显白框/主束断口；原料依然偏细，内力凝缩的动态观感和是否重出待作者审批。旧白底253–255偏差、第2帧最淡尾1px断列及手部alpha噪点保留。单束不绑定具体剑式/左右手，不称原著固定颜色或六路齐发。未在浏览器实跑，CDN及传递依赖待协调者核实。
+  file_integrity:
+  - file: sk_liumai/composition.json
+    bytes: 3868
+    sha256: 69e8dece18a509fd1b0a0f28c76b2b488698be85a34cefff72e01c12b062084c
+  - file: sk_liumai/composition.yaml
+    bytes: 750
+    sha256: 289db7986c7ef536175f5fced6f0ad72fbcbab7266aee379be57746e50a4a83e
+  - file: sk_liumai/demo.html
+    bytes: 917539
+    sha256: 9356feded2523e2700498d11d584ffc4741f0dd8add9eefe8dbc452e9875c2b8
+  - file: sk_liumai/effect/effect-set.yaml
+    bytes: 1106
+    sha256: 60a8964cbafb4492b60d55d6fa59801dcd481076e42ab7eb25edaade4e4504f0
+  - file: sk_liumai/effect/frame_000.png
+    bytes: 33455
+    sha256: 39428f13687a0af07d09d61fe8bf547d44ba07f52df6326c7bca5e31ff0f7191
+  - file: sk_liumai/effect/frame_001.png
+    bytes: 36028
+    sha256: 43b6c13be825a5fcc40194dd8ebfcef0794c4acc1aec7feebcfef28ce211da32
+  - file: sk_liumai/effect/frame_002.png
+    bytes: 35732
+    sha256: d04277261961fbe3954c9d52c86247dc0ec77aa803b33b35c39286a7b0af67b3
+  - file: sk_liumai/effect/frame_003.png
+    bytes: 36628
+    sha256: b1f27a9b96f0ef0c2ade88d7bf0710948f9a1c0a159efd484664ff65f93513c8
+  - file: sk_liumai/effect/frame_004.png
+    bytes: 34676
+    sha256: e9f37dd4165ce18cda414f7d10db917ed3beb8a3259157f62414407a5aef21c7
+  - file: sk_liumai/effect/frame_005.png
+    bytes: 33807
+    sha256: fccb71f8af0056c6683e07769ffb218f7c77c241435b7f3f07f0966b4cd025da
+  - file: sk_liumai/effect/source_sheet.png
+    bytes: 722711
+    sha256: 4f467a11a77fcb74a13655eebc5546ce6f9d348b01f0457c49523d989e672267
+  - file: sk_liumai/emitter/emitter-plate.yaml
+    bytes: 199
+    sha256: 349e5c6edadc0e7b86fcf97dacd8d3f7054c20c0f1f8d59c4d3490646a32178b
+  - file: sk_liumai/emitter/source_finger.png
+    bytes: 686558
+    sha256: 09b23637489db1342a22f252ef3b209b1afacf4e168c9648ff0e51cf1957cbd9
+  - file: sk_liumai/peak.png
+    bytes: 147080
+    sha256: 0f6af6ccbd6e7bffa5ca38eb85cdad033509efd312ef5bc2c86cc53d804e2020
+  derivation:
+    renderer: tools/vfx/web/vfx_player.js
+    timeline: tools/vfx/web/timeline.js
+    packager: tools/vfx/build_demo.py
+    static_preview: tools/vfx/compose.py
+    three_version: 0.186.1
+    image_scale: 1.0
+    image_encoding: lossless-webp
+    browser_verified: false

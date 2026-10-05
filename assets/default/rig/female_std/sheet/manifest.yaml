@@ -1,0 +1,28 @@
+- id: female_std__sheet_L
+  file: sheet_L.png
+  category: rig/sheet
+  style: default
+  subject: 女性标准体（female_std；原创扩展）A 字三视图 · 面向左
+  prompt: |-
+    The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. Create ONE new 1536x1024 landscape CHARACTER TURNAROUND MODEL SHEET for a 2D cut-out puppet rig. No input reference images. Refined realistic hand-painted Chinese historical illustration.
+    CRITICAL SILHOUETTE: exactly THREE full-body figures, each with TWO separate arms, TWO empty hands, TWO distinct trouser legs and TWO feet. The pale background must visibly pass between each arm and the torso AND between both legs. The CENTER figure must NOT have fused legs or a hand lying over the tunic. Keep ALL limbs separated for cutting.
+    CENTER PROFILE POSE: strict left-facing 90-degree profile, one eye, narrow side-on torso and hips. BOTH STRAIGHT arms form a low A silhouette in the image plane: near arm slopes DOWN-BACK 25 degrees from vertical, far arm slopes DOWN-FORWARD 25 degrees from vertical; elbows straight, palms inward, both hands outside the torso. Leave two obvious triangular background openings beneath armpits. BOTH STRAIGHT legs separate into a small A: near foot in front of the pelvis and far foot behind it, feet about 130 pixels apart on the same baseline, with a continuous 30-50 pixel wide strip of background between trouser legs from above knees down to the shoes. Upright standing body, no walking stride, no bent knees. Keep body truly side-on despite this small fore-and-aft separation; shoulders and hips remain narrow. This is a technical rig reference A-pose, not a natural relaxed profile with superimposed limbs.
+    SUBJECT: An anonymous ordinary Chinese adult woman around 36 years old, 1.62 m standard height, balanced average build, practical adult proportions. Mature gently rectangular oval face, modest small eyes, natural unpainted lips, calm neutral expression, no makeup, no heroic glamour. Black hair neatly gathered into a modest low coiled bun secured with one undecorated dark wooden hairpin; no long loose locks, no ornate hair ornament. A new generic adult female identity, not any named character.
+    COSTUME: plain brown #6B5141 crossed-collar RIGHT-LAPPED narrow-sleeved short tunic; wearer's LEFT panel goes OVER the right and fastens on the wearer's RIGHT. Tunic hem ends at UPPER THIGH, below hips but well above knees, so both trouser thighs can be seen separately. Blue-grey #394C53 small flat cuffs, plain waist cloth with concealed fastening and NO tails, and blue-grey tapered ankle-cuffed trousers. Plain dark brown #332B27 cloth shoes, natural warm #E9CFB4 skin, near-black #211C1A hair. No leg wraps, embroidery, red cords, long robe or skirt. No jewelry or accessory except the specified plain hair fastener. Same simple outfit and same face in every view.
+    LAYOUT left to right: (1) FRONT THREE-QUARTER, face and chest visible, facing lower-left; anatomical LEFT shoulder/arm/leg near the camera on the figure's screen-right. (2) TRUE LEFT SIDE PROFILE, facing the left canvas edge, anatomical LEFT side visible. (3) BACK THREE-QUARTER, back and back of head visible, facing away upper-left; anatomical LEFT side nearest on the figure's screen-left. All three face LEFT. Never mirror a view.
+    POSE identical in all three: neutral A-pose, straight arms held 20-30 degrees away from the body, palms toward thighs, fingers relaxed, hands EMPTY; straight legs shoulder-width apart, head level, soles on one ground line. Keep obvious background wedges beneath both armpits and between both legs. For the center profile apply the specific projected limb separation above. Exactly three full-body figures of the same person, matching height and scale; hair tops aligned at y=85, lowest soles aligned at y=939. Adult realistic 7.5-head proportions, no childlike face, no teenage or chibi body.
+    STYLE: refined realistic hand-painted illustration, visible subtle brushwork and cloth grain, crisp dark silhouette outline, muted palette, soft diffuse upper-left light. Hand-painted illustration texture, not a CG render: no overly smooth skin, no perfectly symmetrical features, no plastic highlights, no over-sharpened hair strands; keep natural brushwork and slight imperfections.
+    手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+    BACKGROUND: completely flat uniform solid #E6E1D8. No ground, contact shadow, texture, wash, gradient, frame, or vignette. Orthographic eye-level views. At least 6 percent empty margin around and between figures. Canvas 1536x1024. No text, labels, arrows, grids, swatches, inset views, props, weapons, transparency or checkerboard.
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: '2026-10-03T13:47:59-07:00'
+  size: 1536x1024
+  sha256: 83671d48caf156868d661bce95834107b3191f55dd329e0ca059bd4c00a12548
+  references: []
+  status: candidate
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w19/out/female_std_sheet_L_r2.png
+  source_size: 1536x1024
+  notes: front34 | side | back34；三栏头与躯干均面向画面左，未镜像，近侧为解剖学 L；A 字站姿，侧视以前后分开四肢保证背景空隙。首出 1 次、重出 1 次，选 r2。BiRefNet alpha≥24 源身高 [873, 873, 867] px，最大差 0.6873%；归一后 415 px、脚底边界
+    y=460。首版曾上传版式/画风参考，但因侧肢遮挡弃用；入库版纯文字出图，未上传任何参考图或人物立绘。原始 PNG 未裁未缩。三人完整、空手、成年；前视可见右衽，侧背保持衣装连续性；无文字/网格/色板/地面阴影。与主角立绘并排目检：脸、衣装可区分，写实手绘画风相符。侧视大腿上段仍有投影遮挡，腿间开口主要在膝部以下；切件需结合
+    front34/back34 人工复核髋、膝并补被遮区域。量测见 qa.yaml；仅参考图，不代表部件或动画已验收。

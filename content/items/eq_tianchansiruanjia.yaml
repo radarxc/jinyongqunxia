@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_tianchansiruanjia
+name: 天蚕丝软甲
+kind: armor
+sub: innerArmor
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tianchansiruanjia
+text:
+  desc: 外观：珠灰天蚕丝密织短衣，银丝暗纹、柔软可卷。 待运行时投影：poisonResPp=6; weaponZ4=7%。
+  lore: 天蚕丝软甲以珠灰密织丝和银线暗纹制成，柔软可卷，贴身后兼顾兵刃与毒物防护。传闻原料只在极寒蚕室抽丝，知其织法者从不整卷出售。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 50
+      antiPoison: 6

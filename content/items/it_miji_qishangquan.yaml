@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_qishangquan
+name: 七伤拳谱古抄本
+kind: manual
+sub: copy
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·谢逊夺得《七伤拳谱》古抄本
+price: auto
+flags: []
+assets:
+  icon: item/miji_qishangquan
+text:
+  desc: 外观：元代土黄纸包背厚册，黑麻护脊。
+  lore: 《倚天屠龙记》中谢逊夺得《七伤拳谱》古抄本。谱中拳理须与内息根基一并研读，不可见刚猛处便急催劲力；包背与校改墨痕为 （原创扩展装帧），江湖人忌惮的正是练法反伤之险。
+extension:
+  type: manual
+  value:
+    skill: sk_qishangquan
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_qishangquan
+      readBre: 55
+      maxLayer: 8
+      cultivation: 2800

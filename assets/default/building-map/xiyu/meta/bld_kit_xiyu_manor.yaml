@@ -1,0 +1,89 @@
+id: bld_kit_xiyu_manor
+file: bld_kit_xiyu_manor.png
+category: building-map
+style: default
+subject: 西域回部城镇·葡萄架大院（原创扩展；各年代细部待考）
+prompt: 'Finish this exact 3D blockout as an ancient Xinjiang wealthy merchant manor. Keep bottom corners EXACTLY at left(168,560),front(830,891),right(1368,622). Do not zoom,recenter,change
+  camera,elongate sides or modify ground silhouette. Both ground axes slopes±0.5,16 units front width by13 units side depth. Add realistic warm tan adobe and brick texture, flat-roof
+  side rooms, one two-story rear main house with carved timber balcony and lattice doors; carved entrance gate on left-facing front wall, a small grape pergola and small tree inside.
+  Detailed realistic historical strategy-game art with fine wood grain and plaster chips. Upper-left lighting, tiny lower-right contact shadow. Fully opaque architecture and genuine
+  transparent RGBA background. No halo,scene,writing,people,modern items or raised base. Geometry precision is primary: keep bottom corners and parallel edges matching blockout. Right
+  ground edge must rise ONLY one pixel per two pixels right.'
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references:
+- {file: sources/bld_kit_xiyu_manor_candidate1.png, sha256: 89609852354c1db68c3ad8f45be511900417b5c98795bd1e77501dd6c84e758a, role: 第二候选编辑目标}
+- {file: sources/bld_kit_xiyu_stable.png, sha256: 623dc97485979aa860167f3e9e88d89a73d1649779f667e6e468ecbb5e098855, role: 第二候选相机参照，不复制马厩主体}
+- {file: sources/bld_kit_xiyu_manor_round2_geometry.png, sha256: 2d80bfcda92cd0c2a88780c68b4fdfc710fd1ea3c8ded981e7d026177f527285, role: 第2轮精确占地灰盒生成参照；不作为成品}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T23:07:42.016439+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-7172931c-e440-4b82-8873-62e1b163746c.png
+size: 1216x832
+sha256: 53ee2b3f3165cbf1b43c92d7cbdc518db4b1fe648f3c8edf9b29c6a6054976b5
+status: candidate
+notes: 第2轮按登记占地重出；源图及成品逐张view_image、灰底alpha检查。材质与地域功能保持；仅裁切、等比缩放、透明扩边。当前测量见geometry_qa。当前底角测量通过，仍需总装实测。
+building:
+  type: bld_kit_xiyu_manor
+  footprint: &id001 [16, 13]
+  anchor: [616.625, 467.233]
+  era: xiyu
+footprint_m: *id001
+footprint_basis: design/22 §3.3 manor 16×13
+entrance: {edge: S, offset_cells: 7}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [928, 464]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available: [0]
+allowRotation: false
+metadata: meta/bld_kit_xiyu_manor.yaml
+candidate_count: 2
+processing:
+  source_archive: sources/bld_kit_xiyu_manor_round2_candidate2.png
+  source_sha256: 34d80a8a98e8f49806365b4888609a4e6c41e340578151ad18394fcf02443794
+  source_size: [1536, 1024]
+  crop_box: [0, 9, 1520, 1024]
+  uniform_scale_requested: 0.7502021018593371
+  resized_size: [1140, 761]
+  rounded_effective_scale: [0.75, 0.7497536945812808]
+  paste_offset: [38, 35]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [153, 559]
+    front: [844, 893]
+    right: [1390, 612]
+  source_anchor_px: [771.5, 585.5]
+  source_axis_slopes: [0.4833574529667149, -0.5146520146520146]
+  axis_tolerance: 0.03
+  axis_pass: true
+  expected_width_depth_ratio: 1.2307692307692308
+  source_width_depth_ratio: 1.2655677655677655
+  ratio_relative_error: 0.028273809523809312
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 灰底view_image人工底角定位并用源alpha>200边界核对，约±4px；后角遮挡，非3D实测
+  footprint_is_logical: true
+  release_note: 第2轮重出；当前底角测量通过；约±4px人工精度，仍须总装实测。
+pixel_qa:
+  mode: RGBA
+  size: [1216, 832]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 631238
+  alpha_partial_pixels: 379327
+  alpha_near_opaque_pixels: 370243
+  alpha_nonzero_bbox: [38, 35, 1178, 796]
+  transparent_margins_px: [38, 35, 38, 36]
+  border_alpha_max: 0
+source_record: sources/bld_kit_xiyu_manor_round2_candidate2.json
+selected_candidate: 2
+selection_note: 本轮最多两候选择一；历史源图及调用记录保留，未做透视或非等比修正。
+visual_qa: {checked_with: view_image original and normalized final plus neutral-gray alpha composite, no_pixel_repainting: true}
+style_review_references:
+- {file: assets/default/baseline/building-map/bld_kit_song_dali_biaoju.png, sha256: 928e60e61ff9c0d14f9691b22486b599f181e3b4f52b86182f9b0be3daa76161, role: 已view_image阅图的写实材质／细节密度参照；首候选未作图像输入}
+repair_round: 2
+repair_history: {round1_source_archive: sources/bld_kit_xiyu_manor.png, round1_source_record: sources/bld_kit_xiyu_manor_v2.json, round1_candidate_count: 2, round1_selected_candidate: 2,
+  round1_geometry_axis_pass: true, round1_geometry_ratio_pass: false}

@@ -1,0 +1,140 @@
+- id: por_npc_zhujue__ch00_m_base
+  file: por_npc_zhujue__ch00_m_base.png
+  category: character/male
+  style: default
+  subject: 主角（男）· 春秋末·越国（ch00_yuenv）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】主角（男）：本作原创的穿越者——一个落入《越女剑》春秋末越国（约公元前 482 年）的现代人。此刻刚入书，是在越地山野间观察陌生环境的普通行旅者。
+
+    【身份参考】随提示词上传的第 1 张图是主角的上一版立绘：沿用他的脸型、五官比例、发型和体格作为本人基础，但按下文修正——加上左眉断疤和朱红发绳，皮肤、神情更真实，去掉模特感和精修感。
+
+    【本人面容（十五个时代统一，不能变）】约二十八岁的现代中国男青年，原创面孔，不像任何演员或书中其他人物。偏长的方圆脸，颧骨适中，下颌转折清楚但不宽；平直的浓眉，左眉（他自己的左边，即画面右侧那条眉毛）的眉峰处有一道斜向的浅白色旧疤：疤痕处没有眉毛，把这条眉毛清楚地截成两段，头像放大时一眼可见（全书标志；参考图里没有这道疤，本张必须加上）；左眉尾下方一颗浅褐色小痣；深棕色中等大小的杏眼、内双，眼神专注、带一点好奇；鼻梁直、鼻头圆钝；上唇薄、下唇略厚，嘴角平和；暖中性略带日晒的肤色，唇上与下巴有极淡的胡茬，眼角有一两道细纹。中等偏高的个子，肩背匀称，四肢结实而不魁梧（约 7.5 头身）；乌黑的头发直而略硬。整体是踏实可靠、警觉而不凶的普通青年，不是偶像或模特。整体要好看、有魅力：五官端正耐看、气质干净可靠（但不是偶像或模特脸）。
+
+    【主角标志】发髻根部（清代则是辫梢）系一根褪色的朱红细绳，露出短短的绳头——每个时代都保留这根红绳。
+
+    【服饰】深浅竹青相间的简朴右衽短褐上衣（长及大腿中部，缝边完整），浅麻色长裤、裤脚收束，窄布带束腰，素面布履；黑发梳成简约椎髻，深褐布条束紧，髻根系朱红细绳；不戴后世冠帽。
+
+    【道具】空手，不带青铜剑、竹棒或任何兵器。
+
+    【姿态与神情】身体基本正面，双手空着自然垂在身侧，双脚稳稳站立；神情放松、专注而好奇，眉头舒展（不要皱眉、不要凶），像刚抬头打量这片陌生山野。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要明星脸或模特式五官；不要与书中男女主角撞脸；不要具名神兵、门派徽记、官服；不要年龄变小或变老。不要春秋以后的冠帽、宋明服饰或清代发辫。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: .agents/coord/portrait_redo/backup/por_npc_zhujue__ch00_m_base.png
+    sha256: 4f50660a793906eac9be21206e0cdcb487ac4219ba47218e5ec7a3cf50015b6a
+    use: 身份参考：本人旧图（覆盖前已留底）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 画风参考：项目同性别基线立绘，只取画风、光线、质感和背景处理，不取长相
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T02:54:35-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zhujue__ch00_m_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: f9091f2aa7dab1fb3cb46c033cadef590291c259425b306359bb1c0e61f12382
+  status: candidate
+  notes: 立绘重审重出（AR-30）；男主跨书锚点：保留现有原创脸型与体格，加左眉断疤与朱红发绳作全书辨识标志，去模特感，作为十四个时代的同一身份参考；codex 出图（1 号出图员，AR-31）；男主 ch00 锚点：取第 2 张；左眉断疤三次都没画出来（立绘尺度太小），待作者定是否后期补
+- id: por_npc_fanli__ch00_prime_base
+  file: por_npc_fanli__ch00_prime_base.png
+  category: character/male
+  style: default
+  subject: 范蠡（ch00_yuenv）
+  prompt: 'Use case: historical-scene. 为写实手绘武侠项目编辑一张定稿候选，不是古画复刻。
+
+    输入1现base锁定站姿、手势、道具、左右方向、构图、人物占高、背景底色和画风；衣服与体态按以下要求修改。输入2是此人公有领域画像（多人画只裁本人），输入3是画像脸部，取本人五官骨肉、须式、服饰可见资料，古像年龄须转译成指定小说阶段。不复制坐姿、画框、旁人、建筑、题字、印章、摄影日期或水印。
+
+    原尺寸1024×1536，不透明2:3单人完整全身PNG；头端正、眼线水平、平视，手脚和器物完整入画，保持base顶底留白。保持现base姿势与手中器物，不用历史像的姿勢替换。背景照base暖浅灰纸底和淡水墨。
+
+    写实数字手绘、自然皮肤和衣料经纬、柔和左上光、真实立体骨肉、细腻笔触和轻微自然不对称；不要古画平涂、木刻线条、摄影、油画厚涂、3D、动漫、磨皮网红脸或塑料皮肤。衣冠按角色朝代与身份，不混朝代。汉式交领右衽，不左右镜像；清制男子剃额留辫，蒙古人不用清辫。
+
+    体态从历史像的脸颊、颈、肩胸与可见腰腹转译；丰满者是自然脂肉重量和受力，束带随体围，不画细腰偶像或健美肌肉；清瘦者保持清瘦，不把宽袍、甲胄或半身像当肥胖证明，不机械加胖。按指定年龄，不能照搬画像晚年发福、白须、深皱和病老。
+
+    除福康安外男性一律不笑，嘴自然闭合，不扬嘴角、不露齿。无文字、印章、水印、边框、分格、第二个人、额外道具或发光特效。只输出一张全身候选。
+
+
+    人物：范蠡。本轮原著阶段：越营请阿青授剑；视觉年龄：约45岁，不是画像年龄。
+
+    脸已经作者按AR-32历史图片方向认可，输入1是同一个人，严格保留其脸型、五官比例、肤色、年龄、长黑须与嘴形，不重新设计脸。保持清瘦文士，按明人像的土黄深衣、黑领袖缘、素黑软巾垂带整理衣冠，落到春秋越国士大夫深衣，不套后世官帽或官补。竹简与现base手势不变。'
+  negative: ''
+  references:
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_fanli.r1__ref1.jpg
+    sha256: 82667e06624aa455800e1395cfea08ca541aa6718c354355ec7fb83a2163108b
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_fanli.r1__ref2.jpg
+    sha256: 61e4d7b578aba92226d8f1f6f4c9ac44b2f693034366f9de9255a64947132fa9
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_fanli.r1__ref3.jpg
+    sha256: befeaf1c8aec257fa4625597ec9d6af8f9501774e554b1af0b8e05a60469876e
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  - path: .agents/coord/_handoff/gem/codex_w32/staging/hist89_b2_npc_fanli.r1__ref4.jpg
+    sha256: 39a85488b22fee84da2cc36718c8d8b184262ac641e9f27852bd85356b467050
+    use: 生成候选时上传的历史画像 / 本人旧base / 项目画风参考
+  tool: codex exec · image_gen（AR-73 / AR-89 历史画像；AR-91 批准候选原样入库）
+  model: gpt-6.1-sol
+  created: '2026-10-04T09:14:43-07:00'
+  source_path: .agents/coord/_lines/hist-batch2/candidates/npc_fanli.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 12a0fe15df0301955d879945e5a6910064cd849f7088ad63ceea5d04db769084
+  status: candidate
+  notes: AR-32 补记修改 B（9 号出图员）：作者 10-02（AR-32 补记第 5 条）：范蠡参考历史图片；上一版只用文字。明人绘范蠡历史画像 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘；r1；AR-73 / AR-89 / AR-91 照历史画像，作者批准入库
+  effort: xhigh
+  historical_source_page: https://commons.wikimedia.org/wiki/File:Fanli.jpg
+  previous_revision:
+    png: .agents/coord/_lines/hist-ingest2/replaced/por_npc_fanli__ch00_prime_base.png
+    sha256: 218bbd73f067b555c7a643b5b649799636df13cc5e244976f0421674e2aa918d
+    entry: .agents/coord/_lines/hist-ingest2/replaced/por_npc_fanli__ch00_prime_base.entry.yaml
+- id: por_npc_zhujue__ch00_m_charmhigh_base
+  file: por_npc_zhujue__ch00_m_charmhigh_base.png
+  category: character/male
+  style: default
+  subject: 主角·男（npc_zhujue，ch00）高魅力形象：侠客劲装，与现有主角同一人而更英俊
+  prompt: '【任务】重画第 3 张这幅男主角「高魅力」全身立绘的头部：服装、姿势、构图不变，但整张脸按第 1–2 张这位男星来画——可以把第 3 张原来的脸完全换掉，不必保留它的五官。输出完整的 2:3 竖幅全身立绘。
+
+    【参考】第 1 张是这位男星的古装剧照（只看五官，胡须与表情不取），第 2 张是他年轻时的正面照（看清年轻时没有胡须的样子）；第 3 张是要重画头部的立绘底稿。
+
+    【新的脸（作者：要和这位男星类似）】二十五六岁的他：脸型、浓而平直的长眉、深邃的眼窝、双眼皮深而清楚的大眼睛、温柔里带一点慵懒忧郁的眼神、高挺笔直的鼻梁、嘴型与下颌轮廓，都要让熟悉他的人一眼认出神似；下巴刮净，不要唇髭和短须；神情从容、略带笑意。用项目的手绘画风画，不要照片质感或照片贴脸。
+
+    【保留】服装（玄青窄袖劲装、银灰回纹镶边、皮护腕、暗红腰封、玉佩）、长剑、身体姿势、全身构图与取景、背景、光线、画风全部照第 3 张；发式照第 3 张（高马尾髻、深色发带、髻根朱红短绳、额角碎发）。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【不要】不要照片质感、磨皮、网红脸、浓妆；不要幼态；不要任何文字、水印（照片海报上的字一概不要）；不要第二个人；不要水平镜像，衣襟保持右衽。'
+  negative: 不要照片质感、磨皮、网红脸、浓妆；不要幼态；不要任何文字、水印（照片海报上的字一概不要）；不要第二个人；不要水平镜像，衣襟保持右衽。
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261002/charm_m_jinchengwu/jinchengwu_2008_chibi_poster_tvsou.jpg
+    sha256: ea32adb49abe9e17454f1317ca77eef44cfa47716fc0ec18dea05d09093ca323
+    use: 脸部气质参考（作者许可下载的金城武《赤壁》角色海报，上传脸部特写；不入库）
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261002/charm_m_jinchengwu/jinchengwu_star_tvsou.jpg
+    sha256: 6fcfd7251cfd4cad9805e0a8f32bead8cc33410dffc8623364c2fec24932bf5d
+    use: 脸部气质参考（金城武年轻时正面照，上传脸部特写；不入库）
+  - path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhujue__ch00_m_charmhigh_base.g_b5.png
+    sha256: 528427212c1624c819f5e010c3b8447e0610aa7f3934699a910a802db7340c9c
+    use: 底稿：上一版高魅力立绘（服装、姿势、构图来源）
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png
+    sha256: f9091f2aa7dab1fb3cb46c033cadef590291c259425b306359bb1c0e61f12382
+    use: 身份锚点：现有男主角 base（第一版生成时上传）
+  tool: codex exec · image_gen（AR-45：以 g_b5 立绘为底稿重画头部，上传金城武照片脸部特写 2 张作气质参考，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T16:49:12-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_zhujue__ch00_m_charmhigh_base.q2.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 887a1a127f88a5cc99dc94e59cff510424ee0f19f1144d85a4cbb2f8a7ab2731
+  status: candidate
+  notes: AR-45 高魅力形象（男：侠客劲装）；作者 16:50「高魅力男女主角都选b」；脸按作者 16:02 许可下载的金城武照片往其气质靠（像但不照着画，照片只作参考不入库）；生成链：b5（以 ch00_m_base 为身份锚点、两张男性画风基线）→ g_b5（改脸美化）→ q2（照片参考重画头部，服装姿势不变）

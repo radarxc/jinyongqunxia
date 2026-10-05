@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_xuantiejian
+name: 玄铁重剑
+kind: weapon
+sub: sword
+grade: 11
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·独孤剑冢
+price: null
+flags: []
+assets:
+  icon: item/xuantiejian
+text:
+  desc: 外观：无锋厚重黑铁剑身，极简小护手。
+  lore: 《神雕侠侣》中玄铁重剑出自独孤剑冢，杨过得神雕引导而取用，修习重剑之道。此剑无锋而极重，贵在以浑厚劲力压制巧变；护手、尺度与数值为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 2
+    tags:
+    - heavy
+    matFamily: metal
+    divine: true
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 120
+      hardness: 100
+      qiAffinity: 100

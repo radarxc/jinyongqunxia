@@ -1,0 +1,23 @@
+{
+  "id": "tex_town_liao_jin_north_tree_cluster__pine_v01",
+  "subject": "辽金北方（11–13世纪）·油松意象（原创扩展；匿名年代意象，非文物复原）",
+  "key": "pine",
+  "footprint": [
+    1,
+    1
+  ],
+  "points": null,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82c-7100-a176-3ab9a2e08c7e/exec-48038e3a-e484-41df-ac80-d2ff916859dc.png",
+  "prompt": "Use case: historical-scene. ONE isolated botanical game map sprite for an anonymous Liao/Jin northern China town. Original landscape dressing; do not imply documented medieval street planting. Reference shows Song kit fine realistic leaf/bark density only; replace species. Orthographic view yaw45 elevation30, consistent2:1 dimetric town view, upright trunk. Natural matte materials and restrained olive green saturation, soft light from SCREEN UPPER LEFT, tiny short contact shade at roots toward lower-right. Entire complete crown, branches and root collar visible and centered with15percent transparent margins. TRUE RGBA transparent outside and through branch gaps. No soil island or pedestal, no planter, no people, text, numbers, labels, watermarks, painted checkerboard, decorative border, sky, horizon or landscape. Single tree not a sheet. A mature Chinese red pine / Chinese pine (Pinus tabuliformis, yousong), irregular tiered spreading canopy with distinct clusters of paired dark green needles, reddish grey fissured bark, erect central trunk, natural asymmetric branching, roughly6m high with4m spread. NO broad leaves, flowers, pinecone ornaments or bonsai pot.",
+  "references": [
+    "assets/default/baseline/tile/tex_town_song_dali_tree_cluster__broadleaf_v01.png"
+  ],
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "root": [
+    875,
+    987
+  ],
+  "visual_top": 25,
+  "visual_height_target": 320
+}

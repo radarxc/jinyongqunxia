@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_pingfengjian
+name: 平锋剑抄本
+kind: manual
+sub: copy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_pingfengjian
+text:
+  desc: 外观：明代月白线装薄册，四眼青线。
+  lore: 江湖剑客把平直朴素的攻守剑路清抄成月白薄册，剑法和载体属 （原创扩展）。研读须盯住剑锋中线与回护角度，不以花巧取胜；页口齐整便于对照图序，抄本最高八层。
+extension:
+  type: manual
+  value:
+    skill: sk_pingfengjian
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_pingfengjian
+      readWis: 25
+      maxLayer: 8
+      cultivation: 600

@@ -1,0 +1,5 @@
+HEAD def456  20:30:00
+Error: HOST_DISPOSED
+FAIL packages/render/render-host.test.ts
+ELIFECYCLE Command failed with exit code 1.
+PNPM_CHECK_RC=1  20:31:00

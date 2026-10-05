@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_kanzhenfa
+name: 看阵法抄本
+kind: manual
+sub: copy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_kanzhenfa
+text:
+  desc: 外观：元代赭灰包背图册，黑布护脊。
+  lore: 乡勇行商把辨旗位、找阵眼和识退路的方法抄成赭灰图册，阵法与载体属 （原创扩展）。研读须展开附图从全局比对方位，不能执着单个符号；页边重旧见其常用于路上研判，抄本止于八层。
+extension:
+  type: manual
+  value:
+    skill: sk_kanzhenfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_kanzhenfa
+      readWis: 30
+      maxLayer: 8
+      cultivation: 800

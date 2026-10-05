@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_xuantiepijian
+name: 玄铁披肩
+kind: armor
+sub: shoulder
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xuantiepijian
+text:
+  desc: 外观：乌铁双肩甲与短链相连，厚重圆弧、无夸张尖角 （原创扩展）。 待运行时投影：defOutK=0.025; tough=4。
+  lore: （原创扩展）名匠以乌沉名材锻出圆弧双肩甲，再用短链相连，厚重却不设尖角。佩者须沉肩卸力，方能以肩面承住重兵擦击；黑市常有人拿寻常乌铁冒充。
+extension:
+  type: equipment
+  value:
+    slot: shoulder
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6
+      block: 9

@@ -1,0 +1,93 @@
+{
+  "id": "bld_kit_song_dali_wharf",
+  "type": "bld_kit_song_dali_wharf",
+  "w": 8,
+  "h": 4,
+  "subject": "1093年大理国小河埠（原创建筑概化，细部待考）",
+  "prompt": "One isolated low stone RIVER QUAY, NO BUILDING. Historical Dali1093 game map sprite, transparent RGBA canvas1536x1024. Composition must follow these screen coordinates for its rectangular ground footprint: LEFT corner(200,480), FRONT corner(1000,880), RIGHT corner(1400,680), BACK corner(600,280). Thus SOUTH/front edge LEFT-to-FRONT is the LONG8m edge sloping down-right at0.5, while FRONT-to-RIGHT is the SHORT4m edge sloping up-right at-0.5. Do not rotate this rectangle. Orthographic yaw45 pitch30 and2:1 dimetric projection. The quay is a LOW thin platform of weathered gray stone slabs; on the LONG SOUTH EDGE from LEFT corner to FRONT corner place a short centered shallow stair toward screen lower-left, two simple short wooden mooring posts and one coiled hemp rope. The SHORT right-facing edge is plain masonry. Maximum height only0.4m; not a thick diorama slab or high wall. No water, boats, houses, tile roofs, sheds, walls, people or trees. Realistic ancient plain rough stone and timber, no writing or modern details. Screen UPPER LEFT sunlight, tiny contact shadow lower right. Object complete, no clipped edges, transparent padding at least80pixels on all sides, no background, no gradient or halo, no labels or watermark.",
+  "negative": "文字、现代元素、人物、房屋、瓦顶、水面、船只、景观背景、厚悬空底座、裁切",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-8c81a839-3b05-44c1-8ee8-c2920885850b.png",
+  "source_sha256": "1fa5d799253334194fd2a433fbf041ea47a48adff2bd126dd39038f9d09c2e2c",
+  "created": "2026-09-30T08:52:03.006314+00:00",
+  "visual_review": "已view_image(detail=original)：独立低石河埠、系缆桩与短阶，无遮景建筑与水面，无文字现代物。最后候选纠正长南岸边朝左下，画面左上光；底面短轴仍浅于0.5，需合成复核。形制原创概化，非史迹复原。",
+  "candidate_count": 4,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-3aea544e-1e3c-4078-b335-8bc2819e0d65.png",
+      "prompt": "undefinedOne small functional river landing asset only: narrow low gray stone embankment platform at back, short broad stone steps descending toward front south LOWER LEFT, small weathered wood landing edge and two simple mooring posts, one coiled natural rope. No water surface, no boat, no landscape, no buildings. Flat rectangular 8m east-west by4m north-south footprint, no tall plinth or floating cliff.",
+      "reason": "目检：没有背景，但低视角且地面两轴斜率不符合本批相机",
+      "source_sha256": "c7fce7d459cd16b5fcfaefd8249e7155ff4e3d49ba3a1eee979eb17d3bc172c9"
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-244945c1-48e7-4a3d-8587-8553efb6aad6.png",
+      "prompt": "Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation 30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT. Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10% empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop, ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people, no modern objects, no logos, no border, no watermark, no tourism-era decoration. One small functional river landing asset only: narrow low gray stone embankment platform at back, short broad stone steps descending toward front south LOWER LEFT, small weathered wood landing edge and two simple mooring posts, one coiled natural rope. No water surface, no boat, no landscape, no buildings. Flat rectangular 8m east-west by4m north-south footprint, no tall plinth or floating cliff.",
+      "reason": "目检：参考图约束过强，河埠带了整座屋；主体类型错误",
+      "source_sha256": "b9ed4950e9bdd5f3b49b00b2a1ad7178f1d018d12ae422a13b03abbf82a3afe3"
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-f86620f6-68a8-4da6-bf3c-a4d9c0cb297b.png",
+      "prompt": "New isolated game map sprite: ONE SMALL RIVER LANDING in Dali kingdom1093, purely a low stone quay with short steps and simple mooring posts. NO BUILDING, NO HOUSE, NO TILE ROOF, NO SHELTER. A rectangular low weathered gray stone quay8m east-west by4m north-south, a narrow flush timber edge along south water-facing side, two short plain wooden mooring posts and one coiled hemp rope, broad shallow stone steps descend toward south-screen LOWER LEFT. No water or boat included. Readable complete thin footprint, no tall cliff or floating plinth. Exact orthographic camera yaw45 elevation30, 2:1 dimetric ground projection, east-west edge slopes+0.5 and north-south edge-0.5; east-west edge twice the screen run of north-south edge. Rectangular footprint must be2:1 in local ground dimensions, not a square. Realistic restrained Song-era stone and weathered timber materials. Light screen upper left, short soft contact shadow lower right. TRUE TRANSPARENT RGBA background, whole subject centered in1536x1024 canvas with15% transparent margin. No writing, numbers, signs, flags, people, trees, sky, landscape, scenery, ambient glow, gradients, modern items, border, watermark, logo.",
+      "reason": "目检：独立石河埠，但长边与8×4目录的东西轴方向相反",
+      "source_sha256": "ddf1674a0845be7dbe3bf91ee5dfa33ad279dee387d46be2d1817505c08da973"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        104,
+        467
+      ],
+      [
+        944,
+        884
+      ]
+    ],
+    [
+      [
+        944,
+        884
+      ],
+      [
+        1432,
+        703
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      104,
+      467
+    ],
+    "front": [
+      944,
+      884
+    ],
+    "right": [
+      1432,
+      703
+    ]
+  },
+  "projection_review": "手工底面三角点±3px估计，长边斜率417/840=.4964，短边-181/488=-.3709；轴dx比840/488=1.7213，目录8/4=2。存在残差，不宣称严格投影或占地比例通过。",
+  "status": "candidate",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      254
+    ],
+    "transparent_pixels": 1089962,
+    "partial_pixels": 482902,
+    "opaque_pixels": 0,
+    "bbox": [
+      0,
+      19,
+      1522,
+      1024
+    ]
+  }
+}

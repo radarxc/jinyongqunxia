@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_bukuaixue
+name: 捕快快靴
+kind: armor
+sub: shoes
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/bukuaixue
+text:
+  desc: 外观：一双黑布短靴，软底、灰布滚边。 待运行时投影：mov=0; qinggong=7.5。
+  lore: 捕快快靴以黑布、软底和灰边缝成，适合街巷追赶与悄声落步，却不带衙门字号。旧捕役传授的讲究是靴带宁紧勿松，身份仍须另验。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6
+      agi: 1

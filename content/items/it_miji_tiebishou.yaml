@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_tiebishou
+name: 铁臂手全本
+kind: manual
+sub: full
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tiebishou
+text:
+  desc: 外观：南宋土黄蝴蝶装小册，黑布包角。
+  lore: 铁掌帮低阶擒拿被整理成掌心小谱，招法、载体与传授方式属 （原创扩展）。研读须先练前臂承力，再学封腕与压肘，不可硬碰兵刃；页缘磨黑正是反复以手臂比照图势所留。
+extension:
+  type: manual
+  value:
+    skill: sk_tiebishou
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tiebishou
+      readWis: 25
+      maxLayer: 10
+      cultivation: 750

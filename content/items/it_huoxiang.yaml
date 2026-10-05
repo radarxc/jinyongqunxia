@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_huoxiang
+name: 藿香
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/huoxiang
+text:
+  desc: 外观：药用茎叶切段阴干，茎呈方柱、叶片灰绿。
+  lore: 中原、齐鲁、江淮、江南太湖、荆襄与岭南药圃夏季六至八月采叶，本作凭方茎与灰绿叶辨识。阴干后入行囊，可提供少量回气。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: huoXiang
+    ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 6

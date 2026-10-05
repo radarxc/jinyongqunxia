@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_yumi
+name: 玉米
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 美洲作物；嘉靖《平凉府志》已有记录，本作统一仅碧血及以后书界投放
+price: auto
+flags: []
+assets:
+  icon: item/yumi
+text:
+  desc: 外观：金黄玉米穗两支带半开青皮置竹篮，前臂长 （原创扩展）。
+  lore: 美洲作物，嘉靖《平凉府志》已有记录；为免把始见当普及，本作仅碧血及以后投放。秋熟穗粒可磨粉或煮食，早期书界不得出现。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_liangshi_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: grain
+    attributes:
+      version: 2

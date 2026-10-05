@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_tanluobu
+name: 探路步抄本
+kind: manual
+sub: copy
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tanluobu
+text:
+  desc: 外观：清代灰青线装小册，四眼白线。
+  lore: 探路镖师把辨地、试步和遇伏回撤写成灰青小册，步法与抄本属 （原创扩展）。研读须对照地图夹痕在不同路面试走，切忌只背步数；雨斑累累，说明它本就是随队工具。
+extension:
+  type: manual
+  value:
+    skill: sk_tanluobu
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tanluobu
+      readWis: 30
+      maxLayer: 8
+      cultivation: 960

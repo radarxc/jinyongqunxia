@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_yuxingcao
+name: 鱼腥草
+kind: material
+sub: herb
+grade: 1
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/yuxingcao
+text:
+  desc: 外观：药用全草切成长段晒干，茎节与心形叶可辨。
+  lore: 浙东、闽赣、湖湘、岭南至巴蜀湿地夏季五至八月皆可见，本作以茎节和心形叶供辨识。药师将其归作疏理内伤的常用辅材，不描述现实服法。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang9
+    materialGrade: 1
+    rare: false
+    herbFamily: yuXingCao
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 1

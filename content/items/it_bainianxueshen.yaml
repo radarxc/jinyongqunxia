@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_bainianxueshen
+name: 百年雪参
+kind: material
+sub: herb
+grade: 9
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/bainianxueshen
+text:
+  desc: 外观：肥厚雪参与密须，冰蓝绢衬。
+  lore: 青藏、河西陇右雪线下岩隙的固定奇遇药材，秋八至九月开放，物种与年限皆属待核。肥厚根材供静服修炼并固根骨，不进入普通刷新。（待核实） （原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di3
+    materialGrade: 9
+    rare: false
+    herbFamily: xueShen
+    ageYears: 100
+    attributes:
+      version: 2
+      qiCultivation: 3500
+      con: 1

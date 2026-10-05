@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_mingzhongjingguan_nan
+name: 明忠静冠·男
+kind: armor
+sub: headwear
+grade: 8
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 忠静冠服 · 明（《大明会典·舆服》）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingzhongjingguan_nan
+text:
+  desc: 外观：男款乌纱忠静冠独立陈列，不画人头。 待运行时投影：effRes=4; wearer=male。
+  lore: （原创扩展）据明代忠静冠服资料重构，乌纱方筒冠体顶部微隆，两侧收束，以玉簪贯定。官绅在正式场合佩用，冠形务求端整；无官阶字样，不单凭此冠授予身份。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11

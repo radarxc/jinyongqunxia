@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_qimeigun_can
+name: 齐眉棍谱残本
+kind: manual
+sub: partial
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_qimeigun_can
+text:
+  desc: 外观：明代细长竹纸残册，粗麻线补订。
+  lore: 武馆旧藏的齐眉棍法只剩细长残册，谱本、散佚与传承属 （原创扩展）。研读须按自身身量校准握距与横扫半径，缺页处不可凭蛮力续招；现本仅可支持七层修习。
+extension:
+  type: manual
+  value:
+    skill: sk_qimeigun
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_qimeigun
+      readWis: 35
+      maxLayer: 7
+      cultivation: 1120

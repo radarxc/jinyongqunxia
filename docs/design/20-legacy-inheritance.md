@@ -1,10 +1,11 @@
 # 20 · 跨年代传承：后人、宝藏、残本与合成（Legacy Inheritance）
 
 > 归属（基准 §18）：传承源、消隐判定、后人 / 宝藏候选、三卷残本、关键信物、跨年代合成与其投放预算。
-> 上游：`docs/00-canon.md` v1.2；作者需求 `decisions/author-requirements.md` AR-01、AR-04、AR-08、AR-09、AR-13；作者决定 `decisions/author-decisions.md`，尤其 P35；跨文档裁定 `decisions/rulings-v1.md`。
+> 上游：`docs/00-canon.md` v1.10；作者需求 `decisions/author-requirements.md` AR-01、AR-04、AR-08、AR-09、AR-13、AR-18、AR-26；作者决定 `decisions/author-decisions.md`，尤其 P35；跨文档裁定 `decisions/rulings-v1.md`。
 > 引用而不重定义：年代、书眠、残篇 / 残承 / 藏史与 `rs_*` → `design/02-timeline-and-world-tiers.md`；属性与 `lore` / `luk` / `wis` / `morality` → `design/03-attributes.md`；武学、层数、`sourceGrade` / `sourceCap` 与学习途径 → `design/05-martial-arts-system.md`；地图、时代图层与奇遇触点 → `design/11-open-world.md`、`design/19-world-map.md`；任务 DSL → `design/12-quests-npc-factions.md`，确定性、RNG 与事务 → `tech/05-gameplay-engine.md`；天书之力、多周目与成就 → `design/13-progression-and-endings.md`；家丁与资源点 → `design/16-resources-and-estates.md`；门派时代矩阵 → `design/17-sects-compendium.md`；NPC 生卒、后人与生成规则 → `design/18-npc-and-companions.md`；物品与秘籍 → `design/10-items-and-equipment.md`。
 > 标注约定：**（原创扩展）** = 原著没有的内容；**（待考）** = 原著事实尚需逐字核对；**（待核实）** = 技术事实尚未联网确认；**（待实测）** = 需要真机或真账号验证；**【建议值】** = 依赖其他文档、先给出可用数值并在文末登记。
-> 版本：v1.0（作者需求 AR-13 首稿，2026-09-26）；审校 H1.R（2026-09-26）；全局审计（2026-09-26）。
+> 版本：v1.1（AR-26 白马首书时序与新携带规则同步，2026-10-02）；v1.0（作者需求 AR-13 首稿，2026-09-26）；审校 H1.R（2026-09-26）；全局审计（2026-09-26）；经脉落地终审（2026-09-29）；阴阳性质同步 AR-18（2026-09-30）；经脉落地终审（2026-09-30）。
+> 变更记录：经脉落地终审（2026-09-30）：正式登记缓存五状态与 `recipeKey` 单键迁移；核实性质、天阶与物品历史交办，保留原有校合默认和未完成的运行时验收。
 
 ---
 
@@ -16,10 +17,12 @@
 2. 一个传承源在一个书界至多生成一条主载体：后人 / 门下再传，或宝藏 / 遗迹。生成由存档确定性 RNG 决定，读档、往返地图与重开界面均不得重掷。
 3. 每源有三卷残本。任得一卷即可把原武学作为降阶来源修炼；任意两卷把来源上限提高到 7 重，三卷提高到 9 重。只有三卷同源、关键信物和修炼条件全部满足，才能校合为 10 重完整来源。
 4. 残本绝对来源品阶只取地阶或黄阶：目标为天阶 10–12 时，残本分别为地下 7 / 地中 8 / 地上 9；目标为地阶 7–9 时，残本分别为黄下 1 / 黄中 2 / 黄上 3。
-5. 合成产物复用图鉴既有 `sk_*`，品阶等于该传承源登记的完整品阶，不复制第二门同名武学。除越女剑法外，所有天级产物都已在基准 §13 的 51 门闭集中，只是新增一种艰难获取途径。
-6. AR-13 覆盖 P35 的范围仅限完整形态：`sk_yuenvjian` 教学形态仍为地上 9，三卷与阿青墓中手卷校合后的同一武学进入“传承全本形态”，为天下 10。推荐把它列入基准 §13 的独立“合成天级”小节，不把它计作普通第 52 门；此 schema 例外仍标 ⚠️ 待作者确认。
+5. 合成产物复用图鉴既有 `sk_*`，品阶等于该传承源登记的完整品阶，不复制第二门同名武学。除越女剑法外，所有天级产物都已在基准 §13 的 **59 门**普通天阶闭集中，只是新增一种艰难获取途径。
+6. AR-13 覆盖 P35 的范围仅限完整形态：`sk_yuenvjian` 教学形态仍为地上 9，三卷与阿青墓中手卷校合后的同一武学进入“传承全本形态”，为天下 10。推荐把它列入基准 §13 的独立“合成天级”小节，不把它计作普通第 60 门；此 schema 例外仍标 ⚠️ 待作者确认。
 7. 中、低武书界允许完成合成。合成是当前时代的本土再发现，因此当界 `nativeTo=currentChapter`，真实品阶不降；Canon v1.2 §3 规则 12 已把 `legacyWorldCap` 12 / 10 / 9 写为执行默认，专门截断 `legacy_synthesis` 的当界有效品阶，且仍标 **⚠️ 待作者确认**。进入下一书界后，产物依通常规则成为外来武学。
 8. `frag_*` 残本与 `it_xinwu_*` 关键信物放入跨书界“传承匣”，不占普通背包格，不可交易、丢弃或藏史；书眠保留、轮回默认重置。
+9. 传承调度按现行书序 `白马→天龙→…→雪山` 与年份双重过滤；白马 702–703 年只能接收序章及更早来源，任何 703 年后产生或消隐的来源均不得倒灌。稳定 `ch10_baima` 不重编号，见 Canon §2、`design/02` §1。
+10. 和氏璧 `it_heshibi` 属天书匣主线信物格，不是 `it_xinwu_*`，不得进入传承匣、缓存奖励或校合配方；生命周期见 `design/10` §11.2.3、`design/25` §5。
 
 ### 0.2 章节导航
 
@@ -103,6 +106,7 @@
 4. 校合成功才写完整来源：通常 `sourceGrade=SkillDef.grade`、`sourceCap=10`。
 5. 古迹是位置，宝藏点是时代实例；同一 `rs_huashan` 可在多个时代拥有不同 `cache_*`，缓存开启收据不反写古迹定义。
 6. 传承匣的跨书眠是 AR-13 对“普通物品不跨界”的窄例外；它不允许装入钱、装备、秘籍、材料或史笺。
+7. `it_heshibi` 不属于残本或关键信物；即使同为唯一任务物，也只进入 `design/10` §11.2.3 定义的主线信物格，传承域必须拒绝其入匣与校合。
 
 ### 1.3 来源资格
 
@@ -222,7 +226,7 @@ ageGapYears = currentWakeYear - exactDisappearanceYear
 ageGapYears = sum(bookSleepYears between disappearanceChapter and currentChapter)
 ```
 
-这只是概率档位输入，不把推算值写回小说年表。十四段书眠值原样引用 `design/02`：`1575, 123, 10, 77, 160, 57, 47, 24, 15, 13, 14, 13, 7, 9`；本文不重定义入场年份。
+这只是概率档位输入，不把推算值写回小说年表。现行转场跨度原样引用 `design/02` §1.5：`1184,391,123,10,77,160,57,47,24,15,28,13,7,9`；首项是序章初眠，后 13 项沿 `白马→天龙→…→雪山`。第九层后虽改称周游跨度，年代距离仍取同一正向年差。
 
 ### 2.6 生命周期
 
@@ -250,17 +254,30 @@ sealed ──消隐事实成立──> eligible ──书界配额与概率命�
 | `completed` | 否 | 否 | 已校合；后世只显示图鉴回声 |
 | `archived` | 否 | 否 | 本周目无法继续投放，保留结局记录 |
 
+**缓存运行态与源状态分离（原创扩展）。** `LegacyCacheRuntimePhase` 由本文正式拥有，值域固定为 `hidden | revealed | working | ready | opened`；`legacyCache` 条件中的字段名仍为 `state`，不得拿源的 `LegacyStatus` 代替，也不得另造 `phase` 同义存档字段。技术侧只消费本文值域。
+
+| 缓存 `state` | 含义与进入条件 | 后续转移 |
+|---|---|---|
+| `hidden` | 本界合法调度已创建，尚未发现；`progress=0` | `legacy/revealCache` 显露后到 `revealed`；无工作量的缓存可直接到 `ready` |
+| `revealed` | 已知地点，尚未推进；`progress=0<requiredProgress` | 合法工作量提交后到 `working` 或 `ready` |
+| `working` | 已推进且 `0<progress<requiredProgress` | 同一工作收据只推进一次；达到阈值后到 `ready` |
+| `ready` | `progress=requiredProgress`，等待玩家到场验收 / 开匣 | 玩家完成已配置的安全、伦理与机会结算事务后到 `opened`；家丁不能代为转移 |
+| `opened` | 本界该缓存的玩家开匣事务已提交 | 同一实例终态；重复提交返回原收据，不再抽取或发物 |
+
+工作量与进度为非负整数；`progress'=min(requiredProgress, progress+work)`。未显露缓存不接受工作，`ready/opened` 不重复施工；机会 RNG 只在已有 §4.5 / §10.2 规定的结算点消费一次，进入 `ready` 本身不额外抽取。开匣只结束此缓存实例，不等于源已 `completed`；校合成功才结束源。书眠按 §11.1 清当界缓存实例及进度，保留源 / 机会 / 校合收据，不把旧 `opened` 实例重置后在同界再发奖励。
+
 ### 2.7 激活前的硬过滤顺序
 
 候选必须按以下顺序过滤，未通过硬条件时不消费 RNG，也不增加保底次数：
 
 1. 解析源 ID、目标武学和消隐事实；
-2. 检查当前书界在 `eligibleChapters`；
-3. 检查目标是否已有完整来源；已有则源转 `completed`，不重复投；
-4. 检查本书界是否存在目标的正常完整原生获取；存在时默认不投，除非配方明确 `coexistWithNative=true`；
-5. 检查路线、地点、改命结果和 NPC 生命态；
-6. 检查本次调度批次是否至少有一个剩余席位；若持久化主载体已达本界上限，则整批延后且不消费出现 RNG；
-7. 按 `lgs_*` ASCII 升序进入概率计算与抽取。
+2. 以 `design/02` 的现行展示序比较 `originChapter/disappearanceChapter/currentChapter`；若有精确 `disappearanceYear`，另须 `currentWakeYear > disappearanceYear`，否则至少要求当前界位于消隐章节之后。不得用 `chNN` 数字大小代替先后；白马 702–703 年只允许序章及更早来源；
+3. 检查当前书界在 `eligibleChapters`；该数组必须按现行展示序展开；
+4. 检查目标是否已有完整来源；已有则源转 `completed`，不重复投；
+5. 检查本书界是否存在目标的正常完整原生获取；存在时默认不投，除非配方明确 `coexistWithNative=true`；
+6. 检查路线、地点、改命结果和 NPC 生命态；
+7. 检查本次调度批次是否至少有一个剩余席位；若持久化主载体已达本界上限，则整批延后且不消费出现 RNG；
+8. 按 `lgs_*` ASCII 升序进入概率计算与抽取。
 
 完成过滤后才生成机会收据。同批候选多于剩余席位时，仍按 §4.2 完成出现判定，再由稳定优先级选入；命中但未入选者记 `deferred`，其本批抽样已经消费但不计 `misses`。这样“没去过对应区域”不是失败，“合法进入调度且出现判定未命中”才计一次 `misses`。
 
@@ -297,7 +314,7 @@ sealed ──消隐事实成立──> eligible ──书界配额与概率命�
 | 301–600 年 | 2,400 | 后人较少，宝藏权重提高 |
 | 601 年以上 | 1,800 | 千年遗绪极稀有；靠名望、品阶与保底补偿 |
 
-这不是“年代越久越容易”的直线。短期未成传奇、长期证据风化，中段最适合自然出现；阿青至天龙的 1,575 年属于最后一档。
+这不是“年代越久越容易”的直线。短期未成传奇、长期证据风化，中段最适合自然出现；阿青至白马的 `702−(−482)=1,184` 年已属于最后一档，若延至天龙则为 1,575 年。
 
 ### 3.3 传承源名望与品阶
 
@@ -436,9 +453,9 @@ if localMisses >= 2: pFragmentBp = 10_000           // 同一激活链第三次�
 
 ### 3.9 三个计算例
 
-#### 算例 A：阿青剑源在天龙出现
+#### 算例 A：阿青剑源在白马出现
 
-阿青源为 `legendary`、目标完整形态 `g=10`、距离约 1,575 年；玩家 `lore=60`、`luk=70`、`morality=20`，源 `ethos=neutral`，无门派修正，首次判定：
+阿青源为 `legendary`、目标完整形态 `g=10`、距离 `702−(−482)=1,184` 年；玩家 `lore=60`、`luk=70`、`morality=20`，源 `ethos=neutral`，无门派修正，首次判定：
 
 ```text
 ageBase = 1_800
@@ -506,6 +523,7 @@ keyItemAwardCap(ch) = legacyCarrierCap(ch)
 
 | 书界 | 开放区域 | 主载体上限 | 其中后人上限 | 新残本上限 | 新信物上限 |
 |---|---:|---:|---:|---:|---:|
+| 白马 `ch10_baima`（展示首界） | 6 | 3 | 2 | 6 | 3 |
 | 天龙 `ch01_tianlong` | 9 | 5 | 3 | 10 | 5 |
 | 射雕 `ch02_shediao` | 8 | 4 | 2 | 8 | 4 |
 | 神雕 `ch03_shendiao` | 9 | 5 | 3 | 10 | 5 |
@@ -515,14 +533,13 @@ keyItemAwardCap(ch) = legacyCarrierCap(ch)
 | 碧血 `ch07_bixue` | 7 | 4 | 2 | 8 | 4 |
 | 鹿鼎 `ch08_luding` | 7 | 4 | 2 | 8 | 4 |
 | 连城 `ch09_liancheng` | 6 | 3 | 2 | 6 | 3 |
-| 白马 `ch10_baima` | 6 | 3 | 2 | 6 | 3 |
 | 鸳鸯 `ch11_yuanyang` | 6 | 3 | 2 | 6 | 3 |
 | 书剑 `ch12_shujian` | 8 | 4 | 2 | 8 | 4 |
 | 飞狐 `ch13_feihu` | 7 | 4 | 2 | 8 | 4 |
 | 雪山 `ch14_xueshan` | 6 | 3 | 2 | 6 | 3 |
 | **合计理论上限** | **103** | **55** | **31** | **110** | **55** |
 
-核算：主载体 `5+4+5+5+4+4+4+4+3+3+3+4+4+3=55`；后人上限 `3+2+3+3+2+2+2+2+2+2+2+2+2+2=31`；它们只是全清极限。39 源每源每界至多一个主载体，常规单周目实际投放会更少。传承链占用 `design/11` 的既有支线 / 完整奇遇链预算，不额外突破每界 10–18 条完整奇遇链。
+核算按展示序：主载体 `3+5+4+5+5+4+4+4+4+3+3+4+4+3=55`；后人上限 `2+3+2+3+3+2+2+2+2+2+2+2+2+2=31`；它们只是全清极限。39 源每源每界至多一个主载体，常规单周目实际投放会更少。传承链占用 `design/11` 的既有支线 / 完整奇遇链预算，不额外突破每界 10–18 条完整奇遇链。
 
 ### 4.2 调度顺序
 
@@ -760,11 +777,26 @@ all SkillDef hard reqs / oath / route gates still pass
 
 ### 7.3 内功性质
 
-- 内功目标默认要求同性质内功；目标为 `harmony` 时要求调和内功。
+- 内功目标默认要求同性质内功；目标为 `harmony` 时要求调和内功。目标性质读取所属图鉴现值，判定规则见 `design/05` §5.3；残卷名、刚柔表现和正逆周天不作为性质条件。
 - 外功、轻功、暗器、杂学由配方声明 `allowedInnerNatures`；未声明则三性质皆可。
 - `design/05` 的 `inner.bridge` 可视为性质满足，但其内功品阶与层数仍须达标。
 - “中性”不是内功性质；目录不得为内功写 `neutral`。
 - 内功性质与合法 `inner.bridge` 属于硬条件：阴阳相冲时按钮置灰，不能用 §7.5 的强行校合软化；专属誓约同样永远不能强行绕过。
+
+#### 7.3.1 AR-18 同步后的校合可达性
+
+§9 全部 27 条带性质的 `Cn（…）` 已对照所属图鉴；其中 15 条为内功目标，九阳、吸星、葵花、混元四项随 NR4 改性，其余性质条件不变。12 条外功 / 轻功门槛是配方显式收窄，仍按各自目标与图鉴前置检查，不因内功示例改性而自动改写。
+
+下表只引用已登记内功作满足条件的实例，沿用 §7.1 的 `sourceGrade/trueLayer`；配方并不强制玩家选择该实例。品阶与层数要求分别为 `max(4,g−3)`、`ceil(g/2)+1`：C12 得 `9/7`，C11 得 `8/7`，C9 得 `6/6`。目标残本真实 7 重、相关武学、悟性 / 学识、三卷与信物以及有效硬门槛仍须同时满足。
+
+| 目标 / 条目 | 现性质与校合内功条件 | 已登记的可达实例 |
+|---|---|---|
+| 九阳神功 `sk_jiuyang` / §9.4.3 | 调和；C12：来源品阶≥9、真实层数≥7 | 笑傲华山正常完整来源的紫霞神功 `sk_zixiashengong`，9 品调和，练至 7 重：`9≥12−3`、`7=ceil(12/2)+1`；见 `catalog/skills-wuyue` §2.3。九阳传承最早 ch05，与此来源时序相容 |
+| 吸星大法 `sk_xixing` / §9.5.2 | 调和；C11：来源品阶≥8、真实层数≥7 | 将倚天合法取得的九阳神功 12 品调和练至 7 重，经笑傲携入 ch06，`12≥11−3=8`、`7=ceil(11/2)+1`；笑傲另学日月心法至 6 重并一同携入，两门均计入固定 3 门内功额度。日月前置与有效身份 / 来源覆写仍按 `catalog/skills-wuyue` §7.2 检查 |
+| 葵花宝典 `sk_kuihua` / §9.5.3 | 阳；C11：来源品阶≥8、真实层数≥7 | 倚天 / 笑傲合法取得的纯阳无极功 `sk_chunyangwuji`，8 品阳，练至 7 重携入 ch06 或后世：`8=11−3`、`7=ceil(11/2)+1`；见 `catalog/skills-daojia` §5.4。成年与断尘之誓仍为目标硬门槛 |
+| 混元功 `sk_hunyuangong` / §9.6.6 | 调和；C9：来源品阶≥6、真实层数≥6 | 碧血紫霞残承 `sk_zixiashengong` 的 `sourceGrade=8,maxLayer=8`，练至 6 重携入 ch08 或后世：`8≥max(4,9−3)=6`、`6=ceil(9/2)+1≤8`；见 `catalog/skills-wuyue` §2.3。这里只用其作校合内功，不替代混元掌 8 重前置，也不将紫霞列为混元必修或满层材料（见 `catalog/skills-xiake-bixue` §8.2） |
+
+表中用于满足性质与品阶的内功各占固定 3 门内功中的一门；吸星实例另带日月心法，共占两门，可在 ch06 完成。第九层前每次转场均固定保留 3 武功 + 3 内功，《长生诀》栏外；校合产物若继续跨界，也必须被选入对应三门，未选则按普通残篇 / 痕迹处理。第九层后周游才保留全部武学。携带与转化规则见 `design/25` §8–§9、`design/13` §4.10–§4.11；其他目标前置按类别计入同一额度或在当界合法取得。境界压制不降低已保留的 `sourceGrade/trueLayer`。
 
 ### 7.4 时间与材料代价
 
@@ -825,18 +857,29 @@ effGradeCurrent = min(resolvedCompleteGrade, legacyWorldCap)
 | 碧血、鹿鼎、连城、书剑、飞狐、雪山 | 10 天下 | 各界完整原生顶点为天下 |
 | 白马、鸳鸯 | 9 地上 | 基准 §13 明定两界无天级、顶点地上 |
 
-例：按 Canon v1.2 执行默认，天上 12 的北冥全本在白马校合，真实 `sourceGrade=12`，当界 `effGrade=min(12,9)=9`；若带入书剑，它已经是外来实例，改按基准 §3 的中武外来规则求有效品阶，不继续使用白马上限。若启用 `rule_wutiandao`，则依法关闭专用上限；普通规则下不得静默产生 `effGrade=12` 的第二结果。
+例：天上 12 的北冥源自天龙 1093 年，不能倒灌到 702–703 年白马；若在其后的合法书界完成，真实 `sourceGrade=12`，再按该界 `legacyWorldCap` 求有效品阶。产物后续跨界时，第九层前须进入固定 3+3 才能随行，第九层后按周游规则保留全部武学；外来压制仍按 Canon §3。若启用 `rule_wutiandao`，则依法关闭专用上限。
 
 ### 7.7 天级闭集处理
 
 | 情形 | 规则 | 是否增加普通天级名录 |
 |---|---|---:|
-| §13 已有 51 门之一 | 复用同一 `sk_*`、同一绝对品阶；只新增 `learnSource=legacy_synthesis` | 否 |
+| §13 已有 59 门之一 | 复用同一 `sk_*`、同一绝对品阶；只新增 `learnSource=legacy_synthesis` | 否 |
 | 地阶目标 | 完整品阶仍为 7–9 | 否 |
-| 越女剑法完整形态 | 同一 `sk_yuenvjian` 以 `form=legacy_complete` 解析为 10 | **不计普通 51；进入独立“合成天级”小节** |
+| 越女剑法完整形态 | 同一 `sk_yuenvjian` 以 `form=legacy_complete` 解析为 10 | **不计普通 59；进入独立“合成天级”小节** |
 | 未来任意新天级合成 | 默认构建失败，必须作者决定并修改基准 | 否 |
 
-推荐基准 §13 结构：继续声明“普通完整天级武学闭集 51 门”，其后增加“合成天级例外”小节，当前唯一成员为 `sk_yuenvjian@legacy_complete=10`。这比新建独立的“越女剑法全本”技能 ID 更能保持图鉴、层数、残篇与同源记录连续，也不会把韩小莹版误并。该方案涉及 §7.8 的 schema 变化，标记 **⚠️ 待作者确认**。
+Canon v1.6 的普通天阶闭集为 `59 = 天上 9 + 天中 18 + 天下 32`；其后仍保留“合成天级例外”小节，当前唯一成员为 `sk_yuenvjian@legacy_complete=10`。这比新建独立的“越女剑法全本”技能 ID 更能保持图鉴、层数、残篇与同源记录连续，也不会把韩小莹版误并。该方案涉及 §7.8 的 schema 变化，标记 **⚠️ 待作者确认**。
+
+#### 7.7.1 跨时代残承沿用同一 ID
+
+残承与完整来源不是两门武学。既有先例见 Canon V11-28：笑傲太极、碧血紫霞、飞狐百花错拳 / 庖丁解牛掌均以原 `sk_*` 保存较低 `lineageGrade/sourceCap`，后续遇到完整来源才抬升来源记录。Canon V16-02 新增的桃花归元诀完全沿用此口径：
+
+| 时代 / 书界 | 同一技能 ID | 来源记录 | 是否计完整原生池 |
+|---|---|---|---:|
+| 射雕 | `sk_taohuaguiyuanjue` | `partial:true`，绝对品阶 11；`sourceGrade=lineageGrade=10`、`sourceCap=9` | 否 |
+| 神雕 | `sk_taohuaguiyuanjue` | 经合法校成 / 亲授后 `sourceGrade=11`，完整来源；人物层数仍可为 9 | 是（神雕 18 门之一） |
+
+校成只更新同一实例的来源上限与本土印证状态，不新建第二个 `sk_*`，也不自动把未到神雕完整来源节点的射雕残承升阶。该口径同样适用于传承系统消费既有残承：三卷校合或正常完整来源必须显式成功后才可抬升，书眠、终局或单纯携带均不能越过来源限制。
 
 ### 7.8 越女形态覆写的最小 schema
 
@@ -883,17 +926,16 @@ function assertLegacySourceGrade(
 
 ## 8. 越女剑法：从序章教学到后世全本
 
-### 8.1 五个对象必须分开
+### 8.1 四类对象必须分开
 
 | 对象 | ID / 标记 | 定义 | 品阶 / 上限 |
 |---|---|---|---|
-| 序章阿青教学版 | `sk_yuenvjian@base` | `skills-general` 已定义的剑源武学 | 地上 9；正常序章≤3重，跳过为1重 |
-| 序章离章残篇 | `it_canye_yuenvjian` + 图鉴残篇 | `design/02` 的遗忘记录 | 不可直接当三卷之一 |
+| 序章阿青教学态 | `sk_yuenvjian@base` | 临时体验实例；离界销毁，不写正式 `trueLayer/sxp` | 不生成正式实例、残篇、顿悟、真元或资质收益；见 `design/01` §8.4–§8.5 |
 | 后世三卷残本 | `frag_yuenv_*` | 本文的物理三卷 | 地下 7；卷数上限 4/7/9 重 |
 | 后世校合全本 | `sk_yuenvjian@legacy_complete` | 同一技能的完整传承形态 | 天下 10；来源上限 10 重 |
 | 韩小莹版 | `sk_yuenvjian02` | 五绝图鉴独立武学 | 玄下 4；永不合并 ID |
 
-序章残篇只提供“我曾见过”的忆起与线索优势，不替代任何一卷。`sk_yuenvjian02` 可以在达到 5 重时满足一般的 `category_any:sword` 基础条件；它与 `sk_yuenvjian` 仅有本节的残篇加速联动，旧越女剑源候选套装已按 `design/07` §19.3 删除。两者不是同一技能状态，绝不共享层数、`sxp`、残篇或卷位。
+序章仅可留下无数值教学见闻，不提供忆起、线索概率或卷位优势。`sk_yuenvjian02` 可以在达到 5 重时满足一般的 `category_any:sword` 基础条件；它与 `sk_yuenvjian` 不是同一技能状态，绝不共享层数、`sxp`、残篇或卷位。旧越女剑源候选套装已按 `design/07` §19.3 删除。
 
 ### 8.2 消隐与出现
 
@@ -942,17 +984,17 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 ### 8.5 可完成书界与压制算例
 
-从 `ch01_tianlong` 到 `ch14_xueshan` 均可调度该源，因此理论上任一十四书界都能完成；实际要先抽到主载体并集齐材料。`critical=true` 保证连续三次合法书界未出现后，第四次合法书界出现，但不保证玩家自动完成任务。下表执行 Canon v1.2 §3 规则 12 的 `legacyWorldCap`；该规则仍待作者最终确认，但在决定变更前没有旧 Canon 回退分支。
+阿青源可从 702–703 年白马起，沿现行展示序到雪山调度，因此理论上任一十四正式书界都能完成；实际要先抽到主载体并集齐材料。`critical=true` 保证连续三次合法书界未出现后，第四个合法书界出现，但不保证玩家自动完成任务。下表执行 Canon §3 的 `legacyWorldCap`；该规则仍待作者最终确认，但在决定变更前没有旧 Canon 回退分支。
 
 | 完成书界 | `legacyWorldCap` | 真实品阶 | 当界有效品阶 | 层数上限 |
 |---|---:|---:|---:|---:|
+| 白马 | 9 | 10 | `min(10,9)=9` | 8 |
 | 天龙 | 12 | 10 | `min(10,12)=10` | 10 |
 | 笑傲 | 12 | 10 | `min(10,12)=10` | 9 |
 | 鹿鼎 | 10 | 10 | `min(10,10)=10` | 8 |
-| 白马 | 9 | 10 | `min(10,9)=9` | 8 |
 | 书剑 | 10 | 10 | `min(10,10)=10` | 9 |
 
-例如在白马完成时，玩家拥有天下 10 的真实完整来源，但当界只发挥地上 9、最多 8 重；进入书剑后若把它作为核心兵器武学携带，则它是外来武学，按中武 `S=2` 先得 `10−2=8`，再应用天书抵消等基准规则，而不是沿用白马的 9。
+例如在白马完成时，玩家拥有天下 10 的真实完整来源，但当界只发挥地上 9、最多 8 重；白马→天龙时若把它选入 3 门武功，则 `nativeTo` 仍为白马，天龙按高武外来规则计算；若不选则留普通残篇。后续每次转场同理，直到鹿鼎第九层后才按周游保留全部武学。
 
 ### 8.6 与轮回《越女剑·全本》的边界
 
@@ -968,7 +1010,7 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 ### 9.1 读表规则与统一门槛
 
-本目录是候选池，不保证单周目全部投放。“`ch05–ch14`”表示含首尾且按十四书顺序展开；运行时必须逐界再过 §2.7 硬过滤。`消隐` 写的是可进入本文系统的最早事实，不是对原著人物卒年的推断；“需失落事实”表示章节必须显式提交 `manual_lost` / `lineage_broken`，否则保持 `sealed`。门派源只在 `design/17` 矩阵的 D/H 格生效。
+本目录是候选池，不保证单周目全部投放。范围表达式只能按现行展示序 `ch10→ch01→…→ch09→ch11→…→ch14` 展开；`ch05–ch14` 等旧数字区间若保留，实际含义也必须先转成该有序表再取片段，绝不能按编号大小比较。运行时还须逐界再过 §2.7 年份与消隐硬过滤。`消隐` 写的是可进入本文系统的最早事实，不是对原著人物卒年的推断；“需失落事实”表示章节必须显式提交 `manual_lost` / `lineage_broken`，否则保持 `sealed`。门派源只在 `design/17` 矩阵的 D/H 格生效。
 
 除已有原著地点或物件外，本节所有三卷拆分、卷名、藏宝方式、守传人物与 `cache_*` / `it_xinwu_*` 内容均为**（原创扩展）**；原著锚点不确定者另标**（待考）**。每条 `frag_*` 的物品字段仍由 `design/10` 落表，本节只拥有来源、卷位和校合语义。
 
@@ -989,7 +1031,7 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 #### 9.2.1 01 · 阿青剑源 `lgs_yuenv_aqing`
 
-- **时序**：来源 `ch00_yuenv`；序章后消隐；`ch01–ch14` 可投，人物死亡与血缘均不作推断。
+- **时序**：来源 `ch00_yuenv`；序章后消隐；从首个正式书界 `ch10_baima` 起，沿现行展示序至 `ch14_xueshan` 可投，人物死亡与血缘均不作推断。
 - **载体 / 投放**：越地无名守传者、旧档与墓藏；`cache_yuenv_ruoye`，优先 `city_shaoxing` 的时代名与 `rg_jiangnan_taihu`，完整路径见 §8。
 - **三卷 / 信物**：`frag_yuenv_jianying`《剑影卷》、`frag_yuenv_yuanbu`《猿步卷》、`frag_yuenv_wuhen`《无痕卷》；`it_xinwu_aqingshoujuan` 阿青墓中手卷。
 - **条件 / 产物**：C10，另需任一其他剑法 5 重、调和内功 7 品 6 重；产物 `sk_yuenvjian@legacy_complete` 10 天下；关键源，越州首投。
@@ -1098,7 +1140,7 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 #### 9.4.2 16 · 武当太极剑 `lgs_taiji_jian`
 
-- **时序**：来源 `ch04_yitian`；`ch05–ch14` 可投，规则同太极拳；当前界存在完整武当传授时保持 `sealed`。
+- **时序**：来源 `ch04_yitian`；`ch05–ch14` 可投，规则同太极拳；只有当前界存在目标武学的**正常完整来源**才按 §2.7 排除。武当仍为 O 态、仅有 `lineageGrade=10` 残承或未登记完整授艺节点，都不能单独证明完整来源存在；本源是秘籍失落源，仍须章节失落事实成立。
 - **载体 / 投放**：门下再传、剑圈刻痕或木剑夹谱；`cache_taijijian_wudang`，优先 `rg_jingxiang`，与拳源同界至多一个主载体。
 - **三卷 / 信物**：`frag_taijijian_yuan`《圆转卷》、`frag_taijijian_nian`《黏随卷》、`frag_taijijian_wang`《忘招卷》；`it_xinwu_taijijian_mujian` 初传木剑铭。
 - **条件 / 产物**：C11（剑法 6、调和），保留有效武当 / 品德条件或守传认可；产物 `sk_taijijian` 11 天中；与 `sk_taijiquan` 同属 `lg_taiji`，但两套三卷不能互拼。
@@ -1107,8 +1149,8 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 - **时序**：来源 `ch04_yitian`；白猿腹中全本被取出后的后续去向须章节提交 `legacy/jiuyang/manual_lost`，方可在 `ch05–ch14` 投放。
 - **载体 / 投放**：觉远残诵的三支校记、昆仑旧洞藏页或医家抄本；`cache_jiuyang_kunlun`，优先 `rg_xiyu_nanjiang`，不重复制造第二只藏经白猿。
-- **三卷 / 信物**：`frag_jiuyang_yangmai`《阳脉卷》、`frag_jiuyang_huti`《护体卷》、`frag_jiuyang_yuanyuan`《源流卷》；`it_xinwu_jiuyang_jiaoben` 三家九阳校本。
-- **条件 / 产物**：C12（阳），保留 `sk_jiuyang` 有效资质门槛；产物 `sk_jiuyang` 12 天上；关键源，昆仑探索和三家印证二选一。
+- **三卷 / 信物**：`frag_jiuyang_yangmai`《阳脉卷》、`frag_jiuyang_huti`《护体卷》、`frag_jiuyang_yuanyuan`《源流卷》；`it_xinwu_jiuyang_jiaoben` 三家九阳校本。《阳脉卷》沿用叙事名，不声明全本性质；九阳现为调和，见 `catalog/skills-yitian` §2.1。
+- **条件 / 产物**：C12（调和），保留 `sk_jiuyang` 有效资质门槛；产物 `sk_jiuyang` 12 天上；关键源，昆仑探索和三家印证二选一；性质门槛可达实例见 §7.3.1。
 
 #### 9.4.4 18 · 明教乾坤 `lgs_mingjiao_qiankun`
 
@@ -1131,14 +1173,14 @@ innerMinLayer = ceil(10/2) + 1 = 6
 - **时序**：来源 `ch05_xiaoao`；日月神教后世为 H 不等于完整秘籍失传，须 `legacy/xixing/manual_lost`；`ch06–ch14` 可投。
 - **载体 / 投放**：地牢刻诀拓本、教中隐脉或疗伤医案；`cache_xixing_meizhuang`，优先 `rg_jiangnan_taihu`。
 - **三卷 / 信物**：`frag_xixing_najin`《纳劲卷》、`frag_xixing_sangong`《散功卷》、`frag_xixing_guiqi`《归气卷》；`it_xinwu_xixing_tiesuo` 地牢铁牌拓。
-- **条件 / 产物**：C11（阴），保留异种真气代价及与北冥的同源 / 联动约束；产物 `sk_xixing` 11 天中；低品德只影响出现率，不免除校合风险。
+- **条件 / 产物**：C11（调和），保留异种真气代价及与北冥的同源 / 联动约束；产物 `sk_xixing` 11 天中；低品德只影响出现率，不免除校合风险；性质见 `catalog/skills-wuyue` §7.2，可达实例见 §7.3.1。
 
 #### 9.5.3 21 · 葵花宝典 `lgs_kuihua_baodian`
 
 - **时序**：来源 `ch05_xiaoao`；完整教藏关闭并提交 `legacy/kuihua/manual_lost` 后，`ch06–ch14` 可投；日月神教 H 不构成唯一充分条件。
 - **载体 / 投放**：宫中旧档、教藏抄本或失名内侍传线；`cache_kuihua_gongdang`，优先 `city_beijing/rg_yanjing_zhili`。
 - **三卷 / 信物**：`frag_kuihua_xingqi`《行气卷》、`frag_kuihua_xunji`《迅疾卷》、`frag_kuihua_zhenfa`《针法卷》；`it_xinwu_kuihua_hongyin` 红印校记。
-- **条件 / 产物**：C11（阴），`sk_kuihua` 的专属代价 / 誓约仍是不可强行绕过的硬门槛；产物 `sk_kuihua` 11 天中；仅限成年角色，载体偏密档解谜。
+- **条件 / 产物**：C11（阳），`sk_kuihua` 的专属代价 / 誓约仍是不可强行绕过的硬门槛；产物 `sk_kuihua` 11 天中；仅限成年角色，载体偏密档解谜；性质见 `catalog/skills-wuyue` §7.3，可达实例见 §7.3.1。
 
 #### 9.5.4 22 · 林家辟邪 `lgs_fuwei_bixie`
 
@@ -1189,7 +1231,7 @@ innerMinLayer = ceil(10/2) + 1 = 6
 - **时序**：来源 `ch07_bixue`；华山在 `ch08–ch12/ch14` 为 H，故这些界可投；`ch13` 为 O，有完整原生来源时排除。
 - **载体 / 投放**：华山隐院门下、掌谱夹注或崖壁吐纳图；`cache_hunyuan_huashan`，优先 `city_huayin/rg_guanzhong`。
 - **三卷 / 信物**：`frag_hunyuan_yangqi`《养气卷》、`frag_hunyuan_zhangjin`《掌劲卷》、`frag_hunyuan_heyi`《内外合卷》；`it_xinwu_hunyuan_zhangyin` 混元掌印谱。
-- **条件 / 产物**：C9（阳），保留 `sk_hunyuangong` 的混元掌 / 华山前置或守传覆写；产物 `sk_hunyuangong` 9 地上；隐脉授艺优先。
+- **条件 / 产物**：C9（调和），保留 `sk_hunyuangong` 的混元掌 / 华山前置或守传覆写；产物 `sk_hunyuangong` 9 地上；隐脉授艺优先；性质见 `catalog/skills-xiake-bixue` §8.2，可达实例见 §7.3.1。
 
 ### 9.7 鹿鼎、连城遗绪（29–34）
 
@@ -1209,28 +1251,28 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 #### 9.7.3 31 · 神照经 `lgs_shenzhao_jing`
 
-- **时序**：来源 `ch09_liancheng`；不猜狄云后半生，须章节提交 `legacy/shenzhao/lineage_broken`，之后 `ch10–ch14` 可投。
+- **时序**：来源 `ch09_liancheng`（1708）；不猜狄云后半生，须章节提交 `legacy/shenzhao/lineage_broken`。白马 702–703 早于来源，硬过滤；最早从现行后继 `ch11_yuanyang` 起至 `ch14` 可投。
 - **载体 / 投放**：狱墙留字、梅念笙一门医案或无名受救者门下；`cache_shenzhao_jingzhou`，优先 `city_jingzhou/rg_jingxiang`。
 - **三卷 / 信物**：`frag_shenzhao_shouxi`《守息卷》、`frag_shenzhao_xumai`《续脉卷》、`frag_shenzhao_huming`《护命卷》；`it_xinwu_shenzhao_yuwen` 狱墙字样原拓。
 - **条件 / 产物**：C10（调和），保留湘西吐纳前置或守传认可；另需 `med≥35`【建议值】；产物 `sk_shenzhao` 10 天下；关键源。
 
 #### 9.7.4 32 · 血刀经 `lgs_xuedao_jing`
 
-- **时序**：来源 `ch09_liancheng`；`sect_xuedaomen` 自 `ch10_baima` 为 D，`ch10–ch14` 可投。
+- **时序**：来源 `ch09_liancheng`（1708）；白马 702–703 早于来源，即使旧矩阵在 ch10 为 D 也必须硬过滤；从现行后继 `ch11_yuanyang` 起至 `ch14` 可投。
 - **载体 / 投放**：雪谷遗物、流散门下或残页经匣；`cache_xuedao_xuegu`，优先 `rg_qingzang`。
 - **三卷 / 信物**：`frag_xuedao_xuexi`《血息卷》、`frag_xuedao_fuxue`《伏雪卷》、`frag_xuedao_jingdao`《经刀合卷》；`it_xinwu_xuedao_xueyin` 血刀刀背经印。
 - **条件 / 产物**：C9（阴），保留血刀基础 / 心法前置及路线硬条件；产物 `sk_xuedaojing` 9 地上；邪异源，宝藏优先。
 
 #### 9.7.5 33 · 唐诗剑谱 `lgs_liancheng_tangshi`
 
-- **时序**：来源 `ch09_liancheng`；`sect_wanjia` 自 `ch10_baima` 为 D，`ch10–ch14` 可投。
+- **时序**：来源 `ch09_liancheng`（1708）；白马 702–703 早于来源，即使旧矩阵在 ch10 为 D 也必须硬过滤；从现行后继 `ch11_yuanyang` 起至 `ch14` 可投。
 - **载体 / 投放**：万家废宅、书商误收或梅念笙门下校记；`cache_tangshi_jingzhou`，优先 `city_jingzhou/rg_jingxiang`。
 - **三卷 / 信物**：`frag_tangshi_duanju`《断句卷》、`frag_tangshi_cangjue`《藏诀卷》、`frag_tangshi_liancheng`《连城卷》；`it_xinwu_tangshi_puzi` 剑谱排列签。
 - **条件 / 产物**：C8（剑法 4），另需 `art≥45`，保留三项武学 OR 前置与有效来源覆写；产物 `sk_tangshijian` 8 地中；不得伪造原诗引文。
 
 #### 9.7.6 34 · 高昌守藏 `lgs_gaochang_shouhu`
 
-- **时序**：来源 `ch10_baima`；`sect_gaochang` 自 `ch11_yuanyang` 为 D，`ch11–ch14` 可投。
+- **时序**：来源 `ch10_baima`（702–703）；本界原生来源关闭并提交对应消隐事实后，最早在下一正式书界 `ch01_tianlong` 调度，继而沿现行展示序至 `ch14`；不得跳到旧数字后继 ch11 才开始。
 - **载体 / 投放**：迷宫守藏后人、壁画暗层或机关匣；`cache_gaochang_migong`，优先 `city_turpan/rg_xiyu_beijiang`；“高昌遗脉”本身属既有原创扩展。
 - **三卷 / 信物**：`frag_gaochang_men`《门径卷》、`frag_gaochang_jiguan`《机关卷》、`frag_gaochang_shoujian`《守剑卷》；`it_xinwu_gaochang_bihua` 迷宫壁画叠片。
 - **条件 / 产物**：C9（剑法 5），另需 `formation≥40`，保留高昌剑术与有效守藏认可；产物 `sk_gaochangshouhujian` 9 地上；解谜载体锁定。
@@ -1276,14 +1318,14 @@ innerMinLayer = ceil(10/2) + 1 = 6
 
 | 来源锚点 | 条目 | 后世最早可用书界 | 覆盖结论 |
 |---|---|---|---|
-| 序章 | 01 | 天龙 | 阿青跨越全部十四界 |
+| 序章 | 01 | 白马 | 阿青可从 702–703 年首书起跨越全部十四界 |
 | 天龙 | 02–08 | 射雕或笑傲起 | 逍遥、慕容、大理、少林、丐帮均有候选 |
 | 射雕 / 神雕 | 09–14 | 倚天或笑傲起 | 五绝系、剑冢与古墓均有候选 |
 | 倚天 | 15–18 | 笑傲起 | 武当以 H/O 动态过滤，明教 D 可直接候选 |
 | 笑傲 | 19–22 | 侠客起 | 独孤需断脉事实；福威 D 为确定门派触发 |
 | 侠客 | 23–25 | 碧血起 | 侠客岛 / 雪山 D，泥人用秘籍失落事实 |
 | 碧血 | 26–28 | 鹿鼎起 | 金蛇用秘籍事实，铁剑 / 华山用 H |
-| 鹿鼎 / 连城 / 白马 | 29–34 | 连城至鸳鸯起 | D/H 与人物源分开处理 |
+| 鹿鼎 / 连城 / 白马 | 29–34 | 连城、鸳鸯或天龙起 | 白马只产出 34，后世首投天龙；29–33 均按来源年阻断倒灌白马 |
 | 鸳鸯 / 书剑 | 35–37 | 书剑或飞狐起 | 覆盖后期短间隔书界 |
 | 飞狐 / 雪山 | 38–39 | 雪山 | 两条末端续接 / 归档例外；不冒充消隐后的随机传承，也不承诺不存在的第十五界 |
 
@@ -1409,9 +1451,11 @@ type LegacyActionExtension =
 | `legacy/sourceActivated` | `sourceId, chapterId, carrierKind` | 任务、地图、遥测 |
 | `legacy/fragmentAcquired` | `sourceId, fragmentId, slot, duplicate` | 武学、图鉴、UI |
 | `legacy/keystoneAcquired` | `sourceId, itemId` | 任务、传承匣 |
-| `legacy/synthesisStarted` | `sourceId, recipeId, studyDays` | 日历、UI |
+| `legacy/synthesisStarted` | `sourceId, recipeKey, studyDays` | 日历、UI |
 | `legacy/synthesisCompleted` | `sourceId, skillId, resolvedGrade, receiptId` | 武学、成就、图鉴 |
 | `legacy/synthesisFailed` | `sourceId, deficit, cooldownUntil` | Buff、UI、遥测 |
+
+**配方键迁移已定稿。** 新内容、命令、事件和新写存档只使用 `recipeKey`，取值严格为 `${sourceId}#synthesis`。旧 `recipeId` 仅在版本化加载 / 录像迁移入口读取并映射到 registry 中同一配方；只含旧键时迁为新键并删除旧键，两键并存且相同则去旧键，不同或无法解析则拒绝迁移，禁止猜配方。旧录像须先按原协议验签 / 校验原始 hash，再迁移为当前内存输入；迁移不得改历史文件、重放 RNG 或补发奖励。12 / tech 的 opcode、事件消费者与迁移夹具须同批接入后发布，不把本文改名视为运行时迁移已经完成。
 
 地图在 `sourceKnown=false` 时不显示精确问号；只显示区域级传闻。UI 不在标题里揭示未见武学名称，线索卡可用“失传剑谱”等泛称；`lore≥60` 或已得一卷后显示源名。
 
@@ -1421,6 +1465,8 @@ type LegacyActionExtension =
 
 AR-13 的追逐跨越多个书界，因此传承匣是对 `design/02` 书眠清理的窄例外，不等于普通背包或史匣：
 
+传承匣只接受本文登记的 `frag_*` 与 `it_xinwu_*`。和氏璧 `it_heshibi` 始终留在天书匣主线信物格，不进入本矩阵的容器、容量、缓存或校合流程，见 `design/10` §11.2.3、`design/25` §5。
+
 | 状态 / 对象 | 相邻书眠 | 雪山 → 终局 | 新周目 | 说明 |
 |---|---:|---:|---:|---|
 | 源状态、命中 / 延后 / 失败收据 | 保留 | 保留 | 重置 | 防读档、防重复抽取 |
@@ -1428,10 +1474,10 @@ AR-13 的追逐跨越多个书界，因此传承匣是对 `design/02` 书眠清�
 | `it_xinwu_*` | 保留 | 保留 | 重置 | 任务唯一物，不占装备携带 |
 | 未完成缓存进度 | 清零 | 不适用 | 重置 | 地表和施工随时代改变 |
 | 家丁、合同、排班 | 按 16 清除 | 不适用 | 重置 | 不让经营状态偷渡 |
-| 已校合来源 / 武学实例 | 按 02 的核心携带或残篇 | 终局按 13 | 重置 | 不因校合永久携带武功 |
+| 已校合来源 / 武学实例 | 第九层前按固定 3 武功 + 3 内功选入，否则转普通残篇 / 痕迹；《长生诀》栏外 | 第九层后周游保留全部武学，终局按 13 | 重置 | 校合不授予额外携带名额 |
 | 完成里程碑 / 图鉴角标 | 保留 | 保留 | 账号级仅留事实 | 不恢复材料或层数 |
 
-`BS_COMMIT` 顺序建议：先取消挖掘排班 → 清地表缓存运行态 → 保留传承匣与源收据 → 常规处理武学携带 / 残篇 → 在新界重算 eligible 源。若当前唯一信物仍锁在未开启缓存里，它不被凭空发给玩家；源回到 `dormant`，后世按同源的下一合法地点续投。
+`BS_COMMIT` 顺序建议：先取消挖掘排班 → 清地表缓存运行态 → 保留传承匣与源收据 → 按 `design/25` §8 的固定 3+3 处理校合武学 / 残篇 → 在新界按 §2.7 年份硬门重算 eligible 源。若当前唯一信物仍锁在未开启缓存里，它不被凭空发给玩家；源回到 `dormant`，后世按同源的下一合法地点续投。第九层后的 `ROAM_DEPART` 不做 3+3，但仍清时代缓存、合同与排班，规则见 `design/25` §9、`design/13` §4.11。
 
 ### 11.2 与残篇、藏史和永久增益的边界
 
@@ -1481,7 +1527,7 @@ sources:
     target: { skillId: sk_yuenvjian, formId: legacy_complete, grade: 10 }
     originChapter: ch00_yuenv
     disappearance: { kind: chapter_fact, fact: prologue/aqing/left_known_history }
-    eligibleChapters: [ch01_tianlong, ch02_shediao, ch03_shendiao, ch04_yitian, ch05_xiaoao, ch06_xiake, ch07_bixue, ch08_luding, ch09_liancheng, ch10_baima, ch11_yuanyang, ch12_shujian, ch13_feihu, ch14_xueshan]
+    eligibleChapters: [ch10_baima, ch01_tianlong, ch02_shediao, ch03_shendiao, ch04_yitian, ch05_xiaoao, ch06_xiake, ch07_bixue, ch08_luding, ch09_liancheng, ch11_yuanyang, ch12_shujian, ch13_feihu, ch14_xueshan]
     renownTier: legendary
     ethos: neutral
     critical: true
@@ -1528,6 +1574,8 @@ type LegacySourceId = `lgs_${string}`; type LegacyFragmentId = `frag_${string}`;
 type LegacyCacheId = `cache_${string}`; type LegacyRecipeKey = `${LegacySourceId}#synthesis`;
 type FragmentSlot = 'upper'|'middle'|'lower'; type InnerNature = 'yin'|'yang'|'harmony';
 type LegacyStatus = 'sealed'|'eligible'|'active'|'dormant'|'completed'|'archived';
+type LegacyCacheRuntimePhase = 'hidden'|'revealed'|'working'|'ready'|'opened';
+interface LegacyCacheRuntimeState { cacheId: LegacyCacheId; sourceId: LegacySourceId; state: LegacyCacheRuntimePhase; progress: number; nextWorkIndex: number }
 interface LegacyFragmentDef { id: LegacyFragmentId; sourceId: LegacySourceId; slot: FragmentSlot; displayName: string; grade: Grade; skillId: SkillId }
 interface LegacyCacheDef { id: LegacyCacheId; sourceId: LegacySourceId; siteRef?: RuinSiteId; regionId: RegionId; cityId?: CityId; placeKey: string; requiredProgress: number; estateAssist: boolean }
 interface LegacyKeystoneDef { sourceId: LegacySourceId; itemId: ItemId; unique: true; deterministicNode: string }
@@ -1563,6 +1611,7 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 | 宝藏缓存 `LegacyCacheDef` | 新增 `cache_*`，39 条见 §9 | 一次性内容状态；不占 `rs_*` 古迹或 `rp_*` 资源点 |
 | 关键信物 | 新增 `it_xinwu_*`，39 条见 §9 | 唯一任务物；具体 `ItemDef` 归 10 |
 | 配方键 | `<lgs_*#synthesis>`，派生键 | 不申请新全局前缀 |
+| 缓存运行态 | `LegacyCacheRuntimePhase` / `LegacyCacheRuntimeState` | 本文 §2.6 / §12.2 正式定义五值与转移；不与 `LegacyStatus` 混用 |
 | 传承匣 / 校合 / 主载体 / 机会收据 | 新术语 | 见 §1、§4、§7、§11 |
 | 越女完整形态 | 复用 `sk_yuenvjian@legacy_complete` | 10 天下；教学形态仍为 9 |
 | 既有同源 / 古迹 / 武学 | 复用 `lg_*` / `rs_*` / `sk_*` | 本文不重定义 |
@@ -1585,6 +1634,9 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 | LEG-V08 | 产物解析到既有 `SkillDef`；grade 相同；唯一例外是待确认的越女 form；其余天级均在 §13 闭集 | 构建失败 |
 | LEG-V09 | 地图引用存在、当界开放且使用时代显示名；`design/11` §2.3 的旧粗区迁移别名不得进入新增内容 | 构建失败 |
 | LEG-V10 | 源、机会与效果按稳定 ID 排序；UI / 预览不消费 RNG；收据键唯一 | 构建失败 |
+| LEG-V11 | 缓存 `state` 仅五值；进度与 §2.6 相符；新数据只能使用 `recipeKey` 且可反解到同一 source / recipe | 构建 / 读档失败；待 tech 同步实现 |
+| LEG-V12 | `eligibleChapters` 只按 `10,01..09,11..14` 展开；有精确年份时当前苏醒年必须晚于消隐年，白马不得接收任何 703 年以后来源 | 构建失败 |
+| LEG-V13 | 传承匣只含登记的 `frag_*` / `it_xinwu_*`；`it_heshibi` 不得出现在库存、缓存奖励或 recipe 中；校合武学跨界遵守第九层前固定 3+3、九层后周游规则 | 构建失败 |
 
 ### 14.2 金标准与集成用例
 
@@ -1600,11 +1652,14 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 | LEG-T08 | 批次前已满 / 同批竞争超额 | 前者整批 `quota_full_before_batch`、不消费出现 RNG；后者命中候选 `lottery_deferred`、已消费出现与 lottery RNG 但不计 miss |
 | LEG-T09 | 安全校合全部满足 | 必成；三卷 / 信物 bound；层数不免费增加；重复提交幂等 |
 | LEG-T10 | 强行校合失败 | 卷 / 信物不毁，耗半时、获紊乱、冷却 7 日；事务失败全回滚 |
-| LEG-T11 | 北冥 12 在白马校合（Canon v1.2 执行默认） | `sourceGrade=12, effGrade=9, layerCap=8`；仅 `rule_wutiandao` 关闭专用上限；入书剑均改按外来规则 |
+| LEG-T11 | 尝试在白马调度天龙北冥源；另在后续合法书界校合并跨界 | 白马因 `1093>703` 硬拒绝且不耗 RNG；后界校合后，第九层前仅被选入对应 3+3 才携带，九层后周游全部保留 |
 | LEG-T12 | 越女教学 / 完整 / 韩小莹三状态 | 9 / 10 / 4，ID 与层数不串；轮回成就不误触发 |
 | LEG-T13 | 书眠时有两卷一信物、挖掘 80/160 | 卷与信物保留，挖掘进度和家丁清零，源转 dormant |
 | LEG-T14 | 太玄配方 `lore=12` | 可校合；通用 `lore≥48` 已被显式特殊条件替换 |
 | LEG-T15 | 枚举 14 界全部上限 | 主载体总计≤55、后人≤31、残本≤110、信物≤55 |
+| LEG-T16 | `requiredProgress=160`；显露后推进 53 三次、第四次推进 53，并重放第四次收据 | `progress=53/106/159/160`，状态为 working / working / working / ready；重放不多推进、不消费机会 RNG；仅玩家开匣可到 opened。设计金标准，待实现 |
+| LEG-T17 | 旧 recipeId、同值双键、冲突双键、未知配方；另在书眠前后重放 opened 收据 | 前两项规范为唯一 recipeKey，后两项迁移拒绝；书眠清实例但保留收据，不补发已得奖励。设计金标准，待迁移 / 重放夹具实现 |
+| LEG-T18 | 白马 702–703 调度连城三源与本界高昌源，随后进入天龙 | 连城 31–33 全部按年份硬拒绝；高昌本界仍是原生源，提交消隐事实后最早在天龙成为候选 |
 
 人工验收另做三条：低品德 / 敌对门派仍有可理解线索；拒绝盗墓有等价替代；手机横屏能在一屏看到“三卷—信物—门槛—失败代价”。概率分布、存档重放与 39 源全量自动调度须在实现后跑 10,000 种子，标**（待实测）**。
 
@@ -1619,13 +1674,14 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 | H1-D03 | `design/13` | **已解决：**13 §8.2 已登记 `ach_legacy_first/ach_legacy_synthesis/ach_yuenv_legacy` 为 1/2/3 点 |
 | H1-D04 | chapters/01–14 | 每周目激活 18–24 源；拒绝盗墓提供等价任务路径 |
 | H1-D05 | `design/14` | **已解决设计接口：**14 §4.17 已给传承匣独立页、名称门禁及三卷 / 信物 / 条件同屏 |
+| H1-D06 | `design/12`、`tech/04/05` | **归属侧已解决、消费者待同步：**缓存五值见 §2.6 / §12.2；事件与动作统一 `recipeKey`，旧 `recipeId` 只读迁移见 §10.5；需同批实现 LEG-V11、LEG-T16 / T17 后发布 |
 
 ### 15.2 本文依赖的上游事实
 
 | 上游 | 依赖 | 状态 |
 |---|---|---|
-| `design/02` | 年代、书眠、残篇 / 残承 / 藏史、`lg_*` / `rs_*` | 仍待同步传承匣的相邻书眠窄白名单；Canon v1.2 §3 与 `design/13` 已登记执行口径 |
-| `design/05` + 图鉴 | `SkillDef`、品阶、硬门槛、层数与学习来源 | 已按现稿引用；新增来源待各图鉴登记 |
+| `design/02` | 年代、展示序、书眠 / 周游、残篇 / 残承 / 藏史、`lg_*` / `rs_*` | 本文已按 `10,01..09,11..14` 和 702–703 年过滤，并接固定 3+3 / 九层后周游；传承匣仍是窄白名单 |
+| `design/05` + 图鉴 | `SkillDef`、品阶、硬门槛、层数与学习来源 | **已解决系统接口**：05 §7.10 已接 `legacy_fragment/legacy_synthesis` 与同 ID 形态；NR4S 已同步校合性质。逐源来源、人物与任务仍按图鉴和章节逐条校验 |
 | `design/11/19` | 地图、时代名、开放区域与坐标 | ID 已引用；具体 `placeKey` 待章节配点 |
 | `design/12` | 正式任务 DSL、门派与任务生命周期 | **已解决设计接口：**12 §2.2–§2.3 已加入 legacy 条件、六动作和事务边界；运行时 strict schema 仍待 tech/05 |
 | `design/17/18` | D/H 矩阵、人物生卒与后人生成 | 硬依赖；未知卒年不猜死 |
@@ -1634,7 +1690,7 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 
 | 编号 | 提案 | 理由 |
 |---|---|---|
-| H1-P01 | **已写入 Canon v1.2 §13，仍待作者确认：**普通天级闭集 51 门外，以 `sk_yuenvjian@legacy_complete=10` 作唯一合成形态，不计第 52 门 | AR-13 明定全本天级，又保持教学版 P35=9 与韩小莹版=4；见 O-A3-01 |
+| H1-P01 | **已随 Canon v1.6 更新：**普通天阶闭集现为 59 门；`sk_yuenvjian@legacy_complete=10` 仍作唯一合成形态，不计第 60 门，形态 schema 继续待作者确认 | AR-13 明定全本天级，又保持教学版 P35=9 与韩小莹版=4；见 O-A3-01 |
 | H1-P02 | **已解决：**Canon v1.2 §12 已登记 `lgs_*`、`frag_*`、`cache_*`，并确认 `it_xinwu_*` 属 `it_*` 子命名 | 防止与 `lg_*` 同源组、`rs_*` 古迹、`rp_*` 资源点冲突 |
 | H1-P03 | **已解决：**Canon v1.2 §18 已把传承源、消隐、后人 / 宝藏候选、三卷、信物与校合唯一归 `design/20` | AR-13 跨多个系统，需要单一规则归属 |
 | H1-P04 | **已写入 Canon v1.2 §3，仍待作者确认：**`legacy_synthesis` 逐界 `legacyWorldCap` 为 12 / 10 / 9；`rule_wutiandao` 关闭它 | 落实 AR-13b；执行默认见 §7.6 与 O-A3-02，不保留 v1.1 回退分支 |
@@ -1645,7 +1701,7 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 
 ### 15.5 开放问题（附默认值）
 
-1. **⚠️ 越女天级如何计闭集？** 默认采 H1-P01 的独立合成天级，不计 51；作者若坚持总数 51，须替换既有一门而非暗增。
+1. **⚠️ 越女天级如何计闭集？** 默认采 H1-P01 的独立合成天级，不计普通 59 门；作者若要求并入普通名录，须明确修改 Canon，而非暗增第 60 门。
 2. **形态 schema 是否接受？** 默认同一 `sk_yuenvjian` 增 `legacy_complete`，不新建独立的全本技能 ID。
 3. **传承匣是否占容量？** 默认不限容量、不占背包；若要限制，只能限可追踪任务数，不能丢弃已得唯一卷。
 4. **强行校合是否保留？** 默认保留 §7.5 的单软缺项与 7 日冷却；硬条件永不可绕过。
@@ -1653,5 +1709,9 @@ YAML 顶层与 `LegacyRegistry` 一一对应，不能再把 `cache/fragments/rec
 6. **家丁能否独立开匣？** 默认不能，只推进工作量，玩家必须验收。
 7. **已解决：成就扩表。** `design/13` §8.2 已登记三个正式成就及 1 / 2 / 3 点，不复用 `ach_yuenv_full`。
 8. **逐书界合成上限是否启用？** Canon v1.2 已按 AR-13b 把 §7.6 / H1-P04 的 12 / 10 / 9 写为执行默认，但仍待作者最终确认；以版本化规则实现，并以 10,000 种子和战斗样本**（待实测）**。
+9. **既有章节校合建议是否沿用？** 默认保留凌波 `formation≥40`、玉女护法同伴羁绊≥60、夫妻刀同伴羁绊≥50 可替代门派条件，见 §9.2.6、§9.3.6、§9.8.1；这些【建议值】不放宽目标武学其他硬前置，待作者确认。
+10. **胡刀 / 苗剑在雪山如何选主载体？** 默认沿章节 14 §9.6 的“较早完成并获家传认可者锁定”，另一线保留授艺 / 关系奖励，不再发第二份高价值缓存；这是章节排期，不把 §4.1 系统上限 3 改成 1。待作者确认；末端续接例外仍见 §9.8.4–§9.8.5。
 
-仍需同步而未在本任务修改：`design/02` 加传承匣书眠钩子与“仅原生一次”的例外来源；`design/05` / 各图鉴加 `legacy_synthesis` 与越女 form（并调整 `skills-general` 的 GEN-V02 例外）；`design/10` 登记 117 残本和 39 信物物品；`design/11/19` 为 39 个缓存配置经考据的局部点；`chapters/01–14` 继续完善事实、机会、替代路线和配额；`tech/05` 实现确定性事务与 strict schema。Canon v1.2 的 H1-P01 / H1-P04 执行默认仍待作者确认；12 / 13 / 14 / 16 / 18 的设计接口已落实，不再列作缺失。
+历史交办已解决：`design/05` 已接两类来源与越女同 ID 形态，`skills-general` 已在正文卡登记该形态；`design/10` §10.3.1 / §11.2.1 已登记 117 卷残本和 39 件信物，本文不重复物品定义。`LegacyHeirSpawnRequest` 也已与 18 对齐，旧 `LegacyHeirRequest` 仅作迁移别名（见 §10.3）。
+
+仍需同步而未在本任务修改：`design/02` 完成传承匣书眠钩子与“仅原生一次”的例外来源；`skills-general` 修正序章旧残篇口径并让 GEN-V02 区分基础 `SkillDef.grade=9` 与 `legacy_complete` 解析品阶 10；`design/11/19` 为 39 个缓存配置经考据的局部点；`design/17` 把白马列移至首位并重算 702 年组织状态；`chapters/01–14` 继续完善事实、机会、替代路线和配额；`design/12` / `tech/04/05` 同批接入年份硬门、五值缓存状态、`recipeKey` 迁移及确定性事务 / strict schema 的运行时验收。Canon 的 H1-P01 / H1-P04 执行默认仍待作者确认；12 / 13 / 14 / 16 / 18 的设计接口已落实。

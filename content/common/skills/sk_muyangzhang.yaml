@@ -1,0 +1,24 @@
+schemaVersion: martial-art.v1
+id: sk_muyangzhang
+name: 牧羊杖法
+aliases: []
+category: weapon
+subType: staff
+grade: 2
+origin: expanded
+sect: null
+lineage: 阿青日常技法
+sourceChapters: [ch00_yuenv]
+nature: neutral
+wOutBp: 8000
+wInBp: 2000
+requirements: {attrs: {str: 25}, aptitude: {apStaff: 5}}
+maxLayer: 10
+layers:
+  - {n: 1, unlock: []}
+moveIds: []
+learnSources:
+  - {type: master, chapter: ch00_yuenv, ref: npc_aqing, maxLayer: 10}
+  - {type: manual, chapter: ch00_yuenv, ref: it_miji_muyangzhang, maxLayer: 10}
+tags: [weapon, staff, common, prologue_role]
+description: 由拦羊、拨枝与护身动作整理的六向横扫杖法。（原创扩展命名）

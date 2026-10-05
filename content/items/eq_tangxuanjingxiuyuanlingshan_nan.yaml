@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_tangxuanjingxiuyuanlingshan_nan
+name: 唐玄精绣圆领衫·男
+kind: armor
+sub: clothing
+grade: 9
+stack: 1
+chapters:
+- ch10_baima
+origin: canonExpanded
+canonRef: 唐；出现书界 ch10；（原创扩展）；形制／色系依据：《新唐书》卷24《车服志》 https://zh.wikisource.org/zh-hans/新唐書/卷024；702年款式细节（待考），初唐轮廓原创转换；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangxuanjingxiuyuanlingshan_nan
+text:
+  desc: 外观：唐男款，主色玄。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=male。
+  lore: （原创扩展）据唐代车服语汇演成玄男式圆领衫，窄袖、右侧暗系与缺骻便于行路。精织双丝细绣缘用于衣缘，主色不表示官阶；702年裁片（待考），默认初唐轮廓，同档换色不增防护。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 67

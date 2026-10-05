@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_mingweisuojia
+name: 明制卫所甲
+kind: armor
+sub: officialArmor
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingweisuojia
+text:
+  desc: 外观：明代红布衬铁札、圆护胸与皮革束带，不画官衔文字 （原创扩展）。 待运行时投影：lawProfile={uniform:true,allowedIdentityTags:[office_ming_garrison],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。
+  lore: 明制卫所甲以红布衬铁札，圆护胸和束带适合守城列阵，穿前须按次序收紧肩腰。边镇传言每道磨痕都对应一次点卯，但甲衣本身不能替代军籍。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 60

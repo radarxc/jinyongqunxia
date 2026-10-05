@@ -1,0 +1,81 @@
+id: bld_kit_song_southern_pagoda
+status: candidate
+building:
+  type: bld_kit_song_southern_pagoda
+  footprint: [7, 7]
+  anchor: &id001 [421.1749, 978.2049]
+  era: song_southern
+anchor_px: *id001
+footprint_m: [7, 7]
+logical_footprint_polygon_px:
+- [197.17489999999998, 978.2049]
+- [421.1749, 1090.2049]
+- [645.1749, 978.2049]
+- [421.1749, 866.2049]
+collision_polygon_m:
+- [0, 0]
+- [7, 0]
+- [7, 7]
+- [0, 7]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [198, 126]
+- [647, 126]
+- [647, 1082]
+- [198, 1082]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 21.74
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 3}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_southern_pagoda.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [448, 224]
+  ground_width_px: 448
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [164, 1339]
+    front: [512, 1497]
+    right: [857, 1340]
+  source_axis_slopes: [0.4540229885057471, -0.45507246376811594]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.008695652173913
+  expected_width_depth_ratio: 1.0
+  ratio_relative_error: 0.008695652173912993
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [832, 1216]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 789777
+  alpha_partial_pixels: 220688
+  alpha_opaque_pixels: 1247
+  alpha_near_opaque_pixels: 207545
+  alpha_nonzero_bbox: [133, 124, 699, 1085]
+  transparent_margins_px: [133, 124, 133, 131]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_southern_pagoda.png
+  source_sha256: 63b482f635acffba3eca1a90b01d18a992151915726c3d8a3d0ea83a24072cb6
+  source_size: [1024, 1536]
+  crop_box: [65, 18, 940, 1514]
+  uniform_scale_requested: 0.6464646464646465
+  resized_size: [566, 967]
+  rounded_effective_scale: [0.6468571428571429, 0.6463903743315508]
+  paste_offset: [133, 124]
+  final_file: bld_kit_song_southern_pagoda.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

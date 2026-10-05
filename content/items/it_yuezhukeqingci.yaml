@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuezhukeqingci
+name: 越地竹刻请辞
+kind: collectible
+sub: calligraphy
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuezhukeqingci
+text:
+  desc: 外观：单片宽竹牍，边缘磨圆。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,collector]}; giftValue=3; provenance=expanded。
+  lore: 以竹木书写传统设计工整的请见文辞，作为玩家求字支线的越地版本。适合赠文士或礼官，不能代替身份信物；全文、刻写工艺和礼仪格式均为（原创扩展）并（待考）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

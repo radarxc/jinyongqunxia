@@ -1,0 +1,88 @@
+id: bld_kit_ming_north_inn
+footprint_m:
+- 12
+- 9
+footprint_basis: 【建议值】design/22 §3.3 宋南方客栈12×9同功能占地；明骨架未列客栈
+anchor_px:
+- 368.0
+- 374.8653
+entrance:
+  edge: S
+  offset_cells: 6.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 12
+  - 0
+- - 12
+  - 9
+- - 0
+  - 9
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 203
+  - 614.0041
+  F:
+  - 812.2804
+  - 923.8036
+  R:
+  - 1321
+  - 668.8809
+source_anchor_px:
+- 762.0
+- 641.4425
+target_ground_span_px: 672
+geometry:
+  crop_box:
+  - 195
+  - 59
+  - 1329
+  - 933
+  uniform_scale: 0.6010733452593918
+  scaled_size:
+  - 682
+  - 525
+  canvas_size:
+  - 736
+  - 576
+  paste_offset:
+  - 27
+  - 25
+  - 709
+  - 550
+  raster_scales:
+  - 0.6014109347442681
+  - 0.6006864988558352
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 206821
+  alpha_partial_pixels: 216112
+  alpha_opaque_pixels: 1003
+  alpha_bbox:
+  - 27
+  - 25
+  - 708
+  - 549
+  rectangular_trim_removed_nonzero: 21
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.50847
+  - -0.50111
+  source_ratio_relative_error: 0.10174
+  geometry_warning: true
+  visual_review: 原目标、几何导引及所选原图均逐张view_image；灰砖硬山、灰瓦木窗、左上光、完整轮廓与透明留边。基脚实测+0.50847/-0.50111；比例1.19767，目标1.33333。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: 409233e5c3e82507812effff5bbd035f613aa8dbd2688ee723dc0301dce1234f
+sha256: eba0c1133a0971aaca529f5565efdc10927252840de060536c146e076e0b500b

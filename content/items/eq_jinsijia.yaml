@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_jinsijia
+name: 金丝甲
+kind: armor
+sub: innerArmor
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinsijia
+text:
+  desc: 外观：暗金细丝交织无袖背心，织孔极细、边缘布包条 （原创扩展）。 待运行时投影：weaponZ4=3%。
+  lore: 金丝甲取武侠传闻中的金属丝软甲意象，细丝交织成无袖背心，须隔着中衣穿用以免磨肤。市面赝品多只镀金，真伪要看断口与织孔。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

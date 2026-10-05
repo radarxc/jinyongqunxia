@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_chuanxiong
+name: 川芎
+kind: material
+sub: herb
+grade: 5
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/chuanxiong
+text:
+  desc: 外观：药用根茎切成黄褐蝴蝶形薄片，油室斑点可见。
+  lore: 巴蜀与秦巴湿润药圃夏季五至七月收根茎，本作以黄褐蝴蝶片和油室斑点辨识。药师把它配入外伤药，单材只作中等恢复投影。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan6
+    materialGrade: 5
+    rare: false
+    herbFamily: chuanXiong
+    ageYears: 0
+    attributes:
+      version: 2
+      healOuter: 8

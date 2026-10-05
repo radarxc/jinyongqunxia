@@ -1,0 +1,14 @@
+{
+  "id": "bld_kit_xiyu_warehouse",
+  "candidate": 1,
+  "args": {
+    "referenced_image_paths": [
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/sources/bld_kit_xiyu_warehouse_round2_geometry.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Retexture this EXACT orthographic block into a detailed realistic ancient Xinjiang storehouse game-map sprite. Preserve exact block ground geometry, bottom corner positions and camera. Front width10, side depth8, width/depth1.25. Both ground and roof axes exactly slope+0.5 and-0.5, no perspective convergence. Simple thick warm ochre adobe walls, low yellow brick footing, flat packed-earth roof with short raised parapets and short exposed wood beam ends. Broad heavy double timber doors in left-facing long front wall, modest flat timber awning inset within footprint, a few sacks and clay jars by door within footprint. No yard extensions. Textured earthen plaster weathering, grainy timber and fine masonry; realistic historical strategy-game illustration at high detail, no cartoon/plastic. Entire building opaque, true transparent RGBA outside isolated footprint. Upper-left light, short right-lower contact shadow. No words, labels, people, modern elements, scenery, sky, halo, gradient or colored backdrop. Ground rectangle bottom edges clearly readable and matching graybox exactly."
+  },
+  "path": "/Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-b98d8d9a-5ae3-45af-a3a5-06d0366e36ff.png",
+  "tool": "built-in image_gen",
+  "repair_round": 2
+}

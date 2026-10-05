@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_dali_qingming_chadian
+name: 大理清茗茶点
+kind: food
+sub: food
+grade: 5
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·大理王府奉清茗、点心场景；茶种与点心品种 （待考），不称现代普洱茶餐
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_ningshen:1battle
+assets:
+  icon: item/dali_qingming_chadian
+text:
+  desc: 外观：青白盖碗清茶配三枚素米糕置木托，宋代大理待客一人份 （原创扩展）。
+  lore: 《天龙八部》大理王府有奉清茗、点心的场景，本作按大理四季王府茶席投放；茶种与点心品种未明。（待考：核具体品类） 配素米糕与效果为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 16

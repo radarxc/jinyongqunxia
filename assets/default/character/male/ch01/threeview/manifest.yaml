@@ -1,0 +1,108 @@
+- id: por_npc_xiaofeng__ch01_prime_gaibang_apose
+  file: por_npc_xiaofeng__ch01_prime_gaibang_apose.png
+  category: character/male/tripo_ref
+  style: default
+  subject: 萧峰 A 字姿势全身参考（与 por_npc_xiaofeng__ch01_prime_gaibang_base 同脸同服饰，去掉手持道具）
+  prompt: '【任务】这是一张供 3D 建模与自动绑骨使用的 A 字姿势全身参考图。第 1 张参考图是本项目已定稿的萧峰立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同一身服饰（款式、颜色、层次、衣缘、腰带、鞋都与第 1 张一致）、同样的发式，只改姿势和背景，并去掉竹棒。
+
+    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前，两只鞋完整可见。
+
+    【服饰处理】袖子、衣摆、腰带垂坠自然，不飘动；袖口不遮住手；不要任何向外飘的布条或飘带。竹棒不要出现在画面里（它是单独的道具）。
+
+    【头发】长发收在身后或按原发式束好，不搭在肩前，不盖住手臂和手。
+
+    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+
+    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
+
+    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
+  negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+  references:
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: e73c1fd6abb1d97bf1c2b8c275870a9bbcd45e93e8d1a669be99ae03b88c254f
+    use: 底图：已定稿的 萧峰 base（上传 1536 长边 JPEG）
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_xiaofeng__ch01_prime_gaibang_base.jpg
+    sha256: 2550f0582db53e4e9c8b57d381c7d823c1ea9c83ec3104d08cb50c6c4d4f347b
+    use: 同一 base 的脸部特写（看清五官）
+  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T14:10:18-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xiaofeng__ch01_prime_gaibang_apose.a1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 0f6cc6258e886b00f241b7cf396e3304085d6c987c66877d4daf1dea280831cc
+  status: candidate
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_xiaofeng__ch01_prime_gaibang_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44
+- id: por_npc_xuzhu__ch01_youth_lingjiu_apose
+  file: por_npc_xuzhu__ch01_youth_lingjiu_apose.png
+  category: character/male/tripo_ref
+  style: default
+  subject: 虚竹 A 字姿势全身参考（与 por_npc_xuzhu__ch01_youth_lingjiu_base 同脸同服饰，去掉手持道具）
+  prompt: '【任务】这是一张供 3D 建模与自动绑骨使用的 A 字姿势全身参考图。第 1 张参考图是本项目已定稿的虚竹立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同一身服饰（款式、颜色、层次、衣缘、腰带、鞋都与第 1 张一致）、同样的发式，只改姿势和背景，并去掉手中捧着的东西。
+
+    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前，两只鞋完整可见。
+
+    【服饰处理】袖子、衣摆、腰带垂坠自然，不飘动；袖口不遮住手；不要任何向外飘的布条或飘带。手中捧着的东西不要出现在画面里（它是单独的道具）。
+
+    【头发】长发收在身后或按原发式束好，不搭在肩前，不盖住手臂和手。
+
+    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+
+    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
+
+    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
+  negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+  references:
+  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_lingjiu_base.png
+    sha256: 6799d52c1d1f34d9f26abea0d492a97216cde1f41be10e1affd6df4b6f9ac7b9
+    use: 底图：已定稿的 虚竹 base（上传 1536 长边 JPEG）
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_xuzhu__ch01_youth_lingjiu_base.jpg
+    sha256: aa020c45d2a8a23bd4add9ce2b7c72d03777d0a74547b475ae4c0eed40f41639
+    use: 同一 base 的脸部特写（看清五官）
+  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T14:14:23-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_xuzhu__ch01_youth_lingjiu_apose.a1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 268f29f40d9f54f13812fff785b05dba262a398b9a7beb93a40a82df5e25986b
+  status: candidate
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_xuzhu__ch01_youth_lingjiu_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44
+- id: por_npc_duanyu__ch01_youth_shizi_apose
+  file: por_npc_duanyu__ch01_youth_shizi_apose.png
+  category: character/male/tripo_ref
+  style: default
+  subject: 段誉 A 字姿势全身参考（与 por_npc_duanyu__ch01_youth_shizi_base 同脸同服饰，去掉手持道具）
+  prompt: '【任务】这是一张供 3D 建模与自动绑骨使用的 A 字姿势全身参考图。第 1 张参考图是本项目已定稿的段誉立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感）、同一身服饰（款式、颜色、层次、衣缘、腰带、鞋都与第 1 张一致）、同样的发式，只改姿势和背景，并去掉素面折扇。
+
+    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前，两只鞋完整可见。
+
+    【服饰处理】袖子、衣摆、腰带垂坠自然，不飘动；袖口不遮住手；不要任何向外飘的布条或飘带。素面折扇不要出现在画面里（它是单独的道具）。
+
+    【头发】长发收在身后或按原发式束好，不搭在肩前，不盖住手臂和手。
+
+    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+
+    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出空白；平视正交视角，没有透视畸变。
+
+    【不要】不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。'
+  negative: 不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服。
+  references:
+  - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
+    sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
+    use: 底图：已定稿的 段誉 base（上传 1536 长边 JPEG）
+  - path: .agents/coord/_handoff/gem/codex_w17/staging/face__por_npc_duanyu__ch01_youth_shizi_base.jpg
+    sha256: 4dc2a20e202a4aa3bed7881532abcbcda786b066cf81a5573110a90c5d01c271
+    use: 同一 base 的脸部特写（看清五官）
+  tool: codex exec · image_gen（以作者认可的立绘为底图改姿势 / 出多视图，不加画风基线）
+  model: gpt-6-astra
+  effort: ultra
+  created: 2026-10-03T15:42:28-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_duanyu__ch01_youth_shizi_apose.a1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 0c8b98bd80711336f950b490c769f1df33a6e8430a09f1f2c30782ddd0cb5b4c
+  status: candidate
+  notes: 供 Tripo 绑骨的 A 字姿势参考；依据已定稿的 por_npc_duanyu__ch01_youth_shizi_base（同脸同服饰，手持道具另作单独道具）；协调者 14:06：主要角色 base 定了都出一张；AR-44

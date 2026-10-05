@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_chunqiuxunhongxicaiqiuboxingpi_tongyong
+name: 春秋纁红细裁裘帛行披
+kind: armor
+sub: cape
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 春秋；（原创扩展）；形制／色系依据：《周礼·天官·染人／内司服／追师／屦人》 https://zh.wikisource.org/zh-hans/周禮/天官冢宰；《礼记·玉藻》 https://zh.wikisource.org/zh-hans/禮記/玉藻；越地具体制式与女性纁红主色（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/chunqiuxunhongxicaiqiuboxingpi_tongyong
+text:
+  desc: 外观：春秋通用款，主色纁红。 待运行时投影：defOutK=0.025; hpMaxK=0.005。
+  lore: （原创扩展）以先秦裘帛语汇延伸春秋纁红行披，帛面配皮毛衬，肩部系结而不设袖。整幅围披便于行旅收裹，工艺按本档织缘区分；具体早期裁片仍（待考），不冒称原著衣物，也不自动附带抗寒或隐蔽特效。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 4

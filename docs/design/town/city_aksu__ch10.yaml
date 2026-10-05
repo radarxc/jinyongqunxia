@@ -1,0 +1,50 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_aksu"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "拨换城·跋禄迦故都（702年推定）"
+historical_year: 702
+era_kit: "xiyu"
+seed: 1776430065
+design_intent: {"prosperity": "tang_major_study_candidate", "notes": ["拨换城为跋禄迦都城、唐姑墨州治，648唐军破城；地望在今温宿/阿克苏老城一带。", "无完整考古平面，不虚构唐军攻城细节。", "复原依据：docs/design/town/history/city_aksu__tang_702.md；AR-47要求702年代带全量。", "major/capital是资源画幅档，不等于702年行政等级；全部坐标与建筑配额为游戏缩景。", "era_kit=xiyu；使用地域套件；贴片只表达跨年代地域外观，不证明702年建筑细部。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 26, "z": 24}, {"x": 134, "z": 24}, {"x": 134, "z": 136}, {"x": 26, "z": 136}]}, "inside_margin_cells": 2, "basis": "图名：城垣轮廓；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 80, "z": 24}, "width_cells": 6, "asset_type": "tex_town_xiyu_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：south_gate；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 80, "z": 136}, "width_cells": 6, "asset_type": "tex_town_xiyu_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：north_gate；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 26, "z": 64}, "width_cells": 6, "asset_type": "tex_town_xiyu_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross_s", "primary": false, "wall_ref": "outer", "basis": "图名：west_gate；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 134, "z": 100}, "width_cells": 6, "asset_type": "tex_town_xiyu_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross_n", "primary": false, "wall_ref": "outer", "basis": "图名：east_gate；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 80, "z": 24}, {"x": 80, "z": 136}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北主街；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "cross_s", "class": "secondary", "width_cells": 5, "points": [{"x": 26, "z": 64}, {"x": 134, "z": 64}], "surface": "dirt_road", "priority": 80, "basis": "图名：南横街；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "cross_n", "class": "secondary", "width_cells": 5, "points": [{"x": 26, "z": 100}, {"x": 134, "z": 100}], "surface": "dirt_road", "priority": 75, "basis": "图名：北横街；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+rivers:
+  - {"id": "regional_water", "width_cells": 12, "points": [{"x": 0, "z": 10}, {"x": 160, "z": 10}], "flow": "unknown", "navigable": true, "basis": "图名：城南河道或岸线；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+lakes: []
+bridges: []
+water_gates: []
+zones:
+  - {"id": "zone_1", "kind": "residential", "geometry": {"rect": {"min": {"x": 32, "z": 30}, "max": {"x": 74, "z": 59}}}, "priority": 100, "density": 0.5, "allowed_building_types": ["bld_kit_xiyu_house_small", "bld_kit_xiyu_shop_1f", "bld_kit_xiyu_warehouse", "bld_kit_xiyu_stable"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民院落；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "zone_2", "kind": "residential", "geometry": {"rect": {"min": {"x": 86, "z": 30}, "max": {"x": 128, "z": 59}}}, "priority": 99, "density": 0.5, "allowed_building_types": ["bld_kit_xiyu_house_small", "bld_kit_xiyu_shop_1f"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民院落；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "zone_3", "kind": "market", "geometry": {"rect": {"min": {"x": 32, "z": 68}, "max": {"x": 74, "z": 95}}}, "priority": 98, "density": 0.5, "allowed_building_types": ["bld_kit_xiyu_shop_1f", "bld_kit_xiyu_market", "bld_kit_xiyu_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：沿街市肆；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "zone_4", "kind": "residential", "geometry": {"rect": {"min": {"x": 86, "z": 68}, "max": {"x": 128, "z": 95}}}, "priority": 97, "density": 0.5, "allowed_building_types": ["bld_kit_xiyu_house_small", "bld_kit_xiyu_shop_1f"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民院落；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "zone_5", "kind": "religious", "geometry": {"rect": {"min": {"x": 32, "z": 104}, "max": {"x": 74, "z": 130}}}, "priority": 96, "density": 0.5, "allowed_building_types": ["bld_kit_xiyu_temple_hall", "bld_kit_xiyu_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：宗教院落；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+  - {"id": "zone_6", "kind": "administrative", "geometry": {"rect": {"min": {"x": 86, "z": 104}, "max": {"x": 128, "z": 130}}}, "priority": 95, "density": 0.5, "allowed_building_types": ["bld_kit_xiyu_yamen", "bld_kit_xiyu_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：管理院落；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_xiyu_house_small", "zone_refs": ["zone_1", "zone_2", "zone_4", "zone_5"], "count": {"min": 9, "max": 18}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_xiyu_shop_1f", "zone_refs": ["zone_1", "zone_2", "zone_3", "zone_4"], "count": {"min": 4, "max": 7}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_xiyu_market", "zone_refs": ["zone_3"], "count": {"min": 3, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_xiyu_inn", "zone_refs": ["zone_3"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_xiyu_temple_hall", "zone_refs": ["zone_5"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_xiyu_yamen", "zone_refs": ["zone_6"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_xiyu_courtyard", "zone_refs": ["zone_6"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_xiyu_warehouse", "zone_refs": ["zone_1"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+  - {"type": "bld_kit_xiyu_stable", "zone_refs": ["zone_1"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景建筑配额（原创扩展）【建议值】；不由数量反推历史人口。"}
+vegetation: {"palette": ["prp_song_broadleaf", "prp_song_dali_grass"], "density": 0.014, "avoid_road_cells": 2, "cluster_rule": "空地少量草木；不以植被伪装山体或证明702年物候", "basis": "图名：空地植被；src_history 约束年代与相对关系；坐标、尺度、数量与未见细节（推定）（原创扩展）。"}
+sources:
+  - {"key": "src_history", "kind": "gazetteer", "title": "拨换城历史地名资料", "url": "https://www.guoxuedashi.com/minzu/14454rx/", "accessed": "2026-10-03", "confidence": "pending_review", "supports": ["historical_topology"], "note": "仅文字；可信度C；只支撑所列年代与拓扑，不支撑游戏坐标。"}

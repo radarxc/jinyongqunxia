@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_beiming
+name: 北冥神功帛卷原本
+kind: manual
+sub: original
+grade: 12
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·无量山洞帛卷
+price: null
+flags: []
+assets:
+  icon: item/miji_beiming
+text:
+  desc: 外观：北宋白绢长卷绕木轴，绢色泛黄。
+  lore: 《天龙八部》无量山洞中留有北冥神功帛卷。长卷图文须顺着经脉次序展读，先识纳气法门再谈运用；本来源只能参至既定六层，木轴、隔水和题签形制属 （原创扩展）。
+extension:
+  type: manual
+  value:
+    skill: sk_beiming
+    maxLayer: 6
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_beiming
+      readBre: 70
+      maxLayer: 6
+      cultivation: 5000

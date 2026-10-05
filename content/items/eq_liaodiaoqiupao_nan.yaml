@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_liaodiaoqiupao_nan
+name: 辽貂裘窄袍·男
+kind: armor
+sub: clothing
+grade: 7
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 契丹国服 · 辽（《辽史·仪卫志》）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/liaodiaoqiupao_nan
+text:
+  desc: 外观：男款契丹紫黑貂裘窄袖长袍单件平展，左衽、侧开衩、黑绿缘。 待运行时投影：resColdPp=4; wearer=male。
+  lore: 据《辽史·仪卫志》的契丹国服演成，左衽窄袖与厚貂裘专应北地严寒和骑乘。猎户说旧袍最贵的不是毛色，而是侧衩处经年不裂的针脚。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 56

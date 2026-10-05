@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_wuxianduzhang
+name: 五仙毒掌抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuxianduzhang
+text:
+  desc: 外观：明代暗绿皮纸软册，红线双订。
+  lore: 五仙教毒掌传承被转抄在暗绿皮纸上，册本形制与编次属 （原创扩展）。研读须同时辨掌路、药性与解毒步骤，不可只求毒效；页边斑驳是配药翻阅痕，抄本最高八层。
+extension:
+  type: manual
+  value:
+    skill: sk_wuxianduzhang
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_wuxianduzhang
+      readWis: 40
+      maxLayer: 8
+      cultivation: 1600

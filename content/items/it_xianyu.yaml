@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_xianyu
+name: 鲜鱼
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/xianyu
+text:
+  desc: 外观：银灰河鱼一尾置青竹叶，鳞光克制。
+  lore: 江河码头清晨最常见的鲜货，银鳞、鱼眼与鳃色都是厨子验鲜的凭据。买到后应当日入汤或煎炙；久置只降为普通烹饪材料。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: fish
+    attributes:
+      version: 2

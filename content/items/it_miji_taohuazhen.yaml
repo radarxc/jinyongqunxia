@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_taohuazhen
+name: 桃花阵图谱
+kind: manual
+sub: full
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_taohuazhen
+text:
+  desc: 外观：南宋白绢横卷，青玉色轴头、青绫包首。
+  lore: 桃花岛奇门阵法被扩写为五尺白绢横卷，阵图、轴装与传承均属 （原创扩展）。研读须从全幅看方位、步数和诱敌变化，折看一隅容易迷失；岛外所得常只是一段临摹。
+extension:
+  type: manual
+  value:
+    skill: sk_taohuazhen
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_taohuazhen
+      readWis: 45
+      maxLayer: 10
+      cultivation: 2500

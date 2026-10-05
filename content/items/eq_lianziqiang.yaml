@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_lianziqiang
+name: 链子枪
+kind: weapon
+sub: whip
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 传统软兵；确切器形 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/lianziqiang
+text:
+  desc: 外观：柳叶短枪头以一米半细铁链接木握柄，链条松弧完整展开。
+  lore: 柳叶短枪头以细链接于木柄，可借离心甩刺并绕过正面招架，收回时须让短缨先稳住枪头。此名下的确切传统器形仍 （待考：核兵器资料）；链长、握柄和本作投放为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 40
+      qiAffinity: 100

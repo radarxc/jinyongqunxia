@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_zhucongtieshan
+name: 朱聪铁扇
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》·朱聪使用铁扇；形制 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/zhucongtieshan
+text:
+  desc: 外观：闭合铁扇长约四十厘米，十一根乌钢扇骨、灰白素绢与黄铜扇钉。 待运行时投影：exoticKind=fan; sect=sect_jiangnanqiguai。
+  lore: 《射雕英雄传》中江南七怪朱聪以扇为兵，闭扇可点打，展开可遮目并掩护巧手变化。是否明确为铁扇及其具体形制仍 （待考：核朱聪交战情节）；乌钢扇骨、素绢和定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 58
+      qiAffinity: 100

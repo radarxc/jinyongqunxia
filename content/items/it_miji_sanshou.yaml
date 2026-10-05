@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_sanshou
+name: 散手全本
+kind: manual
+sub: full
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_sanshou
+text:
+  desc: 外观：清代灰蓝线装小册，四眼白线。
+  lore: 江湖散人把拆招、拿腕与贴身短打编成掌心全本，武学和载体皆属 （原创扩展）。研读须与同伴慢速喂招，先学松手护关节；册页上的指翻油痕，正是临场查阅擒拿次序所留。
+extension:
+  type: manual
+  value:
+    skill: sk_sanshou
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_sanshou
+      readWis: 25
+      maxLayer: 10
+      cultivation: 750

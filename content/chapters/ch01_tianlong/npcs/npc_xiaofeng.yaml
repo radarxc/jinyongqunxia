@@ -1,0 +1,40 @@
+schemaVersion: npc.v1
+id: npc_xiaofeng
+identity: {name: 萧峰, aliases: [乔峰], origin: fictional, sourceWorks: [天龙八部]}
+lifespan:
+  born: {kind: unknown, ageBand: prime, note: 生年待考}
+  died: {kind: circa, year: 1094, tolerance: 1, basis: inferred, note: 雁门关结局随分支变化}
+appearances:
+  - key: tianlong_main
+    chapterId: ch01_tianlong
+    years: {from: 1093, to: 1094, approx: true}
+    displayName: 萧峰
+    presenceMode: living
+    combatEligible: true
+    ageBand: prime
+    sects: [{sectId: sect_gaibang, rank: L5, relation: formerLeader}, {sectId: sect_qidan, rank: L4, relation: identity}]
+    location: {cityId: city_liaoyang, placeKey: yanmen_route}
+    contentLayer: mainline
+    recruitment:
+      difficulty: D5
+      questRef: q_01_bond_71
+      gateRef: q_01_bond_71#recruit_gate
+      valueGateRefs: [q_01_bond_71#respect_identity]
+      mainlineGateRef: q_01_main_a_03#complete
+      windowKeys: [a3_to_a5]
+      canonicalConsequenceRef: q_01_main_a_05#yanmen_outcome
+      fallbackAllianceRef: null
+      lockWarningRef: q_01_bond_71#lock_warning
+      fateRuleRef: q_01_main_a_05#fate_rule
+    build:
+      pipeline: full
+      templateRole: tmpl_boss
+      cultivationBand: 62
+      portrayal: qidan_hero
+      skills: [{skillId: sk_taizuchangquan, trueLayer: 10}]
+      unregisteredSkills: []
+    ai: {tier: ai_master, personality: pers_huzhu}
+recruitment: {everRecruitable: true, allianceOnly: false, hardConflictWith: [], softConflictWith: []}
+bonds: {tags: [hero, qidan], comboCandidateRefs: []}
+crossBook: {enabled: false, reunionQuestByChapter: {}, legacy: {skillRefs: [], itemRefs: [], heirNpcRefs: []}}
+sources: [{kind: novel, work: 天龙八部, locator: 萧峰主线；回目待考}]

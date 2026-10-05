@@ -1,0 +1,46 @@
+id: bld_kit_mongol_tavern
+status: candidate
+building: {"type": "bld_kit_mongol_tavern", "footprint": [10, 8], "anchor": [306.0, 268.2295], "era": "mongol"}
+anchor_px: [306.0, 268.2295]
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】复用design/22 §3.2 bld_kit_song_dali_restaurant；酒肆功能（原创扩展）
+measured_ground_polygon_px: [[17.989, 266.8372], [330.6639, 416.8066], [594.011, 269.6218], [281.3361, 119.6524]]
+collision_polygon_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
+collision_note: 全占地仅规划阻挡代理；毡帐/院落内可行走区域另需细化，不含阴影。
+entrance:
+  edge: S
+  offset_cells: 4
+entrance_note: 规划边中点代理，非门洞实测（待实测）
+height_m: null
+height_note: 未测量；不能由roof顶点与center直接反推整体高度。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+views:
+- rotation_deg: 0
+  yaw_deg_requested: 45
+  pitch_deg_requested: 30
+  file: bld_kit_mongol_tavern.png
+glb: null
+projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [576, 288], "ground_width_px": 576.022, "ground_height_measured_px": 297.1542, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": false}
+geometry_qa: {"source_corners_px": {"left": [52, 598], "front": [838, 975], "right": [1500, 605], "rear_inferred": [714, 228]}, "source_anchor_px": [776.0, 601.5], "source_axis_slopes": [0.4796437659033079, -0.5589123867069486], "axis_tolerance": 0.03, "axis_pass": false, "source_width_depth_ratio": 1.1873111782477341, "expected_width_depth_ratio": 1.25, "ratio_relative_error": 0.05015105740181269, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": ""}
+pixel_qa: {"mode": "RGBA", "size": [612, 512], "alpha_extrema": [0, 255], "alpha_zero_pixels": 215888, "alpha_partial_pixels": 96516, "alpha_opaque_pixels": 940, "alpha_nonzero_bbox": [16, 93, 596, 418], "transparent_margins_px": [16, 93, 16, 94], "border_alpha_max": 0}
+processing: {"source_archive": "sources/bld_kit_mongol_tavern__r2_c02.png", "source_sha256": "3806b2b429003f6cc1c1fe45da0a7f445163f1c162b2d1f6065341a06ac4bc20", "source_size": [1536, 1024], "crop_box": [47, 161, 1505, 978], "uniform_scale_requested": 0.39779005524861877, "resized_size": [580, 325], "rounded_effective_scale": [0.39780521262002744, 0.397796817625459], "paste_offset": [16, 93], "final_file": "bld_kit_mongol_tavern.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+selected_candidate: "run2-c2"
+visual_review: "第2轮返修采用本轮候选2；轴率0.47964/-0.55891；宽深比1.18731，目标1.25000；轴率/比例检查分别False/True。仍为candidate，非3D/四向及总装验收。"
+release_ready: false

@@ -1,0 +1,14 @@
+{
+"id": "tex_town_ming_south_city_gate__k6_r000_v01",
+"run": 2,
+"date": "2026-09-30",
+"tool": "image_gen built-in",
+"transparent_background": true,
+"footprint_unchanged": [10,4],
+"attempts": 2,
+"selected_candidate": null,
+"decision": "rejected; 原成品及原登记逐字节保留",
+"original_sha256": "becb9e5f6cbab0695e0bd7f714794e8533143ef4862ee2be287238a78bcc1c13",
+"candidates": [{"candidate":1,"file":"candidate_1.png","source_path":"/Users/bytedance/.codex/generated_images/01a0f44c-f2ef-7be3-b6ed-08cc8a2a28d8/exec-e5076e63-f1a9-4730-ab09-847f693005d1.png","sha256":"b01ff8d74a20d36d2f1e4398aef7cfd25d8df6ebe904474a6b2fedd0b995e348","size_px":[1536,1024],"mode":"RGBA","alpha_range":[0,254],"prompt_file":"prompt_1.txt","prompt_sha256":"cd8e1ec908436efe97b2f79df0da0aa757d31781e6f90213770a855a1e6618d5","referenced_images":[{"file":"assets/default/tile/ming_south/tex_town_ming_south_city_gate__k6_r000_v01.png","sha256":"becb9e5f6cbab0695e0bd7f714794e8533143ef4862ee2be287238a78bcc1c13"}],"selected":false,"measurements":{"points_px":{"A":[140,605],"B":[1154,1011],"C":[1380,911],"P":[325,692],"Q":[990,935]},"point_roles":"A左门墩前外足/B右门墩前外足/C右门墩后外足/P左门墩前内足/Q右门墩前内足","front_slope":0.40039447731755423,"depth_slope":-0.4424778761061947,"slope_residual_to_target":[-0.09960552268244577,0.05752212389380529],"width_depth_ratio":4.486725663716814,"target_width_depth_ratio":2.5,"ratio_relative_error":0.7946902654867256,"front_pier_passage_pier_cells":[1.8244575936883627,6.558185404339251,1.6173570019723864],"provisional_diagonal_midpoint_px":[760.0,758.0],"anchor_note":"仅供复算；拒选故未登记新锚点。","formula":"slope=dy/dx; ratio=(Bx-Ax)/(Cx-Bx); cell_width=segment_dx/(Bx-Ax)*footprint_w"},"rejection":"长轴斜率未达+0.5±0.03，宽深比例错误；不得通过改footprint或仿射拉伸掩盖。"},{"candidate":2,"file":"candidate_2.png","source_path":"/Users/bytedance/.codex/generated_images/01a0f44c-f2ef-7be3-b6ed-08cc8a2a28d8/exec-2bfb7f67-3f48-4e25-bfbe-373c8cea092e.png","sha256":"22a2b137f7a45b136bd9af3e984057e12227b05e481cecdfe503bd6b0328a0d6","size_px":[1536,1024],"mode":"RGBA","alpha_range":[0,254],"prompt_file":"prompt_2.txt","prompt_sha256":"574a2098d14d94d50926bc72228f3a5a65dae0f11e9908d94bbd0816ef4cb344","referenced_images":[{"file":"assets/default/tile/ming_south/revisions_r2/city_gate_k6/candidate_1.png","sha256":"b01ff8d74a20d36d2f1e4398aef7cfd25d8df6ebe904474a6b2fedd0b995e348"}],"selected":false,"rejection":"右门墩底部接触源图1024px下边且基脚被截断；不能测完整底面，不可用透明补边修复缺失。","clipped_alpha_row":1023}],
+"measurement_note": "人工读点与alpha>=128轮廓复核；坐标为未缩放源图像素，端点读数约±3px；下面数值是测点算式结果，不宣称测绘精度。"
+}

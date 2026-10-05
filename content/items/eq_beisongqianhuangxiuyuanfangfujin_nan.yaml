@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_beisongqianhuangxiuyuanfangfujin_nan
+name: 北宋浅黄绣缘方幅巾·男
+kind: armor
+sub: headwear
+grade: 8
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 北宋；出现书界 ch01；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；河南博物院《宋代彩绘袖手抱印石女俑》，北宋范通直墓 https://www.chnmus.net/ch/collection/appraise/details.html?id=512158796610969072；元丰以后公服取色不等于庶民流行排序，女俑色彩残损不得补作白内衣证据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/beisongqianhuangxiuyuanfangfujin_nan
+text:
+  desc: 外观：北宋男款，折叠方幅帛巾。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: （原创扩展）将北宋软巾语汇演成浅黄男式方幅巾，折叠帛幅成双软角，系结与巾体合为一件头饰。细密花纹绣缘落巾缘，戴前整束软角；不是硬脚幞头，不授官阶，也不凭织纹另加闪避。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 11

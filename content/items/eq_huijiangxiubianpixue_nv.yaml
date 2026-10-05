@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_huijiangxiubianpixue_nv
+name: 回疆绣边皮靴·女
+kind: armor
+sub: shoes
+grade: 4
+stack: 1
+chapters:
+- ch10_baima
+- ch12_shujian
+origin: canonExpanded
+canonRef: 回部女靴 · 清（《皇清职贡图》）· 出现书界 ch10/ch12 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huijiangxiubianpixue_nv
+text:
+  desc: 外观：女款枣红软皮靴一双并置，圆翘鞋头、中靿、蓝绿几何绣边与薄皮底。 待运行时投影：qinggong=10; wearer=female。
+  lore: 据《皇清职贡图》的回部女靴语汇演成，枣红软皮、薄底和蓝绿窄绣边适合城镇步行。靴面几何纹为本作配色，不对应具体部族标记。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: leather
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 7
+      agi: 2

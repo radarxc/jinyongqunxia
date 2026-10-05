@@ -1,0 +1,17 @@
+{
+  "name": "yamen",
+  "attempt": 2,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-c80831c1-319b-4bd6-acf1-e0b4a0ac48f5.png",
+  "prompt": "Use case: historical-scene. Image1 is an EXACT geometric ground-plane template, not a style guide. Build a single realistic Southern Song Lin'an local government yamen ON THIS EXACT PARALLELOGRAM; keep its four corners and two visible lower edges unchanged in screen position and angle. Size1536x1024. Ground corners LEFT(150,540), FRONT(822,876), RIGHT(1326,624), BACK(654,288). Do NOT square, rotate, tilt, or deepen the rectangle. All architecture horizontal axes precisely parallel to these outline edges, orthographic no perspective. The long front wall LEFT-FRONT is 16 units and the right wall FRONT-RIGHT is12, slopes+.5 and-.5, width/depth1.3333. Transform the tan area to pale weathered stone paving, very thin base. Add low plaster walls and a plain open tiled gateway halfway on left-front edge, main single storey timber magistrate hall at rear, one small side office, small drum stand inside open court. All walls hug this exact contour, eaves complete. Photo-realistic natural wood, handmade grey tile, warm off-white plaster, muted brown stone. No persons, no text, no modern items, no Ming/Qing fashion, no fantasy, no labels, no diagram lines. REMOVE the guide's white background, outlines and all corner words; output genuine transparent RGBA. Building and its entire silhouette must be within canvas with minimum80px empty space. Upper-left daylight and small down-right contact shadow. Ground base stays exactly on given template. Do not copy or reference earlier images.",
+  "reason": "占地比例仍偏宽约10%，未选。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_yamen_guide.png",
+      "role": "geometry guide：自制占地轮廓QA图，非生成资产",
+      "sha256": "ea0ddb08c407be49ceab00ab722be51d3872d995cb45f7712f09d780f702d7fc"
+    }
+  ],
+  "id": "bld_kit_song_southern_yamen",
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try2.png",
+  "source_sha256": "d5ce190895f5a59095021b0d2f51cb921e421cf29e9db543700f3aeacbaa5f9b"
+}

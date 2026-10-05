@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_wuyingshou_can
+name: 无影手残本
+kind: manual
+sub: partial
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuyingshou_can
+text:
+  desc: 外观：清代灰褐线装残册，四眼黑线。
+  lore: 江湖擒拿快手留下的指路只存灰褐残册，武学、载体与散佚皆属 （原创扩展）。研读须从缺角图页推明虚实转换，却不可臆补失传招路；油旧指痕标出常查处，现本上限七层。
+extension:
+  type: manual
+  value:
+    skill: sk_wuyingshou
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_wuyingshou
+      readWis: 35
+      maxLayer: 7
+      cultivation: 1120

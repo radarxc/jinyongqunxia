@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_yuanqibaolimao_nan
+name: 元七宝钹笠帽·男
+kind: armor
+sub: headwear
+grade: 7
+stack: 1
+chapters:
+- ch04_yitian
+origin: canonExpanded
+canonRef: 钹笠帽 · 元（《元史·舆服志》、故宫蒙元服饰研究）· 出现书界 ch04 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanqibaolimao_nan
+text:
+  desc: 外观：男款朱红钹笠帽独立陈列，不画人头。 待运行时投影：resMindPp=3; wearer=male。
+  lore: （原创扩展）据蒙元钹笠帽资料重构，朱红毛毡作宽圆笠檐与低尖顶，鎏金宝顶只作收束。骑行时以帽带固定，入帐摘下置架；细珠缘显示主人珍爱。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 10

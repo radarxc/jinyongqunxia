@@ -1,0 +1,12 @@
+{
+  "tool": "image_gen",
+  "model": "not exposed by built-in tool",
+  "effort": "not exposed by built-in tool",
+  "created": "2026-10-03T23:53:39.467Z",
+  "source_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_qiankun/codex-home/generated_images/01a1042c-0595-7452-83a7-60093442bb7b/exec-5feba5a3-8dad-400c-bc81-fb76cd67c9d3.png",
+  "transparent_background": false,
+  "candidates_generated": 1,
+  "selected_candidate": 1,
+  "prompt": "Use case: stylized-concept\nAsset type: wuxia VFX source sprite sheet, Qiankun Danuoyi ultimate Diandao Yinyang, original interpretation of reversing and redirecting force.\nONE landscape image 1536x1024, exactly four equally sized cells arranged 2 columns x 2 rows, each 768x512. Read left-right then top-bottom. Absolutely white #FFFFFF backdrop with no separators.\nFour consecutive animation poses of ONE coherent aura: gathering, peak, sustained counter-rotation, faint residue. Each frame has an identical broad root centred at local (145,256), flowing right into a compact vortex; keep this location constant. Two interlocked gold ink crescents turn in opposite directions in the same hollow round space near local (440,256): upper sweeping crescent in deep amber and lower returning crescent in pale ochre, twisting past each other through a curved S-shaped gap. The two flows trade upper/lower prominence over time yet stay attached to the same broad root. This must look like circulating inner force deflecting momentum near the body. NOT two separate projectiles or a yin-yang symbol.\nFine Chinese ink wash, soft wet washes and airy transparent-looking breaks, gold pigment with umber accents, visible color rather than white interior highlights. Root about 110px high with soft feathering on its left edge; never draw a rectangular cut edge. Peak is in TOP RIGHT cell. Reserve at least 56px white margin on ALL four sides of EVERY cell; all wisps stay within bounds. Do not exaggerate scale between poses. Full vortex diameter about 300px; no long beam.\nNo hands, human, weapons, animals, scene, paper grain, shadow, text, numbers, labels, diagram, grid, frame, border, watermark, icon, bagua, circular magic sigil, black-white disk, white paint, neon red/blue, physical metal or fire.",
+  "references": []
+}

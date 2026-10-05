@@ -1,0 +1,60 @@
+# ART-ui-icons 报告 · 界面图标 · 武侠主题图标一套（工具栏 8 + 城镇 / 战斗 / 银两 / 城池标记 + 状态 10，共 22 件，512 RGBA 真透明；作者 AR-48，codex gpt-6-astra xhigh）
+
+## 1. 摘要（3–6 行）
+已完成全套 22/22 件（工具栏 8 + 新增 4 + 状态 10），均为 512×512 RGBA 真透明、candidate；本次续作补齐缺少的 9 件状态图。
+采用 S3 器物材质、左上光与墨线；前次已校准行囊 / 武学 / 气血，本次收取外部 runner 恢复后的原队列结果，9 件均首版通过；原有 13 件 PNG 的 SHA-256 与 manifest 前 802 行保持不变；均为原创扩展。
+仅落库指定图标目录与本报告；提示词、原图、联系表和后期记录保存在 codex_w18；没有修改设计文档、工具或执行 git 状态变更命令。
+
+## 2. 产出（文件、行数、主要章节）
+`assets/default/ui/icons/`：22 PNG（合计 3,540,578 B，约 3.38 MiB）+ `manifest.yaml`（1387 行、22 条完整来源与提示词）；本报告 60 行，§1–7。
+
+## 3. 关键结论与数值
+计划与实交均为 `8+4+10=22`；22 件主体最大跨度均为 `384/512=75%`，保持比例；原生 alpha 的 ≤8 残留清零、≥245 归满，清理实体边缘 2 px 外低 alpha，再以预乘 alpha 缩放；未代码绘制、拼贴或烘焙投影。
+联系表目录：`/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w18/sheets/`；`calibration.png` 保留 3 件校准；`completed_22.png` 为全套单张（1440×12224，原尺寸 512、128/64/48、明/暗、灰度、棋盘、实际山水与单色剪影），`completed_22_overview.jpg` 为总览；本次分批目检 `status_resume_6.png`、`status_resume_2.png`、`status_resume_final.png`，另有 `status_10_monochrome_48.png` 同屏比对十种剪影；旧 13 件联系表保留追溯。
+| asset_id | 重出次数 | 抠底 |
+|---|---:|---|
+| `ui_tool_bag` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_tool_martial` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_tool_character` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_tool_codex` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_tool_journal` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_tool_system` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_tool_map` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_tool_save` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_tool_town` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_tool_battle` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_res_silver` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_map_city` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_status_hp` | 1 | 否，原生透明；仅清理 alpha |
+| `ui_status_mp` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_status_sta` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_status_rage` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_status_poison` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_status_bleed` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_status_seal` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_status_grapple` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_status_stagnation` | 0 | 否，原生透明；仅清理 alpha |
+| `ui_status_rupture` | 0 | 否，原生透明；仅清理 alpha |
+
+- `ui_tool_town` 实际发出的完整提示词（含 runner 公共前缀）：The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.<br>Subject: One miniature Chinese gate tower with a short adjoining crenellated city wall. Broad single stone arch opening, cinnabar timber upper storey, ebony tiled eaves with restrained old-bronze ridge ends, warm grey stone wall. Clear stepped roof and gateway silhouette, no ground or scenic setting.<br>Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative space at 64 and 48 px.<br>View and composition: front view, very slightly from above, centered on a square canvas, whole compact object occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.<br>Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no mist or shadow.<br>References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.<br>Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery, photorealism, plastic rendering, ornate border.
+- `ui_tool_battle` 实际发出的完整提示词（含 runner 公共前缀）：The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.<br>Subject: One crossed straight Chinese jian sword and curved dao sabre, forming a bold compact X. Distinct straight narrow blade and broad curved blade, cool steel three-tone planes, ebony grips, old-bronze guards and one short cinnabar sword tassel. Large clean negative gaps between weapons; no shield, explosion or blood.<br>Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative space at 64 and 48 px.<br>View and composition: front view, very slightly from above, centered on a square canvas, whole compact object occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.<br>Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no mist or shadow.<br>References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.<br>Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery, photorealism, plastic rendering, ornate border.
+- `ui_res_silver` 实际发出的完整提示词（含 runner 公共前缀）：The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.<br>Subject: One heavy yuanbao-shaped silver ingot with raised boat-shaped ends and a smooth oval depression, accompanied closely by exactly two old-bronze coins with open square holes. Cool silver light/mid/dark planes, tiny stone-blue reflections and warm copper. Silver ingot dominates; no embossed symbols, coin inscriptions or numerals. HUD resource icon only, number will be laid out separately by code.<br>Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative space at 64 and 48 px.<br>View and composition: front view, very slightly from above, centered on a square canvas, whole compact object occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.<br>Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no mist or shadow.<br>References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.<br>Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery, photorealism, plastic rendering, ornate border.
+- `ui_map_city` 实际发出的完整提示词（含 runner 公共前缀）：The imagegen skill has already been read. Do not read files, do not call node_repl, shell, or collaboration tools. Make exactly one built-in image_gen call for this single asset, then reply only with its generated PNG path. Generate one polished wuxia game UI icon for Tianshu, original illustration, not a contact sheet.<br>Subject: One compact miniature square fortified Chinese city viewed from slightly above, with four short raised crenellated stone walls enclosing a clearly transparent courtyard and one prominent cinnabar gatehouse. Bold ebony roof, old-bronze roof ends, pale warm stone bevels. This is architecture, not a stamp, seal, square card or plaque. Strong stepped outer silhouette and open interior negative space must stand out against a landscape map; no ground tile or surrounding terrain.<br>Style and materials: S3 game-ready Chinese gongbi illustration, tangible weight and restrained handcrafted material texture. Clear three-step light/mid/dark shading, one continuous dark-ink outer contour equivalent to 2-3 px at 512. Smoke-ink, cinnabar, aged bronze, stone-blue accents; saturation 10-15 percent stronger than portrait references. Light from upper left. No baked paper texture. Readable by large silhouette and structural negative space at 64 and 48 px.<br>View and composition: front view, very slightly from above, centered on a square canvas, whole compact object occupies about 75 percent of canvas maximum span, equal safe margins, no cropping.<br>Transparency: output PNG with genuine RGBA transparency, set transparent_background=true. All pixels outside the object and inside specified holes must have alpha=0; solid material is opaque. No painted background, no mist or shadow.<br>References: image 1 sword and image 2 manual are STYLE ONLY for material volume and ink outline; image 3 landscape is STYLE ONLY for palette and ink character. Do not copy their objects, composition, background or lettering.<br>Exclude: no text, letters, numbers, Chinese characters, pseudo-writing, seal script, watermark, signature, square card, plate, frame, paper background, black background, checkerboard, drop shadow, cast shadow, glow, fog, scenery, photorealism, plastic rendering, ornate border.
+
+## 4. 开放问题（附默认值）
+已解决：前次 13:55 可用 2,893,545,472 B（约 2.69 GiB），STOP 后 runner 13:55:42 退出；追踪者恢复磁盘并于 13:57:34 重启，14:07:47 已收齐原队列，续作实测可用约 5 GiB，缺少的 9 件已入库（见 §2、§7）。气血首版繁饰已解决；默认全部仍为 candidate，作者审图、真机与运行时图集待实测。
+
+## 5. 对基准的修改提案（编号 / 提案 / 理由）
+无。本任务仅产原创 UI 美术，不新增玩法、Buff 或数值定义。
+
+## 6. 需同步到其他文档（文档 / 位置 / 改什么）
+交 DES-ui-immersive-2：`catalog/ui-art-kit.md` §0/2/3/6/8 同步 AR-48 的材质分量、三阶明暗、左上光、真透明要求，登记新增 4 键及本报告 §3 的全文提示词；状态去繁饰，以大剪影与负形区分。
+交 DES-ui-immersive-2 / ENG-ui-kit：`design/26` §5–8、样稿与 `tech/07` §5.6.4 接同一套明暗主题图；128/64 运行时图集用预乘 alpha 缩小、格间 4 px 扩边【建议值】，只打包实际使用尺寸，512 母版不进首屏。
+深浅底复用同图；浅底轮廓清楚，深底下烟墨人物、系统机括、墨绿中毒与迟滞暗部需实际背景复核，允许程序沿轮廓提亮或加影，不加方卡、圆牌、黑底；银两数值另排中文数字，状态名/层数/时长及焦点由代码显示。
+
+## 7. 自检（逐条对照验收标准）
+✅ `python3 tools/agents/check_assets.py assets/default/ui/icons --min 22 --max 22 --min-side 512`：续作退出 0，图片 22 张、条目 22 条、问题 0 个；已解决前次 13 图不足 22。
+✅ 任务指定 Pillow 检查：续作退出 0，`22 icons; bad: []`；22 件均 RGBA、512×512、alpha 同含 0/255、四角 32×32 全 0，已解决前次数量不足。
+✅ `python3 tools/lint/check_ids.py --strict` 退出 0（既有未定义基线 1，新增 0）；完整输出保存 `codex_w18/check_ids.log`；复用给定美术键，无新增玩法 ID。
+✅ 联系表经 view_image 目检：22 件主体占 75%、材质有分量、光向/色系一致，64/48 可辨，无文字/水印/底板/烘焙纸底/投影/可见白边或雾；已完成 10 状态同屏单色剪影比较及 22 件全套联系表。饱和度增幅与轮廓宽度为提示词目标及视觉判定，不冒充逐像素统一量测。
+✅ 本次仅补 9 PNG、追加 9 条 manifest 并更新报告；续作补丁与文本分块≤50行（前次≤150行），报告60行，原有13 PNG hash不变；未复制整仓/整份 assets、未改工具或设计文件、未执行 git 状态变更。⚠️ 作者审图、运行时图集、真机与可访问性合成对比仍由后续任务完成。

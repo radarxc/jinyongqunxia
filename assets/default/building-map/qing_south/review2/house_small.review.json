@@ -1,0 +1,30 @@
+{
+  "id": "bld_kit_qing_south_house_small",
+  "revision": "review2",
+  "tool": "built-in image_gen",
+  "candidate_count": 2,
+  "selected_candidate": "retained_previous",
+  "resolved": false,
+  "retained_final_sha256": "2fb6acc1416fe64d08b863af41cb9cb107e04d1d09735f37ffc007516f98f209",
+  "retained_source_record": "sources/bld_kit_qing_south_house_small.request.json",
+  "retained_geometry_note": "旧稿测点、锚点和源图不变；axis_pass=false、ratio_pass=false继续有效。",
+  "rejected_candidates": [
+    {
+      "candidate": 1,
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f450-2399-77a1-9948-02b42503786e/exec-7b87024e-7628-4d0f-ae93-b27418158fde.png",
+      "archive": "review2/house_small__candidate1.png",
+      "input_reference": "bld_kit_qing_south_house_small.png",
+      "request_summary": "编辑原图；保留清江南材质；按6:5占地和精确三角屏幕坐标重建，双轴要求±0.5。",
+      "rejection_reason": "仍沿袭旧稿过宽前立面，进深未恢复；无法同时通过两轴与6:5比例。"
+    },
+    {
+      "candidate": 2,
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f450-2399-77a1-9948-02b42503786e/exec-3ff9ea7d-b327-40f2-a6df-151da74ecdf1.png",
+      "archive": "review2/house_small__candidate2.png",
+      "input_reference": null,
+      "request_summary": "无图从头生成；近方6:5单层民居，单门单窗，明确L(120,750)、F(670,1025)、R(1128,796)目标点和±0.5轴。",
+      "rejection_reason": "进深过度增加，正立面反而短于侧墙；底边斜率明显浅于±0.5。"
+    }
+  ],
+  "visual_review": "两张均完成view_image检查；第二张另检查浅底RGBA预览。二者几何都没有优于旧稿，保留旧图避免回退。"
+}

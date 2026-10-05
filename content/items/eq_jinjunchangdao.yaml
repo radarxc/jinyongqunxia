@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_jinjunchangdao
+name: 金军长刀
+kind: weapon
+sub: blade
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·金；射雕至神雕金境可得，器形 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/jinjunchangdao
+text:
+  desc: 外观：全长约一百一十厘米，宽背微弧铁刃、短椭圆镡、长木柄皮缠。
+  lore: 金境军旅场景使用的宽背长刀，长柄可双手握持，微弧刃适合步骑交错时劈斩。其确切器形与军中配发仍 （待考：核金代兵器资料）；双挂环鞘、比例和投放为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 43
+      qiAffinity: 100

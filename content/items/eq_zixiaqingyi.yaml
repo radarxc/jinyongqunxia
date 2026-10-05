@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_zixiaqingyi
+name: 紫霞轻衣
+kind: armor
+sub: clothing
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/zixiaqingyi
+text:
+  desc: 外观：低饱和紫灰长衣，云霞渐染只在织纹中。 待运行时投影：eva=8; mpMaxPct=5%。
+  lore: 紫霞轻衣采用由灰入紫的低对比织色，裁身轻薄，长途运气和腾挪时不妨碍肩背。华山脚下有人称它能借霞隐形，其实只是布面不易映出月光。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 78
+      agi: 4

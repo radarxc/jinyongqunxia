@@ -1,0 +1,50 @@
+{
+  "id": "bld_kit_ming_north_warehouse",
+  "subject": "明代北方府城·仓屋（原创扩展）",
+  "footprint": [
+    9,
+    7
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-4111c382-024f-4080-a36f-7acdadd19a1f.png",
+  "prompt": "Use case: precise-object-edit. Correct this single Ming northern Chinese building sprite. Preserve its purpose, anonymous details and realistic material density, but use proper NORTH CHINESE YINGSHAN hard-gabled roof: flush grey-brick triangular gable walls rise all the way to ridge at both ends, NO overhanging eaves at gable ends, no upward-curled corner tips. The input is material reference, do NOT retain its roof silhouette. Deliver true TRANSPARENT RGBA, with completely empty fully transparent padding at least 12% image width/height on ALL FOUR SIDES. Remove ALL glow, haze, vignette, gradient and ground shadow beyond the thin rectangular footprint; all empty pixels alpha ZERO. Natural light stays upper-left. Correct ground geometry to precise 2:1 dimetric: left-to-front edge EXACTLY +0.500 slope, front-to-right edge EXACTLY -0.500; 26.565 degrees to horizontal, NOT standard 30-degree ground-edge isometric. Camera orthographic yaw45 pitch30, vertical columns vertical. Thin gray brick flat ground pad, no thick plinth. No people, animals, modern objects, text, characters, labels, watermark, backdrop or new props. This is a compact plain grain warehouse. Tall gray brick walls, one wooden wide double doorway partly open revealing sacks and small crates. Keep no new objects outside. Footprint width/depth axis ratio NINE:SEVEN, left-to-front nine units and front-to-right seven units, deep nearly-square. Clean outline with no floating artifacts above roof. Entire roof and all ground corners uncut.",
+  "created": "2026-09-30T21:24:01.874Z",
+  "references": [
+    {
+      "id": "bld_kit_ming_north_warehouse_c01",
+      "path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-d1625402-91d8-4206-b05d-a43c1a5f36d9.png",
+      "archived_path": "assets/default/building-map/ming_north/sources/rejected/bld_kit_ming_north_warehouse_c01.png",
+      "sha256": "998cb83b2ee8fb8a2b7dfcda7601dddb56c3668b6f32c9f17703a82f513b8ef4",
+      "role": "编辑目标，校正硬山屋型、底面投影及透明边缘；原图已view_image",
+      "status": "rejected"
+    }
+  ],
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "points": {
+    "L": [
+      176,
+      710
+    ],
+    "F": [
+      830,
+      1045
+    ],
+    "R": [
+      1322,
+      802
+    ]
+  },
+  "footprint_basis": "【建议值】沿宋大理warehouse同功能9×7；design/22 §3.4未细分此项。",
+  "visual_review": "已view_image候选1及2。选候选2：灰砖实墙硬山仓屋，开门可见麻袋木箱，无漂浮杂点与文字人物；完整底面可测，单视角拼接待实测。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "measurement_uncertainty_source_px": 4,
+  "source_size": [
+    1437,
+    1094
+  ],
+  "source_sha256": "f6577e97ca85d1859258a052ab950921828062009b84529aab8c27ab9a97e2f1",
+  "tool": "built-in image_gen",
+  "model": "underlying model not disclosed",
+  "effort": "not exposed",
+  "final_view_image_review": "已逐张view_image规范化成品；主体完整、灰砖木构细节可读、透明边距保留；几何warning与单视图能力限制沿用。"
+}

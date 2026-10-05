@@ -1,0 +1,209 @@
+- id: tex_town_tubo_city_gate__k4_r000_v01
+  file: tex_town_tubo_city_gate__k4_r000_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·净宽4格Bar Chorten覆钵门（原创概化；非实测复原）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real references for Bar Chorten gateway proportions, chorten component order and old Lhasa masonry, without copying the photograph composition. Create one isolated realistic town tile sprite for tex_town_tubo_city_gate__k4_r000_v01: a four-cell-wide Tibetan city gate using Bar Chorten vocabulary, with one broad true open passage cut through a thick battered rubble-and-earth wall, a square stepped base around the opening, one compact whitewashed rounded chorten dome above, square harmika, short ring spire and umbrella finial. Keep the passage visibly and genuinely transparent, adequate for the existing k4 clear width. Weathered limewash, coarse stone base, dark timber lintel, restrained faded ochre coping, no gatehouse roof. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, wall axis horizontal/isometric compatible, upper-left light, short contact shadow, true transparent RGBA with generous margin. No people, animals, text, symbols, prayer flags, gold, Chinese roof, scenery, road, watermark, glow, fog, thick display base or cropping. Return only image.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references:
+  - {url: 'https://www.loc.gov/item/2021670618/', download_file: loc_2021670618.jpg, download_sha256: 80d7d2fc4cd06a3537650a674d8adee27312a07641aa1ba2bbb581a2533bbedd, accessed: '2026-10-01', used: 约1900年 Bar Chorten 覆钵门轮廓, model_input: true}
+  - {url: 'https://www.metmuseum.org/art/collection/search/39421', download_file: met_stupa_13c.jpg, download_sha256: d62471cf811a32e2f58076a7cb597b1e7c2af28e9091acef99a41fafcf70fe26, accessed: '2026-10-01', used: 西藏13世纪塔的构件顺序, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.1.1photo.jpg, download_sha256: a5b1d8158870799c33105533ad197b15b2d795cea75b276918fe48b0ed52a7a2, accessed: '2026-10-01', used: 传统收分墙、毛石砌层与白灰修补, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: source/historical-rebuild/tex_town_tubo_city_gate__k4_r000_v01__raw.png
+  size: 591x432
+  sha256: 900f6f1d1f78334e753a6117663e146e29f50db7383ae029ce659655482cb5a0
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: city_gate
+    footprint: [8, 4]
+    variant: k4_r000_v01
+    autotile_mask: null
+  source_copy: source/historical-rebuild/tex_town_tubo_city_gate__k4_r000_v01__raw.png
+  source_sha256: 808e1c487933bbc1c01c0ca5c1ec1799d60dbf4502ccfee2dcd41827c9b48459
+  anchor_px: [295.5, 400.0]
+  notes: '历史图片已实际输入；Bar Chorten覆钵门、收分石台、透明四格通行孔。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  candidate_count: 1
+- id: tex_town_tubo_city_gate__k6_r000_v01
+  file: tex_town_tubo_city_gate__k6_r000_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·净宽6格Bar Chorten覆钵门（原创概化；非实测复原）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical images as real references for Bar Chorten gateway proportions, chorten component order and wall masonry, without copying the photograph composition. Create one isolated realistic town tile sprite for tex_town_tubo_city_gate__k6_r000_v01: a wider six-cell Tibetan city gate with one very broad true open passage through a thick battered rubble-earth wall, slightly longer flanking wall masses than k4, square stepped base, one central whitewashed rounded chorten dome above, square harmika, compact stacked ring spire and umbrella finial. Keep the entire passage genuinely transparent and clearly wider than the k4 version. Coarse stone footings, patched limewash, heavy dark timber lintel, restrained faded ochre coping, no roofed gatehouse. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, upper-left light, short contact shadow, true transparent RGBA with generous margin. No people, animals, text, symbols, prayer flags, gold, Chinese roof, scenery, road, watermark, glow, fog, thick base or cropping. Return only image.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references:
+  - {url: 'https://www.loc.gov/item/2021670618/', download_file: loc_2021670618.jpg, download_sha256: 80d7d2fc4cd06a3537650a674d8adee27312a07641aa1ba2bbb581a2533bbedd, accessed: '2026-10-01', used: 约1900年 Bar Chorten 覆钵门轮廓, model_input: true}
+  - {url: 'https://collections.lacma.org/object/61926', download_file: lacma_stupa.jpg, download_sha256: 2ffba28643be37fdf074415bae22d402b214a845dd14b02f52e1b6fd01d387c6, accessed: '2026-10-01', used: 覆钵、方台、叠轮与伞盖层次, model_input: true}
+  - {url: 'https://www.loc.gov/item/2021670596/', download_file: loc_2021670596.jpg, download_sha256: 655ef7fbecbbfbb57d5eddf6b3b3d64c7644399dde9cdb8b15e27d9f8664cccd, accessed: '2026-10-01', used: 围墙尺度、收分墙与粗石基脚, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: source/historical-rebuild/tex_town_tubo_city_gate__k6_r000_v01__raw.png
+  size: 778x464
+  sha256: c4d820093912f1e585c507e3c3cbcf007d12a1f6c584d3cc967873b77eea9db7
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: city_gate
+    footprint: [10, 4]
+    variant: k6_r000_v01
+    autotile_mask: null
+  source_copy: source/historical-rebuild/tex_town_tubo_city_gate__k6_r000_v01__raw.png
+  source_sha256: 657385a99d4761d8f9f494b03ff96e1256efc67d194e69149b56a8fad9e1aad8
+  anchor_px: [389.0, 432.0]
+  notes: '历史图片已实际输入；Bar Chorten覆钵门、收分石台、透明六格通行孔。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  candidate_count: 1
+- id: tex_town_tubo_wall__stone_r000_v01
+  file: tex_town_tubo_wall__stone_r000_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·藏式白石直墙一格段（原创扩展；非实测复原）
+  prompt: 'Use the built-in image generation tool exactly once. Create one final game asset image using all three attached historical reference images only for Tibetan masonry form, battered-wall proportion, stone layering, cap construction and weathered lime plaster, without copying any whole composition. Subject: tex_town_tubo_wall__stone_r000_v01, exactly ONE isolated one-cell Tibetan wall module, a compact tall square masonry pier-like segment whose logical footprint is 1 by 1 cell and height about 3 metres. It must NOT be a long wall strip. Show two equally short adjoining visible faces meeting at one vertical corner; square ground footprint reads as a small 2:1 diamond. Slightly inward-battered rubble-stone walls, large irregular fieldstone footing, smaller stone-and-earth upper lifts, patchy off-white limewash, exposed horizontal dark timber tie near the top, one course of flat grey stone coping. No continuous red decorative band, no battlements, no opening, no gate. Strict orthographic 2:1 dimetric view, yaw 45 degrees, pitch 30 degrees, no perspective; clear single-cell ground contact, upper-left light, tiny lower-right contact shadow. True transparent RGBA with generous clear margin, fully opaque masonry. No landscape, ground slab, text, symbols, people, animals, modern object, watermark, glow, fog, checkerboard or cropping. Return only the generated image result.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references:
+  - {url: 'https://www.loc.gov/item/2021670596/', download_file: loc_2021670596.jpg, download_sha256: 655ef7fbecbbfbb57d5eddf6b3b3d64c7644399dde9cdb8b15e27d9f8664cccd, accessed: '2026-10-01', used: 围墙尺度、收分墙与粗石基脚, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.1.1photo.jpg, download_sha256: a5b1d8158870799c33105533ad197b15b2d795cea75b276918fe48b0ed52a7a2, accessed: '2026-10-01', used: 传统收分墙、毛石砌层与白灰修补, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.3.2photo.jpg, download_sha256: 2d05a48ea3e17162c1e8da9684efc9d051dfbbda8cac8f5d292592de3a50978c, accessed: '2026-10-01', used: 深窗、石板雨披与木梁椽, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: source/historical-rebuild/tex_town_tubo_wall__stone_r000_v01__raw.png
+  size: 88x119
+  sha256: dd14650f40af49e95ebd3eb98d4e2ef54fd178d9f77eb801003bd38c2ca8861c
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: wall
+    footprint: [1, 1]
+    variant: stone_r000_v01
+    autotile_mask: null
+  source_copy: source/historical-rebuild/tex_town_tubo_wall__stone_r000_v01__raw.png
+  source_sha256: d9390ed5b309b957f39fc467c4a65ee0dc2d6487d6802cb200e9cebe23d54470
+  anchor_px: [44.0, 111.0]
+  notes: '历史图片已实际输入；一格高墙墩、收分毛石墙、修补白灰与石板压顶。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  candidate_count: 2
+- id: tex_town_tubo_wall_corner__outer_ne_v01
+  file: tex_town_tubo_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·藏式白石外转角（原创扩展；非实测复原）
+  prompt: 'Use the built-in image generation tool exactly once. Create one final game asset image using all three attached historical reference images only for Tibetan masonry form, battered-wall proportion, stone layering, cap construction and weathered lime plaster, without copying any whole composition. Subject: tex_town_tubo_wall_corner__outer_ne_v01, exactly ONE isolated compact exterior right-angle corner made from two SHORT adjoining Tibetan wall arms. Logical footprint is 2 by 2 cells: each arm extends only two cells from the corner, wall thickness one cell, height about 3 metres. It must be a tall compact L, NOT a long low fence. Wall height should read roughly comparable to each short arm in projection. Slightly inward-battered rubble-stone walls, large irregular fieldstone footing, smaller stone-and-earth upper lifts, patchy off-white limewash, sparse exposed horizontal dark timber ties, one course of flat grey stone coping continuous around the corner. No red decorative band, no battlements, no opening. Strict orthographic 2:1 dimetric, yaw45 pitch30, no perspective; L-shaped ground contact legible, vertical corner upright, upper-left light, tiny lower-right contact shadow. True transparent RGBA including empty inside of the L, generous clear margin. No landscape, ground slab, text, symbols, people, animals, modern object, watermark, glow, fog, checkerboard or cropping. Return only the generated image result.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references:
+  - {url: 'https://www.loc.gov/item/2021670596/', download_file: loc_2021670596.jpg, download_sha256: 655ef7fbecbbfbb57d5eddf6b3b3d64c7644399dde9cdb8b15e27d9f8664cccd, accessed: '2026-10-01', used: 围墙尺度、收分墙与粗石基脚, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.1.1photo.jpg, download_sha256: a5b1d8158870799c33105533ad197b15b2d795cea75b276918fe48b0ed52a7a2, accessed: '2026-10-01', used: 传统收分墙、毛石砌层与白灰修补, model_input: true}
+  - {url: 'https://www.asianart.com/associations/lhasa_restoration/report98/ch_02.htm', download_file: asianart_2.3.2photo.jpg, download_sha256: 2d05a48ea3e17162c1e8da9684efc9d051dfbbda8cac8f5d292592de3a50978c, accessed: '2026-10-01', used: 深窗、石板雨披与木梁椽, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: source/historical-rebuild/tex_town_tubo_wall_corner__outer_ne_v01__raw.png
+  size: 300x208
+  sha256: 89ee15c0379faa606eda72a5d2c030f3ed573c3775a0f905a043c5f47cd65521
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: wall_corner
+    footprint: [2, 2]
+    variant: outer_ne_v01
+    autotile_mask: null
+  source_copy: source/historical-rebuild/tex_town_tubo_wall_corner__outer_ne_v01__raw.png
+  source_sha256: df3e9211be3e10d61ff563e22b39b0399e1d823d503e4e8a4a15b57939750eb5
+  anchor_px: [150.0, 200.0]
+  notes: '历史图片已实际输入；紧凑L形高墙角、收分毛石墙、修补白灰与石板压顶。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  candidate_count: 2
+- id: tex_town_tubo_bridge_deck__w4_l8_r000_v01
+  file: tex_town_tubo_bridge_deck__w4_l8_r000_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·藏地简化木梁桥桥面（原创扩展；非实测复原）
+  prompt: 'Use built-in image generation exactly once. Use all three attached historical bridge images as real visual references for abutments, masonry scale and Tibetan crossing context, without copying a whole composition and without reproducing the later iron truss. Create one isolated realistic town tile sprite for tex_town_tubo_bridge_deck__w4_l8_r000_v01: an original same-function low stone bridge deck, four cells wide and eight long, one shallow masonry span or concealed slab between battered rubble-stone abutments, rough fitted stone paving, low plain edge curbs and short approach retaining stones. Historically modest, no elaborate arch, no timber cantilever, no ironwork, no roofed bridge. Strict orthographic 2:1 dimetric yaw45 pitch30, no perspective, long axis along an isometric ground axis, clear walkable deck and transparent space around/under opening, upper-left light, short contact shadow, true transparent RGBA with margin. No river or landscape background, people, animals, carts, text, modern concrete, watermark, glow, fog, thick display base or cropping. Return only image.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references:
+  - {url: 'https://www.loc.gov/item/2021670619/', download_file: loc_2021670619.jpg, download_sha256: ad57bee7800cc9bcae97676f7d33cd67b48bbaebad239ffd45691e9a4e6654aa, accessed: '2026-10-01', used: 约1900年玉拓桥石桥台与桥屋关系, model_input: true}
+  - {url: 'https://web.prm.ox.ac.uk/tibet/photo_BMH.F.79.1.html', download_file: prm_nyamchu_bridge_1928.jpg, download_sha256: fb1b6bf3debb8214bb8093a49312711e4c513f321c99eb9383e93b37a067cb21, accessed: '2026-10-01', used: 1928年年楚河低跨桥与粗石岸坎, model_input: true}
+  - {url: 'https://web.prm.ox.ac.uk/tibet/photo_2001.35.76.1.html', download_file: prm_iron_bridge_1936.jpg, download_sha256: 04b41aad91bf2efe025f0a14b92be9984d0a76e166d263dc178d3fd61817ee7b, accessed: '2026-10-01', used: 1936年铁桥作为材料反例，排除现代铁构, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: source/historical-rebuild/tex_town_tubo_bridge_deck__w4_l8_r000_v01__raw.png
+  size: 497x265
+  sha256: 9894b8aae0d7c5fe5ed68139980318322ed8a34b8de024e1d11f1f1046f77400
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: bridge_deck
+    footprint: [4, 8]
+    variant: w4_l8_r000_v01
+    autotile_mask: null
+  source_copy: source/historical-rebuild/tex_town_tubo_bridge_deck__w4_l8_r000_v01__raw.png
+  source_sha256: 1b618eb30b525a9e61fc1f4e43e739b252e2eea09db2521d913afe4b2bb3f3ec
+  anchor_px: [248.5, 257.0]
+  notes: '历史图片已实际输入；低跨粗石桥台、木梁桥面；排除铁构，原创同功能概化。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  candidate_count: 1
+- id: tex_town_tubo_tree_cluster__willow_v01
+  file: tex_town_tubo_tree_cluster__willow_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·藏地河谷柳树树丛（原创扩展；非实测复原）
+  prompt: 'Use built-in image generation exactly once. Use both attached historical images as real visual references for Tibetan river-valley willow habit and scale without copying the photographs. Create one isolated realistic vegetation tile sprite for tex_town_tubo_tree_cluster__willow_v01: a natural cluster of three mature pollarded or wind-shaped willows, multiple pale-gray rough trunks splitting low, irregular sparse broad crowns, fine drooping branchlets and muted dusty green narrow leaves appropriate to a high-altitude valley. Uneven heights and spacing, visible gaps between crowns, a tiny natural soil contact only. Cross-period regional scenery, not a dated cultivated specimen. Strict orthographic game-map view compatible with yaw45 pitch30, upper-left daylight, short soft contact shadow, true transparent RGBA with 10 percent margin. No buildings, water, mountain background, people, animals, fruit, text, signs, watermark, glow, fog, thick base or cropping. Return only image.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references:
+  - {url: 'https://web.prm.ox.ac.uk/tibet/photo_1998.131.270.html', download_file: prm_willows_1936.jpg, download_sha256: 5159a1d2e691fc11394ceab04f1bc9ab74fb808bfb464fa52c7aa808479246a2, accessed: '2026-10-01', used: 1936年拉萨河谷柳树干形与疏垂树冠, model_input: true}
+  - {url: 'https://www.loc.gov/item/2021670617/', download_file: loc_2021670617.jpg, download_sha256: 83fb3003678b5fc8ad7d2dfe70217c3e259a89c21258fb16a973f00f360cbb42, accessed: '2026-10-01', used: 约1900年宫苑门院、乔木尺度与石木层级, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: source/historical-rebuild/tex_town_tubo_tree_cluster__willow_v01__raw.png
+  size: 451x261
+  sha256: cff7f5511d98ff1462c2dac83089583de917768f4812075d11a305df089e7922
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: tree_cluster
+    footprint: [3, 3]
+    variant: willow_v01
+    autotile_mask: null
+  source_copy: source/historical-rebuild/tex_town_tubo_tree_cluster__willow_v01__raw.png
+  source_sha256: 8b6eb53eda222a1d720cc23713697e0ce9c16cfee1e7311a8d2e39b4154cbd61
+  anchor_px: [225.5, 253.0]
+  notes: '历史图片已实际输入；拉萨河谷柳树干形与疏垂树冠，仅作跨年代地域点景。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  candidate_count: 1
+- id: tex_town_tubo_shrub__seabuckthorn_v01
+  file: tex_town_tubo_shrub__seabuckthorn_v01.png
+  category: tile
+  style: default
+  subject: 吐蕃·藏地跨年代套件·西藏沙棘低灌丛（原创扩展；非实测复原）
+  prompt: 'Use the built-in image generation tool exactly once. Create one final game asset image using all three attached references only for regional landscape scale and botanical morphology, without copying any whole composition. Subject: tex_town_tubo_shrub__seabuckthorn_v01, exactly ONE isolated low Tibetan sea-buckthorn shrub cluster used only as a cross-period regional scenery element, not proof of ancient urban planting. The c.1900 Tsetan historical photograph supplies only dry high-valley settlement palette, low scrub scale and environmental context; the two modern botanical photographs supply Hippophae tibetana form: compact low spreading thorny woody branches, small narrow silvery grey-green leaves and sparse dull orange berries. Make an asymmetric cushion-like shrub no taller than about 0.6m within a logical 2 by 2 cell footprint, realistic fine detail, subdued palette, visible root contacts. Orthographic yaw45 pitch30, upper-left light, tiny lower-right contact shadow. True transparent RGBA with generous clean margins and no colored halo. No soil island, lawn, pot, flowers, people, animals, buildings, landscape backdrop, text, label, watermark, glow, fog, checkerboard or cropping. Return only the generated image result.'
+  negative: No people, readable text, watermark, modern objects, painted checkerboard, ground slab, landscape, sprite sheet, curved Chinese tiled gate roof.
+  references:
+  - {url: 'https://www.loc.gov/item/2021670610/', download_file: loc_2021670610.jpg, download_sha256: baacfd89d15312e40bc92ac358ef618b9ca1b725b604bbb0edfdcd17373df9eb, accessed: '2026-10-01', used: 约1900年泽当低矮土石聚落尺度, model_input: true}
+  - {url: 'https://doi.org/10.3389/fpls.2022.1051587', download_file: frontiers_seabuckthorn.webp, download_sha256: c56af5aaf7762e92bb6ac2cda2c715d995eba7a111de7584483ecf8cdb722f42, accessed: '2026-10-01', used: 现代西藏沙棘低矮枝形、狭叶与橙果, model_input: true}
+  - {url: 'https://flowersofindia.net/catalog/slides/Tibetan%20Sea%20Buckthorn.html', download_file: flowers_seabuckthorn.jpg, download_sha256: 5cb7c92954f187cd8f64a4237a38d5209896d3fe435315130bbd5e026a06074c, accessed: '2026-10-01', used: 现代植物图交叉核对密刺短枝和狭叶, model_input: true}
+  tool: codex exec · built-in image_generation
+  model: gpt-5.6-sol (image backend undisclosed)
+  effort: not exposed
+  created: 2026-10-01
+  source_path: source/historical-rebuild/tex_town_tubo_shrub__seabuckthorn_v01__raw.png
+  size: 134x88
+  sha256: 487f1c004266ba3f4cc830642234f5246b80d43bf1642608a96450debca989de
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: shrub
+    footprint: [2, 2]
+    variant: seabuckthorn_v01
+    autotile_mask: null
+  source_copy: source/historical-rebuild/tex_town_tubo_shrub__seabuckthorn_v01__raw.png
+  source_sha256: 8b3dd4210b8c9995d9cc3832aa8b0bbf87405bdd7c5469f4e7fd7ace81b77728
+  anchor_px: [67.0, 80.0]
+  notes: '历史图片已实际输入；西藏沙棘密刺短枝、狭叶与橙果，仅作跨年代地域点景。真RGBA、左上光、无文字人物现代物；功能仍按subject所标原创边界。'
+  candidate_count: 2

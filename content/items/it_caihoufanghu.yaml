@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_caihoufanghu
+name: 蔡侯申方壶
+kind: collectible
+sub: bronze
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 历史器物／类型：[H55](#src-h55)；准入：越女序章终段；蔡地旧器授予，时间与物权待考
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/caihoufanghu
+text:
+  desc: 外观：青铜方体壶，长颈鼓腹。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[merchant,collector]}; giftValue=3; provenance=history。
+  lore: 国博列蔡侯申方壶为春秋礼器，本件取名器形制供礼物设计。越地出现同类器及其赠授是（原创扩展），须核前四八二年的流转条件；适合贵族藏家，不能冒称出土原物重返古代。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

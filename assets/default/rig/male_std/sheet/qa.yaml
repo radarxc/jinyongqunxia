@@ -1,0 +1,154 @@
+source: sheet_L.png
+sourceSha256: 057921c1a8b31a845b89b1a6750c7510b3268a62c36f4872304f7fbea38cf752
+selectedJob: male_std_sheet_L_r3
+generationCount: 3
+regenerationCount: 2
+selectedReferences: []
+discardedFirstAttemptReference:
+  path: assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png
+  sha256: 2f356901dfab4c10e9353c2231089214a51ebaa5a9a5f20d1c4fc097b57f23e1
+  use: 仅版式、姿势、成年比例、画风；首版弃用，不是入库版参考
+heightMeasurement: sheet_split sourceBounds；缓存 BiRefNet，alpha≥24；height=y1-y0；脚底边界是排他上界，末像素 y1-1
+heightSpreadFormula: (881-874)/881*100=0.7946%
+gapMeasurement: 原始 sheet 独立 Lab 色键 alpha<48 的横向背景区间 [x0,x1)；抽样在手臂与腰部之间、双腿之间；非最小净空或关节坐标
+rawBackgroundRGB:
+- 227.0
+- 222.0
+- 212.0
+splitCommand: python3 tools/rig/sheet_split.py assets/default/rig/male_std/sheet/sheet_L.png --out assets/default/rig/male_std/ref --facing L --height-m 1.70
+backgroundRemoval:
+  method: birefnet-general-lite
+viewOrder:
+- front34
+- side
+- back34
+viewRatioCheck: true
+armpitFailures: []
+views:
+- view: front34
+  sourceBounds:
+  - 70
+  - 59
+  - 475
+  - 940
+  sourceHeightPx: 881
+  sourceLastFootY: 939
+  normalizedHeightPx: 435
+  footBoundaryY: 460
+  normalizedAlpha24Bounds:
+  - 28
+  - 25
+  - 228
+  - 460
+  shoulderHeightRatio: 0.3522
+  armpitCheck:
+    pass: true
+    requiredGaps: 2
+    largestGapsPx:
+    - 61
+    - 61
+  armpitSample:
+    y: 429
+    xIntervals:
+    - - 163
+      - 192
+    - - 350
+      - 389
+    widthsPx:
+    - 29
+    - 39
+  legSample:
+    y: 763
+    xIntervals:
+    - - 218
+      - 335
+    widthsPx:
+    - 117
+- view: side
+  sourceBounds:
+  - 559
+  - 63
+  - 977
+  - 937
+  sourceHeightPx: 874
+  sourceLastFootY: 936
+  normalizedHeightPx: 435
+  footBoundaryY: 460
+  normalizedAlpha24Bounds:
+  - 24
+  - 25
+  - 232
+  - 460
+  shoulderHeightRatio: 0.2037
+  armpitCheck:
+    pass: true
+    requiredGaps: 1
+    largestGapsPx:
+    - 44
+  armpitSample:
+    y: 483
+    xIntervals:
+    - - 677
+      - 689
+    - - 821
+      - 844
+    widthsPx:
+    - 12
+    - 23
+  legSample:
+    y: 762
+    xIntervals:
+    - - 721
+      - 832
+    widthsPx:
+    - 111
+- view: back34
+  sourceBounds:
+  - 1063
+  - 59
+  - 1462
+  - 934
+  sourceHeightPx: 875
+  sourceLastFootY: 933
+  normalizedHeightPx: 435
+  footBoundaryY: 460
+  normalizedAlpha24Bounds:
+  - 29
+  - 25
+  - 227
+  - 460
+  shoulderHeightRatio: 0.3326
+  armpitCheck:
+    pass: true
+    requiredGaps: 2
+    largestGapsPx:
+    - 72
+    - 71
+  armpitSample:
+    y: 426
+    xIntervals:
+    - - 1169
+      - 1202
+    - - 1344
+      - 1375
+    widthsPx:
+    - 33
+    - 31
+  legSample:
+    y: 758
+    xIntervals:
+    - - 1226
+      - 1341
+    widthsPx:
+    - 115
+visualReview:
+  fullBodyFigures: 3
+  bodyFacing: front34 左下 / side 左 / back34 左上；解剖学近侧 L
+  rightLapped: 正面左襟压右襟可见；侧背内层叠压受遮挡，按衣装连续性核对
+  emptyHands: true
+  adultProportions: true
+  plainPalette: true
+  noTextGridSwatchesGroundShadow: true
+  protagonistComparison: 与同性主角 base 立绘并排检查，成熟普通脸型、素髻、褐短衣蓝灰裤，身份和衣装有区别；画风与已审主角三视图相符
+  limitation: 侧视远足外撇，切件采用朝左的近侧足作共享源并人工复核髋、膝、踝；不可照搬远足方向。
+  status: candidate

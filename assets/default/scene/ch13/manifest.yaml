@@ -1,0 +1,242 @@
+- id: cg_ch13_foshan_accusation
+  file: cg_ch13_foshan_accusation.png
+  category: scene
+  style: default
+  subject: 佛山问罪（ch13_feihu）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是胡斐的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中胡斐的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+
+    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+
+    【要对齐的部分】只改胡斐的眼睛和眉毛：眼型、双眼皮、眼睛大小、眼神，眉形、眉毛粗细与高低、眉眼间距，都要和基线一样；脸型、颧骨、鼻子、嘴、胡须、头发、皱纹与年龄感都保持原图不变；表情保留原图的情绪方向。
+
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「佛山问罪」和小朱印必须原样保留，一笔不改、不增不减。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（AR-53 / AR-56 总审轻微）长乱发、短髭须的青年是胡斐：（AR-53 / AR-56 总审轻微：还是凌晨精修那张脸，眉粗压、眼小深陷、显老）只把眼睛改成基线那样明亮的大眼、双眼皮清楚、眼神爽朗，眉毛改成浓黑但舒展、不压眼。 其他人的脸不要动。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
+    sha256: ba5eb4786147e34a6d51cdd7513b12bfefcef4941d93d8726f650aff8e3a059f
+    use: 对脸基线：作者审核通过的 por_npc_hufei__ch13_youth_base（胡斐），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch13/cg_ch13_foshan_accusation.png
+    sha256: 21a3cad6803e053841d3bf62d777d224ab05af8487d82f82042d70ea72853404
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch13_foshan_accusation.21a3cad6.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+  model: gpt-6-astra
+  created: 2026-10-03T19:01:03-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch13_foshan_accusation.s1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: ecb5fe5aa65ab108df281ad76ac71599ed9384a56299c5620ec73ce2e7813fc3
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「佛山问罪」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：胡斐只改眼睛眉毛；局部合成——codex 编辑后只取胡斐头部、羽化贴回原图，其余像素不变）
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch13_foshan_accusation.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch13_foshan_accusation.21a3cad6.png
+    sha256: 21a3cad6803e053841d3bf62d777d224ab05af8487d82f82042d70ea72853404
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch13_foshan_accusation.21a3cad6.entry.yaml
+- id: cg_ch13_lingsu_protects
+  file: cg_ch13_lingsu_protects.png
+  category: scene
+  style: default
+  subject: 灵素护命（ch13_feihu）
+  prompt: '【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的程灵素新 base 脸部特写（参考龚慈恩，作者选A）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
+
+    【身份】明确成为第1张的同一位程灵素：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
+
+    【剧情神态与造型】只改画面左侧程灵素；保留她看向昏沉胡斐的关切、忧虑与沉痛决绝，眉头与唇开合照原图，不改成笑脸；灯火从左下照来，蓝灰窗光从左后补光。胡斐受伤昏沉状态与握手关系保持。
+
+    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
+
+    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
+
+    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
+  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
+  references:
+  - path: assets/default/character/female/ch13/por_npc_chenglinsu__ch13_youth_alive_base.png
+    sha256: 3356a04c90205b37b31224f4221737a5f8fafe842d65f7325a3fd91c57398821
+    use: 对脸基线：作者审核通过的 por_npc_chenglinsu__ch13_youth_alive_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch13/cg_ch13_lingsu_protects.png
+    sha256: c207e05ccc265b976505f3d70b638e6812ad2d9d61d66f675e1201c6aabd1d5c
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch13_lingsu_protects.c207e05c.png
+  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T00:20:28-0700
+  source_path: .agents/coord/_handoff/gem/codex_w32/out/cg_ch13_lingsu_protects.ar86_chenglinsu1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 56e699e11d7962035332707515131542716763b0a430a12d1ae380e195d816d4
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「灵素护命」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-53 / AR-75 / AR-86：程灵素头部局部合成，对齐作者新 base（AR-73 参考龚慈恩，AR-86 选A）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch13_lingsu_protects.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch13_lingsu_protects.c207e05c.png
+    sha256: c207e05ccc265b976505f3d70b638e6812ad2d9d61d66f675e1201c6aabd1d5c
+    entry: .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch13_lingsu_protects.c207e05c.entry.yaml
+- id: cg_ch13_yaowang_first_meet
+  file: cg_ch13_yaowang_first_meet.png
+  category: scene
+  style: default
+  subject: 药圃初逢（ch13_feihu）
+  prompt: '【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的程灵素新 base 脸部特写（参考龚慈恩，作者选A）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
+
+    【身份】明确成为第1张的同一位程灵素：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
+
+    【剧情神态与造型】只改右侧持花锄程灵素；保留她抬眼端详胡斐的聪慧、好奇和含蓄信任，左转低头角度不变；原图左后暖夕阳。左侧胡斐与所有花木道具保持。
+
+    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
+
+    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
+
+    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
+  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
+  references:
+  - path: assets/default/character/female/ch13/por_npc_chenglinsu__ch13_youth_alive_base.png
+    sha256: 3356a04c90205b37b31224f4221737a5f8fafe842d65f7325a3fd91c57398821
+    use: 对脸基线：作者审核通过的 por_npc_chenglinsu__ch13_youth_alive_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch13/cg_ch13_yaowang_first_meet.png
+    sha256: 48ca21325976013ae95734bbc887b392c4de3a1c5aab2aaee287cc9808b72838
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch13_yaowang_first_meet.48ca2132.png
+  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T00:20:29-0700
+  source_path: .agents/coord/_handoff/gem/codex_w32/out/cg_ch13_yaowang_first_meet.ar86_chenglinsu1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: cf09d5b231b089cfcedb35c9a546dad0165c98aee183c65c9e08e5e2b8d33044
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「药圃初逢」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_hufei__ch13_youth_base（AR-53 / AR-56 总审返修：胡斐只改眼睛眉毛；局部合成——codex 编辑后只取胡斐头部、羽化贴回原图，其余像素不变）；AR-53 / AR-75 / AR-86：程灵素头部局部合成，对齐作者新 base（AR-73 参考龚慈恩，AR-86 选A）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch13_yaowang_first_meet.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch13_yaowang_first_meet.48ca2132.png
+    sha256: 48ca21325976013ae95734bbc887b392c4de3a1c5aab2aaee287cc9808b72838
+    entry: .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch13_yaowang_first_meet.48ca2132.entry.yaml
+- id: cg_ch13_graveside_farewell
+  file: cg_ch13_graveside_farewell.png
+  category: scene
+  style: default
+  subject: 墓畔长风（ch13_feihu）
+  prompt: 'Use case: precise-object-edit
+
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样画幅比例构图、同样人物位置尺度的一张完整编辑图，画布 1536×1024 原图比例。必须在原画上修改，不要重画成另一幅画。
+
+    【只改】本图是胡斐归刀后将程灵素骨灰放到墓地的同一连续夜景，改为冷月夜色：天空、山林和墓地受冷月蓝灰光照，现日光晴昼完全改为夜色，可在不挪树木地形处留出月光。只改夜景光照和胡斐衣料的月光色，胡斐的头脸、抱坛与跪姿保持，刀已归墓，不重新持刀。画面后方袁紫衣整个人，原题字墓畔长风与印及其浅纸色题字小区逐像素保持不变；不能重画袁紫衣或题字，夜景保持手绘插画材质。
+
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
+
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_36_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+
+    【最终合成要求补充】本图是胡斐归刀后将程灵素骨灰放到墓地的同一连续夜景，改为冷月夜色：天空、山林和墓地受冷月蓝灰光照，现日光晴昼完全改为夜色，可在不挪树木地形处留出月光。只改夜景光照和胡斐衣料的月光色，胡斐的头脸、抱坛与跪姿保持，刀已归墓，不重新持刀。画面后方袁紫衣仅在前部头皮补六枚小戒印，其余全身面容保留原像素；原题字墓畔长风的字形像素与红印逐像素保持不变，题字周边采用夜色自然留亮，不留日间矩形天空块；不能重画袁紫衣面孔衣物或题字，夜景保持手绘插画材质。；戒印使用ar82_nfix3_36_scalp_r1的头皮局部编辑结果；其余袁紫衣面孔身体恢复原图，字形及红印恢复原像素。
+
+
+    【最终合成要求补充】本图是胡斐归刀后将程灵素骨灰放到墓地的同一连续夜景，改为冷月夜色：天空、山林和墓地受冷月蓝灰光照，现日光晴昼完全改为夜色，可在不挪树木地形处留出月光。只改夜景光照和胡斐衣料的月光色，胡斐的头脸、抱坛与跪姿保持，刀已归墓，不重新持刀。画面后方袁紫衣仅在前部头皮补六枚小戒印，其余全身面容保留原像素；原题字墓畔长风的字形像素与红印逐像素保持不变，题字周边采用夜色自然留亮，不留日间矩形天空块；不能重画袁紫衣面孔衣物或题字，夜景保持手绘插画材质。；戒印使用ar82_nfix3_36_scalp_r1的头皮局部编辑结果；其余袁紫衣面孔身体恢复原图，字形及红印恢复原像素。
+
+
+    【最终合成要求补充】本图是胡斐归刀后将程灵素骨灰放到墓地的同一连续夜景，改为冷月夜色：天空、山林和墓地受冷月蓝灰光照，现日光晴昼完全改为夜色，可在不挪树木地形处留出月光。只改夜景光照和胡斐衣料的月光色，胡斐的头脸、抱坛与跪姿保持，刀已归墓，不重新持刀。画面后方袁紫衣仅在前部头皮补六枚小戒印，其余全身面容保留原像素；原题字墓畔长风的字形像素与红印逐像素保持不变，题字周边采用夜色自然留亮，不留日间矩形天空块；不能重画袁紫衣面孔衣物或题字，夜景保持手绘插画材质。；戒印使用ar82_nfix3_36_scalp_r1的头皮局部编辑结果；其余袁紫衣面孔身体恢复原图，字形及红印恢复原像素。
+
+
+    【最终合成要求补充】本图是胡斐归刀后将程灵素骨灰放到墓地的同一连续夜景，改为冷月夜色：天空、山林和墓地受冷月蓝灰光照，现日光晴昼完全改为夜色，可在不挪树木地形处留出月光。只改夜景光照和胡斐衣料的月光色，胡斐的头脸、抱坛与跪姿保持，刀已归墓，不重新持刀。画面后方袁紫衣仅在前部头皮补六枚小戒印，其余全身面容保留原像素；原题字墓畔长风的字形像素与红印逐像素保持不变，题字周边采用夜色自然留亮，不留日间矩形天空块；不能重画袁紫衣面孔衣物或题字，夜景保持手绘插画材质。；戒印使用ar82_nfix3_36_scalp_r1的头皮局部编辑结果；其余袁紫衣面孔身体恢复原图，字形及红印恢复原像素。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+  references:
+  - path: assets/default/scene/ch13/cg_ch13_graveside_farewell.png
+    sha256: 2eb4ed88cde0f4cb70e73afd9f0f07cde172a27d764b55db7ec0dc6e78eaabcd
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch13_graveside_farewell.2eb4ed88.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:00:27-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_36_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: ecde3fecbb1cb11f387861353baeb04ae07b7584456b7556cf33d794d4a473ff
+  status: candidate
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「墓畔长风」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。 实际题字「墓畔長風」，繁简同字，规范题名「墓畔长风」；原生生成，未字体叠加。；AR-44 对脸精修，基线 = por_npc_yuanziyi__ch13_youth_ziyi_base（AR-53 / AR-56 总审返修：胡斐只改眼眉（编辑 cg_ch13_graveside_farewell.s1）＋袁紫衣（圆性）改回 V 形脸、素颜（编辑 cg_ch13_graveside_farewell.s3）；局部合成——两次 codex 编辑各只取目标人物头部、先后羽化贴回原图，其余像素不变；原输出见 codex_w17/out/cg_ch13_graveside_farewell.s1.raw.png、cg_ch13_graveside_farewell.s3.raw.png）；AR-44 对脸精修，基线 = por_npc_yuanziyi__ch13_youth_ziyi_base（AR-53 总审复核返修：圆性脸型收成基准 V 脸、尖下巴、上挑凤眼，光头素颜保留；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-53 / AR-75 / AR-86：袁紫衣头部局部合成，对齐作者新 base（AR-73 参考张敏，AR-86 选A）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变；题字長風→长风；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）；AR-82 原著核对返修：墓畔长风同步冷月夜景，保留袁紫衣与题字原像素；圆性前部头皮小戒印同步；依据：；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch13_graveside_farewell.retry3.r1
+  quality_retries: 0
+  history: []
+  title_rendered_text: 墓畔長風
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch13_graveside_farewell.2eb4ed88.png
+    sha256: 2eb4ed88cde0f4cb70e73afd9f0f07cde172a27d764b55db7ec0dc6e78eaabcd
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/cg_ch13_graveside_farewell.2eb4ed88.entry.yaml
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/cg_ch13_graveside_farewell_fixed.png
+    before_sha256: d06446b6ffd90df5ee80170aa78bf0885f52414b882eb1326d752be68ce451ae
+    allowed_box:
+    - - 1410
+      - 162
+      - 1530
+      - 221
+    - - 1410
+      - 218
+      - 1530
+      - 275
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/cg_ch13_graveside_farewell_pixel_checks.json
+    method: w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留
+    created: '2026-10-04T01:16:19-07:00'
+- id: cg_ch13_leaders_assembly
+  file: cg_ch13_leaders_assembly.png
+  category: scene
+  style: default
+  subject: 群雄破局（ch13_feihu）
+  prompt: '【AR-53 / AR-91 图像编辑】第1张是作者批准的新base脸部身份参考，第2张是待改图局部头部裁块。以第2张为底只改指定人物的脸与必要须式，不重新构图。只输出修改后的1:1方图1024×1024，保留第2张全部取景、头部位置、大小、角度与方向。
+
+    【具体人物与阶段】远景正中高座上戴红缨帽的年轻福康安。仅对齐这张很小的头部：按新base约27–28岁的长脸、细长眼、鼻唇和年轻无须面貌，不增龄不加胡须；保留远景人物大小、红缨帽、朝服、原位置光线和柔和度，不能把小脸放大到近景。胡斐、程灵素、袁紫衣、所有其他人及题字完全不变。
+
+    【保留】仅将目标头部内的五官与须式对齐第1张，年龄按上述阶段；头颈位置大小、发式头饰（上述有明确要求时遵照）、光源方向色温和柔和手绘笔触全部保持。衣领、衣服、体态、手势、道具、背景、画面里其他人的脸和身体、题字不可改变。不要把第1张的姿勢光照直接贴进去。
+
+    【不要】照片质感、塑料皮肤、模板偶像脸、镜像、文字、水印、新增人物、改变头部位置大小、改变衣物或帽子。'
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+  references:
+  - path: assets/default/character/male/ch13/por_npc_fukangan__ch13_prime_base.png
+    sha256: cf3080724b76acafac965bddb19f2db06a03f53b69f9b012bb532129fcb41260
+    use: AR-91作者批准新base，只取本人脸；年龄服饰按场景
+  - path: .agents/coord/_lines/hist-ingest2/originals/cg_ch13_leaders_assembly.png
+    sha256: 1d0a599a9b42c50e757e8ab02ad12c4a91392285b1acfbe87ed86ad64c0d94de
+    use: 入库前原图；非目标头部区域逐像素保留
+  tool: codex exec · image_gen（AR-53 / AR-91 头部裁块编辑；限定蒙版局部合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T09:47:48-07:00'
+  source_path: .agents/coord/_lines/hist-ingest2/aligned/cg_ch13_leaders_assembly.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: ed567296020e86e1d438c27ae7c4f782e41c6762b6b9706e6a3fee546a961ed9
+  status: candidate
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「群雄破局」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-44 对脸精修，基线 = por_npc_yuanziyi__ch13_youth_ziyi_base（AR-53 / AR-56 总审返修：胡斐只改眼眉（编辑 cg_ch13_leaders_assembly.s1）＋袁紫衣（圆性）改回 V 形脸、素颜（编辑 cg_ch13_leaders_assembly.s3）；局部合成——两次 codex 编辑各只取目标人物头部、先后羽化贴回原图，其余像素不变；原输出见 codex_w17/out/cg_ch13_leaders_assembly.s1.raw.png、cg_ch13_leaders_assembly.s3.raw.png）；AR-53 / AR-75 / AR-86：程灵素（龚慈恩 A）与袁紫衣（张敏 A）均对齐作者新 base；依次仅头部局部合成，圆性保留剃度；保留原剧情神态及光向，胡斐、所有他人、题字和头部蒙版外像素逐像素不变；AR-82 原著核对返修：群雄破局袁紫衣圆性现身同步脑门戒印；依据：；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）；AR-73 / AR-89 / AR-91 照历史画像，作者批准入库；AR-53 只合成福康安头部，原服饰体态和其他人物及题字逐像素不变'
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch13_leaders_assembly.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_lines/hist-ingest2/originals/cg_ch13_leaders_assembly.png
+    sha256: 1d0a599a9b42c50e757e8ab02ad12c4a91392285b1acfbe87ed86ad64c0d94de
+  head_composite_jobs:
+  - ar91_hist2_cg_ch13_leaders_assembly_npc_fukangan_r1
+  head_composite_validation:
+    changed_pixels: 582
+    outside_head_masks_changed: 0
+    evidence: .agents/coord/_lines/hist-ingest2/ar91_hist2_cg_ch13_leaders_assembly_npc_fukangan_r1.merge.json

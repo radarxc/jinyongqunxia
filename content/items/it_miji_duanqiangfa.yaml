@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_duanqiangfa
+name: 短枪法抄本
+kind: manual
+sub: copy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_duanqiangfa
+text:
+  desc: 外观：南宋赭灰蝴蝶装长册，青麻缝线。
+  lore: 乡勇教头把短枪的握距、直刺与贴身回枪抄成长册，枪法与载体属 （原创扩展）。研读须依墨图校准前后手位置，再用木杆试招；抄本只到八层，不能照长枪招路生搬硬套。
+extension:
+  type: manual
+  value:
+    skill: sk_duanqiangfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_duanqiangfa
+      readWis: 25
+      maxLayer: 8
+      cultivation: 600

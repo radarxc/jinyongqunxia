@@ -1,0 +1,35 @@
+{
+  "key": "yamen",
+  "id": "bld_kit_mongol_yamen",
+  "footprint": [
+    16,
+    12
+  ],
+  "subject": "木构议事厅与毡帐官署",
+  "candidates": [
+    {
+      "number": 1,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-cf73819c-95bf-45a2-b561-f5d4e9441117.png",
+      "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_yamen. Footprint exactly 16m east-west x 12m north-south. In projection the left-to-front ground edge's horizontal run must be 1.3333333333333333 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: A modest Mongol-Yuan administrative assembly compound: one broad low Chinese timber meeting hall with simple gray tiled gable roof at rear, one small off-white ger beside it, open earth forecourt bounded by low timber palisade, simple south gate. Brown timber columns, very restrained dark red framing. This is an original gameplay interpretation of mixed settled and nomadic architecture, not a reconstructed named palace. Make a clean archaeological architectural GAME SPRITE, not a studio photograph. Absolutely no surrounding haze, gradient, glow, halo, backdrop, vignette or mist; everything outside architecture and its bounded courtyard is fully clear alpha-zero. Flat ground contact visible front,left,right corners; down-right axis 26.565 degrees and up-right axis minus26.565 degrees. Draw both ground axes equally foreshortened. The longer east-west side is only 1.3333 times the shorter side.",
+      "archive": "sources/bld_kit_mongol_yamen__c01.png",
+      "sha256": "03dfd9e27a1b595adb9926c6d38b1a88fc2e03e82656159684bbabdffef3f6c2",
+      "selected": false,
+      "reference_inputs": []
+    },
+    {
+      "number": 2,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-592122f5-c254-4d85-8d91-7bba35d72e18.png",
+      "prompt": "Generate one isolated Mongol-Yuan assembly court architectural game sprite, on true transparent RGBA. Two buildings: plain gray-tiled Chinese timber meeting hall and one smaller cream-felt Mongolian ger, inside low simple timber palisade. Earthen court, south gate towards screen lower-left, no people, signs or flags. Realistic hand-painted ancient construction with finely weathered beige brown gray materials, like a Song city-map sprite. Exact orthographic 2:1 dimetric projection, yaw45 pitch30, equally foreshortened ground axes at +26.565 and -26.565 degrees. IMPORTANT: the rectangular court measures16 east-west by12 north-south; screen lower-left boundary to front corner horizontal run is 1.333 times front to right boundary run. Draw visible ground corners approximately LEFT(180,580), FRONT(900,940), RIGHT(1440,670), BACK(720,310), flat thin ground and no thick plinth. Upper-left neutral warm light, tiny lower-right contact shadow. Entire roof and gate inside frame with generous empty transparency; all outside courtyard and architecture alpha-zero. No halo, mist, landscape, vignette, modern decoration, yellow tiles, dragon ridges, text, logos, characters. This is original gameplay architectural interpretation, no named monument reconstruction.",
+      "archive": "sources/bld_kit_mongol_yamen__c02.png",
+      "sha256": "3c165ec49cb92b753b978bf9bca8251f775fef52752ba7ec2203b2b7be85eacf",
+      "selected": true,
+      "reference_inputs": []
+    }
+  ],
+  "chosen": 2,
+  "ref": null,
+  "references": [],
+  "source_viewed": true,
+  "final_viewed": true,
+  "view_note": "两张源候选与规格化成品均已逐张view_image；2026-09-30；成品无实物裁切、无棕色背景，几何偏差保留。"
+}

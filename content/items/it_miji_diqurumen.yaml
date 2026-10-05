@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_diqurumen
+name: 笛曲入门抄本
+kind: manual
+sub: copy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_diqurumen
+text:
+  desc: 外观：唐代白麻纸卷轴，青绫包首、竹轴。
+  lore: 乐工牧人把指孔、气息与短曲节拍抄在白麻纸卷上，曲谱和载体属 （原创扩展）。研读须持笛对拍缓吹，先求音准再练换气；墨迹略淡处需校谱，抄本来源最高八层。
+extension:
+  type: manual
+  value:
+    skill: sk_diqurumen
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_diqurumen
+      readBre: 30
+      maxLayer: 8
+      cultivation: 800

@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_huangmagua
+name: 黄马褂
+kind: armor
+sub: clothing
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《鹿鼎记》·御赐黄马褂
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huangmagua
+text:
+  desc: 外观：清代明黄色短褂单件平展，盘扣、深蓝滚边。 待运行时投影：dialogue.gov=15。
+  lore: 《鹿鼎记》中韦小宝曾受赐黄马褂，朝廷恩赏使其具有鲜明身份意味。穿着时讲究整洁端肃；本件形制与交涉数值为 （原创扩展），不能冒充真实敕授凭证。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 48

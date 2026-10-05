@@ -2,15 +2,20 @@
 __pycache__/
 *.pyc
 
-# 素材工作区与运行时产物（tech/06 §2：二进制母版不入库；art/golden 例外，见 tools/lint/check_golden.py）
-art/work/
-art/runtime/
-art/master/
-art/source/
-# JS / Python 构建产物
+# JavaScript / TypeScript workspace
 node_modules/
+.pnpm-store/
 dist/
-.cache/
+dist-types/
 coverage/
+.cache/content-build/
+apps/game/public/content/
 *.tsbuildinfo
-.venv/
+.eslintcache
+
+# Vite and local environment
+.vite/
+*.local
+.env.local
+.env.*.local
+.env

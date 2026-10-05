@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_ming_north_guardhouse",
+  "subject": "明代北方府城·城门守舍（原创扩展）",
+  "footprint": [
+    6,
+    5
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44d-7517-7262-be86-045e8b9601cd/exec-5438149c-2c16-4ab2-9935-ba1aef2f5fc5.png",
+  "prompt": "Use case: sketch-to-render. Build ONE fine realistically textured Ming northern Chinese game map building on this exact flat footprint guide. Preserve the supplied parallelogram precisely as the thin ground-contact plane, at the same corner positions and scale. Ground edges slope EXACTLY +0.500/-0.500, orthographic 2:1 dimetric, yaw45/pitch30. Do not choose a new camera or distort the footprint. Vertical lines stay vertical. No perspective convergence. Fine gray brick, gray clay tiles, weathered matte wood, natural sunlight from upper-left with short rightward contact shadow. Realistic ancient architectural sprite in restrained Song-kit material detail density. Entire roof and base corners visible and uncut, wide clear margins. TRUE transparent RGBA; opaque building and alpha0 empty padding; no glow, haze, terrain island, thick plinth, people, animals, writing, signage, grid, numbers, watermark or modern elements. Single compact city-gate guard cottage, hard-gabled yingshan roof with FLUSH solid gray brick triangular gables and straight eaves, no flying corners, low single storey, central brown wood door on lower-left-facing front, two small barred timber windows, no weapons. Thin stone paved base is 6m x5m; exact ground positions LEFT(218,760),BACK(718,510),RIGHT(1318,810),FRONT(818,1060) in1536x1536 canvas. Building entirely fits within footprint and sits with front visible aligned parallel to base. Roof top around y220.",
+  "created": "2026-09-30T22:05:01.175972+00:00",
+  "references": [{"file": "assets/default/building-map/ming_north/sources/revision2/guardhouse-ground-guide.png", "role": "精确底面几何输入；非成品替代", "sha256": "80faaced88eaccc160d6285985b44b27f4bd07941bbb278a82f6158cc8104ec2"}],
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "points": {"L": [130, 737.0526040824161], "F": [693.6904808959415, 1033.2319104434473], "R": [1140, 798.6814647531627]},
+  "footprint_basis": "【建议值】沿宋大理guardhouse同功能6×5；design/22 §3.4未细分此项。",
+  "visual_review": "本轮已view_image原图及灰底合成；完整轮廓、左上光、北方灰砖/木石细节保留；源底边拟合斜率[0.52543, -0.52553]，宽深比例相对误差5.25%；不以目标值冒充实测。",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "measurement_uncertainty_source_px": 2,
+  "source_size": [1254, 1254],
+  "source_sha256": "f0509e00831daad5dbe129a34795d97cf75283de9df2da153d4381229858bd3f",
+  "tool": "built-in image_gen",
+  "model": "underlying model not disclosed",
+  "effort": "not exposed",
+  "final_view_image_review": "本轮成品已逐张view_image：完整轮廓、透明留白及灰砖木石纹理保留；几何残差以meta实测为准，未用非等比缩放。",
+  "revision": 2,
+  "previous_source_sha256": "4dbb293a44d5ccf1619dcdf394e19e3bbad21acc6ab95e29922d0cfde112340b"
+}

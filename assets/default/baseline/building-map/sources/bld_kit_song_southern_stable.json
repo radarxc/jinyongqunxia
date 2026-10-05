@@ -1,0 +1,102 @@
+{
+  "id": "bld_kit_song_southern_stable",
+  "type": "bld_kit_song_southern_stable",
+  "w": 9,
+  "h": 7,
+  "subject": "马厩",
+  "prompt": "Use case: sketch-to-render. Reference shows exact footprint to occupy. Create a COMPACT, DEEP, nearly-square Chinese Southern Song stable with ONLY THREE front stall bays, each stall extending far backwards, plus a small open stone forecourt. Width9 metres and depth7 metres, ratio1.286. No very long roof, no fourth bay. Left-facing facade only slightly longer than right-facing side. CAMERA orthographic dimetric with BOTH ground edges exactly26.565degrees, slope+.500/-.500, no perspective. Trace reference footprint angles and proportions, do not alter. Realistic historic game sprite, Lin'an1223: handmade gray tiled simple gable roof, weathered timber posts/rails, plaster right side wall, some straw in stalls, one stone trough. Left-up screen light, short contact shadow lower-right. Flat rectangular ground base with all three visible ground CONTACT corners unobstructed, regular clean perimeter and very thin foundation. Centered entire uncropped standalone structure with transparent margins, TRUE transparent RGBA outside structure. Remove every guideline/grid and white background from reference. No people, horses, text, numbers, letters, banners, signs, modern elements, elaborate palace ornaments, thick diorama base, sky, landscape, big cast shadows. The roof and foundation must BOTH obey the broad deep9x7 proportion and TWO IDENTICAL axis angles.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/review2/southern_stable_geometry_guide.png",
+      "sha256": "813420415ee6a687cc80a794253f06b3812c60f540a4cbf82879b805138810a1",
+      "role": "占地线框几何参考；不作资产像素合成"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-4045fe6a-22a3-4e11-a7b1-17034b15c3fe.png",
+  "source_sha256": "e2e588576cc298c0046e2fe4b5b424c61ee1fedfe9bb35308510c8d301a3810b",
+  "created": "2026-09-30T10:46:11.339973+00:00",
+  "visual_review": "入选：宽深恢复、双轴协调，原图已view_image与灰底alpha合成复核。 宋式灰瓦木构/灰石材质、左上光、无字无人无现代物，真实alpha，主体完整。底面读点来自实际接触边，未warp/拉伸；64×32叠合图另存review2。",
+  "candidate_count": 3,
+  "ground_edges_source_px": [
+    [
+      [
+        226,
+        653
+      ],
+      [
+        879,
+        976
+      ]
+    ],
+    [
+      [
+        879,
+        976
+      ],
+      [
+        1373,
+        738
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      226,
+      653
+    ],
+    "front": [
+      879,
+      976
+    ],
+    "right": [
+      1373,
+      738
+    ]
+  },
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-f9c75cb8-7a78-40dd-9f30-acc2fe73e315.png",
+      "source_sha256": "28bbea8e6f2c77d388ffea5baa5665e09145c12939a335f5b728f9548698de10",
+      "saved_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_stable_pre_review2.png",
+      "selection": "unselected",
+      "reason": "第1轮审核：底面宽深比例不合格；原记录保存在同名.json。",
+      "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection: footprint 9 x 7 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric edges. Down-right ground edge has length 9 units, up-right edge 7 units, horizontal ratio 1.2857. Subject: One Southern Song Jiangnan stable structure, simple grey-tile gable roof supported by rough timber posts, open southwest-facing stalls divided by low wooden rails, stone trough, straw bales and wicker baskets, modest plaster back wall, no horses or people, compact clean flat ground footprint.",
+      "references": []
+    },
+    {
+      "id": "bld_kit_song_southern_stable",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1df-e5c8-76a2-80ad-599db032c5ae/exec-a4ef1b3a-e0be-4a14-908f-3c2b3a1ab00f.png",
+      "prompt": "Use case: sketch-to-render. Input is geometry-only reference for the ground. Construct one Southern Song Lin'an horse stable,1223, onto the exact grid parallelogram. Keep the ground outline's two axes and proportions immovable; left to front edge9 cells and front to right7 cells. Ground slopes must be +0.500 and -0.500,2:1 DIMETRIC orthographic yaw45 elevation30, no perspective. Replace the entire grid with realistic thin stone and earth stable ground, stable fully contained on that 9x7 rectangle. Open timber stalls face lower-left long edge. Compact BROAD fairly deep stable, not an elongated narrow shed: simple handmade gray tiled gable roof, rough wooden beams and posts, shallow plaster rear wall, low wooden stall dividers, a stone trough, straw and wicker baskets. No animals or people. Full structure and eaves,10% empty transparent margin. Render historical realistic weathered natural materials, muted warm stone earth timber, upper-left screen light with short lower-right contact shadows. All blue grid lines, orange lines and white backdrop must disappear. True TRANSPARENT RGBA cutout, opaque structural interiors, no halo. No lettering, numbers, plaques, flags, signs, diagrams, coordinates, modern objects, watermarks, landscapes, mountains, sky. Only complete standalone isometric stable with clear rectangular ground footprint aligned exactly to input outline.",
+      "reason": "马厩仍偏狭长、右轴偏浅，未采用。",
+      "ref": "guide",
+      "selected": false,
+      "sequence": 4,
+      "saved_path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_stable_review2_4.png",
+      "source_sha256": "167802714c7318f6a7d745b23d773b4596d4ddba7c1f3bfd1b57162975602a83",
+      "references": [
+        {
+          "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/review2/southern_stable_geometry_guide.png",
+          "sha256": "813420415ee6a687cc80a794253f06b3812c60f540a4cbf82879b805138810a1",
+          "role": "占地线框几何参考；不作资产像素合成"
+        }
+      ],
+      "selection": "unselected"
+    }
+  ],
+  "review2": {
+    "calls": 2,
+    "rejected_new": 1,
+    "previous_source_record": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/TOWN-buildings/assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_stable_pre_review2.json",
+    "overlay": "review2/bld_kit_song_southern_stable_overlay.png",
+    "visual_result": "修复点名的明显比例问题；细小残差见geometry_qa"
+  }
+}

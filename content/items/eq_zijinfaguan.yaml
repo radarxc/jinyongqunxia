@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_zijinfaguan
+name: 紫金发冠
+kind: armor
+sub: headwear
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/zijinfaguan
+text:
+  desc: 外观：暗紫金束发冠，细云纹、玉簪。 待运行时投影：cha=2; effRes=5。
+  lore: （原创扩展）明式匠人以暗紫金属作束发冠，细刻云纹，再配一支温润玉簪。冠体不高，利于骑行与拔剑；据说富家子弟出门争相仿制，真品仍看錾纹收口。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12

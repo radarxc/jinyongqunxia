@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_huibufeidaoxia
+name: 回部飞刀匣
+kind: hidden
+sub: dart
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huibufeidaoxia
+text:
+  desc: 外观：深木扁匣开启，八柄短弯飞刀沿弧形嵌槽排列。 待运行时投影：ammoMul=1.020; hiddenHit=4.2。
+  lore: （原创扩展）回疆护旅者将八柄短弯飞刀沿深木匣弧槽排放，角片小柄便于戴手套取握，书剑至雪山时代可得。刀身可寻回，回匣前须擦除沙尘。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 40
+      qiAffinity: 100

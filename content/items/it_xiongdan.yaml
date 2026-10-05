@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_xiongdan
+name: 熊胆
+kind: material
+sub: herb
+grade: 7
+stack: 999
+chapters: any
+origin: canon
+canonRef: 动物性本草；受保护动物来源，仅作历史设定、不可循环采集
+price: auto
+flags: []
+assets:
+  icon: item/xiongdan
+text:
+  desc: 外观：历史旧藏药材为深褐干燥块置蜡封瓷盒，不画动物或取得过程。
+  lore: 秦巴、巴蜀、辽东与东北仅作历史来源锚点，本作不设野采或循环产出。深褐旧藏封在蜡盒，只能作为一次性剧情材料，不提供取得或服用过程。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di9
+    materialGrade: 7
+    rare: false
+    herbFamily: xiongDan
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 4

@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_xiaozhonghuijinchai
+name: 萧中慧金钗
+kind: collectible
+sub: antique
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B08](#src-b08)；准入：仅鸳鸯；转赠寿礼后合法分配
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xiaozhonghuijinchai
+text:
+  desc: 外观：一支细金双股钗，钗头简洁小花结。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=book。
+  lore: 《鸳鸯刀》萧中慧金钗经四侠转作寿礼的完整流转待核修订版。宜赠金饰藏家，只有合法持有人交付才入库；钗头造型与取得为（原创扩展），不替代鸳鸯双刀或藏图凤钗。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 52

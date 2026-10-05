@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_songdiaodao
+name: 宋掉刀
+kind: weapon
+sub: blade
+grade: 1
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·北宋；天龙起可得（《武经总要》卷十三）
+price: auto
+flags: []
+assets:
+  icon: item/songdiaodao
+text:
+  desc: 外观：宽阔前重单刃接长木杆，通长约一百八十厘米。
+  lore: 名目取自《武经总要》所载掉刀，本作复原为宽刃接长杆的前重军器。双手运使宜借步势下劈，杆身也可拦架；具体刃形、长度、装具与投放均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 38
+      qiAffinity: 100

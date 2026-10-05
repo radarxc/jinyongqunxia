@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_zhujieduanzhang
+name: 竹节短杖
+kind: weapon
+sub: staff
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/zhujieduanzhang
+text:
+  desc: 外观：全长约九十厘米，深青老竹六节、根端较粗。
+  lore: 山中行脚者择老竹根段制成短杖，六节可供换手定位，粗根端用于点打和压腕，也能临时支撑攀路。竹材怕劈裂，忌与重兵死磕；器名、制作故事与江湖流通均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 30
+      qiAffinity: 100

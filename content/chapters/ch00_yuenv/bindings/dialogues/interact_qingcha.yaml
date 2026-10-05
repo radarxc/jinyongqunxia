@@ -1,0 +1,10 @@
+schemaVersion: region-dialogue.v1
+chapter: ch00_yuenv
+sceneId: sc_00_yueying
+anchorId: interact_qingcha
+storyId: story_ch00_main
+entryKey: fanli_request
+condition:
+  all:
+    - {flag: fl_00_baiyuan_merged}
+    - {not: {flag: fl_00_fanli_request_done}}

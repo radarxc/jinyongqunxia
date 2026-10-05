@@ -1,0 +1,145 @@
+<!doctype html>
+<!--
+降龙十八掌·亢龙有悔 · 作者第 1 轮返修 · 原创视觉实验。
+直接打开或放入 iframe sandbox="allow-scripts" 的 srcdoc；完全自包含。
+整个掌面宽幅生发金色龙气，禁止掌心单点喷射；五指轮廓只作发力方向示意。
+金色由作者第 1 轮意见确定，龙形、光色、5.6 秒循环均为原创审美表现。
+不定义招式等级、战斗 CT、命中范围、原著动作或现实武术规范。
+暂停/重播、浓淡40–140%、速度0.5–1.5×；DPR上限2。
+空格播放/暂停，R重播；系统减少动态默认静帧，隐藏时停止动画。
+无网络、外部资源、持久化存储或父页面访问。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>亢龙有悔 · 水墨视觉实验</title>
+<style>
+  :root { color-scheme:light; --paper:#f4f0e6; --ink:#2b2622; --muted:#766e61; --rule:#d2cabb; --red:#943f33; }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); background:#e8e1d3; font-family:"Songti SC","Noto Serif CJK SC",serif; }
+  main { width:min(1180px,calc(100% - 64px)); margin:36px auto; }
+  header { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:20px; }
+  .eyebrow { color:var(--muted); font:11px/1.7 ui-sans-serif,system-ui,sans-serif; letter-spacing:.2em; }
+  h1 { margin:10px 0 3px; font-size:clamp(28px,4vw,43px); letter-spacing:.14em; font-weight:500; }
+  .subtitle { margin:0; color:var(--muted); font-size:13px; letter-spacing:.13em; }
+  .edition { color:var(--muted); font:11px/1.8 ui-sans-serif,system-ui,sans-serif; text-align:right; }
+  .stage { position:relative; overflow:hidden; background:var(--paper); border:1px solid #d1c8b8; aspect-ratio:16/9; }
+  canvas { display:block; width:100%; height:100%; }
+  .stage::after { content:""; position:absolute; pointer-events:none; inset:14px; border:1px solid #82705c18; }
+  .caption { display:flex; gap:18px; align-items:baseline; justify-content:space-between; margin:14px 0 25px; color:var(--muted); font-size:12px; line-height:1.8; }
+  .caption strong { color:var(--ink); font-weight:400; white-space:nowrap; letter-spacing:.13em; }
+  .controls { display:flex; align-items:center; gap:14px 22px; flex-wrap:wrap; border-top:1px solid var(--rule); padding-top:20px; font:12px/1.5 ui-sans-serif,system-ui,sans-serif; }
+  button { min-width:80px; min-height:40px; padding:8px 15px; font:inherit; color:var(--ink); background:transparent; border:1px solid #9e9280; border-radius:0; cursor:pointer; }
+  button.primary { color:var(--paper); background:var(--ink); border-color:var(--ink); }
+  button:hover { border-color:var(--red); }
+  button:focus-visible, input:focus-visible { outline:2px solid var(--red); outline-offset:4px; }
+  .control { display:grid; grid-template-columns:auto 100px 34px; align-items:center; gap:10px; }
+  input[type=range] { width:100px; accent-color:var(--red); cursor:pointer; }
+  output { font-variant-numeric:tabular-nums; color:var(--muted); text-align:right; }
+  .state { margin-left:auto; color:var(--muted); min-width:110px; text-align:right; }
+  .state::before { content:""; display:inline-block; width:5px; height:5px; margin-right:8px; border-radius:50%; background:var(--red); vertical-align:middle; }
+  footer { margin-top:23px; display:flex; justify-content:space-between; gap:24px; color:var(--muted); font:11px/1.8 ui-sans-serif,system-ui,sans-serif; }
+  footer p { margin:0; }
+  .keyhelp { white-space:nowrap; }
+  @media(max-width:680px) {
+    main { width:calc(100% - 28px); margin:24px auto; }
+    header { align-items:start; gap:8px; } .edition { max-width:95px; font-size:10px; }
+    .stage { aspect-ratio:4/3; } .caption { display:block; margin-bottom:18px; }
+    .caption strong { display:block; margin-bottom:4px; } .state { margin-left:0; }
+    footer { display:block; } .keyhelp { margin-top:8px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div><div class="eyebrow">天书录 / DEFAULT · VFX 01</div><h1>亢龙有悔</h1><p class="subtitle">金气化龙 · 掌势如潮</p></div>
+    <div class="edition">射雕英雄传 · 南宋<br>1217–1227 · 游戏推定<br>基线候选 / 待审批</div>
+  </header>
+  <section class="stage" aria-label="全掌生发金色龙气视觉舞台">
+    <canvas id="ink" role="img" aria-label="金色气劲从整个张开的掌面宽幅透出，化为昂扬的巨大龙形；龙首略实，躯干由透明金色笔迹和留白组成。">此演示需要支持 Canvas 2D 的浏览器。</canvas>
+  </section>
+  <div class="caption"><strong>一掌开势，金气成龙。</strong><span>掌面宽幅透出 · 龙首凝势 · 龙身飞白消隐</span></div>
+  <div class="controls" aria-label="视觉审阅控制">
+    <button id="toggle" class="primary" type="button" aria-pressed="true">暂停</button>
+    <button id="restart" type="button">重播</button>
+    <label class="control" for="density">浓淡 <input id="density" type="range" min="40" max="140" value="82" step="1"><output id="densityValue" for="density">82%</output></label>
+    <label class="control" for="speed">速度 <input id="speed" type="range" min="50" max="150" value="100" step="5"><output id="speedValue" for="speed">1.0×</output></label>
+    <span class="state" id="state" role="status" aria-live="polite">循环播放</span>
+  </div>
+  <footer><p>原创视觉实验 · 金色虚实 / 全掌发力 / 宽幅龙气<br>5.6 秒为审美循环；不模拟战斗 CT、命中范围或发招顺序。</p><p class="keyhelp">空格 播放 / 暂停 · R 重播</p></footer>
+</main>
+<script>
+(() => {
+'use strict';
+const CONFIG={cycle:5.6,dprCap:2,width:1400,height:788,seed:1802};
+const canvas=document.getElementById('ink'),ctx=canvas.getContext('2d');
+const toggle=document.getElementById('toggle'),restart=document.getElementById('restart'),density=document.getElementById('density'),speed=document.getElementById('speed');
+const densityValue=document.getElementById('densityValue'),speedValue=document.getElementById('speedValue'),state=document.getElementById('state'),motion=matchMedia('(prefers-reduced-motion: reduce)');
+if(!ctx){state.textContent='浏览器不支持 Canvas 2D';toggle.disabled=restart.disabled=true;return;}
+let width=1,height=1,dpr=1,elapsed=2.3,playing=!motion.matches,frame=0,lastTime=0,seed=CONFIG.seed;
+const clamp=(n,a=0,b=1)=>Math.max(a,Math.min(b,n)),smooth=n=>{n=clamp(n);return n*n*(3-2*n);};
+const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+const flecks=Array.from({length:170},()=>({u:random(),off:random()*2-1,r:random()*2+.6,phase:random()*6.28}));
+const paper=document.createElement('canvas');paper.width=1400;paper.height=788;const pc=paper.getContext('2d');pc.fillStyle='#f4f0e6';pc.fillRect(0,0,1400,788);
+for(let i=0;i<6500;i++){pc.fillStyle=`rgba(124,106,76,${.012+random()*.025})`;pc.fillRect(random()*1400,random()*788,.5+random(),.5+random()*2);}
+const gold=(a,tone=0)=>`rgba(${tone===1?'218,177,72':tone===2?'152,105,30':'190,145,43'},${clamp(a)})`;
+function stroke(draw,color,w=1){ctx.beginPath();draw(ctx);ctx.strokeStyle=color;ctx.lineWidth=w;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();}
+function wash(x,y,rx,ry,color){ctx.save();ctx.translate(x,y);ctx.scale(rx,ry);const g=ctx.createRadialGradient(0,0,.05,0,0,1);g.addColorStop(0,color);g.addColorStop(1,'#f4f0e600');ctx.fillStyle=g;ctx.fillRect(-1,-1,2,2);ctx.restore();}
+function hand(){
+ ctx.save();ctx.translate(-4,266);ctx.scale(.8,.8);
+ ctx.fillStyle='#343938';ctx.beginPath();ctx.moveTo(-40,271);ctx.lineTo(118,270);ctx.quadraticCurveTo(135,330,148,411);ctx.lineTo(-40,452);ctx.closePath();ctx.fill();
+ stroke(c=>{c.moveTo(82,279);c.quadraticCurveTo(102,344,107,417);},'#898b7e',7);stroke(c=>{c.moveTo(-25,322);c.quadraticCurveTo(45,320,90,352);},'#e1dac033',2);
+ ctx.fillStyle='#ded5bf';ctx.strokeStyle='#686354';ctx.lineWidth=1.1;ctx.beginPath();ctx.moveTo(114,290);ctx.bezierCurveTo(149,287,166,268,189,249);ctx.lineTo(258,197);ctx.bezierCurveTo(278,184,294,196,285,213);ctx.lineTo(229,276);ctx.quadraticCurveTo(222,288,241,288);
+ ctx.lineTo(347,263);ctx.bezierCurveTo(373,257,381,280,363,289);ctx.lineTo(258,319);ctx.quadraticCurveTo(251,324,262,326);ctx.lineTo(379,320);ctx.bezierCurveTo(404,317,414,340,389,347);ctx.lineTo(259,356);ctx.quadraticCurveTo(249,358,260,363);ctx.lineTo(352,377);ctx.bezierCurveTo(379,380,388,401,362,406);ctx.lineTo(249,389);ctx.quadraticCurveTo(237,386,244,398);ctx.lineTo(312,429);ctx.bezierCurveTo(336,440,327,461,304,454);ctx.lineTo(206,416);ctx.quadraticCurveTo(167,406,139,397);ctx.closePath();ctx.fill();ctx.stroke();
+ stroke(c=>{c.moveTo(172,296);c.bezierCurveTo(206,296,221,325,214,364);},'#82785b88',1.3);stroke(c=>{c.moveTo(184,379);c.quadraticCurveTo(217,345,261,344);},'#82785b66',1);
+ for(const [x,y] of [[258,232],[326,285],[350,336],[323,388],[287,435]])stroke(c=>{c.moveTo(x,y-6);c.quadraticCurveTo(x-4,y,x,y+6);},'#7b705d66',1);
+ ctx.restore();
+}
+function point(u,time){return{x:252+830*u,y:516-240*u-126*Math.sin(u*Math.PI*2)+Math.sin(time*.8+u*6)*8*Math.sin(Math.PI*u)};}
+function ribbon(from,to,offset,w,alpha,time,roughness=0){
+ if(to<=from)return;stroke(c=>{for(let j=0;j<=100;j++){const u=from+(to-from)*j/100,p=point(u,time);const spread=1+.25*Math.sin(Math.PI*u);const y=p.y+offset*spread+Math.sin(u*181)*roughness;if(!j)c.moveTo(p.x,y);else c.lineTo(p.x,y);}},gold(alpha,offset<0?1:0),w);
+}
+function dragonHead(x,y,alpha){
+ ctx.save();ctx.translate(x,y);ctx.rotate(-.16);
+ wash(-18,2,146,100,gold(alpha*.13,1));ctx.fillStyle=gold(alpha*.24,1);ctx.beginPath();ctx.moveTo(-100,-31);ctx.lineTo(-43,-65);ctx.lineTo(13,-54);ctx.lineTo(48,-38);ctx.lineTo(115,-21);ctx.quadraticCurveTo(128,-7,111,8);ctx.lineTo(54,11);ctx.lineTo(93,34);ctx.lineTo(54,50);ctx.lineTo(9,27);ctx.lineTo(-57,55);ctx.lineTo(-108,36);ctx.closePath();ctx.fill();
+ stroke(c=>{c.moveTo(-105,-31);c.quadraticCurveTo(-59,-68,-17,-56);c.lineTo(25,-42);c.quadraticCurveTo(40,-26,68,-28);c.lineTo(113,-19);c.quadraticCurveTo(127,-8,112,7);c.lineTo(55,10);},gold(alpha*.8,2),3.5);
+ stroke(c=>{c.moveTo(47,8);c.lineTo(91,34);c.lineTo(55,45);c.quadraticCurveTo(24,26,4,29);c.quadraticCurveTo(-24,50,-56,51);},gold(alpha*.62),2.8);
+ // 龙角、眉骨、长须与鳞片仅作凝势笔意；躯体持续透出底色。
+ for(const side of [-1,1]){const xx=side<0?-43:-8;stroke(c=>{c.moveTo(xx,-51);c.quadraticCurveTo(xx-22,-89,xx-3,-131);c.moveTo(xx-13,-97);c.lineTo(xx-46,-119);c.moveTo(xx-14,-87);c.lineTo(xx+17,-112);},gold(alpha*.63),3.2);}
+ stroke(c=>{c.moveTo(-13,-20);c.quadraticCurveTo(9,-36,34,-20);},gold(alpha*.86,2),3);ctx.fillStyle=gold(alpha,2);ctx.beginPath();ctx.ellipse(16,-20,5,3,-.15,0,Math.PI*2);ctx.fill();
+ stroke(c=>{c.moveTo(103,1);c.bezierCurveTo(157,-20,165,-73,117,-91);},gold(alpha*.55),1.5);stroke(c=>{c.moveTo(72,28);c.bezierCurveTo(170,83,129,150,46,125);},gold(alpha*.48),1.4);
+ for(let j=0;j<7;j++)stroke(c=>{c.moveTo(-80+j*12,5+j%2*12);c.quadraticCurveTo(-71+j*12,14+j%2*12,-62+j*12,4+j%2*12);},gold(alpha*.2),1.6);
+ stroke(c=>{c.moveTo(-82,-36);c.bezierCurveTo(-151,-117,-183,-40,-227,-83);},gold(alpha*.45),2);stroke(c=>{c.moveTo(-88,30);c.bezierCurveTo(-168,86,-168,137,-235,132);},gold(alpha*.32),2);
+ ctx.restore();
+}
+function effect(time,amount){
+ const t=time%CONFIG.cycle,growth=smooth(t/1.9),presence=smooth(t/.55)*(1-smooth((t-3.8)/1.5)),alpha=presence*amount;
+ if(alpha<.002)return;const end=Math.max(.001,growth);
+ // 生发区覆及整个掌面与五指区域：纵向 205 px 的宽面，不设置掌心喷嘴。
+ ctx.fillStyle=gold(alpha*.12,1);ctx.beginPath();ctx.moveTo(157,419);ctx.bezierCurveTo(278,388,351,378,424,406);ctx.lineTo(445,572);ctx.bezierCurveTo(318,622,248,653,143,588);ctx.closePath();ctx.fill();
+ for(let k=0;k<8;k++){const y=425+k*26;stroke(c=>{c.moveTo(168,y);c.bezierCurveTo(240,y-12,294,477+k*13,354,473+k*12);},gold(alpha*.08,1),9-k*.5);}
+ for(let layer=5;layer>0;layer--)ribbon(0,end,0,82+layer*12,alpha*.021,time);
+ for(let k=0;k<13;k++){const off=(k-6)*9;const segmentStart=(k%3)*.018;ribbon(segmentStart,Math.min(end,.98-(k%4)*.018),off,1.5+k%3,alpha*(.08+(k%4)*.018),time,.8);}
+ for(let j=0;j<10;j++){const from=j*.095+.02,to=Math.min(end,from+.058);ribbon(from,to,-33+(j%3)*31,7-j%3,alpha*.13,time,1.2);}
+ // 飞白来自留空，金色层保持透明；不渲染实体金属鳞甲。
+ for(const f of flecks){if(f.u>end)continue;const p=point(f.u,time),drift=smooth((t-3)/2)*24;ctx.fillStyle=gold(alpha*.15,1);ctx.beginPath();ctx.ellipse(p.x+drift,p.y+f.off*(67+f.u*30)+Math.sin(time+f.phase)*6,f.r*2.3,f.r*.65,-.2,0,Math.PI*2);ctx.fill();}
+ const p=point(end,time);dragonHead(p.x,p.y,alpha*smooth((growth-.35)/.45));
+}
+function paint(){ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#f4f0e6';ctx.fillRect(0,0,width,height);const scale=Math.min(width/CONFIG.width,height/CONFIG.height);ctx.translate((width-CONFIG.width*scale)/2,(height-CONFIG.height*scale)/2);ctx.scale(scale,scale);ctx.drawImage(paper,0,0);wash(796,498,580,240,'rgba(93,97,76,.045)');hand();effect(elapsed,Number(density.value)/100);}
+function resize(){const r=canvas.getBoundingClientRect();width=Math.max(1,r.width);height=Math.max(1,r.height);dpr=Math.min(CONFIG.dprCap,window.devicePixelRatio||1);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);paint();}
+function sync(){toggle.textContent=playing?'暂停':'播放';toggle.setAttribute('aria-pressed',String(playing));state.textContent=playing?'循环播放':(motion.matches?'静帧 · 减少动态':'已暂停');}
+function schedule(){if(playing&&!document.hidden&&!frame)frame=requestAnimationFrame(tick);}
+function tick(now){frame=0;if(!playing||document.hidden){lastTime=0;return;}if(lastTime)elapsed=(elapsed+Math.min((now-lastTime)/1000,.08)*Number(speed.value)/100)%CONFIG.cycle;lastTime=now;paint();schedule();}
+function setPlaying(value){playing=value;lastTime=0;if(!playing){cancelAnimationFrame(frame);frame=0;}sync();paint();schedule();}
+function replay(){elapsed=0;setPlaying(true);}
+toggle.addEventListener('click',()=>setPlaying(!playing));restart.addEventListener('click',replay);density.addEventListener('input',()=>{densityValue.value=density.value+'%';paint();});speed.addEventListener('input',()=>{speedValue.value=(Number(speed.value)/100).toFixed(2).replace(/0$/,'')+'×';});
+document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;if(e.target instanceof HTMLElement&&e.target.closest('input,button,textarea,select,[contenteditable]'))return;if(e.code==='Space'){e.preventDefault();setPlaying(!playing);}if(e.key.toLowerCase()==='r'){e.preventDefault();replay();}});
+document.addEventListener('visibilitychange',()=>{lastTime=0;if(document.hidden){cancelAnimationFrame(frame);frame=0;}else schedule();});motion.addEventListener('change',()=>{if(motion.matches){elapsed=2.3;setPlaying(false);}});
+resize();sync();schedule();new ResizeObserver(resize).observe(canvas);window.addEventListener('resize',resize);
+})();
+</script>
+</body>
+</html>

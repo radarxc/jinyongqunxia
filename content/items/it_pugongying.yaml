@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_pugongying
+name: 蒲公英
+kind: material
+sub: herb
+grade: 1
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/pugongying
+text:
+  desc: 外观：药用全草连细根干燥，锯齿叶黄绿。
+  lore: 燕京直隶、中原、齐鲁、关中、江淮与东北路旁春至秋三至十月可采，本作连细根入篮。药铺把它列为轻伤配药，常随乡医药篓流转。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang9
+    materialGrade: 1
+    rare: false
+    herbFamily: puGongYing
+    ageYears: 0
+    attributes:
+      version: 2
+      healOuter: 5
