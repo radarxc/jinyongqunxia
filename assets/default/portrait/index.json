@@ -10721,28 +10721,28 @@
   },
   "avatar/npc_wangyuyan/ch01_youth_mantuo": {
    "128": {
-    "b": 4492,
+    "b": 4490,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 11270,
+    "b": 11260,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 27910,
+    "b": 28572,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.ava512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    345,
-    52,
-    683,
-    390
+    350,
+    53,
+    688,
+    391
    ],
    "source": "por_npc_wangyuyan__ch01_youth_mantuo_base"
   },
@@ -30238,22 +30238,22 @@
   },
   "bust/npc_wangyuyan/ch01_youth_mantuo": {
    "256": {
-    "b": 9670,
+    "b": 9688,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 25668,
+    "b": 25320,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.bust512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    261,
-    42,
-    768,
-    549
+    266,
+    43,
+    773,
+    550
    ],
    "source": "por_npc_wangyuyan__ch01_youth_mantuo_base"
   },
@@ -41613,7 +41613,7 @@
    "portrait": "portrait/role_woodcutter/song_north_m"
   }
  },
- "generated": "2026-10-03",
+ "generated": "2026-10-05",
  "portrait": {
   "portrait/npc_abi/ch01_youth_qinyun_base": {
    "alpha": true,
@@ -50263,115 +50263,115 @@
   "portrait/npc_wangyuyan/ch01_youth_mantuo_base": {
    "alpha": true,
    "low": {
-    "b": 52038,
+    "b": 52072,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 70122,
+    "b": 69920,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_mantuo_base",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png",
-   "source_sha256": "2c8ca9f70a35d3067b52ade4f615107b055f738249078fd9503fb49d9a13645c",
+   "source_sha256": "d683f7d4c8755923fbaef2bdc0f1b829ecc28df38d632bd7052809ebbbac435c",
    "status": "candidate"
   },
   "portrait/npc_wangyuyan/ch01_youth_scene_mantuo_camellia": {
    "alpha": false,
    "low": {
-    "b": 146984,
+    "b": 146722,
     "f": "npc_wangyuyan/ch01_youth_scene_mantuo_camellia.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 214970,
+    "b": 214754,
     "f": "npc_wangyuyan/ch01_youth_scene_mantuo_camellia.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.png",
-   "source_sha256": "85c7725cd5dbb210e501424c03bbfc5cdf2eced37b792587a59d4edca8fe71f2",
+   "source_sha256": "60278f44be4dec2622445f16cee7c440fcd9faae60538aec9eb7d5170727f5f1",
    "status": "candidate"
   },
   "portrait/npc_wangyuyan/ch01_youth_scene_mill_hairpin_exchange": {
    "alpha": false,
    "low": {
-    "b": 111898,
+    "b": 112008,
     "f": "npc_wangyuyan/ch01_youth_scene_mill_hairpin_exchange.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 165052,
+    "b": 165842,
     "f": "npc_wangyuyan/ch01_youth_scene_mill_hairpin_exchange.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.png",
-   "source_sha256": "24da3f09a44e73f0c6b5adb5d7939333cefef2725affc0155b6ff5dd4a238f87",
+   "source_sha256": "e9600bc15b6f0b65295b69d9f47332827cc3ddec0010e594e2d28eb3f706ee80",
    "status": "candidate"
   },
   "portrait/npc_wangyuyan/ch01_youth_scene_shaoshi_plea": {
    "alpha": false,
    "low": {
-    "b": 118086,
+    "b": 118180,
     "f": "npc_wangyuyan/ch01_youth_scene_shaoshi_plea.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 179026,
+    "b": 178910,
     "f": "npc_wangyuyan/ch01_youth_scene_shaoshi_plea.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea.png",
-   "source_sha256": "b7815c7f3089de7ba93383aaa4900d2fee4597bc6bee8d0a339744bde5e57138",
+   "source_sha256": "80b179a950407f4efd947bd92ace91e2d7443b0589db5e74d19206052bf4518c",
    "status": "candidate"
   },
   "portrait/npc_wangyuyan/ch01_youth_scene_tingxiang_discernment": {
    "alpha": false,
    "low": {
-    "b": 97284,
+    "b": 97446,
     "f": "npc_wangyuyan/ch01_youth_scene_tingxiang_discernment.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 146794,
+    "b": 148276,
     "f": "npc_wangyuyan/ch01_youth_scene_tingxiang_discernment.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_scene_tingxiang_discernment",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_tingxiang_discernment.png",
-   "source_sha256": "98ddf30e2575fdf1b479b2a32ab82961c9812f6a6dba2d812cc1a5b5f6052d7b",
+   "source_sha256": "358eff45d83b0c4ec044ddd0908b166403bd7cbd4e3a7c110cb8fa718c6b1d5e",
    "status": "candidate"
   },
   "portrait/npc_wangyuyan/ch01_youth_scene_well_self_choice": {
    "alpha": false,
    "low": {
-    "b": 105538,
+    "b": 106074,
     "f": "npc_wangyuyan/ch01_youth_scene_well_self_choice.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 159754,
+    "b": 156514,
     "f": "npc_wangyuyan/ch01_youth_scene_well_self_choice.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_scene_well_self_choice",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_well_self_choice.png",
-   "source_sha256": "d9ec9e013c65c8ed61cec5271fa0637e867c980e730b8f801e6584b5352173e0",
+   "source_sha256": "4955f730c45328b8478e91101d036008dab2813e504d515c512efc83bfeec35d",
    "status": "candidate"
   },
   "portrait/npc_wanhesheng/ch13_elder_weituo_base": {
