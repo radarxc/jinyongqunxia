@@ -1,0 +1,41 @@
+- id: town_city_jingmen__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 荆门军·北宋1093年推定格局候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_jingmen__ch01/layout.yaml -o assets/default/town/city_jingmen__ch01/preview.jpg --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 1536x768
+  sha256: c976f9cde8a4839982cf5188cfb580a02eb1f4325c779874d6381c42545e9961
+  status: candidate
+  references:
+  - docs/design/town/city_jingmen__ch01.yaml
+  - docs/design/town/history/city_jingmen__northern_song.md
+  - assets/default/tile/song_southern/
+  - assets/default/building-map/song_southern/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes:
+  - 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染
+  - 候选态素材回退 18 组；逐项见 asset_substitutions
+  asset_substitutions:
+  - tex_town_song_southern_city_gate -> tex_town_song_southern_city_gate__k7_r180_v01（gate-width:requested=4,source=7；1次）
+  - tex_town_song_southern_city_gate -> tex_town_song_southern_city_gate__k8_r000_v01（gate-width:requested=4,source=8；1次）
+  - tex_town_song_southern_dirt_road -> tex_town_song_dali_dirt_road__v01（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road；1次）
+  - tex_town_song_southern_dirt_road -> tex_town_song_dali_dirt_road__v02（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road；1次）
+  - tex_town_song_southern_dirt_road -> tex_town_song_dali_dirt_road__v03（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road；1次）
+  - tex_town_song_southern_dirt_road -> tex_town_song_dali_dirt_road__v04（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road；1次）
+  - tex_town_song_southern_rammed_earth -> tex_town_song_dali_rammed_earth__v01（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth；1次）
+  - tex_town_song_southern_rammed_earth -> tex_town_song_dali_rammed_earth__v02（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth；1次）
+  - tex_town_song_southern_rammed_earth -> tex_town_song_dali_rammed_earth__v03（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth；1次）
+  - tex_town_song_southern_rammed_earth -> tex_town_song_dali_rammed_earth__v04（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth；1次）
+  - tex_town_song_southern_riverbank -> tex_town_song_dali_riverbank__e（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank；1次）
+  - tex_town_song_southern_riverbank -> tex_town_song_dali_riverbank__n（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank；1次）
+  - tex_town_song_southern_riverbank -> tex_town_song_dali_riverbank__ne（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank；1次）
+  - tex_town_song_southern_riverbank -> tex_town_song_dali_riverbank__nw（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank；1次）
+  - tex_town_song_southern_riverbank -> tex_town_song_dali_riverbank__s（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank；1次）
+  - tex_town_song_southern_riverbank -> tex_town_song_dali_riverbank__se（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank；1次）
+  - tex_town_song_southern_riverbank -> tex_town_song_dali_riverbank__sw（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank；1次）
+  - tex_town_song_southern_riverbank -> tex_town_song_dali_riverbank__w（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank；1次）

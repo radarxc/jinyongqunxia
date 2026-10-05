@@ -1,0 +1,35 @@
+- id: town_city_zunyi__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 播州·北宋1093年推定格局候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_zunyi__ch01/layout.yaml -o assets/default/town/city_zunyi__ch01/preview.jpg --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 1536x768
+  sha256: 9ca6fa1e39dce0097b73de099f3377501b9846543c7794c8f57e623de5f5f9b0
+  status: candidate
+  references:
+  - docs/design/town/city_zunyi__ch01.yaml
+  - docs/design/town/history/city_zunyi__northern_song.md
+  - assets/default/tile/song_dali/
+  - assets/default/building-map/song_dali/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes:
+  - 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染
+  - 候选态素材回退 12 组；逐项见 asset_substitutions
+  asset_substitutions:
+  - tex_town_song_dali_bridge_deck -> tex_town_song_southern_bridge_deck__w5_l10_r090_v01（shared-bridge-view:tex_town_song_dali_bridge_deck->tex_town_song_southern_bridge_deck；1次）
+  - tex_town_song_dali_bridge_rail -> tex_town_song_southern_bridge_rail__w5_l10_r090_v01（shared-bridge-view:tex_town_song_dali_bridge_rail->tex_town_song_southern_bridge_rail；1次）
+  - tex_town_song_dali_city_gate -> tex_town_song_dali_city_gate__k5_r180_v01（gate-width:requested=4,source=5；1次）
+  - tex_town_song_dali_city_gate -> tex_town_song_dali_city_gate__k6_r000_v01（gate-width:requested=4,source=6；1次）
+  - tex_town_song_dali_road_edge -> tex_town_song_southern_road_edge__e（shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge；1次）
+  - tex_town_song_dali_road_edge -> tex_town_song_southern_road_edge__n（shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge；1次）
+  - tex_town_song_dali_road_edge -> tex_town_song_southern_road_edge__ne（shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge；1次）
+  - tex_town_song_dali_road_edge -> tex_town_song_southern_road_edge__nw（shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge；1次）
+  - tex_town_song_dali_road_edge -> tex_town_song_southern_road_edge__s（shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge；1次）
+  - tex_town_song_dali_road_edge -> tex_town_song_southern_road_edge__se（shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge；1次）
+  - tex_town_song_dali_road_edge -> tex_town_song_southern_road_edge__sw（shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge；1次）
+  - tex_town_song_dali_road_edge -> tex_town_song_southern_road_edge__w（shared-material:tex_town_song_dali_road_edge->tex_town_song_southern_road_edge；1次）

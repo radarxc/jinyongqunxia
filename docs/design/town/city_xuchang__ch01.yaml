@@ -1,0 +1,303 @@
+book_world: ch01_tianlong
+bridges: []
+building_quotas:
+- business_ref: null
+  count:
+    max: 1
+    min: 1
+  institution_ref: null
+  placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  required: true
+  type: bld_kit_song_dali_yamen
+  zone_refs:
+  - zone_office
+- business_ref: null
+  count:
+    max: 1
+    min: 1
+  institution_ref: null
+  placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  required: true
+  type: bld_kit_song_north_market_stall
+  zone_refs:
+  - zone_market
+- business_ref: null
+  count:
+    max: 2
+    min: 1
+  institution_ref: null
+  placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  required: true
+  type: bld_kit_song_north_shop_1f
+  zone_refs:
+  - zone_commercial
+- business_ref: null
+  count:
+    max: 1
+    min: 1
+  institution_ref: null
+  placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  required: true
+  type: bld_kit_song_dali_temple_hall
+  zone_refs:
+  - zone_religious
+- business_ref: null
+  count:
+    max: 4
+    min: 2
+  institution_ref: null
+  placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  required: true
+  type: bld_kit_song_north_house_small
+  zone_refs:
+  - zone_residential
+- business_ref: null
+  count:
+    max: 1
+    min: 1
+  institution_ref: null
+  placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  required: true
+  type: bld_kit_song_north_inn
+  zone_refs:
+  - zone_commercial
+- business_ref: null
+  count:
+    max: 1
+    min: 1
+  institution_ref: null
+  placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  required: true
+  type: bld_kit_song_dali_biaoju
+  zone_refs:
+  - zone_commercial
+- business_ref: null
+  count:
+    max: 1
+    min: 1
+  institution_ref: null
+  placement_note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  required: true
+  type: bld_kit_song_dali_manor
+  zone_refs:
+  - zone_residential
+chapter_id: ch01
+city_id: city_xuchang
+design_intent:
+  notes:
+  - 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  - 依据：src_generic_layout
+  - region=rg_zhongyuan; band=northern_song
+  prosperity: generic_secondary
+display_name: 颍昌府
+era_kit: song_north
+gates:
+- asset_type: tex_town_song_north_city_gate
+  at:
+    x: 48
+    z: 10
+  basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  footprint_cells:
+    h: 4
+    w: 8
+  id: south_gate
+  passage_cells:
+    h: 4
+    w: 4
+  primary: true
+  road_ref: main_north_south
+  rotation_deg: 0
+  side: south
+  wall_ref: outer
+  width_cells: 4
+- asset_type: tex_town_song_north_city_gate
+  at:
+    x: 48
+    z: 86
+  basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  footprint_cells:
+    h: 4
+    w: 8
+  id: north_gate
+  passage_cells:
+    h: 4
+    w: 4
+  primary: false
+  road_ref: main_north_south
+  rotation_deg: 180
+  side: north
+  wall_ref: outer
+  width_cells: 4
+grid:
+  cell_m: 1
+  chunk_cells: 32
+  height: 96
+  width: 96
+historical_year: 1093
+kind: CitySpec
+landmarks: []
+projection:
+  pitch_deg: 30
+  tile_px:
+  - 64
+  - 32
+  yaw_deg: 45
+rivers: []
+runtime_partition:
+  formal_scene_refs: null
+  q_band_slots:
+  - 66
+  - 65
+  q_min: -48
+  q_slot_count: 131
+  r_band_slots:
+  - 96
+  r_min: 1
+  r_slot_count: 96
+schema_version: town.city_spec.v1
+seed: 166601187
+sources:
+- accessed: null
+  confidence: original_extension
+  key: src_generic_layout
+  kind: design_interpretation
+  note: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  supports:
+  - layout
+  title: 小城与遗址推定格局规则
+  url: null
+streets:
+- basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  class: main_axis
+  id: main_north_south
+  points:
+  - x: 48
+    z: 10
+  - x: 48
+    z: 86
+  priority: 100
+  surface: dirt_road
+  width_cells: 4
+- basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  class: secondary
+  id: market_cross_street
+  points:
+  - x: 12
+    z: 48
+  - x: 84
+    z: 48
+  priority: 80
+  surface: dirt_road
+  width_cells: 4
+vegetation:
+  avoid_road_cells: 1
+  basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  cluster_rule: 2至5株成组
+  density: 0.012
+  palette:
+  - prp_song_dali_grass
+walls:
+- basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  id: outer
+  inside_margin_cells: 2
+  polygon:
+    points:
+    - x: 10
+      z: 10
+    - x: 86
+      z: 10
+    - x: 86
+      z: 86
+    - x: 10
+      z: 86
+  role: outer
+zones:
+- allowed_building_types:
+  - bld_kit_song_dali_yamen
+  basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  density: 0.52
+  geometry:
+    rect:
+      max:
+        x: 29
+        z: 47
+      min:
+        x: 12
+        z: 12
+  ground_mix:
+    rammed_earth: 100
+  id: zone_office
+  kind: administrative
+  priority: 100
+- allowed_building_types:
+  - bld_kit_song_north_market_stall
+  - bld_kit_song_north_shop_1f
+  basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  density: 0.52
+  geometry:
+    rect:
+      max:
+        x: 84
+        z: 47
+      min:
+        x: 51
+        z: 12
+  ground_mix:
+    rammed_earth: 100
+  id: zone_market
+  kind: market
+  priority: 90
+- allowed_building_types:
+  - bld_kit_song_north_shop_1f
+  - bld_kit_song_north_inn
+  - bld_kit_song_dali_biaoju
+  basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  density: 0.52
+  geometry:
+    rect:
+      max:
+        x: 84
+        z: 84
+      min:
+        x: 51
+        z: 51
+  ground_mix:
+    rammed_earth: 100
+  id: zone_commercial
+  kind: commercial
+  priority: 85
+- allowed_building_types:
+  - bld_kit_song_dali_temple_hall
+  basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  density: 0.52
+  geometry:
+    rect:
+      max:
+        x: 47
+        z: 47
+      min:
+        x: 29
+        z: 12
+  ground_mix:
+    rammed_earth: 100
+  id: zone_religious
+  kind: religious
+  priority: 80
+- allowed_building_types:
+  - bld_kit_song_north_house_small
+  - bld_kit_song_dali_manor
+  basis: 推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）
+  density: 0.52
+  geometry:
+    rect:
+      max:
+        x: 47
+        z: 84
+      min:
+        x: 12
+        z: 51
+  ground_mix:
+    rammed_earth: 100
+  id: zone_residential
+  kind: residential
+  priority: 50
