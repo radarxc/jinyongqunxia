@@ -20,12 +20,13 @@ const build = (index: number, lossStreak = 0) => buildEncounter(PROLOGUE_ENCOUNT
 
 function arenaMap(): RegionMap {
   const valid = new Uint8Array(128); valid[0] = 3;
-  const terrain = new Uint8Array(1_024); const heights = new Uint8Array(1_024);
+  const terrain = new Uint8Array(1_024); terrain[1] = 1;
+  const heights = new Uint8Array(1_024);
   const cells = [{ q: 0, r: 0, h: 0 }, { q: 1, r: 0, h: 0 }];
   return { schemaVersion: 'region-map.v1', id: 'sc_00_arena', regionId: 'rg_fixture',
     chapterScope: ['ch00_yuenv'], eraLayer: 'ch00',
     bounds: { qMin: 0, qMax: 31, rMin: 0, rMax: 31 }, chunkSize: 32,
-    terrainTable: ['tr_pingdi'], chunks: [{ q: 0, r: 0, width: 32, height: 32,
+    terrainTable: ['tr_pingdi', 'tr_zhulin'], chunks: [{ q: 0, r: 0, width: 32, height: 32,
       valid: Buffer.from(valid).toString('base64'), terrainEncoding: 'u8',
       terrain: Buffer.from(terrain).toString('base64'), heights: Buffer.from(heights).toString('base64'),
       ramps: [], water: [], precomputedAo: null, decos: [], objects: [] }],
@@ -54,6 +55,10 @@ describe('encounter.v1 builder', () => {
       regionMaps: [arenaMap()] });
     expect(launch.setup.grid.cells.map(({ q, r }) => ({ q, r })))
       .toEqual([{ q: 0, r: 0 }, { q: 1, r: 0 }]);
+    expect(launch.setup.grid.cells[1]).toMatchObject({ canopy: 3, los: 'partial',
+      terrainDealtBySubTypeBp: { spear: -1_000, staff: -1_000 },
+      cover: { vs: ['projectile', 'ranged'], hit: -5,
+        hitByDelivery: { projectile: -10, ranged: -5 }, damageBp: 0 } });
     expect(launch.setup.returnContext).toMatchObject({ sceneRef: 'sc_00_arena',
       anchorRef: 'arena_fixture' });
   });
@@ -156,12 +161,29 @@ describe('encounter.v1 builder', () => {
     ]);
   });
 
+  it('applies full NPC difficulty without template hp or defense multipliers', () => {
+    const participant = PROLOGUE_ENCOUNTERS[1]!.participants[1]!;
+    const base = battleSeed('baiyuan');
+    const scaled = expandEncounterUnitSeed(base, participant, undefined, 'diff_zongshi', 9_000);
+    expect([scaled.hpMax, scaled.stats.atkOut, scaled.stats.atkIn, scaled.spd])
+      .toEqual([1440, 268, 246, 103]);
+    expect([scaled.stats.defOut, scaled.stats.defIn, scaled.stats.hit])
+      .toEqual([base.stats.defOut, base.stats.defIn, base.stats.hit + 6]);
+  });
+
   it('fires Aqings rescue below 45 percent once', () => {
     const launch = build(0); const state = createBattleState(launch.setup, launch.seeds);
+    const enemy = state.units.find((unit) => unit.id === 'road_swordsman_1')!;
+    const before = { ...enemy.pos };
     state.units[0]!.hp = 539;
     expect(executeBattleScript(state, 0).events.map((event) => event.t))
       .toContain('battle/aqingRescue');
+    expect(enemy.pos).not.toEqual(before);
+    expect(state.events).toContainEqual(expect.objectContaining({
+      t: 'battle/rescueDisplaced', target: 'road_swordsman_1', message: 'aqing_rescue',
+    }));
     expect(executeBattleScript(state, 0).triggered).toEqual([]);
+    expect(state.events.filter((event) => event.t === 'battle/rescueDisplaced')).toHaveLength(1);
   });
 
   it('offers the demonstration after three losses and switches the authored projection', () => {
@@ -179,6 +201,8 @@ describe('encounter.v1 builder', () => {
   it('offers the demonstration after three retry losses in one battle session', () => {
     const launch = build(0);
     const session = createBattleSession(launch.setup, launch.seeds);
+    session.battle.units[0]!.hp = 539;
+    evaluateBattleEnd(session.battle);
     for (let attempt = 1; attempt <= 3; attempt += 1) {
       finishBattle(session.battle, 'lose');
       retryBattleSession(session);
@@ -187,6 +211,10 @@ describe('encounter.v1 builder', () => {
     expect(session.battle.events).toContainEqual(expect.objectContaining({
       t: 'battle/demonstrationOffered', message: 'replay_zhulin_demo',
     }));
+    session.battle.units[0]!.hp = 539;
+    evaluateBattleEnd(session.battle);
+    expect(session.battle.events.filter((event) => event.t === 'battle/aqingRescue'))
+      .toHaveLength(1);
     finishBattle(session.battle, 'lose');
     retryBattleSession(session);
     expect(session.battle.events.filter((event) =>

@@ -1,6 +1,5 @@
 # 猿跃试手（原创扩展编排）；归属：docs/design/chapters/00-yuenv.md §5.3。
-# 灰盒依赖（mockRef）：ENG-npc-species-roleslot、ENG-26 的内容字段表 / 宿主接线。
-# O05 投桃由既有 Ink 在战前原子扣 it_tao ×1；此定义不重复扣物，见 ../README.md。
+# O05 投桃由既有 Ink 在战前原子扣 it_tao ×1；此定义不重复扣物。
 schemaVersion: encounter.v1
 id: enc_00_baiyuan
 chapterId: ch00_yuenv
@@ -57,3 +56,18 @@ difficulty:
     diff_jianghu: {hpBp: 8000, attackBp: 8000}
     diff_xiake: {hpBp: 10000, attackBp: 10000}
     diff_zongshi: {hpBp: 12000, attackBp: 11200}
+settlement:
+  onWin:
+    - {op: flag/set, flagId: fl_00_baiyuan_spar_done, value: true}
+    - {op: quest/advance, quest: q_00_main_c_02, stage: st_merge}
+    - {op: dialogue/start, storyId: story_ch00_main, knot: baiyuan_after}
+  onLose:
+    - {op: flag/set, flagId: fl_00_baiyuan_spar, value: false}
+    - {op: quest/advance, quest: q_00_main_c_02, stage: st_baiyuan_choice}
+  onConcede:
+    - {op: flag/set, flagId: fl_00_baiyuan_spar_done, value: true}
+    - {op: quest/advance, quest: q_00_main_c_02, stage: st_merge}
+    - {op: dialogue/start, storyId: story_ch00_main, knot: baiyuan_after}
+  onAssisted: []
+  lossFlags: []
+  resetLossOnWin: false

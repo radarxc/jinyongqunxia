@@ -5,7 +5,8 @@ export * from './catalog';
 export * from './content-pack';
 // Encounter values are battle-only. Keep their types available to shared contracts without
 // pulling the full Zod schema into the first-session schema barrel.
-export type { EncounterBeat, EncounterCondition, EncounterDef, EncounterParticipant } from './encounter';
+export type { EncounterBeat, EncounterCondition, EncounterDef, EncounterParticipant,
+  EncounterSettlementAction } from './encounter';
 export * from './item';
 export * from './martial-art';
 export * from './meridian';

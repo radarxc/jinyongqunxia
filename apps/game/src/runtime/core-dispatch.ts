@@ -61,7 +61,8 @@ async function commandHandlers(command: Command): Promise<HandlerMap> {
     if (command.t === 'chapter/bookSleep') return await chapterHandlers();
     if (command.t.startsWith('battle/')) return await load('battle', async () => {
       const { battleHandler } = await import('@tianshu/core/battle');
-      return Object.fromEntries(['enter', 'act', 'setAuto', 'retry', 'finalize', 'leave']
+      return Object.fromEntries(['enter', 'act', 'setAuto', 'retry', 'concede', 'subdue', 'demonstration',
+        'finalize', 'leave']
         .map((name) => [`battle/${name}`, battleHandler as CommandHandler]));
     });
     if (command.t === 'world/mountRegion' || command.t === 'world/walkTo' ||

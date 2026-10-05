@@ -1,6 +1,4 @@
 # 竹林初阵（原创扩展）；归属：docs/design/chapters/00-yuenv.md §5.1–§5.2。
-# 灰盒依赖（mockRef）：ENG-npc-species-roleslot、ENG-26 的内容字段表 / 宿主接线。
-# 暂不发布；晋升条件及尚未机读的教学节拍见 ../README.md。
 schemaVersion: encounter.v1
 id: enc_00_zhulin
 chapterId: ch00_yuenv
@@ -76,3 +74,14 @@ difficulty:
     diff_jianghu: {hpBp: 8000, attackBp: 8000}
     diff_xiake: {hpBp: 10000, attackBp: 10000}
     diff_zongshi: {hpBp: 12000, attackBp: 11200}
+settlement:
+  onWin:
+    - {op: flag/set, flagId: fl_00_initial_battle_manual, value: true}
+    - {op: quest/advance, quest: q_00_main_c_02, stage: st_track}
+  onLose: []
+  onConcede: []
+  onAssisted:
+    - {op: flag/set, flagId: fl_00_initial_battle_assisted, value: true}
+    - {op: quest/advance, quest: q_00_main_c_02, stage: st_track}
+  lossFlags: [fl_00_zhulin_loss_streak1, fl_00_zhulin_loss_streak2, fl_00_zhulin_loss_streak3]
+  resetLossOnWin: true

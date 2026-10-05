@@ -243,7 +243,7 @@ export function identifyContentKind(value: unknown, path: string): RegisteredCon
 export function parseContentFile(file: ContentFile): ContentEntry {
   const value = parseYamlFile(file);
   const kind = identifyContentKind(value, file.path);
-  return { path: file.path, kind: kind as ContentKind, value: schemaFor(kind, value).parse(value) };
+  return { path: file.path, kind, value: schemaFor(kind, value).parse(value) };
 }
 
 export function serializeContentEntry(entry: ContentEntry): string {
@@ -257,7 +257,7 @@ export function parseSerializedContent(
   path = '<serialized>',
 ): ContentEntry {
   const value: unknown = JSON.parse(text);
-  return { path, kind: kind as ContentKind, value: schemaFor(kind, value).parse(value) };
+  return { path, kind, value: schemaFor(kind, value).parse(value) };
 }
 
 export function contentKindOrder(kind: RegisteredContentKind): number {

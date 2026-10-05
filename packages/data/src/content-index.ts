@@ -259,6 +259,27 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
           && !has('characterTemplate', participant.source.templateId))
           throw new TypeError(`CONTENT_REF:${entry.path}:characterTemplate:${participant.source.templateId}`);
       }
+      if (encounter.settlement !== undefined) {
+        const actions = [encounter.settlement.onWin, encounter.settlement.onLose,
+          encounter.settlement.onConcede, encounter.settlement.onAssisted].flat();
+        for (const action of actions) {
+          if (action.op === 'flag/set' && !flags.has(action.flagId))
+            throw new TypeError(`CONTENT_REF:${entry.path}:flag:${action.flagId}`);
+          if (action.op === 'quest/advance' && !has('quest', action.quest))
+            throw new TypeError(`CONTENT_REF:${entry.path}:quest:${action.quest}`);
+          if (action.op === 'dialogue/start') {
+            const story = inkStories.get(action.storyId);
+            if (story === undefined)
+              throw new TypeError(`CONTENT_REF:${entry.path}:inkStory:${action.storyId}`);
+            if (story.chapter !== encounter.chapterId)
+              throw new TypeError(`CONTENT_REF:${entry.path}:inkChapter:${action.storyId}:${encounter.chapterId}`);
+            if (!story.entryKnots.includes(action.knot))
+              throw new TypeError(`CONTENT_REF:${entry.path}:inkKnot:${action.storyId}:${action.knot}`);
+          }
+        }
+        for (const flag of encounter.settlement.lossFlags) if (!flags.has(flag))
+          throw new TypeError(`CONTENT_REF:${entry.path}:flag:${flag}`);
+      }
     }
     if (entry.kind === 'shop') {
       const shop = entry.value as ContentValues['shops'][number];

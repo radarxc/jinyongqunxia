@@ -7,11 +7,11 @@
 
 ## 1. 交付状态与加载边界
 
-三份 `_drafts/enc_00_*.yaml` 是符合 `encounter.v1` 字段契约的完整目标数据，暂不进入生产发现器。当前仓库没有正式 `tmpl_normal`，`npc_baiyuan` 与角色槽仍是草案，且 `CONTENT_FIELD_REGISTRY` 未登记 encounter。将它们放入生产目录会产生强引用错误，继而阻塞字段拆分；不能用假 NPC、空模板或更换 source 类型绕过。
+三份 `enc_00_*.yaml` 已从 `_drafts/` 晋升到本目录并进入章节生产发现器。正式 `tmpl_normal`、`npc_baiyuan`、三个角色槽和 encounter 字段分类均已登记；内容构建对遭遇、模板、NPC、角色槽、地图、任务和结算动作执行强引用校验。
 
-灰盒依赖标识 `mockRef` 在 YAML 注释与本文登记：人物 / 槽 / 模板交 `ENG-npc-species-roleslot`，内容字段分类与 seed resolver / runtime 接线交 ENG-26 后续所有者。`encounter.v1` 是严格对象，不能把 `mockRef`、`roleId`、`skipCost` 或教学锁按钮字段塞进根对象。
+game 的 source resolver 把主角当前角色状态、正式 NPC full build 或角色槽模板转换为 `BattleUnitSeed`。匿名角色按 `(runId, chapterId, templateId, spawnId, ordinal)` 生成 UUIDv5 实例 ID；输入快照以 SHA-256 锁定遭遇、解析单位、难度、背包、物品定义和实图。`encounter.v1` 仍是严格对象，不能把 `roleId`、`skipCost` 或教学锁按钮字段塞进根对象。
 
-晋升时保留三份数据的 ID 与路径末段，移至本目录根部；先取得可解析人物 / 模板、角色槽到 seed 的映射和 encounter 字段分类，再运行五条门禁及三战实际开战验收。通过生产目录门禁不能代替白猿、救场和双演示的运行验收。
+`world/battleRequested` 现经 resolver、`buildEncounter` 和与冥想战共用的 enter/finalize/leave 流程开战；战后按冻结的 scene/anchor 返回。生产门禁之外，真会话固定种子用例覆盖三战开战、结算、旗标、任务阶段和返回位置。
 
 ## 2. 参战者、战场与站位
 
@@ -47,22 +47,22 @@ O05 的战前投桃只引用 `story_ch00_main.ink` 的 `baiyuan_choice`：确认
 
 ## 4. 脚本节拍与宿主消费
 
-| 时点 | 本数据表达 | 尚需宿主执行的行为（不冒充已接线） |
+| 时点 | 本数据表达 | 生产运行行为 |
 |---|---|---|
 | 竹林入场 / 首次主角行动 | `kind=story/noAuto=true`；schema 无行动号条件 | 冻结初阵说明；第一行动仅移动 / 点攻，提交后解锁 |
 | 竹林第二次主角行动 | schema 无教学按钮 / 行动号字段 | 提示防御；HP<70% 同时提示金创药；防御 / 调息 / 用药任一完成教学 |
 | 竹林主角 HP<45% | `aqing_rescue`：`hpBelow(hero,4500)`、`once=true` → `battle/aqingRescue` | 阿青一次援护，把最近敌人击退窄口外；不自动结算全战、不入队 |
-| 竹林连续失败≥2 | `terrain_hint`：`lossStreak(2)`、`once=true` → `battle/terrainHint` | 高亮坡差和窄口；这是本文新登记的内容事件，执行端尚无消费者 |
-| 竹林连续失败≥3 | `spirit_demo`：`lossStreak(3)` → `offerDemonstration(replay_zhulin_demo)` | 提供可选确定性命令录像；接受并成功播放后以 assisted 收束，不自动代打 |
+| 竹林连续失败≥2 | `terrain_hint`：`lossStreak(2)`、`once=true` → `battle/terrainHint` | 战斗事件提示坡差和窄口，UI 展示一次 |
+| 竹林连续失败≥3 | `spirit_demo`：`lossStreak(3)` → `offerDemonstration(replay_zhulin_demo)` | UI 提供可选示范；接受命令写回放日志并以 assisted 收束 |
 | 白猿首轮 / 结束 | 胜负条件已机读；`beats=[]` | 引导急性聚气；命中 / 两轮时跃离，认输同样推进，无伤势 / 品德扣减 |
 | 边道入场 / 首轮 | 编组与 AI 已机读；`beats=[]` | 调整主角 / 越卒前后位；若白猿未完成聚气，补一次急性聚气 |
-| 边道制服 / 胜后 | 无杀意 / 留手已机读；schema 无胜后条件 | 制服结束敌人资格；胜后开启阿青剑法、九层功法两段独立投影，结束即销毁 |
+| 边道制服 / 胜后 | 无杀意 / 留手已机读；schema 无胜后条件 | ≤30% HP 可制服；胜后依序进入剑法来源、九层预览两段教学对话 |
 
 HP 节拍用整数判定 `hp×10000 < hpMax×4500`，恰好 45% 不触发；`once` 由脚本去重。宿主跨重试 / 恢复时须保存适用的触发记录，不能据静态配置声称援护已生效。
 
 连败输入沿 ENG-26：进入时持久 `lossStreak` + 当前会话最大的 retry 序号，不能同时把同一败北加到两个基数。竹林每次败北结算原子更新计数，第三败即写 `fl_00_zhulin_loss_streak3=true`；胜利 / 新 run / 离开书界清零并清旗标。脚本仅发示范事件，不会替代持久旗标；既有 Ink 只读该旗标，不能到对话入口才伪造资格。
 
-`replay_zhulin_demo` 复用 ENG-26 夹具局部键；实际录像必须使用本地图坐标 / source 快照 / seed 和同一命令接口，现无正式录像资产。边道不复制夹具的“三连败切阿青 offgrid 控制”节拍：章节 §5.4 明确为胜后演示，切 control 本身也不会让 offgrid 入场。
+`replay_zhulin_demo` 作为确定性特殊命令进入正式回放日志；当前表现为接受示范后直接 assisted 结算，尚无逐动作录像资产。边道胜后双演示当前由三段有序 Ink 对话完成，不会把 offgrid 阿青切入战斗。
 
 ## 5. 倍率核算
 
@@ -76,7 +76,7 @@ HP 节拍用整数判定 `hp×10000 < hpMax×4500`，恰好 45% 不触发；`onc
 
 系数仅核对 `design/03` §10.3–§10.5 的输入，不给单位手填最终属性。实际逐层按 ENG-26 `mulBpFloor(x,bp)=floor(x×bp/10000)` 取整；模板 / 流派 / 合法 source 求值后不应再重复乘一次。评级、速度及 AI 的模式差异引用 `design/13`，不是额外 D1 数值。
 
-现有构建器对 `source.kind=npc` 直接返回 seed，未施加白猿的模式 HP / 攻击 / 评级修正；白猿 full 模式处理交 resolver / 引擎所有者补齐，并避免重复施加。三份 difficulty 表不代表当前白猿三档已经生效。
+构建器对 `source.kind=npc` 的 full seed 施加模式 HP / 攻击 / 评级 / 速度修正，但不施加模板 D1；模板敌人才依次乘模板基础、D1 与难度模式，友军不乘敌方系数，避免重复施加。
 
 ## 6. 参考资料
 
@@ -94,17 +94,17 @@ HP 节拍用整数判定 `hp×10000 < hpMax×4500`，恰好 45% 不触发；`onc
 | 检查 / 输入 | 通过条件 |
 |---|---|
 | 源文件与 schema | 三份 UTF-8 / LF、单 YAML document、无 anchor / 重复键；经仓库 `parseContentFile` 与严格 `EncounterDefSchema` 接受 |
-| 正式引用闸门 | 不能解析 `tmpl_normal` / `npc_baiyuan` 时，生产注册必须失败；禁止用测试夹具假称引用已补齐 |
+| 正式引用闸门 | `tmpl_normal` / `npc_baiyuan` / 角色槽 / 地图均可解析；任一强引用缺失时生产注册失败 |
 | 地图与构建 | 编译三张真实地图，将三定义交 `buildEncounter`，网格为 61/73/91，连通；所有初始位置可站立、双方容量足够；同输入规范输出相同 |
 | 竹林救场边界 | 设主角 `hpMax=200`：hp90 不触发，hp89 触发一次；再次求值无重复 `battle/aqingRescue` |
-| 连败与恢复 | 入场连败 2 仅发地形提示；连败 3 发提示 / 可选示范各一次；跨会话计数、旗标与已消费回执需运行接线后另验 |
+| 连败与恢复 | 二败提示、三败示范各一次；存读档和 retry 保留 streak 旗标及 once 回执，胜后清零 |
 | 白猿三种推进 | 1 条 player→enemy 命中伤害事件、round=2、主动认输分别返回 win；round=1 且零命中不胜；主角倒地为 lose；失败返回选择 |
 | 故事战与同伴 | 主角倒地两战 lose / 可 retry；全敌失战 win；仅越卒倒地、敌人仍在时边道不结束；保留无杀意 / 留手 |
 | 三档倍率隔离 | 同一合法 source，模板敌人 HP / 攻按 §5；越卒 HP / 攻不受 D1 / 三档敌方模式影响；D1 不进入 DEF / MP / 评级 / 速度 |
 | O05 原子与幂等 | 桃×1 成功提交变 0，写 peaceful 并汇合且不开战；无桃 / 取消 / 回滚不扣物，重复提交不再扣；既有 Ink 源检查不能代替事务运行测试 |
-| 教学与结算 | 首行动锁定、第二行动提示、聚气补课、制服 / 敌退及胜后双投影按 §4；无正式收益 / 伤势 / 招募；实际 UI / 存档 / 重试 / 录像仍需集成验收 |
+| 教学与结算 | 认输 / 制服 / 重试 / 示范命令可回放；三战同事务结算并回原 scene/anchor；无正式收益 / 招募 |
 
-前三战运行规则可在**明确标为测试**的合法 seed 夹具下独立校验；这只验证 schema → 实图 → BattleSetup → 特殊条件 / 节拍，不代表正式人物 resolver、奖励清理、桃事务或 M1 通关已经完成。生产五条命令会排除 `_drafts/`，结果与上述直接读取的验收须分别登记。
+前三战另以真实章节构建、正式 resolver 与固定 seed 真会话验证 `battleRequested → BattleSetup → 结算 → 返回`；底层夹具测试仍单独锁定公式与边界。
 
 ## 待决事项 / 依赖
 
@@ -116,11 +116,11 @@ HP 节拍用整数判定 `hp×10000 < hpMax×4500`，恰好 45% 不触发；`onc
 
 ### 本文依赖的上游事实
 
-- 未解决：`ENG-npc-species-roleslot` 晋升正式白猿 / 三类 RoleSlot，并交付可解析的 `tmpl_normal` 与合法 seed resolver；默认三份定义留在 `_drafts/`，不发布。
-- 未解决：data 的 `ContentKind` / `CONTENT_FIELD_REGISTRY` 增 encounter 字段分类，并确认章节分包 / runtime 加载 encounter、模板；默认引用错误仍阻断生产。
-- 未解决：宿主消费 `world/battleRequested`，认输 / 重试策略、救场 / 提示 / 示范、持久连败旗标、战后选择 / 敌退与双投影接线；默认表 §4 是交接契约，不能据 emit 事件宣称动作已发生。
-- 未解决：构建器实图分支把 `canopy/los/terrainDealtBp/terrainTakenBp/cover` 设为 0/none/null，尚未继承竹林 / 竹栅遮挡和地形乘区；默认引用实图保留格数、高度与 moveCost，并交引擎恢复战斗地形效果。
-- 未解决：白猿 full seed 的三档模式处理，见 §5；禁止给它套普通 / 精英模板来规避。
+- 已解决：正式白猿、三类 RoleSlot、`tmpl_normal`、source resolver 与生产 encounter 已接通；见 §1–§2。
+- 已解决：data 字段分类、章节分包、runtime 加载与强引用校验已接通；见 §1。
+- 已解决：宿主消费 `world/battleRequested`，认输 / 重试 / 制服 / 示范、持久连败旗标、战后选择与有序双演示已接通；见 §3–§4。
+- 部分解决：实图继承 `terrainId`、canopy、LOS 和按 delivery 的 cover；现有 RegionMap 不携带条件型地形乘区，竹林 Z7 的枪棍限定 -10% 不虚填为全流派标量。
+- 已解决：白猿 full seed 的三档模式处理，见 §5；未套普通 / 精英模板。
 - 已解决（源契约）：O05 使用既有 `it_tao`，扣物归 Ink，不在遭遇新增 skipCost；见 §3、`CONTENT-ch00a-data` 与地图报告。原子提交 / 防重运行结果仍**（待实测）**。
 - 已解决（上游修复）：`ENG-ink-external-args` 已修 EXTERNAL 字符串抽取，不再沿用 ch00a 旧报告的编译阻塞；本任务只引用原始 ID，运行与产物仍按该报告 §7 核验。
 
@@ -134,6 +134,6 @@ HP 节拍用整数判定 `hp×10000 < hpMax×4500`，恰好 45% 不触发；`onc
 
 ### 开放问题（附默认值）
 
-- 何时晋升正式内容？默认在人物 / 模板 / 字段表 / resolver 与 runtime 接线完成后晋升；本轮不伪装为可发布 M1。
-- 示范录像何时生产？默认沿同一输入 / 命令协议生成本地图录像，第三败仅提供选择，接受并完成才写 assisted 回执；胜利清连败前先固化该回执，不按提示事件发奖。
+- 已解决：三份遭遇随人物 / 模板 / 字段表 / resolver 与 runtime 接线一并晋升生产。
+- 示范录像何时生产？默认后续补逐动作本地图录像资产；本轮特殊命令可回放且接受后写 assisted，但表现尚非逐动作播放。
 - 白猿失败如何恢复？默认 `onDefeat=continue` 返回 `baiyuan_choice`，可重新试手、投桃或绕路；主动认输 / 胜利才走 `baiyuan_after`，不把失败等同认输。

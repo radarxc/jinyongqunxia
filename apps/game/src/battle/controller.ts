@@ -141,6 +141,7 @@ export function createBattleController(host: GameHost, frames: FrameScheduler = 
     frame = frames.request(tick);
     const current = view.value;
     if (!active.value || !current || current.result || busy.value || error.value) return;
+    if ((current.subdueTargetIds?.length ?? 0) > 0) return;
     const actor = current.units.find(unit => unit.id === current.actorId);
     if (!current.auto && actor?.control !== 'ai') return;
     const interval = speed.value === 'skip' ? 0 : 900 / speed.value;

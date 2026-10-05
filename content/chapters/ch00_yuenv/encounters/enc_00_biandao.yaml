@@ -1,6 +1,5 @@
 # 边道止争（原创扩展）；归属：docs/design/chapters/00-yuenv.md §5.1、§5.4。
-# 灰盒依赖（mockRef）：ENG-npc-species-roleslot、ENG-26 的内容字段表 / 宿主接线。
-# 越卒仅上场 1 名 AI 友军；阿青双投影在胜后由剧情开启，不塞入此战，见 ../README.md。
+# 越卒仅上场 1 名 AI 友军；阿青双投影在胜后由剧情开启，不塞入此战。
 schemaVersion: encounter.v1
 id: enc_00_biandao
 chapterId: ch00_yuenv
@@ -64,7 +63,7 @@ rules:
   boss: false
   retry: true
   skippable: false
-# 调阵、补聚气和胜后演示没有对应 when；宿主按既有任务阶段执行，不伪造连败触发。
+# 调阵、补聚气和胜后演示由任务 / Ink 节拍执行。
 beats: []
 difficulty:
   localDifficulty: 1
@@ -74,3 +73,15 @@ difficulty:
     diff_jianghu: {hpBp: 8000, attackBp: 8000}
     diff_xiake: {hpBp: 10000, attackBp: 10000}
     diff_zongshi: {hpBp: 12000, attackBp: 11200}
+settlement:
+  onWin:
+    - {op: flag/set, flagId: fl_00_biandao_done, value: true}
+    - {op: quest/advance, quest: q_00_main_c_03, stage: st_sword_demo}
+    - {op: dialogue/start, storyId: story_ch00_main, knot: biandao_after}
+    - {op: dialogue/start, storyId: story_ch00_main, knot: sword_source}
+    - {op: dialogue/start, storyId: story_ch00_main, knot: nine_layer_preview}
+  onLose: []
+  onConcede: []
+  onAssisted: []
+  lossFlags: []
+  resetLossOnWin: false

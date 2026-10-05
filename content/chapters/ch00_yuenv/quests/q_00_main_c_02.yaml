@@ -7,6 +7,8 @@ subjectNpcIds: [npc_aqing, npc_baiyuan]
 routeTone: neutral
 startStageId: st_initial_battle
 flagIds:
+  - fl_00_zhulin_loss_streak1
+  - fl_00_zhulin_loss_streak2
   - fl_00_zhulin_loss_streak3
   - fl_00_initial_battle_manual
   - fl_00_initial_battle_assisted
@@ -45,6 +47,7 @@ stages:
     objectiveKeys: [quest.q_00_main_c_02.objective.baiyuan_spar]
     objectives: [{type: battle, encounterId: enc_00_baiyuan}]
     transitions:
+      - {id: edge_spar_retry_choice, priority: 20, when: {flag: {id: fl_00_baiyuan_spar, is: false}}, to: st_baiyuan_choice, branchKey: spar_failed}
       - {id: edge_spar_merge, priority: 10, when: {flag: {id: fl_00_baiyuan_spar_done, is: true}}, to: st_merge, branchKey: spar_resolved}
     effects: []
   - id: st_merge

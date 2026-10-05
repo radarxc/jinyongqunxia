@@ -108,6 +108,8 @@ export interface BattlePacket {
   readonly timeline: readonly TimelineView[]; readonly auto: boolean;
   readonly preview: AreaPreview | null; readonly result: BattleResult | null;
   readonly rewards: BattleRewards | null; readonly resolved?: MovePlayback;
+  readonly demonstrationReplayId?: string | null;
+  readonly subdueActorId?: string | null; readonly subdueTargetIds?: readonly string[];
 }
 export interface BattleView extends Omit<BattlePacket, 'info'> { readonly info: BattleInfo }
 export type BattlePreviewCommand =
@@ -126,6 +128,11 @@ export type BattleUiCommand =
   | { readonly t: 'battle/demo'; readonly source: 'world' | 'town' }
   | { readonly t: 'battle/enter'; readonly launch: BattleLaunch }
   | { readonly t: 'battle/leave' }
+  | { readonly t: 'battle/retry'; readonly revision: number }
+  | { readonly t: 'battle/concede'; readonly revision: number }
+  | { readonly t: 'battle/subdue'; readonly actor: string; readonly target: string;
+      readonly revision: number }
+  | { readonly t: 'battle/demonstration'; readonly replayId: string; readonly revision: number }
   | { readonly t: 'battle/auto'; readonly enabled: boolean }
   | { readonly t: 'battle/step'; readonly revision: number }
   | BattlePreviewCommand

@@ -21,14 +21,21 @@ export interface GameNpcDef {
   readonly appearances: NpcDef['appearances'];
   readonly sources?: readonly { readonly locator: string }[];
 }
-export interface GameEncounterDef {
-  readonly id: `enc_${string}`; readonly chapterId: string; readonly value: JsonValue;
+/** Battle-only authored row (AR-64): build-validated JSON kept unparsed until the battle chunk needs it. */
+export interface GameBattleRow<Id extends string = string> {
+  readonly id: Id; readonly value: JsonValue;
+}
+export interface GameEncounterDef extends GameBattleRow<`enc_${string}`> {
+  readonly chapterId: string;
 }
 export interface GameContent {
   readonly items: readonly GameItemDef[]; readonly contentHash?: string;
   readonly chapters?: readonly ChapterDef[]; readonly idRemaps?: readonly ContentIdRemap[];
   readonly events?: readonly EventDef[]; readonly quests?: readonly QuestDef[];
   readonly encounters?: readonly GameEncounterDef[];
+  /** Encounter resolver inputs (character templates, role slots by slotId, moves with display names). */
+  readonly templates?: readonly GameBattleRow[]; readonly roleSlots?: readonly GameBattleRow[];
+  readonly moves?: readonly GameBattleRow[];
   readonly npcs: readonly GameNpcDef[];
   readonly skills: readonly MartialArtDef[]; readonly topology: readonly MeridianTopology[];
   readonly factions: Readonly<Record<string, string>>;

@@ -8,7 +8,7 @@ import type { BattleCondition, BattleGridCell, BattleSetup } from '../types';
 import type { HexDir } from '../../hex';
 
 export interface EncounterUnitSource {
-  readonly ref: string; readonly seed: BattleUnitSeed;
+  readonly ref: string; readonly seed: BattleUnitSeed; readonly sourceInstanceId?: string;
 }
 export interface EncounterBuildContext {
   readonly setupId: string; readonly seed: number; readonly sourceSnapshotHash: string;
@@ -36,6 +36,18 @@ export const ENCOUNTER_TEMPLATE_BP = {
 } as const;
 const RATING_KEYS = ['hit', 'eva', 'parry', 'pierce', 'crit', 'tough'] as const;
 type TemplateRole = CharacterTemplate['role'];
+const FOREST = new Set(['tr_zhulin', 'tr_milin']);
+function terrainBattleCell(cell: ReturnType<typeof decodeRegionMap>['cells'][number]): BattleGridCell {
+  const forest = FOREST.has(cell.terrainId);
+  return { q: cell.q, r: cell.r, height: cell.height, moveCost: cell.moveCost,
+    terrainId: cell.terrainId,
+    canopy: forest ? 3 : 0, los: forest ? 'partial' : 'none', standable: cell.standable,
+    narrow: cell.narrow, dangerous: cell.dangerous, terrainDealtBp: 0, terrainTakenBp: 0,
+    ...(cell.terrainId === 'tr_zhulin'
+      ? { terrainDealtBySubTypeBp: { spear: -1_000, staff: -1_000 } } : {}),
+    cover: forest ? { vs: ['projectile', 'ranged'], hit: -5,
+      hitByDelivery: { projectile: -10, ranged: -5 }, damageBp: 0 } : null };
+}
 
 function standardTemplateRole(templateId: string): TemplateRole | undefined {
   if (templateId === 'tmpl_normal') return 'normal';
@@ -61,13 +73,22 @@ function cloneSeed(seed: BattleUnitSeed): BattleUnitSeed {
 export function expandEncounterUnitSeed(seed: BattleUnitSeed, participant: EncounterDef['participants'][number],
   templateRole: TemplateRole | undefined, difficulty: DifficultyId, localDifficultyBp: number): BattleUnitSeed {
   const copy = cloneSeed(seed);
-  if (participant.source.kind !== 'template') return copy;
+  const mode = MODE_MOD[difficulty];
+  if (participant.source.kind !== 'template') {
+    if (participant.side !== 'enemy') return copy;
+    const hpMax = Math.max(1, scaled(copy.hpMax, mode.hp));
+    const stats = { ...copy.stats,
+      atkOut: scaled(copy.stats.atkOut, mode.attack),
+      atkIn: scaled(copy.stats.atkIn, mode.attack) };
+    for (const key of RATING_KEYS) stats[key] += mode.rating;
+    return { ...copy, hpMax, hp: Math.min(hpMax, scaled(copy.hp, mode.hp)),
+      spd: scaled(copy.spd, mode.speed), stats };
+  }
   const role = templateRole ?? standardTemplateRole(participant.source.templateId);
   if (role === undefined) throw new RangeError('ENCOUNTER_TEMPLATE_UNSUPPORTED');
   const template = ENCOUNTER_TEMPLATE_BP[`tmpl_${role}`];
   const bossHpBp = role === 'boss' ? 40_000 + 5_000 * Math.min(6,
     Math.max(0, floorDivInt(participant.source.dreamLevel - 1, 10))) : template.hp;
-  const mode = MODE_MOD[difficulty];
   const enemyBp = participant.side === 'enemy' ? localDifficultyBp : 10_000;
   const hpModeBp = participant.side === 'enemy' ? mode.hp : 10_000;
   const attackModeBp = participant.side === 'enemy' ? mode.attack : 10_000;
@@ -98,6 +119,8 @@ function arenaGrid(definition: EncounterDef, context: EncounterBuildContext):
   { readonly grid: readonly BattleGridCell[]; readonly sceneRef: string; readonly anchorRef: string } {
   if (definition.arena.kind === 'inline') return { grid: definition.arena.cells.map((cell) => ({
     ...cell, ...(cell.cover === null ? {} : { cover: { ...cell.cover,
+      ...(cell.cover.hitByDelivery === undefined ? {} : {
+        hitByDelivery: { ...cell.cover.hitByDelivery } }),
       ...(cell.cover.sourceDirs === undefined ? {}
         : { sourceDirs: cell.cover.sourceDirs as readonly HexDir[] }) } }) })) as readonly BattleGridCell[],
     sceneRef: `inline:${definition.id}`, anchorRef: definition.arena.anchorId };
@@ -120,19 +143,24 @@ function arenaGrid(definition: EncounterDef, context: EncounterBuildContext):
     throw new RangeError('ENCOUNTER_BATTLE_ARENA_CAPACITY');
   const arenaCells = new Set(arena.cells.map((cell) => `${cell.q},${cell.r}`));
   const grid = decodeRegionMap(map, 5, 3).cells.filter((cell) => arenaCells.has(`${cell.q},${cell.r}`))
-    .map((cell): BattleGridCell => ({ q: cell.q, r: cell.r, height: cell.height,
-      moveCost: cell.moveCost, canopy: 0, los: 'none', standable: cell.standable,
-      narrow: cell.narrow, dangerous: cell.dangerous, terrainDealtBp: 0,
-      terrainTakenBp: 0, cover: null }));
+    .map(terrainBattleCell);
   if (grid.length !== arena.cells.length) throw new RangeError('ENCOUNTER_BATTLE_ARENA_GRID');
   return { grid, sceneRef: map.id, anchorRef: arena.id };
 }
 
 export function buildEncounter(definition: EncounterDef, context: EncounterBuildContext): EncounterBuildResult {
   const arena = arenaGrid(definition, context);
-  const participants = definition.participants.map((row) => ({ unitRef: row.unitRef, side: row.side,
-    control: row.control, spawn: row.spawnId, state: row.state, required: row.required,
-    ...(row.group === undefined ? {} : { group: row.group }) }));
+  const participants = definition.participants.map((row) => {
+    const sourceRef = row.source.kind === 'npc' ? row.source.npcId
+      : row.source.kind === 'character' ? row.source.characterRef : row.unitRef;
+    const source = context.units.find((entry) => entry.ref === sourceRef);
+    return { unitRef: row.unitRef, side: row.side, control: row.control, spawn: row.spawnId,
+      state: row.state, required: row.required,
+      ...(row.group === undefined ? {} : { group: row.group }),
+      ...(row.source.kind === 'character' ? { characterRef: row.source.characterRef } : {}),
+      ...(source?.sourceInstanceId === undefined ? {}
+        : { sourceInstanceId: source.sourceInstanceId }) };
+  });
   const seeds = definition.participants.map((participant) => {
     const sourceRef = participant.source.kind === 'npc' ? participant.source.npcId
       : participant.source.kind === 'character' ? participant.source.characterRef

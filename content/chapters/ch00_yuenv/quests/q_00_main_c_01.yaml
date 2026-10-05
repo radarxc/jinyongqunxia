@@ -34,7 +34,8 @@ stages:
     objectiveKeys: []
     objectives: []
     transitions: []
-    effects: []
+    effects:
+      - {id: fx_start_c02, op: quest/advance, questId: q_00_main_c_02, toStage: st_initial_battle}
     terminal: completed
     endingKey: found_aqing
 tracking: {defaultTracked: true, targetRef: sc_00_zhulin, revealPolicy: known_only}

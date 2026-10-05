@@ -148,6 +148,7 @@ export function createGameController(
   let domainAutosavePending: { reason: string; coldEntry: boolean } | undefined;
   let arrivalCutsceneReady = false;
   let presentationTask: Promise<void> = Promise.resolve();
+  const pendingDialogueSteps: PresentedEvent['steps'][number][] = [];
   async function refresh(): Promise<void> {
     if (!saves) return;
     const listed = await saves.list();
@@ -284,6 +285,7 @@ export function createGameController(
       return;
     }
     if (step.op === 'dialogue/start') {
+      if (ui.projection.dialogue) { pendingDialogueSteps.push(step); return; }
       if (step.presentation !== 'text_stills')
         await run(async () => {
           await dispatchCoreCommand({
@@ -312,6 +314,11 @@ export function createGameController(
       await flushDomainAutosave();
       if (!domainAutosavePending) showTitleCard(step.card);
     }
+  }
+  function flushPendingDialogueStep(): void {
+    if (ui.projection.dialogue || pendingDialogueSteps.length === 0) return;
+    const step = pendingDialogueSteps.shift()!;
+    queuePresentation([step]);
   }
   function queuePresentation(steps: readonly PresentedEvent['steps'][number][]): void {
     const foreground = commandQueue;
@@ -402,6 +409,7 @@ export function createGameController(
         };
       }
     }
+    flushPendingDialogueStep();
     if (update.changes.battle !== undefined) {
       battleActive.value = update.changes.battle !== null;
       if (!battle.value) {

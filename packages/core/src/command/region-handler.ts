@@ -160,7 +160,7 @@ function applyInteract(tx: CoreTransaction, command: Extract<RegionCommand, { t:
     const binding = runtime.dialogues!.find((entry) => entry.sceneId === sceneId &&
       entry.anchorId === anchor.id)!;
     dialogueHandler.apply(tx, { t: 'dialogue/start', storyId: binding.storyId,
-      entryKey: binding.entryKey }); return;
+      entryKey: binding.entryKey, anchorId: anchor.id }); return;
   }
   if (anchor.class === 'Chest') {
     const loot = runtime.loot!.find((entry) => entry.lootRef === anchor.lootRef)!;

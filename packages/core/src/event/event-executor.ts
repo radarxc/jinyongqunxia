@@ -95,7 +95,8 @@ function questLine(quest: QuestDef, stageId: string, previous?: StoryLineState,
     stage.terminal === 'completed' ? 'completed' : 'expired',
     activeNodeIds: stage.terminal ? [] : [stageId], completedNodeIds,
     expiredNodeIds: previous?.expiredNodeIds ?? [], chosenOptions: previous?.chosenOptions ?? {},
-    branchPath: [...(previous?.branchPath ?? []), ...(transitionId === undefined ? [] : [transitionId])],
+    branchPath: [...new Set([...(previous?.branchPath ?? []),
+      ...(transitionId === undefined ? [] : [transitionId])])],
     resolvedWindows: previous?.resolvedWindows ?? {},
     appliedEffectIds: previous?.appliedEffectIds ?? [], revision: (previous?.revision ?? -1) + 1 };
 }
@@ -138,7 +139,12 @@ function questAdvance(tx: CoreTransaction, action: Extract<EventAction, { op: 'q
         tx.abort(context.reject.quest);
     } catch { tx.abort(context.reject.quest); }
     transitionId = transition.id;
-  } else if (current !== undefined) tx.abort(context.reject.quest);
+  } else if (current !== undefined) {
+    // Result dialogue may reassert the stage already committed by battle settlement.
+    // Effects are receipt-protected, so the assertion is an idempotent no-op.
+    if (!context.sourceId.startsWith('dialogue:')) tx.abort(context.reject.quest);
+    return [];
+  }
   const next = questLine(quest, action.stage, current, transitionId);
   const receipt = (effectId: string): string => `${quest.id}/${target.id}/${effectId}`;
   const unapplied = target.effects.filter((effect) =>

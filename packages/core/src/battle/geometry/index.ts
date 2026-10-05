@@ -132,9 +132,13 @@ export function queryDamageGeometry(state: BattleState, actor: BattleUnit, targe
   const cover = coverFor(targetCell, move.delivery, sourceDirection);
   const line = battleLineOfSight(state, actor, target.pos, move.delivery);
   if (line === null) throw new RangeError('INVALID_TARGET');
-  const coverHit = cover?.hit ?? 0; const coverDamageBp = cover?.damageBp ?? 0;
-  const terrainAddBp = clampInt(attackerCell.terrainDealtBp + targetCell.terrainTakenBp
-    + coverDamageBp, -3_000, 3_000);
+  const coverHit = cover?.hitByDelivery?.[move.delivery as 'projectile' | 'ranged']
+    ?? cover?.hit ?? 0;
+  const coverDamageBp = cover?.damageBp ?? 0;
+  const subTypeDamageBp = move.subType === undefined ? 0
+    : attackerCell.terrainDealtBySubTypeBp?.[move.subType] ?? 0;
+  const terrainAddBp = clampInt(attackerCell.terrainDealtBp + subTypeDamageBp
+    + targetCell.terrainTakenBp + coverDamageBp, -3_000, 3_000);
   const positionBp = clampInt(mulDivFloor(DIRECTION_BP[direction],
     (10_000 + heightAddBp) * (10_000 + terrainAddBp), 100_000_000), 5_000, 20_000);
   return { sourceDirection, direction, heightDelta, heightHit, heightAddBp, coverHit, coverDamageBp,

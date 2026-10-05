@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import {
-  ChapterIdSchema, CharacterTemplateIdSchema, EncounterIdSchema, NpcIdSchema,
-  PositiveIntegerSchema,
+  ChapterIdSchema, CharacterTemplateIdSchema, EncounterIdSchema, FlagIdSchema, NpcIdSchema,
+  PositiveIntegerSchema, QuestIdSchema,
 } from './primitives';
 import { HexDirectionSchema, RegionIdSchema, RegionSceneIdSchema } from './region-map';
 
@@ -13,7 +13,9 @@ const PositionSchema = z.strictObject({
 });
 const CoverSchema = z.strictObject({
   vs: z.array(z.enum(['projectile', 'ranged'])).min(1),
-  hit: z.number().int().safe(), damageBp: z.number().int().safe(),
+  hit: z.number().int().safe(), hitByDelivery: z.strictObject({
+    projectile: z.number().int().safe().optional(), ranged: z.number().int().safe().optional(),
+  }).optional(), damageBp: z.number().int().safe(),
   sourceDirs: z.array(HexDirectionSchema).min(1).optional(),
 });
 export const EncounterGridCellSchema = z.strictObject({
@@ -78,6 +80,21 @@ const RuleSchema = z.strictObject({
   roundLimit: z.number().int().min(1).max(60), boss: z.boolean(), retry: z.boolean(),
   skippable: z.boolean(),
 });
+export const EncounterSettlementActionSchema = z.discriminatedUnion('op', [
+  z.strictObject({ op: z.literal('flag/set'), flagId: FlagIdSchema, value: z.boolean() }),
+  z.strictObject({ op: z.literal('quest/advance'), quest: QuestIdSchema,
+    stage: z.string().regex(/^st_[a-z0-9_]+$/) }),
+  z.strictObject({ op: z.literal('dialogue/start'),
+    storyId: z.string().regex(/^(?:story|ink)_[a-z0-9_]+$/),
+    knot: z.string().regex(/^[A-Za-z_][A-Za-z0-9_.]*$/) }),
+]);
+const SettlementSchema = z.strictObject({
+  onWin: z.array(EncounterSettlementActionSchema),
+  onLose: z.array(EncounterSettlementActionSchema),
+  onConcede: z.array(EncounterSettlementActionSchema),
+  onAssisted: z.array(EncounterSettlementActionSchema),
+  lossFlags: z.array(FlagIdSchema).max(9), resetLossOnWin: z.boolean(),
+});
 
 export const EncounterBeatSchema = z.strictObject({
   id: LocalRefSchema, once: z.boolean().default(true),
@@ -112,7 +129,7 @@ export const EncounterDefSchema = z.strictObject({
   kind: z.enum(['field', 'ambush', 'ambushed', 'story', 'spar', 'arena', 'mass']),
   arena: EncounterArenaSchema, participants: z.array(EncounterParticipantSchema).min(2),
   outcome: OutcomeSchema, rules: RuleSchema, beats: z.array(EncounterBeatSchema),
-  difficulty: DifficultySchema,
+  difficulty: DifficultySchema, settlement: SettlementSchema.optional(),
 }).superRefine((value, context) => {
   const unitRefs = value.participants.map((row) => row.unitRef);
   if (new Set(unitRefs).size !== unitRefs.length) context.addIssue({
@@ -161,3 +178,4 @@ export type EncounterDef = z.output<typeof EncounterDefSchema>;
 export type EncounterParticipant = z.output<typeof EncounterParticipantSchema>;
 export type EncounterCondition = z.output<typeof EncounterConditionSchema>;
 export type EncounterBeat = z.output<typeof EncounterBeatSchema>;
+export type EncounterSettlementAction = z.output<typeof EncounterSettlementActionSchema>;

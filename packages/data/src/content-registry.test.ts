@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { loadContent, parseContentFile, parseSerializedContent, serializeContentEntry } from './tooling';
+import { splitContentEntry } from './build/split-fields';
 import { INK_OPCODE_REGISTRY } from './schemas/event-actions';
 
 const itemYaml = `
@@ -22,6 +23,33 @@ extension:
 `;
 
 describe('content registry', () => {
+  it('classifies encounter rules and participant content references', () => {
+    const encounter = {
+      schemaVersion: 'encounter.v1', id: 'enc_fixture', chapterId: 'ch00_yuenv',
+      kind: 'spar', arena: { kind: 'inline', topology: 'hex-pointy', anchorId: 'fixture',
+        cells: [{ q: 0, r: 0, height: 0, moveCost: 1 },
+          { q: 1, r: 0, height: 0, moveCost: 1 }] },
+      participants: [{ unitRef: 'hero', source: { kind: 'character', characterRef: 'protagonist' },
+        side: 'player', control: 'player', spawnId: 'hero', placement: { pos: { q: 0, r: 0 }, facing: 0 } },
+      { unitRef: 'ape', source: { kind: 'npc', npcId: 'npc_fixture' }, side: 'enemy',
+        control: 'ai', spawnId: 'ape', placement: { pos: { q: 1, r: 0 }, facing: 3 } }],
+      outcome: { win: [{ kind: 'unitDown', unitRef: 'ape' }],
+        lose: [{ kind: 'unitDown', unitRef: 'hero' }], draw: [],
+        onDefeat: 'continue', concede: 'advance' },
+      rules: { mode: 'spar', noAuto: true, noRetreat: true, noItems: true,
+        mercyAllowed: true, lethalIntent: false, friendlyFire: false, roundLimit: 2,
+        boss: false, retry: false, skippable: true }, beats: [],
+      difficulty: { localDifficulty: 1, enemyStatBp: 9000, modes: {
+        diff_jianghu: { hpBp: 8000, attackBp: 8000 },
+        diff_xiake: { hpBp: 10000, attackBp: 10000 },
+        diff_zongshi: { hpBp: 12000, attackBp: 11200 },
+      } },
+    };
+    const entry = parseContentFile({ path: 'encounter.yaml', text: JSON.stringify(encounter) });
+    expect(entry.kind).toBe('encounter');
+    expect(splitContentEntry(entry).contentRefs).toEqual(['ch00_yuenv', 'npc_fixture']);
+  });
+
   it('round-trips a parsed schema entry without changing its value', () => {
     const entry = parseContentFile({ path: 'fixture.yaml', text: itemYaml });
     const reparsed = parseSerializedContent(entry.kind, serializeContentEntry(entry));

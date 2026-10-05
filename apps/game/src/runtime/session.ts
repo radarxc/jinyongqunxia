@@ -7,6 +7,7 @@ import type { BattleBusCommand } from '@tianshu/core';
 import type { RegionRuntimeContent } from '@tianshu/core/region';
 import type { JsonValue } from '@tianshu/shared';
 import type { ContentSource } from '@tianshu/data';
+import type { EncounterDef } from '@tianshu/data/schemas';
 import type { BattleLaunch, BattleUiCommand } from '../battle/contracts';
 import type { BattleRuntime as BattleRuntimeInstance } from '../battle/runtime';
 import type * as RegionSubsystem from '@tianshu/core/region-runtime';
@@ -42,7 +43,8 @@ function isBattleCommand(command: GameCommand): command is BattleUiCommand {
   if (command.t === 'battle/enter') return 'launch' in command;
   if (command.t === 'battle/leave') return !('battleId' in command);
   return ['battle/demo', 'battle/auto', 'battle/step', 'battle/preview', 'battle/act-at',
-    'battle/wait', 'battle/move', 'battle/item', 'battle/defend', 'battle/gather'].includes(command.t);
+    'battle/wait', 'battle/move', 'battle/item', 'battle/defend', 'battle/gather',
+    'battle/retry', 'battle/concede', 'battle/subdue', 'battle/demonstration'].includes(command.t);
 }
 function unavailable(code: string, cause: unknown): Error {
   return cause instanceof Error && cause.message === code
@@ -95,6 +97,10 @@ function coreContent(content: GameContent, towns: GameContent['towns'], chapterI
       : {}),
     ...(content.inkStories ? { inkStories: content.inkStories } : {}),
     ...(content.quests ? { quests: content.quests } : {}),
+    // Core reads only id + settlement. Rows are build-validated encounter.v1 output and a world
+    // battle cannot enter before the battle chunk fully parses its row (AR-64 lazy boundary).
+    ...(content.encounters ? { encounters: content.encounters.map((row) =>
+      row.value as unknown as EncounterDef) } : {}),
     ...((target?.events ?? content.events) ? { events: target?.events ?? content.events } : {}),
     ...((target?.chapters ?? content.chapters)
       ? { chapters: target?.chapters ?? content.chapters } : {}),
@@ -165,7 +171,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
   let townDefinition = opening.chapter.town
     ? loadedTowns.find((entry) => entry.sceneId === opening.chapter.town?.sceneId) : undefined;
   let state = validateSession(opening, content, townDefinition);
-  if (state.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
+  if (state.dialogue && state.battle === null) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
   let regionStaticSentFor: string | null = null;
   let core: AsyncCore = createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
   let selectors = createSessionSelectors(content, () => townDefinition);
@@ -197,7 +203,8 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     const seeds = session.opening.seeds;
     return { setup, seeds, title: setup.encounterId, preview: false,
       cells: setup.grid.cells.map((cell) => ({ q: cell.q, r: cell.r, height: cell.height,
-        terrain: 'tr_pingdi', label: '战场', color: 0xc8b994 })),
+        terrain: cell.terrainId ?? 'tr_pingdi', label: cell.terrainId ?? '战场',
+        color: cell.canopy > 0 ? 0x79966c : 0xc8b994 })),
       markers: setup.start.initialByUnit.map((placement, index) => ({ id: placement.unitRef, index,
         name: placement.unitRef, q: placement.pos.q, r: placement.pos.r,
         height: setup.grid.cells.find((cell) => cell.q === placement.pos.q
@@ -338,7 +345,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
   function validated(candidate: SessionSnapshot, definition = townDefinition,
     candidateContent = content): SessionSnapshot {
     const next = validateSession(candidate, candidateContent, definition);
-    if (next.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
+    if (next.dialogue && next.battle === null) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
     if (next.meta.debugTainted !== opening.meta.debugTainted) throw new Error('SAVE_MODE_INVALID');
     return next;
   }
@@ -361,7 +368,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       return { ...selectors.query(), dialogue: projectDialogue(state), ...await regionChanges(),
         firstSleepAllocation: firstSleepQueryForState(state), battle: battle?.packet(true) ?? null }; },
     snapshot: () => {
-      if (state.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
+      if (state.dialogue && state.battle === null) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
       return cloneGameState(state);
     },
     async validate(candidate: SessionSnapshot) {
@@ -435,35 +442,49 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
           return { accepted: false, changes: {}, events: [], error: error.message };
         throw error;
       }
-      const candidate = command.t === 'town/meditate' ? createAsyncCore(
-        state, coreContent(content, loadedTowns, state.chapter.chapterId)) : null;
-      const candidateResult = await candidate?.dispatch(command);
-      const meditationCommand = command.t === 'town/meditate' ? command : null;
-      const battleEvent = candidateResult?.ok && meditationCommand
-        ? candidateResult.events.find((event) => event.t === 'town/battleRequested') : undefined;
-      let prepared: Awaited<ReturnType<typeof prepareBattle>> | undefined;
-      if (battleEvent) {
-        const encounter = content.meditationEncounters?.find((row) =>
-          row.sceneId === state.chapter.town?.sceneId && row.anchorId === meditationCommand!.anchorId);
-        const setup = (battleEvent.payload as { setup?: BattleLaunch['setup'] }).setup;
-        if (!encounter || !setup) throw new TypeError('BATTLE_REQUEST_INVALID');
-        try { prepared = await prepareBattle({ ...encounter.launch, setup }); } catch (error) {
-          const result = rejected(error); if (result) return result; throw error;
-        }
-      }
       const commandCore = targetContent ? createAsyncCore(state,
         coreContent(content, loadedTowns, state.chapter.chapterId, targetContent))
         : mountContent ? createAsyncCore(state,
           coreContent(mountContent, loadedTowns, state.chapter.chapterId))
-          : candidate ?? core;
-      const result = candidateResult ?? await commandCore.dispatch(command);
+          : createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
+      const result = await commandCore.dispatch(command);
       if (!result.ok) return { accepted: false, changes: {}, events: [], error: result.reason };
+      const meditationCommand = command.t === 'town/meditate' ? command : null;
+      const meditationEvent = meditationCommand
+        ? result.events.find((event) => event.t === 'town/battleRequested') : undefined;
+      const worldEvent = result.events.find((event) => event.t === 'world/battleRequested');
+      let launch: BattleLaunch | undefined;
+      if (meditationEvent) {
+        const encounter = content.meditationEncounters?.find((row) =>
+          row.sceneId === state.chapter.town?.sceneId && row.anchorId === meditationCommand!.anchorId);
+        const setup = (meditationEvent.payload as { setup?: BattleLaunch['setup'] }).setup;
+        if (!encounter || !setup) throw new TypeError('BATTLE_REQUEST_INVALID');
+        launch = { ...encounter.launch, setup };
+      } else if (worldEvent) {
+        const payload = worldEvent.payload as { encounterId?: unknown; anchorId?: unknown };
+        if (typeof payload.encounterId !== 'string' || typeof payload.anchorId !== 'string')
+          throw new TypeError('BATTLE_REQUEST_INVALID');
+        const candidateState = commandCore.read();
+        const runtimeContent = mountContent ?? content;
+        const { prepareWorldEncounter } = await import('./encounter-runtime');
+        try {
+          launch = await prepareWorldEncounter(runtimeContent, candidateState, {
+            encounterId: payload.encounterId, anchorId: payload.anchorId });
+        } catch (error) {
+          const denial = rejected(error); if (denial) return denial; throw error;
+        }
+      }
+      let prepared: Awaited<ReturnType<typeof prepareBattle>> | undefined;
+      if (launch) {
+        try { prepared = await prepareBattle(launch); } catch (error) {
+          const denial = rejected(error); if (denial) return denial; throw error;
+        }
+      }
       let committed = commandCore.snapshot();
       let battleEvents: GameUpdate['events'] = [];
       if (prepared) {
-        const setup = (battleEvent!.payload as unknown as { setup: BattleLaunch['setup'] }).setup;
-        const entry = await commandCore.dispatch({ t: 'battle/enter', setup,
-          seeds: prepared.launch.seeds });
+        const entry = await commandCore.dispatch({ t: 'battle/enter', setup: launch!.setup,
+          seeds: launch!.seeds });
         if (!entry.ok) throw new TypeError('BATTLE_REQUEST_REJECTED');
         committed = commandCore.snapshot(); prepared.update(committed.battle!); battleEvents = entry.events;
       }
@@ -479,7 +500,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
       } else {
         state = committed;
         if (mountContent) content = mountContent;
-        if (mountContent || candidate) core = commandCore;
+        core = commandCore;
       }
       townDefinition = state.chapter.town
         ? loadedTowns.find((entry) => entry.sceneId === state.chapter.town?.sceneId) : undefined;

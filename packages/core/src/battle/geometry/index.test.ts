@@ -114,6 +114,31 @@ describe('battle geometry queries', () => {
       .toEqual(queryDamageGeometry(state, actor, target, move));
   });
 
+  it('applies delivery-specific cover hit values without changing the fallback contract', () => {
+    const state = combatFixture(); const actor = state.units[0]!; const target = state.units[1]!;
+    Object.assign(state.grid.cells.find(cell => cell.q === target.pos.q && cell.r === target.pos.r)!,
+      { cover: { vs: ['projectile', 'ranged'], hit: -5,
+        hitByDelivery: { projectile: -10, ranged: -5 }, damageBp: 0 } });
+    expect(queryDamageGeometry(state, actor, target, { ...BASIC_MOVE, delivery: 'projectile' })
+      .coverHit).toBe(-10);
+    expect(queryDamageGeometry(state, actor, target, { ...BASIC_MOVE, delivery: 'ranged' })
+      .coverHit).toBe(-5);
+  });
+
+  it('applies bamboo Z7 damage only to spear and staff martial-art subtypes', () => {
+    const state = combatFixture(); const actor = state.units[0]!; const target = state.units[1]!;
+    Object.assign(state.grid.cells.find(cell => cell.q === actor.pos.q && cell.r === actor.pos.r)!,
+      { terrainDealtBySubTypeBp: { spear: -1_000, staff: -1_000 } });
+    expect(queryDamageGeometry(state, actor, target, { ...BASIC_MOVE, subType: 'spear' }))
+      .toMatchObject({ terrainAddBp: -1_000, positionBp: 9_000 });
+    expect(queryDamageGeometry(state, actor, target, { ...BASIC_MOVE, subType: 'staff' }))
+      .toMatchObject({ terrainAddBp: -1_000, positionBp: 9_000 });
+    expect(queryDamageGeometry(state, actor, target, { ...BASIC_MOVE, subType: 'sword' }))
+      .toMatchObject({ terrainAddBp: 0, positionBp: 10_000 });
+    expect(queryDamageGeometry(state, actor, target, BASIC_MOVE))
+      .toMatchObject({ terrainAddBp: 0, positionBp: 10_000 });
+  });
+
   it('uses ranged height limits, cover delivery and directional exposure exactly once', () => {
     const ranged = { ...BASIC_MOVE, delivery: 'ranged' as const, range: { min: 1, max: 4 } };
     const projectile = { ...ranged, delivery: 'projectile' as const };
