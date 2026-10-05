@@ -1,0 +1,57 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_karakorum"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "和林·1259都城任务街区候选"
+historical_year: 1259
+era_kit: "mongol"
+seed: 1336463276
+design_intent: {"prosperity": "historical_topology_candidate", "notes": ["history/city_karakorum__southern_song_jin_mongol.md", "ch03章节明确蒙古都城与幕府；相对于ch02营地增加城廓、南宫区与西南寺区，限为任务街区拓扑，不开放整座都城。", "160×160规划格为拓扑缩景；不是历史城垣实测。营生、POI与正式场景ID不在此定义。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 30, "z": 14}, {"x": 138, "z": 14}, {"x": 138, "z": 146}, {"x": 30, "z": 146}]}, "inside_margin_cells": 2, "basis": "图名：和林成熟城圈；src_karakorum_1图4/7支持南北长向，外廓108×132格和南门位置（推定），考古未确认南门通道。"}
+  - {"id": "palace", "role": "inner", "polygon": {"points": [{"x": 80, "z": 20}, {"x": 130, "z": 20}, {"x": 130, "z": 62}, {"x": 80, "z": 62}]}, "inside_margin_cells": 2, "basis": "图名：南宫区；src_karakorum_1确认后世额尔德尼召下为宫区，宫墙折点（推定）。"}
+  - {"id": "temple", "role": "inner", "polygon": {"points": [{"x": 38, "z": 30}, {"x": 70, "z": 30}, {"x": 70, "z": 66}, {"x": 38, "z": 66}]}, "inside_margin_cells": 2, "basis": "图名：西南佛寺区；src_karakorum_2与src_karakorum_1图区分寺殿和宫殿，范围（推定）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 74, "z": 14}, "width_cells": 6, "asset_type": "tex_town_mongol_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：south方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 88, "z": 146}, "width_cells": 6, "asset_type": "tex_town_mongol_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：north方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 30, "z": 88}, "width_cells": 6, "asset_type": "tex_town_mongol_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：west方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 138, "z": 88}, "width_cells": 6, "asset_type": "tex_town_mongol_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：east方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "palace_gate", "side": "south", "at": {"x": 112, "z": 20}, "width_cells": 6, "asset_type": "tex_town_mongol_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "palace_entry", "primary": false, "wall_ref": "palace", "basis": "图名：宫区门；文献有宫门但本处（推定）。"}
+  - {"id": "temple_gate", "side": "south", "at": {"x": 54, "z": 30}, "width_cells": 6, "asset_type": "tex_town_mongol_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "temple_entry", "primary": false, "wall_ref": "temple", "basis": "图名：寺区门；（推定）。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 74, "z": 14}, {"x": 74, "z": 74}, {"x": 88, "z": 88}, {"x": 88, "z": 146}], "surface": "stone_slab", "priority": 100, "basis": "图名：南北街；图名：和林成熟城圈；src_karakorum_1图4/7支持南北长向，外廓108×132格和南门位置（推定），考古未确认南门通道。铺装为辨路（原创扩展），非道路材质证据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 30, "z": 88}, {"x": 138, "z": 88}], "surface": "stone_slab", "priority": 80, "basis": "图名：东西街；图名：和林成熟城圈；src_karakorum_1图4/7支持南北长向，外廓108×132格和南门位置（推定），考古未确认南门通道。铺装为辨路（原创扩展），非道路材质证据。"}
+  - {"id": "palace_entry", "class": "secondary", "width_cells": 3, "points": [{"x": 112, "z": 16}, {"x": 112, "z": 38}], "surface": "dirt_road", "priority": 80, "basis": "图名：宫区进道；（推定）（原创扩展）。"}
+  - {"id": "palace_outer_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 74, "z": 16}, {"x": 112, "z": 16}], "surface": "dirt_road", "priority": 80, "basis": "图名：宫外南巷；绕行通道（原创扩展）。"}
+  - {"id": "temple_entry", "class": "secondary", "width_cells": 3, "points": [{"x": 54, "z": 24}, {"x": 54, "z": 42}], "surface": "dirt_road", "priority": 80, "basis": "图名：佛寺进道；（推定）（原创扩展）。"}
+  - {"id": "lower_connect", "class": "secondary", "width_cells": 3, "points": [{"x": 54, "z": 24}, {"x": 74, "z": 24}, {"x": 74, "z": 72}, {"x": 88, "z": 72}], "surface": "dirt_road", "priority": 80, "basis": "图名：寺宫外连路；避宫墙的可玩线路（原创扩展）。"}
+  - {"id": "north_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 38, "z": 116}, {"x": 130, "z": 116}], "surface": "dirt_road", "priority": 80, "basis": "图名：北坊横路；（原创扩展）。"}
+rivers:
+  - {"id": "orkhon", "width_cells": 10, "points": [{"x": 12, "z": 0}, {"x": 16, "z": 80}, {"x": 10, "z": 160}], "flow": "unknown", "navigable": false, "basis": "图名：鄂尔浑河；图4/7西侧河谷据src_karakorum_1，古岸宽度（推定）。"}
+bridges: []
+zones:
+  - {"id": "zone_palace", "kind": "administrative", "geometry": {"rect": {"min": {"x": 96, "z": 40}, "max": {"x": 126, "z": 59}}}, "priority": 100, "density": 0.58, "allowed_building_types": ["bld_kit_mongol_wangfu"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：南宫院；src_karakorum_1，坐标与替片（推定）。"}
+  - {"id": "zone_temple", "kind": "religious", "geometry": {"rect": {"min": {"x": 44, "z": 44}, "max": {"x": 66, "z": 60}}}, "priority": 95, "density": 0.58, "allowed_building_types": ["bld_kit_mongol_temple_hall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西南佛寺；据src_karakorum_2，13×10贴片非38×38m大厅复尺。"}
+  - {"id": "zone_home", "kind": "residential", "geometry": {"rect": {"min": {"x": 38, "z": 96}, "max": {"x": 78, "z": 138}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_mongol_house_small", "bld_kit_mongol_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北西聚居；（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 98, "z": 96}, "max": {"x": 130, "z": 138}}}, "priority": 75, "density": 0.58, "allowed_building_types": ["bld_kit_mongol_shop", "bld_kit_mongol_market", "bld_kit_mongol_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东门市场内侧缩景；东路密集据src_karakorum_1，边界（推定）。"}
+  - {"id": "zone_supply", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 40, "z": 72}, "max": {"x": 72, "z": 82}}}, "priority": 85, "density": 0.58, "allowed_building_types": ["bld_kit_mongol_guardhouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：军需守舍；（原创扩展）。"}
+landmarks:
+  - {"id": "lm_palace", "type": "bld_kit_mongol_wangfu", "origin": {"x": 100, "z": 42}, "size": {"w": 20, "h": 16}, "rotation_deg": 0, "zone_ref": "zone_palace", "poi": null, "basis": "图名：南宫主院意象；src_karakorum_1，贴片与占地（推定）。"}
+  - {"id": "lm_buddhist_hall", "type": "bld_kit_mongol_temple_hall", "origin": {"x": 48, "z": 46}, "size": {"w": 13, "h": 10}, "rotation_deg": 0, "zone_ref": "zone_temple", "poi": null, "basis": "图名：佛寺大厅意象；src_karakorum_2，不能误称宫殿。"}
+building_quotas:
+  - {"type": "bld_kit_mongol_wangfu", "zone_refs": ["zone_palace"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_temple_hall", "zone_refs": ["zone_temple"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_house_small", "zone_refs": ["zone_home"], "count": {"min": 12, "max": 18}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_courtyard", "zone_refs": ["zone_home"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_shop", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_market", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_guardhouse", "zone_refs": ["zone_supply"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.009, "avoid_road_cells": 2, "cluster_rule": "仅少量草簇；不据此推断历史植被或绿化率。", "basis": "图名：空地草簇；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_karakorum_1", "kind": "academic", "title": "Bemmann等：Mapping Karakorum, the capital of the Mongol Empire（2021）", "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6E86EC9807E3354074D101D1AA15056F/S0003598X21001538a.pdf/mapping-karakorum-the-capital-of-the-mongol-empire.pdf", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["1220营地", "1235宫城", "1254四门记述", "城外聚落"], "note": "已看图：PDF图4地形/考古叠图、图7道路解释图；图为历时遗迹，不等于1220营地平面。"}
+  - {"key": "src_karakorum_2", "kind": "archaeology_report", "title": "德国考古研究院：Karakorum项目", "url": "https://www.dainst.org/en/research/projects/noslug/4924", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["西南佛寺解释", "宫殿与佛寺区分"], "note": "仅文字；38×38m、64柱基大厅为佛寺解释，非可直接套入1220的宫殿。"}

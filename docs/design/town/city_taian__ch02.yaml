@@ -1,0 +1,51 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_taian"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "泰安州·岱庙南市"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 3065503086
+design_intent: {"prosperity": "historical_topology_candidate", "notes": ["history/city_taian__southern_song_jin_mongol.md", "岱庙与泰山的南北关系优先；城厢外垣和门数均为推定，不能把岱庙的长宽当成泰安城。", "160×160规划格为拓扑缩景；不是历史城垣实测。营生、POI与正式场景ID不在此定义。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 16, "z": 14}, {"x": 144, "z": 14}, {"x": 144, "z": 146}, {"x": 16, "z": 146}]}, "inside_margin_cells": 2, "basis": "图名：泰安城厢（推定）；src_taian_1、src_taian_2仅约束北庙南市关系，外廓（原创扩展）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 80, "z": 14}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：方位门；门数与位置（推定）。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 16, "z": 62}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：方位门；门数与位置（推定）。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 144, "z": 62}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：方位门；门数与位置（推定）。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 80, "z": 14}, {"x": 80, "z": 104}], "surface": "stone_slab", "priority": 100, "basis": "图名：岱庙前轴街；朝山方向据src_taian_2，直线道路（推定）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 16, "z": 62}, {"x": 144, "z": 62}], "surface": "stone_slab", "priority": 80, "basis": "图名：城厢横街；位置、宽度（原创扩展）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "temple_front", "class": "secondary", "width_cells": 3, "points": [{"x": 24, "z": 102}, {"x": 136, "z": 102}], "surface": "dirt_road", "priority": 80, "basis": "图名：庙前街；线位与3格宽（推定）。"}
+  - {"id": "west_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 44, "z": 62}, {"x": 44, "z": 134}], "surface": "dirt_road", "priority": 80, "basis": "图名：西坊巷；连通住区（原创扩展）。"}
+rivers: []
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 92, "z": 70}, "max": {"x": 136, "z": 96}}}, "priority": 95, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_yamen", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：署院；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 88, "z": 22}, "max": {"x": 136, "z": 56}}}, "priority": 80, "density": 0.64, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：市肆；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_0", "kind": "residential", "geometry": {"rect": {"min": {"x": 22, "z": 22}, "max": {"x": 72, "z": 56}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_1", "kind": "residential", "geometry": {"rect": {"min": {"x": 22, "z": 72}, "max": {"x": 52, "z": 136}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 108, "z": 100}, "max": {"x": 138, "z": 140}}}, "priority": 85, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：守备与仓驿；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_temple", "kind": "religious", "geometry": {"rect": {"min": {"x": 56, "z": 108}, "max": {"x": 104, "z": 136}}}, "priority": 90, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_temple_hall", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：寺观院；分区边界、栋数和朝向（推定）（原创扩展）。"}
+landmarks:
+  - {"id": "lm_store", "type": "bld_kit_liao_jin_north_warehouse", "origin": {"x": 120, "z": 108}, "size": {"w": 10, "h": 8}, "rotation_deg": 0, "zone_ref": "zone_service", "poi": null, "basis": "图名：候选仓院；留出仓储与入口空间（原创扩展）。"}
+  - {"id": "lm_dai_hall", "type": "bld_kit_liao_jin_north_temple_hall", "origin": {"x": 73, "z": 111}, "size": {"w": 13, "h": 10}, "rotation_deg": 0, "zone_ref": "zone_temple", "poi": null, "basis": "图名：岱庙宋代主殿意象；北侧位置据src_taian_1、src_taian_2；贴片非天贶殿实测复原。"}
+building_quotas:
+  - {"type": "bld_kit_liao_jin_north_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_office", "zone_home_0", "zone_home_1"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_home_0", "zone_home_1", "zone_service"], "count": {"min": 20, "max": 28}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 6, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 8, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_temple_hall", "zone_refs": ["zone_temple"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.009, "avoid_road_cells": 2, "cluster_rule": "仅少量草簇；不据此推断历史植被或绿化率。", "basis": "图名：空地草簇；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_taian_1", "kind": "official_web", "title": "泰山景区：岱庙沿革", "url": "https://tsgw.taian.gov.cn/art/2021/6/13/art_363479_10320189.html", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["岱庙沿革", "宋金修毁"], "note": "仅文字；读取正文，现代院落量值不充当金代城墙。"}
+  - {"key": "src_taian_2", "kind": "gazetteer", "title": "泰安市志：岱庙", "url": "https://shandong-chorography.org/database/b9/section/13/article/351/", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["山庙轴线", "庙城关系"], "note": "仅文字；与景区史料互参，未提供1217城厢地籍。"}

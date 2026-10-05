@@ -1,0 +1,46 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_lijiang"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "丽江坝·三赕与白沙聚落候选"
+historical_year: 1217
+era_kit: "song_dali"
+seed: 3544364795
+design_intent: {"prosperity": "historical_topology_candidate", "notes": ["history/city_lijiang__southern_song_jin_mongol.md", "宋代政治中心与主要居所在白沙，狮子山脚已有居住点；主图是丽江坝旧聚落缩景，不提前拼成明清大研古城。", "160×160规划格为拓扑缩景；不是历史城垣实测。营生、POI与正式场景ID不在此定义。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls: "none"
+gates: []
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 48, "z": 24}, {"x": 48, "z": 138}], "surface": "stone_slab", "priority": 100, "basis": "图名：西岸通路；（原创扩展）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 24, "z": 64}, {"x": 140, "z": 64}], "surface": "stone_slab", "priority": 80, "basis": "图名：南部跨溪路；（原创扩展）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "north_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 24, "z": 112}, {"x": 140, "z": 112}], "surface": "dirt_road", "priority": 80, "basis": "图名：北部跨溪小径；（原创扩展）。"}
+rivers:
+  - {"id": "settlement_stream", "width_cells": 4, "points": [{"x": 86, "z": 0}, {"x": 84, "z": 60}, {"x": 84, "z": 120}, {"x": 88, "z": 160}], "flow": "south", "navigable": false, "basis": "图名：山水聚落溪带；src_lijiang_2仅支持依山水发展的概述，1217水线及4格宽（推定）。"}
+bridges:
+  - {"id": "south_bridge", "at": {"x": 84, "z": 64}, "river_ref": "settlement_stream", "road_ref": "cross", "length_cells": 8, "width_cells": 5, "rotation_deg": 90, "basis": "图名：南便桥；桥数、桥位及通用桥面替片（推定）（原创扩展）；石质外观不作同期桥材证据。"}
+  - {"id": "north_bridge", "at": {"x": 84, "z": 112}, "river_ref": "settlement_stream", "road_ref": "north_lane", "length_cells": 8, "width_cells": 3, "rotation_deg": 90, "basis": "图名：北便桥；桥数与桥位（推定）（原创扩展）。"}
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 24, "z": 76}, "max": {"x": 74, "z": 104}}}, "priority": 95, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：地方首领院落意象；白沙政治中心据src_lijiang_2，泛署院替片（原创扩展），不是明代木府。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 96, "z": 26}, "max": {"x": 138, "z": 72}}}, "priority": 80, "density": 0.64, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_market_stall", "bld_kit_song_dali_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：市肆；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_0", "kind": "residential", "geometry": {"rect": {"min": {"x": 24, "z": 26}, "max": {"x": 74, "z": 56}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_1", "kind": "residential", "geometry": {"rect": {"min": {"x": 96, "z": 80}, "max": {"x": 138, "z": 104}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_2", "kind": "residential", "geometry": {"rect": {"min": {"x": 24, "z": 120}, "max": {"x": 74, "z": 138}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 96, "z": 120}, "max": {"x": 138, "z": 138}}}, "priority": 85, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_guardhouse", "bld_kit_song_dali_stable", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：守备与仓驿；分区边界、栋数和朝向（推定）（原创扩展）。"}
+landmarks:
+  - {"id": "lm_store", "type": "bld_kit_song_dali_warehouse", "origin": {"x": 118, "z": 122}, "size": {"w": 9, "h": 7}, "rotation_deg": 0, "zone_ref": "zone_service", "poi": null, "basis": "图名：商旅仓棚；预留仓储入口（原创扩展）。"}
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office", "zone_home_0", "zone_home_1", "zone_home_2"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_home_0", "zone_home_1", "zone_home_2", "zone_service"], "count": {"min": 18, "max": 26}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_market"], "count": {"min": 5, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_market"], "count": {"min": 6, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.009, "avoid_road_cells": 2, "cluster_rule": "仅少量草簇；不据此推断历史植被或绿化率。", "basis": "图名：空地草簇；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_lijiang_2", "kind": "official_web", "title": "丽江古城1997—2007十年保护管理报告", "url": "https://www.ljgc517.com/u/cms/www/201708/141501116fqe.pdf", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["宋代白沙政治中心", "三赕至大叶场迁移", "1253管民官"], "note": "仅文字；已下载PDF并读历史沿革第3—4页（PDF第8—9页），未把现代古城地籍当1217平面。"}

@@ -1,0 +1,48 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_qufu"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "曲阜县城·寿丘旧治"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 1752516364
+design_intent: {"prosperity": "historical_topology_candidate", "notes": ["history/city_qufu__southern_song_jin_mongol.md", "寿丘宋仙源县城沿用为金代曲阜县治；四门十字街和北街东署西狱据市志，现存残迹延续到1217年仍属推定。", "160×160规划格为拓扑缩景；不是历史城垣实测。营生、POI与正式场景ID不在此定义。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 26, "z": 14}, {"x": 134, "z": 14}, {"x": 134, "z": 146}, {"x": 26, "z": 146}]}, "inside_margin_cells": 2, "basis": "图名：寿丘县城；src_qufu_1残迹长南北、短东西；src_qufu_2数值不一；108×132格正交化（推定），不使用明代孔庙城。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 80, "z": 14}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：south方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 80, "z": 146}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：north方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 26, "z": 80}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：west方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 134, "z": 80}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：east方位门；门位、门制（推定）（原创扩展）。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 80, "z": 14}, {"x": 80, "z": 146}], "surface": "stone_slab", "priority": 100, "basis": "图名：南北街；图名：寿丘县城；src_qufu_1残迹长南北、短东西；src_qufu_2数值不一；108×132格正交化（推定），不使用明代孔庙城。石砌十字街据src_qufu_1；现有石板贴片替代。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 26, "z": 80}, {"x": 134, "z": 80}], "surface": "stone_slab", "priority": 80, "basis": "图名：东西街；图名：寿丘县城；src_qufu_1残迹长南北、短东西；src_qufu_2数值不一；108×132格正交化（推定），不使用明代孔庙城。石砌十字街据src_qufu_1；现有石板贴片替代。"}
+  - {"id": "south_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 32, "z": 44}, {"x": 128, "z": 44}], "surface": "dirt_road", "priority": 80, "basis": "图名：南坊巷；线位、3格宽（原创扩展）。"}
+  - {"id": "north_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 32, "z": 110}, {"x": 128, "z": 110}], "surface": "dirt_road", "priority": 80, "basis": "图名：署狱前巷；东西相对关系据src_qufu_1，线位（推定）。"}
+rivers: []
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 86, "z": 86}, "max": {"x": 128, "z": 138}}}, "priority": 95, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_yamen", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北街东县署；方位据src_qufu_1，院落边界（推定）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 86, "z": 22}, "max": {"x": 128, "z": 72}}}, "priority": 80, "density": 0.64, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：市肆；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_0", "kind": "residential", "geometry": {"rect": {"min": {"x": 32, "z": 22}, "max": {"x": 72, "z": 72}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 32, "z": 88}, "max": {"x": 72, "z": 138}}}, "priority": 85, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北街西狱与守备；监狱方位据src_qufu_1，其余仓驿和分区（原创扩展）。"}
+landmarks:
+  - {"id": "lm_county_office", "type": "bld_kit_liao_jin_north_yamen", "origin": {"x": 96, "z": 115}, "size": {"w": 16, "h": 12}, "rotation_deg": 0, "zone_ref": "zone_office", "poi": null, "basis": "图名：县署；北街以东据src_qufu_1，占地替片与坐标（推定）。"}
+building_quotas:
+  - {"type": "bld_kit_liao_jin_north_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_office", "zone_home_0"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_home_0", "zone_service"], "count": {"min": 16, "max": 24}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 6, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 8, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.009, "avoid_road_cells": 2, "cluster_rule": "仅少量草簇；不据此推断历史植被或绿化率。", "basis": "图名：空地草簇；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_qufu_1", "kind": "gazetteer", "title": "曲阜市志·古城遗址", "url": "https://shandong-chorography.org/database/c8a/section/1/article/594/", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["县治迁徙", "四门十字街", "署狱关系"], "note": "仅文字；已读宋仙源县城段，不将全页周鲁国城数据混用。"}
+  - {"key": "src_qufu_2", "kind": "official_web", "title": "曲阜历史文化资料：宋仙源县城", "url": "https://www.qfskgj.com/qufu/678.html", "accessed": "2026-10-04", "confidence": "pending_review", "supports": ["长方形城址", "尺寸差异"], "note": "仅文字；尺寸为概述，与市志残迹测量不一致，降为交叉参照。"}

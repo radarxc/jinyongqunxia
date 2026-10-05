@@ -1,0 +1,45 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_baoshan"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "永昌·太保山麓旧土城"
+historical_year: 1217
+era_kit: "song_dali"
+seed: 1993846434
+design_intent: {"prosperity": "historical_topology_candidate", "notes": ["history/city_baoshan__southern_song_jin_mongol.md", "旧土城西倚太保山，南诏建城、段氏沿用；不把明清八门或1278后的元府制前置到1217。", "160×160规划格为拓扑缩景；不是历史城垣实测。营生、POI与正式场景ID不在此定义。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 30, "z": 20}, {"x": 142, "z": 20}, {"x": 142, "z": 140}, {"x": 40, "z": 140}, {"x": 26, "z": 100}, {"x": 26, "z": 52}]}, "inside_margin_cells": 2, "basis": "图名：山麓土城；src_baoshan_1支持西倚山的旧城，折线与范围（推定）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 82, "z": 20}, "width_cells": 6, "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：方位门；三门方案（推定），不沿后期门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 82, "z": 140}, "width_cells": 6, "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：方位门；三门方案（推定），不沿后期门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 142, "z": 80}, "width_cells": 6, "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：方位门；三门方案（推定），不沿后期门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 82, "z": 20}, {"x": 82, "z": 140}], "surface": "stone_slab", "priority": 100, "basis": "图名：城内纵街；（原创扩展）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 26, "z": 80}, {"x": 142, "z": 80}], "surface": "stone_slab", "priority": 80, "basis": "图名：山麓横街；（原创扩展）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "south_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 36, "z": 48}, {"x": 134, "z": 48}], "surface": "dirt_road", "priority": 80, "basis": "图名：南坊巷；（原创扩展）。"}
+  - {"id": "north_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 44, "z": 112}, {"x": 134, "z": 112}], "surface": "dirt_road", "priority": 80, "basis": "图名：北坊巷；（原创扩展）。"}
+rivers: []
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 44, "z": 90}, "max": {"x": 74, "z": 132}}}, "priority": 95, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：署院；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 94, "z": 28}, "max": {"x": 134, "z": 72}}}, "priority": 80, "density": 0.64, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_market_stall", "bld_kit_song_dali_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：市肆；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_0", "kind": "residential", "geometry": {"rect": {"min": {"x": 36, "z": 28}, "max": {"x": 74, "z": 72}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 94, "z": 90}, "max": {"x": 134, "z": 132}}}, "priority": 85, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_guardhouse", "bld_kit_song_dali_stable", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：守备与仓驿；分区边界、栋数和朝向（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office", "zone_home_0"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_home_0", "zone_service"], "count": {"min": 18, "max": 26}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_market"], "count": {"min": 6, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_market"], "count": {"min": 8, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.009, "avoid_road_cells": 2, "cluster_rule": "仅少量草簇；不据此推断历史植被或绿化率。", "basis": "图名：空地草簇；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_baoshan_1", "kind": "academic", "title": "复旦CHGIS：永昌府沿革与城址考证", "url": "http://tgaz.fudan.edu.cn/tgaz/placename/hvd_80746", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["旧土城西倚太保山", "南诏建段氏沿用", "1278升府"], "note": "仅文字；读取完整考证注释，1278—1390数据库时间段不能直接充当1217行政名。"}

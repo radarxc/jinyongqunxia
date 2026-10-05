@@ -1,0 +1,40 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_karakorum"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "和林河谷·1220营地候选"
+historical_year: 1220
+era_kit: "mongol"
+seed: 1336463276
+design_intent: {"prosperity": "historical_topology_candidate", "notes": ["history/city_karakorum__southern_song_jin_mongol.md", "主图采用1220成吉思汗营地候选，处于射雕1217—1227范围；不将1235以后的建城和佛寺倒置到本图。", "160×160规划格为拓扑缩景；不是历史城垣实测。营生、POI与正式场景ID不在此定义。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls: "none"
+gates: []
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 80, "z": 26}, {"x": 80, "z": 138}], "surface": "stone_slab", "priority": 100, "basis": "图名：营地通道；src_karakorum_1仅支持1220营地，路线（原创扩展）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 30, "z": 82}, {"x": 144, "z": 82}], "surface": "stone_slab", "priority": 80, "basis": "图名：营外商旅路；（原创扩展）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "lower_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 32, "z": 50}, {"x": 140, "z": 50}], "surface": "dirt_road", "priority": 80, "basis": "图名：南营小路；（原创扩展）。"}
+  - {"id": "upper_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 32, "z": 112}, {"x": 140, "z": 112}], "surface": "dirt_road", "priority": 80, "basis": "图名：北营小路；（原创扩展）。"}
+rivers:
+  - {"id": "orkhon", "width_cells": 10, "points": [{"x": 12, "z": 0}, {"x": 16, "z": 80}, {"x": 10, "z": 160}], "flow": "unknown", "navigable": false, "basis": "图名：鄂尔浑河谷；src_karakorum_1图4河谷关系，1220岸线与10格宽（推定）。"}
+bridges: []
+zones:
+  - {"id": "zone_camp", "kind": "residential", "geometry": {"rect": {"min": {"x": 32, "z": 30}, "max": {"x": 70, "z": 74}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_mongol_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：普通营宿；src_karakorum_1营地背景，建筑替片（原创扩展）。"}
+  - {"id": "zone_retinue", "kind": "residential", "geometry": {"rect": {"min": {"x": 32, "z": 94}, "max": {"x": 70, "z": 134}}}, "priority": 60, "density": 0.58, "allowed_building_types": ["bld_kit_mongol_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：随从营宿；（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 90, "z": 30}, "max": {"x": 140, "z": 74}}}, "priority": 70, "density": 0.58, "allowed_building_types": ["bld_kit_mongol_market"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：交换地；（原创扩展）。"}
+  - {"id": "zone_supply", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 90, "z": 94}, "max": {"x": 140, "z": 134}}}, "priority": 80, "density": 0.58, "allowed_building_types": ["bld_kit_mongol_stable", "bld_kit_mongol_warehouse", "bld_kit_mongol_guardhouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：畜栏军需；src_karakorum_2所考佛寺属后期，1220不设寺殿；本区（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_mongol_house_small", "zone_refs": ["zone_camp"], "count": {"min": 10, "max": 16}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_house_large", "zone_refs": ["zone_retinue"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_market", "zone_refs": ["zone_market"], "count": {"min": 6, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_stable", "zone_refs": ["zone_supply"], "count": {"min": 2, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_warehouse", "zone_refs": ["zone_supply"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_mongol_guardhouse", "zone_refs": ["zone_supply"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.009, "avoid_road_cells": 2, "cluster_rule": "仅少量草簇；不据此推断历史植被或绿化率。", "basis": "图名：空地草簇；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_karakorum_1", "kind": "academic", "title": "Bemmann等：Mapping Karakorum, the capital of the Mongol Empire（2021）", "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6E86EC9807E3354074D101D1AA15056F/S0003598X21001538a.pdf/mapping-karakorum-the-capital-of-the-mongol-empire.pdf", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["1220营地", "1235宫城", "1254四门记述", "城外聚落"], "note": "已看图：PDF图4地形/考古叠图、图7道路解释图；图为历时遗迹，不等于1220营地平面。"}
+  - {"key": "src_karakorum_2", "kind": "archaeology_report", "title": "德国考古研究院：Karakorum项目", "url": "https://www.dainst.org/en/research/projects/noslug/4924", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["西南佛寺解释", "宫殿与佛寺区分"], "note": "仅文字；38×38m、64柱基大厅为佛寺解释，非可直接套入1220的宫殿。"}

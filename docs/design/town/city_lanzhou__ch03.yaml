@@ -1,0 +1,46 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_lanzhou"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "兰州·宋金旧城候选"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 2029655260
+design_intent: {"prosperity": "historical_topology_candidate", "notes": ["history/city_lanzhou__southern_song_jin_mongol.md", "政府/报刊正文未成功取得；现有词条只作1083/1104修城线索。金代外廓、官署与黄河岸线均为区域地形推定。", "160×160规划格为拓扑缩景；不是历史城垣实测。营生、POI与正式场景ID不在此定义。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 14, "z": 20}, {"x": 146, "z": 20}, {"x": 146, "z": 128}, {"x": 14, "z": 128}]}, "inside_margin_cells": 2, "basis": "图名：兰州旧城候选；src_lanzhou_4只提供沿革线索，132×108格轮廓（推定）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 84, "z": 20}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：south方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 14, "z": 72}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：west方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 146, "z": 72}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：east方位门；门位、门制（推定）（原创扩展）。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 84, "z": 20}, {"x": 84, "z": 128}], "surface": "stone_slab", "priority": 100, "basis": "图名：南北街；图名：兰州旧城候选；src_lanzhou_4只提供沿革线索，132×108格轮廓（推定）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 14, "z": 72}, {"x": 146, "z": 72}], "surface": "stone_slab", "priority": 80, "basis": "图名：东西街；图名：兰州旧城候选；src_lanzhou_4只提供沿革线索，132×108格轮廓（推定）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "lower_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 22, "z": 44}, {"x": 138, "z": 44}], "surface": "dirt_road", "priority": 80, "basis": "图名：南坊巷；（原创扩展）。"}
+  - {"id": "upper_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 22, "z": 100}, {"x": 138, "z": 100}], "surface": "dirt_road", "priority": 80, "basis": "图名：北坊巷；（原创扩展）。"}
+rivers:
+  - {"id": "yellow_river", "width_cells": 10, "points": [{"x": 0, "z": 145}, {"x": 80, "z": 148}, {"x": 160, "z": 145}], "flow": "east", "navigable": false, "basis": "图名：黄河岸带；区域地形参照，古岸线与10格宽（推定），不声称词条提供河道测绘。"}
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 22, "z": 82}, "max": {"x": 74, "z": 120}}}, "priority": 95, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_yamen", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：署院；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 92, "z": 28}, "max": {"x": 138, "z": 64}}}, "priority": 80, "density": 0.64, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：市肆；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_0", "kind": "residential", "geometry": {"rect": {"min": {"x": 22, "z": 28}, "max": {"x": 74, "z": 64}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 92, "z": 82}, "max": {"x": 138, "z": 120}}}, "priority": 85, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：守备与仓驿；分区边界、栋数和朝向（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_liao_jin_north_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_office", "zone_home_0"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_home_0", "zone_service"], "count": {"min": 18, "max": 26}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 6, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 8, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.009, "avoid_road_cells": 2, "cluster_rule": "仅少量草簇；不据此推断历史植被或绿化率。", "basis": "图名：空地草簇；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_lanzhou_4", "kind": "design_interpretation", "title": "兰州城墙词条（辅助线索）", "url": "https://m.baike.com/wiki/%E5%85%B0%E5%B7%9E%E5%9F%8E%E5%A2%99/7876989", "accessed": "2026-10-04", "confidence": "pending_review", "supports": ["宋代城防沿革线索"], "note": "仅文字；成功读取，但无学术注释与同期图，按弱证据处理。"}

@@ -1,0 +1,49 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_kunming"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "鄯阐·盘龙江与玉带河之间"
+historical_year: 1217
+era_kit: "song_dali"
+seed: 700585679
+design_intent: {"prosperity": "historical_topology_candidate", "notes": ["history/city_kunming__southern_song_jin_mongol.md", "取南诏大理国拓东—鄯阐旧城区域；盘龙江东、玉带河西。礼制中轴不等于直线御街，所画道路仅为原创候选。", "160×160规划格为拓扑缩景；不是历史城垣实测。营生、POI与正式场景ID不在此定义。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 30, "z": 18}, {"x": 132, "z": 18}, {"x": 132, "z": 144}, {"x": 30, "z": 144}]}, "inside_margin_cells": 2, "basis": "图名：鄯阐城域；src_kunming_1支持两河之间范围；102×126格城垣（推定）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 80, "z": 18}, "width_cells": 6, "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：south方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 80, "z": 144}, "width_cells": 6, "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：north方位门；门位、门制（推定）（原创扩展）。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 132, "z": 80}, "width_cells": 6, "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：east方位门；门位、门制（推定）（原创扩展）。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 80, "z": 18}, {"x": 80, "z": 144}], "surface": "stone_slab", "priority": 100, "basis": "图名：南北街；图名：鄯阐城域；src_kunming_1支持两河之间范围；102×126格城垣（推定）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 30, "z": 80}, {"x": 132, "z": 80}], "surface": "stone_slab", "priority": 80, "basis": "图名：东西街；图名：鄯阐城域；src_kunming_1支持两河之间范围；102×126格城垣（推定）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "south_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 38, "z": 46}, {"x": 124, "z": 46}], "surface": "dirt_road", "priority": 80, "basis": "图名：南坊巷；（原创扩展）。"}
+  - {"id": "north_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 38, "z": 112}, {"x": 124, "z": 112}], "surface": "dirt_road", "priority": 80, "basis": "图名：北坊巷；（原创扩展）。"}
+rivers:
+  - {"id": "yudai_river", "width_cells": 6, "points": [{"x": 16, "z": 0}, {"x": 20, "z": 80}, {"x": 16, "z": 160}], "flow": "unknown", "navigable": false, "basis": "图名：玉带河；城在河东据src_kunming_1，古线与6格宽（推定）。"}
+  - {"id": "panlong_river", "width_cells": 8, "points": [{"x": 148, "z": 0}, {"x": 146, "z": 80}, {"x": 150, "z": 160}], "flow": "unknown", "navigable": false, "basis": "图名：盘龙江；城市东界据src_kunming_1，古线与8格宽（推定）。"}
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 88, "z": 90}, "max": {"x": 124, "z": 136}}}, "priority": 95, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard", "bld_kit_song_dali_wangfu"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：署院；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 88, "z": 26}, "max": {"x": 124, "z": 72}}}, "priority": 80, "density": 0.64, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_market_stall", "bld_kit_song_dali_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：市肆；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_0", "kind": "residential", "geometry": {"rect": {"min": {"x": 38, "z": 26}, "max": {"x": 72, "z": 72}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 38, "z": 90}, "max": {"x": 72, "z": 136}}}, "priority": 85, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_guardhouse", "bld_kit_song_dali_stable", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：守备与仓驿；分区边界、栋数和朝向（推定）（原创扩展）。"}
+landmarks:
+  - {"id": "lm_regional_court", "type": "bld_kit_song_dali_wangfu", "origin": {"x": 102, "z": 116}, "size": {"w": 18, "h": 14}, "rotation_deg": 0, "zone_ref": "zone_office", "poi": null, "basis": "图名：鄯阐治所意象；宫署具体位置无考古定位，替片（推定），不假定正式王国都城。"}
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office", "zone_home_0"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_home_0", "zone_service"], "count": {"min": 18, "max": 26}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_market"], "count": {"min": 6, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_market"], "count": {"min": 8, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_wangfu", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.009, "avoid_road_cells": 2, "cluster_rule": "仅少量草簇；不据此推断历史植被或绿化率。", "basis": "图名：空地草簇；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_kunming_1", "kind": "museum", "title": "昆明市博物馆：城市文化轴线专题调研", "url": "https://m.kmmuseum.com/info.asp?id=2485", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["拓东鄯阐范围", "两河边界", "礼制轴非道路"], "note": "仅文字；已看附图为活动照片，未当古城平面。正文明确礼制轴不是具体道路。"}

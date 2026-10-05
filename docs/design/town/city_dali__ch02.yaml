@@ -1,0 +1,53 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_dali"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "大理国都·羊苴咩城候选"
+historical_year: 1217
+era_kit: "song_dali"
+seed: 3747917026
+design_intent: {"prosperity": "historical_topology_candidate", "notes": ["history/city_dali__southern_song_jin_mongol.md", "保留苍山在西、洱海在东、桃溪南侧北城墙的考古关系；不把明大理四门格网等同羊苴咩城。", "160×160规划格为拓扑缩景；不是历史城垣实测。营生、POI与正式场景ID不在此定义。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 18, "z": 18}, {"x": 136, "z": 18}, {"x": 136, "z": 136}, {"x": 18, "z": 136}]}, "inside_margin_cells": 2, "basis": "图名：羊苴咩城域候选；src_dali_2北城墙线索、src_dali_3山湖关系；其余三边闭合（推定）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 76, "z": 18}, "width_cells": 6, "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：方位门；门数与位置（推定），不沿明城门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 76, "z": 136}, "width_cells": 6, "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：方位门；门数与位置（推定），不沿明城门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 136, "z": 78}, "width_cells": 6, "asset_type": "tex_town_song_dali_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：方位门；门数与位置（推定），不沿明城门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 76, "z": 18}, {"x": 76, "z": 136}], "surface": "stone_slab", "priority": 100, "basis": "图名：南北通街；（推定）（原创扩展）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 18, "z": 78}, {"x": 136, "z": 78}], "surface": "stone_slab", "priority": 80, "basis": "图名：山湖横街；（推定）（原创扩展）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "north_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 26, "z": 106}, {"x": 128, "z": 106}], "surface": "dirt_road", "priority": 80, "basis": "图名：北坊巷；（原创扩展）。"}
+  - {"id": "south_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 26, "z": 46}, {"x": 128, "z": 46}], "surface": "dirt_road", "priority": 80, "basis": "图名：南坊巷；（原创扩展）。"}
+rivers:
+  - {"id": "tao_stream", "width_cells": 4, "points": [{"x": 0, "z": 149}, {"x": 78, "z": 149}, {"x": 150, "z": 149}], "flow": "east", "navigable": false, "basis": "图名：桃溪候选北水带；城北墙在溪南据src_dali_2，古线与4格宽（推定）。"}
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 26, "z": 88}, "max": {"x": 68, "z": 128}}}, "priority": 95, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：署院；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 86, "z": 26}, "max": {"x": 128, "z": 70}}}, "priority": 80, "density": 0.64, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_market_stall", "bld_kit_song_dali_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：市肆；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_0", "kind": "residential", "geometry": {"rect": {"min": {"x": 26, "z": 26}, "max": {"x": 68, "z": 70}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 86, "z": 112}, "max": {"x": 128, "z": 128}}}, "priority": 85, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_guardhouse", "bld_kit_song_dali_stable", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：守备与仓驿；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_old_palace", "kind": "administrative", "geometry": {"rect": {"min": {"x": 86, "z": 84}, "max": {"x": 128, "z": 100}}}, "priority": 98, "density": 0.58, "allowed_building_types": ["bld_kit_song_dali_wangfu"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：国都宫署意象；大理国都身份有据，院落方位（推定）。"}
+landmarks:
+  - {"id": "lm_old_palace", "type": "bld_kit_song_dali_wangfu", "origin": {"x": 98, "z": 85}, "size": {"w": 18, "h": 14}, "rotation_deg": 0, "zone_ref": "zone_old_palace", "poi": null, "basis": "图名：段氏宫署意象；通用王府替片（原创扩展），不声称宫殿遗址位置已定。"}
+  - {"id": "lm_north_store", "type": "bld_kit_song_dali_warehouse", "origin": {"x": 112, "z": 116}, "size": {"w": 9, "h": 7}, "rotation_deg": 0, "zone_ref": "zone_service", "poi": null, "basis": "图名：城东仓院候选；给必需仓储留入口（原创扩展）。"}
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office", "zone_home_0"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_home_0", "zone_service"], "count": {"min": 18, "max": 26}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_market"], "count": {"min": 6, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_market"], "count": {"min": 8, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_song_dali_wangfu", "zone_refs": ["zone_old_palace"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.009, "avoid_road_cells": 2, "cluster_rule": "仅少量草簇；不据此推断历史植被或绿化率。", "basis": "图名：空地草簇；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_dali_2", "kind": "archaeology_report", "title": "文化和旅游部：大理北城墙考古发现", "url": "https://www.mct.gov.cn/whzx/qgwhxxlb/yn/201307/t20130711_791318.htm", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["桃溪南北城墙", "苍山至洱海", "约5km城墙线索"], "note": "仅文字；正式考古新闻支持北城墙位置，不提供整座1217城市图。"}
+  - {"key": "src_dali_3", "kind": "academic", "title": "大理城址研究章节转载：太和、羊苴咩等城", "url": "https://www.mokecn.com/culture/info_15245.html", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["苍山洱海关系", "诸城区分"], "note": "已看图：区域图五，显示诸古城与山湖关系；不是城内街道测绘。"}
+lakes:
+  - {"id": "erhai_edge", "polygon": {"points": [{"x": 150, "z": 0}, {"x": 160, "z": 0}, {"x": 160, "z": 160}, {"x": 150, "z": 160}, {"x": 148, "z": 110}, {"x": 150, "z": 60}]}, "basis": "图名：洱海西岸局部；src_dali_2、src_dali_3支持山西湖东，岸线与距离（推定），不是全湖形。"}

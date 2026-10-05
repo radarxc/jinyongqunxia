@@ -1,0 +1,53 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_tianshui"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "秦州·宋金三城候选"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 572955511
+design_intent: {"prosperity": "historical_topology_candidate", "notes": ["history/city_tianshui__southern_song_jin_mongol.md", "北宋中部雄武城与东西城相连的关系延续至金代仅作推定；不用明代五城连珠。", "160×160规划格为拓扑缩景；不是历史城垣实测。营生、POI与正式场景ID不在此定义。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "west_city", "role": "outer", "polygon": {"points": [{"x": 10, "z": 28}, {"x": 54, "z": 28}, {"x": 54, "z": 128}, {"x": 10, "z": 128}]}, "inside_margin_cells": 2, "basis": "图名：西城；src_tianshui_1宋城演变图支持串联关系；1217沿用和格坐标（推定）。"}
+  - {"id": "middle_city", "role": "outer", "polygon": {"points": [{"x": 54, "z": 28}, {"x": 108, "z": 28}, {"x": 108, "z": 128}, {"x": 54, "z": 128}]}, "inside_margin_cells": 2, "basis": "图名：雄武城；src_tianshui_1宋城演变图支持串联关系；1217沿用和格坐标（推定）。"}
+  - {"id": "east_city", "role": "outer", "polygon": {"points": [{"x": 108, "z": 28}, {"x": 150, "z": 28}, {"x": 150, "z": 128}, {"x": 108, "z": 128}]}, "inside_margin_cells": 2, "basis": "图名：东城；src_tianshui_1宋城演变图支持串联关系；1217沿用和格坐标（推定）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 80, "z": 28}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "middle_city", "basis": "图名：联城通门；位置、孔宽与城门名称（推定），不冒称原门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 80, "z": 128}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "middle_city", "basis": "图名：联城通门；位置、孔宽与城门名称（推定），不冒称原门额。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 10, "z": 78}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "west_city", "basis": "图名：联城通门；位置、孔宽与城门名称（推定），不冒称原门额。"}
+  - {"id": "inner_west", "side": "east", "at": {"x": 54, "z": 78}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "west_city", "basis": "图名：联城通门；位置、孔宽与城门名称（推定），不冒称原门额。"}
+  - {"id": "inner_east", "side": "east", "at": {"x": 108, "z": 78}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "middle_city", "basis": "图名：联城通门；位置、孔宽与城门名称（推定），不冒称原门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 150, "z": 78}, "width_cells": 6, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "east_city", "basis": "图名：联城通门；位置、孔宽与城门名称（推定），不冒称原门额。"}
+streets:
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 10, "z": 78}, {"x": 150, "z": 78}], "surface": "stone_slab", "priority": 80, "basis": "图名：三城贯通街；相连关系据src_tianshui_1，线位（推定）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 80, "z": 28}, {"x": 80, "z": 128}], "surface": "stone_slab", "priority": 100, "basis": "图名：中城南北街；（推定）（原创扩展）。铺装仅为主街辨识（原创扩展），不作为同期石路证据。"}
+  - {"id": "lane_32", "class": "secondary", "width_cells": 3, "points": [{"x": 32, "z": 36}, {"x": 32, "z": 120}], "surface": "dirt_road", "priority": 80, "basis": "图名：分城坊巷；（原创扩展）。"}
+  - {"id": "lane_128", "class": "secondary", "width_cells": 3, "points": [{"x": 128, "z": 36}, {"x": 128, "z": 120}], "surface": "dirt_road", "priority": 80, "basis": "图名：分城坊巷；（原创扩展）。"}
+rivers:
+  - {"id": "ji_river", "width_cells": 6, "points": [{"x": 0, "z": 12}, {"x": 80, "z": 10}, {"x": 160, "z": 14}], "flow": "east", "navigable": false, "basis": "图名：藉河；城南关系据src_tianshui_1山河图；古线与6格宽（推定）。"}
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 60, "z": 86}, "max": {"x": 100, "z": 120}}}, "priority": 95, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_yamen", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：署院；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 114, "z": 36}, "max": {"x": 144, "z": 70}}}, "priority": 80, "density": 0.64, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：市肆；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_0", "kind": "residential", "geometry": {"rect": {"min": {"x": 16, "z": 36}, "max": {"x": 48, "z": 70}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_home_1", "kind": "residential", "geometry": {"rect": {"min": {"x": 16, "z": 86}, "max": {"x": 48, "z": 120}}}, "priority": 50, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居住坊；分区边界、栋数和朝向（推定）（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 114, "z": 86}, "max": {"x": 144, "z": 120}}}, "priority": 85, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：守备与仓驿；分区边界、栋数和朝向（推定）（原创扩展）。"}
+landmarks:
+  - {"id": "lm_east_store", "type": "bld_kit_liao_jin_north_warehouse", "origin": {"x": 114, "z": 100}, "size": {"w": 10, "h": 8}, "rotation_deg": 0, "zone_ref": "zone_service", "poi": null, "basis": "图名：东城仓院；固定候选位置保留入口（原创扩展）。"}
+building_quotas:
+  - {"type": "bld_kit_liao_jin_north_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_office", "zone_home_0", "zone_home_1"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_home_0", "zone_home_1", "zone_service"], "count": {"min": 16, "max": 24}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 6, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+  - {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "场景展示配额（原创扩展）【建议值】；由分区可用面积和目录占地校验，不映射历史人口或营生收益。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.009, "avoid_road_cells": 2, "cluster_rule": "仅少量草簇；不据此推断历史植被或绿化率。", "basis": "图名：空地草簇；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_tianshui_1", "kind": "academic", "title": "国家人文历史：天水古城本来应该什么样（天水在线转载）", "url": "http://www.tianshui.com.cn/news/zjts/2023082522294940914.htm", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["三城变迁", "藉河北岸", "金代破坏"], "note": "已看图：正文宋代城形演变图及山河图；明清图仅用于排除后期加筑。"}
